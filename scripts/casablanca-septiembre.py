@@ -220,24 +220,24 @@ def _flecha(d, x, y, largo):
            fill=BLANCO, width=gr, joint="curve")
 
 
-def bloque_texto(im, cx, y_filete, antetitulo, titular, bajada, ancho_filete, x_filete):
+def bloque_texto(im, cx, y_filete, antetitulo, titular, bajada, ancho_filete, x_filete, esc=1.0):
     """Antetítulo (brief nº6) → titular serif → filete → bajada → filete.
     Posiciones medidas en las fichas de Paulina: filete y 901, titular ink-top 817,
     bajada ink-top 920,6, filete inferior 965,8 (una línea) / 1000,3 (dos)."""
     d = ImageDraw.Draw(im)
     SOM = (P(2), P(3), (0, 0, 0))
 
-    escribe(d, antetitulo, versales(17.0), BLANCO, cx=P(cx),
-            ink_top=P(y_filete - 139.0), tr=P(17.0) * 0.19, sombra=SOM)
+    escribe(d, antetitulo, versales(17.0 * esc), BLANCO, cx=P(cx),
+            ink_top=P(y_filete - 139.0 * esc), tr=P(17.0 * esc) * 0.19, sombra=SOM)
 
-    fs = _serif_que_quepa(d, titular, ancho_filete - 20.0)
-    escribe(d, titular, fs, BLANCO, cx=P(cx), ink_top=P(y_filete - 84.0),
+    fs = _serif_que_quepa(d, titular, ancho_filete - 20.0, 56.6 * esc)
+    escribe(d, titular, fs, BLANCO, cx=P(cx), ink_top=P(y_filete - 84.0 * esc),
             tr=ajusta_tr(d, titular, fs, _ancho_serif(d, titular, fs)), sombra=SOM)
 
     d.rectangle([P(x_filete), P(y_filete), P(x_filete + ancho_filete), P(y_filete) + max(1, int(R))],
                 fill=BLANCO)
 
-    cap = 24.5
+    cap = 24.5 * esc
     tope = ancho_filete - 52.0
     while cap > 15.0:
         fv = versales(cap)
@@ -245,17 +245,18 @@ def bloque_texto(im, cx, y_filete, antetitulo, titular, bajada, ancho_filete, x_
             break
         cap -= 0.5
     fv = versales(cap)
-    y = y_filete + 19.6
+    y = y_filete + 19.6 * esc
     for linea in bajada:
         escribe(d, linea, fv, BLANCO, cx=P(cx), ink_top=P(y), sombra=SOM)
         y += cap * 1.706
-    y_inf = y_filete + 64.8 + (cap * 1.706 * (len(bajada) - 1))
+    y_inf = y_filete + 64.8 * esc + (cap * 1.706 * (len(bajada) - 1))
     d.rectangle([P(x_filete), P(y_inf), P(x_filete + ancho_filete), P(y_inf) + max(1, int(R))],
                 fill=BLANCO)
     return y_inf
 
 
 def _serif_que_quepa(d, txt, tope_1080, cap=56.6):
+    cap = float(cap)
     """El titular nunca se sale del ancho del filete. Paulina no lo hace nunca."""
     while cap > 26.0:
         f, _ = serif(cap)
@@ -294,12 +295,16 @@ C1 = [
 C2 = [
     # `logo=False` donde el letrero del local ya dice Casablanca: la ronda 2 marcó
     # el logo duplicado en la tarjeta de la fachada.
-    dict(n=1, logo=False, etiqueta="SHOWROOM CASABLANCA · VITACURA",
+    dict(n=1, logo=False, franja=False, etiqueta="SHOWROOM CASABLANCA · VITACURA",
          titulo="Ven a ver tu piso en persona", bajada=[]),
-    dict(n=2, logo=True, etiqueta="",
+    dict(n=2, logo=True, franja=False, etiqueta="",
          titulo="Compara texturas, tonos y formatos",
          bajada=["CON ASESORÍA DE NUESTRO EQUIPO"]),
-    dict(n=3, logo=False, etiqueta="",
+    # La foto del 6359 no tiene zona despejada donde cae el texto y el titular
+    # chocaba con el número y con el letrero. El brief lo resuelve: «si la foto no
+    # tiene espacio limpio, usar una franja de color sólido en el borde antes que
+    # poner el texto encima del detalle» (C2, lineamiento nº3).
+    dict(n=3, logo=False, franja=True, etiqueta="",
          titulo="Te esperamos",
          bajada=["JUAN XXIII 6359, VITACURA",
                  "AGENDA TU VISITA POR WHATSAPP  ·  +56 9 6653 5124"]),
@@ -307,7 +312,7 @@ C2 = [
 
 # Geometría por formato. feed y story están MEDIDAS en las piezas de Paulina.
 FORMATOS = {
-    "feed": dict(w=1080, h=1080,
+    "feed": dict(w=1080, h=1080, esc=1.0,
                  logo=(440.6, 0.0, 198.7, 199.2),
                  muestra=(124.8, 258.0, 139.7, 470.0),
                  etiq=(69.1, 355.7, 252.0, 65.3),
@@ -317,7 +322,8 @@ FORMATOS = {
                   logo=(421.4, 0.0, 237.1, 305.8),
                   muestra=(161.6, 418.6, 155.0, 522.0),
                   etiq=(99.8, 527.0, 279.8, 72.0),
-                  filete_y=1316.6, filete_x=116.2, filete_w=847.2,
+                  filete_y=1292.0, filete_x=116.2, filete_w=847.2,
+                  esc=1.25,          # «aumentar el bloque de texto un 20-30 %» (Paulina, 25-08)
                   velo=(0.40, 1.0, 104)),
 }
 
@@ -331,7 +337,7 @@ def pieza_c1(t, fmt):
     muestra_tabla(im, t["sku"], *g["muestra"])
     etiqueta_gris(im, *g["etiq"], "Piso de Ingeniería", t["medida"])
     y_inf = bloque_texto(im, g["w"] / 2, g["filete_y"], t["look"], t["titulo"],
-                         t["bajada"], g["filete_w"], g["filete_x"])
+                         t["bajada"], g["filete_w"], g["filete_x"], g["esc"])
     if t["n"] == 1 and fmt == "feed":            # brief nº7 — sólo en feed
         d = ImageDraw.Draw(im)
         fv = versales(17.0)
@@ -348,25 +354,32 @@ def pieza_c2(t, fmt):
     g = FORMATOS[fmt]
     im = Image.open(ASSETS / f"sep/sr2_{t['n']}_{fmt}.jpg").convert("RGB")
     im = velo(im, g["velo"][0] - 0.06, 1.0, g["velo"][2] + 22)
+    if t.get("franja"):
+        # En story la franja NO llega al borde: si el texto cae bajo los 340 px
+        # inferiores, Meta lo tapa con su interfaz. Es una banda a sangre lateral.
+        y0, y1 = (822.0, 1080.0) if fmt == "feed" else (1152.0, 1562.0)
+        ImageDraw.Draw(im).rectangle([0, P(y0), P(g["w"]), P(y1)], fill=GRIS)
+        g = dict(g, filete_y=950.0 if fmt == "feed" else 1320.0)
     if t["logo"]:
         tarjeta_logo(im, *g["logo"])
     d = ImageDraw.Draw(im)
     SOM = (P(2), P(3), (0, 0, 0))
     y_f = g["filete_y"]
+    e = g["esc"]
     if t["etiqueta"]:
-        escribe(d, t["etiqueta"], versales(17.0), BLANCO, cx=P(g["w"] / 2),
-                ink_top=P(y_f - 139.0), tr=P(17.0) * 0.19, sombra=SOM)
-    fs = _serif_que_quepa(d, t["titulo"], g["filete_w"] - 20.0)
-    escribe(d, t["titulo"], fs, BLANCO, cx=P(g["w"] / 2), ink_top=P(y_f - 84.0),
+        escribe(d, t["etiqueta"], versales(17.0 * e), BLANCO, cx=P(g["w"] / 2),
+                ink_top=P(y_f - 139.0 * e), tr=P(17.0 * e) * 0.19, sombra=SOM)
+    fs = _serif_que_quepa(d, t["titulo"], g["filete_w"] - 20.0, 56.6 * e)
+    escribe(d, t["titulo"], fs, BLANCO, cx=P(g["w"] / 2), ink_top=P(y_f - 84.0 * e),
             tr=ajusta_tr(d, t["titulo"], fs, _ancho_serif(d, t["titulo"], fs)), sombra=SOM)
     if t["bajada"]:
         d.rectangle([P(g["filete_x"]), P(y_f), P(g["filete_x"] + g["filete_w"]), P(y_f) + max(1, int(R))],
                     fill=BLANCO)
-        y = y_f + 19.6
+        y = y_f + 19.6 * e
         for linea in t["bajada"]:
-            escribe(d, linea, versales(21.0), BLANCO, cx=P(g["w"] / 2), ink_top=P(y), sombra=SOM)
-            y += 38.0
-        y_inf = y_f + 61.0 + 38.0 * (len(t["bajada"]) - 1)
+            escribe(d, linea, versales(21.0 * e), BLANCO, cx=P(g["w"] / 2), ink_top=P(y), sombra=SOM)
+            y += 38.0 * e
+        y_inf = y_f + 61.0 * e + 38.0 * e * (len(t["bajada"]) - 1)
         d.rectangle([P(g["filete_x"]), P(y_inf), P(g["filete_x"] + g["filete_w"]), P(y_inf) + max(1, int(R))],
                     fill=BLANCO)
     return im

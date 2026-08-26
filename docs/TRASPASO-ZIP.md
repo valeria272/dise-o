@@ -62,12 +62,30 @@ Todo lo de esta tabla se **probó en vivo**, no se copió de una sesión anterio
 
 | Servicio | Estado | Dónde vive |
 |---|---|---|
-| **Freepik / Magnific** | ✅ **Vivo** — API responde 200 | `FREEPIK_API_KEY` en el `.env` **y** `~/.magnific_key`. Son **dos claves distintas y las dos sirven** |
+| **Freepik / Magnific** | ✅ **Vivo y completo** — ver abajo | `FREEPIK_API_KEY` en el `.env` **y** `~/.magnific_key`. Son **dos claves distintas y las dos sirven** |
 | **Gemini** | ✅ Vivo — `/v1beta/models` responde 200 | `GEMINI_API_KEY` en el `.env` |
 | **OpenAI** | ⚠️ Clave **válida**, pero `billing_hard_limit_reached` | `OPENAI_API_KEY` en el `.env` |
 
 > 🔑 **Magnific es Freepik.** Freepik compró Magnific: se usa la misma API
 > (`api.freepik.com`). No hay un endpoint "magnific.com" aparte que conectar.
+>
+> **Está entero, no sólo la generación.** Verificado el 26-08-2026 — ojo que los
+> endpoints son **POST**, así que probarlos con GET da un 404 engañoso:
+>
+> | Endpoint | Qué es | Comando |
+> |---|---|---|
+> | `/v1/ai/mystic` | Generación de imagen | `magnific.py generar "<prompt>"` |
+> | `/v1/ai/image-upscaler` | **El upscaler de Magnific** | `magnific.py escalar foto.png` |
+> | `/v1/ai/image-upscaler-precision` | Magnific Precision | `magnific.py escalar --precision` |
+> | `/v1/ai/image-relight` | **Magnific Relight** | `magnific.py reiluminar` |
+> | `/v1/ai/image-style-transfer` | Transferencia de estilo | `magnific.py estilo --ref ref.png` |
+> | `/v1/ai/loras` | Estilos entrenados de la cuenta | `magnific.py loras` |
+> | `/v1/resources` | Banco de Freepik | — |
+>
+> ⚠️ **Lo que la API NO hace:** leer los **proyectos del sitio web** de Magnific
+> (ABAKOS, BETWEEN, Copywriters, QB…). Eso vive en la cuenta del navegador. Lo que
+> se genere ahí se baja a mano a `raw/<marca>/`; lo que se genere con
+> `scripts/magnific.py` ya queda en el repo.
 
 > 💳 **OpenAI: el plan de ChatGPT NO es el mismo producto que la API.** La cuenta
 > tiene los 6 modelos de imagen disponibles (`gpt-image-1`, `-mini`, `1.5`, `2`,

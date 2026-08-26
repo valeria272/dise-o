@@ -45,6 +45,8 @@ TOKEN = str(_token_google())
 # PISOS CASABLANCA / 2026 / 8. Septiembre
 SEPTIEMBRE = "1jUG18Hjnifb-1-XZaugZWTt13SxH-jLs"
 RAIZ_NOMBRE = "Diseño Casablanca Septiembre 2026"
+# Cada vuelta entra en su propia carpeta: la V1 queda intacta para poder comparar.
+VERSION = "V2"
 
 ENTREGA = Path(
     str(_RAIZ / "out/casablanca/septiembre")
@@ -120,7 +122,8 @@ def carpeta(d, nombre, padre):
 
 
 def sube(d, ruta, padre):
-    media = MediaFileUpload(str(ruta), mimetype="image/png", resumable=True)
+    tipo = "text/markdown" if ruta.suffix == ".md" else "image/png"
+    media = MediaFileUpload(str(ruta), mimetype=tipo, resumable=True)
     existentes = {f["name"]: f["id"] for f in hijos(d, padre)}
     if ruta.name in existentes:
         d.files().update(
@@ -143,6 +146,7 @@ def main():
     d = svc()
 
     raiz = carpeta(d, RAIZ_NOMBRE, SEPTIEMBRE)
+    raiz = carpeta(d, VERSION, raiz)
     total = 0
     for nombre, prefijo in GRUPOS.items():
         sub = carpeta(d, nombre, raiz)
@@ -154,7 +158,12 @@ def main():
             sube(d, ruta, sub)
             total += 1
 
-    print(f"\nListo: {total} archivos en «{RAIZ_NOMBRE}»")
+    for extra in ("ENTREGA.md",):
+        r = ENTREGA / extra
+        if r.exists():
+            sube(d, r, raiz)
+            total += 1
+    print(f"\nListo: {total} archivos en «{RAIZ_NOMBRE} / {VERSION}»")
     print(f"https://drive.google.com/drive/folders/{raiz}")
 
 

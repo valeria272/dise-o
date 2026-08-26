@@ -29,10 +29,12 @@ ASSETS = RAIZ / "public/assets/casablanca"
 DEST = ASSETS / "sep"
 
 # (archivo, recorte feed x0,y0,x1,y1 en fracción, recorte story)
+# Recortes elegidos MIRANDO la foto, no a ojo de porcentaje: el letrero del local
+# y el monolito «6359» tienen que entrar ENTEROS, y fuera los autos.
 FOTOS = {
-    1: ("_JCW9757.jpg", (0.03, 0.24, 1.00, 0.72), (0.02, 0.13, 1.00, 0.86)),
-    2: (None,           (0.00, 0.00, 1.00, 1.00), (0.00, 0.00, 1.00, 1.00)),
-    3: ("_JCW9937.jpg", (0.21, 0.33, 0.74, 0.70), (0.16, 0.22, 0.80, 0.82)),
+    1: ("_JCW9757.jpg", (0.06, 0.235, 0.99, 0.705), (0.055, 0.115, 0.985, 0.90)),
+    2: (None,           (0.05, 0.02, 0.95, 0.98),   (0.20, 0.00, 0.80, 1.00)),
+    3: ("_JCW9937.jpg", (0.19, 0.335, 0.82, 0.695), (0.19, 0.085, 0.85, 0.715)),
 }
 REFERENCIA = 1          # la tarjeta cuya luz mandan las otras dos
 
@@ -48,7 +50,7 @@ def recorta(im, caja, w, h):
     return c.crop(((cw - w) // 2, (ch - h) // 2, (cw - w) // 2 + w, (ch - h) // 2 + h))
 
 
-def iguala_luz(im, objetivo, fuerza=0.75):
+def iguala_luz(im, objetivo, fuerza=0.45):
     """Lleva la temperatura de color a la de la foto de referencia (brief nº2)."""
     a = np.asarray(im).astype(float)
     m = a.reshape(-1, 3).mean(axis=0)
@@ -59,8 +61,9 @@ def iguala_luz(im, objetivo, fuerza=0.75):
 
 def main():
     DEST.mkdir(parents=True, exist_ok=True)
-    interior = Image.open(ASSETS / "sr_interior_limpio.jpg").convert("RGB")
-    interior = interior.resize((interior.width * 3, interior.height * 3), Image.LANCZOS)
+    # el interior venía a 1248×832 (borrado de personas sobre la foto real);
+    # se subió a 2496×1664 con el upscaler antes de recortar
+    interior = Image.open(ASSETS / "sr_interior_2k.jpg").convert("RGB")
     ref = None
     for fmt, (w, h) in (("feed", (2250, 2250)), ("story", (2250, 4000))):
         for n, (archivo, cf, cs) in FOTOS.items():

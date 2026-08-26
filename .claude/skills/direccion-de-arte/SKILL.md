@@ -97,6 +97,20 @@ Estas son las que de verdad pasaron. Cada una es una compuerta.
 - ✅ La foto de ambiente es **protagonista**, no relleno. Si sobra espacio vacío en
   el tercio inferior, la composición está mal resuelta.
 
+**Cuando falta la foto y hay que generarla**, el generador de la casa es
+**Magnific/Freepik**, no Higgsfield (que suele estar sin créditos):
+
+```bash
+python3 scripts/magnific.py generar "<ambiente>" --aspecto reel --out raw/<marca>/fondo.png
+python3 scripts/magnific.py escalar raw/<marca>/fondo.png --out .../fondo_4k.png
+python3 scripts/magnific.py reiluminar foto.png --prompt "luz de día suave" --out .../foto_ok.png
+```
+
+`reiluminar` y `escalar` son el camino correcto para **rescatar una foto real** que
+está oscura o chica — mucho mejor que estirarla o que reemplazarla por una escena
+inventada. Y sigue valiendo la jerarquía: la IA hace **ambiente y fondo**, nunca el
+producto, el logo ni un dato.
+
 ### 3.2 El texto
 - ⛔ Más de 3 bloques apilados. Las referencias buenas tienen **texto mínimo**.
 - ⛔ Textos o CTA inventados. Salen **literales del brief**.

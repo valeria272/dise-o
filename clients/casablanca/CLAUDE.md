@@ -241,6 +241,65 @@ la 'z' de la serif y el ancho de la sans en el botón. Todo lo demás calza.
 
 ---
 
+
+## La muestra de tabla — medida, y es GRANDE
+
+Es «el cuadro que muestra a detalle el producto» (Paulina, 25-08-2026), y su tamaño
+no se decide a ojo. Medido en las fichas de mayo y julio 2026, idéntico en todas:
+
+| Valor @1080 | Feed 1:1 | Origen |
+|---|---|---|
+| x · y | **124,8 · 258,0** | **[M]** |
+| ancho × alto | **139,7 × 470,0** | **[M]** — el **43,5 % del alto de la pieza** |
+| esquinas | r **13** | **[M]** |
+| sombra | desplazada abajo-derecha, difusa | **[M]** |
+
+⛔ **Una muestra chica es un error.** Ocupa casi la mitad del alto de la gráfica.
+La caja gris va **delante** de ella, no detrás.
+
+**De dónde sale la madera de la muestra:** de la **foto oficial del producto** en
+pisoscasablanca.cl (`raw/casablanca/productos-sitio/`), girada para que la veta
+corra vertical — `scripts/casablanca-muestras.py`. Ahí es donde se ven las marcas
+de sierra del Aserrado y los nudos del roble, que en el piso a escala de ambiente
+no se distinguen.
+
+**Y recibe la luz de la escena.** La muestra está DENTRO de la fotografía: si se
+pega la foto de estudio tal cual, queda más clara y más saturada que el suelo y se
+lee como otro producto. Se mide el piso **debajo** de la muestra (a los costados,
+a esa altura, hay ventana y muro) y se lleva la muestra a esa luz.
+
+**QA obligatorio:** `python3 scripts/casablanca-qa-muestra.py` — ΔE entre la muestra
+montada y el piso que la rodea. **Umbral 12.** Es el error más caro de esta marca.
+
+## Producción de septiembre 2026 — el pipeline que quedó
+
+```bash
+python3 scripts/casablanca-sep-pipeline.py --paso=2   # un ambiente, cuatro pisos
+python3 scripts/casablanca-muestras.py                # muestras desde la foto oficial
+python3 scripts/casablanca-showroom-sep.py            # fotos del local, recortadas
+python3 scripts/casablanca-septiembre.py              # las 14 gráficas
+python3 scripts/casablanca-qa-muestra.py              # ΔE muestra ↔ piso  (< 12)
+python3 scripts/casablanca-qa-sep.py                  # zonas seguras de Meta
+python3 scripts/casablanca-drive-subir.py             # sube a la carpeta V<n>
+```
+
+Reglas que se fijaron en esta vuelta:
+
+- **La franja de color sólido es una salida legítima**, no un parche: cuando la foto
+  no tiene zona limpia donde cae el texto, el lineamiento nº3 del brief C2 la indica
+  explícitamente. Se usó en la tarjeta del «6359», donde el titular chocaba con el
+  número y con el letrero. En story la franja **no llega al borde inferior**: bajo
+  los 340 px de abajo, Meta tapa el texto con su interfaz.
+- **Sin tarjeta de logo en las fotos donde el letrero del local ya dice Casablanca.**
+  Es el logo duplicado que marcó la ronda 2.
+- **El titular nunca se sale del ancho del filete**: el cuerpo se ajusta solo.
+  Paulina no deja una línea más ancha que su filete en ninguna pieza.
+- **Futura no trae el glifo «→»**: la flecha se dibuja.
+- El compositor de perspectiva (`casablanca-pisos-compositor.py`) deja el piso con
+  pinta de textura pegada y **no se usa para entregar**. El camino bueno es generar
+  el ambiente con la foto real del producto como referencia dura y verificar por ΔE.
+
+
 # ⭐⭐ SISTEMA EDITORIAL — 25-08-2026 · ESTE MANDA SOBRE TODO LO DE ABAJO
 
 Valeria bajó entera la entrega de septiembre contra **el feed real de

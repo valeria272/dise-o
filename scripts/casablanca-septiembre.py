@@ -230,7 +230,7 @@ def bloque_texto(im, cx, y_filete, antetitulo, titular, bajada, ancho_filete, x_
     escribe(d, antetitulo, versales(17.0), BLANCO, cx=P(cx),
             ink_top=P(y_filete - 139.0), tr=P(17.0) * 0.19, sombra=SOM)
 
-    fs, _ = serif(56.6)
+    fs = _serif_que_quepa(d, titular, ancho_filete - 20.0)
     escribe(d, titular, fs, BLANCO, cx=P(cx), ink_top=P(y_filete - 84.0),
             tr=ajusta_tr(d, titular, fs, _ancho_serif(d, titular, fs)), sombra=SOM)
 
@@ -253,6 +253,16 @@ def bloque_texto(im, cx, y_filete, antetitulo, titular, bajada, ancho_filete, x_
     d.rectangle([P(x_filete), P(y_inf), P(x_filete + ancho_filete), P(y_inf) + max(1, int(R))],
                 fill=BLANCO)
     return y_inf
+
+
+def _serif_que_quepa(d, txt, tope_1080, cap=56.6):
+    """El titular nunca se sale del ancho del filete. Paulina no lo hace nunca."""
+    while cap > 26.0:
+        f, _ = serif(cap)
+        if _ancho_serif(d, txt, f) <= tope_1080:
+            return f
+        cap -= 0.5
+    return serif(26.0)[0]
 
 
 def _ancho_serif(d, txt, f):
@@ -282,15 +292,14 @@ C1 = [
 ]
 
 C2 = [
-    dict(n=1, foto="sr_fachada.jpg", foto_story="sr_direccion.jpg",
-         etiqueta="SHOWROOM CASABLANCA · VITACURA",
+    # `logo=False` donde el letrero del local ya dice Casablanca: la ronda 2 marcó
+    # el logo duplicado en la tarjeta de la fachada.
+    dict(n=1, logo=False, etiqueta="SHOWROOM CASABLANCA · VITACURA",
          titulo="Ven a ver tu piso en persona", bajada=[]),
-    dict(n=2, foto="sr_interior_limpio.jpg", foto_story="sr_exhibidores.jpg",
-         etiqueta="",
+    dict(n=2, logo=True, etiqueta="",
          titulo="Compara texturas, tonos y formatos",
          bajada=["CON ASESORÍA DE NUESTRO EQUIPO"]),
-    dict(n=3, foto="sr_direccion.jpg", foto_story="sr_fachada.jpg",
-         etiqueta="",
+    dict(n=3, logo=False, etiqueta="",
          titulo="Te esperamos",
          bajada=["JUAN XXIII 6359, VITACURA",
                  "AGENDA TU VISITA POR WHATSAPP  ·  +56 9 6653 5124"]),
@@ -337,17 +346,17 @@ def pieza_c1(t, fmt):
 
 def pieza_c2(t, fmt):
     g = FORMATOS[fmt]
-    foto = Image.open(ASSETS / (t["foto"] if fmt == "feed" else t["foto_story"])).convert("RGB")
-    im = cover(foto, P(g["w"]), P(g["h"]))
+    im = Image.open(ASSETS / f"sep/sr2_{t['n']}_{fmt}.jpg").convert("RGB")
     im = velo(im, g["velo"][0] - 0.06, 1.0, g["velo"][2] + 22)
-    tarjeta_logo(im, *g["logo"])
+    if t["logo"]:
+        tarjeta_logo(im, *g["logo"])
     d = ImageDraw.Draw(im)
     SOM = (P(2), P(3), (0, 0, 0))
     y_f = g["filete_y"]
     if t["etiqueta"]:
         escribe(d, t["etiqueta"], versales(17.0), BLANCO, cx=P(g["w"] / 2),
                 ink_top=P(y_f - 139.0), tr=P(17.0) * 0.19, sombra=SOM)
-    fs, _ = serif(56.6)
+    fs = _serif_que_quepa(d, t["titulo"], g["filete_w"] - 20.0)
     escribe(d, t["titulo"], fs, BLANCO, cx=P(g["w"] / 2), ink_top=P(y_f - 84.0),
             tr=ajusta_tr(d, t["titulo"], fs, _ancho_serif(d, t["titulo"], fs)), sombra=SOM)
     if t["bajada"]:

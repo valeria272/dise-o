@@ -57,45 +57,45 @@ claude
 ```
 Claude lee `CLAUDE.md` solo. No hay que pegarle nada.
 
-## Paso 5 — Bajar el material 🔴
+## Paso 5 — Bajar el material ✅ (resuelto el 26-08-2026)
 
-**Esto es lo único que hoy no es automático, y es el punto que más fricción genera.**
+Al clonar recibes **todo lo que se necesita para renderizar**: el código, los 9
+manuales, los 7 comandos, **56 archivos de tipografía y los 28 logos oficiales**.
+`git clone` + `npm install` y el estudio funciona. No hay que pedirle nada a nadie.
 
-Al clonar el repo recibes **el código y los manuales, pero no los assets**:
+Lo que **no** viene, y está bien que no venga:
 
-| Carpeta | Peso | ¿En git? | Qué pasa si falta |
+| Qué | Peso | Por qué | Cómo se consigue |
 |---|---|---|---|
-| `public/assets/` | 433 MB | **NO** | Ninguna composición renderiza: sin logos, sin fuentes, sin packshots |
-| `raw/` | 1,1 GB | NO (a propósito) | No tienes las referencias del cliente contra las cuales comparar |
-| `out/` | — | NO (a propósito) | Sólo entregas pasadas |
+| Fotos, packshots y video de `public/assets/` | 1,3 GB | Material de cliente, cambia todo el tiempo | Se baja por marca cuando hace falta |
+| `raw/` | 10 GB | Referencias y rodajes | Idem — los IDs están en cada manual |
+| `out/` | — | Entregas pasadas | No se necesita |
+| **IvyOra** (Tierra Calma) | — | Adobe Fonts: la licencia es por cuenta | **Actívala** en tu Creative Cloud |
+| **Agrandir** (Selfie) | — | De pago, licencia del cliente | Pídesela a Coni |
+| **Neutraface** (MyZoo) | — | De pago | Pídesela al cliente |
 
-`raw/` y `out/` está bien que no estén: son material del cliente y entregas, se
-bajan del Drive cuando se necesitan. **`public/assets/` es distinto** — ahí viven
-las fuentes y los logos oficiales, que son lo mínimo para que algo funcione.
+Para saber qué te falta a ti, en tu máquina:
 
-### Mientras no exista el espejo en Drive (ver más abajo)
-Pídele el material a Claude, marca por marca. Cada manual tiene la sección
-"Dónde está el material" con los IDs de carpeta:
+```bash
+python3 scripts/verificar-fuentes.py       # qué tipografía falta y de dónde sacarla
+python3 scripts/verificar-material.py raw  # si lo que bajaste ES lo que dice ser
+bash scripts/doctor.sh                     # todo junto
+```
+
+### Bajar material de una marca
+
+Pídeselo a Claude en el chat — el conector MCP de Drive es el único que ve las
+carpetas de clientes:
 
 ```
-Baja el material de referencia de EBEMA a raw/ebema/ según clients/ebema/CLAUDE.md
+Baja el material de referencia de EBEMA a raw/ebema/ según clients/ebema/CLAUDE.md,
+verifícalo y muéstrame la hoja de contacto antes de diseñar
 ```
 
-O cópialo directo desde el Mac de Valeria por AirDrop / disco externo:
-`EDITOR VIDEOS/public/assets/` completo.
-
-### La solución definitiva — pendiente de decisión
-Dos caminos, hay que elegir uno:
-
-1. **Versionar el núcleo** (fuentes + logos ≈ **18 MB**) y dejar en Drive sólo lo
-   pesado (videos, fotos en alta, 331 MB). Con esto, `git clone` + `npm install`
-   deja el repo funcionando y las piezas se bajan por marca cuando hagan falta.
-   **Es lo recomendado.** Se hace una vez y no se vuelve a tocar.
-2. **Espejo completo en una carpeta de Drive** de `public/assets/`, con un script
-   de sincronización. Más simple de mantener, pero cada clon parte con 30 minutos
-   de descarga.
-
-Corre `bash scripts/doctor.sh` para ver en qué estado está tu copia.
+Para archivos de más de 10 MB (editables `.ai`, videos) el conector no alcanza:
+```bash
+python3 scripts/bajar-de-drive.py --publico "<id1>,<id2>" raw/<marca>/
+```
 
 ## Paso 6 — Tu primera pieza
 

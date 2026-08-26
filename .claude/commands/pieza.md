@@ -40,6 +40,8 @@ tres rondas rehechas.
 
 ## ① Cargar el sistema de la marca
 
+0. **Carga la skill `direccion-de-arte`.** Trae el criterio: cómo leer una
+   referencia, qué hace mala una pieza y cuándo parar en vez de producir.
 1. Lee `docs/SISTEMA-DE-MARCAS.md` si aún no lo tienes en contexto.
 2. Lee `clients/<marca>/CLAUDE.md` **completo**. Es el manual y manda.
 3. Lee `clients/<marca>/marca.json` — colores, fuentes, formatos, geometría.
@@ -78,6 +80,8 @@ ni la composición para una pieza puntual.
 
 Corre el checklist de "QA obligatorio" del manual de la marca, punto por punto.
 Además, siempre:
+- **Míralas todas juntas** — `python3 scripts/ver-pieza.py out/<marca>/<periodo>`
+  (sirve igual para un reel: `ver-pieza.py out/<marca>/reel.mp4`)
 - Zonas seguras Meta (`src/components/qa/SafeAreaAds.tsx`)
 - Comparar la pieza al lado de una referencia aprobada
 - Cero choques de texto con marcos, logos u otros elementos

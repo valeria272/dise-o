@@ -2,6 +2,10 @@
 description: Control de calidad de piezas antes de entregar — /qa <marca o ruta>
 ---
 
+**Carga primero la skill `direccion-de-arte`** — el §3 «qué hace vergonzosa una
+pieza» es el checklist duro de este comando, y el §4 trae las herramientas:
+`scripts/ver-pieza.py` para mirarlas todas juntas (o un video cuadro a cuadro).
+
 Control de calidad sobre lo indicado en `$ARGUMENTS` (una marca, una carpeta o un
 archivo). **Sé duro.** El objetivo es encontrar problemas, no aprobar.
 

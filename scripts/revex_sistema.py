@@ -92,6 +92,23 @@ class Lienzo:
         f = self._f(cuerpo, peso)
         return (f.getlength(txt) + tracking * self.P(cuerpo) * max(0, len(txt) - 1)) / self.S
 
+    def cap_que_cabe(self, txt, cap_ideal, peso, ancho_max=880, tracking=0.0):
+        """baja el cuerpo hasta que la línea entre en ancho_max. Ningún texto se sale."""
+        cap = cap_ideal
+        while cap > 6:
+            c = self.cuerpo_para_cap(cap, peso)
+            if self.ancho(txt, c, peso, tracking) <= ancho_max:
+                return cap
+            cap -= 0.5
+        return cap
+
+    def titular(self, txt, y, cap_ideal, peso=775, color=BLANCO, cx=540,
+                tracking=None, ancho_max=880):
+        tracking = TRACKING_TIT if tracking is None else tracking
+        cap = self.cap_que_cabe(txt, cap_ideal, peso, ancho_max, tracking)
+        self.texto(txt, y, self.cuerpo_para_cap(cap, peso), peso, color, cx, tracking)
+        return cap
+
     def texto(self, txt, y, cuerpo, peso, color=BLANCO, cx=540, tracking=0.0, alinear="centro"):
         """y = top de la caja de mayúsculas. Devuelve (x0, x1) en unidades norm."""
         f = self._f(cuerpo, peso)
@@ -131,6 +148,7 @@ class Lienzo:
         """barra ajustada al ancho del texto y centrada — MEDIDO"""
         padx = BARRA_TIT["padx"] if padx is None else padx
         padv = BARRA_TIT["padv"] if padv is None else padv
+        cap = self.cap_que_cabe(txt, cap, peso, 880 - 2 * padx, tracking)
         cuerpo = self.cuerpo_para_cap(cap, peso)
         w = self.ancho(txt, cuerpo, peso, tracking)
         self.d.rectangle([self.P(cx - w / 2 - padx), self.P(y - padv),

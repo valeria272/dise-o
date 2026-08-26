@@ -59,10 +59,13 @@ SKUS = {
     ),
     "aserrado": (
         "roble-aserrado.jpg",
-        "extra-wide pale rustic sawn-cut oak planks, 19 cm wide and 1.9 metres long, "
-        "light sandy blond and never brown: every board carries fine short pale saw "
-        "marks running across the grain, plus several large dark natural knots with "
-        "filled cracks; deep open grain, dry matte finish with no sheen",
+        "extra-wide RUSTIC SAW-CUT oak planks, 19 cm wide and 1.9 metres long. The "
+        "defining feature — copy it from the product photo — is the BAND-SAW TEXTURE: "
+        "dense short pale scratch marks left by the saw blade, running ACROSS the "
+        "grain over the whole surface of every single board, clearly visible in the "
+        "foreground. Not a smooth sanded floor: a raw sawn surface. Warm sandy blond "
+        "oak with deep open grain, several large dark natural knots with filled "
+        "cracks, and a dry matte finish with no sheen at all",
     ),
     "cumaru": (
         "cumaru.jpg",

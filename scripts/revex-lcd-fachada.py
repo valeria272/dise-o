@@ -13,11 +13,21 @@ from _entorno import RAIZ
 DEST = RAIZ / "public/assets/revex/sep"
 src = Image.open(DEST / "lcd_fachada.jpg").convert("RGB"); W, H = src.size
 
-# ---------- FEED 2250x2250 : cuadrado centrado en el logo de la entrada ------
-x0 = 190                                   # deja el logo GRUPOREVEX centrado
-feed = src.crop((x0, 0, x0 + H, H)).resize((2250, 2250), Image.LANCZOS)
-feed.save(DEST / "lcd_fachada_feed.jpg", quality=95)
-print("lcd_fachada_feed.jpg  2250x2250  (crop", x0, "..", x0 + H, ")")
+# ---------- FEED 2250x2250 : la foto abajo, cielorraso extendido arriba ------
+# Si se recorta en cuadrado, el wordmark GRUPOREVEX de la fachada queda justo
+# detrás del titular y compiten. Se baja la foto y el texto cae sobre el
+# cielorraso de hormigón, que es liso y oscuro: se lee limpio.
+fw = 2250; fh = int(H * fw / W)
+foto = src.resize((fw, fh), Image.LANCZOS)
+feed = Image.new("RGB", (fw, 2250))
+top = 2250 - fh
+feed.paste(foto, (0, top))
+a = np.asarray(feed).astype(np.float64)
+banda = np.asarray(foto)[0:30].mean(axis=0)
+for y in range(top):
+    a[y] = banda * (0.40 + 0.60 * (y / top))
+Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).save(DEST / "lcd_fachada_feed.jpg", quality=95)
+print("lcd_fachada_feed.jpg  2250x2250  (foto abajo + cielorraso extendido)")
 
 # ---------- STORY 2250x4000 : la foto a lo ancho, extendida arriba y abajo ---
 # El wordmark GRUPOREVEX ocupa casi todo el ancho: recortarlo en vertical lo

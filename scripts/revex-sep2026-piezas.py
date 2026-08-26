@@ -33,16 +33,14 @@ def _base(size, fondo=None, plano=None, story=False, velo=None, foco=0.5):
 def r1(story=False):
     size = STORY if story else FEED
     l = _base(size, fondo="concurso_amb_story.jpg" if story else "concurso_amb_feed.jpg",
-              velo=dict(inicio=170 if not story else 300, meseta=380 if not story else 560,
-                        fin=900 if not story else 1290, alpha=0.42))
+              velo=dict(inicio=170 if not story else 300, meseta=880 if not story else 1500,
+                        fin=1080 if not story else 1790, alpha=0.58))
     l.bloque_logo(story=story)
     y = 262 if not story else 545
     l.texto("CONCURSO", y, l.cuerpo_para_cap(19, 600), 600, tracking=0.34)
     y += 62 if not story else 66
-    l.texto("¡GANA UNA ALFOMBRA", y, l.cuerpo_para_cap(50, 775), 775, tracking=TRACKING_TIT)
-    y += 74
-    l.texto("DIMENSIONADA PERSONALIZADA!", y, l.cuerpo_para_cap(30, 775), 775, tracking=-0.03)
-    y += 62
+    l.titular("¡GANA UNA ALFOMBRA", y, 50); y += 74
+    l.titular("DIMENSIONADA PERSONALIZADA!", y, 32, tracking=-0.03); y += 60
     l.filete(y, ancho=700)
     y += 34
     for ln in ["Todas tus compras realizadas del 21 de agosto",
@@ -71,46 +69,51 @@ def r2(story=False):
     lg = _I.open(LOGO_BLANCO).convert("RGBA")
     lw = l.P(150 if not story else 172); lh = lw / (lg.size[0]/lg.size[1])
     lg = lg.resize((round(lw), round(lh)), _I.LANCZOS)
-    l.im.paste(lg, (round(l.P(540) - lw/2), round(l.P(56 if not story else 300))), lg)
+    y_logo = 56 if not story else 250
+    l.im.paste(lg, (round(l.P(540) - lw/2), round(l.P(y_logo))), lg)
     from PIL import ImageDraw as _D
     l.d = _D.Draw(l.im, "RGBA")
 
-    y = 232 if not story else 500
-    l.texto("¡REMATE TOTAL DE REVESTIMIENTOS!", y, l.cuerpo_para_cap(27, 775), 775, tracking=-0.02); y += 44
-    l.texto("MÁS DE 300 PRODUCTOS", y, l.cuerpo_para_cap(23, 500), 500, tracking=0.06); y += 56
-    l.texto("PRECIOS DE LIQUIDACIÓN · PATIO OUTLET", y, l.cuerpo_para_cap(18, 600), 600, tracking=0.10); y += 62
+    E = 1.0 if not story else 1.34          # expansión vertical para el story
+    y = 232 if not story else 500      # bajo el logo, con aire (Paulina: nada pegado al logo)
+    l.titular("¡REMATE TOTAL DE REVESTIMIENTOS!", y, 27 if not story else 30,
+              tracking=-0.02, ancho_max=930); y += 44 * E
+    l.texto("MÁS DE 300 PRODUCTOS", y, l.cuerpo_para_cap(23 if not story else 25, 500), 500, tracking=0.06); y += 56 * E
+    l.texto("PRECIOS DE LIQUIDACIÓN · PATIO OUTLET", y, l.cuerpo_para_cap(18 if not story else 20, 600), 600, tracking=0.10); y += 62 * E
 
     # LA CIFRA: recuadro blanco con el texto en rojo — lo más grande de la pieza
-    cap = 118 if not story else 132
+    cap = l.cap_que_cabe("HASTA 85% OFF", 118 if not story else 150, 775, 930, -0.045)
     cuerpo = l.cuerpo_para_cap(cap, 775)
     w = l.ancho("HASTA 85% OFF", cuerpo, 775, -0.045)
     l.d.rectangle([l.P(540 - w/2 - 42), l.P(y - 40), l.P(540 + w/2 + 42), l.P(y + cap + 40)], fill=BLANCO)
     l.texto("HASTA 85% OFF", y, cuerpo, 775, color=BAR_RED, tracking=-0.045)
-    y += cap + 40 + 46
+    y += cap + 40 + 46 * E
 
     # franja amarilla de condiciones — recurso propio de la línea de outlet
     txtf = "PRODUCTOS SELECCIONADOS  |  LIQUIDACIÓN FINAL"
-    cf = l.cuerpo_para_cap(19, 700)
-    l.d.rectangle([0, l.P(y - 20), l.W, l.P(y + 19 + 20)], fill=AMARILLO)
+    cf = l.cuerpo_para_cap(19 if not story else 21, 700)
+    capf = 19 if not story else 21
+    l.d.rectangle([0, l.P(y - 20 * E), l.W, l.P(y + capf + 20 * E)], fill=AMARILLO)
     l.texto(txtf, y, cf, 700, color=TINTA, tracking=0.04)
-    y += 19 + 20 + 52
+    y += capf + 20 * E + 52 * E
 
-    l.texto("VENTA EXCLUSIVA EN LUIS OLEA 010, QUILICURA", y, l.cuerpo_para_cap(19, 600), 600, tracking=0.05); y += 56
-    y = l.recuadro("WhatsApp +56 9 8902 8227", y, cap=26, peso=700); y += 44
-    l.texto("Cotiza por WhatsApp", y, l.cuerpo_para_cap(20, 400), 400)
+    l.texto("VENTA EXCLUSIVA EN LUIS OLEA 010, QUILICURA", y, l.cuerpo_para_cap(19 if not story else 21, 600), 600, tracking=0.05); y += 56 * E
+    y = l.recuadro("WhatsApp +56 9 8902 8227", y, cap=26 if not story else 29, peso=700); y += 44 * E
+    l.texto("Cotiza por WhatsApp", y, l.cuerpo_para_cap(20 if not story else 22, 400), 400)
     return l
 
 # ═══════════════════════ R3 / R4 · SUCURSALES (serie) ══════════════════════
 # Misma estructura y tipografía en las dos: cambian la foto y los datos.
-def sucursal(fondo, antetitulo, tit1, tit2_barra, dato_bold, bajada, horario, story=False, foco=0.5):
+def sucursal(fondo, antetitulo, tit1, tit2_barra, dato_bold, bajada, horario, story=False,
+             foco=0.5, velo_alpha=0.60):
     size = STORY if story else FEED
     l = _base(size, fondo=fondo, foco=foco,
-              velo=dict(inicio=200 if not story else 430, meseta=430 if not story else 700,
-                        fin=980 if not story else 1400, alpha=0.46))
+              velo=dict(inicio=200 if not story else 430, meseta=880 if not story else 1480,
+                        fin=1060 if not story else 1680, alpha=velo_alpha))
     l.bloque_logo(story=story)
     y = 268 if not story else 552
     l.texto(antetitulo, y, l.cuerpo_para_cap(18, 600), 600, tracking=0.30); y += 64
-    l.texto(tit1, y, l.cuerpo_para_cap(44, 775), 775, tracking=TRACKING_TIT); y += 66
+    l.titular(tit1, y, 44); y += 66
     y = l.barra(tit2_barra, y, 44) + 34
     # regla de Paulina: si el enunciado ya lleva cuadro, el dato de abajo va en NEGRITA sin cuadro
     l.texto(dato_bold, y, l.cuerpo_para_cap(24, 700), 700); y += 52
@@ -138,7 +141,7 @@ def r4(story=False):
         "GRUPO REVEX · LAS CONDES DESIGN", "TODO PARA RENOVAR TUS ESPACIOS", "EN UN SOLO LUGAR",
         "Av. Las Condes 9765 · PISO 1, LOCAL 112",
         ["Pisos, porcelanatos y revestimientos"],
-        ["Lun a vie 10:00–19:00 · Sáb 10:00–14:30"], story=story)
+        ["Lun a vie 10:00–19:00 · Sáb 10:00–14:30"], story=story, velo_alpha=0.62)
 
 if __name__ == "__main__":
     piezas = [("rvx_sep_concurso_feed", r1(False)), ("rvx_sep_concurso_story", r1(True)),

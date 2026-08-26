@@ -9,15 +9,25 @@
 
 | # | Qué | A quién | Por qué bloquea |
 |---|---|---|---|
-| 1 | **Las piezas del feed publicado hoy, como PNG.** Son las 3 capturas de Instagram que mandó Valeria: placa gris del logo arriba a la **izquierda**, nombre del piso en **Didone CAJA ALTA**, bloque alineado a la izquierda, barra gris translúcida al pie ("MÁS DETALLES EN LA DESCRIPCIÓN…"). | Paulina | **Es el registro que está publicado y el que se pidió replicar, y es el único que no pude medir.** Lo busqué en todo el Drive del cliente (2025 completo + ene/feb/may/jun/jul/ago 2026), en la carpeta de editables de Paulina, y **abrí las tres grillas de paid de jun/jul/ago 2026** (≈1,4 GB de imágenes incrustadas): sólo contienen los otros dos registros. Todo lo que el manual dice del registro C está estimado a ojo. |
-| 2 | **El archivo de la serif itálica de titular** (.otf/.ttf) o su nombre exacto y quién tiene la licencia. | Paulina | Hoy se usa Playfair Display Italic 900 + tracking como sustituto. Calza en altura y en ancho, **pero no en dibujo**: la 'z' real es recta con serifa de pie y la de Playfair lleva cola caligráfica. Se nota en el nombre del piso, que es el elemento más grande de la pieza. |
-| 3 | **El archivo de la sans** de bajadas, etiquetas y botones. | Paulina / Grupo Revex | Poppins Regular calza el ancho de las bajadas, pero en el botón la fuente real es **más ancha a igual altura** (hacen falta +7,8 px @2250 de tracking para igualarla). Es una geométrica ancha tipo Futura / Century Gothic — probablemente la corporativa de Grupo Revex. Mientras no llegue, todo texto en sans queda aproximado. |
+| 1 | **La serif itálica del titular.** Está identificada como Didone de biblioteca pero no exactamente cuál. **Acción concreta en Adobe (5 min):** en la app de Creative Cloud → *Fuentes* → buscar y **activar** estas seis familias: **Bodoni URW**, **Bauer Bodoni**, **ITC Bodoni Seventytwo**, **Walbaum**, **Didot LT Pro**, **Abril Display**. Con eso basta: al activarlas, Creative Cloud las baja al Mac y el identificador (`scripts/casablanca-tipografia.py`) elige la correcta sola. | Valeria (Adobe CC) | Es el elemento más grande de la pieza. El sustituto de hoy (Bodoni Moda Italic w800/opsz18) calza en el 77 % pero **la `z` y la `j` de la marca no llevan cola** y las del sustituto sí — se nota en «Roble Spritz», «Roble Mojito». |
+
+> 🅰️ **Cómo funciona Adobe Fonts acá.** Activar una familia en Creative Cloud la
+> sincroniza a `~/Library/Application Support/Adobe/CoreSync/plugins/livetype/.r/`,
+> y desde ahí mis scripts la leen directo. Ya funciona así con **IvyOra Display**
+> para Tierra Calma. **No hace falta instalar nada más**: en este Mac sólo está la
+> app de Creative Cloud, sin Photoshop ni Illustrator.
+>
+> 🅱️ **Atajo si prefieres cerrarlo en un minuto:** instala **Photoshop** desde
+> Creative Cloud, abre cualquier pieza de `raw/casablanca/ref/`, selecciona el
+> titular con el marco y usa **Texto → Buscar coincidencia de fuentes**. Te dice el
+> nombre exacto. Después la activas y me lo dices.
 
 ## 🟡 Importantes — mejoran calidad y velocidad
 
 | # | Qué | A quién | Para qué |
 |---|---|---|---|
-| 4 | **La script manuscrita** de «Colección Rústico / Italiana / Premium / Clásica». | Paulina | Es la firma del registro de anuncio y hoy no está identificada. |
+| 2 | ✅ **Sans resuelto.** Versales = **Futura Medium** (IoU 89,2 %, ya está en el Mac; en Adobe Fonts es **Futura PT**). Caja baja = **Montserrat Regular** (79,7 %, probable). Falta sólo confirmar la caja baja con la misma vuelta del punto 1. | Valeria | Sin bloqueo: se puede producir con lo que hay. |
+| 3 | **La script manuscrita** de «Colección Rústico / Italiana / Premium / Clásica». | Paulina | Es la firma del registro de anuncio y hoy no está identificada. |
 | 5 | **Confirmar el formato del feed: 1:1 o 4:5.** De 55 piezas, 35 son 1:1 y sólo las 6 de agosto 2026 son 4:5. | Serena | Septiembre ya se entregó en 4:5 sin avisar (ver `feedback/2026-08-25-ronda2.md`, pendiente nº 3). Es un cambio sobre el contrato de entrada, no un detalle. |
 | 6 | **Fotos reales de los 4 SKU instalados** (Roble Natural UV 190×1900 y 167×1200, Roble Aserrado, Cumarú). | Jenny | Sin ellas el piso lo genera IA y ya nos costó una ronda completa: la muestra no coincidía con el suelo. Es el error más caro que existe en una marca de pisos. |
 | 7 | **Fotos del interior del showroom de Vitacura sin gente** (vista general y zona de muestras). | Jenny | De las 36 fotos disponibles, 32 son la fachada y 4 tienen al equipo posando — y no hay derechos de imagen. Hoy la única salida es borrar personas sobre una foto real. |

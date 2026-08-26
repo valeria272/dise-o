@@ -85,40 +85,58 @@ Confundirlos es el error más caro que se puede cometer acá.
 andaban dando vueltas en este manual y en `marca.json` **no aparecen en ninguna
 pieza aprobada**. Eran estimaciones. Un solo gris: `#626260`.
 
-## Tipografía — medida contra las cadenas reales
+## Tipografía — identificada por GLIFOS, no por anchos
 
-**Serif de titular** — **[≈]** *sustituto*: `PlayfairDisplay-Italic` en peso **900**
-con **tracking +4,3 px @1080**.
-Cómo se llegó: se midió la altura de mayúscula (**56,6 px @1080** **[M]**, constante
-en las 12 fichas) y el ancho de tinta de cada nombre real. Con esa altura, Playfair
-900 queda **10 % angosto**, Playfair 700 **14 %**, Bodoni Moda 900 **13 %**. El
-tracking cierra la diferencia y queda consistente (8–9 px @2250 en las 4 cadenas).
-⚠️ **No es la fuente real**: la 'z' de la diseñadora es recta con serifa de pie, la
-de Playfair es una 'z' con cola caligráfica. Se ve al comparar. Pedir el archivo.
+> **Método.** El ancho de una línea depende del tracking, así que no sirve para decidir
+> qué fuente es. Se recorta **cada letra** de la pieza real, se normaliza y se compara
+> con IoU de forma contra cada candidata (`scripts/casablanca-tipografia.py`).
+> Techo de la medición (mismo glifo sacado de dos piezas distintas): **99,7 %** en
+> versales y **95,5 %** en la serif. Todo lo que quede muy por debajo de eso, no es.
 
-| Cadena real | ancho de tinta @1080 | Origen |
-|---|---|---|
-| *Roble Spritz* | 514,1 | **[M]** |
-| *Roble Mojito* | 522,2 | **[M]** |
-| *Roble Margarita* | 691,7 | **[M]** |
-| *Roble Natural UV* | 732,5 | **[M]** |
+### Versales → **Futura Medium** ✅ **[M]** confirmado
+**IoU 89,2 %.** El segundo (Avenir Next Demi Bold) queda en 79,7 % y Montserrat en
+76,4 %. Es una diferencia de 10 puntos: no hay duda.
+Va en las **bajadas en versales**, en el antetítulo y en la línea de versales del
+cierre de carrusel. En el Mac ya está: `/System/Library/Fonts/Supplemental/Futura.ttc`.
+Para producción, activar **Futura PT** en Adobe Fonts.
+`altura de mayúscula = 0,700 × cuerpo`. El tracking **no es fijo**: se ajusta al ancho
+de la línea (en el cierre queda apretado, en las bajadas queda en cero).
 
-**Sans de bajadas, etiquetas y CTA** — **[≈]** *sustituto*: `Poppins-Regular`,
-**sin tracking añadido**.
-Cómo se llegó: se resolvió el tamaño por altura de mayúscula y se comparó el ancho de
-tinta contra 4 cadenas reales. Poppins Regular calza con un tracking de **+0,4 a
-−1,5 px @2250** — es decir, cero. ⛔ El manual decía *"Montserrat SemiBold con
-tracking amplio ~3,5 px"*: **es falso**. Montserrat necesita tracking **negativo**
-para calzar, o sea que era la fuente equivocada. Poppins: `cuerpo = altura de
-mayúscula ÷ 0,700` **[M]**.
-⚠️ En el botón la fuente real es **más ancha que Poppins** a igual altura (hay que
-meterle +7,8 px @2250 de tracking para igualar el ancho): la sans verdadera es una
-geométrica ancha tipo Futura / Century Gothic, probablemente la corporativa de Grupo
-Revex. Pedir el archivo.
+⛔ **Corrige** lo que decía este manual (*Montserrat SemiBold con tracking 3,5*) y lo
+que dije yo el mismo día (*Poppins*). Ninguna de las dos.
 
-**Manuscrita de colección** (*"Colección Rústico"*, *"Colección Italiana"*,
-*"Colección Premium"*, *"Colección Clásica"*) — **sin identificar**. Es una script
-monolineal. Candidatos locales: `Sacramento`. **[≈]** Pedir el archivo.
+### Caja baja → **Montserrat Regular** 🟡 **[≈]** probable, no confirmado
+**IoU 79,7 %** contra 75,8 % del segundo (Avenir Next Regular). **No es Futura** —
+Futura tiene una altura de x mínima y la caja baja de la marca la tiene grande.
+Va en el **texto del botón** y en la **etiqueta gris** (`Piso de Ingeniería` regular +
+`Roble X` bold). Coincide con Revex, que sí está confirmado en Montserrat.
+En la etiqueta chica el test queda empatado con Poppins: falta resolución.
+
+> **La marca usa dos sans, no una.** Futura para las versales, Montserrat para la caja
+> baja. Es raro pero está medido, y explica por qué antes no calzaba ninguna sola.
+
+### Titular serif → Didone **sin identificar** 🔴 **[≈]** sustituto
+**Mejor calce disponible: `BodoniModa-Italic`, eje `wght 800` + `opsz 18`, con un
++6,7 % de ancho por tracking. IoU 77,1 %** contra un techo de 95,5 %: **no es la
+fuente real**, pero es lo mejor que hay y mejora claramente al Playfair que estaba
+puesto antes (72,3 %, y con 15 % de error de proporción).
+
+**Cómo se sabe que no es:** el calce por glifo se desploma justo en dos letras —
+**`z` 29,9 %** y **`j` 53,4 %**. La `z` de la marca es **recta, con serifa de pie y
+sin cola**; la `j` baja **recta**. Bodoni Moda y Playfair las llevan con cola
+caligráfica. En el resto de los glifos (`o` 88,9 · `l` 89,2 · `a` 82,2 · `R` 77,9)
+el calce es bueno: **el esqueleto Didone es correcto, la itálica no**.
+
+**Descartadas y medidas:** Playfair Display (700/800/900), Playfair variable nuevo,
+Libre Bodoni, DM Serif Display, Petrona, Faustina, Newsreader, Noto Serif Display,
+Cormorant, Instrument Serif, IvyOra Display y Text, Didot, Bodoni 72, Baskerville,
+Hoefler Text, Palatino — **todas entre 63 % y 74 %**. También se probó la hipótesis de
+que fuera una **redonda inclinada** en vez de itálica: peor (74,1 %).
+
+**Dónde está.** Es una Bodoni/Didone de biblioteca con itálica de `z` recta. En Adobe
+Fonts las candidatas son: **Bodoni URW · Bauer Bodoni · ITC Bodoni Seventytwo ·
+Walbaum · Didot LT Pro · Abril Display**. Ver `CHECKLIST-CLIENTE.md` nº 1: al
+activarlas en Adobe Fonts se sincronizan al Mac y el identificador las resuelve solo.
 
 ## Registro A · FICHA DE PRODUCTO — 1080 × 1080
 

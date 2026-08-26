@@ -1,0 +1,261 @@
+{
+  "slug": "ebema",
+  "nombre": "Ebema S.A.",
+  "submarcas": [
+    "ebema",
+    "ebema-click"
+  ],
+  "rubro": "Materiales para la construcción — distribución y producción",
+  "pais": "CL",
+  "moneda": "CLP",
+  "web": "https://www.ebema.cl",
+  "ecommerce": {
+    "url": "https://www.ebema.cl/ebemaclick/",
+    "tipo": "B2B con login",
+    "api_publica": false,
+    "nota": "No expone precios ni catálogo sin login. Los packshots salen del kit oficial o de las URLs de producto que entrega el brief."
+  },
+  "manual": "clients/ebema/CLAUDE.md",
+  "kit_codigo": "src/brand/ebema.ts",
+  "sistema": "clients/ebema/sistema/",
+  "proyecto_hermano": "COPYLAB PROJECTS/EBEMA/",
+  "colores": {
+    "rojo": "#EC1C23",
+    "gris": "#6D6F72",
+    "amarillo": "#FFFF00",
+    "blanco": "#FFFFFF",
+    "velo": "rgba(0,0,0,0.30)",
+    "veloFuerte": "rgba(0,0,0,0.36)",
+    "veloExtra": "rgba(0,0,0,0.46)",
+    "_nota": "Muestreados píxel a píxel del logo oficial y de la pieza A3 de la diseñadora. NO es #ED1C24."
+  },
+  "fuentes": {
+    "titular": {
+      "familia": "Raleway",
+      "peso": 900,
+      "estilo": "MAYÚSCULAS",
+      "archivo": "Raleway-Black.ttf"
+    },
+    "enfasis": {
+      "familia": "Raleway",
+      "peso": 800,
+      "archivo": "Raleway-ExtraBold.ttf"
+    },
+    "ui": {
+      "familia": "Raleway",
+      "peso": 600,
+      "archivo": "Raleway-SemiBold.ttf"
+    },
+    "cuerpo": {
+      "familia": "Raleway",
+      "peso": 400,
+      "archivo": "Raleway-Regular.ttf"
+    },
+    "numeros": {
+      "familia": "Helvetica",
+      "peso": 700,
+      "archivo": "Helvetica-Bold.ttf",
+      "regla": "OBLIGATORIO en toda cifra: precios, códigos, porcentajes, medidas, 24/7"
+    },
+    "_ruta": "clients/ebema/sistema/fonts/"
+  },
+  "logos": {
+    "ebema_circulo": {
+      "archivo": "img/logo_ebema_circulo.png",
+      "uso": "EBEMA sucursal, dentro de caja blanca"
+    },
+    "click_1_gris": {
+      "archivo": "img/logo_click_1_gris.png",
+      "uso": "Click sobre fondo blanco"
+    },
+    "click_2_blanco": {
+      "archivo": "img/logo_click_2_blanco_acento.png",
+      "uso": "Click sobre imagen (el habitual)"
+    },
+    "click_3_rojo": {
+      "archivo": "img/logo_click_3_click_rojo.png",
+      "uso": "Click sobre fondo rojo"
+    },
+    "regla": "Siempre pegado al borde superior (top:0). Nunca flotando, tampoco en reels."
+  },
+  "formatos": {
+    "feed": {
+      "w": 1080,
+      "h": 1350,
+      "ratio": "4:5",
+      "uso": "Feed y carrusel"
+    },
+    "story": {
+      "w": 1080,
+      "h": 1920,
+      "ratio": "9:16",
+      "uso": "Story y reel"
+    },
+    "mailing": {
+      "w": 1200,
+      "h": 1643,
+      "ratio": "kit",
+      "uso": "Mailing y campañas WhatsApp (artboard del .ai oficial)"
+    },
+    "master_paulina": {
+      "w": 2250,
+      "h": 2813,
+      "nota": "Sus feeds vienen a 2× — mismo ratio 4:5"
+    }
+  },
+  "zonas_seguras": {
+    "story": {
+      "top": 250,
+      "bottom": 340,
+      "right": 115
+    },
+    "feed": {
+      "bottom_pct": 12
+    },
+    "respiro_minimo": 60,
+    "excepcion_logo": false,
+    "_nota": "El logo va a top:0 por sistema; la zona segura protege el TEXTO."
+  },
+  "esquemas": {
+    "sucursal": {
+      "marco": true,
+      "puntitos": true,
+      "logo": "ebema_circulo",
+      "pildora": "ciudad",
+      "cta": "Cotiza por WhatsApp"
+    },
+    "click": {
+      "marco": false,
+      "puntitos": false,
+      "logo": "click_2_blanco",
+      "pildora": "kicker",
+      "cta": "Regístrate Gratis"
+    },
+    "spc": {
+      "marco": false,
+      "puntitos": false,
+      "logo": "ebema_circulo",
+      "pildora": "kicker",
+      "cta": "según brief"
+    }
+  },
+  "geometria_px_sobre_1080": {
+    "marco": {
+      "borde": 3,
+      "radio": 20,
+      "inset_lateral": 62,
+      "inset_top": 77,
+      "inset_bottom": 71
+    },
+    "logobox": {
+      "x": 139,
+      "top": 0,
+      "w": 152,
+      "h": 186,
+      "radio_inferior": 14,
+      "logo_w": 103
+    },
+    "pildora": {
+      "top": 255,
+      "borde": 2.5,
+      "font": 34,
+      "padding": "13px 44px"
+    },
+    "titular": {
+      "caja_roja_top_em": 0.55,
+      "base_feed": 74,
+      "base_story": 84
+    },
+    "bajada": {
+      "font": 28,
+      "line_height": 1.22,
+      "max_w": 640,
+      "wrap": "balance"
+    },
+    "boton": {
+      "font": 24,
+      "radio": 6,
+      "sombra": false
+    },
+    "puntitos": {
+      "n": 3,
+      "d": 24,
+      "barra_w": 108,
+      "anillo_blanco": 2,
+      "right": 95,
+      "bottom": 57
+    },
+    "chips_spc": {
+      "d": 132,
+      "radio": 12,
+      "borde_blanco": 5,
+      "recorte": "por dentro"
+    }
+  },
+  "sucursales": [
+    "Antofagasta",
+    "Coquimbo",
+    "La Calera",
+    "Quilicura",
+    "San Bernardo",
+    "Rancagua",
+    "Talca",
+    "Chillán",
+    "Concepción",
+    "Temuco",
+    "Puerto Montt"
+  ],
+  "sucursales_sin_foto_real": [
+    "Chillán",
+    "Rancagua",
+    "San Bernardo"
+  ],
+  "cobertura_despacho_click": [
+    "RM",
+    "O'Higgins",
+    "Ñuble",
+    "Biobío"
+  ],
+  "cuentas_pauta": {
+    "meta": "act_823470930601959",
+    "google": "3220380182"
+  },
+  "briefs": {
+    "grilla_performance": "1zHFfSsXCwo25ID2RylsVCB7daxTXIdvGXWkjCpdkUjI",
+    "hoja_whatsapp": "Briefs wsp <mes> ARIEL"
+  },
+  "drive": {
+    "fotos_aprobadas_paulina": "1NhvLDUdUNuLkRAshDJi7kFUYh5Xyho9W",
+    "entrega": "PERFORMANCE/2026/<N>. <Mes>/graficas <mes> 26/",
+    "banco_imagenes": "Material de marca/Banco de imágenes",
+    "fotos_sucursales": "EQUIPO DISEÑO/ACTUAL Cont. Audiovisual",
+    "logos": "1BKvUl9FV0G7EuGT4Y7_0CnA1FGkh_YCE"
+  },
+  "equipo_cliente": {
+    "diseno_agencia": "Paulina Bustamante (paulina.bustamante@copywriters.cl) — de la agencia, también lleva MyZoo",
+    "cuenta": "Carlos Figueroa",
+    "medios": "Sebastián Córdova"
+  },
+  "reglas_duras": [
+    "El brief manda el QUÉ; la gráfica de Paulina manda el CÓMO.",
+    "Un solo rojo: #EC1C23.",
+    "Toda cifra en Helvetica Bold.",
+    "Logo pegado al borde superior, nunca flotando.",
+    "Botón rojo sin sombra.",
+    "Caja roja detrás de la 2ª línea completa + mitad de la 1ª.",
+    "Nunca cruzar fotos entre ciudades.",
+    "En Click, el ferretero/contratista es hombre.",
+    "En variantes de precio sólo se cambian los dígitos.",
+    "Textos y CTA verbatim del brief; cero datos inventados."
+  ],
+  "madurez": {
+    "identidad": "completa",
+    "gramatica": "completa",
+    "formatos": "completa",
+    "imagen": "parcial — faltan fotos de Chillán, Rancagua y San Bernardo",
+    "copy": "completa",
+    "pipeline": "completa",
+    "qa": "completa"
+  },
+  "actualizado": "2026-08-25"
+}

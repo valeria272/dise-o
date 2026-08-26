@@ -1,0 +1,60 @@
+{
+  "slug": "myzoo", "nombre": "MyZoo", "rubro": "Cuidado y limpieza de mascotas — retail y profesional",
+  "pais": "CL", "moneda": "CLP", "tipo_cuenta": "always-on",
+  "tagline": "AM♥R QUE SE SIENTE",
+  "manual": "clients/myzoo/CLAUDE.md",
+  "regla_madre": "Son DOS disciplinas: envase (CMYK + Pantone + mm) y digital (RGB + px). No comparten especificación — definir cuál es antes de partir.",
+
+  "envase": {
+    "mesa_trabajo_mm": {"w": 140, "h": 160, "_nota": "etiqueta de 5 litros"},
+    "modo_color": "CMYK", "perfil": "ninguno",
+    "tintas_planas": ["PANTONE 114 C", "PANTONE 708 C", "PANTONE Neutral Black C"],
+    "fuentes_empaquetadas": ["Neutraface Text Light Italic", "Neutraface Text Demi Italic",
+                             "Neutraface Text Bold", "Neutraface Text Bold Italic"],
+    "fuentes_adobe_fonts": ["Roboto Light", "Roboto Medium", "Roboto Bold"],
+    "vectorial": true,
+    "_fuente": "Informe.txt de XTREME VET 5LTS.ai (1hHF3JdXWjZdlQ488Jf3nMo9yxopZ7_QC)"
+  },
+  "digital": {
+    "formatos": {"feed": {"w": 1080, "h": 1350}, "story": {"w": 1080, "h": 1920}},
+    "_estado": "SIN MEDIR — faltan piezas digitales aprobadas para levantar la gramática"
+  },
+
+  "lineas": [
+    {"nombre": "Avena Coloidal", "productos": ["Shampoo", "Acondicionador 420 cc"], "dilucion": "1:2", "para": "pieles sensibles, irritadas o con alergias"},
+    {"nombre": "Expert Care", "productos": ["Shampoo 500 cc"], "componentes": "aceite de argán, vitamina E, té verde"},
+    {"nombre": "Groomer Grade", "productos": ["Shampoo"], "dilucion": "1:10", "canal": "profesional"},
+    {"nombre": "Xtreme Vet", "productos": ["Desinfectante 5 L"], "uso": "superficies clínicas, grado hospitalario"}
+  ],
+  "packs": ["Trío pet dog", "Trío pet cat", "Pieles Sensibles"],
+  "variantes_arte": ["normal", "OJOS AMARILLOS"],
+
+  "claims": {
+    "generales": ["Desarrolladas en Australia", "Certificación ONG Te Protejo (Cruelty Free)",
+                  "Ingredientes hipoalergénicos", "Materias primas de origen natural",
+                  "Libres de metales pesados", "Certificaciones internacionales",
+                  "Eco amigable, libre de cloro", "Libre de fosfatos", "pH Neutro", "No tóxico"],
+    "xtreme_vet": ["Elimina el 99% de los principales gases del mal olor",
+                   "Elimina el 99.9999% de hongos, virus y bacterias",
+                   "Elimina el 99,9% virus parvovirus"],
+    "regla": "Son claims REGULADOS. Van literales del catálogo del cliente, sin redondear ni reformular."
+  },
+  "legal_packs": "**Imágenes referenciales** — obligatorio en toda gráfica de pack",
+
+  "drive": {
+    "logos": "12A2fADHDGLHuDW3XQmA2gV4FGNBa_I4a",
+    "catalogo_pdf": "1COktMo0iu_mSNdGgyp-QJsMIPuab9XUq",
+    "lanzamientos_pdf": "1LFXRPH1t7ZJX3TVSDScun3TKAYnWBufg",
+    "editables_etiquetas": "1hdBjVE56ZA1BZ7v1oGJbMgRkV_Ig3Ncc",
+    "packs": "1-LwGhwmPTolUuZsRUH3cTZQ6QeqCZsTc",
+    "cliente": "163Efyu5loUzTnUJqYEUgF051QLKYfi92"
+  },
+  "equipo": {"diseno": ["Constanza Lizana", "Paulina Bustamante"]},
+  "madurez": {"identidad": "parcial", "gramatica": "parcial", "formatos": "parcial",
+              "imagen": "parcial", "copy": "completa", "pipeline": "falta", "qa": "parcial",
+              "_nota": "Envase medido y completo. Digital sin medir."},
+  "pendientes": ["Archivo de Neutraface Text (de pago)", "RGB equivalentes de los 3 Pantone",
+                 "10–20 piezas digitales aprobadas para medir la gramática",
+                 "Confirmar si el digital usa Neutraface u otra familia"],
+  "actualizado": "2026-08-25"
+}

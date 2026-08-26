@@ -1,0 +1,502 @@
+{
+  "slug": "casablanca",
+  "nombre": "Pisos Casablanca by Grupo Revex",
+  "rubro": "Pisos de ingeniería en madera natural — premium",
+  "pais": "CL",
+  "moneda": "CLP",
+  "web": "https://www.pisoscasablanca.cl",
+  "tagline": "Elegancia, estilo y calidad es lo que nos diferencia.",
+  "marca_hermana": {
+    "slug": "revex",
+    "regla": "Mismo dueño, lenguajes OPUESTOS. Acá NO existe el rojo, ni el descuento, ni la urgencia."
+  },
+  "manual": "clients/casablanca/CLAUDE.md",
+  "kit_codigo": "src/brand/casablanca.ts",
+  "sistema": "src/compositions/casablanca/sistema.tsx",
+  "regla_madre": "Fotografía primero, producto segundo, gráfica después. Foto a sangre con el piso a escala REAL, placa gris del logo pegada al borde izquierdo, y bloque editorial alineado a la IZQUIERDA sobre la zona limpia: antetítulo en versales → nombre del piso en serif de caja alta → filete corto → bajada de dos líneas.",
+  "colores": {
+    "gris": "#626260",
+    "blanco": "#FFFFFF",
+    "_M": "#626260 es el ÚNICO gris de la marca: idéntico en las 55 piezas aprobadas (logo, etiqueta, filetes, botón de cierre, texto sobre blanco).",
+    "_eliminados": "#4A4A48 · #6B6B66 · #6E6A63 · #4A504F — estaban en este archivo por estimación y NO aparecen en ninguna pieza.",
+    "velo": "negro con opacidad, en degradado hacia el pie. No se declara opacidad: se verifica con la firma de luminancia del manual."
+  },
+  "fuentes": {
+    "_metodo": "Identificadas comparando GLIFOS AISLADOS normalizados (IoU de forma), nunca anchos de línea — el tracking contamina el ancho. Techo real-contra-real medido: 99,7% en versales, 95,5% en la serif. Script: scripts/casablanca-tipografia.py",
+    "versales": {
+      "familia": "Futura",
+      "corte": "Medium",
+      "confirmado": true,
+      "IoU": 89.2,
+      "segundo": "Avenir Next Demi Bold 79,7%",
+      "uso": "bajadas en versales, línea de versales del cierre de carrusel, antetítulos",
+      "archivo_mac": "/System/Library/Fonts/Supplemental/Futura.ttc → Futura Medium",
+      "adobe_fonts": "Futura PT (ParaType) — activar para tener la versión de producción",
+      "cap_sobre_cuerpo": 0.7,
+      "tracking": "se ajusta al ancho de la línea; no hay un valor fijo"
+    },
+    "caja_baja": {
+      "familia": "Montserrat",
+      "corte": "Regular",
+      "confirmado": false,
+      "IoU": 79.7,
+      "segundo": "Avenir Next Regular 75,8%",
+      "uso": "texto del botón, etiqueta gris «Piso de Ingeniería / Roble X»",
+      "_ojo": "NO es Futura: la caja baja de la marca tiene altura de x grande y Futura la tiene mínima. Coincide con Revex, que sí está confirmado en Montserrat. En la etiqueta chica el test queda empatado con Poppins por falta de resolución.",
+      "archivo": "public/assets/fonts/Montserrat.ttf"
+    },
+    "titular_serif": {
+      "familia": "Didone sin identificar",
+      "sustituto": "Bodoni Moda Italic",
+      "eje_wght": 800,
+      "eje_opsz": 18,
+      "tracking_extra": "+6,7% de ancho",
+      "confirmado": false,
+      "IoU": 77.1,
+      "techo": 95.5,
+      "_por_que_no_es": "La 'z' de la marca es recta, con serifa de pie y SIN cola; la 'j' baja recta con serifa. Bodoni Moda y Playfair las llevan con cola caligráfica. En esos dos glifos el calce cae a 30% y 53%.",
+      "_descartadas": "Playfair Display (72,3%), Playfair nuevo, Libre Bodoni, DM Serif Display, Petrona, Faustina, Noto Serif Display, IvyOra, Didot, Bodoni 72, Baskerville, Hoefler Text — todas entre 63 y 74%.",
+      "_donde_buscar": "Adobe Fonts, familia Bodoni/Didone con itálica de 'z' recta: Bodoni URW · Bauer Bodoni · ITC Bodoni Seventytwo · Walbaum · Didot LT Pro · Abril Display",
+      "archivo": "public/assets/fonts/BodoniModa-Italic.ttf"
+    },
+    "manuscrita": {
+      "familia": null,
+      "confirmado": false,
+      "uso": "«Colección Rústico / Italiana / Premium / Clásica»"
+    },
+    "_ruta": "public/assets/fonts/"
+  },
+  "logos": {
+    "gris": "assets/casablanca/logo_gris.png",
+    "gris_fondo_blanco": "assets/casablanca/logo_gris_fondo_blanco.png",
+    "horizontal_gris": "assets/casablanca/logo_horizontal_gris.png",
+    "oficial_drive": "1euwxTwTtFBo8Njoh3QK4uWac0aTOEdAT",
+    "regla": "La tarjeta blanca del logo SIEMPRE cuelga del borde superior (top:0), en feed y en story."
+  },
+  "formatos": {
+    "cuadrado": {
+      "w": 1080,
+      "h": 1080,
+      "_M": "35 de 55 piezas. Es el feed histórico de la cuenta."
+    },
+    "story": {
+      "w": 1080,
+      "h": 1920,
+      "_M": "14 de 55 piezas."
+    },
+    "feed_4_5": {
+      "w": 1080,
+      "h": 1350,
+      "_M": "6 de 55 — SOLO el carrusel de agosto 2026. Cambio en curso, no la norma: confirmar con Serena antes de entregar en 4:5."
+    }
+  },
+  "zonas_seguras": {
+    "story": {
+      "top": 250,
+      "bottom": 340,
+      "right": 115
+    },
+    "respiro_minimo": 60,
+    "storySafeBottom": 1270,
+    "excepcion_logo": true
+  },
+  "geometria_px_sobre_1080": {
+    "logoCard": {
+      "w": 160,
+      "h": 182,
+      "radiusBottom": 6,
+      "top": 0
+    },
+    "logoCardStory": {
+      "w": 204,
+      "h": 253,
+      "top": 0
+    },
+    "hairline": 1,
+    "subtitleTracking": 3.5,
+    "tagFlag": {
+      "w": 366,
+      "h": 78,
+      "foldW": 34,
+      "_nota": "Caja gris de información: va DELANTE de la muestra, texto CENTRADO, y el triángulo inferior derecho es SOMBRA, no un pliegue (Paulina 25-08). Lleva categoría + medida, no el nombre del piso."
+    },
+    "plank": {
+      "w": 150,
+      "borderWhite": 8,
+      "escala": 2.4,
+      "_nota": "Muestra vertical a la IZQUIERDA. Es un DETALLE ampliado ~2,4× con la veta vertical: a escala del suelo se camufla y el recuadro se lee como marco vacío."
+    },
+    "ctaRadiusPill": 999,
+    "storyTextBand": {
+      "top": 480,
+      "bottom": 960,
+      "_nota": "Bloque de texto de story en el segundo cuarto: abajo lo tapa el copy al publicar."
+    },
+    "_OBSOLETO": "Valores estimados. Reemplazados por 'geometria_medida'. Se dejan sólo como registro de lo que estaba mal: logoCard 160x182 (real 198,7x199,2), logoCardStory 204x253 (real 237,1x305,8), subtitleTracking 3,5 (real 0), ctaRadiusPill 999 (el botón es un RECTÁNGULO recto)."
+  },
+  "vs_revex": {
+    "muestra": "tabla a la IZQUIERDA, borde blanco (Revex: al centro o derecha)",
+    "etiqueta": "GRIS chica colgando hacia afuera (Revex: banderola ROJA con pliegue + medida)",
+    "nombre_producto": "es EL TITULAR serif itálico abajo (Revex: va dentro de la banderola)",
+    "specs": "no lleva, solo la bajada en versales (Revex: cápsula outline bajo la muestra)"
+  },
+  "showroom": {
+    "direccion": "Juan XXIII 6359, Vitacura",
+    "whatsapp": "+56 9 6653 5124",
+    "email": "casablanca@pisoscasablanca.cl"
+  },
+  "cta_cierre": "COTIZA POR WHATSAPP",
+  "_sin_url": "Casablanca cierra en WhatsApp, sin URL en la pieza.",
+  "cierre_video": {
+    "duracion_frames": 152,
+    "fps": 30,
+    "bg": "#FDFDFD",
+    "logoGray": "#4A504F",
+    "descripcion": "Fondo blanco + logo HORIZONTAL gris + «COTIZA POR WHATSAPP» en versales grises bajo un filete."
+  },
+  "equipo_cliente": {
+    "kam": "Serena Abarca",
+    "medios": "Ignacio Retamal"
+  },
+  "drive": {
+    "logos": "1euwxTwTtFBo8Njoh3QK4uWac0aTOEdAT",
+    "grilla_septiembre": "13hI9czHimNuaa636YfutYO8RzuSFcrne",
+    "entrega": "13pOfaekruRWq8PEHrG0be20Bq6eG4yCB"
+  },
+  "reglas_duras": [
+    "Jamás el rojo ni el esqueleto de Revex.",
+    "La fotografía manda: el piso a escala real, creíble, sin textura pegada.",
+    "Un ambiente distinto por producto.",
+    "Logo en PLACA GRIS al borde izquierdo (sistema editorial). La caja blanca centrada es del carrusel de mayo.",
+    "Bloque de texto alineado a la IZQUIERDA en las piezas editoriales.",
+    "Velo negro suave sólo bajo el bloque; la legibilidad la da la sombra del texto.",
+    "Cierra en WhatsApp, sin URL y SIN botón de WhatsApp dibujado.",
+    "Sin palabras huérfanas en la segunda línea.",
+    "La muestra tiene que ser el MISMO piso que está en el suelo (ΔE < 20).",
+    "«DESLIZA →» sólo en feed. Las stories no se deslizan.",
+    "Sin urgencia, sin descuento, sin precios, sin sellos de oferta.",
+    "Nada de fotos con personas del equipo: no hay derechos de imagen.",
+    "Showroom: fotos reales, nunca generadas.",
+    "Se escribe Cumarú (con U y tilde)."
+  ],
+  "madurez": {
+    "identidad": "completa",
+    "gramatica": "completa",
+    "formatos": "completa",
+    "imagen": "completa",
+    "copy": "completa",
+    "pipeline": "parcial",
+    "qa": "completa"
+  },
+  "pendientes": [
+    "🔴 La serif del titular: activar en Adobe Fonts las Bodoni/Didone candidatas para que sincronicen al Mac; el identificador las resuelve solo (ver CHECKLIST nº 1).",
+    "🟡 Confirmar la caja baja (Montserrat vs Poppins) con la misma vuelta.",
+    "🟡 La script manuscrita de «Colección …».",
+    "🟡 Confirmar con Serena si el feed va en 1:1 o en 4:5.",
+    "🟡 Fotos propias de ambiente — hoy se depende de render IA.",
+    "🟡 Fotos del interior del showroom sin gente (Jenny)."
+  ],
+  "actualizado": "2026-08-26",
+  "fuente_de_verdad": "clients/casablanca/CLAUDE.md § SISTEMA EDITORIAL (25-08-2026) manda sobre todo lo demás, incluido este archivo. La ronda 2 de Paulina sigue valiendo para el carrusel de mayo, no para las piezas nuevas.",
+  "sistema_editorial": {
+    "codigo": "src/compositions/casablanca/editorial.tsx",
+    "piezas": "src/compositions/CasablancaEditorial.tsx",
+    "salida": "out/casablanca/editorial/",
+    "geometria_fraccion_del_ancho": {
+      "placa_logo": {
+        "ancho": 0.25,
+        "alto": 0.098,
+        "top_feed": 0.1,
+        "top_story": 0.135,
+        "color": "#6E6A63",
+        "logo": "assets/casablanca/logo_horizontal_blanco.png",
+        "_nota": "pegada al borde IZQUIERDO — ya no es caja blanca centrada"
+      },
+      "margen": 0.075,
+      "bloque_top": {
+        "feed": 0.6,
+        "story": 0.5
+      },
+      "antetitulo": {
+        "cuerpo": 0.0195,
+        "tracking_em": 0.17
+      },
+      "titular": {
+        "cuerpo": 0.082,
+        "interlinea": 1.04,
+        "tracking_em": 0.012,
+        "fuente": "Bodoni Moda, CAJA ALTA"
+      },
+      "filete": {
+        "ancho": 0.155,
+        "grosor_px": 1
+      },
+      "bajada": {
+        "cuerpo": 0.0215,
+        "tracking_em": 0.13,
+        "interlinea": 1.5
+      },
+      "pie": {
+        "cuerpo": 0.018,
+        "tracking_em": 0.11,
+        "alto": 0.052
+      },
+      "velo": 0.4
+    },
+    "piso_creible": {
+      "regla": "La tabla se ve con su dimensión física real.",
+      "190x1900": "tabla larga y ancha, pocas juntas de tope",
+      "167x1200": "juntas frecuentes en traba, ritmo regular",
+      "120x2130": "diez a doce tablas angostas a lo ancho del cuadro",
+      "prohibido": [
+        "tablas cortas",
+        "exceso de juntas",
+        "patrones repetidos",
+        "vetas clonadas",
+        "saltos bruscos de color",
+        "aspecto de parquet",
+        "brillo plástico",
+        "piso naranjo o amarillo",
+        "perspectiva deformada"
+      ],
+      "generador": "scripts/casablanca-ambientes-editorial.py"
+    },
+    "un_ambiente_por_producto": true,
+    "contradice_el_brief": [
+      "lineamiento nº1 (un mismo ambiente en las 4 tarjetas)",
+      "lineamiento nº5 (el texto nunca va sobre la madera)"
+    ],
+    "qa": [
+      "python3 scripts/casablanca-tono.py --todos",
+      "python3 scripts/casablanca-qa.py  (requiere los renders -QA)"
+    ]
+  },
+  "_origen_de_los_valores": "[M] medido con PIL sobre la pieza real · [D] declarado por cliente/diseñadora · [≈] deducido. Los números mandan desde 'geometria_medida'; lo que esté fuera de ahí sin marca es histórico y no está verificado.",
+  "geometria_medida": {
+    "_unidad": "px normalizados a 1080 de ancho · masters de Paulina a 2250",
+    "_fuente": "scripts/casablanca-medir.py sobre raw/casablanca/ref/ (55 piezas) → clients/casablanca/medidas.json",
+    "_fecha": "2026-08-26",
+    "registro_A_ficha_producto": {
+      "formato": "1080x1080",
+      "logo": "sin logo en las fichas intermedias; sólo portada y cierre",
+      "etiqueta_gris": {
+        "x": 69.1,
+        "y": 355.7,
+        "w": 252.0,
+        "h": 65.3,
+        "color": "#626260",
+        "esquinas": "rectas"
+      },
+      "titular": {
+        "ink_top": 817.0,
+        "cap_height": 56.6,
+        "cx": 540.0,
+        "alineacion": "centrado"
+      },
+      "filete_sup": {
+        "y": 901.0,
+        "x0": 163.2,
+        "x1": 916.3,
+        "ancho": 753.1,
+        "grosor": 1,
+        "color": "#626260"
+      },
+      "bajada": {
+        "ink_top": 920.6,
+        "cap_height": 24.5,
+        "cx": 540.0,
+        "interlinea": 41.8
+      },
+      "filete_inf": {
+        "y_1_linea": 965.8,
+        "y_2_lineas": 1000.3
+      },
+      "aire_filete_bajada": {
+        "arriba": 19.6,
+        "abajo": 20.7
+      }
+    },
+    "registro_B_anuncio": {
+      "feed": {
+        "formato": "1080x1080",
+        "logo_card": {
+          "x": 440.6,
+          "y": 0,
+          "w": 198.7,
+          "h": 199.2,
+          "cx": 540.0
+        },
+        "etiqueta_gris": {
+          "x": 115.2,
+          "y": 193.0,
+          "w": 212.6,
+          "h": 54.7
+        },
+        "firma_manuscrita": {
+          "ink_top": 525.6,
+          "alto": 57.1,
+          "alineacion": "izquierda"
+        },
+        "titular": {
+          "linea1": 664.8,
+          "linea2": 755.0,
+          "alto_tinta": 71.0,
+          "interlinea": 90.2,
+          "cx": 540.0
+        },
+        "filete_sup": {
+          "y": 843.4,
+          "x0": 116.2,
+          "x1": 963.4,
+          "ancho": 847.2
+        },
+        "bajada": {
+          "ink_top": 865.9,
+          "cap_height": 19.2
+        },
+        "filete_inf": {
+          "y": 908.2
+        },
+        "boton": {
+          "x": 316.8,
+          "y": 936.0,
+          "w": 445.9,
+          "h": 59.0,
+          "relleno": "#FFFFFF",
+          "texto": "#626260",
+          "radio": 0
+        }
+      },
+      "story": {
+        "formato": "1080x1920",
+        "logo_card": {
+          "x": 421.4,
+          "y": 0,
+          "w": 237.1,
+          "h": 305.8,
+          "cx": 540.0
+        },
+        "etiqueta_gris": {
+          "x": 99.8,
+          "y": 527.0,
+          "w": 279.8,
+          "h": 72.0
+        },
+        "firma_manuscrita": {
+          "ink_top": 963.4,
+          "alto": 75.8
+        },
+        "titular": {
+          "linea1": 1138.1,
+          "linea2": 1228.3,
+          "alto_tinta": 71.0,
+          "interlinea": 90.2
+        },
+        "filete_sup": {
+          "y": 1316.6,
+          "x0": 116.2,
+          "x1": 963.4,
+          "ancho": 847.2
+        },
+        "bajada": {
+          "ink_top": 1339.2,
+          "cap_height": 19.2
+        },
+        "filete_inf": {
+          "y": 1381.4
+        },
+        "boton": {
+          "x": 316.8,
+          "y": 1410.2,
+          "w": 445.9,
+          "h": 58.1,
+          "relleno": "#FFFFFF",
+          "texto": "#626260",
+          "radio": 0
+        }
+      }
+    },
+    "registro_C_editorial": {
+      "_estado": "NO MEDIDO — las piezas publicadas no existen como archivo en Drive ni en las grillas de paid. Lo que hay descrito en el manual está estimado sobre capturas de pantalla de Instagram.",
+      "_ver": "CHECKLIST-CLIENTE.md nº 1"
+    },
+    "cierre_carrusel": {
+      "fondo": "#FFFFFF",
+      "logo": {
+        "x": 439.2,
+        "y": 250.1,
+        "w": 198.7,
+        "h": 286.5
+      },
+      "filete_1": {
+        "y": 673.9,
+        "x0": 163.2,
+        "x1": 916.3
+      },
+      "linea_versales": {
+        "ink_top": 692.6,
+        "cap_height": 25.9,
+        "color": "#626260"
+      },
+      "filete_2": {
+        "y": 738.7
+      },
+      "boton": {
+        "x": 299.5,
+        "y": 786.2,
+        "w": 480.5,
+        "h": 43.2,
+        "relleno": "#626260",
+        "texto": "#FFFFFF"
+      },
+      "_examen": "reproducido de cero: Δ media 1,58/255 · 1,12% de píxeles con Δ>40"
+    },
+    "velo_firma_luminancia": {
+      "_como": "media de luminancia por décimo de alto, de arriba a abajo",
+      "A_ficha": [
+        153,
+        148,
+        143,
+        133,
+        148,
+        162,
+        163,
+        159,
+        146,
+        130
+      ],
+      "B_anuncio": [
+        117,
+        113,
+        95,
+        95,
+        109,
+        111,
+        125,
+        113,
+        107,
+        82
+      ],
+      "C_editorial_ago": [
+        114,
+        110,
+        90,
+        87,
+        120,
+        100,
+        89,
+        81,
+        75,
+        72
+      ],
+      "regla": "el décimo inferior queda ~15% bajo la media de la pieza en A y ~30% en B y C"
+    }
+  },
+  "material": {
+    "referencias": "raw/casablanca/ref/ — 55 piezas aprobadas, ago-2025 → ago-2026, verificadas",
+    "hoja_de_contacto": "out/_verificacion/casablanca-material.png",
+    "medidas": "clients/casablanca/medidas.json",
+    "examen": "out/casablanca/examen/",
+    "_ojo": "raw/casablanca/ref-ig/ tenía 13 piezas de BETWEEN (cafetería del complejo Hilton). Movidas a raw/hilton/between-ig-feed/ el 26-08-2026."
+  }
+}

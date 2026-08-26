@@ -1,0 +1,338 @@
+{
+  "slug": "cava",
+  "nombre": "CAVA Morandé",
+  "rubro": "E-commerce de vinos — portafolio de Viña Morandé",
+  "pais": "CL",
+  "moneda": "CLP",
+  "tipo_cuenta": "always-on",
+  "manual": "clients/cava/CLAUDE.md",
+  "referencias": "raw/cava/ref/",
+  "regla_madre": "UN key visual al mes, con fondo generado en Magnific. Los mailings y piezas de campaña son el MISMO KV donde solo cambia la barra dorada con el llamado comercial, más las botellas y precios. El KV no se rediseña.",
+  "colores": {
+    "fondo": {
+      "claro": "#333234",
+      "medio": "#1A1A1B",
+      "oscuro": "#070707",
+      "_nota": "negro texturado tipo satén con pliegues y viñeta. NO es negro plano. Se genera en Magnific."
+    },
+    "dorado": {
+      "sombra": "#5F3C12",
+      "medioBajo": "#946521",
+      "medio": "#C9A24E",
+      "luz": "#F4E7B0",
+      "brillo": "#FFF7C1",
+      "_nota": "es un DEGRADADO metálico en diagonal, nunca un color plano"
+    },
+    "naranjoLogo": "#DD660E",
+    "blanco": "#FFFFFF",
+    "bandera": {
+      "azul": "#0063AF",
+      "blanco": "#FFFFFF",
+      "rojo": "#E73439"
+    },
+    "tinta_plana": {
+      "pantone": "PANTONE 159 U",
+      "_nota": "naranjo terracota declarado en el editable del banner; coincide con el #DD660E del isotipo"
+    }
+  },
+  "legal_obligatorio": {
+    "texto": [
+      "ADVERTENCIA",
+      "EL CONSUMO DE ALCOHOL",
+      "EN MENORES DE 18 AÑOS",
+      "SE ENCUENTRA PROHIBIDO",
+      "Ministerio de Salud"
+    ],
+    "posicion": "arriba a la derecha, pegado al borde superior",
+    "caja": "negra, texto blanco en versales centrado",
+    "banda_tricolor": "bajo la caja: azul #0063AF · blanco #FFFFFF · rojo #E73439",
+    "regla": "EXIGENCIA LEGAL para publicidad de alcohol en Chile. Va en KV, mailings, stories y banners. Una pieza sin esto NO se entrega."
+  },
+  "botellas": {
+    "origen": "kit digital de la viña (SharePoint de Morandé) — nunca de internet ni de IA",
+    "prohibido": [
+      "cambiar el tamaño relativo entre botellas",
+      "editar, reescribir o regenerar una etiqueta (año, cepa, valle, tipografía)",
+      "estirar, deformar o espejar",
+      "inventar un sello de premio o cambiarle el puntaje",
+      "mezclar el sello de un vino con otro"
+    ],
+    "permitido": [
+      "recortar sobre el fondo",
+      "escalar proporcionalmente el conjunto",
+      "ajustar sombra o reflejo para integrar al fondo"
+    ],
+    "sellos_certificadores": [
+      "Decanter World Wine Awards",
+      "James Suckling",
+      "Descorchados",
+      "Tim Atkin MW",
+      "Vinous",
+      "La Cav",
+      "Global Syrah Masters"
+    ]
+  },
+  "jerarquia": [
+    "1. Recuadro legal ADVERTENCIA (arriba derecha, pegado al borde)",
+    "2. Logo CAVA MORANDÉ en blanco",
+    "3. Barra dorada con el llamado comercial — texto NEGRO, versales, sans condensada bold ← lo único que cambia",
+    "4. Titular de campaña en versales enormes con OUTLINE dorado",
+    "5. Palabra en script blanca superpuesta al titular, levemente rotada",
+    "6. Fechas en dorado / bajada en blanco con bold en el énfasis",
+    "7. Botellas con base alineada, escala real relativa",
+    "8. Sellos de premio apilados a los costados, sin tapar la botella",
+    "9. Nombre del vino en blanco, versales condensadas, centrado bajo cada botella",
+    "10. Precio oferta en dorado grande + precio anterior tachado en dorado apagado"
+  ],
+  "reparto_lienzo": {
+    "kv_apaisado": "texto en la mitad IZQUIERDA, botellas en la DERECHA",
+    "mailing_vertical": "todo centrado en columna"
+  },
+  "formatos": {
+    "kv_mes_master": {
+      "w": 1080,
+      "h": 1350,
+      "_nota": "la mesa de trabajo REAL del KV es feed 4:5"
+    },
+    "banner_web_master": {
+      "w": 4600,
+      "h": 2200
+    },
+    "kv_apaisado_export": {
+      "w": 4040,
+      "h": 1932,
+      "ratio": 2.09
+    },
+    "mailing": {
+      "w": 2250,
+      "h": 4588
+    },
+    "banner_web": [
+      "300x250",
+      "1200x"
+    ],
+    "otros": [
+      "post",
+      "story",
+      "carrusel 1:1",
+      "video 1:1",
+      "video 16:9"
+    ]
+  },
+  "marco": {
+    "inset_px_sobre_1080": 16,
+    "estilo": "filete finísimo en gris apenas más claro que el fondo"
+  },
+  "nomenclatura": {
+    "mensual": "CAVA_<MES3>_BRIEF<N>[-<nn>].png",
+    "campana": "CYBER_CAVA_<MOMENTO>",
+    "briefs_por_mes": 8
+  },
+  "embudo_campana": [
+    "PRE",
+    "YA COMENZÓ",
+    "CARRITO",
+    "POCAS HORAS",
+    "ÚLTIMO DÍA",
+    "SE AGOTAN"
+  ],
+  "viñas_del_portafolio": [
+    "MORANDÉ",
+    "MANCURA",
+    "7 COLORES",
+    "ADVENTURE",
+    "VISTAMAR"
+  ],
+  "lineas_producto": [
+    {
+      "linea": "House of Morandé",
+      "descriptor": "Experiencia & Elegancia"
+    },
+    {
+      "linea": "Vitis Única",
+      "descriptor": "Calidad, Innovación & Vanguardia"
+    },
+    {
+      "linea": "Selección de Viñedos Gran Reserva",
+      "descriptor": "identidad de lugar"
+    },
+    {
+      "linea": "Terroir Wines",
+      "descriptor": "Identidad & Expresión"
+    },
+    {
+      "linea": "Pionero Reserva",
+      "descriptor": "Un tributo a nuestro espíritu pionero"
+    },
+    {
+      "linea": "Black Series",
+      "descriptor": "Calidad, Innovación & Vanguardia"
+    },
+    {
+      "linea": "Espumantes Morandé",
+      "descriptor": "Burbujas & Tradición"
+    },
+    {
+      "linea": "Late Harvest / Golden Harvest",
+      "descriptor": "Artesanía & Delicadeza"
+    },
+    {
+      "linea": "Reserva y Gran Reserva",
+      "descriptor": "Cepas clásicas + patrimoniales"
+    },
+    {
+      "linea": "7 Colores",
+      "descriptor": ""
+    },
+    {
+      "linea": "Morandé Adventure",
+      "descriptor": ""
+    }
+  ],
+  "total_productos_catalogados": 49,
+  "fuentes": {
+    "_origen": "/adn sobre EDITABLES CAVA — Informe.txt de Cyber-KV-CAVA - GRILLA.ai y Banner-MAYO-2.ai (25-08-2026)",
+    "titular": {
+      "familia": "Bebas Neue Pro",
+      "anchos": [
+        "Book",
+        "Regular",
+        "Middle",
+        "Bold",
+        "SemiExpanded Middle",
+        "SemiExpanded Bold",
+        "Expanded Book",
+        "Expanded Bold"
+      ],
+      "origen": "Adobe Fonts",
+      "empaquetable": false,
+      "_nota": "display de SOLO VERSALES condensada — por eso todos los titulares de CAVA van en mayúscula"
+    },
+    "titular_alterno": {
+      "familia": "Bebas Neue",
+      "pesos": [
+        "Book",
+        "Bold"
+      ],
+      "origen": "Adobe Fonts"
+    },
+    "base_libre": {
+      "familia": "Bebas Neue",
+      "archivo": "assets/cava/fonts/BebasNeue-Regular.ttf",
+      "licencia": "OFL",
+      "verificada": true,
+      "_nota": "sirve de base y para maquetar; la ENTREGA final usa la Pro (tiene SemiExpanded y Expanded)"
+    },
+    "cuerpo": {
+      "familia": "Brandon Grotesque",
+      "pesos": [
+        "Light",
+        "Bold"
+      ],
+      "origen": "Adobe Fonts",
+      "empaquetable": false
+    },
+    "apoyo": [
+      "Seria Sans Pro Regular",
+      "Avenir Next Medium",
+      "Avenir Next Regular",
+      "Bembo Std Bold",
+      "Myriad Pro"
+    ],
+    "display_puntual": "Rosella Inline",
+    "legal": {
+      "familia": "gobCL Bold",
+      "origen": "tipografía oficial del Gobierno de Chile",
+      "libre": true,
+      "_nota": "el recuadro del Ministerio de Salud usa la fuente institucional del Estado, no una cualquiera"
+    }
+  },
+  "drive": {
+    "cliente": "1CniZND61f_D1jgHzMh-ZLUVDOPPFKw27",
+    "kit_digital_bottleshots": "1C6tFYtS-tf13bO6NpTlfkUY7Ca01T4T5",
+    "editables": "1Gbpi9zyKanxpLOsslBKTzbcAlBmMAcjd",
+    "catalogo_vinos": "1UNgRkqBuWSK42BSGGMntsuf-fmN3rPHvEU__medbZpw",
+    "logos": "1IhUJwgtAYsgAdfR2qWrH1rySmE5tWOw1",
+    "briefs_agosto": "15f5EnYKHlZeM5GTfJpSde88yf2i1STx2",
+    "email_marketing": "1G7QfHxjTO8TDd3URxsQBsFkmE8QpC2W-",
+    "material_itau": "1rFOt_HZyJKkZSQcqzy-XX9s17BQ4VAqp"
+  },
+  "equipo": {
+    "diseno": "Constanza Lizana",
+    "medios": "Ignacio Retamal",
+    "kam": "Serena Abarca"
+  },
+  "reglas_duras": [
+    "El recuadro ADVERTENCIA es obligatorio por ley en toda pieza.",
+    "Las botellas y sus etiquetas no se tocan.",
+    "Los sellos de premio corresponden a ESE vino y ESA cosecha.",
+    "Un KV al mes: solo cambia la barra del llamado comercial.",
+    "Los datos técnicos van literales del catálogo.",
+    "El dorado es degradado metálico, no color plano.",
+    "El fondo es satén texturado, no negro plano.",
+    "Precios en CLP chileno sin decimales."
+  ],
+  "madurez": {
+    "identidad": "completa",
+    "gramatica": "completa",
+    "formatos": "completa",
+    "imagen": "parcial",
+    "copy": "completa",
+    "pipeline": "parcial",
+    "qa": "completa"
+  },
+  "pendientes": [
+    "Bebas Neue Pro y Brandon Grotesque son de Adobe Fonts: activarlas en Creative Cloud",
+    "Bajar gobCL (libre, Gobierno de Chile) e instalarla en el repo",
+    "Geometría fina en px del recuadro legal y la barra dorada",
+    "Acceso a la biblioteca de bottle shots",
+    "Confirmar si la ADVERTENCIA tiene tamaño mínimo legal exigido"
+  ],
+  "actualizado": "2026-08-25",
+  "bottle_shots_biblioteca": {
+    "estructura": [
+      "MORANDE/Bottle Shot/NUEVA IMAGEN - NEW IMAGE/<LÍNEA>/<CEPA>/<archivo>.png",
+      "MORANDE/ADVENTURE/Bottle Shots/<nombre>/<archivo>.png",
+      "MORANDE/7COLORES/.../Bottle Shot/<LÍNEA>/<CEPA>/<archivo>.png",
+      "MORANDE/material marca/MEDALLAS/<sello>.png"
+    ],
+    "ejemplos": [
+      "Black_seriess_PN_SC.png",
+      "Vitis Unica CR.png",
+      "Morande_SeleccionVinedos_SB.png",
+      "7C_GRAN_RVA_CH_V2.png",
+      "Morande Adventure VIGNO.png",
+      "Charmat_EBrut.png",
+      "RP Stickers_94.png"
+    ],
+    "resolucion_tipica": "1.400–4.100 px de ancho × 4.000–10.000 de alto, con transparencia",
+    "donde": "SharePoint de Morandé (credenciales de la viña) + disco externo de la diseñadora",
+    "regla": "Si falta un bottle shot SE PIDE, no se genera."
+  },
+  "qa_proporcion_botella": {
+    "regla": "Al colocar una botella, ancho/alto finales deben dar EL MISMO ratio que el archivo original.",
+    "verificado": [
+      {
+        "botella": "Black Series Syrah",
+        "nativo": "1934x5724",
+        "colocado": "486,6x1440,3 pt",
+        "ratio": "0,338 = 0,338"
+      },
+      {
+        "botella": "Black Series Chardonnay",
+        "nativo": "2029x5479",
+        "colocado": "521,4x1408,1 pt",
+        "ratio": "0,370 = 0,370"
+      }
+    ],
+    "_nota": "Comprobado en el editable real: la diseñadora NUNCA deforma. Es una verificación de una línea y debe hacerse siempre."
+  },
+  "fondo": {
+    "metodo": "Se prueban muchas texturas hasta dar con la del mes; esa queda de base del KV.",
+    "origenes": {
+      "ia": "archivos con nombre UUID (patrón de exportación Magnific/Freepik)",
+      "stock": "nombres descriptivos largos de banco de imágenes"
+    },
+    "_nota": "El editable del KV del Cyber enlaza 23 fondos distintos. No es siempre Magnific: conviven IA y stock."
+  }
+}

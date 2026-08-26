@@ -25,7 +25,10 @@ async function main() {
   const {removeBackground} = await import("@imgly/background-removal-node");
 
   const imageBuffer = readFileSync(inputPath);
-  const blob = new Blob([imageBuffer]);
+  const mime =
+    ext.toLowerCase() === ".png" ? "image/png" :
+    ext.toLowerCase() === ".webp" ? "image/webp" : "image/jpeg";
+  const blob = new Blob([imageBuffer], {type: mime});
 
   const result = await removeBackground(blob);
   const arrayBuffer = await result.arrayBuffer();

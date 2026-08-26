@@ -1,6 +1,115 @@
-# Editor Pro Max — AI Video Editor by @soyenriquerocha
+# Editor Pro Max — AI Video Editor · COPYLAB PROJECT
+
+> **Proyecto:** COPYLAB PROJECTS / EDITOR VIDEOS  
+> **Ruta de referencia:** `~/copylab/EDITOR VIDEOS/` (en el Mac de Valeria vive en `Desktop/COPYLAB PROJECTS/`)  
+> **Node.js:** v24.14.1 instalado  
+> **Estado:** Instalado y listo — `node_modules/` presente
 
 You are a professional video editor. This project uses **Remotion** (React-based video framework) so you create and edit videos by writing React components. Users describe videos in natural language; you write the code.
+
+## 🚀 Si es la primera vez que se abre este proyecto en esta máquina
+
+Corre `bash scripts/doctor.sh`. Si falta `node_modules/`, el venv de Python o el
+conector de Drive, ejecuta **`/arranque`** — instala lo que falte y reporta lo que
+la persona tiene que hacer. Guía para humanos: [`LEEME-PRIMERO.md`](LEEME-PRIMERO.md).
+
+Si llegó por ZIP: [`docs/TRASPASO-ZIP.md`](docs/TRASPASO-ZIP.md) dice qué viaja y qué no.
+**Los conectores MCP no viajan** — cada persona los activa en su cuenta de claude.ai.
+
+---
+
+## ⭐ Trabajo de cliente — el sistema de marcas manda
+
+**Antes de hacer CUALQUIER pieza para un cliente, en este orden:**
+
+1. [`docs/SISTEMA-DE-MARCAS.md`](docs/SISTEMA-DE-MARCAS.md) — el método del estudio.
+   Las 7 capas, la jerarquía de imágenes, el pipeline de 6 pasos y las reglas duras
+   que valen para todas las marcas. **Es la ley.**
+2. `clients/<marca>/CLAUDE.md` — el manual de esa marca: paleta medida, gramática,
+   reglas aprendidas con feedback real, QA obligatorio y errores ya cometidos.
+3. `clients/<marca>/marca.json` — la ficha legible por máquina: colores, fuentes,
+   formatos, zonas seguras y geometría en px.
+
+**La regla madre: el brief manda el QUÉ, el sistema de marca manda el CÓMO.**
+Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
+
+| Comando | Para qué |
+|---|---|
+| `/pieza <marca> <qué necesitas>` | Producir. Carga el sistema, lee el brief, arma, hace QA y entrega |
+| `/qa <marca o ruta>` | Control de calidad antes de entregar |
+| `/marca-nueva <nombre>` | Abrir el sistema de un cliente que todavía no existe |
+| `/adn <marca> <id-drive>` | Extraer el sistema real desde los editables del diseñador |
+| `/al-dia [marca]` | **Correr SIEMPRE antes de producir.** Revisa el Drive de la agencia y las carpetas de las diseñadoras: grillas nuevas, editables nuevos, comentarios sin leer |
+| `/arranque` | Primer arranque en una máquina nueva |
+
+| Documento | Cuándo leerlo |
+|---|---|
+| [`docs/FLUJO-MENSUAL.md`](docs/FLUJO-MENSUAL.md) | **Cómo se corre un mes con un cliente**, de punta a punta. Los 3 modos: grilla mensual, KV + derivados, a pedido |
+| [`docs/QUIEN-HACE-QUE.md`](docs/QUIEN-HACE-QUE.md) | Qué tiene pendiente cada persona del equipo para poder arrancar |
+| [`docs/ESTADO-MARCAS.md`](docs/ESTADO-MARCAS.md) | Qué marca tiene sistema, qué falta pedirle a cada cliente, quién es quién en el equipo |
+| [`docs/MAPA-DRIVE.md`](docs/MAPA-DRIVE.md) | Dónde está cada cosa en Drive, con IDs. Incluye cómo llegar a las carpetas de las diseñadoras |
+| [`docs/BRIEF-DE-DISENO.md`](docs/BRIEF-DE-DISENO.md) | El contrato de entrada: qué campos tiene que traer un brief para ejecutarse sin preguntas |
+| [`docs/QUE-PUEDO-Y-QUE-NO.md`](docs/QUE-PUEDO-Y-QUE-NO.md) | Los límites reales, el estado de los conectores MCP y cuándo sí conviene `/design` |
+| [`docs/ONBOARDING-DISENADORES.md`](docs/ONBOARDING-DISENADORES.md) | Diseñador nuevo en el equipo |
+| [`docs/TRASPASO-ZIP.md`](docs/TRASPASO-ZIP.md) | Empaquetar el estudio para otra máquina |
+
+> 🔄 **Mantente al día.** Antes de producir para cualquier cliente, corre **`/al-dia`**.
+> El Drive de la agencia y las carpetas de las diseñadoras son la fuente de verdad: ahí
+> aparecen las grillas del mes, los editables nuevos —que revelan cambios de estilo antes
+> de que nadie los avise— y los comentarios de los clientes. El registro de la última
+> revisión vive en `clients/_estado-sync.json`.
+
+> 🔌 **Rutas y credenciales:** ningún script quema `/Users/...`. Todos resuelven con
+> [`scripts/_entorno.py`](scripts/_entorno.py) — la raíz del repo sale del propio
+> archivo, y las credenciales de `COPYLAB_TOKEN`/`COPYLAB_ENV`, del repo, o del
+> monorepo. Corre `python3 scripts/_entorno.py` para ver qué encuentra acá.
+
+### Marcas con sistema
+
+| Marca | Manual | Kit código | Nota |
+|---|---|---|---|
+| **EBEMA / Click** | [`clients/ebema/`](clients/ebema/CLAUDE.md) | `src/brand/ebema.ts` | ⭐ **La referencia.** Sistema de producción completo en `clients/ebema/sistema/`. Dos marcas, tres esquemas |
+| **Revex** | [`clients/revex/`](clients/revex/CLAUDE.md) | `src/brand/revex.ts` | Revestimientos, rojo, compone **centrado y denso** |
+| **Casablanca** | [`clients/casablanca/`](clients/casablanca/CLAUDE.md) | `src/brand/casablanca.ts` | Pisos premium, gris + serif itálica, **es aire** |
+| **Selfie** | [`clients/selfie/`](clients/selfie/CLAUDE.md) | `src/brand/selfie.ts` | Belleza, fucsia #FF007C, packshots del e-commerce |
+| **Tierra Calma** | [`clients/tierra-calma/`](clients/tierra-calma/CLAUDE.md) | `src/brand/tierracalma.ts` | Parcelas. **QA visual frame a frame obligatorio** |
+| **Hilton / Between** | [`clients/hilton/`](clients/hilton/CLAUDE.md) | `src/brand/hilton-between.ts` | 4 marcas del complejo; sólo Between tiene sistema |
+| **Abakos** | [`clients/abakos/`](clients/abakos/CLAUDE.md) | `src/brand/abakos.ts` | Préstamos online. Gramática **sin medir todavía** |
+
+> ⚠️ **Revex y Casablanca son marcas hermanas del mismo dueño y NO se diseñan igual.**
+> Si una pieza de Revex se puede recolorear a gris y pasa por Casablanca, está mala.
+
+**Sin manual todavía** (ver `docs/ESTADO-MARCAS.md`): Nueva Urbe (`src/brand/nuevaurbe.ts`),
+Traverso, y DT / QB / Piso18 del complejo Hilton.
+
+> **PENDIENTE (2026-07-19):** Hacer **UGC real con Higgsfield**. Higgsfield es conector de claude.ai que quedó APAGADO — la usuaria lo reconecta (`/mcp reconnect all` o claude.ai → Connectors) y abre **chat nuevo** para que cargue. Al iniciar, verificar con `ToolSearch "+higgsfield"`; si aparece, revisar el aparato de UGC y generar. Checklist y estado en la memoria `higgsfield-ugc-next.md`. El reel de bienvenida **Tierra Calma quedó terminado** (`~/Downloads/tierra-calma-bienvenida.mp4`, `src/compositions/TierraCalmaReel.tsx`).
+
+## Idioma — español de Chile (regla innegociable)
+
+Todo lo que este proyecto escriba —correos, mensajes de Slack, copys de anuncios,
+propuestas, reportes, respuestas a clientes, mensajes de consola y **los prompts que
+se le mandan a Claude**— va en **español de Chile con tuteo (tú / te / tu / ti)**.
+
+**Prohibido el voseo rioplatense.** Nunca escribir así:
+
+| ❌ Nunca | ✅ Siempre |
+|---|---|
+| necesitás, tenés, querés, podés, sabés, hacés, decís | necesitas, tienes, quieres, puedes, sabes, haces, dices |
+| sos, vos | eres, tú |
+| revisá, mirá, andá, dejá, agregá, generá, activá, usá | revisa, mira, ve, deja, agrega, genera, activa, usa |
+| poné, hacé, decí, tené, vení, corré, conocé, respondé | pon, haz, di, ten, ven, corre, conoce, responde |
+| abrí, subí, elegí, seguí, escribí *(como orden)* | abre, sube, elige, sigue, escribe |
+| contanos, avisanos, fijate, acordate, sumate, ponete | cuéntanos, avísanos, fíjate, acuérdate, súmate, ponte |
+
+Tampoco usar modismos rioplatenses (*che, dale, laburo, bárbaro, copado, re bueno,
+remera, pileta*). Español chileno profesional y neutro: "acá" está bien, pero sin
+jerga local excesiva y sin argentinismos.
+
+> ⚠️ **Ojo con los prompts.** Si el prompt está escrito en voseo, el modelo contesta
+> en voseo y eso termina en un correo al cliente. Los prompts también van en tuteo.
+
+**Excepción:** el pretérito de 1ª persona es correcto y NO es voseo — "yo escribí",
+"yo recibí", "yo aprendí", "yo abrí" se dejan tal cual.
 
 ## Auto-Setup (IMPORTANT — run on first interaction)
 
@@ -406,6 +515,7 @@ Use the playwright-mcp skill to browse the web, take screenshots, and extract vi
 
 ## Workflow Tips
 
+- **Material fuente de clientes vive en `raw/<cliente>/`** (gitignored): `raw/tierracalma-drone/` (rodaje DD Studio, 25 GB, 25 MOV 5.1K HLG + 44 fotos), `raw/traverso/` (brandbook, packshots, grilla y reels de septiembre), `raw/valeria/` (video base del avatar). No guardar este material en `~/Desktop` — se ordenó el 20-08-2026. Los renders y entregas van a `out/<cliente>/`.
 - Put user media files (videos, images, audio) in `public/assets/` and reference with `staticFile("assets/filename.ext")`
 - Register every composition in `src/Root.tsx` or it won't appear in Studio
 - Use `<AbsoluteFill>` for layering (last child renders on top)

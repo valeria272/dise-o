@@ -1,0 +1,41 @@
+{
+  "slug": "<slug>",
+  "nombre": "<Razón social>",
+  "rubro": "",
+  "pais": "CL",
+  "moneda": "CLP",
+  "web": "",
+  "ecommerce": {"url": "", "tipo": "shopify|woocommerce|custom|ninguno", "api_publica": false, "endpoints": {}},
+  "manual": "clients/<slug>/CLAUDE.md",
+  "kit_codigo": "src/brand/<slug>.ts",
+  "sistema": "clients/<slug>/sistema/",
+
+  "colores": {"_nota": "Muestreados píxel a píxel de piezas reales aprobadas"},
+  "fuentes": {"titular": {}, "cuerpo": {}, "numeros": {}, "_ruta": ""},
+  "logos": {"regla": ""},
+
+  "formatos": {
+    "feed":  {"w": 1080, "h": 1350, "ratio": "4:5"},
+    "story": {"w": 1080, "h": 1920, "ratio": "9:16"}
+  },
+  "zonas_seguras": {"story": {"top": 250, "bottom": 340, "right": 115}, "feed": {"bottom_pct": 12}, "respiro_minimo": 60},
+
+  "esquemas": {},
+  "geometria_px_sobre_1080": {},
+
+  "briefs": {},
+  "drive": {},
+  "equipo_cliente": {},
+  "reglas_duras": [],
+
+  "madurez": {
+    "identidad": "falta|parcial|completa",
+    "gramatica": "falta|parcial|completa",
+    "formatos": "falta|parcial|completa",
+    "imagen": "falta|parcial|completa",
+    "copy": "falta|parcial|completa",
+    "pipeline": "falta|parcial|completa",
+    "qa": "falta|parcial|completa"
+  },
+  "actualizado": ""
+}

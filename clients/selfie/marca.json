@@ -1,0 +1,92 @@
+{
+  "slug": "selfie",
+  "nombre": "Selfie / Hair Express",
+  "rubro": "E-commerce de belleza y cuidado capilar profesional",
+  "pais": "CL", "moneda": "CLP",
+  "web": "https://selfie.cl",
+  "instagram": "@selfie.beauty.pro",
+  "wordmark": "SELFI3*",
+  "manual": "clients/selfie/CLAUDE.md",
+  "kit_codigo": "src/brand/selfie.ts",
+  "sistema": "src/brand/selfieUI.tsx",
+
+  "regla_madre": "Aunque el brief diga «minimal», una pieza SELFIE se ejecuta con el sistema: fucsia pleno + asteriscos + cajas blancas redondeadas + píldoras + productos GRANDES. Lo minimal va en la foto, nunca en la gráfica. La v1 en «perla minimal» fue RECHAZADA por off-brand.",
+
+  "colores": {
+    "fucsia": "#FF007C", "fucsiaClaro": "#FF64AC", "paper": "#FFFFFF",
+    "ink": "#1A1A1A", "darkStudio": "#2E2A28", "sparkle": "#F5C544"
+  },
+  "fuentes": {
+    "display": {"familia": "Agrandir Grand", "peso": 800, "fuente": "Pangram Pangram", "de_pago": true, "empaquetable": false},
+    "displayAccent": {"familia": "Agrandir Wide", "estilo": "Black Italic", "peso": 900},
+    "narrow": {"familia": "Agrandir Narrow", "peso": 400},
+    "body": {"familia": "Open Sans", "pesos": [400, 600]},
+    "_ruta": "public/assets/fonts/selfie/ (gitignored — licencia del cliente)",
+    "_origen": "Drive > DISEÑO > Editables Diseño > propuesta-selfie_Carpeta/Fonts (1faGmy9xKNkVbebjgBmzdTUGRB7kAXc6e)"
+  },
+  "logos": {
+    "blanco": "assets/selfie/logo-blanco.png",
+    "vertical_blanco": "assets/selfie/logo-vertical-blanco.png",
+    "oficial_drive": "1_1CmvBGx6ffl85i2vLZ6FVWt8usKxJUL",
+    "png_drive": "1t0njY5bdOApEupxlB40eRM2MG3Qpz1OW",
+    "negro_id": "15WMog1qrZoLXQYaZuvFDE09LKYqD1YNb",
+    "blanco_id": "1RjOjoUvOaXSdU29B77w3PORZyks3qCPa",
+    "regla": "Va VERTICAL en el borde derecho, letra espaciada. NUNCA recrear el wordmark a mano — usar el PNG oficial."
+  },
+
+  "formatos": {
+    "feed": {"w": 2250, "h": 2813, "ratio": "4:5"},
+    "story": {"w": 2250, "h": 4000, "ratio": "9:16"},
+    "reel": {"w": 1080, "h": 1920},
+    "banner_web": {"w": 2001, "h": 686}
+  },
+  "zonas_seguras": {"story": {"top": 250, "bottom": 340, "right": 115}, "respiro_minimo": 60},
+  "nomenclatura": "GRILLA<MES>_S<semana>_<NOMBRE>.png",
+
+  "modos": {
+    "1_fucsia_comercial": "El default de promos. Fondo fucsia pleno, caja blanca radio 40-60, píldoras fucsia claro, asteriscos del logo como patrón, packshots en abanico.",
+    "2_editorial_oscuro": "Fechas emotivas, Selfie Pro y Men's Work. Foto editorial real, caja glass translúcida, sparkles dorados. SIN modelo femenina.",
+    "3_mundos_de_campana": "Cada lanzamiento trae su mundo propio, siempre con el logo vertical al borde derecho."
+  },
+
+  "ecommerce": {
+    "plataforma": "shopify",
+    "api_publica": true,
+    "endpoints": {
+      "buscar": "https://selfie.cl/search/suggest.json?q=<término>&resources[type]=product&resources[limit]=6",
+      "ficha": "https://selfie.cl/products/<handle>.json",
+      "catalogo": "https://selfie.cl/products.json?limit=250"
+    },
+    "nota": "Requiere User-Agent de navegador. Algunas fichas usan imagen IA — verificar contra las piezas aprobadas."
+  },
+
+  "legales": {"promo": "No acumulable con otras promociones. Sujeto a stock por marca. Válido hasta el [fecha].",
+              "regla": "SIEMPRE en promos. El cliente corrige cuando falta o pierde el matiz."},
+
+  "qa_obligatorio": [
+    "Recortes revisados con zoom 3× píxel a píxel — no negociable",
+    "Pipeline de limpieza: alfa binaria >140, erosión MinFilter 5-7px, feather 1.2px",
+    "Sombra baked-in del CDN de Shopify eliminada por HSV (S<55 y V medio)",
+    "Pelo suelto o crespo NUNCA se recorta: generar la persona sobre el fucsia",
+    "Nunca espejar un packshot"
+  ],
+
+  "topes_mensuales": {"graficas": 8, "ugc": 3, "reels_organicos": 4, "banner_semanal": 1, "mensajes_difusion_semana": 3},
+  "equipo": {"kam": "Constanza Olivares", "diseno": "Constanza Lizana (Coni)", "grillas": "Gabriela Aguirre"},
+  "drive": {"raiz": "1PWGcsDPViY1sxgdsxD98MoFtwTVLye-I", "logos": "1_1CmvBGx6ffl85i2vLZ6FVWt8usKxJUL",
+            "grilla_septiembre": "1bpZdVtpDwTEHnwEcVhibJGHBmh6qAI3gm-IvqvmXDuM",
+            "editables_coni": "1nsGClWZUvqDHh_oFpc0h7QiN5flxK4xE"},
+
+  "reglas_duras": [
+    "El sistema manda aunque el brief diga otra cosa.",
+    "Packshots reales del e-commerce, nunca inventados ni espejados.",
+    "Selfie Pro y Men's Work sin modelo femenina, en estética oscura premium.",
+    "Legal siempre en promos.",
+    "Precios en CLP chileno sin decimales.",
+    "El brief marca SIN MODELO / CON MODELO: respetarlo.",
+    "Textos y CTAs verbatim del brief."
+  ],
+  "madurez": {"identidad": "completa", "gramatica": "completa", "formatos": "completa", "imagen": "completa", "copy": "completa", "pipeline": "parcial", "qa": "completa"},
+  "pendientes": ["Archivo de Agrandir para cada diseñador", "Logo oficial de Selfie Class", "Referencia del carrusel «WTF es...»", "Packshot en alta de OSiS+ Session"],
+  "actualizado": "2026-08-25"
+}

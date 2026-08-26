@@ -33,3 +33,33 @@ dist/
 .trae/
 .windsurf/
 .zencoder/
+
+# IvyOra: enlaces a las fuentes de Adobe Fonts. Nunca se versionan.
+public/assets/fonts/ivyora/
+
+# Material fuente de clientes (dron, brandbooks, packshots, entregas) — nunca se versiona
+raw/
+public/assets/fonts/selfie/
+
+# ── Binarios y media pesada: se rebajan o se reconstruyen, no se versionan ──
+# (revisado 26-08-2026: eran 250 MB entre ffmpeg, whisper y los assets del personaje)
+tools/ffmpeg
+tools/ffmpeg.zip
+tools/__MACOSX/
+whisper.cpp/
+image.png
+__MACOSX/
+
+# gcl-agent: viajan las biblias (.md), no los renders ni las voces
+gcl-agent/**/*.png
+gcl-agent/**/*.mp3
+gcl-agent/**/*.wav
+gcl-agent/**/*.svg
+gcl-agent/_descartado-v1/
+
+# assets/ de trabajo suelto (los de marca viven en public/assets, que tampoco va)
+assets/
+
+# Cache de Python — se regenera solo
+__pycache__/
+*.pyc

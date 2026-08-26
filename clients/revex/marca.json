@@ -1,0 +1,275 @@
+{
+  "slug": "revex",
+  "nombre": "Grupo Revex",
+  "rubro": "Revestimientos y pavimentos — distribución, +40 años",
+  "pais": "CL",
+  "moneda": "CLP",
+  "web": "https://www.gruporevex.cl",
+  "tagline": "Revestimientos de excelencia",
+  "marca_hermana": {
+    "slug": "casablanca",
+    "regla": "Mismo dueño, lenguajes OPUESTOS. Si una pieza de Revex se puede recolorear a gris y pasa por Casablanca, está mala."
+  },
+  "manual": "clients/revex/CLAUDE.md",
+  "kit_codigo": "src/brand/revex.ts",
+  "sistema": "src/compositions/revex/sistema.tsx",
+  "regla_madre": "Revex compone CENTRADO y denso: gancho cursivo, titular con barra, bullets, cajas de dato y URL apilados al eje central.",
+  "colores": {
+    "_origen": "MEDIDO con PIL sobre 82 piezas de raw/revex/ref/ el 26-08-2026 (moda exacta de pixel). Ver out/revex/adn/.",
+    "logoRed": {
+      "hex": "#D3152B",
+      "uso": "El rojo del LOGOTIPO oficial",
+      "origen": "declarado por el archivo del cliente 'GR - Logos finales 2024_COLOR-10.png' (44,85% de sus pixeles opacos)"
+    },
+    "blockRed": {
+      "hex": "#D31A2B",
+      "uso": "El cuadro rojo del bloque de logo que dibuja Paulina",
+      "origen": "medido — 6.664.884 px, 25,77% del corpus"
+    },
+    "barRed": {
+      "hex": "#D31418",
+      "uso": "Barra de titular, caja de dato, boton solido",
+      "origen": "medido — 11.888.172 px, 45,97% del corpus (el mas usado)"
+    },
+    "tagRed": {
+      "hex": "#D92028",
+      "uso": "Banderola de producto",
+      "origen": "medido — 2.635.284 px, 10,19% del corpus"
+    },
+    "tagFold": {
+      "hex": "#AD1C27",
+      "uso": "Pliegue de la banderola",
+      "origen": "medido en calgary/austral/cemento/montana/porcelanatos — CORRIGE el #9E1420 que decia el manual"
+    },
+    "white": "#FFFFFF",
+    "ink": "#1A1A1A",
+    "ctaGray": "rgba(134,134,134,0.85)",
+    "_nota": "Son CUATRO rojos, no tres. logoRed (#D3152B) es el del logotipo oficial y blockRed (#D31A2B) el del cuadro que se dibuja detras: se parecen pero NO son el mismo y no se intercambian."
+  },
+  "fuentes": {
+    "display": {
+      "familia": "Montserrat",
+      "archivo": "Montserrat.ttf",
+      "sustituto_de": "Gotham",
+      "confirmado": false
+    },
+    "script": {
+      "familia": "Sacramento",
+      "archivo": "Sacramento.ttf",
+      "sustituto_de": "script de la diseñadora — nombre real desconocido",
+      "confirmado": false,
+      "nota": "Verificada contra la referencia «Realmente calce»: la original es monolineal y Sacramento también. Alternativas descargadas: Allura, GreatVibes."
+    },
+    "_ruta": "public/assets/fonts/"
+  },
+  "logos": {
+    "blanco": "assets/revex/logo_blanco.png",
+    "rojo_completo": "assets/revex/logo_rojo.png",
+    "oficial_drive": "11r8gYt4YH8d7kBnGuYu3_D9HCQM4KIQs",
+    "regla": "El bloque rojo cuelga del borde superior (top:0) en feed Y en story. Nunca recrear el wordmark en texto."
+  },
+  "formatos": {
+    "_origen": "MEDIDO — Paulina entrega a 2250 px de ancho, no a 1080",
+    "feed_4_5": {
+      "w": 2250,
+      "h": 2813,
+      "norm": "1080x1350"
+    },
+    "cuadrado": {
+      "w": 2250,
+      "h": 2250,
+      "norm": "1080x1080"
+    },
+    "story": {
+      "w": 2250,
+      "h": 4000,
+      "norm": "1080x1920"
+    }
+  },
+  "zonas_seguras": {
+    "story": {
+      "top": 250,
+      "bottom": 340,
+      "right": 115
+    },
+    "respiro_minimo": 60,
+    "excepcion_logo": true,
+    "_nota": "El bloque de logo va a top:0 por decisión de marca; la zona segura protege el TEXTO."
+  },
+  "registros": {
+    "emocional_producto": "Gancho cursivo + barra roja en minúsculas + tabla centrada con banderola + cuerpo bold/regular + CTA rojo",
+    "sucursal_showroom": "Pregunta bold + barra roja + barras rojas apiladas de categorías + cápsula outline con gruporevex.cl",
+    "outlet": "El único que grita: cajas negras inclinadas con el %, subrayado marker amarillo, collage de fotos"
+  },
+  "locales": [
+    {
+      "nombre": "Las Condes Design",
+      "direccion": "Av. Las Condes 9765 · PISO 1, LOCAL 112",
+      "horario": "Lun a vie 10:00–19:00 · Sáb 10:00–14:30"
+    },
+    {
+      "nombre": "Temuco",
+      "direccion": "Reyes Católicos 1550, segundo piso de Ebema",
+      "horario": "Lun y mar 9:30–18:00 · Mié a vie 9:30–17:00 · no atiende sábado"
+    },
+    {
+      "nombre": "Patio Outlet",
+      "direccion": "Luis Olea 010, Quilicura",
+      "horario": "Lun a vie 09:00–16:00"
+    }
+  ],
+  "_vitacura": "⛔ Juan XXIII 6359 NO es de Revex — es el showroom de CASABLANCA. Corregido 25-08-2026.",
+  "whatsapp": {
+    "general": "+56 9 3203 5623",
+    "outlet": "+56 9 8902 8227",
+    "regla": "Son números DISTINTOS. El del outlet solo en piezas del Patio Outlet."
+  },
+  "cierre_video": {
+    "duracion_frames": 151,
+    "fps": 30,
+    "bg": "#D31A2B",
+    "descripcion": "Rojo pleno + logo blanco slide-up. Los MP4 oficiales se usan tal cual, no se rediseñan.",
+    "ojo": "El cierre ESTÁTICO es distinto: fondo BLANCO + logo rojo completo + cuartos de círculo rojos en las esquinas."
+  },
+  "equipo_cliente": {
+    "kam": "Serena Abarca",
+    "medios": "Ignacio Retamal"
+  },
+  "drive": {
+    "logos": "11r8gYt4YH8d7kBnGuYu3_D9HCQM4KIQs",
+    "brief_diseno": "1JegSXFNuM0SWxuRU6g5dfplXiF2ktD93",
+    "trabajo_septiembre": "1h-oBJqEbzFGRAwi_P5bd2bt_a-DMFhNt",
+    "entrega": "1uMPBBoOpspRKBEqtiZOElJuMEDuaisl2"
+  },
+  "referencias": "raw/revex/ref/ — 125 piezas legibles y medidas (26-08-2026), incluye los 43 PNG + 11 MP4 que mando Paulina",
+  "reglas_duras": [
+    "Revex compone centrado y denso; jamás con el esqueleto de Casablanca.",
+    "Los tres rojos no son intercambiables.",
+    "La barra roja va en UNA sola línea del titular, pegada al texto.",
+    "Un porcentaje se publica SOLO con confirmación escrita de la clienta. El «hasta 85% OFF» del outlet está confirmado.",
+    "El WhatsApp del outlet no es el general.",
+    "Vitacura no es de Revex.",
+    "Story: tercio inferior libre.",
+    "El logo va pegado arriba, nunca flotando."
+  ],
+  "madurez": {
+    "identidad": "completa",
+    "gramatica": "completa",
+    "formatos": "completa",
+    "imagen": "completa",
+    "copy": "completa",
+    "pipeline": "parcial",
+    "qa": "completa"
+  },
+  "pendientes": [
+    "Nombre real de la tipografía script",
+    "Confirmar si Gotham es la oficial",
+    "Foto de la vitrina de Revex Temuco (2º piso), no la fachada de Ebema"
+  ],
+  "actualizado": "2026-08-26",
+  "logo_block": {
+    "_origen": "MEDIDO — geometria normalizada a 1080 de ancho, sobre 55 piezas con bloque",
+    "feed": {
+      "w": 187.7,
+      "h": 187.7,
+      "top": 0,
+      "forma": "cuadrado exacto",
+      "posiciones": {
+        "centrado": {
+          "cx": 540
+        },
+        "izquierda": {
+          "cx": 199.9,
+          "x0": 106.1
+        },
+        "derecha": {
+          "cx": 857.0,
+          "x1": 950.9
+        }
+      },
+      "origen": "medido — top=0 en el 100% de las piezas de feed"
+    },
+    "story": {
+      "w": 214.1,
+      "h": 275.0,
+      "top": 0,
+      "cx": 540,
+      "forma": "vertical, NO cuadrado",
+      "variante_antigua": {
+        "w": 213.6,
+        "h": 271.7,
+        "cx": 532.1,
+        "nota": "lote may-jul 2026"
+      },
+      "origen": "medido — CORRIGE el '250x240 a y=260' que decia el manual"
+    },
+    "logo_dentro": {
+      "ancho": 142.6,
+      "alto": 121.0,
+      "pct_del_bloque": 76.0,
+      "pad_sup": 33.1,
+      "pad_inf": 33.6,
+      "origen": "medido en jul_post-condes; ratio w/h 1,179 == 1,169 del archivo logo_blanco.png"
+    }
+  },
+  "tipografia_medida": {
+    "_origen": "MEDIDO — 18 glifos del titular aislados de rvx_post-condes y comparados contra todos los candidatos (26-08-2026)",
+    "veredicto": "✅ ES Montserrat. Error de proporcion por letra 3,3% e IoU de forma 91,3%; el segundo candidato (Avenir Next) queda en 8,1% de error. Gotham descartado.",
+    "correccion": "Deroga la conclusion previa de que 'no era Montserrat'. Esa medicion usaba el ANCHO DE LINEA, que estaba desviado por el tracking negativo de la pieza, no por la fuente.",
+    "titular": {
+      "familia": "Montserrat",
+      "wght": 775,
+      "tracking_em": -0.045,
+      "origen": "peso medido por grosor de asta de la L: real 0,2716 vs Montserrat 775 = 0,2714 (dif -0,1%)",
+      "tracking_por_linea": {
+        "EL SHOWROOM CON MEJOR": -0.0495,
+        "ATENCION PERSONALIZADA": -0.0375
+      },
+      "nota": "El tracking se ajusta opticamente al ancho de la caja: entre -0,04 y -0,05 em."
+    },
+    "bajada_ligera": {
+      "familia": "Montserrat",
+      "wght": 400,
+      "tracking_em": 0,
+      "origen": "asta/alto real 0,111; tracking medido +0,0055 em = 0"
+    },
+    "cuerpos_reales_norm1080": {
+      "titular_cap": 40.3,
+      "titular_cuerpo": 57.6,
+      "interlinea": 1.16,
+      "dato_barra_cap": 24.0,
+      "capsula_cap": 22.6
+    },
+    "script": {
+      "familia": "Sacramento",
+      "confirmado": false,
+      "pendiente": "medir igual que el titular"
+    }
+  },
+  "barras_medidas": {
+    "_origen": "MEDIDO en jul_post-condes y 11 piezas mas",
+    "barra_titular": {
+      "alto": 79.2,
+      "pad_horizontal": 23.5,
+      "pad_vertical": 19.5,
+      "regla": "se ajusta al ancho del texto y va centrada; nunca ancho fijo"
+    },
+    "barra_dato": {
+      "alto": 44.6,
+      "pad_horizontal": 16.1
+    },
+    "capsula_outline": {
+      "alto": 52.3,
+      "borde": 1.44,
+      "radio": "completo (alto/2)"
+    }
+  },
+  "examen_admision": {
+    "pieza": "ed__rvx_post-condes.png (aprobada y publicada, julio 2026)",
+    "titular_IoU": "71,1%",
+    "titular_tinta": "+2,9%",
+    "barra_D31418": "+1,7%",
+    "bloque_D31A2B": "+0,5%",
+    "evidencia": "out/revex/adn/"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "slug": "tierra-calma",
+  "nombre": "Tierra Calma",
+  "rubro": "Parcelas de agrado — Padre Hurtado",
+  "pais": "CL",
+  "moneda": "CLP",
+  "manual": "clients/tierra-calma/CLAUDE.md",
+  "kit_codigo": "src/brand/tierracalma.ts",
+  "sistema": "src/compositions/tierracalma/sistema.tsx",
+  "regla_madre": "La referencia que manda son las piezas de Carlos (raw/tierracalma/ref-carlos-sep2026/): texto en el cielo, mezcla de real + IA, cajas de color, mapa real. QA visual frame a frame ANTES de entregar.",
+  "colores": {
+    "navy": "#0B2C49",
+    "green": "#003326",
+    "cream": "#F3EEE3",
+    "paper": "#FFFFFF",
+    "ink": "#12181C",
+    "sand": "#C9B99A",
+    "slate": "#3C525F",
+    "olive": "#4A553F",
+    "brown": "#6C473D",
+    "_nota": "OJO: navy #0B2C49 es el color del logo ANIMADO; green #003326 el del logo ESTÁTICO. No son intercambiables. Slate/olive/brown son para slides de proceso y cartelas, NUNCA para reemplazar el navy o el verde del logo."
+  },
+  "fuentes": {
+    "display": {
+      "familia": "IvyOra Display",
+      "fuente": "Adobe Fonts",
+      "empaquetable": false,
+      "fallback": "Instrument Serif",
+      "nota": "Se activa en Creative Cloud de cada máquina. public/assets/fonts/ivyora/ está gitignored.",
+      "_estado_25_08_2026": "✅ ACTIVA en el Mac de Valeria (20 pesos vía Adobe Fonts, verificada renderizando). Cada diseñador debe activarla en SU Creative Cloud — el archivo no se redistribuye."
+    },
+    "sans": {
+      "familia": "Inter Tight",
+      "archivos": "InterTight-*.ttf"
+    },
+    "_ruta": "public/assets/fonts/"
+  },
+  "logos": {
+    "estatico_verde": "assets/tierracalma/tc_logo.png",
+    "blanco_knockout": "assets/tierracalma/tc_logo_white.png",
+    "animado_oficial": "assets/tierracalma/tc_motion.mp4",
+    "oficial_drive": "1aPGTyZB1wcgdy-asWH35r4iOGiXMQhSa",
+    "regla": "tc_motion.mp4 (navy sobre blanco) cierra TODO reel. No se rediseña."
+  },
+  "formatos": {
+    "feed_4_5": {
+      "w": 1080,
+      "h": 1350
+    },
+    "cuadrado": {
+      "w": 1080,
+      "h": 1080
+    },
+    "story": {
+      "w": 1080,
+      "h": 1920
+    }
+  },
+  "zonas_seguras": {
+    "story": {
+      "top": 250,
+      "bottom": 340,
+      "right": 115
+    },
+    "respiro_minimo": 60
+  },
+  "datos_duros": {
+    "ubicacion": "Padre Hurtado",
+    "acceso": "Ruta 78 — OJO: NO es la Ruta 68, error cometido antes",
+    "agua": "por noria — no es red pública"
+  },
+  "material": {
+    "dron": "raw/tierracalma-drone/ — rodaje DD Studio 07-08-2026: 25 MOV 5.1K HLG + 44 fotos 21MP. Tonemap OBLIGATORIO.",
+    "referencia_cliente": "raw/tierracalma/ref-carlos-sep2026/",
+    "_nota": "No reusar los clips genéricos: el material propio del rodaje manda."
+  },
+  "qa_obligatorio": [
+    "Textos nunca pegados a líneas ni marcos",
+    "Píldora-flecha con aire (el bug fue a 6 px)",
+    "Marcos que no crucen texto",
+    "Revisión frame a frame antes de entregar — no negociable"
+  ],
+  "equipo_cliente": {
+    "contraparte": "Carlos",
+    "kam": "Ámbar Gallardo"
+  },
+  "drive": {
+    "logos": "1aPGTyZB1wcgdy-asWH35r4iOGiXMQhSa",
+    "cliente": "1l-j1gpEFgNnkvpaJpyNtIobTF5wYiiXK"
+  },
+  "reglas_duras": [
+    "Ruta 78, no 68.",
+    "El agua es por noria.",
+    "Navy = logo animado; verde = logo estático.",
+    "Todo reel cierra con tc_motion.mp4.",
+    "QA visual frame a frame obligatorio.",
+    "IvyOra se activa en Creative Cloud; no se empaqueta."
+  ],
+  "madurez": {
+    "identidad": "completa",
+    "gramatica": "completa",
+    "formatos": "completa",
+    "imagen": "completa",
+    "copy": "completa",
+    "pipeline": "completa",
+    "qa": "completa"
+  },
+  "pendientes": [
+    "Los 3 de Carlos: titular en el cielo, IA con referencia real, mapa oficial",
+    "Cada diseñador activa IvyOra en su propio Creative Cloud (en el Mac de Valeria ya está)"
+  ],
+  "actualizado": "2026-08-25"
+}

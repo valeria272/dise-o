@@ -90,3 +90,4 @@ public/assets/**
 #    Agrandir = de pago, licencia del cliente Selfie (se pide a Coni)
 public/assets/fonts/ivyora/
 public/assets/fonts/selfie/
+out/*/_subidas.json

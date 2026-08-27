@@ -85,6 +85,14 @@ public/assets/**
 # ronda de correcciones vuelve a empezar de cero en otra máquina (27-08-2026).
 !public/assets/revex/sep/**
 
+# Material de la grilla Casablanca septiembre 2026 (39 MB). Misma excepción
+# deliberada que Revex: scripts/casablanca-septiembre.py no corre sin estas 14
+# imágenes. Se listan por patrón exacto —lo que el script abre— y no la carpeta
+# entera, para no arrastrar los intermedios de Freepik (27-08-2026).
+!public/assets/casablanca/muestra_*.png
+!public/assets/casablanca/sep/amb_*_feed.jpg
+!public/assets/casablanca/sep/sr2_*.jpg
+
 # ⛔ Estas NO se versionan aunque sean fuentes — la licencia lo impide:
 #    IvyOra = Adobe Fonts (cada persona la activa en su Creative Cloud)
 #    Agrandir = de pago, licencia del cliente Selfie (se pide a Coni)

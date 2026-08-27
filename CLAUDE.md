@@ -40,7 +40,9 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | `python3 qa/motor.py --marca <marca> <piezas>` | **La compuerta.** Reglas ejecutables por marca — ver [`qa/README.md`](qa/README.md) |
 | `/marca-nueva <nombre>` | Abrir el sistema de un cliente que todavía no existe |
 | `/adn <marca> <id-drive>` | Extraer el sistema real desde los editables del diseñador |
-| `/al-dia [marca]` | **Correr SIEMPRE antes de producir.** Revisa el Drive de la agencia y las carpetas de las diseñadoras: grillas nuevas, editables nuevos, comentarios sin leer |
+| `/abrir [marca]` | **Abrir el día.** `git pull` (trae lo de los demás diseñadores) + siembra memoria + bitácora del cliente + `/al-dia` |
+| `/cierre [marca]` | **Cerrar el día.** Bitácora + commit + push — sin esto otro diseñador NO puede retomar el cliente mañana |
+| `/al-dia [marca]` | Revisa el Drive de la agencia y las carpetas de las diseñadoras: grillas nuevas, editables nuevos, comentarios sin leer (lo llama `/abrir`) |
 | `/arranque` | Primer arranque en una máquina nueva |
 
 | Documento | Cuándo leerlo |
@@ -52,6 +54,7 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | [`docs/BRIEF-DE-DISENO.md`](docs/BRIEF-DE-DISENO.md) | El contrato de entrada: qué campos tiene que traer un brief para ejecutarse sin preguntas |
 | [`docs/QUE-PUEDO-Y-QUE-NO.md`](docs/QUE-PUEDO-Y-QUE-NO.md) | Los límites reales, el estado de los conectores MCP y cuándo sí conviene `/design` |
 | [`docs/ONBOARDING-DISENADORES.md`](docs/ONBOARDING-DISENADORES.md) | Diseñador nuevo en el equipo |
+| [`docs/TRABAJO-EN-EQUIPO.md`](docs/TRABAJO-EN-EQUIPO.md) | **Cómo varios diseñadores comparten el estudio** — rama única, `/abrir` y `/cierre`, bitácoras y relevo |
 | [`docs/TRASPASO-CHECKLIST.md`](docs/TRASPASO-CHECKLIST.md) | **Traspasar el estudio a un diseñador nuevo** — checklist de conectores, accesos y siembra de memoria |
 | [`docs/TRASPASO-ZIP.md`](docs/TRASPASO-ZIP.md) | Empaquetar el estudio para otra máquina |
 

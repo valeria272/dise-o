@@ -128,7 +128,12 @@ Ejemplos reales:
 
 ### Reglas de convivencia
 
-1. **Trabaja en una rama.** `git checkout -b <tu-nombre>/<cliente>-<mes>`
+1. **Todos trabajan en la MISMA rama** (`estudio/sistema-de-marcas`), con dos ritos
+   diarios: **`/abrir <marca>`** al empezar (trae lo de los demás y te dice dónde
+   quedó el cliente) y **`/cierre <marca>`** al terminar (sube tu día para que otro
+   pueda retomarlo mañana). El protocolo completo, incluido el relevo entre
+   diseñadores, está en [`TRABAJO-EN-EQUIPO.md`](TRABAJO-EN-EQUIPO.md).
+   ⛔ Ya no se crean ramas por persona — aislaban el trabajo y mataban el relevo.
 2. **Nunca subas `raw/` ni `out/`** — están en `.gitignore` por algo.
 3. **Cuando el cliente corrija algo, se codifica.** Si Paulina dice "el logo va
    pegado arriba", eso se escribe en `clients/ebema/CLAUDE.md` en el mismo commit.

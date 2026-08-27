@@ -239,9 +239,11 @@ export const EllaHablo: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
     <FotoFondo src={IA + 'dos-tazas.png'} oscurecer={0.1} />
     <LogoBetween formato="feed" posicion="arriba" tono="beige" />
-    {/* la mesa es clara: sin caja estas dos líneas no se leen (contraste medido 37) */}
+    {/* la mesa es clara: sin caja estas dos líneas no se leen (contraste medido 37).
+        ESCALONADAS a pedido de Valeria (29-08): una arriba y otra abajo se ve más
+        lúdico que las dos en la misma línea. */}
     <Etiqueta x={280} y={1010} size={54} enCaja>Ella habló</Etiqueta>
-    <Etiqueta x={760} y={1010} size={54} enCaja>Ella escuchó</Etiqueta>
+    <Etiqueta x={800} y={392} size={54} enCaja>Ella escuchó</Etiqueta>
   </AbsoluteFill>
 );
 
@@ -304,7 +306,8 @@ export const ToGo3: React.FC = () => (
     <Etiqueta x={220} y={628} size={42}>Rol de canela</Etiqueta>
     <Ilustra cual="flechaBucle" x={245} y={686} ancho={118} opacidad={0.95} />
     {/* el café: texto DEBAJO del vaso — arriba parecía bajada del titular */}
-    <Ilustra cual="flechaBucle" x={870} y={900} ancho={115} rotacion={185} opacidad={0.95} />
+    {/* la cola de la flecha TOCA la base del vaso — no nace de la mesa */}
+    <Ilustra cual="flechaBucle" x={805} y={852} ancho={115} rotacion={185} opacidad={0.95} />
     <Etiqueta x={905} y={1015} size={42}>Café grande</Etiqueta>
     <PilaEsquina
       lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Dulce $3.790', fuerte: true}]}
@@ -331,8 +334,9 @@ export const ToGo4: React.FC = () => (
   >
     <Ilustra cual="flechaBucle" x={600} y={330} ancho={130} opacidad={0.95} />
     <Etiqueta x={545} y={288} size={42}>Café grande</Etiqueta>
-    <Ilustra cual="flechaBucle" x={850} y={950} ancho={120} espejo opacidad={0.95} />
-    <Etiqueta x={935} y={905} size={42}>Croissant</Etiqueta>
+    {/* la cola de la flecha toca la punta del croissant y sube hacia el texto */}
+    <Ilustra cual="flechaBucle" x={798} y={888} ancho={118} espejo opacidad={0.95} />
+    <Etiqueta x={945} y={846} size={42}>Croissant</Etiqueta>
     <PilaEsquina
       lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Salado + Dulce $5.290', fuerte: true}]}
     />

@@ -560,6 +560,25 @@ El recorte limpio del vaso vigente es `togo-vaso-nobg.png`.
 > **Regla:** antes de usar una foto con vaso To Go, comparar el vaso contra
 > `togo-vaso-nobg.png`. Si tiene faja de papel, es el viejo: no va.
 
+## ⚠️ Gradación: la comida clara se grada con mano SUAVE
+
+La pasada estándar de `between-gradar.py` (p95 → 227) le **quemó las altas al
+croissant** y lo dejó plano-amarillo: «perdió color, se ve muy saturado, ni se
+nota que es croissant» (Valeria, 29-08). El hojaldre, el pan y todo producto
+claro pierden sus capas si las altas se van sobre ~215.
+
+**Regla:** para fotos donde el protagonista es comida CLARA (hojaldre, pan,
+merengue), gradar aparte con objetivos suaves — p95 ≈ 210–215, saturación
+levemente contenida (×0,93) — y mirar el producto con zoom antes de dar por
+buena la foto. El objetivo p95 227 es para escenas generales, no para packshots
+de pastelería.
+
+## Composición de etiquetas gemelas: escalonadas
+
+Cuando una pieza lleva dos etiquetas equivalentes («Ella habló / Ella escuchó»),
+van **escalonadas** — una arriba, otra abajo, cada una cerca de su elemento — no
+las dos en la misma línea: «se ve más lúdico» (Valeria, 29-08).
+
 ## ⭐ El repertorio de composición (lo que faltaba, 27-08-2026)
 
 Clavar la tipografía no basta: **la marca compone con más recursos que «titular +
@@ -570,6 +589,9 @@ foto»**, y todos salen de posts publicados de `between.coffeebar`:
   ⭐ **Reglas de Valeria (28-08-2026):**
   1. **La flecha SALE del producto y APUNTA al texto** — nunca al revés, y nunca
      montada sobre el producto ni sobre el plato.
+     ⚠️ Y «sale del producto» es literal: **la cola de la flecha TOCA el producto**
+     (la base del vaso, la punta del croissant). Una flecha que nace de la mesa a
+     30 px del producto se lee suelta — segunda corrección de Valeria, 29-08.
   2. El texto va donde haya superficie limpia: si arriba del producto queda pegado
      al titular, «parece un subtexto» — va abajo o al costado.
   3. **No saturar**: la flecha no va en todas las piezas. Si no apunta a nada,

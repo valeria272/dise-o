@@ -102,6 +102,9 @@ def main():
     ap.add_argument('--carpeta', default=CARPETA_BW)
     ap.add_argument('--piezas', default=str(PIEZAS))
     ap.add_argument('--listar', action='store_true', help='no sube, solo informa')
+    ap.add_argument('--actualizar', nargs='+', default=[], metavar='ID',
+                    help='reemplaza el CONTENIDO de piezas ya subidas (mismo archivo '
+                         'de Drive, mismo enlace) — para correcciones post-entrega')
     args = ap.parse_args()
 
     origen = Path(args.piezas)
@@ -113,6 +116,10 @@ def main():
     ya = json.loads(manifiesto.read_text()) if manifiesto.exists() else {}
 
     pendientes = [p for p in archivos if p.stem not in ya]
+    actualizar = [p for p in archivos if p.stem in args.actualizar and p.stem in ya]
+    desconocidos = [a for a in args.actualizar if a not in {p.stem for p in archivos}]
+    if desconocidos:
+        sys.exit(f'⛔ No existen: {desconocidos}')
     peso = sum(p.stat().st_size for p in pendientes) / 1048576
     print(f'{len(archivos)} piezas · {len(pendientes)} por subir · {peso:.0f} MB')
     if args.listar:
@@ -122,6 +129,24 @@ def main():
 
     svc = servicio()
     subidas, fallos = 0, []
+
+    # correcciones: se reemplaza el contenido del MISMO archivo de Drive, así el
+    # enlace que ya tiene la diseñadora sigue mostrando la versión nueva
+    for p in actualizar:
+        nombre = f'{NOMBRES.get(p.stem, p.stem)}.png'
+        try:
+            media = MediaFileUpload(str(p), mimetype='image/png', resumable=True, chunksize=8 * 1024 * 1024)
+            pedido = svc.files().update(fileId=ya[p.stem]['id'], media_body=media,
+                                        fields='id,name', supportsAllDrives=True)
+            resp = None
+            while resp is None:
+                _, resp = pedido.next_chunk()
+            subidas += 1
+            print(f'  🔁 {nombre} (actualizada)')
+        except Exception as e:
+            fallos.append((p.stem, str(e)[:160]))
+            print(f'  ⛔ {nombre}: {str(e)[:160]}')
+
     for p in pendientes:
         nombre = f'{NOMBRES.get(p.stem, p.stem)}.png'
         tipo = mimetypes.guess_type(p.name)[0] or 'image/png'

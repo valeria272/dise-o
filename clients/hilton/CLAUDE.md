@@ -565,8 +565,15 @@ El recorte limpio del vaso vigente es `togo-vaso-nobg.png`.
 Clavar la tipografía no basta: **la marca compone con más recursos que «titular +
 foto»**, y todos salen de posts publicados de `between.coffeebar`:
 
-- **`EtiquetaFlecha`** — etiqueta + flecha de bucle señalando cada producto
-  («Café grande», «Sándwich Ave palta»). Es el recurso más reconocible de las promos.
+- **Etiqueta + flecha de bucle** señalando cada producto («Café grande»,
+  «Rol de canela»). Es el recurso más reconocible de las promos.
+  ⭐ **Reglas de Valeria (28-08-2026):**
+  1. **La flecha SALE del producto y APUNTA al texto** — nunca al revés, y nunca
+     montada sobre el producto ni sobre el plato.
+  2. El texto va donde haya superficie limpia: si arriba del producto queda pegado
+     al titular, «parece un subtexto» — va abajo o al costado.
+  3. **No saturar**: la flecha no va en todas las piezas. Si no apunta a nada,
+     se elimina — o no se pone ningún dibujo.
 - **`PilaEsquina`** — pila de cajas taupe anclada abajo a la izquierda.
 - **`PiezaPartida`** — dos fotos partidas con la script cruzando la costura.
 - **`TituloTresPesos`** — caja alta liviana + caja alta pesada + script en un bloque.

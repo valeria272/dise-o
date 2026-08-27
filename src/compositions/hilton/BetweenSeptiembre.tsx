@@ -269,9 +269,13 @@ export const ToGo1: React.FC = () => (
 
 export const ToGo2: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'togo-sandwich-actual.jpg'}
-    /* 35 %: entra el plato completo por la izquierda sin cortar la N del vaso */
-    posicionFoto="35% center"
+    /**
+     * Pre-recortada a 4:5 desde la ORIGINAL (5760px): así el logo del vaso queda
+     * entero con margen. El borde derecho del vaso se recorta apenas — igual que
+     * en la referencia aprobada «El Match». Plato y vaso suman más ancho del que
+     * cabe en 4:5, no hay recorte que muestre los dos completos.
+     */
+    foto={F + 'togo-sandwich-45.jpg'}
     script="Para empezar con algo"
     caps="rico y contundente"
     legal="*Imágenes referenciales."
@@ -279,8 +283,8 @@ export const ToGo2: React.FC = () => (
   >
     {/* ⭐ Regla de la flecha (feedback 28-08): SALE del producto y APUNTA al
         texto — nunca al revés, y nunca montada sobre el producto. */}
-    <Ilustra cual="flechaBucle" x={905} y={1030} ancho={120} rotacion={185} opacidad={0.95} />
-    <Etiqueta x={880} y={1148} size={42}>Café grande</Etiqueta>
+    <Ilustra cual="flechaBucle" x={830} y={1030} ancho={120} rotacion={185} opacidad={0.95} />
+    <Etiqueta x={880} y={1150} size={42}>Café grande</Etiqueta>
     <PilaEsquina
       lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Sándwich $4.290', fuerte: true}]}
     />
@@ -297,11 +301,11 @@ export const ToGo3: React.FC = () => (
     oscurecer={0.08}
   >
     {/* el rol: texto ARRIBA del plato (no encima) y la flecha sale del rol */}
-    <Etiqueta x={225} y={640} size={42}>Rol de canela</Etiqueta>
-    <Ilustra cual="flechaBucle" x={255} y={700} ancho={130} opacidad={0.95} />
+    <Etiqueta x={220} y={628} size={42}>Rol de canela</Etiqueta>
+    <Ilustra cual="flechaBucle" x={245} y={686} ancho={118} opacidad={0.95} />
     {/* el café: texto DEBAJO del vaso — arriba parecía bajada del titular */}
-    <Ilustra cual="flechaBucle" x={845} y={905} ancho={120} rotacion={185} opacidad={0.95} />
-    <Etiqueta x={870} y={1020} size={42}>Café grande</Etiqueta>
+    <Ilustra cual="flechaBucle" x={870} y={900} ancho={115} rotacion={185} opacidad={0.95} />
+    <Etiqueta x={905} y={1015} size={42}>Café grande</Etiqueta>
     <PilaEsquina
       lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Dulce $3.790', fuerte: true}]}
     />
@@ -321,7 +325,7 @@ export const ToGo4: React.FC = () => (
     caps="Llévalo contigo"
     sizeCaps={100}
     /* el vaso ocupa la esquina superior: el titular baja a la banda del medio */
-    topBloque={530}
+    topBloque={558}
     legal="*Imágenes referenciales."
     oscurecer={0.08}
   >
@@ -422,13 +426,15 @@ export const StEmergencia: React.FC = () => (
         position: 'absolute',
         left: BETWEEN.bloque.margenX,
         right: BETWEEN.bloque.margenX,
-        top: 268,
+        /* el logo de story termina en y≈370: el titular parte bajo él y su caja
+           alta cae sobre el vidrio VACÍO del gabinete, arriba de los productos */
+        top: 392,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
     >
-      <TitularBetween script="Romper en caso" caps="de antojo" alinear="centro" sizeCaps={104} />
+      <TitularBetween script="Romper en caso" caps="de antojo" alinear="centro" sizeCaps={100} />
     </div>
     <div
       style={{

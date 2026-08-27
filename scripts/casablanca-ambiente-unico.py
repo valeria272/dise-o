@@ -127,7 +127,11 @@ MADERAS = {
     ),
 }
 
-FMT = {"feed": "square_1_1", "story": "social_story_9_16"}
+FMT = {"feed": "square_1_1", "story": "social_story_9_16",
+       # 4:5 nativo — Serena pasó la grilla de septiembre a 4:5 el 27-08-2026.
+       # Se genera aparte y NO pisa los amb_*_feed.jpg cuadrados ya aprobados:
+       # recortar el cuadrado a 4:5 obligaba a ampliarlo un 37 %.
+       "feed45": "social_post_4_5"}
 
 
 def http(url, method="GET", body=None, timeout=300):

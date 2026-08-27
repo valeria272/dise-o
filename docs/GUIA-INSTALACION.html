@@ -156,13 +156,58 @@ no en el proyecto</b>: se activan una sola vez, en el navegador.</p>
 <td>Tu @copywriters.cl</td><td>Bajar referencias y briefs, subir entregas, leer comentarios de clientes</td></tr>
 <tr><td><b>Canva</b></td><td>🟡 Recomendado</td><td>La cuenta Canva del equipo</td><td>Plantillas y brand kits</td></tr>
 <tr><td><b>Gmail</b></td><td>🟡 Recomendado</td><td>Tu @copywriters.cl</td><td>El feedback de clientes llega por correo</td></tr>
-<tr><td>Higgsfield</td><td>⚪ Opcional</td><td>—</td><td>Video IA — hoy sin créditos, no te bloquea</td></tr>
+<tr><td><b>Higgsfield</b></td><td>🟡 Para video/UGC IA</td><td>La cuenta Higgsfield del equipo (ver 4.b)</td><td>Video IA, personajes, UGC</td></tr>
 <tr><td>Apollo / Notion / WordPress</td><td>⚪ <b>NO activar</b></td><td>—</td><td>Son de otras áreas, no de diseño</td></tr>
 </table>
 
 <div class="caja ojo"><b>⚠️ Después de activar un conector, cierra el chat y abre
 una conversación NUEVA.</b> Un conector activado a mitad de conversación no carga —
 es la causa nº 1 de «Claude no encuentra mi carpeta de Drive».</div>
+
+<h3>4.b — Las herramientas de imagen: Magnific y Higgsfield (léelo completo, acá se pierden los días)</h3>
+
+<div class="caja"><b>Lo primero que hay que entender:</b> son dos cosas DISTINTAS y se
+conectan de forma distinta. Confundirlas es exactamente lo que hace perder un día entero.
+<ul>
+<li><b>Magnific (= Freepik)</b> es <b>el generador de imágenes de la casa</b> — fondos,
+ambientes, escalado, reiluminación. <b>NO es un conector</b>: funciona con una
+<b>clave</b> que se instala una sola vez en tu Mac (abajo). No hay nada que activar
+en claude.ai.</li>
+<li><b>Higgsfield</b> es solo para <b>video IA / UGC / personajes</b>. Ese sí es un
+<b>conector</b> de claude.ai, y además necesita que la cuenta tenga créditos.</li>
+</ul></div>
+
+<p><b>Instalar la clave de Magnific (2 minutos, una sola vez):</b></p>
+<ol>
+<li>Abre la <b>Terminal</b> (⌘ + espacio → «Terminal»).</li>
+<li>Pega esta línea completa y aprieta Enter:</li>
+</ol>
+<pre><code>echo "PEGA-AQUI-LA-CLAVE-FREEPIK" > ~/.magnific_key</code></pre>
+<p>La clave viene escrita en esta guía tal cual — cópiala con el botón derecho para
+no perder ningún carácter. Los scripts del estudio la leen solos desde ese archivo.</p>
+
+<div class="caja exito"><b>✅ Cómo saber que quedó bien:</b> en el chat de Claude
+escribe: <i>«verifica mi clave de Magnific sin gastar créditos»</i>. Claude hace una
+consulta de estado a la API (no genera nada, no gasta) y te dice si la clave responde.
+Si responde, ya puedes pedirle fondos y ambientes IA con total normalidad.</div>
+
+<p><b>Conectar Higgsfield (solo si vas a hacer video/UGC):</b></p>
+<ol>
+<li>Entra a <span class="url">https://claude.ai/settings/connectors</span> y activa
+<b>Higgsfield</b>.</li>
+<li>Cuando pida iniciar sesión, usa <b>la cuenta Higgsfield del equipo</b>:
+correo <code>CORREO-CUENTA-HIGGSFIELD</code> — la contraseña te la pasa Valeria por
+WhatsApp (no va escrita acá).</li>
+<li><b>Cierra el chat y abre una conversación nueva</b> (regla de todo conector).</li>
+<li>Prueba: escribe <i>«revisa el saldo de Higgsfield»</i>.</li>
+</ol>
+
+<div class="caja alerta"><b>⛔ Si Higgsfield dice que no hay créditos, NO es un
+problema tuyo ni de conexión</b> — la cuenta está sin saldo y solo Valeria puede
+recargarla. Avísale y sigue trabajando: <b>todos los fondos e imágenes del estudio
+salen de Magnific</b>, que funciona con la clave de arriba y no depende de esos
+créditos. Que no se te vaya el día peleando con Higgsfield por algo que Magnific
+hace mejor para gráficas.</div>
 
 <div class="caja exito"><b>✅ Cómo saber que quedó bien:</b> en un chat nuevo escribe:
 <i>«busca la carpeta AGENCIA COPYWRITERS en Drive»</i>. Si la encuentra y lista

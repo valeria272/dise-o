@@ -75,6 +75,19 @@ for j in clients/*/marca.json; do
     && ok "$j" || bad "$j — JSON inválido"
 done
 
+echo; echo "══ Magnific/Freepik (el generador de imágenes de la casa) ══"
+PYQA="${HOME}/copylab-venv/bin/python3"; command -v "$PYQA" >/dev/null || PYQA=python3
+if [ -f "$HOME/.magnific_key" ] || grep -q "^FREEPIK_API_KEY=" "../ASISTENTE PERSONAL/.env" 2>/dev/null; then
+  if "$PYQA" scripts/magnific.py check >/dev/null 2>&1; then
+    ok "clave de Magnific válida — imágenes IA operativas"
+  else
+    bad "hay clave pero NO autentica — revisa ~/.magnific_key (sin espacios ni comillas)"
+  fi
+else
+  bad "SIN clave de Magnific. Sin esto no hay fondos ni ambientes IA."
+  bad "  Instalarla: echo \"LA-CLAVE\" > ~/.magnific_key   (la clave está en la guía de instalación)"
+fi
+
 echo; echo "══ TypeScript ══"
 npx tsc --noEmit 2>&1 | grep -c "error TS" | { read n
   [ "$n" = "0" ] && ok "compila limpio" || warn "$n errores de TS (npx tsc --noEmit para verlos)"; }

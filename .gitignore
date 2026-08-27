@@ -92,6 +92,7 @@ public/assets/**
 !public/assets/casablanca/muestra_*.png
 !public/assets/casablanca/sep/amb_*_feed.jpg
 !public/assets/casablanca/sep/sr2_*.jpg
+!public/assets/casablanca/sep/amb_*_feed45.jpg
 
 # ⛔ Estas NO se versionan aunque sean fuentes — la licencia lo impide:
 #    IvyOra = Adobe Fonts (cada persona la activa en su Creative Cloud)

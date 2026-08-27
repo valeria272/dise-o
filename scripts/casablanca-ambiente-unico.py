@@ -92,6 +92,27 @@ PROHIBIDO = (
     "placed on the empty upper wall."
 )
 
+# En vertical (4:5) el alto extra se lo lleva el cielorraso y el piso deja de ser
+# protagonista — contra el lineamiento nº2 del brief. Primera pasada del 27-08-2026:
+# salieron vigas y lámpara colgante ocupando el tercio superior. Por eso el 4:5 lleva
+# su propia cámara: más picado, sin techo a la vista.
+CAMARA_45 = (
+    "Vertical 4:5 framing shot from standing eye height with a 35 mm lens tilted "
+    "down about 45 degrees, looking at the floor. The ceiling is NOT visible: the "
+    "frame is cut well below it. The engineered wood floor fills the entire lower "
+    "two thirds of the picture and is unmistakably the protagonist; the furniture "
+    "sits in the upper third against a clean pale plaster wall. One-point "
+    "perspective, the planks running lengthwise away from the camera. Abundant "
+    "natural daylight from a window out of frame on the left, soft warm shadows, "
+    "neutral white balance. Deep depth of field, everything tack sharp. "
+    "Architectural digest editorial interior photography, photorealistic, calm."
+)
+
+PROHIBIDO_45 = (
+    "No ceiling, no wooden ceiling beams, no exposed rafters, no pendant lamp or "
+    "hanging light fixture in the upper part of the frame. "
+)
+
 BASE_SKU = "natural_uv_grande"
 
 MADERAS = {
@@ -216,7 +237,9 @@ def guardar(res, path):
     return True
 
 
-def prompt_de(sku):
+def prompt_de(sku, fmt="feed"):
+    if fmt == "feed45":
+        return f"{SALA} The floor: {MADERAS[sku]} {CAMARA_45} {PROHIBIDO_45}{PROHIBIDO}"
     return f"{SALA} The floor: {MADERAS[sku]} {CAMARA} {PROHIBIDO}"
 
 
@@ -231,7 +254,7 @@ def main():
         base_path = DEST / f"amb_{BASE_SKU}_{fmt}.jpg"
         if not base_path.exists():
             print(f"▸ base ({BASE_SKU})")
-            if not guardar(mystic(prompt_de(BASE_SKU), FMT[fmt], f"base_{fmt}"), base_path):
+            if not guardar(mystic(prompt_de(BASE_SKU, fmt), FMT[fmt], f"base_{fmt}"), base_path):
                 print("  no salió la base; se salta el formato")
                 continue
         else:
@@ -242,7 +265,7 @@ def main():
             if sku == BASE_SKU:
                 continue
             print(f"▸ {sku}")
-            r = mystic(prompt_de(sku), FMT[fmt], f"{sku}_{fmt}", structure=ref)
+            r = mystic(prompt_de(sku, fmt), FMT[fmt], f"{sku}_{fmt}", structure=ref)
             guardar(r, DEST / f"amb_{sku}_{fmt}.jpg")
 
     print(f"\nListo en {DEST}")

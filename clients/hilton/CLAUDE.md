@@ -536,6 +536,30 @@ Son la vara. El resto de `ref-piezas/` sirve de contexto, no de norma.
 6. **Ningún texto sobre rostros ni ojos.** Regla dura.
 7. **La foto es hero y clara**: multiply ≈ 0,10–0,16 sobre foto ya gradada.
 
+## ⛔ EL VASO TO GO: hay DOS y el banco de fotos tiene el viejo
+
+Detectado por Elisabet el 28-08-2026 («el vaso to go es el antiguo»).
+
+| | Antiguo ❌ | **Actual ✅** |
+|---|---|---|
+| Cuerpo | gris oscuro / carbón | **cartón kraft** |
+| Logo | en una **faja** de papel crema pegada al vaso | **impreso directo** en el kraft |
+| Tapa | café oscuro | **negra mate**, tipo domo |
+
+⚠️ **Estas fotos de `public/assets/hilton/between/fotos-gradadas/` traen el vaso
+ANTIGUO y no se pueden usar en piezas de promo To Go:**
+`togo-sandwich.jpg` · `togo-brownie.jpg` · `togo-croissant-queso.jpg` ·
+`togo-croissants.jpg` · `togo-empanadas.jpg`
+
+✅ **El vaso actual está en la sesión `raw/hilton/between/modelos-25jul2025/`.**
+Bodegones útiles verificados ahí: `25-250` (sándwich + vaso), `25-252`,
+`25-254`/`255`/`256` (croissant + vaso), `25-280`/`281` (rol de canela + vaso).
+Ya graduadas y en el banco como `togo-sandwich-actual.jpg` y `togo-dulce-actual.jpg`.
+El recorte limpio del vaso vigente es `togo-vaso-nobg.png`.
+
+> **Regla:** antes de usar una foto con vaso To Go, comparar el vaso contra
+> `togo-vaso-nobg.png`. Si tiene faja de papel, es el viejo: no va.
+
 ## ⭐ El repertorio de composición (lo que faltaba, 27-08-2026)
 
 Clavar la tipografía no basta: **la marca compone con más recursos que «titular +

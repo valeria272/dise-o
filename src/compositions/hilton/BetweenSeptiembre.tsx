@@ -260,24 +260,29 @@ export const ToGo1: React.FC = () => (
     datos={['Promos To Go', HORARIO_TOGO]}
     conLogo
     logoPosicion="abajo"
-    anclaje="arriba"
+    /* la modelo tiene la cara en el tercio alto: el bloque baja casi al centro
+       para no cruzarla (feedback de Elisabet, 28-08) */
+    topBloque={470}
     oscurecer={0.06}
   />
 );
 
 export const ToGo2: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'togo-sandwich.jpg'}
+    /**
+     * ⚠️ Foto cambiada el 28-08: la anterior (`togo-sandwich.jpg`) mostraba el vaso
+     * ANTIGUO — cuerpo gris oscuro con faja de papel. El actual es kraft con el
+     * logo impreso directo y tapa negra. Esta sale de la sesión de modelos del
+     * 25-jul-2025, que es la que trae los vasos vigentes.
+     */
+    foto={F + 'togo-sandwich-actual.jpg'}
     script="Para empezar con algo"
     caps="rico y contundente"
     legal="*Imágenes referenciales."
     oscurecer={0.08}
   >
-    <EtiquetaFlecha x={846} y={640} hacia="abajo" flecha={215} dy={4} dx={-40}>
+    <EtiquetaFlecha x={880} y={470} hacia="abajo" flecha={190} dy={2} dx={-46}>
       Café grande
-    </EtiquetaFlecha>
-    <EtiquetaFlecha x={214} y={952} hacia="derecha" flecha={230} dy={20}>
-      {'Sándwich\nAve palta'}
     </EtiquetaFlecha>
     <PilaEsquina
       lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Sándwich $4.290', fuerte: true}]}
@@ -287,17 +292,18 @@ export const ToGo2: React.FC = () => (
 
 export const ToGo3: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'togo-brownie.jpg'}
+    /** Misma corrección del vaso que en la slide anterior. */
+    foto={F + 'togo-dulce-actual.jpg'}
     script="Ese gustito que mejora"
     caps="cualquier mañana"
     legal="*Imágenes referenciales."
     oscurecer={0.08}
   >
-    <EtiquetaFlecha x={852} y={618} hacia="abajo" flecha={210} dy={4} dx={-40}>
+    <EtiquetaFlecha x={806} y={430} hacia="abajo" flecha={190} dy={2} dx={-44}>
       Café grande
     </EtiquetaFlecha>
-    <EtiquetaFlecha x={236} y={772} hacia="derecha" flecha={225} dy={18}>
-      Brownie
+    <EtiquetaFlecha x={228} y={806} hacia="derecha" flecha={210} dy={16}>
+      Rol de canela
     </EtiquetaFlecha>
     <PilaEsquina
       lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Dulce $3.790', fuerte: true}]}
@@ -502,7 +508,7 @@ export const StStrudel: React.FC = () => (
         position: 'absolute',
         left: BETWEEN.bloque.margenX,
         right: BETWEEN.bloque.margenX,
-        top: 370,
+        top: 432,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -515,13 +521,21 @@ export const StStrudel: React.FC = () => (
           caja salía del tamaño de una estampilla. */}
       <div
         style={{
-          width: 1080 - 2 * BETWEEN.bloque.margenX,
+          /* la caja se achicó y bajó el 28-08: a 912 de ancho y arriba en 370
+             pisaba el logo. Ahora despeja el lockup completo. */
+          width: 760,
           backgroundColor: BETWEEN.cajas.fondo,
           borderRadius: BETWEEN.cajas.radio,
-          padding: '30px 46px 40px',
+          padding: '28px 40px 36px',
         }}
       >
-        <TitularBetween script="Cuatro ingredientes" caps={'Que saben\nmejor juntos'} alinear="centro" />
+        <TitularBetween
+          script="Cuatro ingredientes"
+          caps={'Que saben\nmejor juntos'}
+          alinear="centro"
+          anchoDisponible={680}
+          sizeCaps={96}
+        />
       </div>
     </div>
     <div

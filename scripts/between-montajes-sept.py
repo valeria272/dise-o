@@ -125,18 +125,17 @@ MONTAJES = [
         ref=None,
         ratio="social_story_9_16",
         prompt=(
-            f"{ESTILO} Surreal but photorealistic scale illusion. A young woman "
-            "walks along a sunlit sidewalk carrying an ENORMOUS takeaway coffee cup "
-            "roughly the size of her own torso and head combined — absurdly "
-            "oversized but she can still hold it. She carries it at her hip with "
-            "both arms wrapped around it and leans away from it under the weight, "
-            "knees slightly bent, clearly straining but laughing. CRITICAL: her "
-            "whole FACE is fully visible, turned toward the camera and NOT covered "
-            "by the cup — the cup sits low, at waist and chest height, well below "
-            "her chin. The cup is a complete kraft paper cup WITH its matte black "
-            "dome lid clearly on top, correct proportions, just enormous. Strong "
-            "directional sunlight, one big cup-shaped shadow on the pavement. Full "
-            f"body in frame, vertical 9:16, empty sunlit wall above her. {VASO}"
+            f"{ESTILO} Surreal but photorealistic scale illusion, like an "
+            "oversized-object art installation. A young woman walks along a sunlit "
+            "sidewalk carrying an ENORMOUS takeaway coffee cup about the size of "
+            "her torso, hugging it with both arms and leaning back under the "
+            "weight. Kraft paper cup with its matte black dome lid clearly on top. "
+            "COMPOSITION, CRITICAL: she stands in the LOWER TWO THIRDS — the top of "
+            "the cup she carries reaches no higher than 45%% down the frame. The "
+            "ENTIRE UPPER THIRD of the image is a plain, empty, sunlit plaster "
+            "wall: no plants, no roof, no awning, no windows, no branches, nothing "
+            "at all, left deliberately blank for a headline. Full body down to her "
+            f"shoes. Strong side sun, one long shadow on the pavement. {VASO}"
         ),
     ),
     dict(

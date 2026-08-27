@@ -1113,6 +1113,12 @@ export const PiezaFeedBodegon: React.FC<{
    * ojos — regla dura de ella.
    */
   anclaje?: 'arriba' | 'abajo';
+  /**
+   * Y exacta del bloque, cuando ni arriba ni abajo sirven. Se usa sobre todo en
+   * fotos con personas: bajar el bloque «casi al centro» deja el texto sobre una
+   * superficie limpia en vez de sobre la cara. Lo pidió la diseñadora el 28-08.
+   */
+  topBloque?: number;
   /** Capas encima de la foto: etiquetas con flecha, doodles, mockups. */
   children?: React.ReactNode;
 }> = ({
@@ -1137,6 +1143,7 @@ export const PiezaFeedBodegon: React.FC<{
   // compone centrado; el bloque a la izquierda no es su gramática.
   alinear = 'centro',
   anclaje = 'arriba',
+  topBloque,
   children,
 }) => {
   // Eli entrega DOS plantillas por formato (logo arriba / logo abajo) justo para
@@ -1155,7 +1162,11 @@ export const PiezaFeedBodegon: React.FC<{
           right: BETWEEN.bloque.margenX,
           // la medida (y=220) es a la TINTA; el ascendente de la caja alta pide unos px.
           // En fotos con personas el bloque baja para no pasar texto sobre caras.
-          ...(anclaje === 'arriba' ? {top: BETWEEN.bloque.yFeed - 9} : {bottom: 130}),
+          ...(topBloque !== undefined
+            ? {top: topBloque}
+            : anclaje === 'arriba'
+              ? {top: BETWEEN.bloque.yFeed - 9}
+              : {bottom: 130}),
           display: 'flex',
           flexDirection: 'column',
           alignItems: alinear === 'centro' ? 'center' : 'flex-start',
@@ -1282,11 +1293,14 @@ export const PiezaStoryBetween: React.FC<{
   alinear?: 'izquierda' | 'centro';
   /** En fotos con personas el bloque baja para no pasar texto sobre caras ni ojos. */
   anclaje?: 'arriba' | 'abajo';
+  /** Y exacta del bloque, cuando ni arriba ni abajo sirven. */
+  topBloque?: number;
   children?: React.ReactNode;
 }> = ({
   foto, posicionFoto, oscurecer = 0.12,
   caps, script, sizeCaps, datos, bajada, bajadaEnCaja, legal,
-  conLogo = true, logoTono = 'beige', alinear = 'centro', anclaje = 'arriba', children,
+  conLogo = true, logoTono = 'beige', alinear = 'centro', anclaje = 'arriba',
+  topBloque, children,
 }) => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
     <FotoFondo src={foto} posicion={posicionFoto} oscurecer={oscurecer} />
@@ -1297,7 +1311,11 @@ export const PiezaStoryBetween: React.FC<{
         left: BETWEEN.bloque.margenX,
         right: BETWEEN.bloque.margenX,
         // 'abajo' se queda sobre la zona segura de Meta (340 px) con holgura
-        ...(anclaje === 'arriba' ? {top: BETWEEN.bloque.yStory - 9} : {bottom: 430}),
+        ...(topBloque !== undefined
+          ? {top: topBloque}
+          : anclaje === 'arriba'
+            ? {top: BETWEEN.bloque.yStory - 9}
+            : {bottom: 430}),
         display: 'flex',
         flexDirection: 'column',
         alignItems: alinear === 'centro' ? 'center' : 'flex-start',

@@ -1,0 +1,140 @@
+# Reglas ejecutables de GRUPO REVEX.
+#
+# ⚠️ Estas reglas son DE ESTA MARCA. No se copian a otra — ni siquiera a Casablanca,
+#    que es su marca hermana del mismo dueño y la firma la misma diseñadora.
+#    Revex y Casablanca tienen lenguajes OPUESTOS: acá el rojo, el descuento y la
+#    urgencia son la marca; allá están prohibidos. Y el bloque de texto acá va
+#    CENTRADO, mientras el sistema editorial de Casablanca alinea a la izquierda.
+#
+# Quien firma es Paulina Bustamante (diseñadora del cliente Grupo Revex). Su criterio
+# vale para EBEMA, Revex y Casablanca, y para NINGUNA otra marca del estudio.
+#
+# Fuente: feedback/2026-08-25-ronda2.md — 8 comentarios sobre out/revex/sep2026/.
+
+marca: revex
+nombre: Grupo Revex
+version: 1
+actualizado: 2026-08-27
+
+autoridad:
+  - quien: Paulina Bustamante
+    rol: diseñadora del cliente
+    alcance: [ebema, revex, casablanca]
+    canal: comentarios en los archivos del Drive
+  - quien: Dirección de área
+    rol: revisión interna Copylab
+    alcance: [revex]
+
+ajustes:
+  zona-segura-meta:
+    porque: >-
+      El bloque de logo va pegado al borde superior (top:0) también en story, por
+      decisión de marca — está declarado como excepción en SISTEMA-DE-MARCAS §4.
+      La zona segura protege el texto, no el logo.
+    args:
+      excepciones:
+        - {x0: 0.30, y0: 0.0, x1: 0.70, y1: 0.16}
+
+  respiro-borde:
+    porque: >-
+      Dos motivos. El bloque de logo va pegado arriba, y además **Revex compone denso
+      y al centro**: sus barras rojas y cápsulas llegan mucho más cerca del borde que
+      las de una marca con aire. Calibrado sobre 117 aprobadas (p50 0,026 · p99 0,194):
+      con el tope de agencia (0,10) se marcaban 10 piezas perfectas.
+    args:
+      max_fraccion_tinta: 0.22
+      excepciones:
+        - {x0: 0.30, y0: 0.0, x1: 0.70, y1: 0.16}
+
+  foto-estirada:
+    porque: >-
+      Calibrado sobre las 117 aprobadas (p99 0,144): los cierres de carrusel de Revex
+      son de fondo blanco con tira de muestras, y producen rachas de filas casi
+      idénticas que no son un estiramiento. Con el tope de agencia se marcaban 5.
+    args:
+      max_fraccion_alto: 0.17
+
+reglas:
+
+  # ⛔ REGLA RETIRADA — "el rojo en cuadros, nunca en textos".
+  #
+  # La regla de marca es real y la pidió Paulina textualmente. Lo que no existe es
+  # un caso con el que validarla: se midió la pieza que el feedback señala,
+  # out/revex/sep2026/_ronda1/rvx_sep_concurso_feed.png, y NO TIENE ROJO — 0,00 %
+  # del área incluso con tolerancia ΔE<45 sobre los cinco rojos de la marca.
+  #
+  # La pieza es la original (fondo moody oscuro, bloque a la izquierda, titular en
+  # tres líneas, sin el cuadro rojo del logo que Paulina pide agregar), así que la
+  # nota del consolidado que dice «la línea ¡No pierdas la oportunidad de ganar!
+  # está en texto rojo» no se sostiene contra el archivo.
+  #
+  # La comprobación además marcaba rvx_sep_lascondes_feed.png, que Paulina llamó
+  # "la buena" y puso como referencia del lote. Sin caso positivo y con un falso
+  # positivo sobre la pieza modelo, no entra.
+  #
+  # Para reponerla hace falta una pieza real con texto en rojo de marca. Cuando
+  # aparezca, el check `color_solo_en_bloques` ya está escrito y probado.
+
+  # ⛔ REGLA RETIRADA — "el bloque de texto va centrado".
+  #
+  # Es una regla de marca real y central (Revex compone centrado y denso, al revés
+  # que Casablanca), pero la comprobación mide **toda la tinta de la pieza**, no el
+  # bloque de texto, y esa diferencia la vuelve inútil. Medido sobre 117 aprobadas
+  # contra la pieza del concurso que Paulina rechazó por descentrada:
+  #
+  #   desvío del centro   aprobadas p50 0,023 · p75 0,056 · max 0,347
+  #                       concurso rechazado  0,073   <- percentil 82 de lo aprobado
+  #
+  # El corpus tiene carruseles donde la muestra de producto va a la izquierda o a la
+  # derecha por diseño, y cierres con el logo desplazado: son legítimamente
+  # descentrados. No hay corte que separe.
+  #
+  # Para reponerla habría que aislar el bloque de texto del resto de la gráfica
+  # (agrupar líneas por proximidad vertical y descartar muestras y banderolas), que
+  # es bastante más que una máscara de tinta. El check `bloque_centrado` queda
+  # escrito por si se hace.
+
+  - id: story-segundo-cuarto
+    titulo: En story el texto vive en el segundo cuarto
+    check: texto_en_banda
+    severidad: bloqueante
+    formato: story
+    autor: Paulina Bustamante
+    fecha: 2026-08-25
+    cita: >-
+      bloque de texto en el formato storie debe ir centrado o en la zona de 2/4 de
+      imagen para que no sea tapado por el copy a la hora de publicar.
+    porque: >-
+      Confirmado desde el otro lado por dirección sobre Casablanca ("en las stories el
+      30 % superior queda como muro vacío"). Sobre 1920 son y ≈ 480–960. Se excluye
+      la franja del logo.
+    args:
+      desde: 0.22
+      hasta: 0.68
+      excepciones:
+        - {x0: 0.0, y0: 0.0, x1: 1.0, y1: 0.16}
+
+  - id: desenfoque-completo
+    titulo: Si se desenfoca el fondo, se desenfoca completo
+    check: desenfoque_parcial
+    severidad: bloqueante
+    autor: Paulina Bustamante
+    fecha: 2026-08-25
+    cita: >-
+      evita usar cuadros desenfocados. si se necesita desenfocar la imagen del fondo
+      se debe desenfocar completa.
+    porque: >-
+      Comentario sobre rvx_sep_temuco_feed.png, que tenía una banda inferior con
+      desenfoque distinto al resto del fondo. En agencia esta comprobación es sólo un
+      aviso; acá sube a bloqueante porque Paulina la pidió explícitamente.
+    args:
+      # Calibrado sobre 117 piezas aprobadas de Revex (mín. 0,0083 · p1 0,0124)
+      # contra la entrega de septiembre (mín. 0,0015). El corte en 0,007 no marca
+      # ninguna aprobada y atrapa concurso y temuco.
+      # ⚠️ Revex tolera MÁS desenfoque que Casablanca (que va en 0,026): sus fondos
+      # son fotos de local con profundidad real. Mismo check, marcas distintas,
+      # topes distintos — por eso el tope vive acá y no en el código.
+      bandas: 10
+      razon_min: 0.007
+      piso_ruido: 5.0
+      min_std_banda: 4.0

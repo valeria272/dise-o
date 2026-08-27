@@ -23,8 +23,9 @@ python3 --version
 
 ```bash
 mkdir -p ~/copylab && cd ~/copylab
-git clone https://github.com/duvanchat2/editor-pro-max.git "EDITOR VIDEOS"
+git clone https://github.com/valeria272/dise-o.git "EDITOR VIDEOS"
 cd "EDITOR VIDEOS"
+git checkout estudio/sistema-de-marcas   # la rama viva del estudio
 npm install
 npm run typecheck      # tiene que compilar
 ```

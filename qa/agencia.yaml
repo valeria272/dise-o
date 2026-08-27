@@ -1,0 +1,135 @@
+# Reglas de agencia — valen para TODA marca del estudio.
+#
+# El listón para entrar acá es alto y deliberado: sólo entra lo que es un error
+# técnico objetivo, una norma de la plataforma o una regla legal/de formato del
+# monorepo. **Ningún criterio estético de ninguna diseñadora entra a este archivo.**
+#
+# Paulina Bustamante firma EBEMA, Revex y Casablanca. Elisabet Soto firma Hilton.
+# Constanza Lizana firma Selfie. Su criterio va en clients/<marca>/reglas.yaml y
+# muere ahí. Subir una regla de marca a este archivo es reintroducir a mano la
+# contaminación cruzada que el sistema existe para evitar.
+#
+# Prueba de admisión, antes de agregar una regla acá:
+#   ¿La suscribirían las tres diseñadoras, sin haber hablado entre ellas?
+#   Si la respuesta es "depende de la marca", no es de agencia.
+#
+# Una marca puede ajustar cualquiera de estas reglas desde su propio reglas.yaml
+# (bloque `ajustes:`), siempre que escriba por qué.
+
+version: 1
+actualizado: 2026-08-27
+
+reglas:
+  - id: zona-segura-meta
+    titulo: Texto dentro de la zona que Meta tapa con su interfaz
+    check: zona_segura
+    formato: story
+    severidad: bloqueante
+    cita: >-
+      9:16 — 250 px arriba, 340 px abajo, 115 px a la derecha sobre 1080×1920.
+    fuente: docs/SISTEMA-DE-MARCAS.md §4
+    porque: >-
+      No es criterio: es dónde Meta dibuja su propia UI. Un titular ahí es un
+      titular que el cliente nunca lee. Las marcas cuyo logo cuelga del borde
+      declaran la excepción en su ajuste.
+    args:
+      top: 250
+      bottom: 340
+      right: 115
+      max_fraccion: 0.010
+
+  - id: respiro-borde
+    titulo: Texto pegado al borde del lienzo
+    check: respiro_borde
+    severidad: bloqueante
+    cita: >-
+      Respiro mínimo de 60 px entre cualquier texto y cualquier borde o línea.
+    fuente: docs/SISTEMA-DE-MARCAS.md §4
+    porque: >-
+      Vale para toda pieza de toda marca. El recorte de la plataforma y el de la
+      impresión se comen los bordes.
+    args:
+      minimo_px_1080: 60
+      max_fraccion_tinta: 0.10
+
+  - id: foto-estirada
+    titulo: Foto estirada para llenar el formato
+    check: franja_estirada
+    severidad: bloqueante
+    cita: >-
+      Nunca estirar una foto para llenar un formato. Repetir la última franja de
+      píxeles hacia abajo produce rayas verticales: en la story de Revex Las Condes
+      eso ocupó el 34 % de la pieza.
+    fuente: .claude/skills/direccion-de-arte/SKILL.md §3.1
+    porque: >-
+      Error técnico puro. Ninguna marca quiere filas de píxeles clonadas, y las
+      salidas correctas son siempre las mismas: recortar bien, buscar otra foto, o
+      decir que falta la foto.
+    args:
+      delta_max: 0.35
+      min_std_fila: 4.0
+      max_fraccion_alto: 0.084
+
+  # ⛔ REGLA RETIRADA — costura entre imágenes pegadas.
+  #
+  # Medido con qa/calibrar.py sobre 53 aprobadas contra 14 rechazadas de Casablanca:
+  #
+  #   salto de brillo / salto típico   aprobadas 9,9–59,3   ·   rechazadas 9,5–45,2
+  #
+  # Los rangos se solapan por completo y las APROBADAS llegan más alto. El motivo es
+  # que el montaje legítimo de esta clase de pieza —foto arriba, bloque gráfico
+  # abajo— produce el mismo salto que una costura de verdad, y separar los dos casos
+  # a nivel de fila no resultó posible.
+  #
+  # El defecto existe (el collage de Revex Temuco eran dos fotos apiladas), pero esta
+  # métrica no lo aísla. Queda como revisión humana hasta que haya una que sí.
+
+  - id: desenfoque-parcial
+    titulo: Una banda de la imagen tiene otro foco que el resto
+    check: desenfoque_parcial
+    severidad: aviso
+    cita: >-
+      Si se necesita desenfocar la imagen del fondo se debe desenfocar completa.
+    fuente: Paulina Bustamante, 25-08-2026 — generalizado como regla técnica
+    porque: >-
+      Lo pidió Paulina para Revex, pero un desenfoque aplicado a un pedazo de la foto
+      es un defecto de montaje en cualquier marca. Entra como AVISO, no bloqueante:
+      una profundidad de campo real produce la misma lectura y es legítima. La marca
+      que quiera exigirlo lo sube a bloqueante en su ajuste.
+    args:
+      bandas: 10
+      razon_min: 0.026
+      piso_ruido: 5.0
+      min_std_banda: 4.0
+
+  # ⛔ REGLA RETIRADA — contraste de texto.
+  #
+  # Se intentó y NO discrimina. Medido sobre las 53 piezas aprobadas de Casablanca
+  # contra las 14 de la ronda 1 rechazada:
+  #
+  #   contraste medio tinta/fondo   aprobadas 1,30–2,21   ·   rechazadas 1,39–2,39
+  #   fracción de texto sobre
+  #   fondo claro (>205)            aprobadas 0,30 med.   ·   rechazadas 0,34 med.
+  #
+  # Los rangos se solapan por completo, y en la segunda métrica las piezas APROBADAS
+  # salen peor que las rechazadas. La causa es real, no un bug: el sistema de
+  # Casablanca da la legibilidad con la SOMBRA del texto, no con el contraste contra
+  # el fondo, así que la métrica mide lo que no decide.
+  #
+  # Dejar una regla que marca por igual lo bueno y lo malo es peor que no tenerla:
+  # la gente aprende a ignorar los hallazgos y deja de mirar los que sí importan.
+  # La legibilidad sigue siendo **revisión humana**, tal como ya advertía
+  # scripts/casablanca-qa.py. Si alguien encuentra una métrica que separe los dos
+  # grupos de arriba, ese es el momento de reponerla — con los números.
+
+  - id: formato-clp
+    titulo: Monto en pesos chilenos mal escrito
+    check: formato_clp
+    severidad: bloqueante
+    cita: >-
+      Precios en CLP chileno: $9.900, punto de miles, sin decimales, sin centavos.
+    fuente: docs/SISTEMA-DE-MARCAS.md §8.5 y CLAUDE.md del monorepo
+    porque: >-
+      Regla transversal de todo el monorepo. Un precio con coma decimal o con
+      separador anglosajón llega al cliente y se ve amateur.
+    args: {}

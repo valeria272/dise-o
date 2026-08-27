@@ -1287,6 +1287,8 @@ export const PiezaStoryBetween: React.FC<{
   bajada?: React.ReactNode;
   /** La bajada va DENTRO de una caja taupe, para cuando la foto no la deja leer. */
   bajadaEnCaja?: boolean;
+  /** Ancho máximo de esa caja. A todo el ancho se ve pesada sobre un producto. */
+  anchoBajada?: number;
   legal?: React.ReactNode;
   conLogo?: boolean;
   logoTono?: Tono;
@@ -1298,7 +1300,7 @@ export const PiezaStoryBetween: React.FC<{
   children?: React.ReactNode;
 }> = ({
   foto, posicionFoto, oscurecer = 0.12,
-  caps, script, sizeCaps, datos, bajada, bajadaEnCaja, legal,
+  caps, script, sizeCaps, datos, bajada, bajadaEnCaja, anchoBajada, legal,
   conLogo = true, logoTono = 'beige', alinear = 'centro', anclaje = 'arriba',
   topBloque, children,
 }) => (
@@ -1324,7 +1326,7 @@ export const PiezaStoryBetween: React.FC<{
       <TitularBetween caps={caps} script={script} sizeCaps={sizeCaps} alinear={alinear} />
       {datos?.length ? <PilaDatos datos={datos} style={{marginTop: BETWEEN.aire.tituloACaja}} /> : null}
       {bajada && bajadaEnCaja ? (
-        <PanelTaupe style={{marginTop: BETWEEN.aire.tituloACaja}}>{bajada}</PanelTaupe>
+        <PanelTaupe ancho={anchoBajada} style={{marginTop: BETWEEN.aire.tituloACaja}}>{bajada}</PanelTaupe>
       ) : bajada ? (
         <Bajada style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: alinear === 'centro' ? 'center' : 'left'}}>{bajada}</Bajada>
       ) : null}

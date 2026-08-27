@@ -39,7 +39,7 @@ import {
   PilaDatos,
 } from './BetweenSistema';
 import {
-  Cuadrantes, Etiqueta, EtiquetaFlecha, Globos, Ilustra, MarcoIGPost,
+  Cuadrantes, Etiqueta, Globos, Ilustra, MarcoIGPost,
   PiezaPartida, PilaEsquina, StickerQuiz, TituloTresPesos,
 } from './BetweenRecursos';
 
@@ -269,67 +269,72 @@ export const ToGo1: React.FC = () => (
 
 export const ToGo2: React.FC = () => (
   <PiezaFeedBodegon
-    /**
-     * ⚠️ Foto cambiada el 28-08: la anterior (`togo-sandwich.jpg`) mostraba el vaso
-     * ANTIGUO — cuerpo gris oscuro con faja de papel. El actual es kraft con el
-     * logo impreso directo y tapa negra. Esta sale de la sesión de modelos del
-     * 25-jul-2025, que es la que trae los vasos vigentes.
-     */
     foto={F + 'togo-sandwich-actual.jpg'}
+    /* 35 %: entra el plato completo por la izquierda sin cortar la N del vaso */
+    posicionFoto="35% center"
     script="Para empezar con algo"
     caps="rico y contundente"
     legal="*Imágenes referenciales."
     oscurecer={0.08}
   >
-    <EtiquetaFlecha x={880} y={470} hacia="abajo" flecha={190} dy={2} dx={-46}>
-      Café grande
-    </EtiquetaFlecha>
+    {/* ⭐ Regla de la flecha (feedback 28-08): SALE del producto y APUNTA al
+        texto — nunca al revés, y nunca montada sobre el producto. */}
+    <Ilustra cual="flechaBucle" x={905} y={1030} ancho={120} rotacion={185} opacidad={0.95} />
+    <Etiqueta x={880} y={1148} size={42}>Café grande</Etiqueta>
     <PilaEsquina
       lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Sándwich $4.290', fuerte: true}]}
     />
   </PiezaFeedBodegon>
 );
 
+
 export const ToGo3: React.FC = () => (
   <PiezaFeedBodegon
-    /** Misma corrección del vaso que en la slide anterior. */
     foto={F + 'togo-dulce-actual.jpg'}
     script="Ese gustito que mejora"
     caps="cualquier mañana"
     legal="*Imágenes referenciales."
     oscurecer={0.08}
   >
-    <EtiquetaFlecha x={806} y={430} hacia="abajo" flecha={190} dy={2} dx={-44}>
-      Café grande
-    </EtiquetaFlecha>
-    <EtiquetaFlecha x={228} y={806} hacia="derecha" flecha={210} dy={16}>
-      Rol de canela
-    </EtiquetaFlecha>
+    {/* el rol: texto ARRIBA del plato (no encima) y la flecha sale del rol */}
+    <Etiqueta x={225} y={640} size={42}>Rol de canela</Etiqueta>
+    <Ilustra cual="flechaBucle" x={255} y={700} ancho={130} opacidad={0.95} />
+    {/* el café: texto DEBAJO del vaso — arriba parecía bajada del titular */}
+    <Ilustra cual="flechaBucle" x={845} y={905} ancho={120} rotacion={185} opacidad={0.95} />
+    <Etiqueta x={870} y={1020} size={42}>Café grande</Etiqueta>
     <PilaEsquina
       lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Dulce $3.790', fuerte: true}]}
     />
   </PiezaFeedBodegon>
 );
 
+
 export const ToGo4: React.FC = () => (
   <PiezaFeedBodegon
-    foto={IA + 'togo-trio.png'}
+    /**
+     * Foto REAL (25-jul-2025) en vez del montaje IA: el montaje traía el vaso
+     * sin logo y desentonaba con los otros slides del carrusel, y la etiqueta
+     * decía «croissant y sándwich» cuando en la foto solo había croissant.
+     */
+    foto={F + 'togo-croissant-actual.jpg'}
     script="¿Por qué elegir uno?"
     caps="Llévalo contigo"
+    sizeCaps={100}
+    /* el vaso ocupa la esquina superior: el titular baja a la banda del medio */
+    topBloque={530}
     legal="*Imágenes referenciales."
     oscurecer={0.08}
   >
-    <EtiquetaFlecha x={268} y={706} hacia="derecha" flecha={220} dy={16}>
-      Café grande
-    </EtiquetaFlecha>
-    <EtiquetaFlecha x={886} y={1010} hacia="izquierda" flecha={220} dy={16}>
-      {'Croissant\ny sándwich'}
-    </EtiquetaFlecha>
+    <Ilustra cual="flechaBucle" x={600} y={330} ancho={130} opacidad={0.95} />
+    <Etiqueta x={545} y={288} size={42}>Café grande</Etiqueta>
+    <Ilustra cual="flechaBucle" x={850} y={950} ancho={120} espejo opacidad={0.95} />
+    <Etiqueta x={935} y={905} size={42}>Croissant</Etiqueta>
     <PilaEsquina
       lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Salado + Dulce $5.290', fuerte: true}]}
     />
   </PiezaFeedBodegon>
 );
+
 
 /* ════════════════════════ STORIES · 1080×1920 ════════════════════════ */
 
@@ -406,16 +411,42 @@ export const StCalculos: React.FC = () => (
 
 /* ─── 9 sept · INTERACTIVA — EMERGENCIA BETWEEN ─── */
 export const StEmergencia: React.FC = () => (
-  <PiezaStoryBetween
-    foto={IA + 'emergencia-caja.png'}
-    script="Romper en caso"
-    caps="de antojo"
-    bajadaEnCaja
-    bajada="Si solo pudieras sacar uno primero…"
-    datos={['¿Cuál tomarías?']}
-    oscurecer={0.1}
-  />
+  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
+    <FotoFondo src={IA + 'emergencia-caja.png'} oscurecer={0.06} />
+    <LogoBetween formato="story" posicion="arriba" tono="beige" />
+    {/* el gabinete vive en y 512–1240: el titular va ARRIBA de él y la
+        pregunta DEBAJO, para que el café y el croissant se vean enteros
+        (feedback 28-08: «el texto está sobre el café») */}
+    <div
+      style={{
+        position: 'absolute',
+        left: BETWEEN.bloque.margenX,
+        right: BETWEEN.bloque.margenX,
+        top: 268,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <TitularBetween script="Romper en caso" caps="de antojo" alinear="centro" sizeCaps={104} />
+    </div>
+    <div
+      style={{
+        position: 'absolute',
+        left: BETWEEN.bloque.margenX,
+        right: BETWEEN.bloque.margenX,
+        top: 1300,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <Bajada style={{textAlign: 'center'}}>Si solo pudieras sacar uno primero…</Bajada>
+      <PilaDatos datos={['¿Cuál tomarías?']} style={{marginTop: BETWEEN.aire.tituloACaja}} />
+    </div>
+  </AbsoluteFill>
 );
+
 
 /* ─── 14 sept · INTERACTIVA — ¿CUÁNDO ES HORA DE CAFÉ? ─── */
 export const StHoraCafe: React.FC = () => (
@@ -564,15 +595,14 @@ export const StPrimavera: React.FC = () => (
     caps="se disfruta así"
     bajadaEnCaja
     bajada="Un milkshake, nuestra terraza y una pausa al sol."
+    anchoBajada={640}
+    /* la bombilla del vaso llega hasta y≈480: el bloque baja para no cruzarla */
+    topBloque={560}
     oscurecer={0.1}
     legal="Ven a disfrutarlo en Between."
-  >
-    {/* la referencia del brief tiene line-art alrededor del vaso: se usan los
-        trazos de la propia diseñadora, no dibujos nuevos */}
-    <Ilustra cual="confeti" x={104} y={1020} ancho={190} rotacion={-18} opacidad={0.9} />
-    <Ilustra cual="flechaBucle" x={742} y={1180} ancho={210} espejo opacidad={0.85} />
-  </PiezaStoryBetween>
+  />
 );
+
 
 /* ─── 28 sept · HUMOR | CAFÉ TO GO ───
    Punto 6: «debe ser similar a la referencia que está en grilla, pero en

@@ -162,12 +162,14 @@ MONTAJES = [
             "panel, a slim cream metal frame and a small emergency hammer hanging "
             "beside it on a thin chain. Mounted at eye level on a warm taupe "
             "plastered wall. Behind the glass, instead of a fire extinguisher, "
-            "there is ONE single shelf holding exactly three café items displayed "
-            "like museum exhibits: a kraft brown takeaway coffee cup with a black "
-            "lid, one golden croissant and one sandwich. Exactly one cabinet, one "
-            "shelf, three items, nothing else on the wall. Warm interior lighting "
-            "inside the case. Vertical 9:16 framing with generous empty wall above "
-            "and below the cabinet."
+            "there are TWO shelves displaying exactly three café items like "
+            "museum exhibits, ALL fully visible, none cropped or hidden: a kraft "
+            "brown takeaway coffee cup with a black lid, one golden croissant and "
+            "one sandwich. Warm light inside the case. "
+            "COMPOSITION, CRITICAL: the cabinet sits in the exact VERTICAL CENTRE "
+            "of the frame — the top quarter of the image is empty plaster wall and "
+            "the bottom quarter is empty wall too, both deliberately blank for "
+            "text. No plants in front of the cabinet. Vertical 9:16 framing."
         ),
     ),
     dict(

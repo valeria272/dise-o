@@ -1,0 +1,37 @@
+---
+name: ebema-paid-septiembre-estado
+description: "EBEMA PAID Septiembre 2026 — dónde quedó todo (v7.1 entregada el 21-08-2026), cómo retomar, qué falta y qué se aprendió trabajando con este cliente (flujo de feedback Paulina/Valeria, imágenes, Drive)"
+metadata:
+  type: project
+---
+
+**Estado al 21-08-2026 (v7.1, ENTREGADA):** 34 gráficas (11 sucursales Feed+Story, 4 Ebema Click Feed+Story, 2 Coquimbo SPC Feed+Story) + 6 reels (Reel 1 y 2 showroom Antofagasta, Reel Click; story+feed, voz edge-tts Lorenzo de borrador) en Drive `PERFORMANCE/2026/9. Septiembre/graficas septiembre 26/` (`1bd5d56w4xJFyQTdDs_lcyGMBltfDj6qR`) con subcarpetas `post+stories sucursales` / `ebema_click` / `ceramicas` / `reels`, misma estructura que agosto. Carpeta de revisión `DISEÑO CON IA` (`1xapAsvRE257fTu2wc8EB2_ii5LESBmaS`) solo conserva `Material de marca` (logos Click 1/2/3, doc de Paulina, ENTREGA.md, Banco de imágenes `1KMJ6WNoQWQdL0Jt-DgdkOTe5WnY0Nl37`). Fuente de verdad local: `EBEMA/outputs/20260820_paid_septiembre/` (ENTREGA.md con historial v2→v7.1, `editables/build.py` + `base.css` + `render.sh`, `fondos/`, `reels/`, scripts Drive) y `EBEMA/worklog/estado_actual.md`.
+
+**Actualización 24-08-2026 (reel Click v2, YA en Drive):** Valeria pilló que en el
+Reel Click la píldora "✓ Agregado" mostraba el texto **fuera de la caja** en el ítem
+"Antióxido Maestranza" (formato feed). Arreglado en `EbemaClickReel.tsx`: la UI del
+teléfono ahora escala con el ancho de la pantalla (492 px story vs 412 px feed) y la
+píldora se dimensiona por su texto — ver [[ui-mock-anti-desborde]]. En el QA apareció
+un segundo defecto que venía de la v1: el teléfono le comía la bajada "Materiales y
+beneficios" del lockup en story → teléfono más abajo y ajustado al contenido. Feed y
+story re-rendidos y subidos con `EDITOR VIDEOS/scripts/ebema-click-drive-actualizar.py`,
+que **reemplaza el contenido de los mismos fileId** (mismo link, no duplica) en
+`graficas septiembre 26 / reels` (`1BZDFXHHNPmguARi7TB0FI27D4m4DuJiF`). Los reels de
+Showroom 1 y 2 se revisaron y NO tenían el problema.
+
+**Cómo retomar (orden):** 1) leer comentarios nuevos: `/Users/Vale/copylab-venv/bin/python3 leer_comentarios.py` (token compartido; ahora hay que apuntarlo a las carpetas de Septiembre) o buscar en Gmail `from:comments-noreply@docs.google.com` — los de Paulina llegan por correo, los de Valeria NO (es la dueña) → pedírselos; 2) editar `build.py`/`base.css`, `python3 build.py && bash render.sh [patrón]`; 3) revisar SIEMPRE hojas de contacto (PIL) feed y story completas antes de subir — la píldora al lado del título (v7) se me pasó dos rondas por mirar solo las piezas comentadas; 4) subir con `mover_a_septiembre.py` (borra y resube por subcarpeta; solo toca archivos propios). Reels: `EDITOR VIDEOS/src/compositions/EbemaShowroomReel.tsx` / `EbemaClickReel.tsx`, render `npx remotion render`, voz final ElevenLabs «Ignacio» a mano (guiones en ENTREGA.md).
+
+**Pendientes:** fotos reales de Chillán, Rancagua y San Bernardo (hoy pasillo IA `v5_mix_*`); voz Ignacio + re-render reels; confirmar códigos SPC 527873-76 con el cliente (no están en ebema.cl); si exigen 15 s, recortar Reel Click (hoy 21 s); reels de agosto (>10 MB) siguen sin verse como referencia.
+
+**Aprendizajes con este cliente:**
+- Valeria evalúa primero **las imágenes** ("en lo que más se cae es el tema de las imágenes"): foto real de la sucursal correcta > IA; la IA solo con las descripciones literales de Paulina ([[ebema-reglas-diseno-paulina]]) y revisada una por una (cara libre, plano amplio, de frente, sin uniformes, sin letreros fantasma). Fondos salen SOLO del banco curado `EBEMA/inputs/banco_imagenes_ebema/`.
+- El feedback llega en rondas rápidas el mismo día (3 rondas el 20-08): responder ronda por ronda, aplicar TODO a las 34 piezas (no solo a la comentada) y documentar comentario→cambio en tabla en ENTREGA.md.
+- Valeria y Paulina a veces se contradicen (logo story izquierda vs arriba, puntitos dentro vs sobre la línea): manda la última instrucción de Valeria y se anota en memoria.
+- Reemplazar archivos en Drive borra los hilos de comentarios → guardar `comentarios_drive.json` antes; no dejar reels en carpetas que Valeria pueda borrar (la `feed` v1 se borró con los reels adentro).
+- Carpeta de entrega definitiva = la del mes en PERFORMANCE, no la de revisión.
+
+**v9 (21-08 noche):** ronda 4 aplicada (ver [[ebema-reglas-diseno-paulina]]): enunciado dentro del marco, Click centrado, logo centrado en caja, SPC1 "PARA COMENZAR LA PRIMAVERA", reels con marco/caja v8 + cierres oficiales de Paulina + esc. 4 Click bodega/contratista + fotos aprobadas; re-render de los 6 reels (`/tmp/render_ebema_reels.sh` → `out/ebema/` → `reels/`) y subida con `mover_a_septiembre.py`. Pendientes: precio por caja SPC (dato del cliente), voz Ignacio, clips de video para fondos.
+
+**v8 (21-08-2026) — regla maestra de Valeria: "casi todo igual a julio/agosto en alturas, esquemas, jerarquización y logotipo".** El sistema ya NO es interpretación mía: `base.css` v8 replica las medidas tomadas sobre `ebema_Antofagasta_post.png` (2250×2813, ×0.48): marco 3 px inset 62/77/71 radio 20 · caja logo 152×186 en x=139 desde arriba, logo 103 · píldora SemiBold 34 px · enunciado Black 74 (story 84) con caja roja desde el 55 % de la 1ª línea · **bajada + botón abajo** (botón 24 px a 147 px del borde; story 330) · puntitos Ø24 + barra 108 con anillo 2 px sobre la línea inferior a 95 px del borde. Click: lockup arriba centrado + columna de texto (600 px) al lado de la persona; SPC: columna izquierda si el worker va a la derecha. **Fotos: SOLO la carpeta de aprobadas de Paulina** (`1NhvLDUdUNuLkRAshDJi7kFUYh5Xyho9W`; copia `EBEMA/inputs/fotos_aprobadas_paulina/raw/` + `banco_imagenes_ebema/aprobadas_paulina/`): ella entrega cada sucursal recortada en 1122×1402 (feed) y 941×1672 (story); Click solo con HOMBRES (ferretero/contratista) — "no uses mujeres". Referencias de agosto bajadas: posts de sucursal (Antofagasta, Pto. Montt, Concepción), `click_post2`; de julio: Click posts/stories y SPC. **El conector de Drive corta la sesión ("session expired") al bajar en paralelo archivos >6 MB** — bajar de a uno y decodificar con `inputs/fotos_aprobadas_paulina/decode.py`; faltan: stories de sucursal agosto, click_post1/3/4, click_st1-4, videos (el "de curvas integradas" que cita Valeria = `video_ebclick_paid.mp4`, 32 MB).
+
+**Cierre de entrega (21-08 noche):** (a) la limpieza de comentarios del cliente se logra reemplazando los archivos (los hilos mueren con el archivo viejo; `leer_comentarios.py` verifica que la entrega quede en cero); los del Sheet de la grilla no son alcanzables con el token (404). (b) **Montaje en la grilla del paid** = `montar_grilla.py`: 3 filas por bloque en la pestaña `Grilla` (Pieza Feed / Pieza Story con `=IMAGE("https://lh3.googleusercontent.com/d/ID")` + fila Archivos con `HYPERLINK` a PNG y MP4 — el mp4 se reproduce en el visor de Drive), miniaturas de reels en `reels/thumbs/`, "LINK" de `Planificación AO` → carpeta. Trampas: `HYPERLINK(url, IMAGE())` da #REF!; las `=IMAGE()` insertadas por API muestran #REF! ("Please use a desktop web browser to allow access…") hasta que alguien abre el Sheet en escritorio y pulsa **Permitir acceso** una vez; el locale del Sheet es es_ES → separador `;`. Los archivos de la carpeta del cliente ya son "anyone with link" (heredado), no hay que tocar permisos.

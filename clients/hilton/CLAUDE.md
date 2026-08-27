@@ -455,136 +455,185 @@ fuera de los límites del formato**.
 
 ---
 
-# ⭐⭐ BETWEEN — LA GRAMÁTICA MEDIDA (26-08-2026)
+# ⭐⭐ BETWEEN — LA GRAMÁTICA MEDIDA (corregida 27-08-2026)
 
-> **Por qué existe esta sección.** La grilla de septiembre 2026 se rechazó entera:
-> «cambias tipografías, estilos básicos… todo mal». La causa no fue de gusto y no
-> fue falta de acceso — el acceso estaba. Fue que **codifiqué lo que Eli describió
-> con palabras y estimé lo que no me dijo con números**. El kit decía «titular rango
-> 40–122» y yo me senté en la mitad (56–70) cuando la marca vive en el techo (88–97).
-> Todo lo de abajo está **medido sobre las piezas reales**, no interpretado.
+> ⚠️ **Esta sección se reescribió entera el 27-08-2026.** La versión del 26-08 tenía
+> los números MAL y produjo la segunda grilla rechazada. Si ves por ahí «titular 97»,
+> «script 1,92 ×» o «las dos líneas se solapan», es la versión vieja: está equivocada.
 
-**Fuente:** `raw/hilton/between-adn/ref-piezas/` — 19 PNG entregados por Eli a
-2250×2813 (feed) y 2250×4000 (story), bajados de la carpeta compartida
-`Grillas fotos` (`1Iq_eArneiCfsDZXlDjVQxtua-JiyA_j_`) con `scripts/hilton-drive-pull.sh`.
+## Lo que de verdad pasó (leer antes que las cifras)
+
+Hubo **dos** causas, y la primera no era de diseño:
+
+1. **La fuente no cargaba.** Chrome (OTS) **rechaza** `Brushwell.otf` —es CFF— y
+   `document.fonts.load` devuelve «A network error occurred». El `@font-face` falla
+   **en silencio** y Remotion rinde con una serif de reemplazo. Las 27 piezas de la
+   ronda anterior no tenían Brushwell. Eso, y no el criterio, es lo que el cliente
+   leyó como «cambias tipografías, estilos básicos». Arreglado convirtiendo los
+   contornos a TrueType → `Brushwell.woff2` / `Brushwell.ttf`.
+   **Nunca dar por buena una fuente porque el texto se ve**: verificar
+   `document.fonts.check()`, o comparar el ancho de una palabra contra la de
+   reemplazo — si coinciden, no cargó. Ver memoria `brushwell-no-cargaba-en-chrome`.
+2. **La jerarquía estaba invertida.** El 26-08 medí la pieza «EL MATCH / *perfecto*»,
+   donde los roles van al revés (caja alta chica arriba, script grande abajo), y la
+   tomé como norma. La diseñadora marcó después **cuáles son las piezas de
+   referencia**, y en esas la script va **arriba, corta y más chica**.
+
+## La fuente de verdad de la gramática
+
+`raw/hilton/between-adn/ref-tipografia-ok/` — las **dos** piezas que Elisabet marcó
+textualmente como «este tiene el uso correcto con la tipografía»:
+`C1 S3 N°1.png` (feed 2250×2813) y `ST S1 N°3 BW.png` (story 2250×4000).
+Son la vara. El resto de `ref-piezas/` sirve de contexto, no de norma.
 
 ## Método (repetirlo antes de tocar cualquier marca)
 
 1. Aislar el texto beige `#FFF9EB` por umbral de color → máscara.
 2. Sacar el *bounding box de tinta* de cada línea (no la caja del layout).
-3. Renderizar la misma palabra con PIL a 100 px y despejar el cuerpo por alto **y** por ancho.
-4. **Calibrar contra el render propio**, no solo contra el cálculo: Brushwell sale
-   ~20 % más ancha en Chrome que en PIL. Los valores finales salieron de comparar
-   mi PNG con el de Eli, línea por línea.
+3. Renderizar la misma palabra **en Chrome con la fuente real** y comparar tinta
+   contra tinta, corrigiendo hasta que calce. No usar PIL como verdad: Brushwell
+   sale ~20 % distinta.
+4. ⚠️ **Medir el texto TAL COMO SE PINTA.** Si el CSS lleva `textTransform:
+   uppercase`, hay que medir la cadena en MAYÚSCULA: medir «rico y contundente» y
+   pintar «RICO Y CONTUNDENTE» da ~20 % de diferencia y el titular se sale del cuadro.
+5. ⚠️ **Esperar a que las fuentes carguen antes de medir** (`document.fonts.ready`).
+   Si se mide con la de reemplazo, el ajuste de cuerpo no achica nada. Hook
+   `useFuentesListas()` en `BetweenSistema.tsx`.
 
-## Las cifras (lienzo 1080)
+## Las cifras (lienzo 1080) — verificadas contra el render propio
 
-| Elemento | Valor medido | Lo que yo tenía |
+| Elemento | Valor | Comprobación (Eli · nuestro) |
 |---|---|---|
-| Titular caps, Raleway **Black** | **97 px**, tracking −2 (tinta 448×71) | 56–70 ❌ |
-| Script Brushwell que acompaña | **186 px**, tracking +1 (tinta 614×187) | caps × 1,2 ❌ |
-| Relación script / caps | **1,92 ×** | 1,2 ❌ |
-| Solape entre las dos líneas | la tinta queda a **1–2 px** | gap de 22 px ❌ |
-| Caja taupe | `#675b49` **opaco**, alto **74**, padX **29**, gap **10**, esquinas rectas | no existía ❌ |
-| Texto dentro de la caja | Raleway **Light 45**, caja alta | semibold 34 ❌ |
-| Texto en arco al pie | Raleway Regular **51**, cuerda 864, flecha 135 | no existía ❌ |
-| Margen del bloque | x = **114** (10,5 %) | centrado ❌ |
-| Ancla del bloque | **arriba** (y=220 feed · y=425 story) | abajo ❌ |
-| Alineación | **izquierda** (o centro según plantilla) | siempre centro ❌ |
-| Ancho que ocupa el titular | **55–80 %** del lienzo | 40–50 % ❌ |
+| Titular caps, Raleway **ExtraBold (800)** | **117 px**, tracking **−0,024em** | 567×85 · **568×85** |
+| Script Brushwell que acompaña | **≈ 123 px**, tracking **+0,036em** | 403×124 · **406×125** |
+| Relación script / caps | **≈ 1,0 ×** (la script NO domina) | — |
+| Aire script → titular | **9 px de tinta** (NO se solapan) | 8 · **11** |
+| Aire titular → caja taupe | **18 px** | 18 · **19** |
+| Aire entre dos líneas de caja alta | **0,35 × la altura de caja** (21 px sobre 59) | — |
+| Caja taupe | `#675b49` **opaco**, alto **66**, padX **54**, radio **16** | 597×66 · **592×66** |
+| Texto dentro de la caja | Raleway **ExtraBold 45**, caja alta | 488×33 · **482×33** |
+| Alineación | **centrada sobre el eje** | desviación medida 0 y +3 px |
+| Margen lateral mínimo | **84 px** | — |
+| Ancla del bloque | arriba (y=180 feed · y=441 story, bajo el logo) | — |
+| Pie de pieza (feed) | promo caps **48** en y=1150 · horario **35** en y=1211 | — |
+| **Resolución de ENTREGA** | **2250 px de ancho** (mesa de trabajo 1080 → `--scale 2.0833`) | confirmado en el `.ai` empaquetado de Eli |
 
 > La escala del texto es **absoluta, no relativa al formato**: el mismo titular mide
-> igual en feed 1080×1350 y en story 1080×1920 (verificado en la pieza de cumpleaños,
-> que existe en los dos formatos con caps de 69 px y script de 132 px en ambos).
+> igual en feed 1080×1350 y en story 1080×1920.
 
 ## La gramática, en palabras
 
-1. **El titular manda la pieza.** Dos líneas: caja alta pesadísima + script casi al
-   doble, montada encima. La script es **más ancha y más alta** que la caja alta —
-   no es una segunda línea decorativa.
-2. **Contraste de peso, no solo de tamaño.** Titular Black + texto de caja Light.
-   Poner la caja en bold mata la firma.
-3. **Cajas taupe apiladas** para promo y precio. Se **centran entre sí**, no se
-   alinean a la izquierda del bloque. Van pegadas (10 px).
-4. **Texto en arco al pie** para el listado de productos. Es un recurso propio.
-5. **Líneas de llamado** (línea fina + punto) desde una etiqueta hacia una parte de
-   la foto, y **marco de esquinas** alrededor del producto. Ver stories de cheesecake,
-   «LUNES DE CAFÉ» y «Día del Cacao`.
-6. **Mockups de UI en crema** con esquinas redondeadas (recordatorio, lista de
-   horarios con toggles, post de IG, píldora de carnet).
-7. **En los bodegones de feed no hay logo sobrepuesto** — la marca la pone el vaso.
-   El logo aparece en stories y en piezas de ambiente.
-8. **La foto es hero y clara**: bodegón cerca, cálido, comida grande en cuadro,
-   fondo desenfocado. El multiply casi no se nota (≈0,10). Los planos generales
-   oscuros con multiply pesado son lo que abarató mi grilla.
+1. **La caja alta manda; la script acompaña.** Script **arriba**, corta (una frase de
+   3–4 palabras o una palabra clave) y **en menor escala**. Nunca una bajada completa
+   en Brushwell.
+2. **Aire.** Las líneas no se tocan. Si un texto no se lee, no se oscurece la foto:
+   va en **caja taupe `#675B49`** (instrucción textual del cliente).
+3. **Todo centrado** sobre el eje.
+4. **Cajas taupe apiladas** para promo y precio, centradas entre sí — o ancladas
+   **abajo a la izquierda** (`PilaEsquina`), que es lo que hace el feed real.
+5. **En carrusel el logo va SOLO en la portada.** Y si arriba tapa caras, baja al
+   margen inferior (por eso Eli tiene dos plantillas por formato).
+6. **Ningún texto sobre rostros ni ojos.** Regla dura.
+7. **La foto es hero y clara**: multiply ≈ 0,10–0,16 sobre foto ya gradada.
+
+## ⛔ EL VASO TO GO: hay DOS y el banco de fotos tiene el viejo
+
+Detectado por Elisabet el 28-08-2026 («el vaso to go es el antiguo»).
+
+| | Antiguo ❌ | **Actual ✅** |
+|---|---|---|
+| Cuerpo | gris oscuro / carbón | **cartón kraft** |
+| Logo | en una **faja** de papel crema pegada al vaso | **impreso directo** en el kraft |
+| Tapa | café oscuro | **negra mate**, tipo domo |
+
+⚠️ **Estas fotos de `public/assets/hilton/between/fotos-gradadas/` traen el vaso
+ANTIGUO y no se pueden usar en piezas de promo To Go:**
+`togo-sandwich.jpg` · `togo-brownie.jpg` · `togo-croissant-queso.jpg` ·
+`togo-croissants.jpg` · `togo-empanadas.jpg`
+
+✅ **El vaso actual está en la sesión `raw/hilton/between/modelos-25jul2025/`.**
+Bodegones útiles verificados ahí: `25-250` (sándwich + vaso), `25-252`,
+`25-254`/`255`/`256` (croissant + vaso), `25-280`/`281` (rol de canela + vaso).
+Ya graduadas y en el banco como `togo-sandwich-actual.jpg` y `togo-dulce-actual.jpg`.
+El recorte limpio del vaso vigente es `togo-vaso-nobg.png`.
+
+> **Regla:** antes de usar una foto con vaso To Go, comparar el vaso contra
+> `togo-vaso-nobg.png`. Si tiene faja de papel, es el viejo: no va.
+
+## ⭐ El repertorio de composición (lo que faltaba, 27-08-2026)
+
+Clavar la tipografía no basta: **la marca compone con más recursos que «titular +
+foto»**, y todos salen de posts publicados de `between.coffeebar`:
+
+- **Etiqueta + flecha de bucle** señalando cada producto («Café grande»,
+  «Rol de canela»). Es el recurso más reconocible de las promos.
+  ⭐ **Reglas de Valeria (28-08-2026):**
+  1. **La flecha SALE del producto y APUNTA al texto** — nunca al revés, y nunca
+     montada sobre el producto ni sobre el plato.
+  2. El texto va donde haya superficie limpia: si arriba del producto queda pegado
+     al titular, «parece un subtexto» — va abajo o al costado.
+  3. **No saturar**: la flecha no va en todas las piezas. Si no apunta a nada,
+     se elimina — o no se pone ningún dibujo.
+- **`PilaEsquina`** — pila de cajas taupe anclada abajo a la izquierda.
+- **`PiezaPartida`** — dos fotos partidas con la script cruzando la costura.
+- **`TituloTresPesos`** — caja alta liviana + caja alta pesada + script en un bloque.
+- **`Ilustra`** con `flechaBucle` / `flechaGrande` / `confeti` / `corazon` — los
+  trazos de la propia diseñadora, extraídos de su `.svg`. **No se dibujan a mano
+  ni con IA: ya existen.**
+
+> **Antes de producir una grilla, mirar el FEED PUBLICADO de la marca**, no solo el
+> brief y las entregas del diseñador. Ver memoria `between-repertorio-composicion`.
 
 ## Qué componentes usar
 
-✅ **En piezas nuevas:** `TitularBetween`, `CajaDato`, `PilaDatos`, `TextoArco`,
-`PiezaFeedBodegon` — están al final de `src/compositions/hilton/BetweenSistema.tsx`
-y salen de esta medición.
+✅ **En piezas nuevas:** `TitularBetween`, `CajaDato`, `PilaDatos`, `PanelTaupe`,
+`PieDePieza`, `LegalAlPie`, `PiezaFeedBodegon`, `PiezaStoryBetween`, más el
+repertorio de arriba.
 
-⛔ **No usar `BloqueTexto`, `PiezaFeed` ni `TituloMixto`** para piezas nuevas: son
-los que produjeron la grilla rechazada (centrado, anclado abajo, script a 1,2×).
-Quedan solo por compatibilidad con lo ya rendido.
+⛔ **No usar `BloqueTexto`, `PiezaFeed` ni `TituloMixto`**: quedan solo por
+compatibilidad con lo ya rendido.
 
-## Verificación A/B
-
-`BW-P-MatchPerfecto` (`src/compositions/hilton/BetweenPrueba.tsx`) reproduce la pieza
-real «EL MATCH perfecto» con el sistema nuevo. Al medirlas lado a lado:
-tinta del titular **447×67** contra **448×71** de Eli, script **625** contra **614**.
-**Antes de rehacer una grilla, renderizar esta prueba y comparar.**
-
-## Gradación de foto — también medida
-
-Las piezas de Eli viven en **luminancia media 104–137**, **p95 185–249**,
-**calidez (R−B) +48…+72** y **saturación 39–50**. Mis fotos venían en lum 58–104,
-p95 149–210 y calidez +16…+63: más oscuras, más planas y más frías — y encima con
-multiply de 0,30. Por eso las piezas se veían apagadas.
-
-`scripts/between-gradar.py` lleva cualquier foto a esos números respetando sus reglas:
-rodilla suave en altas luces (**nada quemado**), levante por curva y no por ganancia
-plana (**sin luz de flash**), +3 % de contraste y la saturación casi intacta
-(**se conserva el color de la comida**). Salida en
-`public/assets/hilton/between/fotos-gradadas/` — **es la carpeta que usan las piezas**.
-Con la foto ya gradada, el multiply baja a **0,10–0,16**.
-
-## QA automático antes de entregar
+## Cómo se rinde y se entrega
 
 ```bash
-python3 scripts/between-qa.py ~/copylab-work/between-sept-v2
+bash scripts/between-rendir.sh          # rinde las 27 a 2250 px en el sandbox
+python3 scripts/between-qa.py out/hilton-between-sept-v3
+python3 scripts/between-portal.py       # arma la página de revisión
+cd ~/copylab-work/portal-hilton && npx vercel --prod --yes
 ```
 
-Mide en cada PNG: que ningún texto se salga del margen, las zonas seguras de Meta en
-9:16, y que el titular llene al menos el 50 % del ancho (el chequeo que habría cazado
-el rechazo de la ronda 4). Aísla el beige de marca **en forma de trazo** y exige un
-borde oscuro cerca, para no confundir un croissant dorado con una letra.
+⚠️ **Se rinde desde `~/copylab-work/between-render`, NO desde el repo.** El repo vive
+en Desktop (iCloud) y ahí el bundler de Remotion se queda colgado a 0 % de CPU.
+`scripts/between-sync-sandbox.sh` espeja código y assets.
 
-**Lo que NO puede chequear y sigue siendo ojo humano:** texto sobre caras u ojos, la
-taza KIMBO, y si el montaje es fiel al local.
+# Al día — revisión del Drive 26-08-2026
 
-## Estado — grilla septiembre 2026 REHECHA (26-08-2026)
+Corrido con `/al-dia hilton`. Registro en `clients/_estado-sync.json`.
 
-Las 27 piezas regeneradas con el sistema medido, fotos gradadas y multiply bajo.
-Salidas en `out/hilton-between-sept-v2/` y en `~/copylab-work/between-sept-v2/`.
-**24 de 27 pasan el QA limpias**; las otras tres (las dos de cumpleaños y el strudel)
-marcan por los globos, el mockup de Instagram y las fotos de comida tocando el borde
-a propósito — verificadas a ojo, están bien.
+## Lo que se movió desde el 25-08
 
-Defectos que aparecieron al rehacer y quedaron corregidos **en el sistema**, no pieza
-a pieza: la script se salía del cuadro o se partía en dos líneas (ahora se ajusta sola
-al ancho y va en `nowrap`), el remate del pincel se metía en el margen (se compensa
-midiendo el voladizo real de cada palabra), la caja taupe en `nowrap` se desbordaba
-con datos largos, y el logo de abajo chocaba con el bloque de texto anclado abajo
-(ahora sube solo, que es para lo que Eli tiene dos plantillas).
+| Qué | Quién | Cuándo | Qué implica |
+|---|---|---|---|
+| Carpeta **`S1 HILTON SEP 2026`** con `DT / QB / BW / P18` (`1R5z1LqenXVkC8lr1clYJEYdrtmXwWAsq`) | Eli | 26-08 13:35 | Arrancó la entrega de la semana 1 de septiembre. **`BW` está vacía** — Between todavía no tiene nada subido |
+| Grilla `BETWEEN _ GRILLA SEPTIEMBRE 2026.xlsx` | Sebastián Serrano | 26-08 13:42 | **Un solo cambio en toda la planilla**: STORIES D16 (3 de septiembre, «ST CAFÉ DE REGALO POR TU CUMPLEAÑOS») pasó de `CORREGIDO` a `OK PARA DISEÑAR` |
+| **`HILTON \| Planificación Performance - Septiembre 2026`** (`1qaoX2bkiI21mLtHydiKAwkriwBlSHUvL3J1iYjCDnqg`) | Ignacio Retamal | creada 25-08 21:01, se sigue editando | **Frente nuevo: piezas de pauta de septiembre.** Todavía **no existe el «Brief Creativo»** que la acompaña — sin él no se produce paid |
+| `DOUBLETREE \| GRILLA SEPTIEMBRE 2026` y `PISO18 _GRILLA SEPTIEMBRE 2026` | Carlos Figueroa | 26-08 13:19 / 25-08 21:17 | Se están llenando. Ninguna de las dos marcas tiene sistema medido todavía |
+| `PROMO SUNSET QB` (post + story + PDF) | Eli | 25-08 18:51 | Material fresco de QB — sirve para medir la gramática de QB cuando se replique el método |
 
-## Lo que sigue sin resolver
+**Nada tocó el sistema de Between.** Tipografías, logo, márgenes y gramática siguen
+como quedaron el 26-08. No hace falta correr `/adn`.
 
-- [ ] **Republicar el portal**: `~/copylab-work/portal-hilton/between-revision.html` ya
-      está actualizado con las 27 piezas nuevas y el texto de qué cambió, pero
-      `npx vercel --prod --yes` devuelve **«Not authorized»** — hay que reautenticar la
-      CLI de Vercel (`npx vercel login`) y volver a desplegar. El respaldo de la versión
-      anterior quedó en `between-revision.bak.html`.
-- [ ] `LineaLlamado`, `MarcoEsquinas` y `TarjetaUI` están programados y medidos pero
-      ninguna pieza de septiembre los pedía. Falta estrenarlos.
-- [ ] Replicar el método (medir las entregas del diseñador) en **QB y Piso18**.
+> La copia local de la grilla (`raw/hilton/between/grilla/septiembre.xlsx`) quedó
+> actualizada a la versión de hoy; la del 25-08 se guardó como `septiembre-25ago.bak.xlsx`
+> para poder volver a diferenciar.
+
+## Compuerta de material — pasada
+
+`python3 scripts/verificar-material.py raw/hilton public/assets/hilton`
+→ **812 archivos revisados · 812 válidos · 0 rotos · 0 vacíos.**
+
+Hojas de contacto en `out/_verificacion/`:
+`between-REF-ELI.png` (19 piezas de Eli) · `between-FOTOS-GRADADAS.png` (29 fotos) ·
+`between-NUESTRAS-27.png` (las 27 piezas rehechas).
+Revisadas a ojo: todo es de Between, no hay material de otra marca infiltrado y no
+hay descargas fallidas.

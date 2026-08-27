@@ -1,0 +1,184 @@
+# Reglas ejecutables de PISOS CASABLANCA.
+#
+# Esto es el feedback real convertido en compuertas. Antes vivía en cuatro lugares a
+# la vez —marca.json → reglas_duras, prosa en CLAUDE.md, feedback/*.md y constantes
+# hardcodeadas dentro de cuatro scripts de QA distintos— y por eso se aplicaba "si
+# alguien se acordaba". Acá se aplica siempre.
+#
+# ⚠️ Estas reglas son DE ESTA MARCA. No se copian a otra.
+#    Quien firma acá es Paulina Bustamante, diseñadora del cliente Grupo Revex
+#    (EBEMA · Revex · Casablanca). Su criterio NO vale para Hilton (firma Elisabet
+#    Soto), ni para Selfie (firma Constanza Lizana), ni para ninguna marca futura.
+#    Cada marca levanta el suyo con su propia diseñadora.
+#
+# Toda regla lleva `autor` y `cita` verbatim: si nadie la pidió con esas palabras,
+# no es una regla, es una opinión — y el motor la rechaza.
+
+marca: casablanca
+nombre: Pisos Casablanca by Grupo Revex
+version: 1
+actualizado: 2026-08-27
+
+autoridad:
+  - quien: Paulina Bustamante
+    rol: diseñadora del cliente
+    alcance: [ebema, revex, casablanca]
+    canal: comentarios en los archivos del Drive
+  - quien: Dirección de área
+    rol: revisión interna Copylab
+    alcance: [casablanca]
+  - quien: Valeria Traverso
+    rol: decisión final de marca
+    alcance: [casablanca]
+
+# ── ajustes a reglas de agencia ───────────────────────────────────────────────
+ajustes:
+  zona-segura-meta:
+    porque: >-
+      La tarjeta del logo cuelga del borde superior (top:0) en feed y en story. Es
+      gramática medida de Paulina en las 55 piezas, ratificada dos veces por Valeria
+      ("los logos deben quedar arriba, no al medio volando"), y en la ronda 2 Paulina
+      no pidió despegarla sino achicarla. La zona segura protege el texto, no el logo.
+    args:
+      excepciones:
+        - {x0: 0.36, y0: 0.0, x1: 0.64, y1: 0.17}
+
+  respiro-borde:
+    porque: >-
+      Misma excepción: la placa del logo toca el borde superior por diseño.
+    args:
+      excepciones:
+        - {x0: 0.36, y0: 0.0, x1: 0.64, y1: 0.17}
+
+# ── reglas propias ────────────────────────────────────────────────────────────
+reglas:
+
+  - id: sin-rojo-revex
+    titulo: El rojo de Revex no existe en Casablanca
+    check: color_prohibido
+    severidad: bloqueante
+    autor: Valeria Traverso / marca.json → reglas_duras
+    fecha: 2026-08-26
+    cita: Jamás el rojo ni el esqueleto de Revex.
+    porque: >-
+      Casablanca y Revex son del mismo dueño con lenguajes OPUESTOS: acá no existe el
+      rojo, ni el descuento, ni la urgencia. Un rojo saturado en una pieza de
+      Casablanca no es una decisión de color: es la prueba de que se contaminaron dos
+      marcas. Esta es la comprobación anti-mareo de la marca.
+    args:
+      # Los HEX reales de Revex, sacados de src/brand/revex.ts. Se prohíbe ESTE rojo,
+      # no "el rojo": la madera de un roble tropical es rojiza y es el producto.
+      colores: ["#D31A2B", "#D31418", "#CB1725", "#D3152B", "#D92028", "#AD1C27", "#9E1420"]
+      delta_e: 22.0
+      solo_plano: true
+      max_fraccion: 0.002
+
+  # ⛔ REGLA RETIRADA — paleta cerrada al gris #626260.
+  #
+  # La regla de marca es cierta (el gris es único y está medido en las 55 piezas),
+  # pero la comprobación no la sabe verificar. Medido con qa/calibrar.py:
+  #
+  #   tinta plana fuera de paleta   aprobadas 0,00–0,99   ·   rechazadas 0,13–0,94
+  #
+  # Ni siquiera filtrando por varianza local se logra separar la caja gris de la
+  # diseñadora de una zona lisa de la fotografía de ambiente — y la foto contiene
+  # grises legítimos por todas partes. Marcaba hasta el 99 % de piezas perfectas.
+  #
+  # El gris sigue siendo dato de marca en marca.json y se respeta al PRODUCIR
+  # (el sistema lo toma de ahí). Lo que no se puede es verificarlo sobre el PNG.
+
+  - id: sin-urgencia
+    titulo: Sin precios, descuentos ni urgencia
+    check: texto_prohibido
+    severidad: bloqueante
+    autor: marca.json → reglas_duras
+    fecha: 2026-08-26
+    cita: Sin urgencia, sin descuento, sin precios, sin sellos de oferta.
+    porque: >-
+      Casablanca es la marca premium del grupo; Revex es la del descuento. Un "%" o un
+      "desde $" acá es exactamente la mezcla de marcas que hay que impedir.
+    args:
+      patron: '(\$\s?\d|desde\s+\$|\d+\s*%\s*(off|dcto|descuento)?|oferta|descuento|liquidaci|remate|última\s+oportunidad|ultima\s+oportunidad)'
+
+  - id: grafia-cumaru
+    titulo: Se escribe «Cumarú»
+    check: grafia_fijada
+    severidad: bloqueante
+    autor: Valeria Traverso
+    fecha: 2026-08-25
+    cita: >-
+      Valeria confirmó que va Cumarú, que es lo que ya dice la pieza. El "Camarú UV"
+      del sitio es un error del sitio, y el "CUMARU" del brief es sólo la mayúscula de
+      una planilla.
+    porque: >-
+      Había tres grafías dando vueltas al mismo tiempo. Sin fijarla, la próxima
+      persona vuelve a elegir y el nombre del producto baila entre piezas.
+    args:
+      correcta: "Cumarú"
+      incorrectas: ["Camarú", "Camaru"]
+
+  - id: sin-huerfanas
+    titulo: Palabra sola en la última línea
+    check: palabra_huerfana
+    severidad: aviso
+    autor: Paulina Bustamante
+    fecha: 2026-08-25
+    cita: no dejar palabras solas en la segunda linea de texto
+    porque: >-
+      Comentario sobre cb_sep_c1-aserrado_feed.png. Los saltos de línea de esta marca
+      se fijan a mano justamente por esto.
+    args: {}
+
+  - id: muestra-igual-al-piso
+    titulo: La muestra tiene que ser el mismo piso que está en el suelo
+    check: coincide_color_entre_zonas
+    severidad: bloqueante
+    formato: feed
+    solo_archivos: ["*c1-*"]
+    autor: Dirección de área
+    fecha: 2026-08-25
+    cita: >-
+      En las cuatro tarjetas el recuadro muestra un roble cálido de veta marcada, y el
+      piso instalado es otro: claro, grisáceo y con nudos. Estamos mostrando un
+      producto en la etiqueta y otro en el suelo. Para una marca de pisos ese es el
+      error más caro que hay, porque el cliente compra lo que ve.
+    porque: >-
+      Es el bug de los pisos, el que más caro salió. La ronda 1 tenía las cuatro
+      muestras dentro de un rango de 20 puntos de color y ninguna correspondía al
+      producto. Se resolvió construyendo muestra y suelo desde la MISMA foto oficial
+      (scripts/casablanca-pisos-compositor.py), y esta regla lo verifica en la salida.
+      Las zonas son las del sistema C1: muestra vertical a la izquierda, suelo en el
+      tercio inferior.
+    args:
+      nombres: ["la muestra", "el piso del ambiente"]
+      # ⚠️ Zonas VERIFICADAS visualmente con un overlay sobre
+      # cb_sep_c1-cumaru_feed.png (1080×1350). La primera versión de estos
+      # números caía sobre la planta y el muro de ladrillo, y el ΔE que reportaba
+      # no medía nada: siempre dibuja el recuadro antes de confiar en el número.
+      #
+      # Son frágiles a propósito: la muestra cambió de lugar entre la ronda 1 y el
+      # sistema editorial. Si el sistema la mueve otra vez, hay que volver a
+      # verificar el overlay — no ajustar el tope.
+      zonas:
+        - {x0: 0.35, y0: 0.63, x1: 0.46, y1: 0.81}   # la muestra, dentro del borde blanco
+        - {x0: 0.50, y0: 0.72, x1: 0.92, y1: 0.93}   # el piso del ambiente, a su derecha
+      delta_e_max: 20.0
+
+  - id: desenfoque-completo
+    titulo: Si se desenfoca el fondo, se desenfoca completo
+    check: desenfoque_parcial
+    severidad: bloqueante
+    autor: Paulina Bustamante
+    fecha: 2026-08-25
+    cita: >-
+      evita usar cuadros desenfocados. si se necesita desenfocar la imagen del fondo se
+      debe desenfocar completa.
+    porque: >-
+      En agencia esta comprobación es sólo un aviso porque una profundidad de campo
+      real la dispara. Acá sube a bloqueante: Paulina lo pidió explícitamente y en esta
+      marca los fondos son ambientes completos, no planos con foco selectivo.
+    args:
+      bandas: 10
+      razon_min: 0.026
+      piso_ruido: 5.0
+      min_std_banda: 4.0

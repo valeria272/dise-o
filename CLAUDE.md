@@ -37,9 +37,12 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 |---|---|
 | `/pieza <marca> <qué necesitas>` | Producir. Carga el sistema, lee el brief, arma, hace QA y entrega |
 | `/qa <marca o ruta>` | Control de calidad antes de entregar |
+| `python3 qa/motor.py --marca <marca> <piezas>` | **La compuerta.** Reglas ejecutables por marca — ver [`qa/README.md`](qa/README.md) |
 | `/marca-nueva <nombre>` | Abrir el sistema de un cliente que todavía no existe |
 | `/adn <marca> <id-drive>` | Extraer el sistema real desde los editables del diseñador |
-| `/al-dia [marca]` | **Correr SIEMPRE antes de producir.** Revisa el Drive de la agencia y las carpetas de las diseñadoras: grillas nuevas, editables nuevos, comentarios sin leer |
+| `/abrir [marca]` | **Abrir el día.** `git pull` (trae lo de los demás diseñadores) + siembra memoria + bitácora del cliente + `/al-dia` |
+| `/cierre [marca]` | **Cerrar el día.** Bitácora + commit + push — sin esto otro diseñador NO puede retomar el cliente mañana |
+| `/al-dia [marca]` | Revisa el Drive de la agencia y las carpetas de las diseñadoras: grillas nuevas, editables nuevos, comentarios sin leer (lo llama `/abrir`) |
 | `/arranque` | Primer arranque en una máquina nueva |
 
 | Documento | Cuándo leerlo |
@@ -51,6 +54,8 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | [`docs/BRIEF-DE-DISENO.md`](docs/BRIEF-DE-DISENO.md) | El contrato de entrada: qué campos tiene que traer un brief para ejecutarse sin preguntas |
 | [`docs/QUE-PUEDO-Y-QUE-NO.md`](docs/QUE-PUEDO-Y-QUE-NO.md) | Los límites reales, el estado de los conectores MCP y cuándo sí conviene `/design` |
 | [`docs/ONBOARDING-DISENADORES.md`](docs/ONBOARDING-DISENADORES.md) | Diseñador nuevo en el equipo |
+| [`docs/TRABAJO-EN-EQUIPO.md`](docs/TRABAJO-EN-EQUIPO.md) | **Cómo varios diseñadores comparten el estudio** — rama única, `/abrir` y `/cierre`, bitácoras y relevo |
+| [`docs/TRASPASO-CHECKLIST.md`](docs/TRASPASO-CHECKLIST.md) | **Traspasar el estudio a un diseñador nuevo** — checklist de conectores, accesos y siembra de memoria |
 | [`docs/TRASPASO-ZIP.md`](docs/TRASPASO-ZIP.md) | Empaquetar el estudio para otra máquina |
 
 > 🔄 **Mantente al día.** Antes de producir para cualquier cliente, corre **`/al-dia`**.
@@ -78,6 +83,24 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 
 > ⚠️ **Revex y Casablanca son marcas hermanas del mismo dueño y NO se diseñan igual.**
 > Si una pieza de Revex se puede recolorear a gris y pasa por Casablanca, está mala.
+
+### ⛔ El criterio de una marca NO se traspasa a otra
+
+Cada cliente tiene su diseñadora y su criterio, y **no son intercambiables**:
+
+| Quién firma | Marcas |
+|---|---|
+| **Paulina Bustamante** | EBEMA · Revex · Casablanca (Grupo Revex) |
+| **Elisabet Soto** «Eli» | Hilton — DT / QB / Between / Piso18 |
+| **Constanza Lizana** «Coni» | Selfie |
+
+Un comentario de Paulina vale para sus tres marcas y **para ninguna otra**. Aplicar
+su criterio a Hilton o a Selfie es inventarles un sistema que nadie aprobó — y es
+como se dio por global la regla del logo pegado arriba, que es de Revex y Casablanca
+mientras en Between va centrado.
+
+Esto está impuesto por programa: `qa/motor.py` exige `--marca`, carga sólo las reglas
+de esa marca y rechaza piezas de otra en la misma corrida.
 
 **Sin manual todavía** (ver `docs/ESTADO-MARCAS.md`): Nueva Urbe (`src/brand/nuevaurbe.ts`),
 Traverso, y DT / QB / Piso18 del complejo Hilton.

@@ -28,11 +28,27 @@
 |---|---|---|---|
 | 2 | ✅ **Sans resuelto.** Versales = **Futura Medium** (IoU 89,2 %, ya está en el Mac; en Adobe Fonts es **Futura PT**). Caja baja = **Montserrat Regular** (79,7 %, probable). Falta sólo confirmar la caja baja con la misma vuelta del punto 1. | Valeria | Sin bloqueo: se puede producir con lo que hay. |
 | 3 | **La script manuscrita** de «Colección Rústico / Italiana / Premium / Clásica». | Paulina | Es la firma del registro de anuncio y hoy no está identificada. |
-| 5 | **Confirmar el formato del feed: 1:1 o 4:5.** De 55 piezas, 35 son 1:1 y sólo las 6 de agosto 2026 son 4:5. | Serena | Septiembre ya se entregó en 4:5 sin avisar (ver `feedback/2026-08-25-ronda2.md`, pendiente nº 3). Es un cambio sobre el contrato de entrada, no un detalle. |
+| 5 | ✅ **Formato resuelto: 4:5 + adaptación a story.** Decidido por Serena el **27-08-2026**. Toca `FORMATOS` en `scripts/casablanca-septiembre.py` y la coordenada quemada de la franja en `pieza_c2` (hoy `(822.0, 1080.0)` para feed, línea ~360). **Antes de moverlo, leer el aviso de resolución de abajo.** | Serena | Cerrado. |
 | 6 | **Fotos reales de los 4 SKU instalados** (Roble Natural UV 190×1900 y 167×1200, Roble Aserrado, Cumarú). | Jenny | Sin ellas el piso lo genera IA y ya nos costó una ronda completa: la muestra no coincidía con el suelo. Es el error más caro que existe en una marca de pisos. |
 | 7 | **Fotos del interior del showroom de Vitacura sin gente** (vista general y zona de muestras). | Jenny | De las 36 fotos disponibles, 32 son la fachada y 4 tienen al equipo posando — y no hay derechos de imagen. Hoy la única salida es borrar personas sobre una foto real. |
 | 8 | **Brandbook o manual de marca**, aunque sea una lámina. | Jenny / Grupo Revex | Confirmado con Paulina que **no existe**. Todo lo que sabemos salió de medir piezas. Si aparece uno, manda sobre este manual. |
 | 9 | **Los editables `.ai` empaquetados** de un carrusel cualquiera. | Paulina | En su carpeta de editables sólo hay PNG y MP4 exportados. Un `.ai` empaquetado trae el `Informe.txt` con los nombres exactos de fuentes y la mesa de trabajo — resuelve los puntos 2, 3 y 4 de una sola vez. |
+
+> ⚠️ **El 4:5 no es sólo mover coordenadas — hay un problema de resolución.**
+> Medido el 27-08-2026 sobre el material commiteado, con `MASTER = 2250`:
+>
+> | Fuente | Nativo | A feed 4:5 (2250×2812) |
+> |---|---|---|
+> | `sep/amb_*_feed.jpg` (los 4 ambientes) | 2048×2048 | **amplía 37 %** ⚠️ |
+> | `sep/sr2_*_feed.jpg` (showroom) | 2250×2250 | **amplía 25 %** ⚠️ |
+> | `sep/sr2_*_story.jpg` (showroom) | 2250×4000 | **recorta, nítido** ✅ |
+>
+> - **Showroom:** salida limpia — que `pieza_c2` derive el feed 4:5 **desde el
+>   `_story`**, no desde el `_feed`. El story tiene altura de sobra y no amplía nada.
+> - **Ambientes:** no hay salida con el material actual. Son cuadrados nativos y
+>   hay que **regenerarlos en 4:5** (`scripts/casablanca-ambiente-unico.py`), o
+>   entregar sabiendo que el suelo va interpolado un 37 %. En una marca de pisos la
+>   veta *es* el producto: ampliar es justamente donde se nota.
 
 ## 🟢 Deseables
 

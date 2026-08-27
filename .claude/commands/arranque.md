@@ -85,6 +85,19 @@ No lo puedes instalar en silencio. Si falta, dile:
 **«Necesito que instales Google Chrome desde google.com/chrome — el estudio lo usa
 por dentro para generar las gráficas.»**
 
+### Memoria del estudio — sembrarla SIEMPRE en una máquina nueva
+
+```bash
+bash scripts/sembrar-memoria.sh
+```
+
+El repo trae en `docs/memoria-semilla/` las **56 notas de aprendizaje** del estudio
+(ADN medido de cada marca, gotchas de render, recetas, feedback acumulado de Between,
+EBEMA y las demás). La memoria de Claude vive en la cuenta de cada persona, no en el
+repo: sin este paso, en una máquina nueva Claude arranca **sin nada de lo aprendido**
+y repite errores que ya costaron rondas enteras. El script es idempotente y nunca
+pisa memoria local — se puede correr tranquilo las veces que sea.
+
 ---
 
 ## 3. Comprueba lo que depende de su cuenta

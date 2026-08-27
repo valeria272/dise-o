@@ -10,7 +10,7 @@
  *  - SelectorTexto: mockup de selección de texto iOS ("Copiar | Selec. todo | Consultar")
  */
 import React from 'react';
-import {Img, staticFile} from 'remotion';
+import {AbsoluteFill, Img, staticFile} from 'remotion';
 import {BETWEEN} from '../../brand/hilton-between';
 
 /* ---------- ilustraciones de Eli ---------- */
@@ -335,7 +335,9 @@ export const Etiqueta: React.FC<{
   y: number;
   size?: number;
   script?: boolean;
-}> = ({children, x, y, size = 40, script = false}) => (
+  /** Sobre foto clara la sombra no alcanza: se apoya en la caja taupe. */
+  enCaja?: boolean;
+}> = ({children, x, y, size = 40, script = false, enCaja = false}) => (
   <div
     style={{
       position: 'absolute',
@@ -346,8 +348,15 @@ export const Etiqueta: React.FC<{
       fontWeight: script ? 400 : 600,
       fontSize: size,
       color: BETWEEN.colores.beige,
-      textShadow: '0 2px 16px rgba(36,26,18,0.75)',
+      textShadow: enCaja ? 'none' : '0 2px 16px rgba(36,26,18,0.75)',
       whiteSpace: 'nowrap',
+      ...(enCaja
+        ? {
+            backgroundColor: BETWEEN.cajas.fondo,
+            borderRadius: BETWEEN.cajas.radio,
+            padding: `${Math.round(size * 0.30)}px ${Math.round(size * 0.62)}px`,
+          }
+        : {}),
     }}
   >
     {children}
@@ -402,6 +411,224 @@ export const StickerQuiz: React.FC<{
         }}
       >
         {o}
+      </div>
+    ))}
+  </div>
+);
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   REPERTORIO DE COMPOSICIÓN — agregado 27-08-2026
+
+   Feedback de Valeria: «te quedas en el título arriba o abajo y es un poco
+   aburrido… juegan más, tienen signos, flechitas, las fotos de los productos
+   en tentadora». Revisando el Instagram real de Between, el vocabulario que
+   faltaba usar es este, y las ilustraciones YA estaban extraídas del .svg de
+   la diseñadora — solo no se estaban ocupando:
+
+     · «Tu pausa favorita, ahora con togo» → etiqueta + flecha de bucle
+       señalando CADA producto («Café grande», «Sándwich Ave palta»)
+     · «¿Ya tomaste tu cafecito del día?» → flecha larga que baja desde la
+       dirección hasta la taza
+     · «Good Morning» → composición PARTIDA en dos fotos, script cruzando la
+       costura, más marcas doodle
+     · «SI ALGÚN DÍA NO quiero desayunar en Between…» → tres pesos en el mismo
+       bloque: caja alta liviana, caja alta pesada y script
+
+   Ninguno de estos recursos se inventa: todos salen de piezas publicadas.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * Etiqueta que SEÑALA un producto, con la flecha de bucle de la diseñadora.
+ * Es el recurso más reconocible de las piezas de promo y el que hacía falta.
+ */
+export const EtiquetaFlecha: React.FC<{
+  children: React.ReactNode;
+  /** Dónde va el texto (centro de la etiqueta), en px sobre lienzo de 1080. */
+  x: number;
+  y: number;
+  /** Hacia dónde apunta: define de qué lado sale la flecha. */
+  hacia?: 'derecha' | 'izquierda' | 'abajo';
+  size?: number;
+  /** Ancho de la flecha. La de bucle real de Eli va entre 150 y 260 px. */
+  flecha?: number;
+  /** Corrimiento de la flecha respecto del texto. */
+  dx?: number;
+  dy?: number;
+  cual?: 'flechaBucle' | 'flechaGrande';
+}> = ({children, x, y, hacia = 'derecha', size = 42, flecha = 220, dx = 0, dy = 0, cual = 'flechaBucle'}) => {
+  const espejo = hacia === 'izquierda';
+  const fx = hacia === 'abajo' ? x + dx : espejo ? x - flecha * 0.55 + dx : x + flecha * 0.15 + dx;
+  const fy = hacia === 'abajo' ? y + size * 1.1 + dy : y - flecha * 0.30 + dy;
+  return (
+    <>
+      <div
+        style={{
+          position: 'absolute',
+          left: x,
+          top: y,
+          transform: 'translate(-50%, -50%)',
+          fontFamily: BETWEEN.fuentes.sans,
+          fontWeight: 600,
+          fontSize: size,
+          lineHeight: 1.15,
+          color: BETWEEN.colores.beige,
+          textShadow: '0 2px 14px rgba(36,26,18,0.7)',
+          textAlign: 'center',
+          whiteSpace: 'pre-line',
+        }}
+      >
+        {children}
+      </div>
+      <Ilustra
+        cual={cual}
+        x={fx}
+        y={fy}
+        ancho={flecha}
+        espejo={espejo}
+        rotacion={hacia === 'abajo' ? 90 : 0}
+        opacidad={0.95}
+      />
+    </>
+  );
+};
+
+/**
+ * Composición PARTIDA — dos fotos a media pieza con el texto cruzando la
+ * costura, como el post «Good Morning». Rompe el «título arriba, foto abajo»
+ * sin salirse de la línea.
+ */
+export const PiezaPartida: React.FC<{
+  izquierda: string;
+  derecha: string;
+  /** 'vertical' parte de arriba a abajo; 'horizontal' parte al medio. */
+  eje?: 'vertical' | 'horizontal';
+  children?: React.ReactNode;
+}> = ({izquierda, derecha, eje = 'vertical', children}) => (
+  <AbsoluteFill>
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: eje === 'vertical' ? 'row' : 'column',
+      }}
+    >
+      {[izquierda, derecha].map((f, i) => (
+        <div key={i} style={{flex: 1, overflow: 'hidden', position: 'relative'}}>
+          <Img
+            src={staticFile(f)}
+            style={{width: '100%', height: '100%', objectFit: 'cover'}}
+          />
+        </div>
+      ))}
+    </div>
+    {children}
+  </AbsoluteFill>
+);
+
+/**
+ * Bloque de tres pesos en el mismo titular, como «SI ALGÚN DÍA / NO quiero
+ * desayunar / en Between…»: caja alta liviana, caja alta pesada y script.
+ * Cada línea es opcional.
+ */
+export const TituloTresPesos: React.FC<{
+  arriba?: string;
+  fuerte?: string;
+  script?: string;
+  size?: number;
+  alinear?: 'centro' | 'izquierda';
+  style?: React.CSSProperties;
+}> = ({arriba, fuerte, script, size = 72, alinear = 'centro', style}) => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: alinear === 'centro' ? 'center' : 'flex-start',
+      textAlign: alinear === 'centro' ? 'center' : 'left',
+      color: BETWEEN.colores.beige,
+      textShadow: '0 2px 16px rgba(36,26,18,0.55)',
+      ...style,
+    }}
+  >
+    {arriba ? (
+      <div
+        style={{
+          fontFamily: BETWEEN.fuentes.sans,
+          fontWeight: 500,
+          fontSize: size * 0.72,
+          letterSpacing: '0.02em',
+          lineHeight: 1.1,
+          textTransform: 'uppercase',
+        }}
+      >
+        {arriba}
+      </div>
+    ) : null}
+    {fuerte ? (
+      <div
+        style={{
+          fontFamily: BETWEEN.fuentes.sans,
+          fontWeight: BETWEEN.pesos.extrabold,
+          fontSize: size,
+          letterSpacing: '-0.02em',
+          lineHeight: 1.05,
+        }}
+      >
+        {fuerte}
+      </div>
+    ) : null}
+    {script ? (
+      <div
+        style={{
+          fontFamily: BETWEEN.fuentes.script,
+          fontSize: size * 0.92,
+          lineHeight: 1.05,
+          marginTop: -size * 0.06,
+          alignSelf: alinear === 'centro' ? 'center' : 'flex-end',
+        }}
+      >
+        {script}
+      </div>
+    ) : null}
+  </div>
+);
+
+/**
+ * Pila de cajas taupe anclada ABAJO A LA IZQUIERDA, como en «Promo ToGo /
+ * Café grande + Sándwich $4.290». Alternativa al bloque centrado.
+ */
+export const PilaEsquina: React.FC<{
+  lineas: {texto: string; fuerte?: boolean}[];
+  lado?: 'izquierda' | 'derecha';
+  abajo?: number;
+}> = ({lineas, lado = 'izquierda', abajo = 96}) => (
+  <div
+    style={{
+      position: 'absolute',
+      [lado]: BETWEEN.bloque.margenX,
+      bottom: abajo,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: lado === 'izquierda' ? 'flex-start' : 'flex-end',
+      gap: 6,
+    }}
+  >
+    {lineas.map((l, i) => (
+      <div
+        key={i}
+        style={{
+          backgroundColor: BETWEEN.cajas.fondo,
+          borderRadius: 6,
+          padding: '10px 20px',
+          fontFamily: BETWEEN.fuentes.sans,
+          fontWeight: l.fuerte ? BETWEEN.pesos.extrabold : 500,
+          fontSize: l.fuerte ? 46 : 40,
+          lineHeight: 1.1,
+          color: BETWEEN.colores.beige,
+          whiteSpace: 'nowrap',
+        }}
+      >
+        {l.texto}
       </div>
     ))}
   </div>

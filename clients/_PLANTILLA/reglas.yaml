@@ -1,0 +1,47 @@
+# Reglas ejecutables de <MARCA>.
+#
+# Copia de _PLANTILLA. Antes de usarla:
+#   1. Cambia `marca:` al slug de la carpeta (el motor rechaza el archivo si no calza).
+#   2. Declara en `autoridad` QUIÉN firma el criterio de esta marca.
+#   3. Borra las reglas de ejemplo y escribe sólo las que alguien pidió de verdad.
+#   4. Calibra los topes con qa/calibrar.py contra las piezas aprobadas del cliente.
+#   5. Corre `--control` hasta dejarlo en cero.
+#
+# ⚠️ NO copies reglas de otra marca. Cada cliente tiene su diseñadora y su criterio:
+#    Paulina Bustamante firma EBEMA/Revex/Casablanca, Elisabet Soto firma Hilton,
+#    Constanza Lizana firma Selfie. Mezclarlos es el error que este sistema impide.
+#
+# Toda regla necesita `autor` y `cita` verbatim o el motor la rechaza: si nadie la
+# pidió con esas palabras, no es una regla, es una opinión.
+
+marca: <slug>
+nombre: <Nombre de la marca>
+version: 1
+actualizado: <AAAA-MM-DD>
+
+autoridad:
+  - quien: <Nombre de quien firma el criterio>
+    rol: <diseñadora del cliente / dirección / cliente>
+    alcance: [<slug>]
+    canal: <dónde llega el feedback: comentarios en Drive, correo, reunión>
+
+# Ajustes a reglas de agencia (ver qa/agencia.yaml). Cada uno exige `porque`.
+# ajustes:
+#   zona-segura-meta:
+#     porque: >-
+#       <por qué esta marca es una excepción legítima>
+#     args:
+#       excepciones:
+#         - {x0: 0.36, y0: 0.0, x1: 0.64, y1: 0.17}
+
+reglas: []
+  # - id: <id-en-kebab>
+  #   titulo: <qué se revisa, en una línea>
+  #   check: <nombre en checks.REGISTRO>
+  #   severidad: bloqueante   # o: aviso
+  #   autor: <quién lo pidió>
+  #   fecha: <AAAA-MM-DD>
+  #   cita: <sus palabras textuales>
+  #   porque: >-
+  #     <qué se rompió cuando no estaba, con la pieza concreta>
+  #   args: {}

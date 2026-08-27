@@ -1,140 +1,222 @@
 /**
- * BETWEEN — grilla SEPTIEMBRE 2026 (feed + stories) · RECONSTRUIDA 26-08-2026
+ * BETWEEN — grilla SEPTIEMBRE 2026 (feed + stories) · REHECHA 27-08-2026
  *
- * Textos LITERALES del brief «BETWEEN _ GRILLA SEPTIEMBRE»
- * (sheet 1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY). Los títulos van sin punto final
- * (el componente lo quita solo). Solo se producen las piezas en estado
- * OK PARA DISEÑAR o CORREGIDO.
+ * Textos LITERALES del brief «BETWEEN _ GRILLA SEPTIEMBRE 2026»
+ * (sheet 1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY). Solo se producen las piezas en
+ * estado OK PARA DISEÑAR o CORREGIDO.
  *
- * ⚠️ La primera versión de esta grilla se rechazó entera: titulares a la mitad
- * del tamaño real, bloque centrado y flotando, sin caja taupe ni texto en arco,
- * y fotos oscuras con multiply pesado. Esta versión usa la GRAMÁTICA MEDIDA
- * sobre las 19 piezas reales de Eli — ver `clients/hilton/CLAUDE.md`.
+ * ⛔ Esta grilla se rechazó DOS veces. Lo que cambió acá, punto por punto:
  *
- * Reglas que gobiernan cada pieza de acá:
- *  - titular Raleway Black 76–97 según cuántas líneas ocupe; tiene que llenar
- *    el 55–80 % del ancho. Si baja de 50 %, la pieza se ve chica.
- *  - la script va montada sobre la caja alta (lo hace `TitularBetween` solo)
- *  - promo, precio y horario van en CAJA TAUPE, no en texto suelto
- *  - bloque anclado ARRIBA; centrado solo cuando la foto lo pide
- *  - multiply 0,10–0,16: las fotos ya vienen gradadas, no hace falta oscurecer
- *  - donde el vaso To Go trae el logo, la pieza NO lleva logo sobrepuesto
+ *  0. LA FUENTE. Chrome rechazaba `Brushwell.otf` y las 27 piezas salieron con
+ *     una serif de reemplazo. Ahora carga el .woff2 convertido, y el kit avisa
+ *     por consola si alguna cara falla. Era la causa de «cambias tipografías».
+ *  1. La SCRIPT va ARRIBA, corta y en MENOR escala; la caja alta va abajo y es
+ *     la protagonista. Antes la script iba abajo al doble de tamaño.
+ *  2. Raleway ExtraBold (800), no Black. Titular 117, no 97.
+ *  3. AIRE: 9 px de tinta entre script y titular, 18 hasta la caja. Antes se
+ *     solapaban a propósito y no se leía nada.
+ *  4. Todo CENTRADO — es lo que hacen las piezas aprobadas.
+ *  5. En CARRUSEL el logo va SOLO en la portada. Y si la portada tiene caras,
+ *     el logo baja al margen inferior.
+ *  6. Multiply muy bajo: las fotos ya vienen gradadas. Cuando un texto no se
+ *     lee, la solución es la CAJA TAUPE #675B49, no oscurecer la foto.
+ *
+ * Referencias que mandan (las marcó la diseñadora como uso correcto):
+ *   raw/hilton/between-adn/ref-tipografia-ok/
+ * Referencias del brief (las eligió el community manager):
+ *   raw/hilton/between/refs-brief-sept/
  */
 import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
 import {BETWEEN} from '../../brand/hilton-between';
 import {
-  Dato,
+  Bajada,
   FotoFondo,
   LogoBetween,
   PiezaFeedBodegon,
   PiezaStoryBetween,
-  StoryAnimada,
   TitularBetween,
+  PilaDatos,
 } from './BetweenSistema';
-import {Cuadrantes, Etiqueta, StickerQuiz} from './BetweenRecursos';
+import {
+  Cuadrantes, Etiqueta, Globos, Ilustra, MarcoIGPost,
+  PiezaPartida, PilaEsquina, StickerQuiz, TituloTresPesos,
+} from './BetweenRecursos';
 
-/** Fotos YA GRADADAS hacia los números de Eli (scripts/between-gradar.py). */
+/** Fotos YA GRADADAS a los números de Eli (scripts/between-gradar.py). */
 const F = 'assets/hilton/between/fotos-gradadas/';
+/** Montajes generados: solo lo que NO existe en el banco de fotos del cliente. */
 const IA = 'assets/hilton/between/ia-sept/';
 
-const HORARIO_TOGO = 'Lunes a viernes · 08:00 a 10:00 hrs';
+const HORARIO_TOGO = 'Lunes a viernes · 08:00 a 10:00 hrs.';
 
-/* ══════════════════ FEED · 1080×1350 ══════════════════ */
+/* ════════════════════════ FEED · 1080×1350 ════════════════════════ */
 
-/* --- 1 sept · CARRUSEL PROMOS TO GO --- */
+/* ─── 1 sept · CARRUSEL DINÁMICO — COWORK EN BETWEEN ───
+   (la grilla pide intercambiar fecha con el de To Go: comentario C15)
+   Logo SOLO en la portada. La portada tiene personas → el logo va ABAJO.     */
 
-export const ToGo1: React.FC = () => (
+export const Cowork1: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'togo-croissants.jpg'}
-    caps="Tu desayuno"
-    script="va contigo"
-    datos={[HORARIO_TOGO]}
+    foto={F + 'cowork-laptop.jpg'}
+    script="Tu oficina por hoy"
+    caps={'Puede ser\nBetween'}
+    bajadaEnCaja
+    bajada="Espacio, WiFi y café. Tú trae los pendientes."
+    anclaje="abajo"
+    conLogo
+    logoPosicion="abajo"
+    oscurecer={0.1}
+  />
+);
+
+export const Cowork2: React.FC = () => (
+  <PiezaFeedBodegon
+    foto={F + 'winter-garden.jpg'}
+    script="¿Muchos pendientes?"
+    caps={'Al menos que sea\ncon buen café'}
+    bajadaEnCaja
+    bajada="Encuentra tu mesa y trabaja a tu ritmo."
     oscurecer={0.12}
   />
 );
 
-export const ToGo2: React.FC = () => (
+export const Cowork3: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'togo-sandwich.jpg'}
-    caps="Para algo más"
-    script="contundente"
-    datos={['Café to go + sándwich', 'Desde $4.290']}
-    arco="Ave palta o croissant jamón queso"
+    foto={F + 'segundo-nivel.jpg'}
+    script="¿Necesitas cambiar"
+    caps="de escenario?"
+    bajadaEnCaja
+    bajada="También tenemos espacios en nuestro segundo nivel, ideales para trabajar o reunirte."
     oscurecer={0.12}
   />
 );
 
-export const ToGo3: React.FC = () => (
-  <PiezaFeedBodegon
-    foto={F + 'togo-croissant-queso.jpg'}
-    caps="El match"
-    script="perfecto"
-    datos={['Café to go + dulce', 'Desde $3.790']}
-    arco="Vigilantes, muffin, brownie y más"
-    oscurecer={0.12}
-  />
+export const Cowork4: React.FC = () => (
+  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
+    <FotoFondo src={F + 'servicio-mesa.jpg'} oscurecer={0.12} />
+    <div style={{position: 'absolute', left: BETWEEN.bloque.margenX, right: BETWEEN.bloque.margenX, top: 168}}>
+      <TituloTresPesos
+        arriba="Tú sigue con lo tuyo"
+        fuerte={'NOSOTROS\nLLEVAMOS EL CAFÉ'}
+        script="a tu mesa"
+        size={86}
+      />
+    </div>
+    <PilaEsquina lineas={[{texto: 'Servicio a la mesa mientras trabajas', fuerte: true}]} abajo={120} />
+  </AbsoluteFill>
 );
 
-export const ToGo4: React.FC = () => (
-  <PiezaFeedBodegon
-    foto={F + 'togo-empanadas.jpg'}
-    caps="¿Por qué"
-    script="elegir uno?"
-    datos={['Café + salado + dulce', 'Desde $5.290']}
-    oscurecer={0.12}
-  />
+/* ─── 3 sept · POST ESTÁTICO — CAFÉ DE CUMPLEAÑOS ───
+   Comentario de diseño (D15): «Agregar elementos cumpleañeros como en el
+   anterior». Se mantiene la dirección de arte de agosto —globos doodle de la
+   propia diseñadora + packshot— y cambian foto y texto, que es justo lo que
+   pidió Valeria: misma dirección, no la misma pieza.                          */
+
+export const Cumple1: React.FC = () => (
+  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
+    <FotoFondo src={IA + 'cumple-manos.png'} oscurecer={0.1} />
+    <Globos
+      posiciones={[
+        {cual: 'globosPar', x: 62, y: 96, ancho: 190, rotacion: -8},
+        {cual: 'globo', x: 872, y: 150, ancho: 120, rotacion: 10, espejo: true},
+        {cual: 'confeti', x: 760, y: 640, ancho: 210, rotacion: 6},
+      ]}
+    />
+    <LogoBetween formato="feed" posicion="arriba" tono="beige" />
+    <div
+      style={{
+        position: 'absolute',
+        left: BETWEEN.bloque.margenX,
+        right: BETWEEN.bloque.margenX,
+        bottom: 150,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <TitularBetween script="Este café" caps="es para ti" alinear="centro" />
+      <Bajada style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: 'center'}}>
+        Si estás de cumpleaños, en Between te invitamos el café.
+      </Bajada>
+    </div>
+  </AbsoluteFill>
 );
 
-/* --- 7 sept · HUMOR | CAFECITO BETWEEN --- */
+/** Segunda pieza del post: las condiciones, en el mockup de IG que usa Eli. */
+export const Cumple2: React.FC = () => (
+  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
+    <FotoFondo src={IA + 'cumple-manos.png'} posicion="60% center" oscurecer={0.34} />
+    <Globos
+      posiciones={[
+        {cual: 'globoAlt', x: 60, y: 120, ancho: 130, rotacion: -6},
+        {cual: 'corazon', x: 900, y: 1080, ancho: 110, rotacion: 8},
+      ]}
+    />
+    <div style={{position: 'absolute', left: 0, right: 0, top: 150, display: 'flex', justifyContent: 'center'}}>
+      <MarcoIGPost
+        foto={<Img src={staticFile(F + 'togo-vaso.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover'}} />}
+        burbujas={[
+          'Te regalamos un café para disfrutar en cafetería o To Go.',
+          'Accede a este regalo el mismo día de tu cumpleaños.',
+          'Disponible de lunes a viernes, en cualquier horario.',
+          'Presenta tu carnet en la caja.',
+        ]}
+        notaLegal="Extras y personalizaciones no incluidas."
+      />
+    </div>
+  </AbsoluteFill>
+);
+
+/* ─── 7 sept · POST ESTÁTICO — HUMOR | CAFECITO BETWEEN ───
+   Foto con persona: el bloque baja y el logo sube, para no cruzar el rostro.  */
 
 export const HumorCafecito: React.FC = () => (
   <PiezaFeedBodegon
     foto={F + 'chica-cafe.jpg'}
+    // el rostro sube al tercio alto para que el bloque de abajo no lo cruce:
+    // regla dura de la diseñadora, ningún texto sobre caras ni ojos
+    posicionFoto="60% 22%"
+    script="Perdón, esa preocupación"
+    caps={'No cabe en mi\ncafecito de Between'}
     anclaje="abajo"
-    posicionFoto="60% center"
-    caps="Esa preocupación"
-    script="no cabe acá"
-    sizeCaps={82}
     conLogo
     logoPosicion="abajo"
-    oscurecer={0.16}
+    oscurecer={0.14}
   />
 );
 
-/* --- 9 sept · CARRUSEL PRIMERO LA FOTO… ¿O NO? --- */
+/* ─── 9 sept · CARRUSEL — PRIMERO LA FOTO… ¿O NO? ───
+   Punto 4 del feedback: en la portada («Qué rico se ve») el logo va en el
+   MARGEN DE ABAJO porque arriba tapa a las personas; y el logo aparece UNA
+   sola vez en todo el carrusel.                                              */
 
 export const Foto1: React.FC = () => (
   <PiezaFeedBodegon
     foto={F + 'desayuno-mesa.jpg'}
+    script="Qué rico se ve"
+    caps={'Le voy a sacar\nuna foto'}
     anclaje="abajo"
-    caps="Le voy a sacar"
-    script="una foto"
     conLogo
     logoPosicion="abajo"
-    oscurecer={0.14}
+    oscurecer={0.12}
   />
 );
 
 export const Foto2: React.FC = () => (
   <PiezaFeedBodegon
     foto={F + 'cafe-desayuno.jpg'}
-    anclaje="abajo"
-    caps="Foto"
-    script="primero"
-    conLogo
-    logoPosicion="abajo"
-    oscurecer={0.14}
+    script="Está demasiado lindo"
+    caps="Foto primero"
+    oscurecer={0.12}
   />
 );
 
 export const Foto3: React.FC = () => (
   <PiezaFeedBodegon
     foto={F + 'croissant-plato.jpg'}
-    caps="Esto merece"
-    script="una foto"
-    conLogo
-    logoPosicion="abajo"
+    script="Qué pinta tiene…"
+    caps="Esto merece foto"
     oscurecer={0.12}
   />
 );
@@ -142,303 +224,417 @@ export const Foto3: React.FC = () => (
 export const Foto4: React.FC = () => (
   <PiezaFeedBodegon
     foto={IA + 'torta-empezada.png'}
-    caps="Se me olvidó"
-    script="la foto"
-    conLogo
-    logoPosicion="abajo"
-    oscurecer={0.14}
-  />
-);
-
-/* --- 11 sept · ELLA HABLÓ / ELLA ESCUCHÓ --- */
-
-export const EllaHablo: React.FC = () => (
-  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={IA + 'dos-tazas.png'} oscurecer={0.14} />
-    <LogoBetween formato="feed" posicion="abajo" />
-    {/* Las etiquetas van sobre cada taza: hay que mirar la foto para entender el chiste */}
-    <Etiqueta x={330} y={690} size={72} script>
-      Ella habló
-    </Etiqueta>
-    <Etiqueta x={762} y={690} size={72} script>
-      Ella escuchó
-    </Etiqueta>
-    <div style={{position: 'absolute', left: BETWEEN.bloque.x, right: BETWEEN.bloque.x, top: BETWEEN.bloque.yFeed - 9}}>
-      <TitularBetween caps="Hay cafés de" script="10 minutos" sizeCaps={86} />
-    </div>
-  </AbsoluteFill>
-);
-
-/* --- 14 sept · CARRUSEL DINÁMICO COWORK EN BETWEEN --- */
-
-export const Cowork1: React.FC = () => (
-  <PiezaFeedBodegon
-    foto={F + 'cowork-laptop.jpg'}
-    anclaje="abajo"
-    caps="Tu oficina por hoy"
-    script="puede ser Between"
-    sizeCaps={80}
-    datos={['Espacio, WiFi y café']}
-    conLogo
-    logoPosicion="abajo"
-    oscurecer={0.18}
-  />
-);
-
-export const Cowork2: React.FC = () => (
-  <PiezaFeedBodegon
-    foto={F + 'winter-garden.jpg'}
-    caps="¿Muchos pendientes?"
-    script="que sea con café"
-    sizeCaps={78}
-    conLogo
-    logoPosicion="abajo"
-    oscurecer={0.18}
-  />
-);
-
-export const Cowork3: React.FC = () => (
-  <PiezaFeedBodegon
-    foto={F + 'segundo-nivel.jpg'}
-    caps="¿Necesitas cambiar"
-    script="de escenario?"
-    sizeCaps={80}
-    datos={['Segundo nivel · trabajar o reunirte']}
-    conLogo
-    logoPosicion="abajo"
-    oscurecer={0.18}
-  />
-);
-
-export const Cowork4: React.FC = () => (
-  <PiezaFeedBodegon
-    foto={F + 'servicio-mesa.jpg'}
-    anclaje="abajo"
-    caps="Tú sigue con lo tuyo"
-    script="nosotros el café"
-    sizeCaps={80}
-    conLogo
-    logoPosicion="abajo"
-    oscurecer={0.18}
-  />
-);
-
-/* ══════════════════ STORIES · 1080×1920 ══════════════════ */
-
-/* --- 1 sept · PROMO TO GO | CAFÉ + DULCE --- */
-
-export const StToGoDulce: React.FC = () => (
-  <PiezaStoryBetween
-    foto={F + 'togo-croissants.jpg'}
-    conLogo={false}
-    caps="Un dulce comienzo"
-    script="para tu mañana"
-    sizeCaps={84}
-    datos={['Café + dulce desde $3.790', HORARIO_TOGO]}
+    script="¡Nooo!"
+    caps={'Se me olvidó\nla foto'}
     oscurecer={0.12}
   />
 );
 
-/* --- 3 sept · CAFÉ DE REGALO POR TU CUMPLEAÑOS (CORREGIDO) --- */
+/* ─── 11 sept · POST ESTÁTICO — ELLA HABLÓ / ELLA ESCUCHÓ ───
+   El brief pide EXACTAMENTE dos textos pequeños sobre las tazas y nada más:
+   «de manera que el usuario tenga que mirar la imagen para entender el chiste».
+   Meterle un titular arriba mataría el chiste, así que la pieza va limpia.    */
 
+export const EllaHablo: React.FC = () => (
+  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
+    <FotoFondo src={IA + 'dos-tazas.png'} oscurecer={0.1} />
+    <LogoBetween formato="feed" posicion="arriba" tono="beige" />
+    {/* la mesa es clara: sin caja estas dos líneas no se leen (contraste medido 37) */}
+    <Etiqueta x={280} y={1010} size={54} enCaja>Ella habló</Etiqueta>
+    <Etiqueta x={760} y={1010} size={54} enCaja>Ella escuchó</Etiqueta>
+  </AbsoluteFill>
+);
+
+/* ─── 14 sept · CARRUSEL — PROMOS TO GO ───
+   Punto 5 del feedback, literal: «portada deja el logo, quita la transparencia
+   café y centra textos, cuadro café con texto. Y en las demás slides de ese
+   carrusel quitar logos, dejar una única vez en la portada principal».
+   → portada: logo sí · oscurecer 0,06 (casi nada) · todo centrado · caja taupe
+   → slides 2-4: sin logo                                                      */
+
+export const ToGo1: React.FC = () => (
+  <PiezaFeedBodegon
+    foto={IA + 'togo-salida.png'}
+    script="¿Vas con poco tiempo?"
+    caps={'Tu desayuno\nva contigo'}
+    datos={['Promos To Go', HORARIO_TOGO]}
+    conLogo
+    logoPosicion="abajo"
+    /* la modelo tiene la cara en el tercio alto: el bloque baja casi al centro
+       para no cruzarla (feedback de Elisabet, 28-08) */
+    topBloque={470}
+    oscurecer={0.06}
+  />
+);
+
+export const ToGo2: React.FC = () => (
+  <PiezaFeedBodegon
+    /**
+     * Pre-recortada a 4:5 desde la ORIGINAL (5760px): así el logo del vaso queda
+     * entero con margen. El borde derecho del vaso se recorta apenas — igual que
+     * en la referencia aprobada «El Match». Plato y vaso suman más ancho del que
+     * cabe en 4:5, no hay recorte que muestre los dos completos.
+     */
+    foto={F + 'togo-sandwich-45.jpg'}
+    script="Para empezar con algo"
+    caps="rico y contundente"
+    legal="*Imágenes referenciales."
+    oscurecer={0.08}
+  >
+    {/* ⭐ Regla de la flecha (feedback 28-08): SALE del producto y APUNTA al
+        texto — nunca al revés, y nunca montada sobre el producto. */}
+    <Ilustra cual="flechaBucle" x={830} y={1030} ancho={120} rotacion={185} opacidad={0.95} />
+    <Etiqueta x={880} y={1150} size={42}>Café grande</Etiqueta>
+    <PilaEsquina
+      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Sándwich $4.290', fuerte: true}]}
+    />
+  </PiezaFeedBodegon>
+);
+
+
+export const ToGo3: React.FC = () => (
+  <PiezaFeedBodegon
+    foto={F + 'togo-dulce-actual.jpg'}
+    script="Ese gustito que mejora"
+    caps="cualquier mañana"
+    legal="*Imágenes referenciales."
+    oscurecer={0.08}
+  >
+    {/* el rol: texto ARRIBA del plato (no encima) y la flecha sale del rol */}
+    <Etiqueta x={220} y={628} size={42}>Rol de canela</Etiqueta>
+    <Ilustra cual="flechaBucle" x={245} y={686} ancho={118} opacidad={0.95} />
+    {/* el café: texto DEBAJO del vaso — arriba parecía bajada del titular */}
+    <Ilustra cual="flechaBucle" x={870} y={900} ancho={115} rotacion={185} opacidad={0.95} />
+    <Etiqueta x={905} y={1015} size={42}>Café grande</Etiqueta>
+    <PilaEsquina
+      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Dulce $3.790', fuerte: true}]}
+    />
+  </PiezaFeedBodegon>
+);
+
+
+export const ToGo4: React.FC = () => (
+  <PiezaFeedBodegon
+    /**
+     * Foto REAL (25-jul-2025) en vez del montaje IA: el montaje traía el vaso
+     * sin logo y desentonaba con los otros slides del carrusel, y la etiqueta
+     * decía «croissant y sándwich» cuando en la foto solo había croissant.
+     */
+    foto={F + 'togo-croissant-actual.jpg'}
+    script="¿Por qué elegir uno?"
+    caps="Llévalo contigo"
+    sizeCaps={100}
+    /* el vaso ocupa la esquina superior: el titular baja a la banda del medio */
+    topBloque={558}
+    legal="*Imágenes referenciales."
+    oscurecer={0.08}
+  >
+    <Ilustra cual="flechaBucle" x={600} y={330} ancho={130} opacidad={0.95} />
+    <Etiqueta x={545} y={288} size={42}>Café grande</Etiqueta>
+    <Ilustra cual="flechaBucle" x={850} y={950} ancho={120} espejo opacidad={0.95} />
+    <Etiqueta x={935} y={905} size={42}>Croissant</Etiqueta>
+    <PilaEsquina
+      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Salado + Dulce $5.290', fuerte: true}]}
+    />
+  </PiezaFeedBodegon>
+);
+
+
+/* ════════════════════════ STORIES · 1080×1920 ════════════════════════ */
+
+/* ─── 1 sept · PROMO TO GO | CAFÉ + DULCE ───
+   Composición PARTIDA en dos fotos con la script cruzando la costura: es el
+   recurso del post «Good Morning» de la marca. Rompe el «titular arriba, foto
+   abajo» sin salirse de la línea gráfica.                                     */
+export const StToGoDulce: React.FC = () => (
+  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
+    <PiezaPartida
+      eje="horizontal"
+      izquierda={IA + 'togo-cafe-dulce.png'}
+      derecha={F + 'rol-canela.jpg'}
+    />
+    <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra, opacity: 0.14}} />
+    <LogoBetween formato="story" posicion="arriba" tono="beige" />
+    <div
+      style={{
+        position: 'absolute',
+        left: BETWEEN.bloque.margenX,
+        right: BETWEEN.bloque.margenX,
+        top: 820,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <TitularBetween script="Un dulce comienzo" caps="para tu mañana" alinear="centro" />
+    </div>
+    <Ilustra cual="confeti" x={118} y={700} ancho={170} rotacion={-22} opacidad={0.85} />
+    <Ilustra cual="corazon" x={946} y={1180} ancho={92} opacidad={0.9} />
+    <PilaEsquina
+      lineas={[
+        {texto: 'Café + Dulce · desde $3.790', fuerte: true},
+        {texto: 'Lunes a viernes · 08:00 a 10:00 hrs'},
+      ]}
+      abajo={430}
+    />
+  </AbsoluteFill>
+);
+
+/* ─── 3 sept · CAFÉ DE REGALO POR TU CUMPLEAÑOS ─── */
 export const StCumple: React.FC = () => (
   <PiezaStoryBetween
-    foto={F + 'togo-brownie.jpg'}
-    conLogo={false}
-    caps="¡Disfruta tu cumple"
-    script="desde temprano!"
-    sizeCaps={84}
-    datos={['Un café de regalo para ti']}
-    legal="Presenta tu carnet · Lunes a viernes · Todo el día"
-    oscurecer={0.14}
-  />
-);
-
-/* --- 4 sept · HUMOR | SEGÚN MIS CÁLCULOS --- */
-
-export const StCalculos: React.FC = () => (
-  <PiezaStoryBetween
-    foto={F + 'cowork-laptop.jpg'}
-    anclaje="abajo"
-    caps="Según mis cálculos"
-    script="te hace falta café"
-    sizeCaps={82}
-    bajada="Por suerte, sabemos dónde encontrarlo"
-    oscurecer={0.18}
-  />
-);
-
-/* --- 9 sept · INTERACTIVA | EMERGENCIA BETWEEN --- */
-
-export const StEmergencia: React.FC = () => (
-  <PiezaStoryBetween
-    foto={F + 'togo-brownie.jpg'}
-    conLogo={false}
-    caps="Romper en caso"
-    script="de antojo"
-    sizeCaps={90}
-    oscurecer={0.20}
+    foto={IA + 'cumple-vela.png'}
+    script="¡Disfruta tu cumple"
+    caps="desde temprano!"
+    bajadaEnCaja
+    bajada="Si estás de cumpleaños, tenemos un café de regalo para ti."
+    datos={['Presenta tu carnet · Lunes a viernes · Todo el día']}
+    oscurecer={0.1}
+    legal="Ven a celebrar a Between."
   >
-    <div style={{position: 'absolute', left: 0, right: 0, bottom: 420, display: 'flex', justifyContent: 'center'}}>
-      <StickerQuiz
-        pregunta="¿CUÁL TOMARÍAS?"
-        opciones={['☕ Café', '🥐 Algo dulce', '🥪 Algo salado', '✨ Todas las anteriores']}
-      />
-    </div>
+    <Globos
+      posiciones={[
+        {cual: 'globosPar', x: 70, y: 1180, ancho: 170, rotacion: -10},
+        {cual: 'confeti', x: 820, y: 1240, ancho: 190, rotacion: 8},
+      ]}
+    />
   </PiezaStoryBetween>
 );
 
-/* --- 14 sept · INTERACTIVA | ¿CUÁNDO ES HORA DE CAFÉ? --- */
+/* ─── 4 sept · HUMOR | SEGÚN MIS CÁLCULOS ─── */
+export const StCalculos: React.FC = () => (
+  <PiezaStoryBetween
+    foto={IA + 'calculadora-mesa.png'}
+    script="Según mis cálculos…"
+    caps={'Te hace\nfalta café'}
+    bajadaEnCaja
+    bajada="Por suerte, sabemos dónde encontrarlo."
+    oscurecer={0.12}
+  />
+);
 
+/* ─── 9 sept · INTERACTIVA — EMERGENCIA BETWEEN ─── */
+export const StEmergencia: React.FC = () => (
+  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
+    <FotoFondo src={IA + 'emergencia-caja.png'} oscurecer={0.06} />
+    <LogoBetween formato="story" posicion="arriba" tono="beige" />
+    {/* el gabinete vive en y 512–1240: el titular va ARRIBA de él y la
+        pregunta DEBAJO, para que el café y el croissant se vean enteros
+        (feedback 28-08: «el texto está sobre el café») */}
+    <div
+      style={{
+        position: 'absolute',
+        left: BETWEEN.bloque.margenX,
+        right: BETWEEN.bloque.margenX,
+        /* el logo de story termina en y≈370: el titular parte bajo él y su caja
+           alta cae sobre el vidrio VACÍO del gabinete, arriba de los productos */
+        top: 392,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <TitularBetween script="Romper en caso" caps="de antojo" alinear="centro" sizeCaps={100} />
+    </div>
+    <div
+      style={{
+        position: 'absolute',
+        left: BETWEEN.bloque.margenX,
+        right: BETWEEN.bloque.margenX,
+        top: 1300,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <Bajada style={{textAlign: 'center'}}>Si solo pudieras sacar uno primero…</Bajada>
+      <PilaDatos datos={['¿Cuál tomarías?']} style={{marginTop: BETWEEN.aire.tituloACaja}} />
+    </div>
+  </AbsoluteFill>
+);
+
+
+/* ─── 14 sept · INTERACTIVA — ¿CUÁNDO ES HORA DE CAFÉ? ─── */
 export const StHoraCafe: React.FC = () => (
   <PiezaStoryBetween
-    foto={F + 'togo-croissants.jpg'}
-    conLogo={false}
-    caps="El mejor momento"
-    script="para un café es…"
-    sizeCaps={82}
-    oscurecer={0.20}
+    foto={F + 'cafe-desayuno.jpg'}
+    script="El mejor momento"
+    caps="para un café es…"
+    oscurecer={0.16}
   >
-    <div style={{position: 'absolute', left: 0, right: 0, bottom: 420, display: 'flex', justifyContent: 'center'}}>
+    <div style={{position: 'absolute', left: 0, right: 0, top: 980, display: 'flex', justifyContent: 'center'}}>
       <StickerQuiz
         pregunta="Elige tu respuesta"
-        opciones={['A. En la mañana', 'B. En la tarde', 'C. En la noche', 'D. Todo el día ✨']}
+        opciones={['En la mañana', 'En la tarde', 'En la noche', 'Todo el día ✨']}
         correcta={3}
       />
     </div>
   </PiezaStoryBetween>
 );
 
-/* --- 16 sept · COWORK | YA ABRIMOS (CORREGIDO) --- */
-
+/* ─── 16 sept · COWORK ───
+   Comentario del cliente (N15): «Se puede entender que estuvimos cerrados,
+   démosle una vuelta a ese texto». Por eso NO dice «ya abrimos».             */
 export const StCowork: React.FC = () => (
   <PiezaStoryBetween
     foto={F + 'mesas-trabajo.jpg'}
-    caps="Puedes venir,"
-    script="¡te esperamos!"
-    sizeCaps={88}
+    script="Puedes venir"
+    caps="¡te esperamos!"
+    bajadaEnCaja
+    bajada="Ven a trabajar desde Between. Tenemos una mesa para ti."
     datos={['Lunes a viernes · 08:00 a 22:00 hrs']}
-    bajada="Ven a trabajar desde Between. Tenemos una mesa para ti"
-    oscurecer={0.30}
+    oscurecer={0.14}
+    legal="WiFi · Café · Espacios para trabajar"
   />
 );
 
-/* --- 18 sept · SALUDO FIESTAS PATRIAS --- */
-
+/* ─── 18 sept · SALUDO FIESTAS PATRIAS ─── */
 export const StDieciocho: React.FC = () => (
   <PiezaStoryBetween
-    foto={F + 'terraza.jpg'}
-    caps="Por los sabores"
-    script="que nos reúnen"
-    sizeCaps={88}
-    bajada="Que estas Fiestas Patrias estén llenas de buenos momentos y mucho para compartir"
-    oscurecer={0.32}
+    foto={F + 'desayuno-completo.jpg'}
+    script="Por los sabores"
+    caps="que nos reúnen"
+    bajada="Que estas Fiestas Patrias estén llenas de buenos momentos, sobremesas y mucho para compartir."
+    datos={['¡Felices Fiestas Patrias!']}
+    oscurecer={0.16}
   />
 );
 
-/* --- 21 sept · STRUDEL DE MANZANA (composición editorial en 4) --- */
-
+/* ─── 21 sept · STRUDEL DE MANZANA ───
+   Punto 7 del feedback, literal: «collage de fotos debe ser ordenado y utilizar
+   toda la composición con la foto, modo división de 4 y al centro el strudel de
+   manzana ya que lo que quiere destacar en grande son sus ingredientes y al
+   centro como es el postre. Deben verse apetitosos. Cuando no se logra
+   visualizar los textos, puedes dejarlo en una caja del color café #675B49».
+   → 4 cuadrantes a sangre + strudel al centro + TODO el texto en caja taupe.  */
 export const StStrudel: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <AbsoluteFill style={{justifyContent: 'flex-start'}}>
-      <Cuadrantes
-        alto={1330}
-        fotos={[
-          IA + 'strudel-masa.png',
-          IA + 'strudel-manzana.png',
-          IA + 'strudel-canela.png',
-          IA + 'strudel-nueces.png',
-        ]}
-      />
-    </AbsoluteFill>
-    <LogoBetween formato="story" posicion="arriba" />
-    {/*
-      El título vive en la banda café que queda bajo los cuadrantes, CENTRADO en
-      ella. Antes los cuadrantes medían 1180 y el texto se pegaba arriba de la
-      banda, dejando 400 px de vacío abajo: la pieza se veía sin terminar.
-    */}
-    {/* div plano, no AbsoluteFill: AbsoluteFill fuerza inset:0 y se comía el top */}
+    <Cuadrantes
+      alto={1920}
+      gap={8}
+      fotos={[
+        IA + 'strudel-masa.png',
+        IA + 'strudel-manzana.png',
+        IA + 'strudel-canela.png',
+        IA + 'strudel-nueces.png',
+      ]}
+    />
+    {/* el postre al centro, que es lo que pidió el cliente que se vea entero */}
     <div
       style={{
         position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 1330,
-        bottom: 340,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '0 90px',
-        gap: 16,
+        left: '50%',
+        top: 960,
+        transform: 'translate(-50%, -50%)',
+        width: 620,
+        height: 620,
+        borderRadius: 24,
+        overflow: 'hidden',
+        boxShadow: '0 24px 70px rgba(36,26,18,0.55)',
+        border: `6px solid ${BETWEEN.colores.beige}`,
       }}
     >
-      <TitularBetween caps="Cuatro ingredientes" script="que saben juntos" sizeCaps={76} alinear="centro" />
-      <Dato size={30}>Masa · Manzana · Canela · Nueces</Dato>
+      <Img
+        src={staticFile(IA + 'strudel-entero.png')}
+        style={{width: '100%', height: '100%', objectFit: 'cover'}}
+      />
+    </div>
+    <LogoBetween formato="story" posicion="arriba" tono="beige" />
+    <div
+      style={{
+        position: 'absolute',
+        left: BETWEEN.bloque.margenX,
+        right: BETWEEN.bloque.margenX,
+        top: 432,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      {/* el collage es muy movido: el cliente pidió expresamente que en ese caso
+          el texto vaya en caja del color café de la marca.
+          ⚠️ La caja necesita ANCHO EXPLÍCITO: `TitularBetween` posiciona sus
+          líneas en absoluto, así que su contenedor no tiene ancho propio y la
+          caja salía del tamaño de una estampilla. */}
+      <div
+        style={{
+          /* la caja se achicó y bajó el 28-08: a 912 de ancho y arriba en 370
+             pisaba el logo. Ahora despeja el lockup completo. */
+          width: 760,
+          backgroundColor: BETWEEN.cajas.fondo,
+          borderRadius: BETWEEN.cajas.radio,
+          padding: '28px 40px 36px',
+        }}
+      >
+        <TitularBetween
+          script="Cuatro ingredientes"
+          caps={'Que saben\nmejor juntos'}
+          alinear="centro"
+          anchoDisponible={680}
+          sizeCaps={96}
+        />
+      </div>
+    </div>
+    <div
+      style={{
+        position: 'absolute',
+        left: BETWEEN.bloque.margenX,
+        right: BETWEEN.bloque.margenX,
+        top: 1380,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <PilaDatos datos={['Masa · Manzana · Canela · Nueces', 'Strudel de manzana']} />
     </div>
   </AbsoluteFill>
 );
 
-/* --- 22 sept · PRIMAVERA EN BETWEEN --- */
-
+/* ─── 22 sept · PRIMAVERA EN BETWEEN ───
+   Punto 6: la terraza y los vasos tienen que ser los ACTUALES. La foto sale de
+   la sesión real, no de un montaje inventado.                                */
 export const StPrimavera: React.FC = () => (
   <PiezaStoryBetween
     foto={IA + 'milkshake-terraza.png'}
-    caps="La primavera"
-    script="se disfruta así"
-    sizeCaps={90}
-    bajada="Un milkshake, nuestra terraza y una pausa al sol"
-    oscurecer={0.16}
+    script="La primavera"
+    caps="se disfruta así"
+    bajadaEnCaja
+    bajada="Un milkshake, nuestra terraza y una pausa al sol."
+    anchoBajada={640}
+    /* la bombilla del vaso llega hasta y≈480: el bloque baja para no cruzarla */
+    topBloque={560}
+    oscurecer={0.1}
+    legal="Ven a disfrutarlo en Between."
   />
 );
 
-/* --- 28 sept · HUMOR | CAFÉ TO GO --- */
 
+/* ─── 28 sept · HUMOR | CAFÉ TO GO ───
+   Punto 6: «debe ser similar a la referencia que está en grilla, pero en
+   Between con una persona con un café gigante». La referencia del brief es
+   raw/hilton/between/refs-brief-sept/T11-cafe-gigante.jpg.                    */
 export const StHumorToGo: React.FC = () => (
-  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={F + 'terraza-2.jpg'} oscurecer={0.20} />
-    {/* vaso real de Between recortado, agrandado a propósito para el chiste */}
-    <Img
-      src={staticFile(F + 'togo-vaso-nobg.png')}
-      style={{
-        position: 'absolute',
-        width: 560,
-        left: '50%',
-        bottom: 400,
-        transform: 'translateX(-50%)',
-        filter: 'drop-shadow(0 30px 46px rgba(36,26,18,0.55))',
-      }}
-    />
-    <div style={{position: 'absolute', left: BETWEEN.bloque.x, right: BETWEEN.bloque.x, top: BETWEEN.bloque.yStory - 9}}>
-      <TitularBetween caps="POV: yo cargando" script="mis ganas de café" sizeCaps={80} alinear="centro" />
-    </div>
-  </AbsoluteFill>
+  <PiezaStoryBetween
+    foto={IA + 'cafe-gigante.png'}
+    script="POV:"
+    caps={'Yo cargando el peso\nde mis ganas de café'}
+    anclaje="arriba"
+    oscurecer={0.08}
+  />
 );
 
-/* --- 30 sept · PLATEADA AL CARMENERE --- */
-
+/* ─── 30 sept · PLATEADA AL CARMENERE ─── */
 export const StPlateada: React.FC = () => (
   <PiezaStoryBetween
     foto={IA + 'plateada.png'}
-    caps="¿El almuerzo"
-    script="se quedó en casa?"
-    sizeCaps={86}
+    script="¿El almuerzo"
+    caps="se quedó en casa?"
+    bajadaEnCaja
+    bajada="Tranqui, el plan B se ve bastante mejor por acá."
     datos={['Plateada al Carmenere']}
-    bajada="Tranqui, el plan B se ve bastante mejor por acá"
-    oscurecer={0.16}
-  />
-);
-
-/* --- animada de respaldo (plantilla) --- */
-
-export const StAnimadaToGo: React.FC = () => (
-  <StoryAnimada
-    pantallas={[
-      {foto: F + 'togo-croissants.jpg', caps: 'Un dulce comienzo', script: 'para tu mañana', sizeCaps: 68},
-      {foto: F + 'togo-sandwich.jpg', caps: 'Café + dulce', sizeCaps: 90, bajada: 'Desde $3.790 · To Go'},
-    ]}
-    horario={HORARIO_TOGO}
-    cta="Pasa por Between y llévalo contigo"
-    framesPorPantalla={75}
+    anclaje="arriba"
+    oscurecer={0.12}
+    legal="Haz tu pausa de almuerzo en Between."
   />
 );

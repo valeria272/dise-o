@@ -23,7 +23,13 @@ import argparse, os, sys
 import numpy as np
 from PIL import Image
 
-OBJETIVO = {'lum': 118.0, 'p95': 200.0, 'calidez': 55.0}
+# ⭐ RE-MEDIDO 27-08-2026 sobre las 19 piezas terminadas de Eli:
+#     lum media 117,4 · p95 226,9 · p5 24,3 · calidez +45,6
+# El p95 de 200 que había acá dejaba las piezas SIN altas: las nuestras daban
+# p95 204 contra 227 de ella, y por eso se veían apagadas aunque el brillo medio
+# calzara. El p5 también importa: nuestras sombras estaban MÁS LAVADAS que las de
+# ella (28,7 contra 24,3), así que el negro tiene que bajar, no subir.
+OBJETIVO = {'lum': 118.0, 'p95': 227.0, 'p05': 24.0, 'calidez': 50.0}
 TECHO = 248.0          # ningún pixel pasa de acá: "nada quemado"
 CONTRASTE = 1.03       # el +3 % que pide Eli
 
@@ -60,6 +66,15 @@ def gradar(a):
     lum = max(luminancia(a).mean(), 1.0)
     g = np.log(np.clip(OBJETIVO['lum'], 1, 254) / 255.0) / np.log(np.clip(lum, 1, 254) / 255.0)
     a = 255.0 * np.power(np.clip(a / 255.0, 0, 1), np.clip(g, 0.55, 1.6))
+
+    # 2b. punto de negro. Las nuestras salían con las sombras LAVADAS (p5 28,7
+    #     contra 24,3 de ella): mucho brillo medio pero sin negro, que es lo que
+    #     se lee como "plano". Se baja el piso y se reescala para no perder las
+    #     altas ya ganadas. Nunca empasta: el clip final deja el mínimo en 2.
+    p05 = float(np.percentile(luminancia(a), 5))
+    negro = float(np.clip(p05 - OBJETIVO['p05'], -12, 18))
+    if abs(negro) > 1:
+        a = np.clip((a - negro) * (255.0 / max(255.0 - negro, 1.0)), 0, None)
 
     # 3. calidez: se reparte entre rojo y azul. Corrige en los DOS sentidos —
     #    togo-brownie ya venía en +63 y sin esto se iba a +87 (naranja falso).

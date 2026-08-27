@@ -80,12 +80,8 @@ import {
   Cowork1, Cowork2, Cowork3, Cowork4,
   StToGoDulce, StCumple, StCalculos, StEmergencia, StHoraCafe,
   StCowork, StDieciocho, StStrudel, StPrimavera, StHumorToGo, StPlateada,
-  StAnimadaToGo,
+  Cumple1, Cumple2,
 } from "./compositions/hilton/BetweenSeptiembre";
-import {
-  CumpleFestivoPortada,
-  CumpleFestivoDetalles,
-} from "./compositions/hilton/BetweenCumple";
 
 import {SelfieBannerSemanaPeluquero} from "./compositions/SelfieBannerSemanaPeluquero";
 import {SelfieCarruselFrizz} from "./compositions/SelfieCarruselFrizz";
@@ -103,8 +99,8 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="BW-F-ToGo-2" component={ToGo2} {...btFeed} />
         <Composition id="BW-F-ToGo-3" component={ToGo3} {...btFeed} />
         <Composition id="BW-F-ToGo-4" component={ToGo4} {...btFeed} />
-        <Composition id="BW-F-Cumple-1" component={CumpleFestivoPortada} {...btFeed} />
-        <Composition id="BW-F-Cumple-2" component={CumpleFestivoDetalles} {...btFeed} />
+        <Composition id="BW-F-Cumple-1" component={Cumple1} {...btFeed} />
+        <Composition id="BW-F-Cumple-2" component={Cumple2} {...btFeed} />
         <Composition id="BW-F-HumorCafecito" component={HumorCafecito} {...btFeed} />
         <Composition id="BW-F-Foto-1" component={Foto1} {...btFeed} />
         <Composition id="BW-F-Foto-2" component={Foto2} {...btFeed} />
@@ -126,14 +122,6 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="BW-S-Primavera" component={StPrimavera} {...btStory} />
         <Composition id="BW-S-HumorToGo" component={StHumorToGo} {...btStory} />
         <Composition id="BW-S-Plateada" component={StPlateada} {...btStory} />
-        <Composition
-          id="BW-S-Animada"
-          component={StAnimadaToGo}
-          durationInFrames={225}
-          fps={30}
-          width={1080}
-          height={1920}
-        />
       </Folder>
       <Folder name="Selfie">
         <Composition

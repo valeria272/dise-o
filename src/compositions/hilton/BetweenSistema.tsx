@@ -14,6 +14,8 @@ import React from 'react';
 import {
   AbsoluteFill,
   Img,
+  continueRender,
+  delayRender,
   interpolate,
   staticFile,
   useCurrentFrame,
@@ -537,12 +539,13 @@ export const CajaDato: React.FC<{
   /** Ancho útil del bloque; la caja nunca lo pasa. */
   anchoDisponible?: number;
   style?: React.CSSProperties;
-}> = ({children, size = BETWEEN.tipos.cajaDato, anchoDisponible = 1080 - 2 * BETWEEN.bloque.x, style}) => {
+}> = ({children, size = BETWEEN.tipos.cajaDato, anchoDisponible = 1080 - 2 * BETWEEN.bloque.margenX, style}) => {
+  useFuentesListas();
   // la caja va en nowrap, así que si el dato es largo hay que bajar el cuerpo:
   // «SEGUNDO NIVEL · TRABAJAR O REUNIRTE» se salía 46 px por la derecha
   const texto = typeof children === 'string' ? children.toUpperCase() : '';
   const cuerpo = texto
-    ? ajustarACaber(texto, size, (v) => `300 ${v}px ${BETWEEN.fuentes.sans}`,
+    ? ajustarACaber(texto, size, (v) => `${BETWEEN.pesos.extrabold} ${v}px ${BETWEEN.fuentes.sans}`,
                     anchoDisponible - 2 * BETWEEN.cajas.padX, 0, 0.6)
     : size;
   return (
@@ -556,7 +559,9 @@ export const CajaDato: React.FC<{
       backgroundColor: BETWEEN.cajas.fondo,
       borderRadius: BETWEEN.cajas.radio,
       fontFamily: BETWEEN.fuentes.sans,
-      fontWeight: 300,
+      // MEDIDO en la pieza aprobada: «PARA EMPEZAR EL DÍA» da 488×33 px, que solo
+      // calza con ExtraBold. Antes estaba en Light (300) y la caja se veía floja.
+      fontWeight: BETWEEN.pesos.extrabold,
       fontSize: cuerpo,
       lineHeight: 1,
       color: BETWEEN.colores.beige,
@@ -616,19 +621,103 @@ const medirTexto = (texto: string, css: string): number => {
  * líneas. En las piezas de Eli la script **jamás** se parte ni toca el borde:
  * cuando la palabra es larga, ella baja el cuerpo.
  */
+
 /**
- * Cuánto se sale la tinta a la IZQUIERDA del punto de origen. Brushwell tiene
- * remates de pincel que vuelan bastante (la «p» de «perfecto» vuela 39 px a 186
- * de cuerpo), y sin compensarlo la palabra se mete en el margen: en la pieza de
- * Eli la tinta de la script cae exacto en x=114, no antes.
+ * ⛔⛔ EL BUG QUE PARTIÓ LOS TITULARES — no quitar este hook.
+ *
+ * Todo el ajuste de cuerpo («que el titular quepa en el ancho útil») se calcula
+ * midiendo el texto con canvas DURANTE el render. Si en ese momento Raleway o
+ * Brushwell todavía no cargaron, `measureText` mide con la fuente de REEMPLAZO,
+ * que es más angosta: el cálculo dice «cabe» y no achica nada. Después el
+ * navegador pinta con la fuente real, mucho más ancha, y el titular se sale del
+ * cuadro por los dos lados. Pasó en 8 de las 27 piezas.
+ *
+ * Este hook fuerza UN re-render cuando `document.fonts.ready` resuelve, y ahí la
+ * medición ya es la buena. El `delayRender` mantiene el frame abierto para que
+ * Remotion no fotografíe antes; el tope de 8 s evita que un problema de fuentes
+ * cuelgue el render para siempre (ver memoria reel-video-gotchas).
  */
-const voladizoIzquierdo = (texto: string, css: string): number => {
-  if (typeof document === 'undefined') return 0;
+let _fuentesListas = false;
+
+export const useFuentesListas = (): boolean => {
+  const [listas, setListas] = React.useState(_fuentesListas);
+  React.useEffect(() => {
+    if (_fuentesListas || typeof document === 'undefined') return;
+    const espera = delayRender('BETWEEN · esperando Brushwell y Raleway');
+    let cerrado = false;
+    const terminar = () => {
+      if (cerrado) return;
+      cerrado = true;
+      _fuentesListas = true;
+      setListas(true);
+      continueRender(espera);
+    };
+    const tope = setTimeout(terminar, 8000);
+    void document.fonts.ready.then(() => {
+      clearTimeout(tope);
+      terminar();
+    }).catch(() => {
+      clearTimeout(tope);
+      terminar();
+    });
+    return () => clearTimeout(tope);
+  }, []);
+  return listas;
+};
+
+/**
+ * ⭐ Métricas de TINTA de una línea, en px, respecto de la línea base.
+ *
+ * Hace falta porque Between se compone por la tinta, no por la caja de texto:
+ * el aire entre la script y la caja alta que midió la pieza aprobada (9 px) es
+ * de tinta a tinta. Con `lineHeight` uno nunca llega a ese número — cada familia
+ * mete un espacio distinto sobre y bajo la línea base, y Brushwell además
+ * tiene remates que se salen del avance.
+ */
+type Tinta = {
+  /** Tinta por sobre la línea base. */
+  alto: number;
+  /** Tinta por debajo de la línea base. */
+  bajo: number;
+  /** Lo que el trazo se sale por la izquierda del punto de anclaje. */
+  izq: number;
+  /** Hasta dónde llega el trazo por la derecha del punto de anclaje. */
+  der: number;
+  /** Ancho de avance (lo que ocupa la caja de texto). */
+  avance: number;
+  /** Distancia de la línea base al borde superior de una caja con lineHeight 1. */
+  baseEnCaja: number;
+};
+
+const medirTinta = (texto: string, css: string, trackingEm = 0, cuerpo?: number): Tinta => {
+  const vacio: Tinta = {alto: 0, bajo: 0, izq: 0, der: 0, avance: 0, baseEnCaja: 0};
+  if (typeof document === 'undefined') return vacio;
   if (!_ctx) _ctx = document.createElement('canvas').getContext('2d');
-  if (!_ctx) return 0;
+  if (!_ctx) return vacio;
   _ctx.font = css;
+  // Chrome ≥ 99 aplica letterSpacing en canvas; si no existe, se compensa a mano.
+  const soportaTracking = 'letterSpacing' in _ctx;
+  if (soportaTracking) (_ctx as CanvasRenderingContext2D & {letterSpacing: string}).letterSpacing = `${trackingEm}em`;
   const m = _ctx.measureText(texto);
-  return Math.max(m.actualBoundingBoxLeft ?? 0, 0);
+  /**
+   * ⚠️ El cuerpo va explícito. `parseFloat(css)` NO sirve: cuando el css trae el
+   * peso delante («800 117px Raleway») devuelve 800, y el titular se va 200 px
+   * fuera del cuadro. Pasó exactamente eso en la primera calibración.
+   */
+  const size = cuerpo ?? parseFloat(css) ?? 0;
+  const extra = soportaTracking ? 0 : trackingEm * size * Math.max(texto.length - 1, 0);
+  const fbA = m.fontBoundingBoxAscent ?? m.actualBoundingBoxAscent ?? 0;
+  const fbD = m.fontBoundingBoxDescent ?? m.actualBoundingBoxDescent ?? 0;
+  if (soportaTracking) (_ctx as CanvasRenderingContext2D & {letterSpacing: string}).letterSpacing = '0px';
+  return {
+    alto: m.actualBoundingBoxAscent ?? 0,
+    bajo: m.actualBoundingBoxDescent ?? 0,
+    izq: Math.max(m.actualBoundingBoxLeft ?? 0, 0),
+    der: m.actualBoundingBoxRight ?? 0,
+    avance: (m.width ?? 0) + extra,
+    // en una caja con lineHeight 1 el sobrante se reparte arriba y abajo
+    baseEnCaja: (size - (fbA + fbD)) / 2 + fbA,
+  };
 };
 
 const ajustarACaber = (
@@ -648,103 +737,174 @@ const ajustarACaber = (
  * ⭐ Titular de Between: caja alta Raleway BLACK + script Brushwell **encima**.
  *
  * Lo que hace distinto a este componente del viejo <TituloMixto>:
- *  - la script va a `proporcionScript` = 1,97 × la caja alta (antes: 1,2)
+ *  - la script va a `proporcionScript` ≈ 1,0 × la caja alta y VA ARRIBA
  *  - las dos líneas se **solapan**: la tinta queda a 2 px (antes: gap de 22)
  *  - el bloque se alinea a la izquierda por defecto (antes: siempre centrado)
  *  - trackings medidos: −1 en la caja alta, +18 en la script
  */
+/**
+ * ⭐ TITULAR BETWEEN — la unidad tipográfica de la marca.
+ *
+ * Disposición de la pieza que la diseñadora aprobó como «uso correcto de la
+ * tipografía» (C1 S3 N°1): la SCRIPT va ARRIBA, corta y en menor escala; la
+ * CAJA ALTA va ABAJO y es la protagonista. Todo centrado sobre el eje.
+ *
+ * ⛔ Antes esto estaba al revés (caja alta arriba, script gigante abajo, las dos
+ * solapadas). Eso produjo la grilla que el cliente rechazó dos veces.
+ *
+ * Reglas que aplica solo:
+ *  · la script se limita a una frase corta — si llega larga, avisa por consola;
+ *  · las dos líneas se posicionan por su TINTA, con el aire medido (9 px);
+ *  · se centra por la TINTA, no por la caja, para que el remate del pincel de
+ *    Brushwell no descuadre el bloque;
+ *  · si no cabe en el ancho útil, baja el cuerpo en vez de partir la línea.
+ */
 export const TitularBetween: React.FC<{
-  caps?: string;
+  /** Frase corta o palabra clave. Va ARRIBA y en menor escala que el titular. */
   script?: string;
+  /** Titular protagonista, en caja alta. Va ABAJO. */
+  caps?: string;
   sizeCaps?: number;
+  sizeScript?: number;
   tono?: Tono;
-  alinear?: 'izquierda' | 'centro';
-  /** Ancho útil del bloque. Por defecto 1080 − 2×114 = 852 (los márgenes medidos). */
+  alinear?: 'centro' | 'izquierda';
+  /** Ancho útil. Por defecto 1080 − 2 × 84 (el margen medido). */
   anchoDisponible?: number;
   style?: React.CSSProperties;
 }> = ({
-  caps,
   script,
+  caps,
   sizeCaps = BETWEEN.tipos.tituloCaps,
+  sizeScript,
   tono = 'beige',
-  alinear = 'izquierda',
-  anchoDisponible = 1080 - 2 * BETWEEN.bloque.x,
+  alinear = 'centro',
+  anchoDisponible = 1080 - 2 * BETWEEN.bloque.margenX,
   style,
 }) => {
-  const cssScript = (s: number) => `${s}px ${BETWEEN.fuentes.script}`;
-  const sizeScript = script
-    ? ajustarACaber(
-        script,
-        Math.round(sizeCaps * BETWEEN.proporcionScript),
-        cssScript,
-        anchoDisponible,
-        BETWEEN.trackingScript,
-      )
-    : 0;
-  const voladizo = script ? Math.round(voladizoIzquierdo(script, cssScript(sizeScript))) : 0;
-  // medido: la tinta de la script empieza en el margen (x=114) y la caja alta
-  // 37 px más adentro (x=151)
-  const sangriaCaps = alinear === 'izquierda' && script ? 37 : 0;
-  return (
+  // sin esto se mide con la fuente de reemplazo y el titular no se achica
+  useFuentesListas();
+  const textoCaps = caps ? sinPuntoFinal(caps) : '';
+  const textoScript = script ? sinPuntoFinal(script) : '';
+
+  if (textoScript && textoScript.split(/\s+/).length > 4) {
+    // eslint-disable-next-line no-console
+    console.warn(`[BETWEEN] «${textoScript}» es muy largo para la script. ` +
+      `Brushwell es para una frase corta o una palabra clave, no para una bajada.`);
+  }
+
+  const cssCaps = (n: number) => `${BETWEEN.pesos.extrabold} ${n}px ${BETWEEN.fuentes.sans}`;
+  const cssScript = (n: number) => `${n}px ${BETWEEN.fuentes.script}`;
+
+  const encoger = (texto: string, base: number, css: (n: number) => string, tr: number) => {
+    if (!texto) return base;
+    let n = base;
+    for (let i = 0; i < 40; i++) {
+      const t = medirTinta(texto, css(n), tr, n);
+      const ancho = Math.max(t.avance, t.izq + t.der);
+      if (!ancho || ancho <= anchoDisponible) break;
+      n -= 2;
+    }
+    return n;
+  };
+
+  /**
+   * La caja alta puede ir en dos líneas: se separan con «\n».
+   * ⚠️ Se pasan YA EN MAYÚSCULA. El CSS las sube con `textTransform`, pero el
+   * cálculo del cuerpo se hace con canvas, y canvas mide el string tal cual: si
+   * se mide «rico y contundente» y se pinta «RICO Y CONTUNDENTE», la medición
+   * sale ~20 % corta, el ajuste cree que cabe y el titular se sale del cuadro.
+   * Ese fue el defecto de 8 piezas de la ronda anterior.
+   */
+  const lineasCaps = textoCaps
+    ? textoCaps.split('\n').map((l) => l.trim().toUpperCase()).filter(Boolean)
+    : [];
+  const nCaps = lineasCaps.reduce(
+    (menor, l) => Math.min(menor, encoger(l, sizeCaps, cssCaps, BETWEEN.trackingCaps)),
+    sizeCaps,
+  );
+  const nScript = encoger(
+    textoScript,
+    sizeScript ?? Math.round(sizeCaps * BETWEEN.proporcionScript),
+    cssScript,
+    BETWEEN.trackingScript,
+  );
+
+  const tCapsPorLinea = lineasCaps.map((l) => medirTinta(l, cssCaps(nCaps), BETWEEN.trackingCaps, nCaps));
+  const tCaps = tCapsPorLinea[0] ?? medirTinta('', cssCaps(nCaps), BETWEEN.trackingCaps, nCaps);
+  /**
+   * Aire entre dos líneas de caja alta. MEDIDO en «¿YA TOMASTE TU / CAFECITO DEL
+   * DÍA?» (post n°2 s4): 21 px de tinta a tinta sobre una altura de caja de 59,
+   * o sea 0,35 de la altura. Se guarda como proporción para que aguante
+   * cualquier cuerpo.
+   */
+  const aireEntreCaps = Math.round((tCaps.alto || nCaps * 0.73) * 0.35);
+  const tScript = medirTinta(textoScript, cssScript(nScript), BETWEEN.trackingScript, nScript);
+
+  /** Cuánto mover la caja para que quede centrada la TINTA y no el avance. */
+  const centrarTinta = (t: Tinta) =>
+    alinear === 'centro' ? t.avance / 2 - (t.der - t.izq) / 2 : t.izq;
+
+  const aire = BETWEEN.aire.scriptATitulo;
+  const altoScript = textoScript ? tScript.alto + tScript.bajo : 0;
+  const altoCaps = tCapsPorLinea.reduce(
+    (acc, t, i) => acc + t.alto + t.bajo + (i ? aireEntreCaps : 0), 0,
+  );
+  const alto = altoScript + (textoScript && lineasCaps.length ? aire : 0) + altoCaps;
+
+  const linea = (
+    texto: React.ReactNode,
+    t: Tinta,
+    n: number,
+    topTinta: number,
+    extra: React.CSSProperties,
+  ) => (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: alinear === 'centro' ? 'center' : 'flex-start',
-        textAlign: alinear === 'centro' ? 'center' : 'left',
-        ...style,
+        position: 'absolute',
+        top: topTinta - (t.baseEnCaja - t.alto),
+        left: alinear === 'centro' ? '50%' : 0,
+        transform: alinear === 'centro'
+          ? `translateX(calc(-50% + ${centrarTinta(t)}px))`
+          : `translateX(${centrarTinta(t)}px)`,
+        fontSize: n,
+        lineHeight: 1,
+        whiteSpace: 'nowrap',
+        color: tinta(tono),
+        textShadow: sombraSobreFoto,
+        ...extra,
       }}
     >
-      {caps ? (
-        <div
-          style={{
-            fontFamily: BETWEEN.fuentes.sans,
-            fontWeight: BETWEEN.pesos.black,
-            fontSize: sizeCaps,
-            letterSpacing: BETWEEN.trackingCaps,
-            lineHeight: 1.0,
-            textTransform: 'uppercase',
-            marginLeft: sangriaCaps,
-            // sin esto la caja alta se desborda por la derecha al indentarla
-            maxWidth: anchoDisponible - sangriaCaps,
-            color: tinta(tono),
-            textShadow: sombraSobreFoto,
-          }}
-        >
-          {sinPuntoFinal(caps)}
-        </div>
-      ) : null}
-      {script ? (
-        <div
-          style={{
+      {texto}
+    </div>
+  );
+
+  return (
+    <div style={{position: 'relative', width: '100%', height: alto, ...style}}>
+      {textoScript
+        ? linea(signosVolteados(textoScript), tScript, nScript, 0, {
             fontFamily: BETWEEN.fuentes.script,
-            fontSize: sizeScript,
-            letterSpacing: BETWEEN.trackingScript,
-            lineHeight: 1.0,
-            // en las piezas de Eli la script jamás se parte en dos líneas
-            whiteSpace: 'nowrap',
-            color: tinta(tono),
-            textShadow: sombraSobreFoto,
-            // la script se MONTA sobre la caja alta: la tinta queda a ~2 px
-            // calibrado: deja la tinta de la script a ~1 px de la caja alta,
-            // que es el solape exacto de las piezas de Eli
-            marginTop: -sizeScript * 0.23,
-            marginLeft: alinear === 'izquierda' ? voladizo : 0,
-          }}
-        >
-          {signosVolteados(sinPuntoFinal(script))}
-        </div>
-      ) : null}
+            letterSpacing: `${BETWEEN.trackingScript}em`,
+          })
+        : null}
+      {lineasCaps.map((l, i) => {
+        const arriba = altoScript
+          + (textoScript ? aire : 0)
+          + tCapsPorLinea.slice(0, i).reduce((a, t) => a + t.alto + t.bajo + aireEntreCaps, 0);
+        return (
+          <React.Fragment key={i}>
+            {linea(l, tCapsPorLinea[i], nCaps, arriba, {
+              fontFamily: BETWEEN.fuentes.sans,
+              fontWeight: BETWEEN.pesos.extrabold,
+              letterSpacing: `${BETWEEN.trackingCaps}em`,
+              textTransform: 'uppercase',
+            })}
+          </React.Fragment>
+        );
+      })}
     </div>
   );
 };
 
-/**
- * ⭐ Texto en arco al pie de la pieza («VIGILANTES, MUFFIN, BROWNIE Y MÁS»).
- * Curva medida sobre la pieza real: cuerda 864 px, flecha 135 px.
- * La bézier `M 108 1097 Q 540 1367 972 1097` pasa exactamente por los tres
- * puntos medidos (extremos en y=1097, fondo en y=1232).
- */
 export const TextoArco: React.FC<{
   children: string;
   size?: number;
@@ -793,6 +953,139 @@ export const TextoArco: React.FC<{
  * izquierda + pila de cajas taupe + texto en arco al pie.
  * Geometría medida en «EL MATCH perfecto» (C1 S2 N°1).
  */
+/**
+ * ⭐ PIE DE PIEZA — el bloque de cierre de la pieza aprobada.
+ *
+ * Medido en C1 S3 N°1 (feed, sobre lienzo de 1080×1350):
+ *   «PROMOS TO GO»          y 1150–1185 · tinta 413 × 35 · centrado
+ *   «De 8:00 a 10:00 hrs»   y 1211–1237 · tinta 317 × 25 · centrado
+ * Es lo que da el cierre comercial sin ensuciar el titular: la promo y el
+ * horario NO van arriba peleando con la caja alta.
+ */
+/**
+ * ⭐ PANEL TAUPE — la bajada cuando la foto no deja leerla.
+ *
+ * Instrucción textual del cliente (27-08-2026):
+ *   «Cuando no se logra visualizar los textos, puedes dejarlo en una caja del
+ *    color café de la marca #675B49.»
+ *
+ * Es la misma caja de `CajaDato` pero para una frase de varias líneas. Se usa
+ * SOLO cuando hace falta: sobre foto oscura y pareja, la bajada va suelta. La
+ * alternativa —subir el multiply hasta que el texto se lea— es justamente lo
+ * que dejaba las piezas apagadas.
+ */
+export const PanelTaupe: React.FC<{
+  children: React.ReactNode;
+  size?: number;
+  /** Ancho máximo del panel. Por defecto, el ancho útil del bloque. */
+  ancho?: number;
+  style?: React.CSSProperties;
+}> = ({children, size = BETWEEN.tipos.bajada, ancho, style}) => (
+  <div
+    style={{
+      maxWidth: ancho ?? 1080 - 2 * BETWEEN.bloque.margenX,
+      padding: `${Math.round(BETWEEN.cajas.alto * 0.28)}px ${BETWEEN.cajas.padX}px`,
+      backgroundColor: BETWEEN.cajas.fondo,
+      borderRadius: BETWEEN.cajas.radio,
+      fontFamily: BETWEEN.fuentes.sans,
+      fontWeight: BETWEEN.pesos.semibold,
+      fontSize: size,
+      lineHeight: 1.3,
+      color: BETWEEN.colores.beige,
+      textAlign: 'center',
+      ...style,
+    }}
+  >
+    {children}
+  </div>
+);
+
+export const PieDePieza: React.FC<{
+  formato: 'feed' | 'story';
+  titulo?: string;
+  detalle?: string;
+}> = ({formato, titulo, detalle}) => {
+  // MEDIDO: en feed la tinta del pie arranca en y = 1150; en la story el cierre
+  // de Eli arranca en y = 1678, bien por sobre la zona segura de Meta (340 px).
+  const arriba = formato === 'feed' ? 1150 : 1678;
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: BETWEEN.bloque.margenX,
+        right: BETWEEN.bloque.margenX,
+        top: arriba,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 26,
+      }}
+    >
+      {titulo ? (
+        <div
+          style={{
+            fontFamily: BETWEEN.fuentes.sans,
+            fontWeight: BETWEEN.pesos.extrabold,
+            fontSize: 48,
+            letterSpacing: `${BETWEEN.trackingCaps}em`,
+            lineHeight: 1,
+            textTransform: 'uppercase',
+            color: BETWEEN.colores.beige,
+            textShadow: sombraSobreFoto,
+            textAlign: 'center',
+          }}
+        >
+          {titulo}
+        </div>
+      ) : null}
+      {detalle ? (
+        <div
+          style={{
+            fontFamily: BETWEEN.fuentes.sans,
+            fontWeight: BETWEEN.pesos.semibold,
+            fontSize: 35,
+            lineHeight: 1.2,
+            color: BETWEEN.colores.beige,
+            textShadow: sombraSobreFoto,
+            textAlign: 'center',
+          }}
+        >
+          {detalle}
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+/**
+ * Legal al pie, en cursiva. Medido: feed 224 × 11 px a 32 px del borde;
+ * story 248 × 27 px, por sobre la zona segura de Meta.
+ */
+export const LegalAlPie: React.FC<{
+  formato: 'feed' | 'story';
+  children: React.ReactNode;
+}> = ({formato, children}) => (
+  <div
+    style={{
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: formato === 'feed' ? 22 : 360,
+      textAlign: 'center',
+      fontFamily: BETWEEN.fuentes.sans,
+      fontStyle: 'italic',
+      fontWeight: BETWEEN.pesos.regular,
+      fontSize: formato === 'feed' ? 20 : 28,
+      lineHeight: 1,
+      color: BETWEEN.colores.beige,
+      opacity: 0.9,
+      textShadow: sombraSobreFoto,
+    }}
+  >
+    {children}
+  </div>
+);
+
 export const PiezaFeedBodegon: React.FC<{
   foto: string;
   posicionFoto?: string;
@@ -800,8 +1093,16 @@ export const PiezaFeedBodegon: React.FC<{
   caps?: string;
   script?: string;
   sizeCaps?: number;
+  /** Bajada bajo el titular. Va antes de las cajas taupe. */
+  bajada?: React.ReactNode;
+  /** La bajada va DENTRO de una caja taupe, para cuando la foto no la deja leer. */
+  bajadaEnCaja?: boolean;
   datos?: React.ReactNode[];
   arco?: string;
+  /** Bloque al pie: nombre de la promo + horario, como en la pieza aprobada. */
+  pie?: {titulo?: string; detalle?: string};
+  /** Legal en cursiva, al ras del borde inferior. */
+  legal?: string;
   conLogo?: boolean;
   logoTono?: Tono;
   logoPosicion?: 'arriba' | 'abajo';
@@ -812,6 +1113,8 @@ export const PiezaFeedBodegon: React.FC<{
    * ojos — regla dura de ella.
    */
   anclaje?: 'arriba' | 'abajo';
+  /** Capas encima de la foto: etiquetas con flecha, doodles, mockups. */
+  children?: React.ReactNode;
 }> = ({
   foto,
   posicionFoto,
@@ -820,14 +1123,21 @@ export const PiezaFeedBodegon: React.FC<{
   caps,
   script,
   sizeCaps,
+  bajada,
+  bajadaEnCaja,
   datos,
   arco,
+  pie,
+  legal,
   // en el feed de bodegón la marca la pone el vaso, no un logo sobrepuesto
   conLogo = false,
   logoTono = 'beige',
   logoPosicion = 'abajo',
-  alinear = 'izquierda',
+  // MEDIDO: las dos piezas aprobadas están centradas sobre el eje. Between
+  // compone centrado; el bloque a la izquierda no es su gramática.
+  alinear = 'centro',
   anclaje = 'arriba',
+  children,
 }) => {
   // Eli entrega DOS plantillas por formato (logo arriba / logo abajo) justo para
   // esto: si el bloque de texto baja, el logo sube. Si no, se pisan — pasó en 5
@@ -841,8 +1151,8 @@ export const PiezaFeedBodegon: React.FC<{
       <div
         style={{
           position: 'absolute',
-          left: BETWEEN.bloque.x,
-          right: BETWEEN.bloque.x,
+          left: BETWEEN.bloque.margenX,
+          right: BETWEEN.bloque.margenX,
           // la medida (y=220) es a la TINTA; el ascendente de la caja alta pide unos px.
           // En fotos con personas el bloque baja para no pasar texto sobre caras.
           ...(anclaje === 'arriba' ? {top: BETWEEN.bloque.yFeed - 9} : {bottom: 130}),
@@ -852,10 +1162,18 @@ export const PiezaFeedBodegon: React.FC<{
         }}
       >
         <TitularBetween caps={caps} script={script} sizeCaps={sizeCaps} alinear={alinear} />
-        {datos?.length ? <PilaDatos datos={datos} style={{marginTop: 14}} /> : null}
+        {bajada && bajadaEnCaja ? (
+          <PanelTaupe style={{marginTop: BETWEEN.aire.tituloACaja}}>{bajada}</PanelTaupe>
+        ) : bajada ? (
+          <Bajada style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: alinear === 'centro' ? 'center' : 'left'}}>{bajada}</Bajada>
+        ) : null}
+        {datos?.length ? <PilaDatos datos={datos} style={{marginTop: BETWEEN.aire.tituloACaja}} /> : null}
       </div>
     </AbsoluteFill>
+    {children}
     {arco ? <TextoArco>{arco}</TextoArco> : null}
+    {pie ? <PieDePieza formato="feed" {...pie} /> : null}
+    {legal ? <LegalAlPie formato="feed">{legal}</LegalAlPie> : null}
   </AbsoluteFill>
   );
 };
@@ -956,6 +1274,8 @@ export const PiezaStoryBetween: React.FC<{
   sizeCaps?: number;
   datos?: React.ReactNode[];
   bajada?: React.ReactNode;
+  /** La bajada va DENTRO de una caja taupe, para cuando la foto no la deja leer. */
+  bajadaEnCaja?: boolean;
   legal?: React.ReactNode;
   conLogo?: boolean;
   logoTono?: Tono;
@@ -965,7 +1285,7 @@ export const PiezaStoryBetween: React.FC<{
   children?: React.ReactNode;
 }> = ({
   foto, posicionFoto, oscurecer = 0.12,
-  caps, script, sizeCaps, datos, bajada, legal,
+  caps, script, sizeCaps, datos, bajada, bajadaEnCaja, legal,
   conLogo = true, logoTono = 'beige', alinear = 'centro', anclaje = 'arriba', children,
 }) => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
@@ -974,8 +1294,8 @@ export const PiezaStoryBetween: React.FC<{
     <div
       style={{
         position: 'absolute',
-        left: BETWEEN.bloque.x,
-        right: BETWEEN.bloque.x,
+        left: BETWEEN.bloque.margenX,
+        right: BETWEEN.bloque.margenX,
         // 'abajo' se queda sobre la zona segura de Meta (340 px) con holgura
         ...(anclaje === 'arriba' ? {top: BETWEEN.bloque.yStory - 9} : {bottom: 430}),
         display: 'flex',
@@ -984,9 +1304,11 @@ export const PiezaStoryBetween: React.FC<{
       }}
     >
       <TitularBetween caps={caps} script={script} sizeCaps={sizeCaps} alinear={alinear} />
-      {datos?.length ? <PilaDatos datos={datos} style={{marginTop: 14}} /> : null}
-      {bajada ? (
-        <Bajada style={{marginTop: 18, textAlign: alinear === 'centro' ? 'center' : 'left'}}>{bajada}</Bajada>
+      {datos?.length ? <PilaDatos datos={datos} style={{marginTop: BETWEEN.aire.tituloACaja}} /> : null}
+      {bajada && bajadaEnCaja ? (
+        <PanelTaupe style={{marginTop: BETWEEN.aire.tituloACaja}}>{bajada}</PanelTaupe>
+      ) : bajada ? (
+        <Bajada style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: alinear === 'centro' ? 'center' : 'left'}}>{bajada}</Bajada>
       ) : null}
     </div>
     {children}

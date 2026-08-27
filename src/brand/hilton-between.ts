@@ -73,92 +73,121 @@ export const BETWEEN = {
    *   2. sacar el bounding box de tinta de cada línea
    *   3. renderizar la misma palabra con PIL a 100 px y comparar alto y ancho
    */
+  /**
+   * ⭐ ESCALA TIPOGRÁFICA — RE-MEDIDA 27-08-2026 sobre las DOS piezas que la
+   * diseñadora marcó como «uso correcto de la tipografía»:
+   *   raw/hilton/between-adn/ref-tipografia-ok/C1 S3 N°1.png      (feed  2250×2813)
+   *   raw/hilton/between-adn/ref-tipografia-ok/ST S1 N°3 BW.png   (story 2250×4000)
+   *
+   * Valores en px sobre lienzo de 1080 de ancho. Verificados renderizando en Chrome
+   * con las fuentes reales y comparando la TINTA contra la de ella:
+   *
+   *   titular  «PERFECTO»            ella 567×85  · nuestro 568×85
+   *   caja     «PARA EMPEZAR EL DÍA» ella 488×33  · nuestro 482×33
+   *   script   «El Match»            ella 403×124 · nuestro 406×125
+   *
+   * ⛔ LO QUE ESTABA MAL Y HUNDIÓ LA GRILLA DE SEPTIEMBRE:
+   *   1. La script estaba en 1,92× el titular (186 contra 97). Es ≈ 1,0×.
+   *      La script ACOMPAÑA; el titular en caja alta es el que manda.
+   *   2. El titular estaba en 97. Es 117.
+   *   3. Las dos líneas se solapaban a propósito (solapeScript: 2). NO se solapan:
+   *      hay 9 px de aire entre tinta y tinta.
+   *   4. El peso del titular era Black (900). Es ExtraBold (800).
+   */
   tipos: {
+    /** Titular en MAYÚSCULA, Raleway ExtraBold 800. Es el protagonista. */
+    tituloCaps: 117,
     /**
-     * Titular en MAYÚSCULA, Raleway BLACK. Medido en «EL MATCH»: tinta de 70 px
-     * de alto y 448 de ancho → 94 px con tracking −1.
-     * Rango observado en las piezas: 84–96.
+     * Script que ACOMPAÑA al titular, encima de él.
+     * ⚠️ Va en MENOR escala que el titular y solo para una FRASE CORTA o una
+     * PALABRA CLAVE — nunca una frase de apoyo completa.
      */
-    tituloCaps: 97,
-    /**
-     * Script que ACOMPAÑA al titular. Medido en «perfecto»: tinta de 187 px de
-     * alto y 614 de ancho → 186 px con tracking +1 en Chrome.
-     * ⚠️ Es CASI EL DOBLE del Raleway, no un 20 % más. La script es la línea
-     * dominante de la pieza: más ancha y más alta que la caja alta.
-     */
-    scriptAcompana: 186,
-    /** Frase completa solo en Brushwell, sin caps arriba. Rango observado 140–175. */
-    scriptSolo: 150,
-    /**
-     * Texto DENTRO de la caja taupe. Raleway **LIGHT** (no bold — el contraste
-     * titular pesado / dato liviano es firma de la marca). Medido en
-     * «CAFÉ TO GO + DULCE»: 45 px exactos por alto y por ancho.
-     */
+    scriptAcompana: 123,
+    /** Script como protagonista (nombre de producto, una sola palabra). */
+    scriptSolo: 134,
+    /** Bajada bajo el titular, sin caja. Raleway Medium. */
+    bajada: 40,
+    /** Texto DENTRO de la caja taupe. Raleway ExtraBold. */
     cajaDato: 45,
-    /** Bajada / párrafo suelto sobre foto. Máximo 3 líneas. */
-    bajada: 38,
-    /** Texto en arco al pie de la pieza. Cap-height medido ~45. */
+    /** Subtítulo en caja alta bajo la script protagonista («DE FRUTOS ROJOS»). */
+    subtitulo: 44,
+    /** Cierre en cursiva al pie («Una pausa para disfrutar»). */
+    cierre: 40,
+    /** Texto en arco al pie de la pieza. */
     arco: 51,
-    /** Legales en cursiva, al pie. Rango 20–26. */
+    /** Legales al pie. Medido: 11 px de tinta en el feed, 27 en la story. */
     legal: 22,
 
-    /* — alias heredados; apuntan a los valores medidos — */
+    /* — alias heredados — */
     get tituloCapsDestacado() { return this.tituloCaps; },
-    get tituloCapsSutil() { return 60; },
+    get tituloCapsSutil() { return 74; },
     get cta() { return this.cajaDato; },
   },
 
   /**
    * Relación script / caps cuando el título mezcla las dos familias.
-   * ⚠️ MEDIDO 26-08-2026 sobre «EL MATCH perfecto»: caps 97 → script 186.
-   * (Calibrado contra el render propio: la tinta tiene que dar 448 px de ancho
-   * en la caja alta y 614 × 187 en la script.)
-   * El 1.2 que había acá era una suposición mía y achataba el título: dejaba
-   * la script como segunda línea decorativa cuando en realidad es la que manda.
+   * MEDIDO sobre la pieza aprobada: caps 117 → script 119. Es ≈ 1,0.
+   * ⛔ El 1,92 anterior salió de medir una pieza donde los roles estaban INVERTIDOS
+   * («EL MATCH» chico arriba + «perfecto» script grande abajo). Esa disposición
+   * existe, pero NO es la de referencia. La de referencia es: script chica arriba,
+   * caja alta grande abajo.
    */
-  proporcionScript: 1.92,
+  proporcionScript: 1.05,
+
+  /** Tracking de la script. Calibrado: +0,036em deja «El Match» en 406 px. */
+  trackingScript: 0.036,
+
+  /** Tracking del titular en caja alta. Calibrado: −0,024em deja «PERFECTO» en 568. */
+  trackingCaps: -0.024,
 
   /**
-   * Tracking de la script cuando acompaña. Calibrado contra el render:
-   * +1 px a 186 de cuerpo deja la tinta en los 614 × 187 px de la pieza real.
-   * (Brushwell sale ~20 % más ancha en Chrome que en el cálculo de PIL, así que
-   * este valor se ajusta midiendo el render, no estimando.)
+   * ⭐ AIRE ENTRE LÍNEAS — lo que el cliente pidió corregir el 27-08:
+   * «los textos están muy juntos y se pierde la legibilidad».
+   * Medido en la pieza aprobada, separación de TINTA a TINTA:
    */
-  trackingScript: 1,
-
-  /** Tracking del titular en caja alta. Medido: −1 a 94 de cuerpo. */
-  trackingCaps: -2,
+  aire: {
+    /** Script → titular en caja alta. */
+    scriptATitulo: 9,
+    /** Titular → caja taupe. */
+    tituloACaja: 18,
+    /** Titular → bajada sin caja. */
+    tituloABajada: 24,
+    /** Entre cajas apiladas. */
+    entreCajas: 10,
+    /** Logo → primer texto (medido en la story: 77). */
+    logoATexto: 77,
+  },
 
   /**
-   * ⭐ CAJA TAUPE — el elemento más reconocible de Between y el que faltaba.
-   * Medido en «CAFÉ TO GO + DULCE» / «DESDE $3.790»:
-   * fondo #675b49 OPACO, 74 px de alto, 29 px de padding lateral,
-   * 10 px de separación entre cajas apiladas, esquinas rectas.
-   * Las cajas de una pila se **centran entre sí**, no se alinean a la izquierda.
+   * ⭐ CAJA TAUPE. RE-MEDIDA sobre la pieza aprobada:
+   * fondo #675b49 OPACO, 66 px de alto, 54 px de padding lateral,
+   * esquinas REDONDEADAS de 16 px de radio (antes estaban rectas).
+   * Texto adentro: Raleway ExtraBold 45, beige.
    */
   cajas: {
-    alto: 74,
-    padX: 29,
+    alto: 66,
+    padX: 54,
     gap: 10,
-    radio: 0,
+    radio: 16,
     fondo: '#675b49',
   },
 
   /**
-   * ⭐ GEOMETRÍA DEL BLOQUE DE TEXTO — medida en las piezas de feed.
-   * El bloque va ANCLADO ARRIBA y ALINEADO A LA IZQUIERDA (o centrado, según
-   * plantilla), nunca flotando centrado en el medio del cuadro.
+   * ⭐ GEOMETRÍA DEL BLOQUE DE TEXTO.
+   * ⛔ Antes decía «alineado a la izquierda en x = 114». Las dos piezas aprobadas
+   * están CENTRADAS sobre el eje (desviación medida: 0 y +3 px). Between compone
+   * centrado; el bloque anclado a la izquierda no es su gramática.
    */
   bloque: {
-    /** Margen lateral del bloque de titular. Medido: x = 114 sobre 1080. */
-    x: 114,
-    /** Primera línea de tinta del titular. Medido: y = 220 en feed, y = 425 en story. */
-    yFeed: 220,
-    yStory: 425,
-    /** Separación de TINTA entre la caja alta y la script: prácticamente 0 (2 px). */
-    solapeScript: 2,
-    /** El titular ocupa 55–80 % del ancho del lienzo. Bajo 50 % la pieza se ve chica. */
-    anchoMin: 0.55,
+    /** Centrado sobre el eje del lienzo. */
+    alineacion: 'center' as const,
+    /** Margen lateral mínimo: ningún texto pasa de acá. */
+    margenX: 84,
+    /** Primera línea de TINTA. Medido: feed y = 180, story y = 441 (bajo el logo). */
+    yFeed: 180,
+    yStory: 441,
+    /** El titular ocupa 50–80 % del ancho del lienzo. */
+    anchoMin: 0.5,
     anchoMax: 0.8,
   },
 
@@ -286,12 +315,28 @@ export const cargarFuentesBetween = () => {
   const css = `
   @font-face {
     font-family: 'Brushwell';
-    src: url('${ruta('Brushwell.otf')}') format('opentype');
+    /**
+     * ⛔ NO volver al .otf. Chrome (OTS) RECHAZA Brushwell.otf — sus contornos son
+     * CFF y \`document.fonts.load\` devuelve «A network error occurred». El
+     * @font-face falla EN SILENCIO y Remotion rinde con una serif de reemplazo:
+     * así salieron las 27 piezas de septiembre que el cliente rechazó.
+     * El .woff2 sale de convertir los contornos a TrueType (fontTools + cu2qu).
+     */
+    src: url('${ruta('Brushwell.woff2')}') format('woff2'),
+         url('${ruta('Brushwell.ttf')}') format('truetype');
     font-display: block;
   }
   @font-face {
     font-family: 'ProvisionalScript';
     src: url('${ruta('Provisional-Script.ttf')}') format('truetype');
+    font-display: block;
+  }
+  @font-face {
+    /** La estática que entregó la diseñadora. Es la que manda para el titular. */
+    font-family: 'Raleway';
+    src: url('${ruta('Raleway-ExtraBold.ttf')}') format('truetype');
+    font-weight: 800;
+    font-style: normal;
     font-display: block;
   }
   @font-face {
@@ -312,9 +357,22 @@ export const cargarFuentesBetween = () => {
   style.textContent = css;
   document.head.appendChild(style);
   document.fonts.load('400 100px Brushwell').catch(() => {});
-  document.fonts.load('400 100px ProvisionalScript').catch(() => {});
   document.fonts.load('800 100px Raleway').catch(() => {});
   document.fonts.load('italic 400 100px Raleway').catch(() => {});
+  /**
+   * ⭐ Guardia anti-silencio. Una fuente que no carga NO rompe el render: deja
+   * que el navegador dibuje con la de reemplazo y la pieza sale «casi bien».
+   * Eso costó una grilla entera. Si alguna cara falta, que se vea en consola.
+   */
+  void document.fonts.ready.then(() => {
+    (['400 100px Brushwell', '800 100px Raleway'] as const).forEach((cara) => {
+      if (!document.fonts.check(cara)) {
+        // eslint-disable-next-line no-console
+        console.error(`[BETWEEN] La fuente «${cara}» NO cargó. La pieza saldrá con ` +
+          `una fuente de reemplazo. NO entregar así.`);
+      }
+    });
+  });
 };
 
 cargarFuentesBetween();

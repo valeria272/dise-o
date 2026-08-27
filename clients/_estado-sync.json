@@ -1,16 +1,43 @@
 {
   "_que_es": "Registro de la última vez que se revisó el Drive con /al-dia. No editar a mano.",
-  "ultima_revision": "2026-08-25",
+  "ultima_revision": "2026-08-26",
   "por_marca": {
-    "ebema":        {"revisado": "2026-08-25", "ultimo_hallazgo": "grilla de septiembre cerrada; sistema completo"},
-    "revex":        {"revisado": "2026-08-25", "ultimo_hallazgo": "Brief Diseño Septiembre de Serena — corrigió lo de Vitacura"},
-    "casablanca":   {"revisado": "2026-08-25", "ultimo_hallazgo": "grilla sep compartida con Revex; entrega subida el 25-08"},
-    "selfie":       {"revisado": "2026-08-25", "ultimo_hallazgo": "estructura de Coni levantada (S1/FEED ST MAIL BANNER)"},
-    "hilton":       {"revisado": "2026-08-25", "ultimo_hallazgo": "GRILLA IA BETWEEN de Eli — ADN completo + feedback parte 2"},
-    "tierra-calma": {"revisado": "2026-08-25", "ultimo_hallazgo": "sin novedades; IvyOra activa en el Mac de Valeria"},
-    "cava":         {"revisado": "2026-08-25", "ultimo_hallazgo": "/adn corrido — tipografías identificadas (Bebas Neue Pro + gobCL)"},
-    "myzoo":        {"revisado": "2026-08-25", "ultimo_hallazgo": "envase medido; digital sin medir"},
-    "abakos":       {"revisado": "2026-08-25", "ultimo_hallazgo": "sin gramática medida — faltan piezas aprobadas"}
+    "ebema": {
+      "revisado": "2026-08-25",
+      "ultimo_hallazgo": "grilla de septiembre cerrada; sistema completo"
+    },
+    "revex": {
+      "revisado": "2026-08-25",
+      "ultimo_hallazgo": "Brief Diseño Septiembre de Serena — corrigió lo de Vitacura"
+    },
+    "casablanca": {
+      "revisado": "2026-08-25",
+      "ultimo_hallazgo": "grilla sep compartida con Revex; entrega subida el 25-08"
+    },
+    "selfie": {
+      "revisado": "2026-08-25",
+      "ultimo_hallazgo": "estructura de Coni levantada (S1/FEED ST MAIL BANNER)"
+    },
+    "hilton": {
+      "revisado": "2026-08-26",
+      "ultimo_hallazgo": "Eli abrió S1 HILTON SEP 2026 (DT/QB/BW/P18) — BW aún vacía. Grilla Between: único cambio = ST 3-sep (café de cumpleaños) CORREGIDO -> OK PARA DISEÑAR. NUEVO: HILTON | Planificación Performance Septiembre 2026 (Ignacio Retamal), sin Brief Creativo todavía. Compuerta de material: 812 archivos, 0 rotos."
+    },
+    "tierra-calma": {
+      "revisado": "2026-08-25",
+      "ultimo_hallazgo": "sin novedades; IvyOra activa en el Mac de Valeria"
+    },
+    "cava": {
+      "revisado": "2026-08-25",
+      "ultimo_hallazgo": "/adn corrido — tipografías identificadas (Bebas Neue Pro + gobCL)"
+    },
+    "myzoo": {
+      "revisado": "2026-08-25",
+      "ultimo_hallazgo": "envase medido; digital sin medir"
+    },
+    "abakos": {
+      "revisado": "2026-08-25",
+      "ultimo_hallazgo": "sin gramática medida — faltan piezas aprobadas"
+    }
   },
   "diseñadoras_revisadas": [
     "constanza.lizana@copywriters.cl",

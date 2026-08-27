@@ -9,6 +9,9 @@ qué falta pedir. Las tres categorías NO se tratan igual:
   1. LIBRES (Google Fonts / OFL)  → viajan en el repo, en public/assets/fonts/
   2. DE PAGO con licencia del cliente → son archivos, pero la licencia manda:
      se piden al cliente o a su diseñador, no se reparten a la ligera
+  0. DEL SISTEMA macOS → Futura, Didot y Bodoni 72 viven en
+     /System/Library/Fonts/Supplemental/. No se instalan ni se copian:
+     ya están. Se revisan antes de mandar a activar nada en Adobe.
   3. ADOBE FONTS → **NO se copian nunca**. Viven ofuscadas en la carpeta de
      CoreSync y su licencia es por cuenta de Creative Cloud. Cada persona las
      ACTIVA en su cuenta (Creative Cloud → Fuentes). No hace falta Photoshop.
@@ -22,7 +25,9 @@ RAIZ = Path(__file__).resolve().parent.parent
 REPO_ASSETS = RAIZ / "public" / "assets"
 LIVETYPE = Path.home() / ("Library/Application Support/Adobe/CoreSync/"
                           "plugins/livetype")
-SISTEMA = [Path.home() / "Library/Fonts", Path("/Library/Fonts")]
+SISTEMA = [Path.home() / "Library/Fonts", Path("/Library/Fonts"),
+           Path("/System/Library/Fonts"),
+           Path("/System/Library/Fonts/Supplemental")]
 
 V = "\033[32m✓\033[0m"
 A = "\033[33m▲\033[0m"
@@ -168,10 +173,34 @@ def main(filtro=None):
         print(f"── {marca}")
         for fam, ctx in fams:
             tipo = clasifica(fam, ctx)
+
+            # Una fuente puede no existir con ese nombre (p. ej. la Didone de
+            # Casablanca, que nadie ha identificado) pero tener un sustituto ya
+            # medido en la ficha. Eso NO es una fuente que falte: es una
+            # decisión tomada. Mandarla a "activar en Adobe" es un sinsentido.
+            sust = ctx.get("sustituto") if isinstance(ctx, dict) else None
+            tengo_la_real = (busca(fam, repo) or busca(fam, sistema)
+                             or bool(adobe and busca(fam, adobe)))
+            if sust and not tengo_la_real and (busca(sust, repo)
+                                               or busca(sust, sistema)):
+                iou = ctx.get("IoU")
+                nota = f" (calce {iou}%)" if iou else ""
+                print(f"   {A} {fam:32} sustituto medido: {sust}{nota}")
+                continue
+
             if tipo == "adobe":
                 hay = adobe is not None and busca(fam, adobe)
                 if hay:
                     print(f"   {V} {fam:32} Adobe Fonts — activa")
+                elif (not any(x in fam.lower() for x in DE_PAGO)
+                        and (busca(fam, repo) or busca(fam, sistema))):
+                    # Ojo: el calce es por subcadena, así que "Bebas Neue" en el
+                    # repo haría pasar a "Bebas Neue Pro", que es otra fuente y
+                    # es de pago. Por eso DE_PAGO manda por sobre este atajo.
+                    donde = ("en el repo" if busca(fam, repo)
+                             else "ya viene en macOS")
+                    print(f"   {V} {fam:32} {donde} — activar en Adobe sólo si "
+                          f"el cliente exige esa versión exacta")
                 else:
                     faltan_total += 1
                     print(f"   {X} {fam:32} Adobe Fonts — **ACTIVAR** en "

@@ -3,16 +3,16 @@
 
 Uso:  python3 scripts/verificar-fuentes.py [marca]
 
-Mira los tres lugares donde puede vivir una fuente y dice, por marca, qué hay y
-qué falta pedir. Las tres categorías NO se tratan igual:
+Mira los cuatro lugares donde puede vivir una fuente y dice, por marca, qué hay
+y qué falta pedir. Las cuatro categorías NO se tratan igual:
 
-  1. LIBRES (Google Fonts / OFL)  → viajan en el repo, en public/assets/fonts/
-  2. DE PAGO con licencia del cliente → son archivos, pero la licencia manda:
+  1. DEL SISTEMA macOS → Futura, Didot y Bodoni 72 viven en
+     /System/Library/Fonts/Supplemental/. No se instalan ni se copian: ya
+     están. Se revisan antes de mandar a activar nada en Adobe.
+  2. LIBRES (Google Fonts / OFL)  → viajan en el repo, en public/assets/fonts/
+  3. DE PAGO con licencia del cliente → son archivos, pero la licencia manda:
      se piden al cliente o a su diseñador, no se reparten a la ligera
-  0. DEL SISTEMA macOS → Futura, Didot y Bodoni 72 viven en
-     /System/Library/Fonts/Supplemental/. No se instalan ni se copian:
-     ya están. Se revisan antes de mandar a activar nada en Adobe.
-  3. ADOBE FONTS → **NO se copian nunca**. Viven ofuscadas en la carpeta de
+  4. ADOBE FONTS → **NO se copian nunca**. Viven ofuscadas en la carpeta de
      CoreSync y su licencia es por cuenta de Creative Cloud. Cada persona las
      ACTIVA en su cuenta (Creative Cloud → Fuentes). No hace falta Photoshop.
 """

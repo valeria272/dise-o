@@ -5,7 +5,7 @@ REVEX — sistema gráfico medido (26-08-2026). Todo en unidades normalizadas a
 
 Fuente de los valores: clients/revex/CLAUDE.md §ADN MEDIDO.
 """
-import os, numpy as np
+import math, os, numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,6 +30,46 @@ BARRA_TIT    = dict(padx=23.5, padv=19.5)
 BARRA_DATO   = dict(padx=16.1, padv=5.5)
 CAPSULA      = dict(h=52.3, stroke=1.44)
 VELO         = dict(inicio=150, meseta=380, fin=590, alpha=0.15)
+
+
+# --- icono de WhatsApp (vectorial, sin dependencias) -----------------------
+# Pedido de Serena el 27-08 sobre las dos piezas de outlet.
+# Burbuja blanca + auricular rojo: se queda dentro de la regla de Paulina
+# ("el rojo va en cuadros, nunca en texto") y no mete el verde de WhatsApp,
+# que pelearia con la paleta.
+def _auricular(px, col, r_k=0.215, t_k=0.115, flare=1.9, a0=18, a1=162, rot=-8, ss=10):
+    """Auricular: arco de ancho variable, mas grueso en las puntas."""
+    S = px * ss
+    im = Image.new("RGBA", (S, S), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    c, r, t = S / 2, S * r_k, S * t_k
+    ancho = lambda u: (t / 2) * (1 + (flare - 1) * (2 * abs(u - 0.5)) ** 2.2)
+    fuera, dentro, N = [], [], 240
+    for i in range(N + 1):
+        u = i / N
+        ang = math.radians(a0 + (a1 - a0) * u)
+        nx, ny, w = math.cos(ang), math.sin(ang), ancho(u)
+        fuera.append((c + (r + w) * nx, c + (r + w) * ny))
+        dentro.append((c + (r - w) * nx, c + (r - w) * ny))
+    d.polygon(fuera + dentro[::-1], fill=col)
+    for u, ang in ((0.0, a0), (1.0, a1)):
+        rad, w = math.radians(ang), ancho(u)
+        x, y = c + r * math.cos(rad), c + r * math.sin(rad)
+        d.ellipse([x - w, y - w, x + w, y + w], fill=col)
+    return im.rotate(rot, resample=Image.BICUBIC, center=(c, c)).resize((px, px), Image.LANCZOS)
+
+
+def icono_whatsapp(px, burbuja=BLANCO, glifo=None, ss=10):
+    glifo = BAR_RED if glifo is None else glifo
+    S = px * ss
+    im = Image.new("RGBA", (S, S), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    c, R = S / 2, S * 0.5
+    d.ellipse([0, 0, S, S], fill=burbuja)
+    d.polygon([(c - R * 0.66, c + R * 0.62), (c - R * 0.99, c + R * 0.99),
+               (c - R * 0.30, c + R * 0.88)], fill=burbuja)
+    im.alpha_composite(_auricular(px, glifo).resize((S, S), Image.LANCZOS))
+    return im.resize((px, px), Image.LANCZOS)
 
 
 class Lienzo:
@@ -57,8 +97,10 @@ class Lienzo:
     def fondo_plano(self, color):
         self.d.rectangle([0, 0, self.W, self.Hpx], fill=color)
 
-    def velo(self, inicio=None, meseta=None, fin=None, alpha=None):
-        """MEDIDO: banda oscura detrás del texto, no un degradado de página."""
+    def velo(self, inicio=None, meseta=None, fin=None, alpha=None, rampa=48):
+        """MEDIDO: banda oscura detrás del texto, no un degradado de página.
+        `rampa` es la entrada: sin ella el borde superior corta la foto en seco
+        cuando el fondo es claro (se vio en el concurso, ronda 3)."""
         inicio = VELO["inicio"] if inicio is None else inicio
         meseta = VELO["meseta"] if meseta is None else meseta
         fin    = VELO["fin"]    if fin    is None else fin
@@ -67,6 +109,7 @@ class Lienzo:
         for y in range(self.Hpx):
             yn = y / self.S
             if yn < inicio: k = 0.0
+            elif yn < inicio + rampa: k = alpha * (yn - inicio) / rampa
             elif yn < meseta: k = alpha
             elif yn < fin: k = alpha * (1 - (yn - meseta) / (fin - meseta))
             else: k = 0.0
@@ -179,6 +222,52 @@ class Lienzo:
     def filete(self, y, ancho=760, cx=540, grosor=1.6, color=(255, 255, 255, 205)):
         self.d.rectangle([self.P(cx - ancho / 2), self.P(y),
                           self.P(cx + ancho / 2), self.P(y + grosor)], fill=color)
+
+    # ---------- patron de revestimiento (fondos planos) ----------
+    def patron_revestimiento(self, alto=104, ancho=312, linea=16, tono=13, semilla=7):
+        """Aparejo a matajunta sobre el fondo plano: da textura de revestimiento
+        sin meter fotografia (el brief pide el outlet en rojo pleno).
+        Pedido de Serena 27-08: 'el fondo rojo de un solo color, agregar elementos'."""
+        cap = Image.new("RGBA", (self.W, self.Hpx), (0, 0, 0, 0))
+        d = ImageDraw.Draw(cap, "RGBA")
+        filas = int(self.H / alto) + 2
+        cols = int(1080 / ancho) + 3
+        n = semilla
+        for j in range(filas):
+            desfase = (ancho / 2) if j % 2 else 0
+            y = j * alto
+            for i in range(-1, cols):
+                x = i * ancho - desfase
+                n = (n * 1103515245 + 12345) % 2147483648
+                if n % 100 < 17:                       # algunas placas, un tono mas oscuras
+                    d.rectangle([self.P(x), self.P(y), self.P(x + ancho), self.P(y + alto)],
+                                fill=(0, 0, 0, tono))
+                d.rectangle([self.P(x), self.P(y), self.P(x + ancho), self.P(y + alto)],
+                            outline=(255, 255, 255, linea),
+                            width=max(1, round(self.P(1.6))))
+        self.im = Image.alpha_composite(self.im.convert("RGBA"), cap).convert("RGB")
+        self.d = ImageDraw.Draw(self.im, "RGBA")
+
+    # ---------- linea de contacto con icono ----------
+    def whatsapp(self, txt, y, cap=26, peso=700, cx=540, caja=True,
+                 pad=(34, 20), color=BLANCO, hueco=18):
+        """Icono de WhatsApp + numero, como un solo grupo centrado.
+        Devuelve el y del borde inferior."""
+        cuerpo = self.cuerpo_para_cap(cap, peso)
+        w_txt = self.ancho(txt, cuerpo, peso)
+        d_ico = cap * 1.62
+        w_tot = d_ico + hueco + w_txt
+        x0 = cx - w_tot / 2
+        ico = icono_whatsapp(max(8, round(self.P(d_ico))), burbuja=color, glifo=BAR_RED)
+        if caja:
+            self.d.rectangle([self.P(x0 - pad[0]), self.P(y - pad[1]),
+                              self.P(x0 + w_tot + pad[0]), self.P(y + cap + pad[1])],
+                             outline=color, width=max(1, round(self.P(2.2))))
+        self.im.paste(ico, (round(self.P(x0)), round(self.P(y + cap / 2 - d_ico / 2))), ico)
+        self.d = ImageDraw.Draw(self.im, "RGBA")
+        self.texto(txt, y, cuerpo, peso, color, cx=x0 + d_ico + hueco, alinear="izq")
+        return y + cap + (pad[1] if caja else 0)
+
 
     def guardar(self, path):
         os.makedirs(os.path.dirname(path), exist_ok=True)

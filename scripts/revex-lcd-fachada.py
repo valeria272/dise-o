@@ -1,54 +1,75 @@
 #!/usr/bin/env python3
 """
-REVEX R4 — encuadres de la fachada de Las Condes Design (brief septiembre 2026).
-Parte de lcd_fachada.jpg (2250x1520), foto real y limpia del local con el logo
-GRUPOREVEX sobre la entrada.
+Fondos de Las Condes desde la foto real `lcd_fachada.jpg` (2250x1520).
+
+Por qué se rehace: `lcd_fachada_story.jpg` traía 1327 px de filas clonadas
+desde y=2672 (el 33% inferior), que en el story de la ronda 3 se veían como
+franjas verticales estiradas sobre el vidrio y las plantas. La foto no da
+para 9:16 estirándola: hay que recortar y escalar.
+
+  · story 9:16 -> se probó escalar la foto hasta cubrir los 4000 px, pero a
+    2,63x el letrero GRUPOREVEX queda cortado por el borde. La foto no da
+    para 9:16: se deja a tamaño real abajo y se estira hacia ARRIBA la banda
+    del panel metálico, que es corrugado vertical y por eso aguanta el
+    estirado sin artefactos (es el mismo recurso del feed, que Paulina dio
+    por bueno). Queda: panel limpio arriba con el texto encima, letrero y
+    tienda abajo.
+    ⚠️ PEDIR AL CLIENTE una foto vertical del local de Las Condes: esto es un
+    parche sobre material que no da el formato.
+  · feed 4:5 -> el asset que había dejaba el letrero a media altura, justo
+    detrás del antetítulo (dos wordmarks encimados). Se rehace como recorte
+    puro de la foto escalada 1,85x, sin ningún relleno: el letrero queda
+    arriba (y 0,07-0,22), despejado del bloque de texto que cierra en 0,82.
 """
-import os, sys
-import numpy as np
+import os
 from PIL import Image
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _entorno import RAIZ
 
-DEST = RAIZ / "public/assets/revex/sep"
-src = Image.open(DEST / "lcd_fachada.jpg").convert("RGB"); W, H = src.size
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ASS  = os.path.join(RAIZ, "public/assets/revex/sep")
+SRC  = os.path.join(ASS, "lcd_fachada.jpg")
 
-# ---------- FEED 2250x2250 : la foto abajo, cielorraso extendido arriba ------
-# Si se recorta en cuadrado, el wordmark GRUPOREVEX de la fachada queda justo
-# detrás del titular y compiten. Se baja la foto y el texto cae sobre el
-# cielorraso de hormigón, que es liso y oscuro: se lee limpio.
-fw = 2250; fh = int(H * fw / W)
-foto = src.resize((fw, fh), Image.LANCZOS)
-feed = Image.new("RGB", (fw, 2250))
-top = 2250 - fh
-feed.paste(foto, (0, top))
-a = np.asarray(feed).astype(np.float64)
-banda = np.asarray(foto)[0:30].mean(axis=0)
-for y in range(top):
-    a[y] = banda * (0.40 + 0.60 * (y / top))
-Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).save(DEST / "lcd_fachada_feed.jpg", quality=95)
-print("lcd_fachada_feed.jpg  2250x2250  (foto abajo + cielorraso extendido)")
+def cubrir(destino, ancho, alto, sesgo_x=0.0):
+    """Escala la foto hasta cubrir (ancho x alto) y recorta. sesgo_x: 0 = izquierda."""
+    im = Image.open(SRC).convert("RGB")
+    k = max(ancho / im.size[0], alto / im.size[1])
+    nw, nh = round(im.size[0] * k), round(im.size[1] * k)
+    im = im.resize((nw, nh), Image.LANCZOS)
+    x0 = round((nw - ancho) * sesgo_x)
+    y0 = round((nh - alto) * 0.5)
+    im.crop((x0, y0, x0 + ancho, y0 + alto)).save(os.path.join(ASS, destino), quality=95)
+    print(f"  ✓ {destino}  ({ancho}, {alto})  escala {k:.2f}x")
 
-# ---------- STORY 2250x4000 : la foto a lo ancho, extendida arriba y abajo ---
-# El wordmark GRUPOREVEX ocupa casi todo el ancho: recortarlo en vertical lo
-# partiría. Se conserva completo y se estiran las bandas de hormigón (arriba) y
-# de vitrina (abajo), que son lisas y no delatan el estirado.
-fw = 2250; fh = int(H * fw / W)
-foto = src.resize((fw, fh), Image.LANCZOS)
-story = Image.new("RGB", (fw, 4000))
-top = 1150                                  # la foto queda en el 2º cuarto del cuadro
-story.paste(foto, (0, top))
-a = np.asarray(story).astype(np.float64)
-f = np.asarray(foto).astype(np.float64)
 
-banda_sup = f[0:30].mean(axis=0)             # hormigón del cielo raso
-for y in range(top):
-    t = y / top
-    a[y] = banda_sup * (0.42 + 0.58 * t)
-banda_inf = f[-30:].mean(axis=0)             # vitrina oscura
-h2 = 4000 - (top + fh)
-for i in range(h2):
-    t = (i / h2) ** 0.9
-    a[top + fh + i] = banda_inf * (1 - 0.55 * t)
-Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).save(DEST / "lcd_fachada_story.jpg", quality=95)
-print("lcd_fachada_story.jpg 2250x4000  (foto completa + bandas estiradas)")
+def story_con_panel(destino="lcd_fachada_story.jpg", ancho=2250, alto=4000,
+                    banda=(30, 76)):
+    """banda = tramo de filas del panel que se estira. Medido: 30-76 es el
+    único tramo parejo (desviación horizontal 10 vs 50-60 más abajo); con
+    140 se colaba la transición oscura del alero y salía una diagonal."""
+    im = Image.open(SRC).convert("RGB")
+    if im.size[0] != ancho:
+        im = im.resize((ancho, round(im.size[1] * ancho / im.size[0])), Image.LANCZOS)
+    hueco = alto - im.size[1]
+    lienzo = Image.new("RGB", (ancho, alto))
+    panel = im.crop((0, banda[0], ancho, banda[1])).resize((ancho, hueco), Image.LANCZOS)
+    lienzo.paste(panel, (0, 0))
+    lienzo.paste(im, (0, hueco))
+    lienzo.save(os.path.join(ASS, destino), quality=95)
+    print(f"  ✓ {destino}  ({ancho}, {alto})  foto real desde y={hueco} ({hueco/alto:.0%})")
+
+
+def feed_recorte(destino="lcd_fachada_feed.jpg", ancho=2250, alto=2812, sesgo=0.43):
+    """Recorte puro, sin estirar nada. `sesgo` corre la ventana en horizontal:
+    con 0 el letrero GRUPOREVEX queda cortado por la derecha; 0,43 lo deja
+    entero y centrado (la marca roja arranca en x 0,215 de la foto y el
+    wordmark llega hasta ~0,72)."""
+    im = Image.open(SRC).convert("RGB")
+    k = max(ancho / im.size[0], alto / im.size[1])
+    im = im.resize((round(im.size[0] * k), round(im.size[1] * k)), Image.LANCZOS)
+    x0 = round((im.size[0] - ancho) * sesgo)
+    im.crop((x0, 0, x0 + ancho, alto)).save(os.path.join(ASS, destino), quality=95)
+    print(f"  ✓ {destino}  ({ancho}, {alto})  escala {k:.2f}x, ventana a la izquierda")
+
+
+if __name__ == "__main__":
+    feed_recorte()
+    story_con_panel()

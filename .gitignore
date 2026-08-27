@@ -80,6 +80,10 @@ public/assets/**
 !public/assets/**/*-logo.svg
 !public/assets/**/tc_logo*.png
 !public/assets/brand/**
+# Fondos de la grilla Revex septiembre 2026 (29 MB). Excepción deliberada:
+# los scripts scripts/revex-*.py no corren sin estas fotos, y sin ellas cada
+# ronda de correcciones vuelve a empezar de cero en otra máquina (27-08-2026).
+!public/assets/revex/sep/**
 
 # ⛔ Estas NO se versionan aunque sean fuentes — la licencia lo impide:
 #    IvyOra = Adobe Fonts (cada persona la activa en su Creative Cloud)

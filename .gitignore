@@ -111,3 +111,21 @@ out/*/_subidas.json
 out/mascenter-algarrobal/**/*.mp4
 # La versión con todo incrustado para el artifact (11,5 MB) se regenera cuando haga falta
 out/mascenter-algarrobal/preview-artifact.html
+
+# Material de la RONDA 4 de Between septiembre 2026 (27-08-2026). Misma excepción
+# deliberada que Revex y Casablanca: son las escenas que el cliente pidió rehacer
+# y que NO se reproducen solas —cada una salió de una generación con IA y lleva el
+# logotipo real estampado encima con scripts/between-logo-vaso.py—. Sin ellas, la
+# ronda hay que rehacerla de cero en otra máquina, que es justo lo que ya pasó tres
+# veces con esta cuenta. Se listan por archivo, no la carpeta, para no arrastrar
+# los intermedios de Freepik.
+!public/assets/hilton/between/ia-sept/cumple-manos-logo.png
+!public/assets/hilton/between/ia-sept/cumple-vela-logo.png
+!public/assets/hilton/between/ia-sept/togo-cafe-dulce-logo.png
+!public/assets/hilton/between/ia-sept/togo-salida-2-logo.png
+!public/assets/hilton/between/ia-sept/togo-trio-45-logo.png
+!public/assets/hilton/between/ia-sept/emergencia-caja-2-logo.png
+!public/assets/hilton/between/ia-sept/humor-cafecito-2.png
+# y las dos fotos REALES que reemplazaron a las modelos en el carrusel del 9-sep
+!public/assets/hilton/between/fotos-gradadas/desayuno-completo-2.jpg
+!public/assets/hilton/between/fotos-gradadas/croissant-latte-cenital.jpg

@@ -152,7 +152,11 @@ export const BurbujaChat: React.FC<{children: React.ReactNode}> = ({children}) =
     style={{
       background: 'rgba(103,91,73,0.93)',
       color: '#fff',
-      fontFamily: BETWEEN.fuentes.sans,
+      /* Raleway está auto-hospedada y no trae emojis: sin nombrar la fuente de
+         color del sistema, Chrome cae en un glifo monocromo y los emojis que
+         pidió el cliente («incluir emojis nuevamente») salen como manchas
+         grises. Se añade al final de la pila para que solo actúe de reserva. */
+      fontFamily: `${BETWEEN.fuentes.sans}, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji'`,
       fontWeight: 600,
       fontSize: 31,
       lineHeight: 1.3,
@@ -371,24 +375,27 @@ export const StickerQuiz: React.FC<{
   /** Índice de la opción correcta; si se pasa, se resalta. */
   correcta?: number;
   ancho?: number;
-}> = ({pregunta, opciones, correcta, ancho = 660}) => (
+  /** Versión baja, para cuando la foto deja poco alto libre sobre la zona
+      segura inferior de las historias (340 px). */
+  compacto?: boolean;
+}> = ({pregunta, opciones, correcta, ancho = 660, compacto = false}) => (
   <div
     style={{
       width: ancho,
       background: '#ffffff',
       borderRadius: 22,
-      padding: '26px 24px 22px',
+      padding: compacto ? '20px 22px 18px' : '26px 24px 22px',
       boxShadow: '0 18px 44px rgba(36,26,18,0.32)',
       display: 'flex',
       flexDirection: 'column',
-      gap: 14,
+      gap: compacto ? 10 : 14,
     }}
   >
     <div
       style={{
         fontFamily: BETWEEN.fuentes.sans,
         fontWeight: 700,
-        fontSize: 32,
+        fontSize: compacto ? 28 : 32,
         color: '#1a1a1a',
         textAlign: 'center',
         lineHeight: 1.25,
@@ -402,17 +409,66 @@ export const StickerQuiz: React.FC<{
         style={{
           fontFamily: BETWEEN.fuentes.sans,
           fontWeight: i === correcta ? 700 : 500,
-          fontSize: 29,
+          fontSize: compacto ? 26 : 29,
           color: i === correcta ? BETWEEN.colores.beige : '#2b2b2b',
           background: i === correcta ? BETWEEN.colores.cafe : '#f1ede5',
           borderRadius: 14,
-          padding: '15px 22px',
+          padding: compacto ? '11px 20px' : '15px 22px',
           textAlign: 'center',
         }}
       >
         {o}
       </div>
     ))}
+  </div>
+);
+
+/**
+ * Sticker de ENLACE de Instagram.
+ *
+ * Ronda 4, comentario E15 del cliente: «Ok, enlace a carta!». El sticker lo
+ * pega el community manager al publicar, pero si la pieza no le reserva el
+ * sitio, termina puesto encima del titular. Se dibuja para que el espacio
+ * quede tomado en el diseño y la story se apruebe tal como se va a ver.
+ */
+export const StickerEnlace: React.FC<{texto: string; ancho?: number}> = ({
+  texto,
+  ancho,
+}) => (
+  <div
+    style={{
+      width: ancho,
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 14,
+      background: '#ffffff',
+      borderRadius: 999,
+      padding: '18px 30px',
+      boxShadow: '0 14px 34px rgba(36,26,18,0.30)',
+    }}
+  >
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07L10.8 5.06M14 11a5 5 0 0 0-7.07 0l-2.12 2.12a5 5 0 0 0 7.07 7.07L13.2 18.94"
+        stroke="#1a1a1a"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+    <span
+      style={{
+        fontFamily: BETWEEN.fuentes.sans,
+        fontWeight: 700,
+        fontSize: 32,
+        letterSpacing: '0.02em',
+        color: '#1a1a1a',
+        textTransform: 'uppercase',
+        whiteSpace: 'nowrap',
+      }}
+    >
+      {texto}
+    </span>
   </div>
 );
 

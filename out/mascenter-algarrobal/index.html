@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strip Center Algarrobal — Más Center | Colina</title>
+<meta name="description" content="Nuevo strip center sobre la Autopista Los Libertadores, en Colina. 15.446 m² de terreno, anclado por Unimarc y Farmacia Cruz Verde. Locales comerciales disponibles.">
+<meta property="og:title" content="Strip Center Algarrobal — Más Center">
+<meta property="og:description" content="Nuevo strip center sobre la Autopista Los Libertadores, en Colina. Anclado por Unimarc y Farmacia Cruz Verde.">
+<meta property="og:image" content="assets/video/hero-poster.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/favicon.png">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   STRIP CENTER ALGARROBAL — MÁS CENTER
+   Diseño: PDF "LANDING_ALGARROBAL_CORREGIDO"
+   Movimientos: calcados de pirquenogalesponiente.mascenter.cl
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Tipografía: Poppins auto-hospedada (assets/fonts/) ────────── */
+@font-face{font-family:'Poppins';src:url('assets/fonts/poppins-light.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:'Poppins';src:url('assets/fonts/poppins-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Poppins';src:url('assets/fonts/poppins-medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Poppins';src:url('assets/fonts/poppins-semibold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Poppins';src:url('assets/fonts/poppins-bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+
+/* ── Paleta medida sobre el PDF y cruzada con el sitio en vivo ── */
+:root{
+  --rojo:#E52521;          /* rojo Más Center */
+  --rojo-osc:#C81E1A;      /* hover */
+  --vino:#8B1623;          /* Masterplan */
+  --vino-osc:#631513;      /* bloque Accesibilidad */
+  --gris:#DADADA;          /* fondo Ubicación */
+  --gris-2:#D2D2D3;        /* fondo Locales */
+  --claro:#F3F1F1;         /* fondo Conectividad */
+  --negro:#000000;
+  --negro-2:#1F1F1F;       /* barra de copyright */
+  --texto:#1A1A1A;
+  --texto-med:#4A4A4A;
+  --texto-suave:#5F5F5F;
+  --ancho:1400px;
+  --radio:22px;
+  --exp:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{
+  font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  color:var(--texto);background:#fff;line-height:1.65;font-weight:400;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none}
+.contenedor{width:100%;max-width:var(--ancho);margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+
+/* ── ANIMACIONES ── calcadas de la referencia ─────────────────── */
+.fade-up{opacity:0;transform:translateY(40px);
+  transition:opacity .8s var(--exp),transform .8s var(--exp)}
+.fade-up.is-visible{opacity:1;transform:translateY(0)}
+.fade-left{opacity:0;transform:translateX(-50px);transition:opacity .8s ease,transform .8s ease}
+.fade-right{opacity:0;transform:translateX(50px);transition:opacity .8s ease,transform .8s ease}
+.fade-left.is-visible,.fade-right.is-visible{opacity:1;transform:translate(0)}
+.fade-in{opacity:0;transition:opacity 1s var(--exp)}
+.fade-in.is-visible{opacity:1}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}
+.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .fade-up,.fade-left,.fade-right,.fade-in{opacity:1!important;transform:none!important;transition:none!important}
+  .parallax{transform:none!important}
+}
+
+/* ── HEADER ───────────────────────────────────────────────────── */
+.cabecera{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  padding:22px 0;transition:background .45s var(--exp),padding .45s var(--exp),box-shadow .45s var(--exp);
+}
+.cabecera.solido{background:rgba(0,0,0,.92);padding:12px 0;box-shadow:0 2px 24px rgba(0,0,0,.28);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.cabecera .contenedor{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.cabecera img{height:44px;width:auto;transition:height .45s var(--exp)}
+.cabecera.solido img{height:36px}
+.nav{display:flex;align-items:center;gap:34px}
+.nav a{color:#fff;font-size:.82rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;
+  position:relative;padding:4px 0}
+.nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--rojo);
+  transition:width .4s var(--exp)}
+.nav a:hover::after{width:100%}
+.nav .btn-nav{background:var(--rojo);padding:11px 26px;border-radius:999px;letter-spacing:.06em}
+.nav .btn-nav::after{display:none}
+.nav .btn-nav:hover{background:var(--rojo-osc)}
+.hamburguesa{display:none;flex-direction:column;gap:5px;padding:8px}
+.hamburguesa span{display:block;width:26px;height:2px;background:#fff;transition:transform .35s var(--exp),opacity .35s}
+.hamburguesa.abierto span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburguesa.abierto span:nth-child(2){opacity:0}
+.hamburguesa.abierto span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--rojo)}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover}
+.hero-media img{display:none}
+/* Bloque rojo macizo de la izquierda — como en el diseño */
+.hero-rojo-solido{position:absolute;inset:0;z-index:1;background:var(--rojo);
+  clip-path:polygon(0 0,34% 0,23% 100%,0 100%)}
+/* Diagonal roja translúcida sobre la foto */
+.hero-rojo-transp{position:absolute;inset:0;z-index:2;background:rgba(229,37,33,.62);
+  clip-path:polygon(30% 0,55% 0,44% 100%,19% 100%)}
+.hero-rojo-transp-2{position:absolute;inset:0;z-index:2;background:rgba(139,22,35,.42);
+  clip-path:polygon(74% 0,100% 0,100% 100%,63% 100%)}
+.hero-velo{position:absolute;inset:0;z-index:3;
+  background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 42%,rgba(0,0,0,.42) 100%)}
+.hero-contenido{position:relative;z-index:5;width:100%;padding-bottom:clamp(60px,10vh,120px);padding-top:140px}
+.hero-etiqueta{color:#fff;font-size:.8rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;
+  padding-bottom:14px;margin-bottom:22px;position:relative;display:inline-block}
+.hero-etiqueta::after{content:'';position:absolute;left:0;bottom:0;width:44px;height:2px;background:#fff}
+.hero-titulo{color:#fff;font-size:clamp(2.6rem,6.4vw,5.1rem);line-height:1.04;font-weight:300;letter-spacing:-.015em}
+.hero-titulo strong{display:block;font-weight:700}
+.hero-acciones{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;gap:11px;padding:16px 38px;border-radius:999px;
+  font-size:.85rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  transition:background .35s var(--exp),color .35s var(--exp),transform .35s var(--exp),box-shadow .35s var(--exp)}
+.btn:hover{transform:translateY(-2px)}
+.btn-rojo{background:var(--rojo);color:#fff}
+.btn-rojo:hover{background:var(--rojo-osc);box-shadow:0 10px 30px rgba(229,37,33,.34)}
+.btn-vino{background:var(--vino);color:#fff}
+.btn-vino:hover{background:var(--vino-osc);box-shadow:0 10px 30px rgba(139,22,35,.34)}
+.btn-linea{border:1.6px solid rgba(255,255,255,.75);color:#fff}
+.btn-linea:hover{background:#fff;color:var(--texto)}
+.btn svg{width:15px;height:15px;flex-shrink:0}
+
+/* ── UBICACIÓN ────────────────────────────────────────────────── */
+.ubicacion{background:var(--gris);padding:clamp(70px,9vw,130px) 0}
+.ubicacion .contenedor{display:grid;grid-template-columns:1fr 1.12fr;gap:clamp(36px,6vw,86px);align-items:center}
+.titulo-seccion{font-size:clamp(2rem,4vw,3.15rem);font-weight:700;line-height:1.08;letter-spacing:-.02em}
+.subtitulo-seccion{font-size:clamp(1.1rem,2vw,1.6rem);font-weight:300;color:var(--texto-med);
+  line-height:1.3;margin-top:2px}
+.regla{width:46px;height:3px;background:var(--rojo);margin:26px 0 30px}
+.ubicacion p{color:var(--texto-med);font-size:1rem;margin-bottom:18px;max-width:52ch}
+.ubicacion p strong{color:var(--texto);font-weight:600}
+.foto-etiquetada{position:relative;border-radius:var(--radio);overflow:hidden;
+  box-shadow:0 26px 60px rgba(0,0,0,.16)}
+.foto-etiquetada img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/11}
+.etiqueta-foto{position:absolute;left:22px;bottom:22px;background:var(--vino);color:#fff;
+  padding:11px 24px;border-radius:999px;font-size:.9rem;font-weight:600}
+
+/* ── BANDA CON TARJETA DE DATOS ───────────────────────────────── */
+.banda-datos{position:relative;min-height:clamp(460px,58vw,720px);display:flex;align-items:center;
+  overflow:hidden;background:#20242a}
+.banda-datos .fondo{position:absolute;inset:-8% 0;z-index:0}
+.banda-datos .fondo img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.banda-datos .contenedor{position:relative;z-index:2;display:flex;justify-content:flex-end;
+  padding-top:70px;padding-bottom:70px}
+.tarjeta-vidrio{width:min(100%,720px);background:rgba(30,32,36,.30);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.28);border-radius:var(--radio);
+  padding:clamp(26px,3.4vw,44px);display:grid;grid-template-columns:1fr 1fr 1.15fr;
+  gap:clamp(18px,2.4vw,34px);box-shadow:0 24px 60px rgba(0,0,0,.24)}
+.tarjeta-vidrio .celda{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.42)}
+.tarjeta-vidrio .cifra{color:var(--rojo);font-size:clamp(1.25rem,2.1vw,1.85rem);font-weight:700;
+  line-height:1.1;letter-spacing:-.01em}
+.tarjeta-vidrio .cifra sup{font-size:.58em;vertical-align:super}
+.tarjeta-vidrio .rotulo{font-weight:600;font-size:.98rem;margin:4px 0 8px}
+.tarjeta-vidrio p{font-size:.86rem;line-height:1.5;color:rgba(255,255,255,.94)}
+.tarjeta-vidrio .celda:first-child p{font-size:.92rem;font-weight:500}
+
+/* ── ACCESIBILIDAD + MAPA ─────────────────────────────────────── */
+.accesibilidad{display:grid;grid-template-columns:.86fr 1.14fr;background:var(--claro);position:relative}
+.accesibilidad .bloque{background:var(--vino-osc);color:#fff;padding:clamp(50px,6vw,96px) clamp(28px,4vw,64px);
+  border-radius:0 var(--radio) var(--radio) 0;position:relative;z-index:2}
+.accesibilidad .bloque h2{font-size:clamp(1.9rem,3.6vw,3rem);font-weight:700;line-height:1.08}
+.accesibilidad .bloque .sub{font-size:clamp(1rem,1.8vw,1.45rem);font-weight:300;
+  color:rgba(255,255,255,.86);margin-top:2px}
+.lista-acceso{margin-top:clamp(30px,4vw,54px);display:flex;flex-direction:column;gap:clamp(22px,3vw,38px)}
+.item-acceso{display:flex;gap:20px;align-items:flex-start}
+.item-acceso img{width:62px;height:62px;flex-shrink:0}
+.item-acceso h3{font-size:1rem;font-weight:600;margin-bottom:5px}
+.item-acceso p{font-size:.85rem;line-height:1.55;color:rgba(255,255,255,.82)}
+.accesibilidad .mapa{position:relative;overflow:hidden;min-height:420px}
+.accesibilidad .mapa img{width:100%;height:100%;object-fit:cover;object-position:left center}
+
+/* ── CONECTIVIDAD ─────────────────────────────────────────────── */
+.conectividad{display:grid;grid-template-columns:1fr 1fr;background:var(--claro)}
+.conectividad .foto{position:relative;min-height:clamp(480px,54vw,700px);display:flex;
+  align-items:flex-end;overflow:hidden;border-radius:0 0 var(--radio) 0}
+.conectividad .foto>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 72%;z-index:0}
+.conectividad .foto::after{content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(15,20,26,.34) 0%,rgba(15,20,26,.20) 40%,rgba(15,20,26,.62) 100%)}
+.conectividad .foto .texto{position:relative;z-index:2;color:#fff;
+  padding:clamp(34px,4vw,64px);width:100%}
+.conectividad .foto h2{font-size:clamp(1.8rem,3.4vw,2.85rem);font-weight:700;line-height:1.1}
+.conectividad .foto .sub{font-size:clamp(1rem,1.7vw,1.35rem);font-weight:300;
+  color:rgba(255,255,255,.9);margin-top:6px;max-width:22ch}
+.cifra-flujo{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-top:clamp(30px,4vw,58px)}
+.cifra-flujo .num{font-size:clamp(2.2rem,4.6vw,3.6rem);font-weight:700;letter-spacing:-.02em;line-height:1}
+.cifra-flujo .lab{font-size:.85rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;line-height:1.4}
+.caja-roja{background:var(--rojo);color:#fff;padding:18px 24px;font-size:.88rem;line-height:1.55;
+  margin-top:22px;max-width:56ch}
+.fuente{font-size:.72rem;letter-spacing:.06em;color:rgba(255,255,255,.75);margin-top:16px;text-transform:uppercase}
+.conectividad .tarjetas{padding:clamp(46px,5.5vw,90px) clamp(28px,4vw,64px);
+  display:flex;flex-direction:column;gap:clamp(20px,2.6vw,34px);justify-content:center}
+.tarjeta-ventaja{display:flex;gap:22px;align-items:flex-start;background:#fff;border-radius:18px;
+  padding:22px 26px;box-shadow:0 14px 34px rgba(0,0,0,.09);
+  transition:transform .45s var(--exp),box-shadow .45s var(--exp)}
+.tarjeta-ventaja:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(0,0,0,.14)}
+.tarjeta-ventaja img{width:66px;height:66px;flex-shrink:0}
+.tarjeta-ventaja h3{font-size:.92rem;font-weight:600;text-transform:uppercase;letter-spacing:.02em;
+  margin-bottom:8px;line-height:1.3}
+.tarjeta-ventaja p{font-size:.85rem;line-height:1.55;color:var(--texto-med)}
+.tarjeta-ventaja p strong{color:var(--texto);font-weight:600}
+
+/* ── DESCRIPCIÓN DEL PROYECTO ─────────────────────────────────── */
+.descripcion{background:var(--negro);color:#fff;padding:clamp(70px,9vw,130px) 0 0}
+.descripcion .antetitulo{font-size:clamp(1rem,1.8vw,1.45rem);font-weight:300;color:rgba(255,255,255,.85)}
+.descripcion h2{font-size:clamp(2rem,4vw,3.15rem);font-weight:700;line-height:1.08;margin-top:2px}
+.descripcion .par{position:relative;margin-top:clamp(38px,5vw,64px)}
+.dos-fotos{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.dos-fotos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radio)}
+.caja-vino{position:relative;margin:-96px auto 0;width:min(100%,860px);background:var(--vino);
+  border-radius:var(--radio);padding:clamp(26px,3vw,40px) clamp(24px,3vw,44px);
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px);text-align:center;z-index:3}
+.caja-vino>div{position:relative}
+.caja-vino>div+div::before{content:'';position:absolute;left:calc(-1 * clamp(10px,1.5vw,20px));
+  top:6px;bottom:6px;width:1px;background:rgba(255,255,255,.35)}
+.caja-vino h3{font-size:1rem;font-weight:600;margin-bottom:8px}
+.caja-vino p{font-size:.85rem;line-height:1.55;color:rgba(255,255,255,.92)}
+.centro-btn{display:flex;justify-content:center;margin-top:-26px;position:relative;z-index:4}
+
+/* ── BENEFICIOS (4 iconos) ────────────────────────────────────── */
+.beneficios{background:var(--negro);color:#fff;padding:clamp(64px,8vw,110px) 0 clamp(56px,7vw,96px)}
+.beneficios .grilla{display:grid;grid-template-columns:repeat(4,1fr)}
+.beneficio{text-align:center;padding:0 clamp(14px,2vw,28px);position:relative}
+.beneficio+.beneficio::before{content:'';position:absolute;left:0;top:52px;bottom:6px;width:1px;
+  background:rgba(255,255,255,.22)}
+.beneficio img{width:58px;height:58px;margin:0 auto 18px}
+.beneficio .lead{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.7);margin-bottom:2px;min-height:1.4em}
+.beneficio h3{font-size:1.02rem;font-weight:600;line-height:1.25}
+.beneficio p{font-size:.84rem;font-weight:300;color:rgba(255,255,255,.78);margin-top:5px;line-height:1.4}
+
+/* ── LOCALES COMERCIALES ──────────────────────────────────────── */
+.locales{background:var(--gris-2);padding:clamp(70px,9vw,130px) 0}
+.locales .contenedor{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(36px,6vw,86px);align-items:center}
+.locales .foto{border-radius:var(--radio);overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.16)}
+.locales .foto img{width:100%;aspect-ratio:4/3.4;object-fit:cover}
+.antetitulo-rojo{color:var(--rojo);font-size:.86rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.locales h2{font-size:clamp(2rem,4vw,3.15rem);font-weight:700;line-height:1.08;margin-top:8px;color:var(--texto-med)}
+.locales p{color:var(--texto-med);font-size:.98rem;max-width:54ch}
+.locales p strong{color:var(--texto);font-weight:600}
+
+/* ── MASTERPLAN ───────────────────────────────────────────────── */
+.masterplan-foto{background:var(--gris-2);overflow:hidden}
+.masterplan-foto img{width:100%;height:auto}
+.masterplan{background:var(--vino);color:#fff;padding:clamp(52px,6.5vw,96px) 0}
+.masterplan .contenedor{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(34px,5vw,72px);align-items:center}
+.masterplan h2{font-size:clamp(1.9rem,3.6vw,3rem);font-weight:700;letter-spacing:.02em}
+.masterplan .rent{font-size:1rem;font-weight:600;margin:22px 0 14px}
+.tabla{width:100%;border-collapse:collapse;font-size:.92rem}
+.tabla th{background:var(--rojo);color:#fff;font-weight:600;padding:11px 16px;text-align:left;font-size:.88rem}
+.tabla th:nth-child(2),.tabla td:nth-child(2){text-align:center}
+.tabla th:nth-child(3),.tabla td:nth-child(3){text-align:center}
+.tabla td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.94)}
+.tabla tr:last-child td{border-bottom:0}
+.datos-mp{display:flex;flex-direction:column;gap:clamp(22px,3vw,38px)}
+.dato-mp{display:flex;align-items:center;gap:22px}
+.dato-mp img{width:72px;height:auto;flex-shrink:0}
+.dato-mp .lab{font-size:.86rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;
+  color:rgba(255,255,255,.9)}
+.dato-mp .val{font-size:clamp(1.7rem,3.2vw,2.5rem);font-weight:700;line-height:1.05;letter-spacing:-.01em}
+.dato-mp .val sup{font-size:.55em;vertical-align:super}
+.sep-mp{height:1px;background:rgba(255,255,255,.28)}
+
+/* ── GALERÍA ──────────────────────────────────────────────────── */
+.galeria{background:#F5F7F8;padding:clamp(60px,8vw,110px) 0}
+.carrusel{position:relative;overflow:hidden;padding:34px 0;margin:-34px 0}
+.pista{display:flex;gap:24px;transition:transform .78s var(--exp);will-change:transform}
+.diapo{flex:0 0 68%;border-radius:var(--radio);overflow:hidden;
+  opacity:.42;transform:scale(.93);
+  transition:opacity .78s var(--exp),transform .78s var(--exp)}
+.diapo.activa{opacity:1;transform:scale(1);box-shadow:0 26px 60px rgba(0,0,0,.2)}
+.diapo img{width:100%;aspect-ratio:16/10;object-fit:cover;pointer-events:none}
+.flechas{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;
+  pointer-events:none;padding:0 8px}
+.flecha{pointer-events:auto;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.94);
+  display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.18);
+  transition:background .3s var(--exp),transform .3s var(--exp)}
+.flecha:hover{background:var(--rojo);transform:scale(1.07)}
+.flecha:hover svg{stroke:#fff}
+.flecha svg{width:18px;height:18px;stroke:var(--texto);stroke-width:2.2;fill:none}
+.flecha[disabled]{opacity:.3;pointer-events:none}
+.puntos{display:flex;justify-content:center;gap:10px;margin-top:36px}
+.punto{width:34px;height:3px;background:#C4C4C4;border-radius:2px;transition:background .4s var(--exp)}
+.punto.activo{background:var(--rojo)}
+
+/* ── OPORTUNIDAD ──────────────────────────────────────────────── */
+.oportunidad{position:relative;min-height:clamp(360px,42vw,540px);display:flex;align-items:center;
+  overflow:hidden;text-align:center;background:#1a1d21}
+.oportunidad .fondo{position:absolute;inset:-8% 0;z-index:0}
+.oportunidad .fondo img{width:100%;height:100%;object-fit:cover}
+.oportunidad::after{content:'';position:absolute;inset:0;z-index:1;background:rgba(8,10,12,.62)}
+.oportunidad .contenedor{position:relative;z-index:2;color:#fff;padding-top:70px;padding-bottom:70px}
+.oportunidad h2{font-size:clamp(1.8rem,4vw,3.1rem);font-weight:700;line-height:1.12;text-transform:uppercase}
+.oportunidad p{margin:24px auto 0;max-width:70ch;font-size:.98rem;line-height:1.7;color:rgba(255,255,255,.92)}
+.oportunidad p strong{font-weight:600}
+
+/* ── CONSTRUIMOS ──────────────────────────────────────────────── */
+.construimos{background:linear-gradient(180deg,#EDEDED 0%,#FAFAFA 100%);
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(30px,4vw,70px);
+  padding:0 0 clamp(50px,6vw,90px)}
+.construimos .foto{overflow:hidden;align-self:stretch;min-height:clamp(420px,46vw,660px);position:relative;
+  clip-path:polygon(24% 0,100% 0,76% 100%,0 100%)}
+.construimos .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.construimos .texto{padding:clamp(50px,6vw,96px) clamp(28px,4vw,64px) clamp(30px,4vw,60px) 0;max-width:640px}
+.construimos h2{font-size:clamp(1.9rem,3.6vw,2.9rem);font-weight:700;line-height:1.12;color:var(--rojo)}
+.construimos .invita{font-size:clamp(.95rem,1.6vw,1.15rem);font-weight:400;color:var(--texto-med);
+  margin-top:18px;letter-spacing:.01em}
+.construimos p.cuerpo{font-size:.94rem;color:var(--texto-med);margin-top:20px;line-height:1.7}
+.construimos .logo-mc{margin-top:38px;width:190px;opacity:.85}
+
+/* ── FORMULARIO ───────────────────────────────────────────────── */
+.contacto{background:var(--claro);padding:clamp(66px,8vw,120px) 0}
+.contacto .contenedor{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,80px);align-items:start}
+.contacto h2{font-size:clamp(2rem,4vw,3.15rem);font-weight:700;line-height:1.08}
+.contacto .sub{font-size:clamp(1rem,1.8vw,1.4rem);font-weight:300;color:var(--texto-med);margin-top:2px}
+.contacto .intro{color:var(--texto-med);font-size:.96rem;max-width:44ch;margin-top:26px}
+.datos-directos{margin-top:34px;display:flex;flex-direction:column;gap:16px}
+.dato-directo{display:flex;align-items:center;gap:14px;font-size:.95rem;color:var(--texto)}
+.dato-directo .ico{width:40px;height:40px;border-radius:50%;background:var(--rojo);display:grid;
+  place-items:center;flex-shrink:0}
+.dato-directo .ico svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:1.9}
+.dato-directo a:hover{color:var(--rojo)}
+form.formulario{background:#fff;border-radius:var(--radio);padding:clamp(26px,3.4vw,44px);
+  box-shadow:0 22px 54px rgba(0,0,0,.09);display:grid;grid-template-columns:1fr 1fr;gap:16px}
+form.formulario .ancho-total{grid-column:1/-1}
+form.formulario label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--texto-med);margin-bottom:7px}
+form.formulario input,form.formulario textarea,form.formulario select{
+  width:100%;padding:13px 16px;border:1.5px solid #E2E2E2;border-radius:10px;
+  font-family:inherit;font-size:.95rem;color:var(--texto);background:#fff;
+  transition:border-color .3s var(--exp),box-shadow .3s var(--exp)}
+form.formulario input:focus,form.formulario textarea:focus,form.formulario select:focus{
+  outline:none;border-color:var(--rojo);box-shadow:0 0 0 3px rgba(229,37,33,.12)}
+form.formulario input[readonly]{background:#F6F6F6;color:var(--texto-med)}
+form.formulario textarea{resize:vertical;min-height:104px}
+form.formulario .legal{font-size:.76rem;color:var(--texto-suave);line-height:1.5}
+form.formulario button{width:100%;justify-content:center}
+.aviso-form{grid-column:1/-1;font-size:.9rem;padding:13px 16px;border-radius:10px;display:none}
+.aviso-form.ok{display:block;background:#E8F5E9;color:#1B5E20}
+.aviso-form.error{display:block;background:#FDECEA;color:#8B1623}
+
+/* ── FOOTER ───────────────────────────────────────────────────── */
+.pie{background:var(--negro);color:#fff;padding:clamp(50px,6vw,86px) 0 clamp(38px,4vw,60px)}
+.pie .contenedor{display:grid;grid-template-columns:1.1fr 1.1fr 1fr .8fr;gap:clamp(28px,4vw,56px);
+  align-items:start}
+.pie img.logo{width:170px;opacity:.95}
+.pie h4{font-size:.92rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  padding-bottom:10px;margin-bottom:20px;position:relative;color:rgba(255,255,255,.92)}
+.pie h4::after{content:'';position:absolute;left:0;bottom:0;width:26px;height:2px;background:var(--rojo)}
+.pie-item{display:flex;align-items:center;gap:14px;margin-bottom:15px;font-size:.9rem;
+  color:rgba(255,255,255,.86)}
+.pie-item .circ{width:38px;height:38px;border-radius:50%;border:1.4px solid rgba(255,255,255,.55);
+  display:grid;place-items:center;flex-shrink:0;transition:background .3s var(--exp),border-color .3s var(--exp)}
+.pie-item:hover .circ{background:var(--rojo);border-color:var(--rojo)}
+.pie-item .circ svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:1.7}
+.pie img.ifb{width:118px;opacity:.85;justify-self:end}
+.copyright{background:var(--negro-2);color:rgba(255,255,255,.72);text-align:center;
+  padding:20px 0;font-size:.86rem}
+
+/* ── MENÚ FLOTANTE (derecha) ──────────────────────────────────── */
+.flotante{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:850;
+  display:flex;flex-direction:column;border-radius:8px 0 0 8px;overflow:hidden;
+  box-shadow:0 6px 22px rgba(0,0,0,.24)}
+.flotante a{width:52px;height:52px;display:grid;place-items:center;transition:filter .3s var(--exp)}
+.flotante a:hover{filter:brightness(1.14)}
+.flotante a svg{width:21px;height:21px;stroke:#fff;fill:none;stroke-width:1.8}
+.flotante .f-contacto{background:var(--rojo)}
+.flotante .f-mapa{background:var(--vino)}
+.flotante .f-wa{background:#25D366}
+.flotante .f-wa svg{fill:#fff;stroke:none}
+
+/* ── LIGHTBOX DEL VIDEO ───────────────────────────────────────── */
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.93);
+  display:none;align-items:center;justify-content:center;padding:20px;
+  opacity:0;transition:opacity .4s var(--exp)}
+.lightbox.abierto{display:flex}
+.lightbox.visible{opacity:1}
+.lightbox video{width:min(100%,1180px);max-height:86vh;border-radius:10px;background:#000}
+.cerrar-lb{position:absolute;top:22px;right:26px;width:46px;height:46px;border-radius:50%;
+  background:rgba(255,255,255,.14);display:grid;place-items:center;transition:background .3s var(--exp)}
+.cerrar-lb:hover{background:var(--rojo)}
+.cerrar-lb svg{width:19px;height:19px;stroke:#fff;stroke-width:2.2;fill:none}
+
+/* ══ RESPONSIVE ══════════════════════════════════════════════ */
+@media (max-width:1100px){
+  .accesibilidad,.conectividad,.construimos{grid-template-columns:1fr}
+  .accesibilidad .bloque{border-radius:0}
+  .accesibilidad .mapa{min-height:340px;order:-1}
+  .construimos .foto{clip-path:none;min-height:320px}
+  .construimos .texto{padding:clamp(40px,6vw,70px) clamp(20px,5vw,40px)}
+  .contacto .contenedor{grid-template-columns:1fr}
+  .pie .contenedor{grid-template-columns:1fr 1fr}
+  .pie img.ifb{justify-self:start}
+  .tarjeta-vidrio{grid-template-columns:1fr}
+  .banda-datos .contenedor{justify-content:center}
+}
+@media (max-width:900px){
+  .fade-left,.fade-right{transform:translateY(30px)}
+  .fade-left.is-visible,.fade-right.is-visible{transform:translateY(0)}
+  .nav{position:fixed;inset:0 0 0 auto;width:min(82vw,340px);background:rgba(0,0,0,.97);
+    flex-direction:column;justify-content:center;gap:26px;transform:translateX(100%);
+    transition:transform .5s var(--exp);padding:40px}
+  .nav.abierto{transform:translateX(0)}
+  .nav a{font-size:1rem}
+  .hamburguesa{display:flex;z-index:2}
+  .ubicacion .contenedor,.locales .contenedor{grid-template-columns:1fr}
+  .locales .foto{order:-1}
+  .dos-fotos{grid-template-columns:1fr}
+  .caja-vino{grid-template-columns:1fr;margin-top:-60px}
+  .caja-vino>div+div::before{display:none}
+  .caja-vino>div+div{padding-top:18px;border-top:1px solid rgba(255,255,255,.3)}
+  .beneficios .grilla{grid-template-columns:1fr 1fr;gap:36px 0}
+  .beneficio+.beneficio::before{display:none}
+  .beneficio:nth-child(odd)::after{content:'';position:absolute;right:0;top:52px;bottom:6px;width:1px;
+    background:rgba(255,255,255,.22)}
+  .masterplan .contenedor{grid-template-columns:1fr}
+  .diapo{flex:0 0 84%}
+  form.formulario{grid-template-columns:1fr}
+  .hero-rojo-solido{clip-path:polygon(0 0,58% 0,44% 100%,0 100%)}
+  .hero-rojo-transp{clip-path:polygon(52% 0,78% 0,64% 100%,38% 100%)}
+  .hero-rojo-transp-2{display:none}
+}
+@media (max-width:640px){
+  .pie .contenedor{grid-template-columns:1fr}
+  .beneficios .grilla{grid-template-columns:1fr;gap:34px}
+  .beneficio:nth-child(odd)::after{display:none}
+  .diapo{flex:0 0 92%}
+  .flotante a{width:46px;height:46px}
+  .hero-acciones .btn{width:100%;justify-content:center}
+  .cifra-flujo{gap:10px}
+}
+/* En móvil no se descarga el video: se muestra el poster */
+@media (max-width:820px){
+  .hero-media video{display:none}
+  .hero-media img{display:block}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ HEADER ════════════ -->
+<header class="cabecera" id="cabecera">
+  <div class="contenedor">
+    <a href="#inicio" aria-label="Más Center — inicio">
+      <img src="assets/img/logo-mascenter-blanco.svg" alt="Más Center" width="120" height="65">
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#proyecto">El proyecto</a>
+      <a href="#masterplan">Masterplan</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto" class="btn-nav">Contáctanos</a>
+    </nav>
+    <button class="hamburguesa" id="hamburguesa" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero" id="inicio">
+  <div class="hero-media">
+    <video autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.jpg">
+      <source src="assets/video/algarrobal-hero-loop.mp4" type="video/mp4">
+    </video>
+    <img src="assets/video/hero-poster.jpg" alt="Strip Center Algarrobal — vista aérea del proyecto">
+  </div>
+  <div class="hero-rojo-solido"></div>
+  <div class="hero-rojo-transp"></div>
+  <div class="hero-rojo-transp-2"></div>
+  <div class="hero-velo"></div>
+
+  <div class="hero-contenido">
+    <div class="contenedor">
+      <span class="hero-etiqueta fade-up">Nuevo</span>
+      <h1 class="hero-titulo fade-up d1">Strip Center <strong>Algarrobal</strong></h1>
+      <div class="hero-acciones fade-up d2">
+        <button class="btn btn-rojo" id="abrir-video">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          Ver el video del proyecto
+        </button>
+        <a href="#contacto" class="btn btn-linea">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ UBICACIÓN ════════════ -->
+<section class="ubicacion" id="ubicacion">
+  <div class="contenedor">
+    <div>
+      <h2 class="titulo-seccion fade-up">Ubicación</h2>
+      <p class="subtitulo-seccion fade-up d1">Estratégica y de alto tráfico</p>
+      <div class="regla fade-up d1"></div>
+      <p class="fade-up d2">Es un strip center estratégicamente ubicado sobre la
+        <strong>Autopista Los Libertadores, en la comuna de Colina, uno de los principales ejes de
+        conexión del sector.</strong> Emplazado en una zona de alta afluencia vehicular y de sostenido
+        crecimiento habitacional y comercial, el proyecto se beneficia del desarrollo de nuevos
+        condominios y barrios residenciales, impulsando una creciente demanda por comercio y servicios.</p>
+      <p class="fade-up d3">Respaldado por la experiencia de <strong>Más Center</strong> en el desarrollo,
+        comercialización y administración de centros comerciales, el proyecto ofrece una plataforma
+        sólida, un mix comercial cuidadosamente diseñado y una propuesta orientada a maximizar la
+        rentabilidad y la proyección de largo plazo.</p>
+    </div>
+    <div class="foto-etiquetada fade-right d1">
+      <img src="assets/img/ubicacion.jpg" alt="Render del Strip Center Algarrobal con la cordillera al fondo" loading="lazy">
+      <span class="etiqueta-foto">Proyecto Algarrobal</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ BANDA CON TARJETA DE DATOS ════════════ -->
+<section class="banda-datos">
+  <div class="fondo parallax" data-parallax="0.14">
+    <img src="assets/img/banda-render.jpg" alt="Vista aérea del strip center" loading="lazy">
+  </div>
+  <div class="contenedor">
+    <div class="tarjeta-vidrio fade-up">
+      <div class="celda">
+        <p>Proyecto anclado por supermercado Unimarc y Farmacia Cruz Verde con contratos a largo plazo</p>
+      </div>
+      <div class="celda">
+        <div class="cifra">15.446 m<sup>2</sup></div>
+        <div class="rotulo">De terreno</div>
+        <p>Ubicado en un entorno de alto crecimiento residencial y comercial.</p>
+      </div>
+      <div class="celda">
+        <div class="cifra">ABC1, C2 y C3</div>
+        <div class="rotulo">segmento predominante</div>
+        <p>La comuna concentra un 63% de hogares pertenecientes a estos segmentos, consolidándose
+          como un mercado altamente atractivo para el desarrollo de nuevos operadores comerciales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ ACCESIBILIDAD + MAPA ════════════ -->
+<section class="accesibilidad">
+  <div class="bloque">
+    <h2 class="fade-up">Accesibilidad<br>Estratégica</h2>
+    <p class="sub fade-up d1">Y alto potencial de flujo</p>
+    <div class="lista-acceso">
+      <div class="item-acceso fade-up d1">
+        <img src="assets/img/iconos/acceso-1.png" alt="" loading="lazy">
+        <div>
+          <h3>Ruta 57 General San Martín</h3>
+          <p>Ubicación con alta exposición y excelente conectividad, sobre uno de los principales
+            ejes de acceso a Colina.</p>
+        </div>
+      </div>
+      <div class="item-acceso fade-up d2">
+        <img src="assets/img/iconos/acceso-2.png" alt="" loading="lazy">
+        <div>
+          <h3>Entorno residencial consolidado</h3>
+          <p>Rodeado de nuevos desarrollos habitacionales que impulsan una demanda permanente por
+            comercio y servicios.</p>
+        </div>
+      </div>
+      <div class="item-acceso fade-up d3">
+        <img src="assets/img/iconos/acceso-3.png" alt="" loading="lazy">
+        <div>
+          <h3>Desarrollo comercial en expansión</h3>
+          <p>El crecimiento planificado del sector favorece la llegada de nuevos operadores y
+            fortalece la actividad comercial.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mapa fade-in">
+    <img src="assets/img/mapa.jpg" alt="Mapa del entorno del Strip Center Algarrobal en Colina" loading="lazy">
+  </div>
+</section>
+
+<!-- ════════════ CONECTIVIDAD ════════════ -->
+<section class="conectividad">
+  <div class="foto">
+    <img src="assets/img/autopista.jpg" alt="Autopista Los Libertadores" loading="lazy">
+    <div class="texto">
+      <h2 class="fade-up">Conectividad y alto<br>flujo de tránsito</h2>
+      <p class="sub fade-up d1">Exposición estratégica de uno de los principales ejes de acceso a Colina</p>
+      <div class="cifra-flujo fade-up d2">
+        <span class="num">+1.096.000</span>
+        <span class="lab">Viajes mensuales<br>por Autopista Los Libertadores</span>
+      </div>
+      <p class="caja-roja fade-up d3">El sostenido aumento del flujo vehicular posiciona al proyecto
+        en un punto de alta visibilidad, con una exposición permanente frente a miles de potenciales
+        clientes cada día.</p>
+      <p class="fuente fade-up d4">*Fuente: Estudio Xbrein (año 2022)</p>
+    </div>
+  </div>
+  <div class="tarjetas">
+    <div class="tarjeta-ventaja fade-up d1">
+      <img src="assets/img/iconos/ventaja-1.png" alt="" loading="lazy">
+      <div>
+        <h3>Visibilidad sobre Autopista Los Libertadores</h3>
+        <p>Una ubicación privilegiada sobre uno de los <strong>principales corredores viales</strong>
+          del sector, que asegura <strong>alta exposición y excelente conectividad.</strong></p>
+      </div>
+    </div>
+    <div class="tarjeta-ventaja fade-up d2">
+      <img src="assets/img/iconos/ventaja-2.png" alt="" loading="lazy">
+      <div>
+        <h3>Entorno de alto potencial comercial</h3>
+        <p>El crecimiento residencial y la incorporación de nuevas familias han impulsado una
+          <strong>mayor demanda por comercio y servicios,</strong> consolidando al sector como un
+          polo de desarrollo.</p>
+      </div>
+    </div>
+    <div class="tarjeta-ventaja fade-up d3">
+      <img src="assets/img/iconos/ventaja-3.png" alt="" loading="lazy">
+      <div>
+        <h3>Mercado con alto poder adquisitivo</h3>
+        <p><strong>Más del 63%</strong> de los hogares de la comuna pertenece a los
+          <strong>segmentos ABC1, C2 y C3,</strong> conformando una sólida base de consumidores
+          para el comercio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DESCRIPCIÓN DEL PROYECTO ════════════ -->
+<section class="descripcion" id="proyecto">
+  <div class="contenedor">
+    <p class="antetitulo fade-up">Strip Center Algarrobal</p>
+    <h2 class="fade-up d1">Descripción del proyecto</h2>
+    <div class="par">
+      <div class="dos-fotos">
+        <img class="fade-up d1" src="assets/img/descripcion-1.jpg" alt="Fachada del strip center al atardecer" loading="lazy">
+        <img class="fade-up d2" src="assets/img/descripcion-2.jpg" alt="Locales comerciales con Farmacia Cruz Verde" loading="lazy">
+      </div>
+      <div class="caja-vino fade-up d3">
+        <div>
+          <h3>Entorno residencial consolidado</h3>
+          <p>Rodeado de nuevos desarrollos habitacionales que impulsan una demanda permanente por
+            comercio y servicios.</p>
+        </div>
+        <div>
+          <h3>Desarrollo comercial en expansión</h3>
+          <p>El crecimiento planificado del sector favorece la llegada de nuevos operadores y
+            fortalece la actividad comercial.</p>
+        </div>
+      </div>
+      <div class="centro-btn fade-up d4">
+        <a href="#contacto" class="btn btn-rojo">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ BENEFICIOS ════════════ -->
+<section class="beneficios">
+  <div class="contenedor">
+    <div class="grilla">
+      <div class="beneficio fade-up d1">
+        <img src="assets/img/iconos/beneficio-1.png" alt="" loading="lazy">
+        <p class="lead" aria-hidden="true">&nbsp;</p>
+        <h3>Flujo constante</h3>
+        <p>en placa comercial</p>
+      </div>
+      <div class="beneficio fade-up d2">
+        <img src="assets/img/iconos/beneficio-2.png" alt="" loading="lazy">
+        <p class="lead" aria-hidden="true">&nbsp;</p>
+        <h3>Tránsito peatonal</h3>
+        <p>directo desde estacionamientos</p>
+      </div>
+      <div class="beneficio fade-up d3">
+        <img src="assets/img/iconos/beneficio-3.png" alt="" loading="lazy">
+        <p class="lead" aria-hidden="true">&nbsp;</p>
+        <h3>Integración</h3>
+        <p>con supermercado ancla</p>
+      </div>
+      <div class="beneficio fade-up d4">
+        <img src="assets/img/iconos/beneficio-4.png" alt="" loading="lazy">
+        <p class="lead">Espacios diseñados para</p>
+        <h3>Alta visibilidad</h3>
+        <p>de marca</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ LOCALES COMERCIALES ════════════ -->
+<section class="locales">
+  <div class="contenedor">
+    <div class="foto fade-left">
+      <img src="assets/img/locales.jpg" alt="Vista aérea del Strip Center Algarrobal" loading="lazy">
+    </div>
+    <div>
+      <p class="antetitulo-rojo fade-up d1">Espacios a tu medida</p>
+      <h2 class="fade-up d2">Locales comerciales</h2>
+      <div class="regla fade-up d2"></div>
+      <p class="fade-up d3"><strong>Una oportunidad comercial en un entorno consolidado.</strong>
+        Potencia el crecimiento de tu marca en un entorno comercial dinámico. Nuestros espacios están
+        estratégicamente diseñados para brindarte la máxima exposición, aprovechando el alto flujo
+        peatonal y vehicular de la zona. Sé parte de un proyecto moderno pensado para acompañar el
+        crecimiento de tu negocio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ MASTERPLAN ════════════ -->
+<div class="masterplan-foto" id="masterplan">
+  <img class="fade-in" src="assets/img/masterplan.jpg" alt="Masterplan del Strip Center Algarrobal con la numeración de locales" loading="lazy">
+</div>
+<section class="masterplan">
+  <div class="contenedor">
+    <div>
+      <h2 class="fade-up">MASTERPLAN</h2>
+      <p class="rent fade-up d1">Rent Roll</p>
+      <table class="tabla fade-up d2">
+        <thead>
+          <tr><th>Arrendatario</th><th>Superficie (m<sup>2</sup>)</th><th>Estado</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Unimarc</td><td>1.968</td><td>Firmado</td></tr>
+          <tr><td>Farmacia Cruz Verde</td><td>200</td><td>Firmado</td></tr>
+          <tr><td>Locales 1er piso</td><td>997</td><td>Disponible</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="datos-mp">
+      <div class="dato-mp fade-up d2">
+        <img src="assets/img/iconos/dato-estacionamientos.png" alt="" loading="lazy">
+        <div>
+          <div class="lab">Estacionamientos</div>
+          <div class="val">117</div>
+        </div>
+      </div>
+      <div class="sep-mp fade-in d2"></div>
+      <div class="dato-mp fade-up d3">
+        <img src="assets/img/iconos/dato-m2.png" alt="" loading="lazy">
+        <div>
+          <div class="lab">Terreno total</div>
+          <div class="val">15.446 m<sup>2</sup></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GALERÍA ════════════ -->
+<section class="galeria" id="galeria">
+  <div class="contenedor">
+    <div class="carrusel fade-up" id="carrusel">
+      <div class="pista" id="pista">
+        <div class="diapo"><img src="assets/img/galeria-1.jpg" alt="Render del Strip Center Algarrobal" loading="lazy"></div>
+        <div class="diapo"><img src="assets/img/galeria-2.jpg" alt="Render nocturno del Strip Center Algarrobal" loading="lazy"></div>
+        <div class="diapo"><img src="assets/img/banda-render.jpg" alt="Vista aérea del proyecto" loading="lazy"></div>
+        <div class="diapo"><img src="assets/img/descripcion-2.jpg" alt="Locales con Farmacia Cruz Verde" loading="lazy"></div>
+        <div class="diapo"><img src="assets/img/ubicacion.jpg" alt="Fachada del proyecto con la cordillera al fondo" loading="lazy"></div>
+        <div class="diapo"><img src="assets/img/descripcion-1.jpg" alt="Fachada del strip center al atardecer" loading="lazy"></div>
+        <div class="diapo"><img src="assets/img/locales.jpg" alt="Vista aérea del strip center y su estacionamiento" loading="lazy"></div>
+        <div class="diapo"><img src="assets/img/aerea-grande.jpg" alt="Emplazamiento del proyecto sobre la Autopista Los Libertadores" loading="lazy"></div>
+      </div>
+      <div class="flechas">
+        <button class="flecha" id="ant" aria-label="Anterior">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="flecha" id="sig" aria-label="Siguiente">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="puntos" id="puntos"></div>
+  </div>
+</section>
+
+<!-- ════════════ OPORTUNIDAD ════════════ -->
+<section class="oportunidad">
+  <div class="fondo parallax" data-parallax="0.12">
+    <img src="assets/img/aerea-grande.jpg" alt="" loading="lazy">
+  </div>
+  <div class="contenedor">
+    <h2 class="fade-up">Tu oportunidad de inversión<br>es ahora</h2>
+    <p class="fade-up d2"><strong>Más Center Algarrobal</strong> es una oportunidad para formar parte
+      de un proyecto que crece junto a su entorno, integrándose a la vida cotidiana de la comuna y
+      proyectando valor en el largo plazo.</p>
+  </div>
+</section>
+
+<!-- ════════════ CONSTRUIMOS ESPACIOS ════════════ -->
+<section class="construimos">
+  <div class="foto fade-in">
+    <img src="assets/img/hero-aerea.jpg" alt="Vista aérea del Strip Center Algarrobal" loading="lazy">
+  </div>
+  <div class="texto">
+    <h2 class="fade-up">Construimos espacios<br>que impulsan negocios.</h2>
+    <p class="invita fade-up d1">Te invitamos a ser parte de Más Center.</p>
+    <p class="cuerpo fade-up d2">Nuestra red de más de 30 centros comerciales vecinales se enfoca en
+      potenciar ubicaciones estratégicas y crear espacios comerciales eficientes, atractivos y de
+      alto rendimiento.</p>
+    <p class="cuerpo fade-up d3">Diseñamos proyectos que combinan marcas ancla, flujo constante y
+      excelencia operacional, generando entornos que impulsan las ventas y aseguran resultados
+      sostenibles en el tiempo.</p>
+    <p class="cuerpo fade-up d3">Con presencia a lo largo del país, Más Center se posiciona como un
+      socio estratégico para operadores e inversionistas que buscan crecer en ubicaciones
+      consolidadas y con proyección.</p>
+    <img class="logo-mc fade-up d4" src="assets/img/logo-mascenter-gris.png" alt="Más Center" loading="lazy">
+  </div>
+</section>
+
+<!-- ════════════ FORMULARIO ════════════ -->
+<section class="contacto" id="contacto">
+  <div class="contenedor">
+    <div>
+      <h2 class="fade-up">Contáctanos</h2>
+      <p class="sub fade-up d1">Conversemos sobre tu local</p>
+      <div class="regla fade-up d1"></div>
+      <p class="intro fade-up d2">Déjanos tus datos y el equipo comercial de Más Center te contacta
+        para revisar la disponibilidad y las condiciones del Strip Center Algarrobal.</p>
+      <div class="datos-directos">
+        <div class="dato-directo fade-up d2">
+          <span class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
+          <a href="mailto:arriendos@mascenter.cl">arriendos@mascenter.cl</a>
+        </div>
+        <div class="dato-directo fade-up d3">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+          <a href="tel:+56941182947">+56 9 4118 2947</a>
+        </div>
+        <div class="dato-directo fade-up d4">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span>Avenida Los Fundos s/n, Colina</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="formulario fade-up d1" id="formulario" novalidate>
+      <div>
+        <label for="nombre">Nombre y apellido</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
+      </div>
+      <div>
+        <label for="email">Correo</label>
+        <input type="email" id="email" name="email" placeholder="tucorreo@empresa.cl" required>
+      </div>
+      <div>
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="+56 9 ..." required>
+      </div>
+      <div>
+        <label for="motivo">Motivo</label>
+        <input type="text" id="motivo" name="motivo" placeholder="Motivo" required>
+      </div>
+      <div class="ancho-total">
+        <label for="proyecto">Proyecto</label>
+        <input type="text" id="proyecto" name="proyecto" value="Strip Center Algarrobal" readonly>
+      </div>
+      <div class="ancho-total">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos qué tipo de local buscas" required></textarea>
+      </div>
+      <p class="legal ancho-total">Al enviar aceptas que Más Center use tus datos para responder tu
+        consulta comercial. Puedes pedir su eliminación escribiendo a arriendos@mascenter.cl.</p>
+      <div class="aviso-form" id="aviso" role="status"></div>
+      <div class="ancho-total">
+        <button type="submit" class="btn btn-rojo">Enviar</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer class="pie">
+  <div class="contenedor">
+    <div>
+      <img class="logo" src="assets/img/logo-mascenter-blanco.svg" alt="Más Center">
+    </div>
+    <div>
+      <h4>Contáctanos</h4>
+      <a class="pie-item" href="mailto:arriendos@mascenter.cl">
+        <span class="circ"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
+        arriendos@mascenter.cl
+      </a>
+      <a class="pie-item" href="tel:+56941182947">
+        <span class="circ"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+        +56 9 4118 2947
+      </a>
+      <a class="pie-item" href="https://www.instagram.com/mascenter/" target="_blank" rel="noopener">
+        <span class="circ"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></span>
+        @mascenter
+      </a>
+    </div>
+    <div>
+      <h4>Aquí estamos</h4>
+      <a class="pie-item" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida+Los+Fundos+Colina" target="_blank" rel="noopener">
+        <span class="circ"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        Avenida Los Fundos<br>s/n, Colina
+      </a>
+    </div>
+    <div>
+      <img class="ifb" src="assets/img/logo-ifb.png" alt="Grupo IFB">
+    </div>
+  </div>
+</footer>
+<div class="copyright">© 2026 Algarrobal - Más Center.</div>
+
+<!-- ════════════ MENÚ FLOTANTE ════════════ -->
+<div class="flotante">
+  <a class="f-contacto" href="#contacto" aria-label="Ir al formulario de contacto">
+    <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+  </a>
+  <a class="f-mapa" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida+Los+Fundos+Colina" target="_blank" rel="noopener" aria-label="Ver ubicación en el mapa">
+    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+  </a>
+  <a class="f-wa" href="https://wa.me/56941182947?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20Strip%20Center%20Algarrobal" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.3-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/></svg>
+  </a>
+</div>
+
+<!-- ════════════ LIGHTBOX DEL VIDEO ════════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Video del proyecto">
+  <button class="cerrar-lb" id="cerrar-lb" aria-label="Cerrar video">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <video id="video-completo" controls playsinline preload="none" poster="assets/video/hero-poster.jpg">
+    <source src="assets/video/algarrobal-video-completo.mp4" type="video/mp4">
+  </video>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Reveal al hacer scroll — mismo patrón que la referencia ── */
+  var animados = document.querySelectorAll('.fade-up,.fade-left,.fade-right,.fade-in');
+  if ('IntersectionObserver' in window && !reduce) {
+    var obs = new IntersectionObserver(function(entradas, o){
+      entradas.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); o.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    animados.forEach(function(el){ obs.observe(el); });
+  } else {
+    animados.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* ── Header sólido al bajar ── */
+  var cabecera = document.getElementById('cabecera');
+  function alScroll(){
+    if (window.scrollY > 60) cabecera.classList.add('solido');
+    else cabecera.classList.remove('solido');
+  }
+  alScroll();
+  window.addEventListener('scroll', alScroll, { passive:true });
+
+  /* ── Menú móvil ── */
+  var burger = document.getElementById('hamburguesa');
+  var nav = document.getElementById('nav');
+  burger.addEventListener('click', function(){
+    var abierto = nav.classList.toggle('abierto');
+    burger.classList.toggle('abierto', abierto);
+    burger.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.classList.remove('abierto');
+      burger.classList.remove('abierto');
+      burger.setAttribute('aria-expanded','false');
+    });
+  });
+
+  /* ── Parallax suave (equivalente al de la referencia) ── */
+  var capas = Array.prototype.slice.call(document.querySelectorAll('.parallax'));
+  if (capas.length && !reduce) {
+    var pendiente = false;
+    function pintar(){
+      var vh = window.innerHeight;
+      capas.forEach(function(c){
+        var r = c.parentElement.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        var avance = (r.top + r.height/2 - vh/2) / vh;
+        var k = parseFloat(c.dataset.parallax || '0.12');
+        c.style.transform = 'translate3d(0,' + (avance * r.height * k).toFixed(1) + 'px,0)';
+      });
+      pendiente = false;
+    }
+    function pedir(){ if (!pendiente){ pendiente = true; requestAnimationFrame(pintar); } }
+    window.addEventListener('scroll', pedir, { passive:true });
+    window.addEventListener('resize', pedir);
+    pintar();
+  }
+
+  /* ── Carrusel de la galería ── */
+  var pista = document.getElementById('pista');
+  if (pista) {
+    var diapos = Array.prototype.slice.call(pista.children);
+    var puntos = document.getElementById('puntos');
+    var actual = 0;
+
+    diapos.forEach(function(_, i){
+      var p = document.createElement('button');
+      p.className = 'punto';
+      p.setAttribute('aria-label', 'Ir a la imagen ' + (i+1));
+      p.addEventListener('click', function(){ ir(i); });
+      puntos.appendChild(p);
+    });
+
+    function ir(i){
+      actual = Math.max(0, Math.min(i, diapos.length - 1));
+      var d = diapos[actual];
+      var hueco = pista.getBoundingClientRect().width;
+      var x = d.offsetLeft - (hueco - d.offsetWidth) / 2;
+      pista.style.transform = 'translate3d(' + (-x) + 'px,0,0)';
+      diapos.forEach(function(s, k){ s.classList.toggle('activa', k === actual); });
+      Array.prototype.forEach.call(puntos.children, function(p, k){
+        p.classList.toggle('activo', k === actual);
+      });
+      document.getElementById('ant').disabled = (actual === 0);
+      document.getElementById('sig').disabled = (actual === diapos.length - 1);
+    }
+    document.getElementById('ant').addEventListener('click', function(){ ir(actual - 1); });
+    document.getElementById('sig').addEventListener('click', function(){ ir(actual + 1); });
+    window.addEventListener('resize', function(){ ir(actual); });
+
+    /* arrastre con dedo o mouse */
+    var x0 = null;
+    function inicio(e){ x0 = (e.touches ? e.touches[0].clientX : e.clientX); }
+    function fin(e){
+      if (x0 === null) return;
+      var x1 = (e.changedTouches ? e.changedTouches[0].clientX : e.clientX);
+      var dx = x1 - x0; x0 = null;
+      if (Math.abs(dx) > 55) ir(actual + (dx < 0 ? 1 : -1));
+    }
+    pista.addEventListener('touchstart', inicio, { passive:true });
+    pista.addEventListener('touchend', fin);
+    pista.addEventListener('mousedown', inicio);
+    pista.addEventListener('mouseup', fin);
+
+    ir(0);
+  }
+
+  /* ── Lightbox del video completo ── */
+  var lb = document.getElementById('lightbox');
+  var vid = document.getElementById('video-completo');
+  function abrir(){
+    lb.classList.add('abierto');
+    requestAnimationFrame(function(){ lb.classList.add('visible'); });
+    document.body.style.overflow = 'hidden';
+    vid.play().catch(function(){});
+  }
+  function cerrar(){
+    lb.classList.remove('visible');
+    vid.pause();
+    document.body.style.overflow = '';
+    setTimeout(function(){ lb.classList.remove('abierto'); }, 380);
+  }
+  document.getElementById('abrir-video').addEventListener('click', abrir);
+  document.getElementById('cerrar-lb').addEventListener('click', cerrar);
+  lb.addEventListener('click', function(e){ if (e.target === lb) cerrar(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && lb.classList.contains('abierto')) cerrar();
+  });
+
+  /* ── Formulario ──
+     Sin backend todavía: valida y avisa. Ver LEEME-WORDPRESS.md
+     para conectarlo a Contact Form 7 (igual que Pirque Nogales Poniente). */
+  var form = document.getElementById('formulario');
+  var aviso = document.getElementById('aviso');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var faltan = [];
+    ['nombre','email','telefono','motivo','mensaje'].forEach(function(id){
+      var c = document.getElementById(id);
+      if (!c.value.trim()) faltan.push(c);
+    });
+    var correo = document.getElementById('email');
+    if (correo.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value)) faltan.push(correo);
+
+    if (faltan.length) {
+      aviso.className = 'aviso-form error';
+      aviso.textContent = 'Revisa los campos marcados: faltan datos o el correo no es válido.';
+      faltan[0].focus();
+      return;
+    }
+    aviso.className = 'aviso-form ok';
+    aviso.textContent = 'Listo. Este formulario todavía no está conectado al correo — al montarlo en WordPress se enlaza a Contact Form 7 y llega a arriendos@mascenter.cl.';
+  });
+})();
+</script>
+</body>
+</html>

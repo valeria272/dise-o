@@ -1,5 +1,5 @@
 node_modules/
-out/
+out/*
 media/video/
 media/audio/
 media/images/
@@ -100,3 +100,14 @@ public/assets/**
 public/assets/fonts/ivyora/
 public/assets/fonts/selfie/
 out/*/_subidas.json
+
+# Landing Strip Center Algarrobal — Más Center (28-08-2026). Excepción deliberada,
+# misma lógica que Revex y Casablanca: es una entrega viva (publicada en Vercel) y
+# sin su HTML, iconos y fuentes hay que rehacerla de cero en otra máquina.
+# Ojo: arriba `out/` pasó a `out/*` porque git no entra a una carpeta excluida.
+!out/mascenter-algarrobal/
+!out/mascenter-algarrobal/**
+# Los dos MP4 no viajan (14,7 MB): se reconstruyen con scripts/algarrobal-video-web.sh
+out/mascenter-algarrobal/**/*.mp4
+# La versión con todo incrustado para el artifact (11,5 MB) se regenera cuando haga falta
+out/mascenter-algarrobal/preview-artifact.html

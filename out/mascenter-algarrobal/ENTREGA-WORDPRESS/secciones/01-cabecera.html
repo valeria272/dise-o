@@ -1,0 +1,59 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 01 — CABECERA FIJA (MENÚ)
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/01-*.jpg
+     Archivos que usa:
+       · recursos/logos/logo-mascenter-blanco.svg
+     Nota: Barra transparente sobre el hero que se vuelve negra al bajar. En WordPress
+           conviene reemplazarla por el header del tema si ya tienen uno; si no, va tal
+           cual.
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── HEADER ───────────────────────────────────────────────────── */
+.cabecera{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  padding:22px 0;transition:background .45s var(--exp),padding .45s var(--exp),box-shadow .45s var(--exp);
+}
+.cabecera.solido{background:rgba(0,0,0,.92);padding:12px 0;box-shadow:0 2px 24px rgba(0,0,0,.28);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.cabecera .contenedor{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.cabecera img{height:44px;width:auto;transition:height .45s var(--exp)}
+.cabecera.solido img{height:36px}
+.nav{display:flex;align-items:center;gap:34px}
+.nav a{color:#fff;font-size:.82rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;
+  position:relative;padding:4px 0}
+.nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--rojo);
+  transition:width .4s var(--exp)}
+.nav a:hover::after{width:100%}
+.nav .btn-nav{background:var(--rojo);padding:11px 26px;border-radius:999px;letter-spacing:.06em}
+.nav .btn-nav::after{display:none}
+.nav .btn-nav:hover{background:var(--rojo-osc)}
+.hamburguesa{display:none;flex-direction:column;gap:5px;padding:8px}
+.hamburguesa span{display:block;width:26px;height:2px;background:#fff;transition:transform .35s var(--exp),opacity .35s}
+.hamburguesa.abierto span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburguesa.abierto span:nth-child(2){opacity:0}
+.hamburguesa.abierto span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+</style>
+
+<!-- ════════════ HEADER ════════════ -->
+<header class="cabecera" id="cabecera">
+  <div class="contenedor">
+    <a href="#inicio" aria-label="Más Center — inicio">
+      <img src="../recursos/logos/logo-mascenter-blanco.svg" alt="Más Center" width="120" height="65">
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#proyecto">El proyecto</a>
+      <a href="#masterplan">Masterplan</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto" class="btn-nav">Contáctanos</a>
+    </nav>
+    <button class="hamburguesa" id="hamburguesa" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>

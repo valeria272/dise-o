@@ -1,0 +1,47 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 03 — UBICACIÓN
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/03-*.jpg
+     Archivos que usa:
+       · recursos/imagenes/ubicacion.jpg
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── UBICACIÓN ────────────────────────────────────────────────── */
+.ubicacion{background:var(--gris);padding:clamp(70px,9vw,130px) 0}
+.ubicacion .contenedor{display:grid;grid-template-columns:1fr 1.12fr;gap:clamp(36px,6vw,86px);align-items:center}
+.ubicacion p{color:var(--texto-med);font-size:1rem;margin-bottom:18px;max-width:52ch}
+.ubicacion p strong{color:var(--texto);font-weight:600}
+.foto-etiquetada{position:relative;border-radius:var(--radio);overflow:hidden;
+  box-shadow:0 26px 60px rgba(0,0,0,.16)}
+.foto-etiquetada img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/11}
+.etiqueta-foto{position:absolute;left:22px;bottom:22px;background:var(--vino);color:#fff;
+  padding:11px 24px;border-radius:999px;font-size:.9rem;font-weight:600}
+
+</style>
+
+<!-- ════════════ UBICACIÓN ════════════ -->
+<section class="ubicacion" id="ubicacion">
+  <div class="contenedor">
+    <div>
+      <h2 class="titulo-seccion fade-up">Ubicación</h2>
+      <p class="subtitulo-seccion fade-up d1">Estratégica y de alto tráfico</p>
+      <div class="regla fade-up d1"></div>
+      <p class="fade-up d2">Es un strip center estratégicamente ubicado sobre la
+        <strong>Autopista Los Libertadores, en la comuna de Colina, uno de los principales ejes de
+        conexión del sector.</strong> Emplazado en una zona de alta afluencia vehicular y de sostenido
+        crecimiento habitacional y comercial, el proyecto se beneficia del desarrollo de nuevos
+        condominios y barrios residenciales, impulsando una creciente demanda por comercio y servicios.</p>
+      <p class="fade-up d3">Respaldado por la experiencia de <strong>Más Center</strong> en el desarrollo,
+        comercialización y administración de centros comerciales, el proyecto ofrece una plataforma
+        sólida, un mix comercial cuidadosamente diseñado y una propuesta orientada a maximizar la
+        rentabilidad y la proyección de largo plazo.</p>
+    </div>
+    <div class="foto-etiquetada fade-right d1">
+      <img src="../recursos/imagenes/ubicacion.jpg" alt="Render del Strip Center Algarrobal con la cordillera al fondo" loading="lazy">
+      <span class="etiqueta-foto">Proyecto Algarrobal</span>
+    </div>
+  </div>
+</section>

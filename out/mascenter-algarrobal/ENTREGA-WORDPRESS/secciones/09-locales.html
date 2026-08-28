@@ -1,0 +1,41 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 09 — LOCALES COMERCIALES
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/09-*.jpg
+     Archivos que usa:
+       · recursos/imagenes/locales.jpg
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── LOCALES COMERCIALES ──────────────────────────────────────── */
+.locales{background:var(--gris-2);padding:clamp(70px,9vw,130px) 0}
+.locales .contenedor{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(36px,6vw,86px);align-items:center}
+.locales .foto{border-radius:var(--radio);overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.16)}
+.locales .foto img{width:100%;aspect-ratio:4/3.4;object-fit:cover}
+.antetitulo-rojo{color:var(--rojo);font-size:.86rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.locales h2{font-size:clamp(2rem,4vw,3.15rem);font-weight:700;line-height:1.08;margin-top:8px;color:var(--texto-med)}
+.locales p{color:var(--texto-med);font-size:.98rem;max-width:54ch}
+.locales p strong{color:var(--texto);font-weight:600}
+
+</style>
+
+<!-- ════════════ LOCALES COMERCIALES ════════════ -->
+<section class="locales">
+  <div class="contenedor">
+    <div class="foto fade-left">
+      <img src="../recursos/imagenes/locales.jpg" alt="Vista aérea del Strip Center Algarrobal" loading="lazy">
+    </div>
+    <div>
+      <p class="antetitulo-rojo fade-up d1">Espacios a tu medida</p>
+      <h2 class="fade-up d2">Locales comerciales</h2>
+      <div class="regla fade-up d2"></div>
+      <p class="fade-up d3"><strong>Una oportunidad comercial en un entorno consolidado.</strong>
+        Potencia el crecimiento de tu marca en un entorno comercial dinámico. Nuestros espacios están
+        estratégicamente diseñados para brindarte la máxima exposición, aprovechando el alto flujo
+        peatonal y vehicular de la zona. Sé parte de un proyecto moderno pensado para acompañar el
+        crecimiento de tu negocio.</p>
+    </div>
+  </div>
+</section>

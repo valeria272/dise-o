@@ -1,5 +1,11 @@
 # Strip Center Algarrobal — landing para WordPress
 
+> ⚠️ **Este archivo es la nota de producción interna.**
+> Lo que se le entrega a quien maquetea el WordPress es la carpeta
+> **[`ENTREGA-WORDPRESS/`](ENTREGA-WORDPRESS/)** — ahí está el `INSTRUCTIVO.html`,
+> la landing cortada en 16 secciones, los recursos ordenados y las vistas previas.
+> ZIP listo para mandar: `out/ENTREGA-ALGARROBAL-WORDPRESS.zip`.
+
 Paquete autocontenido: se abre con doble clic en `index.html`, sin instalar nada.
 Todo lo que la página necesita (tipografías, imágenes, texturas, video) viaja dentro
 de `assets/`. **No llama a ningún servidor externo.**

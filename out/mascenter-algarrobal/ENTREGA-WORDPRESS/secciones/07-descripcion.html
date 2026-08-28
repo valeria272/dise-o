@@ -1,0 +1,62 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 07 — DESCRIPCIÓN DEL PROYECTO
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/07-*.jpg
+     Archivos que usa:
+       · recursos/imagenes/descripcion-1.jpg
+       · recursos/imagenes/descripcion-2.jpg
+     Nota: La caja vino se monta sobre las dos fotos con margen negativo. Si se maqueta
+           con módulos del constructor, hay que darle margen superior negativo o se
+           despega.
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── DESCRIPCIÓN DEL PROYECTO ─────────────────────────────────── */
+.descripcion{background:var(--negro);color:#fff;padding:clamp(70px,9vw,130px) 0 0}
+.descripcion .antetitulo{font-size:clamp(1rem,1.8vw,1.45rem);font-weight:300;color:rgba(255,255,255,.85)}
+.descripcion h2{font-size:clamp(2rem,4vw,3.15rem);font-weight:700;line-height:1.08;margin-top:2px}
+.descripcion .par{position:relative;margin-top:clamp(38px,5vw,64px)}
+.dos-fotos{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.dos-fotos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radio)}
+.caja-vino{position:relative;margin:-96px auto 0;width:min(100%,860px);background:var(--vino);
+  border-radius:var(--radio);padding:clamp(26px,3vw,40px) clamp(24px,3vw,44px);
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px);text-align:center;z-index:3}
+.caja-vino>div{position:relative}
+.caja-vino>div+div::before{content:'';position:absolute;left:calc(-1 * clamp(10px,1.5vw,20px));
+  top:6px;bottom:6px;width:1px;background:rgba(255,255,255,.35)}
+.caja-vino h3{font-size:1rem;font-weight:600;margin-bottom:8px}
+.caja-vino p{font-size:.85rem;line-height:1.55;color:rgba(255,255,255,.92)}
+.centro-btn{display:flex;justify-content:center;margin-top:-26px;position:relative;z-index:4}
+
+</style>
+
+<!-- ════════════ DESCRIPCIÓN DEL PROYECTO ════════════ -->
+<section class="descripcion" id="proyecto">
+  <div class="contenedor">
+    <p class="antetitulo fade-up">Strip Center Algarrobal</p>
+    <h2 class="fade-up d1">Descripción del proyecto</h2>
+    <div class="par">
+      <div class="dos-fotos">
+        <img class="fade-up d1" src="../recursos/imagenes/descripcion-1.jpg" alt="Fachada del strip center al atardecer" loading="lazy">
+        <img class="fade-up d2" src="../recursos/imagenes/descripcion-2.jpg" alt="Locales comerciales con Farmacia Cruz Verde" loading="lazy">
+      </div>
+      <div class="caja-vino fade-up d3">
+        <div>
+          <h3>Entorno residencial consolidado</h3>
+          <p>Rodeado de nuevos desarrollos habitacionales que impulsan una demanda permanente por
+            comercio y servicios.</p>
+        </div>
+        <div>
+          <h3>Desarrollo comercial en expansión</h3>
+          <p>El crecimiento planificado del sector favorece la llegada de nuevos operadores y
+            fortalece la actividad comercial.</p>
+        </div>
+      </div>
+      <div class="centro-btn fade-up d4">
+        <a href="#contacto" class="btn btn-rojo">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+</section>

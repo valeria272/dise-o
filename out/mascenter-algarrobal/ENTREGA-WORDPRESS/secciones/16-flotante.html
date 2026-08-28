@@ -1,0 +1,64 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 16 — MENÚ FLOTANTE + VENTANA DEL VIDEO
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/16-*.jpg
+     Archivos que usa:
+       · recursos/video/algarrobal-video-completo.mp4
+       · recursos/video/hero-poster.jpg
+     Nota: Los 3 botones de la derecha (correo, mapa, WhatsApp) y la ventana negra
+           donde se reproduce el video de 62 s. Van al final del <body>, fuera de
+           cualquier columna. Si el sitio ya usa el plugin Float Menu, borra el bloque
+           .flotante y usa el plugin.
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── MENÚ FLOTANTE (derecha) ──────────────────────────────────── */
+.flotante{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:850;
+  display:flex;flex-direction:column;border-radius:8px 0 0 8px;overflow:hidden;
+  box-shadow:0 6px 22px rgba(0,0,0,.24)}
+.flotante a{width:52px;height:52px;display:grid;place-items:center;transition:filter .3s var(--exp)}
+.flotante a:hover{filter:brightness(1.14)}
+.flotante a svg{width:21px;height:21px;stroke:#fff;fill:none;stroke-width:1.8}
+.flotante .f-contacto{background:var(--rojo)}
+.flotante .f-mapa{background:var(--vino)}
+.flotante .f-wa{background:#25D366}
+.flotante .f-wa svg{fill:#fff;stroke:none}
+
+/* ── LIGHTBOX DEL VIDEO ───────────────────────────────────────── */
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.93);
+  display:none;align-items:center;justify-content:center;padding:20px;
+  opacity:0;transition:opacity .4s var(--exp)}
+.lightbox.abierto{display:flex}
+.lightbox.visible{opacity:1}
+.lightbox video{width:min(100%,1180px);max-height:86vh;border-radius:10px;background:#000}
+.cerrar-lb{position:absolute;top:22px;right:26px;width:46px;height:46px;border-radius:50%;
+  background:rgba(255,255,255,.14);display:grid;place-items:center;transition:background .3s var(--exp)}
+.cerrar-lb:hover{background:var(--rojo)}
+.cerrar-lb svg{width:19px;height:19px;stroke:#fff;stroke-width:2.2;fill:none}
+
+</style>
+
+<!-- ════════════ MENÚ FLOTANTE ════════════ -->
+<div class="flotante">
+  <a class="f-contacto" href="#contacto" aria-label="Ir al formulario de contacto">
+    <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+  </a>
+  <a class="f-mapa" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida+Los+Fundos+Colina" target="_blank" rel="noopener" aria-label="Ver ubicación en el mapa">
+    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+  </a>
+  <a class="f-wa" href="https://wa.me/56941182947?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20Strip%20Center%20Algarrobal" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.3-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/></svg>
+  </a>
+</div>
+
+<!-- ════════════ LIGHTBOX DEL VIDEO ════════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Video del proyecto">
+  <button class="cerrar-lb" id="cerrar-lb" aria-label="Cerrar video">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <video id="video-completo" controls playsinline preload="none" poster="../recursos/video/hero-poster.jpg">
+    <source src="../recursos/video/algarrobal-video-completo.mp4" type="video/mp4">
+  </video>
+</div>

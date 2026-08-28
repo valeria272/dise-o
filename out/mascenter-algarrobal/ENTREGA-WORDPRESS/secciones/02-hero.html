@@ -1,0 +1,67 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 02 — PORTADA CON VIDEO
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/02-*.jpg
+     Archivos que usa:
+       · recursos/video/algarrobal-hero-loop.mp4
+       · recursos/video/hero-poster.jpg
+     Nota: El video de fondo va en bucle, MUDO y sin controles. Bajo 820 px de ancho el
+           video NO se descarga: se muestra hero-poster.jpg. El botón «Ver el video del
+           proyecto» abre la sección 16.
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--rojo)}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover}
+.hero-media img{display:none}
+/* Bloque rojo macizo de la izquierda — como en el diseño */
+.hero-rojo-solido{position:absolute;inset:0;z-index:1;background:var(--rojo);
+  clip-path:polygon(0 0,34% 0,23% 100%,0 100%)}
+/* Diagonal roja translúcida sobre la foto */
+.hero-rojo-transp{position:absolute;inset:0;z-index:2;background:rgba(229,37,33,.62);
+  clip-path:polygon(30% 0,55% 0,44% 100%,19% 100%)}
+.hero-rojo-transp-2{position:absolute;inset:0;z-index:2;background:rgba(139,22,35,.42);
+  clip-path:polygon(74% 0,100% 0,100% 100%,63% 100%)}
+.hero-velo{position:absolute;inset:0;z-index:3;
+  background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 42%,rgba(0,0,0,.42) 100%)}
+.hero-contenido{position:relative;z-index:5;width:100%;padding-bottom:clamp(60px,10vh,120px);padding-top:140px}
+.hero-etiqueta{color:#fff;font-size:.8rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;
+  padding-bottom:14px;margin-bottom:22px;position:relative;display:inline-block}
+.hero-etiqueta::after{content:'';position:absolute;left:0;bottom:0;width:44px;height:2px;background:#fff}
+.hero-titulo{color:#fff;font-size:clamp(2.6rem,6.4vw,5.1rem);line-height:1.04;font-weight:300;letter-spacing:-.015em}
+.hero-titulo strong{display:block;font-weight:700}
+.hero-acciones{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
+
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero" id="inicio">
+  <div class="hero-media">
+    <video autoplay muted loop playsinline preload="auto" poster="../recursos/video/hero-poster.jpg">
+      <source src="../recursos/video/algarrobal-hero-loop.mp4" type="video/mp4">
+    </video>
+    <img src="../recursos/video/hero-poster.jpg" alt="Strip Center Algarrobal — vista aérea del proyecto">
+  </div>
+  <div class="hero-rojo-solido"></div>
+  <div class="hero-rojo-transp"></div>
+  <div class="hero-rojo-transp-2"></div>
+  <div class="hero-velo"></div>
+
+  <div class="hero-contenido">
+    <div class="contenedor">
+      <span class="hero-etiqueta fade-up">Nuevo</span>
+      <h1 class="hero-titulo fade-up d1">Strip Center <strong>Algarrobal</strong></h1>
+      <div class="hero-acciones fade-up d2">
+        <button class="btn btn-rojo" id="abrir-video">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          Ver el video del proyecto
+        </button>
+        <a href="#contacto" class="btn btn-linea">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+</section>

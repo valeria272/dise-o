@@ -1,0 +1,171 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 99 — SCRIPTS (VA UNA SOLA VEZ, AL FINAL)
+     ────────────────────────────────────────────────────────────────────
+     Nota: Hace funcionar: las animaciones de entrada al hacer scroll, la cabecera que
+           se vuelve negra, el menú de celular, el parallax de los fondos, el carrusel
+           de la galería, la ventana del video y la validación del formulario.
+     ════════════════════════════════════════════════════════════════════
+     Va ÚLTIMO, después de todas las secciones, en su propio bloque «HTML personalizado».
+     Se pega una sola vez. No usa jQuery ni ninguna librería externa.
+     ════════════════════════════════════════════════════════════════════════ -->
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Reveal al hacer scroll — mismo patrón que la referencia ── */
+  var animados = document.querySelectorAll('.fade-up,.fade-left,.fade-right,.fade-in');
+  if ('IntersectionObserver' in window && !reduce) {
+    var obs = new IntersectionObserver(function(entradas, o){
+      entradas.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); o.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    animados.forEach(function(el){ obs.observe(el); });
+  } else {
+    animados.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* ── Header sólido al bajar ── */
+  var cabecera = document.getElementById('cabecera');
+  function alScroll(){
+    if (window.scrollY > 60) cabecera.classList.add('solido');
+    else cabecera.classList.remove('solido');
+  }
+  alScroll();
+  window.addEventListener('scroll', alScroll, { passive:true });
+
+  /* ── Menú móvil ── */
+  var burger = document.getElementById('hamburguesa');
+  var nav = document.getElementById('nav');
+  burger.addEventListener('click', function(){
+    var abierto = nav.classList.toggle('abierto');
+    burger.classList.toggle('abierto', abierto);
+    burger.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.classList.remove('abierto');
+      burger.classList.remove('abierto');
+      burger.setAttribute('aria-expanded','false');
+    });
+  });
+
+  /* ── Parallax suave (equivalente al de la referencia) ── */
+  var capas = Array.prototype.slice.call(document.querySelectorAll('.parallax'));
+  if (capas.length && !reduce) {
+    var pendiente = false;
+    function pintar(){
+      var vh = window.innerHeight;
+      capas.forEach(function(c){
+        var r = c.parentElement.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        var avance = (r.top + r.height/2 - vh/2) / vh;
+        var k = parseFloat(c.dataset.parallax || '0.12');
+        c.style.transform = 'translate3d(0,' + (avance * r.height * k).toFixed(1) + 'px,0)';
+      });
+      pendiente = false;
+    }
+    function pedir(){ if (!pendiente){ pendiente = true; requestAnimationFrame(pintar); } }
+    window.addEventListener('scroll', pedir, { passive:true });
+    window.addEventListener('resize', pedir);
+    pintar();
+  }
+
+  /* ── Carrusel de la galería ── */
+  var pista = document.getElementById('pista');
+  if (pista) {
+    var diapos = Array.prototype.slice.call(pista.children);
+    var puntos = document.getElementById('puntos');
+    var actual = 0;
+
+    diapos.forEach(function(_, i){
+      var p = document.createElement('button');
+      p.className = 'punto';
+      p.setAttribute('aria-label', 'Ir a la imagen ' + (i+1));
+      p.addEventListener('click', function(){ ir(i); });
+      puntos.appendChild(p);
+    });
+
+    function ir(i){
+      actual = Math.max(0, Math.min(i, diapos.length - 1));
+      var d = diapos[actual];
+      var hueco = pista.getBoundingClientRect().width;
+      var x = d.offsetLeft - (hueco - d.offsetWidth) / 2;
+      pista.style.transform = 'translate3d(' + (-x) + 'px,0,0)';
+      diapos.forEach(function(s, k){ s.classList.toggle('activa', k === actual); });
+      Array.prototype.forEach.call(puntos.children, function(p, k){
+        p.classList.toggle('activo', k === actual);
+      });
+      document.getElementById('ant').disabled = (actual === 0);
+      document.getElementById('sig').disabled = (actual === diapos.length - 1);
+    }
+    document.getElementById('ant').addEventListener('click', function(){ ir(actual - 1); });
+    document.getElementById('sig').addEventListener('click', function(){ ir(actual + 1); });
+    window.addEventListener('resize', function(){ ir(actual); });
+
+    /* arrastre con dedo o mouse */
+    var x0 = null;
+    function inicio(e){ x0 = (e.touches ? e.touches[0].clientX : e.clientX); }
+    function fin(e){
+      if (x0 === null) return;
+      var x1 = (e.changedTouches ? e.changedTouches[0].clientX : e.clientX);
+      var dx = x1 - x0; x0 = null;
+      if (Math.abs(dx) > 55) ir(actual + (dx < 0 ? 1 : -1));
+    }
+    pista.addEventListener('touchstart', inicio, { passive:true });
+    pista.addEventListener('touchend', fin);
+    pista.addEventListener('mousedown', inicio);
+    pista.addEventListener('mouseup', fin);
+
+    ir(0);
+  }
+
+  /* ── Lightbox del video completo ── */
+  var lb = document.getElementById('lightbox');
+  var vid = document.getElementById('video-completo');
+  function abrir(){
+    lb.classList.add('abierto');
+    requestAnimationFrame(function(){ lb.classList.add('visible'); });
+    document.body.style.overflow = 'hidden';
+    vid.play().catch(function(){});
+  }
+  function cerrar(){
+    lb.classList.remove('visible');
+    vid.pause();
+    document.body.style.overflow = '';
+    setTimeout(function(){ lb.classList.remove('abierto'); }, 380);
+  }
+  document.getElementById('abrir-video').addEventListener('click', abrir);
+  document.getElementById('cerrar-lb').addEventListener('click', cerrar);
+  lb.addEventListener('click', function(e){ if (e.target === lb) cerrar(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && lb.classList.contains('abierto')) cerrar();
+  });
+
+  /* ── Formulario ──
+     Sin backend todavía: valida y avisa. Ver LEEME-WORDPRESS.md
+     para conectarlo a Contact Form 7 (igual que Pirque Nogales Poniente). */
+  var form = document.getElementById('formulario');
+  var aviso = document.getElementById('aviso');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var faltan = [];
+    ['nombre','email','telefono','motivo','mensaje'].forEach(function(id){
+      var c = document.getElementById(id);
+      if (!c.value.trim()) faltan.push(c);
+    });
+    var correo = document.getElementById('email');
+    if (correo.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value)) faltan.push(correo);
+
+    if (faltan.length) {
+      aviso.className = 'aviso-form error';
+      aviso.textContent = 'Revisa los campos marcados: faltan datos o el correo no es válido.';
+      faltan[0].focus();
+      return;
+    }
+    aviso.className = 'aviso-form ok';
+    aviso.textContent = 'Listo. Este formulario todavía no está conectado al correo — al montarlo en WordPress se enlaza a Contact Form 7 y llega a arriendos@mascenter.cl.';
+  });
+})();
+</script>

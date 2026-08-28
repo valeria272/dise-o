@@ -1,0 +1,67 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 15 — PIE DE PÁGINA
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/15-*.jpg
+     Archivos que usa:
+       · recursos/logos/logo-ifb.png
+       · recursos/logos/logo-mascenter-blanco.svg
+     Nota: Incluye la barra de copyright que va justo debajo.
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── FOOTER ───────────────────────────────────────────────────── */
+.pie{background:var(--negro);color:#fff;padding:clamp(50px,6vw,86px) 0 clamp(38px,4vw,60px)}
+.pie .contenedor{display:grid;grid-template-columns:1.1fr 1.1fr 1fr .8fr;gap:clamp(28px,4vw,56px);
+  align-items:start}
+.pie img.logo{width:170px;opacity:.95}
+.pie h4{font-size:.92rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  padding-bottom:10px;margin-bottom:20px;position:relative;color:rgba(255,255,255,.92)}
+.pie h4::after{content:'';position:absolute;left:0;bottom:0;width:26px;height:2px;background:var(--rojo)}
+.pie-item{display:flex;align-items:center;gap:14px;margin-bottom:15px;font-size:.9rem;
+  color:rgba(255,255,255,.86)}
+.pie-item .circ{width:38px;height:38px;border-radius:50%;border:1.4px solid rgba(255,255,255,.55);
+  display:grid;place-items:center;flex-shrink:0;transition:background .3s var(--exp),border-color .3s var(--exp)}
+.pie-item:hover .circ{background:var(--rojo);border-color:var(--rojo)}
+.pie-item .circ svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:1.7}
+.pie img.ifb{width:118px;opacity:.85;justify-self:end}
+.copyright{background:var(--negro-2);color:rgba(255,255,255,.72);text-align:center;
+  padding:20px 0;font-size:.86rem}
+
+</style>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer class="pie">
+  <div class="contenedor">
+    <div>
+      <img class="logo" src="../recursos/logos/logo-mascenter-blanco.svg" alt="Más Center">
+    </div>
+    <div>
+      <h4>Contáctanos</h4>
+      <a class="pie-item" href="mailto:arriendos@mascenter.cl">
+        <span class="circ"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
+        arriendos@mascenter.cl
+      </a>
+      <a class="pie-item" href="tel:+56941182947">
+        <span class="circ"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+        +56 9 4118 2947
+      </a>
+      <a class="pie-item" href="https://www.instagram.com/mascenter/" target="_blank" rel="noopener">
+        <span class="circ"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></span>
+        @mascenter
+      </a>
+    </div>
+    <div>
+      <h4>Aquí estamos</h4>
+      <a class="pie-item" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida+Los+Fundos+Colina" target="_blank" rel="noopener">
+        <span class="circ"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        Avenida Los Fundos<br>s/n, Colina
+      </a>
+    </div>
+    <div>
+      <img class="ifb" src="../recursos/logos/logo-ifb.png" alt="Grupo IFB">
+    </div>
+  </div>
+</footer>
+<div class="copyright">© 2026 Algarrobal - Más Center.</div>

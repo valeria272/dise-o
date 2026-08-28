@@ -1,0 +1,58 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 08 — BENEFICIOS (4 ICONOS)
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/08-*.jpg
+     Archivos que usa:
+       · recursos/iconos/beneficio-1.png
+       · recursos/iconos/beneficio-2.png
+       · recursos/iconos/beneficio-3.png
+       · recursos/iconos/beneficio-4.png
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── BENEFICIOS (4 iconos) ────────────────────────────────────── */
+.beneficios{background:var(--negro);color:#fff;padding:clamp(64px,8vw,110px) 0 clamp(56px,7vw,96px)}
+.beneficios .grilla{display:grid;grid-template-columns:repeat(4,1fr)}
+.beneficio{text-align:center;padding:0 clamp(14px,2vw,28px);position:relative}
+.beneficio+.beneficio::before{content:'';position:absolute;left:0;top:52px;bottom:6px;width:1px;
+  background:rgba(255,255,255,.22)}
+.beneficio img{width:58px;height:58px;margin:0 auto 18px}
+.beneficio .lead{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.7);margin-bottom:2px;min-height:1.4em}
+.beneficio h3{font-size:1.02rem;font-weight:600;line-height:1.25}
+.beneficio p{font-size:.84rem;font-weight:300;color:rgba(255,255,255,.78);margin-top:5px;line-height:1.4}
+
+</style>
+
+<!-- ════════════ BENEFICIOS ════════════ -->
+<section class="beneficios">
+  <div class="contenedor">
+    <div class="grilla">
+      <div class="beneficio fade-up d1">
+        <img src="../recursos/iconos/beneficio-1.png" alt="" loading="lazy">
+        <p class="lead" aria-hidden="true">&nbsp;</p>
+        <h3>Flujo constante</h3>
+        <p>en placa comercial</p>
+      </div>
+      <div class="beneficio fade-up d2">
+        <img src="../recursos/iconos/beneficio-2.png" alt="" loading="lazy">
+        <p class="lead" aria-hidden="true">&nbsp;</p>
+        <h3>Tránsito peatonal</h3>
+        <p>directo desde estacionamientos</p>
+      </div>
+      <div class="beneficio fade-up d3">
+        <img src="../recursos/iconos/beneficio-3.png" alt="" loading="lazy">
+        <p class="lead" aria-hidden="true">&nbsp;</p>
+        <h3>Integración</h3>
+        <p>con supermercado ancla</p>
+      </div>
+      <div class="beneficio fade-up d4">
+        <img src="../recursos/iconos/beneficio-4.png" alt="" loading="lazy">
+        <p class="lead">Espacios diseñados para</p>
+        <h3>Alta visibilidad</h3>
+        <p>de marca</p>
+      </div>
+    </div>
+  </div>
+</section>

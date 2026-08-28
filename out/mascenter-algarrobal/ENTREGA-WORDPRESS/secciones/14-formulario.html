@@ -1,0 +1,103 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 14 — FORMULARIO DE CONTACTO
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/14-*.jpg
+     Nota: ⚠️ HOY VALIDA PERO NO ENVÍA CORREO. Hay que reemplazar el <form> por el
+           shortcode de Contact Form 7. Ver el paso 6 del instructivo.
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── FORMULARIO ───────────────────────────────────────────────── */
+.contacto{background:var(--claro);padding:clamp(66px,8vw,120px) 0}
+.contacto .contenedor{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,80px);align-items:start}
+.contacto h2{font-size:clamp(2rem,4vw,3.15rem);font-weight:700;line-height:1.08}
+.contacto .sub{font-size:clamp(1rem,1.8vw,1.4rem);font-weight:300;color:var(--texto-med);margin-top:2px}
+.contacto .intro{color:var(--texto-med);font-size:.96rem;max-width:44ch;margin-top:26px}
+.datos-directos{margin-top:34px;display:flex;flex-direction:column;gap:16px}
+.dato-directo{display:flex;align-items:center;gap:14px;font-size:.95rem;color:var(--texto)}
+.dato-directo .ico{width:40px;height:40px;border-radius:50%;background:var(--rojo);display:grid;
+  place-items:center;flex-shrink:0}
+.dato-directo .ico svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:1.9}
+.dato-directo a:hover{color:var(--rojo)}
+form.formulario{background:#fff;border-radius:var(--radio);padding:clamp(26px,3.4vw,44px);
+  box-shadow:0 22px 54px rgba(0,0,0,.09);display:grid;grid-template-columns:1fr 1fr;gap:16px}
+form.formulario .ancho-total{grid-column:1/-1}
+form.formulario label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--texto-med);margin-bottom:7px}
+form.formulario input,form.formulario textarea,form.formulario select{
+  width:100%;padding:13px 16px;border:1.5px solid #E2E2E2;border-radius:10px;
+  font-family:inherit;font-size:.95rem;color:var(--texto);background:#fff;
+  transition:border-color .3s var(--exp),box-shadow .3s var(--exp)}
+form.formulario input:focus,form.formulario textarea:focus,form.formulario select:focus{
+  outline:none;border-color:var(--rojo);box-shadow:0 0 0 3px rgba(229,37,33,.12)}
+form.formulario input[readonly]{background:#F6F6F6;color:var(--texto-med)}
+form.formulario textarea{resize:vertical;min-height:104px}
+form.formulario .legal{font-size:.76rem;color:var(--texto-suave);line-height:1.5}
+form.formulario button{width:100%;justify-content:center}
+.aviso-form{grid-column:1/-1;font-size:.9rem;padding:13px 16px;border-radius:10px;display:none}
+.aviso-form.ok{display:block;background:#E8F5E9;color:#1B5E20}
+.aviso-form.error{display:block;background:#FDECEA;color:#8B1623}
+
+</style>
+
+<!-- ════════════ FORMULARIO ════════════ -->
+<section class="contacto" id="contacto">
+  <div class="contenedor">
+    <div>
+      <h2 class="fade-up">Contáctanos</h2>
+      <p class="sub fade-up d1">Conversemos sobre tu local</p>
+      <div class="regla fade-up d1"></div>
+      <p class="intro fade-up d2">Déjanos tus datos y el equipo comercial de Más Center te contacta
+        para revisar la disponibilidad y las condiciones del Strip Center Algarrobal.</p>
+      <div class="datos-directos">
+        <div class="dato-directo fade-up d2">
+          <span class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
+          <a href="mailto:arriendos@mascenter.cl">arriendos@mascenter.cl</a>
+        </div>
+        <div class="dato-directo fade-up d3">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+          <a href="tel:+56941182947">+56 9 4118 2947</a>
+        </div>
+        <div class="dato-directo fade-up d4">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span>Avenida Los Fundos s/n, Colina</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="formulario fade-up d1" id="formulario" novalidate>
+      <div>
+        <label for="nombre">Nombre y apellido</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
+      </div>
+      <div>
+        <label for="email">Correo</label>
+        <input type="email" id="email" name="email" placeholder="tucorreo@empresa.cl" required>
+      </div>
+      <div>
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="+56 9 ..." required>
+      </div>
+      <div>
+        <label for="motivo">Motivo</label>
+        <input type="text" id="motivo" name="motivo" placeholder="Motivo" required>
+      </div>
+      <div class="ancho-total">
+        <label for="proyecto">Proyecto</label>
+        <input type="text" id="proyecto" name="proyecto" value="Strip Center Algarrobal" readonly>
+      </div>
+      <div class="ancho-total">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos qué tipo de local buscas" required></textarea>
+      </div>
+      <p class="legal ancho-total">Al enviar aceptas que Más Center use tus datos para responder tu
+        consulta comercial. Puedes pedir su eliminación escribiendo a arriendos@mascenter.cl.</p>
+      <div class="aviso-form" id="aviso" role="status"></div>
+      <div class="ancho-total">
+        <button type="submit" class="btn btn-rojo">Enviar</button>
+      </div>
+    </form>
+  </div>
+</section>

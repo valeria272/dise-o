@@ -1,0 +1,37 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 12 — TU OPORTUNIDAD DE INVERSIÓN
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/12-*.jpg
+     Archivos que usa:
+       · recursos/imagenes/aerea-grande.jpg
+     Nota: Foto de fondo con parallax.
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── OPORTUNIDAD ──────────────────────────────────────────────── */
+.oportunidad{position:relative;min-height:clamp(360px,42vw,540px);display:flex;align-items:center;
+  overflow:hidden;text-align:center;background:#1a1d21}
+.oportunidad .fondo{position:absolute;inset:-8% 0;z-index:0}
+.oportunidad .fondo img{width:100%;height:100%;object-fit:cover}
+.oportunidad::after{content:'';position:absolute;inset:0;z-index:1;background:rgba(8,10,12,.62)}
+.oportunidad .contenedor{position:relative;z-index:2;color:#fff;padding-top:70px;padding-bottom:70px}
+.oportunidad h2{font-size:clamp(1.8rem,4vw,3.1rem);font-weight:700;line-height:1.12;text-transform:uppercase}
+.oportunidad p{margin:24px auto 0;max-width:70ch;font-size:.98rem;line-height:1.7;color:rgba(255,255,255,.92)}
+.oportunidad p strong{font-weight:600}
+
+</style>
+
+<!-- ════════════ OPORTUNIDAD ════════════ -->
+<section class="oportunidad">
+  <div class="fondo parallax" data-parallax="0.12">
+    <img src="../recursos/imagenes/aerea-grande.jpg" alt="" loading="lazy">
+  </div>
+  <div class="contenedor">
+    <h2 class="fade-up">Tu oportunidad de inversión<br>es ahora</h2>
+    <p class="fade-up d2"><strong>Más Center Algarrobal</strong> es una oportunidad para formar parte
+      de un proyecto que crece junto a su entorno, integrándose a la vida cotidiana de la comuna y
+      proyectando valor en el largo plazo.</p>
+  </div>
+</section>

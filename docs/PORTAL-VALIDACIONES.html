@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal de validaciones — guía para KAM y CM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Misma paleta que el portal, para que la guía se lea como parte de la herramienta. */
+:root{
+  --tinta:#14171c; --tinta2:#4d545f; --tinta3:#858d99;
+  --papel:#ffffff; --fondo:#f4f5f7; --linea:#e3e6ea; --linea2:#cfd4db;
+  --agencia:#5b4bd0; --agencia-suave:#f0edfd;
+  --ok:#0f8a54; --ok-suave:#e6f5ee;
+  --alerta:#9a6410; --alerta-suave:#fdf3e2;
+  --peligro:#b0293a; --peligro-suave:#fdecee;
+  --sombra:0 1px 2px rgba(20,23,28,.05), 0 10px 30px rgba(20,23,28,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --tinta:#eef0f4; --tinta2:#a9b1bd; --tinta3:#7c8593;
+    --papel:#1b1f26; --fondo:#131619; --linea:#2b3038; --linea2:#3a414b;
+    --agencia:#a99bf5; --agencia-suave:#241f3d;
+    --ok:#5fd39b; --ok-suave:#12291f;
+    --alerta:#e0ac5a; --alerta-suave:#2b2213;
+    --peligro:#f0868f; --peligro-suave:#2e1519;
+    --sombra:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --tinta:#eef0f4; --tinta2:#a9b1bd; --tinta3:#7c8593;
+  --papel:#1b1f26; --fondo:#131619; --linea:#2b3038; --linea2:#3a414b;
+  --agencia:#a99bf5; --agencia-suave:#241f3d;
+  --ok:#5fd39b; --ok-suave:#12291f;
+  --alerta:#e0ac5a; --alerta-suave:#2b2213;
+  --peligro:#f0868f; --peligro-suave:#2e1519;
+  --sombra:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+body{margin:0; background:var(--fondo); color:var(--tinta);
+  font:400 17px/1.65 "Source Serif 4", Georgia, serif; -webkit-font-smoothing:antialiased}
+.hoja{max-width:840px; margin:0 auto; padding:44px 24px 90px}
+
+h1,h2,h3,h4,.eti,th,.paso .n,.chip,.indice a,.rol b{font-family:"Archivo",-apple-system,BlinkMacSystemFont,sans-serif}
+h1{font-size:clamp(29px,5.2vw,42px); font-weight:800; letter-spacing:-.025em; line-height:1.07; margin:0 0 10px; text-wrap:balance}
+h2{font-size:23px; font-weight:700; letter-spacing:-.018em; margin:0 0 8px; text-wrap:balance}
+h3{font-size:17px; font-weight:700; margin:0 0 6px}
+h4{font-size:15px; font-weight:700; margin:0 0 4px}
+p{margin:0 0 14px; max-width:66ch}
+ul,ol.simple{max-width:66ch}
+li{margin-bottom:5px}
+a{color:var(--agencia)}
+strong{font-weight:600}
+code{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:.85em;
+  background:var(--fondo); border:1px solid var(--linea); border-radius:5px; padding:1px 5px}
+kbd{font-family:"Archivo",sans-serif; font-size:.85em; font-weight:600; background:var(--tinta);
+  color:var(--papel); border-radius:5px; padding:2px 7px; white-space:nowrap}
+
+.eti{font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--tinta3); margin:0 0 12px}
+header{border-bottom:2px solid var(--tinta); padding-bottom:22px; margin-bottom:30px}
+.sello{display:inline-flex; font-family:"Archivo",sans-serif; font-size:11.5px; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--agencia); background:var(--agencia-suave);
+  border-radius:99px; padding:5px 12px; margin-bottom:16px}
+.bajada{font-size:19px; color:var(--tinta2); max-width:60ch; margin:0}
+section{margin:0 0 48px; scroll-margin-top:20px}
+.regla{border:0; border-top:1px solid var(--linea); margin:0 0 26px}
+
+/* ---- índice ---- */
+.indice{background:var(--papel); border:1px solid var(--linea); border-radius:11px; padding:16px 18px;
+  box-shadow:var(--sombra); margin-bottom:44px}
+.indice ol{list-style:none; padding:0; margin:0; counter-reset:idx; columns:2; column-gap:28px}
+@media(max-width:600px){ .indice ol{columns:1} }
+.indice li{counter-increment:idx; margin-bottom:7px; break-inside:avoid; font-size:15px}
+.indice a{text-decoration:none; font-weight:600; font-size:14.5px}
+.indice a:hover{text-decoration:underline}
+.indice a::before{content:counter(idx,decimal-leading-zero); color:var(--tinta3); margin-right:9px; font-variant-numeric:tabular-nums}
+
+/* ---- roles ---- */
+.roles{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:18px 0}
+.rol{background:var(--papel); border:1px solid var(--linea); border-radius:10px; padding:15px 16px; box-shadow:var(--sombra)}
+.rol b{display:block; font-size:15.5px; font-weight:700; margin-bottom:2px}
+.rol .cual{font-size:12px; color:var(--agencia); font-family:"Archivo",sans-serif; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase; display:block; margin-bottom:8px}
+.rol ul{margin:0; padding-left:17px; font-size:14.5px; line-height:1.5}
+.rol li{margin-bottom:4px}
+
+/* ---- tablas ---- */
+.tabla{width:100%; border-collapse:collapse; font-size:15px}
+.tabla th{font-size:11px; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--tinta3);
+  text-align:left; padding:0 14px 8px 0; border-bottom:1px solid var(--linea2)}
+.tabla td{padding:11px 14px 11px 0; border-bottom:1px solid var(--linea); vertical-align:top}
+.tabla td:first-child{white-space:nowrap}
+.tabla .sig{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:15px; color:var(--agencia)}
+.tabla .med{font-family:"IBM Plex Mono",monospace; font-size:14px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.envoltura{overflow-x:auto; margin-bottom:10px}
+
+/* ---- anatomía del nombre ---- */
+.anatomia{background:var(--papel); border:1px solid var(--linea); border-radius:11px; padding:20px 18px;
+  box-shadow:var(--sombra); overflow-x:auto; margin-bottom:18px}
+.nombre{font-family:"IBM Plex Mono",monospace; font-size:clamp(14px,2.6vw,19px); font-weight:600;
+  white-space:nowrap; display:flex; gap:.55em; margin-bottom:16px}
+.nombre span{padding-bottom:6px; border-bottom:2px solid var(--linea2)}
+.nombre .p1{color:var(--agencia); border-color:var(--agencia)}
+.nombre .p2{color:var(--ok); border-color:var(--ok)}
+.nombre .p3{color:var(--alerta); border-color:var(--alerta)}
+.nombre .p4{color:var(--tinta)}
+.nombre .p5{color:var(--peligro); border-color:var(--peligro)}
+.leyenda{display:grid; gap:8px; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); font-size:14.5px}
+.leyenda div{display:flex; gap:8px; align-items:flex-start; line-height:1.45}
+.leyenda i{width:11px; height:11px; border-radius:3px; flex:0 0 auto; margin-top:5px}
+.leyenda b{font-family:"IBM Plex Mono",monospace; font-weight:600}
+
+/* ---- pasos ---- */
+.pasos{list-style:none; padding:0; margin:0; counter-reset:paso}
+.paso{display:grid; grid-template-columns:34px 1fr; gap:14px; padding:16px 0; border-top:1px solid var(--linea)}
+.paso:first-child{border-top:0; padding-top:0}
+.paso .n{counter-increment:paso; font-size:14px; font-weight:700; color:var(--agencia);
+  font-variant-numeric:tabular-nums; padding-top:3px}
+.paso .n::before{content:counter(paso,decimal-leading-zero)}
+.paso h3{margin-bottom:3px; display:flex; gap:9px; align-items:baseline; flex-wrap:wrap}
+.paso .quien{font-family:"Archivo",sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--papel); background:var(--tinta2); border-radius:99px; padding:3px 9px}
+.paso .quien.dis{background:#2f5bd7}
+.paso .quien.kam{background:var(--agencia)}
+.paso .quien.cm{background:var(--ok)}
+.paso .quien.cli{background:var(--alerta)}
+.paso .quien.bot{background:var(--tinta3)}
+.paso p{margin:0 0 8px; font-size:15.5px}
+.paso p:last-child{margin-bottom:0}
+.paso .esperado{display:block; margin-top:8px; font-size:14.5px; color:var(--tinta); background:var(--ok-suave);
+  border-left:3px solid var(--ok); border-radius:0 7px 7px 0; padding:8px 11px; max-width:none}
+
+.aviso{border-radius:10px; padding:14px 16px; font-size:15.5px; margin-bottom:14px}
+.aviso p{margin:0 0 8px; max-width:none}
+.aviso p:last-child{margin-bottom:0}
+.aviso.ojo{background:var(--alerta-suave); border:1px solid var(--alerta)}
+.aviso.bueno{background:var(--ok-suave); border:1px solid var(--ok)}
+.aviso.stop{background:var(--peligro-suave); border:1px solid var(--peligro)}
+.nota{background:var(--papel); border:1px solid var(--linea); border-radius:10px; padding:16px 18px;
+  font-size:15.5px; box-shadow:var(--sombra); margin-bottom:14px}
+.nota p:last-child{margin-bottom:0}
+
+/* ---- preguntas ---- */
+.pregunta{border-top:1px solid var(--linea); padding:15px 0}
+.pregunta:first-of-type{border-top:0}
+.pregunta h4{color:var(--agencia)}
+.pregunta p{margin:0; font-size:15.5px}
+
+footer{border-top:1px solid var(--linea); margin-top:50px; padding-top:18px; font-size:14px; color:var(--tinta3)}
+:focus-visible{outline:2px solid var(--agencia); outline-offset:3px; border-radius:3px}
+</style>
+</head>
+<body>
+<div class="hoja">
+
+<header>
+  <span class="sello">Guía para KAM y CM</span>
+  <h1>Portal de validaciones</h1>
+  <p class="bajada">Dónde entrar, qué hace cada uno y cómo se corre un mes completo con un cliente. No hace falta saber nada previo.</p>
+</header>
+
+<nav class="indice">
+  <ol>
+    <li><a href="#que-es">Qué es y para qué sirve</a></li>
+    <li><a href="#quien">Quién hace qué</a></li>
+    <li><a href="#entrar">Cómo entrar</a></li>
+    <li><a href="#pestanas">Las cinco pestañas</a></li>
+    <li><a href="#mes">El mes completo, paso a paso</a></li>
+    <li><a href="#archivos">Cómo nombra los archivos la diseñadora</a></li>
+    <li><a href="#carpeta">Apuntarle la carpeta al portal</a></li>
+    <li><a href="#reglas">Las reglas que el portal hace cumplir</a></li>
+    <li><a href="#cliente">Qué esperamos del cliente</a></li>
+    <li><a href="#probar">La prueba antes del primer cliente</a></li>
+    <li><a href="#preguntas">Preguntas que van a salir</a></li>
+  </ol>
+</nav>
+
+<section id="que-es">
+  <p class="eti">Empecemos por acá</p>
+  <h2>Qué es y para qué sirve</h2>
+  <p>Hoy las aprobaciones de contenido pasan por WhatsApp y por correo. Eso trae tres problemas que se repiten todos los meses: el cliente pide cambios sin límite y nadie sabe en qué ronda vamos; nadie tiene registro de quién aprobó qué ni cuándo; y cuando el mes se atrasa, no hay forma de mostrar que el atraso fue del cliente y no nuestro.</p>
+  <p>El portal es una página web privada donde <strong>el cliente ve sus piezas, comenta y aprueba</strong>. Cada cliente entra por su propio enlace y no ve nada de los demás. Todo queda registrado: quién pidió cada cambio, cuánto se demoró en responder, cuántas rondas se usaron.</p>
+  <div class="aviso bueno">
+    <p><strong>La regla de oro:</strong> las aprobaciones, los comentarios y las solicitudes viven en el portal. WhatsApp queda para urgencias y para avisar «hay piezas nuevas». <strong>Lo que no está en el portal, no pasó.</strong></p>
+  </div>
+  <p>Y lo mejor: la diseñadora no cambia nada de lo que hace hoy. Entrega donde entrega siempre —su carpeta del Drive— y el portal las levanta solo.</p>
+</section>
+
+<hr class="regla">
+
+<section id="quien">
+  <p class="eti">Los cuatro roles</p>
+  <h2>Quién hace qué</h2>
+  <div class="roles">
+    <div class="rol">
+      <span class="cual">Diseñadora</span>
+      <b>Produce y entrega</b>
+      <ul>
+        <li>Deja las piezas en la carpeta del Drive del mes.</li>
+        <li>Les pone el nombre correcto (es lo único nuevo que tiene que aprender).</li>
+        <li>Cuando hay correcciones, <strong>reemplaza el archivo</strong> en la misma carpeta.</li>
+      </ul>
+    </div>
+    <div class="rol">
+      <span class="cual">KAM</span>
+      <b>Controla el flujo</b>
+      <ul>
+        <li>Revisa las tarjetas que entraron y les completa el copy.</li>
+        <li>Aprieta <kbd>Enviar a revisión</kbd> — <strong>esto arranca el reloj.</strong></li>
+        <li>Persigue al cliente y registra lo que llegue por otro canal.</li>
+        <li>Cierra las validaciones a fin de mes.</li>
+      </ul>
+    </div>
+    <div class="rol">
+      <span class="cual">CM</span>
+      <b>Publica</b>
+      <ul>
+        <li>Programa fecha y hora de lo que ya está aprobado.</li>
+        <li>Revisa junto a la KAM lo que quedó pendiente cada semana.</li>
+      </ul>
+    </div>
+    <div class="rol">
+      <span class="cual">Cliente</span>
+      <b>Revisa y aprueba</b>
+      <ul>
+        <li>Comenta pieza por pieza.</li>
+        <li>Sólo <strong>la contraparte</strong> envía las rondas y aprueba.</li>
+        <li>Tiene 72 horas hábiles para responder.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="aviso ojo">
+    <p><strong>La contraparte es una sola persona por cuenta.</strong> Es quien firma. Otras personas del cliente pueden entrar y dejar comentarios, pero <em>no pueden</em> enviar la ronda ni aprobar: la contraparte junta todo y lo manda de una vez. Eso es lo que evita los cinco WhatsApp con opiniones distintas de la misma pieza.</p>
+  </div>
+</section>
+
+<hr class="regla">
+
+<section id="entrar">
+  <p class="eti">Lo primero</p>
+  <h2>Cómo entrar</h2>
+  <ol class="pasos">
+    <li class="paso"><span class="n"></span><div>
+      <h3>Abre el portal</h3>
+      <p>Entra a <strong>portal-copylab.vercel.app</strong>. Vas a ver una pantalla que pide un PIN. Ese PIN te lo da Valeria — es el mismo para todo el equipo, no lo compartas fuera de la agencia.</p>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3>Aprieta el botón morado</h3>
+      <p>Dice <kbd>Entrar como agencia</kbd>. El morado es siempre el acceso del equipo; nunca se lo mandes a un cliente.</p>
+      <span class="esperado">Aparece la lista de cuentas con sus marcas. Ahí eliges la tuya con <kbd>Abrir como agencia</kbd>.</span>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3>Pon tu nombre arriba a la derecha</h3>
+      <p>Todo lo que hagas queda firmado con ese nombre. Si no lo pones, el portal no te deja comentar ni aprobar.</p>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3>El enlace del cliente es otro, y es distinto</h3>
+      <p>En la misma lista de cuentas hay dos botones más: <kbd>Copiar enlace del cliente</kbd> —ese es el que se le manda a la contraparte— y <kbd>Ver como cliente</kbd>, que abre exactamente lo que él ve, para que puedas probar.</p>
+      <span class="esperado">Es un enlace por cliente, no caduca, y quien lo tenga entra. Mándaselo sólo a la contraparte.</span>
+    </div></li>
+  </ol>
+</section>
+
+<hr class="regla">
+
+<section id="pestanas">
+  <p class="eti">La pantalla</p>
+  <h2>Las cinco pestañas</h2>
+  <div class="envoltura">
+    <table class="tabla">
+      <thead><tr><th>Pestaña</th><th>Para qué</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Piezas</strong></td><td>Donde se trabaja. Las tarjetas agrupadas por estado, con el contador de rondas y el plazo a la vista.</td></tr>
+        <tr><td><strong>Feed</strong></td><td>Cómo va a quedar la grilla de Instagram. Arriba lo que viene, abajo lo ya publicado.</td></tr>
+        <tr><td><strong>Calendario</strong></td><td>El avance de la entrega y el calendario de publicación de lo programado.</td></tr>
+        <tr><td><strong>Reportes</strong></td><td>La evidencia: rondas por pieza, cuánto se demoró el cliente, qué quedó fuera de alcance. <strong>Es la pestaña que se lleva a la reunión de cuenta.</strong></td></tr>
+        <tr><td><strong>Ajustes</strong></td><td>La configuración de la cuenta y las carpetas del Drive que el portal vigila.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3 style="margin-top:22px">Los estados de una pieza</h3>
+  <div class="envoltura">
+    <table class="tabla">
+      <thead><tr><th>Estado</th><th>Qué significa</th><th>De quién depende</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Sin enviar</strong></td><td>Está en el portal pero el cliente todavía no la ve.</td><td>KAM</td></tr>
+        <tr><td><strong>Por revisar</strong></td><td>Se la mandamos. El reloj está corriendo.</td><td>Cliente</td></tr>
+        <tr><td><strong>Con cambios</strong></td><td>El cliente pidió correcciones.</td><td>Diseñadora</td></tr>
+        <tr><td><strong>Corregida</strong></td><td>La diseñadora subió la versión nueva. Falta reenviarla.</td><td>KAM</td></tr>
+        <tr><td><strong>Aprobada</strong></td><td>Cerrada y lista para publicar.</td><td>CM</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="regla">
+
+<section id="mes">
+  <p class="eti">El recorrido completo</p>
+  <h2>Un mes, paso a paso</h2>
+  <p>Este es el ciclo entero. Fíjate en la etiqueta de color de cada paso: dice quién actúa.</p>
+  <ol class="pasos">
+    <li class="paso"><span class="n"></span><div>
+      <h3><span class="quien dis">Diseñadora</span> Entrega en su carpeta del Drive</h3>
+      <p>Igual que siempre, en la carpeta de entrega del mes. Lo único distinto es el nombre de los archivos, que se explica más abajo.</p>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3><span class="quien bot">Automático</span> El portal las levanta</h3>
+      <p>Cada hora el portal revisa la carpeta y arma las tarjetas solo: la marca, el formato, la fecha de publicación y el carrusel. Nadie sube archivos a mano.</p>
+      <span class="esperado">Entran en <strong>Sin enviar</strong>. Si no quieres esperar, en Ajustes está <kbd>Traer ahora del Drive</kbd>.</span>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3><span class="quien kam">KAM</span> Revisa las tarjetas y completa el copy</h3>
+      <p>Con <kbd>Editar</kbd> en cada tarjeta puedes corregir el título, elegir el formato y pegar <strong>el copy que se va a publicar</strong>. Ahí mismo está la casilla «el copy está aprobado y es el que se publica».</p>
+      <span class="esperado">Una pieza aprobada con el copy sin marcar no se puede publicar después. Es mejor dejarlo listo acá.</span>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3><span class="quien kam">KAM</span> Aprieta «Enviar a revisión»</h3>
+      <p>Este es el momento importante: <strong>acá arranca el plazo de 72 horas hábiles</strong> y recién acá el cliente ve las piezas. El portal nunca envía nada solo.</p>
+      <span class="esperado">Puedes mandar todas las piezas de una vez. Avísale al cliente por WhatsApp que ya están, con su enlace.</span>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3><span class="quien cli">Cliente</span> Anota sus comentarios</h3>
+      <p>Pieza por pieza. En un carrusel, el comentario queda pegado a la lámina que estaba viendo. En un video, puede pausar donde está el problema y usar «Comentar en este minuto»: el comentario queda con el minuto exacto.</p>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3><span class="quien cli">Cliente</span> La contraparte envía la ronda</h3>
+      <p>Todos los comentarios salen juntos como <strong>una</strong> ronda. El portal le dice cuántas le quedan.</p>
+      <span class="esperado">Mientras no la envíe, los comentarios están en borrador y la diseñadora no los ve. Eso es a propósito: evita que empiece a corregir sobre algo que el cliente todavía está pensando.</span>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3><span class="quien dis">Diseñadora</span> Corrige y reemplaza el archivo</h3>
+      <p>En la misma carpeta del Drive, con el mismo nombre. El portal detecta el cambio, sube la pieza a V2 y deja resueltos los comentarios de la versión anterior.</p>
+      <span class="esperado">La V2 <strong>no se le manda al cliente sola</strong>: vuelve a quedar en tus manos.</span>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3><span class="quien kam">KAM</span> Reenvía a revisión</h3>
+      <p>Igual que la primera vez. El plazo del cliente se reinicia.</p>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3><span class="quien cli">Cliente</span> Aprueba</h3>
+      <p>La pieza queda cerrada. Desde ahí ya no acepta comentarios normales.</p>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3><span class="quien cm">CM</span> Programa la publicación</h3>
+      <p>En la tarjeta aprobada aparece <kbd>Programar</kbd>: fecha, hora de Chile y el copy aprobado. Si la cuenta de Instagram está conectada, el portal publica solo a esa hora; si no, queda agendado en el calendario y se publica a mano.</p>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3><span class="quien kam">KAM</span> Cierra las validaciones del mes</h3>
+      <p>Con <kbd>Cerrar validaciones</kbd> queda el acta: cuántas piezas se aprobaron a la primera, cuántas rondas se usaron, cuánto se demoró el cliente y qué quedó fuera de alcance.</p>
+      <span class="esperado">Esa acta es la que sostiene la conversación de cuenta. Antes esos datos no existían.</span>
+    </div></li>
+  </ol>
+</section>
+
+<hr class="regla">
+
+<section id="archivos">
+  <p class="eti">Lo único nuevo que hay que aprender</p>
+  <h2>Cómo nombra los archivos la diseñadora</h2>
+  <p>El nombre del archivo es lo que le dice al portal a qué marca va, qué formato es, cuándo se publica y si es parte de un carrusel. Es la única condición de todo esto — pásale esta sección a la diseñadora.</p>
+
+  <div class="anatomia">
+    <div class="nombre">
+      <span class="p1">BW</span><span class="p2">FEED</span><span class="p3">01-09</span><span class="p4">Cowork</span><span class="p5">1</span><span class="p4">.png</span>
+    </div>
+    <div class="leyenda">
+      <div><i style="background:var(--agencia)"></i><span><b>BW</b> — la sigla de la marca. Decide a cuál va.</span></div>
+      <div><i style="background:var(--ok)"></i><span><b>FEED</b> — el tipo. Decide el formato y la pestaña.</span></div>
+      <div><i style="background:var(--alerta)"></i><span><b>01-09</b> — día de publicación, DD-MM.</span></div>
+      <div><i style="background:var(--linea2)"></i><span><b>Cowork</b> — el tema. Es lo que agrupa el carrusel.</span></div>
+      <div><i style="background:var(--peligro)"></i><span><b>1</b> — el orden de la lámina. Sin número, es pieza suelta.</span></div>
+    </div>
+  </div>
+
+  <h3>Los tipos que reconoce</h3>
+  <div class="envoltura">
+    <table class="tabla">
+      <thead><tr><th>Escribe</th><th>Formato</th><th>Dónde entra</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td class="sig">FEED</td><td class="med">1080×1350</td><td>Grilla</td><td><code>BW FEED 01-09 Cowork 1.png</code></td></tr>
+        <tr><td class="sig">POST</td><td class="med">1080×1350</td><td>Grilla</td><td><code>DT POST 07-09 Desayuno.png</code></td></tr>
+        <tr><td class="sig">ST</td><td class="med">1080×1920</td><td>Stories</td><td><code>BW ST 03-09 Ya abrimos.jpg</code></td></tr>
+        <tr><td class="sig">STORY</td><td class="med">1080×1920</td><td>Stories</td><td><code>P18 STORY 10-09 Atardecer.png</code></td></tr>
+        <tr><td class="sig">REEL</td><td class="med">1080×1920</td><td>Reels</td><td><code>BW REEL 05-09 Promo primavera.mp4</code></td></tr>
+        <tr><td class="sig">PAID</td><td class="med">1080×1080</td><td>Paid</td><td><code>QB PAID 09-09 Menu ejecutivo.jpg</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:14.5px;color:var(--tinta2)"><strong>ST</strong> y <strong>STORY</strong> son lo mismo, escribe el que prefieras. Mayúsculas o minúsculas da igual. Los acentos no importan: el título que lee el cliente sale de la grilla del mes, no del nombre del archivo.</p>
+
+  <h3 style="margin-top:24px">Tres casos que conviene tener claros</h3>
+  <div class="aviso bueno">
+    <p><strong>Carrusel.</strong> Es el número al final del tema. <code>Cowork 1</code>, <code>Cowork 2</code>, <code>Cowork 3</code> son <em>una</em> pieza de tres láminas, en ese orden. No hay que avisarle nada al portal.</p>
+  </div>
+  <div class="aviso bueno">
+    <p><strong>Reel con portada.</strong> El <code>.mp4</code> y su portada con el mismo nombre más la palabra <em>portada</em>: <code>BW REEL 05-09 Promo primavera.mp4</code> y <code>BW REEL 05-09 Promo primavera portada.png</code>. Quedan como una sola pieza: el video con su carátula, que es la que se ve en la grilla del feed.</p>
+  </div>
+  <div class="aviso ojo">
+    <p><strong>Lo que no calce no entra… y no rompe nada.</strong> Un <code>IMG_2938.png</code>, o una sigla que no sea marca de esa cuenta, se ignoran y aparecen en el reporte cuando aprietas <kbd>Traer ahora del Drive</kbd>. Si a la diseñadora se le pasó un nombre, lo ves ahí y se lo dices. Nada se pierde ni se importa mal.</p>
+  </div>
+</section>
+
+<hr class="regla">
+
+<section id="carpeta">
+  <p class="eti">Una vez al mes, por cuenta</p>
+  <h2>Apuntarle la carpeta al portal</h2>
+  <p>El portal no puede buscar en el Drive: hay que darle el enlace de la carpeta. Se hace una vez por cuenta y por mes, porque <strong>entra también a las subcarpetas</strong> — le das la del mes y él encuentra S1, S2, S3 y S4.</p>
+  <ol class="pasos">
+    <li class="paso"><span class="n"></span><div>
+      <h3>Copia el enlace de la carpeta del mes</h3>
+      <p>En el Drive, abre la carpeta <code>3 ENTREGA</code> del mes y copia el enlace de la barra del navegador. No la de la semana: la del mes.</p>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3>Pégalo en Ajustes</h3>
+      <p>Dentro de la cuenta, pestaña <strong>Ajustes</strong> → <kbd>Vigilar una carpeta</kbd>. Pega el enlace y deja la marca en «según la sigla del nombre del archivo».</p>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3>Aprieta «Ver qué trae» antes de guardar</h3>
+      <p>Te muestra qué piezas saldrían y qué archivos se ignoran por el nombre, sin tocar nada.</p>
+      <span class="esperado">Así revisas los nombres con la diseñadora antes de que nada entre al portal.</span>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3>«Traer ahora del Drive»</h3>
+      <p>Para no esperar la revisión de la hora. Te dice cuántas piezas nuevas entraron, cuántas correcciones y qué archivos ignoró.</p>
+    </div></li>
+  </ol>
+</section>
+
+<hr class="regla">
+
+<section id="reglas">
+  <p class="eti">Lo que ya no hay que negociar</p>
+  <h2>Las reglas que el portal hace cumplir</h2>
+  <p>Estas reglas están en el servidor, no en la pantalla: no se pueden saltar ni por error ni a propósito.</p>
+  <div class="envoltura">
+    <table class="tabla">
+      <thead><tr><th>Regla</th><th>Cómo la aplica</th></tr></thead>
+      <tbody>
+        <tr><td><strong>3 rondas por pieza</strong></td><td>La cuarta no se puede enviar. El botón cambia a «Solicitar cambio adicional».</td></tr>
+        <tr><td><strong>Aprobada = cerrada</strong></td><td>Después de aprobar no hay comentarios normales, sólo solicitud fuera de alcance.</td></tr>
+        <tr><td><strong>Cambios consolidados</strong></td><td>Los comentarios nacen en borrador y salen todos juntos cuando la contraparte envía la ronda.</td></tr>
+        <tr><td><strong>Una sola contraparte</strong></td><td>Sólo quien esté designado puede enviar rondas y aprobar. El resto anota, no cierra.</td></tr>
+        <tr><td><strong>72 horas hábiles</strong></td><td>Empieza al enviar a revisión. El fin de semana no cuenta. Vencido, la pieza queda marcada como fuera de plazo — <strong>pero no se aprueba sola.</strong></td></tr>
+        <tr><td><strong>Última ronda</strong></td><td>Al gastar la tercera, la tarjeta muestra «último cambio: consolidar» con fecha tope. Es el aviso de que ahí se cierra.</td></tr>
+        <tr><td><strong>Fuera de alcance</strong></td><td>Lo que llegue después se registra con nombre, fecha y tarifa aceptada, y va a la tabla de facturables. No se ejecuta hasta que se cotiza.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="aviso ojo" style="margin-top:16px">
+    <p><strong>Nada se cobra por sorpresa.</strong> El cliente ve siempre cuántas rondas le quedan, pero el portal no le pone carteles de cobro encima. Cuando gasta la última ronda o pide algo fuera de alcance, se le avisa por correo y el equipo le confirma alcance y horas <em>antes</em> de ejecutar nada.</p>
+  </div>
+</section>
+
+<hr class="regla">
+
+<section id="cliente">
+  <p class="eti">La conversación con el cliente</p>
+  <h2>Qué esperamos de él</h2>
+  <p>Vale la pena decirle esto en la reunión donde le presentas el portal, no cuando ya haya un problema:</p>
+  <ul>
+    <li><strong>Que designe una contraparte.</strong> Una persona que firma. Los demás pueden opinar dentro del portal, pero ella junta y manda.</li>
+    <li><strong>Que responda en 72 horas hábiles.</strong> No es un capricho: es lo que nos permite cumplir el calendario de publicación que él mismo aprobó.</li>
+    <li><strong>Que junte sus cambios.</strong> Una tanda por ronda, no cinco mensajes en tres días.</li>
+    <li><strong>Que use el portal.</strong> Si aprueba por WhatsApp, para el registro no pasó — y sin registro no hay cómo defender el mes.</li>
+  </ul>
+  <div class="nota">
+    <h4>Cómo se lo presentas</h4>
+    <p>No como un control, sino como lo que es: él ve todo su mes en un solo lugar, con la grilla armada, sabe exactamente qué falta y deja de perseguir aprobaciones en un hilo de WhatsApp. Que las reglas queden claras es lo que hace que las entregas lleguen a tiempo, y eso lo beneficia a él primero.</p>
+  </div>
+</section>
+
+<hr class="regla">
+
+<section id="probar">
+  <p class="eti">Antes del primer cliente</p>
+  <h2>La prueba que hay que hacer</h2>
+  <p>Media hora, con tu computador y tu teléfono. La idea es que el primer cliente no descubra nada que nosotros no hayamos visto antes.</p>
+  <ol class="pasos">
+    <li class="paso"><span class="n"></span><div>
+      <h3>Pídele a la diseñadora una entrega de prueba</h3>
+      <p>Tres o cuatro piezas en la carpeta del mes: un carrusel, una story y un reel con portada, con los nombres de la tabla de arriba.</p>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3>Trae del Drive y revisa lo que entró</h3>
+      <p>Tienen que aparecer en «Sin enviar», con su formato y su fecha. El carrusel como una sola pieza con sus láminas, el reel como video.</p>
+      <span class="esperado">Si algo no aparece, mira el reporte de ignorados: casi siempre es el nombre.</span>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3>Completa un copy y envía a revisión</h3>
+      <p>Confirma que la tarjeta pasa a «Por revisar» y que el plazo empieza a correr.</p>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3>Entra como cliente, desde el teléfono</h3>
+      <p>Con el enlace del cliente. Abre el carrusel, escribe un comentario, pasa a la lámina siguiente y vuelve: <strong>el texto tiene que seguir ahí</strong>. Anota dos o tres.</p>
+      <span class="esperado">El comentario aparece al toque y el botón dice «Guardando…» mientras confirma.</span>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3>Prueba con un nombre que no sea la contraparte</h3>
+      <p>Cambia el nombre arriba a la derecha e intenta enviar la ronda. Tiene que rechazarte. El comentario igual queda anotado.</p>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3>Envía la ronda con el nombre de la contraparte</h3>
+      <p>Y revisa que quede «Ronda 1 de 3».</p>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3>Pide una corrección de verdad</h3>
+      <p>Que la diseñadora reemplace uno de los archivos en el Drive. Trae del Drive: la pieza sube a V2 sola, con los comentarios anteriores resueltos.</p>
+      <span class="esperado">Y comprueba que la V2 no le llegó al cliente hasta que tú la enviaste.</span>
+    </div></li>
+    <li class="paso"><span class="n"></span><div>
+      <h3>Aprueba y mira Reportes</h3>
+      <p>Ahí tiene que estar todo: rondas por pieza, demora del cliente, aprobadas a la primera.</p>
+    </div></li>
+  </ol>
+  <div class="nota">
+    <h4>Mientras estamos probando</h4>
+    <p>Los avisos de Slack están <strong>apagados</strong> a propósito, así que no esperes que suene el canal. Y nada de lo que hagas en la prueba le llega al cliente: sólo ve lo que tú envíes a revisión, y sólo por su enlace privado.</p>
+  </div>
+</section>
+
+<hr class="regla">
+
+<section id="preguntas">
+  <p class="eti">Lo que va a pasar</p>
+  <h2>Preguntas que van a salir</h2>
+
+  <div class="pregunta">
+    <h4>El cliente me aprobó por WhatsApp. ¿Qué hago?</h4>
+    <p>Regístralo tú en el portal a nombre de él: pega lo que escribió, o deja un resumen si fue por teléfono. Si no queda ahí, para el registro no pasó y esa pieza no cuenta rondas ni tiempos.</p>
+  </div>
+  <div class="pregunta">
+    <h4>Se le pasó el plazo al cliente. ¿La pieza se aprueba sola?</h4>
+    <p>No. Nunca. Queda marcada como fuera de plazo y anotada en el reporte, pero la decisión siempre es de una persona. Lo que sí podemos hacer, cuando el atraso es de él, es correr la fecha de publicación.</p>
+  </div>
+  <div class="pregunta">
+    <h4>Alguien más del cliente quiere comentar.</h4>
+    <p>Puede, con el mismo enlace. Deja su comentario y queda anotado con su nombre. Lo que no puede es enviar la ronda ni aprobar: eso lo hace la contraparte, que junta todo.</p>
+  </div>
+  <div class="pregunta">
+    <h4>El cliente pide un cuarto cambio.</h4>
+    <p>El botón le cambia solo a «Solicitar cambio adicional», con la tarifa a la vista y una casilla que tiene que marcar. Queda registrado con su nombre y su fecha, y llega un correo para cotizar las horas <strong>antes</strong> de que la diseñadora toque nada.</p>
+  </div>
+  <div class="pregunta">
+    <h4>La diseñadora subió una pieza al Drive y no aparece.</h4>
+    <p>Aprieta <kbd>Traer ahora del Drive</kbd> en Ajustes y mira el reporte de ignorados. En casi todos los casos es el nombre del archivo: le falta la sigla, el tipo o la fecha.</p>
+  </div>
+  <div class="pregunta">
+    <h4>Me equivoqué y envié a revisión antes de tiempo.</h4>
+    <p>No hay botón para «desenviar», porque el cliente ya recibió el aviso. Escríbele, y cuando la corrección esté lista vuelve a enviarla: el plazo se reinicia con la versión nueva.</p>
+  </div>
+  <div class="pregunta">
+    <h4>¿El cliente ve los comentarios internos del equipo?</h4>
+    <p>El cliente sólo ve las piezas que se le enviaron. Lo que está en «Sin enviar» es trabajo interno y no sale de la agencia.</p>
+  </div>
+  <div class="pregunta">
+    <h4>Se cambió la contraparte del cliente.</h4>
+    <p>Avísale a Valeria para que actualice el nombre en la cuenta. Mientras no se cambie, la persona nueva puede comentar pero no aprobar.</p>
+  </div>
+</section>
+
+<footer>
+  Si algo no calza con lo que dice acá, avísale a Valeria antes de seguir. Es mejor arreglarlo ahora que con el cliente adentro.
+</footer>
+
+</div>
+</body>
+</html>

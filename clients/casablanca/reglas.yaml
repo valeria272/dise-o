@@ -129,40 +129,57 @@ reglas:
       se fijan a mano justamente por esto.
     args: {}
 
-  - id: muestra-igual-al-piso
-    titulo: La muestra tiene que ser el mismo piso que está en el suelo
-    check: coincide_color_entre_zonas
-    severidad: bloqueante
-    formato: feed
-    solo_archivos: ["*c1-*"]
-    autor: Dirección de área
-    fecha: 2026-08-25
-    cita: >-
-      En las cuatro tarjetas el recuadro muestra un roble cálido de veta marcada, y el
-      piso instalado es otro: claro, grisáceo y con nudos. Estamos mostrando un
-      producto en la etiqueta y otro en el suelo. Para una marca de pisos ese es el
-      error más caro que hay, porque el cliente compra lo que ve.
-    porque: >-
-      Es el bug de los pisos, el que más caro salió. La ronda 1 tenía las cuatro
-      muestras dentro de un rango de 20 puntos de color y ninguna correspondía al
-      producto. Se resolvió construyendo muestra y suelo desde la MISMA foto oficial
-      (scripts/casablanca-pisos-compositor.py), y esta regla lo verifica en la salida.
-      Las zonas son las del sistema C1: muestra vertical a la izquierda, suelo en el
-      tercio inferior.
-    args:
-      nombres: ["la muestra", "el piso del ambiente"]
-      # ⚠️ Zonas VERIFICADAS visualmente con un overlay sobre
-      # cb_sep_c1-cumaru_feed.png (1080×1350). La primera versión de estos
-      # números caía sobre la planta y el muro de ladrillo, y el ΔE que reportaba
-      # no medía nada: siempre dibuja el recuadro antes de confiar en el número.
-      #
-      # Son frágiles a propósito: la muestra cambió de lugar entre la ronda 1 y el
-      # sistema editorial. Si el sistema la mueve otra vez, hay que volver a
-      # verificar el overlay — no ajustar el tope.
-      zonas:
-        - {x0: 0.35, y0: 0.63, x1: 0.46, y1: 0.81}   # la muestra, dentro del borde blanco
-        - {x0: 0.50, y0: 0.72, x1: 0.92, y1: 0.93}   # el piso del ambiente, a su derecha
-      delta_e_max: 20.0
+  # ══════════════════════════════════════════════════════════════════════════
+  # RETIRADA el 28-08-2026 — la regla quedó sin objeto, no relajada.
+  #
+  # Paulina, sobre cb_sep_c1-1 feed45: «eliminemos esto de todas las slides. este
+  # recorte se usa para colocar el nombre y detalles del producto pero cada slide ya
+  # tiene el nombre del producto como enunciado». La muestra de tabla YA NO EXISTE en
+  # las piezas C1, así que estas zonas miden el piso del ambiente contra una parte
+  # cualquiera de la habitación: daban ΔE 26,3 y 32,4 sobre un tope de 20 y bloqueaban
+  # la entrega midiendo nada.
+  #
+  # El bug que esta regla cazaba —muestra y suelo mostrando productos distintos— ahora
+  # es IMPOSIBLE por construcción: no hay dos superficies que puedan discrepar.
+  #
+  # ⚠️ Si vuelve la muestra de tabla, esta regla vuelve con ella: descomentar y
+  # RE-VERIFICAR las zonas con un overlay, como advierte su propio comentario. No
+  # confiar en estos números sin volver a dibujar el recuadro.
+  # ══════════════════════════════════════════════════════════════════════════
+  # - id: muestra-igual-al-piso
+  #   titulo: La muestra tiene que ser el mismo piso que está en el suelo
+  #   check: coincide_color_entre_zonas
+  #   severidad: bloqueante
+  #   formato: feed
+  #   solo_archivos: ["*c1-*"]
+  #   autor: Dirección de área
+  #   fecha: 2026-08-25
+  #   cita: >-
+  #     En las cuatro tarjetas el recuadro muestra un roble cálido de veta marcada, y el
+  #     piso instalado es otro: claro, grisáceo y con nudos. Estamos mostrando un
+  #     producto en la etiqueta y otro en el suelo. Para una marca de pisos ese es el
+  #     error más caro que hay, porque el cliente compra lo que ve.
+  #   porque: >-
+  #     Es el bug de los pisos, el que más caro salió. La ronda 1 tenía las cuatro
+  #     muestras dentro de un rango de 20 puntos de color y ninguna correspondía al
+  #     producto. Se resolvió construyendo muestra y suelo desde la MISMA foto oficial
+  #     (scripts/casablanca-pisos-compositor.py), y esta regla lo verifica en la salida.
+  #     Las zonas son las del sistema C1: muestra vertical a la izquierda, suelo en el
+  #     tercio inferior.
+  #   args:
+  #     nombres: ["la muestra", "el piso del ambiente"]
+  #     # ⚠️ Zonas VERIFICADAS visualmente con un overlay sobre
+  #     # cb_sep_c1-cumaru_feed.png (1080×1350). La primera versión de estos
+  #     # números caía sobre la planta y el muro de ladrillo, y el ΔE que reportaba
+  #     # no medía nada: siempre dibuja el recuadro antes de confiar en el número.
+  #     #
+  #     # Son frágiles a propósito: la muestra cambió de lugar entre la ronda 1 y el
+  #     # sistema editorial. Si el sistema la mueve otra vez, hay que volver a
+  #     # verificar el overlay — no ajustar el tope.
+  #     zonas:
+  #       - {x0: 0.35, y0: 0.63, x1: 0.46, y1: 0.81}   # la muestra, dentro del borde blanco
+  #       - {x0: 0.50, y0: 0.72, x1: 0.92, y1: 0.93}   # el piso del ambiente, a su derecha
+  #     delta_e_max: 20.0
 
   - id: desenfoque-completo
     titulo: Si se desenfoca el fondo, se desenfoca completo

@@ -99,7 +99,7 @@ esas— se agregan al `.gitignore` como excepción, igual que se hizo con
 `sr2_*.jpg`. Versionar las 16 candidatas antes de elegir es cargar el repo con
 material que se va a descartar.
 
-## ⚠️ Dos cosas que Serena tiene que decidir
+## ⚠️ Cuatro cosas que Serena tiene que decidir
 
 **1. La regla del sistema dice que la IA no hace ni el logo ni un dato.**
 `docs/SISTEMA-DE-MARCAS.md` §2: *«la IA hace ambiente y fondo. Nunca el producto,
@@ -111,7 +111,29 @@ y después de escalar— pero son una reproducción, no el vector.
 Lo hizo Paulina, que es quien firma Casablanca, así que su criterio manda sobre
 sus marcas. Queda anotado porque es una excepción a una regla dura, no un descuido.
 
-**2. El cielo.** La fachada real tiene cielo pálido y algo velado. Las cuatro de IA
+**2. «Fotos reales, nunca generadas» — la regla del showroom.**
+`CLAUDE.md` §4 Showroom, línea 367, textual: *«Fotos **reales**, nunca generadas»*.
+Las piezas de C2 SON las del showroom, y las cuatro fachadas nuevas son generadas.
+Es la regla más directamente cruzada de las dos: la del §2 habla del logo y del dato,
+ésta habla exactamente de estas fotos.
+
+Otra vez: las hizo Paulina y ella firma la marca. Pero son dos reglas escritas del
+manual, no una, y conviene que quede dicho antes de entregar al cliente — sobre todo
+porque la pieza invita a visitar un local físico y la foto que lo muestra no es una
+foto de ese local, sino una reconstrucción.
+
+**3. ⛔ `suc-foto-lascondes-6/8` NO parecen ser de Casablanca.**
+Son las dos únicas fotos REALES del lote y vienen nombradas «lascondes». El showroom
+de Casablanca es **Juan XXIII 6359, Vitacura** — «Las Condes» no aparece en su manual
+por ninguna parte. Sí aparece en **Revex**: «Las Condes Design» es una sucursal suya,
+y el 27-08 Paulina creó `material_revex/suc_lascondes` con material de ese local.
+
+Esto huele al mismo accidente que el 25-08 dejó la carpeta de Casablanca llena de
+piezas de Between. **No se usaron en ninguna pieza.** Antes de tocarlas hay que
+preguntarle a Paulina de qué local son: meter una sucursal de Revex en una gráfica de
+Casablanca es exactamente lo que el sistema prohíbe entre estas dos marcas hermanas.
+
+**4. El cielo.** La fachada real tiene cielo pálido y algo velado. Las cuatro de IA
 traen azul intenso con nubes dramáticas. Casablanca **es aire**: gris #626260 y
 serif itálica. Un cielo publicitario saturado puede leerse fuera de tono. Si
 molesta, se corrige con `scripts/magnific.py reiluminar` o bajando saturación sólo

@@ -164,7 +164,8 @@ def _lum_rel(rgb):
     return 0.2126 * c[..., 0] + 0.7152 * c[..., 1] + 0.0722 * c[..., 2]
 
 
-def velo_medido(im, y_top, y_bot, objetivo=5.0, tope=190, cx_libre=(0.06, 0.94)):
+def velo_medido(im, y_top, y_bot, objetivo=5.0, tope=190, cx_libre=(0.06, 0.94),
+                percentil=None):
     """Velo cuyo alfa se MIDE para que el texto blanco alcance `objetivo`:1.
 
     Por qué existe: el lineamiento 5 del brief dice que el texto nunca va sobre la
@@ -184,8 +185,16 @@ def velo_medido(im, y_top, y_bot, objetivo=5.0, tope=190, cx_libre=(0.06, 0.94))
     a = _np.asarray(im).astype(_np.float64)
     y0, y1 = int(P(y_top)), min(H, int(P(y_bot)))
     x0, x1 = int(W * cx_libre[0]), int(W * cx_libre[1])
-    fondo = a[y0:y1, x0:x1].reshape(-1, 3).mean(axis=0)
-    L = float(_lum_rel(fondo))
+    if percentil is None:
+        L = float(_lum_rel(a[y0:y1, x0:x1].reshape(-1, 3).mean(axis=0)))
+    else:
+        # `percentil` mide el fondo CLARO, no el promedio. Nace de C2 el 28-08: sobre
+        # los adoquines al sol de la fachada, la media de la banda daba un alfa que
+        # dejaba el titular en 2,4:1 aunque el número dijera 5:1 — porque la media la
+        # bajaban las sombras, y el texto no compite contra la sombra sino contra lo
+        # más claro que tiene detrás. C1 sigue con la media: sus piezas ya están
+        # aprobadas con ella y sus fondos de madera son mucho más parejos.
+        L = float(_np.percentile(_lum_rel(a[y0:y1, x0:x1]), percentil))
     L_obj = 1.05 / objetivo - 0.05
     if L <= L_obj:                                  # ya es suficientemente oscuro
         alfa = 0
@@ -200,8 +209,10 @@ def velo_medido(im, y_top, y_bot, objetivo=5.0, tope=190, cx_libre=(0.06, 0.94))
         hasta = (y_top - 8.0) / H1080
         desde = max(0.0, (y_top - 8.0 - 300.0) / H1080)
         im = velo(im, desde, hasta, alfa)
-    fondo2 = _np.asarray(im).astype(_np.float64)[y0:y1, x0:x1].reshape(-1, 3).mean(axis=0)
-    return im, alfa, float(1.05 / (_lum_rel(fondo2) + 0.05))
+    b = _np.asarray(im).astype(_np.float64)[y0:y1, x0:x1]
+    L2 = (float(_lum_rel(b.reshape(-1, 3).mean(axis=0))) if percentil is None
+          else float(_np.percentile(_lum_rel(b), percentil)))
+    return im, alfa, float(1.05 / (L2 + 0.05))
 
 
 def tarjeta_logo(im, x, y, w, h):
@@ -278,12 +289,33 @@ def _flecha(d, x, y, largo):
            fill=BLANCO, width=gr, joint="curve")
 
 
-def bloque_texto(im, cx, y_filete, antetitulo, titular, bajada, ancho_filete, x_filete, esc=1.0):
+def bloque_texto(im, cx, y_filete, antetitulo, titular, bajada, ancho_filete, x_filete, esc=1.0,
+                 medida=None):
     """Antetítulo (brief nº6) → titular serif → filete → bajada → filete.
     Posiciones medidas en las fichas de Paulina: filete y 901, titular ink-top 817,
     bajada ink-top 920,6, filete inferior 965,8 (una línea) / 1000,3 (dos)."""
     d = ImageDraw.Draw(im)
     SOM = (P(2), P(3), (0, 0, 0))
+
+    # El cuerpo de la bajada se resuelve ANTES de dibujar nada, porque de él sale la
+    # altura de la línea de medida y, con ella, cuánto hay que subir el bloque entero.
+    cap = 24.5 * esc
+    tope = ancho_filete - 52.0
+    while cap > 15.0:
+        fv = versales(cap)
+        if max(_ancho(d, l, fv, 0) for l in bajada) <= P(tope):
+            break
+        cap -= 0.5
+    fv = versales(cap)
+
+    # La medida agrega una línea al final. Si el bloque creciera hacia abajo, el filete
+    # de cierre se mete en el margen de 60 px del lienzo —medido: en `feed` daba 12 %
+    # de tinta en el margen, sobre un tope de 10 %—. Así que el bloque SUBE lo mismo
+    # que crece: su borde inferior queda donde estaba en las piezas ya aprobadas y la
+    # geometría medida de Paulina (filete y 901 en 1:1) se conserva como boundary.
+    cap_m = max(13.0, cap * 0.70) if medida else 0.0
+    _crece = (cap_m * 1.706 + 4.0 * esc) if medida else 0.0
+    y_filete = y_filete - _crece
 
     escribe(d, antetitulo, versales(17.0 * esc), BLANCO, cx=P(cx),
             ink_top=P(y_filete - 139.0 * esc), tr=P(17.0 * esc) * 0.19, sombra=SOM)
@@ -295,19 +327,21 @@ def bloque_texto(im, cx, y_filete, antetitulo, titular, bajada, ancho_filete, x_
     d.rectangle([P(x_filete), P(y_filete), P(x_filete + ancho_filete), P(y_filete) + max(1, int(R))],
                 fill=BLANCO)
 
-    cap = 24.5 * esc
-    tope = ancho_filete - 52.0
-    while cap > 15.0:
-        fv = versales(cap)
-        if max(_ancho(d, l, fv, 0) for l in bajada) <= P(tope):
-            break
-        cap -= 0.5
-    fv = versales(cap)
     y = y_filete + 19.6 * esc
     for linea in bajada:
         escribe(d, linea, fv, BLANCO, cx=P(cx), ink_top=P(y), sombra=SOM)
         y += cap * 1.706
     y_inf = y_filete + 64.8 * esc + (cap * 1.706 * (len(bajada) - 1))
+
+    # Paulina, 28-08: «la info de las medidas puede ponerse con letra mas pequeña al
+    # final del bloque de texto». Va DENTRO del bloque —última línea antes del filete
+    # de cierre—, al 70 % del cuerpo de la bajada. Antes vivía en la etiqueta gris
+    # sobre la muestra de tabla, que ella mandó eliminar en el mismo comentario.
+    if medida:
+        escribe(d, medida, versales(cap_m), BLANCO, cx=P(cx), ink_top=P(y + 4.0 * esc),
+                tr=P(cap_m) * 0.19, sombra=SOM)
+        y_inf += _crece
+
     d.rectangle([P(x_filete), P(y_inf), P(x_filete + ancho_filete), P(y_inf) + max(1, int(R))],
                 fill=BLANCO)
     return y_inf
@@ -353,10 +387,17 @@ C1 = [
 C2 = [
     # `logo=False` donde el letrero del local ya dice Casablanca: la ronda 2 marcó
     # el logo duplicado en la tarjeta de la fachada.
-    dict(n=1, logo=False, franja=False, foto=3, foco_y=0.30, etiqueta="SHOWROOM CASABLANCA · VITACURA",
-         titulo="Ven a ver tu piso en persona", bajada=[]),
+    # `logo=True` desde el 28-08. Estaba en False porque la ronda 2 marcó el logo
+    # duplicado sobre la fachada —el letrero del local ya dice Casablanca—, pero
+    # Paulina lo pidió de vuelta explícitamente: «Falta el logo de Casablanca sobre
+    # cuadro blanco saliendo desde la zxona superior».
+    # `foto=4` desde el 28-08. Antes era 3, o sea la MISMA fachada que c2-3: dos
+    # tarjetas del mismo carrusel con la misma foto. Con las cuatro tomas nuevas de
+    # Paulina se separan — acá va la frontal, en c2-3 la de tres cuartos.
+    dict(n=1, logo=True, franja=False, foto=4, foco_y=0.30, etiqueta="SHOWROOM CASABLANCA · VITACURA",
+         titulo=["Ven a ver tu piso", "en persona"], bajada=[]),
     dict(n=2, logo=True, franja=False, etiqueta="",
-         titulo="Compara texturas, tonos y formatos",
+         titulo=["Compara texturas,", "tonos y formatos"],
          bajada=["CON ASESORÍA DE NUESTRO EQUIPO"]),
     # La foto del 6359 no tiene zona despejada donde cae el texto y el titular
     # chocaba con el número y con el letrero. El brief lo resuelve: «si la foto no
@@ -421,15 +462,30 @@ def pieza_c1(t, fmt):
     g = FORMATOS[fmt]
     foto = Image.open(ASSETS / f"sep/amb_{t['sku']}_{AMB[fmt]}.jpg").convert("RGB")
     im = cover(foto, P(g["w"]), P(g["h"]))
-    y_top = g["filete_y"] - 139.0 * g["esc"]
-    y_bot = g["filete_y"] + 90.0 * g["esc"]
+    # La banda que se mide tiene que cubrir el bloque COMPLETO. Desde el 28-08 el
+    # bloque sube ~34 u para hacerle sitio a la línea de medida sin salirse del
+    # margen, y baja hasta el filete de cierre con bajada de 2 líneas: 139+40 arriba
+    # y 90+30 abajo. Si se mide una banda más corta que el texto, el alfa sale bajo
+    # y el titular queda sin velo justo donde más lo necesita.
+    y_top = g["filete_y"] - 179.0 * g["esc"]
+    y_bot = g["filete_y"] + 120.0 * g["esc"]
     im, _alfa, _c = velo_medido(im, y_top, y_bot)
     QA.append((f"c1-{t['n']} {fmt}", _alfa, _c))
     tarjeta_logo(im, *g["logo"])
-    muestra_tabla(im, t["sku"], *g["muestra"])
-    etiqueta_gris(im, *g["etiq"], "Piso de Ingeniería", t["medida"])
+    # Paulina, 28-08: «eliminemos esto de todas las slides. este recorte se usa para
+    # colocar el nombre y detalles del producto pero cada slide ya tiene el nombre del
+    # producto como enunciado. asi que no es necesario. y asi la imagen respira de
+    # tanta info.» — se van la muestra de tabla Y la etiqueta gris que iba encima:
+    # las dos forman el «recorte» que ella describe. La medida no se pierde, baja al
+    # final del bloque de texto (su segundo comentario en la misma pieza).
+    #
+    # ⭐ Esto CIERRA el bloqueo rojo de la ronda 2 (25-08): la muestra no coincidía
+    # con el piso del ambiente —«un producto en la etiqueta y otro en el suelo»—.
+    # Sin muestra no hay desajuste. Cae también el pendiente del SKU 8001021068,
+    # el único sin foto oficial para verificar por ΔE.
     y_inf = bloque_texto(im, g["w"] / 2, g["filete_y"], t["look"], t["titulo"],
-                         t["bajada"], g["filete_w"], g["filete_x"], g["esc"])
+                         t["bajada"], g["filete_w"], g["filete_x"], g["esc"],
+                         medida=f"PISO DE INGENIERÍA · {t['medida']}")
     if t["n"] == 1 and fmt in ("feed", "feed45"):   # brief nº7 — sólo en feed
         d = ImageDraw.Draw(im)
         fv = versales(17.0)
@@ -474,13 +530,29 @@ def pieza_c2(t, fmt):
     # contraste del texto blanco, al revés de lo buscado; el gris atenuado sigue
     # dejando el borde a la vista. Gana el degradado: continuo hasta el filo, sin
     # ninguna línea donde empiece.
-    _grad_y0 = P(g["filete_y"] - 160.0 * g["esc"])
-    _cap = Image.new("L", (1, im.size[1]), 0)
-    _px = _cap.load()
-    for _y in range(im.size[1]):
-        _px[0, _y] = 0 if _y < _grad_y0 else int(
-            150 * min(1.0, (_y - _grad_y0) / max(1, im.size[1] - _grad_y0) * 1.6))
-    im.paste(Image.new("RGB", im.size, (28, 24, 20)), (0, 0), _cap.resize(im.size))
+    # Paulina, 28-08, sobre c2-3: «fondo con opacidad un 10% mas oscura para que
+    # destaque el texto». 150 -> 165 de alfa, sólo en esa pieza.
+    # 28-08: el degradado de alfa FIJO se reemplaza por velo_medido, el mismo que usa
+    # C1. Motivo medido: en c2-1 feed45 el titular daba 2,42 · 2,98 · 4,09:1 y en story
+    # 2,45 · 2,92 · 3,35:1, todos bajo 4,5. El alfa fijo repartía su opacidad por toda
+    # la altura restante, así que al bloque —que en c2-1 va alto, porque esa pieza no
+    # tiene bajada— le llegaba casi nada. Y un alfa fijo no puede servir a las tres:
+    # c2-2 cae sobre paneles oscuros y c2-1 sobre adoquines al sol.
+    #
+    # velo_medido conserva lo que hizo elegir el degradado (Serena, 27-08: «abajo el
+    # rectángulo gris no me gusta, rompe la imagen»): rampa de 300 u y meseta hasta el
+    # filo, sin ninguna línea donde empiece. Lo que cambia es que el alfa se MIDE.
+    #
+    # Paulina, sobre c2-3: «fondo con opacidad un 10% mas oscura para que destaque el
+    # texto». Se traduce a la variable que el sistema sabe medir — 10 % más de
+    # contraste objetivo, 5,5:1 en vez de 5,0:1 — para que quede verificable y no
+    # dependa de con qué foto se monte.
+    _n_lin = len(t["titulo"]) if isinstance(t["titulo"], (list, tuple)) else 1
+    _tope_bloque = g["filete_y"] - 139.0 * g["esc"] - 66.0 * g["esc"] * (_n_lin - 1)
+    _pie_bloque = g["filete_y"] + (110.0 if t["bajada"] else 10.0) * g["esc"]
+    im, _alfa, _c = velo_medido(im, _tope_bloque, _pie_bloque,
+                                objetivo=5.5 if t["n"] == 3 else 5.0, percentil=90)
+    QA.append((f"c2-{t['n']} {fmt}", _alfa, _c))
 
     if False:  # la franja gris queda derogada por el degradado de arriba
         # En story la franja NO llega al borde: si el texto cae bajo los 340 px
@@ -494,27 +566,57 @@ def pieza_c2(t, fmt):
         ImageDraw.Draw(im).rectangle([0, P(y0), P(g["w"]), P(y1)], fill=GRIS)
         g = dict(g, filete_y={"feed": 950.0, "feed45": 1187.5, "story": 1320.0}[fmt])
     if t["logo"]:
-        # Serena, 28-08: «que el logo no se vea tan al límite». En C1 cuelga del borde
-        # a propósito (es la firma de marca); en C2 cae sobre foto de local y ahí se
-        # lee como que se cae. Baja 26 u, sólo en C2.
-        _lx, _ly, _lw, _lh = g["logo"]
-        tarjeta_logo(im, _lx, _ly + 26.0, _lw, _lh)
+        # ⚠️ CONFLICTO RESUELTO A FAVOR DE PAULINA (28-08).
+        # Serena había pedido el 27-08 «que el logo no se vea tan al límite» y se bajó
+        # 26 u sólo en C2. Paulina, sobre c2-2 feed45: «el cuadro blanco debe salir
+        # desde arriba no dejar "flotando"», y sobre c2-1: «Falta el logo de Casablanca
+        # sobre cuadro blanco saliendo desde la zxona superior».
+        # Manda Paulina: firma Casablanca y coincide con la gramática ya medida —el
+        # cuadro cuelga del borde superior, en C1 y en C2. Se elimina el desplazamiento.
+        tarjeta_logo(im, *g["logo"])
     d = ImageDraw.Draw(im)
     SOM = (P(2), P(3), (0, 0, 0))
     y_f = g["filete_y"]
     e = g["esc"]
+    # Paulina, 28-08, sobre c2-1 y c2-2 story: «en titulos usar 2 lineas de texto […]
+    # para que podamos usar la letra mas grande y respetemos la jerarquia de textos. en
+    # estos momentos el titulo se ve mas pequeño que el sub». El titular de una línea
+    # se encogía hasta caber en el filete y terminaba por debajo de la bajada.
+    # Las dos líneas se dimensionan JUNTAS, con la más larga mandando, para que no
+    # queden de cuerpos distintos.
+    _lineas = t["titulo"] if isinstance(t["titulo"], (list, tuple)) else [t["titulo"]]
+    _larga = max(_lineas, key=len)
+    fs = _serif_que_quepa(d, _larga, g["filete_w"] - 20.0, 56.6 * e)
+    _alto_linea = 66.0 * e
+    # Con 2 líneas el bloque crece hacia arriba: el antetítulo sube lo mismo para no
+    # chocar con la primera línea.
+    _desp = _alto_linea * (len(_lineas) - 1)
     if t["etiqueta"]:
         escribe(d, t["etiqueta"], versales(17.0 * e), BLANCO, cx=P(g["w"] / 2),
-                ink_top=P(y_f - 139.0 * e), tr=P(17.0 * e) * 0.19, sombra=SOM)
-    fs = _serif_que_quepa(d, t["titulo"], g["filete_w"] - 20.0, 56.6 * e)
-    escribe(d, t["titulo"], fs, BLANCO, cx=P(g["w"] / 2), ink_top=P(y_f - 84.0 * e),
-            tr=ajusta_tr(d, t["titulo"], fs, _ancho_serif(d, t["titulo"], fs)), sombra=SOM)
+                ink_top=P(y_f - 139.0 * e - _desp), tr=P(17.0 * e) * 0.19, sombra=SOM)
+    for _i, _ln in enumerate(_lineas):
+        _y = y_f - 84.0 * e - _alto_linea * (len(_lineas) - 1 - _i)
+        escribe(d, _ln, fs, BLANCO, cx=P(g["w"] / 2), ink_top=P(_y),
+                tr=ajusta_tr(d, _ln, fs, _ancho_serif(d, _ln, fs)), sombra=SOM)
     if t["bajada"]:
         d.rectangle([P(g["filete_x"]), P(y_f), P(g["filete_x"] + g["filete_w"]), P(y_f) + max(1, int(R))],
                     fill=BLANCO)
+        # BUG ANTERIOR, cazado por el QA el 28-08: acá el cuerpo era fijo —
+        # versales(21.0 * e)— sin el ajuste al ancho que sí tiene bloque_texto. En
+        # c2-3 story la línea «AGENDA TU VISITA POR WHATSAPP · +56 9 6653 5124»
+        # medía 1020 px sobre 1080 y se metía 1,7 % en la zona que Meta tapa con su
+        # interfaz (115 px a la derecha). Se encoge hasta caber en el filete, igual
+        # que en C1: con tope 795 el borde derecho queda en 938, dentro de los 965.
+        cap_b = 21.0 * e
+        tope_b = g["filete_w"] - 52.0
+        while cap_b > 13.0:
+            if max(_ancho(d, l, versales(cap_b), 0) for l in t["bajada"]) <= P(tope_b):
+                break
+            cap_b -= 0.5
+        fb = versales(cap_b)
         y = y_f + 19.6 * e
         for linea in t["bajada"]:
-            escribe(d, linea, versales(21.0 * e), BLANCO, cx=P(g["w"] / 2), ink_top=P(y), sombra=SOM)
+            escribe(d, linea, fb, BLANCO, cx=P(g["w"] / 2), ink_top=P(y), sombra=SOM)
             y += 38.0 * e
         y_inf = y_f + 61.0 * e + 38.0 * e * (len(t["bajada"]) - 1)
         d.rectangle([P(g["filete_x"]), P(y_inf), P(g["filete_x"] + g["filete_w"]), P(y_inf) + max(1, int(R))],

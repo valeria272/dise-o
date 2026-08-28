@@ -420,6 +420,9 @@ def pegar_advertencia_encima(im, variante_legal="embarazo"):
 # Ver `docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md` y `scripts/cava-kv-realista.py`.
 
 FR_ALTO_BOTELLA = 0.519    # 1459/2813 — manual §11: si no llega a la mitad, está chica
+FR_ALTO_HEROE   = 0.620    # una botella SOLA tiene que subir, o el barril se queda
+                           # de protagonista y vuelve el error del «barril grande
+                           # con botellita encima» que advierte el manual §11
 FR_BASE_GRUPO   = 0.880    # dónde apoyan
 FR_ANCHO_GRUPO  = 0.800    # ella usa 0,723 con botellas limpias; las nuestras traen
                            # el sello de puntaje incrustado y a 0,723 se pisan
@@ -498,7 +501,7 @@ def bodegon(fondo_png, botellas, W, H, con_luz=True):
     if not botellas:
         return kv
 
-    alto_bot = round(H * FR_ALTO_BOTELLA)
+    alto_bot = round(H * (FR_ALTO_HEROE if len(botellas) == 1 else FR_ALTO_BOTELLA))
     y_base = H * FR_BASE_GRUPO
     n = len(botellas)
     x0 = W * FR_CENTRO_GRUPO - W * FR_ANCHO_GRUPO / 2

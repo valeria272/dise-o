@@ -581,3 +581,248 @@ dice en pantalla *"Visítanos en Reyes Católicos 1550"* — el local actual.
 **Y verifica que el material sirva:** las gráficas de "SHOWROOM TEMUCO" de 2024 que
 hay en Drive son del local **viejo** (Hochstetter 220) y las de "SHOWROOM VITACURA"
 son de la tienda de Revex en Nueva Costanera, ya cerrada. Material viejo ≠ material útil.
+
+---
+
+# ⛔ NO SE PUEDE REPRODUCIR LA ENTREGA DE SEPTIEMBRE (verificado 27-08-2026)
+
+**Antes de tocar las piezas de septiembre, lee esto.** El repo **no puede volver a
+generar lo que la clienta ya vio.** Comprobado corriendo `scripts/revex-sep2026-piezas.py`
+en esta máquina y comparando contra los PNG del Drive:
+
+| | Lo que produce el script | Lo que está entregado en Drive |
+|---|---|---|
+| Formato feed | **2250 × 2250** (1:1) | **1080 × 1350** (4:5) |
+| Formato story | 2250 × 4000 | 1080 × 1920 |
+| «HASTA 85% OFF» | una línea, cuadro blanco a sangre | dos líneas, cuadro más angosto |
+| Franja amarilla | pegada al cuadro blanco, a sangre | separada, con márgenes laterales |
+| WhatsApp | recuadro outline + línea «Cotiza por WhatsApp» | texto suelto, sin recuadro, sin esa línea |
+
+Tres causas, todas verificadas:
+
+1. **El código que hizo la v1 no está versionado.** `git log --all` sobre los dos
+   scripts sólo llega a `960dc45` (26-08). No hay rama, ni stash, ni commit posterior.
+2. **Los fondos nunca viajaron.** `public/assets/**` está en `.gitignore` salvo fuentes
+   y logos, así que `public/assets/revex/sep/` no existe acá.
+3. **No hay credenciales.** Sin `.env` ni `FREEPIK_API_KEY`, el fondo del concurso
+   —generado con Freepik Mystic— no se puede regenerar. Y la generación no es
+   determinista: aunque hubiera llave, no saldría idéntico.
+
+> **Consecuencia práctica:** correr el script hoy y subir el resultado sería una
+> **regresión** frente a lo que la clienta aprobó, no una corrección. La composición
+> queda peor, vuelve la línea «Cotiza por WhatsApp» que dirección de área pidió sacar,
+> y los dos cuadros quedan pegados —lo que rompe la regla 3 de Paulina.
+
+**Para destrabar hace falta que Valeria mande:** `public/assets/revex/sep/` completo,
+el `.env` con `FREEPIK_API_KEY`, y **la versión de `revex-sep2026-piezas.py` y
+`revex_sistema.py` que realmente produjo la entrega.** Con los assets solos no alcanza.
+
+**Y hay que corregir la documentación:** el `LEEME.md` de la v2 en Drive dice
+«2250 × 2250 (feed) y 2250 × 4000 (story)», y la §ADN MEDIDO de este archivo dice que
+Paulina entrega a 2250 de ancho. **Lo entregado está a 1080 y el feed es 4:5.** De paso,
+eso resuelve el pendiente que el LEEME dejaba abierto sobre el formato del feed: quedó
+en 4:5, y nadie lo anotó.
+
+---
+
+# ⭐ Ronda 3 — 27-08-2026 (Serena)
+
+10 comentarios de Serena en el Drive sobre las 8 piezas de `DISEÑO PAID`.
+Material propio de la clienta que apareció en la misma revisión:
+[`raw/revex/cliente-sep2026/PROCEDENCIA.md`](../../raw/revex/cliente-sep2026/PROCEDENCIA.md).
+
+## Resueltos con ella
+
+### 1. El cierre y el legal bajan, y se separan con filete
+
+> *«más abajo el texto que dice ¡No pierdas la oportunidad de ganar! y lo de consulta
+> los términos, pero más abajo o separado con una línea para que [no] sea un chorizo
+> de texto gigante»*
+
+Aplica al **concurso, feed y story**. El cierre y el legal salen del bloque corrido y
+van al pie, separados por filete. **La propia pieza de la clienta hace exactamente
+esto** (`LCD-POST.jpg`): legal al pie y filete vertical partiendo logo de texto.
+
+### 2. Va el ícono de WhatsApp
+
+En las dos piezas de outlet. Referencia de dibujo: `6.jpg` de la clienta —glifo del
+auricular en círculo blanco junto al número. **Esto cierra el pendiente #1 del LEEME**
+(dirección de área quería sacar la cápsula, el brief la pedía): queda y se refuerza.
+Si es definitivo, aplica también a Casablanca.
+
+### 3. El fondo del outlet lleva elementos — cambio al brief R2
+
+El brief R2 especifica rojo institucional pleno sin fotografía, y la propia pieza de la
+clienta (`6.jpg`) también es rojo plano. **Serena decidió el 27-08 agregarle elementos.**
+Es un cambio al QUÉ del brief, decidido por la KAM, no una corrección de ejecución.
+
+### 4. Otra foto de fondo para temuco
+
+Su foto actual tiene cajas apiladas tapando medio cuadro. Candidato en el material de
+la clienta: `4.jpg`, terraza exterior con pavimento de piedra, que además calza con el
+«PIEDRAS NATURALES» de la pieza. Cambiar la foto **destraba de paso** el problema
+heredado que describe el LEEME: la original sólo estaba limpia hasta cierta altura
+porque abajo tenía gráfica vieja pegada.
+
+## Pendiente: 4 comentarios sin ancla
+
+Están anclados a un punto de la imagen y **la API de Drive entrega el texto pero no
+las coordenadas del ancla**. No se resuelven adivinando:
+
+- concurso feed — *«Este texto se debe destacar más»*
+- concurso story — *«destacar más»* · *«hacer más llamativo»*
+- lascondes story — *«esto lo dejaría un poco más abajo»*
+
+## Ronda 2 de Paulina: cumplida, sin cerrar
+
+Las 8 piezas se crearon el 25-08 a las 12:36 y **se re-subieron a las 19:06**; Paulina
+comentó entre 16:53 y 16:58. Revisadas las imágenes, sus 6 puntos «abiertos» ya están
+aplicados: concurso con fondo de showroom, logo en cuadro rojo, titular en 2 líneas y
+rojo sólo en superficie; temuco sin cuadros desenfocados y con velo completo; lascondes
+con la dirección en negrita entre filetes, no en cuadro; outlet con bloque centrado.
+**Siguen abiertos en Drive porque nadie los cerró, no porque falten.**
+
+## Observaciones de dirección de arte, no comentadas por nadie
+
+- **En `lascondes` story el nombre de la marca aparece tres veces:** el bloque rojo del
+  logo, el wordmark gigante de la fachada justo debajo, y el calco de la puerta a media
+  altura. El bloque y el wordmark quedan pegados y compiten.
+- **En el outlet hay dos cuadros pegados** —el blanco del «85% OFF» y el amarillo de
+  condiciones— lo que rompe la regla 3 de Paulina. En las piezas de la clienta nunca
+  van pegados. Conviene separarlos.
+
+---
+
+# ⭐ Ronda 4 — 27-08-2026 · Versión 3 (Serena)
+
+Carpeta `Versión 3` en `DISEÑO PAID` (`1eDey8HchEC3cjc2tdWJcrCQv-9-RJhG1`), subida el
+27-08 a las 13:27. Las 8 piezas.
+
+## 📐 Formato: DECIDIDO — 4:5 a 2250 de ancho
+
+**Feed 2250 × 2812 · Story 2250 × 4000.** Confirmado por Serena el 27-08.
+Cierra el pendiente que arrastraba el LEEME. El script del repo hace `FEED = (2250, 2250)`:
+**hay que cambiarlo.** Historial de formatos, para que no se vuelva a confundir:
+
+| Versión | Feed | Story | Quién |
+|---|---|---|---|
+| v1 (ronda 2) | 1080 × 1350 | 1080 × 1920 | Valeria, 25-08 15:06 |
+| v2 | 2250 × 2250 | 2250 × 4000 | Valeria, 26-08 08:50 — sólo concurso |
+| **V3 (vigente)** | **2250 × 2812** | **2250 × 4000** | 27-08 13:27 — las 8 |
+
+## Lo que V3 ya resolvió
+
+Fondo rojo del outlet con textura · ícono de WhatsApp en feed y story · fuera la cápsula
+dibujada y la línea «Cotiza por WhatsApp» · franja amarilla separada del cuadro blanco
+(regla 3 de Paulina) · cierre y legal del concurso bajados · foto nueva para temuco.
+
+## 🔴 Abierto y grave: no se puede verificar la sucursal de Temuco
+
+El fondo de la pieza de Temuco es un **interior de showroom, no una fachada**, y **no
+contiene ningún dato que lo ate a la ciudad**: ni dirección, ni nombre, ni marca
+distintiva. Podría ser cualquier showroom de Revex, incluido Las Condes. Los PNG de V3
+vienen **sin metadato** (verificado: `info` vacío, sin EXIF ni GPS).
+
+> **Regla:** una pieza de sucursal **no se entrega** sin que alguien con acceso a la foto
+> fuente confirme la sucursal. No se certifica mirando la imagen.
+
+Vía de verificación pedida el 27-08: las fotos originales **sin re-exportar**, para leer
+el EXIF; si traen GPS, zanja la ciudad. Si no, lo confirma el cliente.
+Ojo: el copy dice «Segundo piso de Ebema» — puede que Temuco **no tenga** fachada propia
+como la de Las Condes, y haya que decidir el reemplazo.
+
+## 🔴 El nombre de la marca, repetido
+
+- **temuco:** el bloque rojo del logo cae justo sobre el logo montado en el muro de piedra.
+  Pegados y compitiendo.
+- **lascondes:** el nombre aparece **cinco veces** — bloque rojo, letrero grande, dos calcos
+  de puerta detrás del titular, y la G abajo a la izquierda.
+- **Y en la vitrina de lascondes se lee `Casablanca`**, la marca hermana. Es un local real,
+  pero decidir si Casablanca entra en un aviso de Revex es del KAM, no del render.
+
+## Los «cuadrados» del outlet
+
+Serena: *«en la gráfica del outlet veo como que quedaron unos cuadrados»*. Diagnosticado con
+zoom: la textura es tableta tipo *subway* y **hay una pieza de un tono distinto al resto**,
+que se lee como error de render, no como textura. Se corrige bajando el contraste de las
+juntas y uniformando el tono. Alternativa ya escrita en `revex_sistema.py`:
+`Lienzo.monograma()` — la G sola, muy tenue, textura de marca sin cuadrícula.
+
+## El concurso no muestra alfombra
+
+Serena: *«dice gana una alfombra, pero la imagen no muestra una alfombra»*. Vale para post y
+story. **Material correcto identificado:** `Alfombras_nuevo` → `carrusel_alfombras`
+(`1XqLROaO9PWtpkmfbh21exMdQ8NuzEgsJ`), de Paulina, mayo 2026 — livings con la alfombra de
+protagonista y el lenguaje ya establecido: muestra del material en chip con etiqueta roja y
+el nombre en script (*Amapa Vicenza*, *Manaus Belluno*, *Sisal Ticul*). Esas piezas tienen
+texto encima, así que **hay que pedirle los interiores limpios** (pedido el 27-08).
+
+## Menores, en temuco
+
+Se leen **«MICAS»** y una **«e»** cortadas en el borde izquierdo —el letrero de CERÁMICAS
+recortado por el encuadre— y el **30 % inferior queda vacío**, sólo piso oscuro. En el story
+la mitad inferior está vacía. El legal del concurso quedó **muy tenue** al caer sobre la
+zona clara de la foto, sobre todo en story.
+
+## Herramientas nuevas en `revex_sistema.py` (27-08)
+
+- `subtrazados(d)` — aplana un `path` de SVG (M L H V C S Z) a listas de puntos.
+- `Lienzo.glifo(...)` — dibuja un trazado con relleno **par-impar**, supersampleado a 3× y
+  bajado con LANCZOS. `GLIFO_WHATSAPP` es el globo con auricular, el mismo que usa la
+  clienta en `raw/revex/cliente-sep2026/6.jpg`.
+- `Lienzo.monograma(...)` — la G del logotipo recortada sin el wordmark, detectando las
+  bandas de tinta del PNG oficial. Para texturar fondos planos **sin** repetir el nombre.
+
+---
+
+# ✅ TEMUCO — verificado con material del cliente (27-08-2026)
+
+El cliente compartió sus propias carpetas. **Es la fuente autoritativa**: las organizó él.
+
+| Carpeta | ID | Dueño |
+|---|---|---|
+| **TEMUCO** | `1kk3fLPv9o6nWEZXxBamL3cgTrmBwd0U4` | `jcampos@gruporevex.cl` |
+| **LCD** (Las Condes) | `1BLjPGmnMJIer-nAkZOkp5WQtefaqwrEI` | `jcampos@gruporevex.cl` |
+| **PRODUCTOS** | por indexar | `jcampos@gruporevex.cl` |
+
+Contenido de TEMUCO: ~20 JPG de 5–6,5 MB, un DNG y ~35 MOV, del **24 y 25-06-2026**.
+
+## La fachada de Temuco existe y está identificada
+
+`IMG_2378.jpg` (`15-eSwoQrgj6XdbN4F8l0sKvQp1er2e_a`) y al menos siete más
+—`IMG_2381`, `IMG_2384`, `IMG_2386`, `IMG_2390`, `IMG_2393`, `IMG_2397`, `IMG_2382`—
+son **la misma fachada exterior desde ángulos distintos**. La señalética la identifica
+sin ambigüedad:
+
+> «EBEMA · BIENVENIDOS · MATERIALES PARA TU OBRA, A TIEMPO · ESTACIONAMIENTO ·
+> SALA DE VENTAS · OFICINA DESPACHO · DESCARGA PROVEEDORES ·
+> **SHOWROOM GRUPOREVEX · SEGUNDO PISO →**»
+
+Calza con el copy de la pieza («Segundo piso de Ebema»). **Verificado por señalética,
+no por metadato**: los JPG pesan 5 MB y el conector devolvería base64 impagable, así que
+la lectura fue por OCR y etiquetas de imagen.
+
+## ⛔ El fondo de Versión 3 NO está respaldado
+
+Las 8 fotos revisadas son **todas exteriores**. **Ninguna** muestra el interior con muro
+de piedra y logo rojo montado que usa el fondo de V3. Ese interior **puede** ser el
+segundo piso de Temuco —hay ~35 videos del mismo día sin revisar— pero **no se puede
+afirmar con lo que hay**.
+
+## ⚠️ Y la fachada tiene su propio problema
+
+El edificio **es de EBEMA**. Revex aparece sólo como letrero de «segundo piso», y en el
+muro se leen **doce marcas de terceros**: weber, Cbb, melón, AZA, VOLCÁN, CINTAC,
+etersol, CAVE, IMEL, LP, BEKRON, PERFIMET. Una pieza de Revex dominada por la marca
+EBEMA y un muro de logos ajenos puede ser **peor aviso** que un interior, aunque sea la
+fachada literal. Es decisión de dirección de arte + KAM, no del render.
+
+## Lo que el conector NO puede hacer con este material
+
+- **No lee video.** Los ~35 MOV quedan fuera; si el interior del segundo piso está ahí,
+  hay que mirarlos a ojo.
+- **No sirve `curl`.** Son archivos del cliente, no públicos: `curl` cae en el login de
+  Google. Van por el conector, y los de más de 10 MB no bajan.
+- **Los JPG de 5 MB no conviene bajarlos** por el conector: el base64 no cabe en
+  contexto. Para inspeccionarlos visualmente hay que copiarlos a una carpeta de la
+  agencia y bajarlos de otra forma.

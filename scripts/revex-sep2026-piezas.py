@@ -40,6 +40,13 @@ OUT = os.path.join(RAIZ, "out/revex/sep2026")
 ASS = os.path.join(RAIZ, "public/assets/revex/sep")
 FEED, STORY = (2250, 2812), (2250, 4000)     # 4:5 y 9:16
 
+# (feed, story) del fondo del concurso. Ver la nota en r1().
+# Ronda 5: Paulina insistió («demasiado oscura») y mandó `alfombras_concurso`.
+# `concurso_alfombra_v5.jpg` sale de ahí: living claro, alfombra al centro.
+# ⚠️ Viene a 1376x1143, así que se sube ~2,4x para el feed. Si se ve blanda,
+#    volver a ("concurso_amb_feed.jpg", "concurso_amb_story.jpg") con velo 0.46.
+FONDO_CONCURSO = ("concurso_alfombra_v5.jpg", "concurso_alfombra_v5.jpg")
+
 
 def _base(size, fondo=None, plano=None, velo=None, foco=0.5):
     l = Lienzo(*size)
@@ -56,21 +63,47 @@ def _base(size, fondo=None, plano=None, velo=None, foco=0.5):
 def r1(story=False):
     S = story
     l = _base(STORY if S else FEED,
-              # OJO: concurso_amb_*.jpg es el render OSCURO que Paulina rechazó dos
-              # veces. El showroom claro con muestras es concurso_*.png. La corrida
-              # cuadrada del 26-08 había vuelto al oscuro: eso es la regresión.
-              fondo="concurso_story.png" if S else "concurso_feed.png",
+              # ⚠️ FONDO DEL CONCURSO — historia corta, porque va y viene:
+              #  · concurso_*.png      = showroom claro con muestras. Lo pidió Paulina
+              #                          en la ronda 2. No se ve ninguna alfombra.
+              #  · concurso_amb_*.jpg  = living con la alfombra de protagonista.
+              #                          Paulina lo rechazó dos veces por oscuro.
+              # Serena (KAM) eligió el de la alfombra el 27-08: la pieza dice «gana una
+              # alfombra» y sin alfombra no se sostiene. Paulina insistió en la ronda 5
+              # («demasiado oscura») y mandó `alfombras_concurso` para reemplazarlo:
+              # cuando esas fotos estén en public/assets/revex/sep/, se cambia acá.
+              fondo=FONDO_CONCURSO[1] if S else FONDO_CONCURSO[0],
               # el piso del showroom es muy claro: el velo necesita más cuerpo
               # para que el cierre (que Serena pidió más abajo) siga leyéndose
-              velo=dict(inicio=200 if not S else 430,
-                        meseta=1170 if not S else 1520,
-                        fin=1300 if not S else 1710, alpha=0.64, rampa=90))
+              # Ronda 6 (Paulina): «el fondo con transparencia se bugeó, cualquier
+              # transparencia o degradado no debe verse cortado». El velo se apagaba
+              # en 1300 sobre un lienzo de 1350 (y en 1710 sobre 1920 en el story):
+              # quedaba una franja al pie SIN velo, justo donde la foto tiene el piso
+              # claro, y se leía como corte. Ahora la meseta llega al borde exacto del
+              # lienzo —1350 en feed, 1920 en story— así no hay apagado que se note.
+              # El velo arranca en el borde MISMO del lienzo (inicio=0) con una rampa
+              # larga hasta donde empieza el texto, y la meseta llega al borde de abajo.
+              # Así no queda ningún punto donde el degradado pueda verse cortado: ni
+              # arriba —antes entraba en 90 u sobre foto clara y se veía la banda— ni
+              # abajo, donde se apagaba 50 u antes del filo.
+              velo=dict(inicio=0,
+                        rampa=450 if not S else 530,
+                        meseta=1350 if not S else 1920,
+                        fin=1360 if not S else 1930,
+                        # Ronda 5 (Paulina): «la imagen de fondo está demasiado
+                        # oscura». La oscuridad venía de la FOTO, no del velo, así que
+                        # se cambió la foto por una clara de `alfombras_concurso`. El
+                        # velo queda en 0.58: con fondo claro hay que SUBIRLO, no
+                        # bajarlo, o el titular se pierde contra la ventana.
+                        alpha=0.58))
     l.bloque_logo(story=S)
 
-    # "más llamativo" (Serena): CONCURSO entra en recuadro. No en barra roja:
-    # el lineamiento 9 del brief pide la pieza sin rojo saturado.
+    # Ronda 5 (Paulina, 27-08): «de igual forma la palabra concurso» va sobre
+    # cuadro rojo. DEROGA el lineamiento 9 del brief («sin rojo saturado») y el
+    # recuadro de contorno que traía la V3: manda el sistema, no el brief.
     y = 452 if not S else 534
-    y = l.recuadro("C O N C U R S O", y, cap=17, peso=600, pad=(40, 18)) + (54 if not S else 62)
+    y = l.barra("C O N C U R S O", y, 17, peso=600, tracking=0.0,
+                padx=40, padv=18) + (54 if not S else 62)
 
     l.titular("¡GANA UNA ALFOMBRA", y, 50);                y += 76
     l.titular("DIMENSIONADA PERSONALIZADA!", y, 32, tracking=-0.03); y += 58
@@ -79,27 +112,19 @@ def r1(story=False):
     # jerarquía pedida por Serena: la mecánica arriba, las FECHAS destacadas.
     # De paso arregla el desborde de la ronda 2, donde el párrafo llegaba a los
     # bordes y dejaba "septiembre" solo en una línea.
-    l.texto("Todas tus compras realizadas", y, l.cuerpo_para_cap(17, 400), 400); y += 44
-    l.texto("DEL 21 DE AGOSTO AL 25 DE SEPTIEMBRE", y,
-            l.cuerpo_para_cap(25, 700), 700, tracking=0.02);                     y += 50
+    l.texto("Todas tus compras realizadas", y, l.cuerpo_para_cap(17, 400), 400); y += 46
+    # Ronda 5 (Paulina): «la fecha del concurso también debe ir sobre cuadro rojo».
+    y = l.barra("DEL 21 DE AGOSTO AL 25 DE SEPTIEMBRE", y, 22, peso=700,
+                tracking=0.02, padx=24, padv=14) + 44
     for ln in ["en Gruporevex Las Condes Design participan",
                "automáticamente del sorteo."]:
         l.texto(ln, y, l.cuerpo_para_cap(17, 400), 400);                         y += 38
 
-    # dirección + caja roja en la misma línea, como la ronda 2
+    # Ronda 5 (Paulina): «la dirección debe ir COMPLETA dentro de un cuadro rojo».
+    # Antes la calle iba suelta y sólo el local sobre rojo; ahora es una sola barra.
     y += 44 if not S else 56
-    dir_txt, caja_txt = "Av. Las Condes 9765, Las Condes", "PISO 1, LOCAL 112"
-    cap_d, cap_c = 17, 21
-    cd = l.cuerpo_para_cap(cap_d, 500); cc = l.cuerpo_para_cap(cap_c, 700)
-    w_d = l.ancho(dir_txt, cd, 500); w_c = l.ancho(caja_txt, cc, 700)
-    padx, padv, hueco = 22, 13, 26
-    w_tot = w_d + hueco + w_c + 2 * padx
-    x = 540 - w_tot / 2
-    l.texto(dir_txt, y + (cap_c - cap_d) / 2, cd, 500, alinear="izq", cx=x)
-    x0 = x + w_d + hueco
-    l.d.rectangle([l.P(x0), l.P(y - padv), l.P(x0 + w_c + 2 * padx), l.P(y + cap_c + padv)],
-                  fill=BAR_RED)
-    l.texto(caja_txt, y, cc, 700, cx=x0 + padx, alinear="izq")
+    y = l.barra("Av. Las Condes 9765 · PISO 1, LOCAL 112", y, 20, peso=700,
+                tracking=0.0, padx=24, padv=14)
 
     # cierre: Serena lo pidió más abajo
     # Serena lo pidió más abajo, pero el lineamiento 10 del brief pide el tercio
@@ -120,7 +145,12 @@ def r1(story=False):
 def r2(story=False):
     S = story
     l = _base(STORY if S else FEED, plano=BAR_RED)
-    l.patron_revestimiento()
+    # Serena, 27-08 (2ª pasada): «veo como que quedaron unos cuadrados».
+    # El defecto no era la textura sino que el 17 % de las placas llevaba un velo
+    # negro (tono=13) y esas se leían como bloques sueltos, no como material.
+    # Placas parejas (tono=0) y junta más tenue: queda aparejo de revestimiento
+    # sin el cuadrado raro. Medido sobre el PNG de la V3, ver el manual § Ronda 4.
+    l.patron_revestimiento(tono=0, linea=10)
 
     lg = Image.open(LOGO_BLANCO).convert("RGBA")
     lw = l.P(150 if not S else 172); lh = lw / (lg.size[0] / lg.size[1])
@@ -181,11 +211,20 @@ CIERRE_FEED, INICIO_STORY = 1105, 569
 GAP_FEED, GAP_STORY = 38, 128
 
 def sucursal(fondo, antetitulo, tit1, tit2_barra, dato_bold, bajada, horario,
-             story=False, foco=0.5, velo_alpha=0.60):
+             story=False, foco=0.5, velo_alpha=0.60, salto_tit=66):
+    """`salto_tit` = aire entre la 1ª línea del enunciado y la barra roja.
+
+    Por defecto 66, que es lo que Paulina aprobó en Las Condes («gráfica bien
+    lograda»). Con 66 la barra arranca a sólo 2,5 u del pie del titular —la barra
+    dibuja desde `y - padv`— y en Temuco eso se leyó como texto pegado al borde:
+    *«la primera línea del enunciado debe tener un interlineado más grande para que
+    no quede en el borde del cuadro rojo»* (ronda 5). Se sube SÓLO donde hace falta,
+    para no tocar la pieza que ya está aprobada.
+    """
     S = story
     gap = GAP_STORY if S else GAP_FEED
     # alto del bloque, para poder alinearlo
-    alto = (64 + 66 + (44 + BARRA_TIT["padv"]) + gap + 52 + 32
+    alto = (64 + salto_tit + (44 + BARRA_TIT["padv"]) + gap + 52 + 32
             + 40 * len(bajada) + 14 + 34 * len(horario) + 30)
     y0 = INICIO_STORY if S else (CIERRE_FEED - alto)
 
@@ -198,7 +237,7 @@ def sucursal(fondo, antetitulo, tit1, tit2_barra, dato_bold, bajada, horario,
 
     y = y0
     l.texto(antetitulo, y, l.cuerpo_para_cap(18, 600), 600, tracking=0.30); y += 64
-    l.titular(tit1, y, 44);                                                 y += 66
+    l.titular(tit1, y, 44);                                                 y += salto_tit
     y = l.barra(tit2_barra, y, 44) + gap
     # regla de Paulina: si el enunciado ya lleva cuadro, el dato va en NEGRITA sin cuadro
     l.texto(dato_bold, y, l.cuerpo_para_cap(24, 700), 700);                 y += 52
@@ -213,16 +252,22 @@ def sucursal(fondo, antetitulo, tit1, tit2_barra, dato_bold, bajada, horario,
 
 
 def r3(story=False):
-    return sucursal("temuco_showroom_story.jpg" if story else "temuco_showroom_feed.jpg",
+    # salto_tit=80: el pedido de Paulina en la ronda 5. Las Condes se queda en 66.
+    # Ronda 5 (Paulina): «cambiar imagen de fondo». `temuco_showroom_v5.jpg` es un
+    # frame del video del showroom que ella misma mandó: sala limpia, sin el logo
+    # grande del muro —que chocaba con el bloque rojo— y sin marcas de terceros.
+    return sucursal("temuco_showroom_v5.jpg",
         "· GRUPO REVEX · TEMUCO ·", "TE ESPERAMOS EN", "REYES CATÓLICOS 1550",
         "Segundo piso de Ebema",
         [("Más espacio, mejor atención y la misma", 400),
          ("calidad de siempre en pisos y revestimientos.", 700)],
-        ["Lun y mar 9:30–18:00 · Mié a vie 9:30–17:00"], story=story)
+        ["Lun y mar 9:30–18:00 · Mié a vie 9:30–17:00"], story=story, salto_tit=80)
 
 
 def r4(story=False):
-    return sucursal("lcd_fachada_story.jpg" if story else "lcd_fachada_feed.jpg",
+    # Ronda 5 (Paulina): en el STORY «bloque de texto ok, cambiar imagen». El FEED
+    # lo dio por bueno («gráfica bien lograda») y no se toca.
+    return sucursal("lcd_interior_v5.jpg" if story else "lcd_fachada_feed.jpg",
         "· GRUPO REVEX · LAS CONDES DESIGN ·", "TODO PARA RENOVAR TUS ESPACIOS,",
         # versales por el lineamiento 2 del brief: "usar PISO 1, LOCAL 112,
         # que es como lo escribe la clienta hoy"

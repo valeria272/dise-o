@@ -33,6 +33,25 @@ Estructura: `LOGO CLIENTES/<MARCA>/PNG/`
 Marcas de esta lista que **no** aparecían en mi mapa: SGS, EGLO, DHEMAX, REM,
 MERINO, TINYPAIHUEN, ETERSOL.
 
+## 🔑 CON QUÉ CUENTA ENTRA EL CONECTOR (verificado 27-08-2026)
+
+**`constanza.olivares@copywriters.cl`.** No es la de Valeria ni la de Serena.
+Comprobado con `owner = 'me'`: todos los archivos que devuelve tienen ese dueño.
+
+> **Consecuencia:** una carpeta compartida al correo de *Serena* —o de cualquier otra
+> persona— **no la ve el conector**, y no es cuestión de esperar el índice: no la va a
+> ver nunca. Agregar un acceso directo a la «Mi unidad» de Serena **tampoco sirve**,
+> porque esa no es la unidad que se lee.
+
+**Para que el conector vea una carpeta nueva**, en orden de preferencia:
+1. Compartirla **explícitamente** (no por link) con `constanza.olivares@copywriters.cl`.
+2. Moverla o copiar su contenido dentro de `AGENCIA COPYWRITERS` — esa se lee completa.
+3. Que Constanza Olivares le agregue **«Agregar acceso directo a Mi unidad»**.
+
+⚠️ Ojo con los nombres: **Constanza Olivares** (la cuenta del conector) **no es**
+Constanza Lizana «Coni», la diseñadora dueña de `LOGO CLIENTES` y `Diseños EDITABLES`.
+Son dos personas distintas.
+
 ## Cómo llegar a las carpetas de los diseñadores
 
 El conector **no lista por `parentId`** una carpeta compartida solo por link que no
@@ -55,9 +74,34 @@ carpeta compartida por link recién no entra al índice de búsqueda de la cuent
 que se abre desde Drive. Ver el pendiente en [`ESTADO-MARCAS.md`](ESTADO-MARCAS.md).
 
 **Cómo destrabarlo (cualquiera de las dos):**
-1. Que Valeria abra la carpeta en drive.google.com y le dé **«Agregar acceso
-   directo a Mi unidad»**. Con eso entra al índice y el conector la lista completa.
+1. Que **Constanza Olivares** —la cuenta del conector, ver arriba— abra la carpeta en
+   drive.google.com y le dé **«Agregar acceso directo a Mi unidad»**. Con eso entra al
+   índice y el conector la lista completa. ⚠️ Antes acá decía «que Valeria abra»: **era
+   incorrecto**, el conector no entra con la cuenta de Valeria (corregido 27-08-2026).
 2. Compartirla explícitamente (no por link) con la cuenta de Claude.
+
+## ⚠️ LCD — carpeta del PROPIO CLIENTE, no indexable
+`1BLjPGmnMJIer-nAkZOkp5WQtefaqwrEI` — **dueño `jcampos@gruporevex.cl`**, o sea Grupo
+Revex, no la agencia. Creada 27-05-2026, modificada 23-06-2026.
+
+Compartida **sólo por link**, así que el conector la ve pero no la abre. Verificado el
+27-08-2026, las cuatro vías fallan:
+
+| Vía | Resultado |
+|---|---|
+| `title = 'LCD'` | vacío |
+| `parentId = '<id>'` | vacío |
+| `owner = 'jcampos@gruporevex.cl'` | vacío |
+| `sharedWithMe = true` | no aparece |
+| `get_file_metadata` con el ID | ✅ **lo único que responde** — devuelve nombre y dueño |
+
+**Cómo destrabarla:** abrirla en drive.google.com y darle **«Agregar acceso directo a
+Mi unidad»**. Con eso entra al índice de la cuenta y se lista completa. (Mismo problema
+y misma solución que `Diseños EDITABLES` y `CONI`, más arriba.)
+
+> 💡 **Y de paso:** si el cliente ordenó su material por sucursal, al lado de `LCD`
+> debería haber una carpeta de **Temuco** — que es la que de verdad falta para poder
+> verificar esa pieza. Al abrir la carpeta, mirar el nivel de arriba.
 
 ## Briefs y planificaciones
 | Qué | Dónde |

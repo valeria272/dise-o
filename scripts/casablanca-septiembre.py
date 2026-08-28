@@ -118,13 +118,23 @@ def ajusta_tr(d, txt, f, objetivo):
     return (P(objetivo) - sum(d.textlength(c, font=f) for c in txt)) / (len(txt) - 1)
 
 
-def cover(im, w, h):
-    """Recorte tipo object-fit: cover, centrado."""
+def cover(im, w, h, foco_x=0.5, foco_y=0.5, zoom=1.0):
+    """Recorte tipo object-fit: cover. `foco_x`/`foco_y` mueven el encuadre.
+
+    `zoom` acerca antes de recortar: cuando la foto ya viene del ancho exacto del
+    lienzo no queda margen para mover el encuadre, y sin él `foco_x` no hace nada.
+
+    0.5 es centrado. Al pasar una foto horizontal a 4:5 se recorta ~20 % del ancho,
+    y qué 20 % se pierde no da lo mismo: en el local de Vitacura, centrado corta el
+    letrero «Pisos de Madera» y descentrado deja fuera la placa del 6359.
+    """
     iw, ih = im.size
-    e = max(w / iw, h / ih)
+    e = max(w / iw, h / ih) * zoom
     im = im.resize((int(round(iw * e)), int(round(ih * e))), Image.LANCZOS)
     iw, ih = im.size
-    return im.crop(((iw - w) // 2, (ih - h) // 2, (iw - w) // 2 + w, (ih - h) // 2 + h))
+    x = int(round((iw - w) * min(max(foco_x, 0.0), 1.0)))
+    y = int(round((ih - h) * min(max(foco_y, 0.0), 1.0)))
+    return im.crop((x, y, x + w, y + h))
 
 
 def velo(im, desde, hasta, alfa_max):
@@ -144,6 +154,54 @@ def velo(im, desde, hasta, alfa_max):
     capa = capa.resize((W, H))
     im.paste(Image.new("RGB", (W, H), (0, 0, 0)), (0, 0), capa)
     return im
+
+
+def _lum_rel(rgb):
+    """Luminancia relativa WCAG de un color sRGB 0-255."""
+    import numpy as _np
+    c = _np.asarray(rgb, dtype=_np.float64) / 255.0
+    c = _np.where(c <= 0.03928, c / 12.92, ((c + 0.055) / 1.055) ** 2.4)
+    return 0.2126 * c[..., 0] + 0.7152 * c[..., 1] + 0.0722 * c[..., 2]
+
+
+def velo_medido(im, y_top, y_bot, objetivo=5.0, tope=190, cx_libre=(0.06, 0.94)):
+    """Velo cuyo alfa se MIDE para que el texto blanco alcance `objetivo`:1.
+
+    Por qué existe: el lineamiento 5 del brief dice que el texto nunca va sobre la
+    madera. Medido, el problema real no es la madera sino el CONTRASTE — con el velo
+    fijo anterior la etiqueta del look daba 3,54:1, ilegible. Y un alfa fijo tampoco
+    sirve, porque las cuatro maderas del carrusel son distintas: el mismo velo que
+    deja bien al Roble Natural UV lleva al Cumarú a 9:1 y lo enloda.
+
+    Así que se mide el fondo en la banda donde va el texto y se calcula el alfa justo.
+    La meseta arranca antes del bloque y llega al borde inferior: contraste uniforme
+    en todo el texto y ningún apagado que se vea cortado.
+
+    Devuelve (im, alfa, contraste_logrado) para poder dejarlo en el QA.
+    """
+    import numpy as _np
+    W, H = im.size
+    a = _np.asarray(im).astype(_np.float64)
+    y0, y1 = int(P(y_top)), min(H, int(P(y_bot)))
+    x0, x1 = int(W * cx_libre[0]), int(W * cx_libre[1])
+    fondo = a[y0:y1, x0:x1].reshape(-1, 3).mean(axis=0)
+    L = float(_lum_rel(fondo))
+    L_obj = 1.05 / objetivo - 0.05
+    if L <= L_obj:                                  # ya es suficientemente oscuro
+        alfa = 0
+    else:
+        f = (L_obj / L) ** (1 / 2.2)                # el velo multiplica en sRGB
+        alfa = int(round(min(tope, 255 * (1 - f))))
+    if alfa:
+        # `velo` toma FRACCIONES del alto: sube de 0 en `desde` a `alfa` en `hasta`,
+        # y de ahí al pie se mantiene. La meseta empieza 8 u sobre el bloque, con una
+        # rampa de 300 u para que la entrada no se vea como una banda.
+        H1080 = H / R
+        hasta = (y_top - 8.0) / H1080
+        desde = max(0.0, (y_top - 8.0 - 300.0) / H1080)
+        im = velo(im, desde, hasta, alfa)
+    fondo2 = _np.asarray(im).astype(_np.float64)[y0:y1, x0:x1].reshape(-1, 3).mean(axis=0)
+    return im, alfa, float(1.05 / (_lum_rel(fondo2) + 0.05))
 
 
 def tarjeta_logo(im, x, y, w, h):
@@ -295,7 +353,7 @@ C1 = [
 C2 = [
     # `logo=False` donde el letrero del local ya dice Casablanca: la ronda 2 marcó
     # el logo duplicado en la tarjeta de la fachada.
-    dict(n=1, logo=False, franja=False, etiqueta="SHOWROOM CASABLANCA · VITACURA",
+    dict(n=1, logo=False, franja=False, foto=3, foco_y=0.30, etiqueta="SHOWROOM CASABLANCA · VITACURA",
          titulo="Ven a ver tu piso en persona", bajada=[]),
     dict(n=2, logo=True, franja=False, etiqueta="",
          titulo="Compara texturas, tonos y formatos",
@@ -304,13 +362,23 @@ C2 = [
     # chocaba con el número y con el letrero. El brief lo resuelve: «si la foto no
     # tiene espacio limpio, usar una franja de color sólido en el borde antes que
     # poner el texto encima del detalle» (C2, lineamiento nº3).
-    dict(n=3, logo=False, franja=True, etiqueta="",
+    # ⚠️ c2-3 SIN RESOLVER. Serena, 28-08: «se ve fea la foto donde sale el 6359
+    # grande, me gusta que se vea la fachada pero que no se vea eso». Se probaron
+    # tres encuadres: correr a la derecha corta la «C» de Casablanca, acercar y subir
+    # deja puro cielo, centrado deja la placa abajo a la izquierda. La placa, el
+    # letrero y el edificio están dispuestos de modo que NINGÚN recorte 4:5 los separa.
+    # No es un problema de encuadre: falta la foto. El brief pide para esta tarjeta
+    # «un piso instalado o una vista acogedora del local» y de las 36 fotos de la
+    # clienta 32 son fachada. Queda en el menos malo hasta que llegue material.
+    dict(n=3, logo=False, franja=True, foco_y=0.30, etiqueta="",
          titulo="Te esperamos",
          bajada=["JUAN XXIII 6359, VITACURA",
                  "AGENDA TU VISITA POR WHATSAPP  ·  +56 9 6653 5124"]),
 ]
 
 # Geometría por formato. feed y story están MEDIDAS en las piezas de Paulina.
+QA = []   # (pieza, alfa del velo, contraste logrado)
+
 FORMATOS = {
     "feed": dict(w=1080, h=1080, esc=1.0,
                  logo=(440.6, 0.0, 198.7, 199.2),
@@ -353,7 +421,10 @@ def pieza_c1(t, fmt):
     g = FORMATOS[fmt]
     foto = Image.open(ASSETS / f"sep/amb_{t['sku']}_{AMB[fmt]}.jpg").convert("RGB")
     im = cover(foto, P(g["w"]), P(g["h"]))
-    im = velo(im, *g["velo"])
+    y_top = g["filete_y"] - 139.0 * g["esc"]
+    y_bot = g["filete_y"] + 90.0 * g["esc"]
+    im, _alfa, _c = velo_medido(im, y_top, y_bot)
+    QA.append((f"c1-{t['n']} {fmt}", _alfa, _c))
     tarjeta_logo(im, *g["logo"])
     muestra_tabla(im, t["sku"], *g["muestra"])
     etiqueta_gris(im, *g["etiq"], "Piso de Ingeniería", t["medida"])
@@ -373,14 +444,45 @@ def pieza_c1(t, fmt):
 
 def pieza_c2(t, fmt):
     g = FORMATOS[fmt]
-    im = Image.open(ASSETS / f"sep/sr2_{t['n']}_{SR2[fmt]}.jpg").convert("RGB")
+    # Serena, 28-08: «mover la foto para que no corte lo que dice pisos de madera».
+    # El corte no es de la foto: el archivo _story ya trae el letrero al filo. El
+    # _feed (2250x2250) sí lo muestra entero, y aunque para 4:5 haya que ampliarlo un
+    # 25 %, está medido que a la medida de entrega (1080x1350) eso es invisible —
+    # ambos caminos terminan reduciendo desde la misma fuente. Manda el encuadre.
+    _src = SR2[fmt]
+    _n = t.get("foto", t["n"])          # c2-1 usa la toma amplia (archivo 3)
+    im = Image.open(ASSETS / f"sep/sr2_{_n}_{_src}.jpg").convert("RGB")
     # El 4:5 reusa la foto de story (2250x4000) y hay que recortarla. En feed y
     # story el archivo ya viene al tamaño exacto: no se toca, para no alterar por
     # un resample lo que el cliente ya aprobó.
     if im.size != (P(g["w"]), P(g["h"])):
-        im = cover(im, P(g["w"]), P(g["h"]))
+        im = cover(im, P(g["w"]), P(g["h"]),
+                   foco_x=t.get("foco_x", 0.5), foco_y=t.get("foco_y", 0.5),
+                   zoom=t.get("zoom", 1.0))
     im = velo(im, g["velo"][0] - 0.06, 1.0, g["velo"][2] + 22)
-    if t.get("franja"):
+
+    # Serena, 28-08: «el texto no se visualiza bien» (c2-1, c2-2) y «abajo el
+    # rectángulo gris no me gusta, rompe la imagen» (c2-3). Las dos cosas a la vez:
+    # el texto necesita algo detrás, pero no una banda con borde visible.
+    #
+    # Ojo con lo aprendido: medido, esas piezas daban 4,98 y 5,00:1, o sea pasaban el
+    # umbral de contraste. El contraste mide LUMINOSIDAD, no lo movido que está el
+    # fondo — sobre adoquines o paneles de madera el texto compite con el detalle
+    # aunque el brillo dé. Por eso la métrica sola no alcanzaba.
+    #
+    # Se probaron tres salidas (ver _revisión/7): un panel claro translúcido BAJA el
+    # contraste del texto blanco, al revés de lo buscado; el gris atenuado sigue
+    # dejando el borde a la vista. Gana el degradado: continuo hasta el filo, sin
+    # ninguna línea donde empiece.
+    _grad_y0 = P(g["filete_y"] - 160.0 * g["esc"])
+    _cap = Image.new("L", (1, im.size[1]), 0)
+    _px = _cap.load()
+    for _y in range(im.size[1]):
+        _px[0, _y] = 0 if _y < _grad_y0 else int(
+            150 * min(1.0, (_y - _grad_y0) / max(1, im.size[1] - _grad_y0) * 1.6))
+    im.paste(Image.new("RGB", im.size, (28, 24, 20)), (0, 0), _cap.resize(im.size))
+
+    if False:  # la franja gris queda derogada por el degradado de arriba
         # En story la franja NO llega al borde: si el texto cae bajo los 340 px
         # inferiores, Meta lo tapa con su interfaz. Es una banda a sangre lateral.
         # 1:1 medido (822 -> 1080). En 4:5 se mantiene la misma fracción de alto
@@ -392,7 +494,11 @@ def pieza_c2(t, fmt):
         ImageDraw.Draw(im).rectangle([0, P(y0), P(g["w"]), P(y1)], fill=GRIS)
         g = dict(g, filete_y={"feed": 950.0, "feed45": 1187.5, "story": 1320.0}[fmt])
     if t["logo"]:
-        tarjeta_logo(im, *g["logo"])
+        # Serena, 28-08: «que el logo no se vea tan al límite». En C1 cuelga del borde
+        # a propósito (es la firma de marca); en C2 cae sobre foto de local y ahí se
+        # lee como que se cae. Baja 26 u, sólo en C2.
+        _lx, _ly, _lw, _lh = g["logo"]
+        tarjeta_logo(im, _lx, _ly + 26.0, _lw, _lh)
     d = ImageDraw.Draw(im)
     SOM = (P(2), P(3), (0, 0, 0))
     y_f = g["filete_y"]

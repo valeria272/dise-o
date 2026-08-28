@@ -1,5 +1,5 @@
 node_modules/
-out/
+out/*
 media/video/
 media/audio/
 media/images/
@@ -92,6 +92,7 @@ public/assets/**
 !public/assets/casablanca/muestra_*.png
 !public/assets/casablanca/sep/amb_*_feed.jpg
 !public/assets/casablanca/sep/sr2_*.jpg
+!public/assets/casablanca/sep/amb_*_feed45.jpg
 
 # ⛔ Estas NO se versionan aunque sean fuentes — la licencia lo impide:
 #    IvyOra = Adobe Fonts (cada persona la activa en su Creative Cloud)
@@ -99,3 +100,33 @@ public/assets/**
 public/assets/fonts/ivyora/
 public/assets/fonts/selfie/
 out/*/_subidas.json
+
+# Landing Strip Center Algarrobal — Más Center (28-08-2026). Excepción deliberada,
+# misma lógica que Revex y Casablanca: es una entrega viva (publicada en Vercel) y
+# sin su HTML, iconos y fuentes hay que rehacerla de cero en otra máquina.
+# Ojo: arriba `out/` pasó a `out/*` porque git no entra a una carpeta excluida.
+!out/mascenter-algarrobal/
+!out/mascenter-algarrobal/**
+# Los dos MP4 no viajan (14,7 MB): se reconstruyen con scripts/algarrobal-video-web.sh
+out/mascenter-algarrobal/**/*.mp4
+# La versión con todo incrustado para el artifact (11,5 MB) se regenera cuando haga falta
+out/mascenter-algarrobal/preview-artifact.html
+
+# Material de la RONDA 4 de Between septiembre 2026 (27-08-2026). Misma excepción
+# deliberada que Revex y Casablanca: son las escenas que el cliente pidió rehacer
+# y que NO se reproducen solas —cada una salió de una generación con IA y lleva el
+# logotipo real estampado encima con scripts/between-logo-vaso.py—. Sin ellas, la
+# ronda hay que rehacerla de cero en otra máquina, que es justo lo que ya pasó tres
+# veces con esta cuenta. Se listan por archivo, no la carpeta, para no arrastrar
+# los intermedios de Freepik.
+!public/assets/hilton/between/ia-sept/cumple-manos-logo.png
+!public/assets/hilton/between/ia-sept/cumple-vela-logo.png
+!public/assets/hilton/between/ia-sept/togo-cafe-dulce-logo.png
+!public/assets/hilton/between/ia-sept/togo-salida-2-logo.png
+!public/assets/hilton/between/ia-sept/togo-trio-45-logo.png
+!public/assets/hilton/between/ia-sept/emergencia-caja-2-logo.png
+!public/assets/hilton/between/ia-sept/humor-cafecito-2.png
+# y las dos fotos REALES que reemplazaron a las modelos en el carrusel del 9-sep
+!public/assets/hilton/between/fotos-gradadas/desayuno-completo-2.jpg
+!public/assets/hilton/between/fotos-gradadas/croissant-latte-cenital.jpg
+!public/assets/hilton/between/fotos-gradadas/togo-dulce-45.jpg

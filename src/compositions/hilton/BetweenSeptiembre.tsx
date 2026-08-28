@@ -30,7 +30,6 @@ import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
 import {BETWEEN} from '../../brand/hilton-between';
 import {
-  Bajada,
   FotoFondo,
   LogoBetween,
   PiezaFeedBodegon,
@@ -39,7 +38,7 @@ import {
   PilaDatos,
 } from './BetweenSistema';
 import {
-  Cuadrantes, Etiqueta, Globos, Ilustra, MarcoIGPost,
+  Cuadrantes, Etiqueta, Globos, Ilustra, MarcoIGPost, StickerEnlace,
   PiezaPartida, PilaEsquina, StickerQuiz, TituloTresPesos,
 } from './BetweenRecursos';
 
@@ -108,14 +107,23 @@ export const Cowork4: React.FC = () => (
 );
 
 /* ─── 3 sept · POST ESTÁTICO — CAFÉ DE CUMPLEAÑOS ───
-   Comentario de diseño (D15): «Agregar elementos cumpleañeros como en el
-   anterior». Se mantiene la dirección de arte de agosto —globos doodle de la
-   propia diseñadora + packshot— y cambian foto y texto, que es justo lo que
-   pidió Valeria: misma dirección, no la misma pieza.                          */
+   ⭐ RONDA 4 (27-08, comentario D15): «Haría más énfasis en el cumpleaños, puede
+   ser texto principal ¿Estás de cumpleaños? luego complemento con Este café es
+   para ti. Luego complemento con ¡Ven por tu café de regalo!».
+   → Los tres textos son del cliente, literales, y en SU orden de lectura. El
+     cumpleaños estaba enterrado en la bajada; ahora abre la pieza.
+     script (arriba, Brushwell) «¿Estás de cumpleaños?» — el `¿` sale del truco
+     de Eli, que voltea el signo de cierre.
+     caps (protagonista) «ESTE CAFÉ ES PARA TI».
+     caja taupe (el llamado) «¡Ven por tu café de regalo!».
+   → EL VASO LLEVA LOGO. El montaje IA lo devolvía kraft liso y el cliente lo
+     reclamó en tres piezas distintas; se estampa el logo real con
+     scripts/between-logo-vaso.py sobre la misma escena ya aprobada.
+   Se mantiene la dirección de arte de agosto: globos doodle de la diseñadora.  */
 
 export const Cumple1: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={IA + 'cumple-manos.png'} oscurecer={0.1} />
+    <FotoFondo src={IA + 'cumple-manos-logo.png'} oscurecer={0.1} />
     <Globos
       posiciones={[
         {cual: 'globosPar', x: 62, y: 96, ancho: 190, rotacion: -8},
@@ -129,38 +137,45 @@ export const Cumple1: React.FC = () => (
         position: 'absolute',
         left: BETWEEN.bloque.margenX,
         right: BETWEEN.bloque.margenX,
-        bottom: 150,
+        bottom: 132,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
     >
-      <TitularBetween script="Este café" caps="es para ti" alinear="centro" />
-      <Bajada style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: 'center'}}>
-        Si estás de cumpleaños, en Between te invitamos el café.
-      </Bajada>
+      <TitularBetween script="¿Estás de cumpleaños?" caps="Este café es para ti" alinear="centro" />
+      <PilaDatos
+        datos={['¡Ven por tu café de regalo!']}
+        style={{marginTop: BETWEEN.aire.tituloACaja}}
+      />
     </div>
   </AbsoluteFill>
 );
 
-/** Segunda pieza del post: las condiciones, en el mockup de IG que usa Eli. */
+/** Segunda pieza del post: las condiciones, en el mockup de IG que usa Eli.
+ *  ⭐ RONDA 4 (D15): «En la G2 considerar este listado e incluir emojis
+ *  nuevamente» + «Agregar elementos cumpleañeros como en el anterior».
+ *  → El listado se mantiene (es el del brief) y cada condición recupera su
+ *    emoji; los adornos suben de 2 a 4 para igualar la carga festiva de la G1. */
 export const Cumple2: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={IA + 'cumple-manos.png'} posicion="60% center" oscurecer={0.34} />
+    <FotoFondo src={IA + 'cumple-manos-logo.png'} posicion="60% center" oscurecer={0.34} />
     <Globos
       posiciones={[
-        {cual: 'globoAlt', x: 60, y: 120, ancho: 130, rotacion: -6},
-        {cual: 'corazon', x: 900, y: 1080, ancho: 110, rotacion: 8},
+        {cual: 'globosPar', x: 54, y: 104, ancho: 176, rotacion: -8},
+        {cual: 'globo', x: 902, y: 168, ancho: 116, rotacion: 10, espejo: true},
+        {cual: 'confeti', x: 792, y: 1128, ancho: 190, rotacion: 6},
+        {cual: 'corazon', x: 96, y: 1196, ancho: 104, rotacion: -10},
       ]}
     />
     <div style={{position: 'absolute', left: 0, right: 0, top: 150, display: 'flex', justifyContent: 'center'}}>
       <MarcoIGPost
         foto={<Img src={staticFile(F + 'togo-vaso.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover'}} />}
         burbujas={[
-          'Te regalamos un café para disfrutar en cafetería o To Go.',
-          'Accede a este regalo el mismo día de tu cumpleaños.',
-          'Disponible de lunes a viernes, en cualquier horario.',
-          'Presenta tu carnet en la caja.',
+          '☕ Te regalamos un café para disfrutar en cafetería o To Go.',
+          '🎂 Accede a este regalo el mismo día de tu cumpleaños.',
+          '🗓️ Disponible de lunes a viernes, en cualquier horario.',
+          '🪪 Presenta tu carnet en la caja.',
         ]}
         notaLegal="Extras y personalizaciones no incluidas."
       />
@@ -169,43 +184,56 @@ export const Cumple2: React.FC = () => (
 );
 
 /* ─── 7 sept · POST ESTÁTICO — HUMOR | CAFECITO BETWEEN ───
-   Foto con persona: el bloque baja y el logo sube, para no cruzar el rostro.  */
+   ⭐ RONDA 4 (comentario F15): «Tenemos que modificar el aspecto de estas
+   modelos, ya no las podemos usar tal cual».
+   → La escena se rehízo con otra persona Y con el encuadre que resuelve el
+     problema de raíz: de los hombros a la mesa, sin rostro. Es exactamente lo
+     que hace la referencia que el propio cliente eligió para el cumpleaños
+     (refs-sept-ronda4/D-feed-cumple.jpg): manos y taza, sin cara. Sin rostro no
+     hay derechos de imagen que revisar, y el chiste —que es del texto— no
+     pierde nada.
+   Los textos NO se tocan: el cliente objetó la imagen, no el copy.            */
 
 export const HumorCafecito: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'chica-cafe.jpg'}
-    // el rostro sube al tercio alto para que el bloque de abajo no lo cruce:
-    // regla dura de la diseñadora, ningún texto sobre caras ni ojos
-    posicionFoto="60% 22%"
+    foto={IA + 'humor-cafecito-2.png'}
     script="Perdón, esa preocupación"
     caps={'No cabe en mi\ncafecito de Between'}
     anclaje="abajo"
     conLogo
-    logoPosicion="abajo"
     oscurecer={0.14}
   />
 );
 
 /* ─── 9 sept · CARRUSEL — PRIMERO LA FOTO… ¿O NO? ───
-   Punto 4 del feedback: en la portada («Qué rico se ve») el logo va en el
-   MARGEN DE ABAJO porque arriba tapa a las personas; y el logo aparece UNA
-   sola vez en todo el carrusel.                                              */
+   ⭐ RONDA 4 (27-08, comentario G15): «Ok los textos, pero las fotos deben ser
+   de cosas para comer y no de gente, como en la ref». La referencia que dejó el
+   cliente (raw/hilton/between/refs-sept-ronda4/G-feed-fotos.jpg) es un BODEGÓN
+   CENITAL de plano corto: croissant relleno + café sobre mesa de madera.
+   → Los slides 1 y 2 tenían a las modelos de la sesión de agosto. Se cambian por
+     comida real de la sesión de platos (3 de enero), que además resuelve el
+     comentario F15: esas modelos ya no se pueden usar.
+   Los textos NO se tocan: el cliente los aprobó explícitamente.
+   El logo aparece UNA sola vez, en la portada; sin caras, vuelve arriba.       */
 
 export const Foto1: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'desayuno-mesa.jpg'}
+    foto={F + 'desayuno-completo-2.jpg'}
     script="Qué rico se ve"
     caps={'Le voy a sacar\nuna foto'}
     anclaje="abajo"
     conLogo
-    logoPosicion="abajo"
     oscurecer={0.12}
   />
 );
 
 export const Foto2: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'cafe-desayuno.jpg'}
+    /* cenital con latte art: es el «está demasiado lindo» del copy, y calca el
+       encuadre de la referencia del cliente. La foto es apaisada; se encuadra a
+       la izquierda para que el plato y la taza entren enteros en 4:5. */
+    foto={F + 'croissant-latte-cenital.jpg'}
+    posicionFoto="42% center"
     script="Está demasiado lindo"
     caps="Foto primero"
     oscurecer={0.12}
@@ -239,9 +267,11 @@ export const EllaHablo: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
     <FotoFondo src={IA + 'dos-tazas.png'} oscurecer={0.1} />
     <LogoBetween formato="feed" posicion="arriba" tono="beige" />
-    {/* la mesa es clara: sin caja estas dos líneas no se leen (contraste medido 37) */}
+    {/* la mesa es clara: sin caja estas dos líneas no se leen (contraste medido 37).
+        ESCALONADAS a pedido de Valeria (29-08): una arriba y otra abajo se ve más
+        lúdico que las dos en la misma línea. */}
     <Etiqueta x={280} y={1010} size={54} enCaja>Ella habló</Etiqueta>
-    <Etiqueta x={760} y={1010} size={54} enCaja>Ella escuchó</Etiqueta>
+    <Etiqueta x={800} y={392} size={54} enCaja>Ella escuchó</Etiqueta>
   </AbsoluteFill>
 );
 
@@ -252,17 +282,26 @@ export const EllaHablo: React.FC = () => (
    → portada: logo sí · oscurecer 0,06 (casi nada) · todo centrado · caja taupe
    → slides 2-4: sin logo                                                      */
 
+/**
+ * ⭐ RONDA 4 (comentario K15): «Me gusta que sea otra propuesta la G1, pero ella
+ * se ve muy derrotada y el fondo no es muy Between, veamos opciones?».
+ *   · la actitud: ahora sale sonriendo y con energía, no mirando al suelo;
+ *   · el fondo: era una calle europea cualquiera. Ahora sale por la puerta de
+ *     madera del local y detrás se ve el interior —madera miel, plantas y
+ *     lámparas cálidas—, que es la ambientación real de Between;
+ *   · y el vaso lleva el logotipo real estampado, no el liso de la IA.
+ * El bloque baja al pie y el logo sube: la cara queda en el tercio alto y
+ * ningún texto puede cruzarla (regla dura de la diseñadora).
+ */
 export const ToGo1: React.FC = () => (
   <PiezaFeedBodegon
-    foto={IA + 'togo-salida.png'}
+    foto={IA + 'togo-salida-2-logo.png'}
     script="¿Vas con poco tiempo?"
     caps={'Tu desayuno\nva contigo'}
     datos={['Promos To Go', HORARIO_TOGO]}
+    anclaje="abajo"
     conLogo
-    logoPosicion="abajo"
-    /* la modelo tiene la cara en el tercio alto: el bloque baja casi al centro
-       para no cruzarla (feedback de Elisabet, 28-08) */
-    topBloque={470}
+    logoPosicion="arriba"
     oscurecer={0.06}
   />
 );
@@ -286,56 +325,81 @@ export const ToGo2: React.FC = () => (
     <Ilustra cual="flechaBucle" x={830} y={1030} ancho={120} rotacion={185} opacidad={0.95} />
     <Etiqueta x={880} y={1150} size={42}>Café grande</Etiqueta>
     <PilaEsquina
-      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Sándwich $4.290', fuerte: true}]}
+      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Sándwich desde $4.290', fuerte: true}]}
     />
   </PiezaFeedBodegon>
 );
 
 
+/**
+ * ⭐ RONDA 4 — corrección que NO estaba pedida, pero que el comentario K15 deja
+ * al descubierto. El cliente pidió que el vaso de la slide 4 fuera «como el del
+ * resto de las slides», dando por hecho que el resto estaba bien. No lo estaba:
+ * esta slide traía `togo-dulce-actual.jpg`, que es el vaso ANTIGUO (cuerpo gris
+ * con faja de papel), no el kraft con logo impreso. El nombre del archivo engaña
+ * —dice «actual» y es el viejo—; ver clients/hilton/CLAUDE.md § EL VASO TO GO,
+ * cuya tabla estaba invertida y quedó corregida el 27-08-2026.
+ * Se cambia por la misma sesión con el vaso vigente, pre-recortada a 4:5 desde la
+ * ORIGINAL de 5760 px (`Double Tree 25 jul 25-257`) para que el vaso entre ENTERO
+ * con su logotipo: encuadrando la foto ya gradada de 2200 px, el logo quedaba
+ * partido por el borde. El plato se corta por la izquierda, igual que en la
+ * slide 2 y que en la referencia aprobada «El Match».
+ * El brief pide «una alternativa dulce» sin nombrar producto, así que el
+ * croissant azucarado cumple; la etiqueta se ajusta a lo que de verdad se ve.
+ */
 export const ToGo3: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'togo-dulce-actual.jpg'}
+    foto={F + 'togo-dulce-45.jpg'}
     script="Ese gustito que mejora"
     caps="cualquier mañana"
     legal="*Imágenes referenciales."
     oscurecer={0.08}
   >
-    {/* el rol: texto ARRIBA del plato (no encima) y la flecha sale del rol */}
-    <Etiqueta x={220} y={628} size={42}>Rol de canela</Etiqueta>
-    <Ilustra cual="flechaBucle" x={245} y={686} ancho={118} opacidad={0.95} />
+    {/* el dulce: texto ARRIBA del plato (no encima) y la flecha baja hacia él */}
+    <Etiqueta x={140} y={648} size={42}>Croissant</Etiqueta>
+    <Ilustra cual="flechaBucle" x={172} y={706} ancho={112} opacidad={0.95} />
     {/* el café: texto DEBAJO del vaso — arriba parecía bajada del titular */}
-    <Ilustra cual="flechaBucle" x={870} y={900} ancho={115} rotacion={185} opacidad={0.95} />
-    <Etiqueta x={905} y={1015} size={42}>Café grande</Etiqueta>
+    {/* la cola de la flecha TOCA la base del vaso — no nace de la mesa */}
+    <Ilustra cual="flechaBucle" x={690} y={996} ancho={112} rotacion={185} opacidad={0.95} />
+    <Etiqueta x={776} y={1074} size={42}>Café grande</Etiqueta>
     <PilaEsquina
-      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Dulce $3.790', fuerte: true}]}
+      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Dulce desde $3.790', fuerte: true}]}
     />
   </PiezaFeedBodegon>
 );
 
 
+/**
+ * ⭐ RONDA 4 (comentario K15). Tres cosas en una sola slide:
+ *   1. «debemos poner un dulce y un salado en la foto» — la promo es «Café +
+ *      Salado + Dulce» y la foto anterior solo mostraba croissants dulces.
+ *      Ninguna foto del banco trae los tres juntos, y las que se acercan son
+ *      apaisadas: no dan un 4:5 con los tres. Se construyó el bodegón.
+ *   2. «que el vaso sea como el del resto de las slides» — la foto anterior
+ *      traía el OTRO vaso, el gris oscuro (clients/hilton/CLAUDE.md § EL VASO
+ *      TO GO). Ahora es el kraft con tapa negra, y con el logotipo REAL
+ *      estampado encima (scripts/between-logo-vaso.py), no el que inventa la IA.
+ *   3. «en lugar de llévalo contigo, pongamos algo que haga más sentido con lo
+ *      que se está mostrando, podría ser ¡Llévate los 3!» — literal del cliente.
+ * La comida ocupa la mitad inferior, así que el bloque de texto sube: misma
+ * decisión que ya se tomó en ToGo1 para no cruzar la cara de la modelo.
+ */
 export const ToGo4: React.FC = () => (
   <PiezaFeedBodegon
-    /**
-     * Foto REAL (25-jul-2025) en vez del montaje IA: el montaje traía el vaso
-     * sin logo y desentonaba con los otros slides del carrusel, y la etiqueta
-     * decía «croissant y sándwich» cuando en la foto solo había croissant.
-     */
-    foto={F + 'togo-croissant-actual.jpg'}
+    foto={IA + 'togo-trio-45-logo.png'}
     script="¿Por qué elegir uno?"
-    caps="Llévalo contigo"
-    sizeCaps={100}
-    /* el vaso ocupa la esquina superior: el titular baja a la banda del medio */
-    topBloque={558}
+    caps="¡Llévate los 3!"
+    anclaje="arriba"
+    datos={['Promo To Go · Café + Salado + Dulce desde $5.290']}
     legal="*Imágenes referenciales."
-    oscurecer={0.08}
+    oscurecer={0.1}
   >
-    <Ilustra cual="flechaBucle" x={600} y={330} ancho={130} opacidad={0.95} />
-    <Etiqueta x={545} y={288} size={42}>Café grande</Etiqueta>
-    <Ilustra cual="flechaBucle" x={850} y={950} ancho={120} espejo opacidad={0.95} />
-    <Etiqueta x={935} y={905} size={42}>Croissant</Etiqueta>
-    <PilaEsquina
-      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Salado + Dulce $5.290', fuerte: true}]}
-    />
+    {/* la cola de la flecha TOCA el producto y apunta al texto — regla del
+        manual. Acá nacen del croissant salado y del dulce. */}
+    <Ilustra cual="flechaBucle" x={214} y={874} ancho={112} espejo opacidad={0.95} />
+    <Etiqueta x={330} y={832} size={40}>Salado</Etiqueta>
+    <Ilustra cual="flechaBucle" x={706} y={1072} ancho={112} opacidad={0.95} />
+    <Etiqueta x={716} y={1150} size={40}>Dulce</Etiqueta>
   </PiezaFeedBodegon>
 );
 
@@ -345,12 +409,15 @@ export const ToGo4: React.FC = () => (
 /* ─── 1 sept · PROMO TO GO | CAFÉ + DULCE ───
    Composición PARTIDA en dos fotos con la script cruzando la costura: es el
    recurso del post «Good Morning» de la marca. Rompe el «titular arriba, foto
-   abajo» sin salirse de la línea gráfica.                                     */
+   abajo» sin salirse de la línea gráfica.
+   ⭐ RONDA 4 (comentario C15 de STORIES): «Café con logo Between!». El montaje
+   devolvía el vaso kraft liso; se le estampa el logo real y la composición no
+   se toca, que es todo lo que pidió el cliente.                               */
 export const StToGoDulce: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
     <PiezaPartida
       eje="horizontal"
-      izquierda={IA + 'togo-cafe-dulce.png'}
+      izquierda={IA + 'togo-cafe-dulce-logo.png'}
       derecha={F + 'rol-canela.jpg'}
     />
     <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra, opacity: 0.14}} />
@@ -380,15 +447,23 @@ export const StToGoDulce: React.FC = () => (
   </AbsoluteFill>
 );
 
-/* ─── 3 sept · CAFÉ DE REGALO POR TU CUMPLEAÑOS ─── */
+/* ─── 3 sept · CAFÉ DE REGALO POR TU CUMPLEAÑOS ───
+   ⭐ RONDA 4 (comentario D15 de STORIES): «Tomemos mismos textos de la
+   publicación de feed, manteniendo imagen de fondo de esta propuesta, pero que
+   el vaso tenga logo».
+   → Los tres textos son ahora IDÉNTICOS a los del post del feed (Cumple1): el
+     cliente quiere una sola voz entre feed y story el mismo día.
+   → Se conserva la escena aprobada (vaso con vela sobre la mesa) y se le
+     estampa el logo real: `cumple-vela-logo.png`.
+   Los dos textos que estaban tachados en la grilla ya estaban resueltos —la
+   fecha se cambió por la interactiva de emergencia y «cafeína» salió del copy—,
+   así que acá solo se aplica lo que sigue vigente.                             */
 export const StCumple: React.FC = () => (
   <PiezaStoryBetween
-    foto={IA + 'cumple-vela.png'}
-    script="¡Disfruta tu cumple"
-    caps="desde temprano!"
-    bajadaEnCaja
-    bajada="Si estás de cumpleaños, tenemos un café de regalo para ti."
-    datos={['Presenta tu carnet · Lunes a viernes · Todo el día']}
+    foto={IA + 'cumple-vela-logo.png'}
+    script="¿Estás de cumpleaños?"
+    caps="Este café es para ti"
+    datos={['¡Ven por tu café de regalo!']}
     oscurecer={0.1}
     legal="Ven a celebrar a Between."
   >
@@ -401,7 +476,10 @@ export const StCumple: React.FC = () => (
   </PiezaStoryBetween>
 );
 
-/* ─── 4 sept · HUMOR | SEGÚN MIS CÁLCULOS ─── */
+/* ─── 4 sept · HUMOR | SEGÚN MIS CÁLCULOS ───
+   ⭐ RONDA 4 (comentario E15): «Ok, enlace a carta!». La pieza quedó aprobada;
+   lo único que cambia es que la story pasa a llevar el sticker de enlace, y se
+   dibuja para reservarle el sitio — si no, se pega encima del titular.        */
 export const StCalculos: React.FC = () => (
   <PiezaStoryBetween
     foto={IA + 'calculadora-mesa.png'}
@@ -410,45 +488,74 @@ export const StCalculos: React.FC = () => (
     bajadaEnCaja
     bajada="Por suerte, sabemos dónde encontrarlo."
     oscurecer={0.12}
-  />
+  >
+    <div
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 470,
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <StickerEnlace texto="Ver la carta" />
+    </div>
+  </PiezaStoryBetween>
 );
 
-/* ─── 9 sept · INTERACTIVA — EMERGENCIA BETWEEN ─── */
+/* ─── 9 sept · INTERACTIVA — EMERGENCIA BETWEEN ───
+   ⭐ RONDA 4, dos comentarios sobre la misma pieza:
+     · diseño (I15): «No se cacha bien al tapar la vitrina con el texto, veamos
+       otra diagramación?»
+     · cliente (I14): «Agregar opción todas las anteriores»
+   La referencia que dejó el cliente (refs-sept-ronda4/I-story-emergencia.jpg)
+   dice exactamente cómo se arma: caja de emergencia FRONTAL y simétrica sobre
+   fondo plano, el producto solo y grande al centro, y el texto en las bandas
+   del marco — nunca encima del producto. La versión anterior era un gabinete
+   lejano, chico y rodeado de plantas y tazas: por eso «no se cachaba».
+     · el titular ocupa el vacío de ARRIBA, dentro de la caja;
+     · el producto queda entero y sin nada encima;
+     · la encuesta baja a la pared, ya con la tercera opción que pidió el
+       cliente. Se dibuja para que el sticker no termine puesto sobre la caja.
+   Sin logo arriba: el vaso ya lo lleva impreso, y la regla de la diseñadora es
+   que cuando el vaso trae el logo, no se repite en la pieza.                  */
 export const StEmergencia: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={IA + 'emergencia-caja.png'} oscurecer={0.06} />
-    <LogoBetween formato="story" posicion="arriba" tono="beige" />
-    {/* el gabinete vive en y 512–1240: el titular va ARRIBA de él y la
-        pregunta DEBAJO, para que el café y el croissant se vean enteros
-        (feedback 28-08: «el texto está sobre el café») */}
+    <FotoFondo src={IA + 'emergencia-caja-2-logo.png'} oscurecer={0.06} />
+    {/* el interior de la caja va de y≈185 a y≈1292; el producto arranca en
+        y≈765, así que el titular vive en la banda vacía de arriba */}
+    {/* el interior de la caja va de x≈244 a x≈849: el titular se ciñe a ese
+        ancho para no montarse sobre el marco */}
     <div
       style={{
         position: 'absolute',
-        left: BETWEEN.bloque.margenX,
-        right: BETWEEN.bloque.margenX,
-        /* el logo de story termina en y≈370: el titular parte bajo él y su caja
-           alta cae sobre el vidrio VACÍO del gabinete, arriba de los productos */
-        top: 392,
+        left: 268,
+        right: 268,
+        top: 268,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
     >
-      <TitularBetween script="Romper en caso" caps="de antojo" alinear="centro" sizeCaps={100} />
+      <TitularBetween
+        script="Romper en caso"
+        caps="de antojo"
+        alinear="centro"
+        sizeCaps={82}
+        anchoDisponible={544}
+      />
     </div>
-    <div
-      style={{
-        position: 'absolute',
-        left: BETWEEN.bloque.margenX,
-        right: BETWEEN.bloque.margenX,
-        top: 1300,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <Bajada style={{textAlign: 'center'}}>Si solo pudieras sacar uno primero…</Bajada>
-      <PilaDatos datos={['¿Cuál tomarías?']} style={{marginTop: BETWEEN.aire.tituloACaja}} />
+    {/* la encuesta se apoya en el borde inferior de la caja, como el sticker
+        real cuando lo pega el community manager, y termina antes de y=1580
+        para respetar la zona segura inferior de las historias */}
+    <div style={{position: 'absolute', left: 0, right: 0, top: 1318, display: 'flex', justifyContent: 'center'}}>
+      <StickerQuiz
+        pregunta="Si solo pudieras sacar uno…"
+        opciones={['El café', 'El croissant', 'Todas las anteriores']}
+        ancho={620}
+        compacto
+      />
     </div>
   </AbsoluteFill>
 );

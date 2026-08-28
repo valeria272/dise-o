@@ -118,7 +118,7 @@ def guarda(urls, destino):
 def main():
     ap = argparse.ArgumentParser(add_help=True)
     ap.add_argument("accion", choices=["generar", "escalar", "reiluminar", "estilo",
-                                       "loras", "tareas"])
+                                       "loras", "tareas", "check"])
     ap.add_argument("entrada", nargs="?", help="prompt (generar) o archivo (el resto)")
     ap.add_argument("--out")
     ap.add_argument("--aspecto", default="feed", choices=list(ASPECTOS))
@@ -128,6 +128,25 @@ def main():
     ap.add_argument("--escala", default="2x")
     ap.add_argument("--lora", help="id de un LoRA de la cuenta")
     a = ap.parse_args()
+
+    if a.accion == "check":
+        # Verifica la clave SIN gastar créditos: un GET de listado autentica pero no
+        # genera nada. Existe porque un diseñador perdió un día entero sin saber si
+        # su problema era la clave, el conector o la herramienta equivocada.
+        req = urllib.request.Request(
+            BASE + "/v1/ai/mystic", headers={"x-freepik-api-key": clave()})
+        try:
+            with urllib.request.urlopen(req, context=CTX, timeout=30):
+                pass
+            print("✓ Clave de Magnific/Freepik VÁLIDA — ya puedes generar imágenes.")
+        except urllib.error.HTTPError as e:
+            if e.code in (401, 403):
+                sys.exit(f"✗ Clave INVÁLIDA o vencida (HTTP {e.code}). Revisa "
+                         f"~/.magnific_key:\n  no debe tener espacios ni comillas, "
+                         f"solo la clave.")
+            print(f"? Freepik respondió HTTP {e.code} — la clave autentica, "
+                  f"pero el servicio devolvió algo raro. Reintenta en unos minutos.")
+        return 0
 
     if a.accion == "loras":
         print(json.dumps(pedir("/v1/ai/loras"), ensure_ascii=False, indent=2)[:4000])

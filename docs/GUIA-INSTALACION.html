@@ -156,13 +156,58 @@ no en el proyecto</b>: se activan una sola vez, en el navegador.</p>
 <td>Tu @copywriters.cl</td><td>Bajar referencias y briefs, subir entregas, leer comentarios de clientes</td></tr>
 <tr><td><b>Canva</b></td><td>🟡 Recomendado</td><td>La cuenta Canva del equipo</td><td>Plantillas y brand kits</td></tr>
 <tr><td><b>Gmail</b></td><td>🟡 Recomendado</td><td>Tu @copywriters.cl</td><td>El feedback de clientes llega por correo</td></tr>
-<tr><td>Higgsfield</td><td>⚪ Opcional</td><td>—</td><td>Video IA — hoy sin créditos, no te bloquea</td></tr>
+<tr><td><b>Higgsfield</b></td><td>🟡 Para video/UGC IA</td><td>La cuenta Higgsfield del equipo (ver 4.b)</td><td>Video IA, personajes, UGC</td></tr>
 <tr><td>Apollo / Notion / WordPress</td><td>⚪ <b>NO activar</b></td><td>—</td><td>Son de otras áreas, no de diseño</td></tr>
 </table>
 
 <div class="caja ojo"><b>⚠️ Después de activar un conector, cierra el chat y abre
 una conversación NUEVA.</b> Un conector activado a mitad de conversación no carga —
 es la causa nº 1 de «Claude no encuentra mi carpeta de Drive».</div>
+
+<h3>4.b — Las herramientas de imagen: Magnific y Higgsfield (léelo completo, acá se pierden los días)</h3>
+
+<div class="caja"><b>Lo primero que hay que entender:</b> son dos cosas DISTINTAS y se
+conectan de forma distinta. Confundirlas es exactamente lo que hace perder un día entero.
+<ul>
+<li><b>Magnific (= Freepik)</b> es <b>el generador de imágenes de la casa</b> — fondos,
+ambientes, escalado, reiluminación. <b>NO es un conector</b>: funciona con una
+<b>clave</b> que se instala una sola vez en tu Mac (abajo). No hay nada que activar
+en claude.ai.</li>
+<li><b>Higgsfield</b> es solo para <b>video IA / UGC / personajes</b>. Ese sí es un
+<b>conector</b> de claude.ai, y además necesita que la cuenta tenga créditos.</li>
+</ul></div>
+
+<p><b>Instalar la clave de Magnific (2 minutos, una sola vez):</b></p>
+<ol>
+<li>Abre la <b>Terminal</b> (⌘ + espacio → «Terminal»).</li>
+<li>Pega esta línea completa y aprieta Enter:</li>
+</ol>
+<pre><code>echo "PEGA-AQUI-LA-CLAVE-FREEPIK" > ~/.magnific_key</code></pre>
+<p>La clave viene escrita en esta guía tal cual — cópiala con el botón derecho para
+no perder ningún carácter. Los scripts del estudio la leen solos desde ese archivo.</p>
+
+<div class="caja exito"><b>✅ Cómo saber que quedó bien:</b> en el chat de Claude
+escribe: <i>«verifica mi clave de Magnific sin gastar créditos»</i>. Claude hace una
+consulta de estado a la API (no genera nada, no gasta) y te dice si la clave responde.
+Si responde, ya puedes pedirle fondos y ambientes IA con total normalidad.</div>
+
+<p><b>Conectar Higgsfield (solo si vas a hacer video/UGC):</b></p>
+<ol>
+<li>Entra a <span class="url">https://claude.ai/settings/connectors</span> y activa
+<b>Higgsfield</b>.</li>
+<li>Cuando pida iniciar sesión, usa <b>la cuenta Higgsfield del equipo</b>:
+correo <code>contacto@copywriters.cl</code> — la contraseña está en la versión de la
+guía que reparte Valeria (esta copia del repo no lleva contraseñas).</li>
+<li><b>Cierra el chat y abre una conversación nueva</b> (regla de todo conector).</li>
+<li>Prueba: escribe <i>«revisa el saldo de Higgsfield»</i>.</li>
+</ol>
+
+<div class="caja alerta"><b>⛔ Si Higgsfield dice que no hay créditos, NO es un
+problema tuyo ni de conexión</b> — la cuenta está sin saldo y solo Valeria puede
+recargarla. Avísale y sigue trabajando: <b>todos los fondos e imágenes del estudio
+salen de Magnific</b>, que funciona con la clave de arriba y no depende de esos
+créditos. Que no se te vaya el día peleando con Higgsfield por algo que Magnific
+hace mejor para gráficas.</div>
 
 <div class="caja exito"><b>✅ Cómo saber que quedó bien:</b> en un chat nuevo escribe:
 <i>«busca la carpeta AGENCIA COPYWRITERS en Drive»</i>. Si la encuentra y lista
@@ -205,6 +250,36 @@ trabajo de cualquiera (si alguien se enferma, si estás en otra ciudad), hay
 <div class="caja alerta"><b>⛔ Si no haces /cierre, tu trabajo del día NO existe para
 el resto del equipo.</b> Aunque el día haya quedado a medias — especialmente si quedó
 a medias. La bitácora puede decir «a medias, no entregar», pero tiene que estar subido.</div>
+
+<h3>Qué queda guardado y dónde — esto es clave para entender tu flujo</h3>
+
+<p>Tu trabajo puede nacer en dos mundos, y cada uno tiene su camino para quedar
+guardado y disponible para el resto del equipo:</p>
+
+<table>
+<tr><th></th><th>🖥️ Lo hiciste CON el estudio<br>(Claude en VSCode)</th><th>🎨 Lo hiciste FUERA<br>(Illustrator, Photoshop, Canva a mano)</th></tr>
+<tr><td><b>¿Queda en GitHub?</b></td>
+<td><b>Sí — cuando corres <code>/cierre</code>.</b> Se guarda la «receta» de la pieza
+(los scripts y fondos que la generan), lo aprendido en el manual de la marca y la
+bitácora del día</td>
+<td><b>No llega solo.</b> La pieza vive en Drive; para que el estudio la aprenda,
+hay que medirla y escribirla en el manual (Claude lo hace con <code>/adn</code> o
+cuando <code>/abrir</code> detecta trabajo nuevo)</td></tr>
+<tr><td><b>¿Y la pieza final?</b></td>
+<td>El PNG/video entregado va a la carpeta de <b>Drive</b> del cliente — GitHub
+guarda el generador, no el archivo pesado</td>
+<td>A <b>Drive</b>, como siempre</td></tr>
+<tr><td><b>¿Qué tienes que hacer tú?</b></td>
+<td>Solo <code>/cierre</code> al final del día — Claude hace el resto</td>
+<td>Subir la pieza aprobada a Drive <b>y avisarle a Claude</b>: «diseñé esto a mano
+para &lt;marca&gt;, apréndelo» — él lo mide y lo codifica en el manual</td></tr>
+</table>
+
+<div class="caja ojo"><b>⚠️ Por qué importa:</b> si llegas a un buen diseño y no pasa
+por uno de estos dos caminos, ese aprendizaje <b>se pierde</b> — el próximo que tome
+la marca (u otro diseñador cubriéndote) va a repetir los errores que tú ya
+resolviste. En GitHub no se guarda «el dibujo»: se guarda <b>cómo se llega a él</b>,
+que es lo que permite que cualquiera del equipo lo reproduzca y lo continúe.</div>
 
 <p>Reglas de oro mientras trabajas (Claude también las conoce y te las va a recordar):</p>
 <ul>

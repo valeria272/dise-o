@@ -17,10 +17,10 @@
 |---|---|---|---|
 | A1 | **Push del repo al día** | `git push` en la rama `estudio/sistema-de-marcas`. Sin esto ella clona una versión vieja sin el QA ni la semilla de memoria | ☐ |
 | A2 | **Invitarla al repo privado** | github.com/valeria272/dise-o → Settings → Collaborators → su cuenta de GitHub (si no tiene, que se cree una con el correo @copywriters.cl). El repo es privado: sin invitación no puede clonar | ☐ |
-| A3 | **Cuenta de Claude con plan pago** | Necesita claude.ai con un plan que incluya Claude Code (Pro sirve; el uso de diseño es intensivo). Decidir: ¿cuenta propia del equipo o una de las "4 cuentas de Claude" ya planificadas? | ☐ |
+| A3 | **Cuenta de Claude con plan pago** | ✅ Resuelto 28-08: Valeria compró **Max 200** — capacidad de sobra para el uso intensivo de diseño. Definir con qué login entra cada diseñador (ideal: un login por persona, para que la memoria y las sesiones no se mezclen) | ☑ |
 | A4 | **Permisos de Drive con SU cuenta** | Su cuenta @copywriters.cl necesita ver: la carpeta AGENCIA COPYWRITERS (`16kNWE2mkbLh1uTb5Jc5TuDhYwM0OOw0A`), las carpetas de las diseñadoras (Coni/Eli) y las carpetas de entrega por cliente. Probar ANTES: que abra 2–3 links de los manuales desde su navegador | ☐ |
 | A5 | **Adobe Creative Cloud** | Ella necesita licencia para activar **Futura PT** (Casablanca) e **IvyOra** (Tierra Calma). Si no tiene CC, los fallbacks del repo funcionan pero el calce tipográfico baja | ☐ |
-| A6 | **Clave de Freepik/Magnific** | Los scripts de imagen leen `FREEPIK_API_KEY`. Decidir: ¿se le comparte la clave `claudecw` o se crea una propia? Entregar por canal seguro (no por el repo, no por WhatsApp) | ☐ |
+| A6 | **Clave de Freepik/Magnific** | Decisión de Valeria 28-08: la clave del equipo va **escrita en la guía HTML** que ella reparte (equipo de confianza). Ella la inyecta con el comando de abajo antes de repartir. ⚠️ En el repo la guía lleva un marcador, nunca la clave (el historial de git es permanente). Verificación en cada máquina: `python3 scripts/magnific.py check` — sin gastar créditos | ☐ |
 | A7 | **Fuentes de pago que no viajan** | Agrandir (Selfie) → pedirla a Coni. Neutraface (MyZoo) → cliente. Stag LCG (DT) → confirmar licencia. Solo si va a tocar esas marcas la semana 1 | ☐ |
 
 ---
@@ -51,6 +51,20 @@ npm install
 **VSCode:** abrir la carpeta `~/copylab/EDITOR VIDEOS` e instalar la extensión
 **Claude Code** (o usar `claude` en la terminal integrada — da lo mismo, es el
 mismo agente).
+
+### B1.b · La clave de Magnific — ANTES de intentar generar imágenes
+
+Magnific/Freepik es el generador de imágenes de la casa y **NO es un conector**: es
+una clave que viene escrita en la guía HTML. En la Terminal:
+
+```bash
+echo "LA-CLAVE-DE-LA-GUIA" > ~/.magnific_key
+~/copylab-venv/bin/python3 scripts/magnific.py check   # ✓ = listo (no gasta créditos)
+```
+
+Higgsfield es otra cosa: conector de claude.ai + cuenta del equipo + créditos. Solo
+para video/UGC. Si dice «sin créditos», se avisa a Valeria y se sigue con Magnific —
+no se pierde el día ahí.
 
 ### B2 · Conectores en SU cuenta de claude.ai
 

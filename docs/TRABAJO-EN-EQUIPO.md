@@ -37,6 +37,20 @@ reproducir — ya costó rehacer Revex tres rondas desde cero.
 | Entregas (`out/`) | **Drive** (carpeta de entrega del cliente) | El cliente las ve ahí; el repo guarda el generador, no el resultado |
 | Memoria del estudio | **git** (`docs/memoria-semilla/`) → cuenta de cada uno vía `sembrar-memoria.sh` | El aprendizaje no puede depender de una sola cuenta |
 
+## Los dos orígenes de un buen diseño — y cómo cada uno queda capturado
+
+No todo el diseño del equipo nace dentro del estudio, y los dos caminos tienen que
+terminar en el mismo lugar: el manual de la marca, versionado.
+
+| Origen | Cómo queda capturado |
+|---|---|
+| **Hecho CON el estudio** (Claude en VSCode) | `/cierre` sube la receta (scripts + fondos), el manual actualizado y la bitácora. Automático si el rito se cumple |
+| **Hecho FUERA** (Illustrator, Photoshop, Canva a mano) | NO llega solo a git. La pieza aprobada se sube a Drive → `/al-dia` la detecta como trabajo nuevo de esa diseñadora → se mide (`/adn` o a mano) → **se codifica en el manual** → ese commit es lo que lo captura. Así se construyó Between entero desde los editables de Eli |
+
+La trampa a evitar: un buen diseño hecho a mano que se entrega y nadie codifica.
+Para el estudio es como si no existiera — el próximo diseñador que tome la marca
+va a redescubrir desde cero lo que ya estaba resuelto.
+
 ## El relevo, paso a paso (el caso real)
 
 1. El diseñador B (en el sur) abre VSCode en su clon del estudio.

@@ -325,12 +325,33 @@ FORMATOS = {
                   filete_y=1292.0, filete_x=116.2, filete_w=847.2,
                   esc=1.25,          # «aumentar el bloque de texto un 20-30 %» (Paulina, 25-08)
                   velo=(0.40, 1.0, 104)),
+    # ── 4:5 (Serena, 27-08-2026) ───────────────────────────────────────────
+    # MEDIDO sobre las 6 piezas 4:5 de Paulina (raw/casablanca/ref/2026-08_carrusel_*.png,
+    # 2250x2813 -> 1080x1350): el logo va en 440,6 / 0 / 198,7 / 221,3 en las seis, y el
+    # bloque de texto del registro ANUNCIO lleva sus filetes en y 699 y 814 (esc 1,08).
+    # DERIVADO: esas seis son registro anuncio y no traen muestra de tabla ni etiqueta,
+    # así que para la FICHA se conserva la geometría 1:1 en la misma fracción de alto
+    # (muestra y filete al 23,9 % y 83,4 %). No mezclar registros: si aparece una ficha
+    # 4:5 aprobada, se mide y esto se reemplaza.
+    "feed45": dict(w=1080, h=1350,
+                   logo=(440.6, 0.0, 198.7, 221.3),          # medido
+                   muestra=(124.8, 322.5, 139.7, 470.0),     # x/w/h del 1:1; y derivado
+                   etiq=(69.1, 420.2, 252.0, 65.3),          # acompaña a la muestra
+                   filete_y=1126.3, filete_x=163.2, filete_w=753.1,
+                   esc=1.08,                                  # medido en el anuncio 4:5
+                   velo=(0.42, 1.0, 96)),
 }
+
+# Qué foto usa cada formato. El 4:5 tiene ambiente propio (amb_*_feed45, 2432x2944
+# nativo) porque recortar el cuadrado obligaba a ampliarlo un 37 %; el showroom sale
+# del _story (2250x4000), que recorta a 4:5 sin ampliar nada.
+AMB = {"feed": "feed", "story": "feed", "feed45": "feed45"}
+SR2 = {"feed": "feed", "story": "story", "feed45": "story"}
 
 
 def pieza_c1(t, fmt):
     g = FORMATOS[fmt]
-    foto = Image.open(ASSETS / f"sep/amb_{t['sku']}_feed.jpg").convert("RGB")
+    foto = Image.open(ASSETS / f"sep/amb_{t['sku']}_{AMB[fmt]}.jpg").convert("RGB")
     im = cover(foto, P(g["w"]), P(g["h"]))
     im = velo(im, *g["velo"])
     tarjeta_logo(im, *g["logo"])
@@ -338,7 +359,7 @@ def pieza_c1(t, fmt):
     etiqueta_gris(im, *g["etiq"], "Piso de Ingeniería", t["medida"])
     y_inf = bloque_texto(im, g["w"] / 2, g["filete_y"], t["look"], t["titulo"],
                          t["bajada"], g["filete_w"], g["filete_x"], g["esc"])
-    if t["n"] == 1 and fmt == "feed":            # brief nº7 — sólo en feed
+    if t["n"] == 1 and fmt in ("feed", "feed45"):   # brief nº7 — sólo en feed
         d = ImageDraw.Draw(im)
         fv = versales(17.0)
         tr = P(17.0) * 0.19
@@ -352,14 +373,24 @@ def pieza_c1(t, fmt):
 
 def pieza_c2(t, fmt):
     g = FORMATOS[fmt]
-    im = Image.open(ASSETS / f"sep/sr2_{t['n']}_{fmt}.jpg").convert("RGB")
+    im = Image.open(ASSETS / f"sep/sr2_{t['n']}_{SR2[fmt]}.jpg").convert("RGB")
+    # El 4:5 reusa la foto de story (2250x4000) y hay que recortarla. En feed y
+    # story el archivo ya viene al tamaño exacto: no se toca, para no alterar por
+    # un resample lo que el cliente ya aprobó.
+    if im.size != (P(g["w"]), P(g["h"])):
+        im = cover(im, P(g["w"]), P(g["h"]))
     im = velo(im, g["velo"][0] - 0.06, 1.0, g["velo"][2] + 22)
     if t.get("franja"):
         # En story la franja NO llega al borde: si el texto cae bajo los 340 px
         # inferiores, Meta lo tapa con su interfaz. Es una banda a sangre lateral.
-        y0, y1 = (822.0, 1080.0) if fmt == "feed" else (1152.0, 1562.0)
+        # 1:1 medido (822 -> 1080). En 4:5 se mantiene la misma fracción de alto
+        # (76,1 % -> borde). En story la franja NO llega al borde: bajo los 340 px
+        # inferiores Meta tapa el texto con su interfaz.
+        y0, y1 = {"feed": (822.0, 1080.0),
+                  "feed45": (1027.5, 1350.0),
+                  "story": (1152.0, 1562.0)}[fmt]
         ImageDraw.Draw(im).rectangle([0, P(y0), P(g["w"]), P(y1)], fill=GRIS)
-        g = dict(g, filete_y=950.0 if fmt == "feed" else 1320.0)
+        g = dict(g, filete_y={"feed": 950.0, "feed45": 1187.5, "story": 1320.0}[fmt])
     if t["logo"]:
         tarjeta_logo(im, *g["logo"])
     d = ImageDraw.Draw(im)
@@ -391,7 +422,7 @@ def main():
     quiere = [a.lower() for a in sys.argv[1:]]
     SALIDA.mkdir(parents=True, exist_ok=True)
     hechas = []
-    for fmt in ("feed", "story"):
+    for fmt in ("feed", "story", "feed45"):
         if quiere and fmt not in quiere and not any(q in ("c1", "c2") for q in quiere):
             continue
         for t in C1:

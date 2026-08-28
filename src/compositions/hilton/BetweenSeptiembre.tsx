@@ -325,29 +325,45 @@ export const ToGo2: React.FC = () => (
     <Ilustra cual="flechaBucle" x={830} y={1030} ancho={120} rotacion={185} opacidad={0.95} />
     <Etiqueta x={880} y={1150} size={42}>Café grande</Etiqueta>
     <PilaEsquina
-      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Sándwich $4.290', fuerte: true}]}
+      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Sándwich desde $4.290', fuerte: true}]}
     />
   </PiezaFeedBodegon>
 );
 
 
+/**
+ * ⭐ RONDA 4 — corrección que NO estaba pedida, pero que el comentario K15 deja
+ * al descubierto. El cliente pidió que el vaso de la slide 4 fuera «como el del
+ * resto de las slides», dando por hecho que el resto estaba bien. No lo estaba:
+ * esta slide traía `togo-dulce-actual.jpg`, que es el vaso ANTIGUO (cuerpo gris
+ * con faja de papel), no el kraft con logo impreso. El nombre del archivo engaña
+ * —dice «actual» y es el viejo—; ver clients/hilton/CLAUDE.md § EL VASO TO GO,
+ * cuya tabla estaba invertida y quedó corregida el 27-08-2026.
+ * Se cambia por la misma sesión con el vaso vigente, pre-recortada a 4:5 desde la
+ * ORIGINAL de 5760 px (`Double Tree 25 jul 25-257`) para que el vaso entre ENTERO
+ * con su logotipo: encuadrando la foto ya gradada de 2200 px, el logo quedaba
+ * partido por el borde. El plato se corta por la izquierda, igual que en la
+ * slide 2 y que en la referencia aprobada «El Match».
+ * El brief pide «una alternativa dulce» sin nombrar producto, así que el
+ * croissant azucarado cumple; la etiqueta se ajusta a lo que de verdad se ve.
+ */
 export const ToGo3: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'togo-dulce-actual.jpg'}
+    foto={F + 'togo-dulce-45.jpg'}
     script="Ese gustito que mejora"
     caps="cualquier mañana"
     legal="*Imágenes referenciales."
     oscurecer={0.08}
   >
-    {/* el rol: texto ARRIBA del plato (no encima) y la flecha sale del rol */}
-    <Etiqueta x={220} y={628} size={42}>Rol de canela</Etiqueta>
-    <Ilustra cual="flechaBucle" x={245} y={686} ancho={118} opacidad={0.95} />
+    {/* el dulce: texto ARRIBA del plato (no encima) y la flecha baja hacia él */}
+    <Etiqueta x={140} y={648} size={42}>Croissant</Etiqueta>
+    <Ilustra cual="flechaBucle" x={172} y={706} ancho={112} opacidad={0.95} />
     {/* el café: texto DEBAJO del vaso — arriba parecía bajada del titular */}
     {/* la cola de la flecha TOCA la base del vaso — no nace de la mesa */}
-    <Ilustra cual="flechaBucle" x={805} y={852} ancho={115} rotacion={185} opacidad={0.95} />
-    <Etiqueta x={905} y={1015} size={42}>Café grande</Etiqueta>
+    <Ilustra cual="flechaBucle" x={690} y={996} ancho={112} rotacion={185} opacidad={0.95} />
+    <Etiqueta x={776} y={1074} size={42}>Café grande</Etiqueta>
     <PilaEsquina
-      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Dulce $3.790', fuerte: true}]}
+      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Dulce desde $3.790', fuerte: true}]}
     />
   </PiezaFeedBodegon>
 );
@@ -374,7 +390,7 @@ export const ToGo4: React.FC = () => (
     script="¿Por qué elegir uno?"
     caps="¡Llévate los 3!"
     anclaje="arriba"
-    datos={['Promo To Go · Café + Salado + Dulce $5.290']}
+    datos={['Promo To Go · Café + Salado + Dulce desde $5.290']}
     legal="*Imágenes referenciales."
     oscurecer={0.1}
   >

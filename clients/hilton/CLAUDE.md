@@ -546,16 +546,32 @@ Detectado por Elisabet el 28-08-2026 («el vaso to go es el antiguo»).
 | Logo | en una **faja** de papel crema pegada al vaso | **impreso directo** en el kraft |
 | Tapa | café oscuro | **negra mate**, tipo domo |
 
-⚠️ **Estas fotos de `public/assets/hilton/between/fotos-gradadas/` traen el vaso
-ANTIGUO y no se pueden usar en piezas de promo To Go:**
-`togo-sandwich.jpg` · `togo-brownie.jpg` · `togo-croissant-queso.jpg` ·
-`togo-croissants.jpg` · `togo-empanadas.jpg`
+### 🔴 CORRECCIÓN 27-08-2026 — esta lista estaba AL REVÉS
 
-✅ **El vaso actual está en la sesión `raw/hilton/between/modelos-25jul2025/`.**
-Bodegones útiles verificados ahí: `25-250` (sándwich + vaso), `25-252`,
-`25-254`/`255`/`256` (croissant + vaso), `25-280`/`281` (rol de canela + vaso).
-Ya graduadas y en el banco como `togo-sandwich-actual.jpg` y `togo-dulce-actual.jpg`.
-El recorte limpio del vaso vigente es `togo-vaso-nobg.png`.
+La tabla de arriba es correcta; **la lista de archivos que había debajo no**.
+Decía que `togo-croissant-queso.jpg`, `togo-croissants.jpg` y `togo-empanadas.jpg`
+traían el vaso antiguo, y es justo al contrario: esas tres traen el **kraft
+vigente**. Y **el sufijo `-actual` engaña**: `togo-croissant-actual.jpg` y
+`togo-dulce-actual.jpg` son las que traen el **vaso viejo**.
+
+Verificado mirando los seis vasos juntos, recortados de sus propias fotos.
+Costó una pieza entregada: la slide 3 del carrusel Promos To Go salió con el
+vaso antiguo, y el cliente lo rozó sin saberlo al pedir, sobre la slide 4, «que
+el vaso sea como el del resto de las slides».
+
+| Vaso | Fotos gradadas |
+|---|---|
+| ❌ **Antiguo** — cuerpo gris, faja de papel crema | `togo-croissant-actual.jpg` · `togo-dulce-actual.jpg` · `togo-sandwich.jpg` · `togo-brownie.jpg` |
+| ✅ **Vigente** — kraft, logo impreso directo | `togo-sandwich-45.jpg` · `togo-dulce-45.jpg` · `togo-croissant-queso.jpg` · `togo-empanadas.jpg` · `togo-croissants.jpg` · `togo-vaso.jpg` |
+
+✅ **El vaso vigente está en la sesión `raw/hilton/between/modelos-25jul2025/`.**
+Originales de 5760 px verificadas: `25-257` (croissant dulce + vaso, la que dio
+`togo-dulce-45.jpg`). El recorte limpio del vaso vigente es `togo-vaso-nobg.png`.
+
+⚠️ **Recortar el 4:5 desde la ORIGINAL de 5760 px, no desde la gradada de 2200.**
+Plato y vaso no caben enteros en 4:5; encuadrando la foto chica el logotipo del
+vaso queda partido por el borde. Desde la original hay margen para dejar el vaso
+entero y cortar el plato, que es lo que hace la referencia aprobada «El Match».
 
 > **Regla:** antes de usar una foto con vaso To Go, comparar el vaso contra
 > `togo-vaso-nobg.png`. Si tiene faja de papel, es el viejo: no va.
@@ -659,3 +675,80 @@ Hojas de contacto en `out/_verificacion/`:
 `between-NUESTRAS-27.png` (las 27 piezas rehechas).
 Revisadas a ojo: todo es de Between, no hay material de otra marca infiltrado y no
 hay descargas fallidas.
+
+---
+
+# ⭐ RONDA 4 — lo que aprendimos el 27-08-2026
+
+Cuatro reglas nuevas, todas salidas de comentarios del cliente en la grilla.
+
+## 1. El vaso generado con IA NUNCA trae la marca — hay que estampársela
+
+Es la causa de **tres comentarios distintos** de la misma ronda: «Café con logo
+Between!», «que el vaso tenga logo» y «que el vaso sea como el del resto de las
+slides». Los generadores devuelven el vaso kraft liso, y cuando no lo dejan liso
+es peor: **inventan un logotipo falso**.
+
+**Orden de preferencia, sin excepción:**
+
+1. **Foto real del cliente.** Si la escena existe en el banco, se usa esa. El
+   vaso real ya viene con el logo impreso.
+2. Si la escena **no existe** (el vaso con vela de cumpleaños, las manos
+   entregando el café, el trío To Go en 4:5), se genera **pidiendo el vaso sin
+   marca** y se estampa el logotipo real:
+
+```bash
+python3 scripts/between-logo-vaso.py <entrada> <salida> \
+    --caja X1 Y1 X2 Y2          # dónde va el logo, medido sobre el cuerpo del vaso
+    [--limpiar X1 Y1 X2 Y2]     # borra antes el logotipo que inventó la IA
+    [--fuerza 0.95]
+```
+
+El script envuelve el logo sobre el cilindro y lo funde en **multiply**, así que
+toma la textura del cartón y su sombra en vez de flotar encima. Medidas que
+funcionan: **ancho ≈ 55 % del ancho del vaso**, en el **tercio superior** del
+cuerpo, y `--fuerza 0,95–1,0` (con 0,86 el logo se apaga en los vasos oscuros).
+
+## 2. La sesión de modelos de agosto ya no se puede usar
+
+«Tenemos que modificar el aspecto de estas modelos, ya no las podemos usar tal
+cual». Afecta a `chica-cafe.jpg`, `chica-cafe-2.jpg` y `desayuno-mesa.jpg`.
+
+**La salida buena no es cambiarles la cara: es no mostrar cara.** La referencia
+que eligió el propio cliente para el cumpleaños
+(`raw/hilton/between/refs-sept-ronda4/D-feed-cumple.jpg`) resuelve la escena con
+**torso y manos**, sin rostro. Sin cara no hay derechos de imagen que revisar, no
+hay «cara de IA», y el texto nunca cruza unos ojos.
+
+## 3. Los emojis necesitan que se nombre la fuente de color
+
+Raleway está auto-hospedada y no trae emojis. Sin nombrar la familia de color al
+final de la pila, Chrome cae en un glifo monocromo y los emojis salen como
+manchas grises. Ya está resuelto en `BurbujaChat`:
+
+```ts
+fontFamily: `${BETWEEN.fuentes.sans}, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji'`
+```
+
+## 4. Las piezas «de vitrina» se componen de frente, no de ambiente
+
+«No se cacha bien al tapar la vitrina con el texto, veamos otra diagramación?».
+La referencia del cliente (`refs-sept-ronda4/I-story-emergencia.jpg`) es explícita:
+
+- vitrina **frontal y simétrica**, sobre **fondo plano**, ocupando el centro;
+- el producto **solo, grande y entero**, sin nada encima;
+- el texto en las **bandas vacías del marco** — arriba el titular, abajo el llamado;
+- **nada de props**: ni plantas, ni tazas, ni muebles alrededor.
+
+Lo que había antes era un gabinete lejano y chico dentro de una escena con
+plantas: por eso «no se cachaba».
+
+## Y una de método: mirar los COMENTARIOS TACHADOS
+
+En la grilla, la fila **COMENTARIOS DISEÑO** mezcla lo pendiente con lo ya
+resuelto, y lo resuelto va **tachado**. Hay que leer el formato del texto, no
+solo el texto: aplicar algo ya hecho es rehacer trabajo aprobado. Se extrae con
+`openpyxl.load_workbook(..., rich_text=True)` mirando `font.strike` de cada run.
+
+La fila **14 es COMENTARIOS CLIENTE** y la **15 COMENTARIOS DISEÑO**: son dos
+voces distintas y las dos mandan.

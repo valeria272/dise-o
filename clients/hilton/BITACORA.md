@@ -9,7 +9,7 @@
 
 **Dónde quedó.** El cliente escribió comentarios nuevos en la grilla de
 septiembre el mismo 27-08 por la tarde, después de que se entregaran las 27
-piezas. Se aplicaron todos y **14 piezas están re-subidas al Drive con los mismos
+piezas. Se aplicaron todos y **13 piezas están re-subidas al Drive con los mismos
 enlaces**, así que quien ya tenía el link ve la versión nueva.
 
 **Lo que se hizo, por pieza:**

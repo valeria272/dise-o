@@ -474,15 +474,20 @@ def pieza_c1(t, fmt):
     tarjeta_logo(im, *g["logo"])
     # Paulina, 28-08: «eliminemos esto de todas las slides. este recorte se usa para
     # colocar el nombre y detalles del producto pero cada slide ya tiene el nombre del
-    # producto como enunciado. asi que no es necesario. y asi la imagen respira de
-    # tanta info.» — se van la muestra de tabla Y la etiqueta gris que iba encima:
-    # las dos forman el «recorte» que ella describe. La medida no se pierde, baja al
-    # final del bloque de texto (su segundo comentario en la misma pieza).
+    # producto como enunciado […] y asi la imagen respira de tanta info.»
     #
-    # ⭐ Esto CIERRA el bloqueo rojo de la ronda 2 (25-08): la muestra no coincidía
-    # con el piso del ambiente —«un producto en la etiqueta y otro en el suelo»—.
-    # Sin muestra no hay desajuste. Cae también el pendiente del SKU 8001021068,
-    # el único sin foto oficial para verificar por ΔE.
+    # ⚠️ «Esto» llega sin ancla y la primera lectura fue equivocada: se sacaron la
+    # muestra Y la etiqueta. Serena lo corrigió el mismo día — **el carrusel de
+    # producto sí o sí lleva la previsualización del piso, el nombre y las medidas**.
+    # Sin la muestra las cuatro slides quedan casi idénticas (mismo comedor, cambia
+    # sólo el suelo) y el producto deja de leerse; además la muestra es, según este
+    # manual, la firma de la marca.
+    #
+    # Lectura buena: «este recorte se usa para COLOCAR el nombre y detalles» describe
+    # el contenedor de texto, o sea la ETIQUETA GRIS. Esa se va. La muestra se queda.
+    # Las tres cosas que exige el carrusel siguen presentes:
+    #   previsualización → la muestra · nombre → el titular · medidas → fin del bloque
+    muestra_tabla(im, t["sku"], *g["muestra"])
     y_inf = bloque_texto(im, g["w"] / 2, g["filete_y"], t["look"], t["titulo"],
                          t["bajada"], g["filete_w"], g["filete_x"], g["esc"],
                          medida=f"PISO DE INGENIERÍA · {t['medida']}")

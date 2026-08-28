@@ -3,40 +3,44 @@
   "ultima_revision": "2026-08-27",
   "por_marca": {
     "ebema": {
-      "revisado": "2026-08-25",
-      "ultimo_hallazgo": "grilla de septiembre cerrada; sistema completo"
+      "revisado": "2026-08-27",
+      "ultimo_hallazgo": "Paulina subió TODO septiembre el 26-08: 9. SEPTIEMBRE con feed, stories y LinkedIn, 8 carruseles por producto (stock, cedral, cintac, click, ebema, novoplast, surpol, toro) y 6 reels"
     },
     "revex": {
-      "revisado": "2026-08-25",
-      "ultimo_hallazgo": "Brief Diseño Septiembre de Serena — corrigió lo de Vitacura"
+      "revisado": "2026-08-27",
+      "ultimo_hallazgo": "Septiembre CERRADO en 4:5 (2250x2812) tras 6 rondas. Fondos y scripts ya versionados (commit 4351ce3). Ver el manual §Rondas 3-6"
     },
     "casablanca": {
-      "revisado": "2026-08-25",
-      "ultimo_hallazgo": "grilla sep compartida con Revex; entrega subida el 25-08"
+      "revisado": "2026-08-27",
+      "ultimo_hallazgo": "Septiembre EN CURSO. Numeración cruzada en el Drive: los 14 sueltos se autodenominan «v3» y la subcarpeta «V2» es 12 h POSTERIOR y la corregida. Serena decidió 4:5 + story. Valeria implementó feed45 con geometría MEDIDA contra 6 piezas 4:5 de Paulina y ambientes 4:5 nativos (2432x2944), pero los marcó NO entregables: el techo con vigas ocupa el tercio superior y el logo cae encima. Pendiente decidir entre su geometría medida y los ambientes cuadrados, que sí tienen el piso correcto por SKU."
     },
     "selfie": {
-      "revisado": "2026-08-25",
-      "ultimo_hallazgo": "estructura de Coni levantada (S1/FEED ST MAIL BANNER)"
+      "revisado": "2026-08-27",
+      "ultimo_hallazgo": "Coni subió MAILAGO_S4_PROMOCHILA-TINTURAS.png (mail agosto S4); grilla de septiembre en pie"
     },
     "hilton": {
       "revisado": "2026-08-27",
-      "ultimo_hallazgo": "RONDA 4 del cliente en la grilla de Between (xlsx modificado 27-08 18:12): 9 columnas con comentarios nuevos en la fila COMENTARIOS DISEÑO + 1 del cliente. Resueltas y re-subidas 13 piezas (mismos enlaces). Ojo: lo TACHADO ya estaba hecho. Reel Cafe Bombon paso a OK PARA DISENAR con pregunta abierta -> clients/hilton/PROPUESTA-reel-cafe-bombon.md. Eli abrio ademas PANTALLAS SUNSET QB y PLANNER DT 2026 SEMANAL (otras marcas)."
+      "ultimo_hallazgo": "RONDA 4 del cliente en la grilla de Between (xlsx modificado 27-08 18:12): 9 columnas con comentarios nuevos en COMENTARIOS DISEÑO + 1 del cliente. Resueltas y re-subidas 13 piezas (mismos enlaces). Ojo: lo TACHADO ya estaba hecho. Reel Café Bombón pasó a OK PARA DISEÑAR -> clients/hilton/PROPUESTA-reel-cafe-bombon.md. Eli abrió PANTALLAS SUNSET QB y PLANNER DT 2026 SEMANAL.  ||  S1 HILTON SEP 2026 de Eli (DT/QB/P18/BW) — BW aún vacía. Grilla Between: único cambio = ST 3-sep (café de cumpleaños) CORREGIDO -> OK PARA DISEÑAR. NUEVO: HILTON | Planificación Performance Septiembre 2026 (Ignacio Retamal), sin Brief Creativo todavía. Compuerta de material: 812 archivos, 0 rotos. PROMO SUNSET QB completa (post, ST, 3 acrílicos, PDF); C1 FT de DT el 27-08. Bajado el SVG de flechas/globos de Between al repo"
     },
     "tierra-calma": {
-      "revisado": "2026-08-25",
-      "ultimo_hallazgo": "sin novedades; IvyOra activa en el Mac de Valeria"
+      "revisado": "2026-08-27",
+      "ultimo_hallazgo": "sin novedades"
     },
     "cava": {
-      "revisado": "2026-08-25",
-      "ultimo_hallazgo": "/adn corrido — tipografías identificadas (Bebas Neue Pro + gobCL)"
+      "revisado": "2026-08-27",
+      "ultimo_hallazgo": "Briefs septiembre en pie; sin cambios de sistema"
     },
     "myzoo": {
-      "revisado": "2026-08-25",
-      "ultimo_hallazgo": "envase medido; digital sin medir"
+      "revisado": "2026-08-27",
+      "ultimo_hallazgo": "Grilla Octubre nueva; Paulina subió myzoo_pendon_alma.png y carrusel_xtremevet"
     },
     "abakos": {
-      "revisado": "2026-08-25",
-      "ultimo_hallazgo": "sin gramática medida — faltan piezas aprobadas"
+      "revisado": "2026-08-27",
+      "ultimo_hallazgo": "planificación de septiembre en pie; sigue sin gramática medida"
+    },
+    "traverso": {
+      "revisado": "2026-08-27",
+      "ultimo_hallazgo": "GRILLA DE SEPTIEMBRE NUEVA (26-08, Nicolás Ávila): 22 piezas + 2 variantes de formato, eje Fiestas Patrias. Traverso NO tiene manual ni kit — bloqueado"
     }
   },
   "diseñadoras_revisadas": [
@@ -44,5 +48,14 @@
     "elisabet.soto@copywriters.cl",
     "paulina.bustamante@copywriters.cl",
     "diego.aguilar@copywriters.cl"
+  ],
+  "_notas_de_esta_revision": [
+    "Diego Aguilar: cero archivos en la ventana.",
+    "Serena creó el 26-08 dos plantillas nuevas: 'Plantilla | Brief diseño.xlsx' (1poD3Zh38fCWLG7Iw9lhcNXrLomz3d5iO) y 'Plantilla | Planificación de medios.xlsx' (1PguaIlUUExLi7lZfUy8RVsZ-y7a6QQoz). Traen medidas y zonas seguras en px que docs/BRIEF-DE-DISENO.md no tiene.",
+    "Valeria creó el 27-08 el flujo de carpetas 1 BRIEF / 2 MATERIAL / 3 ENTREGA / 4 APROBADO dentro de la carpeta de grillas de Hilton (14z0jRr-FT2uSvYZUC8R6VYh9O7u-S4ex). Están vacías.",
+    "RENDIC apareció con planificación de septiembre (26-08). Cuenta sin sistema.",
+    "El CLIENTE de Revex (jcampos@gruporevex.cl) compartió sus carpetas LCD, TEMUCO y PRODUCTOS. Son fuente autoritativa para verificar sucursal: la fachada de Temuco está identificada por señalética (SHOWROOM GRUPOREVEX SEGUNDO PISO sobre edificio EBEMA).",
+    "OJO: decenas de grillas muestran modifiedTime del 27-08 entre 13:00 y 15:00 sin cambio de contenido — parece reindexado masivo del Drive, no ediciones. Para separar lo nuevo de verdad se usó createdTime.",
+    "El conector de Drive entra como constanza.olivares@copywriters.cl — NO como Valeria ni Serena. Ver docs/MAPA-DRIVE.md."
   ]
 }

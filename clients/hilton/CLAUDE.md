@@ -279,7 +279,11 @@ También hay `STICKER PARA AFTER 1–4.png` e `Ilustraciones globos, trazados y 
 ## Qué falta todavía de Between
 
 - [ ] **Cuál script va en qué caso** (son 9 en el mismo archivo) — solo Eli lo sabe
-- [ ] Bajar las `Ilustraciones globos, trazados y flechas` y catalogarlas
+- [x] Bajar las `Ilustraciones globos, trazados y flechas` — ya está en
+      `public/assets/hilton/between/ilustraciones/flechas-trazados-globos.svg` (27-08-2026)
+- [ ] **Catalogarlas.** Los 48 grupos del SVG no tienen `id`: no se puede pedir
+      «la flecha curva» por nombre. Hay que abrirlo, nombrar los grupos y dejar
+      una lámina de contactos para elegir por ojo
 - [ ] Los `.ai` pesan 551 MB y 769 MB: no se pueden abrir por acá. Si hace falta la
       geometría interna, hay que pedirle a Eli un PDF o un export de las mesas de trabajo
 - [ ] Definir si el logo abajo en story se sube para piezas de pauta
@@ -416,7 +420,8 @@ está la carpeta de terraza y espacios: el montaje tiene que ser fiel al local.
 Eli dejó el repertorio completo, vectorial y con los trazados:
 `public/assets/hilton/between/ilustraciones/flechas-trazados-globos.svg`
 (508 KB · viewBox 2660×828 · **1.811 paths + 178 polígonos en 48 grupos**, con dos
-filtros de sombra ya definidos). El `.ai` está en Drive (`1KHW0nHjidU_nYj02TBE_evijNeCWDMy3`).
+filtros de sombra ya definidos). El `.ai` está en Drive (`1KHW0nHjidU_nYj02TBE_evijNeCWDMy3`) y el `.svg` original,
+en `1EZHJab1Rp8c8vuTHqAehF6tCk-CiRsXa` — de ahí salió la copia del repo.
 
 > «Hay flechas que puedes utilizar, o guiarte de la **línea de ilustraciones sencillas**
 > para Between.»

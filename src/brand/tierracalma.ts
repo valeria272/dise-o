@@ -134,13 +134,22 @@ export const ensureTierraCalmaFonts = () => {
       src:url(${f("InstrumentSerif-Italic")}) format('truetype'); }
   `;
   document.head.appendChild(style);
-  const fs = (document as unknown as {fonts?: {load: (s: string) => void}}).fonts;
+  // Los .catch NO son decorativos: IvyOra viene de Adobe Fonts y sólo existe en
+  // los equipos que la tienen activada y enlazada (scripts/tc-ivyora-link.sh).
+  // Donde no está, estas cargas fallan; sin recoger el rechazo, Remotion lo lee
+  // como error de página y aborta el render de CUALQUIER marca — Casablanca y
+  // Revex incluidas, que no tienen nada que ver con Tierra Calma. Mismo patrón
+  // que TierraCalmaReel.tsx ya usaba para Montserrat.
+  const fs = (document as unknown as {
+    fonts?: {load: (s: string) => Promise<unknown>};
+  }).fonts;
   if (fs) {
+    const cargar = (spec: string) => fs.load(spec).catch(() => undefined);
     ivy.forEach(([w]) => {
-      fs.load(`${w} 100px "IvyOra Display"`);
-      fs.load(`italic ${w} 100px "IvyOra Display"`);
+      cargar(`${w} 100px "IvyOra Display"`);
+      cargar(`italic ${w} 100px "IvyOra Display"`);
     });
-    weights.forEach(([w]) => fs.load(`${w} 40px "Inter Tight"`));
-    fs.load('400 100px "Instrument Serif"');
+    weights.forEach(([w]) => cargar(`${w} 40px "Inter Tight"`));
+    cargar('400 100px "Instrument Serif"');
   }
 };

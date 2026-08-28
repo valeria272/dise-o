@@ -799,3 +799,106 @@ La regla del **segundo cuarto** en story es para las tarjetas de producto, donde
 arriba hay muro. En las fotos de **fachada** el letrero del local vive en la franja
 media-alta: ahí la zona limpia está **abajo**, y el texto va abajo. Lineamiento nº 5
 del brief: *"EL TEXTO NUNCA VA SOBRE LA MADERA. Siempre en zona despejada."*
+
+---
+
+# ⭐ Septiembre 2026 · ronda 4 — el choque 2 vs 5, resuelto (27-08-2026)
+
+## El formato: 4:5 + story. DECIDIDO por Serena, es un cambio al brief
+
+El brief pide **1080 × 1080** en las dos piezas. Serena decidió **4:5 (2250 × 2812)
++ adaptación a story**. Cierra el punto 5 del `CHECKLIST-CLIENTE.md`.
+Se dio vuelta dos veces antes —los 14 sueltos entregaron 4:5 sin avisar, la subcarpeta
+`V2` lo devolvió a 1:1 citando el brief—: **no volver a «corregirlo»**.
+
+Ojo con la numeración de esa carpeta: los sueltos se autodenominan «v3» y la
+subcarpeta llamada `V2` es **12 h POSTERIOR** y la corregida. La que manda es `V2`.
+
+## El choque: los lineamientos 2 y 5 no se pueden cumplir juntos
+
+- **Nº2:** el piso ocupa al menos la mitad del cuadro (pedido textual de la clienta).
+- **Nº5:** el texto nunca va sobre la madera.
+
+Con la composición anclada al pie, cumplir uno rompe el otro. **Medido:**
+
+| | Piso visible | Nº2 | Nº5 |
+|---|---|---|---|
+| Texto al pie sobre el piso | 56 % | ✅ | ❌ |
+| Con franja gris sólida | **29,6 %** | ❌ | ✅ |
+
+Por eso la entrega anterior rompió el nº5: **no fue descuido, estaba protegiendo el nº2.**
+
+## La decisión: el texto se queda abajo, y el nº5 se cumple midiendo contraste
+
+Tres razones, en el orden de la skill `direccion-de-arte`:
+
+1. **§2, la regla madre.** «El brief manda el QUÉ, el sistema manda el CÓMO». Dónde va
+   el texto es CÓMO: acá el brief se está metiendo en el sistema.
+2. **§1, qué referencia manda.** El **feed publicado de la marca** es la autoridad nº1,
+   por encima de la carpeta del brief. Y el feed pone el texto sobre el piso.
+3. **§3.3.** Una banda gris sólida a sangre con versales blancas **es el esqueleto de
+   Revex en gris**, justo lo prohibido entre estas dos marcas hermanas. Y por **§3.1**
+   la foto dejaría de ser protagonista.
+
+**Pero el nº5 tenía razón en el fondo.** Medido: con el velo fijo anterior la etiqueta
+del look daba **3,54:1** y el titular **3,84:1** — ilegible. El problema real no es
+«texto sobre madera», es **texto poco legible sobre madera**.
+
+### `velo_medido()` — la solución
+
+Mide el fondo en la banda donde va el texto y calcula el alfa justo para llegar a
+**5:1**. Un alfa fijo no sirve, porque las cuatro maderas son distintas: el velo que
+deja bien al Roble Natural UV lleva al Cumarú a 9:1 y lo enloda.
+
+| Pieza | Velo | Contraste |
+|---|---|---|
+| c1-1 Roble Natural UV 190×1900 | 84 | 4,96:1 |
+| c1-2 Roble Natural UV 167×1200 | 85 | 4,96:1 |
+| c1-3 Roble Aserrado | 77 | 4,98:1 |
+| **c1-4 Cumarú** | **14** | 5,00:1 |
+| c2-1 / c2-2 | 72 / 6 | 4,98 / 5,00:1 |
+
+El cumarú casi no lleva velo: la madera oscura conserva su riqueza. La meseta arranca
+antes del bloque y llega al borde, así el contraste es uniforme y el degradado no se
+ve cortado (misma lección que Revex, ronda 6).
+
+## El CTA dibujado NO vuelve
+
+Skill §3.2: *«botones dibujados dentro de la gráfica cuando la plataforma ya pone el
+suyo (WhatsApp en Meta). **Si se sacó una vez, no vuelve**»*. Se sacó el 25-08.
+El brief lo pide en la columna CTA — es otro caso de brief metido en el CÓMO.
+No confundir con Revex: ahí lo que entró fue el **ícono junto al número**, no un botón.
+
+## ⚠️ Deuda técnica: los ambientes amplían 37 %
+
+Medido por Valeria el 27-08 y confirmado acá:
+
+| Fuente | Nativo | A feed 4:5 |
+|---|---|---|
+| `amb_*_feed.jpg` (los 4) | 2048 × 2048 | **amplía 37 %** ⚠️ |
+| `sr2_*_feed.jpg` | 2250 × 2250 | amplía 25 % — **ya resuelto** |
+| `sr2_*_story.jpg` | 2250 × 4000 | recorta, nítido ✅ |
+
+**Showroom resuelto:** `pieza_c2` deriva el feed 4:5 **desde el `_story`**, así `cover`
+sólo recorta y no interpola.
+
+**Ambientes NO resueltos:** son cuadrados nativos. Hay que regenerarlos en 4:5 con
+`casablanca-ambiente-unico.py` (necesita la llave de Freepik). **En una marca de pisos
+la veta es el producto y ampliar es justo donde se nota.**
+
+## Desviación que se mantiene a propósito
+
+El lineamiento 6 pide «la medida abajo, en cuerpo menor». Va en la **etiqueta gris**
+junto a la muestra física de la tabla. Se mantiene: emparejar la medida con la muestra
+informa más que colgarla del titular, y la jerarquía que el nº6 protege —el nombre del
+producto como elemento más grande— se cumple igual.
+
+## Abierto
+
+- **C2-1 y C2-3 son fotos distintas de la MISMA fachada.** En un carrusel de tres, dos
+  tarjetas muestran el mismo local, y la 3 es un recorte que agranda el número de la
+  calle. El brief pide para la 3 «un piso instalado o una vista acogedora». Falta
+  material: de las 36 fotos de la clienta, 32 son fachada y 4 tienen al equipo.
+- **La serif del titular sigue siendo sustituto** (Bodoni Moda Italic). Punto 1 del
+  checklist, 5 minutos de Valeria en Creative Cloud.
+- **Fotos reales de los 4 SKU instalados** — punto 6, a nombre de Jenny.

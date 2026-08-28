@@ -84,6 +84,11 @@ public/assets/**
 # los scripts scripts/revex-*.py no corren sin estas fotos, y sin ellas cada
 # ronda de correcciones vuelve a empezar de cero en otra máquina (27-08-2026).
 !public/assets/revex/sep/**
+# CAVA: los bottle shots y sus versiones 2x (upscaler de precisión) son el
+# material con el que se montan los KV. Sin ellos otro diseñador no reproduce la
+# entrega — se cae al packshot chico y el bodegón sale distinto.
+!public/assets/cava/bottles/**
+!public/assets/cava/kv/**
 
 # Material de la grilla Casablanca septiembre 2026 (39 MB). Misma excepción
 # deliberada que Revex: scripts/casablanca-septiembre.py no corre sin estas 14

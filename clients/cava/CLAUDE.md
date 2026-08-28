@@ -90,25 +90,44 @@ verificación de una línea y debe hacerse siempre.
 
 ## 3. ⚠️ El recuadro legal es OBLIGATORIO
 
-Toda pieza de CAVA lleva, **arriba a la derecha y pegado al borde superior**, una caja
-negra con:
+La ejecutiva de cuentas lo dejó escrito en la cabecera del brief mensual, en
+mayúsculas y sin matices: **«SIEMPRE, PERO SIEMPRE AGREGAR FRANJA MINISTERIO»**.
 
-```
-ADVERTENCIA
-EL CONSUMO DE ALCOHOL
-EN MENORES DE 18 AÑOS
-SE ENCUENTRA PROHIBIDO
-Ministerio de Salud
-```
-y debajo, una **banda tricolor** de la bandera chilena:
-azul `#0063AF` · blanco `#FFFFFF` · rojo `#E73439`.
+Toda pieza de CAVA lleva, **arriba a la derecha y pegado al borde superior**, una caja
+negra con la advertencia y, al pie, una **banda de dos colores** de la bandera:
+azul `#0063AF` · rojo `#E73439` (medidos sobre la pieza oficial; **no hay franja
+blanca entre medio** — el azul y el rojo se tocan).
+
+### ⚠️ Son DOS leyendas distintas y hay que usar la que el cliente esté usando
+
+| Variante | Texto | Dónde se vio |
+|---|---|---|
+| **Embarazo** ← **la vigente** | ADVERTENCIA / TODO CONSUMO / DE ALCOHOL ES DAÑINO / DURANTE EL EMBARAZO / Ministerio de Salud | mailing de agosto 2026 y brief 1 de septiembre 2026 |
+| Menores | ADVERTENCIA / EL CONSUMO DE ALCOHOL / EN MENORES DE 18 AÑOS / SE ENCUENTRA PROHIBIDO / Ministerio de Salud | piezas del Cyber (nov 2025) |
+
+**Confirmar cuál va antes de producir el mes.** Las dos son legales; lo que no se
+puede es mezclar la de una campaña con la estética de otra. El módulo
+`scripts/cava_sistema.py` las trae en `LEYENDAS` y se elige con `variante`.
+
+### Geometría medida (sobre `CYBER_LLEVATEVINOS.png`, 2250 px de ancho)
+
+| Elemento | Medida |
+|---|---|
+| Caja negra | **839 × 425 px**, pegada al borde superior derecho |
+| Banda de color | **450 × 28 px**, centrada en la caja, al pie |
+| «ADVERTENCIA» | ~64 px · las 3 líneas ~46 px · «Ministerio de Salud» ~42 px |
 
 Texto en blanco, versales, centrado. «ADVERTENCIA» es la línea más grande;
 «Ministerio de Salud» va más chica y sin versales.
 
-**Esto no es decorativo: es exigencia legal para publicidad de alcohol en Chile.**
-Una pieza sin este recuadro no se entrega. Va en el KV, en los mailings, en las
-stories y en los banners.
+**Esto no es decorativo: es exigencia legal (Ley 19.925) para publicidad de alcohol
+en Chile.** Una pieza sin este recuadro no se entrega. Va en el KV, en los mailings,
+en las stories y en los banners.
+
+> ✅ **Está comprobado por programa.** La regla `franja-ministerio` de
+> [`clients/cava/reglas.yaml`](reglas.yaml) busca la banda azul+rojo en la franja
+> superior y **bloquea la entrega** si no está. Es la única regla del estudio cuyo
+> incumplimiento es ilegal y no feo.
 
 ---
 
@@ -169,6 +188,31 @@ todos en mayúscula: la fuente no tiene minúsculas.
 > las activa en su Creative Cloud, no se empaquetan. La Bebas Neue libre sirve como
 > base y para maquetar, pero **la entrega final usa la Pro** (tiene los anchos
 > SemiExpanded y Expanded que la libre no trae).
+
+### ⭐ Ojo: el EMAIL MARKETING usa otra pareja tipográfica (27-08-2026)
+
+La cuenta tiene **dos sistemas tipográficos que conviven**, y confundirlos es
+entregar una pieza que no se parece a lo que el cliente aprobó:
+
+| Dónde | Titulares | Cuerpo |
+|---|---|---|
+| **Campañas de campaña** (Cyber, Black) | Bebas Neue Pro — condensada, versales | Brandon Grotesque |
+| **Mailings mensuales de Mailchimp** | **Authentic Signature** — script manuscrita, para "jugar con títulos" | **Butler** — serif Didone, la general |
+
+Palabras de la ejecutiva al mandar los archivos: *«signature es para jugar con
+títulos y butler en thin es la general»*. Las dos van en
+`public/assets/cava/fonts/`.
+
+> ⚠️ **Las dos venían en `.otf` con outlines CFF, y Chrome los rechaza.** Es
+> exactamente lo que pasó con Brushwell en Between: Remotion rinde con una fuente de
+> reemplazo y nadie lo nota hasta que el cliente lo ve. Se convirtieron a TTF
+> (`Butler-Bold.ttf`, `AuthenticSignature.ttf`) y se verificó el render con
+> acentos, Ñ y cifras. Ver [[brushwell-no-cargaba-en-chrome]].
+
+> El cliente mandó sólo **Butler Bold**. Los pesos **Light / Regular / Medium**
+> (`ButlerFree-*.ttf`) se completaron con la familia libre para tener la "thin"
+> que pide la ejecutiva. Si el cliente manda la familia comercial completa,
+> reemplazarlos.
 
 ---
 
@@ -293,9 +337,220 @@ púrpura-negro) sobre `PANTONE 159 U`.
 
 ---
 
-## 11. Pendientes
+## 11. ⭐ Los mailings — el sistema medido sobre las piezas reales
 
-- [x] ~~Tipografías~~ — **resueltas** con `/adn` el 25-08-2026 (§4)
+> ⚠️ **Antes de diseñar un mailing hay que MIRAR los mailings anteriores.** No
+> basta con el brief ni con un print. El 27-08-2026 se produjo un lote entero
+> sobre un print de baja resolución y una referencia de cupón del Cyber, y salió
+> mal: fondo azul marino en vez del bodegón cálido, tarjetas blancas que la marca
+> no usa, una barra dorada inventada, botellas a media escala y el texto centrado
+> cuando el sistema alinea el bloque a la izquierda. Hubo que rehacerlo entero.
+>
+> Los mailings viven en el Drive de la diseñadora y **los tres `.png` que había
+> en `raw/cava/ref/` eran HTML de login, no imágenes** — otra vez la
+> [compuerta de material](../../docs/SISTEMA-DE-MARCAS.md). Verificar con
+> `file` antes de dar una referencia por buena.
+>
+> **Cómo bajar una referencia de Drive que no es pública:** el conector
+> `download_file_content` guarda el resultado en un archivo cuando pesa mucho;
+> se decodifica el base64 desde ahí con Python y la imagen nunca pasa por el
+> contexto. Es la vía que funciona para los mailings de 3–5 MB.
+
+Las referencias buenas están en `raw/cava/ref-sept2026/`.
+
+### El KV — medido sobre `KV_FIESTAS PATRIAS_2025.png` (2250×2813)
+
+| Elemento | Medida |
+|---|---|
+| Caja del legal | **992×462**, pegada arriba a la derecha (la del Cyber es 839×425) |
+| Banda de color | 525×30 centrada al pie de la caja — **azul y rojo, sin blanco** |
+| Bloque logo+titular | centrado en **x≈670**, NO en el centro de la pieza: la derecha se la come el legal |
+| Logo | alto 221, arriba del titular |
+| Titular | **dos registros**: la línea 1 en Butler y la 2 en Authentic Signature, y **la del script es la más grande** |
+| Botellas | base alineada, alto **1459 = 52 % del alto de la pieza** |
+| Barrica | ocupa **todo el ancho**, cortada por el pie del cuadro. Es una base, no el sujeto |
+| Adorno | cruza en diagonal **por detrás** de las botellas |
+
+> ⭐ **Las botellas son las protagonistas y el barril es el mueble.** El error más
+> fácil es al revés: un barril grande y bonito con botellitas encima. Si la
+> botella no llega a la mitad del alto de la pieza, está chica.
+>
+> Referencia física por si hay que discutirlo: un barril de 225 L tiene la tapa de
+> ~57 cm y una botella mide 30 cm — la botella es **0,53 del diámetro de la tapa**.
+
+### ⛔ Las botellas van APOYADAS sobre la tapa, y eso se mide
+
+El error más caro de esta cuenta no fue tipográfico: fue de dirección de arte.
+En la v2 el punto de apoyo era un número escrito a mano. Al regenerar el fondo
+ese número quedó sobre el **cuerpo cilíndrico** del barril y las botellas
+salieron **flotando delante de él**, apoyadas en el aire. Valeria: *«los montajes
+absurdos que hiciste, las botellas no están sobre el barril»*.
+
+Tres cosas que hay que respetar para que un bodegón compuesto se lea como foto:
+
+1. **La superficie de apoyo de un barril es una ELIPSE, no una recta.** Una
+   botella al centro apoya más abajo que una del costado. Si todas las bases se
+   alinean en horizontal, el grupo se ve pegoteado encima.
+2. **Sombra de contacto.** Sin la mancha oscura donde la botella toca la madera,
+   la botella no se apoya: se posa. Se dibujan todas las sombras primero y las
+   botellas después, o la sombra de una cae sobre la botella de al lado.
+3. **El fondo se genera con la tapa VISIBLE.** El barril tiene que verse
+   ligeramente desde arriba, con la tapa como elipse ancha y despejada. Si sale
+   de frente, la tapa casi no existe y no hay dónde apoyar. Si la guirnalda
+   cubre la madera, tampoco: va al borde, no encima.
+
+**Cómo se hace:** `scripts/cava-calibrar-tapa.py --grilla` saca el fondo con una
+grilla de coordenadas encima; se lee a ojo la elipse de la tapa (x0, x1, y del
+fondo y del frente) y se anota en `public/assets/cava/kv/tapas.json`. Después
+`--ver` dibuja la elipse guardada y los puntos de apoyo para comprobar que
+calza. **Es una vez por fondo del mes y hay que mirarla.**
+
+> El detector automático de la tapa está escrito y NO se usa: el viñedo otoñal
+> del fondo también es madera cálida y clara, y se lo comía. Medir a ojo sobre
+> la grilla y verificar es más rápido y más seguro que pelear con el umbral.
+
+**Escala:** la botella se dimensiona contra el **diámetro de la tapa**, no contra
+el alto de la pieza — 0,63 del diámetro en grupo y 0,70 cuando va sola (un vino
+solo deja el barril de protagonista si no sube).
+
+### ⭐ El fondo NO puede competir en nitidez con el producto (28-08-2026)
+
+Después de corregir la geometría, el KV **seguía leyéndose como collage**. La causa
+que quedaba no era el apoyo ni la sombra: era la **profundidad de campo**.
+
+Medido con la varianza del laplaciano por franjas, sobre `KV_FIESTAS_PATRIAS_2025`
+contra lo que estábamos entregando:
+
+| | fondo (0–50 % del alto) | producto (60–80 %) |
+|---|---|---|
+| KV real de la diseñadora | **1,4 – 3,0** | **7,1 – 9,2** |
+| lo que entregábamos | **8,8** ← el barril | 5,9 |
+
+En su pieza el viñedo y el barril están **deshechos en bokeh** y lo único enfocado
+es el vino. En la nuestra el fondo tenía más detalle que la botella, así que el ojo
+leía dos fotografías pegadas — y eso no lo arregla ninguna cantidad de sombra.
+Es cómo se fotografía un bodegón: teleobjetivo, diafragma abierto, el fondo se va.
+
+**Las tres correcciones, ya en `cava_sistema.bodegon()`:**
+
+1. **Desenfoque por profundidad**, no uniforme: el horizonte al radio máximo, el
+   plano donde apoyan las botellas casi nítido, y hacia el pie sube otra vez
+   (el borde delantero del barril también está fuera de foco). Un blur parejo se
+   ve a plástico.
+2. **Botellas al 52 % del alto** (`FR_ALTO_BOTELLA`), no al 36 %. Se dimensionan
+   contra la pieza, no contra el diámetro del barril: si el barril sale grande,
+   arrastraba a las botellas hacia abajo.
+3. **Bottle shots ampliados con el upscaler DE PRECISIÓN** —
+   `scripts/cava-botellas-2x.py`, salidas en `public/assets/cava/bottles/2x/`.
+   El e-commerce los entrega con la botella a ~763 px y el KV la necesita a 1459:
+   ampliar ×1,9 con LANCZOS ablanda la etiqueta. Con la 2× la botella se **reduce**
+   para llegar a su tamaño final, y llega nítida.
+
+> ⚠️ El upscaler **creativo** no sirve acá: inventa detalle y sobre una etiqueta
+> redibuja las letras. Va el de precisión. Ver
+> [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](../../docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md).
+
+**Y el apilado va de DERECHA A IZQUIERDA.** Nuestros bottle shots traen el sello de
+puntaje incrustado, sobresaliendo hacia la derecha del hombro; apilando al revés la
+botella siguiente le corta el sello a la anterior. Por lo mismo el grupo se abre a
+`FR_ANCHO_GRUPO = 0,80` en vez del 0,723 de la referencia: ella trabaja con botellas
+limpias del SharePoint de la viña, que no tenemos.
+
+⛔ **La luz sobre la botella se integra por código, nunca con IA.** `image-relight`
+sobre el KV compuesto deja una escena preciosa y destruye el producto: el tinto se
+lee ámbar y la etiqueta blanca se pone amarilla. Va `integra_luz()` — penumbra,
+rim light en el contorno y rebote cálido.
+
+### Los tres layouts de mailing
+
+1. **Vino héroe** (`CAVA_AGO_BRIEF1`, «Un Pinot premiado») — bodegón cálido con
+   props de temporada, UNA botella enorme, y a la izquierda: badge dorado, nombre
+   del vino en **sans bold**, precio grande y el anterior tachado. La botella
+   aparece **una sola vez** en toda la pieza.
+2. **Titular protagonista** (`CAVA_AGO_BRIEF3`, «Grandes Tintos») — la tipografía
+   manda, con el `50%off` gigante en Butler itálica; sin precio ni badge.
+3. **Packs** (mailing del dúo 7Colores) — KV arriba y abajo **tarjetas oscuras con
+   filete dorado**, nunca tarjetas blancas.
+
+> ⚠️ **El nombre del vino y el precio van en SANS bold, no en Butler.** La serif
+> es sólo para el titular de campaña. Se ve clarísimo en el mailing de agosto.
+
+### El brief manda el QUÉ
+
+De cada bloque se toman **sólo** «Banner principal» y «Texto en imagen». Nada de
+Tema, Asunto, Preheader ni textos orgánicos — esos son para Mailchimp.
+
+### ⚠️ Los links del brief hay que abrirlos SIEMPRE, uno por uno
+
+1. **Los slugs del e-commerce están desactualizados y redirigen.** El brief 7
+   enlazaba `7colores-reserva-de-familia-red-blend-2015` y el producto real es
+   **7Colores Single Vineyard Red Blend 2022**; el brief 8 enlazaba
+   `m-adventure-mditerraneo-2016` y era **Adventure Antiguas Raíces 2020**. El
+   nombre escrito en la celda sí era el correcto; el link, no.
+2. **La aritmética del precio no siempre cuadra** (ver §13).
+
+```bash
+curl -s "https://www.cavamorande.cl/products/<slug>.json" | python3 -c "
+import sys,json; d=json.load(sys.stdin)['product']; v=d['variants'][0]
+print(d['title'], v['price'], v['compare_at_price'], d['images'][0]['src'])"
+```
+
+Los bottle shots del e-commerce vienen 1000×1000 con transparencia y **con el
+sello de puntaje incrustado sobre el hombro**. Sirven, pero con cuatro botellas
+juntas los sellos se pisan: por eso el KV de grupo baja la escala al 45 %. Los
+bottle shots limpios están en el SharePoint de la viña, que no tenemos.
+
+### El KV del mes sigue el brief del mes
+
+El §4 dice que el fondo de CAVA es negro satén, y eso vale para las campañas de
+campaña (Cyber, Black). El KV **mensual** es otra cosa: el de septiembre 2026 es
+Fiestas Patrias — viñedo otoñal, luz de atardecer, *nunca frío ni azulado*. El
+adorno dieciochero es **flores rojas y espigas** (la celda pide cambiar la cinta,
+y el brief del KV prohíbe el folclor caricaturesco). Desde el **brief 9 (22/09)**
+pasa a primaveral: «REFERENCIA KV SEPTIEMBRE PERO SIN DETALLES PATRIOS».
+
+---
+
+## 12. Cómo producirlas
+
+```bash
+python3 scripts/cava-kv-freepik.py                    # fondos del KV del mes
+python3 scripts/cava-mailings-septiembre.py           # las 7 piezas
+python3 qa/motor.py --marca cava \
+    --textos datos/cava-sep2026-textos.json \
+    out/cava/septiembre-2026/CAVA_SEP_*.png           # la compuerta
+python3 scripts/cava-drive-subir.py                   # a Drive (corre el QA solo)
+```
+
+`scripts/cava_sistema.py` tiene los elementos del sistema. Dos cosas que hace
+cumplir por programa y no conviene desarmar:
+
+- `lienzo_mailing()` es el **único** constructor de piezas y pega la advertencia
+  siempre: no existe forma de crear un lienzo sin el legal.
+- `pegar_botella()` escala con **un solo factor** y **aborta** si el ratio final
+  se aparta del original más de 0,005. Es la regla §2 hecha código.
+
+---
+
+## 13. Pendientes
+
+### ⚠️ Abierto con la ejecutiva — precios de septiembre 2026
+
+Verificados contra `cavamorande.cl` el 27-08-2026. Los briefs 1 y 7 cuadran
+exacto (`precio final = lista × (1 − %)`). Estos tres **no**, y se produjeron con
+la cifra corregida a la espera de que la ejecutiva confirme:
+
+| Brief | Anunciado | Decía el brief | Se usó | Qué pasó |
+|---|---|---|---|---|
+| 5 · Ed. Limitada Carmenere | 50% OFF | $16.640 – $18.490 | **$9.245** | copiaron el precio vigente del sitio sin aplicar el 50% |
+| 8 · Antiguas Raíces | 40% OFF | $7.830 – $19.590 | **$11.754** | escribieron el **monto del descuento**, no el precio final |
+| 9 · Pionero Rosé x6 | 40% OFF | $14.370 – $35.940 | **$21.564** | mismo caso que el 8 |
+
+> Anunciar «50% OFF» junto a un precio que es 10% menos es un problema con el
+> SERNAC, no una errata de diseño. **Confirmar antes de programar el envío.**
+
+- [x] ~~Tipografías~~ — **resueltas** con `/adn` el 25-08-2026 (§4), más la pareja
+      Butler + Authentic Signature del email marketing (27-08-2026)
 - [ ] **Bebas Neue Pro** y **Brandon Grotesque** son de Adobe Fonts: cada diseñador
       tiene que activarlas en su Creative Cloud
 - [ ] Bajar **`gobCL`** (libre, del Gobierno de Chile) e instalarla en el repo

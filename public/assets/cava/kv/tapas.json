@@ -1,0 +1,25 @@
+{
+ "_nota": "Elipse de la tapa de cada fondo, en px sobre 2250 de ancho. MEDIDA A MANO sobre la grilla (scripts/cava-calibrar-tapa.py --grilla) y verificada a ojo: el detector automatico confundia el vinedo oto\u00f1al, que tambien es madera calida y clara. Es una vez por fondo del mes.",
+ "kv-fiestas-01.png": {
+  "cx": 1080,
+  "cy": 1625,
+  "rx": 790,
+  "ry": 205,
+  "y_fondo": 1420,
+  "y_frente": 1830,
+  "x0": 290,
+  "x1": 1870,
+  "alto_img": 2793
+ },
+ "kv-primavera-01.png": {
+  "cx": 1354.0,
+  "cy": 1709.0,
+  "rx": 563.0,
+  "ry": 155.0,
+  "y_fondo": 1554.0,
+  "y_frente": 1863.0,
+  "x0": 791.0,
+  "x1": 1916.0,
+  "alto_img": 2793
+ }
+}

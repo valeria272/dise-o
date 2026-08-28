@@ -11,8 +11,8 @@
       "ultimo_hallazgo": "Septiembre CERRADO en 4:5 (2250x2812) tras 6 rondas. Fondos y scripts ya versionados (commit 4351ce3). Ver el manual §Rondas 3-6"
     },
     "casablanca": {
-      "revisado": "2026-08-27",
-      "ultimo_hallazgo": "Septiembre EN CURSO. Numeración cruzada en el Drive: los 14 sueltos se autodenominan «v3» y la subcarpeta «V2» es 12 h POSTERIOR y la corregida. Serena decidió 4:5 + story. Valeria implementó feed45 con geometría MEDIDA contra 6 piezas 4:5 de Paulina y ambientes 4:5 nativos (2432x2944), pero los marcó NO entregables: el techo con vigas ocupa el tercio superior y el logo cae encima. Pendiente decidir entre su geometría medida y los ambientes cuadrados, que sí tienen el piso correcto por SKU."
+      "revisado": "2026-08-28",
+      "ultimo_hallazgo": "RONDA DE PAULINA sobre las 14 piezas de septiembre (subidas 28-08 03:46 a 'Diseño Casablanca Septiembre 2026' 13pOfaekruRWq8PEHrG0be20Bq6eG4yCB: C1 en 'CARRUSEL PRODUCTOS LOOK' 10VHR4RQ3RhIYUmuTQQM3t8wW8UUdTlA4 y C2 en 'C2 · Post tienda' 1-i3cmlCuubIazOpPNtczjIVFsvEiTmpy). 7 comentarios ABIERTOS en 6 archivos, todos del 28-08 13:22-13:30. MATERIAL NUEVO de Paulina el 28-08 13:30-13:39: carpeta 'fotos_casablanca_suc' (1qtNt898ah1cEho4LXXAVbHAQSHQgWWs4) con 4 PNG generados con ChatGPT el 28-ago + lascondes-6.png y lascondes-8.png (fotos reales de junio), y carpeta 'casablanca fondos' (1bYr0wqetBxk-khAT_cG4O5_H86pVIlz6) con 10 PNG de ChatGPT del 28-jul. Sirve para el bloqueo de c2-3 (faltaba una foto que no fuera fachada). PENDIENTE: pasar las 16 imágenes por la compuerta de material antes de usarlas."
     },
     "selfie": {
       "revisado": "2026-08-27",
@@ -60,5 +60,8 @@
     "El CLIENTE de Revex (jcampos@gruporevex.cl) compartió sus carpetas LCD, TEMUCO y PRODUCTOS. Son fuente autoritativa para verificar sucursal: la fachada de Temuco está identificada por señalética (SHOWROOM GRUPOREVEX SEGUNDO PISO sobre edificio EBEMA).",
     "OJO: decenas de grillas muestran modifiedTime del 27-08 entre 13:00 y 15:00 sin cambio de contenido — parece reindexado masivo del Drive, no ediciones. Para separar lo nuevo de verdad se usó createdTime.",
     "El conector de Drive entra como constanza.olivares@copywriters.cl — NO como Valeria ni Serena. Ver docs/MAPA-DRIVE.md."
+    "Revisión acotada a Casablanca (/al-dia casablanca). Las demás marcas quedaron con el estado del 27-08.",
+    "El token de Google API NO está en esta máquina (scripts/_entorno.py: 'token Google ✗'), así que scripts/drive-comentarios.py no corre. Los comentarios se leyeron con el conector MCP: read_file_content con includeComments=true SÍ devuelve comentarios de archivos PNG, aunque la doc del conector diga que sólo Docs/Slides/Sheets.",
+    "El conector no sirve para bajar los bytes de las imágenes nuevas (base64 de 2,5 MB por archivo). Para bajarlas: link-share + curl."
   ]
 }

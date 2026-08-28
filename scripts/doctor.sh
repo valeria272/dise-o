@@ -11,15 +11,30 @@ bad(){ printf "  \033[31m✗\033[0m %s\n" "$1"; }
 echo; echo "══ Entorno ══"
 node --version >/dev/null 2>&1 && ok "Node $(node --version)" || bad "Node no instalado (se necesita 20+)"
 [ -d node_modules ] && ok "node_modules presente" || bad "Falta npm install"
-[ -x "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" ] \
-  && ok "Google Chrome (render de gráficas)" || bad "Falta Google Chrome — render.sh no va a funcionar"
-[ -x "$HOME/copylab-venv/bin/python3" ] \
+# Chrome: Mac, Windows (Git Bash) y Linux. En Windows vive en Program Files o en
+# el AppData del usuario, así que el diagnóstico no puede asumir la ruta de Mac.
+CHROME=""
+for c in "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+         "/c/Program Files/Google/Chrome/Application/chrome.exe" \
+         "/c/Program Files (x86)/Google/Chrome/Application/chrome.exe" \
+         "$HOME/AppData/Local/Google/Chrome/Application/chrome.exe"; do
+  [ -f "$c" ] && CHROME="$c" && break
+done
+[ -z "$CHROME" ] && CHROME=$(command -v google-chrome || command -v google-chrome-stable || true)
+[ -n "$CHROME" ] && ok "Google Chrome (render de gráficas)" \
+  || bad "Falta Google Chrome — render.sh no va a funcionar"
+# El venv de Python: en Mac/Linux cuelga de bin/, en Windows de Scripts/.
+PY_VENV=""
+for c in "$HOME/copylab-venv/bin/python3" "$HOME/copylab-venv/Scripts/python.exe"; do
+  [ -f "$c" ] && PY_VENV="$c" && break
+done
+[ -n "$PY_VENV" ] \
   && ok "venv Python en ~/copylab-venv" || warn "Sin ~/copylab-venv — ver docs/ONBOARDING-DISENADORES.md paso 3"
 case "$ROOT" in
-  */Desktop/*|*/Documents/*|*/Downloads/*)
-    warn "El repo está dentro de una carpeta que iCloud sincroniza." 
-    warn "  Si iCloud Drive está activo, muévelo a ~/copylab/ (ver onboarding).";;
-  *) ok "Fuera de carpetas sincronizadas por iCloud";;
+  */Desktop/*|*/Documents/*|*/Downloads/*|*/Escritorio/*|*/Documentos/*|*/Descargas/*|*OneDrive*)
+    warn "El repo está dentro de una carpeta que iCloud u OneDrive sincroniza."
+    warn "  Muévelo a ~/copylab/ (ver onboarding) o va a fallar sin aviso.";;
+  *) ok "Fuera de carpetas sincronizadas por iCloud/OneDrive";;
 esac
 
 echo; echo "══ Material (raw/ y public/ NO están en git) ══"
@@ -35,8 +50,8 @@ fi
 echo; echo "══ Material íntegro (¿lo que bajamos ES lo que dice ser?) ══"
 # Una descarga fallida de Drive deja un HTML de login guardado como .jpg: pesa 900 KB
 # y parece una foto. Así se diseñó Revex entero sin ver una sola referencia (25-08-2026).
-if [ -x "$HOME/copylab-venv/bin/python3" ] && [ -f scripts/verificar-material.py ]; then
-  SALIDA=$("$HOME/copylab-venv/bin/python3" scripts/verificar-material.py raw clients public/assets 2>/dev/null)
+if [ -n "$PY_VENV" ] && [ -f scripts/verificar-material.py ]; then
+  SALIDA=$("$PY_VENV" scripts/verificar-material.py raw clients public/assets 2>/dev/null)
   RESUMEN=$(echo "$SALIDA" | head -1)
   if echo "$SALIDA" | grep -q "NO SE DISEÑA"; then
     bad "$RESUMEN"
@@ -76,7 +91,7 @@ for j in clients/*/marca.json; do
 done
 
 echo; echo "══ Magnific/Freepik (el generador de imágenes de la casa) ══"
-PYQA="${HOME}/copylab-venv/bin/python3"; command -v "$PYQA" >/dev/null || PYQA=python3
+PYQA="${PY_VENV:-}"; [ -n "$PYQA" ] || PYQA=$(command -v python3 || command -v python)
 if [ -f "$HOME/.magnific_key" ] || grep -q "^FREEPIK_API_KEY=" "../ASISTENTE PERSONAL/.env" 2>/dev/null; then
   if "$PYQA" scripts/magnific.py check >/dev/null 2>&1; then
     ok "clave de Magnific válida — imágenes IA operativas"

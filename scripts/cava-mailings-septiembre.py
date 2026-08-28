@@ -57,7 +57,7 @@ ALTO_KV = 2793 + BAJADA - RECORTE_PIE
 
 # ── Proporciones sacadas del KV de referencia, en fracción del alto del KV ──
 FR_LOGO_Y = 0.131       # 369/2813
-FR_LOGO_ALTO = 0.0786   # 221/2813
+FR_LOGO_ALTO = 0.0900   # el logo también iba corto contra la referencia
 FR_TIT1_Y = 0.240       # 675/2813
 FR_TIT2_Y = 0.293       # 801/2813
 FR_BOTELLA = 0.519      # 1459/2813 — el 52 % del alto: son las protagonistas
@@ -145,14 +145,20 @@ def bloque_kv(fondo, titular_serif, titular_script, botellas):
         kv.alpha_composite(capa.filter(ImageFilter.GaussianBlur(16)))
         d.text((CENTRO_TEXTO, y), txt, font=f_txt, fill=cs.BLANCO, anchor="ma")
 
-    util_txt = 1300
-    cuerpo = 84
+    # Medido contra el KV real: el titular ocupa mucho más ancho del que le
+    # estábamos dando. Valeria 28-08: «los textos quedan chicos».
+    # El ancho útil se mide contra el KV real: el titular ocupa ~1240 px de los
+    # 2250, centrado en x≈670. Darle 1560 lo hacía desbordar por la izquierda —
+    # el bloque va centrado en 670, no en el centro de la pieza, porque arriba a
+    # la derecha manda el legal. El cuerpo arranca grande y baja hasta caber.
+    util_txt = 1235
+    cuerpo = 122
     while cuerpo > 44 and d.textlength(titular_serif,
                                        font=cs.fuente("libro", cuerpo)) > util_txt:
         cuerpo -= 3
     escribe(titular_serif, round(ALTO_KV * FR_TIT1_Y), cs.fuente("libro", cuerpo))
 
-    cuerpo2 = 152   # en el KV real la línea en script es la GRANDE de las dos
+    cuerpo2 = 215   # en el KV real la línea en script es la GRANDE de las dos
     while cuerpo2 > 60 and d.textlength(titular_script,
                                         font=cs.fuente("script", cuerpo2)) > util_txt:
         cuerpo2 -= 4

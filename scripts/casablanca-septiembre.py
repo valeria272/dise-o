@@ -267,17 +267,20 @@ def _luz_del_ambiente(im, tab, x, y, w, h, fuerza=0.90):
     return Image.fromarray(np.clip(t * f, 0, 255).astype("uint8"))
 
 
-def etiqueta_gris(im, x, y, w, h, l1, l2):
+def etiqueta_gris(im, x, y, w, h, l1, l2, peso1=400, peso2=700):
     """Caja gris #626260 DELANTE de la muestra, texto CENTRADO, y un triángulo
-    abajo a la derecha que simula SOMBRA (Paulina, 25-08-2026)."""
+    abajo a la derecha que simula SOMBRA (Paulina, 25-08-2026).
+
+    `peso1`/`peso2` existen desde el 28-08: la etiqueta de C1 pasó a llevar el NOMBRE
+    del producto arriba, y el nombre va en bold. Ver `pieza_c1`."""
     d = ImageDraw.Draw(im)
     tri = P(h * 0.30)
     d.polygon([(P(x + w), P(y + h)), (P(x + w), P(y + h) + tri), (P(x + w) - tri, P(y + h))],
               fill=(0x4C, 0x4C, 0x4A))
     d.rectangle([P(x), P(y), P(x + w), P(y + h)], fill=GRIS)
     cx = P(x + w / 2)
-    escribe(d, l1, caja(h * 0.245, 400), BLANCO, cx=cx, ink_top=P(y + h * 0.20))
-    escribe(d, l2, caja(h * 0.245, 700), BLANCO, cx=cx, ink_top=P(y + h * 0.585))
+    escribe(d, l1, caja(h * 0.245, peso1), BLANCO, cx=cx, ink_top=P(y + h * 0.20))
+    escribe(d, l2, caja(h * 0.245, peso2), BLANCO, cx=cx, ink_top=P(y + h * 0.585))
 
 
 def _flecha(d, x, y, largo):
@@ -462,35 +465,40 @@ def pieza_c1(t, fmt):
     g = FORMATOS[fmt]
     foto = Image.open(ASSETS / f"sep/amb_{t['sku']}_{AMB[fmt]}.jpg").convert("RGB")
     im = cover(foto, P(g["w"]), P(g["h"]))
-    # La banda que se mide tiene que cubrir el bloque COMPLETO. Desde el 28-08 el
-    # bloque sube ~34 u para hacerle sitio a la línea de medida sin salirse del
-    # margen, y baja hasta el filete de cierre con bajada de 2 líneas: 139+40 arriba
-    # y 90+30 abajo. Si se mide una banda más corta que el texto, el alfa sale bajo
-    # y el titular queda sin velo justo donde más lo necesita.
-    y_top = g["filete_y"] - 179.0 * g["esc"]
-    y_bot = g["filete_y"] + 120.0 * g["esc"]
+    y_top = g["filete_y"] - 139.0 * g["esc"]
+    y_bot = g["filete_y"] + 90.0 * g["esc"]
     im, _alfa, _c = velo_medido(im, y_top, y_bot)
     QA.append((f"c1-{t['n']} {fmt}", _alfa, _c))
     tarjeta_logo(im, *g["logo"])
-    # Paulina, 28-08: «eliminemos esto de todas las slides. este recorte se usa para
-    # colocar el nombre y detalles del producto pero cada slide ya tiene el nombre del
-    # producto como enunciado […] y asi la imagen respira de tanta info.»
+    # ⚠️ C1 NO SE TOCA. Decisión de Serena, 28-08, después de ver las dos versiones
+    # rendidas: «es el producto con la previsualización con el texto, es como lo
+    # teníamos antes».
     #
-    # ⚠️ «Esto» llega sin ancla y la primera lectura fue equivocada: se sacaron la
-    # muestra Y la etiqueta. Serena lo corrigió el mismo día — **el carrusel de
-    # producto sí o sí lleva la previsualización del piso, el nombre y las medidas**.
-    # Sin la muestra las cuatro slides quedan casi idénticas (mismo comedor, cambia
-    # sólo el suelo) y el producto deja de leerse; además la muestra es, según este
-    # manual, la firma de la marca.
+    # El comentario de Paulina —«eliminemos esto de todas las slides. este recorte se
+    # usa para colocar el nombre y detalles del producto»— llegó SIN ANCLA y se probó
+    # de dos maneras, las dos rechazadas:
+    #   1º sacar la muestra y la etiqueta → las 4 slides quedaban casi idénticas
+    #      (mismo comedor, cambia sólo el suelo) y el producto dejaba de leerse.
+    #   2º sacar sólo la etiqueta y bajar la medida al bloque de texto → separa el
+    #      dato de la previsualización, que es justo lo que la unidad tiene que hacer.
     #
-    # Lectura buena: «este recorte se usa para COLOCAR el nombre y detalles» describe
-    # el contenedor de texto, o sea la ETIQUETA GRIS. Esa se va. La muestra se queda.
-    # Las tres cosas que exige el carrusel siguen presentes:
-    #   previsualización → la muestra · nombre → el titular · medidas → fin del bloque
+    # La unidad producto = muestra + etiqueta con nombre y medida va JUNTA, pegada, y
+    # es la firma de la marca según este manual. Queda como estaba, y el comentario de
+    # Paulina queda ABIERTO en Drive hasta hablarlo con ella: hay que preguntarle qué
+    # es «esto», porque las dos lecturas posibles ya se descartaron mirándolas.
     muestra_tabla(im, t["sku"], *g["muestra"])
+    # Serena, 28-08: «pusiste a todos pisos de ingeniería, cuando cada uno tiene su
+    # respectivo nombre». La etiqueta decía «Piso de Ingeniería» arriba —la categoría,
+    # idéntica en las cuatro— y la medida abajo, así que el NOMBRE del producto no
+    # aparecía nunca en la etiqueta, que es justo el elemento que identifica al piso.
+    #
+    # El brief lo tiene explícito en la columna «Producto en diseño», tarjeta por
+    # tarjeta: «Look NATURAL UV / Roble Natural UV / 14/3 · 190 × 1900 mm». El Look ya
+    # es el antetítulo, así que a la etiqueta le corresponden nombre y medida.
+    # El nombre va en bold: es el identificador.
+    etiqueta_gris(im, *g["etiq"], t["titulo"], t["medida"], peso1=700, peso2=400)
     y_inf = bloque_texto(im, g["w"] / 2, g["filete_y"], t["look"], t["titulo"],
-                         t["bajada"], g["filete_w"], g["filete_x"], g["esc"],
-                         medida=f"PISO DE INGENIERÍA · {t['medida']}")
+                         t["bajada"], g["filete_w"], g["filete_x"], g["esc"])
     if t["n"] == 1 and fmt in ("feed", "feed45"):   # brief nº7 — sólo en feed
         d = ImageDraw.Draw(im)
         fv = versales(17.0)

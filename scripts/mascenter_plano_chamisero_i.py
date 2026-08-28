@@ -1,42 +1,54 @@
 # -*- coding: utf-8 -*-
 """Planimetría aérea — MÁS CENTER CHAMISERO I, primer piso.
 
-Primer centro hecho de punta a punta sin material previo: la vista aérea se capturó
-de Google Maps con las etiquetas apagadas (scripts/mascenter_captura_aerea.py) y los
-datos salen de la planimetría del catálogo interno (L1 Jumbo, L2 Dr.Pet, L5 Salcobrand).
+Primer centro armado sin material previo. Vista aérea capturada de Google Maps con
+`scripts/mascenter_captura_aerea.py`; datos de la planimetría del catálogo interno
+(L1 Jumbo 3.042 m² · L2 Dr.Pet 150 m² · L5 Salcobrand 170 m²).
+
+Dos límites de la fuente, comprobados:
+  · a zoom 20, o a densidad de píxel 3, Maps sirve las tiles de Earth y aparece
+    «© 2026 Google» repetido por toda la imagen. Lo limpio es z19,4 a densidad 2.
+  · eso topa la resolución: la base se amplía ×2 para que la gráfica quede nítida
+    sobre la foto, como en la pieza del diseñador.
 """
-import json, pathlib, sys
+import pathlib, sys, json
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from mascenter_plano import Plano
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 BASE = RAIZ / "raw/mascenter-presentacion"
-FOTO = BASE / "base-chamisero-i.jpg"
+KV = BASE / "kv"
+E = 2                                                  # la base va ampliada ×2
 
-p = Plano(FOTO)
-pt = lambda x, y: (-13.8 + x / p.S, y / p.S)      # píxel de la foto -> punto de página
+p = Plano(BASE / "base-chamisero-i.jpg")
+pt = lambda x, y: (-13.8 + x*E / p.S, y*E / p.S)       # píxel del recorte -> punto de página
+caja = lambda x, y, w, h: (*pt(x, y), *pt(x + w, y + h))
 
-# Contorno del techo. OJO: la banda oscura del poniente es la SOMBRA del edificio
-# sobre el estacionamiento (se ven autos dentro), no parte de la planta.
-EDIFICIO = [(975, 812), (1300, 398), (1705, 592), (1380, 1078)]
-p.edificio([pt(*q) for q in EDIFICIO])
+# Techo: la detección por color entrega el volumen del supermercado, pero NO la
+# franja de locales — está en sombra profunda y no la distingue. Se extiende a mano
+# el borde surponiente para incluirla.
+TECHO = [(780, 117), (1157, 377), (749, 966), (372, 706)]
+p.edificio([pt(*q) for q in TECHO])
 
-# la franja de locales corre por la fachada poniente, contra el volumen del súper
-p.division(*pt(1035, 848), *pt(1358, 434))        # franja / supermercado
-p.division(*pt(1113, 741), *pt(1172, 682))        # L2 / L5
+p.division(*pt(398, 669), *pt(775, 929))               # franja de locales / supermercado
+p.division(*pt(560, 840), *pt(586, 800))               # L2 / L5
 
-p.calle(*pt(560, 300), "AV. SANTA MARÍA", 60)
-p.calle(*pt(430, 1180), "AV. CHAMISERO", 28)
+p.calle(*pt(300, 330), "AV. SANTA MARÍA", 55)
 
-p.local(*pt(1390, 700), "L1", "3.042 m2")
-p.local(*pt(1175, 570), "L2", "150 m2")
-p.local(*pt(1055, 800), "L5", "170 m2")
+p.logo(KV / "jumbo.png",      caja(738, 428, 120, 120))
+p.logo(KV / "drpet.png",      caja(420, 735, 104, 37))
+p.logo(KV / "salcobrand.png", caja(618, 862,  62, 35))
 
-p.ingreso(*pt(640, 1020), ["INGRESO", "VEHÍCULOS"])
-p.ingreso(*pt(1215, 300), ["INGRESO", "PEATÓN"], rojo=False)
+p.local(*pt(772, 572), "L1", "3.042 m2")
+p.local(*pt(448, 782), "L2", "150 m2")
+p.local(*pt(632, 908), "L5", "170 m2")
+
+p.ingreso(*pt(300, 150), ["INGRESO", "VEHÍCULOS"])
+p.ingreso(*pt(215, 905), ["INGRESO", "VEHÍCULOS"])
+p.ingreso(*pt(330, 620), ["INGRESO", "PEATÓN"], rojo=False)
 
 p.rotulo(50.3, 50.7, "PRIMER PISO")
-p.rotulo(*pt(1180, 1470), "MÁS CENTER CHAMISERO I", invertido=True)
+p.rotulo(*pt(700, 930), "MÁS CENTER CHAMISERO I", invertido=True)
 
 out = RAIZ / "out/mascenter-presentacion/planos"
 out.mkdir(parents=True, exist_ok=True)

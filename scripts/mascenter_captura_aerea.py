@@ -14,20 +14,21 @@ async def capturar(lat, lon, z, salida):
                 if await b.count(): await b.first.click(timeout=2500); await pag.wait_for_timeout(4000)
             except Exception: pass
 
-        # Apagar las etiquetas. El conmutador vive en el panel de "Capas", que sólo
-        # se despliega al pasar el mouse; se acciona por JS para no depender de eso.
-        apagado = await pag.evaluate("""() => {
-            const nodos = Array.from(document.querySelectorAll('button,label,div'));
-            const et = nodos.find(e => {
-                const t = (e.getAttribute('aria-label') || e.innerText || '').trim();
-                return t === 'Etiquetas' || t === 'Labels';
-            });
-            if (!et) return false;
-            et.click();
-            return true;
+        # Apagar las etiquetas de Maps.
+        # El conmutador NO es un <input>: es un <button role="checkbox"> de Google que
+        # envuelve un <label> con el texto. Hacerle click al <label> no hace nada —
+        # hay que subir al botón y verificar que aria-checked cambie a "false".
+        estado = await pag.evaluate("""() => {
+            const lab = [...document.querySelectorAll('label')]
+                .find(l => ['Etiquetas','Labels'].includes(l.innerText.trim()));
+            if (!lab) return 'sin control';
+            const btn = lab.closest('button[role=checkbox]');
+            if (!btn) return 'sin boton';
+            if (btn.getAttribute('aria-checked') === 'true') btn.click();
+            return btn.getAttribute('aria-checked');
         }""")
-        await pag.wait_for_timeout(5000)
-        print("etiquetas apagadas:", apagado)
+        await pag.wait_for_timeout(6000)
+        print("etiquetas -> aria-checked:", estado)
 
         await pag.add_style_tag(content="""
           #omnibox-container,#watermark,#runway-expand-button,.app-viewcard-strip,

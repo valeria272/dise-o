@@ -1,0 +1,1023 @@
+[
+ {
+  "id": 1,
+  "nombre": "Padre Hurtado",
+  "direccion": "San Ignacio 1624",
+  "comuna": "Padre Hurtado",
+  "region": "RM",
+  "mapa": 27,
+  "planos": [
+   28
+  ],
+  "slug": "padre-hurtado",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/padre-hurtado-sat1.jpeg",
+     "px": [
+      1284,
+      592
+     ]
+    },
+    {
+     "ruta": "assets/centros/padre-hurtado-sat2.jpeg",
+     "px": [
+      993,
+      500
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/padre-hurtado-plano1.png",
+     "px": [
+      2833,
+      1765
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 2,
+  "nombre": "Copiapó",
+  "direccion": "Los Carrera 3131",
+  "comuna": "Copiapó",
+  "region": "Atacama",
+  "mapa": 1,
+  "planos": [
+   2
+  ],
+  "slug": "copiapo",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/copiapo-sat1.jpeg",
+     "px": [
+      1234,
+      532
+     ]
+    },
+    {
+     "ruta": "assets/centros/copiapo-sat2.jpeg",
+     "px": [
+      1147,
+      501
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/copiapo-plano1.png",
+     "px": [
+      2372,
+      1855
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 3,
+  "nombre": "Concón",
+  "direccion": "Av. Manantiales 955",
+  "comuna": "Concón",
+  "region": "Valparaíso",
+  "mapa": 29,
+  "planos": [
+   30
+  ],
+  "slug": "concon",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/concon-sat1.jpeg",
+     "px": [
+      1054,
+      451
+     ]
+    },
+    {
+     "ruta": "assets/centros/concon-sat2.jpeg",
+     "px": [
+      715,
+      352
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/concon-plano1.png",
+     "px": [
+      2850,
+      1739
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 4,
+  "nombre": "Osorno",
+  "direccion": "Manuel Rodríguez 1590",
+  "comuna": "Osorno",
+  "region": "Los Lagos",
+  "mapa": 31,
+  "planos": [
+   32
+  ],
+  "slug": "osorno",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/osorno-sat1.jpeg",
+     "px": [
+      1472,
+      639
+     ]
+    },
+    {
+     "ruta": "assets/centros/osorno-sat2.jpeg",
+     "px": [
+      1189,
+      562
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/osorno-plano1.png",
+     "px": [
+      2381,
+      1770
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 5,
+  "nombre": "Talca",
+  "direccion": "Dos Norte 3230",
+  "comuna": "Talca",
+  "region": "Maule",
+  "mapa": 21,
+  "planos": [
+   22
+  ],
+  "slug": "talca",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/talca-sat1.jpeg",
+     "px": [
+      1417,
+      588
+     ]
+    },
+    {
+     "ruta": "assets/centros/talca-sat2.jpeg",
+     "px": [
+      1181,
+      564
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/talca-plano1.png",
+     "px": [
+      2682,
+      1869
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 6,
+  "nombre": "Salvador",
+  "direccion": "Salvador Sucre 1822",
+  "comuna": "Ñuñoa",
+  "region": "RM",
+  "mapa": 33,
+  "planos": [
+   34
+  ],
+  "slug": "salvador",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/salvador-sat1.jpeg",
+     "px": [
+      1346,
+      566
+     ]
+    },
+    {
+     "ruta": "assets/centros/salvador-sat2.jpeg",
+     "px": [
+      1179,
+      518
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/salvador-plano1.png",
+     "px": [
+      2569,
+      1701
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 7,
+  "nombre": "Torreones",
+  "direccion": "Barrio Torreones",
+  "comuna": "Concepción",
+  "region": "Biobío",
+  "mapa": 35,
+  "planos": [
+   36
+  ],
+  "slug": "torreones",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/torreones-sat1.jpeg",
+     "px": [
+      1083,
+      553
+     ]
+    },
+    {
+     "ruta": "assets/centros/torreones-sat2.jpeg",
+     "px": [
+      967,
+      493
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/torreones-plano1.png",
+     "px": [
+      2712,
+      1797
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 8,
+  "nombre": "Placa Alameda",
+  "direccion": "Alameda 4050",
+  "comuna": "Estación Central",
+  "region": "RM",
+  "mapa": 17,
+  "planos": [
+   18
+  ],
+  "slug": "placa-alameda",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/placa-alameda-sat1.jpeg",
+     "px": [
+      1523,
+      603
+     ]
+    },
+    {
+     "ruta": "assets/centros/placa-alameda-sat2.jpeg",
+     "px": [
+      1117,
+      552
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/placa-alameda-plano1.png",
+     "px": [
+      2720,
+      1595
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 9,
+  "nombre": "Chamisero II",
+  "direccion": "Av. Chamisero 10290",
+  "comuna": "Colina",
+  "region": "RM",
+  "mapa": 37,
+  "planos": [
+   38,
+   39
+  ],
+  "slug": "chamisero-ii",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/chamisero-ii-sat1.jpeg",
+     "px": [
+      1207,
+      573
+     ]
+    },
+    {
+     "ruta": "assets/centros/chamisero-ii-sat2.jpeg",
+     "px": [
+      1072,
+      503
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/chamisero-ii-plano1.png",
+     "px": [
+      2270,
+      1783
+     ]
+    },
+    {
+     "ruta": "assets/centros/chamisero-ii-plano2.png",
+     "px": [
+      2694,
+      1709
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 10,
+  "nombre": "Larraín",
+  "direccion": "Fernando Castillo Velasco 7059",
+  "comuna": "La Reina",
+  "region": "RM",
+  "mapa": 12,
+  "planos": [
+   13
+  ],
+  "slug": "larrain",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/larrain-sat1.jpeg",
+     "px": [
+      1429,
+      608
+     ]
+    },
+    {
+     "ruta": "assets/centros/larrain-sat2.jpeg",
+     "px": [
+      895,
+      510
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/larrain-plano1.png",
+     "px": [
+      2850,
+      1988
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 11,
+  "nombre": "Peñalolén",
+  "direccion": "Av. Antupirén 8340",
+  "comuna": "Peñalolén",
+  "region": "RM",
+  "mapa": 14,
+  "planos": [
+   15,
+   16
+  ],
+  "slug": "penalolen",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/penalolen-sat1.jpeg",
+     "px": [
+      1637,
+      621
+     ]
+    },
+    {
+     "ruta": "assets/centros/penalolen-sat2.jpeg",
+     "px": [
+      895,
+      510
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/penalolen-plano1.png",
+     "px": [
+      2449,
+      1861
+     ]
+    },
+    {
+     "ruta": "assets/centros/penalolen-plano2.png",
+     "px": [
+      2142,
+      1836
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 12,
+  "nombre": "Local San Bernardo",
+  "direccion": "Av. Colón 511",
+  "comuna": "San Bernardo",
+  "region": "RM",
+  "mapa": 40,
+  "planos": [
+   41
+  ],
+  "slug": "local-san-bernardo",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/local-san-bernardo-sat1.jpeg",
+     "px": [
+      1424,
+      536
+     ]
+    },
+    {
+     "ruta": "assets/centros/local-san-bernardo-sat2.jpeg",
+     "px": [
+      1130,
+      571
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/local-san-bernardo-plano1.png",
+     "px": [
+      2767,
+      1649
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 13,
+  "nombre": "Chamisero I",
+  "direccion": "Av. Santa María 14601",
+  "comuna": "Colina",
+  "region": "RM",
+  "mapa": 19,
+  "planos": [
+   20
+  ],
+  "slug": "chamisero-i",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/chamisero-i-sat1.jpeg",
+     "px": [
+      1488,
+      630
+     ]
+    },
+    {
+     "ruta": "assets/centros/chamisero-i-sat2.jpeg",
+     "px": [
+      1170,
+      501
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/chamisero-i-plano1.png",
+     "px": [
+      2725,
+      1771
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 14,
+  "nombre": "Los Ángeles",
+  "direccion": "Av. Alemania 1159",
+  "comuna": "Los Ángeles",
+  "region": "Biobío",
+  "mapa": 23,
+  "planos": [
+   24
+  ],
+  "slug": "los-angeles",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/los-angeles-sat1.jpeg",
+     "px": [
+      1328,
+      595
+     ]
+    },
+    {
+     "ruta": "assets/centros/los-angeles-sat2.jpeg",
+     "px": [
+      1145,
+      566
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/los-angeles-plano1.png",
+     "px": [
+      2772,
+      1846
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 15,
+  "nombre": "San Vicente",
+  "direccion": "San Diego de Portales 81",
+  "comuna": "San Vicente",
+  "region": "O'Higgins",
+  "mapa": 25,
+  "planos": [
+   26
+  ],
+  "slug": "san-vicente",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/san-vicente-sat1.jpeg",
+     "px": [
+      1210,
+      498
+     ]
+    },
+    {
+     "ruta": "assets/centros/san-vicente-sat2.jpeg",
+     "px": [
+      1247,
+      528
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/san-vicente-plano1.png",
+     "px": [
+      2837,
+      1700
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 16,
+  "nombre": "Pirque",
+  "direccion": "Av. Virginia Subercaseaux 475",
+  "comuna": "Pirque",
+  "region": "RM",
+  "mapa": 42,
+  "planos": [
+   43
+  ],
+  "slug": "pirque",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/pirque-sat1.jpeg",
+     "px": [
+      1316,
+      555
+     ]
+    },
+    {
+     "ruta": "assets/centros/pirque-sat2.jpeg",
+     "px": [
+      1162,
+      536
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/pirque-plano1.png",
+     "px": [
+      2447,
+      1549
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 17,
+  "nombre": "Pirque Etapa 2",
+  "direccion": "Av. Virginia Subercaseaux 475",
+  "comuna": "Pirque",
+  "region": "RM",
+  "mapa": 44,
+  "planos": [
+   45
+  ],
+  "slug": "pirque-etapa-2",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/pirque-etapa-2-sat1.jpeg",
+     "px": [
+      1316,
+      555
+     ]
+    },
+    {
+     "ruta": "assets/centros/pirque-etapa-2-sat2.jpeg",
+     "px": [
+      1162,
+      536
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/pirque-etapa-2-plano1.png",
+     "px": [
+      2731,
+      1326
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 18,
+  "nombre": "Las Flores",
+  "direccion": "Av. Las Flores 12640",
+  "comuna": "Las Condes",
+  "region": "RM",
+  "mapa": 3,
+  "planos": [
+   4,
+   5
+  ],
+  "slug": "las-flores",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/las-flores-sat1.jpeg",
+     "px": [
+      1271,
+      601
+     ]
+    },
+    {
+     "ruta": "assets/centros/las-flores-sat2.jpeg",
+     "px": [
+      1096,
+      479
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/las-flores-plano1.png",
+     "px": [
+      2517,
+      1839
+     ]
+    },
+    {
+     "ruta": "assets/centros/las-flores-plano2.png",
+     "px": [
+      2420,
+      1913
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 19,
+  "nombre": "Centro Andino",
+  "direccion": "Pie Andino 5855",
+  "comuna": "Lo Barnechea",
+  "region": "RM",
+  "mapa": 6,
+  "planos": [
+   7,
+   8
+  ],
+  "slug": "centro-andino",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/centro-andino-sat1.jpeg",
+     "px": [
+      1471,
+      649
+     ]
+    },
+    {
+     "ruta": "assets/centros/centro-andino-sat2.jpeg",
+     "px": [
+      924,
+      531
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/centro-andino-plano1.png",
+     "px": [
+      2698,
+      1812
+     ]
+    },
+    {
+     "ruta": "assets/centros/centro-andino-plano2.png",
+     "px": [
+      2762,
+      1795
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 24,
+  "nombre": "San Carlos",
+  "direccion": "Av. Plaza 1250",
+  "comuna": "Las Condes",
+  "region": "RM",
+  "mapa": 52,
+  "planos": [
+   53
+  ],
+  "slug": "san-carlos",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/san-carlos-sat1.jpeg",
+     "px": [
+      1333,
+      627
+     ]
+    },
+    {
+     "ruta": "assets/centros/san-carlos-sat2.jpeg",
+     "px": [
+      1121,
+      561
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/san-carlos-plano1.png",
+     "px": [
+      2850,
+      1766
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 26,
+  "nombre": "Calera de Tango",
+  "direccion": "Paradero 4",
+  "comuna": "Calera de Tango",
+  "region": "RM",
+  "mapa": 54,
+  "planos": [
+   55
+  ],
+  "slug": "calera-de-tango",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/calera-de-tango-sat1.jpeg",
+     "px": [
+      1408,
+      591
+     ]
+    },
+    {
+     "ruta": "assets/centros/calera-de-tango-sat2.jpeg",
+     "px": [
+      1283,
+      613
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/calera-de-tango-plano1.png",
+     "px": [
+      2769,
+      1792
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 30,
+  "nombre": "La Serena",
+  "direccion": "Av. Balmaceda 3039",
+  "comuna": "La Serena",
+  "region": "Coquimbo",
+  "mapa": 46,
+  "planos": [
+   47,
+   48
+  ],
+  "slug": "la-serena",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/la-serena-sat1.jpeg",
+     "px": [
+      1287,
+      547
+     ]
+    },
+    {
+     "ruta": "assets/centros/la-serena-sat2.jpeg",
+     "px": [
+      1230,
+      590
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/la-serena-plano1.png",
+     "px": [
+      2685,
+      1822
+     ]
+    },
+    {
+     "ruta": "assets/centros/la-serena-plano2.png",
+     "px": [
+      2575,
+      1887
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 31,
+  "nombre": "Ciudad Empresarial",
+  "direccion": "Av. del Parque 4023",
+  "comuna": "Huechuraba",
+  "region": "RM",
+  "mapa": 9,
+  "planos": [
+   10,
+   11
+  ],
+  "slug": "ciudad-empresarial",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/ciudad-empresarial-sat1.jpeg",
+     "px": [
+      1480,
+      595
+     ]
+    },
+    {
+     "ruta": "assets/centros/ciudad-empresarial-sat2.jpeg",
+     "px": [
+      604,
+      316
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/ciudad-empresarial-plano1.png",
+     "px": [
+      2833,
+      1819
+     ]
+    },
+    {
+     "ruta": "assets/centros/ciudad-empresarial-plano2.png",
+     "px": [
+      2678,
+      1795
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": 32,
+  "nombre": "Santa María",
+  "direccion": "Av. Santa María 6736",
+  "comuna": "Vitacura",
+  "region": "RM",
+  "mapa": 49,
+  "planos": [
+   50,
+   51
+  ],
+  "slug": "santa-maria",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/santa-maria-sat1.jpeg",
+     "px": [
+      1230,
+      557
+     ]
+    },
+    {
+     "ruta": "assets/centros/santa-maria-sat2.jpeg",
+     "px": [
+      986,
+      485
+     ]
+    }
+   ],
+   "planos": [
+    {
+     "ruta": "assets/centros/santa-maria-plano1.png",
+     "px": [
+      2232,
+      1747
+     ]
+    },
+    {
+     "ruta": "assets/centros/santa-maria-plano2.png",
+     "px": [
+      2353,
+      1763
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": null,
+  "nombre": "Alonso de Córdova",
+  "direccion": "Alonso de Córdova",
+  "comuna": "Vitacura",
+  "region": "RM",
+  "mapa": 56,
+  "planos": [],
+  "slug": "alonso-de-cordova",
+  "assets": {
+   "satelites": [
+    {
+     "ruta": "assets/centros/alonso-de-cordova-sat1.jpeg",
+     "px": [
+      1302,
+      613
+     ]
+    },
+    {
+     "ruta": "assets/centros/alonso-de-cordova-sat2.jpeg",
+     "px": [
+      1385,
+      614
+     ]
+    }
+   ],
+   "planos": []
+  }
+ }
+]

@@ -130,3 +130,7 @@ out/mascenter-algarrobal/preview-artifact.html
 !public/assets/hilton/between/fotos-gradadas/desayuno-completo-2.jpg
 !public/assets/hilton/between/fotos-gradadas/croissant-latte-cenital.jpg
 !public/assets/hilton/between/fotos-gradadas/togo-dulce-45.jpg
+
+# Presentación Más Center: el generador y los datos SÍ se versionan
+!raw/mascenter-presentacion/centros.json
+!raw/mascenter-presentacion/extraer_assets.py

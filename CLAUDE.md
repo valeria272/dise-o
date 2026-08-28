@@ -54,6 +54,7 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | [`docs/BRIEF-DE-DISENO.md`](docs/BRIEF-DE-DISENO.md) | El contrato de entrada: qué campos tiene que traer un brief para ejecutarse sin preguntas |
 | [`docs/QUE-PUEDO-Y-QUE-NO.md`](docs/QUE-PUEDO-Y-QUE-NO.md) | Los límites reales, el estado de los conectores MCP y cuándo sí conviene `/design` |
 | [`docs/PORTAL-VALIDACIONES.html`](docs/PORTAL-VALIDACIONES.html) | **El cliente aprueba en el portal, no por WhatsApp.** Guía completa para KAM y CM: cómo entrar, el mes paso a paso, y **cómo se tienen que llamar los archivos que entrega diseño** para que el portal los levante solo |
+| [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md) | **Qué modelos de imagen tenemos realmente** y cuáles no usamos. Incluye Nano Banana Pro (texto legible + 4K, ya incluido en el plan) y la regla de que el relight NO va sobre el producto |
 | [`docs/ONBOARDING-DISENADORES.md`](docs/ONBOARDING-DISENADORES.md) | Diseñador nuevo en el equipo |
 | [`docs/TRABAJO-EN-EQUIPO.md`](docs/TRABAJO-EN-EQUIPO.md) | **Cómo varios diseñadores comparten el estudio** — rama única, `/abrir` y `/cierre`, bitácoras y relevo |
 | [`docs/TRASPASO-CHECKLIST.md`](docs/TRASPASO-CHECKLIST.md) | **Traspasar el estudio a un diseñador nuevo** — checklist de conectores, accesos y siembra de memoria |

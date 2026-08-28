@@ -2,6 +2,8 @@
 """Magnific / Freepik desde la línea de comandos — generar, escalar, reiluminar.
 
     python3 scripts/magnific.py generar   "<prompt>" --out ruta.png [--aspecto reel|feed|story|wide]
+    python3 scripts/magnific.py pro       "<prompt>" --out ruta.png [--resolucion 4K] [--refs a.png b.png]
+                                          ↑ Nano Banana Pro: el único que escribe TEXTO legible
     python3 scripts/magnific.py escalar   entrada.png --out salida.png [--precision] [--escala 2x|4x]
     python3 scripts/magnific.py reiluminar entrada.png --out salida.png --prompt "<luz que quieres>"
     python3 scripts/magnific.py estilo    entrada.png --ref referencia.png --out salida.png
@@ -35,6 +37,12 @@ import certifi
 
 BASE = "https://api.freepik.com"
 CTX = ssl.create_default_context(cafile=certifi.where())
+
+# Nano Banana Pro usa la notación corta; Mystic usa nombres largos. No son
+# intercambiables: pasarle "square_1_1" a `pro` devuelve 400.
+ASPECTOS_PRO = {
+    "reel": "9:16", "story": "9:16", "feed": "1:1", "post": "3:4", "wide": "16:9",
+}
 
 ASPECTOS = {
     "reel":   "social_story_9_16",
@@ -117,8 +125,8 @@ def guarda(urls, destino):
 
 def main():
     ap = argparse.ArgumentParser(add_help=True)
-    ap.add_argument("accion", choices=["generar", "escalar", "reiluminar", "estilo",
-                                       "loras", "tareas", "check"])
+    ap.add_argument("accion", choices=["generar", "pro", "escalar", "reiluminar",
+                                       "estilo", "loras", "tareas", "check"])
     ap.add_argument("entrada", nargs="?", help="prompt (generar) o archivo (el resto)")
     ap.add_argument("--out")
     ap.add_argument("--aspecto", default="feed", choices=list(ASPECTOS))
@@ -126,6 +134,10 @@ def main():
     ap.add_argument("--ref", help="imagen de referencia para 'estilo'")
     ap.add_argument("--precision", action="store_true", help="upscaler de precisión")
     ap.add_argument("--escala", default="2x")
+    ap.add_argument("--resolucion", default="2K", choices=["1K", "2K", "4K"],
+                    help="solo para 'pro'")
+    ap.add_argument("--refs", nargs="*", default=[],
+                    help="hasta 14 imágenes de referencia para 'pro'")
     ap.add_argument("--lora", help="id de un LoRA de la cuenta")
     a = ap.parse_args()
 
@@ -160,6 +172,25 @@ def main():
 
     if not a.out:
         sys.exit("✗ Falta --out (dónde guardar el resultado)")
+
+    if a.accion == "pro":
+        # Nano Banana Pro (Gemini 3 Pro Image). Es el que hay que usar cuando la
+        # pieza necesita TEXTO LEGIBLE dentro de la imagen o control fino de
+        # composición: Mystic escribe letras rotas. Verificado el 28-08-2026 —
+        # está incluido en el plan actual, no hay que pagar nada aparte.
+        # OJO: la ruta va anidada bajo text-to-image/, no suelta como Mystic.
+        if not a.entrada:
+            sys.exit("✗ Falta el prompt")
+        ruta = "/v1/ai/text-to-image/nano-banana-pro"
+        cuerpo = {"prompt": a.entrada, "aspect_ratio": ASPECTOS_PRO[a.aspecto],
+                  "resolution": a.resolucion}
+        if a.refs:
+            cuerpo["reference_images"] = [b64_de(r) for r in a.refs[:14]]
+        print(f"→ Nano Banana Pro · {a.aspecto} · {a.resolucion}"
+              + (f" · {len(a.refs[:14])} referencias" if a.refs else ""))
+        r = pedir(ruta, cuerpo)
+        guarda(espera(ruta, r["data"]["task_id"]), a.out)
+        return 0
 
     if a.accion == "generar":
         if not a.entrada:

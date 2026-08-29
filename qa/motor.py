@@ -96,6 +96,12 @@ def cargar_reglas(marca: str) -> tuple[list[dict], dict]:
         r = por_id[ident]
         r["args"] = {**r.get("args", {}), **(ajuste.get("args") or {})}
         r["severidad"] = ajuste.get("severidad", r.get("severidad", "bloqueante"))
+        # Una marca también puede acotar a QUÉ piezas suyas aplica la regla: el
+        # mailing de CAVA es tan vertical como una story pero se ve dentro de un
+        # correo, donde la interfaz de Meta no existe. Sigue exigiendo `porque`.
+        for campo in ("solo_archivos", "excepto_archivos"):
+            if campo in ajuste:
+                r[campo] = ajuste[campo]
         r["_ajustada_por"] = f"{marca}: {ajuste['porque']}"
 
     return reglas, propio

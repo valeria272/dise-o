@@ -681,9 +681,42 @@ def formato_clp(a, ctx, args):
     return f"monto mal formateado: {', '.join(sorted(set(malos)))}" if malos else None
 
 
+def franja_legal(a, ctx, args):
+    """Falta la franja del Ministerio de Salud exigida en publicidad de alcohol.
+
+    NACE DE: la Ley 19.925 obliga a que toda publicidad de bebidas alcohólicas
+    lleve el mensaje del Ministerio de Salud. En las piezas de CAVA va arriba a
+    la derecha: caja negra con la advertencia y, al pie, la banda azul/rojo de
+    la bandera. Se busca la banda porque es lo inequívoco: dos colores planos y
+    contiguos en la misma fila.
+
+    Es la única regla del estudio cuyo incumplimiento es ilegal, no feo. Por eso
+    mide presencia, no estética: si la banda está, la caja está.
+    """
+    azul = tuple(args.get("azul", (0, 99, 175)))
+    rojo = tuple(args.get("rojo", (231, 52, 57)))
+    tol = int(args.get("tolerancia", 26))
+    min_px = int(args.get("min_px", 60))
+    # La caja legal mide un alto FIJO (425 px sobre 2250 de ancho), no una
+    # fracción de la pieza: un mailing largo y un post cuadrado la llevan igual.
+    # Por eso la zona se escala con el ancho. Medirla como % del alto daba
+    # falsos negativos en las piezas cortas.
+    alto = max(int(float(args.get("alto_px_2250", 520)) * a.shape[1] / 2250), 120)
+    zona = a[:min(alto, a.shape[0])].astype(np.int16)
+
+    cerca_az = (np.abs(zona - np.array(azul)).max(axis=2) <= tol)
+    cerca_ro = (np.abs(zona - np.array(rojo)).max(axis=2) <= tol)
+    for y in range(zona.shape[0]):
+        if cerca_az[y].sum() >= min_px and cerca_ro[y].sum() >= min_px:
+            return None
+    return ("no se encontró la banda tricolor del Ministerio de Salud en los "
+            f"primeros {alto} px de la pieza")
+
+
 # ──────────────────────────────────────────────────────────────────────────────
 
 REGISTRO = {
+    "franja_legal": franja_legal,
     "color_prohibido": color_prohibido,
     "paleta_cerrada": paleta_cerrada,
     "zona_segura": zona_segura,

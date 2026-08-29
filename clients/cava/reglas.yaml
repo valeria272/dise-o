@@ -1,0 +1,143 @@
+# Reglas ejecutables de CAVA MORANDÉ.
+#
+# ⚠️ Estas reglas son DE ESTA MARCA y no se copian a ninguna otra.
+#
+# CAVA es el e-commerce de Viña Morandé: vende un producto REGULADO. Por eso su
+# regla principal no es estética sino legal — la franja del Ministerio de Salud
+# es obligatoria por la Ley 19.925 y una pieza sin ella no se puede publicar.
+# El resto de las reglas protege material que tampoco es nuestro: los bottle
+# shots oficiales de la viña y sus etiquetas.
+#
+# Quien firma es Constanza Lizana «Coni» (diseñadora del cliente). Su criterio
+# vale para Selfie, MyZoo y CAVA, y para NINGUNA otra marca del estudio.
+#
+# Fuente: clients/cava/CLAUDE.md, levantado el 25-08-2026 sobre las piezas
+# reales, y los mailings de septiembre 2026.
+
+marca: cava
+nombre: CAVA Morandé
+version: 1
+actualizado: 2026-08-27
+
+autoridad:
+  - quien: Constanza Lizana «Coni»
+    rol: diseñadora del cliente
+    alcance: [selfie, myzoo, cava]
+    canal: editables y comentarios en el Drive
+  - quien: Ejecutiva de cuentas de CAVA
+    rol: dueña del brief mensual
+    alcance: [cava]
+    canal: Sheet "CAVA | Briefs <mes> <año>"
+
+ajustes:
+  zona-segura-meta:
+    porque: >-
+      Los mailings de CAVA son piezas de Mailchimp, no stories de Meta: se ven
+      dentro del correo, donde no hay interfaz de Instagram encima. Como son muy
+      verticales (2250×5032 en el brief 6), el motor los clasificaba como story
+      y marcaba la zona inferior, que en un mailing es contenido normal.
+      La regla sigue viva para las stories reales de la marca.
+    solo_archivos: ["*_ST_*", "*_STORY_*"]
+
+  desenfoque-parcial:
+    porque: >-
+      El mailing termina en un bloque de color plano (el azul marino de la zona
+      de oferta) debajo de la foto del KV. La comprobación mide nitidez por
+      bandas y lee ese bloque liso como una franja desenfocada, pero no es una
+      foto mal tratada: es un fondo sólido con texto encima. La regla sigue
+      valiendo para las bandas que SÍ son fotografía.
+    severidad: informativa
+
+  respiro-borde:
+    porque: >-
+      La caja de la ADVERTENCIA va PEGADA al borde superior derecho por diseño
+      del sistema, y el logo cuelga arriba a la izquierda. Las dos son
+      excepciones declaradas: el respiro protege el texto de venta, no el
+      bloque legal ni el logo.
+    args:
+      excepciones:
+        - {x0: 0.60, y0: 0.0, x1: 1.0, y1: 0.16}   # la caja del Ministerio
+        - {x0: 0.0, y0: 0.0, x1: 0.32, y1: 0.14}   # el logo
+
+reglas:
+  - id: franja-ministerio
+    titulo: Falta la advertencia del Ministerio de Salud
+    check: franja_legal
+    severidad: bloqueante
+    autor: Ejecutiva de cuentas de CAVA
+    fecha: 2026-08-17
+    cita: >-
+      SIEMPRE, PERO SIEMPRE AGREGAR FRANJA MINISTERIO
+    fuente: clients/cava/CLAUDE.md §3 · Ley 19.925
+    porque: >-
+      No es decorativo: es exigencia legal para publicidad de alcohol en Chile.
+      Es la única regla del estudio cuyo incumplimiento es ilegal y no feo. Una
+      pieza sin esto no se entrega, aunque el cliente la pida así.
+    args:
+      azul: [0, 99, 175]
+      rojo: [231, 52, 57]
+      tolerancia: 26
+      min_px: 60
+      alto_px_2250: 520
+
+  - id: precio-clp
+    titulo: Precio mal escrito
+    check: formato_clp
+    severidad: bloqueante
+    autor: Dirección de área Copylab
+    fecha: 2026-08-27
+    cita: >-
+      Precio en CLP chileno — $10.990, punto de miles, sin decimales. El precio
+      anterior va tachado.
+    fuente: clients/cava/CLAUDE.md §8
+    porque: >-
+      El mailing es una pieza de venta con precio a la vista. Un monto mal
+      escrito en una campaña de descuento es un reclamo, no una errata.
+
+  - id: tilde-morande
+    titulo: MORANDÉ escrito sin tilde
+    check: texto_prohibido
+    severidad: bloqueante
+    autor: Catálogo técnico MORANDÉ | PRODUCTOS VINOS Y 7COLORES
+    fecha: 2026-08-25
+    cita: >-
+      CAVA MORANDÉ — con tilde en la E.
+    fuente: clients/cava/CLAUDE.md §4
+    porque: >-
+      Es el apellido de la viña y va en el logo. Se comprueba con
+      `texto_prohibido` y no con `grafia_fijada` porque ese check normaliza los
+      textos antes de comparar y "Morande" y "Morandé" le quedan idénticos: la
+      tilde, que es justo lo que hay que cuidar, se le escapa.
+    args:
+      patron: "\\bMORANDE\\b|\\bMorande\\b|\\bmorande\\b"
+
+  - id: grafia-7colores
+    titulo: 7Colores escrito separado
+    check: grafia_fijada
+    severidad: bloqueante
+    autor: Catálogo técnico MORANDÉ | PRODUCTOS VINOS Y 7COLORES
+    fecha: 2026-08-25
+    cita: >-
+      La línea se llama 7Colores, todo junto, como en la etiqueta.
+    fuente: clients/cava/CLAUDE.md §7
+    porque: >-
+      Es nombre de línea de un producto regulado, no una descripción. En el
+      Sheet de septiembre convive escrito de las dos formas.
+    args:
+      correcta: "7Colores"
+      incorrectas: ["7 colores", "siete colores"]
+
+  - id: sin-voseo
+    titulo: Voseo rioplatense en la pieza
+    check: texto_prohibido
+    severidad: bloqueante
+    autor: Dirección de área Copylab
+    fecha: 2026-08-27
+    cita: >-
+      Español de Chile con tuteo. Nunca "tenés", "podés", "elegí", "aprovechá".
+    fuente: CLAUDE.md — Idioma, regla innegociable
+    porque: >-
+      Vale para todo el monorepo, pero acá se ejecuta porque el copy del mailing
+      lo escribe la ejecutiva y pasa directo a la pieza, sin revisión intermedia.
+    args:
+      patron: "\\b(ten[eé]s|pod[eé]s|quer[eé]s|sab[eé]s|hac[eé]s|sos|vos|eleg[ií]|aprovech[aá]|llevate|descubr[ií]|mir[aá]|compr[aá]|and[aá])\\b"

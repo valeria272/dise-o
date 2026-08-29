@@ -71,6 +71,11 @@ npm install
 Tarda varios minutos. Avísale y espérala; no la interrumpas.
 
 ### Python
+> **En Windows** el intérprete es `python` (no `python3`) y el venv queda en
+> `~/copylab-venv/Scripts/python.exe`, no en `bin/python3`. Traduce esa ruta en TODOS
+> los comandos de este documento antes de correrlos. Guía del diseñador:
+> `docs/GUIA-INSTALACION-WINDOWS.html`.
+
 Si no existe `~/copylab-venv`:
 ```bash
 python3 -m venv ~/copylab-venv

@@ -36,6 +36,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -75,6 +80,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -114,6 +124,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -153,6 +168,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -192,6 +212,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -231,6 +256,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -270,6 +300,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 1,
+   "disponibles": 0
   }
  },
  {
@@ -309,6 +344,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -356,6 +396,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -395,6 +440,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -442,6 +492,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -481,6 +536,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -520,6 +580,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -559,6 +624,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -598,6 +668,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -637,6 +712,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -676,6 +756,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -723,6 +808,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -770,6 +860,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 1
   }
  },
  {
@@ -809,6 +904,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -848,6 +948,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -895,6 +1000,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 1,
+   "cotas_m2": 2,
+   "disponibles": 0
   }
  },
  {
@@ -942,6 +1052,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -989,6 +1104,11 @@
      ]
     }
    ]
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  },
  {
@@ -1018,6 +1138,11 @@
     }
    ],
    "planos": []
+  },
+  "resumen": {
+   "locales": 0,
+   "cotas_m2": 0,
+   "disponibles": 0
   }
  }
 ]

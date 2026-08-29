@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Guía de instalación — Estudio Copylab</title>
+<title>Guía de instalación (Windows) — Estudio Copylab</title>
 <style>
   :root{
     --tinta:#1a1a1a; --fondo:#faf9f6; --panel:#ffffff; --borde:#e3e0d8;
@@ -30,7 +30,7 @@
   pre{background:var(--code-bg);border:1px solid var(--borde);border-radius:10px;
     padding:14px 18px;overflow-x:auto;font-size:.92rem;line-height:1.55;margin:12px 0}
   code{background:var(--code-bg);border-radius:5px;padding:1px 6px;
-    font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em}
+    font-family:"Cascadia Mono",Consolas,Menlo,monospace;font-size:.9em}
   pre code{background:none;padding:0}
   table{width:100%;border-collapse:collapse;margin:14px 0;background:var(--panel);
     font-size:.95rem}
@@ -40,29 +40,31 @@
   ul,ol{margin:8px 0;padding-left:26px}
   li{margin:7px 0}
   .check li{list-style:none;position:relative;padding-left:6px}
-  .check li::before{content:"☐";position:absolute;left:-22px;font-size:1.1rem}
+  .check li::before{content:"\2610";position:absolute;left:-22px;font-size:1.1rem}
   .prueba{display:block;margin-top:8px;font-size:.92rem;color:var(--ok);font-weight:600}
-  .url{font-family:Menlo,Consolas,monospace;font-size:.93em;background:var(--code-bg);
+  .url{font-family:Consolas,monospace;font-size:.93em;background:var(--code-bg);
     padding:1px 7px;border-radius:5px;white-space:nowrap}
   .pie{margin-top:60px;padding-top:16px;border-top:1px solid var(--borde);
     color:var(--gris);font-size:.9rem}
   .kbd{border:1px solid var(--borde);border-bottom-width:2px;border-radius:6px;
-    background:#fff;padding:1px 8px;font-family:Menlo,monospace;font-size:.88em}
+    background:#fff;padding:1px 8px;font-family:Consolas,monospace;font-size:.88em}
   @media print{ body{background:#fff} .caja,pre,table{break-inside:avoid} }
 </style>
 </head>
 <body>
 <div class="lienzo">
 
-<h1>Estudio Copylab — guía de instalación paso a paso</h1>
+<h1>Estudio Copylab — guía de instalación paso a paso <span style="color:var(--gris)">(Windows)</span></h1>
 <p class="sub">Para diseñadores que nunca han usado Claude ni la terminal. Sigue los
 pasos <b>en orden</b>, sin saltarte ninguno. Tiempo total: <b>±1 hora</b>, la mitad
-son descargas. Al final vas a tener el estudio completo funcionando en tu Mac.</p>
+son descargas. Al final vas a tener el estudio completo funcionando en tu PC.</p>
 
-<div class="caja"><b>🍎 Esta es la versión para Mac.</b>
-Si trabajas en Windows, usa la otra guía: <code>docs/GUIA-INSTALACION-WINDOWS.html</code>.
-El estudio es el mismo — cambian las instalaciones del paso 1 y los comandos de la
-terminal.</div>
+<div class="caja"><b>💻 Esta es la versión para Windows 10 / 11.</b>
+Si trabajas en Mac, usa la otra guía: <code>docs/GUIA-INSTALACION.html</code>.
+El estudio es exactamente el mismo — lo que cambia son las instalaciones del paso 1,
+los comandos de la terminal y un par de trampas propias de Windows que están
+marcadas en rojo. Todo lo demás (comandos de Claude, rutina diaria, reglas de
+diseño) es idéntico para las dos.</div>
 
 <div class="caja ojo"><b>⚠️ Antes de partir, necesitas que Valeria te haya dado:</b>
 <ul class="check">
@@ -76,45 +78,75 @@ detiene a la mitad.</div>
 <!-- ══════════════════════ PASO 1 ══════════════════════ -->
 <h2><span class="n">1</span>Instalar los programas (una sola vez)</h2>
 
-<p>Cuatro instalaciones. Todas son «descargar → abrir → siguiente, siguiente, listo».</p>
+<p>Cinco instalaciones. Todas son «descargar → abrir → siguiente, siguiente, listo»,
+pero <b>dos tienen una casilla que hay que marcar</b> y están avisadas abajo.</p>
 
 <table>
-<tr><th>Programa</th><th>Dónde se descarga</th><th>Para qué</th></tr>
+<tr><th>Programa</th><th>Dónde se descarga</th><th>Para qué / qué marcar</th></tr>
 <tr><td><b>Google Chrome</b></td><td><span class="url">https://www.google.com/chrome</span></td>
-<td>El estudio lo usa por dentro para generar las gráficas. Aunque uses Safari, tiene que estar instalado.</td></tr>
+<td>El estudio lo usa por dentro para generar las gráficas. Aunque uses Edge, tiene que estar instalado.</td></tr>
 <tr><td><b>Visual Studio Code</b></td><td><span class="url">https://code.visualstudio.com</span></td>
-<td>El programa donde vas a trabajar. Descarga «Download for macOS», descomprime y arrastra a Aplicaciones.</td></tr>
+<td>El programa donde vas a trabajar. Baja «Download for Windows» (User Installer) y ábrelo.
+<b>Marca la casilla «Agregar a PATH»</b> cuando el instalador la ofrezca.</td></tr>
 <tr><td><b>Node.js (versión LTS)</b></td><td><span class="url">https://nodejs.org</span></td>
-<td>El motor de render. Baja el instalador <b>LTS</b> para macOS (botón verde) y ábrelo.</td></tr>
-<tr><td><b>Git</b></td><td>ya viene en el Mac</td>
-<td>Se activa solo en el paso 2. Si el Mac te pregunta si quieres instalar «herramientas de desarrollo», dile que sí.</td></tr>
+<td>El motor de render. Baja el instalador <b>LTS</b> para Windows (<code>.msi</code>) y ábrelo. Siguiente hasta el final.</td></tr>
+<tr><td><b>Git para Windows</b></td><td><span class="url">https://git-scm.com/download/win</span></td>
+<td>🔴 <b>En Windows NO viene incluido — hay que instalarlo.</b> Es lo que descarga el
+estudio y lo que sube tu trabajo. Deja todas las opciones como vienen y aprieta
+siguiente hasta el final.</td></tr>
+<tr><td><b>Python 3</b></td><td><span class="url">https://www.python.org/downloads</span></td>
+<td>🔴 <b>Tampoco viene en Windows.</b> Es lo que mide colores, tipografías y genera las
+imágenes IA. <b>En la PRIMERA pantalla del instalador marca la casilla
+«Add python.exe to PATH»</b> antes de apretar Install. Si no la marcas, nada funciona
+y hay que desinstalar y repetir.</td></tr>
 </table>
 
-<div class="caja exito"><b>✅ Cómo saber que quedó bien:</b> abre la app
-<b>Terminal</b> (⌘ + espacio, escribe «Terminal», Enter), pega esta línea y aprieta Enter:
-<pre><code>node --version</code></pre>
-Tiene que responder algo como <code>v24.x.x</code>. Si dice «command not found»,
-Node no se instaló — vuelve a bajarlo de nodejs.org.</div>
+<h3>Cómo se abre la terminal en Windows</h3>
+<p>Vas a usarla poco (casi todo lo hace Claude), pero la necesitas ahora. Aprieta
+<span class="kbd">Win</span> + <span class="kbd">X</span> y elige <b>Terminal</b>
+(en Windows 10 dice <b>Windows PowerShell</b>). También puedes apretar
+<span class="kbd">Win</span>, escribir «PowerShell» y darle Enter.</p>
+
+<div class="caja exito"><b>✅ Cómo saber que quedó bien:</b> en esa ventana pega estas
+dos líneas, una a la vez, y aprieta Enter:
+<pre><code>node --version
+python --version</code></pre>
+Tienen que responder algo como <code>v22.x.x</code> y <code>Python 3.12.x</code>.
+Si alguna dice <i>«no se reconoce como un comando»</i>, ese programa no quedó
+instalado o no marcaste la casilla del PATH — vuelve a bajarlo e instálalo de nuevo.</div>
+
+<div class="caja alerta"><b>⛔ La trampa nº 1 de Windows: PowerShell bloquea npm</b>
+Si en cualquier momento te aparece <i>«no se puede cargar el archivo npm.ps1 porque
+la ejecución de scripts está deshabilitada en este sistema»</i>, no está roto nada:
+Windows viene con los scripts bloqueados de fábrica. Pega esto <b>una sola vez</b> en
+PowerShell, dile que <b>S</b> (sí) y sigue con la guía:
+<pre><code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code></pre></div>
 
 <!-- ══════════════════════ PASO 2 ══════════════════════ -->
 <h2><span class="n">2</span>Descargar el estudio</h2>
 
 <div class="caja alerta"><b>⛔ LA REGLA MÁS IMPORTANTE DE TODA LA GUÍA</b>
-El estudio <b>NUNCA</b> va en Escritorio, Documentos ni Descargas. Esas carpetas las
-sincroniza iCloud, e iCloud «congela» archivos en silencio: todo funciona dos días y
-después muere sin aviso. Ya nos pasó dos veces. El estudio vive en una carpeta
-llamada <code>copylab</code> directamente en tu usuario — los comandos de abajo la
-crean solos en el lugar correcto.</div>
+El estudio <b>NUNCA</b> va en Escritorio, Documentos, Imágenes ni Descargas. En
+Windows esas carpetas las sincroniza <b>OneDrive</b>, y OneDrive «libera espacio»
+dejando los archivos en la nube en silencio: todo funciona dos días y después muere
+sin aviso, con errores de archivos que no existen y renders que se cancelan solos.
+Ya nos pasó dos veces (en Mac fue iCloud, es exactamente el mismo problema). El
+estudio vive en una carpeta llamada <code>copylab</code> directamente en tu usuario
+—<code>C:\Users\tunombre\copylab</code>— y los comandos de abajo la crean solos en el
+lugar correcto.</div>
 
 <p><b>2.1</b> — Acepta la invitación de GitHub: revisa tu correo, busca un mensaje de
 GitHub que dice «invited you to collaborate» y aprieta <b>Accept invitation</b>.
 Si no tienes cuenta de GitHub, créala primero en
 <span class="url">https://github.com/signup</span> con tu correo @copywriters.cl.</p>
 
-<p><b>2.2</b> — Abre la <b>Terminal</b> y pega estas líneas <b>de una vez, todas juntas</b>,
-y aprieta Enter:</p>
+<p><b>2.2</b> — Abre <b>PowerShell</b> (<span class="kbd">Win</span> +
+<span class="kbd">X</span> → Terminal) y pega estas líneas <b>de una vez, todas
+juntas</b>, y aprieta Enter:</p>
 
-<pre><code>mkdir -p ~/copylab && cd ~/copylab
+<pre><code>git config --global core.longpaths true
+mkdir "$HOME\copylab" -Force
+cd "$HOME\copylab"
 git clone https://github.com/valeria272/dise-o.git "EDITOR VIDEOS"
 cd "EDITOR VIDEOS"
 git checkout estudio/sistema-de-marcas
@@ -123,11 +155,18 @@ npm install</code></pre>
 <p>La primera vez, git te va a pedir <b>iniciar sesión en GitHub</b> (se abre el
 navegador — usa tu cuenta que aceptó la invitación). Después <code>npm install</code>
 descarga dependencias por varios minutos: es normal, espera a que vuelva a aparecer
-el cursor.</p>
+el cursor. En Windows suele tardar más que en Mac porque el antivirus revisa cada
+archivo — no lo interrumpas aunque parezca colgado.</p>
 
-<div class="caja exito"><b>✅ Cómo saber que quedó bien:</b> pega esto en la Terminal:
-<pre><code>ls ~/copylab/"EDITOR VIDEOS"/CLAUDE.md</code></pre>
-Si te muestra la ruta del archivo (y no un error), el estudio está descargado.</div>
+<div class="caja ojo"><b>⚠️ La primera línea no es opcional.</b>
+<code>core.longpaths true</code> le permite a Windows manejar rutas largas. Sin ella,
+<code>npm install</code> falla a la mitad con <i>«Filename too long»</i>, porque
+Windows corta los nombres de archivo a 260 caracteres y las dependencias del estudio
+se pasan.</div>
+
+<div class="caja exito"><b>✅ Cómo saber que quedó bien:</b> pega esto en PowerShell:
+<pre><code>Get-Item "$HOME\copylab\EDITOR VIDEOS\CLAUDE.md"</code></pre>
+Si te muestra el archivo (y no un error rojo), el estudio está descargado.</div>
 
 <!-- ══════════════════════ PASO 3 ══════════════════════ -->
 <h2><span class="n">3</span>Instalar Claude en VSCode</h2>
@@ -135,9 +174,11 @@ Si te muestra la ruta del archivo (y no un error), el estudio está descargado.<
 <ol>
 <li>Abre <b>Visual Studio Code</b>.</li>
 <li>Menú <b>File → Open Folder…</b> y elige la carpeta
-<code>copylab → EDITOR VIDEOS</code> (está en tu carpeta de usuario, la casita).</li>
+<code>C:\Users\tunombre\copylab\EDITOR VIDEOS</code>.</li>
+<li>Si VSCode pregunta <i>«Do you trust the authors of the files in this folder?»</i>,
+responde <b>Yes, I trust the authors</b>. Si dices que no, Claude no puede trabajar.</li>
 <li>En la barra izquierda, aprieta el ícono de <b>Extensiones</b> (cuatro cuadraditos)
-o <span class="kbd">⇧⌘X</span>.</li>
+o <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">X</span>.</li>
 <li>Busca <b>«Claude Code»</b> (el editor es Anthropic) e instálalo.</li>
 <li>Aparece el ícono de Claude — ábrelo e <b>inicia sesión</b> con la cuenta de
 claude.ai que te asignaron.</li>
@@ -151,7 +192,8 @@ leyendo el proyecto correctamente.</div>
 <h2><span class="n">4</span>Activar los conectores (en tu cuenta de claude.ai)</h2>
 
 <p>Los conectores le dan a Claude acceso a Drive, Canva, etc. <b>Viven en tu cuenta,
-no en el proyecto</b>: se activan una sola vez, en el navegador.</p>
+no en el proyecto</b>: se activan una sola vez, en el navegador. Esta parte es igual
+en Windows y en Mac.</p>
 
 <p>Entra a <span class="url">https://claude.ai/settings/connectors</span> y activa:</p>
 
@@ -176,7 +218,7 @@ conectan de forma distinta. Confundirlas es exactamente lo que hace perder un d�
 <ul>
 <li><b>Magnific (= Freepik)</b> es <b>el generador de imágenes de la casa</b> — fondos,
 ambientes, escalado, reiluminación. <b>NO es un conector</b>: funciona con una
-<b>clave</b> que se instala una sola vez en tu Mac (abajo). No hay nada que activar
+<b>clave</b> que se instala una sola vez en tu PC (abajo). No hay nada que activar
 en claude.ai.</li>
 <li><b>Higgsfield</b> es solo para <b>video IA / UGC / personajes</b>. Ese sí es un
 <b>conector</b> de claude.ai, y además necesita que la cuenta tenga créditos.</li>
@@ -184,12 +226,18 @@ en claude.ai.</li>
 
 <p><b>Instalar la clave de Magnific (2 minutos, una sola vez):</b></p>
 <ol>
-<li>Abre la <b>Terminal</b> (⌘ + espacio → «Terminal»).</li>
-<li>Pega esta línea completa y aprieta Enter:</li>
+<li>Abre <b>PowerShell</b> (<span class="kbd">Win</span> + <span class="kbd">X</span> → Terminal).</li>
+<li>Pega esta línea completa, reemplazando el texto en mayúsculas por la clave, y aprieta Enter:</li>
 </ol>
-<pre><code>echo "PEGA-AQUI-LA-CLAVE-FREEPIK" > ~/.magnific_key</code></pre>
+<pre><code>Set-Content -Path "$HOME\.magnific_key" -Value "PEGA-AQUI-LA-CLAVE-FREEPIK" -Encoding ascii -NoNewline</code></pre>
 <p>La clave viene escrita en esta guía tal cual — cópiala con el botón derecho para
 no perder ningún carácter. Los scripts del estudio la leen solos desde ese archivo.</p>
+
+<div class="caja alerta"><b>⛔ En Windows NO uses <code>echo clave &gt; archivo</code></b>
+para guardar la clave, aunque lo veas escrito en otra parte o te lo sugiera alguien.
+PowerShell guarda con <code>&gt;</code> en un formato distinto (UTF-16) y la clave
+queda ilegible para el estudio: te va a decir que la clave es inválida aunque esté
+bien copiada. Usa exactamente la línea de arriba, con <code>Set-Content</code>.</div>
 
 <div class="caja exito"><b>✅ Cómo saber que quedó bien:</b> en el chat de Claude
 escribe: <i>«verifica mi clave de Magnific sin gastar créditos»</i>. Claude hace una
@@ -231,6 +279,13 @@ exactamente:</p>
 (las 56 notas con todo lo aprendido de cada marca — sin esto Claude «olvida» meses de
 trabajo), verifica el conector de Drive, revisa tipografías y corre un diagnóstico.
 Si necesita algo de ti, te lo pide con la instrucción exacta. Déjalo terminar.</p>
+
+<div class="caja ojo"><b>⚠️ Dile en tu primer mensaje que estás en Windows.</b>
+Basta con «estoy en Windows» al pedir <code>/arranque</code>. El estudio nació en
+Mac y algunos comandos de sus manuales están escritos con rutas de Mac; avisando,
+Claude usa las de Windows sin equivocarse. El Python del estudio, por ejemplo, queda
+en <code>C:\Users\tunombre\copylab-venv\Scripts\python.exe</code> (en Mac es otra
+ruta). No tienes que memorizar eso — solo avisar.</div>
 
 <div class="caja exito"><b>✅ La prueba final de la instalación</b> — pídele a Claude:
 <i>«hazme una pieza simple de EBEMA para probar que todo funciona»</i>.
@@ -326,18 +381,37 @@ ya aprobada desde cero. Solo cuando esa reproducción calza, la marca está list
 producir. Al final del día: <code>/cierre</code>, y el sistema del cliente nuevo queda
 disponible para todo el equipo.</p>
 
+<div class="caja ojo"><b>⚠️ Tipografías en Windows:</b> cuando el cliente te mande los
+<code>.ttf</code> o <code>.otf</code>, instálalos <b>también en el sistema</b> — botón
+derecho sobre el archivo → <b>Instalar para todos los usuarios</b>. Además hay que
+dejar una copia dentro del estudio para que las piezas rindan igual en todas las
+máquinas; pídeselo a Claude: <i>«guarda estas tipografías en el estudio para
+&lt;marca&gt;»</i>.</div>
+
 <!-- ══════════════════════ PASO 8 ══════════════════════ -->
 <h2><span class="n">8</span>Si algo se rompe</h2>
 
 <table>
 <tr><th>Te pasa esto</th><th>Es esto</th><th>Se arregla así</th></tr>
+<tr><td><i>«npm.ps1 … la ejecución de scripts está deshabilitada»</i></td>
+<td>PowerShell bloquea scripts de fábrica</td>
+<td>Paso 1 — la caja roja: <code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code></td></tr>
+<tr><td><i>«Filename too long»</i> a la mitad de <code>npm install</code></td>
+<td>El límite de 260 caracteres de Windows</td>
+<td><code>git config --global core.longpaths true</code> y repite <code>npm install</code></td></tr>
+<tr><td><i>«python no se reconoce como un comando»</i></td>
+<td>No marcaste «Add python.exe to PATH» al instalar</td>
+<td>Desinstala Python, vuelve a instalarlo <b>marcando la casilla</b> (paso 1)</td></tr>
+<tr><td>Errores raros, archivos «en la nube», renders que se cancelan solos</td>
+<td>El estudio quedó dentro de OneDrive (Escritorio o Documentos)</td>
+<td>Muévelo a <code>C:\Users\tunombre\copylab\</code> (paso 2) — o pídele ayuda a Claude</td></tr>
 <tr><td>«No encuentro el material del cliente»</td><td>Falta el conector de Drive, o falta abrir chat nuevo</td>
 <td>Paso 4 — y abre una conversación nueva</td></tr>
 <tr><td>El render no genera nada</td><td>Falta Chrome</td><td>Paso 1</td></tr>
-<tr><td>Errores raros, archivos «en la nube», renders que se cancelan solos</td><td>El estudio quedó dentro de iCloud</td>
-<td>Muévelo a <code>~/copylab/</code> (paso 2) — o pídele ayuda a Claude</td></tr>
 <tr><td>Git te pide claves y no sabes qué poner</td><td>No aceptaste la invitación de GitHub o no iniciaste sesión</td>
 <td>Paso 2.1</td></tr>
+<tr><td><code>npm install</code> parece colgado hace 10 minutos</td><td>El antivirus revisando archivo por archivo</td>
+<td>Es normal en Windows. Espera. Solo preocúpate si aparece un error en rojo</td></tr>
 <tr><td>Cualquier otra cosa</td><td>—</td><td>Escríbele a Claude: <b>«corre el doctor»</b>. Diagnostica solo y te dice qué falta</td></tr>
 </table>
 
@@ -346,9 +420,10 @@ español, como le preguntarías a un compañero. «¿Por qué no me carga el Dri
 «¿dónde quedó la última entrega de Between?», «¿qué me falta instalar?». El proyecto
 está documentado para que Claude sepa responderte — no necesitas saber programar nada.</div>
 
-<p class="pie">Estudio Copylab · actualizada 27-08-2026 · Esta guía también vive en el
-repo: <code>docs/GUIA-INSTALACION.html</code> — la versión del repo es la que se
-mantiene al día.</p>
+<p class="pie">Estudio Copylab · versión Windows · actualizada 28-08-2026 · Esta guía
+también vive en el repo: <code>docs/GUIA-INSTALACION-WINDOWS.html</code> — la versión
+del repo es la que se mantiene al día. La versión para Mac es
+<code>docs/GUIA-INSTALACION.html</code>.</p>
 
 </div>
 </body>

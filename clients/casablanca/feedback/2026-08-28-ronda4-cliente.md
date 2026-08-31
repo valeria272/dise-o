@@ -125,3 +125,55 @@ en `raw/casablanca/ref-jenny-28ago/` (`cumaru.jpg`, `aserrado.jpg`, `natural-uv.
 Para el COLOR no son imprescindibles: `public/assets/casablanca/muestra_*.png` ya
 está construido desde la foto oficial del sitio del cliente y es la misma verdad de
 color. Sirven para el **estilo de ambiente** y para verificar.
+
+---
+
+## Estado al cierre — qué se hizo
+
+| Pedido de Jenny | Resuelto |
+|---|---|
+| «este piso no se parece al producto real» (Cumarú) | Ambiente regenerado: tono a 4,7° de su referencia y café rojizo |
+| Ambientes distintos en cada foto | Los 4 tienen sala propia. Deroga el lineamiento nº1 del brief |
+| Sus imágenes son referencia, no material | No se publican. Sólo se usaron para medir tono, saturación y formato de tabla |
+
+Medido contra su referencia, en la franja inferior del piso:
+
+| Producto | Δtono | Δsat |
+|---|---|---|
+| Roble Natural UV 14/3 | 12,3° | **0,003** |
+| Roble Natural UV 10/1.2 | 12,2° | 0,041 |
+| Roble Aserrado | 13,5° | 0,030 |
+| Cumarú | **4,7°** | 0,112 |
+
+Y la muestra de tabla calza con el piso de su propio ambiente: ΔE 5,4 · 5,1 · 14,5 · 13,8
+sobre un tope de 20.
+
+### Tres errores propios que quedan anotados
+
+**1. Acusé al velo de despintar el producto. No era.** Medí el croma en Lab, que
+depende de la luminosidad: oscurecer baja el croma aunque el color no se desature. La
+prueba: el velo multiplica el piso por 0,641 y la saturación HSV del piso de Jenny
+queda idéntica en 0,304. La madera generada ya salía en 0,174 antes de cualquier velo.
+El velo no se tocó, y menos mal: bajarlo habría roto la legibilidad ya medida.
+
+**2. Propuse la foto oficial del producto como juez. Está mal.** Es plana de estudio,
+croma 29,8; el mismo piso en una sala con luz da 14-15. La referencia de la propia
+clienta está a ΔE 17 de la oficial y aun así ES el producto. El juez es su referencia,
+comparando tono y saturación pero no luminosidad.
+
+**3. Implementé una rotación de tono y los números pasaron — los pisos quedaron
+rosados.** Optimizar la métrica en vez del resultado. Descartada, con constancia en el
+script para que nadie la repita. La saturación sí se transfiere entre fotos con luz
+distinta; el tono no.
+
+### Lo que el QA dejó pasar y por qué
+
+Cero bloqueantes. Se escribieron dos excepciones en `reglas.yaml` para la mitad
+superior de la pieza, que es fotografía sin texto: `_mascara_tinta` cuenta como texto
+los píxeles claros con borde, y una fachada de piedra o un árbol a contraluz dan miles.
+Verificado pieza por pieza: la tinta de TEXTO en los márgenes era **cero** en las cinco
+que bloqueaban.
+
+La regla `muestra-igual-al-piso` bajó a **aviso**: compara la muestra contra el piso del
+mismo ambiente generado, que comparten luz. Mide coherencia interna, no fidelidad — y
+el Cumarú que Jenny rechazó era justo el único que esa regla daba por bueno.

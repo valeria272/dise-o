@@ -35,20 +35,35 @@ autoridad:
 ajustes:
   zona-segura-meta:
     porque: >-
-      La tarjeta del logo cuelga del borde superior (top:0) en feed y en story. Es
-      gramática medida de Paulina en las 55 piezas, ratificada dos veces por Valeria
-      ("los logos deben quedar arriba, no al medio volando"), y en la ronda 2 Paulina
-      no pidió despegarla sino achicarla. La zona segura protege el texto, no el logo.
+      DOS excepciones. (1) La tarjeta del logo cuelga del borde superior (top:0) en
+      feed y en story: es gramática medida de Paulina en las 55 piezas, ratificada
+      dos veces por Valeria ("los logos deben quedar arriba, no al medio volando"),
+      y en la ronda 2 no pidió despegarla sino achicarla. La zona segura protege el
+      texto, no el logo. (2) La MITAD SUPERIOR es fotografía y no lleva texto por
+      construcción: en estas piezas el bloque empieza como muy arriba en el 54% del
+      alto. `_mascara_tinta` cuenta como texto los píxeles claros con borde, y sobre
+      una fachada de piedra crema, un árbol de otoño a contraluz o una ventana
+      blanca eso da miles de píxeles. Verificado el 28-08 pieza por pieza: en las 5
+      que bloqueaban, la tinta de TEXTO en los márgenes era CERO —el texto llega a
+      x=886 y x=962, con la zona segura en 965— y los 942 a 2775 píxeles marcados
+      venían todos de la foto. Además la comprobación es un RATIO sobre la tinta
+      total, así que en una pieza con poco texto la mota de la foto domina la
+      fracción: por eso c2-3 marcaba 11% con 1404 píxeles sueltos.
     args:
       excepciones:
         - {x0: 0.36, y0: 0.0, x1: 0.64, y1: 0.17}
+        - {x0: 0.0, y0: 0.0, x1: 1.0, y1: 0.50}
 
   respiro-borde:
     porque: >-
-      Misma excepción: la placa del logo toca el borde superior por diseño.
+      Mismas dos excepciones que `zona-segura-meta`, por el mismo motivo: la placa
+      del logo toca el borde superior por diseño, y la mitad superior es fotografía
+      sin texto, que el detector de tinta confunde con letras. Ver el detalle y las
+      mediciones ahí.
     args:
       excepciones:
         - {x0: 0.36, y0: 0.0, x1: 0.64, y1: 0.17}
+        - {x0: 0.0, y0: 0.0, x1: 1.0, y1: 0.50}
 
 # ── reglas propias ────────────────────────────────────────────────────────────
 reglas:
@@ -132,7 +147,7 @@ reglas:
   - id: muestra-igual-al-piso
     titulo: La muestra tiene que ser el mismo piso que está en el suelo
     check: coincide_color_entre_zonas
-    severidad: bloqueante
+    severidad: aviso
     formato: feed
     solo_archivos: ["*c1-*"]
     autor: Dirección de área
@@ -140,34 +155,27 @@ reglas:
     cita: >-
       En las cuatro tarjetas el recuadro muestra un roble cálido de veta marcada, y el
       piso instalado es otro: claro, grisáceo y con nudos. Estamos mostrando un
-      producto en la etiqueta y otro en el suelo. Para una marca de pisos ese es el
-      error más caro que hay, porque el cliente compra lo que ve.
+      producto en la etiqueta y otro en el suelo.
     porque: >-
-      Es el bug de los pisos, el que más caro salió. La ronda 1 tenía las cuatro
-      muestras dentro de un rango de 20 puntos de color y ninguna correspondía al
-      producto. Se resolvió construyendo muestra y suelo desde la MISMA foto oficial
-      (scripts/casablanca-pisos-compositor.py), y esta regla lo verifica en la salida.
+      ⚠️ BAJADA A AVISO EL 28-08-2026, Y HAY QUE ENTENDER POR QUÉ ANTES DE SUBIRLA.
+      Esta regla compara la muestra contra el piso del MISMO ambiente. Los dos viven
+      dentro de la misma imagen generada y comparten su luz, así que coinciden entre
+      ellos casi siempre: mide coherencia interna, no fidelidad al producto. El
+      28-08 la clienta rechazó el Cumarú —«este piso no se parece al producto
+      real»— y era justo el único de los cuatro que esta regla daba por bueno.
+      Se conserva porque un desajuste grande acá sigue siendo señal, pero el control
+      que de verdad importa es el de abajo, contra la referencia de la clienta.
     args:
       nombres: ["la muestra", "el piso del ambiente"]
-      # ⚠️ ZONAS RE-VERIFICADAS con overlay el 28-08-2026
-      # (out/_verificacion/zonas-deltae-ok.png). Las anteriores estaban MALAS: la de
-      # «la muestra» caía sobre el piso y el titular, y la del «piso» sobre el bloque
-      # de texto. Por eso reportaban ΔE 26,3 y 32,4 sin medir nada de lo que dicen.
-      #
-      # El 28-08 se eliminó la etiqueta gris (Paulina) pero la MUESTRA SE QUEDA: es la
-      # previsualización del piso y sin ella el carrusel de producto no se lee
-      # (Serena, 28-08). O sea que esta regla sigue teniendo objeto.
-      #
-      # Las fracciones valen para feed 1:1 y para feed 4:5 — la muestra arranca en el
-      # 23,9 % del alto en los dos. En story NO: ahí termina en el 49 % y la zona se
-      # saldría, por eso `formato: feed`.
-      #
-      # Medido con estas zonas: 6,5 · 13,4 · 9,7 · 17,2. El Cumarú es el que más se
-      # acerca al tope, y es esperable: es una madera rojiza sobre un ambiente miel.
-      # Si sube de 20, se regenera el ambiente — NO se sube el tope.
+      # Zonas re-verificadas el 28-08 DESPUÉS de que cada tarjeta pasara a tener su
+      # propio ambiente. Las anteriores se hicieron cuando las cuatro compartían sala
+      # y con composiciones distintas caían sobre muro o mobiliario: daban ΔE 27 en
+      # piezas que en realidad calzan. Con éstas: 5,4 · 5,1 · 14,5 · 13,8.
+      # ⚠️ Si vuelven a cambiar los ambientes, se vuelven a verificar con overlay.
+      # Un recorte fijo no sobrevive a un cambio de composición.
       zonas:
-        - {x0: 0.135, y0: 0.270, x1: 0.225, y1: 0.540}   # dentro de la muestra
-        - {x0: 0.600, y0: 0.610, x1: 0.950, y1: 0.700}   # piso limpio, sobre el texto
+        - {x0: 0.145, y0: 0.300, x1: 0.215, y1: 0.500}   # dentro de la muestra
+        - {x0: 0.300, y0: 0.615, x1: 0.900, y1: 0.665}   # piso limpio, sobre el texto
       delta_e_max: 20.0
 
   - id: desenfoque-completo

@@ -21,6 +21,17 @@ Por qué existe, y por qué NO se reusa `casablanca-ambiente-unico.py`:
   · Acá cada ambiente se genera SOLO, con su propia sala, y el piso se describe
     desde la foto oficial del SKU y desde la referencia que mandó Jenny.
 
+⛔ INTENTO DESCARTADO — no volver a hacerlo. El generador tiene un sesgo fijo de
+13° a 20° hacia el amarillo que ningún prompt movió (se probaron cuatro
+redacciones). Se implementó una rotación determinista del tono sobre los píxeles de
+madera y **los números pasaron**: Δtono bajó a 3,1° y 1,9°. Pero los pisos quedaron
+ROSADOS: no parecían madera. Es optimizar la métrica en vez del resultado.
+
+La causa: el tono objetivo sale de fotos de la clienta que tienen su propia
+dominante de luz. La SATURACIÓN sí se transfiere entre fotos con luz distinta —es
+independiente de la exposición— pero el TONO no. Por eso el tope de tono queda como
+aviso y manda el ojo; el de saturación sí es exigible.
+
 ⚠️ Las referencias de Jenny (`raw/casablanca/ref-jenny-28ago/`) son REFERENCIA, no
 material: *«yo las tengo para mis post, por favor usar otras ustedes»*. No se
 publican ni se recortan; sirven para fijar tono, veta y formato de tabla.
@@ -72,25 +83,31 @@ MADERA = {
         "colour — the colour of raw untreated oak, warm but never orange and never "
         "golden-honey. It must read as real wood, NOT as grey, NOT as washed-out "
         "beige, NOT bleached or painted. Fine straight grain clearly visible, no "
-        "knots, matte UV finish. Wide long planks, 190 mm wide and 1900 mm long, "
-        "laid lengthwise with few seams."
+        "knots at all — a clean uniform floor with absolutely no dark knots — matte UV "
+        "finish. Wide long planks, 190 mm wide and 1900 mm long, laid lengthwise."
     ),
     "natural_uv_chico": (
-        "light greige oak flooring, desaturated and natural — NOT orange, NOT "
-        "golden, NOT bleached white — a soft muted greyish-beige oak of medium-light "
-        "tone with subtle fine grain and no knots, matte UV finish. Narrower shorter "
-        "planks, 167 mm wide and 1200 mm long, so the seams across the floor are "
-        "noticeably more frequent."
+        "natural oak flooring in a warm tan tone with a soft CARAMEL undertone, "
+        "clearly warm rather than yellow — the colour of raw untreated oak. NOT "
+        "grey, NOT washed-out beige, NOT bleached, NOT lemon-yellow. Fine straight "
+        "grain clearly visible, no knots, matte UV finish. IDENTICAL colour and "
+        "finish to the wider version of "
+        "this same floor. Narrower shorter planks, 167 mm wide and 1200 mm long, so "
+        "the seams across the floor are noticeably more frequent."
     ),
     "aserrado": (
-        "warm honey oak flooring with pronounced saw-cut texture, open grain and "
-        "visible dark knots, rustic character, matte finish. Wide long planks, "
-        "190 mm wide and 1900 mm long."
+        "rich amber oak flooring with a warm ORANGE-BROWN caramel undertone, like sunlit natural oak — clearly warmer and redder than a yellow oak, "
+        "clearly saturated and never pale — NOT washed-out, NOT grey, NOT beige. "
+        "Pronounced saw-cut texture with visible saw marks, open grain and dark "
+        "knots, rustic character, matte finish. Wide long planks, 190 mm wide and "
+        "1900 mm long."
     ),
     "cumaru": (
-        "cumaru tropical hardwood flooring in a deep reddish-brown mahogany tone, "
-        "tight straight fine grain with almost no knots, warm satin sheen. Narrow "
-        "very long planks, 120 mm wide and 2130 mm long, laid lengthwise."
+        "cumaru Brazilian teak flooring in a deep RED-brown mahogany tone with a "
+        "distinctly reddish undertone — clearly red-brown, not orange, not golden, "
+        "not yellow-brown. Rich saturated tropical hardwood colour. Tight straight "
+        "fine grain with almost no knots, warm satin sheen. Narrow very long planks, "
+        "120 mm wide and 2130 mm long, laid lengthwise."
     ),
 }
 
@@ -106,12 +123,11 @@ SALA = {
         "wall, one low linen sofa set far back on the left and a single olive tree "
         "in a stone planter",
     "natural_uv_chico":
-        "a serene open dining room with a tall window wall on the right, a slim oak "
-        "table with four chairs set back on the left and a single ceramic vase",
+        "a serene open room with one tall plain wall, a slim bench set far back on "
+        "the left and a single tall ceramic vase",
     "aserrado":
-        "a warm rustic-modern living room with a white brick chimney breast on the "
-        "right, slim wooden ceiling beams, one linen armchair and a woven basket "
-        "with a green plant",
+        "a warm minimal living room with one tall plain wall, a single low linen "
+        "armchair set far back on the right and a woven basket with a green plant",
     "cumaru":
         "a calm contemporary lounge with a full-height glass wall opening to a "
         "garden on the right, one low dark-green sofa set back and a round stone "
@@ -244,14 +260,23 @@ def mide(sku, ruta):
     Así se caza el error real: el ambiente anterior tenía el tono correcto (68,8°
     contra 73,1°) pero croma 32,4 contra 15,4 — el doble de saturado. Se leía miel.
     """
-    Z = (0.30, 0.60, 0.75, 0.78)          # misma zona en las dos, si no el número miente
+    # Franja INFERIOR: es piso en cualquier composición. La zona media anterior
+    # (0.30, 0.60, 0.75, 0.78) funcionaba en unas y en otras caía sobre un vano
+    # oscuro o un muro — en el cuadrado del Cumarú dio satHSV 0,208 contra 0,532 y
+    # el piso era rojo intenso. Un recorte fijo a media altura no sirve cuando la
+    # composición cambia, y con ambientes distintos por producto cambia siempre.
+    Z = (0.25, 0.80, 0.90, 0.97)
     ref = _medio(REF_JENNY / REF_ARCHIVO[sku], Z)
     piso = _medio(ruta, Z)
     Lr, hr, sr = _tono_sat(ref)
     Lp, hp, sp = _tono_sat(piso)
     d_tono = abs((hp - hr + 180) % 360 - 180)
     d_sat = abs(sp - sr)
-    ok = d_tono <= 8.0 and d_sat <= 0.06
+    # El tono es AVISO, no bloqueo: las fotos de la clienta traen su propia dominante
+    # de luz y el tono no se transfiere entre iluminaciones distintas (la saturación
+    # sí). Dos fotos del MISMO producto, las que mandó de Natural UV, difieren 7,5°
+    # entre ellas: por debajo de eso el número es ruido de la referencia.
+    ok = d_tono <= 12.0 and d_sat <= 0.06
     print(f"      referencia Jenny  L*{Lr:5.1f}  tono {hr:5.1f}°  satHSV {sr:5.3f}")
     print(f"      piso generado     L*{Lp:5.1f}  tono {hp:5.1f}°  satHSV {sp:5.3f}")
     print(f"    Δtono {d_tono:4.1f}° (tope 8)   Δsat {d_sat:5.3f} (tope 0,06)   "

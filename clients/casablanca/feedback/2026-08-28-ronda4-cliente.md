@@ -227,3 +227,19 @@ las referencias de Jenny.
 `muestra-igual-al-piso` quedó acotada a `*_feed45.png`: sus zonas están verificadas
 con overlay en 4:5 y en 1:1 el piso queda más abajo, así que el recorte caía sobre el
 muro y daba ΔE 18,2 sobre un gris. Con la zona correcta, 3,6.
+
+---
+
+## ✅ APROBADA — 31-08-2026
+
+Jenny aprobó con dos ajustes, ya aplicados:
+
+1. **Usar su foto para el Cumaru.** Excepción explícita a su propia instrucción del
+   28-08 de usar imágenes propias: para este producto pidió la suya. Las otras tres
+   siguen con ambiente generado desde su referencia.
+2. **«Cumaru» sin tilde.** ⛔ Revierte el §11 de la ronda 2, que fijaba «Cumarú» con
+   tilde por decisión de Valeria y descartaba el «CUMARU» del brief como «la mayúscula
+   de una planilla». Era la grafía de la clienta.
+
+Estado final: QA 0 bloqueantes 0 avisos · contraste peor caso 4,94:1 ·
+muestra ↔ piso del Cumaru ΔE 6,3 / 7,7 / 2,9 en feed45, story y feed.

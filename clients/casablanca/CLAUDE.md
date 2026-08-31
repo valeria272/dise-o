@@ -736,7 +736,7 @@ personas que no existen y con porcelanato de gran formato en una marca que se ll
 Pisos de Madera. La salida propuesta: **foto real del showroom sin gente**, o un
 **plano de manos sobre las muestras**. Pendiente de decisión de Valeria.
 
-### 11. ✅ La grafía es **Cumarú** — fijada
+### 11. ⛔ La grafía era «Cumarú» — DEROGADO el 31-08, ver abajo
 
 Confirmado por Valeria el 25-08-2026. Se escribe **Cumarú**: con U y con tilde.
 
@@ -974,3 +974,34 @@ alfa está medido para 5:1 de contraste y bajarlo rompe la legibilidad.
   que es fotografía sin texto. `_mascara_tinta` cuenta como texto los píxeles claros
   con borde, y una fachada de piedra o un árbol a contraluz dan miles. Verificado
   pieza por pieza: la tinta de TEXTO en los márgenes era **cero**.
+
+
+---
+
+# ⭐ Septiembre 2026 · ronda 6 — aprobación de la clienta (31-08-2026)
+
+Jenny Campos aprobó la entrega con dos ajustes, y con ellos quedó OK:
+
+> *«Hola estimados en general lo veo bien, solo arreglar lo siguiente:*
+> *Usar la imagen que les mande del cumaru*
+> *Es cumaru no cumarú*
+> *Con esos cambios quedaría OK. Saludos»*
+
+## 1. ⛔ La grafía es **Cumaru**, SIN TILDE
+
+**Esto revierte la decisión de la ronda 2.** El §11 de esa ronda fijaba «Cumarú» con
+tilde, confirmado por Valeria el 25-08, y decía expresamente que el «CUMARU» del brief
+era *«sólo la mayúscula de una planilla, no la grafía de marca»*. Estaba equivocado:
+era la grafía de la clienta, que es quien fabrica y vende el producto.
+
+Manda ella. En pieza y en copy va **Cumaru**.
+
+## 2. El ambiente del Cumaru es SU foto, no una generada
+
+Excepción explícita a lo que ella misma pidió el 28-08 —«usen estas imágenes de
+referencia […] por favor usar otras ustedes»—. Para este producto pidió usar la suya.
+Las otras tres siguen con ambiente generado a partir de su referencia.
+
+`raw/casablanca/ref-jenny-28ago/cumaru.jpg` → ampliada 4× con Magnific precisión →
+recortada a los tres formatos. Es apaisada (1536×1024), así que para 4:5 se bota casi
+la mitad del ancho y para story más todavía.

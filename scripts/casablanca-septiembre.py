@@ -417,7 +417,12 @@ C1 = [
          medida="14/3 · 190 × 1900 mm",
          bajada=["TEXTURA ASERRADA Y VETA A LA VISTA:", "CARÁCTER EN CADA TABLA"]),
     dict(sku="cumaru", n=4,
-         look="LOOK TRADICIONAL", titulo="Cumarú",
+         # ⚠️ «Cumaru» SIN TILDE, y esto REVIERTE una decisión interna. El manual
+         # tenía fijado «Cumarú» con tilde desde el 25-08, confirmado por Valeria, y
+         # decía expresamente que el «CUMARU» del brief era «sólo la mayúscula de una
+         # planilla, no la grafía de marca». La clienta lo corrigió de primera fuente
+         # el 31-08: «Es cumaru no cumarú». Manda ella.
+         look="LOOK TRADICIONAL", titulo="Cumaru",
          medida="12/2 · 120 × 2130 mm",
          bajada=["TABLA LARGA Y ANGOSTA, DEL FORMATO", "CLÁSICO QUE NO SE PASA DE MODA"]),
 ]

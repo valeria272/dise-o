@@ -149,7 +149,13 @@ reglas:
     check: coincide_color_entre_zonas
     severidad: aviso
     formato: feed
-    solo_archivos: ["*c1-*"]
+    # Sólo 4:5, que es donde las zonas están verificadas con overlay. En 1:1 el piso
+    # queda más abajo y el recorte cae sobre el muro: medido el 31-08 en
+    # c1-2 feed daba ΔE 18,2 sobre un gris (143,141,134) que no es piso, y con la
+    # zona correcta —0,700 a 0,760— da 3,6 sobre un cálido (112,102,88).
+    # Si alguna vez hay que cubrir el 1:1, se miden sus propias zonas. No se
+    # reutilizan éstas: es el mismo error que ya costó dos rondas.
+    solo_archivos: ["*c1-*_feed45.png"]
     autor: Dirección de área
     fecha: 2026-08-25
     cita: >-

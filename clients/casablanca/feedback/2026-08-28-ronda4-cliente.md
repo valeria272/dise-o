@@ -180,36 +180,50 @@ el Cumarú que Jenny rechazó era justo el único que esa regla daba por bueno.
 
 ---
 
-## ⛔ CORRECCIÓN DEL 31-08 — el nº4 se leyó al revés
+## Vuelta en falso del 31-08 — queda anotada para no repetirla
 
-Yo leí *«usen estas imágenes de referencia»* como «úsenlas **como** referencia» y
-regeneré los cuatro ambientes con IA calcando su color. **Serena lo corrigió:** Jenny
-pide usar **esas mismas imágenes**, no unas parecidas. Puso una por SKU para eso.
+El nº4 se leyó de dos maneras y se hizo el trabajo dos veces. El mensaje es:
 
-Los ambientes generados quedan descartados. Los cuatro C1 usan ahora las fotos de la
-clienta, ampliadas con Magnific en modo precisión (necesitaban entre 1,5× y 2,7×) y
-recortadas a 2250×2812 y 2250×2250.
+> *"usen estas imágenes de referencia (yo las tengo para mis post, por favor usar
+> otras ustedes)"*
 
-⚠️ **Su mensaje se contradice y hay que preguntárselo.** Cierra con *«yo las tengo
-para mis post, por favor usar otras ustedes»*, que dice literalmente lo opuesto. Si
-ella publica esas fotos en su feed y nosotros también, sale la misma imagen dos veces.
+Se llegó a montar las fotos de la clienta como ambientes —ampliadas con Magnific,
+recortadas a los dos formatos, todo rendido— antes de confirmar que no era eso.
+**Manda el paréntesis:** ella las usa en sus propios posts y pide expresamente que
+usemos otras. Sirven para MEDIR el producto; las piezas llevan ambiente propio.
 
-### Efecto secundario: el velo de C1 tuvo que pasar a medición por percentil
+Coincide con lo que ya decía el manual —el material del cliente no se republica— y
+evita que la misma fotografía salga en su feed y en el nuestro la misma semana.
 
-Sus fotos son más claras y con más sol que los ambientes generados. Con la medición
-por promedio que traía C1, el texto quedaba entre **2,57 y 4,47:1** en las ocho
-piezas — bajo el umbral de 4,5 en todas. El promedio lo bajan las sombras y el texto
-blanco no compite contra la sombra sino contra lo más claro que tiene detrás.
+**Lección:** cuando una instrucción del cliente admite dos lecturas y una de las dos
+implica rehacer la entrega, se pregunta antes de ejecutar. Acá se ejecutó dos veces.
 
-C1 conservaba el promedio porque sus piezas estaban aprobadas así; ese motivo se cayó
-al cambiar los cuatro ambientes enteros. Con `percentil=90`: peor caso **4,77:1**.
+### Lo que sí quedó de esa vuelta
 
-### Cómo quedó
+`velo_medido` con `percentil=90` pasó a usarse también en C1. Se descubrió montando
+las fotos de la clienta, que son más claras, pero el ajuste sirve igual con los
+ambientes generados: sin él el peor caso de contraste es 4,07:1 y con él 4,53:1,
+sobre un umbral de 4,5. C1 venía con medición por promedio porque sus piezas estaban
+aprobadas así, y ese motivo se cayó al cambiar los cuatro ambientes.
+
+---
+
+## Estado final — 31-08-2026
+
+Los cuatro ambientes son **generados por nosotros**, uno por tarjeta, midiendo contra
+las referencias de Jenny.
+
+| Producto | Δtono vs referencia | Δsat | Muestra ↔ piso |
+|---|---|---|---|
+| Roble Natural UV 14/3 | 4,1° | 0,050 | ΔE 4,8 |
+| Roble Natural UV 10/1.2 | 9,9° | 0,089 | ΔE 4,9 |
+| Roble Aserrado | 5,1° | 0,051 | ΔE 13,3 |
+| **Cumarú** | **1,2°** | 0,036 | ΔE 7,5 |
 
 - QA: **0 bloqueantes, 0 avisos**
-- Contraste del texto en las 12 piezas de C1: peor caso 4,77:1
-- Muestra ↔ piso: ΔE **9,6 · 5,4 · 3,8 · 4,8** sobre un tope de 20
+- Contraste del texto en las 12 piezas de C1: peor caso **4,53:1**
+- El Cumarú, que era el reclamo, es el que mejor calza con su referencia
 
-El Cumarú —el que la clienta rechazó— pasa de ser el peor a estar entre los mejores,
-y es esperable: el piso del ambiente ES ahora el producto, así que la muestra no
-puede discrepar.
+`muestra-igual-al-piso` quedó acotada a `*_feed45.png`: sus zonas están verificadas
+con overlay en 4:5 y en 1:1 el piso queda más abajo, así que el recorte caía sobre el
+muro y daba ΔE 18,2 sobre un gris. Con la zona correcta, 3,6.

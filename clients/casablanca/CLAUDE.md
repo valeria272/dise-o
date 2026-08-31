@@ -906,3 +906,71 @@ producto como elemento más grande— se cumple igual.
 - **La serif del titular sigue siendo sustituto** (Bodoni Moda Italic). Punto 1 del
   checklist, 5 minutos de Valeria en Creative Cloud.
 - **Fotos reales de los 4 SKU instalados** — punto 6, a nombre de Jenny.
+
+---
+
+# ⭐⭐ Septiembre 2026 · ronda 5 — LA CLIENTA (28-08-2026) · MANDA SOBRE TODO LO ANTERIOR
+
+Jenny Campos, la clienta, por WhatsApp. Verbatim y detalle completo en
+[`feedback/2026-08-28-ronda4-cliente.md`](feedback/2026-08-28-ronda4-cliente.md).
+
+## 1. ⛔ DEROGADO: «un mismo ambiente en las 4 tarjetas»
+
+> *"por favor usar ambiente distintos en cada foto no el mismo"* — Jenny, 28-08
+
+Esto **anula** el lineamiento nº1 del brief y las dos secciones de este manual que
+lo repiten (§«Por qué el ambiente es uno solo» y el pipeline de la ronda 2). Cada
+tarjeta de C1 tiene ambiente propio desde el 28-08.
+
+No lo corrijas de vuelta citando el brief: el brief es nuestra interpretación de lo
+que ella pidió, y ella lo enmendó de primera fuente. El sistema editorial del 25-08
+ya pedía lo mismo y estaba marcado como contradicción; queda resuelta a su favor.
+
+Script: [`scripts/casablanca-ambientes-jenny.py`](../../scripts/casablanca-ambientes-jenny.py).
+El anterior, `casablanca-ambiente-unico.py`, queda obsoleto para C1.
+
+## 2. El piso tiene que ser el producto — y el juez es la referencia de la clienta
+
+> *"este piso no se parece al producto real"* — Jenny, sobre el Cumarú
+
+Mandó una referencia fotográfica por SKU. Están en `raw/casablanca/ref-jenny-28ago/`.
+
+⚠️ **Son referencia, no material.** *«yo las tengo para mis post, por favor usar
+otras ustedes»*. No se publican ni se recortan.
+
+**Cómo se verifica, y por qué así:**
+
+| Métrica | Sirve | Por qué |
+|---|---|---|
+| Saturación HSV | ✅ el juez | No depende de la exposición: se transfiere entre fotos con luz distinta |
+| Tono Lab | ⚠️ aviso | Cada foto trae su dominante. Dos fotos del MISMO producto, las de Natural UV, difieren 7,5° entre ellas |
+| Croma Lab | ⛔ engaña | Depende de la luminosidad: oscurecer baja el croma sin desaturar nada |
+| ΔE contra la foto oficial del sitio | ⛔ inalcanzable | Es plana de estudio, croma 29,8; el mismo piso en una sala da 14-15 |
+
+**Y la zona se mide en la franja inferior** (`0.25, 0.80, 0.90, 0.97`), que es piso
+en cualquier composición. Un recorte a media altura funcionaba con la sala única y
+con ambientes distintos cae sobre un muro: en el cuadrado del Cumarú dio satHSV
+0,208 cuando el piso era rojo intenso.
+
+## 3. Dos cosas que se probaron y NO funcionan
+
+**Rotar el tono de la madera para calzar la referencia.** Los números pasan —Δtono
+bajó de 15° a 3°— y **los pisos quedan rosados**. Es optimizar la métrica en vez del
+resultado. Descartado, con constancia en el script.
+
+**Bajar el velo porque «despinta el producto».** No lo despinta: el velo multiplica
+por 0,641 y deja la saturación HSV intacta. Lo que se veía apagado era la madera
+generada, que salía con la mitad de saturación que la real. El velo no se toca: su
+alfa está medido para 5:1 de contraste y bajarlo rompe la legibilidad.
+
+## 4. El QA de esta marca, corregido
+
+- `muestra-igual-al-piso` pasó a **aviso**. Compara la muestra contra el piso del
+  mismo ambiente generado: los dos comparten luz, así que mide coherencia interna y
+  no fidelidad. El Cumarú que la clienta rechazó era el único que esa regla aprobaba.
+- Sus zonas se re-verificaron dos veces. **Un recorte fijo no sobrevive a un cambio
+  de composición**, y ahora la composición cambia en cada tarjeta.
+- `zona-segura-meta` y `respiro-borde` llevan una excepción para la mitad superior,
+  que es fotografía sin texto. `_mascara_tinta` cuenta como texto los píxeles claros
+  con borde, y una fachada de piedra o un árbol a contraluz dan miles. Verificado
+  pieza por pieza: la tinta de TEXTO en los márgenes era **cero**.

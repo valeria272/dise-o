@@ -171,6 +171,104 @@ export const BurbujaChat: React.FC<{children: React.ReactNode}> = ({children}) =
   </div>
 );
 
+/**
+ * Checklist de condiciones sobre panel taupe.
+ *
+ * ⭐ RONDA 5 (31-08-2026), comentario de Scarlette sobre la G2 del cumpleaños:
+ * «No me gusta como se ve como post, haria un check list junto con los emojis
+ * que piden». Reemplaza al `MarcoIGPost`: el mockup de Instagram metía una foto
+ * dentro de la pieza —un post dentro de un post— y ella lo quiere directo.
+ *
+ * El emoji que pide el cliente se conserva a la izquierda de cada línea y el
+ * palito del check va aparte, para que se lea como lista y no como viñeta. La
+ * pila de fuentes nombra las de color del sistema por la misma razón que
+ * `BurbujaChat`: Raleway está auto-hospedada y no trae emojis.
+ */
+export const Checklist: React.FC<{
+  items: string[];
+  titulo?: string;
+  notaLegal?: string;
+  ancho?: number;
+}> = ({items, titulo, notaLegal, ancho = 860}) => (
+  <div
+    style={{
+      width: ancho,
+      background: 'rgba(103,91,73,0.93)',
+      borderRadius: 18,
+      padding: '38px 44px',
+      boxShadow: '0 24px 60px rgba(0,0,0,0.35)',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 22,
+    }}
+  >
+    {titulo ? (
+      <div
+        style={{
+          fontFamily: BETWEEN.fuentes.sans,
+          fontWeight: BETWEEN.pesos.extrabold,
+          fontSize: 40,
+          letterSpacing: '-0.01em',
+          color: BETWEEN.colores.beige,
+          textTransform: 'uppercase',
+        }}
+      >
+        {titulo}
+      </div>
+    ) : null}
+
+    {items.map((t, i) => (
+      <div key={i} style={{display: 'flex', alignItems: 'flex-start', gap: 18}}>
+        <div
+          style={{
+            flexShrink: 0,
+            width: 40,
+            height: 40,
+            borderRadius: 8,
+            border: `2.5px solid ${BETWEEN.colores.beige}`,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 26,
+            lineHeight: 1,
+            color: BETWEEN.colores.beige,
+            fontFamily: BETWEEN.fuentes.sans,
+            fontWeight: 800,
+          }}
+        >
+          ✓
+        </div>
+        <div
+          style={{
+            fontFamily: `${BETWEEN.fuentes.sans}, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji'`,
+            fontWeight: 600,
+            fontSize: 34,
+            lineHeight: 1.28,
+            color: '#fff',
+          }}
+        >
+          {t}
+        </div>
+      </div>
+    ))}
+
+    {notaLegal ? (
+      <div
+        style={{
+          fontFamily: BETWEEN.fuentes.sans,
+          fontWeight: 500,
+          fontSize: 24,
+          lineHeight: 1.3,
+          color: 'rgba(255,255,255,0.72)',
+          marginTop: 4,
+        }}
+      >
+        {notaLegal}
+      </div>
+    ) : null}
+  </div>
+);
+
 export const MarcoIGPost: React.FC<{
   usuario?: string;
   foto: React.ReactNode;
@@ -650,8 +748,11 @@ export const TituloTresPesos: React.FC<{
 );
 
 /**
- * Pila de cajas taupe anclada ABAJO A LA IZQUIERDA, como en «Promo ToGo /
- * Café grande + Sándwich $4.290». Alternativa al bloque centrado.
+ * Pila de cajas taupe anclada ABAJO A LA IZQUIERDA, como en «Promo To Go /
+ * Café + Sándwich desde $4.290». Alternativa al bloque centrado.
+ *
+ * ⚠️ El ejemplo decía «Café grande», que el cliente mandó sacar en la ronda 5
+ * (31-08-2026). Se corrige acá también para que nadie lo copie del comentario.
  */
 export const PilaEsquina: React.FC<{
   lineas: {texto: string; fuerte?: boolean}[];

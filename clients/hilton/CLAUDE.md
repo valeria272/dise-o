@@ -450,6 +450,7 @@ fuera de los límites del formato**.
 [ ] Desayuno y plato conservados, apetitosos
 [ ] Logo dentro del rango de tamaño de su formato y con ratio 3,0298
 [ ] Logo centrado y con margen (Between NO lo lleva pegado al borde)
+[ ] ¿La foto trae el vaso con logotipo impreso? → entonces la pieza va SIN lockup
 [ ] Script correcta para el texto: ¿lleva Ñ, ¿ o ¡? — verificar con scriptSirve()
 [ ] Preferir Brushwell + volteaApertura(); si es Cherolina: tracking abierto Y licencia comprada
 [ ] Globos y flechas del SVG oficial, no dibujados a mano
@@ -540,6 +541,8 @@ Son la vara. El resto de `ref-piezas/` sirve de contexto, no de norma.
    margen inferior (por eso Eli tiene dos plantillas por formato).
 6. **Ningún texto sobre rostros ni ojos.** Regla dura.
 7. **La foto es hero y clara**: multiply ≈ 0,10–0,16 sobre foto ya gradada.
+8. **Si el vaso de la foto ya trae el logotipo, la pieza NO sobrepone el lockup.**
+   Se lee dos veces la misma marca y se ve mal. Ver la sección ⛔ 2 más abajo.
 
 ## ⛔ EL VASO TO GO: hay DOS y el banco de fotos tiene el viejo
 
@@ -704,15 +707,22 @@ es peor: **inventan un logotipo falso**.
 
 ```bash
 python3 scripts/between-logo-vaso.py <entrada> <salida> \
-    --caja X1 Y1 X2 Y2          # dónde va el logo, medido sobre el cuerpo del vaso
+    --centro CX CY --ancho W    # dónde va el logo y de qué ancho
     [--limpiar X1 Y1 X2 Y2]     # borra antes el logotipo que inventó la IA
+    [--clonar auto|arriba|abajo|lados]
     [--fuerza 0.95]
 ```
 
-El script envuelve el logo sobre el cilindro y lo funde en **multiply**, así que
-toma la textura del cartón y su sombra en vez de flotar encima. Medidas que
-funcionan: **ancho ≈ 55 % del ancho del vaso**, en el **tercio superior** del
-cuerpo, y `--fuerza 0,95–1,0` (con 0,86 el logo se apaga en los vasos oscuros).
+> 🔴 **Corregido el 31-08-2026.** Acá decía que el script «envuelve el logo sobre
+> el cilindro». **Eso era exactamente el error**, y costó la ronda 5 — ver
+> § RONDA 5 al final. Ya no lo envuelve: escala uniforme y fusión por tono.
+> `--caja X1 Y1 X2 Y2` se sigue aceptando, pero **solo se usa su centro y su
+> ancho**; el alto lo recalcula el script con la proporción real del logotipo.
+
+Lo funde en **multiply**, así que toma la textura del cartón y su sombra en vez de
+flotar encima. Medidas que funcionan: **ancho ≈ 55 % del ancho del vaso**, en el
+**tercio superior** del cuerpo, y `--fuerza 0,95–1,0` (con 0,86 el logo se apaga
+en los vasos oscuros).
 
 ## 2. La sesión de modelos de agosto ya no se puede usar
 
@@ -757,3 +767,150 @@ solo el texto: aplicar algo ya hecho es rehacer trabajo aprobado. Se extrae con
 
 La fila **14 es COMENTARIOS CLIENTE** y la **15 COMENTARIOS DISEÑO**: son dos
 voces distintas y las dos mandan.
+
+---
+
+# ⭐⭐ RONDA 5 — lo que aprendimos el 31-08-2026
+
+Detalle completo y comentarios verbatim: [`feedback/2026-08-31-ronda5.md`](feedback/2026-08-31-ronda5.md).
+
+## ⛔ 1. EL LOGOTIPO NO SE DEFORMA. NUNCA.
+
+Es la regla dura que sale de esta ronda, y vale para **todas las marcas**, no
+solo Between. El cliente lo dijo así:
+
+> «El vaso de café tiene el logo de between **completamente distinto**»
+> «y el vaso de café **nada que ver** jajajaja»
+
+La culpa no era del generador: era nuestra. `between-logo-vaso.py` traía **dos
+deformaciones encadenadas**:
+
+1. `logo.resize((ancho, alto))` metía el logo en la caja que se le pasara,
+   **ignorando su proporción**. Salió entre **2,59 y 3,02** cuando la real es
+   **3,0278** — hasta un 15 % achatado.
+2. `curvar()` lo envolvía sobre un cilindro (comba sinusoidal + acortado lateral
+   del 18 %). Eso **arquea la línea de base y aplasta las letras de los
+   extremos**: «COFFEE & BAR» quedaba ilegible.
+
+**Un logotipo es una marca registrada: su forma es intocable.** Un logo impreso
+sobre un vaso se integra **por tono** —multiply contra el cartón, respetando su
+sombra—, nunca por geometría. Si la curvatura del vaso se nota demasiado, la
+salida es **achicar el logo o correrlo al centro del vaso**, donde el cilindro es
+ópticamente plano. Jamás doblarlo.
+
+Ya está impuesto por programa: `estampar()` calcula el alto desde la proporción
+real del propio archivo y **no expone ningún parámetro para alterarla**.
+
+```bash
+# re-estampar (idempotente, con las cajas ya medidas)
+python3 scripts/between-relogo-ronda5.py --revisar
+```
+
+**Dos trampas del borrado**, las dos ya resueltas en el script y las dos vividas:
+
+- **De dónde se clona el cartón.** `--clonar abajo` es lo normal, pero en
+  `cumple-manos` abajo hay **dedos** y arriba la **tapa negra**: hay que usar
+  `--clonar lados`, que reconstruye la fila interpolando el cartón de los
+  costados. Clonar de abajo dejó un fantasma de dedos; clonar de arriba metió
+  una banda negra.
+- **El difuminado del empalme va proporcional**, no fijo. Con el inset de 10 px
+  fijo, en un vaso chico (zona de 128×52 px) el anillo sin opacidad se comía el
+  borde y **el logotipo viejo asomaba por arriba**. Pasó en `togo-salida-2`.
+
+## ⛔ 2. Los comentarios que mandan pueden NO estar en la fila 15
+
+Esta ronda entera llegó como **comentarios nativos de Excel anclados a celdas**,
+no como texto en la fila `COMENTARIOS DISEÑO`. La fila 15 seguía mostrando los de
+la ronda 4, la mitad tachados. **Leyendo solo la fila 15, esta ronda se pierde.**
+
+Hay que abrir el propio xlsx y leer los comentarios:
+
+```python
+import zipfile, re, html
+z = zipfile.ZipFile("grilla.xlsx")
+# comments1.xml = hoja FEED · comments2.xml = hoja STORIES
+for n in ("xl/comments1.xml", "xl/comments2.xml"):
+    d = z.read(n).decode("utf-8", "replace")
+    for m in re.finditer(r'<comment [^>]*ref="([^"]+)"[^>]*>\s*<text>(.*?)</text>', d, re.S):
+        print(m.group(1), html.unescape(re.sub(r"<[^>]+>", "", m.group(2))))
+```
+
+Traen **autor y fecha**, que es como se sabe qué es nuevo: los de esta ronda son
+todos de **Scarlette Muñoz, 31-08 entre 17:34 y 17:59**, asignados a Eli.
+
+> Y sigue valiendo lo de la ronda 4: en la fila 15, **lo tachado ya está hecho**.
+> Son dos mecanismos distintos y hay que mirar los dos.
+
+## 3. La gradación de septiembre quedó pasada
+
+Dos reclamos independientes en la misma ronda: «Eliminar el filtro de color
+cálido que tiene el carrusel completo» (feed 1-sep) y «En general se ven quemadas
+las imagenes y con un filtro medio raro, sacar por favor» (feed 14-sep).
+`between-gradar.py` está **pasado de calidez y de altas** para esta serie.
+
+## 4. Cuando el cliente dice «tenemos ese material», hay que ir a buscarlo
+
+«Acá habla de el 2do piso del Between donde también hay mesas de cowork
+(**tenemos ese material**) y acá estamos mostrando nuevamente el 1er piso.»
+Generar una escena que ya existe fotografiada es el error más caro: se nota y
+además es evitable. Antes de generar, agotar el banco.
+
+## 5. En estas piezas, el titular va SIN script
+
+«dejearia esto escrito por completo con la que es más rigida» (7-sep) y «acá hay
+una tipo más pequeña y simple tan como se ve en la ref (**no usemos la cursiva**)
+y usemos las comillas» (9-sep). Brushwell **no es obligatoria**: en las piezas de
+humor conversacional el cliente la quiere fuera, con comillas haciendo el trabajo.
+
+---
+
+## ⛔ 2. EL VASO YA FIRMA: no se repite el logotipo
+
+**Criterio de Elisabet, 31-08-2026.**
+
+> «Cuando la imagen tiene un vaso con el logo de Between, la pieza no lleva el
+> logo. Sería repetitivo y se ve mal visualmente.»
+
+Si en la foto se lee **BETWEEN COFFEE & BAR** impreso en el vaso, la pieza **no
+lleva `<LogoBetween>` encima**. La marca ya está dicha, y decirla dos veces en el
+mismo cuadro ensucia la composición.
+
+**Ojo, esta regla es nueva solo en el papel.** Ya se venía aplicando a criterio
+—`StEmergencia` incluso la trae comentada en el código— pero nunca estuvo escrita,
+y por eso septiembre quedó **desparejo**: cuatro piezas la cumplen y tres no.
+
+### Estado de las 7 piezas de septiembre con vaso estampado
+
+| Pieza | Imagen | Lockup encima | |
+|---|---|---|---|
+| FEED 3-sep Cumpleaños G1 (`Cumple1`) | `cumple-manos-logo.png` | sí, arriba | ❌ corregir |
+| FEED 14-sep To Go 1 (`ToGo1`) | `togo-salida-2-logo.png` | sí, arriba | ❌ corregir · **es portada** |
+| ST 1-sep Promo To Go (`StToGoDulce`) | `togo-cafe-dulce-logo.png` | sí, arriba | ❌ corregir |
+| FEED 3-sep Cumpleaños G2 (`Cumple2`) | `cumple-manos-logo.png` | no | ✅ |
+| FEED 14-sep To Go 4 (`ToGo4`) | `togo-trio-45-logo.png` | no | ✅ |
+| ST 3-sep Cumpleaños (`StCumple`) | `cumple-vela-logo.png` | no | ✅ |
+| ST 9-sep Emergencia (`StEmergencia`) | `emergencia-caja-2-logo.png` | no | ✅ |
+
+Comparación visual antes/después (renders reales, no montajes):
+<https://claude.ai/code/artifact/6d2d656d-b199-421f-b086-79884308c1fc>
+
+### ⚠️ DOS DECISIONES ABIERTAS — no corregir hasta que Eli conteste
+
+1. **Choca con la regla 5 de la gramática** («en carrusel el logo va SOLO en la
+   portada»). La portada del carrusel To Go es justo la del vaso con logotipo: si
+   se le quita, el carrusel entero queda sin lockup en sus 4 slides. Las salidas
+   son (A) sin lockup en todo el carrusel, (B) el lockup baja a una slide sin
+   vaso, o (C) la portada es la excepción y conserva el lockup.
+2. **Hasta dónde llega «la imagen ya trae el logo»**: (A) cualquier logotipo
+   legible —vaso, faja, letrero del local, bolsa—, (B) solo el vaso, o (C) solo
+   si además está en primer plano y se lee.
+
+Sin esas dos respuestas no se tocan las piezas: la 1 decide si `ToGo1` se corrige
+o se queda, y la 2 decide si hay más piezas afectadas de las 7 detectadas.
+
+### Pendiente técnico
+
+`qa/motor.py` **no tiene reglas de Hilton todavía** (no hay sección de la marca).
+Cuando se cierren las dos decisiones, esta regla es perfectamente automatizable:
+la señal es una imagen con sufijo `-logo.png` conviviendo con `<LogoBetween>` o
+`conLogo` en el mismo componente.

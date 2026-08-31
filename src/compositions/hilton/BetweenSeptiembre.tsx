@@ -38,7 +38,7 @@ import {
   PilaDatos,
 } from './BetweenSistema';
 import {
-  Cuadrantes, Etiqueta, Globos, Ilustra, MarcoIGPost, StickerEnlace,
+  Checklist, Cuadrantes, Etiqueta, Globos, Ilustra, StickerEnlace,
   PiezaPartida, PilaEsquina, StickerQuiz, TituloTresPesos,
 } from './BetweenRecursos';
 
@@ -143,7 +143,15 @@ export const Cumple1: React.FC = () => (
         alignItems: 'center',
       }}
     >
-      <TitularBetween script="¿Estás de cumpleaños?" caps="Este café es para ti" alinear="centro" />
+      {/* ⭐ RONDA 5 (31-08): «Slide1: Texto "¿Estás de cumpleaños en septiembre?
+          Este café es para ti. ¡Ven por tu café de regalo!"». Scarlette escribió
+          «en agosto»; Eli confirmó el 31-08 que va **septiembre**, que es el mes
+          que arranca. Los otros dos textos ya estaban puestos desde la ronda 4. */}
+      <TitularBetween
+        script="¿Estás de cumpleaños en septiembre?"
+        caps="Este café es para ti"
+        alinear="centro"
+      />
       <PilaDatos
         datos={['¡Ven por tu café de regalo!']}
         style={{marginTop: BETWEEN.aire.tituloACaja}}
@@ -152,14 +160,23 @@ export const Cumple1: React.FC = () => (
   </AbsoluteFill>
 );
 
-/** Segunda pieza del post: las condiciones, en el mockup de IG que usa Eli.
+/** Segunda pieza del post: las condiciones del beneficio.
  *  ⭐ RONDA 4 (D15): «En la G2 considerar este listado e incluir emojis
  *  nuevamente» + «Agregar elementos cumpleañeros como en el anterior».
  *  → El listado se mantiene (es el del brief) y cada condición recupera su
- *    emoji; los adornos suben de 2 a 4 para igualar la carga festiva de la G1. */
+ *    emoji; los adornos suben de 2 a 4 para igualar la carga festiva de la G1.
+ *  ⭐ RONDA 5 (31-08): «No me gusta como se ve como post, haria un check list
+ *  junto con los emojis que piden».
+ *  → Fuera el mockup de Instagram: metía una foto dentro de la pieza —un post
+ *    dentro de un post— y encima dependía de `togo-vaso.jpg`. Ahora es un
+ *    <Checklist> directo sobre la escena, con los emojis intactos. */
 export const Cumple2: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={IA + 'cumple-manos-logo.png'} posicion="60% center" oscurecer={0.34} />
+    {/* ⭐ RONDA 5: el multiply baja de 0,34 a 0,14. Con la caja taupe del
+        checklist ya hay contraste suficiente, y la regla 6 del encabezado manda
+        que el texto se resuelva con la caja, no oscureciendo la foto — al 0,34
+        la escena se perdía y la pieza parecía una tarjeta lisa. */}
+    <FotoFondo src={IA + 'cumple-manos-logo.png'} posicion="60% center" oscurecer={0.14} />
     <Globos
       posiciones={[
         {cual: 'globosPar', x: 54, y: 104, ancho: 176, rotacion: -8},
@@ -168,10 +185,21 @@ export const Cumple2: React.FC = () => (
         {cual: 'corazon', x: 96, y: 1196, ancho: 104, rotacion: -10},
       ]}
     />
-    <div style={{position: 'absolute', left: 0, right: 0, top: 150, display: 'flex', justifyContent: 'center'}}>
-      <MarcoIGPost
-        foto={<Img src={staticFile(F + 'togo-vaso.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover'}} />}
-        burbujas={[
+    {/* Sin logo: en carrusel va SOLO en la portada (regla 5 del encabezado), y
+        la portada es la G1. Sin título tampoco — el brief no trae uno para las
+        condiciones y no se le inventa copy al cliente. */}
+    <div
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 392,
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <Checklist
+        items={[
           '☕ Te regalamos un café para disfrutar en cafetería o To Go.',
           '🎂 Accede a este regalo el mismo día de tu cumpleaños.',
           '🗓️ Disponible de lunes a viernes, en cualquier horario.',
@@ -322,8 +350,9 @@ export const ToGo2: React.FC = () => (
   >
     {/* ⭐ Regla de la flecha (feedback 28-08): SALE del producto y APUNTA al
         texto — nunca al revés, y nunca montada sobre el producto. */}
-    <Ilustra cual="flechaBucle" x={830} y={1030} ancho={120} rotacion={185} opacidad={0.95} />
-    <Etiqueta x={880} y={1150} size={42}>Café grande</Etiqueta>
+    {/* ⭐ RONDA 5 (31-08): «sacar lo que dice "café grande"». Se va la etiqueta
+        y con ella su flecha, que ya no apuntaría a nada. El «desde» que pedía la
+        misma nota ya estaba puesto desde la ronda 4. */}
     <PilaEsquina
       lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Sándwich desde $4.290', fuerte: true}]}
     />
@@ -358,10 +387,9 @@ export const ToGo3: React.FC = () => (
     {/* el dulce: texto ARRIBA del plato (no encima) y la flecha baja hacia él */}
     <Etiqueta x={140} y={648} size={42}>Croissant</Etiqueta>
     <Ilustra cual="flechaBucle" x={172} y={706} ancho={112} opacidad={0.95} />
-    {/* el café: texto DEBAJO del vaso — arriba parecía bajada del titular */}
-    {/* la cola de la flecha TOCA la base del vaso — no nace de la mesa */}
-    <Ilustra cual="flechaBucle" x={690} y={996} ancho={112} rotacion={185} opacidad={0.95} />
-    <Etiqueta x={776} y={1074} size={42}>Café grande</Etiqueta>
+    {/* ⭐ RONDA 5 (31-08): «Debe decir "desde $3.790". Sacar lo que dice café
+        grande.» El «desde» ya venía de la ronda 4; se va la etiqueta del café y
+        su flecha. La del croissant se queda: nadie la objetó. */}
     <PilaEsquina
       lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Dulce desde $3.790', fuerte: true}]}
     />
@@ -390,10 +418,22 @@ export const ToGo4: React.FC = () => (
     script="¿Por qué elegir uno?"
     caps="¡Llévate los 3!"
     anclaje="arriba"
-    datos={['Promo To Go · Café + Salado + Dulce desde $5.290']}
     legal="*Imágenes referenciales."
     oscurecer={0.1}
   >
+    {/* ⭐ RONDA 5 (31-08): «La información de la promo esta mala deberia quedar
+        como esta en la slide 1 y 2.» Iba en `datos` —una sola línea pegada bajo
+        el titular— mientras las otras slides usan la pila taupe de dos cajas
+        abajo a la izquierda. Se unifica con ToGo2 y ToGo3.
+        ⚠️ NO verificado en render: esta máquina no tiene las 22 fotos que faltan.
+        PilaEsquina se ancla sola abajo-izquierda y no depende de `anclaje`, pero
+        hay que mirar que no choque con la etiqueta «Dulce» (x 716, y 1150). */}
+    <PilaEsquina
+      lineas={[
+        {texto: 'Promo To Go'},
+        {texto: 'Café + Salado + Dulce desde $5.290', fuerte: true},
+      ]}
+    />
     {/* la cola de la flecha TOCA el producto y apunta al texto — regla del
         manual. Acá nacen del croissant salado y del dulce. */}
     <Ilustra cual="flechaBucle" x={214} y={874} ancho={112} espejo opacidad={0.95} />
@@ -461,7 +501,10 @@ export const StToGoDulce: React.FC = () => (
 export const StCumple: React.FC = () => (
   <PiezaStoryBetween
     foto={IA + 'cumple-vela-logo.png'}
-    script="¿Estás de cumpleaños?"
+    /* ⭐ RONDA 5: la story arrastra el mismo titular del feed —«mismos textos de
+       la publicación de feed» sigue siendo la orden vigente—, así que acá también
+       entra «en septiembre». */
+    script="¿Estás de cumpleaños en septiembre?"
     caps="Este café es para ti"
     datos={['¡Ven por tu café de regalo!']}
     oscurecer={0.1}

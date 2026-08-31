@@ -136,6 +136,13 @@ out/mascenter-algarrobal/preview-artifact.html
 !public/assets/hilton/between/fotos-gradadas/croissant-latte-cenital.jpg
 !public/assets/hilton/between/fotos-gradadas/togo-dulce-45.jpg
 
+# Ilustraciones de la marca: globos, flechas y trazados. Salen del .svg de Eli
+# («Flechas y trazados, globos BETWEEN», Drive 1EZHJab1Rp8c8vuTHqAehF6tCk-CiRsXa)
+# rasterizado con Chrome headless y recortado por canal alfa. Son 215 KB en total
+# y SIN ellas no se rinde ni una pieza de Between: el 31-08-2026 bloquearon el
+# render entero en el Windows de Eli. Se versionan para no repetir la extracción.
+!public/assets/hilton/between/recursos/*.png
+
 # Presentación Más Center: el generador y los datos SÍ se versionan
 !raw/mascenter-presentacion/centros.json
 !raw/mascenter-presentacion/extraer_assets.py

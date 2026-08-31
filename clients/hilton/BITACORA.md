@@ -5,6 +5,137 @@
 
 ---
 
+## 2026-08-31 (tarde) · Eli (Windows) — BETWEEN: el vaso ya firma, y septiembre quedó desparejo
+
+**Qué se hizo.** Eli enunció un criterio de la cuenta que nunca estaba escrito:
+**cuando la foto trae el vaso con el logotipo impreso, la pieza no sobrepone el
+lockup** — se lee dos veces la misma marca y se ve mal. Se auditó toda la grilla
+de septiembre contra esa regla y **tres piezas la rompen**: `Cumple1` (FEED 3-sep),
+`ToGo1` (FEED 14-sep, portada del carrusel) y `StToGoDulce` (ST 1-sep). Otras
+cuatro ya la cumplían. La regla se venía aplicando **a criterio, pieza por pieza**
+— `StEmergencia` hasta la trae comentada en el código — y por eso el mes salió
+disparejo. Ahora quedó escrita en el manual (§ ⛔ 2), en la gramática como regla 8
+y en la lista de QA.
+
+**Dónde quedó.** Comparación visual antes/después publicada en
+<https://claude.ai/code/artifact/6d2d656d-b199-421f-b086-79884308c1fc>, con
+renders **reales** (`npx remotion still`, no montajes) de `Cumple1` y `ToGo1` con
+y sin lockup. `BetweenSeptiembre.tsx` se parcheó solo para rendir y quedó
+**restaurado byte a byte** (verificado con `cmp`); `npm run typecheck` limpio.
+Los PNG viven en `out/hilton/regla-logo/` (gitignored). **Ninguna pieza se
+corrigió todavía y no se subió nada al Drive.**
+
+**Qué sigue.** Sin la respuesta a las dos decisiones de abajo no se tocan las
+piezas. Con ellas: corregir las 3, y después retomar la cola que ya venía de la
+ronda 5 — bajar el material (`scripts/hilton-drive-pull.sh` sobre GRILLA IA
+BETWEEN, `10Wyq-JrVAwkIItMUJH2De6wuxTiBDuDh`), regradar bajando calidez y altas,
+regenerar los 9 montajes rechazados por ambiente, rendir, `between-qa.py` y subir
+con `between-subir-drive.py --actualizar`.
+
+**Abierto.**
+
+1. **Choca con la regla 5** («en carrusel el logo va SOLO en la portada»): la
+   portada del To Go es justo la del vaso con logotipo. ¿El carrusel queda sin
+   lockup en las 4 slides, el lockup baja a otra slide, o la portada es excepción?
+2. **Alcance de la regla**: ¿cualquier logotipo legible en la foto (letrero del
+   local, bolsa, faja), solo el vaso, o solo si además va en primer plano?
+3. Sigue en pie lo de la ronda 5: el **«¿Estás de cumpleaños en agosto?»** de
+   Scarlette para una pieza de septiembre, y el **Café Bombón** esperando al cliente.
+
+**Notas de máquina.** Este Windows **sí tiene Python** (3.14.7 con PIL, openpyxl y
+numpy): los scripts de imagen corren acá. Lo que falta es `requests`/
+`googleapiclient`, el token de Google, `raw/` y **22 de las 32 imágenes** — por eso
+`StToGoDulce` no se pudo rendir (le falta `rol-canela.jpg`). La memoria decía que
+no había entorno de Python y era falso; ya está corregida.
+
+## 2026-08-31 · Eli (Windows) — BETWEEN, ronda 5: el logo del vaso salía deformado
+
+**Dónde quedó.** Llegó la **ronda 5** el mismo 31-08 entre las 17:34 y las 17:59:
+**9 comentarios de Scarlette Muñoz**, todos asignados a Eli. Se arregló la causa
+del reclamo transversal —el logotipo— y quedó todo el resto documentado y
+pendiente de material.
+
+**⚠️ Cómo llegaron los comentarios, que es media lección.** NO están en la fila 15
+`COMENTARIOS DISEÑO`: son **comentarios nativos de Excel anclados a celdas**, en
+`xl/comments1.xml` (FEED) y `xl/comments2.xml` (STORIES) dentro del propio xlsx.
+La fila 15 seguía mostrando los de la ronda 4, la mitad ya tachados. **Leyendo
+solo la fila 15, esta ronda entera se pierde.** Traen autor y fecha, que es como
+se distingue lo nuevo.
+
+**Lo que se arregló, y era culpa nuestra.** El cliente dijo «el vaso de café tiene
+el logo de between **completamente distinto**» y «el vaso de café **nada que ver**
+jajajaja». No era el generador: `scripts/between-logo-vaso.py` traía **dos
+deformaciones encadenadas**. `resize((ancho, alto))` metía el logo en la caja que
+le dieran ignorando su proporción —salió entre **2,59 y 3,02** cuando la real es
+**3,0278**, hasta un 15 % achatado— y encima `curvar()` lo arqueaba sobre un
+cilindro, con lo que «COFFEE & BAR» quedaba ilegible.
+
+- ✅ Script **reescrito**: escala uniforme (el alto sale de la proporción del
+  propio archivo y no hay parámetro para alterarla) e integración **por tono**,
+  multiply contra el cartón. `curvar()` se eliminó.
+- ✅ Las **5 imágenes con vaso re-estampadas** con el logo real, verificadas a
+  escala de pieza: `togo-salida-2`, `togo-cafe-dulce`, `togo-trio-45`,
+  `cumple-manos`, `cumple-vela`. Reproducible con
+  `python3 scripts/between-relogo-ronda5.py --revisar`.
+- ✅ Correcciones de texto en el carrusel To Go: fuera «Café grande» de las
+  slides 2 y 3, y la info de promo de la slide 4 unificada con las otras.
+  `npm run typecheck` limpio.
+
+**Dos trampas del borrado que costaron dos pasadas**, ya resueltas en el script:
+en `cumple-manos` no se puede clonar cartón ni de abajo (hay **dedos**) ni de
+arriba (hay **tapa negra**) — hay que usar `--clonar lados`; y el difuminado del
+empalme tenía un inset **fijo** de 10 px que en un vaso chico se comía el borde y
+dejaba **asomar el logotipo viejo** (pasó en `togo-salida-2`). Ahora va proporcional.
+
+**Las 3 piezas del cumpleaños (3-sep) quedaron RENDIDAS.** Eli confirmó que el
+titular va «¿Estás de cumpleaños **en septiembre**?» —Scarlette había escrito «en
+agosto»—. Con eso se aplicaron los tres cambios: los textos de la G1, la G2
+convertida en **checklist** con emojis (fuera el mockup de Instagram, que metía un
+post dentro de un post y encima dependía de una foto que no está acá) y la story
+arrastrando el mismo titular. Salidas en `out/hilton-between-cumple-r5/entrega S1/`,
+ya con el nombre del portal, en feed 2250×2812 y story 2250×4000.
+
+⭐ **Y se destrabó el render entero.** Faltaban las 8 ilustraciones de
+`public/assets/hilton/between/recursos/` (globos, confeti, flechas) y sin ellas no
+rinde **ninguna** pieza de Between. Se re-extrajeron del .svg de Eli
+(`1EZHJab1Rp8c8vuTHqAehF6tCk-CiRsXa`) rasterizándolo con Chrome headless y
+recortando por canal alfa. Pesan 215 KB y **ahora se versionan**, para que no
+vuelvan a faltar en la próxima máquina.
+
+**⛔ La entrega al Drive quedó pendiente.** Las 3 piezas NO se subieron a la
+carpeta `S1` (`19Bv7lfMBEIt_4JLRStWKObtCnf4OmPdD`): no hay token de Google acá, y
+el conector MCP solo acepta el archivo incrustado en la llamada —estos PNG pesan
+4–6 MB—. Se resuelve arrastrándolos desde el navegador, o dejando `token.json` en
+`credentials/` y corriendo `between-subir-drive.py`.
+
+**⛔ Lo demás que NO se pudo hacer acá, y por qué.** Esta máquina Windows **no tiene 22
+de las 32 imágenes** que pide `BetweenSeptiembre.tsx`, ni la carpeta `raw/hilton/`,
+ni token de Google. Al repo solo viajan las 10 corregidas en la ronda 4. Por eso:
+**no se re-rindió ninguna pieza y no se subió nada al Drive.** Las 27 piezas del
+Drive siguen en la versión del 28-08 01:53.
+
+**Lo que falta, en orden.** Todo el detalle con los comentarios verbatim está en
+[`feedback/2026-08-31-ronda5.md`](feedback/2026-08-31-ronda5.md).
+
+1. Bajar el material: `scripts/hilton-drive-pull.sh` sobre **GRILLA IA BETWEEN**
+   (`10Wyq-JrVAwkIItMUJH2De6wuxTiBDuDh`), que usa el visor público y no pide auth.
+2. **Volver a gradar bajando calidez y altas.** Es el segundo reclamo transversal:
+   «eliminar el filtro de color cálido» y «se ven quemadas… un filtro medio raro».
+3. Regenerar los montajes rechazados por ambiente: FEED 1-sep slides 2 y 3, FEED
+   7-sep, FEED 9-sep slides 2 y 4, FEED 11-sep, FEED 14-sep slides 1 y 4, ST 9-sep.
+   ⭐ **El 2.º piso del local YA está fotografiado** («tenemos ese material», dice
+   ella): se busca en el banco, no se genera.
+4. Rendir, `between-qa.py` y subir con `between-subir-drive.py --actualizar` para
+   conservar los enlaces.
+
+**Decisiones abiertas.**
+
+- **«¿Estás de cumpleaños en agosto?»** — así lo escribió Scarlette para una pieza
+  de **septiembre**. Casi seguro es un lapsus, pero es el titular: hay que
+  confirmarlo antes de escribirlo. Y la ST del 3-sep depende de ese mismo texto.
+- El **Café Bombón** sigue esperando que el cliente conteste cómo se muestra la
+  leche condensada, y nadie ha confirmado si va en vaso transparente o kraft.
+
 ## 2026-08-27 · Valeria — BETWEEN, ronda 4 del cliente resuelta
 
 **Dónde quedó.** El cliente escribió comentarios nuevos en la grilla de

@@ -68,10 +68,11 @@ ASPECTO = {"feed": "square_1_1", "feed45": "social_post_4_5"}
 # dimensiones reales en mm y en el acabado, no sólo en el color.
 MADERA = {
     "natural_uv_grande": (
-        "natural light oak flooring of MEDIUM tone — clearly warm, the colour of "
-        "raw untreated oak, with only a light greige cast. Not orange, not golden, "
-        "not honey, and NOT grey, NOT beige-white, NOT bleached. Subtle fine grain, "
-        "no knots, matte UV finish. Wide long planks, 190 mm wide and 1900 mm long, "
+        "natural oak flooring in a soft warm tan tone with clearly visible wood "
+        "colour — the colour of raw untreated oak, warm but never orange and never "
+        "golden-honey. It must read as real wood, NOT as grey, NOT as washed-out "
+        "beige, NOT bleached or painted. Fine straight grain clearly visible, no "
+        "knots, matte UV finish. Wide long planks, 190 mm wide and 1900 mm long, "
         "laid lengthwise with few seams."
     ),
     "natural_uv_chico": (
@@ -213,10 +214,20 @@ REF_ARCHIVO = {"natural_uv_grande": "natural-uv-grande.jpg",
                "aserrado": "aserrado.jpg", "cumaru": "cumaru.jpg"}
 
 
-def _tono_croma(rgb):
-    import math
+def _tono_sat(rgb):
+    """Tono en Lab + saturación en HSV.
+
+    La saturación va en HSV y NO el croma de Lab, porque el croma de Lab depende de
+    la luminosidad: oscurecer un color le baja el croma aunque no lo desature ni un
+    poco. Medido el 28-08 — el velo multiplica el piso por 0,641 y le baja el croma
+    de 15,4 a 10,7, pero su saturación HSV queda idéntica en 0,304. Con el croma yo
+    había acusado al velo de despintar el producto, y el velo no tiene nada que ver:
+    la madera generada ya salía con la mitad de saturación que la real.
+    """
+    import math, colorsys
     L, A, B = _lab(rgb)
-    return L, math.degrees(math.atan2(B, A)) % 360, math.hypot(A, B)
+    r, g, b = [v / 255.0 for v in rgb]
+    return L, math.degrees(math.atan2(B, A)) % 360, colorsys.rgb_to_hsv(r, g, b)[1]
 
 
 def mide(sku, ruta):
@@ -233,18 +244,19 @@ def mide(sku, ruta):
     Así se caza el error real: el ambiente anterior tenía el tono correcto (68,8°
     contra 73,1°) pero croma 32,4 contra 15,4 — el doble de saturado. Se leía miel.
     """
-    ref = _medio(REF_JENNY / REF_ARCHIVO[sku], (0.30, 0.60, 0.75, 0.80))
-    piso = _medio(ruta, (0.25, 0.72, 0.85, 0.96))
-    Lr, hr, cr = _tono_croma(ref)
-    Lp, hp, cp = _tono_croma(piso)
+    Z = (0.30, 0.60, 0.75, 0.78)          # misma zona en las dos, si no el número miente
+    ref = _medio(REF_JENNY / REF_ARCHIVO[sku], Z)
+    piso = _medio(ruta, Z)
+    Lr, hr, sr = _tono_sat(ref)
+    Lp, hp, sp = _tono_sat(piso)
     d_tono = abs((hp - hr + 180) % 360 - 180)
-    d_croma = abs(cp - cr)
-    ok = d_tono <= 8.0 and d_croma <= 8.0
-    print(f"      referencia Jenny  L*{Lr:5.1f}  tono {hr:5.1f}°  croma {cr:5.1f}")
-    print(f"      piso generado     L*{Lp:5.1f}  tono {hp:5.1f}°  croma {cp:5.1f}")
-    print(f"    Δtono {d_tono:4.1f}° (tope 8)   Δcroma {d_croma:4.1f} (tope 8)   "
+    d_sat = abs(sp - sr)
+    ok = d_tono <= 8.0 and d_sat <= 0.06
+    print(f"      referencia Jenny  L*{Lr:5.1f}  tono {hr:5.1f}°  satHSV {sr:5.3f}")
+    print(f"      piso generado     L*{Lp:5.1f}  tono {hp:5.1f}°  satHSV {sp:5.3f}")
+    print(f"    Δtono {d_tono:4.1f}° (tope 8)   Δsat {d_sat:5.3f} (tope 0,06)   "
           f"{'✓ pasa' if ok else '⚠ NO PASA'}")
-    return d_tono, d_croma
+    return d_tono, d_sat
 
 
 def main():

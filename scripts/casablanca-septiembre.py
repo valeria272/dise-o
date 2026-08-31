@@ -475,7 +475,11 @@ def pieza_c1(t, fmt):
     # OCHO piezas. Son fotos más claras y con más sol que los ambientes generados, y
     # la media la bajan las sombras: el texto blanco no compite contra la sombra sino
     # contra lo más claro que tiene detrás.
-    im, _alfa, _c = velo_medido(im, y_top, y_bot, percentil=90)
+    # objetivo 5,3 y no 5,0: velo_medido mide su percentil sobre la banda completa
+    # del bloque, y la verificación de entrega lo hace sobre cada línea de texto por
+    # separado. Con 5,0 tres bandas quedaban entre 4,39 y 4,59 — bajo el umbral de
+    # 4,5 por poco. El margen cubre esa diferencia de encuadre entre las dos medidas.
+    im, _alfa, _c = velo_medido(im, y_top, y_bot, objetivo=5.3, percentil=90)
     QA.append((f"c1-{t['n']} {fmt}", _alfa, _c))
     tarjeta_logo(im, *g["logo"])
     # ⚠️ C1 NO SE TOCA. Decisión de Serena, 28-08, después de ver las dos versiones

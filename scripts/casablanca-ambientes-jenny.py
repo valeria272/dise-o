@@ -70,6 +70,10 @@ except ImportError:
     pass
 
 BASE = "https://api.freepik.com/v1/ai/mystic"
+REF_JENNY = RAIZ / "raw/casablanca/ref-jenny-28ago"
+REF_ARCHIVO = {"natural_uv_grande": "natural-uv-grande.jpg",
+               "natural_uv_chico": "natural-uv-chico.jpg",
+               "aserrado": "aserrado.jpg", "cumaru": "cumaru.jpg"}
 ASPECTO = {"feed": "square_1_1", "feed45": "social_post_4_5"}
 
 # ── La madera, dicha desde la foto oficial y desde la referencia de Jenny ────────
@@ -77,6 +81,25 @@ ASPECTO = {"feed": "square_1_1", "feed45": "social_post_4_5"}
 # se separa, 59,3°). O sea que el color NO distingue tres de los cuatro: lo que los
 # separa es la TEXTURA y el FORMATO de tabla. Por eso cada prompt insiste en las
 # dimensiones reales en mm y en el acabado, no sólo en el color.
+TABLA = {
+    "natural_uv_grande": "Wide long planks, 190 mm wide and 1900 mm long, laid "
+                         "lengthwise with few seams.",
+    "natural_uv_chico":  "Narrower shorter planks, 167 mm wide and 1200 mm long, so "
+                         "the seams across the floor are noticeably more frequent.",
+    "aserrado":          "Very wide long planks, 190 mm wide and 1900 mm long, only "
+                         "three or four planks across the whole width of the frame.",
+    # El Cumarú necesita decir lo que la referencia no logra imponer sola: es
+    # madera TROPICAL, de veta lisa y pareja, no un roble teñido de rojo. Sin esto
+    # sale un roble con figura de catedral y color terracota.
+    "cumaru":            "Narrow very long planks, 120 mm wide and 2130 mm long, "
+                         "laid lengthwise. It is a DARK tropical hardwood with a "
+                         "deep mahogany red-brown colour, smooth uniform fine "
+                         "straight grain and no knots — no oak cathedral figure, "
+                         "no light streaks, not terracotta and not orange.",
+}
+
+# Se conserva sólo como registro de lo que NO funcionó: describir la madera con
+# palabras. Ver el docstring de `genera()`.
 MADERA = {
     "natural_uv_grande": (
         "natural oak flooring in a soft warm tan tone with clearly visible wood "
@@ -96,11 +119,19 @@ MADERA = {
         "the seams across the floor are noticeably more frequent."
     ),
     "aserrado": (
-        "rich amber oak flooring with a warm ORANGE-BROWN caramel undertone, like sunlit natural oak — clearly warmer and redder than a yellow oak, "
-        "clearly saturated and never pale — NOT washed-out, NOT grey, NOT beige. "
-        "Pronounced saw-cut texture with visible saw marks, open grain and dark "
-        "knots, rustic character, matte finish. Wide long planks, 190 mm wide and "
-        "1900 mm long."
+        # ⚠️ Tercera redacción, 31-08. La 1ª («amber, orange-brown caramel, rustic,
+        # visible dark knots») dio un pino barnizado amarillo. La 2ª («greige-taupe,
+        # neither yellow nor golden») lo blanqueó: L* 66,9 contra 50,2 de la
+        # referencia. Medido en la foto de la clienta, este piso es un café MEDIO y
+        # bastante saturado — RGB (146,111,89), tono 58°, satHSV 0,387 — con tabla
+        # muy ancha y casi sin nudos. Ni pálido ni dorado: café de madera.
+        "wide-plank oak flooring in a warm MID-BROWN tone with a soft taupe cast, "
+        "the colour of natural walnut-brown oak. Medium depth — NOT pale, NOT "
+        "bleached, NOT whitewashed, NOT grey, and NOT yellow or golden. Completely "
+        "MATTE with no sheen, no gloss and no specular reflections. Fine even grain "
+        "with a soft cathedral figure and almost no knots — at most one or two very "
+        "small ones. NOT knotty pine. Extremely wide long planks: only three or four "
+        "planks visible across the whole width of the frame."
     ),
     "cumaru": (
         "cumaru Brazilian teak flooring in a deep RED-brown mahogany tone with a "
@@ -126,8 +157,9 @@ SALA = {
         "a serene open room with one tall plain wall, a slim bench set far back on "
         "the left and a single tall ceramic vase",
     "aserrado":
-        "a warm minimal living room with one tall plain wall, a single low linen "
-        "armchair set far back on the right and a woven basket with a green plant",
+        "a calm minimal room with one tall plain wall and a single low linen bench "
+        "set far back on the right, lit by soft even overcast daylight with NO "
+        "direct sun patches falling on the floor",
     "cumaru":
         "a calm contemporary lounge with a full-height glass wall opening to a "
         "garden on the right, one low dark-green sofa set back and a round stone "
@@ -184,9 +216,35 @@ def espera(task_id, etiqueta, minutos=8):
 
 
 def genera(sku, fmt):
-    prompt = f"{COMUN} The room is {SALA[sku]}. The floor is {MADERA[sku]}"
+    """El piso se transfiere con `style_reference`, no se describe con palabras.
+
+    Por qué: describir la madera en el prompt no funcionó. En el Aserrado se
+    escribieron TRES redacciones distintas y las tres dieron un pino nórdico pálido
+    con reflejos de sol — el modelo tiene un sesgo fuerte hacia ese piso y no lo
+    suelta por más adjetivos que se le pongan («amber caramel» salió amarillo,
+    «greige-taupe» salió blanqueado, «mid-brown walnut» volvió al pálido).
+
+    Pasando la foto de la clienta como `style_reference` de Mystic, el material se
+    transfiere de una: tono 63,6° contra 58,4° y satHSV 0,438 contra 0,387, con la
+    veta fina, el mate y el ancho de tabla correctos. El prompt queda sólo para la
+    SALA, que tiene que ser distinta en cada tarjeta.
+
+    ⚠️ Esto NO publica la foto de la clienta: es referencia de estilo, la imagen
+    final es otra. Es justo lo que ella pidió — «usen estas imágenes de referencia
+    […] por favor usar otras ustedes».
+    """
+    ref = base64.b64encode((REF_JENNY / REF_ARCHIVO[sku]).read_bytes()).decode()
+    # El prompt NO describe la madera: sólo la sala. Describirla peleaba con la
+    # referencia — en el Cumarú, decirle «deep red-brown mahogany, not orange»
+    # sobre una referencia caoba lo sacaba HACIA el naranjo. La imagen manda; el
+    # texto sólo dice qué tabla es, que es lo único que la referencia no puede
+    # transmitir (el ancho y el largo reales en mm).
+    prompt = (f"{COMUN} The room is {SALA[sku]}. The floor is exactly the same wood "
+              f"as the reference image — same colour, same tone, same grain, same "
+              f"matte finish. {TABLA[sku]}")
     cuerpo = {"prompt": prompt, "aspect_ratio": ASPECTO[fmt], "resolution": "2k",
-              "realism": True, "engine": "automatic", "creative_detailing": 20}
+              "realism": True, "engine": "automatic", "creative_detailing": 20,
+              "style_reference": ref}
     st, data = http(BASE, "POST", cuerpo)
     print(f"  [{sku} {fmt}] POST -> HTTP {st}")
     if st not in (200, 201):
@@ -222,12 +280,6 @@ def _medio(p, z):
     a = np.asarray(Image.open(p).convert("RGB"), float)
     H, W = a.shape[:2]
     return a[int(z[1] * H):int(z[3] * H), int(z[0] * W):int(z[2] * W)].reshape(-1, 3).mean(axis=0)
-
-
-REF_JENNY = RAIZ / "raw/casablanca/ref-jenny-28ago"
-REF_ARCHIVO = {"natural_uv_grande": "natural-uv-grande.jpg",
-               "natural_uv_chico": "natural-uv-chico.jpg",
-               "aserrado": "aserrado.jpg", "cumaru": "cumaru.jpg"}
 
 
 def _tono_sat(rgb):

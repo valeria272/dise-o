@@ -229,12 +229,22 @@ def tarjeta_logo(im, x, y, w, h):
     im.paste(logo, (P(x + w / 2) - lw // 2, P(y + h / 2) - lh // 2), logo)
 
 
-def muestra_tabla(im, sku, x, y, w, h):
+# De qué parte de la foto oficial se recorta la muestra. `cover` tomaba SIEMPRE la
+# franja central, y en dos productos la franja central es la menos representativa
+# (Serena, 31-08): en el Cumarú cae sobre la única tabla CLARA de la foto y se pierde
+# el café rojizo que tiene a los dos lados —«el producto al lado se ve de otro
+# color»—; en el Aserrado cae sobre la zona más lisa y se pierden los nudos y las
+# marcas de sierra —«el aserrado es más aserrado y no se ve tanto así»—.
+# Verificado dibujando la franja sobre cada foto: out/_verificacion/origenes.png
+FOCO_MUESTRA = {"cumaru": 0.06, "aserrado": 0.16}
+
+
+def muestra_tabla(im, sku, x, y, w, h, ent=None):
     """Muestra vertical del producto. Medido en las fichas de Paulina:
     139,7 × 470 sobre 1080 — el 43,5 % del alto de la pieza. Esquinas r 13."""
     tab = Image.open(ASSETS / f"muestra_{sku}.png").convert("RGB")
-    tab = cover(tab, P(w), P(h))
-    tab = _luz_del_ambiente(im, tab, x, y, w, h)
+    tab = cover(tab, P(w), P(h), foco_x=FOCO_MUESTRA.get(sku, 0.5))
+    tab = _luz_del_ambiente(im, tab, x, y, w, h, ent=ent)
     mask = Image.new("L", tab.size, 0)
     ImageDraw.Draw(mask).rounded_rectangle([0, 0, tab.size[0] - 1, tab.size[1] - 1],
                                            radius=P(13), fill=255)
@@ -247,20 +257,44 @@ def muestra_tabla(im, sku, x, y, w, h):
     im.paste(tab, (P(x), P(y)), mask)
 
 
-def _luz_del_ambiente(im, tab, x, y, w, h, fuerza=0.90):
+def color_del_piso(foto):
+    """El color del piso, medido sobre la imagen YA VELADA.
+
+    Franja inferior (25-90 % de ancho, 80-97 % de alto): es piso en cualquier
+    composición. Desde el 31-08 cada tarjeta tiene su propia sala, así que no hay
+    un recorte a media altura que sirva para las cuatro.
+    """
+    import numpy as np
+    a = np.asarray(foto).astype(float)
+    H, W = a.shape[:2]
+    return a[int(0.80 * H):int(0.97 * H), int(0.25 * W):int(0.90 * W)].reshape(-1, 3).mean(axis=0)
+
+
+def _luz_del_ambiente(im, tab, x, y, w, h, fuerza=0.90, ent=None):
     """La muestra está DENTRO de la escena: tiene que recibir su luz.
 
     Si se pega la foto de estudio tal cual, queda más saturada y más clara que el
-    suelo y se lee como otro producto — el error más caro de esta marca. Se mide
-    el piso a los dos costados de la muestra y se lleva la muestra hacia esa luz,
-    conservando su textura y su color relativo.
+    suelo y se lee como otro producto — el error más caro de esta marca.
+
+    ⚠️ `ent` (el color del piso) se PASA desde fuera desde el 31-08. Antes se medía
+    acá, en una banda justo debajo de la muestra y sobre la imagen ya velada. Las
+    dos cosas fallaron cuando cada tarjeta pasó a tener su propia sala:
+
+      · esa banda dejó de ser piso — en el Cumarú caía sobre el sofá claro y la
+        mesa de centro, así que la muestra se igualaba a un mueble y salía beige
+        grisácea contra un piso chocolate (Serena, 31-08: «el producto al lado se
+        ve de otro color»);
+      · y medir sobre la imagen velada le sumaba el velo a una muestra que vive
+        por encima de él.
+
+    Ahora entra el color del piso del AMBIENTE sin velo, medido con
+    `color_del_piso()` en la franja inferior, que es piso en todas.
     """
     import numpy as np
-    # se mide el PISO, que está DEBAJO de la muestra. A los costados, a esa
-    # altura, hay ventana y muro: medir ahí dejaba la muestra dorada.
-    a = np.asarray(im).astype(float)
-    cx0, cx1 = P(max(0, x - w * 0.2)), P(min(1080, x + w * 2.6))
-    ent = a[P(y + h * 1.06):P(y + h * 1.46), cx0:cx1].reshape(-1, 3).mean(axis=0)
+    if ent is None:
+        a = np.asarray(im).astype(float)
+        cx0, cx1 = P(max(0, x - w * 0.2)), P(min(1080, x + w * 2.6))
+        ent = a[P(y + h * 1.06):P(y + h * 1.46), cx0:cx1].reshape(-1, 3).mean(axis=0)
     t = np.asarray(tab).astype(float)
     med = t.reshape(-1, 3).mean(axis=0)
     f = np.clip(ent / np.maximum(med, 1.0), 0.45, 1.55)
@@ -480,6 +514,12 @@ def pieza_c1(t, fmt):
     # separado. Con 5,0 tres bandas quedaban entre 4,39 y 4,59 — bajo el umbral de
     # 4,5 por poco. El margen cubre esa diferencia de encuadre entre las dos medidas.
     im, _alfa, _c = velo_medido(im, y_top, y_bot, objetivo=5.3, percentil=90)
+    # El color del piso se mide DESPUÉS del velo, no antes. La muestra vive por
+    # encima del velo y el piso por debajo: si se iguala al piso sin velar, queda
+    # clara al lado de un suelo que después se oscurece. Medido el 31-08 en el
+    # Cumarú: la muestra daba ΔE 18 a 21 contra el piso a cualquier altura, y a
+    # simple vista se leía beige contra un piso chocolate.
+    _piso = color_del_piso(im)
     QA.append((f"c1-{t['n']} {fmt}", _alfa, _c))
     tarjeta_logo(im, *g["logo"])
     # ⚠️ C1 NO SE TOCA. Decisión de Serena, 28-08, después de ver las dos versiones
@@ -498,7 +538,7 @@ def pieza_c1(t, fmt):
     # es la firma de la marca según este manual. Queda como estaba, y el comentario de
     # Paulina queda ABIERTO en Drive hasta hablarlo con ella: hay que preguntarle qué
     # es «esto», porque las dos lecturas posibles ya se descartaron mirándolas.
-    muestra_tabla(im, t["sku"], *g["muestra"])
+    muestra_tabla(im, t["sku"], *g["muestra"], ent=_piso)
     # Serena, 28-08: «pusiste a todos pisos de ingeniería, cuando cada uno tiene su
     # respectivo nombre». La etiqueta decía «Piso de Ingeniería» arriba —la categoría,
     # idéntica en las cuatro— y la medida abajo, así que el NOMBRE del producto no

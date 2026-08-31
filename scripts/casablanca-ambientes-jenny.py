@@ -71,9 +71,20 @@ except ImportError:
 
 BASE = "https://api.freepik.com/v1/ai/mystic"
 REF_JENNY = RAIZ / "raw/casablanca/ref-jenny-28ago"
+# Qué foto MIDE cada SKU: la suya, la que Jenny mandó para ese producto.
 REF_ARCHIVO = {"natural_uv_grande": "natural-uv-grande.jpg",
                "natural_uv_chico": "natural-uv-chico.jpg",
                "aserrado": "aserrado.jpg", "cumaru": "cumaru.jpg"}
+
+# Qué foto GUÍA el estilo. Casi siempre la misma, con UNA excepción deliberada:
+# los dos Roble Natural UV son el MISMO producto en dos formatos de tabla, así que
+# tienen que salir de una sola referencia. Con una cada uno salían distintos —Serena,
+# 31-08: «los dos roble natural se ven como diferentes, se supone que son los
+# mismos»—: medido, mismo tono (Δ0,6°) y misma luminosidad (Δ0,1) pero satHSV 0,151
+# contra 0,211, y esa diferencia se ve. Las dos fotos que ella mandó son del mismo
+# piso con luz distinta, y esa diferencia de luz se estaba trasladando al producto.
+# Manda la del 10, que es la que dio el resultado más cercano a las dos referencias.
+REF_ESTILO = dict(REF_ARCHIVO, natural_uv_grande="natural-uv-chico.jpg")
 ASPECTO = {"feed": "square_1_1", "feed45": "social_post_4_5"}
 
 # ── La madera, dicha desde la foto oficial y desde la referencia de Jenny ────────
@@ -233,7 +244,7 @@ def genera(sku, fmt):
     final es otra. Es justo lo que ella pidió — «usen estas imágenes de referencia
     […] por favor usar otras ustedes».
     """
-    ref = base64.b64encode((REF_JENNY / REF_ARCHIVO[sku]).read_bytes()).decode()
+    ref = base64.b64encode((REF_JENNY / REF_ESTILO[sku]).read_bytes()).decode()
     # El prompt NO describe la madera: sólo la sala. Describirla peleaba con la
     # referencia — en el Cumarú, decirle «deep red-brown mahogany, not orange»
     # sobre una referencia caoba lo sacaba HACIA el naranjo. La imagen manda; el

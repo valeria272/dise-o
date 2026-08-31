@@ -177,3 +177,39 @@ que bloqueaban.
 La regla `muestra-igual-al-piso` bajó a **aviso**: compara la muestra contra el piso del
 mismo ambiente generado, que comparten luz. Mide coherencia interna, no fidelidad — y
 el Cumarú que Jenny rechazó era justo el único que esa regla daba por bueno.
+
+---
+
+## ⛔ CORRECCIÓN DEL 31-08 — el nº4 se leyó al revés
+
+Yo leí *«usen estas imágenes de referencia»* como «úsenlas **como** referencia» y
+regeneré los cuatro ambientes con IA calcando su color. **Serena lo corrigió:** Jenny
+pide usar **esas mismas imágenes**, no unas parecidas. Puso una por SKU para eso.
+
+Los ambientes generados quedan descartados. Los cuatro C1 usan ahora las fotos de la
+clienta, ampliadas con Magnific en modo precisión (necesitaban entre 1,5× y 2,7×) y
+recortadas a 2250×2812 y 2250×2250.
+
+⚠️ **Su mensaje se contradice y hay que preguntárselo.** Cierra con *«yo las tengo
+para mis post, por favor usar otras ustedes»*, que dice literalmente lo opuesto. Si
+ella publica esas fotos en su feed y nosotros también, sale la misma imagen dos veces.
+
+### Efecto secundario: el velo de C1 tuvo que pasar a medición por percentil
+
+Sus fotos son más claras y con más sol que los ambientes generados. Con la medición
+por promedio que traía C1, el texto quedaba entre **2,57 y 4,47:1** en las ocho
+piezas — bajo el umbral de 4,5 en todas. El promedio lo bajan las sombras y el texto
+blanco no compite contra la sombra sino contra lo más claro que tiene detrás.
+
+C1 conservaba el promedio porque sus piezas estaban aprobadas así; ese motivo se cayó
+al cambiar los cuatro ambientes enteros. Con `percentil=90`: peor caso **4,77:1**.
+
+### Cómo quedó
+
+- QA: **0 bloqueantes, 0 avisos**
+- Contraste del texto en las 12 piezas de C1: peor caso 4,77:1
+- Muestra ↔ piso: ΔE **9,6 · 5,4 · 3,8 · 4,8** sobre un tope de 20
+
+El Cumarú —el que la clienta rechazó— pasa de ser el peor a estar entre los mejores,
+y es esperable: el piso del ambiente ES ahora el producto, así que la muestra no
+puede discrepar.

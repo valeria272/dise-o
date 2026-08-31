@@ -192,8 +192,9 @@ def velo_medido(im, y_top, y_bot, objetivo=5.0, tope=190, cx_libre=(0.06, 0.94),
         # los adoquines al sol de la fachada, la media de la banda daba un alfa que
         # dejaba el titular en 2,4:1 aunque el número dijera 5:1 — porque la media la
         # bajaban las sombras, y el texto no compite contra la sombra sino contra lo
-        # más claro que tiene detrás. C1 sigue con la media: sus piezas ya están
-        # aprobadas con ella y sus fondos de madera son mucho más parejos.
+        # más claro que tiene detrás. Desde el 31-08 lo usan C1 y C2: cuando la
+        # clienta mandó sus propias fotos, C1 con la media dejaba el texto entre
+        # 2,57 y 4,47:1 en las ocho piezas.
         L = float(_np.percentile(_lum_rel(a[y0:y1, x0:x1]), percentil))
     L_obj = 1.05 / objetivo - 0.05
     if L <= L_obj:                                  # ya es suficientemente oscuro
@@ -467,7 +468,14 @@ def pieza_c1(t, fmt):
     im = cover(foto, P(g["w"]), P(g["h"]))
     y_top = g["filete_y"] - 139.0 * g["esc"]
     y_bot = g["filete_y"] + 90.0 * g["esc"]
-    im, _alfa, _c = velo_medido(im, y_top, y_bot)
+    # `percentil=90` también en C1 desde el 31-08. Antes iba con la media porque sus
+    # piezas ya estaban aprobadas así; ese motivo se cayó cuando la clienta mandó sus
+    # propias fotos y los cuatro ambientes cambiaron enteros. Medido con las nuevas:
+    # con la media el texto quedaba entre 2,57 y 4,47:1, bajo el umbral de 4,5 en las
+    # OCHO piezas. Son fotos más claras y con más sol que los ambientes generados, y
+    # la media la bajan las sombras: el texto blanco no compite contra la sombra sino
+    # contra lo más claro que tiene detrás.
+    im, _alfa, _c = velo_medido(im, y_top, y_bot, percentil=90)
     QA.append((f"c1-{t['n']} {fmt}", _alfa, _c))
     tarjeta_logo(im, *g["logo"])
     # ⚠️ C1 NO SE TOCA. Decisión de Serena, 28-08, después de ver las dos versiones

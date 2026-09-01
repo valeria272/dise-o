@@ -5,6 +5,231 @@
 
 ---
 
+## 2026-09-01 (cierre) · Eli (Windows) — BETWEEN ronda 6: la foto de la slide 2, la gradación neutra, y el brief de la slide 4 que estaba mal anotado
+
+> ⚠️ **Tercera sesión del día sobre el mismo repo.** Mientras ésta trabajaba, otra
+> commiteó `f22209e`. No se perdió nada —se verificó archivo por archivo— pero ya
+> van dos días seguidos. **Una sola sesión por repo.**
+
+**Qué pidió Eli.** «Mejoremos el carrusel de la S1 según lo que dice Scarlett y lo
+que describe el brief. Mantén los textos, están correctos. Pero las fotografías del
+fondo no corresponden.»
+
+**El defecto era peor de lo que se veía.** Las slides 1 y 2 usaban **el mismo muro
+verde**, y la slide 2 decía «al menos que sea con buen café / encuentra tu mesa»
+sobre una foto **sin mesa, sin café y sin PC**. Es literal el comentario C15 de
+Scarlette del 31-08: «acá estamos hablando de café como tal, yo cambiaria la imagen
+donde se vea una mesa con un pc y un café».
+
+**La foto ya existía.** `raw/hilton/between/ediciones-ia-eli/magnific_agrega-una-laptop-en-la-m_iAi90W63uK.png`
+— mesa de madera, laptop, vaso con el logo BETWEEN, muro verde desenfocado atrás.
+**No se generó nada con IA**: la regla del manual es agotar el banco antes de
+generar, y el banco la tenía. Recortada 4:5 con `--top 0.20` (el follaje queda
+ARRIBA, donde se apoya el bloque de texto).
+
+**La gradación: perfil `neutro`, sin tocar el ADN.** El otro reclamo de la ronda 5
+—«eliminar el filtro de color cálido que tiene el carrusel completo»— seguía
+pendiente. En vez de mover el objetivo por defecto, que está MEDIDO sobre las
+piezas aprobadas de Eli y habría re-flujado todo lo entregado, se abrió un segundo
+perfil en `between-gradar.py`:
+
+| | `eli` | `neutro` |
+|---|---|---|
+| calidez (R−B) | 50 | **20** |
+| p95 (altas) | 227 | **210** |
+| lum · p05 | 118 · 24 | iguales |
+
+La prueba de que +20 no es frío: las fotos crudas del 2.º piso vienen en **+27**, o
+sea el perfil las deja **bajo su propio natural**. Saca filtro, no lo suma.
+
+**Qué se movió y qué no.**
+
+| | |
+|---|---|
+| slide 1 | sólo regradada (+33,2 → +21,4). Diagramación intacta |
+| slide 2 | foto nueva. **Texto sin tocar** — la tinta mide 687/721/601 px, igual que la r6 |
+| slide 3 | **SIN TOCAR**, idéntica píxel a píxel (delta 0). Ya venía en +12,4 |
+
+QA **4/4** limpias · `tsc` limpio · entregadas a `Escritorio\S1 BETWEEN` (ahí seguían
+las de las 15:20, previas a la corrección de jerarquía de la r6).
+
+⚠️ El archivo de la slide 2 **sigue llamándose «Cowork 2 winter garden»** a
+propósito: el portal levanta por nombre y renombrarlo crearía un duplicado.
+
+---
+
+### ⭐ La slide 4: el brief pedía otra escena
+
+Eli pasó el brief textual, y no coincidía con lo anotado. El manual, el comentario
+del código y el prompt de Magnific decían **«una trabajadora sin rostro preparando
+café»** — un pedido dicho al pasar, que mandaba a generar **el bar**. El brief dice:
+
+> «Persona trabajando mientras un colaborador deja un café o plato sobre la mesa.
+> El usuario continúa trabajando sin tener que levantarse.»
+
+Son **dos personas y una MESA**, no un mesón. Dicen cosas opuestas: el bar cuenta
+que el café *se va a buscar*; el brief vende el **servicio a la mesa**. Y el bar
+repite el escenario de la portada.
+
+**La lección, escrita en el manual y en la memoria:** un criterio dicho al pasar
+manda sobre el **CÓMO** (tipografía, logo, color, jerarquía), **nunca sobre el QUÉ**
+la pieza tiene que mostrar. Si chocan, manda el brief.
+
+Los textos de la slide **ya eran literales del brief**: no se tocó ninguno.
+
+**El banco está agotado, y quedó demostrado:** `espacios/` son 12 tomas de
+arquitectura **vacía**; de los 91 fotogramas del 2.º piso, los que tienen gente son
+huéspedes **con la cara reconocible**, nadie sirviendo, y son del **1.er piso**. Ahí
+sí se justifica generar.
+
+`scripts/between-slide4-magnific.py` **reescrito entero**: escena nueva,
+referencias del 2.º piso real, y los tres reclamos de la ronda 4 convertidos en
+restricciones (cero caras por construcción · trabajo y no desayuno · las manos
+contadas). Más un QA de 5 puntos y la receta de gradado/render/entrega.
+
+---
+
+### ⛔ Magnific: no se pudo, y hay que saber por qué
+
+- `~/.magnific_key` tenía **la contraseña de la cuenta** (`DISEÑO2025-VIDEOS`, 17
+  caracteres), no una clave de API. Verificado con `magnific.py check`, que
+  **no gasta créditos**: HTTP 401.
+- **Magnific muestra la clave UNA SOLA VEZ.** En el menú de la fila sólo hay
+  «Editar clave API», «Copiar secreto del webhook» y «Eliminar clave API» — no hay
+  forma de volver a verla. Para recuperarla hay que **borrar `claudecw` y crearla
+  de nuevo**, copiándola en el momento. El plan está en el tope de claves, así que
+  primero se borra.
+- Créditos NO son el problema: las 3 claves están activas con **1,8 M disponibles**.
+- El MCP `magnific` **ya está registrado** en `~/.claude.json`
+  (`http · https://mcp.magnific.com`) pero **sin autorizar**. Se autoriza con `/mcp`
+  y después hay que abrir **chat nuevo**.
+- ⚠️ El binario `claude` **no existe en este PC** (se usa la extensión de VS Code),
+  así que `claude mcp add` no corre. Hay que editar la config a mano.
+
+Queda listo en el Escritorio, carpeta **`SLIDE 4 - para Magnific`**: el `PROMPT.txt`,
+las 3 referencias renombradas y un `LEEME.txt` con el QA de 5 puntos. Se genera a
+mano en la web y yo hago recorte, gradado, render y QA.
+
+**⭐ Dirección final de Eli:** «una persona dejando el capuccino, que no se vea el
+rostro». O sea **UNA sola persona**, no las dos del brief. El prompt se ajustó a
+eso, y de paso es más seguro: cada mano de más es una posibilidad de error
+anatómico, y «hay una mano de más» ya fue un rechazo.
+
+**Se buscó la mano en el banco y NO está.** Revisadas las 42 ediciones con IA de
+Eli: las que tienen manos sin rostro son **todas de la serie To Go** —sostienen el
+vaso de papel o una bolsa, en el mesón— y ninguna deja una taza de cappuccino en
+una mesa. Montar una mano de otra foto es justo como se produce el «hay una mano
+de más», así que **no se hizo**.
+
+---
+
+### ⭐ La slide 4 SÍ entra a la entrega, con la mejor foto real
+
+Como la escena completa está bloqueada, la slide se rehízo con la mejor foto real
+disponible: **`servicio-mesa.jpg`** — la mesa de madera del 2.º piso con la sala de
+cowork detrás y el **cappuccino recién servido**, gradada con `--perfil neutro`
+(calidez 46,2 → 21,1, en línea con el resto del carrusel).
+
+Por qué calza, aunque no tenga la mano:
+
+1. **El punto de vista es el de quien trabaja** — la cámara está a la altura de la
+   mesa, así que el «tú» del titular es el que mira. El lector ocupa la escena en
+   vez de mirarla actuada.
+2. **El café está EN LA MESA, no en el mesón.** Ése es el mensaje entero. La foto
+   anterior —el mesón de servicio vacío— decía lo contrario: que el café se va a
+   buscar.
+3. **El latte art intacto y la cuchara sin usar** dicen «recién llegó»: es el
+   instante justo después de lo que describe el brief.
+
+Taza **blanca total, sin raya ni logotipo** — regla KIMBO verificada con zoom.
+
+**El ancla del texto se decidió midiendo, no a ojo:** se rindieron las dos. Con el
+ancla ABAJO la caja taupe cae **encima de la taza y tapa el café**, que es el
+sujeto. Queda ARRIBA, donde el texto se apoya en la sala desenfocada, la taza queda
+entera, y además coincide con las slides 2 y 3.
+
+⚠️ **Lo que le falta, dicho claro:** no aparece la persona. Muestra el resultado,
+no el gesto. Es honesta y no contradice el copy, pero **no es la definitiva**.
+
+---
+
+### ⭐ Drive: para ESTA entrega NO hace falta el token
+
+Hallazgo del día. Eli creó hoy 21:27 dos carpetas **vacías** dentro de `S1`:
+
+| Carpeta | ID | Estado |
+|---|---|---|
+| `C1 COWORK` | `1GB6NtoG3vy35rPj7bw-j8bc76-Jz8332` | **vacía** |
+| `C2 CUMPLEAÑOS BW` | `1TfFCqNfQw0ucTwqvJD8iqft7Y__voRUw` | **vacía** |
+| `STS` | `14Z4XnkM9sepmdPV0XjKzoqb1HXMbvIzO` | 3 stories ✓ |
+
+Como los archivos son **nuevos** y no hay ningún enlace que conservar, se
+**arrastran desde el Explorador** — el token sólo hace falta para *reemplazar*
+(`credentials/LEEME.md`, sección «La excepción: carpetas vacías»).
+
+⚠️ **Los duplicados son reales y hay que resolverlos.** Las 4 «Cowork» de la ronda 4
+(28-08 01:53) están en la carpeta **BW** (`1fQqtl-2X2A4o1L5hH7jlz9xUh_YzXRjq`) con
+**exactamente los mismos nombres**, y las subió **valeria@copywriters.cl**. El
+portal levanta por nombre. Y ojo: el scope del token es `drive.file`, así que **ni
+con el token** podríamos tocar archivos de Valeria — hay que pedírselo a ella.
+
+---
+
+### El estudio en Windows
+
+- **Séptimo script caído por cp1252.** Windows lee y escribe la consola en cp1252 y
+  revienta con «✅», «→» o una «Á» — a veces **después** de haber hecho el trabajo,
+  así que parece que falló y estaba listo. Arreglados hoy: `between-qa.py`,
+  `hoja-contacto.py`, `verificar-fuentes.py` (reventaba dos veces: al leer la ficha
+  y al imprimir el error) y `qa/motor.py`.
+  **Quedan ~25 lugares más** en `scripts/` que abren archivos sin declarar
+  codificación, casi todos de marcas de Paulina y Coni. **Eli tiene que decidir si
+  se hace el barrido completo** — es un cambio grande.
+- **`pyyaml` instalado**: faltaba y el motor de QA moría antes de leer una regla.
+- **Hilton no tiene `reglas.yaml`** — el motor lo dice claro ahora. Es la única
+  marca de Eli sin QA por programa. Hay dos reglas medidas listas para entrar (la
+  columna y la gradación), **pendiente que Eli las firme**.
+- **Hilton tampoco tiene `marca.json`**, y por eso `verificar-fuentes.py` ni siquiera
+  la revisa. Sus fuentes funcionan igual (Brushwell y Raleway están en el repo).
+- Las **14 tipografías sin resolver NO son de Hilton**: son de Casablanca y Cava
+  (Paulina) y de MyZoo y Selfie (Coni). Vale avisarles: hasta que las activen, sus
+  piezas salen con la fuente equivocada sin que nadie lo note — que es exactamente
+  lo que pasó con Brushwell y costó 27 piezas.
+
+---
+
+### Qué sigue, en orden
+
+1. **Subir a Drive arrastrando** las **4** Cowork a `C1 COWORK` y las 2 Cumpleaños
+   a `C2 CUMPLEAÑOS BW`. Sin token. Es lo primero.
+2. **Sacar del medio las de la ronda 4** en `BW` — pedírselo a Valeria.
+3. **La clave de Magnific**: borrar `claudecw`, recrearla y copiarla en el acto. O
+   autorizar el MCP con `/mcp` + chat nuevo. Con cualquiera de las dos sale la
+   slide 4.
+4. **Cambiar la contraseña** `DISEÑO2025-VIDEOS`: estaba en texto plano y quedó en
+   el historial de la conversación. También regenerar el **secreto del webhook** de
+   `claudecw`, que se pegó en el chat.
+5. `credentials/token.json` — para las correcciones futuras, no para esta entrega.
+
+**Abierto.**
+
+1. **La slide 4 va con foto interina.** El carrusel está completo (4/4) y
+   entregable, pero falta la escena que dirigió Eli: la persona dejando el
+   cappuccino sin rostro. Se cambia tocando SOLO `FOTO_SERVICIO`.
+2. **¿La slide 4 lleva logo?** Sigue sin respuesta desde ayer. La regla escrita dice
+   que en carrusel el logo va sólo en la portada, y se respetó.
+3. **Barrido de codificación** (~25 lugares) — esperando el sí de Eli.
+4. **`reglas.yaml` de Hilton** — esperando que Eli firme las reglas.
+5. Sin cambios: el **listado del cumpleaños de CINCO ítems** contra los cuatro de
+   nuestra pieza, y el **Café Bombón** esperando al cliente.
+
+**Páginas de revisión.** Ronda 6 con antes/después:
+`https://claude.ai/code/artifact/2a18c52f-d2c3-49d5-acc4-5a526046b2b6` ·
+Paso a paso de lo que le toca a Eli:
+`https://claude.ai/code/artifact/44ff22ef-5c0e-437a-93c1-2e360cb48331`
+
+---
+
 ## 2026-09-01 (noche) · Eli (Windows) — BETWEEN: la COLUMNA como medida de composición, la slide 4 de vuelta, y dos bugs del doctor
 
 > ⚠️ Esta entrada funde las **dos** que quedaron escritas esta noche: hubo otra vez

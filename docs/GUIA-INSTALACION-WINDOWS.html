@@ -428,3 +428,28 @@ del repo es la que se mantiene al día. La versión para Mac es
 </div>
 </body>
 </html>
+<!-- ⬇ Añadido el 31-08-2026 tras montar el estudio en el Windows de Eli -->
+<section>
+  <h2>Lo que había que arreglar para que corriera en Windows</h2>
+  <p>Los scripts del estudio nacieron en Mac. Estas cuatro cosas fallaban en seco
+     y ya están corregidas en el repo:</p>
+  <ul>
+    <li><b><code>scripts/_entorno.py</code></b> — <code>python_venv()</code> sólo miraba
+        <code>venv/bin/python3</code> y caía a la cadena <code>"python3"</code>, que en
+        Windows no existe como comando. Ahora mira <code>venv\Scripts\python.exe</code>
+        y, si no hay venv, devuelve <code>sys.executable</code>.</li>
+    <li><b><code>scripts/drive-carpeta.py</code></b> (nuevo) — reemplaza a
+        <code>hilton-drive-pull.sh</code>, que llamaba a <code>/usr/bin/python3</code> y
+        guardaba los archivos con un <code>\r</code> pegado al nombre: Windows lo
+        convertía en <code>_</code> y todo quedaba como <code>foto.jpg_</code>.</li>
+    <li><b><code>scripts/between-rendir.py</code></b> (nuevo) — reemplaza a
+        <code>between-rendir.sh</code>, que tenía quemada la ruta de Chrome del Mac y un
+        sandbox en <code>~/copylab-work</code> que sólo existía para esquivar iCloud.
+        Además fuerza UTF-8 al leer la salida de Remotion: con el cp1252 por defecto
+        de Windows, el hilo lector de <code>subprocess</code> revienta.</li>
+    <li><b><code>.gitignore</code></b> — <code>credentials/</code> <u>no estaba ignorada</u>.
+        Un token dejado ahí se habría publicado a todo el equipo en el siguiente push.</li>
+  </ul>
+  <p>Comprobar el estado de la máquina en cualquier momento:
+     <code>python scripts\_entorno.py</code></p>
+</section>

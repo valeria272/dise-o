@@ -5,6 +5,84 @@
 
 ---
 
+## 2026-08-31 (noche) · Eli (Windows) — BETWEEN: el vaso pasó a ser fotografía, y el estudio ya corre en Windows
+
+**Qué se hizo.** El cliente rechazó el vaso otra vez —«el vaso no se parece al
+real… se ve quemado y extraño, debe verse hiperrealista»— y al ir a buscarlo a la
+sesión del cliente aparecieron **dos vasos distintos**. Eli confirmó que el
+vigente es el **B: cuerpo crema con el logotipo impreso directo y tapa negra
+plana** (frames 255 · 257 · 264 · 266). El otro —cuerpo negro con faja kraft, el
+que ella misma retocó en 245/281/293— es el antiguo. Se recortó el vaso real del
+frame **255**, el único donde está entero y sin nada delante, y se montó sobre la
+escena aprobada de la story del 3-sep.
+
+**⭐ Y se resolvió por qué un recorte se ve pegado, con números.** No era el
+recorte: era cómo estaba puesto. Medido entre recorte y escena:
+
+| | Recorte | Escena | Qué se hizo |
+|---|---:|---:|---|
+| Nitidez (varianza del laplaciano) | **2095** | 13,5 | desenfoque de 3 px |
+| Luz entra por | **derecha** | izquierda | re-iluminado con degradado lateral |
+| Sombra de contacto | ninguna | — | elipse suave al lado opuesto de la luz |
+
+⛔ **El vaso no se puede espejar** para arreglar la luz: invertiría el logotipo.
+Todo quedó en `scripts/between-montar-vaso.py`, reutilizable.
+
+**La vela se veía rara porque no era una vela:** era un pabilo con llama, sin nada
+de cera. Se le dibujó el cuerpo, se subió la llama y se le añadió el resplandor
+sobre la tapa.
+
+**Dónde quedó.** Recorte reutilizable en
+`public/assets/hilton/between/togo-vaso-real-nobg.png` (1341×1851, sin fondo).
+Escena en `public/assets/hilton/between/fotos-reales/cumple-vela-real.jpg`.
+`StCumple` apunta ahí. Las 3 piezas del cumpleaños rendidas en
+`out/hilton-between-cumple-r5/entrega S1/`, con el nombre del portal.
+Comparación visual: <https://claude.ai/code/artifact/71c547d8-0899-42d5-aa90-f9c8408becc1>
+
+**⭐ El estudio ya corre en Windows.** Los scripts eran de Mac y cuatro cosas
+fallaban en seco. Todas corregidas y **probadas**, no solo escritas:
+
+1. `_entorno.py` → `python_venv()` caía a la cadena `"python3"`, inexistente acá.
+2. `hilton-drive-pull.sh` → llamaba a `/usr/bin/python3` y dejaba un `` en el
+   nombre, que Windows convierte en `_` (`foto.jpg_`). **Usar
+   `scripts/drive-carpeta.py`**, que además trae `--miniaturas` para revisar una
+   sesión de 353 fotos sin bajar gigas. ⛔ El `.sh` quedó parchado pero el bueno
+   es el `.py`.
+3. `between-rendir.sh` → ruta de Chrome del Mac y sandbox de iCloud. **Usar
+   `scripts/between-rendir.py`**, que fuerza UTF-8 en `subprocess` (con el cp1252
+   de Windows la salida de Remotion revienta el hilo lector).
+4. ⛔ **`credentials/` NO estaba en `.gitignore`.** Un token ahí se publicaba a
+   todo el equipo en el siguiente push. Blindado y verificado con
+   `git check-ignore`, junto con `.env` y `client_secret*.json`.
+
+Instalado en la máquina: `google-api-python-client`, `google-auth`,
+`google-auth-oauthlib`, `requests`, `python-dotenv`. Instrucciones en
+`credentials/LEEME.md`, escrito para Windows, más `scripts/autorizar-google.py`
+por si hay client secret pero no token.
+
+**Qué sigue.** Las **dos piezas de feed** con el mismo tratamiento: ahí el vaso va
+sujeto entre dos manos, así que hay que devolver los dedos por delante del vaso
+real — más delicado que la story. Después, la cola de la ronda 5 que sigue en pie.
+
+**Abierto.**
+
+1. ⚠️ **Mi story choca con la regla 8 de la entrada anterior.** Al cambiar el vaso
+   de IA por el real, **el logotipo impreso quedó mucho más legible**, y la pieza
+   sigue llevando el lockup arriba. `StCumple` no estaba en las tres que se
+   auditaron porque entonces su vaso apenas se leía. Ahora sí aplica: **necesita
+   la misma decisión** que `Cumple1`, `ToGo1` y `StToGoDulce`.
+2. ✅ **RESUELTO el «¿en agosto?»**: Eli confirmó que va **«¿Estás de cumpleaños en
+   septiembre?»**. Ya está aplicado en el feed y en la story. Sale de la lista de
+   abiertos de las dos entradas anteriores.
+3. **Nada se subió al Drive todavía.** No es permiso —se comprobó subiendo y
+   descartando un PNG de prueba en la carpeta S1—: el conector solo acepta el
+   archivo incrustado en la llamada y estas piezas pesan 4–6 MB (≈1,5 M de tokens
+   cada una). **Falta `credentials/token.json`** y se sube con un comando.
+4. Siguen en pie: el Café Bombón esperando al cliente, y las dos preguntas de
+   alcance de la regla del lockup.
+
+---
+
 ## 2026-08-31 (tarde) · Eli (Windows) — BETWEEN: el vaso ya firma, y septiembre quedó desparejo
 
 **Qué se hizo.** Eli enunció un criterio de la cuenta que nunca estaba escrito:

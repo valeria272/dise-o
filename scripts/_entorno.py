@@ -16,6 +16,7 @@ Orden de búsqueda de credenciales (la primera que exista gana):
 """
 import os
 import pathlib
+import sys
 
 # ── Raíz del repo: derivada de la ubicación de este archivo, nunca quemada ──
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
@@ -81,13 +82,26 @@ def exigir(ruta, que, comando_ayuda=""):
     raise SystemExit(msg)
 
 
-# El venv compartido, si existe; si no, el python3 del sistema.
+# El venv compartido, si existe; si no, el intérprete con el que se corre esto.
+#
+# ⚠️ Windows (31-08-2026): antes esto solo miraba el layout POSIX `venv/bin/python3`
+# y caía a la cadena literal "python3", que en Windows NO existe como comando —
+# los scripts que la usaban para lanzar subprocesos fallaban en seco. Ahora mira
+# también `venv\Scripts\python.exe` y, si no hay venv, devuelve `sys.executable`,
+# que siempre es un intérprete válido en cualquier sistema.
 def python_venv():
-    for c in [pathlib.Path.home() / "copylab-venv" / "bin" / "python3",
-              RAIZ / "venv" / "bin" / "python3"]:
+    candidatas = [
+        pathlib.Path.home() / "copylab-venv" / "bin" / "python3",       # macOS / Linux
+        RAIZ / "venv" / "bin" / "python3",
+        pathlib.Path.home() / "copylab-venv" / "Scripts" / "python.exe",  # Windows
+        RAIZ / "venv" / "Scripts" / "python.exe",
+        RAIZ / ".venv" / "Scripts" / "python.exe",
+        RAIZ / ".venv" / "bin" / "python3",
+    ]
+    for c in candidatas:
         if c.exists():
             return str(c)
-    return "python3"
+    return sys.executable or "python3"
 
 
 if __name__ == "__main__":

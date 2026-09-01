@@ -914,3 +914,61 @@ o se queda, y la 2 decide si hay más piezas afectadas de las 7 detectadas.
 Cuando se cierren las dos decisiones, esta regla es perfectamente automatizable:
 la señal es una imagen con sufijo `-logo.png` conviviendo con `<LogoBetween>` o
 `conLogo` en el mismo componente.
+
+## 6. El vaso real, recortado — y cómo montarlo sin que se note
+
+Cierre de la ronda 5: el cliente rechazó el vaso dos veces más («no se parece al
+real», «se ve un montaje muy raro el vaso pegado en la foto»). **No hay parche
+que arregle un vaso generado.** Se recortó el real y se dejó como recurso:
+
+```
+public/assets/hilton/between/togo-vaso-real-nobg.png      1341×1851, sin fondo
+```
+
+Sale del frame **`Double Tree 25 jul 25-255`**, el único de la sesión donde el
+vaso está entero y sin nada delante. Se probó antes con el 257 y no sirve: el
+plato le come la base y todo lo reconstruido se nota.
+
+### ⚠️ En esa sesión hay DOS vasos — confirmado por Eli el 31-08
+
+| | Antiguo ❌ | **Vigente ✅** |
+|---|---|---|
+| Frames | 245 · 281 · 293 (los retocados por Eli) · 264 | **255 · 257 · 266** |
+| Cuerpo | negro / carbón | **crema, kraft claro** |
+| Logo | impreso en una **faja de cartón** | **impreso directo** en el cuerpo |
+| Tapa | domo café oscuro | **negra, plana** |
+
+Que los retocados a calidad final sean los del vaso **antiguo** es la trampa: son
+los que parecen «los buenos». No lo son.
+
+### ⭐ Por qué un recorte se ve pegado — medido, no a ojo
+
+`scripts/between-montar-vaso.py` lo resuelve. Las tres causas, medidas entre el
+recorte y la escena de la story del 3-sep:
+
+| | Recorte | Escena | Corrección |
+|---|---:|---:|---|
+| Nitidez (varianza del laplaciano) | **2095** | 13,5 | desenfocar hasta igualar (~3 px) |
+| Luz entra por | **derecha** | izquierda | degradado lateral que invierte el modelado |
+| Sombra de contacto | ninguna | — | elipse suave, corrida al lado opuesto de la luz |
+
+> ⛔ **El vaso NO se espeja** para arreglar la luz: invertiría el logotipo, que es
+> justo lo que costó la ronda 4. Se re-ilumina, no se voltea.
+
+```bash
+python scripts/between-montar-vaso.py <escena> <salida> \
+    --centro CX --piso Y --ancho W --luz izquierda
+```
+
+**Y una de contexto:** el vaso generado salía a **saturación 84** cuando el real
+está en **39–44** — el doble de cálido y mucho más oscuro. Eso, y no un recorte de
+altas, es lo que el cliente lee como «quemado». Corregirle el tono al montaje se
+probó (`scripts/between-vaso-tono.py`) y **quedó peor**: grisáceo, frío y con el
+borde del parche a la vista. El script queda por sus mediciones, no como salida.
+
+### La vela no era una vela
+
+Era un pabilo con llama, sin nada de cera — por eso se veía rara. Si vuelve a
+aparecer una vela generada, hay que **dibujarle el cuerpo**, subir la llama para
+darle altura y añadir el resplandor que derrama sobre la tapa. Sin esos tres
+pasos se lee como un palito encendido.

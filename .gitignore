@@ -136,6 +136,12 @@ out/mascenter-algarrobal/preview-artifact.html
 !public/assets/hilton/between/fotos-gradadas/croissant-latte-cenital.jpg
 !public/assets/hilton/between/fotos-gradadas/togo-dulce-45.jpg
 
+# Escenas con el VASO REAL recortado (ronda 5). El recorte y las escenas que lo
+# usan se versionan: salieron de la sesión del cliente y rehacerlos cuesta una
+# tarde entera de segmentación.
+!public/assets/hilton/between/togo-vaso-real-nobg.png
+!public/assets/hilton/between/fotos-reales/*.jpg
+
 # Ilustraciones de la marca: globos, flechas y trazados. Salen del .svg de Eli
 # («Flechas y trazados, globos BETWEEN», Drive 1EZHJab1Rp8c8vuTHqAehF6tCk-CiRsXa)
 # rasterizado con Chrome headless y recortado por canal alfa. Son 215 KB en total
@@ -146,3 +152,19 @@ out/mascenter-algarrobal/preview-artifact.html
 # Presentación Más Center: el generador y los datos SÍ se versionan
 !raw/mascenter-presentacion/centros.json
 !raw/mascenter-presentacion/extraer_assets.py
+
+# ── CREDENCIALES: nunca, jamás, al repositorio ──────────────────────────────
+# Este repo lo comparten varios diseñadores. Un token de Google acá dentro se
+# publica a todo el equipo en el siguiente push. Detectado el 31-08-2026: la
+# carpeta credentials/ que scripts/_entorno.py busca NO estaba ignorada.
+# OJO: va `credentials/*` y no `credentials/`. Git no entra en un directorio
+# excluido, así que con la barra sola la excepción de abajo no se aplica nunca.
+credentials/*
+*.env
+.env
+token.json
+credentials.json
+client_secret*.json
+# ...pero el instructivo SÍ viaja: si no, las instrucciones para montar el token
+# se quedan en la máquina de quien las escribió y el siguiente vuelve a empezar.
+!credentials/LEEME.md

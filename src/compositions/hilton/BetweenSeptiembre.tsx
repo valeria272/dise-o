@@ -46,6 +46,8 @@ import {
 const F = 'assets/hilton/between/fotos-gradadas/';
 /** Montajes generados: solo lo que NO existe en el banco de fotos del cliente. */
 const IA = 'assets/hilton/between/ia-sept/';
+/** Escenas armadas con el VASO REAL recortado de la sesión del cliente (ronda 5). */
+const REAL = 'assets/hilton/between/fotos-reales/';
 
 const HORARIO_TOGO = 'Lunes a viernes · 08:00 a 10:00 hrs.';
 
@@ -500,7 +502,13 @@ export const StToGoDulce: React.FC = () => (
    así que acá solo se aplica lo que sigue vigente.                             */
 export const StCumple: React.FC = () => (
   <PiezaStoryBetween
-    foto={IA + 'cumple-vela-logo.png'}
+    /* ⭐⭐ RONDA 5 (31-08): «el vaso no se parece al real… se ve quemado y extraño.
+       Debe verse hiperrealista». El vaso ya no es un montaje: es el REAL, recortado
+       de `Double Tree 25 jul 25-255` de la sesión del cliente y compuesto sobre la
+       escena aprobada. Trae su propia textura de cartón, su logotipo impreso y su
+       tapa con relieve — nada de eso se puede estampar encima de un vaso generado.
+       Recurso reutilizable: public/assets/hilton/between/togo-vaso-real-nobg.png */
+    foto={REAL + 'cumple-vela-real.jpg'}
     /* ⭐ RONDA 5: la story arrastra el mismo titular del feed —«mismos textos de
        la publicación de feed» sigue siendo la orden vigente—, así que acá también
        entra «en septiembre». */
@@ -508,7 +516,10 @@ export const StCumple: React.FC = () => (
     caps="Este café es para ti"
     datos={['¡Ven por tu café de regalo!']}
     oscurecer={0.1}
-    legal="Ven a celebrar a Between."
+    /* ⭐ RONDA 5: se va el «Ven a celebrar a Between». La orden vigente es que la
+       story lleve LOS MISMOS textos del feed, y el feed son tres, no cuatro. Además
+       el legal va anclado a 360 px del pie y con el vaso real —más grande— caía
+       justo sobre su logotipo. */
   >
     <Globos
       posiciones={[

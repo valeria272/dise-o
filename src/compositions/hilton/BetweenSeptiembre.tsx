@@ -218,7 +218,15 @@ export const Cowork3: React.FC = () => (
       `credentials/token.json`. Mientras tanto apunta a `cowork-laptop.jpg`
       para poder ver y aprobar la diagramación; la foto definitiva entra
       cambiando SOLO esta constante. */
-const FOTO_SERVICIO = F + 'cowork-laptop.jpg'; // ⚠️ provisional — ver arriba
+/* Foto INTERINA pero REAL: el mesón de servicio de Between con la estación de
+   café detrás, recortado 4:5 desde el original de 6718 px (`espacios/HDT_56.jpg`,
+   recorte derecho) y gradado con `between-gradar.py`. Reemplaza a la provisional
+   —que era la misma foto de la portada, y repetir el fondo dentro del mismo
+   carrusel se nota— y ya dice «servicio», que es el mensaje de la slide.
+   ⚠️ NO es la definitiva: falta la que pidió Eli, sólo la mano preparando café.
+   Esa se genera con `scripts/between-slide4-magnific.py` en cuanto Magnific
+   tenga clave válida o el conector cargue. */
+const FOTO_SERVICIO = F + 'bar-servicio.jpg';
 
 export const Cowork4: React.FC = () => (
   <PiezaFeedBodegon

@@ -146,6 +146,11 @@ out/mascenter-algarrobal/preview-artifact.html
 # el logotipo del vaso ya no se estampa — viene impreso en el propio vaso.
 !public/assets/hilton/between/fotos-gradadas/togo-vaso-foto.jpg
 !public/assets/hilton/between/fotos-gradadas/rol-canela.jpg
+# Slide 4 del Cowork (servicio): el mesón real de Between con la estación de café
+# detrás, recortado 4:5 desde el original de 6718 px (espacios/HDT_56.jpg, recorte
+# derecho) y gradado. Es INTERINA —falta la toma de la mano preparando café— pero
+# sin ella `BW-F-Cowork-4` no se puede rendir en otra máquina.
+!public/assets/hilton/between/fotos-gradadas/bar-servicio.jpg
 # La taza blanca de cappuccino, recortada de las propias ediciones con IA de Eli
 # (carpeta «Ediciones con IA fotos»). Sin logo KIMBO, así que cumple la regla.
 !public/assets/hilton/between/taza-cappuccino-nobg.png

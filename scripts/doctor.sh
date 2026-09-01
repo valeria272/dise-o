@@ -28,8 +28,23 @@ PY_VENV=""
 for c in "$HOME/copylab-venv/bin/python3" "$HOME/copylab-venv/Scripts/python.exe"; do
   [ -f "$c" ] && PY_VENV="$c" && break
 done
-[ -n "$PY_VENV" ] \
-  && ok "venv Python en ~/copylab-venv" || warn "Sin ~/copylab-venv — ver docs/ONBOARDING-DISENADORES.md paso 3"
+if [ -n "$PY_VENV" ]; then
+  ok "venv Python en ~/copylab-venv"
+else
+  # ⭐ En Windows el estudio quedó instalado con los paquetes GLOBALES y sin venv
+  # (ver credentials/LEEME.md). Antes esto no sólo avisaba: dejaba PY_VENV vacío
+  # y el doctor SE SALTABA EN SILENCIO la verificación de material — la compuerta
+  # que evitó el desastre de Revex/Casablanca. Ahora cae a un Python del sistema
+  # que tenga lo necesario, y sólo avisa si tampoco existe.
+  for c in python3 python py; do
+    command -v "$c" >/dev/null 2>&1 || continue
+    "$c" -c "import PIL, numpy" >/dev/null 2>&1 || continue
+    PY_VENV="$c"; break
+  done
+  [ -n "$PY_VENV" ] \
+    && ok "Sin venv, pero hay Python del sistema con PIL+numpy ($PY_VENV)" \
+    || warn "Sin ~/copylab-venv ni Python con PIL+numpy — ver docs/ONBOARDING-DISENADORES.md paso 3"
+fi
 case "$ROOT" in
   */Desktop/*|*/Documents/*|*/Downloads/*|*/Escritorio/*|*/Documentos/*|*/Descargas/*|*OneDrive*)
     warn "El repo está dentro de una carpeta que iCloud u OneDrive sincroniza."
@@ -86,7 +101,11 @@ echo "  Estado completo y qué falta pedir: docs/ESTADO-MARCAS.md"
 echo; echo "══ Ficha de marca (JSON válido) ══"
 for j in clients/*/marca.json; do
   [ -e "$j" ] || continue
-  python3 -c "import json,sys;json.load(open(sys.argv[1]))" "$j" 2>/dev/null \
+  # ⚠️ El `encoding` NO es decorativo: en Windows `open()` decodifica en cp1252,
+  # que no tiene definidos los bytes 0x81/0x8D/0x90. Las fichas que llevan Á, Í,
+  # ⭐ o ← reventaban y el doctor las daba por «JSON inválido» estando perfectas
+  # — 4 falsas alarmas sobre 8 fichas, comprobado el 01-09-2026.
+  python3 -c "import json,sys;json.load(open(sys.argv[1],encoding='utf-8'))" "$j" 2>/dev/null \
     && ok "$j" || bad "$j — JSON inválido"
 done
 

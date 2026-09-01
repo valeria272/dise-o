@@ -5,7 +5,11 @@
 
 ---
 
-## 2026-09-01 (noche) · Eli (Windows) — BETWEEN: la jerarquía del carrusel Cowork, y la COLUMNA como medida de composición
+## 2026-09-01 (noche) · Eli (Windows) — BETWEEN: la COLUMNA como medida de composición, la slide 4 de vuelta, y dos bugs del doctor
+
+> ⚠️ Esta entrada funde las **dos** que quedaron escritas esta noche: hubo otra vez
+> dos sesiones sobre el mismo repo (la otra commiteó en `e14047e`, 16:32). Se
+> conserva todo lo de ambas. **Conviene una sola sesión por repo.**
 
 **Qué se hizo.** Segunda pasada del día sobre la S1. Eli marcó el carrusel Cowork
 ya entregado: **«los textos están muy grandes y desproporcionados, mejorar la
@@ -15,6 +19,12 @@ achicaban el texto **hasta caber en el margen** (912 px = 84,4 %), que está por
 encima del `anchoMax: 0.8` que declara el propio kit. Resultado: cada slide se
 achicaba por su cuenta y el carrusel salió con **tres cuerpos de titular distintos**
 (117 · 99 · 88) — al deslizar, el titular cambiaba de tamaño.
+
+| | slide 1 | slide 2 | slide 3 | **ref. aprobada** |
+|---|---|---|---|---|
+| ancho del titular | 55 % | **84 %** | **84 %** | **52 %** |
+| cuerpo real | 117 | **99** | **88** | **117** |
+| caja taupe | 50 % | 77 % | **84 %** | **55 %** |
 
 **La regla que quedó escrita** (`clients/hilton/CLAUDE.md § LA COLUMNA`):
 
@@ -32,50 +42,102 @@ aprobadas (3 de las 4 entregadas de la S1 se movían entre 4,5 % y 5,3 % de sus
 píxeles). Así que `PiezaFeedBodegon` sigue trayendo el margen y la columna se pasa
 a mano (`columna` / `columnaCaja` / `aireTituloACaja`). **Comprobado:** re-rendidas
 las 4 piezas aprobadas en `out/_verif/`, salen **idénticas píxel a píxel** a las
-entregadas (0,000 % de diferencia, delta máximo 0). `npx tsc --noEmit` limpio.
+entregadas. `npx tsc --noEmit` limpio.
+
+**La slide 4 volvió al carrusel.** La versión que rechazó el cliente era la única
+que no usaba `PiezaFeedBodegon` —por eso no se parecía a ninguna—; ahora comparte
+gramática, va **anclada arriba** y sus tres textos son literales del brief. Se
+agregó el **velo** que pidió Eli: la transparencia multiplicada de Illustrator,
+capa aparte al **10 %**, sobre la foto y **debajo** del logo y del texto.
+**No es subir `oscurecer`** — eso el manual lo prohíbe («cuando un texto no se lee,
+la solución es la caja taupe»). QA: **4/4 limpias**.
+
+**⚠️ La foto de la slide 4 es INTERINA, no se entrega así.** Eli la pidió
+*«una trabajadora sin rostro preparando café, y que se vea el espacio del bar»*.
+Hoy lleva el **mesón real de servicio** de Between (`espacios/HDT_56.jpg`, recorte
+derecho 4:5 desde el original de 6718 px, gradado →
+`fotos-gradadas/bar-servicio.jpg`, con su excepción en `.gitignore`). Se eligió
+sobre la barra del bar —más linda pero es una pared de destilados— porque **dice
+«servicio»**, que es el mensaje de la slide, y no repite el fondo de la portada.
+**Le falta el gesto de la mano.**
+
+**Magnific: registrado pero NO operativo.** Se agregó
+`magnific / http / https://mcp.magnific.com` a `mcpServers` del proyecto en
+`~/.claude.json` (con respaldo). ⚠️ **El CLI `claude` no existe como binario en
+este PC** —se usa la extensión de VS Code—, así que `claude mcp add` no se puede
+correr: hay que editar la config a mano. Faltan dos cosas y basta con una:
+
+1. El MCP **no carga hasta reconectar la sesión** (`/mcp` → reconnect, o chat nuevo).
+2. La clave de `~/.magnific_key` da **401**. ⛔ **NO es la de Freepik**: la propia
+   API responde con la URL buena → `magnific.com/developers/dashboard/api-key`.
+
+El prompt ya está escrito en `scripts/between-slide4-magnific.py`, con las fotos
+reales del bar como `--refs` para que no invente un bar de stock, y con la regla
+KIMBO explícita (taza blanca total, sin logo).
+
+**⭐ Dos bugs del doctor, y el segundo importaba.**
+
+1. Reportaba **4 fichas «JSON inválido» siendo válidas las 8**: abría el archivo
+   sin declarar codificación y en Windows Python lee en **cp1252**, que no tiene
+   definidos los bytes `0x81`/`0x8D`/`0x90`. Las marcadas eran justo las que llevan
+   `Á`, `Í`, `⭐` o `←`.
+2. **Se saltaba EN SILENCIO la verificación de material** —la compuerta que detectó
+   las 19 referencias rotas de Revex/Casablanca— porque exigía `~/copylab-venv`, que
+   en este PC no existe (los paquetes están **globales**, ver `credentials/LEEME.md`).
+   Ahora cae a un Python del sistema con PIL+numpy. **Corrió por primera vez acá:
+   295 archivos revisados, 295 válidos, 0 rotos, 0 vacíos.**
+
+También se parchó `between-entrega.py`, que reventaba con `UnicodeEncodeError` al
+imprimir el «✓» **después** de haber escrito las piezas: parecía que la entrega
+había fallado y en realidad ya estaba hecha.
 
 **Dónde quedó.**
 
 | | |
 |---|---|
-| Carrusel Cowork r6 (3 slides corregidas) | `out/entrega-cowork-r6/S1/`, 16:06, con nombre de portal |
+| Carrusel Cowork r6, las 4 slides | `out/hilton-between-cowork-r6/` |
+| Las 3 entregables | `out/entrega-cowork-r6/S1/`, con nombre de portal, 2250 px y 150 ppp |
 | Piezas aprobadas re-verificadas | `out/_verif/` — idénticas a la entrega |
+| Página de revisión (antes/después con medidas) | `https://claude.ai/code/artifact/9688ec3b-7ebd-4707-8051-f7df8bd8e600` |
 | Regla y medición | `clients/hilton/CLAUDE.md § LA COLUMNA` + `src/brand/hilton-between.ts` (`bloque.columna: 810`) |
-| Props nuevos | `BetweenSistema.tsx`: `columna`, `columnaCaja`, `aireTituloACaja` |
-| Herramienta nueva | `scripts/between-medir-bloque.py <carpeta>` — mide la **tinta**, no la caja del layout |
-| Segunda `/al-dia` (19:30) | `clients/_estado-sync.json`: **no hay ronda 6**; los 9 comentarios de Scarlette son los mismos del 31-08 |
+| Props nuevos | `BetweenSistema.tsx`: `columna`, `columnaCaja`, `aireTituloACaja`, `velo` |
+| Herramientas nuevas | `between-medir-bloque.py` (mide la **tinta**, no la caja del layout) · `between-slide4-magnific.py` |
+| Segunda `/al-dia` (19:30) | `clients/_estado-sync.json`: **no hay ronda 6** |
 
-**Qué sigue.**
+**Qué sigue, en orden.**
 
 1. **⛔ Copiar el Cowork r6 a la carpeta de entrega.** `Desktop\S1 BETWEEN` todavía
    tiene las 3 slides **viejas** de las 15:19 — las de la jerarquía mala. Las buenas
    están en `out/entrega-cowork-r6/S1/`. **Esto es lo primero de mañana.**
-2. **Subir a Drive.** Sigue faltando `credentials/token.json` (solo está `LEEME.md`),
-   así que **nada de esto está en Drive**. En Drive las 27 piezas siguen en la
-   versión del **28-08 01:53 (ronda 4)** y faltan los **5 PNG de feed** (Cowork 1/2/3
-   y Cumpleaños 1/2) aunque la grilla ya marca FEED E como CORREGIDO.
-3. **Slide 4 del Cowork:** la composición está lista y pasa el QA, pero apunta a una
-   **foto provisional**. Cuando llegue la real, cambiar `FOTO_SERVICIO` en
-   `BetweenSeptiembre.tsx` y descomentar `BW-F-Cowork-4` en `scripts/between-entrega.py`.
+2. **Destrabar Magnific** y generar la foto de la mano. Después: apuntar
+   `FOTO_SERVICIO`, rendir `BW-F-Cowork-4`, QA, y **descomentar `BW-F-Cowork-4` en
+   `scripts/between-entrega.py`**.
+3. **Subir a Drive.** Sigue faltando `credentials/token.json`, así que **nada de esto
+   está en Drive**. Allá las 27 piezas siguen en la versión del **28-08 01:53
+   (ronda 4)** y faltan los **5 PNG de feed** (Cowork 1/2/3 y Cumpleaños 1/2) aunque
+   la grilla ya marca FEED E como `CORREGIDO`.
+4. La ficha `clients/hilton/marca.json` **no existe** (lo marca el doctor; `abakos`
+   está igual). Todo lo medido ya está en `src/brand/hilton-between.ts` y en el
+   manual: es pasarlo a JSON.
 
 **Abierto.**
 
-- **La foto de la slide 4** — trabajadora **sin rostro** preparando café en Between.
-  Los tres caminos están cerrados en esta máquina: la sesión «Between julio» del
-  Drive no es pública y falta el token; el material local no la tiene (revisados 91
-  fotogramas del 2º piso, 11 fotos de espacios y 38 ediciones de Magnific); y para
-  generarla falta la clave de Freepik/Magnific (`~/.magnific_key` tiene el texto de
-  ejemplo). El script del prompt está escrito y listo:
-  `scripts/between-slide4-magnific.py`. **Ojo:** «Between julio» es julio 2023 — el
-  manual la marca ⛔ solo de referencia por derechos de imagen; que Eli pida *sin
-  rostro* calza, usar una cara reconocible **no**.
-- **`credentials/token.json`** — sin eso no se puede corregir ninguna pieza ya
-  entregada en Drive. Es el mismo bloqueo desde el 31-08.
-- **Duplicados en Drive:** `BW ST 01-09`, `03-09` y `04-09` existen **dos veces** en
-  la misma rama (la vieja del 28-08 en `BW` y la nueva en `BW/S1/STS`). El portal
-  levanta por nombre — hay que limpiar.
-- **Hilton no tiene `reglas.yaml`** (Casablanca, Revex y Cava sí). La regla de la
-  columna es medible y debería entrar al motor de QA cuando se abra ese archivo.
+1. ⚠️ **La slide 4 lleva foto interina.** No se entrega hasta tener la de la mano.
+2. ⚠️ **Duplicados en Drive:** `BW ST 01-09`, `03-09` y `04-09` existen **dos veces**
+   en la misma rama (la vieja del 28-08 en `BW` y la nueva en `BW/S1/STS`). El portal
+   levanta **por nombre** — hay que limpiar.
+3. **¿La slide 4 lleva logo?** Eli dijo «para que se vea el logo y los textos de
+   arriba», pero la regla escrita es que **en carrusel el logo va sólo en la
+   portada**. Se respetó la regla y quedó sin logo. **Falta que ella confirme.**
+4. **`credentials/token.json`** — sin eso no se puede corregir ninguna pieza ya
+   entregada en Drive. Mismo bloqueo desde el 31-08.
+5. **NO hay ronda 6**: los 9 comentarios nativos de la grilla siguen siendo los del
+   31-08 17:34–17:59. El guardado de hoy 19:25 sólo movió estados (FEED E y
+   STORIES C y D pasaron a `CORREGIDO`).
+6. **Hilton no tiene `reglas.yaml`** (Casablanca, Revex y Cava sí). La regla de la
+   columna es medible y debería entrar al motor de QA cuando se abra ese archivo.
+7. Sin cambios: el **listado del cumpleaños de CINCO ítems** contra los cuatro de
+   nuestra pieza, y el **Café Bombón** esperando al cliente.
 
 ---
 

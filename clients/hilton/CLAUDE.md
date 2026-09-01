@@ -990,3 +990,459 @@ foto**; antes de generar o de bloquear, se agota el material audiovisual.
 > Las demás fotos siguen sin identificar. **Varias no son de Between** —la barra
 > de ónix retroiluminada parece de QB, y varias son del hotel—: usar una ajena es
 > repetir exactamente el error que el cliente viene reclamando. Preguntar antes.
+
+---
+
+# ⭐⭐ RONDA 5 · SEGUNDA PASADA (01-09-2026) — lo que quedó medido
+
+## 1. La CTA sale de la grilla, no se redacta
+
+Las dos stories de la S1 traen **CTA propia en el brief** y estaba sin poner. Vive
+en la hoja `STORIES`, dentro de la celda de DISEÑO (fila 10), al final del texto:
+
+| Pieza | Celda | CTA literal |
+|---|---|---|
+| ST 01-09 · Promo To Go | `STORIES!C10` | **«Pasa por Between y llévalo contigo.»** |
+| ST 03-09 · Cumpleaños | `STORIES!D10` | «Ven a celebrar a Between.» *(retirada en la ronda 5: la orden vigente es que la story lleve LOS MISMOS textos del feed, y el feed son tres)* |
+
+⚠️ **La CTA no está en una fila propia**: está enterrada al final de la celda de
+diseño, después del texto en imagen. Leyendo solo la primera mitad de la celda se
+pierde — que es lo que pasó. Misma trampa que los comentarios en `xl/comments*.xml`.
+
+La CTA va en la **caja taupe**, que es donde esta marca pone el llamado. `CajaDato`
+baja el cuerpo sola hasta que cabe en una línea: la caja es `nowrap` por diseño.
+
+## 2. ⛔ La caja de bajada no deja palabras viudas
+
+Ronda 5, FEED C15: «Slide1: dejar el texto consecutivo que esta en el cuadro café,
+es decir, que "pendientes" queda arriba».
+
+La caja partía sola y dejaba **«pendientes.» sola en la segunda línea**. El corte
+correcto es el del brief: una frase por línea.
+
+    ✅ bajada={<>Espacio, WiFi y café.<br />Tú trae los pendientes.</>}
+    ⛔ bajada="Espacio, WiFi y café. Tú trae los pendientes."
+
+Va con `<br />` y **no** con `
+`: `PanelTaupe` no lleva `white-space: pre-line` y
+el salto se colapsaría en silencio.
+
+## 3. ⭐ El logotipo del vaso: por qué no se arregla por montaje
+
+Eli, 01-09: «el logo se ve mal, debe verse más profesional y como es el vaso real
+con logo de Between ya que se ve borroso».
+
+**Medido** — relación tinta / cartón (media del 12 % más oscuro contra la del 40 %
+más claro, dentro de la banda del logo):
+
+| | tinta/cartón |
+|---|---:|
+| vaso REAL, foto del cliente | **0,172** ← serigrafía negra sobre kraft |
+| sello de la ronda 5 en `cumple-manos-logo.png` | **0,445** ← 2,6 × más claro |
+
+La causa está en `between-logo-vaso.py`: la línea
+`densidad *= clip(lum * 1,25, 0,25, 1)` apaga la tinta en un vaso de tono medio,
+así que la densidad efectiva no pasa de ~0,64 y el negro nunca llega a negro.
+
+**Y hay un segundo defecto en el mismo archivo:** el borrado previo con
+`--clonar lados` interpola cada FILA entre las dos franjas laterales. Eso aplana
+la curvatura del cilindro —en `cumple-manos` el cuerpo va de **58 a 236** de
+luminancia de izquierda a derecha— y deja un **velo rectangular más claro** sobre
+todo el cartón, con sus bordes rectos a la vista. Es lo que se lee como pegatina.
+
+### ⛔ Los cuatro caminos que se probaron y por qué ninguno sirve
+
+1. **Re-estampar** → obliga a borrar el logo viejo, y borrar es inventar el cartón
+   que había debajo. Con ese gradiente, cualquier relleno se nota.
+2. **Pegar el recorte del vaso real encima** → el vaso de la escena es más ancho
+   abajo, así que **asoma por el costado**: es el «se ve extraño y doblado». Y
+   agrandar el recorte hasta taparlo lo saca de escala.
+3. **Rellenar el fondo del vaso viejo** → el relleno por filas emborrona toda la
+   estructura vertical (el canto de la mesa se convierte en bandas).
+4. **Trasplantar la banda de cartón real con el logo impreso** → llega con la
+   **línea de base torcida** y con un grano mucho más grueso que el vaso IA.
+
+### La causa raíz, y es de material
+
+**Del vaso VIGENTE no existe ninguna toma frontal y aislada en alta resolución.**
+El único recorte grande (`togo-vaso-real-nobg.png`, 1341×1851) sale del frame 255,
+donde el vaso está **inclinado**. Las escenas del cumpleaños son vasos **frontales**.
+Enderezar un logotipo impreso sobre un cilindro inclinado es deformarlo, y eso es
+lo único que el manual prohíbe sin excepción.
+
+> ⚠️ **Ojo con los frames 336 · 337 · 338 · 339** de `Between sesión modelos 25 jul
+> 2025`. Son packshots de estudio, frontales y en 3840×5760 — parecen la solución,
+> pero **son del vaso ANTIGUO** (cuerpo negro con faja kraft). El vigente es el de
+> cuerpo claro con el logotipo impreso directo, que Eli confirmó el 31-08.
+
+**Lo que destraba esto es una foto, no un script:** el vaso vigente, frontal, sobre
+una superficie lisa, con luz pareja. Con eso se recorta limpio y se monta sin
+inventar nada. Cinco minutos en el local.
+
+## 4. El listado del cumpleaños NO cabe en la story
+
+Eli, 01-09: «En la St n°2 debes usar los textos del carrusel de la S1 de cumpleaños.
+Con los cambios y emojis».
+
+Medido sobre la escena, en story de 1080×1920:
+
+| | y |
+|---|---|
+| logotipo impreso del vaso | **1364 – 1680** |
+| base del vaso | **1887** |
+| vela y llama | por encima de 690 |
+
+El listado más comprimido que sigue siendo legible mide **~190 px**. Puesto en la
+banda baja **tapa el logotipo del vaso** —justo lo que el cliente pidió que se viera
+(«el vaso tiene que tener el ligo de between»)— y puesto arriba choca con la vela.
+
+**Solución: dos frames.** Una story es una secuencia. `BW-S-Cumple` lleva los tres
+textos del feed con el vaso entero, y `BW-S-Cumple-2` lleva el listado con sus
+emojis y su legal, a cuerpo completo. Se publican seguidos.
+
+## 5. ⚠️ El listado que adjuntó el cliente tiene CINCO ítems, no cuatro
+
+En la grilla, anclada en `FEED!E13` (columna del post del 3-sep), hay una imagen
+adjunta por el cliente —`xl/media/image21.png`— con el listado que ellos quieren.
+**No es el que estamos usando.** Comparado:
+
+| Cliente (adjunto) | Nuestro `Checklist` |
+|---|---|
+| Te regalamos un café para disfrutar en cafetería o To Go. ☕ | ✅ igual |
+| Accede a este regalo el mismo día de tu cumpleaños. 🎁 | ✅ igual (emoji 🎂) |
+| Disponible de lunes a viernes, ¡en cualquier horario! 🤩 | ✅ igual (sin «¡!», emoji 🗓️) |
+| **¡Elige el tamaño que quieras! 😊** | ⛔ **falta** |
+| **¡Pregúntanos por los cafés disponibles!** | ⛔ **falta** |
+| — | «Presenta tu carnet en la caja.» 🪪 ← **no está en el adjunto** |
+
+En el adjunto los emojis van **al final de la línea** y cada ítem tiene su propia
+caja redondeada. La ronda 4 decía «En la G2 considerar **este listado**» — y «este
+listado» es ese adjunto. **Hay que resolverlo antes de la próxima entrega**: son
+dos condiciones comerciales que no estamos comunicando y una que quizá ya no corre.
+
+> Cómo se saca un adjunto de la grilla sin abrir Excel:
+> `python -c "import zipfile; zipfile.ZipFile('grilla.xlsx').extract('xl/media/image21.png')"`
+> y para saber a qué celda está anclado, `xl/drawings/drawing2.xml` (hoja FEED).
+
+---
+
+# ⭐⭐ RONDA 5 · TERCERA PASADA (01-09-2026) — seis decisiones de Eli
+
+## 6. ⛔ RESUELTA la regla del logo repetido: manda el vaso
+
+> «En el mismo carrusel no agregues en la portada el logo, ya que en el vaso está».
+
+Con esto **queda cerrada la decisión que estaba abierta desde el 31-08** para las
+tres piezas que rompían la regla 8. La forma final de la regla:
+
+**Cuando la foto trae el vaso con el logotipo impreso y legible, la pieza NO
+sobrepone el lockup.** No importa que sea la portada de un carrusel: la regla 5
+(«en carrusel el logo va sólo en la portada») dice *dónde* va si va, no obliga a
+ponerlo. Si la portada ya firma con el producto, no lleva lockup.
+
+Aplicado en `Cumple1` (FEED 3-sep) y ya vigente en `StToGoDulce` (ST 1-sep).
+
+## 7. ⭐ EL VASO DEL CUMPLEAÑOS, resuelto — y NO por montaje
+
+> «la imagen se ve sucia el logo. Mejóralo, ya que debe ser el vaso original con
+> el logo real de between» · «mejora el vaso togo»
+
+**Lo que estaba sucio era el velo, no el logo.** El re-sellado masivo de la ronda
+5 (`between-relogo-ronda5.py`) pasó por las 5 imágenes con vaso, y para borrar el
+sello anterior usó `--clonar lados`, que interpola cada FILA entre las dos franjas
+laterales. Eso aplana la curvatura del cilindro y deja **un velo rectangular más
+claro sobre todo el cartón**, con sus cuatro bordes rectos a la vista.
+
+⚠️ **Y el cliente nunca había reclamado por el logo de estas dos piezas.** En FEED
+E pidió «**incluir** el logo» (la ronda 3 no lo tenía). El «completamente
+distinto / nada que ver» era del carrusel To Go (FEED L). El re-sellado en bloque
+arregló una pieza y dañó otra.
+
+### La solución, en dos pasos
+
+1. **Volver a la versión de la RONDA 4**, cuyo cartón está limpio:
+
+       git show e699338:public/assets/hilton/between/ia-sept/cumple-manos-logo.png
+       git show e699338:public/assets/hilton/between/ia-sept/cumple-vela-logo.png
+
+2. Sobre ese cartón limpio, **subirle la carga de tinta al logo** con
+   `scripts/between-logo-densidad.py` — sin mover un píxel de geometría:
+
+       python scripts/between-logo-densidad.py <entrada> <salida> \
+           --caja 578 1686 948 1838 --objetivo 0.20 --gamma 0.72 --muestra 30
+
+   Mide el nivel del cartón **columna por columna** (el vaso es un cilindro: el
+   brillo depende de x, no de y) y reasigna la densidad de cada trazo. El logo no
+   se reescala, no se mueve y no se deforma.
+
+⛔ **`limpiar_zona` no se usa más para arreglar un sello.** Borrar es inventar el
+cartón que había debajo, y en un vaso con gradiente lateral fuerte —en
+`cumple-manos` el cuerpo va de **58 a 236** de luminancia— siempre se nota.
+
+### ⛔ Y por qué NO se usa el vaso real recortado
+
+`fotos-reales/cumple-vela-real.jpg` (el vaso real del frame 255 montado sobre la
+escena) **quedó fuera de producción.** El vaso que la escena ya traía es más ancho
+abajo y **asomaba por el costado del recorte**: es el «se ve extraño y doblado».
+Taparlo obliga a agrandar el recorte fuera de escala o a inventar fondo.
+
+Del vaso **VIGENTE no existe ninguna toma frontal y aislada en alta resolución**.
+El único recorte grande sale del frame 255, donde está inclinado, y estas escenas
+son frontales; endererzarlo sería deformar el logotipo.
+
+> ⚠️ Los frames **336 · 337 · 338 · 339** de `Between sesión modelos 25 jul 2025`
+> son packshots frontales en 3840×5760 y parecen la solución, pero son del **vaso
+> ANTIGUO** (cuerpo negro con faja kraft). El vigente es el de cuerpo claro con el
+> logotipo impreso directo.
+
+**Lo que destrabaría el montaje es una foto:** el vaso vigente, de frente, sobre
+superficie lisa y con luz pareja.
+
+## 8. ⭐ BOTÓN BLANCO — el llamado, una vez por pieza
+
+> «que la CTA sea "Pasa por Between" y abajo del botón "y llévalo contigo". La
+> idea que sea el único botón en blanco y textos café del color de la marca».
+
+Nuevo recurso: `BotonBlanco` en `BetweenRecursos.tsx`. Blanco macizo, píldora de
+radio 999, alto y padding de la caja taupe, **texto en el café de la marca
+`#675b49`** (sobre blanco el beige no tiene contraste) y Raleway ExtraBold en caja
+alta.
+
+- **Uno por pieza.** Es el único elemento blanco macizo de la gramática; con dos
+  deja de leerse como el llamado. Las demás cajas siguen taupe.
+- El llamado del brief se **parte**: la orden va dentro del botón y el cierre
+  queda fuera, debajo, en beige — porque cae sobre la foto.
+
+## 9. ⭐ Cifras: `lnum` sí, `tnum` NO está en las fuentes del proyecto
+
+> «los precios debes hacer que se vean opentype tabular, como en adobe
+> illustrator, así los números no se ven desordenados».
+
+Se activó en las cajas (`CajaDato`, `PanelTaupe`, `PilaEsquina`):
+
+    fontVariantNumeric: 'tabular-nums lining-nums',
+    fontFeatureSettings: '"tnum" 1, "lnum" 1',
+
+⚠️ **Medido sobre los propios archivos de fuente** (leyendo los tags de la tabla
+GSUB de `Raleway-*.ttf`):
+
+| Feature | ¿está? |
+|---|---|
+| `lnum` (cifras de caja alta) | **sí** |
+| `onum` (cifras antiguas) | no |
+| `tnum` (avance tabular) | **NO** |
+
+O sea: `lnum` **sí hace efecto** —las cifras salen a la misma altura y con
+espaciado parejo, que es el desorden que se veía— pero el avance tabular estricto
+**no lo puede dar esta fuente**. Si alguna vez hace falta una columna de precios
+perfectamente alineada, hay que traer la versión de Raleway que trae `tnum`
+(la variable de Google Fonts la tiene) y dejarla en `fonts/`.
+
+## 10. La ST del cumpleaños es UNA, no dos
+
+> «la ST de cumpleaños es uno solo… que se vean las dos informaciones que dejaste
+> en una sola ST, no dos como carrusel».
+
+Cabe **porque cambió el vaso**. Con el vaso montado el logotipo impreso llegaba
+hasta y 1680 de 1920 y el listado no entraba sin taparlo (por eso se había
+partido en dos frames). Con el vaso de la escena de la ronda 4 el logotipo queda
+en **y 1189–1271** y la base en ~1610: la banda baja está libre.
+
+`Checklist` tiene ahora `size` y `gap`. En feed va a 34 px; en story, a **27**.
+
+## 11. Del slide 2 en adelante, sin Brushwell
+
+> «desde el slide 2 no agregues la tipografía brushwell, que sea de la familia de
+> raleway, así se diferencia de la portada».
+
+`TitularBetween` tiene el prop **`scriptSans`**: la línea de acompañamiento pasa a
+Raleway 500 en caja alta, a **0,72 × la caja alta** y tracking **+0,02em**. No es
+una proporción nueva: es la misma de la línea `arriba` de `TituloTresPesos`.
+
+- ⚠️ En modo Raleway el texto se pasa a mayúscula **en el código**, no con
+  `textTransform`: el cuerpo se calcula midiendo con canvas y canvas mide el
+  string tal cual. Es el bug que partió 8 piezas de la ronda 4.
+- El volteo del signo `¿` es un truco para Brushwell, que no lo trae. Raleway sí,
+  así que en modo Raleway no se toca.
+- **Si la frase es UNA sola** (slide 3: «¿NECESITAS CAMBIAR DE ESCENARIO?»), no se
+  parte entre dos pesos: va entera en la caja alta, en dos líneas. Partirla dejaba
+  el «¿» en un peso y el «?» en otro.
+
+## 12. ⛔ Nada de palabras viudas en la caja de bajada
+
+Ya estaba para la portada; ahora vale para todas. `PanelTaupe` acepta
+`interlinea` y `PiezaFeedBodegon` lo reenvía como `interlineaBajada`
+(1,16–1,18 aprieta dos líneas para que lean como un bloque).
+
+    ✅ bajada={<>Espacio, WiFi y café.<br />Tú trae los pendientes.</>}
+    ⛔ bajada="Espacio, WiFi y café. Tú trae los pendientes."
+
+Va con `<br />` y NO con el salto de línea escapado: `PanelTaupe` no lleva
+`white-space: pre-line` y el salto se colapsaría en silencio.
+
+## 13. Falso positivo conocido de `between-qa.py`
+
+El QA arma la máscara de texto con los píxeles **beige de trazo fino**, así que en
+`BW-S-ToGoDulce` toma las hojaldres pálidas de las medias lunas y el borde del
+plato por tipografía y avisa «texto a 22 px del borde izquierdo». No hay ningún
+elemento ahí: el bloque y las cajas respetan los 84 px. **Las otras 6 piezas de la
+S1 pasan limpias.**
+
+## 14. ⛔⛔ EL LOGOTIPO NO SE CURVA — y el sello definitivo
+
+> «No puedes curvarlo de esa manera; sutil para el mockup en el vaso sí, pero está
+>  muy intervenido en los vasos. El vaso debe llevar bien el logo.» — Eli, 01-09-2026
+
+**Lo que estaba mal, medido sobre las propias imágenes:**
+
+| | proporción del logo | real |
+|---|---:|---:|
+| sello de la ronda 4 en `cumple-vela` | **2,619** | 3,027 |
+| sello de la ronda 4 en `cumple-manos` | **2,069** | 3,027 |
+
+O sea venía **13 % y 32 % achatado**, y además arqueado: la versión vieja de
+`between-logo-vaso.py` aplicaba `curvar()` —comba sinusoidal sobre un cilindro
+más un acortado lateral del 18 %—. Eso arquea la línea de base y aplasta las
+letras de los extremos.
+
+⚠️ **Es la misma deformación que costó la ronda 4**, y volvió sola el 01-09 al
+recuperar esas dos imágenes de la ronda 4 para rescatar su cartón limpio. Una
+versión tenía el cartón bueno y el logo malo; la otra, al revés.
+
+### ⭐ La salida: borrar SOLO LOS TRAZOS
+
+`scripts/between-logo-vaso-plano.py`.
+
+Lo que hacía imposible re-estampar era el borrado: `limpiar_zona` reemplaza un
+**bloque** de cartón, y en un vaso con gradiente lateral fuerte cualquier bloque
+inventado se nota (es el velo de la ronda 5). Pero **un logotipo no es un bloque:
+son líneas de 3–6 px.** Rellenar trazos finos tomando el cartón que los rodea es
+el problema de la raya en una foto, y se resuelve con **convolución normalizada**:
+cada píxel borrado se reemplaza por el promedio ponderado de sus vecinos
+conocidos. El gradiente del cilindro y el grano del cartón se conservan porque
+nunca se sustituyen — se interpolan a 3 px de distancia.
+
+Después el logotipo se estampa **plano**: escala uniforme, sin curvar, sin espejo,
+integrado por multiply contra el cartón. El realismo se consigue por **tono**, no
+por geometría.
+
+    python scripts/between-logo-vaso-plano.py <entrada> <salida> \
+        --caja X1 Y1 X2 Y2 --centro CX CY --ancho W --tinta 0.20 --umbral 0.86
+
+Los parámetros que quedaron, ya verificados:
+
+| Pieza | `--caja` | `--centro` | `--ancho` | `--umbral` | tinta lograda |
+|---|---|---|---:|---:|---:|
+| `cumple-vela-logo.png` | 560 1668 970 1862 | 756 1760 | 330 | 0,86 | **0,158** |
+| `cumple-manos-logo.png` | 636 1040 1044 1222 | 839 1147 | 320 | 0,90 | **0,143** |
+
+(el vaso real del cliente mide **0,172**)
+
+⚠️ **El `--umbral` no se sube «para limpiar mejor».** A 0,915 en `cumple-vela` la
+máscara se llevó cartón sano y el relleno dejó **una mancha oscura en el centro
+del logo**. A 0,86 sale limpio y sólo queda un fantasma tenue del logotipo que
+inventó la IA, invisible al tamaño de entrega.
+
+### ⭐ El TAMAÑO del logo sobre el vaso — medido en el vaso oficial
+
+> «La proporción del tamaño de logo es un poco más grande en el vaso; aprox abarca
+>  al centro que rodea al vaso. Que se vea igual al vaso oficial.» — Eli, 01-09-2026
+
+Medido con cuadrícula sobre `togo-vaso-real-nobg.png` (el vaso vigente del cliente,
+frame 255), a la altura media del logotipo:
+
+| | px |
+|---|---:|
+| «BETWEEN», de la B a la N final | **930** |
+| ancho visible del cuerpo del vaso | **1040** |
+| **logo ÷ ancho del vaso** | **0,89** |
+
+Y el logotipo va **centrado sobre la silueta** del cuerpo (en el vaso real su
+centro cae a 2 % del centro del cuerpo, o sea centrado).
+
+**La regla: el logotipo ocupa ≈ 0,86 del ancho visible del vaso, centrado.**
+
+Se usa 0,86 y no 0,89 porque el sello va **plano** y en los extremos el cilindro
+ya se está yendo: la impresión real se comprime ahí y la nuestra no puede
+—deformarla está prohibido—, así que se le deja ~7 % de aire a cada lado.
+
+Los dos vasos del cumpleaños estaban en **0,63**, casi un tercio más chicos de lo
+que corresponde. Valores aplicados:
+
+| Pieza | cuerpo del vaso | `--centro` | `--ancho` | ratio |
+|---|---:|---|---:|---:|
+| `cumple-vela-logo.png` (ST 3-sep) | 503–1031 (528) | 767 1760 | **450** | 0,85 |
+| `cumple-manos-logo.png` (FEED 3-sep) | 552–1040 (488) | 796 1147 | **420** | 0,86 |
+
+⚠️ **Cómo medir el ancho del cuerpo, y cómo NO.** Un barrido de «píxeles cálidos
+contiguos» NO sirve: los trazos del logotipo cortan la corrida y devuelve 31 px de
+ancho. Y en la escena de la vela la mesa de madera es igual de cálida que el
+cartón. Lo que sí funciona es **poner una cuadrícula sobre la imagen y leerla**
+(`ImageDraw` cada 25 px, etiquetas cada 100), que además deja el número anotado
+para la próxima.
+
+### ⛔ El logo se centra en el EJE DEL VASO, no donde estaba el anterior
+
+01-09-2026, Eli sobre la portada del cumpleaños: «el logo no está centrado en el
+vaso y se ve extraño».
+
+Y tenía razón: el sello se había centrado en el **centro del logotipo anterior**
+(x 796), que a su vez venía de donde la IA había puesto el suyo. Medido con
+cuadrícula, el cuerpo del vaso a la altura del logo va de **556 a 1070**, o sea el
+eje está en **813**. Con el centro en 796 quedaba **30 px de aire a la izquierda y
+64 a la derecha** — 17 px descentrado, suficiente para que se note.
+
+**La regla: el centro del logotipo va en el punto medio de la silueta del cuerpo,
+a la altura del propio logo.** Nunca en el centro del sello anterior. Y la altura
+se centra en la banda de cartón visible (entre el borde de la tapa y donde
+empiezan los dedos o la base), no a ojo.
+
+| | valor |
+|---|---|
+| cuerpo del vaso en y≈1132 | 556 – 1070 → eje **813** |
+| banda de cartón visible | 1016 – ~1300 al centro |
+| ⛔ techo real: los dedos de la derecha suben a | **1236** |
+| logo aplicado | **442 px** en (813, **1148**) → aire 36 / 36 lateral |
+
+⚠️ **La banda no se centra contra el cartón, se centra contra lo que TAPA.** Al
+centro del vaso el cartón llega hasta ~1300, pero los dedos de la mano derecha
+suben hasta 1236 y el logo se lee sobre ellos. Con el centro en 1132 quedaba
+visiblemente alto («baja un poco más el logo al centro… sin que los dedos de la
+persona lo tape», Eli 01-09); con 1148 queda equilibrado y aún deja 14 px de aire
+sobre el dedo. Bajarlo a 1158 —el centro geométrico del cartón— ya lo pega.
+
+### ⭐ `--arco`: la comba sutil que SÍ se puede
+
+`arquear()` desplaza cada columna en **Y** siguiendo un perfil coseno y **nada
+más**. No es `curvar()`:
+
+| | qué hacía |
+|---|---|
+| `curvar()` (ronda 4) | comprimía el logo un **18 % a lo ancho** y aplastaba las letras de los extremos → **deforma la marca** |
+| `arquear()` | mueve columnas en vertical → cada letra conserva ancho, alto y forma **exactos** |
+
+Es la corrección de perspectiva que Eli autorizó («sutil para el mockup en el vaso
+sí»). Topada en el **3 % del ancho**; en la portada se usó **6 px sobre 442**
+(1,4 %), que suaviza el aire de calcomanía sin que se lea como deformación.
+
+⛔ Positivo = comba hacia abajo en el centro, que es lo que hace un vaso visto
+algo desde arriba. Antes de ponerlo, **mirar el borde inferior de la tapa**: si
+lee plano, el vaso está de frente y el arco va cerca de cero.
+
+### ⭐ Fuente del logotipo: el editable oficial
+
+`public/assets/hilton/between/logo-negro-vector.png` — **4214×1392, proporción
+3,0273**, extraído de `Between_logo_oficial.ai` que mandó Eli
+(Drive `1qIIz0OjsoOgRqv0TGFfE4e22xeelpsvE`), **página 1** de 8.
+
+El `.ai` es PDF 1.6 por dentro, así que se rasteriza sin Illustrator:
+
+    python -m pip install pypdfium2
+    # doc[0].render(scale=6000/1920) -> alfa desde la luminancia -> recorte a la tinta
+
+Las 8 páginas del editable: 1 negro grande (**la primaria**), 2 negro chico,
+3 blanco sobre negro, 4 café sobre crema, 5 blanco sobre café, 6 café sobre
+blanco, 7 beige muy claro, 8 vacía.
+
+⛔ El `logo-negro.png` de 981 px se queda **sólo para el lockup sobrepuesto**. Para
+estampar sobre un vaso va el vectorial: 4,3 × más resolución y bordes sin dientes.

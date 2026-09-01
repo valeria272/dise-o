@@ -37,10 +37,7 @@ PIEZAS = {
     'BW-F-Cowork-3': ('BW FEED 01-09 Cowork 3 segundo nivel.png',  'S1'),
     'BW-F-Cumple-1': ('BW FEED 03-09 Cumpleanos 1.png',            'S1'),
     'BW-F-Cumple-2': ('BW FEED 03-09 Cumpleanos 2 detalles.png',   'S1'),
-    'BW-S-Cumple':   ('BW ST 03-09 Cafe de regalo cumpleanos 1.png', 'S1'),
-    # 2.º frame de la misma story: el listado del beneficio. Se publican
-    # seguidos — el listado no cabe sobre el vaso sin tapar su logotipo.
-    'BW-S-Cumple-2': ('BW ST 03-09 Cafe de regalo cumpleanos 2 detalles.png', 'S1'),
+    'BW-S-Cumple':   ('BW ST 03-09 Cafe de regalo cumpleanos.png', 'S1'),
 }
 
 FORMATOS = {(2250, 2812): 'feed 4:5', (2250, 4000): 'story 9:16', (2250, 2250): 'paid 1:1'}

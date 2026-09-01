@@ -655,6 +655,50 @@ export const EtiquetaFlecha: React.FC<{
  * costura, como el post «Good Morning». Rompe el «título arriba, foto abajo»
  * sin salirse de la línea.
  */
+/**
+ * ⭐ BOTÓN BLANCO — el llamado a la acción, macizo y en blanco.
+ *
+ * Pedido de Eli el 01-09-2026 para la ST del 1-sep: «la CTA sea "Pasa por
+ * Between" y abajo del botón "y llévalo contigo". La idea que sea el único botón
+ * en blanco y textos café del color de la marca».
+ *
+ * Por eso el texto va en `BETWEEN.colores.cafe` (#675b49) y no en beige: sobre
+ * blanco macizo el beige no tiene contraste. Es el mismo café de las cajas
+ * taupe, o sea el color de la marca, no uno nuevo.
+ *
+ * ⛔ **Uno por pieza.** Es el único elemento blanco macizo de la gramática: si
+ * hay dos, deja de leerse como el llamado. Las demás cajas siguen siendo taupe.
+ */
+export const BotonBlanco: React.FC<{
+  children: React.ReactNode;
+  size?: number;
+  style?: React.CSSProperties;
+}> = ({children, size = 45, style}) => (
+  <div
+    style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: BETWEEN.cajas.alto,
+      padding: `0 ${BETWEEN.cajas.padX}px`,
+      background: '#ffffff',
+      borderRadius: 999,
+      boxShadow: '0 14px 34px rgba(36,26,18,0.28)',
+      fontFamily: BETWEEN.fuentes.sans,
+      fontWeight: BETWEEN.pesos.extrabold,
+      fontSize: size,
+      lineHeight: 1,
+      letterSpacing: '0.01em',
+      color: BETWEEN.colores.cafe,
+      textTransform: 'uppercase',
+      whiteSpace: 'nowrap',
+      ...style,
+    }}
+  >
+    {children}
+  </div>
+);
+
 export const PiezaPartida: React.FC<{
   izquierda: string;
   derecha: string;
@@ -787,6 +831,13 @@ export const PilaEsquina: React.FC<{
           lineHeight: 1.1,
           color: BETWEEN.colores.beige,
           whiteSpace: 'nowrap',
+          /* ⭐ 01-09-2026, Eli: «los precios debes hacer que se vean opentype
+             tabular, como en adobe illustrator, así los números no se ven
+             desordenados». Con cifras proporcionales el «1» ocupa menos que el
+             «3» y una columna de precios queda dispareja. `tnum` les da a todas
+             el mismo avance y `lnum` las lleva a caja alta. */
+          fontVariantNumeric: 'tabular-nums lining-nums',
+          fontFeatureSettings: '"tnum" 1, "lnum" 1',
         }}
       >
         {l.texto}

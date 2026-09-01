@@ -11,7 +11,7 @@ import {
   Foto1, Foto2, Foto3, Foto4,
   EllaHablo,
   ToGo1, ToGo2, ToGo3, ToGo4,
-  StToGoDulce, StCumple, StCumpleDetalles, StCalculos, StEmergencia, StHoraCafe,
+  StToGoDulce, StCumple, StCalculos, StEmergencia, StHoraCafe,
   StCowork, StDieciocho, StStrudel, StPrimavera, StHumorToGo, StPlateada,
 } from './compositions/hilton/BetweenSeptiembre';
 import {CalibracionTipografia} from './compositions/hilton/BetweenPrueba';
@@ -45,7 +45,6 @@ const Raiz: React.FC = () => (
     <Folder name="BW-Stories">
       <Composition id="BW-S-ToGoDulce" component={StToGoDulce} {...story} />
       <Composition id="BW-S-Cumple" component={StCumple} {...story} />
-      <Composition id="BW-S-Cumple-2" component={StCumpleDetalles} {...story} />
       <Composition id="BW-S-Calculos" component={StCalculos} {...story} />
       <Composition id="BW-S-Emergencia" component={StEmergencia} {...story} />
       <Composition id="BW-S-HoraCafe" component={StHoraCafe} {...story} />

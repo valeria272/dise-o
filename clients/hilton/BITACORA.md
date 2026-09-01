@@ -5,6 +5,122 @@
 
 ---
 
+## 2026-09-01 (tarde) · Eli (Windows) — BETWEEN: la S1 de septiembre corregida entera, y el logo del vaso resuelto de raíz
+
+**Qué se hizo.** Cuatro rondas de correcciones sobre las 7 piezas de la **S1**
+(carrusel Cowork 1-sep, post Cumpleaños 3-sep y las dos stories), todas pedidas por
+Eli en la sesión. Quedaron **entregadas en `Desktop\S1 BETWEEN`** con el nombre del
+portal, 150 ppp verificados. **⛔ NO están en Drive** — sigue faltando el token.
+
+**Lo que se arregló, pieza por pieza:**
+
+| Pieza | Qué se hizo |
+|---|---|
+| **ST 1-sep** Promo To Go | La **CTA que faltaba**, literal del brief (`STORIES!C10`): «Pasa por Between y llévalo contigo». Pasó a **botón blanco** con la orden dentro y el cierre debajo. Las **medias lunas ya se ven completas** (el render viejo usaba un recorte más apretado de la foto). Confeti corrido: estaba encima del producto |
+| **FEED 1-sep** Cowork slide 1 | La caja dejaba **«pendientes.» sola en la segunda línea**. Corte del brief, una frase por línea, interlínea 1,16 |
+| **FEED 1-sep** slides 2 y 3 | **Fuera Brushwell**: la línea de acompañamiento pasa a Raleway 500 en caja alta (`scriptSans`). La portada queda como la única con script. En la slide 3 la pregunta estaba partida entre dos pesos y su caja dejaba «reunirte.» viuda |
+| **FEED 3-sep** portada | **Fuera el lockup** — la marca ya está en el vaso. Cierra la decisión que estaba abierta desde el 31-08 |
+| **ST 3-sep** | Volvió a ser **UNA sola** story con las dos informaciones (titular + listado con emojis). Cabe porque cambió el vaso |
+| **Los dos vasos del cumpleaños** | Logo re-estampado de raíz: ver abajo |
+| Precios y horas | Cifras `lnum` + `tnum` en las tres cajas |
+
+**⭐⭐ El logo del vaso, la historia completa — porque costó cuatro intentos.**
+El reclamo era «se ve sucia el logo» y después «no puedes curvarlo de esa manera».
+Las dos cosas tenían una causa distinta y las dos quedaron medidas:
+
+1. **La suciedad era un velo, no el logo.** El re-sellado masivo de la ronda 5
+   borró el sello anterior con `--clonar lados`, que interpola cada FILA entre las
+   franjas laterales; eso aplana la curvatura del cilindro y deja **un rectángulo
+   más claro con los bordes rectos a la vista**. Y el cliente **nunca había
+   reclamado por el logo de estas dos piezas** (en FEED E pidió «*incluir*» el
+   logo; el «nada que ver» era del carrusel To Go). El arreglo en bloque dañó una
+   pieza que estaba bien.
+2. **La curvatura venía de la ronda 4.** Al volver a esa versión para rescatar su
+   cartón limpio, se restauró el sello viejo con `curvar()`: comba sinusoidal **más
+   acortado lateral del 18 %**. Medido: proporción **2,619** y **2,069** contra
+   **3,027** real — 13 % y 32 % achatado.
+
+**La salida, y es la lección de la sesión:** un logotipo **no es un bloque, son
+líneas de 3–6 px**. Se borran **solo los trazos** con convolución normalizada
+—cada píxel se reemplaza por el promedio de sus vecinos conocidos— así el gradiente
+del cilindro y el grano del cartón no se inventan, se interpolan a 3 px. Después se
+estampa el vector plano. `scripts/between-logo-vaso-plano.py`.
+
+⛔ **Cuatro caminos que NO sirven y no hay que volver a intentar:** re-estampar
+borrando un bloque (velo), pegar el recorte del vaso real encima (el vaso de la
+escena es más ancho abajo y **asoma por el costado** — el «extraño y doblado»),
+rellenar el fondo del vaso viejo (emborrona la estructura vertical), y trasplantar
+la banda de cartón real (llega con la línea de base torcida).
+
+**Y tres medidas nuevas que antes se hacían a ojo:**
+
+| | valor |
+|---|---|
+| logo ÷ ancho visible del vaso, en el vaso oficial | **0,89** → se usa **0,86** (el sello va plano y hay que dejar aire en las puntas) |
+| centro | el **eje de la silueta** del cuerpo, no el centro del sello anterior |
+| altura | contra **lo que tapa**, no contra el cartón: los dedos suben a y 1236 aunque el cartón llegue a 1300 |
+
+**Dónde quedó.**
+- Piezas: `Desktop\S1 BETWEEN` (7 PNG) y `out/entrega-drive/S1/`.
+- Assets nuevos versionados: **`logo-negro-vector.png`** (4214×1392, proporción
+  3,0273) sacado del editable oficial `Between_logo_oficial.ai` que mandó Eli
+  (Drive `1qIIz0OjsoOgRqv0TGFfE4e22xeelpsvE`, **página 1** de 8). El `.ai` es PDF
+  1.6 por dentro: se rasteriza con `pypdfium2`, sin Illustrator.
+- Scripts nuevos: `between-logo-vaso-plano.py` (borrado de trazos + sello plano +
+  `--arco` sutil) y `between-logo-densidad.py`.
+- Sistema: `TitularBetween` con `scriptSans`; `PanelTaupe` con `interlinea`;
+  `Checklist` con `size`/`gap`; `BotonBlanco` nuevo en `BetweenRecursos`.
+- ⛔ `fotos-reales/cumple-vela-real.jpg` **salió de producción** (era el montaje
+  del vaso real). El archivo se deja como registro del intento.
+- Todo el detalle medido está en `clients/hilton/CLAUDE.md` §§ 6–14.
+
+**Qué sigue, en orden.**
+1. **Subir la S1 al Drive.** Falta `credentials/token.json` (traerlo del Mac, ver
+   `credentials/LEEME.md`). Después `python scripts\between-subir-drive.py`.
+2. **La ilustración de personas del carrusel Cowork.** Eli la pidió con una
+   referencia de Pinterest pero **el archivo no está**: no en
+   `raw/hilton/between/de-eli` (vacía), ni en Descargas/Escritorio/capturas, ni
+   entre las 25 imágenes incrustadas en la grilla. Pinterest bloquea la lectura.
+   **Bloqueada hasta que deje el archivo en esa carpeta.**
+3. **Slide 2 del Cowork sigue siendo el Winter Garden** y Scarlette pidió «una
+   mesa con un pc y un café». La imagen ya está en la carpeta de Eli:
+   `raw/hilton/between/ediciones-ia-eli/magnific_agrega-una-laptop-en-la-m_iAi90W63uK.png`.
+   No se cambió porque ella acotó el carrusel a los comentarios de textos.
+   ⚠️ Y `cowork-laptop.jpg` **no tiene ninguna laptop**: son dos hombres en el muro
+   verde. El nombre engaña.
+4. Lo que sigue en pie de la ronda 5: regradar bajando calidez y altas, y
+   regenerar los montajes rechazados por ambiente (FEED 7-sep, 9-sep slides 2 y 4,
+   11-sep, 14-sep slides 1 y 4, ST 9-sep).
+
+**Abierto.**
+
+1. ⚠️ **El listado del cumpleaños que adjuntó el cliente tiene CINCO ítems, no
+   cuatro.** Está anclado en `FEED!E13` (`xl/media/image21.png`). Faltan «¡Elige el
+   tamaño que quieras!» y «¡Pregúntanos por los cafés disponibles!», y el nuestro
+   trae «Presenta tu carnet en la caja» que **no está en el adjunto**. Son dos
+   condiciones comerciales sin comunicar. **Hay que resolverlo antes de la próxima
+   entrega.**
+2. **Del vaso vigente no existe toma frontal aislada en alta resolución.** Lo que
+   destrabaría cualquier montaje futuro es una foto: el vaso de frente, superficie
+   lisa, luz pareja. Ojo: los packshots frontales 336–339 de la sesión del cliente
+   son del **vaso ANTIGUO** (cuerpo negro con faja kraft).
+3. **`tnum` no está en los Raleway del proyecto** (sí `lnum`). El avance tabular
+   estricto no lo puede dar esta fuente; si alguna vez se necesita una columna de
+   precios milimétrica hay que traer la Raleway variable de Google Fonts.
+4. **Café Bombón** sigue esperando al cliente (cómo se muestra la leche condensada
+   y si va en vaso transparente o kraft).
+5. ⚠️ **Hubo DOS sesiones trabajando en este repo hoy.** Los commits `9c0940f` y
+   `65d38ae` (13:22 y 13:23) no salieron de esta sesión y uno reescribió la
+   bitácora entera. No se perdió nada, pero **conviene trabajar con una sola
+   sesión por repo** para no pelear la bitácora.
+
+**Falso positivo conocido.** `between-qa.py` avisa «texto a 22 px del borde
+izquierdo» en `BW-S-ToGoDulce`: arma la máscara con píxeles beige de trazo fino y
+toma las hojaldres pálidas de las medias lunas por tipografía. Las otras 6 piezas
+pasan limpias.
+
+---
+
 ## 2026-09-01 · Eli (Windows) — BETWEEN: el conector de Drive NO puede entregar, y quedó probado
 
 **Qué se hizo.** Día de desbloqueo, no de producción. Se cerró la duda que venía

@@ -78,7 +78,7 @@ import {
   Foto1, Foto2, Foto3, Foto4,
   EllaHablo,
   Cowork1, Cowork2, Cowork3, Cowork4,
-  StToGoDulce, StCumple, StCumpleDetalles, StCalculos, StEmergencia, StHoraCafe,
+  StToGoDulce, StCumple, StCalculos, StEmergencia, StHoraCafe,
   StCowork, StDieciocho, StStrudel, StPrimavera, StHumorToGo, StPlateada,
   Cumple1, Cumple2,
 } from "./compositions/hilton/BetweenSeptiembre";
@@ -113,7 +113,6 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="BW-F-Cowork-4" component={Cowork4} {...btFeed} />
         <Composition id="BW-S-ToGoDulce" component={StToGoDulce} {...btStory} />
         <Composition id="BW-S-Cumple" component={StCumple} {...btStory} />
-        <Composition id="BW-S-Cumple-2" component={StCumpleDetalles} {...btStory} />
         <Composition id="BW-S-Calculos" component={StCalculos} {...btStory} />
         <Composition id="BW-S-Emergencia" component={StEmergencia} {...btStory} />
         <Composition id="BW-S-HoraCafe" component={StHoraCafe} {...btStory} />

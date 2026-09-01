@@ -567,7 +567,8 @@ export const CajaDato: React.FC<{
       color: BETWEEN.colores.beige,
       textTransform: 'uppercase',
       whiteSpace: 'nowrap',
-      fontVariantNumeric: 'tabular-nums',
+      fontVariantNumeric: 'tabular-nums lining-nums',
+      fontFeatureSettings: '"tnum" 1, "lnum" 1',
       ...style,
     }}
   >
@@ -762,6 +763,19 @@ const ajustarACaber = (
 export const TitularBetween: React.FC<{
   /** Frase corta o palabra clave. Va ARRIBA y en menor escala que el titular. */
   script?: string;
+  /**
+   * ⭐ La línea de acompañamiento en RALEWAY en vez de Brushwell.
+   *
+   * Pedido de Eli el 01-09-2026 para el carrusel Cowork: «desde el slide 2 no
+   * agregues la tipografía brushwell, que sea de la familia de raleway, así se
+   * diferencia de la portada». La script queda como marca de la PORTADA y las
+   * slides interiores bajan a un solo alfabeto.
+   *
+   * No es una proporción inventada: usa la misma relación que ya tiene la línea
+   * `arriba` de `TituloTresPesos` —Raleway 500 a 0,72 × la caja alta, tracking
+   * +0,02em y caja alta—, que es el recurso de dos pesos de la marca.
+   */
+  scriptSans?: boolean;
   /** Titular protagonista, en caja alta. Va ABAJO. */
   caps?: string;
   sizeCaps?: number;
@@ -773,6 +787,7 @@ export const TitularBetween: React.FC<{
   style?: React.CSSProperties;
 }> = ({
   script,
+  scriptSans = false,
   caps,
   sizeCaps = BETWEEN.tipos.tituloCaps,
   sizeScript,
@@ -784,16 +799,28 @@ export const TitularBetween: React.FC<{
   // sin esto se mide con la fuente de reemplazo y el titular no se achica
   useFuentesListas();
   const textoCaps = caps ? sinPuntoFinal(caps) : '';
-  const textoScript = script ? sinPuntoFinal(script) : '';
+  /**
+   * ⚠️ En modo Raleway la línea se pinta en CAJA ALTA, así que se pasa a
+   * mayúscula ACÁ y no con `textTransform`. El cuerpo se calcula midiendo con
+   * canvas, y canvas mide el string tal cual: medir «muchos pendientes» y
+   * pintar «MUCHOS PENDIENTES» da ~20 % de diferencia y el titular se sale del
+   * cuadro. Es el bug que partió 8 piezas de la ronda 4.
+   */
+  const textoScript = script
+    ? (scriptSans ? sinPuntoFinal(script).toUpperCase() : sinPuntoFinal(script))
+    : '';
 
-  if (textoScript && textoScript.split(/\s+/).length > 4) {
+  if (!scriptSans && textoScript && textoScript.split(/\s+/).length > 4) {
     // eslint-disable-next-line no-console
     console.warn(`[BETWEEN] «${textoScript}» es muy largo para la script. ` +
       `Brushwell es para una frase corta o una palabra clave, no para una bajada.`);
   }
 
+  const trScript = scriptSans ? 0.02 : BETWEEN.trackingScript;
   const cssCaps = (n: number) => `${BETWEEN.pesos.extrabold} ${n}px ${BETWEEN.fuentes.sans}`;
-  const cssScript = (n: number) => `${n}px ${BETWEEN.fuentes.script}`;
+  const cssScript = (n: number) => scriptSans
+    ? `500 ${n}px ${BETWEEN.fuentes.sans}`
+    : `${n}px ${BETWEEN.fuentes.script}`;
 
   const encoger = (texto: string, base: number, css: (n: number) => string, tr: number) => {
     if (!texto) return base;
@@ -824,9 +851,9 @@ export const TitularBetween: React.FC<{
   );
   const nScript = encoger(
     textoScript,
-    sizeScript ?? Math.round(sizeCaps * BETWEEN.proporcionScript),
+    sizeScript ?? Math.round(sizeCaps * (scriptSans ? 0.72 : BETWEEN.proporcionScript)),
     cssScript,
-    BETWEEN.trackingScript,
+    trScript,
   );
 
   const tCapsPorLinea = lineasCaps.map((l) => medirTinta(l, cssCaps(nCaps), BETWEEN.trackingCaps, nCaps));
@@ -838,7 +865,7 @@ export const TitularBetween: React.FC<{
    * cualquier cuerpo.
    */
   const aireEntreCaps = Math.round((tCaps.alto || nCaps * 0.73) * 0.35);
-  const tScript = medirTinta(textoScript, cssScript(nScript), BETWEEN.trackingScript, nScript);
+  const tScript = medirTinta(textoScript, cssScript(nScript), trScript, nScript);
 
   /** Cuánto mover la caja para que quede centrada la TINTA y no el avance. */
   const centrarTinta = (t: Tinta) =>
@@ -881,10 +908,15 @@ export const TitularBetween: React.FC<{
   return (
     <div style={{position: 'relative', width: '100%', height: alto, ...style}}>
       {textoScript
-        ? linea(signosVolteados(textoScript), tScript, nScript, 0, {
-            fontFamily: BETWEEN.fuentes.script,
-            letterSpacing: `${BETWEEN.trackingScript}em`,
-          })
+        ? linea(
+            /* el volteo del signo de apertura es un truco para Brushwell, que no
+               trae «¿». Raleway sí lo trae, así que en Raleway no se toca. */
+            scriptSans ? textoScript : signosVolteados(textoScript),
+            tScript, nScript, 0,
+            scriptSans
+              ? {fontFamily: BETWEEN.fuentes.sans, fontWeight: 500, letterSpacing: '0.02em'}
+              : {fontFamily: BETWEEN.fuentes.script, letterSpacing: `${BETWEEN.trackingScript}em`},
+          )
         : null}
       {lineasCaps.map((l, i) => {
         const arriba = altoScript
@@ -979,8 +1011,10 @@ export const PanelTaupe: React.FC<{
   size?: number;
   /** Ancho máximo del panel. Por defecto, el ancho útil del bloque. */
   ancho?: number;
+  /** Interlínea. Por defecto 1,3; se aprieta cuando el texto va en dos líneas. */
+  interlinea?: number;
   style?: React.CSSProperties;
-}> = ({children, size = BETWEEN.tipos.bajada, ancho, style}) => (
+}> = ({children, size = BETWEEN.tipos.bajada, ancho, interlinea, style}) => (
   <div
     style={{
       maxWidth: ancho ?? 1080 - 2 * BETWEEN.bloque.margenX,
@@ -990,9 +1024,13 @@ export const PanelTaupe: React.FC<{
       fontFamily: BETWEEN.fuentes.sans,
       fontWeight: BETWEEN.pesos.semibold,
       fontSize: size,
-      lineHeight: 1.3,
+      lineHeight: interlinea ?? 1.3,
       color: BETWEEN.colores.beige,
       textAlign: 'center',
+      /* cifras tabulares y de caja alta: así los precios y las horas quedan en
+         columnas parejas, como el «Tabular Lining» de Illustrator. */
+      fontVariantNumeric: 'tabular-nums lining-nums',
+      fontFeatureSettings: '"tnum" 1, "lnum" 1',
       ...style,
     }}
   >
@@ -1092,9 +1130,13 @@ export const PiezaFeedBodegon: React.FC<{
   oscurecer?: number;
   caps?: string;
   script?: string;
+  /** La línea de acompañamiento en Raleway en vez de Brushwell. */
+  scriptSans?: boolean;
   sizeCaps?: number;
   /** Bajada bajo el titular. Va antes de las cajas taupe. */
   bajada?: React.ReactNode;
+  /** Interlínea de la caja de bajada, para apretar un texto de dos líneas. */
+  interlineaBajada?: number;
   /** La bajada va DENTRO de una caja taupe, para cuando la foto no la deja leer. */
   bajadaEnCaja?: boolean;
   datos?: React.ReactNode[];
@@ -1128,9 +1170,11 @@ export const PiezaFeedBodegon: React.FC<{
   oscurecer = 0.1,
   caps,
   script,
+  scriptSans,
   sizeCaps,
   bajada,
   bajadaEnCaja,
+  interlineaBajada,
   datos,
   arco,
   pie,
@@ -1172,9 +1216,9 @@ export const PiezaFeedBodegon: React.FC<{
           alignItems: alinear === 'centro' ? 'center' : 'flex-start',
         }}
       >
-        <TitularBetween caps={caps} script={script} sizeCaps={sizeCaps} alinear={alinear} />
+        <TitularBetween caps={caps} script={script} scriptSans={scriptSans} sizeCaps={sizeCaps} alinear={alinear} />
         {bajada && bajadaEnCaja ? (
-          <PanelTaupe style={{marginTop: BETWEEN.aire.tituloACaja}}>{bajada}</PanelTaupe>
+          <PanelTaupe interlinea={interlineaBajada} style={{marginTop: BETWEEN.aire.tituloACaja}}>{bajada}</PanelTaupe>
         ) : bajada ? (
           <Bajada style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: alinear === 'centro' ? 'center' : 'left'}}>{bajada}</Bajada>
         ) : null}

@@ -224,24 +224,36 @@ export const Cowork3: React.FC = () => (
 
    ⚠️ FALTA LA FOTO — es lo único que bloquea esta slide. Ver
       `clients/hilton/CLAUDE.md § SLIDE 4 DEL COWORK`. */
-/* ⚠️ FOTO INTERINA, Y ADEMÁS NO ES LA ESCENA DEL BRIEF.
-   Hoy apunta al mesón de servicio (`espacios/HDT_56.jpg`, recorte derecho 4:5,
-   gradado). Sirvió para aprobar la diagramación, pero **el brief pide otra
-   cosa** (FEED, SLIDE 4 – SERVICIO):
+/* ⭐ RONDA 6 (01-09): la mesa del 2.º piso con el café recién servido.
+   Antes iba el MESÓN de servicio, y eso contaba lo contrario del copy: un mesón
+   vacío dice que el café SE VA A BUSCAR, cuando la slide vende el servicio a la
+   mesa. El brief (FEED, SLIDE 4 – SERVICIO) pide:
 
      «Persona trabajando mientras un colaborador deja un café o plato sobre la
       mesa. El usuario continúa trabajando sin tener que levantarse.»
 
-   Son dos personas y una MESA, no un mesón: lo que se vende es el SERVICIO A LA
-   MESA. Un mesón vacío cuenta lo contrario —que el café se va a buscar—, así que
-   esta foto NO se entrega. `BW-F-Cowork-4` sigue comentada en
-   `scripts/between-entrega.py` a propósito.
+   Esta foto es REAL y es de Between: la mesa de madera del 2.º piso con la sala
+   de cowork detrás, gradada con `--perfil neutro` como el resto del carrusel
+   (calidez 46,2 -> 21,1). Tres cosas la hacen calzar con el brief:
 
-   La definitiva se genera con `scripts/between-slide4-magnific.py`, que ya tiene
-   el prompt de la escena correcta y las referencias del 2.º piso. Bloqueado sólo
-   por la clave: `~/.magnific_key` trae texto de ejemplo y la API da 401.
-   Cuando llegue, entra cambiando SOLO esta constante. */
-const FOTO_SERVICIO = F + 'bar-servicio.jpg';
+   1. El punto de vista es el de QUIEN TRABAJA — la cámara está a la altura de la
+      mesa, así que el «tú» del titular es el que mira. No hay que actuar la
+      escena: el lector la ocupa.
+   2. El café está EN LA MESA, no en el mesón. Ése es el mensaje entero.
+   3. El latte art intacto y la cuchara sin usar dicen «recién llegó». Es el
+      instante justo después de lo que describe el brief.
+
+   Taza BLANCA TOTAL, sin raya ni logotipo: cumple la regla KIMBO (verificado con
+   zoom, no a ojo).
+
+   ⚠️ LO QUE LE FALTA, y hay que decirlo: no aparecen las PERSONAS. El brief pide
+   ver al colaborador dejando el café. Esta versión muestra el resultado, no el
+   gesto. Es honesta y no contradice el copy —a diferencia del mesón—, pero la
+   definitiva lleva a las dos personas y se genera con
+   `scripts/between-slide4-magnific.py`, que ya tiene el prompt correcto.
+   Bloqueado sólo por la clave de Magnific. Cuando llegue, entra cambiando SOLO
+   esta constante. */
+const FOTO_SERVICIO = F + 'servicio-mesa.jpg';
 
 export const Cowork4: React.FC = () => (
   <PiezaFeedBodegon
@@ -266,10 +278,15 @@ export const Cowork4: React.FC = () => (
        mano preparando café en primer plano— ya no hay cara que esquivar, así que
        el texto vuelve al ancla de la marca (y=180) y la slide queda alineada con
        las slides 2 y 3, que también anclan arriba. */
+    /* ⭐ ARRIBA, y ahora con motivo medido. Se probaron las dos: con el ancla
+       ABAJO la caja taupe cae justo encima de la taza y TAPA EL CAFÉ, que es el
+       sujeto de la pieza. Arriba el texto se apoya en la sala desenfocada y la
+       taza queda entera y libre. Además es el mismo ancla de las slides 2 y 3,
+       así el carrusel no salta. */
     anclaje="arriba"
     oscurecer={0.12}
     /* El velo que pidió Eli: la transparencia multiplicada de Illustrator, muy
-       sutil, para asentar la escena del bar bajo el texto sin apagar la foto. */
+       sutil, para asentar la escena bajo el texto sin apagar la foto. */
     velo={VELO_SUTIL}
   />
 );

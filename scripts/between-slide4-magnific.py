@@ -24,12 +24,13 @@ Ronda 4, comentario C15 de Scarlette sobre esta misma slide:
 
 De ahí salen las tres reglas que manda el prompt:
 
-  1. **Ninguna cara.** La persona que trabaja va de espaldas o de tres cuartos
-     desde atrás, y del colaborador sólo entran los brazos, cortados por el
-     borde. Así el texto no puede taparle la cara a nadie —el defecto se vuelve
-     imposible por construcción, no por diagramación— y de paso se esquiva el
-     problema de derechos de imagen que el manual marca ⛔ para las sesiones con
-     huéspedes reconocibles.
+  1. **Ninguna cara.** ⭐ Dirección de Eli (01-09): «una persona dejando el
+     capuccino, que no se vea el rostro». O sea **UNA sola persona**, y de ella
+     sólo el brazo y la mano, cortados por el borde. Se simplificó a propósito
+     respecto del brief —que describe a dos— porque cada mano de más es una
+     posibilidad de error anatómico, y «hay una mano de más» ya fue un rechazo.
+     De paso se esquiva el problema de derechos de imagen que el manual marca ⛔
+     para las sesiones con huéspedes reconocibles.
   2. **Trabajo, no desayuno.** El notebook abierto manda la mesa. Se prohíbe
      explícitamente el despliegue de desayuno: nada de platos de huevos, canastos
      de pan ni jugos. Lo que se deja es UNA taza o UN plato, que es el gesto del
@@ -84,47 +85,44 @@ SALIDA = RAIZ / "public/assets/hilton/between/ia-sept/cowork-servicio-mesa.png"
 PROMPT = (
     # ── el lugar: el 2.º piso real, no una cafetería genérica ──
     "Photorealistic vertical photograph taken inside the café work area shown in "
-    "the reference images. Keep that exact room and nothing generic: light oak "
-    "tables, soft grey-taupe upholstered armchairs, a wall of dark navy vertical "
-    "slats lit from behind, framed black and white city photographs, a tall arc "
-    "floor lamp with a woven fibre shade, herringbone floor. "
-    # ── la acción: servicio A LA MESA, que es lo que vende la slide ──
-    "At one of these tables, a person seen FROM BEHIND over the shoulder, working "
-    "on an open laptop, hands on the keyboard, absorbed in the screen and not "
-    "looking up. Their head is turned away from camera: the face is NOT visible, "
-    "no facial features at all, only the back of the head and shoulders. "
-    "A member of staff is setting down a single white ceramic cup on a white "
-    "saucer onto the table beside the laptop. Of this second person only the "
-    "FOREARMS AND HANDS enter the frame from the side, cropped by the edge above "
-    "the elbows: no face, no head, no torso. "
-    "Exactly two hands are placing the cup and exactly two hands rest on the "
-    "laptop keyboard: four hands in total in the frame, all anatomically correct, "
-    "five fingers each, no extra or duplicated limbs. "
-    # ── trabajo, NO desayuno ──
-    "The table is a work surface, not a breakfast table: the open laptop is the "
-    "main object, with at most a notebook and a pen beside it. No plates of food, "
-    "no breakfast spread, no bread baskets, no juice glasses, no cutlery. "
+    "the reference images. Keep that exact room and nothing generic: a light oak "
+    "table in the foreground, soft grey-taupe upholstered armchairs, a wall of dark "
+    "navy vertical slats lit from behind, framed black and white city photographs, "
+    "a woven fibre pendant lamp, herringbone floor. "
+    # ── la acción: UNA persona dejando el cappuccino, sin rostro ──
+    "A member of the café staff is setting down a cappuccino on that table: a "
+    "white ceramic cup on a white saucer, with a rosetta in the crema, placed on "
+    "the wooden table top. Of this person only the ARM AND HAND are in frame, "
+    "entering from the side and cropped by the edge of the picture above the "
+    "elbow. NO face, NO head, NO shoulders, NO torso, nobody else in the frame. "
+    "One single hand holds the saucer, fingers anatomically correct, five fingers, "
+    "one thumb, no extra or duplicated hands or arms anywhere in the image. "
+    "The gesture is the exact moment of setting the saucer down on the table, "
+    "seen from the seat of the person who is working. "
+    # ── que se lea trabajo, no desayuno ──
+    "The table is a work surface: apart from the cup there is at most a closed "
+    "notebook and a pen. No plates of food, no breakfast spread, no bread, "
+    "no juice, no cutlery beyond a single small spoon on the saucer. "
     # ── luz: neutra, el cliente rechazó el filtro cálido ──
-    "Natural neutral daylight from a window, balanced white point, true-to-life "
-    "colour with no warm orange cast and no colour filter, gentle contrast, "
-    "nothing blown out. "
+    "Natural neutral daylight, balanced white point, true-to-life colour with no "
+    "warm orange cast and no colour filter, gentle contrast, nothing blown out. "
     # ── el aire de arriba, donde se apoya el bloque de texto ──
-    "The upper third of the frame is calm and uncluttered - quiet wall and the "
-    "softly blurred room behind - leaving clear negative space with no faces and "
-    "no busy detail there. Shallow depth of field: the table, the laptop and the "
-    "cup are sharp, the room behind is softly out of focus. "
+    "The upper third of the frame is calm and uncluttered - the softly blurred "
+    "room behind - leaving clear negative space with no faces and no busy detail "
+    "there. Shallow depth of field: the table, the hand and the cup are sharp, "
+    "the room behind is softly out of focus. "
     "Editorial hospitality photography, 35mm, photorealistic. "
     # ── prohibiciones duras ──
-    "The cup is completely plain, pure white, with no stripe, no pattern and no "
-    "lettering of any kind. No visible faces, no text, no logos, no signage, "
-    "no watermark, no brand marks on the laptop."
+    "The cup and saucer are completely plain, pure white, with no stripe, no "
+    "pattern and no lettering of any kind. No visible faces, no text, no logos, "
+    "no signage, no watermark."
 )
 
 QA = """
 MÍRALA CON ZOOM ANTES DE USARLA — esta slide ya la rechazó el cliente una vez:
   1. ¿Se ve alguna CARA? Tiene que haber cero. Si asoma un perfil, se descarta.
-  2. CUENTA LAS MANOS: tienen que ser cuatro y ninguna suelta. «Hay una mano de
-     más» fue el reclamo textual de la ronda 4.
+  2. CUENTA LAS MANOS: tiene que haber UNA sola, con cinco dedos y unida a un
+     brazo que sale del borde. «Hay una mano de más» fue el reclamo textual.
   3. ¿La taza está BLANCA TOTAL, sin raya ni letras? (regla KIMBO)
   4. ¿Se lee TRABAJO y no desayuno? Si hay comida desplegada, se descarta.
   5. ¿El tercio de arriba está limpio? Ahí va el bloque de texto.

@@ -48,13 +48,15 @@ PIEZAS = {
     #    Si algún día se renombra, hay que borrar el viejo en el Drive a la vez.
     'BW-F-Cowork-2': ('BW FEED 01-09 Cowork 2 winter garden.png',  'S1'),
     'BW-F-Cowork-3': ('BW FEED 01-09 Cowork 3 segundo nivel.png',  'S1'),
-    # ⚠️ 'BW-F-Cowork-4' NO entra todavía: la composición está lista y pasa el QA,
-    #    pero apunta a una foto PROVISIONAL (la misma de la portada). Falta la
-    #    foto real —trabajadora sin rostro preparando café en Between— y no hay
-    #    forma de conseguirla en esta máquina: la sesión «Between julio» del
-    #    Drive no es pública y falta credentials/token.json. Cuando llegue la
-    #    foto, cambiar FOTO_SERVICIO en BetweenSeptiembre.tsx y descomentar:
-    # 'BW-F-Cowork-4': ('BW FEED 01-09 Cowork 4 servicio.png',       'S1'),
+    # ⭐ RONDA 6: entra. Antes iba el MESÓN de servicio, que contaba lo contrario
+    #    del copy —un mesón vacío dice que el café se va a buscar—, y por eso
+    #    estaba frenada. Ahora lleva la mesa real del 2.º piso con el café recién
+    #    servido: el punto de vista es el de quien trabaja y el café está EN LA
+    #    MESA, que es el mensaje. QA limpia y taza sin logo (regla KIMBO).
+    #    ⚠️ Le faltan las PERSONAS que pide el brief (el colaborador dejando el
+    #    café). Muestra el resultado, no el gesto. La definitiva se genera con
+    #    scripts/between-slide4-magnific.py cuando haya clave de Magnific.
+    'BW-F-Cowork-4': ('BW FEED 01-09 Cowork 4 servicio.png',       'S1'),
     'BW-F-Cumple-1': ('BW FEED 03-09 Cumpleanos 1.png',            'S1'),
     'BW-F-Cumple-2': ('BW FEED 03-09 Cumpleanos 2 detalles.png',   'S1'),
     'BW-S-Cumple':   ('BW ST 03-09 Cafe de regalo cumpleanos.png', 'S1'),

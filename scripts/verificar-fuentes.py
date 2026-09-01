@@ -21,6 +21,15 @@ import os
 import sys
 from pathlib import Path
 
+# ⚠️ Windows lee y escribe en cp1252 si no se le dice otra cosa, y las fichas de
+# marca traen «Á», «⭐» y «←». Sin esto el script reventaba DOS veces: al leer la
+# ficha (bytes 0x90 sin definir) y otra vez al imprimir el error. Mismo bug que ya
+# había mordido en doctor.sh, between-qa.py, between-entrega.py y hoja-contacto.py.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 RAIZ = Path(__file__).resolve().parent.parent
 REPO_ASSETS = RAIZ / "public" / "assets"
 LIVETYPE = Path.home() / ("Library/Application Support/Adobe/CoreSync/"
@@ -162,7 +171,7 @@ def main(filtro=None):
         if marca == "_PLANTILLA" or (filtro and marca != filtro):
             continue
         try:
-            ficha = json.loads(ficha_path.read_text())
+            ficha = json.loads(ficha_path.read_text(encoding="utf-8"))
         except Exception as e:
             print(f"── {marca}: ficha ilegible ({e})")
             continue

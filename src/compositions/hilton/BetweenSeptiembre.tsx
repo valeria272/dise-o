@@ -224,36 +224,34 @@ export const Cowork3: React.FC = () => (
 
    ⚠️ FALTA LA FOTO — es lo único que bloquea esta slide. Ver
       `clients/hilton/CLAUDE.md § SLIDE 4 DEL COWORK`. */
-/* ⭐ RONDA 6 (01-09): la mesa del 2.º piso con el café recién servido.
-   Antes iba el MESÓN de servicio, y eso contaba lo contrario del copy: un mesón
-   vacío dice que el café SE VA A BUSCAR, cuando la slide vende el servicio a la
-   mesa. El brief (FEED, SLIDE 4 – SERVICIO) pide:
+/* ⭐ RONDA 6 (01-09): las manos entregando el café. FOTO REAL, de Eli.
+   Antes iba el MESÓN de servicio vacío, que contaba lo contrario del copy: un
+   mesón dice que el café SE VA A BUSCAR, cuando la slide vende el servicio a la
+   mesa. Pasó por una versión intermedia (`servicio-mesa.jpg`, la mesa del 2.º
+   piso con el café ya servido) hasta que Eli mandó fotos propias del bar.
 
-     «Persona trabajando mientras un colaborador deja un café o plato sobre la
-      mesa. El usuario continúa trabajando sin tener que levantarse.»
+   La dirección de Eli fue: «una persona dejando el capuccino, que no se vea el
+   rostro». Ésta la cumple con material real, sin generar nada:
+   `out/hilton/between-42.jpg` — dos manos presentando la taza terminada, con el
+   corazón en el latte. Se eligió sobre las otras dos (39 y 40) porque ésas son
+   el momento de PREPARAR el café en la máquina; ésta es el de ENTREGARLO, que
+   es lo que dice el titular.
 
-   Esta foto es REAL y es de Between: la mesa de madera del 2.º piso con la sala
-   de cowork detrás, gradada con `--perfil neutro` como el resto del carrusel
-   (calidez 46,2 -> 21,1). Tres cosas la hacen calzar con el brief:
+   ⚠️ NO se gradó, y es a propósito. La foto ya venía en **calidez +8,2**, más
+   fría que el objetivo del perfil `neutro` (+20): pasarla por el gradador la
+   habría CALENTADO —justo lo contrario de lo que reclamó el cliente— y además
+   le habría subido la luminancia de 79 a 118, lavando el ambiente oscuro que es
+   lo que hace buena la foto. Sólo se recortó 4:5 y se llevó a 2250 px.
 
-   1. El punto de vista es el de QUIEN TRABAJA — la cámara está a la altura de la
-      mesa, así que el «tú» del titular es el que mira. No hay que actuar la
-      escena: el lector la ocupa.
-   2. El café está EN LA MESA, no en el mesón. Ése es el mensaje entero.
-   3. El latte art intacto y la cuchara sin usar dicen «recién llegó». Es el
-      instante justo después de lo que describe el brief.
+   El recorte va pegado ARRIBA, y eso también se decidió mirando: con el recorte
+   abajo la taza sube y **la caja taupe le tapa el corazón del latte**. Pegado
+   arriba la taza baja al ~67 % del alto, el texto se apoya en el tapete oscuro y
+   el corazón queda libre.
 
-   Taza BLANCA TOTAL, sin raya ni logotipo: cumple la regla KIMBO (verificado con
-   zoom, no a ojo).
-
-   ⚠️ LO QUE LE FALTA, y hay que decirlo: no aparecen las PERSONAS. El brief pide
-   ver al colaborador dejando el café. Esta versión muestra el resultado, no el
-   gesto. Es honesta y no contradice el copy —a diferencia del mesón—, pero la
-   definitiva lleva a las dos personas y se genera con
-   `scripts/between-slide4-magnific.py`, que ya tiene el prompt correcto.
-   Bloqueado sólo por la clave de Magnific. Cuando llegue, entra cambiando SOLO
-   esta constante. */
-const FOTO_SERVICIO = F + 'servicio-mesa.jpg';
+   Es la única slide oscura del carrusel. No es un descuido: cierra la secuencia
+   —el lugar, tu mesa, los espacios, el café que te llega— y el cambio de clave
+   se lee como remate. */
+const FOTO_SERVICIO = F + 'servicio-manos.jpg';
 
 export const Cowork4: React.FC = () => (
   <PiezaFeedBodegon

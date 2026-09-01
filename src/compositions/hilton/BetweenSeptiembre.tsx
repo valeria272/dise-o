@@ -591,7 +591,7 @@ export const StCumpleDetalles: React.FC = () => (
         /* Márgenes: 84 px mínimo a los lados (manual) y los adornos de abajo se
            quedan sobre la zona segura inferior de 340 px — `between-qa.py` avisó
            que entraban 44 px. */
-        {cual: 'globosPar', x: 92, y: 300, ancho: 164, rotacion: -9},
+        {cual: 'globosPar', x: 100, y: 300, ancho: 162, rotacion: -9},
         {cual: 'globo', x: 872, y: 336, ancho: 112, rotacion: 10, espejo: true},
         {cual: 'confeti', x: 800, y: 1318, ancho: 180, rotacion: 7},
         {cual: 'corazon', x: 104, y: 1352, ancho: 96, rotacion: -10},

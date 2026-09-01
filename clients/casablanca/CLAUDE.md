@@ -194,9 +194,13 @@ Los valores medidos son **198,7 × 199,2** y **237,1 × 305,8**. La caja de feed
 
 ⚠️ El manual afirmaba *"el feed es 4:5"* apoyándose en un solo archivo
 (`Casablanca_cierre_post.mp4`). Con 55 piezas a la vista: **el feed histórico es 1:1**
-y el 4:5 aparece recién en agosto 2026. Es un cambio en curso, no la norma. Antes de
-entregar en 4:5 hay que confirmarlo con Serena — ya se entregó septiembre en 4:5 sin
-avisar (ver `feedback/2026-08-25-ronda2.md`, pendiente nº 3).
+y el 4:5 aparece recién en agosto 2026.
+
+> ⭐ **DEROGADO EL 27-08-2026.** Esto decía "antes de entregar en 4:5 hay que confirmarlo
+> con Serena". **Serena ya lo confirmó**: septiembre va en **4:5 (2250 × 2812) + story**.
+> No se vuelve a preguntar ni a "corregir" a 1:1 — ya se dio vuelta dos veces.
+> Manda la sección [«Septiembre 2026 · ronda 4»](#-septiembre-2026--ronda-4--el-choque-2-vs-5-resuelto-27-08-2026)
+> al final de este archivo. El 1:1 sigue siendo el histórico de la cuenta, no lo vigente.
 
 ## El velo — firma de luminancia, para poder verificarlo
 

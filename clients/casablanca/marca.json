@@ -87,7 +87,12 @@
     "feed_4_5": {
       "w": 1080,
       "h": 1350,
-      "_M": "6 de 55 — SOLO el carrusel de agosto 2026. Cambio en curso, no la norma: confirmar con Serena antes de entregar en 4:5."
+      "_M": "6 de 55 piezas históricas — sólo el carrusel de agosto 2026. ⭐ RESUELTO: Serena decidió el 27-08-2026 que septiembre va en 4:5 (2250x2812) + adaptación a story. Ya no se pregunta. Ver CLAUDE.md, seccion «Septiembre 2026 · ronda 4».",
+      "entrega_px": {
+        "w": 2250,
+        "h": 2812,
+        "_M": "Master de entrega decidido por Serena, 27-08-2026."
+      }
     }
   },
   "zonas_seguras": {
@@ -192,11 +197,10 @@
     "🔴 La serif del titular: activar en Adobe Fonts las Bodoni/Didone candidatas para que sincronicen al Mac; el identificador las resuelve solo (ver CHECKLIST nº 1).",
     "🟡 Confirmar la caja baja (Montserrat vs Poppins) con la misma vuelta.",
     "🟡 La script manuscrita de «Colección …».",
-    "🟡 Confirmar con Serena si el feed va en 1:1 o en 4:5.",
     "🟡 Fotos propias de ambiente — hoy se depende de render IA.",
     "🟡 Fotos del interior del showroom sin gente (Jenny)."
   ],
-  "actualizado": "2026-08-26",
+  "actualizado": "2026-08-27",
   "fuente_de_verdad": "clients/casablanca/CLAUDE.md § SISTEMA EDITORIAL (25-08-2026) manda sobre todo lo demás, incluido este archivo. La ronda 2 de Paulina sigue valiendo para el carrusel de mayo, no para las piezas nuevas.",
   "sistema_editorial": {
     "codigo": "src/compositions/casablanca/editorial.tsx",

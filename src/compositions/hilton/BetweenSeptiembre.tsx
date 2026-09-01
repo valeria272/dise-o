@@ -40,7 +40,7 @@ import {
 import {
   BotonBlanco,
   Checklist, Cuadrantes, Etiqueta, Globos, Ilustra, StickerEnlace,
-  PiezaPartida, PilaEsquina, StickerQuiz, TituloTresPesos,
+  PiezaPartida, PilaEsquina, StickerQuiz,
 } from './BetweenRecursos';
 
 /** Fotos YA GRADADAS a los números de Eli (scripts/between-gradar.py). */
@@ -55,6 +55,57 @@ const IA = 'assets/hilton/between/ia-sept/';
    `clients/hilton/CLAUDE.md § EL VASO TO GO`. */
 
 const HORARIO_TOGO = 'Lunes a viernes · 08:00 a 10:00 hrs.';
+
+/* ⭐ 01-09-2026 · JERARQUÍA DEL CARRUSEL COWORK — pedido de Eli: «los textos
+   están muy grandes y desproporcionados, mejorar la jerarquía visual y el
+   espacio entre textos».
+
+   Lo que estaba mal, MEDIDO sobre la entrega (normalizado a lienzo 1080):
+
+     | | slide 1 | slide 2 | slide 3 | referencia aprobada |
+     |---|---|---|---|---|
+     | titular          | 55 % | 84 % | 84 % | 52 % |
+     | cuerpo real      | 117  |  99  |  88  | 117  |
+     | caja taupe       | 50 % | 77 % | 84 % | 55 % |
+     | alto de la caja  | 129  |  88  | 178  |  66  |
+
+   Tres defectos encadenados:
+   1. El titular se achicaba hasta CABER EN EL MARGEN (912 px = 84,4 %), por
+      encima del `anchoMax: 0.8` del propio kit → toda línea larga terminaba
+      clavada en el tope y el bloque se leía como un muro.
+   2. Como cada slide se achicaba por su cuenta, salieron TRES cuerpos de
+      titular distintos: al deslizar, el titular cambiaba de tamaño.
+   3. La caja taupe compartía ese tope: la de la slide 3 medía 912 px —tocando
+      los dos bordes— y partía en tres líneas, con «segundo nivel,» como
+      renglón corto entre dos largos.
+
+   El arreglo:
+   - `BETWEEN.bloque.columna` (810 = 75 %) separa el MARGEN —que es un límite—
+     de la MEDIDA en la que se compone.
+   - `CAPS_INTERIOR`: un solo cuerpo para las slides interiores. La portada
+     mantiene el titular de la marca (117) y es la única que lleva Brushwell:
+     el carrusel abre fuerte y las interiores acompañan.
+   - `COLUMNA_CAJA`: la caja va MÁS ANGOSTA que el titular, con los cortes
+     escritos a mano. Ninguna bajada pasa de dos líneas. */
+
+/** Cuerpo compartido por las slides interiores del Cowork.
+ *  Es el mayor que deja la línea más larga del carrusel —«¿NECESITAS CAMBIAR»,
+ *  10,16 px de avance por unidad de cuerpo— dentro de la columna de 810. */
+const CAPS_INTERIOR = 79;
+/** La columna del titular. `PiezaFeedBodegon` sigue trayendo el MARGEN (912)
+ *  por defecto para no re-flujar lo ya aprobado —comprobado: cambiar el defecto
+ *  movía 3 de las 4 piezas entregadas de la S1—, así que acá se pasa a mano. */
+const COLUMNA_TITULAR = BETWEEN.bloque.columna;
+/** La caja taupe, más angosta que la columna del titular: así el bloque
+ *  escalona (titular ancho → caja angosta) en vez de leerse como un muro. */
+const COLUMNA_CAJA = 670;
+/** Aire titular → caja. El medido (18) es de una caja de UNA línea bajo un
+ *  titular de UNA palabra; con dos líneas arriba y dos abajo queda pegado. */
+const AIRE_CAJA = 30;
+/** El velo multiplicado que pidió Eli: «muy sutil». Ver `PiezaFeedBodegon.velo`.
+ *  Se queda deliberadamente bajo — el manual prohíbe ganar contraste apagando
+ *  la foto, y por encima de ~0,18 el problema deja de ser el velo. */
+const VELO_SUTIL = 0.1;
 
 /* ════════════════════════ FEED · 1080×1350 ════════════════════════ */
 
@@ -81,6 +132,9 @@ export const Cowork1: React.FC = () => (
        ordenados». Con la interlínea de 1,3 por defecto las dos frases quedaban
        flotando separadas dentro de la caja; a 1,16 leen como un bloque. */
     interlineaBajada={1.16}
+    columnaCaja={COLUMNA_CAJA}
+    columna={COLUMNA_TITULAR}
+    aireTituloACaja={AIRE_CAJA}
     anclaje="abajo"
     conLogo
     logoPosicion="abajo"
@@ -97,8 +151,17 @@ export const Cowork2: React.FC = () => (
     scriptSans
     script="¿Muchos pendientes?"
     caps={'Al menos que sea\ncon buen café'}
+    /* ⭐ 01-09 (2ª pasada): cuerpo compartido con la slide 3. Antes cada slide
+       se achicaba sola y esta salía en 99 contra 88 de la otra. */
+    sizeCaps={CAPS_INTERIOR}
     bajadaEnCaja
-    bajada="Encuentra tu mesa y trabaja a tu ritmo."
+    /* El corte va escrito: sin él la caja se partía sola y dejaba «a tu ritmo.»
+       colgando en la segunda línea. */
+    bajada={<>Encuentra tu mesa<br />y trabaja a tu ritmo.</>}
+    interlineaBajada={1.16}
+    columnaCaja={COLUMNA_CAJA}
+    columna={COLUMNA_TITULAR}
+    aireTituloACaja={AIRE_CAJA}
     oscurecer={0.12}
   />
 );
@@ -112,28 +175,80 @@ export const Cowork3: React.FC = () => (
        medio con el «¿» en un peso y el «?» en otro. El brief la trae como UNA
        sola frase, así que va entera en la caja alta, en dos líneas. */
     caps={'¿Necesitas cambiar\nde escenario?'}
+    sizeCaps={CAPS_INTERIOR}
     bajadaEnCaja
-    /* Corte explícito: sin él la caja dejaba «reunirte.» sola en la tercera
-       línea. Misma regla que la portada — nada de palabras viudas. */
-    bajada={<>También tenemos espacios en nuestro segundo nivel,<br />ideales para trabajar o reunirte.</>}
-    interlineaBajada={1.18}
+    /* ⭐ 01-09 (2ª pasada): el corte anterior pedía una primera línea de 50
+       caracteres (~885 px de tinta) que NO cabe en la caja, así que la caja la
+       volvía a partir sola y quedaba «segundo nivel,» como renglón corto entre
+       dos largos. Son tres líneas —el máximo que permite el manual— pero ahora
+       cortadas a mano y parejas, quebrando en la coma del brief.
+       ⚠️ El texto es LITERAL del brief: no se le quita el «nuestro». */
+    bajada={<>También tenemos espacios<br />en nuestro segundo nivel,<br />ideales para trabajar o reunirte.</>}
+    interlineaBajada={1.16}
+    /* Su línea más larga —«ideales para trabajar o reunirte.», 584 px de
+       tinta— pide 692 con el padding; con los 670 del resto del carrusel la
+       caja la volvía a partir y aparecía un cuarto renglón de 152 px. */
+    columnaCaja={740}
+    columna={COLUMNA_TITULAR}
+    aireTituloACaja={AIRE_CAJA}
     oscurecer={0.12}
   />
 );
 
+/* ─── SLIDE 4 · SERVICIO ───
+   ⭐ REHECHA 01-09-2026. Eli la pidió de vuelta en el carrusel; la versión de la
+   ronda 4 la había rechazado el cliente (comentario C15, FEED):
+     «Slide 4: el "A tu mesa" le tapa la cara a la chica y parece más que están
+      desayunando que trabajando. Hay una mano de más en la imagen.»
+
+   Qué cambia respecto de esa versión:
+   1. ⛔ Fuera `TituloTresPesos` + `PilaEsquina`. Esa composición era la única
+      del carrusel que no usaba `PiezaFeedBodegon`, y por eso la slide 4 no se
+      parecía a las otras tres. Ahora comparte gramática: script en Raleway
+      arriba, caja alta abajo, caja taupe con la bajada.
+   2. El bloque va ANCLADO ABAJO. En la versión rechazada el titular caía sobre
+      la persona; con el ancla abajo el texto se apoya en la mesa y la regla
+      dura «ningún texto sobre una cara o unos ojos» se cumple por construcción.
+   3. Los tres textos son LITERALES del brief (`FEED!C11`, SLIDE 4 – SERVICIO).
+
+   ⚠️ FALTA LA FOTO — es lo único que bloquea esta slide. Ver
+      `clients/hilton/CLAUDE.md § SLIDE 4 DEL COWORK`. La foto pedida por Eli
+      sale de la sesión «Between julio» (Drive `1mBdNU1EUk-...`), que en esta
+      máquina NO se puede leer: la carpeta no es pública y falta
+      `credentials/token.json`. Mientras tanto apunta a `cowork-laptop.jpg`
+      para poder ver y aprobar la diagramación; la foto definitiva entra
+      cambiando SOLO esta constante. */
+const FOTO_SERVICIO = F + 'cowork-laptop.jpg'; // ⚠️ provisional — ver arriba
+
 export const Cowork4: React.FC = () => (
-  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={F + 'servicio-mesa.jpg'} oscurecer={0.12} />
-    <div style={{position: 'absolute', left: BETWEEN.bloque.margenX, right: BETWEEN.bloque.margenX, top: 168}}>
-      <TituloTresPesos
-        arriba="Tú sigue con lo tuyo"
-        fuerte={'NOSOTROS\nLLEVAMOS EL CAFÉ'}
-        script="a tu mesa"
-        size={86}
-      />
-    </div>
-    <PilaEsquina lineas={[{texto: 'Servicio a la mesa mientras trabajas', fuerte: true}]} abajo={120} />
-  </AbsoluteFill>
+  <PiezaFeedBodegon
+    foto={FOTO_SERVICIO}
+    scriptSans
+    script="Tú sigue con lo tuyo"
+    /* El corte «NOSOTROS / LLEVAMOS EL CAFÉ» dejaba la primera línea en 38 %
+       del lienzo y `between-qa.py` lo marcaba (mínimo 50 %). Partido después de
+       «LLEVAMOS» quedan 69 % y 28 %: línea larga y remate corto, y «EL CAFÉ»
+       —que es el sujeto de la promesa— cierra solo. */
+    caps={'Nosotros llevamos\nel café'}
+    sizeCaps={CAPS_INTERIOR}
+    bajadaEnCaja
+    /* El corte «…a la mesa / mientras trabajas.» no cabía en la caja y ésta lo
+       volvía a partir, dejando «mesa» SOLA en un renglón. Se quiebra antes. */
+    bajada={<>Disfruta nuestro servicio<br />a la mesa mientras trabajas.</>}
+    interlineaBajada={1.16}
+    columnaCaja={COLUMNA_CAJA}
+    columna={COLUMNA_TITULAR}
+    aireTituloACaja={AIRE_CAJA}
+    /* ⭐ 01-09 (3ª pasada), Eli: el bloque va ARRIBA. Con la foto nueva —sólo la
+       mano preparando café en primer plano— ya no hay cara que esquivar, así que
+       el texto vuelve al ancla de la marca (y=180) y la slide queda alineada con
+       las slides 2 y 3, que también anclan arriba. */
+    anclaje="arriba"
+    oscurecer={0.12}
+    /* El velo que pidió Eli: la transparencia multiplicada de Illustrator, muy
+       sutil, para asentar la escena del bar bajo el texto sin apagar la foto. */
+    velo={VELO_SUTIL}
+  />
 );
 
 /* ─── 3 sept · POST ESTÁTICO — CAFÉ DE CUMPLEAÑOS ───

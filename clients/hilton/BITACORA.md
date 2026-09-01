@@ -5,6 +5,80 @@
 
 ---
 
+## 2026-09-01 (noche) · Eli (Windows) — BETWEEN: la jerarquía del carrusel Cowork, y la COLUMNA como medida de composición
+
+**Qué se hizo.** Segunda pasada del día sobre la S1. Eli marcó el carrusel Cowork
+ya entregado: **«los textos están muy grandes y desproporcionados, mejorar la
+jerarquía visual y el espacio entre textos»**. Se midió sobre los PNG (no a ojo) y
+apareció un defecto de sistema, no de la pieza: `TitularBetween` y `PanelTaupe`
+achicaban el texto **hasta caber en el margen** (912 px = 84,4 %), que está por
+encima del `anchoMax: 0.8` que declara el propio kit. Resultado: cada slide se
+achicaba por su cuenta y el carrusel salió con **tres cuerpos de titular distintos**
+(117 · 99 · 88) — al deslizar, el titular cambiaba de tamaño.
+
+**La regla que quedó escrita** (`clients/hilton/CLAUDE.md § LA COLUMNA`):
+
+- El **margen (84 px) es un LÍMITE**; la **columna (`BETWEEN.bloque.columna` = 810 px
+  = 75 %) es la MEDIDA** en la que se compone.
+- En un carrusel, **las slides interiores comparten UN cuerpo de titular**. La
+  portada puede ser mayor — es la única con Brushwell.
+- **La caja taupe va más angosta que el titular** (670 contra 810): dos bandas del
+  mismo ancho se leen como bloque; escalonadas, se leen como jerarquía.
+- **Todo corte de línea va escrito a mano**, y el texto sigue siendo literal del
+  brief: se cambia dónde cae el salto, nunca la palabra.
+
+**⚠️ Es OPT-IN a propósito.** Cambiar el valor por defecto re-flujaba piezas ya
+aprobadas (3 de las 4 entregadas de la S1 se movían entre 4,5 % y 5,3 % de sus
+píxeles). Así que `PiezaFeedBodegon` sigue trayendo el margen y la columna se pasa
+a mano (`columna` / `columnaCaja` / `aireTituloACaja`). **Comprobado:** re-rendidas
+las 4 piezas aprobadas en `out/_verif/`, salen **idénticas píxel a píxel** a las
+entregadas (0,000 % de diferencia, delta máximo 0). `npx tsc --noEmit` limpio.
+
+**Dónde quedó.**
+
+| | |
+|---|---|
+| Carrusel Cowork r6 (3 slides corregidas) | `out/entrega-cowork-r6/S1/`, 16:06, con nombre de portal |
+| Piezas aprobadas re-verificadas | `out/_verif/` — idénticas a la entrega |
+| Regla y medición | `clients/hilton/CLAUDE.md § LA COLUMNA` + `src/brand/hilton-between.ts` (`bloque.columna: 810`) |
+| Props nuevos | `BetweenSistema.tsx`: `columna`, `columnaCaja`, `aireTituloACaja` |
+| Herramienta nueva | `scripts/between-medir-bloque.py <carpeta>` — mide la **tinta**, no la caja del layout |
+| Segunda `/al-dia` (19:30) | `clients/_estado-sync.json`: **no hay ronda 6**; los 9 comentarios de Scarlette son los mismos del 31-08 |
+
+**Qué sigue.**
+
+1. **⛔ Copiar el Cowork r6 a la carpeta de entrega.** `Desktop\S1 BETWEEN` todavía
+   tiene las 3 slides **viejas** de las 15:19 — las de la jerarquía mala. Las buenas
+   están en `out/entrega-cowork-r6/S1/`. **Esto es lo primero de mañana.**
+2. **Subir a Drive.** Sigue faltando `credentials/token.json` (solo está `LEEME.md`),
+   así que **nada de esto está en Drive**. En Drive las 27 piezas siguen en la
+   versión del **28-08 01:53 (ronda 4)** y faltan los **5 PNG de feed** (Cowork 1/2/3
+   y Cumpleaños 1/2) aunque la grilla ya marca FEED E como CORREGIDO.
+3. **Slide 4 del Cowork:** la composición está lista y pasa el QA, pero apunta a una
+   **foto provisional**. Cuando llegue la real, cambiar `FOTO_SERVICIO` en
+   `BetweenSeptiembre.tsx` y descomentar `BW-F-Cowork-4` en `scripts/between-entrega.py`.
+
+**Abierto.**
+
+- **La foto de la slide 4** — trabajadora **sin rostro** preparando café en Between.
+  Los tres caminos están cerrados en esta máquina: la sesión «Between julio» del
+  Drive no es pública y falta el token; el material local no la tiene (revisados 91
+  fotogramas del 2º piso, 11 fotos de espacios y 38 ediciones de Magnific); y para
+  generarla falta la clave de Freepik/Magnific (`~/.magnific_key` tiene el texto de
+  ejemplo). El script del prompt está escrito y listo:
+  `scripts/between-slide4-magnific.py`. **Ojo:** «Between julio» es julio 2023 — el
+  manual la marca ⛔ solo de referencia por derechos de imagen; que Eli pida *sin
+  rostro* calza, usar una cara reconocible **no**.
+- **`credentials/token.json`** — sin eso no se puede corregir ninguna pieza ya
+  entregada en Drive. Es el mismo bloqueo desde el 31-08.
+- **Duplicados en Drive:** `BW ST 01-09`, `03-09` y `04-09` existen **dos veces** en
+  la misma rama (la vieja del 28-08 en `BW` y la nueva en `BW/S1/STS`). El portal
+  levanta por nombre — hay que limpiar.
+- **Hilton no tiene `reglas.yaml`** (Casablanca, Revex y Cava sí). La regla de la
+  columna es medible y debería entrar al motor de QA cuando se abra ese archivo.
+
+---
+
 ## 2026-09-01 (tarde) · Eli (Windows) — BETWEEN: la S1 de septiembre corregida entera, y el logo del vaso resuelto de raíz
 
 **Qué se hizo.** Cuatro rondas de correcciones sobre las 7 piezas de la **S1**

@@ -19,8 +19,8 @@
       "ultimo_hallazgo": "Coni subió MAILAGO_S4_PROMOCHILA-TINTURAS.png (mail agosto S4); grilla de septiembre en pie"
     },
     "hilton": {
-      "revisado": "2026-09-01",
-      "ultimo_hallazgo": "SIN ronda 6: la grilla de Between no se toca desde el 31-08 21:17, que es la version que ya leimos (comentarios nativos de Scarlette en xl/comments*.xml). LA CARPETA S1 (19Bv7lfMBEIt_4JLRStWKObtCnf4OmPdD) SIGUE VACIA: las 3 piezas del cumpleanos NO se subieron. Las 27 piezas del mes siguen en la carpeta BW en su version del 28-08 01:53 (ronda 4). Nuevo hoy 01-09 13:29: Eli subio 8 archivos de PANTALLAS SUNSET QB (1080x1920 y 1230x720, a 72 y 150 ppp, PNG+JPG) - es trabajo de QB, no de Between. Tocadas la noche del 31-08 despues de nuestra revision: HILTON Planificacion Performance SEP (21:55, Ignacio) y DOUBLETREE GRILLA SEP (22:05, Carlos). URGENTE: hoy 1-sep publican el CARRUSEL COWORK (10:00) y la ST PROMO TO GO, y las dos estan EN CAMBIOS por la ronda 5 - lo que hay en Drive es la version sin corregir."
+      "revisado": "2026-09-01 (segunda pasada, 19:30)",
+      "ultimo_hallazgo": "SIN RONDA 6: los comentarios nativos de la grilla BETWEEN (xl/comments1/2.xml) siguen siendo los mismos 9 de Scarlette del 31-08 17:34-17:59, verificados uno a uno. La grilla se guardo hoy 19:25 (sebastian.serrano) solo para MOVER ESTADOS. Cambios de estado vs ronda 5: FEED E (3-sep Cumpleanos) EN CAMBIOS -> CORREGIDO; STORIES C (1-sep To Go) y D (3-sep cumpleanos) EN CAMBIOS -> CORREGIDO. Siguen EN CAMBIOS: FEED C (1-sep Cowork), G (7-sep), H (9-sep), J (11-sep) y STORIES I (9-sep). ELI SUBIO A MANO 3 STORIES: creo S1/STS (14Z4XnkM9sepmdPV0XjKzoqb1HXMbvIzO) con BW ST 01-09 (10910083 B) y BW ST 03-09 (3617380 B) -- coinciden BYTE A BYTE con out/entrega-drive/S1, son las corregidas de hoy -- mas BW ST 04-09 Segun mis calculos (version del 27-08, la aprobada). FALTAN LOS 5 PNG DE FEED (Cowork 1/2/3 y Cumpleanos 1/2): siguen sin subir aunque E figura CORREGIDO. OJO DUPLICADO: BW ST 01-09, 03-09 y 04-09 existen ahora DOS VECES en la misma rama (la vieja del 28-08 en la carpeta BW y la nueva en BW/S1/STS); el portal levanta por nombre. Las 27 piezas de BW siguen en su version del 28-08 01:53 (ronda 4). Eli tambien subio hoy trabajo de otras marcas del complejo: P18 (POST N1 S1 SEP MATRI + carpeta C1 S1 N1 NOVIOS con 2 slides), QB (8 archivos PANTALLAS SUNSET) y varias ST/Post S1. Grillas del complejo tocadas hoy: QB 16:23, PISO18 17:10, DOUBLETREE 17:10, HILTON Planificacion Performance 17:00."
     },
     "tierra-calma": {
       "revisado": "2026-08-27",
@@ -50,6 +50,9 @@
     "diego.aguilar@copywriters.cl"
   ],
   "_notas_de_esta_revision": [
+    "2da pasada del 01-09 19:30: se rebajo la grilla de Between y se leyeron los comentarios nativos. NO hay ronda 6.",
+    "La grilla de Between pesa 59,8 MB y se baja sin token: curl -sL 'https://drive.google.com/uc?export=download&id=1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY'",
+    "credentials/token.json SIGUE FALTANDO (solo esta LEEME.md): no se puede corregir ninguna pieza ya entregada en BW.",
     "Diego Aguilar: cero archivos en la ventana.",
     "Serena creó el 26-08 dos plantillas nuevas: 'Plantilla | Brief diseño.xlsx' (1poD3Zh38fCWLG7Iw9lhcNXrLomz3d5iO) y 'Plantilla | Planificación de medios.xlsx' (1PguaIlUUExLi7lZfUy8RVsZ-y7a6QQoz). Traen medidas y zonas seguras en px que docs/BRIEF-DE-DISENO.md no tiene.",
     "Valeria creó el 27-08 el flujo de carpetas 1 BRIEF / 2 MATERIAL / 3 ENTREGA / 4 APROBADO dentro de la carpeta de grillas de Hilton (14z0jRr-FT2uSvYZUC8R6VYh9O7u-S4ex). Están vacías.",

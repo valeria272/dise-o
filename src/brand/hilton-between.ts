@@ -189,6 +189,31 @@ export const BETWEEN = {
     /** El titular ocupa 50–80 % del ancho del lienzo. */
     anchoMin: 0.5,
     anchoMax: 0.8,
+    /**
+     * ⭐ LA COLUMNA DE COMPOSICIÓN — añadida 01-09-2026.
+     *
+     * ⛔ El defecto que arregla: `TitularBetween` y `PanelTaupe` se achicaban
+     * hasta **caber en el margen** (1080 − 2×84 = 912 px = 84,4 % del lienzo),
+     * que está POR ENCIMA del `anchoMax: 0.8` que declara este mismo kit. Con
+     * eso, toda línea larga aterrizaba clavada en el tope y el bloque se leía
+     * como un muro. Medido en la entrega del 01-09 del carrusel Cowork:
+     *
+     *   | | slide 1 | slide 2 | slide 3 | referencia aprobada |
+     *   |---|---|---|---|---|
+     *   | titular | 55 % | **84 %** | **84 %** | **52 %** |
+     *   | alto de caja del titular | 83 | 70 | 62 | **85** |
+     *   | caja taupe | 50 % | 77 % | **84 %** (toca los dos márgenes) | **55 %** |
+     *
+     * Y como cada slide se achicaba por su cuenta, el carrusel salió con TRES
+     * cuerpos de titular distintos (117 · 99 · 88): al deslizar, el titular
+     * cambiaba de tamaño en cada slide. Eso es lo «desproporcionado» que marcó
+     * Eli el 01-09.
+     *
+     * El margen es un LÍMITE (nada lo cruza); la columna es la MEDIDA en la que
+     * se compone. 810 px = 75 % del lienzo: dentro del 50–80 % declarado, por
+     * debajo del margen, y deja 135 px de aire a cada lado.
+     */
+    columna: 810,
   },
 
   /**

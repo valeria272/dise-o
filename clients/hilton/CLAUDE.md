@@ -1446,3 +1446,91 @@ blanco, 7 beige muy claro, 8 vacía.
 
 ⛔ El `logo-negro.png` de 981 px se queda **sólo para el lockup sobrepuesto**. Para
 estampar sobre un vaso va el vectorial: 4,3 × más resolución y bordes sin dientes.
+
+---
+
+# ⭐⭐ LA COLUMNA — el margen es un límite, no una medida (01-09-2026)
+
+Feedback de Eli sobre el carrusel Cowork ya entregado: **«los textos están muy
+grandes y desproporcionados, mejorar la jerarquía visual y el espacio entre
+textos».** Medido sobre los PNG, normalizado a lienzo de 1080:
+
+| | slide 1 | slide 2 | slide 3 | **referencia aprobada** |
+|---|---|---|---|---|
+| ancho del titular | 55 % | **84 %** | **84 %** | **52 %** |
+| cuerpo real del titular | 117 | **99** | **88** | **117** |
+| ancho de la caja taupe | 50 % | 77 % | **84 %** | **55 %** |
+| alto de la caja | 129 | 88 | **178 (3 líneas)** | **66 (1 línea)** |
+
+## La causa
+
+`TitularBetween` y `PanelTaupe` achicaban el texto **hasta que cupiera en el
+margen**: 1080 − 2×84 = **912 px = 84,4 %**. Ese número está **por encima del
+`anchoMax: 0.8` que declara el propio kit**. Consecuencias encadenadas:
+
+1. Toda línea larga aterrizaba **clavada en el tope** y el bloque se leía como un
+   muro de tinta de borde a borde.
+2. Como cada pieza se achicaba por su cuenta, un carrusel salía con **tantos
+   cuerpos de titular como slides** (117 · 99 · 88). Al deslizar, el titular
+   cambiaba de tamaño. Eso es lo que Eli llamó «desproporcionado».
+3. La caja taupe compartía el tope: la de la slide 3 medía **912 px exactos**
+   —tocando los dos bordes— y partía sola en tres líneas, dejando «segundo
+   nivel,» como renglón corto entre dos largos.
+
+## La regla
+
+> **El margen (84 px) es un LÍMITE: nada lo cruza.
+> La COLUMNA (`BETWEEN.bloque.columna` = 810 px = 75 %) es la MEDIDA en la que se
+> compone.** Está dentro del 50–80 % que declara el kit y deja 135 px de aire a
+> cada lado.
+
+Y tres reglas que salen de la misma pasada:
+
+- **En un carrusel, las slides interiores comparten UN cuerpo de titular.** La
+  portada puede ser mayor —es la que abre y la única con Brushwell—, pero las
+  interiores no pueden bailar entre sí.
+- **La caja va MÁS ANGOSTA que el titular** (en el Cowork, 670 contra 810). Dos
+  bandas del mismo ancho apiladas se leen como un bloque; escalonadas, se leen
+  como jerarquía.
+- **Todo corte de línea va escrito a mano.** Si se deja que la caja parta sola,
+  parte mal: viudas, renglones cortos entre dos largos. Y **el texto sigue siendo
+  literal del brief** — se cambia dónde cae el salto, nunca la palabra.
+
+## ⚠️ Es OPT-IN, y por qué
+
+Cambiar el valor por defecto **re-flujaba piezas ya aprobadas**: comprobado, tres
+de las cuatro piezas entregadas de la S1 cambiaban entre un 4,5 % y un 5,3 % de
+sus píxeles. Así que `PiezaFeedBodegon` sigue trayendo el margen por defecto y la
+columna **se pasa a mano** en la pieza que se está cortando:
+
+```tsx
+columna={BETWEEN.bloque.columna}   // 810 — el titular
+columnaCaja={670}                  // la caja, más angosta
+aireTituloACaja={30}               // el 18 medido es de una caja de UNA línea
+```
+
+> **Método:** después de tocar una pieza, correr
+> `python scripts/between-medir-bloque.py <carpeta>` (mide la TINTA, no la caja
+> del layout) y **volver a rendir una pieza ya aprobada para comprobar que no se
+> movió**. Un cambio en el sistema toca todo el mes.
+
+## SLIDE 4 DEL COWORK — pendiente de foto
+
+La composición está lista y pasa el QA, pero apunta a una foto **provisional**.
+Eli la pidió así: **una trabajadora sin rostro preparando café, en Between.**
+
+⛔ **No se puede conseguir en la máquina de Windows.** Verificado el 01-09:
+
+| Camino | Estado |
+|---|---|
+| Sesión «Between julio» (Drive `1mBdNU1EUk-odUwF5zCS50rZp10E-YfR7`) | la carpeta **no es pública** — `uc?export=download` devuelve el HTML de login— y falta `credentials/token.json` |
+| Material local | no la tiene: 91 fotogramas del 2º piso, 11 fotos de espacios y 38 ediciones de Magnific revisadas una a una |
+| Generarla con Magnific/Freepik | no hay `.env` con las claves |
+
+⚠️ **Ojo con la sesión «Between julio»: es la de julio 2023**, la que este mismo
+manual marca «⛔ solo de referencia» y «no enfocar las caras» — hay personas sin
+derechos de imagen vigentes. Que Eli pida explícitamente **sin rostro** calza con
+esa regla; usarla con una cara reconocible **no**.
+
+Cuando llegue la foto: cambiar `FOTO_SERVICIO` en `BetweenSeptiembre.tsx` y
+descomentar `BW-F-Cowork-4` en `scripts/between-entrega.py`.

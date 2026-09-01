@@ -20,7 +20,14 @@ Uso:
 """
 import argparse
 import shutil
+import sys
 from pathlib import Path
+
+# ⚠️ Windows: la consola decodifica en cp1252 y cualquier símbolo del script
+# (✓, ⚠, →) revienta el print con UnicodeEncodeError DESPUÉS de haber escrito
+# las piezas — parece que falló la entrega y en realidad ya estaba hecha.
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 from PIL import Image
 
@@ -35,6 +42,13 @@ PIEZAS = {
     'BW-F-Cowork-1': ('BW FEED 01-09 Cowork 1 portada.png',        'S1'),
     'BW-F-Cowork-2': ('BW FEED 01-09 Cowork 2 winter garden.png',  'S1'),
     'BW-F-Cowork-3': ('BW FEED 01-09 Cowork 3 segundo nivel.png',  'S1'),
+    # ⚠️ 'BW-F-Cowork-4' NO entra todavía: la composición está lista y pasa el QA,
+    #    pero apunta a una foto PROVISIONAL (la misma de la portada). Falta la
+    #    foto real —trabajadora sin rostro preparando café en Between— y no hay
+    #    forma de conseguirla en esta máquina: la sesión «Between julio» del
+    #    Drive no es pública y falta credentials/token.json. Cuando llegue la
+    #    foto, cambiar FOTO_SERVICIO en BetweenSeptiembre.tsx y descomentar:
+    # 'BW-F-Cowork-4': ('BW FEED 01-09 Cowork 4 servicio.png',       'S1'),
     'BW-F-Cumple-1': ('BW FEED 03-09 Cumpleanos 1.png',            'S1'),
     'BW-F-Cumple-2': ('BW FEED 03-09 Cumpleanos 2 detalles.png',   'S1'),
     'BW-S-Cumple':   ('BW ST 03-09 Cafe de regalo cumpleanos.png', 'S1'),

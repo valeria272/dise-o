@@ -782,7 +782,17 @@ export const TitularBetween: React.FC<{
   sizeScript?: number;
   tono?: Tono;
   alinear?: 'centro' | 'izquierda';
-  /** Ancho útil. Por defecto 1080 − 2 × 84 (el margen medido). */
+  /**
+   * Ancho de composición.
+   *
+   * ⚠️ Por defecto sigue siendo el MARGEN (1080 − 2×84 = 912). Lo correcto es
+   * componer en `BETWEEN.bloque.columna` (810) —achicar sólo hasta caber en el
+   * margen deja toda línea larga clavada en el 84 % del lienzo— pero cambiar el
+   * defecto re-flujaba piezas YA APROBADAS: comprobado el 01-09-2026, tres de
+   * las cuatro piezas entregadas de la S1 cambiaban entre un 4,5 % y un 5,3 %
+   * de sus píxeles. Así que la columna es OPT-IN: se pasa a mano en la pieza
+   * que se está cortando. Ver `clients/hilton/CLAUDE.md § LA COLUMNA`.
+   */
   anchoDisponible?: number;
   style?: React.CSSProperties;
 }> = ({
@@ -1009,7 +1019,14 @@ export const TextoArco: React.FC<{
 export const PanelTaupe: React.FC<{
   children: React.ReactNode;
   size?: number;
-  /** Ancho máximo del panel. Por defecto, el ancho útil del bloque. */
+  /**
+   * Ancho máximo del panel. Por defecto el MARGEN, por la misma razón que
+   * `TitularBetween.anchoDisponible`: cambiar el defecto movía piezas ya
+   * aprobadas. Con el margen, la caja de la slide 3 del Cowork salía de 912 px
+   * —tocando los dos bordes del bloque— y su texto se partía en TRES líneas,
+   * con «segundo nivel,» como renglón corto entre dos largos; por eso las
+   * piezas que se cortan hoy pasan `ancho` a mano.
+   */
   ancho?: number;
   /** Interlínea. Por defecto 1,3; se aprieta cuando el texto va en dos líneas. */
   interlinea?: number;
@@ -1137,6 +1154,37 @@ export const PiezaFeedBodegon: React.FC<{
   bajada?: React.ReactNode;
   /** Interlínea de la caja de bajada, para apretar un texto de dos líneas. */
   interlineaBajada?: number;
+  /**
+   * Ancho de la columna del TITULAR. Por defecto el margen (912), para no
+   * mover lo ya aprobado; las piezas que se cortan hoy pasan
+   * `columna={BETWEEN.bloque.columna}` (810) a mano.
+   */
+  columna?: number;
+  /**
+   * Ancho de la caja taupe. Por defecto el mismo que el titular; se aprieta
+   * para que el bloque ESCALONE (titular ancho → caja angosta) en vez de
+   * apilar dos bandas del mismo ancho, que es lo que se leía como un muro.
+   */
+  columnaCaja?: number;
+  /** Aire entre el titular y la caja taupe. Por defecto el medido (18). */
+  aireTituloACaja?: number;
+  /**
+   * ⭐ EL VELO — pedido de Eli el 01-09-2026: «una transparencia con opacidad
+   * como en Adobe Illustrator, que sea multiplicada muy sutil, para que se vea
+   * el logo y los textos de arriba. Muy sutil».
+   *
+   * Es exactamente eso: un rectángulo del color sombra de la marca a pantalla
+   * completa, en modo `multiply`, con opacidad baja. Va SOBRE la foto y su
+   * multiply propio, y DEBAJO del logo y del texto — como una capa de
+   * Illustrator puesta encima de la imagen y debajo de la tipografía.
+   *
+   * ⚠️ No es lo mismo que subir `oscurecer`. Ese apaga la foto entera para
+   * ganar contraste, y el manual lo prohíbe («cuando un texto no se lee, la
+   * solución es la caja taupe, no oscurecer la foto»). El velo es una capa
+   * aparte, deliberada y muy baja, que asienta el conjunto sin matar la foto.
+   * Si hace falta subirlo por encima de ~0,18 el problema es el encuadre.
+   */
+  velo?: number;
   /** La bajada va DENTRO de una caja taupe, para cuando la foto no la deja leer. */
   bajadaEnCaja?: boolean;
   datos?: React.ReactNode[];
@@ -1175,6 +1223,10 @@ export const PiezaFeedBodegon: React.FC<{
   bajada,
   bajadaEnCaja,
   interlineaBajada,
+  columna = 1080 - 2 * BETWEEN.bloque.margenX,
+  columnaCaja,
+  aireTituloACaja = BETWEEN.aire.tituloACaja,
+  velo,
   datos,
   arco,
   pie,
@@ -1197,6 +1249,14 @@ export const PiezaFeedBodegon: React.FC<{
   return (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
     <FotoFondo src={foto} posicion={posicionFoto} oscurecer={oscurecer} />
+    {/* el velo va sobre la foto y DEBAJO del logo y del texto */}
+    {velo ? (
+      <AbsoluteFill style={{
+        backgroundColor: BETWEEN.colores.sombra,
+        opacity: velo,
+        mixBlendMode: 'multiply',
+      }} />
+    ) : null}
     {conLogo ? <LogoBetween formato="feed" posicion={posLogo} tono={logoTono} /> : null}
     <AbsoluteFill>
       <div
@@ -1216,9 +1276,12 @@ export const PiezaFeedBodegon: React.FC<{
           alignItems: alinear === 'centro' ? 'center' : 'flex-start',
         }}
       >
-        <TitularBetween caps={caps} script={script} scriptSans={scriptSans} sizeCaps={sizeCaps} alinear={alinear} />
+        <TitularBetween
+          caps={caps} script={script} scriptSans={scriptSans}
+          sizeCaps={sizeCaps} alinear={alinear} anchoDisponible={columna}
+        />
         {bajada && bajadaEnCaja ? (
-          <PanelTaupe interlinea={interlineaBajada} style={{marginTop: BETWEEN.aire.tituloACaja}}>{bajada}</PanelTaupe>
+          <PanelTaupe ancho={columnaCaja ?? columna} interlinea={interlineaBajada} style={{marginTop: aireTituloACaja}}>{bajada}</PanelTaupe>
         ) : bajada ? (
           <Bajada style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: alinear === 'centro' ? 'center' : 'left'}}>{bajada}</Bajada>
         ) : null}

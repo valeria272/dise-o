@@ -223,20 +223,24 @@ export const Cowork3: React.FC = () => (
    3. Los tres textos son LITERALES del brief (`FEED!C11`, SLIDE 4 – SERVICIO).
 
    ⚠️ FALTA LA FOTO — es lo único que bloquea esta slide. Ver
-      `clients/hilton/CLAUDE.md § SLIDE 4 DEL COWORK`. La foto pedida por Eli
-      sale de la sesión «Between julio» (Drive `1mBdNU1EUk-...`), que en esta
-      máquina NO se puede leer: la carpeta no es pública y falta
-      `credentials/token.json`. Mientras tanto apunta a `cowork-laptop.jpg`
-      para poder ver y aprobar la diagramación; la foto definitiva entra
-      cambiando SOLO esta constante. */
-/* Foto INTERINA pero REAL: el mesón de servicio de Between con la estación de
-   café detrás, recortado 4:5 desde el original de 6718 px (`espacios/HDT_56.jpg`,
-   recorte derecho) y gradado con `between-gradar.py`. Reemplaza a la provisional
-   —que era la misma foto de la portada, y repetir el fondo dentro del mismo
-   carrusel se nota— y ya dice «servicio», que es el mensaje de la slide.
-   ⚠️ NO es la definitiva: falta la que pidió Eli, sólo la mano preparando café.
-   Esa se genera con `scripts/between-slide4-magnific.py` en cuanto Magnific
-   tenga clave válida o el conector cargue. */
+      `clients/hilton/CLAUDE.md § SLIDE 4 DEL COWORK`. */
+/* ⚠️ FOTO INTERINA, Y ADEMÁS NO ES LA ESCENA DEL BRIEF.
+   Hoy apunta al mesón de servicio (`espacios/HDT_56.jpg`, recorte derecho 4:5,
+   gradado). Sirvió para aprobar la diagramación, pero **el brief pide otra
+   cosa** (FEED, SLIDE 4 – SERVICIO):
+
+     «Persona trabajando mientras un colaborador deja un café o plato sobre la
+      mesa. El usuario continúa trabajando sin tener que levantarse.»
+
+   Son dos personas y una MESA, no un mesón: lo que se vende es el SERVICIO A LA
+   MESA. Un mesón vacío cuenta lo contrario —que el café se va a buscar—, así que
+   esta foto NO se entrega. `BW-F-Cowork-4` sigue comentada en
+   `scripts/between-entrega.py` a propósito.
+
+   La definitiva se genera con `scripts/between-slide4-magnific.py`, que ya tiene
+   el prompt de la escena correcta y las referencias del 2.º piso. Bloqueado sólo
+   por la clave: `~/.magnific_key` trae texto de ejemplo y la API da 401.
+   Cuando llegue, entra cambiando SOLO esta constante. */
 const FOTO_SERVICIO = F + 'bar-servicio.jpg';
 
 export const Cowork4: React.FC = () => (

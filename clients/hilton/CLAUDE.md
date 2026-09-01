@@ -1566,7 +1566,42 @@ aireTituloACaja={30}               // el 18 medido es de una caja de UNA línea
 ## SLIDE 4 DEL COWORK — pendiente de foto
 
 La composición está lista y pasa el QA, pero apunta a una foto **provisional**.
-Eli la pidió así: **una trabajadora sin rostro preparando café, en Between.**
+
+### ⚠️ La escena estaba mal anotada — corregido 01-09
+
+Durante dos sesiones este manual, el código y el script del prompt decían que la
+foto era **«una trabajadora sin rostro preparando café»**. Eso venía de un pedido
+dicho al pasar, y mandaba a generar **el bar**. El brief de la grilla pide otra
+cosa (FEED, SLIDE 4 – SERVICIO):
+
+> **Visual:** «Persona trabajando mientras un colaborador deja un café o plato
+> sobre la mesa. El usuario continúa trabajando sin tener que levantarse.»
+
+Son **dos personas y una MESA**, no un mesón. Lo que vende la slide es el
+**servicio a la mesa**, así que la escena pasa donde el cliente trabaja. Una mano
+sola preparando café en el bar cuenta justo lo contrario —que el café se va a
+buscar— y encima repite el escenario de la portada.
+
+**La lección, que vale para cualquier marca:** cuando un pedido de pasillo y el
+brief no dicen lo mismo, **manda el brief**, y el pedido se le pregunta a quien lo
+dijo. Anotar el pedido de pasillo como si fuera el brief costó acá dos rondas y un
+prompt entero escrito para la escena equivocada.
+
+### Lo que el cliente ya rechazó de esta slide
+
+Ronda 4, comentario C15: «el "A tu mesa" le tapa la cara a la chica y **parece
+más que están desayunando que trabajando**. **Hay una mano de más** en la imagen.»
+
+Los tres defectos están convertidos en restricciones del prompt en
+`scripts/between-slide4-magnific.py`, y en un QA de 5 puntos que hay que correr
+mirando la imagen con zoom antes de usarla:
+
+1. **Cero caras.** La persona que trabaja va de espaldas; del colaborador entran
+   sólo los antebrazos, cortados por el borde. Así el texto no puede taparle la
+   cara a nadie — el defecto se vuelve imposible por construcción.
+2. **Trabajo, no desayuno.** El notebook manda la mesa; se prohíbe el despliegue
+   de comida. Lo que se deja es UNA taza: ése es el gesto del servicio.
+3. **Contar las manos:** cuatro, y ninguna suelta.
 
 ⛔ **No se puede conseguir en la máquina de Windows.** Verificado el 01-09:
 
@@ -1574,7 +1609,7 @@ Eli la pidió así: **una trabajadora sin rostro preparando café, en Between.**
 |---|---|
 | Sesión «Between julio» (Drive `1mBdNU1EUk-odUwF5zCS50rZp10E-YfR7`) | la carpeta **no es pública** — `uc?export=download` devuelve el HTML de login— y falta `credentials/token.json` |
 | Material local | no la tiene: 91 fotogramas del 2º piso, 11 fotos de espacios y 38 ediciones de Magnific revisadas una a una |
-| Generarla con Magnific/Freepik | no hay `.env` con las claves |
+| Generarla con Magnific/Freepik | `~/.magnific_key` tiene **texto de ejemplo** (17 caracteres, empieza en «DISEÑO»): la API responde 401. La clave buena sale de `magnific.com/developers/dashboard/api-key` — **no es la de Freepik** |
 
 ⚠️ **Ojo con la sesión «Between julio»: es la de julio 2023**, la que este mismo
 manual marca «⛔ solo de referencia» y «no enfocar las caras» — hay personas sin

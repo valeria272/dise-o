@@ -144,7 +144,18 @@ export const Cowork1: React.FC = () => (
 
 export const Cowork2: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'winter-garden.jpg'}
+    /* ⭐ RONDA 6 (01-09): la foto, no el texto. Scarlette, comentario C15:
+       «Slide2: y acá estamos hablando de café como tal, yo cambiaria la imagen
+       donde se vea una mesa con un pc y un café». Iba el Winter Garden —el
+       MISMO muro verde de la portada, sin mesa, sin PC y sin café— así que el
+       carrusel además repetía fondo entre la slide 1 y la 2.
+       La foto la tenía Eli hecha desde antes:
+       `raw/hilton/between/ediciones-ia-eli/magnific_agrega-una-laptop-en-la-m_iAi90W63uK.png`
+       — mesa de madera, laptop, vaso con el logo BETWEEN y el muro verde
+       desenfocado atrás, que amarra con la portada sin repetirla.
+       Recortada 4:5 con `--top 0.20` (el aire de follaje queda ARRIBA, que es
+       donde se apoya el bloque de texto) y gradada con `--perfil neutro`. */
+    foto={F + 'mesa-laptop-cafe.jpg'}
     /* ⭐ 01-09, Eli: «desde el slide 2 no agregues la tipografía brushwell, que
        sea de la familia de raleway, así se diferencia de la portada». La script
        queda como marca de la PORTADA. */

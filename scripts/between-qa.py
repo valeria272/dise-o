@@ -17,6 +17,16 @@ import sys, os, glob
 import numpy as np
 from PIL import Image
 
+# ⚠️ Windows: la consola decodifica en cp1252 y cualquier "✅", "→" o "⭐" del
+# reporte reventaba el script DESPUÉS de haber hecho el trabajo — parecía que
+# había fallado y en realidad ya estaba listo. Pasó tres veces (doctor.sh,
+# between-entrega.py y acá), así que va explícito.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
+
 MARGEN = 114          # margen lateral medido en las piezas de Eli
 TOLERANCIA = 30       # cuánto se le perdona a un remate de pincel
 SEGURA_TOP, SEGURA_BOT = 250, 340

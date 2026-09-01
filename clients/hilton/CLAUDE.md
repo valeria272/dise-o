@@ -841,12 +841,61 @@ todos de **Scarlette Muñoz, 31-08 entre 17:34 y 17:59**, asignados a Eli.
 > Y sigue valiendo lo de la ronda 4: en la fila 15, **lo tachado ya está hecho**.
 > Son dos mecanismos distintos y hay que mirar los dos.
 
-## 3. La gradación de septiembre quedó pasada
+## 3. La gradación de septiembre quedó pasada → PERFIL `neutro` (resuelto 01-09)
 
 Dos reclamos independientes en la misma ronda: «Eliminar el filtro de color
 cálido que tiene el carrusel completo» (feed 1-sep) y «En general se ven quemadas
 las imagenes y con un filtro medio raro, sacar por favor» (feed 14-sep).
 `between-gradar.py` está **pasado de calidez y de altas** para esta serie.
+
+**Cómo se resolvió, y por qué NO se tocó el perfil de la marca.**
+
+`between-gradar.py` grada hacia números **medidos sobre las piezas aprobadas de
+Eli** (calidez +45,6 · p95 227). Ese es el ADN de Between y **no se cambia**: si
+se baja el objetivo por defecto, se re-flujan piezas ya aprobadas y se pierde el
+criterio de la diseñadora por un comentario que era de dos piezas. Lo que se hizo
+fue abrir un **segundo perfil**, y elegirlo pieza por pieza:
+
+```bash
+python scripts/between-gradar.py <foto> --perfil neutro --salida <dir>
+```
+
+| | `eli` (por defecto) | `neutro` |
+|---|---|---|
+| calidez (R−B) | **50** | **20** |
+| p95 (altas) | **227** | **210** |
+| lum media · p05 | 118 · 24 | 118 · 24 — **iguales** |
+
+Se bajan **sólo las dos cosas que el cliente nombra**: el color cálido y las
+altas. El brillo medio y las sombras se dejan igual — bajarlos apagaría la pieza,
+que es el error contrario, el de la ronda 4.
+
+⚠️ **La referencia de que +20 no es «frío»:** las fotos crudas del 2.º piso vienen
+en **+27** de calidez. El perfil neutro deja la foto **por debajo de su propio
+natural**, o sea saca filtro en vez de sumarlo. Eso es exactamente lo que pide el
+comentario, y se puede demostrar con el número.
+
+**Cuándo usar cuál.** `eli` es el estándar de la marca. `neutro` va sólo en las
+piezas que el cliente devolvió por «filtro cálido» o «se ven quemadas». No se
+mezclan dentro de un mismo carrusel sin mirar el conjunto: lo que el cliente lee
+como error no es un valor absoluto, es la **disparidad** entre slides.
+
+## 3 bis. La foto de una slide contradice su texto: eso es un defecto, no un gusto
+
+El carrusel Cowork de la S1 llegó a entregarse con la **slide 1 y la slide 2
+mostrando el mismo muro verde**, y la slide 2 decía «al menos que sea con buen
+café / encuentra tu mesa» sobre una foto **sin mesa, sin café y sin PC**.
+
+Dos reglas que salen de ahí:
+
+1. **Dentro de un carrusel no se repite el escenario.** Si dos slides comparten
+   fondo, el lector cree que se trabó el deslizamiento. Un plano general y un
+   bodegón del mismo lugar sí conviven — lo que no conviven son dos planos
+   generales iguales.
+2. **La foto tiene que contener los sustantivos del texto.** Si el copy nombra
+   una mesa, un café y un PC, los tres tienen que estar en la imagen. Es
+   verificable leyendo el copy y mirando la foto, y es el reclamo más barato de
+   evitar y el más caro de dejar pasar.
 
 ## 4. Cuando el cliente dice «tenemos ese material», hay que ir a buscarlo
 

@@ -40,6 +40,12 @@ PPP = 150
 PIEZAS = {
     'BW-S-ToGoDulce':('BW ST 01-09 Promo To Go cafe y dulce.png',  'S1'),
     'BW-F-Cowork-1': ('BW FEED 01-09 Cowork 1 portada.png',        'S1'),
+    # ⚠️ El nombre dice «winter garden» y la foto YA NO es el Winter Garden: desde
+    #    la ronda 6 es la mesa con laptop y café que pidió Scarlette. El nombre se
+    #    deja igual A PROPÓSITO — el portal levanta las piezas POR NOMBRE, así que
+    #    renombrarlo crearía un duplicado en vez de reemplazar la pieza (es el
+    #    mismo problema que ya está abierto con BW ST 01-09 / 03-09 / 04-09).
+    #    Si algún día se renombra, hay que borrar el viejo en el Drive a la vez.
     'BW-F-Cowork-2': ('BW FEED 01-09 Cowork 2 winter garden.png',  'S1'),
     'BW-F-Cowork-3': ('BW FEED 01-09 Cowork 3 segundo nivel.png',  'S1'),
     # ⚠️ 'BW-F-Cowork-4' NO entra todavía: la composición está lista y pasa el QA,

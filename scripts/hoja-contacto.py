@@ -15,6 +15,16 @@ import sys
 
 from PIL import Image, ImageDraw
 
+# ⚠️ Windows: la consola decodifica en cp1252 y cualquier "✅", "→" o "⭐" del
+# reporte reventaba el script DESPUÉS de haber hecho el trabajo — parecía que
+# había fallado y en realidad ya estaba listo. Pasó tres veces (doctor.sh,
+# between-entrega.py y acá), así que va explícito.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
+
 EXTS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
 MINI = 320
 ALTO_ETIQUETA = 30

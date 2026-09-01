@@ -115,63 +115,55 @@ rostro». O sea **UNA sola persona**, no las dos del brief. El prompt se ajustó
 eso, y de paso es más seguro: cada mano de más es una posibilidad de error
 anatómico, y «hay una mano de más» ya fue un rechazo.
 
-**Se buscó la mano en el banco y NO está.** Revisadas las 42 ediciones con IA de
+**Se buscó la mano en el banco y NO estaba.** Revisadas las 42 ediciones con IA de
 Eli: las que tienen manos sin rostro son **todas de la serie To Go** —sostienen el
 vaso de papel o una bolsa, en el mesón— y ninguna deja una taza de cappuccino en
 una mesa. Montar una mano de otra foto es justo como se produce el «hay una mano
 de más», así que **no se hizo**.
 
----
-
-### ⭐ La slide 4 SÍ entra a la entrega, con la mejor foto real
-
-Como la escena completa está bloqueada, la slide se rehízo con la mejor foto real
-disponible: **`servicio-mesa.jpg`** — la mesa de madera del 2.º piso con la sala de
-cowork detrás y el **cappuccino recién servido**, gradada con `--perfil neutro`
-(calidez 46,2 → 21,1, en línea con el resto del carrusel).
-
-Por qué calza, aunque no tenga la mano:
-
-1. **El punto de vista es el de quien trabaja** — la cámara está a la altura de la
-   mesa, así que el «tú» del titular es el que mira. El lector ocupa la escena en
-   vez de mirarla actuada.
-2. **El café está EN LA MESA, no en el mesón.** Ése es el mensaje entero. La foto
-   anterior —el mesón de servicio vacío— decía lo contrario: que el café se va a
-   buscar.
-3. **El latte art intacto y la cuchara sin usar** dicen «recién llegó»: es el
-   instante justo después de lo que describe el brief.
-
-Taza **blanca total, sin raya ni logotipo** — regla KIMBO verificada con zoom.
-
-**El ancla del texto se decidió midiendo, no a ojo:** se rindieron las dos. Con el
-ancla ABAJO la caja taupe cae **encima de la taza y tapa el café**, que es el
-sujeto. Queda ARRIBA, donde el texto se apoya en la sala desenfocada, la taza queda
-entera, y además coincide con las slides 2 y 3.
-
-⚠️ **Lo que le falta, dicho claro:** no aparece la persona. Muestra el resultado,
-no el gesto. Es honesta y no contradice el copy, pero **no es la definitiva**.
+**⭐ Y NO hizo falta: Eli mandó fotos propias.** Dejó tres en `out/hilton/`
+(`between-39/40/42.jpg`, 1500×2250, del bar de Between) y con eso la slide se
+resolvió **sin generar nada**. Magnific quedó pendiente para otra cosa, no para
+esto.
 
 ---
 
-### ⭐ Drive: para ESTA entrega NO hace falta el token
+### ⭐ La slide 4, resuelta con foto real de Eli
 
-Hallazgo del día. Eli creó hoy 21:27 dos carpetas **vacías** dentro de `S1`:
+La dirección fue: «una persona dejando el capuccino, que no se vea el rostro».
+De las tres que mandó se eligió **`between-42.jpg`** — dos manos presentando la
+taza terminada, con el corazón en el latte, sin ninguna cara.
 
-| Carpeta | ID | Estado |
-|---|---|---|
-| `C1 COWORK` | `1GB6NtoG3vy35rPj7bw-j8bc76-Jz8332` | **vacía** |
-| `C2 CUMPLEAÑOS BW` | `1TfFCqNfQw0ucTwqvJD8iqft7Y__voRUw` | **vacía** |
-| `STS` | `14Z4XnkM9sepmdPV0XjKzoqb1HXMbvIzO` | 3 stories ✓ |
+**Por qué esa y no las otras dos:** la 39 y la 40 son el momento de **PREPARAR**
+el café en la máquina, o sea el bar — y el bar cuenta que el café se va a buscar.
+La 42 es el de **ENTREGARLO**, que es exactamente lo que dice el titular.
 
-Como los archivos son **nuevos** y no hay ningún enlace que conservar, se
-**arrastran desde el Explorador** — el token sólo hace falta para *reemplazar*
-(`credentials/LEEME.md`, sección «La excepción: carpetas vacías»).
+Verificado con zoom, no a ojo: **taza blanca limpia, sin raya ni logotipo** (regla
+KIMBO), **dos manos con anatomía correcta y ninguna suelta** — que fue el rechazo
+textual de la ronda 4.
 
-⚠️ **Los duplicados son reales y hay que resolverlos.** Las 4 «Cowork» de la ronda 4
-(28-08 01:53) están en la carpeta **BW** (`1fQqtl-2X2A4o1L5hH7jlz9xUh_YzXRjq`) con
-**exactamente los mismos nombres**, y las subió **valeria@copywriters.cl**. El
-portal levanta por nombre. Y ojo: el scope del token es `drive.file`, así que **ni
-con el token** podríamos tocar archivos de Valeria — hay que pedírselo a ella.
+**⚠️ NO se gradó, y es a propósito.** Venía en **calidez +8,2**, más FRÍA que el
+objetivo del perfil `neutro` (+20). Pasarla por el gradador la habría **calentado**
+—justo lo contrario de lo que reclamó el cliente— y le habría subido la luminancia
+de 79 a 118, lavando el ambiente oscuro que es lo que la hace buena. Sólo recorte
+4:5 y llevada a 2250 px. La ampliación de 1,5× se verificó al 100 %: la crema y el
+borde de la taza quedan limpios.
+
+**El recorte va pegado ARRIBA, y eso también se decidió rindiendo las dos:** con el
+recorte abajo la taza sube y **la caja taupe le tapa el corazón del latte**. Pegado
+arriba la taza cae al ~67 % del alto, el texto se apoya en el tapete oscuro y el
+corazón queda libre.
+
+Es la **única slide oscura** del carrusel. No es descuido: cierra la secuencia
+—el lugar, tu mesa, los espacios, el café que te llega— y el cambio de clave se lee
+como remate. Si algún día se quiere pareja con las otras tres, se sube la luz; se
+dejó así con el visto bueno de Eli.
+
+**Quedó `servicio-mesa.jpg` en el repo** (la mesa del 2.º piso con el café servido)
+como el paso intermedio del día. No la usa ninguna pieza, pero es una foto válida
+del 2.º piso por si sirve.
+
+**APROBADO por Eli.**
 
 ---
 
@@ -203,9 +195,9 @@ con el token** podríamos tocar archivos de Valeria — hay que pedírselo a ell
 1. **Subir a Drive arrastrando** las **4** Cowork a `C1 COWORK` y las 2 Cumpleaños
    a `C2 CUMPLEAÑOS BW`. Sin token. Es lo primero.
 2. **Sacar del medio las de la ronda 4** en `BW` — pedírselo a Valeria.
-3. **La clave de Magnific**: borrar `claudecw`, recrearla y copiarla en el acto. O
-   autorizar el MCP con `/mcp` + chat nuevo. Con cualquiera de las dos sale la
-   slide 4.
+3. **La clave de Magnific** — ya NO bloquea la S1, pero sigue pendiente para lo que
+   venga: borrar `claudecw`, recrearla y copiarla en el acto (Magnific la muestra
+   una sola vez), o autorizar el MCP con `/mcp` + chat nuevo.
 4. **Cambiar la contraseña** `DISEÑO2025-VIDEOS`: estaba en texto plano y quedó en
    el historial de la conversación. También regenerar el **secreto del webhook** de
    `claudecw`, que se pegó en el chat.
@@ -213,9 +205,8 @@ con el token** podríamos tocar archivos de Valeria — hay que pedírselo a ell
 
 **Abierto.**
 
-1. **La slide 4 va con foto interina.** El carrusel está completo (4/4) y
-   entregable, pero falta la escena que dirigió Eli: la persona dejando el
-   cappuccino sin rostro. Se cambia tocando SOLO `FOTO_SERVICIO`.
+1. ~~Slide 4 sin foto~~ **RESUELTA y aprobada.** El carrusel está completo, 4/4,
+   con foto real de Eli. No quedó nada pendiente de esta pieza.
 2. **¿La slide 4 lleva logo?** Sigue sin respuesta desde ayer. La regla escrita dice
    que en carrusel el logo va sólo en la portada, y se respetó.
 3. **Barrido de codificación** (~25 lugares) — esperando el sí de Eli.

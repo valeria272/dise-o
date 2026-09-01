@@ -31,6 +31,13 @@ from PIL import Image
 
 import checks
 
+# ⚠️ Windows escribe la consola en cp1252 y los símbolos del reporte («✖», «✓»)
+# no existen ahí: el motor reventaba al IMPRIMIR, tapando el error de verdad.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 Image.MAX_IMAGE_PIXELS = None
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 AQUI = pathlib.Path(__file__).resolve().parent

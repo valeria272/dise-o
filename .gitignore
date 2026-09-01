@@ -135,6 +135,20 @@ out/mascenter-algarrobal/preview-artifact.html
 !public/assets/hilton/between/fotos-gradadas/desayuno-completo-2.jpg
 !public/assets/hilton/between/fotos-gradadas/croissant-latte-cenital.jpg
 !public/assets/hilton/between/fotos-gradadas/togo-dulce-45.jpg
+# Ronda 5: el 2.º piso, que el cliente reclamaba y NO estaba fotografiado — sale
+# de un fotograma 4K del video que mandó Eli (raw/, que no viaja). Si no se
+# versiona, la próxima máquina no puede rendir la slide 3.
+!public/assets/hilton/between/fotos-gradadas/segundo-nivel.jpg
+!public/assets/hilton/between/fotos-gradadas/cowork-laptop.jpg
+!public/assets/hilton/between/fotos-gradadas/winter-garden.jpg
+!public/assets/hilton/between/fotos-gradadas/mesa-cafe-2piso.jpg
+# ST del 1-sep: las dos mitades son foto real de la sesión del cliente, así que
+# el logotipo del vaso ya no se estampa — viene impreso en el propio vaso.
+!public/assets/hilton/between/fotos-gradadas/togo-vaso-foto.jpg
+!public/assets/hilton/between/fotos-gradadas/rol-canela.jpg
+# La taza blanca de cappuccino, recortada de las propias ediciones con IA de Eli
+# (carpeta «Ediciones con IA fotos»). Sin logo KIMBO, así que cumple la regla.
+!public/assets/hilton/between/taza-cappuccino-nobg.png
 
 # Escenas con el VASO REAL recortado (ronda 5). El recorte y las escenas que lo
 # usan se versionan: salieron de la sesión del cliente y rehacerlos cuesta una

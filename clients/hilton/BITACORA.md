@@ -5,6 +5,70 @@
 
 ---
 
+## 2026-09-01 · Eli (Windows) — BETWEEN: el conector de Drive NO puede entregar, y quedó probado
+
+**Qué se hizo.** Día de desbloqueo, no de producción. Se cerró la duda que venía
+arrastrándose desde el 31-08 sobre por qué no se sube nada al Drive. **No es un
+problema de permisos:** Eli le dio permiso de escritura completo al conector de
+Drive y no cambió nada. La causa está en el propio conector, verificada en su
+esquema:
+
+| Herramienta | Límite real |
+|---|---|
+| `Crear archivo` | solo acepta el contenido **incrustado en la llamada**, en base64 |
+| `Actualizar archivo` | solo cambia **título y carpeta** — nunca el contenido |
+
+Las 3 piezas del cumpleaños pesan 5,5 · 4,4 · 5,2 MB; en base64 son ~7 MB de texto
+cada una, del orden de **2 millones de tokens por archivo**. No entran con permisos
+ni sin ellos. Y como `Actualizar` no toca el contenido, **por el conector es
+imposible reemplazar una pieza conservando su enlace** — que es exactamente lo que
+necesitan las 27 piezas de la carpeta BW.
+
+⛔ **Conclusión dura: la entrega a Drive depende de `credentials/token.json` y de
+`between-subir-drive.py --actualizar`. No hay atajo por el conector.**
+
+**El desvío que sí sirve hoy.** Las 3 del cumpleaños **no necesitan el token**: la
+carpeta S1 (`19Bv7lfMBEIt_4JLRStWKObtCnf4OmPdD`) está vacía, así que son archivos
+nuevos y no hay ningún enlace que conservar. Se suben arrastrándolas desde
+`out/hilton-between-cumple-r5/entrega S1/` a drive.google.com, con el nombre tal
+cual (lo espera el portal). El token solo es imprescindible para corregir piezas
+**ya entregadas**.
+
+**Estado del Drive al cierre.** S1 sigue vacía (comprobado). Las 27 piezas del mes
+siguen en BW en su versión del 28-08 (ronda 4). Nada nuevo en el Drive después de
+las 13:29.
+
+**Dónde quedó.** Se commiteó la cola de la ronda 5 que estaba fuera de git desde el
+31-08: las **7 fotos gradadas** nuevas (`segundo-nivel`, `cowork-laptop`,
+`winter-garden`, `mesa-cafe-2piso`, `togo-vaso-foto`, `rol-canela`,
+`taza-cappuccino-nobg`), sus excepciones en `.gitignore`, los scripts
+`between-entrega.py` y `material-a-fotos.py`, y la story nueva `StCumpleDetalles`
+registrada en `Root.tsx` y `BetweenEntry.tsx`. `npm run typecheck` limpio.
+
+**Qué sigue.** Rendir el **carrusel Cowork** y la **ST Promo To Go** — el material
+local ya está (`cowork-laptop.jpg` y `rol-canela.jpg` se bajaron). Pero no se puede
+tocar ninguna de las dos sin resolver antes lo de abajo.
+
+**Abierto.**
+
+1. 🔴 **URGENTE Y NO RESUELTO HOY.** El 1-sep se publicaban el **carrusel Cowork**
+   (10:00) y la **ST Promo To Go**, y las dos están *en cambios* por la ronda 5:
+   **lo que el cliente tiene en Drive es la versión sin corregir, y el día ya pasó.**
+   Hay que decidir con KAM si se corrige y re-sube igual o se deja publicado así.
+2. **Siguen sin respuesta las dos preguntas de la regla del lockup** (del 31-08
+   tarde), y bloquean `Cumple1`, `ToGo1`, `StToGoDulce` y `StCumple`:
+   ¿el carrusel To Go queda sin lockup en las 4 slides, baja a otra slide, o la
+   portada es excepción? ¿La regla alcanza a cualquier logotipo legible en la foto,
+   solo al vaso, o solo al vaso en primer plano?
+3. **Falta `credentials/token.json`** (está en el Mac, en `ASISTENTE PERSONAL/
+   credentials/`). Sin él no se corrige nada ya entregado.
+4. **Falta `.env`** con `FREEPIK_API_KEY` y `MAGNIFIC_API_KEY`: sin eso no se pueden
+   regenerar los 9 montajes rechazados por ambiente.
+5. Sin cambios: el **Café Bombón** sigue esperando que el cliente diga cómo se
+   muestra la leche condensada y en qué vaso va.
+
+---
+
 ## 2026-08-31 (noche) · Eli (Windows) — BETWEEN: el vaso pasó a ser fotografía, y el estudio ya corre en Windows
 
 **Qué se hizo.** El cliente rechazó el vaso otra vez —«el vaso no se parece al
@@ -43,7 +107,8 @@ Comparación visual: <https://claude.ai/code/artifact/71c547d8-0899-42d5-aa90-f9
 fallaban en seco. Todas corregidas y **probadas**, no solo escritas:
 
 1. `_entorno.py` → `python_venv()` caía a la cadena `"python3"`, inexistente acá.
-2. `hilton-drive-pull.sh` → llamaba a `/usr/bin/python3` y dejaba un `` en el
+2. `hilton-drive-pull.sh` → llamaba a `/usr/bin/python3` y dejaba un `
+` en el
    nombre, que Windows convierte en `_` (`foto.jpg_`). **Usar
    `scripts/drive-carpeta.py`**, que además trae `--miniaturas` para revisar una
    sesión de 353 fotos sin bajar gigas. ⛔ El `.sh` quedó parchado pero el bueno

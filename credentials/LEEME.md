@@ -103,3 +103,34 @@ Ya está todo puesto en este PC (31-08-2026):
 | `google-api-python-client` · `google-auth` · `google-auth-oauthlib` | ✅ |
 | `requests` · `python-dotenv` | ✅ |
 | **`credentials\token.json`** | ❌ **es lo único que falta** |
+
+---
+
+## ⛔ El conector de Drive NO reemplaza a este token (verificado 01-09-2026)
+
+Es la pregunta que aparece siempre: *«si el conector de Google Drive de claude.ai
+ya está conectado, ¿para qué el token?»*. Se probó dando **permiso de escritura
+completo** al conector, y no alcanza. Dos límites del conector, leídos en su
+propio esquema:
+
+| Herramienta del conector | Lo que puede |
+|---|---|
+| `Crear archivo` | solo acepta el contenido **incrustado en la llamada**, en base64 |
+| `Actualizar archivo` | solo cambia **título y carpeta** — nunca el contenido |
+
+Consecuencias:
+
+1. **Una pieza de Between no entra.** Pesan 4–6 MB; en base64 son ~7 MB de texto,
+   del orden de **2 millones de tokens por archivo**.
+2. **No se puede reemplazar una pieza conservando su enlace.** `Actualizar` no
+   toca el contenido. Y conservar el enlace es justo lo que se necesita cuando el
+   cliente ya tiene el link de la ronda anterior.
+
+Por eso la entrega pasa sí o sí por `scripts/between-subir-drive.py`, que sube por
+streaming y tiene `--actualizar`.
+
+### La excepción: carpetas vacías
+
+Si las piezas son **nuevas** y no hay ningún enlace que conservar, no hace falta el
+token: se arrastran desde el Explorador a drive.google.com y listo. Sirve para una
+entrega inicial; **no** para una corrección.

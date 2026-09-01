@@ -18,9 +18,24 @@ cd "$(dirname "$0")/.."
 SEMILLA="docs/memoria-semilla"
 [ -d "$SEMILLA" ] || { echo "✗ No hay $SEMILLA en el repo"; exit 1; }
 
-# Claude Code deriva la carpeta de memoria de la ruta del proyecto:
-# "/" y " " se convierten en "-".
-SLUG=$(pwd | sed 's/[\/ ]/-/g')
+# Claude Code deriva la carpeta de memoria de la ruta del proyecto, cambiando
+# los separadores por "-". OJO EN WINDOWS: Claude Code parte de la ruta NATIVA
+# ("c:\Users\..." -> "c--Users-...") y el `pwd` de Git Bash devuelve la ruta
+# POSIX ("/c/Users/..." -> "-c-Users-..."). Sembrar con el slug de Git Bash crea
+# una SEGUNDA carpeta de memoria que Claude nunca lee: la siembra dice "OK" y
+# las notas nuevas se pierden en silencio. `pwd -W` da la ruta nativa en Git
+# Bash y no existe en macOS, donde `pwd` ya es la buena.
+# Además baja la letra de unidad a minúscula: `pwd -W` la devuelve en mayúscula
+# ("C:/Users/...") y Claude Code la escribe en minúscula.
+slugificar() { printf '%s' "$1" | sed -e 's/^\([A-Za-z]\):/\l\1-/' -e 's/[\/\: ]/-/g'; }
+SLUG=$(slugificar "$(pwd)")
+if RUTA_NATIVA=$(pwd -W 2>/dev/null) && [ -n "$RUTA_NATIVA" ]; then
+  SLUG_NATIVO=$(slugificar "$RUTA_NATIVA")
+  # Si la carpeta nativa ya existe, es la que Claude Code está usando.
+  if [ -d "$HOME/.claude/projects/$SLUG_NATIVO" ] || [ ! -d "$HOME/.claude/projects/$SLUG" ]; then
+    SLUG=$SLUG_NATIVO
+  fi
+fi
 DESTINO="$HOME/.claude/projects/$SLUG/memory"
 mkdir -p "$DESTINO"
 

@@ -972,3 +972,21 @@ Era un pabilo con llama, sin nada de cera — por eso se veía rara. Si vuelve a
 aparecer una vela generada, hay que **dibujarle el cuerpo**, subir la llama para
 darle altura y añadir el resplandor que derrama sobre la tapa. Sin esos tres
 pasos se lee como un palito encendido.
+
+## 7. Qué espacio es cada foto (identificado por Eli, 01-09-2026)
+
+Las 12 fotos de **ESPACIOS BETWEEN** están en `raw/hilton/between/espacios/`
+(se bajan con `python scripts/drive-carpeta.py 1FTgwu_wHwVkKk55nlDrao-LkDdKNDwID <destino>`).
+
+| Foto | Qué es |
+|---|---|
+| **`HDT_50.jpg`** | ⭐ **El Winter Garden** — muro verde vivo con sillones de mimbre. Es el de la slide 2 del carrusel Cowork |
+
+⛔ **El 2.º piso NO está fotografiado: solo existe en video.** Es justo lo que
+reclama el cliente en la slide 3 («tenemos ese material»), así que hay que sacar
+el fotograma de un reel. Recordar la regla del estudio: **un frame en 4K es una
+foto**; antes de generar o de bloquear, se agota el material audiovisual.
+
+> Las demás fotos siguen sin identificar. **Varias no son de Between** —la barra
+> de ónix retroiluminada parece de QB, y varias son del hotel—: usar una ajena es
+> repetir exactamente el error que el cliente viene reclamando. Preguntar antes.

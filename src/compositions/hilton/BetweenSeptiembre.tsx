@@ -63,7 +63,15 @@ export const Cowork1: React.FC = () => (
     script="Tu oficina por hoy"
     caps={'Puede ser\nBetween'}
     bajadaEnCaja
-    bajada="Espacio, WiFi y café. Tú trae los pendientes."
+    /* ⭐ RONDA 5 (comentario C15 de FEED): «Slide1: dejar el texto consecutivo
+       que esta en el cuadro café, es decir, que "pendientes" queda arriba».
+       → La caja partía sola y dejaba «pendientes.» SOLA en la segunda línea —
+         una viuda, que el manual prohíbe. El corte ahora es el del brief:
+         «Espacio, WiFi y café.» / «Tú trae los pendientes.», cada frase en su
+         línea. Va con <br /> y no con 
+ porque PanelTaupe no lleva
+         `white-space: pre-line` y el salto se colapsaría. */
+    bajada={<>Espacio, WiFi y café.<br />Tú trae los pendientes.</>}
     anclaje="abajo"
     conLogo
     logoPosicion="abajo"
@@ -452,18 +460,29 @@ export const ToGo4: React.FC = () => (
    Composición PARTIDA en dos fotos con la script cruzando la costura: es el
    recurso del post «Good Morning» de la marca. Rompe el «titular arriba, foto
    abajo» sin salirse de la línea gráfica.
-   ⭐ RONDA 4 (comentario C15 de STORIES): «Café con logo Between!». El montaje
-   devolvía el vaso kraft liso; se le estampa el logo real y la composición no
-   se toca, que es todo lo que pidió el cliente.                               */
+   ⭐ RONDA 4 (comentario C15 de STORIES): «Café con logo Between!».
+   ⭐⭐ RONDA 5 (01-09): el logotipo estampado sobre un vaso generado nunca
+   convenció. Las DOS mitades pasan a ser **fotografía real de la sesión del
+   cliente**, así que el logo del vaso ya no se pega: viene impreso en el vaso.
+     · arriba  `Double Tree 25 jul 25-255` — el vaso vigente (cuerpo crema,
+       logotipo impreso directo, tapa negra plana)
+     · abajo   `Double Tree 25 jul 25-281` — el rol de canela real
+   Misma sesión, misma mesa y mismo muro verde: las dos mitades casan solas.
+   El recorte de abajo deja aire libre para que la caja de la promo **no tape el
+   rol**, que es el otro comentario del cliente.                               */
 export const StToGoDulce: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
     <PiezaPartida
       eje="horizontal"
-      izquierda={IA + 'togo-cafe-dulce-logo.png'}
+      izquierda={F + 'togo-vaso-foto.jpg'}
       derecha={F + 'rol-canela.jpg'}
     />
     <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra, opacity: 0.14}} />
-    <LogoBetween formato="story" posicion="arriba" tono="beige" />
+    {/* ⛔ SIN lockup. Regla 8: cuando la foto trae el vaso con el logotipo
+        impreso, la pieza NO lo sobrepone — se lee dos veces la misma marca.
+        Con el vaso real la marca ya está en la foto, y el lockup quedaba
+        justo encima del impreso, uno debajo del otro. Esta pieza era una de
+        las tres que la auditoría del 31-08 marcó por esto. */}
     <div
       style={{
         position: 'absolute',
@@ -476,8 +495,21 @@ export const StToGoDulce: React.FC = () => (
       }}
     >
       <TitularBetween script="Un dulce comienzo" caps="para tu mañana" alinear="centro" />
+      {/* ⭐ RONDA 5 (01-09): faltaba la CTA. Sale LITERAL del brief, celda C10 de
+          la hoja STORIES: «CTA: Pasa por Between y llévalo contigo.» — no se
+          redacta una nueva. Va en la caja taupe, que es donde esta marca pone el
+          llamado (igual que «¡Ven por tu café de regalo!» en el post del 3-sep).
+          `CajaDato` la achica sola hasta que cabe en una línea: la caja es
+          nowrap por diseño y el manual pide que la script/el dato no se parta. */}
+      <PilaDatos
+        datos={['Pasa por Between y llévalo contigo.']}
+        style={{marginTop: BETWEEN.aire.tituloACaja}}
+      />
     </div>
-    <Ilustra cual="confeti" x={118} y={700} ancho={170} rotacion={-22} opacidad={0.85} />
+    {/* El confeti se corre al hueco de mesa que queda entre el plato y el vaso:
+        estaba encima de la media luna y un doodle sobre el producto se ve
+        descuidado. */}
+    <Ilustra cual="confeti" x={470} y={118} ancho={140} rotacion={-22} opacidad={0.8} />
     <Ilustra cual="corazon" x={946} y={1180} ancho={92} opacidad={0.9} />
     <PilaEsquina
       lineas={[
@@ -528,6 +560,67 @@ export const StCumple: React.FC = () => (
       ]}
     />
   </PiezaStoryBetween>
+);
+
+/** Segundo frame de la story del 3-sep: el LISTADO del beneficio.
+ *
+ *  ⭐⭐ RONDA 5 (01-09, Eli): «En la St n°2 debes usar los textos del carrusel de
+ *  la S1 de cumpleaños. Con los cambios y emojis».
+ *
+ *  ⛔ Por qué en un frame aparte y no encima del vaso. Se midió sobre la propia
+ *  escena: en la story de 1080×1920 el logotipo impreso del vaso ocupa la franja
+ *  **y 1364–1680** y la base llega a **y 1887**. El listado más comprimido que
+ *  sigue siendo legible mide ~190 px de alto, así que puesto en la banda baja
+ *  **tapa el logotipo del vaso** — que es justo lo que el cliente pidió que se
+ *  viera («el vaso tiene que tener el ligo de between», STORIES C15). Y arriba
+ *  choca con la vela.
+ *
+ *  Una story es una secuencia, así que el listado va en el segundo frame: se
+ *  publican los dos seguidos. Así están los tres textos del feed Y el listado
+ *  con sus emojis, sin sacrificar ni el logotipo ni la legibilidad.
+ */
+export const StCumpleDetalles: React.FC = () => (
+  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
+    {/* La misma escena del frame 1, más apagada: acá manda el texto. La regla 6
+        dice que el texto se resuelve con la caja taupe, pero un listado de cuatro
+        líneas necesita además que la foto deje de competir. */}
+    <FotoFondo src={REAL + 'cumple-vela-real.jpg'} oscurecer={0.42} />
+    <LogoBetween formato="story" posicion="arriba" tono="beige" />
+    <Globos
+      posiciones={[
+        /* Márgenes: 84 px mínimo a los lados (manual) y los adornos de abajo se
+           quedan sobre la zona segura inferior de 340 px — `between-qa.py` avisó
+           que entraban 44 px. */
+        {cual: 'globosPar', x: 92, y: 300, ancho: 164, rotacion: -9},
+        {cual: 'globo', x: 872, y: 336, ancho: 112, rotacion: 10, espejo: true},
+        {cual: 'confeti', x: 800, y: 1318, ancho: 180, rotacion: 7},
+        {cual: 'corazon', x: 104, y: 1352, ancho: 96, rotacion: -10},
+      ]}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 640,
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      {/* Mismos ítems, mismos emojis y mismo legal que la G2 del feed: story y
+          post tienen que decir exactamente lo mismo el 3-sep. */}
+      <Checklist
+        items={[
+          '☕ Te regalamos un café para disfrutar en cafetería o To Go.',
+          '🎂 Accede a este regalo el mismo día de tu cumpleaños.',
+          '🗓️ Disponible de lunes a viernes, en cualquier horario.',
+          '🪪 Presenta tu carnet en la caja.',
+        ]}
+        notaLegal="Extras y personalizaciones no incluidas."
+        ancho={912}
+      />
+    </div>
+  </AbsoluteFill>
 );
 
 /* ─── 4 sept · HUMOR | SEGÚN MIS CÁLCULOS ───

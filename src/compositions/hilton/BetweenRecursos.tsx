@@ -189,17 +189,21 @@ export const Checklist: React.FC<{
   titulo?: string;
   notaLegal?: string;
   ancho?: number;
-}> = ({items, titulo, notaLegal, ancho = 860}) => (
+  /** Cuerpo de cada ítem. En STORY hay que bajarlo: el mismo listado que en el
+   *  feed convive con el titular Y con el producto, y a 34 px tapa el vaso. */
+  size?: number;
+  gap?: number;
+}> = ({items, titulo, notaLegal, ancho = 860, size = 34, gap = 22}) => (
   <div
     style={{
       width: ancho,
       background: 'rgba(103,91,73,0.93)',
       borderRadius: 18,
-      padding: '38px 44px',
+      padding: `${Math.round(size * 1.12)}px ${Math.round(size * 1.3)}px`,
       boxShadow: '0 24px 60px rgba(0,0,0,0.35)',
       display: 'flex',
       flexDirection: 'column',
-      gap: 22,
+      gap,
     }}
   >
     {titulo ? (
@@ -218,18 +222,18 @@ export const Checklist: React.FC<{
     ) : null}
 
     {items.map((t, i) => (
-      <div key={i} style={{display: 'flex', alignItems: 'flex-start', gap: 18}}>
+      <div key={i} style={{display: 'flex', alignItems: 'flex-start', gap: Math.round(size * 0.53)}}>
         <div
           style={{
             flexShrink: 0,
-            width: 40,
-            height: 40,
+            width: Math.round(size * 1.18),
+            height: Math.round(size * 1.18),
             borderRadius: 8,
-            border: `2.5px solid ${BETWEEN.colores.beige}`,
+            border: `${Math.max(2, size * 0.074).toFixed(1)}px solid ${BETWEEN.colores.beige}`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: 26,
+            fontSize: Math.round(size * 0.76),
             lineHeight: 1,
             color: BETWEEN.colores.beige,
             fontFamily: BETWEEN.fuentes.sans,
@@ -242,7 +246,7 @@ export const Checklist: React.FC<{
           style={{
             fontFamily: `${BETWEEN.fuentes.sans}, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji'`,
             fontWeight: 600,
-            fontSize: 34,
+            fontSize: size,
             lineHeight: 1.28,
             color: '#fff',
           }}
@@ -257,7 +261,7 @@ export const Checklist: React.FC<{
         style={{
           fontFamily: BETWEEN.fuentes.sans,
           fontWeight: 500,
-          fontSize: 24,
+          fontSize: Math.round(size * 0.71),
           lineHeight: 1.3,
           color: 'rgba(255,255,255,0.72)',
           marginTop: 4,

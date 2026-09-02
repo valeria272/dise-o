@@ -466,11 +466,34 @@ export const Cowork4: React.FC = () => (
 
 export const Cumple1: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={IA + 'cumple-manos-logo.png'} oscurecer={0.1} />
+    {/* ⭐⭐⭐ RONDA 8 (02-09) — el cliente, en rojo en la grilla: «La foto está
+        extraña, hagamos algo más similar a lo que hicimos el primer post, algo
+        más natural que no se vea tan IA, en este caso creo que MENOS ES MÁS».
+        Y Eli mandó la referencia: la pieza publicada del vaso en la mano contra
+        el muro vegetal con globos (Drive 12Lxot3IaQgXtT34m5q-ZeEamTqR6muRO, que
+        además ya estaba en el repo en `ediciones-ia-eli/`), con un cambio
+        encima: «puede ser que se vea el capuccino y no la tapa».
+        ⛔ Lo que estaba mal en `cumple-manos-logo.png`: eran DOS MANOS pasándose
+           el vaso. El manual ya tiene la regla —«las manos: una sola, y
+           verificada con zoom»— y «hay una mano de más» fue un rechazo de este
+           mismo cliente. Dos manos sin cuerpo encontrándose en el aire es
+           exactamente lo que se lee como IA. «Menos es más» = una mano.
+        → `scripts/between-cumple1-magnific.py`: UNA mano sosteniendo el vaso
+          kraft SIN TAPA con el capuccino y su arte latte a la vista, muro
+          vegetal real detrás, globos dorados y blancos y confeti.
+        → El vaso se generó LISO y el logotipo se ESTAMPÓ con
+          `between-logo-vaso.py --centro 1777 2670 --ancho 873` = 0,86 del ancho
+          del cuerpo, que es la proporción medida en el vaso oficial. La IA nunca
+          dibuja la marca. Gradada con `neutro` (calidez 32,6 → 21,1). */}
+    <FotoFondo src={F + 'cumple-mano-vaso.jpg'} oscurecer={0.1} />
     <Globos
       posiciones={[
         {cual: 'globosPar', x: 100, y: 96, ancho: 188, rotacion: -8},
-        {cual: 'globo', x: 872, y: 150, ancho: 120, rotacion: 10, espejo: true},
+        /* ⭐ RONDA 8: 872 → 856. `between-qa.py` marcó tinta a 77,8 px del canto
+           derecho (mínimo 84) y NO era el texto: era este globo, cuyo trazo
+           sobresale ~10 px del ancho declarado. Mismo defecto que ya se
+           corrigió en la Cumple2 en la ronda 7. */
+        {cual: 'globo', x: 856, y: 150, ancho: 120, rotacion: 10, espejo: true},
         {cual: 'confeti', x: 760, y: 640, ancho: 210, rotacion: 6},
       ]}
     />
@@ -570,7 +593,18 @@ export const Cumple2: React.FC = () => (
           inventado por la IA es lo que el cliente reclamó tres veces.
         Gradada con `neutro` (calidez 48,7 → 20,8), como el resto del mes.
         El `posicion` sale: la foto nueva ya viene recortada 4:5 y encuadrada. */}
-    <FotoFondo src={F + 'cumple-fondo-local.jpg'} oscurecer={0.14} />
+    {/* ⭐⭐ RONDA 8 — el fondo cambia OTRA VEZ, y por la misma regla del cliente:
+        «Para la segunda slide proponer otra foto de fondo, distinta a G1».
+        En la ronda 7 se cumplió generando el rincón del MURO VEGETAL desenfocado.
+        Pero la G1 de hoy pasó a ser justamente el muro vegetal con los globos,
+        así que ese fondo volvió a chocar: las dos slides quedaban verdes.
+        → Entra `bar-servicio.jpg`, la barra de mármol del local: interior real de
+          Between, sin una hoja verde, y bien distinto de la G1. Es fondo de
+          soporte —encima va el `<Checklist>` de cuatro condiciones—, así que
+          tranquilo se lee mejor el listado.
+        ⚠️ Es un fondo NUEVO en el carrusel, no reciclado del Cowork: ahí van la
+           terraza, el muro vegetal, el 2.º piso y el servicio a la mesa. */}
+    <FotoFondo src={F + 'bar-servicio.jpg'} oscurecer={0.14} />
     <Globos
       posiciones={[
         {cual: 'globosPar', x: 100, y: 104, ancho: 174, rotacion: -8},

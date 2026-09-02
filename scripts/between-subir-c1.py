@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sube la PORTADA del carrusel Cowork (C1) a la carpeta que abrió Eli en Drive.
+"""Sube los carruseles de la S1 de Between a las carpetas por carrusel de Eli.
 
 ⭐ RONDA 8 — 02-09-2026. Eli pidió la corrección de la portada y dio la carpeta
 de destino en el mismo mensaje:
@@ -8,6 +8,10 @@ de destino en el mismo mensaje:
 
 Es **`C1 COWORK`**, suya, creada el 01-09 y vacía hasta ahora, colgando de la
 carpeta `BW` de `S1 HILTON SEP 2026` (`1fQqtl-2X2A4o1L5hH7jlz9xUh_YzXRjq`).
+
+⭐ Y después la segunda: «Sigamos a corregir esta …/1TfFCqNfQw0ucTwqvJD8iqft7Y__voRUw»,
+que es **`C2 CUMPLEAÑOS BW`**. Eli está ordenando la S1 **por carrusel**, una
+carpeta cada uno, así que el script recibe cuál subir.
 
 ⚠️ El token del estudio tiene alcance `drive.file`: **no puede LEER** una carpeta
 que no creó —`files.get` sobre ella devuelve 404— pero **sí puede ESCRIBIR**
@@ -53,8 +57,16 @@ SCOPES = [
     'https://www.googleapis.com/auth/drive.file',
 ]
 
-CARPETA = '1GB6NtoG3vy35rPj7bw-j8bc76-Jz8332'          # C1 COWORK
 MANIFIESTO = RAIZ / 'out/hilton-between-r8/_subidas.json'
+RENDER = RAIZ / 'out/hilton-between-r8'
+
+# ⭐ Las carpetas POR CARRUSEL que abrió Eli el 01-09 dentro de `BW` de
+# `S1 HILTON SEP 2026` (`1fQqtl-2X2A4o1L5hH7jlz9xUh_YzXRjq`). Hay una tercera,
+# `STS` (`14Z4XnkM9sepmdPV0XjKzoqb1HXMbvIzO`), para las historias.
+CARPETAS = {
+    'cowork': '1GB6NtoG3vy35rPj7bw-j8bc76-Jz8332',   # C1 COWORK
+    'cumple': '1TfFCqNfQw0ucTwqvJD8iqft7Y__voRUw',   # C2 CUMPLEAÑOS BW
+}
 
 # ⭐ EL CARRUSEL COMPLETO, decisión de Eli el 02-09: «súbelas a ese drive, mejor
 # así tenemos todo». `C1` y `C2` son CARRUSELES, no slides —la carpeta hermana
@@ -65,16 +77,18 @@ MANIFIESTO = RAIZ / 'out/hilton-between-r8/_subidas.json'
 # Las CUATRO salen de la ronda 8: en la 2.ª pasada Eli pidió emparejar los
 # títulos («se ven poco alineados y desordenados»), así que las tres interiores
 # también se re-rindieron. Ya no se toma nada de `out/entrega-r7/S1`.
-PIEZAS = [
-    ('BW FEED 01-09 Cowork 1 portada.png',
-     RAIZ / 'out/hilton-between-r8/BW-F-Cowork-1.png'),
-    ('BW FEED 01-09 Cowork 2 winter garden.png',
-     RAIZ / 'out/hilton-between-r8/BW-F-Cowork-2.png'),
-    ('BW FEED 01-09 Cowork 3 segundo nivel.png',
-     RAIZ / 'out/hilton-between-r8/BW-F-Cowork-3.png'),
-    ('BW FEED 01-09 Cowork 4 servicio.png',
-     RAIZ / 'out/hilton-between-r8/BW-F-Cowork-4.png'),
-]
+PIEZAS = {
+    'cowork': [
+        ('BW FEED 01-09 Cowork 1 portada.png', 'BW-F-Cowork-1.png'),
+        ('BW FEED 01-09 Cowork 2 winter garden.png', 'BW-F-Cowork-2.png'),
+        ('BW FEED 01-09 Cowork 3 segundo nivel.png', 'BW-F-Cowork-3.png'),
+        ('BW FEED 01-09 Cowork 4 servicio.png', 'BW-F-Cowork-4.png'),
+    ],
+    'cumple': [
+        ('BW FEED 03-09 Cumpleanos 1.png', 'BW-F-Cumple-1.png'),
+        ('BW FEED 03-09 Cumpleanos 2 detalles.png', 'BW-F-Cumple-2.png'),
+    ],
+}
 
 
 def servicio():
@@ -91,28 +105,36 @@ def servicio():
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument('carrusel', nargs='*', choices=[*PIEZAS], default=[],
+                    help='cowork · cumple. Sin argumentos, los dos.')
     ap.add_argument('--listar', action='store_true',
-                    help='muestra lo que ESTE token tiene subido en la carpeta')
+                    help='muestra lo que ESTE token tiene subido en las carpetas')
     a = ap.parse_args()
     s = servicio()
+    cuales = a.carrusel or list(PIEZAS)
 
     if a.listar:
-        r = s.files().list(q=f"'{CARPETA}' in parents and trashed=false",
-                           fields='files(id,name,size,modifiedTime)').execute()
-        for f in r.get('files', []):
-            print(f"  {int(f.get('size', 0))/1e6:6.2f} MB  {f['name']}  ({f['id']})")
-        if not r.get('files'):
-            print('  (el token no ve nada acá — con `drive.file` sólo ve lo que él subió)')
+        for c in cuales:
+            print(f'— {c}')
+            r = s.files().list(q=f"'{CARPETAS[c]}' in parents and trashed=false",
+                               fields='files(id,name,size,modifiedTime)').execute()
+            for f in r.get('files', []):
+                print(f"  {int(f.get('size', 0))/1e6:6.2f} MB  {f['name']}  ({f['id']})")
+            if not r.get('files'):
+                print('  (el token no ve nada acá — con `drive.file` sólo ve lo que él subió)')
         return
 
-    faltan = [str(o) for _, o in PIEZAS if not o.is_file()]
+    tareas = [(CARPETAS[c], nom, RENDER / arch)
+              for c in cuales for nom, arch in PIEZAS[c]]
+    faltan = [str(o) for _, _, o in tareas]
+    faltan = [f for f in faltan if not Path(f).is_file()]
     if faltan:
         sys.exit('✗ Faltan piezas rendidas:\n  ' + '\n  '.join(faltan) +
                  '\n\nRinde con:  python scripts/between-rendir.py BW-F-Cowork'
                  ' --salida out/hilton-between-r8')
 
     manifiesto, malas = {}, []
-    for nombre, origen in PIEZAS:
+    for CARPETA, nombre, origen in tareas:
         # ¿ya está? Entonces se REEMPLAZA el contenido, para conservar el enlace
         # y los comentarios en vez de dejar dos archivos con el mismo nombre.
         previo = s.files().list(
@@ -144,7 +166,7 @@ def main():
     MANIFIESTO.parent.mkdir(parents=True, exist_ok=True)
     MANIFIESTO.write_text(json.dumps(manifiesto, ensure_ascii=False, indent=2),
                           encoding='utf-8')
-    print(f'\n{len(PIEZAS)} piezas · manifiesto → {MANIFIESTO.relative_to(RAIZ)}')
+    print(f'\n{len(tareas)} piezas · manifiesto → {MANIFIESTO.relative_to(RAIZ)}')
     if malas:
         sys.exit(f'✗ NO coinciden los bytes en: {", ".join(malas)}')
 

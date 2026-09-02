@@ -335,3 +335,5 @@ out/ebema/20260902_carrusel_cedral/editables/*
 # regeneran byte a byte desde lo de arriba. Pesan 93 MB y son redundantes.
 out/rentas/**/feed/
 out/rentas/**/story/
+!public/assets/hilton/between/ia-sept/cumple-ref-capuccino.png
+!public/assets/hilton/between/fotos-gradadas/cumple-mano-vaso.jpg

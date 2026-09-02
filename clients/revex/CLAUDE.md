@@ -98,6 +98,23 @@ R 0,914 · S 0,845 · W 1,524`.
 👉 **Titular: `−0,045 em` de referencia**, afinando entre `−0,04` y `−0,05` según
 cuánto texto tenga la línea. **La bajada ligera va sin tracking.**
 
+#### ⚠️ El 775 es del titular de PAULINA, no de toda pieza de Revex
+
+Medido el **02-09-2026** en la portada del carrusel «Tus muros también merecen un
+upgrade» (2048 × 2048, la que está publicada): su titular va en **Montserrat
+`wght 720`**, no 775, y con tracking **≈ 0** (`+0,0008 em` la línea 1, `+0,006 em` la
+línea 2), no −0,045. El CTA de esa portada es Montserrat `wght 400`, cap 43,
+tracking `+0,015 em`.
+
+Cómo se midió, porque la técnica sirve para cualquier marca: **la línea que va dentro
+de la barra roja se puede mattear exacta** —el fondo es `#D31418` conocido al píxel,
+así que `alpha = (px − fondo) / (255 − fondo)`— y ahí la comparación de glifos deja de
+ser opinión. 720 da IoU 83,4 % con tinta +0,9 %; 700 → 82,6 %; 750 → 79,8 %.
+
+👉 **Antes de rehacer una pieza publicada, medir SU peso.** El 775 del §4 vale para las
+estáticas de sucursal de Paulina; las portadas de carrusel están más livianas. Método
+completo en `scripts/revex-muros-upgrade-foto-limpia.py`.
+
 ### 5. Cuerpos y cajas medidos (norm 1080)
 
 | Elemento | Medida |

@@ -441,27 +441,20 @@ export const HumorCafecito: React.FC = () => (
      * Gradada con el perfil `neutro` (calidez 28,2 → 22,2), que es el que
      * responde al «se ven quemadas y con un filtro raro».
      */
-    foto={IA + 'humor-cafecito-3.png'}
+    foto={IA + 'humor-cafecito-4.png'}
     script="“Perdón, esa preocupación"
     caps={'No cabe en mi\ncafecito de Between.”'}
     scriptSans
     mantenerPunto
     /* el producto —taza y croissant— quedó en el tercio INFERIOR de la foto
        nueva, así que el bloque sube: abajo el texto le caería encima. */
-    /* el producto —taza y croissant— quedó en el tercio INFERIOR de la foto
-       nueva, así que el bloque sube: abajo el texto le caería encima.
-       ⚠️ `anclaje="arriba"` sin más lo dejaba en y=180, que es EXACTAMENTE donde
-       termina el lockup (bajadaY 165 + alto 15): la primera línea se montaba
-       sobre el «COFFEE & BAR». Se baja a 180 + `aire.logoATexto` (77) = 257. */
-    topBloque={257}
+    /* El bloque vuelve ABAJO, como en la ronda 4: la mesa de madera ocupa el
+       tercio inferior y es la única superficie tranquila de la foto. Arriba el
+       texto caería sobre el muro verde, que está muy movido. */
+    anclaje="abajo"
     conLogo
-    logoPosicion="arriba"
     columna={BETWEEN.bloque.columna}
     oscurecer={0.14}
-    /* el bloque cae sobre el muro de vegetación, que es claro y muy movido: el
-       velo sutil de Eli lo asienta sin apagar la foto — la regla del manual es
-       que un texto que no se lee NO se resuelve oscureciendo la imagen. */
-    velo={0.16}
   />
 );
 

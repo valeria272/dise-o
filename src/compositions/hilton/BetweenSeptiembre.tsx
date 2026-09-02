@@ -427,14 +427,41 @@ export const Cumple2: React.FC = () => (
 
 export const HumorCafecito: React.FC = () => (
   <PiezaFeedBodegon
-    foto={IA + 'humor-cafecito-2.png'}
+    /**
+     * ⭐ RONDA 6 — FOTO NUEVA. La anterior (`humor-cafecito-2.png`) tenía razón
+     * Scarlette: era una terraza tropical genérica —sillas de listones claros y
+     * palmeras—, que es lo contrario de Between. El ambiente se transfirió por
+     * REFERENCIA, no con adjetivos (la lección de Casablanca): se le pasaron las
+     * fotos reales del local de `raw/hilton/between/espacios/` (HDT_50, HDT_56 y
+     * HDT_38) y ahora el fondo trae lo que sí es suyo — muro de vegetación viva,
+     * boiserie de madera oscura, zócalo azul navy, piso de madera oscura,
+     * lámparas colgantes de latón y sillas negras de listones.
+     * Se conserva la regla dura: NO se ve rostro, ni mentón, ni cuello. Y la
+     * taza es blanca lisa, sin la raya ni el logotipo KIMBO — verificado.
+     * Gradada con el perfil `neutro` (calidez 28,2 → 22,2), que es el que
+     * responde al «se ven quemadas y con un filtro raro».
+     */
+    foto={IA + 'humor-cafecito-3.png'}
     script="“Perdón, esa preocupación"
     caps={'No cabe en mi\ncafecito de Between.”'}
     scriptSans
     mantenerPunto
-    anclaje="abajo"
+    /* el producto —taza y croissant— quedó en el tercio INFERIOR de la foto
+       nueva, así que el bloque sube: abajo el texto le caería encima. */
+    /* el producto —taza y croissant— quedó en el tercio INFERIOR de la foto
+       nueva, así que el bloque sube: abajo el texto le caería encima.
+       ⚠️ `anclaje="arriba"` sin más lo dejaba en y=180, que es EXACTAMENTE donde
+       termina el lockup (bajadaY 165 + alto 15): la primera línea se montaba
+       sobre el «COFFEE & BAR». Se baja a 180 + `aire.logoATexto` (77) = 257. */
+    topBloque={257}
     conLogo
+    logoPosicion="arriba"
+    columna={BETWEEN.bloque.columna}
     oscurecer={0.14}
+    /* el bloque cae sobre el muro de vegetación, que es claro y muy movido: el
+       velo sutil de Eli lo asienta sin apagar la foto — la regla del manual es
+       que un texto que no se lee NO se resuelve oscureciendo la imagen. */
+    velo={0.16}
   />
 );
 

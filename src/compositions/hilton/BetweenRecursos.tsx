@@ -843,7 +843,18 @@ export const PilaEsquina: React.FC<{
   <div
     style={{
       position: 'absolute',
-      [lado]: BETWEEN.bloque.margenX,
+      /**
+       * ⛔ BUG CORREGIDO EL 02-09-2026. Acá decía `[lado]: ...`, y `lado` vale
+       * «izquierda» o «derecha» — que NO son propiedades CSS. La clave
+       * calculada salía `izquierda: 84`, React la ignoraba y la caja se quedaba
+       * SIN desplazamiento: pegada al borde del lienzo en x=0, cortada.
+       *
+       * Lo cazó el QA en `BW ST 01-09 Promo To Go`, que ya estaba ENTREGADA: sus
+       * dos cajas de promo sangraban por el borde izquierdo y la tinta arrancaba
+       * a 22 px del canto, contra los 84 de margen. Afecta a toda pieza con
+       * `PilaEsquina` — también a las slides 2, 3 y 4 del carrusel To Go.
+       */
+      [lado === 'derecha' ? 'right' : 'left']: BETWEEN.bloque.margenX,
       bottom: abajo,
       display: 'flex',
       flexDirection: 'column',

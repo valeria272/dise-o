@@ -127,12 +127,12 @@ La tarjeta pasó a **3:2**.
 1. **«Más de XX m² de terreno»** sigue publicado en la sección «¿Qué buscamos?».
    El `XX` viene del brief original y nunca llegó el dato. Es la primera condición
    que lee un dueño de terreno — conviene cerrarlo antes de que lo vea Fran.
-2. **La cifra pasó de «+30» a «23»** en los tres lugares donde estaba (sello del
-   hero, contador de trayectoria y meta description). Se corrigió porque el KAM
-   confirma 23 activos, pero **el «+30» venía del brochure**: si esa cifra incluye
-   proyectos en desarrollo además de los operativos, hay que decidir cuál se declara.
-   El sitio oficial tiene ~30 fichas, varias de proyectos futuros (Algarrobal,
-   Linderos, Santa Cruz, Rancagua, Chicureo, Pirque etapa III).
+2. ~~La cifra pasó de «+30» a «23»~~ **RESUELTO (02-09):** el KPI se queda en
+   **«+30»**, porque es como la marca lo comunica en todos lados. Se revirtió en
+   los tres lugares (sello del hero, contador de trayectoria y meta description).
+   Para que no choque, la bajada del carrusel **ya no declara un número**: dice
+   «Una cartera en operación de Copiapó a Osorno». Así conviven el KPI de marca
+   (+30, que incluye proyectos en desarrollo) y las 23 fichas con foto real.
 3. **«Las Flores» y «San Carlos»** son los dos de Las Condes. Se asignó
    `las-condes-san-carlos-de-apoquindo` → Las Flores y `san-carlos-de-apoquindo` →
    San Carlos. **Confirmar que las fotos no quedaron cruzadas.**

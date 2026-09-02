@@ -100,12 +100,37 @@ except Exception:
 # El recorte 4:5 de la terraza real va PRIMERO: es la imagen que hay que
 # reproducir. Las otras dos son la misma terraza desde otro punto, para que el
 # modelo tenga el lugar completo y no se invente el fondo que queda fuera.
+FUENTE = RAIZ / "raw/hilton/between/espacios/HDT_52.jpg"
 BASE = RAIZ / "raw/hilton/between/espacios/_terraza-base-45.jpg"
 REFS = [
     BASE,
-    RAIZ / "raw/hilton/between/espacios/HDT_52.jpg",
+    FUENTE,
     RAIZ / "raw/hilton/between/espacios/HDT_51.jpg",
 ]
+
+#: El recorte 4:5 sobre `HDT_52` (6719×4479). Ver el encabezado: elegido midiendo
+#: contra las bandas del bloque, no a ojo.
+RECORTE = (200, 900, 3063, 4479)
+
+
+def base_45():
+    """Rehace el recorte base si no está.
+
+    `raw/` no viaja en git, así que en otra máquina esto no existe aunque el
+    repo esté completo. Se regenera solo desde `HDT_52` — es un recorte, no una
+    decisión: las coordenadas están fijas en `RECORTE`."""
+    if BASE.is_file():
+        return
+    if not FUENTE.is_file():
+        sys.exit(
+            f"✗ Falta la foto de la terraza: {FUENTE}\n\n"
+            "`raw/` no viaja en git. Bájala con:\n"
+            "  python scripts/drive-carpeta.py 1FTgwu_wHwVkKk55nlDrao-LkDdKNDwID "
+            "raw/hilton/between/espacios")
+    from PIL import Image
+    im = Image.open(FUENTE).crop(RECORTE)
+    im.save(BASE, quality=96)
+    print(f"· recorte base rehecho desde HDT_52 → {BASE.name} ({im.width}×{im.height})")
 
 SALIDA = RAIZ / "public/assets/hilton/between/ia-sept/cowork-terraza.png"
 
@@ -193,14 +218,14 @@ def main():
         print(PROMPT)
         return
 
+    base_45()
     faltan = [r for r in REFS if not r.is_file()]
     if faltan:
         sys.exit("✗ Faltan fotos de referencia de la terraza:\n  " +
                  "\n  ".join(str(f) for f in faltan) +
                  "\n\n`raw/` no viaja en git: se bajan con\n"
                  "  python scripts/drive-carpeta.py 1FTgwu_wHwVkKk55nlDrao-LkDdKNDwID "
-                 "raw/hilton/between/espacios\n"
-                 "y el recorte base se rehace con `--rehacer-base`.")
+                 "raw/hilton/between/espacios")
 
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
 

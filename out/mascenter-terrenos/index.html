@@ -96,10 +96,17 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 45%}
 /* El campo de color termina en punta de chevron: es el BORDE entre color y foto,
    no una flecha encima. Regla del sistema — ver docs/SISTEMA-DE-MARCAS.md */
-.hero-campo{position:absolute;inset:0;z-index:1;background:var(--rojo);
-  clip-path:polygon(0 0,32% 0,45% 50%,32% 100%,0 100%)}
-.hero-campo-2{position:absolute;inset:0;z-index:2;background:rgba(101,20,15,.55);
-  clip-path:polygon(30% 0,43% 0,56% 50%,43% 100%,30% 100%)}
+.hero-campo{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(104deg,
+    var(--rojo) 0%,   var(--rojo) 22%,
+    rgba(224,35,31,.95) 31%, rgba(214,33,29,.82) 39%,
+    rgba(198,31,26,.62) 47%, rgba(170,27,22,.40) 55%,
+    rgba(140,24,18,.22) 63%, rgba(115,21,16,.09) 71%,
+    rgba(101,20,15,0) 80%)}
+/* Rescoldo vino que continúa el rojo dentro de la foto — sin bordes */
+.hero-rescoldo{position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(104deg,rgba(101,20,15,.30) 0%,rgba(101,20,15,.24) 34%,
+    rgba(101,20,15,.15) 52%,rgba(101,20,15,.06) 68%,rgba(101,20,15,0) 84%)}
 .hero-velo{position:absolute;inset:0;z-index:3;
   background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.06) 40%,rgba(0,0,0,.55) 100%)}
 .hero-contenido{position:relative;z-index:5;width:100%;padding-bottom:clamp(64px,10vh,120px);padding-top:150px}
@@ -208,7 +215,12 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .variables{background:var(--gris);padding:clamp(80px,10vw,140px) 0}
 .variables .cabeza{max-width:62ch;margin-bottom:clamp(44px,5vw,70px)}
 .variables .cabeza p{color:var(--texto-med);margin-top:14px}
-.rejilla-var{display:grid;grid-template-columns:repeat(auto-fit,minmax(292px,1fr));gap:clamp(16px,1.8vw,22px)}
+.rejilla-var{--gv:clamp(16px,1.8vw,22px);display:flex;flex-wrap:wrap;
+  justify-content:center;gap:var(--gv)}
+.rejilla-var>.variable{flex:0 1 calc(25% - var(--gv)*0.75)}
+@media (max-width:1180px){.rejilla-var>.variable{flex:0 1 calc(33.333% - var(--gv)*0.667)}}
+@media (max-width:900px){.rejilla-var>.variable{flex:0 1 calc(50% - var(--gv)*0.5)}}
+@media (max-width:620px){.rejilla-var>.variable{flex:0 1 100%}}
 .variable{background:#fff;border-radius:18px;padding:clamp(24px,2.6vw,32px);display:flex;gap:20px;
   align-items:flex-start;transition:transform .5s var(--exp),box-shadow .5s var(--exp)}
 .variable:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.10)}
@@ -301,8 +313,9 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 @media (max-width:1000px){
   .intro .contenedor,.contacto .contenedor{grid-template-columns:1fr}
   .pie .contenedor{grid-template-columns:1fr 1fr}
-  .hero-campo{clip-path:polygon(0 0,58% 0,72% 50%,58% 100%,0 100%)}
-  .hero-campo-2{display:none}
+  .hero-campo{background:linear-gradient(104deg,
+    var(--rojo) 0%,var(--rojo) 34%,rgba(214,33,29,.84) 48%,rgba(180,29,24,.52) 62%,
+    rgba(130,23,17,.22) 76%,rgba(101,20,15,0) 90%)}
 }
 @media (max-width:820px){
   .nav{position:fixed;inset:0 0 auto;top:0;background:rgba(0,0,0,.97);flex-direction:column;
@@ -317,7 +330,8 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   .flotante{right:14px;bottom:14px;padding:13px 22px;font-size:.8rem}
 }
 @media (max-width:560px){
-  .hero-campo{clip-path:polygon(0 0,100% 0,100% 100%,0 100%);opacity:.20}
+  .hero-campo{opacity:.22;background:linear-gradient(180deg,var(--rojo) 0%,#C21F1B 100%)}
+  .hero-rescoldo{background:linear-gradient(180deg,rgba(101,20,15,.30) 0%,rgba(101,20,15,.16) 100%)}
   .hero-velo{background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.42) 34%,rgba(0,0,0,.80) 100%)}
   .hero-titulo{text-shadow:0 2px 18px rgba(0,0,0,.42)}
   .hero-bajada{text-shadow:0 1px 10px rgba(0,0,0,.5)}
@@ -352,7 +366,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
     <img src="assets/img/hero-aerea.jpg" alt="Vista aérea de un strip center Más Center en su entorno urbano">
   </div>
   <div class="hero-campo"></div>
-  <div class="hero-campo-2"></div>
+  <div class="hero-rescoldo"></div>
   <div class="hero-velo"></div>
   <div class="hero-contenido">
     <div class="contenedor">

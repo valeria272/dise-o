@@ -126,6 +126,11 @@ out/mascenter-algarrobal/preview-artifact.html
 # los intermedios de Freepik.
 !public/assets/hilton/between/ia-sept/cumple-manos-logo.png
 !public/assets/hilton/between/ia-sept/cumple-vela-logo.png
+
+# EBEMA — piezas madre de las campañas ARIEL de WhatsApp: sin ellas el
+# generador de variantes no reproduce nada (ver clients/ebema/CLAUDE.md §12)
+!public/assets/ebema/wsp-ariel/
+!public/assets/ebema/wsp-ariel/**
 !public/assets/hilton/between/ia-sept/togo-cafe-dulce-logo.png
 !public/assets/hilton/between/ia-sept/togo-salida-2-logo.png
 !public/assets/hilton/between/ia-sept/togo-trio-45-logo.png

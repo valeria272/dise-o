@@ -147,6 +147,7 @@ con nombre y código debajo.
 | Feed / carrusel | **1080 × 1350** (4:5) — el de Paulina va a 2250×2813, mismo ratio |
 | Story / reel | 1080 × 1920 |
 | Mailing / campaña WhatsApp | **1200 × 1643** (artboard del kit) |
+| Campañas ARIEL de WhatsApp | **la que traiga la pieza madre del mes** — ago 2026: 2500×4005 · sept 2026: 2500×4510. Ver §12 |
 | Reel | 1080 × 1920, cierre oficial obligatorio |
 
 Nomenclatura: `YYYYMMDD_ebema_descripcion.ext` · piezas: `<slug>_feed.png` / `<slug>_story.png`.
@@ -324,3 +325,57 @@ bash .../editables/render.sh       # → feed/*.png y story/*.png
 `base.css` es el sistema. **Si una pieza necesita algo que el CSS no tiene, primero
 se verifica contra una referencia aprobada; si es legítimo, se agrega al CSS y se
 documenta acá.** Nunca con estilos sueltos en el HTML.
+
+---
+
+## 12. Campañas ARIEL de WhatsApp — variantes por parcheo
+
+Cada mes Paulina entrega **una pieza madre** armada con la info de la primera
+campaña, y el trabajo es replicarla para las demás cambiando sólo lo que
+corresponde. **La madre es la ley: se parcha su píxel, no se rehace la pieza.**
+
+**Lo que cambia entre campañas** (y nada más): el enunciado
+`OFERTA EXCLUSIVA PARA FERRETEROS` / `... PARA CONTRATISTAS`, los precios, y la
+dirección de la sucursal en el pie.
+
+### El método, en orden
+
+1. **Leer el brief antes de creerle al pedido verbal.** En septiembre 2026 el
+   pedido fue «genera de la A1 a la A12, lo demás queda igual», pero el Sheet
+   mostraba que A7–A12 eran **otra línea de producto** — otro título, otros
+   packshots, 3 productos en vez de 4 y uno con el precio pendiente. Necesitaban
+   madre propia. Un bloque de campañas por pieza madre, no por planilla.
+2. **Medir la madre, nunca suponer.** Las cajas de precio se detectan por el rojo
+   `#EC1C23`; el eje de composición es el centro del lienzo; los baselines salen
+   del borde inferior de una mayúscula sin descendente.
+3. **Identificar las tipografías comparando GLIFO A GLIFO** contra un catálogo
+   amplio de fuentes. El IoU del renglón completo **no sirve**: da 0,17–0,55
+   aunque la fuente sea la correcta, porque el kerning del original desalinea
+   acumulativamente. Glifo a glifo da 0,90+ cuando aciertas.
+4. **El tracking se mide por los avances entre glifos dentro de una palabra**, no
+   dividiendo el ancho del renglón por el número de caracteres — los espacios
+   entre palabras contaminan el promedio. En septiembre eso daba 3,0 px por el
+   renglón y **4,0 px** por los avances reales.
+5. **Parchar y verificar que no se tocó nada más.** El QA es contar los píxeles
+   cambiados fuera de las zonas declaradas: tiene que dar **cero**.
+
+### Reglas duras que ya cobró el cliente
+
+- **En una variante de precio sólo cambian los dígitos.** El parche rojo, el `$`
+  y el `+IVA` quedan intactos — se verifican píxel a píxel después de generar.
+  Los dígitos de Helvetica Bold son tabulares, así que el número nuevo ocupa
+  exactamente el mismo avance y la caja no se mueve.
+- **Cuando la dirección de la variante es la misma de la madre, no se redibuja**:
+  se deja el píxel original.
+- **Una sola línea de dirección va centrada entre los dos baselines de la madre.**
+  (sept 2026: baselines 4272 y 4371 → la línea única en 4322). Aprobado por el
+  cliente en la v2 de agosto.
+- **Para borrar texto sobre la foto va inpainting (OpenCV Telea) sobre la máscara
+  de las letras dilatada.** Aplanar la banda interpolando entre franjas limpias
+  —lo que se hizo en agosto— deja un parche liso y con rayado vertical que se ve.
+- La caja del enunciado tiene **padding lateral fijo**: al pasar a
+  `CONTRATISTAS` crece simétricamente sobre el eje, no se recorta el texto.
+
+Geometría medida de cada madre, script y QA: en la carpeta de la entrega del mes
+(`out/ebema/YYYYMMDD_wsp_*/ENTREGA.md`) y en la memoria
+`ebema-click-campanas-ariel-solo-diseno`.

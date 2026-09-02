@@ -204,3 +204,8 @@ client_secret*.json
 # ...pero el instructivo SÍ viaja: si no, las instrucciones para montar el token
 # se quedan en la máquina de quien las escribió y el siguiente vuelve a empezar.
 !credentials/LEEME.md
+
+# Landing de captación de terrenos Más Center — la pieza entregada vuelve al repo
+!out/mascenter-terrenos/
+!out/mascenter-terrenos/**
+out/mascenter-terrenos/preview-artifact.html

@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Postula tu terreno — Más Center | Identificamos ubicaciones. Desarrollamos oportunidades.</title>
+<meta name="description" content="Más Center busca terrenos con potencial comercial para desarrollar nuevos strip centers. Más de 30 centros, 69.000 m² de locales y 400 contratos de arriendo a lo largo de Chile.">
+<meta property="og:title" content="Postula tu terreno — Más Center">
+<meta property="og:description" content="¿Tienes un terreno con potencial comercial? Más Center identifica ubicaciones y desarrolla oportunidades.">
+<meta property="og:image" content="assets/img/hero-aerea.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/favicon.png">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   MÁS CENTER — CAPTACIÓN DE TERRENOS
+   Sistema: Manual de marca Grupo IFB 2023 (Poppins · #E52521 · #65140F · #DADADA)
+   Hermana de la landing Algarrobal — mismo esqueleto y mismos movimientos.
+   ═══════════════════════════════════════════════════════════════ */
+
+@font-face{font-family:'Poppins';src:url('assets/fonts/poppins-light.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:'Poppins';src:url('assets/fonts/poppins-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Poppins';src:url('assets/fonts/poppins-medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Poppins';src:url('assets/fonts/poppins-semibold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Poppins';src:url('assets/fonts/poppins-bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+
+:root{
+  --rojo:#E52521;        /* Vivid red — manual p33 */
+  --rojo-osc:#C81E1A;
+  --vino:#65140F;        /* Very dark red — manual p33 */
+  --gris:#DADADA;        /* Very light gray — manual p34 */
+  --claro:#F3F1F1;
+  --grafito:#26282C;     /* fondo oscuro de las tarjetas de proceso */
+  --grafito-2:#303338;
+  --negro:#000;
+  --texto:#1A1A1A;
+  --texto-med:#4A4A4A;
+  --ancho:1400px;
+  --radio:22px;
+  --exp:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  color:var(--texto);background:#fff;line-height:1.65;font-weight:400;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none}
+.contenedor{width:100%;max-width:var(--ancho);margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+
+/* ── MOVIMIENTO ── leve, como pidió el cliente ─────────────────── */
+.fade-up{opacity:0;transform:translateY(38px);transition:opacity .85s var(--exp),transform .85s var(--exp)}
+.fade-up.is-visible{opacity:1;transform:translateY(0)}
+.fade-left{opacity:0;transform:translateX(-46px);transition:opacity .85s var(--exp),transform .85s var(--exp)}
+.fade-right{opacity:0;transform:translateX(46px);transition:opacity .85s var(--exp),transform .85s var(--exp)}
+.fade-left.is-visible,.fade-right.is-visible{opacity:1;transform:translateX(0)}
+.fade-in{opacity:0;transition:opacity 1.1s var(--exp)}
+.fade-in.is-visible{opacity:1}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}.d7{transition-delay:.56s}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .fade-up,.fade-left,.fade-right,.fade-in{opacity:1!important;transform:none!important;transition:none!important}
+  .hero-media{transform:none!important}
+}
+
+/* ── CABECERA ─────────────────────────────────────────────────── */
+.cabecera{position:fixed;top:0;left:0;right:0;z-index:900;padding:22px 0;
+  transition:background .45s var(--exp),padding .45s var(--exp),box-shadow .45s var(--exp)}
+.cabecera.solido{background:rgba(0,0,0,.92);padding:12px 0;box-shadow:0 2px 24px rgba(0,0,0,.28);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.cabecera .contenedor{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.cabecera img{height:46px;width:auto;transition:height .45s var(--exp)}
+.cabecera.solido img{height:36px}
+.nav{display:flex;align-items:center;gap:34px}
+.nav a{color:#fff;font-size:.82rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;
+  position:relative;padding:4px 0}
+.nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--rojo);
+  transition:width .4s var(--exp)}
+.nav a:hover::after{width:100%}
+.nav .btn-nav{background:var(--rojo);padding:11px 26px;border-radius:999px;letter-spacing:.06em}
+.nav .btn-nav::after{display:none}
+.nav .btn-nav:hover{background:var(--rojo-osc)}
+.hamburguesa{display:none;flex-direction:column;gap:5px;padding:8px}
+.hamburguesa span{display:block;width:26px;height:2px;background:#fff;transition:transform .35s var(--exp),opacity .35s}
+.hamburguesa.abierto span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburguesa.abierto span:nth-child(2){opacity:0}
+.hamburguesa.abierto span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--vino)}
+.hero-media{position:absolute;inset:-6% 0;z-index:0;will-change:transform}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 45%}
+/* El campo de color termina en punta de chevron: es el BORDE entre color y foto,
+   no una flecha encima. Regla del sistema — ver docs/SISTEMA-DE-MARCAS.md */
+.hero-campo{position:absolute;inset:0;z-index:1;background:var(--rojo);
+  clip-path:polygon(0 0,32% 0,45% 50%,32% 100%,0 100%)}
+.hero-campo-2{position:absolute;inset:0;z-index:2;background:rgba(101,20,15,.55);
+  clip-path:polygon(30% 0,43% 0,56% 50%,43% 100%,30% 100%)}
+.hero-velo{position:absolute;inset:0;z-index:3;
+  background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.06) 40%,rgba(0,0,0,.55) 100%)}
+.hero-contenido{position:relative;z-index:5;width:100%;padding-bottom:clamp(64px,10vh,120px);padding-top:150px}
+.hero-etiqueta{color:#fff;font-size:.8rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;
+  padding-bottom:14px;margin-bottom:24px;position:relative;display:inline-block}
+.hero-etiqueta::after{content:'';position:absolute;left:0;bottom:0;width:44px;height:2px;background:#fff}
+.hero-titulo{color:#fff;font-size:clamp(2.4rem,6vw,4.9rem);line-height:1.05;font-weight:300;letter-spacing:-.018em;max-width:19ch}
+.hero-titulo strong{display:block;font-weight:700}
+.hero-bajada{color:rgba(255,255,255,.92);font-size:clamp(1rem,1.5vw,1.22rem);font-weight:300;
+  margin-top:26px;max-width:46ch;line-height:1.6}
+.hero-acciones{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
+
+.btn{display:inline-flex;align-items:center;gap:11px;padding:16px 38px;border-radius:999px;
+  font-size:.85rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  transition:background .35s var(--exp),color .35s var(--exp),transform .35s var(--exp),box-shadow .35s var(--exp)}
+.btn:hover{transform:translateY(-2px)}
+.btn-rojo{background:var(--rojo);color:#fff}
+.btn-rojo:hover{background:var(--rojo-osc);box-shadow:0 10px 30px rgba(229,37,33,.36)}
+.btn-linea{border:1.6px solid rgba(255,255,255,.75);color:#fff}
+.btn-linea:hover{background:#fff;color:var(--texto)}
+.btn svg{width:15px;height:15px;flex-shrink:0}
+
+/* ── TÍTULOS DE SECCIÓN ───────────────────────────────────────── */
+.eyebrow{color:var(--rojo);font-size:.78rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  display:block;margin-bottom:16px}
+.eyebrow.claro{color:#fff;opacity:.8}
+.titulo-seccion{font-size:clamp(1.9rem,3.9vw,3.05rem);font-weight:700;line-height:1.09;letter-spacing:-.022em}
+.titulo-seccion .fina{font-weight:300;display:block}
+.regla{width:46px;height:3px;background:var(--rojo);margin:26px 0 30px}
+.regla.centro{margin-left:auto;margin-right:auto}
+
+/* ── INTRO ────────────────────────────────────────────────────── */
+.intro{padding:clamp(80px,10vw,140px) 0;background:#fff}
+.intro .contenedor{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(38px,6vw,90px);align-items:center}
+.intro p{color:var(--texto-med);font-size:clamp(1rem,1.25vw,1.1rem);margin-bottom:18px;max-width:54ch}
+.intro p strong{color:var(--texto);font-weight:600}
+.intro-foto{position:relative;border-radius:var(--radio);overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.16)}
+.intro-foto img{width:100%;aspect-ratio:16/11;object-fit:cover}
+.intro-foto .sello{position:absolute;left:22px;bottom:22px;background:var(--rojo);color:#fff;
+  padding:11px 24px;border-radius:999px;font-size:.88rem;font-weight:600}
+
+/* ── QUÉ BUSCAMOS ─────────────────────────────────────────────── */
+.buscamos{background:var(--claro);padding:clamp(80px,10vw,140px) 0}
+.buscamos .cabeza{max-width:60ch;margin-bottom:clamp(44px,5vw,70px)}
+.buscamos .cabeza p{color:var(--texto-med);margin-top:4px}
+.rejilla-criterios{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:clamp(18px,2vw,26px)}
+.criterio{background:#fff;border-radius:var(--radio);padding:clamp(28px,3vw,38px);
+  border:1px solid rgba(0,0,0,.06);position:relative;overflow:hidden;
+  transition:transform .5s var(--exp),box-shadow .5s var(--exp)}
+.criterio::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--rojo);
+  transform:scaleY(0);transform-origin:top;transition:transform .5s var(--exp)}
+.criterio:hover{transform:translateY(-7px);box-shadow:0 22px 48px rgba(0,0,0,.11)}
+.criterio:hover::before{transform:scaleY(1)}
+.criterio .icono{width:52px;height:52px;margin-bottom:20px;color:var(--rojo)}
+.criterio .icono svg{width:100%;height:100%;fill:currentColor}
+.criterio h3{font-size:1.05rem;font-weight:600;line-height:1.3;margin-bottom:8px}
+.criterio p{font-size:.9rem;color:var(--texto-med);line-height:1.6}
+.criterio .cifra-dest{color:var(--rojo);font-weight:700}
+
+/* ── VALOR / CIFRAS ───────────────────────────────────────────── */
+.valor{position:relative;background:var(--vino);color:#fff;padding:clamp(80px,10vw,140px) 0;overflow:hidden}
+.valor::after{content:'';position:absolute;right:-8%;top:50%;transform:translateY(-50%);
+  width:52vw;height:52vw;max-width:760px;max-height:760px;border-radius:50%;
+  background:radial-gradient(circle,rgba(229,37,33,.34) 0%,rgba(229,37,33,0) 68%);pointer-events:none}
+.valor .contenedor{position:relative;z-index:2}
+.valor .cabeza{max-width:56ch;margin-bottom:clamp(48px,5vw,74px)}
+.valor .cabeza p{color:rgba(255,255,255,.82);margin-top:14px}
+.rejilla-cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:clamp(24px,3vw,44px)}
+.cifra{border-top:2px solid rgba(255,255,255,.24);padding-top:26px;position:relative}
+.cifra::before{content:'';position:absolute;left:0;top:-2px;width:0;height:2px;background:var(--rojo);
+  transition:width 1s var(--exp) .2s}
+.cifra.is-visible::before{width:56px}
+.cifra .n{font-size:clamp(2.4rem,4.6vw,3.7rem);font-weight:700;line-height:1;letter-spacing:-.03em;
+  display:flex;align-items:baseline;gap:2px}
+.cifra .n sup{font-size:.42em;font-weight:600;align-self:flex-start;margin-top:.5em}
+.cifra .r{font-size:.95rem;font-weight:500;margin-top:12px;color:rgba(255,255,255,.94)}
+.cifra .d{font-size:.84rem;color:rgba(255,255,255,.66);margin-top:6px;line-height:1.55}
+
+/* ── CENTROS EN OPERACIÓN ─────────────────────────────────────── */
+.centros{padding:clamp(80px,10vw,140px) 0;background:#fff;overflow:hidden}
+.centros .cabeza{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;
+  margin-bottom:clamp(38px,4vw,58px);flex-wrap:wrap}
+.centros .cabeza p{color:var(--texto-med);max-width:44ch;margin-top:12px}
+.flechas{display:flex;gap:12px;flex-shrink:0}
+.flecha{width:52px;height:52px;border-radius:50%;border:1.6px solid rgba(0,0,0,.16);
+  display:grid;place-items:center;transition:background .35s var(--exp),border-color .35s var(--exp),transform .35s var(--exp)}
+.flecha svg{width:17px;height:17px;stroke:var(--texto);stroke-width:2;fill:none;transition:stroke .35s}
+.flecha:hover{background:var(--rojo);border-color:var(--rojo);transform:scale(1.06)}
+.flecha:hover svg{stroke:#fff}
+.pista-envoltorio{overflow:hidden;margin:0 calc(-1 * clamp(20px,5vw,40px));padding:0 clamp(20px,5vw,40px)}
+.pista{display:flex;gap:clamp(16px,2vw,24px);transition:transform .75s var(--exp)}
+.centro{flex:0 0 clamp(260px,30vw,392px);border-radius:var(--radio);overflow:hidden;position:relative;
+  transition:transform .5s var(--exp)}
+.centro img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform 1.1s var(--exp)}
+.centro:hover img{transform:scale(1.06)}
+.centro::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 46%,rgba(0,0,0,.72) 100%)}
+.centro .rotulo{position:absolute;left:22px;bottom:20px;z-index:2;color:#fff}
+.centro .rotulo .n{font-size:1.05rem;font-weight:600;line-height:1.25}
+.centro .rotulo .c{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;opacity:.78;margin-top:2px}
+.puntos{display:flex;gap:8px;justify-content:center;margin-top:36px}
+.punto{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,.18);transition:all .4s var(--exp)}
+.punto.activo{background:var(--rojo);width:26px;border-radius:999px}
+
+/* ── MÁS QUE UN TERRENO — las 7 variables ─────────────────────── */
+.variables{background:var(--gris);padding:clamp(80px,10vw,140px) 0}
+.variables .cabeza{max-width:62ch;margin-bottom:clamp(44px,5vw,70px)}
+.variables .cabeza p{color:var(--texto-med);margin-top:14px}
+.rejilla-var{display:grid;grid-template-columns:repeat(auto-fit,minmax(292px,1fr));gap:clamp(16px,1.8vw,22px)}
+.variable{background:#fff;border-radius:18px;padding:clamp(24px,2.6vw,32px);display:flex;gap:20px;
+  align-items:flex-start;transition:transform .5s var(--exp),box-shadow .5s var(--exp)}
+.variable:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.10)}
+.variable .icono{width:46px;height:46px;flex-shrink:0;color:var(--rojo)}
+.variable .icono svg{width:100%;height:100%;fill:currentColor}
+.variable h3{font-size:1rem;font-weight:600;margin-bottom:6px}
+.variable p{font-size:.88rem;color:var(--texto-med);line-height:1.6}
+.variables .cierre{margin-top:clamp(38px,4vw,56px);font-size:clamp(1rem,1.5vw,1.18rem);font-weight:300;
+  color:var(--texto);max-width:62ch;line-height:1.6;border-left:3px solid var(--rojo);padding-left:26px}
+
+/* ── PASO A PASO ── el módulo que pidió el cliente ────────────── */
+.proceso{background:var(--grafito);color:#fff;padding:clamp(80px,10vw,140px) 0;position:relative;overflow:hidden}
+.proceso::before{content:'';position:absolute;left:-10%;top:-20%;width:46vw;height:46vw;max-width:620px;max-height:620px;
+  border-radius:50%;background:radial-gradient(circle,rgba(229,37,33,.16) 0%,rgba(229,37,33,0) 70%);pointer-events:none}
+.proceso .contenedor{position:relative;z-index:2}
+.proceso .cabeza{max-width:64ch;margin-bottom:clamp(44px,5vw,68px)}
+.proceso .cabeza .titulo-seccion br{display:none}
+@media (min-width:900px){.proceso .cabeza .titulo-seccion br{display:block}}
+.proceso .cabeza .titulo-seccion{color:#fff}
+.proceso .cabeza p{color:rgba(255,255,255,.68);margin-top:18px;font-weight:300;font-size:clamp(1rem,1.4vw,1.12rem)}
+.rejilla-pasos{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,1.8vw,24px)}
+@media (max-width:760px){.rejilla-pasos{grid-template-columns:1fr}}
+.paso{background:var(--grafito-2);border-radius:18px;padding:clamp(26px,2.8vw,34px);
+  display:flex;gap:20px;align-items:flex-start;border:1px solid rgba(255,255,255,.06);
+  transition:transform .5s var(--exp),border-color .5s var(--exp),background .5s var(--exp)}
+.paso:hover{transform:translateY(-5px);border-color:rgba(229,37,33,.42);background:#34373d}
+.paso .check{width:34px;height:34px;border-radius:50%;background:var(--rojo);flex-shrink:0;
+  display:grid;place-items:center;box-shadow:0 4px 14px rgba(229,37,33,.34)}
+.paso .check svg{width:16px;height:16px;stroke:#fff;stroke-width:2.6;fill:none}
+.paso h3{font-size:1.02rem;font-weight:600;margin-bottom:8px;line-height:1.3}
+.paso p{font-size:.89rem;color:rgba(255,255,255,.66);line-height:1.6}
+
+/* ── FORMULARIO ───────────────────────────────────────────────── */
+.contacto{padding:clamp(80px,10vw,140px) 0;background:#fff}
+.contacto .contenedor{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(40px,6vw,84px);align-items:start}
+.contacto .lado p{color:var(--texto-med);margin-bottom:18px;max-width:44ch}
+.contacto .firma{margin-top:34px;padding-top:28px;border-top:1px solid rgba(0,0,0,.1);
+  font-size:.92rem;font-weight:500;color:var(--texto);line-height:1.9}
+.contacto .firma span{color:var(--rojo);margin:0 8px;font-weight:600}
+.datos-directos{margin-top:30px;display:flex;flex-direction:column;gap:14px}
+.dato-directo{display:flex;align-items:center;gap:13px;font-size:.94rem;color:var(--texto-med);
+  transition:color .3s var(--exp)}
+.dato-directo:hover{color:var(--rojo)}
+.dato-directo svg{width:18px;height:18px;fill:var(--rojo);flex-shrink:0}
+.formulario{background:var(--claro);border-radius:var(--radio);padding:clamp(28px,3.4vw,46px)}
+.campos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.campo{display:flex;flex-direction:column;gap:7px}
+.campo.ancho{grid-column:1/-1}
+.campo label{font-size:.79rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--texto-med)}
+.campo input,.campo select,.campo textarea{font-family:inherit;font-size:.95rem;color:var(--texto);
+  background:#fff;border:1.5px solid rgba(0,0,0,.10);border-radius:12px;padding:14px 16px;
+  transition:border-color .3s var(--exp),box-shadow .3s var(--exp)}
+.campo textarea{resize:vertical;min-height:112px}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:var(--rojo);
+  box-shadow:0 0 0 3px rgba(229,37,33,.12)}
+.campo input.error,.campo select.error,.campo textarea.error{border-color:var(--rojo);background:rgba(229,37,33,.03)}
+.campo .ayuda{font-size:.76rem;color:#8A8A8A;line-height:1.5}
+.formulario .btn{width:100%;justify-content:center;margin-top:24px}
+.aviso-form{margin-top:16px;font-size:.88rem;min-height:22px;font-weight:500}
+.aviso-form.ok{color:#1E7A3C}.aviso-form.mal{color:var(--rojo)}
+.legal{font-size:.74rem;color:#8A8A8A;margin-top:14px;line-height:1.55}
+
+/* ── PIE ──────────────────────────────────────────────────────── */
+.pie{background:var(--negro);color:#fff;padding:clamp(56px,6vw,86px) 0 0}
+.pie .contenedor{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:clamp(30px,4vw,60px);
+  padding-bottom:clamp(40px,4vw,60px)}
+.pie img.logo{height:52px;width:auto;margin-bottom:22px}
+.pie .lema{font-size:.92rem;color:rgba(255,255,255,.62);line-height:1.75;max-width:34ch;font-weight:300}
+.pie h4{font-size:.79rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px;
+  color:rgba(255,255,255,.5)}
+.pie ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.pie ul a{font-size:.92rem;color:rgba(255,255,255,.82);transition:color .3s var(--exp)}
+.pie ul a:hover{color:var(--rojo)}
+.pie .ifb{margin-top:26px}
+.pie .ifb img{height:34px;width:auto;opacity:.72}
+.copy{border-top:1px solid rgba(255,255,255,.1);padding:22px 0;font-size:.8rem;
+  color:rgba(255,255,255,.42);text-align:center}
+
+/* ── BOTÓN FLOTANTE ───────────────────────────────────────────── */
+.flotante{position:fixed;right:22px;bottom:22px;z-index:800;background:var(--rojo);color:#fff;
+  border-radius:999px;padding:15px 26px;font-size:.84rem;font-weight:600;letter-spacing:.05em;
+  display:inline-flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(229,37,33,.4);
+  opacity:0;transform:translateY(20px);pointer-events:none;
+  transition:opacity .5s var(--exp),transform .5s var(--exp),background .3s}
+.flotante.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.flotante:hover{background:var(--rojo-osc)}
+.flotante svg{width:16px;height:16px;fill:#fff}
+
+/* ── RESPONSIVE ───────────────────────────────────────────────── */
+@media (max-width:1000px){
+  .intro .contenedor,.contacto .contenedor{grid-template-columns:1fr}
+  .pie .contenedor{grid-template-columns:1fr 1fr}
+  .hero-campo{clip-path:polygon(0 0,58% 0,72% 50%,58% 100%,0 100%)}
+  .hero-campo-2{display:none}
+}
+@media (max-width:820px){
+  .nav{position:fixed;inset:0 0 auto;top:0;background:rgba(0,0,0,.97);flex-direction:column;
+    justify-content:center;padding:104px 30px 44px;gap:24px;transform:translateY(-100%);
+    transition:transform .5s var(--exp);height:100svh}
+  .nav.abierto{transform:translateY(0)}
+  .nav a{font-size:1.05rem}
+  .hamburguesa{display:flex;z-index:2}
+  .campos{grid-template-columns:1fr}
+  .centros .cabeza{align-items:flex-start}
+  .pie .contenedor{grid-template-columns:1fr}
+  .flotante{right:14px;bottom:14px;padding:13px 22px;font-size:.8rem}
+}
+@media (max-width:560px){
+  .hero-campo{clip-path:polygon(0 0,100% 0,100% 100%,0 100%);opacity:.20}
+  .hero-velo{background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.42) 34%,rgba(0,0,0,.80) 100%)}
+  .hero-titulo{text-shadow:0 2px 18px rgba(0,0,0,.42)}
+  .hero-bajada{text-shadow:0 1px 10px rgba(0,0,0,.5)}
+  .variable{flex-direction:column;gap:14px}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ CABECERA ════════════ -->
+<header class="cabecera" id="cabecera">
+  <div class="contenedor">
+    <a href="#inicio" aria-label="Más Center — inicio">
+      <img src="assets/img/logo-mascenter-blanco.svg" alt="Más Center — Grupo IFB">
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#buscamos">Qué buscamos</a>
+      <a href="#valor">Nuestro respaldo</a>
+      <a href="#centros">Centros</a>
+      <a href="#proceso">Cómo postular</a>
+      <a href="#contacto" class="btn-nav">Postula tu terreno</a>
+    </nav>
+    <button class="hamburguesa" id="hamburguesa" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero" id="inicio">
+  <div class="hero-media" id="hero-media">
+    <img src="assets/img/hero-aerea.jpg" alt="Vista aérea de un strip center Más Center en su entorno urbano">
+  </div>
+  <div class="hero-campo"></div>
+  <div class="hero-campo-2"></div>
+  <div class="hero-velo"></div>
+  <div class="hero-contenido">
+    <div class="contenedor">
+      <span class="hero-etiqueta fade-up">Más Center · Grupo IFB</span>
+      <h1 class="hero-titulo fade-up d1">Identificamos ubicaciones.<strong>Desarrollamos oportunidades.</strong></h1>
+      <p class="hero-bajada fade-up d2">
+        Buscamos terrenos con potencial comercial para desarrollar nuevos strip centers
+        a lo largo de Chile. Si tienes uno, queremos conocerlo.
+      </p>
+      <div class="hero-acciones fade-up d3">
+        <a href="#contacto" class="btn btn-rojo">
+          Postula tu terreno
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#buscamos" class="btn btn-linea">Qué buscamos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ INTRO ════════════ -->
+<section class="intro">
+  <div class="contenedor">
+    <div>
+      <span class="eyebrow fade-up">La oportunidad</span>
+      <h2 class="titulo-seccion fade-up d1">¿Tienes un terreno<span class="fina">con potencial comercial?</span></h2>
+      <div class="regla fade-up d2"></div>
+      <p class="fade-up d2">
+        Más Center busca <strong>ampliar y fortalecer su cartera de terrenos comerciales</strong>
+        mediante la identificación de ubicaciones estratégicas con alto potencial de desarrollo.
+      </p>
+      <p class="fade-up d3">
+        No compramos metros cuadrados: desarrollamos proyectos. Cada terreno que evaluamos
+        se analiza como una oportunidad comercial completa, con su entorno, su flujo y su
+        demanda proyectada.
+      </p>
+      <a href="#contacto" class="btn btn-rojo fade-up d4" style="margin-top:16px">
+        Conversemos
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="intro-foto fade-right d2">
+      <img src="assets/img/aerea-2.jpg" alt="Strip center Más Center visto desde el aire, con su estacionamiento y locales">
+      <span class="sello">Más de 30 centros en operación</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ QUÉ BUSCAMOS ════════════ -->
+<section class="buscamos" id="buscamos">
+  <div class="contenedor">
+    <div class="cabeza">
+      <span class="eyebrow fade-up">Criterios</span>
+      <h2 class="titulo-seccion fade-up d1">¿Qué buscamos?</h2>
+      <div class="regla fade-up d2"></div>
+      <p class="fade-up d2">
+        Terrenos que presenten condiciones favorables para el desarrollo de proyectos
+        comerciales, privilegiando:
+      </p>
+    </div>
+    <div class="rejilla-criterios">
+      <article class="criterio fade-up d1">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M4 4h4v1.4h8V4h4v4h-1.4v8H20v4h-4v-1.4H8V20H4v-4h1.4V8H4V4zm2.8 4v8H8v1.2h8V16h1.2V8H16V6.8H8V8H6.8z" opacity=".34"/><path d="M2.5 2.5h4v4h-4v-4zm15 0h4v4h-4v-4zm-15 15h4v4h-4v-4zm15 0h4v4h-4v-4z"/></svg></div>
+        <!-- ⚠️ EL CLIENTE DEJÓ "XX" EN EL BRIEF — confirmar la superficie mínima real -->
+        <h3>Superficie</h3>
+        <p>Más de <span class="cifra-dest">XX m²</span> de terreno, con geometría que permita
+           desarrollar locales y estacionamientos.</p>
+      </article>
+      <article class="criterio fade-up d2">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M4 16.5a2.5 2.5 0 0 0 5 0V15h6v1.5a2.5 2.5 0 0 0 5 0V11l-1.8-4.4A2 2 0 0 0 16.35 5H7.65a2 2 0 0 0-1.85 1.24L4 11v5.5zM7.3 7h9.4l1.2 3H6.1l1.2-3zM6.5 14a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm11 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg></div>
+        <h3>Alto flujo</h3>
+        <p>Flujo vehicular y peatonal relevante y constante, no estacional.</p>
+      </article>
+      <article class="criterio fade-up d3">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M19 3a2.5 2.5 0 0 0-.8 4.87v1.38a1.75 1.75 0 0 1-1.75 1.75h-3.7V7.87a2.5 2.5 0 1 0-1.5 0V10H7.55A1.75 1.75 0 0 1 5.8 8.25V7.87A2.5 2.5 0 1 0 4.3 7.87v.38A3.25 3.25 0 0 0 7.55 11.5h3.7v4.63a2.5 2.5 0 1 0 1.5 0V11.5h3.7A3.25 3.25 0 0 0 19.7 8.25V7.87A2.5 2.5 0 0 0 19 3z"/></svg></div>
+        <h3>Conectividad</h3>
+        <p>Acceso directo o cercano a vías principales y a medios de desplazamiento.</p>
+      </article>
+      <article class="criterio fade-up d4">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M10 3 2 9v12h6v-6h4v6h6V9l-8-6zm10.5 8L14 6.2V4h2v1.2l4.9 3.7a1 1 0 0 1 .1.4V21h-1.5V11z" opacity=".4"/><path d="M10 3 2 9v12h6v-6h4v6h6V9l-8-6z"/></svg></div>
+        <h3>Zonas residenciales</h3>
+        <p>Barrios consolidados o en expansión, con base de consumidores real.</p>
+      </article>
+      <article class="criterio fade-up d5">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM8 13h8v1.6H8V13zm0 3.4h8V18H8v-1.6z"/></svg></div>
+        <h3>Factibilidad</h3>
+        <p>Condiciones normativas y urbanas que habiliten el uso comercial.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ EL VALOR DE MÁS CENTER ════════════ -->
+<section class="valor" id="valor">
+  <div class="contenedor">
+    <div class="cabeza">
+      <span class="eyebrow claro fade-up">El valor de Más Center</span>
+      <h2 class="titulo-seccion fade-up d1" style="color:#fff">
+        Trayectoria consolidada<span class="fina">en desarrollo y operación de strip centers</span>
+      </h2>
+      <p class="fade-up d2">
+        No es un proyecto de escritorio. Es una cartera en operación, con arrendatarios
+        pagando arriendo todos los meses a lo largo de Chile.
+      </p>
+    </div>
+    <div class="rejilla-cifras">
+      <div class="cifra fade-up d1">
+        <div class="n"><span>+</span><span class="contador" data-a="69000" data-sep="1">0</span> <sup>m²</sup></div>
+        <div class="r">de locales comerciales</div>
+        <div class="d">Superficie arrendable construida y en operación.</div>
+      </div>
+      <div class="cifra fade-up d2">
+        <div class="n"><span>+</span><span class="contador" data-a="30">0</span></div>
+        <div class="r">strip centers</div>
+        <div class="d">A lo largo del país, de Copiapó a Osorno.</div>
+      </div>
+      <div class="cifra fade-up d3">
+        <div class="n"><span>+</span><span class="contador" data-a="400">0</span></div>
+        <div class="r">contratos de arriendo</div>
+        <div class="d">Con operadores nacionales y comercio de proximidad.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CENTROS EN OPERACIÓN ════════════ -->
+<section class="centros" id="centros">
+  <div class="contenedor">
+    <div class="cabeza">
+      <div>
+        <span class="eyebrow fade-up">Nuestra cartera</span>
+        <h2 class="titulo-seccion fade-up d1">Centros en operación</h2>
+        <p class="fade-up d2">
+          Cada uno de estos centros partió como un terreno que alguien nos mostró.
+          Así se ven hoy.
+        </p>
+      </div>
+      <div class="flechas fade-up d2">
+        <button class="flecha" id="ant" aria-label="Centro anterior">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="flecha" id="sig" aria-label="Centro siguiente">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="pista-envoltorio fade-up d3">
+      <div class="pista" id="pista">
+        <figure class="centro"><img src="assets/img/centros/colina-1.jpg" alt="Más Center Colina" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Colina</div><div class="c">Región Metropolitana</div></figcaption></figure>
+        <figure class="centro"><img src="assets/img/centros/pirque.jpg" alt="Más Center Pirque" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Pirque</div><div class="c">Región Metropolitana</div></figcaption></figure>
+        <figure class="centro"><img src="assets/img/centros/vitacura.jpg" alt="Más Center Vitacura" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Vitacura</div><div class="c">Región Metropolitana</div></figcaption></figure>
+        <figure class="centro"><img src="assets/img/centros/lo-barnechea.jpg" alt="Más Center Lo Barnechea" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Lo Barnechea</div><div class="c">Región Metropolitana</div></figcaption></figure>
+        <figure class="centro"><img src="assets/img/centros/huechuraba.jpg" alt="Más Center Huechuraba" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Huechuraba</div><div class="c">Región Metropolitana</div></figcaption></figure>
+        <figure class="centro"><img src="assets/img/centros/las-condes.jpg" alt="Más Center Las Condes" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Las Condes</div><div class="c">Región Metropolitana</div></figcaption></figure>
+        <figure class="centro"><img src="assets/img/centros/nunoa.jpg" alt="Más Center Ñuñoa" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Ñuñoa</div><div class="c">Región Metropolitana</div></figcaption></figure>
+        <figure class="centro"><img src="assets/img/centros/penalolen.jpg" alt="Más Center Peñalolén" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Peñalolén</div><div class="c">Región Metropolitana</div></figcaption></figure>
+        <figure class="centro"><img src="assets/img/centros/san-carlos-apoquindo.jpg" alt="Más Center San Carlos de Apoquindo" decoding="async"><figcaption class="rotulo"><div class="n">San Carlos de Apoquindo</div><div class="c">Región Metropolitana</div></figcaption></figure>
+        <figure class="centro"><img src="assets/img/centros/la-serena.jpg" alt="Más Center La Serena" decoding="async"><figcaption class="rotulo"><div class="n">Más Center La Serena</div><div class="c">Región de Coquimbo</div></figcaption></figure>
+        <figure class="centro"><img src="assets/img/centros/talca.jpg" alt="Más Center Talca" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Talca</div><div class="c">Región del Maule</div></figcaption></figure>
+        <figure class="centro"><img src="assets/img/centros/caleratango.jpg" alt="Más Center Calera de Tango" decoding="async"><figcaption class="rotulo"><div class="n">Calera de Tango</div><div class="c">Región Metropolitana</div></figcaption></figure>
+      </div>
+    </div>
+    <div class="puntos" id="puntos"></div>
+  </div>
+</section>
+
+<!-- ════════════ MÁS QUE UN TERRENO ════════════ -->
+<section class="variables">
+  <div class="contenedor">
+    <div class="cabeza">
+      <span class="eyebrow fade-up">Cómo evaluamos</span>
+      <h2 class="titulo-seccion fade-up d1">Más que un terreno:<span class="fina">una oportunidad comercial</span></h2>
+      <div class="regla fade-up d2"></div>
+      <p class="fade-up d2">
+        Buscamos desarrollar un ecosistema comercial cercano, accesible y conectado con
+        las necesidades de las personas. Por eso, analizamos cada oportunidad considerando
+        múltiples variables:
+      </p>
+    </div>
+    <div class="rejilla-var">
+      <article class="variable fade-up d1">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
+        <div><h3>Ubicación</h3><p>Avenidas y ejes con alta exposición.</p></div>
+      </article>
+      <article class="variable fade-up d2">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M11.25 2h1.5v2.25H19a1 1 0 0 1 .78.37l1.6 2a1 1 0 0 1 0 1.26l-1.6 2a1 1 0 0 1-.78.37h-6.25v1.5H17a1 1 0 0 1 .78.37l1.6 2a1 1 0 0 1 0 1.26l-1.6 2a1 1 0 0 1-.78.37h-4.25V22h-1.5v-4.25H5a1 1 0 0 1-.78-.37l-1.6-2a1 1 0 0 1 0-1.26l1.6-2A1 1 0 0 1 5 11.75h6.25v-1.5H7a1 1 0 0 1-.78-.37l-1.6-2a1 1 0 0 1 0-1.26l1.6-2A1 1 0 0 1 7 4.25h4.25V2z"/></svg></div>
+        <div><h3>Accesibilidad</h3><p>Buena conectividad vial y cercanía a vías principales y medios de desplazamiento.</p></div>
+      </article>
+      <article class="variable fade-up d3">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M12 5C6.5 5 2.3 8.6 1 12c1.3 3.4 5.5 7 11 7s9.7-3.6 11-7c-1.3-3.4-5.5-7-11-7zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-2a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></div>
+        <div><h3>Visibilidad</h3><p>Terrenos con alta exposición desde calles y avenidas, y buena presencia urbana.</p></div>
+      </article>
+      <article class="variable fade-up d4">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5 0a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM9 12.6c-2.9 0-6 1.45-6 3.4V19h12v-3c0-1.95-3.1-3.4-6-3.4zm7.5.4c-.6 0-1.3.07-2 .2 1.2.85 2 2 2 3.2V19h6v-2.6c0-1.75-2.7-3-6-3.4z"/></svg></div>
+        <div><h3>Flujo</h3><p>Sectores con un flujo relevante y constante de personas y vehículos.</p></div>
+      </article>
+      <article class="variable fade-up d5">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M3 21V9l6-4.5V7l6-4.5v6l6-2.5V21H3zm4-3h2v-3H7v3zm4 0h2v-3h-2v3zm4 0h2v-3h-2v3zM7 12.5h2v-2.4H7v2.4zm4 0h2v-2.4h-2v2.4zm4 0h2v-2.4h-2v2.4z"/></svg></div>
+        <div><h3>Entorno</h3><p>Ubicaciones cercanas a colegios, supermercados, estaciones de servicio, oficinas y transporte.</p></div>
+      </article>
+      <article class="variable fade-up d6">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM6.2 15h11.3a1 1 0 0 0 .96-.73L21 6H6.4L5.6 3.6A1 1 0 0 0 4.65 3H2v2h1.93l3.3 9.55L6 16.5c-.5.83.1 1.5 1 1.5h12v-2H7.4l-1.2-1z"/></svg></div>
+        <div><h3>Demanda comercial</h3><p>Sectores con base de consumidores consolidada o demanda creciente por servicios y comercio de proximidad.</p></div>
+      </article>
+      <article class="variable fade-up d7">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M3.5 18.5 9 13l4 4 7.1-7.9L21.5 10.5 13 20l-4-4-4.1 4.1L3.5 18.5zM16 4h6v6h-2V7.4l-5.3 5.3-1.4-1.4L18.6 6H16V4z"/></svg></div>
+        <div><h3>Potencial de desarrollo</h3><p>Oportunidades que permitan desarrollar proyectos comerciales capaces de generar valor en su entorno.</p></div>
+      </article>
+    </div>
+    <p class="cierre fade-up d2">
+      Este análisis nos permite seleccionar terrenos que puedan transformarse en
+      proyectos comerciales exitosos y sostenibles en el tiempo.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════ PASO A PASO ════════════ -->
+<!-- Módulo pedido por el cliente sobre la referencia de Arcos Dorados.
+     Los 4 pasos son PROPUESTA de la agencia: confirmar con Más Center
+     los plazos reales y el nombre del área que evalúa. -->
+<section class="proceso" id="proceso">
+  <div class="contenedor">
+    <div class="cabeza">
+      <span class="eyebrow fade-up">Postula tu terreno</span>
+      <h2 class="titulo-seccion fade-up d1">De tu terreno a un nuevo <br>Más Center, paso a paso</h2>
+      <p class="fade-up d2">
+        Completa el formulario con los datos de tu propiedad para que sea evaluada
+        por nuestro equipo de desarrollo.
+      </p>
+    </div>
+    <div class="rejilla-pasos">
+      <article class="paso fade-up d1">
+        <div class="check"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg></div>
+        <div>
+          <h3>Completa el formulario</h3>
+          <p>Carga los datos del terreno: ubicación, superficie, fotos y documentación básica.</p>
+        </div>
+      </article>
+      <article class="paso fade-up d2">
+        <div class="check"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg></div>
+        <div>
+          <h3>Evaluación inicial</h3>
+          <p>Nuestro equipo de desarrollo revisa la propuesta y valida los criterios principales.</p>
+        </div>
+      </article>
+      <article class="paso fade-up d3">
+        <div class="check"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg></div>
+        <div>
+          <h3>Visita técnica</h3>
+          <p>Si tu terreno califica, coordinamos una visita para evaluar el potencial real.</p>
+        </div>
+      </article>
+      <article class="paso fade-up d4">
+        <div class="check"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg></div>
+        <div>
+          <h3>Propuesta formal</h3>
+          <p>Te presentamos una propuesta de negocio acorde al esquema que mejor se adapte.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FORMULARIO ════════════ -->
+<section class="contacto" id="contacto">
+  <div class="contenedor">
+    <div class="lado">
+      <span class="eyebrow fade-up">Conversemos</span>
+      <h2 class="titulo-seccion fade-up d1">¿Tienes un terreno<span class="fina">con potencial comercial?</span></h2>
+      <div class="regla fade-up d2"></div>
+      <p class="fade-up d2">
+        Queremos conocerlo. Déjanos los datos y nuestro equipo de desarrollo te contactará
+        para revisar la oportunidad.
+      </p>
+      <div class="datos-directos fade-up d3">
+        <!-- ⚠️ CORREO Y TELÉFONO POR CONFIRMAR con Más Center — ver notas de entrega -->
+        <a class="dato-directo" href="mailto:contacto@mascenter.cl">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          contacto@mascenter.cl
+        </a>
+        <a class="dato-directo" href="https://www.mascenter.cl" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-2.95a15.6 15.6 0 0 0-1.4-3.62A8.03 8.03 0 0 1 18.9 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a7.9 7.9 0 0 1 0-4h3.38a16.5 16.5 0 0 0 0 4H4.26zm.84 2h2.95c.33 1.28.8 2.5 1.4 3.62A7.99 7.99 0 0 1 5.1 16zm2.95-8H5.1a7.99 7.99 0 0 1 4.35-3.62A15.6 15.6 0 0 0 8.05 8zM12 19.96A13.2 13.2 0 0 1 10.09 16h3.82A13.2 13.2 0 0 1 12 19.96zM14.34 14H9.66a14.7 14.7 0 0 1 0-4h4.68a14.7 14.7 0 0 1 0 4zm.2 5.62c.6-1.12 1.07-2.34 1.4-3.62h2.96a8.03 8.03 0 0 1-4.36 3.62zM16.36 14a16.5 16.5 0 0 0 0-4h3.38a7.9 7.9 0 0 1 0 4h-3.38z"/></svg>
+          www.mascenter.cl
+        </a>
+      </div>
+      <div class="firma fade-up d4">
+        Encontramos ubicaciones <span>·</span> Creamos espacios <span>·</span> Acercamos comercios y servicios
+      </div>
+    </div>
+
+    <form class="formulario fade-up d1" id="formulario" novalidate>
+      <div class="campos">
+        <div class="campo">
+          <label for="nombre">Nombre y apellido</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="campo">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="tucorreo@empresa.cl" required>
+        </div>
+        <div class="campo">
+          <label for="telefono">Teléfono</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="+56 9 ..." required>
+        </div>
+        <div class="campo">
+          <label for="region">Región</label>
+          <select id="region" name="region" required>
+            <option value="">Selecciona una región</option>
+            <option>Arica y Parinacota</option><option>Tarapacá</option><option>Antofagasta</option>
+            <option>Atacama</option><option>Coquimbo</option><option>Valparaíso</option>
+            <option>Metropolitana</option><option>O'Higgins</option><option>Maule</option>
+            <option>Ñuble</option><option>Biobío</option><option>La Araucanía</option>
+            <option>Los Ríos</option><option>Los Lagos</option><option>Aysén</option><option>Magallanes</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="comuna">Comuna</label>
+          <input type="text" id="comuna" name="comuna" placeholder="Comuna del terreno" required>
+        </div>
+        <div class="campo">
+          <label for="superficie">Superficie (m²)</label>
+          <input type="number" id="superficie" name="superficie" placeholder="Ej: 5000" min="0" required>
+        </div>
+        <div class="campo ancho">
+          <label for="direccion">Dirección o rol del terreno</label>
+          <input type="text" id="direccion" name="direccion" placeholder="Calle, número o rol de avalúo" required>
+          <span class="ayuda">Si no tienes la dirección exacta, indica el cruce de calles más cercano.</span>
+        </div>
+        <div class="campo ancho">
+          <label for="mensaje">Cuéntanos sobre el terreno</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Uso de suelo, situación normativa, accesos, entorno comercial cercano…" required></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-rojo">
+        Enviar postulación
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <div class="aviso-form" id="aviso" role="status"></div>
+      <p class="legal">
+        Al enviar este formulario autorizas a Más Center · Grupo IFB a contactarte para
+        evaluar la oportunidad. Tus datos se tratan conforme a la Ley 21.719 y no se
+        comparten con terceros ajenos a la evaluación.
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- ════════════ PIE ════════════ -->
+<footer class="pie">
+  <div class="contenedor">
+    <div>
+      <img class="logo" src="assets/img/logo-mascenter-blanco.svg" alt="Más Center">
+      <p class="lema">
+        Encontramos ubicaciones, creamos espacios y acercamos comercios y servicios
+        a los barrios de Chile.
+      </p>
+      <div class="ifb"><img src="assets/img/logo-ifb.png" alt="Grupo IFB"></div>
+    </div>
+    <div>
+      <h4>Esta página</h4>
+      <ul>
+        <li><a href="#buscamos">Qué buscamos</a></li>
+        <li><a href="#valor">Nuestro respaldo</a></li>
+        <li><a href="#centros">Centros en operación</a></li>
+        <li><a href="#proceso">Cómo postular</a></li>
+        <li><a href="#contacto">Postula tu terreno</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Más Center</h4>
+      <ul>
+        <li><a href="https://www.mascenter.cl" target="_blank" rel="noopener">Sitio web</a></li>
+        <li><a href="https://www.mascenter.cl/strip-centers/" target="_blank" rel="noopener">Strip centers</a></li>
+        <li><a href="https://www.mascenter.cl/nosotros/" target="_blank" rel="noopener">Nosotros</a></li>
+        <li><a href="https://www.instagram.com/mascenter/" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copy">© <span id="anio"></span> Más Center · Grupo IFB. Todos los derechos reservados.</div>
+</footer>
+
+<a href="#contacto" class="flotante" id="flotante">
+  <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+  Postula tu terreno
+</a>
+
+<script>
+(function(){
+  'use strict';
+  var suave = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Aparición al hacer scroll ── */
+  var obs = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.fade-up,.fade-left,.fade-right,.fade-in,.cifra').forEach(function(el){obs.observe(el);});
+
+  /* ── Contadores ── */
+  function animarContador(el){
+    var fin = parseInt(el.dataset.a,10), sep = el.dataset.sep === '1';
+    if(!suave){ el.textContent = sep ? fin.toLocaleString('es-CL') : fin; return; }
+    var t0 = null, dur = 1600;
+    function paso(t){
+      if(!t0) t0 = t;
+      var p = Math.min((t-t0)/dur,1);
+      var v = Math.round(fin * (1 - Math.pow(1-p,3)));
+      el.textContent = sep ? v.toLocaleString('es-CL') : v;
+      if(p < 1) requestAnimationFrame(paso);
+    }
+    requestAnimationFrame(paso);
+  }
+  var obsN = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ animarContador(e.target); obsN.unobserve(e.target); } });
+  },{threshold:.5});
+  document.querySelectorAll('.contador').forEach(function(el){obsN.observe(el);});
+
+  /* ── Cabecera sólida + botón flotante ── */
+  var cab = document.getElementById('cabecera'), flo = document.getElementById('flotante');
+  var hero = document.getElementById('inicio'), media = document.getElementById('hero-media');
+  var tic = false;
+  function alScroll(){
+    var y = window.scrollY;
+    cab.classList.toggle('solido', y > 60);
+    flo.classList.toggle('visible', y > window.innerHeight * .85);
+    /* Parallax leve del hero */
+    if(suave && y < window.innerHeight * 1.2){
+      media.style.transform = 'translateY(' + (y * .16) + 'px)';
+    }
+    tic = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!tic){ requestAnimationFrame(alScroll); tic = true; }
+  }, {passive:true});
+  alScroll();
+
+  /* ── Menú móvil ── */
+  var ham = document.getElementById('hamburguesa'), nav = document.getElementById('nav');
+  ham.addEventListener('click', function(){
+    var abierto = nav.classList.toggle('abierto');
+    ham.classList.toggle('abierto', abierto);
+    ham.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+    document.body.style.overflow = abierto ? 'hidden' : '';
+  });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.classList.remove('abierto'); ham.classList.remove('abierto');
+      ham.setAttribute('aria-expanded','false'); document.body.style.overflow = '';
+    });
+  });
+
+  /* ── Carrusel de centros ── */
+  var pista = document.getElementById('pista');
+  var tarjetas = Array.prototype.slice.call(pista.children);
+  var puntos = document.getElementById('puntos');
+  var idx = 0;
+
+  function porVista(){
+    var w = pista.parentElement.clientWidth;
+    var tw = tarjetas[0].getBoundingClientRect().width + 24;
+    return Math.max(1, Math.floor(w / tw));
+  }
+  function maxIdx(){ return Math.max(0, tarjetas.length - porVista()); }
+
+  function pintarPuntos(){
+    puntos.innerHTML = '';
+    for(var i = 0; i <= maxIdx(); i++){
+      var p = document.createElement('button');
+      p.className = 'punto' + (i === idx ? ' activo' : '');
+      p.setAttribute('aria-label','Ir al centro ' + (i+1));
+      (function(n){ p.addEventListener('click', function(){ idx = n; mover(); }); })(i);
+      puntos.appendChild(p);
+    }
+  }
+  function mover(){
+    idx = Math.max(0, Math.min(idx, maxIdx()));
+    var tw = tarjetas[0].getBoundingClientRect().width + 24;
+    pista.style.transform = 'translateX(' + (-idx * tw) + 'px)';
+    Array.prototype.forEach.call(puntos.children, function(p, i){
+      p.classList.toggle('activo', i === idx);
+    });
+  }
+  document.getElementById('sig').addEventListener('click', function(){
+    idx = idx >= maxIdx() ? 0 : idx + 1; mover();
+  });
+  document.getElementById('ant').addEventListener('click', function(){
+    idx = idx <= 0 ? maxIdx() : idx - 1; mover();
+  });
+
+  /* Arrastre táctil */
+  var x0 = null;
+  pista.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  pista.addEventListener('touchend', function(e){
+    if(x0 === null) return;
+    var d = x0 - e.changedTouches[0].clientX;
+    if(Math.abs(d) > 45){ idx += d > 0 ? 1 : -1; mover(); }
+    x0 = null;
+  }, {passive:true});
+
+  var rt;
+  window.addEventListener('resize', function(){
+    clearTimeout(rt);
+    rt = setTimeout(function(){ pintarPuntos(); mover(); }, 160);
+  });
+  pintarPuntos(); mover();
+
+  /* ── Formulario ── */
+  /* ⚠️ VALIDA PERO NO ENVÍA. Falta enchufarlo al backend / Contact Form 7.
+     Ver NOTAS-DE-ENTREGA.md, sección "Formulario". */
+  var form = document.getElementById('formulario'), aviso = document.getElementById('aviso');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var malos = [];
+    form.querySelectorAll('[required]').forEach(function(c){
+      var vacio = !c.value.trim();
+      var correoMal = c.type === 'email' && c.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.value);
+      c.classList.toggle('error', vacio || correoMal);
+      if(vacio || correoMal) malos.push(c);
+    });
+    if(malos.length){
+      aviso.className = 'aviso-form mal';
+      aviso.textContent = 'Revisa los campos marcados: falta completar ' + malos.length +
+        (malos.length === 1 ? ' dato.' : ' datos.');
+      malos[0].focus();
+      return;
+    }
+    aviso.className = 'aviso-form ok';
+    aviso.textContent = '¡Gracias! Recibimos tu postulación. Nuestro equipo te contactará a la brevedad.';
+    form.reset();
+  });
+  form.querySelectorAll('input,select,textarea').forEach(function(c){
+    c.addEventListener('input', function(){ c.classList.remove('error'); });
+  });
+
+  document.getElementById('anio').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

@@ -5,6 +5,162 @@
 
 ---
 
+## 2026-09-02 (cierre) · Eli (Windows) — BETWEEN ronda 7: la S1 completa, el To Go desbloqueado y las cifras tabulares resueltas de verdad
+
+**Qué se hizo:** Llegó la **RONDA 7 del cliente** y se aplicó entera a lo que se
+podía. Se entregaron **12 piezas**: la S1 completa (Cowork 1-4, Cumpleaños 1-2 y
+las dos stories) y el **carrusel To Go de la S3, completo por primera vez**.
+La **FEED G quedó APROBADA** por el cliente.
+
+· **El Cowork, rehecho por cohesión.** El reclamo por WhatsApp era doble: la
+  portada «no la usaría por temas de calidad y porque mostramos a esas personas»
+  y «cambiaría las fotos para que tenga más cohesión». Portada nueva: el MISMO
+  rincón del muro vegetal en el fotograma donde las dos personas ya salieron de
+  cuadro (`IMG_1148-3`, elegido MIDIENDO dominancia de verde sobre los 91
+  fotogramas: +9,2 contra +3 del resto). Slide 2 rehecha: era un bodegón de
+  ESTUDIO sobre un muro verde INVENTADO —«la del medio que hace ruido», y encima
+  el fondo falso imitaba el de la portada—; ahora el muro es el real, entrando
+  por referencia y muy desenfocado. Slide 3 regradada a `neutro`: venía 8 puntos
+  de calidez más fría (+12,4 contra +21 de las otras) y era la que rompía el
+  tono. Y el texto de la portada cambió por pedido de Javier Meza: «Espacio para
+  trabajar, WiFi y atención a la mesa».
+· ⛔ **La slide 4 NO se regradó, y es decisión medida.** `neutro` le sube la
+  luminancia de 77 a 95 y le levanta los negros: el tapete deja de ser negro y el
+  latte pierde fuerza. Se probó, se miró y se descartó. El cliente tampoco la
+  objetó.
+· **Cumpleaños:** fuera «en septiembre» y fuera la píldora «¡Ven por tu café de
+  regalo!» (el cliente se desdijo de su propia ronda 4), y la G2 con **fondo
+  nuevo**, porque las dos gráficas usaban el mismo archivo con otro recorte.
+· **Stories:** se eliminó la CTA «Pasa por Between y llévalo contigo» —el cliente
+  borró su propia CTA del brief— y la promo pasó a «Café + Dulce To Go · desde
+  $3.790». La story del cumpleaños arrastra los textos del feed por la regla de
+  una sola voz.
+· ⭐ **El sándwich del To Go, recuperado de raíz.** `togo-sandwich-45.jpg` nunca
+  se versionó y sólo existía en el Mac de Valeria, así que la slide 2 no se podía
+  rendir acá. La sesión COMPLETA del 25-jul-2025 está en el Drive del cliente
+  (carpeta `1YQ_28BQpnBhTPNKnWXZmmaC6Bvr0BodD`, 353 archivos). Se bajaron las
+  **353 miniaturas** para elegir sin traer 3,5 GB y el sándwich salió del
+  fotograma **-248**: el único con el relleno de palta a la vista («rico y
+  contundente», que es el copy) y el logotipo del vaso entero.
+
+**Dónde quedó:**
+· Drive, **carpeta única y fechada**, por decisión de Eli («solo deja una carpeta
+  con cambios de fecha de 2 de sep»):
+  `9. SEPTIEMBRE / CAMBIOS 02-09 BETWEEN v3 (tabular corregida - USAR ESTA)`
+  → `1xLp2vSDej0xc6UnHS59RKUN8oM7uSa8H`. Las 12 piezas, **verificadas byte a
+  byte**. Las v1 y v2 quedaron renombradas con `_` adelante y «NO USAR».
+· ⚠️ **Las carpetas de semana quedaron INTACTAS y eso NO es un olvido.** El token
+  del estudio tiene alcance `drive.file`: no puede sobreescribir las 8 piezas que
+  Eli subió A MANO el 01-09, y el conector de Drive tampoco puede moverlas («The
+  caller does not have permission»). Por eso la entrega va aparte y las viejas
+  siguen en `S1/BW` con sus comentarios y sus enlaces.
+· ⭐ **De acá en adelante sí se reemplaza en su sitio.** Las 12 las subió nuestro
+  token, así que `scripts/between-subir-r7.py --actualizar "<nombre>"` cambia el
+  contenido conservando enlace y comentarios. Es la primera vez que la cuenta
+  queda en ese estado. El manifiesto con los fileId vive en
+  `out/entrega-r7/_subidas*.json`.
+· Código: `BetweenSeptiembre.tsx`, `BetweenSistema.tsx`, `BetweenRecursos.tsx`.
+  Scripts nuevos: `between-slide2-magnific.py`, `between-cumple2-magnific.py`,
+  `between-subir-r7.py`. Assets nuevos versionados con excepción en `.gitignore`
+  (7 archivos: las 5 fotos gradadas y las 2 generaciones de Magnific).
+· **QA 12/12 limpias** con `between-qa.py`, typecheck limpio.
+
+**Qué sigue:** El **carrusel H (9-sep)** y el **estático J (11-sep)**. No están
+bloqueados por archivos que falten: lo que pide el cliente EXIGE generar
+imágenes nuevas — fuera la taza Kimbo de la G1 de H, la G4 con el plato más vacío
+y cenital «como los 2 anteriores», y las dos tazas de J con arte latte y una que
+se vea usada. La clave de Magnific funciona (`scripts/magnific.py check`) y los
+dos scripts de esta ronda sirven de plantilla.
+
+**Abierto:**
+1. **Borrar las 8 viejas de la S1** para poder mover las nuevas a su sitio con
+   `addParents/removeParents` (de las nuevas sí somos dueños).
+2. **Desajuste de fechas en 3 stories.** La grilla rotó las tres primeras y los
+   nombres de archivo quedaron con las fechas viejas: Promo To Go dice 01-09 y la
+   grilla 03-09; Café de regalo dice 03-09 y la grilla 04-09; Según mis cálculos
+   dice 04-09 y la grilla 02-09. No se renombraron a propósito: el portal levanta
+   por nombre y renombrar DUPLICA en vez de reemplazar.
+3. **¿La slide 4 del Cowork lleva logo?** Sin respuesta desde el 01-09.
+4. ⭐ **El brownie de la slide 4 del To Go tiene candidato.** Los fotogramas
+   **263–269** de la sesión 25-jul traen un dulce de chocolate CON EL VASO
+   VIGENTE — el pendiente estaba trabado porque la única foto de brownie era del
+   vaso antiguo prohibido. Es un muffin, no un brownie («pongamos un brownie
+   aunque sea», dijo Scarlette): falta que Eli decida si sirve.
+5. **Faltan 16 de las 31 fotos en este PC** (`public/assets` no viaja completo).
+   Es el techo real de lo que se puede rendir en Windows.
+6. La **Semana 1 ya no está congelada**: la ronda 7 trajo los cambios que se
+   estaban esperando.
+
+---
+
+### Las cifras tabulares: resueltas en la 5.ª pasada (y por qué costó tanto)
+
+Eli lo pidió **tres veces** y se rechazaron **cuatro implementaciones**. El error
+nunca fue la idea; fueron dos cosas de implementación y una de diagnóstico.
+
+**1. El ancho de la caja estaba mal.** Se usaba el avance del «0» (0,614 em), el
+dígito más gordo, así que el «1» quedaba centrado en una caja que le sobraba por
+los dos lados y «10:00» se leía «1 0:00». Lo correcto es el **ancho MEDIO de los
+diez dígitos DEL PESO que se está pintando** — y el peso importa mucho: el «1» va
+de 518/1000 en ExtraBold a 450 en Medium y 375 en la variable. Se eligió
+rindiendo cuatro tratamientos con la fuente real, no de oído.
+
+**2. Faltaba compensar los bordes del grupo.** Con el ancho ya bien puesto
+quedaba un espacio doble entre la «a» y el «10»: el hueco de la caja del PRIMER
+dígito se suma al espacio de la palabra anterior. Ahora `cifrasTabulares` agrupa
+los dígitos consecutivos y les pone un **margen negativo exacto en los dos
+bordes**, calculado con el avance real de cada dígito
+(`ANCHOS_DIGITO_POR_PESO`). El hueco se reparte sólo por DENTRO del grupo, donde
+son ~25 milésimas de em (~1 px a cuerpo 40) y se leen como espaciado normal.
+
+**3. Y el diagnóstico que se me pasó dos veces: el desorden no eran los dígitos,
+era la ESCALERA.** Para que la caja de la promo no cruzara el rol de canela había
+partido el texto en dos cajas, y quedaron **tres cajas de tres anchos distintos y
+las dos primeras en el mismo peso** — sin jerarquía. Eli: «se ve todo desordenado
+en los textos y no se ve pulcro… cuidado que los textos se vean bien igual en
+jerarquía». Se volvió a **dos cajas con una sola línea fuerte**, y el ancho se
+resuelve con la prop nueva **`igualarAncho`** de `PilaEsquina` (todas las cajas al
+ancho de la más ancha), no partiendo el texto.
+
+⛔ **El atajo que NO sirve:** sacar la tabular de las líneas livianas. Se probó y
+Eli lo devolvió señalando la story del 3-sep. Además el brief de esa pieza APILA
+los números en dos líneas, o sea que ahí la tabular tiene que estar. Va en toda
+la grilla. Todo escrito en `clients/hilton/CLAUDE.md § Las cifras tabulares`.
+
+### Cinco defectos de margen que venían de antes, cerrados
+
+`between-qa.py` marcó tinta fuera de los 84 px de margen en `ToGo1`, `ToGo3`,
+`ToGo4`, `Cumple1` y `Cumple2`. Cuatro tenían la MISMA causa: la cola del «¿» de
+Brushwell **sobresale del ancho de avance** con el que el titular se autoescala,
+así que la caja cabía y la tinta no. Aparece en toda pieza cuya script abre con
+«¿». Se componen en la columna (810) en vez del margen (912) — y para poder
+apretarlo en las stories hubo que **agregarle la prop `columnaTitular` a
+`PiezaStoryBetween`**, que no la tenía. El quinto era el globo doodle de
+`Cumple2`, a 82 px del canto: se corrió 12 px.
+
+### Dos trampas de scripts, cerradas
+
+· `between-entrega.py` hacía `rmtree` de la carpeta de salida y **se llevaba
+  `_subidas.json`**, el manifiesto con los fileId de Drive — sin él se pierde la
+  capacidad de reemplazar en su sitio. Pasó hoy y hubo que reconstruirlo a mano.
+  Ahora el manifiesto se preserva.
+· El mismo script tenía la semana **quemada en `'S1'`** en la comprobación de ppp
+  y reventó en cuanto entraron piezas de S3.
+
+### Y una de método
+
+**La ronda nueva se detecta por DIFF, no leyendo la grilla.** Los comentarios
+nuevos se **prependen** sobre los viejos en la misma celda, así que sin comparar
+contra la copia anterior del xlsx se confunde ronda nueva con ronda vieja — y el
+bloque viejo puede estar CONTRADICHO por el nuevo (en E15 el cliente pedía en la
+ronda 4 agregar «¡Ven por tu café de regalo!» y en la 7 pidió eliminarlo). El
+diff también cazó que **dos comentarios nativos nuevos sólo AVISABAN** («dejaron
+nuevos comentarios acá»), que la grilla había **ROTADO** las tres primeras
+stories, y que **media ronda ya estaba aplicada** desde la ronda 5: lo que el
+cliente marcó en el To Go era un render viejo que nunca se re-entregó.
+
+---
+
 ## 2026-09-02 — Eli (Windows)
 
 **Qué se hizo:** Arrancó la **ronda 6 de la SEMANA 2** de Between, que son los

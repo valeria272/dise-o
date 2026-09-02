@@ -12,6 +12,10 @@
 import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
 import {BETWEEN} from '../../brand/hilton-between';
+/* `conCifras` construye la caja tabular a mano (Raleway no trae `tnum`). Se
+   importa desde el sistema y NO al revés: `BetweenSistema.tsx` no conoce este
+   archivo, así que no hay ciclo — verificado antes de agregar el import. */
+import {conCifras} from './BetweenSistema';
 
 /* ---------- ilustraciones de Eli ---------- */
 
@@ -838,7 +842,22 @@ export const PilaEsquina: React.FC<{
   lineas: {texto: string; fuerte?: boolean}[];
   lado?: 'izquierda' | 'derecha';
   abajo?: number;
-}> = ({lineas, lado = 'izquierda', abajo = 96}) => (
+  /**
+   * Todas las cajas al ancho de la MÁS ANCHA, en vez de que cada una se ajuste
+   * a su texto.
+   *
+   * ⭐ 02-09-2026, pedido de Eli: «se ve todo desordenado en los textos y no se
+   * ve pulcro». Con cada caja a su medida la pila queda en ESCALERA —tres
+   * anchos distintos y tres bordes derechos distintos—, y eso es lo que se lee
+   * como desorden, más que los números. Igualadas, el bloque tiene un solo
+   * borde derecho y se lee como una etiqueta de promo, no como tres apuntes.
+   *
+   * Se consigue con `alignItems: 'stretch'`: el contenedor está posicionado en
+   * absoluto y sólo lleva `left`, así que se encoge al contenido (lo ancho de
+   * la línea más larga) y las cajas lo llenan. No hace falta medir en JS.
+   */
+  igualarAncho?: boolean;
+}> = ({lineas, lado = 'izquierda', abajo = 96, igualarAncho = false}) => (
   <div
     style={{
       position: 'absolute',
@@ -857,7 +876,9 @@ export const PilaEsquina: React.FC<{
       bottom: abajo,
       display: 'flex',
       flexDirection: 'column',
-      alignItems: lado === 'izquierda' ? 'flex-start' : 'flex-end',
+      alignItems: igualarAncho
+        ? 'stretch'
+        : lado === 'izquierda' ? 'flex-start' : 'flex-end',
       gap: 6,
     }}
   >
@@ -881,8 +902,37 @@ export const PilaEsquina: React.FC<{
             desordenados». Acá caen los tres precios del carrusel To Go
             ($4.290 · $3.790 · $5.290). El CSS `tnum` que había antes NO servía
             —Raleway no trae la función—; ver `cifrasTabulares` en
-            BetweenSistema.tsx, que construye la caja tabular a mano. */}
-        {l.texto}
+            BetweenSistema.tsx, que construye la caja tabular a mano.
+
+            ⭐⭐ 02-09-2026 — VUELVE, pedido de nuevo por Eli: «para los precios y
+            textos usa Opentype tabular como en Adobe Illustrator, ya que los
+            números se ven extraños y desordenados. Esto para las grillas».
+
+            Se había retirado el 01-09 porque Eli lo rechazó al verlo rendido, y
+            el motivo estaba medido: el «1» de Raleway es 18,5 % más angosto que
+            el «0», así que centrado en la caja tabular quedaba flotando con un
+            hueco a cada lado y «10:00» se leía como palabra partida.
+
+            ⭐⭐⭐ 5.ª pasada, y acá quedó BIEN — en las DOS líneas.
+
+            En la 4.ª se había sacado la tabular de la línea liviana, porque el
+            hueco de la caja del «1» se sumaba al espacio anterior y en «a 10:00»
+            se veía un espacio doble. Eli lo devolvió igual, señalando esta misma
+            story: «esta de acá no está con el texto tabular y los números se ven
+            extraños». Tenía razón: sacarla era esquivar el problema, no
+            resolverlo — y en el brief de la pieza los números van APILADOS
+            («Café + dulce / desde $3.790» y «Lunes a viernes / 08:00 a 10:00
+            hrs.»), o sea justo el caso en que la tabular tiene que estar.
+
+            El defecto se arregló de raíz en `cifrasTabulares`: ahora agrupa los
+            dígitos consecutivos y **descuenta el hueco en los dos bordes del
+            grupo** con un margen negativo, así que el grupo queda a ras del
+            texto que lo rodea y el hueco se reparte sólo por DENTRO, entre
+            cifras, donde se lee como espaciado normal (~1 px a cuerpo 40).
+            Por eso hay que pasarle el PESO: el descuento se calcula con el
+            ancho real de cada dígito, y el «1» va de 450/1000 en Medium a
+            518 en ExtraBold. */}
+        {conCifras(l.texto, l.fuerte ? BETWEEN.pesos.extrabold : 500)}
       </div>
     ))}
   </div>

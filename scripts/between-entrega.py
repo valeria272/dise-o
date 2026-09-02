@@ -60,6 +60,22 @@ PIEZAS = {
     'BW-F-Cumple-1': ('BW FEED 03-09 Cumpleanos 1.png',            'S1'),
     'BW-F-Cumple-2': ('BW FEED 03-09 Cumpleanos 2 detalles.png',   'S1'),
     'BW-S-Cumple':   ('BW ST 03-09 Cafe de regalo cumpleanos.png', 'S1'),
+
+    # ⭐ RONDA 7 (02-09-2026) — el carrusel PROMOS TO GO entra COMPLETO a la S3.
+    # Estaba frenado porque la slide 2 pedía `togo-sandwich-45.jpg`, que nunca se
+    # versionó y sólo existía en el Mac de Valeria. Se recuperó de raíz: la
+    # sesión entera del 25-jul-2025 está en el Drive del cliente
+    # (carpeta 1YQ_28BQpnBhTPNKnWXZmmaC6Bvr0BodD, 353 archivos). Se bajaron las
+    # 353 MINIATURAS para elegir sin traer 3,5 GB, y el sándwich salió del
+    # fotograma -248: es el único que muestra el relleno de palta a la vista
+    # («rico y contundente», que es el copy) con el logotipo del vaso entero.
+    # Los otros tres reclamos de esta slide —el «desde» y sacar la etiqueta
+    # «Café grande»— ya estaban aplicados desde la ronda 5: lo que el cliente
+    # marcó era un render viejo que nunca se re-entregó.
+    'BW-F-ToGo-1':   ('BW FEED 14-09 Promos To Go 1 portada.png',   'S3'),
+    'BW-F-ToGo-2':   ('BW FEED 14-09 Promos To Go 2 sandwich.png',  'S3'),
+    'BW-F-ToGo-3':   ('BW FEED 14-09 Promos To Go 3 dulce.png',     'S3'),
+    'BW-F-ToGo-4':   ('BW FEED 14-09 Promos To Go 4 trio.png',      'S3'),
 }
 
 FORMATOS = {(2250, 2812): 'feed 4:5', (2250, 4000): 'story 9:16', (2250, 2250): 'paid 1:1'}
@@ -74,7 +90,15 @@ def main():
     origen = Path(a.origen)
     salida = Path(a.salida)
     if salida.exists():
-        shutil.rmtree(salida)
+        # ⛔ NO borrar la carpeta entera. `_subidas.json` vive acá y es el
+        # manifiesto que guarda el fileId de cada pieza en el Drive: es lo único
+        # que permite REEMPLAZAR en su sitio (conservando enlace y comentarios)
+        # en vez de subir un duplicado. El 02-09-2026 un rmtree se lo llevó y
+        # hubo que reconstruirlo a mano desde el log de la subida.
+        for hijo in salida.iterdir():
+            if hijo.name == '_subidas.json':
+                continue
+            shutil.rmtree(hijo) if hijo.is_dir() else hijo.unlink()
 
     hechos, faltan = [], []
     for cid, (nombre, semana) in PIEZAS.items():
@@ -103,8 +127,10 @@ def main():
     # Comprobación de que los ppp quedaron escritos. ⚠️ El PNG guarda la
     # densidad en píxeles por METRO y en entero: 150 ppp → 5905 px/m → al leerlo
     # vuelve como 149,987. Hay que redondear, no comparar por igualdad.
-    malos = [n for _, n, *_ in hechos
-             if round(Image.open(salida / 'S1' / n).info.get('dpi', (0, 0))[0]) != PPP]
+    # ⚠️ La semana venía quemada en 'S1' y reventó en cuanto la ronda 7 agregó
+    # piezas de S3: hay que leer cada archivo en SU carpeta de semana.
+    malos = [n for semana, n, *_ in hechos
+             if round(Image.open(salida / semana / n).info.get('dpi', (0, 0))[0]) != PPP]
     print(f'\n{len(hechos)} piezas en {salida}')
     print(f'ppp verificados: {"todos a 150 ✓" if not malos else "FALLARON " + ", ".join(malos)}')
     if faltan:

@@ -279,3 +279,37 @@ out/ebema/20260902_carrusel_cedral/*
 out/ebema/20260902_carrusel_cedral/editables/*
 !out/ebema/20260902_carrusel_cedral/editables/build.py
 !out/ebema/20260902_carrusel_cedral/editables/carrusel.css
+# ══════════ RONDA 7 de Between septiembre 2026 (02-09-2026) ══════════
+# Las 8 piezas de la S1 se ENTREGARON hoy, así que sus fondos vuelven al repo:
+# sin esto la ronda hay que rehacerla de cero en otra máquina, que es lo que ya
+# pasó tres veces con esta cuenta.
+#
+# Portada del Cowork. El cliente rechazó la anterior «por temas de calidad y
+# porque mostramos a esas personas»: ésta es el MISMO rincón del muro vegetal en
+# el fotograma donde las dos personas ya salieron de cuadro (IMG_1148-3, elegido
+# midiendo dominancia de verde sobre los 91 fotogramas). `raw/` no viaja, así que
+# sin este archivo no se puede rendir.
+!public/assets/hilton/between/fotos-gradadas/cowork-winter-garden.jpg
+# Slide 2 del Cowork, rehecha: era «la del medio que hace ruido» —un bodegón de
+# estudio sobre un muro verde INVENTADO—. Ahora el muro es el real, entrando por
+# referencia y muy desenfocado. Se versionan las dos: la generación de Magnific
+# (que no es determinista y no se reproduce con el mismo prompt) y la gradada.
+!public/assets/hilton/between/ia-sept/cowork-mesa-trabajo.png
+!public/assets/hilton/between/fotos-gradadas/cowork-mesa-trabajo.jpg
+# Slide 3 del Cowork: la MISMA foto regradada con `neutro` para unificar el tono
+# del carrusel (venía 8 puntos de calidez más fría que las slides 1 y 2, y el
+# reclamo de esta ronda es la cohesión). Se guarda aparte de `segundo-nivel.jpg`
+# porque ésa es la versión ya entregada en la ronda 6 y tiene que seguir
+# reproducible.
+!public/assets/hilton/between/fotos-gradadas/segundo-nivel-neutro.jpg
+# Fondo de la G2 del cumpleaños: «proponer otra foto de fondo, distinta a G1».
+# Las dos gráficas usaban el mismo archivo con otro recorte.
+!public/assets/hilton/between/ia-sept/cumple-fondo-local.png
+!public/assets/hilton/between/fotos-gradadas/cumple-fondo-local.jpg
+# Slide 2 del carrusel To Go, RECUPERADA el 02-09-2026. `togo-sandwich-45.jpg`
+# nunca se había versionado y sólo existía en el Mac de Valeria, así que la slide
+# no se podía rendir en Windows. Se rescató de raíz: la sesión completa del
+# 25-jul-2025 está en el Drive del cliente (1YQ_28BQpnBhTPNKnWXZmmaC6Bvr0BodD).
+# Sale del fotograma -248, el único con el relleno de palta a la vista —«rico y
+# contundente», que es el copy— y el logotipo del vaso entero.
+!public/assets/hilton/between/fotos-gradadas/togo-sandwich-45.jpg

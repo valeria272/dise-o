@@ -1281,11 +1281,18 @@ GSUB de `Raleway-*.ttf`):
 | `onum` (cifras antiguas) | no |
 | `tnum` (avance tabular) | **NO** |
 
-O sea: `lnum` **sí hace efecto** —las cifras salen a la misma altura y con
-espaciado parejo, que es el desorden que se veía— pero el avance tabular estricto
-**no lo puede dar esta fuente**. Si alguna vez hace falta una columna de precios
-perfectamente alineada, hay que traer la versión de Raleway que trae `tnum`
-(la variable de Google Fonts la tiene) y dejarla en `fonts/`.
+O sea: `lnum` **sí hace efecto** —las cifras salen a la misma altura— pero el
+avance tabular **no lo puede dar esta fuente por CSS**.
+
+⭐ **Se resolvió por otra vía el 02-09-2026, y funciona:** la caja tabular se
+construye a mano con `cifrasTabulares()`, pero al **ancho MEDIO del peso**, no al
+del «0». Ver la regla completa en § *Las cifras tabulares: el ancho es del PESO,
+no del «0»*. No hace falta traer otra Raleway.
+
+⚠️ Y ojo con la idea de «traer la variable de Google Fonts, que sí trae `tnum`»:
+se verificó con `fontTools` sobre `fonts/Raleway.ttf` (la variable que ya está en
+el repo) y **tampoco lo trae** — ninguno de los 12 archivos tiene `tnum`. Además
+su «1» mide 375/1000 contra 608 del «0», el peor caso de todos.
 
 ## 10. La ST del cumpleaños es UNA, no dos
 
@@ -1624,22 +1631,103 @@ descomentar `BW-F-Cowork-4` en `scripts/between-entrega.py`.
 
 # ⭐⭐ RONDA 6 — lo que aprendimos el 02-09-2026
 
-## ⛔ 1. Las cifras tabulares NO van en texto corrido
+## ⭐⭐⭐ 1. Las cifras tabulares: el ancho es del PESO, no del «0»
 
-Eli pidió que los precios se vieran «opentype tabular, como en Adobe
-Illustrator». Se implementó, se rindió, y **lo rechazó al verlo**: «los textos y
-números vuelven a verse extraños, en la anterior estaba mejor».
+Eli lo pidió **tres veces** —«que los precios se vean opentype tabular, como en
+Adobe Illustrator»— y rechazó las dos primeras implementaciones. La tercera vez
+fue explícita sobre el criterio: **«debe verse armonioso y parejo»**.
 
-**La regla:** las cifras tabulares existen para que los números **cuadren en
-COLUMNA** —una lista de precios en filas, una tabla— y por eso todas ocupan lo
-mismo. En estas piezas los números van **DENTRO DE UNA FRASE**: «desde $3.790»,
-«08:00 a 10:00 hrs». Ahí no hay ninguna columna que alinear, y forzar cada dígito
-al ancho del más gordo deja al «1» flotando con un hueco a cada lado — el
-«10:00» se lee como una palabra partida. **En texto corrido van PROPORCIONALES**,
-que es lo que Raleway trae de fábrica y lo que hay que dejar quieto.
+El error nunca fue la idea de la tabular. Fue el **ancho de la caja**.
 
-Solo se usa `cifrasTabulares` (en `BetweenSistema.tsx`, hoy sin uso) si alguna
-pieza llega a apilar precios en filas, uno debajo del otro.
+**Las dos veces que se rechazó**, la caja tenía el ancho del **«0»** (0,614 em),
+que es el dígito más gordo. Con eso el «1» —mucho más angosto— queda centrado en
+una caja que le sobra por los dos lados: **«10:00» se lee «1 0:00»**. Se veía
+peor que sin tabular.
+
+**Lo que funciona: el ancho MEDIO de los diez dígitos DE ESE PESO.** Los dígitos
+quedan alineados —las dos horas de un rango sí parecen hermanas, y los precios
+del carrusel se alinean entre slides al deslizar— y el «1» deja de flotar,
+porque la caja ya no se estira hasta el máximo. Los dígitos anchos (0, 6, 8)
+sobresalen unas 30 milésimas de em a cada lado, y no se nota: los glifos ya
+traen su propio espacio lateral.
+
+Se eligió **rindiendo cuatro tratamientos** con la fuente real sobre «$3.790» y
+«08:00 a 10:00 hrs» (proporcional · tabular al ancho del 0 · tabular al ancho
+medio · proporcional con tracking). Ganó el ancho medio, y se ve en el render.
+
+**Y el ancho depende del peso, mucho.** Ancho del «1» contra el «0» en em/1000:
+
+| Peso | «1» | «0» | Ancho MEDIO → caja |
+|---|---|---|---|
+| Medium (500) | 450 | 614 | **0,557** |
+| SemiBold (600) | 471 | 614 | **0,564** |
+| ExtraBold (800) | 518 | 614 | **0,580** |
+| Variable `Raleway.ttf` | 375 | 608 | ⛔ no usar |
+
+Por eso `cifrasTabulares(texto, peso)` recibe el peso: en una misma pila conviven
+la línea `fuerte` (ExtraBold) y la liviana (Medium), y con un solo ancho para las
+dos la liviana se rompe. La tabla vive en `ANCHO_CIFRA_EM_POR_PESO`
+(`BetweenSistema.tsx`).
+
+### ⭐⭐ Y la pieza que faltaba: COMPENSAR LOS BORDES del grupo
+
+Con el ancho medio ya bien puesto quedaba un defecto, y Eli lo cazó en la story
+del 3-sep: **entre la «a» y el «10» se veía un espacio doble.**
+
+La causa: el hueco de la caja tabular del PRIMER dígito **se suma al espacio de
+la palabra anterior**. El «1» de Medium mide 450/1000 en una caja de 557, así
+que sobran 53 milésimas de em a su izquierda — encima del espacio que ya venía.
+
+**La solución:** `cifrasTabulares` agrupa los dígitos consecutivos y le pone un
+**margen negativo en los dos bordes del grupo**, del tamaño exacto del hueco de
+ese dígito (por eso hace falta `ANCHOS_DIGITO_POR_PESO`, el avance real de los
+diez dígitos de cada peso). Así:
+
+- los bordes del grupo quedan **a ras** del texto que lo rodea → no hay espacio
+  doble contra letras ni espacios;
+- el hueco se reparte **sólo por dentro** del grupo, entre cifra y cifra, donde
+  se lee como espaciado normal: en «10» quedan 25 milésimas de em, ~1 px a
+  cuerpo 40;
+- y los dígitos siguen avanzando todos igual, que es lo que alinea las cifras.
+
+⛔ **El atajo que NO sirve: sacar la tabular de las líneas livianas.** Se probó
+—dejarla sólo en los precios— y Eli lo devolvió: «esta de acá no está con el
+texto tabular y los números se ven extraños». Además el brief de esa story apila
+los números en dos líneas («Café + dulce / desde $3.790», «Lunes a viernes /
+08:00 a 10:00 hrs.»), o sea que ahí la tabular tiene que estar. La tabular va en
+**toda la grilla**; lo que había que arreglar era la implementación.
+
+⚠️ **La caja tabular ENSANCHA la línea** en todo dígito más angosto que la caja.
+`CajaDato` calcula su cuerpo antes con `ajustarACaber` sobre el texto plano, así
+que no lo ve: si alguna vez sangra el margen, `between-qa.py` lo marca.
+
+⚠️ **El `<span>` que envuelve `conCifras` en `CajaDato` no es decorativo.** Esa
+caja es `display: flex`; sin envolver, cada trozo de texto se vuelve un flex item
+y **los nodos que son sólo espacio no se pintan**: el horario salió
+«·08:00A10:00HRS.». Lo cazó el render, no el typecheck.
+
+## ⭐⭐ 1 bis. Una pila de cajas va toda del MISMO ANCHO
+
+Junto con los números, Eli marcó: **«se ve todo desordenado en los textos y no se
+ve pulcro… cuidado que los textos se vean bien igual en jerarquía»**. Y el
+desorden no eran los dígitos: era la **escalera**.
+
+Lo que había pasado: para que la caja de la promo no cruzara el rol de canela, se
+partió el texto en dos cajas. Resultado: **tres cajas de tres anchos distintos**
+—tres bordes derechos— y las dos primeras en el **mismo peso**, o sea sin
+jerarquía. El remedio fue peor que la enfermedad.
+
+**Las dos reglas:**
+
+1. **Una pila = un borde derecho.** `PilaEsquina` lleva `igualarAncho`: todas las
+   cajas al ancho de la más ancha (`alignItems: 'stretch'`, sin medir en JS). Así
+   el bloque se lee como una etiqueta de promo y no como tres apuntes sueltos.
+2. **Una sola línea fuerte por pila.** La promo entera va en la línea `fuerte` y
+   el horario en la liviana. Si el texto no cabe, **NO se parte en dos cajas
+   fuertes**: se iguala el ancho, o se baja el cuerpo. Partirlo duplica la voz
+   alta y mata la jerarquía.
+
+⛔ El ancho **no** se arregla partiendo el texto. Ése fue el error.
 
 ### Dato duro: Raleway no trae `tnum`
 

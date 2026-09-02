@@ -37,8 +37,12 @@ import {
   TitularBetween,
   PilaDatos,
 } from './BetweenSistema';
+/* ⛔ `BotonBlanco` ya no se importa: la ronda 7 eliminó la CTA «Pasa por
+   Between» de `StToGoDulce`, que era la única pieza del mes que lo usaba. El
+   componente se queda en `BetweenRecursos.tsx` —es el botón blanco macizo que
+   definió Eli el 01-09 y sirve para cualquier CTA futura—, pero acá el import
+   sobraba y `noUnusedLocals` lo marca. */
 import {
-  BotonBlanco,
   Checklist, Cuadrantes, Etiqueta, Globos, Ilustra, StickerEnlace,
   PiezaPartida, PilaEsquina, StickerQuiz,
 } from './BetweenRecursos';
@@ -115,7 +119,25 @@ const VELO_SUTIL = 0.1;
 
 export const Cowork1: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'cowork-laptop.jpg'}
+    /* ⭐⭐ RONDA 7 (02-09, WhatsApp de Scarlette 10:37): «en cuanto a la primera,
+       no la usaría por temas de calidad y porque mostramos a esas personas,
+       veamos alternativas de fotos?».
+       Dos objeciones distintas y las dos ciertas. `cowork-laptop.jpg` era un
+       fotograma con DOS HUÉSPEDES DE CARA RECONOCIBLE sentados a la izquierda
+       —derechos de imagen, y el manual ya lo marca ⛔ para esta sesión— y encima
+       el encuadre venía estirado.
+       → Se cambia por `IMG_1148-3`, del MISMO material y del MISMO rincón: el
+         muro vegetal con el techo traslúcido y los sillones de mimbre. Es el
+         fotograma de esa toma donde las dos personas YA SALIERON DE CUADRO
+         (se eligió midiendo: es el más verde de los 91 fotogramas, +9,2 de
+         dominancia sobre +3 del resto, o sea el que tiene el muro más lleno).
+       → Se mantiene el espacio a propósito: el cliente objetó la calidad y las
+         personas, NO el lugar. Cambiar de rincón habría sido responder algo que
+         nadie preguntó.
+       Fotograma 4K vertical (2160×3840): el 4:5 sale a 2160 px y sube 4 % para
+       llegar a los 2250 de entrega, que es imperceptible. Gradada con `neutro`
+       (calidez 40,4 → 20,7), el perfil que el cliente pidió en este carrusel. */
+    foto={F + 'cowork-winter-garden.jpg'}
     script="Tu oficina por hoy"
     caps={'Puede ser\nBetween'}
     bajadaEnCaja
@@ -127,7 +149,18 @@ export const Cowork1: React.FC = () => (
          línea. Va con <br /> y no con 
  porque PanelTaupe no lleva
          `white-space: pre-line` y el salto se colapsaría. */
-    bajada={<>Espacio, WiFi y café.<br />Tú trae los pendientes.</>}
+    /* ⭐⭐ RONDA 7 (02-09, WhatsApp de Javier Meza 10:41): citó el bloque
+       completo —«Espacio, WiFi y café. / Tú trae los pendientes.»— y escribió
+       «este texto lo modificaria Espacio para trabajar, WiFi y atención a la
+       mesa.». Es un REEMPLAZO del bloque entero, no un agregado: «Tú trae los
+       pendientes.» SALE.
+       El cambio no es cosmético, cambia la oferta que anuncia la portada: se va
+       «café» —que no es noticia en una cafetería— y entra «atención a la mesa»,
+       que es exactamente lo que remata la slide 4 («Nosotros llevamos el café»).
+       El carrusel queda anunciando arriba lo que cierra abajo.
+       El corte quiebra en la coma del propio cliente, que es donde él mismo
+       partió la frase al escribirla. */
+    bajada={<>Espacio para trabajar,<br />WiFi y atención a la mesa.</>}
     /* ⭐ 01-09, Eli: «los textos dentro del recuadro café deben verse más
        ordenados». Con la interlínea de 1,3 por defecto las dos frases quedaban
        flotando separadas dentro de la caja; a 1,16 leen como un bloque. */
@@ -137,7 +170,11 @@ export const Cowork1: React.FC = () => (
     aireTituloACaja={AIRE_CAJA}
     anclaje="abajo"
     conLogo
-    logoPosicion="abajo"
+    /* ⭐ RONDA 7: el logo VUELVE ARRIBA. Estaba abajo por la regla 5 del
+       encabezado —«si la portada tiene caras, el logo baja al margen inferior»—,
+       y la foto nueva no tiene caras, así que la excepción ya no aplica y el
+       lockup recupera su posición de marca. */
+    logoPosicion="arriba"
     oscurecer={0.1}
   />
 );
@@ -155,7 +192,28 @@ export const Cowork2: React.FC = () => (
        desenfocado atrás, que amarra con la portada sin repetirla.
        Recortada 4:5 con `--top 0.20` (el aire de follaje queda ARRIBA, que es
        donde se apoya el bloque de texto) y gradada con `--perfil neutro`. */
-    foto={F + 'mesa-laptop-cafe.jpg'}
+    /* ⭐⭐ RONDA 7 (02-09, WhatsApp de Scarlette 10:37): «las fotos están
+       inconexas… quizás sea la de al medio que es FOTO MONTAJE que hace el
+       ruido» + «cambiaría las fotos para que tenga más cohesión».
+       Ésta era la del medio, y era cierto: `mesa-laptop-cafe.jpg` es un bodegón
+       de ESTUDIO —macro, vapor, comida estilizada— sobre un muro verde bokeh
+       INVENTADO, mientras las otras tres son interiores reales. Cuatro
+       registros fotográficos en cuatro slides.
+       ⛔ El diagnóstico fino: lo falso no eran los objetos, era el FONDO. Y el
+          fondo inventado imitaba el muro vegetal de la portada, así que el
+          carrusel repetía escenario con una copia falsa.
+       → Se rehace con `scripts/between-slide2-magnific.py`: la misma escena de
+         mesa + notebook + taza —que es el pedido de la ronda 6 de Scarlette,
+         «una mesa con un pc y un café», y son los sustantivos del copy— pero
+         con el muro vegetal REAL entrando por REFERENCIA y muy desenfocado.
+         Es la receta que el cliente ya aprobó en la FEED G del 7-sep.
+       → CERO personas, a propósito: el copy no las pide y «hay una mano de más»
+         ya fue un rechazo en este carrusel. Una mesa servida y vacía cuenta
+         «encuentra tu mesa» mejor que alguien ocupándola.
+       → Taza cerámica blanca lisa, sin raya ni letras (regla KIMBO, que el
+         cliente acaba de repetir) y notebook sin logotipo: la IA hace ambiente,
+         nunca marca. Gradada con `neutro` (calidez 40,1 → 21,0). */
+    foto={F + 'cowork-mesa-trabajo.jpg'}
     /* ⭐ 01-09, Eli: «desde el slide 2 no agregues la tipografía brushwell, que
        sea de la familia de raleway, así se diferencia de la portada». La script
        queda como marca de la PORTADA. */
@@ -179,7 +237,24 @@ export const Cowork2: React.FC = () => (
 
 export const Cowork3: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'segundo-nivel.jpg'}
+    /* ⭐ RONDA 7 (02-09): la MISMA foto, regradada con `neutro`. El reclamo de
+       esta ronda es la cohesión del carrusel («las fotos están inconexas… no
+       tienen el mismo estilo»), y esta slide era la que se salía del tono.
+       MEDIDO, calidez (R−B) de las cuatro antes:
+         s1 +20,9 · s2 +21,1 · s3 **+12,4** · s4 +11,9
+       La s3 venía 8 puntos más FRÍA que las dos primeras, y con la alfombra gris
+       y los listones azules eso se leía como otra cámara y otro día. Regradada
+       queda en **+21,1**, o sea clavada con s1 y s2.
+       ⛔ La s4 NO se regradó, aunque también da +11,9: probado y descartado
+          mirándolo. `neutro` le sube la luminancia de 77 a 95 y le levanta los
+          negros — el tapete deja de ser negro, se pone gris lechoso y el latte
+          pierde fuerza. Es la decisión ya medida del 01-09 y sigue en pie: esa
+          foto cierra el carrusel como remate oscuro y su clave es lo que la hace
+          buena. El cliente tampoco la objetó.
+       ⚠️ Se guarda como archivo NUEVO y no se sobreescribe `segundo-nivel.jpg`:
+          esa versión es la que ya se entregó en la S1 y tiene que seguir
+          reproducible. */
+    foto={F + 'segundo-nivel-neutro.jpg'}
     /* Sin script y sin partir la pregunta en dos pesos. Con Brushwell arriba y
        caja alta abajo la frase se leía como un solo gesto; en Raleway las dos
        líneas compiten y «¿NECESITAS CAMBIAR / DE ESCENARIO?» quedaba cortada al
@@ -334,15 +409,43 @@ export const Cumple1: React.FC = () => (
       {/* ⭐ RONDA 5 (31-08): «Slide1: Texto "¿Estás de cumpleaños en septiembre?
           Este café es para ti. ¡Ven por tu café de regalo!"». Scarlette escribió
           «en agosto»; Eli confirmó el 31-08 que va **septiembre**, que es el mes
-          que arranca. Los otros dos textos ya estaban puestos desde la ronda 4. */}
+          que arranca. Los otros dos textos ya estaban puestos desde la ronda 4.
+
+          ⭐⭐ RONDA 7 (02-09, FEED!E15): «G1: Que diga solo ¿Estás de cumpleaños?
+          sin el septiembre, eliminar ¡VEN POR TU CAFÉ DE REGALO!».
+          → El cliente se DESDICE de su propia ronda 4, que había pedido los tres
+            textos escalonados («luego complemento con… luego complemento con…»).
+            Manda el pedido nuevo: se va el mes y se va el tercer bloque.
+          → Y tiene razón de fondo: el beneficio no es de septiembre, es
+            permanente —el brief dice «el mismo día de tu cumpleaños, lunes a
+            viernes, en cualquier horario»—, así que acotarlo al mes lo hacía
+            parecer una promo con fecha de vencimiento que no existe. Sin el mes,
+            la pieza sirve todo el año.
+          → La píldora que sale decía lo mismo que ya dice el titular: «este café
+            es para ti» y «ven por tu café de regalo» son la misma frase dos
+            veces. El «menos es más» del mismo comentario aplica también acá.
+            Las condiciones (carnet, días, horario) siguen enteras en la G2, que
+            es la gráfica que existe para eso. */}
       <TitularBetween
-        script="¿Estás de cumpleaños en septiembre?"
+        script="¿Estás de cumpleaños?"
         caps="Este café es para ti"
         alinear="centro"
-      />
-      <PilaDatos
-        datos={['¡Ven por tu café de regalo!']}
-        style={{marginTop: BETWEEN.aire.tituloACaja}}
+        /* ⭐ RONDA 7 — lo cazó `between-qa.py`, no el ojo: al quitarle «en
+           septiembre» la script quedó CORTA, y `TitularBetween` la autoescala
+           para llenar el ancho, así que creció hasta sangrar el margen —tinta a
+           74 px del canto izquierdo y 72 del derecho, contra los 84 de la marca.
+           Brushwell tiene remates que sobresalen de su ancho de avance (las
+           colas del «¿» y del «?»), así que la caja cabía y la TINTA no.
+           Se compone en la COLUMNA (810) en vez del margen (912), que es el
+           opt-in que documenta `BetweenSistema.tsx`. Arregla dos cosas de una:
+             · la tinta vuelve a entrar con holgura;
+             · y se restaura la jerarquía de la marca. Con el texto corto a
+               ancho de margen, la script medía casi lo mismo que la caja alta y
+               le competía; la regla 1 del encabezado pide la script «corta y en
+               MENOR escala», con el titular como protagonista.
+           Re-flujar acá no rompe nada aprobado: esta pieza está en REVISAR
+           CONTENIDO y se rehace completa. */
+        anchoDisponible={BETWEEN.bloque.columna}
       />
     </div>
   </AbsoluteFill>
@@ -364,11 +467,36 @@ export const Cumple2: React.FC = () => (
         checklist ya hay contraste suficiente, y la regla 6 del encabezado manda
         que el texto se resuelva con la caja, no oscureciendo la foto — al 0,34
         la escena se perdía y la pieza parecía una tarjeta lisa. */}
-    <FotoFondo src={IA + 'cumple-manos-logo.png'} posicion="60% center" oscurecer={0.14} />
+    {/* ⭐⭐ RONDA 7 (02-09, FEED!E15): «Para la segunda slide proponer otra foto
+        de fondo, distinta a G1».
+        Las dos gráficas usaban el MISMO archivo (`cumple-manos-logo.png`), ésta
+        sólo con otro recorte (`posicion="60% center"`). Es la regla 1 del manual
+        —«dentro de un carrusel no se repite el escenario: si dos slides
+        comparten fondo, el lector cree que se trabó el deslizamiento»— y el
+        cliente lo cazó.
+        → Se genera con `scripts/between-cumple2-magnific.py`: el rincón REAL del
+          local (referencias HDT_50 + los dos fotogramas del muro vegetal),
+          entero desenfocado. Es fondo de soporte y no protagonista, porque
+          encima va el `<Checklist>` de cuatro condiciones: mientras más
+          tranquilo, mejor se lee el listado.
+        → Sin tazas, sin vasos, sin manos y sin personas, a propósito: la G1 ya
+          es «dos manos y el vaso», y repetir el motivo habría vuelto a compartir
+          escena por otra vía. Además un vaso pediría logotipo, y el logo
+          inventado por la IA es lo que el cliente reclamó tres veces.
+        Gradada con `neutro` (calidez 48,7 → 20,8), como el resto del mes.
+        El `posicion` sale: la foto nueva ya viene recortada 4:5 y encuadrada. */}
+    <FotoFondo src={F + 'cumple-fondo-local.jpg'} oscurecer={0.14} />
     <Globos
       posiciones={[
         {cual: 'globosPar', x: 100, y: 104, ancho: 174, rotacion: -8},
-        {cual: 'globo', x: 872, y: 168, ancho: 116, rotacion: 10, espejo: true},
+        /* ⭐ RONDA 7 — el globo se corre 12 px a la izquierda (872 → 860).
+           `between-qa.py` lo marcó a 82 px del canto derecho contra los 84 de la
+           marca: sangraba por 2 px. Venía así desde la ronda 5, o sea que el
+           archivo YA ENTREGADO también lo tenía. No es texto —es el doodle— pero
+           el margen de la marca vale para toda la tinta. Verificado: la punta
+           medida quedaba en x=998 y no en 988, porque el trazo de pincel
+           sobresale del ancho nominal. */
+        {cual: 'globo', x: 860, y: 168, ancho: 116, rotacion: 10, espejo: true},
         {cual: 'confeti', x: 792, y: 1128, ancho: 190, rotacion: 6},
         {cual: 'corazon', x: 96, y: 1196, ancho: 104, rotacion: -10},
       ]}
@@ -512,7 +640,13 @@ export const Foto2: React.FC = () => (
 export const Foto3: React.FC = () => (
   <PiezaFeedBodegon
     foto={F + 'croissant-plato.jpg'}
-    script="“Qué pinta tiene…"
+    /* ⭐ RONDA 7 (02-09, FEED!H15): «G3: Que pinta tiene x Se ve muy bueno...».
+       La «x» es «por»: cambia la primera línea de la cita, no la segunda.
+       Se respeta la puntuación de la pieza —el «…» de un solo carácter, no tres
+       puntos— porque las cuatro slides son citas con el mismo sistema de
+       comillas y suspensivos. El texto es más corto que el anterior (13 contra
+       15 caracteres de tinta), así que no re-fluje nada. */
+    script="“Se ve muy bueno…"
     caps="Esto merece foto.”"
     scriptSans
     mantenerPunto
@@ -572,6 +706,15 @@ export const ToGo1: React.FC = () => (
     script="¿Vas con poco tiempo?"
     caps={'Tu desayuno\nva contigo'}
     datos={['Promos To Go', HORARIO_TOGO]}
+    /* ⭐ RONDA 7 — defecto de margen PREVIO, que sale a la luz porque esta pieza
+       se re-rinde ahora: `between-qa.py` la marcó con tinta a 77 px del canto
+       izquierdo y 74 del derecho, contra los 84 de la marca. Medido: la
+       infracción está en y≈806–831, o sea en la script, no en la pila de datos.
+       Es el mismo defecto que `Cumple1` y `StCumple`: la cola del «¿» de
+       Brushwell sobresale del ancho de avance con el que el titular se
+       autoescala, así que la caja entra en el margen y la TINTA no.
+       Se compone en la columna (810). */
+    columna={BETWEEN.bloque.columna}
     anclaje="abajo"
     conLogo
     logoPosicion="arriba"
@@ -600,6 +743,7 @@ export const ToGo2: React.FC = () => (
         misma nota ya estaba puesto desde la ronda 4. */}
     <PilaEsquina
       lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Sándwich desde $4.290', fuerte: true}]}
+      igualarAncho
     />
   </PiezaFeedBodegon>
 );
@@ -630,13 +774,23 @@ export const ToGo3: React.FC = () => (
     oscurecer={0.08}
   >
     {/* el dulce: texto ARRIBA del plato (no encima) y la flecha baja hacia él */}
-    <Etiqueta x={140} y={648} size={42}>Croissant</Etiqueta>
-    <Ilustra cual="flechaBucle" x={172} y={706} ancho={112} opacidad={0.95} />
+    {/* ⭐ RONDA 7 — defecto de margen PREVIO que cazó `between-qa.py`: tinta a
+        49 px del canto izquierdo contra los 84 de la marca, medida en y≈660–683,
+        que es exactamente esta etiqueta. `Etiqueta` centra en `x`
+        (`translateX(-50%)`), así que «Croissant» —182 px de tinta a size 42—
+        arrancaba en 140 − 91 = 49 y sangraba 35 px.
+        Se corre a x=182: la tinta arranca en 91, con 7 px de holgura sobre el
+        margen. La flecha se mueve lo mismo (+42) para que siga naciendo debajo
+        de su etiqueta; su punta sigue cayendo sobre el croissant, que ocupa todo
+        el centro del plato. */}
+    <Etiqueta x={182} y={648} size={42}>Croissant</Etiqueta>
+    <Ilustra cual="flechaBucle" x={214} y={706} ancho={112} opacidad={0.95} />
     {/* ⭐ RONDA 5 (31-08): «Debe decir "desde $3.790". Sacar lo que dice café
         grande.» El «desde» ya venía de la ronda 4; se va la etiqueta del café y
         su flecha. La del croissant se queda: nadie la objetó. */}
     <PilaEsquina
       lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Dulce desde $3.790', fuerte: true}]}
+      igualarAncho
     />
   </PiezaFeedBodegon>
 );
@@ -662,6 +816,10 @@ export const ToGo4: React.FC = () => (
     foto={IA + 'togo-trio-45-logo.png'}
     script="¿Por qué elegir uno?"
     caps="¡Llévate los 3!"
+    /* ⭐ RONDA 7 — mismo defecto previo de margen que `ToGo1`: tinta a 74 px del
+       canto izquierdo, medida en y≈244–270, que es la banda de la script («¿Por
+       qué elegir uno?», otra que abre con «¿»). Se compone en la columna. */
+    columna={BETWEEN.bloque.columna}
     anclaje="arriba"
     legal="*Imágenes referenciales."
     oscurecer={0.1}
@@ -678,6 +836,7 @@ export const ToGo4: React.FC = () => (
         {texto: 'Promo To Go'},
         {texto: 'Café + Salado + Dulce desde $5.290', fuerte: true},
       ]}
+      igualarAncho
     />
     {/* la cola de la flecha TOCA el producto y apunta al texto — regla del
         manual. Acá nacen del croissant salado y del dulce. */}
@@ -730,40 +889,53 @@ export const StToGoDulce: React.FC = () => (
       }}
     >
       <TitularBetween script="Un dulce comienzo" caps="para tu mañana" alinear="centro" />
-      {/* ⭐ RONDA 5 (01-09): la CTA sale LITERAL del brief, celda C10 de la hoja
-          STORIES: «CTA: Pasa por Between y llévalo contigo.»
-          ⭐⭐ Eli, misma fecha: «que la CTA sea "Pasa por Between" y abajo del
-          botón "y llévalo contigo". La idea que sea el único botón en blanco y
-          textos café del color de la marca».
-          → El llamado se parte: la orden va DENTRO del botón blanco y el cierre
-            queda fuera, debajo. El texto del botón va en el café de la marca
-            (#675b49); el cierre va en beige, porque cae sobre la foto y en café
-            no se leería. Es el único elemento blanco macizo de la pieza. */}
-      <BotonBlanco style={{marginTop: BETWEEN.aire.tituloACaja}}>Pasa por Between</BotonBlanco>
-      <div
-        style={{
-          marginTop: 16,
-          fontFamily: BETWEEN.fuentes.sans,
-          fontWeight: BETWEEN.pesos.semibold,
-          fontSize: 42,
-          lineHeight: 1.1,
-          color: BETWEEN.colores.beige,
-          textShadow: '0 2px 16px rgba(36,26,18,0.55)',
-        }}
-      >
-        y llévalo contigo.
-      </div>
+      {/* ⭐ RONDA 5 (01-09): la CTA salía LITERAL del brief, celda C10 de la hoja
+          STORIES —«CTA: Pasa por Between y llévalo contigo.»— partida en dos por
+          pedido de Eli: la orden dentro del botón blanco y el cierre debajo.
+
+          ⛔ RONDA 7 (02-09, STORIES!D15): «Eliminar PASA POR BETWEEN y llévalo
+          contigo». Se van las DOS partes: el botón y su cierre. El cliente
+          borra su propia CTA del brief, y es su derecho — es la única CTA del
+          mes que mandaba salir del local cuando la promo justamente es To Go,
+          o sea que ya se la llevan puesta. Sin ella la pieza queda en titular +
+          promo, que es lo que el mismo comentario aprueba: «Con eso ok!».
+
+          ⚠️ Con esto la story pierde su único elemento blanco macizo, que era la
+          decisión de arte de Eli del 01-09. No se sustituye por otro botón: el
+          cliente no pidió reemplazo, pidió eliminación. Si Eli quiere devolver
+          el blanco a la pieza, es decisión suya y va sobre otro elemento. */}
     </div>
     {/* El confeti se corre al hueco de mesa que queda entre el plato y el vaso:
         estaba encima de la media luna y un doodle sobre el producto se ve
         descuidado. */}
     <Ilustra cual="confeti" x={470} y={118} ancho={140} rotacion={-22} opacidad={0.8} />
     <Ilustra cual="corazon" x={898} y={1180} ancho={92} opacidad={0.9} />
+    {/* ⭐ RONDA 7 (02-09, STORIES!D15): «Que diga Café + Dulce To Go - desde».
+        Entra el «To Go», que es el nombre real de la promo en la carta y lo que
+        la story vende; el «desde» ya venía de la ronda 4.
+
+        ⛔ Y VUELVE A SER UNA SOLA LÍNEA FUERTE. Estuvo partida en dos cajas
+        —«Café + Dulce To Go» / «desde $3.790»— para que ninguna cruzara el rol
+        de canela, y el remedio fue peor: quedaron TRES cajas de tres anchos
+        distintos, y las dos primeras en el MISMO peso, así que la pila perdió
+        jerarquía y se leía en escalera. Eli lo marcó: «se ve todo desordenado en
+        los textos y no se ve pulcro… cuidado que los textos se vean bien igual
+        en jerarquía».
+        → Dos cajas y una sola jerarquía: la promo entera en la línea fuerte y el
+          horario en la liviana, que es el patrón de las otras tres slides del
+          carrusel.
+        → El ancho se resuelve con `igualarAncho`, no partiendo el texto: las dos
+          cajas quedan del mismo ancho y el bloque tiene UN borde derecho.
+
+        El separador «·» se mantiene —y no el guion que escribió el cliente—
+        porque toda la pila de promos del mes usa el punto medio (ToGo2, ToGo3 y
+        ToGo4) y un guion solo en esta pieza rompería la serie. */}
     <PilaEsquina
       lineas={[
-        {texto: 'Café + Dulce · desde $3.790', fuerte: true},
+        {texto: 'Café + Dulce To Go · desde $3.790', fuerte: true},
         {texto: 'Lunes a viernes · 08:00 a 10:00 hrs'},
       ]}
+      igualarAncho
       abajo={430}
     />
   </AbsoluteFill>
@@ -800,10 +972,26 @@ export const StCumple: React.FC = () => (
          ANTIGUO (cuerpo negro con faja kraft). */
     foto={IA + 'cumple-vela-logo.png'}
     /* La story arrastra el mismo titular del feed —«mismos textos de la
-       publicación de feed» (D15)—, así que acá también entra «en septiembre». */
-    script="¿Estás de cumpleaños en septiembre?"
+       publicación de feed» (D15)—, así que TODO cambio del feed baja acá.
+
+       ⭐⭐ RONDA 7 (02-09): el comentario nuevo está escrito en FEED!E15 y habla
+       de la G1 del feed, pero por esa regla de «una sola voz» arrastra a esta
+       story también. Si no, el mismo día el feed diría «¿Estás de cumpleaños?»
+       y la story «¿Estás de cumpleaños EN SEPTIEMBRE?», contradiciéndose sobre
+       si el beneficio tiene mes o no. Y no lo tiene: el brief dice «el mismo día
+       de tu cumpleaños, lunes a viernes, en cualquier horario».
+         · sale «en septiembre»;
+         · sale la píldora «¡Ven por tu café de regalo!», que repetía lo que ya
+           dice el titular.
+       Y necesita la MISMA columna que `Cumple1`: creí que no —la story es
+       1080×1920 y compone con su propio ancho— y `between-qa.py` me corrigió,
+       tinta a 74 px del canto contra los 84 de la marca. Es el mismo defecto: la
+       cola del «¿» de Brushwell sobresale del ancho de avance con el que el
+       titular se autoescala. Para poder apretarlo hubo que AGREGARLE la prop
+       `columnaTitular` a `PiezaStoryBetween`, que no la tenía. */
+    script="¿Estás de cumpleaños?"
     caps="Este café es para ti"
-    datos={['¡Ven por tu café de regalo!']}
+    columnaTitular={BETWEEN.bloque.columna}
     oscurecer={0.1}
   >
     <Globos

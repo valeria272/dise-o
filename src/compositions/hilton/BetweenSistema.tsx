@@ -53,26 +53,79 @@ const sombraSobreFoto = '0 2px 14px rgba(36,26,18,0.45)';
    caja del ancho del dígito MÁS ANCHO. Es exactamente lo que hace una fuente con
    cifras tabulares, y acá además es verificable midiendo el render. */
 
-/* ⛔⛔ Y AHORA LO IMPORTANTE: NO SE USA EN TEXTO CORRIDO.
-   Probado y RECHAZADO el 02-09-2026. Eli, viendo la story To Go rendida con
-   esto puesto: «los textos y números vuelven a verse extraños, en la anterior
-   estaba mejor». Tenía razón, y el error era de criterio mío.
+/* ⛔ EL INTENTO QUE SE RECHAZÓ DOS VECES — y por qué, exactamente.
+   El 01-09 y otra vez el 02-09, Eli vio la story To Go rendida con esto puesto y
+   lo devolvió: «los textos y números vuelven a verse extraños, en la anterior
+   estaba mejor» y después «el error persiste en los números».
 
-   Las cifras tabulares existen para que los números CUADREN EN COLUMNA —una
-   lista de precios, una tabla— y por eso todas ocupan lo mismo. Pero en estas
-   piezas los números van DENTRO DE UNA FRASE: «desde $3.790», «08:00 a 10:00
-   hrs». Ahí no hay ninguna columna que alinear, y forzar cada dígito al ancho
-   del más gordo deja al «1» flotando con un hueco a cada lado: el «10:00» se
-   leía como una palabra partida. En texto corrido lo correcto son las cifras
-   PROPORCIONALES, que es lo que Raleway trae de fábrica.
+   Las dos veces la caja tabular tenía el ancho del «0», el dígito MÁS GORDO. Con
+   eso el «1» —que en Raleway es entre 16 % y 38 % más angosto según el peso—
+   queda centrado en una caja que le sobra por los dos lados, y «10:00» se lee
+   «1 0:00». O sea que el defecto que la tabular venía a arreglar quedaba peor.
 
-   Así que el helper queda disponible pero SIN aplicar en ninguna pieza. Úsalo
-   solo si algún día una pieza apila precios en filas, uno debajo del otro, y
-   se necesita que los pesos y los miles calcen verticalmente. Si el número va
-   en una frase, no lo toques. */
+   ⚠️ Durante un día la conclusión escrita acá fue «en texto corrido van
+   PROPORCIONALES, no lo toques». Era la conclusión equivocada del experimento
+   correcto: el problema no era usar tabular en una frase, era el ancho.
 
-/** Ancho de la caja tabular, en em. Es el avance del «0», el dígito más ancho. */
-export const ANCHO_CIFRA_EM = 0.614;
+   ⭐⭐⭐ 02-09-2026 — RESUELTO, Y NO ERA «tabular sí o no»
+
+   Eli lo pidió por TERCERA vez: «el error persiste en los números, debe verse
+   armonioso y parejo». Las dos veces anteriores se probó la caja tabular con el
+   ancho del «0» y se rechazó. El error estuvo en el ANCHO de la caja, no en la
+   idea.
+
+   Se midió con la fuente real (`fontTools`, no de oído) y se rindió una prueba
+   de cuatro tratamientos sobre «$3.790» y «08:00 a 10:00 hrs»:
+
+     1. proporcional          → «10» queda apretado contra el «0»; las dos horas
+                                no parecen hermanas. Es el defecto original.
+     2. tabular al ancho del  → el «1» queda AISLADO con hueco a los dos lados.
+        «0» (lo que había)      «10:00» se lee «1 0:00». Es lo que Eli rechazó.
+     3. tabular al ancho      → ⭐ el bueno. Alinea los dígitos —las horas sí
+        MEDIO del peso           quedan hermanas— y el «1» no flota, porque la
+                                 caja ya no se estira hasta el dígito más gordo.
+     4. proporcional + track  → mejora algo, pero el «1» sigue apretado.
+
+   El ancho medio depende del PESO, y mucho: el «1» de Raleway va de 518/1000 en
+   ExtraBold a 450 en Medium y 375 en la variable. Por eso el ancho no puede ser
+   una constante única — se pasa el del peso que se está usando. */
+
+/**
+ * Ancho de la caja tabular, en em, POR PESO. Es el promedio de los diez dígitos
+ * de ese archivo, medido con fontTools sobre los .ttf del repo.
+ *
+ * ⛔ NO usar el ancho del «0» (0,614): es el máximo y deja al «1» flotando.
+ * Con el promedio, los dígitos anchos (0, 6, 8) sobresalen unas 30 milésimas de
+ * em a cada lado de su caja — invisible, porque los glifos ya traen su propio
+ * espacio lateral— y los angostos dejan de abrir hueco.
+ */
+export const ANCHO_CIFRA_EM_POR_PESO: Record<number, number> = {
+  /** Raleway-Medium (500): 614·450·535·540·558·548·606·535·598·589 → 557,3 */
+  500: 0.557,
+  /** Raleway-SemiBold (600): 614·471·549·549·564·551·607·548·601·589 → 564,3 */
+  600: 0.564,
+  /** Raleway-ExtraBold (800): 614·518·580·569·578·558·608·576·607·589 → 579,7 */
+  800: 0.580,
+};
+
+/**
+ * Avance REAL de cada dígito, en em, por peso. Medido con `fontTools` sobre los
+ * .ttf del repo (em de 1000 → se divide por 1000).
+ *
+ * Hace falta para COMPENSAR LOS BORDES de cada grupo de dígitos: sin eso, el
+ * hueco de la caja tabular del primer dígito se suma al espacio de la palabra
+ * anterior. Es el defecto que Eli marcó en la story del 3-sep — entre la «a» y
+ * el «10» se veía un espacio doble.
+ */
+export const ANCHOS_DIGITO_POR_PESO: Record<number, number[]> = {
+  //     0     1     2     3     4     5     6     7     8     9
+  500: [.614, .450, .535, .540, .558, .548, .606, .535, .598, .589],
+  600: [.614, .471, .549, .549, .564, .551, .607, .548, .601, .589],
+  800: [.614, .518, .580, .569, .578, .558, .608, .576, .607, .589],
+};
+
+/** Por defecto, el peso de los datos y precios de la marca (ExtraBold). */
+export const ANCHO_CIFRA_EM = ANCHO_CIFRA_EM_POR_PESO[800];
 
 /**
  * Envuelve cada dígito de `texto` en una caja de ancho fijo para que todas las
@@ -84,24 +137,63 @@ export const ANCHO_CIFRA_EM = 0.614;
  * dígito. Úsalo en textos de dato y precio, que van sin tracking; no en el
  * titular, que compone con −0,024em.
  */
-export const cifrasTabulares = (texto: string): React.ReactNode =>
-  texto.split(/(\d)/).map((parte, i) =>
-    /^\d$/.test(parte) ? (
-      <span
-        key={i}
-        style={{
-          display: 'inline-block',
-          width: `${ANCHO_CIFRA_EM}em`,
-          textAlign: 'center',
-          letterSpacing: 'normal',
-        }}
-      >
-        {parte}
-      </span>
-    ) : (
-      parte
-    ),
-  );
+export const cifrasTabulares = (
+  texto: string,
+  /** Peso con el que se está pintando: decide el ancho de la caja. */
+  peso: number = 800,
+): React.ReactNode => {
+  const caja = ANCHO_CIFRA_EM_POR_PESO[peso] ?? ANCHO_CIFRA_EM;
+  const reales = ANCHOS_DIGITO_POR_PESO[peso] ?? ANCHOS_DIGITO_POR_PESO[800];
+
+  /* Se recorre agrupando los dígitos CONSECUTIVOS en «grupos». El grupo es la
+     unidad que importa: dentro de él los dígitos avanzan todos igual (que es lo
+     que alinea las cifras), y en sus DOS BORDES se descuenta el hueco con un
+     margen negativo, para que el grupo quede a ras del texto que lo rodea.
+
+     Sin esa compensación, el hueco izquierdo de la caja del primer dígito se
+     SUMA al espacio anterior: en «a 10:00» se veía un espacio doble, porque el
+     «1» de Raleway Medium mide 450/1000 contra una caja de 557. Con el
+     descuento, ese borde queda pegado y el hueco se reparte sólo por DENTRO del
+     grupo, donde cae entre dos cifras y se lee como espaciado normal —en «10»
+     quedan 25 milésimas de em, ~1 px a cuerpo 40. */
+  const trozos: React.ReactNode[] = [];
+  let i = 0;
+  let k = 0;
+  while (i < texto.length) {
+    if (!/\d/.test(texto[i])) {
+      // texto normal: se acumula hasta el próximo dígito
+      let j = i;
+      while (j < texto.length && !/\d/.test(texto[j])) j++;
+      trozos.push(texto.slice(i, j));
+      i = j;
+      continue;
+    }
+    let j = i;
+    while (j < texto.length && /\d/.test(texto[j])) j++;
+    const grupo = texto.slice(i, j);
+    grupo.split('').forEach((d, n) => {
+      const sobra = (caja - reales[Number(d)]) / 2;
+      trozos.push(
+        <span
+          key={`d${k++}`}
+          style={{
+            display: 'inline-block',
+            width: `${caja}em`,
+            textAlign: 'center',
+            letterSpacing: 'normal',
+            // los bordes del grupo van a ras; el interior reparte el hueco
+            marginLeft: n === 0 ? `${-sobra}em` : undefined,
+            marginRight: n === grupo.length - 1 ? `${-sobra}em` : undefined,
+          }}
+        >
+          {d}
+        </span>,
+      );
+    });
+    i = j;
+  }
+  return trozos;
+};
 
 /** ¿Vale la pena pasar por `cifrasTabulares`? Evita envolver texto sin dígitos. */
 export const tieneCifras = (texto: string) => /\d/.test(texto);
@@ -111,8 +203,8 @@ export const tieneCifras = (texto: string) => /\d/.test(texto);
  * si lo que llega es texto plano con dígitos lo pasa por la caja tabular, y si
  * es cualquier otra cosa (un nodo ya armado) lo deja intacto.
  */
-export const conCifras = (hijos: React.ReactNode): React.ReactNode =>
-  typeof hijos === 'string' && tieneCifras(hijos) ? cifrasTabulares(hijos) : hijos;
+export const conCifras = (hijos: React.ReactNode, peso: number = 800): React.ReactNode =>
+  typeof hijos === 'string' && tieneCifras(hijos) ? cifrasTabulares(hijos, peso) : hijos;
 
 /* ---------- foto de fondo + multiply ---------- */
 
@@ -652,7 +744,22 @@ export const CajaDato: React.FC<{
       ...style,
     }}
   >
-    {children}
+    {/* ⭐ Cifras tabulares también acá: es el pedido de Eli para toda la grilla,
+        y lo que pasa por esta caja son los horarios («LUNES A VIERNES · 08:00 A
+        10:00 HRS»). Con la compensación de bordes de `cifrasTabulares` ya no
+        abren el espacio doble que tenían antes de la palabra anterior.
+
+        ⛔ EL `<span>` NO ES DECORATIVO — no lo saques. Esta caja es `display:
+        flex`, y `conCifras` devuelve un ARRAY (trozos de texto + un span por
+        dígito). Sin envolver, cada trozo se vuelve un flex item y **los nodos
+        que son sólo espacio no se pintan**: el horario salió
+        «·08:00A10:00HRS.», sin los espacios alrededor de la «a» ni antes de
+        «hrs». Lo cazó el render de `BW-F-ToGo-1`, no el typecheck.
+
+        ⚠️ Y la caja tabular ENSANCHA la línea, mientras `ajustarACaber` calcula
+        el cuerpo antes sobre el texto plano: si alguna vez sangra el margen,
+        `between-qa.py` lo marca y hay que bajar el cuerpo a mano. */}
+    <span>{conCifras(children, BETWEEN.pesos.extrabold)}</span>
   </div>
   );
 };
@@ -1499,12 +1606,31 @@ export const PiezaStoryBetween: React.FC<{
   anclaje?: 'arriba' | 'abajo';
   /** Y exacta del bloque, cuando ni arriba ni abajo sirven. */
   topBloque?: number;
+  /**
+   * Ancho de composición del TITULAR, igual que `PiezaFeedBodegon.columna`.
+   *
+   * ⭐ AGREGADO EL 02-09-2026. La pieza llamaba a `TitularBetween` sin pasarle
+   * `anchoDisponible`, así que el titular se autoescalaba hasta el MARGEN (912)
+   * y no había forma de apretarlo desde la story sin tocar el sistema.
+   *
+   * Hizo falta porque `between-qa.py` marcó `BW-S-Cumple`: tinta a 74 px del
+   * canto izquierdo y 72 del derecho, contra los 84 de la marca. La causa es
+   * que **Brushwell sobresale de su ancho de avance** —la cola del «¿» inicial
+   * y la del «?» final quedan fuera de la caja que mide el autoescalado—, así
+   * que la caja cabía y la tinta no. Aparece en toda pieza cuya script empieza
+   * con «¿»: también lo dio en `Cumple1`, `ToGo1` y `ToGo4`.
+   *
+   * Se pasa `BETWEEN.bloque.columna` (810) en la pieza que se está cortando.
+   * Sigue siendo OPT-IN por la misma razón que en `TitularBetween`: cambiar el
+   * defecto re-flujaría piezas ya aprobadas.
+   */
+  columnaTitular?: number;
   children?: React.ReactNode;
 }> = ({
   foto, posicionFoto, oscurecer = 0.12,
   caps, script, sizeCaps, datos, bajada, bajadaEnCaja, anchoBajada, legal,
   conLogo = true, logoTono = 'beige', alinear = 'centro', anclaje = 'arriba',
-  topBloque, children,
+  topBloque, columnaTitular, children,
 }) => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
     <FotoFondo src={foto} posicion={posicionFoto} oscurecer={oscurecer} />
@@ -1525,7 +1651,8 @@ export const PiezaStoryBetween: React.FC<{
         alignItems: alinear === 'centro' ? 'center' : 'flex-start',
       }}
     >
-      <TitularBetween caps={caps} script={script} sizeCaps={sizeCaps} alinear={alinear} />
+      <TitularBetween caps={caps} script={script} sizeCaps={sizeCaps} alinear={alinear}
+        anchoDisponible={columnaTitular} />
       {datos?.length ? <PilaDatos datos={datos} style={{marginTop: BETWEEN.aire.tituloACaja}} /> : null}
       {bajada && bajadaEnCaja ? (
         <PanelTaupe ancho={anchoBajada} style={{marginTop: BETWEEN.aire.tituloACaja}}>{bajada}</PanelTaupe>

@@ -176,20 +176,21 @@ conectan de forma distinta. Confundirlas es exactamente lo que hace perder un d�
 <ul>
 <li><b>Magnific (= Freepik)</b> es <b>el generador de imágenes de la casa</b> — fondos,
 ambientes, escalado, reiluminación. <b>NO es un conector</b>: funciona con una
-<b>clave</b> que se instala una sola vez en tu Mac (abajo). No hay nada que activar
-en claude.ai.</li>
+<b>clave</b> que ya viene en el proyecto y se monta con un comando (abajo). No hay
+nada que activar en claude.ai.</li>
 <li><b>Higgsfield</b> es solo para <b>video IA / UGC / personajes</b>. Ese sí es un
 <b>conector</b> de claude.ai, y además necesita que la cuenta tenga créditos.</li>
 </ul></div>
 
-<p><b>Instalar la clave de Magnific (2 minutos, una sola vez):</b></p>
-<ol>
-<li>Abre la <b>Terminal</b> (⌘ + espacio → «Terminal»).</li>
-<li>Pega esta línea completa y aprieta Enter:</li>
-</ol>
-<pre><code>echo "PEGA-AQUI-LA-CLAVE-FREEPIK" > ~/.magnific_key</code></pre>
-<p>La clave viene escrita en esta guía tal cual — cópiala con el botón derecho para
-no perder ningún carácter. Los scripts del estudio la leen solos desde ese archivo.</p>
+<p><b>La clave de Magnific ya no se pega a mano</b> (cambió el 02-09-2026).
+Viene dentro del proyecto, guardada bajo llave. Se monta con un comando:</p>
+<pre><code>python3 scripts/llavero.py abrir</code></pre>
+<p>Te pide <b>la contraseña del llavero del estudio</b> — una sola, te la da Valeria
+una vez, y este computador no te la vuelve a pedir. Con eso quedan listas la clave
+de Magnific, la de Anthropic y el acceso al Drive para subir entregas.</p>
+<div class="caja">Si alguna vez ves una instrucción que dice
+<code>echo "LA-CLAVE" &gt; ~/.magnific_key</code>, está vieja: ignórala y corre el
+comando de arriba.</div>
 
 <div class="caja exito"><b>✅ Cómo saber que quedó bien:</b> en el chat de Claude
 escribe: <i>«verifica mi clave de Magnific sin gastar créditos»</i>. Claude hace una
@@ -201,8 +202,10 @@ Si responde, ya puedes pedirle fondos y ambientes IA con total normalidad.</div>
 <li>Entra a <span class="url">https://claude.ai/settings/connectors</span> y activa
 <b>Higgsfield</b>.</li>
 <li>Cuando pida iniciar sesión, usa <b>la cuenta Higgsfield del equipo</b>:
-correo <code>contacto@copywriters.cl</code> — la contraseña está en la versión de la
-guía que reparte Valeria (esta copia del repo no lleva contraseñas).</li>
+correo <code>contacto@copywriters.cl</code>. ¿La contraseña? Sale del mismo llavero:
+en la Terminal, dentro de la carpeta del proyecto, corre
+<code>python3 scripts/llavero.py logins</code> y te la muestra junto con la lista de
+conectores que tienes que activar.</li>
 <li><b>Cierra el chat y abre una conversación nueva</b> (regla de todo conector).</li>
 <li>Prueba: escribe <i>«revisa el saldo de Higgsfield»</i>.</li>
 </ol>

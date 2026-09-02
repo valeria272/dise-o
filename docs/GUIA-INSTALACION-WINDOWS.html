@@ -224,20 +224,25 @@ en claude.ai.</li>
 <b>conector</b> de claude.ai, y además necesita que la cuenta tenga créditos.</li>
 </ul></div>
 
-<p><b>Instalar la clave de Magnific (2 minutos, una sola vez):</b></p>
+<p><b>La clave de Magnific ya no se pega a mano</b> (cambió el 02-09-2026).
+Viene dentro del proyecto, guardada bajo llave. Se monta con un comando:</p>
 <ol>
 <li>Abre <b>PowerShell</b> (<span class="kbd">Win</span> + <span class="kbd">X</span> → Terminal).</li>
-<li>Pega esta línea completa, reemplazando el texto en mayúsculas por la clave, y aprieta Enter:</li>
+<li>Entra a la carpeta del proyecto y corre:</li>
 </ol>
-<pre><code>Set-Content -Path "$HOME\.magnific_key" -Value "PEGA-AQUI-LA-CLAVE-FREEPIK" -Encoding ascii -NoNewline</code></pre>
-<p>La clave viene escrita en esta guía tal cual — cópiala con el botón derecho para
-no perder ningún carácter. Los scripts del estudio la leen solos desde ese archivo.</p>
+<pre><code>python scripts\llavero.py abrir</code></pre>
+<p>Te pide <b>la contraseña del llavero del estudio</b> — una sola, te la da Valeria
+una vez, y este computador no te la vuelve a pedir. Con eso quedan listas la clave
+de Magnific, la de Anthropic y el acceso al Drive para subir entregas.</p>
+<p>Ojo: en Windows el comando es <code>python</code>, no <code>python3</code>. Si te
+dice que falta <code>cryptography</code>, corre antes
+<code>python -m pip install cryptography</code>.</p>
 
-<div class="caja alerta"><b>⛔ En Windows NO uses <code>echo clave &gt; archivo</code></b>
-para guardar la clave, aunque lo veas escrito en otra parte o te lo sugiera alguien.
-PowerShell guarda con <code>&gt;</code> en un formato distinto (UTF-16) y la clave
-queda ilegible para el estudio: te va a decir que la clave es inválida aunque esté
-bien copiada. Usa exactamente la línea de arriba, con <code>Set-Content</code>.</div>
+<div class="caja alerta"><b>⛔ Se acabó el pegar la clave a mano.</b> Si ves una
+instrucción con <code>Set-Content ... .magnific_key</code> o
+<code>echo clave &gt; archivo</code>, está vieja: ignórala. Esa era además la causa
+nº 1 de «mi clave es inválida» en Windows, porque PowerShell guardaba el archivo en
+UTF-16 y el estudio no podía leerlo. El llavero lo escribe bien solo.</div>
 
 <div class="caja exito"><b>✅ Cómo saber que quedó bien:</b> en el chat de Claude
 escribe: <i>«verifica mi clave de Magnific sin gastar créditos»</i>. Claude hace una
@@ -249,8 +254,10 @@ Si responde, ya puedes pedirle fondos y ambientes IA con total normalidad.</div>
 <li>Entra a <span class="url">https://claude.ai/settings/connectors</span> y activa
 <b>Higgsfield</b>.</li>
 <li>Cuando pida iniciar sesión, usa <b>la cuenta Higgsfield del equipo</b>:
-correo <code>contacto@copywriters.cl</code> — la contraseña está en la versión de la
-guía que reparte Valeria (esta copia del repo no lleva contraseñas).</li>
+correo <code>contacto@copywriters.cl</code>. ¿La contraseña? Sale del mismo llavero:
+en PowerShell, dentro de la carpeta del proyecto, corre
+<code>python scripts\llavero.py logins</code> y te la muestra junto con la lista de
+conectores que tienes que activar.</li>
 <li><b>Cierra el chat y abre una conversación nueva</b> (regla de todo conector).</li>
 <li>Prueba: escribe <i>«revisa el saldo de Higgsfield»</i>.</li>
 </ol>

@@ -34,6 +34,16 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+# ⚠️ Windows: la consola escribe en cp1252 y el «✓ VÁLIDA» reventaba con
+# UnicodeEncodeError DESPUÉS de haber consultado la API — la clave estaba buena
+# y el script parecía fallar. Mismo bug ya arreglado en doctor.sh,
+# between-entrega.py, between-qa.py, hoja-contacto.py, verificar-fuentes.py,
+# qa/motor.py y llavero.py. Verificado en el PC de Eli el 02-09-2026.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 import certifi
 
 BASE = "https://api.freepik.com"

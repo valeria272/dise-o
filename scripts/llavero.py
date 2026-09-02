@@ -41,6 +41,17 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _entorno import RAIZ  # noqa: E402
 
+# ⚠️ Windows: la consola escribe en cp1252 y el «✓» de los reportes de este
+# script reventaba con UnicodeEncodeError DESPUÉS de haber montado las
+# credenciales — o sea que parecía que el llavero no se había abierto cuando en
+# realidad `credentials/.env` ya estaba escrito. Es el mismo bug que ya se
+# arregló en doctor.sh, between-entrega.py, between-qa.py, hoja-contacto.py,
+# verificar-fuentes.py y qa/motor.py. Verificado en el PC de Eli el 02-09-2026.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 LLAVERO = RAIZ / "credentials" / "llavero.copylab"
 ENV_LOCAL = RAIZ / "credentials" / ".env"
 CABECERA = "COPYLAB-LLAVERO-1"

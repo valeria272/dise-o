@@ -54,9 +54,27 @@ SCOPES = [
 ]
 
 CARPETA = '1GB6NtoG3vy35rPj7bw-j8bc76-Jz8332'          # C1 COWORK
-ORIGEN = RAIZ / 'out/hilton-between-r8/BW-F-Cowork-1.png'
-NOMBRE = 'BW FEED 01-09 Cowork 1 portada.png'
 MANIFIESTO = RAIZ / 'out/hilton-between-r8/_subidas.json'
+
+# ⭐ EL CARRUSEL COMPLETO, decisión de Eli el 02-09: «súbelas a ese drive, mejor
+# así tenemos todo». `C1` y `C2` son CARRUSELES, no slides —la carpeta hermana
+# es `C2 CUMPLEAÑOS BW`—, así que `C1 COWORK` es la carpeta del carrusel Cowork
+# entero y tiene que traer las cuatro. El cliente revisa el carrusel completo,
+# que es como se publica.
+#
+# La portada sale de la ronda 8 (`out/hilton-between-r8`) y las tres interiores
+# de la ronda 7 tal cual se entregaron (`out/entrega-r7/S1`): no se re-rindieron,
+# son byte a byte las que el cliente ya vio.
+PIEZAS = [
+    ('BW FEED 01-09 Cowork 1 portada.png',
+     RAIZ / 'out/hilton-between-r8/BW-F-Cowork-1.png'),
+    ('BW FEED 01-09 Cowork 2 winter garden.png',
+     RAIZ / 'out/entrega-r7/S1/BW FEED 01-09 Cowork 2 winter garden.png'),
+    ('BW FEED 01-09 Cowork 3 segundo nivel.png',
+     RAIZ / 'out/entrega-r7/S1/BW FEED 01-09 Cowork 3 segundo nivel.png'),
+    ('BW FEED 01-09 Cowork 4 servicio.png',
+     RAIZ / 'out/entrega-r7/S1/BW FEED 01-09 Cowork 4 servicio.png'),
+]
 
 
 def servicio():
@@ -87,41 +105,48 @@ def main():
             print('  (el token no ve nada acá — con `drive.file` sólo ve lo que él subió)')
         return
 
-    if not ORIGEN.is_file():
-        sys.exit(f'✗ No existe {ORIGEN}\n  Rinde antes:  '
-                 f'python scripts/between-rendir.py BW-F-Cowork-1 --salida out/hilton-between-r8')
+    faltan = [str(o) for _, o in PIEZAS if not o.is_file()]
+    if faltan:
+        sys.exit('✗ Faltan piezas rendidas:\n  ' + '\n  '.join(faltan) +
+                 '\n\nRinde con:  python scripts/between-rendir.py BW-F-Cowork'
+                 ' --salida out/hilton-between-r8')
 
-    # ¿ya lo subimos antes? Entonces se REEMPLAZA el contenido para conservar el
-    # enlace y los comentarios, en vez de dejar dos archivos con el mismo nombre.
-    previo = s.files().list(
-        q=f"'{CARPETA}' in parents and name = '{NOMBRE}' and trashed=false",
-        fields='files(id,name)').execute().get('files', [])
+    manifiesto, malas = {}, []
+    for nombre, origen in PIEZAS:
+        # ¿ya está? Entonces se REEMPLAZA el contenido, para conservar el enlace
+        # y los comentarios en vez de dejar dos archivos con el mismo nombre.
+        previo = s.files().list(
+            q=f"'{CARPETA}' in parents and name = '{nombre}' and trashed=false",
+            fields='files(id,name)').execute().get('files', [])
 
-    medio = MediaFileUpload(str(ORIGEN), mimetype='image/png', resumable=True)
-    if previo:
-        fid = previo[0]['id']
-        s.files().update(fileId=fid, media_body=medio).execute()
-        print(f'↻ REEMPLAZADA (mismo enlace): {NOMBRE}')
-    else:
-        fid = s.files().create(
-            body={'name': NOMBRE, 'parents': [CARPETA]},
-            media_body=medio, fields='id').execute()['id']
-        print(f'↑ SUBIDA: {NOMBRE}')
+        medio = MediaFileUpload(str(origen), mimetype='image/png', resumable=True)
+        if previo:
+            fid = previo[0]['id']
+            s.files().update(fileId=fid, media_body=medio).execute()
+            verbo = '↻ REEMPLAZADA'
+        else:
+            fid = s.files().create(
+                body={'name': nombre, 'parents': [CARPETA]},
+                media_body=medio, fields='id').execute()['id']
+            verbo = '↑ SUBIDA    '
 
-    # verificación byte a byte: que lo que quedó arriba pese lo mismo que el local
-    meta = s.files().get(fileId=fid, fields='id,name,size').execute()
-    local = ORIGEN.stat().st_size
-    ok = int(meta.get('size', -1)) == local
-    print(f'   {local/1e6:.2f} MB local · {int(meta.get("size",0))/1e6:.2f} MB en Drive'
-          f'  {"✓ coinciden" if ok else "✗ NO COINCIDEN"}')
-    print(f'   https://drive.google.com/file/d/{fid}/view')
-    if not ok:
-        sys.exit(1)
+        # verificación byte a byte: lo de arriba tiene que pesar lo mismo
+        meta = s.files().get(fileId=fid, fields='id,name,size').execute()
+        local = origen.stat().st_size
+        ok = int(meta.get('size', -1)) == local
+        if not ok:
+            malas.append(nombre)
+        print(f'{verbo}  {nombre}')
+        print(f'              {local/1e6:6.2f} MB  {"✓" if ok else "✗ NO COINCIDE"}'
+              f'   https://drive.google.com/file/d/{fid}/view')
+        manifiesto[nombre] = {'id': fid, 'bytes': local}
 
     MANIFIESTO.parent.mkdir(parents=True, exist_ok=True)
-    MANIFIESTO.write_text(json.dumps({NOMBRE: {'id': fid, 'bytes': local}},
-                                     ensure_ascii=False, indent=2), encoding='utf-8')
-    print(f'   manifiesto → {MANIFIESTO.relative_to(RAIZ)}')
+    MANIFIESTO.write_text(json.dumps(manifiesto, ensure_ascii=False, indent=2),
+                          encoding='utf-8')
+    print(f'\n{len(PIEZAS)} piezas · manifiesto → {MANIFIESTO.relative_to(RAIZ)}')
+    if malas:
+        sys.exit(f'✗ NO coinciden los bytes en: {", ".join(malas)}')
 
 
 if __name__ == '__main__':

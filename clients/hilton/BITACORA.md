@@ -58,9 +58,18 @@ elementos compiten se baja el secundario, no se sube el principal.
 
 **Dónde quedó.** Drive, carpeta **`C1 COWORK`** de Eli
 (`1GB6NtoG3vy35rPj7bw-j8bc76-Jz8332`, dentro de `BW` de S1 HILTON SEP 2026),
-que estaba vacía. Archivo `BW FEED 01-09 Cowork 1 portada.png`, **10,53 MB
-verificados byte a byte**. Se sube con `scripts/between-subir-c1.py`, que
-reemplaza en su sitio si se vuelve a correr. QA limpia y typecheck limpio.
+que estaba vacía. **Quedó el CARRUSEL COMPLETO, las 4 piezas**, todas
+verificadas byte a byte: la portada nueva (10,53 MB) y las slides 2, 3 y 4 tal
+cual se entregaron en la ronda 7 (4,76 · 6,09 · 4,43 MB), sin re-rendir. Se
+sube con `scripts/between-subir-c1.py`, que reemplaza en su sitio si se vuelve
+a correr. QA limpia y typecheck limpio.
+
+⭐ **`C1` y `C2` son CARRUSELES, no slides.** La carpeta hermana es
+`C2 CUMPLEAÑOS BW` (`1TfFCqNfQw0ucTwqvJD8iqft7Y__voRUw`), y hay una `STS`
+(`14Z4XnkM9sepmdPV0XjKzoqb1HXMbvIzO`). O sea que Eli está ordenando la S1 **por
+carrusel**, y cada carpeta lleva la pieza completa: «súbelas a ese drive, mejor
+así tenemos todo». Al entregar una corrección suelta, subir igual las hermanas —
+el cliente revisa el carrusel entero, que es como se publica.
 
 **Abierto — tres cosas, en orden:**
 

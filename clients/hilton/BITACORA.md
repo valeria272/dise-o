@@ -5,6 +5,123 @@
 
 ---
 
+## 2026-09-02 — Eli (Windows)
+
+**Qué se hizo:** Arrancó la **ronda 6 de la SEMANA 2** de Between, que son los
+comentarios nativos de Scarlette del 31-08 (G15, H15, J15, L15, I15) que seguían
+sin aplicar. Se cerraron **2 de 11** piezas y se entregaron a Drive.
+
+· **FEED G (7-sep) APROBADA por Eli.** Foto nueva. El fondo de la r4 era una
+  terraza tropical y Scarlette tenía razón, pero mi primera corrección perdió lo
+  bueno: quedó una sala vacía y fría. Eli lo marcó —«en el post más se parece la
+  ronda 4»— y la versión final es la síntesis: el plano corto y la calidez de la
+  r4 con el espacio real del local MUY desenfocado detrás, transferido por
+  REFERENCIA desde `raw/hilton/between/espacios/`. Gradada con perfil `neutro`
+  (calidez 54,7 → 21,9). Tipografía rígida (fuera Brushwell), comillas y punto
+  del brief, bloque abajo.
+· **STORY I (9-sep)** rendida y entregada con los textos del brief: el
+  «¿CUÁL TOMARÍAS?» que faltaba entero, las 4 opciones literales con «algo
+  salado» recuperado, y la encuesta en 2×2 para no invadir la zona segura.
+· El **llavero del estudio** quedó funcionando en este PC: `abrir`, `estado`,
+  `logins` y `magnific.py check` (✓ VÁLIDA). Los dos scripts nuevos reventaban
+  con UnicodeEncodeError al imprimir el «✓» DESPUÉS de haber hecho el trabajo —
+  arreglados, van 9 scripts con el fix de cp1252.
+
+**Dónde quedó:**
+· Entregadas en Drive **S2 HILTON SEP 2026 / BW**
+  (`1Yh2Puq1ZEmbM2HaoTh-LUydKwtZRmpn1`): `BW FEED 07-09 Humor cafecito.png` y
+  `BW ST 09-09 Romper en caso de antojo.png`. Verificadas byte a byte.
+  ⚠️ Quedan a nombre de **valeria@copywriters.cl**, porque el token del llavero
+  es el de la cuenta del estudio, no el de Eli.
+· Copia de trabajo para Eli en `COPYLAB-ENTREGAS\BETWEEN-S2-SEP2026` dentro de su
+  carpeta de usuario — fuera de OneDrive, Escritorio, Documentos y Descargas, por
+  pedido suyo (esos tres se vacían y el estudio se rompe en silencio).
+· Código: `BetweenSeptiembre.tsx`, `BetweenSistema.tsx`, `BetweenRecursos.tsx`,
+  `scripts/between-qa.py`. Fondo nuevo versionado con excepción en `.gitignore`:
+  `ia-sept/humor-cafecito-4.png` (+ el descarte `-3` para documentar por qué).
+· Material recuperado de Drive a `raw/hilton/between/desayunos-ago2026/` (28
+  tomas) y `raw/hilton/between/togo-25jul2025/` (el original -257 de 5760 px).
+  **`raw/` no viaja en git**: quien retome tiene que volver a bajarlo de
+  `GRILLA IA BETWEEN`.
+· Página de revisión con antes/después:
+  https://claude.ai/code/artifact/6c7b1871-1a2c-47b0-8813-c8eca17294a0
+
+**Qué sigue:** El **carrusel L (To Go, 14-sep)**, que es el más avanzado: falta
+regradar las 4 slides con `neutro` —es el «se ven quemadas y con un filtro medio
+raro» de Scarlette— y recortar el sándwich desde el original de 5760 px que ya
+está bajado. Después el **carrusel H (9-sep)**, que necesita 2 imágenes
+generadas, y la **J (11-sep)**, que hay que rehacer completa.
+
+**Abierto:**
+1. **La STORY I ya está entregada pero SIN visto bueno de Eli.** Scarlette pidió
+   «más protagonismo la caja» y el producto se ve chico dentro de un nicho muy
+   vacío. Si se regenera, el archivo se reemplaza con `--actualizar` y conserva
+   el enlace que el cliente ya tiene.
+2. **El croissant de jamón y queso de H3 NO EXISTE en el banco.** Las 28 tomas de
+   `BETWEEN DESAYUNOS AGO 2026` son huevos, tostadas y palta — ni un croissant. Y
+   vienen en **1620×1080**, o sea que no alcanzan los 2250 px de entrega. Falta
+   saber si existen los originales grandes de esa sesión.
+3. **La J necesita DOS manos**, porque Scarlette pide que se vea la interacción de
+   las personas «aunque sea sus manos» — y dos manos es justo lo que hubo que
+   descartar hoy por anatomía. Se le preguntó a Eli si tiene foto real; sin
+   respuesta todavía.
+4. **El brownie de la slide 4 de L**: Scarlette lo pide, y la única foto de
+   brownie del banco es de las del **vaso antiguo**, que está prohibido.
+5. **La SEMANA 1 está CONGELADA** por decisión de Eli: vienen cambios nuevos y le
+   avisan de nuevo. NO se reemplaza `BW ST 01-09` en Drive, aunque su defecto de
+   margen ya esté corregido en el código.
+6. Sigue sin respuesta desde el 01-09: **¿la slide 4 lleva logo?**
+
+---
+
+### Los tres bugs de sistema que salieron hoy
+
+**1. `PilaEsquina` nunca aplicó su margen.** Decía `[lado]: BETWEEN.bloque.margenX`
+y `lado` vale «izquierda» o «derecha»: la clave calculada salía `izquierda: 84`,
+que NO es una propiedad CSS. React la ignoraba y la caja quedaba pegada al borde
+del lienzo en x=0, **cortada**. Lo cazó el QA en `BW ST 01-09`, que ya estaba
+entregada, con la tinta a 22 px del canto contra los 84 de margen. Afecta a toda
+pieza con `PilaEsquina` — las slides 2, 3 y 4 del carrusel To Go se arreglan
+solas al rendirlas.
+
+**2. ⛔ Las cifras tabulares NO van en texto corrido.** Eli pidió el 01-09 que los
+precios se vieran «opentype tabular, como en Adobe Illustrator». Se construyó a
+mano —Raleway **no trae la función `tnum`**, verificado en la tabla GSUB/GPOS de
+los 5 pesos instalados y de la variable, así que el CSS que había era decorativo
+y el «Tabular Lining» de Illustrator tampoco tendría efecto— y **Eli lo rechazó
+al verlo rendido**: «los textos y números vuelven a verse extraños, en la
+anterior estaba mejor». Tenía razón. Las tabulares existen para que los números
+**cuadren en COLUMNA**; acá van DENTRO de una frase («desde $3.790», «08:00 a
+10:00 hrs») y forzar cada dígito al ancho del más gordo dejaba al «1» flotando
+con un hueco a cada lado: el «10:00» se leía como una palabra partida. En texto
+corrido lo correcto son las PROPORCIONALES, que es lo que Raleway trae de
+fábrica. Se retiró de los 8 sitios donde se había aplicado; el helper
+`cifrasTabulares` queda en `BetweenSistema.tsx` **documentado y SIN USO**, para
+el día en que una pieza apile precios en filas.
+Los anchos medidos siguen siendo ciertos (em de 1000): 0=614 · 1=518 · 2=580 ·
+3=569 · 4=578 · 5=558 · 6=608 · 7=576 · 8=607 · 9=589. El «1» es 18,5 % más
+angosto que el «0».
+
+**3. El QA confundía el logotipo con el titular** — y lo rompí dos veces más al
+arreglarlo. El lockup se detecta como UNA banda de 118 px, más alta que una línea
+de titular (~85), así que `max(alto)` elegía el logo y reportaba «el titular
+ocupa 24 % del ancho» —los 263 px del logo— en piezas con el titular al 73 %.
+Filtrar por la zona del lockup falló primero porque mezclé las zonas de los dos
+formatos (las del story caen donde el feed pone su texto, y descartaba las tres
+líneas correctas de «Cowork 2»), y después porque **«Emergencia» no lleva logo**
+—el vaso ya trae el logotipo impreso, regla 8— y su titular ocupa legítimamente
+esa franja. Ahora mide **la banda MÁS ANCHA**, que no depende de dónde esté el
+logo y es lo que la regla quiere saber.
+
+### Y una de método
+Las manos se revisan **con zoom, no a ojo**. Se descartaron DOS versiones de la
+G: en una la mano de arriba no resolvía —un dígito con uña, otro parcial al borde
+y entre ellos una masa lisa sin nudillos—. Se bajó el riesgo a **una sola mano**,
+y la duda que quedaba (dos uñas juntas al lado del asa) se resolvió con zoom 4×:
+era un dedo más la sombra del asa.
+
+---
+
 ## 2026-09-01 (cierre) · Eli (Windows) — BETWEEN ronda 6: la foto de la slide 2, la gradación neutra, y el brief de la slide 4 que estaba mal anotado
 
 > ⚠️ **Tercera sesión del día sobre el mismo repo.** Mientras ésta trabajaba, otra

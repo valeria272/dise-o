@@ -1618,3 +1618,107 @@ esa regla; usarla con una cara reconocible **no**.
 
 Cuando llegue la foto: cambiar `FOTO_SERVICIO` en `BetweenSeptiembre.tsx` y
 descomentar `BW-F-Cowork-4` en `scripts/between-entrega.py`.
+
+
+---
+
+# ⭐⭐ RONDA 6 — lo que aprendimos el 02-09-2026
+
+## ⛔ 1. Las cifras tabulares NO van en texto corrido
+
+Eli pidió que los precios se vieran «opentype tabular, como en Adobe
+Illustrator». Se implementó, se rindió, y **lo rechazó al verlo**: «los textos y
+números vuelven a verse extraños, en la anterior estaba mejor».
+
+**La regla:** las cifras tabulares existen para que los números **cuadren en
+COLUMNA** —una lista de precios en filas, una tabla— y por eso todas ocupan lo
+mismo. En estas piezas los números van **DENTRO DE UNA FRASE**: «desde $3.790»,
+«08:00 a 10:00 hrs». Ahí no hay ninguna columna que alinear, y forzar cada dígito
+al ancho del más gordo deja al «1» flotando con un hueco a cada lado — el
+«10:00» se lee como una palabra partida. **En texto corrido van PROPORCIONALES**,
+que es lo que Raleway trae de fábrica y lo que hay que dejar quieto.
+
+Solo se usa `cifrasTabulares` (en `BetweenSistema.tsx`, hoy sin uso) si alguna
+pieza llega a apilar precios en filas, uno debajo del otro.
+
+### Dato duro: Raleway no trae `tnum`
+
+Verificado leyendo la tabla GSUB/GPOS de los cinco pesos instalados y de la
+variable: la única función numérica que traen es `lnum`. O sea que
+`fontVariantNumeric: 'tabular-nums'` y `fontFeatureSettings: '"tnum" 1'` **no
+hacen nada** en este proyecto — estuvieron puestos varios días decorando, igual
+que el `@font-face` de Brushwell que fallaba en silencio. **En Illustrator pasa
+lo mismo:** el «Tabular Lining» del panel OpenType no tiene efecto con Raleway.
+
+Anchos de los dígitos en ExtraBold, em de 1000:
+
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|---|---|---|---|---|---|---|---|---|---|
+| **614** | **518** | 580 | 569 | 578 | 558 | 608 | 576 | 607 | 589 |
+
+El «1» es **18,5 % más angosto** que el «0».
+
+## ⭐ 2. Que se parezca a Between no es que salga el local
+
+El comentario de Scarlette sobre la G del 7-sep era «el espacio que se ve ahí no
+se parece a Between», y era cierto: el fondo era una terraza tropical genérica.
+Pero al reemplazarlo por el **local real bien visible** —sala amplia, mesas
+alineadas, todo enfocado— Eli lo devolvió: **«en el post más se parece la ronda
+4»**, o sea la versión con el fondo equivocado.
+
+**Por qué:** lo que hace que una pieza de Between se lea como Between no es la
+arquitectura reconocible, es el **plano corto, cálido y cercano** — la mesa en
+primer plano, poca profundidad de campo, el fondo convertido en manchas de color.
+Un salón vacío y enfocado se lee frío, aunque sea el local de verdad.
+
+**Cómo se resuelve:** el encuadre y la temperatura manda; el espacio real entra
+**muy desenfocado**, aportando sus colores —verde del muro vivo, azul navy,
+madera oscura, dorado del latón— sin convertirse en el tema de la foto. Rincón de
+cafetería, nunca salón.
+
+**Y el ambiente se transfiere por REFERENCIA, no con adjetivos:** se le pasan las
+fotos de `raw/hilton/between/espacios/` al generador (HDT_50, HDT_56, HDT_38).
+Es la misma lección que Casablanca.
+
+## ⭐ 3. Las manos: una sola, y verificada con zoom
+
+«Hay una mano de más» ya fue un rechazo. Hoy se descartaron **dos** versiones de
+la G porque al zoom la mano de arriba no resolvía: un dígito con uña, otro
+parcial al borde, y entre ellos una masa lisa sin nudillos ni separación de
+dedos. Es el defecto clásico del modelo.
+
+- **Pedir UNA SOLA MANO** siempre que la escena lo permita: cada mano de más es
+  una posibilidad de error anatómico.
+- **Revisar al 300–400 %**, no a ojo, y sobre la zona dudosa. En la versión final
+  parecían dos uñas juntas al lado del asa y con zoom 4× se vio que era **un dedo
+  más la sombra del asa**.
+- Nombrar en el prompt que los dedos van **separados y con el nudillo visible**.
+
+## ⛔ 4. `PilaEsquina` nunca aplicó su margen (bug de código)
+
+Decía `[lado]: BETWEEN.bloque.margenX`, y `lado` vale `'izquierda'` o
+`'derecha'`: la clave calculada salía `izquierda: 84`, que **no es una propiedad
+CSS**. React la ignoraba y la caja de promo quedaba **pegada al borde del lienzo
+en x=0, cortada**. Salió en `BW ST 01-09 Promo To Go`, que ya estaba entregada,
+con la tinta a 22 px del canto contra los 84 de margen.
+
+Afectaba a **toda** pieza con `PilaEsquina`, o sea también a las slides 2, 3 y 4
+del carrusel To Go. Corregido.
+
+## 5. El QA de la marca: se mide la banda MÁS ANCHA
+
+La regla del ancho del titular elegía la banda **más alta**, y el lockup del logo
+se detecta como una banda de 118 px — más alta que una línea de titular (~85).
+Así que medía el logo y reportaba «el titular ocupa 24 %» (sus 263 px) en piezas
+con el titular al 73 %.
+
+Filtrar por la zona del lockup **no sirve**: hay piezas sin logo —«Emergencia
+Between» no lo lleva, porque el vaso ya trae el logotipo impreso (regla 8)— y ahí
+el titular ocupa legítimamente esa franja. Ahora se mide la **banda más ancha**
+de la pieza, que no depende de dónde esté el logo.
+
+## 6. `--aspecto` no tiene 4:5, que es el feed de Between
+
+`scripts/magnific.py` mapea `feed` → 1:1 y `post` → 3:4. El feed de Between es
+**4:5**. Se genera en `post` (3:4) y se recorta con
+`between-gradar.py --recorte45`, que además lleva al ancho de entrega.

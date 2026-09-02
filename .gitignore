@@ -136,6 +136,14 @@ out/mascenter-algarrobal/preview-artifact.html
 !public/assets/hilton/between/ia-sept/togo-trio-45-logo.png
 !public/assets/hilton/between/ia-sept/emergencia-caja-2-logo.png
 !public/assets/hilton/between/ia-sept/humor-cafecito-2.png
+# RONDA 6 (02-09-2026) — el fondo de la G ENTREGADA. Conserva el plano corto y la
+# calidez de la ronda 4 (que es lo que Eli marcó como más Between) con el espacio
+# real del local muy desenfocado detrás, transferido por referencia desde
+# raw/hilton/between/espacios/. Gradado con perfil `neutro`.
+!public/assets/hilton/between/ia-sept/humor-cafecito-4.png
+# el paso intermedio: el local real pero la sala vacía y fría. Se descartó por
+# criterio de Eli; se versiona porque documenta por qué la entregada es la otra.
+!public/assets/hilton/between/ia-sept/humor-cafecito-3.png
 # y las dos fotos REALES que reemplazaron a las modelos en el carrusel del 9-sep
 !public/assets/hilton/between/fotos-gradadas/desayuno-completo-2.jpg
 !public/assets/hilton/between/fotos-gradadas/croissant-latte-cenital.jpg

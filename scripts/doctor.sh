@@ -118,7 +118,7 @@ else
 fi
 "$PYQA" -c "import cryptography" 2>/dev/null \
   && ok "librería de cifrado instalada" \
-  || bad "falta 'cryptography' — instálala: $PYQA -m pip install cryptography"
+  || bad "falta 'cryptography' — instálala: $PYQA -m pip install cryptography certifi requests"
 if [ -f credentials/.env ]; then
   ok "llavero abierto en esta máquina"
 else

@@ -51,8 +51,12 @@ En **Windows** es `python` en vez de `python3`. Todo lo demás es igual.
 Si `abrir` reclama que falta la librería de cifrado:
 
 ```bash
-python3 -m pip install cryptography
+python3 -m pip install cryptography certifi requests
 ```
+
+(`certifi` y `requests` los necesita `magnific.py check`; sin ellos el llavero abre
+bien pero la comprobación de la clave muere con `No module named 'certifi'`.
+Visto en Windows el 02-09-2026.)
 
 ### Comprobar que la clave de Magnific quedó buena
 

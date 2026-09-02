@@ -236,7 +236,8 @@ una vez, y este computador no te la vuelve a pedir. Con eso quedan listas la cla
 de Magnific, la de Anthropic y el acceso al Drive para subir entregas.</p>
 <p>Ojo: en Windows el comando es <code>python</code>, no <code>python3</code>. Si te
 dice que falta <code>cryptography</code>, corre antes
-<code>python -m pip install cryptography</code>.</p>
+<code>python -m pip install cryptography certifi requests</code> (los tres: sin
+<code>certifi</code> el llavero abre pero la comprobación de Magnific falla).</p>
 
 <div class="caja alerta"><b>⛔ Se acabó el pegar la clave a mano.</b> Si ves una
 instrucción con <code>Set-Content ... .magnific_key</code> o

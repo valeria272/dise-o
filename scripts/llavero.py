@@ -56,6 +56,15 @@ CLAVES = [
     ("ANTHROPIC_API_KEY", "API de Claude para los scripts que la usan"),
 ]
 
+# Los accesos de NAVEGADOR. No son claves de API: son el correo y la contraseña con
+# los que se inicia sesión en las herramientas de pago. Hacen falta para activar los
+# conectores de claude.ai (Higgsfield, Canva), que son de la cuenta de cada persona y
+# por eso NO se pueden automatizar desde acá.
+LOGINS = [
+    ("LOGIN_HERRAMIENTAS_CORREO", "correo con el que se entra a Higgsfield, Canva, Magnific y CapCut"),
+    ("LOGIN_HERRAMIENTAS_PASS", "su contraseña"),
+]
+
 # Archivos completos que también viajan en el llavero.
 ARCHIVOS = [
     ("token.json", "token OAuth de Google — Drive, Sheets, Gmail del estudio"),
@@ -174,7 +183,13 @@ def cmd_abrir(args):
     faltan = [k for k, _ in CLAVES if k not in variables]
     if faltan:
         print("\n  Sin llenar todavía en el llavero: " + ", ".join(faltan))
-    print("\nListo. Comprueba con:  python3 scripts/llavero.py estado")
+
+    print("\nListo — las claves ya están montadas. Comprueba con:")
+    print("  python3 scripts/llavero.py estado")
+    if all(k in variables for k, _ in LOGINS):
+        print("\n⚠️ TE FALTA UN PASO que no se puede automatizar: activar los")
+        print("   conectores en TU cuenta de claude.ai. Te digo cómo:")
+        print("  python3 scripts/llavero.py logins")
 
 
 def cmd_estado(args):
@@ -191,8 +206,10 @@ def cmd_estado(args):
     presentes = {l.split("=", 1)[0] for l in ENV_LOCAL.read_text(encoding="utf-8").splitlines()
                  if "=" in l and not l.startswith("#")}
     print()
-    for k, para_que in CLAVES:
-        print(f"  {'✓' if k in presentes else '·'} {k:<20} {para_que}")
+    for k, para_que in CLAVES + LOGINS:
+        print(f"  {'✓' if k in presentes else '·'} {k:<26} {para_que}")
+    print("\n  Los conectores de claude.ai (Drive, Higgsfield, Canva) NO se ven acá:")
+    print("  son de tu cuenta. Cómo activarlos:  python3 scripts/llavero.py logins")
 
 
 def cmd_ver(args):
@@ -202,6 +219,45 @@ def cmd_ver(args):
         print(f"  {k:<22} {enmascarar(v)}")
     for k, v in sorted(datos.get("archivos", {}).items()):
         print(f"  {k:<22} archivo, {len(v)} caracteres")
+
+
+def cmd_logins(args):
+    """Los accesos de navegador, en claro y a propósito.
+
+    Es lo único que el llavero NO puede automatizar: los conectores de claude.ai
+    (Higgsfield, Canva) son de la cuenta de cada persona y hay que activarlos a
+    mano, iniciando sesión con la cuenta del estudio.
+    """
+    datos = leer_llavero()
+    v = datos.get("vars", {})
+    correo = v.get("LOGIN_HERRAMIENTAS_CORREO")
+    clave_ = v.get("LOGIN_HERRAMIENTAS_PASS")
+    if not (correo and clave_):
+        sys.exit("✗ El llavero todavía no trae el login de las herramientas.\n"
+                 "  Valeria lo agrega con:\n"
+                 "      python3 scripts/llavero.py guardar --pedir LOGIN_HERRAMIENTAS_PASS\n")
+    print(f"""
+Accesos de las herramientas de pago del estudio
+───────────────────────────────────────────────
+  correo       {correo}
+  contraseña   {clave_}
+
+Sirve para: Higgsfield · Canva · Magnific/Freepik (el sitio web) · CapCut PRO
+
+Lo que tienes que hacer UNA vez, en tu cuenta de claude.ai
+──────────────────────────────────────────────────────────
+  Settings → Connectors, y activa:
+
+    Google Drive   ← con TU correo @copywriters.cl (no con el de arriba).
+                     Es el indispensable: sin él no hay briefs ni entregas.
+    Higgsfield     ← inicia sesión con el correo de arriba. Video IA.
+    Canva          ← inicia sesión con el correo de arriba. Brand kit del estudio.
+
+Los conectores son de tu cuenta de Claude, no del proyecto: no viajan en el
+repositorio y hay que activarlos una vez por persona.
+
+⚠️ No pegues esta contraseña en un grupo ni en un archivo del repositorio.
+""")
 
 
 def _fuentes_locales():
@@ -227,7 +283,7 @@ def cmd_guardar(args):
         de_donde.update({k: "ya estaba en el llavero" for k in variables})
 
     # 2. los .env de esta máquina
-    nombres = {k for k, _ in CLAVES}
+    nombres = {k for k, _ in CLAVES} | {k for k, _ in LOGINS}
     for f in _fuentes_locales():
         for linea in f.read_text(encoding="utf-8", errors="ignore").splitlines():
             linea = linea.strip()
@@ -259,7 +315,15 @@ def cmd_guardar(args):
                     de_donde[nombre] = str(p)
                     break
 
-    # 5. lo que venga por --set, que manda sobre todo lo anterior
+    # 5. lo que se escriba a ciegas — no queda en el historial del terminal
+    for nombre in args.pedir or []:
+        v = getpass.getpass(f"{nombre} (no se ve al escribir): ").strip()
+        if not v:
+            sys.exit(f"✗ {nombre} vacía, no guardé nada.")
+        variables[nombre] = v
+        de_donde[nombre] = "escrita a mano"
+
+    # 6. lo que venga por --set, que manda sobre todo lo anterior
     for par in args.set or []:
         if "=" not in par:
             sys.exit(f"✗ --set espera CLAVE=valor, llegó: {par}")
@@ -305,10 +369,14 @@ def main():
 
     sub.add_parser("estado", help="qué credenciales tengo montadas").set_defaults(func=cmd_estado)
     sub.add_parser("ver", help="qué hay dentro del llavero (enmascarado)").set_defaults(func=cmd_ver)
+    sub.add_parser("logins", help="los accesos de navegador y qué conectores activar").set_defaults(func=cmd_logins)
 
     g = sub.add_parser("guardar", help="rehace el llavero desde esta máquina (solo Valeria)")
     g.add_argument("--set", action="append", metavar="CLAVE=valor",
                    help="agrega o pisa una clave a mano; se puede repetir")
+    g.add_argument("--pedir", action="append", metavar="CLAVE",
+                   help="pide el valor a ciegas — no queda en el historial del "
+                        "terminal. Úsalo para contraseñas; se puede repetir")
     g.add_argument("--sin-google", action="store_true",
                    help="no incluye token.json ni client_secret.json")
     g.add_argument("--desde-cero", action="store_true",

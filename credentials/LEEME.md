@@ -29,16 +29,18 @@ Dentro van:
 | `ANTHROPIC_API_KEY` | API de Claude, para los scripts que la llaman |
 | `token.json` | Token OAuth de Google — bajar grillas y briefs, subir entregas al Drive |
 | `client_secret.json` | Cliente OAuth, por si hay que volver a autorizar desde cero |
+| `LOGIN_HERRAMIENTAS_*` | El **correo y la contraseña** con que se entra a Higgsfield, Canva, Magnific y CapCut |
 
 Lo que **no** va: Slack, Trello, Meta, bancos, planillas de finanzas. El llavero
 es del estudio de diseño, no de la agencia entera.
 
 ---
 
-## Los cuatro comandos
+## Los cinco comandos
 
 ```bash
 python3 scripts/llavero.py abrir     # monta las credenciales en este computador
+python3 scripts/llavero.py logins    # los accesos de navegador y qué conectores activar
 python3 scripts/llavero.py estado    # ¿qué tengo montado? ¿qué falta?
 python3 scripts/llavero.py ver       # qué hay dentro (valores enmascarados)
 python3 scripts/llavero.py guardar   # SOLO VALERIA: rehace el llavero
@@ -60,6 +62,31 @@ python3 scripts/magnific.py check
 
 Autentica contra Freepik **sin gastar créditos**. Si dice `✓ VÁLIDA`, ya puedes
 producir.
+
+---
+
+## ⚠️ Lo que el llavero NO puede hacer por ti: los conectores
+
+`abrir` monta las claves de los **scripts**. Los **conectores de claude.ai**
+—Google Drive, Higgsfield, Canva— son de la cuenta de Claude de cada persona: no
+viajan en el repositorio y hay que activarlos una vez, a mano.
+
+```bash
+python3 scripts/llavero.py logins
+```
+
+Te muestra el correo y la contraseña de las herramientas de pago, y exactamente
+qué activar en **claude.ai → Settings → Connectors**:
+
+| Conector | Con qué cuenta | Para qué |
+|---|---|---|
+| **Google Drive** | **tu** correo `@copywriters.cl` | Briefs, referencias y entregas. **Es el indispensable** |
+| **Higgsfield** | `contacto@copywriters.cl` | Video IA |
+| **Canva** | `contacto@copywriters.cl` | Brand kit del estudio (`kAF_gMI0GAg`) |
+
+Ojo con la diferencia: Drive va con **tu** cuenta personal del trabajo, porque
+las entregas quedan a tu nombre. Higgsfield y Canva van con la cuenta de la
+agencia, porque la suscripción de pago está ahí.
 
 ---
 
@@ -89,6 +116,13 @@ python3 scripts/llavero.py guardar --set FREEPIK_API_KEY=FPSX...
 git add credentials/llavero.copylab
 git commit -m "Llavero: clave nueva de Magnific"
 git push
+```
+
+Para una **contraseña**, usa `--pedir` en vez de `--set`: te la pide a ciegas y
+así no queda escrita en el historial del terminal.
+
+```bash
+python3 scripts/llavero.py guardar --pedir LOGIN_HERRAMIENTAS_PASS
 ```
 
 `guardar` parte del llavero que ya existe y solo pisa lo que le pases, así que no

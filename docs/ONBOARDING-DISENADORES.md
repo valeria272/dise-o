@@ -41,16 +41,51 @@ npm run typecheck      # tiene que compilar
 ```bash
 python3 -m venv ~/copylab-venv
 ~/copylab-venv/bin/python3 -m pip install --upgrade pip
-~/copylab-venv/bin/python3 -m pip install pillow requests certifi \
+~/copylab-venv/bin/python3 -m pip install pillow requests certifi cryptography \
     google-api-python-client google-auth google-auth-oauthlib openpyxl
 ```
 Siempre invocarlo por ruta completa: `~/copylab-venv/bin/python3 script.py`.
 **Usar `python3 -m pip`, nunca el binario `pip`** (tiene rutas quemadas y falla).
 
-## Paso 4 — Conectar Claude
+## Paso 4 — Abrir el llavero (las claves)
 
-En claude.ai → **Settings → Connectors**, activar **Google Drive** con la cuenta
-`@copywriters.cl` que te asignen. Sin eso no puedes bajar referencias ni subir entregas.
+**No le pidas ninguna clave a nadie.** Vienen dentro del repositorio, cifradas.
+
+```bash
+python3 scripts/llavero.py abrir
+```
+
+Te pide **la contraseña del llavero del estudio** — una sola, te la da Valeria una
+vez, y este computador no te la vuelve a pedir. Con eso quedan montadas la clave de
+Magnific/Freepik, la de Anthropic y el token de Google para subir entregas al Drive.
+
+```bash
+python3 scripts/llavero.py estado        # qué quedó montado
+python3 scripts/magnific.py check        # valida la clave SIN gastar créditos
+```
+
+Detalle completo: [`credentials/LEEME.md`](../credentials/LEEME.md).
+
+## Paso 5 — Conectar Claude (esto sí es tuyo)
+
+Los **conectores** son de tu cuenta de claude.ai, no del proyecto: no viajan en el
+repositorio y hay que activarlos una vez por persona. Corre esto, que te da el correo
+y la contraseña de las herramientas de pago:
+
+```bash
+python3 scripts/llavero.py logins
+```
+
+En claude.ai → **Settings → Connectors**:
+
+| Conector | Con qué cuenta | Para qué |
+|---|---|---|
+| **Google Drive** | **tu** correo `@copywriters.cl` | Briefs, referencias, entregas. **Sin esto no se trabaja** |
+| **Higgsfield** | la cuenta de la agencia (`logins` te la muestra) | Video IA |
+| **Canva** | la cuenta de la agencia | Brand kit del estudio |
+
+Drive va con **tu** cuenta porque las entregas quedan a tu nombre. Higgsfield y Canva
+van con la cuenta de la agencia porque la suscripción de pago está ahí.
 
 Después, en la terminal dentro del repo:
 ```bash
@@ -58,7 +93,7 @@ claude
 ```
 Claude lee `CLAUDE.md` solo. No hay que pegarle nada.
 
-## Paso 5 — Bajar el material ✅ (resuelto el 26-08-2026)
+## Paso 6 — Bajar el material ✅ (resuelto el 26-08-2026)
 
 Al clonar recibes **todo lo que se necesita para renderizar**: el código, los 9
 manuales, los 7 comandos, **56 archivos de tipografía y los 28 logos oficiales**.
@@ -98,7 +133,7 @@ Para archivos de más de 10 MB (editables `.ai`, videos) el conector no alcanza:
 python3 scripts/bajar-de-drive.py --publico "<id1>,<id2>" raw/<marca>/
 ```
 
-## Paso 6 — Tu primera pieza
+## Paso 7 — Tu primera pieza
 
 ```
 /pieza ebema

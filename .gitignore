@@ -63,7 +63,7 @@ __pycache__/
 *.pyc
 
 # ── public/assets: viaja el NÚCLEO (18 MB), no el material (1,3 GB) ──────────
-# Decisión 26-08-2026 (opción 1 de docs/ONBOARDING-DISENADORES.md paso 5).
+# Decisión 26-08-2026 (opción 1 de docs/ONBOARDING-DISENADORES.md paso 6).
 # Con esto, `git clone` + `npm install` deja el estudio listo para renderizar.
 # Las fotos, packshots y video se bajan del Drive por marca, cuando hagan falta.
 public/assets/**

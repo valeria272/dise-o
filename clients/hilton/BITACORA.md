@@ -5,6 +5,66 @@
 
 ---
 
+## 2026-09-02 (noche) · Eli (Windows) — BETWEEN ronda 8b: el C2 Cumpleaños, y por qué la S2/S3 quedó trabada
+
+**C2 CUMPLEAÑOS entregado** en su carpeta `1TfFCqNfQw0ucTwqvJD8iqft7Y__voRUw`.
+Los dos cambios de TEXTO que pedía el cliente —sacar «en septiembre» y la
+píldora «¡VEN POR TU CAFÉ DE REGALO!»— **ya estaban aplicados desde la ronda 7**;
+se verificó sobre la pieza entregada antes de tocar nada.
+
+⭐ **La lección de la sesión: cuando el cliente señala UNA foto como el look
+bueno, se EDITA esa foto, no se recrea la escena.** Primero se generó una escena
+nueva (una mano, vaso liso) y se le estampó el logotipo con
+`between-logo-vaso.py`, que es lo que manda el manual desde la ronda 4. Eli lo
+devolvió: «el logo se ve mal montado, utiliza la referencia, solo era que la tapa
+no estuviera y fuera cappucino». Tenía razón: **la referencia ya traía el
+logotipo REAL impreso, con su perspectiva sobre el cilindro**, y recrear la
+escena obligaba a estampar — un sello plano sobre un cilindro se nota. La regla
+del estampado sigue viva para cuando hay que generar de cero; **pero si existe
+una foto con el vaso ya marcado, se edita esa.**
+
+**Y la G2 cambió de fondo otra vez.** En la ronda 7 se cumplió «distinta a G1»
+generando el muro vegetal desenfocado; pero la G1 de hoy pasó a ser el muro
+vegetal con globos, así que volvían a chocar. Entra `bar-servicio.jpg`.
+
+**⛔ La S2 y la S3 NO se tomaron, y el motivo es de acceso, no de tiempo.**
+Eli pidió aplicar «los comentarios en rojo del cliente, lo que no esté tachado».
+**Ese formato no se puede leer desde acá:**
+
+- La grilla `BETWEEN _ GRILLA SEPTIEMBRE 2026.xlsx` (`1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY`)
+  es de Sebastián Serrano y pesa **68 MB**. El token del estudio tiene alcance
+  `drive.file`: **no puede leer un archivo que no subió** (404).
+- El conector de Drive sí lo lee, pero devuelve **texto plano**: se pierden el
+  color de fuente y el tachado, que es justamente lo que separa lo pendiente de
+  lo ya hecho. Bajarlo en base64 por el conector son ~91 MB, inviable.
+- **No existe versión nativa de Google Sheets** de la grilla de septiembre
+  (comprobado: sólo hay nativas hasta marzo 2026), así que tampoco sirve la API
+  de Sheets, que sí tendría permiso.
+
+⚠️ **Aplicar la ronda a ciegas era el riesgo caro**: la fila de comentarios
+mezcla lo pendiente con lo resuelto y lo resuelto va TACHADO. Sin el formato se
+rehace trabajo ya aprobado — el error que el manual documenta desde la ronda 4.
+
+**Cómo se destraba, en 10 segundos:** que Eli baje el .xlsx y lo deje en
+`raw/hilton/between/`. Con el archivo local, el método ya está escrito en el
+manual (`zipfile` sobre `xl/comments1.xml` y `comments2.xml`, más el color y el
+tachado de `styles.xml`).
+
+**Lo que sí quedó levantado de la S2/S3**, del documento de Constanza
+«BETWEEN S2 septiembre — análisis de cambios en diseño»
+(`1PIshvFqHZnLlS3Fz-z6lmkV1O2Aa1mAHwTYzX__alpA`, 02-09 13:04): son **5 piezas**
+—FEED G, H, J, L y STORY I— con los comentarios nativos de Scarlette del 31-08
+sin aplicar. Ese documento además deja **4 decisiones abiertas para Eli**
+(tipografía rígida sí/no en toda la S2, cifras tabulares, unificar interlineado,
+y si el «intercambiemos fechas» de L ya está muerto).
+
+⚠️ Y OJO: Scarlette dejó **comentarios NUEVOS el 02-09 a las 17:02 y 17:03**
+(«dejaron nuevos comentarios acá», «acá tomar estos nuevos cambios pliss»), o sea
+**posteriores** a ese análisis. Hay una ronda más encima de la que el documento
+describe.
+
+---
+
 ## 2026-09-02 (tarde) · Eli (Windows) — BETWEEN ronda 8: la portada del Cowork, con la terraza real y la jerarquía del texto corregida
 
 **Qué pidió Eli.** Dos cosas en un mensaje: (1) «usa de fondo la terraza de

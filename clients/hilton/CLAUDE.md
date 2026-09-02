@@ -1030,15 +1030,35 @@ Las 12 fotos de **ESPACIOS BETWEEN** están en `raw/hilton/between/espacios/`
 | Foto | Qué es |
 |---|---|
 | **`HDT_50.jpg`** | ⭐ **El Winter Garden** — muro verde vivo con sillones de mimbre. Es el de la slide 2 del carrusel Cowork |
+| **`HDT_51.jpg`** | ⭐⭐ **LA TERRAZA**, tramo cubierto — mesas altas y piso de tablones bajo el toldo, con las ampolletas Edison |
+| **`HDT_52.jpg`** | ⭐⭐ **LA TERRAZA**, tramo de las sombrillas — mesas bajas, jardineras, árbol y suelo de piedra. Es la de la **portada del Cowork** (ronda 8) |
 
 ⛔ **El 2.º piso NO está fotografiado: solo existe en video.** Es justo lo que
 reclama el cliente en la slide 3 («tenemos ese material»), así que hay que sacar
 el fotograma de un reel. Recordar la regla del estudio: **un frame en 4K es una
 foto**; antes de generar o de bloquear, se agota el material audiovisual.
 
-> Las demás fotos siguen sin identificar. **Varias no son de Between** —la barra
-> de ónix retroiluminada parece de QB, y varias son del hotel—: usar una ajena es
-> repetir exactamente el error que el cliente viene reclamando. Preguntar antes.
+### ⭐ Cómo se probó que la terraza es de Between y no de QB (02-09-2026)
+
+La duda era real: **QB también tiene terraza** (ver el cuadro de las 4 marcas al
+inicio de este manual), y este manual venía diciendo «preguntar antes». No hizo
+falta preguntar — **estaba escrito dentro de la propia foto**, y sólo aparece al
+mirarla a resolución completa:
+
+| Foto | Dónde | Qué dice |
+|---|---|---|
+| `HDT_52.jpg` | recorte `(4900,2100)-(5900,2600)` | un pizarrón: **«BƎTWEEN / — COFFEE & BAR — / Desde las 17 hrs. / Promos»**, con la **E quebrada** del logotipo |
+| `HDT_51.jpg` | portamenús sobre las mesas | **«BƎTWEEN · CAFÉ A $1.000»** |
+
+**El método, que sirve para cualquier foto sin identificar:** antes de descartar
+una toma por dudosa, **buscarle la marca adentro** — pizarrones, portamenús,
+cartas, vasos, letreros, el reflejo en un vidrio— recortando a 1:1 y ampliando.
+Una miniatura no muestra un pizarrón de 900 px en una foto de 6719.
+
+> Las 9 fotos restantes siguen sin identificar. **Varias no son de Between** —la
+> barra de ónix retroiluminada parece de QB, y varias son del hotel—: usar una
+> ajena es repetir exactamente el error que el cliente viene reclamando.
+> Preguntar antes, o buscarles la marca adentro como arriba.
 
 ---
 
@@ -1810,3 +1830,124 @@ de la pieza, que no depende de dónde esté el logo.
 `scripts/magnific.py` mapea `feed` → 1:1 y `post` → 3:4. El feed de Between es
 **4:5**. Se genera en `post` (3:4) y se recorta con
 `between-gradar.py --recorte45`, que además lleva al ancho de entrega.
+
+---
+
+# ⭐⭐ RONDA 8 — la jerarquía del bloque de texto (02-09-2026)
+
+Pedido de Eli, sobre la portada del carrusel Cowork: «en este carrusel mejoremos
+cómo se ven los textos, deben verse mejor en **jerarquía visual** como diseñador.
+Debes usar un ojo crítico al momento de los **espacios entre líneas** de los
+textos y párrafos. Que sea legible, y armonioso.»
+
+## ⭐⭐⭐ 1. La regla: el salto ENTRE niveles es mayor que el salto DENTRO del nivel
+
+Es la regla madre de un bloque de texto y estaba **invertida** en toda la grilla.
+Medido en la portada entregada (px de 1080, de TINTA a TINTA):
+
+| | alto | ancho | hueco encima |
+|---|---|---|---|
+| script «Tu oficina por hoy» | 124,3 | 734,9 (68 %) | — |
+| caps «PUEDE SER» | 84,0 | 600,5 (56 %) | **12,0** ← entre niveles |
+| caps «BETWEEN» | 83,0 | 542,9 (50 %) | **29,8** ← dentro del nivel |
+
+Las dos líneas del titular son **una unidad** y van juntas; la script es **otro
+nivel** y tiene que separarse. Con 12 contra 29,8 el ojo agrupa al revés: lee la
+script pegada a «PUEDE SER» y «BETWEEN» suelta abajo.
+
+**El valor bueno, ya rendido y verificado:**
+
+```
+script → titular   47,0   (0,56 × la altura de caja del titular)
+titular → titular  30,2   (0,36 ×)          ← se queda como está
+titular → caja     59,0
+línea → línea en la caja  12,0
+```
+
+Regla práctica: **el aire entre niveles ≈ 1,5 × el aire dentro del nivel.**
+
+### Por qué el token medido (9) se queda corto
+
+`BETWEEN.aire.scriptATitulo = 9` está bien medido, pero **sobre una script SIN
+DESCENDENTES**. Cuando la frase trae «p», «y» o «j» —«Tu oficina por **hoy**»—
+las colas bajan dentro de esos 9 px y rozan la caja alta. El token sigue siendo
+el defecto; la pieza que lo necesita pasa la prop nueva:
+
+```tsx
+<PiezaFeedBodegon aireScriptATitulo={42} … />
+```
+
+⚠️ **Es OPT-IN, igual que `columna`.** Subir el token movería todas las piezas
+ya aprobadas — el mismo motivo documentado en «LA COLUMNA».
+
+## ⭐⭐ 2. La script ACOMPAÑA: nunca más ancha que el titular
+
+`BETWEEN.proporcionScript = 1,05` está calibrado para **una palabra clave**
+(«El Match»). Con una frase de cuatro palabras la script salía a **68 % del
+lienzo contra el 56 % del titular**: la línea de acompañamiento le ganaba en
+ancho y en altura a la protagonista. El propio kit lo dice — «va en MENOR escala
+que el titular»— y no se estaba cumpliendo.
+
+Se corrige con la prop `sizeScript`, ahora expuesta en `PiezaFeedBodegon`:
+
+```tsx
+sizeScript={100}   // deja la script en 55 %, a la par del titular (56 %)
+```
+
+⛔ **La salida NO es agrandar el titular.** Se evaluó y se descartó midiendo:
+117 da 84 de alto de caja y 56 % de ancho, que es exactamente la referencia
+aprobada del manual (**85 y 52 %**). Subirlo a 133 lo habría llevado a 95 y 63 %,
+fuera de la proporción medida de la marca. **Cuando dos elementos compiten, se
+baja el secundario antes que subir el principal.**
+
+## 3. El párrafo de la caja taupe: 1,24
+
+La interlínea de la caja pasó de **1,16 a 1,24**. El 1,16 venía del pedido de Eli
+del 01-09 («los textos dentro del recuadro café deben verse más ordenados») y
+sigue lejos del 1,3 que ella devolvió, pero era **el renglón más apretado de la
+pieza**:
+
+| | hueco | alto de caja | ratio |
+|---|---|---|---|
+| dentro del titular | 29,8 | 84,0 | 0,35 |
+| dentro de la caja (1,16) | 9,1 | 37,4 | **0,24** ← rompía el ritmo |
+| dentro de la caja (1,24) | 12,0 | 37,4 | 0,33 |
+
+Ojo que acá el aire importa el doble: la primera línea baja las colas de «p» y
+«j» justo sobre la tilde de «atención».
+
+## 4. ⚠️ Pendiente: la misma inversión está en las slides 2, 3 y 4
+
+Sólo se corrigió la **portada**, que es lo que Eli pidió editar. Medido, las
+interiores traen el mismo defecto (usan `scriptSans`, o sea Raleway, pero la
+relación es la misma):
+
+| Slide | script → caps | caps → caps |
+|---|---|---|
+| C2 | 8,6 | ~35,5 |
+| C3 | 20,2 | — |
+| C4 | 8,2 | — |
+
+Aplicarles `aireScriptATitulo` es un cambio de una línea por slide. **Falta que
+Eli lo confirme**, porque re-flujar las tres mueve piezas que el cliente ya vio.
+
+## 5. La foto de la portada: terraza real + puesto de trabajo generado
+
+Ver §7 para la prueba de que la terraza es de Between. Lo que importa de método:
+
+- **El encuadre se eligió MIDIENDO contra las bandas del bloque**, no a ojo. Se
+  probaron 12 recortes 4:5 con las bandas del logo (0,05–0,14) y del texto
+  (0,55–0,92) superpuestas; en 11 la mesa caía DENTRO de la banda del titular,
+  o sea que el texto habría tapado justo lo que la pieza quiere mostrar.
+- **La banda del logo se mide, no se estima.** El recorte elegido deja luma
+  **123,3** con 21,6 % de píxeles claros — mejor que la portada ya entregada
+  (159,5 y 48,4 %).
+- ⛔ **El celular queda parcialmente cruzado por la script y es un techo real de
+  esta foto.** Se intentaron **6 generaciones** para subirlo a la fila de la taza;
+  el modelo lo devuelve siempre al canto cercano de la mesa. Subir el encuadre lo
+  despejaría, pero saca la lona oscura de la sombrilla de detrás del logo, y el
+  logo es elemento de marca con QA. Se priorizó el logo.
+- **Nano Banana Pro duplica objetos cuando se le describe el mismo objeto dos
+  veces.** Pedirle «una laptop abierta… no muestres la tapa cerrada» le hizo
+  pintar DOS laptops en dos generaciones seguidas. Describir cada objeto **una
+  sola vez** y en positivo.

@@ -137,9 +137,55 @@ export const Cowork1: React.FC = () => (
        Fotograma 4K vertical (2160×3840): el 4:5 sale a 2160 px y sube 4 % para
        llegar a los 2250 de entrega, que es imperceptible. Gradada con `neutro`
        (calidez 40,4 → 20,7), el perfil que el cliente pidió en este carrusel. */
-    foto={F + 'cowork-winter-garden.jpg'}
+    /* ⭐⭐⭐ RONDA 8 (02-09, Eli): «Usa de fondo la terraza de between, con café
+       en mesa y laptop + celular que sea estilo cowork pero mejor editada la
+       foto.»
+       El muro vegetal sale y entra la TERRAZA REAL: `espacios/HDT_52.jpg`,
+       foto profesional de 6719×4479. Que es de Between —y no de QB, que también
+       tiene terraza— quedó PROBADO mirando el archivo a resolución completa: en
+       (4900,2100)-(5900,2600) hay un pizarrón que dice «BƎTWEEN / COFFEE & BAR /
+       Desde las 17 hrs.», con la E quebrada del logotipo. Ver el manual §7.
+       Recorte (200,900)-(3063,4479) = 2863×3579, 4:5 exacto, elegido midiendo
+       contra las bandas del bloque: sombrilla oscura en la del logo, terraza en
+       la libre y suelo parejo bajo el titular. El puesto de trabajo —laptop,
+       taza blanca lisa y celular— se generó con Nano Banana Pro sobre esa misma
+       foto (`scripts/between-portada-terraza.py`): la terraza vacía es de
+       arquitectura y no hay una sola taza en las 12 tomas de la sesión.
+       ⚠️ NO repite la slide 2: ésta es el PLANO GENERAL del lugar y aquélla el
+       bodegón a la altura del asiento. Portada = dónde estás; slide 2 = tu mesa.
+       Gradada con `neutro` (calidez 29,3 → 20,8, igual que las otras tres). */
+    foto={F + 'cowork-terraza.jpg'}
     script="Tu oficina por hoy"
     caps={'Puede ser\nBetween'}
+    /* ⭐⭐⭐ RONDA 8 — LA JERARQUÍA, que es el otro medio pedido de Eli: «los
+       textos deben verse mejor en jerarquía visual… ojo crítico con los
+       espacios entre líneas de los textos y párrafos».
+       MEDIDO sobre la entrega anterior, en px de 1080:
+
+         script «Tu oficina por hoy»   alto 124,3   ancho 734,9  (68 %)
+         ↕ 12,0                                   ← salto ENTRE niveles
+         caps «PUEDE SER»              alto  84,0   ancho 600,5  (56 %)
+         ↕ 29,8                                   ← salto DENTRO de un nivel
+         caps «BETWEEN»                alto  83,0   ancho 542,9  (50 %)
+
+       Dos defectos, y son los dos de jerarquía:
+       1. **El salto entre niveles (12) era MENOR que el salto dentro del nivel
+          (29,8).** Al revés de como se lee: las dos líneas del titular son UNA
+          unidad y tienen que ir juntas, y la script es OTRO nivel y tiene que
+          separarse. Encima «por hoy» baja dos colas —la «p» y la «y»— justo
+          dentro de esos 12 px, así que rozaban la «PUEDE SER». Sube a 42, o sea
+          la mitad de la altura de caja del titular y 1,4 × el salto interno.
+       2. **La script era MÁS ANCHA (68 %) y MÁS ALTA que el titular al que
+          acompaña.** El kit lo dice en su propio comentario: «va en MENOR escala
+          que el titular». La proporción por defecto (1,05 × el titular) está
+          calibrada para una PALABRA CLAVE; con una frase de cuatro palabras
+          desborda. A cuerpo 100 la script queda en ~55 %, a la par del titular
+          y sin taparlo.
+       ⛔ El titular NO se toca: 117 da 84 de alto de caja y 56 % de ancho, que
+          es exactamente la referencia aprobada del manual (85 y 52 %). Agrandarlo
+          «para que mande» habría roto la proporción medida de la marca. */
+    sizeScript={100}
+    aireScriptATitulo={42}
     bajadaEnCaja
     /* ⭐ RONDA 5 (comentario C15 de FEED): «Slide1: dejar el texto consecutivo
        que esta en el cuadro café, es decir, que "pendientes" queda arriba».
@@ -163,8 +209,16 @@ export const Cowork1: React.FC = () => (
     bajada={<>Espacio para trabajar,<br />WiFi y atención a la mesa.</>}
     /* ⭐ 01-09, Eli: «los textos dentro del recuadro café deben verse más
        ordenados». Con la interlínea de 1,3 por defecto las dos frases quedaban
-       flotando separadas dentro de la caja; a 1,16 leen como un bloque. */
-    interlineaBajada={1.16}
+       flotando separadas dentro de la caja; a 1,16 leen como un bloque.
+       ⭐⭐ RONDA 8: 1,16 → 1,24. Sigue leyendo como un bloque —está lejos del
+       1,3 que ella devolvió— pero era el renglón MÁS APRETADO de la pieza y el
+       pedido de hoy nombra los párrafos. Medido, de tinta a tinta:
+         · dentro del titular   29,8 sobre 84,0 de caja  = 0,35
+         · dentro de la caja     9,1 sobre 37,4 de caja  = 0,24  ← el que rompía
+       A 1,24 la caja sube a ~0,33 y el ritmo del bloque queda parejo. Ojo que
+       acá el aire importa el doble: la primera línea baja las colas de «p» y
+       «j» («Espacio para trabajar,») justo sobre la tilde de «atención». */
+    interlineaBajada={1.24}
     columnaCaja={COLUMNA_CAJA}
     columna={COLUMNA_TITULAR}
     aireTituloACaja={AIRE_CAJA}

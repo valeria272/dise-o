@@ -5,6 +5,82 @@
 
 ---
 
+## 2026-09-02 (tarde) · Eli (Windows) — BETWEEN ronda 8: la portada del Cowork, con la terraza real y la jerarquía del texto corregida
+
+**Qué pidió Eli.** Dos cosas en un mensaje: (1) «usa de fondo la terraza de
+between, con café en mesa y laptop + celular que sea estilo cowork pero mejor
+editada la foto» y (2) «mejoremos cómo se ven los textos, deben verse mejor en
+jerarquía visual… ojo crítico con los espacios entre líneas de los textos y
+párrafos». Sólo la **C1 (portada)**, y entregada en una carpeta suya.
+
+**⭐⭐ El hallazgo de la sesión: la terraza SÍ es de Between, y estaba probado
+dentro de la foto.** El manual venía diciendo que de las 12 tomas de
+`espacios/` sólo `HDT_50` estaba identificada, y advertía «varias no son de
+Between —la barra de ónix parece de QB— preguntar antes». QB también tiene
+terraza, así que la duda era real. No hizo falta preguntar: ampliando
+`HDT_52.jpg` a resolución completa aparece un **pizarrón que dice «BƎTWEEN /
+COFFEE & BAR / Desde las 17 hrs.»** con la E quebrada del logotipo, y en
+`HDT_51.jpg` los portamenús dicen «BƎTWEEN · CAFÉ A $1.000». **Quedan
+identificadas las dos como LA TERRAZA** (manual §7), y con ellas el método:
+antes de descartar una foto por dudosa, buscarle la marca adentro recortando a
+1:1 — una miniatura no muestra un pizarrón de 900 px en una foto de 6719.
+
+**La foto.** Base `HDT_52` (6719×4479), recorte `(200,900)-(3063,4479)` = 4:5
+exacto. **El encuadre se eligió midiendo**, no a ojo: se probaron 12 recortes con
+las bandas del logo (0,05–0,14) y del texto (0,55–0,92) superpuestas, y en 11 la
+mesa caía dentro de la banda del titular. El puesto de trabajo —laptop, taza
+blanca lisa, celular, libreta— se generó con Nano Banana Pro **sobre esa misma
+foto como referencia** (`scripts/between-portada-terraza.py`): la terraza real
+está vacía, es fotografía de arquitectura, y no hay una sola taza en las 12
+tomas. Gradada con `neutro`: calidez 30,8 → 20,7, a tono con las otras tres
+slides (20,7–21,0).
+
+**⭐⭐⭐ La jerarquía, que era el otro medio pedido y resultó ser un defecto de
+sistema.** Medido sobre la entrega anterior, el salto ENTRE niveles era MENOR
+que el salto DENTRO del nivel:
+
+    script «Tu oficina por hoy»   alto 124,3   ancho 735 (68 %)
+    ↕ 12,0        ← entre niveles
+    caps «PUEDE SER»              alto  84,0   ancho 601 (56 %)
+    ↕ 29,8        ← dentro del nivel
+
+O sea el ojo agrupaba al revés. Y encima la script —que el kit define como
+acompañamiento— salía **más ancha y más alta que el titular al que acompaña**.
+Se corrigió con dos props nuevas y OPT-IN en `TitularBetween` /
+`PiezaFeedBodegon` (`aireScriptATitulo` y `sizeScript` reenviada), **sin tocar
+los tokens**, que habrían re-flujado todo lo aprobado. Ritmo final: 47,0 /
+30,2 / 59,0 / 12,0. La caja taupe pasó de 1,16 a 1,24 de interlínea: era el
+renglón más apretado de la pieza (ratio 0,24 contra 0,35 del titular).
+
+⛔ **El titular NO se agrandó, y es decisión medida.** 117 da 84 de alto de caja
+y 56 % de ancho = la referencia aprobada del manual (85 y 52 %). Cuando dos
+elementos compiten se baja el secundario, no se sube el principal.
+
+**Dónde quedó.** Drive, carpeta **`C1 COWORK`** de Eli
+(`1GB6NtoG3vy35rPj7bw-j8bc76-Jz8332`, dentro de `BW` de S1 HILTON SEP 2026),
+que estaba vacía. Archivo `BW FEED 01-09 Cowork 1 portada.png`, **10,53 MB
+verificados byte a byte**. Se sube con `scripts/between-subir-c1.py`, que
+reemplaza en su sitio si se vuelve a correr. QA limpia y typecheck limpio.
+
+**Abierto — tres cosas, en orden:**
+
+1. ⚠️ **El celular queda parcialmente cruzado por la script.** Se hicieron **6
+   generaciones** para subirlo a la fila de la taza y el modelo lo devuelve
+   siempre al canto cercano de la mesa. Subir el encuadre lo despejaría, pero
+   saca la lona oscura de la sombrilla de detrás del logo — y el logo es
+   elemento de marca con QA (hoy mide luma 123,3 contra 159,5 de la portada
+   anterior, o sea que quedó MEJOR). Se priorizó el logo. **Falta que Eli diga
+   si lo da por bueno o si prefiere sacrificar el fondo del logo.**
+2. ⚠️ **C1 y C2 ahora muestran las dos una laptop con un café.** C1 es el plano
+   general de la terraza y C2 el bodegón a la altura del asiento, así que se
+   leen como progresión —dónde estás / tu mesa— y la paleta verde amarra. Pero
+   es repetición de sujeto en un carrusel que el cliente ya devolvió por
+   cohesión. **Es consecuencia directa de lo que pidió Eli**; si le hace ruido,
+   lo que cambia es la C2, no la portada.
+3. ⚠️ **La misma inversión de jerarquía está en las slides 2, 3 y 4** (C2: 8,6
+   contra ~35,5; C3: 20,2; C4: 8,2). Es una línea por slide, pero re-flujarlas
+   mueve piezas que el cliente ya vio. **Falta el OK de Eli.**
+
 ## 2026-09-02 (cierre) · Eli (Windows) — BETWEEN ronda 7: la S1 completa, el To Go desbloqueado y las cifras tabulares resueltas de verdad
 
 **Qué se hizo:** Llegó la **RONDA 7 del cliente** y se aplicó entera a lo que se

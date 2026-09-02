@@ -12,6 +12,13 @@ Sale con código 1 si encuentra algo roto, para poder encadenarlo en un script.
 import os
 import sys
 
+# Windows imprime en cp1252 y revienta con emoji/acentos: forzamos UTF-8.
+for _f in (sys.stdout, sys.stderr):
+    try:
+        _f.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, ValueError):
+        pass
+
 FIRMAS = {
     b"\x89PNG\r\n\x1a\n": "png",
     b"\xff\xd8\xff": "jpg",

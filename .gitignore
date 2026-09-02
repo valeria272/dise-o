@@ -191,6 +191,15 @@ out/mascenter-algarrobal/preview-artifact.html
 # (carpeta «Ediciones con IA fotos»). Sin logo KIMBO, así que cumple la regla.
 !public/assets/hilton/between/taza-cappuccino-nobg.png
 
+# RONDA 8 — la PORTADA del Cowork: la terraza real de Between.
+# `cowork-terraza.png` es la generacion de Nano Banana Pro sobre HDT_52 (la
+# terraza, identificada por el pizarron «BETWEEN COFFEE & BAR» que se ve dentro
+# de la propia foto) y el .jpg es esa misma imagen gradada con el perfil neutro
+# y recortada 4:5. Se versionan las dos: la pieza esta ENTREGADA y rehacer la
+# generacion costo 6 intentos. Ver `scripts/between-portada-terraza.py`.
+!public/assets/hilton/between/ia-sept/cowork-terraza.png
+!public/assets/hilton/between/fotos-gradadas/cowork-terraza.jpg
+
 # Escenas con el VASO REAL recortado (ronda 5). El recorte y las escenas que lo
 # usan se versionan: salieron de la sesión del cliente y rehacerlos cuesta una
 # tarde entera de segmentación.

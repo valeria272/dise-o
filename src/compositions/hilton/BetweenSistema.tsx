@@ -967,6 +967,21 @@ export const TitularBetween: React.FC<{
   caps?: string;
   sizeCaps?: number;
   sizeScript?: number;
+  /**
+   * ⭐ Aire de TINTA entre la script y la primera línea de caja alta.
+   *
+   * Por defecto `BETWEEN.aire.scriptATitulo` (9), que es el valor MEDIDO — pero
+   * medido sobre una script SIN DESCENDENTES. Cuando la frase trae «p», «y» o
+   * «j», sus colas bajan dentro de esos 9 px y el titular queda pegado: en la
+   * portada del Cowork, «Tu oficina por hoy» dejaba **12 px** contra las
+   * **29,8 px** que separan las dos líneas del propio titular. O sea que el
+   * salto ENTRE niveles era menor que el salto DENTRO de un nivel, que es la
+   * jerarquía al revés.
+   *
+   * Es opt-in por la misma razón que `anchoDisponible`: subir el token movería
+   * las piezas ya aprobadas. Se pasa a mano en la pieza que lo necesita.
+   */
+  aireScriptATitulo?: number;
   tono?: Tono;
   alinear?: 'centro' | 'izquierda';
   /**
@@ -999,6 +1014,7 @@ export const TitularBetween: React.FC<{
   caps,
   sizeCaps = BETWEEN.tipos.tituloCaps,
   sizeScript,
+  aireScriptATitulo,
   tono = 'beige',
   alinear = 'centro',
   anchoDisponible = 1080 - 2 * BETWEEN.bloque.margenX,
@@ -1081,7 +1097,7 @@ export const TitularBetween: React.FC<{
   const centrarTinta = (t: Tinta) =>
     alinear === 'centro' ? t.avance / 2 - (t.der - t.izq) / 2 : t.izq;
 
-  const aire = BETWEEN.aire.scriptATitulo;
+  const aire = aireScriptATitulo ?? BETWEEN.aire.scriptATitulo;
   const altoScript = textoScript ? tScript.alto + tScript.bajo : 0;
   const altoCaps = tCapsPorLinea.reduce(
     (acc, t, i) => acc + t.alto + t.bajo + (i ? aireEntreCaps : 0), 0,
@@ -1350,6 +1366,13 @@ export const PiezaFeedBodegon: React.FC<{
   /** Conserva la puntuación del brief; para textos que son una CITA. */
   mantenerPunto?: boolean;
   sizeCaps?: number;
+  /**
+   * Cuerpo de la script, cuando la proporción por defecto (1,05 × el titular)
+   * la deja MÁS ANCHA que el titular al que acompaña. Ver `TitularBetween`.
+   */
+  sizeScript?: number;
+  /** Aire de tinta script → titular. Ver `TitularBetween.aireScriptATitulo`. */
+  aireScriptATitulo?: number;
   /** Bajada bajo el titular. Va antes de las cajas taupe. */
   bajada?: React.ReactNode;
   /** Interlínea de la caja de bajada, para apretar un texto de dos líneas. */
@@ -1421,6 +1444,8 @@ export const PiezaFeedBodegon: React.FC<{
   scriptSans,
   mantenerPunto,
   sizeCaps,
+  sizeScript,
+  aireScriptATitulo,
   bajada,
   bajadaEnCaja,
   interlineaBajada,
@@ -1479,7 +1504,9 @@ export const PiezaFeedBodegon: React.FC<{
       >
         <TitularBetween
           caps={caps} script={script} scriptSans={scriptSans}
-          sizeCaps={sizeCaps} alinear={alinear} anchoDisponible={columna}
+          sizeCaps={sizeCaps} sizeScript={sizeScript}
+          aireScriptATitulo={aireScriptATitulo}
+          alinear={alinear} anchoDisponible={columna}
           mantenerPunto={mantenerPunto}
         />
         {bajada && bajadaEnCaja ? (

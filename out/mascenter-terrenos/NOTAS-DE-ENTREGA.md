@@ -103,3 +103,40 @@ cd out/mascenter-terrenos
 npx vercel deploy --prod --yes     # cuenta valeria-1724, proyecto mascenter-terrenos
 python3 -m http.server 8899        # para verlo local
 ```
+
+---
+
+## Ronda 2 — 02-09-2026 (feedback del KAM)
+
+| # | Comentario | Qué se hizo |
+|---|---|---|
+| 1 | Los botones redirigen bien | Nada. Verificado. |
+| 2 | El logo se siente chico frente a «Postula tu terreno» | Cabecera **46 → 64 px** (50 px al hacer scroll, antes 36). Pie **52 → 66 px**. |
+| 3 | El rojo oscuro puede no convencer a Fran | **No se tocó**, tal como se pidió. Queda a la espera de su revisión para definir el Pantone. |
+| 4 | Faltan centros: son 23 activos | Carrusel rehecho con **los 23**. Fotos bajadas una a una del sitio oficial (`mascenter.cl/<centro>/`, banners 1920×810), verificadas con hoja de contacto: las 23 son distintas y reales. Recortadas a 3:2 · 1200×800. |
+| 5 | Usar la nomenclatura oficial, no la comuna | Rótulo ahora es **nombre oficial** (Más Center Larraín) + **comuna** debajo (La Reina). |
+| 6 | Sumar el LinkedIn de Grupo IFB | Agregado en el pie. URL sacada del sitio de IFB: `linkedin.com/company/grupoifb/`. |
+
+### Cambio de proporción de las tarjetas
+Las fotos oficiales son panorámicas (2,37:1) y la tarjeta era 4:3. Meterlas ahí
+recortaba casi la mitad del ancho, justo lo que define a un strip center.
+La tarjeta pasó a **3:2**.
+
+### ⚠️ Tres cosas que quedan pendientes de confirmación
+
+1. **«Más de XX m² de terreno»** sigue publicado en la sección «¿Qué buscamos?».
+   El `XX` viene del brief original y nunca llegó el dato. Es la primera condición
+   que lee un dueño de terreno — conviene cerrarlo antes de que lo vea Fran.
+2. **La cifra pasó de «+30» a «23»** en los tres lugares donde estaba (sello del
+   hero, contador de trayectoria y meta description). Se corrigió porque el KAM
+   confirma 23 activos, pero **el «+30» venía del brochure**: si esa cifra incluye
+   proyectos en desarrollo además de los operativos, hay que decidir cuál se declara.
+   El sitio oficial tiene ~30 fichas, varias de proyectos futuros (Algarrobal,
+   Linderos, Santa Cruz, Rancagua, Chicureo, Pirque etapa III).
+3. **«Las Flores» y «San Carlos»** son los dos de Las Condes. Se asignó
+   `las-condes-san-carlos-de-apoquindo` → Las Flores y `san-carlos-de-apoquindo` →
+   San Carlos. **Confirmar que las fotos no quedaron cruzadas.**
+
+Typos de la tabla corregidos al escribir: «Cuidad Empresarial» → Ciudad Empresarial ·
+«Sana Maria» → Santa María · «Peñalolen» → Peñalolén · «Los angeles» → Los Ángeles ·
+«Con Con» → Concón.

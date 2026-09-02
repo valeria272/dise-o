@@ -99,6 +99,17 @@ public/assets/**
 !public/assets/casablanca/sep/sr2_*.jpg
 !public/assets/casablanca/sep/amb_*_feed45.jpg
 
+# G.CL capítulo 02 «Turno de noche» (7,9 MB). Misma excepción deliberada que
+# Revex y Casablanca: sin estos 13 planos y su banda sonora, otro diseñador no
+# reproduce el reel — tendría que volver a generarlos en Magnific y saldrían
+# distintos, y el par p05/p17 (el mismo encuadre de noche y de día) no volvería
+# a calzar. Van en JPEG 93 justamente para poder viajar: en PNG pesaban 49 MB.
+!public/assets/gcl/r02/**
+# Los clips animados SÍ viajan (≈9 MB recortados a 2,5 s y recomprimidos):
+# Kling no es determinista, así que volver a generarlos da otro movimiento y el
+# reel no se reproduce igual. La excepción tiene que ir DESPUÉS de `*.mp4`.
+!public/assets/gcl/r02/clips/*.mp4
+
 # ⛔ Estas NO se versionan aunque sean fuentes — la licencia lo impide:
 #    IvyOra = Adobe Fonts (cada persona la activa en su Creative Cloud)
 #    Agrandir = de pago, licencia del cliente Selfie (se pide a Coni)
@@ -196,6 +207,21 @@ out/mascenter-algarrobal/preview-artifact.html
 # Presentación Más Center: el generador y los datos SÍ se versionan
 !raw/mascenter-presentacion/centros.json
 !raw/mascenter-presentacion/extraer_assets.py
+
+# Landing de terrenos Más Center: las fotos de origen de las fichas del carrusel.
+# Salen del banco de imágenes de Más Center en el Drive de la agencia (marzo 2026)
+# y `scripts/gcl-mascenter-terrenos-fotos-r3.py` las recorta a 3:2. Sin ellas la
+# ronda 3 no se reproduce y hay que volver a cazarlas en el Drive. Van en JPG q95
+# (2 MB en total; los PNG originales pesaban 11 MB).
+# OJO: `raw/` excluye el directorio entero y git no entra en un directorio
+# excluido, así que hay que re-abrir la cadena carpeta por carpeta antes de que
+# la excepción del archivo pueda aplicarse.
+!raw/
+raw/*
+!raw/mascenter-terrenos/
+raw/mascenter-terrenos/*
+!raw/mascenter-terrenos/fotos-drive-2026-03/
+!raw/mascenter-terrenos/fotos-drive-2026-03/*.jpg
 
 # ── CREDENCIALES: nunca, jamás, al repositorio ──────────────────────────────
 # Este repo lo comparten varios diseñadores. Un token de Google acá dentro se

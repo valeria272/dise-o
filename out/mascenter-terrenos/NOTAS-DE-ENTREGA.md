@@ -140,3 +140,57 @@ La tarjeta pasó a **3:2**.
 Typos de la tabla corregidos al escribir: «Cuidad Empresarial» → Ciudad Empresarial ·
 «Sana Maria» → Santa María · «Peñalolen» → Peñalolén · «Los angeles» → Los Ángeles ·
 «Con Con» → Concón.
+
+---
+
+## Ronda 3 — 02-09-2026 (comentarios del cliente)
+
+| # | Comentario | Qué se hizo |
+|---|---|---|
+| 1 | El texto inicial más directo | Hero rehecho con el texto literal del cliente: titular **«Buscamos terrenos»** + bajada **«Con potencial para nuevos proyectos comerciales»**, y el párrafo **«¿Tienes un terreno en una ubicación estratégica? Estamos buscando nuevas ubicaciones y oportunidades para desarrollar proyectos.»** Los dos botones ya eran POSTULA TU TERRENO / QUÉ BUSCAMOS. |
+| 2 | La superficie es entre 3.000 y 15.000 m² | **Cerrado el «XX» que arrastrábamos desde el brief.** La tarjeta «Superficie» dice ahora «Entre **3.000 y 15.000 m²** de terreno». |
+| 3 | Cambiar la bajada de «Trayectoria consolidada…» | Reemplazada por el texto del cliente. El titular de la sección no se tocó. |
+| 4 | El bullet de +30 va de Copiapó a **Coyhaique** | Cambiado en el contador de trayectoria. |
+| 5 | Centros en operación, hasta Coyhaique (no Osorno) | Cambiado en la bajada del carrusel. |
+| 6 | Cuatro fotos del carrusel | Las cuatro reemplazadas — ver abajo. |
+
+También se actualizaron el `<title>`, la meta description y el `og:description`,
+que todavía repetían el titular viejo y decían «hasta Osorno».
+
+### Las cuatro fotos: de dónde salieron
+
+El cliente tenía razón — las fotos con la marca **Aramco vigente** ya existían.
+No estaban en `mascenter.cl` (el sitio sigue publicando los banners de enero 2024,
+con Petrobras) sino en el **banco de imágenes de Más Center en el Drive de la agencia**,
+carpeta de marzo 2026 que armó Diego Aguilar. Copiadas a
+`raw/mascenter-terrenos/fotos-drive-2026-03/` y recortadas a 3:2 · 1200×800 con
+[`scripts/gcl-mascenter-terrenos-fotos-r3.py`](../../scripts/gcl-mascenter-terrenos-fotos-r3.py).
+
+| Foto | Problema | Qué se hizo |
+|---|---|---|
+| **Padre Hurtado** | «Se ve fea» — era un recorte cerrado sobre el muro gris, con el logo de Express cortado | Foto profesional nueva: se ve la tira completa, Express de Líder + Cruz Verde + los locales |
+| **Osorno** | Ya no es Petrobras | Foto con **Aramco**. El recorte deja fuera el tótem de precios y sube el encuadre para que se vea la tira (a stop, Cruz Verde) |
+| **Copiapó** | También es Aramco y se veía poco strip | Foto con **Aramco**, recortada hacia el edificio de dos pisos para que el strip pese más que la bomba |
+| **Chamisero I** | Faltaba el logo del Jumbo | Foto donde el tótem del **Jumbo** entra completo, con la tira y el cerro detrás |
+
+Las cuatro llevan `?v=3` en el `src`: los assets se sirven con
+`Cache-Control: immutable` a un año, así que sin eso quien ya entró seguiría viendo
+las fotos viejas.
+
+### Verificado
+
+- Sin scroll horizontal en 1440 / 768 / 390 px · sin errores de consola · sin peticiones fallidas
+- Las 23 fichas del carrusel cargan (van con `loading="lazy"`, entran a medida que avanza)
+- Recorrido con Chrome real, no a ojo
+
+### Lo que queda abierto
+
+1. **Coyhaique no tiene ficha en el carrusel.** El texto ya dice «de Copiapó a Coyhaique»,
+   pero ahí Más Center tiene un **local comercial** (Fashion Park), no un strip center, y
+   el carrusel se llama «Centros en operación». La foto está bajada y guardada en
+   `raw/mascenter-terrenos/fotos-drive-2026-03/LC-Coyhaique.png` por si el cliente
+   prefiere que aparezca; hoy **no está publicada**.
+2. Sigue pendiente de la ronda 2: el rojo oscuro a la espera de la revisión de Fran,
+   el formulario sin backend, el correo de contacto y el dominio definitivo.
+3. Confirmar que las fotos de **Las Flores** y **San Carlos** (los dos de Las Condes)
+   no quedaron cruzadas.

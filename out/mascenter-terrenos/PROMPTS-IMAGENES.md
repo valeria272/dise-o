@@ -1,8 +1,8 @@
 # Imágenes de terreno — cómo se generaron
 
-> ⚠️ **NO están en uso.** Se hicieron para el rediseño que se descartó el 02-09-2026.
-> Los archivos siguen en `raw/mascenter-terrenos/ia/` por si se quieren sumar a la
-> versión vigente. Esto queda escrito para poder reproducirlas o rehacerlas.
+> ✅ **`terreno-hero.jpg` ES el banner del hero de la versión vigente**, rotulado
+> «Imagen referencial» en la página. Las otras dos quedaron disponibles sin usar en
+> `raw/mascenter-terrenos/ia/`. Esto queda escrito para poder reproducirlas o rehacerlas.
 
 Las 3 imágenes de paños vacíos son **generadas con Magnific (Mystic)**, porque Más Center
 no tiene fotos de terrenos disponibles y era el material que faltaba para esta página.

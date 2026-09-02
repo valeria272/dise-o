@@ -17,7 +17,8 @@ Hermana de la landing de Algarrobal: mismo esqueleto, mismos movimientos, mismo 
 | Estructura y textos | El brief que mandó el cliente, literal |
 | Módulo «paso a paso» | El print de Arcos Dorados que mandó el cliente, traducido al rojo de la marca |
 | Fotos de centros | Bajadas de **mascenter.cl** (21 disponibles, se usaron 12) |
-| Aéreas del hero | Renders de Algarrobal, ya aprobados por el cliente |
+| **Banner del hero** | **Terreno generado con IA** (Magnific/Mystic) — rotulado «Imagen referencial» |
+| Foto de «La oportunidad» | Render aéreo de Algarrobal, ya aprobado por el cliente |
 | Movimientos | Calcados de `pirquenogalesponiente.mascenter.cl`, igual que en Algarrobal |
 
 El chevron se usa como **borde entre el campo de color y la fotografía**, no como flecha
@@ -68,6 +69,20 @@ python3 -m http.server 8899      # y abrir http://localhost:8899
 El `preview-artifact.html` (2,1 MB, con los assets incrustados en base64) **no se versiona**:
 se regenera desde `index.html` cuando haga falta.
 
+## El banner del hero: por qué es un terreno y no un proyecto
+
+Al principio el hero llevaba el render aéreo de Algarrobal. Tenía dos problemas:
+es un **render** —y la página se apoya en que los +30 centros ya están operando—, y
+es un **proyecto identificable**, no una imagen genérica de la marca.
+
+Se cambió por un **terreno vacío en la esquina de una avenida**: le habla directo a
+quien tiene un paño y ve ahí su propia situación. Va rotulado **«Imagen referencial»**
+abajo a la derecha porque es generada con IA y no corresponde a una propiedad real de
+Más Center.
+
+> 💡 **Lo ideal sigue siendo una foto real con dron** de un centro en operación: resuelve
+> las dos cosas de una (es real y es de ellos). Vale la pena pedírsela a Más Center.
+
 ## Sobre el rediseño que se descartó
 
 El 02-09-2026 se probó una segunda versión con otro enfoque —expediente institucional
@@ -76,9 +91,10 @@ y un registro de centros en lugar del carrusel— y **el cliente interno la desc
 se vuelve a esta versión. Queda en el historial de git (commit `7a507e4`) por si alguna
 vez se quiere rescatar alguna pieza suelta.
 
-De ese intento sobreviven, sin usar, **3 imágenes de terrenos generadas con IA** en
-`raw/mascenter-terrenos/ia/` — ver `PROMPTS-IMAGENES.md`. Si más adelante se quieren
-sumar a esta versión, están listas.
+De ese intento sobrevivieron **3 imágenes de terrenos generadas con IA**. Una de ellas
+—`terreno-hero.jpg`— **terminó siendo el banner de esta versión**. Las otras dos
+(`terreno-esquina`, `terreno-avenida`) siguen disponibles en `raw/mascenter-terrenos/ia/`.
+Ver `PROMPTS-IMAGENES.md`.
 
 ## Volver a desplegar
 

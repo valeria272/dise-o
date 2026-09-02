@@ -31,8 +31,16 @@ También se arregló `scripts/drive-carpeta.py`, que no traía el fix de certifi
 **Decisiones de Valeria:** el criterio vigente es el de **Paulina (septiembre)**; el carrusel
 de Halloween va con **imágenes IA fotorrealistas**; el WhatsApp va **verbatim del brief**.
 
-**Qué sigue:** producir la grilla de octubre — reel 6-oct, estático 13-oct, carrusel PAID
-20-oct, carrusel Halloween 27-oct, historias 2 y 29-oct.
+**Producido:** el **carrusel de Halloween (27-oct), 5 láminas** a 4500×5625, en
+`out/rentas/20261000_grilla_octubre/`. Fondos IA (Nano Banana Pro 4K) ambientados como un
+depto de Valle Altiplánico; el brief pide personas manipulando cinta y telarañas y eso no
+está en el banco. QA: manos con zoom 4× en las cuatro láminas que las muestran (ninguna
+descartada), contraste 9,63:1 en la portada, margen inferior 6,4–7,0 % (Paulina va de 5,8 a
+16 %), y reproducibilidad comprobada con `cmp`. Página de revisión:
+https://claude.ai/code/artifact/be393090-b380-4ee7-a20b-a79a3c36849c
+
+**Qué sigue:** las otras 5 piezas del mes — reel 6-oct, estático 13-oct, carrusel PAID
+20-oct, historias 2 y 29-oct. Todas esperan material fotográfico.
 
 **Abierto:**
 1. **⛔ BLOQUEANTE — la carpeta `Artes` de Drive sigue cerrada.** Tiene permiso propio que

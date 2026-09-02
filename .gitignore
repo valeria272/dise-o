@@ -322,3 +322,16 @@ out/ebema/20260902_carrusel_cedral/editables/*
 # Sale del fotograma -248, el único con el relleno de palta a la vista —«rico y
 # contundente», que es el copy— y el logotipo del vaso entero.
 !public/assets/hilton/between/fotos-gradadas/togo-sandwich-45.jpg
+
+# ── RENTAS octubre 2026: el render vuelve al repo el mismo día ───────────────
+# Se versionan el generador, el CSS del sistema y los fondos IA ya recortados a
+# 4:5. Con eso `build.py` + `render.sh` reproducen las 5 piezas byte a byte.
+!out/rentas/
+!out/rentas/**/
+!out/rentas/**/ENTREGA.md
+!out/rentas/**/editables/**
+!out/rentas/**/fondos/halloween/*_45.jpg
+# Los PNG finales NO viajan: se comprobó con `cmp` que build.py + render.sh los
+# regeneran byte a byte desde lo de arriba. Pesan 93 MB y son redundantes.
+out/rentas/**/feed/
+out/rentas/**/story/

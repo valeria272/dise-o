@@ -1,0 +1,126 @@
+/* ============================================================
+   RENTAS NUEVA URBE · VALLE ALTIPLÁNICO — sistema de producción
+   Toda la geometría de acá está MEDIDA sobre las piezas de
+   septiembre 2026 de Paulina. Ver clients/nueva-urbe/CLAUDE.md.
+   Nada de style="" suelto en el HTML: si falta algo, se agrega acá.
+   ============================================================ */
+
+@font-face { font-family: 'Montserrat'; src: url('fonts/Montserrat.ttf') format('truetype');
+             font-weight: 100 900; font-style: normal; font-display: block; }
+
+:root {
+  --azul:  #1372F1;   /* medido — 540.227 px del corpus */
+  --lima:  #CCDC00;   /* medido — 135.814 px */
+  --blanco:#FFFFFF;
+
+  /* La caja del logo, en fracción del ANCHO del lienzo */
+  --caja-w-feed: 24.2%;
+  --caja-w-story: 17.51%;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { background:#000; }
+
+.pieza {
+  position: relative; overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--blanco);
+  -webkit-font-smoothing: antialiased;
+}
+.pieza.feed  { width: 4500px; height: 5625px; }
+.pieza.story { width: 4500px; height: 8000px; }
+
+/* --- la foto, siempre a sangre --- */
+.foto { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+
+/* Velo. En feed sólo se usa en los cierres (foto oscurecida entera). */
+.velo      { position:absolute; inset:0; background:rgba(0,0,0,.38); }
+.velo-abajo{ position:absolute; inset:0;
+             background:linear-gradient(to bottom, transparent 45%, rgba(0,0,0,.55) 100%); }
+.velo-arriba{position:absolute; inset:0;
+             background:linear-gradient(to bottom, rgba(0,0,0,.45) 0%, transparent 38%); }
+
+/* ============ LA CAJA DEL LOGO ============
+   feed: 24,2 % del ancho, alto 0,754× su ancho, cuelga ARRIBA, radio 17,9 %
+   story: 17,51 % del ancho, alto 0,888× su ancho, cuelga ABAJO, radio 14,2 %
+   El logotipo ocupa el 54,2 % del ancho de la caja y deja 17,8 % de aire arriba. */
+.caja-logo {
+  position:absolute; left:50%; transform:translateX(-50%);
+  background:var(--blanco); display:flex; justify-content:center;
+}
+.feed  .caja-logo { top:0;    width:var(--caja-w-feed);  aspect-ratio: 1089/821;
+                    border-radius: 0 0 195px 195px; align-items:flex-start; padding-top:17.8%; }
+.story .caja-logo { bottom:0; width:var(--caja-w-story); aspect-ratio: 788/700;
+                    border-radius: 112px 112px 0 0;   align-items:center; }
+.caja-logo img { width:54.2%; }
+.story .caja-logo img { width:62%; }
+
+/* logo Valle Altiplánico en blanco, arriba a la derecha (piezas de ficha) */
+.logo-valle { position:absolute; top:3.4%; right:5.2%; width:19%; }
+
+/* ============ TIPOGRAFÍA ============ */
+.bloque { position:absolute; left:50%; transform:translateX(-50%);
+          width:86%; text-align:center; }
+.bloque.abajo  { bottom:6.4%; }
+.bloque.centro { top:50%; transform:translate(-50%,-50%); }
+
+.titular { line-height:1.06; letter-spacing:-0.005em;
+           text-shadow: 0 6px 40px rgba(0,0,0,.28); }
+.titular .l1 { display:block; font-weight:300; }
+.titular .l2 { display:block; font-weight:700; }
+.italica .titular, .italica .bajada, .italica .marca-caja { font-style: italic; }
+
+/* la caja de color abraza al texto: alto ≈ 2,05× la altura de mayúsculas */
+.marca-caja { display:inline-block; padding:.30em .46em .34em; line-height:1;
+              margin-top:.16em; font-weight:700; }
+.marca-caja.lima { background:var(--lima); color:var(--azul); }
+.marca-caja.azul { background:var(--azul); color:var(--blanco); }
+
+.bajada { margin-top:1.1em; font-weight:400; line-height:1.24;
+          text-shadow: 0 4px 26px rgba(0,0,0,.42); }
+.bajada b { font-weight:700; }
+
+/* ============ CIERRE DE CARRUSEL ============ */
+.boton-url { display:inline-flex; align-items:center; justify-content:center;
+             background:var(--blanco); color:var(--azul); font-weight:700; font-style:italic;
+             letter-spacing:.02em; border-radius:9999px;
+             padding:.42em 1.5em; margin-top:.5em; }
+.cursor { position:absolute; width:5.6%; }
+
+/* ============ FICHA DE PROYECTO ============ */
+.tarjeta-azul { background:var(--azul); border-radius:64px; padding:56px 64px; }
+.pildora-lima { display:inline-block; background:var(--lima); color:var(--azul);
+                font-weight:700; border-radius:9999px; padding:.16em .8em; }
+.tarjeta-precio { background:var(--blanco); color:var(--azul); font-style:italic;
+                  border-radius: 40px 200px 40px 200px; padding:56px 96px; text-align:center; }
+.tarjeta-precio .desde { font-weight:300; }
+.tarjeta-precio .cifra { font-weight:900; line-height:1; }
+.tarjeta-precio .mens  { font-weight:300; }
+
+/* ============ ESCALAS (en px sobre lienzo de 4500 de ancho) ============ */
+.t-xxl { font-size: 300px; }   /* titular de portada de feed */
+.t-xl  { font-size: 250px; }
+.t-l   { font-size: 205px; }
+.t-m   { font-size: 165px; }
+.t-s   { font-size: 132px; }   /* bajada de feed */
+.t-xs  { font-size: 108px; }
+
+/* dos bloques de titular apilados (etiqueta de tip + frase) */
+.titular + .titular { margin-top:.34em; }
+
+/* Cursor lima que apunta al botón del cierre — elemento del sistema, medido en
+   el cierre del carrusel de septiembre y en la placa de marca del reel. */
+.cursor-lima {
+  display:inline-block; width:150px; height:150px; margin-left:-40px;
+  vertical-align:-58px;
+  background: var(--lima);
+  clip-path: polygon(0 0, 0 76%, 22% 58%, 37% 94%, 56% 85%, 41% 51%, 69% 49%);
+  filter: drop-shadow(0 8px 22px rgba(0,0,0,.35));
+}
+
+/* bloque angosto: evita que una frase corta reparta mal las líneas */
+.bloque.angosto { width: 74%; }
+.velo-abajo-firme { position:absolute; inset:0;
+  background:linear-gradient(to bottom, transparent 38%, rgba(0,0,0,.20) 55%, rgba(0,0,0,.68) 100%); }
+/* la caja de color puede ir a un tamaño distinto del titular que la precede */
+.caja-sola { display:block; }

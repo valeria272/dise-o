@@ -1,0 +1,171 @@
+{
+  "slug": "nueva-urbe",
+  "nombre": "Rentas Nueva Urbe · Valle Altiplánico",
+  "rubro": "Arriendo de departamentos — Calama, Región de Antofagasta",
+  "pais": "CL",
+  "moneda": "CLP",
+  "web": "https://rentas.inu.cl",
+  "instagram": "@rentasnuevaurbe",
+  "manual": "clients/nueva-urbe/CLAUDE.md",
+  "kit_codigo": "src/brand/rentas.ts",
+  "marca_hermana": {
+    "slug": "inu",
+    "nombre": "Inmobiliaria Nueva Urbe (@nuevaurbe, inu.cl)",
+    "regla": "MISMA empresa, DOS marcas y DOS paletas. INU vende casas (Travesía del Desierto II, azul #2050B4 + lima #CCE054). Rentas arrienda deptos (Valle Altiplánico, azul #1372F1 + lima #CCDC00). Los azules NO son el mismo y no se intercambian: el de Rentas es notoriamente más brillante y saturado. Usar el kit de INU en una pieza de Rentas la deja off-brand."
+  },
+  "regla_madre": "Foto real del condominio a sangre + caja blanca del logo colgada del borde superior + titular en dos pesos (Light sobre Bold) + UNA caja de color por pieza. El dato duro va en caja; el resto va sobre la foto con velo.",
+  "colores": {
+    "_origen": "MEDIDO con PIL sobre las 6 piezas de mailing de septiembre 2026 de Paulina Bustamante (raw/nuevaurbe/rentas/mail-sep2026/), moda exacta de píxel. Verificado contra agosto (Diego Aguilar) y julio: los dos hex coinciden en los tres meses.",
+    "blue": {
+      "hex": "#1372F1",
+      "uso": "El azul de la marca. Cajas de dato, tipografía sobre lima y sobre blanco, tarjetas de ficha.",
+      "origen": "medido — 540.227 px, el color de marca más usado del corpus"
+    },
+    "lime": {
+      "hex": "#CCDC00",
+      "uso": "Acento. Caja de resalte del titular, botón, píldoras de dato dentro de las tarjetas azules.",
+      "origen": "medido — 135.814 px"
+    },
+    "white": {
+      "hex": "#FFFFFF",
+      "uso": "Caja del logo, tarjeta de precio, todo el texto sobre foto.",
+      "origen": "medido — 398.317 px"
+    },
+    "_nota": "Son SOLO DOS colores de marca más el blanco. No hay tercer acento: el celeste #5AC8D8 que trae el kit viejo de INU NO aparece en ninguna pieza de Rentas 2026."
+  },
+  "fuentes": {
+    "display": {
+      "familia": "Montserrat",
+      "archivo": "public/assets/fonts/Montserrat.ttf",
+      "confirmado": true,
+      "origen": "IoU 84,7% contra el botón «AGENDA TU VISITA» rendido en Montserrat 700 con tracking +0,02em. Poppins llega a 76,5% y empeora al abrir el tracking; Inter a 59,4%.",
+      "pesos_en_uso": [
+        300,
+        400,
+        700
+      ],
+      "tracking_versales": "+0.02em",
+      "italica": "Sí, y es parte del sistema: la tarjeta de precio va ENTERA en itálica (Light itálica / Black itálica / Light itálica)."
+    }
+  },
+  "geometria": {
+    "_origen": "MEDIDA con PIL sobre las 10 piezas de septiembre 2026 (feed y stories) y 5 banners de mailing de julio, agosto y septiembre.",
+    "caja_logo": {
+      "feed": {
+        "ancho_pct": 24.2,
+        "ancho_px": 1089,
+        "alto_px": 821,
+        "ancla": "borde superior",
+        "radio_px": 195,
+        "radio_pct_de_la_caja": 17.9,
+        "eje_x": 0.502,
+        "centrada": true
+      },
+      "historia": {
+        "ancho_pct": 17.51,
+        "ancho_px": 788,
+        "alto_px": 700,
+        "ancla": "borde INFERIOR",
+        "radio_px": 112,
+        "radio_pct_de_la_caja": 14.2,
+        "eje_x": 0.507,
+        "centrada": true
+      },
+      "banner_mailing": {
+        "ancho_pct": 10.2,
+        "alto_rel": 0.94,
+        "ancla": "borde superior",
+        "radio_pct_de_la_caja": 22.5,
+        "eje_x": 0.27,
+        "centrada": false
+      },
+      "logotipo_dentro": {
+        "ancho_pct_de_la_caja": 54.2,
+        "aire_superior_pct": 17.8
+      },
+      "regla_carrusel": "Solo la portada y el cierre llevan la caja del logo. Las láminas intermedias NO."
+    },
+    "cajas_de_color": {
+      "regla": "La caja abraza al texto, no tiene ancho fijo. Su alto es ~2x la altura de mayúsculas que contiene (medido 357/174, 358/174, 448/209).",
+      "historia_titular": {
+        "ancho_pct": 72.3,
+        "margen_lateral_pct": 13.9
+      },
+      "historia_precio": {
+        "ancho_pct": 52.4,
+        "margen_lateral_pct": 23.8
+      },
+      "altura_mayusculas_resaltadas_pct_del_ancho": [
+        3.9,
+        5.7
+      ]
+    }
+  },
+  "proyecto": {
+    "nombre": "Condominio Valle Altiplánico",
+    "ciudad": "Calama",
+    "direccion": "Av. Circunvalación 1458",
+    "modelos": "5 modelos disponibles",
+    "superficie": "desde 59 m²",
+    "tipologia": "2 y 3 dormitorios · 2 baños",
+    "precio": "desde $715.000 mensuales",
+    "amenidades": [
+      "Quincho",
+      "Cancha",
+      "Juegos infantiles",
+      "Áreas verdes",
+      "Gimnasio",
+      "Conserjería 24/7"
+    ],
+    "condiciones_octubre_2026": [
+      "Garantía de 1,5 meses de arriendo hasta en 6 cuotas",
+      "Sin comisión de arriendo",
+      "Reajuste del arriendo cada 12 meses",
+      "Entrega inmediata"
+    ],
+    "horario_atencion": "Lunes a viernes · 10:00 a 14:00 y 14:30 a 18:00 hrs.",
+    "whatsapp": "+56 9 9707 9955",
+    "_ojo_whatsapp": "El brief de GRILLA de octubre escribe +56 9 9707 9951 en el estático del 13-oct. Ese es el número de Travesía (INU, venta). El brief de MAILING del mismo mes usa 9955 dos veces y su nota final dice literal «(2) número de WhatsApp (se usa +56 9 9707 9955)». Julio y agosto también usaron 9955."
+  },
+  "equipo": {
+    "contenido": "Carlos Figueroa",
+    "diseno_septiembre_2026": "Paulina Bustamante",
+    "diseno_agosto_2026": "Diego Aguilar",
+    "diseno_julio_2026": "Constanza Lizana (solo paid)",
+    "am": "Ámbar Gallardo",
+    "cliente": "Jean Paul Fredericksen · Yocelyn Maturana",
+    "criterio_vigente": "Paulina Bustamante (septiembre 2026) — decidido por Valeria el 02-09-2026"
+  },
+  "formatos": {
+    "feed": {
+      "ancho": 4500,
+      "alto": 5625,
+      "proporcion": "4:5"
+    },
+    "historia": {
+      "ancho": 4500,
+      "alto": 8000,
+      "proporcion": "9:16"
+    },
+    "_origen": "medido sobre las 10 piezas entregadas de septiembre 2026"
+  },
+  "gramatica": {
+    "alineacion": "CENTRADA en feed e historia. Solo los banners de mailing van a la izquierda con velo.",
+    "titular": "Dos pesos apilados (Light sobre Bold); la última línea dentro de caja lima con texto azul.",
+    "italica": "Marca campaña. Gancho emocional en itálica; dato duro recto. Conviven en la misma grilla.",
+    "cierre_carrusel": "Foto oscurecida entera + titular itálico + botón blanco redondeado 'RENTAS.INU.CL' en azul bold itálica + cursor lima apuntándolo + bajada itálica light.",
+    "cierre_reel": "Fondo BLANCO, logo Rentas centrado grande, 'Agenda tu visita en rentas.inu.cl' en azul, '¡Escríbenos por WhatsApp!' en caja azul. Idéntico en mayo, julio, agosto y septiembre.",
+    "placa_de_marca": "Azul plano con textura de curvas de nivel topográficas, ícono $ en círculo lima con cursor blanco."
+  },
+  "logos": {
+    "rentas": "public/assets/rentas/logo_rentas.png",
+    "valle_blanco": "public/assets/rentas/logo_valle_blanco.png",
+    "_origen": "EXTRAÍDOS de las piezas entregadas (la carpeta LOGOS INU de Drive sigue cerrada). El de Rentas sale de la caja blanca de rentas_c-benef1.png a 4500 px; el de Valle, del banner rentas-mail_1.3."
+  },
+  "material": {
+    "frames": "raw/nuevaurbe/rentas/frames/ — 108 fotogramas sacados de los 6 reels entregados (mayo a septiembre)",
+    "entregas": "raw/nuevaurbe/rentas/entregas/{MAYO..SEPTIEMBRE}-2026/",
+    "mailings": "raw/nuevaurbe/rentas/mail-{jul,ago,sep}2026/",
+    "_pendiente": "Las fotos originales del condominio (PROYECTOS INMOBILIARIOS/VALLE ALTIPLÁNICO) y los videos-dron siguen en carpeta cerrada de Drive."
+  }
+}

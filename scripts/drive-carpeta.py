@@ -25,9 +25,16 @@ Uso:
 import argparse
 import html
 import re
+import ssl
 import sys
 import urllib.request
 from pathlib import Path
+
+try:                                            # macOS Python no trae raíces propias:
+    import certifi                              # sin esto todo revienta con
+    _CTX = ssl.create_default_context(cafile=certifi.where())   # CERTIFICATE_VERIFY_FAILED.
+except ModuleNotFoundError:                     # En Windows el store del sistema sí sirve.
+    _CTX = ssl.create_default_context()
 
 VISOR = "https://drive.google.com/embeddedfolderview?id={}#list"
 DESCARGA = "https://drive.usercontent.google.com/download?id={}&export=download&confirm=t"
@@ -39,7 +46,7 @@ PROHIBIDOS = re.compile(r'[<>:"/\\|?*\x00-\x1f]')
 
 def listar(folder_id):
     """(id, nombre) de cada archivo, leídos del visor público."""
-    with urllib.request.urlopen(VISOR.format(folder_id)) as r:
+    with urllib.request.urlopen(VISOR.format(folder_id), context=_CTX) as r:
         src = r.read().decode("utf-8", "replace")
     pares = re.findall(r'id="entry-([-\w]{25,})".*?flip-entry-title">([^<]+)</div>', src, re.S)
     return [(fid, html.unescape(n).strip()) for fid, n in pares]
@@ -86,7 +93,9 @@ def main():
             continue
         url = (MINIATURA if a.miniaturas else DESCARGA).format(fid)
         try:
-            urllib.request.urlretrieve(url, salida)
+            with urllib.request.urlopen(url, context=_CTX) as r, salida.open("wb") as f:
+                while (trozo := r.read(1 << 20)):
+                    f.write(trozo)
             kb = salida.stat().st_size // 1024
             print(f"[{i}/{len(pares)}] {salida.name} — {kb} KB")
             bajados += 1

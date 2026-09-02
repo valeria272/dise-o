@@ -18,6 +18,19 @@ import os
 import pathlib
 import sys
 
+# ── Consola de Windows ────────────────────────────────────────────────────────
+# PowerShell escribe en cp1252 y revienta con UnicodeEncodeError al imprimir un
+# «✓» o un «✗». Lo peor no es el error: es que salta DESPUÉS de que el script ya
+# hizo el trabajo, así que parece que falló algo cuando no falló nada. Se arregló
+# a mano en siete scripts entre agosto y septiembre de 2026, y volvió a aparecer
+# en el octavo y el noveno. Va acá porque todos los scripts del estudio importan
+# este módulo: el décimo ya nace arreglado.
+for _flujo in (sys.stdout, sys.stderr):
+    try:
+        _flujo.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 # ── Raíz del repo: derivada de la ubicación de este archivo, nunca quemada ──
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 PUBLIC = RAIZ / "public"

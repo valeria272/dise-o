@@ -48,12 +48,16 @@ CABECERA = "COPYLAB-LLAVERO-1"
 # Las claves que necesita un diseñador para producir. Todo lo demás del .env del
 # monorepo (Slack, Trello, bancos, Meta) NO entra acá: el llavero es del estudio
 # de diseño, no de la agencia entera.
+# (nombre, para qué, ¿hace falta de verdad?). Las que no hacen falta NO se
+# reportan como «faltantes»: un diseñador se pasó una mañana buscando la clave de
+# Higgsfield, que no existe — Higgsfield es un conector de claude.ai y se activa
+# con usuario y contraseña, no con una API key (comprobado 02-09-2026).
 CLAVES = [
-    ("FREEPIK_API_KEY", "Magnific / Freepik — generación y escalado de imágenes"),
-    ("MAGNIFIC_API_KEY", "alias antiguo de la anterior (algunos scripts lo piden)"),
-    ("HF_API_KEY", "Higgsfield — video IA"),
-    ("HF_SECRET", "Higgsfield — secreto que acompaña a la anterior"),
-    ("ANTHROPIC_API_KEY", "API de Claude para los scripts que la usan"),
+    ("FREEPIK_API_KEY", "Magnific / Freepik — generación y escalado de imágenes", True),
+    ("ANTHROPIC_API_KEY", "API de Claude para los scripts que la usan", True),
+    ("MAGNIFIC_API_KEY", "alias antiguo de FREEPIK_API_KEY — sólo si un script viejo lo pide", False),
+    ("HF_API_KEY", "Higgsfield por API — NO existe hoy; se usa por conector", False),
+    ("HF_SECRET", "idem", False),
 ]
 
 # Los accesos de NAVEGADOR. No son claves de API: son el correo y la contraseña con
@@ -61,14 +65,14 @@ CLAVES = [
 # conectores de claude.ai (Higgsfield, Canva), que son de la cuenta de cada persona y
 # por eso NO se pueden automatizar desde acá.
 LOGINS = [
-    ("LOGIN_HERRAMIENTAS_CORREO", "correo con el que se entra a Higgsfield, Canva, Magnific y CapCut"),
-    ("LOGIN_HERRAMIENTAS_PASS", "su contraseña"),
+    ("LOGIN_HERRAMIENTAS_CORREO", "correo con el que se entra a Higgsfield, Canva, Magnific y CapCut", True),
+    ("LOGIN_HERRAMIENTAS_PASS", "su contraseña", True),
 ]
 
 # Archivos completos que también viajan en el llavero.
 ARCHIVOS = [
-    ("token.json", "token OAuth de Google — Drive, Sheets, Gmail del estudio"),
-    ("client_secret.json", "cliente OAuth, para volver a autorizar desde cero"),
+    ("token.json", "token OAuth de Google — Drive, Sheets, Gmail del estudio", True),
+    ("client_secret.json", "cliente OAuth, para volver a autorizar desde cero", False),
 ]
 
 
@@ -199,13 +203,13 @@ def cmd_abrir(args):
         os.chmod(destino, stat.S_IRUSR | stat.S_IWUSR)
         print(f"✓ {destino.relative_to(RAIZ)}")
 
-    faltan = [k for k, _ in CLAVES if k not in variables]
+    faltan = [k for k, _, esencial in CLAVES if esencial and k not in variables]
     if faltan:
-        print("\n  Sin llenar todavía en el llavero: " + ", ".join(faltan))
+        print("\n  ⚠️ FALTAN en el llavero: " + ", ".join(faltan))
 
     print("\nListo — las claves ya están montadas. Comprueba con:")
     print("  python3 scripts/llavero.py estado")
-    if all(k in variables for k, _ in LOGINS):
+    if all(k in variables for k, _, _ in LOGINS):
         print("\n⚠️ TE FALTA UN PASO que no se puede automatizar: activar los")
         print("   conectores en TU cuenta de claude.ai. Te digo cómo:")
         print("  python3 scripts/llavero.py logins")
@@ -217,7 +221,7 @@ def cmd_estado(args):
     print(f"abierto en       {ENV_LOCAL.relative_to(RAIZ)}  "
           f"{'✓' if ENV_LOCAL.is_file() else '✗ corre: python3 scripts/llavero.py abrir'}")
     print(f"~/.magnific_key  {'✓' if (Path.home() / '.magnific_key').is_file() else '✗'}")
-    for nombre, _ in ARCHIVOS:
+    for nombre, _, _ in ARCHIVOS:
         d = RAIZ / "credentials" / nombre
         print(f"{nombre:<19}{'✓' if d.is_file() else '✗'}")
     if not ENV_LOCAL.is_file():
@@ -225,8 +229,9 @@ def cmd_estado(args):
     presentes = {l.split("=", 1)[0] for l in ENV_LOCAL.read_text(encoding="utf-8").splitlines()
                  if "=" in l and not l.startswith("#")}
     print()
-    for k, para_que in CLAVES + LOGINS:
-        print(f"  {'✓' if k in presentes else '·'} {k:<26} {para_que}")
+    for k, para_que, esencial in CLAVES + LOGINS:
+        marca = "✓" if k in presentes else ("✗" if esencial else "·")
+        print(f"  {marca} {k:<26} {para_que}")
     print("\n  Los conectores de claude.ai (Drive, Higgsfield, Canva) NO se ven acá:")
     print("  son de tu cuenta. Cómo activarlos:  python3 scripts/llavero.py logins")
 
@@ -302,7 +307,7 @@ def cmd_guardar(args):
         de_donde.update({k: "ya estaba en el llavero" for k in variables})
 
     # 2. los .env de esta máquina
-    nombres = {k for k, _ in CLAVES} | {k for k, _ in LOGINS}
+    nombres = {k for k, _, _ in CLAVES} | {k for k, _, _ in LOGINS}
     for f in _fuentes_locales():
         for linea in f.read_text(encoding="utf-8", errors="ignore").splitlines():
             linea = linea.strip()
@@ -324,11 +329,17 @@ def cmd_guardar(args):
 
     # 4. archivos de credenciales de Google
     if not args.sin_google:
-        for nombre, _ in ARCHIVOS:
+        for nombre, _, _ in ARCHIVOS:
             for base in (RAIZ / "credentials",
                          RAIZ.parent / "ASISTENTE PERSONAL" / "credentials",
                          Path.home() / "copylab-work" / "respaldo-credenciales"):
+                if not base.is_dir():
+                    continue
                 p = base / nombre
+                if not p.is_file() and nombre == "client_secret.json":
+                    # Google lo descarga como client_secret_<id largo>.apps...json
+                    encontrados = sorted(base.glob("client_secret*.json"))
+                    p = encontrados[0] if encontrados else p
                 if p.is_file():
                     archivos[nombre] = p.read_text(encoding="utf-8")
                     de_donde[nombre] = str(p)

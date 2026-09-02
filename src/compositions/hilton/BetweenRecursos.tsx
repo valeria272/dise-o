@@ -12,6 +12,7 @@
 import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
 import {BETWEEN} from '../../brand/hilton-between';
+import {conCifras} from './BetweenSistema';
 
 /* ---------- ilustraciones de Eli ---------- */
 
@@ -465,7 +466,7 @@ export const Etiqueta: React.FC<{
         : {}),
     }}
   >
-    {children}
+    {conCifras(children)}
   </div>
 );
 
@@ -480,7 +481,18 @@ export const StickerQuiz: React.FC<{
   /** Versión baja, para cuando la foto deja poco alto libre sobre la zona
       segura inferior de las historias (340 px). */
   compacto?: boolean;
-}> = ({pregunta, opciones, correcta, ancho = 660, compacto = false}) => (
+  /**
+   * Opciones en DOS columnas (2×2), como muestra Instagram una encuesta de
+   * cuatro alternativas.
+   *
+   * ⭐ 02-09-2026: hizo falta al poner las cuatro opciones que pide el brief de
+   * «Emergencia Between» (las tres del brief más la que agregó el cliente). En
+   * una sola columna el sticker mide ~326 px y arrancando en y=1318 terminaba
+   * en 1644, o sea DENTRO de la zona segura inferior de Meta (que empieza en
+   * 1580). En 2×2 baja a ~199 px y entra sin pelear con la caja.
+   */
+  dosColumnas?: boolean;
+}> = ({pregunta, opciones, correcta, ancho = 660, compacto = false, dosColumnas = false}) => (
   <div
     style={{
       width: ancho,
@@ -503,25 +515,46 @@ export const StickerQuiz: React.FC<{
         lineHeight: 1.25,
       }}
     >
-      {pregunta}
+      {conCifras(pregunta)}
     </div>
-    {opciones.map((o, i) => (
-      <div
-        key={o}
-        style={{
-          fontFamily: BETWEEN.fuentes.sans,
-          fontWeight: i === correcta ? 700 : 500,
-          fontSize: compacto ? 26 : 29,
-          color: i === correcta ? BETWEEN.colores.beige : '#2b2b2b',
-          background: i === correcta ? BETWEEN.colores.cafe : '#f1ede5',
-          borderRadius: 14,
-          padding: compacto ? '11px 20px' : '15px 22px',
-          textAlign: 'center',
-        }}
-      >
-        {o}
-      </div>
-    ))}
+    <div
+      style={{
+        display: dosColumnas ? 'grid' : 'flex',
+        ...(dosColumnas
+          ? {gridTemplateColumns: '1fr 1fr'}
+          : {flexDirection: 'column' as const}),
+        gap: compacto ? 10 : 14,
+      }}
+    >
+      {opciones.map((o, i) => (
+        <div
+          key={o}
+          style={{
+            /* ⭐ RONDA 4 §3 del manual: Raleway está auto-hospedada y NO trae
+               emojis. Sin nombrar la familia de color al final de la pila,
+               Chrome cae en un glifo monocromo y los ☕ 🥐 🥪 salen como
+               manchas grises. La encuesta de «Emergencia Between» los lleva
+               por brief. */
+            fontFamily: `${BETWEEN.fuentes.sans}, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji'`,
+            fontWeight: i === correcta ? 700 : 500,
+            fontSize: compacto ? 26 : 29,
+            color: i === correcta ? BETWEEN.colores.beige : '#2b2b2b',
+            background: i === correcta ? BETWEEN.colores.cafe : '#f1ede5',
+            borderRadius: 14,
+            padding: compacto ? '11px 20px' : '15px 22px',
+            textAlign: 'center',
+            /* en 2×2 las cuatro celdas tienen que verse del mismo alto aunque
+               «Todas las anteriores» sea más largo que «☕ Café» */
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            lineHeight: 1.15,
+          }}
+        >
+          {conCifras(o)}
+        </div>
+      ))}
+    </div>
   </div>
 );
 
@@ -831,16 +864,15 @@ export const PilaEsquina: React.FC<{
           lineHeight: 1.1,
           color: BETWEEN.colores.beige,
           whiteSpace: 'nowrap',
-          /* ⭐ 01-09-2026, Eli: «los precios debes hacer que se vean opentype
-             tabular, como en adobe illustrator, así los números no se ven
-             desordenados». Con cifras proporcionales el «1» ocupa menos que el
-             «3» y una columna de precios queda dispareja. `tnum` les da a todas
-             el mismo avance y `lnum` las lleva a caja alta. */
-          fontVariantNumeric: 'tabular-nums lining-nums',
-          fontFeatureSettings: '"tnum" 1, "lnum" 1',
         }}
       >
-        {l.texto}
+        {/* ⭐ 01-09-2026, Eli: «los precios debes hacer que se vean opentype
+            tabular, como en adobe illustrator, así los números no se ven
+            desordenados». Acá caen los tres precios del carrusel To Go
+            ($4.290 · $3.790 · $5.290). El CSS `tnum` que había antes NO servía
+            —Raleway no trae la función—; ver `cifrasTabulares` en
+            BetweenSistema.tsx, que construye la caja tabular a mano. */}
+        {conCifras(l.texto)}
       </div>
     ))}
   </div>

@@ -408,13 +408,30 @@ export const Cumple2: React.FC = () => (
      (refs-sept-ronda4/D-feed-cumple.jpg): manos y taza, sin cara. Sin rostro no
      hay derechos de imagen que revisar, y el chiste —que es del texto— no
      pierde nada.
-   Los textos NO se tocan: el cliente objetó la imagen, no el copy.            */
+   Los textos NO se tocan: el cliente objetó la imagen, no el copy.
+
+   ⭐ RONDA 6 (comentario nativo G15 de Scarlette, 31-08-2026): «siento que
+   avisamos en estos contenidos que veo de las 2 tipografías de between,
+   dejaría esto escrito por completo con la que es más RÍGIDA. OJO con la
+   imagen igual, el espacio que se ve ahí no se parece a Between».
+     · tipografía: se va Brushwell y las DOS líneas quedan en Raleway
+       (`scriptSans`). «La más rígida» de las dos familias de Between es la
+       sans; la script es justamente la blanda.
+     · las COMILLAS: el brief escribe este texto como una CITA
+       —«Perdón, esa preocupación / no cabe en mi cafecito de Between.»— y la
+       pieza las había perdido, junto con el punto. Vuelven las dos cosas:
+       `mantenerPunto` evita que `sinPuntoFinal` se coma el punto de la frase,
+       que acá va DENTRO de la comilla y es parte de lo que se dice.
+     · ⏳ el FONDO sigue pendiente: la escena actual no se parece a Between y
+       hay que generarla de nuevo. Ver la nota al pie de este archivo.        */
 
 export const HumorCafecito: React.FC = () => (
   <PiezaFeedBodegon
     foto={IA + 'humor-cafecito-2.png'}
-    script="Perdón, esa preocupación"
-    caps={'No cabe en mi\ncafecito de Between'}
+    script="“Perdón, esa preocupación"
+    caps={'No cabe en mi\ncafecito de Between.”'}
+    scriptSans
+    mantenerPunto
     anclaje="abajo"
     conLogo
     oscurecer={0.14}
@@ -430,13 +447,27 @@ export const HumorCafecito: React.FC = () => (
      comida real de la sesión de platos (3 de enero), que además resuelve el
      comentario F15: esas modelos ya no se pueden usar.
    Los textos NO se tocan: el cliente los aprobó explícitamente.
-   El logo aparece UNA sola vez, en la portada; sin caras, vuelve arriba.       */
+   El logo aparece UNA sola vez, en la portada; sin caras, vuelve arriba.
+
+   ⭐ RONDA 6 (comentario nativo H15 de Scarlette, 31-08-2026): «mismo
+   comentario con respecto a tipografías, acá hay una tipo más pequeña y simple
+   tal como se ve en la ref (NO USEMOS LA CURSIVA) y USEMOS LAS COMILLAS».
+     · las cuatro slides pasan a Raleway en las dos líneas (`scriptSans`), que
+       además deja el carrusel con UN solo alfabeto, como pide la referencia.
+     · vuelven las COMILLAS y la puntuación del brief. Los cuatro textos son
+       citas: la comilla abre en la línea de arriba y cierra en la de abajo, y
+       `mantenerPunto` conserva el punto que va dentro de la cita.
+     · ⏳ Quedan pendientes de imagen: slide 1 (taza KIMBO, prohibida),
+       slide 2 (otro producto «más foto aesthetic») y slide 4 (que se vea
+       comido). Ver la nota al pie de este archivo.                           */
 
 export const Foto1: React.FC = () => (
   <PiezaFeedBodegon
     foto={F + 'desayuno-completo-2.jpg'}
-    script="Qué rico se ve"
-    caps={'Le voy a sacar\nuna foto'}
+    script="“Qué rico se ve."
+    caps={'Le voy a sacar\nuna foto.”'}
+    scriptSans
+    mantenerPunto
     anclaje="abajo"
     conLogo
     oscurecer={0.12}
@@ -450,8 +481,10 @@ export const Foto2: React.FC = () => (
        la izquierda para que el plato y la taza entren enteros en 4:5. */
     foto={F + 'croissant-latte-cenital.jpg'}
     posicionFoto="42% center"
-    script="Está demasiado lindo"
-    caps="Foto primero"
+    script="“Está demasiado lindo."
+    caps="Foto primero.”"
+    scriptSans
+    mantenerPunto
     oscurecer={0.12}
   />
 );
@@ -459,8 +492,10 @@ export const Foto2: React.FC = () => (
 export const Foto3: React.FC = () => (
   <PiezaFeedBodegon
     foto={F + 'croissant-plato.jpg'}
-    script="Qué pinta tiene…"
-    caps="Esto merece foto"
+    script="“Qué pinta tiene…"
+    caps="Esto merece foto.”"
+    scriptSans
+    mantenerPunto
     oscurecer={0.12}
   />
 );
@@ -468,8 +503,10 @@ export const Foto3: React.FC = () => (
 export const Foto4: React.FC = () => (
   <PiezaFeedBodegon
     foto={IA + 'torta-empezada.png'}
-    script="¡Nooo!"
-    caps={'Se me olvidó\nla foto'}
+    script="“¡Nooo!"
+    caps={'Se me olvidó\nla foto.”'}
+    scriptSans
+    mantenerPunto
     oscurecer={0.12}
   />
 );
@@ -852,23 +889,58 @@ export const StEmergencia: React.FC = () => (
         alignItems: 'center',
       }}
     >
+      {/* ⭐ RONDA 6: la leyenda va ENTERA en caja alta y en Raleway. Es el
+          rótulo impreso de una caja de emergencia real («ROMPER EN CASO DE…»),
+          no un titular con script: ahí la tipografía rígida es la que cuenta
+          el chiste. Y de paso el bloque baja de dos alfabetos a uno. */}
       <TitularBetween
-        script="Romper en caso"
-        caps="de antojo"
+        caps={'Romper en caso\nde antojo'}
         alinear="centro"
-        sizeCaps={82}
+        sizeCaps={76}
         anchoDisponible={544}
       />
     </div>
-    {/* la encuesta se apoya en el borde inferior de la caja, como el sticker
-        real cuando lo pega el community manager, y termina antes de y=1580
-        para respetar la zona segura inferior de las historias */}
-    <div style={{position: 'absolute', left: 0, right: 0, top: 1318, display: 'flex', justifyContent: 'center'}}>
+    {/* ⭐ RONDA 6 (I15): «ojo con la diagramación de los textos, TAPA MUCHO LA
+        CAJA». Lo que tapaba era el bloque de abajo: ahora la bajada del brief
+        —«Si solo pudieras sacar uno primero…»— y la encuesta viven en la PARED,
+        bajo el borde inferior de la caja (y≈1292), y no le pasan por encima.
+        Sobre la caja queda solo su rótulo, que es parte del objeto. */}
+    <div
+      style={{
+        position: 'absolute',
+        left: BETWEEN.bloque.margenX,
+        right: BETWEEN.bloque.margenX,
+        top: 1316,
+        textAlign: 'center',
+        fontFamily: BETWEEN.fuentes.sans,
+        fontWeight: BETWEEN.pesos.semibold,
+        fontSize: 34,
+        lineHeight: 1.15,
+        color: BETWEEN.colores.beige,
+        textShadow: '0 2px 14px rgba(36,26,18,0.45)',
+      }}
+    >
+      Si solo pudieras sacar uno primero…
+    </div>
+    {/* la encuesta arranca bajo la bajada y termina antes de y=1580, que es
+        donde empieza la zona segura inferior de Meta en historias */}
+    <div style={{position: 'absolute', left: 0, right: 0, top: 1376, display: 'flex', justifyContent: 'center'}}>
       <StickerQuiz
-        pregunta="Si solo pudieras sacar uno…"
-        opciones={['El café', 'El croissant', 'Todas las anteriores']}
+        /* ⭐ RONDA 6 — TEXTOS LITERALES DEL BRIEF. La pieza había perdido el
+           llamado y había reescrito las opciones:
+             · faltaba entero el «¿CUÁL TOMARÍAS?», que es el tercer bloque de
+               texto del brief y el que de verdad pregunta;
+             · las opciones decían «El café / El croissant / Todas las
+               anteriores» cuando el brief pide «☕ Café / 🥐 Algo dulce /
+               🥪 Algo salado» — se había perdido ALGO SALADO, que además es uno
+               de los tres productos que la pieza muestra dentro de la caja.
+           La cuarta opción es la que agregó el cliente en la fila 14
+           («Agregar opción todas las anteriores»). */
+        pregunta="¿Cuál tomarías?"
+        opciones={['☕ Café', '🥐 Algo dulce', '🥪 Algo salado', 'Todas las anteriores']}
         ancho={620}
         compacto
+        dosColumnas
       />
     </div>
   </AbsoluteFill>

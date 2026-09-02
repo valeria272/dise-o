@@ -30,6 +30,72 @@ const tinta = (tono: Tono) => (tono === 'cafe' ? BETWEEN.colores.cafe : BETWEEN.
 /** Sombra sutil solo cuando el texto va sobre foto (legibilidad en reels/stories). */
 const sombraSobreFoto = '0 2px 14px rgba(36,26,18,0.45)';
 
+/* ══════════════════ CIFRAS TABULARES ══════════════════
+   ⭐ 01-09-2026, Eli: «los precios debes hacer que se vean opentype tabular,
+   como en adobe illustrator, así los números no se ven desordenados».
+
+   ⛔ El camino obvio NO funciona y estuvo puesto sin efecto varios días:
+   `fontVariantNumeric: 'tabular-nums'` y `fontFeatureSettings: '"tnum" 1'`
+   le piden la función a la FUENTE, y **ningún Raleway del repo trae `tnum`**.
+   Verificado leyendo la tabla GSUB/GPOS de los cinco pesos instalados y de la
+   variable: la única función numérica que traen es `lnum`. O sea que el CSS
+   estaba ahí decorando, igual que el @font-face de Brushwell que fallaba en
+   silencio. En Illustrator pasa lo mismo: el «Tabular Lining» del panel
+   OpenType no tiene efecto con Raleway.
+
+   Los dígitos de Raleway son PROPORCIONALES. Medido en ExtraBold sobre un em
+   de 1000 unidades:
+     0=614 · 1=518 · 2=580 · 3=569 · 4=578 · 5=558 · 6=608 · 7=576 · 8=607 · 9=589
+   El «1» es 18,5 % más angosto que el «0»: por eso una columna de precios queda
+   dispareja y las horas bailan.
+
+   La solución es construir la cifra tabular a mano: cada dígito centrado en una
+   caja del ancho del dígito MÁS ANCHO. Es exactamente lo que hace una fuente con
+   cifras tabulares, y acá además es verificable midiendo el render. */
+
+/** Ancho de la caja tabular, en em. Es el avance del «0», el dígito más ancho. */
+export const ANCHO_CIFRA_EM = 0.614;
+
+/**
+ * Envuelve cada dígito de `texto` en una caja de ancho fijo para que todas las
+ * cifras avancen igual. Los signos ($ . : , espacios) quedan intactos: en una
+ * fuente tabular tampoco se ensanchan.
+ *
+ * ⚠️ Dentro de la caja el tracking se anula (`letterSpacing: 'normal'`), porque
+ * si no el letter-spacing heredado se suma DENTRO del cuadro y descentra el
+ * dígito. Úsalo en textos de dato y precio, que van sin tracking; no en el
+ * titular, que compone con −0,024em.
+ */
+export const cifrasTabulares = (texto: string): React.ReactNode =>
+  texto.split(/(\d)/).map((parte, i) =>
+    /^\d$/.test(parte) ? (
+      <span
+        key={i}
+        style={{
+          display: 'inline-block',
+          width: `${ANCHO_CIFRA_EM}em`,
+          textAlign: 'center',
+          letterSpacing: 'normal',
+        }}
+      >
+        {parte}
+      </span>
+    ) : (
+      parte
+    ),
+  );
+
+/** ¿Vale la pena pasar por `cifrasTabulares`? Evita envolver texto sin dígitos. */
+export const tieneCifras = (texto: string) => /\d/.test(texto);
+
+/**
+ * Versión tolerante para componentes que reciben `children: React.ReactNode`:
+ * si lo que llega es texto plano con dígitos lo pasa por la caja tabular, y si
+ * es cualquier otra cosa (un nodo ya armado) lo deja intacto.
+ */
+export const conCifras = (hijos: React.ReactNode): React.ReactNode =>
+  typeof hijos === 'string' && tieneCifras(hijos) ? cifrasTabulares(hijos) : hijos;
+
 /* ---------- foto de fondo + multiply ---------- */
 
 export const FotoFondo: React.FC<{
@@ -137,7 +203,6 @@ export const Titulo: React.FC<{
         fontSize: size,
         letterSpacing: enMayuscula ? 1 : 0,
         textTransform: enMayuscula ? 'uppercase' : 'none',
-        fontVariantNumeric: 'tabular-nums',
         color: tinta(tono),
         lineHeight: enMayuscula ? 1.05 : 1.15,
         textWrap: 'balance',
@@ -145,7 +210,7 @@ export const Titulo: React.FC<{
         ...style,
       }}
     >
-      {sinPuntoFinal(children)}
+      {conCifras(sinPuntoFinal(children))}
     </div>
   );
 };
@@ -243,13 +308,12 @@ export const Dato: React.FC<{
       fontSize: size,
       letterSpacing: espaciado ? BETWEEN.trackingHorario : 0,
       textTransform: espaciado ? 'uppercase' : 'none',
-      fontVariantNumeric: 'tabular-nums',
       color: tinta(tono),
       textShadow: sombraSobreFoto,
       ...style,
     }}
   >
-    {children}
+    {conCifras(children)}
   </div>
 );
 
@@ -567,12 +631,10 @@ export const CajaDato: React.FC<{
       color: BETWEEN.colores.beige,
       textTransform: 'uppercase',
       whiteSpace: 'nowrap',
-      fontVariantNumeric: 'tabular-nums lining-nums',
-      fontFeatureSettings: '"tnum" 1, "lnum" 1',
       ...style,
     }}
   >
-    {children}
+    {conCifras(children)}
   </div>
   );
 };
@@ -794,6 +856,17 @@ export const TitularBetween: React.FC<{
    * que se está cortando. Ver `clients/hilton/CLAUDE.md § LA COLUMNA`.
    */
   anchoDisponible?: number;
+  /**
+   * Conserva la puntuación final del texto tal como la escribe el brief.
+   *
+   * Por defecto la pieza pasa por `sinPuntoFinal`, porque la regla de Eli es que
+   * «los títulos NUNCA llevan punto final». Pero cuando el texto es una CITA
+   * —el carrusel «Primero la foto… ¿o no?» o el chiste del cafecito— el punto
+   * va DENTRO de las comillas y es parte de lo que se dice, no un punto de
+   * titular. Scarlette pidió expresamente las comillas el 31-08-2026, y el
+   * brief trae la puntuación completa, así que ahí se respeta literal.
+   */
+  mantenerPunto?: boolean;
   style?: React.CSSProperties;
 }> = ({
   script,
@@ -804,11 +877,13 @@ export const TitularBetween: React.FC<{
   tono = 'beige',
   alinear = 'centro',
   anchoDisponible = 1080 - 2 * BETWEEN.bloque.margenX,
+  mantenerPunto = false,
   style,
 }) => {
   // sin esto se mide con la fuente de reemplazo y el titular no se achica
   useFuentesListas();
-  const textoCaps = caps ? sinPuntoFinal(caps) : '';
+  const podar = (t: string) => (mantenerPunto ? t : sinPuntoFinal(t));
+  const textoCaps = caps ? podar(caps) : '';
   /**
    * ⚠️ En modo Raleway la línea se pinta en CAJA ALTA, así que se pasa a
    * mayúscula ACÁ y no con `textTransform`. El cuerpo se calcula midiendo con
@@ -817,7 +892,7 @@ export const TitularBetween: React.FC<{
    * cuadro. Es el bug que partió 8 piezas de la ronda 4.
    */
   const textoScript = script
-    ? (scriptSans ? sinPuntoFinal(script).toUpperCase() : sinPuntoFinal(script))
+    ? (scriptSans ? podar(script).toUpperCase() : podar(script))
     : '';
 
   if (!scriptSans && textoScript && textoScript.split(/\s+/).length > 4) {
@@ -1044,14 +1119,10 @@ export const PanelTaupe: React.FC<{
       lineHeight: interlinea ?? 1.3,
       color: BETWEEN.colores.beige,
       textAlign: 'center',
-      /* cifras tabulares y de caja alta: así los precios y las horas quedan en
-         columnas parejas, como el «Tabular Lining» de Illustrator. */
-      fontVariantNumeric: 'tabular-nums lining-nums',
-      fontFeatureSettings: '"tnum" 1, "lnum" 1',
       ...style,
     }}
   >
-    {children}
+    {conCifras(children)}
   </div>
 );
 
@@ -1105,7 +1176,9 @@ export const PieDePieza: React.FC<{
             textAlign: 'center',
           }}
         >
-          {detalle}
+          {/* acá cae el horario de la portada To Go («Lunes a viernes · 08:00 a
+              10:00 hrs.»): dos «1» y cuatro «0» que sin caja tabular bailan */}
+          {tieneCifras(detalle) ? cifrasTabulares(detalle) : detalle}
         </div>
       ) : null}
     </div>
@@ -1149,6 +1222,8 @@ export const PiezaFeedBodegon: React.FC<{
   script?: string;
   /** La línea de acompañamiento en Raleway en vez de Brushwell. */
   scriptSans?: boolean;
+  /** Conserva la puntuación del brief; para textos que son una CITA. */
+  mantenerPunto?: boolean;
   sizeCaps?: number;
   /** Bajada bajo el titular. Va antes de las cajas taupe. */
   bajada?: React.ReactNode;
@@ -1219,6 +1294,7 @@ export const PiezaFeedBodegon: React.FC<{
   caps,
   script,
   scriptSans,
+  mantenerPunto,
   sizeCaps,
   bajada,
   bajadaEnCaja,
@@ -1279,6 +1355,7 @@ export const PiezaFeedBodegon: React.FC<{
         <TitularBetween
           caps={caps} script={script} scriptSans={scriptSans}
           sizeCaps={sizeCaps} alinear={alinear} anchoDisponible={columna}
+          mantenerPunto={mantenerPunto}
         />
         {bajada && bajadaEnCaja ? (
           <PanelTaupe ancho={columnaCaja ?? columna} interlinea={interlineaBajada} style={{marginTop: aireTituloACaja}}>{bajada}</PanelTaupe>

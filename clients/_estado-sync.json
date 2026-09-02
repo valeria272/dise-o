@@ -1,6 +1,6 @@
 {
   "_que_es": "Registro de la última vez que se revisó el Drive con /al-dia. No editar a mano.",
-  "ultima_revision": "2026-09-01",
+  "ultima_revision": "2026-09-02",
   "por_marca": {
     "ebema": {
       "revisado": "2026-08-27",
@@ -19,8 +19,8 @@
       "ultimo_hallazgo": "Coni subió MAILAGO_S4_PROMOCHILA-TINTURAS.png (mail agosto S4); grilla de septiembre en pie"
     },
     "hilton": {
-      "revisado": "2026-09-01 (segunda pasada, 19:30)",
-      "ultimo_hallazgo": "SIN RONDA 6: los comentarios nativos de la grilla BETWEEN (xl/comments1/2.xml) siguen siendo los mismos 9 de Scarlette del 31-08 17:34-17:59, verificados uno a uno. La grilla se guardo hoy 19:25 (sebastian.serrano) solo para MOVER ESTADOS. Cambios de estado vs ronda 5: FEED E (3-sep Cumpleanos) EN CAMBIOS -> CORREGIDO; STORIES C (1-sep To Go) y D (3-sep cumpleanos) EN CAMBIOS -> CORREGIDO. Siguen EN CAMBIOS: FEED C (1-sep Cowork), G (7-sep), H (9-sep), J (11-sep) y STORIES I (9-sep). ELI SUBIO A MANO 3 STORIES: creo S1/STS (14Z4XnkM9sepmdPV0XjKzoqb1HXMbvIzO) con BW ST 01-09 (10910083 B) y BW ST 03-09 (3617380 B) -- coinciden BYTE A BYTE con out/entrega-drive/S1, son las corregidas de hoy -- mas BW ST 04-09 Segun mis calculos (version del 27-08, la aprobada). FALTAN LOS 5 PNG DE FEED (Cowork 1/2/3 y Cumpleanos 1/2): siguen sin subir aunque E figura CORREGIDO. OJO DUPLICADO: BW ST 01-09, 03-09 y 04-09 existen ahora DOS VECES en la misma rama (la vieja del 28-08 en la carpeta BW y la nueva en BW/S1/STS); el portal levanta por nombre. Las 27 piezas de BW siguen en su version del 28-08 01:53 (ronda 4). Eli tambien subio hoy trabajo de otras marcas del complejo: P18 (POST N1 S1 SEP MATRI + carpeta C1 S1 N1 NOVIOS con 2 slides), QB (8 archivos PANTALLAS SUNSET) y varias ST/Post S1. Grillas del complejo tocadas hoy: QB 16:23, PISO18 17:10, DOUBLETREE 17:10, HILTON Planificacion Performance 17:00."
+      "revisado": "2026-09-02 (manana)",
+      "ultimo_hallazgo": "PENDIENTE #1 DE LA BITACORA CUMPLIDO: Eli subio a mano las 6 del FEED de la S1 de Between el 01-09 21:27-22:32. C1 COWORK (1GB6NtoG3vy35rPj7bw-j8bc76-Jz8332) con las 4 slides -- Cowork 1 portada 8037434 B, 2 winter garden 5525936 B, 3 segundo nivel 5871152 B, 4 servicio 4428220 B -- y C2 CUMPLEANOS BW (1TfFCqNfQw0ucTwqvJD8iqft7Y__voRUw) con las 2 (Cumpleanos 1 3692470 B, Cumpleanos 2 detalles 2904847 B). Verificado BYTE A BYTE contra Escritorio\\S1 BETWEEN y contra out/entrega-cowork-r7/S1: coinciden las 6. OJO: out/entrega-drive/S1 es la version VIEJA (r6) y NO es lo que se subio. ESTADOS DE LA GRILLA BETWEEN (guardada hoy 13:04 por sebastian.serrano): FEED C (1-sep Cowork) EN CAMBIOS -> CORREGIDO, y el comentario nativo C15 de Scarlette (el de la mesa con pc y cafe) YA NO ESTA en el xlsx = lo resolvieron. SIN RONDA 7: los comentarios nativos que quedan son los mismos de Scarlette del 31-08 17:41-17:59 (G15, H15, J15, L15 en comments1; I15 en comments2), verificados uno a uno. SIGUEN EN CAMBIOS con comentario escrito y sin aplicar: FEED G (7-sep estatico Cafecito humor), FEED H (9-sep carrusel Primero la foto), FEED J (11-sep estatico Ella hablo/Ella escucho), FEED L (14-sep S3 carrusel Promos To Go) y STORIES I (9-sep Emergencia Between). Son 5 piezas = la S2 de Between es lo que sigue. DOUBLETREE: Eli abrio hoy 13:07 S2 HILTON SEP 2026 (1MSF7sQYNowbU8GlkDn6_HoR8-bqCDeYn) -> DT -> C1 ER DT S2 (1atgDrSo_0Q3MNn2ZAbECHMO1oY5sm7zO) y subio C1 ER N1 y N2 = el carrusel ESCAPADA ROMANTICA del 7-sep. El brief pide exactamente 2 slides, asi que esta COMPLETO; la grilla DT lo marca EN REVISION. Scarlette lo habia pedido el 01-09 17:09 (\"este carrusel puedes tomar al final del dia para manana am\") y el comentario quedo RESUELTO. Ojo en la grilla DT: E13 dice \"ojo copy cambiado\" y E14 \"Cambiemos por algo de feed estatico de Escapada Romantica\". Tambien subio GUEST GUIDE n2.pdf (hoy 13:12) y reel_cumple_qb.mp4 (01-09 22:19). Grillas del complejo tocadas: BETWEEN hoy 13:04, QB 01-09 22:30, PISO18 01-09 21:47, DOUBLETREE 01-09 20:03."
     },
     "tierra-calma": {
       "revisado": "2026-08-27",
@@ -50,18 +50,12 @@
     "diego.aguilar@copywriters.cl"
   ],
   "_notas_de_esta_revision": [
-    "2da pasada del 01-09 19:30: se rebajo la grilla de Between y se leyeron los comentarios nativos. NO hay ronda 6.",
-    "La grilla de Between pesa 59,8 MB y se baja sin token: curl -sL 'https://drive.google.com/uc?export=download&id=1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY'",
-    "credentials/token.json SIGUE FALTANDO (solo esta LEEME.md): no se puede corregir ninguna pieza ya entregada en BW.",
-    "Diego Aguilar: cero archivos en la ventana.",
-    "Serena creó el 26-08 dos plantillas nuevas: 'Plantilla | Brief diseño.xlsx' (1poD3Zh38fCWLG7Iw9lhcNXrLomz3d5iO) y 'Plantilla | Planificación de medios.xlsx' (1PguaIlUUExLi7lZfUy8RVsZ-y7a6QQoz). Traen medidas y zonas seguras en px que docs/BRIEF-DE-DISENO.md no tiene.",
-    "Valeria creó el 27-08 el flujo de carpetas 1 BRIEF / 2 MATERIAL / 3 ENTREGA / 4 APROBADO dentro de la carpeta de grillas de Hilton (14z0jRr-FT2uSvYZUC8R6VYh9O7u-S4ex). Están vacías.",
-    "RENDIC apareció con planificación de septiembre (26-08). Cuenta sin sistema.",
-    "El CLIENTE de Revex (jcampos@gruporevex.cl) compartió sus carpetas LCD, TEMUCO y PRODUCTOS. Son fuente autoritativa para verificar sucursal: la fachada de Temuco está identificada por señalética (SHOWROOM GRUPOREVEX SEGUNDO PISO sobre edificio EBEMA).",
-    "OJO: decenas de grillas muestran modifiedTime del 27-08 entre 13:00 y 15:00 sin cambio de contenido — parece reindexado masivo del Drive, no ediciones. Para separar lo nuevo de verdad se usó createdTime.",
-    "El conector de Drive entra como constanza.olivares@copywriters.cl — NO como Valeria ni Serena. Ver docs/MAPA-DRIVE.md.",
-    "[de la pasada del 28-08, Casablanca] Revisión acotada a Casablanca (/al-dia casablanca).",
-    "El token de Google API NO está en esta máquina (scripts/_entorno.py: 'token Google ✗'), así que scripts/drive-comentarios.py no corre. Los comentarios se leyeron con el conector MCP: read_file_content con includeComments=true SÍ devuelve comentarios de archivos PNG, aunque la doc del conector diga que sólo Docs/Slides/Sheets.",
-    "El conector no sirve para bajar los bytes de las imágenes nuevas (base64 de 2,5 MB por archivo). Para bajarlas: link-share + curl."
+    "Pasada del 02-09 (manana), acotada a Hilton (/al-dia hilton).",
+    "La grilla de Between ya pesa 75,2 MB (era 59,8). Se sigue bajando sin token: curl -sL \"https://drive.google.com/uc?export=download&id=1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY\"",
+    "Las grillas nativas de Google (DoubleTree, QB, PISO18) se bajan con /export?format=xlsx -- el conector MCP TRUNCA las celdas de brief y no sirve para leer un brief completo.",
+    "Un comentario nativo que desaparece del xlsx significa RESUELTO, no borrado: asi se detecto que C15 de Between quedo cerrado.",
+    "credentials/token.json SIGUE FALTANDO. Eli subio las 6 piezas a mano y funciono, pero no se puede automatizar ni corregir lo ya entregado en BW.",
+    "Paulina y Coni: cero archivos nuevos en la ventana. Scarlette toco MyZoo, INDUCCION 2026 y Mas Center, nada de Hilton.",
+    "El pull de hoy trajo trabajo de Paulina: Casablanca (aprobada con 2 ajustes, ronda 3 y 4 de cliente) y EBEMA (campanas ARIEL de WhatsApp, A1-A6 Portezuelo). No es de Eli, no se toca."
   ]
 }

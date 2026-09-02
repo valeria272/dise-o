@@ -258,3 +258,24 @@ out/mascenter-terrenos/preview-artifact.html
 # Config de Vercel del deploy — no es parte de la pieza
 out/mascenter-terrenos/.vercel/
 out/mascenter-terrenos/preview-hero-B.html
+
+# Carrusel Cedral de EBEMA — grilla septiembre 2026, slide 6 (02-09-2026).
+# Misma excepción deliberada que Revex, Casablanca y G.CL: los 6 fondos salieron de
+# Nano Banana Pro y NO son deterministas — volver a generarlos da otra casa, y el par
+# antes/después de la portada (la MISMA casa en el mismo encuadre) no volvería a calzar
+# nunca. Van en JPEG 93 para poder viajar: en PNG pesaban 45 MB, así pesan 7.
+!public/assets/ebema/cedral/
+!public/assets/ebema/cedral/**
+# Los editables de la propuesta: sin build.py y carrusel.css la entrega no se reproduce.
+# Los PNG rendidos (17 MB) NO viajan: salen de correr build.py + render.sh.
+# Ojo: git no entra a una carpeta excluida, así que hay que reabrir cada nivel y
+# volver a cerrarlo con `/*` — misma gimnasia que out/mascenter-algarrobal.
+!out/ebema/
+out/ebema/*
+!out/ebema/20260902_carrusel_cedral/
+out/ebema/20260902_carrusel_cedral/*
+!out/ebema/20260902_carrusel_cedral/ENTREGA.md
+!out/ebema/20260902_carrusel_cedral/editables/
+out/ebema/20260902_carrusel_cedral/editables/*
+!out/ebema/20260902_carrusel_cedral/editables/build.py
+!out/ebema/20260902_carrusel_cedral/editables/carrusel.css

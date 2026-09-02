@@ -1,0 +1,94 @@
+/* EBEMA — capa de CARRUSEL sobre base.css. Propuesta 02-09-2026 para la grilla de
+   septiembre, slide 6 (Cedral). Dos rutas: .rutaA (método) y .rutaB (zócalo).
+   Nada de esto reemplaza base.css: lo extiende. Rojo único #EC1C23, Raleway,
+   toda cifra en Helvetica Bold (.num), logo pegado a top:0, botón sin sombra. */
+
+/* ---------- común a las dos rutas ---------- */
+
+/* Portada partida: ANTES arriba / DESPUÉS abajo, con corte rojo de 12 px */
+.split { position:absolute; inset:0; z-index:0; }
+.split .mitad { position:absolute; left:0; right:0; overflow:hidden; }
+.split .mitad img { width:100%; height:100%; object-fit:cover; }
+.split .arriba { top:0; height:567px; }
+.split .abajo  { top:579px; bottom:0; }
+.split .corte  { position:absolute; left:0; right:0; top:567px; height:12px; background:#EC1C23; z-index:2; }
+.split .velo   { position:absolute; inset:0; }
+.split .arriba .velo { background:rgba(0,0,0,.22); }
+.split .abajo  .velo { background:rgba(0,0,0,.42); }
+.etiq { position:absolute; z-index:3; font-weight:800; font-size:22px; letter-spacing:2.5px;
+  text-transform:uppercase; color:#fff; background:rgba(0,0,0,.45); border:2px solid #fff;
+  border-radius:999px; padding:9px 26px; line-height:1; }
+.etiq.a { right:110px; top:118px; }
+.etiq.d { right:110px; top:627px; background:#EC1C23; border-color:#EC1C23; }
+
+/* Barra de avance del carrusel — evolución de los puntitos: 5 tramos, el activo en rojo.
+   Sustituye adorno por información: se ve en qué lámina va el lector. */
+.avance { position:absolute; z-index:5; display:flex; align-items:center; gap:12px; }
+.avance i { width:34px; height:10px; border-radius:999px; background:rgba(255,255,255,.42); }
+.avance i.on { background:#EC1C23; box-shadow:0 0 0 2px #fff; }
+
+/* ============================ RUTA A — «Método» ============================
+   Conserva la gramática de Paulina (marco, logo arriba-izq, titular centrado con
+   caja roja, bajada, botón). Suma: caja roja de número espejo del logo, kicker y
+   barra de avance sobre la línea del marco. */
+.rutaA .avance { right:95px; bottom:57px; }
+
+/* caja del número: espejo exacto de .logobox al otro lado del lienzo */
+.rutaA .numbox { position:absolute; z-index:3; background:#EC1C23; right:139px; top:0;
+  width:152px; height:186px; border-radius:0 0 14px 14px; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; padding-top:12px; }
+.rutaA .numbox .n { color:#fff; font-size:72px; line-height:1; }
+.rutaA .numbox .t { color:#fff; font-weight:800; font-size:15px; letter-spacing:2px;
+  text-transform:uppercase; margin-top:8px; }
+
+.rutaA .kick { display:block; color:#fff; font-weight:800; font-size:24px; letter-spacing:4px;
+  text-transform:uppercase; margin-bottom:22px; text-shadow:0 1px 6px rgba(0,0,0,.45); }
+.rutaA .sup.baja { top:auto; bottom:352px; }
+
+/* cierre en rojo PLANO: un velo rojo sobre la foto generaba 91 tonos de rojo y la
+   marca admite uno solo (#EC1C23). Campo rojo liso + la foto en un panel. */
+.rutaA.cierre { background:#EC1C23; }
+.rutaA.cierre .panel { position:absolute; z-index:3; left:112px; right:112px; top:672px;
+  height:392px; border-radius:20px; overflow:hidden; border:3px solid #fff; }
+.rutaA.cierre .panel img { width:100%; height:100%; object-fit:cover; }
+.rutaA.cierre .boton { background:#fff; color:#EC1C23; font-weight:800; }
+.rutaA.cierre .titular .rojo { display:none; }
+.rutaA.cierre .titular .l { text-shadow:0 2px 10px rgba(0,0,0,.25); }
+.rutaA.cierre .pie { color:#fff; font-weight:600; font-size:24px; margin-top:22px; }
+.rutaA.cierre .sup { top:288px; }
+
+
+
+/* ============================ RUTA B — «Zócalo» ============================
+   Rompe el centrado: la foto queda limpia y el texto baja a un zócalo blanco
+   alineado a la izquierda. Más aire, más legible en el feed, y el número de paso
+   en Helvetica Bold hace de ancla visual. */
+.rutaB .bg { bottom:380px; }
+.rutaB .split .abajo { bottom:380px; }
+.rutaB .zocalo { position:absolute; z-index:4; left:0; right:0; bottom:0; height:380px;
+  background:#fff; padding:52px 96px 0; }
+.rutaB .zocalo .kick { display:block; color:#EC1C23; font-weight:800; font-size:22px;
+  letter-spacing:3.5px; text-transform:uppercase; margin-bottom:18px; }
+.rutaB .desliza { position:absolute; right:96px; bottom:46px; color:#EC1C23;
+  font-weight:800; font-size:24px; letter-spacing:2px; text-transform:uppercase; }
+.rutaB .zocalo h1 { color:#1A1A1A; font-weight:900; font-size:58px; line-height:1.04;
+  text-transform:uppercase; letter-spacing:-.3px; max-width:760px; }
+.rutaB .zocalo p { color:#6D6F72; font-weight:600; font-size:26px; line-height:1.28;
+  margin-top:18px; max-width:700px; text-wrap:balance; }
+.rutaB .zocalo p b { font-weight:800; color:#1A1A1A; }
+.rutaB .paso { position:absolute; right:78px; bottom:24px; color:#EC1C23; font-size:200px;
+  line-height:.78; opacity:.13; }
+.rutaB .avance { left:96px; bottom:auto; top:-5px; }
+.rutaB .avance i { background:rgba(236,28,35,.22); }
+.rutaB .avance i.on { background:#EC1C23; box-shadow:none; }
+.rutaB .boton { margin-top:26px; }
+
+/* cierre: el zócalo se da vuelta */
+.rutaB.cierre .zocalo { background:#EC1C23; }
+.rutaB.cierre .zocalo h1 { color:#fff; }
+.rutaB.cierre .zocalo p { color:#fff; }
+.rutaB.cierre .zocalo .kick { color:#fff; }
+.rutaB.cierre .boton { background:#fff; color:#EC1C23; font-weight:800; }
+.rutaB.cierre .avance i { background:rgba(255,255,255,.35); }
+.rutaB.cierre .avance i.on { background:#fff; }
+.rutaB.cierre .paso { display:none; }

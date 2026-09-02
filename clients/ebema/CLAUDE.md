@@ -299,6 +299,7 @@ Sebastián Córdova (medios). Ver [`docs/MAPA-DRIVE.md`](../../docs/MAPA-DRIVE.m
 | `.../subir_a_drive.py` · `reemplazar_en_drive.py` · `mover_a_septiembre.py` | Entrega y reemplazo de versiones |
 | `.../montar_grilla.py` | Contactar la grilla de revisión |
 | `clients/ebema/sistema/render.sh` | HTML → PNG con Chrome headless |
+| `scripts/ebema-cedral-fondos.py` | Fondos del carrusel Cedral con Nano Banana Pro (4:5 · 2K) |
 
 ---
 
@@ -379,3 +380,29 @@ dirección de la sucursal en el pie.
 Geometría medida de cada madre, script y QA: en la carpeta de la entrega del mes
 (`out/ebema/YYYYMMDD_wsp_*/ENTREGA.md`) y en la memoria
 `ebema-click-campanas-ariel-solo-diseno`.
+
+---
+
+## 13. Carruseles — la capa `carrusel.css` (02-09-2026)
+
+Los carruseles de la grilla son 5 láminas de 1080×1350, y como piezas sueltas no
+se distinguen entre sí. La capa `clients/ebema/sistema/carrusel.css` **extiende**
+`base.css` (no lo reemplaza) con lo que un carrusel necesita y una pieza suelta no:
+
+| Clase | Qué es |
+|---|---|
+| `.split` | Portada partida **antes / después**: dos mitades con corte rojo de 12 px y las píldoras `.etiq.a` / `.etiq.d` |
+| `.avance` | Barra de avance de 5 tramos, el activo en rojo con anillo blanco. Va donde iban los puntitos: sobre la línea del marco, a 95 px del borde derecho |
+| `.rutaA .numbox` | Caja roja del número, **espejo exacto de `.logobox`**: 152×186, `top:0`, radio inferior 14. La cifra va en `.num` (Helvetica Bold) |
+| `.rutaA.cierre` | Cierre en **rojo plano** `#EC1C23` con la foto en `.panel` (radio 20, borde blanco 3 px) |
+| `.rutaB .zocalo` | Ruta alternativa: foto limpia hasta 970 px y zócalo blanco de 380 px con el texto alineado a la izquierda |
+
+> ⚠️ **El cierre no lleva velo rojo sobre la foto.** Se probó y daba **91 tonos de
+> rojo** en una marca que admite uno solo. Va rojo plano + la foto en panel.
+
+> ⚠️ **La píldora `ANTES` no puede ir a la izquierda**: choca con la caja del logo,
+> que ocupa de x=139 a x=291. Va a la derecha.
+
+La **Ruta B rompe el centrado** del sistema (compone alineada a la izquierda sobre
+blanco, no centrada sobre la foto). **Está sin aprobar por Paulina** — no se produce
+una entrega con ella hasta que ella la firme. La Ruta A no mueve nada de sitio.

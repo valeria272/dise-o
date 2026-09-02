@@ -81,9 +81,36 @@ Si no existe `~/copylab-venv`:
 python3 -m venv ~/copylab-venv
 ~/copylab-venv/bin/python3 -m pip install --upgrade pip
 ~/copylab-venv/bin/python3 -m pip install pillow numpy requests certifi fonttools \
-    google-api-python-client google-auth google-auth-oauthlib openpyxl python-docx
+    cryptography google-api-python-client google-auth google-auth-oauthlib \
+    openpyxl python-docx
 ```
 Usa siempre `python3 -m pip`, nunca el binario `pip`.
+
+### Las credenciales — salen del llavero del repo
+
+No le pidas ninguna clave a nadie: **ya vienen en el repositorio, cifradas**.
+
+```bash
+python3 scripts/llavero.py abrir
+```
+
+Va a pedir **una contraseña**: la del estudio, la misma para todo el equipo, y es lo
+único que Valeria entrega a mano, una sola vez. Si la persona no la tiene, dile
+textual:
+
+> «Pídele a Valeria la **contraseña del llavero del estudio**. Es una sola, se entrega
+> una vez y no se te vuelve a pedir nunca más en este computador.»
+
+Con eso quedan montadas la clave de Magnific/Freepik, la de Higgsfield y el token de
+Google. Comprueba las dos cosas:
+
+```bash
+python3 scripts/llavero.py estado
+python3 scripts/magnific.py check      # valida la clave SIN gastar créditos
+```
+
+⚠️ **Nunca escribas la contraseña en un archivo del repo** ni la repitas en el chat.
+El detalle está en `credentials/LEEME.md`.
 
 ### Google Chrome
 No lo puedes instalar en silencio. Si falta, dile:

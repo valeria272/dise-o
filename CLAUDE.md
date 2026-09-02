@@ -13,6 +13,17 @@ Corre `bash scripts/doctor.sh`. Si falta `node_modules/`, el venv de Python o el
 conector de Drive, ejecuta **`/arranque`** — instala lo que falte y reporta lo que
 la persona tiene que hacer. Guía para humanos: [`LEEME-PRIMERO.md`](LEEME-PRIMERO.md).
 
+**Las claves NO se piden por WhatsApp.** Viajan en el repo, cifradas, y se montan
+con un comando:
+
+```bash
+python3 scripts/llavero.py abrir     # pide la contraseña del estudio, una sola vez
+python3 scripts/llavero.py estado    # qué quedó montado
+```
+
+Ahí están Magnific/Freepik, Higgsfield y el token de Google. Manual completo:
+[`credentials/LEEME.md`](credentials/LEEME.md).
+
 Si llegó por ZIP: [`docs/TRASPASO-ZIP.md`](docs/TRASPASO-ZIP.md) dice qué viaja y qué no.
 **Los conectores MCP no viajan** — cada persona los activa en su cuenta de claude.ai.
 
@@ -55,6 +66,7 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | [`docs/QUE-PUEDO-Y-QUE-NO.md`](docs/QUE-PUEDO-Y-QUE-NO.md) | Los límites reales, el estado de los conectores MCP y cuándo sí conviene `/design` |
 | [`docs/PORTAL-VALIDACIONES.html`](docs/PORTAL-VALIDACIONES.html) | **El cliente aprueba en el portal, no por WhatsApp.** Guía completa para KAM y CM: cómo entrar, el mes paso a paso, y **cómo se tienen que llamar los archivos que entrega diseño** para que el portal los levante solo |
 | [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md) | **Qué modelos de imagen tenemos realmente** y cuáles no usamos. Incluye Nano Banana Pro (texto legible + 4K, ya incluido en el plan) y la regla de que el relight NO va sobre el producto |
+| [`credentials/LEEME.md`](credentials/LEEME.md) | **Las credenciales del estudio** — el llavero cifrado que viaja en el repo: cómo abrirlo, qué trae y cómo rota Valeria una clave |
 | [`docs/ONBOARDING-DISENADORES.md`](docs/ONBOARDING-DISENADORES.md) | Diseñador nuevo en el equipo |
 | [`docs/GUIA-INSTALACION.html`](docs/GUIA-INSTALACION.html) | **Instalar el estudio en un Mac** — guía de 8 pasos para diseñadores, sin saber terminal |
 | [`docs/GUIA-INSTALACION-WINDOWS.html`](docs/GUIA-INSTALACION-WINDOWS.html) | **Instalar el estudio en Windows** — la misma guía con Git/Python aparte, PowerShell y las trampas de OneDrive |
@@ -70,8 +82,10 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 
 > 🔌 **Rutas y credenciales:** ningún script quema `/Users/...`. Todos resuelven con
 > [`scripts/_entorno.py`](scripts/_entorno.py) — la raíz del repo sale del propio
-> archivo, y las credenciales de `COPYLAB_TOKEN`/`COPYLAB_ENV`, del repo, o del
-> monorepo. Corre `python3 scripts/_entorno.py` para ver qué encuentra acá.
+> archivo, y las credenciales del llavero (`credentials/.env`), de
+> `COPYLAB_TOKEN`/`COPYLAB_ENV`, o del monorepo. Corre `python3 scripts/_entorno.py`
+> para ver qué encuentra acá. La clave de Magnific se pide con `clave_freepik()` de
+> ese mismo módulo — **nunca leyendo `~/.magnific_key` a mano** en un script nuevo.
 
 ### Marcas con sistema
 

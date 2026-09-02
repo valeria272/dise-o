@@ -1,108 +1,146 @@
-# Credenciales — Windows
+# Credenciales del estudio — el llavero
 
-**Nada de esta carpeta se sube al repositorio.** Está ignorada en `.gitignore`
-justo para eso: el repo lo comparten varios diseñadores y un token acá dentro se
-publicaría a todo el equipo en el siguiente `push`. Comprobado con
-`git check-ignore -v credentials/token.json`.
-
----
-
-## Lo que falta: un archivo
-
-```
-C:\Users\Elisabet\EDITOR VIDEOS\credentials\token.json
-```
-
-Es el token OAuth del estudio. Con él funcionan la subida a Drive, la lectura de
-grillas y los correos. **No hay nada más que instalar** — las librerías de Python
-ya quedaron puestas el 31-08-2026.
-
-### Camino A — traerlo del Mac (lo más rápido)
-
-En el Mac donde ya funciona, el archivo está en:
-
-```
-~/Desktop/COPYLAB PROJECTS/ASISTENTE PERSONAL/credentials/token.json
-```
-
-Cópialo a esta carpeta por el medio que prefieras (pendrive, Drive, WhatsApp Web).
-Es un archivo de texto de unos pocos KB.
-
-> ⚠️ **No lo mandes por un canal público ni lo pegues en un chat de grupo.** Da
-> acceso a la cuenta de Google del estudio.
-
-### Camino B — autorizarlo desde este PC
-
-Sirve si tienes el **client secret** del estudio (`client_secret.json`, también en
-`ASISTENTE PERSONAL/credentials/`) pero no el token. Déjalo en esta carpeta y corre:
-
-```powershell
-python scripts\autorizar-google.py
-```
-
-Se abre el navegador, inicias sesión con la cuenta del estudio, aceptas, y el
-script escribe `credentials\token.json` solo.
+> **Resumen para el diseñador nuevo:** no le pidas ninguna clave a nadie.
+> Están todas en el repositorio, cifradas. Corre esto una vez y listo:
+>
+> ```bash
+> python3 scripts/llavero.py abrir
+> ```
+>
+> Te va a pedir **la contraseña del llavero del estudio**. Es una sola, la misma
+> para todo el equipo, te la da Valeria una vez y no se te vuelve a pedir nunca
+> más en este computador.
 
 ---
 
-## Comprobar que quedó bien
+## Qué es el llavero
 
-```powershell
-python scripts\_entorno.py
-```
+`credentials/llavero.copylab` es el **único** archivo con credenciales que viaja
+en el repositorio. Viaja cifrado (AES-256, contraseña derivada con scrypt): si lo
+abres con un editor solo vas a ver ruido. Sin la contraseña del estudio no sirve
+de nada, ni siquiera para quien tenga el repo entero.
 
-Tiene que decir:
+Dentro van:
 
-```
-token Google    C:\Users\Elisabet\EDITOR VIDEOS\credentials\token.json
-```
+| Qué | Para qué |
+|---|---|
+| `FREEPIK_API_KEY` | **Magnific / Freepik** — generar fondos y ambientes, escalar, Nano Banana Pro |
+| `HF_API_KEY` · `HF_SECRET` | Higgsfield — video IA |
+| `ANTHROPIC_API_KEY` | API de Claude, para los scripts que la llaman |
+| `token.json` | Token OAuth de Google — bajar grillas y briefs, subir entregas al Drive |
+| `client_secret.json` | Cliente OAuth, por si hay que volver a autorizar desde cero |
 
-Si dice `✗ no está en esta máquina`, el archivo no está donde corresponde o tiene
-otro nombre.
-
----
-
-## Con el token puesto, subir piezas
-
-```powershell
-python scripts\between-subir-drive.py --carpeta 19Bv7lfMBEIt_4JLRStWKObtCnf4OmPdD `
-    "out\hilton-between-cumple-r5\entrega S1\BW FEED 03-09 Cumpleanos 1.png" `
-    "out\hilton-between-cumple-r5\entrega S1\BW FEED 03-09 Cumpleanos 2 detalles.png" `
-    "out\hilton-between-cumple-r5\entrega S1\BW ST 03-09 Cafe de regalo cumpleanos.png"
-```
-
-> ⚠️ El scope es `drive.file`: puede **crear** archivos nuevos en una carpeta, pero
-> no tocar los que subió otra persona. Para reemplazar una pieza ya entregada hay
-> que usar `--actualizar <ID-del-archivo>` sobre algo que subimos nosotros — así se
-> conservan los enlaces que el cliente ya tiene.
+Lo que **no** va: Slack, Trello, Meta, bancos, planillas de finanzas. El llavero
+es del estudio de diseño, no de la agencia entera.
 
 ---
 
-## Los 6 scopes, y por qué no se recortan
+## Los cuatro comandos
+
+```bash
+python3 scripts/llavero.py abrir     # monta las credenciales en este computador
+python3 scripts/llavero.py estado    # ¿qué tengo montado? ¿qué falta?
+python3 scripts/llavero.py ver       # qué hay dentro (valores enmascarados)
+python3 scripts/llavero.py guardar   # SOLO VALERIA: rehace el llavero
+```
+
+En **Windows** es `python` en vez de `python3`. Todo lo demás es igual.
+
+Si `abrir` reclama que falta la librería de cifrado:
+
+```bash
+python3 -m pip install cryptography
+```
+
+### Comprobar que la clave de Magnific quedó buena
+
+```bash
+python3 scripts/magnific.py check
+```
+
+Autentica contra Freepik **sin gastar créditos**. Si dice `✓ VÁLIDA`, ya puedes
+producir.
+
+---
+
+## Dónde queda todo después de `abrir`
+
+| Archivo | Quién lo lee |
+|---|---|
+| `credentials/.env` | `scripts/_entorno.py`, y por él todos los scripts del estudio |
+| `~/.magnific_key` | los scripts antiguos de Magnific/Freepik |
+| `credentials/token.json` | la subida a Drive y la lectura de grillas |
+
+**Ninguno de esos se versiona.** Están cubiertos por la regla `credentials/*` del
+`.gitignore`; el único con permiso explícito para subir es `llavero.copylab`.
+Compruébalo cuando quieras:
+
+```bash
+git check-ignore -v credentials/.env credentials/token.json
+git check-ignore -v credentials/llavero.copylab   # este NO debe aparecer
+```
+
+---
+
+## Para Valeria: cambiar o rotar una clave
+
+```bash
+python3 scripts/llavero.py guardar --set FREEPIK_API_KEY=FPSX...
+git add credentials/llavero.copylab
+git commit -m "Llavero: clave nueva de Magnific"
+git push
+```
+
+`guardar` parte del llavero que ya existe y solo pisa lo que le pases, así que no
+se pierde nada. Sin `--set`, recoge sola lo que encuentre en esta máquina
+(`~/.magnific_key`, el `.env` del monorepo, `credentials/token.json`).
+
+Los demás diseñadores se ponen al día con:
+
+```bash
+git pull && python3 scripts/llavero.py abrir --forzar
+```
+
+### Rotar la contraseña del llavero
+
+```bash
+rm ~/.copylab-llave                       # olvida la anterior en este equipo
+python3 scripts/llavero.py guardar        # te la pide de nuevo, dos veces
+```
+
+Hazlo cuando alguien deja el equipo. Ojo: quien haya clonado antes conserva las
+claves que ya descifró — para eso hay que rotar **las claves mismas** en Freepik
+y Higgsfield, no solo la contraseña del llavero.
+
+---
+
+## Los 6 scopes del token de Google, y por qué no se recortan
 
 ```
 calendar · gmail.send · gmail.modify · gmail.labels · spreadsheets · drive.file
 ```
 
-Si el refresco devuelve un token con menos, `between-subir-drive.py` **se niega a
-guardarlo**: sobrescribirlo degradaría el token de todo el monorepo y dejaría sin
-correo ni calendario a los demás scripts.
+Es el único token OAuth del monorepo. Si al refrescarlo Google devuelve menos
+scopes y se guarda así, **se degradan los permisos de todos los demás proyectos**
+(pasó el 29-07-2026: quedó solo con `gmail.modify` y murió todo lo de Sheets).
+Por eso `between-subir-drive.py` se niega a guardar un token recortado.
 
----
+> ⚠️ El scope es `drive.file`: puede **crear** archivos nuevos en una carpeta,
+> pero no tocar los que subió otra persona. Para reemplazar una pieza ya
+> entregada hay que usar `--actualizar <ID-del-archivo>` sobre algo que subimos
+> nosotros — así se conservan los enlaces que el cliente ya tiene.
 
-## Qué NO hace falta instalar
+### Volver a autorizar desde cero
 
-Ya está todo puesto en este PC (31-08-2026):
+Si el token se venció del todo y `client_secret.json` está montado:
 
-| | Estado |
-|---|---|
-| Node 24 · Remotion · `node_modules` | ✅ |
-| Google Chrome (lo usa el render) | ✅ |
-| Python 3.14 | ✅ |
-| `openpyxl` · `pillow` · `numpy` | ✅ |
-| `google-api-python-client` · `google-auth` · `google-auth-oauthlib` | ✅ |
-| `requests` · `python-dotenv` | ✅ |
-| **`credentials\token.json`** | ❌ **es lo único que falta** |
+```bash
+python3 scripts/autorizar-google.py
+```
+
+Se abre el navegador, inicias sesión con la cuenta del estudio, aceptas, y el
+script escribe `credentials/token.json` solo. Después, para que el equipo lo
+tenga: `python3 scripts/llavero.py guardar` y `git push`.
 
 ---
 
@@ -118,19 +156,31 @@ propio esquema:
 | `Crear archivo` | solo acepta el contenido **incrustado en la llamada**, en base64 |
 | `Actualizar archivo` | solo cambia **título y carpeta** — nunca el contenido |
 
-Consecuencias:
+Una entrega es un PNG de varios MB: no cabe incrustado, y no se puede reemplazar
+conservando el enlace. Por eso el token sigue siendo necesario.
 
-1. **Una pieza de Between no entra.** Pesan 4–6 MB; en base64 son ~7 MB de texto,
-   del orden de **2 millones de tokens por archivo**.
-2. **No se puede reemplazar una pieza conservando su enlace.** `Actualizar` no
-   toca el contenido. Y conservar el enlace es justo lo que se necesita cuando el
-   cliente ya tiene el link de la ronda anterior.
+---
 
-Por eso la entrega pasa sí o sí por `scripts/between-subir-drive.py`, que sube por
-streaming y tiene `--actualizar`.
+## Qué NO hace falta instalar
 
-### La excepción: carpetas vacías
+Ya estaba puesto en el PC de Eli (31-08-2026):
 
-Si las piezas son **nuevas** y no hay ningún enlace que conservar, no hace falta el
-token: se arrastran desde el Explorador a drive.google.com y listo. Sirve para una
-entrega inicial; **no** para una corrección.
+| | Estado |
+|---|---|
+| Node 24 · Remotion · `node_modules` | ✅ |
+| Google Chrome (lo usa el render) | ✅ |
+| Python 3.14 | ✅ |
+| `openpyxl` · `pillow` · `numpy` | ✅ |
+| `google-api-python-client` · `google-auth` · `google-auth-oauthlib` | ✅ |
+| `requests` · `python-dotenv` | ✅ |
+| `cryptography` (la pide el llavero) | ⚠️ instalar si `abrir` reclama |
+| `credentials\token.json` | ✅ **ya no se manda a mano — sale del llavero** |
+
+---
+
+## Historia de este archivo
+
+Antes decía *«nada de esta carpeta se sube al repositorio»* y el token se pasaba
+por pendrive o WhatsApp, uno por uno, cada vez que entraba alguien al equipo. Eso
+se acabó el **02-09-2026**: la regla sigue en pie para todo lo que está en claro,
+y la única excepción es el llavero cifrado.

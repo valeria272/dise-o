@@ -109,17 +109,33 @@ for j in clients/*/marca.json; do
     && ok "$j" || bad "$j — JSON inválido"
 done
 
-echo; echo "══ Magnific/Freepik (el generador de imágenes de la casa) ══"
+echo; echo "══ Llavero (las credenciales del estudio) ══"
 PYQA="${PY_VENV:-}"; [ -n "$PYQA" ] || PYQA=$(command -v python3 || command -v python)
-if [ -f "$HOME/.magnific_key" ] || grep -q "^FREEPIK_API_KEY=" "../ASISTENTE PERSONAL/.env" 2>/dev/null; then
+if [ -f credentials/llavero.copylab ]; then
+  ok "credentials/llavero.copylab está en el repo"
+else
+  bad "falta credentials/llavero.copylab — haz 'git pull'"
+fi
+"$PYQA" -c "import cryptography" 2>/dev/null \
+  && ok "librería de cifrado instalada" \
+  || bad "falta 'cryptography' — instálala: $PYQA -m pip install cryptography"
+if [ -f credentials/.env ]; then
+  ok "llavero abierto en esta máquina"
+else
+  bad "llavero SIN abrir. Ábrelo: $PYQA scripts/llavero.py abrir"
+  bad "  (te pide la contraseña del estudio — Valeria la entrega una sola vez)"
+fi
+
+echo; echo "══ Magnific/Freepik (el generador de imágenes de la casa) ══"
+if "$PYQA" -c "import sys;sys.path.insert(0,'scripts');from _entorno import clave_freepik;sys.exit(0 if clave_freepik() else 1)" 2>/dev/null; then
   if "$PYQA" scripts/magnific.py check >/dev/null 2>&1; then
     ok "clave de Magnific válida — imágenes IA operativas"
   else
-    bad "hay clave pero NO autentica — revisa ~/.magnific_key (sin espacios ni comillas)"
+    bad "hay clave pero NO autentica — vuelve a abrir el llavero, o la clave de la cuenta cambió"
   fi
 else
   bad "SIN clave de Magnific. Sin esto no hay fondos ni ambientes IA."
-  bad "  Instalarla: echo \"LA-CLAVE\" > ~/.magnific_key   (la clave está en la guía de instalación)"
+  bad "  Sale del llavero: $PYQA scripts/llavero.py abrir"
 fi
 
 echo; echo "══ TypeScript ══"

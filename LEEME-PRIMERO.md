@@ -41,11 +41,23 @@ Necesitas la cuenta `@copywriters.cl` que te asignen. Con ella:
 > ⚠️ **Esto es obligatorio y no viaja en el ZIP.** Los conectores son de tu cuenta, no
 > del proyecto. Sin Google Drive no puedes ver el material de los clientes ni entregar.
 
+## 6. La contraseña del llavero
+
+Es **lo único** que le tienes que pedir a Valeria, y es **una sola vez**.
+
+Las claves de las herramientas del estudio —Magnific/Freepik para generar imágenes,
+Higgsfield para video, el acceso al Drive— ya vienen dentro del proyecto, guardadas
+bajo llave. Esa contraseña es la que las abre. No la pidas por segunda vez: cuando la
+escribes, el computador se acuerda.
+
+> No la mandes por un grupo de WhatsApp ni la pegues en un chat de equipo. Es la llave
+> de todas las herramientas pagadas de la agencia.
+
 ---
 
 # PARTE 2 — Instalar el estudio
 
-## 6. Dónde dejar la carpeta
+## 7. Dónde dejar la carpeta
 
 Descomprime el ZIP que te pasaron y deja la carpeta acá:
 
@@ -60,7 +72,7 @@ Osea: en tu carpeta de usuario, crea una carpeta `copylab` y adentro va esto.
 > y el proyecto se rompe en silencio: los renders se cancelan solos, aparecen archivos
 > en gris y salen errores raros. Ya nos pasó dos veces. En `~/copylab/` no pasa.
 
-## 7. Abrir el estudio
+## 8. Abrir el estudio
 
 En VSCode: **File → Open Folder…** y elige `~/copylab/EDITOR VIDEOS`.
 Después **Terminal → New Terminal**, y escribe:
@@ -72,7 +84,7 @@ claude
 La primera vez te va a pedir iniciar sesión: se abre el navegador, entras con tu cuenta
 `@copywriters.cl`, y listo.
 
-## 8. Dejar todo listo
+## 9. Dejar todo listo
 
 Escribe esto y no hagas nada más:
 
@@ -81,6 +93,9 @@ Escribe esto y no hagas nada más:
 ```
 
 Claude instala lo que falte, revisa que todo esté en su lugar y te dice si te falta algo.
+En algún momento te va a pedir **la contraseña del llavero** (la del paso 5): escríbela
+y con eso quedan activas todas las herramientas de pago del estudio.
+
 **No tienes que explicarle nada del proyecto**: los manuales de las marcas ya están
 adentro.
 
@@ -137,6 +152,7 @@ Es lo que hace que el estudio mejore. Lo que no queda escrito, se vuelve a equiv
 | Errores raros, archivos en gris, renders que se cancelan | La carpeta está en iCloud | Muévela a `~/copylab/` |
 | «No encuentro el material del cliente» | Falta el conector de Drive | claude.ai → Settings → Connectors → Google Drive |
 | El render no genera nada | Falta Chrome | Instálalo |
+| «No encuentro la clave de Magnific» | El llavero está cerrado | Escribe en el chat: **`abre el llavero`** |
 | Todo va lentísimo | iCloud está rematerializando archivos | Espera, o mueve la carpeta fuera de iCloud |
 
 Si no sabes qué pasa, escribe en el chat: **`corre el doctor`**. Claude diagnostica y te

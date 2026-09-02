@@ -205,6 +205,17 @@ client_secret*.json
 # se quedan en la máquina de quien las escribió y el siguiente vuelve a empezar.
 !credentials/LEEME.md
 
+# ── EXCEPCIÓN: el llavero CIFRADO sí se versiona (02-09-2026) ────────────────
+# Es el único archivo con credenciales que viaja en el repo, y viaja como ruido:
+# AES-256 (Fernet) con la contraseña derivada por scrypt. Sin la contraseña del
+# estudio no vale nada. Es lo que le permite a un diseñador nuevo clonar y
+# producir sin pedirle la clave de Magnific a nadie.
+#   abrir:    python3 scripts/llavero.py abrir
+#   rehacer:  python3 scripts/llavero.py guardar     (solo Valeria)
+# ⚠️ Lo que llavero.py ESCRIBE al abrirlo (credentials/.env, token.json) queda
+#    ignorado por la regla `credentials/*` de arriba. Eso es a propósito.
+!credentials/llavero.copylab
+
 # Landing de captación de terrenos Más Center — la pieza entregada vuelve al repo
 !out/mascenter-terrenos/
 !out/mascenter-terrenos/**

@@ -11,8 +11,8 @@
     python3 scripts/magnific.py tareas                         ← qué se generó últimamente
 
 Magnific es Freepik: Freepik lo compró y todo pasa por `api.freepik.com`. No hay un
-endpoint "magnific.com" aparte. La clave sale de `~/.magnific_key` o de
-`FREEPIK_API_KEY` en el .env compartido — las dos sirven.
+endpoint "magnific.com" aparte. La clave sale del llavero cifrado del repo:
+si falta, corre `python3 scripts/llavero.py abrir`.
 
 ⚠️ Lo que esta API NO hace: leer tus PROYECTOS del sitio web de Magnific
 (ABAKOS, BETWEEN, Copywriters, QB…). Eso vive en tu cuenta del navegador. Lo que
@@ -24,6 +24,7 @@ fondo**. Nunca el producto, nunca el logo, nunca un dato.
 """
 import argparse
 import base64
+import functools
 import json
 import os
 import ssl
@@ -53,19 +54,12 @@ ASPECTOS = {
 }
 
 
+@functools.lru_cache(maxsize=1)
 def clave():
-    f = Path.home() / ".magnific_key"
-    if f.is_file():
-        k = f.read_text().strip()
-        if k:
-            return k
-    env = Path(__file__).resolve().parent.parent.parent / "ASISTENTE PERSONAL" / ".env"
-    if env.is_file():
-        for l in env.read_text().splitlines():
-            if l.startswith("FREEPIK_API_KEY="):
-                return l.split("=", 1)[1].strip().strip('"').strip("'")
-    sys.exit("✗ No encuentro la clave. Debe estar en ~/.magnific_key o como\n"
-             "  FREEPIK_API_KEY en 'ASISTENTE PERSONAL/.env'")
+    """La clave sale del llavero del repo. Resolución única en `_entorno.py`."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from _entorno import FALTA_CLAVE, clave_freepik
+    return clave_freepik() or sys.exit(FALTA_CLAVE)
 
 
 def pedir(ruta, cuerpo=None, metodo=None):
@@ -158,9 +152,9 @@ def main():
             print("✓ Clave de Magnific/Freepik VÁLIDA — ya puedes generar imágenes.")
         except urllib.error.HTTPError as e:
             if e.code in (401, 403):
-                sys.exit(f"✗ Clave INVÁLIDA o vencida (HTTP {e.code}). Revisa "
-                         f"~/.magnific_key:\n  no debe tener espacios ni comillas, "
-                         f"solo la clave.")
+                sys.exit(f"✗ Clave INVÁLIDA o vencida (HTTP {e.code}).\n"
+                         "  Vuelve a abrir el llavero:  python3 scripts/llavero.py abrir\n"
+                         "  Si sigue igual, la clave de la cuenta cambió: avísale a Valeria.")
             print(f"? Freepik respondió HTTP {e.code} — la clave autentica, "
                   f"pero el servicio devolvió algo raro. Reintenta en unos minutos.")
         return 0

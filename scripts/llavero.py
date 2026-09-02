@@ -85,14 +85,22 @@ def _fernet(contrasena_texto, sal):
     return Fernet(base64.urlsafe_b64encode(semilla))
 
 
+GUARDADA = Path.home() / ".copylab-llave"
+
+
 def contrasena(confirmar=False):
-    """La contraseña del llavero. Se pide una vez y se puede dejar guardada."""
+    """La contraseña del llavero. Se pide una vez y se puede dejar guardada.
+
+    ⚠️ Acá NO se ofrece guardarla: eso lo hace `recordar()` DESPUÉS de comprobar
+    que de verdad abre el llavero. Guardarla antes dejaba una contraseña mal
+    tecleada escrita en el HOME, y la siguiente corrida fallaba sola sin volver a
+    preguntar — pasó el 02-09-2026, en el primer uso real.
+    """
     v = os.environ.get("COPYLAB_LLAVE")
     if v:
         return v.strip()
-    guardada = Path.home() / ".copylab-llave"
-    if guardada.is_file():
-        v = guardada.read_text(encoding="utf-8").strip()
+    if GUARDADA.is_file():
+        v = GUARDADA.read_text(encoding="utf-8").strip()
         if v:
             return v
     v = getpass.getpass("Contraseña del llavero del estudio: ").strip()
@@ -100,13 +108,18 @@ def contrasena(confirmar=False):
         sys.exit("✗ Sin contraseña no se puede abrir el llavero.")
     if confirmar and getpass.getpass("Repítela: ").strip() != v:
         sys.exit("✗ Las dos contraseñas no coinciden.")
-    if not confirmar:
-        r = input("¿La dejo guardada en ~/.copylab-llave para no volver a pedirla? [S/n] ")
-        if r.strip().lower() in ("", "s", "si", "sí", "y"):
-            guardada.write_text(v + "\n", encoding="utf-8")
-            os.chmod(guardada, stat.S_IRUSR | stat.S_IWUSR)
-            print("  ✓ guardada — este equipo ya no te la vuelve a pedir")
     return v
+
+
+def recordar(v):
+    """Ofrece guardar la contraseña — sólo si ya se comprobó que sirve."""
+    if os.environ.get("COPYLAB_LLAVE") or GUARDADA.is_file():
+        return
+    r = input("¿La dejo guardada en ~/.copylab-llave para no volver a pedirla? [S/n] ")
+    if r.strip().lower() in ("", "s", "si", "sí", "y"):
+        GUARDADA.write_text(v + "\n", encoding="utf-8")
+        os.chmod(GUARDADA, stat.S_IRUSR | stat.S_IWUSR)
+        print("  ✓ guardada — este equipo ya no te la vuelve a pedir")
 
 
 def leer_llavero():
@@ -120,11 +133,17 @@ def leer_llavero():
     sal = base64.b64decode(lineas[1].strip())
     cuerpo = "".join(l.strip() for l in lineas[2:]).encode()
     from cryptography.fernet import InvalidToken
+    v = contrasena()
     try:
-        claro = _fernet(contrasena(), sal).decrypt(cuerpo)
+        claro = _fernet(v, sal).decrypt(cuerpo)
     except InvalidToken:
-        sys.exit("✗ Contraseña incorrecta.\n"
-                 "  Si la guardaste mal: borra ~/.copylab-llave y vuelve a intentar.\n")
+        if GUARDADA.is_file():
+            GUARDADA.unlink()   # estaba mala: si se deja, la próxima falla igual sin preguntar
+            sys.exit("✗ La contraseña guardada en ~/.copylab-llave no abre el llavero.\n"
+                     "  Ya la borré. Vuelve a correr el comando y escríbela de nuevo.\n")
+        sys.exit("✗ Contraseña incorrecta. Vuelve a intentar.\n"
+                 "  Ojo: al escribirla no se ve nada en pantalla. Es normal.\n")
+    recordar(v)
     return json.loads(claro)
 
 

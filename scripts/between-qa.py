@@ -96,37 +96,35 @@ def revisar(p):
             if i - ini > 6: bandas.append((ini, i))
             ini = None
     if ini is not None: bandas.append((ini, len(filas)))
-    # ⚠️ FALSO POSITIVO corregido el 02-09-2026. El LOCKUP del logo —wordmark
-    # «BETWEEN» + bajada «COFFEE & BAR»— se detecta como UNA sola banda, y en el
-    # feed mide 118 px de alto: más que una línea de titular (~85 px). Así que
-    # `max(alto)` elegía el LOGO y reportaba «el titular ocupa 24 % del ancho»
-    # —que son justo los 263 px que mide el logo— en piezas cuyo titular estaba
-    # perfecto al 73 %. Un QA que grita en falso deja de leerse, así que las
-    # bandas que caen sobre el logo se descartan.
+    # ⚠️ FALSO POSITIVO corregido el 02-09-2026, en DOS pasadas.
     #
-    # Zonas del lockup, en el lienzo de 1080 (src/brand/hilton-between.ts
-    # § margenes). ⚠️ SOLO las del formato de la pieza: mezclarlas descarta
-    # titulares buenos. Las del story (271–364) caen justo donde el FEED pone su
-    # bloque de texto, y al aplicarlas a un feed se descartaban las tres líneas
-    # de «Cowork 2» —687, 721 y 601 px, o sea 64 %, 67 % y 56 %, todas correctas—
-    # dejando como «titular» la caja taupe de 33 %. Comprobado el 02-09-2026.
-    es_story = abs(alto1080 - 1920) < 5
-    ZONAS_LOGO = ((271, 364), (1619, 1684)) if es_story else ((93, 180), (1173, 1242))
-
-    def es_logo(banda):
-        y0b, y1b = banda[0] * k, banda[1] * k
-        # se descarta solo si la banda queda CONTENIDA en la zona del lockup
-        return any(y0b >= y0 - 10 and y1b <= y1 + 10 for y0, y1 in ZONAS_LOGO)
-
-    candidatas = [b for b in bandas if not es_logo(b)]
-    if candidatas:
-        b = max(candidatas, key=lambda t: t[1] - t[0])
-        cols = np.where(m[b[0]:b[1]].sum(axis=0) > 0)[0]
-        ancho = (cols[-1] - cols[0]) * k / 1080
+    # Antes se tomaba la banda MÁS ALTA. Pero el lockup del logo —wordmark
+    # «BETWEEN» + bajada «COFFEE & BAR»— se detecta como UNA sola banda de
+    # 118 px de alto, más que una línea de titular (~85 px). Así que elegía el
+    # LOGO y reportaba «el titular ocupa 24 % del ancho» —justo los 263 px que
+    # mide el logo— en piezas con el titular perfecto al 73 %.
+    #
+    # El primer arreglo fue descartar las bandas que caen en la zona del lockup,
+    # y estaba mal por dos motivos: mezclaba las zonas de los dos formatos (las
+    # del story, 271–364, caen donde el FEED pone su texto, y descartaba las tres
+    # líneas correctas de «Cowork 2»), y sobre todo daba por hecho que en esa
+    # franja SIEMPRE hay logo. No es así: «Emergencia Between» no lleva lockup
+    # —el vaso ya trae el logotipo impreso, regla 8 del manual— y su titular
+    # ocupa legítimamente esa franja, así que quedaba descartado y el QA medía
+    # una fila de la encuesta: «20 % del ancho».
+    #
+    # Se mide la banda MÁS ANCHA, que no depende de dónde esté el logo. Y es lo
+    # que la regla quiere saber: si la banda de texto más ancha de la pieza no
+    # llega al 50 %, el titular es chico — el logo, con sus 263 px, solo puede
+    # ganar cuando de verdad no hay ningún texto más ancho.
+    if bandas:
+        anchos = []
+        for b in bandas:
+            cols = np.where(m[b[0]:b[1]].sum(axis=0) > 0)[0]
+            anchos.append((cols[-1] - cols[0]) * k / 1080)
+        ancho = max(anchos)
         if ancho < 0.50:
             fallas.append(f'el titular ocupa {ancho*100:.0f} % del ancho (mínimo 50 %, objetivo 55–80 %)')
-    elif bandas:
-        fallas.append('solo se detectó el logo: la pieza no tiene titular')
     return fallas
 
 def main():

@@ -12,7 +12,6 @@
 import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
 import {BETWEEN} from '../../brand/hilton-between';
-import {conCifras} from './BetweenSistema';
 
 /* ---------- ilustraciones de Eli ---------- */
 
@@ -466,7 +465,7 @@ export const Etiqueta: React.FC<{
         : {}),
     }}
   >
-    {conCifras(children)}
+    {children}
   </div>
 );
 
@@ -515,7 +514,7 @@ export const StickerQuiz: React.FC<{
         lineHeight: 1.25,
       }}
     >
-      {conCifras(pregunta)}
+      {pregunta}
     </div>
     <div
       style={{
@@ -551,7 +550,7 @@ export const StickerQuiz: React.FC<{
             lineHeight: 1.15,
           }}
         >
-          {conCifras(o)}
+          {o}
         </div>
       ))}
     </div>
@@ -883,7 +882,7 @@ export const PilaEsquina: React.FC<{
             ($4.290 · $3.790 · $5.290). El CSS `tnum` que había antes NO servía
             —Raleway no trae la función—; ver `cifrasTabulares` en
             BetweenSistema.tsx, que construye la caja tabular a mano. */}
-        {conCifras(l.texto)}
+        {l.texto}
       </div>
     ))}
   </div>

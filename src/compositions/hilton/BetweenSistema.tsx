@@ -53,6 +53,24 @@ const sombraSobreFoto = '0 2px 14px rgba(36,26,18,0.45)';
    caja del ancho del dígito MÁS ANCHO. Es exactamente lo que hace una fuente con
    cifras tabulares, y acá además es verificable midiendo el render. */
 
+/* ⛔⛔ Y AHORA LO IMPORTANTE: NO SE USA EN TEXTO CORRIDO.
+   Probado y RECHAZADO el 02-09-2026. Eli, viendo la story To Go rendida con
+   esto puesto: «los textos y números vuelven a verse extraños, en la anterior
+   estaba mejor». Tenía razón, y el error era de criterio mío.
+
+   Las cifras tabulares existen para que los números CUADREN EN COLUMNA —una
+   lista de precios, una tabla— y por eso todas ocupan lo mismo. Pero en estas
+   piezas los números van DENTRO DE UNA FRASE: «desde $3.790», «08:00 a 10:00
+   hrs». Ahí no hay ninguna columna que alinear, y forzar cada dígito al ancho
+   del más gordo deja al «1» flotando con un hueco a cada lado: el «10:00» se
+   leía como una palabra partida. En texto corrido lo correcto son las cifras
+   PROPORCIONALES, que es lo que Raleway trae de fábrica.
+
+   Así que el helper queda disponible pero SIN aplicar en ninguna pieza. Úsalo
+   solo si algún día una pieza apila precios en filas, uno debajo del otro, y
+   se necesita que los pesos y los miles calcen verticalmente. Si el número va
+   en una frase, no lo toques. */
+
 /** Ancho de la caja tabular, en em. Es el avance del «0», el dígito más ancho. */
 export const ANCHO_CIFRA_EM = 0.614;
 
@@ -210,7 +228,7 @@ export const Titulo: React.FC<{
         ...style,
       }}
     >
-      {conCifras(sinPuntoFinal(children))}
+      {sinPuntoFinal(children)}
     </div>
   );
 };
@@ -313,7 +331,7 @@ export const Dato: React.FC<{
       ...style,
     }}
   >
-    {conCifras(children)}
+    {children}
   </div>
 );
 
@@ -634,7 +652,7 @@ export const CajaDato: React.FC<{
       ...style,
     }}
   >
-    {conCifras(children)}
+    {children}
   </div>
   );
 };
@@ -1122,7 +1140,7 @@ export const PanelTaupe: React.FC<{
       ...style,
     }}
   >
-    {conCifras(children)}
+    {children}
   </div>
 );
 
@@ -1178,7 +1196,7 @@ export const PieDePieza: React.FC<{
         >
           {/* acá cae el horario de la portada To Go («Lunes a viernes · 08:00 a
               10:00 hrs.»): dos «1» y cuatro «0» que sin caja tabular bailan */}
-          {tieneCifras(detalle) ? cifrasTabulares(detalle) : detalle}
+          {detalle}
         </div>
       ) : null}
     </div>

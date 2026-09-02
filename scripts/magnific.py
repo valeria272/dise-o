@@ -85,6 +85,11 @@ def b64_de(ruta):
     return base64.b64encode(Path(ruta).read_bytes()).decode()
 
 
+def mime_de(ruta):
+    ext = Path(ruta).suffix.lower()
+    return {".png": "image/png", ".webp": "image/webp"}.get(ext, "image/jpeg")
+
+
 def espera(ruta_tarea, task_id, minutos=8):
     """Sondea hasta que la tarea termina. Devuelve la lista de URLs generadas."""
     limite = time.time() + minutos * 60
@@ -185,7 +190,11 @@ def main():
         cuerpo = {"prompt": a.entrada, "aspect_ratio": ASPECTOS_PRO[a.aspecto],
                   "resolution": a.resolucion}
         if a.refs:
-            cuerpo["reference_images"] = [b64_de(r) for r in a.refs[:14]]
+            # La API pide OBJETOS {image, mime_type}, no strings base64 sueltos.
+            # Mandarlos sueltos devuelve HTTP 400 "Input should be a valid
+            # dictionary" y por eso --refs nunca funcionó (detectado 02-09-2026).
+            cuerpo["reference_images"] = [
+                {"image": b64_de(r), "mime_type": mime_de(r)} for r in a.refs[:14]]
         print(f"→ Nano Banana Pro · {a.aspecto} · {a.resolucion}"
               + (f" · {len(a.refs[:14])} referencias" if a.refs else ""))
         r = pedir(ruta, cuerpo)

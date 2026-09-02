@@ -1916,7 +1916,63 @@ pieza**:
 Ojo que acá el aire importa el doble: la primera línea baja las colas de «p» y
 «j» justo sobre la tilde de «atención».
 
-## 4. ⚠️ Pendiente: la misma inversión está en las slides 2, 3 y 4
+## ⭐⭐ 4. RESUELTO — el carrusel entero, y el defecto no era la alineación
+
+2.ª pasada del 02-09, Eli: «los títulos se ven **poco alineados y desordenados**,
+mejorar el espaciado entre ellos». Lo primero fue **medir la alineación**, y
+estaba bien: la desviación del eje va de 0,2 a 3,4 px sobre 1080, o sea
+invisible. Lo que se veía desordenado era otra cosa:
+
+**a) La slide 4 rendía a otro cuerpo que las otras dos.** Alto de caja medido:
+
+| | C2 | C3 | C4 |
+|---|---|---|---|
+| antes | 57,1 | 57,1 | **53,3** |
+| ahora | 52,3 | 52,3 | 52,3 |
+
+`encoger` achica hasta CABER en la columna (810), y «NOSOTROS LLEVAMOS» a cuerpo
+79 pedía ~840: sólo esa slide se encogía sola, así que **al deslizar el titular
+cambiaba de tamaño en la última**. Es el mismo defecto que ya se corrigió una vez
+en «LA COLUMNA» (117 · 99 · 88) y que volvió por la puerta de atrás.
+
+⭐ **La regla:** `CAPS_INTERIOR` se fija por **la línea más larga de TODO el
+carrusel**, no por la que se está mirando. Hoy es «NOSOTROS LLEVAMOS» (803 px de
+tinta) y por eso vale **74**. Si entra una línea más larga, baja para todas.
+Comprobarlo es mirar que el alto de caja MEDIDO sea el mismo en las tres.
+
+**b) El aire de la script, igual que en la portada.** C2 y C4 dejaban ~9 px entre
+la línea de Raleway y la caja alta, contra los ~20 que separan las dos líneas del
+titular. `AIRE_SCRIPT_INTERIOR = 24` (0,44 × la altura de caja). Es menos que los
+42 de la portada a propósito: ahí la script es Brushwell y baja colas, acá es
+Raleway en caja alta y no tiene descendentes.
+
+**c) La interlínea de la caja taupe quedó en 1,24 en las cuatro**, no sólo en la
+portada: si una caja del carrusel respira distinto que las otras, se nota al
+deslizar.
+
+## 5. ⭐ El halo bajo el logo — cuando el promedio miente
+
+Eli: «en la portada agrega debajo del logo una sombra con opacidad para que se
+vea el logo bien, muy sutil». `LogoBetween` tiene ahora la prop `sombra`: una
+elipse difuminada del color sombra de la marca DEBAJO del logotipo.
+
+**Por qué hacía falta aunque la medición decía que no.** La banda del logo ya
+medía mejor que la portada anterior (luma 123,3 contra 159,5). Pero el fondo era
+**picado** —hoja clara, hueco oscuro, hoja clara— y lo que se come un logotipo
+fino es el CONTRASTE LOCAL, no el promedio de la banda. Con el halo:
+
+| | luma de la banda | % de píxeles claros |
+|---|---|---|
+| portada anterior | 159,5 | 48,4 % |
+| portada nueva, sin halo | 123,3 | 21,6 % |
+| **portada nueva, con halo** | **114,0** | **15,1 %** |
+
+⚠️ **0,22 es «muy sutil» y es el techo práctico.** El degradado se apaga a
+transparente al 72 % del radio, así que no se ve el óvalo. Por encima de ~0,35
+empieza a notarse el parche. **No es lo mismo que subir `oscurecer`**, que apaga
+la foto entera y el manual lo prohíbe.
+
+## 6. Lo que sigue pendiente del carrusel
 
 Sólo se corrigió la **portada**, que es lo que Eli pidió editar. Medido, las
 interiores traen el mismo defecto (usan `scriptSans`, o sea Raleway, pero la

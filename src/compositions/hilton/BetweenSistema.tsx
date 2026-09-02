@@ -239,25 +239,62 @@ export const LogoBetween: React.FC<{
   /** Ancho en px. Se escala por ancho y el alto sale del ratio — nunca achatado. */
   ancho?: number;
   y?: number;
-}> = ({formato = 'feed', posicion = 'arriba', tono = 'beige', ancho, y}) => {
+  /**
+   * ⭐ Halo bajo el logo — pedido de Eli el 02-09-2026: «agrega debajo del logo
+   * una sombra con opacidad para que se vea el logo bien, muy sutil».
+   *
+   * Es una elipse difuminada del color sombra de la marca, DEBAJO del logotipo,
+   * que asienta el lockup cuando la foto trae hojas y cielo detrás. No es un
+   * `textShadow` —el logo es un PNG, no texto— ni oscurecer la foto, que el
+   * manual prohíbe.
+   *
+   * Se pasa la opacidad del centro (0 = sin halo). **0,22 es «muy sutil»**: el
+   * degradado se apaga a transparente al 70 % del radio, así que el promedio
+   * sobre la caja del logo queda muy por debajo de ese número y no se ve un
+   * parche. Por encima de ~0,35 empieza a notarse el óvalo.
+   */
+  sombra?: number;
+}> = ({formato = 'feed', posicion = 'arriba', tono = 'beige', ancho, y, sombra}) => {
   const clave = (formato === 'story' ? 'story' : 'post') + (posicion === 'abajo' ? 'LogoAbajo' : 'LogoArriba');
   const g = BETWEEN.margenes[clave as keyof typeof BETWEEN.margenes] as {
     wordmarkY: number;
     ancho: number;
   };
   const anchoFinal = ancho ?? g.ancho;
+  const altoFinal = anchoFinal / BETWEEN.logo.ratio;
+  const arriba = y ?? g.wordmarkY;
+  // El lockup es el wordmark MÁS el «COFFEE & BAR» de abajo, que cae fuera del
+  // alto del PNG: el halo se centra un poco más abajo del centro del archivo y
+  // se estira en vertical para cubrir las dos líneas.
   return (
-    <Img
-      src={staticFile(tono === 'cafe' ? BETWEEN.logo.cafe : BETWEEN.logo.beige)}
-      style={{
-        position: 'absolute',
-        top: y ?? g.wordmarkY,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: anchoFinal,
-        height: anchoFinal / BETWEEN.logo.ratio,
-      }}
-    />
+    <>
+      {sombra ? (
+        <div
+          style={{
+            position: 'absolute',
+            top: arriba + altoFinal * 0.9,
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: anchoFinal * 2.2,
+            height: altoFinal * 5.2,
+            background: `radial-gradient(ellipse at center, rgba(36,26,18,${sombra}) 0%, `
+              + `rgba(36,26,18,${(sombra * 0.45).toFixed(3)}) 42%, rgba(36,26,18,0) 72%)`,
+            pointerEvents: 'none',
+          }}
+        />
+      ) : null}
+      <Img
+        src={staticFile(tono === 'cafe' ? BETWEEN.logo.cafe : BETWEEN.logo.beige)}
+        style={{
+          position: 'absolute',
+          top: arriba,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: anchoFinal,
+          height: altoFinal,
+        }}
+      />
+    </>
   );
 };
 
@@ -1419,6 +1456,8 @@ export const PiezaFeedBodegon: React.FC<{
   conLogo?: boolean;
   logoTono?: Tono;
   logoPosicion?: 'arriba' | 'abajo';
+  /** Halo bajo el logo. Ver `LogoBetween.sombra`. */
+  logoSombra?: number;
   alinear?: 'izquierda' | 'centro';
   /**
    * Dónde va el bloque. Por defecto ARRIBA (es lo que hace Eli en los bodegones),
@@ -1461,6 +1500,7 @@ export const PiezaFeedBodegon: React.FC<{
   conLogo = false,
   logoTono = 'beige',
   logoPosicion = 'abajo',
+  logoSombra,
   // MEDIDO: las dos piezas aprobadas están centradas sobre el eje. Between
   // compone centrado; el bloque a la izquierda no es su gramática.
   alinear = 'centro',
@@ -1483,7 +1523,7 @@ export const PiezaFeedBodegon: React.FC<{
         mixBlendMode: 'multiply',
       }} />
     ) : null}
-    {conLogo ? <LogoBetween formato="feed" posicion={posLogo} tono={logoTono} /> : null}
+    {conLogo ? <LogoBetween formato="feed" posicion={posLogo} tono={logoTono} sombra={logoSombra} /> : null}
     <AbsoluteFill>
       <div
         style={{

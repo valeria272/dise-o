@@ -95,7 +95,19 @@ const HORARIO_TOGO = 'Lunes a viernes · 08:00 a 10:00 hrs.';
 /** Cuerpo compartido por las slides interiores del Cowork.
  *  Es el mayor que deja la línea más larga del carrusel —«¿NECESITAS CAMBIAR»,
  *  10,16 px de avance por unidad de cuerpo— dentro de la columna de 810. */
-const CAPS_INTERIOR = 79;
+const CAPS_INTERIOR = 74;
+/* ⭐⭐ RONDA 8 — 79 → 76. Eli: «los títulos se ven poco alineados y desordenados».
+   No era la alineación —medida, la desviación del eje es de 0,2 a 3,4 px, o sea
+   invisible— era que **la slide 4 rendía a otro cuerpo que las otras dos**:
+
+     alto de caja MEDIDO   C2 57,1   C3 57,1   C4 **53,3**
+
+   `encoger` achica hasta CABER en la columna (810), y «NOSOTROS LLEVAMOS» a 79
+   pedía ~840, así que sólo esa slide se encogía sola. Al deslizar, el titular
+   cambiaba de tamaño en la última — exactamente el defecto que ya se corrigió
+   una vez en «LA COLUMNA» (117 · 99 · 88) y que había vuelto por la puerta de
+   atrás. A 74 la línea más larga del carrusel («NOSOTROS LLEVAMOS», 803 px de tinta) cabe sin encoger, así que las
+   tres interiores rinden idénticas. */
 /** La columna del titular. `PiezaFeedBodegon` sigue trayendo el MARGEN (912)
  *  por defecto para no re-flujar lo ya aprobado —comprobado: cambiar el defecto
  *  movía 3 de las 4 piezas entregadas de la S1—, así que acá se pasa a mano. */
@@ -110,6 +122,15 @@ const AIRE_CAJA = 30;
  *  Se queda deliberadamente bajo — el manual prohíbe ganar contraste apagando
  *  la foto, y por encima de ~0,18 el problema deja de ser el velo. */
 const VELO_SUTIL = 0.1;
+
+/* ⭐⭐ RONDA 8 — el aire de la script en las interiores. Mismo defecto que en la
+   portada: el salto ENTRE niveles era MENOR que el salto DENTRO del nivel.
+   Medido antes: C2 y C4 dejaban ~9 px entre la línea de Raleway y la caja alta,
+   contra los ~20 que separan las dos líneas del propio titular.
+   0,44 × la altura de caja (≈24 px a cuerpo 76) deja el salto entre niveles por
+   encima del salto interno sin abrir tanto como la portada — ahí la script es
+   Brushwell y baja colas; acá es Raleway en caja alta y no tiene descendentes. */
+const AIRE_SCRIPT_INTERIOR = 24;
 
 /* ════════════════════════ FEED · 1080×1350 ════════════════════════ */
 
@@ -229,6 +250,14 @@ export const Cowork1: React.FC = () => (
        y la foto nueva no tiene caras, así que la excepción ya no aplica y el
        lockup recupera su posición de marca. */
     logoPosicion="arriba"
+    /* ⭐⭐ RONDA 8, Eli: «en la portada agrega debajo del logo una sombra con
+       opacidad para que se vea el logo bien, muy sutil».
+       La terraza trae hojas, cielo y la lona clara justo detrás del lockup. La
+       banda ya medía mejor que la portada anterior (luma 123,3 contra 159,5),
+       pero el fondo es PICADO —hoja clara, hueco oscuro— y eso es lo que come el
+       logotipo, no el promedio. El halo asienta el lockup sin apagar la foto,
+       que es lo que el manual prohíbe. 0,22 = «muy sutil». */
+    logoSombra={0.22}
     oscurecer={0.1}
   />
 );
@@ -273,6 +302,7 @@ export const Cowork2: React.FC = () => (
        queda como marca de la PORTADA. */
     scriptSans
     script="¿Muchos pendientes?"
+    aireScriptATitulo={AIRE_SCRIPT_INTERIOR}
     caps={'Al menos que sea\ncon buen café'}
     /* ⭐ 01-09 (2ª pasada): cuerpo compartido con la slide 3. Antes cada slide
        se achicaba sola y esta salía en 99 contra 88 de la otra. */
@@ -281,7 +311,7 @@ export const Cowork2: React.FC = () => (
     /* El corte va escrito: sin él la caja se partía sola y dejaba «a tu ritmo.»
        colgando en la segunda línea. */
     bajada={<>Encuentra tu mesa<br />y trabaja a tu ritmo.</>}
-    interlineaBajada={1.16}
+    interlineaBajada={1.24}
     columnaCaja={COLUMNA_CAJA}
     columna={COLUMNA_TITULAR}
     aireTituloACaja={AIRE_CAJA}
@@ -324,7 +354,7 @@ export const Cowork3: React.FC = () => (
        cortadas a mano y parejas, quebrando en la coma del brief.
        ⚠️ El texto es LITERAL del brief: no se le quita el «nuestro». */
     bajada={<>También tenemos espacios<br />en nuestro segundo nivel,<br />ideales para trabajar o reunirte.</>}
-    interlineaBajada={1.16}
+    interlineaBajada={1.24}
     /* Su línea más larga —«ideales para trabajar o reunirte.», 584 px de
        tinta— pide 692 con el padding; con los 670 del resto del carrusel la
        caja la volvía a partir y aparecía un cuarto renglón de 152 px. */
@@ -387,6 +417,7 @@ export const Cowork4: React.FC = () => (
     foto={FOTO_SERVICIO}
     scriptSans
     script="Tú sigue con lo tuyo"
+    aireScriptATitulo={AIRE_SCRIPT_INTERIOR}
     /* El corte «NOSOTROS / LLEVAMOS EL CAFÉ» dejaba la primera línea en 38 %
        del lienzo y `between-qa.py` lo marcaba (mínimo 50 %). Partido después de
        «LLEVAMOS» quedan 69 % y 28 %: línea larga y remate corto, y «EL CAFÉ»
@@ -397,7 +428,7 @@ export const Cowork4: React.FC = () => (
     /* El corte «…a la mesa / mientras trabajas.» no cabía en la caja y ésta lo
        volvía a partir, dejando «mesa» SOLA en un renglón. Se quiebra antes. */
     bajada={<>Disfruta nuestro servicio<br />a la mesa mientras trabajas.</>}
-    interlineaBajada={1.16}
+    interlineaBajada={1.24}
     columnaCaja={COLUMNA_CAJA}
     columna={COLUMNA_TITULAR}
     aireTituloACaja={AIRE_CAJA}

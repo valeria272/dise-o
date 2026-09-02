@@ -62,18 +62,18 @@ MANIFIESTO = RAIZ / 'out/hilton-between-r8/_subidas.json'
 # entero y tiene que traer las cuatro. El cliente revisa el carrusel completo,
 # que es como se publica.
 #
-# La portada sale de la ronda 8 (`out/hilton-between-r8`) y las tres interiores
-# de la ronda 7 tal cual se entregaron (`out/entrega-r7/S1`): no se re-rindieron,
-# son byte a byte las que el cliente ya vio.
+# Las CUATRO salen de la ronda 8: en la 2.ª pasada Eli pidió emparejar los
+# títulos («se ven poco alineados y desordenados»), así que las tres interiores
+# también se re-rindieron. Ya no se toma nada de `out/entrega-r7/S1`.
 PIEZAS = [
     ('BW FEED 01-09 Cowork 1 portada.png',
      RAIZ / 'out/hilton-between-r8/BW-F-Cowork-1.png'),
     ('BW FEED 01-09 Cowork 2 winter garden.png',
-     RAIZ / 'out/entrega-r7/S1/BW FEED 01-09 Cowork 2 winter garden.png'),
+     RAIZ / 'out/hilton-between-r8/BW-F-Cowork-2.png'),
     ('BW FEED 01-09 Cowork 3 segundo nivel.png',
-     RAIZ / 'out/entrega-r7/S1/BW FEED 01-09 Cowork 3 segundo nivel.png'),
+     RAIZ / 'out/hilton-between-r8/BW-F-Cowork-3.png'),
     ('BW FEED 01-09 Cowork 4 servicio.png',
-     RAIZ / 'out/entrega-r7/S1/BW FEED 01-09 Cowork 4 servicio.png'),
+     RAIZ / 'out/hilton-between-r8/BW-F-Cowork-4.png'),
 ]
 
 

@@ -57,6 +57,7 @@ Poppins **empeora** al abrir el tracking, así que no es. Pesos en uso: **300, 4
 | Pieza | Lienzo | Proporción |
 |---|---|---|
 | Feed (estático y carrusel) | **4500 × 5625** | 4:5 |
+| *(junio y julio iban a 2250 × 5625/2 = 2250 × 2813; Paulina dobló el tamaño en septiembre)* | | |
 | Historia | **4500 × 8000** | 9:16 |
 | Banner de mailing | 5000 × 2292 / 2500 / 3334 | variable |
 
@@ -143,10 +144,12 @@ Heredadas del Sheet `INFORMACIÓN PROYECTOS` del cliente y vigentes para las dos
 - Garantía de **1,5 meses hasta en 6 cuotas** · **sin comisión** · reajuste **cada 12 meses** · entrega inmediata
 - Atención: **L-V 10:00–14:00 y 14:30–18:00**
 
-> ⚠️ **WhatsApp.** El brief de **grilla** de octubre pone `+56 9 9707 9951` en el estático
-> del 13-oct; ese es el número de **Travesía (INU, venta)**. El brief de **mailing** del
-> mismo mes usa `9955` dos veces y su nota final dice literal
-> «(2) número de WhatsApp (se usa +56 9 9707 9955)». Julio y agosto también usaron 9955.
+> ⚠️ **WhatsApp — resuelto por la pieza, no por el brief.** El estático entregado de julio
+> (`rentas-grilla-julio_POST-21-07.png`) **publica `+569 9707 9951`** en el botón. O sea el 9951
+> sí es de Rentas, y el brief de grilla de octubre repite lo que ya salió. Pero los **briefs** de
+> julio, agosto y el mailing de octubre escriben `9955`, y la nota final del mailing dice literal
+> «(2) número de WhatsApp (se usa +56 9 9707 9955)». Los briefs y las piezas no coinciden entre sí.
+> **En pieza manda lo publicado (9951)** salvo que el cliente diga otra cosa.
 
 ## Dónde está todo
 

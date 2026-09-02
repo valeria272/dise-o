@@ -14,6 +14,11 @@ pide personas manipulando cinta, ganchos y telarañas, y eso no existe en el ban
 Se ambientaron para que se lean como un departamento de Valle Altiplánico —muro beige claro,
 porcelanato claro, persiana zebra, luz natural cálida— y **sin marcas legibles** en los envases.
 
+**Corregido tras la revisión de Valeria:** la caja del logo estaba **65 % más alta de la cuenta**
+(1088×1351 en vez de 1088×821) y el logotipo quedaba hundido contra el borde inferior — el padding
+porcentual del CSS peleaba con el `aspect-ratio`. Ahora va en píxeles y calza con la referencia:
+ratio 0,755 contra 0,754, aire superior 17,8 %.
+
 **QA hecho:**
 - Las 5 piezas a **4500×5625** exactos y con los hex medidos (`#1372F1` / `#CCDC00`).
 - **Manos revisadas con zoom 4×** en las cuatro láminas que las muestran: anatomía correcta,
@@ -62,9 +67,13 @@ Mientras tanto, los logos se **extrajeron de las piezas entregadas**: `logo_rent
 2. **El botón `RENTAS.INU.CL` de la lámina 5.** No está en el brief; es el cierre canónico del
    sistema (aparece en todos los carruseles y reels de Rentas). Si el cliente lo quiere fuera,
    se borra sin tocar nada más.
-3. **Valle Altiplánico SÍ tiene piscina** — se ve en el dron de mayo. El brief de septiembre la
+3. **⚠️ El precio y la superficie no calzan entre canales.** El brief y el feed de Instagram
+   (post del 18-ago) dicen **desde $715.000 y desde 59 m²**; el sitio `rentas.inu.cl` publica
+   **desde $780.000 y desde 74,76 m²**. Puede ser otra tipología, pero conviene alinearlo antes
+   de que salga una pieza con una cifra y la web muestre otra.
+4. **Valle Altiplánico SÍ tiene piscina** — se ve en el dron de mayo. El brief de septiembre la
    nombraba y el de octubre no. Vale la pena recuperarla como atributo.
-4. **La torre del frente dice «LAGUNA VERDE»** en la fachada, en el metraje de mayo. Asumo que es
+5. **La torre del frente dice «LAGUNA VERDE»** en la fachada, en el metraje de mayo. Asumo que es
    el nombre de la torre dentro del condominio; conviene confirmarlo antes de publicar ese plano.
 
 ## Cómo reproducirlo

@@ -83,7 +83,8 @@
         "ancho_pct_de_la_caja": 54.2,
         "aire_superior_pct": 17.8
       },
-      "regla_carrusel": "Solo la portada y el cierre llevan la caja del logo. Las láminas intermedias NO."
+      "regla_carrusel": "Solo la portada y el cierre llevan la caja del logo. Las láminas intermedias NO.",
+      "_nota_bug": "En CSS la caja va en PÍXELES, no en % con aspect-ratio: el padding porcentual peleaba con el aspect-ratio y estiraba la caja a 1351 px de alto (65 % de más), hundiendo el logotipo contra el borde inferior. Se cazó comparando contra la referencia, no a ojo."
     },
     "cajas_de_color": {
       "regla": "La caja abraza al texto, no tiene ancho fijo. Su alto es ~2x la altura de mayúsculas que contiene (medido 357/174, 358/174, 448/209).",
@@ -99,6 +100,32 @@
         3.9,
         5.7
       ]
+    },
+    "logo_valle": {
+      "ancho_pct": 28.2,
+      "alineacion": "derecha, con el MISMO margen que la caja lima del titular (16,3 %)",
+      "color": "blanco",
+      "cuando": "sólo en piezas de ficha/producto (estático de proyecto, ficha de mailing). NO va en piezas de contenido.",
+      "_origen": "medido en el estático de julio 'rentas-grilla-julio_POST-21-07.png'"
+    },
+    "fila_atributos": {
+      "descripcion": "Tres discos celestes traslúcidos con borde blanco, unidos por una línea, y el rótulo debajo en bold blanco.",
+      "centros_x": [
+        0.334,
+        0.497,
+        0.661
+      ],
+      "separacion": 0.164,
+      "grupo": "centrado",
+      "_origen": "medido en el estático de julio"
+    },
+    "boton_whatsapp": {
+      "ancho_pct": 57.5,
+      "alto_pct_del_ancho": 10.3,
+      "margen_inferior_pct": 6.6,
+      "forma": "azul macizo, esquinas completamente redondeadas, ícono en disco blanco a la izquierda",
+      "texto": "«Escríbenos por WhatsApp» en regular sobre el número en bold",
+      "_origen": "medido en el estático de julio"
     }
   },
   "proyecto": {
@@ -124,8 +151,8 @@
       "Entrega inmediata"
     ],
     "horario_atencion": "Lunes a viernes · 10:00 a 14:00 y 14:30 a 18:00 hrs.",
-    "whatsapp": "+56 9 9707 9955",
-    "_ojo_whatsapp": "El brief de GRILLA de octubre escribe +56 9 9707 9951 en el estático del 13-oct. Ese es el número de Travesía (INU, venta). El brief de MAILING del mismo mes usa 9955 dos veces y su nota final dice literal «(2) número de WhatsApp (se usa +56 9 9707 9955)». Julio y agosto también usaron 9955."
+    "whatsapp": "+56 9 9707 9951",
+    "_ojo_whatsapp": "RESUELTO el 02-09-2026 con la pieza entregada: el estático de julio ('rentas-grilla-julio_POST-21-07.png') publica '+569 9707 9951' en el botón. O sea el 9951 SÍ es de Rentas y el brief de grilla de octubre repite lo que ya salió. Ojo igual: los BRIEFS de julio, agosto y el mailing de octubre escriben 9955, y la nota final del mailing dice '(2) número de WhatsApp (se usa +56 9 9707 9955)'. Los briefs y las piezas no coinciden entre sí; en pieza manda lo publicado (9951) salvo que el cliente diga otra cosa."
   },
   "equipo": {
     "contenido": "Carlos Figueroa",
@@ -147,7 +174,8 @@
       "alto": 8000,
       "proporcion": "9:16"
     },
-    "_origen": "medido sobre las 10 piezas entregadas de septiembre 2026"
+    "_origen": "medido sobre las 10 piezas entregadas de septiembre 2026",
+    "_cambio_de_tamano": "Junio y julio se entregaron a 2250x2813; desde septiembre Paulina dobló a 4500x5625. La proporción 4:5 no cambió. Se entrega a 4500."
   },
   "gramatica": {
     "alineacion": "CENTRADA en feed e historia. Solo los banners de mailing van a la izquierda con velo.",

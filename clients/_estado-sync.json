@@ -59,8 +59,8 @@
     "RENDIC apareció con planificación de septiembre (26-08). Cuenta sin sistema.",
     "El CLIENTE de Revex (jcampos@gruporevex.cl) compartió sus carpetas LCD, TEMUCO y PRODUCTOS. Son fuente autoritativa para verificar sucursal: la fachada de Temuco está identificada por señalética (SHOWROOM GRUPOREVEX SEGUNDO PISO sobre edificio EBEMA).",
     "OJO: decenas de grillas muestran modifiedTime del 27-08 entre 13:00 y 15:00 sin cambio de contenido — parece reindexado masivo del Drive, no ediciones. Para separar lo nuevo de verdad se usó createdTime.",
-    "El conector de Drive entra como constanza.olivares@copywriters.cl — NO como Valeria ni Serena. Ver docs/MAPA-DRIVE.md."
-    "Revisión acotada a Casablanca (/al-dia casablanca). Las demás marcas quedaron con el estado del 27-08.",
+    "El conector de Drive entra como constanza.olivares@copywriters.cl — NO como Valeria ni Serena. Ver docs/MAPA-DRIVE.md.",
+    "[de la pasada del 28-08, Casablanca] Revisión acotada a Casablanca (/al-dia casablanca).",
     "El token de Google API NO está en esta máquina (scripts/_entorno.py: 'token Google ✗'), así que scripts/drive-comentarios.py no corre. Los comentarios se leyeron con el conector MCP: read_file_content con includeComments=true SÍ devuelve comentarios de archivos PNG, aunque la doc del conector diga que sólo Docs/Slides/Sheets.",
     "El conector no sirve para bajar los bytes de las imágenes nuevas (base64 de 2,5 MB por archivo). Para bajarlas: link-share + curl."
   ]

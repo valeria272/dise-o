@@ -3,24 +3,24 @@
   "ultima_revision": "2026-09-02",
   "por_marca": {
     "ebema": {
-      "revisado": "2026-08-27",
-      "ultimo_hallazgo": "Paulina subió TODO septiembre el 26-08: 9. SEPTIEMBRE con feed, stories y LinkedIn, 8 carruseles por producto (stock, cedral, cintac, click, ebema, novoplast, surpol, toro) y 6 reels"
+      "revisado": "2026-09-02",
+      "ultimo_hallazgo": "Sin novedades desde el 28-08. Ese dia Paulina toco 'ebema_c_piazza1.png' (14:57) y los reels 'reel_cmpc.mp4' (15:34) y 'reel_polpaico.mp4' (15:15). Septiembre completo sigue en pie desde el 26-08."
     },
     "revex": {
       "revisado": "2026-08-27",
       "ultimo_hallazgo": "Septiembre CERRADO en 4:5 (2250x2812) tras 6 rondas. Fondos y scripts ya versionados (commit 4351ce3). Ver el manual §Rondas 3-6"
     },
     "casablanca": {
-      "revisado": "2026-08-28",
-      "ultimo_hallazgo": "RONDA DE PAULINA sobre las 14 piezas de septiembre (subidas 28-08 03:46 a 'Diseño Casablanca Septiembre 2026' 13pOfaekruRWq8PEHrG0be20Bq6eG4yCB: C1 en 'CARRUSEL PRODUCTOS LOOK' 10VHR4RQ3RhIYUmuTQQM3t8wW8UUdTlA4 y C2 en 'C2 · Post tienda' 1-i3cmlCuubIazOpPNtczjIVFsvEiTmpy). 7 comentarios ABIERTOS en 6 archivos, todos del 28-08 13:22-13:30. MATERIAL NUEVO de Paulina el 28-08 13:30-13:39: carpeta 'fotos_casablanca_suc' (1qtNt898ah1cEho4LXXAVbHAQSHQgWWs4) con 4 PNG generados con ChatGPT el 28-ago + lascondes-6.png y lascondes-8.png (fotos reales de junio), y carpeta 'casablanca fondos' (1bYr0wqetBxk-khAT_cG4O5_H86pVIlz6) con 10 PNG de ChatGPT del 28-jul. Sirve para el bloqueo de c2-3 (faltaba una foto que no fuera fachada). PENDIENTE: pasar las 16 imágenes por la compuerta de material antes de usarlas."
+      "revisado": "2026-09-02",
+      "ultimo_hallazgo": "⚠️ SIN VERIFICAR HOY: los 7 comentarios ABIERTOS del 28-08 (ronda de Paulina sobre las 14 piezas de septiembre) NO se pudieron releer. 'scripts/drive-comentarios.py 13pOfaekruRWq8PEHrG0be20Bq6eG4yCB' devuelve 0 archivos porque el token compartido solo tiene scope drive.file y esos archivos NO los subio este token. Hay que abrirlos a mano en Drive o subirlos con el token del estudio. Sigue pendiente pasar por la compuerta de material las 16 imagenes de Paulina del 28-08 ('fotos_casablanca_suc' 1qtNt898ah1cEho4LXXAVbHAQSHQgWWs4 y 'casablanca fondos' 1bYr0wqetBxk-khAT_cG4O5_H86pVIlz6)."
     },
     "selfie": {
-      "revisado": "2026-08-27",
-      "ultimo_hallazgo": "Coni subió MAILAGO_S4_PROMOCHILA-TINTURAS.png (mail agosto S4); grilla de septiembre en pie"
+      "revisado": "2026-09-02",
+      "ultimo_hallazgo": "⚠️ NO fue Coni: quien subio a SELFIE/CONTENIDOS/2026/9. SEPTIEMBRE fue DIEGO AGUILAR el 31-08 14:36 (archivos del 28-08). FEED (1ieEFVvmJNPTl1UoKpnzknZNs772tB7Vp): INV O VER.png + _1 _2 _3 _4 (carrusel de 5). BANNER (1YopyaV_Z6wrM7h0JaEK8FL881xgnpGQx): DESK.png y MOBILE.png. Coni: CERO archivos desde el 28-08. Selfie es cuenta de Coni segun el manual -- confirmar quien firma el criterio antes de producir."
     },
     "hilton": {
-      "revisado": "2026-09-02 (manana)",
-      "ultimo_hallazgo": "PENDIENTE #1 DE LA BITACORA CUMPLIDO: Eli subio a mano las 6 del FEED de la S1 de Between el 01-09 21:27-22:32. C1 COWORK (1GB6NtoG3vy35rPj7bw-j8bc76-Jz8332) con las 4 slides -- Cowork 1 portada 8037434 B, 2 winter garden 5525936 B, 3 segundo nivel 5871152 B, 4 servicio 4428220 B -- y C2 CUMPLEANOS BW (1TfFCqNfQw0ucTwqvJD8iqft7Y__voRUw) con las 2 (Cumpleanos 1 3692470 B, Cumpleanos 2 detalles 2904847 B). Verificado BYTE A BYTE contra Escritorio\\S1 BETWEEN y contra out/entrega-cowork-r7/S1: coinciden las 6. OJO: out/entrega-drive/S1 es la version VIEJA (r6) y NO es lo que se subio. ESTADOS DE LA GRILLA BETWEEN (guardada hoy 13:04 por sebastian.serrano): FEED C (1-sep Cowork) EN CAMBIOS -> CORREGIDO, y el comentario nativo C15 de Scarlette (el de la mesa con pc y cafe) YA NO ESTA en el xlsx = lo resolvieron. SIN RONDA 7: los comentarios nativos que quedan son los mismos de Scarlette del 31-08 17:41-17:59 (G15, H15, J15, L15 en comments1; I15 en comments2), verificados uno a uno. SIGUEN EN CAMBIOS con comentario escrito y sin aplicar: FEED G (7-sep estatico Cafecito humor), FEED H (9-sep carrusel Primero la foto), FEED J (11-sep estatico Ella hablo/Ella escucho), FEED L (14-sep S3 carrusel Promos To Go) y STORIES I (9-sep Emergencia Between). Son 5 piezas = la S2 de Between es lo que sigue. DOUBLETREE: Eli abrio hoy 13:07 S2 HILTON SEP 2026 (1MSF7sQYNowbU8GlkDn6_HoR8-bqCDeYn) -> DT -> C1 ER DT S2 (1atgDrSo_0Q3MNn2ZAbECHMO1oY5sm7zO) y subio C1 ER N1 y N2 = el carrusel ESCAPADA ROMANTICA del 7-sep. El brief pide exactamente 2 slides, asi que esta COMPLETO; la grilla DT lo marca EN REVISION. Scarlette lo habia pedido el 01-09 17:09 (\"este carrusel puedes tomar al final del dia para manana am\") y el comentario quedo RESUELTO. Ojo en la grilla DT: E13 dice \"ojo copy cambiado\" y E14 \"Cambiemos por algo de feed estatico de Escapada Romantica\". Tambien subio GUEST GUIDE n2.pdf (hoy 13:12) y reel_cumple_qb.mp4 (01-09 22:19). Grillas del complejo tocadas: BETWEEN hoy 13:04, QB 01-09 22:30, PISO18 01-09 21:47, DOUBLETREE 01-09 20:03."
+      "revisado": "2026-09-02 (tarde)",
+      "ultimo_hallazgo": "Segunda pasada del dia (la de la manana llegaba hasta las 13:12). NOVEDADES DE ELI ENTRE 13:00 Y 16:15: (1) BETWEEN S2 ABIERTA Y VACIA -- creo la carpeta 'BW' (1Yh2Puq1ZEmbM2HaoTh-LUydKwtZRmpn1) dentro de S2 HILTON SEP 2026 a las 15:23 y NO subio nada. Confirma que la S2 de Between (las 5 piezas EN CAMBIOS: FEED G, H, J, L y STORIES I) es lo que sigue y no esta empezada. (2) EL CARRUSEL ER SE RE-SUBIO: C1 ER N1 (6.659.721 B) y N2 (11.931.529 B) tienen modifiedTime 15:42, o sea son version NUEVA respecto de la de las 13:07. (3) ⚠️ EL MISMO CARRUSEL ENTRO A PAUTA: los dos archivos estan duplicados byte a byte en 'CARRUSEL ER 1' (1PhUzmUBxiYAiJso98KJhqokx5EL0FFdm), que cuelga de HILTON/PERFORMANCE/2026/9. Septiembre 2026/'Paid DT (DIRECCION)' (1xE9Gxzapj38RJmpx5AYEi3dtOqeWYfXd). Una pieza organica pasada a paid TIENE que cumplir zonas seguras de Meta Ads -- hay que revisarlo. (4) ENCARGO PAID NUEVO: carpeta 'CARRUSEL PROGRAMAS GENERALES' (1lnB98Zh2J7P_1Y5kBJuoX6qOkFyleqc9) con 6 referencias 'Paid-DoubleTree-Abril-n1..6' (14:14-15:57). (5) Imprenta/senaletica DT, fuera del sistema de marca: 'Sticker Tarjeton de invitacion 2026' (Tarjeton bienvenida Sticker 20x1,5cm .png/.pdf) y 'ACCESO MONTACARGA (DERECHA)' (1xV06AI5NH_3SdEFG4OJlOgOfzXWe1qla) con .ai texto contorneado, .jpg 150ppp y .pdf 60x20cm."
     },
     "tierra-calma": {
       "revisado": "2026-08-27",
@@ -31,8 +31,8 @@
       "ultimo_hallazgo": "Briefs septiembre en pie; sin cambios de sistema"
     },
     "myzoo": {
-      "revisado": "2026-08-27",
-      "ultimo_hallazgo": "Grilla Octubre nueva; Paulina subió myzoo_pendon_alma.png y carrusel_xtremevet"
+      "revisado": "2026-09-02",
+      "ultimo_hallazgo": "Paulina subio HOY 15:48-15:49 el carrusel 'c_partners' (1EL-6lg-Ts-XQyuJ9wYoOYyC6ZCx8fjU3): 8 piezas myzoo_c_partners1..8, ~7 MB c/u. El 28-08 17:30 habia abierto 'c_detective' (1M0NyGNeYNCBeIqIxXpQIw5aaLykN17ES, con myzoo_c_detective1.png) y 'c_xtremewtf' (17gyVzf5tZmMUUK3gP3qOk96ky1g63dXr, vacia). MyZoo sigue sin manual ni kit en el estudio."
     },
     "abakos": {
       "revisado": "2026-08-27",
@@ -41,6 +41,18 @@
     "traverso": {
       "revisado": "2026-08-27",
       "ultimo_hallazgo": "GRILLA DE SEPTIEMBRE NUEVA (26-08, Nicolás Ávila): 22 piezas + 2 variantes de formato, eje Fiestas Patrias. Traverso NO tiene manual ni kit — bloqueado"
+    },
+    "nueva-urbe": {
+      "revisado": "2026-09-02",
+      "ultimo_hallazgo": "Paulina RE-SUBIO los mailings de septiembre el 31-08 (14:09 a 22:08): Rentas 1.1/1.2/1.3 y 2.1/2.2/2.3, INU 1-1/1-2/1-3 y 2-1/2-2, mas 'inu-mail_2-3.png' NUEVO (31-08 22:00). Son reemplazos sobre archivos creados el 20-08: hubo una ronda de correcciones que el estudio no vio."
+    },
+    "mascenter": {
+      "revisado": "2026-09-02",
+      "ultimo_hallazgo": "GRILLA DE SEPTIEMBRE PRODUCIDA POR DIEGO AGUILAR el 01-09 14:12-14:14, en GRUPO IFB - MAS CENTER/DISENO GRILLAS/2026/9. SEPTIEMBRE. FEED (1o4cQZSyi8NZZxFsw8YWHdSdHFKkq679x): carrusel c-07-09-1/2/3, carrusel c-16-09-1..5, p-25-09.png, y los reels r-14-09_1.mp4 (76 MB) y r-21-09.mp4 (52 MB, re-subido 01-09 21:53). ST (1UBDh-dF2HEc3NDaMvW5aq84WwwNaLtjM): st-18-09, st-23-09, st-ganador, st-precaucion. Mas Center no tiene manual de marca en el estudio (si hay trabajo previo: brochure, PPT comercial y 2 landings)."
+    },
+    "redmagister": {
+      "revisado": "2026-09-02",
+      "ultimo_hallazgo": "Cuenta que el estudio no tenia mapeada. Diego Aguilar subio el 31-08 16:29 a REDMAGISTER/PERFORMANCE/2026/SEPTIEMBRE/RENDIC: FEED con post-wsp, post-trafico, carrusel-wsp-1/2/3 y los reels rem-wsp.mp4 y rem-trafico.mp4; ST con las mismas en story. Sin manual ni kit."
     }
   },
   "diseñadoras_revisadas": [
@@ -50,12 +62,12 @@
     "diego.aguilar@copywriters.cl"
   ],
   "_notas_de_esta_revision": [
-    "Pasada del 02-09 (manana), acotada a Hilton (/al-dia hilton).",
-    "La grilla de Between ya pesa 75,2 MB (era 59,8). Se sigue bajando sin token: curl -sL \"https://drive.google.com/uc?export=download&id=1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY\"",
-    "Las grillas nativas de Google (DoubleTree, QB, PISO18) se bajan con /export?format=xlsx -- el conector MCP TRUNCA las celdas de brief y no sirve para leer un brief completo.",
-    "Un comentario nativo que desaparece del xlsx significa RESUELTO, no borrado: asi se detecto que C15 de Between quedo cerrado.",
-    "credentials/token.json SIGUE FALTANDO. Eli subio las 6 piezas a mano y funciono, pero no se puede automatizar ni corregir lo ya entregado en BW.",
-    "Paulina y Coni: cero archivos nuevos en la ventana. Scarlette toco MyZoo, INDUCCION 2026 y Mas Center, nada de Hilton.",
-    "El pull de hoy trajo trabajo de Paulina: Casablanca (aprobada con 2 ajustes, ronda 3 y 4 de cliente) y EBEMA (campanas ARIEL de WhatsApp, A1-A6 Portezuelo). No es de Eli, no se toca."
+    "Pasada del 02-09 (tarde), completa. Ventana: desde el 28-08 para todos; desde las 13:00 de hoy para Eli, porque la pasada de la manana ya la cubria.",
+    "CONSTANZA LIZANA: cero archivos nuevos desde el 28-08. Es la unica de las cuatro sin movimiento.",
+    "⭐ DIEGO AGUILAR resulto ser el mas activo y el estudio no lo tenia mapeado a ninguna marca: toca MAS CENTER (grilla sept), SELFIE (que el manual asigna a Coni) y REDMAGISTER. Hay que definir quien firma el criterio de esas cuentas -- el criterio de una marca no se traspasa.",
+    "El buscador de Drive devuelve las CARPETAS en la primera pagina y los ARCHIVOS recien en la segunda: hay que paginar siempre o se pierde todo el material.",
+    "Un archivo con createdTime viejo y modifiedTime nuevo es un REEMPLAZO, no una pieza nueva: asi se detecto la ronda de Nueva Urbe del 31-08 sobre archivos del 20-08.",
+    "Dos archivos con el MISMO fileSize exacto en dos carpetas distintas son la misma pieza duplicada: asi se detecto que el carrusel ER organico entro tambien a la carpeta de Paid DT.",
+    "drive-comentarios.py solo sirve para archivos que subio el propio token (scope drive.file). Para leer comentarios de piezas subidas a mano por una disenadora, no sirve."
   ]
 }

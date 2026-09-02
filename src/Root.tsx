@@ -49,11 +49,17 @@ import {
   TRAVERSO_REEL_DURATION,
   TRAVERSO_REEL_FPS,
 } from "./compositions/TraversoPasamelaReel";
+import {GclPost, GCL_POST_DEMO} from "./compositions/gcl/GclPost";
 import {
   GclOrigenReel,
   GCL_ORIGEN_DURATION,
   GCL_ORIGEN_FPS,
 } from "./compositions/GclOrigenReel";
+import {
+  GclTurnoNocheReel,
+  GCL_R02_DURATION,
+  GCL_R02_FPS,
+} from "./compositions/GclTurnoNocheReel";
 
 // Social templates
 import {TikTokVideo} from "./templates/social/TikTokVideo";
@@ -317,6 +323,14 @@ export const RemotionRoot: React.FC = () => {
           component={GclOrigenReel}
           durationInFrames={GCL_ORIGEN_DURATION}
           fps={GCL_ORIGEN_FPS}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="GclTurnoNocheReel"
+          component={GclTurnoNocheReel}
+          durationInFrames={GCL_R02_DURATION}
+          fps={GCL_R02_FPS}
           width={1080}
           height={1920}
         />
@@ -745,6 +759,42 @@ export const RemotionRoot: React.FC = () => {
             showCaptions: true,
             captionPreset: "bold" as const,
           }}
+        />
+      </Folder>
+
+      {/* ------------------------------------------------------------------
+          GCL — piezas estáticas del feed de Grupo Copylab (@copywriters.cl).
+          Sistema visual: negro + rosado eléctrico (src/brand/gcl.tokens.json).
+          No se renderizan a mano: las pide el agente social con
+          AGENTE SOCIAL MEDIA/tools/remotion_render.py
+      ------------------------------------------------------------------- */}
+      <Folder name="GCL">
+        <Composition
+          id="GclPost"
+          component={GclPost}
+          durationInFrames={1}
+          fps={30}
+          width={1080}
+          height={1350}
+          defaultProps={GCL_POST_DEMO}
+        />
+        <Composition
+          id="GclHistoria"
+          component={GclPost}
+          durationInFrames={1}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={GCL_POST_DEMO}
+        />
+        <Composition
+          id="GclCuadrado"
+          component={GclPost}
+          durationInFrames={1}
+          fps={30}
+          width={1080}
+          height={1080}
+          defaultProps={GCL_POST_DEMO}
         />
       </Folder>
     </>

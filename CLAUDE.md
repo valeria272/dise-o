@@ -7,6 +7,34 @@
 
 You are a professional video editor. This project uses **Remotion** (React-based video framework) so you create and edit videos by writing React components. Users describe videos in natural language; you write the code.
 
+
+## GCL — piezas estáticas del feed (desde 02-09-2026)
+
+Este proyecto ya no hace solo video: **también renderiza las piezas gráficas del feed de
+Grupo Copylab** (`@copywriters.cl`). Decisión de Valeria — un solo sistema de diseño para
+video y estático.
+
+| Qué | Dónde |
+|---|---|
+| Sistema visual (colores, tipos, formatos, prohibiciones) | `src/brand/gcl.tokens.json` |
+| Fuentes + helpers | `src/brand/gcl.ts` · componentes en `src/brand/gclUI.tsx` |
+| Las 6 plantillas | `src/compositions/gcl/GclPost.tsx` |
+| Composiciones | `GclPost` 1080×1350 · `GclHistoria` 1080×1920 · `GclCuadrado` 1080×1080 |
+
+```bash
+npx remotion still GclPost out/gcl/pieza.png --props='{"plantilla":"resultado","cifra":"471%","titulo":"Aumento de alcance"}'
+```
+
+Normalmente **no se llama a mano**: lo pide el agente social con
+`AGENTE SOCIAL MEDIA/tools/remotion_render.py`. La guía completa está en
+`AGENTE SOCIAL MEDIA/docs/SISTEMA-VISUAL.md`.
+
+⚠️ El feed es **negro + rosado eléctrico + coral** (el sistema del Agente G, ver
+`gcl-agent/GCL_CHARACTER_BIBLE.md`). El crema/navy/**lime** de `src/brand/copywriters.ts`
+es el de la **web** y no se usa en las piezas del feed.
+
+---
+
 ## 🚀 Si es la primera vez que se abre este proyecto en esta máquina
 
 Corre `bash scripts/doctor.sh`. Si falta `node_modules/`, el venv de Python o el
@@ -61,6 +89,8 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | [`docs/FLUJO-MENSUAL.md`](docs/FLUJO-MENSUAL.md) | **Cómo se corre un mes con un cliente**, de punta a punta. Los 3 modos: grilla mensual, KV + derivados, a pedido |
 | [`docs/QUIEN-HACE-QUE.md`](docs/QUIEN-HACE-QUE.md) | Qué tiene pendiente cada persona del equipo para poder arrancar |
 | [`docs/ESTADO-MARCAS.md`](docs/ESTADO-MARCAS.md) | Qué marca tiene sistema, qué falta pedirle a cada cliente, quién es quién en el equipo |
+| [`docs/COMO-DISENA-EL-EQUIPO.md`](docs/COMO-DISENA-EL-EQUIPO.md) | **Cómo entrega cada diseñadora** — nomenclatura, estructura de carpetas y formatos por persona y por marca, medidos sobre el Drive. Léelo antes de nombrar un archivo de entrega: el portal levanta por nombre |
+| [`docs/QUE-AUTOMATIZAR.md`](docs/QUE-AUTOMATIZAR.md) | **Qué cuenta se automatiza y cuál se deja a mano** — veredicto por cliente con la medición que lo respalda. Léelo antes de proponer automatizar una grilla |
 | [`docs/MAPA-DRIVE.md`](docs/MAPA-DRIVE.md) | Dónde está cada cosa en Drive, con IDs. Incluye cómo llegar a las carpetas de las diseñadoras |
 | [`docs/BRIEF-DE-DISENO.md`](docs/BRIEF-DE-DISENO.md) | El contrato de entrada: qué campos tiene que traer un brief para ejecutarse sin preguntas |
 | [`docs/QUE-PUEDO-Y-QUE-NO.md`](docs/QUE-PUEDO-Y-QUE-NO.md) | Los límites reales, el estado de los conectores MCP y cuándo sí conviene `/design` |

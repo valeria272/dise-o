@@ -1,5 +1,16 @@
 # R02 «Turno de noche» — plan de rodaje
 
+> ✅ **Sigue vigente, pero ya no bloquea.** El 02-09-2026 el capítulo se montó
+> entero con planos generados (ver [`R02_STORYBOARD.md`](R02_STORYBOARD.md)),
+> así que hay un corte que mirar hoy. Este rodaje es lo que convierte esa
+> versión en la definitiva: **N3 y N8 son los dos planos que hay que reemplazar
+> primero** —en el montaje son P5 y P17, el mismo encuadre de noche y de
+> mañana— y son también los que cierran el último punto abierto del feedback
+> del capítulo 1 («el personaje se ve muy sobrepuesto»).
+>
+> Las marcas de tiempo de abajo son las de la v1 de 38 s; la rejilla vigente
+> está en el storyboard.
+
 Lo que hay que filmar de verdad. **Una persona, un teléfono, la oficina vacía de
 noche, 25 minutos.** No hay que coordinar a nadie ni pedir permisos.
 

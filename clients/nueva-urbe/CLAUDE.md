@@ -78,6 +78,84 @@ revés** (cuelga del borde inferior). El logotipo ocupa el **54 % del ancho de l
 > ⚠️ **En un carrusel, solo la portada y el cierre llevan la caja del logo.** Las láminas
 > intermedias no la llevan — verificado en los dos carruseles de septiembre.
 
+#### ⚠️ Feedback de Diego Aguilar (03-09-2026) — el logo no puede quedar suelto
+
+Sobre la entrega de octubre, Diego dejó cuatro comentarios en Drive y **los tres primeros
+son el mismo problema**: el logo aparece «en un lugar que no debería», «en cualquier lado».
+Lo que pide:
+
+| Pieza comentada | Lo que dijo |
+|---|---|
+| `MAIL 06-10 bloque 3 ficha.png` | «logo en un lugar que no debería… quizás siempre decirle que deje el logo en la **esquina superior izquierda**» · y «la **nube** también debería ir junto con el bloque de la info del condominio» |
+| `20-10 PAID Arrienda fácil 1 portada.png` | «también logo en cualquier lado… en este caso siempre dejar **junto a los bloques de texto**» |
+| `13-10 ESTATICO Sin comisión.png` | «lo mismo acá» |
+
+**El criterio que se saca de ahí:** el logo (y cualquier elemento suelto, como la nube)
+**se ancla a un bloque de texto o a una esquina**, nunca flota en medio de la foto. En el
+mailing la esquina es la **superior izquierda**.
+
+> ⚠️ **Esto NO deroga la medición de arriba.** En feed 4:5 y en historia 9:16 la caja del
+> logo está medida **centrada** sobre las piezas publicadas de Paulina, y eso sigue
+> mandando en esos dos formatos. El comentario de Diego es sobre **mailing, PAID y
+> estático**, que son los formatos donde el logo va sin caja. Si alguien quiere mover el
+> logo del feed, hay que pedirlo explícito.
+
+**Estado: APLICADO el 03-09-2026.** Y de paso salió a la luz de dónde venía el error, que
+es más útil que la corrección: **la medición del estático de julio era correcta y el anclaje
+no.** En julio el logo Valle iba al 28,2 % de ancho con margen derecho 16,3 % —los mismos
+números que tenía el CSS— pero ahí **el bloque de texto estaba ARRIBA**, junto al logo. Al
+componer octubre con el bloque abajo, el logo se quedó solo en la mitad de la foto. La
+posición no era un número: era una relación.
+
+#### Dónde va el logo Valle, por formato
+
+| Formato | Dónde va | Medida |
+|---|---|---|
+| **Mailing (ficha)** | **DENTRO** de la tarjeta azul de datos, arriba y centrado | 72 % del ancho de la tarjeta |
+| **Feed / estático** | primer elemento **dentro** del bloque de texto, sobre el titular | 23 % del ancho del bloque |
+| **PAID (portada)** | **no va** — el titular ya dice «en Valle Altiplánico» | — |
+| **Reel** | entra animado en la escena 2 (ver §El reel) | — |
+
+**Por qué en el correo va dentro de la tarjeta y no colgado encima como en la 1.3 de
+Paulina:** porque la foto de la ficha es el living real del proyecto
+(`IMG_7729-Edit-Pano`), un interior clarísimo. Se midió la zona alta en **todos** los
+recortes posibles del panorama: luminancia 174 a 243. Un logo blanco ahí daba **1,56:1**
+de contraste, contra los **3,46:1** de la referencia de septiembre —donde el logo cae sobre
+el muro beige y no sobre las pantallas de las lámparas—. Dentro de la tarjeta azul da
+**4,51:1**, y no es un invento: así lo resolvió **Diego** en `p-19-08.png` de agosto, sobre
+una foto igual de clara.
+
+En el feed sí funciona blanco sobre la foto: el estático del 13-10 mide **8,79:1**, casi lo
+mismo que el estático de julio del cliente (**9,33:1**).
+
+#### La nube del precio va en la columna, no suelta
+
+Segundo comentario de Diego, y es otra pieza del mismo sistema. La ficha del correo **no es
+«una tarjeta azul más un precio flotando»**: es **una columna de tres piezas apiladas**, y
+así está en los dos mailings de septiembre.
+
+| Elemento | Medida (fracción del lienzo) |
+|---|---|
+| Columna | ancho **25,42 %** · margen exterior **6,14 %** |
+| Tarjeta A (dirección, modelos, m², dorms/baños) | arriba de la columna |
+| **La nube** (tarjeta blanca del precio, en itálica) | **intercalada entre A y B**, sobresale **13,3 %** hacia la foto y **2,3 %** por el lado de la columna |
+| Tarjeta B (amenidades) | cierra la columna |
+
+**El lado lo manda la foto:** la 1.3 de Paulina lleva la columna a la derecha y la 2.3 a la
+izquierda. En el CSS es la clase `col-izq` sobre la pieza.
+
+> ⚠️ La columna va en **flujo** dentro de un contenedor absoluto, no con `top` fijo por
+> tarjeta. Con `top` fijo, cualquier línea de texto extra en la dirección empujaba la
+> tarjeta A y **la nube tapaba la fila de dorms/baños**.
+
+#### El margen inferior del correo: 8,7 %, no 5,5 %
+
+Medido sobre los banners aprobados de septiembre, normalizando a 1080 de ancho: la tinta más
+baja de Paulina queda a **58-59 px** del borde. La nuestra caía a **43-48 px**. Corregido en
+`base.css` (`.mail .bloque.abajo`). En los **lados** ella va más pegada que el tope de
+agencia (33 px y 28 px en `rentas-mail_2.1`), y por eso el QA de esta marca declara la
+excepción para las piezas de correo — está escrita en `reglas.yaml`.
+
 ### Los márgenes y las cajas de color
 
 - La caja lima o azul **abraza al texto**: no tiene ancho fijo. Mide **≈ 2× la altura de las
@@ -207,13 +285,35 @@ distinción que se comprobó midiendo, no suponiendo:
 | `reel/` (MP4) | **sí** | ⚠️ el MP4 **NO** es determinista: dos renders del mismo código dan 36.907.259 y 36.935.046 bytes. El máster entregado se versiona |
 | `raw/` (rodaje, fotogramas, 4K bruto) | **no** | pesa GB; su ubicación en Drive está más abajo |
 
+## El QA de esta marca
+
+`clients/nueva-urbe/reglas.yaml` — la compuerta ejecutable. Se corre así:
+
+```bash
+/Users/Vale/copylab-venv/bin/python3 qa/motor.py --marca nueva-urbe out/rentas/<entrega>/**/*.png
+```
+
+Trae tres ajustes a reglas de agencia, los tres calibrados en **modo control** contra 24
+piezas ya aprobadas del cliente hasta dejarlo en **cero falsos positivos**:
+
+- **respiro-borde** — exceptuado en las piezas de correo (sus propios mailings van a 28-33 px).
+- **zona-segura-meta** — excepción para la caja del logo, que en historia cuelga del borde inferior.
+- **desenfoque-parcial** — se juzga desde el 10 % del alto hacia abajo: el cielo de Calama es
+  liso y marcaba dos láminas aprobadas de agosto en la banda 1/10.
+
+> ⛔ **La regla del logo suelto NO está en el motor**, y está explicado en el archivo: se
+> intentó con `contraste_texto` y marcó 7 de 8 piezas aprobadas, porque mide toda la tinta
+> de la región y los titulares blancos sobre foto clara son la firma de la marca. El anclaje
+> del logo se revisa **a ojo**, con la tabla de arriba.
+
 ## Dónde está todo
 
 | Qué | Dónde |
 |---|---|
 | Grillas mensuales (Rentas) | Drive `1BkZDL03lWNkFbqJxlKrNl5Ucq8RcJYFB` → `N. MES` |
 | Briefs de mailing | Drive `1sH-38q-sCZxv5yx_ryLMKbv9YsRJgjqs` → `N. MES` |
-| Entregas de feed/stories | Drive `Artes/2026/<MES> 2026/{feed,stories,paid}` — ⛔ **cerrada** |
+| Entregas de feed/stories | Drive `Artes/2026/<MES> 2026/{feed,stories}` — ✅ **abre** (`1MBdK1gxOQfyxYURPZiyN-9PJVI6o07ba`; septiembre = `1aDtXODpohWQ1gpP_PhGkV6vdJogXls27`). Bajadas en `raw/nuevaurbe/rentas/entregas/SEPTIEMBRE-2026/` |
 | Mailings bajados | `raw/nuevaurbe/rentas/mail-{jul,ago,sep}2026/` |
-| Fotos del proyecto | Drive `PROYECTOS INMOBILIARIOS/VALLE ALTIPLÁNICO` — ⛔ **cerrada** |
-| Logos Rentas y Valle | Drive `LOGOS INU` — ⛔ **cerrada** |
+| Fotos del proyecto | Drive `PROYECTOS INMOBILIARIOS/VALLE ALTIPLÁNICO` — ✅ **abre** (`1_TUAwOKmMX3vYmEJuYzipVtK1ODMKpFh`): 17 fotos JPG + `EDIFICIOS` + `videos-dron`. Bajadas en `raw/nuevaurbe/rentas/fotos/` |
+| Logos Rentas y Valle | Drive `LOGOS INU` — ✅ **abre** (`1fO3qfzO8FBBg7Kpr5IL-IQWO65zJrgo-`): `logo rentas blanco.png`, `Logo fondo blanco.png`, `logo valle.png`, `logo valle blanco.png`, más la subcarpeta `RENTA` de la diseñadora del cliente (`paula.disgraf@gmail.com`). ⚠️ `raw/nuevaurbe/rentas/logos/` está VACÍA — hay que bajarlos |
+| Videos del rodaje | Drive `CALAMA/VIDEOS` (`1LGlTCm_3JxMPHdTLQgcN_ZXKK0saQxsF`) → `VERTICAL` / `HORIZONTAL` / `DRONE`. ⛔ **Ojo: es material mezclado con Travesía del Desierto II** — ver §Compuerta de material |

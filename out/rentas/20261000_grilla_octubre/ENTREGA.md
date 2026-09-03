@@ -3,6 +3,46 @@
 > Producido el 02-09-2026. Sistema: `clients/nueva-urbe/CLAUDE.md` · criterio vigente:
 > **Paulina Bustamante (septiembre 2026)**, decidido por Valeria.
 
+## Ronda de Diego Aguilar — 03-09-2026 · APLICADA
+
+Diego dejó 4 comentarios en la carpeta `DISEÑOS` (03-09, 11:39-11:41). Los tres primeros son
+**el mismo problema**: el logo Valle Altiplánico puesto «en un lugar que no debería», «en
+cualquier lado». El cuarto es la nube del precio.
+
+| Pieza | Lo que dijo | Qué se hizo |
+|---|---|---|
+| `MAIL 06-10 bloque 3 ficha` | «logo en un lugar que no debería… siempre dejar el logo en la esquina superior izquierda» | El logo entra **dentro de la tarjeta azul** de datos, arriba y centrado. Contraste 1,56:1 → **4,51:1** |
+| `MAIL 06-10 bloque 3 ficha` | «la nube también debería ir junto con el bloque de la info del condominio» | La ficha pasa a ser **una columna de tres piezas**: tarjeta de datos → **nube del precio intercalada** → tarjeta de amenidades. Es la maqueta medida de los mailings de septiembre |
+| `20-10 PAID Arrienda fácil 1 portada` | «también logo en cualquier lado… en este caso siempre dejar junto a los bloques de texto» | **Se saca el logo**: el titular ya dice «en Valle Altiplánico», y la portada de agosto con ese mismo titular tampoco lo lleva |
+| `13-10 ESTATICO Sin comisión` | «lo mismo acá!» | El logo baja **dentro del bloque de texto**, sobre el titular. Contraste **8,79:1** (el estático de julio del cliente mide 9,33:1) |
+
+**Además, sin que lo pidieran** (salió del QA nuevo de la marca): el bloque bajo de los
+banners del correo subió de 5,5 % a **8,7 %**. La tinta quedaba a 43-48 px del borde y los
+banners aprobados de Paulina dejan 58-59 px.
+
+**Se corrigió también el bloque 3 del mailing 2 (27-10)**, que Diego no comentó pero tenía el
+mismo defecto: un criterio se aplica a toda la entrega, no sólo a la pieza señalada.
+
+### Piezas que cambiaron
+
+`mail/rentas_mail1-1_banner.png` · `mail/rentas_mail1-3_ficha.png` ·
+`mail/rentas_mail2-1_banner.png` · `mail/rentas_mail2-3_ficha.png` ·
+`feed/rentas_estatico-sin-comision-13-10.png` · `feed/rentas_c-paid1.png`
+
+### La compuerta
+
+```
+/Users/Vale/copylab-venv/bin/python3 qa/motor.py --marca nueva-urbe \
+    out/rentas/20261000_grilla_octubre/{feed,mail,story}/*.png
+→ 0 bloqueantes · 1 aviso
+```
+
+El aviso es la historia de Halloween: la comprobación de desenfoque marca una banda del bokeh
+en una pieza cuyo fondo está desenfocado **completo**, que es justo lo que la regla pide. Está
+documentado en `clients/nueva-urbe/reglas.yaml`.
+
+---
+
 ## Qué está listo
 
 | Pieza | Fecha | Archivos | Estado |

@@ -169,8 +169,8 @@ def atributo(icono, rotulo):
             f'<div class="rotulo t-xs">{rotulo}</div></div>')
 
 pieza("rentas_estatico-sin-comision-13-10", "feed_quincho.jpg",
-      '<img class="logo-valle" src="img/logo_valle_blanco.png" alt="">'
       '<div class="bloque abajo con-boton">'
+      '<img class="logo-valle" src="img/logo_valle_blanco.png" alt="">'
       '<div class="titular t-l"><span class="l1">Arrienda</span></div>'
       '<div class="titular t-xl caja-sola">'
       '<span class="marca-caja lima">SIN PAGAR COMISIÓN</span></div>'
@@ -224,7 +224,6 @@ pieza("rentas_st-proyecto-02-10", "st_proyecto.jpg",
 print("CARRUSEL PAID ARRIENDA FÁCIL 20-10:")
 
 pieza("rentas_c-paid1", "paid/paid_1_45.jpg",
-      '<img class="logo-valle" src="img/logo_valle_blanco.png" alt="">'
       '<div class="bloque abajo paid">'
       '<div class="titular t-l"><span class="l1">Así de fácil se arrienda</span></div>'
       '<div class="titular t-xl caja-sola">'
@@ -301,27 +300,38 @@ def bloque_atencion(nombre):
           '</div>',
           formato="mail atencion", logo=False)
 
-def bloque_ficha(nombre, fondo, dir_txt, amenidades):
+def bloque_ficha(nombre, fondo, dir_txt, amenidades, lado="der"):
+    """La ficha del correo es UNA COLUMNA, no piezas sueltas sobre la foto.
+
+    De arriba a abajo: logo Valle · tarjeta de datos · la nube del precio
+    (intercalada, sobresale hacia la foto) · tarjeta de amenidades. Medido
+    sobre los mailings de septiembre de Paulina — ver base.css §FICHA DEL
+    CORREO. `lado` elige de qué lado va la columna: la 1.3 de Paulina la
+    tiene a la derecha y la 2.3 a la izquierda, según lo que muestre la foto.
+    """
     ams = "".join(am(a) for a in amenidades)
     pieza(nombre, fondo,
-          '<img class="logo-valle" src="img/logo_valle_blanco.png" alt="">'
+          '<div class="ficha-col">'
           '<div class="ficha-datos">'
+          '<img class="logo-valle" src="img/logo_valle_blanco.png" alt="">'
           f'<div class="dir">{dir_txt}</div>'
-          '<div class="mod">5 modelos<br>disponibles</div>'
+          '<span class="pildora-lima">Calama</span>'
+          '<div class="mod">5 modelos disponibles</div>'
           '<span class="pildora-lima">desde 59 M²</span>'
           '<div class="fila-iconos">'
           f'<div class="it">{I_CAMA}<span>2 Y 3 DORMS.</span></div>'
           '<div class="sep-v"></div>'
           f'<div class="it">{I_BANO}<span>2 BAÑOS</span></div>'
           '</div>'
-          f'<div class="amenidades">{ams}</div>'
           '</div>'
           '<div class="ficha-precio">'
           '<div class="d">Arriendo desde</div>'
           '<div class="c">$715.000</div>'
           '<div class="m">mensuales</div>'
+          '</div>'
+          f'<div class="ficha-amen"><div class="amenidades">{ams}</div></div>'
           '</div>',
-          formato="mail ficha", logo=False)
+          formato="mail ficha" + (" col-izq" if lado == "izq" else ""), logo=False)
 
 # ── MAILING 1 · martes 6 de octubre ────────────────────────────
 pieza("rentas_mail1-1_banner", "mail/m1_banner.jpg",
@@ -337,7 +347,7 @@ pieza("rentas_mail1-1_banner", "mail/m1_banner.jpg",
       formato="mail banner", velo="velo-abajo-firme")
 bloque_atencion("rentas_mail1-2_atencion")
 bloque_ficha("rentas_mail1-3_ficha", "mail/m1_ficha.jpg",
-             "Condominio Valle Altiplánico, Calama<br>Av. Circunvalación 1458",
+             "Av. Circunvalación 1458",
              ["QUINCHO", "CANCHA", "JUEGOS", "GIMNASIO", "CONSERJERÍA 24/7"])
 pieza("rentas_mail1-4_cierre", "mail/m1_cierre.jpg",
       '<div class="bloque abajo">'
@@ -360,7 +370,7 @@ pieza("rentas_mail2-1_banner", "mail/m2_banner.jpg",
 
 bloque_atencion("rentas_mail2-2_atencion")
 bloque_ficha("rentas_mail2-3_ficha", "mail/m2_ficha.jpg",
-             "Condominio Valle Altiplánico<br>Calama",
+             "Av. Circunvalación 1458",
              ["CANCHA", "ÁREAS VERDES", "JUEGOS", "GIMNASIO", "CONSERJERÍA 24/7"])
 pieza("rentas_mail2-4_cierre", "mail/m2_cierre.jpg",
       '<div class="bloque abajo">'

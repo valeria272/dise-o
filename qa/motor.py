@@ -114,6 +114,20 @@ def cargar_reglas(marca: str) -> tuple[list[dict], dict]:
     return reglas, propio
 
 
+# El nombre de la carpeta de trabajo no siempre es el slug del cliente: las
+# entregas de Rentas van a `out/rentas/`, su material bruto a `raw/nuevaurbe/` y
+# el manual vive en `clients/nueva-urbe/`. Sin esta tabla el aislamiento por
+# marca no protege nada: rechaza sus propias piezas como «de otra marca».
+# Sólo se declara lo que existe en el repo — un alias inventado es un agujero.
+ALIAS_DE_CARPETA = {
+    "rentas": "nueva-urbe",       # out/rentas/  (entregas de Rentas Nueva Urbe)
+    "nuevaurbe": "nueva-urbe",    # raw/nuevaurbe/
+    "tierracalma": "tierra-calma",        # raw/tierracalma/ y out/tierracalma/
+    "tierracalma-drone": "tierra-calma",  # raw/tierracalma-drone/ (rodaje DD Studio)
+    "hilton-between": "hilton",   # out/hilton-between*/ (Between es marca de Hilton)
+}
+
+
 def marca_de_la_ruta(p: pathlib.Path) -> str | None:
     """Deduce a qué marca pertenece un archivo por su ubicación en el repo."""
     partes = p.resolve().parts
@@ -121,7 +135,8 @@ def marca_de_la_ruta(p: pathlib.Path) -> str | None:
         if ancla in partes:
             i = partes.index(ancla)
             if i + 1 < len(partes):
-                return partes[i + 1]
+                carpeta = partes[i + 1]
+                return ALIAS_DE_CARPETA.get(carpeta, carpeta)
     return None
 
 

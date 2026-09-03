@@ -99,12 +99,28 @@ def carpeta_destino(d, dry):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
+    # En una ronda de correcciones cambian 5 o 6 piezas, no las 23. Re-subir las
+    # otras 17 no rompe nada (actualiza por nombre y conserva los comentarios),
+    # pero deja una versión nueva en el historial de Drive de archivos idénticos
+    # —y arrastra el reel de 36 MB— así que se puede acotar.
+    ap.add_argument("--solo", nargs="+", metavar="PATRON",
+                    help="sube sólo las piezas cuyo nombre local o de Drive "
+                         "contenga alguno de estos textos")
     a = ap.parse_args()
+
+    piezas = PIEZAS
+    if a.solo:
+        piezas = [(l, n) for l, n in PIEZAS
+                  if any(t.lower() in l.name.lower() or t.lower() in n.lower()
+                         for t in a.solo)]
+        if not piezas:
+            sys.exit(f"ABORTA: ningún nombre calza con {a.solo}. No se sube nada.")
+        print(f"  acotado a {len(piezas)} de {len(PIEZAS)} piezas")
 
     d = build("drive", "v3", credentials=credenciales())
     destino = carpeta_destino(d, a.dry_run)
 
-    for local, nombre in PIEZAS:
+    for local, nombre in piezas:
         if not local.exists():
             print(f"  ⚠ falta {local}")
             continue

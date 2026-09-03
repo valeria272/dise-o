@@ -4,6 +4,77 @@
 
 ---
 
+## 2026-09-03 (mañana) — Valeria Traverso (con Claude)
+
+**Qué se hizo:** se aplicó la **ronda de Diego Aguilar** sobre la entrega de octubre (sus 4
+comentarios del 03-09, 11:39-11:41) y se montó la **compuerta de QA de la marca**, que no
+existía.
+
+**Página de la ronda (antes/después):**
+https://claude.ai/code/artifact/ab9e9925-cbba-4b0d-9c53-93ff477fe94d
+
+### Lo que enseñó el feedback
+
+Los tres primeros comentarios son el mismo problema y la causa no era la medida, era el
+**anclaje**: el logo Valle iba al 28,2 % de ancho con margen derecho 16,3 % —los números
+correctos, medidos en el estático de julio— pero en julio **el bloque de texto estaba
+arriba, junto al logo**. Al componer octubre con el bloque abajo, el logo quedó solo en
+mitad de la foto. La posición era una relación, no un número.
+
+| Pieza | Qué se hizo |
+|---|---|
+| `MAIL 06-10 bloque 3 ficha` | logo **dentro** de la tarjeta azul (1,56:1 → **4,51:1**) y la ficha pasa a ser **una columna de tres piezas** con la nube del precio intercalada |
+| `MAIL 27-10 bloque 3 ficha` | igual — nadie la comentó, tenía el mismo defecto |
+| `13-10 ESTATICO Sin comisión` | logo **dentro del bloque de texto**, sobre el titular (**8,79:1**; el estático de julio del cliente mide 9,33:1) |
+| `20-10 PAID 1 portada` | **se saca el logo**: el titular ya dice «en Valle Altiplánico» y la portada de agosto con ese mismo titular tampoco lo lleva |
+| `MAIL 1-1` y `2-1 banner` | el bloque bajo sube de 5,5 % a **8,7 %**: la tinta caía a 43-48 px del borde y los banners de Paulina dejan 58-59 |
+
+Meter el logo dentro de la tarjeta azul **no es un invento**: es como lo resolvió Diego en
+`p-19-08.png` de agosto, sobre una foto de interior igual de clara. Y la columna con la nube
+intercalada está medida sobre los mailings 1.3 y 2.3 de septiembre.
+
+### La compuerta de QA (nueva)
+
+`clients/nueva-urbe/reglas.yaml`. El motor se negaba a correr sin reglas propias. Tres
+ajustes, **calibrados en modo control contra 24 piezas aprobadas hasta cero falsos
+positivos**: `respiro-borde` exceptuado en correo (sus mailings van a 28-33 px del borde),
+`zona-segura-meta` con excepción para la caja del logo (en historia cuelga del borde
+inferior) y `desenfoque-parcial` juzgado desde el 10 % del alto (el cielo de Calama es liso
+y marcaba dos láminas aprobadas de agosto).
+
+La regla del logo suelto **NO entró**: se intentó con `contraste_texto` y marcaba 7 de 8
+piezas aprobadas —mide toda la tinta de la región y los titulares blancos sobre foto clara
+son la firma de la marca—. Está documentado en el archivo como deuda del motor.
+
+También se agregó `ALIAS_DE_CARPETA` en `qa/motor.py`: sin eso el aislamiento por marca
+rechazaba las piezas propias, porque las entregas van a `out/rentas/`, el material a
+`raw/nuevaurbe/` y el manual vive en `clients/nueva-urbe/`.
+
+**Estado de la compuerta:** `0 bloqueantes · 1 aviso` sobre las 21 piezas. El aviso es la
+historia de Halloween, cuyo fondo está desenfocado **completo** —justo lo que la regla
+pide— y la comprobación no sabe distinguirlo.
+
+### Qué sigue
+
+1. ✅ **Las 6 piezas ya están en Drive** (03-09, 11:56), reemplazando las anteriores en la
+   misma carpeta `DISEÑOS` — `1xIsCSzPdHwm9gihZVlOQllMVZQp5IZdd`. Las seis salieron como
+   `actualizado`, o sea **conservaron su ID y su enlace**, y se verificó después: los 4
+   comentarios de Diego siguen anclados. Al script se le agregó `--solo PATRON` para no
+   re-subir las 17 piezas que no cambiaron (ni el reel de 36 MB):
+
+   ```
+   /Users/Vale/copylab-venv/bin/python3 scripts/rentas-subir-drive.py \
+       --solo mail1-1 mail1-3 mail2-1 mail2-3 estatico c-paid1
+   ```
+2. Nada commiteado todavía: cambios en `clients/nueva-urbe/{CLAUDE.md,reglas.yaml,BITACORA.md}`,
+   `clients/nueva-urbe/sistema/base.css`, `qa/motor.py`, `out/rentas/.../editables/{build.py,base.css}`
+   y `ENTREGA.md`.
+3. Siguen abiertos los 5 puntos de ayer: locución del reel · qué no cuadra en el cierre ·
+   WhatsApp 9951 vs 9955 · precio y superficie entre canales · las dos piscinas que el brief
+   no nombra.
+
+---
+
 ## 2026-09-02 (tarde y noche) — Valeria Traverso (con Claude)
 
 **Qué se hizo:** se produjo **la grilla de octubre completa** —6 piezas— **más los 2 mailings**,

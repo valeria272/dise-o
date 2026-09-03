@@ -51,6 +51,7 @@ import {
   TRAVERSO_REEL_FPS,
 } from "./compositions/TraversoPasamelaReel";
 import {GclPost, GCL_POST_DEMO} from "./compositions/gcl/GclPost";
+import {GclCarrusel, GCL_CARRUSEL_DEMO} from "./compositions/gcl/GclCarrusel";
 import {
   GclOrigenReel,
   GCL_ORIGEN_DURATION,
@@ -796,6 +797,17 @@ export const RemotionRoot: React.FC = () => {
           width={1080}
           height={1080}
           defaultProps={GCL_POST_DEMO}
+        />
+        {/* El carrusel del feed. Se rinde una lámina por llamada, cambiando
+            `indice`; scripts/gcl-carrusel.sh recorre las que tenga el JSON. */}
+        <Composition
+          id="GclCarrusel"
+          component={GclCarrusel}
+          durationInFrames={1}
+          fps={30}
+          width={1080}
+          height={1350}
+          defaultProps={GCL_CARRUSEL_DEMO}
         />
       </Folder>
       <Folder name="Rentas">

@@ -219,6 +219,46 @@ FALTA_NAVEGADOR = (
 )
 
 
+
+# ── El navegador de REMOTION, que no es el mismo ─────────────────────────────
+#
+# Remotion arranca el navegador con el modo headless ANTIGUO, que Chrome quitó
+# del binario. Con un Chrome normal falla con «Old Headless mode has been
+# removed». Lo que necesita es `chrome-headless-shell`, que es ese modo viejo
+# empaquetado aparte. Si no lo encuentra se lo baja de remotion.media — y detrás
+# de un proxy con lista blanca esa descarga da 403 y el render muere.
+#
+# Por eso: si en la máquina ya hay un headless shell (Playwright deja uno), se
+# le pasa con --browser-executable y Remotion no descarga nada.
+def navegador_remotion():
+    """Ruta a un chrome-headless-shell, o None para que Remotion se arregle solo.
+
+    Devolver None NO es un error: en un Mac con red abierta, Remotion descarga
+    su propio binario y funciona perfecto. Sólo importa donde la descarga está
+    bloqueada.
+    """
+    import glob
+
+    v = os.environ.get("COPYLAB_CHROME_REMOTION")
+    if v and pathlib.Path(v).exists():
+        return str(v)
+
+    raices = [os.environ.get("PLAYWRIGHT_BROWSERS_PATH"),
+              "/opt/pw-browsers",
+              pathlib.Path.home() / ".cache/ms-playwright",
+              pathlib.Path.home() / "AppData/Local/ms-playwright"]
+    patrones = ["chromium_headless_shell-*/chrome-linux/headless_shell",
+                "chromium_headless_shell-*/chrome-mac/headless_shell",
+                "chromium_headless_shell-*/chrome-win/headless_shell.exe"]
+    for raiz in raices:
+        if not raiz:
+            continue
+        for patron in patrones:
+            for c in sorted(glob.glob(str(pathlib.Path(raiz) / patron)), reverse=True):
+                if pathlib.Path(c).exists():
+                    return c
+    return None
+
 # El venv compartido, si existe; si no, el intérprete con el que se corre esto.
 #
 # ⚠️ Windows (31-08-2026): antes esto solo miraba el layout POSIX `venv/bin/python3`
@@ -244,6 +284,13 @@ def python_venv():
 if __name__ == "__main__":
     # `--navegador` existe para los render.sh: imprime la ruta y sale 1 si no
     # hay ninguno, para que el shell pueda cortar con `|| exit 1`.
+    if "--navegador-remotion" in sys.argv:
+        _r = navegador_remotion()
+        if not _r:
+            raise SystemExit(1)   # sin ruido: que Remotion se las arregle
+        print(_r)
+        raise SystemExit(0)
+
     if "--navegador" in sys.argv:
         _n = navegador()
         if not _n:
@@ -263,3 +310,5 @@ if __name__ == "__main__":
     print(f"python          {python_venv()}")
     _nav = navegador() or "✗ no hay Chrome/Chromium acá"
     print(f"navegador       {_nav}")
+    _rem = navegador_remotion() or "— Remotion baja el suyo"
+    print(f"navegador (Remotion) {_rem}")

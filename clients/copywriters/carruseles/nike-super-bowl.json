@@ -1,0 +1,50 @@
+{
+  "_nota": "Carrusel del pilar «Tendencias & IA», serie «Leemos la campaña». Todos los datos están verificados contra prensa especializada (Adweek, Ad Age, EDO, Fast Company, febrero 2026). NINGUNA cifra de este archivo puede cambiarse sin volver a la fuente: la tesis del carrusel es que las agencias publican datos sin respaldo.",
+  "serie": "Leemos la campaña",
+  "acento": "rosado",
+  "cta": "Hablemos de tu marca",
+  "indice": 0,
+  "laminas": [
+    {
+      "rol": "portada",
+      "titulo": "Nike no compró",
+      "bajada": "el Super Bowl."
+    },
+    {
+      "rol": "punto",
+      "titulo": "Volvió en 2025 después de 27 años fuera.",
+      "bajada": "«So Win» la trajo de vuelta al partido más caro del mundo tras casi tres décadas de ausencia. Fue de las campañas más comentadas del año.",
+      "fuente": "Fast Company · Ad Age, 2025-2026"
+    },
+    {
+      "rol": "punto",
+      "titulo": "Y en 2026 decidió no ir.",
+      "bajada": "Con un calendario deportivo cargado por delante, prefirió poner la plata en trabajo que le habla directo al deportista antes que en el minuto más caro del año.",
+      "fuente": "Adweek, febrero 2026"
+    },
+    {
+      "rol": "punto",
+      "titulo": "Igual apareció. Cuando terminó el partido.",
+      "bajada": "Un spot con Oakley Meta —«Athletic Intelligence Is Here», con Marshawn Lynch— salió apenas acabó el juego. La marca estuvo en la conversación sin pagar la tanda.",
+      "fuente": "iSpot · Adweek, febrero 2026"
+    },
+    {
+      "rol": "dato",
+      "cifra": "7 vs 6",
+      "titulo": "Avisos de IA contra cerveza y autos, juntos",
+      "bajada": "El Super Bowl LX tuvo más avisos de plataformas de inteligencia artificial que las dos categorías que definieron el evento durante cuarenta años. El anunciante más efectivo de todo el partido fue ai.com.",
+      "fuente": "EDO · Adweek, febrero 2026"
+    },
+    {
+      "rol": "punto",
+      "titulo": "Lo que esto nos dice a los que hacemos marcas.",
+      "bajada": "El espacio más caro dejó de ser el más rentable por definición. La decisión ya no es «cuánto pauto», es «dónde está mi gente y en qué momento».",
+      "fuente": null
+    },
+    {
+      "rol": "cierre",
+      "titulo": "Estar no es comprar el espacio más caro.",
+      "bajada": "Es saber dónde está tu gente cuando termina el partido. Eso es lo que hacemos."
+    }
+  ]
+}

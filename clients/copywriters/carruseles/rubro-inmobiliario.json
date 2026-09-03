@@ -1,0 +1,46 @@
+{
+  "_nota": "Serie «Marketing en el rubro», entrega 1: inmobiliario. Los cuatro aprendizajes son REALES y salen de trabajo documentado en este repo (clients/nueva-urbe/, clients/tierra-calma/, docs/SISTEMA-DE-MARCAS.md § compuerta de material). Versión SIN NOMBRAR CLIENTES: publicable sin pedir permiso. Si Valeria decide nombrarlos, hay que pedirle el OK a cada marca antes.",
+  "serie": "Marketing en el rubro",
+  "acento": "rosado",
+  "cta": "Hablemos de tu proyecto",
+  "indice": 0,
+  "laminas": [
+    {
+      "rol": "portada",
+      "titulo": "Vender un depto",
+      "bajada": "no es vender un producto."
+    },
+    {
+      "rol": "punto",
+      "titulo": "La foto real le gana al render perfecto.",
+      "bajada": "El render muestra un departamento que todavía no existe. La foto muestra el que la persona va a recibir. Cuando alguien llega a la sala de ventas y no reconoce nada, la venta ya se cayó antes de empezar."
+    },
+    {
+      "rol": "punto",
+      "titulo": "El precio de la pieza y el de la web tienen que ser el mismo.",
+      "bajada": "Suena obvio y pasa todo el tiempo: la grilla del mes dice un valor y el sitio publica otro, porque son dos tipologías distintas y nadie lo alineó. La persona que compara sí lo nota, y lo que pierde no es la oferta: es la confianza."
+    },
+    {
+      "rol": "dato",
+      "cifra": "0 de 611",
+      "titulo": "Fotogramas utilizables de una entrega ya publicada",
+      "bajada": "Quisimos sacar imágenes de los reels ya entregados de un proyecto. De 611 fotogramas revisados, sólo 12 estaban sin gráfica encima — y eran todos del mismo instante. Un reel entregado no es un banco de imágenes.",
+      "fuente": "Medición propia, Grupo Copylab · 2026"
+    },
+    {
+      "rol": "punto",
+      "titulo": "Verifica que el material sea del proyecto que dice ser.",
+      "bajada": "Nos ha pasado: una carpeta rotulada con el nombre de un condominio traía metraje de otro. Si esa toma sale publicada, se le está mostrando a la gente un lugar al que no va a llegar. Antes de diseñar, se revisa el origen de cada archivo."
+    },
+    {
+      "rol": "punto",
+      "titulo": "El dron vende el entorno. No vende el living.",
+      "bajada": "El aéreo resuelve la fachada, las áreas verdes, la piscina. Pero nadie compra por el techo: compra por dónde va a poner el sillón. Si no hay interiores en buena resolución, no hay campaña — y eso se pide antes de prometer una fecha."
+    },
+    {
+      "rol": "cierre",
+      "titulo": "El rubro no perdona la pieza linda con el dato flojo.",
+      "bajada": "Llevamos años haciendo marketing inmobiliario. Lo que aprendimos no está en el diseño: está en lo que se revisa antes."
+    }
+  ]
+}

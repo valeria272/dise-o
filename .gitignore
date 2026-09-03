@@ -332,9 +332,13 @@ out/ebema/20260902_carrusel_cedral/editables/*
 !out/rentas/**/editables/**
 !out/rentas/**/fondos/halloween/*_45.jpg
 # Los PNG finales NO viajan: se comprobó con `cmp` que build.py + render.sh los
-# regeneran byte a byte desde lo de arriba. Pesan 93 MB y son redundantes.
+# regeneran byte a byte desde lo de arriba. Son redundantes.
+# El MP4 del reel SÍ viaja: se comprobó que NO es determinista —dos renders del
+# mismo código dieron 36.907.259 y 36.935.046 bytes—, así que el máster entregado
+# es el único que existe.
 out/rentas/**/feed/
 out/rentas/**/story/
+out/rentas/**/mail/
 !public/assets/hilton/between/ia-sept/cumple-ref-capuccino.png
 !public/assets/hilton/between/fotos-gradadas/cumple-mano-vaso.jpg
 

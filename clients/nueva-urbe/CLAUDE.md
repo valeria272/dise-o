@@ -193,6 +193,20 @@ Heredadas del Sheet `INFORMACIÓN PROYECTOS` del cliente y vigentes para las dos
 > «(2) número de WhatsApp (se usa +56 9 9707 9955)». Los briefs y las piezas no coinciden entre sí.
 > **En pieza manda lo publicado (9951)** salvo que el cliente diga otra cosa.
 
+## Qué vuelve al repo y qué no
+
+La regla del estudio dice que el render vuelve al repo el mismo día. Acá se aplica con una
+distinción que se comprobó midiendo, no suponiendo:
+
+| | ¿Va a git? | Por qué |
+|---|---|---|
+| `editables/` (generador, CSS, HTML, fuentes, logos) | **sí** | sin esto no se reproduce nada |
+| `fondos/` (fotos preparadas y los IA recortados) | **sí** | son la fuente de cada pieza |
+| `feed/` y `story/` (PNG) | **no** | `build.py` + `render.sh` los rehacen **byte a byte** — comprobado con `cmp` sobre las 21 |
+| `mail/` (PNG) | **no** | igual: reproducibles |
+| `reel/` (MP4) | **sí** | ⚠️ el MP4 **NO** es determinista: dos renders del mismo código dan 36.907.259 y 36.935.046 bytes. El máster entregado se versiona |
+| `raw/` (rodaje, fotogramas, 4K bruto) | **no** | pesa GB; su ubicación en Drive está más abajo |
+
 ## Dónde está todo
 
 | Qué | Dónde |

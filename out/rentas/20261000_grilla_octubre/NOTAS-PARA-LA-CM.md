@@ -21,9 +21,12 @@ Piezas para revisión. Los textos van **verbatim del brief**; los cortes de lín
 Van en **cuatro bloques apilados de 1201 px** de ancho, igual que el correo de agosto: banner
 (750) · atención online (240) · ficha de proyecto (813) · cierre (551). Se montan en ese orden.
 
-> El brief pide para la ficha un «interior con living y luz natural». Del proyecto sólo existe
-> una panorámica de dormitorio, y es la que va. **Si nos mandan una foto del living, ese bloque
-> se rehace en minutos.**
+La ficha va con el **living real del proyecto**. Estaba en la carpeta de fotos pero con permiso
+propio, así que el enlace de la carpeta no lo alcanzaba.
+
+> ⚠️ **Hay 4 fotos más en esa carpeta con el mismo problema** —`IMG_8004-Pano` (la cancha),
+> `IMG_7941` y dos del 13-05-2021—. Conviene ponerlas como «cualquiera con el enlace» para que
+> el equipo las pueda usar.
 
 ## Sobre el carrusel PAID del 20
 
@@ -65,6 +68,7 @@ la maqueta. Sirven de celular si están bien iluminadas.
   septiembre del cliente (voz masculina, f0 138 Hz). Si prefieren locutor real, el guion está listo.
 - **El carrusel de Halloween** usa fondos generados con IA: el brief pide personas manipulando
   cinta, ganchos y telarañas, y eso no existe en el banco. Se ambientaron como un departamento del
-  condominio. Las telarañas de esquina son gráfica de la marca, no de la foto.
+  condominio. La decoración que se ve —guirnalda de murciélagos, calabazas, luces, telaraña de
+  utilería— está en las fotos, sin gráfica encima.
 - **La lámina 5** cierra con el botón `RENTAS.INU.CL`. No está en el brief: es el cierre que llevan
   todos los carruseles y reels de Rentas. Si lo quieren fuera, se saca sin tocar el resto.

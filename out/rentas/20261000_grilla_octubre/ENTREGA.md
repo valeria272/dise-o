@@ -18,6 +18,9 @@
 
 Los 5 fondos son **imágenes IA** (Nano Banana Pro, 4K), por decisión de Valeria: el brief
 pide personas manipulando cinta, ganchos y telarañas, y eso no existe en el banco del cliente.
+**Sin telarañas ni murciélagos dibujados encima:** se probaron y quedaron forzados. La decoración
+de Halloween que se ve —guirnalda de murciélagos, calabazas, luces, telaraña de utilería— está en
+las fotos mismas, que es como tiene que ser.
 Se ambientaron para que se lean como un departamento de Valle Altiplánico —muro beige claro,
 porcelanato claro, persiana zebra, luz natural cálida— y **sin marcas legibles** en los envases.
 
@@ -84,9 +87,11 @@ ancho — banner (750) · atención online (240) · ficha de proyecto (813) · c
 1201 px reales y no a 4500: es un correo, tiene que pesar poco.
 Cada amenidad lleva **su propio ícono**; en la primera pasada iban las cinco con el mismo y se
 leía como error de maquetación.
-**Ojo:** el brief pide para la ficha un «interior con living y luz natural», y del proyecto sólo
-existe una panorámica de dormitorio de 1872×805. Es la que va. Si el cliente manda una foto del
-living, el bloque se rehace en minutos.
+La ficha va con el **living real del proyecto** (`IMG_7729-Edit-Pano.jpg`, panorámica 2000×715,
+escala 1,14×). Estaba en la misma carpeta pero **no se podía bajar**: tiene permiso propio —sólo
+dominio Copywriters, sin «cualquiera con el enlace»— y el enlace de la carpeta no lo cubría. Se
+sacó por el conector de Drive, que sí usa la sesión de Valeria. **Hay otros 4 archivos en esa
+carpeta con el mismo problema**: `IMG_8004-Pano` (la cancha), `IMG_7941` y dos del 13-05-2021.
 
 ### El estático del 13-oct
 Pieza de **ficha**: lleva los dos logos, la **fila de atributos** y el **botón de WhatsApp**, igual

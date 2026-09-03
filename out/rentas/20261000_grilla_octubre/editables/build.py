@@ -79,9 +79,7 @@ ARANA = ('<svg class="arana" viewBox="0 0 100 260" fill="none" stroke="#fff" '
 print("CARRUSEL HALLOWEEN 27-10:")
 
 pieza("rentas_c-halloween1", "halloween/hw_1_45.jpg",
-      telarana("si") + '<span style="--x:1"></span>'.replace('<span style="--x:1"></span>','')
-      + ARANA.replace('class="arana"', 'class="arana" style="right:9%"')
-      + '<div class="bloque abajo">'
+      '<div class="bloque abajo">'
       '<div class="titular t-l">'
       '<span class="l1">3 tips para decorar tu casa</span>'
       '<span class="l2">en Halloween</span></div>'
@@ -100,19 +98,12 @@ for n, tip, l1, l2 in [
     (4, "Tip 3", "Prueba la cinta en una<br>zona poco visible",
      "antes de usarla<br>en toda la pared."),
 ]:
-    # La 4 es un plano detalle de la mano con la cinta: sin gráfica no se lee
-    # como Halloween. Feedback de Valeria (02-09): «hay otra que no tiene
-    # contexto». Se le suman murciélagos además de la telaraña.
-    extra = ""
-    if n == 2:   # el hombre con la cinta: el fondo no dice Halloween
-        extra = (murcielago(7, 11, 22, -14, .62) + murcielago(30, 4, 15, 9, .48)
-                 + murcielago(3, 26, 12, 16, .38))
-    if n == 4:   # plano detalle de la mano: sin gráfica no se lee como Halloween
-        extra = (murcielago(6, 9, 24, -12, .60) + murcielago(31, 3, 16, 8, .46)
-                 + murcielago(2, 25, 13, 15, .36))
+    # Sin telarañas ni murciélagos dibujados: se probaron y quedaron forzados
+    # (Valeria, 02-09). Las fotos ya traen la decoración de Halloween real
+    # —guirnalda de murciélagos, calabazas, luces, telaraña de utilería—, que es
+    # el contexto que hacía falta.
     pieza(f"rentas_c-halloween{n}", f"halloween/hw_{n}_45.jpg",
-          telarana("si" if n % 2 == 0 else "sd", chica=True) + extra
-          + '<div class="bloque abajo angosto">'
+          '<div class="bloque abajo angosto">'
           f'<div class="titular t-l"><span class="marca-caja lima">{tip}</span></div>'
           f'<div class="titular t-l">'
           f'<span class="l1">{l1}</span>'
@@ -121,8 +112,7 @@ for n, tip, l1, l2 in [
           logo=False, velo="velo-abajo-firme")
 
 pieza("rentas_c-halloween5", "halloween/hw_5_45.jpg",
-      telarana("si") + telarana("sd")
-      + '<div class="bloque abajo">'
+      '<div class="bloque abajo">'
       + titular("¿Y tú, cómo vas a decorar", "tu casa este Halloween?", tam="t-l")
       + '<div class="titular t-m"><span class="boton-url">RENTAS.INU.CL</span>'
         '<span class="cursor-lima"></span></div>'
@@ -357,8 +347,7 @@ pieza("rentas_mail1-4_cierre", "mail/m1_cierre.jpg",
 
 # ── MAILING 2 · martes 27 de octubre · Halloween ───────────────
 pieza("rentas_mail2-1_banner", "mail/m2_banner.jpg",
-      telarana("si", chica=True) + telarana("sd", chica=True)
-      + '<div class="bloque abajo">'
+      '<div class="bloque abajo">'
       '<div class="titular t-m-xl caja-sola">'
       '<span class="marca-caja lima">FELIZ HALLOWEEN</span></div>'
       + titular("Arrienda sin comisión", "en Valle Altiplánico", tam="t-m-l")
@@ -371,8 +360,7 @@ bloque_ficha("rentas_mail2-3_ficha", "mail/m2_ficha.jpg",
              "Condominio Valle Altiplánico<br>Calama",
              ["CANCHA", "ÁREAS VERDES", "JUEGOS", "GIMNASIO", "CONSERJERÍA 24/7"])
 pieza("rentas_mail2-4_cierre", "mail/m2_cierre.jpg",
-      telarana("sd", chica=True)
-      + '<div class="bloque abajo">'
+      '<div class="bloque abajo">'
       + titular("Garantía de 1,5 meses", "hasta en 6 cuotas.", tam="t-m-l")
       + '<div class="titular t-m-s caja-sola">'
         '<span class="marca-caja lima">SIN COMISIÓN DE ARRIENDO.</span></div>'

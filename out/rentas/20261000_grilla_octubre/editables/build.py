@@ -84,3 +84,27 @@ pieza("rentas_c-halloween5", "halloween/hw_5_45.jpg",
       velo="velo", italica=True)
 
 print("listo")
+
+
+# ══════════════════════════════════════════════════════════════
+# HISTORIA HALLOWEEN — jueves 29 de octubre · 1080×1920 (4500×8000)
+# Texto VERBATIM del brief. Fondo: fotograma 4K del dron del cliente
+# ('Valle Altiplánico - Jul 24.MP4'), con el blur fuerte que pide el brief
+# y luces naranjas de bokeh. Nada de calabazas pegadas a la fachada.
+# ══════════════════════════════════════════════════════════════
+print("HISTORIA HALLOWEEN 29-10:")
+
+pieza("rentas_st-halloween-29-10", "st_halloween_blur.jpg",
+      '<div class="bloque alto">'
+      '<div class="st-titular t-st-xl">'
+      '<span class="l1">¡FELIZ</span>'
+      '<span class="caja marca-caja azul">HALLOWEEN!</span></div>'
+      '<div class="st-bajada t-st-m">En Valle Altiplánico,<br><b>arrienda sin comisión.</b></div>'
+      '</div>'
+      '<div class="bloque precio">'
+      '<div class="precio-desde t-st-m">Arrienda desde</div>'
+      '<div class="t-st-xl"><span class="precio-cifra marca-caja lima">$715.000</span></div>'
+      '<div class="condiciones t-st-s"><b>Garantía de 1,5 meses</b> en 6 cuotas</div>'
+      '</div>'
+      '<div class="zona-sticker"></div>',
+      formato="story", velo="velo-arriba")

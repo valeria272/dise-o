@@ -165,3 +165,30 @@ html, body { background:#000; }
              flex:1; line-height:1.16; }
 .boton-wsp .lineas .arriba { font-weight:400; }
 .boton-wsp .lineas .numero { font-weight:700; }
+
+/* ══════════ HISTORIA ══════════
+   El titular va ARRIBA en versales: línea blanca sobre línea en caja azul.
+   La bajada, en itálica. Medido en rentas_st_1 de septiembre: la caja del
+   titular ocupa 72,3 % del ancho y la del precio 52,4 %, las dos centradas. */
+.story .bloque.alto { top:12.5%; }
+.story .bloque.precio { bottom:24%; }
+.st-titular { font-weight:700; line-height:1.1; letter-spacing:-.005em;
+              text-shadow:0 8px 40px rgba(0,0,0,.42); }
+.st-titular .l1 { display:block; }
+.st-titular .caja { display:inline-block; margin-top:.16em; }
+.st-bajada { font-style:italic; font-weight:400; margin-top:.9em; line-height:1.24;
+             text-shadow:0 6px 30px rgba(0,0,0,.5); }
+.st-bajada b { font-weight:700; }
+/* el bloque de precio: «Arrienda desde» / cifra en caja lima / «mensuales» */
+.precio-desde { font-weight:300; }
+.precio-cifra { display:inline-block; font-weight:900; font-style:italic; margin:.1em 0; }
+.precio-mens  { font-weight:300; }
+.condiciones  { font-weight:400; margin-top:.75em; line-height:1.3; }
+.condiciones b { font-weight:700; }
+/* zona libre para el sticker de Instagram, sobre la caja del logo */
+.zona-sticker { position:absolute; left:0; right:0; bottom:11.5%; height:9%; }
+
+.t-st-xl { font-size: 330px; }
+.t-st-l  { font-size: 250px; }
+.t-st-m  { font-size: 190px; }
+.t-st-s  { font-size: 150px; }

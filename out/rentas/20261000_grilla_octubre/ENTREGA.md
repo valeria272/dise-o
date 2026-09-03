@@ -8,6 +8,7 @@
 | Pieza | Fecha | Archivos | Estado |
 |---|---|---|---|
 | **Carrusel Halloween** | mar 27-oct | `feed/rentas_c-halloween1..5.png` · 4500×5625 | ✅ **Listo para revisión** |
+| **Historia Halloween** | jue 29-oct | `story/rentas_st-halloween-29-10.png` · 4500×8000 | ✅ **Lista para revisión** |
 
 Los 5 fondos son **imágenes IA** (Nano Banana Pro, 4K), por decisión de Valeria: el brief
 pide personas manipulando cinta, ganchos y telarañas, y eso no existe en el banco del cliente.
@@ -28,6 +29,14 @@ ratio 0,755 contra 0,754, aire superior 17,8 %.
 - Cortes de línea **a mano**: al dejar envolver solo quedaban huérfanas («removibles», «pared.»).
 - Cero `style=""` suelto en el HTML: todo sale de `base.css`.
 
+### La historia del 29-oct
+Fondo: fotograma 4K del **dron del cliente** (`Valle Altiplánico - Jul 24.MP4`, 93 Mbps), con el
+blur fuerte que pide el brief y **luces naranjas de bokeh**. No se pegaron calabazas a la fachada:
+sobre un fondo desenfocado eso se leería como fotomontaje, y el brief pide «detalles sutiles».
+QA: primera tinta a **256 px** en términos de 1080×1920 —bajo la zona segura de 250 px de Instagram,
+mejor que la referencia de septiembre, que entra a 220—; contraste del titular **10,26:1**; la franja
+entre el precio y la caja del logo queda libre para el sticker de enlace.
+
 **Textos:** verbatim del brief (`RENTAS_NUEVA_URBE_GRILLA_OCTUBRE_2026_1.pptx`).
 Los cortes de línea son míos.
 
@@ -35,13 +44,18 @@ Los cortes de línea son míos.
 
 | Pieza | Fecha | Bloqueo |
 |---|---|---|
-| Reel comercial | mar 6-oct | falta metraje limpio de Valle Altiplánico |
-| Estático «Sin comisión» | mar 13-oct | falta foto real del interior / quincho |
-| Carrusel PAID «Arrienda fácil» | mar 20-oct | faltan fotos reales (visita, contrato, ejecutivo) |
-| Historia proyecto | 2-oct | falta foto real de interior + áreas comunes |
-| Historia Halloween | 29-oct | falta foto de fachada / áreas comunes |
+| Reel comercial | mar 6-oct | tengo el plano aéreo de apertura; faltan los **interiores** (living, cocina, dormitorios) |
+| Estático «Sin comisión» | mar 13-oct | el brief pide **interior cálido o quincho**: el dron no lo da |
+| Carrusel PAID «Arrienda fácil» | mar 20-oct | faltan **visita, contrato y ejecutivo** |
+| Historia proyecto | 2-oct | pide **interior + áreas comunes**; el aéreo cubre sólo la mitad |
 
-**La causa es una sola: no hay material fotográfico bruto de Valle Altiplánico.**
+**Se bajó el material del dron (2,3 GB) y resolvió una pieza, pero es TODO aéreo exterior.**
+`videos-dron` trae tres archivos —`Valle Altiplánico - Jul 24.MP4` en 4K a 93 Mbps,
+`Secuencia 01_1.mp4` en 4K a 114 Mbps y `Valle 5.MP4` en HD—, los tres limpios y sin subtítulos.
+Se ven la fachada, la piscina, la cancha y las áreas verdes desde arriba. **No hay un solo
+interior, ni el quincho de cerca, ni personas.** Para eso hace falta abrir
+`NUEVO MATERIAL (FEB 2025)` (`1RppTkRirNZtXrpVz2qVmDrnSLzJRRgX6`), que sigue compartida como
+«sólo personas de Copywriters» y no como «cualquier persona con el enlace».
 Se intentó sacarlo de los 6 reels entregados (son 4K, 2160×3840, así que un fotograma sirve
 como foto), pero **los reels están subtitulados casi de punta a punta**: de 611 fotogramas
 analizados a 6 fps, solo **12** quedan sin gráfica encima, y son todos del mismo instante.

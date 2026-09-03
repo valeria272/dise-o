@@ -84,32 +84,29 @@ pieza("rentas_c-halloween1", "halloween/hw_1_45.jpg",
       '<span class="l1">3 tips para decorar tu casa</span>'
       '<span class="l2">en Halloween</span></div>'
       '<div class="titular t-xl caja-sola">'
-      '<span class="marca-caja lima">SIN arruinar las paredes</span></div>'
+      '<span class="marca-caja lima">Sin arruinar las paredes</span></div>'
       + bajada("Desliza <b>&rarr;</b>", "t-xs") + "</div>",
       velo="velo-abajo-firme")
 
 # Los cortes de línea van a mano: si se deja envolver solo, quedan huérfanas
 # ("removibles", "pared.") y el bloque se lee mal.
-for n, tip, l1, l2 in [
-    (2, "Tip 1", "Usa cinta o ganchos<br>adhesivos removibles",
-     "en vez de clavos<br>o pegamento fuerte."),
-    (3, "Tip 2", "Cuelga desde marcos,<br>cortinas o varillas",
-     "en vez de pegar<br>directo en la pared."),
-    (4, "Tip 3", "Prueba la cinta en una<br>zona poco visible",
-     "antes de usarla<br>en toda la pared."),
+# Misma gramática numerada que el carrusel PAID publicado: el rótulo en blanco
+# fuera de la caja y el tip DENTRO de la caja azul, arriba y a la izquierda.
+for n, tip, titulo, sub in [
+    (2, "TIP 1", "Usa cinta o ganchos removibles",
+     "en vez de clavos o<br><b>pegamento fuerte.</b>"),
+    (3, "TIP 2", "Cuelga desde marcos o cortinas",
+     "en vez de <b>pegar directo en la pared.</b>"),
+    (4, "TIP 3", "Prueba la cinta primero",
+     "en una zona poco visible, antes de<br><b>usarla en toda la pared.</b>"),
 ]:
-    # Sin telarañas ni murciélagos dibujados: se probaron y quedaron forzados
-    # (Valeria, 02-09). Las fotos ya traen la decoración de Halloween real
-    # —guirnalda de murciélagos, calabazas, luces, telaraña de utilería—, que es
-    # el contexto que hacía falta.
     pieza(f"rentas_c-halloween{n}", f"halloween/hw_{n}_45.jpg",
-          '<div class="bloque abajo angosto">'
-          f'<div class="titular t-l"><span class="marca-caja lima">{tip}</span></div>'
-          f'<div class="titular t-l">'
-          f'<span class="l1">{l1}</span>'
-          f'<span class="l2">{l2}</span></div>'
+          '<div class="bloque numerada">'
+          f'<span class="paso t-m">{tip}:</span>'
+          f'<span class="caja-titulo t-m">{titulo}</span>'
+          f'<span class="sub t-s">{sub}</span>'
           "</div>",
-          logo=False, velo="velo-abajo-firme")
+          logo=False, velo="velo-arriba-firme")
 
 pieza("rentas_c-halloween5", "halloween/hw_5_45.jpg",
       '<div class="bloque abajo">'
@@ -231,24 +228,29 @@ pieza("rentas_c-paid1", "paid/paid_1_45.jpg",
       '<div class="bloque abajo paid">'
       '<div class="titular t-l"><span class="l1">Así de fácil se arrienda</span></div>'
       '<div class="titular t-xl caja-sola">'
-      '<span class="marca-caja lima">EN VALLE ALTIPLÁNICO</span></div>'
+      '<span class="marca-caja lima">en Valle Altiplánico</span></div>'
       + bajada("Desliza <b>&rarr;</b>", "t-xs") + "</div>",
       velo="velo-abajo-firme")
 
-for n, num, l1, l2 in [
+# Gramática de lámina numerada, calcada del carrusel PAID publicado en su
+# Instagram: «01:» en blanco fuera de la caja, el título DENTRO de caja azul, la
+# bajada suelta en blanco con la parte clave en negrita, todo ARRIBA y a la
+# izquierda. Ver clients/nueva-urbe/CLAUDE.md §Lámina numerada.
+for n, num, titulo, sub in [
     (2, "01", "Visita presencial antes de decidir.",
-     "Deptos que puedes recorrer<br>en nuestra sala de ventas."),
-    (3, "02", "Contrato claro,", "sin letra chica ni comisión."),
+     "Deptos que puedes recorrer en<br><b>nuestra sala de ventas.</b>"),
+    (3, "02", "Contrato claro",
+     "<b>Sin letra chica,</b> ni comisión."),
     (4, "03", "Un ejecutivo te acompaña",
-     "desde la primera consulta<br>hasta la entrega de tus llaves."),
+     "desde la primera consulta hasta<br><b>la entrega de tus llaves.</b>"),
 ]:
     pieza(f"rentas_c-paid{n}", f"paid/paid_{n}_45.jpg",
-          '<div class="bloque abajo paid angosto">'
-          f'<div class="titular t-l"><span class="marca-caja lima">{num}</span></div>'
-          f'<div class="titular t-l"><span class="l1">{l1}</span>'
-          f'<span class="l2">{l2}</span></div>'
+          '<div class="bloque numerada">'
+          f'<span class="paso t-l">{num}:</span>'
+          f'<span class="caja-titulo t-l">{titulo}</span>'
+          f'<span class="sub t-m">{sub}</span>'
           "</div>",
-          logo=False, velo="velo-abajo-firme")
+          logo=False, velo="velo-arriba-firme")
 
 pieza("rentas_c-paid5", "paid/paid_5_45.jpg",
       '<div class="bloque abajo paid">'

@@ -303,3 +303,28 @@ html, body { background:#000; }
 .mail .marca-caja { padding:.22em .5em .26em; }
 .mail .bloque { width:92%; }
 .mail .bloque.abajo { bottom:5.5%; }
+
+/* ══════════ LÁMINA NUMERADA ══════════
+   Calcada del carrusel PAID que Rentas publicó en Instagram (captura del
+   02-09). La gramática es distinta de la de una portada:
+     · el bloque va ARRIBA, no abajo
+     · alineado a la IZQUIERDA, no centrado
+     · el número va en BLANCO y FUERA de la caja: «01:»
+     · el título va DENTRO de una caja AZUL, en una sola línea
+     · la bajada va suelta en blanco, con la parte clave en negrita
+   Yo lo tenía al revés —número en caja lima, título fuera, todo abajo y
+   centrado—; ésta es la corrección. */
+.bloque.numerada { top:7.5%; bottom:auto; left:6.5%; transform:none;
+                   width:87%; text-align:left; }
+.numerada .paso { display:inline-block; color:var(--blanco); font-weight:700;
+                  margin-right:.32em; vertical-align:baseline; }
+.numerada .caja-titulo { display:inline-block; background:var(--azul);
+                  color:var(--blanco); font-weight:700; padding:.10em .34em .16em;
+                  line-height:1.16; }
+.numerada .sub { display:block; margin-top:.34em; color:var(--blanco);
+                  font-weight:400; line-height:1.22;
+                  text-shadow:0 4px 22px rgba(0,0,0,.55); }
+.numerada .sub b { font-weight:700; }
+/* velo suave ARRIBA: el texto de estas láminas vive en el tercio superior */
+.velo-arriba-firme { position:absolute; inset:0;
+   background:linear-gradient(to bottom, rgba(0,0,0,.52) 0%, rgba(0,0,0,.18) 34%, transparent 52%); }

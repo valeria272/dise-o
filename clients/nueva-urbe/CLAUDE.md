@@ -102,6 +102,26 @@ El criterio vigente es el de **Paulina**, decidido por Valeria el 02-09-2026.
 7. **Cierre de carrusel**: foto oscurecida entera + titular itálico + **botón blanco redondeado con
    `RENTAS.INU.CL` en azul bold itálica** + un **cursor lima** apuntándolo + bajada itálica light.
 
+### La lámina numerada — calcada del feed publicado
+
+Medida sobre el carrusel PAID que Rentas publicó en Instagram (capturas del 02-09). **No se
+compone como una portada**, y esto es fácil de equivocar:
+
+| | Lámina numerada | Portada / cierre |
+|---|---|---|
+| Bloque | **arriba**, al 7,5 % | abajo |
+| Alineación | **izquierda** | centrada |
+| Número | `01:` en **blanco, FUERA** de la caja | — |
+| Título | dentro de **caja AZUL**, una línea | fuera de caja, blanco |
+| Bajada | suelta en blanco, con la parte clave en **negrita** | dos pesos apilados |
+| Caja de logo | **no lleva** | sí |
+
+El número y la caja van **en la misma línea**. Si el título no cabe, se baja un escalón de tamaño
+o se reparte la frase — nunca se deja el número solo arriba.
+
+> ⚠️ La caja lima de las portadas va en **caja baja bold**, no en versales: «Sin arruinar las
+> paredes», «en Valle Altiplánico». Las versales quedan para las historias.
+
 ### El reel — la estructura y el cierre
 
 Medida fotograma a fotograma sobre `reel_valle_sept.mp4` (septiembre, Paulina):

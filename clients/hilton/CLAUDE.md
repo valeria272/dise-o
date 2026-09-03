@@ -2356,3 +2356,57 @@ no elegir la posición a ojo.**
 **volvió a agrandar el vaso y le inventó una faja oscura abajo**. Con la
 composición ya aprobada, no se vuelve a generar — se estampa dentro de lo que la
 foto da.
+
+## ⭐⭐ 12. RONDA 9 · 4.ª vuelta — la proporción manda sobre el logotipo
+
+> «la mano se ve gigante y debe ser del tamaño proporcional a su cuerpo, a ella.
+> Y el vaso también… en el slide 4 se ve extraño el vaso y el logo» — Eli, 03-09
+
+**La lección, y es de método: para que el logotipo entrara al tamaño del manual se
+agrandó el vaso, y con él la mano. Eso es invertir la jerarquía.** La escala de un
+objeto en una foto la fija el cuerpo humano que lo sostiene, no lo que necesita el
+estampado. Si el vaso es chico, el logotipo es chico — como en cualquier foto real.
+
+Se volvió a la toma de escala natural y el logotipo se corrigió **dentro de lo que
+esa foto da**:
+
+| | rechazada | corregida |
+|---|---|---|
+| ancho del logo | 200 px, **42 px a la derecha del eje** | 230 px, **en el eje** |
+| ancho del cuerpo del vaso | 304 px | 304 px (sin tocar) |
+
+⛔ **Y no se vuelve a generar la escena para ganar sitio.** Se intentó dos veces
+—bajar el agarre, agrandar el vaso— y las dos veces el modelo devolvió la mano
+enorme, una faja oscura inventada en el vaso o gente al fondo.
+
+### El vaso de la slide 4: el defecto era la PROPORCIÓN, no el logotipo
+
+Medido contra el vaso real del cliente (`platos-ene/Between-67.jpg`):
+
+| | alto del cuerpo / ancho |
+|---|---|
+| vaso real | **1,02** — bajo y ancho |
+| el generado | **1,26** — 24 % estirado |
+
+Un vaso más alto y angosto del que existe **se lee raro aunque todo lo demás esté
+bien**, y eso es lo que Eli vio. Se corrigió pasando el vaso real como segunda
+referencia y pidiendo el cartón LISO; después se estampó a los ratios medidos
+(0,92 del ancho del cuerpo, centro en 0,485 del alto).
+
+⚠️ Al estampar sobre un vaso que el generador dejó con un logotipo fantasma,
+`--clonar abajo` trae lo que haya DEBAJO de la caja: acá el brownie, que quedó
+pintado sobre el vaso. **Antes de limpiar, mirar qué hay bajo la zona** — o
+regenerar el vaso liso y no limpiar nada, que es lo que se hizo.
+
+### ⭐⭐ La geometría de `flechaBucle`, medida de una vez
+
+Se perdieron tres renders adivinándola. Medida sobre el propio PNG
+(`recursos/flecha-bucle.png`, 694×651):
+
+- la **punta** está arriba, en **(0,58 · 0,06)** de la caja, y mira arriba-izquierda
+- la **cola** arranca abajo-izquierda, en **(0,03 · 0,97)**
+- `espejo` es un `scaleX(-1)`: invierte las dos
+
+Con `ancho=112` la caja mide 112×105, así que **la cola cae en (x+3, y+102) y la
+punta en (x+65, y+6)**. Con eso se coloca de una: la cola sobre el producto, la
+punta hacia el texto.

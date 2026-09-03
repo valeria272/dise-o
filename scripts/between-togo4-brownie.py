@@ -87,6 +87,41 @@ PROMPT = (
     "extra logos and no watermark anywhere in the image."
 )
 
+#: ⭐⭐ 2.ª vuelta (03-09, Eli): «en el slide 4 se ve extraño el vaso y el logo».
+#: MEDIDO contra un vaso To Go REAL del cliente (`platos-ene/Between-67.jpg`):
+#:
+#:     vaso real       alto del cuerpo / ancho = 1,02   (bajo y ancho)
+#:     el generado     alto del cuerpo / ancho = 1,26   ← 24 % ESTIRADO
+#:
+#: O sea que el defecto no era el estampado: **el vaso tenía mal la proporción**.
+#: Un vaso más alto y angosto de lo que existe se lee raro aunque todo lo demás
+#: esté bien. Se edita pidiendo la proporción del vaso real —que va como segunda
+#: referencia— y el cartón LISO, para estampar después el logotipo de verdad.
+PROMPT_VASO4 = (
+    "Reproduce the FIRST reference image exactly as it is: the same round light "
+    "wooden café table, the same wooden chair on the left, the same blurred green "
+    "plant and pale wall behind, the same two sage-green plates with the ham and "
+    "cheese croissant on the left and the chocolate brownie on the right, the same "
+    "light, the same shadows, the same camera position and the same framing. "
+    "Change nothing about the table, the plates or the food. "
+    # ── el único cambio: la PROPORCIÓN del vaso ──
+    "The ONLY change is the takeaway coffee cup. Replace it with a cup shaped like "
+    "the one in the SECOND reference image: a standard 12 oz kraft paper takeaway "
+    "cup that is SHORT AND WIDE - its paper body is about as tall as it is wide, "
+    "not tall and narrow - with a gentle taper and a black plastic dome lid. Keep "
+    "it standing in the same spot on the table, behind and between the two plates, "
+    "at the same distance from the camera and lit the same way. It must look like "
+    "a real cup sitting on that table, with the same soft focus as the plates "
+    "around it. "
+    "The cup is COMPLETELY BLANK: no logo, no print, no lettering, no sleeve, no "
+    "seam and no highlight streak down its side. "
+    "Nothing else changes: no new food, no cutlery, no napkins, no crumbs. "
+    "There is NOBODY in the picture: no people, faces, hands or fingers. "
+    "Photorealistic food photography, warm natural light, balanced white point, no "
+    "blown highlights. No text, lettering, logos, brand marks or watermark "
+    "anywhere in the image."
+)
+
 QA = """
 MÍRALA CON ZOOM ANTES DE USARLA — 6 puntos:
   1. ⚠️ EL VASO. ¿Está IGUAL que en la referencia — mismo kraft, misma tapa,
@@ -118,17 +153,31 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--solo-prompt", action="store_true")
     ap.add_argument("--out", default=str(SALIDA))
+    ap.add_argument("--vaso", metavar="IMAGEN", nargs="?", const=str(BASE),
+                    help="2.ª vuelta: corrige la PROPORCIÓN del vaso sobre esta "
+                         "imagen (por defecto la entregada) y lo devuelve liso, "
+                         "para volver a estampar el logotipo. Ver PROMPT_VASO4.")
     a = ap.parse_args()
+    prompt = PROMPT_VASO4 if a.vaso else PROMPT
     if a.solo_prompt:
-        print(PROMPT)
+        print(prompt)
         return
-    if not BASE.is_file():
-        sys.exit(f"✗ Falta la imagen entregada que se va a editar: {BASE}")
+    base = Path(a.vaso) if a.vaso else BASE
+    if not base.is_file():
+        sys.exit(f"✗ Falta la imagen que se va a editar: {base}")
+    #: el vaso REAL del cliente, que es de donde sale la proporción
+    real = RAIZ / "raw/hilton/between/platos-ene/Between-67.jpg"
+    refs = [base, real] if a.vaso else [base]
+    faltan = [r for r in refs if not r.is_file()]
+    if faltan:
+        sys.exit("✗ Faltan referencias:\n  " + "\n  ".join(str(f) for f in faltan))
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
-    cmd = [sys.executable, str(RAIZ / "scripts/magnific.py"), "pro", PROMPT,
+    cmd = [sys.executable, str(RAIZ / "scripts/magnific.py"), "pro", prompt,
            "--aspecto", "post", "--resolucion", "4K", "--out", a.out,
-           "--refs", str(BASE)]
-    print("→ Nano Banana Pro · 3:4 · 4K · edición sobre la slide 4 entregada")
+           "--refs", *[str(r) for r in refs]]
+    print("→ Nano Banana Pro · 3:4 · 4K · " +
+          ("proporción del vaso, con el vaso real de referencia" if a.vaso
+           else "edición sobre la slide 4 entregada"))
     r = subprocess.run(cmd, encoding="utf-8", errors="replace")
     if r.returncode:
         sys.exit(r.returncode)

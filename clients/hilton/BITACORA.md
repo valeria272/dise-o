@@ -122,6 +122,25 @@ a la primera.
    Eli aprobó. Se probó bajar el agarre con otra generación y el modelo volvió a
    agrandar el vaso e inventarle una faja — se descartó.
 
+**⭐ 4.ª vuelta — S2 APROBADA por Eli. En la S3 quedaban dos slides.**
+
+- **Slide 1**: «la mano se ve gigante… y el vaso también». Cierto, y la causa es
+  de método: **para que el logotipo entrara al tamaño del manual se había
+  agrandado el vaso, y con él la mano.** Eso invierte la jerarquía — la escala de
+  un objeto la fija el cuerpo que lo sostiene, no lo que necesita el estampado.
+  Se volvió a la toma de escala natural y el logo se corrigió dentro de lo que esa
+  foto da: pasa de 200 px **42 px a la derecha del eje** a 230 px **en el eje**.
+- **Slide 4**: «se ve extraño el vaso y el logo». El defecto era la **proporción**:
+  el vaso generado tenía alto/ancho **1,26** contra **1,02** del vaso real del
+  cliente, o sea 24 % estirado. Se regeneró con el vaso real como referencia y el
+  cartón liso, y se estampó a los ratios medidos.
+- Slides 2 y 3, sin tocar. Las cuatro re-subidas a los mismos enlaces.
+
+⚠️ Dos trampas que quedaron escritas en el manual: `--clonar abajo` trae lo que
+haya DEBAJO de la caja (acá pintó el brownie sobre el vaso), y la geometría de
+`flechaBucle` —punta en (0,58·0,06), cola en (0,03·0,97)— que costó tres renders
+adivinar.
+
 **Abierto:**
 0. ✅ RESUELTO en la 3.ª vuelta: al sacar «Promo To Go» de las interiores, las
    cuatro slides quedaron con una sola caja y el carrusel volvió a leerse parejo.

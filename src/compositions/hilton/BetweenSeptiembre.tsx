@@ -1079,7 +1079,21 @@ export const ToGo4: React.FC = () => (
             abajo empieza la pila de la promo (y 1116). */}
     <Ilustra cual="flechaBucle" x={214} y={758} ancho={112} espejo opacidad={0.95} />
     <Etiqueta x={330} y={700} size={40}>Salado</Etiqueta>
-    <Ilustra cual="flechaBucle" x={572} y={898} ancho={112} opacidad={0.95} />
+    {/* ⭐ 2.ª vuelta (03-09): al corregir la PROPORCIÓN del vaso —era 24 % más
+        alto de lo que existe— el vaso se ensanchó y la cola de la flecha de
+        «Dulce» dejó de caer sobre el brownie para caer sobre EL VASO.
+        ⭐⭐ LA GEOMETRÍA DE `flechaBucle`, medida sobre el propio PNG
+        (`recursos/flecha-bucle.png`, 694×651) para no volver a probarla a
+        ciegas — se perdieron tres renders adivinándola:
+          · la PUNTA está arriba, en (0,58 · 0,06) de la caja, y mira hacia
+            ARRIBA-IZQUIERDA
+          · la COLA arranca abajo-IZQUIERDA, en (0,03 · 0,97)
+          · `espejo` es un `scaleX(-1)`: invierte los dos
+        Con `ancho=112` la caja mide 112×105, así que la cola cae en
+        (x+3, y+102) y la punta en (x+65, y+6).
+        Acá va SIN espejo: la etiqueta está arriba-izquierda y el brownie
+        abajo-derecha. */}
+    <Ilustra cual="flechaBucle" x={535} y={915} ancho={112} opacidad={0.95} />
     <Etiqueta x={540} y={840} size={40}>Dulce</Etiqueta>
   </PiezaFeedBodegon>
 );

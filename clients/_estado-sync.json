@@ -18,9 +18,9 @@
       "revisado": "2026-09-03 (manana, 11:50)",
       "ultimo_hallazgo": "Sin novedades. Constanza Lizana sigue con CERO archivos desde el 28-08 -- van 7 dias. Sigue abierto quien firma el criterio de Selfie (el manual dice Coni; la grilla de septiembre la subio Diego Aguilar el 31-08)."
     },
-    "hilton": {
-      "revisado": "2026-09-03 (manana, 11:50)",
-      "ultimo_hallazgo": "(1) SEMANA 3 ABIERTA: Eli creo 'S3 HILTON SEP 2026' (1lcwtlf-EGMxgaAfgOYCLGNbKuLTQ41j2) el 02-09 18:26 con una subcarpeta 'BW' (1QOreVz6NVYvuri9RAYQRMNiilV_IN8XZ) que sigue VACIA (folder tocado hoy 13:58 UTC pero sin archivos). (2) S2/BW (1Yh2Puq1ZEmbM2HaoTh-LUydKwtZRmpn1) ya no esta vacia: tiene 'BW ST 09-09 Emergencia Between.png' (3.068.910 B, subida por NOSOTROS el 03-09 00:15 -- es la ST I rediagramada de la ronda 7) y 'BW-F-HumorCafecito-ANTES.png' de Eli. Siguen faltando los 4 FEED de la S2 (G, H, J, L). (3) DT -- ENCARGO NUEVO HOY: 'C1 ER N°1 FIESTAS PATRIAS.png' (6.441.580 B) y 'C1 ER N°2 FIESTAS PATRIAS.png' (11.829.406 B) en 'DT/C2 ER FIESTAS PATRIAS' (11HnErPzt7XrxVScijjWET7j5nc3FJT7Q, creada anoche 21:38); la N°1 entro hoy 03-09 13:11 UTC. Es el SEGUNDO carrusel ER, eje Fiestas Patrias. (4) QB ARRANCO SEPTIEMBRE: 'Post n°1 S1 AYCD.png' (8.846.296 B, 02-09 22:24) y 'ST n°1 S1 AYCD.png' (6.662.810 B, 22:31) en S1 HILTON SEP 2026/QB (1qPk9I7S-FPEcyLZ1z4TyrRrqaDwzt8Tr). QB NO tiene manual en el estudio. (5) P18 y el paid de DT ('C1 S1 N°2.png' + 'C1 S1 N°2 CTA 2.png' en CARRUSEL NB 1) siguen igual que anoche."
+        "hilton": {
+      "revisado": "2026-09-03 (tarde, 16:00 -- entrega; la pasada de Drive es de las 11:50)",
+      "ultimo_hallazgo": "== ENTREGA (16:00) == RONDA 9: las 4 piezas de FEED que la grilla puso EN CAMBIOS (C Cowork S1, H Primero la foto S2, J Ella hablo S2, L Promos To Go S3) = 13 laminas, subidas y verificadas byte a byte; con eso quedan cubiertos los FEED H y J que la pasada de la manana daba por faltantes, y la S3/BW ya no esta vacia. Eli APROBO la S2; la S3 llevo 4 vueltas de correccion (cifras, 'Promo To Go' repetido, y el logo del vaso en las slides 1 y 4). ⭐⭐ HALLAZGO DE MATERIAL: las tazas de loza del cliente traen KIMBO impreso al costado, pero en las tomas CENITALES no se ve -- eso explica el reclamo que se repite desde la ronda 4 y lo resuelve sin generar tazas. ⭐ La portada del Cowork pasa al LOUNGE (HDT_37) por indicacion de Eli; el encuadre se eligio POR EXCLUSION (placa KIMBO, bolsa KIMBO y una persona con rostro: de 528 encuadres 4:5 solo 4 sobreviven). ⭐⭐ Las cifras de Raleway eran de ESTILO ANTIGUO -- es su default y `lnum` es lo que las sube; se habia perdido al borrar la declaracion que llevaba el `tnum` inutil. ⛔ Los videos de la entrada de BT que ofrece el cliente NO EXISTEN en el material: verificadas las 7 carpetas de GRILLA IA BETWEEN y todo raw/. Pendiente confirmar FEED G, que retrocedio de APROBADO a CORREGIDO, y re-rendir StToGoDulce y StCowork, que quedaron con las cifras viejas. == PASADA DE DRIVE (11:50) == (1) SEMANA 3 ABIERTA: Eli creo 'S3 HILTON SEP 2026' (1lcwtlf-EGMxgaAfgOYCLGNbKuLTQ41j2) el 02-09 18:26 con subcarpeta 'BW' (1QOreVz6NVYvuri9RAYQRMNiilV_IN8XZ) -- es la que se lleno con el carrusel To Go esta tarde. (2) DT -- ENCARGO NUEVO: 'C1 ER N°1 FIESTAS PATRIAS.png' y 'C1 ER N°2 FIESTAS PATRIAS.png' en 'DT/C2 ER FIESTAS PATRIAS' (11HnErPzt7XrxVScijjWET7j5nc3FJT7Q); es el SEGUNDO carrusel ER, eje Fiestas Patrias. (3) QB ARRANCO SEPTIEMBRE: 'Post n°1 S1 AYCD.png' y 'ST n°1 S1 AYCD.png' en S1 HILTON SEP 2026/QB (1qPk9I7S-FPEcyLZ1z4TyrRrqaDwzt8Tr). QB NO tiene manual en el estudio. (4) P18 y el paid de DT ('C1 S1 N°2.png' + 'C1 S1 N°2 CTA 2.png' en CARRUSEL NB 1) siguen igual."
     },
     "tierra-calma": {
       "revisado": "2026-08-27",
@@ -57,29 +57,21 @@
   },
   "diseñadoras_revisadas": [
     "constanza.lizana@copywriters.cl",
+    "constanza.olivares@copywriters.cl",
+    "diego.aguilar@copywriters.cl",
     "elisabet.soto@copywriters.cl",
-    "paulina.bustamante@copywriters.cl",
-    "diego.aguilar@copywriters.cl"
+    "paulina.bustamante@copywriters.cl"
   ],
   "_notas_de_esta_revision": [
-    "Pasada del 02-09 (tarde), completa. Ventana: desde el 28-08 para todos; desde las 13:00 de hoy para Eli, porque la pasada de la manana ya la cubria.",
-    "CONSTANZA LIZANA: cero archivos nuevos desde el 28-08. Es la unica de las cuatro sin movimiento.",
-    "⭐ DIEGO AGUILAR resulto ser el mas activo y el estudio no lo tenia mapeado a ninguna marca: toca MAS CENTER (grilla sept), SELFIE (que el manual asigna a Coni) y REDMAGISTER. Hay que definir quien firma el criterio de esas cuentas -- el criterio de una marca no se traspasa.",
-    "El buscador de Drive devuelve las CARPETAS en la primera pagina y los ARCHIVOS recien en la segunda: hay que paginar siempre o se pierde todo el material.",
-    "Un archivo con createdTime viejo y modifiedTime nuevo es un REEMPLAZO, no una pieza nueva: asi se detecto la ronda de Nueva Urbe del 31-08 sobre archivos del 20-08.",
-    "Dos archivos con el MISMO fileSize exacto en dos carpetas distintas son la misma pieza duplicada: asi se detecto que el carrusel ER organico entro tambien a la carpeta de Paid DT.",
-    "drive-comentarios.py solo sirve para archivos que subio el propio token (scope drive.file). Para leer comentarios de piezas subidas a mano por una disenadora, no sirve.",
-    "Pasada del 02-09 (tarde), acotada a Hilton/Between (/al-dia hilton between).",
-    "La grilla pesa 76,2 MB (era 75,2 en la manana). Se sigue bajando sin token: curl -sL \"https://drive.google.com/uc?export=download&id=1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY\"",
-    "METODO: para saber que es nuevo NO se lee la fila 15 y se adivina -- se hace DIFF celda a celda contra la copia anterior del xlsx. Los comentarios nuevos se PREPENDEN sobre los viejos en la misma celda, asi que sin diff se confunde ronda nueva con ronda vieja. La copia de la manana quedo en el scratchpad de la sesion 3f3ef6b3.",
-    "Un comentario nativo puede ser solo un AVISO ('dejaron nuevos comentarios aca'): el contenido esta en la celda escrita, no en el comentario.",
-    "Las 5 imagenes nuevas del xlsx se ubican mapeando drawing2/3/5.xml + sus .rels contra xl/media; los anclajes son flotantes y no coinciden exacto con la columna de la pieza.",
-    "El pull de hoy trajo trabajo de Mas Center Terrenos (fotos de Drive r3 y NOTAS-DE-ENTREGA). No es de Hilton, no se toca.",
-    "credentials/token.json YA EXISTE (montado hoy 12:23), pero su alcance es drive.file: solo ve lo que subimos con ese token.",
-    "Pasada del 02-09 a las 17:16 (tercera del dia). Ventana: desde las 15:00 de hoy, porque la pasada de la tarde ya cubria hasta las 16:15.",
-    "⛔ LO MAS IMPORTANTE DEL DIA: una carpeta consolidada puede llevar versiones SUPERADAS. La 'BETWEEN SEP 2026' que armo Eli a las 15:45 trae las 27 piezas del 31-08, incluidas la G y la I que se corrigieron y entregaron HOY a las 12:23 en S2/BW. Se detecto comparando fileSize entre las dos copias del mismo nombre.",
-    "Un archivo con createdTime de HOY y modifiedTime VIEJO es una COPIA, no una pieza nueva -- es el espejo de la regla del reemplazo (createdTime viejo + modifiedTime nuevo). Asi se vio que la carpeta consolidada es un copy-paste del 31-08.",
-    "Buscar por owner encuentra lo que la busqueda por parentId no ve: las novedades de EBEMA de hoy estaban en una carpeta de carlos.figueroa y por eso la pasada de la tarde las dio por cero.",
-    "Sigue vigente: el buscador devuelve CARPETAS en la primera pagina y ARCHIVOS en la segunda. Hay que paginar siempre."
+    "Pasada del 03-09 (manana, 09:45). Ventana: desde las 20:00Z del 02-09, o sea desde las 16:00 local, porque la tercera pasada de ayer cubria hasta las 17:16.",
+    "⭐⭐ EL METODO QUE DESTRABA LA GRILLA: 'curl -sL uc?export=download&id=...' la baja entera SIN token (esta compartida por enlace), y openpyxl con rich_text=True devuelve el TACHADO y el color de cada run. El 404 del token (scope drive.file) hizo creer ayer que el archivo era inalcanzable. Queda escrito en clients/hilton/CLAUDE.md.",
+    "Verificar el tamaño bajado contra el fileSize de Drive: si bajo la pagina de aviso de virus en vez del archivo, pesa KB.",
+    "En Windows, leer la grilla exige PYTHONIOENCODING=utf-8 PYTHONUTF8=1 o revienta con UnicodeEncodeError en los acentos.",
+    "Una ronda puede ser SOLO DE ESTADO: 11 celdas cambiadas y ningun comentario nuevo. El valor esta en el cambio de estado (REVISAR CONTENIDO -> EN CAMBIOS es luz verde para disenar), no en texto nuevo.",
+    "Sigue vigente: el buscador devuelve CARPETAS en la primera pagina y ARCHIVOS en la segunda. Hay que paginar siempre.",
+    "OJO con el modifiedTime de los Google Sheets nativos: en varios coincide al milisegundo con el viewedByMeTime, o sea es artefacto de acceso del conector y NO prueba una edicion. Para los .xlsx (Between) si sirve, porque ahi cambia el fileSize.",
+    "Un archivo con createdTime de HOY y modifiedTime VIEJO es una COPIA, no una pieza nueva (asi se vio que 'C1 ER N2 FIESTAS PATRIAS' se hizo ayer 17:35 y se subio hoy 09:11).",
+    "Buscar por owner encuentra lo que la busqueda por parentId no ve. Y si un owner da cero por dias, sospechar del CORREO antes que de la persona: constanza.lizana vs constanza.olivares.",
+    "Paulina: sin archivos nuevos. Solo se movieron dos carpetas viejas de material (CALAMA 1LGlTCm y videos-dron 1SMwy6t, ayer 20:04-20:31 local), coherente con la sesion de Rentas de Valeria. Diego: nada nuevo despues de las 17:00 de ayer."
   ]
 }

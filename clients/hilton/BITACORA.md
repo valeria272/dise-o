@@ -5,6 +5,91 @@
 
 ---
 
+## 2026-09-03 · Eli (Windows) — BETWEEN ronda 9: las 4 piezas EN CAMBIOS de la S1, S2 y S3
+
+**Qué pedía la grilla.** `BETWEEN _ GRILLA SEPTIEMBRE 2026` marcó cuatro piezas
+de FEED en `EN CAMBIOS` y ninguna de STORIES:
+
+| | Fecha | Semana | Pieza |
+|---|---|---|---|
+| FEED C | 01-09 | S1 | Carrusel Cowork — **reabierto hoy** (`CORREGIDO` → `EN CAMBIOS`) |
+| FEED H | 09-09 | S2 | Carrusel «Primero la foto… ¿o no?» |
+| FEED J | 11-09 | S2 | Ella habló / Ella escuchó |
+| FEED L | 14-09 | S3 | Carrusel Promos To Go |
+
+**Las 13 láminas están entregadas y verificadas byte a byte en Drive.** La
+portada del Cowork se REEMPLAZÓ en su sitio (mismo enlace,
+`1cF7afo5tP4Lixq_YyGWyd7iQJIEw6kb1`); las otras nueve son nuevas, sueltas en la
+carpeta de su semana como pidió Eli:
+
+- **S1 · `C1 COWORK`** (`1GB6NtoG3vy35rPj7bw-j8bc76-Jz8332`) — portada nueva.
+- **S2 · `BW`** (`1Yh2Puq1ZEmbM2HaoTh-LUydKwtZRmpn1`) — las 4 de «Primero la foto»
+  + «Ella habló Ella escuchó».
+- **S3 · `BW`** (`1QOreVz6NVYvuri9RAYQRMNiilV_IN8XZ`), que estaba vacía — las 4
+  del To Go.
+
+Se sube con `python scripts/between-subir-c1.py s2r9 s3` (el script dejó de tener
+la carpeta de render quemada: ahora acepta `--render` y `--solo`).
+
+**⭐⭐ El hallazgo, y es de material: las tazas de loza del cliente traen KIMBO
+impreso al costado.** Por eso el reclamo se repite desde la ronda 4 sin que nadie
+diera con la causa. En las tomas **cenitales** el logotipo no se ve —queda en la
+pared exterior—, así que el reclamo no obliga a generar tazas: **obliga a elegir
+cenitales**, que es justo la otra mitad de lo que pide el cliente («desde arriba,
+como la refe»). Las cuatro slides del FEED H salen ahora de fotos REALES de la
+sesión `3 ENERO _ PLATOS - DESAYUNOS` del propio cliente, todas cenitales, sobre
+su mesa de listones — con eso se cae también «el lugar no se parece en nada a
+Between». La única sin cenital equivalente (el croissant de jamón y queso) se
+resolvió borrándole la marca con `scripts/between-quitar-kimbo.py`, que **rellena
+interpolando el esmalte**: clonar una franja vecina dejaba un rectángulo visible
+porque la taza tiene degradado lateral.
+
+**La portada del Cowork es el LOUNGE**, por indicación de Eli. Scarlette había
+comentado hoy 09:33 «el espacio de la slide 1 ya no existe :((( si vamos a
+mostrar de fuera tendría que ser del espacio más amplio de la terraza»; manda lo
+que dijo Eli. La foto es `espacios/HDT_37.jpg` y el encuadre se eligió **por
+exclusión**: esa toma tiene una placa KIMBO atornillada al muro, una bolsa de café
+KIMBO sobre la barra y **una persona con rostro reconocible** tras el vidrio. De
+528 encuadres 4:5 anclados abajo, sólo cuatro no tocan ninguna de las tres zonas.
+
+**⛔ Los videos de la entrada de Between NO existen en el material del estudio.**
+El cliente los ofreció para la slide 1 del To Go («tenemos algunos videos que
+hemos hecho en la entrada de BT»). Se buscaron en las 7 carpetas de `GRILLA IA
+BETWEEN` y en todo `raw/` —incluida la sesión BW 2023 de 596 fotos y los 91
+fotogramas de los 25 MOV— y **no hay un solo plano exterior**. La slide se
+resolvió con el método que el manual ya tenía escrito (ronda 6 §2): el local
+real entra **muy desenfocado**, pasado por referencia. **Si Eli consigue esos
+videos, la slide se rehace con un fotograma y queda mejor.**
+
+**Lo demás que cambió, por pieza:**
+- **FEED J** — escena rehecha entera: dos tazas separadas en diagonal, arte latte
+  en la llena y cerco de café seco en la vacía, una mano por taza. Las manos se
+  revisaron al 400 % y son **de mujer**, porque el copy dice «etiqueta a esa
+  amiga» y la primera generación puso una mano que leía como masculina. Los
+  textos van **sin caja**, como pidió el cliente: se pudo porque la escena nueva
+  los deja sobre mesa oscura.
+- **FEED L slide 4** — entra el **brownie**. Al cambiar la escena hubo que
+  **volver a medir** las etiquetas «Salado» y «Dulce»: con las coordenadas viejas
+  una caía sobre el producto y la otra dentro de la caja de la promo.
+- El logotipo del vaso se **re-estampó desde el archivo real** en las dos slides
+  del To Go, aunque la generación lo devolvía legible: proporción 3,0278 exacta.
+
+**QA 12/13 limpias.** La única con aviso es `BW-F-EllaHablo` («el titular ocupa
+29 %»), y es **falso positivo**: esa pieza no lleva titular por brief. Queda
+escrito en el manual junto al otro falso positivo conocido. `npm run typecheck`
+limpio.
+
+**Abierto:**
+1. **Los videos de la entrada de BT** — si aparecen, se rehace la slide 1 del To Go.
+2. **STORIES no tenía nada `EN CAMBIOS`**: H es el reel Café Bombón esperando que
+   el cliente conteste lo de la leche condensada, J está `POR GRABAR` y M/O/Q/R/T/U
+   están `OK PARA DISEÑAR` — son piezas nuevas, no correcciones. Falta acordar con
+   Eli si se toman.
+3. **FEED G (7-sep)** retrocedió de `APROBADO` a `CORREGIDO` en la grilla el
+   03-09. Probable error de tipeo del CM: conviene confirmarlo antes de tocarlo.
+
+---
+
 ## 2026-09-02 (cierre) · Eli (Windows) — BETWEEN: la ST «Emergencia» de la S2, rehecha entera
 
 **Qué se hizo.** La **ST Emergencia (9-sep, S2)** completa. Eli pasó el brief y

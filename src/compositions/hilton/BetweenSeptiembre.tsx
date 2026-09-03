@@ -175,7 +175,20 @@ export const Cowork1: React.FC = () => (
        ⚠️ NO repite la slide 2: ésta es el PLANO GENERAL del lugar y aquélla el
        bodegón a la altura del asiento. Portada = dónde estás; slide 2 = tu mesa.
        Gradada con `neutro` (calidez 29,3 → 20,8, igual que las otras tres). */
-    foto={F + 'cowork-terraza.jpg'}
+    /* ⭐⭐ RONDA 9 (03-09) — LA TERRAZA SALE Y ENTRA EL LOUNGE. La grilla reabrió
+       esta pieza (`FEED!C16`: CORREGIDO → EN CAMBIOS) y Scarlette comentó el
+       mismo día: «el espacio de la slide 1 ya no existe :((( si vamos a mostrar
+       de fuera tendria que ser del espacios más amplio de la terraza de
+       Between». Eli resolvió por chat que la portada va del **LOUNGE**.
+       Base `espacios/HDT_37.jpg` + puesto de trabajo generado sobre ella con
+       `scripts/between-portada-lounge.py`. El recorte (2480,1588)+1920×2400 NO
+       se eligió por composición sino POR EXCLUSIÓN: esa foto es de cuando
+       servían Kimbo —hay una placa KIMBO atornillada al muro y una bolsa de café
+       KIMBO sobre la barra— y además tiene una PERSONA con rostro reconocible
+       tras el vidrio. De 528 encuadres 4:5 anclados abajo, sólo cuatro no tocan
+       ninguna de las tres zonas. Detalle completo en el encabezado del script.
+       Gradada con `neutro` (calidez 46,8 → 21,3, a tono con las otras tres). */
+    foto={F + 'cowork-lounge.jpg'}
     script="Tu oficina por hoy"
     caps={'Puede ser\nBetween'}
     /* ⭐⭐⭐ RONDA 8 — LA JERARQUÍA, que es el otro medio pedido de Eli: «los
@@ -724,13 +737,40 @@ export const HumorCafecito: React.FC = () => (
      · vuelven las COMILLAS y la puntuación del brief. Los cuatro textos son
        citas: la comilla abre en la línea de arriba y cierra en la de abajo, y
        `mantenerPunto` conserva el punto que va dentro de la cita.
-     · ⏳ Quedan pendientes de imagen: slide 1 (taza KIMBO, prohibida),
-       slide 2 (otro producto «más foto aesthetic») y slide 4 (que se vea
-       comido). Ver la nota al pie de este archivo.                           */
+   ⭐⭐ RONDA 9 (03-09) — LAS CUATRO FOTOS, RESUELTAS. `FEED!H16` pasó a EN
+   CAMBIOS y quedaban tres imágenes pendientes: slide 1 (taza KIMBO), slide 2
+   («otro producto más foto aesthetic») y slide 4 («que se vea comido»).
+
+   EL HALLAZGO, y vale para todo el mes: **las tazas de loza de Between llevan
+   el logotipo KIMBO impreso al costado** — nítido en cualquier toma lateral o
+   en 45°. Pero **en las CENITALES no se ve**, porque queda en la pared exterior
+   de la taza. O sea que el reclamo que el cliente repite desde la ronda 4 no
+   obliga a generar tazas: obliga a elegir tomas cenitales. Que es justo la otra
+   mitad de su comentario («desde arriba también como los 2 anteriores») y lo
+   que hace que la serie parezca «fotos que sacó una persona natural».
+
+   Las cuatro salen ahora de la sesión profesional del propio cliente
+   `3 ENERO _ PLATOS - DESAYUNOS` (Drive 16OSLgXsc_KABBHbPyBRGsG6zthRAcRaW),
+   sobre su mesa de listones — con eso se cae también «el lugar no se parece en
+   nada a Between»:
+     · slide 1 `Between-5`   cenital, desayuno completo intacto y SIN taza en
+                             cuadro. Se acabó el problema Kimbo.
+     · slide 2 `Between-20`  cenital cerrado del café con arte latte. Lo más
+                             «foto aesthetic» de la sesión.
+     · slide 3 `Between-42`  el croissant de jamón y queso del brief. Única sin
+                             cenital equivalente: se le borró la marca con
+                             `scripts/between-quitar-kimbo.py` (interpolación
+                             del esmalte, no clonado — el clonado dejaba un
+                             rectángulo porque la taza tiene degradado lateral).
+     · slide 4 `Between-179` crème brûlée cenital EDITADO para verse empezado
+                             (`scripts/between-feedh-slide4.py`): costra rota,
+                             dos cucharadas menos y la cuchara dentro.
+   Recortes y grados en `scripts/between-feedh-fotos.py`. Las cuatro gradadas
+   con `neutro` (calidez 20,9 · 20,4 · 21,1 · 21,6).                          */
 
 export const Foto1: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'desayuno-completo-2.jpg'}
+    foto={F + 'h1-desayuno-cenital.jpg'}
     script="“Qué rico se ve."
     caps={'Le voy a sacar\nuna foto.”'}
     scriptSans
@@ -744,10 +784,12 @@ export const Foto1: React.FC = () => (
 export const Foto2: React.FC = () => (
   <PiezaFeedBodegon
     /* cenital con latte art: es el «está demasiado lindo» del copy, y calca el
-       encuadre de la referencia del cliente. La foto es apaisada; se encuadra a
-       la izquierda para que el plato y la taza entren enteros en 4:5. */
-    foto={F + 'croissant-latte-cenital.jpg'}
-    posicionFoto="42% center"
+       encuadre de la referencia del cliente.
+       ⭐ RONDA 9: sale `posicionFoto="42% center"`. Existía porque la foto
+       anterior era APAISADA y había que correr el encuadre para que el plato y
+       la taza entraran enteros en 4:5. `Between-20` ya viene recortada a 4:5
+       con la taza en su eje, así que desencuadrarla la descentraba. */
+    foto={F + 'h2-latte-cenital.jpg'}
     script="“Está demasiado lindo."
     caps="Foto primero.”"
     scriptSans
@@ -758,7 +800,7 @@ export const Foto2: React.FC = () => (
 
 export const Foto3: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'croissant-plato.jpg'}
+    foto={F + 'h3-croissant-jamon.jpg'}
     /* ⭐ RONDA 7 (02-09, FEED!H15): «G3: Que pinta tiene x Se ve muy bueno...».
        La «x» es «por»: cambia la primera línea de la cita, no la segunda.
        Se respeta la puntuación de la pieza —el «…» de un solo carácter, no tres
@@ -775,7 +817,7 @@ export const Foto3: React.FC = () => (
 
 export const Foto4: React.FC = () => (
   <PiezaFeedBodegon
-    foto={IA + 'torta-empezada.png'}
+    foto={F + 'h4-postre-empezado.jpg'}
     script="“¡Nooo!"
     caps={'Se me olvidó\nla foto.”'}
     scriptSans
@@ -791,13 +833,37 @@ export const Foto4: React.FC = () => (
 
 export const EllaHablo: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={IA + 'dos-tazas.png'} oscurecer={0.1} />
-    <LogoBetween formato="feed" posicion="arriba" tono="beige" />
-    {/* la mesa es clara: sin caja estas dos líneas no se leen (contraste medido 37).
-        ESCALONADAS a pedido de Valeria (29-08): una arriba y otra abajo se ve más
-        lúdico que las dos en la misma línea. */}
-    <Etiqueta x={280} y={1010} size={54} enCaja>Ella habló</Etiqueta>
-    <Etiqueta x={800} y={392} size={54} enCaja>Ella escuchó</Etiqueta>
+    {/* ⭐⭐ RONDA 9 (03-09) — ESCENA NUEVA. `FEED!J16` pasó a EN CAMBIOS con
+        cinco defectos entre el cliente y Scarlette: las tazas «una casi arriba
+        de la otra», faltaba «la interacción de las personas, aunque sea sus
+        manos», el café «que se vea más lindo, algo con arte latte», el otro
+        «como que en algún momento hubo café», y el platillo «enorme y
+        completamente limpio».
+        La escena se rehizo entera con `scripts/between-ellahablo.py`: cenital
+        sobre la mesa de listones REAL del cliente (va como referencia), las dos
+        tazas separadas en diagonal, arte latte nítido en la llena y cerco de
+        café seco en la vacía, y una mano por taza. Las manos se revisaron al
+        400 % —es el rechazo que ya tuvo esta marca— y son de mujer, porque el
+        copy dice «etiqueta a esa amiga». */}
+    <FotoFondo src={F + 'j-dos-tazas.jpg'} oscurecer={0.1} />
+    {/* ⭐ El logo baja. Arriba, la banda del lockup (0,05–0,14 = y 67–189) cae
+        sobre el platillo BLANCO de la taza vacía, que arranca en y≈155: beige
+        sobre blanco no se lee. Abajo la mesa es oscura y pareja. */}
+    <LogoBetween formato="feed" posicion="abajo" tono="beige" />
+    {/* ⭐ RONDA 9 — SIN CAJA, y es pedido textual del cliente: «me gustaría ver
+        textos más limpios (sin el recuadro atrás)». Se puede porque la escena
+        nueva deja las dos etiquetas sobre MESA OSCURA, no sobre loza blanca:
+        ahí la sombra de `Etiqueta` basta y la caja taupe sobraba.
+        Y van pegadas a SU taza —«que el de Ella habló esté más cerca de su
+        respectiva taza»—, cada una en el hueco de mesa libre que le queda al
+        lado. Medido sobre la foto gradada, en lienzo 1080×1350:
+          · taza VACÍA  (arriba, derecha) centro ≈ (693, 316) → «Ella escuchó»
+            a su izquierda
+          · taza LLENA  (abajo, izquierda) centro ≈ (400, 870) → «Ella habló»
+            a su derecha
+        Siguen ESCALONADAS, que es la nota de Valeria del 29-08. */}
+    <Etiqueta x={800} y={845} size={54}>Ella habló</Etiqueta>
+    <Etiqueta x={262} y={286} size={54}>Ella escuchó</Etiqueta>
   </AbsoluteFill>
 );
 
@@ -821,7 +887,7 @@ export const EllaHablo: React.FC = () => (
  */
 export const ToGo1: React.FC = () => (
   <PiezaFeedBodegon
-    foto={IA + 'togo-salida-2-logo.png'}
+    foto={F + 'togo-salida-3.jpg'}
     script="¿Vas con poco tiempo?"
     caps={'Tu desayuno\nva contigo'}
     datos={['Promos To Go', HORARIO_TOGO]}
@@ -932,7 +998,7 @@ export const ToGo3: React.FC = () => (
  */
 export const ToGo4: React.FC = () => (
   <PiezaFeedBodegon
-    foto={IA + 'togo-trio-45-logo.png'}
+    foto={F + 'togo-trio-brownie.jpg'}
     script="¿Por qué elegir uno?"
     caps="¡Llévate los 3!"
     /* ⭐ RONDA 7 — mismo defecto previo de margen que `ToGo1`: tinta a 74 px del
@@ -958,11 +1024,23 @@ export const ToGo4: React.FC = () => (
       igualarAncho
     />
     {/* la cola de la flecha TOCA el producto y apunta al texto — regla del
-        manual. Acá nacen del croissant salado y del dulce. */}
-    <Ilustra cual="flechaBucle" x={214} y={874} ancho={112} espejo opacidad={0.95} />
-    <Etiqueta x={330} y={832} size={40}>Salado</Etiqueta>
-    <Ilustra cual="flechaBucle" x={706} y={1072} ancho={112} opacidad={0.95} />
-    <Etiqueta x={716} y={1150} size={40}>Dulce</Etiqueta>
+        manual. Acá nacen del croissant salado y del dulce.
+        ⭐⭐ RONDA 9 (03-09) — LAS CUATRO COORDENADAS SE VOLVIERON A MEDIR. Al
+        cambiar el croissant simple por el BROWNIE que pidió el cliente, la
+        escena se regeneró y los dos productos quedaron en otro sitio: el
+        croissant subió y el brownie es más grande y más a la derecha. Con las
+        coordenadas viejas, «Salado» caía ENCIMA del croissant con su flecha
+        montada sobre el producto —lo que el manual prohíbe— y «Dulce» se metía
+        dentro de la caja de la promo.
+        Medido sobre la pieza rendida, en lienzo 1080×1350:
+          · croissant  x 120–424   y 864–1040   → «Salado» encima, en la mesa
+          · brownie    x 552–928   y 992–1136   → «Dulce» arriba a su izquierda,
+            que es el único hueco de mesa libre: a la derecha está el vaso y
+            abajo empieza la pila de la promo (y 1116). */}
+    <Ilustra cual="flechaBucle" x={214} y={758} ancho={112} espejo opacidad={0.95} />
+    <Etiqueta x={330} y={700} size={40}>Salado</Etiqueta>
+    <Ilustra cual="flechaBucle" x={572} y={898} ancho={112} opacidad={0.95} />
+    <Etiqueta x={540} y={840} size={40}>Dulce</Etiqueta>
   </PiezaFeedBodegon>
 );
 

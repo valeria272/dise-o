@@ -758,6 +758,30 @@ La referencia del cliente (`refs-sept-ronda4/I-story-emergencia.jpg`) es explíc
 Lo que había antes era un gabinete lejano y chico dentro de una escena con
 plantas: por eso «no se cachaba».
 
+## ⭐ Y una de método: CÓMO SE BAJA LA GRILLA (resuelto 03-09-2026)
+
+La bitácora del 02-09 dejó la S2/S3 trabada diciendo que la grilla «no se puede
+leer desde este PC». **Era falso, y el motivo del error es útil:** el token del
+estudio tiene alcance `drive.file` y da 404 sobre un archivo ajeno, y el conector
+de Drive devuelve texto plano sin formato. Pero la grilla **está compartida por
+enlace**, así que se baja entera y con formato **sin token**:
+
+```bash
+curl -sL "https://drive.google.com/uc?export=download&id=1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY"   -o "$SCRATCH/bw-grilla-$(date +%m%d).xlsx"
+```
+
+Verifica el tamaño contra el `fileSize` que reporta Drive antes de leerla: si
+bajó una página de aviso de virus en vez del archivo, pesa unos KB.
+
+**Y para saber qué es NUEVO no se lee la fila 15 y se adivina: se hace DIFF celda
+a celda contra la copia anterior.** Los comentarios se PREPENDEN sobre los
+viejos en la misma celda, así que sin diff se confunde ronda nueva con ronda
+vieja. Guarda siempre la copia del día; el script vive en el scratchpad de la
+sesión del 03-09 (`diff-grilla.py`) y son 20 líneas de `openpyxl`.
+
+⚠️ En Windows, `python` a secas escupe `UnicodeEncodeError` con los acentos y los
+emoji de la grilla: corre siempre con `PYTHONIOENCODING=utf-8 PYTHONUTF8=1`.
+
 ## Y una de método: mirar los COMENTARIOS TACHADOS
 
 En la grilla, la fila **COMENTARIOS DISEÑO** mezcla lo pendiente con lo ya
@@ -2007,3 +2031,152 @@ Ver §7 para la prueba de que la terraza es de Between. Lo que importa de métod
   veces.** Pedirle «una laptop abierta… no muestres la tapa cerrada» le hizo
   pintar DOS laptops en dos generaciones seguidas. Describir cada objeto **una
   sola vez** y en positivo.
+
+---
+
+# ⭐⭐ RONDA 9 — lo que aprendimos el 03-09-2026
+
+La grilla puso **cuatro piezas de feed en `EN CAMBIOS`** —FEED C (Cowork, S1),
+H (Primero la foto, S2), J (Ella habló, S2) y L (Promos To Go, S3)— y se
+entregaron las trece láminas el mismo día. STORIES no tenía ninguna en cambios.
+
+## ⭐⭐⭐ 1. LAS TAZAS DE BETWEEN LLEVAN KIMBO IMPRESO — y las cenitales no lo muestran
+
+Es el hallazgo de la sesión y explica **por qué el cliente lleva desde la ronda 4
+repitiendo el mismo reclamo**: «ese kimbo hay que quitarlo, porque ya no
+servimos en esas tazas», «recordemos que la taza de Kimbo ya no se puede usar».
+
+No es que alguien eligiera mal una foto: **la loza del cliente trae el logotipo
+KIMBO impreso al costado** —wordmark rojo vertical más una barra gris—. Sale
+nítido en cualquier toma lateral o en 45° de la sesión `3 ENERO _ PLATOS -
+DESAYUNOS` (`Between-21`, `-28`, `-40`, `-42`, `-49`…).
+
+**Pero en las tomas CENITALES no aparece**, porque queda en la pared exterior de
+la taza y la cámara sólo ve el borde y el café.
+
+O sea que el reclamo **no obliga a generar tazas con IA: obliga a elegir tomas
+cenitales.** Que es además la otra mitad de lo que pide el cliente en la misma
+celda —«que sea desde arriba también como los 2 anteriores»— y lo que hace que la
+serie parezca «fotos que sacó una persona natural», que es lo que pide Scarlette.
+
+**El orden para resolverlo, de mejor a peor:**
+
+1. **Buscar la cenital.** Si existe, va ésa. Sin excepción.
+2. **Recortar la taza fuera del encuadre.** Sirve, pero en 4:5 suele ahogar el
+   plato: en la slide 3 del FEED H, sin la taza sólo quedaban 1.370 px de alto y
+   el 4:5 obligaba a 1.096 de ancho, con el croissant pegado al canto.
+3. **Borrar la marca** — `scripts/between-quitar-kimbo.py`, y sólo si 1 y 2 no dan.
+
+### ⭐ Y cómo se borra: INTERPOLANDO, no clonando
+
+El primer intento clonó una franja de esmalte vecina a la misma altura. **Falla y
+se ve:** la taza tiene un **degradado lateral**, así que la franja traída de 150 px
+a la derecha llega con otra luminancia y deja un **rectángulo** — el parche se nota
+más que la marca.
+
+Lo que funciona: **para cada fila, tomar el color a la izquierda y a la derecha de
+la caja —promediando unas columnas limpias a cada lado— y rellenar con la recta
+que los une.** En estas tomas la taza está fuera de foco y su superficie es un
+degradado suave, así que la recta ES la superficie: no queda empalme porque no hay
+dos texturas que empalmar. Después, difuminado proporcional al ancho de la marca.
+
+## ⭐⭐ 2. Un encuadre se puede elegir POR EXCLUSIÓN, y a veces es lo correcto
+
+La portada del Cowork pasó de la terraza al **Lounge** (`espacios/HDT_37.jpg`,
+identificado por Eli). Esa foto tiene **tres cosas que no pueden salir**:
+
+| Qué | Dónde en `HDT_37` |
+|---|---|
+| Placa **KIMBO** atornillada al muro | (1950, 2100)–(2450, 2500) |
+| Bolsa de café **KIMBO** sobre la barra | (1680, 2330)–(2060, 2560) |
+| Una **persona con rostro reconocible** tras el vidrio | (4420, 2400)–(4800, 2820) |
+
+Marcando las tres como zonas prohibidas y probando **528 encuadres 4:5 anclados
+abajo**, sólo **cuatro** no tocan ninguna — y son variantes del mismo. El recorte
+es `(2480, 1588) + 1920×2400`, y no se eligió por composición: **se eligió porque
+es el único que existe.** El método sirve para cualquier foto con elementos
+prohibidos, y es más rápido y más honesto que discutir encuadres a ojo.
+
+⚠️ Y la persona **se saca por encuadre, no se borra**: borrar un rostro del fondo
+es inventar; recortarlo es decidir.
+
+## ⭐⭐ 3. Nano Banana Pro arrastra al primer plano lo que le pides usar
+
+Al pedirle «pon una laptop y un café sobre la mesa redonda del Lounge», **dos
+generaciones seguidas trajeron la mesa al primer plano**, enorme, con la laptop y
+la taza entre 0,60 y 0,95 del alto — o sea **dentro de la banda del titular**.
+
+Lo que lo destrabó, a la tercera:
+
+- **Nombrar el objeto por sus VECINOS, no por sí mismo:** «la mesa que está
+  DETRÁS de los dos sillones de cuero, delante de las butacas naranjas, con la
+  tapa a la altura de sus asientos».
+- **Prohibir el primer plano explícitamente:** «no agregues ninguna mesa nueva;
+  entre la cámara y los sillones no hay mueble; el tercio inferior queda igual
+  que en la referencia».
+- **Dar la escala en relación a algo del cuadro:** «la laptop no es más ancha que
+  uno de los cojines naranjas de atrás».
+
+Es hermano del gotcha ya escrito de la ronda 8 (describir un objeto dos veces lo
+duplica): **este modelo obedece relaciones, no adjetivos.**
+
+## ⭐ 4. El material del cliente no siempre tiene lo que el cliente cree
+
+El cliente pidió: «tenemos algunos videos que hemos hecho en la entrada de BT,
+saquemos el fondo de ahí?». **No están.** Se buscó en las SIETE carpetas de
+`GRILLA IA BETWEEN` y en todo lo bajado a `raw/` —queda anotado para no repetir la
+búsqueda—:
+
+    ESPACIOS BETWEEN (12)            · 3 ENERO PLATOS-DESAYUNOS (202)
+    BETWEEN DESAYUNOS AGO 2026 (28)  · sesion BW 2023 (596; 298 miniaturas vistas)
+    Between julio 2023               · sesión modelos 25 jul 2025 (prohibida)
+    Ediciones con IA fotos (47)      · cowork-2do-piso (91 fotogramas de 25 MOV)
+
+**Ninguna trae un plano exterior ni la entrada.** Y agotar el material ANTES de
+decirlo es lo que permite decirlo con autoridad — la regla de `agotar-material-
+antes-de-bloquear`.
+
+La salida no fue quedarse esperando: el manual ya tenía resuelto este caso en la
+**ronda 6 §2** («que se parezca a Between no es que salga el local»). El fondo se
+rehízo pasando `HDT_50`, `HDT_56` y `HDT_38` **como referencia** y pidiéndolo
+**muy desenfocado**, para que aporte los colores del local —verde del muro vivo,
+madera oscura, latón— sin convertirse en el tema.
+
+## ⭐ 5. Cuando la escena cambia, las etiquetas se vuelven a MEDIR
+
+En la slide 4 del To Go se cambió el croissant simple por el **brownie** que pidió
+el cliente. La escena se regeneró y los dos productos quedaron en otro sitio: con
+las coordenadas viejas, «Salado» caía **encima** del croissant con su flecha
+montada sobre el producto —lo que el manual prohíbe— y «Dulce» se metía **dentro
+de la caja de la promo**.
+
+Medido sobre la pieza rendida, en lienzo 1080×1350:
+
+| Elemento | x | y |
+|---|---|---|
+| croissant salado | 120–424 | 864–1040 |
+| brownie | 552–928 | 992–1136 |
+| pila de la promo | 84–904 | **1116**–1256 |
+
+De ahí salen las cuatro coordenadas nuevas. **Toda edición de imagen obliga a
+volver a medir las etiquetas y las flechas de esa pieza.**
+
+## 6. `between-qa.py`: segundo falso positivo conocido
+
+`BW-F-EllaHablo` avisa «el titular ocupa 29 % del ancho (mínimo 50 %)». **Esa
+pieza no tiene titular y no puede tenerlo:** el brief pide exactamente dos textos
+pequeños sobre las tazas «de manera que el usuario tenga que mirar la imagen para
+entender el chiste», y meterle un titular mata el chiste. El QA está midiendo las
+etiquetas. Se ignora, como el de `BW-S-ToGoDulce` (§13).
+
+## 7. El pedido de «textos más limpios» se resuelve en la FOTO, no en la caja
+
+El cliente pidió en FEED J «textos más limpios (sin el recuadro atrás)». La caja
+taupe estaba ahí por una razón medida: **contraste 37** sobre la loza blanca.
+
+Sacarla sin más habría dejado las etiquetas ilegibles. Lo que la hizo innecesaria
+fue **rediagramar la escena**: con las dos tazas separadas en diagonal, las dos
+etiquetas caen sobre **mesa oscura**, y ahí la sombra de `Etiqueta` basta.
+
+O sea: cuando el cliente pide sacar un recurso de legibilidad, la pregunta no es
+«¿lo saco o no?» sino **«¿qué tiene que cambiar en la foto para que sobre?»**.

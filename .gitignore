@@ -362,3 +362,33 @@ out/rentas/**/mail/
 # reproduce. Los .MOV del rodaje NO viajan (son de Travesía, ver el manual).
 !public/assets/rentas/**
 !out/rentas/**/reel/*.mp4
+
+# ── RONDA 9 (03-09-2026) · las piezas que la grilla puso EN CAMBIOS ──
+# Regla del estudio: si una pieza se entregó, su script Y sus fondos se
+# commitean el mismo día. Ver `clients/hilton/CLAUDE.md § RONDA 9`.
+
+# FEED C · portada del carrusel Cowork, ahora el LOUNGE. Base real HDT_37 con el
+# puesto de trabajo generado encima (scripts/between-portada-lounge.py). Tres
+# generaciones: las dos primeras traian la mesa al primer plano.
+!public/assets/hilton/between/ia-sept/cowork-lounge.png
+!public/assets/hilton/between/fotos-gradadas/cowork-lounge.jpg
+
+# FEED H · las cuatro del carrusel «Primero la foto». Las tres primeras son
+# RECORTES de fotos reales del cliente (sesion `3 ENERO PLATOS-DESAYUNOS`), la
+# cuarta es el creme brulee editado para verse empezado.
+!public/assets/hilton/between/fotos-gradadas/h1-desayuno-cenital.jpg
+!public/assets/hilton/between/fotos-gradadas/h2-latte-cenital.jpg
+!public/assets/hilton/between/fotos-gradadas/h3-croissant-jamon.jpg
+!public/assets/hilton/between/ia-sept/h4-postre-empezado.png
+!public/assets/hilton/between/fotos-gradadas/h4-postre-empezado.jpg
+
+# FEED J · las dos tazas de «Ella hablo / Ella escucho», escena rehecha entera.
+!public/assets/hilton/between/ia-sept/j-dos-tazas.png
+!public/assets/hilton/between/fotos-gradadas/j-dos-tazas.jpg
+
+# FEED L · slide 1 con el fondo del local real y la bolsita, y slide 4 con el
+# brownie. Las dos con el logotipo REAL estampado encima.
+!public/assets/hilton/between/ia-sept/togo-salida-3-logo.png
+!public/assets/hilton/between/fotos-gradadas/togo-salida-3.jpg
+!public/assets/hilton/between/ia-sept/togo-trio-brownie.png
+!public/assets/hilton/between/fotos-gradadas/togo-trio-brownie.jpg

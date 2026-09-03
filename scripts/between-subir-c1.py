@@ -57,8 +57,10 @@ SCOPES = [
     'https://www.googleapis.com/auth/drive.file',
 ]
 
-MANIFIESTO = RAIZ / 'out/hilton-between-r8/_subidas.json'
-RENDER = RAIZ / 'out/hilton-between-r8'
+# ⭐ RONDA 9 (03-09): la carpeta de render dejó de estar quemada. La grilla
+# reabre piezas ronda a ronda y cada ronda rinde a su propia carpeta, así que
+# fijar `r8` obligaba a editar el script cada vez. Se pasa con `--render`.
+RENDER_POR_DEFECTO = RAIZ / 'out/hilton-between-r9'
 
 # ⭐ Las carpetas POR CARRUSEL que abrió Eli el 01-09 dentro de `BW` de
 # `S1 HILTON SEP 2026` (`1fQqtl-2X2A4o1L5hH7jlz9xUh_YzXRjq`). Hay una tercera,
@@ -70,6 +72,10 @@ CARPETAS = {
     # semana 2 (`1MSF7sQYNowbU8GlkDn6_HoR8-bqCDeYn`). No cuelga de `BW` de la
     # S1, así que no se puede deducir: la dio ella por chat.
     's2': '1Yh2Puq1ZEmbM2HaoTh-LUydKwtZRmpn1',      # S2 · BW
+    # ⭐ RONDA 9 (03-09): Eli dio las tres carpetas de la semana por chat y pidió
+    # los archivos SUELTOS en la S2 y la S3 — sin subcarpeta por carrusel, que es
+    # como ordenó sólo la S1.
+    's3': '1QOreVz6NVYvuri9RAYQRMNiilV_IN8XZ',      # S3 · BW
 }
 
 # ⭐ EL CARRUSEL COMPLETO, decisión de Eli el 02-09: «súbelas a ese drive, mejor
@@ -95,7 +101,26 @@ PIEZAS = {
     's2': [
         ('BW ST 09-09 Emergencia Between.png', 'BW-S-Emergencia.png'),
     ],
+    # ⭐ RONDA 9 — las piezas que la grilla puso EN CAMBIOS el 03-09.
+    # El nombre NO es decorativo: el portal de validaciones levanta por nombre y
+    # sin tildes, igual que `Cumpleanos`.
+    's2r9': [
+        ('BW FEED 09-09 Primero la foto 1 desayuno.png', 'BW-F-Foto-1.png'),
+        ('BW FEED 09-09 Primero la foto 2 latte.png', 'BW-F-Foto-2.png'),
+        ('BW FEED 09-09 Primero la foto 3 croissant.png', 'BW-F-Foto-3.png'),
+        ('BW FEED 09-09 Primero la foto 4 postre.png', 'BW-F-Foto-4.png'),
+        ('BW FEED 11-09 Ella hablo Ella escucho.png', 'BW-F-EllaHablo.png'),
+    ],
+    's3': [
+        ('BW FEED 14-09 Promos To Go 1 portada.png', 'BW-F-ToGo-1.png'),
+        ('BW FEED 14-09 Promos To Go 2 sandwich.png', 'BW-F-ToGo-2.png'),
+        ('BW FEED 14-09 Promos To Go 3 dulce.png', 'BW-F-ToGo-3.png'),
+        ('BW FEED 14-09 Promos To Go 4 los tres.png', 'BW-F-ToGo-4.png'),
+    ],
 }
+# `s2r9` va a la MISMA carpeta que `s2`: son grupos de entrega distintos, no
+# destinos distintos.
+CARPETAS['s2r9'] = CARPETAS['s2']
 
 
 def servicio():
@@ -113,10 +138,19 @@ def servicio():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('carrusel', nargs='*', choices=[*PIEZAS], default=[],
-                    help='cowork · cumple. Sin argumentos, los dos.')
+                    help='cowork · cumple · s2 · s2r9 · s3. Sin argumentos, todos.')
     ap.add_argument('--listar', action='store_true',
                     help='muestra lo que ESTE token tiene subido en las carpetas')
+    ap.add_argument('--render', default=str(RENDER_POR_DEFECTO),
+                    help='carpeta de la que salen los PNG rendidos')
+    ap.add_argument('--solo', nargs='*', default=None, metavar='ARCHIVO',
+                    help='sube sólo estos archivos de render (ej: BW-F-Cowork-1.png). '
+                         'Sirve cuando la ronda cambió UNA slide y las hermanas ya '
+                         'están arriba con los mismos bytes: re-subirlas sólo les '
+                         'movería la fecha y el cliente creería que cambiaron.')
     a = ap.parse_args()
+    RENDER = Path(a.render)
+    MANIFIESTO = RENDER / '_subidas.json'
     s = servicio()
     cuales = a.carrusel or list(PIEZAS)
 
@@ -132,13 +166,17 @@ def main():
         return
 
     tareas = [(CARPETAS[c], nom, RENDER / arch)
-              for c in cuales for nom, arch in PIEZAS[c]]
+              for c in cuales for nom, arch in PIEZAS[c]
+              if a.solo is None or arch in a.solo]
+    if not tareas:
+        sys.exit(f'✗ `--solo {" ".join(a.solo or [])}` no calza con ninguna pieza '
+                 f'de {", ".join(cuales)}.')
     faltan = [str(o) for _, _, o in tareas]
     faltan = [f for f in faltan if not Path(f).is_file()]
     if faltan:
         sys.exit('✗ Faltan piezas rendidas:\n  ' + '\n  '.join(faltan) +
                  '\n\nRinde con:  python scripts/between-rendir.py BW-F-Cowork'
-                 ' --salida out/hilton-between-r8')
+                 f' --salida {RENDER}')
 
     manifiesto, malas = {}, []
     for CARPETA, nombre, origen in tareas:

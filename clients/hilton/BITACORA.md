@@ -5,6 +5,74 @@
 
 ---
 
+## 2026-09-02 (cierre) · Eli (Windows) — BETWEEN: la ST «Emergencia» de la S2, rehecha entera
+
+**Qué se hizo.** La **ST Emergencia (9-sep, S2)** completa. Eli pasó el brief y
+los dos comentarios por chat —la grilla sigue sin poder leerse desde acá, ver la
+entrada de más abajo—, y los dos decían lo mismo desde dos lados:
+
+    Cliente:   «No se cacha bien al tapar la vitrina con el texto, veamos otra
+                diagramación?»
+    Scarlette: «no se parece a na ref, hagámosla más simple, NO ambientada en un
+                lugar sino que tenga más PROTAGONISMO LA MISMA CAJA, y ojo con la
+                diagramación de los textos: tapa mucho la caja.»
+
+Al mirar la versión anterior fallaba en **cinco** cosas, y las cinco están en
+esos comentarios: era un **nicho en una pared** —o sea ambientada, y **sin
+vidrio** aunque el brief pide «caja de emergencia CON VIDRIO»—, el titular iba
+**dentro** de la caja sobre la pared del fondo, y **faltaba un producto**: el
+brief pide TRES (café, pastelería y sándwich) y había dos, mientras la encuesta
+ofrecía «algo salado» que no estaba en cuadro.
+
+Ahora: vitrina frontal con vidrio sobre fondo liso, tres compartimentos con los
+tres productos, y **el texto fuera de la caja** —titular arriba, bajada y
+encuesta abajo—. El vaso es el **To Go de Between**: se generó liso y se le
+estampó el logotipo real al 0,86 del ancho del cuerpo (la proporción medida del
+manual). Cuatro generaciones hasta dar con el encuadre.
+
+⭐ **El tamaño de la caja es una RESTA, no un gusto.** El sticker de la encuesta
+mide 196 px y la zona segura inferior de Meta empieza en 1580, así que la
+encuesta no puede arrancar después de 1384. Con la generación tal cual —la caja
+llegaba a y=1355— `between-qa.py` marcaba «entra 52 px en la zona segura». En
+9:16 **o la caja es enorme y el texto la pisa, o el texto respira y la caja cede
+altura**; no hay tercera opción. Se monta a 675 px de alto (64 % del ancho).
+
+**Dos cosas de método que quedaron en el código:**
+· El fondo se monta **ADITIVO** (`between-emergencia-montar.py`): se suma al
+  lienzo sólo lo que el recorte se aparta de su propio fondo, en vez de pegar un
+  rectángulo. Pegarlo dejaba una banda donde la sombra se cortaba de golpe.
+· `TitularBetween` **deja de poner la sombra cuando el tono es `cafe`**. Esa
+  sombra existe para que el beige se lea sobre foto; sobre crema sólo ensucia el
+  contorno. Es la única pieza con ese tono, así que no re-fluja nada.
+
+**Dónde quedó.** Drive, carpeta **`BW` de la S2**
+(`1Yh2Puq1ZEmbM2HaoTh-LUydKwtZRmpn1`, que Eli abrió hoy y no cuelga del `BW` de
+la S1): `BW ST 09-09 Emergencia Between.png`, 3,07 MB verificados byte a byte.
+Se sube con `python scripts/between-subir-c1.py s2`.
+Código: `StEmergencia` en `BetweenSeptiembre.tsx`. Scripts nuevos:
+`between-emergencia-magnific.py` y `between-emergencia-montar.py`. Los tres
+assets versionados con excepción en `.gitignore`.
+**QA 7/7 limpias, typecheck limpio.**
+
+**Qué sigue.** Las otras cuatro piezas de la S2: **FEED G** (7-sep), **H**
+(9-sep), **J** (11-sep) y **L** (14-sep). Están descritas en la entrada de más
+abajo con lo que pide cada una.
+
+**Abierto:**
+1. ⛔ **La grilla sigue sin poder leerse desde este PC** — es el bloqueo real
+   para tomar la S2/S3. El detalle del porqué y cómo se destraba está en la
+   entrada siguiente. Hoy la ST salió sólo porque Eli pegó el brief y los
+   comentarios en el chat.
+2. ⚠️ **La referencia de Pinterest del cliente no se pudo abrir**
+   (`cl.pinterest.com/pin/1040683426409551586`): Pinterest sirve una página vacía
+   a los bots y lo que se logró bajar era un pin RELACIONADO, no el suyo. La
+   pieza se hizo con las indicaciones escritas. **Si Eli quiere que calce con ese
+   pin, tiene que pegar la imagen.** Vale para cualquier próxima ref de Pinterest.
+3. Las 4 decisiones abiertas del documento de Constanza (tipografía rígida,
+   cifras tabulares, interlineado, y si el «intercambiemos fechas» ya está muerto).
+
+---
+
 ## 2026-09-02 (noche) · Eli (Windows) — BETWEEN ronda 8b: el C2 Cumpleaños, y por qué la S2/S3 quedó trabada
 
 **C2 CUMPLEAÑOS entregado** en su carpeta `1TfFCqNfQw0ucTwqvJD8iqft7Y__voRUw`.

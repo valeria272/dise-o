@@ -79,7 +79,31 @@ videos, la slide se rehace con un fotograma y queda mejor.**
 escrito en el manual junto al otro falso positivo conocido. `npm run typecheck`
 limpio.
 
+**⭐ 2.ª vuelta del mismo día — la portada del To Go.** Eli devolvió tres cosas y
+la pieza está **re-subida al mismo enlace** (`1lhUHAgIi_6mXPEpe_Yqxg5eaxyvqxjgG`):
+
+1. **Fuera el lockup de arriba** — «borra el logo principal ya que está en el vaso
+   TO GO». Es la regla 8 del manual (el vaso ya firma) aplicada donde más se nota.
+2. **El logotipo del vaso, rehecho.** El defecto no era el estampado sino **la
+   toma**: la mano envolvía el vaso a media altura y dejaba sólo 70 px de cartón
+   limpio, así que el logo entraba al 0,60 del ancho del cuerpo y pegado a la
+   tapa. Se editó la foto pidiendo **la mano agarrando abajo y el vaso de
+   frente**: el cuerpo pasó de 335 a 670 px y el logo de 200 a 520.
+3. **El horario sin caja** — «se ocupó en el texto de promo». `PilaDatos` tiene
+   ahora `datosSinFondo`.
+
+⚠️ Y una trampa que costó dos generaciones: **al re-generar la escena completa el
+modelo vuelve a meter una persona borrosa al fondo** (los espacios que van de
+referencia traen gente). La salida fue dejar de generar y **editar la versión
+buena** como única referencia — `between-togo1-salida.py --editar <imagen>`. Salió
+a la primera.
+
 **Abierto:**
+0. ⚠️ **La portada ya no es el modelo de las slides 2–4 del To Go.** Scarlette
+   había pedido que la info de promo de la slide 4 «quedara como está en la slide
+   1 y 2»; ahora la 1 tiene una caja y una línea suelta, y la 2, 3 y 4 siguen con
+   dos cajas. No se tocaron porque ahí las dos líneas ya tienen jerarquía
+   (`fuerte`) y porque están aprobadas — pero conviene mirarlo con Eli.
 1. **Los videos de la entrada de BT** — si aparecen, se rehace la slide 1 del To Go.
 2. **STORIES no tenía nada `EN CAMBIOS`**: H es el reel Café Bombón esperando que
    el cliente conteste lo de la leche condensada, J está `POR GRABAR` y M/O/Q/R/T/U

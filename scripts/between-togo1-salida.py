@@ -72,12 +72,47 @@ except Exception:
 ESP = RAIZ / "raw/hilton/between/espacios"
 #: La entregada va PRIMERA: encuadre, luz y actitud ya están aprobados y lo que
 #: se corrige es el fondo, la bolsa y el vaso — no la pieza entera.
+#:
+#: ⚠️ 2.ª VUELTA (03-09, tarde). Al pedir de nuevo la escena completa para
+#: agrandar el vaso, el modelo **volvió a meter una persona borrosa al fondo**
+#: —ya había pasado en la 1.ª generación—, y eso es rechazo seguro en esta
+#: marca. Los espacios reales que van de referencia (`HDT_38`, `HDT_50`) traen
+#: gente, y el modelo la arrastra por más que el prompt la prohíba.
+#: **La salida es no volver a generar la escena:** se EDITA la versión buena,
+#: que ya tiene el fondo, la bolsa, la pose y cero personas. `--editar <imagen>`
+#: la pasa como única referencia y cambia sólo el vaso.
 REFS = [
     RAIZ / "public/assets/hilton/between/ia-sept/togo-salida-2-logo.png",
     ESP / "HDT_50.jpg",
     ESP / "HDT_56.jpg",
     ESP / "HDT_38.jpg",
 ]
+
+#: Prompt de la 2.ª vuelta: SÓLO el vaso. Se usa con `--editar`.
+PROMPT_VASO = (
+    "Reproduce the reference image exactly as it is: the same young woman "
+    "walking towards the camera in her beige trench coat, the same smile, the "
+    "same hair, the same pose, the same kraft paper bag in her right hand, the "
+    "same out-of-focus café interior behind her with its green plant wall, "
+    "marble counter and warm bokeh, the same light and the same framing. "
+    "Change NOTHING about her, the bag or the background. "
+    "The ONLY change is the takeaway coffee cup in her left hand. Make it "
+    "BIGGER and closer to the camera, and turn it so it faces the camera "
+    "SQUARELY, seen straight on rather than from the side. She now grips it LOW: "
+    "her fingers wrap only the BOTTOM THIRD of the cup and her thumb stays low "
+    "too, so the whole upper two thirds of the kraft paper - the wide band just "
+    "under the black plastic lid - is completely clear and unobstructed: no "
+    "fingers, no hair and no shadow crossing it. "
+    "The cup stays plain kraft paper with a black plastic lid and is COMPLETELY "
+    "BLANK: no logo, no print, no lettering, no sleeve, no texture pattern. "
+    "Her hand stays complete and natural, five fingers clearly separated, "
+    "correct anatomy, short clean nails. Exactly one cup and exactly two hands "
+    "in the picture. "
+    "She remains the ONLY person: nobody in the background, no silhouettes, no "
+    "blurred figures, no reflections of people. "
+    "Photorealistic, same warm light, balanced white point, no blown highlights. "
+    "No text, lettering, logos, brand marks or watermark anywhere."
+)
 SALIDA = RAIZ / "public/assets/hilton/between/ia-sept/togo-salida-3.png"
 
 PROMPT = (
@@ -104,9 +139,22 @@ PROMPT = (
     # sea tres objetos en dos manos. Hay que decir el conteo, no describir.
     "In her LEFT hand, and ONLY there, she holds ONE single takeaway coffee cup: "
     "plain kraft paper with a black plastic lid, COMPLETELY BLANK - no logo, no "
-    "print, no lettering, no sleeve. Upright, at chest height, fully visible. "
+    "print, no lettering, no sleeve. Upright, at chest height. "
     "There is EXACTLY ONE cup in the whole picture. Her right hand holds ONLY the "
     "paper bag and nothing else: no second cup, anywhere. "
+    # ⚠️ RONDA 9 · 2.ª vuelta (03-09, Eli): «se ve mal editado el logo en el
+    # vaso». El problema no era el estampado sino la TOMA: la mano envolvía el
+    # vaso a media altura, así que la única franja de cartón limpio medía 70 px
+    # y el logotipo no cabía al 0,86 del ancho que manda el manual — quedaba
+    # chico, pegado a la tapa y con aire de calcamonía. La foto tiene que dejar
+    # sitio para la marca ANTES de estamparla.
+    "She grips the cup LOW, near its base: her fingers wrap only the BOTTOM "
+    "THIRD of the cup and her thumb stays low too. The UPPER TWO THIRDS of the "
+    "kraft paper - the whole band just under the black lid - is completely "
+    "clear, unobstructed and blank: no fingers, no hair and no shadow crossing "
+    "it. The cup faces the camera SQUARELY, seen almost straight on rather than "
+    "from the side, so that flat band reads as a flat surface, and it is large "
+    "and prominent in the frame. "
     # ── manos ──
     "Both hands are complete and natural, with separated fingers and correct "
     "anatomy. No extra hand and no extra fingers anywhere. "
@@ -156,21 +204,34 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--solo-prompt", action="store_true")
     ap.add_argument("--out", default=str(SALIDA))
+    ap.add_argument("--editar", metavar="IMAGEN",
+                    help="edita SÓLO el vaso sobre esta imagen ya buena, en vez de "
+                         "volver a generar la escena. Ver la nota de REFS.")
     a = ap.parse_args()
+    prompt = PROMPT_VASO if a.editar else PROMPT
     if a.solo_prompt:
-        print(PROMPT)
+        print(prompt)
         return
-    faltan = [r for r in REFS if not r.is_file()]
+    if a.editar:
+        base = Path(a.editar)
+        if not base.is_file():
+            sys.exit(f"✗ No está la imagen a editar: {base}")
+        refs = [base]
+    else:
+        refs = REFS
+    faltan = [r for r in refs if not r.is_file()]
     if faltan:
         sys.exit("✗ Faltan referencias:\n  " + "\n  ".join(str(f) for f in faltan) +
                  "\n\nLos espacios se bajan con:\n"
                  "  python scripts/drive-carpeta.py 1FTgwu_wHwVkKk55nlDrao-LkDdKNDwID "
                  "raw/hilton/between/espacios")
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
-    cmd = [sys.executable, str(RAIZ / "scripts/magnific.py"), "pro", PROMPT,
+    cmd = [sys.executable, str(RAIZ / "scripts/magnific.py"), "pro", prompt,
            "--aspecto", "post", "--resolucion", "4K", "--out", a.out,
-           "--refs", *[str(r) for r in REFS]]
-    print("→ Nano Banana Pro · 3:4 · 4K · la entregada + 3 espacios reales de Between")
+           "--refs", *[str(r) for r in refs]]
+    print("→ Nano Banana Pro · 3:4 · 4K · " +
+          ("edición del vaso sobre la imagen buena" if a.editar
+           else "la entregada + 3 espacios reales de Between"))
     r = subprocess.run(cmd, encoding="utf-8", errors="replace")
     if r.returncode:
         sys.exit(r.returncode)

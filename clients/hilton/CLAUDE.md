@@ -2180,3 +2180,86 @@ etiquetas caen sobre **mesa oscura**, y ahí la sombra de `Etiqueta` basta.
 
 O sea: cuando el cliente pide sacar un recurso de legibilidad, la pregunta no es
 «¿lo saco o no?» sino **«¿qué tiene que cambiar en la foto para que sobre?»**.
+
+## ⭐⭐ 8. RONDA 9 · 2.ª vuelta (03-09, tarde) — la portada del To Go
+
+Tres correcciones de Eli sobre `BW FEED 14-09 Promos To Go 1 portada`, y las tres
+dejan regla:
+
+### ⛔ 8.1 El vaso ya firma → fuera el lockup
+
+> «borra el logo principal ya que está en el vaso TO GO»
+
+Es la **regla 8 del manual** (ronda 5) aplicada donde más se nota: la portada
+tiene el vaso en primer plano y con la marca legible, así que el lockup
+sobrepuesto era el segundo logotipo de la pieza. `PiezaFeedBodegon` ya trae
+`conLogo = false` por defecto **por este mismo motivo** —su propio comentario dice
+«en el feed de bodegón la marca la pone el vaso, no un logo sobrepuesto»—: lo que
+sobraba era la excepción que se le había puesto encima.
+
+⚠️ No deja al carrusel sin marca: las slides 2, 3 y 4 llevan el vaso impreso.
+
+### ⭐⭐⭐ 8.2 La foto tiene que dejar SITIO para el logotipo, antes de estamparlo
+
+> «se ve mal editado el logo en el vaso»
+
+Y tenía razón, pero **el defecto no estaba en el estampado: estaba en la toma.**
+Medido sobre la versión rechazada:
+
+| | rechazada | corregida |
+|---|---|---|
+| ancho del cuerpo del vaso | 335 px | **670 px** |
+| franja de cartón limpia | 70 px de alto | **185 px** |
+| ancho del logo | 200 px = **0,60** del cuerpo | 520 px = **0,78** |
+| posición | pegado a la tapa, escorzado | centrado en el eje, de frente |
+
+La mano envolvía el vaso **a media altura**, así que el único cartón limpio era
+una franja de 70 px bajo la tapa. Ahí no cabe un logo al 0,86 que manda el
+manual: o entraba chico y pegado a la tapa —que es lo que Eli vio— o caía
+**encima de los dedos**, que es peor.
+
+**La regla:** cuando el vaso es la firma de la pieza, la generación tiene que
+pedir explícitamente **la mano agarrando ABAJO** («los dedos envuelven sólo el
+tercio inferior») y **el vaso DE FRENTE**, no escorzado. Un vaso de frente además
+hace innecesario el `--arco`: el manual ya dice que si el borde de la tapa lee
+plano, el arco va cerca de cero.
+
+### ⛔ 8.3 Y una trampa: re-generar la escena vuelve a meter gente al fondo
+
+Al pedir de nuevo la escena completa para agrandar el vaso, el modelo **volvió a
+poner una persona borrosa al fondo** —ya había pasado en la 1.ª generación—, y
+eso es rechazo seguro en esta marca. Los espacios reales que van de referencia
+(`HDT_38`, `HDT_50`) traen gente y el modelo la arrastra por más que el prompt la
+prohíba.
+
+**La salida no es insistir con el prompt: es dejar de generar la escena.** Se
+EDITA la versión buena, que ya tiene fondo, bolsa, pose y cero personas, pasándola
+como **única referencia** y cambiando sólo el objeto. `between-togo1-salida.py`
+tiene ahora `--editar <imagen>` para eso. Salió a la primera.
+
+### ⭐ 8.4 En una pila, la caja taupe es el ÉNFASIS — no se repite
+
+> «borra el fondo de este texto "Lunes a viernes · 08:00 a 10:00 hrs." ya que se
+> ocupó en el texto de promo»
+
+Las dos líneas de la pila llevaban caja **y el mismo peso**, así que las dos
+gritaban igual y la jerarquía desaparecía. Es la misma lógica que el manual ya
+tenía escrita para `PilaEsquina` —«una sola línea fuerte por pila», §1 bis—, ahora
+también en `PilaDatos`: `datosSinFondo={[1]}` deja la caja en la promo y el
+horario acompaña sin fondo, con la sombra que usa `Etiqueta` cuando va suelta.
+**La altura de la fila no cambia**, así que el ritmo del bloque se mantiene.
+
+### La auditoría del mes, y lo que NO se tocó
+
+El criterio se buscó en toda la grilla. Quedan **cuatro pilas con dos cajas**, y
+ninguna se cambió, con motivo:
+
+| Pieza | Pila | Por qué no se tocó |
+|---|---|---|
+| `ToGo2` · `ToGo3` · `ToGo4` | Promo + precio | Las dos líneas **ya tienen jerarquía** (`fuerte` vs normal), que es lo que faltaba en la portada. Y Scarlette pidió por escrito que las tres quedaran **unificadas entre sí** |
+| `StToGoDulce` | Precio + horario | Misma estructura, y la pieza está entregada y aprobada |
+| `StStrudel` | Ingredientes + nombre | `OK PARA DISEÑAR`, todavía sin producir. **Cuando se haga, la caja va en el NOMBRE** y los ingredientes acompañan |
+
+⚠️ Y queda una consecuencia que conviene mirar con Eli: la portada ya **no** es el
+modelo de las slides 2–4, que era lo que Scarlette había pedido cuando dijo «la
+información de la promo debería quedar como está en la slide 1 y 2».

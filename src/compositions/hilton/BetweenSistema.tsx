@@ -749,8 +749,20 @@ export const CajaDato: React.FC<{
   size?: number;
   /** Ancho útil del bloque; la caja nunca lo pasa. */
   anchoDisponible?: number;
+  /**
+   * ⭐ RONDA 9 (03-09-2026) — pedido de Eli sobre la portada del To Go:
+   * «borra el fondo de este texto "Lunes a viernes · 08:00 a 10:00 hrs." ya que
+   * se ocupó en el texto de promo».
+   * En una pila, la caja taupe es el ÉNFASIS: si las dos líneas la llevan, no
+   * hay jerarquía — es la misma lógica que «una sola línea fuerte por pila»
+   * (manual §1 bis). La línea sin fondo conserva la tipografía, la caja alta y
+   * la altura de la fila, para que el ritmo de la pila no se mueva; lo único
+   * que cambia es que el fondo se va y entra la sombra que ya usa `Etiqueta`
+   * cuando va sin caja.
+   */
+  sinFondo?: boolean;
   style?: React.CSSProperties;
-}> = ({children, size = BETWEEN.tipos.cajaDato, anchoDisponible = 1080 - 2 * BETWEEN.bloque.margenX, style}) => {
+}> = ({children, size = BETWEEN.tipos.cajaDato, anchoDisponible = 1080 - 2 * BETWEEN.bloque.margenX, sinFondo = false, style}) => {
   useFuentesListas();
   // la caja va en nowrap, así que si el dato es largo hay que bajar el cuerpo:
   // «SEGUNDO NIVEL · TRABAJAR O REUNIRTE» se salía 46 px por la derecha
@@ -766,9 +778,12 @@ export const CajaDato: React.FC<{
       alignItems: 'center',
       justifyContent: 'center',
       height: BETWEEN.cajas.alto,
-      padding: `0 ${BETWEEN.cajas.padX}px`,
-      backgroundColor: BETWEEN.cajas.fondo,
-      borderRadius: BETWEEN.cajas.radio,
+      padding: `0 ${sinFondo ? 0 : BETWEEN.cajas.padX}px`,
+      backgroundColor: sinFondo ? 'transparent' : BETWEEN.cajas.fondo,
+      borderRadius: sinFondo ? 0 : BETWEEN.cajas.radio,
+      // sin caja el texto queda sobre la foto: se apoya en la misma sombra que
+      // usa `Etiqueta` cuando va suelta.
+      textShadow: sinFondo ? '0 2px 16px rgba(36,26,18,0.75)' : 'none',
       fontFamily: BETWEEN.fuentes.sans,
       // MEDIDO en la pieza aprobada: «PARA EMPEZAR EL DÍA» da 488×33 px, que solo
       // calza con ExtraBold. Antes estaba en Light (300) y la caja se veía floja.
@@ -808,8 +823,10 @@ export const CajaDato: React.FC<{
  */
 export const PilaDatos: React.FC<{
   datos: React.ReactNode[];
+  /** Índices de `datos` que van SIN la caja taupe. Ver `CajaDato.sinFondo`. */
+  sinFondo?: number[];
   style?: React.CSSProperties;
-}> = ({datos, style}) => (
+}> = ({datos, sinFondo = [], style}) => (
   <div
     style={{
       display: 'flex',
@@ -820,7 +837,7 @@ export const PilaDatos: React.FC<{
     }}
   >
     {datos.map((d, i) => (
-      <CajaDato key={i}>{d}</CajaDato>
+      <CajaDato key={i} sinFondo={sinFondo.includes(i)}>{d}</CajaDato>
     ))}
   </div>
 );
@@ -1452,6 +1469,11 @@ export const PiezaFeedBodegon: React.FC<{
   /** La bajada va DENTRO de una caja taupe, para cuando la foto no la deja leer. */
   bajadaEnCaja?: boolean;
   datos?: React.ReactNode[];
+  /**
+   * Índices de `datos` que van SIN la caja taupe. Ver `CajaDato.sinFondo`:
+   * en una pila, la caja es el énfasis y repetirla en las dos líneas lo mata.
+   */
+  datosSinFondo?: number[];
   arco?: string;
   /** Bloque al pie: nombre de la promo + horario, como en la pieza aprobada. */
   pie?: {titulo?: string; detalle?: string};
@@ -1497,6 +1519,7 @@ export const PiezaFeedBodegon: React.FC<{
   aireTituloACaja = BETWEEN.aire.tituloACaja,
   velo,
   datos,
+  datosSinFondo,
   arco,
   pie,
   legal,
@@ -1558,7 +1581,7 @@ export const PiezaFeedBodegon: React.FC<{
         ) : bajada ? (
           <Bajada style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: alinear === 'centro' ? 'center' : 'left'}}>{bajada}</Bajada>
         ) : null}
-        {datos?.length ? <PilaDatos datos={datos} style={{marginTop: BETWEEN.aire.tituloACaja}} /> : null}
+        {datos?.length ? <PilaDatos datos={datos} sinFondo={datosSinFondo} style={{marginTop: BETWEEN.aire.tituloACaja}} /> : null}
       </div>
     </AbsoluteFill>
     {children}
@@ -1664,6 +1687,11 @@ export const PiezaStoryBetween: React.FC<{
   script?: string;
   sizeCaps?: number;
   datos?: React.ReactNode[];
+  /**
+   * Índices de `datos` que van SIN la caja taupe. Ver `CajaDato.sinFondo`:
+   * en una pila, la caja es el énfasis y repetirla en las dos líneas lo mata.
+   */
+  datosSinFondo?: number[];
   bajada?: React.ReactNode;
   /** La bajada va DENTRO de una caja taupe, para cuando la foto no la deja leer. */
   bajadaEnCaja?: boolean;
@@ -1699,7 +1727,7 @@ export const PiezaStoryBetween: React.FC<{
   children?: React.ReactNode;
 }> = ({
   foto, posicionFoto, oscurecer = 0.12,
-  caps, script, sizeCaps, datos, bajada, bajadaEnCaja, anchoBajada, legal,
+  caps, script, sizeCaps, datos, datosSinFondo, bajada, bajadaEnCaja, anchoBajada, legal,
   conLogo = true, logoTono = 'beige', alinear = 'centro', anclaje = 'arriba',
   topBloque, columnaTitular, children,
 }) => (
@@ -1724,7 +1752,7 @@ export const PiezaStoryBetween: React.FC<{
     >
       <TitularBetween caps={caps} script={script} sizeCaps={sizeCaps} alinear={alinear}
         anchoDisponible={columnaTitular} />
-      {datos?.length ? <PilaDatos datos={datos} style={{marginTop: BETWEEN.aire.tituloACaja}} /> : null}
+      {datos?.length ? <PilaDatos datos={datos} sinFondo={datosSinFondo} style={{marginTop: BETWEEN.aire.tituloACaja}} /> : null}
       {bajada && bajadaEnCaja ? (
         <PanelTaupe ancho={anchoBajada} style={{marginTop: BETWEEN.aire.tituloACaja}}>{bajada}</PanelTaupe>
       ) : bajada ? (

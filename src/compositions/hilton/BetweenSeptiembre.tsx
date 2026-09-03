@@ -891,6 +891,16 @@ export const ToGo1: React.FC = () => (
     script="¿Vas con poco tiempo?"
     caps={'Tu desayuno\nva contigo'}
     datos={['Promos To Go', HORARIO_TOGO]}
+    /* ⭐ RONDA 9 (03-09, Eli): «borra el fondo de este texto "Lunes a viernes ·
+       08:00 a 10:00 hrs." ya que se ocupó en el texto de promo».
+       La caja taupe es el ÉNFASIS de la pila: puesta en las dos líneas, las dos
+       gritan igual y la jerarquía desaparece. Es la misma lógica que el manual
+       ya tenía escrita para `PilaEsquina` («una sola línea fuerte por pila»,
+       §1 bis), ahora aplicada a `PilaDatos`. Se queda la caja en «PROMOS TO GO»
+       —que es la promo— y el horario acompaña sin fondo, con la sombra que usa
+       `Etiqueta` cuando va suelta. La altura de la fila NO cambia, así que el
+       ritmo del bloque se mantiene. */
+    datosSinFondo={[1]}
     /* ⭐ RONDA 7 — defecto de margen PREVIO, que sale a la luz porque esta pieza
        se re-rinde ahora: `between-qa.py` la marcó con tinta a 77 px del canto
        izquierdo y 74 del derecho, contra los 84 de la marca. Medido: la
@@ -901,8 +911,15 @@ export const ToGo1: React.FC = () => (
        Se compone en la columna (810). */
     columna={BETWEEN.bloque.columna}
     anclaje="abajo"
-    conLogo
-    logoPosicion="arriba"
+    /* ⛔ RONDA 9 (03-09, Eli): «borra el logo principal ya que está en el vaso
+       TO GO». Es la regla 8 del manual —EL VASO YA FIRMA: no se repite el
+       logotipo— aplicada a esta portada, que es justo donde el vaso está en
+       primer plano y con la marca legible. `PiezaFeedBodegon` ya trae
+       `conLogo = false` por defecto por este mismo motivo («en el feed de
+       bodegón la marca la pone el vaso, no un logo sobrepuesto»): lo que sale
+       es la excepción que se le había puesto encima.
+       ⚠️ Y no deja al carrusel sin marca: las slides 2, 3 y 4 llevan el vaso
+       con el logotipo impreso. */
     oscurecer={0.06}
   />
 );

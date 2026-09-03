@@ -5,6 +5,86 @@
 
 ---
 
+## 2026-09-03 · Eli (Windows) — DOUBLETREE: la marca entra al estudio, y su tipografía queda cerrada
+
+*(Tercera sesión del día. Las dos de Between están más abajo.)* **Primera sesión de DT
+en el estudio**: hasta hoy la marca no tenía ni una entrada en esta bitácora.
+
+**Qué se hizo.**
+
+1. **La grilla de DT es legible y ya tiene línea base.** Se modificó hoy 20:28Z
+   (Carlos Figueroa) y no existía copia previa contra la cual diffear. Bajada con
+   `export?format=xlsx` (49,5 MB, va a `raw/`, no viaja) y volcada a texto con el
+   script nuevo `scripts/grilla-instantanea.py`, que conserva **tachados e
+   hipervínculos** — que es justo lo que se pierde al copiar y pegar la celda.
+   Queda en `clients/hilton/grillas/dt-septiembre-2026.md`. **Desde mañana la ronda
+   nueva se detecta por diff.**
+
+2. **Estado real de septiembre en DT.** Entregado y en Drive: `C1 FT` (APROBADO),
+   `C1 ER DT S2` (CORREGIDA), `C2 ER FIESTAS PATRIAS` (EN REVISIÓN) y las 2 historias
+   de la S1 (APROBADO). **Producible y sin empezar: 4 piezas** — el estático de
+   Opinión Booking (14-09) y las historias de Escapada Romántica (07-09), Gimnasio
+   (10-09) y Día del Turismo (27-09). Bloqueadas: los 2 reels (POR GRABAR, con
+   Sebastián Serrano, y la grilla prohíbe IA ahí), el saludo de Fiestas Patrias
+   (PENDIENTE POR CLIENTE), «Tu día en DoubleTree» (REVISAR CONTENIDO) y el reel
+   orgánico del 10-09, que está EN CAMBIOS **con la celda de DISEÑO vacía**.
+
+3. **⭐ La tipografía de DT quedó cerrada por regla de Eli: Stag + Trade. Raleway
+   fuera.** Escrito en el manual. Las 11 fuentes están en el repo
+   (`public/assets/hilton/dt/fonts/`): 9 cortes de Stag y los 2 de Trade que Eli
+   consiguió por su cuenta —el cliente no las entregó—, **más su conversión a WOFF2**,
+   porque venían en `.otf` CFF, el formato que hizo que Remotion rindiera 27 piezas de
+   Between con una serif de reemplazo sin avisar.
+
+4. **⭐⭐ El reparto Stag/Trade no es estilístico, es de cobertura de glifos.** Los 9
+   pesos de Stag traen 354 glifos y **no incluyen `$ % ¿ ¡ @`**. Por eso los precios
+   («$125.000»), las preguntas («¿Ya eres Hilton Honors?») y el correo del CTA
+   (`reservas.dtv@hilton.com`) **tienen que ser Trade**: Stag no puede escribirlos.
+
+5. **⛔ Un error mío, corregido antes de causar daño.** Medí el ancho `1`/`0` de la
+   cifra, vi que no era Stag, y —porque el `Informe.txt` del `.ai` nombraba Raleway—
+   escribí en el manual que las piezas entregadas estaban fuera de sistema. **Era
+   deducción, no medición.** La segunda huella, alto del `$` ÷ alto del `0` (invariante
+   a tamaño y peso), da **1,225** en la pieza contra **1,24 de Trade** y **1,55 de
+   Raleway**: era Trade desde el principio. **No hay nada que rehacer.** La regla
+   quedó en la memoria `adn-desde-editables`: una huella descarta, dos confirman.
+
+**Dónde quedó.** Manual de la marca con la sección de tipografía de DT completa y
+corregida; grilla en texto; fuentes instaladas y verificadas; `_estado-sync.json` al
+día. **El ADN no está hecho todavía** — no hay `marca.json`, ni `reglas.yaml`, ni
+`src/brand/doubletree.ts`.
+
+**Lo ya medido, para no repetirlo:** mesa **1080×1350** → entrega feed **2250×2813** e
+historia **2250×4000** (2,083×); tinta plana **PANTONE 2766 C**; azul medido `#0B194A`
+en feed y `#111C4E` en historia (el manual dice `#09194E`, falta afinarlo sobre zona
+plana); **logo con proporción 1,2266**, confirmada contra dos archivos distintos
+(`JUNIO/DT/S3/logo DT.png` y el de Abril).
+
+**Qué sigue.** El ADN sobre las 7 piezas aprobadas: retícula y márgenes, geometría de
+la píldora y de la caja de beneficios con separadores, jerarquía del titular a dos
+pesos de Stag. Con eso, `marca.json` + `reglas.yaml` + `src/brand/doubletree.ts` y las
+plantillas de feed e historia.
+
+**Abierto.**
+- **Falta el Trade Bold de ancho normal.** Es el corte con el que está compuesta la
+  cifra de la pieza aprobada (ancho `1`/`0` = 0,764; los dos instalados dan 0,654 y
+  0,600). Con lo que hay, el sustituto es Bold Condensed No. 20, pero **al mismo alto
+  de dígito la píldora pasa de ~630 px a ~410 px** — cambia la proporción del bloque.
+  Decisión de Eli, mirando el render, no leyendo.
+- **La grilla se contradice sola:** `VISTA MENSUAL` pone el estático Booking el lunes 7
+  y el carrusel Escapada Romántica el 14; la hoja `FEED` los pone al revés. **Lo
+  confirma Carlos**, y cambia la fecha de entrega.
+- **Falta el contenido de la reseña de Booking**: texto literal, iniciales del huésped
+  y rating. El cliente aprobó «el que sugiere Carlos»
+  (`imagen_2026-08-14_112424991.png`), pero la carpeta de reseñas
+  (`1Dlki995RRdwueFGlZOkF9rybf7maMJ5u`) no devuelve archivos por el conector.
+- **`DT-S2.ai` declara Raleway** en su `Informe.txt`. No está verificado en qué
+  elemento. Con la regla nueva, revisarlo cuando se toque esa pieza.
+- **Licencia:** las fuentes las consiguió Eli, no el cliente. Vale saberlo antes de
+  repartirlas a otro diseñador que clone el repo.
+
+---
+
 ## 2026-09-03 · Eli (Windows) — BETWEEN: auditoría de reproducibilidad y respaldo
 
 *(Segunda sesión del día. La ronda 9 está en la entrada de más abajo.)*

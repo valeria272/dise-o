@@ -21,8 +21,60 @@
 - **DoubleTree Blue `#09194E`** (dominante, fondos) · **Green `#A3CD39`** · White `#FAFAFA`
 - Secundarios (solo piezas clave): Yellow `#FFCC00`, Warm Red `#CF4800`
 - Proporción de uso: 70% azul / 20% verde / 10% acentos
-- **Tipografía: Stag LCG** — Bold para titulares, Italic solo para destacar (nunca body largo)
 - QB / P18 tienen identidad propia → ver editables de Eli (pendiente extraer paletas; los .ai viven en Drive)
+
+### ⛔ Tipografía de DT: **Stag + Trade. Y nada más.**
+
+> **Regla dictada por Eli el 03-09-2026: en DT ya no se usa Raleway.**
+> Las dos familias oficiales del manual de marca Hilton son **Stag** y **Trade Gothic**.
+> Raleway queda fuera del sistema — no es una preferencia, es la marca.
+
+| Familia | Para qué | Medido en |
+|---|---|---|
+| **Stag** | Titulares. Bold e Italic; los titulares van en **dos pesos de la misma familia** (ej. portada de Family Time: «Este es su panorama» en Stag Bold + «Ideal en familia» en Stag Light) | `C1 FT N°1.png`, `C1 FT N°2.png` |
+| **Trade Gothic** | **Cifras, precios, versales, cuerpo, CTA y legal** | manual oficial Hilton |
+
+**Por qué el reparto es ése y no otro, medido el 03-09:** los 9 pesos de Stag
+instalados traen **354 glifos y NO incluyen `$` `%` `¿` `¡`**. Trade Gothic sí los
+trae — cobertura completa. O sea que Stag no puede escribir un precio ni una
+pregunta *por diseño de la familia*: eso es trabajo de Trade. Si una pieza necesita
+`$125.000` o «¿Ya eres Hilton Honors?», **esa línea es Trade, no Stag**.
+
+**✅ Las piezas ya entregadas SÍ están en sistema — medido, no supuesto.**
+La huella que decide es **alto del `$` ÷ alto del `0`**, que no depende del tamaño ni
+del peso: la cifra `$125.000` del `C1 FT N°2` da **1,225**; Trade Gothic da 1,24 y
+Raleway 1,55. **El precio es Trade Gothic.** No hay nada que rehacer.
+
+> Cómo se llegó a esto: primero medí sólo el ancho `1`/`0` y, como no calzaba con
+> ninguna Stag, di por hecho que era Raleway porque el `Informe.txt` la nombraba.
+> Era una deducción, no una medición. La proporción del `$` lo zanjó. **Para
+> identificar una fuente hacen falta DOS huellas independientes que apunten al mismo
+> lado**; una sola descarta, pero no confirma.
+
+**El corte exacto no está en esta máquina.** El ancho `1`/`0` de la pieza es **0,764**
+y los dos cortes instalados dan 0,654 (Regular) y 0,600 (Bold Cn 20). O sea que el
+precio está compuesto con un **Trade Gothic Bold de ancho normal** que no tenemos.
+Con lo que hay, el reemplazo más cercano en función —cifra maciza dentro de píldora—
+es **Bold Condensed No. 20**; comprime la píldora de ~630 px a ~410 px al mismo alto
+de dígito, así que la geometría del bloque cambia y hay que revisarla a ojo antes de
+dar una pieza por buena.
+
+**Nota sobre `DT-S2.ai`:** su `Informe.txt` sí declara `Raleway Bold` y `Raleway
+SemiBold`. No está verificado en qué elemento de ese archivo se usan. Con la regla
+del 03-09 (Raleway fuera), eso hay que revisarlo cuando se toque esa pieza.
+
+**⚠️ Faltan cortes de Trade.** En la máquina de Eli sólo hay dos:
+`Trade Gothic LT Std Regular` y `Trade Gothic LT Std Cn Bold` (Bold Condensed No. 20).
+**No hay un Bold de ancho normal**, que es justo el que pide un bloque de precio —
+por ahí se coló Raleway. Los nombres de archivo vienen con hash de sincronización de
+Adobe Fonts, así que lo más probable es que el resto de la familia se active desde
+Creative Cloud y caiga sola en `%LOCALAPPDATA%\Microsoft\Windows\Fonts`.
+
+**⚠️ Formato: las dos Trade son `.otf` CFF/PostScript.** Es el mismo formato que
+Chrome rechazó con Brushwell y que hizo que Remotion rindiera 27 piezas de Between
+con una serif de reemplazo, sin avisar. Antes de rendir nada de DT en código hay que
+convertirlas a TTF/WOFF2 y verificar con `document.fonts.check`. Ver la memoria
+`brushwell-no-cargaba-en-chrome`.
 
 ## Brand kit BETWEEN (calibrado 24-08-2026 con el feedback escrito de Eli)
 

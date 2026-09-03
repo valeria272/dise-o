@@ -237,6 +237,9 @@ raw/mascenter-terrenos/*
 # se versionan: se regeneran corriendo los dos scripts sobre este archivo.
 !raw/landera/
 !raw/landera/*.pdf
+# …salvo el brandbook de Pivot: son 37 MB y es material de OTRO cliente.
+# Se usa como referencia de estructura, no se versiona acá.
+raw/landera/REFERENCIA-brandbook-pivot.pdf
 
 # ── CREDENCIALES: nunca, jamás, al repositorio ──────────────────────────────
 # Este repo lo comparten varios diseñadores. Un token de Google acá dentro se

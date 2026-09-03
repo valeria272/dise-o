@@ -211,3 +211,18 @@ html, body { background:#000; }
 .velo-doble { position:absolute; inset:0; background:
    linear-gradient(to bottom, rgba(0,0,0,.50) 0%, rgba(0,0,0,.06) 32%,
                               rgba(0,0,0,.06) 52%, rgba(0,0,0,.62) 88%, rgba(0,0,0,.62) 100%); }
+
+/* ══════════ GUIÑOS DE HALLOWEEN ══════════
+   Telaraña de esquina en blanco, dibujada en SVG. Va tenue y sólo en las
+   esquinas: es un guiño, no un disfraz de la pieza. La marca sigue siendo
+   azul y lima; el Halloween se nota, no se apodera. */
+.telarana { position:absolute; width:28%; opacity:.62; pointer-events:none;
+            filter: drop-shadow(0 4px 18px rgba(0,0,0,.35)); }
+.telarana.si  { top:0; left:0; }
+.telarana.sd  { top:0; right:0; transform:scaleX(-1); }
+.telarana.ii  { bottom:0; left:0; transform:scaleY(-1); }
+.telarana.id  { bottom:0; right:0; transform:scale(-1,-1); }
+.telarana.chica { width:21%; opacity:.55; }
+/* araña colgando de un hilo */
+.arana { position:absolute; top:0; width:7.5%; opacity:.72;
+         filter: drop-shadow(0 6px 16px rgba(0,0,0,.4)); }

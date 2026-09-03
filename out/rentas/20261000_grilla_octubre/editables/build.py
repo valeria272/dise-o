@@ -40,6 +40,28 @@ def pieza(nombre, fondo, cuerpo, formato="feed", logo=True, velo=None, italica=F
     print("  ", nombre + ".html")
 
 
+
+# ── Guiños de Halloween: telaraña de esquina y araña colgando ────────────────
+# Dibujadas en SVG dentro del sistema. Blancas y tenues: son un guiño, no un
+# disfraz — la marca sigue siendo azul y lima.
+def telarana(pos, chica=False):
+    hilos = "".join(f'<line x1="0" y1="0" x2="{200*__import__("math").cos(a)}" '
+                    f'y2="{200*__import__("math").sin(a)}"/>'
+                    for a in [__import__("math").radians(g) for g in (5,22,40,58,76,90)])
+    arcos = "".join(f'<path d="M {r} 0 A {r} {r} 0 0 1 0 {r}"/>' for r in (44,86,130,176))
+    c = " chica" if chica else ""
+    return (f'<svg class="telarana {pos}{c}" viewBox="0 0 200 200" fill="none" '
+            f'stroke="#fff" stroke-width="2.2" stroke-linecap="round">'
+            f'{hilos}{arcos}</svg>')
+
+ARANA = ('<svg class="arana" viewBox="0 0 100 260" fill="none" stroke="#fff" '
+         'stroke-width="4" stroke-linecap="round">'
+         '<line x1="50" y1="0" x2="50" y2="170"/>'
+         '<ellipse cx="50" cy="205" rx="26" ry="32" fill="#fff"/>'
+         '<circle cx="50" cy="176" r="12" fill="#fff"/>'
+         '<path d="M26 190 4 168M26 205 2 205M26 220 6 244M74 190 96 168M74 205 98 205M74 220 94 244"/>'
+         '</svg>')
+
 # ══════════════════════════════════════════════════════════════
 # CARRUSEL HALLOWEEN — martes 27 de octubre · 5 láminas
 # Textos VERBATIM del brief. Los cortes de línea son míos, para el ragging.
@@ -47,7 +69,9 @@ def pieza(nombre, fondo, cuerpo, formato="feed", logo=True, velo=None, italica=F
 print("CARRUSEL HALLOWEEN 27-10:")
 
 pieza("rentas_c-halloween1", "halloween/hw_1_45.jpg",
-      '<div class="bloque abajo">'
+      telarana("si") + '<span style="--x:1"></span>'.replace('<span style="--x:1"></span>','')
+      + ARANA.replace('class="arana"', 'class="arana" style="right:9%"')
+      + '<div class="bloque abajo">'
       '<div class="titular t-l">'
       '<span class="l1">3 tips para decorar tu casa</span>'
       '<span class="l2">en Halloween</span></div>'
@@ -67,7 +91,8 @@ for n, tip, l1, l2 in [
      "antes de usarla<br>en toda la pared."),
 ]:
     pieza(f"rentas_c-halloween{n}", f"halloween/hw_{n}_45.jpg",
-          '<div class="bloque abajo angosto">'
+          telarana("si" if n % 2 == 0 else "sd", chica=True)
+          + '<div class="bloque abajo angosto">'
           f'<div class="titular t-l"><span class="marca-caja lima">{tip}</span></div>'
           f'<div class="titular t-l">'
           f'<span class="l1">{l1}</span>'
@@ -76,7 +101,8 @@ for n, tip, l1, l2 in [
           logo=False, velo="velo-abajo-firme")
 
 pieza("rentas_c-halloween5", "halloween/hw_5_45.jpg",
-      '<div class="bloque abajo">'
+      telarana("si") + telarana("sd")
+      + '<div class="bloque abajo">'
       + titular("¿Y tú, cómo vas a decorar", "tu casa este Halloween?", tam="t-l")
       + '<div class="titular t-m"><span class="boton-url">RENTAS.INU.CL</span>'
         '<span class="cursor-lima"></span></div>'

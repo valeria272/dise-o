@@ -1,0 +1,108 @@
+{
+  "slug": "landera",
+  "nombre": "Landera",
+  "bajadas": ["Farmland Management", "Gestión Agrícola"],
+  "rubro": "Administración de campos e inversión agrícola (farmland management)",
+  "pais": "CL",
+  "moneda": "CLP",
+  "web": "https://cydasesorias.cl",
+  "antes": "C&D / CYD Management — Landera es la marca nueva",
+  "manual": "clients/landera/CLAUDE.md",
+  "estado": "EN DEFINICIÓN — colores y logotipo todavía en ronda con el cliente. NO producir piezas hasta que cierren.",
+
+  "formato_manual": {
+    "medida_pt": [1008, 612],
+    "medida_cm": [35.56, 21.59],
+    "nota": "Es el MISMO formato de la plantilla de brandbook del estudio (BRANDGUIDELINES_PIVOT). Todo el manual de Landera se compone en esta caja."
+  },
+
+  "colores": {
+    "_origen": "MEDIDO sobre PROPUESTA BASE V2.pdf (Illustrator 30.7, 31-08-2026) leyendo los operadores scn del content stream. En las 6 páginas hay exactamente 9 tripletas.",
+    "verdeOliva": {
+      "hex": "#687B5D",
+      "rol": "primario",
+      "rgb": [104, 123, 93],
+      "cmyk": [60, 35, 64, 21],
+      "pantone": "2263 C",
+      "uso": "Masa de los círculos de iconografía, bloque de elementos gráficos, cabecera de lámina, rayas del isotipo"
+    },
+    "terracota": {
+      "hex": "#E4361F",
+      "rol": "secundario",
+      "cmyk": [0, 76, 60, 0],
+      "pantone": "2028 U",
+      "uso": "Bajada de cabecera, detalle sólido dentro de cada ícono, pastilla de aviso, tercio del isotipo",
+      "_ojo": "La ficha de la pág. 3 dice HEXADECIMAL 5B5B5B y RGB 91/91/91, que es GRIS. Está mal: el swatch pinta #E4361F. El dato pegado es el del gris terciario de Pivot — ver residuos_de_pivot."
+    },
+    "blueGrey": {
+      "hex": "#33353E",
+      "rol": "terciario",
+      "rgb": [51, 53, 62],
+      "cmyk": [76, 68, 52, 51],
+      "pantone": "5395 U",
+      "uso": "El logotipo en portada y contraportada; la parte oscura del isotipo"
+    },
+    "grisPiedra": {
+      "hex": "#666461",
+      "rol": "neutro",
+      "rgb": [102, 100, 97],
+      "cmyk": [61, 53, 51, 22],
+      "pantone": "Black 7 U",
+      "uso": "Etiquetas de sección y texto secundario"
+    },
+    "crema": {
+      "hex": "#FAF1E8",
+      "rol": "neutro / fondo",
+      "rgb": [250, 242, 232],
+      "cmyk": [2, 6, 9, 0],
+      "pantone": "no necesita",
+      "uso": "Fondo de portada y contraportada, y las líneas claras sobre el verde",
+      "_ojo": "Es color de PALETA, no sólo fondo. No se puede mapear a blanco en bloque: borra su propio swatch de la pág. 3."
+    },
+    "grisTexto": {
+      "hex": "#5B5B5B",
+      "rol": "cuerpo de texto",
+      "uso": "Párrafos de las págs. 3 y 4",
+      "_ojo": "Es el gris terciario de Pivot. Entró con la plantilla; no está declarado como color de Landera en ninguna ficha."
+    }
+  },
+
+  "residuos_de_pivot": {
+    "_que_paso": "El manual de Landera se armó sobre el archivo de BRANDGUIDELINES_PIVOT. Quedaron colores de Pivot vivos dentro del PDF y una ficha de color copiada entera.",
+    "002151": "Navy PRIMARIO de Pivot. En Landera pinta 17 trazos de la pág. 4 (las líneas sobre cada peso de Aptos). A ojo pasa por negro.",
+    "1C4907": "Verde oscuro fuera de paleta, un trazo suelto en la pág. 5.",
+    "5B5B5B": "Gris terciario de Pivot (su color de texto, 8.737 usos en ese archivo). En Landera quedó como color de cuerpo Y mal pegado en la ficha del terracota.",
+    "cmyk_0_76_60_0": "El CMYK que la ficha del terracota declara es el del gris de Pivot, no el del terracota."
+  },
+
+  "fuentes": {
+    "display": {
+      "familia": "Barkentina",
+      "variantes": "única, sin variantes",
+      "uso": "El logotipo. En el PDF va embebida como CFF/Type1.",
+      "confirmado": true,
+      "_ojo": "NO está instalada en el Mac de Valeria ni se distribuye con Office. Para componer hay que conseguir el archivo con la diseñadora."
+    },
+    "texto": {
+      "familia": "Aptos",
+      "variantes": "todas (Light, Regular, Display, SemiBold, Bold, ExtraBold, Black + itálicas)",
+      "uso": "Cabeceras, fichas de color, cuerpo de texto",
+      "confirmado": true,
+      "archivo_local": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Aptos*.ttf",
+      "_ojo": "Aptos viene con Microsoft Office. Los subsets embebidos en el PDF NO sirven para componer texto nuevo: Illustrator los guarda con codificación propia y salen palabras con huecos."
+    }
+  },
+
+  "elementos_graficos": {
+    "franjas": "Líneas concéntricas con TERMINACIÓN REDONDEADA, derivadas del isotipo. El manual lo declara como regla dura en la pág. 5.",
+    "iconografia": "8 íconos lineales sobre círculo sólido. Trazo claro + un detalle en terracota. Conceptos tomados de la sección «Inversión» de la web.",
+    "regla_dura": "SIEMPRE terminaciones redondeadas — está escrito en el propio manual."
+  },
+
+  "pendiente": [
+    "Cerrar el color primario: el cliente pidió verlo con un gris en vez del verde, y en versión invertida (fondo blanco, líneas verdes).",
+    "Faltan los archivos Base y Base 1 — sólo llegó PROPUESTA BASE V2.",
+    "Conseguir el archivo de la tipografía Barkentina.",
+    "Definir si la fila monocromática queda en 4 versiones o 5 (al salir el verde, una queda repetida)."
+  ]
+}

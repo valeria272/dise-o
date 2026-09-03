@@ -133,23 +133,25 @@ html, body { background:#000; }
 .caja-sola { display:block; }
 
 /* ══════════ FILA DE ATRIBUTOS ══════════
-   Tres círculos celestes traslúcidos unidos por una línea, con la etiqueta
-   debajo. Medida en el estático de julio: centros en 0,334 / 0,497 / 0,661 del
-   ancho, o sea 0,164 de separación, y el grupo centrado. */
-.atributos { display:flex; justify-content:center; align-items:flex-start;
-             gap:0; margin-top:1.1em; }
+   MEDIDA en el estático de julio: tres discos de 10,6 % del ancho del lienzo,
+   BLANCOS TRASLÚCIDOS con borde AZUL y el ícono AZUL adentro —no al revés—,
+   unidos por una línea azul. El tercero puede llevar TEXTO en vez de ícono.
+   Centros en 0,334 / 0,497 / 0,661 del ancho; el grupo va centrado.
+   El rótulo va debajo, en blanco bold. */
+.atributos { display:flex; justify-content:center; align-items:flex-start; margin-top:1.0em; }
 .atributo { width:16.4%; display:flex; flex-direction:column; align-items:center;
-            gap:.55em; position:relative; }
-.atributo .disco { width:230px; height:230px; border-radius:50%;
-            background:rgba(255,255,255,.22); border:5px solid var(--blanco);
-            display:flex; align-items:center; justify-content:center; }
-.atributo .disco svg { width:52%; height:52%; }
+            gap:.5em; position:relative; }
+.atributo .disco { width:477px; height:477px; border-radius:50%;
+            background:rgba(255,255,255,.80); border:11px solid var(--azul);
+            display:flex; align-items:center; justify-content:center; text-align:center; }
+.atributo .disco svg { width:54%; height:54%; }
+.atributo .disco .dentro { color:var(--azul); font-weight:700; line-height:1.12; padding:0 .4em; }
 .atributo .rotulo { font-weight:700; text-align:center; line-height:1.16;
-            text-shadow:0 4px 22px rgba(0,0,0,.45); }
-/* la línea que une un disco con el siguiente */
+            text-shadow:0 4px 22px rgba(0,0,0,.5); }
+/* la línea azul que une un disco con el siguiente */
 .atributo + .atributo::before { content:""; position:absolute;
-            top:115px; right:calc(50% + 115px); width:calc(100% - 230px);
-            height:5px; background:var(--blanco); opacity:.85; }
+            top:238px; right:calc(50% + 238px); width:calc(100% - 477px);
+            height:11px; background:var(--azul); }
 
 /* ══════════ BOTÓN DE WHATSAPP ══════════
    Medido en el estático de julio: 57,5 % del ancho, alto 10,3 % del ancho,
@@ -170,7 +172,7 @@ html, body { background:#000; }
    El titular va ARRIBA en versales: línea blanca sobre línea en caja azul.
    La bajada, en itálica. Medido en rentas_st_1 de septiembre: la caja del
    titular ocupa 72,3 % del ancho y la del precio 52,4 %, las dos centradas. */
-.story .bloque.alto { top:12.5%; }
+.story .bloque.alto { top:13.6%; }   /* 13,6 y no 12,5: a 12,5 la tinta entraba a 246 px de 1920 y la zona segura de Instagram son 250 */
 .story .bloque.precio { bottom:24%; }
 .st-titular { font-weight:700; line-height:1.1; letter-spacing:-.005em;
               text-shadow:0 8px 40px rgba(0,0,0,.42); }
@@ -192,3 +194,20 @@ html, body { background:#000; }
 .t-st-l  { font-size: 250px; }
 .t-st-m  { font-size: 190px; }
 .t-st-s  { font-size: 150px; }
+
+/* Cuando la pieza lleva botón de WhatsApp, el bloque de texto sube para no
+   chocar con él: el botón ocupa 10,3 % del ancho de alto y arranca a 6,6 %
+   del borde inferior, así que el bloque termina por sobre el 22 %. */
+.bloque.con-boton { bottom:22%; }
+
+/* Texto DENTRO del disco de atributo. Va mucho más chico que el rótulo de
+   abajo: el disco deja 455 px útiles y a t-xs (108 px) la palabra «GARANTÍA»
+   pedía 518 px y se desbordaba. */
+.t-disco { font-size: 68px; letter-spacing:.01em; }
+
+/* Historia con texto ARRIBA y ABAJO: hace falta velo en los dos extremos, no
+   sólo en uno. Sin esto el bloque de precio cae sobre la fachada clara y el
+   contraste se va bajo 4,5:1. */
+.velo-doble { position:absolute; inset:0; background:
+   linear-gradient(to bottom, rgba(0,0,0,.50) 0%, rgba(0,0,0,.06) 32%,
+                              rgba(0,0,0,.06) 52%, rgba(0,0,0,.62) 88%, rgba(0,0,0,.62) 100%); }

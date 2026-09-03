@@ -9,6 +9,8 @@
 |---|---|---|---|
 | **Carrusel Halloween** | mar 27-oct | `feed/rentas_c-halloween1..5.png` · 4500×5625 | ✅ **Listo para revisión** |
 | **Historia Halloween** | jue 29-oct | `story/rentas_st-halloween-29-10.png` · 4500×8000 | ✅ **Lista para revisión** |
+| **Historia proyecto** | jue 2-oct | `story/rentas_st-proyecto-02-10.png` · 4500×8000 | ✅ **Lista para revisión** |
+| **Estático «Sin comisión»** | mar 13-oct | `feed/rentas_estatico-sin-comision-13-10.png` · 4500×5625 | ✅ **Listo para revisión** |
 
 Los 5 fondos son **imágenes IA** (Nano Banana Pro, 4K), por decisión de Valeria: el brief
 pide personas manipulando cinta, ganchos y telarañas, y eso no existe en el banco del cliente.
@@ -29,6 +31,20 @@ ratio 0,755 contra 0,754, aire superior 17,8 %.
 - Cortes de línea **a mano**: al dejar envolver solo quedaban huérfanas («removibles», «pared.»).
 - Cero `style=""` suelto en el HTML: todo sale de `base.css`.
 
+### El estático del 13-oct
+Pieza de **ficha**: lleva los dos logos, la **fila de atributos** y el **botón de WhatsApp**, igual
+que el estático de julio que el cliente aprobó. Fondo: el quincho real (escala 1,70×).
+Los discos de atributo son **blancos traslúcidos con borde e ícono AZULES** —lo hice al revés la
+primera vez— y miden 10,6 % del ancho, medido sobre la pieza de julio. El WhatsApp va
+**+569 9707 9951**, verbatim del brief y coincidiendo con lo que se publicó en julio.
+QA: «Arrienda» 5,66:1 · rótulos 18,50:1 · margen inferior 6,60 %.
+
+### La historia del 2-oct
+Fondo: fachada con juegos y áreas verdes (escala 2,32×). Lleva **velo doble** —arriba y abajo—,
+porque con velo sólo arriba el bloque de precio caía sobre la fachada clara y el contraste se iba
+bajo el mínimo. QA: 7,59:1 · 10,21:1 · 16,32:1; el texto entra a **337 px** de 1920, sobre la zona
+segura de 250.
+
 ### La historia del 29-oct
 Fondo: fotograma 4K del **dron del cliente** (`Valle Altiplánico - Jul 24.MP4`, 93 Mbps), con el
 blur fuerte que pide el brief y **luces naranjas de bokeh**. No se pegaron calabazas a la fachada:
@@ -45,11 +61,18 @@ Los cortes de línea son míos.
 | Pieza | Fecha | Bloqueo |
 |---|---|---|
 | Reel comercial | mar 6-oct | tengo el plano aéreo de apertura; faltan los **interiores** (living, cocina, dormitorios) |
-| Estático «Sin comisión» | mar 13-oct | el brief pide **interior cálido o quincho**: el dron no lo da |
-| Carrusel PAID «Arrienda fácil» | mar 20-oct | faltan **visita, contrato y ejecutivo** |
-| Historia proyecto | 2-oct | pide **interior + áreas comunes**; el aéreo cubre sólo la mitad |
 
-**Se bajó el material del dron (2,3 GB) y resolvió una pieza, pero es TODO aéreo exterior.**
+| Carrusel PAID «Arrienda fácil» | mar 20-oct | faltan **visita, contrato y ejecutivo** |
+
+
+**Apareció la carpeta de fotos del proyecto y con ella salieron tres piezas más.**
+`PROYECTOS INMOBILIARIOS / VALLE ALTIPLÁNICO` tiene **17 fotos reales del condominio**, y en
+buena resolución: el **quincho a 4960×3307**, la **piscina a 5184×3456**, la cancha, las fachadas
+con juegos y los estacionamientos. Los fondos se armaron con escalas de **1,6× a 2,4×**, sin
+upscale forzado. Los interiores (clóset, baño, cocina, dormitorio) sí vienen chicos —1037×1555—
+y no dan para 4500 px.
+
+**El dron (2,3 GB) resolvió la historia de Halloween, pero es TODO aéreo exterior.**
 `videos-dron` trae tres archivos —`Valle Altiplánico - Jul 24.MP4` en 4K a 93 Mbps,
 `Secuencia 01_1.mp4` en 4K a 114 Mbps y `Valle 5.MP4` en HD—, los tres limpios y sin subtítulos.
 Se ven la fachada, la piscina, la cancha y las áreas verdes desde arriba. **No hay un solo

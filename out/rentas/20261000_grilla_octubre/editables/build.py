@@ -108,3 +108,73 @@ pieza("rentas_st-halloween-29-10", "st_halloween_blur.jpg",
       '</div>'
       '<div class="zona-sticker"></div>',
       formato="story", velo="velo-arriba")
+
+
+# ══════════════════════════════════════════════════════════════
+# ESTÁTICO «SIN COMISIÓN» — martes 13 de octubre · 4500×5625
+# Pieza de FICHA: lleva los dos logos, la fila de atributos y el botón de
+# WhatsApp, igual que el estático de julio que aprobó el cliente.
+# Fondo: el quincho real del condominio (IMG_9562, 4960×3307 → escala 1,70×).
+# Textos y número de WhatsApp VERBATIM del brief de grilla.
+# ══════════════════════════════════════════════════════════════
+print("ESTÁTICO SIN COMISIÓN 13-10:")
+
+ICONO_CAMA = ('<svg viewBox="0 0 64 64" fill="none" stroke="#1372F1" stroke-width="4" '
+              'stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M6 44V22M6 34h52M58 34v10M14 26h12v8H14zM38 26h12v8H38z"/></svg>')
+ICONO_BANO = ('<svg viewBox="0 0 64 64" fill="none" stroke="#1372F1" stroke-width="4" '
+              'stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M8 34h48v6a12 12 0 0 1-12 12H20A12 12 0 0 1 8 40zM18 34V14a6 6 0 0 1 12 0"/>'
+              '<circle cx="24" cy="14" r="1.5" fill="#1372F1"/></svg>')
+ICONO_CUOTAS = ('<svg viewBox="0 0 64 64" fill="none" stroke="#1372F1" stroke-width="4" '
+                'stroke-linecap="round" stroke-linejoin="round">'
+                '<rect x="6" y="16" width="52" height="32" rx="5"/><path d="M6 27h52M15 39h10"/></svg>')
+
+def atributo(icono, rotulo):
+    return ('<div class="atributo">'
+            f'<div class="disco">{icono}</div>'
+            f'<div class="rotulo t-xs">{rotulo}</div></div>')
+
+pieza("rentas_estatico-sin-comision-13-10", "feed_quincho.jpg",
+      '<img class="logo-valle" src="img/logo_valle_blanco.png" alt="">'
+      '<div class="bloque abajo con-boton">'
+      '<div class="titular t-l"><span class="l1">Arrienda</span></div>'
+      '<div class="titular t-xl caja-sola">'
+      '<span class="marca-caja lima">SIN PAGAR COMISIÓN</span></div>'
+      '<div class="atributos">'
+      + atributo(ICONO_CAMA,   "2 Y 3<br>DORMS.")
+      + atributo(ICONO_BANO,   "2<br>BAÑOS")
+      + atributo('<span class="dentro t-disco">1,5 MESES<br>DE<br>GARANTÍA</span>', "HASTA EN<br>6 CUOTAS")
+      + '</div></div>'
+      '<div class="boton-wsp">'
+      '<div class="disco-wsp"><svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.7A13 13 0 1 0 16 3zm7.4 18.2c-.3.9-1.8 1.7-2.5 1.8-.6.1-1.4.1-2.3-.1-.5-.2-1.2-.4-2.1-.8-3.7-1.6-6.1-5.3-6.3-5.6-.2-.2-1.5-2-1.5-3.8s.9-2.7 1.3-3.1c.3-.4.7-.5 1-.5h.7c.2 0 .5-.1.8.6l1.1 2.7c.1.2.2.4 0 .7l-.5.7-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.4 1.8 2.3 1.3 1.1 2.3 1.5 2.6 1.6.3.2.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.6 1.2c.3.2.5.2.6.4.1.1.1.6-.2 1.3z"/></svg></div>'
+      '<div class="lineas">'
+      '<span class="arriba t-s">Escríbenos por WhatsApp</span>'
+      '<span class="numero t-m">+569 9707 9951</span>'
+      '</div></div>',
+      velo="velo-abajo-firme")
+
+
+# ══════════════════════════════════════════════════════════════
+# HISTORIA ST PROYECTO — jueves 2 de octubre · 4500×8000
+# Textos VERBATIM del brief. Fondo: fachada + juegos + áreas verdes reales
+# (IMG_9551, 5162×3442 → escala 2,32×). Lleva el logo Valle porque es ficha.
+# ══════════════════════════════════════════════════════════════
+print("HISTORIA ST PROYECTO 02-10:")
+
+pieza("rentas_st-proyecto-02-10", "st_proyecto.jpg",
+      '<div class="bloque alto">'
+      '<div class="st-titular t-st-l">'
+      '<span class="l1">VALLE</span>'
+      '<span class="caja marca-caja azul">ALTIPLÁNICO</span></div>'
+      '<div class="st-bajada t-st-s">+59 m² diseñados<br><b>para tu comodidad.</b></div>'
+      '</div>'
+      '<div class="bloque precio">'
+      '<div class="precio-desde t-st-s">ARRIENDA DESDE</div>'
+      '<div class="t-st-l"><span class="precio-cifra marca-caja lima">$715.000</span></div>'
+      '<div class="condiciones t-st-s">'
+      '<b>Garantía de 1,5 meses</b> de arriendo<br>hasta en 6 cuotas · <b>Sin comisión.</b></div>'
+      '<div class="condiciones t-st-s">Entrega inmediata en Calama.</div>'
+      '</div>'
+      '<div class="zona-sticker"></div>',
+      formato="story", velo="velo-doble")

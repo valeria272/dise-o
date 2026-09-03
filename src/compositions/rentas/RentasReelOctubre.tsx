@@ -1,6 +1,6 @@
 import React from "react";
 import {AbsoluteFill, Img, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig} from "remotion";
-import {Audio, Video} from "@remotion/media";
+import {Video} from "@remotion/media";
 import {ensureRentasFonts, rentas} from "../../brand/rentas";
 
 /**
@@ -65,7 +65,12 @@ const Curvas: React.FC = () => (
 );
 
 /**
- * Foto fija con Ken Burns. Los interiores van en FOTO y no en video porque el
+ * Foto fija con Ken Burns. SIEMPRE a cuadro completo: la panorámica del
+ * dormitorio se probó como banda nítida sobre fondo desenfocado y Valeria la
+ * rechazó — «no pueden existir esas franjas arriba y abajo, se ve muy amateur».
+ * Si una foto no llena el 9:16, no entra al reel.
+ *
+ * Los interiores van en FOTO y no en video porque el
  * rodaje de «CALAMA» que hay en Drive NO es de Valle Altiplánico: se cotejó
  * contra las fotos verificadas del proyecto y el baño lleva otra cortina y otra
  * cerámica, y la cocina otra cubierta. Ese material es de Travesía del Desierto II.
@@ -111,18 +116,15 @@ export const RentasReelOctubre: React.FC = () => {
    * «similar pero con el tono algo cambiado» que pidió Valeria.
    * Se genera con `scripts/rentas-voz.py`.
    */
-  const VO: Array<[string, number]> = [
-    ["01_gancho", 0.4], ["02_areas", 7.3], ["03_precio", 13.5],
-    ["04_garantia", 18.2], ["05_cierre", 25.6],
-  ];
-
+  /**
+   * SIN LOCUCIÓN. La versión con TTS (`scripts/rentas-voz.py`) se descartó:
+   * «es muy robótica, es falsa». Sus cinco reels llevan locución humana real
+   * —medido: modulación silábica 35-41 % en los de mayo a septiembre— y
+   * clonarla no se pudo (Higgsfield quedó en 0,43 créditos y no hay clave de
+   * ElevenLabs). El guion del brief queda en los subtítulos.
+   */
   return (
     <AbsoluteFill style={{backgroundColor: "#000", fontFamily: FUENTE}}>
-      {VO.map(([nombre, seg]) => (
-        <Sequence key={nombre} from={P(seg, fps)}>
-          <Audio src={staticFile(`assets/rentas/vo/${nombre}.mp3`)} volume={1} />
-        </Sequence>
-      ))}
 
       {/* 1 · Dron + gancho ─────────────────────────────────────────── */}
       <Sequence durationInFrames={P(3.6, fps)}>
@@ -152,7 +154,7 @@ export const RentasReelOctubre: React.FC = () => {
 
       {/* 3 · Interiores + la cifra ─────────────────────────────────── */}
       <Sequence from={P(13.2, fps)} durationInFrames={P(3.4, fps)}>
-        <FotoConLogo src="dormitorio.jpg" zoom={0.10} dy={-1.2} />
+        <FotoConLogo src="cocina.jpg" zoom={0.10} dx={-1.2} />
         <div style={{position: "absolute", inset: 0, background:
           "linear-gradient(to bottom, transparent 45%, rgba(0,0,0,.52) 100%)"}} />
         <div style={{position: "absolute", bottom: 330, left: 0, right: 0, textAlign: "center",
@@ -171,8 +173,8 @@ export const RentasReelOctubre: React.FC = () => {
         </div>
       </Sequence>
       <Sequence from={P(16.6, fps)} durationInFrames={P(2.8, fps)}>
-        <FotoConLogo src="cocina.jpg" zoom={0.11} dx={-1.4} />
-        <Subtitulo desde={P(0.2, fps)}>Cocina equipada,<br />2 y 3 dormitorios</Subtitulo>
+        <FotoConLogo src="closet.jpg" zoom={0.11} dy={-1.0} />
+        <Subtitulo desde={P(0.2, fps)}>2 y 3 dormitorios<br />con clósets empotrados</Subtitulo>
       </Sequence>
       <Sequence from={P(19.4, fps)} durationInFrames={P(2.8, fps)}>
         <FotoConLogo src="bano.jpg" zoom={0.10} dy={1.0} />
@@ -217,7 +219,7 @@ export const RentasReelOctubre: React.FC = () => {
       </Sequence>
 
       {/* 5 · CIERRE CANÓNICO — fondo blanco ────────────────────────── */}
-      <Sequence from={P(26.2, fps)} durationInFrames={P(5.5, fps)}>
+      <Sequence from={P(26.2, fps)} durationInFrames={P(3.8, fps)}>
         <AbsoluteFill style={{background: "#fff", alignItems: "center", justifyContent: "center"}}>
           <div style={{textAlign: "center", ...useEntrada(P(0.15, fps), 16)}}>
             <Img src={staticFile("assets/rentas/logo_rentas.png")} style={{width: 420}} />

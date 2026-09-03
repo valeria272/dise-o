@@ -54,6 +54,15 @@ def telarana(pos, chica=False):
             f'stroke="#fff" stroke-width="2.2" stroke-linecap="round">'
             f'{hilos}{arcos}</svg>')
 
+def murcielago(x, y, ancho, giro=0, op=.6):
+    """Un murciélago en silueta. Se dibuja, no se pega: escala sin pixelarse."""
+    return (f'<svg class="murcielagos" viewBox="0 0 120 60" fill="#fff" '
+            f'style="left:{x}%;top:{y}%;width:{ancho}%;opacity:{op};'
+            f'transform:rotate({giro}deg)">'
+            '<path d="M60 16c-4 0-7 3-8 7-6-9-15-13-24-12 4 3 5 7 4 11-4-2-8-2-12 1 '
+            '7 1 11 5 13 11 6-4 12-4 18 0 2-3 5-5 9-5s7 2 9 5c6-4 12-4 18 0 2-6 6-10 13-11 '
+            '-4-3-8-3-12-1-1-4 0-8 4-11-9-1-18 3-24 12-1-4-4-7-8-7z"/></svg>')
+
 ARANA = ('<svg class="arana" viewBox="0 0 100 260" fill="none" stroke="#fff" '
          'stroke-width="4" stroke-linecap="round">'
          '<line x1="50" y1="0" x2="50" y2="170"/>'
@@ -90,8 +99,18 @@ for n, tip, l1, l2 in [
     (4, "Tip 3", "Prueba la cinta en una<br>zona poco visible",
      "antes de usarla<br>en toda la pared."),
 ]:
+    # La 4 es un plano detalle de la mano con la cinta: sin gráfica no se lee
+    # como Halloween. Feedback de Valeria (02-09): «hay otra que no tiene
+    # contexto». Se le suman murciélagos además de la telaraña.
+    extra = ""
+    if n == 2:   # el hombre con la cinta: el fondo no dice Halloween
+        extra = (murcielago(7, 11, 22, -14, .62) + murcielago(30, 4, 15, 9, .48)
+                 + murcielago(3, 26, 12, 16, .38))
+    if n == 4:   # plano detalle de la mano: sin gráfica no se lee como Halloween
+        extra = (murcielago(6, 9, 24, -12, .60) + murcielago(31, 3, 16, 8, .46)
+                 + murcielago(2, 25, 13, 15, .36))
     pieza(f"rentas_c-halloween{n}", f"halloween/hw_{n}_45.jpg",
-          telarana("si" if n % 2 == 0 else "sd", chica=True)
+          telarana("si" if n % 2 == 0 else "sd", chica=True) + extra
           + '<div class="bloque abajo angosto">'
           f'<div class="titular t-l"><span class="marca-caja lima">{tip}</span></div>'
           f'<div class="titular t-l">'

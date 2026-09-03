@@ -226,3 +226,8 @@ html, body { background:#000; }
 /* araña colgando de un hilo */
 .arana { position:absolute; top:0; width:7.5%; opacity:.72;
          filter: drop-shadow(0 6px 16px rgba(0,0,0,.4)); }
+
+/* Murciélagos dibujados, para las láminas donde la foto no da contexto de
+   Halloween por sí sola. Van blancos y tenues, como la telaraña. */
+.murcielagos { position:absolute; pointer-events:none; opacity:.6;
+               filter: drop-shadow(0 5px 16px rgba(0,0,0,.4)); }

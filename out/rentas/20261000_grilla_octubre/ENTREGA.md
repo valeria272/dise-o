@@ -38,14 +38,29 @@ septiembre: caja de logo arriba todo el reel, subtítulos en caja azul, la cifra
 itálica con la unidad en caja lima, la placa azul con curvas de nivel y el ícono `$` en disco
 lima con cursor, y el cierre en fondo blanco con el logo centrado y `¡Escríbenos por WhatsApp!`.
 
+**Sin franjas.** La primera versión ponía la panorámica del dormitorio como banda nítida sobre
+fondo desenfocado y Valeria la rechazó — «no pueden existir esas franjas arriba y abajo, se ve muy
+amateur». Ahora **toda foto que entra al reel llena el 9:16**; la panorámica quedó fuera y el
+tramo del precio pasó a la cocina.
+
+**Sin locución.** La versión con voz sintética también se descartó: «es muy robótica, es falsa».
+Ver más abajo.
+
 **Los interiores van en FOTO con Ken Burns, no en video, y por una razón de fondo:** el rodaje
 de `CALAMA/VERTICAL` que hay en Drive **no es de Valle Altiplánico** (ver el manual, §Compuerta
 de material). Así que el reel usa sólo material verificado: el dron de `videos-dron` y las fotos
 del proyecto. El dormitorio existe únicamente como panorámica de 1872×805, así que va como banda
 nítida sobre un fondo desenfocado de sí misma — que es lo honesto con una pano.
 
-**Lo que le falta:** no hay foto de **living** en resolución usable, y la voz en off todavía no
-está grabada. Los subtítulos ya llevan el guion del brief.
+**Lo que le falta: la locución.** Los cinco reels del cliente —mayo a septiembre— llevan
+**voz humana real**: se midió la modulación silábica de 3 a 8 Hz y da 35 %–41 %, cuando la música
+instrumental se queda en 15 %–25 %. Para replicar esa voz habría que clonarla, y no se pudo:
+Higgsfield quedó en **0,43 créditos** y el estudio no tiene clave de ElevenLabs. La voz sintética
+que se probó (`es-CL-LorenzoNeural`, calibrada a 123 Hz contra los 138 del cliente) sonó falsa y
+se sacó. **El reel va sin voz**: el guion del brief está en los subtítulos, listo para que lo
+grabe el mismo locutor de los otros meses.
+
+Tampoco hay foto de **living** en resolución usable.
 
 ### El estático del 13-oct
 Pieza de **ficha**: lleva los dos logos, la **fila de atributos** y el **botón de WhatsApp**, igual

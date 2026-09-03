@@ -1,6 +1,6 @@
 import React from "react";
 import {AbsoluteFill, Img, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig} from "remotion";
-import {Video} from "@remotion/media";
+import {Audio, Video} from "@remotion/media";
 import {ensureRentasFonts, rentas} from "../../brand/rentas";
 
 /**
@@ -106,7 +106,7 @@ const ClipConLogo: React.FC<{src: string}> = ({src}) => (
 
 export const RentasReelOctubre: React.FC = () => {
   ensureRentasFonts();
-  const {fps} = useVideoConfig();
+  const {fps, durationInFrames} = useVideoConfig();
   const frame = useCurrentFrame();
 
   /**
@@ -117,6 +117,23 @@ export const RentasReelOctubre: React.FC = () => {
    * Se genera con `scripts/rentas-voz.py`.
    */
   /**
+   * MÚSICA. Elegida midiendo, no a oído: sus reels de julio, agosto y septiembre
+   * dan centroide espectral 1711-2330 Hz y relación grave/medio 0,16-0,28 — o
+   * sea pista clara y liviana, sin bajo pesado. Esta mide 2555 Hz y 0,10, que es
+   * lo más cercano de la biblioteca Mixkit del estudio. La `musica_mixkit32` que
+   * estaba asociada a INU mide 628 Hz y 0,62: mucho más oscura, no sirve.
+   * Entra y sale con fundido. La pista se normaliza a −16 LUFS con `loudnorm` y
+   * el volumen sube a 1,5 para dejar el reel en −18 dBFS RMS: sin voz encima, la
+   * música puede llevar el peso. A 0,42 quedaba en −24 y no se escuchaba.
+   */
+  const musica = interpolate(
+    frame,
+    [0, P(1.2, fps), durationInFrames - P(2.2, fps), durationInFrames],
+    [0, 1.5, 1.5, 0],
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp"},
+  );
+
+  /**
    * SIN LOCUCIÓN. La versión con TTS (`scripts/rentas-voz.py`) se descartó:
    * «es muy robótica, es falsa». Sus cinco reels llevan locución humana real
    * —medido: modulación silábica 35-41 % en los de mayo a septiembre— y
@@ -125,6 +142,7 @@ export const RentasReelOctubre: React.FC = () => {
    */
   return (
     <AbsoluteFill style={{backgroundColor: "#000", fontFamily: FUENTE}}>
+      <Audio src={staticFile("assets/rentas/musica_reel.mp3")} volume={musica} />
 
       {/* 1 · Dron + gancho ─────────────────────────────────────────── */}
       <Sequence durationInFrames={P(3.6, fps)}>

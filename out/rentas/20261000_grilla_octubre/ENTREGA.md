@@ -43,8 +43,13 @@ fondo desenfocado y Valeria la rechazó — «no pueden existir esas franjas arr
 amateur». Ahora **toda foto que entra al reel llena el 9:16**; la panorámica quedó fuera y el
 tramo del precio pasó a la cocina.
 
-**Sin locución.** La versión con voz sintética también se descartó: «es muy robótica, es falsa».
-Ver más abajo.
+**Música, sin locución.** Por ahora va **sólo música y subtítulos** (decisión de Valeria). La
+pista se eligió midiendo: sus reels de julio, agosto y septiembre dan centroide espectral
+**1711–2330 Hz** y relación grave/medio **0,16–0,28** —pista clara y liviana, sin bajo pesado—.
+La elegida mide 2555 Hz y 0,10, lo más cercano de la biblioteca Mixkit del estudio. *(Ojo: la
+`musica_mixkit32` que estaba asociada a INU mide 628 Hz y 0,62 — mucho más oscura, no servía.)*
+Va normalizada a −16 LUFS y el reel queda en **−16,4 dBFS RMS**, sin clipping, con fundido de
+entrada y de salida.
 
 **Los interiores van en FOTO con Ken Burns, no en video, y por una razón de fondo:** el rodaje
 de `CALAMA/VERTICAL` que hay en Drive **no es de Valle Altiplánico** (ver el manual, §Compuerta

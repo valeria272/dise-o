@@ -232,6 +232,12 @@ raw/mascenter-terrenos/*
 !raw/mascenter-terrenos/fotos-drive-2026-03/
 !raw/mascenter-terrenos/fotos-drive-2026-03/*.jpg
 
+# LANDERA: el PDF que mandó el cliente es el insumo de scripts/landera_*.py.
+# Sin él los scripts no reproducen nada, y pesa 400 KB. Los PDF de salida NO
+# se versionan: se regeneran corriendo los dos scripts sobre este archivo.
+!raw/landera/
+!raw/landera/*.pdf
+
 # ── CREDENCIALES: nunca, jamás, al repositorio ──────────────────────────────
 # Este repo lo comparten varios diseñadores. Un token de Google acá dentro se
 # publica a todo el equipo en el siguiente push. Detectado el 31-08-2026: la

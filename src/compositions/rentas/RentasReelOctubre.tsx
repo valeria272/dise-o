@@ -1,6 +1,6 @@
 import React from "react";
 import {AbsoluteFill, Img, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig} from "remotion";
-import {Video} from "@remotion/media";
+import {Audio, Video} from "@remotion/media";
 import {ensureRentasFonts, rentas} from "../../brand/rentas";
 
 /**
@@ -104,8 +104,25 @@ export const RentasReelOctubre: React.FC = () => {
   const {fps} = useVideoConfig();
   const frame = useCurrentFrame();
 
+  /**
+   * Locución. La voz es `es-CL-LorenzoNeural` con pitch +26 Hz: el reel de
+   * septiembre del cliente mide f0 mediana 138 Hz y Lorenzo neutro cae en 105,
+   * así que se sube hasta 123 — misma familia, un punto más grave, que es el
+   * «similar pero con el tono algo cambiado» que pidió Valeria.
+   * Se genera con `scripts/rentas-voz.py`.
+   */
+  const VO: Array<[string, number]> = [
+    ["01_gancho", 0.4], ["02_areas", 7.3], ["03_precio", 13.5],
+    ["04_garantia", 18.2], ["05_cierre", 25.6],
+  ];
+
   return (
     <AbsoluteFill style={{backgroundColor: "#000", fontFamily: FUENTE}}>
+      {VO.map(([nombre, seg]) => (
+        <Sequence key={nombre} from={P(seg, fps)}>
+          <Audio src={staticFile(`assets/rentas/vo/${nombre}.mp3`)} volume={1} />
+        </Sequence>
+      ))}
 
       {/* 1 · Dron + gancho ─────────────────────────────────────────── */}
       <Sequence durationInFrames={P(3.6, fps)}>
@@ -200,7 +217,7 @@ export const RentasReelOctubre: React.FC = () => {
       </Sequence>
 
       {/* 5 · CIERRE CANÓNICO — fondo blanco ────────────────────────── */}
-      <Sequence from={P(26.2, fps)} durationInFrames={P(3.8, fps)}>
+      <Sequence from={P(26.2, fps)} durationInFrames={P(5.5, fps)}>
         <AbsoluteFill style={{background: "#fff", alignItems: "center", justifyContent: "center"}}>
           <div style={{textAlign: "center", ...useEntrada(P(0.15, fps), 16)}}>
             <Img src={staticFile("assets/rentas/logo_rentas.png")} style={{width: 420}} />

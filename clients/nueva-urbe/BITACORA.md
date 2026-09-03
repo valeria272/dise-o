@@ -39,6 +39,12 @@ descartada), contraste 9,63:1 en la portada, margen inferior 6,4–7,0 % (Paulin
 16 %), y reproducibilidad comprobada con `cmp`. Página de revisión:
 https://claude.ai/code/artifact/be393090-b380-4ee7-a20b-a79a3c36849c
 
+**ENTREGADO EN DRIVE (02-09, 20:59):** carpeta `DISEÑOS` dentro de `10. OCTUBRE`, junto al
+brief — `1xIsCSzPdHwm9gihZVlOQllMVZQp5IZdd`. Van 9 piezas más un `LEEME` con las notas para la
+CM. Hereda los permisos de la carpeta madre, así que la CM entra sin pedir acceso. El script es
+`scripts/rentas-subir-drive.py` y es idempotente: re-subir ACTUALIZA por nombre, así los
+comentarios anclados no se pierden.
+
 **Qué sigue:** las otras 5 piezas del mes — reel 6-oct, estático 13-oct, carrusel PAID
 20-oct, historias 2 y 29-oct. Todas esperan material fotográfico.
 

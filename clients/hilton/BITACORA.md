@@ -154,6 +154,29 @@ adivinar.
 3. **FEED G (7-sep)** retrocedió de `APROBADO` a `CORREGIDO` en la grilla el
    03-09. Probable error de tipeo del CM: conviene confirmarlo antes de tocarlo.
 
+**⭐⭐ Y lo primero del día, que es lo que hizo posible todo lo demás: la grilla
+SÍ se puede leer desde este PC.** El cierre de ayer dejó la S2/S3 sin tomar
+declarando un bloqueo de acceso. Era falso. El token da 404 porque tiene alcance
+`drive.file`, pero **la grilla está compartida por enlace**: baja entera y con
+formato con un `curl` sobre `uc?export=download` (78.206.603 B, calzados contra
+el `fileSize` de Drive), y `openpyxl` con `rich_text=True` devuelve el **tachado**
+y el color de cada run. Los comentarios vigentes de H, J y L salieron en dos
+minutos. Está escrito en el manual, § *CÓMO SE BAJA LA GRILLA*.
+
+De paso, **la ronda de hoy 09:33 fue SOLO DE ESTADO**: 11 celdas cambiadas y cero
+comentarios nuevos. El valor estaba en el cambio `REVISAR CONTENIDO` → `EN CAMBIOS`
+de H, J y L —luz verde para diseñar con el brief que ya estaba escrito— y en que
+lo entregado ayer quedó marcado `CORREGIDO`, la ST Emergencia incluida. Se detectó
+por **diff celda a celda** contra la copia de ayer, no leyendo la fila 15.
+
+⭐ Y quedó resuelta una de las 4 decisiones abiertas del documento de Constanza:
+**el «Intercambiemos fechas con el de cowork» está TACHADO**, o sea muerto.
+
+> ℹ️ Hallazgo que no es de Hilton pero conviene que se sepa: el `/al-dia`
+> consultaba `constanza.lizana@copywriters.cl` y daba cero desde el 28-08. La
+> grilla de Selfie es de **`constanza.olivares@`**, que sí tiene movimiento. Hay
+> dos Constanzas en el equipo. Anotado en `clients/_estado-sync.json`.
+
 ---
 
 ## 2026-09-02 (cierre) · Eli (Windows) — BETWEEN: la ST «Emergencia» de la S2, rehecha entera

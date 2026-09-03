@@ -4,6 +4,72 @@
 
 ---
 
+## 2026-09-02 (tarde y noche) — Valeria Traverso (con Claude)
+
+**Qué se hizo:** se produjo **la grilla de octubre completa** —6 piezas— **más los 2 mailings**,
+y se levantó desde cero el sistema de marca, que no existía en el estudio.
+
+**ENTREGADO** en Drive, carpeta `DISEÑOS` dentro de `10. OCTUBRE`, junto al brief:
+`1xIsCSzPdHwm9gihZVlOQllMVZQp5IZdd`. Hereda los permisos de la carpeta madre, así que la CM
+entra sin pedir acceso. El script `scripts/rentas-subir-drive.py` es idempotente: re-subir
+ACTUALIZA por nombre, así los comentarios anclados de la CM no se pierden entre rondas.
+
+| Fecha | Pieza | Estado |
+|---|---|---|
+| Jue 2 | Historia de proyecto | ✅ |
+| Mar 6 | Reel «Nuevas condiciones» · 30 s | ✅ **sin locución** |
+| Mar 6 | Mailing 1 · 4 bloques | ✅ |
+| Mar 13 | Estático «Sin comisión» | ✅ |
+| Mar 20 | Carrusel PAID «Arrienda fácil» · 5 | ✅ |
+| Mar 27 | Carrusel Halloween · 5 | ✅ |
+| Mar 27 | Mailing 2 · Halloween · 4 bloques | ✅ |
+| Jue 29 | Historia de Halloween | ✅ |
+
+**Las 21 piezas se reproducen byte a byte** con `build.py` + `render.sh` (comprobado con `cmp`).
+
+### Las cinco rondas de feedback de Valeria, y qué corrigió cada una
+
+1. **La caja del logo medía 1088×1351 en vez de 1088×821** —65 % de más, con el logotipo hundido
+   contra el borde—. Era `padding` porcentual peleando con `aspect-ratio`. Ahora va en píxeles.
+2. **«El de Halloween debería tener guiños»** → se dibujaron telarañas y murciélagos… y en la
+   ronda siguiente **se sacaron todos**: «están muy forzadas». La decoración que se ve está en
+   las fotos, que es como tiene que ser.
+3. **«No pueden existir esas franjas arriba y abajo, se ve muy amateur»** → la panorámica del
+   dormitorio iba como banda sobre fondo desenfocado. Regla nueva: **si una foto no llena el
+   9:16, no entra al reel**.
+4. **«La voz en off es muy robótica»** → se sacó. Sus cinco reels llevan voz humana real
+   (modulación silábica 35-41 %). El reel va con música y subtítulos.
+5. **Capturas de su Instagram** → la lámina numerada estaba compuesta **al revés en cuatro cosas
+   a la vez**: bloque arriba y no abajo, izquierda y no centrado, número en blanco FUERA de la
+   caja y título DENTRO de caja azul (yo lo tenía invertido), bajada suelta con negrita parcial.
+
+### Qué sigue mañana
+
+Valeria retoma el feedback. Antes de tocar nada:
+1. Leer la **página de revisión** — https://claude.ai/code/artifact/be393090-b380-4ee7-a20b-a79a3c36849c
+   (⚠️ está desactualizada: no muestra el PAID, los mailings ni las últimas correcciones).
+2. Leer `out/rentas/20261000_grilla_octubre/ENTREGA.md`, que sí está al día.
+3. Los HTML editables están en `out/rentas/20261000_grilla_octubre/editables/`: se corrige ahí,
+   se corre `build.py` y `render.sh`, y se re-sube con `rentas-subir-drive.py`.
+
+**Abierto:**
+1. **La locución del reel.** Falta el locutor, o créditos para clonar la voz desde sus propios
+   reels. El audio de referencia de los cinco meses ya está en `raw/nuevaurbe/rentas/vo_ref/`.
+   Higgsfield quedó en **0,43 créditos** y no hay clave de ElevenLabs.
+2. **Valeria dijo que «el cierre tiene cosas que no cuadran con cómo trabajamos la marca».**
+   El cierre se sacó midiendo el reel de septiembre fotograma a fotograma, así que puede que
+   esté copiando uno que ya cambiaron. **Falta que diga qué, específicamente.**
+3. **⚠️ El WhatsApp sigue sin zanjar.** La pieza de julio publicó `9951` y el brief de grilla lo
+   repite; los briefs de julio/agosto/mailing y **el sitio del proyecto** dicen `9955`.
+4. **⚠️ Precio y superficie no calzan.** Brief e Instagram: $715.000 y 59 m². `rentas.inu.cl`:
+   $780.000 y 74,76 m². La ficha oficial da tres tipologías —A 61,5 · B 77,7 · **CA 59,4**—, o
+   sea el «desde 59» calza con la CA.
+5. **5 fotos del proyecto con permiso propio** que el enlace de la carpeta no alcanza:
+   `IMG_8004-Pano` (la cancha), `IMG_7941` y dos del 13-05-2021. Conviene abrirlas.
+6. **Valle Altiplánico tiene DOS piscinas** y el brief de octubre no las nombra.
+
+---
+
 ## 2026-09-02 — Valeria Traverso (con Claude)
 
 **Qué se hizo:** Se abrió el sistema de marca de Rentas, que no existía en el estudio

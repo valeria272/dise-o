@@ -301,21 +301,28 @@ def bloque_atencion(nombre):
           formato="mail atencion", logo=False)
 
 def bloque_ficha(nombre, fondo, dir_txt, amenidades, lado="der"):
-    """La ficha del correo es UNA COLUMNA, no piezas sueltas sobre la foto.
+    """La ficha del correo, v2 — calcada de `mail1-3.png` de agosto (Diego).
 
-    De arriba a abajo: logo Valle · tarjeta de datos · la nube del precio
-    (intercalada, sobresale hacia la foto) · tarjeta de amenidades. Medido
-    sobre los mailings de septiembre de Paulina — ver base.css §FICHA DEL
-    CORREO. `lado` elige de qué lado va la columna: la 1.3 de Paulina la
-    tiene a la derecha y la 2.3 a la izquierda, según lo que muestre la foto.
+    ⚠️ 03-09-2026 (tarde). La v1 era «una columna de tres piezas apiladas» con la
+    nube intercalada, leída de los mailings de septiembre. Diego mandó SU gráfica
+    y dijo «así»: la columna azul es UNA sola caja continua, el logo Valle va
+    grande SOBRE LA FOTO, la nube cuelga abajo a la izquierda alineada al pie con
+    la tarjeta, y las amenidades van en un recuadro de borde blanco DENTRO del
+    azul. El hueco que dejaba la v1 entre los dos trozos de azul era, textual,
+    «lo que hacía ruido».
+
+    Sin píldora «Calama»: no está en su referencia y la ciudad ya la dice el
+    logotipo, que ahora se lee grande sobre la foto.
+
+    Geometría medida en base.css §FICHA DEL CORREO. `lado` elige el costado de la
+    columna; el logo y la nube se espejan solos con `col-izq`.
     """
     ams = "".join(am(a) for a in amenidades)
     pieza(nombre, fondo,
+          '<img class="logo-valle" src="img/logo_valle_blanco.png" alt="">'
           '<div class="ficha-col">'
           '<div class="ficha-datos">'
-          '<img class="logo-valle" src="img/logo_valle_blanco.png" alt="">'
           f'<div class="dir">{dir_txt}</div>'
-          '<span class="pildora-lima">Calama</span>'
           '<div class="mod">5 modelos disponibles</div>'
           '<span class="pildora-lima">desde 59 M²</span>'
           '<div class="fila-iconos">'
@@ -323,13 +330,13 @@ def bloque_ficha(nombre, fondo, dir_txt, amenidades, lado="der"):
           '<div class="sep-v"></div>'
           f'<div class="it">{I_BANO}<span>2 BAÑOS</span></div>'
           '</div>'
+          f'<div class="amenidades">{ams}</div>'
+          '</div>'
           '</div>'
           '<div class="ficha-precio">'
           '<div class="d">Arriendo desde</div>'
           '<div class="c">$715.000</div>'
           '<div class="m">mensuales</div>'
-          '</div>'
-          f'<div class="ficha-amen"><div class="amenidades">{ams}</div></div>'
           '</div>',
           formato="mail ficha" + (" col-izq" if lado == "izq" else ""), logo=False)
 

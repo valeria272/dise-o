@@ -125,6 +125,7 @@ ALIAS_DE_CARPETA = {
     "tierracalma": "tierra-calma",        # raw/tierracalma/ y out/tierracalma/
     "tierracalma-drone": "tierra-calma",  # raw/tierracalma-drone/ (rodaje DD Studio)
     "hilton-between": "hilton",   # out/hilton-between*/ (Between es marca de Hilton)
+    "copylab": "copywriters",     # out/copylab/ y assets/copylab/ (la cuenta propia)
 }
 
 
@@ -217,6 +218,12 @@ def main() -> int:
                          "significa que la regla está mal escrita, no la pieza.")
     ap.add_argument("--json", help="escribe el informe a un archivo")
     args = ap.parse_args()
+
+    # El slug que teclea la persona no siempre es el de `clients/`: las entregas de
+    # Rentas viven en `out/rentas/`, así que `--marca rentas` es lo natural. Se
+    # normaliza con la MISMA tabla que usan las rutas; sin esto el motor aborta con
+    # «rentas no tiene reglas.yaml», que es falso — las tiene en `nueva-urbe`.
+    args.marca = ALIAS_DE_CARPETA.get(args.marca, args.marca)
 
     try:
         reglas, ficha = cargar_reglas(args.marca)

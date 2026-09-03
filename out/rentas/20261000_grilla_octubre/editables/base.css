@@ -274,84 +274,91 @@ html, body { background:#000; }
 .atencion-txt .horario { background:var(--azul); color:var(--blanco); font-weight:400;
                 font-size:20px; border-radius:9999px; padding:8px 22px; }
 
-/* ══════════ FICHA DEL CORREO ══════════
-   MEDIDA sobre rentas-mail_1.3 y 2.3 de septiembre (Paulina), que es donde el
-   cliente ya aprobó esta maqueta. No es «una tarjeta azul + un precio suelto»:
-   es UNA COLUMNA de tres piezas apiladas, con el logo Valle colgado encima.
+/* ══════════ FICHA DEL CORREO — v2 ══════════
+   ⚠️ 03-09-2026 (tarde) — Diego Aguilar mandó LA GRÁFICA, no sólo el comentario:
+   `mail1-3.png` de agosto. «lo único que me hace ruido es como queda esa» → «así».
+   Su referencia manda sobre la lectura que hice de su comentario de la mañana:
+   él escribió «esquina superior izquierda» pero en su pieza el logo va CENTRADO
+   sobre la foto. Cuando el texto y la gráfica del diseñador no coinciden, manda
+   la gráfica.
 
-     logo Valle   ancho 17,1 % · centrado sobre la columna (eje x 0,8115 en la
-                  1.3, que es exactamente el centro de la columna azul)
-     tarjeta A    dirección + modelos + m² + dorms/baños   ·  top 21 %
-     la NUBE      tarjeta blanca del precio, en itálica. Va INTERCALADA entre
-                  las dos tarjetas y sobresale hacia la foto (13,3 % del lienzo
-                  por el lado de afuera, 2,3 % por el de la columna)
-     tarjeta B    amenidades  ·  pegada abajo (margen 4,2 %)
+   Lo que su pieza tiene y la v1 no:
+     · la columna azul es UNA caja continua. La v1 la partía en dos tarjetas con
+       la nube en medio y la foto asomando por el hueco: 14 % del alto de aire
+       entre los dos trozos de azul. Eso es lo que «hacía ruido».
+     · el logo Valle va GRANDE Y SOBRE LA FOTO, no dentro de la tarjeta
+     · la nube del precio va abajo a la izquierda, separada de la columna, y las
+       dos comparten línea de base al pie (93,97 % vs 94,34 %)
+     · las amenidades van en un recuadro de borde blanco DENTRO del azul, no en
+       una segunda tarjeta
 
-   ⚠️ 03-09-2026 — Diego Aguilar: «la nube también debería ir junto con el bloque
-   de la info del condominio». Antes la nube colgaba abajo a la izquierda, suelta
-   sobre la foto, y el logo flotaba al medio. Los tres van juntos.
-   El lado lo manda la foto: en la 1.3 la columna va a la DERECHA, en la 2.3 a la
-   IZQUIERDA — y el logo siempre sobre la columna, del lado que esté. */
-/* La columna va en FLUJO dentro de un contenedor absoluto: así la nube queda
-   siempre pegada al canto de la tarjeta de arriba, sin depender de cuánto texto
-   traiga la ficha. Antes iba con `top` fijo y la nube tapaba los íconos. */
-/* Centrada vertical: el logo entró DENTRO de la columna, así que la columna
-   ya no cuelga del borde como en septiembre — se centra y deja el mismo aire
-   arriba y abajo. El alto total sale casi idéntico al de la referencia
-   (0,756 del lienzo contra 0,747). */
-.mail .ficha-col { position:absolute; right:6.14%; top:50%; width:25.42%;
-                transform:translateY(-50%); }
-.mail.col-izq .ficha-col { right:auto; left:6.14%; }
-/* la nube sobresale hacia la foto: si la columna va a la izquierda, la esquina
-   redonda grande cambia de lado para que el pico apunte a la foto */
-.mail.col-izq .ficha-precio { border-radius:78px 20px 78px 20px;
-                margin-left:-8.9%; margin-right:-52.4%; }
+   MEDIDO sobre mail1-3.png, que es el mismo lienzo que el nuestro (1201×813):
+     tarjeta    x 69,30→95,25 %   y 31,73→94,34 %   ancho 25,98 %  alto 62,61 %
+     recuadro   x 71,50→93,50 %   y 70,80→90,70 %
+     logo       ancho 25,73 % del lienzo · centro x 52,46 % · centro y 61,13 %
+     nube       x 38,72→66,19 %   y 77,37→93,97 %   ancho 27,56 % alto 16,73 %
+     aire entre la nube y la tarjeta: 3,11 % del ancho
 
-/* tarjeta A — datos del condominio */
-.mail .ficha-datos { background:var(--azul); border-radius:22px; padding:22px 18px;
-                text-align:center; color:var(--blanco); }
+   La píldora lima «Calama» NO está en la referencia de agosto: sale. La ciudad
+   ya la dice el logotipo, que ahora va grande sobre la foto. (En septiembre
+   Paulina sí la lleva — si el cliente la pide de vuelta, se repone y basta.) */
+.mail .ficha-col { position:absolute; right:4.75%; top:31.73%; bottom:5.66%;
+                width:25.98%; }
+.mail.col-izq .ficha-col { right:auto; left:4.75%; }
+
+/* la tarjeta: una sola caja, de arriba abajo */
+.mail .ficha-datos { background:var(--azul); border-radius:26px;
+                padding:22px 18px 26px; text-align:center; color:var(--blanco);
+                height:100%; box-sizing:border-box;
+                display:flex; flex-direction:column; justify-content:flex-start; }
 .mail .ficha-datos .dir { font-weight:700; font-size:19px; line-height:1.25; }
 .mail .ficha-datos .mod { font-weight:700; font-size:19px; line-height:1.25; margin-top:14px; }
 .mail .pildora-lima { font-size:18px; padding:.18em .8em; margin-top:8px; }
-.mail .fila-iconos { display:flex; justify-content:center; gap:10px; margin-top:16px;
+.mail .fila-iconos { display:flex; justify-content:center; gap:10px; margin-top:18px;
                 align-items:flex-end; }
 .mail .fila-iconos .it { display:flex; flex-direction:column; align-items:center; gap:4px;
                 font-size:14px; font-weight:700; }
 .mail .fila-iconos svg { width:34px; height:34px; }
 .mail .sep-v { width:1px; align-self:stretch; background:rgba(255,255,255,.45); margin:0 4px; }
+
+/* las amenidades: recuadro de borde blanco DENTRO de la misma tarjeta */
 .mail .amenidades { display:grid; grid-template-columns:repeat(3,1fr); gap:10px 6px; }
-.mail .ficha-datos .amenidades { margin-top:16px; padding:12px 8px; border-radius:14px;
+.mail .ficha-datos .amenidades { margin-top:auto; padding:23px 8px; border-radius:14px;
                 border:2px solid rgba(255,255,255,.55); }
 .mail .amenidades .am { display:flex; flex-direction:column; align-items:center; gap:4px;
                 font-size:11px; font-weight:700; line-height:1.15; text-align:center; }
 .mail .amenidades svg { width:30px; height:30px; }
 
-/* tarjeta B — amenidades, al cierre de la columna */
-.mail .ficha-amen { background:var(--azul); border-radius:22px; padding:22px 16px;
-                color:var(--blanco); }
+/* el logo Valle, sobre la foto. Centro medido en la referencia: x 52,46 % y 61,13 %.
+   El archivo trae 8 px de padding alfa por lado, así que el <img> va a 26,21 %
+   para que el LOGOTIPO mida los 25,73 % medidos. */
+.mail.ficha > .logo-valle { position:absolute; right:auto; left:39.36%; top:50.98%;
+                width:26.21%;
+                /* La sombra NO está en la referencia de Diego: la agrego porque su
+                   pieza cae sobre un sofá y la nuestra del 06-10 cae sobre el muro
+                   beige del living, que mide L=0,649 — el logo blanco daba 1,50:1,
+                   por debajo del 2,15:1 de su propia pieza. No es un recurso nuevo:
+                   es la misma sombra que la marca ya usa en `.mail .titular` sobre
+                   foto. Si el cliente la quiere plana, se borra esta línea. */
+                filter:drop-shadow(0 4px 22px rgba(0,0,0,.55)); }
+.mail.ficha.col-izq > .logo-valle { left:auto; right:39.36%; }
 
-/* la NUBE del precio — intercalada entre las dos tarjetas y por encima de ambas.
-   Los márgenes negativos la hacen sobresalir 13,3 % del lienzo hacia la foto y
-   2,3 % por el lado de la columna: la medida de la 1.3 de septiembre. */
-.mail .ficha-precio { position:relative; z-index:3; margin:-9px -8.9% -8px -52.4%;
-                background:var(--blanco);
-                color:var(--azul); border-radius:20px 78px 20px 78px; padding:14px 40px;
+/* la NUBE del precio — abajo a la izquierda, alineada al pie con la tarjeta.
+   El escalonado del texto es de la referencia: la bajada arranca a la izquierda,
+   la cifra manda al centro y «mensuales» cierra a la derecha. */
+.mail .ficha-precio { position:absolute; z-index:3; left:38.72%; width:27.56%;
+                bottom:6.03%; height:16.73%; box-sizing:border-box;
+                background:var(--blanco); color:var(--azul);
+                border-radius:20px 78px 20px 78px; padding:10px 30px;
+                display:flex; flex-direction:column; justify-content:center;
                 text-align:center; font-style:italic; }
-.mail .ficha-precio .d { font-weight:300; font-size:19px; }
+.mail.col-izq .ficha-precio { left:auto; right:38.72%;
+                border-radius:78px 20px 78px 20px; }
+.mail .ficha-precio .d { font-weight:300; font-size:19px; text-align:left; }
 .mail .ficha-precio .c { font-weight:900; font-size:46px; line-height:1.05; }
-.mail .ficha-precio .m { font-weight:300; font-size:18px; }
-
-/* El logo Valle del correo va DENTRO de la tarjeta de datos, no sobre la foto.
-   Por qué: la ficha usa el living real del proyecto (IMG_7729-Edit-Pano), que es
-   un interior clarísimo — la zona alta mide 212-243 de luminancia en cualquier
-   recorte posible del panorama. Colgado sobre la foto, el logo blanco daba
-   1,56:1 de contraste (la referencia de septiembre da 3,46:1 porque ahí cae
-   sobre el muro beige, no sobre las pantallas de las lámparas).
-   Dentro de la tarjeta azul da 4,51:1 y además queda pegado al bloque de info,
-   que es justo lo que pidió Diego. Y no es un invento: así lo resolvió ÉL en
-   `p-19-08.png` de agosto, sobre una foto igual de clara. */
-.mail .ficha-datos .logo-valle { position:static; right:auto; top:auto; left:auto;
-                display:block; width:72%; margin:4px auto 16px; }
+.mail .ficha-precio .m { font-weight:300; font-size:18px; text-align:right; }
+.mail.col-izq .ficha-precio .d { text-align:right; }
+.mail.col-izq .ficha-precio .m { text-align:left; }
 
 /* escalas propias del correo */
 .mail .titular { text-shadow:0 3px 16px rgba(0,0,0,.35); }

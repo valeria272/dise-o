@@ -111,7 +111,7 @@ posición no era un número: era una relación.
 
 | Formato | Dónde va | Medida |
 |---|---|---|
-| **Mailing (ficha)** | **DENTRO** de la tarjeta azul de datos, arriba y centrado | 72 % del ancho de la tarjeta |
+| **Mailing (ficha)** | **SOBRE LA FOTO**, grande y centrado ⚠️ *corregido el 03-09 por la tarde — ver abajo* | ancho **25,73 %** del lienzo · centro x **52,46 %**, y **61,13 %** |
 | **Feed / estático** | primer elemento **dentro** del bloque de texto, sobre el titular | 23 % del ancho del bloque |
 | **PAID (portada)** | **no va** — el titular ya dice «en Valle Altiplánico» | — |
 | **Reel** | entra animado en la escena 2 (ver §El reel) | — |
@@ -128,25 +128,71 @@ una foto igual de clara.
 En el feed sí funciona blanco sobre la foto: el estático del 13-10 mide **8,79:1**, casi lo
 mismo que el estático de julio del cliente (**9,33:1**).
 
-#### La nube del precio va en la columna, no suelta
+#### ⭐ 03-09-2026 (tarde) — Diego mandó la gráfica, y la gráfica manda
 
-Segundo comentario de Diego, y es otra pieza del mismo sistema. La ficha del correo **no es
-«una tarjeta azul más un precio flotando»**: es **una columna de tres piezas apiladas**, y
-así está en los dos mailings de septiembre.
+Por la mañana se aplicó su comentario escrito. Por la tarde volvió sobre la misma pieza:
 
-| Elemento | Medida (fracción del lienzo) |
-|---|---|
-| Columna | ancho **25,42 %** · margen exterior **6,14 %** |
-| Tarjeta A (dirección, modelos, m², dorms/baños) | arriba de la columna |
-| **La nube** (tarjeta blanca del precio, en itálica) | **intercalada entre A y B**, sobresale **13,3 %** hacia la foto y **2,3 %** por el lado de la columna |
-| Tarjeta B (amenidades) | cierra la columna |
+> «lo único que me hace ruido es como queda esa» — `MAIL 27-10 bloque 3 ficha` —
+> y acto seguido: **«así»**, adjuntando `mail1-3.png`, la ficha de **agosto**.
 
-**El lado lo manda la foto:** la 1.3 de Paulina lleva la columna a la derecha y la 2.3 a la
-izquierda. En el CSS es la clase `col-izq` sobre la pieza.
+**La lección, y vale para cualquier marca: cuando el texto del diseñador y su gráfica no
+coinciden, manda la gráfica.** Él escribió «déjalo siempre en la esquina superior
+izquierda»; en su pieza el logo va **centrado sobre la foto**. Lo que quería decir era
+«no lo dejes flotando», no una coordenada.
 
-> ⚠️ La columna va en **flujo** dentro de un contenedor absoluto, no con `top` fijo por
-> tarjeta. Con `top` fijo, cualquier línea de texto extra en la dirección empujaba la
-> tarjeta A y **la nube tapaba la fila de dorms/baños**.
+**Qué tiene su ficha y qué tenía la nuestra:**
+
+| | La v1 (mañana) | La referencia de Diego |
+|---|---|---|
+| Columna azul | **partida en dos** tarjetas con la nube en medio y la foto asomando por un hueco de **14 % del alto** | **una sola caja continua**, de arriba abajo |
+| Logo Valle | dentro de la tarjeta azul | **grande y sobre la foto** |
+| Nube del precio | intercalada, cortando la columna | **abajo a la izquierda**, separada 3,11 % de la columna |
+| Amenidades | segunda tarjeta azul | **recuadro de borde blanco DENTRO** de la misma tarjeta |
+
+Ese hueco entre los dos trozos de azul era «lo que hacía ruido».
+
+**La geometría, medida sobre `mail1-3.png`** — que va al mismo lienzo que el nuestro
+(1201×813), así que las fracciones son directas:
+
+| Elemento | x | y | Tamaño |
+|---|---|---|---|
+| **Tarjeta azul** (única) | 69,30 → 95,25 % | 31,73 → 94,34 % | ancho **25,98 %** · alto **62,61 %** |
+| Recuadro de amenidades | 71,50 → 93,50 % | 70,80 → 90,70 % | dentro de la tarjeta, pegado al pie |
+| **Logo Valle** | centro **52,46 %** | centro **61,13 %** | ancho **25,73 %** del lienzo |
+| **La nube** del precio | 38,72 → 66,19 % | 77,37 → 93,97 % | ancho **27,56 %** · alto **16,73 %** |
+
+Dos detalles que son la firma y se pierden si no se miran:
+- **la nube y la tarjeta comparten línea de base al pie** (93,97 % contra 94,34 %);
+- el texto de la nube va **escalonado**: la bajada arranca a la izquierda, la cifra manda al
+  centro y «mensuales» cierra a la derecha.
+
+La píldora lima **«Calama» no está** en su referencia: se sacó. La ciudad ya la dice el
+logotipo, que ahora va grande sobre la foto. (En la 1.3 de septiembre Paulina sí la lleva;
+si el cliente la pide de vuelta es una línea.)
+
+#### ⚠️ El logo sobre la foto depende de la foto, y hay una que no lo aguanta
+
+Medido sobre las piezas rendidas, con el logotipo blanco puro contra el fondo de su caja:
+
+| Pieza | Contraste | |
+|---|---|---|
+| **La referencia de Diego** (agosto) | **2,15:1** | el estándar real de la marca acá — no es alto |
+| `MAIL 27-10 ficha` — foto **exterior** | **4,89:1** | ✅ más del doble que la referencia |
+| `MAIL 06-10 ficha` — foto **interior** (`IMG_7729-Edit-Pano`) | **1,79:1** | ⚠️ bajo el estándar |
+
+El living del proyecto es clarísimo y **no tiene dónde**: se barrió la posición del logo de
+lado a lado de esa foto y el contraste no pasa de **1,51:1 en ninguna parte** (el fondo
+mide L≈0,65 uniforme). No es que esté mal puesto — es que esa foto no admite un logo blanco
+encima.
+
+**Lo que se hizo:** se le agregó al logo la misma sombra que la marca ya usa en los
+titulares sobre foto (`.mail .titular`), y sube de 1,50 a **1,79:1**. La referencia de
+Diego no la lleva; se borra en una línea de `base.css` si el cliente la quiere plana.
+
+**Lo que queda abierto:** si esa ficha tiene que quedar al nivel del resto, hay que
+**cambiarle la foto**. En el material del cliente hay varias que sí dan
+(`IMG_7934` 3,26:1 · `IMG_7911-Pano` 3,04:1 · `IMG_8040-Pano` 2,84:1), pero cambiar la foto
+del mailing 1 es una decisión de contenido, no de composición — la toma la KAM.
 
 #### El margen inferior del correo: 8,7 %, no 5,5 %
 

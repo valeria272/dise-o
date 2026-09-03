@@ -4,6 +4,86 @@
 
 ---
 
+## 2026-09-03 (tarde) — Valeria Traverso (con Claude)
+
+**Qué se hizo:** se rehízo **la ficha del correo** con la composición de Diego Aguilar.
+Él volvió sobre `MAIL 27-10 bloque 3 ficha` —«lo único que me hace ruido es como queda
+esa»— y **mandó la gráfica**: `mail1-3.png`, su ficha de agosto, con un «así».
+
+### La lección, y no es sobre esta pieza
+
+**Cuando el texto del diseñador y su gráfica no coinciden, manda la gráfica.** En la
+mañana escribió «déjalo siempre en la esquina superior izquierda» y yo lo apliqué al pie de
+la letra: metí el logo dentro de la tarjeta azul. En su propia pieza el logo va **centrado
+y grande sobre la foto**. Lo que quería decir era «no lo dejes flotando suelto», no una
+coordenada.
+
+### Qué estaba mal, medido
+
+El defecto real no era el logo: era que **la columna azul estaba partida en dos** con la
+nube del precio en medio y la foto asomando por un hueco de **14 % del alto**. En la
+referencia de Diego la columna es **una sola caja continua**. Eso era «lo que hacía ruido».
+
+| | v1 (mañana) | Referencia de Diego |
+|---|---|---|
+| Columna azul | dos tarjetas separadas | **una caja continua** |
+| Logo Valle | dentro de la tarjeta | **grande, sobre la foto** |
+| Nube del precio | intercalada, cortando la columna | **abajo a la izquierda**, al pie |
+| Amenidades | segunda tarjeta azul | **recuadro de borde blanco dentro** del azul |
+
+La geometría se midió sobre su PNG, que va al mismo lienzo que el nuestro (1201×813), y el
+render **calza exacto**: tarjeta x 69,28→95,17 % / y 31,73→94,22 % contra su 69,30→95,25 % /
+31,73→94,34 %. La nube calza en x al decimal. Todo escrito en el manual §La caja blanca del
+logo y en `base.css` §FICHA DEL CORREO.
+
+Se sacó la píldora lima **«Calama»**: no está en su referencia, y la ciudad ya la dice el
+logotipo, que ahora se lee grande sobre la foto.
+
+### Lo que la medición destapó, y sigue abierto
+
+El logo blanco sobre la foto **depende de la foto**, y las dos fichas del mes no son iguales:
+
+| Pieza | Contraste del logo | |
+|---|---|---|
+| Referencia de Diego (agosto) | 2,15:1 | el estándar real de la marca acá |
+| `MAIL 27-10` — foto exterior | **4,89:1** | ✅ más del doble |
+| `MAIL 06-10` — foto interior | **1,79:1** | ⚠️ bajo el estándar |
+
+Se barrió la posición del logo de lado a lado de la foto del living y **no pasa de 1,51:1 en
+ninguna parte**: ese interior mide L≈0,65 uniforme. No está mal puesto — esa foto no admite
+un logo blanco encima. Se le agregó la sombra que la marca ya usa en `.mail .titular` y sube
+a 1,79:1; se borra en una línea si el cliente la quiere plana.
+
+**Decisión pendiente de la KAM:** si la 06-10 tiene que quedar al nivel del resto hay que
+**cambiarle la foto**. En el material del cliente hay varias que dan (`IMG_7934` 3,26:1 ·
+`IMG_7911-Pano` 3,04:1 · `IMG_8040-Pano` 2,84:1). Es decisión de contenido, no de
+composición.
+
+### Estado
+
+- ✅ Las dos fichas rendidas, **QA en verde** (`--marca rentas`, 5 reglas, 0 hallazgos).
+- ✅ `build.py` actualizado: las dos piezas se reproducen **byte a byte** (comprobado con
+  `cmp`), y se verificó que las otras 6 piezas del correo **no se movieron**.
+- ✅ `qa/motor.py`: `--marca rentas` ya resuelve a `nueva-urbe` por la misma tabla de alias
+  que usan las rutas. Antes abortaba diciendo que la marca no tenía reglas, que era falso.
+- ✅ **SUBIDO a Drive** el 03-09 a las 18:17 (21:17Z), a la misma carpeta `DISEÑOS`
+  (`1xIsCSzPdHwm9gihZVlOQllMVZQp5IZdd`). Las dos salieron como `actualizado`:
+
+  ```
+  /Users/Vale/copylab-venv/bin/python3 scripts/rentas-subir-drive.py --solo mail1-3 mail2-3
+  ```
+
+  **Verificado después de subir**, que es la parte que no se salta:
+  · `MAIL 27-10 bloque 3 ficha.png` conserva su ID `1copb5VPaudE6jWwDupd5TLIrpObymLP_` y su
+    enlace, y su `fileSize` en Drive (1.119.715 B) calza con el PNG local — o sea subió el
+    contenido nuevo, no quedó el viejo;
+  · `MAIL 06-10 bloque 3 ficha.png` conserva `1iwTfNkUebjF9fUzviw2bkpeKPwTxhZ3X`;
+  · **los 4 comentarios de Diego siguen anclados** y la carpeta sigue teniendo 22 archivos
+    (no se duplicó nada).
+
+- 📄 Página de la ronda (antes / después / medidas):
+  https://claude.ai/code/artifact/0f7c3caf-658f-4a93-8beb-8c2ea794d134
+
 ## 2026-09-03 (mañana) — Valeria Traverso (con Claude)
 
 **Qué se hizo:** se aplicó la **ronda de Diego Aguilar** sobre la entrega de octubre (sus 4

@@ -349,14 +349,15 @@ pieza("rentas_mail1-4_cierre", "mail/m1_cierre.jpg",
 
 # ── MAILING 2 · martes 27 de octubre · Halloween ───────────────
 pieza("rentas_mail2-1_banner", "mail/m2_banner.jpg",
-      '<div class="bloque abajo">'
+      '<div class="bloque alto-mail">'
       '<div class="titular t-m-xl caja-sola">'
       '<span class="marca-caja lima">FELIZ HALLOWEEN</span></div>'
       + titular("Arrienda sin comisión", "en Valle Altiplánico", tam="t-m-l")
       + '<div class="titular t-m-s caja-sola">'
         '<span class="marca-caja azul">Garantía de 1,5 meses hasta en 6 cuotas</span></div>'
       + "</div>",
-      formato="mail banner", velo="velo-abajo-firme")
+      formato="mail banner", velo="velo-arriba-mail")
+
 bloque_atencion("rentas_mail2-2_atencion")
 bloque_ficha("rentas_mail2-3_ficha", "mail/m2_ficha.jpg",
              "Condominio Valle Altiplánico<br>Calama",

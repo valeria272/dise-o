@@ -93,6 +93,15 @@ dominio Copywriters, sin «cualquiera con el enlace»— y el enlace de la carpe
 sacó por el conector de Drive, que sí usa la sesión de Valeria. **Hay otros 4 archivos en esa
 carpeta con el mismo problema**: `IMG_8004-Pano` (la cancha), `IMG_7941` y dos del 13-05-2021.
 
+### El banner del mailing de Halloween
+El primero iba con la fachada desenfocada y luces de bokeh, y quedaba plano. Ahora la escena
+tiene **familias paseando en Halloween** —una madre con dos niños disfrazados de esqueleto y de
+brujita, con baldes de calabaza, y un padre con su hija— a escala correcta respecto del edificio.
+**El condominio es el real:** la foto se pasó como referencia a Nano Banana Pro con la instrucción
+de no tocar arquitectura, vegetación ni encuadre; sólo cambia la luz a atardecer y se suman las
+figuras. El texto **sube al 14,5 %** porque en el banner de agosto iba abajo, pero ahí la foto era
+una fachada vacía: con gente en el tercio inferior, el bloque tapaba justo lo que da la escena.
+
 ### El estático del 13-oct
 Pieza de **ficha**: lleva los dos logos, la **fila de atributos** y el **botón de WhatsApp**, igual
 que el estático de julio que el cliente aprobó. Fondo: el quincho real (escala 1,70×).

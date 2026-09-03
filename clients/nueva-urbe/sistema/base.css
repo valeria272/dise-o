@@ -328,3 +328,10 @@ html, body { background:#000; }
 /* velo suave ARRIBA: el texto de estas láminas vive en el tercio superior */
 .velo-arriba-firme { position:absolute; inset:0;
    background:linear-gradient(to bottom, rgba(0,0,0,.52) 0%, rgba(0,0,0,.18) 34%, transparent 52%); }
+
+/* Banner de correo con gente en la foto: el texto sube. En agosto iba abajo
+   porque la foto era una fachada vacía; si hay figuras en el tercio inferior,
+   el bloque las tapa y se pierde justo lo que da la escena. */
+.mail .bloque.alto-mail { top:14.5%; bottom:auto; }   /* bajo la caja del logo, que llega al 11,9 % */
+.velo-arriba-mail { position:absolute; inset:0;
+   background:linear-gradient(to bottom, rgba(0,0,0,.55) 0%, rgba(0,0,0,.20) 42%, transparent 62%); }

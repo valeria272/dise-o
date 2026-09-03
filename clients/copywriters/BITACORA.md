@@ -1,0 +1,60 @@
+# Bitácora — COPYWRITERS / Grupo Copylab (cuenta propia)
+
+> Una entrada por sesión, la más nueva arriba. Sirve para que otra persona retome
+> la cuenta mañana sin preguntar nada. Se escribe en el `/cierre`.
+>
+> Esta cuenta incluye el **feed** (Creative OS) y la **microserie de G.CL**, que es
+> la familia 06 del mismo sistema.
+
+---
+
+## 2026-09-03 · Valeria — Creative OS v1.1 + G.CL Cap. 02 «Revisión 7»
+
+**Qué se hizo.** Dos frentes.
+
+*Feed.* Se reconstruyó desde cero el sistema visual de `@copywriters.cl` como
+**sistema de dirección de arte, no de plantillas**: 4 voces tipográficas (Archivo
+variable, DM Serif Italic, IBM Plex Mono, Caveat), 6 colores, y **una pieza = un
+archivo** con su dirección de arte en la cabecera — no existe composición genérica
+con prop `plantilla`, y esa ausencia ES el sistema. Se rindieron **13 stills** que
+pasan QA. Después Valeria aprobó la identidad y pidió **amplitud creativa**: se
+agregó la capa de **12 mecanismos creativos** (v1.1) y se entregaron **12 ideas
+sin diseñar** en un concept board, una por mecanismo.
+
+*G.CL.* Preproducción completa del **Cap. 02 «Revisión 7»** (el cliente pide volver
+a la versión 1 después de siete rondas). Siete documentos, **12 keyframes master
+generados y aprobados**, y montaje definitivo de **584 frames / 19,47 s a 112,5 BPM**
+con escalada de pings, rewind como clímax y post-gag de personaje.
+
+**Dónde quedó.**
+- Feed: `creative-system/` (7 docs + concept board) · motor en `src/brand/copylab/`
+  · piezas en `src/compositions/copylab/` · renders en `out/copylab/v1/` ·
+  QA en `clients/copywriters/reglas.yaml`.
+- G.CL: `gcl-agent/cap02/` — 8 documentos + `keyframes/` con los 12 finales en PNG
+  y los descartes en JPEG. Montaje en `07_MONTAJE.md`.
+- Punto de entrada de todo: [`docs/RETOMAR-03-09-2026.md`](../../docs/RETOMAR-03-09-2026.md).
+- **Nada de video generado todavía.**
+
+**Qué sigue.**
+1. **G.CL:** regenerar **KF03** sin los audífonos humanos sobre el casco (1 generación),
+   subir los 12 keyframes a una URL pública —`pixverse-v5-transition` pide URLs, no
+   base64— y extender `scripts/magnific-video.py` para primer y último fotograma.
+   Después: 8 generaciones de video, QC y montaje en Remotion.
+2. **Feed:** producir el primer lote de 3 ideas del concept board, en el orden
+   `12 · 01 · 05`.
+
+**Abierto.**
+- **Cuáles de las 12 ideas del concept board se aprueban** — decisión de Valeria.
+- **Los datos de la idea 10 (WORK)**: cliente, problema real, pieza final y, si
+  lleva número, el dato auditado. Sin eso WORK no se produce: no inventa campañas.
+- **El número del capítulo de G.CL.** `R02_STORYBOARD.md` ya es «Turno de noche»
+  (40 s, montado, 20 clips). Hay que decidir si «Revisión 7» toma el 02 y «Turno de
+  noche» pasa al 03.
+- **El −37 % de la pieza PROOF es un dato de maqueta** y la foto de PEOPLE es un
+  placeholder. Ninguno se publica así.
+- **La agencia no tiene fotografía propia versionada.** Es el hueco más grande del
+  sistema: PEOPLE y buena parte de WORK dependen de material que no existe.
+- **Migrar `AGENTE SOCIAL MEDIA`** fuera de `GclPost`, que quedó deprecado.
+- Dos hexadecimales desincronizados en `src/brand/gcl.tokens.json` (`#FF2D8B` y
+  `#FF6B3D`); los correctos son `#FF2D8D` y `#FF683D`. No se tocaron porque los lee
+  el agente social en producción.

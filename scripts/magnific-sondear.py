@@ -35,6 +35,20 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Lo que usamos hoy + lo que ofrece el catálogo público de Magnific.
 MODELOS = [
+    # ── VIDEO (agregado 03-09-2026: el sondeo anterior no miraba video) ────────
+    ("image-to-video/pixverse-v5-transition", "VIDEO · PRIMER Y ÚLTIMO FOTOGRAMA ⭐"),
+    ("image-to-video/pixverse-v5",            "VIDEO · Pixverse v5"),
+    ("image-to-video/kling-v2-1-pro",         "VIDEO · Kling 2.1 pro"),
+    ("image-to-video/kling-v2-1-master",      "VIDEO · Kling 2.1 master"),
+    ("image-to-video/kling-v2-5-pro",         "VIDEO · Kling 2.5 pro"),
+    ("image-to-video/minimax-hailuo-02-1080p","VIDEO · Hailuo 02 1080p"),
+    ("image-to-video/wan-v2-2-720p",          "VIDEO · Wan 2.2 720p"),
+    ("text-to-image/seedream-v4",             "IMAGEN · Seedream 4"),
+    ("text-to-image/seedream-v4-edit",        "IMAGEN · Seedream 4 edit"),
+    ("text-to-image/flux-dev",                "IMAGEN · Flux dev"),
+    ("text-to-image/hyperflux",               "IMAGEN · HyperFlux"),
+    ("image-expand/flux-pro",                 "EDICIÓN · outpaint"),
+
     ("mystic",                          "texto→imagen 2K"),
     ("gemini-2-5-flash-image-preview",  "Nano Banana · imagen→imagen"),
     ("image-upscaler",                  "escalado creativo"),
@@ -85,7 +99,7 @@ def main():
                 urllib.request.urlopen(req, context=CTX, timeout=25)
                 ok = True
             except urllib.error.HTTPError as e:
-                ok = e.code != 404
+                ok = e.code != 404   # 502/503 = la ruta EXISTE y el proveedor está ocupado
             (tengo if ok else no_tengo).append(ruta)
             print(f"{ruta:<34} {'✅' if ok else '❌':4} {desc}  (se consulta con GET)")
             continue
@@ -101,7 +115,7 @@ def main():
             ok = True                      # 200: aceptó — ojo, pudo encolar
             desc += "  ⚠️ aceptó el POST: pudo consumir un crédito"
         except urllib.error.HTTPError as e:
-            ok = e.code != 404             # 400/401/403 → el endpoint existe
+            ok = e.code != 404   # 502/503 = la ruta EXISTE y el proveedor está ocupado             # 400/401/403 → el endpoint existe
         except Exception as e:
             print(f"{ruta:<34} {'—':4} red: {type(e).__name__}")
             continue

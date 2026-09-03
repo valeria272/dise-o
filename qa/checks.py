@@ -406,6 +406,47 @@ def contraste_texto(a, ctx, args):
     return None
 
 
+def color_fuera_de_sistema(a, ctx, args):
+    """Un color SATURADO y PLANO que no pertenece a la paleta de la marca.
+
+    NACE DE: el sistema de Copywriters renuncia deliberadamente a la plantilla,
+    así que la paleta queda cargando casi sola con la consistencia del feed. Un
+    séptimo color no se nota en una pieza; en veinte convierte la grilla en un
+    muestrario.
+
+    POR QUÉ NO ALCANZABA `paleta_cerrada`: esa comprobación mira sólo píxeles de
+    BAJA saturación (s < 0,18), porque nació del caso Casablanca, donde el
+    problema era una deriva entre grises. Un azul SaaS o un verde lime metidos
+    en una pieza son colores SATURADOS y le pasan por el lado sin tocarla —
+    comprobado el 03-09-2026: inyectando #5B6CFF sobre una pieza real,
+    `paleta_cerrada` devolvió «ok» y esta devolvió 100% fuera.
+
+    Sigue mirando sólo tinta PLANA, por la misma razón de siempre: una
+    fotografía contiene legítimamente cualquier color, y el packshot de un
+    cliente todavía más.
+    """
+    x0, y0, x1, y1 = _region(a, args.get("region"))
+    sub = a[y0:y1, x0:x1]
+    _, s_, v = _hsv(sub)
+
+    cand = ((s_ > args.get("sat_min", 0.30)) & (v > 0.15)
+            & _mascara_plana(sub, max_std=args.get("max_std_local", 1.6)))
+    if cand.sum() < args.get("min_pixeles", 1500):
+        return None
+
+    permitidos = _rgb_a_lab(np.array(
+        [[int(c[i:i + 2], 16) for i in (1, 3, 5)] for c in args["colores"]], dtype=float))
+    lab = _rgb_a_lab(sub)[cand]
+    d = np.linalg.norm(lab[:, None, :] - permitidos[None, :, :], axis=2).min(axis=1)
+
+    fuera = float((d > args.get("delta_e", 22.0)).mean())
+    tope = args.get("max_fraccion", 0.18)
+    if fuera > tope:
+        return (f"{fuera * 100:.1f}% del color plano y saturado no pertenece al "
+                f"sistema (tope {tope * 100:.0f}%, ΔE>{args.get('delta_e', 22.0)})")
+    return None
+
+
 def firma_luminancia(a, ctx, args):
     """El velo sobre la foto se comporta como en las piezas aprobadas.
 
@@ -719,6 +760,7 @@ REGISTRO = {
     "franja_legal": franja_legal,
     "color_prohibido": color_prohibido,
     "paleta_cerrada": paleta_cerrada,
+    "color_fuera_de_sistema": color_fuera_de_sistema,
     "zona_segura": zona_segura,
     "desenfoque_parcial": desenfoque_parcial,
     "franja_estirada": franja_estirada,

@@ -8,30 +8,57 @@
 You are a professional video editor. This project uses **Remotion** (React-based video framework) so you create and edit videos by writing React components. Users describe videos in natural language; you write the code.
 
 
-## GCL — piezas estáticas del feed (desde 02-09-2026)
+## COPYWRITERS — Creative Operating System v1.0 (desde 03-09-2026)
 
-Este proyecto ya no hace solo video: **también renderiza las piezas gráficas del feed de
-Grupo Copylab** (`@copywriters.cl`). Decisión de Valeria — un solo sistema de diseño para
-video y estático.
+El feed de `@copywriters.cl` **se reconstruyó desde cero**. Este proyecto ya no
+hace sólo video: produce las piezas gráficas de la cuenta propia con un sistema
+de dirección de arte, no con plantillas.
+
+> **La regla madre: Copywriters no tiene una plantilla. Tiene criterio.**
+> La consistencia sale de tipografía, dirección de arte, tratamiento fotográfico,
+> paleta, tono, composición, intervención y jerarquía — **no** de repetir el mismo
+> layout. Si el feed empieza a parecer un template de Instagram, el sistema falló.
 
 | Qué | Dónde |
 |---|---|
-| Sistema visual (colores, tipos, formatos, prohibiciones) | `src/brand/gcl.tokens.json` |
-| Fuentes + helpers | `src/brand/gcl.ts` · componentes en `src/brand/gclUI.tsx` |
-| Las 6 plantillas | `src/compositions/gcl/GclPost.tsx` |
-| Composiciones | `GclPost` 1080×1350 · `GclHistoria` 1080×1920 · `GclCuadrado` 1080×1080 |
+| **La ley** | [`creative-system/COPYWRITERS_CREATIVE_OS.md`](creative-system/COPYWRITERS_CREATIVE_OS.md) |
+| Tokens (los lee TypeScript **y** Python) | `src/brand/copylab/tokens.json` |
+| Motor: fuentes · tipografía · mano · lienzo | `src/brand/copylab/` |
+| Las piezas — **una pieza = un archivo** | `src/compositions/copylab/` |
+| Reglas ejecutables de QA | `clients/copywriters/reglas.yaml` |
+| Manual operativo de la cuenta | [`clients/copywriters/CLAUDE.md`](clients/copywriters/CLAUDE.md) |
+| Playbooks de imagen, motion, formatos, anti-patrones | `creative-system/*.md` |
+| Lote v1 renderizado (13 stills) | `out/copylab/v1/` |
 
 ```bash
-npx remotion still GclPost out/gcl/pieza.png --props='{"plantilla":"resultado","cifra":"471%","titulo":"Aumento de alcance"}'
+./node_modules/.bin/remotion still CL-Signal out/copylab/v2/01-signal.png \
+  --browser-executable="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+python3 qa/motor.py --marca copywriters out/copylab/v2/*.png
 ```
 
-Normalmente **no se llama a mano**: lo pide el agente social con
-`AGENTE SOCIAL MEDIA/tools/remotion_render.py`. La guía completa está en
-`AGENTE SOCIAL MEDIA/docs/SISTEMA-VISUAL.md`.
+**Las cuatro voces** (en `public/assets/fonts/copywriters/`):
+Archivo variable (impacto) · DM Serif Display Italic (editorial) ·
+IBM Plex Mono (data) · Caveat (mano).
 
-⚠️ El feed es **negro + rosado eléctrico + coral** (el sistema del Agente G, ver
-`gcl-agent/GCL_CHARACTER_BIBLE.md`). El crema/navy/**lime** de `src/brand/copywriters.ts`
-es el de la **web** y no se usa en las piezas del feed.
+**La paleta:** `#080F14` tinta · `#F2F4F6` off-white · `#FFFFFF` blanco ·
+`#FF2D8D` **Copy Pink** (la firma) · `#FF683D` coral · `#9D4EDD` púrpura.
+
+⚠️ **No existe una composición genérica con un prop `plantilla`, y esa ausencia
+ES el sistema.** Si vas a agregar una pieza, agrégala como archivo propio con su
+dirección de arte escrita en la cabecera.
+
+⚠️ El crema/navy/**lime** de `src/brand/copywriters.ts` es el de la **web** y no
+entra al feed.
+
+> 🗄️ **Deprecado el 03-09-2026:** el sistema anterior del feed
+> (`src/compositions/gcl/GclPost.tsx`, 6 plantillas con halos, anillos de LEDs,
+> pastillas redondeadas y firma obligatoria). Sigue vivo porque lo invoca
+> `AGENTE SOCIAL MEDIA/tools/remotion_render.py`; migrarlo es una decisión
+> pendiente de Valeria. Veredicto completo en
+> [`creative-system/AUDITORIA.md`](creative-system/AUDITORIA.md).
+>
+> **El personaje G.CL no se deprecó:** `gcl-agent/GCL_CHARACTER_BIBLE.md` y sus
+> cinco candados siguen mandando, y ahora es la familia 06 del sistema.
 
 ---
 
@@ -97,6 +124,7 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | [`docs/PORTAL-VALIDACIONES.html`](docs/PORTAL-VALIDACIONES.html) | **El cliente aprueba en el portal, no por WhatsApp.** Guía completa para KAM y CM: cómo entrar, el mes paso a paso, y **cómo se tienen que llamar los archivos que entrega diseño** para que el portal los levante solo |
 | [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md) | **Qué modelos de imagen tenemos realmente** y cuáles no usamos. Incluye Nano Banana Pro (texto legible + 4K, ya incluido en el plan) y la regla de que el relight NO va sobre el producto |
 | [`credentials/LEEME.md`](credentials/LEEME.md) | **Las credenciales del estudio** — el llavero cifrado que viaja en el repo: cómo abrirlo, qué trae y cómo rota Valeria una clave |
+| [`docs/HEYGEN-GEMELA-DIGITAL.md`](docs/HEYGEN-GEMELA-DIGITAL.md) | **Clonar a Valeria en HeyGen** — Digital Twin de video con Avatar V (nunca desde foto), qué grabar, texto del consentimiento, conector y pipeline. Skills en `~/.claude/skills/heygen-skills` |
 | [`docs/ONBOARDING-DISENADORES.md`](docs/ONBOARDING-DISENADORES.md) | Diseñador nuevo en el equipo |
 | [`docs/GUIA-INSTALACION.html`](docs/GUIA-INSTALACION.html) | **Instalar el estudio en un Mac** — guía de 8 pasos para diseñadores, sin saber terminal |
 | [`docs/GUIA-INSTALACION-WINDOWS.html`](docs/GUIA-INSTALACION-WINDOWS.html) | **Instalar el estudio en Windows** — la misma guía con Git/Python aparte, PowerShell y las trampas de OneDrive |

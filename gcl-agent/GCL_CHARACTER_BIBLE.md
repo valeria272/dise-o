@@ -45,6 +45,39 @@ Habla en español de Chile con tuteo (regla del monorepo — nada de voseo).
 - Cute está bien; lo PROHIBIDO es que se vea barato, infantil de colores
   primarios, o genérico. Premium collectible siempre.
 
+## Registro de actuación — DEADPAN (feedback de Valeria, 03-09-2026)
+
+> **G.CL es un creativo senior atrapado dentro de un robot chico.**
+> Cuanto menos reacciona, más gracioso es. **Deadpan > cute.**
+
+**Prohibido:** saltos · baile · gesticulación cartoon · caras · celebraciones ·
+emojis en el visor · movimientos rápidos innecesarios.
+
+**Y prohibido también:** ⛔ **accesorios antropomórficos.** Nada que lo convierta
+en mascota. Los pods coral con anillo **son parte del casco** —sus orejas, no un
+accesorio— y **no se sacan nunca**. Si un guion pide que se quite unos audífonos,
+se cambia el guion.
+
+**Permitido:** micro-movimientos · pausas · miradas · inclinación mínima de cabeza ·
+silencio · timing incómodo · resignación · **quedarse absolutamente quieto**.
+
+Tolerancias medibles, calibradas en el Cap. 02
+([`cap02/02_LOCKS.md`](cap02/02_LOCKS.md)): inclinación de cabeza ≤ 6° · rotación
+≤ 25° **sin que el cuerpo acompañe** · brazos nunca por sobre el hombro ·
+**máximo 1 microgesto por plano** · ≥ 18 frames de espera antes de cualquier reacción.
+
+## Escala — se ancla a OBJETOS, no a centímetros
+
+⚠️ Corregido el 03-09-2026. Decir «40 cm» no se puede verificar mirando un frame, y
+además era imposible: un robot de 40 cm sentado en una silla de oficina tiene la
+cabeza bajo el canto del escritorio y no llega al teclado.
+
+| Ancla | Relación |
+|---|---|
+| **La silla** | el respaldo sube **por encima del casco** por los dos lados |
+| **Los pies** | **cuelgan en el aire**, nunca tocan el suelo |
+| El teclado | de tamaño humano, casi tan ancho como él con la silla |
+
 ## Paleta (obligatoria)
 
 | Rol | Color |

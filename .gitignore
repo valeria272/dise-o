@@ -392,3 +392,25 @@ out/rentas/**/mail/
 !public/assets/hilton/between/fotos-gradadas/togo-salida-3.jpg
 !public/assets/hilton/between/ia-sept/togo-trio-brownie.png
 !public/assets/hilton/between/fotos-gradadas/togo-trio-brownie.jpg
+# ── COPYWRITERS · Creative OS v1.0 (03-09-2026) ──────────────────────────────
+# Regla del estudio: si una pieza se entregó, su script Y sus fondos se
+# commitean el mismo día (memoria `el-render-vuelve-al-repo`). Revex rehízo tres
+# rondas de cero por no hacerlo.
+#
+# Acá el material es además el sistema mismo: las texturas de grano y papel se
+# generan con semilla fija y los montajes de WORK dependen del recorte alfa del
+# packshot. Sin estos archivos, `remotion still CL-Work` no reproduce la pieza.
+!public/assets/copylab/
+!public/assets/copylab/**
+!out/copylab/
+!out/copylab/**
+
+# ── G.CL · CAP.02 «Revisión 7» — los keyframes master (03-09-2026) ───────────
+# Los 12 keyframes aprobados NO son material bruto: son el insumo de las 8
+# generaciones de video y **no se regeneran idénticos nunca más** (generación con
+# IA). Si se pierden, el capítulo se rehace de cero — que es exactamente lo que
+# le pasó a Revex por no commitear los fondos el mismo día
+# (memoria `el-render-vuelve-al-repo`).
+# Los descartes y la hoja de contacto van en JPEG: son evidencia, no producción.
+!gcl-agent/cap02/
+!gcl-agent/cap02/**

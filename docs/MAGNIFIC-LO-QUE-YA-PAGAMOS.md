@@ -1,6 +1,7 @@
 # Magnific / Freepik — lo que ya pagamos y no estábamos usando
 
-> Verificado contra la API con nuestra clave el **28-08-2026**.
+> Verificado contra la API con nuestra clave el **28-08-2026**, **revisado y ampliado
+> el 03-09-2026** — se agregó todo el catálogo de VIDEO, que no estaba.
 > Rehacer esta verificación cuando cambie el plan: `python3 scripts/magnific-sondear.py`
 
 Freepik **se rebrandeó a Magnific el 28-04-2026**. La documentación vive ahora en
@@ -65,12 +66,65 @@ imagen, cuando hay que respetar una composición precisa, o cuando se quiere par
 de varias referencias a la vez. Para fondos y ambientes, Mystic sigue estando bien
 y es más barato.
 
-## Lo que la cuenta NO tiene (verificado, dan 404)
+## 🎬 VIDEO — la parte que faltaba en este documento
 
-`seedream-v4-5` · `flux-2-pro` · `flux-2-turbo` · `flux-dev` · `hyperflux` ·
-`remove-background`
+**Verificado el 03-09-2026.** Siete modelos de video en el plan, y ninguno se
+estaba usando fuera de `scripts/magnific-video.py`.
 
-Están en el catálogo público de Magnific pero no en nuestro plan.
+| Endpoint | Qué hace | Nota |
+|---|---|---|
+| `/v1/ai/image-to-video/pixverse-v5-transition` | **PRIMER Y ÚLTIMO FOTOGRAMA** | ⭐ pide `prompt` + `first_image_url` + `last_image_url` |
+| `/v1/ai/image-to-video/pixverse-v5` | imagen → video | |
+| `/v1/ai/image-to-video/kling-v2-1-pro` | imagen → video, calidad alta | el que usa el script hoy |
+| `/v1/ai/image-to-video/kling-v2-1-master` | imagen → video, el nivel de arriba | |
+| `/v1/ai/image-to-video/kling-v2-5-pro` | Kling 2.5 | **nuevo, no estaba fichado** |
+| `/v1/ai/image-to-video/minimax-hailuo-02-768p` / `-1080p` | Hailuo 02 | pide sólo `prompt` |
+| `/v1/ai/image-to-video/wan-v2-2-720p` | Wan 2.2 | pide `image` |
+
+### ⭐ El hallazgo que cambia una producción
+
+`pixverse-v5-transition` es un modelo de **transición entre dos fotogramas**: se le
+dan el primero y el último y él inventa el medio.
+
+Eso resuelve el problema de raíz del capítulo 01 de G.CL —los planos parecían
+clips independientes porque con un solo fotograma de entrada nadie controla dónde
+TERMINA cada clip—. Con primer y último fotograma, **el último frame de un plano
+ES el primero del siguiente por construcción**, no por puntería.
+
+⚠️ **Pide URLs, no base64.** Los keyframes tienen que estar accesibles por HTTP.
+Es la única fricción real de este endpoint y hay que resolverla antes de producir.
+
+⚠️ `scripts/magnific-video.py` hoy manda **una sola imagen**. Para usar transición
+hay que extenderlo — es un cambio chico y está pendiente.
+
+## Lo que la cuenta NO tiene
+
+`flux-2-pro` · `flux-2-turbo` · `veo3` · `seedance` · `text-to-speech` (la ruta
+estable; la beta responde) · `lipsync` · `avatar`
+
+> 🔄 **Corregido el 03-09-2026.** La versión anterior de este documento daba por
+> ausentes `seedream-v4`, `seedream-v4-edit`, `flux-dev`, `hyperflux` y
+> `remove-background`. **Los cinco responden.** O el plan cambió, o se sondearon
+> con la ruta equivocada. Vuelven a la lista de disponibles:
+
+| Endpoint | Qué hace |
+|---|---|
+| `/v1/ai/text-to-image/seedream-v4` | texto → imagen |
+| `/v1/ai/text-to-image/seedream-v4-edit` | **edición de imagen por instrucción** |
+| `/v1/ai/text-to-image/flux-dev` | texto → imagen |
+| `/v1/ai/text-to-image/hyperflux` | texto → imagen, rápido |
+| `/v1/ai/beta/image-remove-background` | quitar fondo |
+| `/v1/ai/image-expand/flux-pro` | **outpaint / ampliar el encuadre** |
+| `/v1/ai/text-to-icon` | iconos |
+
+### ⛔ Una trampa nueva de sondeo: 502 y 503 NO son 404
+
+Un `502` o un `503` significan que **la ruta existe** y el proveedor de atrás está
+ocupado. Si se cuentan como ausentes —que es lo natural— se descartan modelos que
+sí están. El 03-09-2026 aparecieron así `mystic`, `kling-v2-1-pro`,
+`kling-v2-5-pro`, `image-edit`, `remove-background` y `text-to-speech` beta.
+
+**Regla:** sólo el `404` prueba ausencia. Todo lo demás es «existe».
 
 ## ⛔ Regla dura: el relight NO va sobre el producto
 

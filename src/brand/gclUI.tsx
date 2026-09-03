@@ -1,3 +1,35 @@
+// ⚠️⚠️ DEPRECADO — 03-09-2026 ⚠️⚠️
+// ============================================================================
+// Este archivo es el SISTEMA VIEJO del feed de @copywriters.cl. Lo reemplaza el
+// COPYWRITERS CREATIVE OPERATING SYSTEM v1.0:
+//
+//     creative-system/COPYWRITERS_CREATIVE_OS.md   ← la ley
+//     src/brand/copylab/                           ← el motor
+//     src/compositions/copylab/                    ← las piezas (una por archivo)
+//
+// POR QUÉ SE DEPRECÓ. El brief del 03-09-2026 pide explícitamente lo contrario
+// de lo que hace este archivo. Contradicciones puntuales, todas en la lista de
+// prohibiciones de src/brand/copylab/tokens.json:
+//
+//   · `Halo` — orbe rosado difuso con blur: gradiente decorativo.
+//   · `AnilloLed` — 46 puntos en círculo: partículas.
+//   · `Pastilla` — etiqueta con borderRadius: chip de SaaS.
+//   · `CALOR` / `PROFUNDO` — gradientes de fondo.
+//   · `Firma` pintada en TODAS las piezas: el logo se gana su lugar, no se pone
+//     por costumbre (CREATIVE_OS §7 — en el lote nuevo va en 1 de 9).
+//   · Y lo de fondo: `plantilla: "statement" | "resultado" | "tip" | ...`, seis
+//     layouts fijos con campos que se rellenan. Eso ES una plantilla, y el
+//     sistema nuevo existe justamente para no tener una.
+//
+// POR QUÉ NO SE BORRÓ. `AGENTE SOCIAL MEDIA/tools/remotion_render.py` invoca
+// esta composición: borrarla hoy deja al agente social sin poder publicar.
+// Sigue registrada en Root.tsx y sigue funcionando.
+//
+// PENDIENTE PARA VALERIA: decidir cuándo se migra el agente social a las
+// composiciones CL-*. Es una decisión de operación, no de diseño.
+// Detalle completo: creative-system/AUDITORIA.md
+// ============================================================================
+
 // ============================================================================
 // GCL — componentes compartidos del sistema visual (JSX).
 // Los tokens y las fuentes viven en `gcl.ts`; acá solo lo que se dibuja.

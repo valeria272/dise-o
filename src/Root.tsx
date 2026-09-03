@@ -2,6 +2,19 @@ import {Composition, Folder} from "remotion";
 
 // Compositions
 import {ShowcaseComposition} from "./compositions/Showcase";
+
+// COPYWRITERS — Creative Operating System v1.0. Una pieza = un archivo = una
+// dirección de arte. No hay una composición "CopylabPost" con un prop `plantilla`,
+// y esa ausencia es el sistema: ver creative-system/COPYWRITERS_CREATIVE_OS.md §1.
+import {Signal} from "./compositions/copylab/Signal";
+import {Metafora} from "./compositions/copylab/Metafora";
+import {Work} from "./compositions/copylab/Work";
+import {Proof} from "./compositions/copylab/Proof";
+import {People} from "./compositions/copylab/People";
+import {Gcl} from "./compositions/copylab/Gcl";
+import {TypeLab} from "./compositions/copylab/TypeLab";
+import {ReelCover} from "./compositions/copylab/ReelCover";
+import {Carrusel} from "./compositions/copylab/Carrusel";
 import {RentasReelOctubre} from "./compositions/rentas/RentasReelOctubre";
 import {NuevaUrbeFacilidadesReel, NU_REEL_DURATION, NU_REEL_FPS} from "./compositions/NuevaUrbeFacilidadesReel";
 import {VideoSquare01} from "./compositions/VideoSquare01";
@@ -95,6 +108,9 @@ import {SelfieCarruselFrizz} from "./compositions/SelfieCarruselFrizz";
 import {SelfieCarruselEmoji} from "./compositions/SelfieCarruselEmoji";
 import {SelfieCarruselFiestas} from "./compositions/SelfieCarruselFiestas";
 import {SelfieCarruselClass} from "./compositions/SelfieCarruselClass";
+
+const clFeed = {durationInFrames: 1, fps: 30, width: 1080, height: 1350} as const;
+const clStory = {durationInFrames: 1, fps: 30, width: 1080, height: 1920} as const;
 
 export const RemotionRoot: React.FC = () => {
   const btFeed = {durationInFrames: 1, fps: 30, width: 1080, height: 1350} as const;
@@ -807,6 +823,19 @@ export const RemotionRoot: React.FC = () => {
           width={1080}
           height={1920}
         />
+      </Folder>
+      <Folder name="Copywriters">
+        {/* Feed 4:5 — el formato principal del sistema. */}
+        <Composition id="CL-Signal"   component={Signal}   {...clFeed} />
+        <Composition id="CL-Metafora" component={Metafora} {...clFeed} />
+        <Composition id="CL-Work"     component={Work}     {...clFeed} />
+        <Composition id="CL-Proof"    component={Proof}    {...clFeed} />
+        <Composition id="CL-People"   component={People}   {...clFeed} />
+        <Composition id="CL-Gcl"      component={Gcl}      {...clFeed} />
+        <Composition id="CL-TypeLab"  component={TypeLab}  {...clFeed} />
+        <Composition id="CL-Carrusel" component={Carrusel} {...clFeed} defaultProps={{slide: 1}} />
+        {/* 9:16 — respeta las zonas seguras de Meta. */}
+        <Composition id="CL-ReelCover" component={ReelCover} {...clStory} />
       </Folder>
     </>
   );

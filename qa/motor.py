@@ -233,6 +233,24 @@ def main() -> int:
 
     rutas = [pathlib.Path(p) for p in args.piezas]
     rutas = [p for p in rutas if p.suffix.lower() in (".png", ".jpg", ".jpeg")]
+
+    # ── material de revisión, no piezas ───────────────────────────────────────
+    # Todo archivo cuyo nombre empieza con «_» es una hoja de contacto, una grilla
+    # de perfil, un montaje comparativo o un descarte guardado como evidencia. No
+    # son entregas y evaluarlos da falsos positivos garantizados: una hoja de
+    # contacto SIEMPRE tiene texto pegado al borde (las etiquetas) y SIEMPRE tiene
+    # filas clonadas (los separadores entre viñetas).
+    #
+    # Nace de esto: el 03-09-2026 el lote de Copywriters pasó el QA en verde y
+    # después volvió con 3 bloqueantes. Los tres eran las hojas de contacto que se
+    # habían dejado en la misma carpeta. Un QA que marca su propio material de
+    # revisión es un QA que la gente aprende a ignorar.
+    revision = [p for p in rutas if p.name.startswith("_")]
+    rutas = [p for p in rutas if not p.name.startswith("_")]
+    if revision:
+        print(f"{GRIS}  ({len(revision)} archivo(s) de revisión omitidos: "
+              f"{', '.join(sorted(r.name for r in revision))}){FIN}")
+
     if not rutas:
         print(f"{ROJO}✖ no hay imágenes en lo que pasaste{FIN}")
         return 2

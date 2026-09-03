@@ -944,7 +944,15 @@ export const ToGo2: React.FC = () => (
         y con ella su flecha, que ya no apuntaría a nada. El «desde» que pedía la
         misma nota ya estaba puesto desde la ronda 4. */}
     <PilaEsquina
-      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Sándwich desde $4.290', fuerte: true}]}
+      /* ⛔ RONDA 9 · 3.ª vuelta (03-09, Eli): «estás repitiendo "Promo To Go" en
+          todas, además de la portada. Bórralo: sólo tiene que aparecer en la
+          portada.» El rótulo lo dice la slide 1 —que abre el carrusel—, así que
+          en las interiores era ruido repetido cuatro veces. Al quedar UNA línea,
+          la pila deja de ser pila: hay una sola caja, la del precio, y de paso
+          se resuelve solo lo de «la caja se repite» que Eli marcó en la portada.
+          `igualarAncho` se queda porque no estorba con una línea y evita tener
+          que reponerlo si vuelve el rótulo. */
+      lineas={[{texto: 'Café + Sándwich desde $4.290', fuerte: true}]}
       igualarAncho
     />
   </PiezaFeedBodegon>
@@ -991,7 +999,15 @@ export const ToGo3: React.FC = () => (
         grande.» El «desde» ya venía de la ronda 4; se va la etiqueta del café y
         su flecha. La del croissant se queda: nadie la objetó. */}
     <PilaEsquina
-      lineas={[{texto: 'Promo To Go'}, {texto: 'Café + Dulce desde $3.790', fuerte: true}]}
+      /* ⛔ RONDA 9 · 3.ª vuelta (03-09, Eli): «estás repitiendo "Promo To Go" en
+          todas, además de la portada. Bórralo: sólo tiene que aparecer en la
+          portada.» El rótulo lo dice la slide 1 —que abre el carrusel—, así que
+          en las interiores era ruido repetido cuatro veces. Al quedar UNA línea,
+          la pila deja de ser pila: hay una sola caja, la del precio, y de paso
+          se resuelve solo lo de «la caja se repite» que Eli marcó en la portada.
+          `igualarAncho` se queda porque no estorba con una línea y evita tener
+          que reponerlo si vuelve el rótulo. */
+      lineas={[{texto: 'Café + Dulce desde $3.790', fuerte: true}]}
       igualarAncho
     />
   </PiezaFeedBodegon>
@@ -1034,8 +1050,15 @@ export const ToGo4: React.FC = () => (
         PilaEsquina se ancla sola abajo-izquierda y no depende de `anclaje`, pero
         hay que mirar que no choque con la etiqueta «Dulce» (x 716, y 1150). */}
     <PilaEsquina
+      /* ⛔ RONDA 9 · 3.ª vuelta (03-09, Eli): «estás repitiendo "Promo To Go" en
+          todas, además de la portada. Bórralo: sólo tiene que aparecer en la
+          portada.» El rótulo lo dice la slide 1 —que abre el carrusel—, así que
+          en las interiores era ruido repetido cuatro veces. Al quedar UNA línea,
+          la pila deja de ser pila: hay una sola caja, la del precio, y de paso
+          se resuelve solo lo de «la caja se repite» que Eli marcó en la portada.
+          `igualarAncho` se queda porque no estorba con una línea y evita tener
+          que reponerlo si vuelve el rótulo. */
       lineas={[
-        {texto: 'Promo To Go'},
         {texto: 'Café + Salado + Dulce desde $5.290', fuerte: true},
       ]}
       igualarAncho

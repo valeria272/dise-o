@@ -88,6 +88,44 @@ REFS = [
     ESP / "HDT_38.jpg",
 ]
 
+#: ⭐⭐ 3.ª vuelta (03-09, Eli): «la modelo estaba bien, y también el tamaño de la
+#: mano y toda la composición, solamente que el vaso tenía el error del logo.
+#: Tienes que centrar más el logo en el vaso, que se vea real, como en las
+#: imágenes reales de Between».
+#:
+#: MEDIDO sobre un vaso REAL del cliente (`platos-ene/Between-67.jpg`), que es la
+#: referencia que ella nombra:
+#:
+#:     ancho del lockup / ancho del cuerpo …… 0,92
+#:     centro del lockup, desde el borde
+#:     superior del cuerpo ……………………… 0,485   ← el MEDIO del vaso
+#:
+#: El estampado estaba en 0,13, o sea pegado a la tapa: por eso se leía como
+#: calcomanía. Para poder bajarlo al medio hace falta cartón limpio ahí, y los
+#: dedos llegaban hasta el centro — de ahí este último ajuste, que NO toca ni a
+#: la modelo, ni la escala del vaso, ni la composición: sólo baja el agarre.
+PROMPT_AGARRE = (
+    "Reproduce the reference image exactly as it is: the same woman, the same "
+    "pose, the same smile, the same beige trench coat, the same kraft paper bag "
+    "in her right hand, the same out-of-focus café background, the same light "
+    "and the same framing. Keep the takeaway coffee cup at EXACTLY the same size "
+    "and in exactly the same position in the frame - do not enlarge it, do not "
+    "move it, do not rotate it. Keep her hand at the same size. "
+    "The ONLY change: she grips the cup LOWER. Her fingers and thumb wrap only "
+    "the BOTTOM QUARTER of the cup, close to its base, so that the whole middle "
+    "of the kraft paper is clear - a wide unobstructed band of blank cardboard "
+    "from just under the black lid down to the fingers, with no fingertip, no "
+    "hair and no shadow crossing it. "
+    "The cup stays plain kraft with a black plastic lid and COMPLETELY BLANK: no "
+    "logo, no print, no lettering, no sleeve. "
+    "Her hand stays complete and natural, five fingers clearly separated, correct "
+    "anatomy, short clean nails. Exactly one cup and exactly two hands. "
+    "She remains the ONLY person: nobody in the background, no silhouettes, no "
+    "blurred figures, no reflections of people. "
+    "Photorealistic, same warm light, balanced white point, no blown highlights. "
+    "No text, lettering, logos, brand marks or watermark anywhere."
+)
+
 #: Prompt de la 2.ª vuelta: SÓLO el vaso. Se usa con `--editar`.
 PROMPT_VASO = (
     "Reproduce the reference image exactly as it is: the same young woman "
@@ -207,8 +245,12 @@ def main():
     ap.add_argument("--editar", metavar="IMAGEN",
                     help="edita SÓLO el vaso sobre esta imagen ya buena, en vez de "
                          "volver a generar la escena. Ver la nota de REFS.")
+    ap.add_argument("--agarre", action="store_true",
+                    help="con --editar: baja el agarre de la mano y no toca nada más, "
+                         "para dejar el centro del vaso libre y poder estampar el "
+                         "logotipo donde va en el vaso real (0,485 del alto)")
     a = ap.parse_args()
-    prompt = PROMPT_VASO if a.editar else PROMPT
+    prompt = (PROMPT_AGARRE if a.agarre else PROMPT_VASO) if a.editar else PROMPT
     if a.solo_prompt:
         print(prompt)
         return

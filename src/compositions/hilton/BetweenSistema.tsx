@@ -100,12 +100,40 @@ const sombraSobreFoto = '0 2px 14px rgba(36,26,18,0.45)';
  * espacio lateral— y los angostos dejan de abrir hueco.
  */
 export const ANCHO_CIFRA_EM_POR_PESO: Record<number, number> = {
-  /** Raleway-Medium (500): 614·450·535·540·558·548·606·535·598·589 → 557,3 */
-  500: 0.557,
-  /** Raleway-SemiBold (600): 614·471·549·549·564·551·607·548·601·589 → 564,3 */
-  600: 0.564,
-  /** Raleway-ExtraBold (800): 614·518·580·569·578·558·608·576·607·589 → 579,7 */
-  800: 0.580,
+  /** Raleway-Medium (500): 690·441·590·585·577·558·606·534·598·606 → 578,5 */
+  500: 0.579,
+  /** Raleway-SemiBold (600): 695·465·599·585·581·563·607·548·601·606 → 585,0 */
+  600: 0.585,
+  /** Raleway-ExtraBold (800): 707·518·619·586·591·575·608·579·607·607 → 599,7 */
+  800: 0.600,
+};
+
+/**
+ * ⭐⭐⭐ CIFRAS DE CAJA ALTA — la mitad que faltaba, 03-09-2026.
+ *
+ * Eli, sobre el carrusel To Go: «los números se ven desordenados… aplica
+ * OpenType tabular tal cual como se hace en Adobe Illustrator, los números no se
+ * ven uno más arriba y abajo que los otros».
+ *
+ * «Uno más arriba y abajo que los otros» NO es avance horizontal: son **cifras
+ * de estilo antiguo**. Y estaban puestas porque **Raleway las trae por
+ * DEFECTO**: verificado con fontTools sobre los .ttf del repo, la fuente NO
+ * tiene `onum` —no hace falta, es su default— y `lnum` es la función que las
+ * sube a caja alta. En «$4.290» el 4 y el 9 bajaban de la línea base y el 2 y
+ * el 0 quedaban a altura de x.
+ *
+ * ⛔ Y esto se había perdido: el manual §9 dice que `lnum` se activó junto con
+ * `tnum`, pero cuando se comprobó que `tnum` no existe en la fuente se borró la
+ * declaración ENTERA — y con ella se fue el `lnum`, que sí funcionaba.
+ *
+ * ⚠️ Activarlo CAMBIA los avances, así que no es sólo una línea de CSS: los
+ * glifos `.lf` son más anchos (el «0» de ExtraBold pasa de 614 a **707**, un
+ * 15 %). Por eso las dos tablas de arriba están re-medidas sobre los glifos de
+ * caja alta; si alguien quita el `lnum`, hay que volver a las viejas.
+ */
+export const CIFRAS_ALTAS: React.CSSProperties = {
+  fontVariantNumeric: 'lining-nums',
+  fontFeatureSettings: '"lnum" 1',
 };
 
 /**
@@ -119,9 +147,9 @@ export const ANCHO_CIFRA_EM_POR_PESO: Record<number, number> = {
  */
 export const ANCHOS_DIGITO_POR_PESO: Record<number, number[]> = {
   //     0     1     2     3     4     5     6     7     8     9
-  500: [.614, .450, .535, .540, .558, .548, .606, .535, .598, .589],
-  600: [.614, .471, .549, .549, .564, .551, .607, .548, .601, .589],
-  800: [.614, .518, .580, .569, .578, .558, .608, .576, .607, .589],
+  500: [.690, .441, .590, .585, .577, .558, .606, .534, .598, .606],
+  600: [.695, .465, .599, .585, .581, .563, .607, .548, .601, .606],
+  800: [.707, .518, .619, .586, .591, .575, .608, .579, .607, .607],
 };
 
 /** Por defecto, el peso de los datos y precios de la marca (ExtraBold). */
@@ -181,6 +209,9 @@ export const cifrasTabulares = (
             width: `${caja}em`,
             textAlign: 'center',
             letterSpacing: 'normal',
+            // la función viaja PEGADA a la caja: si un día se hereda otra cosa,
+            // el glifo y el ancho medido siguen siendo el mismo par.
+            ...CIFRAS_ALTAS,
             // los bordes del grupo van a ras; el interior reparte el hueco
             marginLeft: n === 0 ? `${-sobra}em` : undefined,
             marginRight: n === grupo.length - 1 ? `${-sobra}em` : undefined,
@@ -1540,7 +1571,10 @@ export const PiezaFeedBodegon: React.FC<{
   // piezas de la ronda 4.
   const posLogo = anclaje === 'abajo' ? 'arriba' : logoPosicion;
   return (
-  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
+  /* ⭐ `CIFRAS_ALTAS` va en la RAÍZ y se hereda: así también le llega a los
+     dígitos que NO pasan por una caja de dato — el «3» de «¡LLÉVATE LOS 3!» del
+     titular es uno. `font-variant-numeric` es heredable, y sólo toca cifras. */
+  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra, ...CIFRAS_ALTAS}}>
     <FotoFondo src={foto} posicion={posicionFoto} oscurecer={oscurecer} />
     {/* el velo va sobre la foto y DEBAJO del logo y del texto */}
     {velo ? (
@@ -1731,7 +1765,7 @@ export const PiezaStoryBetween: React.FC<{
   conLogo = true, logoTono = 'beige', alinear = 'centro', anclaje = 'arriba',
   topBloque, columnaTitular, children,
 }) => (
-  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
+  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra, ...CIFRAS_ALTAS}}>
     <FotoFondo src={foto} posicion={posicionFoto} oscurecer={oscurecer} />
     {conLogo ? <LogoBetween formato="story" posicion="arriba" tono={logoTono} /> : null}
     <div

@@ -2263,3 +2263,96 @@ ninguna se cambió, con motivo:
 ⚠️ Y queda una consecuencia que conviene mirar con Eli: la portada ya **no** es el
 modelo de las slides 2–4, que era lo que Scarlette había pedido cuando dijo «la
 información de la promo debería quedar como está en la slide 1 y 2».
+
+## ⭐⭐⭐ 9. RONDA 9 · 3.ª vuelta — LAS CIFRAS ERAN DE ESTILO ANTIGUO
+
+> «los números se ven desordenados… aplica OpenType tabular tal cual como se hace
+> en Adobe Illustrator, los números no se ven uno más arriba y abajo que los
+> otros» — Eli, 03-09
+
+**«Uno más arriba y abajo que los otros» NO es avance horizontal: son cifras de
+estilo antiguo.** En «$4.290» el **4** y el **9 bajaban de la línea base** y el
+**2** y el **0** quedaban a altura de x. Se ve a simple vista en la pieza
+entregada.
+
+Y estaban ahí porque **Raleway las trae POR DEFECTO.** Verificado con `fontTools`
+sobre los `.ttf` del repo: la fuente **no tiene `onum`** —no le hace falta, es su
+default— y **`lnum` es la función que las sube a caja alta**.
+
+### ⛔ Por qué se había perdido
+
+El manual §9 dice que `lnum` se activó junto con `tnum`. Cuando después se
+comprobó que **`tnum` no existe en Raleway**, se borró la declaración **entera** —
+y con ella se fue el `lnum`, que sí funcionaba. Quedó el comentario explicando la
+medición y ninguna línea de CSS: `grep -rn "lnum" src/` no devolvía nada.
+
+**La lección de método: al quitar una propiedad que no sirve, revisar qué más
+viajaba en la misma declaración.**
+
+### ⚠️ Y no es sólo una línea de CSS: cambian los ANCHOS
+
+Los glifos `.lf` son **más anchos** que los de estilo antiguo. Medido sobre los
+propios archivos:
+
+| | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | media |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ExtraBold, default | 614 | 518 | 580 | 569 | 578 | 558 | 608 | 576 | 607 | 589 | 579,7 |
+| ExtraBold, `lnum` | **707** | 518 | 619 | 586 | 591 | 575 | 608 | 579 | 607 | 607 | **599,7** |
+
+El «0» crece un **15 %**. Como `cifrasTabulares()` construye la caja tabular a
+mano con esa tabla, **activar `lnum` sin re-medirla descoloca todas las cifras**.
+Las dos tablas (`ANCHOS_DIGITO_POR_PESO` y `ANCHO_CIFRA_EM_POR_PESO`) están
+re-medidas sobre los glifos de caja alta. Si alguien quita el `lnum`, hay que
+volver a las viejas.
+
+### Dónde queda puesto
+
+`CIFRAS_ALTAS` (en `BetweenSistema.tsx`) va en **la raíz de las dos piezas** —
+`PiezaFeedBodegon` y `PiezaStoryBetween`— porque `font-variant-numeric` se hereda
+y así también le llega a los dígitos que **no pasan por una caja de dato**: el
+«3» de «¡LLÉVATE LOS 3!» del titular es uno. Y va además **pegado al span** de
+`cifrasTabulares`, para que el glifo y el ancho medido sean siempre el mismo par.
+
+⚠️ **Dos piezas YA ENTREGADAS quedan desfasadas** y hay que re-rendirlas cuando se
+toquen: `StToGoDulce` (ST 01-09, «desde $3.790 · 08:00 a 10:00») y `StCowork`
+(ST 16-09, «08:00 a 22:00»). Ninguna otra pieza del mes tiene dígitos.
+
+## ⭐ 10. «Promo To Go» va SÓLO en la portada
+
+> «estás repitiendo "Promo To Go" en todas, además de la portada. Bórralo: sólo
+> tiene que aparecer en la portada.» — Eli, 03-09
+
+El rótulo lo dice la slide 1, que abre el carrusel; en las interiores era ruido
+repetido cuatro veces. Al quedar **una sola línea**, la pila de `PilaEsquina` deja
+de ser pila: hay una caja, la del precio.
+
+⭐ Y de paso se resuelve solo el choque que había quedado abierto: la portada ya
+**no** tiene dos cajas apiladas y las interiores tampoco, así que el carrusel
+vuelve a leerse parejo sin contradecir el «que quede como en la slide 1 y 2» de
+Scarlette.
+
+## ⭐⭐ 11. El logotipo del vaso: dónde va, MEDIDO en un vaso real
+
+> «centrar más el logo en el vaso, que se vea real, como en las imágenes reales
+> de Between» — Eli, 03-09
+
+Se midió sobre un vaso To Go **real del cliente**, `platos-ene/Between-67.jpg`:
+
+| | vaso real | lo entregado | corregido |
+|---|---|---|---|
+| ancho del lockup / ancho del cuerpo | **0,92** | 0,60 → 0,78 | 0,72 |
+| centro del lockup, desde el borde superior del cuerpo | **0,485** | 0,13 | **0,32** |
+
+El defecto que Eli vio era **la altura**: el logo iba pegado a la tapa, y eso es
+lo que lo delata como calcomanía. En el vaso real va **en el medio del cuerpo**.
+
+⚠️ No se llegó al 0,485 porque **la mano manda**: medido sobre la foto, el
+rectángulo de cartón limpio más grande es `x 1027–1497 · y 2272–2427` — por debajo
+entran las yemas y por la derecha el pulgar. Ahí cabe un logo de 470×155, y ése es
+el máximo real de esta toma. **Antes de estampar hay que medir ese rectángulo,
+no elegir la posición a ojo.**
+
+⛔ Y se probó bajar el agarre con una generación más para ganar sitio: el modelo
+**volvió a agrandar el vaso y le inventó una faja oscura abajo**. Con la
+composición ya aprobada, no se vuelve a generar — se estampa dentro de lo que la
+foto da.

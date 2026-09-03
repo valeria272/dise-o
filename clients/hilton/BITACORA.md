@@ -98,12 +98,35 @@ referencia traen gente). La salida fue dejar de generar y **editar la versión
 buena** como única referencia — `between-togo1-salida.py --editar <imagen>`. Salió
 a la primera.
 
+**⭐⭐ 3.ª vuelta — el carrusel To Go completo, re-subido a la S3 (mismos enlaces).**
+
+1. **⭐⭐⭐ Las cifras eran de ESTILO ANTIGUO.** «Los números no se ven uno más
+   arriba y abajo que los otros» no es avance horizontal: en «$4.290» el 4 y el 9
+   bajaban de la línea base. **Raleway las trae así por defecto** —no tiene
+   `onum`, y `lnum` es lo que las sube a caja alta— y el `lnum` se había **perdido
+   al borrar la declaración que también llevaba el `tnum` inútil**. Ojo: activarlo
+   **cambia los anchos** (el «0» de ExtraBold pasa de 614 a 707), así que hubo que
+   **re-medir las dos tablas** de `cifrasTabulares` sobre los glifos `.lf`.
+   ⚠️ Quedan dos piezas ya entregadas con cifras viejas: `StToGoDulce` (ST 01-09)
+   y `StCowork` (ST 16-09). Ninguna otra del mes tiene dígitos.
+2. **«Promo To Go» sale de las slides 2, 3 y 4** — sólo va en la portada. Con una
+   sola línea, cada pila queda en una caja (la del precio), y de paso se cierra
+   solo el choque que había quedado abierto con el «que quede como en la slide 1
+   y 2» de Scarlette.
+3. **El logotipo del vaso, re-medido contra un vaso REAL** (`Between-67.jpg`): ahí
+   va al 0,92 del ancho del cuerpo y **centrado en la vertical (0,485)**. Lo
+   entregado iba en 0,13, o sea pegado a la tapa — eso era lo que se veía falso.
+   Corregido a 0,72 / 0,32, que es el máximo que deja la mano: el rectángulo de
+   cartón limpio de esta foto es `x 1027–1497 · y 2272–2427`.
+   ⛔ **La composición no se tocó**: modelo, tamaño de mano y encuadre son los que
+   Eli aprobó. Se probó bajar el agarre con otra generación y el modelo volvió a
+   agrandar el vaso e inventarle una faja — se descartó.
+
 **Abierto:**
-0. ⚠️ **La portada ya no es el modelo de las slides 2–4 del To Go.** Scarlette
-   había pedido que la info de promo de la slide 4 «quedara como está en la slide
-   1 y 2»; ahora la 1 tiene una caja y una línea suelta, y la 2, 3 y 4 siguen con
-   dos cajas. No se tocaron porque ahí las dos líneas ya tienen jerarquía
-   (`fuerte`) y porque están aprobadas — pero conviene mirarlo con Eli.
+0. ✅ RESUELTO en la 3.ª vuelta: al sacar «Promo To Go» de las interiores, las
+   cuatro slides quedaron con una sola caja y el carrusel volvió a leerse parejo.
+   ⚠️ Pendiente en su lugar: **re-rendir `StToGoDulce` y `StCowork`**, que quedaron
+   con las cifras de estilo antiguo.
 1. **Los videos de la entrada de BT** — si aparecen, se rehace la slide 1 del To Go.
 2. **STORIES no tenía nada `EN CAMBIOS`**: H es el reel Café Bombón esperando que
    el cliente conteste lo de la leche condensada, J está `POR GRABAR` y M/O/Q/R/T/U

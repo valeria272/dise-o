@@ -231,3 +231,75 @@ html, body { background:#000; }
    Halloween por sí sola. Van blancos y tenues, como la telaraña. */
 .murcielagos { position:absolute; pointer-events:none; opacity:.6;
                filter: drop-shadow(0 5px 16px rgba(0,0,0,.4)); }
+
+/* Piezas de PAID: Meta pide el 10-15 % inferior libre para su interfaz, así que
+   el bloque de texto sube. Las orgánicas de Paulina bajan hasta el 6 %, pero
+   eso en pauta queda tapado. Ver la regla global de zonas seguras del estudio. */
+.bloque.paid { bottom:16%; }
+
+/* ══════════════════════════════════════════════════════════
+   MAILING — maqueta medida sobre el correo de agosto de Paulina.
+   Cuatro bloques apilados de 1201 px de ancho:
+     1 · banner        1201×750  foto exterior + titular en caja lima + bajada azul
+     2 · atención      1201×240  FONDO BLANCO, texto azul y píldora de horario
+     3 · ficha         1201×813  foto interior + tarjeta azul de datos + precio
+     4 · cierre        1201×551  foto de gente + titular + caja lima
+   Van a 1201 px reales, no a 4500: es un correo, tiene que pesar poco.
+   ══════════════════════════════════════════════════════════ */
+.pieza.mail { width:1201px; }
+.pieza.mail.banner  { height:750px; }
+.pieza.mail.atencion{ height:240px; background:var(--blanco); }
+.pieza.mail.ficha   { height:813px; }
+.pieza.mail.cierre  { height:551px; }
+
+.mail .caja-logo { top:0; width:118px; height:89px; border-radius:0 0 21px 21px; }
+.mail .caja-logo img { width:64px; top:15px; }
+
+/* bloque de atención: todo en blanco, sin foto */
+.atencion-txt { position:absolute; inset:0; display:flex; flex-direction:column;
+                align-items:center; justify-content:center; gap:14px; text-align:center; }
+.atencion-txt .l { font-size:26px; line-height:1.28; color:#4A5568; font-weight:400; }
+.atencion-txt .l b { color:var(--azul); font-weight:700; }
+.atencion-txt .horario { background:var(--azul); color:var(--blanco); font-weight:400;
+                font-size:20px; border-radius:9999px; padding:8px 22px; }
+
+/* tarjeta azul de datos, a la derecha de la ficha */
+.mail .ficha-datos { position:absolute; right:3.6%; top:16%; width:31%;
+                background:var(--azul); border-radius:22px; padding:22px 18px;
+                text-align:center; color:var(--blanco); }
+.mail .ficha-datos .dir { font-weight:700; font-size:19px; line-height:1.25; }
+.mail .ficha-datos .mod { font-weight:700; font-size:19px; line-height:1.25; margin-top:14px; }
+.mail .pildora-lima { font-size:18px; padding:.18em .8em; margin-top:8px; }
+.mail .fila-iconos { display:flex; justify-content:center; gap:10px; margin-top:16px;
+                align-items:flex-end; }
+.mail .fila-iconos .it { display:flex; flex-direction:column; align-items:center; gap:4px;
+                font-size:14px; font-weight:700; }
+.mail .fila-iconos svg { width:34px; height:34px; }
+.mail .sep-v { width:1px; align-self:stretch; background:rgba(255,255,255,.45); margin:0 4px; }
+.mail .amenidades { display:grid; grid-template-columns:repeat(3,1fr); gap:10px 6px;
+                margin-top:16px; border:2px solid rgba(255,255,255,.55); border-radius:14px;
+                padding:12px 8px; }
+.mail .amenidades .am { display:flex; flex-direction:column; align-items:center; gap:3px;
+                font-size:10px; font-weight:700; line-height:1.15; text-align:center; }
+.mail .amenidades svg { width:26px; height:26px; }
+
+/* tarjeta blanca del precio */
+.mail .ficha-precio { position:absolute; left:26%; bottom:5.5%; background:var(--blanco);
+                color:var(--azul); border-radius:20px 78px 20px 78px; padding:14px 40px;
+                text-align:center; font-style:italic; }
+.mail .ficha-precio .d { font-weight:300; font-size:19px; }
+.mail .ficha-precio .c { font-weight:900; font-size:46px; line-height:1.05; }
+.mail .ficha-precio .m { font-weight:300; font-size:18px; }
+
+/* el logo Valle sobre la foto de la ficha */
+.mail .logo-valle { top:auto; bottom:28%; right:auto; left:34%; width:20%; }
+
+/* escalas propias del correo */
+.mail .titular { text-shadow:0 3px 16px rgba(0,0,0,.35); }
+.t-m-xl { font-size:44px; }
+.t-m-l  { font-size:34px; }
+.t-m-m  { font-size:26px; }
+.t-m-s  { font-size:21px; }
+.mail .marca-caja { padding:.22em .5em .26em; }
+.mail .bloque { width:92%; }
+.mail .bloque.abajo { bottom:5.5%; }

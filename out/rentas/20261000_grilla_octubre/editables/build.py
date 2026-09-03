@@ -33,8 +33,9 @@ def bajada(txt, tam="t-s"):
 def pieza(nombre, fondo, cuerpo, formato="feed", logo=True, velo=None, italica=False):
     clases = f"pieza {formato}" + (" italica" if italica else "")
     v = f'<div class="{velo}"></div>' if velo else ""
+    img = f'<img class="foto" src="{FONDOS}/{fondo}" alt="">' if fondo else ""
     doc = (CABEZA + f'<div class="{clases}">'
-           f'<img class="foto" src="{FONDOS}/{fondo}" alt="">{v}'
+           f'{img}{v}'
            + (LOGO if logo else "") + cuerpo + "</div>" + PIE)
     (AQUI / f"{nombre}.html").write_text(doc, encoding="utf-8")
     print("  ", nombre + ".html")
@@ -223,3 +224,157 @@ pieza("rentas_st-proyecto-02-10", "st_proyecto.jpg",
       '</div>'
       '<div class="zona-sticker"></div>',
       formato="story", velo="velo-doble")
+
+
+# ══════════════════════════════════════════════════════════════
+# CARRUSEL PAID «ARRIENDA FÁCIL» — martes 20 de octubre · 5 láminas
+# Textos VERBATIM del brief. Es PAID: el bloque sube al 16 % para dejar libre
+# la franja inferior que ocupa la interfaz de Meta.
+# La portada va con FOTO REAL del condominio; las tres escenas con personas
+# —visita, firma, entrega de llaves— son IA: no existen en el material del
+# proyecto y el cliente autorizó generarlas.
+# ══════════════════════════════════════════════════════════════
+print("CARRUSEL PAID ARRIENDA FÁCIL 20-10:")
+
+pieza("rentas_c-paid1", "paid/paid_1_45.jpg",
+      '<img class="logo-valle" src="img/logo_valle_blanco.png" alt="">'
+      '<div class="bloque abajo paid">'
+      '<div class="titular t-l"><span class="l1">Así de fácil se arrienda</span></div>'
+      '<div class="titular t-xl caja-sola">'
+      '<span class="marca-caja lima">EN VALLE ALTIPLÁNICO</span></div>'
+      + bajada("Desliza <b>&rarr;</b>", "t-xs") + "</div>",
+      velo="velo-abajo-firme")
+
+for n, num, l1, l2 in [
+    (2, "01", "Visita presencial antes de decidir.",
+     "Deptos que puedes recorrer<br>en nuestra sala de ventas."),
+    (3, "02", "Contrato claro,", "sin letra chica ni comisión."),
+    (4, "03", "Un ejecutivo te acompaña",
+     "desde la primera consulta<br>hasta la entrega de tus llaves."),
+]:
+    pieza(f"rentas_c-paid{n}", f"paid/paid_{n}_45.jpg",
+          '<div class="bloque abajo paid angosto">'
+          f'<div class="titular t-l"><span class="marca-caja lima">{num}</span></div>'
+          f'<div class="titular t-l"><span class="l1">{l1}</span>'
+          f'<span class="l2">{l2}</span></div>'
+          "</div>",
+          logo=False, velo="velo-abajo-firme")
+
+pieza("rentas_c-paid5", "paid/paid_5_45.jpg",
+      '<div class="bloque abajo paid">'
+      + titular("Tu nuevo hogar", "te está esperando.", tam="t-xl")
+      + '<div class="titular t-l"><span class="boton-url">COTIZA HOY</span>'
+        '<span class="cursor-lima"></span></div>'
+      + "</div>",
+      velo="velo", italica=True)
+
+
+# ══════════════════════════════════════════════════════════════
+# MAILINGS DE OCTUBRE — martes 6 y martes 27
+# Maqueta calcada del correo de agosto de Paulina: cuatro bloques de 1201 px
+# (banner · atención online · ficha de proyecto · cierre). Textos VERBATIM del
+# `BRIEF OCTUBRE 2026 MAILING RENTAS.docx`.
+# ══════════════════════════════════════════════════════════════
+print("MAILINGS 06-10 y 27-10:")
+
+I_CAMA = ('<svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" '
+          'stroke-linejoin="round"><path d="M6 44V22M6 34h52M58 34v10M14 26h12v8H14zM38 26h12v8H38z"/></svg>')
+I_BANO = ('<svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" '
+          'stroke-linejoin="round"><path d="M8 34h48v6a12 12 0 0 1-12 12H20A12 12 0 0 1 8 40zM18 34V14a6 6 0 0 1 12 0"/></svg>')
+def _svg(d):
+    return ('<svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="4.5" '
+            f'stroke-linecap="round" stroke-linejoin="round">{d}</svg>')
+
+# Un ícono por amenidad. En agosto son cinco distintos; con el mismo repetido
+# cinco veces la tarjeta se lee como un error de maquetación.
+ICONOS_AM = {
+    "QUINCHO":         _svg('<path d="M8 40h48M14 40l6-18h24l6 18M22 40v14M42 40v14M32 22v-8"/>'),
+    "CANCHA":          _svg('<rect x="7" y="14" width="50" height="36" rx="3"/>'
+                            '<path d="M32 14v36M7 26h7v12H7M57 26h-7v12h7"/><circle cx="32" cy="32" r="7"/>'),
+    "JUEGOS":          _svg('<path d="M10 52V24l22-12 22 12v28M10 34h44M22 52V34M42 52V34"/>'),
+    "ÁREAS VERDES":    _svg('<path d="M32 54V32M32 32c0-10 7-18 16-18 0 10-7 18-16 18zM32 38c0-8-6-14-14-14 0 8 6 14 14 14z"/>'),
+    "GIMNASIO":        _svg('<path d="M12 24v16M20 18v28M44 18v28M52 24v16M20 32h24"/>'),
+    "CONSERJERÍA 24/7":_svg('<circle cx="32" cy="22" r="9"/><path d="M12 52c0-11 9-18 20-18s20 7 20 18"/>'),
+}
+
+def am(rot):
+    return f'<div class="am">{ICONOS_AM[rot]}<span>{rot}</span></div>'
+
+def bloque_atencion(nombre):
+    pieza(nombre, None,
+          '<div class="atencion-txt">'
+          '<div class="l"><b>¡Atención 100% online!</b> Agenda tu reunión telemática<br>'
+          'con nosotros para coordinar una visita</div>'
+          '<div class="horario">Lunes a viernes · 10:00 a 14:00 y 14:30 a 18:00 hrs.</div>'
+          '</div>',
+          formato="mail atencion", logo=False)
+
+def bloque_ficha(nombre, fondo, dir_txt, amenidades):
+    ams = "".join(am(a) for a in amenidades)
+    pieza(nombre, fondo,
+          '<img class="logo-valle" src="img/logo_valle_blanco.png" alt="">'
+          '<div class="ficha-datos">'
+          f'<div class="dir">{dir_txt}</div>'
+          '<div class="mod">5 modelos<br>disponibles</div>'
+          '<span class="pildora-lima">desde 59 M²</span>'
+          '<div class="fila-iconos">'
+          f'<div class="it">{I_CAMA}<span>2 Y 3 DORMS.</span></div>'
+          '<div class="sep-v"></div>'
+          f'<div class="it">{I_BANO}<span>2 BAÑOS</span></div>'
+          '</div>'
+          f'<div class="amenidades">{ams}</div>'
+          '</div>'
+          '<div class="ficha-precio">'
+          '<div class="d">Arriendo desde</div>'
+          '<div class="c">$715.000</div>'
+          '<div class="m">mensuales</div>'
+          '</div>',
+          formato="mail ficha", logo=False)
+
+# ── MAILING 1 · martes 6 de octubre ────────────────────────────
+pieza("rentas_mail1-1_banner", "mail/m1_banner.jpg",
+      '<div class="bloque abajo">'
+      '<div class="titular t-m-xl caja-sola">'
+      '<span class="marca-caja lima">OCTUBRE EN CALAMA</span></div>'
+      '<div class="titular t-m-xl caja-sola">'
+      '<span class="marca-caja lima">ARRIENDA SIN COMISIÓN</span></div>'
+      '<div class="titular t-m-s caja-sola">'
+      '<span class="marca-caja azul">Garantía de 1,5 meses de arriendo hasta en 6 cuotas '
+      '&nbsp;|&nbsp; Reajuste cada 12 meses</span></div>'
+      '</div>',
+      formato="mail banner", velo="velo-abajo-firme")
+bloque_atencion("rentas_mail1-2_atencion")
+bloque_ficha("rentas_mail1-3_ficha", "mail/m1_ficha.jpg",
+             "Condominio Valle Altiplánico, Calama<br>Av. Circunvalación 1458",
+             ["QUINCHO", "CANCHA", "JUEGOS", "GIMNASIO", "CONSERJERÍA 24/7"])
+pieza("rentas_mail1-4_cierre", "mail/m1_cierre.jpg",
+      '<div class="bloque abajo">'
+      + titular("Garantía de 1,5 meses", "hasta en 6 cuotas · Sin comisión.", tam="t-m-l")
+      + '<div class="titular t-m-s caja-sola">'
+        '<span class="marca-caja lima">ENTREGA INMEDIATA: TE MUDAS ESTE MES.</span></div>'
+      + "</div>",
+      formato="mail cierre", velo="velo-abajo-firme")
+
+# ── MAILING 2 · martes 27 de octubre · Halloween ───────────────
+pieza("rentas_mail2-1_banner", "mail/m2_banner.jpg",
+      telarana("si", chica=True) + telarana("sd", chica=True)
+      + '<div class="bloque abajo">'
+      '<div class="titular t-m-xl caja-sola">'
+      '<span class="marca-caja lima">FELIZ HALLOWEEN</span></div>'
+      + titular("Arrienda sin comisión", "en Valle Altiplánico", tam="t-m-l")
+      + '<div class="titular t-m-s caja-sola">'
+        '<span class="marca-caja azul">Garantía de 1,5 meses hasta en 6 cuotas</span></div>'
+      + "</div>",
+      formato="mail banner", velo="velo-abajo-firme")
+bloque_atencion("rentas_mail2-2_atencion")
+bloque_ficha("rentas_mail2-3_ficha", "mail/m2_ficha.jpg",
+             "Condominio Valle Altiplánico<br>Calama",
+             ["CANCHA", "ÁREAS VERDES", "JUEGOS", "GIMNASIO", "CONSERJERÍA 24/7"])
+pieza("rentas_mail2-4_cierre", "mail/m2_cierre.jpg",
+      telarana("sd", chica=True)
+      + '<div class="bloque abajo">'
+      + titular("Garantía de 1,5 meses", "hasta en 6 cuotas.", tam="t-m-l")
+      + '<div class="titular t-m-s caja-sola">'
+        '<span class="marca-caja lima">SIN COMISIÓN DE ARRIENDO.</span></div>'
+      + "</div>",
+      formato="mail cierre", velo="velo-abajo-firme")

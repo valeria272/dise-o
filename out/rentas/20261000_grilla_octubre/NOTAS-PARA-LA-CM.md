@@ -7,21 +7,36 @@ Piezas para revisión. Los textos van **verbatim del brief**; los cortes de lín
 | Jue 2 | Historia de proyecto | `02-10 ST Proyecto Valle Altiplanico.png` | 4500 × 8000 |
 | **Mar 6** | **Reel «Nuevas condiciones»** | `06-10 REEL Nuevas condiciones.mp4` | 1080 × 1920 · 31 s |
 | Mar 13 | Estático «Sin comisión» | `13-10 ESTATICO Sin comision.png` | 4500 × 5625 |
+| Mar 20 | **Carrusel PAID «Arrienda fácil»** (5 láminas) | `20-10 PAID Arrienda facil 1..5.png` | 4500 × 5625 |
 | Mar 27 | Carrusel Halloween (5 láminas) | `27-10 CARRUSEL Halloween 1..5.png` | 4500 × 5625 |
 | Jue 29 | Historia de Halloween | `29-10 ST Halloween.png` | 4500 × 8000 |
 
-## Falta una pieza: el carrusel PAID del martes 20
+## Los dos mailings
 
-Es lo único que no se pudo producir, y no es un tema de diseño sino de **material**.
-El brief pide tres escenas que no existen en ninguna carpeta del proyecto:
+| Fecha | Correo | Archivos |
+|---|---|---|
+| Mar 6 | Octubre sin comisión | `MAIL 06-10 bloque 1..4.png` |
+| Mar 27 | Halloween | `MAIL 27-10 bloque 1..4.png` |
+
+Van en **cuatro bloques apilados de 1201 px** de ancho, igual que el correo de agosto: banner
+(750) · atención online (240) · ficha de proyecto (813) · cierre (551). Se montan en ese orden.
+
+> El brief pide para la ficha un «interior con living y luz natural». Del proyecto sólo existe
+> una panorámica de dormitorio, y es la que va. **Si nos mandan una foto del living, ese bloque
+> se rehace en minutos.**
+
+## Sobre el carrusel PAID del 20
+
+Las tres escenas con personas se generaron con **IA**, porque no existen en ninguna carpeta del
+proyecto:
 
 - **T2** — «Visita presencial antes de decidir. Deptos que puedes recorrer en nuestra sala de ventas.»
 - **T3** — «Contrato claro, sin letra chica ni comisión.»
 - **T4** — «Un ejecutivo te acompaña desde la primera consulta hasta la entrega de tus llaves.»
 
-Las tres necesitan **personas**: alguien recorriendo el depto piloto, alguien firmando, un
-ejecutivo atendiendo. Se revisaron todas las carpetas de Rentas y de Nueva Urbe en Drive y no
-hay ninguna foto así **de Valle Altiplánico**.
+La **portada va con foto real** del condominio. Si nos mandan fotos reales de la sala de ventas
+—una visita al piloto, una firma y un ejecutivo atendiendo—, las láminas se reemplazan sin tocar
+la maqueta. Sirven de celular si están bien iluminadas.
 
 > ⚠️ **Ojo con el rodaje de «CALAMA».** Hay un rodaje profesional de febrero 2025 guardado en una
 > carpeta llamada sólo `CALAMA`, y **no es de Valle Altiplánico**: es de Travesía del Desierto II.
@@ -30,9 +45,7 @@ hay ninguna foto así **de Valle Altiplánico**.
 > muestran el rótulo «CONDOMINIO TRAVESÍA DEL DESIERTO II» en pantalla. Usar ese material en una
 > pieza de Rentas sería mostrarle al arrendatario un proyecto que no es el que arrienda.
 
-**Lo que hace falta para cerrar el mes:** fotos de la sala de ventas de Valle Altiplánico con
-gente — una visita al depto piloto, una firma de contrato y un ejecutivo atendiendo. Sirven de
-celular si están bien iluminadas; no hace falta producción.
+
 
 ## Tres cosas para confirmar con el cliente
 

@@ -1,0 +1,248 @@
+#!/usr/bin/env python3
+"""
+R02 «Turno de noche» — genera los keyframes del capítulo 2 de G.CL.
+
+Storyboard: gcl-agent/R02_STORYBOARD.md. Cada clave de PLANOS es el nombre del
+plano ahí (p01, p02, …), así que se puede regenerar uno solo sin tocar el resto.
+
+DOS FAMILIAS, DOS MODELOS
+  · Planos de OFICINA sin personaje → Mystic (`generar`): ambiente y fondo.
+  · Planos con G.CL → Nano Banana Pro (`pro`) **con el master como referencia**.
+    Es el candado 1 del protocolo de consistencia (GCL_CHARACTER_BIBLE): ninguna
+    imagen del personaje se genera text-only.
+
+POR QUÉ LOS PLANOS QUEDAN EN JPEG
+Nano Banana Pro devuelve PNG de 1536×2752: los 13 planos pesan 49 MB y no pueden
+viajar así en el repo. Convertidos a JPEG 93 sin submuestreo de croma pesan
+7,9 MB y son indistinguibles en pantalla — además el montaje les pasa grano,
+gradación y desenfoque encima. La composición lee los `.jpg`.
+
+LO QUE ARREGLAN ESTOS PROMPTS (feedback del director, cap. 1: «el personaje se
+ve muy sobrepuesto»): todos los planos con G.CL exigen explícitamente **sombra
+de contacto** en la superficie donde se apoya y **derrame de luz del visor**
+sobre lo que tiene al lado. Sin eso el render se ve pegado encima aunque el
+pipeline sea correcto.
+
+Uso:
+    python3 scripts/gcl-r02-keyframes.py             # todos los que falten
+    python3 scripts/gcl-r02-keyframes.py --solo p05  # uno
+    python3 scripts/gcl-r02-keyframes.py --rehacer   # regenera aunque exista
+"""
+import argparse
+import os
+import subprocess
+import sys
+
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SALIDA = os.path.join(RAIZ, "public", "assets", "gcl", "r02")
+MASTER = os.path.join(RAIZ, "gcl-agent", "character-master", "gcl_master_frontal_logo.png")
+MAGNIFIC = os.path.join(RAIZ, "scripts", "magnific.py")
+
+# Bloque canónico del personaje — copiado VERBATIM de GCL_PROMPT_LIBRARY.md.
+# No parafrasear: es lo que mantiene al personaje igual entre capítulos.
+CANONICO = (
+    "G.CL, a premium collectible chibi robot mascot, high-end vinyl designer-toy 3D "
+    "render. CRITICAL PROPORTIONS: an oversized glossy piano-black spherical "
+    "astronaut-helmet HEAD taking up almost half of the total body height, on a small "
+    "compact rounded body. Seamless reflective black dome visor displaying a glowing "
+    "electric-pink dot-matrix letter \"G\", black over-ear headphone pods with a thin "
+    "glowing coral-orange light ring on each side of the helmet, matte black techwear "
+    "suit with a tiny electric-pink \"G.CL\" wordmark on the chest, short rounded arms "
+    "with black rounded glove hands, short stubby legs, chunky black sneakers with "
+    "glowing coral-pink soles. "
+)
+
+# Integración: lo que evita el «personaje sobrepuesto».
+INTEGRA = (
+    "CRITICAL INTEGRATION: the character casts a soft dark CONTACT SHADOW on the "
+    "surface it rests on, directly under its body, and the pink glow of its visor "
+    "SPILLS onto the nearby surfaces and edges, tinting them faintly pink. The "
+    "character is lit by the same light as the room. Shallow depth of field with the "
+    "character in focus and the background softer than the character. "
+    "Cinematic anamorphic look, 4K, no text, no letters, no watermark. "
+)
+
+NEG = (
+    "no cheap toy look, no childish primary colors, no generic cute robot, no human "
+    "body proportions, no slim human legs, no deformed hands, no extra limbs, no "
+    "changing helmet shape, no green neon, no blue AI aesthetic, no random holograms, "
+    "no cyberpunk cliche, no text, no letters, no watermark."
+)
+
+# Ambiente común de la oficina: es la MISMA oficina en todo el capítulo.
+OFICINA = (
+    "interior of a modern minimal advertising agency office in Santiago de Chile at "
+    "night, empty, lights off, only the cold blue glow of sleeping monitors and warm "
+    "amber city light coming through big windows, dark grey and black surfaces, light "
+    "wood table, glass partitions, cinematic anamorphic photography, shallow depth of "
+    "field, deep shadows, film grain, no people, no text, no letters, no logos, "
+    "no watermark, photorealistic"
+)
+
+# ---------------------------------------------------------------------------
+# (modelo, prompt, aspecto, referencias extra)
+#   "mystic" → ambiente sin personaje · "pro" → personaje con master
+# ---------------------------------------------------------------------------
+PLANOS = {
+    "p01_ventanal": ("mystic",
+        "Wide shot from inside a dark office looking out through a floor-to-ceiling "
+        "window at the night skyline of Santiago, the office ceiling lights are off "
+        "and only a few desk lamps remain lit, reflections of the interior on the "
+        "glass, " + OFICINA, []),
+
+    "p02_pasillo": ("mystic",
+        "Vertical corridor of a dark empty office seen head-on, receding deep into "
+        "the frame, glass meeting rooms on both sides, sleeping monitors glowing "
+        "faintly blue, a single strip of light on the floor, strong perspective and "
+        "depth, " + OFICINA, []),
+
+    "p03_escritorios": ("mystic",
+        "Row of empty desks at night seen from the side at desk height, office chairs "
+        "pushed away at odd angles, a half-finished coffee mug, a yellow post-it on a "
+        "dark monitor, a jacket left on a chair back, keyboards lit only by standby "
+        "LEDs, " + OFICINA, []),
+
+    "p04_interruptor": ("mystic",
+        "Extreme close-up of a hand pressing a black light switch on a dark office "
+        "wall, the room behind falling into darkness, only rim light on the fingers, "
+        "very shallow depth of field, " + OFICINA, []),
+
+    # EL PLANO CLAVE. Encuadre exacto que se repite en p17.
+    "p05_el_noche": ("pro",
+        CANONICO +
+        "He sits calmly on the edge of a long empty light-wood meeting table in a dark "
+        "empty office at night, seen in a WIDE VERTICAL SHOT from the far end of the "
+        "table at table height, the big window with the night city behind him on the "
+        "right, glass partitions on the left. He is small in the frame, centered, "
+        "perfectly still, facing camera. The only light in the room is the pink glow "
+        "of his visor and the cold blue of the city outside. " + INTEGRA + NEG,
+        [MASTER]),
+
+    "p06_visor_macro": ("pro",
+        CANONICO +
+        "EXTREME MACRO CLOSE-UP of only the black dome visor filling the whole frame, "
+        "the electric-pink dot-matrix letter G igniting dot by dot from the centre "
+        "outward, the reflection of the dark empty office curving across the glossy "
+        "black dome. " + INTEGRA + NEG,
+        [MASTER]),
+
+    "p07_dataroom": ("pro",
+        CANONICO +
+        "He stands small at the centre of a pitch-black void, surrounded by a ring of "
+        "floating translucent data panels igniting one after another around him, the "
+        "panels are abstract glowing charts and grids in electric pink and coral, no "
+        "readable text, seen from slightly below in a wide vertical shot. " + INTEGRA + NEG,
+        [MASTER]),
+
+    "p09_enfocado": ("pro",
+        CANONICO +
+        "MEDIUM CLOSE-UP of him facing camera in the dark, head slightly tilted, the "
+        "visor showing a FOCUSED expression: two narrow horizontal pink dot-matrix "
+        "eyes instead of the G, one floating glowing panel out of focus behind his "
+        "shoulder. " + INTEGRA + NEG,
+        [MASTER]),
+
+    "p12_manotea": ("pro",
+        CANONICO +
+        "Side view, he raises one short rounded arm and swipes a floating translucent "
+        "glowing panel to the left, motion blur on the panel he is pushing, other "
+        "panels waiting behind, pitch-black void, dynamic low angle. " + INTEGRA + NEG,
+        [MASTER]),
+
+    "p15_alerta": ("pro",
+        CANONICO +
+        "He looks up at one floating panel that has turned CORAL ORANGE among many "
+        "pink ones, the visor shows an ALERT expression: a coral exclamation dot "
+        "pattern, the coral light of the panel washing over his black helmet, "
+        "wide vertical shot, pitch-black void. " + INTEGRA + NEG,
+        [MASTER]),
+
+    # Se genera A PARTIR de p05 para que el encuadre calce al píxel. Sin esa
+    # referencia el efecto «sólo cambió la luz» se pierde y se lee como otro plano.
+    "p17_amanecer": ("pro",
+        "EXACTLY the same shot, same framing, same camera position, same composition "
+        "and the same character in the same pose on the same table as the reference "
+        "image — change ONLY THE LIGHT: it is now 7:40 in the morning, warm golden "
+        "sunrise light floods in through the big window from the right, long soft "
+        "shadows stretch across the meeting table, the room is now visible and warm, "
+        "the pink glow of the visor is now subtle against the daylight. Do not move "
+        "the camera, do not move the character, do not change the furniture. "
+        + INTEGRA + NEG,
+        [os.path.join(SALIDA, "p05_el_noche.jpg"), MASTER]),
+
+    "p18_gente": ("mystic",
+        "Seen from inside a meeting room looking towards the office door as it opens "
+        "in the morning, a person seen from behind in silhouette walking in and "
+        "dropping a bag on a chair, ceiling lights just switched on, warm morning "
+        "light, faces not visible, back view only, motion blur, handheld camera feel, "
+        "modern minimal advertising agency office in Santiago de Chile, light wood "
+        "table, glass partitions, cinematic anamorphic photography, shallow depth of "
+        "field, film grain, no text, no letters, no logos, no watermark, photorealistic", []),
+
+    "p19_mesa": ("mystic",
+        "Top-down close-up of a dark tablet lying on a light wood meeting table in "
+        "warm morning light, a human hand reaching in from the bottom of the frame to "
+        "pick it up, the screen shows an abstract glowing pink chart with no readable "
+        "text, a coffee cup out of focus beside it, cinematic anamorphic photography, "
+        "very shallow depth of field, film grain, no text, no letters, no logos, "
+        "no watermark, photorealistic", []),
+}
+
+
+def a_jpeg(png):
+    """PNG de 3,8 MB -> JPEG de 0,6 MB. Es lo que permite versionar los planos."""
+    try:
+        from PIL import Image
+    except ImportError:
+        print("   (sin PIL: el plano queda en PNG y NO va a entrar al repo)")
+        return png
+    jpg = png[:-4] + ".jpg"
+    Image.open(png).convert("RGB").save(
+        jpg, "JPEG", quality=93, subsampling=0, optimize=True)
+    os.remove(png)
+    return jpg
+
+
+def genera(nombre, rehacer=False):
+    modelo, prompt, refs = PLANOS[nombre]
+    destino = os.path.join(SALIDA, nombre + ".png")
+    if os.path.exists(destino[:-4] + ".jpg") and not rehacer:
+        print(f"·  {nombre} ya está — salto")
+        return True
+    faltan = [r for r in refs if not os.path.exists(r)]
+    if faltan:
+        print(f"✗  {nombre}: falta la referencia {os.path.basename(faltan[0])}")
+        return False
+    cmd = [sys.executable, MAGNIFIC, "pro" if modelo == "pro" else "generar",
+           prompt, "--out", destino, "--aspecto", "reel"]
+    if modelo == "pro":
+        cmd += ["--resolucion", "2K", "--refs"] + refs
+    print(f"→  {nombre} · {modelo}")
+    r = subprocess.run(cmd, cwd=RAIZ)
+    ok = r.returncode == 0 and os.path.exists(destino)
+    if ok:
+        a_jpeg(destino)
+    print(("✓  " if ok else "✗  ") + nombre)
+    return ok
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--solo", nargs="*", help="nombres de plano (p05_el_noche…)")
+    ap.add_argument("--rehacer", action="store_true")
+    a = ap.parse_args()
+    os.makedirs(SALIDA, exist_ok=True)
+    # p17 depende de p05: el orden del diccionario ya lo respeta.
+    nombres = a.solo if a.solo else list(PLANOS)
+    for n in nombres:
+        if n not in PLANOS:
+            print(f"✗  No existe el plano «{n}». Hay: {', '.join(PLANOS)}")
+            continue
+        genera(n, a.rehacer)
+    print(f"\nEn {os.path.relpath(SALIDA, RAIZ)}:")
+    for f in sorted(os.listdir(SALIDA)):
+        print("   ", f)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

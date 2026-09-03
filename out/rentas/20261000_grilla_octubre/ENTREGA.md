@@ -12,6 +12,9 @@
 | **Historia proyecto** | jue 2-oct | `story/rentas_st-proyecto-02-10.png` · 4500×8000 | ✅ **Lista para revisión** |
 | **Estático «Sin comisión»** | mar 13-oct | `feed/rentas_estatico-sin-comision-13-10.png` · 4500×5625 | ✅ **Listo para revisión** |
 | **Reel comercial** | mar 6-oct | `reel/rentas_reel-octubre-06-10.mp4` · 1080×1920 · 30 s | ✅ **Listo para revisión** |
+| **Carrusel PAID «Arrienda fácil»** | mar 20-oct | `feed/rentas_c-paid1..5.png` · 4500×5625 | ✅ **Listo para revisión** |
+| **Mailing 1** | mar 6-oct | `mail/rentas_mail1-1..4.png` · 1201 px | ✅ **Listo para revisión** |
+| **Mailing 2 · Halloween** | mar 27-oct | `mail/rentas_mail2-1..4.png` · 1201 px | ✅ **Listo para revisión** |
 
 Los 5 fondos son **imágenes IA** (Nano Banana Pro, 4K), por decisión de Valeria: el brief
 pide personas manipulando cinta, ganchos y telarañas, y eso no existe en el banco del cliente.
@@ -67,6 +70,24 @@ grabe el mismo locutor de los otros meses.
 
 Tampoco hay foto de **living** en resolución usable.
 
+### El carrusel PAID del 20-oct
+Las tres escenas con personas —visita, firma de contrato y entrega de llaves— son **IA**: no
+existen en el material del proyecto y el cliente autorizó generarlas. La **portada va con foto
+real** del condominio. Las manos se revisaron con zoom en las dos láminas de riesgo y el contrato
+sale sin texto legible, a propósito.
+Al ser **PAID respeta zonas seguras de Meta**: margen inferior libre entre **18,0 % y 25,0 %**,
+sobre el mínimo de 10-15 %. Las orgánicas de Paulina bajan al 6 %, pero en pauta eso queda tapado.
+
+### Los dos mailings
+Maqueta **calcada del correo de agosto** de Paulina: cuatro bloques apilados de **1201 px** de
+ancho — banner (750) · atención online (240) · ficha de proyecto (813) · cierre (551). Van a
+1201 px reales y no a 4500: es un correo, tiene que pesar poco.
+Cada amenidad lleva **su propio ícono**; en la primera pasada iban las cinco con el mismo y se
+leía como error de maquetación.
+**Ojo:** el brief pide para la ficha un «interior con living y luz natural», y del proyecto sólo
+existe una panorámica de dormitorio de 1872×805. Es la que va. Si el cliente manda una foto del
+living, el bloque se rehace en minutos.
+
 ### El estático del 13-oct
 Pieza de **ficha**: lleva los dos logos, la **fila de atributos** y el **botón de WhatsApp**, igual
 que el estático de julio que el cliente aprobó. Fondo: el quincho real (escala 1,70×).
@@ -98,7 +119,7 @@ Los cortes de línea son míos.
 |---|---|---|
 
 
-| Carrusel PAID «Arrienda fácil» | mar 20-oct | faltan **visita, contrato y ejecutivo** — no existen en el material verificado de Valle Altiplánico |
+
 
 
 **Apareció la carpeta de fotos del proyecto y con ella salieron tres piezas más.**

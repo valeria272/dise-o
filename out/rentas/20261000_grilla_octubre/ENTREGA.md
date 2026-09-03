@@ -11,6 +11,7 @@
 | **Historia Halloween** | jue 29-oct | `story/rentas_st-halloween-29-10.png` · 4500×8000 | ✅ **Lista para revisión** |
 | **Historia proyecto** | jue 2-oct | `story/rentas_st-proyecto-02-10.png` · 4500×8000 | ✅ **Lista para revisión** |
 | **Estático «Sin comisión»** | mar 13-oct | `feed/rentas_estatico-sin-comision-13-10.png` · 4500×5625 | ✅ **Listo para revisión** |
+| **Reel comercial** | mar 6-oct | `reel/rentas_reel-octubre-06-10.mp4` · 1080×1920 · 30 s | ✅ **Listo para revisión** |
 
 Los 5 fondos son **imágenes IA** (Nano Banana Pro, 4K), por decisión de Valeria: el brief
 pide personas manipulando cinta, ganchos y telarañas, y eso no existe en el banco del cliente.
@@ -30,6 +31,21 @@ ratio 0,755 contra 0,754, aire superior 17,8 %.
 - **Margen inferior libre 6,4 %–7,0 %**, dentro del rango propio de Paulina (5,8 %–16 %).
 - Cortes de línea **a mano**: al dejar envolver solo quedaban huérfanas («removibles», «pared.»).
 - Cero `style=""` suelto en el HTML: todo sale de `base.css`.
+
+### El reel del 6-oct
+30 s, 1080×1920, con la estructura y el **cierre canónico** medidos sobre el reel de
+septiembre: caja de logo arriba todo el reel, subtítulos en caja azul, la cifra grande en
+itálica con la unidad en caja lima, la placa azul con curvas de nivel y el ícono `$` en disco
+lima con cursor, y el cierre en fondo blanco con el logo centrado y `¡Escríbenos por WhatsApp!`.
+
+**Los interiores van en FOTO con Ken Burns, no en video, y por una razón de fondo:** el rodaje
+de `CALAMA/VERTICAL` que hay en Drive **no es de Valle Altiplánico** (ver el manual, §Compuerta
+de material). Así que el reel usa sólo material verificado: el dron de `videos-dron` y las fotos
+del proyecto. El dormitorio existe únicamente como panorámica de 1872×805, así que va como banda
+nítida sobre un fondo desenfocado de sí misma — que es lo honesto con una pano.
+
+**Lo que le falta:** no hay foto de **living** en resolución usable, y la voz en off todavía no
+está grabada. Los subtítulos ya llevan el guion del brief.
 
 ### El estático del 13-oct
 Pieza de **ficha**: lleva los dos logos, la **fila de atributos** y el **botón de WhatsApp**, igual
@@ -60,9 +76,9 @@ Los cortes de línea son míos.
 
 | Pieza | Fecha | Bloqueo |
 |---|---|---|
-| Reel comercial | mar 6-oct | tengo el plano aéreo de apertura; faltan los **interiores** (living, cocina, dormitorios) |
 
-| Carrusel PAID «Arrienda fácil» | mar 20-oct | faltan **visita, contrato y ejecutivo** |
+
+| Carrusel PAID «Arrienda fácil» | mar 20-oct | faltan **visita, contrato y ejecutivo** — no existen en el material verificado de Valle Altiplánico |
 
 
 **Apareció la carpeta de fotos del proyecto y con ella salieron tres piezas más.**

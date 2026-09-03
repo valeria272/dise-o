@@ -345,3 +345,7 @@ out/rentas/**/story/
 !public/assets/hilton/between/ia-sept/emergencia-caja-4.png
 !public/assets/hilton/between/ia-sept/emergencia-caja-4-logo.png
 !public/assets/hilton/between/ia-sept/emergencia-fondo.png
+# El reel de Rentas y sus fuentes verificadas vuelven al repo: sin ellas no se
+# reproduce. Los .MOV del rodaje NO viajan (son de Travesía, ver el manual).
+!public/assets/rentas/**
+!out/rentas/**/reel/*.mp4

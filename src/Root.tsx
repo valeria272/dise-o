@@ -2,6 +2,7 @@ import {Composition, Folder} from "remotion";
 
 // Compositions
 import {ShowcaseComposition} from "./compositions/Showcase";
+import {RentasReelOctubre} from "./compositions/rentas/RentasReelOctubre";
 import {NuevaUrbeFacilidadesReel, NU_REEL_DURATION, NU_REEL_FPS} from "./compositions/NuevaUrbeFacilidadesReel";
 import {VideoSquare01} from "./compositions/VideoSquare01";
 import {BSaleProbe} from "./compositions/BSaleProbe";
@@ -795,6 +796,16 @@ export const RemotionRoot: React.FC = () => {
           width={1080}
           height={1080}
           defaultProps={GCL_POST_DEMO}
+        />
+      </Folder>
+      <Folder name="Rentas">
+        <Composition
+          id="RentasReelOctubre"
+          component={RentasReelOctubre}
+          durationInFrames={900}
+          fps={30}
+          width={1080}
+          height={1920}
         />
       </Folder>
     </>

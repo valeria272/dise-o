@@ -124,6 +124,28 @@ Diego usaba **bandas de ancho completo** y el titular en **versales** sobre band
 caja que abraza el texto y mezcla Light/Bold. La paleta y la caja del logo son las mismas. Si una
 pieza de octubre sale con bandas de borde a borde, siguió el criterio equivocado.
 
+## ⛔ Compuerta de material: «Calama» NO quiere decir Valle Altiplánico
+
+La empresa tiene **dos proyectos en Calama**: Valle Altiplánico (deptos, Rentas) y
+Travesía del Desierto II (casas, INU). El rodaje profesional de febrero 2025 guarda los
+dos mezclados en una carpeta llamada sólo `CALAMA`, sin separar por proyecto.
+
+**Cotejado el 02-09-2026 contra las fotos verificadas del proyecto, los 128 clips de
+`CALAMA/VERTICAL` NO son de Valle Altiplánico:**
+
+| | Foto verificada de Valle | Clip de `CALAMA/VERTICAL` |
+|---|---|---|
+| Baño | cortina a rayas, muro blanco liso | cortina roja lisa, cerámica beige |
+| Cocina | cubierta de granito gris, microondas Teka empotrado | cubierta blanca, ventana con reja al patio |
+| Exteriores | bloques de 5-6 pisos | casas de dos pisos con antejardín |
+
+Y los clips `IMG_5801`/`IMG_5802` muestran el rótulo **«CONDOMINIO TRAVESÍA DEL DESIERTO II»**
+en pantalla. Es material de la marca de venta.
+
+> **Regla:** para Rentas sólo es material verificado lo que cuelga de
+> `PROYECTOS INMOBILIARIOS / VALLE ALTIPLÁNICO` — las 17 fotos y la carpeta `videos-dron`.
+> Todo lo demás hay que cotejarlo antes de usarlo.
+
 ## Reglas duras de copy
 
 Heredadas del Sheet `INFORMACIÓN PROYECTOS` del cliente y vigentes para las dos marcas:

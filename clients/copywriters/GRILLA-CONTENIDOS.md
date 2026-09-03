@@ -1,158 +1,160 @@
 # Grilla de contenidos — @copywriters.cl
 
-> Feed propio de Grupo Copylab. Sistema visual: `src/brand/gcl.tokens.json`.
-> Piezas sueltas: `GclPost` (6 plantillas). Carruseles: `GclCarrusel` (5 roles).
-> Escrito el 03-09-2026 a pedido de Valeria: *«innovador, muy marketero, potente;
-> carruseles estáticos que hablen de la agencia y nos veamos potentes; marketing
-> en distintos rubros; tendencias y campañas actuales, intercalado con lo que ya
-> tenemos»*.
+> **COPYLAB SOCIAL DESIGN & CONTENT OS · MASTER SYSTEM v1.0** (03-09-2026).
+> Sistema visual: `src/brand/gcl.tokens.json` · intervenciones: `gclMarcas.tsx`
+> Piezas: `GclPieza` (4 layouts) · Carruseles: `GclCarrusel` (5 roles).
+>
+> Referencia conceptual: **EDITORIAL × ADVERTISING × CULTURE × DATA**.
+> La prueba de fuego: *una pieza tiene que reconocerse como Copylab sin logo.*
 
 ---
 
 ## El problema que esta grilla resuelve
 
-El diagnóstico del 18-08-2026 sigue en pie: **la agencia vende criterio y
-tecnología, pero el feed muestra portafolio de clientes.** Un feed de portafolio
-dice «hacemos piezas bonitas». Uno de criterio dice «sabemos por qué funcionan»,
-y eso es lo que se cobra.
+La agencia vende criterio y tecnología, pero el feed mostraba portafolio de
+clientes. Un feed de portafolio dice «hacemos piezas bonitas». Uno de criterio
+dice «sabemos por qué funcionan», y eso es lo que se cobra.
 
-La grilla nueva invierte la proporción. El trabajo de clientes deja de ser el
-contenido y pasa a ser **la prueba** de lo que se afirma.
+El trabajo de clientes deja de ser el contenido y pasa a ser **la prueba**.
 
 ---
 
-## Las cuatro series
+## Los seis pilares
 
-Cada serie tiene un rótulo fijo que va arriba a la izquierda en toda pieza. El
-rótulo es lo que convierte publicaciones sueltas en una cuenta con voz.
+| Pilar | Qué es | Rótulo | Formato típico |
+|---|---|---|---|
+| **SEÑAL** | Opinión y pensamiento Copylab. La propiedad editorial de la casa. | `SEÑAL / 025` | Pieza suelta |
+| **PROOF** | Resultados, métricas, casos. Toda cifra con su fuente. | `CASE / MY ZOO` | Pieza o carrusel |
+| **WORK** | Trabajo real de clientes, full bleed, sin plantilla encima. | `WORK / TRAVERSO` | Pieza suelta |
+| **PEOPLE** | Equipo, cultura, producción, backstage. | `PEOPLE / COPYLAB` | Pieza o reel |
+| **LAB** | IA, G.CL, experimentos, formas nuevas de producir. | `LAB / EXP 004` | Reel o pieza |
+| **FIELD NOTES** | Conocimiento estratégico y educativo. | `FIELD NOTES / PAID MEDIA` | Pieza o carrusel |
 
-### 1 · «Leemos la campaña» — carrusel de 5-7 láminas
-**Pilar:** Tendencias & IA · **Cada:** martes
+### SEÑAL es lo que hay que proteger
 
-Una campaña ajena, actual, leída con criterio de agencia. No es reseña ni
-aplauso: es **qué decisión de negocio hay detrás y qué nos enseña**. Es la serie
-que más rápido construye autoridad, porque demuestra criterio sin pedirle nada
-al cliente.
+Va **numerada y correlativa** — es una colección, y una colección se sigue. Cada
+SEÑAL es: **un concepto visual fuerte + una frase + el número**. Nada más. Sin
+CTA, sin logo, sin explicación.
 
-Regla dura: **toda cifra lleva fuente en la lámina.** Una agencia que publica
-datos sin respaldo no puede después vender medición.
+**La portada no explica. La portada provoca.**
 
-Ya escrito y rendido: **Nike y el Super Bowl LX**
-(`carruseles/nike-super-bowl.json`). La tesis: Nike volvió al Super Bowl en 2025
-tras 27 años, en 2026 decidió no ir, y apareció igual con un spot de Oakley Meta
-apenas terminó el partido. En el mismo juego hubo más avisos de plataformas de
-IA (7) que de cerveza y autos juntos (6). Remate: *estar no es comprar el espacio
-más caro*.
+Producidas y rendidas:
 
-Siguientes de la serie, en orden de facilidad:
-- **La categoría IA se comió el Super Bowl.** El ángulo del dato duro, con
-  `ai.com` como anunciante más efectivo del partido.
-- **Las marcas retadoras compraron el partido más caro** (Rippling, Poppi, Ramp):
-  cuándo tiene sentido gastar todo el presupuesto en un solo golpe.
-- **Una campaña chilena del mes**, para que la serie no sea solo mirada al norte.
-
-### 2 · «Marketing en el rubro» — carrusel de 6-8 láminas
-**Pilar:** Estrategia + Resultados · **Cada:** jueves
-
-**Esta es la serie que pidió Valeria y la que más se parece a vender.** Un rubro
-por entrega: qué tiene de particular, en qué se equivocan casi todos, y qué
-aprendió Copylab haciéndolo. La experiencia es real y está documentada en el
-repo — no hay que inventar nada:
-
-| Rubro | De dónde sale la experiencia | Un aprendizaje ya documentado |
+| | Frase | Cómo interviene el rosado |
 |---|---|---|
-| **Inmobiliario** | Nueva Urbe / Rentas · Tierra Calma | La foto real del proyecto le gana a la render perfecta. Y el precio tiene que ser el mismo en la pieza y en la web: cuando no calzan, el cliente lo nota antes que tú |
-| **Materiales y construcción** | EBEMA · Revex · Casablanca | El mismo producto necesita dos piezas distintas: la del ferretero y la del contratista no se hablan igual |
-| **Gastronomía y hotelería** | Hilton — DoubleTree · Between | Foto real siempre que exista. Si hay que generar, se pide el vaso liso y se estampa la marca encima |
-| **Belleza** | Selfie | El packshot del e-commerce manda: la pieza tiene que verse como el producto que llega a la casa |
-| **Mascotas** | MyZoo | — (sin sistema medido todavía) |
-| **Financiero** | Abakos | — (sin gramática medida todavía) |
+| `SEÑAL / 025` | LA IA PRODUCE. / *El criterio decide.* | Subraya la segunda voz |
+| `SEÑAL / 026` | TU MARCA NO NECESITA MÁS CONTENIDO. / *Necesita algo que decir.* | Circula «MÁS» |
+| `SEÑAL / 028` | PUBLICAMOS MENOS. / *Funcionó mejor.* | Sin intervención: el contrapunto ya es el gesto |
 
-> ⚠️ **Antes de nombrar a un cliente en el feed propio hay que pedirle permiso.**
-> La versión segura y publicable ya es potente: se cuenta el aprendizaje del
-> rubro sin nombrar la marca («un condominio en el norte», «una cadena de
-> revestimientos»). Nombrarlos suma prueba, pero es una decisión comercial, no
-> de contenido. **Valeria decide caso a caso.**
+Escritas y en cola: `LA ATENCIÓN ESTÁ MÁS CARA QUE NUNCA` (027, pide imagen),
+`EL BRIEF NO ERA EL PROBLEMA`, `NADIE COMPARTE UN ANUNCIO. COMPARTEN UNA IDEA`.
 
-Arrancar por **inmobiliario**, que es donde la experiencia es más honda y más
-reciente.
+---
 
-### 3 · «Caso Copylab» — carrusel de 5 láminas o pieza suelta
-**Pilar:** Resultados · **Cada:** lunes, una semana sí y una no
+## Los dos carruseles largos
 
-El resultado de un trabajo propio, con la cifra adelante. Es la serie más corta y
-la más difícil, porque **exige un número verificable**.
+El carrusel es donde la agencia demuestra que sabe. Dos series:
 
-> ⛔ **Bloqueo real:** las cifras del board (471 % de alcance, +250 campañas,
-> +189 % de conversión) son **de maqueta**, no mediciones. Publicarlas como
-> reales sería exactamente el error que critica la serie 1. Antes de la primera
-> entrega hace falta que alguien saque de Meta/Google Ads **una métrica real con
-> su período y su línea base**. Sin eso, esta serie no sale.
+### «Leemos la campaña» — pilar SEÑAL + FIELD NOTES
+Una campaña ajena, actual, leída con criterio. No es reseña ni aplauso: **qué
+decisión de negocio hay detrás y qué nos enseña**. Construye autoridad sin
+pedirle nada a ningún cliente.
 
-### 4 · «Adentro» — pieza suelta
-**Pilar:** Detrás de la agencia · **Cada:** viernes
+Escrito y rendido: **Nike y el Super Bowl LX**
+(`carruseles/nike-super-bowl.json`). Volvió en 2025 tras 27 años, en 2026
+decidió no ir, y apareció igual con un spot de Oakley Meta apenas terminó el
+partido. En el mismo juego hubo más avisos de plataformas de IA (7) que de
+cerveza y autos juntos (6). Remate: *estar no es comprar el espacio más caro*.
 
-Cómo trabaja la agencia por dentro: los 14 agentes de IA, el equipo, el proceso.
-Es lo que humaniza y lo que diferencia — casi ninguna agencia chilena puede
-mostrar esto porque casi ninguna lo tiene.
+### «Marketing en el rubro» — pilar FIELD NOTES + PROOF
+Un rubro por entrega: qué tiene de particular, en qué se equivocan casi todos,
+qué aprendió Copylab haciéndolo. La experiencia es real y está en el repo:
 
-Es también donde vive **G.CL**, el personaje, con su serie de reels
-(`gcl-agent/`). El capítulo 01 está cerrado y aprobado; el 02 tiene guion escrito
-y espera créditos.
+| Rubro | De dónde sale | Un aprendizaje documentado |
+|---|---|---|
+| **Inmobiliario** | Nueva Urbe / Rentas · Tierra Calma | La foto real le gana al render. Y el precio de la pieza y el de la web tienen que ser el mismo |
+| **Materiales** | EBEMA · Revex · Casablanca | El mismo producto necesita dos piezas: la del ferretero y la del contratista no se hablan igual |
+| **Gastronomía y hotelería** | Hilton — DoubleTree · Between | Foto real siempre que exista; si hay que generar, se pide el vaso liso y se estampa la marca |
+| **Belleza** | Selfie | El packshot del e-commerce manda |
+| **Mascotas** | MyZoo | — (sin sistema medido) |
+| **Financiero** | Abakos | — (sin gramática medida) |
+
+Escrito y rendido: **inmobiliario** (`carruseles/rubro-inmobiliario.json`), en
+versión sin nombrar clientes.
+
+> ⚠️ Nombrar a un cliente en el feed propio se le pide primero. La versión sin
+> nombres ya funciona. **Lo decide Valeria, caso a caso.**
 
 ---
 
 ## El ciclo de tres semanas
 
-15 publicaciones. Ninguna serie dos días seguidos, y la de rubro y la de campaña
-nunca caen el mismo día: son las dos pesadas de leer.
+15 publicaciones. Ninguna serie dos días seguidos; los dos carruseles nunca caen
+juntos, porque son los dos pesados de leer.
 
 | | Lunes | Martes | Miércoles | Jueves | Viernes |
 |---|---|---|---|---|---|
-| **S1** | Caso Copylab | Leemos la campaña · **Nike** | Estrategia (tip suelto) | Marketing en el rubro · **Inmobiliario** | Adentro · los 14 agentes |
-| **S2** | Testimonio de cliente | Leemos la campaña · **IA en el Super Bowl** | Statement / opinión | Marketing en el rubro · **Gastronomía** | Adentro · G.CL (reel) |
-| **S3** | Caso Copylab | Leemos la campaña · **Marcas retadoras** | Tendencia (fondo claro) | Marketing en el rubro · **Materiales** | Adentro · el equipo |
+| **S1** | WORK / cliente | **SEÑAL / 025** | Leemos la campaña · **Nike** | PROOF / caso | PEOPLE / equipo |
+| **S2** | WORK / cliente | **SEÑAL / 026** | Marketing en el rubro · **Inmobiliario** | FIELD NOTES / paid | LAB / G.CL |
+| **S3** | WORK / cliente | **SEÑAL / 027** | Leemos la campaña · **IA en el Super Bowl** | PROOF / caso | PEOPLE / backstage |
 
-**Por qué el miércoles va suelto:** después de dos carruseles seguidos la cuenta
-necesita una pieza de un solo golpe. Es también la que rompe la grilla oscura —
-la plantilla `tendencia` va sobre fondo claro a propósito.
+El martes es fijo de SEÑAL: es la cita semanal con la cuenta.
 
 ---
 
 ## Cómo se produce
 
 ```bash
-# Un carrusel completo, una lámina por PNG, numeradas en orden de publicación
-bash scripts/gcl-carrusel.sh clients/copywriters/carruseles/nike-super-bowl.json
+# Una pieza
+NAV=$(python3 scripts/_entorno.py --navegador-remotion)
+npx remotion still GclPieza out/gcl/master/senal-026.png \
+  --browser-executable="$NAV" \
+  --props="$(cat clients/copywriters/piezas/senal-026.json)"
 
-# Una pieza suelta
-npx remotion still GclPost out/gcl/pieza.png --props='{"plantilla":"tendencia",...}'
+# Un carrusel completo, numerado en orden de publicación
+bash scripts/gcl-carrusel.sh clients/copywriters/carruseles/nike-super-bowl.json
 ```
 
-Los carruseles se escriben como JSON en `carruseles/`. Cada archivo es un
-`GclCarruselProps`: `serie`, `laminas[]`, `acento`, `cta`. Los cinco roles de
-lámina son `portada`, `punto`, `dato`, `cita` y `cierre` — con esos cinco se arma
-cualquier entrega de las cuatro series.
+Las piezas se escriben como JSON en `piezas/`; los carruseles en `carruseles/`.
 
-**El arco de un carrusel que funciona:** portada que enganche → dos o tres
-`punto` que desarrollen → un `dato` a media lectura (rompe la seguidilla oscura
-justo donde la gente se cae) → `cierre` que pida la acción. El `cierre` nunca
-trae información nueva: si trae un argumento más, es que faltaba una lámina
-antes.
+**Los cuatro layouts de `GclPieza`:** `declaracion` (la SEÑAL: display enorme +
+serif itálica), `dato` (PROOF: la cifra a toda página con su fuente), `obra`
+(WORK: foto full bleed, rótulo mínimo, sin plantilla encima), `campo`
+(FIELD NOTES: el dato dibujado con la lectura al lado).
+
+**Las intervenciones** (`gclMarcas.tsx`) son los verbos del rosado: `Circulo`,
+`Subrayado`, `Tachado`, `Flecha`, `Nota` manuscrita, `Rotulo` en mono. **Una por
+pieza.** Dos ya no marcan nada, decoran.
 
 ---
 
-## Lo que falta para que esto corra solo
+## El proceso, antes de diseñar
 
-1. **Una métrica real de la agencia.** Bloquea la serie «Caso Copylab» entera.
-   Es lo primero que hay que conseguir y no depende de diseño.
-2. **Decidir si se nombra a los clientes** en la serie de rubros. Mientras no se
-   decida, se produce la versión sin nombres, que ya funciona.
-3. **La licencia de Monument Grotesk.** El board dice Monument Grotesk Bold; el
-   sistema en código usa **Space Grotesk**, que es el sustituto libre más
-   cercano (Monument es de pago, de Dinamo). Las piezas rendidas hasta ahora
-   salen en Space Grotesk. Si se compra la licencia se cambia en
-   `gcl.tokens.json` y **todas** las piezas la toman, sin tocar nada más.
-4. **Fondos y retratos generados.** Hoy los carruseles son tipográficos, que es
-   un camino legítimo y potente. Para las portadas con imagen hace falta
-   Magnific (el llavero cerrado) o Higgsfield (0,43 créditos).
+Ningún tema entra directo a diseño. Primero:
+
+**PILAR · INSIGHT · HOOK · VISUAL METAPHOR · FORMAT · ART DIRECTION**
+
+Y antes de aprobar, las seis preguntas: ¿hay una idea? ¿la imagen cuenta algo?
+¿podría pertenecer a cualquier agencia? ¿estoy decorando en vez de comunicar?
+¿hay elementos que puedo eliminar? ¿el primer frame detiene el scroll?
+
+Si 3 o 4 dan que sí, se rediseña. **Menos elementos, más concepto.**
+
+---
+
+## Lo que falta
+
+1. **Una métrica real de la agencia.** Bloquea PROOF entero. Las cifras del
+   board (471 %, +250, +189 %) son de maqueta; publicarlas como reales sería el
+   error que la propia SEÑAL critica. Hace falta un número de Meta o Google Ads
+   con su período y su línea base.
+2. **Decidir si se nombra a los clientes.** Decisión comercial, no de contenido.
+3. **Generación de imágenes.** Las SEÑAL con fotografía (el ajedrez de la 025, el
+   cerebro-globo de la 027, las barras de pelo del caso MY ZOO) necesitan
+   Magnific (llavero cerrado) o Higgsfield (0,43 créditos). Las tipográficas
+   puras salen hoy.
+4. **Confirmar la manuscrita.** Caveat no está en la lista tipográfica del
+   master, pero sí en las piezas de referencia. Está cargada y funcionando.
+5. **Portar los dos carruseles al sistema nuevo.** Se escribieron antes del
+   master v1.0 y arrastran gradiente de fondo, partículas y firma automática —
+   todo prohibido ahora. El texto sirve tal cual; hay que rehacer el envase.

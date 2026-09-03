@@ -1,0 +1,15 @@
+{
+  "layout": "declaracion",
+  "fondo": "rosado",
+  "pilar": "SEÑAL",
+  "detalle": "026",
+  "titular": "Tu marca no necesita más contenido.",
+  "contrapunto": "Necesita algo que decir.",
+  "marca": {
+    "verbo": "circular",
+    "x": 0.585,
+    "y": 0.268,
+    "ancho": 0.315,
+    "alto": 0.098
+  }
+}

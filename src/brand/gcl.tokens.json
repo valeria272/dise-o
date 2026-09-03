@@ -2,46 +2,104 @@
   "nombre": "Grupo Copylab",
   "cuenta": "@copywriters.cl",
   "web": "copylab.cl",
-  "sistema": "GCL 2026 — fashion tech + advertising + editorial",
+  "sistema": "COPYLAB SOCIAL DESIGN & CONTENT OS — MASTER SYSTEM v1.0 (03-09-2026)",
+  "referencia": "EDITORIAL × ADVERTISING × CULTURE × DATA",
+  "_regla_madre": "Una pieza tiene que reconocerse como Copylab incluso sin logo. 1 POST = 1 IDEA.",
+
   "colores": {
+    "tinta": "#080F14",
+    "rosado": "#FF2D8B",
+    "coral": "#FF683D",
+    "purpura": "#9D4EDD",
+    "grafito": "#1A1F28",
+    "papel": "#F2F4F6",
+    "blanco": "#FFFFFF",
+
+    "_alias_compatibilidad": "Los nombres de abajo son los del sistema anterior. Siguen acá para que GclPost y el agente social no se rompan; en piezas nuevas usar los de arriba.",
     "fondo": "#080F14",
     "superficie": "#1A1F28",
-    "rosado": "#FF2D8B",
-    "coral": "#FF6B3D",
-    "purpura": "#9D4EDD",
     "claro": "#F2F4F6",
-    "blanco": "#FFFFFF",
     "texto": "#FFFFFF",
     "textoSuave": "rgba(255,255,255,0.72)",
     "textoOscuro": "#080F14"
   },
+
+  "_reglas_de_color": [
+    "Nunca todos los colores a la vez: 2, como máximo 3 por pieza.",
+    "El rosado es el gesto propietario y NO es decoración. Tiene que hacer algo: señalar, subrayar, corregir, conectar, tachar, medir, revelar, intervenir.",
+    "Los gradientes NO son la solución por defecto. Un gradiente tecnológico de fondo es exactamente lo que hace que una agencia parezca startup genérica de IA."
+  ],
+
+  "tipografia": {
+    "display": "'Archivo', 'Archivo Narrow', 'Barlow Condensed', Impact, sans-serif",
+    "editorial": "'DM Serif Display', Georgia, 'Times New Roman', serif",
+    "sans": "'Inter', -apple-system, system-ui, sans-serif",
+    "mono": "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace",
+    "manuscrita": "'Caveat', 'Bradley Hand', cursive",
+
+    "_display": "Archivo variable, con el eje de ancho apretado. 'Archivo Narrow ExtraBold/Black' se consigue con font-variation-settings 'wdth' 70-80 + 'wght' 800-900 — no hay que comprar nada. Para hooks, afirmaciones, números y titulares: puede ser enorme, salir del cuadro e interactuar con la foto.",
+    "_editorial": "DM Serif Display, redonda e itálica. Es la SEGUNDA VOZ: el contrapunto humano, la opinión, la palabra inesperada. «LA IA PRODUCE.» en display / «El criterio decide.» en editorial itálica.",
+    "_sans": "Inter. Sólo información funcional: bajadas, contexto, descripciones.",
+    "_mono": "IBM Plex Mono. USO EXCLUSIVO del rótulo de sección (SEÑAL / 025, WORK / MY ZOO, FIELD NOTES / PAID MEDIA), fechas y datos chicos. Nunca para texto corrido.",
+
+    "_manuscrita": "Caveat. NO está en la lista tipográfica del master, pero sí en las piezas de referencia: son las anotaciones rosadas al margen («Buenas ideas acá», «Otro día en terreno»). Es una voz aparte —la mano de quien hizo la pieza— y por eso no cuenta para el máximo de tres familias. A confirmar con Valeria.",
+
+    "_maximo": "Tres familias por pieza. Más es ruido.",
+
+    "titular": "'Archivo', 'Barlow Condensed', Impact, sans-serif",
+    "cuerpo": "'Inter', -apple-system, system-ui, sans-serif"
+  },
+
+  "formatos": {
+    "feed": {"ancho": 1080, "alto": 1350},
+    "cuadrado": {"ancho": 1080, "alto": 1080},
+    "historia": {"ancho": 1080, "alto": 1920}
+  },
+
+  "pilares": {
+    "senal": "Opinión y pensamiento Copylab. Es la propiedad editorial de la casa: va numerada (SEÑAL / 025) y no explica, provoca.",
+    "proof": "Resultados, métricas y casos. Toda cifra con su fuente.",
+    "work": "Trabajo real de clientes. Puede ir full bleed, identificado con WORK / CLIENTE y sin logo Copylab encima.",
+    "people": "Equipo, cultura, producción, backstage.",
+    "lab": "IA, G.CL, experimentos y formas nuevas de producir.",
+    "field_notes": "Conocimiento estratégico y educativo."
+  },
+
+  "rotulos": {
+    "_formato": "PILAR / QUÉ — en mono, chico, con el separador espaciado. Es lo que convierte publicaciones sueltas en una cuenta con voz.",
+    "ejemplos": ["SEÑAL / 025", "WORK / MY ZOO", "CASE / MY ZOO", "PEOPLE / COPYLAB", "FIELD NOTES / PAID MEDIA", "LAB / EXP 004"]
+  },
+
   "gradientes": {
-    "calor": ["#FF2D8B", "#FF6B3D"],
+    "_nota": "Quedan para la pieza que de verdad los pida, no como fondo por defecto. Ver _reglas_de_color.",
+    "calor": ["#FF2D8B", "#FF683D"],
     "profundo": ["#9D4EDD", "#FF2D8B"],
     "velo": ["rgba(8,15,20,0)", "rgba(8,15,20,0.92)"]
   },
-  "tipografia": {
-    "titular": "'Space Grotesk', 'Helvetica Neue', Arial, sans-serif",
-    "cuerpo": "'Inter', -apple-system, system-ui, sans-serif",
-    "nota": "Monument Grotesk es de pago (Dinamo). Space Grotesk es el sustituto libre más cercano: misma familia grotesk geométrica de contadores abiertos. Si se compra la licencia, se cambia acá y todas las piezas la toman."
-  },
-  "formatos": {
-    "feed": { "ancho": 1080, "alto": 1350 },
-    "cuadrado": { "ancho": 1080, "alto": 1080 },
-    "historia": { "ancho": 1080, "alto": 1920 }
-  },
-  "pilares": {
-    "resultados": "Casos, métricas y logros que generan confianza.",
-    "estrategia": "Tips, frameworks y metodologías que educan.",
-    "agencia": "Cultura, equipo y procesos que humanizan.",
-    "tendencias": "Innovación, herramientas y futuro (IA y publicidad).",
-    "clientes": "Historias reales y testimonios que inspiran."
-  },
+
   "prohibido": [
     "Verde neón o lime como color dominante (es el sistema viejo y la biblia del Agente G lo prohíbe).",
     "Azul genérico de IA.",
     "Emojis dentro de la pieza gráfica (en el caption sí, con moderación).",
     "Más de un acento por pieza: el rosado manda y el coral acompaña, nunca al revés.",
-    "Texto sobre foto sin velo oscuro: si no se lee al primer vistazo, la pieza está mala."
+    "Texto sobre foto sin velo oscuro: si no se lee al primer vistazo, la pieza está mala.",
+    "Gradientes tecnológicos, glow y dashboards como recurso por defecto.",
+    "Rellenar el vacío. El vacío es parte del diseño.",
+    "Agregar por inercia: cards, cajas, footers, flechas, burbujas, sidebars, badges, botones falsos, partículas, grillas futuristas.",
+    "Poner el logo Copylab automáticamente en toda pieza. El feed completo ya construye la marca.",
+    "Convertir el trabajo de un cliente en plantilla Copylab.",
+    "En imágenes: robots genéricos, cerebros con circuitos, hologramas, neón cyberpunk, gente mirando dashboards flotantes, manos robóticas, stock corporativo, 3D gratuito.",
+    "En reels: abrir con «Hola, hoy queremos contarles…» o presentando la marca.",
+    "Subtitular cada palabra con captions gigantes estilo TikTok genérico."
+  ],
+
+  "_control_antes_de_aprobar": [
+    "¿Hay una idea?",
+    "¿La imagen cuenta algo?",
+    "¿Podría pertenecer a cualquier agencia?",
+    "¿Estoy decorando en vez de comunicar?",
+    "¿Hay elementos que puedo eliminar?",
+    "¿El primer frame detiene el scroll?",
+    "Si 3 o 4 dan que sí: se rediseña. Menos elementos, más concepto."
   ]
 }

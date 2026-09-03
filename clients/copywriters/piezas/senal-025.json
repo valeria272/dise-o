@@ -1,0 +1,9 @@
+{
+  "layout": "declaracion",
+  "fondo": "tinta",
+  "pilar": "SEÑAL",
+  "detalle": "025",
+  "titular": "La IA produce.",
+  "contrapunto": "El criterio decide.",
+  "marca": {"verbo": "subrayar", "x": 0.075, "y": 0.545, "ancho": 0.44}
+}

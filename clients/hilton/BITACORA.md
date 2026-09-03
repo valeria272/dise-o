@@ -5,6 +5,45 @@
 
 ---
 
+## 2026-09-03 · Eli (Windows) — BETWEEN: auditoría de reproducibilidad y respaldo
+
+*(Segunda sesión del día. La ronda 9 está en la entrada de más abajo.)*
+
+**Qué se hizo.** Se instaló un segundo estudio en `~/copylab/EDITOR VIDEOS` y,
+al verificarlo, apareció el problema de fondo: **el repo no alcanzaba para
+reproducir Between**. Se auditaron las 32 imágenes que usa
+`BetweenSeptiembre.tsx` cruzándolas contra git, y las 27 composiciones de
+`Root.tsx` contra el disco. Resultado: **19 piezas rinden, 8 no** — las 8 son
+historias cuyas imágenes de origen no existen en ninguna parte.
+
+**Dónde quedó.**
+- `togo-salida-3.png` (18 MB) faltaba en git: `.gitignore:69` tapa
+  `public/assets/**` y el `/cierre` anterior subió 21 de 22. Commiteada (`dd36a5a`).
+- Los 9 scripts `between-*.py` y las 20 imágenes que existen: verificados en
+  GitHub. **Los 16 carruseles se rehacen desde un clon limpio** — comprobado
+  rindiendo `BW-F-Cowork-1` y `BW-F-ToGo-1` (1080×1350 ✓).
+- Las 8 historias irrecuperables estaban **sólo en el disco externo `F:`**. En el
+  disco interno había 3 historias rendidas y eran justo las 3 que sí se rehacen.
+  Copiadas a `out/_respaldo-F-between-sept/` (SHA256, 27 de 27 idénticas) y
+  **subidas a Drive**: subcarpeta `respaldo` dentro de `S3 · BW`
+  (`1vr5rwVu84cmcgQDrj8yjhCfxcFZHGZyE`), 8 de 8 verificadas, con
+  `scripts/between-respaldo-historias.py` (`aac0686`). Decisión de Eli: carpeta
+  aparte para no interferir con la entrega.
+- El manual de la marca ya trae la sección con las 8 composiciones rotas y la
+  regla para octubre.
+
+**Qué sigue.** En octubre, guardar las imágenes de origen junto con las piezas y
+subirlas con `git add -f` el mismo día — hoy se salvó por el disco externo. Y
+antes de cerrar un mes, cruzar composiciones registradas contra archivos en disco.
+
+**Abierto.** Las 12 imágenes de origen de esas 8 historias no aparecieron: se
+buscó por nombre y por palabra suelta en las 2.568 imágenes de
+`F:\Carpeta de grillas Hilton 2026`. Si están en el Mac, vale la pena traerlas;
+si no, esas 8 piezas sólo se pueden rehacer desde cero. **Avisar antes de
+comprometer plazo si el cliente pide cambios ahí.**
+
+---
+
 ## 2026-09-03 · Eli (Windows) — BETWEEN ronda 9: las 4 piezas EN CAMBIOS de la S1, S2 y S3
 
 **Qué pedía la grilla.** `BETWEEN _ GRILLA SEPTIEMBRE 2026` marcó cuatro piezas

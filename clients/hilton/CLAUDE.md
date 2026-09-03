@@ -288,6 +288,42 @@ También hay `STICKER PARA AFTER 1–4.png` e `Ilustraciones globos, trazados y 
       geometría interna, hay que pedirle a Eli un PDF o un export de las mesas de trabajo
 - [ ] Definir si el logo abajo en story se sube para piezas de pauta
 
+## ⛔ 8 historias de septiembre YA NO SE PUEDEN REHACER (auditado 03-09-2026)
+
+De las 27 composiciones `BW-*` registradas en `src/Root.tsx`, **19 rinden y 8 no**.
+Las 8 son todas historias, y fallan porque sus imágenes de origen **no existen en
+ningún disco ni en el historial de git** — se generaron en el Mac y nunca cruzaron:
+
+| Composición | Le falta |
+|---|---|
+| `BW-S-Calculos` | `calculadora-mesa.png` |
+| `BW-S-HoraCafe` | `cafe-desayuno.jpg` |
+| `BW-S-Cowork` | `mesas-trabajo.jpg` |
+| `BW-S-Dieciocho` | `desayuno-completo.jpg` |
+| `BW-S-Strudel` | los 5 `strudel-*.png` |
+| `BW-S-Primavera` | `milkshake-terraza.png` |
+| `BW-S-HumorToGo` | `cafe-gigante.png` |
+| `BW-S-Plateada` | `plateada.png` |
+
+**Los 16 carruseles `BW-F-*` rinden todos** (verificado rindiendo `BW-F-Cowork-1`
+y `BW-F-ToGo-1`). El fallo se confirmó con un render real, no por inspección:
+`CancelledError: Error loading image with src: .../fotos-gradadas/cafe-desayuno.jpg`.
+Los 404 de `IvyOra*.otf` que salen antes en ese log son ruido conocido, no la causa.
+
+**Qué significa en la práctica:** esas 8 están entregadas y aprobadas desde el
+31-08, y su PNG final es la única copia viva de ese trabajo. Si el cliente pide
+un cambio en una de ellas, **no se edita: se rehace desde cero**. Avisarlo antes
+de comprometer un plazo.
+
+Respaldadas el 03-09 en Drive, subcarpeta `respaldo` dentro de `S3 · BW`
+(`1vr5rwVu84cmcgQDrj8yjhCfxcFZHGZyE`), con `scripts/between-respaldo-historias.py`.
+
+> **Regla que deja esto, para octubre:** una pieza cuya fuente ya no existe sólo
+> está viva mientras exista su PNG. Antes de dar por cerrado un mes, cruzar las
+> composiciones registradas contra los archivos en disco y ver dónde hay una sola
+> copia. `.gitignore` tapa `public/assets/**` y `raw/*`, así que **lo nuevo no se
+> commitea solo**: va con `git add -f`.
+
 ---
 
 # BETWEEN — feedback de Eli, parte 2 (25-08-2026)

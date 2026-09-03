@@ -1160,7 +1160,11 @@ export const TitularBetween: React.FC<{
         lineHeight: 1,
         whiteSpace: 'nowrap',
         color: tinta(tono),
-        textShadow: sombraSobreFoto,
+        /* ⭐ RONDA 8: la sombra existe para que el BEIGE se lea sobre una foto.
+           En `cafe` el titular es tinta oscura sobre fondo claro —la ST de la
+           vitrina— y ahí la sombra no aporta contraste: sólo ensucia el contorno
+           y engorda la letra. Se apaga. */
+        textShadow: tono === 'cafe' ? undefined : sombraSobreFoto,
         ...extra,
       }}
     >

@@ -337,3 +337,11 @@ out/rentas/**/feed/
 out/rentas/**/story/
 !public/assets/hilton/between/ia-sept/cumple-ref-capuccino.png
 !public/assets/hilton/between/fotos-gradadas/cumple-mano-vaso.jpg
+
+# RONDA 8 — ST Emergencia (S2): la vitrina generada, el logotipo estampado y el
+# fondo ya montado a escala. Se versionan los tres porque la pieza esta
+# ENTREGADA y la generacion costo 4 intentos. Ver between-emergencia-magnific.py
+# y between-emergencia-montar.py.
+!public/assets/hilton/between/ia-sept/emergencia-caja-4.png
+!public/assets/hilton/between/ia-sept/emergencia-caja-4-logo.png
+!public/assets/hilton/between/ia-sept/emergencia-fondo.png

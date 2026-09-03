@@ -1199,70 +1199,85 @@ export const StCalculos: React.FC = () => (
    Sin logo arriba: el vaso ya lo lleva impreso, y la regla de la diseñadora es
    que cuando el vaso trae el logo, no se repite en la pieza.                  */
 export const StEmergencia: React.FC = () => (
-  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={IA + 'emergencia-caja-2-logo.png'} oscurecer={0.06} />
-    {/* el interior de la caja va de y≈185 a y≈1292; el producto arranca en
-        y≈765, así que el titular vive en la banda vacía de arriba */}
-    {/* el interior de la caja va de x≈244 a x≈849: el titular se ciñe a ese
-        ancho para no montarse sobre el marco */}
+  /* ⭐⭐⭐ RONDA 8 (02-09) — la pieza se rehízo entera. Dos comentarios que
+     dicen lo mismo desde dos lados:
+       Cliente:   «No se cacha bien al tapar la vitrina con el texto, veamos
+                   otra diagramación?»
+       Scarlette: «no se parece a na ref, hagámosla más simple, NO ambientada en
+                   un lugar sino que tenga más PROTAGONISMO LA MISMA CAJA, y ojo
+                   con la diagramación de los textos: tapa mucho la caja.»
+
+     Lo que había (`emergencia-caja-2-logo.png`) fallaba en cinco cosas y las
+     cinco están en esos comentarios: era un NICHO en una pared —o sea ambientada
+     y sin vidrio, cuando el brief pide «caja de emergencia CON VIDRIO»—, el
+     titular iba DENTRO de la caja sobre la pared del fondo, y faltaba un
+     producto: el brief pide TRES (café, pastelería y sándwich) y había dos,
+     mientras la encuesta ofrecía «algo salado» que no estaba en cuadro.
+
+     Ahora: vitrina frontal con vidrio sobre fondo liso, los tres productos en
+     tres compartimentos, y **el texto vive fuera de la caja** — arriba el
+     titular, abajo la bajada y la encuesta.
+     `scripts/between-emergencia-magnific.py` + el logotipo real estampado sobre
+     el vaso liso con `between-logo-vaso.py --centro 960 2870 --ancho 318`. */
+  <AbsoluteFill style={{backgroundColor: '#efdfcd'}}>
+    {/* `oscurecer` a 0: el fondo es crema claro y el texto va en café, así que
+        apagar la foto sólo la ensuciaría. */}
+    <FotoFondo src={IA + 'emergencia-fondo.png'} oscurecer={0} />
+    {/* ── el titular, ARRIBA de la vitrina y sobre el fondo liso ──
+        La vitrina ocupa de y=560 a y=1235 —montada a esa escala a propósito, ver
+        `scripts/between-emergencia-montar.py`—, así que el bloque de arriba tiene
+        de 268 (bajo la zona segura de Meta) a 560 para él solo. Y como ya no se
+        compone dentro de la caja, el titular recupera la columna entera (810)
+        en vez de los 544 a los que estaba encogido. */}
     <div
       style={{
         position: 'absolute',
-        left: 268,
-        right: 268,
+        left: BETWEEN.bloque.margenX,
+        right: BETWEEN.bloque.margenX,
         top: 268,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
     >
-      {/* ⭐ RONDA 6: la leyenda va ENTERA en caja alta y en Raleway. Es el
-          rótulo impreso de una caja de emergencia real («ROMPER EN CASO DE…»),
-          no un titular con script: ahí la tipografía rígida es la que cuenta
-          el chiste. Y de paso el bloque baja de dos alfabetos a uno. */}
+      {/* ⚠️ `tono="cafe"`: el fondo pasó de foto oscura a crema claro, y el
+          beige de marca sobre crema NO SE LEE. El café #675b49 es el otro tono
+          del kit y es el mismo de la caja taupe. */}
       <TitularBetween
         caps={'Romper en caso\nde antojo'}
         alinear="centro"
-        sizeCaps={76}
-        anchoDisponible={544}
+        tono="cafe"
+        sizeCaps={92}
+        anchoDisponible={BETWEEN.bloque.columna}
       />
     </div>
-    {/* ⭐ RONDA 6 (I15): «ojo con la diagramación de los textos, TAPA MUCHO LA
-        CAJA». Lo que tapaba era el bloque de abajo: ahora la bajada del brief
-        —«Si solo pudieras sacar uno primero…»— y la encuesta viven en la PARED,
-        bajo el borde inferior de la caja (y≈1292), y no le pasan por encima.
-        Sobre la caja queda solo su rótulo, que es parte del objeto. */}
+    {/* ── la bajada del brief, ABAJO de la vitrina ── */}
     <div
       style={{
         position: 'absolute',
         left: BETWEEN.bloque.margenX,
         right: BETWEEN.bloque.margenX,
-        top: 1316,
+        top: 1290,
         textAlign: 'center',
         fontFamily: BETWEEN.fuentes.sans,
         fontWeight: BETWEEN.pesos.semibold,
-        fontSize: 34,
+        fontSize: 36,
         lineHeight: 1.15,
-        color: BETWEEN.colores.beige,
-        textShadow: '0 2px 14px rgba(36,26,18,0.45)',
+        color: BETWEEN.colores.cafe,
       }}
     >
       Si solo pudieras sacar uno primero…
     </div>
-    {/* la encuesta arranca bajo la bajada y termina antes de y=1580, que es
-        donde empieza la zona segura inferior de Meta en historias */}
-    <div style={{position: 'absolute', left: 0, right: 0, top: 1376, display: 'flex', justifyContent: 'center'}}>
+    {/* la encuesta cierra antes de y=1580, que es donde empieza la zona segura
+        inferior de Meta en historias */}
+    <div style={{position: 'absolute', left: 0, right: 0, top: 1350, display: 'flex', justifyContent: 'center'}}>
       <StickerQuiz
-        /* ⭐ RONDA 6 — TEXTOS LITERALES DEL BRIEF. La pieza había perdido el
-           llamado y había reescrito las opciones:
-             · faltaba entero el «¿CUÁL TOMARÍAS?», que es el tercer bloque de
-               texto del brief y el que de verdad pregunta;
-             · las opciones decían «El café / El croissant / Todas las
-               anteriores» cuando el brief pide «☕ Café / 🥐 Algo dulce /
-               🥪 Algo salado» — se había perdido ALGO SALADO, que además es uno
-               de los tres productos que la pieza muestra dentro de la caja.
-           La cuarta opción es la que agregó el cliente en la fila 14
-           («Agregar opción todas las anteriores»). */
+        /* TEXTOS LITERALES DEL BRIEF (ronda 6): el «¿CUÁL TOMARÍAS?» es el
+           tercer bloque de texto del brief y va acá como pregunta de la
+           encuesta; las opciones son las tres del brief —«☕ Café / 🥐 Algo
+           dulce / 🥪 Algo salado»— más «todas las anteriores», que la agregó el
+           cliente en la fila 14. Las tres primeras son EXACTAMENTE los tres
+           productos que ahora sí están dentro de la vitrina. */
         pregunta="¿Cuál tomarías?"
         opciones={['☕ Café', '🥐 Algo dulce', '🥪 Algo salado', 'Todas las anteriores']}
         ancho={620}

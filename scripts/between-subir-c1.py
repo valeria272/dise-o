@@ -66,6 +66,10 @@ RENDER = RAIZ / 'out/hilton-between-r8'
 CARPETAS = {
     'cowork': '1GB6NtoG3vy35rPj7bw-j8bc76-Jz8332',   # C1 COWORK
     'cumple': '1TfFCqNfQw0ucTwqvJD8iqft7Y__voRUw',   # C2 CUMPLEAÑOS BW
+    # ⭐ La S2 va en OTRA carpeta, que Eli abrió el 02-09: `BW` dentro de la
+    # semana 2 (`1MSF7sQYNowbU8GlkDn6_HoR8-bqCDeYn`). No cuelga de `BW` de la
+    # S1, así que no se puede deducir: la dio ella por chat.
+    's2': '1Yh2Puq1ZEmbM2HaoTh-LUydKwtZRmpn1',      # S2 · BW
 }
 
 # ⭐ EL CARRUSEL COMPLETO, decisión de Eli el 02-09: «súbelas a ese drive, mejor
@@ -87,6 +91,9 @@ PIEZAS = {
     'cumple': [
         ('BW FEED 03-09 Cumpleanos 1.png', 'BW-F-Cumple-1.png'),
         ('BW FEED 03-09 Cumpleanos 2 detalles.png', 'BW-F-Cumple-2.png'),
+    ],
+    's2': [
+        ('BW ST 09-09 Emergencia Between.png', 'BW-S-Emergencia.png'),
     ],
 }
 

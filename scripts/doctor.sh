@@ -11,18 +11,15 @@ bad(){ printf "  \033[31m✗\033[0m %s\n" "$1"; }
 echo; echo "══ Entorno ══"
 node --version >/dev/null 2>&1 && ok "Node $(node --version)" || bad "Node no instalado (se necesita 20+)"
 [ -d node_modules ] && ok "node_modules presente" || bad "Falta npm install"
-# Chrome: Mac, Windows (Git Bash) y Linux. En Windows vive en Program Files o en
-# el AppData del usuario, así que el diagnóstico no puede asumir la ruta de Mac.
-CHROME=""
-for c in "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
-         "/c/Program Files/Google/Chrome/Application/chrome.exe" \
-         "/c/Program Files (x86)/Google/Chrome/Application/chrome.exe" \
-         "$HOME/AppData/Local/Google/Chrome/Application/chrome.exe"; do
-  [ -f "$c" ] && CHROME="$c" && break
-done
-[ -z "$CHROME" ] && CHROME=$(command -v google-chrome || command -v google-chrome-stable || true)
-[ -n "$CHROME" ] && ok "Google Chrome (render de gráficas)" \
-  || bad "Falta Google Chrome — render.sh no va a funcionar"
+# Chrome: la lista de rutas la tiene scripts/_entorno.py, que es el único lugar
+# del estudio donde se resuelven rutas de máquina. El doctor sólo pregunta.
+CHROME=$(python3 "$(dirname "${BASH_SOURCE[0]}")/_entorno.py" --navegador 2>/dev/null || true)
+if [ -n "$CHROME" ]; then
+  ok "Navegador para rendir: $(basename "$CHROME")"
+else
+  bad "Falta Chrome o Chromium — render.sh no va a funcionar"
+  bad "  Instálalo, o si ya lo tienes: export COPYLAB_CHROME=\"/ruta/al/chrome\""
+fi
 # El venv de Python: en Mac/Linux cuelga de bin/, en Windows de Scripts/.
 PY_VENV=""
 for c in "$HOME/copylab-venv/bin/python3" "$HOME/copylab-venv/Scripts/python.exe"; do

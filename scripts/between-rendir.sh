@@ -12,7 +12,8 @@ set -uo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SB="$HOME/copylab-work/between-render"
 SALIDA="${1:-$SB/out/hilton-between-sept-v3}"
-CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+# Chrome sale de scripts/_entorno.py — nunca quemado acá (ver ese archivo).
+source "$REPO/scripts/_navegador.sh"
 
 bash "$REPO/scripts/between-sync-sandbox.sh" "$SB" >/dev/null
 mkdir -p "$SALIDA"

@@ -133,6 +133,92 @@ def exigir(ruta, que, comando_ayuda=""):
     raise SystemExit(msg)
 
 
+# ── El navegador que rinde los HTML a PNG ────────────────────────────────────
+#
+# ⚠️ 03-09-2026: seis archivos tenían quemado
+# `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`. En el Mac de
+# Valeria funciona; en el PC de otra diseñadora y en cualquier máquina Linux,
+# `render.sh` moría en la primera línea. Es el mismo problema que el `python3`
+# inexistente de Windows que se arregló en `python_venv()`, así que la solución
+# vive en el mismo lugar: una sola lista, que todos consultan.
+#
+# Se acepta cualquier Chromium: Chrome, Chromium, Edge y Brave rinden idéntico
+# con `--headless=new`, y en un servidor sin Chrome instalado el Chromium que
+# deja Playwright es lo único que hay.
+def navegador():
+    """Ruta al Chrome/Chromium de esta máquina, o None si no hay ninguno.
+
+    Orden: variable de entorno · lo instalado en el sistema · el Chromium de
+    Playwright. Devuelve un `str` porque casi siempre va a un subproceso.
+    """
+    import glob
+    import shutil
+
+    # 1. Puesta a mano. `PUPPETEER_EXECUTABLE_PATH` va incluida porque es la que
+    #    ya definen varias imágenes de CI.
+    for var in ("COPYLAB_CHROME", "CHROME_PATH", "PUPPETEER_EXECUTABLE_PATH"):
+        v = os.environ.get(var)
+        if v and pathlib.Path(v).exists():
+            return str(v)
+
+    # 2. En el PATH (el caso normal en Linux).
+    for cmd in ("google-chrome", "google-chrome-stable", "chromium",
+                "chromium-browser", "chrome"):
+        hallado = shutil.which(cmd)
+        if hallado:
+            return hallado
+
+    home = pathlib.Path.home()
+    fijas = [
+        # macOS
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "/Applications/Chromium.app/Contents/MacOS/Chromium",
+        "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+        "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+        home / "Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        # Windows
+        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+        r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+        home / "AppData/Local/Google/Chrome/Application/chrome.exe",
+        r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+        # Linux, fuera del PATH
+        "/usr/bin/google-chrome",
+        "/opt/google/chrome/chrome",
+        "/snap/bin/chromium",
+    ]
+    hallado = _primera_que_exista(fijas)
+    if hallado:
+        return str(hallado)
+
+    # 3. El Chromium que instala Playwright. En un servidor headless suele ser
+    #    el único navegador de la máquina, y el número de build cambia con cada
+    #    versión — por eso se busca con comodín en vez de fijarlo.
+    raices = [os.environ.get("PLAYWRIGHT_BROWSERS_PATH"),
+              "/opt/pw-browsers",
+              home / ".cache/ms-playwright",
+              home / "AppData/Local/ms-playwright"]
+    patrones = ["chromium-*/chrome-linux/chrome",
+                "chromium-*/chrome-mac/Chromium.app/Contents/MacOS/Chromium",
+                "chromium-*/chrome-win/chrome.exe",
+                "chromium_headless_shell-*/chrome-linux/headless_shell"]
+    for raiz in raices:
+        if not raiz:
+            continue
+        for patron in patrones:
+            for c in sorted(glob.glob(str(pathlib.Path(raiz) / patron)), reverse=True):
+                if pathlib.Path(c).exists():
+                    return c
+    return None
+
+
+FALTA_NAVEGADOR = (
+    "\u2717 No encuentro Chrome ni Chromium en esta m\u00e1quina.\n"
+    "  Sin navegador no hay render de HTML a PNG.\n"
+    "  Inst\u00e1lalo desde https://www.google.com/chrome/ o, si ya lo tienes\n"
+    "  en una ruta rara, ind\u00edcalo:  export COPYLAB_CHROME=\"/ruta/al/chrome\"\n"
+)
+
+
 # El venv compartido, si existe; si no, el intérprete con el que se corre esto.
 #
 # ⚠️ Windows (31-08-2026): antes esto solo miraba el layout POSIX `venv/bin/python3`
@@ -156,6 +242,16 @@ def python_venv():
 
 
 if __name__ == "__main__":
+    # `--navegador` existe para los render.sh: imprime la ruta y sale 1 si no
+    # hay ninguno, para que el shell pueda cortar con `|| exit 1`.
+    if "--navegador" in sys.argv:
+        _n = navegador()
+        if not _n:
+            sys.stderr.write(FALTA_NAVEGADOR)
+            raise SystemExit(1)
+        print(_n)
+        raise SystemExit(0)
+
     print(f"RAIZ            {RAIZ}")
     print(f"public/assets   {ASSETS}  {'✓' if ASSETS.exists() else '✗ FALTA'}")
     print(f"raw/            {RAW}  {'✓' if RAW.exists() else '— (se baja de Drive)'}")
@@ -165,3 +261,5 @@ if __name__ == "__main__":
     _k = clave_freepik()
     print(f"Magnific/Freepik {(_k[:4] + '…' + _k[-3:]) if _k else '✗ corre: python3 scripts/llavero.py abrir'}")
     print(f"python          {python_venv()}")
+    _nav = navegador() or "✗ no hay Chrome/Chromium acá"
+    print(f"navegador       {_nav}")

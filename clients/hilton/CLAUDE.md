@@ -3171,3 +3171,119 @@ estaba hecho**.
 
 > Una corrección que no se sube no existe. Al cerrar la ronda, la lista de piezas
 > tocadas y la lista de piezas subidas tienen que ser la misma.
+
+---
+
+# ⭐⭐⭐ RONDA 13 — la regla que sale de tres intentos fallidos (04-09-2026)
+
+## ⭐⭐⭐ 1. UN ADORNO SOBRE UNA FOTOGRAFÍA ES ILUSTRACIÓN, NO FOTOGRAFÍA
+
+Es el aprendizaje más importante del día y costó tres pasadas sobre la misma
+pieza. El cliente pidió «papelitos de colores» sobre la mesa del cumpleaños, y
+se intentó **dibujarlos dentro de la foto** dos veces:
+
+| intento | qué se hizo | veredicto de Eli |
+|---|---|---|
+| ronda 11 | papelitos de 5 colores planos, tiras cortas | «se ve muy infantil y mal diseñado» |
+| ronda 12 | cintas de ORO metálico, arqueadas, con veta especular y sombra de contacto | «parece un plátano. Se ve extraño» |
+| ronda 13 | los trazos de pincel de Eli, ENCIMA de la foto | ✅ es lo que pidió |
+
+Y la resolución fue suya: «Por último, que sean **ilustradas**, con el **trazado
+que ya se sabe y se conoce**, punto».
+
+⭐ **Lo que hay que entender es por qué el segundo intento falló por ser MEJOR.**
+La cinta de oro tenía todo lo que el manual pide para un elemento agregado
+—tamaño por cercanía, desenfoque según la profundidad de campo, sombra de
+contacto, acabado metálico—. Precisamente por eso perdió: **un objeto que
+pretende ser fotografía se mide contra la fotografía que lo rodea**, y ahí no hay
+empate posible. Una forma dibujada de 40 px con un degradado no aguanta la
+comparación con un croissant de 900 px fotografiado con un 50 mm.
+
+> **Regla: si hay que decidir entre imitar la realidad y declararse dibujo, se
+> declara dibujo.** Un doodle no compite con la foto porque no pretende ser parte
+> de ella. Vale para confeti, serpentinas, flechas, globos y cualquier cosa que
+> se agregue a una escena.
+
+Y el corolario práctico para esta marca: **el adorno de Between ya existe**. Son
+los trazos de pincel que hizo Eli en Illustrator y que viven en
+`public/assets/hilton/between/recursos/` (`confeti.png`, `globos-par.png`,
+`globo.png`, `corazon.png`, las flechas). Antes de dibujar cualquier adorno
+nuevo, hay que mirar si ya está ahí.
+
+⚠️ Los generadores de `dorados()` y `cinta()` se dejaron en
+`scripts/between-cumple-fondo.py` **sin llamarse**, para que quede el registro
+del intento y sus mediciones; no se vuelven a enchufar.
+
+## ⭐⭐ 2. UNA VITRINA CON PRODUCTOS: EL ORDEN DE MONTAJE COMPLETO
+
+Eli, sobre la ST de Emergencia: «se ve muy mal el fondo. Tiene que ser mejor
+editado, mejor elaborado». Los cinco defectos de la versión anterior, y los cinco
+son de montaje:
+
+1. caja **crema sobre fondo crema**, sin vidrio reconocible: plana;
+2. los productos **FLOTABAN** — sin piso, sin línea de base común, sin sombra;
+3. a **escalas incoherentes** entre sí;
+4. el vaso **cortado** por el marco interior;
+5. recortes pegados **sin recibir la luz** del interior.
+
+⭐ El orden que sí funciona, y es reutilizable para cualquier vitrina, repisa o
+mostrador:
+
+1. **el contenedor se genera VACÍO.** Vacío es la clave: así el generador no
+   inventa productos ni logotipos. Acá salió con marco de madera y filete de
+   latón, vidrio con reflejo diagonal y tres compartimentos verticales;
+2. **los productos son fotografía real recortada**, uno por compartimento;
+3. **una sola LÍNEA DE BASE** medida sobre el contenedor (acá y=1597). Objetos
+   apoyados cada uno a su altura es el defecto que se lee como «mal elaborado»;
+4. **sombra de contacto** por objeto: elipse corta y densa. Una sombra larga y
+   suave lo levanta del piso;
+5. **campo de luz del compartimento**: cada recorte se multiplica por el
+   gradiente de luz de su propio hueco, así el que está en penumbra se apaga;
+6. **luz envolvente** en el canto (`between_retoque.luz_envolvente`);
+7. y **el reflejo del vidrio ENCIMA**, no debajo: lo que va delante, delante. Se
+   aísla del propio archivo como el EXCESO de luz respecto de la mediana de cada
+   fila.
+
+⚠️ Y una de escala: los productos ocupan el **92 % del ancho de su
+compartimento**. A la primera pasada iban al 78-85 % y los tres se veían chicos y
+perdidos en un hueco alto.
+
+## ⭐ 3. «QUEMADA» PUEDE SER NARANJA, NO BLANCO
+
+Eli, sobre la slide 4 del To Go: «se ve quemada, se ve basura, y **tiene que
+verse todas las slides similares en cuanto al tono y los colores**». La reacción
+instintiva es bajar las luces. Medido, el problema era otro:
+
+| slide | mediana | calidez | saturación |
+|---|---|---|---|
+| 2 | 99 | 23,7 | 40,9 |
+| 3 | 102 | 34,2 | 43,6 |
+| **4** | **87** | **55,3** | **57,8** |
+
+La slide 4 es un interior de bar con reflejos naranjas en la madera; contra dos
+bodegones de luz de día se leía **anaranjada y sobresaturada**, no sobreexpuesta
+— de hecho era la más OSCURA de las cuatro. «Quemada» describía el color.
+
+> **Regla: un carrusel se mide entre sus propias slides.** Antes de entregar,
+> compara mediana, calidez y saturación de todas y llévalas al mismo sitio.
+> `iguala_tono()` en `scripts/between-togo4-r12.py` corrige las tres en orden
+> —calidez, saturación, mediana— porque cada una desplaza a la siguiente.
+
+## ⭐ 4. EL LOGO SOBRE UN ENVASE SE CENTRA EN LA CARA VISIBLE
+
+Eli: «el logo se ve poco centrado». Y era medible: el logotipo iba a 206 px
+centrado en x=920 (el 0,86 del ancho de la SILUETA del vaso), o sea de 817 a
+1023 — pero la **cara visible** del cartón en esa banda va de 840 a 1023. Los
+primeros 23 px caían sobre el dedo, la máscara de cartón se los comía, y la tinta
+que quedaba a la vista arrancaba en 840: **descentrada 28 px** respecto del eje.
+
+Corregido: se mide la cara visible por croma (`B/R < 0,58`), se toma su centro
+(932) y su ancho (183) y el logotipo va a 175 px. Es la misma lección que la
+slide 4 en la ronda 12, y ya son dos veces:
+
+> **La proporción y el centro del logotipo se miden sobre la CARA VISIBLE del
+> envase, no sobre su silueta.** En un envase cercano o girado las dos cosas no
+> coinciden, y el ojo juzga lo que ve.
+
+Y la altura también se elige midiendo: de y=1250 a 1325 el cartón libre mide
+183 px; más abajo los dedos lo reducen a 90. El logo va en la banda ancha.

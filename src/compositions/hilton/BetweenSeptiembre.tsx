@@ -542,7 +542,20 @@ export const Cumple1: React.FC = () => (
         → Mesa sin rayones (corrector por CROMA: la madera de Between es cálida
           y las marcas son grises) y revelado por MEDIOS, que es lo que arregla
           «el color está muy oscuro». */}
-    <FotoFondo src={F + 'cumple-r12-1.jpg'} oscurecer={0.08} />
+    {/* ⭐⭐ RONDA 13 (04-09) — Eli: «pusiste una serpentina dorada que parece un
+        plátano… Por último, que sean ILUSTRADAS, con el TRAZADO QUE YA SE SABE Y
+        SE CONOCE, punto.»
+        Van dos intentos de meter el adorno DENTRO de la foto —papelitos de
+        colores planos, después cintas de oro metálico— y los dos se rechazaron.
+        El segundo falló justamente por querer ser más realista: una cinta
+        dibujada píxel a píxel se mide contra la fotografía que la rodea y pierde
+        siempre.
+        → El adorno de cumpleaños de esta marca YA EXISTE y es una ilustración:
+          los trazos de pincel de Eli (`recursos/confeti.png`, `globos-par.png`).
+          La foto vuelve a ser sólo foto y el adorno va ENCIMA, en el beige de
+          marca. Un doodle no compite con la fotografía porque no pretende ser
+          parte de ella. */}
+    <FotoFondo src={F + 'cumple-r13-1.jpg'} oscurecer={0.08} />
     {/* ⛔ RONDA 11 — la G1 va SIN doodles, y es la misma razón que ya escribió la
         ronda 10 pero ahora sí se cumple: los papelitos de cumpleaños están
         DENTRO de la escena, sobre la mesa, que es lo que pidió el cliente.
@@ -555,6 +568,16 @@ export const Cumple1: React.FC = () => (
         No cabía sin cortarlo por el canto. */}
     <Globos
       posiciones={[
+        /* ⭐ RONDA 13 — vuelven los doodles a la G1, y ahora SÍ hacen falta: la
+           foto ya no lleva confeti dentro. Dos trazos y en zonas medidas:
+             · el par de globos sobre el muro, arriba a la izquierda, por encima
+               del bloque de texto (que arranca en y=150 y ocupa x 135-945);
+             · el confeti en la mesa libre de la derecha — el vaso termina en
+               y=1023 y el plato no pasa de x=790, así que x 806-986 · y 1060+
+               es superficie tranquila.
+           Se quedan en 2: el manual pide los doodles «en poca proporción». */
+        {cual: 'globosPar', x: 96, y: 470, ancho: 150, rotacion: -8},
+        {cual: 'confeti', x: 806, y: 1060, ancho: 180, rotacion: 12},
         /* ⭐ RONDA 8: 872 → 856. `between-qa.py` marcó tinta a 77,8 px del canto
            derecho (mínimo 84) y NO era el texto: era este globo, cuyo trazo
            sobresale ~10 px del ancho declarado. Mismo defecto que ya se
@@ -699,7 +722,7 @@ export const Cumple1: React.FC = () => (
  */
 export const Cumple2: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={F + 'cumple-r12-2.jpg'} oscurecer={0.2} />
+    <FotoFondo src={F + 'cumple-r13-2.jpg'} oscurecer={0.2} />
     <Globos
       posiciones={[
         /* Las posiciones son las del editable de Eli —el par abre por el flanco
@@ -714,6 +737,15 @@ export const Cumple2: React.FC = () => (
            x=100 y el globo a x=860. */
         {cual: 'globosPar', x: 100, y: 645, ancho: 176, rotacion: -6},
         {cual: 'globo', x: 860, y: 872, ancho: 122, rotacion: 10, espejo: true},
+        /* ⭐ RONDA 13 — un confeti en la franja libre de la derecha (el marco del
+           mock termina en x=882 y el margen de marca está en 996, así que
+           x 890-995 es el único hueco que queda). Cierra el par de slides con
+           el mismo trazo que abre la G1. */
+        /* ⚠️ x 890 + 105 = 995 entraba por 1 px, pero `between-qa.py` midió tinta
+           a 79 px del canto (mínimo 84): el trazo de pincel sobresale ~6 px del
+           ancho declarado, igual que ya pasó con los globos en las rondas 7 y 8.
+           Se corre a 876 con 100 de ancho. */
+        {cual: 'confeti', x: 876, y: 372, ancho: 100, rotacion: -14},
       ]}
     />
     {/* Sin lockup sobrepuesto: la marca la firma el avatar y el usuario del
@@ -1591,7 +1623,22 @@ export const StEmergencia: React.FC = () => (
            🥪 Algo salado» siguen siendo los tres del brief y siguen calzando con
            lo que hay dentro de la vitrina. El cliente cambió el producto, no la
            pregunta. */}
-    <FotoFondo src={IA + 'emergencia-fondo-r10.png'} oscurecer={0} />
+    {/* ⭐⭐⭐ RONDA 13 (04-09) — Eli: «se ve muy mal el fondo. Tiene que ser
+        mejor editado, mejor elaborado. Vuelve a hacer esa misma historia […] con
+        el café To Go, con el vaso que ya habíamos logrado, el que está aprobado.
+        El croissant, que es lo salado. Un muffin de chocolate.»
+        ⛔ La vitrina anterior era crema sobre crema, sin vidrio reconocible, y
+           los tres productos FLOTABAN: sin piso, sin línea de base común, sin
+           sombra de contacto y a escalas incoherentes entre sí.
+        → `scripts/between-emergencia-r13.py`: la vitrina se genera VACÍA —marco
+          de madera con filete de latón, vidrio con su reflejo y tres
+          compartimentos verticales— y los tres productos son FOTOGRAFÍA REAL
+          recortada del cliente: el vaso To Go aprobado (que ya trae su logotipo
+          impreso), el croissant de jamón queso y el muffin de chocolate. Los
+          tres apoyan en la MISMA línea de base, con sombra de contacto, con el
+          campo de luz de su compartimento y con el reflejo del vidrio ENCIMA.
+        ⚠️ Los textos de la encuesta no se tocan. */}
+    <FotoFondo src={IA + 'emergencia-fondo-r13.png'} oscurecer={0} />
     {/* ── el titular, ARRIBA de la vitrina y sobre el fondo liso ──
         La vitrina ocupa de y=560 a y=1235 —montada a esa escala a propósito, ver
         `scripts/between-emergencia-montar.py`—, así que el bloque de arriba tiene

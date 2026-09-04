@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""CAFÉ DE CUMPLEAÑOS (FEED 09-sep, S1) — ronda 12: dorado, elegante, y el vaso.
+"""CAFÉ DE CUMPLEAÑOS (FEED 09-sep, S1) — el FONDO de las dos slides.
 
 Eli, sobre la ronda 11:
 
@@ -61,7 +61,37 @@ del cartón kraft. Bajarla a 21 es lo que se veía como «filtro extraño».
 El vaso, además, es EL PROTAGONISTA: lleva su propio realce de nitidez —local, no
 global— y el estampado se baja de 0,70 a 0,45 para que no se note el retoque.
 
-Salidas: cumple-r12-1.jpg y cumple-r12-2.jpg en fotos-gradadas/.
+⛔⛔ RONDA 13 — Y LOS PAPELITOS SALEN DE LA FOTO, PARA SIEMPRE
+
+Eli, sobre el oro de la ronda 12:
+
+    «pusiste una serpentina dorada que parece un plátano. Se ve extraño […]
+     Tiene que verse realista […] Por último, que sean ILUSTRADAS, con el
+     TRAZADO QUE YA SE SABE Y SE CONOCE, punto.»
+
+Van dos intentos de meter el adorno DENTRO de la fotografía y los dos se
+rechazaron: los colores planos parecían grageas de torta y el oro metálico, con
+su veta especular y su curva, parecía un plátano. Y el segundo intento falló
+justamente por ser MÁS realista: una cinta dorada dibujada píxel a píxel se mide
+contra la fotografía que la rodea y pierde siempre.
+
+⭐ **La salida no es dibujar mejor, es dejar de dibujar dentro de la foto.** El
+adorno de cumpleaños de esta marca ya existe y es una ILUSTRACIÓN: los trazos de
+pincel que hizo Eli en Illustrator, que viven en
+`public/assets/hilton/between/recursos/` (`confeti.png`, `globos-par.png`,
+`globo.png`) y que la pieza pone ENCIMA, en el beige de marca. Un doodle no
+compite con la foto porque no pretende ser parte de ella.
+
+> **Regla: un adorno que va sobre una fotografía es ILUSTRACIÓN, no fotografía.**
+> Si hay que decidir entre imitar la realidad y declararse dibujo, se declara
+> dibujo. Vale para confeti, flechas, globos y cualquier cosa que se agregue.
+
+Así que este script ya sólo hace el FONDO —recorte real, mesa limpia, revelado
+por sujeto— y los adornos los pone la composición (`BetweenSeptiembre.tsx`).
+`dorados()` y `cinta()` se dejan en el archivo porque documentan el intento y la
+medición, pero **no se llaman**.
+
+Salidas: cumple-r13-1.jpg y cumple-r13-2.jpg en fotos-gradadas/.
 """
 import sys
 from pathlib import Path
@@ -81,7 +111,7 @@ except Exception:
 RAIZ = Path(__file__).resolve().parent.parent
 ORIGEN = RAIZ / "raw/hilton/between/togo-25jul2025/Double Tree 25 jul 25-257.jpg"
 FOTOS = RAIZ / "public/assets/hilton/between/fotos-gradadas"
-PASOS = RAIZ / "out/hilton-between-r12/pasos"
+PASOS = RAIZ / "out/hilton-between-r13/pasos"
 
 W0, H0 = 5760, 3840
 SALIDA = (2250, 2812)
@@ -337,12 +367,8 @@ def una(n):
     im = nitidez_local(im, vaso | comida, cantidad=0.45)
     im = vivo(im, vibrancia=0.14)
 
-    libre = mesa.copy()
-    libre[:, :90] = False
-    libre[:, -90:] = False
-    libre[-70:, :] = False
-    y_foco = int((PLATO[1] + PLATO[3]) / 2 * ESC)
-    im = dorados(im, libre, y_foco, semilla=2600 + n)
+    # ⛔ RONDA 13: no se siembra NADA sobre la foto. Ver el encabezado — el
+    #    adorno de cumpleaños es una ilustración y la pone la composición.
 
     if n == 2:
         # ⭐ El desenfoque de fondo baja de 9 a 4 px. A 9 el vaso de esta mitad
@@ -356,11 +382,11 @@ def una(n):
     print(f"   final: vaso mediana {np.median(b[vaso]):.0f} · "
           f"calidez del vaso {b[vaso.nonzero()[0], vaso.nonzero()[1], 0].mean() - b[vaso.nonzero()[0], vaso.nonzero()[1], 2].mean():.1f}")
     informe(im, "final")
-    destino = FOTOS / f"cumple-r12-{n}.jpg"
+    destino = FOTOS / f"cumple-r13-{n}.jpg"
     im.save(destino, quality=95, subsampling=0)
     PASOS.mkdir(parents=True, exist_ok=True)
     im.resize((im.width // 3, im.height // 3), Image.LANCZOS).save(
-        PASOS / f"cumple-r12-{n}.jpg", quality=88)
+        PASOS / f"cumple-r13-{n}.jpg", quality=88)
     print(f"   -> {destino.name}")
 
 

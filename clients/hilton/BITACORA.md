@@ -5,6 +5,123 @@
 
 ---
 
+## 2026-09-04 · Eli (Windows) — BETWEEN ronda 13: el adorno pasa a ilustración
+
+*(Quinta sesión del día. La ronda 12 está en la entrada de más abajo.)*
+
+**Qué devolvió Eli, y qué se hizo:**
+
+| Pieza | Su comentario | Qué se hizo |
+|---|---|---|
+| **S1 Cumpleaños 1 y 2** | «me gustó mucho la foto. Sin embargo pusiste una serpentina dorada que **parece un plátano**… Por último, que sean **ILUSTRADAS, con el trazado que ya se sabe y se conoce, punto**» · «está superbién editada el vaso, y la segunda slide» | El adorno **sale de la foto** y pasa a los doodles de pincel de Eli (`recursos/confeti.png`, `globos-par.png`). La foto vuelve a ser sólo foto |
+| **S2 ST Emergencia** | «se ve muy mal el fondo. Tiene que ser mejor editado, mejor elaborado… con el café To Go, con el **vaso que ya habíamos logrado**, el que está aprobado. El croissant, que es lo salado. Un **muffin de chocolate**» | Vitrina rehecha de cero: se genera VACÍA y los tres productos reales entran con línea de base común, sombra de contacto, campo de luz y el reflejo del vidrio encima |
+| **S3 portada** | «quedó muy bien. Sin embargo el **logo se ve poco centrado**» | Re-medido y re-centrado sobre la CARA VISIBLE del cartón |
+| **S3 slide 4** | «se ve **quemada**, se ve basura, y tiene que verse **todas las slides similares en cuanto al tono y los colores**» | Tono igualado a las slides 2 y 3 |
+| **S3 slides 2 y 3** | «no las toques» | No se tocaron |
+
+**⭐⭐⭐ El aprendizaje del día, y costó TRES pasadas sobre la misma pieza: un
+adorno que va sobre una fotografía es ILUSTRACIÓN, no fotografía.**
+
+| intento | qué era | veredicto |
+|---|---|---|
+| ronda 11 | papelitos de 5 colores planos, tiras cortas | «se ve muy infantil y mal diseñado» |
+| ronda 12 | cintas de ORO metálico, arqueadas, con veta especular y sombra | «parece un plátano» |
+| ronda 13 | los trazos de pincel de Eli, encima de la foto | ✅ |
+
+Y lo que hay que entender es **por qué el segundo intento falló por ser mejor**:
+la cinta de oro tenía todo lo que el manual pide para un elemento agregado
+—tamaño por cercanía, desenfoque según la profundidad de campo, sombra de
+contacto, acabado metálico— y precisamente por eso perdió. Un objeto que
+pretende ser fotografía **se mide contra la fotografía que lo rodea**, y una
+forma dibujada de 40 px no aguanta la comparación con un croissant de 900 px
+hecho con un 50 mm. Un doodle, en cambio, no compite: no pretende ser parte de
+la escena.
+
+> Y el corolario práctico: **el adorno de Between ya existe.** Son los trazos que
+> hizo Eli en Illustrator y viven en `public/assets/hilton/between/recursos/`.
+> Antes de dibujar un adorno nuevo, mirar si ya está ahí.
+
+`dorados()` y `cinta()` se quedan en `scripts/between-cumple-fondo.py` **sin
+llamarse**, para que el intento y sus mediciones queden registrados.
+
+**⭐⭐ La vitrina de Emergencia: el recetario de montaje completo.** Los cinco
+defectos de la anterior eran todos de montaje —caja crema sobre crema sin vidrio
+reconocible, productos flotando sin línea de base ni sombra, escalas
+incoherentes, el vaso cortado por el marco y recortes sin la luz del interior—.
+El orden que sí funciona, y sirve para cualquier vitrina o repisa:
+
+1. **el contenedor se genera VACÍO** (así el generador no inventa productos ni
+   logotipos);
+2. los productos son **fotografía real recortada**, uno por compartimento;
+3. **una sola línea de base**, medida sobre el contenedor;
+4. **sombra de contacto** por objeto, corta y densa;
+5. **campo de luz** de su propio compartimento;
+6. **luz envolvente** en el canto;
+7. y **el reflejo del vidrio ENCIMA**.
+
+⚠️ Dos mediciones que costaron una pasada cada una: la vitrina tuvo que rehacerse
+**ancha y baja** —con tres compartimentos verticales de 300×1.180 los productos
+quedaban con dos tercios de aire encima— y el `PISO` es la línea del piso
+**visible** (1230), no el canto inferior del interior (1259): entre las dos corre
+el riel de latón, y apoyando en 1259 los tres quedaban medio hundidos detrás de
+él.
+
+**⭐ «Quemada» puede ser NARANJA, no blanco.** La slide 4 era la más OSCURA de
+las cuatro (mediana 87 contra 99 y 102) y aun así se veía quemada: el problema
+era el color. Calidez 55,3 contra 23,7 y 34,2; saturación 57,8 contra 40,9 y
+43,6. Es un interior de bar con reflejos naranjas y, contra dos bodegones de luz
+de día, se leía anaranjada. `iguala_tono()` corrige calidez, saturación y mediana
+**en ese orden**, porque cada una desplaza a la siguiente. Las cuatro slides
+quedaron en mediana 95-107, calidez 24-34 y saturación 32-44.
+
+> **Regla: un carrusel se mide entre sus propias slides antes de entregar.**
+
+**⭐ Y el logo del vaso, por segunda vez: se centra en la CARA VISIBLE.** Iba a
+206 px centrado en x=920 (el 0,86 del ancho de la silueta), o sea 817-1023, pero
+la cara visible del cartón va de 840 a 1023: los primeros 23 px caían sobre el
+dedo, la máscara se los comía y la tinta visible arrancaba en 840 — descentrada
+28 px. Ahora: 175 px centrado en 932, en la banda donde el cartón libre mide 183
+(de y=1250 a 1325; más abajo los dedos lo reducen a 90).
+
+**✅ SUBIDO AL DRIVE, reemplazando por id** (las 5, verificado):
+
+- **S1** → `C2 CUMPLEAÑOS BW`: Cumpleanos 1 y 2 detalles
+- **S2** → Emergencia Between
+- **S3** → Promos To Go 1 portada y 4 los tres
+
+⛔ **No se tocaron** las slides 2 y 3 del To Go (pedido expreso de Eli) ni «Ella
+hablo Ella escucho» (aprobada en la ronda 12).
+
+`between-qa.py` limpio en 4 de 5. El aviso de `BW-F-Cumple-1` es el falso
+positivo ya documentado (dos píxeles del canto del plato, gris neutro). Y de paso
+el QA cazó un defecto real: el doodle de confeti de la G2 dejaba tinta a 79 px
+del canto derecho —el trazo de pincel sobresale ~6 px del ancho declarado, como
+ya pasó con los globos en las rondas 7 y 8—; se corrió de x=890 a x=876.
+
+**Herramientas:**
+
+- `scripts/between-cumple-fondo.py` (era `between-cumple-r12.py`) — ahora sólo
+  hace el FONDO; los adornos los pone la composición
+- `scripts/between-emergencia-r13.py` — la vitrina vacía + los tres productos
+  reales, con el recetario de montaje completo
+- `iguala_tono()` en `scripts/between-togo4-r12.py`
+- `scripts/between-r13-entrega-subir.py`
+
+**Abierto:**
+
+1. La **ST 03-09 del cumpleaños** (`BW-S-Cumple`) sigue siendo una escena
+   generada con una vela mientras el feed de ese día ya es fotografía real.
+2. Los **nombres de archivo** siguen con las fechas viejas; renombrar va junto
+   con borrar la copia vieja (el portal levanta por nombre).
+3. El **duplicado «BW FEED 14-09 Promos To Go 4 trio.png»** sigue en la carpeta
+   antigua: hay que borrarlo a mano.
+4. **`FEED!H16` (Primero la foto)** sigue en REVISAR CONTENIDO con la pregunta de
+   la CM sin responder: «¿Qué plato es el que ya está comido?».
+5. **Avisarle a Scarlette** que el mock de post volvió (lo había pedido fuera en
+   la ronda 5; volvió porque lo mandó Eli con su editable).
+
+---
+
 ## 2026-09-04 · Eli (Windows) — BETWEEN ronda 12: dorado elegante, y se deja de montar
 
 *(Cuarta sesión del día. La ronda 11 está en la entrada de más abajo.)*

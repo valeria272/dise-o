@@ -87,15 +87,19 @@ SALIDA_PX = (2250, 2812)
 
 #: el vaso en la pieza final, medido: cuerpo x 800-1040 · y 1227-1465
 VASO_CUERPO = (800, 1227, 1040, 1465)
-#: 0,86 del ancho del cuerpo, que es la proporción medida en el vaso oficial
-LOGO_ANCHO = int(round((1040 - 800) * 0.86))
-#: el eje del vaso. La ALTURA está elegida midiendo cuánto cartón libre deja la
-#: mano en cada franja, no por proporción: con el logo al 42 % del cuerpo (y=1327)
-#: los dedos se comen la «B», la «E» y toda la palabra «COFFEE» —el cartón libre
-#: en esa banda mide 89 px—; subiéndolo a y=1300 la banda libre pasa a 149 px y se
-#: lee «BETWEEN / COFFEE & BAR» completo, con sólo el canto de la B detrás de una
-#: uña. Sigue en la mitad superior del cuerpo, que es donde va en el vaso oficial.
-LOGO_CENTRO = (920, 1300)
+#: ⭐ RONDA 13 — Eli: «el logo se ve poco centrado. Tienes que mejorar el logo
+#: del vaso TOGO». Y tenía razón, medido: el logo iba a 206 px (el 0,86 del ancho
+#: de la SILUETA) centrado en x=920, o sea de 817 a 1023 — pero la CARA VISIBLE
+#: del cartón en esa banda va de 840 a 1023, así que los primeros 23 px caían
+#: sobre el dedo, la máscara se los comía y la tinta que quedaba a la vista
+#: arrancaba en 840: descentrada 28 px hacia la derecha respecto del eje.
+#: Ahora el logo se mide y se centra sobre la CARA VISIBLE (840-1023, centro 932)
+#: y va a 175 px, que entra con holgura. Misma lección que la slide 4.
+LOGO_ANCHO = 175
+#: El centro sale de la misma medición: x=932 es el eje de la cara visible, e
+#: y=1288 cae en la banda más despejada (de y=1250 a 1325 el cartón libre mide
+#: 183 px; más abajo los dedos lo reducen a 90).
+LOGO_CENTRO = (932, 1288)
 
 
 def estampa(base):

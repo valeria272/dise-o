@@ -64,7 +64,7 @@ import numpy as np
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from between_retoque import hombro, informe, vivo
+from between_retoque import hombro, informe
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -128,6 +128,39 @@ def estampa(base, centro, ancho, mascarar_carton=False, fuerza=0.95, absorcion=0
     return salida
 
 
+def iguala_tono(im, mediana, calidez, saturacion):
+    """Lleva la pieza al tono de sus hermanas: mediana, calidez y saturación.
+
+    Las tres se corrigen por separado y en este orden, porque cada una desplaza
+    a la siguiente:
+      1. **calidez** (R̄ − B̄): se reparte el exceso entre bajar el rojo y subir
+         el azul, para no mover la luminancia;
+      2. **saturación**: se acerca cada píxel a su gris en la proporción justa;
+      3. **mediana**: gamma, al final, que es lo único que toca la exposición.
+    """
+    a = np.asarray(im.convert("RGB")).astype(np.float32)
+
+    cal = float(a[..., 0].mean() - a[..., 2].mean())
+    if cal > calidez:
+        ajuste = cal - calidez
+        a[..., 0] -= ajuste * 0.55
+        a[..., 2] += ajuste * 0.45
+        print(f"   calidez {cal:.1f} -> {calidez:.1f}")
+
+    gris = a.mean(axis=2, keepdims=True)
+    sat = float((a.max(2) - a.min(2)).mean())
+    if sat > saturacion:
+        k = saturacion / sat
+        a = gris + (a - gris) * k
+        print(f"   saturación {sat:.1f} -> {saturacion:.1f} (x{k:.3f})")
+
+    med = max(1.0, float(np.median(a)))
+    gamma = float(np.clip(np.log(mediana / 255.0) / np.log(med / 255.0), 0.7, 1.3))
+    a = np.power(np.clip(a / 255.0, 0, 1), gamma) * 255.0
+    print(f"   mediana {med:.0f} -> {mediana} (gamma {gamma:.3f})")
+    return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
+
+
 def main():
     if not GEN.exists():
         sys.exit(f"falta la generación: {GEN}")
@@ -156,8 +189,19 @@ def main():
     #    silueta: un logo CORTADO es peor que un logo 15 % más chico.
     im = estampa(im, (520, 1300), 320, mascarar_carton=True)
 
-    # retoque MÍNIMO: es lo que evita el «se ve quemada»
-    im = vivo(im, vibrancia=0.12)
+    # ⭐⭐ RONDA 13 — Eli: «se ve quemada, se ve basura, y tiene que verse todas
+    #    las slides similares en cuanto al TONO y los COLORES».
+    #    Medido sobre los cuatro renders, la slide 4 era el patito feo y no por
+    #    la exposición sino por el COLOR:
+    #        slide      mediana   calidez   saturación
+    #          2           99       23,7       40,9
+    #          3          102       34,2       43,6
+    #          4 (r12)     87      *55,3*     *57,8*
+    #    O sea: la escena es un interior de bar con reflejos naranjas en la
+    #    madera, y contra los dos bodegones de luz de día se leía anaranjada y
+    #    sobresaturada. «Quemada» es eso: no p95 alto, sino naranja saturado.
+    #    Se igualan las tres cifras a la media de las slides 2 y 3.
+    im = iguala_tono(im, mediana=100, calidez=29.0, saturacion=44.0)
     im = Image.fromarray(
         np.clip(hombro(np.asarray(im).astype(np.float32)), 0, 255).astype(np.uint8))
     informe(im, "final")

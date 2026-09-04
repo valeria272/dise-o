@@ -322,13 +322,21 @@ const Contador: React.FC = () => {
 // ════════════════════════════════════════════════════════════════════════════
 const Remate: React.FC = () => {
   const f = useCurrentFrame();
-  const ent = interpolate(f, [4, 16], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
-  const tach = interpolate(f, [56, 68], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
-  const uno = interpolate(f, [68, 76], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+  // El bloque son 80 frames y no se toca. Lo que se corrigió el 04-09 es CUÁNDO
+  // pasa cada cosa dentro: antes el tachón llegaba en el f.536 y el 1 en el
+  // f.548, o sea el remate del capítulo aparecía 4 frames antes del corte y no
+  // se alcanzaba a leer. Ahora la corrección se adelanta 22 frames y quedan
+  // 22 frames —0,73 s— para SENTARSE sobre «REVISIÓN 1.». Ése es el chiste.
+  const g = (a: number, b: number) =>
+    interpolate(f, [a, b], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+  const titulo = g(8, 20);      // f.488 — entra la misma placa del cliente
+  const bajada = g(22, 34);     // f.502 — y la frase que le da vuelta el sentido
+  const tach = g(38, 50);       // f.518 — el lápiz tacha el 7  ← SFX en el f.515
+  const uno = g(50, 58);        // f.530 — y escribe el 1
   return (
     <AbsoluteFill style={{backgroundColor: TINTA, justifyContent: "center", alignItems: "flex-start"}}>
-      <div style={{width: "84%", marginLeft: "8%", opacity: ent}}>
-        <div style={{position: "relative", display: "inline-block"}}>
+      <div style={{width: "84%", marginLeft: "8%"}}>
+        <div style={{position: "relative", display: "inline-block", opacity: titulo}}>
           <div style={{
             fontFamily: VOZ.impacto, fontVariationSettings: ancho(78, 900),
             fontSize: 168, lineHeight: 0.9, color: C.blanco, letterSpacing: -3,
@@ -345,13 +353,12 @@ const Remate: React.FC = () => {
           </div>
           {/* y el tachón encima del 7, sólo del 7 */}
           <Revelado p={tach}>
-            <Tachado x={738} y={24} w={118} color={ROSA} grosor={14} semilla={2} angulo={-11} />
+            <Tachado x={716} y={42} w={132} color={ROSA} grosor={14} semilla={2} angulo={-11} />
           </Revelado>
         </div>
         <div style={{
           marginTop: 26, fontFamily: VOZ.editorial, fontStyle: "italic",
-          fontSize: 76, lineHeight: 1.12, color: C.offwhite,
-          opacity: interpolate(f, [18, 30], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}),
+          fontSize: 76, lineHeight: 1.12, color: C.offwhite, opacity: bajada,
         }}>
           La buena era la primera.
         </div>
@@ -391,10 +398,12 @@ export const Cap02Revision7: React.FC = () => {
       </Sequence>
 
       {/* ── CUT 02 · alivio · entra el beat en el downbeat del f.80 ────── */}
-      {/* Arranca en 1,70 s del clip: soltar el mouse → notebook → taza →
-          levantarse → quedarse quieto. A velocidad real: G nunca se acelera. */}
+      {/* Arranca en 1,60 s del clip y los beats caen donde dice el guion:
+          taza en el f.116 (36 dentro del plano) · se queda quieto · y en el
+          f.136 —con el PING— la cabeza BAJA hacia el teléfono. Sólo la cabeza:
+          el torso no gira. A velocidad real: G nunca se acelera. */}
       <Sequence from={80} durationInFrames={64}>
-        <Clip src="cut02.mp4" desdeS={1.70} />
+        <Clip src="cut02.mp4" desdeS={1.60} />
       </Sequence>
 
       {/* ── BLOQUE 03 · la escalada · G no reacciona ni un grado ───────── */}

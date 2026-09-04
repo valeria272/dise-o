@@ -135,6 +135,22 @@ en el commit `ce65b9a`.
 > contacto.** En la hoja de 12, la diadema de KF03 y KF04 se lee como el brillo
 > del casco.
 
+### KF04, tercera versión: la MIRADA
+
+El primer rough cut mostró que faltaba algo que no era un defecto de generación
+sino de encargo: **G no bajaba la cabeza hacia el teléfono**. El congelamiento se
+leía; la mirada no. Y ésa es la bisagra causal del capítulo entero —
+«el ping lo detiene → *por eso* miramos el teléfono» — así que sin ella el corte
+al plano del teléfono se sostiene sólo en el sonido.
+
+KF04 se volvió a generar pidiendo **una sola cosa medible**: el casco inclinado
+unos 20° hacia adelante y abajo, apuntando al teléfono, con el torso intacto y
+la G rosada escorzada pero legible. Y el CUT 02 se regeneró con ese keyframe como
+`image_tail`.
+
+> Es la diferencia entre pedir «que mire el teléfono» y pedir **dónde queda el
+> casco**. Lo primero el modelo lo interpreta; lo segundo lo ejecuta.
+
 ---
 
 # F · SET LOCK

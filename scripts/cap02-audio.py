@@ -348,7 +348,9 @@ poner(muerte_electrica(), 472)
 
 # ── CUT 07 · f.480–559 · una nota, y el lápiz ────────────────────────────────
 poner(nota_sostenida(f2s(80)), 480)
-poner(lapiz(), 540)
+# El lápiz se adelantó 25 frames el 04-09: el tachón cae en el f.518 y el trazo
+# del 1 en el f.528, para que el remate tenga 22 frames de aire antes del corte.
+poner(lapiz(), 515)
 
 # ── CUT 09 · f.560–583 · el mismo PING del f.136. Cierra en loop ─────────────
 poner(ping(), 568)

@@ -37,9 +37,12 @@ for k in ("KF05_c3", "KF09_master_frontal"):
 PY
 
 echo "→ el congelado del CUT 02 (el plano CAM-B del bloque 03)"
+# 3,73 s = el ÚLTIMO frame del recorte del CUT 02. Así el plano fijo del bloque
+# 03 es exactamente donde quedó el plano anterior: G de pie, congelado, con la
+# cabeza ya baja mirando el teléfono mientras los mensajes se apilan.
 export DYLD_LIBRARY_PATH="$RAIZ/node_modules/@remotion/compositor-darwin-arm64"
 "$RAIZ/node_modules/@remotion/compositor-darwin-arm64/ffmpeg" -y -v error \
-  -ss 3.83 -i "$SRC/clips/cut02.mp4" -frames:v 1 "$DST/cut02_freeze.png"
+  -ss 3.73 -i "$SRC/clips/cut02.mp4" -frames:v 1 "$DST/cut02_freeze.png"
 echo "  ✓ cut02_freeze.png"
 
 echo "→ la pista de trabajo y los SFX en la rejilla de 112,5 BPM"

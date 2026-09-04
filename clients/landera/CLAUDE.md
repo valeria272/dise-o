@@ -224,11 +224,12 @@ una gestora de campos con una marca y dos bajadas.
 | 17 | **Informe de gestión** | ✅ **HECHA** 03-09 — `17-informe.html`. Portada, interior, predios y tabla |
 | 18 | **Plantilla de presentación** | Falta |
 | 19 | **Digital** | Falta. Avatar, favicon, LinkedIn (no Instagram primero) |
-| 20 | **Señalética de campo y vehículos** | ✅ **HECHA** 03-09 — `20-senaletica.html`. Portón, vehículo, letrero |
-| 21 | **Equipamiento de terreno** | Falta. Su «merchandising» real |
-| 22 | Contraportada | Ya existe |
+| 20 | **Firmas de correo** | ✅ Cuatro cargos, una plantilla |
+| 22 | **Señalética y vehículos** | ✅ `22-senaletica.html`. Portón, vehículo, letrero |
+| 21 | **Banners y redes** | ✅ Web, LinkedIn y formatos de redes |
+| 23 | Contraportada | Ya existe |
 
-**Las 22 existen.** Se cerró el manual completo el 03-09-2026:
+**Las 23 existen.** Se cerró el manual completo el 03-09-2026:
 `out/landera/manual/LANDERA-manual-de-marca-v1.0.pdf`.
 
 Además, fuera de la numeración:
@@ -304,7 +305,7 @@ eventos» de Pivot.
 | De Pivot | Por qué no |
 |---|---|
 | Convivencia con logos de partners/sistemas | Es el problema de una tecnológica con integraciones. Landera no lo tiene. Si aparece co-branding con un fondo de inversión, se resuelve en la lámina de papelería |
-| Merchandising de oficina (polerones, lanyards, stickers, cajas de regalo) | Landera no hace eventos de tecnología. Su equipamiento es de terreno: chaqueta, casco, libreta de campo |
+| Merchandising, **equipamiento incluido** | Se hizo una lámina de chaqueta, gorra y libreta y **la clienta la rechazó el 03-09**: aunque se llame «equipamiento de terreno», una prenda con logo se lee como merch de evento, que es justo lo que la marca no es. Se eliminó. Ese lugar lo ocupan las firmas de correo y los banners, que sí se usan a diario |
 | Instagram como plataforma principal | Es B2B de inversión: manda LinkedIn. Instagram, si va, va después |
 | Tres marcas | Landera es **una** marca con dos bajadas. La lámina de versiones se simplifica |
 

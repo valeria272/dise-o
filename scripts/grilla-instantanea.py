@@ -41,7 +41,13 @@ L.append("> prependen sobre los viejos en la misma celda, así que sin esta copi
 L.append("> distingue lo nuevo de lo ya resuelto.")
 L.append("")
 
-for hoja, fila_estado in [("FEED", 15), ("STORIES", 16), ("REELSORGÁNICOS", 15)]:
+# ⚠️ Las hojas NO se llaman igual en todas las marcas: la de DT trae
+# «REELSORGÁNICOS» y la de Between «ORGÁNICOS». Se salta la que no exista en vez
+# de reventar con KeyError a mitad del volcado.
+for hoja, fila_estado in [("FEED", 15), ("STORIES", 16),
+                          ("REELSORGÁNICOS", 15), ("ORGÁNICOS", 15)]:
+    if hoja not in wb.sheetnames:
+        continue
     ws = wb[hoja]
     L.append(f"## {hoja}")
     L.append("")

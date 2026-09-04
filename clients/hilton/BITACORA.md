@@ -5,6 +5,92 @@
 
 ---
 
+## 2026-09-04 · Eli (Windows) — BETWEEN ronda 10: la cuenta deja de generar producto
+
+**Qué pedía la ronda.** Un comentario NUEVO de Scarlette del 03-09 22:25 —
+comentario nativo de Excel en `FEED!E15`, no en la fila 15, así que **leyendo
+sólo la fila se pierde** (ya pasó en la ronda 5) — más dos pendientes sin tachar
+que llevaban días en la grilla:
+
+| Dónde | Estado | Qué pedía |
+|---|---|---|
+| `FEED!E15` · Cumpleaños 3-sep (S1) | EN CAMBIOS | «no les gusta la propuesta :( me piden usemos la imagen que te adjunto acá igual hay que retocarla, **cambiar el vaso al nuevo**, **sacar el plato de los vigilantes**, y poderle algo que haga ref a cumpleaños al rededor (quizas en la mesa poner como esos **papelitos de colores** que se lanzan) y la **imagen de la slide 2 tiene que tener relación** igual con la primera» |
+| `FEED!L15` · To Go 14-sep (S3) | EN CAMBIOS | «el **fondo no tiene nada que ver con BT**, tenemos algunos videos que hemos hecho en la entrada de BT, saquemos el fondo de ahí?» |
+| `STORIES!I15` · Emergencia 9-sep (S2) | REVISAR CONTENIDO | «Cambiaría que el **salado sea un crosant jamon queso** y que el **dulce sea un muffin**» |
+
+Y encima, de Eli: la imagen de las dos slides del cumpleaños **continua**, con el
+café en la primera; y del carrusel To Go, arreglar la portada («el vaso está
+erróneo») y la slide 4 («mejora la foto y el vaso»).
+
+**⭐⭐⭐ El hallazgo de la sesión, y cambia el método del mes.** El cliente lleva
+**desde la ronda 4** reclamando lo mismo por cuatro caminos distintos —el vaso
+con logotipo inventado, la taza con marca ajena, «nada que ver jajajaja», «que
+no se vea tan IA»— y lo veníamos tratando como un problema de prompt o de
+estampado. **No lo era: el producto está fotografiado y no lo estábamos usando.**
+La carpeta `BETWEEN 25 JULIO MODELOS` del propio cliente
+(`1gI00XGbBV5YjqcSjG3SmmkMuxr-ev_60`, 60 archivos) trae el vaso vigente solo, con
+croissant de jamón queso, con muffin, con rol de canela y con los vigilantes —
+todo sobre la misma mesa, el mismo muro y el mismo 50 mm.
+
+Y el remate: **la foto que adjuntó Scarlette y `25-257` son la misma toma con 63
+segundos de diferencia** (EXIF: 15:45:11 y 15:46:14, mismo cuerpo, mismo lente,
+mismo diafragma). El fotógrafo hizo la mesa con el vaso viejo y con el nuevo, así
+que «cambiar el vaso al nuevo» **ya estaba disparado**. Cero IA en el producto.
+
+**Las 5 piezas, todas con QA limpio** (`out/hilton-between-r10/`, entrega armada
+en `out/entrega-r10/` con el nombre del portal y 150 ppp):
+
+| Pieza | Qué se hizo |
+|---|---|
+| `BW-F-Cumple-1` y `-2` (S1) | **Una sola fotografía real partida en dos slides.** Base `25-248`, plato de los vigilantes borrado, escena espejada para que el café quede en la slide 1 con su fondo y su sombra reales, y papelitos de cumpleaños sembrados sobre la mesa. Fuera el doodle de confeti: ya está en la escena |
+| `BW-S-Emergencia` (S2) | Los dos productos de la vitrina cambiados por **recortes reales**: muffin de chocolate (dulce) y croissant de jamón queso (salado). Los textos de la encuesta no se tocan |
+| `BW-F-ToGo-1` (S3) | Fondo = `HDT_56`, la foto de arquitectura del propio local (barra de mármol, mural dorado y el pasillo hacia el muro vegetal de la entrada), desenfocado. Vaso = el REAL de `25-248`, con los dedos devueltos encima |
+| `BW-F-ToGo-4` (S3) | Bodegón **enteramente real**: café + croissant jamón queso (de `25-278`) + muffin en su plato (de `25-266`). Las cuatro coordenadas de etiquetas y flechas re-medidas |
+
+**Herramientas nuevas, todas versionadas:**
+
+- `scripts/between-recortes-reales.py` — recorta productos con grabCut y deja el
+  alfa limpio en `public/assets/hilton/between/recortes/`
+- `scripts/between-cumple-panorama.py` — el panorama continuo del cumpleaños
+- `scripts/between-emergencia-productos.py` — cambia los productos de la vitrina
+- `scripts/between-togo4-bodegon.py` — el bodegón real de la promo
+- `scripts/between-togo1-real.py` — la portada con fondo del local y vaso real
+
+**⭐ Y una de método que sirve a todas las marcas:** con
+`https://drive.google.com/thumbnail?id=<ID>&sz=w4000` Drive devuelve **el archivo
+ORIGINAL** aunque el token no tenga permiso, siempre que esté compartido por
+enlace. Con `sz=w640` se arman hojas de contacto baratas. Así se eligieron las
+fotos sin bajar 700 MB.
+
+Todo el detalle técnico —los cuatro intentos fallidos de borrar el plato, por qué
+espejar en vez de recortar, la proporción como prueba objetiva de que un vaso es
+generado, y las dos trampas de grabCut— quedó en el manual,
+[`clients/hilton/CLAUDE.md § RONDA 10`](CLAUDE.md).
+
+**⛔ Lo que NO se hizo, y hay que decidir:**
+
+1. **Nada se subió al Drive todavía.** Las 5 piezas están en `out/entrega-r10/`
+   listas. Ojo con un detalle: la slide 4 del To Go está **DUPLICADA en el
+   Drive** con dos nombres —«…4 trio.png» (ronda 7, carpeta vieja) y «…4 los
+   tres.png» (ronda 9, en `S3 · BW`, que es la carpeta viva)—. El script de
+   entrega ya usa el nombre de la ronda 9 para que la corrección REEMPLACE en vez
+   de dejar una tercera copia, pero **el duplicado viejo hay que borrarlo a mano**.
+2. **La ST 03-09 del cumpleaños (`BW-S-Cumple`) quedó como estaba.** Está en
+   CORREGIDO y el cliente no la reabrió, pero ahora el feed del mismo día es
+   fotografía real y la historia sigue siendo una escena generada con una vela.
+   Es decisión de Eli si se unifica.
+3. **El metraje de la entrada que menciona el cliente no está en el repo.** Se
+   usó la foto de arquitectura, que es del mismo lugar. Si aparece el video, se
+   cambia sólo la placa de fondo en `between-togo1-real.py`.
+4. En la portada To Go, **la mano tapa parte del logotipo del vaso** — es lo que
+   pasa de verdad al sostener un vaso impreso, y la palabra se lee, pero si Eli
+   lo quiere entero hay que cambiar el gesto, no el montaje.
+5. **Nano Banana Pro está sin créditos** (`HTTP 502 · Error consuming credits`).
+   No hizo falta —todo salió de fotografía— pero conviene saberlo antes de
+   planificar una pieza que sí necesite generar ambiente.
+
+---
+
 ## 2026-09-03 · Eli (Windows) — DOUBLETREE: la marca entra al estudio, y su tipografía queda cerrada
 
 *(Tercera sesión del día. Las dos de Between están más abajo.)* **Primera sesión de DT

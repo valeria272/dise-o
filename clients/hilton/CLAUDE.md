@@ -2498,3 +2498,212 @@ Se perdieron tres renders adivinándola. Medida sobre el propio PNG
 Con `ancho=112` la caja mide 112×105, así que **la cola cae en (x+3, y+102) y la
 punta en (x+65, y+6)**. Con eso se coloca de una: la cola sobre el producto, la
 punta hacia el texto.
+
+---
+
+# ⭐⭐⭐ RONDA 10 — el mes deja de generar producto (04-09-2026)
+
+Es la ronda que más cambia el método de la cuenta, y no por una regla de diseño
+sino por una de **material**: casi todo lo que veníamos generando ya estaba
+fotografiado.
+
+## ⭐⭐⭐ 1. LA REGLA MADRE: ANTES DE GENERAR UN PRODUCTO, BÚSCALO EN LA SESIÓN
+
+El cliente lleva **desde la ronda 4** reclamando lo mismo por caminos distintos:
+el vaso con el logotipo inventado, la taza con marca ajena, «el vaso de café
+nada que ver jajajaja», «la foto está extraña… que no se vea tan IA». Cuatro
+rondas tratándolo como un problema de prompt o de estampado.
+
+**No lo era. El producto existe fotografiado y nadie lo estaba usando.**
+
+La sesión **`25 jul 2025`** (Drive `BETWEEN 25 JULIO MODELOS`,
+`1gI00XGbBV5YjqcSjG3SmmkMuxr-ev_60`, 60 archivos) trae, sobre la misma mesa de
+listones y el mismo muro vegetal, con el mismo 50 mm a f/3,5:
+
+| Qué | Fotograma |
+|---|---|
+| El vaso vigente SOLO, sin nada que lo tape | `25-248` |
+| El vaso + croissant de **jamón queso** | `25-278` |
+| El vaso + **muffin** de chocolate | `25-266`, `25-264` |
+| El vaso + rol de canela | `25-280`, `25-283` |
+| El vaso + los dos vigilantes | `25-257` |
+| Mano sosteniendo brownie / muffin / croissant | `25-306`, `25-316`, `25-300` |
+
+**El orden correcto es: recortar > montar > generar.** La IA queda para
+ambiente y fondo, que es lo que dice `docs/SISTEMA-DE-MARCAS.md §2` y lo que
+llevábamos cuatro rondas incumpliendo sin darnos cuenta.
+
+Herramienta: `scripts/between-recortes-reales.py` (grabCut de OpenCV con caja
+medida a mano). Los recortes con alfa limpio viven en
+`public/assets/hilton/between/recortes/`.
+
+## ⭐⭐⭐ 2. LA FOTO QUE MANDÓ EL CLIENTE YA TENÍA EL VASO NUEVO
+
+Scarlette adjuntó una foto (Drive `1PFIGyD3gpqpsd4qMk2Fsaf3tzDzBejrf`) pidiendo
+«usemos la imagen que te adjunto acá igual hay que retocarla, **cambiar el vaso
+al nuevo**». El EXIF resolvió el encargo entero:
+
+```
+adjunto      2025:07:25 15:45:11   Canon 5D Mark III · EF50mm f/1.4 · f/3.5 · ISO 100
+25-257       2025:07:25 15:46:14   Canon 5D Mark III · EF50mm f/1.4 · f/3.5 · ISO 100
+```
+
+**Misma toma, 63 segundos después.** Mismo plato, mismos dos vigilantes, misma
+mesa. El fotógrafo hizo la mesa con el vaso viejo y con el nuevo. O sea: el
+retoque que pedía el cliente **ya estaba disparado**.
+
+> **Método:** cuando el cliente manda una foto para retocar, lo primero es leerle
+> el EXIF y buscar sus vecinas en la sesión. Sale gratis y a veces resuelve el
+> encargo completo.
+
+## ⭐⭐ 3. CÓMO SE BAJA UNA FOTO ENTERA DEL DRIVE SIN TOKEN
+
+El token del estudio (alcance `drive.file`) da 404 sobre archivos ajenos. Pero:
+
+```bash
+curl -sL "https://drive.google.com/thumbnail?id=<ID>&sz=w4000" -o foto.jpg
+```
+
+Con `sz=w4000` (o mayor) Drive **devuelve el archivo ORIGINAL**, no una
+miniatura — verificado: 3840×5760, 11,4 MB. Con `sz=w640` sirve para armar hojas
+de contacto baratas. ⚠️ Funciona sólo con archivos compartidos por enlace: de
+los 60 de la carpeta, 40 bajaron y 20 devolvieron la pantalla de login.
+
+## ⭐⭐ 4. EL VASO GENERADO SE DELATA POR LA PROPORCIÓN, Y ESO SE MIDE
+
+Sobre la entrega de la ronda 9, medido con zoom:
+
+| | Vaso generado | Vaso real |
+|---|---|---|
+| ancho/alto del cuerpo | **0,79** | **1,01** |
+| tapa | domo acanalado con una **pestaña inventada** | domo liso, agujero ovalado, faldón limpio |
+| cartón | liso, sin fibra | fibra visible |
+| logotipo | plano, se lee como calcomanía | impreso, sigue la curva y la sombra |
+
+**La proporción es la prueba objetiva**: el generador estira el vaso a alto y
+angosto. Se mide en dos líneas y no depende del ojo. Si da menos de ~0,95, el
+vaso no existe.
+
+## ⭐⭐ 5. PARA MOVER UN PRODUCTO DE LADO, ESPEJA LA ESCENA — NO LO RECORTES
+
+El cumpleaños necesitaba el café en la **slide 1** y en la foto estaba a la
+derecha. Recortar el vaso y pegarlo a la izquierda **no funciona** y conviene
+saber por qué antes de intentarlo:
+
+- la tapa negra contra el muro oscuro no tiene borde que segmentar;
+- pegar el bloque entero deja un rectángulo oscuro sobre el follaje claro;
+- y el plato le tapaba el faldón, así que no hay silueta completa que recortar.
+
+**La salida es de fotógrafo: se espeja la foto completa.** El vaso queda a la
+izquierda con SU fondo, SU sombra y SU contacto con la mesa —píxeles reales— y
+sólo hay que devolver a su orientación la franja del vaso, porque **lo único
+asimétrico de una escena así es el LOGOTIPO**. Las dos costuras caen en muro
+desenfocado y mesa lisa, y con un fundido de ~190 px no se ven.
+
+⚠️ Y hay que corregirle el tono a la franja: la mesa no es simétrica, así que al
+espejar cada columna hereda el tono de la opuesta y aparece un escalón vertical.
+Se mide la diferencia en las dos orillas y se reparte en rampa.
+
+## ⭐⭐ 6. BORRAR UN OBJETO GRANDE: LO QUE FUNCIONA Y LO QUE NO
+
+Sacar «el plato de los vigilantes» (3.700 px de ancho) costó cuatro intentos.
+Queda escrito para no repetirlos:
+
+| Intento | Resultado |
+|---|---|
+| Copiar tiras de filas limpias en mosaico | **losas visibles** |
+| Difundir la baja frecuencia desde todo el contorno | **parche gris y plano** |
+| Superficie polinómica global de grado 3 | **parche lavado**, pierde saturación |
+| Rampa vertical con las orillas pegadas al agujero | **banda clara**: la orilla de arriba caía DENTRO del objeto, porque la baja frecuencia es un desenfoque de 48 px y arrastra sus píxeles |
+
+**Lo que sí funciona** (`scripts/between-cumple-panorama.py`):
+
+1. **Luz** — dos perfiles horizontales reales, uno al fondo y otro al frente, y
+   entre ellos la **caída vertical medida en las columnas limpias**. No una
+   rampa lineal inventada: la curva que tiene la propia mesa.
+2. **Textura** — prestada de la MISMA fila desde columnas limpias (conserva
+   veta, grano y desenfoque). En el muro, prestada de más ARRIBA en la misma
+   columna: corriéndola en x las costuras caen en los flancos, que es donde el
+   ojo las busca.
+3. **Membrana** — la diferencia medida en un anillo alrededor del agujero,
+   difundida hacia adentro (Poisson resuelto con dos desenfoques).
+4. **Un punto más de desenfoque** sobre el remiendo del muro: ya está fuera de
+   foco, así que media docena de píxeles más no se leen como defecto pero
+   disuelven el rectángulo.
+
+Y una de método: **la máscara conviene rectangular y generosa**, no ceñida a la
+silueta. Ajustando la elipse del plato a ojo quedó un filo de loza y una punta
+de pan asomando; un rectángulo que llega hasta el vaso no cuesta nada más y no
+deja restos. El flanco que sí hay que medir es el que toca al producto que se
+conserva — ahí la máscara sigue el borde del vaso, tramo a tramo.
+
+## ⭐ 7. LA IMAGEN CONTINUA ENTRE DOS SLIDES
+
+El cliente pidió que «la imagen de la slide 2 tenga relación con la primera». La
+respuesta no es otra foto parecida: es **la misma foto**, partida en dos.
+
+- Panorama **1,6:1** = dos slides 4:5 pegadas. A 2250 px de entrega son
+  4500×2812.
+- El producto va en la **mitad izquierda** (es la slide que abre) y la derecha
+  queda tranquila para el bloque de texto. Acá el lado oscuro del muro quedó en
+  la slide 1, así que el kraft del vaso resalta, y el follaje claro en la 2, que
+  es más amable para el listado.
+- ⛔ **Los adornos NO se repiten en las dos slides.** Con globos arriba a la
+  izquierda y a la derecha en cada una, al deslizar se ven cuatro en fila y la
+  continuidad se rompe: parece plantilla repetida. Se reparten a lo largo del
+  PAR — el par de globos abre en el extremo izquierdo y uno solo cierra en el
+  derecho.
+- Y esta es la **única excepción** a la regla 1 («dentro de un carrusel no se
+  repite el escenario»): no es el mismo fondo repetido, es una imagen que sigue.
+
+## ⭐ 8. LOS PAPELITOS DE CUMPLEAÑOS VAN EN LA ESCENA, NO ENCIMA
+
+Scarlette pidió «poner como esos papelitos de colores que se lanzan» en la mesa.
+Se siembran **dentro de la foto** —con sombra de contacto, escala por
+profundidad y desenfoque en el primer plano— y entonces **se saca el doodle de
+confeti de la pieza**: dibujarlo encima además es decir dos veces lo mismo y
+ensucia la mesa.
+
+Paleta: dorado, crema, terracota, verde del muro y café de marca. **Nada de
+colores primarios**: el mundo de Between es cálido y neutro, y un confeti
+plástico de fiesta infantil lo rompe.
+
+Reglas de siembra, que son de composición y no de programa: ninguno sobre el
+producto ni pegado a su base; más chicos al fondo y más grandes y desenfocados
+al frente; **pocos y repartidos** — el cliente pidió una referencia al
+cumpleaños, no una fiesta encima de la mesa.
+
+## ⭐ 9. EL FONDO DE LA PORTADA TO GO SALE DE UNA FOTO DEL LOCAL
+
+El cliente (`FEED!L15`): «el fondo no tiene nada que ver con BT, tenemos algunos
+videos que hemos hecho en la entrada de BT, saquemos el fondo de ahí?».
+
+En el repo no viaja metraje de la entrada —los `.MOV` que hay son del 2.º piso—,
+pero sí está **`raw/hilton/between/espacios/HDT_56.jpg`**: la fotografía de
+arquitectura del propio local, con la barra de mármol, el mural dorado y el
+pasillo de parquet que va hacia el muro vegetal de la entrada. Es material del
+cliente y es literalmente el lugar que pide.
+
+Cómo se monta (`scripts/between-togo1-real.py`): figura recortada con grabCut,
+placa del local desenfocada a la profundidad de campo de la escena y con el
+punto negro subido para que no compita con la figura.
+
+⚠️ **Dos trampas del recorte con grabCut, las dos vividas:**
+
+1. Con «probable frente» en todo el rectángulo de la figura, grabCut se quedó
+   con un trozo del muro generado alrededor de la cabeza y quedó pegado **como
+   un parche verde**. Sobre y a los lados de la cabeza el fondo es fondo
+   **SEGURO**, sin discusión: hay que marcarlo.
+2. Un plafón del techo del local caía **exactamente sobre su cabeza** y se leía
+   como un error de montaje, no como una luminaria. Se resuelve bajando el
+   recorte de la placa, no retocando.
+
+Y para cambiar el vaso en una mano: se escala por el **ANCHO**, no por el alto
+—es lo que fija la relación mano/vaso, que es lo que el ojo lee—, se borra del
+vaso viejo **sólo lo que el nuevo no va a tapar** (borrar la silueta entera deja
+un manchón inpaintado sobre la ropa) y los dedos se devuelven encima separándolos
+por color, que en esta escena es limpio y medido:
+
+```
+piel  G−B ≈ 12–14     cartón kraft  G−B ≈ 38–41     fondo  G−B ≈ −1
+```

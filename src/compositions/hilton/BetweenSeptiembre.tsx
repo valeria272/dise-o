@@ -498,7 +498,33 @@ export const Cumple1: React.FC = () => (
           `between-logo-vaso.py --centro 1777 2670 --ancho 873` = 0,86 del ancho
           del cuerpo, que es la proporción medida en el vaso oficial. La IA nunca
           dibuja la marca. Gradada con `neutro` (calidez 32,6 → 21,1). */}
-    <FotoFondo src={F + 'cumple-mano-vaso.jpg'} oscurecer={0.1} />
+    {/* ⭐⭐⭐ RONDA 10 (04-09) — comentario nativo de Scarlette en `FEED!E15`
+        (03-09 22:25): «no les gusta la propuesta :( me piden usemos la imagen
+        que te adjunto acá igual hay que retocarla, cambiar el vaso al nuevo,
+        sacar el plato de los vigilantes, y poderle algo que haga ref a
+        cumpleaños al rededor (quizas en la mesa poner como esos papelitos de
+        colores que se lanzan) y la imagen de la slide 2 tiene que tener
+        relación igual con la primera.» Más la indicación de Eli: **la imagen de
+        las dos slides es CONTINUA y el café va en la primera.**
+
+        → Se acabó la escena generada. Las dos slides son ahora las dos mitades
+          de UNA sola fotografía real del cliente, armada por
+          `scripts/between-cumple-panorama.py` desde
+          `raw/hilton/between/togo-25jul2025/Double Tree 25 jul 25-248.jpg`.
+
+        ⭐ El hallazgo que resolvió «cambiar el vaso al nuevo» sin retocar nada:
+          la foto que adjuntó Scarlette y las de esa carpeta son **la misma
+          sesión, con 63 s de diferencia** (EXIF: 25-07-2025 15:45 y 15:46,
+          Canon 5D III, EF50mm f/1.4, f/3,5, ISO 100). El fotógrafo hizo la mesa
+          con el vaso viejo y con el nuevo: el vaso vigente ya está fotografiado
+          sobre esa misma mesa y ese mismo muro. Cero IA en el producto.
+
+        ⛔ Y por eso esta pieza YA NO comparte fondo con la G2 sin romper la
+          regla 1 del manual («dentro de un carrusel no se repite el
+          escenario»): no es el mismo fondo repetido, es una imagen que sigue —
+          el lector desliza y la mesa continúa. Es un recurso distinto y lo pidió
+          el cliente. */}
+    <FotoFondo src={F + 'cumple-continua-1.jpg'} oscurecer={0.1} />
     <Globos
       posiciones={[
         {cual: 'globosPar', x: 100, y: 96, ancho: 188, rotacion: -8},
@@ -506,8 +532,18 @@ export const Cumple1: React.FC = () => (
            derecho (mínimo 84) y NO era el texto: era este globo, cuyo trazo
            sobresale ~10 px del ancho declarado. Mismo defecto que ya se
            corrigió en la Cumple2 en la ronda 7. */
-        {cual: 'globo', x: 856, y: 150, ancho: 120, rotacion: 10, espejo: true},
-        {cual: 'confeti', x: 760, y: 640, ancho: 210, rotacion: 6},
+        /* ⛔ RONDA 10 — fuera el globo suelto de la derecha Y el doodle de
+           confeti, por dos razones distintas:
+             · el confeti, porque los papelitos ya están DENTRO de la foto, sobre
+               la mesa, que es lo que pidió el cliente: dibujarlos encima era
+               decir dos veces lo mismo;
+             · el globo, porque ahora las dos slides son UNA imagen. Con globos
+               arriba a la izquierda y a la derecha en las dos, al deslizar se ve
+               cuatro veces el mismo adorno en fila y la continuidad se rompe —
+               parece plantilla repetida, que es justo lo que no puede pasar.
+               Los adornos se reparten a lo LARGO del par: el par de globos abre
+               en el extremo izquierdo (acá) y uno solo cierra en el extremo
+               derecho (en la G2). */
       ]}
     />
     {/* ⛔ SIN lockup. 01-09, Eli: «en el mismo carrusel no agregues en la portada
@@ -617,10 +653,20 @@ export const Cumple2: React.FC = () => (
           tranquilo se lee mejor el listado.
         ⚠️ Es un fondo NUEVO en el carrusel, no reciclado del Cowork: ahí van la
            terraza, el muro vegetal, el 2.º piso y el servicio a la mesa. */}
-    <FotoFondo src={F + 'bar-servicio.jpg'} oscurecer={0.14} />
+    {/* ⭐⭐⭐ RONDA 10 (04-09) — «la imagen de la slide 2 tiene que tener
+        relación igual con la primera». La respuesta no es «otra foto parecida»:
+        es la MISMA foto. Esta slide es la mitad derecha del panorama que arma
+        `scripts/between-cumple-panorama.py`, así que al deslizar la mesa
+        continúa, los papelitos siguen repartidos y el muro no se corta.
+        Le toca la mitad tranquila —mesa vacía, sin producto— que es justo lo
+        que necesita el `<Checklist>` de cuatro condiciones encima. */}
+    <FotoFondo src={F + 'cumple-continua-2.jpg'} oscurecer={0.14} />
     <Globos
       posiciones={[
-        {cual: 'globosPar', x: 100, y: 104, ancho: 174, rotacion: -8},
+        /* ⛔ RONDA 10: sale el par de globos de la izquierda. Iba pegado a la
+           costura con la G1 —que ahora es la MISMA foto siguiendo— y dejaba
+           cuatro globos casi en fila. Se queda sólo el de la derecha, que cierra
+           el par de slides por el extremo opuesto al de la G1. */
         /* ⭐ RONDA 7 — el globo se corre 12 px a la izquierda (872 → 860).
            `between-qa.py` lo marcó a 82 px del canto derecho contra los 84 de la
            marca: sangraba por 2 px. Venía así desde la ronda 5, o sea que el
@@ -629,7 +675,9 @@ export const Cumple2: React.FC = () => (
            medida quedaba en x=998 y no en 988, porque el trazo de pincel
            sobresale del ancho nominal. */
         {cual: 'globo', x: 860, y: 168, ancho: 116, rotacion: 10, espejo: true},
-        {cual: 'confeti', x: 792, y: 1128, ancho: 190, rotacion: 6},
+        /* ⛔ RONDA 10: fuera el doodle de confeti, igual que en la G1 — los
+           papelitos ya están sobre la mesa de la foto. Se queda el corazón, que
+           es el único adorno de esta slide y no compite con el listado. */
         {cual: 'corazon', x: 96, y: 1196, ancho: 104, rotacion: -10},
       ]}
     />
@@ -887,7 +935,23 @@ export const EllaHablo: React.FC = () => (
  */
 export const ToGo1: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'togo-salida-3.jpg'}
+    /* ⭐⭐ RONDA 10 (04-09). Dos pedidos que apuntan a lo mismo:
+         Cliente (`FEED!L15`, sin tachar): «el fondo no tiene nada que ver con
+           BT, tenemos algunos videos que hemos hecho en la entrada de BT,
+           saquemos el fondo de ahí?»
+         Eli: «errores del fondo con la chica… el vaso está erróneo».
+       → `scripts/between-togo1-real.py` rehace la portada con material real:
+         · el FONDO es `raw/hilton/between/espacios/HDT_56.jpg`, la fotografía
+           del propio local —barra de mármol, mural dorado y el pasillo hacia el
+           muro vegetal de la entrada—, desenfocada a la profundidad de campo de
+           la escena. Es la entrada de BT que pide el cliente, y es foto suya.
+         · el VASO es el REAL, recortado de `25 jul 25-248.jpg`. El generado
+           tenía la tapa con una pestaña inventada y la proporción del cuerpo en
+           0,79 cuando la real es 1,01. Los dedos se devuelven encima.
+       ⚠️ Si aparece el metraje de la entrada que menciona el cliente, se cambia
+          sólo la placa de fondo del script: el resto del montaje no depende de
+          ella. */
+    foto={F + 'togo-salida-real.jpg'}
     script="¿Vas con poco tiempo?"
     caps={'Tu desayuno\nva contigo'}
     datos={['Promos To Go', HORARIO_TOGO]}
@@ -1031,7 +1095,18 @@ export const ToGo3: React.FC = () => (
  */
 export const ToGo4: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'togo-trio-brownie.jpg'}
+    /* ⭐⭐ RONDA 10 (04-09) — Eli: «la slide 4 de ese mismo carrusel, mejora la
+       foto y el vaso». La escena generada se cae completa y entra un bodegón de
+       FOTOGRAFÍA REAL del cliente, armado por `scripts/between-togo4-bodegon.py`
+       desde la sesión 25-jul-2025: café (el vaso vigente con el logotipo
+       IMPRESO), salado (croissant de jamón queso) y dulce (muffin de chocolate
+       en su plato), todo sobre la misma mesa de listones y el mismo muro
+       vegetal, con la misma luz y el mismo 50 mm.
+       ⛔ El vaso generado tenía la proporción mal —cuerpo 0,79 de ancho/alto
+       cuando el real mide 1,01—, una tapa con pestaña inventada y el logotipo
+       plano como calcomanía. Es el reclamo que el cliente repite desde la
+       ronda 4, y con foto real se termina. */
+    foto={F + 'togo-trio-real.jpg'}
     script="¿Por qué elegir uno?"
     caps="¡Llévate los 3!"
     /* ⭐ RONDA 7 — mismo defecto previo de margen que `ToGo1`: tinta a 74 px del
@@ -1077,8 +1152,16 @@ export const ToGo4: React.FC = () => (
           · brownie    x 552–928   y 992–1136   → «Dulce» arriba a su izquierda,
             que es el único hueco de mesa libre: a la derecha está el vaso y
             abajo empieza la pila de la promo (y 1116). */}
-    <Ilustra cual="flechaBucle" x={214} y={758} ancho={112} espejo opacidad={0.95} />
-    <Etiqueta x={330} y={700} size={40}>Salado</Etiqueta>
+    {/* ⭐ RONDA 10 — las cuatro coordenadas SE VOLVIERON A MEDIR sobre el
+        bodegón real. La escena cambió entera, así que las de la ronda 9 ya no
+        apuntan a nada. Medido sobre la pieza rendida, en lienzo 1080×1350:
+          · croissant j/q  x 162–771   y 548–864   → «Salado» encima, sobre la mesa
+          · muffin         x 617–957   y 872–1173  → «Dulce» arriba a su derecha,
+            en la franja de mesa libre que queda entre la base del vaso (y 636)
+            y el canto del plato del dulce (y 880). Es el único hueco de mesa
+            que no pisa ni producto ni la caja de la promo. */}
+    <Ilustra cual="flechaBucle" x={262} y={492} ancho={112} espejo opacidad={0.95} />
+    <Etiqueta x={380} y={430} size={40}>Salado</Etiqueta>
     {/* ⭐ 2.ª vuelta (03-09): al corregir la PROPORCIÓN del vaso —era 24 % más
         alto de lo que existe— el vaso se ensanchó y la cola de la flecha de
         «Dulce» dejó de caer sobre el brownie para caer sobre EL VASO.
@@ -1093,8 +1176,8 @@ export const ToGo4: React.FC = () => (
         (x+3, y+102) y la punta en (x+65, y+6).
         Acá va SIN espejo: la etiqueta está arriba-izquierda y el brownie
         abajo-derecha. */}
-    <Ilustra cual="flechaBucle" x={535} y={915} ancho={112} opacidad={0.95} />
-    <Etiqueta x={540} y={840} size={40}>Dulce</Etiqueta>
+    <Ilustra cual="flechaBucle" x={826} y={800} ancho={112} espejo opacidad={0.95} />
+    <Etiqueta x={900} y={730} size={40}>Dulce</Etiqueta>
   </PiezaFeedBodegon>
 );
 
@@ -1354,7 +1437,19 @@ export const StEmergencia: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: '#efdfcd'}}>
     {/* `oscurecer` a 0: el fondo es crema claro y el texto va en café, así que
         apagar la foto sólo la ensuciaría. */}
-    <FotoFondo src={IA + 'emergencia-fondo.png'} oscurecer={0} />
+    {/* ⭐⭐ RONDA 10 (04-09) — comentario del cliente en `STORIES!I15`, el único
+        de esa celda que sigue SIN TACHAR: «Cambiaría que el salado sea un
+        crosant jamon queso y que el dulce sea un muffin».
+        → `scripts/between-emergencia-productos.py` cambia los dos productos de
+          la vitrina por **fotografía real del cliente** recortada de la sesión
+          25-jul-2025 (`between-recortes-reales.py`, grabCut):
+            compartimento 2 · DULCE   croissant simple  → muffin de chocolate
+            compartimento 3 · SALADO  sándwich baguette → croissant jamón queso
+        ⚠️ Y los textos de la encuesta NO se tocan: «☕ Café / 🥐 Algo dulce /
+           🥪 Algo salado» siguen siendo los tres del brief y siguen calzando con
+           lo que hay dentro de la vitrina. El cliente cambió el producto, no la
+           pregunta. */}
+    <FotoFondo src={IA + 'emergencia-fondo-r10.png'} oscurecer={0} />
     {/* ── el titular, ARRIBA de la vitrina y sobre el fondo liso ──
         La vitrina ocupa de y=560 a y=1235 —montada a esa escala a propósito, ver
         `scripts/between-emergencia-montar.py`—, así que el bloque de arriba tiene

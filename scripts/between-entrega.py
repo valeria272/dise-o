@@ -75,7 +75,22 @@ PIEZAS = {
     'BW-F-ToGo-1':   ('BW FEED 14-09 Promos To Go 1 portada.png',   'S3'),
     'BW-F-ToGo-2':   ('BW FEED 14-09 Promos To Go 2 sandwich.png',  'S3'),
     'BW-F-ToGo-3':   ('BW FEED 14-09 Promos To Go 3 dulce.png',     'S3'),
-    'BW-F-ToGo-4':   ('BW FEED 14-09 Promos To Go 4 trio.png',      'S3'),
+    # ⚠️ RONDA 10 — «los tres», no «trio». Esta pieza está DUPLICADA en el Drive
+    # con dos nombres: la ronda 7 la subió como «…4 trio.png»
+    # (1JTqtlH1rUg89xPJfCHUh6w4Ej9Vxn8WQ, carpeta vieja) y la ronda 9 como
+    # «…4 los tres.png» (19iZbK2U7pOiHDENOk4Z6DWO3GOzt08EQ, en S3 · BW, que es
+    # la carpeta viva). Como el portal levanta POR NOMBRE, se usa el de la ronda
+    # 9: así la corrección reemplaza la pieza que el cliente está mirando en vez
+    # de dejar una tercera copia. El duplicado viejo hay que borrarlo a mano.
+    'BW-F-ToGo-4':   ('BW FEED 14-09 Promos To Go 4 los tres.png', 'S3'),
+
+    # ⭐ RONDA 10 (04-09-2026) — la historia de la S2 entra al mapa. Estaba
+    # entregada desde la ronda 8 pero nunca se había registrado acá: se subía a
+    # mano con `between-subir-r7.py`. El nombre es EL MISMO con el que ya vive en
+    # el Drive (`out/hilton-between-r8/_subidas.json`, id
+    # 1GJrYQZk4VPiWKlw4i9zu1rKaFdNbFJjd): renombrarla crearía un duplicado en vez
+    # de reemplazarla, y el portal levanta las piezas por nombre.
+    'BW-S-Emergencia': ('BW ST 09-09 Emergencia Between.png',       'S2'),
 }
 
 FORMATOS = {(2250, 2812): 'feed 4:5', (2250, 4000): 'story 9:16', (2250, 2250): 'paid 1:1'}

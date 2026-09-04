@@ -5,6 +5,116 @@
 
 ---
 
+## 2026-09-04 · Eli (Windows) — BETWEEN ronda 12: dorado elegante, y se deja de montar
+
+*(Cuarta sesión del día. La ronda 11 está en la entrada de más abajo.)*
+
+**Qué devolvió Eli de la ronda 11**, y las cuatro correcciones eran mías:
+
+| Pieza | Su comentario | Qué se hizo |
+|---|---|---|
+| **S1 Cumpleaños 1 y 2** | «eso que agregaste, de serpentinas se ve muy infantil y mal diseñado. Debe ser **dorado muy elegante**… como está en el editable» · «se ve un poco **blanco y filtro extraño** y desenfocado el vaso togo y **él es el protagonista**» | Serpentinas de ORO metálico en vez de cinco colores planos; exposición fijada por el PRODUCTO, no por el cuadro; nitidez local sobre el vaso; y en la G2 el desenfoque de fondo baja de 9 a 4 px |
+| **S1 Cumpleaños 2** | «el logo del icono de la segunda slide no es los colores que se utiliza. Es **fondo café between + logo en beige**» | Avatar del mock corregido: disco `#675B49` con el lockup en `#FFF9EB` |
+| **S2 ST Emergencia** | «el cambio es *que el salado sea un crosant jamon queso y que el dulce sea un muffin*» | El cambio **ya estaba hecho en la ronda 10 y nunca se subió**. Se rindió y se subió |
+| **S3 portada** | «la chica tiene **recortes** se ve muy mal editado… los textos están bien en el diseño, solo la foto de fondo estaba extraño» | Escena **generada completa en una pasada**. Fuera el montaje |
+| **S3 slide 4** | «se ve **quemada y mal**. Vuelve a hacer ese diseño: los tres productos juntos **en formato To Go**… una mano tomando la bolsa o el café» | Escena nueva desde un editable de ELI, con muffin, mano y los dos logotipos estampados con el vector real |
+| **S2 Ella habló** | «queda **aprobado**» | No se toca |
+
+**⛔⛔ El error de fondo, y es medible: fijé la exposición por la mediana del
+CUADRO.** En la toma del cumpleaños la mitad de arriba es muro vegetal casi
+negro, así que la mediana global daba **62**; para llevarla a 104 hizo falta un
+gamma que abrió el sujeto un tercio. Resultado: el vaso pasó de mediana 127 a
+**166** y su calidez de 25,5 a **18,7** — o sea, kraft blanquecino y sin calidez.
+Eso es exactamente «un poco blanco y filtro extraño». Ahora el objetivo se mide
+sobre el PRODUCTO (vaso + comida): 118 → 126, y el vaso queda en 130 con calidez
+27,8. Y la calidez sólo se corrige si pasa de 28 — el perfil `neutro` del mes
+está pensado para las fotos que venían en 35-49, no para una que ya viene bien.
+
+**⭐⭐ Y el otro aprendizaje, sobre los adornos: lo infantil era el COLOR PLANO.**
+Los papelitos los pidió el cliente, la idea estaba bien; la ejecución no. Cinco
+colores planos en tiras cortas se leen como **grageas de torta**. La referencia
+de la marca para «cumpleaños elegante» está en el propio editable de Eli: globos
+champán y cintas doradas. Lo metálico no es el color, es la variación — degradado
+a lo largo de la cinta (una cinta gira y toma la luz desigual) más una veta
+especular. Y forma de cinta: arqueada, afinada en las puntas y de 4,5 a 8,5 veces
+más larga que ancha.
+
+**⛔⛔ Lo de la portada es de método y ya van tres rondas.** Era un montaje: una
+figura recortada sobre un fotograma del local. La ronda 11 le fundió el canto con
+un mapa de nitidez y no alcanzó, porque **un recorte y su fondo nunca comparten
+la luz**. Se dejó de montar:
+
+1. **primero se agotó el material real** — 75 fotogramas de los 25 clips `.MOV`
+   del cliente: todos interiores del hotel y del cowork, ni un plano de alguien
+   saliendo con un vaso. La escena del brief no existe;
+2. se generó **entera en una pasada** con Nano Banana Pro, con un fotograma del
+   muro vegetal real como referencia y pidiendo el vaso **kraft liso**;
+3. **upscaler ×2 antes de recortar** (el 4:5 sale de una ventana de 2.880 px);
+4. el logotipo real **estampado y enmascarado al cartón**, para que la tinta no
+   caiga sobre los dedos;
+5. y el encuadre **calculado para el bloque de texto que ya está aprobado**: el
+   vaso cierra en y=1483 y la script arranca en y≈1595.
+
+**⭐⭐ Y un hallazgo que vale para toda la cuenta: el generador conserva el
+logotipo de la referencia, pero REDIBUJADO.** En la slide 4 la base fue un
+editable de Eli que ya traía los logotipos impresos. El modelo los mantuvo en su
+sitio y con la silueta correcta —incluso la `Ǝ` invertida— pero el trazo y el
+tracking no son los de la marca. Es lo que el cliente reclamó en la ronda 5. Así
+que se pidió el envase **sin ninguna letra** y se estampó el vector real en la
+bolsa (0,58 del ancho de la cara, centro al 54 % del alto, medido en el editable
+de Eli) y en el vaso.
+
+⚠️ Y ahí salió una corrección a la regla del manual: **la proporción del logo se
+mide sobre la CARA VISIBLE, no sobre la silueta.** El 0,86 del vaso oficial está
+medido de frente; en un vaso cercano y girado la cara visible es más angosta, y
+aplicando 0,86 el logotipo se pasaba y la máscara lo cortaba — quedaba «ƎTWEEN /
+OFFEE & BAR». A 320 px (la cara visible medida) se lee entero.
+
+**✅ SUBIDO AL DRIVE, reemplazando por id** (las 5, verificado):
+
+- **S1** → `C2 CUMPLEAÑOS BW`: Cumpleanos 1 y 2 detalles
+- **S2** → Emergencia Between *(la que llevaba dos rondas sin subir)*
+- **S3** → Promos To Go 1 portada y 4 los tres
+
+⛔ **No se re-subieron** «Ella hablo Ella escucho» (aprobada) ni las slides 2 y 3
+del To Go (nadie las objetó y la versión de la ronda 11 ya está revelada). Mover
+la fecha de una pieza que el cliente no pidió cambiar sólo lo hace dudar.
+
+`between-qa.py` limpio en 4 de 5. El aviso de `BW-F-Cumple-1` («texto a 1 px del
+borde izquierdo») es el falso positivo ya documentado: son **dos píxeles** del
+canto del plato, en y=1575 y 1596, de color (234,227,225) — gris neutro, no el
+beige de marca. El texto de esa pieza está arriba, entre y=312 y 964.
+
+**Herramientas nuevas, versionadas:**
+
+- `scripts/between-cumple-r12.py` — las serpentinas doradas (`cinta()` dibuja una
+  tira arqueada con acabado metálico) y `revela_por_sujeto()`
+- `scripts/between-togo1-r12.py` — la portada generada entera, con el estampado
+  enmascarado al cartón (`solo_sobre_el_carton()`)
+- `scripts/between-togo4-r12.py` — la escena To Go con los dos logotipos
+  estampados
+- `scripts/between-r12-entrega-subir.py` — entrega a 150 ppp y reemplazo por id
+
+**Abierto:**
+
+1. **La ST 03-09 del cumpleaños (`BW-S-Cumple`)** sigue siendo una escena
+   generada con una vela, mientras el feed de ese día ya es fotografía real.
+   Está en CORREGIDO y el cliente no la reabrió.
+2. **Los nombres de archivo siguen con las fechas viejas** (la grilla se re-fechó
+   el 04-09). El portal levanta por nombre: renombrar hay que hacerlo junto con
+   borrar la copia vieja.
+3. **El duplicado «BW FEED 14-09 Promos To Go 4 trio.png»** sigue vivo en la
+   carpeta antigua: hay que borrarlo a mano.
+4. **`FEED!H16` (Primero la foto, 14-09)** sigue en REVISAR CONTENIDO con la
+   pregunta de la CM sin responder: «¿Qué plato es el que ya está comido?».
+5. **La mano de la portada tapa el canto de la «B»** del vaso. Con el logo a
+   y=1300 se lee «BETWEEN / COFFEE & BAR» completo salvo ese borde; si se quiere
+   intacto hay que cambiar el gesto, no el montaje.
+6. **Avisarle a Scarlette que el mock de post volvió** (lo había pedido fuera en
+   la ronda 5; volvió porque lo mandó Eli con su editable).
+
+---
+
 ## 2026-09-04 · Eli (Windows) — BETWEEN ronda 11: las tres EN CAMBIOS, subidas
 
 **Qué pedía la ronda.** Eli: corregir lo que está EN CAMBIOS en la S1, S2 y S3,

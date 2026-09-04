@@ -356,17 +356,23 @@ export const MarcoIGPost: React.FC<{
       >
         {/* cabecera */}
         <div style={{display: 'flex', alignItems: 'center', gap: 16, marginBottom: relleno * 0.6}}>
+          {/* ⛔ RONDA 12 — Eli: «el logo del icono de la segunda slide no es los
+              colores que se utiliza. Es fondo café between + logo en beige».
+              Estaba al revés: círculo blanco con el logotipo en café. El ícono
+              de perfil de la marca es el disco en el CAFÉ `#675B49` con el
+              lockup en el beige `#FFF9EB` — los dos colores de marca, en su
+              orden. Se le quita también el aro claro, que sobre el disco café
+              no aporta y ensuciaba el canto. */}
           <div
             style={{
               width: 66, height: 66, borderRadius: '50%',
-              border: '2px solid #c9beaf',
-              background: '#fff',
+              background: BETWEEN.colores.cafe,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               overflow: 'hidden', flexShrink: 0,
             }}
           >
             <Img
-              src={staticFile(BETWEEN.logo.cafe)}
+              src={staticFile(BETWEEN.logo.beige)}
               style={{width: 44, height: 44 / BETWEEN.logo.ratio, objectFit: 'contain'}}
             />
           </div>

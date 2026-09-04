@@ -3032,3 +3032,142 @@ encima al vaso: recortando desde y=290 (zoom 1,115) el vaso termina en y=1483 y
 quedan 112 px de aire antes de la script, con la cara entera y en el tercio alto.
 
 > **Antes de retocar, prueba a mover el encuadre.**
+
+---
+
+# ⭐⭐ RONDA 12 — lo que aprendimos el 04-09-2026 (misma tarde)
+
+*Cuatro devoluciones de Eli sobre la ronda 11. Las cuatro correcciones eran mías.*
+
+## ⛔⛔ 1. LA EXPOSICIÓN SE FIJA POR EL SUJETO, NO POR EL CUADRO
+
+Eli: «se ve un poco blanco y filtro extraño… el vaso togo y él es el
+protagonista». Medido sobre la entrega, y es aritmética, no gusto:
+
+| zona | cruda | ronda 11 | ronda 12 |
+|---|---|---|---|
+| vaso, mediana | 127 | **166** (+31 %) | 130 |
+| vaso, calidez (R̄ − B̄) | 25,5 | **18,7** | 27,8 |
+| comida, mediana | 109 | **153** (+40 %) | 118 |
+
+La causa: `revela(medios=104)` fija la exposición por la mediana del **cuadro
+completo**, y en esta toma la mitad de arriba es muro vegetal casi negro — la
+mediana global daba **62**. Para llevar 62 a 104 hace falta un gamma que abre el
+sujeto un tercio, y el cartón kraft se vuelve blanquecino.
+
+> **Regla: en una escena de fondo oscuro la mediana global miente.** El objetivo
+> se mide sobre el PRODUCTO (vaso + comida) y el realce es corto: 118 → 126.
+> Y ojo: la mesa tampoco sirve de referencia — con la madera dentro del «sujeto»
+> la mediana baja a 93 y el vaso se vuelve a ir a 150.
+
+## ⛔ 1 bis. Y la calidez sólo se corrige si SOBRA
+
+El perfil `neutro` del mes (calidez ~21) existe para las fotos que venían en
+35-49. Aplicarlo a una que ya viene en 25,5 le quita **la calidez propia del
+cartón kraft**: eso es el «filtro extraño». Ahora el tope es 28 y sólo se toca
+por encima de ahí.
+
+También sale de acá: **el remate de nitidez va LOCAL**, sobre el producto, no
+sobre toda la pieza. Un `nitidez()` global sobre una escena con fondo desenfocado
+sube el grano del bokeh y se lee como filtro.
+
+## ⭐⭐ 2. UN ADORNO AGREGADO: EL COLOR PLANO ES LO QUE SE VE INFANTIL
+
+Eli: «eso que agregaste, de serpentinas se ve muy infantil y mal diseñado. Debe
+ser dorado muy elegante y bonito visualmente… como está en el editable».
+
+Lo que estaba mal no era la idea (los papelitos los pidió el cliente) sino la
+ejecución, y son cuatro cosas concretas:
+
+| ronda 11 | ronda 12 |
+|---|---|
+| cinco colores (coral, rosa, salvia, crema, oro) | **una sola familia: oro** |
+| color PLANO | **acabado metálico**: degradado a lo largo + veta especular |
+| rectángulos cortos (1 : 1,5-3) | **cintas arqueadas y afinadas** (1 : 4,5-8,5) |
+| 17, apelotonados | 11 con **distancia mínima** + motas de oro muy suaves |
+
+⭐ **Lo metálico no es el color, es la variación.** Una cinta gira sobre su eje,
+así que a lo largo pasa de champán a oro viejo y por el centro le corre un
+reflejo. Con un ocre plano, un papelito parece una **gragea de torta** — que es
+exactamente la palabra que describe el resultado de la ronda 11.
+
+Y la referencia de la marca para «cumpleaños elegante» está en el propio
+editable de Eli: **globos champán y cintas doradas**, nada de multicolor.
+
+## ⛔ 3. EL AVATAR DEL MOCK: FONDO CAFÉ, LOGO BEIGE
+
+Eli: «el logo del icono de la segunda slide no es los colores que se utiliza. Es
+fondo café between + logo en beige». Estaba al revés — círculo blanco con el
+logotipo en café. El ícono de perfil de la marca es el disco en el **café
+`#675B49`** con el lockup en **beige `#FFF9EB`**.
+
+## ⛔⛔ 4. UNA FIGURA RECORTADA NO SE ARREGLA PULIENDO EL CANTO
+
+Eli, sobre la portada To Go: «hiciste que la chica tiene recortes se ve muy mal
+editado». Es la **tercera ronda** de reclamos sobre esa misma pieza, siempre por
+lo mismo: era un montaje —una figura recortada sobre un fotograma del local—. La
+ronda 11 le fundió el borde con un mapa de nitidez y **no alcanzó**.
+
+> **Un recorte y su fondo nunca comparten la luz.** Si la escena no existe en el
+> banco, **se genera COMPLETA en una pasada** y después se le estampa la marca al
+> envase. No hay canto que fundir porque no hay canto.
+
+El orden correcto, y funciona:
+
+1. **agotar el material real** — 75 fotogramas de los 25 clips del cliente: todos
+   interiores del hotel y del cowork, ni un plano de alguien saliendo con un
+   vaso. La escena del brief no existe;
+2. **generar entera** con Nano Banana Pro, con un fotograma del muro vegetal real
+   como referencia, y pidiendo el envase **kraft LISO, sin logo ni texto**;
+3. **upscaler ×2 antes de recortar**: el 4:5 sale de una ventana de 2.880 px de
+   un archivo de 3.584. Sin el ×2 había que ampliar 1.440 → 2.250 y la piel se
+   empastaba;
+4. **estampar el logotipo real**, enmascarado al cartón;
+5. **encuadrar para el bloque de texto que ya está aprobado**, no al revés.
+
+## ⭐⭐ 5. EL GENERADOR CONSERVA EL LOGOTIPO DE LA REFERENCIA… REDIBUJADO
+
+En la slide 4 la base fue un editable de Eli que ya traía los logotipos. Al
+editarla, el modelo los mantuvo en su sitio y con la silueta correcta —incluso la
+**Ǝ invertida**— pero **redibujados**: el trazo y el tracking no son los de la
+marca. Es lo que el cliente reclamó en la ronda 5 («el logo de between
+completamente distinto»).
+
+> **Regla: si una imagen generada muestra el logotipo, se pide el envase LISO y
+> se estampa el vector.** Da igual que el modelo «lo copie bien»: copiar un
+> logotipo es redibujarlo.
+
+## ⭐ 6. LA PROPORCIÓN DEL LOGO SE MIDE SOBRE LA CARA VISIBLE
+
+El 0,86 del ancho del cuerpo está medido en el vaso oficial fotografiado de
+frente. En un vaso **cercano y girado**, la cara visible del cilindro es más
+angosta que la silueta: aplicando 0,86 a la silueta el logotipo se pasaba y la
+máscara de cartón lo cortaba — quedaba «ƎTWEEN / OFFEE & BAR», que se lee como un
+error de impresión.
+
+> Se mide sobre la **cara visible**. Un logotipo un 15 % más chico es correcto;
+> un logotipo cortado es un defecto.
+
+Y en la bolsa la proporción sale del editable de Eli, medida: **0,58 del ancho de
+la cara**, centro al **54 % del alto**.
+
+## ⭐ 7. LA MANO, OTRA VEZ — y ahora con el defecto al revés
+
+La regla del manual era «una sola mano, verificada con zoom», por el rechazo de
+«hay una mano de más». Acá el defecto fue el opuesto: el generador devolvió **un
+pulgar suelto sin dedos**, una masa de mano apoyada en el vaso. Hubo que pedir
+explícitamente «los cuatro dedos envolviendo el vaso, anatómicamente correctos,
+uñas cortas» y verificarlo al 300 %.
+
+> Al pedir una mano hay que decir **cuántos dedos se ven y qué hacen**. «Una mano
+> tomando el vaso» le deja al modelo demasiado espacio.
+
+## ⚠️ 8. Y una de proceso: la pieza corregida hay que SUBIRLA
+
+La ST de Emergencia llevaba desde la ronda 10 con los productos ya cambiados
+—croissant de jamón queso y muffin— y en el Drive seguía la versión del 02-09,
+porque esa ronda no subió nada. Eli tuvo que volver a pedir un cambio **que ya
+estaba hecho**.
+
+> Una corrección que no se sube no existe. Al cerrar la ronda, la lista de piezas
+> tocadas y la lista de piezas subidas tienen que ser la misma.

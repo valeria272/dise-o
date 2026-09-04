@@ -542,7 +542,7 @@ export const Cumple1: React.FC = () => (
         → Mesa sin rayones (corrector por CROMA: la madera de Between es cálida
           y las marcas son grises) y revelado por MEDIOS, que es lo que arregla
           «el color está muy oscuro». */}
-    <FotoFondo src={F + 'cumple-r11-1.jpg'} oscurecer={0.08} />
+    <FotoFondo src={F + 'cumple-r12-1.jpg'} oscurecer={0.08} />
     {/* ⛔ RONDA 11 — la G1 va SIN doodles, y es la misma razón que ya escribió la
         ronda 10 pero ahora sí se cumple: los papelitos de cumpleaños están
         DENTRO de la escena, sobre la mesa, que es lo que pidió el cliente.
@@ -699,7 +699,7 @@ export const Cumple1: React.FC = () => (
  */
 export const Cumple2: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={F + 'cumple-r11-2.jpg'} oscurecer={0.2} />
+    <FotoFondo src={F + 'cumple-r12-2.jpg'} oscurecer={0.2} />
     <Globos
       posiciones={[
         /* Las posiciones son las del editable de Eli —el par abre por el flanco
@@ -737,7 +737,7 @@ export const Cumple2: React.FC = () => (
            perdía el sentido de ser un post. */
         foto={
           <Img
-            src={staticFile(F + 'cumple-r11-1.jpg')}
+            src={staticFile(F + 'cumple-r12-1.jpg')}
             style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 40%'}}
           />
         }
@@ -1049,7 +1049,25 @@ export const ToGo1: React.FC = () => (
        la comida y contraste local sobre el vaso para devolverle la tinta al
        logotipo impreso —sin re-estamparlo, que es lo que lo deformó en la
        ronda 5. */
-    foto={F + 'togo-salida-real-r11.jpg'}
+    /* ⭐⭐⭐ RONDA 12 (04-09) — Eli: «hiciste que la chica tiene recortes se ve
+       muy mal editado… recuerda que los textos están bien en el diseño, solo la
+       foto de fondo estaba extraño».
+       ⛔ La causa era de método: la portada era un MONTAJE, una figura recortada
+          sobre un fotograma del local. Por muy pulido que quede el canto —la
+          ronda 11 se lo fundió con un mapa de nitidez— un recorte y su fondo
+          NUNCA comparten la luz, y eso se lee. Tres rondas de reclamos sobre
+          esta pieza, siempre por lo mismo.
+       → `scripts/between-togo1-r12.py`: la escena se **genera COMPLETA en una
+         pasada** (Nano Banana Pro, con un fotograma del muro vegetal real como
+         referencia), el vaso se pide kraft LISO y el logotipo real se estampa
+         después, enmascarado al cartón para que la tinta no caiga sobre los
+         dedos. No hay canto que fundir porque no hay canto.
+       ⭐ Antes se agotó el material real: 75 fotogramas de los 25 clips del
+         cliente son todos interiores del hotel y del cowork — no hay ni un plano
+         de alguien saliendo con un vaso. La escena del brief no existe.
+       ⭐ Y el encuadre está CALCULADO para el bloque aprobado: el vaso cierra en
+         y=1483 y la script arranca en y≈1595, así que ya no se pisan. */
+    foto={F + 'togo-portada-r12.jpg'}
     script="¿Vas con poco tiempo?"
     caps={'Tu desayuno\nva contigo'}
     datos={['Promos To Go', HORARIO_TOGO]}
@@ -1243,7 +1261,22 @@ export const ToGo4: React.FC = () => (
        la comida y contraste local sobre el vaso para devolverle la tinta al
        logotipo impreso —sin re-estamparlo, que es lo que lo deformó en la
        ronda 5. */
-    foto={F + 'togo-trio-real-r11.jpg'}
+    /* ⭐⭐⭐ RONDA 12 (04-09) — Eli: «se ve quemada y mal. Vuelve a hacer ese
+       diseño: Los tres productos juntos en formato To Go: café, alternativa
+       salada y dulce. Una mano tomando la bolsa o el café refuerza la idea de
+       llevar.»
+       ⛔ Y el defecto de fondo no era el revelado: la pieza mostraba croissant y
+          muffin en PLATOS DE CERÁMICA sobre la mesa —eso es consumo en local, no
+          «formato To Go»— y no había ninguna mano, que es la mitad de la
+          indicación del brief.
+       → `scripts/between-togo4-r12.py`. La base es un editable de ELI
+         (`ediciones-ia-eli/magnific_haz-que-la-tapa-de-la-img_YVjNsSNWeC.png`):
+         bolsa kraft con el logotipo impreso, vaso To Go con el suyo, sándwich
+         sobre el papel y la mano en el asa. Le faltaba sólo el dulce, así que se
+         editó SU imagen —no se generó de cero— para agregar el muffin y para
+         bajar los productos a la mitad inferior, porque la mano y el asa
+         llegaban al tercio superior y ahí va este titular. */
+    foto={F + 'togo-trio-r12.jpg'}
     script="¿Por qué elegir uno?"
     caps="¡Llévate los 3!"
     /* ⭐ RONDA 7 — mismo defecto previo de margen que `ToGo1`: tinta a 74 px del

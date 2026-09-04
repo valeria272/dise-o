@@ -1,10 +1,10 @@
 {
   "_que_es": "Registro de la última vez que se revisó el Drive con /al-dia. No editar a mano.",
-  "ultima_revision": "2026-09-03",
+  "ultima_revision": "2026-09-04",
   "por_marca": {
     "ebema": {
-      "revisado": "2026-09-02 (noche, 17:16)",
-      "ultimo_hallazgo": "SI hubo novedades hoy (la pasada de la tarde las habia dado por cero): Paulina subio dos piezas de WhatsApp a 'SEPTIEMBRE/SEMANA 1' (1ihOZgjGeOj02SuW4iS22hb0YIfiEHyhj, carpeta de carlos.figueroa): 'ebema_wtps_piazza_ferre.png' (7.409.184 B, 12:45) y 'ebema_wtps_piazza_cont.png' (7.693.049 B, re-modificada 15:49 -- es un REEMPLAZO). Los sufijos _ferre y _cont son las variantes ferretero y contratista de las reglas de imagen de Paulina. Antes ya estaba 'ebema_c_piazza1.png' del 28-08. Falta pasar estas dos por la compuerta de material."
+      "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
+      "ultimo_hallazgo": "Paulina abrio el 03-09 20:35Z 'mail muestrario' (1BwBLajpVAiODTlXMWjBKkHbrgkaswuIZ) dentro de SEPTIEMBRE/SEMANA 1 con 'ebema_banner_muestrario.png' (3,9 MB, PIEZA NUEVA: banner de mailing del muestrario) y una COPIA de 'ebema_wtps_piazza_ferre.png' (7,07 MB, ID nuevo 193j_bvFBJvuLoEz-4ufW3H37JznpBqsy, distinta del original 197MccBlWQlVIusOSn6Si6miqfkibAIdi de 7,41 MB del 02-09: es una re-exportacion). En SEMANA 1 siguen los dos WhatsApp del 02-09. Falta pasar las 3 por la compuerta de material."
     },
     "revex": {
       "revisado": "2026-08-27",
@@ -15,24 +15,24 @@
       "ultimo_hallazgo": "⚠️ SIN VERIFICAR HOY: los 7 comentarios ABIERTOS del 28-08 (ronda de Paulina sobre las 14 piezas de septiembre) NO se pudieron releer. 'scripts/drive-comentarios.py 13pOfaekruRWq8PEHrG0be20Bq6eG4yCB' devuelve 0 archivos porque el token compartido solo tiene scope drive.file y esos archivos NO los subio este token. Hay que abrirlos a mano en Drive o subirlos con el token del estudio. Sigue pendiente pasar por la compuerta de material las 16 imagenes de Paulina del 28-08 ('fotos_casablanca_suc' 1qtNt898ah1cEho4LXXAVbHAQSHQgWWs4 y 'casablanca fondos' 1bYr0wqetBxk-khAT_cG4O5_H86pVIlz6)."
     },
     "selfie": {
-      "revisado": "2026-09-03 (manana, 11:50)",
-      "ultimo_hallazgo": "Sin novedades. Constanza Lizana sigue con CERO archivos desde el 28-08 -- van 7 dias. Sigue abierto quien firma el criterio de Selfie (el manual dice Coni; la grilla de septiembre la subio Diego Aguilar el 31-08)."
+      "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
+      "ultimo_hallazgo": "MOVIMIENTO NUEVO, pero de la CM, no de diseno: Constanza OLIVARES (CM) ordeno el 03-09 14:35Z dentro de '9. SEPTIEMBRE/FEED' de Diego (1ieEFVvmJNPTl1UoKpnzknZNs772tB7Vp) tres carpetas de carrusel: 'carrusel hilos' (4 PNG 'HILOS UNEN' de Diego, 27-08), 'carrusel frizz' (5 PNG 'INV O VER' de Diego, 28-08) y 'carrusel olix canas' > 'para diseñar' (1KJ2rAiI6APJfgHJJE2C1D32qCMi8kkZZ) = UN BRIEF NUEVO SIN DISENAR: 'HANDBOOK OLIX_v5.ai' (385 MB, de Raimundo / DIAZ DISENO, mesa 1920x1080, fuentes Bebas Neue Pro Bold + Helvetica Neue + Onest + Felonia, 13 Pantones), su Report.txt, el PDF del handbook, 'FICHA TECNICA RETOCA RAICES.pdf' y 3 'touchup jpg-01..03'. Es material del PROVEEDOR (Olix), no del sistema Selfie: sirve de packshot/ficha, no de gramatica. La grilla Selfie sept se modifico 18:15Z. Constanza LIZANA sigue con cero archivos desde el 28-08 (8 dias). Sigue abierto quien firma Selfie."
     },
     "hilton": {
-      "revisado": "2026-09-03 (noche, 21:30 -- pasada de /abrir DOUBLETREE)",
-      "ultimo_hallazgo": "== DOUBLETREE, primera pasada seria de la marca == La GRILLA DT DE SEPTIEMBRE (1Egjr13KVuqM7JLXZ2YgRWHi4f6M07vhl2YG8B34bI6g, de carlos.figueroa) se modifico HOY 20:28Z, despues de la pasada de las 18:17. Bajada por 'export?format=xlsx' (49,5 MB) a raw/hilton/dt/ y volcada a texto en clients/hilton/grillas/dt-septiembre-2026.md con scripts/grilla-instantanea.py: ESA ES LA BASE DEL DIFF, antes no habia ninguna. ESTADOS -- FEED: C 03-09 Carrusel Family Time APROBADO (entregado, S1/DT/C1 FT, 2 laminas; sus comentarios G1 logo y G2 legal estan TACHADOS = resueltos); E 07-09 Carrusel Escapada Romantica CORREGIDA (entregado, S2/DT/C1 ER DT S2); F 'X DEFINIR' Carrusel ER Fiestas Patrias EN REVISION (entregado, S2/DT/C2 ER FIESTAS PATRIAS, la N1 re-subida hoy 13:11); H 14-09 ESTATICO Opinion Booking OK PARA DISENO -- NO ENTREGADO; J 23-09 Reel Hilton Honors POV POR GRABAR (2da jornada con Sebastian Serrano, prohibido IA); L 28-09 Carrusel de videos 'Tu dia en DoubleTree' REVISAR CONTENIDO. STORIES: C 02-09 Animada Hilton Honors APROBADO y D 05-09 Encuesta Cookie APROBADO (entregadas en S1/DT/STS); F 07-09 Animada Escapada Romantica, G 10-09 Estatica Gimnasio y K 27-09 Estatica Dia del Turismo las tres OK PARA DISENO -- NINGUNA ENTREGADA; I 18-09 Saludo Fiestas Patrias PENDIENTE POR CLIENTE. REELS ORGANICOS: D 10-09 EN CAMBIOS con la celda DISENO VACIA (no hay brief que ejecutar); F 21-09 reel del equipo POR GRABAR. => PRODUCIBLE YA: 1 feed estatico (Booking, con su carpeta de refs 1Dlki995RRdwueFGlZOkF9rybf7maMJ5u y REF 1yoXATM5Kh3v1IfBqyPUVaMW1wzBfPh0-) + 3 historias. (1) ⚠️ DT NO TIENE SISTEMA MEDIDO en el estudio: solo el brand kit del manual Hilton (azul #09194E, verde #A3CD39) y una hoja LOOK AND FEEL de la grilla que esta practicamente vacia (dice AGOSTO). Antes de producir hay que medir el ADN sobre las 4 piezas YA APROBADAS de septiembre. (2) ⚠️ INCONSISTENCIA EN LA PROPIA GRILLA: la hoja VISTA MENSUAL pone el estatico Booking el LUNES 7 y el carrusel Escapada Romantica el LUNES 14; la hoja FEED los pone al reves (E=07-09 carrusel ER, H=14-09 estatico Booking). Hay que preguntarle a Carlos cual manda antes de fechar la entrega. (3) Las refs de STORIES son SEIS pines de Pinterest, uno por historia. == TAMBIEN HOY, QB (misma disenadora) == Eli creo 'PALOMA QB 2026 SEP' (1p0T9UcDo-XahU-RPuspFhCv6osUCfP6z) a las 15:34 con 'KV 1' y 'KV2' y 3 PNG 'PALOMA_PROMO+BANCO V1'; y a las 18:40 abrio S2/QB + S2/QB/STS, las dos VACIAS. QB sigue sin manual en el estudio. Between: sin movimiento nuevo despues de las 13:58."
+      "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
+      "ultimo_hallazgo": "== DT == Eli subio el 03-09 22:10Z, en S2/DT, la carpeta 'KV FIESTAS PATRIAS DT' (1r616S-8tmOk__uF4Vkn7lyHakM9ZfeQr) con TRES opciones de KV (OP 1 / OP2 / OP3), cada una con 2 laminas 'C1 ER N°1' y 'C1 ER N°2 FIESTAS PATRIAS KV n' (6 PNG, 6-12 MB). Es la reformulacion del carrusel F 'Escapada Romantica Fiestas Patrias' que estaba EN REVISION: el cliente va a elegir KV. La grilla DT se toco de nuevo (20:28Z, sin cambio despues de la instantanea). == QB == Eli abrio S2/QB/STS (1tT_zUSoxQIjSkgFIEi3p94aSNrBTfKjO) y subio 5 historias: 'ST n°1, 3, 4, 5, 7 S2 QB' (03-09 18:29-19:32Z). Faltan la 2 y la 6. La grilla QB se modifico 22:02Z (Sebastian Serrano) y la de PISO18 22:19Z (Carlos). == Between == grilla xlsx re-subida 22:25Z; sin piezas nuevas. Eli tambien toco 'Double Tree 25 jul 25-94.jpg' en 'BETWEEN 25 JULIO MODELOS' (foto de julio 2025, re-guardada). Informes de agosto de DT/QB/Between en '8. AGOSTO/DATA MENSUAL' (Carlos + Ignacio Retamal): reporte, no diseno. Planificacion Performance Hilton sept modificada 23:02Z (Ignacio). Casablanca/Between: los comentarios del portal no se leen por aca."
     },
     "tierra-calma": {
-      "revisado": "2026-08-27",
-      "ultimo_hallazgo": "sin novedades"
+      "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
+      "ultimo_hallazgo": "'Tierra_Calma_Grilla_Septiembre_2026.xlsx' (1Mcs0y2dKpIWm5YiISVCHDDUeMr006gsw, de Carlos) se modifico el 03-09 16:17Z. No hay instantanea previa para diffear (la ultima revision era del 27-08): hay que bajarla y compararla con la entrega del 21-08 antes de dar por cerrado septiembre."
     },
     "cava": {
       "revisado": "2026-08-27",
       "ultimo_hallazgo": "Briefs septiembre en pie; sin cambios de sistema"
     },
     "myzoo": {
-      "revisado": "2026-09-02",
-      "ultimo_hallazgo": "Paulina subio HOY 15:48-15:49 el carrusel 'c_partners' (1EL-6lg-Ts-XQyuJ9wYoOYyC6ZCx8fjU3): 8 piezas myzoo_c_partners1..8, ~7 MB c/u. El 28-08 17:30 habia abierto 'c_detective' (1M0NyGNeYNCBeIqIxXpQIw5aaLykN17ES, con myzoo_c_detective1.png) y 'c_xtremewtf' (17gyVzf5tZmMUUK3gP3qOk96ky1g63dXr, vacia). MyZoo sigue sin manual ni kit en el estudio."
+      "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
+      "ultimo_hallazgo": "GRILLA DE OCTUBRE EN MARCHA: 'MyZoo | Grilla Octubre 2026' (1cYmSebFK-MMVECzL2I6Nc5jWwk7Y4PNx9-71rCePMcI, de Nicolas Avila) se modifico el 04-09 04:10Z, y la de septiembre (Scarlette) 03:05Z. Sin leer. MyZoo sigue sin manual ni kit; Paulina no subio nada nuevo (c_partners del 02-09 sigue siendo lo ultimo)."
     },
     "abakos": {
       "revisado": "2026-08-27",
@@ -43,20 +43,28 @@
       "ultimo_hallazgo": "GRILLA DE SEPTIEMBRE NUEVA (26-08, Nicolás Ávila): 22 piezas + 2 variantes de formato, eje Fiestas Patrias. Traverso NO tiene manual ni kit — bloqueado"
     },
     "nueva-urbe": {
-      "revisado": "2026-09-03 (tarde, 18:17 -- tras subir la ronda de la ficha)",
-      "ultimo_hallazgo": "SEGUNDA RONDA DE DIEGO, APLICADA Y SUBIDA (03-09 21:17Z). Diego volvio sobre 'MAIL 27-10 bloque 3 ficha' -- «lo unico que me hace ruido es como queda esa» -- y MANDO LA GRAFICA: 'mail1-3.png', su ficha de AGOSTO, con un «asi». Se rehizo la ficha del correo con su composicion y se subieron las DOS (27-10 y 06-10, que tenia el mismo defecto sin comentar) como 'actualizado': mismos IDs, mismos enlaces, los 4 comentarios de Diego siguen anclados y la carpeta sigue con 22 archivos. ⭐ LA LECCION: cuando el texto del diseniador y su grafica no coinciden, MANDA LA GRAFICA. El escribio «dejalo siempre en la esquina superior izquierda» y en su pieza el logo va CENTRADO Y GRANDE SOBRE LA FOTO; queria decir «no lo dejes flotando suelto». El defecto real no era el logo sino que la columna azul estaba PARTIDA EN DOS con la nube en medio y la foto asomando por un hueco de 14% del alto: en su referencia es UNA caja continua, con las amenidades en un recuadro de borde blanco DENTRO del azul y la nube abajo a la izquierda compartiendo linea de base al pie con la tarjeta. Se saco la pildora lima «Calama» (no esta en su referencia). Geometria medida sobre su PNG, mismo lienzo 1201x813; el render calza: tarjeta 69,28->95,17% contra su 69,30->95,25%, nube exacta en x. ⚠️ ABIERTO -- EL LOGO DEPENDE DE LA FOTO: 27-10 (exterior) da 4,89:1, la referencia de Diego 2,15:1, pero 06-10 (interior, IMG_7729-Edit-Pano) solo 1,79:1 CON la sombra. Se barrio la posicion de lado a lado de esa foto y no pasa de 1,51:1 en ninguna parte (L=0,65 uniforme): esa foto no admite logo blanco encima. Si tiene que quedar al nivel del resto hay que CAMBIARLE LA FOTO -- IMG_7934 3,26:1, IMG_7911-Pano 3,04:1, IMG_8040-Pano 2,84:1 -- y eso es decision de contenido de la KAM. La sombra se borra en una linea de base.css. Herramienta: qa/motor.py ahora normaliza --marca con ALIAS_DE_CARPETA, asi que '--marca rentas' ya no aborta diciendo que la marca no tiene reglas. Pagina de la ronda: https://claude.ai/code/artifact/0f7c3caf-658f-4a93-8beb-8c2ea794d134 . SIGUEN ABIERTOS los 5 puntos de siempre: locucion del reel - que no cuadra en el cierre - WhatsApp 9951 vs 9955 - precio/superficie entre canales - las dos piscinas. Mas la duda de ubicacion: '10. OCTUBRE/DISENOS' vs la convencion 'Artes/2026/<MES> 2026/feed|stories'."
+      "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
+      "ultimo_hallazgo": "SIN RONDA NUEVA. scripts/drive-comentarios.py sobre DISEÑOS (1xIsCSzPdHwm9gihZVlOQllMVZQp5IZdd): 22 archivos, 4 comentarios en 3 archivos, TODOS de Diego del 03-09 14:39-14:41Z y TODOS ya aplicados (13-10 logo dentro del bloque, 20-10 sin logo, 06-10 ficha rehecha -- ver bitacora). Nada posterior a la re-subida de las 21:17Z. Siguen abiertos los 5 puntos + el logo sobre la foto interior del 06-10."
     },
     "mascenter": {
-      "revisado": "2026-09-03 (manana, 11:50)",
-      "ultimo_hallazgo": "VIDEO NUEVO DE DIEGO, fuera del estudio. En 'GRUPO IFB - MAS CENTER/DISENO GRILLAS/2026/9. SEPTIEMBRE' (1t7G1KDuQaR9TpcVK7OZrsWfQ2NhpXQFL): carpeta 'LK' (1-oOGo-yucy_nHnDjJsYXmrzXQf_kvohn, creada 02-09 20:09) con 'lk-matias.mp4' (249.129.649 B, re-subido 21:00) y 'lk-memoria.mp4' (52.084.200 B); y en 'FEED' (1o4cQZSyi8NZZxFsw8YWHdSdHFKkq679x) 'localito18-v1.mp4' (64.668.301 B, modificado 02-09 20:12). Mas Center SI tiene sistema medido en el estudio (docs/QUE-AUTOMATIZAR.md), pero esto se produjo afuera: Diego no usa llavero ni commitea. Vale mirar los 3 videos antes de proponer automatizar la grilla."
+      "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
+      "ultimo_hallazgo": "DOS COSAS. (1) BRIEF DE PERFORMANCE OCTUBRE: Sebastian Cordova creo el 03-09 20:31Z 'PERFORMANCE/2026/OCTUBRE' (144zjVdr0MhrP6iZ-xT--ta9jD90DD6eh) con 'Más Center - Brief Performance - Octubre 2026.xlsx' (1aK-bREojTG4AlfAPhZdLccSjoSKSiz_j, 168 KB). Sin leer todavia. (2) ORGANICOS de septiembre: Sebastian Serrano subio el 03-09 21:07-22:05Z, en 'DISEÑO GRILLAS/2026/9. SEPTIEMBRE/ORGÁNICOS' (1kPR_KSleG7Pb9135pihNFcavbD7hYLoj), la carpeta 'TODO EN UN MISMO LUGAR' (1oBYKRx3YDBaqLurWmctm32hm0kyqWc4O) con 20 clips MOV de iPhone (IMG_3787..3833, 27-352 MB, ~2 GB total: METRAJE CRUDO para un reel), mas 'CONCURSO 1/Portada concurso 1.png' y '¿QUIÉNES SOMOS?/Portada quienes somos 2.png' (portadas ya disenadas, autor sin identificar). Los 3 videos de Diego del 02-09 (LK y localito18) siguen sin mirar. Ademas 'Mas Center- vacancias junio.pptx' re-guardado por Scarlette 21:55Z."
     },
     "redmagister": {
       "revisado": "2026-09-02",
       "ultimo_hallazgo": "Cuenta que el estudio no tenia mapeada. Diego Aguilar subio el 31-08 16:29 a REDMAGISTER/PERFORMANCE/2026/SEPTIEMBRE/RENDIC: FEED con post-wsp, post-trafico, carrusel-wsp-1/2/3 y los reels rem-wsp.mp4 y rem-trafico.mp4; ST con las mismas en story. Sin manual ni kit."
     },
     "landera": {
-      "revisado": "2026-09-03 (noche, tras el OK del cliente)",
-      "ultimo_hallazgo": "DESBLOQUEADA: el cliente cerro el color. En Drive NO hay nada nuevo -- la carpeta 'CYD MANAGEMENT' (1p8uMkRaY9K1G6FZZUN30LZuRBBZyQQH0) solo tiene la Carta Gantt (1VpvBKjly2lbSExDI9SIyJ8BltbuYDqjENqdl48wc9rY, modificada 31-08) y 'DISENO -- INSUMOS DE MARCA' (1jiSRWhyA0-wHsGKFm93Qppq6ZIuI2kZ9) congelada desde el 12-08 con el brief .docx, los referentes y los links a estrategia. NUNCA llegaron 'Base' ni 'Base 1' y ya da lo mismo: quedo elegida la invertida. ⚠️ LA GANTT ESTA VENCIDA: dice 'entrega final martes 1 de septiembre' y hoy es el 3. DECISION DEL CLIENTE: las laminas van con la opcion 2 (la INVERTIDA que produjo el estudio -- fondo blanco, lineas verdes) y los ICONOS se quedan como la opcion 1 (circulo verde macizo con el dibujo en crema). El 'nuevo verde mas oliva' que pide es el #687B5D que ya esta en los circulos del original: no hay verde nuevo que medir. => El entregable final es la INVERTIDA con el bloque de iconos de la pag. 5 revertido al circulo verde. Despues, las 22 laminas (hoy existen 6). SIGUE BLOQUEANDO: (1) la tipografia BARKENTINA no esta en ninguna maquina del estudio y sin ella no se compone una lamina; (2) no hay fotografia real de los campos. Y sigue pendiente corregir la ficha del terracota (dice 5B5B5B, el gris de Pivot; el bueno es #E4361F). OJO de diseno: al invertir, el panel 'ELEMENTOS GRAFICOS (BASE)' perdio su masa verde y quedo con las franjas flotando -- se pidio no tocar el diseno, pero la lamina 14 del plan ('las franjas como sistema') tiene que resolver eso."
+      "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
+      "ultimo_hallazgo": "Valeria creo HOY 04-09 a las 07:43 (hora de Santiago) la carpeta 'Manual de Marca' (1fBPC6EYUB4QvdTHRE_ERvfWUOnK5L1Q5) dentro de CYD MANAGEMENT -- VACIA al momento de la pasada. Es el destino del entregable de la invertida. Nada nuevo del cliente; Barkentina y las fotos de campo siguen faltando."
+    },
+    "copywriters": {
+      "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
+      "ultimo_hallazgo": "G.CL Cap.02: 'GCL_Cap02_Revision7_ROUGHCUT_v2.mp4' (00:38Z) y '_v3.mp4' (00:59Z, 15,3 MB) subidos por Valeria a la raiz de AGENCIA COPYWRITERS (16kNWE2mkbLh1uTb5Jc5TuDhYwM0OOw0A) la noche del 03-09 (20:38 y 20:59 hora de Santiago). Es el rough cut del commit eaf53b9 (25,87 s)."
+    },
+    "fork": {
+      "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
+      "ultimo_hallazgo": "CUENTA NO MAPEADA en el estudio: 'FORK | Planificación de Performance | Agosto.xlsx' (1-UMxxVorbStUVZvteRSkiAStsy4BDwX7) en PERFORMANCE/2026/AGOSTO de Sebastian Cordova (arbol de Serena Abarca), modificada 03-09 21:21Z. Solo performance; sin manual ni kit."
     }
   },
   "diseñadoras_revisadas": [
@@ -64,11 +72,15 @@
     "constanza.olivares@copywriters.cl",
     "diego.aguilar@copywriters.cl",
     "elisabet.soto@copywriters.cl",
-    "paulina.bustamante@copywriters.cl"
+    "paulina.bustamante@copywriters.cl",
+    "carlos.figueroa@copywriters.cl",
+    "sebastian.serrano@copywriters.cl"
   ],
   "_notas_de_esta_revision": [
-    "Pasada del 03-09 (noche) desde /abrir DOUBLETREE. El pull no trajo nada: 'Already up to date'.",
-    "La grilla de DT se lee entera por el conector de Drive + 'export?format=xlsx'; el token compartido no hace falta.",
-    "Nuevo: scripts/grilla-instantanea.py deja la grilla en texto (con tachados e hipervinculos) para poder diffear la ronda siguiente."
+    "Pasada del 04-09 (manana) desde /abrir sin marca. El pull no trajo nada: rama al dia; 0 notas nuevas de memoria.",
+    "Diego Aguilar y Constanza Lizana: CERO archivos nuevos desde la pasada anterior.",
+    "El conector de Drive devuelve paginas de 5 aunque se pida 50: hay que seguir el nextPageToken siempre.",
+    "Los comentarios de Nueva Urbe se leyeron con scripts/drive-comentarios.py porque esa carpeta la subio el token del estudio; Casablanca sigue ilegible por scope.",
+    "⚠️ Al momento de la pasada hay 21 laminas del manual de Landera + base.css MODIFICADAS SIN COMMIT (07:45-07:47 hora local, justo antes de esta sesion) y un base.css.bak sin versionar: alguien esta trabajando Landera en paralelo. No tocar; /cierre landera tiene que commitearlas."
   ]
 }

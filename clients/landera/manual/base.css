@@ -1,20 +1,21 @@
-/* Landera — la anatomía de la lámina, medida sobre PROPUESTA-BASE-V2.pdf.
-   Nada de esto es criterio propio: cada número sale del archivo aprobado.
-   Lámina 1008 × 612 pt = 14in × 8.5in. */
+/* Landera — anatomía de la lámina.
+   Los colores y la cabecera salen medidos del PDF aprobado del cliente.
+   El cuerpo de texto NO: en la propuesta original eran pies de foto cortos en
+   versales centradas, y estirar eso a párrafos de cuatro líneas era ilegible.
+   Acá el cuerpo va en caja baja, alineado a la izquierda y con medida de lectura. */
 
 @font-face { font-family:"Aptos"; font-weight:300;
   src:url("file:///Applications/Microsoft%20Word.app/Contents/Resources/DFonts/Aptos-Light.ttf"); }
 @font-face { font-family:"Aptos"; font-weight:400;
   src:url("file:///Applications/Microsoft%20Word.app/Contents/Resources/DFonts/Aptos.ttf"); }
+@font-face { font-family:"Aptos"; font-weight:600;
+  src:url("file:///Applications/Microsoft%20Word.app/Contents/Resources/DFonts/Aptos-SemiBold.ttf"); }
 @font-face { font-family:"Aptos"; font-weight:700;
   src:url("file:///Applications/Microsoft%20Word.app/Contents/Resources/DFonts/Aptos-Bold.ttf"); }
 
 :root{
-  --verde:#687B5D;      /* primario  */
-  --terracota:#E4361F;  /* secundario */
-  --tinta:#33353E;      /* terciario, blue grey */
-  --gris:#666461;       /* neutro, gris piedra */
-  --crema:#FAF1E8;      /* neutro */
+  --verde:#687B5D; --terracota:#E4361F; --tinta:#33353E;
+  --gris:#666461; --crema:#FAF1E8; --filete:#E4E0D9;
 }
 
 @page { size:14in 8.5in; margin:0; }
@@ -23,33 +24,74 @@ body{
   width:1008pt; height:612pt; position:relative; overflow:hidden;
   background:#fff; font-family:"Aptos",sans-serif;
   -webkit-font-smoothing:antialiased;
+  font-variant-numeric:tabular-nums;
 }
 
 /* ── cabecera ─────────────────────────────────────────────────────────────
-   Medida: título x60,2 y42,8 · 18pt · Bold · verde
-           bajada x60,2 y68,8 · 14pt · Bold · terracota                     */
-.titulo   { position:absolute; left:60.2pt; top:42.8pt;
-            font-size:18pt; font-weight:700; color:var(--verde); margin:0; }
-.bajada   { position:absolute; left:60.2pt; top:68.8pt;
-            font-size:14pt; font-weight:700; color:var(--terracota); margin:0; }
+   Título y bajada conservan la posición y los cuerpos del PDF aprobado:
+   x 60,2 · y 42,8 · 18 pt verde  /  y 68,8 · 14 pt terracota.              */
+.titulo { position:absolute; left:60.2pt; top:42.8pt;
+          font-size:18pt; font-weight:700; color:var(--verde); margin:0;
+          letter-spacing:-0.005em; }
+.bajada { position:absolute; left:60.2pt; top:68.8pt;
+          font-size:14pt; font-weight:700; color:var(--terracota); margin:0;
+          letter-spacing:-0.005em; }
 
-/* ── divisoria de columnas ────────────────────────────────────────────────
-   Medida: vertical gris de y127,1 a y551,6                                 */
-.divisoria{ position:absolute; top:127.1pt; height:424.5pt;
-            border-left:0.5pt solid var(--gris); }
+/* filete de cabecera — le da pie al bloque de título y ordena la lámina */
+.filete-cab { position:absolute; left:60.2pt; right:60.2pt; top:104pt;
+              height:0.5pt; background:var(--filete); }
 
-/* ── rótulos y cuerpo ─────────────────────────────────────────────────────
-   Medida: 12,88pt · Light · gris · VERSALES · interlínea 15,45pt
-   El cuerpo va CENTRADO: se ve en las x variables de cada línea en el PDF. */
-.rotulo   { position:absolute; font-size:12.88pt; font-weight:300;
-            color:var(--gris); text-transform:uppercase; letter-spacing:0.02em;
-            margin:0; }
-.cuerpo   { position:absolute; font-size:12.88pt; font-weight:300;
-            color:var(--gris); text-transform:uppercase; line-height:15.45pt;
-            text-align:center; margin:0; }
+/* ── folio ────────────────────────────────────────────────────────────────
+   Un manual de 23 láminas sin numerar no se puede citar en una corrección.  */
+.folio     { position:absolute; left:60.2pt; bottom:30pt;
+             font-size:8pt; font-weight:400; color:#A8A39B;
+             letter-spacing:0.14em; text-transform:uppercase; margin:0; }
+.folio b   { color:var(--gris); font-weight:400; }
+.folio-marca { position:absolute; right:60.2pt; bottom:30pt;
+             font-size:8pt; font-weight:400; color:#C6C1B9;
+             letter-spacing:0.14em; text-transform:uppercase; margin:0; }
 
-/* ── ficha de dato, como la lámina 3 ──────────────────────────────────────
-   Medida: etiqueta en Aptos regular, valor en Light, ambos 12pt gris       */
-.dato     { position:absolute; font-size:12pt; color:var(--gris); margin:0; }
-.dato b   { font-weight:400; }
-.dato span{ font-weight:300; }
+/* ── divisoria de columnas ────────────────────────────────────────────── */
+.divisoria{ position:absolute; top:134pt; height:410pt;
+            border-left:0.5pt solid var(--filete); }
+
+/* ── la columna de texto ──────────────────────────────────────────────────
+   Contenedor de flujo, no bloques absolutos: así el texto no se puede pisar
+   ni quedar con huecos al cambiar de cuerpo.                               */
+.columna { position:absolute; display:flex; flex-direction:column;
+           align-items:flex-start; }
+.columna > * { margin:0; }
+
+/* Los tres estilos de texto se usan de dos maneras: sueltos en la lámina
+   (posicionados a mano) y dentro de .columna (en flujo). Por eso nacen
+   absolutos y se vuelven estáticos al entrar en la columna — al revés, los
+   rótulos de la derecha se escapan a la esquina de la página. */
+.rotulo, .cuerpo, .entrada { position:absolute; }
+.columna .rotulo,
+.columna .cuerpo,
+.columna .entrada { position:static; }
+
+/* rótulo: etiqueta, no titular */
+.rotulo  { font-size:8.5pt; font-weight:400; color:var(--gris);
+           text-transform:uppercase; letter-spacing:0.14em; margin:0; }
+.columna .rotulo { margin-top:19pt; }
+.columna > .rotulo:first-child { margin-top:0; }
+
+/* cuerpo: caja baja, a la izquierda, medida de lectura */
+.cuerpo  { font-size:10.5pt; font-weight:300; color:var(--tinta);
+           line-height:16.5pt; margin:0; max-width:270pt; }
+.columna .cuerpo { margin-top:7pt; }
+
+/* entrada: el párrafo que abre la lámina y sostiene el argumento */
+.entrada { font-size:13pt; font-weight:300; color:var(--tinta);
+           line-height:19.5pt; margin:0; max-width:270pt;
+           letter-spacing:-0.004em; }
+.columna .entrada { margin-top:8pt; }
+
+.cuerpo b, .entrada b { font-weight:600; }
+.cifra { font-weight:400; color:var(--terracota);
+         font-variant-numeric:tabular-nums; }
+
+/* ── ficha de dato ─────────────────────────────────────────────────────── */
+.dato   { position:absolute; font-size:10.5pt; color:var(--gris); margin:0; }
+.dato b { font-weight:400; display:inline-block; width:44pt; }

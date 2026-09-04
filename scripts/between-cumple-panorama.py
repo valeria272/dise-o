@@ -46,8 +46,8 @@ from PIL import Image, ImageDraw
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _entorno import RAIZ  # noqa: E402
-from between_retoque import (apetitoso, borrosa, limpia_madera,  # noqa: E402
-                             nitidez, revela)
+from between_retoque import (apetitoso, borrosa, informe,  # noqa: E402
+                             limpia_madera, nitidez, revela, vivo)
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -159,7 +159,7 @@ def alarga_escena(im, hasta_x):
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
 
 
-def apaga_hacia_afuera(im, desde_x, caida=0.10):
+def apaga_hacia_afuera(im, desde_x, caida=0.05):
     """La mesa se apaga un punto hacia el extremo derecho.
 
     Dos cosas de una: rompe la simetría que deja el tejido y reproduce la caída
@@ -213,18 +213,24 @@ def main():
     if a.diagnostico:
         pano.save(PASOS / "2-panorama-crudo.jpg", quality=95)
 
-    # 3 · revelado: la sesión viene subexpuesta y apagada
-    pano = revela(pano, luces=213.0, negros=0.010, contraste=1.07)
+    # 3 · revelado. ⛔ La pasada anterior subía las luces con una multiplicación
+    #     y dejaba el 6 % del hojaldre en blanco puro — «se ven muy quemadas».
+    #     Ahora la exposición se fija por la MEDIANA y las altas pasan por el
+    #     hombro, que no puede llegar a 255.
+    pano = revela(pano, medios=84, negros=0.010, contraste=1.05)
 
     # 4 · que las medialunas den hambre
     escala = PANORAMA[0] / (ancho_total - SLIDE1[0])
     caja = tuple(int((c - o) * escala) for c, o in
                  zip(COMIDA, (SLIDE1[0], SLIDE1[1], SLIDE1[0], SLIDE1[1])))
     pano = apetitoso(pano, mascara(caja, PANORAMA, elipse=True),
-                     claridad=0.62, cuerpo=1.16, calor=7.0)
+                     claridad=0.52, cuerpo=1.08, calor=4.5)
 
-    # 5 · el remate
-    pano = nitidez(pano, cantidad=0.46, radio=1.4)
+    # 5 · color vivo (vibrancia, no saturación plana) y remate corto
+    pano = vivo(pano, vibrancia=0.30)
+    pano = nitidez(pano, cantidad=0.34, radio=1.4)
+    informe(pano.crop((0, 0, *SLIDE)), "cumple slide 1")
+    informe(pano.crop((SLIDE[0], 0, *PANORAMA)), "cumple slide 2")
 
     pano.save(DESTINO.parent / "cumple-panorama.jpg", quality=96)
     pano.crop((0, 0, *SLIDE)).save(DESTINO / "cumple-continua-1.jpg", quality=95)

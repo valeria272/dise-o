@@ -19,9 +19,12 @@ Este módulo es ese revelado, y vive aparte porque las cuatro piezas de la ronda
 lo comparten:
 
     limpia_madera()  quita rayones, grietas y motas de la mesa
-    apetitoso()      claridad, calidez y cuerpo sobre la comida
-    revela()         exposición, negros y contraste de la escena completa
+    revela()         negros, exposición por MEDIOS y hombro en las altas
+    apetitoso()      claridad, calidez y cuerpo sobre la comida (con freno)
+    vivo()           vibrancia: color vivo sin ensuciar ni quemar
     nitidez()        el remate, al final y con mano corta
+    hombro()         la curva que impide que NADA llegue a blanco puro
+    informe()        cuánto quedó quemado — se imprime en cada pieza
     luz_envolvente() para montajes: funde el canto del recorte con su fondo
 
 ⚠️ El ORDEN importa: limpiar → revelar → apetitoso → nitidez. Al revés, la
@@ -94,15 +97,39 @@ def limpia_madera(im, zona=None, umbral=17, nucleo=31, proteger=None):
 
 
 # ─────────────────────── 2 · revelar la escena ────────────────────────────────
-def revela(im, luces=214.0, negros=0.012, contraste=1.06, calidez_max=21.0,
-           medios=None):
-    """Exposición, punto negro y contraste. Es el «no se ve tan oscuro».
+def hombro(a, rodilla=0.80, techo=0.985):
+    """Comprime SOLO las altas, con una curva que nunca llega a 255.
 
-    · `luces` fija el p95 (el manual pide ~214 cuando el protagonista es comida
-      clara: por encima de 215 el hojaldre pierde las capas);
-    · `negros` recorta el 1,2 % inferior para que el negro sea negro y la foto
-      deje de verse lavada y apagada a la vez;
-    · la calidez se contiene como en el perfil `neutro` del mes.
+    ⛔ La primera versión subía la exposición multiplicando y recortaba en 255:
+       el hojaldre salía con un 4-6 % de píxeles blancos puros y Eli lo cazó al
+       primer vistazo («las fotos se ven muy quemadas»). Un blanco puro en comida
+       no es «luminoso», es información perdida: se va el dibujo del azúcar y de
+       las capas.
+
+    La curva entra con pendiente 1 en la rodilla —así los medios no se tocan— y
+    tiende asintóticamente al techo, o sea NO PUEDE CLIPEAR por definición:
+
+        y = k + (T-k)·(1 − e^(−(x−k)/(T−k)))
+
+    Con k=0,80 y T=0,985 un blanco de entrada sale en 235 y un reflejo muy
+    quemado en 251 como mucho.
+    """
+    x = np.array(a, dtype=np.float32) / 255.0
+    alto = x > rodilla
+    t = (x[alto] - rodilla) / (techo - rodilla)
+    x[alto] = rodilla + (techo - rodilla) * (1.0 - np.exp(-t))
+    return x * 255.0
+
+
+def revela(im, medios=None, negros=0.010, contraste=1.05, calidez_max=21.0,
+           rodilla=0.80, techo=0.985, luces=None):
+    """Punto negro, exposición por MEDIOS y hombro en las altas.
+
+    · `medios` es el objetivo de la MEDIANA, y es lo que arregla «está muy
+      oscuro». Subir las luces no lo arregla: quema el hojaldre.
+    · el hombro va SIEMPRE y va al final, así que la pieza no puede clipear.
+    · `luces` se conserva por compatibilidad y ya no escala nada: el techo lo
+      pone el hombro.
     """
     a = _np(im)
     calidez = float(a[..., 0].mean() - a[..., 2].mean())
@@ -111,38 +138,69 @@ def revela(im, luces=214.0, negros=0.012, contraste=1.06, calidez_max=21.0,
         a[..., 0] -= ajuste * 0.62
         a[..., 2] += ajuste * 0.38
     p1 = float(np.percentile(a, negros * 100))
-    a = (a - p1) * (255.0 / max(1.0, 255.0 - p1))
-    p95 = float(np.percentile(a, 95))
-    if p95 > 1:
-        a *= min(1.55, max(0.85, luces / p95))
+    a = np.clip(a - p1, 0, None) * (255.0 / max(1.0, 255.0 - p1))
     if medios:
-        # gamma para levantar los MEDIOS sin tocar el blanco: una escena de
-        # madera oscura y muro verde puede tener el p95 en su sitio y aun así
-        # leerse apagada, porque la mediana está abajo. Es el «está muy oscuro».
         mediana = max(1.0, float(np.median(a)))
         gamma = np.log(max(medios, 1.0) / 255.0) / np.log(mediana / 255.0)
         a = np.power(np.clip(a / 255.0, 0, 1), np.clip(gamma, 0.55, 1.6)) * 255.0
     media = float(a.mean())
     a = (a - media) * contraste + media
-    return _im(a)
+    return _im(hombro(np.clip(a, 0, 320), rodilla, techo))
+
+
+def vivo(im, vibrancia=0.30, mascara=None):
+    """Color VIVO sin quemar: vibrancia, no saturación plana.
+
+    Sube más donde hay poco color y casi nada donde ya está saturado, y se apaga
+    en las altas — que es donde una saturación plana ensucia el hojaldre y lo
+    vuelve naranja. Es el «colores vivos, pero no quemadas».
+    """
+    a = _np(im)
+    gris = a.mean(axis=2, keepdims=True)
+    croma = np.abs(a - gris).max(axis=2, keepdims=True) / 128.0
+    alto = np.clip((gris / 255.0 - 0.72) / 0.28, 0, 1)          # freno en altas
+    ganancia = 1.0 + vibrancia * np.clip(1.0 - croma, 0, 1) * (1.0 - alto)
+    salida = gris + (a - gris) * ganancia
+    if mascara is not None:
+        m = mascara[:, :, None].astype(np.float32)
+        salida = a * (1 - m) + salida * m
+    return _im(salida)
+
+
+def informe(im, nombre=""):
+    """Cuánto se está quemando. Se imprime en cada pieza para no volver a
+    entregar una foto con los blancos reventados sin darse cuenta."""
+    a = _np(im)
+    quemado = 100.0 * float((a >= 250).sum()) / a.size
+    print("    {:22} p95 {:3.0f} · p99,9 {:3.0f} · mediana {:3.0f} · quemado {:.2f} %"
+          .format(nombre, np.percentile(a, 95), np.percentile(a, 99.9),
+                  np.median(a), quemado))
+    return quemado
 
 
 # ─────────────────────── 3 · que dé hambre ────────────────────────────────────
-def apetitoso(im, mascara=None, claridad=0.55, cuerpo=1.14, calor=6.0):
-    """Claridad, saturación y calidez sobre la comida.
+def apetitoso(im, mascara=None, claridad=0.55, cuerpo=1.10, calor=5.0):
+    """Claridad, cuerpo y calidez sobre la comida — con FRENO en las altas.
 
-    `claridad` es contraste de MEDIA frecuencia (unsharp de radio grande): es lo
+    `claridad` es contraste de media frecuencia (unsharp de radio grande): es lo
     que separa las capas del hojaldre y hace que el queso se vea fundido en vez
-    de plano. `cuerpo` sube la saturación sólo donde ya hay color, así que no
-    ensucia los grises de la loza.
+    de plano.
+
+    ⛔ Y acá estaba la otra mitad del «se ven quemadas»: la claridad SUMA luz en
+       las crestas, así que sobre un hojaldre ya luminoso lo empuja a blanco
+       puro. Ahora el detalle que se agrega se pondera por un freno que vale 1
+       en los medios y cae a 0,1 en las altas.
     """
     a = _np(im)
     base = borrosa(a, 26)
-    a = a + (a - base) * claridad                       # claridad
+    lum = a.mean(axis=2, keepdims=True) / 255.0
+    freno = np.clip(1.0 - ((lum - 0.62) / 0.30) ** 2, 0.10, 1.0)
+    freno = np.where(lum > 0.62, freno, 1.0)
+    a = a + (a - base) * claridad * freno
     gris = a.mean(axis=2, keepdims=True)
-    a = gris + (a - gris) * cuerpo                      # cuerpo (saturación)
-    a[..., 0] += calor * 0.6                            # calidez de horno
-    a[..., 2] -= calor * 0.4
+    a = gris + (a - gris) * cuerpo
+    a[..., 0] += calor * 0.6 * freno[..., 0]            # calidez de horno
+    a[..., 2] -= calor * 0.4 * freno[..., 0]
     if mascara is not None:
         m = mascara[:, :, None].astype(np.float32)
         a = _np(im) * (1 - m) + a * m
@@ -151,8 +209,13 @@ def apetitoso(im, mascara=None, claridad=0.55, cuerpo=1.14, calor=6.0):
 
 # ─────────────────────── 4 · el remate ────────────────────────────────────────
 def nitidez(im, cantidad=0.42, radio=1.5):
+    """El remate. También frena en las altas y cierra con el hombro: un halo
+    blanco alrededor del hojaldre es la firma de la sobreedición."""
     a = _np(im)
-    return _im(a + (a - borrosa(a, radio)) * cantidad)
+    lum = a.mean(axis=2, keepdims=True) / 255.0
+    freno = np.clip(1.0 - np.clip((lum - 0.75) / 0.25, 0, 1), 0.25, 1.0)
+    subida = a + (a - borrosa(a, radio)) * cantidad * freno
+    return _im(hombro(np.clip(subida, 0, 320)))
 
 
 # ─────────────────── 5 · para montajes: fundir el canto ───────────────────────

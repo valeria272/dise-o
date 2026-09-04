@@ -1,24 +1,28 @@
 # Grilla BETWEEN — instantánea
 
 > Instantánea del 04-09-2026 tomada con `/al-dia`.
-> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/bca8b463-5659-4e0f-abe8-977531715bcd/scratchpad/bw-grilla-0904.xlsx`.
+> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/6c874d7a-14b1-41f4-87b6-bca33205f16a/scratchpad/bw-0904b.xlsx`.
 > **Sirve de base para el DIFF de la próxima ronda**: los comentarios se
 > prependen sobre los viejos en la misma celda, así que sin esta copia no se
 > distingue lo nuevo de lo ya resuelto.
 
 ## FEED
 
-### Columna C — **OK! Agreguemos dirección en copy!
-
-
-
-
-Comentario wsp**
+### Columna B — **sin estado**
 
 **LINK MATERIAL FEED:**
 
 ```
-01-09-2026
+SEMANA 2
+```
+
+
+### Columna C — **APROBADO**
+
+**LINK MATERIAL FEED:**
+
+```
+07-09-2026
 ```
 
 **HORARIO:**
@@ -105,30 +109,27 @@ Elige tu mesa y haz de Between tu cowork por hoy.
 #BetweenCoffee #CoworkSantiago #CafeteriaSantiago #LasCondes
 ```
 
-**ESTADO:**
+**COMENTARIOS DISEÑO:**
 
 ```
-APROBADO
+OK! Agreguemos dirección en copy!
+
+
+
+
+Comentario wsp
 ```
 
-
-### Columna E — **G1: Que diga solo ¿Estás de cumpleaños? sin el septiembre, eliminar ¡VEN POR TU CAFÉ DE REGALO!
-La foto está extraña, hagamos algo más similar a lo que hiciemos el primer post, algo más natural que no se vea tan IA, en este caso creo que menos es más. Para la segunda slide proponer otra foto de fondo, distinta a G1
-
-
-Haría más énfasis en el cumpleaños, puede ser texto principal ¿Estás de cumpleaños?
-luego complemento con Este café es para ti.
-Luego complemento con ¡Ven por tu café de regalo!
-
-En la G2 considerar este listado e incluir emojis nuevamente
+*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Comentario wsp~~
 
 
-Agregar elementos cumpleañeros como en el anterior**
+### Columna E — **EN CAMBIOS**
 
 **LINK MATERIAL FEED:**
 
 ```
-03-09-2026
+09-09-2026
 ```
 
 **HORARIO:**
@@ -186,19 +187,40 @@ Te esperamos para celebrar contigo.
 #BetweenCoffee #CafeSantiago #Cumpleaños #LasCondes
 ```
 
-**ESTADO:**
+**COMENTARIOS DISEÑO:**
 
 ```
-EN CAMBIOS
+G1: Que diga solo ¿Estás de cumpleaños? sin el septiembre, eliminar ¡VEN POR TU CAFÉ DE REGALO!
+La foto está extraña, hagamos algo más similar a lo que hiciemos el primer post, algo más natural que no se vea tan IA, en este caso creo que menos es más. Para la segunda slide proponer otra foto de fondo, distinta a G1
+
+
+Haría más énfasis en el cumpleaños, puede ser texto principal ¿Estás de cumpleaños?
+luego complemento con Este café es para ti.
+Luego complemento con ¡Ven por tu café de regalo!
+
+En la G2 considerar este listado e incluir emojis nuevamente
+
+
+Agregar elementos cumpleañeros como en el anterior
 ```
 
+*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~G1: Que diga solo ¿Estás de cumpleaños? sin el septiembre, eliminar ¡VEN POR TU CAFÉ DE REGALO!
+La foto está extraña, hagamos algo más similar a lo que hiciemos el primer post, algo más natural que no se vea tan IA, en este caso creo que menos es más. Para la segunda slide proponer otra foto de fondo, distinta a G1~~
+> ~~Haría más énfasis en el cumpleaños, puede ser texto principal ¿Estás de cumpleaños?
+luego complemento con Este café es para ti.
+Luego complemento con ¡Ven por tu café de regalo!
 
-### Columna G — **Tenemos que modificar el aspecto de estas modelos, ya no las podemos usar tal cual**
+En la G2 considerar este listado e incluir emojis nuevamente~~
+> ~~Agregar elementos cumpleañeros como en el anterior~~
+
+
+### Columna F — **APROBADO**
 
 **LINK MATERIAL FEED:**
 
 ```
-07-09-2026
+11-09-2026
 ```
 
 **HORARIO:**
@@ -245,24 +267,28 @@ Ven por tu momento Between.
 #BetweenCoffee #CafeSantiago #CoffeeBreak #LasCondes
 ```
 
-**ESTADO:**
+**COMENTARIOS DISEÑO:**
 
 ```
-APROBADO
+Tenemos que modificar el aspecto de estas modelos, ya no las podemos usar tal cual
 ```
 
 
-### Columna H — **Ese kimbo en la G1 hay que quitarlo, porque ya no servimos en esas tazas
-G3: Que pinta tiene x Se ve muy bueno...
-G4: Aquí la idea es que se vea más vacío el plato, veamos otra opción de foto, que sea desde arriba también como los 2 anteriores (como la refe)
-
-
-Ok los textos, pero las fotos deben ser de cosas para comer y no de gente, como el la refee**
+### Columna G — **sin estado**
 
 **LINK MATERIAL FEED:**
 
 ```
-09-09-2026
+SEMANA 3
+```
+
+
+### Columna H — **REVISAR CONTENIDO**
+
+**LINK MATERIAL FEED:**
+
+```
+14-09-2026
 ```
 
 **HORARIO:**
@@ -337,27 +363,35 @@ Ven a descubrir el tuyo.
 #BetweenCoffee #CafeteriaSantiago #CoffeeLovers #LasCondes
 ```
 
-**ESTADO:**
+**COMENTARIOS DISEÑO:**
 
 ```
-CORREGIDO
+Qué plato es el que ya está comido?
+
+
+Ese kimbo en la G1 hay que quitarlo, porque ya no servimos en esas tazas
+G3: Que pinta tiene x Se ve muy bueno...
+G4: Aquí la idea es que se vea más vacío el plato, veamos otra opción de foto, que sea desde arriba también como los 2 anteriores (como la refe)
+
+
+Ok los textos, pero las fotos deben ser de cosas para comer y no de gente, como el la refee
 ```
 
-
-### Columna J — **Arriba ella hablo y abajo ella escuchó y queda OK
-
-
-
-Pondría un café que se vea más lindo, algo con arte late y el otro se tiene que ver como que en algún momento hubo café en la taza jasajs.
-En cuanto al diseño, me gustaría ver textos más limpios (sin el recuadro atrás) y qque el de Ella habló esté más cerca de su respectiva taza
+*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Ese kimbo en la G1 hay que quitarlo, porque ya no servimos en esas tazas
+G3: Que pinta tiene x Se ve muy bueno...
+G4: Aquí la idea es que se vea más vacío el plato, veamos otra opción de foto, que sea desde arriba también como los 2 anteriores (como la refe)
 
 
-**
+Ok los textos, pero las fotos deben ser de cosas para comer y no de gente, como el la refee~~
+
+
+### Columna J — **EN CAMBIOS**
 
 **LINK MATERIAL FEED:**
 
 ```
-11-09-2026
+16-09-2026
 ```
 
 **HORARIO:**
@@ -412,29 +446,37 @@ Etiqueta a esa amiga con la que un café nunca es solo un café.
 #BetweenCoffee #CafeteriaSantiago #CoffeeTime #LasCondes
 ```
 
-**ESTADO:**
+**COMENTARIOS DISEÑO:**
 
 ```
-EN CAMBIOS
+Arriba ella hablo y abajo ella escuchó y queda OK
+
+
+
+Pondría un café que se vea más lindo, algo con arte late y el otro se tiene que ver como que en algún momento hubo café en la taza jasajs.
+En cuanto al diseño, me gustaría ver textos más limpios (sin el recuadro atrás) y qque el de Ella habló esté más cerca de su respectiva taza
 ```
 
-
-### Columna L — **Mismo comentario que antes sobre la G1, el fondo no tiene nada que ver con BT, tenemos algunos videos que hemos hecho en la entrada de BT, saquemos el fondo de ahí?
-Pensando en los precios, mejor vámonos a la segura como hacemos siempre con los precios desde (que diga desde) y eliminar el texto y flecha que dice Café grande
-
-
-
-Me gusta que sea otra propuesta la G1, pero ella se ve muy derrotada y el fondo no es muy Between, veamos opciones?
-En la G 4 debemos poner un dulce y un salado en la foto y que el vaso sea como el del resto de las slides. (en lugar de llévalo contigo, pongamos algo que haga más sentido con lo que se está mostrando, podría ser ¡Llévate los 3!
+*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Pondría un café que se vea más lindo, algo con arte late y el otro se tiene que ver como que en algún momento hubo café en la taza jasajs.
+En cuanto al diseño, me gustaría ver textos más limpios (sin el recuadro atrás) y qque el de Ella habló esté más cerca de su respectiva taza~~
 
 
-
-Intercambiemos fechas con el de cowork**
+### Columna K — **sin estado**
 
 **LINK MATERIAL FEED:**
 
 ```
-14-09-2026
+SEMANA 4
+```
+
+
+### Columna L — **EN CAMBIOS**
+
+**LINK MATERIAL FEED:**
+
+```
+22-09-2026
 ```
 
 **HORARIO:**
@@ -521,14 +563,79 @@ Elige tu combinación favorita y sigue tu mañana.
 #BetweenCoffee #DesayunoSantiago #CafeToGo #LasCondes
 ```
 
-**ESTADO:**
+**COMENTARIOS DISEÑO:**
 
 ```
-EN CAMBIOS
+Mismo comentario que antes sobre la G1, el fondo no tiene nada que ver con BT, tenemos algunos videos que hemos hecho en la entrada de BT, saquemos el fondo de ahí?
+Pensando en los precios, mejor vámonos a la segura como hacemos siempre con los precios desde (que diga desde) y eliminar el texto y flecha que dice Café grande
+
+
+
+Me gusta que sea otra propuesta la G1, pero ella se ve muy derrotada y el fondo no es muy Between, veamos opciones?
+En la G 4 debemos poner un dulce y un salado en la foto y que el vaso sea como el del resto de las slides. (en lugar de llévalo contigo, pongamos algo que haga más sentido con lo que se está mostrando, podría ser ¡Llévate los 3!
+
+
+
+Intercambiemos fechas con el de cowork
+```
+
+*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Me gusta que sea otra propuesta la G1, pero ella se ve muy derrotada y el fondo no es muy Between, veamos opciones?
+En la G 4 debemos poner un dulce y un salado en la foto y que el vaso sea como el del resto de las slides. (en lugar de llévalo contigo, pongamos algo que haga más sentido con lo que se está mostrando, podría ser ¡Llévate los 3!
+
+
+
+Intercambiemos fechas con el de cowork~~
+
+
+### Columna N — **sin estado**
+
+**LINK MATERIAL FEED:**
+
+```
+SEMANA 4
+```
+
+
+### Columna O — **PENDIENTE POR CLIENTE**
+
+**LINK MATERIAL FEED:**
+
+```
+X DEFINIR
+```
+
+**HORARIO:**
+
+```
+X DEFINIR
+```
+
+**DISEÑO:**
+
+```
+ESPACIO NUEVAS PROMOS DE DESAYUNO
+
+(Pendiente info comercial por cliente)
+```
+
+**COPY:**
+
+```
+PENDIENTE INFO PARA REALIZAR COPY
 ```
 
 
 ## STORIES
+
+### Columna B — **sin estado**
+
+**LINK MATERIAL STORIES:**
+
+```
+SEMANA 1
+```
+
 
 ### Columna C — **APROBADO**
 
@@ -585,72 +692,7 @@ Ok, enlace a carta!
 ```
 
 
-### Columna D — **APROBADO**
-
-**LINK MATERIAL STORIES:**
-
-```
-03-09-2026
-```
-
-**TIPO:**
-
-```
-ESTÁTICA
-```
-
-**DISEÑO:**
-
-```
-ST ESTÁTICA – PROMO TO GO | CAFÉ + DULCE
-
-Visual:
-Fotografía cenital o en plano 45° de un café Between en formato To Go acompañado de una de las opciones dulces de la promoción. Idealmente, una mano tomando el café y la otra sosteniendo el dulce, transmitiendo una mañana en movimiento. Fondo limpio, luz natural y estética cálida de Between.
-
-Texto en imagen:
-
-UN DULCE COMIENZO
-PARA TU MAÑANA.
-
-Café + dulce
-desde $3.790
-
-Lunes a viernes
-08:00 a 10:00 hrs.
-
-TO GO
-
-CTA:
-Pasa por Between y llévalo contigo.
-```
-
-**INTERACCIÓN:**
-
-```
-UBICACIÓN
-```
-
-**COMENTARIOS DISEÑO:**
-
-```
-Eliminar PASA POR BETWEEN y llévalo contigo
-Que diga Café + Dulce To Go - desde
-
-Con eso ok!
-
-
-Café con logo Between!
-```
-
-*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
-> ~~Eliminar PASA POR BETWEEN y llévalo contigo
-Que diga Café + Dulce To Go - desde
-
-Con eso ok!~~
-> ~~Café con logo Between!~~
-
-
-### Columna E — **CORREGIDO**
+### Columna D — **CORREGIDO**
 
 **LINK MATERIAL STORIES:**
 
@@ -713,12 +755,77 @@ Darle una vuelta a la palabra cafeína, puede sonar a algo negativo quizás deja
 Darle una vuelta a la palabra cafeína, puede sonar a algo negativo quizás dejar el segundo texto solamente~~
 
 
-### Columna H — **OK PARA DISEÑAR**
+### Columna G — **APROBADO**
 
 **LINK MATERIAL STORIES:**
 
 ```
 07-09-2026
+```
+
+**TIPO:**
+
+```
+ESTÁTICA
+```
+
+**DISEÑO:**
+
+```
+ST ESTÁTICA – PROMO TO GO | CAFÉ + DULCE
+
+Visual:
+Fotografía cenital o en plano 45° de un café Between en formato To Go acompañado de una de las opciones dulces de la promoción. Idealmente, una mano tomando el café y la otra sosteniendo el dulce, transmitiendo una mañana en movimiento. Fondo limpio, luz natural y estética cálida de Between.
+
+Texto en imagen:
+
+UN DULCE COMIENZO
+PARA TU MAÑANA.
+
+Café + dulce
+desde $3.790
+
+Lunes a viernes
+08:00 a 10:00 hrs.
+
+TO GO
+
+CTA:
+Pasa por Between y llévalo contigo.
+```
+
+**INTERACCIÓN:**
+
+```
+UBICACIÓN
+```
+
+**COMENTARIOS DISEÑO:**
+
+```
+Eliminar PASA POR BETWEEN y llévalo contigo
+Que diga Café + Dulce To Go - desde
+
+Con eso ok!
+
+
+Café con logo Between!
+```
+
+*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Eliminar PASA POR BETWEEN y llévalo contigo
+Que diga Café + Dulce To Go - desde
+
+Con eso ok!~~
+> ~~Café con logo Between!~~
+
+
+### Columna H — **OK PARA DISEÑAR**
+
+**LINK MATERIAL STORIES:**
+
+```
+08-09-2026
 ```
 
 **TIPO:**
@@ -1262,7 +1369,16 @@ LINK CARTA
 
 ## ORGÁNICOS
 
-### Columna C — **Que quede para principios de sept**
+### Columna B — **sin estado**
+
+**LINK MATERIAL ORGÁNICOS:**
+
+```
+SEMANA 1
+```
+
+
+### Columna C — **POR GRABAR**
 
 **LINK MATERIAL ORGÁNICOS:**
 
@@ -1310,14 +1426,23 @@ La próxima, uno de tamaño humano, porfa. 👀
 #BetweenCoffeBar #CafeSantiago #Humor
 ```
 
-**ESTADO:**
+**COMENTARIOS CLIENTE:**
 
 ```
-POR GRABAR
+Que quede para principios de sept
 ```
 
 
-### Columna E — **Cambiémos este para QB para variarr**
+### Columna D — **sin estado**
+
+**LINK MATERIAL ORGÁNICOS:**
+
+```
+SEMANA 3
+```
+
+
+### Columna E — **POR GRABAR**
 
 **LINK MATERIAL ORGÁNICOS:**
 
@@ -1363,14 +1488,23 @@ Pero bueno… otro cafecito nunca está de más. 🤎
 #BetweenCoffeBar #CaféSantiago #Humor
 ```
 
-**ESTADO:**
+**COMENTARIOS CLIENTE:**
 
 ```
-REVISAR CONTENIDO
+Cambiémos este para QB para variarr
 ```
 
 
-### Columna G — **está cambiaada la refe**
+### Columna F — **sin estado**
+
+**LINK MATERIAL ORGÁNICOS:**
+
+```
+SEMANA 4
+```
+
+
+### Columna G — **CORREGIDO**
 
 **LINK MATERIAL ORGÁNICOS:**
 
@@ -1416,10 +1550,63 @@ No sabemos quién lo decidió, pero claramente sabía lo que hacía.
 #BetweenCoffeBar #CafeSantiago #Cafe
 ```
 
-**ESTADO:**
+**COMENTARIOS CLIENTE:**
 
 ```
-CORREGIDO
+está cambiaada la refe
+```
+
+
+### Columna H — **EN REVISIÓN**
+
+**LINK MATERIAL ORGÁNICOS:**
+
+```
+14-04-2026
+```
+
+**HORARIO:**
+
+```
+12:00:00
+```
+
+**TIPO:**
+
+```
+REEL
+```
+
+**DISEÑO:**
+
+```
+REEL ORGÁNICO  BARISTA EXPERIENCE
+
+Visual
+Preparación de café. Incluir logo QB
+
+
+Texto 1 
+Todo empieza en un momento simple…
+
+Texto 2
+como el primer café del día.
+```
+
+**LINKS:** ([enlace](https://cl.pinterest.com/pin/872924340271815587/))
+
+```
+REFE
+```
+
+**COPY:**
+
+```
+Desde el primer aroma hasta el primer sorbo, todo se siente distinto cuando te detienes a disfrutarlo.
+
+Disfruta tu café en Between, Av. Vitacura 2727, Las Condes  ☕
+
+#BetweenCoffee #CaféSantiago #LasCondes #CoffeeLoversChile #PanoramasSantiago
 ```
 
 

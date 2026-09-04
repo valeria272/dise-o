@@ -44,8 +44,18 @@ L.append("")
 # ⚠️ Las hojas NO se llaman igual en todas las marcas: la de DT trae
 # «REELSORGÁNICOS» y la de Between «ORGÁNICOS». Se salta la que no exista en vez
 # de reventar con KeyError a mitad del volcado.
-for hoja, fila_estado in [("FEED", 15), ("STORIES", 16),
-                          ("REELSORGÁNICOS", 15), ("ORGÁNICOS", 15)]:
+#
+# ⛔⛔ CORREGIDO EL 04-09-2026, y era un bug que HACÍA PERDER COLUMNAS.
+# La fila del ESTADO venía quemada («FEED 15, STORIES 16») y en la grilla de
+# Between la de FEED es la **16**: la 15 es «COMENTARIOS DISEÑO». Con eso pasaban
+# dos cosas a la vez, las dos silenciosas:
+#   · el encabezado de cada columna imprimía el COMENTARIO en vez del estado, y
+#   · el `if not estado: continue` **se saltaba toda columna sin comentario de
+#     diseño**, o sea que piezas enteras no aparecían en la instantánea.
+# Por eso el diff del 04-09 salió corrido de columna y hubo que volcar la grilla
+# a mano para encontrar las tres piezas EN CAMBIOS. Ahora la fila se BUSCA por su
+# rótulo en la columna A, que es dato de la propia hoja y no una suposición.
+for hoja in ("FEED", "STORIES", "REELSORGÁNICOS", "ORGÁNICOS"):
     if hoja not in wb.sheetnames:
         continue
     ws = wb[hoja]
@@ -53,15 +63,23 @@ for hoja, fila_estado in [("FEED", 15), ("STORIES", 16),
     L.append("")
     campos = {c[0].row: str(c[0].value).strip() for c in ws.iter_rows(min_col=1, max_col=1)
               if c[0].value}
+    fila_estado = next((f for f, c in campos.items() if c.upper().startswith("ESTADO")), None)
+    if fila_estado is None:
+        L.append("> ⚠️ Esta hoja no tiene fila ESTADO; se vuelca completa.")
+        L.append("")
     for col in range(2, ws.max_column + 1):
         letra = openpyxl.utils.get_column_letter(col)
-        estado = ws.cell(row=fila_estado, column=col).value
-        if not estado:
+        estado = ws.cell(row=fila_estado, column=col).value if fila_estado else None
+        # ⭐ El filtro ya NO es «tiene estado»: una columna puede estar en blanco
+        #    de estado y traer brief, y saltársela es perder la pieza. Se salta
+        #    sólo la columna VACÍA de punta a punta (las que sólo dicen «SEMANA
+        #    2» quedan igual, y sirven de separador).
+        if not any(str(ws.cell(row=f, column=col).value or "").strip() for f in campos):
             continue
-        L.append(f"### Columna {letra} — **{estado}**")
+        L.append(f"### Columna {letra} — **{estado or 'sin estado'}**")
         L.append("")
         for fila, campo in campos.items():
-            if fila == fila_estado:
+            if fila_estado is not None and fila == fila_estado:
                 continue
             v = ws.cell(row=fila, column=col).value
             if v is None or not str(v).strip():

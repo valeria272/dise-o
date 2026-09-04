@@ -5,6 +5,118 @@
 
 ---
 
+## 2026-09-04 · Eli (Windows) — BETWEEN ronda 11: las tres EN CAMBIOS, subidas
+
+**Qué pedía la ronda.** Eli: corregir lo que está EN CAMBIOS en la S1, S2 y S3,
+guiándose del brief, de los comentarios del cliente **sin tachar** y de los
+mensajes de Scarlette; rehacer fondos; que se vea realista y no falso; que el
+vaso To Go sea el actual; borrar rayones, imperfecciones y migas de las mesas. Y
+dejó en el Drive **el editable de la slide 2 del carrusel de cumpleaños**
+(`1kjIL3VuLnKH0ED3h8lx9kQ4GPUI5XHVF`) «para que lo mejores».
+
+**Primero hubo que volver a leer la grilla, y ahí apareció el primer problema.**
+La hoja `FEED` se **re-fechó entera** el 04-09: borró la SEMANA 1 y corrió el mes
+—el cumpleaños del 3 al **9**, «Primero la foto» del 9 al **14**, «Ella habló»
+del 11 al **16**, las Promos To Go del 14 al **22**—. Y el diff contra la copia
+de la mañana salió corrido de columna porque
+**`scripts/grilla-instantanea.py` tenía quemada la fila del ESTADO** (`FEED 15`,
+cuando en Between es la **16**; la 15 es `COMENTARIOS DISEÑO`). Con eso el
+encabezado imprimía el comentario en vez del estado y —peor— el filtro se
+**saltaba toda columna sin comentario de diseño**: piezas enteras no aparecían.
+Ya está arreglado: la fila se busca por su rótulo en la columna A. La instantánea
+de hoy trae las 33 columnas de las tres hojas y **el diff de mañana ya sirve**.
+
+**Las tres EN CAMBIOS, y qué se hizo en cada una:**
+
+| Pieza | Estado / celda | Qué se hizo |
+|---|---|---|
+| **S1 · Cumpleaños** (FEED 09-09, carrusel) | `FEED!E16` EN CAMBIOS | Las dos slides pasan a ser **dos recortes 4:5 REALES** de la toma `25-257` (se cae el panorama espejado); mesa sin rayones; revelado por medios; **papelitos de colores** sembrados en la escena —el pedido de Scarlette que llevaba dos rondas anotado y no se veía—; el bloque de texto **sube** al muro libre (abajo caía sobre el hojaldre); y la G2 se rehace con **el mock de post de Eli**, corregido |
+| **S2 · Ella habló** (FEED 16-09) | `FEED!J16` EN CAMBIOS | «Arriba ella hablo y abajo ella escuchó»: la escena se **voltea en vertical** para que la taza LLENA quede arriba, que es la que habló según el brief. Etiquetas re-medidas, logo arriba, mesa limpia |
+| **S3 · Promos To Go** (FEED 22-09, carrusel) | `FEED!L16` EN CAMBIOS | **El revelado de las cuatro slides** (era el «filtro medio raro»), mesas sin rayones ni migas, el logotipo impreso del vaso de vuelta en las 4, fuera el segundo vaso del canto de la G4, canto de la figura fundido en la portada y re-encuadre para que el titular no le pase por encima al vaso |
+
+**⭐⭐⭐ El hallazgo de la sesión, y cierra un reclamo de cuatro rondas.** El
+cliente lleva desde el 31-08 diciendo «se ven quemadas y con un filtro medio
+raro» y Eli «el vaso está erróneo». No era un filtro ni el estampado: **tres de
+las cuatro fotos del carrusel To Go estaban SIN GRADAR**. Medido, calidez
+(R̄ − B̄): la del sándwich 20,9 (gradada a `neutro`, el perfil del mes) contra
+49,4, 40,7 y 35,1 de las otras tres. Por eso el vaso de la slide 2 se leía
+impreso y el de las 3 y 4 «descolorido» — **es el mismo vaso de la misma
+sesión**. No había que re-estampar nada: había que sacarle el velo cálido.
+
+**Herramientas nuevas, versionadas:**
+
+- `scripts/between-togo-r11.py` — el revelado de las 4 slides To Go, con
+  `borra_rayones()` (rayones grandes **por CROMA**, que es lo que los separa de
+  la veta), `limpia_mesa()` (migas incluidas: la del módulo compartido sólo
+  cazaba marcas oscuras), `realza_impresion()`, `funde_canto_figura()` y
+  `revive_el_muffin()`
+- `scripts/between-cumple-r11.py` — los dos recortes reales del cumpleaños y los
+  `papelitos()` con tamaño por cercanía, desenfoque según la profundidad de campo
+  real y sombra de contacto
+- `scripts/between-ellahablo-r11.py` — el volteo y la limpieza de la mesa
+- `scripts/between-r11-entrega-subir.py` — entrega a 150 ppp y **reemplazo por
+  id** en el Drive
+
+**✅ SUBIDO AL DRIVE, y reemplazando en su sitio.** Las 7 piezas se actualizaron
+**por su id**, así que conservan el enlace y el portal ve la versión nueva sin
+que nadie reenvíe nada. Verificado en las tres carpetas (todas marcan 12:48–12:49):
+
+- **S1** → `C2 CUMPLEAÑOS BW` (`1TfFCqNfQw0ucTwqvJD8iqft7Y__voRUw`): Cumpleanos 1
+  y 2 detalles
+- **S2** → `1Yh2Puq1ZEmbM2HaoTh-LUydKwtZRmpn1`: Ella hablo Ella escucho
+- **S3** → `1QOreVz6NVYvuri9RAYQRMNiilV_IN8XZ`: Promos To Go 1, 2, 3 y 4
+
+`between-qa.py` limpio en las 7 (el aviso de «titular 27 %» en `BW-F-EllaHablo`
+es el falso positivo conocido: esa pieza **no lleva titular** porque el brief
+pide que el chiste se lea en la imagen).
+
+**⚠️ Los nombres de archivo quedaron con las fechas VIEJAS, y es a propósito.**
+El portal levanta las piezas **por nombre**: renombrarlas crearía duplicados y
+dejaría la versión anterior publicada. Renombrar hay que hacerlo junto con borrar
+la copia vieja, y es decisión de Eli.
+
+**Lo que se aprendió está en el manual** ([`CLAUDE.md`](CLAUDE.md) § RONDA 11):
+los 10 puntos, con las mediciones. Los tres que más sirven para otras marcas:
+
+1. **una fila de la grilla nunca se quema en un script** — se busca por rótulo,
+   porque el cliente reordena la hoja sin avisar;
+2. **si para llenar un encuadre hay que espejar más de un 10 % del ancho, el
+   encuadre está mal elegido** — se cambia el recorte, no se teje;
+3. **antes de retocar, prueba a mover el encuadre.** Sacó el vaso cortado del
+   canto de la G4 y despejó el titular de la portada, las dos con un zoom del
+   5–11 % y sin inventar un píxel.
+
+**⛔ Y una corrección mía, antes de que causara daño.** Escribí que el editable
+de Eli tenía un typo («ien cualquier horario»). **No lo tenía:** medí los
+contornos del `exclamdown` de Raleway y el signo está bien construido — en esa
+familia el `¡` tiene la misma silueta que una «i» de asta larga. El problema de
+lectura sí es real, y se resolvió moviendo el signo al arranque de la frase
+(«¡Disponible de lunes a viernes, en cualquier horario!»).
+
+**Abierto, en orden:**
+
+1. **Falta avisarle a Scarlette que el mock de post volvió.** La ronda 5 lo había
+   sacado por pedido suyo («no me gusta como se ve como post, haría un check
+   list») y ahora vuelve porque lo mandó Eli con su editable. Manda Eli, pero
+   conviene que no llegue como sorpresa.
+2. **`FEED!H16` (Primero la foto, 14-09) sigue en REVISAR CONTENIDO** con una
+   pregunta NUEVA sin responder de la CM: «¿Qué plato es el que ya está comido?».
+   Es la única novedad de la grilla de hoy que no se tocó — es contenido, no
+   diseño.
+3. **`STORIES!I16` (Emergencia, 09-09) sigue en REVISAR CONTENIDO.** Los dos
+   productos ya se cambiaron en la ronda 10 (croissant de jamón queso y muffin)
+   pero **esa pieza no se re-subió** y la del Drive es la del 02-09.
+4. **El duplicado viejo «BW FEED 14-09 Promos To Go 4 trio.png»** sigue vivo en
+   la carpeta antigua: hay que borrarlo a mano.
+5. **La ST 03-09 del cumpleaños (`BW-S-Cumple`)** sigue siendo una escena
+   generada con una vela, mientras el feed de ese día ya es fotografía real. Está
+   en CORREGIDO y el cliente no la reabrió; unificarla es decisión de Eli.
+6. **La mano tapa parte del «COFFEE & BAR»** del vaso en la portada To Go. Es lo
+   que pasa de verdad al sostener un vaso impreso y la palabra se lee, pero si se
+   quiere entero hay que cambiar el gesto, no el montaje.
+
+---
+
 ## 2026-09-04 · Eli (Windows) — BETWEEN ronda 10 · 2.ª pasada: el revelado
 
 **Qué pasó.** La primera pasada cambió el MATERIAL (producto real en vez de

@@ -2832,3 +2832,203 @@ es texto: es el **hojaldre** (231,228,207) y el **borde del plato** (210,222,221
 pegados al canto, que caen dentro del umbral con el que el QA aísla el beige de
 marca. Verificado midiendo las filas — el texto de las dos piezas está centrado y
 con margen. Si aparece este aviso, comprobar en qué FILAS cae antes de mover nada.
+
+---
+
+# ⭐⭐ RONDA 11 — lo que aprendimos el 04-09-2026
+
+*Las tres piezas EN CAMBIOS de la grilla (S1 cumpleaños · S2 Ella habló ·
+S3 Promos To Go). Todo el detalle en la bitácora.*
+
+## ⛔⛔ 1. LA GRILLA SE RE-FECHÓ ENTERA — y el script de instantánea perdía piezas
+
+El 04-09 la hoja `FEED` **borró la SEMANA 1** y corrió todo el mes: el cumpleaños
+pasó del 3 al **9**, «Primero la foto» del 9 al **14**, «Ella habló» del 11 al
+**16** y las Promos To Go del 14 al **22**. La hoja arranca ahora en SEMANA 2.
+
+Y ahí salió un bug que costó media sesión: **`scripts/grilla-instantanea.py`
+tenía la fila del ESTADO quemada** (`FEED 15`), y en Between la de FEED es la
+**16** — la 15 es `COMENTARIOS DISEÑO`. Consecuencia doble y silenciosa:
+
+- el encabezado de cada columna imprimía el comentario en vez del estado;
+- y el filtro `if not estado: continue` **se saltaba toda columna sin comentario
+  de diseño**, o sea que piezas enteras no salían en la instantánea. El diff
+  contra la copia anterior salió corrido de columna y no servía.
+
+> **Ya está corregido:** la fila del estado se BUSCA por su rótulo en la columna
+> A y el filtro pasó a ser «la columna está vacía de punta a punta». La
+> instantánea del 04-09 trae las 33 columnas de las tres hojas.
+> **Y la regla:** una fila de la grilla NUNCA se quema en un script. Se busca por
+> rótulo, porque el cliente reordena la hoja sin avisar.
+
+## ⭐⭐⭐ 2. EL «FILTRO MEDIO RARO» ERAN LAS FOTOS SIN GRADAR — medido
+
+El cliente lo pidió el 31-08 («se ven quemadas y con un filtro medio raro, sacar
+por favor») y Eli volvió a marcarlo hoy («el vaso está erróneo», «el color está
+muy oscuro»). No era un filtro: eran fotos **crudas** mezcladas con fotos
+reveladas en el mismo carrusel.
+
+| foto del carrusel To Go | mediana | calidez (R̄ − B̄) |
+|---|---|---|
+| `togo-sandwich-45.jpg` | 97 | **20,9** ← gradada a `neutro` |
+| `togo-dulce-45.jpg` | 86 | **49,4** ← CRUDA |
+| `togo-trio-real.jpg` | 98 | **40,7** ← CRUDA |
+| `togo-salida-real.jpg` | 102 | **35,1** ← CRUDA |
+
+El perfil `neutro` del mes deja la calidez en ~21. Tres de las cuatro iban entre
+35 y 49: **más del doble**.
+
+⭐ **Y de aquí sale el hallazgo que cierra un reclamo de cuatro rondas.** El vaso
+de la slide 2 se leía impreso y el de las slides 3 y 4 «descolorido» — y **es el
+mismo vaso de la misma sesión**. No había que re-estampar el logotipo (que es lo
+que lo deformó en la ronda 5): había que sacarle el velo cálido. Un contraste de
+media frecuencia sobre la caja del vaso (`realza_impresion()`) devuelve la tinta
+impresa sin sobreponer nada.
+
+> **Regla:** antes de tocar un logotipo, mira la calidez de la foto. Un vaso
+> «sin marca» puede ser un vaso bien impreso debajo de un velo.
+
+## ⭐⭐ 3. LOS RAYONES GRANDES SE DETECTAN POR CROMA, NO POR LUZ
+
+`limpia_madera()` (mediana local) sólo caza motas: los rayones y las manchas de
+humedad de esta mesa miden **cientos de píxeles** y sobreviven a cualquier núcleo
+razonable. Lo que sí los separa: **la madera de Between es cálida y las marcas
+son grises**. Medido sobre los píxeles de mesa, la calidez da mediana 94 y
+percentil 5 en 49; las marcas caen **por debajo de 40**. Con esa máscara más
+`cv2.inpaint` desaparecen sin tocar la veta.
+
+⛔ Los dos caminos que NO sirven, probados:
+- diferencia contra un desenfoque grande (sigma 45) con umbral en **luminancia**:
+  marca el 20 % del cuadro —la madera tiene variación tonal legítima de gran
+  escala— y el inpaint devuelve **polígonos**;
+- subir el umbral de croma a 46–52: empieza a comerse la veta y aparecen
+  chorreados. **40 es el techo.**
+
+Y las **migas** van aparte: son claras y chicas, así que se toman por diferencia
+contra el fondo desenfocado con tope de área. `limpia_madera()` sólo mira el pozo
+oscuro y se las perdía enteras — que es la mitad del pedido de Eli.
+
+## ⭐ 4. «ARRIBA ELLA HABLÓ» NO ERA MOVER DOS ETIQUETAS
+
+`FEED!J15`: «Arriba ella hablo y abajo ella escuchó y queda OK». El chiste lo
+asigna el brief y es de CONTENIDO: la taza **llena** es la que habló (no tomó) y
+la **vacía** la que escuchó. En la entrega la llena estaba abajo, así que subir
+sólo el rótulo dejaba «Ella habló» pegado a la taza vacía — el chiste al revés.
+
+**La escena se volteó en vertical.** Se puede porque la mesa es de listones
+**verticales**: el volteo conserva veta, herrajes y ranuras, y cada mano sigue
+entrando por su propio canto (la del asa por la derecha, la palma por la
+izquierda), sólo a otra altura. Nada reconstruido.
+
+⛔ Intercambiar las dos tazas de sitio, no: la de abajo mide 1.030 px de platillo
+y la de arriba 1.060, y al cruzarlas la grande queda arriba — en un cenital eso
+lee como error de perspectiva.
+
+> Y el logo tuvo que SUBIR por el mismo motivo por el que en la ronda 9 bajó: el
+> lockup no puede caer sobre loza blanca. Con la escena volteada, `postLogoAbajo`
+> (y 1173–1242) queda encima del platillo de la taza vacía.
+
+## ⛔⛔ 5. EL PANORAMA TEJIDO NO SE VUELVE A USAR
+
+`between-cumple-panorama.py` alargaba la toma espejando su flanco derecho hasta
+4.500 px. La original mide 5.760 y la slide 1 ya llega a 4.902: **de la slide 2
+sólo 858 px eran reales** y los otros 2.214 eran el mismo flanco repetido. El
+fondo quedaba de **azulejo simétrico** —follaje en mariposa cinco veces, la veta
+en festón reflejado— y eso es lo que Eli leyó como «mal diagramada» y el cliente
+lleva un mes llamando «que no se vea tan IA».
+
+La salida: **dos recortes 4:5 REALES de la misma toma** (`25-257`, 5.760×3.840
+da dos de 3.072). Se superponen, y eso se resuelve con dirección de arte, no con
+píxeles: la slide 2 va **desenfocada** —es el escenario del post, no el
+protagonista— y el mock del post tapa la parte repetida.
+
+> **Regla:** si para llenar un encuadre hay que espejar más de un 10 % del ancho,
+> el encuadre está mal elegido. Se cambia el recorte, no se teje.
+
+## ⭐ 6. UN ELEMENTO AGREGADO A UNA FOTO NECESITA TRES COSAS
+
+Los **papelitos de colores** que pidió Scarlette («esos papelitos que se lanzan»)
+llevaban dos rondas anotados y no se veían en la entrega. Lo que los hace
+creíbles —y vale para cualquier cosa que se siembre sobre una foto:
+
+1. **tamaño por cercanía** — crece hacia el canto inferior;
+2. **desenfoque según la profundidad de campo REAL** de la toma: un 50 mm a
+   f/3,5 tiene el foco en el plato, así que un papelito al canto de la mesa va
+   tan blando como la madera que lo rodea;
+3. **sombra de contacto** corta y difusa. Sin sombra, un papel sobre una mesa
+   flota y se lee como calcomanía.
+
+Y de forma: tiras **finas y largas** (proporción 1 : 2,4–4,3). Con la proporción
+2 : 3 parecían grageas de torta, no papel.
+
+## ⭐⭐ 7. EL `¡` DE RALEWAY SE LEE COMO UNA «i» — y no es un typo
+
+En el editable de Eli la tercera condición dice «viernes, ien cualquier
+horario!». Di por hecho que era una i latina. **No lo era.** Medí los contornos
+del `exclamdown` de Raleway y el signo está bien construido: punto arriba
+(y 633–717) y asta abajo (y 0–517) — que es exactamente cómo se dibuja un `¡`.
+En esta familia **el `¡` tiene la misma silueta que una «i» de asta larga**.
+
+Pero el problema de LECTURA es real: `, ¡en` se lee `, ien`. La salida no es
+cambiar la fuente: es **mover el signo al arranque de la frase**, donde va
+seguido de mayúscula y no se confunde con nada —
+«¡Disponible de lunes a viernes, en cualquier horario!».
+
+> Es la tercera vez que este manual anota lo mismo con otras palabras: **una
+> huella no basta para acusar**. Antes de decirle a la diseñadora que su archivo
+> tiene un error, se mide.
+
+## ⭐ 8. EL MOCK DE POST DE IG VUELVE — con la geometría medida
+
+Eli entregó su editable de la slide 2 del cumpleaños. La ronda 5 había sacado el
+`MarcoIGPost` por criterio propio («un post dentro de un post»); **manda la
+diseñadora** y vuelve. Medidas rasterizando su `.eps` a 1080×1350:
+
+| elemento | x | y |
+|---|---|---|
+| marco blanco | 197–882 (685) | 203–1101 (898) |
+| ventana de la foto | 227–855 (628) | 300–940 (640) |
+| cabecera | — | 97 px de alto |
+| acciones más usuario | — | 161 px de alto |
+
+Tres arreglos sobre su archivo, todos medidos:
+
+- ⛔ **las burbujas se salían del marco**: el marco termina en x=882 y las tres
+  largas llegaban a 943 — 61 px afuera. Es el defecto de la memoria
+  `ui-mock-anti-desborde`. Ahora `BurbujaChat` acepta `ancho` y las cinco
+  comparten canto (regla §1 bis: una pila de cajas va toda del mismo ancho);
+- los doodles arrancaban en x=20 y terminaban en x=1040, o sea **fuera del margen
+  de 84** de sus propias plantillas. Vale para toda la tinta, doodles incluidos;
+- el avatar era «B∃TW» dibujado con letras; ahora es el logotipo real.
+
+Y la ventana lleva la foto de la G1 **nítida**: el mock enseña «el post
+publicado» y las burbujas explican la letra chica encima. Con la placa
+desenfocada del fondo la ventana quedaba una mancha marrón.
+
+## ⭐ 9. UNA FIGURA RECORTADA NO PUEDE SER MÁS NÍTIDA QUE SU FONDO
+
+La portada To Go es una figura sobre el fotograma del local. El recorte estaba
+limpio pero su borde tenía **filo de tijera**, y el remate de nitidez lo
+subrayaba: es el «que no se vea falso». En una foto real la luz del ambiente moja
+el borde del sujeto.
+
+Sin canal alfa el canto igual se encuentra: **el fondo está desenfocado y la
+figura no**, así que un mapa de nitidez (energía del laplaciano promediada en
+ventana) separa las dos zonas y su contorno es el canto. Ahí —y sólo ahí— se
+mezcla una versión desenfocada de la propia imagen. Y en esa pieza **no va
+`nitidez()` global**.
+
+## ⭐ 10. UN VASO CORTADO POR EL CANTO SE SACA RE-ENCUADRANDO
+
+En la slide 4 asomaba un segundo vaso por el canto derecho (x 2155–2250). Los dos
+parches fallaron y por la misma causa —**no hay fondo limpio de dónde copiar**:
+espejar la franja de al lado copiaba el borde del vaso bueno, y traer la franja
+del canto izquierdo dejaba un escalón de brillo y una costura dura, porque la
+pared se oscurece hacia la derecha del cuadro.
+
+**Recortar 120 px y devolver el 4:5 es un zoom del 5,6 %** —imperceptible— y no
+inventa un píxel. Lo mismo resolvió el titular de la portada, que le pasaba por
+encima al vaso: recortando desde y=290 (zoom 1,115) el vaso termina en y=1483 y
+quedan 112 px de aire antes de la script, con la cara entera y en el tercio alto.
+
+> **Antes de retocar, prueba a mover el encuadre.**

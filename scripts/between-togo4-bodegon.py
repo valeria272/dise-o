@@ -42,8 +42,8 @@ from PIL import Image, ImageDraw, ImageFilter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _entorno import RAIZ  # noqa: E402
-from between_retoque import (apetitoso, limpia_madera, nitidez,  # noqa: E402
-                             revela)
+from between_retoque import (apetitoso, informe, limpia_madera,  # noqa: E402
+                             nitidez, revela, vivo)
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -152,7 +152,7 @@ def main():
 
     # ── revelado y retoque de comida ──
     final = lienzo.convert("RGB").resize(SALIDA, Image.LANCZOS)
-    final = revela(final, luces=213.0, negros=0.010, contraste=1.07, medios=104)
+    final = revela(final, negros=0.010, contraste=1.05, medios=100)
     escala = SALIDA[0] / (CORTE[2] - CORTE[0])
     comida = (mascara(tuple(int((c - o) * escala) for c, o in
                             zip(CROISSANT, (CORTE[0], CORTE[1], CORTE[0], CORTE[1]))),
@@ -160,8 +160,10 @@ def main():
               | mascara((int((px) * escala), int((py) * escala),
                          int((px + DULCE_ANCHO) * escala), int((py + alto_p) * escala)),
                         SALIDA, elipse=True))
-    final = apetitoso(final, comida, claridad=0.60, cuerpo=1.15, calor=6.5)
-    final = nitidez(final, cantidad=0.44, radio=1.4)
+    final = apetitoso(final, comida, claridad=0.50, cuerpo=1.08, calor=4.5)
+    final = vivo(final, vibrancia=0.28)
+    final = nitidez(final, cantidad=0.32, radio=1.4)
+    informe(final, "To Go slide 4")
     final.save(DESTINO, quality=96)
     print(f"✓ {DESTINO.relative_to(RAIZ)}  {final.size}")
 

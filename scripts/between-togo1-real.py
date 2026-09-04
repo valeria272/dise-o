@@ -15,15 +15,21 @@ debes hacerlo mejor editado ya que el vaso está erróneo».
 
 Qué se cambia
 -------------
-1. **EL FONDO ES EL LOCAL DE VERDAD.** Sale de `raw/hilton/between/espacios/
-   HDT_56.jpg`, la fotografía de arquitectura del propio Between: la barra de
-   mármol con la cubierta de madera a la derecha, el mural dorado a la
-   izquierda y el pasillo de parquet que va hacia el muro vegetal de la entrada.
-   Es literalmente «la entrada de BT» que pide el cliente, y es una foto suya.
-   Va desenfocado a la profundidad de campo de la escena y regradado a su luz.
-   ⚠️ No se usó video: las únicas grabaciones que viajan en el repo son del 2.º
-      piso (`cowork-2do-piso/`). Si aparece el metraje de la entrada, se cambia
-      la placa y nada más — el resto del montaje no depende de ella.
+1. **EL FONDO SALE DEL VIDEO DEL CLIENTE**, que es literalmente lo que pidió:
+   un fotograma de `raw/hilton/between/cowork-2do-piso/IMG_1148.MOV` — el MURO
+   VEGETAL real de Between, con las butacas de mimbre, el banco naranja y los
+   focos cálidos del riel.
+
+   ⭐ Y el desbloqueo es de método: **los .MOV del cliente se leen con
+      `cv2.VideoCapture`**. Se dio por hecho dos veces que no había forma de
+      abrirlos porque no hay ffmpeg en esta máquina, y OpenCV —que ya estaba
+      instalado— los abre sin problema. Son 2160×3840 verticales, o sea 4K: un
+      fotograma da un 4:5 de 2160×2700 sin ampliar nada.
+
+   ⛔ La v2 usaba `espacios/HDT_56.jpg`, una foto de arquitectura del pasillo.
+      Servía, pero no era «el video de la entrada» que pedía el cliente y el
+      muro vegetal es la firma visual del local — es lo que la escena generada
+      llevaba imitando desde el principio.
 
 2. **EL VASO ES EL VASO.** Se reemplaza el generado por el REAL, recortado de
    `Double Tree 25 jul 25-248.jpg` con grabCut. El generado tenía tres defectos
@@ -55,7 +61,8 @@ from PIL import Image, ImageFilter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _entorno import RAIZ  # noqa: E402
-from between_retoque import luz_envolvente, nitidez, revela  # noqa: E402
+from between_retoque import (informe, luz_envolvente, nitidez,  # noqa: E402
+                             revela, vivo)
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -63,11 +70,17 @@ except Exception:
     pass
 
 ESCENA = RAIZ / "public/assets/hilton/between/ia-sept/togo-salida-3.png"   # 3584×4800
-LOCAL = RAIZ / "raw/hilton/between/espacios/HDT_56.jpg"                     # 6718×4479
+LOCAL = RAIZ / "raw/hilton/between/cowork-2do-piso/IMG_1148.MOV"           # 2160×3840
+#: el fotograma: al 88 % del clip la cámara ya está quieta y el muro se ve entero
+LOCAL_FOTOGRAMA = 0.88
 VASO = RAIZ / "public/assets/hilton/between/recortes/vaso-248.png"
 DESTINO = RAIZ / "public/assets/hilton/between/fotos-gradadas/togo-salida-real.jpg"
 
-LIENZO = (3584, 4480)          # 4:5 de trabajo
+#: se trabaja al tamaño NATIVO del fotograma (2160×2700 es 4:5 exacto) y no al
+#: de la escena generada: ampliar un video 1,66× para después reducirlo es
+#: perder nitidez dos veces. La figura se reduce, que eso no cuesta nada.
+LIENZO = (2160, 2700)
+FIGURA_ORIGEN = (3584, 4480)
 SALIDA = (2250, 2812)
 CORTE_ESCENA = (0, 160, 3584, 4640)
 
@@ -101,20 +114,24 @@ DEDOS_CAJA = (800, 2120, 1680, 2940)
 #: el mural dorado a la izquierda, el pasillo al centro y la barra de mármol a
 #: la derecha — el mismo reparto que tenía la escena generada, así que la luz
 #: sobre la chica sigue calzando
-LOCAL_CORTE_X = 1700
-#: ⚠️ y se recorta desde y=380: con la placa a altura completa, un plafón del
-#: techo del local caía EXACTAMENTE sobre su cabeza y se leía como un error de
-#: montaje, no como una luminaria. Bajando el recorte, el techo sale de cuadro.
-LOCAL_CORTE_Y = 380
+#: se recorta desde y=560: deja fuera el riel de focos del techo —que caía justo
+#: sobre su cabeza y se leía como un error de montaje— y centra el muro vegetal
+LOCAL_CORTE_Y = 560
 
 
 def recorta_local():
-    """La placa real del local: 4:5, desenfocada y regradada a la escena."""
-    im = Image.open(LOCAL).convert("RGB")
-    alto = im.height - LOCAL_CORTE_Y
-    ancho = round(alto * LIENZO[0] / LIENZO[1])
-    placa = im.crop((LOCAL_CORTE_X, LOCAL_CORTE_Y,
-                     LOCAL_CORTE_X + ancho, LOCAL_CORTE_Y + alto))
+    """La placa real del local, sacada del video del cliente."""
+    cap = cv2.VideoCapture(str(LOCAL))
+    total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    cap.set(cv2.CAP_PROP_POS_FRAMES, int(total * LOCAL_FOTOGRAMA))
+    ok, cuadro = cap.read()
+    cap.release()
+    if not ok:
+        sys.exit(f"⛔ No pude leer el fotograma de {LOCAL.name}")
+    im = Image.fromarray(cv2.cvtColor(cuadro, cv2.COLOR_BGR2RGB))
+    alto = round(im.width * LIENZO[1] / LIENZO[0])
+    # se recorta por abajo: el muro vegetal manda y el suelo no aporta
+    placa = im.crop((0, LOCAL_CORTE_Y, im.width, LOCAL_CORTE_Y + alto))
     placa = placa.resize(LIENZO, Image.LANCZOS)
     # ⭐ v2 — 26 px de desenfoque era demasiado: el fondo quedaba en puré y la
     #    chica encima se leía como un cartón pegado sobre una mancha. A 13 px el
@@ -255,6 +272,7 @@ def main():
 
     print("2 · silueta de la figura")
     figura = recorta_figura(escena)
+    figura = figura.resize(LIENZO, Image.LANCZOS)
 
     print("3 · la placa real del local")
     fondo = recorta_local()
@@ -264,8 +282,10 @@ def main():
     montaje = luz_envolvente(fondo, figura, radio=30, fuerza=0.6)
 
     final = montaje.convert("RGB").resize(SALIDA, Image.LANCZOS)
-    final = revela(final, luces=222.0, negros=0.008, contraste=1.03, medios=103)
-    final = nitidez(final, cantidad=0.28, radio=1.5)
+    final = revela(final, negros=0.008, contraste=1.04, medios=104)
+    final = vivo(final, vibrancia=0.26)
+    final = nitidez(final, cantidad=0.30, radio=1.5)
+    informe(final, "portada To Go")
     final.save(DESTINO, quality=96)
     print(f"✓ {DESTINO.relative_to(RAIZ)}  {final.size}")
 

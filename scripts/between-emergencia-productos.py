@@ -42,7 +42,7 @@ from PIL import Image, ImageFilter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _entorno import RAIZ  # noqa: E402
-from between_retoque import apetitoso  # noqa: E402
+from between_retoque import apetitoso, hombro, informe  # noqa: E402
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -69,6 +69,15 @@ HUECO = 268                                 # ancho libre entre molduras
 VIEJO_CAFE = (566, 1584, 838, 2122)
 #: el interior del cristal, donde —y sólo donde— va el reflejo
 CRISTAL = (470, 1310, 1720, 2440)
+
+#: ⭐ 3.ª pasada — EL FONDO, guiándose del brief. El brief pide «todo
+#: fotografiado de forma atractiva y con ESTÉTICA BETWEEN, evitando que parezca
+#: una caja de emergencia real», y el fondo que traía la generación era un
+#: degradado ROSA-NARANJA que no está en la paleta de la marca: Between es beige
+#: cálido (#FFF9EB) y café (#675B49). Se corrige el tiro de color hacia esos dos
+#: y se le pone hombro a las altas, que estaban clipeando en un 3 % — o sea el
+#: crema se iba a blanco puro y la pieza se veía lavada y quemada a la vez.
+BEIGE_MARCA = (247, 240, 224)
 
 #: cada producto nuevo, con ALTO objetivo. El ancho sale de la proporción del
 #: recorte y se limita al hueco entre molduras — el producto no se deforma
@@ -215,6 +224,16 @@ def main():
     velo = 255.0 - (255.0 - plano) * (255.0 - vidrio * 0.30) / 255.0    # trama screen
     plano = plano * (1 - dentro) + velo * dentro
     lienzo = Image.fromarray(np.clip(plano, 0, 255).astype(np.uint8)).convert("RGBA")
+
+    # ── el fondo, a la paleta de la marca y sin quemar ──
+    lienzo_np = np.asarray(lienzo.convert("RGB")).astype(np.float32)
+    # el tiro de color se mide sobre el crema del propio fondo (esquina superior)
+    muestra = lienzo_np[200:600, 120:520].reshape(-1, 3).mean(axis=0)
+    correccion = np.clip(np.array(BEIGE_MARCA, np.float32) / np.maximum(muestra, 1.0),
+                         0.90, 1.10)
+    lienzo_np = hombro(lienzo_np * correccion[None, None, :])
+    lienzo = Image.fromarray(np.clip(lienzo_np, 0, 255).astype(np.uint8)).convert("RGBA")
+    informe(lienzo.convert("RGB"), "ST Emergencia")
 
     lienzo.convert("RGB").save(DESTINO)
     print(f"✓ {DESTINO.relative_to(RAIZ)}  {lienzo.size}")

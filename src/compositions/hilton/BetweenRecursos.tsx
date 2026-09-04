@@ -151,7 +151,21 @@ export const LockupToGo: React.FC<{horario?: string; style?: React.CSSProperties
 
 /* ---------- mockup post IG con burbujas ---------- */
 
-export const BurbujaChat: React.FC<{children: React.ReactNode}> = ({children}) => (
+export const BurbujaChat: React.FC<{
+  children: React.ReactNode;
+  /**
+   * ⭐ RONDA 11 — ancho FIJO, y es una corrección medida sobre el editable de
+   * Eli. Ahí las cinco burbujas se dimensionan al contenido y quedan con cinco
+   * cantos derechos distintos, y las tres más largas **se salen del marco
+   * blanco del mock**: el marco termina en x=882 y la burbuja llega a 943, o
+   * sea 61 px afuera. Es el mismo defecto que la memoria
+   * `ui-mock-anti-desborde` dejó escrito con la píldora del reel de EBEMA.
+   * Con `ancho` las cinco comparten canto —la regla del manual, «una pila de
+   * cajas va toda del MISMO ANCHO» (§1 bis)— y no hay forma de que sangren.
+   */
+  ancho?: number;
+  size?: number;
+}> = ({children, ancho, size = 31}) => (
   <div
     style={{
       background: 'rgba(103,91,73,0.93)',
@@ -162,16 +176,19 @@ export const BurbujaChat: React.FC<{children: React.ReactNode}> = ({children}) =
          grises. Se añade al final de la pila para que solo actúe de reserva. */
       fontFamily: `${BETWEEN.fuentes.sans}, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji'`,
       fontWeight: 600,
-      fontSize: 31,
+      fontSize: size,
       lineHeight: 1.3,
-      padding: '18px 26px',
+      padding: `${Math.round(size * 0.55)}px ${Math.round(size * 0.8)}px`,
       borderRadius: 16,
-      marginBottom: 18,
-      maxWidth: 560,
+      marginBottom: Math.round(size * 0.5),
+      ...(ancho ? {width: ancho, boxSizing: 'border-box' as const} : {maxWidth: 560}),
       alignSelf: 'flex-end',
+      display: 'flex',
+      gap: Math.round(size * 0.42),
     }}
   >
-    • {children}
+    <span style={{flexShrink: 0}}>•</span>
+    <span>{children}</span>
   </div>
 );
 
@@ -277,86 +294,152 @@ export const Checklist: React.FC<{
   </div>
 );
 
+/**
+ * Mock de un post de Instagram: el marco blanco con cabecera, la foto adentro,
+ * las burbujas del listado encima y la barra de acciones abajo.
+ *
+ * ⭐⭐ RONDA 11 (04-09-2026) — vuelve al sistema, y con geometría MEDIDA.
+ * Eli entregó su editable de la slide 2 del cumpleaños («para que lo mejores»)
+ * y este mock es su diseño. La ronda 5 lo había sacado por criterio propio
+ * («un post dentro de un post»); manda la diseñadora, así que vuelve — pero
+ * arreglado.
+ *
+ * Las medidas salen de rasterizar su `.eps` a 1080×1350 y medirlo:
+ *   · marco  x 197-882 (685 de ancho) · y 203-1101 (898 de alto)
+ *   · ventana de la foto  x 227-855 (628) · y 300-940 (640)
+ *   · cabecera 97 px · barra de acciones + usuario 161 px
+ * O sea: relleno de 30 px, y la ventana es casi cuadrada (0,98), como un post.
+ *
+ * Los tres arreglos sobre su archivo:
+ *   1. las burbujas ya no se salen del marco ni quedan con cantos desparejos
+ *      (ver `BurbujaChat.ancho`);
+ *   2. el avatar es el LOGOTIPO real, no las letras «B∃TW» dibujadas a mano;
+ *   3. el marco es BLANCO, como el de Instagram. En beige de marca el mock
+ *      dejaba de leerse como una captura y se leía como una tarjeta.
+ */
 export const MarcoIGPost: React.FC<{
   usuario?: string;
   foto: React.ReactNode;
-  burbujas?: string[];
+  burbujas?: React.ReactNode[];
   notaLegal?: string;
+  /** Ancho del marco. 685 es el del editable de Eli sobre lienzo 1080. */
   ancho?: number;
-}> = ({usuario = 'between.coffeebar', foto, burbujas = [], notaLegal, ancho = 860}) => (
-  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-    <div
-      style={{
-        width: ancho,
-        background: BETWEEN.colores.beige,
-        borderRadius: 8,
-        padding: '22px 26px',
-        boxShadow: '0 24px 60px rgba(0,0,0,0.35)',
-      }}
-    >
-      {/* header */}
-      <div style={{display: 'flex', alignItems: 'center', gap: 18, marginBottom: 20}}>
-        <div
-          style={{
-            width: 62, height: 62, borderRadius: '50%',
-            border: '2px solid #7a6a58',
-            background: '#fff',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontFamily: BETWEEN.fuentes.sans, fontSize: 10, fontWeight: 800,
-            color: '#3b2f24', letterSpacing: 1,
-          }}
-        >
-          B∃TW
-        </div>
-        <div style={{fontFamily: BETWEEN.fuentes.sans, fontWeight: 800, fontSize: 34, color: '#3b2f24'}}>
-          {usuario}
-        </div>
-        <div style={{marginLeft: 'auto', fontSize: 34, color: '#3b2f24', letterSpacing: 2}}>•••</div>
-      </div>
-      {/* foto con burbujas encima */}
-      <div style={{position: 'relative', borderRadius: 4, overflow: 'hidden'}}>
-        {foto}
-        <div
-          style={{
-            position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column',
-            justifyContent: 'center', alignItems: 'flex-end', padding: '20px 22px',
-          }}
-        >
-          {burbujas.map((b) => (
-            <BurbujaChat key={b}>{b}</BurbujaChat>
-          ))}
-        </div>
-      </div>
-      {/* footer */}
-      <div style={{display: 'flex', alignItems: 'center', gap: 24, marginTop: 20, color: '#3b2f24'}}>
-        <span style={{fontSize: 40, color: '#e0443a'}}>♥</span>
-        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3b2f24" strokeWidth="1.8">
-          <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.6 8.6 0 0 1-3.9-.95L3 21l1.95-5.6A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z" />
-        </svg>
-        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3b2f24" strokeWidth="1.8">
-          <path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" />
-        </svg>
-        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3b2f24" strokeWidth="1.8" style={{marginLeft: 'auto'}}>
-          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-        </svg>
-      </div>
-      <div style={{fontFamily: BETWEEN.fuentes.sans, fontWeight: 800, fontSize: 30, color: '#3b2f24', marginTop: 14}}>
-        {usuario}
-      </div>
-    </div>
-    {notaLegal ? (
+  /** Alto de la ventana de la foto. 640 en el editable. */
+  altoFoto?: number;
+  /** Cuerpo de las burbujas. */
+  sizeBurbuja?: number;
+}> = ({
+  usuario = 'between.coffeebar',
+  foto,
+  burbujas = [],
+  notaLegal,
+  ancho = 685,
+  altoFoto = 640,
+  sizeBurbuja = 26,
+}) => {
+  const relleno = Math.round(ancho * 0.0438);          // 30 sobre 685
+  const anchoVentana = ancho - relleno * 2;
+  /* Las burbujas se apoyan en el canto derecho de la ventana con un aire de
+     `margen`, así que su ancho máximo es la ventana menos los dos aires. */
+  const margen = Math.round(anchoVentana * 0.035);
+  const anchoBurbuja = anchoVentana - margen * 2;
+  return (
+    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <div
         style={{
-          fontFamily: BETWEEN.fuentes.sans, fontStyle: 'italic', fontWeight: 500,
-          fontSize: 27, color: '#fff', textAlign: 'center', marginTop: 30,
-          maxWidth: 820, lineHeight: 1.45, textShadow: '0 2px 14px rgba(0,0,0,0.6)',
+          width: ancho,
+          background: '#ffffff',
+          borderRadius: 10,
+          padding: `${relleno}px ${relleno}px ${Math.round(relleno * 0.9)}px`,
+          boxShadow: '0 26px 64px rgba(0,0,0,0.38)',
         }}
       >
-        {notaLegal}
+        {/* cabecera */}
+        <div style={{display: 'flex', alignItems: 'center', gap: 16, marginBottom: relleno * 0.6}}>
+          <div
+            style={{
+              width: 66, height: 66, borderRadius: '50%',
+              border: '2px solid #c9beaf',
+              background: '#fff',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              overflow: 'hidden', flexShrink: 0,
+            }}
+          >
+            <Img
+              src={staticFile(BETWEEN.logo.cafe)}
+              style={{width: 44, height: 44 / BETWEEN.logo.ratio, objectFit: 'contain'}}
+            />
+          </div>
+          <div
+            style={{
+              fontFamily: BETWEEN.fuentes.sans, fontWeight: 700, fontSize: 34,
+              color: '#3b2f24', letterSpacing: '-0.005em',
+            }}
+          >
+            {usuario}
+          </div>
+          <div style={{marginLeft: 'auto', fontSize: 32, color: '#7a6a58', letterSpacing: 3}}>•••</div>
+        </div>
+
+        {/* la ventana de la foto, con las burbujas encima */}
+        <div
+          style={{
+            position: 'relative', width: anchoVentana, height: altoFoto,
+            borderRadius: 3, overflow: 'hidden',
+          }}
+        >
+          {foto}
+          <div
+            style={{
+              position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column',
+              justifyContent: 'center', alignItems: 'flex-end',
+              padding: `${margen}px ${margen}px 0`,
+            }}
+          >
+            {burbujas.map((b, i) => (
+              <BurbujaChat key={i} ancho={anchoBurbuja} size={sizeBurbuja}>
+                {b}
+              </BurbujaChat>
+            ))}
+          </div>
+        </div>
+
+        {/* barra de acciones */}
+        <div style={{display: 'flex', alignItems: 'center', gap: 26, marginTop: relleno * 0.75, color: '#3b2f24'}}>
+          <span style={{fontSize: 42, color: '#e0443a', lineHeight: 1}}>♥</span>
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3b2f24" strokeWidth="1.8">
+            <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.6 8.6 0 0 1-3.9-.95L3 21l1.95-5.6A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z" />
+          </svg>
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3b2f24" strokeWidth="1.8">
+            <path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" />
+          </svg>
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3b2f24" strokeWidth="1.8" style={{marginLeft: 'auto'}}>
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+          </svg>
+        </div>
+        <div
+          style={{
+            fontFamily: BETWEEN.fuentes.sans, fontWeight: 700, fontSize: 30,
+            color: '#7a6a58', marginTop: 12,
+          }}
+        >
+          {usuario}
+        </div>
       </div>
-    ) : null}
-  </div>
-);
+      {notaLegal ? (
+        <div
+          style={{
+            fontFamily: BETWEEN.fuentes.sans, fontStyle: 'italic', fontWeight: 500,
+            fontSize: 26, color: BETWEEN.colores.beige, textAlign: 'center', marginTop: 34,
+            maxWidth: 820, lineHeight: 1.45, textShadow: '0 2px 14px rgba(0,0,0,0.65)',
+          }}
+        >
+          {notaLegal}
+        </div>
+      ) : null}
+    </div>
+  );
+};
 
 /* ---------- selector de texto iOS ---------- */
 

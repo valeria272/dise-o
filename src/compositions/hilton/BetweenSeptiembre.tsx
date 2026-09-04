@@ -43,7 +43,7 @@ import {
    definió Eli el 01-09 y sirve para cualquier CTA futura—, pero acá el import
    sobraba y `noUnusedLocals` lo marca. */
 import {
-  Checklist, Cuadrantes, Etiqueta, Globos, Ilustra, StickerEnlace,
+  Checklist, Cuadrantes, Etiqueta, Globos, Ilustra, MarcoIGPost, StickerEnlace,
   PiezaPartida, PilaEsquina, StickerQuiz,
 } from './BetweenRecursos';
 
@@ -524,10 +524,37 @@ export const Cumple1: React.FC = () => (
           escenario»): no es el mismo fondo repetido, es una imagen que sigue —
           el lector desliza y la mesa continúa. Es un recurso distinto y lo pidió
           el cliente. */}
-    <FotoFondo src={F + 'cumple-continua-1.jpg'} oscurecer={0.1} />
+    {/* ⭐⭐⭐ RONDA 11 (04-09) — SE CAE EL PANORAMA TEJIDO.
+        `cumple-continua-1/2.jpg` salían de alargar la toma espejando su flanco
+        derecho hasta 4.500 px. De la G2 sólo 858 px eran reales y los otros
+        2.214 eran el mismo flanco repetido: el fondo quedaba de AZULEJO
+        SIMÉTRICO —follaje en mariposa cinco veces, la veta de la mesa en festón
+        reflejado— y eso es lo que Eli leyó como «mal diagramada» y lo que el
+        cliente lleva un mes llamando «que no se vea tan IA».
+        → `scripts/between-cumple-r11.py` saca las dos slides como dos recortes
+          4:5 **REALES** de la misma toma (`25-257`): la G1 en x 1830-4902 y la
+          G2 en x 2688-5760. Cero espejo.
+        → Y entra por fin el pedido literal de Scarlette que la ronda 10 anotó
+          pero no se ve en la entrega: los **papelitos de colores** sobre la
+          mesa, con tamaño por cercanía, desenfoque según la profundidad de
+          campo real de la toma y sombra de contacto. Sin esas tres cosas un
+          papel agregado flota.
+        → Mesa sin rayones (corrector por CROMA: la madera de Between es cálida
+          y las marcas son grises) y revelado por MEDIOS, que es lo que arregla
+          «el color está muy oscuro». */}
+    <FotoFondo src={F + 'cumple-r11-1.jpg'} oscurecer={0.08} />
+    {/* ⛔ RONDA 11 — la G1 va SIN doodles, y es la misma razón que ya escribió la
+        ronda 10 pero ahora sí se cumple: los papelitos de cumpleaños están
+        DENTRO de la escena, sobre la mesa, que es lo que pidió el cliente.
+        Dibujar además globos encima es decir dos veces lo mismo, y con el
+        bloque de texto arriba y el confeti abajo la pieza se llena. Los doodles
+        se quedan en la G2, donde la foto va desenfocada y no hay confeti a la
+        vista.
+        Medido, además: el único hueco de mesa libre que quedaba —abajo a la
+        derecha, y 1180-1350— da 170 px de alto, y el par de globos pide 176.
+        No cabía sin cortarlo por el canto. */}
     <Globos
       posiciones={[
-        {cual: 'globosPar', x: 100, y: 96, ancho: 188, rotacion: -8},
         /* ⭐ RONDA 8: 872 → 856. `between-qa.py` marcó tinta a 77,8 px del canto
            derecho (mínimo 84) y NO era el texto: era este globo, cuyo trazo
            sobresale ~10 px del ancho declarado. Mismo defecto que ya se
@@ -552,12 +579,21 @@ export const Cumple1: React.FC = () => (
         esto queda RESUELTA la decisión que estaba abierta desde el 31-08 para las
         tres piezas que la rompían. Además el carrusel ya cumple la regla 5: en
         carrusel el logo va sólo en la portada, y acá la portada no lo necesita. */}
+    {/* ⭐⭐ RONDA 11 — EL BLOQUE SUBE, y es el «se ve mal diagramada» de Eli.
+        Medido sobre el recorte nuevo (lienzo 1080×1350): el plato ocupa
+        y 703-1167 y las medialunas y 668-949. Anclado abajo (bottom 132) el
+        titular caía JUSTO encima del hojaldre, o sea sobre el producto que la
+        pieza quiere vender. Arriba, en cambio, hay 400 px de muro vegetal
+        oscuro y libre —el vaso no empieza hasta y=401 y el plato hasta y=703—,
+        así que un bloque entre y=150 y y=380 no toca nada. Y el beige de marca
+        sobre muro verde oscuro es el contraste más limpio de la pieza, sin
+        tener que subir el multiply. */}
     <div
       style={{
         position: 'absolute',
         left: BETWEEN.bloque.margenX,
         right: BETWEEN.bloque.margenX,
-        bottom: 132,
+        top: 150,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -608,100 +644,111 @@ export const Cumple1: React.FC = () => (
   </AbsoluteFill>
 );
 
-/** Segunda pieza del post: las condiciones del beneficio.
- *  ⭐ RONDA 4 (D15): «En la G2 considerar este listado e incluir emojis
- *  nuevamente» + «Agregar elementos cumpleañeros como en el anterior».
- *  → El listado se mantiene (es el del brief) y cada condición recupera su
- *    emoji; los adornos suben de 2 a 4 para igualar la carga festiva de la G1.
- *  ⭐ RONDA 5 (31-08): «No me gusta como se ve como post, haria un check list
- *  junto con los emojis que piden».
- *  → Fuera el mockup de Instagram: metía una foto dentro de la pieza —un post
- *    dentro de un post— y encima dependía de `togo-vaso.jpg`. Ahora es un
- *    <Checklist> directo sobre la escena, con los emojis intactos. */
+/**
+ * Segunda pieza del carrusel: las condiciones del beneficio.
+ *
+ * ⭐⭐⭐ RONDA 11 (04-09-2026) — VUELVE EL MOCK DE POST DE INSTAGRAM, y vuelve
+ * porque lo mandó la diseñadora: Eli dejó su editable de esta slide en el Drive
+ * («te dejaré el editable del segundo slide para que lo mejores»,
+ * `1kjIL3VuLnKH0ED3h8lx9kQ4GPUI5XHVF`). La ronda 5 lo había sacado por criterio
+ * propio —«un post dentro de un post»— contra su diseño publicado. Manda Eli.
+ *
+ * ⛔ Lo que se cae con esto: el `<Checklist>` sobre panel taupe. Era una caja
+ *    grande y lisa que ocupaba media pieza; el mock cuenta lo mismo y además
+ *    dice DÓNDE pasa la promo, que es la gracia de la cuenta.
+ *
+ * Los CINCO arreglos sobre su editable —todos medidos rasterizando su `.eps` a
+ * 1080×1350, no a ojo:
+ *
+ *  1. ⛔ **Las burbujas se salían del marco.** El marco blanco termina en x=882
+ *     y las tres burbujas largas llegaban a 943: 61 px afuera. Es el defecto que
+ *     la memoria `ui-mock-anti-desborde` dejó escrito con la píldora del reel de
+ *     EBEMA. Ahora las cinco comparten un ancho fijo, calculado desde la ventana
+ *     de la foto, y no hay forma de que sangren.
+ *  2. Y de paso quedaban con **cinco cantos derechos distintos**, porque cada
+ *     una se dimensionaba a su contenido. La regla del manual (§1 bis) es que
+ *     una pila de cajas va toda del mismo ancho.
+ *  3. ⭐ **La tercera condición se re-puntúa, y NO porque hubiera un typo.**
+ *     En su archivo se lee «viernes, ien cualquier horario!» y lo primero que
+ *     pensé fue que era una i latina. **No lo era, y conviene que quede
+ *     escrito:** medí los contornos del `exclamdown` de Raleway y el signo está
+ *     bien construido —punto arriba (y 633-717) y asta abajo (y 0-517)—, o sea
+ *     que en esta familia **el «¡» tiene la misma silueta que una «i» con el
+ *     asta larga**. No hay nada roto en la fuente ni en su archivo.
+ *     Pero el problema de LECTURA es real: «, ¡en» se lee «, ien». La salida no
+ *     es cambiar la fuente, es mover el signo al arranque de la frase, donde va
+ *     seguido de mayúscula y no se confunde con nada:
+ *         «¡Disponible de lunes a viernes, en cualquier horario!»
+ *     Se conserva la exclamación que puso Eli y desaparece el tropiezo.
+ *  4. La quinta condición era la única **sin emoji** y el cliente pidió emojis
+ *     en la ronda 4 («En la G2 considerar este listado e incluir emojis
+ *     nuevamente»). Lleva 🤎, que es el que ya usa el copy de la cuenta en la
+ *     grilla — 💬 sale en Segoe como una mancha gris.
+ *  5. El avatar del mock era «B∃TW» dibujado con letras; ahora es el logotipo
+ *     real de la marca.
+ *
+ * El FONDO es el recorte real de la derecha de la misma toma que la G1
+ * (`scripts/between-cumple-r11.py`), desenfocado: es el escenario del post y no
+ * el protagonista, así que el listado —que es lo que esta gráfica comunica— se
+ * lee sin pelear. Y responde el pedido de Scarlette de que «la imagen de la
+ * slide 2 tenga relación igual con la primera»: misma mesa, mismo muro, misma
+ * toma, sin un solo píxel espejado.
+ *
+ * Los textos son los CINCO de su editable, que son los del listado que adjuntó
+ * el cliente. La condición del carnet va en la nota legal, como en su archivo.
+ */
 export const Cumple2: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    {/* ⭐ RONDA 5: el multiply baja de 0,34 a 0,14. Con la caja taupe del
-        checklist ya hay contraste suficiente, y la regla 6 del encabezado manda
-        que el texto se resuelva con la caja, no oscureciendo la foto — al 0,34
-        la escena se perdía y la pieza parecía una tarjeta lisa. */}
-    {/* ⭐⭐ RONDA 7 (02-09, FEED!E15): «Para la segunda slide proponer otra foto
-        de fondo, distinta a G1».
-        Las dos gráficas usaban el MISMO archivo (`cumple-manos-logo.png`), ésta
-        sólo con otro recorte (`posicion="60% center"`). Es la regla 1 del manual
-        —«dentro de un carrusel no se repite el escenario: si dos slides
-        comparten fondo, el lector cree que se trabó el deslizamiento»— y el
-        cliente lo cazó.
-        → Se genera con `scripts/between-cumple2-magnific.py`: el rincón REAL del
-          local (referencias HDT_50 + los dos fotogramas del muro vegetal),
-          entero desenfocado. Es fondo de soporte y no protagonista, porque
-          encima va el `<Checklist>` de cuatro condiciones: mientras más
-          tranquilo, mejor se lee el listado.
-        → Sin tazas, sin vasos, sin manos y sin personas, a propósito: la G1 ya
-          es «dos manos y el vaso», y repetir el motivo habría vuelto a compartir
-          escena por otra vía. Además un vaso pediría logotipo, y el logo
-          inventado por la IA es lo que el cliente reclamó tres veces.
-        Gradada con `neutro` (calidez 48,7 → 20,8), como el resto del mes.
-        El `posicion` sale: la foto nueva ya viene recortada 4:5 y encuadrada. */}
-    {/* ⭐⭐ RONDA 8 — el fondo cambia OTRA VEZ, y por la misma regla del cliente:
-        «Para la segunda slide proponer otra foto de fondo, distinta a G1».
-        En la ronda 7 se cumplió generando el rincón del MURO VEGETAL desenfocado.
-        Pero la G1 de hoy pasó a ser justamente el muro vegetal con los globos,
-        así que ese fondo volvió a chocar: las dos slides quedaban verdes.
-        → Entra `bar-servicio.jpg`, la barra de mármol del local: interior real de
-          Between, sin una hoja verde, y bien distinto de la G1. Es fondo de
-          soporte —encima va el `<Checklist>` de cuatro condiciones—, así que
-          tranquilo se lee mejor el listado.
-        ⚠️ Es un fondo NUEVO en el carrusel, no reciclado del Cowork: ahí van la
-           terraza, el muro vegetal, el 2.º piso y el servicio a la mesa. */}
-    {/* ⭐⭐⭐ RONDA 10 (04-09) — «la imagen de la slide 2 tiene que tener
-        relación igual con la primera». La respuesta no es «otra foto parecida»:
-        es la MISMA foto. Esta slide es la mitad derecha del panorama que arma
-        `scripts/between-cumple-panorama.py`, así que al deslizar la mesa
-        continúa, los papelitos siguen repartidos y el muro no se corta.
-        Le toca la mitad tranquila —mesa vacía, sin producto— que es justo lo
-        que necesita el `<Checklist>` de cuatro condiciones encima. */}
-    <FotoFondo src={F + 'cumple-continua-2.jpg'} oscurecer={0.14} />
+    <FotoFondo src={F + 'cumple-r11-2.jpg'} oscurecer={0.2} />
     <Globos
       posiciones={[
-        /* ⛔ RONDA 10: sale el par de globos de la izquierda. Iba pegado a la
-           costura con la G1 —que ahora es la MISMA foto siguiendo— y dejaba
-           cuatro globos casi en fila. Se queda sólo el de la derecha, que cierra
-           el par de slides por el extremo opuesto al de la G1. */
-        /* ⭐ RONDA 7 — el globo se corre 12 px a la izquierda (872 → 860).
-           `between-qa.py` lo marcó a 82 px del canto derecho contra los 84 de la
-           marca: sangraba por 2 px. Venía así desde la ronda 5, o sea que el
-           archivo YA ENTREGADO también lo tenía. No es texto —es el doodle— pero
-           el margen de la marca vale para toda la tinta. Verificado: la punta
-           medida quedaba en x=998 y no en 988, porque el trazo de pincel
-           sobresale del ancho nominal. */
-        {cual: 'globo', x: 860, y: 168, ancho: 116, rotacion: 10, espejo: true},
-        /* ⛔ RONDA 10: fuera el doodle de confeti, igual que en la G1 — los
-           papelitos ya están sobre la mesa de la foto. Se queda el corazón, que
-           es el único adorno de esta slide y no compite con el listado. */
-        {cual: 'corazon', x: 96, y: 1196, ancho: 104, rotacion: -10},
+        /* Las posiciones son las del editable de Eli —el par abre por el flanco
+           izquierdo a la altura del pie del mock y el globo suelto cierra por
+           el derecho, más abajo— pero METIDAS DENTRO DEL MARGEN. En su archivo
+           el par arranca en x=20 y el globo termina en x=1040: `between-qa.py`
+           lo marcó como tinta a 11 px del canto izquierdo y a 14 del derecho,
+           contra los 84 que mide el margen de sus propias plantillas. Es el
+           mismo defecto que las rondas 7 y 8 ya corrigieron dos veces en estas
+           dos piezas, y vale para TODA la tinta, doodles incluidos: el trazo de
+           pincel sobresale ~10 px del ancho declarado, así que el par va a
+           x=100 y el globo a x=860. */
+        {cual: 'globosPar', x: 100, y: 645, ancho: 176, rotacion: -6},
+        {cual: 'globo', x: 860, y: 872, ancho: 122, rotacion: 10, espejo: true},
       ]}
     />
-    {/* Sin logo: en carrusel va SOLO en la portada (regla 5 del encabezado), y
-        la portada es la G1. Sin título tampoco — el brief no trae uno para las
-        condiciones y no se le inventa copy al cliente. */}
+    {/* Sin lockup sobrepuesto: la marca la firma el avatar y el usuario del
+        propio mock, y en carrusel el logo va sólo en la portada (regla 5). */}
     <div
       style={{
         position: 'absolute',
         left: 0,
         right: 0,
-        top: 392,
+        top: 203,
         display: 'flex',
         justifyContent: 'center',
       }}
     >
-      <Checklist
-        items={[
-          '☕ Te regalamos un café para disfrutar en cafetería o To Go.',
-          '🎂 Accede a este regalo el mismo día de tu cumpleaños.',
-          '🗓️ Disponible de lunes a viernes, en cualquier horario.',
-          '🪪 Presenta tu carnet en la caja.',
+      <MarcoIGPost
+        usuario="between.coffeebar"
+        /* ⭐ La ventana lleva la foto de la G1, NÍTIDA. Es «el post publicado»:
+           el mock enseña la gráfica de la portada y las burbujas explican la
+           letra chica encima. Con la misma placa desenfocada del fondo la
+           ventana quedaba una mancha marrón que no decía nada, y el mock
+           perdía el sentido de ser un post. */
+        foto={
+          <Img
+            src={staticFile(F + 'cumple-r11-1.jpg')}
+            style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 40%'}}
+          />
+        }
+        burbujas={[
+          'Te regalamos un café para disfrutar en cafetería o To Go. ☕',
+          'Accede a este regalo el mismo día de tu cumpleaños. 🎁',
+          '¡Disponible de lunes a viernes, en cualquier horario! 🤩',
+          '¡Elige el tamaño que quieras! 😊',
+          '¡Pregúntanos por los cafés disponibles! 🤎',
         ]}
-        notaLegal="Extras y personalizaciones no incluidas."
+        notaLegal="*Presenta tu cédula de identidad para canjear tu café de cumpleaños. Extras y personalizaciones no incluidas."
       />
     </div>
   </AbsoluteFill>
@@ -893,11 +940,37 @@ export const EllaHablo: React.FC = () => (
         café seco en la vacía, y una mano por taza. Las manos se revisaron al
         400 % —es el rechazo que ya tuvo esta marca— y son de mujer, porque el
         copy dice «etiqueta a esa amiga». */}
-    <FotoFondo src={F + 'j-dos-tazas.jpg'} oscurecer={0.1} />
-    {/* ⭐ El logo baja. Arriba, la banda del lockup (0,05–0,14 = y 67–189) cae
-        sobre el platillo BLANCO de la taza vacía, que arranca en y≈155: beige
-        sobre blanco no se lee. Abajo la mesa es oscura y pareja. */}
-    <LogoBetween formato="feed" posicion="abajo" tono="beige" />
+    {/* ⭐⭐ RONDA 11 (04-09) — `FEED!J15`, el único comentario SIN TACHAR de la
+        celda: «Arriba ella hablo y abajo ella escuchó y queda OK».
+
+        No es mover dos etiquetas: el chiste lo asigna el brief y es de
+        contenido — «la taza casi LLENA corresponde a la amiga que pasó gran
+        parte del tiempo HABLANDO; la casi VACÍA, a quien estuvo ESCUCHANDO».
+        En la ronda 9 la taza llena estaba ABAJO, así que subir sólo el rótulo
+        habría dejado «Ella habló» pegado a la taza vacía y el chiste al revés
+        — que es el defecto que el propio cliente ya había marcado («que el de
+        Ella habló esté más cerca de su respectiva taza»).
+
+        → Para que «arriba ella habló» sea cierto, la escena se VOLTEA en
+          vertical (`scripts/between-ellahablo-r11.py`). La mesa es de listones
+          VERTICALES: el volteo conserva veta, herrajes y ranuras, y cada mano
+          sigue entrando por su propio canto —la del asa por la derecha, la
+          palma por la izquierda—, sólo a otra altura. No hay nada
+          reconstruido. Ver el script para por qué NO se intercambiaron las dos
+          tazas de sitio.
+        → Y de paso el pedido transversal de Eli: mesa sin rayones ni motas
+          (corrector sólo sobre los listones, loza y manos protegidas) y
+          revelado por MEDIOS, que es lo que arregla «el color está muy
+          oscuro». */}
+    <FotoFondo src={F + 'j-dos-tazas-r11.jpg'} oscurecer={0.08} />
+    {/* ⭐ RONDA 11 — el logo SUBE, y por el mismo motivo por el que antes bajó:
+        el lockup no puede caer sobre loza blanca. Con la escena volteada la
+        banda de abajo (`postLogoAbajo`, y 1173–1242, x 436–645) queda encima
+        del platillo de la taza vacía, que ahora ocupa x 440–930 · y 730–1245.
+        Arriba la mesa está libre; se compone en y=78 en vez del 93 de la
+        plantilla para despegarse del borde del platillo de la taza llena, que
+        asoma en y≈172. */}
+    <LogoBetween formato="feed" posicion="arriba" tono="beige" y={78} />
     {/* ⭐ RONDA 9 — SIN CAJA, y es pedido textual del cliente: «me gustaría ver
         textos más limpios (sin el recuadro atrás)». Se puede porque la escena
         nueva deja las dos etiquetas sobre MESA OSCURA, no sobre loza blanca:
@@ -910,8 +983,20 @@ export const EllaHablo: React.FC = () => (
           · taza LLENA  (abajo, izquierda) centro ≈ (400, 870) → «Ella habló»
             a su derecha
         Siguen ESCALONADAS, que es la nota de Valeria del 29-08. */}
-    <Etiqueta x={800} y={845} size={54}>Ella habló</Etiqueta>
-    <Etiqueta x={262} y={286} size={54}>Ella escuchó</Etiqueta>
+    {/* ⭐ RONDA 11 — posiciones re-medidas sobre la foto volteada, lienzo
+        1080×1350. La taza LLENA queda arriba (platillo x 228–712 · y 172–695,
+        asa x 640–730 · y 405–450) y la VACÍA abajo (platillo x 440–930 ·
+        y 730–1245, con la mano del asa hasta x 1080 · y 1290):
+          · «Ella habló»   → hueco de mesa a la DERECHA de la taza llena, por
+            debajo del asa (a la altura del asa el platillo llega a x 730 y la
+            etiqueta no cabría dentro del margen de 84).
+          · «Ella escuchó» → hueco de mesa a la IZQUIERDA de la taza vacía.
+        Siguen ESCALONADAS —nota de Valeria del 29-08— y ahora la diagonal va
+        de arriba-derecha a abajo-izquierda. El tamaño baja de 54 a 50 porque a
+        54 «Ella habló» sangraba el margen derecho: el hueco entre el platillo
+        y el margen mide 266 px y la tinta a 54 pide 290. */}
+    <Etiqueta x={856} y={488} size={50}>Ella habló</Etiqueta>
+    <Etiqueta x={262} y={878} size={50}>Ella escuchó</Etiqueta>
   </AbsoluteFill>
 );
 
@@ -951,7 +1036,20 @@ export const ToGo1: React.FC = () => (
        ⚠️ Si aparece el metraje de la entrada que menciona el cliente, se cambia
           sólo la placa de fondo del script: el resto del montaje no depende de
           ella. */
-    foto={F + 'togo-salida-real.jpg'}
+    /* ⭐⭐ RONDA 11 (04-09) — EL REVELADO, y es la causa raíz de un reclamo que
+       lleva cuatro rondas. Medido: `togo-sandwich-45.jpg` estaba gradada a
+       `neutro` (calidez 20,9) y las otras tres fotos del carrusel iban CRUDAS
+       —49,4 la del dulce, 40,7 la del trío, 35,1 la portada—, o sea más del
+       doble del perfil del mes. De ahí que el vaso de la slide 2 se lea impreso
+       y el de las 3 y 4 «descolorido»: es el MISMO vaso de la MISMA sesión, con
+       y sin revelado. Es el «filtro medio raro» que Scarlette pidió sacar el
+       31-08 y el «el vaso está erróneo» de Eli.
+       `scripts/between-togo-r11.py` iguala las cuatro: mesa sin rayones NI
+       migas (corrector de doble polaridad), revelado por medios, claridad sobre
+       la comida y contraste local sobre el vaso para devolverle la tinta al
+       logotipo impreso —sin re-estamparlo, que es lo que lo deformó en la
+       ronda 5. */
+    foto={F + 'togo-salida-real-r11.jpg'}
     script="¿Vas con poco tiempo?"
     caps={'Tu desayuno\nva contigo'}
     datos={['Promos To Go', HORARIO_TOGO]}
@@ -996,7 +1094,20 @@ export const ToGo2: React.FC = () => (
      * en la referencia aprobada «El Match». Plato y vaso suman más ancho del que
      * cabe en 4:5, no hay recorte que muestre los dos completos.
      */
-    foto={F + 'togo-sandwich-45.jpg'}
+    /* ⭐⭐ RONDA 11 (04-09) — EL REVELADO, y es la causa raíz de un reclamo que
+       lleva cuatro rondas. Medido: `togo-sandwich-45.jpg` estaba gradada a
+       `neutro` (calidez 20,9) y las otras tres fotos del carrusel iban CRUDAS
+       —49,4 la del dulce, 40,7 la del trío, 35,1 la portada—, o sea más del
+       doble del perfil del mes. De ahí que el vaso de la slide 2 se lea impreso
+       y el de las 3 y 4 «descolorido»: es el MISMO vaso de la MISMA sesión, con
+       y sin revelado. Es el «filtro medio raro» que Scarlette pidió sacar el
+       31-08 y el «el vaso está erróneo» de Eli.
+       `scripts/between-togo-r11.py` iguala las cuatro: mesa sin rayones NI
+       migas (corrector de doble polaridad), revelado por medios, claridad sobre
+       la comida y contraste local sobre el vaso para devolverle la tinta al
+       logotipo impreso —sin re-estamparlo, que es lo que lo deformó en la
+       ronda 5. */
+    foto={F + 'togo-sandwich-45-r11.jpg'}
     script="Para empezar con algo"
     caps="rico y contundente"
     legal="*Imágenes referenciales."
@@ -1041,7 +1152,20 @@ export const ToGo2: React.FC = () => (
  */
 export const ToGo3: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'togo-dulce-45.jpg'}
+    /* ⭐⭐ RONDA 11 (04-09) — EL REVELADO, y es la causa raíz de un reclamo que
+       lleva cuatro rondas. Medido: `togo-sandwich-45.jpg` estaba gradada a
+       `neutro` (calidez 20,9) y las otras tres fotos del carrusel iban CRUDAS
+       —49,4 la del dulce, 40,7 la del trío, 35,1 la portada—, o sea más del
+       doble del perfil del mes. De ahí que el vaso de la slide 2 se lea impreso
+       y el de las 3 y 4 «descolorido»: es el MISMO vaso de la MISMA sesión, con
+       y sin revelado. Es el «filtro medio raro» que Scarlette pidió sacar el
+       31-08 y el «el vaso está erróneo» de Eli.
+       `scripts/between-togo-r11.py` iguala las cuatro: mesa sin rayones NI
+       migas (corrector de doble polaridad), revelado por medios, claridad sobre
+       la comida y contraste local sobre el vaso para devolverle la tinta al
+       logotipo impreso —sin re-estamparlo, que es lo que lo deformó en la
+       ronda 5. */
+    foto={F + 'togo-dulce-45-r11.jpg'}
     script="Ese gustito que mejora"
     caps="cualquier mañana"
     legal="*Imágenes referenciales."
@@ -1106,7 +1230,20 @@ export const ToGo4: React.FC = () => (
        cuando el real mide 1,01—, una tapa con pestaña inventada y el logotipo
        plano como calcomanía. Es el reclamo que el cliente repite desde la
        ronda 4, y con foto real se termina. */
-    foto={F + 'togo-trio-real.jpg'}
+    /* ⭐⭐ RONDA 11 (04-09) — EL REVELADO, y es la causa raíz de un reclamo que
+       lleva cuatro rondas. Medido: `togo-sandwich-45.jpg` estaba gradada a
+       `neutro` (calidez 20,9) y las otras tres fotos del carrusel iban CRUDAS
+       —49,4 la del dulce, 40,7 la del trío, 35,1 la portada—, o sea más del
+       doble del perfil del mes. De ahí que el vaso de la slide 2 se lea impreso
+       y el de las 3 y 4 «descolorido»: es el MISMO vaso de la MISMA sesión, con
+       y sin revelado. Es el «filtro medio raro» que Scarlette pidió sacar el
+       31-08 y el «el vaso está erróneo» de Eli.
+       `scripts/between-togo-r11.py` iguala las cuatro: mesa sin rayones NI
+       migas (corrector de doble polaridad), revelado por medios, claridad sobre
+       la comida y contraste local sobre el vaso para devolverle la tinta al
+       logotipo impreso —sin re-estamparlo, que es lo que lo deformó en la
+       ronda 5. */
+    foto={F + 'togo-trio-real-r11.jpg'}
     script="¿Por qué elegir uno?"
     caps="¡Llévate los 3!"
     /* ⭐ RONDA 7 — mismo defecto previo de margen que `ToGo1`: tinta a 74 px del

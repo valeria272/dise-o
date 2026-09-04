@@ -42,6 +42,7 @@ from PIL import Image, ImageFilter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _entorno import RAIZ  # noqa: E402
+from between_retoque import apetitoso  # noqa: E402
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -64,17 +65,36 @@ VIEJO_SALADO = (1392, 1586, 1638, 2108)    # el sándwich de baguette
 #: inpaint las toca, se lleva el vidrio.
 HUECO = 268                                 # ancho libre entre molduras
 
+#: el vaso generado del compartimento 1, que en la v2 también se reemplaza
+VIEJO_CAFE = (566, 1584, 838, 2122)
+#: el interior del cristal, donde —y sólo donde— va el reflejo
+CRISTAL = (470, 1310, 1720, 2440)
+
 #: cada producto nuevo, con ALTO objetivo. El ancho sale de la proporción del
 #: recorte y se limita al hueco entre molduras — el producto no se deforma
 #: jamás, se elige el giro que lo hace caber.
+#: ⭐ v2: los tres se apoyan en una MISMA LÍNEA DE BASE en vez de centrarse cada
+#: uno a su altura. Flotando a media altura y con masas distintas, la vitrina se
+#: leía como tres recortes sueltos; alineados abajo se leen como una repisa, que
+#: es lo que el ojo espera dentro de una caja. Es la mitad del «armonioso».
+BASE = 2055
+
 NUEVOS = [
-    # (archivo, centro x, centro y, alto objetivo, giro en grados)
-    ("muffin-chocolate.png", 1138, 1858, 470, 0),
+    # (archivo, centro x, alto objetivo, giro en grados, luz, comida)
+    # ⭐ v2: el café TAMBIÉN pasa a ser el vaso real. Con dos productos
+    #    fotografiados y uno generado, la vitrina se leía disparejo — que es
+    #    exactamente el «se ve pegoteado» de Eli.
+    ("vaso-248.png", 702, 470, 0, 1.00, False),
+    # ⭐ v2: el muffin sale MUY oscuro contra el panel crema y se lee como un
+    #    borrón. Se le levantan las sombras un 34 % — es lo que pidió Eli
+    #    («edita el muffin porque se ve muy oscuro») y además lo devuelve al
+    #    rango del resto.
+    ("muffin-chocolate.png", 1138, 300, 0, 1.26, True),
     # el croissant se pone casi vertical, que es lo que ya hacía la vitrina con
     # el croissant anterior: los nichos son altos y angostos y un croissant
     # acostado mide 18 cm, tres veces el hueco. −86° deja la punta arriba y el
     # queso escurriendo hacia el mismo lado que la luz.
-    ("croissant-jamon-queso.png", 1512, 1852, 470, -86),
+    ("croissant-jamon-queso.png", 1512, 430, -78, 1.02, True),
 ]
 
 #: la luz del nicho entra por arriba a la izquierda: la sombra cae abajo-derecha
@@ -92,9 +112,48 @@ def borra(bgr, cajas):
     return cv2.inpaint(bgr, mascara, 17, cv2.INPAINT_TELEA)
 
 
-def pega(lienzo, ruta, cx, cy, alto_objetivo, giro):
-    """Pega un recorte con su sombra de contacto, sin deformarlo."""
+def campo_de_luz(bgr):
+    """La luz que hay DENTRO del nicho, como un campo suave.
+
+    Es la pieza que faltaba en la v1 y la razón de que se viera pegoteado: los
+    recortes entraban con la luz de la mesa del local (sol lateral, cálido) a un
+    nicho iluminado en diagonal desde arriba a la izquierda. Multiplicando cada
+    producto por este campo, los tres reciben la MISMA luz que la caja.
+    """
+    rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB).astype(np.float32)
+    suave = cv2.GaussianBlur(rgb, (0, 0), 90)
+    lum = suave.mean(axis=2, keepdims=True)
+    ref = float(np.median(lum[1500:2300, 500:1700]))
+    return np.clip(lum / max(ref, 1.0), 0.72, 1.28)
+
+
+def brillo_del_vidrio(bgr):
+    """Los reflejos del cristal, para volver a ponerlos ENCIMA de los productos.
+
+    Sin esto los recortes quedan pegados sobre el vidrio en vez de detrás. Es el
+    detalle que más hace por la ilusión y cuesta tres líneas.
+    """
+    rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB).astype(np.float32)
+    return np.clip(rgb - cv2.GaussianBlur(rgb, (0, 0), 28), 0, None)
+
+
+def pega(lienzo, ruta, cx, base, alto_objetivo, giro, luz=1.0, campo=None,
+         comida=False):
+    """Pega un recorte apoyado en `base`, con su sombra, sin deformarlo."""
     p = Image.open(ruta).convert("RGBA")
+    if comida:
+        # claridad y cuerpo: dentro de un nicho crema, el chocolate sin retoque
+        # se lee como una mancha parda. Es el «edita el muffin» de Eli.
+        alfa = p.getchannel("A")
+        p = apetitoso(p.convert("RGB"), claridad=0.5, cuerpo=1.22,
+                      calor=5.0).convert("RGBA")
+        p.putalpha(alfa)
+    if luz != 1.0:
+        # se levantan las sombras sin quemar las luces (curva de raíz)
+        a = np.asarray(p).astype(np.float32)
+        rgb = a[..., :3] / 255.0
+        a[..., :3] = np.power(rgb, 1.0 / luz) * 255.0
+        p = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
     if giro:
         p = p.rotate(giro, resample=Image.BICUBIC, expand=True)
     # escala UNIFORME: se busca el alto pedido y, si el ancho no cabe entre las
@@ -102,6 +161,7 @@ def pega(lienzo, ruta, cx, cy, alto_objetivo, giro):
     escala = min(alto_objetivo / p.height, HUECO / p.width)
     ancho, alto = round(p.width * escala), round(p.height * escala)
     p = p.resize((ancho, alto), Image.LANCZOS)
+    cy = base - alto // 2
 
     sombra = Image.new("RGBA", lienzo.size, (0, 0, 0, 0))
     tinta = Image.new("RGBA", p.size, (58, 44, 32, 255))
@@ -113,6 +173,15 @@ def pega(lienzo, ruta, cx, cy, alto_objetivo, giro):
     sombra.putalpha(canal)
 
     lienzo.alpha_composite(sombra)
+
+    if campo is not None:
+        # el producto recibe la luz del nicho antes de entrar
+        px, py = cx - ancho // 2, cy - alto // 2
+        trozo = campo[py:py + alto, px:px + ancho]
+        a = np.asarray(p).astype(np.float32)
+        a[..., :3] *= trozo
+        p = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
+
     lienzo.alpha_composite(p, (cx - ancho // 2, cy - alto // 2))
     return lienzo, (ancho, alto)
 
@@ -125,11 +194,27 @@ def main():
         sys.exit(f"⛔ Falta {FONDO}")
 
     bgr = cv2.imread(str(FONDO))
-    limpio = borra(bgr, [VIEJO_DULCE, VIEJO_SALADO])
+    campo = campo_de_luz(bgr)
+    vidrio = brillo_del_vidrio(bgr)
+    limpio = borra(bgr, [VIEJO_CAFE, VIEJO_DULCE, VIEJO_SALADO])
     lienzo = Image.fromarray(cv2.cvtColor(limpio, cv2.COLOR_BGR2RGB)).convert("RGBA")
-    for archivo, cx, cy, alto_obj, giro in NUEVOS:
-        lienzo, medida = pega(lienzo, RECORTES / archivo, cx, cy, alto_obj, giro)
-        print(f"  · {archivo}  {medida[0]}×{medida[1]} px  giro {giro}°")
+    for archivo, cx, alto_obj, giro, luz, comida in NUEVOS:
+        lienzo, medida = pega(lienzo, RECORTES / archivo, cx, BASE, alto_obj, giro,
+                              luz=luz, campo=campo, comida=comida)
+        print(f"  · {archivo}  {medida[0]}×{medida[1]} px  giro {giro}°  luz ×{luz}")
+
+    # ⭐ y el cristal vuelve ENCIMA: los productos quedan detrás del vidrio, que
+    #    es donde están. Sin este paso la vitrina se lee como tres calcomanías.
+    # ⚠️ Al 0,85 y sobre TODO el lienzo, esto lava la pieza entera y la deja
+    #    lechosa. Va sólo dentro del cristal y a un tercio de fuerza: el reflejo
+    #    tiene que insinuarse, no protagonizar.
+    plano = np.asarray(lienzo.convert("RGB")).astype(np.float32)
+    dentro = np.zeros(plano.shape[:2], np.float32)
+    cv2.rectangle(dentro, CRISTAL[:2], CRISTAL[2:], 1.0, -1)
+    dentro = cv2.GaussianBlur(dentro, (0, 0), 12)[:, :, None]
+    velo = 255.0 - (255.0 - plano) * (255.0 - vidrio * 0.30) / 255.0    # trama screen
+    plano = plano * (1 - dentro) + velo * dentro
+    lienzo = Image.fromarray(np.clip(plano, 0, 255).astype(np.uint8)).convert("RGBA")
 
     lienzo.convert("RGB").save(DESTINO)
     print(f"✓ {DESTINO.relative_to(RAIZ)}  {lienzo.size}")

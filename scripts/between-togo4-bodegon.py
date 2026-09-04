@@ -38,10 +38,12 @@ import sys
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageFilter
+from PIL import Image, ImageDraw, ImageFilter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _entorno import RAIZ  # noqa: E402
+from between_retoque import (apetitoso, limpia_madera, nitidez,  # noqa: E402
+                             revela)
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -52,39 +54,54 @@ BASE = RAIZ / "raw/hilton/between/togo-25jul2025/Double Tree 25 jul 25-278.jpg"
 PLATO = RAIZ / "public/assets/hilton/between/recortes/plato-muffin.png"
 DESTINO = RAIZ / "public/assets/hilton/between/fotos-gradadas/togo-trio-real.jpg"
 
-#: recorte 4:5 desde la original de 3840×5760. El desplazamiento vertical deja
-#: 15 % de muro arriba, el vaso en el tercio superior y una banda de mesa libre
-#: abajo para el plato que entra.
-CORTE = (0, 960, 3840, 5760)
+#: ⭐ v2 — la original se ALARGA 300 px por la derecha antes de recortar. El
+#: vaso termina en x=3673 y el cuadro en 3840: 167 px de aire, que a 2250 de
+#: entrega son 98 y hacen que el vaso se lea pegado al canto. Alargando la mesa
+#: (espejo del propio flanco) el recorte se corre y el vaso respira.
+ALARGA = 160
+CORTE = (160, 960, 4000, 5760)      # 3840×4800 = 4:5
 SALIDA = (2250, 2812)
 
-#: el plato del dulce, en píxeles del lienzo de 3840×4800 (antes de reducir)
-DULCE_ANCHO = 2380          # más grande que el de la base: está más adelante
-DULCE_CENTRO = (2620, 3860)   # a la DERECHA: la esquina inferior
-#: izquierda es de la caja de la promo, y una pila taupe sobre el plato del
-#: dulce tapa justo el producto que la caja está nombrando
+#: ⭐ v2 — el plato del dulce entra ENTERO. En la v1 lo cortaba el canto derecho
+#: y el inferior a la vez, y Eli lo cazó: «hay un plato que se ve cortado…
+#: cuando hagas montaje tiene que verse unificada la imagen, no pueden estar
+#: cortadas». Un plato que el encuadre corta se lee como foto; un plato pegado
+#: que además está cortado se lee como error.
+#: ⚠️ y va ABAJO del croissant, no encima: en la primera pasada de la v2 el
+#: plato del dulce tapaba el croissant entero. El plato de atrás llega a y=3240
+#: en el lienzo recortado, así que el de adelante empieza ahí.
+DULCE_ANCHO = 2050
+DULCE_CENTRO = (1690, 3870)     # centro EN EL LIENZO YA RECORTADO
 SOMBRA_DESPLAZA = (46, 40)
 SOMBRA_OPACIDAD = 0.34
 SOMBRA_DIFUSA = 44
 
+#: el canto de la mesa contra el muro, medido en 278
+BORDE_MESA = 1690
+#: dónde está la comida, para el retoque (y para protegerla del limpiador)
+CROISSANT = (500, 2800, 2900, 4200)
+VASO_BASE = (2650, 1650, 3760, 3400)
 
-def grada_neutro(im):
-    """Perfil `neutro` del mes: sin filtro cálido y sin quemar las altas.
 
-    ⚠️ Mano SUAVE porque el protagonista es hojaldre: el manual fija p95 ≈ 214
-    para producto claro (la pasada estándar a 227 le aplanó el croissant y el
-    cliente lo cazó).
+def mascara(caja, tamano, elipse=False):
+    m = Image.new("L", tamano, 0)
+    d = ImageDraw.Draw(m)
+    (d.ellipse if elipse else d.rectangle)(caja, fill=255)
+    return np.asarray(m) > 127
+
+
+def alarga_derecha(im, px):
+    """Espeja el flanco derecho para darle aire al vaso. Mesa lisa: no se nota.
+
+    ⚠️ La banda se toma DESPUÉS del vaso (termina en x=3673). Espejando los
+    últimos 300 px se copiaba medio vaso y aparecía un vaso fantasma en el canto.
     """
-    arr = np.asarray(im).astype(np.float32)
-    calidez = float(arr[..., 0].mean() - arr[..., 2].mean())
-    if calidez > 22:
-        ajuste = (calidez - 21.0) * 0.55
-        arr[..., 0] -= ajuste * 0.62
-        arr[..., 2] += ajuste * 0.38
-    p95 = float(np.percentile(arr, 95))
-    if p95 > 0:
-        arr *= min(1.06, max(0.90, 214.0 / p95))
-    return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8))
+    banda = im.crop((im.width - px, 0, im.width, im.height)).transpose(
+        Image.FLIP_LEFT_RIGHT)
+    salida = Image.new("RGB", (im.width + px, im.height))
+    salida.paste(im, (0, 0))
+    salida.paste(banda, (im.width, 0))
+    return salida
 
 
 def main():
@@ -95,14 +112,33 @@ def main():
         if not r.exists():
             sys.exit(f"⛔ Falta {r}")
 
-    lienzo = Image.open(BASE).convert("RGB").crop(CORTE).convert("RGBA")
+    base = Image.open(BASE).convert("RGB")
+
+    # 1 · la mesa, sin rayones ni grietas («borrar los detalles de rayones y
+    #     grietas que se ven en la mesa», Eli)
+    alto, ancho = base.height, base.width
+    ys = np.arange(alto)[:, None]
+    zona = np.repeat(ys > BORDE_MESA + 40, ancho, axis=1)
+    proteger = mascara(CROISSANT, base.size) | mascara(VASO_BASE, base.size)
+    base, marcas = limpia_madera(base, zona=zona, proteger=proteger,
+                                 umbral=10, nucleo=61)
+    print(f"mesa limpia ✓  ({marcas} px de rayones y grietas)")
+
+    lienzo = (alarga_derecha(base, ALARGA) if ALARGA else base).crop(CORTE).convert("RGBA")
     print(f"base 4:5  {lienzo.size}")
 
     plato = Image.open(PLATO).convert("RGBA")
-    alto = round(plato.height * DULCE_ANCHO / plato.width)   # escala uniforme
-    plato = plato.resize((DULCE_ANCHO, alto), Image.LANCZOS)
+    # ⭐ v2 — el muffin sale casi negro contra la loza verde. Se le levantan las
+    #    sombras y se le da cuerpo antes de pegarlo: «evita un poco los colores
+    #    del muffin», Eli.
+    alfa_p = plato.getchannel("A")
+    plato = apetitoso(plato.convert("RGB"), claridad=0.45, cuerpo=1.12,
+                      calor=4.0).convert("RGBA")
+    plato.putalpha(alfa_p)
+    alto_p = round(plato.height * DULCE_ANCHO / plato.width)   # escala uniforme
+    plato = plato.resize((DULCE_ANCHO, alto_p), Image.LANCZOS)
     px = DULCE_CENTRO[0] - DULCE_ANCHO // 2
-    py = DULCE_CENTRO[1] - alto // 2
+    py = DULCE_CENTRO[1] - alto_p // 2
 
     sombra = Image.new("RGBA", lienzo.size, (0, 0, 0, 0))
     tinta = Image.new("RGBA", plato.size, (40, 26, 16, 255))
@@ -112,10 +148,21 @@ def main():
     sombra.putalpha(sombra.getchannel("A").point(lambda v: int(v * SOMBRA_OPACIDAD)))
     lienzo.alpha_composite(sombra)
     lienzo.alpha_composite(plato, (px, py))
-    print(f"dulce pegado  {plato.size} en ({px}, {py})")
+    print(f"dulce pegado ENTERO  {plato.size} en ({px}, {py})")
 
-    final = grada_neutro(lienzo.convert("RGB").resize(SALIDA, Image.LANCZOS))
-    final.save(DESTINO, quality=95)
+    # ── revelado y retoque de comida ──
+    final = lienzo.convert("RGB").resize(SALIDA, Image.LANCZOS)
+    final = revela(final, luces=213.0, negros=0.010, contraste=1.07, medios=104)
+    escala = SALIDA[0] / (CORTE[2] - CORTE[0])
+    comida = (mascara(tuple(int((c - o) * escala) for c, o in
+                            zip(CROISSANT, (CORTE[0], CORTE[1], CORTE[0], CORTE[1]))),
+                      SALIDA, elipse=True)
+              | mascara((int((px) * escala), int((py) * escala),
+                         int((px + DULCE_ANCHO) * escala), int((py + alto_p) * escala)),
+                        SALIDA, elipse=True))
+    final = apetitoso(final, comida, claridad=0.60, cuerpo=1.15, calor=6.5)
+    final = nitidez(final, cantidad=0.44, radio=1.4)
+    final.save(DESTINO, quality=96)
     print(f"✓ {DESTINO.relative_to(RAIZ)}  {final.size}")
 
     if a.revisar:

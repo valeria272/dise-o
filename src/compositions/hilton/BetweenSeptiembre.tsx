@@ -1138,46 +1138,18 @@ export const ToGo4: React.FC = () => (
       ]}
       igualarAncho
     />
-    {/* la cola de la flecha TOCA el producto y apunta al texto — regla del
-        manual. Acá nacen del croissant salado y del dulce.
-        ⭐⭐ RONDA 9 (03-09) — LAS CUATRO COORDENADAS SE VOLVIERON A MEDIR. Al
-        cambiar el croissant simple por el BROWNIE que pidió el cliente, la
-        escena se regeneró y los dos productos quedaron en otro sitio: el
-        croissant subió y el brownie es más grande y más a la derecha. Con las
-        coordenadas viejas, «Salado» caía ENCIMA del croissant con su flecha
-        montada sobre el producto —lo que el manual prohíbe— y «Dulce» se metía
-        dentro de la caja de la promo.
-        Medido sobre la pieza rendida, en lienzo 1080×1350:
-          · croissant  x 120–424   y 864–1040   → «Salado» encima, en la mesa
-          · brownie    x 552–928   y 992–1136   → «Dulce» arriba a su izquierda,
-            que es el único hueco de mesa libre: a la derecha está el vaso y
-            abajo empieza la pila de la promo (y 1116). */}
-    {/* ⭐ RONDA 10 — las cuatro coordenadas SE VOLVIERON A MEDIR sobre el
-        bodegón real. La escena cambió entera, así que las de la ronda 9 ya no
-        apuntan a nada. Medido sobre la pieza rendida, en lienzo 1080×1350:
-          · croissant j/q  x 162–771   y 548–864   → «Salado» encima, sobre la mesa
-          · muffin         x 617–957   y 872–1173  → «Dulce» arriba a su derecha,
-            en la franja de mesa libre que queda entre la base del vaso (y 636)
-            y el canto del plato del dulce (y 880). Es el único hueco de mesa
-            que no pisa ni producto ni la caja de la promo. */}
-    <Ilustra cual="flechaBucle" x={262} y={492} ancho={112} espejo opacidad={0.95} />
-    <Etiqueta x={380} y={430} size={40}>Salado</Etiqueta>
-    {/* ⭐ 2.ª vuelta (03-09): al corregir la PROPORCIÓN del vaso —era 24 % más
-        alto de lo que existe— el vaso se ensanchó y la cola de la flecha de
-        «Dulce» dejó de caer sobre el brownie para caer sobre EL VASO.
-        ⭐⭐ LA GEOMETRÍA DE `flechaBucle`, medida sobre el propio PNG
-        (`recursos/flecha-bucle.png`, 694×651) para no volver a probarla a
-        ciegas — se perdieron tres renders adivinándola:
-          · la PUNTA está arriba, en (0,58 · 0,06) de la caja, y mira hacia
-            ARRIBA-IZQUIERDA
-          · la COLA arranca abajo-IZQUIERDA, en (0,03 · 0,97)
-          · `espejo` es un `scaleX(-1)`: invierte los dos
-        Con `ancho=112` la caja mide 112×105, así que la cola cae en
-        (x+3, y+102) y la punta en (x+65, y+6).
-        Acá va SIN espejo: la etiqueta está arriba-izquierda y el brownie
-        abajo-derecha. */}
-    <Ilustra cual="flechaBucle" x={826} y={800} ancho={112} espejo opacidad={0.95} />
-    <Etiqueta x={900} y={730} size={40}>Dulce</Etiqueta>
+    {/* ⛔ RONDA 10 · 2.ª pasada — FUERA las etiquetas «Salado» y «Dulce» con sus
+        flechas de bucle. Eli: «se ve mal diagramada».
+        Medido sobre el bodegón nuevo no hay dónde ponerlas sin apretar la pieza:
+        el titular baja hasta y=463, el croissant empieza en y=540 —77 px de
+        hueco, que no dan para etiqueta más flecha— y el único hueco de mesa
+        libre (a la derecha, bajo el vaso) queda tan lejos del producto que la
+        flecha ya no conectaría nada.
+        Y de fondo: la etiqueta con flecha es el recurso de la marca para NOMBRAR
+        un producto cuando hace falta —la slide 3 tiene una sola cosa en cuadro y
+        ahí sí—; acá la caja de la promo ya dice «Café + Salado + Dulce» y la
+        foto muestra exactamente esos tres. Repetirlo con dos etiquetas era ruido
+        sobre una foto que ya está llena. */}
   </PiezaFeedBodegon>
 );
 

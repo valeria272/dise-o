@@ -65,15 +65,40 @@ PIEZAS = [
 ]
 
 
-#: recortes que hay que PODAR: grabCut se lleva pegado un reflejo de la mesa que
-#: toca el canto del plato, así que no lo separa la componente conexa. Se borra
-#: a mano, con la caja medida sobre el alfa (fracciones del recorte).
-PODAR = {
-    "plato-muffin": [(0.955, 0.0, 1.0, 1.0), (0.90, 0.10, 1.0, 0.42)],
+#: podas manuales, por si alguna vez hace falta una (fracciones del recorte).
+#: Hoy está vacío: los apéndices los resuelve la erosión de `recorta()`, que es
+#: general y no hay que ajustar a ojo pieza por pieza.
+PODAR = {}
+
+
+#: recortes que son un PLATO: su silueta es una elipse y conviene imponerla.
+#: grabCut deja colgando reflejos de la mesa pegados al canto de la loza por un
+#: cuello ancho, y ni la componente conexa ni la erosión los sueltan. Ajustando
+#: una elipse al contorno se limpian todos de una y, de paso, el borde del plato
+#: queda perfecto. La franja central se respeta tal cual: ahí está el producto,
+#: que sí sobresale del plato.
+ELIPSE = {
+    "plato-muffin": (0.26, 0.74),
+    "plato-croissant-jq": (0.10, 0.92),
 }
 
 
-def recorta(ruta, caja, iteraciones=6):
+def impon_elipse(binaria, franja):
+    contornos, _ = cv2.findContours(binaria, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    if not contornos:
+        return binaria
+    mayor = max(contornos, key=cv2.contourArea)
+    if len(mayor) < 5:
+        return binaria
+    elipse = np.zeros_like(binaria)
+    cv2.ellipse(elipse, cv2.fitEllipse(mayor), 255, -1)
+    centro = np.zeros_like(binaria)
+    ancho = binaria.shape[1]
+    centro[:, int(franja[0] * ancho):int(franja[1] * ancho)] = 255
+    return cv2.bitwise_or(elipse, cv2.bitwise_and(binaria, centro))
+
+
+def recorta(ruta, caja, iteraciones=6, franja_elipse=None):
     bgr = cv2.imread(str(ruta))
     if bgr is None:
         sys.exit(f"⛔ No pude abrir {ruta}")
@@ -96,6 +121,20 @@ def recorta(ruta, caja, iteraciones=6):
     binaria = cv2.morphologyEx(binaria, cv2.MORPH_CLOSE, nucleo)
     binaria = cv2.morphologyEx(binaria, cv2.MORPH_OPEN,
                                cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (13, 13)))
+    # ⭐ apéndices: grabCut se trae pegado un reflejo de la mesa unido al plato
+    #    por un cuello de pocos píxeles, así que la componente conexa NO lo
+    #    separa. Se erosiona fuerte —el cuello se corta—, se elige la mancha
+    #    grande y se dilata de vuelta. Es lo mismo que hace una apertura, pero
+    #    conservando la forma original del contorno.
+    nucleo_e = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (61, 61))
+    semilla = cv2.erode(binaria, nucleo_e)
+    n, etiquetas, stats, _ = cv2.connectedComponentsWithStats(semilla, 8)
+    if n > 1:
+        mayor = 1 + int(np.argmax(stats[1:, cv2.CC_STAT_AREA]))
+        semilla = np.where(etiquetas == mayor, 255, 0).astype(np.uint8)
+        # se vuelve a crecer, pero sólo dentro de la máscara original
+        crecida = cv2.dilate(semilla, nucleo_e, iterations=2)
+        binaria = cv2.bitwise_and(binaria, crecida)
     n, etiquetas, stats, _ = cv2.connectedComponentsWithStats(binaria, 8)
     if n > 1:
         mayor = 1 + int(np.argmax(stats[1:, cv2.CC_STAT_AREA]))
@@ -106,6 +145,8 @@ def recorta(ruta, caja, iteraciones=6):
     cv2.floodFill(relleno, np.zeros((h + 2, w + 2), np.uint8), (0, 0), 255)
     binaria = binaria | cv2.bitwise_not(relleno)
 
+    if franja_elipse:
+        binaria = impon_elipse(binaria, franja_elipse)
     alfa = cv2.GaussianBlur(binaria, (0, 0), 1.8)
     rgba = np.dstack([cv2.cvtColor(trozo, cv2.COLOR_BGR2RGB), alfa])
     ys, xs = np.where(alfa > 8)
@@ -122,7 +163,7 @@ def main():
     SALIDA.mkdir(parents=True, exist_ok=True)
     hechos = []
     for nombre, archivo, caja in PIEZAS:
-        png = recorta(SESION / archivo, caja)
+        png = recorta(SESION / archivo, caja, franja_elipse=ELIPSE.get(nombre))
         for fx0, fy0, fx1, fy1 in PODAR.get(nombre, []):
             recorte = (int(fx0 * png.width), int(fy0 * png.height),
                        int(fx1 * png.width), int(fy1 * png.height))

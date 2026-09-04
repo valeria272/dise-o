@@ -55,6 +55,7 @@ from PIL import Image, ImageFilter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _entorno import RAIZ  # noqa: E402
+from between_retoque import luz_envolvente, nitidez, revela  # noqa: E402
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -115,12 +116,15 @@ def recorta_local():
     placa = im.crop((LOCAL_CORTE_X, LOCAL_CORTE_Y,
                      LOCAL_CORTE_X + ancho, LOCAL_CORTE_Y + alto))
     placa = placa.resize(LIENZO, Image.LANCZOS)
-    # profundidad de campo: el fondo de la escena original está a ~f/2
-    placa = placa.filter(ImageFilter.GaussianBlur(26))
+    # ⭐ v2 — 26 px de desenfoque era demasiado: el fondo quedaba en puré y la
+    #    chica encima se leía como un cartón pegado sobre una mancha. A 13 px el
+    #    local todavía se reconoce —la barra de mármol, el pasillo— y la figura
+    #    tiene contra qué apoyarse. El «se ve mal montada» empieza acá.
+    placa = placa.filter(ImageFilter.GaussianBlur(13))
     arr = np.asarray(placa).astype(np.float32)
     # HDT_56 es una foto de arquitectura muy contrastada; se aplana un poco y se
     # sube el punto negro para que no compita con la figura
-    arr = 26 + arr * 0.86
+    arr = 24 + arr * 0.88
     return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8))
 
 
@@ -196,7 +200,7 @@ def recorta_figura(escena_4x5):
     # el vaso también, que si no grabCut lo lee como objeto aparte
     cv2.rectangle(mask, (900, 1900), (1600, 2900), cv2.GC_FGD, -1)
     # la cabeza, para que no se le vaya el pelo
-    cv2.rectangle(mask, (1580, 700), (2050, 1400), cv2.GC_FGD, -1)
+    cv2.rectangle(mask, (1630, 800), (2000, 1400), cv2.GC_FGD, -1)
     # ⛔ y AQUÍ estaba el defecto de la primera pasada: con «probable frente» en
     #    todo el rectángulo, grabCut se quedó con un trozo del muro vegetal
     #    generado alrededor de la cabeza y quedó pegado como un parche verde.
@@ -254,11 +258,15 @@ def main():
 
     print("3 · la placa real del local")
     fondo = recorta_local()
-    fondo = fondo.convert("RGBA")
-    fondo.alpha_composite(figura)
 
-    final = grada_neutro(fondo.convert("RGB").resize(SALIDA, Image.LANCZOS))
-    final.save(DESTINO, quality=95)
+    # ⭐ v2 — luz envolvente: la luz del local moja el canto de la figura. Es lo
+    #    que separa un montaje creíble de una calcomanía, y era lo que faltaba.
+    montaje = luz_envolvente(fondo, figura, radio=30, fuerza=0.6)
+
+    final = montaje.convert("RGB").resize(SALIDA, Image.LANCZOS)
+    final = revela(final, luces=222.0, negros=0.008, contraste=1.03, medios=103)
+    final = nitidez(final, cantidad=0.28, radio=1.5)
+    final.save(DESTINO, quality=96)
     print(f"✓ {DESTINO.relative_to(RAIZ)}  {final.size}")
 
     if a.revisar:

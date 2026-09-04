@@ -2707,3 +2707,128 @@ por color, que en esta escena es limpio y medido:
 ```
 piel  G−B ≈ 12–14     cartón kraft  G−B ≈ 38–41     fondo  G−B ≈ −1
 ```
+
+---
+
+# ⭐⭐⭐ RONDA 10 · SEGUNDA PASADA — el revelado (04-09-2026)
+
+La primera pasada resolvió el **material** (producto real en vez de generado) y
+Eli devolvió las cinco piezas igual:
+
+> «no se ve un retoque que se vea apetitosa las imágenes de comida» · «el color
+> está muy oscuro» · «tiene que ser realista y no pegoteado» · «borrar los
+> detalles que se vean rayones o extraño en la mesa» · «que se vea full real 4K»
+
+**La lección: una foto de banco no se entrega, se revela.** La sesión del cliente
+viene subexpuesta, la mesa de listones está llena de marcas negras y el hojaldre
+sale plano. Faltaba el paso que en un estudio hace el retocador y que acá no
+existía. Ahora vive en [`scripts/between_retoque.py`](../../scripts/between_retoque.py)
+y lo comparten las cuatro piezas.
+
+## ⭐⭐ 1. EL ORDEN DEL REVELADO
+
+```
+limpiar la madera → revelar → apetitoso → nitidez
+```
+
+Al revés no funciona: la nitidez realza los rayones justo antes de borrarlos, y
+el limpiador se come el grano que acabas de subir.
+
+| Paso | Qué hace | Por qué |
+|---|---|---|
+| `limpia_madera()` | compara contra la MEDIANA local y donde hay un pozo oscuro manda la mediana | la veta sobrevive a la mediana, un rayón no. Es el pincel corrector de toda la vida. **Hay que protegerle la comida y la loza**: encima de un croissant hace papilla |
+| `revela()` | p95 a las luces, recorte de negros, **gamma de medios** y contraste | ⭐ El **gamma de medios** es lo que arregla «está muy oscuro». Una escena de madera oscura con muro verde puede tener el p95 en su sitio y aun así leerse apagada, porque la mediana está abajo. Subir las luces no lo arregla: quema el hojaldre |
+| `apetitoso()` | claridad (unsharp de radio grande), cuerpo y calidez, **sólo sobre la comida** | la claridad separa las capas del hojaldre y hace que el queso se vea fundido. Aplicada a la escena entera ensucia la loza y la madera |
+| `nitidez()` | remate corto | por encima de 0,45 aparece halo y la pieza se ve de HDR |
+
+## ⭐⭐ 2. DEJAR DE MONTAR ES UNA DECISIÓN DE DISEÑO
+
+El carrusel de cumpleaños v1 movía el vaso, borraba el plato y espejaba la
+escena. Todo eso «funcionaba» y aun así se leía pegoteado, porque **cada
+operación de montaje suma una probabilidad de que algo no calce**.
+
+La v2 no toca la escena: recorta la foto y la revela. Es más simple, es más
+rápida y es más real. Cuando el cliente manda una foto suya para retocar, la
+respuesta por defecto es **recortar y revelar**, no recomponer.
+
+## ⭐⭐ 3. ALARGAR UNA ESCENA: MESA Y MURO NO SE TRATAN IGUAL
+
+Para la imagen continua hay que inventar mesa a la derecha. Espejando el flanco
+despejado:
+
+- **la MESA aguanta el espejo** — la veta no tiene dirección de lectura y cada
+  unión es continua (el píxel del borde se toca consigo mismo). ⚠️ Pero primero
+  hay que **limpiarla dos veces**: cualquier rayón que sobreviva se ve DOS veces
+  y en simetría, que es justo lo que el ojo caza;
+- **el MURO no**: las hojas desenfocadas son manchas grandes y reconocibles y
+  espejadas dibujan mariposas. Se arregla **desenfocando de más en rampa** desde
+  la costura: el follaje pierde las formas y de paso se lee como profundidad.
+- ⛔ Y NO se reconstruye con «color medio por fila + ruido»: sale un rectángulo
+  granulado con canto duro. El ruido gaussiano no se parece en nada al bokeh.
+
+## ⭐⭐ 4. UN RECORTE PEGADO SE DELATA POR LA LUZ, NO POR EL ALFA
+
+La vitrina de la ST Emergencia se veía «pegoteada» con el alfa perfecto. Lo que
+faltaba eran tres cosas, y valen para cualquier montaje:
+
+1. **El campo de luz del destino.** Los recortes entraban con la luz de la mesa
+   del local (sol lateral, cálido) a un nicho iluminado en diagonal. Se mide el
+   campo (`blur` de 90 px normalizado) y se multiplica cada producto por él.
+2. **Lo que va DELANTE, delante.** Los reflejos del cristal se vuelven a poner
+   ENCIMA de los productos. Sin eso quedan pegados sobre el vidrio en vez de
+   detrás, y es el detalle que más hace por la ilusión. ⚠️ Al 0,85 y sobre todo
+   el lienzo lava la pieza entera: va sólo dentro del cristal y a un tercio.
+3. **Una línea de base común.** Flotando cada uno a su altura, tres objetos de
+   masas distintas se leen como tres recortes sueltos; apoyados en la misma
+   línea se leen como una repisa.
+
+Y en la portada To Go, la cuarta: **luz envolvente** (`luz_envolvente()`), que
+mete la luz del fondo en el canto de la figura. En una foto real el ambiente
+moja el borde del sujeto; sin eso el recorte es un papel pegado por muy limpio
+que esté. Ahí también bajó el desenfoque del fondo de 26 a 13 px: a 26 el local
+quedaba en puré y la chica encima no tenía contra qué apoyarse.
+
+## ⭐ 5. NADA CORTADO — Y CUIDADO CON LO QUE PARECE CORTADO
+
+Eli: «hay un plato que se ve cortado… cuando hagas montaje tiene que verse
+unificada la imagen». La regla:
+
+> Un objeto que el ENCUADRE corta es fotografía. Un objeto PEGADO que además
+> aparece cortado es un error, y se lee como error.
+
+El plato del dulce entra entero. Y ojo con dos falsas alarmas que costaron
+varias pasadas en la slide 4:
+
+- alargar la mesa espejando el flanco derecho metió un **vaso fantasma** (el
+  flanco alcanzaba el canto del propio vaso);
+- lo que parecía **un segundo vaso cortado** en la esquina es la TAPA del mismo
+  vaso, que vuela más ancha que el cuerpo (cuerpo hasta x=3620, tapa hasta 3735)
+  y deja ver mesa por debajo. Cerrando el corte para esquivarlo se cortaba justo
+  esa tapa. **Antes de recortar para esquivar algo, míralo al 100 %.**
+
+## ⭐ 6. RECORTAR UN PLATO: IMPONER LA ELIPSE
+
+grabCut deja colgando reflejos de la mesa pegados al canto de la loza por un
+cuello ancho, y ni la componente conexa ni una erosión los sueltan. Un plato es
+una elipse: se ajusta con `cv2.fitEllipse` al contorno y se impone, respetando
+una franja central donde el producto sobresale. Se limpian todos los apéndices
+de una y el borde queda perfecto.
+
+## ⭐ 7. LAS ETIQUETAS CON FLECHA NO SON OBLIGATORIAS
+
+Se sacaron de la slide 4. Medido: el titular baja hasta y=463 y el croissant
+empieza en y=540 —77 px, que no dan para etiqueta más flecha— y el único hueco
+de mesa libre queda tan lejos del producto que la flecha ya no conecta nada.
+
+> La etiqueta con flecha es el recurso para **nombrar** un producto cuando hace
+> falta. Si la caja de la promo ya dice «Café + Salado + Dulce» y la foto muestra
+> exactamente esos tres, repetirlo es ruido. «Se ve mal diagramada» muchas veces
+> se arregla sacando, no moviendo.
+
+## ⚠️ 8. `between-qa.py` marca falso positivo con comida clara en el canto
+
+Avisa «texto a 0 px del borde izquierdo» en `BW-F-Cumple-1` y `BW-F-ToGo-4`. No
+es texto: es el **hojaldre** (231,228,207) y el **borde del plato** (210,222,221)
+pegados al canto, que caen dentro del umbral con el que el QA aísla el beige de
+marca. Verificado midiendo las filas — el texto de las dos piezas está centrado y
+con margen. Si aparece este aviso, comprobar en qué FILAS cae antes de mover nada.

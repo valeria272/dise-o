@@ -5,6 +5,60 @@
 
 ---
 
+## 2026-09-04 · Eli (Windows) — BETWEEN ronda 10 · 2.ª pasada: el revelado
+
+**Qué pasó.** La primera pasada cambió el MATERIAL (producto real en vez de
+generado) y Eli devolvió las cinco piezas igual: «se ve mal diagramadas», «no se
+ve un retoque que se vea apetitosa las imágenes de comida», «el color está muy
+oscuro», «tiene que ser realista y no pegoteado», «borrar los rayones de la
+mesa», «hay un plato que se ve cortado».
+
+**El diagnóstico, y es de método: faltaba el REVELADO.** Estábamos entregando la
+foto del banco cruda. La sesión viene subexpuesta, la mesa de listones está llena
+de marcas negras y el hojaldre sale plano — el paso que en un estudio hace el
+retocador no existía. Ahora vive en [`scripts/between_retoque.py`](../../scripts/between_retoque.py)
+(limpiar madera → revelar → apetitoso → nitidez) y lo comparten las cuatro piezas.
+
+**Qué se rehizo, pieza por pieza:**
+
+| Pieza | Cambio |
+|---|---|
+| Cumpleaños 1 y 2 | **Se dejó de montar.** Ya no se mueve el vaso ni se borra el plato: la slide 1 es la foto tal cual —el café CON las medialunas, como pidió Eli— y la slide 2 la misma mesa siguiendo. Mesa sin rayones, exposición arriba, hojaldre con claridad |
+| ST Emergencia | Los tres productos con la luz del nicho aplicada, apoyados en una misma línea de base, con el reflejo del cristal ENCIMA (antes quedaban pegados sobre el vidrio) y el muffin aclarado. El café también pasó a ser el vaso real |
+| To Go portada | Fondo de 26 a 13 px de desenfoque + **luz envolvente** en el canto de la figura + revelado. Era el «se ve mal montada» |
+| To Go slide 4 | El plato del dulce entra ENTERO, mesa limpia, muffin aclarado y **fuera las etiquetas «Salado»/«Dulce»**: no cabían sin apretar la pieza y la caja de la promo ya nombra los tres |
+
+**Lo que se aprendió está en el manual** ([`CLAUDE.md`](CLAUDE.md) § RONDA 10 ·
+SEGUNDA PASADA): el orden del revelado; por qué el **gamma de medios** es lo que
+arregla «está muy oscuro» y no subir las luces (que quema el hojaldre); por qué
+la mesa aguanta el espejo y el muro no; las tres cosas que delatan un recorte
+pegado —la luz del destino, lo que va delante, la línea de base—; y las dos
+falsas alarmas del «vaso cortado» en la slide 4.
+
+**⚠️ Un aviso del QA que es FALSO POSITIVO.** `between-qa.py` marca «texto a 0 px
+del borde izquierdo» en `BW-F-Cumple-1` y `BW-F-ToGo-4`. No es texto: es el
+hojaldre (231,228,207) y el borde del plato (210,222,221) pegados al canto, que
+caen dentro del umbral con el que el QA aísla el beige de marca. Verificado
+midiendo en qué filas cae. El texto de las dos piezas está centrado y con margen.
+
+**Dónde quedó.** Renders en `out/hilton-between-r10/` y la entrega con nombre de
+portal en `out/entrega-r10/`. **Sigue sin subirse nada al Drive**, esperando el
+visto bueno de Eli.
+
+**Abierto (viene de la pasada anterior):**
+
+1. El duplicado viejo «BW FEED 14-09 Promos To Go 4 trio.png» hay que borrarlo a
+   mano en el Drive: la entrega usa el nombre de la ronda 9 («…4 los tres.png»)
+   para reemplazar la pieza viva.
+2. La ST 03-09 del cumpleaños (`BW-S-Cumple`) quedó como estaba —está en
+   CORREGIDO y el cliente no la reabrió— pero ahora el feed de ese día es
+   fotografía real y la historia sigue siendo una escena generada con una vela.
+3. **Avisarle a la CM que las medialunas se quedan.** Scarlette pidió «sacar el
+   plato de los vigilantes» y Eli pidió lo contrario. Manda Eli, pero conviene
+   que no llegue como sorpresa en la ronda siguiente.
+
+---
+
 ## 2026-09-04 · Eli (Windows) — BETWEEN ronda 10: la cuenta deja de generar producto
 
 **Qué pedía la ronda.** Un comentario NUEVO de Scarlette del 03-09 22:25 —

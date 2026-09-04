@@ -1,0 +1,16 @@
+/* Extras compartidos por las láminas nuevas. La anatomía base va en base.css. */
+.caption { position:absolute; font-size:9pt; font-weight:300; color:#666461;
+           text-transform:uppercase; letter-spacing:0.06em; margin:0; }
+.cifra   { font-weight:400; color:#E4361F; }
+.muestra { position:absolute; }
+.marco   { position:absolute; overflow:hidden; }
+.mal     { position:absolute; }
+/* la cruz del uso incorrecto se dibuja, no se pone como carácter */
+.cruz::after{ content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(to bottom right, transparent calc(50% - 0.6pt), #E4361F calc(50% - 0.6pt), #E4361F calc(50% + 0.6pt), transparent calc(50% + 0.6pt)),
+    linear-gradient(to bottom left,  transparent calc(50% - 0.6pt), #E4361F calc(50% - 0.6pt), #E4361F calc(50% + 0.6pt), transparent calc(50% + 0.6pt)); }
+.pastilla{ position:absolute; font-size:8pt; font-weight:400; padding:2pt 5pt;
+           letter-spacing:0.04em; }
+.ok  { background:#687B5D; color:#fff; }
+.no  { background:#E4361F; color:#fff; }

@@ -60,13 +60,17 @@ vivos adentro. No es una sospecha: los colores coinciden exactamente.
 |---|---|---|
 | `002151` | **Navy primario de Pivot** | 17 trazos de la pág. 4, las líneas sobre cada peso de Aptos |
 | `5B5B5B` | **Gris terciario de Pivot** (su color de texto) | Cuerpo de texto de Landera **y** mal pegado en la ficha del terracota |
-| CMYK `0/76/60/0` | El CMYK del gris de Pivot | Declarado como si fuera el del terracota |
+| ~~CMYK `0/76/60/0`~~ | **Corregido 03-09:** NO es el CMYK del gris. `#5B5B5B` en CMYK sería `0/0/0/64`; `0/76/60/0` es un rojo y su magenta calza con el terracota | Se deja como está y lo confirma la imprenta |
 | ~~`1C4907`~~ | **NO es residuo de Pivot** — es el verde original del propio logo, ver §2.5 | Sobrevive como el filete que enmarca la foto del campo en la pág. 5 (x 747,7→929,3) |
 
 **Consecuencia práctica:** la ficha del **Color secundario Terracota** dice
 `HEXADECIMAL 5B5B5B` y `RGB 91/91/91`, que es un gris. El cuadro que está al lado
-pinta `#E4361F`. **El bueno es el del cuadro.** Hay que corregir la ficha antes de
-cerrar el manual, o el cliente va a mandar a imprimir un gris.
+pinta `#E4361F`. **El bueno es el del cuadro.**
+
+✅ **Resuelto el 03-09-2026:** la lámina 13 se rehízo de cero en
+`clients/landera/manual/13-cromatico.html` con `HEXADECIMAL E4361F` y
+`RGB 228/54/31`. Lo que **no** se tocó es el CMYK: `0/76/60/0` es un rojo
+legítimo y quién lo confirma es la imprenta, no yo.
 
 Al construir el manual completo, **el archivo se arma de cero sobre la plantilla,
 no duplicando el PDF actual** — si no, los residuos viajan otra vez.
@@ -224,8 +228,19 @@ una gestora de campos con una marca y dos bajadas.
 | 21 | **Equipamiento de terreno** | Falta. Su «merchandising» real |
 | 22 | Contraportada | Ya existe |
 
-De las 22, **existen 10**: las 6 originales del cliente y las 4 propias de la marca,
-compuestas el 03-09-2026 (§4).
+**Las 22 existen.** Se cerró el manual completo el 03-09-2026:
+`out/landera/manual/LANDERA-manual-de-marca-v1.0.pdf`.
+
+Además, fuera de la numeración:
+· **Guía de tono y estilo** — `LANDERA-guia-de-tono-v1.0.pdf`, 2 láminas (entregable ③).
+· **Kit de plantillas digitales** — `clients/landera/plantillas/`, 11 piezas (entregable ④).
+
+⚠️ **Tres láminas salen del PDF del cliente y no se recompusieron**: 01 portada,
+12 tipografía, 15 iconografía y 22 contraportada. La 12 arrastra los trazos navy
+de Pivot. **No se rehízo a propósito**: recomponerla exigía extraer el abecedario
+completo de Barkentina como asset suelto, que es una copia redistribuible de una
+tipografía con licencia sólo de uso personal. Se prefirió usar la lámina del
+propio cliente.
 
 ---
 

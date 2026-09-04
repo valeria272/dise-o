@@ -95,41 +95,98 @@ esa cámara** como referencias.
 
 ---
 
-## PASO 4 · LOS 8 PLANOS DE VIDEO
+## PASO 4 · LOS PLANOS DE VIDEO — reescrito con lo que se generó de verdad
 
-`minimax_h3` · 2K · 9:16. Se pasan **siempre** los tres medias:
-`start_image` + `end_image` + `image_references` (el master del personaje).
+> ⚠️ **La versión anterior de esta sección mandaba a `minimax_h3`. Ese modelo no
+> existe en el plan** (404 en `api.freepik.com`). También decía `seedance-pro-1080p`
+> y `vidu-q1`: los tres devuelven 404. Sondeado a mano el 04-09-2026.
 
-Coda obligatoria en todos:
-`minimal controlled motion, no camera shake, no morphing, no flickering,
-character stays perfectly consistent, locked-off camera` ⟨NEG⟩
+### El modelo, y por qué ése
 
-| Cut | Dur | start → end | Prompt |
-|---|---|---|---|
-| **01** | 5 s → 2,4 s | KF-01a → KF-01b | `Locked macro on a screen. A rounded black glove hand slides the mouse slowly to the right and presses the button once, deliberately. Only the hand moves. Nothing else in frame moves at all.` |
-| **02** | 5 s → 2,4 s | KF-02a → KF-02b | `Locked side view. The small robot releases the mouse, leans back in the chair, lifts both hands to remove his headphones and sets them on the desk, closes the laptop lid, picks up the mug and begins to stand. At the very end he stops dead and turns ONLY his head 25 degrees toward the phone. Deadpan, slow, no exaggeration, no shrug, the torso never rotates.` |
-| **03** | 5 s → 2,4 s | KF-03a → KF-04 | `Locked extreme close-up of a phone on a desk. Absolutely nothing moves. The defocused figure in the background remains perfectly still. Static shot.` |
-| **04** | 5 s → 1,8 s | KF-04 → KF-04 | `Locked extreme close-up. Completely static. No motion of any kind.` |
-| **05A** | 5 s → 2,4 s | KF-05a → KF-05b | ⚠️ **generar HACIA ADELANTE e invertir en montaje:** `Locked side view. Coffee spills out of the mug across the desk, the laptop lid falls closed, the headphones slide off the desk, the papers scatter into the air, the empty chair rotates away from the desk. Real physics, natural weight.` |
-| **05B** | 5 s → 2,4 s | KF-05b → KF-06 | ⚠️ **generar HACIA ADELANTE e invertir:** `The small robot rises out of the chair and moves backwards out of frame to the right as the headphones lift off his head; the camera arcs slowly to the left, from a 70-degree side angle to a straight-on frontal position, and comes to a complete stop. Smooth constant arc, no acceleration at the end.` |
-| **06** | 5 s → 3,0 s | KF-06 → KF-06b | `Locked frontal shot. The small robot does absolutely nothing for two full seconds. Then his visor dims by thirty percent and a single LED bar goes out. Then the visor goes fully dark. No head movement, no body movement, no shoulders, no tilt. The camera does not move at all.` |
-| **08** | 5 s → 1,8 s | KF-08a → KF-08b | `Locked macro on a screen. A cursor moves in from the left and clicks once. A soft bloom as a window opens. Nothing else moves.` |
+Lo único que importaba era **fijar el frame final**. Sin eso, dónde termina cada
+plano lo decide el modelo, y eso es exactamente el defecto del que se queja este
+capítulo. El campo se llama `image_tail` y **sólo algunos modelos lo aceptan de
+verdad** — el validador de Freepik acepta el campo en toda la familia kling y
+después el modelo lo rechaza:
 
-### Por qué se pide 5 s y se usan 2,4
+| Modelo | `image_tail` | Nota |
+|---|---|---|
+| **`kling-v2-1-pro`** | ✅ | **el que se usó.** base64, sin hosting |
+| `kling-v2` | ✅ | |
+| `minimax-hailuo-02-1080p` | ✅ | se llama `last_frame_image` y sólo hace 6 s |
+| `pixverse-v5-transition` | ✅ | pero exige **URLs públicas**, no base64 |
+| `kling-v2-5-pro` | ❌ | «Image tail is not allowed» — el modelo nuevo lo perdió |
+| `kling-v2-1-master` | ❌ | «not supported yet» |
 
-`minimax_h3` tiene un mínimo de 4 s. Se genera a 5 y **se recorta al tramo útil**
-en montaje. Recortar es barato; regenerar no.
+**Se eligió el modelo viejo a propósito.** `kling-v2-5-pro` tiene mejor motor,
+pero sin frame final el capítulo vuelve a ser ocho clips pegados. El frame final
+vale más que la mejora de motor.
 
-### La inversión del CUT 05
+> Esto también **borra un pendiente entero**: ya no hay que subir los keyframes a
+> una URL pública. Iban a hacer falta para `pixverse-v5-transition` y no se usa.
 
-`05A` y `05B` se generan con física normal y se invierten en Remotion
-(`playbackRate: -1` o reversa en ffmpeg). Pedirle al modelo «el café vuelve a la
-taza» produce física inventada; pedirle que se derrame produce física correcta.
+Comando:
 
-**El contador `07 06 05 04 03 02 01` no se genera:** se compone en Remotion sobre
-el monitor, en tiempo normal, para que se lea.
+```bash
+/Users/Vale/copylab-venv/bin/python3 scripts/magnific-video.py \
+  gcl-agent/cap02/keyframes/KF03_c2_inicio.png \
+  --fin gcl-agent/cap02/keyframes/KF04_c2_fin.png \
+  --out out/gcl/cap02/clips/cut02.mp4 --dur 5 \
+  --coda "..." --prompt "..."
+```
 
----
+### Los 5 planos generados
+
+`06` y el bloque `03` no gastaron generación: el bloque 03 **alterna dos planos
+que ya existen** y el CUT 04 es un acercamiento del 4 % hecho en Remotion.
+
+| Cut | start → `image_tail` | Qué se pidió |
+|---|---|---|
+| **01** | KF01 → KF02 | la mano desliza el mouse y aprieta. Nada más se mueve |
+| **02** | KF03 → KF04 | suelta el mouse, cierra el notebook, toma la taza, se levanta y se queda quieto. Deadpan |
+| **05A** | KF08 → KF07 | ⚠️ **hacia adelante:** lo lanzan fuera de cuadro, los papeles caen y todo queda quieto |
+| **05B** | KF09 → KF08 | ⚠️ **hacia adelante:** lo arrancan de la silla, los papeles estallan, la cámara arquea a 70° |
+| **06** | KF09 → KF10 | tres segundos sin NADA, y después el visor se apaga |
+
+### La inversión — la parte que estaba mal planteada
+
+La versión vieja decía «generar hacia adelante e invertir» pero daba los
+keyframes en el orden del espectador, que invertido corre al revés. **El orden
+correcto es al revés del que se ve:** si el espectador tiene que ver `KF07 → KF08`,
+se genera `KF08 → KF07` y se invierte.
+
+La razón de generar hacia adelante no cambia: pedirle al modelo «el café vuelve a
+la taza» produce física inventada; pedirle que se derrame produce física correcta.
+
+La cadena queda encadenada por los propios keyframes, y **ésa es la continuidad
+física**: 05A termina en el frame donde 05B empieza.
+
+```
+   05A (lo que se ve)   KF07  ──────────►  KF08
+   05B (lo que se ve)                      KF08  ──────────►  KF09  ═► CUT 06
+```
+
+Se invierte con:
+
+```bash
+./scripts/invertir-clip.sh clips/cut05a_fwd.mp4 clips/cut05a.mp4
+```
+
+⚠️ **No uses `-vf reverse`.** El ffmpeg que trae Remotion es una compilación
+reducida: no tiene el filtro `reverse` y su parser se cae con la coma que separa
+dos filtros. El script extrae los frames, los renumera y vuelve a codificar.
+
+### Por qué se pide 5 s y se usan 2,13
+
+Kling hace 5 s o 10 s. Se genera a 5 y **se recorta al tramo útil** en montaje —
+recortar es barato, regenerar no. El recorte de cada plano vive en el `desdeS` de
+`src/compositions/gcl/Cap02Revision7.tsx` y está comentado ahí.
+
+⛔ **Ningún plano va acelerado.** El ritmo lo construye el montaje: lo que cambia
+entre un plano de 4 frames y uno de 80 es cuánto dura, nunca la velocidad de G.
+
+**El contador `07 06 05 04 03 02 01` no se genera:** se compone en Remotion, en
+tiempo normal, para que se lea.
 
 ## PASO 5 · LO QUE NO SE GENERA
 

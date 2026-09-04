@@ -74,6 +74,7 @@ import {
   GCL_R02_DURATION,
   GCL_R02_FPS,
 } from "./compositions/GclTurnoNocheReel";
+import {Cap02Revision7} from "./compositions/gcl/Cap02Revision7";
 
 // Social templates
 import {TikTokVideo} from "./templates/social/TikTokVideo";
@@ -340,6 +341,15 @@ export const RemotionRoot: React.FC = () => {
           component={GclOrigenReel}
           durationInFrames={GCL_ORIGEN_DURATION}
           fps={GCL_ORIGEN_FPS}
+          width={1080}
+          height={1920}
+        />
+        {/* G.CL · Cap. 02 «Revisión 7» — ROUGH CUT. 584f · 19,47 s · 112,5 BPM */}
+        <Composition
+          id="GclCap02Revision7"
+          component={Cap02Revision7}
+          durationInFrames={584}
+          fps={30}
           width={1080}
           height={1920}
         />

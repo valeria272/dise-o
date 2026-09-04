@@ -93,19 +93,47 @@ keyframes se generan pasándolo como referencia y se verifican contra él.
 > La versión descartada quedó en `keyframes/_v1_KF09_descartado.png`. No se borra:
 > es la evidencia de por qué la regla cambió.
 
-## E.4 · Los audífonos — conflicto de canon resuelto ⚠️
+## E.4 · Los audífonos — resuelto en la v4 ⚠️ (esta sección se reescribió)
 
-El guion pide que **se saque los audífonos** en el CUT 02. Pero los pods
-over-ear con anillo coral **son parte del casco** en la biblia del personaje: son
-sus orejas, no un accesorio. Sacárselos sería rediseñarlo.
+El guion pedía que **se sacara los audífonos** en el CUT 02. Los pods over-ear con
+anillo coral **son parte del casco**: son sus orejas, no un accesorio. La primera
+solución fue ponerle encima unos audífonos de tamaño **humano** para que se los
+sacara sin tocar el canon.
 
-**Solución:** lo que se saca es **un par de audífonos de tamaño HUMANO apoyados
-encima de la esfera** — cómicamente grandes para él. Los pods coral se quedan
-donde están, siempre.
+**Se rechazó el 03-09-2026.** No es un chiste visual: es un accesorio
+antropomórfico que lo convierte en mascota. Y el canon ya lo prohíbe.
 
-Es mejor que el guion original por dos razones: mantiene el canon intacto, y un
-robot de 50 cm con unos audífonos de persona encima **ya es un chiste visual**
-antes de que pase nada.
+**Lo que manda ahora:**
+
+- G **no se pone ni se saca nada**. Nunca. En ningún capítulo.
+- Los audífonos humanos se quedan **tirados en el escritorio**, como utilería de
+  una oficina de verdad. Ahí ayudan: refuerzan que ése es un puesto de trabajo
+  humano donde G.CL se sentó.
+- El CUT 02 pierde el beat de sacárselos y lo reemplaza por **empujar la silla
+  hacia atrás**, que es más seco y más suyo.
+- En el rewind desaparece «los audífonos se le calzan solos».
+
+### Lo que costó de verdad: DOS keyframes, no uno
+
+`07_MONTAJE.md §2` decía que bastaba regenerar KF03. **Estaba mal, y hay que
+decirlo.** Al medir los archivos a zoom 1:1 el 04-09-2026, la diadema aparecía
+cruzando la esfera **en KF03 y en KF04**. En KF04 había además otros dos defectos
+que la miniatura escondía:
+
+| Defecto | Por qué importaba |
+|---|---|
+| Diadema humana sobre el casco | lo que la v4 prohibió |
+| **El visor apagado** — sin la G rosada | es su única cara, y KF04 es el frame final del plano de actuación |
+| Dos pares de audífonos a la vez | uno en la cabeza y otro en la mesa, en el mismo cuadro |
+
+Los dos se regeneraron con Nano Banana Pro, y **KF04 se generó usando el KF03
+nuevo como referencia principal**, no el master: es la única forma de que un par
+de keyframes de la misma cámara calce. Las versiones viejas siguen recuperables
+en el commit `ce65b9a`.
+
+> La lección operativa: **un keyframe se revisa a zoom 1:1, no en la hoja de
+> contacto.** En la hoja de 12, la diadema de KF03 y KF04 se lee como el brillo
+> del casco.
 
 ---
 

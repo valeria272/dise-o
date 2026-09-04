@@ -17,14 +17,19 @@
 
 ---
 
-## 2 · Los audífonos — por qué basta una regeneración
+## 2 · Los audífonos — hicieron falta DOS regeneraciones, no una
+
+> ⚠️ **Corrección del 04-09-2026.** Esta sección decía que bastaba con KF03.
+> Al mirar los archivos a zoom 1:1 la diadema estaba **también en KF04**, que
+> además tenía el visor apagado y dos pares de audífonos en el mismo cuadro.
+> Los dos se regeneraron. El detalle está en `02_LOCKS.md §E.4`.
 
 Aparecen en cuatro keyframes, pero **sólo en KF03 los lleva puestos**:
 
 | Keyframe | Dónde están | ¿Hay que rehacerlo? |
 |---|---|---|
-| **KF03** | **encima del casco** | **SÍ.** Es el único caso de accesorio antropomórfico |
-| KF04 | tirados en la mesa | No |
+| **KF03** | **encima del casco** | **SÍ** |
+| **KF04** | **encima del casco** ⚠️ | **SÍ — corregido el 04-09.** Ver abajo |
 | KF05 / KF06 | en la mesa, desenfocados al fondo | No |
 | KF07 | en la mesa | No |
 

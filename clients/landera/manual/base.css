@@ -1,0 +1,55 @@
+/* Landera — la anatomía de la lámina, medida sobre PROPUESTA-BASE-V2.pdf.
+   Nada de esto es criterio propio: cada número sale del archivo aprobado.
+   Lámina 1008 × 612 pt = 14in × 8.5in. */
+
+@font-face { font-family:"Aptos"; font-weight:300;
+  src:url("file:///Applications/Microsoft%20Word.app/Contents/Resources/DFonts/Aptos-Light.ttf"); }
+@font-face { font-family:"Aptos"; font-weight:400;
+  src:url("file:///Applications/Microsoft%20Word.app/Contents/Resources/DFonts/Aptos.ttf"); }
+@font-face { font-family:"Aptos"; font-weight:700;
+  src:url("file:///Applications/Microsoft%20Word.app/Contents/Resources/DFonts/Aptos-Bold.ttf"); }
+
+:root{
+  --verde:#687B5D;      /* primario  */
+  --terracota:#E4361F;  /* secundario */
+  --tinta:#33353E;      /* terciario, blue grey */
+  --gris:#666461;       /* neutro, gris piedra */
+  --crema:#FAF1E8;      /* neutro */
+}
+
+@page { size:14in 8.5in; margin:0; }
+html,body{ margin:0; padding:0; }
+body{
+  width:1008pt; height:612pt; position:relative; overflow:hidden;
+  background:#fff; font-family:"Aptos",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── cabecera ─────────────────────────────────────────────────────────────
+   Medida: título x60,2 y42,8 · 18pt · Bold · verde
+           bajada x60,2 y68,8 · 14pt · Bold · terracota                     */
+.titulo   { position:absolute; left:60.2pt; top:42.8pt;
+            font-size:18pt; font-weight:700; color:var(--verde); margin:0; }
+.bajada   { position:absolute; left:60.2pt; top:68.8pt;
+            font-size:14pt; font-weight:700; color:var(--terracota); margin:0; }
+
+/* ── divisoria de columnas ────────────────────────────────────────────────
+   Medida: vertical gris de y127,1 a y551,6                                 */
+.divisoria{ position:absolute; top:127.1pt; height:424.5pt;
+            border-left:0.5pt solid var(--gris); }
+
+/* ── rótulos y cuerpo ─────────────────────────────────────────────────────
+   Medida: 12,88pt · Light · gris · VERSALES · interlínea 15,45pt
+   El cuerpo va CENTRADO: se ve en las x variables de cada línea en el PDF. */
+.rotulo   { position:absolute; font-size:12.88pt; font-weight:300;
+            color:var(--gris); text-transform:uppercase; letter-spacing:0.02em;
+            margin:0; }
+.cuerpo   { position:absolute; font-size:12.88pt; font-weight:300;
+            color:var(--gris); text-transform:uppercase; line-height:15.45pt;
+            text-align:center; margin:0; }
+
+/* ── ficha de dato, como la lámina 3 ──────────────────────────────────────
+   Medida: etiqueta en Aptos regular, valor en Light, ambos 12pt gris       */
+.dato     { position:absolute; font-size:12pt; color:var(--gris); margin:0; }
+.dato b   { font-weight:400; }
+.dato span{ font-weight:300; }

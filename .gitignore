@@ -90,6 +90,13 @@ public/assets/**
 !public/assets/cava/bottles/**
 !public/assets/cava/kv/**
 
+# Landera: el logo. Los 10 bloqueos extraídos del PDF del cliente y el kit
+# completo (40 piezas × PDF/SVG/PNG) reconstruido con la paleta aprobada. Sin
+# esto no se compone ninguna lámina del manual ni ninguna plantilla.
+!public/assets/landera/**
+# Las fotos generadas viajan como JPG (≈200 KB); los PNG de 6 MB de la IA no.
+public/assets/landera/fotos/*.png
+
 # Material de la grilla Casablanca septiembre 2026 (39 MB). Misma excepción
 # deliberada que Revex: scripts/casablanca-septiembre.py no corre sin estas 14
 # imágenes. Se listan por patrón exacto —lo que el script abre— y no la carpeta

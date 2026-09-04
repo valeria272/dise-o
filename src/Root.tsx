@@ -344,11 +344,11 @@ export const RemotionRoot: React.FC = () => {
           width={1080}
           height={1920}
         />
-        {/* G.CL · Cap. 02 «Revisión 7» — ROUGH CUT. 584f · 19,47 s · 112,5 BPM */}
+        {/* G.CL · Cap. 02 «Revisión 7» — ROUGH CUT v3. 776f · 25,87 s · 112,5 BPM */}
         <Composition
           id="GclCap02Revision7"
           component={Cap02Revision7}
-          durationInFrames={584}
+          durationInFrames={776}
           fps={30}
           width={1080}
           height={1920}

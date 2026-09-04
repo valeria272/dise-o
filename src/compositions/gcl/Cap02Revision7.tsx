@@ -1,6 +1,6 @@
 // ============================================================================
 // G.CL · CAPÍTULO 02 — «REVISIÓN 7»
-// ROUGH CUT · 584 frames · 19,47 s · 30 fps · 1080×1920 · rejilla 112,5 BPM
+// ROUGH CUT v3 · 776 frames · 25,87 s · 30 fps · 1080×1920 · rejilla 112,5 BPM
 // ----------------------------------------------------------------------------
 // ESTO ES UN ROUGH CUT. Existe para contestar UNA pregunta: ¿el episodio
 // entretiene? Por eso está entero —los 8 planos, la música, los SFX y todo el
@@ -30,7 +30,20 @@
 //   física, no de montaje.
 //
 // LO QUE NO SE GENERA (y por eso no puede derivar): pantalla, botón, cursor,
-// los 7 mensajes, la placa, el contador de versiones y todo el CUT 07.
+// el historial de versiones, los 10 mensajes, la placa, el contador y el CUT 07.
+//
+// v3 (04-09-2026) — POR QUÉ CRECIÓ DE 19,47 s A 25,87 s
+//   No se estiró el chiste: se agregaron los dos sitios donde faltaba material.
+//   · GANCHO. Los primeros 2,6 s eran un visor prendiéndose y letra chica: en un
+//     feed eso no detiene a nadie ni explica quién es G. Ahora el boot llena el
+//     cuadro y entra el HISTORIAL — las siete versiones del archivo, listadas.
+//     Cuenta el problema entero antes de que pase nada, y cuesta 0 generaciones.
+//   · LA ESCALADA. Era lo más gracioso y lo más reenviable, y duraba 3,4 s con
+//     los últimos cuatro mensajes cayendo en medio segundo: 19 palabras que
+//     nadie alcanzaba a leer. Ahora son 256 frames —EXACTAMENTE 4 compases, para
+//     que el drop siga aterrizando en downbeat— y 10 mensajes con aire.
+//   El rewind, el visor apagándose y el remate NO se tocaron: ya estaban en su
+//   punto, y un chiste solo no mejora por durar más.
 // ============================================================================
 import React from "react";
 import {
@@ -107,14 +120,17 @@ const PUNTOS_G = [
 const Boot: React.FC = () => {
   const f = useCurrentFrame();
   const paso = 3.2;   // los puntos encajan de a poco
+  // ⚠️ El punto medía 26 px y la G ocupaba 234 px de un cuadro de 1080: en el
+  // teléfono era un puntito. El primer frame de un reel es la batalla entera,
+  // así que la G ahora ocupa 700 px. Es la firma de la serie y su miniatura.
   return (
     <AbsoluteFill style={{backgroundColor: "#000", justifyContent: "center", alignItems: "center"}}>
       <div style={{
         display: "grid",
-        gridTemplateColumns: `repeat(9, 26px)`,
-        gridTemplateRows: `repeat(8, 26px)`,
-        gap: 8,
-        filter: `blur(${interpolate(f, [0, 12], [7, 0], {extrapolateRight: "clamp"})}px)`,
+        gridTemplateColumns: `repeat(9, 62px)`,
+        gridTemplateRows: `repeat(8, 62px)`,
+        gap: 18,
+        filter: `blur(${interpolate(f, [0, 12], [16, 0], {extrapolateRight: "clamp"})}px)`,
       }}>
         {PUNTOS_G.flatMap((fila, y) =>
           fila.split("").map((c, x) => {
@@ -122,9 +138,9 @@ const Boot: React.FC = () => {
             const on = c === "#" && f > orden * paso;
             return (
               <div key={`${x}-${y}`} style={{
-                width: 26, height: 26, borderRadius: "50%",
+                width: 62, height: 62, borderRadius: "50%",
                 backgroundColor: on ? ROSA : "rgba(255,45,141,0.05)",
-                boxShadow: on ? `0 0 22px ${ROSA}` : "none",
+                boxShadow: on ? `0 0 46px ${ROSA}` : "none",
                 opacity: on ? interpolate(f, [0, 14], [0.7, 1], {extrapolateRight: "clamp"}) : 1,
               }} />
             );
@@ -136,7 +152,64 @@ const Boot: React.FC = () => {
 };
 
 // ════════════════════════════════════════════════════════════════════════════
-// CUT 01 · f.16–79 · LA PANTALLA
+// HISTORIAL · f.16–79 · EL GANCHO
+// ----------------------------------------------------------------------------
+// El problema del capítulo contado antes de que pase nada, y sin decir una
+// palabra: las siete versiones del mismo archivo, con los nombres que se ponen
+// de verdad. Cualquiera que trabaje en esto entiende la situación completa —y
+// entiende que va a pasar algo— leyendo una carpeta.
+//
+// Va sobre KF12: es EXACTAMENTE el encuadre del CUT 01 pero sin la mano en
+// cuadro. Por eso el corte al 01 es la mano ENTRANDO, no un cambio de plano.
+// Cuesta cero generaciones.
+// ════════════════════════════════════════════════════════════════════════════
+const VERSIONES = [
+  "REVISION_01.pdf",
+  "REVISION_02_v2.pdf",
+  "REVISION_03_OK.pdf",
+  "REVISION_04_FINAL.pdf",
+  "REVISION_05_FINAL_OK.pdf",
+  "REVISION_06_ESTA_SI.pdf",
+  "REVISION_07_FINAL_FINAL.pdf",
+];
+
+const Historial: React.FC = () => {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{perspective: 1500, pointerEvents: "none"}}>
+      <div style={{
+        position: "absolute", left: "29%", top: "26%", width: "70%", height: "37%",
+        transform: "rotateY(-13deg) skewY(2.6deg)", transformOrigin: "left center",
+        fontFamily: VOZ.data, color: "#e4ebf2", paddingTop: "3%",
+      }}>
+        {VERSIONES.map((n, i) => {
+          const entra = 6 + i * 6;                 // una línea cada 6 frames
+          const ultima = i === VERSIONES.length - 1;
+          const marca = ultima
+            ? interpolate(f, [50, 58], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})
+            : 0;
+          return (
+            <div key={n} style={{
+              display: "flex", alignItems: "center", gap: 14,
+              marginLeft: "4%", padding: "5px 14px 5px 6px", width: "fit-content",
+              fontSize: 36, letterSpacing: 0.2, lineHeight: 1.30,
+              opacity: interpolate(f, [entra, entra + 3], [0, ultima ? 1 : 0.42],
+                {extrapolateLeft: "clamp", extrapolateRight: "clamp"}),
+              backgroundColor: `rgba(255,45,141,${marca * 0.22})`,
+              color: marca > 0.5 ? ROSA : "#e4ebf2",
+            }}>
+              <span style={{opacity: 0.45}}>▤</span>
+              {n}
+            </div>
+          );
+        })}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// ════════════════════════════════════════════════════════════════════════════
+// CUT 01 · f.80–143 · LA PANTALLA
 // ----------------------------------------------------------------------------
 // El plano dura 64 frames y no menos: el cursor tiene que ir LENTO. La lentitud
 // es lo que hace creer que terminó de verdad. El click cae en el f.64 (48 de
@@ -215,13 +288,16 @@ const Pantalla: React.FC = () => {
 // reacciona en ninguno: ni un grado. Cuanto menos reacciona, más gracioso es.
 // ════════════════════════════════════════════════════════════════════════════
 const MENSAJES = [
-  {f: 146, t: "Nos encantó 🙌"},
-  {f: 194, t: "Solo una cosita…"},
-  {f: 218, t: "El logo un poquito más grande"},
-  {f: 234, t: "Y el azul un poco más azul"},
-  {f: 242, t: "Perdón, última cosa"},
-  {f: 246, t: "Lo vio la gerencia"},
-  {f: 250, t: "¿Podemos volver a la primera?"},
+  {f: 210, t: "Nos encantó 🙌"},
+  {f: 262, t: "Solo una cosita…"},
+  {f: 302, t: "El logo un poquito más grande"},
+  {f: 336, t: "Y el azul un poco más azul"},
+  {f: 366, t: "¿Se puede ver sin el fondo?"},
+  {f: 388, t: "Perdón, última cosa"},
+  {f: 404, t: "Lo vio la gerencia"},
+  {f: 416, t: "Y mi señora"},
+  {f: 426, t: "Nos gustó más la otra"},
+  {f: 434, t: "¿Podemos volver a la primera?"},
 ];
 
 /** Los mensajes van SOBRE el teléfono del plano, en su perspectiva. */
@@ -377,11 +453,20 @@ export const Cap02Revision7: React.FC = () => {
   asegurarFuentes();
   const f = useCurrentFrame();
 
-  // La rampa del bloque 03 alterna dos planos que ya existen.
+  // La rampa de la escalada: 256 frames = 4 compases EXACTOS, para que el drop
+  // del f.464 siga cayendo en downbeat. Alterna dos planos que ya existen —el
+  // macro del teléfono y G de pie congelado mirándolo— así que ampliarla de
+  // 104 a 256 frames no costó ni una generación.
+  //
+  // La forma de la rampa es el chiste: los primeros mensajes tienen aire para
+  // LEERSE (40 · 30 · 26 frames) y los últimos caen encima (6 · 4 · 4), que es
+  // exactamente cómo se siente. Y el último se queda solo 32 frames en silencio.
   const RAMPA: Array<[number, number, "D" | "B"]> = [
-    [144, 32, "D"], [176, 16, "B"], [192, 12, "D"], [204, 12, "B"],
-    [216, 8, "D"], [224, 8, "B"], [232, 4, "D"], [236, 4, "B"],
-    [240, 4, "D"], [244, 4, "B"],
+    [208, 40, "D"], [248, 12, "B"], [260, 30, "D"], [290, 10, "B"],
+    [300, 26, "D"], [326, 8, "B"], [334, 22, "D"], [356, 8, "B"],
+    [364, 16, "D"], [380, 6, "B"], [386, 12, "D"], [398, 4, "B"],
+    [402, 8, "D"], [410, 4, "B"], [414, 6, "D"], [420, 4, "B"],
+    [424, 4, "D"], [428, 4, "B"],
   ];
 
   return (
@@ -391,22 +476,30 @@ export const Cap02Revision7: React.FC = () => {
       {/* ── OPENING · firma de serie · fuera de tempo ─────────────────── */}
       <Sequence from={0} durationInFrames={16}><Boot /></Sequence>
 
-      {/* ── CUT 01 · normalidad · SILENCIO ────────────────────────────── */}
+      {/* ── HISTORIAL · el gancho · las siete versiones ───────────────── */}
       <Sequence from={16} durationInFrames={64}>
+        <Fija src="KF12_c8_fin.jpg" />
+        <Historial />
+      </Sequence>
+
+      {/* ── CUT 01 · normalidad · SILENCIO ────────────────────────────── */}
+      {/* Corta sobre la MANO entrando al mismo encuadre, no sobre un plano
+          nuevo: el KF12 del historial es el CUT 01 sin la mano. */}
+      <Sequence from={80} durationInFrames={64}>
         <Clip src="cut01.mp4" desdeS={0.15} />
         <Pantalla />
       </Sequence>
 
-      {/* ── CUT 02 · alivio · entra el beat en el downbeat del f.80 ────── */}
+      {/* ── CUT 02 · alivio · entra el beat en el downbeat del f.144 ───── */}
       {/* Arranca en 1,60 s del clip y los beats caen donde dice el guion:
-          taza en el f.116 (36 dentro del plano) · se queda quieto · y en el
-          f.136 —con el PING— la cabeza BAJA hacia el teléfono. Sólo la cabeza:
-          el torso no gira. A velocidad real: G nunca se acelera. */}
-      <Sequence from={80} durationInFrames={64}>
+          la taza a los 36 frames · se queda quieto · y a los 56 —con el
+          PING— la cabeza BAJA hacia el teléfono. Sólo la cabeza: el torso
+          no gira. A velocidad real: G nunca se acelera. */}
+      <Sequence from={144} durationInFrames={64}>
         <Clip src="cut02.mp4" desdeS={1.60} />
       </Sequence>
 
-      {/* ── BLOQUE 03 · la escalada · G no reacciona ni un grado ───────── */}
+      {/* ── LA ESCALADA · f.208–463 · G no reacciona ni un grado ───────── */}
       {RAMPA.map(([desde, dur, cam]) => (
         <Sequence key={desde} from={desde} durationInFrames={dur}>
           {cam === "D" ? <Fija src="KF05_c3.jpg" /> : <Fija src="cut02_freeze.png" />}
@@ -414,49 +507,49 @@ export const Cap02Revision7: React.FC = () => {
         </Sequence>
       ))}
 
-      {/* ── CUT 04 · la sentencia · EL HUECO. 24 frames sin nada ───────── */}
-      <Sequence from={248} durationInFrames={24}>
+      {/* ── LA SENTENCIA · EL HUECO. 32 frames de silencio con la frase ── */}
+      <Sequence from={432} durationInFrames={32}>
         <Fija src="KF05_c3.jpg" escala={1.04} />
-        <Telefono desde={248} />
+        <Telefono desde={432} />
       </Sequence>
 
-      {/* ── TÍTULO · el drop, exacto en el downbeat del f.272 ──────────── */}
-      <Sequence from={272} durationInFrames={32}>
+      {/* ── TÍTULO · el drop, exacto en el downbeat del f.464 ──────────── */}
+      <Sequence from={464} durationInFrames={32}>
         <Placa segunda="«Volvamos a la primera»." />
       </Sequence>
 
       {/* ── CUT 05A · el mundo retrocede. Clip invertido ───────────────── */}
-      {/* Entra de espaldas en el f.344 = 40 frames dentro del plano. */}
-      <Sequence from={304} durationInFrames={64}>
+      <Sequence from={496} durationInFrames={64}>
         <Clip src="cut05a.mp4" desdeS={2.57} />
         <Contador />
       </Sequence>
 
       {/* ── CUT 05B · cae en la silla · el ÚNICO movimiento de cámara ──── */}
-      {/* ENLACE DURO: el último frame ES el primero del CUT 06. */}
-      <Sequence from={368} durationInFrames={64}>
+      {/* ENLACE DURO: el último frame ES el primero del CUT 06. Medido —
+          entre el f.623 y el f.624 hay 3,8 de diferencia sobre 255. */}
+      <Sequence from={560} durationInFrames={64}>
         <Clip src="cut05b.mp4" desdeS={2.60} />
       </Sequence>
 
       {/* ── CUT 06 · DEAD INSIDE · silencio absoluto ───────────────────── */}
       {/* 28 frames en que no pasa NADA. Es el plano más importante de la
           interpretación: la quietud es actuación. */}
-      <Sequence from={432} durationInFrames={48}>
+      <Sequence from={624} durationInFrames={48}>
         <Clip src="cut06.mp4" desdeS={1.97} />
       </Sequence>
 
       {/* ── CUT 07 · el remate · negro ─────────────────────────────────── */}
-      <Sequence from={480} durationInFrames={80}><Remate /></Sequence>
+      <Sequence from={672} durationInFrames={80}><Remate /></Sequence>
 
       {/* ── CUT 09 · post-gag · llega el PING y NO reacciona ───────────── */}
-      <Sequence from={560} durationInFrames={24}>
+      <Sequence from={752} durationInFrames={24}>
         <Fija src="KF09_master_frontal.jpg" />
       </Sequence>
 
       {/* Grano: es lo único que se le suma a todo. Un frame quieto sin grano
           se lee como una foto pegada, no como un plano. */}
       <Grano op={0.05} />
-      {f >= 584 ? <AbsoluteFill style={{backgroundColor: "#000"}} /> : null}
+      {f >= 776 ? <AbsoluteFill style={{backgroundColor: "#000"}} /> : null}
     </AbsoluteFill>
   );
 };

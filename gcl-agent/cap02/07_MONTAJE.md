@@ -6,6 +6,60 @@
 
 ---
 
+## 0 · v5 — el capítulo creció a 25,87 s (04-09-2026)
+
+> El rough cut se aprobó como película pero se leyó **corto**. Medido, el
+> problema no era la duración total sino **dónde** estaba el material.
+
+### Lo que se agregó, y por qué ahí
+
+| | Antes | Ahora | Por qué |
+|---|---|---|---|
+| **Gancho** | no existía | **64f · 2,13 s** | Los primeros 2,6 s eran un visor prendiéndose y letra chica. En un feed eso no detiene a nadie ni explica quién es G |
+| **La escalada** | 104f · 3,47 s | **256f · 8,53 s** | Era lo más gracioso y lo más reenviable, y los últimos cuatro mensajes caían en **medio segundo**: 19 palabras ilegibles |
+| Rewind · visor · remate | — | **sin tocar** | Ya estaban en su punto. Un chiste solo no mejora por durar más |
+
+**El gancho es el HISTORIAL:** las siete versiones del archivo, listadas en
+pantalla con los nombres que se ponen de verdad —`REVISION_05_FINAL_OK.pdf`,
+`REVISION_06_ESTA_SI.pdf`— y la séptima marcada. Cuenta el problema entero antes
+de que pase nada y **sin una palabra de guion**. Va sobre `KF12`, que es el
+encuadre exacto del CUT 01 **sin la mano**: por eso el corte al 01 es la mano
+entrando, no un plano nuevo. Costó **cero generaciones**.
+
+**La escalada pasó de 7 a 10 mensajes** y la forma de la rampa es el chiste: los
+primeros tienen aire para leerse (40 · 30 · 26 frames) y los últimos caen encima
+(6 · 4 · 4). También cero generaciones — alterna dos planos que ya existen.
+
+### La aritmética que hacía falta respetar
+
+La escalada tenía que crecer a **256 frames, que son 4 compases exactos**. Con
+cualquier otro número el drop deja de caer en downbeat y hay que recronometrar
+el colapso entero. Todo lo que tiene que aterrizar en downbeat, aterriza:
+
+| Bloque | Frames | Dur | ¿Downbeat? |
+|---|---|---|---|
+| OPENING · boot | `  0– 15` | 16f | fuera de tempo |
+| **HISTORIAL** · el gancho | `` 16– 79`` | 64f | ✅ compás 1 |
+| CUT 01 · manda el archivo | ` 80–143` | 64f | ✅ compás 2 |
+| CUT 02 · se relaja y se va | `144–207` | 64f | ✅ compás 3 · **entra el beat** |
+| **LA ESCALADA** | `208–431` | 224f | ✅ compás 4 |
+| La sentencia · EL HUECO | `432–463` | 32f | |
+| TÍTULO · **el drop** | `464–495` | 32f | ✅ compás 8 |
+| CUT 05A · rewind | `496–559` | 64f | |
+| CUT 05B · cae en la silla | `560–623` | 64f | |
+| CUT 06 · el visor se apaga | `624–671` | 48f | |
+| CUT 07 · el remate | `672–751` | 80f | |
+| CUT 09 · post-gag | `752–775` | 24f | |
+
+**776 frames · 25,87 s.** Compases en `16 · 80 · 144 · 208 · 272 · 336 · 400 ·
+464 · 528 · 592 · 656 · 720`.
+
+> Lo de abajo es la v4 y se deja como estaba: es el registro de por qué el
+> capítulo tiene la forma que tiene. Los frames de sus tablas hay que leerlos
+> **+192** desde el CUT 05A en adelante.
+
+---
+
 ## 1 · Los cuatro cambios de la v4
 
 | # | Cambio | Consecuencia real |

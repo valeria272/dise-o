@@ -1,0 +1,177 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css">
+<style>
+  .muestra { position:absolute; }
+  .caption { position:absolute; font-size:9pt; font-weight:300; color:var(--gris);
+             text-transform:uppercase; letter-spacing:0.06em; margin:0; }
+  .cifra   { font-weight:400; color:var(--terracota); }
+
+  /* Las maquetas van a escala real de A4 (210 × 297 mm → 1 : 1,414) y en
+     miniatura. Todo lo que se ve adentro sale del sistema ya aprobado:
+     Aptos, la paleta de la lámina 3 y las franjas de la 14. */
+  .hoja    { position:absolute; width:150pt; height:212pt; background:#fff;
+             border:0.4pt solid #D9D7D4; overflow:hidden; }
+  .hoja .franjas { position:absolute; left:0; top:0; bottom:0; width:14pt; }
+  .hoja .franjas i { position:absolute; top:0; bottom:0; width:2.6pt;
+                     background:var(--verde); }
+</style>
+
+<h1 class="titulo">Aplicaciones</h1>
+<p class="bajada">El informe de gestión al inversionista</p>
+
+<div class="divisoria" style="left:360pt"></div>
+
+<!-- ═══════════ izquierda · el criterio ═══════════ -->
+<p class="rotulo" style="left:60.2pt; top:134.8pt; width:270pt; text-align:center">
+  Por qué tiene lámina propia</p>
+
+<p class="cuerpo" style="left:60.2pt; top:172pt; width:270pt">
+  Landera le rinde cuentas a quien puso el capital.
+  El informe trimestral es su pieza principal — más que
+  cualquier folleto — y es la que más manos distintas
+  van a armar. Sin norma, cada trimestre sale distinto.
+</p>
+
+<p class="rotulo" style="left:60.2pt; top:296pt; width:270pt; text-align:center">
+  Las tres reglas</p>
+
+<p class="cuerpo" style="left:60.2pt; top:333pt; width:270pt">
+  <span class="cifra">1</span> · La cifra manda. El dato va en Aptos
+  Bold sobre blanco, sin caja de color que le compita.
+</p>
+<p class="cuerpo" style="left:60.2pt; top:381pt; width:270pt">
+  <span class="cifra">2</span> · El verde ordena, no decora. Titula
+  la tabla y nada más; el cuerpo va en gris piedra.
+</p>
+<p class="cuerpo" style="left:60.2pt; top:429pt; width:270pt">
+  <span class="cifra">3</span> · El terracota es la excepción.
+  Marca la desviación, nunca un dato normal. Si aparece
+  en cada fila, deja de significar algo.
+</p>
+
+<p class="cuerpo" style="left:60.2pt; top:502pt; width:270pt">
+  Las franjas entran como remate al canto de la hoja,
+  a <span class="cifra">1/25</span> — nunca detrás de una tabla.
+</p>
+
+<!-- ═══════════ derecha · las maquetas ═══════════ -->
+<p class="rotulo" style="left:400pt; top:134.8pt">La pieza</p>
+
+<!-- 1 · portada -->
+<div class="hoja" style="left:400pt; top:170pt; background:var(--crema)">
+  <div class="franjas">
+    <i style="left:0"></i><i style="left:4pt"></i><i style="left:8pt"></i>
+  </div>
+  <img src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg"
+       style="position:absolute; left:28pt; top:22pt; width:88pt">
+  <div style="position:absolute; left:28pt; top:120pt; right:16pt">
+    <div style="font-size:11pt; font-weight:700; color:var(--tinta); line-height:13pt">
+      Informe de gestión</div>
+    <div style="font-size:7pt; font-weight:300; color:var(--gris);
+                text-transform:uppercase; letter-spacing:0.08em; margin-top:4pt">
+      Primer trimestre · 2026</div>
+    <div style="height:0.5pt; background:var(--verde); margin-top:9pt; width:52pt"></div>
+  </div>
+</div>
+<p class="caption" style="left:400pt; top:390pt; width:150pt">Portada</p>
+
+<!-- 2 · interior con tabla -->
+<div class="hoja" style="left:568pt; top:170pt">
+  <div style="position:absolute; left:16pt; top:16pt; right:14pt">
+    <div style="font-size:7pt; font-weight:700; color:var(--verde);
+                text-transform:uppercase; letter-spacing:0.06em">Superficie en gestión</div>
+    <div style="height:0.4pt; background:var(--verde); margin-top:4pt"></div>
+
+    <table style="width:100%; border-collapse:collapse; margin-top:7pt;
+                  font-size:6pt; color:var(--gris)">
+      <tr style="font-weight:400; color:var(--verde); text-transform:uppercase">
+        <td style="padding:2.5pt 0">Predio</td>
+        <td style="text-align:right">Ha</td>
+        <td style="text-align:right">Rend.</td>
+        <td style="text-align:right">Var.</td>
+      </tr>
+      <tr style="border-top:0.3pt solid #E4E2DF">
+        <td style="padding:2.5pt 0">Predio A</td><td style="text-align:right">128</td>
+        <td style="text-align:right">9,4</td><td style="text-align:right">+2 %</td></tr>
+      <tr style="border-top:0.3pt solid #E4E2DF">
+        <td style="padding:2.5pt 0">Predio B</td><td style="text-align:right">240</td>
+        <td style="text-align:right">8,1</td><td style="text-align:right">+1 %</td></tr>
+      <tr style="border-top:0.3pt solid #E4E2DF">
+        <td style="padding:2.5pt 0">Predio C</td><td style="text-align:right">96</td>
+        <td style="text-align:right">6,2</td>
+        <td style="text-align:right; color:var(--terracota)">−14 %</td></tr>
+      <tr style="border-top:0.3pt solid #E4E2DF">
+        <td style="padding:2.5pt 0">Predio D</td><td style="text-align:right">312</td>
+        <td style="text-align:right">9,0</td><td style="text-align:right">+3 %</td></tr>
+    </table>
+
+    <div style="margin-top:16pt; font-size:22pt; font-weight:700; color:var(--tinta);
+                line-height:22pt">776 ha</div>
+    <div style="font-size:6pt; font-weight:300; color:var(--gris);
+                text-transform:uppercase; letter-spacing:0.07em; margin-top:2pt">
+      Total en gestión</div>
+  </div>
+</div>
+<p class="caption" style="left:568pt; top:390pt; width:150pt">
+  Interior — la cifra manda</p>
+
+<!-- 3 · lámina de predios -->
+<div class="hoja" style="left:736pt; top:170pt">
+  <div style="position:absolute; left:16pt; top:16pt; right:14pt">
+    <div style="font-size:7pt; font-weight:700; color:var(--verde);
+                text-transform:uppercase; letter-spacing:0.06em">Predios</div>
+    <div style="height:0.4pt; background:var(--verde); margin-top:4pt"></div>
+  </div>
+  <!-- el paño de predios se dibuja con la misma lógica de franjas del isotipo -->
+  <svg style="position:absolute; left:16pt; top:44pt" width="120" height="150">
+    <rect x="0"  y="0"  width="56" height="70" fill="#687B5D" opacity="0.85"/>
+    <rect x="60" y="0"  width="60" height="44" fill="#666461" opacity="0.5"/>
+    <rect x="60" y="48" width="60" height="22" fill="#687B5D" opacity="0.55"/>
+    <rect x="0"  y="74" width="120" height="34" fill="#666461" opacity="0.3"/>
+    <rect x="0"  y="112" width="76" height="38" fill="#E4361F" opacity="0.75"/>
+    <rect x="80" y="112" width="40" height="38" fill="#687B5D" opacity="0.4"/>
+    <g fill="#fff" opacity="0.55">
+      <rect x="0" y="0" width="120" height="1.2"/><rect x="0" y="72" width="120" height="1.2"/>
+      <rect x="0" y="110" width="120" height="1.2"/><rect x="58" y="0" width="1.2" height="110"/>
+      <rect x="78" y="112" width="1.2" height="38"/>
+    </g>
+  </svg>
+  <div style="position:absolute; left:16pt; top:196pt; font-size:6pt; font-weight:300;
+              color:var(--gris); text-transform:uppercase; letter-spacing:0.07em">
+    El terracota marca el predio en desviación</div>
+</div>
+<p class="caption" style="left:736pt; top:390pt; width:150pt">
+  Predios — un paño, no un mapa decorativo</p>
+
+<!-- nota de datos -->
+<p class="caption" style="left:400pt; top:414pt; width:576pt; color:#A5A29E">
+  ⚠ Cifras de ejemplo — la maqueta norma la forma, no el dato</p>
+
+<!-- fila 2 · el detalle de la tabla -->
+<p class="rotulo" style="left:400pt; top:452pt">La tabla, de cerca</p>
+
+<div class="muestra" style="left:400pt; top:488pt; width:576pt">
+  <table style="width:100%; border-collapse:collapse; font-size:10pt; color:var(--gris)">
+    <tr style="font-weight:400; color:var(--verde); text-transform:uppercase;
+               font-size:8.5pt; letter-spacing:0.05em">
+      <td style="padding:5pt 0">Predio</td>
+      <td style="text-align:right">Superficie</td>
+      <td style="text-align:right">Rendimiento</td>
+      <td style="text-align:right">Variación</td>
+    </tr>
+    <tr style="border-top:0.5pt solid var(--verde)">
+      <td style="padding:6pt 0">Predio C</td>
+      <td style="text-align:right; font-weight:700; color:var(--tinta)">96 ha</td>
+      <td style="text-align:right; font-weight:700; color:var(--tinta)">6,2 t/ha</td>
+      <td style="text-align:right; font-weight:700; color:var(--terracota)">−14 %</td>
+    </tr>
+    <tr style="border-top:0.3pt solid #E4E2DF">
+      <td style="padding:6pt 0">Predio D</td>
+      <td style="text-align:right; font-weight:700; color:var(--tinta)">312 ha</td>
+      <td style="text-align:right; font-weight:700; color:var(--tinta)">9,0 t/ha</td>
+      <td style="text-align:right">+3 %</td>
+    </tr>
+  </table>
+</div>
+<p class="caption" style="left:400pt; top:560pt; width:576pt">
+  Verde titula · tinta para la cifra · terracota sólo en la desviación</p>

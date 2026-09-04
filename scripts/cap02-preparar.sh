@@ -26,10 +26,10 @@ echo "→ el rewind: los dos planos se generaron HACIA ADELANTE y se invierten"
 ./scripts/invertir-clip.sh "$SRC/clips/cut05a_fwd.mp4" "$DST/cut05a.mp4"
 ./scripts/invertir-clip.sh "$SRC/clips/cut05b_fwd.mp4" "$DST/cut05b.mp4"
 
-echo "→ las dos fijas del bloque 03 y del post-gag"
+echo "→ las fijas: el teléfono, el post-gag y el historial del gancho"
 /Users/Vale/copylab-venv/bin/python3 - <<'PY'
 from PIL import Image
-for k in ("KF05_c3", "KF09_master_frontal"):
+for k in ("KF05_c3", "KF09_master_frontal", "KF12_c8_fin"):
     im = Image.open(f"gcl-agent/cap02/keyframes/{k}.png").convert("RGB")
     im = im.resize((1080, round(1080 * im.height / im.width)), Image.LANCZOS)
     im.save(f"public/assets/gcl/cap02/{k}.jpg", quality=94)

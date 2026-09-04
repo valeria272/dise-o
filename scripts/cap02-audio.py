@@ -9,6 +9,10 @@ y para el ROUGH CUT no hace falta que caiga: hace falta comprobar si el episodio
 entretiene. Así que la pista se **sintetiza sobre la rejilla**, y todos los golpes
 caen en el frame que dice `_timeline.json` porque se calculan desde el frame.
 
+v3 · 04-09-2026 — el capítulo pasó de 584 a **776 frames**. La escalada creció a
+256 frames, que son **4 compases exactos**, así que el drop sigue cayendo en el
+downbeat del f.464 y no hubo que recronometrar nada del colapso.
+
 ⚠️ ESTO ES UNA PISTA DE TRABAJO, NO LA MÚSICA DEL CAPÍTULO. La decisión v4 fue
 que la serie NO tiene identidad musical fija (sólo el boot de G). Esta pista
 cumple las cuatro condiciones de portabilidad de `07_MONTAJE.md §5` — downbeat
@@ -28,7 +32,7 @@ import numpy as np
 
 SR = 48_000
 FPS = 30
-FRAMES = 584
+FRAMES = 776
 BPM = 112.5
 BEAT_F = 16                      # 60/112,5 = 0,5333 s = 16 frames exactos
 DUR = FRAMES / FPS + 0.5         # medio segundo de cola de seguridad
@@ -282,14 +286,23 @@ def lapiz(dur=0.75):
 # ── OPENING · f.0–15 · FUERA DE TEMPO ────────────────────────────────────────
 poner(boot_visor(), 0)
 
-# ── CUT 01 · f.16–79 · SILENCIO. Sólo el mouse ───────────────────────────────
-poner(ruedas(0.25) * 0.35, 32)          # el mouse deslizando
-poner(click_mouse(), 64)                # EL CLICK
-poner(whoosh(), 70)                      # el archivo se va
+# ── HISTORIAL · f.16–79 · el gancho. Todavía sin música ──────────────────────
+# Un tick seco por cada versión que aparece. Es sonido de interfaz, no de
+# arreglo: la música todavía no entra y el silencio de acá hace que el beat del
+# f.144 pegue más fuerte.
+poner(zumbido(f2s(64), gain=0.010), 16)
+for k in range(7):
+    poner(tick_visor(0.05) * 1.1, 22 + k * 6)
+poner(click_mouse() * 0.7, 66)            # se posa sobre la séptima
 
-# ── CUT 02 · f.80–143 · ENTRA EL BEAT en el downbeat ─────────────────────────
-# Compás 2 = f.80–143. La música muere a MUESTRA CERO en el f.136: se escribe
-# hasta el f.135 y no un frame más. Por eso el bucle corta con `if f >= 136`.
+# ── CUT 01 · f.80–143 · SILENCIO. Sólo el mouse ──────────────────────────────
+poner(ruedas(0.25) * 0.35, 96)            # el mouse deslizando
+poner(click_mouse(), 128)                 # EL CLICK
+poner(whoosh(), 134)                      # el archivo se va
+
+# ── CUT 02 · f.144–207 · ENTRA EL BEAT en el downbeat ────────────────────────
+# La música muere a MUESTRA CERO en el f.200, cuando la cabeza baja hacia el
+# teléfono. Por eso el compás se escribe con `hasta=200` y no un frame más.
 NOTAS = [55.0, 55.0, 82.41, 55.0, 73.42, 55.0, 65.41, 61.74]   # A1 · E2 · D2 · C2 · B1
 
 
@@ -300,60 +313,65 @@ def compas(inicio, indice, hasta=None, gain=1.0, filtrado=False):
     for b in range(4):                                   # los 4 beats
         f = inicio + b * BEAT_F
         if f < hasta:
-            poner(kick() if b in (0, 2) else kick() * 0.0, f, g)
-            if b in (1, 3):
+            if b in (0, 2):
+                poner(kick(), f, g)
+            else:
                 poner(clap(), f, g * 0.9)
-        for s in range(4):                               # los 16avos
-            f = inicio + b * BEAT_F + s * 4
-            if f < hasta and not (b in (1, 3) and s == 0):
-                poner(hat(abierto=(s == 2)), f, g * (0.55 if s % 2 else 1.0))
-    # el bajo, un 8avo por nota
-    for i, nz in enumerate(NOTAS):
+        for s16 in range(4):                             # los 16avos
+            f = inicio + b * BEAT_F + s16 * 4
+            if f < hasta and not (b in (1, 3) and s16 == 0):
+                poner(hat(abierto=(s16 == 2)), f, g * (0.55 if s16 % 2 else 1.0))
+    for i, nz in enumerate(NOTAS):                       # el bajo, un 8avo por nota
         f = inicio + i * 8
         if f < hasta:
             poner(bajo(nz, 8 / FPS * 0.92), f, g)
 
 
-compas(80, 2, hasta=136)                 # muere a muestra cero en el f.136
-poner(ping(), 136)                       # EL PING. Ancla de la serie
+compas(144, 3, hasta=200)
+poner(ping(), 200)                        # EL PING. Ancla de la serie
 
-# ── BLOQUE 03 · f.144–247 · el silencio, y después los pings SON la percusión ─
-poner(zumbido(f2s(32), gain=0.008), 144)         # ambiente a −44 dB
-compas(208, 4, hasta=248, filtrado=True)          # el beat vuelve contaminado
-# los pings del guion, cada vez más apretados
-for f in (192, 216, 232, 240, 244):
-    poner(ping(0.34), f, 0.85)
-poner(ping(0.30), 246, 0.8)                       # el sexto, encima del quinto
+# ── LA ESCALADA · f.208–431 · los pings SON la percusión ─────────────────────
+# Los mensajes están en `MENSAJES` de Cap02Revision7.tsx y cada uno trae su ping.
+# La forma de la rampa es el chiste: los primeros tienen aire para leerse, los
+# últimos caen encima. El beat vuelve contaminado recién en el compás 6.
+poner(zumbido(f2s(52), gain=0.008), 208)          # ambiente a −44 dB
+MENSAJES = [210, 262, 302, 336, 366, 388, 404, 416, 426]
+compas(336, 6, hasta=400, filtrado=True)          # el beat vuelve por debajo
+compas(400, 7, hasta=432, filtrado=True)
+for i, f in enumerate(MENSAJES):
+    # el ping se acorta y se aprieta a medida que la cosa se descontrola
+    poner(ping(max(0.20, 0.55 - i * 0.045)), f, 0.85 + i * 0.02)
 
-# ── CUT 04 · f.248–271 · EL HUECO ────────────────────────────────────────────
-poner(sub_creciente(f2s(24)), 248)
+# ── EL HUECO · f.432–463 · todo se detiene y llega la sentencia ──────────────
+poner(sub_creciente(f2s(32)), 432)
+poner(ping(0.40), 434, 1.0)                       # «¿Podemos volver a la primera?»
 
-# ── TÍTULO · f.272 · EL DROP, exacto en el downbeat ──────────────────────────
-poner(boom(), 272)
-for i in range(272, 432, 64):                     # compases 5 a 7
-    compas(i, 5, hasta=min(i + 64, 432), gain=1.05)
+# ── TÍTULO · f.464 · EL DROP, exacto en el downbeat ──────────────────────────
+poner(boom(), 464)
+for i in (464, 528, 592):                         # compases 8, 9 y 10
+    compas(i, 8, hasta=min(i + 64, 624), gain=1.05)
 # el bajo al frente durante el rewind
-for f in range(304, 432, 8):
-    poner(bajo(NOTAS[((f - 304) // 8) % len(NOTAS)] * 0.5, 8 / FPS * 0.95), f, 0.5)
+for f in range(496, 624, 8):
+    poner(bajo(NOTAS[((f - 496) // 8) % len(NOTAS)] * 0.5, 8 / FPS * 0.95), f, 0.5)
 # el contador 07→01 tictaqueando cada 8 frames
-for f in range(312, 368, 8):
+for f in range(504, 560, 8):
     poner(tick_visor(0.04) * 1.6, f)
-poner(thunk(0.26, 120), 384, 0.9)                 # el impacto en la silla
-poner(whoosh(0.30), 416, 0.7)                     # el archivo se abre
+poner(thunk(0.26, 120), 576, 0.9)                 # el impacto en la silla
+poner(whoosh(0.30), 608, 0.7)                     # el archivo se abre
 
-# ── CUT 06 · f.432–479 · SILENCIO ABSOLUTO ───────────────────────────────────
-poner(zumbido(f2s(48)), 432)
-poner(tick_visor(), 460)
-poner(muerte_electrica(), 472)
+# ── CUT 06 · f.624–671 · SILENCIO ABSOLUTO ───────────────────────────────────
+poner(zumbido(f2s(48)), 624)
+poner(tick_visor(), 652)
+poner(muerte_electrica(), 664)
 
-# ── CUT 07 · f.480–559 · una nota, y el lápiz ────────────────────────────────
-poner(nota_sostenida(f2s(80)), 480)
-# El lápiz se adelantó 25 frames el 04-09: el tachón cae en el f.518 y el trazo
-# del 1 en el f.528, para que el remate tenga 22 frames de aire antes del corte.
-poner(lapiz(), 515)
+# ── CUT 07 · f.672–751 · una nota, y el lápiz ────────────────────────────────
+poner(nota_sostenida(f2s(80)), 672)
+# El tachón se dibuja en el f.710 y el 1 en el f.722. El sample arranca 3 frames
+# antes porque el lápiz suena cuando toca el papel, no cuando termina el trazo.
+poner(lapiz(), 707)
 
-# ── CUT 09 · f.560–583 · el mismo PING del f.136. Cierra en loop ─────────────
-poner(ping(), 568)
+# ── CUT 09 · f.752–775 · el mismo PING del f.200. Cierra en loop ─────────────
+poner(ping(), 760)
 
 # ─────────────────────────────────────────────────────────────────────────────
 pico = float(np.max(np.abs(pista)))

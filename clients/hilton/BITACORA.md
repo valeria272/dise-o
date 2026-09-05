@@ -5,6 +5,44 @@
 
 ---
 
+## 2026-09-04 · Eli (Windows) — BETWEEN, CIERRE DEL DÍA: estado de aprobación
+
+**Eli, al cerrar: «solo te apruebo lo de cumpleaños Slide 1, mañana seguiremos».**
+
+Esta entrada existe para que mañana no haya que deducir nada. Lo que está en el
+Drive es la ronda 13; lo que está APROBADO es una sola pieza.
+
+| Pieza | Archivo en Drive | Estado al cierre |
+|---|---|---|
+| **S1 · Cumpleaños 1** | `BW FEED 03-09 Cumpleanos 1.png` | ✅ **APROBADA** |
+| **S1 · Cumpleaños 2** | `BW FEED 03-09 Cumpleanos 2 detalles.png` | ⏳ sin aprobar — pendiente de comentario |
+| **S2 · ST Emergencia** | `BW ST 09-09 Emergencia Between.png` | ⏳ sin aprobar — pendiente de comentario |
+| **S3 · To Go 1 portada** | `BW FEED 14-09 Promos To Go 1 portada.png` | ⏳ sin aprobar — pendiente de comentario |
+| **S3 · To Go 4 los tres** | `BW FEED 14-09 Promos To Go 4 los tres.png` | ⏳ sin aprobar — pendiente de comentario |
+| **S2 · Ella habló** | `BW FEED 11-09 Ella hablo Ella escucho.png` | ✅ aprobada en la ronda 12 |
+| **S3 · To Go 2 y 3** | `…2 sandwich.png` · `…3 dulce.png` | ✅ no objetadas; Eli pidió no tocarlas |
+
+⚠️ **Ojo con esto mañana: «no aprobada» no es «rechazada».** Eli aprobó una y
+dejó las otras cuatro sin comentar, no las devolvió con correcciones. **No hay
+que rehacerlas por iniciativa propia** — hay que esperar qué dice de cada una.
+El día ya tuvo tres rondas seguidas (11, 12 y 13) y dos de ellas se fueron en
+rehacer cosas que nadie había pedido rehacer.
+
+⭐ **Y lo que SÍ conviene mirar antes de tocar nada:** el criterio con el que
+aprobó la Cumpleaños 1 es el que mandó para el resto del carrusel —
+**«que sean ilustradas, con el trazado que ya se sabe y se conoce»**. Si mañana
+devuelve la Cumpleaños 2, lo más probable es que sea por lo mismo (ahí el adorno
+también es doodle, pero el mock del post es un elemento gráfico grande que no
+había en la slide aprobada).
+
+**Nada más que hacer hoy.** El repo está al día (`c6757c4`), las 5 piezas están
+en sus carpetas del Drive con el mismo enlace de siempre, y los pendientes de
+proceso siguen siendo los cuatro de la entrada de la ronda 13 (la ST 03-09 del
+cumpleaños, los nombres con fechas viejas, el duplicado «…4 trio.png» y la
+pregunta sin responder de `FEED!H16`).
+
+---
+
 ## 2026-09-04 · Eli (Windows) — BETWEEN ronda 13: el adorno pasa a ilustración
 
 *(Quinta sesión del día. La ronda 12 está en la entrada de más abajo.)*

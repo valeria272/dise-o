@@ -1,6 +1,6 @@
 {
   "_que_es": "Registro de la última vez que se revisó el Drive con /al-dia. No editar a mano.",
-  "ultima_revision": "2026-09-04",
+  "ultima_revision": "2026-09-05",
   "por_marca": {
     "ebema": {
       "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
@@ -19,8 +19,8 @@
       "ultimo_hallazgo": "MOVIMIENTO NUEVO, pero de la CM, no de diseno: Constanza OLIVARES (CM) ordeno el 03-09 14:35Z dentro de '9. SEPTIEMBRE/FEED' de Diego (1ieEFVvmJNPTl1UoKpnzknZNs772tB7Vp) tres carpetas de carrusel: 'carrusel hilos' (4 PNG 'HILOS UNEN' de Diego, 27-08), 'carrusel frizz' (5 PNG 'INV O VER' de Diego, 28-08) y 'carrusel olix canas' > 'para diseñar' (1KJ2rAiI6APJfgHJJE2C1D32qCMi8kkZZ) = UN BRIEF NUEVO SIN DISENAR: 'HANDBOOK OLIX_v5.ai' (385 MB, de Raimundo / DIAZ DISENO, mesa 1920x1080, fuentes Bebas Neue Pro Bold + Helvetica Neue + Onest + Felonia, 13 Pantones), su Report.txt, el PDF del handbook, 'FICHA TECNICA RETOCA RAICES.pdf' y 3 'touchup jpg-01..03'. Es material del PROVEEDOR (Olix), no del sistema Selfie: sirve de packshot/ficha, no de gramatica. La grilla Selfie sept se modifico 18:15Z. Constanza LIZANA sigue con cero archivos desde el 28-08 (8 dias). Sigue abierto quien firma Selfie."
     },
     "hilton": {
-      "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
-      "ultimo_hallazgo": "== DT == Eli subio el 03-09 22:10Z, en S2/DT, la carpeta 'KV FIESTAS PATRIAS DT' (1r616S-8tmOk__uF4Vkn7lyHakM9ZfeQr) con TRES opciones de KV (OP 1 / OP2 / OP3), cada una con 2 laminas 'C1 ER N°1' y 'C1 ER N°2 FIESTAS PATRIAS KV n' (6 PNG, 6-12 MB). Es la reformulacion del carrusel F 'Escapada Romantica Fiestas Patrias' que estaba EN REVISION: el cliente va a elegir KV. La grilla DT se toco de nuevo (20:28Z, sin cambio despues de la instantanea). == QB == Eli abrio S2/QB/STS (1tT_zUSoxQIjSkgFIEi3p94aSNrBTfKjO) y subio 5 historias: 'ST n°1, 3, 4, 5, 7 S2 QB' (03-09 18:29-19:32Z). Faltan la 2 y la 6. La grilla QB se modifico 22:02Z (Sebastian Serrano) y la de PISO18 22:19Z (Carlos). == Between == grilla xlsx re-subida 22:25Z; sin piezas nuevas. Eli tambien toco 'Double Tree 25 jul 25-94.jpg' en 'BETWEEN 25 JULIO MODELOS' (foto de julio 2025, re-guardada). Informes de agosto de DT/QB/Between en '8. AGOSTO/DATA MENSUAL' (Carlos + Ignacio Retamal): reporte, no diseno. Planificacion Performance Hilton sept modificada 23:02Z (Ignacio). Casablanca/Between: los comentarios del portal no se leen por aca."
+      "revisado": "2026-09-05 (manana -- pasada de /abrir between)",
+      "ultimo_hallazgo": "BETWEEN: la grilla xlsx (1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY, 65,44 MB) se modifico el 04-09 20:49:49Z. Diff completo contra la copia de las 18:24Z (bw-0904b.xlsx): SOLO DOS CELDAS. (1) FEED!J16 'Ella hablo / Ella escucho' (16-09): EN CAMBIOS -> CORREGIDO -- la grilla se puso al dia con la aprobacion de Eli de la ronda 12; no es trabajo nuevo. (2) STORIES!I16 'ST Emergencia Between' (09-09): REVISAR CONTENIDO -> EN CAMBIOS, pero SIN comentario nuevo (I14 e I15 identicas) y el cambio ocurrio a las 20:49Z, ANTES de que la ronda 13 subiera la pieza rehecha (21:31Z): apunta al render viejo. Los dos comentarios de I15 ya estan aplicados (croissant+muffin en la ronda 13, rediagramacion antes). comments1.xml/comments2.xml SIN comentarios nativos nuevos (el unico byte que cambio es el roundtripDataSignature de Google). Las 5 piezas de la ronda 13 en Drive (mod 21:30-21:31Z) tienen CERO comentarios. Nada de Eli ni de Scarlette despues de las 21:35Z. El editable 'Editable cumpleanos BW' (1kjIL3VuLnKH0ED3h8lx9kQ4GPUI5XHVF, 2 EPS del 04-09 18:22Z) ya esta bajado en raw/hilton/between/editable-cumple. == Fuera de Between == Eli subio 'ST n°6 S2.mp4' a QB/STS (04-09 20:46Z): con eso QB S2 queda 6 de 7 (falta la n°2). Y abrio 'C2 ER FIESTAS PATRIAS' (DT) con 2 KV mas y 'Cartel MC 2026 ALGARROBAL' (Mas Center, cartel 7x5,5 m + 3,5x2,75 m, .ai/.pdf/.tif). Copia nueva de la grilla: scratchpad de esta sesion, bw-0905.xlsx."
     },
     "tierra-calma": {
       "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
@@ -31,8 +31,8 @@
       "ultimo_hallazgo": "Briefs septiembre en pie; sin cambios de sistema"
     },
     "myzoo": {
-      "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
-      "ultimo_hallazgo": "GRILLA DE OCTUBRE EN MARCHA: 'MyZoo | Grilla Octubre 2026' (1cYmSebFK-MMVECzL2I6Nc5jWwk7Y4PNx9-71rCePMcI, de Nicolas Avila) se modifico el 04-09 04:10Z, y la de septiembre (Scarlette) 03:05Z. Sin leer. MyZoo sigue sin manual ni kit; Paulina no subio nada nuevo (c_partners del 02-09 sigue siendo lo ultimo)."
+      "revisado": "2026-09-05 (manana -- pasada de /abrir between)",
+      "ultimo_hallazgo": "'MyZoo | Grilla Octubre 2026' (1cYmSebFK-MMVECzL2I6Nc5jWwk7Y4PNx9-71rCePMcI, Nicolas Avila) se volvio a modificar el 05-09 05:04Z: es lo UNICO que se movio en toda la agencia desde las 21:35Z del 04-09. Sin leer. MyZoo sigue sin manual ni kit."
     },
     "abakos": {
       "revisado": "2026-08-27",
@@ -77,10 +77,10 @@
     "sebastian.serrano@copywriters.cl"
   ],
   "_notas_de_esta_revision": [
-    "Pasada del 04-09 (manana) desde /abrir sin marca. El pull no trajo nada: rama al dia; 0 notas nuevas de memoria.",
-    "Diego Aguilar y Constanza Lizana: CERO archivos nuevos desde la pasada anterior.",
-    "El conector de Drive devuelve paginas de 5 aunque se pida 50: hay que seguir el nextPageToken siempre.",
-    "Los comentarios de Nueva Urbe se leyeron con scripts/drive-comentarios.py porque esa carpeta la subio el token del estudio; Casablanca sigue ilegible por scope.",
-    "⚠️ Al momento de la pasada hay 21 laminas del manual de Landera + base.css MODIFICADAS SIN COMMIT (07:45-07:47 hora local, justo antes de esta sesion) y un base.css.bak sin versionar: alguien esta trabajando Landera en paralelo. No tocar; /cierre landera tiene que commitearlas."
+    "Pasada del 05-09 desde /abrir between, acotada a Between. git pull: rama al dia (nada nuevo de los demas); 0 notas nuevas de memoria.",
+    "La ronda nueva se busco por DIFF del xlsx (bw-0904b.xlsx 18:24Z -> bw-0905.xlsx) y por diff de comments1/2.xml, no leyendo celdas.",
+    "VEREDICTO: NO hay ronda 14. Los dos cambios de la grilla son de ESTADO, no de contenido, y ninguno pide trabajo nuevo.",
+    "Las 5 piezas de la ronda 13 estan en Drive sin un solo comentario: sigue en pie lo del cierre de ayer -- 'no aprobada' no es 'rechazada', hay que ESPERAR a Eli.",
+    "El conector de Drive devuelve paginas de 5 aunque se pida 50: seguir siempre el nextPageToken."
   ]
 }

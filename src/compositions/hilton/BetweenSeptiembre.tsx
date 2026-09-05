@@ -555,7 +555,7 @@ export const Cumple1: React.FC = () => (
           La foto vuelve a ser sólo foto y el adorno va ENCIMA, en el beige de
           marca. Un doodle no compite con la fotografía porque no pretende ser
           parte de ella. */}
-    <FotoFondo src={F + 'cumple-r13-1.jpg'} oscurecer={0.08} />
+    <FotoFondo src={F + 'cumple-r14-1.jpg'} oscurecer={0.08} />
     {/* ⛔ RONDA 11 — la G1 va SIN doodles, y es la misma razón que ya escribió la
         ronda 10 pero ahora sí se cumple: los papelitos de cumpleaños están
         DENTRO de la escena, sobre la mesa, que es lo que pidió el cliente.
@@ -722,7 +722,7 @@ export const Cumple1: React.FC = () => (
  */
 export const Cumple2: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={F + 'cumple-r13-2.jpg'} oscurecer={0.2} />
+    <FotoFondo src={F + 'cumple-r14-2.jpg'} oscurecer={0.2} />
     <Globos
       posiciones={[
         /* Las posiciones son las del editable de Eli —el par abre por el flanco
@@ -766,10 +766,21 @@ export const Cumple2: React.FC = () => (
            el mock enseña la gráfica de la portada y las burbujas explican la
            letra chica encima. Con la misma placa desenfocada del fondo la
            ventana quedaba una mancha marrón que no decía nada, y el mock
-           perdía el sentido de ser un post. */
+           perdía el sentido de ser un post.
+
+           ⛔⛔ RONDA 14 — ACÁ ESTABAN LOS «PLÁTANOS DORADOS». Esta ventana se
+           quedó apuntando a `cumple-r12-1.jpg` cuando la ronda 13 cambió el
+           fondo de la G1 a `cumple-r13-1.jpg`. O sea: la ronda 13 sacó las
+           cintas doradas de la slide 1 y las dejó vivas DENTRO del post de la
+           slide 2, que es donde Eli las vio al día siguiente.
+
+           La regla que queda: **una foto de pieza puede estar usada en más de un
+           sitio**. Cuando se cambia, hay que hacer el `grep` del nombre viejo
+           antes de dar la ronda por cerrada — el mock de post enseña otra pieza
+           adentro y no se actualiza solo. */
         foto={
           <Img
-            src={staticFile(F + 'cumple-r12-1.jpg')}
+            src={staticFile(F + 'cumple-r14-1.jpg')}
             style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 40%'}}
           />
         }

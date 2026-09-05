@@ -45,6 +45,13 @@ else
     && ok "Sin venv, pero hay Python del sistema con PIL+numpy ($PY_VENV)" \
     || warn "Sin ~/copylab-venv ni Python con PIL+numpy — ver docs/ONBOARDING-DISENADORES.md paso 3"
 fi
+
+# ⭐ scipy es lo que usan las comprobaciones del motor de QA. Si falta, el motor
+# NO se cae: convierte cada regla en un aviso «la comprobación reventó» y la
+# compuerta pasa a ser decorativa. Un fallo silencioso, como el de Brushwell.
+if [ -n "$PY_VENV" ]; then
+  "$PY_VENV" -c "import scipy" >/dev/null 2>&1     && ok "scipy — el motor de QA puede evaluar de verdad"     || warn "Falta scipy: qa/motor.py daría avisos en vez de revisar. Instálalo con: $PY_VENV -m pip install scipy"
+fi
 case "$ROOT" in
   */Desktop/*|*/Documents/*|*/Downloads/*|*/Escritorio/*|*/Documentos/*|*/Descargas/*|*OneDrive*)
     warn "El repo está dentro de una carpeta que iCloud u OneDrive sincroniza."

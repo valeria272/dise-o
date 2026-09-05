@@ -61,7 +61,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from between_retoque import luz_envolvente  # noqa: E402
+from between_retoque import apetitoso, luz_envolvente, vivo  # noqa: E402
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -94,7 +94,25 @@ CAJA = (120, 655, 1965, 1435)
 #: ⚠️ El PISO es la línea del piso VISIBLE del compartimento (1230), no el canto
 #: inferior del interior (1259). Entre las dos corre el riel de latón del marco:
 #: apoyando en 1259 los tres productos quedaban medio hundidos detrás de él.
-PISO = 1230
+#:
+#: ⛔⛔ RONDA 14 — 1230 ESTABA MAL, y es la razón de que los tres siguieran
+#: flotando después de la ronda 13. Medido de nuevo, por columnas, buscando dónde
+#: sube la calidez al pasar de la pared crema al piso de madera:
+#:
+#:     x        350   520   700   900  1030  1180  1400  1540  1700
+#:     pared→piso  1251  1243  1244  1251  1244  1244  1251  1244  1244
+#:
+#: o sea el fondo del piso está en **y≈1248**, el piso de madera llega hasta el
+#: canto del riel de latón en **y≈1288**, y un objeto apoyado a media profundidad
+#: tiene su base cerca de **1272**. Con PISO=1230 y APOYO=18 la base caía en
+#: 1212: **36 px POR ENCIMA del fondo del piso**. Los productos no estaban
+#: apoyados en ningún sitio — estaban colgados contra la pared del fondo, y por
+#: eso ninguna sombra de contacto los podía salvar.
+#:
+#: ⭐ La lección, que es la de siempre y me la salté: la línea de base **se mide
+#: sobre el contenedor**, no se estima. Y se comprueba mirando el resultado al
+#: 300 %, no la cifra.
+PISO = 1272
 TECHO = 762
 COMPARTIMENTOS = [(247, 768), (798, 1265), (1295, 1783)]
 
@@ -106,18 +124,36 @@ COMPARTIMENTOS = [(247, 768), (798, 1265), (1295, 1783)]
 #: o el 88 % del alto, la que resulte más chica. El vaso es el caso que lo pide:
 #: a 90 % del ancho (469 px) mediría 688 de alto y el compartimento sólo tiene
 #: 497 — se saldría por arriba.
+#: ⭐ RONDA 14 — los tres pasan a la versión `-limpio`: el recorte del vaso
+#: arrastraba 160 px de la MESA de la sesión original pegados bajo la base (ver
+#: `scripts/between-recortes-limpiar.py`), y dentro de una vitrina de vidrio eso
+#: se leía como una base rota y sucia.
 PRODUCTOS = [
-    ("vaso-248.png", 0, "vaso To Go aprobado"),
-    ("croissant-jamon-queso.png", 1, "croissant jamón queso (salado)"),
-    ("muffin-chocolate.png", 2, "muffin de chocolate (dulce)"),
+    ("vaso-248-limpio.png", 0, "vaso To Go aprobado"),
+    ("croissant-jamon-queso-limpio.png", 1, "croissant jamón queso (salado)"),
+    ("muffin-chocolate-limpio.png", 2, "muffin de chocolate (dulce)"),
 ]
 #: ⚠️ Al 0,90/0,88 los tres tocaban el canto superior y su base caía justo sobre
 #: el riel inferior del marco, así que la sombra de contacto quedaba escondida
 #: detrás de él y los productos volvían a leerse flotando. Con 0,86/0,80 y la base
 #: 18 px por encima del piso, la sombra se ve y hay aire arriba.
-ANCHO_MAX, ALTO_MAX = 0.86, 0.80
-#: cuánto se levanta la base respecto del piso, para que la sombra sea visible
-APOYO = 18
+#:
+#: ⭐ RONDA 14 — Eli: «vuelve a hacer lo de TOGO, MUFFIN CHOCOLATE + CROISANT
+#: QUESO JAMÓN, **para que se vea apetitoso en caso de romper**».
+#: Los tres productos eran los correctos desde la ronda 13; lo que fallaba era
+#: que se veían CHICOS y APAGADOS dentro de sus huecos. Sube a 0,95/0,90, que
+#: con el apoyo de 18 px deja igual 29 px de aire bajo el techo del hueco
+#: (hueco 468 · producto máx. 421 · base en 1212 · techo en 762).
+#: ⚠️ Con el piso corregido el hueco pasa de 468 a 510 px de alto, así que 0,86
+#: ya da un producto MÁS grande que el 0,90 anterior (438 contra 421).
+#: ⚠️ 0,95 dejaba el pirotín del muffin cruzando el tabique de su hueco.
+ANCHO_MAX, ALTO_MAX = 0.90, 0.86
+#: ⭐ RONDA 14 — APOYO vuelve a 0. Levantar el objeto 18 px «para que se vea la
+#: sombra» es exactamente lo que produce un objeto flotando: la sombra se ve,
+#: sí, pero separada del pie. Con la base EN el piso, la sombra de contacto se
+#: dibuja bajo el propio objeto y hacia adelante, sobre los 16 px de madera que
+#: quedan entre la base y el riel.
+APOYO = 0
 
 
 def campo_de_luz(fondo, caja, suavizado=90):
@@ -129,7 +165,13 @@ def campo_de_luz(fondo, caja, suavizado=90):
     z = np.asarray(Image.fromarray(z.astype(np.uint8))
                    .filter(ImageFilter.GaussianBlur(suavizado))).astype(np.float32)
     lum = z.mean(axis=2)
-    return np.clip(lum / max(np.percentile(lum, 92), 1.0), 0.55, 1.0)
+    #: ⛔ RONDA 14 — el suelo estaba en 0,55 y el compartimento del muffin es el
+    #: más en penumbra de los tres: multiplicado por 0,55 el chocolate se iba a
+    #: NEGRO y el producto quedaba una mancha, que es lo contrario de
+    #: «apetitoso». El campo de luz tiene que METER el objeto en la escena, no
+    #: apagarlo: 0,80 conserva la diferencia entre compartimentos sin matar el
+    #: dibujo del producto.
+    return np.clip(lum / max(np.percentile(lum, 92), 1.0), 0.80, 1.0)
 
 
 def sombra_de_contacto(base, cx, base_y, ancho, densidad=0.42):
@@ -137,10 +179,14 @@ def sombra_de_contacto(base, cx, base_y, ancho, densidad=0.42):
     y suave levanta el objeto del piso, que es justo lo que hay que evitar."""
     capa = Image.new("RGBA", base.size, (0, 0, 0, 0))
     d = ImageDraw.Draw(capa)
-    rx, ry = int(ancho * 0.46), max(7, int(ancho * 0.085))
-    d.ellipse([cx - rx, base_y - ry, cx + rx, base_y + ry],
+    #: ⭐ RONDA 14 — la elipse se estrecha (0,46 → 0,40 del ancho) y se APLASTA
+    #: (0,085 → 0,055), y su centro baja media altura para que asome por delante
+    #: del objeto en vez de rodearlo. Una sombra ancha y redonda alrededor del
+    #: pie es un halo, y un halo levanta el objeto del piso.
+    rx, ry = int(ancho * 0.40), max(5, int(ancho * 0.055))
+    d.ellipse([cx - rx, base_y - ry // 2, cx + rx, base_y + ry + ry // 2],
               fill=(38, 26, 18, int(255 * densidad)))
-    capa = capa.filter(ImageFilter.GaussianBlur(ancho * 0.055))
+    capa = capa.filter(ImageFilter.GaussianBlur(ancho * 0.035))
     out = base.convert("RGBA")
     out.alpha_composite(capa)
     return out.convert("RGB")
@@ -185,6 +231,22 @@ def arma_vitrina():
         px, py = cx - ancho // 2, base_y - alto
         caja = (px, py, px + ancho, py + alto)
 
+        # 0 · ⭐ RONDA 14 — el REVELADO del producto, antes de meterlo en la
+        #     vitrina. Es el paso que faltaba: los recortes venían crudos de la
+        #     sesión del cliente —que está subexpuesta— y la vitrina sólo los
+        #     oscurecía más. `apetitoso()` es el mismo revelado que usan las
+        #     piezas de comida de la marca (claridad, cuerpo y calor con freno).
+        #     ⚠️ El vaso NO se retoca: es envase, no comida, y ya está aprobado.
+        #        Subirle la claridad le ensucia el kraft y le mueve el logotipo
+        #        impreso — que es el defecto de la ronda 12 en el cumpleaños.
+        if not archivo.startswith("vaso-"):
+            alfa_orig = np.asarray(prod)[..., 3].copy()
+            rgb = Image.fromarray(np.asarray(prod)[..., :3])
+            mascara = (alfa_orig.astype(np.float32) / 255.0)
+            rgb = apetitoso(rgb, mascara=mascara, claridad=0.50, cuerpo=1.08, calor=4.0)
+            rgb = vivo(rgb, vibrancia=0.16, mascara=mascara)
+            prod = Image.fromarray(np.dstack([np.asarray(rgb), alfa_orig]), "RGBA")
+
         # 1 · el campo de luz de SU compartimento
         luz = campo_de_luz(vit, caja)
         rgba = np.asarray(prod).astype(np.float32)
@@ -192,7 +254,31 @@ def arma_vitrina():
         prod = Image.fromarray(np.clip(rgba, 0, 255).astype(np.uint8), "RGBA")
 
         # 2 · la sombra de contacto, ANTES del objeto
-        vit = sombra_de_contacto(vit, cx, base_y, ancho, densidad=0.58)
+        vit = sombra_de_contacto(vit, cx, base_y, ancho, densidad=0.66)
+
+        # 2 bis · ⭐ RONDA 14 — LA SOMBRA PROYECTADA EN LA PARED DEL FONDO.
+        #     Con el piso corregido los tres ya apoyan, pero seguían leyéndose
+        #     pegados: este hueco se ve **de frente**, o sea que el piso visible
+        #     es una tira de 40 px en un compartimento de 510 y no alcanza a
+        #     contar la profundidad. Lo que sí la cuenta es la sombra que el
+        #     objeto tira sobre la pared que tiene detrás — la vitrina está
+        #     iluminada desde arriba a la izquierda (mirar el filete de latón),
+        #     así que va corrida a la derecha y hacia arriba, corta y difusa.
+        #     Sin ella un objeto dentro de una caja de vidrio es una calcomanía
+        #     sobre el fondo.
+        alfa_p = np.asarray(prod)[..., 3].astype(np.float32) / 255.0
+        sx, sy = px + int(ancho * 0.055), py - int(alto * 0.018)
+        capa = np.zeros((vit.size[1], vit.size[0]), np.float32)
+        y0s, x0s = max(0, sy), max(0, sx)
+        y1s, x1s = min(vit.size[1], sy + alto), min(vit.size[0], sx + ancho)
+        if y1s > y0s and x1s > x0s:
+            capa[y0s:y1s, x0s:x1s] = alfa_p[y0s - sy:y1s - sy, x0s - sx:x1s - sx]
+            capa = np.asarray(Image.fromarray((capa * 255).astype(np.uint8))
+                              .filter(ImageFilter.GaussianBlur(ancho * 0.075))
+                              ).astype(np.float32) / 255.0
+            z = np.asarray(vit).astype(np.float32)
+            vit = Image.fromarray(
+                np.clip(z * (1.0 - 0.30 * capa[..., None]), 0, 255).astype(np.uint8))
 
         # 3 · el objeto, con la luz del fondo mojándole el canto
         trozo = vit.crop(caja)

@@ -3303,3 +3303,202 @@ slide 4 en la ronda 12, y ya son dos veces:
 
 Y la altura también se elige midiendo: de y=1250 a 1325 el cartón libre mide
 183 px; más abajo los dedos lo reducen a 90. El logo va en la banda ancha.
+
+---
+
+# ⭐⭐ RONDA 14 — lo que aprendimos el 05-09-2026
+
+Cuatro correcciones de Eli sobre las piezas de la ronda 13. Las cuatro tenían la
+misma forma: **la ronda anterior había hecho lo correcto sobre una medida
+equivocada.** Ninguna era de criterio; las cuatro eran de medición.
+
+## ⭐⭐⭐ 1. Una foto de pieza puede estar usada en MÁS DE UN SITIO
+
+> «debes quitar esos **plátanos dorados** del carrusel de cumpleaños»
+
+La ronda 13 sacó las cintas doradas de la foto de la slide 1 y las dio por
+muertas. Pero la **ventana del mock de Instagram de la slide 2** seguía apuntando
+a `cumple-r12-1.jpg` — la foto anterior, la que las tiene sembradas. O sea que
+las serpentinas plátano siguieron publicadas un día entero *dentro del post* de
+la slide 2, mientras la slide 1 ya estaba limpia.
+
+> **La regla: cuando se cambia el fondo de una pieza, se hace `grep` del nombre
+> viejo en `src/` antes de dar la ronda por cerrada.** Un mock de post enseña
+> otra pieza adentro y no se actualiza solo.
+
+## ⭐⭐ 2. El adorno realista sí se puede — si el MATERIAL lo aguanta
+
+La ronda 12 fracasó con cintas doradas y el manual sacó la conclusión de que el
+adorno de esta marca tiene que ser ilustración. **Estaba media conclusión.** Lo
+que fallaba no era «querer ser realista», era que la cinta la dibujaba yo con
+`ImageDraw`: 40 px de forma plana contra un croissant de 900 px hecho con un
+50 mm.
+
+| | ronda 12 | ronda 14 |
+|---|---|---|
+| origen | `ImageDraw` | vector de 4.998×3.540 elegido por Eli |
+| volumen | un degradado + una veta | cinta con vuelta, cara interior y exterior, especular propia |
+| veredicto | «parece un plátano» | ✅ |
+
+El vector es de Freepik/Magnific, **recurso 177837523**, y se baja con la API que
+ya pagamos (`/v1/resources/<id>/download` → zip con `.eps` y `.jpg` de 5.000 px).
+`scripts/between-confeti-recortar.py` lo trocea en 27 serpentinas con alfa, que
+viven en `public/assets/hilton/between/recursos/confeti-oro/`.
+
+> **Antes de dibujar un adorno, buscar si existe el vector.** Un ilustrador ya lo
+> hizo mejor, y el plan de Magnific lo incluye.
+
+⚠️ Y los doodles de pincel de Eli **se quedan**: la slide 1 se aprobó con ellos.
+El confeti dorado va sobre la mesa, que es otra zona y otro registro.
+
+## ⛔⛔ 3. Un objeto agregado se armoniza contra el ILUMINANTE, no contra la superficie
+
+Este error costó una pasada y vale para **cualquier** montaje de la marca.
+
+Sembré las serpentinas y las armonicé multiplicándolas por el balance de color
+**local de la madera** (1,38 / 1,00 / 0,67). Salieron **naranja mandarina**, de
+plástico; y la que caía contra el muro vegetal salió verde-amarilla.
+
+**La madera es naranja porque la madera ES naranja, no porque la luz lo sea.** El
+iluminante se mide sobre un neutro iluminado de la propia toma — en esta escena,
+el anillo blanco de la base del vaso:
+
+    [182,1  185,2  190,7]  ->  balance 0,983 / 1,000 / 1,030
+
+o sea luz prácticamente neutra. Corregido contra eso, el oro se queda oro.
+
+> **Un objeto agregado toma el color de la LUZ de la escena, no el de la
+> superficie sobre la que cae.**
+
+Y dos corolarios medidos en la misma pasada:
+
+- **La sombra de contacto de un papelito es pequeña.** A radio 9 y fuerza 0,34
+  dejaba nubarrones grises del tamaño de un plato: más sombra que la que proyecta
+  el vaso entero. Radio 5 y fuerza 0,20.
+- ⛔ **Nada de adornos en el aire contra el muro vegetal.** Está muy desenfocado y
+  muy oscuro: con el desenfoque que le corresponde, la serpentina deja de leerse
+  como cinta y queda una mancha. El confeti va **apoyado en la mesa**, que además
+  es lo que pidió el cliente literalmente en `FEED!E15`.
+
+## ⭐⭐ 4. Una pieza se juzga al TAMAÑO EN QUE SE PUBLICA
+
+Las serpentinas quedaron primero a 170 px sobre 2.250 (7,5 % del ancho). Al 100 %
+se veían bien. Reducida la pieza a los **430 px que mide en el feed de un
+teléfono**, eran motas: la corrección que pidió Eli no se leía. Subidas un 25 %
+se reconocen como serpentinas y siguen bajo el 9 % del ancho.
+
+> **Antes de entregar, mirar la pieza a 430 px de ancho.** Es el tamaño real.
+
+## ⭐⭐⭐ 5. EL VASO DE LA PORTADA TO GO: la causa raíz eran 41 px de medición
+
+Tercera ronda seguida de reclamo sobre el mismo logotipo:
+
+> ronda 12 «el logo se ve poco centrado» · ronda 13 idem ·
+> **ronda 14 «el logo del vaso debes centrarlo según el vaso. Arréglalo.»**
+
+Y no era de centrado. La constante `VASO_CUERPO` decía que el cuerpo del vaso va
+de x=800 a x=1040 —240 px— y el cuerpo real, medido a la altura del logotipo,
+va de **825 a 1024: 199 px**. Todo lo demás se derivaba de ahí:
+
+| ronda | ancho supuesto | logo | ratio REAL sobre 199 | qué se veía |
+|---|---:|---:|---:|---|
+| 12 | 240 | 206 | **1,03** | el logo más ancho que el vaso |
+| 13 | «cara visible» 183 | 175 | **0,88** centrado en 932 | la N pegada al canto derecho (5 px de aire contra 19) |
+| 14 | **199 (825-1024)** | **171** | **0,86** centrado en 924 | ✅ 14 px de aire a cada lado |
+
+**Cómo se mide el cuerpo del vaso, y cómo NO.** La máscara de cartón
+(`B/R < 0,58 & R > 115`) hay que correrla sobre la generación **antes de
+estampar**: con el logotipo puesto, la tinta oscura corta las corridas y devuelve
+31 px de ancho. Y se toma la corrida contigua más larga **fila a fila**, porque
+los dedos van comiendo el cuerpo hacia abajo (825 → 875 en 40 px de caída).
+
+> **Y el logotipo va en el EJE del cuerpo aunque una mano le tape una letra.**
+> Achicarlo para que quepa rompe el tamaño de marca (ronda 13) y correrlo lo saca
+> del eje (ronda 12). Un logotipo impreso que una mano tapa en parte es lo que
+> pasa de verdad al sostener un vaso; lo que no puede pasar es que se lea
+> descentrado. Con la medida buena la «B» pasa de 24 % a 52 % a la vista.
+
+## ⭐⭐ 6. Igualar la mediana con gamma DEJA LA PIEZA LECHOSA
+
+> «El slide 4 se ve extraño, no tiene coherencia del color de las demás, tiene
+>  que ser la misma foto pero **sin esa edición**»
+
+La ronda 13 igualó el tono de la slide 4 al de sus hermanas y la dejó peor. Dos
+defectos, los dos del método:
+
+1. **el gamma que sube la mediana levanta los negros con todo lo demás.** La
+   escena es un interior oscuro; al subirle el pie, el negro se volvió gris y la
+   pieza quedó lechosa. Sus hermanas son tomas de luz de día con el negro en su
+   sitio, así que igualar la mediana la dejó **más lejos** de ellas;
+2. y se pasó de largo con la saturación: la dejó en **37,3**, por debajo de las
+   dos hermanas (40,9 y 43,6). Con el pan lavado, la comida deja de verse
+   apetitosa.
+
+| | mediana | calidez | saturación |
+|---|---:|---:|---:|
+| slide 2 (intacta) | 99 | 23,7 | 40,9 |
+| slide 3 (intacta) | 102 | 34,2 | 43,6 |
+| slide 4 · ronda 12 | 87 | 55,3 | 57,8 ← «quemada» |
+| slide 4 · ronda 13 | 95 | 24,6 | 37,3 ← «extraña» |
+| **slide 4 · ronda 14** | **100** | **27,3** | **40,0** ✅ dentro de la familia |
+
+> **La regla: punto negro ANTES del gamma.** Así la mediana sube por los MEDIOS
+> —que es el revelado de esta marca— y el negro se queda donde estaba.
+
+Y una de calibración: **los objetivos se fijan contra el RENDER, no contra la
+foto.** La composición mete encima el titular, la script, la caja del precio y el
+pie legal, y eso corre las tres cifras unos −5 / −4,4 / −6,7. A la foto hay que
+pedirle el objetivo **más** ese desplazamiento.
+
+## ⭐⭐⭐ 7. LA VITRINA DE EMERGENCIA: la línea de base se MIDE sobre el contenedor
+
+> «vuelve a hacer lo de TOGO, MUFFIN CHOCOLATE + CROISANT QUESO JAMÓN, **para
+>  que se vea apetitoso en caso de romper**»
+
+Tres defectos, y el primero explica por qué la ronda 13 no arregló nada aunque
+aplicó el recetario de montaje completo:
+
+**a) El piso estaba mal medido y los tres colgaban.** `PISO` valía 1230 «la línea
+del piso visible». Medido de nuevo por columnas, buscando dónde sube la calidez
+al pasar de la pared crema al piso de madera:
+
+    x            350   520   700   900  1030  1180  1400  1540  1700
+    pared->piso 1251  1243  1244  1251  1244  1244  1251  1244  1244
+
+El fondo del piso está en **y≈1248** y el canto del riel de latón en **y≈1288**;
+un objeto apoyado a media profundidad tiene su base en **≈1272**. Con PISO=1230 y
+APOYO=18 la base caía en 1212: **36 px por encima del fondo del piso**. No
+estaban apoyados en ningún sitio, y por eso ninguna sombra de contacto los podía
+salvar.
+
+> **La línea de base se mide sobre el contenedor y se comprueba mirando el
+> resultado al 300 %, no la cifra.** Y `APOYO` va en 0: levantar el objeto «para
+> que se vea la sombra» es exactamente lo que produce un objeto flotando.
+
+**b) ⛔⛔ El recorte del vaso no era el vaso.** `vaso-248.png` traía **160 px de
+la MESA de la sesión original** pegados bajo la base: el grabCut se llevó la
+superficie de apoyo junto con el objeto. Dentro de una vitrina de vidrio se leía
+como una base rota y sucia. Lo limpia `scripts/between-recortes-limpiar.py`.
+
+> **Un recorte se revisa por su CANTO INFERIOR, con zoom, antes de montarlo.** La
+> zona de apoyo es justo donde el segmentador se confunde, porque el objeto y su
+> sombra comparten borde.
+
+**c) El campo de luz APAGABA el producto.** El suelo del gradiente estaba en 0,55
+y el compartimento del muffin es el más en penumbra: multiplicado por 0,55 el
+chocolate se iba a negro y quedaba una mancha. Sube a **0,80**, y además los
+productos pasan por `apetitoso()` antes de entrar — venían crudos de una sesión
+subexpuesta y la vitrina sólo los oscurecía más.
+
+> **El campo de luz mete el objeto en la escena; no lo apaga.** Y el producto se
+> revela ANTES de montarlo. ⚠️ El envase no: al vaso no se le sube la claridad,
+> que le ensucia el kraft y le mueve el logotipo impreso.
+
+**d) La sombra proyectada en la PARED del fondo.** Con el piso corregido los tres
+ya apoyaban y seguían leyéndose pegados: este hueco se ve **de frente**, así que
+el piso visible es una tira de 40 px en un compartimento de 510 y no alcanza a
+contar la profundidad. Lo que sí la cuenta es la sombra sobre la pared de atrás —
+corrida a la derecha y hacia arriba, corta y difusa, al 30 %.
+
+> **En un nicho frontal, la sombra que vende la profundidad es la de la PARED, no
+> la del piso.**

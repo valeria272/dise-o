@@ -85,21 +85,51 @@ SALIDA = FOTOS / "togo-portada-r12.jpg"
 VENTANA = (360, 1116, 2880, 3600)
 SALIDA_PX = (2250, 2812)
 
-#: el vaso en la pieza final, medido: cuerpo x 800-1040 · y 1227-1465
-VASO_CUERPO = (800, 1227, 1040, 1465)
-#: ⭐ RONDA 13 — Eli: «el logo se ve poco centrado. Tienes que mejorar el logo
-#: del vaso TOGO». Y tenía razón, medido: el logo iba a 206 px (el 0,86 del ancho
-#: de la SILUETA) centrado en x=920, o sea de 817 a 1023 — pero la CARA VISIBLE
-#: del cartón en esa banda va de 840 a 1023, así que los primeros 23 px caían
-#: sobre el dedo, la máscara se los comía y la tinta que quedaba a la vista
-#: arrancaba en 840: descentrada 28 px hacia la derecha respecto del eje.
-#: Ahora el logo se mide y se centra sobre la CARA VISIBLE (840-1023, centro 932)
-#: y va a 175 px, que entra con holgura. Misma lección que la slide 4.
-LOGO_ANCHO = 175
-#: El centro sale de la misma medición: x=932 es el eje de la cara visible, e
-#: y=1288 cae en la banda más despejada (de y=1250 a 1325 el cartón libre mide
-#: 183 px; más abajo los dedos lo reducen a 90).
-LOGO_CENTRO = (932, 1288)
+#: el vaso en la pieza final. ⚠️ Esta caja estaba MAL MEDIDA y ése es el origen
+#: de tres rondas de reclamos por el logo: decía que el cuerpo va de x=800 a
+#: x=1040 (240 px) y el cuerpo real, medido a la altura del logotipo sobre la
+#: generación SIN estampar, va de **825 a 1024: 199 px**. Ver LOGO_ANCHO.
+VASO_CUERPO = (825, 1227, 1024, 1465)
+#: ⭐⭐ RONDA 14 — Eli, por tercera vez sobre este mismo logo: «el logo del vaso
+#: debes centrarlo según el vaso. Arréglalo.»
+#:
+#: ⛔⛔ LA CAUSA RAÍZ, y no era de centrado sino de MEDICIÓN. El manual fija el
+#: tamaño en 0,86 del ancho visible del vaso (§ «El TAMAÑO del logo sobre el
+#: vaso»), y las dos rondas anteriores aplicaron ese 0,86 sobre un ancho de
+#: cuerpo equivocado:
+#:
+#:   | ronda | ancho supuesto | logo | ratio REAL sobre 199 px | qué se veía |
+#:   |---|---:|---:|---:|---|
+#:   | 12 | 240 px | 206 | **1,03** | el logo era MÁS ANCHO que el vaso |
+#:   | 13 | «cara visible» 183 | 175 | **0,88**, centrado en 932 | la N pegada al canto derecho |
+#:   | 14 | **199 px, 825-1024** | **171** | **0,86**, centrado en 924 | ✅ |
+#:
+#: Con 175 px centrados en 932 la tinta iba de 844 a 1019 sobre un cuerpo que
+#: termina en 1024: **5 px de aire a la derecha contra 19 a la izquierda**. Eso
+#: es lo que Eli lee como «no está centrado según el vaso», y tiene razón.
+#:
+#: ⚠️ Cómo se midió, porque el barrido de píxeles cálidos NO sirve (el manual ya
+#: lo dice): se corre la máscara de cartón `B/R < 0,58 & R > 115` sobre la
+#: generación **antes de estampar** —con el logo puesto, la tinta oscura corta
+#: las corridas y devuelve 31 px— y se toma la corrida contigua más larga fila a
+#: fila. El cuerpo entero sólo está a la vista entre y=1245 y y=1270; de ahí para
+#: abajo los dedos se lo van comiendo (825 → 875 en 40 px de caída).
+LOGO_ANCHO = 171
+#: El centro es el EJE DEL CUERPO: (825 + 1024) / 2 = 924,5 → 924.
+#: Y la altura, medida columna a columna: el cartón libre empieza en y=1244 (el
+#: punto más bajo del canto de la tapa, en x=915) y el primer dedo entra en
+#: y=1271 por la izquierda. El logotipo mide 56 px de alto, así que NO cabe
+#: entero en la banda limpia: se apoya el borde superior en 1244 y el pie de la
+#: «B» queda por detrás del dedo.
+#:
+#: ⭐ Y eso es lo correcto, no un mal menor. Las dos salidas alternativas son
+#: peores y ya se probaron las dos: achicar el logo para que quepa rompe el
+#: tamaño de marca (fue la ronda 13, y es lo que Eli devolvió), y correrlo a la
+#: derecha lo saca del eje (fue la ronda 12). Un logotipo impreso que una mano
+#: tapa en parte es lo que pasa de verdad al sostener un vaso. Lo que NO puede
+#: pasar es que se lea descentrado.
+#: Contra la ronda 13, la «B» pasa de 24 % a 52 % a la vista.
+LOGO_CENTRO = (924, 1272)
 
 
 def estampa(base):

@@ -128,15 +128,45 @@ def estampa(base, centro, ancho, mascarar_carton=False, fuerza=0.95, absorcion=0
     return salida
 
 
-def iguala_tono(im, mediana, calidez, saturacion):
+def iguala_tono(im, mediana, calidez, saturacion, negros=0.008):
     """Lleva la pieza al tono de sus hermanas: mediana, calidez y saturación.
 
-    Las tres se corrigen por separado y en este orden, porque cada una desplaza
-    a la siguiente:
+    Las cuatro se corrigen por separado y en este orden, porque cada una
+    desplaza a la siguiente:
       1. **calidez** (R̄ − B̄): se reparte el exceso entre bajar el rojo y subir
          el azul, para no mover la luminancia;
       2. **saturación**: se acerca cada píxel a su gris en la proporción justa;
-      3. **mediana**: gamma, al final, que es lo único que toca la exposición.
+      3. ⭐ **punto negro** — el paso que faltaba, ver abajo;
+      4. **mediana**: gamma, al final, que es lo único que toca la exposición.
+
+    ⛔⛔ RONDA 14 — POR QUÉ LA RONDA 13 DEJÓ LA SLIDE «EXTRAÑA». Eli:
+
+        «El slide 4 se ve extraño, no tiene coherencia del color de las demás,
+         tiene que ser la misma foto pero sin esa edición.»
+
+    El orden de arriba iba directo del ajuste de saturación al **gamma**, y un
+    gamma que sube la mediana de 87 a 100 **levanta los negros con todo lo
+    demás**. La escena es un interior oscuro: al levantarle el pie, el negro del
+    fondo se volvió gris y la pieza quedó LECHOSA. Sus hermanas, en cambio, son
+    tomas de luz de día con el negro en su sitio. O sea que igualar la mediana
+    dejó la pieza **más lejos** de ellas, no más cerca — y eso es exactamente lo
+    que Eli está viendo.
+
+    Y la segunda mitad del defecto, medida sobre los renders:
+
+        pieza                 mediana   calidez   saturación
+        slide 2 (intacta)        99       23,7       40,9
+        slide 3 (intacta)       102       34,2       43,6
+        slide 4 · ronda 12       87       55,3       57,8   ← «quemada»
+        slide 4 · ronda 13       95       24,6      *37,3*  ← «extraña»
+
+    La ronda 13 se pasó de largo: dejó la saturación **por debajo de las dos
+    hermanas**. Con el pan lavado y el negro subido, la comida deja de verse
+    apetitosa, que es justo lo contrario de lo que tiene que hacer esta pieza.
+
+    ⭐ La corrección: se fija el punto negro ANTES del gamma. Así la mediana sube
+    por los MEDIOS —que es el revelado de esta marca, § «la foto de banco se
+    revela»— y el negro se queda donde estaba.
     """
     a = np.asarray(im.convert("RGB")).astype(np.float32)
 
@@ -153,6 +183,11 @@ def iguala_tono(im, mediana, calidez, saturacion):
         k = saturacion / sat
         a = gris + (a - gris) * k
         print(f"   saturación {sat:.1f} -> {saturacion:.1f} (x{k:.3f})")
+
+    #: ⭐ el punto negro, antes del gamma. Sin esto la pieza queda lechosa.
+    p1 = float(np.percentile(a, negros * 100))
+    a = np.clip(a - p1, 0, None) * (255.0 / max(1.0, 255.0 - p1))
+    print(f"   punto negro: percentil {negros * 100:.1f} estaba en {p1:.0f} -> 0")
 
     med = max(1.0, float(np.median(a)))
     gamma = float(np.clip(np.log(mediana / 255.0) / np.log(med / 255.0), 0.7, 1.3))
@@ -201,7 +236,15 @@ def main():
     #    madera, y contra los dos bodegones de luz de día se leía anaranjada y
     #    sobresaturada. «Quemada» es eso: no p95 alto, sino naranja saturado.
     #    Se igualan las tres cifras a la media de las slides 2 y 3.
-    im = iguala_tono(im, mediana=100, calidez=29.0, saturacion=44.0)
+    # ⭐ RONDA 14 — los objetivos se calibran CONTRA EL RENDER, no contra la
+    #    foto. La composición mete encima el titular, la script, la caja del
+    #    precio y el pie legal, y eso corre las tres cifras: la ronda 13 pidió
+    #    (100 · 29,0 · 44,0) y el PNG final midió (95 · 24,6 · 37,3), o sea
+    #    −5 de mediana, −4,4 de calidez y −6,7 de saturación.
+    #    El objetivo real es la media de las slides 2 y 3 —las que Eli mandó no
+    #    tocar— medida sobre sus renders: **100,5 · 29,0 · 42,3**. Sumado el
+    #    desplazamiento, se le pide a la foto (105 · 33 · 49).
+    im = iguala_tono(im, mediana=105, calidez=33.0, saturacion=49.0)
     im = Image.fromarray(
         np.clip(hombro(np.asarray(im).astype(np.float32)), 0, 255).astype(np.uint8))
     informe(im, "final")

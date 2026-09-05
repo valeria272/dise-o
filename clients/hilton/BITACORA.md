@@ -5,6 +5,125 @@
 
 ---
 
+## 2026-09-05 · Eli (Windows) — BETWEEN ronda 14: cuatro correcciones, cuatro mediciones malas
+
+**Lo primero del día, antes de producir:** `/abrir between`. El pull no trajo
+nada y la grilla de Between se había movido el 04-09 a las 20:49Z, pero el diff
+completo contra la copia de las 18:24Z dio **sólo dos celdas, las dos de estado**:
+`FEED!J16` (Ella habló) EN CAMBIOS → **CORREGIDO**, y `STORIES!I16` (Emergencia)
+REVISAR CONTENIDO → **EN CAMBIOS** — y ésta última se movió *antes* de que la
+ronda 13 subiera la pieza rehecha (20:49Z contra 21:31Z), así que apuntaba al
+render viejo. Cero comentarios nativos nuevos y cero comentarios en las 5 piezas
+del Drive. **No había ronda 14 en la grilla: la ronda 14 la pidió Eli por chat.**
+
+---
+
+### Qué pidió Eli, y qué se hizo
+
+| Pieza | Su comentario | Qué se hizo |
+|---|---|---|
+| **S1 Cumpleaños 1 y 2** | «debes quitar esos **plátanos dorados**… puedes añadir alguna de [vector de confeti dorado] **sutiles** en el slide 1 y 2. **Hazlo realista** y mantén el resultado de la foto de togo y medialuna» | Los plátanos estaban **dentro del mock de la slide 2**. Fuera. Entra confeti dorado del vector que ella mandó, sembrado sobre la mesa con la receta de montaje. La foto no se tocó |
+| **S2 ST Emergencia** | «vuelve a hacer lo de TOGO, MUFFIN CHOCOLATE + CROISANT QUESO JAMÓN, **para que se vea apetitoso** en caso de romper» | Los tres revelados con `apetitoso()`, 25 % más grandes y **por fin apoyados**: el piso de la vitrina estaba mal medido. Más sombra en la pared del fondo y el recorte del vaso limpio |
+| **S3 slide 1** | «el logo del vaso debes **centrarlo según el vaso**. Arréglalo» | 171 px (0,86) centrado en el eje real del cuerpo. La causa de tres rondas era que el cuerpo medía 199 px, no 240 |
+| **S3 slide 4** | «se ve extraño, **no tiene coherencia del color** de las demás, tiene que ser la misma foto pero **sin esa edición**» | Fuera la igualación de tono que la dejó lechosa. Rehecha con punto negro antes del gamma |
+
+⛔ **No se tocaron** las slides 2 y 3 del To Go («no las toques», sigue vigente)
+ni «Ella hablo Ella escucho».
+
+---
+
+### ⭐⭐⭐ El hilo común, y es incómodo: las cuatro correcciones eran de MEDICIÓN
+
+Ninguna de las cuatro era un problema de criterio. En las cuatro, la ronda
+anterior **aplicó la regla correcta sobre un número equivocado** — y por eso Eli
+lleva tres rondas repitiendo el mismo comentario sobre el mismo logo.
+
+| pieza | la regla estaba bien | el número estaba mal |
+|---|---|---|
+| vaso To Go | «0,86 del ancho del vaso, centrado» | el ancho del vaso: 240 supuesto contra **199** real |
+| vitrina | «una sola línea de base, medida sobre el contenedor» | el piso: 1230 supuesto contra **1272** real |
+| slide 4 | «igualar el tono al de sus hermanas» | el método: gamma sin punto negro |
+| confeti | «armonizar el objeto agregado con la escena» | contra la **superficie** en vez del **iluminante** |
+
+**Lo que hay que cambiar en el método: cuando un comentario se repite, no se
+corrige la pieza — se vuelve a medir la constante.** Las tres rondas del logo se
+gastaron ajustando el centro y el tamaño sobre un ancho de vaso que nadie volvió
+a comprobar.
+
+---
+
+### ⭐⭐ Los plátanos estaban donde nadie los buscó
+
+La ronda 13 sacó las cintas doradas de la foto de la slide 1 y dio el asunto por
+cerrado. Pero la **ventana del mock de Instagram de la slide 2** seguía apuntando
+a `cumple-r12-1.jpg`. Las cintas plátano estuvieron publicadas un día entero
+*dentro del post* de la slide 2, con la slide 1 ya limpia — y ahí las vio Eli.
+
+> **Regla nueva, en el manual: al cambiar el fondo de una pieza se hace `grep`
+> del nombre viejo en `src/` antes de cerrar la ronda.** Un mock de post enseña
+> otra pieza adentro y no se actualiza solo.
+
+### ⭐⭐ El adorno realista sí se podía — el problema era el material, no el registro
+
+La ronda 12 concluyó que el adorno de esta marca tiene que ser ilustración
+porque una cinta dorada «parece un plátano». **Era media conclusión.** Lo que no
+aguantaba la comparación con la fotografía no era el realismo: era que la cinta
+la dibujaba yo con `ImageDraw`. El vector que mandó Eli (Freepik/Magnific
+**177837523**, gratuito dentro del plan) trae cintas con vuelta, cara interior y
+exterior y especular propia, y sobre eso sí vale la pena aplicar la receta de
+montaje. 27 serpentinas recortadas con alfa en `recursos/confeti-oro/`.
+
+Y los doodles de pincel **se quedaron**: la slide 1 se aprobó con ellos.
+
+⛔ En el camino, dos errores propios que quedaron escritos:
+- **armonicé el oro contra el color de la MADERA** y salió naranja mandarina;
+  contra el muro vegetal, verde. El iluminante de la toma es neutro
+  (0,983/1,000/1,030, medido en el anillo blanco del vaso): un objeto agregado
+  toma el color de la **luz**, no el de la superficie donde cae;
+- y lo dejé **demasiado sutil**. Al 100 % se veía bien; a los 430 px que mide la
+  pieza en el feed de un teléfono eran motas y la corrección no se leía. +25 %.
+
+---
+
+### ✅ SUBIDO AL DRIVE, reemplazando por id (las 5, verificado)
+
+- **S1** → `BW FEED 03-09 Cumpleanos 1.png` · `…Cumpleanos 2 detalles.png`
+- **S2** → `BW ST 09-09 Emergencia Between.png`
+- **S3** → `BW FEED 14-09 Promos To Go 1 portada.png` · `…4 los tres.png`
+
+`between-qa.py` limpio en 4 de 5; el aviso de `BW-F-Cumple-1` es el falso
+positivo ya documentado (1 px del canto del plato en x=3, y=1575) y es **idéntico
+al del render de la ronda 13**, que Eli aprobó.
+
+⚠️ `qa/motor.py --marca hilton` **no corre**: Hilton no tiene
+`clients/hilton/reglas.yaml`. La compuerta de la marca hoy es `between-qa.py`.
+Crear las reglas ejecutables es una decisión que necesita la firma de Eli.
+
+**Herramientas:**
+- `scripts/between-confeti-recortar.py` — trocea el vector en 27 serpentinas
+- `scripts/between-cumple-confeti-r14.py` — la siembra, con DOF, iluminante y sombra
+- `scripts/between-recortes-limpiar.py` — le quita al recorte la mesa que arrastró
+- `scripts/between-r14-entrega-subir.py` — entrega y reemplazo por id
+- modificados: `between-togo1-r12.py`, `between-togo4-r12.py`, `between-emergencia-r13.py`
+
+**Abierto (lo mismo de ayer, nada se cerró hoy):**
+
+1. Las 4 piezas de la ronda 13 que quedaron **sin aprobar y sin comentar** ahora
+   están reemplazadas por las de la 14. Falta que Eli se pronuncie.
+2. **`FEED!H16` (Primero la foto, 14-09)** sigue en REVISAR CONTENIDO con la
+   pregunta de la CM sin responder: «¿Qué plato es el que ya está comido?».
+3. Los **nombres de archivo** siguen con las fechas viejas; renombrar va junto con
+   borrar la copia vieja (el portal levanta por nombre).
+4. El **duplicado «BW FEED 14-09 Promos To Go 4 trio.png»** sigue vivo en la
+   carpeta antigua (`1LELTpyvTlOYwf2ULSbPRe2tJDTZ2av28`, subido por nuestro
+   token): hay que borrarlo a mano.
+5. **Avisarle a Scarlette** que el mock de post volvió.
+6. La **ST 03-09 del cumpleaños** (`BW-S-Cumple`) sigue siendo una escena generada
+   con una vela mientras el feed de ese día ya es fotografía real.
+7. **`clients/hilton/reglas.yaml`** no existe.
+
+---
+
 ## 2026-09-04 · Eli (Windows) — BETWEEN, CIERRE DEL DÍA: estado de aprobación
 
 **Eli, al cerrar: «solo te apruebo lo de cumpleaños Slide 1, mañana seguiremos».**

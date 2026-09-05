@@ -128,8 +128,28 @@ COMPARTIMENTOS = [(247, 768), (798, 1265), (1295, 1783)]
 #: arrastraba 160 px de la MESA de la sesión original pegados bajo la base (ver
 #: `scripts/between-recortes-limpiar.py`), y dentro de una vitrina de vidrio eso
 #: se leía como una base rota y sucia.
+#:
+#: ⭐⭐ RONDA 15 — Eli: «se ve el vaso to go **pegoteado**». Y el «pegoteado» era
+#: el RECORTE. Mirado al 300 %, `vaso-248` tiene el canto MORDIDO: le faltan
+#: trozos del canto de la tapa arriba a izquierda y derecha y el anillo blanco de
+#: la base está cortado en plano. Es lo que deja `grabCut` cuando el objeto y su
+#: fondo comparten tono — y el kraft del vaso contra la mesa de madera de Between
+#: son casi el mismo color. La limpieza de la ronda 14 le quitó el trozo de mesa
+#: que arrastraba, que era otro defecto real, pero **no podía devolverle el canto
+#: que grabCut ya se había comido**.
+#:
+#: ⛔ Se intentó rehacer el matte con `/v1/ai/beta/image-remove-background` de
+#: Magnific (`scripts/between-vaso-matte.py`): la ruta EXISTE pero devuelve 503
+#: con un error de plantilla del gateway, también con cuerpo vacío. Está caída
+#: del lado de ellos. Volver a intentarlo, que es el camino correcto.
+#:
+#: ⭐ Mientras tanto: **el vaso bueno ya estaba en el repo**. `togo-vaso-real-nobg.png`
+#: —el vaso vigente del cliente, cuadro 255, el que se usó para MEDIR el tamaño
+#: del logotipo oficial— tiene el canto entero y limpio: 1,97 % de píxeles de
+#: borde suave contra 0,90 % del otro, o sea el doble de transición y sin
+#: mordiscos. Lección: antes de recortar, mirar si ya hay un recorte bueno.
 PRODUCTOS = [
-    ("vaso-248-limpio.png", 0, "vaso To Go aprobado"),
+    ("../togo-vaso-real-nobg.png", 0, "vaso To Go aprobado"),
     ("croissant-jamon-queso-limpio.png", 1, "croissant jamón queso (salado)"),
     ("muffin-chocolate-limpio.png", 2, "muffin de chocolate (dulce)"),
 ]
@@ -239,7 +259,7 @@ def arma_vitrina():
         #     ⚠️ El vaso NO se retoca: es envase, no comida, y ya está aprobado.
         #        Subirle la claridad le ensucia el kraft y le mueve el logotipo
         #        impreso — que es el defecto de la ronda 12 en el cumpleaños.
-        if not archivo.startswith("vaso-"):
+        if "vaso" not in archivo:
             alfa_orig = np.asarray(prod)[..., 3].copy()
             rgb = Image.fromarray(np.asarray(prod)[..., :3])
             mascara = (alfa_orig.astype(np.float32) / 255.0)
@@ -280,9 +300,25 @@ def arma_vitrina():
             vit = Image.fromarray(
                 np.clip(z * (1.0 - 0.30 * capa[..., None]), 0, 255).astype(np.uint8))
 
+        # 2 ter · ⭐ RONDA 15 — la TEMPERATURA. El recorte viene de una mesa a la
+        #     luz del día y la vitrina es un mueble con luz cálida de latón: un
+        #     objeto blanco-neutro dentro de una caja ámbar se lee recortado por
+        #     mucho canto que se le funda. Se le lleva el balance al del interior
+        #     del compartimento, a media fuerza (a fuerza plena el kraft se
+        #     vuelve naranja y el vaso deja de ser el vaso aprobado).
+        z = np.asarray(vit.crop(caja).convert("RGB")).astype(np.float32).reshape(-1, 3)
+        bal = z.mean(axis=0) / max(z.mean(axis=0)[1], 1.0)
+        rgba = np.asarray(prod).astype(np.float32)
+        rgba[..., :3] *= (1.0 + 0.45 * (bal - 1.0))[None, None, :]
+        prod = Image.fromarray(np.clip(rgba, 0, 255).astype(np.uint8), "RGBA")
+        print(f"      balance del hueco {bal.round(3)} → al producto a 45 %")
+
         # 3 · el objeto, con la luz del fondo mojándole el canto
+        # ⭐ RONDA 15 — la fuerza sube de 0,50 a 0,68 y el radio se ensancha: es
+        #    lo que impide que el canto del recorte se lea como una silueta
+        #    pegada sobre el fondo.
         trozo = vit.crop(caja)
-        fundido = luz_envolvente(trozo, prod, radio=max(8, ancho // 22), fuerza=0.5)
+        fundido = luz_envolvente(trozo, prod, radio=max(12, ancho // 14), fuerza=0.68)
         vit.paste(fundido.convert("RGB"), (px, py))
         print(f"   {etq:34s} {ancho}x{alto} en comp {i + 1} · base y={PISO}")
 

@@ -102,9 +102,30 @@ def estampa(base, centro, ancho, mascarar_carton=False, fuerza=0.95, absorcion=0
     lg = np.asarray(logo).astype(np.float64)
     tinta = lg[:, :, :3].mean(axis=2) / 255.0
     densidad = (lg[:, :, 3] / 255.0) * (1.0 - tinta) * fuerza
+
+    # ⭐⭐ RONDA 15 — Eli: «los logos se ven **extraños**». Y lo que los delata no
+    #    es la posición ni el tamaño: es que un vector entra con **canto
+    #    matemático y sin grano** sobre una fotografía que tiene profundidad de
+    #    campo y ruido de sensor. Un logotipo más nítido y más limpio que el
+    #    papel sobre el que está impreso se lee como calcomanía, siempre.
+    #
+    #    Dos cosas, las dos medidas sobre la propia zona:
+    #      · el sello se funde al DESENFOQUE local (varianza del laplaciano);
+    #      · y recibe el GRANO local (sigma del detalle fino de la superficie).
+    gris = cv2.cvtColor(np.asarray(base.crop((x1, y1, x1 + ancho, y1 + alto))),
+                        cv2.COLOR_RGB2GRAY)
+    nit = cv2.Laplacian(gris, cv2.CV_64F).var()
+    radio = float(np.clip(1.8 - nit / 80.0, 0.4, 1.8))
+    densidad = cv2.GaussianBlur(densidad, (0, 0), radio)
+    grano = float(np.std(gris.astype(np.float64)
+                         - cv2.GaussianBlur(gris.astype(np.float64), (0, 0), 1.5)))
+    ruido = np.random.default_rng(2026).normal(0.0, grano, size=densidad.shape)
+    print(f"      nitidez {nit:.0f} → sello a {radio:.2f} px · grano sigma {grano:.2f}")
+
     lum = (0.299 * zona[..., 0] + 0.587 * zona[..., 1] + 0.114 * zona[..., 2]) / 255.0
     densidad *= np.clip(lum * 1.25, 0.25, 1.0)
-    fuera = zona * (1.0 - densidad[..., None] * (1.0 - absorcion))
+    fuera = (zona * (1.0 - densidad[..., None] * (1.0 - absorcion))
+             + (ruido * (densidad > 0.02))[..., None])
 
     if mascarar_carton:
         # los dedos van DELANTE: la tinta sólo cae donde hay cartón. El separador
@@ -196,6 +217,24 @@ def iguala_tono(im, mediana, calidez, saturacion, negros=0.008):
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
 
 
+def abre_sombras(im, fuerza=0.30, corte=0.42):
+    """Levanta la mitad baja del histograma y deja quietas las altas y el negro.
+
+    Una gamma global sube TODO y lava la pieza (fue el defecto de la ronda 13).
+    Acá el empuje se pondera por `(1 - x/corte)`: máximo en los tonos medios
+    bajos, cero en el negro puro —que se queda donde está, así la pieza no se
+    vuelve lechosa— y cero desde `corte` hacia arriba, así el pan y el kraft no
+    se tocan.
+    """
+    a = np.asarray(im.convert("RGB")).astype(np.float32) / 255.0
+    lum = a.mean(axis=2, keepdims=True)
+    peso = np.clip(1.0 - lum / corte, 0.0, 1.0) * np.clip(lum / 0.06, 0.0, 1.0)
+    a = np.clip(a + fuerza * peso * (corte - lum) * 1.4, 0.0, 1.0)
+    print(f"   sombras abiertas (fuerza {fuerza}): "
+          f"percentil 10 {100 * np.percentile(a, 10):.1f}/255")
+    return Image.fromarray((a * 255).astype(np.uint8))
+
+
 def main():
     if not GEN.exists():
         sys.exit(f"falta la generación: {GEN}")
@@ -209,8 +248,13 @@ def main():
 
     bx0, by0, bx1, by1 = CARA_BOLSA
     print("   BOLSA:")
+    # ⚠️ RONDA 15 — 0,58 → 0,50 del ancho de la cara. El 0,58 salía del editable
+    #    de Eli, pero en aquel montaje la bolsa se veía de frente y aquí está
+    #    girada y con un pliegue vertical al medio: a 0,58 el logotipo cruzaba el
+    #    doblez de lado a lado y se leía como una etiqueta pegada encima, no como
+    #    algo impreso en el papel.
     im = estampa(im, ((bx0 + bx1) // 2, int(by0 + 0.544 * (by1 - by0))),
-                 int(round(0.58 * (bx1 - bx0))))
+                 int(round(0.50 * (bx1 - bx0))))
 
     print("   VASO:")
     # ⭐ El logo va por ENCIMA de los dedos, que arrancan en y=1420: la banda
@@ -244,7 +288,15 @@ def main():
     #    El objetivo real es la media de las slides 2 y 3 —las que Eli mandó no
     #    tocar— medida sobre sus renders: **100,5 · 29,0 · 42,3**. Sumado el
     #    desplazamiento, se le pide a la foto (105 · 33 · 49).
-    im = iguala_tono(im, mediana=105, calidez=33.0, saturacion=49.0)
+    # ⭐⭐ RONDA 15 — «el slide 4 **sigue oscuro**». Y es verdad aunque la mediana
+    #    ya calzaba con las hermanas (100 contra 99 y 102): lo que se ve oscuro
+    #    no es la mediana, son las SOMBRAS. Esta escena es un interior de bar con
+    #    el fondo casi negro y las hermanas son bodegones de luz de día; con el
+    #    mismo punto medio, la mitad baja del histograma de esta pieza está mucho
+    #    más abajo. Se sube el objetivo de mediana (105 → 118) y, sobre todo, se
+    #    LEVANTAN LAS SOMBRAS sin tocar el punto negro ni las altas.
+    im = iguala_tono(im, mediana=118, calidez=33.0, saturacion=49.0)
+    im = abre_sombras(im, fuerza=0.30)
     im = Image.fromarray(
         np.clip(hombro(np.asarray(im).astype(np.float32)), 0, 255).astype(np.uint8))
     informe(im, "final")

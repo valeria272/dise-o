@@ -1110,7 +1110,16 @@ export const ToGo1: React.FC = () => (
          de alguien saliendo con un vaso. La escena del brief no existe.
        ⭐ Y el encuadre está CALCULADO para el bloque aprobado: el vaso cierra en
          y=1483 y la script arranca en y≈1595, así que ya no se pisan. */
-    foto={F + 'togo-portada-r12.jpg'}
+    /* ⭐⭐ RONDA 15 — foto NUEVA. Eli, por cuarta vez: «el logo del vaso sigue
+       igual. Utiliza magnific». Y el problema no era el estampado: en la toma
+       anterior la banda de cartón limpia entre la tapa y los dedos medía 25 px
+       y el lockup de marca pide 56, así que las tres rondas previas sólo
+       pudieron elegir por dónde cortarlo. Se regeneró la escena con Nano Banana
+       Pro —misma mujer, mismo local, misma luz, misma diagramación— pidiendo
+       sólo que tome el vaso MÁS ABAJO. Ahora hay 83 px limpios, el logotipo
+       entra entero a 0,86 del ancho del vaso y queda centrado en su eje con 17
+       y 16 px de aire. Ver `scripts/between-togo1-r15.py`. */
+    foto={F + 'togo-portada-r15.jpg'}
     script="¿Vas con poco tiempo?"
     caps={'Tu desayuno\nva contigo'}
     datos={['Promos To Go', HORARIO_TOGO]}

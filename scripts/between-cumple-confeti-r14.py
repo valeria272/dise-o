@@ -65,7 +65,7 @@ import numpy as np
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from between_retoque import borrosa, informe
+from between_retoque import borrosa, hombro, informe
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -98,7 +98,11 @@ LUZ = (0.42, 1.0)
 ILUMINANTE = (0.983, 1.000, 1.030)
 #: y se asienta bajando la luminancia: el vector está pensado para fondo claro y
 #: a tope se lee como calcomanía sobre una mesa oscura.
-ASIENTO = 0.88
+#: ⭐ RONDA 15 — Eli: «lo dorado se ve **quemado**». Baja de 0,88 a 0,80 y además
+#: la pieza pasa por `hombro()`, la curva de la marca que impide que nada llegue
+#: a blanco: la veta especular del vector llega a 246 y sobre madera oscura eso
+#: es exactamente un reflejo quemado. Con el hombro cierra en 235.
+ASIENTO = 0.80
 
 #: Siembra de la SLIDE 1. Cada entrada: (pieza, x, y, ancho, rotación, desenfoque,
 #: sombra). Las coordenadas son del lienzo de 2250×2812 y salen de la cuadrícula
@@ -177,7 +181,7 @@ def una(n, siembra):
     gris = cv2.cvtColor(np.asarray(base), cv2.COLOR_RGB2GRAY)
     print(f"\n-- slide {n}: {base.width}x{base.height}")
 
-    capa = Image.new("RGBA", base.size, (0, 0, 0, 0))
+    piezas_pm = []
     sombras = np.zeros((base.height, base.width), np.float32)
 
     for pieza, x, y, ancho, rot, blur, fuerza in siembra:
@@ -190,9 +194,11 @@ def una(n, siembra):
         im = im.rotate(rot, resample=Image.BICUBIC, expand=True)
 
         # ── 3. armonización de luz: contra el ILUMINANTE de la toma, no contra
-        #    el color de la superficie donde cae (ver la nota de ILUMINANTE).
+        #    el color de la superficie donde cae (ver la nota de ILUMINANTE), y
+        #    el hombro de las altas para que la veta especular no queme.
         arr = np.asarray(im).astype(np.float32)
         arr[..., :3] *= np.array(ILUMINANTE, np.float32)[None, None, :] * ASIENTO
+        arr[..., :3] = hombro(arr[..., :3])
         im = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8))
 
         nit = dof(gris, x, y, im.width, im.height)
@@ -214,28 +220,56 @@ def una(n, siembra):
                 trozo = alfa[y0 - sy:y1 - sy, x0 - sx:x1 - sx]
                 sombras[y0:y1, x0:x1] = np.maximum(sombras[y0:y1, x0:x1], trozo * fuerza)
 
-        # ── 2. desenfoque del DOF: se aplica a la pieza YA armonizada, con su
-        #    alfa, para que el canto se funda igual que el resto de la escena.
+        # ── 2. desenfoque del DOF, con ALFA PREMULTIPLICADO.
+        #
+        # ⛔⛔ EL BUG QUE PRODUJO «lo dorado se ve quemado» (ronda 15). Acá se
+        #    desenfocaba el RGB y el alfa por separado, y eso **arrastra al canto
+        #    el color de los píxeles invisibles**. Medido:
+        #
+        #        RGB donde alfa=0, recién recortado ......  239 239 239
+        #        RGB donde alfa=0, después de `rotate()` ..    1   1   1
+        #
+        #    `Image.rotate(expand=True)` rellena las esquinas nuevas con NEGRO
+        #    transparente, así que al desenfocar el RGB entraba negro y cada
+        #    serpentina quedaba con un **halo oscuro pegado al contorno**. Sobre
+        #    la madera se lee como una quemadura alrededor del papelito, y eso es
+        #    lo que Eli vio.
+        #
+        #    La regla, y vale para cualquier recorte que se desenfoque o se
+        #    reescale: **se premultiplica el alfa ANTES de filtrar**. El color de
+        #    un píxel invisible no existe y no puede pesar en la mezcla.
+        arr = np.asarray(im).astype(np.float32)
+        alfa = arr[..., 3:4] / 255.0
+        rgb_pm = arr[..., :3] * alfa
         if blur > 0:
-            arr = np.asarray(im).astype(np.float32)
-            arr = np.dstack([borrosa(arr[..., :3], blur),
-                             borrosa(arr[..., 3:4], blur)[..., 0]])
-            im = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8))
-        capa.alpha_composite(im, (x, y))
+            rgb_pm = borrosa(rgb_pm, blur)
+            alfa = borrosa(alfa, blur)
+        piezas_pm.append((x, y, rgb_pm, alfa))
 
     # ── la sombra se desenfoca y se multiplica: es CONTACTO, no objeto.
     # ⛔ En la primera pasada iba a radio 9 y fuerza 0,34 y dejaba nubarrones
     #    grises del tamaño de un plato alrededor de cada serpentina — más sombra
     #    que la que proyecta el vaso entero. Una cinta de papel apoyada proyecta
     #    una sombra CORTA y pequeña. Radio 5 y fuerza 0,20.
+    # ⭐ RONDA 15 — la sombra baja otra vez: 0,20 → 0,13. Sumada al halo negro del
+    #    alfa, dejaba el papelito rodeado de suciedad. Un papel de 200 px sobre
+    #    una mesa en penumbra apenas proyecta.
     if sombras.any():
         sombras = borrosa(sombras[..., None], 5.0)[..., 0]
-        a = a * (1.0 - 0.20 * sombras[..., None])
+        a = a * (1.0 - 0.13 * sombras[..., None])
         print(f"   sombras de contacto: {100 * (sombras > 0.02).mean():.2f} % del cuadro")
 
-    salida = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).convert("RGBA")
-    salida.alpha_composite(capa)
-    salida = salida.convert("RGB")
+    # ── el montaje, en premultiplicado: base·(1−α) + rgb_pm. Sin halo posible.
+    for x, y, rgb_pm, alfa in piezas_pm:
+        h, w = alfa.shape[:2]
+        y0, x0 = max(0, y), max(0, x)
+        y1, x1 = min(base.height, y + h), min(base.width, x + w)
+        if y1 <= y0 or x1 <= x0:
+            continue
+        za = alfa[y0 - y:y1 - y, x0 - x:x1 - x]
+        zc = rgb_pm[y0 - y:y1 - y, x0 - x:x1 - x]
+        a[y0:y1, x0:x1] = a[y0:y1, x0:x1] * (1.0 - za) + zc
+    salida = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
     informe(salida, f"slide {n} con serpentinas")
     destino = FOTOS / f"cumple-r14-{n}.jpg"
     salida.save(destino, quality=95, subsampling=0)

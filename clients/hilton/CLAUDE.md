@@ -3502,3 +3502,148 @@ corrida a la derecha y hacia arriba, corta y difusa, al 30 %.
 
 > **En un nicho frontal, la sombra que vende la profundidad es la de la PARED, no
 > la del piso.**
+
+---
+
+# ⭐⭐⭐ RONDA 15 — el día que la reiteración fue el diagnóstico (05-09-2026)
+
+Eli devolvió las cuatro piezas de la ronda 14 y agregó una frase que vale más que
+las correcciones:
+
+> «**Ya que es muy reiterativo los cambios y debes mejorar.**»
+
+Tiene razón, y la causa está medida. Las cuatro correcciones de la ronda 14 eran
+**ajustes de parámetro dentro de un método que estaba roto**. Ninguna tocó la
+causa. Por eso las cuatro volvieron.
+
+| pieza | ronda 14 ajustó… | lo que estaba roto de verdad |
+|---|---|---|
+| confeti | color, tamaño, sombra | el **alfa**: se filtraba sin premultiplicar |
+| vaso de la vitrina | escala, piso, sombra, luz | el **recorte**: canto mordido por grabCut |
+| logo de la portada | centro y ancho, tres veces | **no cabía**: banda de 25 px para un lockup de 56 |
+| slide 4 | mediana, calidez, saturación | las **sombras**, que no se estaban mirando |
+
+> **La regla que sale de acá, y es de proceso: a la SEGUNDA vez que el cliente
+> repite un comentario, se prohíbe tocar el parámetro.** Hay que ir a mirar el
+> insumo —el recorte, el alfa, el espacio disponible— con zoom. Un comentario que
+> se repite no dice «te pasaste de valor»: dice «estás mirando el sitio
+> equivocado».
+
+## ⛔⛔ 1. «Lo dorado se ve quemado» era un HALO NEGRO de alfa
+
+Y es el error más reutilizable del día, porque vale para **cualquier** recorte
+que se desenfoque, se rote o se reescale.
+
+Al sembrar el confeti se desenfocaba el RGB y el alfa **por separado**. Medido
+sobre la propia pieza:
+
+    RGB donde alfa = 0, recién recortado .......  239 239 239
+    RGB donde alfa = 0, después de rotate() ....    1   1   1
+
+`Image.rotate(expand=True)` rellena las esquinas nuevas con **negro
+transparente**. Al desenfocar el RGB, ese negro entra en la mezcla y cada
+serpentina queda con un halo oscuro pegado al contorno. Sobre madera se lee como
+una quemadura alrededor del papelito.
+
+> **Se premultiplica el alfa ANTES de filtrar** (`rgb × α`), se filtran las dos
+> capas y se compone `base·(1−α) + rgb_pm`. El color de un píxel invisible no
+> existe y no puede pesar en la mezcla.
+
+Y de paso: la veta especular del vector llega a 246. Sobre una mesa oscura eso es
+un reflejo quemado de verdad, así que la pieza pasa por `hombro()` como cualquier
+otra foto de la marca.
+
+## ⛔⛔ 2. «El vaso to go pegoteado» era el RECORTE, no el montaje
+
+Tres rondas puliendo el montaje del vaso —línea de base, sombra de contacto,
+campo de luz, sombra en la pared— sobre un recorte que estaba roto. Mirado al
+300 %, `vaso-248.png` tiene el canto **mordido**: le faltan trozos del canto de la
+tapa arriba a izquierda y derecha, y el anillo blanco de la base está cortado en
+plano con una muesca. Es lo que deja `grabCut` cuando el objeto y su fondo
+comparten tono, y el kraft del vaso contra la mesa de madera de Between son casi
+el mismo color.
+
+**El vaso bueno ya estaba en el repo.** `togo-vaso-real-nobg.png` —el vaso vigente
+del cliente, el que se usó para MEDIR el tamaño del logotipo oficial— tiene el
+canto entero: 1,97 % de píxeles de borde suave contra 0,90 %, o sea el doble de
+transición y sin mordiscos.
+
+> **Antes de recortar, mirar si ya hay un recorte bueno. Y un recorte se revisa
+> al 300 % ANTES de montarlo, no cuando el cliente lo devuelve.**
+
+⚠️ Se intentó rehacer el matte con `/v1/ai/beta/image-remove-background` de
+Magnific (`scripts/between-vaso-matte.py`, escrito y listo): la ruta **existe**
+pero devuelve 503 con un error de plantilla del gateway, también con cuerpo
+vacío. Está caída del lado de ellos — volver a intentarlo, que es el camino
+correcto para separar un objeto de un fondo de su mismo tono.
+
+## ⭐⭐⭐ 3. «El logo del vaso sigue igual»: cuatro rondas por 31 px que no existían
+
+| ronda | qué se hizo | resultado |
+|---|---|---|
+| 12 | 206 px centrado en 920 | más ancho que el vaso; la máscara le comió la B |
+| 13 | 175 px centrado en 932 (cara visible) | pegado al canto derecho: 5 px de aire contra 19 |
+| 14 | 171 px centrado en 924 (eje real) | **la tapa le cortó los remates de arriba** |
+| 15 | **foto nueva** | el lockup entero, centrado, sin cortar |
+
+La ronda 14 corrigió bien la medición del ancho del vaso (199 px, no 240) y aun
+así la pieza quedó mal, porque el problema no era dónde poner el logotipo:
+
+    banda de cartón limpia entre la tapa y los dedos ......  25 px
+    alto que pide el lockup a 0,86 del ancho del vaso .....  56 px
+
+**No cabía.** Con 25 px de banda, las tres rondas anteriores sólo podían elegir
+por dónde cortarlo.
+
+> **Cuando el elemento de marca no cabe, se cambia la FOTO, no el elemento.**
+> Achicar el logotipo rompe el tamaño de marca y correrlo lo saca del eje: las
+> dos salidas ya se probaron y las dos se rechazaron.
+
+La escena se regeneró con **Nano Banana Pro** pasándole la portada anterior como
+referencia y cambiando **una sola cosa**: que la mano tome el vaso más abajo. Se
+verificó que la mujer, el local, la luz y el encuadre siguieran siendo los mismos
+—Eli reclamó el logo, no la foto—. Resultado: 83 px de cartón limpio, el lockup
+entra a 0,86 con 17 y 16 px de aire lateral y 9 y 7 de aire vertical.
+
+## ⭐⭐ 4. «Los logos se ven extraños»: un vector no tiene grano ni desenfoque
+
+Lo que delata un logotipo estampado sobre una fotografía no es su posición ni su
+tamaño: es que entra con **canto matemático y sin ruido** sobre una imagen que
+tiene profundidad de campo y grano de sensor. Un logotipo más nítido y más limpio
+que el papel sobre el que está impreso se lee como calcomanía, siempre.
+
+Dos correcciones, las dos medidas sobre la propia zona del sello:
+
+- **el desenfoque**, desde la varianza del laplaciano de la superficie
+  (`radio = clip(1.8 − nitidez/80, 0.4, 1.8)`);
+- **el grano**, desde la sigma del detalle fino de la superficie.
+
+Y una de proporción: el logotipo de la bolsa baja de 0,58 a **0,50** del ancho de
+la cara. El 0,58 salía del editable de Eli, pero ahí la bolsa se veía de frente y
+en esta toma está girada y con un pliegue vertical al medio: a 0,58 el logotipo
+cruzaba el doblez de lado a lado.
+
+## ⭐⭐ 5. «Sigue oscuro» no es la mediana: son las SOMBRAS
+
+La ronda 14 dejó la slide 4 en mediana 100 contra 99 y 102 de sus hermanas, o sea
+igualada. Y Eli seguía viéndola oscura — porque lo que se ve oscuro no es el
+punto medio del histograma:
+
+| | mediana | percentil 10 (las sombras) |
+|---|---:|---:|
+| slide 2 (intacta) | 99 | 27 |
+| slide 3 (intacta) | 102 | 31 |
+| slide 4 · ronda 14 | 100 | 30 |
+| slide 4 · ronda 15 | 105 | **46** |
+
+Esta escena es un interior de bar con el fondo casi negro y sus hermanas son
+bodegones de luz de día. Con el mismo punto medio, el ojo lee la mancha negra
+grande, no la mediana.
+
+`abre_sombras()` levanta la mitad baja del histograma ponderando por
+`(1 − x/corte)`: máximo en los medios bajos, **cero en el negro puro** —así la
+pieza no se vuelve lechosa, que fue el defecto de la ronda 13— y cero de `corte`
+hacia arriba, así el pan y el kraft no se tocan.
+
+> **Al comparar dos piezas del mismo carrusel se miran mediana Y percentil 10.**
+> La mediana sola dice que están iguales cuando no lo están.

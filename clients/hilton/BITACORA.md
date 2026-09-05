@@ -5,6 +5,72 @@
 
 ---
 
+## 2026-09-05 · Eli (Windows) — BETWEEN ronda 15: la reiteración era el diagnóstico
+
+**Eli devolvió la ronda 14 entera**, y con una frase que vale más que las cuatro
+correcciones: «**ya que es muy reiterativo los cambios y debes mejorar**».
+
+Tiene razón, y la causa está medida: **las cuatro correcciones de la ronda 14
+fueron ajustes de parámetro dentro de un método roto.** Ninguna tocó la causa.
+
+| pieza | su reclamo | la ronda 14 ajustó… | lo que estaba roto de verdad |
+|---|---|---|---|
+| Cumpleaños | «lo dorado se ve **quemado**» | color, tamaño, sombra | el **alfa**: se filtraba sin premultiplicar y `rotate()` mete negro |
+| Emergencia | «el vaso to go **pegoteado**» | escala, piso, sombra, luz | el **recorte**: canto mordido por grabCut |
+| To Go 1 | «el logo **sigue igual**» | centro y ancho, 3 rondas | **no cabía**: banda de 25 px para un lockup de 56 |
+| To Go 4 | «**sigue oscuro** y logos extraños» | mediana, calidez, saturación | las **sombras**, que nadie miró |
+
+> **La regla de proceso que queda: a la SEGUNDA vez que el cliente repite un
+> comentario, se prohíbe tocar el parámetro.** Hay que ir a mirar el insumo —el
+> recorte, el alfa, el espacio disponible— con zoom. Un comentario que se repite
+> no dice «te pasaste de valor»: dice «estás mirando el sitio equivocado».
+
+### Qué se hizo, pieza por pieza
+
+**Cumpleaños 1 y 2 — el «quemado» era un halo negro.** Se desenfocaba el RGB y el
+alfa por separado; `rotate(expand=True)` rellena las esquinas con negro
+transparente (medido: el RGB invisible pasa de 239 a 1) y el desenfoque lo
+arrastra al contorno. Ahora el filtrado va con **alfa premultiplicado** y la
+pieza pasa por `hombro()`. Vale para cualquier recorte que se filtre.
+
+**ST Emergencia — el «pegoteado» era el recorte.** Tres rondas puliendo el
+montaje sobre un vaso con el canto mordido. **El vaso bueno ya estaba en el
+repo**: `togo-vaso-real-nobg.png`, el mismo con el que se midió el logotipo
+oficial. Más la temperatura del hueco llevada al producto al 45 %.
+⚠️ `remove-background` de Magnific está **caído** (503 del gateway, también con
+cuerpo vacío). El script quedó escrito: `scripts/between-vaso-matte.py`.
+
+**To Go portada — se cambió la FOTO, que es lo que había que hacer hace tres
+rondas.** La banda de cartón limpia entre la tapa y los dedos medía 25 px y el
+lockup de marca pide 56: no cabía, y por eso sólo se podía elegir por dónde
+cortarlo. Se regeneró la escena con **Nano Banana Pro** —misma mujer, mismo
+local, misma luz, mismo encuadre— cambiando una sola cosa: que tome el vaso más
+abajo. Ahora hay 83 px limpios y el logotipo entra entero a 0,86, centrado, con
+17 y 16 px de aire.
+
+**To Go slide 4 — «oscuro» no era la mediana, eran las sombras.** Estaba en 100
+contra 99 y 102 de sus hermanas, o sea igualada, pero su percentil 10 y el fondo
+negro la hacían leer oscura. `abre_sombras()` levanta los medios bajos sin tocar
+el negro puro (p10: 30 → 46). Y los «logos extraños» eran vectores **sin grano ni
+desenfoque** sobre una fotografía: ahora el sello se funde a la nitidez local y
+recibe el grano del papel; el de la bolsa baja de 0,58 a 0,50 porque cruzaba el
+pliegue.
+
+### ✅ SUBIDO AL DRIVE, reemplazando por id (las 5, verificado)
+
+`between-qa.py` limpio en 4 de 5 — el aviso de `BW-F-Cumple-1` sigue siendo el
+falso positivo documentado (1 px del canto del plato).
+
+**Herramientas nuevas:** `between-togo1-r15.py` (genera, mide y compone la
+portada) · `between-vaso-matte.py` (listo, esperando que Magnific vuelva) ·
+`between-r15-entrega-subir.py`.
+
+**Abierto:** lo mismo de la ronda 14 —`FEED!H16` sin responder, los nombres con
+fechas viejas, el duplicado «…4 trio.png», avisarle a Scarlette del mock, la ST
+03-09 generada y `clients/hilton/reglas.yaml` que no existe.
+
+---
+
 ## 2026-09-05 · Eli (Windows) — BETWEEN ronda 14: cuatro correcciones, cuatro mediciones malas
 
 **Lo primero del día, antes de producir:** `/abrir between`. El pull no trajo

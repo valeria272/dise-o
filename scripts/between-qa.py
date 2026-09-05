@@ -11,7 +11,12 @@ Chequea lo que se puede medir de la lista de `clients/hilton/CLAUDE.md § QA`:
 Lo que NO puede chequear y sigue siendo revisión humana: texto sobre caras u
 ojos, taza KIMBO, fidelidad del montaje al local.
 
+  4. ⭐ que las slides de un CARRUSEL se parezcan entre sí en tono y color
+     (`--carrusel`). Es lo único que no se ve pieza a pieza: una slide puede
+     estar impecable sola y aun así romper el carrusel.
+
 Uso: python3 scripts/between-qa.py <carpeta o archivos>
+     python3 scripts/between-qa.py --carrusel <las slides de UN carrusel>
 """
 import sys, os, glob
 import numpy as np
@@ -127,9 +132,54 @@ def revisar(p):
             fallas.append(f'el titular ocupa {ancho*100:.0f} % del ancho (mínimo 50 %, objetivo 55–80 %)')
     return fallas
 
+def tono(p):
+    """Mediana, calidez (R media − B media) y saturación media de una pieza."""
+    a = np.asarray(Image.open(p).convert('RGB')).astype(np.float32)
+    return (float(np.median(a)),
+            float(a[..., 0].mean() - a[..., 2].mean()),
+            float((a.max(2) - a.min(2)).mean()))
+
+
+def revisar_carrusel(rutas):
+    """⭐ RONDA 13 — que las slides de un carrusel se parezcan ENTRE SÍ.
+
+    Nació de un rechazo que el QA no podía ver pieza a pieza: la slide 4 del
+    carrusel To Go estaba correcta por sí sola —márgenes bien, nada quemado, de
+    hecho era la MÁS OSCURA de las cuatro— y aun así volvió con «se ve quemada,
+    se ve basura, y tiene que verse todas las slides similares en cuanto al tono
+    y los colores». Lo que estaba mal era el COLOR, y sólo se ve comparando:
+    calidez 55,3 contra 23,7 y 34,2 de sus hermanas, y saturación 57,8 contra
+    40,9 y 43,6.
+
+    Los umbrales salen de esa medición: en el carrusel ya corregido, entre la
+    slide más y la menos parecida quedan 12 de mediana, 10 de calidez y 12 de
+    saturación. Se avisa por encima de eso.
+
+    ⚠️ Es un aviso de CONJUNTO: se corre sobre las slides de UN carrusel, no
+    sobre una carpeta con piezas de días distintos.
+    """
+    if len(rutas) < 2:
+        return []
+    med = [(os.path.basename(r),) + tono(r) for r in rutas]
+    fallas = []
+    for etq, tope, i in (('mediana', 14, 1), ('calidez', 12, 2), ('saturación', 14, 3)):
+        vals = [m[i] for m in med]
+        rango = max(vals) - min(vals)
+        if rango > tope:
+            medio = sum(vals) / len(vals)
+            peor = max(med, key=lambda m: abs(m[i] - medio))
+            fallas.append(f'{etq}: {rango:.0f} puntos de diferencia entre slides '
+                          f'(máximo {tope}) — la que se sale es {peor[0]} '
+                          f'con {peor[i]:.0f}')
+    return fallas
+
+
 def main():
     objetivos = []
+    carrusel = '--carrusel' in sys.argv
     for arg in sys.argv[1:]:
+        if arg.startswith('--'):
+            continue
         objetivos += sorted(glob.glob(os.path.join(arg, '*.png'))) if os.path.isdir(arg) else [arg]
     malas = 0
     for p in objetivos:
@@ -141,6 +191,20 @@ def main():
         else:
             print(f"✅  {os.path.basename(p)}")
     print(f"\n{len(objetivos) - malas}/{len(objetivos)} piezas limpias")
+
+    if carrusel:
+        print("")
+        print("CARRUSEL — que las slides se parezcan entre sí:")
+        for r in objetivos:
+            m, c, sat = tono(r)
+            print(f"   {os.path.basename(r):34s} mediana {m:5.0f} · "
+                  f"calidez {c:5.1f} · saturación {sat:5.1f}")
+        f = revisar_carrusel(objetivos)
+        for x in f:
+            print(f"   ⚠️  {x}")
+        if not f:
+            print("   ✅  las slides están en el mismo tono")
+        malas += len(f)
     return 1 if malas else 0
 
 if __name__ == '__main__':

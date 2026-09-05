@@ -3269,6 +3269,22 @@ bodegones de luz de día se leía **anaranjada y sobresaturada**, no sobreexpues
 > `iguala_tono()` en `scripts/between-togo4-r12.py` corrige las tres en orden
 > —calidez, saturación, mediana— porque cada una desplaza a la siguiente.
 
+✅ **Y ya está automatizado**, que es lo que corresponde a una regla medible:
+
+```bash
+python scripts/between-qa.py --carrusel out/.../BW-F-ToGo-*.png
+```
+
+Avisa cuando entre la slide más y la menos parecida hay más de 14 puntos de
+mediana, 12 de calidez o 14 de saturación, y **nombra la que se sale**. Los
+topes salen del carrusel ya corregido, donde el rango real es 12 / 10 / 12.
+Probado contra la versión rechazada: la caza y señala la slide 4 (mediana 87,
+calidez 55, saturación 58).
+
+⚠️ Es un aviso de CONJUNTO: se corre sobre las slides de UN carrusel, no sobre
+una carpeta con piezas de días distintos. **Ninguna de las cuatro slides fallaba
+la revisión pieza a pieza** — por eso hacía falta.
+
 ## ⭐ 4. EL LOGO SOBRE UN ENVASE SE CENTRA EN LA CARA VISIBLE
 
 Eli: «el logo se ve poco centrado». Y era medible: el logotipo iba a 206 px

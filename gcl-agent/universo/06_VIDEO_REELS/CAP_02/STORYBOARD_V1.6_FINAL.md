@@ -16,6 +16,14 @@ La numeración es la de V1 —con **10b** y **10c**— porque es la que se aprob
 > kilómetro de papel, y él arranca una línea. Cuando por fin se sienta a tomar
 > café, baja otro post-it.
 
+### El cambio chico, con nombre (decisión de producción, 05-09)
+
+**`GRATIS` → `SIN COSTO`.** El copy dice `ENVÍO GRATIS A TODO CHILE`; el cambio
+es el que toda agencia ha recibido de legal. Es una sola palabra, y **es más
+larga** — por eso no cabe en la caja del layout y arrastra los nueve formatos.
+ME RECONOZCO sin explicar nada. Las hojas se componen en Post con
+`scripts/cap02-hojas.py`.
+
 ### Vocabulario de producción (se usa en cada plano)
 
 | Término | Qué es |

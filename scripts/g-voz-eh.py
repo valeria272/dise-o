@@ -177,7 +177,13 @@ def voz_4C():
                    crush=6, mezcla_seno=0.5, lp_hz=3000, caida_final=0.05)
 
 
-VOCES = {"A": voz_A, "B": voz_B, "C": voz_C, "D": voz_D, "E": voz_E,
+def voz_mm():
+    """«mm.» — el otro sonido de G. Misma familia que la 4: un solo grano,
+    más grave (580 Hz), plano, sin subida. Es registrar, no preguntar. 0,2 s."""
+    return _granos(((0.00, 0.20, 580, 580),), crush=6, mezcla_seno=0.5, lp_hz=2600, caida_final=0.07)
+
+
+VOCES = {"mm": voz_mm, "A": voz_A, "B": voz_B, "C": voz_C, "D": voz_D, "E": voz_E,
          "4A": voz_4A, "4B": voz_4B, "4C": voz_4C}
 
 

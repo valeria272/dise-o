@@ -421,3 +421,10 @@ out/rentas/**/mail/
 # Los descartes y la hoja de contacto van en JPEG: son evidencia, no producción.
 !gcl-agent/cap02/
 !gcl-agent/cap02/**
+
+# El universo G.C.L.: las biblias Y sus imágenes canon. Arriba `gcl-agent/**/*.png`
+# deja fuera los renders, pero acá los PNG SON el canon — el board del elenco, la
+# oficina maestra y las referencias de identidad. Sin ellos nadie puede generar un
+# plano consistente, y el pack llegó por ZIP a Descargas, que no lo respalda nadie.
+!gcl-agent/universo/
+!gcl-agent/universo/**

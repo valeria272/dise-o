@@ -57,8 +57,15 @@ entra al feed.
 > pendiente de Valeria. Veredicto completo en
 > [`creative-system/AUDITORIA.md`](creative-system/AUDITORIA.md).
 >
-> **El personaje G.CL no se deprecó:** `gcl-agent/GCL_CHARACTER_BIBLE.md` y sus
-> cinco candados siguen mandando, y ahora es la familia 06 del sistema.
+> **El personaje G no se deprecó:** es la familia 06 del sistema.
+>
+> ⛔ **El universo G.C.L. tiene canon propio y con candados:**
+> [`gcl-agent/universo/CANON_LOCK.md`](gcl-agent/universo/CANON_LOCK.md) manda
+> sobre el pack V4 completo y sobre `GCL_CHARACTER_BIBLE.md`. Desde el 05-09-2026:
+> **el protagonista se llama G** («Gigi» no existe), **`G.C.L.` es el universo y
+> nunca el personaje**, y las cifras del V4 (60–70 %, 1 de cada 6) son orientación
+> editorial, **no reglas de producción**. El CAP.02 está **congelado**: el número
+> 02 lo reclaman tres capítulos distintos.
 
 ---
 

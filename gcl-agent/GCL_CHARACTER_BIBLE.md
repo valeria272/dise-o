@@ -1,3 +1,12 @@
+> ⛔ **CANON LOCK · 05-09-2026 — el protagonista se llama G.**
+> «Gigi» no existe: no es apodo, ni nombre alternativo, ni aparece en diálogo.
+> Y **`G.C.L.` nunca nombra al personaje** — es el universo, la serie y el
+> Departamento de Cosas Imposibles.
+>
+> Los candados vivos y lo que queda abierto están en
+> [`universo/CANON_LOCK.md`](universo/CANON_LOCK.md), que **manda sobre este
+> archivo y sobre todo el pack V4**. Léelo antes de tocar nada del personaje.
+
 # G.CL — CHARACTER BIBLE
 
 > Propiedad intelectual audiovisual de Grupo Copylab. Este documento manda sobre

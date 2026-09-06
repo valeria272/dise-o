@@ -256,10 +256,11 @@ vidrio alambrado, que nunca se ve claro. Zona canon:
 | 1 | 05-09-2026 | El protagonista se llama **G**. «Gigi» eliminado del universo | vigente |
 | 2 | 05-09-2026 | Jerarquía: G.C.L. universo · G protagonista · Nivel -1 base · Marta/R.01/Server colaboradores · Copywriters mundo real | vigente |
 | 3 | 05-09-2026 | Las cifras del V4 son orientación editorial, **no reglas de producción** | vigente |
-| 4 | 05-09-2026 | **CAP.02 = «ES UN CAMBIO CHICO».** Turno de noche y Revisión 7 son prototipos no canon; El primer día normal descartado | vigente |
+| 4 | 05-09-2026 | **CAP.02 = «ES UN CAMBIO CHICO».** Turno de noche y Revisión 7 son prototipos no canon; El primer día normal descartado | **sustituido por el lock 13** |
 | 5 | 05-09-2026 | `TEAM_MASTER_CANON.png` es canon de apariencia/identidad/escala, **no de cargos**. Diego ficticio ≠ Diego Aguilar | vigente |
 | 6 | 05-09-2026 | **Un solo registro de G:** competente, observador, deadpan, cálido cuando corresponde, humor seco, pequeñas reacciones. Cap.01 exento; Revisión 7 = referencia técnica | vigente |
 | 7 | 05-09-2026 | El set de «Revisión 7» **no es canon**. El CAP.02 se construye desde el Nivel -1 | vigente |
+| 13 | 06-09-2026 | **CAP.02 = «TURNO DE NOCHE»** (restart narrativo controlado, Valeria). «Es un cambio chico» queda **archivado como experimento de desarrollo** (roadmap: CAP.04); su material aprobado se reutiliza sólo si sirve orgánicamente. Sustituye al lock 4. Story V1 en `06_VIDEO_REELS/CAP_02_TURNO_DE_NOCHE/STORY_V1.md` · **sin producir hasta aprobar la historia en papel** | vigente |
 | 8 | 05-09-2026 | **Capa satírica** (Copywriters incluido) + regla **ME RECONOZCO / ME SORPRENDE / ME ENCARIÑO ≥ 2 de 3** | vigente |
 | 9 | 05-09-2026 | **R.01 diseño canon**: aspiradora intervenida + placa + elásticos + mástil con cinta. Madre: `R01/laminas/01_master_34.png` | vigente |
 | 10 | 05-09-2026 | **Just-in-time asset lock**: se cierra lo que el plano necesita, no bibliotecas enteras | vigente |

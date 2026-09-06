@@ -29,10 +29,10 @@ const v = (n: string) => staticFile(`assets/gcl/cap02/bloque3/${n}`);
 const hoja = (n: string) => staticFile(`assets/gcl/cap02/hojas/${n}`);
 const ROSA = "#FF2D8D";
 
-const Clip: React.FC<{src: string; desdeS?: number; escala?: number; op?: number}> = ({src, desdeS = 0, escala = 1, op = 1}) => (
+const Clip: React.FC<{src: string; desdeS?: number; escala?: number; op?: number; origen?: string}> = ({src, desdeS = 0, escala = 1, op = 1, origen = "50% 50%"}) => (
   <AbsoluteFill style={{backgroundColor: "#000", overflow: "hidden", opacity: op}}>
     <OffthreadVideo src={v(src)} startFrom={Math.round(desdeS * 30)} muted
-      style={{position: "absolute", width: "100%", height: "100%", objectFit: "cover", transform: `scale(${escala})`}} />
+      style={{position: "absolute", width: "100%", height: "100%", objectFit: "cover", transform: `scale(${escala})`, transformOrigin: origen}} />
   </AbsoluteFill>
 );
 
@@ -134,19 +134,19 @@ export const Cap02FullRough: React.FC<{marcas?: boolean}> = ({marcas = true}) =>
 
       {/* ── 08 · LA MISIÓN DE R.01 · 432–533 ───────────────────────────── */}
       <Sequence from={432} durationInFrames={102}>
-        <Clip src="s08_r01_regla.mp4" desdeS={0} />
+        <Clip src="s08_r01_regla.mp4" desdeS={1.6} />   {/* R.01 trabado contra la caja; el guante la corre a los 3,8 s */}
       </Sequence>
 
       {/* ── 09 · EL CABLE · 534–641 · fallback por defecto: G apretado → cielo → ticker ── */}
       <Sequence from={534} durationInFrames={40}>
-        <Clip src="s09_g_pantallas.mp4" desdeS={0} />
+        <Clip src="s09_g_pantallas.mp4" desdeS={1.5} />   {/* «mm.» y el tap a los 3,0 s */}
       </Sequence>
       <Sequence from={574} durationInFrames={30}>
         <Fija src="MF-cielo.jpg" marcas={marcas} />
         <LuzCable p={(f - 574) / 30} />
       </Sequence>
       <Sequence from={604} durationInFrames={38}>
-        <Clip src="s09_ticker.mp4" desdeS={0} />
+        <Clip src="s09_ticker.mp4" desdeS={2.5} />
         <Ticker texto={`RENDER ${Math.min(9, 1 + Math.floor((f - 604) / 4))}/9`} />
       </Sequence>
 
@@ -157,12 +157,15 @@ export const Cap02FullRough: React.FC<{marcas?: boolean}> = ({marcas = true}) =>
 
       {/* ── 10b · UN KILÓMETRO · 774–863 ───────────────────────────────── */}
       <Sequence from={774} durationInFrames={90}>
-        <Clip src="s10b_kilometro.mp4" desdeS={0} />
+        <Clip src="s10b_kilometro.mp4" desdeS={1.5} />   {/* el guante entra a 1,5, corta el papel a 3,8–4,4 */}
       </Sequence>
 
       {/* ── 10c · EL QUE BAJA Y SE VA · 864–917 · el clip de ida, y el mismo al revés ── */}
-      <Sequence from={864} durationInFrames={54}>
-        <Clip src="s10c_piernas.mp4" desdeS={0} />
+      <Sequence from={864} durationInFrames={39}>
+        <Clip src="s10c_piernas.mp4" desdeS={1.3} escala={2} origen="50% 100%" />   {/* recorte: sólo piernas y puerta; el modelo dibujó el cuerpo entero */}
+      </Sequence>
+      <Sequence from={903} durationInFrames={15}>
+        <Clip src="s10c_piernas_rev.mp4" desdeS={2.43} escala={2} origen="50% 100%" />   {/* el mismo clip al revés: se va */}
       </Sequence>
 
       {/* ── RÁFAGA · 918–953 · a hoja · b R.01 sobre el papel · c ticker ── */}
@@ -175,17 +178,18 @@ export const Cap02FullRough: React.FC<{marcas?: boolean}> = ({marcas = true}) =>
 
       {/* ── 11 · LA CARPETA · 954–1043 ─────────────────────────────────── */}
       <Sequence from={954} durationInFrames={90}>
-        <Clip src="s11_carpeta.mp4" desdeS={0} />
+        <Clip src="s11_carpeta.mp4" desdeS={1.6} />   {/* el guante cruza la mesa 2,0–4,5 */}
       </Sequence>
 
       {/* ── 12 · SUBE · 1044–1163 ──────────────────────────────────────── */}
       <Sequence from={1044} durationInFrames={120}>
-        <Clip src="s12_sube.mp4" desdeS={0} />
+        <Clip src="s12_sube.mp4" desdeS={0.8} />   {/* R.01 con la carpeta llega a la puerta abierta */}
       </Sequence>
 
       {/* ── 13 · CALMA · 1164–1313 · el contador pasa a 1 en el 1252 ───── */}
       <Sequence from={1164} durationInFrames={150}>
-        <Clip src="s13_calma.mp4" desdeS={0} />
+        <Sequence from={0} durationInFrames={18}><Clip src="s13_calma.mp4" desdeS={0} /></Sequence>   {/* hasta 0,6 s: desde 0,9 s el visor se vuelve un cristal rosado (drift) */}
+        <Sequence from={18}><Fija src="s13_hold.jpg" marcas={marcas} /></Sequence>
         <Contador valor={f < 1252 ? 0 : 1} x={868} y={708} w={56} />
       </Sequence>
 
@@ -197,7 +201,7 @@ export const Cap02FullRough: React.FC<{marcas?: boolean}> = ({marcas = true}) =>
 
       {/* ── 15 · NO. · 1386–1457 · Marta imprime una hoja · inserto NO. ── */}
       <Sequence from={1386} durationInFrames={72}>
-        <Clip src="s15_no.mp4" desdeS={0} />
+        <Clip src="s15_no.mp4" desdeS={2.6} />   {/* la hoja ya de pie; el NO. entra en el f.40 */}
         <Sequence from={40} durationInFrames={32}><Inserto src="NO.png" rot={-2} /></Sequence>
       </Sequence>
 

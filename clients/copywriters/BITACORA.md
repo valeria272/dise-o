@@ -8,6 +8,23 @@
 
 ---
 
+## 2026-09-05 · Valeria (night run autónomo) — G.CL Cap. 02 «Es un cambio chico» · FULL ROUGH V1
+
+**Qué se hizo:** se produjo el capítulo completo (16 planos + ráfaga + firma, 1554 f = 51,8 s)
+según el story lock V1.6: ola 1 de keyframes/masters, ola 2 de videos (Kling 2.1 con
+`image_tail`), regeneración de 08 y 10b (v1 mostraban mano humana → v2 con guante robot),
+recorte ×2 del 10c, still del 13 desde 0,6 s (el visor derivaba a rosado), pista completa
+sintetizada (`cap02-audio-full.py`), hojas de control (contacto, G, R.01) y reporte con A/B/C.
+**Dónde quedó:** `out/gcl/cap02/full/GCL_CAP02_FULL_ROUGH_V1.mp4` + `_CLEAN`, hojas en la
+misma carpeta, reporte en `gcl-agent/universo/06_VIDEO_REELS/CAP_02/CAP02_REVIEW_REPORT.md`.
+Copia en `~/Desktop/GCL_CAP02_FULL_ROUGH_V1/` y subido a Drive (AGENCIA COPYWRITERS).
+Composición `src/compositions/gcl/Cap02FullRough.tsx`; `public/assets` se reconstruye con
+`scripts/cap02-preparar-full.sh`.
+**Qué sigue:** Valeria mira el rough → decide las regeneraciones (recomendadas, en orden:
+04 G alto [A], 13 visor, 11 guante de 5 dedos, 12 pasillo/puerta azul, 10c piernas) → sound
+lock (voz 4A/4B/4C sobre el 02d) → mezcla y gradación.
+**Abierto:** cero placeholders; 1 A (04) y 5 B. La firma es la de Cap. 01 sin animar.
+
 ## 2026-09-03 · Valeria — Creative OS v1.1 + G.CL Cap. 02 «Revisión 7»
 
 **Qué se hizo.** Dos frentes.

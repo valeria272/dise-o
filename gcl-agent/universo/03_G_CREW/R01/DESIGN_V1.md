@@ -1,7 +1,37 @@
 # R.01 / CHARACTER DESIGN LOCK · V1
 ## Floor Operations · tres direcciones, una recomendación
 
-**05-09-2026 · asset lock, paso 1 de 4 · sin generar nada.**
+**05-09-2026 · asset lock, paso 1 de 4.**
+
+> ⛔ **DIRECCIÓN B APROBADA el 05-09-2026, con cinco ajustes que mandan sobre
+> lo que diga más abajo.** Lo de abajo es el registro de cómo se llegó; esto es
+> lo que rige.
+>
+> **La decisión:** R.01 = aspiradora robot doméstica antigua intervenida por
+> G.C.L. + placa industrial + mástil técnico flexible. **El mástil es canon y
+> candado visual.** Y el nivel de *character design* baja un 20 %: R.01 tiene
+> que parecer **primero un objeto real** que lleva demasiados años trabajando
+> ahí, y sólo después descubrimos que tiene personalidad. No es un sidekick
+> diseñado para ser adorable.
+>
+> | # | Ajuste | Qué cambia |
+> |---|---|---|
+> | 1 | **La bandera se reinterpreta** | no es una banderita: es **una marca técnica improvisada** — cinta Copy Pink doblada alrededor de una varilla metálica flexible. Rectangular, vieja, algo torcida, mate, **sin flamear**, nunca triangular. Alguien se la puso hace años para ubicarlo detrás de las mesas y nadie la sacó. **Accidentalmente icónica, no diseñada para serlo** |
+> | 2 | **Fuera el porta-taza** | no se diseñan hoy funciones para gags futuros. El sistema canon de carga es **placa metálica plana + dos elásticos cruzados + mástil como respaldo. Nada más.** Resuelve regla, celular, carpeta y objetos chicos |
+> | 3 | **Menos señales a la vez** | se mantiene: cuerpo negro/grafito envejecido · placa industrial añadida · mástil · cinta Copy Pink · **un único** segmento rosado del indicador original · reparaciones y desgaste reales · dos elásticos. **La baliza ámbar del mástil sólo existe si parece un componente técnico real y muy discreto; si lo vuelve personaje animado, se elimina.** En la lámina 1 **no va** — se decide viéndola |
+> | 4 | **Sonido, simplificado** | motor cansado · pequeño ruido mecánico de rodamiento · clic al invertir · **vibración física del mástil** al frenar o trabarse · un bip simple **sólo cuando sea narrativamente necesario**. Sin diccionario de emociones: **la actuación manda** |
+> | 5 | **Principio canon** | **«R.01 no sabe que es gracioso.»** Nunca busca atención. Nunca hace algo para provocar una reacción. Nunca actúa *cute*. Ejecuta cada misión como si fuera crítica para la supervivencia de la empresa. **La audiencia es la que encuentra adorable su seriedad** |
+>
+> **Y un principio de serie, que vale para Marta y el Server también:**
+> G puede ser icónico desde que aparece. **Marta, R.01 y el Server se vuelven
+> icónicos porque los conocemos**, no porque estén diseñados para serlo. No se
+> fabrican cuatro mascotas a la vez — ahí G.C.L. se convierte en «la pandilla
+> de robots». G es claramente el protagonista, y con el tiempo uno se encariña
+> con una impresora vieja y una aspiradora hecha pedazos.
+>
+> La tabla de actuación de §B sigue siendo válida **como guía de dirección**,
+> no como catálogo de señales: en pantalla se usa una a la vez.
+
 
 > Lo que R.01 tiene que ser, en una línea: **un empleado que lleva años ahí y
 > se toma con absoluta seriedad tareas completamente absurdas.** Nunca cuestiona

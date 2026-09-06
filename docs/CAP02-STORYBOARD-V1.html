@@ -1,0 +1,479 @@
+<title>Es un cambio chico</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..900&family=DM+Serif+Display:ital@1&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
+<style>
+:root{--bg:#F2F4F6;--ink:#080F14;--muted:#5B6470;--line:rgba(8,15,20,.14);--soft:rgba(8,15,20,.05);--pink:#FF2D8D;--amber:#C97F00;--paper:#FFFFFF;--musica:rgba(255,45,141,.14);--corte:rgba(8,15,20,.55)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#080F14;--ink:#F2F4F6;--muted:#98A2AD;--line:rgba(242,244,246,.14);--soft:rgba(242,244,246,.05);--amber:#FFB030;--paper:#0E171E;--musica:rgba(255,45,141,.22);--corte:rgba(242,244,246,.6)}}
+:root[data-theme="dark"]{--bg:#080F14;--ink:#F2F4F6;--muted:#98A2AD;--line:rgba(242,244,246,.14);--soft:rgba(242,244,246,.05);--amber:#FFB030;--paper:#0E171E;--musica:rgba(255,45,141,.22);--corte:rgba(242,244,246,.6)}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:'Archivo',Helvetica,Arial,sans-serif;font-variation-settings:'wdth' 100,'wght' 500;font-size:16px;line-height:1.5;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:40px 28px 96px}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.mano{font-family:'Caveat',cursive;font-size:1.45em;line-height:1;color:var(--pink);white-space:nowrap}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-variation-settings:'wdth' 78,'wght' 900;font-size:clamp(46px,7.5vw,92px);line-height:.9;letter-spacing:-.02em;margin:10px 0 6px;text-wrap:balance}
+h1 em{font-family:'DM Serif Display',Georgia,serif;font-style:italic;font-variation-settings:normal;font-weight:400;color:var(--pink);letter-spacing:0}
+.lead{font-family:'DM Serif Display',Georgia,serif;font-style:italic;font-size:22px;line-height:1.3;max-width:62ch;margin:18px 0 0}
+.estado{display:flex;gap:28px;flex-wrap:wrap;margin:28px 0 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.estado div{font-size:13px}.estado b{display:block;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+h2{font-variation-settings:'wdth' 84,'wght' 800;font-size:30px;line-height:1.05;margin:64px 0 8px;text-wrap:balance}
+h2 .mono{font-size:13px;letter-spacing:.12em;color:var(--muted);font-weight:500;margin-right:12px;vertical-align:middle}
+h3{font-variation-settings:'wdth' 92,'wght' 700;font-size:19px;margin:26px 0 8px}
+p{max-width:65ch;margin:10px 0}
+.nota{max-width:65ch;border-left:3px solid var(--pink);padding:6px 0 6px 16px;margin:18px 0}
+.nota .eyebrow{color:var(--pink);margin-bottom:4px;display:block}
+.tabla{overflow-x:auto;margin:14px 0 0}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 12px 8px 0;border-bottom:1px solid var(--ink);vertical-align:bottom}
+td{padding:10px 12px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td .n{font-variation-settings:'wdth' 80,'wght' 900;font-size:22px;font-variant-numeric:tabular-nums}
+/* hooks */
+.hooks{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:16px 0}
+.hook{background:var(--paper);padding:22px 22px 18px;display:flex;flex-direction:column;gap:10px}
+.hook.gana{outline:2px solid var(--pink);outline-offset:-2px}
+.hook .eyebrow{color:var(--pink)}
+.hook h3{margin:0;font-size:22px}
+.hook p{font-size:14px;margin:0;color:var(--ink)}
+.hook .pesa{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin-top:auto}
+.score{display:grid;grid-template-columns:1fr auto;gap:2px 14px;font-size:13px}
+.score b{font-family:'IBM Plex Mono',monospace;font-weight:500;font-variant-numeric:tabular-nums}
+.score .tot{grid-column:1/-1;border-top:1px solid var(--line);margin-top:6px;padding-top:6px;display:flex;justify-content:space-between;font-variation-settings:'wdth' 88,'wght' 800}
+/* curva */
+figure{margin:20px 0 6px}figure svg{width:100%;height:auto;display:block;color:var(--ink)}
+figcaption{font-size:13px;color:var(--muted);max-width:75ch;margin-top:8px}
+.grid{stroke:currentColor;stroke-opacity:.12}.musica{fill:var(--musica);stroke:var(--pink);stroke-width:1}.corte{fill:var(--corte)}
+.marca{stroke:var(--pink);stroke-dasharray:3 3;stroke-width:1}
+.mini{font-family:'IBM Plex Mono',monospace;font-size:10px;fill:currentColor;fill-opacity:.75}.mini.pink{fill:var(--pink);fill-opacity:1}
+.leyenda{display:flex;gap:22px;font-size:12px;color:var(--muted);margin-top:8px}.leyenda i{display:inline-block;width:14px;height:10px;margin-right:6px;vertical-align:middle}
+/* cadena */
+.cadena{display:grid;grid-template-columns:auto 1fr auto;gap:8px 18px;max-width:820px;font-size:14.5px;margin:14px 0}
+.cadena b{font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--pink);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;padding-top:3px}
+.cadena small{color:var(--muted);white-space:nowrap;padding-top:3px}
+/* shots */
+.shots{display:flex;flex-direction:column;gap:14px;margin-top:18px}
+.shot{background:var(--paper);border:1px solid var(--line);padding:18px 22px 16px}
+.shot header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:10px}
+.shot .num{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--pink)}
+.shot h3{margin:0;font-size:24px;font-variation-settings:'wdth' 80,'wght' 900}
+.shot .tc{font-size:13px;color:var(--muted)}.shot .dur{font-size:12px;color:var(--muted)}
+.shot .fn{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-left:auto}
+.shot .hero{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--amber)}
+.shot dl{display:grid;grid-template-columns:150px 1fr;gap:6px 18px;margin:0;font-size:14px}
+.shot dt{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.shot dd{margin:0;max-width:78ch}.shot dd.acc{font-size:15px}
+.fallback{font-size:13px;border-left:3px solid var(--amber);padding:4px 0 4px 14px;margin:12px 0 0;max-width:78ch}
+.fallback .eyebrow{color:var(--amber);display:block;margin-bottom:2px}
+/* hero + riesgo + notas */
+.heroes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:14px 0}
+.heroes div{background:var(--paper);padding:20px 22px}.heroes .mano{font-size:44px;display:block;color:var(--amber)}.heroes h3{margin:4px 0 6px;font-size:20px}.heroes p{font-size:14px;margin:0}
+.notas{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:14px 0}
+.notas div{background:var(--paper);padding:14px 14px 12px}.notas b{display:block;font-variation-settings:'wdth' 78,'wght' 900;font-size:40px;line-height:1;font-variant-numeric:tabular-nums}.notas small{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.notas span{display:block;font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.35}
+.riesgo td:nth-child(3){font-family:'IBM Plex Mono',monospace;font-size:12px;white-space:nowrap}.r-alto{color:var(--pink);font-weight:500}.r-medio{color:var(--amber)}
+.sigue{counter-reset:s;list-style:none;padding:0;max-width:65ch}.sigue li{counter-increment:s;padding:8px 0 8px 44px;position:relative;border-bottom:1px solid var(--line)}.sigue li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:9px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--pink)}
+@media (max-width:720px){.shot dl{grid-template-columns:1fr}.shot .fn{margin-left:0}.cadena{grid-template-columns:auto 1fr}.cadena small{grid-column:2}}
+</style>
+<div class="wrap">
+  <div class="eyebrow">G.C.L. / CAP.02 · Storyboard narrativo V1 · 05-09-2026 · para aprobación</div>
+  <h1>Es un <em>cambio chico</em></h1>
+  <p class="lead">Baja un post-it que dice «es un cambio chico»; los veteranos saben lo que viene antes de que G lo lea; G lo toma literal y lo resuelve moviendo medio Nivel −1 sin despeinarse; y cuando por fin se sienta a tomar café, baja otro.</p>
+  <div class="estado">
+    <div><b>Duración</b>50 s + firma de 2 s</div>
+    <div><b>Planos</b>16 + una ráfaga de 4 insertos</div>
+    <div><b>Set</b>Nivel −1 · 6 masters + 2 encuadres nuevos</div>
+    <div><b>Palabras de G</b>«eh?» × 1 · «mm.» × 2 · frases: 0</div>
+    <div><b>Estado</b>historia y montaje · nada generado</div>
+  </div>
+
+  <h2><span class="mono">A</span>Tres hooks</h2>
+  <div class="hooks">
+    <div class="hook">
+      <span class="eyebrow">Hook A</span><h3>El post-it</h3>
+      <p>Macro: un post-it cae. <b>ES UN CAMBIO CHICO.</b> Silencio. Marta deja de imprimir. R.01 frena. La ámbar cambia. G levanta la cabeza, lento. CUT.</p>
+      <div class="score"><span>Comprensión inmediata</span><b>10</b><span>Curiosidad</span><b>8</b><span>Humor</span><b>8</b><span>Retención</span><b>8</b><span>Producción</span><b>9</b><div class="tot"><span>Total</span><b>43</b></div></div>
+      <p class="pesa">Abre con texto, y el post-it «cae» de la nada: en nuestro set las cosas llegan por un tubo dentro de una carpeta.</p>
+    </div>
+    <div class="hook gana">
+      <span class="eyebrow">Hook B · recomendado</span><h3>La reacción</h3>
+      <p>G no ha leído nada. Suena la llegada. Marta imprime frenética, R.01 arranca en contra, <b>el Server se apaga de golpe</b>. G: «eh?». Recién entonces: ES UN CAMBIO CHICO.</p>
+      <div class="score"><span>Comprensión inmediata</span><b>8</b><span>Curiosidad</span><b>10</b><span>Humor</span><b>9</b><span>Retención</span><b>9</b><span>Producción</span><b>7</b><div class="tot"><span>Total</span><b>43</b></div></div>
+      <p class="pesa">Corrección de canon: la puerta del Server nunca se abre, así que no «cierra» — se apaga. Es más inquietante. Y la RONDA se produce como tres fijos con whips en montaje.</p>
+    </div>
+    <div class="hook">
+      <span class="eyebrow">Hook C</span><h3>Falsa calma</h3>
+      <p>Placa: <span class="mono">09:42 — TODO BAJO CONTROL</span>. Un segundo después, la llegada. Post-it. CUT a caos.</p>
+      <div class="score"><span>Comprensión inmediata</span><b>9</b><span>Curiosidad</span><b>6</b><span>Humor</span><b>7</b><span>Retención</span><b>7</b><span>Producción</span><b>10</b><div class="tot"><span>Total</span><b>39</b></div></div>
+      <p class="pesa">Abre con una placa —lo que pediste no hacer— y «todo bajo control» era un beat del guion descartado.</p>
+    </div>
+  </div>
+
+  <h2><span class="mono">B</span>Por qué el B</h2>
+  <p>A y B empatan en puntos; no empatan en lo que importa. <b>Tu criterio número uno era que se entienda que algo está a punto de salir mal.</b> Pánico en los colegas antes de la causa es la versión más pura de eso: no hay que leer nada. Además convierte la frase en <b>remate</b> en vez de en título — llega al segundo 5, después de ver a tres máquinas entrar en protocolo, y ahí es graciosa; al segundo 0 sólo es informativa. Y es la caracterización de G en dos segundos: <b>el único que no sabe, y el único que lo va a resolver.</b> Competente, pero literal.</p>
+  <p class="nota"><span class="eyebrow">Condición de producción</span>La RONDA se diseña como un plano con tres whips y se produce, por defecto, como cuatro fijos con whip-out / whip-in en montaje. Mismo efecto; el riesgo de deriva del set, cero.</p>
+
+  <h2><span class="mono">D</span>Curva de ritmo</h2>
+  <figure>
+    <svg viewBox="0 0 940 260" role="img" aria-label="Curva de ritmo del capítulo: cortes por segundo por tramo, con la envolvente de música; rapidísimo en el hook, un hueco en el post-it, densidad creciente, un pico de 1,6 segundos, la música muere a los 35 segundos y cinco segundos de silencio antes del remate">
+      <line x1="60" y1="24" x2="60" y2="206" class="grid"/><text x="60" y="222" class="mini" text-anchor="middle">0</text>
+<line x1="143" y1="24" x2="143" y2="206" class="grid"/><text x="143" y="222" class="mini" text-anchor="middle">5</text>
+<line x1="225" y1="24" x2="225" y2="206" class="grid"/><text x="225" y="222" class="mini" text-anchor="middle">10</text>
+<line x1="308" y1="24" x2="308" y2="206" class="grid"/><text x="308" y="222" class="mini" text-anchor="middle">15</text>
+<line x1="391" y1="24" x2="391" y2="206" class="grid"/><text x="391" y="222" class="mini" text-anchor="middle">20</text>
+<line x1="473" y1="24" x2="473" y2="206" class="grid"/><text x="473" y="222" class="mini" text-anchor="middle">25</text>
+<line x1="556" y1="24" x2="556" y2="206" class="grid"/><text x="556" y="222" class="mini" text-anchor="middle">30</text>
+<line x1="639" y1="24" x2="639" y2="206" class="grid"/><text x="639" y="222" class="mini" text-anchor="middle">35</text>
+<line x1="722" y1="24" x2="722" y2="206" class="grid"/><text x="722" y="222" class="mini" text-anchor="middle">40</text>
+<line x1="804" y1="24" x2="804" y2="206" class="grid"/><text x="804" y="222" class="mini" text-anchor="middle">45</text>
+<line x1="887" y1="24" x2="887" y2="206" class="grid"/><text x="887" y="222" class="mini" text-anchor="middle">50</text>
+<text x="920" y="222" class="mini" text-anchor="end">s</text>
+<polygon points="60,206 60,206 103,206 103,142 139,142 139,206 179,206 179,133 262,115 381,79 467,51 556,24 583,24 639,24 639,206 920,206 920,206" class="musica"/>
+<rect x="61" y="31" width="41" height="175" class="corte"/>
+<text x="82" y="16" class="mini" text-anchor="middle">HOOK</text>
+<rect x="104" y="165" width="34" height="41" class="corte"/>
+<text x="121" y="16" class="mini" text-anchor="middle">pausa</text>
+<rect x="140" y="166" width="74" height="40" class="corte"/>
+<text x="177" y="16" class="mini" text-anchor="middle">SETUP</text>
+<rect x="216" y="179" width="163" height="27" class="corte"/>
+<text x="298" y="16" class="mini" text-anchor="middle">CONSEC.</text>
+<rect x="382" y="189" width="173" height="17" class="corte"/>
+<text x="468" y="16" class="mini" text-anchor="middle">ESCALADA</text>
+<rect x="557" y="24" width="24" height="182" class="corte"/>
+<text x="569" y="16" class="mini" text-anchor="middle">PICO</text>
+<rect x="584" y="179" width="54" height="27" class="corte"/>
+<text x="611" y="16" class="mini" text-anchor="middle">CLÍMAX</text>
+<rect x="640" y="183" width="64" height="23" class="corte"/>
+<text x="672" y="16" class="mini" text-anchor="middle">RESOL.</text>
+<rect x="706" y="188" width="81" height="18" class="corte"/>
+<text x="746" y="16" class="mini" text-anchor="middle">CALMA</text>
+<rect x="789" y="160" width="97" height="46" class="corte"/>
+<text x="837" y="16" class="mini" text-anchor="middle">PAYOFF</text>
+<rect x="888" y="206" width="31" height="0" class="corte"/>
+<text x="903" y="16" class="mini" text-anchor="middle">FIRMA</text>
+<text x="52" y="210" class="mini" text-anchor="end">0</text>
+<text x="52" y="119" class="mini" text-anchor="end">1</text>
+<text x="52" y="28" class="mini" text-anchor="end">2</text>
+<text x="52" y="16" class="mini" text-anchor="end">cortes/s</text>
+<line x1="139" y1="24" x2="139" y2="206" class="marca"/><text x="143" y="200" class="mini pink">música a 0</text>
+<line x1="639" y1="24" x2="639" y2="206" class="marca"/><text x="643" y="200" class="mini pink">muere en el golpe</text>
+<line x1="788" y1="24" x2="788" y2="206" class="marca"/><text x="792" y="200" class="mini pink">tsh-TUNK</text>
+    </svg>
+    <figcaption>Rápido → más rápido (en densidad, no sólo en cortes) → caos → un pico de 1,6 s → silencio → remate. La calma es el plano más largo del capítulo: 5 s.</figcaption>
+    <div class="leyenda"><span><i style="background:var(--corte)"></i>cortes por segundo</span><span><i style="background:var(--musica);border:1px solid var(--pink)"></i>música</span></div>
+  </figure>
+  <div class="tabla"><table>
+    <tr><th>Tramo</th><th>tc</th><th>Planos</th><th>Qué pasa con el ritmo</th></tr>
+    <tr><td>HOOK</td><td class="mono">0:00–0:02,6</td><td>01 · 02</td><td><b>Rapidísimo.</b> 5 cortes efectivos en 2,6 s (los tres whips cuentan)</td></tr>
+    <tr><td>micro pausa</td><td class="mono">0:02,6–0:04,8</td><td>03</td><td>El wide. Se abre el mundo. Entra la música</td></tr>
+    <tr><td>SETUP</td><td class="mono">0:04,8–0:09,4</td><td>04 · 05</td><td><b>La pausa del post-it</b>: música a cero. «mm.» Después vuelve</td></tr>
+    <tr><td>CONSECUENCIAS</td><td class="mono">0:09,4–0:19,4</td><td>06 · 07 · 08</td><td>Planos más largos, pero <b>la densidad de eventos sube</b>: nueve hojas, un tranque, un gesto</td></tr>
+    <tr><td>ESCALADA</td><td class="mono">0:19,4–0:30,0</td><td>09 · 10</td><td>Dos planos largos <b>con movimiento interno</b>: la luz que viaja, el caos coreografiado</td></tr>
+    <tr><td>PICO</td><td class="mono">0:30,0–0:31,6</td><td>ráfaga</td><td><b>El único corte microscópico.</b> Por contraste, pega</td></tr>
+    <tr><td>CLÍMAX · RESOLUCIÓN</td><td class="mono">0:31,6–0:39,0</td><td>11 · 12</td><td>La carpeta: la música muere en el golpe. Sube. DING. Todo para</td></tr>
+    <tr><td>CALMA</td><td class="mono">0:39,0–0:44,0</td><td>13</td><td><b>5,0 s.</b> El plano más largo. Silencio</td></tr>
+    <tr><td>PAYOFF</td><td class="mono">0:44,0–0:50,0</td><td>14 · 15 · 16</td><td>Lento, lento, corto. <b>El remate respira</b></td></tr>
+  </table></div>
+  <p class="nota"><span class="eyebrow">La música, portable</span>Sin identidad fija. Cualquier pista tiene que <b>entrar en el corte al 03</b>, <b>irse a cero en el post-it</b>, aceptar que rodillos, motor y ticker sean percusión, y <b>morir a muestra cero en el golpe de la carpeta</b>. De ahí al final no hay música. Los sonidos de serie son el tsh-TUNK del tubo (0:00 y 0:44, el mismo sample) y los chirps de G.</p>
+
+  <h2><span class="mono">C</span>Storyboard V1</h2>
+  <h3>La cadena, en objetos</h3>
+  <p>Una palabra cambia y activa siete cosas. Cada una es <b>un objeto que se mueve en el set</b>, no una pantalla que lo explica.</p>
+  <div class="cadena">
+    <b>copy</b><span>la hoja con <b>una palabra encerrada en rosa</b> — Marta ya la marcó</span><small>Marta</small>
+    <b>diseño</b><span>la hoja del layout: <b>la palabra nueva no cabe en la caja</b></span><small>Marta</small>
+    <b>formatos</b><span><b>nueve hojas</b> deslizándose sobre la mesa: <span class="mono">1:1 · 4:5 · 9:16 · 16:9 · STORY · CARRUSEL · BANNER · MAIL · PPT</span></span><small>Marta → la mesa</small>
+    <b>video</b><span>el CRT reproduce el spot viejo: <b>la palabra está en el título</b></span><small>el CRT · G, un tap</small>
+    <b>landing</b><span>la pantalla moderna: la página. G, un tap. El ticker: <span class="mono">OK</span></span><small>G · el Server</small>
+    <b>pauta</b><span>R.01 cruza el set con <b>un solo post-it que dice <span class="mono">PAUTA</span></b> en el lomo, como una bomba</span><small>R.01</small>
+    <b>presentación</b><span><b>una carpeta negra</b> más grande que R.01, que sube en el ascensor</span><small>G → R.01 → arriba</small>
+  </div>
+  <p>Lo que baja por el tubo, sube por el ascensor. <b>El set cierra el circuito.</b></p>
+  <h3>El registro de G en este capítulo</h3>
+  <p>Dos sonidos y un gesto. <b>«eh?»</b> una vez, en el hook. <b>«mm.»</b> dos veces — al leer el post-it y al ver la palabra en el video; el mismo sonido, es su vocabulario. Y <b>un gesto con el guante</b>: mover una caja 10 cm para que R.01 pase. Ninguna frase completa: probé tres y ninguna mejoraba un beat.</p>
+
+  <div class="shots">
+<article class="shot">
+  <header><span class="num">SHOT 01</span><h3>EL TUBO</h3><span class="tc mono">0:00,0 – 0:00,7</span><span class="dur mono">21 f</span><span class="fn">HOOK</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>MA-08 · inserto del intake: la boca de bronce y la canasta</dd>
+    <dt>Lente · cámara</dt><dd>100 mm · fija</dd>
+    <dt>Acción</dt><dd class="acc">Negro 4 frames. <b>tsh-TUNK</b>: una carpeta sale disparada del tubo y cae a la canasta. Encima, un post-it rosado de canto: no se lee.</dd>
+    <dt>G</dt><dd>—</dd>
+    <dt>Marta · R.01 · Server</dt><dd>—</dd>
+    <dt>Continuidad</dt><dd>La canasta vacía. Es la misma del SHOT 14.</dd>
+    <dt>Sonido</dt><dd>El neumático: aire, golpe seco y la campanita vieja del tubo. <b>Primer sonido del capítulo</b>, y el mismo del 0:44.</dd>
+    <dt>Termina</dt><dd>En el impacto de la carpeta.</dd>
+    <dt>Conecta</dt><dd><b>Cut on impact</b>: el golpe es el corte.</dd>
+  </dl>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 02</span><h3>LA RONDA</h3><span class="tc mono">0:00,7 – 0:02,6</span><span class="dur mono">57 f</span><span class="fn">HOOK</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>Un solo plano desde el centro de la mesa (8,75 · 5,0), 1,0 m, con tres whips: Marta → Server → suelo → tilt a G. Excepción de hook: no vive al oeste del eje</dd>
+    <dt>Lente · cámara</dt><dd>35 mm · whip · whip · whip-tilt</dd>
+    <dt>Acción</dt><dd class="acc"><b>Marta</b> (0,7–1,2): el LCD pasa de <span class=mono>LISTA</span> a <span class=mono>AY.</span> y escupe la primera hoja. WHIP → <b>Server</b> (1,2–1,7): la ámbar se apaga de golpe, el ticker se borra, el zumbido muere. WHIP abajo → <b>R.01</b> (1,7–2,1): frena en seco, chirrido, arranca en contra. TILT → <b>G</b> (2,1–2,6): la taza en la boca. La baja.</dd>
+    <dt>G</dt><dd>«<b>eh?</b>» — la única palabra del hook.</dd>
+    <dt>Marta · R.01 · Server</dt><dd>Los tres reaccionan <b>en secuencia</b>, no a la vez: es un protocolo, tienen orden.</dd>
+    <dt>Continuidad</dt><dd>La taza en la mano de G. La primera hoja en la bandeja.</dd>
+    <dt>Sonido</dt><dd>Rodillos → el zumbido se corta a muestra cero → chirrido → «eh?» sobre silencio. <b>Sin música.</b></dd>
+    <dt>Termina</dt><dd>En el visor de G, quieto.</dd>
+    <dt>Conecta</dt><dd><b>Smash cut</b> al wide: del rostro quieto al cuarto entero en movimiento. Entra la música en el corte.</dd>
+  </dl><p class="fallback"><span class="eyebrow">Producción</span>Fallback por defecto: cuatro fijos (MA-04 · 06 · 07 · 02) con whip-out/whip-in en Remotion. Mismo efecto, cero deriva del set.</p>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 03</span><h3>EL ÚNICO QUE CAMINA</h3><span class="tc mono">0:02,6 – 0:04,8</span><span class="dur mono">66 f</span><span class="fn">SETUP</span><span class="hero">★ HERO</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>MA-01 · EL EJE, el wide desde la boca del pasillo</dd>
+    <dt>Lente · cámara</dt><dd>24 mm · fija</dd>
+    <dt>Acción</dt><dd class="acc">Todo se mueve: Marta escupe hojas al fondo-izquierda, R.01 rueda hacia el archivo por la derecha, la ámbar vuelve y <b>pulsa rápido</b> a 11 m. Y en medio, <b>G se levanta, deja la taza en el borde de la mesa y camina hacia la canasta</b>. Chico, lento, sin apuro. El único que camina.</dd>
+    <dt>G</dt><dd>Postura recta, paso corto, ni un gesto. Sale de cuadro por la izquierda (norte).</dd>
+    <dt>Marta · R.01 · Server</dt><dd>A pleno. La coreografía del protocolo.</dd>
+    <dt>Continuidad</dt><dd><b>La taza queda en la mesa</b>: se ve en los cenitales 07 y 11 y la recupera en el 13.</dd>
+    <dt>Sonido</dt><dd><b>Entra el groove</b>: mínimo, raro, medio tempo. Los rodillos ya son percusión.</dd>
+    <dt>Termina</dt><dd>Con G saliendo por el norte.</dd>
+    <dt>Conecta</dt><dd><b>Action cut</b>: sale por un lado, entra por el otro.</dd>
+  </dl>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 04</span><h3>EL POST-IT</h3><span class="tc mono">0:04,8 – 0:07,2</span><span class="dur mono">72 f</span><span class="fn">SETUP · beat 1</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>Desde la canasta, bajo, mirando a G que llega. Rack focus al post-it</dd>
+    <dt>Lente · cámara</dt><dd>50 mm → macro por rack · fija</dd>
+    <dt>Acción</dt><dd class="acc">G entra, levanta la carpeta, despega el post-it y lo sostiene frente al visor. <b>Rack focus</b>: <span class=mano>ES UN CAMBIO CHICO</span>. Hold. Detrás, fuera de foco, Marta sigue escupiendo.</dd>
+    <dt>G</dt><dd>Lee. Un beat largo. «<b>mm.</b>» — sin inflexión. Lo toma literal: es chico.</dd>
+    <dt>Marta · R.01 · Server</dt><dd>Marta al fondo, borrosa, sin parar.</dd>
+    <dt>Continuidad</dt><dd>El post-it rosado, a mano. El mismo del SHOT 14 con otro texto.</dd>
+    <dt>Sonido</dt><dd><b>La música se va a cero</b> mientras dura el post-it. El «mm.» en silencio. La pausa es comedia.</dd>
+    <dt>Termina</dt><dd>En «mm.»</dd>
+    <dt>Conecta</dt><dd><b>Graphic match</b>: el rosado del post-it → el círculo rosado de la hoja del 05.</dd>
+  </dl>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 05</span><h3>LA BANDEJA</h3><span class="tc mono">0:07,2 – 0:09,4</span><span class="dur mono">66 f</span><span class="fn">SETUP · beat 2</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>MA-04 · Marta tight, su bandeja en primer plano</dd>
+    <dt>Lente · cámara</dt><dd>85 mm · fija</dd>
+    <dt>Acción</dt><dd class="acc">La hoja de arriba es el <b>copy con una palabra encerrada en rosa</b>. El guante de G la toma. Marta imprime otra al instante: <b>el layout, y la palabra nueva se sale de la caja</b>. El guante la toma. Marta imprime una tercera —</dd>
+    <dt>G</dt><dd>Sólo el guante. Ni una duda.</dd>
+    <dt>Marta · R.01 · Server</dt><dd>Marta va un paso adelante en todo el capítulo. Aquí se establece.</dd>
+    <dt>Continuidad</dt><dd>Dos hojas en la mano de G. En el suelo, 3 hojas caídas.</dd>
+    <dt>Sonido</dt><dd>Vuelve el groove en el primer rodillo. Cada hoja es un golpe.</dd>
+    <dt>Termina</dt><dd>Con la tercera hoja saliendo y <b>cruzando el lente</b>.</dd>
+    <dt>Conecta</dt><dd><b>Foreground wipe</b>: la hoja tapa el cuadro → el 06.</dd>
+  </dl>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 06</span><h3>DOS HOJAS</h3><span class="tc mono">0:09,4 – 0:12,2</span><span class="dur mono">84 f</span><span class="fn">CONSECUENCIAS · copy → diseño</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>MA-02 · G frontal en su escritorio</dd>
+    <dt>Lente · cámara</dt><dd>50 mm · fija</dd>
+    <dt>Acción</dt><dd class="acc">G pone las dos hojas lado a lado: la palabra encerrada / la palabra que no cabe. Las mira. <b>Un tap.</b> Detrás de él, <b>un cajón del archivo se abre solo</b> (R.01 ya está debajo). En el pilar, la pizarra: <span class=mono>CAMBIOS CHICOS ESTE MES: |||| |||| ||</span></dd>
+    <dt>G</dt><dd>Deadpan. Mira una, mira la otra. El tap es seco.</dd>
+    <dt>Marta · R.01 · Server</dt><dd>R.01 ya estaba en el archivo antes de que G tocara la tecla.</dd>
+    <dt>Continuidad</dt><dd>La pizarra. Las dos hojas quedan en el escritorio.</dd>
+    <dt>Sonido</dt><dd>El tap = <b>cut on impact</b> al cajón. El groove suma una capa: el motor de R.01 como bajo.</dd>
+    <dt>Termina</dt><dd>En el cajón abierto.</dd>
+    <dt>Conecta</dt><dd><b>Cambio brusco de escala</b>: del frontal al cenital.</dd>
+  </dl>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 07</span><h3>NUEVE</h3><span class="tc mono">0:12,2 – 0:15,6</span><span class="dur mono">102 f</span><span class="fn">CONSECUENCIAS · diseño → formatos</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>MA-05 · LA MESA, cenital</dd>
+    <dt>Lente · cámara</dt><dd>35 mm · fija</dd>
+    <dt>Acción</dt><dd class="acc">La mesa casi vacía: la taza en el borde. Desde el borde norte <b>entran hojas deslizándose</b> y se abren en abanico: <span class=mono>1:1 · 4:5 · 9:16 · 16:9 · STORY · CARRUSEL · BANNER · MAIL · PPT</span>. Nueve. Desde abajo, el guante pone el copy al centro. Por el borde izquierdo, a ras de piso, <b>R.01 pasa con una regla de 30 cm en el lomo</b> como si fuera una viga.</dd>
+    <dt>G</dt><dd>El guante. Endereza una hoja que quedó chueca.</dd>
+    <dt>Marta · R.01 · Server</dt><dd>Marta produce; R.01 transporta.</dd>
+    <dt>Continuidad</dt><dd>La taza. Las nueve etiquetas (Remotion, nunca generadas).</dd>
+    <dt>Sonido</dt><dd>Cada hoja que llega = un golpe. Nueve golpes acelerando.</dd>
+    <dt>Termina</dt><dd>En la novena, <span class=mono>PPT</span>, cayendo en su sitio.</dd>
+    <dt>Conecta</dt><dd><b>Action cut</b> sobre R.01: sale del cenital, entra al 08.</dd>
+  </dl>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 08</span><h3>LA MISIÓN DE R.01</h3><span class="tc mono">0:15,6 – 0:19,4</span><span class="dur mono">114 f</span><span class="fn">CONSECUENCIAS · beat 3, primera dosis</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>MA-07 · a ras de suelo, en el carril</dd>
+    <dt>Lente · cámara</dt><dd>35 mm · 0,2 m · fija</dd>
+    <dt>Acción</dt><dd class="acc">R.01 cruza con la regla, decidido, junto a las zapatillas de G que cuelgan. Arriba, borrosa, la escalera del archivo se desliza sola. Llega a la esquina del escritorio — <b>se traba con la caja de siempre</b>. Insiste. Insiste. <b>El guante de G baja y mueve la caja 10 cm.</b> R.01 sigue como si nada. Un bip satisfecho.</dd>
+    <dt>G</dt><dd>El gesto. Sin mirar: sabe dónde está la caja.</dd>
+    <dt>Marta · R.01 · Server</dt><dd>R.01 es el corazón del plano. La escalera, arriba.</dd>
+    <dt>Continuidad</dt><dd>La caja en la esquina este del escritorio. Las zapatillas colgando (la escala).</dd>
+    <dt>Sonido</dt><dd>Motor · tranque · tranque · el roce de la caja · bip.</dd>
+    <dt>Termina</dt><dd>Con R.01 <b>pasando pegado al lente</b> y tapándolo.</dd>
+    <dt>Conecta</dt><dd><b>Foreground wipe</b> → el 09.</dd>
+  </dl>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 09</span><h3>EL CABLE</h3><span class="tc mono">0:19,4 – 0:24,6</span><span class="dur mono">156 f</span><span class="fn">ESCALADA · video → landing → el Server</span><span class="hero">★ HERO</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>Parte en las pantallas de G (MA-02 apretado), tilt al cielo, sigue el cable al este, tilt al ticker</dd>
+    <dt>Lente · cámara</dt><dd>50 mm · tilt · pan · tilt</dd>
+    <dt>Acción</dt><dd class="acc">El CRT reproduce el spot viejo y <b>la palabra aparece en el título del video</b>. «mm.» Un tap. El CRT: <span class=mono>RENDER</span>. Y <b>una luz sale del escritorio y corre por la bandeja de cables del cielo</b> hacia el este; la cámara la sigue por encima de la mesa llena hasta el nicho, y baja: el ticker escribe <span class=mono>RENDER 1/9 … 2/9 … 3/9</span> <b>acelerando</b>. La ámbar pulsa al ritmo.</dd>
+    <dt>G</dt><dd>«mm.» El segundo. Idéntico al primero.</dd>
+    <dt>Marta · R.01 · Server</dt><dd><b>El Server cuenta.</b> Su primer parlamento largo.</dd>
+    <dt>Continuidad</dt><dd>El cable va del escritorio al nicho: está en el production design.</dd>
+    <dt>Sonido</dt><dd>«mm.» → tap → <b>un tono que viaja</b> con la luz (paneo estéreo izq→der) → el ticker como hi-hat, el zumbido como sub subiendo.</dd>
+    <dt>Termina</dt><dd>En <span class=mono>9/9</span>.</dd>
+    <dt>Conecta</dt><dd><b>Match</b>: el ticker pasa a <span class=mono>OK</span> → corte al wide, donde la ámbar del fondo hace lo mismo.</dd>
+  </dl><p class="fallback"><span class="eyebrow">Producción</span>Fallback: dos fijos (pantallas · ticker) y la luz compuesta en Remotion sobre un still del cielo. Se pierde el movimiento, no la idea.</p>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 10</span><h3>MEDIO NIVEL -1</h3><span class="tc mono">0:24,6 – 0:30,0</span><span class="dur mono">162 f</span><span class="fn">ESCALADA · pauta · beat 3 completo</span><span class="hero">★ HERO</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>MA-01 · EL EJE, el mismo wide del 03</dd>
+    <dt>Lente · cámara</dt><dd>24 mm · fija</dd>
+    <dt>Acción</dt><dd class="acc"><b>Todo a la vez</b>: hojas volando de Marta, cajones abriéndose en secuencia, la escalera de un extremo al otro, el fluorescente titilando, la ámbar estroboscópica al fondo, y <b>R.01 dando vueltas a la mesa con un solo post-it en el lomo que dice <span class=mono>PAUTA</span></b> — como una bomba. En medio, <b>G va del escritorio a la mesa y vuelve</b>, poniendo una hoja cada vez. Una. A la mitad, la landing en la pantalla moderna: G la toca; al fondo el ticker parpadea <span class=mono>OK</span>.</dd>
+    <dt>G</dt><dd>El centro quieto de un huracán. Paso corto, una cosa por viaje.</dd>
+    <dt>Marta · R.01 · Server</dt><dd>Todos a máxima. R.01 es el chiste visual.</dd>
+    <dt>Continuidad</dt><dd>La taza en el borde. La pizarra. La ámbar.</dd>
+    <dt>Sonido</dt><dd><b>Máxima intensidad</b>: groove entero, rodillos, motor, ticker, zumbido. Todo el set es la orquesta.</dd>
+    <dt>Termina</dt><dd>Con R.01 completando una vuelta y saliendo por la derecha.</dd>
+    <dt>Conecta</dt><dd>Corte a la <b>ráfaga</b>.</dd>
+  </dl><p class="fallback"><span class="eyebrow">Producción</span>Se genera con UN solo elemento en movimiento (G) sobre el set vacío; Marta, R.01, cajones y escalera van como placas separadas sobre el mismo master. El set es fijo: calzan.</p>
+</article>
+<article class="shot">
+  <header><span class="num">RÁFAGA</span><h3>4 × 12 f</h3><span class="tc mono">0:30,0 – 0:31,6</span><span class="dur mono">48 f</span><span class="fn">PICO</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>Cuatro insertos, una unidad de montaje</dd>
+    <dt>Lente · cámara</dt><dd>—</dd>
+    <dt>Acción</dt><dd class="acc"><b>a</b> una hoja saliendo de Marta tapa el lente (MA-04) · <b>b</b> un cajón cerrándose de golpe (detalle) · <b>c</b> el post-it <span class=mono>PAUTA</span> en el lomo de R.01, pasando (MA-07) · <b>d</b> el ticker: <span class=mono>9/9 · OK</span> (MA-06).</dd>
+    <dt>G</dt><dd>—</dd>
+    <dt>Marta · R.01 · Server</dt><dd>—</dd>
+    <dt>Continuidad</dt><dd>—</dd>
+    <dt>Sonido</dt><dd>Cuatro golpes.</dd>
+    <dt>Termina</dt><dd>En el <span class=mono>OK</span>.</dd>
+    <dt>Conecta</dt><dd><b>Cut on impact</b>: el OK es el corte al 11. <b>El único corte microscópico del capítulo</b>; por contraste, pega.</dd>
+  </dl>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 11</span><h3>LA CARPETA</h3><span class="tc mono">0:31,6 – 0:35,0</span><span class="dur mono">102 f</span><span class="fn">CLÍMAX · presentación</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>MA-05 · LA MESA, cenital</dd>
+    <dt>Lente · cámara</dt><dd>35 mm · fija</dd>
+    <dt>Acción</dt><dd class="acc">La mesa <b>llena</b>: las nueve, los stills del video, la landing impresa, las hojas de pauta. La taza en el borde. El guante <b>cierra una carpeta negra</b> al centro. Etiqueta: <span class=mono>PRESENTACIÓN</span>. La desliza al borde. Por el borde izquierdo, a ras de piso, <b>R.01 la recibe en el lomo</b> — la carpeta es más grande que R.01.</dd>
+    <dt>G</dt><dd>El guante. Cierra, desliza. Preciso.</dd>
+    <dt>Marta · R.01 · Server</dt><dd>R.01 acepta la carga como acepta todo.</dd>
+    <dt>Continuidad</dt><dd>La taza. La mesa llena es la misma del 13, quieta.</dd>
+    <dt>Sonido</dt><dd>La carpeta cerrándose: golpe seco. <b>La música muere a muestra cero en el golpe.</b></dd>
+    <dt>Termina</dt><dd>Con la carpeta cayendo sobre R.01.</dd>
+    <dt>Conecta</dt><dd><b>Cut on impact</b> al 12.</dd>
+  </dl>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 12</span><h3>SUBE</h3><span class="tc mono">0:35,0 – 0:39,0</span><span class="dur mono">120 f</span><span class="fn">RESOLUCIÓN</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>MA-07 · a ras de suelo, mirando al oeste por el pasillo al ascensor (el único master que mira al oeste: es la salida)</dd>
+    <dt>Lente · cámara</dt><dd>35 mm · 0,2 m · fija</dd>
+    <dt>Acción</dt><dd class="acc">R.01 recorre el pasillo con la carpeta, chico bajo el cielo bajo. Las puertas se abren: <b>un rectángulo de luz fría</b> cae al piso. R.01 entra. Las puertas se cierran. <b>DING.</b> Sube. Y en el DING <b>todo se detiene</b>: la ámbar vuelve a fija, el zumbido baja, el fluorescente deja de titilar.</dd>
+    <dt>G</dt><dd>— (fuera de cuadro)</dd>
+    <dt>Marta · R.01 · Server</dt><dd>R.01 se va. Marta para. El Server descansa.</dd>
+    <dt>Continuidad</dt><dd>La luz fría del ascensor: la única fría del nivel.</dd>
+    <dt>Sonido</dt><dd>Motor → puertas → <b>DING</b> (el del ascensor, más limpio que el del tubo) → <b>silencio</b>.</dd>
+    <dt>Termina</dt><dd>En las puertas cerradas.</dd>
+    <dt>Conecta</dt><dd>Corte a la calma: mismo silencio, otro plano.</dd>
+  </dl>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 13</span><h3>CALMA</h3><span class="tc mono">0:39,0 – 0:44,0</span><span class="dur mono">150 f</span><span class="fn">FALSA CALMA REAL</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>MA-01 · EL EJE. El mismo wide de 03 y 10 — ahora quieto</dd>
+    <dt>Lente · cámara</dt><dd>24 mm · fija</dd>
+    <dt>Acción</dt><dd class="acc">Nada se mueve. La mesa llena, la bandeja rebalsada, la ámbar fija. G recupera <b>la taza de la mesa</b> y se sienta. A los 2 s, <b>DING</b> suave: el ascensor vuelve, <b>R.01 sale sin la carpeta</b> y va a su dock. El visor de G <b>sube un 15 %</b> un instante. Un sorbo. <b>1,5 s más de nada.</b></dd>
+    <dt>G</dt><dd>El sorbo. El +15 % cuando R.01 vuelve: lo más cálido que hace en el capítulo.</dd>
+    <dt>Marta · R.01 · Server</dt><dd>R.01 vuelve, misión cumplida. Marta quieta. El Server en reposo.</dd>
+    <dt>Continuidad</dt><dd>La taza, ya fría. R.01 sin carpeta: <b>arriba la recibieron</b>.</dd>
+    <dt>Sonido</dt><dd><b>Silencio absoluto.</b> Tono de sala. El DING chico. Un sorbo.</dd>
+    <dt>Termina</dt><dd>En G quieto, taza en la mano.</dd>
+    <dt>Conecta</dt><dd><b>Sound bridge</b>: el tsh-TUNK entra ANTES del corte.</dd>
+  </dl>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 14</span><h3>UNA COSITA MÁS</h3><span class="tc mono">0:44,0 – 0:46,4</span><span class="dur mono">72 f</span><span class="fn">PAYOFF · beat 4</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>MA-08 · el intake, idéntico al SHOT 01</dd>
+    <dt>Lente · cámara</dt><dd>100 mm · fija</dd>
+    <dt>Acción</dt><dd class="acc">tsh-TUNK. Una carpeta cae en la canasta. Post-it rosado, esta vez de frente: <span class=mano>UNA COSITA MÁS…</span> Hold. Nadie va a buscarla.</dd>
+    <dt>G</dt><dd>—</dd>
+    <dt>Marta · R.01 · Server</dt><dd>—</dd>
+    <dt>Continuidad</dt><dd>La misma canasta del 01, vacía otra vez.</dd>
+    <dt>Sonido</dt><dd>El mismo sample del segundo 0. Después, silencio.</dd>
+    <dt>Termina</dt><dd>En el post-it legible.</dd>
+    <dt>Conecta</dt><dd>Corte seco a Marta.</dd>
+  </dl>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 15</span><h3>NO.</h3><span class="tc mono">0:46,4 – 0:48,8</span><span class="dur mono">72 f</span><span class="fn">PAYOFF</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>MA-04 · Marta tight</dd>
+    <dt>Lente · cámara</dt><dd>85 mm · fija</dd>
+    <dt>Acción</dt><dd class="acc">Un beat de nada. Su LCD, quieto. Después imprime <b>una sola hoja</b>, que sube a cuadro: <span class=mono style='font-size:1.3em'>NO.</span> Hold 1 segundo.</dd>
+    <dt>G</dt><dd>—</dd>
+    <dt>Marta · R.01 · Server</dt><dd>Marta. Toda ella.</dd>
+    <dt>Continuidad</dt><dd>La bandeja rebalsada del capítulo.</dd>
+    <dt>Sonido</dt><dd>Un rodillo. Uno solo. Y silencio.</dd>
+    <dt>Termina</dt><dd>En la hoja quieta.</dd>
+    <dt>Conecta</dt><dd>Contraplano por mirada: G la mira.</dd>
+  </dl>
+</article>
+<article class="shot">
+  <header><span class="num">SHOT 16</span><h3>G</h3><span class="tc mono">0:48,8 – 0:50,0</span><span class="dur mono">36 f</span><span class="fn">PAYOFF</span></header>
+  <dl>
+    <dt>Encuadre</dt><dd>MA-02 · G frontal</dd>
+    <dt>Lente · cámara</dt><dd>50 mm · fija</dd>
+    <dt>Acción</dt><dd class="acc">G mira a Marta (a la izquierda, como siempre). Off: <b>un ruido mecánico de Marta</b>, un rodillo que se acomoda. El visor de G <b>baja un 15 % y vuelve</b>. Es todo. <b>CORTE A NEGRO.</b></dd>
+    <dt>G</dt><dd>La reacción más chica posible. Nada de hombros, nada de cabeza.</dd>
+    <dt>Marta · R.01 · Server</dt><dd>El ruido de Marta, off.</dd>
+    <dt>Continuidad</dt><dd>La taza en la mano.</dd>
+    <dt>Sonido</dt><dd>El ruido → el visor (un tick) → negro.</dd>
+    <dt>Termina</dt><dd>Negro.</dd>
+    <dt>Conecta</dt><dd>A la firma: <span class=mono>G.C.L. / DEPARTAMENTO DE COSAS IMPOSIBLES / COPYWRITERS</span>, mono, chico, 2 s.</dd>
+  </dl>
+</article>
+  </div>
+
+  <h2><span class="mono">E</span>Tres hero shots</h2>
+  <div class="heroes">
+    <div><span class="mano">1</span><h3>SHOT 03 · El único que camina</h3><p>Un wide con todo el departamento en protocolo y un robot chico caminando tranquilo por el medio con una taza. Es la tesis de la serie en un cuadro — <i>lo extraordinario tratado como cotidiano</i> — y es un still que funciona como miniatura.</p></div>
+    <div><span class="mano">2</span><h3>SHOT 09 · El cable</h3><p>Una luz que sale del escritorio y corre por el cielo hasta el Server, con la cámara siguiéndola. La dependencia hecha física. El plano que hace decir «qué buena producción», porque nadie espera ese movimiento en un reel.</p></div>
+    <div><span class="mano">3</span><h3>SHOT 10 · Medio Nivel −1</h3><p>El caos coreografiado: hojas, cajones, la escalera, R.01 con su post-it-bomba, la ámbar estroboscópica — y G poniendo <b>una</b> hoja. El contraste máximo entre el mundo y él.</p></div>
+  </div>
+  <p>Mención: el SHOT 12 —la luz fría del ascensor cayendo al piso del pasillo— es el plano más <i>bonito</i>. Pero no es un hero: es el respiro antes de la calma.</p>
+
+  <h2><span class="mono">F</span>Risk check de producción</h2>
+  <div class="tabla riesgo"><table>
+    <tr><th>Plano</th><th>Riesgo</th><th>Nivel</th><th>Qué se hace</th></tr>
+    <tr><td><b>02 La ronda</b></td><td>tres whips en un plano generado: el set deriva entre estaciones</td><td class="r-alto">ALTO</td><td>Cuatro fijos con whip-out / whip-in en Remotion. Es el fallback <b>por defecto</b></td></tr>
+    <tr><td><b>09 El cable</b></td><td>un paneo largo siguiendo una luz por el cielo</td><td class="r-alto">ALTO</td><td>Dos fijos + la luz compuesta sobre un still del cielo. El paneo se intenta <b>una vez</b> con kling; si deriva, fallback</td></tr>
+    <tr><td><b>10 Medio Nivel −1</b></td><td>seis cosas moviéndose en un cuadro generado: morphing casi seguro</td><td class="r-alto">ALTO</td><td>El wide se genera con <b>un solo</b> elemento en movimiento (G) sobre el set vacío; Marta, R.01, cajones y escalera van como placas separadas sobre el mismo master. El set es fijo: calzan</td></tr>
+    <tr><td>07 · 11 cenitales</td><td>la física del papel; las etiquetas</td><td class="r-medio">MEDIO</td><td>Kling maneja papel (visto en el rewind del prototipo). <b>Las etiquetas se componen en Remotion siempre</b></td></tr>
+    <tr><td>08 · R.01 con la regla</td><td>el objeto en el lomo se deforma</td><td class="r-medio">MEDIO</td><td>Objetos simples y rígidos: regla, post-it, carpeta. Nunca algo con partes</td></tr>
+    <tr><td>Marta: LCD y hojas</td><td>texto generado ilegible</td><td class="r-medio">MEDIO</td><td>LCD y contenido de las hojas = Remotion. La hoja física sí se genera</td></tr>
+    <tr><td>12 El ascensor</td><td>puertas que se abren en un plano generado</td><td class="r-medio">MEDIO</td><td>Fallback: fijo con <b>cambio de luz</b> + sonido de puertas. Nadie va a notar que la puerta no se movió</td></tr>
+    <tr><td>La bandeja de Marta</td><td>cuántas hojas hay en el suelo en cada plano</td><td class="r-medio">MEDIO</td><td>Tabla antes de generar: 0 (01) · 1 (02) · 3 (05) · 8 (07) · 15 (10) · 20 (13–16). Ancla: <b>una hoja apoyada en la rueda del carro</b>, en todos</td></tr>
+    <tr><td>La taza</td><td>aparece y desaparece</td><td>BAJO</td><td>Mano (02) → mesa (03–11) → mano (13–16). Los cenitales la muestran</td></tr>
+    <tr><td>La caja de R.01</td><td>estaba en el archivo en el production design</td><td>—</td><td><b>Corregido</b>: vive en la esquina este del escritorio de G, donde el guante llega</td></tr>
+    <tr><td><b>G caminando</b></td><td>el prototipo nunca lo mostró caminar; el model sheet no tiene «walking»</td><td class="r-medio">MEDIO</td><td><b>Primero el model sheet</b>: sentado / de pie / caminando. Sin eso, el 03 y el 10 no se generan</td></tr>
+  </table></div>
+  <p>Lo que no es riesgo y parece: los 16 planos viven en 6 masters y 2 encuadres nuevos (la canasta desde abajo, el pasillo hacia el ascensor). Ningún plano necesita un lugar que no esté en el production design.</p>
+
+  <h2><span class="mono">G</span>Autoevaluación</h2>
+  <div class="notas">
+    <div><small>Hook</small><b>9</b><span>pánico antes de la causa; la frase como remate. Depende de que la RONDA salga</span></div>
+    <div><small>Claridad</small><b>8</b><span>la cadena es física. El eslabón débil es <i>landing</i>: un tap y un OK, dentro del caos</span></div>
+    <div><small>Ritmo</small><b>9</b><span>dos huecos (post-it, calma) y un solo pico microscópico</span></div>
+    <div><small>Comedia</small><b>9</b><span>cuatro beats pedidos + tres micro: la pizarra, los 10 cm, R.01 volviendo sin carpeta</span></div>
+    <div><small>G</small><b>9</b><span>dos sonidos, un gesto, un sorbo, +15 % de visor cuando vuelve R.01</span></div>
+    <div><small>Mundo</small><b>9</b><span>Marta va adelante y da el remate; R.01 es el circuito; el Server cuenta</span></div>
+    <div><small>Shareability</small><b>9</b><span>tres frases que cualquiera de agencia recibió. Y un NO. impreso para pegar en la pared</span></div>
+    <div><small>Wow</small><b>8</b><span>tres heroes, dos de riesgo alto. Si se producen los fallbacks, baja a 7</span></div>
+  </div>
+  <p>Ninguna bajo 8. La más frágil es <b>Wow</b>, y depende de producción, no de guion.</p>
+
+  <h2>Cuando apruebes la historia</h2>
+  <ol class="sigue">
+    <li>El model sheet de G <b>caminando</b> — bloquea los planos 03 y 10.</li>
+    <li>La tabla de continuidad de la bandeja y la taza, plano a plano.</li>
+    <li>Generar el set vacío desde el MA-01. Después los masters. Después G.</li>
+    <li>Rough cut con música y SFX <b>antes</b> de perfeccionar un solo plano.</li>
+  </ol>
+  <p class="mano" style="margin-top:28px">Nada de esto empieza antes de tu aprobación.</p>
+  <p class="eyebrow" style="margin-top:40px">El documento canon vive en el repo: gcl-agent/universo/06_VIDEO_REELS/CAP_02/STORYBOARD_V1.md</p>
+</div>

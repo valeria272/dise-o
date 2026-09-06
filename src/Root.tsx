@@ -77,6 +77,7 @@ import {
   GCL_R02_FPS,
 } from "./compositions/GclTurnoNocheReel";
 import {Cap02Revision7} from "./compositions/gcl/Cap02Revision7";
+import {Cap02Bloque1} from "./compositions/gcl/Cap02Bloque1";
 
 // Social templates
 import {TikTokVideo} from "./templates/social/TikTokVideo";
@@ -353,6 +354,7 @@ export const RemotionRoot: React.FC = () => {
           height={1920}
         />
         {/* G.CL · Cap. 02 «Revisión 7» — ROUGH CUT v3. 776f · 25,87 s · 112,5 BPM */}
+        <Composition id="GclCap02Bloque1" component={Cap02Bloque1} durationInFrames={144} fps={30} width={1080} height={1920} />
         <Composition
           id="GclCap02Revision7"
           component={Cap02Revision7}

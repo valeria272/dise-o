@@ -127,7 +127,7 @@ export const Cap02Bloque1: React.FC = () => {
 
       {/* SHOT 03 · EL ÚNICO QUE CAMINA · f.78–143 · smash cut al wide. Entra la música. */}
       <Sequence from={78} durationInFrames={66}>
-        <Clip src="s03_wide.mp4" desdeS={0} />
+        <Clip src="s03_wide.mp4" desdeS={2.2} />   {/* se para a los 2,3 s y camina hacia cámara-izquierda hasta los 4,4 */}
       </Sequence>
 
       <Grano op={0.05} />

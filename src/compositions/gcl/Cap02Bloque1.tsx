@@ -128,7 +128,7 @@ export const Cap02Bloque1: React.FC = () => {
 
       {/* 02d · G · f.57–71 · baja apenas la taza, micro inclinación · «eh?» en el f.60 · SMASH CUT */}
       <Sequence from={57} durationInFrames={15}>
-        <Clip src="s02d_g.mp4" desdeS={0.6} />
+        <Clip src="s02d_g.mp4" desdeS={2.0} />   {/* cámara bloqueada (dif. borde de mesa 1,7). El gesto es lento: se toma el tramo medio */}
       </Sequence>
 
       {/* SHOT 03 · EL ÚNICO QUE CAMINA · f.72–137 · el wide. Entra la música. NO SE TOCA. */}

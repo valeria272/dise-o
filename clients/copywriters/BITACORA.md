@@ -8,6 +8,20 @@
 
 ---
 
+## 2026-09-06 · Valeria — G.CL Cap. 02 · CLARITY CUT V2
+
+**Qué se hizo:** pasada de claridad sobre el FULL ROUGH V1 sin regenerar nada: tiempo a lo que se
+lee (post-it 1,5 s, copy 1,4, diseño 1,2, formatos 1,2, «una cosita más» 1,6, NO. 1,4), sellos en
+las hojas de Marta para que la cadena COPY → DISEÑO → FORMATOS ×9 → VIDEO → LANDING → PAUTA →
+PRESENTACIÓN se lea, caos/sube/calma recortados, sonido como puntuación (clic/ping/trrr/sello).
+1454 f = 48,5 s (−3,3 s).
+**Dónde quedó:** `out/gcl/cap02/v2/` + `~/Desktop/GCL_CAP02_CLARITY_CUT_V2/` + Drive. Composición
+`src/compositions/gcl/Cap02ClarityCut.tsx`, pista `scripts/cap02-audio-v2.py`, hojas
+`scripts/cap02-hojas-v2.py`, control `scripts/cap02-qc-hojas-v2.py`. Cambios en `CAP_02/CAP02_V1_V2_CHANGES.md`.
+**Qué sigue:** Valeria mira la V2 → MASTER: regenerar 04 (G alto), sound lock (voz 4A/B/C), 12, 13, 11.
+**Abierto:** nada nuevo. `cap02-preparar-full.sh` reconstruye public/assets; para la V2 correr además
+`cap02-hojas-v2.py` y `cap02-audio-v2.py`.
+
 ## 2026-09-05 · Valeria (night run autónomo) — G.CL Cap. 02 «Es un cambio chico» · FULL ROUGH V1
 
 **Qué se hizo:** se produjo el capítulo completo (16 planos + ráfaga + firma, 1554 f = 51,8 s)

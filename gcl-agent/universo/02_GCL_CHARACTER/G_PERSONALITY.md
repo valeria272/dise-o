@@ -4,6 +4,15 @@ The protagonist is **G**. `G.C.L.` is the universe/series and the graphic
 wordmark; **G** is the character inside it. There is no nickname, no alternate
 name and no diminutive — see `CANON_LOCK.md`, lock 1.
 
+## The register · CANON LOCK 6 (supersedes the paragraphs below where they differ)
+**Competent + intelligent + observant + deadpan + curious + warm when it fits +
+dry humour + small reactions.** Expressiveness is built, in this order, from
+posture · head/visor · timing · pauses · gaze · very short original electronic
+sounds · exceptional, short dialogue. The less he needs to react, the funnier it
+often is. Not chatty. Not childish. Not blank. Not a stand-up act.
+CAP.01 is exempt (origin chapter). «Revisión 7» is a technical deadpan reference,
+not narrative canon.
+
 ## Personality
 Competent. Fast. Observant. Friendly without being sugary. Dry. Curious. Has taste. Sometimes mischievous. Can be absurd or irreverent when earned. Occasionally understands too much. Develops affection for his weird crew.
 

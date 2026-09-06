@@ -62,11 +62,12 @@ For each new reel deliver BEFORE generation:
 14. approval checkpoint
 Only generate after approval.
 
-## CAP.02 — ⛔ FROZEN
-`CAP02_EL_PRIMER_DIA_NORMAL.md` is a written direction, **not an approved
-chapter**. The number 02 is currently claimed by three different chapters and
-four canon questions are open — see `CANON_LOCK.md` §4. Nothing gets storyboarded
-or generated for CAP.02 until those are closed.
+## CAP.02 — «ES UN CAMBIO CHICO» · production design first
+CAP.02 is `G.C.L. / CAP.02 — ES UN CAMBIO CHICO` (CANON LOCK 4). «Turno de
+noche» and «Revisión 7» are non-canon prototypes; «El primer día normal» is
+discarded. **Order of work:** Nivel -1 production design (floor plan, rules,
+canon positions, master angles) → approval → master frames → storyboard →
+approval → generation. Do not skip a step. The set is designed BEFORE any image.
 
 ## GOLDEN TEST
 Could any generic AI agency publish this? If yes, reject it. The audience should want to revisit this specific world.

@@ -26,7 +26,11 @@
 - Team Master Canon approved.
 - Office Master Canon approved.
 - Portal between office and Nivel -1 is recurring spatial/narrative device.
-- ⛔ CAP.02 **congelado**: el número 02 lo reclaman tres capítulos. Ver `CANON_LOCK.md` §4.1.
+- **CANON LOCK 4 · CAP.02 = «ES UN CAMBIO CHICO».** Turno de noche y Revisión 7 = prototipos no canon.
+- **CANON LOCK 5 · el board fija apariencia y escala, no cargos.** Diego ficticio ≠ Diego Aguilar.
+- **CANON LOCK 6 · un solo registro de G** (deadpan, observador, pequeñas reacciones).
+- **CANON LOCK 7 · el set de Revisión 7 no es canon.**
+- **CANON LOCK 8 · capa satírica + ME RECONOZCO / ME SORPRENDE / ME ENCARIÑO ≥ 2/3.**
 
 ## PENDING
 - Serena exact role/title.

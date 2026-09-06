@@ -8,7 +8,7 @@
 08 VALE DETECTADA — rare Valeria cameo. Before she reaches -1, Marta begins printing extra paper. G knows.
 09 R.01 ASCENDIDO — tiny employee-badge ceremony after R.01 delivers one sticky note upstairs.
 10 EL SERVER ESTÁ DE HUMOR — Server answers requests with increasingly cryptic one-line messages.
-11 EL CAMBIO CHICO — “es un cambio súper chico” triggers an emergency protocol downstairs.
+11 ~~EL CAMBIO CHICO~~ — **ascendido a CAP.02** (CANON LOCK 4). Este hueco del roadmap queda libre.
 12 CAMPAÑA DE 5 MINUTOS — Nivel -1 becomes an absurdly elegant Formula-1 pit crew.
 
 Rule: every episode must strengthen relationships/world, not just land one punchline.

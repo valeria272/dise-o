@@ -1,3 +1,7 @@
+> ⛔ **DESCARTADO COMO CAP.02 — CANON LOCK 4 (05-09-2026).** El CAP.02 oficial es
+> **«ES UN CAMBIO CHICO»**. Este guion se conserva como material —los beats de
+> Marta, R.01 y el Server siguen siendo buenos— pero no es un capítulo.
+
 # CAP.02 — EL PRIMER DÍA NORMAL
 Target: 40–50s. Workplace comedy + cinematic advertising + absurd deadpan.
 Main cast: G, Marta, R.01, Server. Human presence: only an anonymous brief handoff.

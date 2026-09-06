@@ -1,0 +1,327 @@
+<title>Departamento de Cosas Imposibles</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..900&family=DM+Serif+Display:ital@1&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F2F4F6; --ink:#080F14; --muted:#5B6470; --line:rgba(8,15,20,.14); --soft:rgba(8,15,20,.05);
+  --pink:#FF2D8D; --amber:#C97F00; --tung:#B27A1C; --cold:#2F6FC4; --fluo:#5C8F77;
+  --paper:#FFFFFF; --wedge:rgba(8,15,20,.07); --planta:rgba(8,15,20,.035);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#080F14; --ink:#F2F4F6; --muted:#98A2AD; --line:rgba(242,244,246,.14); --soft:rgba(242,244,246,.05);
+  --amber:#FFB030; --tung:#E8B86B; --cold:#7FB2FF; --fluo:#8FD1B3;
+  --paper:#0E171E; --wedge:rgba(242,244,246,.07); --planta:rgba(242,244,246,.035);
+}}
+:root[data-theme="dark"]{
+  --bg:#080F14; --ink:#F2F4F6; --muted:#98A2AD; --line:rgba(242,244,246,.14); --soft:rgba(242,244,246,.05);
+  --amber:#FFB030; --tung:#E8B86B; --cold:#7FB2FF; --fluo:#8FD1B3;
+  --paper:#0E171E; --wedge:rgba(242,244,246,.07); --planta:rgba(242,244,246,.035);
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:'Archivo',Helvetica,Arial,sans-serif;font-variation-settings:'wdth' 100,'wght' 500;font-size:16px;line-height:1.5;margin:0}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:40px 28px 96px}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.mano{font-family:'Caveat',cursive;font-size:1.35em;line-height:1.1;color:var(--pink)}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-variation-settings:'wdth' 78,'wght' 900;font-size:clamp(44px,7vw,84px);line-height:.92;letter-spacing:-.02em;margin:10px 0 6px;text-wrap:balance}
+h1 em{font-family:'DM Serif Display',Georgia,serif;font-style:italic;font-variation-settings:normal;font-weight:400;color:var(--pink);letter-spacing:0}
+.lead{font-family:'DM Serif Display',Georgia,serif;font-style:italic;font-size:22px;line-height:1.3;max-width:60ch;margin:18px 0 0;color:var(--ink)}
+.estado{display:flex;gap:28px;flex-wrap:wrap;margin:28px 0 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.estado div{font-size:13px}.estado b{display:block;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+h2{font-variation-settings:'wdth' 84,'wght' 800;font-size:30px;line-height:1.05;letter-spacing:-.01em;margin:64px 0 6px;text-wrap:balance}
+h2 .mono{font-size:13px;letter-spacing:.12em;color:var(--muted);font-weight:500;margin-right:12px;vertical-align:middle}
+h3{font-variation-settings:'wdth' 92,'wght' 700;font-size:19px;margin:30px 0 8px}
+p{max-width:65ch;margin:10px 0}
+.nota{max-width:65ch;border-left:3px solid var(--pink);padding:6px 0 6px 16px;margin:18px 0;color:var(--ink)}
+.nota .eyebrow{color:var(--pink);margin-bottom:4px}
+figure{margin:24px 0 8px}
+figure svg{width:100%;height:auto;display:block;color:var(--ink)}
+figcaption{font-size:13px;color:var(--muted);max-width:75ch;margin-top:10px}
+.leyenda{display:flex;flex-wrap:wrap;gap:14px 22px;font-size:12px;margin:12px 0 0;color:var(--muted)}
+.leyenda span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:14px;height:14px;border-radius:50%;display:inline-block;border:1px solid var(--line)}
+.tabla{overflow-x:auto;margin:14px 0 0}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 12px 8px 0;border-bottom:1px solid var(--ink);vertical-align:bottom}
+td{padding:10px 12px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{white-space:nowrap}
+td .mono{font-size:12.5px;color:var(--muted)}
+.k{font-variation-settings:'wdth' 92,'wght' 800}
+.tabla.ang td{font-size:13.5px}.tabla.ang td:nth-child(2){font-variation-settings:'wdth' 88,'wght' 800;white-space:nowrap}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px 40px;max-width:1000px}
+.eje{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);max-width:760px;margin:18px 0}
+.eje div{background:var(--paper);padding:14px 16px}
+.eje b{display:block;font-variation-settings:'wdth' 84,'wght' 800;font-size:15px;margin-bottom:2px}.eje small{color:var(--muted);font-size:13px}
+.epocas{display:grid;grid-template-columns:auto 1fr;gap:6px 22px;max-width:70ch;font-size:15px}
+.epocas b{font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--pink)}
+.beats{list-style:none;padding:0;margin:14px 0 0;max-width:820px}
+.beats li{display:grid;grid-template-columns:150px 92px 1fr 150px;gap:14px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;align-items:baseline}
+.beats li:first-child{border-top:1px solid var(--ink)}
+.beats .b{font-variation-settings:'wdth' 88,'wght' 800}.beats .m{font-family:'IBM Plex Mono',monospace;font-size:12.5px}.beats .d{color:var(--muted)}
+.veredicto{background:var(--paper);border:1px solid var(--line);padding:22px 26px;max-width:720px;margin:26px 0}
+.veredicto .mano{font-size:34px;display:block;margin-bottom:6px}
+.sigue{counter-reset:s;list-style:none;padding:0;max-width:65ch}
+.sigue li{counter-increment:s;padding:8px 0 8px 44px;position:relative;border-bottom:1px solid var(--line)}
+.sigue li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:9px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--pink)}
+@media (max-width:720px){.beats li{grid-template-columns:1fr 1fr;gap:4px 12px}.eje{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:no-preference){.cam{transition:r .15s}}
+/* ── el plano ── */
+.planta{fill:var(--planta);stroke:currentColor;stroke-width:2}
+.z{fill:var(--soft);stroke:currentColor;stroke-width:.8;stroke-opacity:.5}
+.z.g{fill:rgba(255,45,141,.16);stroke:var(--pink);stroke-width:1.4;stroke-opacity:1}
+.z.marta{fill:var(--soft);stroke:currentColor;stroke-width:1.4;stroke-opacity:1}
+.z.mesa{fill:none;stroke:currentColor;stroke-width:1.4;stroke-opacity:1}
+.z.nicho{fill:none;stroke:currentColor;stroke-dasharray:3 3;stroke-opacity:.6}
+.z.server{fill:rgba(255,176,48,.22);stroke:var(--amber);stroke-width:1.4;stroke-opacity:1}
+.z.cold{fill:rgba(127,178,255,.14);stroke:var(--cold);stroke-opacity:1}
+.z.myst{fill:none;stroke:currentColor;stroke-dasharray:2 3;stroke-opacity:.7}
+.pilar{fill:currentColor}
+.zl{font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 84,'wght' 800;font-size:10.5px;fill:currentColor;text-anchor:middle;dominant-baseline:middle}
+.zs{font-family:'IBM Plex Mono',monospace;font-size:8.5px;fill:currentColor;fill-opacity:.7;text-anchor:middle;dominant-baseline:middle}
+.mini{font-family:'IBM Plex Mono',monospace;font-size:9.5px;fill:currentColor;fill-opacity:.75}
+.eje{stroke:currentColor;stroke-dasharray:6 5;stroke-opacity:.45;stroke-width:1}
+.carril{fill:none;stroke:currentColor;stroke-width:1;stroke-dasharray:1.5 4;stroke-opacity:.6;stroke-linecap:round}
+.tranque{fill:none;stroke:currentColor;stroke-width:1.2}
+.luz{stroke:none}.luz.tung{fill:var(--tung)}.luz.amber{fill:var(--amber)}.luz.cold{fill:var(--cold)}.luz.fluo{fill:var(--fluo)}
+.cono{fill:var(--wedge);stroke:currentColor;stroke-width:.6;stroke-opacity:.35}
+.cam{fill:currentColor;stroke:var(--bg);stroke-width:2}.cam.top{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:2 2}
+.camlab{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;fill:currentColor}
+.mov{stroke:var(--pink);stroke-width:1.6}
+.escala{stroke:currentColor;stroke-width:2}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">G.C.L. · Nivel −1 · Production Design V1 · 05-09-2026 · para aprobación</div>
+  <h1>Departamento de <em>Cosas Imposibles</em></h1>
+  <p class="lead">Un eje. El ascensor en el extremo oeste, la puerta del Server en el extremo este, y entre los dos —a 16 metros— toda la vida del departamento. Arriba queda a la izquierda del mundo; lo profundo, a la derecha. G se sienta al sur, mirando al norte, en medio.</p>
+  <div class="estado">
+    <div><b>Estado</b>diseño del espacio · nada generado</div>
+    <div><b>Planta</b><span class="mono">16 × 10 m</span> · cielo 3,2 m</div>
+    <div><b>Masters</b>8 fijos · 1 contraplano · 1 movimiento</div>
+    <div><b>Prueba</b>CAP.02 «Es un cambio chico» · pasa</div>
+    <div><b>Coordenadas</b><span class="mono">x</span> al este · <span class="mono">y</span> al norte · desde la esquina SO</div>
+  </div>
+
+  <h2><span class="mono">A</span>Floor plan</h2>
+  <figure>
+    <svg viewBox="0 0 950 640" role="img" aria-label="Planta cenital del Nivel −1: ascensor al oeste, pasillo, sala principal con la mesa central, estación de G al sur, Marta al norte, nicho del Server al este, con las nueve posiciones de cámara maestras y el carril de R.01">
+      <defs><marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#FF2D8D"/></marker></defs>
+      <path d="M320,570 L720,570 L720,395 L870,395 L870,245 L720,245 L720,70 L320,70 L320,220 L150,220 L150,280 L70,280 L70,360 L150,360 L150,530 L240,530 L240,420 L320,420 Z" class="planta"/>
+<rect x="70" y="280" width="80" height="80" rx="0" class="z cold"/><text x="110" y="315" class="zl">ASC.</text><text x="110" y="331" class="zs">−1</text>
+<rect x="170" y="220" width="100" height="40" rx="0" class="z"/><text x="220" y="240" class="zl">CAFÉ</text>
+<rect x="170" y="380" width="40" height="40" rx="0" class="z"/><text x="190" y="400" class="zl">DOCK</text>
+<rect x="150" y="420" width="90" height="110" rx="0" class="z myst"/><text x="195" y="470" class="zl">ESCALERA</text><text x="195" y="486" class="zs">al −2 · NO</text>
+<rect x="320" y="510" width="150" height="60" rx="0" class="z"/><text x="395" y="540" class="zl">BODEGA</text>
+<rect x="470" y="460" width="125" height="80" rx="0" class="z g"/><text x="532" y="495" class="zl">ESTACIÓN DE G</text><text x="532" y="511" class="zs">mira al norte</text>
+<rect x="595" y="515" width="225" height="55" rx="0" class="z"/><text x="708" y="542" class="zl">ARCHIVO 1998 → 2026</text>
+<rect x="420" y="260" width="175" height="120" rx="0" class="z mesa"/><text x="508" y="315" class="zl">MESA CENTRAL</text><text x="508" y="331" class="zs">3,5 × 1,4 · la escalada</text>
+<rect x="400" y="70" width="40" height="30" rx="0" class="z"/><text x="420" y="85" class="zl">INTAKE</text>
+<rect x="495" y="70" width="75" height="50" rx="0" class="z marta"/><text x="532" y="90" class="zl">MARTA</text><text x="532" y="106" class="zs">mira al sur</text>
+<rect x="595" y="70" width="125" height="50" rx="0" class="z"/><text x="658" y="95" class="zl">REPISA RARA</text>
+<rect x="770" y="70" width="50" height="50" rx="0" class="z myst"/><text x="795" y="90" class="zl">PUERTA</text><text x="795" y="106" class="zs">tapada</text>
+<rect x="720" y="245" width="150" height="150" rx="0" class="z nicho"/><text x="795" y="320" class="zl">NICHO</text>
+<rect x="825" y="298" width="45" height="45" rx="0" class="z server"/><text x="848" y="320" class="zl">SERVER</text>
+<rect x="340" y="440" width="20" height="20" class="pilar"/>
+<rect x="340" y="180" width="20" height="20" class="pilar"/>
+<rect x="630" y="440" width="20" height="20" class="pilar"/>
+<line x1="110" y1="320" x2="825" y2="320" class="eje"/>
+<path d="M190,375 L190,340 L330,340 L390,340 L390,425 L615,425 L690,425 L690,215 L390,215 L390,340" class="carril"/>
+<circle cx="690" cy="425" r="5" class="tranque"/><text x="699" y="429" class="mini">se traba</text>
+<circle cx="450" cy="320" r="4" class="luz tung"/>
+<circle cx="508" cy="320" r="4" class="luz tung"/>
+<circle cx="565" cy="320" r="4" class="luz tung"/>
+<circle cx="485" cy="475" r="4" class="luz tung"/>
+<circle cx="550" cy="105" r="4" class="luz tung"/>
+<circle cx="235" cy="320" r="4" class="luz tung"/>
+<circle cx="790" cy="525" r="4" class="luz fluo"/>
+<circle cx="845" cy="282" r="4" class="luz amber"/>
+<circle cx="110" cy="320" r="4" class="luz cold"/>
+<path d="M330,320 L458,416 L458,224 Z" class="cono"/>
+<circle cx="330" cy="320" r="6" class="cam"/>
+<text x="339" y="311" class="camlab" text-anchor="start">MA-01</text>
+<path d="M500,370 L431,468 L510,490 Z" class="cono"/>
+<circle cx="500" cy="370" r="6" class="cam"/>
+<text x="509" y="361" class="camlab" text-anchor="start">MA-02</text>
+<path d="M520,450 L597,299 L443,299 Z" class="cono"/>
+<circle cx="520" cy="450" r="6" class="cam"/>
+<text x="529" y="441" class="camlab" text-anchor="start">MA-03</text>
+<path d="M500,190 L521,92 L479,92 Z" class="cono"/>
+<circle cx="500" cy="190" r="6" class="cam"/>
+<text x="509" y="181" class="camlab" text-anchor="start">MA-04</text>
+<path d="M645,320 L786,371 L786,269 Z" class="cono"/>
+<circle cx="645" cy="320" r="6" class="cam"/>
+<text x="654" y="311" class="camlab" text-anchor="start">MA-06</text>
+<path d="M840,320 L706,252 L706,388 Z" class="cono"/>
+<circle cx="840" cy="320" r="6" class="cam"/>
+<text x="826" y="311" class="camlab" text-anchor="end">MA-06b</text>
+<path d="M270,350 L404,418 L404,282 Z" class="cono"/>
+<circle cx="270" cy="350" r="6" class="cam"/>
+<text x="279" y="341" class="camlab" text-anchor="start">MA-07</text>
+<path d="M420,150 L434,71 L406,71 Z" class="cono"/>
+<circle cx="420" cy="150" r="6" class="cam"/>
+<text x="429" y="141" class="camlab" text-anchor="start">MA-08</text>
+<circle cx="508" cy="320" r="11" class="cam top"/><circle cx="508" cy="320" r="4" class="cam"/><text x="522" y="308" class="camlab">MA-05 ↓</text>
+<line x1="130" y1="298" x2="300" y2="298" class="mov" marker-end="url(#flecha)"/><text x="130" y="290" class="mini">MOV-01 · dolly → MA-01</text>
+<text x="905" y="55" class="mini" text-anchor="middle">N ↑</text>
+<line x1="745" y1="595" x2="845" y2="595" class="escala"/><text x="795" y="609" class="mini" text-anchor="middle">2 m</text>
+<text x="70" y="600" class="mini" text-anchor="middle">x 0</text>
+<text x="270" y="600" class="mini" text-anchor="middle">x 4</text>
+<text x="470" y="600" class="mini" text-anchor="middle">x 8</text>
+<text x="670" y="600" class="mini" text-anchor="middle">x 12</text>
+<text x="870" y="600" class="mini" text-anchor="middle">x 16</text>
+<text x="58" y="574" class="mini" text-anchor="end">y 0</text>
+<text x="58" y="324" class="mini" text-anchor="end">y 5</text>
+<text x="58" y="74" class="mini" text-anchor="end">y 10</text>
+
+    </svg>
+    <figcaption>Todo a escala: 1 m = 50 px. Los conos son el campo de cada master a su lente; el círculo doble sobre la mesa es el picado MA-05. La línea punteada larga es <b>el eje</b>; la de puntos finos, el carril de R.01 en sentido horario. Los puntos de color son las luces prácticas.</figcaption>
+    <div class="leyenda">
+      <span><i class="sw" style="background:var(--pink);opacity:.5"></i>G y lo suyo</span>
+      <span><i class="sw" style="background:var(--amber)"></i>el Server · ámbar · la única luz que cambia</span>
+      <span><i class="sw" style="background:var(--tung)"></i>tungsteno 2700–2900 K</span>
+      <span><i class="sw" style="background:var(--cold)"></i>fría 5000 K · sólo el ascensor</span>
+      <span><i class="sw" style="background:var(--fluo)"></i>fluorescente que parpadea</span>
+      <span><i class="sw" style="border:1px dashed currentColor;background:none"></i>misterio · no se revela</span>
+    </div>
+  </figure>
+
+  <h3>Qué se ve desde dónde</h3>
+  <div class="tabla"><table>
+    <tr><th>Desde</th><th>Mirando al</th><th>Se ve</th></tr>
+    <tr><td class="k">el ascensor</td><td>este</td><td>el pasillo comprimido, la mesa iluminada al fondo, los dos pilares como marco, y <b>a 16 m la lámpara ámbar del Server</b></td></tr>
+    <tr><td class="k" rowspan="4">la estación de G</td><td>norte</td><td>la mesa, y detrás <b>Marta al centro</b>, el intake a la izquierda, la repisa rara a la derecha</td></tr>
+    <tr><td>este</td><td>el pilar solo, el archivo, el nicho con la puerta</td></tr>
+    <tr><td>oeste</td><td>la boca del pasillo. Por ahí llega todo lo humano</td></tr>
+    <tr><td>abajo</td><td>el carril de R.01, que pasa frente a su escritorio</td></tr>
+    <tr><td class="k">Marta</td><td>sur</td><td>G en su estación, y el archivo detrás de él</td></tr>
+    <tr><td class="k">la puerta del Server</td><td>oeste, por el vidrio</td><td>toda la sala al revés, y el ascensor al fondo como un punto de luz fría</td></tr>
+  </table></div>
+
+  <h3>Lo que no se revela</h3>
+  <p>Tres misterios, y ninguno se explica en la temporada: la <b>escalera al −2</b>, encadenada, con un letrero que dice <span class="mono">NO</span> y nada más; la <b>puerta tapada</b> del noreste, sin manilla, pintada del color de la pared; y lo que hay <b>detrás del vidrio</b> del Server. El botón <span class="mono">−2</span> del ascensor tampoco enciende.</p>
+
+  <h2><span class="mono">B</span>Reglas arquitectónicas</h2>
+  <p>Un subsuelo de 1968 que fue bodega de la agencia desde los 90 y que G.C.L. fue adaptando <b>durante años</b>, sin permiso de nadie. No es un laboratorio: es un sótano operativo con capas. Cada época dejó algo y nadie sacó nada.</p>
+  <div class="epocas">
+    <b>1968</b><span>el edificio — el hormigón, los pilares, el tubo neumático, la escalera al −2, el ascensor</span>
+    <b>1994</b><span>la bodega — la estantería del archivo, la mesa de directorio, el reloj detenido a las 18:47</span>
+    <b>2006</b><span>la tecnología vieja — Marta, el monitor CRT, las bandejas de cables del cielo</span>
+    <b>2019</b><span>el intento de modernizar — un refrigerador chico, una tira LED muerta a medias, un punto de red que no llega a nada</span>
+    <b>2026</b><span>G — sus pantallas, R.01, el ticker LED sobre la puerta del Server (rescatado de un bus), y cinta de rotuladora por todas partes</span>
+  </div>
+  <p class="nota"><span class="eyebrow">La firma del lugar</span>Las reparaciones de G: cinta aislante, amarras plásticas, una pata de mesa hecha de libros, etiquetas mono en cada cosa que se puede etiquetar. Lo extraordinario se trata como cotidiano; lo cotidiano está parchado.</p>
+
+  <div class="grid2">
+    <div>
+      <h3>Dimensiones</h3>
+      <div class="tabla"><table>
+        <tr><td>Planta</td><td class="mono">16 × 10 m</td></tr>
+        <tr><td>Cielo, sala</td><td><span class="mono">3,2 m</span> · hormigón, vigas, bandejas de cables</td></tr>
+        <tr><td>Cielo, pasillo</td><td><span class="mono">2,4 m</span> · una viga con ductos. Se agacha un humano; G pasa de sobra</td></tr>
+        <tr><td>Cielo, nicho</td><td class="mono">2,6 m</td></tr>
+        <tr><td>Pilares</td><td><span class="mono">40 × 40 cm</span> · asimétricos, es un edificio viejo</td></tr>
+        <tr><td>Puerta del Server</td><td><span class="mono">0,9 × 2,1 m</span> · acero · vidrio alambrado <span class="mono">30 × 30</span> a 1,5 m</td></tr>
+      </table></div>
+      <h3>Materiales</h3>
+      <p>Hormigón visto al norte y al sur, con manchas de humedad viejas. La pared este es <b>ladrillo pintado</b>, más antigua que el resto. La oeste, el acero de la caja del ascensor. Piso de hormigón pintado gris-verde, <b>gastado a lo largo del eje</b> y en el carril de R.01. Acero negro en estanterías y en el carro de Marta; madera vieja en la mesa y en el escritorio de G; papel por todos lados; cables que bajan del cielo por donde quieren.</p>
+    </div>
+    <div>
+      <h3>Luz — toda práctica, toda cálida, salvo una</h3>
+      <div class="tabla"><table>
+        <tr><th>Fuente</th><th>Dónde</th><th>Nota</th></tr>
+        <tr><td>Cabina del ascensor</td><td>oeste · <span class="mono">5000 K</span></td><td><b>La única fría. Arriba es frío.</b></td></tr>
+        <tr><td>Tres colgantes</td><td>sobre la mesa · <span class="mono">2700 K</span></td><td>el charco de luz principal</td></tr>
+        <tr><td>Lámpara de brazo</td><td>estación de G, <b>arriba a la izquierda</b> de su POV</td><td>nunca apunta a cámara</td></tr>
+        <tr><td>Pantallas de G</td><td><span class="mono">6000 K</span></td><td>el frontal-bajo de su cara</td></tr>
+        <tr><td>Cuello de ganso + LCD verde</td><td>Marta</td><td>la tiene ella. La prende ella</td></tr>
+        <tr><td>Tubo fluorescente</td><td>archivo · <span class="mono">4000 K</span></td><td>el único que titila. Siempre</td></tr>
+        <tr><td>Ámbar enjaulada + ticker</td><td>sobre la puerta del Server</td><td><b>la única luz que cambia de estado.</b> Es el humor del Server</td></tr>
+      </table></div>
+      <p class="nota"><span class="eyebrow">Magenta</span>Sólo el visor de G, sus pantallas y la cinta rosada de rotuladora. <b>Nunca una lámpara.</b> Si el magenta ilumina una pared, se rompió la regla.</p>
+    </div>
+  </div>
+
+  <h3>Señalética — dos capas que se contradicen</h3>
+  <p>La <b>vieja</b>, de la agencia, serigrafiada: <span class="mono">ARCHIVO</span> · <span class="mono">SALA DE SERVIDORES — ACCESO RESTRINGIDO</span> · <span class="mono">SALIDA</span> con la flecha apuntando a una pared. Y la <b>de G</b>, en rotuladora, encima de todo:</p>
+  <p class="mono" style="font-size:13.5px;line-height:2">DESDE ARRIBA — NO RESPONDER ANTES DE LEER<br>R.01 — OPERACIONES DE PISO<br>MARTA — NO TOCAR<br>NO GOLPEAR. YA SABE QUE ESTÁS AHÍ.<br>CAMBIOS CHICOS ESTE MES: <span class="mano" style="font-size:22px">|||| |||| ||</span></p>
+  <p><b>Prohibido:</b> cyberpunk azul · laboratorio estéril · hologramas · magenta como luz ambiental · una planta que cambia entre planos · una pared que se mueve porque convenía al encuadre · ventanas (es un subsuelo).</p>
+
+  <h2><span class="mono">C</span>Posiciones canon</h2>
+  <p>Las cinco cosas que <b>no se mueven nunca</b>. Un plano donde alguna esté en otro lado no es un plano de este set.</p>
+  <div class="tabla"><table>
+    <tr><th>Qué</th><th>Dónde</th><th>Cómo es</th></tr>
+    <tr><td class="k">Estación de G</td><td><span class="mono">x 8–10,5 · y 0,6–2,2</span><br>pared sur · mira al <b>norte</b></td><td>Escritorio humano de 1,6 m, el respaldo de la silla contra la pared sur. <b>Mira hacia la sala</b>, no hacia la pared: desde su silla ve la mesa, a Marta, el intake, la repisa, y con un giro de cabeza el nicho. Dos pantallas — una moderna y un CRT que muestra lo mismo. La lámpara a su izquierda (oeste). La silla es la de siempre: <b>el respaldo sobresale por encima del casco</b>, los pies cuelgan. Es la escala, y viaja del prototipo al canon.</td></tr>
+    <tr><td class="k">Marta</td><td><span class="mono">x 8,5–10 · y 9–10</span><br>pared norte · mira al <b>sur</b></td><td>Multifunción de 2006 sobre un carro con ruedas que no se usan. Su lámpara. La bandeja que rebalsa al suelo. El LCD verde de dos líneas. <span class="mono">MARTA — NO TOCAR</span> pegado con cinta. Está <b>frente a G, cruzando la mesa</b>: la relación principal del departamento es una recta norte–sur, y todo el lenguaje de cámara se ordena alrededor de ella.</td></tr>
+    <tr><td class="k">Puerta del Server</td><td><span class="mono">x 15,1–16 · y 4,55–5,45</span><br>pared este · fondo del nicho</td><td>Al fondo de un nicho rehundido de 3 m, en penumbra. Acero, ventanilla alambrada, lámpara ámbar enjaulada, y sobre ella el <b>ticker LED</b>. Placa vieja y cinta de G debajo. Es el <b>extremo este del eje</b>: desde el ascensor se ve a 16 m como un punto ámbar.</td></tr>
+    <tr><td class="k">Ascensor</td><td><span class="mono">x 0–1,6 · y 4,2–5,8</span><br>pared oeste · abre al <b>este</b></td><td>Conecta físicamente con el pasillo, el pasillo con la sala, la sala con el Server. <b>Es el mismo eje.</b> Todo lo que baja de Copywriters entra por acá con luz fría y camina 16 metros hacia la luz ámbar. Un humano que llega <b>entra por detrás de la cámara</b> en todos los masters.</td></tr>
+    <tr><td class="k">Intake</td><td><span class="mono">x 6,6–7,4 · y 9,4–10</span><br>pared norte · a la izquierda de Marta</td><td>La boca de bronce del tubo neumático a 1,3 m y una canasta de alambre debajo. Los briefs caen por ahí. Un cable sube por el cielo justo encima: la otra conexión con arriba. Cuando cae algo, Marta es la primera en enterarse — están a 1,5 m.</td></tr>
+  </table></div>
+  <p class="nota"><span class="eyebrow">Una consecuencia de dirección que sale del set, no del guion</span>G mira al norte y el Server está al este. Girar la cabeza 90° rompe el registro deadpan (≤ 25° sin que el cuerpo acompañe). Entonces <b>G nunca mira al Server: lo siente.</b> La reacción del Server se lee en la sala — la lámpara ámbar cambia, el ticker escribe, el zumbido se corta — y en G se lee en el visor, no en el cuello. Es mejor que mirarlo.</p>
+
+  <h2><span class="mono">D</span>Master angles</h2>
+  <p><b>Todas las cámaras maestras viven en la mitad oeste del set, al oeste de la línea G–Marta.</b> Con eso la geografía en pantalla es siempre la misma y el público la aprende sin saberlo:</p>
+  <div class="eje">
+    <div><b>izquierda</b><small>norte · Marta · el intake</small></div>
+    <div><b>derecha</b><small>sur · G · el archivo</small></div>
+    <div><b>profundidad</b><small>este · el Server</small></div>
+    <div><b>detrás de cámara</b><small>oeste · el ascensor · los humanos</small></div>
+  </div>
+  <p>G siempre mira a Marta hacia la izquierda; Marta siempre mira a G hacia la derecha; el Server siempre está al fondo; lo que viene de arriba entra por detrás de la cámara. Ningún plano cruza el eje. Salieron ocho fijos, un contraplano y un movimiento — de la cobertura que necesita el CAP.02, no de un número.</p>
+  <div class="tabla ang"><table>
+    <tr><th>#</th><th>Nombre</th><th>Cámara</th><th>Mira · lente · altura</th><th>Qué ve</th><th>Sirve para</th></tr>
+    <tr><td class="mono">MA-01</td><td>EL EJE</td><td class="mono">5,2 · 5,0<br>boca del pasillo</td><td>este · 24 mm · 1,1 m</td><td>la mesa bajo los colgantes, G a la derecha, Marta a la izquierda al fondo, el pilar solo, <b>la puerta del Server al centro a 11 m</b></td><td><b>establecer.</b> La calma. El primer y el último plano de casi todo</td></tr>
+    <tr><td class="mono">MA-02</td><td>G</td><td class="mono">8,6 · 4,0<br>borde N de la mesa</td><td>SSE · 50 mm · 0,9 m (su visor)</td><td>G, su escritorio, sus pantallas; el archivo detrás a la izquierda; la pizarra de los cambios chicos en el pilar</td><td><b>su cara.</b> Analiza, decide, <span class="mono">LISTO</span></td></tr>
+    <tr><td class="mono">MA-03</td><td>LO QUE G VE</td><td class="mono">9,0 · 2,4<br>sobre su hombro</td><td>norte · 35 mm · 0,95 m</td><td>la mesa en primer plano; al fondo <b>Marta al centro</b>, el intake a la izquierda, la repisa a la derecha, el reloj detenido</td><td><b>su punto de vista.</b> Las llegadas. Marta vista desde donde él está</td></tr>
+    <tr><td class="mono">MA-04</td><td>MARTA</td><td class="mono">8,6 · 7,6<br>frente a ella</td><td>norte · 85 mm · 1,0 m</td><td>Marta, su lámpara, su LCD, la bandeja rebalsando, el letrero</td><td><b>sus mensajes.</b> El papel que imprime es texto en pantalla que no hay que componer. Los remates</td></tr>
+    <tr><td class="mono">MA-05</td><td>LA MESA</td><td class="mono">8,75 · 5,0<br>encima</td><td>abajo 70° · 35 mm · 3,0 m</td><td>la mesa entera, papeles, guantes, R.01 pasando por el borde</td><td><b>la operación.</b> El montaje físico de la escalada</td></tr>
+    <tr><td class="mono">MA-06</td><td>LA PUERTA</td><td class="mono">11,5 · 5,0<br>borde del nicho</td><td>este · 50 mm · 1,3 m</td><td>el nicho en penumbra, la puerta, la ámbar, el ticker, el resplandor del vidrio</td><td><b>el Server habla.</b> Cambia la lámpara, escribe el ticker, se corta el zumbido</td></tr>
+    <tr><td class="mono">MA-06b</td><td>DESDE ADENTRO</td><td class="mono">15,4 · 5,0<br>tras el vidrio</td><td>oeste · 35 mm · 1,6 m</td><td>toda la sala al revés, borrosa; siluetas; el ascensor al fondo como un punto frío</td><td><b>el POV del Server.</b> Se usa poco. Cuando se usa, pesa</td></tr>
+    <tr><td class="mono">MA-07</td><td>A RAS DE SUELO</td><td class="mono">4,0 · 4,4<br>en el carril</td><td>este · 35 mm · 0,2 m</td><td>ruedas, patas de mesa, las zapatillas de G colgando, la franja gastada</td><td><b>la vida de R.01.</b> Sus misiones. Su tranque en la esquina del archivo</td></tr>
+    <tr><td class="mono">MA-08</td><td>INTAKE <small>inserto</small></td><td class="mono">7,0 · 8,4</td><td>norte · 100 mm · 1,4 m</td><td>la boca de bronce, la canasta, la etiqueta de G. Una carpeta cayendo</td><td><b>«llegó algo».</b> El gatillo de todos los capítulos. Siempre igual</td></tr>
+    <tr><td class="mono">MOV-01</td><td>LLEGADA</td><td class="mono">1,2 → 5,2 · 5,0<br>dolly desde el ascensor</td><td>este · 24 mm · 1,1 m</td><td>el pasillo comprimido que se abre a la sala</td><td><b>entrar al mundo.</b> El único movimiento del set, y <b>resuelve exactamente en el MA-01</b></td></tr>
+  </table></div>
+  <p><b>Por qué éstos.</b> 01–04 son el cuadrilátero G–Marta: el wide, la cara de él, lo que él ve, la cara de ella; con esos cuatro se cuenta cualquier conversación sin cruzar el eje. 05 y 07 son los dos planos <b>sin cara</b> — la mesa desde arriba y el suelo desde abajo — donde vive la comedia física. 06 y 06b son el Server: verlo y ser visto por él. 08 es un inserto y por eso es un master: se usa en cada capítulo y tiene que ser idéntico siempre. Lo que <b>no</b> hay, a propósito: un frontal de la repisa rara, del archivo o del café. Cuando un capítulo los necesite, se agregan como master nuevo con coordenadas — no como plano suelto.</p>
+
+  <h2><span class="mono">E</span>Continuidad entre masters</h2>
+  <div class="tabla"><table>
+    <tr><th>De → a</th><th>Qué ancla el corte</th><th>Riesgo</th></tr>
+    <tr><td class="mono">01 → 02</td><td>G sigue a la derecha y el archivo detrás de él</td><td>ninguno</td></tr>
+    <tr><td class="mono">02 → 03</td><td>la mesa: en el 02 delante de G, en el 03 delante de cámara</td><td>ninguno: es el shot / reverse</td></tr>
+    <tr><td class="mono">03 → 04</td><td>Marta al centro en los dos; el 04 es sólo más cerca</td><td>su lámpara tiene que estar al mismo lado (este)</td></tr>
+    <tr><td class="mono">01 → 05</td><td>los tres colgantes sobre la mesa</td><td>el picado invierte la lectura: norte queda <b>arriba</b> del cuadro</td></tr>
+    <tr><td class="mono">01 → 06</td><td>el eje: el nicho ya estaba al centro del 01</td><td>ninguno: es acercarse por el mismo eje</td></tr>
+    <tr><td class="mono">06 → 06b</td><td>la ventanilla de vidrio</td><td><b>cruce de eje deliberado.</b> Salto de punto de vista, nunca en medio de una conversación</td></tr>
+    <tr><td class="mono">01 → 07</td><td>la franja gastada del suelo</td><td>ninguno</td></tr>
+    <tr><td class="mono">MOV → 01</td><td><b>es el mismo plano</b>: el dolly termina donde el 01 empieza</td><td>ninguno</td></tr>
+  </table></div>
+
+  <h2><span class="mono">F</span>Prueba de estrés · CAP.02 «Es un cambio chico»</h2>
+  <p class="mono" style="font-size:13px;color:var(--muted)">calma → llega mensaje → reacción de Marta / R.01 / Server → G analiza → la operación escala → resolución → calma → segundo mensaje → NO.</p>
+  <ul class="beats">
+    <li><span class="b">calma</span><span class="m">MA-01</span><span class="d">todos en su sitio. R.01 dando su vuelta. La ámbar quieta</span><span class="d">G mira al frente</span></li>
+    <li><span class="b">llega mensaje</span><span class="m">MA-08 → 03</span><span class="d">una carpeta cae por el tubo. Desde el hombro de G se ve caer al fondo-izquierda</span><span class="d">al intake, NNO</span></li>
+    <li><span class="b">reacción · Marta</span><span class="m">MA-04</span><span class="d">imprime una hoja sin que nadie le pida</span><span class="d">norte</span></li>
+    <li><span class="b">reacción · R.01</span><span class="m">MA-07</span><span class="d">se detiene a medio carril, frente al escritorio de G</span><span class="d">abajo</span></li>
+    <li><span class="b">reacción · Server</span><span class="m">MA-06</span><span class="d">la ámbar parpadea; el ticker escribe; el zumbido cambia</span><span class="d"><b>no lo mira.</b> El ámbar le cruza el casco</span></li>
+    <li><span class="b">G analiza</span><span class="m">MA-02</span><span class="d">el visor. Una pausa larga</span><span class="d">a cámara</span></li>
+    <li><span class="b">la operación escala</span><span class="m">05 · 07 · 03 · 02</span><span class="d">picado: la mesa se llena. Suelo: R.01 trae una sola cosa. Hombro: Marta escupe referencias. Frontal: un cajón del archivo se abre detrás de G</span><span class="d">una dirección por plano</span></li>
+    <li><span class="b">resolución</span><span class="m">MA-02</span><span class="d"><span class="mono">LISTO</span></span><span class="d">a cámara</span></li>
+    <li><span class="b">calma</span><span class="m">MA-01</span><span class="d"><b>el mismo cuadro del principio.</b> R.01 retoma su vuelta</span><span class="d">al frente</span></li>
+    <li><span class="b">segundo mensaje</span><span class="m">MA-08</span><span class="d">otra carpeta. Misma canasta</span><span class="d">—</span></li>
+    <li><span class="b">NO.</span><span class="m">MA-04</span><span class="d">Marta imprime una hoja. Dice <span class="mono">NO.</span> Negro</span><span class="d">—</span></li>
+  </ul>
+  <div class="veredicto">
+    <span class="mano">Pasa. No hubo que corregirlo.</span>
+    <p style="margin:0">Las tres reacciones salen en <b>tres direcciones distintas</b> — al frente, abajo, y a la derecha sin mirar — así que el público sabe quién reacciona sin que nadie lo diga. La calma del final es el mismo master que la del principio y el segundo mensaje cae en la misma canasta: <b>el set hace el loop solo.</b> Nueve planos fijos, ningún lugar inventado.</p>
+  </div>
+  <p><b>Donde el set ayuda al chiste.</b> El «cambio chico» baja por un tubo neumático de 1968 hecho para memos urgentes: la urgencia ya viene en el mueble. Y la pizarra del pilar — <span class="mono">CAMBIOS CHICOS ESTE MES</span> — está en el MA-02, detrás de G, en cada plano de su cara. No hay que explicar que no es el primero.</p>
+
+  <h2><span class="mono">G</span>Cuando apruebes el espacio</h2>
+  <ol class="sigue">
+    <li>Generar <b>el set vacío desde el MA-01</b>, una sola vez. Es el master del que se derivan los otros ocho.</li>
+    <li>Generar los ocho fijos <b>a partir del MA-01</b>, pasándolo como referencia, y verificar cada uno contra las posiciones canon de §C.</li>
+    <li>Recién ahí poner a G en el set y hacer el storyboard del CAP.02.</li>
+  </ol>
+  <p class="mano" style="margin-top:28px">Nada de esto empieza antes de tu aprobación.</p>
+  <p class="eyebrow" style="margin-top:40px">El documento canon vive en el repo: gcl-agent/universo/04_LOCATIONS/NIVEL_MINUS_1/PRODUCTION_DESIGN.md</p>
+</div>

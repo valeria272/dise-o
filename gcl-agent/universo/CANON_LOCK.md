@@ -12,7 +12,7 @@
 | Vigente desde | **05-09-2026** |
 | Decide | Valeria Traverso |
 | Corrige | `COPYWRITERS_GCL_UNIVERSE_PACK_V4_FINAL` |
-| Estado del CAP.02 | **congelado** hasta cerrar los pendientes de §4 |
+| CAP.02 | **«ES UN CAMBIO CHICO»** — en production design del Nivel -1, sin generar |
 
 ---
 
@@ -72,64 +72,132 @@ por no tener ninguno, y tampoco por tener varios.
 
 ---
 
-## 4 · Lo que sigue abierto — y bloquea el CAP.02
+## 4 · Los cuatro bloqueos — CERRADOS el 05-09-2026
 
-Ninguno de estos se resuelve inventando. Los cuatro son decisión tuya.
+> Este bloque decía «lo que sigue abierto». Ya no. Se deja el registro de qué
+> se preguntó y qué se decidió, porque la pregunta explica la decisión.
 
-### 4.1 · ⛔ El número 02 está pedido tres veces
+### 4.1 · El número 02 → LOCK 4
 
-| Candidato | Estado real hoy |
+**El CAP.02 oficial es `G.C.L. / CAP.02 — ES UN CAMBIO CHICO`.**
+
+| Candidato | Veredicto |
 |---|---|
-| **«Turno de noche»** | 40 s · montado · 20 clips generados |
-| **«Revisión 7»** | 25,87 s · rough cut aprobado el 04-09 · 5 clips generados |
-| **«El primer día normal»** (V4) | guion escrito · nada producido |
+| «Turno de noche» (40 s, montado) | **prototipo · NO CANON** |
+| «Revisión 7» (25,87 s, rough cut) | **prototipo · NO CANON** |
+| «El primer día normal» (V4) | **descartado** como CAP.02 |
 
-Hasta que no haya orden, nadie puede renombrar archivos ni publicar.
+Los prototipos no se renumeran ni se integran a la serie por ahora. Siguen en
+el repo como lo que son: experimentos que enseñaron cosas. El número 02 no está
+en disputa.
 
-### 4.2 · ⚠️ El board canon contradice a los documentos
+### 4.2 · Los cargos del board → LOCK 5
 
-`TEAM_MASTER_CANON.png` **ya trae los cargos escritos** — Serena «Performance &
-Growth», Pancho «Producción & Operaciones», Mora «Dirección de Arte &
-Contenidos» — pero `HUMAN_CAST_CANON.md`, `WORLD_BIBLE.md` y el `MASTER_PROMPT`
-dicen que están **pendientes** y me prohíben inventarlos.
+**Los cargos escritos dentro de `TEAM_MASTER_CANON.png` NO son canon.** Esa
+imagen es canon únicamente para **apariencia visual, identidad de los personajes
+ya aprobados y relaciones de escala/composición** cuando corresponda. No es
+fuente de verdad para cargos.
 
-Y hay un roce con la realidad del estudio: en el repo **Serena opera la mantención
-web** de los clientes. El V4 marca a **Diego como ficticio**, pero en la agencia
-hay un **Diego Aguilar real** que diseña Más Center y Selfie.
+Los cargos de Serena, Pancho y Mora **siguen pendientes y no bloquean nada**.
+**Diego (ficticio) y Diego Aguilar (real) son entidades distintas** — no se
+mezclan. Y **no se genera ninguna identidad humana nueva** para el CAP.02.
 
-**No se le genera cara ni cargo a nadie hasta que esto se cierre.**
+### 4.3 · La actuación de G → LOCK 6
 
-### 4.3 · ⚠️ G tiene tres registros distintos
+No hay tres personalidades. Hay **un registro** (ver LOCK 6). El CAP.01 tiene un
+lenguaje audiovisual distinto porque es el capítulo de origen y **no obliga** a
+replicar su locución. «Revisión 7» sirve como **referencia técnica del deadpan**
+—las tolerancias medibles siguen siendo útiles— pero **no define canon
+narrativo**.
 
-| | Registro |
-|---|---|
-| CAP.01 | locución documental (voz «Ignacio») |
-| V4 | micro-lenguaje electrónico propio + diálogo breve |
-| «Revisión 7» | **mudo**, deadpan duro con tolerancias medibles |
+### 4.4 · El set de «Revisión 7» → LOCK 7
 
-Son tres actuaciones, no tres matices. `GCL_CHARACTER_BIBLE.md` tiene hoy
-escritas las tolerancias del deadpan (inclinación ≤ 6°, un microgesto por plano,
-≥ 18 frames antes de reaccionar) porque se aprobaron el 04-09. El V4 lo quiere
-cálido y querible. Hay que elegir, o decidir que el registro cambia según la
-serie (`EN SERVICIO` vs `AFTER HOURS`) — que también es una respuesta válida.
-
-### 4.4 · ⚠️ El set de «Revisión 7» no pertenece a este universo
-
-Ese capítulo transcurre en un escritorio solo, con todo más allá de 1,5 m
-cayendo a negro — un set deliberadamente pobre, para que no pueda derivar entre
-generaciones. El V4 define una oficina cálida arriba y un subterráneo analógico
-abajo. Si «Revisión 7» entra a la serie, hoy pasa en un tercer mundo.
+**No pertenece al universo canon. No se reutiliza como locación.** El CAP.02 se
+construye desde el Nivel -1 canon, y el Nivel -1 se diseña **antes** de generar
+un solo plano — ver §5.
 
 ---
 
-## 5 · Lo que falta para poder producir
+## 5 · Lo que sigue: production design ANTES que imágenes
 
-| Falta | Estado |
+⛔ **No se generan los planos maestros todavía.** Diez planos atractivos que no
+correspondan al mismo espacio es exactamente el error que este universo no se
+puede permitir. Primero se diseña la geografía del Nivel -1 —mapa cenital, reglas
+arquitectónicas, posiciones canon, master angles— y se prueba contra el CAP.02.
+Recién con el espacio aprobado se genera.
+
+Entregable: **`NIVEL -1 / PRODUCTION DESIGN V1`** — `04_LOCATIONS/NIVEL_MINUS_1/PRODUCTION_DESIGN.md`.
+
+Sigue faltando, y sigue sin bloquear: referencia de identidad de Pancho; el
+model sheet de G completo (faltan sentado/de pie/caminando y escala junto a un
+adulto); los cargos de Serena, Pancho y Mora.
+
+---
+
+## LOCK 4 · El CAP.02 es «ES UN CAMBIO CHICO»
+
+`G.C.L. / CAP.02 — ES UN CAMBIO CHICO`. «Turno de noche» y «Revisión 7» son
+prototipos previos, **no canon**; «El primer día normal» queda descartado como
+CAP.02. No se renumera nada por ahora.
+
+---
+
+## LOCK 5 · El board es canon de apariencia, no de cargos
+
+`TEAM_MASTER_CANON.png` fija **cómo se ve** cada personaje aprobado y su escala.
+**No fija cargos.** Serena, Pancho y Mora siguen sin cargo confirmado y eso no
+bloquea. Diego (ficticio) ≠ Diego Aguilar (real). No se generan identidades
+humanas nuevas para el CAP.02.
+
+---
+
+## LOCK 6 · El registro de G
+
+**Competente + inteligente + observador + deadpan + curioso + cálido cuando
+corresponde + humor seco + pequeñas reacciones.**
+
+Su expresividad se construye, en este orden, con: **postura · cabeza/visor ·
+timing · pausas · mirada · sonidos electrónicos originales muy breves · diálogo
+excepcional y corto.**
+
+> Cuanto menos necesita reaccionar, muchas veces más gracioso resulta.
+
+| No es | |
 |---|---|
-| **Los 10 planos maestros del Nivel -1** | ninguno existe. Es lo primero |
-| **Referencia de identidad de Pancho** | el pack dice «from supplied reference» y no viene ninguna. Su única referencia es el board |
-| Model sheet de G completo | **a medias**: ya existen frontal, turnaround, expresiones, macro de zapatilla e isotipo en `gcl-agent/character-master/`. Faltan sentado/de pie/caminando y la escala junto a un adulto |
-| Cargos de Serena, Pancho y Mora | ver §4.2 |
+| parlanchín | infantil |
+| inexpresivo | un cómico de stand-up |
+
+El CAP.01 queda exento: es el origen y puede tener su propio lenguaje. «Revisión
+7» es referencia técnica del deadpan, no canon narrativo.
+
+---
+
+## LOCK 7 · El set de «Revisión 7» no es canon
+
+No se reutiliza como locación. Todo lo que pase en el Nivel -1 pasa en el Nivel -1
+canon, diseñado en `04_LOCATIONS/NIVEL_MINUS_1/PRODUCTION_DESIGN.md`.
+
+---
+
+## LOCK 8 · La capa satírica
+
+**G.C.L. también es sátira** de la realidad de agencias, marketing, publicidad y
+trabajo corporativo. G funciona como **observador racional de comportamientos
+humanos absurdos**: tipos de clientes, tipos de empleados, tipos de reuniones,
+el feedback, los comités, los audios eternos, «más WOW», «para ayer», urgencias
+que dejan de serlo, reuniones que podrían haber sido un mail, creativos, accounts
+y directores, y las contradicciones de la propia agencia.
+
+**No es una guerra agencia vs. cliente. Copywriters también es objeto de la
+sátira.**
+
+### La regla de evaluación de capítulos
+
+> **ME RECONOZCO · ME SORPRENDE · ME ENCARIÑO**
+> Cada historia tiene que conseguir **al menos 2 de 3.**
+
+Un capítulo que sólo hace reír pero nadie reconoce, o que se reconoce pero no
+sorprende, no sale.
 
 ---
 
@@ -140,3 +208,8 @@ abajo. Si «Revisión 7» entra a la serie, hoy pasa en un tercer mundo.
 | 1 | 05-09-2026 | El protagonista se llama **G**. «Gigi» eliminado del universo | vigente |
 | 2 | 05-09-2026 | Jerarquía: G.C.L. universo · G protagonista · Nivel -1 base · Marta/R.01/Server colaboradores · Copywriters mundo real | vigente |
 | 3 | 05-09-2026 | Las cifras del V4 son orientación editorial, **no reglas de producción** | vigente |
+| 4 | 05-09-2026 | **CAP.02 = «ES UN CAMBIO CHICO».** Turno de noche y Revisión 7 son prototipos no canon; El primer día normal descartado | vigente |
+| 5 | 05-09-2026 | `TEAM_MASTER_CANON.png` es canon de apariencia/identidad/escala, **no de cargos**. Diego ficticio ≠ Diego Aguilar | vigente |
+| 6 | 05-09-2026 | **Un solo registro de G:** competente, observador, deadpan, cálido cuando corresponde, humor seco, pequeñas reacciones. Cap.01 exento; Revisión 7 = referencia técnica | vigente |
+| 7 | 05-09-2026 | El set de «Revisión 7» **no es canon**. El CAP.02 se construye desde el Nivel -1 | vigente |
+| 8 | 05-09-2026 | **Capa satírica** (Copywriters incluido) + regla **ME RECONOZCO / ME SORPRENDE / ME ENCARIÑO ≥ 2 de 3** | vigente |

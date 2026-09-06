@@ -92,22 +92,22 @@ export const Cap02Bloque1: React.FC = () => {
 
       {/* SHOT 01 · EL TUBO · negro 4 f, después la carpeta cae. Cut on impact. */}
       <Sequence from={0} durationInFrames={21}>
-        <Clip src="s01_tubo.mp4" desdeS={0} />
+        <Clip src="s01_tubo.mp4" desdeS={2.35} />   {/* la carpeta sale a los 2,4 s y cae a los 2,9: el impacto queda en el f.17 */}
         {f < 4 ? <AbsoluteFill style={{backgroundColor: "#000"}} /> : null}
       </Sequence>
 
       {/* 02a · MARTA · f.21–35 · LISTA → AY. y la primera hoja · whip-out a la derecha */}
       <Sequence from={21} durationInFrames={15}>
         <Whip dur={15} salida="der">
-          <Clip src="s02a_marta.mp4" desdeS={0} />
-          <LCD linea1={f - 21 < 7 ? "LISTA" : "AY."} caja={{x: 372, y: 1058, w: 236, h: 78}} />
+          <Clip src="s02a_marta.mp4" desdeS={3.6} />   {/* la hoja sube 3,6–4,1 s */}
+          <LCD linea1={f - 21 < 7 ? "LISTA" : "AY."} caja={{x: 250, y: 640, w: 170, h: 62}} />
         </Whip>
       </Sequence>
 
       {/* 02b · SERVER · f.36–50 · la ámbar se apaga, el ticker se borra · whip-in desde la izquierda, whip-out abajo */}
       <Sequence from={36} durationInFrames={15}>
         <Whip dur={15} entrada="izq" salida="abajo">
-          <Clip src="s02b_server.mp4" desdeS={0} />
+          <Clip src="s02b_server.mp4" desdeS={3.55} />  {/* la ámbar se apaga a los 3,8 s: 7 frames encendida, 8 apagada */}
         </Whip>
       </Sequence>
 

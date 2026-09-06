@@ -8,6 +8,19 @@
 
 ---
 
+## 2026-09-06 (tarde) · Valeria — G.CL Cap. 02 · CLARITY CUT V3 (final de claridad)
+
+**Qué se hizo:** fuera el ascensor, el guante gigante y las piernas humanas (nada que obligue a
+inventar lore). R.01 arrastra la lista hasta quedar trabado; colapso ×3 (Marta / R.01 / Server);
+EL DESASTRE en silencio con G tic-tic-tic (S17, generado); «una cosita más…» → NO colectivo (LCD,
+ticker, R.01 frena, hoja) → G lee, se enciende y teclea (S18, generado con keyframe inicial y final).
+1364 f = 45,5 s. Los dos planos nuevos se generaron desde G EN ESCENA: el master del logo mete el halo.
+**Dónde quedó:** `out/gcl/cap02/v3/` + `~/Desktop/GCL_CAP02_CLARITY_CUT_V3/` + Drive. Composición
+`src/compositions/gcl/Cap02ClarityCutV3.tsx`, pista `scripts/cap02-audio-v3.py`, control
+`scripts/cap02-qc-hojas-v3.py`. Cambios en `CAP_02/CAP02_V2_V3_CHANGES.md`.
+**Qué sigue:** Valeria mira la V3 → MASTER (04 G alto, sound lock, R.01 atrapado propio, Marta LCD real).
+**Abierto:** el guante del 08 asoma a los 2,3 s del clip: cualquier reedición del 08 debe cortar antes.
+
 ## 2026-09-06 · Valeria — G.CL Cap. 02 · CLARITY CUT V2
 
 **Qué se hizo:** pasada de claridad sobre el FULL ROUGH V1 sin regenerar nada: tiempo a lo que se

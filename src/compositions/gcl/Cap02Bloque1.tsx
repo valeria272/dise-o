@@ -41,6 +41,14 @@ const Clip: React.FC<{src: string; desdeS?: number; escala?: number}> = ({src, d
 // estación se van (whip-out) en una dirección y los primeros `n` de la
 // siguiente llegan (whip-in) desde la opuesta, con blur. 3 frames bastan: el
 // ojo completa el movimiento. Más de 4 y se ve el truco.
+//
+// ⚠️ Lección del primer render (05-09): con Sequences que se suceden sin
+// solaparse, en los 3 frames del whip el cuadro saliente ya se fue y el
+// entrante todavía no llega → NEGRO. Un whip no es un corte a negro: es dos
+// cuadros emborronados que se cruzan. Por eso cada estación dura 3 frames MÁS
+// que su lugar en el timeline (su whip-out se solapa con el whip-in de la
+// siguiente), y el desplazamiento es del 70 % del ancho, no del 100 %: así
+// los dos se ven pasar.
 type Dir = "der" | "izq" | "abajo" | "arriba";
 const VEC: Record<Dir, [number, number]> = {der: [1, 0], izq: [-1, 0], abajo: [0, 1], arriba: [0, -1]};
 
@@ -52,15 +60,16 @@ const Whip: React.FC<{
   if (entrada && f < n) {
     const p = 1 - f / n;                                  // 1 → 0
     const [x, y] = VEC[entrada];
-    tx = -x * p * 1080; ty = -y * p * 1920; blur = p * 28;
+    tx = -x * p * 760; ty = -y * p * 1340; blur = p * 32;
   }
   if (salida && f >= dur - n) {
     const p = (f - (dur - n) + 1) / n;                     // 0 → 1
     const [x, y] = VEC[salida];
-    tx = x * p * 1080; ty = y * p * 1920; blur = p * 28;
+    tx = x * p * 760; ty = y * p * 1340; blur = p * 32;
   }
   return (
-    <AbsoluteFill style={{backgroundColor: "#000", overflow: "hidden"}}>
+    // Sin fondo negro propio: durante el solape tiene que verse el cuadro de abajo.
+    <AbsoluteFill style={{overflow: "hidden"}}>
       <AbsoluteFill style={{transform: `translate(${tx}px, ${ty}px)`, filter: blur ? `blur(${blur}px)` : undefined}}>
         {children}
       </AbsoluteFill>
@@ -97,23 +106,23 @@ export const Cap02Bloque1: React.FC = () => {
       </Sequence>
 
       {/* 02a · MARTA · f.21–35 · LISTA → AY. y la primera hoja · whip-out a la derecha */}
-      <Sequence from={21} durationInFrames={15}>
-        <Whip dur={15} salida="der">
+      <Sequence from={21} durationInFrames={18}>
+        <Whip dur={18} salida="der">
           <Clip src="s02a_marta.mp4" desdeS={3.6} />   {/* la hoja sube 3,6–4,1 s */}
           <LCD linea1={f - 21 < 7 ? "LISTA" : "AY."} caja={{x: 250, y: 640, w: 170, h: 62}} />
         </Whip>
       </Sequence>
 
       {/* 02b · SERVER · f.36–50 · la ámbar se apaga, el ticker se borra · whip-in desde la izquierda, whip-out abajo */}
-      <Sequence from={36} durationInFrames={15}>
-        <Whip dur={15} entrada="izq" salida="abajo">
+      <Sequence from={36} durationInFrames={18}>
+        <Whip dur={18} entrada="izq" salida="abajo">
           <Clip src="s02b_server.mp4" desdeS={3.55} />  {/* la ámbar se apaga a los 3,8 s: 7 frames encendida, 8 apagada */}
         </Whip>
       </Sequence>
 
       {/* 02c · R.01 · f.51–62 · frena en seco, el mástil azota · whip-in desde arriba, tilt-up al final */}
-      <Sequence from={51} durationInFrames={12}>
-        <Whip dur={12} entrada="arriba" salida="arriba">
+      <Sequence from={51} durationInFrames={15}>
+        <Whip dur={15} entrada="arriba" salida="arriba">
           <Clip src="s02c_r01.mp4" desdeS={1.95} />   {/* frena a los 2,1 s, el mástil azota 2,2–2,4 */}
         </Whip>
       </Sequence>

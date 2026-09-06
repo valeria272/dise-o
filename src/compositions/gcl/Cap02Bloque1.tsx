@@ -121,7 +121,7 @@ export const Cap02Bloque1: React.FC = () => {
       {/* 02d · G · f.63–77 · la taza en la boca, la baja, «eh?» · whip-in desde abajo (viene del tilt) */}
       <Sequence from={63} durationInFrames={15}>
         <Whip dur={15} entrada="abajo">
-          <Clip src="s02d_g.mp4" desdeS={0} />
+          <Clip src="s02d_g.mp4" desdeS={1.9} />   {/* baja la taza 1,9–2,4 s. ⚠️ kling metió un push-in lento: en 15 frames casi no se nota, pero es polish pendiente */}
         </Whip>
       </Sequence>
 

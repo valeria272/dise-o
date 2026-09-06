@@ -10,6 +10,9 @@
     python3 scripts/magnific.py loras                          ← estilos entrenados de la cuenta
     python3 scripts/magnific.py tareas                         ← qué se generó últimamente
 
+⚠️ Nano Banana Pro acepta un prompt de MÁXIMO 3.000 caracteres (400 «String should
+have at most 3000 characters»). Un set entero cabe, pero hay que escribirlo apretado.
+
 Magnific es Freepik: Freepik lo compró y todo pasa por `api.freepik.com`. No hay un
 endpoint "magnific.com" aparte. La clave sale del llavero cifrado del repo:
 si falta, corre `python3 scripts/llavero.py abrir`.

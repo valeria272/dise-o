@@ -228,6 +228,27 @@ en los capítulos, no antes.
 
 ---
 
+## LOCK 11 · Marta — diseño canon
+
+**Impresora matricial de 9 agujas de ~1994, beige amarillenta, sobre un carro
+metálico negro con ruedas trabadas, con tractor de papel continuo perforado de
+rayas verdes, un LCD verde de dos líneas atornillado por G, una placa `MARTA`,
+un letrero a mano `MARTA — NO TOCAR` y su lámpara cuello de ganso.** Madre:
+`03_G_CREW/MARTA/laminas/01_master_34.png`. Sin cara. Nada se mueve salvo el
+papel y el cabezal. Corrige la biblia V4: no es multifunción de 2006, es de la
+capa de 1994 del sótano.
+
+---
+
+## LOCK 12 · El Server — sólo la zona
+
+**No tiene character sheet y no lo tendrá esta temporada.** Existe por la
+lámpara ámbar (cinco estados), el ticker, el zumbido y el resplandor detrás del
+vidrio alambrado, que nunca se ve claro. Zona canon:
+`03_G_CREW/SERVER/zone_master_puerta.png`. La puerta **nunca se abre**.
+
+---
+
 ## 6 · Registro de candados
 
 | # | Fecha | Decisión | Estado |
@@ -242,3 +263,5 @@ en los capítulos, no antes.
 | 8 | 05-09-2026 | **Capa satírica** (Copywriters incluido) + regla **ME RECONOZCO / ME SORPRENDE / ME ENCARIÑO ≥ 2 de 3** | vigente |
 | 9 | 05-09-2026 | **R.01 diseño canon**: aspiradora intervenida + placa + elásticos + mástil con cinta. Madre: `R01/laminas/01_master_34.png` | vigente |
 | 10 | 05-09-2026 | **Just-in-time asset lock**: se cierra lo que el plano necesita, no bibliotecas enteras | vigente |
+| 11 | 05-09-2026 | **Marta diseño canon**: matricial de 1994 intervenida, papel continuo perforado. Madre: `MARTA/laminas/01_master_34.png` | vigente |
+| 12 | 05-09-2026 | **El Server es sólo la zona**: puerta, ámbar, ticker, vidrio. Sin character sheet. `SERVER/zone_master_puerta.png` | vigente |

@@ -1,0 +1,96 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="_comun.css">
+<!-- 12 · Tipografía — jerarquía.
+     Ronda del cliente 05-09: «Aptos principal para textos y títulos; Barkentina
+     sólo secundaria, para destacar detalles». La lámina anterior era un
+     catálogo de variantes (con el «Blod Italic» del archivo original). Esta
+     dice quién manda, en qué cuerpos, y qué NO se hace con Barkentina.
+
+     Barkentina se muestra con un OTF reconstruido desde el subset que viene
+     embebido en el PDF del cliente (out/landera/_fuentes/muestra/): sirve para
+     esta muestra, no para componer piezas. La licencia comercial sigue abierta. -->
+<style>
+  @font-face { font-family:"BarkentinaMuestra";
+    src:url("../../../out/landera/_fuentes/muestra/Barkentina-muestra.otf"); }
+  .bk { font-family:"BarkentinaMuestra", serif; font-weight:400; }
+  .esp { position:absolute; margin:0; color:var(--tinta); line-height:1; }
+  .nivel { position:absolute; left:400pt; width:576pt; display:flex; align-items:baseline; gap:14pt;
+           border-bottom:0.4pt solid var(--filete); padding-bottom:6pt; }
+  .nivel .tag { width:120pt; flex:none; font-size:7.5pt; color:var(--gris); text-transform:uppercase;
+                letter-spacing:0.12em; }
+  .nivel .tag b { display:block; font-weight:400; color:var(--verde); }
+  .nivel .tx  { color:var(--tinta); margin:0; }
+  .det { position:absolute; background:#FAF1E8; }
+</style>
+
+<h1 class="titulo">Sistema</h1>
+<p class="bajada">Tipografía: Aptos manda, Barkentina destaca</p>
+<div class="filete-cab"></div>
+<div class="divisoria" style="left:360pt"></div>
+
+<div class="columna" style="left:60.2pt; top:134.8pt; width:270pt">
+  <p class="rotulo">Principal</p>
+  <p class="entrada"><b>Aptos</b> para títulos y textos, en todas las piezas.
+  Legible en pantalla y en papel, viene con Office y tiene todos los pesos.</p>
+  <p class="cuerpo">Cuatro pesos bastan: <b>Bold</b> para títulos, <b>SemiBold</b>
+  para subtítulos y cifras, Regular para rótulos en versales y <b>Light</b> para
+  el cuerpo. Las itálicas sólo para citar.</p>
+  <p class="rotulo">Secundaria</p>
+  <p class="cuerpo"><span class="bk" style="font-size:13pt; color:var(--tinta)">Barkentina</span>
+  — la letra del logotipo — sólo para <b>destacar un detalle</b>: una palabra,
+  el nombre de un predio, una cifra de portada.</p>
+  <p class="cuerpo">Nunca en párrafos, nunca en versales largas y nunca bajo
+  <span class="cifra">14 pt</span>: se cierra. Si hay duda, va en Aptos.</p>
+  <p class="rotulo">Sustituta</p>
+  <p class="cuerpo">Donde Aptos no está (correo, web sin fuentes cargadas):
+  Arial. Barkentina no se sustituye: se omite.</p>
+</div>
+
+<!-- ── la jerarquía, a escala ─────────────────────────────────── -->
+<p class="rotulo" style="left:400pt; top:134.8pt">La jerarquía · Aptos</p>
+
+<div class="nivel" style="top:158pt">
+  <span class="tag"><b>Título</b>Bold · 28 / 32 pt</span>
+  <p class="tx" style="font-size:28pt; font-weight:700; letter-spacing:-0.01em">Informe de gestión</p>
+</div>
+<div class="nivel" style="top:216pt">
+  <span class="tag"><b>Subtítulo</b>SemiBold · 14 / 18 pt</span>
+  <p class="tx" style="font-size:14pt; font-weight:600">Cuarto trimestre · zona centro</p>
+</div>
+<div class="nivel" style="top:256pt">
+  <span class="tag"><b>Rótulo</b>Regular versales · 8,5 pt</span>
+  <p class="tx" style="font-size:8.5pt; font-weight:400; text-transform:uppercase; letter-spacing:0.14em; color:var(--gris)">Superficie en gestión</p>
+</div>
+<div class="nivel" style="top:288pt; align-items:flex-start">
+  <span class="tag"><b>Cuerpo</b>Light · 10,5 / 16,5 pt</span>
+  <p class="tx" style="font-size:10.5pt; font-weight:300; line-height:16.5pt; max-width:400pt">
+    Cuatro predios en gestión directa, con rotación de cultivo por temporada y riego
+    tecnificado en tres de ellos. La cifra manda; el color sólo la ordena.</p>
+</div>
+<div class="nivel" style="top:338pt; border-bottom:0">
+  <span class="tag"><b>Cifra</b>SemiBold · 36 pt tabular</span>
+  <p class="tx" style="font-size:36pt; font-weight:600; letter-spacing:-0.02em; font-variant-numeric:tabular-nums">776 ha</p>
+</div>
+
+<!-- ── Barkentina: el detalle ─────────────────────────────────── -->
+<p class="rotulo" style="left:400pt; top:404pt">El detalle · Barkentina</p>
+
+<div class="det" style="left:400pt; top:430pt; width:276pt; height:96pt">
+  <p class="esp bk" style="left:20pt; top:22pt; font-size:30pt; color:var(--verde)">Fundo El Peral</p>
+  <p class="esp" style="left:20pt; top:64pt; font-size:8.5pt; color:var(--gris); text-transform:uppercase; letter-spacing:0.14em">Región de O'Higgins · 312 ha</p>
+  <span class="pastilla ok" style="left:0; top:0">SÍ</span>
+</div>
+<p class="caption" style="left:400pt; top:532pt; width:276pt">Una línea, un nombre propio, grande</p>
+
+<div class="det mal cruz" style="left:700pt; top:430pt; width:276pt; height:96pt">
+  <p class="esp bk" style="left:20pt; top:28pt; font-size:9.5pt; line-height:13pt; color:var(--gris); width:236pt; opacity:.7">
+    Cuatro predios en gestion directa con rotacion de cultivo por temporada y riego tecnificado en tres de ellos y una superficie total de 776 hectareas</p>
+  <span class="pastilla no" style="left:0; top:0">NO</span>
+</div>
+<p class="caption" style="left:700pt; top:532pt; width:276pt">Nunca en párrafo ni bajo 14 pt</p>
+
+<p class="caption" style="left:400pt; top:552pt; width:576pt; color:#A5A29E; text-transform:none; letter-spacing:0">
+  Barkentina es una fuente de un solo peso, sin itálica ni negrita: no se falsea ninguna de las dos.</p>
+
+<p class="folio"><b>12</b> · Sistema</p>
+<p class="folio-marca">Landera · Manual de marca</p>

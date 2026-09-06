@@ -1,9 +1,35 @@
 # LANDERA — Farmland Management
 
-> **Estado al 03-09-2026 (noche): COLOR CERRADO — se está componiendo el manual.**
-> El cliente aprobó la línea gráfica y pidió avanzar con el manual completo.
-> **Barkentina ya no bloquea** (§2): el logotipo está trazado y las láminas se
-> componen en Aptos. Lo único abierto de la tipografía es su **licencia comercial**.
+> **Estado al 05-09-2026: manual v1.1 entregado — 25 láminas, con la primera ronda
+> de comentarios del cliente aplicada** (§0.1). Barkentina pasó de «sólo logotipo»
+> a **tipografía secundaria de detalle** por decisión del cliente, y eso vuelve más
+> urgente su **licencia comercial** (§2).
+
+## 0.1 La ronda del cliente sobre el manual — 05-09-2026
+
+Cinco comentarios, los cinco aplicados el mismo día en la **v1.1**:
+
+| # | Comentario | Qué se hizo |
+|---|---|---|
+| 1 | Sintetizar lo conceptual, ir a cómo se usa | `03-introduccion` rehecha (sin historia del rebranding, con «cómo se lee» y mapa del manual); entradas de 08, 11, 17 y 23 acortadas a una frase |
+| 2 | **Aptos principal**, Barkentina sólo secundaria para detalles | `12-tipografia` propia: jerarquía de 5 niveles en Aptos + Barkentina con SÍ/NO. Se corrigió el «Blod Italic». `marca.json › fuentes` reescrito |
+| 3 | Mostrar cuándo va cada versión del logo (la secundaria no se veía) | `07-versiones` propia: tres columnas versión → regla → soporte real (tarjeta / letrero / avatar+favicon) |
+| 4 | El ejemplo de redes quedó muy chico; feed simulado 3 posts + 3 historias | `22-redes` nueva: perfil de Instagram con las 3 plantillas de feed y 3 teléfonos con historias. Plantillas nuevas `story-titular` y `story-foto` |
+| 5 | Opcional: patrones en botella y fondos de pantalla | `24-patrones` nueva: 3 fondos de escritorio (`fondo-pc-*`) y una botella (`scripts/landera_botella.py`: la IA hace la botella lisa, el patrón y el isotipo se envuelven por código) |
+
+Renumeración: señalética pasa a **23**, contraportada a **25**. El ensamblado ya no
+es a mano: `python3 scripts/landera_ensamblar.py` arma el PDF, la hoja de contacto
+y el ZIP (la 15 sigue saliendo del PDF del cliente).
+
+**Cómo se mostró Barkentina sin tener la fuente:** el subset CFF embebido en el PDF
+del cliente trae el abecedario completo con nombres de glifo estándar, así que se
+reconstruyó un OTF de muestra (`out/landera/_fuentes/muestra/Barkentina-muestra.otf`)
+con fontTools. Sirve para la lámina 12 y **para nada más**: no se distribuye y no
+reemplaza la licencia.
+
+⚠️ El `remove-background` de Magnific devolvió 503 toda la mañana (error de
+plantilla en su gateway). La silueta de la botella se resolvió generando la botella
+**verde** — oscura sobre crema se umbraliza sola — en vez de la crema original.
 
 ## 0. La decisión del cliente — 03-09-2026
 
@@ -133,8 +159,11 @@ Los valores completos están en `marca.json`. Lo esencial:
 | Gris piedra | `#666461` | neutro |
 | Crema | `#FAF1E8` | neutro / fondo de tapas |
 
-**Tipografías:** **Barkentina** (única, sin variantes) para el logotipo y
-**Aptos** en todas sus variantes para el resto.
+**Tipografías (desde el 05-09-2026):** **Aptos** es la **principal** —títulos y
+textos, cuatro pesos: Bold / SemiBold / Regular versales / Light— y **Barkentina**
+(única, sin variantes) es la **secundaria**, sólo para destacar un detalle: nunca
+párrafos, nunca versales largas, nunca bajo 14 pt. Jerarquía completa en
+`marca.json › fuentes` y en la lámina 12.
 
 > **Barkentina no está en ninguna máquina del estudio** y no viene con Office.
 > Aptos sí está: viene con Microsoft Office, en el bundle de Word.
@@ -232,16 +261,17 @@ una gestora de campos con una marca y dos bajadas.
 **Las 23 existen.** Se cerró el manual completo el 03-09-2026:
 `out/landera/manual/LANDERA-manual-de-marca-v1.0.pdf`.
 
+**v1.1 (05-09-2026): 25 láminas.** Se agregaron **22 Redes sociales** y **24 Patrones
+en aplicación**; señalética es la 23 y contraportada la 25. Las láminas 07 y 12 ya
+son propias (HTML), así que del PDF del cliente sólo sobrevive la **15 iconografía**.
+
 Además, fuera de la numeración:
 · **Guía de tono y estilo** — `LANDERA-guia-de-tono-v1.0.pdf`, 2 láminas (entregable ③).
 · **Kit de plantillas digitales** — `clients/landera/plantillas/`, 11 piezas (entregable ④).
 
-⚠️ **Tres láminas salen del PDF del cliente y no se recompusieron**: 01 portada,
-12 tipografía, 15 iconografía y 22 contraportada. La 12 arrastra los trazos navy
-de Pivot. **No se rehízo a propósito**: recomponerla exigía extraer el abecedario
-completo de Barkentina como asset suelto, que es una copia redistribuible de una
-tipografía con licencia sólo de uso personal. Se prefirió usar la lámina del
-propio cliente.
+⚠️ **En la v1.0 tres láminas salían del PDF del cliente** (07, 12 y 15). Desde la
+v1.1 sólo la **15 iconografía**: la 07 y la 12 se recompusieron el 05-09 a pedido
+del cliente (§0.1). La 12 dejó atrás los trazos navy de Pivot y el «Blod Italic».
 
 ---
 
@@ -330,6 +360,11 @@ eventos» de Pivot.
 ---
 
 ## 6. Historial
+
+**05-09-2026** — Ronda de comentarios del cliente sobre el manual (5 puntos) aplicada
+íntegra en la **v1.1**: introducción sintetizada, Aptos principal / Barkentina de
+detalle, versiones del logo por soporte, feed de Instagram simulado y patrones en
+fondos de escritorio + botella. Ver §0.1. Subida a la carpeta de Drive del manual.
 
 **03-09-2026 (noche, 2)** — Se compusieron las **4 láminas propias de la marca**
 (11, 14, 17 y 20). Tres hallazgos que quedaron dentro:

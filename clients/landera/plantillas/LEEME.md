@@ -12,7 +12,10 @@ cd clients/landera/plantillas
 | `feed-cifra` | 1080 × 1080 | Post de dato — la cifra manda |
 | `feed-titular` | 1080 × 1080 | Post de mensaje, fondo tinta |
 | `feed-foto` | 1080 × 1080 | Post sobre fotografía, con velo |
-| `story-cifra` | 1080 × 1920 | Historia — respeta la zona segura |
+| `story-cifra` | 1080 × 1920 | Historia de dato — respeta la zona segura |
+| `story-titular` | 1080 × 1920 | Historia de mensaje, fondo tinta |
+| `story-foto` | 1080 × 1920 | Historia sobre fotografía, con velo |
+| `fondo-pc-crema` · `fondo-pc-tinta` · `fondo-pc-patron` | 1920 × 1080 | Fondos de escritorio corporativos (lámina 24). Logotipo abajo a la derecha, lejos de los íconos |
 | `linkedin-portada` | 1584 × 396 | Encabezado de la página de empresa |
 | `banner-web` | 1920 × 480 | Cabecera del sitio |
 | `presentacion-01…04` | 1920 × 1080 | Las 4 maestras: portada, sección, contenido, cifra |

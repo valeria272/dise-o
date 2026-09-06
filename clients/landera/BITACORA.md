@@ -1,5 +1,45 @@
 # Landera — bitácora
 
+## 2026-09-05 — Valeria Traverso
+
+**Qué se hizo:** Llegó la primera ronda del cliente sobre el manual (5 comentarios:
+sintetizar lo conceptual · Aptos principal y Barkentina sólo de detalle · mostrar
+cuándo va cada versión del logo · feed de Instagram simulado con 3 posts y 3
+historias · opcional, patrones en botella y fondos de pantalla). **Se aplicaron los
+cinco el mismo día** y salió la **v1.1: 25 láminas** (antes 23). Nuevas: 07 y 12
+propias, 22 redes y 24 patrones; señalética pasa a 23 y contraportada a 25.
+Subido a la carpeta de Drive del manual (`1fBPC6EYUB4QvdTHRE_ERvfWUOnK5L1Q5`):
+PDF v1.1, ZIP de editables v1.1 y la guía de tono v1.0 (que ayer no había quedado
+subida).
+
+**Dónde quedó:**
+- `out/landera/manual/LANDERA-manual-de-marca-v1.1.pdf` y `LANDERA-editables-v1.1.zip`,
+  armados con `scripts/landera_ensamblar.py` (ya no se arma a mano).
+- Láminas nuevas en `clients/landera/manual/`: `07-versiones`, `12-tipografia`,
+  `22-redes`, `24-patrones`. Plantillas nuevas: `story-titular`, `story-foto`,
+  `fondo-pc-crema/tinta/patron`.
+- Botella: `scripts/landera_botella.py` — la IA genera la botella lisa
+  (`public/assets/landera/fotos/08-botella-verde.jpg`), el patrón y el isotipo se
+  envuelven por código. La crema (`07-botella-lisa.jpg`) quedó sin usar porque el
+  remove-background de Magnific dio 503 toda la mañana.
+- Barkentina se muestra con un OTF reconstruido desde el subset del PDF del
+  cliente (`out/landera/_fuentes/muestra/`). Sólo para la lámina 12.
+
+**Qué sigue:** Esperar la segunda ronda del cliente sobre la v1.1. El correo a
+**Kiril Zlatkov** (`kzlatkov@abv.bg`) por la licencia de Barkentina sigue sin
+mandarse y **ahora pesa más**: el cliente la quiere como secundaria de detalle, o
+sea en piezas, no sólo en el logo trazado. Pedirle a **Coni** el `.ai` maestro al
+oliva sigue pendiente.
+
+**Abierto:**
+- ⚠️ **Licencia de Barkentina** — subió de prioridad (ver arriba).
+- ⚠️ El editable maestro sigue con el verde viejo `#1C4907`.
+- El logotipo de las firmas apunta a `landera.cl/img/logo-landera.png`, que no existe.
+- Fotografía de 11, 22, 23 y la botella de 24 son generadas y rotuladas como referencia.
+- Dos reglas propuestas sin medir: 2/3 del paño en vehículo y los tres tramos de
+  distancia en señalética.
+- La lámina 15 (iconografía) sigue saliendo del PDF del cliente.
+
 ## 2026-09-04 — Valeria Traverso
 
 **Qué se hizo:** Se cerró el manual de marca completo, de 6 láminas heredadas a

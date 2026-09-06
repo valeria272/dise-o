@@ -2,6 +2,8 @@ import {Composition, Folder} from "remotion";
 
 // Compositions
 import {ShowcaseComposition} from "./compositions/Showcase";
+import {MasCenterReel, REEL_02, REEL_03, duracionReel} from "./compositions/mascenter/MasCenterReel";
+
 
 // COPYWRITERS — Creative Operating System v1.0. Una pieza = un archivo = una
 // dirección de arte. No hay una composición "CopylabPost" con un prop `plantilla`,
@@ -118,6 +120,12 @@ export const RemotionRoot: React.FC = () => {
   const btStory = {durationInFrames: 1, fps: 30, width: 1080, height: 1920} as const;
   return (
     <>
+      <Folder name="MasCenter">
+        <Composition id="MC-Reel-02" component={MasCenterReel} durationInFrames={duracionReel(REEL_02, 30)} fps={30} width={1080} height={1920} defaultProps={REEL_02} />
+        <Composition id="MC-Reel-03" component={MasCenterReel} durationInFrames={duracionReel(REEL_03, 30)} fps={30} width={1080} height={1920} defaultProps={REEL_03} />
+        <Composition id="MC-Reel-02-Feed" component={MasCenterReel} durationInFrames={duracionReel(REEL_02, 30)} fps={30} width={1080} height={1080} defaultProps={REEL_02} />
+        <Composition id="MC-Reel-03-Feed" component={MasCenterReel} durationInFrames={duracionReel(REEL_03, 30)} fps={30} width={1080} height={1080} defaultProps={REEL_03} />
+      </Folder>
       <Folder name="HiltonBetween">
         <Composition id="BW-F-ToGo-1" component={ToGo1} {...btFeed} />
         <Composition id="BW-F-ToGo-2" component={ToGo2} {...btFeed} />

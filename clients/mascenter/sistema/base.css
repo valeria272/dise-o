@@ -1,0 +1,41 @@
+/* MÁS CENTER — paid media (familia «LinkAd Tráfico a IG»).
+   Geometría MEDIDA sobre las 6 piezas de septiembre 2026 (raw/mascenter/ref-paid/sept),
+   la última entrega aprobada de la misma campaña. Nada de acá es criterio propio.
+   Feed 1080×1080 · Story 1080×1920. */
+@font-face{font-family:"Poppins";font-weight:400;src:url("assets/fonts/poppins-regular.woff2") format("woff2")}
+@font-face{font-family:"Poppins";font-weight:500;src:url("assets/fonts/poppins-medium.woff2") format("woff2")}
+@font-face{font-family:"Poppins";font-weight:600;src:url("assets/fonts/poppins-semibold.woff2") format("woff2")}
+@font-face{font-family:"Poppins";font-weight:700;src:url("assets/fonts/poppins-bold.woff2") format("woff2")}
+:root{
+  --rojo:#DC1914;      /* pastilla y texto de cuerpo — medido en las 6 piezas */
+  --rojo-cta:#D80000;  /* burbuja del CTA — medido */
+  --blanco:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:var(--w);height:var(--h);overflow:hidden;background:var(--blanco);font-family:"Poppins",sans-serif}
+.pieza{position:relative;width:var(--w);height:var(--h);overflow:hidden;background:var(--blanco)}
+/* La FOTO ocupa el tercio superior y termina en una onda: sube de izquierda a derecha.
+   El recorte es la envolvente REAL de la pieza de septiembre (assets/onda.json). */
+.foto{position:absolute;left:0;top:0;width:var(--w);height:var(--foto-h);overflow:hidden;clip-path:url(#onda)}
+/* La foto se escala al ANCHO y se desplaza hacia arriba: así la fachada y la gente quedan sobre la pastilla, no debajo. */
+.foto img{position:absolute;left:var(--foto-left,0);top:var(--foto-top,0);width:var(--foto-w,100%);height:auto}
+/* Logo blanco centrado sobre la foto. Tinta medida: 205 px de ancho; el SVG trae aire (tinta = 85,6 % del ancho). */
+.logo{position:absolute;left:50%;transform:translateX(-50%);top:var(--logo-top);width:var(--logo-w);display:block}
+/* Pastilla roja del titular: ancho al contenido, centrada, esquinas de radio medido, texto blanco en versales. */
+.pastilla{position:absolute;left:50%;transform:translateX(-50%);top:var(--pastilla-top);
+  background:var(--rojo);color:var(--blanco);border-radius:var(--pastilla-radio);
+  padding:var(--pastilla-pad);font-weight:700;text-transform:uppercase;text-align:center;
+  font-size:var(--titular-size);line-height:var(--titular-lh);letter-spacing:0;white-space:nowrap}
+/* Bajada en rojo, centrada, sin caja. */
+.cuerpo{position:absolute;left:0;width:var(--w);top:var(--cuerpo-top);padding:0 var(--cuerpo-pad);
+  color:var(--rojo);font-weight:600;text-align:center;font-size:var(--cuerpo-size);line-height:var(--cuerpo-lh)}
+/* Burbuja de diálogo del CTA, abajo a la izquierda, con cola hacia la mascota. */
+.cta{position:absolute;left:var(--cta-left);top:var(--cta-top);width:var(--cta-w);min-height:var(--cta-h);
+  background:var(--rojo-cta);color:var(--blanco);border-radius:var(--cta-radio);
+  padding:var(--cta-pad);font-weight:500;text-transform:uppercase;text-align:center;
+  font-size:var(--cta-size);line-height:var(--cta-lh);display:flex;align-items:center;justify-content:center}
+/* La cola sale del tercio inferior del borde derecho y apunta hacia la mascota. */
+.cta::after{content:"";position:absolute;right:calc(-1 * var(--cola-w));top:var(--cola-top);width:0;height:0;
+  border-top:0 solid transparent;border-bottom:var(--cola-h) solid transparent;border-left:var(--cola-w) solid var(--rojo-cta)}
+/* Localito, recortado de la pieza aprobada de septiembre, anclado abajo a la derecha y sangrado por el borde inferior. */
+.mascota{position:absolute;left:var(--mascota-left);top:var(--mascota-top);width:var(--mascota-w);display:block}

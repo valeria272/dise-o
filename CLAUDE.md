@@ -156,6 +156,7 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | **Tierra Calma** | [`clients/tierra-calma/`](clients/tierra-calma/CLAUDE.md) | `src/brand/tierracalma.ts` | Parcelas. **QA visual frame a frame obligatorio** |
 | **Hilton / Between** | [`clients/hilton/`](clients/hilton/CLAUDE.md) | `src/brand/hilton-between.ts` | 4 marcas del complejo; sólo Between tiene sistema |
 | **Abakos** | [`clients/abakos/`](clients/abakos/CLAUDE.md) | `src/brand/abakos.ts` | Préstamos online. Gramática **sin medir todavía** |
+| **Más Center** | [`clients/mascenter/`](clients/mascenter/CLAUDE.md) | `clients/mascenter/sistema/` + `src/compositions/mascenter/` | Strip centers (Grupo IFB). Paid medido sobre sept 2026: foto con onda, pastilla roja, Localito. Diseñador: Diego Aguilar |
 
 > ⚠️ **Revex y Casablanca son marcas hermanas del mismo dueño y NO se diseñan igual.**
 > Si una pieza de Revex se puede recolorear a gris y pasa por Casablanca, está mala.

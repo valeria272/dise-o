@@ -16,14 +16,14 @@ RAIZ = Path(__file__).resolve().parent.parent
 MAN = RAIZ / "clients/landera/manual"
 PLA = RAIZ / "clients/landera/plantillas"
 OUT = RAIZ / "out/landera/manual"
-VERSION = "1.1"
+VERSION = "2.0"
 ANTERIOR = OUT / "LANDERA-manual-de-marca-v1.0.pdf"
 HEREDADAS = {15: (ANTERIOR, 14)}          # nº de lámina → (pdf, índice de página)
 
 LEEME = f"""LANDERA — Manual de marca v{VERSION} · archivos editables
 ====================================================
 
-laminas-editables/   Las 25 láminas, una por archivo PDF.
+laminas-editables/   Las 37 láminas, una por archivo PDF.
                      Se abren y se editan en Illustrator: el texto está VIVO
                      (no trazado) y Aptos va incrustada. Para editarlo hay que
                      tener Aptos instalada — viene con Microsoft Office.
@@ -36,24 +36,36 @@ plantillas/          Las piezas digitales: firmas de correo (HTML, listas para
                      pegar), banners, feed, historias, fondos de escritorio y las
                      4 maestras de presentación. ./render.sh <nombre> <ancho> <alto>
 
-Qué cambió en la v{VERSION} (ronda del cliente, 05-09-2026)
-------------------------------------------------------
-· 03 Introducción: se sintetizó; va directo a cómo se usa el manual.
-· 07 Versiones: ahora dice cuándo va cada versión y la muestra en su soporte.
-· 12 Tipografía: Aptos es la principal (títulos y textos); Barkentina queda
-  como secundaria, sólo para destacar un detalle. Se corrigió el «Blod Italic».
-· 22 Redes sociales (nueva): feed de Instagram simulado, 3 posts y 3 historias.
-· 24 Patrones en aplicación (nueva): tres fondos de escritorio y una botella.
-· Señalética pasa a la 23 y la contraportada a la 25.
+Qué cambió en la v{VERSION} (segunda ronda, 05-09-2026)
+--------------------------------------------------
+La identidad no se tocó: logotipo, isotipo, tipografías, colores, iconografía y
+las cuatro maestras de presentación son las aprobadas. La v2 profesionaliza las
+APLICACIONES para que una agencia externa pueda producir una pieza nueva sólo
+con este PDF:
+· Cada lámina de aplicación cierra con un bloque INVARIABLES / VARIABLES:
+  lo que nunca cambia y lo que se adapta al contenido.
+· 16 Fotografía: el criterio (qué imagen pertenece a Landera).
+· 17 Papelería con retícula, cotas, fondos, corporativa vs. operacional e incorrectos.
+· 18–21 Informe de gestión en cuatro láminas: retícula y portadas · tablas y datos
+  · gráficos, mapas y KPI · fotografía, casos y narrativa.
+· 22–23 Presentación: las cuatro maestras + ocho casos resueltos dentro de ellas.
+· 24–28 Ecosistema digital ordenado por lógica visual (dato / institucional /
+  territorio): web, LinkedIn, documentos digitales, Instagram sin secuencia rígida.
+· 29 Firmas condensadas a dos, con especificación (logotipo a 200 px).
+· 30–32 Señalética corporativa, operación (vehículos y maquinaria) y seguridad.
+· 33 Vestuario de terreno (qué se borda y dónde) · 34 Identificación de predios.
+· 35 Patrones, ahora al final · 36 Landera en 30 segundos.
 
 Pendientes conocidos
 --------------------
 · El logotipo de las firmas apunta a landera.cl/img/logo-landera.png, que aún
   no existe. Hay que subirlo antes de repartirlas.
-· La fotografía de las láminas 11, 22 y 23 y la botella de la 24 son de
-  referencia, generadas. Reemplazar por material real de Landera.
-· Barkentina: la muestra de la lámina 12 se compuso con los glifos del propio
-  PDF; para usarla en piezas hay que tener el archivo y su licencia comercial.
+· Barkentina: la muestra de las láminas 12, 21, 27 y 34 se compuso con los glifos
+  del propio PDF (_muestra-Barkentina.otf); para usarla en piezas hay que tener
+  el archivo y su licencia comercial.
+· Las fotografías de referencia (campos, señalética, maquinaria, prendas) son
+  generadas y están rotuladas como tales: se reemplazan con el archivo real de
+  Landera antes de la versión final.
 """
 
 
@@ -109,7 +121,7 @@ def zip_editables(n_laminas):
         src, idx = HEREDADAS[15]
         d = fitz.open(); d.insert_pdf(fitz.open(src), from_page=idx, to_page=idx)
         z.writestr("_zip/laminas-editables/15-iconografia.pdf", d.tobytes())
-        for f in ["base.css", "_comun.css", "render.sh", "T1-la-voz.html", "T2-como-escribimos.html"]:
+        for f in ["base.css", "_comun.css", "_v2.css", "render.sh", "T1-la-voz.html", "T2-como-escribimos.html"]:
             z.write(MAN / f, f"_zip/fuente-html/{f}")
         for f in sorted(PLA.iterdir()):
             if f.suffix in (".html", ".css", ".sh", ".md"):
@@ -117,6 +129,8 @@ def zip_editables(n_laminas):
         # los fondos de escritorio van rasterizados: se usan tal cual
         for f in sorted((RAIZ / "out/landera/plantillas").glob("fondo-pc-*.png")):
             z.write(f, f"_zip/fondos-de-escritorio/{f.name}")
+        z.write(RAIZ / "out/landera/_fuentes/muestra/Barkentina-muestra.otf",
+                "_zip/fuente-html/_muestra-Barkentina.otf")
     print(f"✓ {salida.name} · {len(zipfile.ZipFile(salida).namelist())} archivos")
 
 

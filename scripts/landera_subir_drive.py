@@ -18,9 +18,9 @@ from googleapiclient.http import MediaFileUpload
 CARPETA = "1fBPC6EYUB4QvdTHRE_ERvfWUOnK5L1Q5"
 RAIZ = Path(__file__).resolve().parent.parent
 ARCHIVOS = [
-    (RAIZ/"out/landera/manual/LANDERA-manual-de-marca-v1.1.pdf", "application/pdf"),
+    (RAIZ/"out/landera/manual/LANDERA-manual-de-marca-v2.0.pdf", "application/pdf"),
     (RAIZ/"out/landera/manual/LANDERA-guia-de-tono-v1.0.pdf",    "application/pdf"),
-    (RAIZ/"out/landera/manual/LANDERA-editables-v1.1.zip",       "application/zip"),
+    (RAIZ/"out/landera/manual/LANDERA-editables-v2.0.zip",       "application/zip"),
 ]
 
 ruta = _entorno.token_google()

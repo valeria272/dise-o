@@ -1,139 +1,147 @@
 <meta charset="utf-8">
-<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="_comun.css">
-<!-- 22 · Redes sociales — el feed simulado.
-     Ronda del cliente 05-09: «el ejemplo de redes quedó muy pequeño; armar un
-     feed de Instagram simulado con 3 posts y 3 historias». Las piezas son las
-     plantillas reales del kit (feed-cifra / feed-titular / feed-foto y
-     story-cifra / story-titular / story-foto), vistas dentro del teléfono. -->
+<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="_comun.css"><link rel="stylesheet" href="_v2.css">
+<!-- 28 · Ecosistema digital V — Instagram. Ronda 2 (05-09): «la regla rígida
+     cifra → titular → fotografía no aporta; el contenido se construye a partir
+     de tres familias visuales y se muestran combinaciones». Se conservan las
+     piezas aprobadas; cae la secuencia obligatoria. -->
 <style>
   .tel { position:absolute; background:#1D1F24; border-radius:14pt; padding:5pt; }
   .tel .pant { position:relative; width:100%; height:100%; background:#fff; border-radius:10pt; overflow:hidden; }
-  .tel .muesca { position:absolute; left:50%; top:4pt; width:34pt; height:5pt; margin-left:-17pt;
-                 background:#1D1F24; border-radius:3pt; z-index:3; }
-  /* perfil */
+  .tel .muesca { position:absolute; left:50%; top:4pt; width:34pt; height:5pt; margin-left:-17pt; background:#1D1F24; border-radius:3pt; z-index:3; }
   .perfil { position:absolute; left:0; right:0; top:0; font-size:5pt; color:#262626; }
   .perfil .usr { position:absolute; left:10pt; top:14pt; font-size:6.5pt; font-weight:600; }
-  .perfil .av  { position:absolute; left:10pt; top:26pt; width:30pt; height:30pt; border-radius:50%;
-                 background:#FAF1E8; overflow:hidden; }
+  .perfil .av  { position:absolute; left:10pt; top:26pt; width:30pt; height:30pt; border-radius:50%; background:#FAF1E8; overflow:hidden; }
   .perfil .av img { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); height:18pt; }
   .perfil .st  { position:absolute; top:33pt; width:26pt; text-align:center; line-height:6pt; }
   .perfil .st b { display:block; font-size:6.5pt; font-weight:600; }
   .perfil .bio { position:absolute; left:10pt; top:60pt; width:150pt; line-height:7pt; }
   .perfil .bio b { font-weight:600; }
-  .perfil .btn { position:absolute; top:84pt; height:12pt; background:#EFEFEF; border-radius:3pt;
-                 font-size:5pt; font-weight:600; line-height:12pt; text-align:center; }
-  .perfil .hl  { position:absolute; top:104pt; width:26pt; text-align:center; font-size:4.5pt; }
-  .perfil .hl i { display:block; width:22pt; height:22pt; margin:0 auto 2pt; border-radius:50%;
-                  border:0.6pt solid #DBDBDB; overflow:hidden; position:relative; background:#FAF1E8; }
-  .perfil .hl i img { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); height:12pt; }
-  .perfil .tabs{ position:absolute; left:0; right:0; top:140pt; height:12pt; border-bottom:0.4pt solid #DBDBDB; }
+  .perfil .btn { position:absolute; top:84pt; height:12pt; background:#EFEFEF; border-radius:3pt; font-size:5pt; font-weight:600; line-height:12pt; text-align:center; }
+  .perfil .tabs{ position:absolute; left:0; right:0; top:104pt; height:12pt; border-bottom:0.4pt solid #DBDBDB; }
   .perfil .tabs i { position:absolute; left:0; width:33.3%; bottom:-0.4pt; height:0.8pt; background:#262626; }
-  .grid { position:absolute; left:0; right:0; top:153pt; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.8pt; }
+  .grid { position:absolute; left:0; right:0; top:117pt; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.8pt; }
   .grid div { aspect-ratio:1; background:#F3F0EA; overflow:hidden; }
   .grid img { width:100%; height:100%; object-fit:cover; display:block; }
-  /* historias */
   .hist .pant { background:#000; }
-  .hist .pant::before { content:""; position:absolute; left:0; right:0; top:0; height:44pt; z-index:1;
-                        background:linear-gradient(rgba(0,0,0,.38), transparent); }
+  .hist .pant::before { content:""; position:absolute; left:0; right:0; top:0; height:44pt; z-index:1; background:linear-gradient(rgba(0,0,0,.38), transparent); }
   .hist img.st { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
   .hist .barra { position:absolute; left:6pt; right:6pt; top:9pt; height:1pt; display:flex; gap:2pt; z-index:2; }
-  .hist .barra i { flex:1; background:rgba(255,255,255,.35); }
-  .hist .barra i.on { background:#fff; }
-  .hist .quien { position:absolute; left:6pt; top:13pt; display:flex; align-items:center; gap:3pt; z-index:2;
-                 font-size:4.6pt; color:#fff; font-weight:600; }
+  .hist .barra i { flex:1; background:rgba(255,255,255,.35); } .hist .barra i.on { background:#fff; }
+  .hist .quien { position:absolute; left:6pt; top:13pt; display:flex; align-items:center; gap:3pt; z-index:2; font-size:4.6pt; color:#fff; font-weight:600; }
   .hist .quien i { width:9pt; height:9pt; border-radius:50%; background:#FAF1E8; overflow:hidden; position:relative; }
   .hist .quien i img { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); height:5.5pt; }
-  .hist .resp { position:absolute; left:6pt; right:6pt; bottom:7pt; height:9pt; border:0.5pt solid rgba(255,255,255,.7);
-                border-radius:5pt; font-size:4.2pt; color:rgba(255,255,255,.8); line-height:9pt; padding-left:5pt; }
+  /* combinaciones: el mes como grilla de 9 */
+  .mes { position:absolute; width:78pt; }
+  .mes .g { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1pt; }
+  .mes .g i { display:block; aspect-ratio:1; }
+  .mes i.d { background:#FAF1E8; border:0.3pt solid #E8E2DA; } .mes i.i { background:#33353E; } .mes i.t { background:#8A9A7C; }
+  .mes p { margin:4pt 0 0; font-size:6.6pt; line-height:8.5pt; color:var(--gris); font-weight:300; }
+  .mes p b { display:block; font-weight:600; color:var(--tinta); }
 </style>
 
 <h1 class="titulo">Aplicaciones</h1>
-<p class="bajada">Redes sociales: el feed de Instagram</p>
+<p class="bajada">Ecosistema digital V: Instagram</p>
 <div class="filete-cab"></div>
 <div class="divisoria" style="left:360pt"></div>
 
 <div class="columna" style="left:60.2pt; top:134.8pt; width:270pt">
-  <p class="rotulo">Tres tipos de post</p>
-  <p class="entrada">El feed se arma con <b>tres piezas</b> que se turnan:
-  la cifra, el titular y la fotografía. No hay una cuarta.</p>
-  <p class="cuerpo"><span class="cifra">Cifra</span> sobre crema — el dato en grande,
-  una línea de contexto.</p>
-  <p class="cuerpo"><span class="cifra">Titular</span> sobre tinta — una idea, en
-  Aptos Bold, con la franja al canto.</p>
-  <p class="cuerpo"><span class="cifra">Fotografía</span> con velo — el territorio,
-  logotipo en crema abajo a la izquierda.</p>
-  <p class="rotulo">Las reglas</p>
-  <p class="cuerpo">Se alternan: nunca dos del mismo tipo seguidos. El perfil
-  lleva el <b>isotipo</b> sobre crema; el bloqueo completo nunca cabe en el círculo.</p>
-  <p class="cuerpo">En historias, <span class="cifra">250 px</span> arriba y
-  <span class="cifra">340 px</span> abajo quedan libres: ahí se pone la interfaz.</p>
+  <p class="rotulo">Tres familias, sin secuencia</p>
+  <p class="entrada">El contenido se construye con las tres familias de la
+  lámina 24: <b>cifra</b>, <b>mensaje</b> y <b>territorio</b>. No hay un orden
+  obligatorio: hay una proporción.</p>
+  <p class="rotulo">La proporción</p>
+  <p class="cuerpo">En Instagram manda el territorio: al menos <span class="cifra">la
+  mitad</span> de las publicaciones del mes son fotografía. Cifra y mensaje se
+  reparten el resto. Nunca tres piezas seguidas de la misma familia.</p>
+  <p class="rotulo">Las piezas</p>
+  <p class="cuerpo">Las tres plantillas de feed y las tres de historia se usan tal
+  cual (kit digital). Cambian el dato, el titular y la foto; no cambia la
+  construcción.</p>
+  <p class="rotulo">Historias</p>
+  <p class="cuerpo"><span class="cifra">250 px</span> arriba y <span class="cifra">340 px</span>
+  abajo quedan libres para la interfaz. El perfil lleva el isotipo sobre crema.</p>
 </div>
 
-<!-- ── el perfil ────────────────────────────────────────────── -->
-<p class="rotulo" style="left:400pt; top:134.8pt">El perfil · 3 publicaciones</p>
-<div class="tel" style="left:400pt; top:160pt; width:180pt; height:336pt">
+<!-- perfil -->
+<p class="rotulo" style="left:400pt; top:134.8pt">El perfil · un mes</p>
+<div class="tel" style="left:400pt; top:156pt; width:180pt; height:300pt">
   <div class="pant"><div class="muesca"></div>
     <div class="perfil">
       <div class="usr">landera.cl</div>
       <div class="av"><img src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_ISO.svg"></div>
-      <div class="st" style="left:52pt"><b>3</b>publicaciones</div>
+      <div class="st" style="left:52pt"><b>9</b>publicaciones</div>
       <div class="st" style="left:88pt"><b>412</b>seguidores</div>
       <div class="st" style="left:124pt"><b>36</b>seguidos</div>
       <div class="bio"><b>Landera · Farmland Management</b><br>Administración de campos e inversión agrícola en Chile.<br>landera.cl</div>
       <div class="btn" style="left:10pt; width:72pt">Seguir</div>
       <div class="btn" style="left:86pt; width:72pt">Contactar</div>
-      <div class="hl" style="left:10pt"><i><img src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_ISO.svg"></i>Predios</div>
-      <div class="hl" style="left:40pt"><i><img src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_ISO_MONO-VERDE.svg"></i>Datos</div>
-      <div class="hl" style="left:70pt"><i><img src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_ISO_MONO-TINTA.svg"></i>Temporada</div>
       <div class="tabs"><i></i></div>
     </div>
     <div class="grid">
-      <div><img src="../../../out/landera/plantillas/feed-cifra.png"></div>
-      <div><img src="../../../out/landera/plantillas/feed-titular.png"></div>
       <div><img src="../../../out/landera/plantillas/feed-foto.png"></div>
-      <div></div><div></div><div></div>
-      <div></div><div></div><div></div>
+      <div><img src="../../../out/landera/plantillas/feed-cifra.png"></div>
+      <div><img src="../../../out/landera/plantillas/feed-foto.png" style="filter:brightness(.92)"></div>
+      <div><img src="../../../out/landera/plantillas/feed-titular.png"></div>
+      <div><img src="../../../out/landera/plantillas/feed-foto.png" style="filter:contrast(1.05)"></div>
+      <div><img src="../../../out/landera/plantillas/feed-cifra.png"></div>
+      <div><img src="../../../out/landera/plantillas/feed-foto.png"></div>
+      <div><img src="../../../out/landera/plantillas/feed-titular.png"></div>
+      <div><img src="../../../out/landera/plantillas/feed-foto.png" style="filter:brightness(.95)"></div>
     </div>
   </div>
 </div>
-<p class="caption" style="left:400pt; top:512pt; width:180pt">Cifra · titular · fotografía — en ese orden, se repite</p>
+<p class="caption" style="left:400pt; top:470pt; width:180pt; font-size:7pt">5 territorio · 2 cifra · 2 mensaje</p>
 
-<!-- ── las historias ────────────────────────────────────────── -->
-<p class="rotulo" style="left:620pt; top:134.8pt">Historias · 3 piezas</p>
-<div class="tel hist" style="left:620pt; top:160pt; width:110pt; height:220pt">
+<!-- historias -->
+<p class="rotulo" style="left:604pt; top:134.8pt">Historias · las tres familias</p>
+<div class="tel hist" style="left:604pt; top:156pt; width:104pt; height:196pt">
   <div class="pant"><div class="muesca"></div>
     <img class="st" src="../../../out/landera/plantillas/story-cifra.png">
     <div class="barra"><i class="on"></i><i></i><i></i></div>
     <div class="quien"><i><img src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_ISO.svg"></i>landera.cl</div>
-    <div class="resp">Enviar mensaje</div>
   </div>
 </div>
-<div class="tel hist" style="left:743pt; top:160pt; width:110pt; height:220pt">
+<div class="tel hist" style="left:718pt; top:156pt; width:104pt; height:196pt">
   <div class="pant"><div class="muesca"></div>
     <img class="st" src="../../../out/landera/plantillas/story-titular.png">
     <div class="barra"><i class="on"></i><i class="on"></i><i></i></div>
     <div class="quien"><i><img src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_ISO.svg"></i>landera.cl</div>
-    <div class="resp">Enviar mensaje</div>
   </div>
 </div>
-<div class="tel hist" style="left:866pt; top:160pt; width:110pt; height:220pt">
+<div class="tel hist" style="left:832pt; top:156pt; width:104pt; height:196pt">
   <div class="pant"><div class="muesca"></div>
     <img class="st" src="../../../out/landera/plantillas/story-foto.png">
     <div class="barra"><i class="on"></i><i class="on"></i><i class="on"></i></div>
     <div class="quien"><i><img src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_ISO.svg"></i>landera.cl</div>
-    <div class="resp">Enviar mensaje</div>
   </div>
 </div>
-<p class="caption" style="left:620pt; top:398pt; width:356pt">Cifra · titular · fotografía — la interfaz tapa arriba y abajo</p>
+<p class="caption" style="left:604pt; top:366pt; width:372pt; font-size:7.5pt">Cifra · mensaje · territorio — la interfaz tapa arriba y abajo</p>
 
-<!-- ── las tres piezas a tamaño ─────────────────────────────── -->
-<p class="rotulo" style="left:620pt; top:428pt">Las piezas · 1080 × 1080 y 1080 × 1920</p>
-<div style="position:absolute; left:620pt; top:452pt; width:92pt; height:92pt; overflow:hidden"><img style="width:100%" src="../../../out/landera/plantillas/feed-cifra.png"></div>
-<div style="position:absolute; left:720pt; top:452pt; width:92pt; height:92pt; overflow:hidden"><img style="width:100%" src="../../../out/landera/plantillas/feed-titular.png"></div>
-<div style="position:absolute; left:820pt; top:452pt; width:92pt; height:92pt; overflow:hidden"><img style="width:100%" src="../../../out/landera/plantillas/feed-foto.png"></div>
-<div style="position:absolute; left:920pt; top:452pt; width:52pt; height:92pt; overflow:hidden"><img style="width:100%" src="../../../out/landera/plantillas/story-titular.png"></div>
-<p class="caption" style="left:620pt; top:548pt; width:356pt; color:#A5A29E">
-  ⚠ Textos y cifras de ejemplo; fotografía generada — reemplazar por material real</p>
+<!-- combinaciones -->
+<p class="rotulo" style="left:604pt; top:386pt">Tres meses distintos, el mismo sistema</p>
+<div class="mes" style="left:604pt; top:404pt">
+  <div class="g"><i class="t"></i><i class="d"></i><i class="t"></i><i class="i"></i><i class="t"></i><i class="d"></i><i class="t"></i><i class="i"></i><i class="t"></i></div>
+  <p><b>Mes de cosecha</b>5 territorio · 2 cifra · 2 mensaje</p>
+</div>
+<div class="mes" style="left:698pt; top:404pt">
+  <div class="g"><i class="d"></i><i class="t"></i><i class="d"></i><i class="t"></i><i class="i"></i><i class="d"></i><i class="t"></i><i class="d"></i><i class="t"></i></div>
+  <p><b>Mes de resultados</b>4 cifra · 4 territorio · 1 mensaje</p>
+</div>
+<div class="mes" style="left:792pt; top:404pt">
+  <div class="g"><i class="i"></i><i class="t"></i><i class="i"></i><i class="t"></i><i class="d"></i><i class="t"></i><i class="i"></i><i class="t"></i><i class="d"></i></div>
+  <p><b>Mes institucional</b>3 mensaje · 4 territorio · 2 cifra</p>
+</div>
+<div class="mes mal cruz" style="left:886pt; top:404pt; width:78pt; height:52pt">
+  <div class="g"><i class="d"></i><i class="d"></i><i class="d"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="d"></i><i class="d"></i><i class="d"></i></div>
+</div>
+<p class="caption" style="left:886pt; top:460pt; width:90pt; font-size:6.5pt; line-height:8.5pt">Sin territorio · tres iguales seguidas</p>
 
-<p class="folio"><b>22</b> · Aplicaciones</p>
+<div class="iv">
+  <div><p class="h">Invariables</p>
+    <p>Tres familias y tres plantillas por formato: no se diseña una cuarta · al menos la mitad del mes es territorio · nunca tres seguidas de la misma familia · logotipo en toda pieza (crema sobre foto y tinta) · historias con 250 px arriba y 340 px abajo libres · avatar con isotipo sobre crema · fotografía según la lámina 16.</p></div>
+  <div class="var"><p class="h">Variables</p>
+    <p>El orden de las publicaciones · la proporción entre cifra y mensaje según el mes · cuántas historias y cuándo · foto vertical u horizontal recortada a cuadrado · con o sin bajada en el logotipo · el texto del pie (según la guía de tono).</p></div>
+</div>
+
+<p class="folio"><b>28</b> · Aplicaciones</p>
 <p class="folio-marca">Landera · Manual de marca</p>

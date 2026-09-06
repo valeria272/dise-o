@@ -1,5 +1,47 @@
 # Landera — bitácora
 
+## 2026-09-05 (tarde) — Valeria Traverso
+
+**Qué se hizo:** Segunda ronda, esta vez de dirección (Valeria): «el problema ya
+no es la identidad, es la bajada a sistema de marca». 15 puntos, todos aplicados
+el mismo día → **v2.0 de 37 láminas** (la v1.1 tenía 25). La identidad (01–15) no
+se tocó. Todas las aplicaciones se reescribieron como norma reproducible con el
+criterio «¿una agencia externa puede producir una pieza sólo con el PDF?»: cotas,
+retículas, cuerpos, incorrectos y el bloque **INVARIABLES / VARIABLES** al pie.
+
+**Dónde quedó:**
+- `out/landera/manual/LANDERA-manual-de-marca-v2.0.pdf` y `LANDERA-editables-v2.0.zip`,
+  subidos a la carpeta de Drive del manual. Guía de tono sigue v1.0.
+- Láminas nuevas (`clients/landera/manual/`): 16 fotografía-criterio · 17 papelería
+  · 18–21 informe (portadas, tablas, gráficos, narrativa) · 23 presentación-casos ·
+  24 ecosistema-digital · 25 web · 26 linkedin · 27 documentos-digitales · 28
+  instagram · 29 firmas · 30 señalética-corporativa · 31 operación · 32 seguridad ·
+  33 vestuario · 34 predios · 36 guía-rápida. Kit compartido en `_v2.css`.
+- 18 imágenes de referencia nuevas (`public/assets/landera/fotos/v2/`,
+  `scripts/landera_referencias_v2.py`): prendas, maquinaria, señalética, clichés.
+  Todas rotuladas como generadas.
+- Firmas: el HTML servía el logotipo a **150 px, bajo el mínimo de 200** → corregido
+  en las 4 firmas y en las vistas.
+- `marca.json › reglas_v2` guarda las medidas normadas (papelería, informe,
+  señalética, vestuario, predios).
+
+**Qué sigue:**
+1. **Fotografía real.** El manual sigue con referencias generadas y rotuladas.
+   Pedir a Landera el archivo o una sesión mínima (10 campo · 3 equipo · 3
+   maquinaria · 3 aéreas). Sin eso la v2 no puede ser «final».
+2. **Licencia de Barkentina** (correo a Kiril Zlatkov) — sigue sin mandarse.
+3. Tercera ronda del cliente sobre la v2.0.
+4. Subir `landera.cl/img/logo-landera.png` (y `-ga.png`) antes de repartir firmas.
+
+**Abierto:**
+- ⚠️ Vestuario (33): el cliente rechazó en la v1.0 la lámina de «equipamiento» por
+  parecer merch. La 33 es normativa (qué se borda, dónde) y va en terreno, pero hay
+  que confirmar que así la aceptan.
+- ⚠️ Reglas propuestas sin validar en terreno: versal 1 cm / 4 m, isotipo 25 cm en
+  maquinaria, 2/3 del paño de puerta, tolerancia ±5 % en informes.
+- El `.ai` maestro de Coni sigue con el verde viejo `#1C4907`.
+- La 15 (iconografía) sigue saliendo del PDF del cliente.
+
 ## 2026-09-05 — Valeria Traverso
 
 **Qué se hizo:** Llegó la primera ronda del cliente sobre el manual (5 comentarios:

@@ -12,10 +12,10 @@
   "antes": "C&D / CYD Management — Landera es la marca nueva",
   "manual": {
     "_antes": "clients/landera/CLAUDE.md",
-    "version": "1.1",
-    "laminas": 25,
+    "version": "2.0",
+    "laminas": 37,
     "fecha": "2026-09-05",
-    "archivo": "out/landera/manual/LANDERA-manual-de-marca-v1.1.pdf",
+    "archivo": "out/landera/manual/LANDERA-manual-de-marca-v2.0.pdf",
     "nuevas_en_1_1": [
       "07 versiones con uso por soporte",
       "12 tipografía jerarquizada",
@@ -24,7 +24,13 @@
     ],
     "heredadas_del_pdf_del_cliente": [
       "15 iconografía"
-    ]
+    ],
+    "v2_que_cambio": "La identidad no se tocó. Las aplicaciones se reescribieron como norma reproducible: bloque INVARIABLES/VARIABLES en cada una, criterio fotográfico (16), papelería con retícula (17), informe en 4 láminas (18–21), casos de presentación (23), ecosistema digital por lógica visual dato/institucional/territorio (24–28), firmas condensadas (29), señalética en 3 láminas (30–32), vestuario (33), predios (34), patrones al final (35), guía rápida (36).",
+    "sistemas_digitales": {
+      "dato": "crema o blanco, cifra SemiBold, verde titula",
+      "institucional": "tinta, franja tenue, logotipo crema, filete terracota único acento",
+      "territorio": "foto con velo de tinta a 4,5:1, logotipo crema abajo a la izquierda"
+    }
   },
   "estado": "EN DEFINICIÓN — colores y logotipo todavía en ronda con el cliente. NO producir piezas hasta que cierren.",
   "formato_manual": {
@@ -177,5 +183,44 @@
     "Faltan los archivos Base y Base 1 — sólo llegó PROPUESTA BASE V2.",
     "Conseguir el archivo de la tipografía Barkentina.",
     "Definir si la fila monocromática queda en 4 versiones o 5 (al salir el verde, una queda repetida)."
-  ]
+  ],
+  "reglas_v2": {
+    "papeleria": {
+      "margen": "6 % del lado menor",
+      "franja": "5 % del ancho, tope 8 %",
+      "logo": "tarjeta 45 % (40 mm) · sobre 22 % (48 mm) · carta 25 % (52 mm), borde superior en el margen",
+      "reverso": "FM tinta · GA verde"
+    },
+    "informe": {
+      "reticula": "A4, 12 columnas, margen 15 mm, medianil 5 mm",
+      "franja": "sólo portada y aperturas, 12 mm",
+      "tabla": "encabezado versales verde con unidad, filete verde 0,5, SemiBold tabular a la derecha, total Bold, terracota sólo sobre tolerancia ±5 % una vez por fila, 2 tablas por página",
+      "kpi": "SemiBold 36 + versales 8 + variación 9, máximo 3",
+      "graficos": "barras, barras dobles, línea; verde/gris/terracota; sin 3D ni gradientes"
+    },
+    "senaletica": {
+      "panel": "crema/tinta o tinta/crema, nunca logo directo sobre soporte",
+      "versal": "1 cm por cada 4 m",
+      "franja": "sólo si el panel supera 1 m",
+      "vehiculo": "horizontal 2/3 del paño de la puerta, GA",
+      "maquinaria": "isotipo 25 cm una tinta",
+      "seguridad": "colores normativos intactos; marca sólo en cabezal tinta o pie crema; sin franjas"
+    },
+    "vestuario": {
+      "borda": "isotipo a una tinta: verde sobre claro, crema sobre oscuro",
+      "pecho": "6 cm izquierdo · jockey 5 cm · casco 4 cm vinilo",
+      "espalda": "logotipo completo 24 cm una tinta GA, único lugar",
+      "prenda": "verde oliva, gris carbón, crema; nunca terracota"
+    },
+    "predios": {
+      "formas": [
+        "Landera manda (logo + nombre Bold al 50 %)",
+        "el predio manda (nombre + 'Administrado por' + logo al 30 %)",
+        "en línea ('Landera · Fundo El Peral')"
+      ],
+      "barkentina": "sólo en la portada de la ficha de predio"
+    },
+    "instagram": "tres familias sin secuencia; ≥ 50 % territorio; nunca tres seguidas iguales",
+    "firmas": "logotipo PNG 200 px (corregido de 150), filete 2 px verde, Bold 15 / versales 11 / Light 12-18"
+  }
 }

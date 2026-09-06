@@ -34,7 +34,7 @@ del logotipo le toca: **Farmland Management** para quien le habla al inversionis
 Van en tabla, no en flex: los clientes de correo no soportan CSS moderno.
 
 ⚠️ **Apunta a `https://landera.cl/img/logo-landera.png`, que todavía no existe.**
-Hay que subir el PNG del kit (200 px de ancho, su mínimo digital) y dejar esa URL
+Hay que subir el PNG del kit (200 px de ancho, su mínimo digital; el `width` del HTML se corrigió de 150 a 200 el 05-09) y dejar esa URL
 viva antes de repartir la firma. Los `vista-firma-*.html` son sólo previsualizaciones
 locales — esas no se reparten.
 

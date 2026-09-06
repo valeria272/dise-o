@@ -1,9 +1,37 @@
 # LANDERA — Farmland Management
 
-> **Estado al 05-09-2026: manual v1.1 entregado — 25 láminas, con la primera ronda
-> de comentarios del cliente aplicada** (§0.1). Barkentina pasó de «sólo logotipo»
-> a **tipografía secundaria de detalle** por decisión del cliente, y eso vuelve más
-> urgente su **licencia comercial** (§2).
+> **Estado al 05-09-2026 (tarde): manual v2.0 entregado — 37 láminas.** La identidad
+> aprobada no se tocó; las **aplicaciones se reescribieron como norma reproducible**
+> (§0.2). Antes, la v1.1 aplicó la primera ronda del cliente (§0.1). Barkentina es
+> secundaria de detalle y su **licencia comercial** sigue abierta (§2).
+
+## 0.2 La segunda ronda — v2.0, 05-09-2026
+
+Feedback de Valeria como directora: «el problema ya no es la identidad; es la
+bajada de la identidad a sistema de marca». El criterio de revisión: **si una
+agencia externa recibe sólo este PDF, ¿puede producir una pieza nueva?** 15 puntos,
+todos aplicados el mismo día:
+
+| Punto | Qué se hizo |
+|---|---|
+| Aplicaciones como norma, no como maqueta | Todas las láminas de aplicación llevan ahora **posición, margen, cuerpo y cotas**, ejemplos incorrectos, y cierran con el bloque **INVARIABLES / VARIABLES** (`_v2.css`) |
+| Informe en 3–4 láminas | 18 retícula y portadas · 19 tablas y datos (formato chileno, tolerancia ±5 %) · 20 gráficos, mapas y KPI · 21 fotografía, casos y narrativa |
+| PPT: mantener maestras, mostrar casos | 22 se mantiene; 23 muestra 8 casos resueltos dentro de las maestras |
+| Ecosistema digital por lógica visual | 24 los tres sistemas (dato / institucional / territorio) · 25 web · 26 LinkedIn · 27 documentos digitales · 28 Instagram **sin secuencia rígida** (familias y proporción) |
+| Firmas sobredimensionadas | 29: dos firmas + especificación. Se detectó que el HTML servía el logo a **150 px, bajo el mínimo de 200**: corregido en las 4 firmas |
+| Señalética | 30 corporativa (versal 1 cm por cada 4 m) · 31 operación (vehículos, maquinaria, container, estanque, bodega) · 32 seguridad (la marca sólo en cabezal/pie; normativa intacta) |
+| Vestuario | 33: qué se borda y dónde. **Ojo:** la lámina de «equipamiento» de la v1.0 la rechazó el cliente por leerse como merch; esta es normativa (isotipo a una tinta, espalda 24 cm) y va en la sección de terreno |
+| Branding de predios | 34: tres formas (Landera manda / el predio manda / en línea), nunca submarca |
+| Patrones secundarios | 35, al final, después de lo operativo |
+| Fotos de referencia | Siguen siendo generadas y rotuladas: **no hay archivo real de Landera**. Se pidió sesión mínima (10 campo · 3 equipo · 3 maquinaria · 3 aéreas) en la lámina 16 |
+| Criterio fotográfico | 16, en el capítulo Sistema: sí / no con ejemplos |
+| Guía rápida | 36 «Landera en 30 segundos» |
+
+**Producción:** 18 imágenes de referencia nuevas con Mystic (`scripts/landera_referencias_v2.py`,
+en `public/assets/landera/fotos/v2/`): prendas lisas, maquinaria, señalética con
+panel en blanco, clichés fotográficos para el «no». El logotipo se compone encima
+por código, en % medidos sobre cada foto. `python3 scripts/landera_ensamblar.py`
+arma PDF, hoja de contacto y ZIP.
 
 ## 0.1 La ronda del cliente sobre el manual — 05-09-2026
 
@@ -261,9 +289,13 @@ una gestora de campos con una marca y dos bajadas.
 **Las 23 existen.** Se cerró el manual completo el 03-09-2026:
 `out/landera/manual/LANDERA-manual-de-marca-v1.0.pdf`.
 
-**v1.1 (05-09-2026): 25 láminas.** Se agregaron **22 Redes sociales** y **24 Patrones
-en aplicación**; señalética es la 23 y contraportada la 25. Las láminas 07 y 12 ya
-son propias (HTML), así que del PDF del cliente sólo sobrevive la **15 iconografía**.
+**v1.1 (05-09-2026): 25 láminas.** Se agregaron redes y patrones; 07 y 12 propias.
+
+**v2.0 (05-09-2026, tarde): 37 láminas.** 01–15 sin cambios de identidad · 16
+fotografía (criterio) · 17 papelería · 18–21 informe · 22–23 presentación · 24–28
+ecosistema digital · 29 firmas · 30–32 señalética, operación y seguridad · 33
+vestuario · 34 predios · 35 patrones · 36 guía rápida · 37 contraportada. Del PDF
+del cliente sólo sobrevive la **15 iconografía**. Índice completo en `02-indice.html`.
 
 Además, fuera de la numeración:
 · **Guía de tono y estilo** — `LANDERA-guia-de-tono-v1.0.pdf`, 2 láminas (entregable ③).
@@ -360,6 +392,10 @@ eventos» de Pivot.
 ---
 
 ## 6. Historial
+
+**05-09-2026 (tarde)** — Segunda ronda (15 puntos, dirección de Valeria) aplicada
+íntegra en la **v2.0 de 37 láminas**: las aplicaciones pasan de maqueta a norma
+reproducible con INVARIABLES/VARIABLES. Ver §0.2. Subida a Drive.
 
 **05-09-2026** — Ronda de comentarios del cliente sobre el manual (5 puntos) aplicada
 íntegra en la **v1.1**: introducción sintetizada, Aptos principal / Barkentina de

@@ -1,75 +1,146 @@
 <meta charset="utf-8">
-<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="_comun.css">
+<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="_comun.css"><link rel="stylesheet" href="_v2.css">
+<!-- 17 · Papelería — como norma, no como maqueta. Ronda 2 (05-09): «ubicación
+     exacta del logo, márgenes, grilla, tamaño de textos, alineaciones, proporción
+     máxima de la franja, cuándo crema/blanco/tinta, corporativa vs operacional,
+     ejemplos incorrectos». Las maquetas van a escala con cotas dibujadas.
+     Escalas: tarjeta 90 mm → 150 pt (1,667 pt/mm) · A4 210 mm → 148 pt (0,705 pt/mm). -->
 <style>
- .pieza { position:absolute; background:#fff; border:0.4pt solid #E0DEDA; overflow:hidden; }
- .fr { position:absolute; left:0; top:0; bottom:0; width:9pt; }
- .fr i { position:absolute; top:0; bottom:0; width:1.7pt; background:#687B5D; }
- .dato { font-size:5.2pt; font-weight:300; color:#666461; line-height:7pt; }
- .nom  { font-size:7pt; font-weight:700; color:#33353E; }
- .car  { font-size:5.2pt; font-weight:300; color:#687B5D;
-         text-transform:uppercase; letter-spacing:0.07em; }
+  .pz { position:absolute; background:#fff; border:0.4pt solid #E0DEDA; overflow:hidden; }
+  .pz .fr i { background:var(--verde); }
+  .m { position:absolute; border:0.3pt dashed #C9C3B8; pointer-events:none; }
+  .nom { font-weight:700; color:var(--tinta); }
+  .car { font-weight:400; color:var(--verde); text-transform:uppercase; letter-spacing:0.08em; }
+  .dat { font-weight:300; color:var(--gris); }
+  .mini { position:absolute; width:112pt; height:62pt; background:#fff; border:0.4pt solid #E0DEDA; overflow:hidden; }
 </style>
+
 <h1 class="titulo">Aplicaciones</h1>
-<p class="bajada">Papelería</p>
+<p class="bajada">Papelería: la retícula que se repite</p>
 <div class="filete-cab"></div>
 <div class="divisoria" style="left:360pt"></div>
 
 <div class="columna" style="left:60.2pt; top:134.8pt; width:270pt">
-  <p class="rotulo">Un solo gesto</p>
-  <p class="entrada">Toda la papelería comparte una sola cosa: la franja
-  de remate al canto izquierdo. Es lo que hace que
-  una tarjeta y una carta se lean como la misma casa.</p>
+  <p class="rotulo">Una retícula, tres piezas</p>
+  <p class="entrada">La tarjeta, el sobre y la carta comparten la misma
+  construcción: <b>franja al canto izquierdo, logotipo arriba a la izquierda
+  después de la franja, todo alineado a ese mismo eje.</b></p>
   <p class="rotulo">Las medidas</p>
-  <p class="cuerpo">Tarjeta <span class="cifra">90 × 50 mm</span> ·
-  carta <span class="cifra">A4</span> ·
-  sobre <span class="cifra">DL 220 × 110 mm</span>.</p>
-  <p class="cuerpo">En la tarjeta el logotipo va a <span class="cifra">40 mm</span>,
-  que es su mínimo: más chico no se entrega.</p>
-  <p class="rotulo">La firma de correo</p>
-  <p class="cuerpo">Sin imágenes de fondo y sin frases de marketing.
-  El logotipo va como PNG a <span class="cifra">200 px</span>
-  de ancho, que es su mínimo digital.</p>
+  <p class="cuerpo">El margen es el <span class="cifra">6 %</span> del lado menor
+  (tarjeta 6 mm · sobre 6 mm · carta 12 mm). La franja de remate ocupa el
+  <span class="cifra">5 %</span> del ancho y <b>nunca más del 8 %</b>.</p>
+  <p class="cuerpo">El logotipo mide el <span class="cifra">45 %</span> del ancho en
+  tarjeta (40 mm, su mínimo), <span class="cifra">22 %</span> en sobre (48 mm) y
+  <span class="cifra">25 %</span> en carta (52 mm). Su borde superior coincide con
+  el margen.</p>
+  <p class="rotulo">Fondos</p>
+  <p class="cuerpo"><b>Blanco</b> donde se lee (carta, anverso). <b>Crema</b> en
+  tapas y reversos institucionales. <b>Tinta</b> sólo en el reverso de la línea
+  corporativa.</p>
+  <p class="rotulo">Corporativa y operacional</p>
+  <p class="cuerpo">Farmland Management: reverso tinta. Gestión Agrícola:
+  reverso verde. Es lo único que cambia además de la bajada.</p>
 </div>
 
-<p class="rotulo" style="left:400pt; top:134.8pt">Tarjeta · 90 × 50 mm</p>
-<div class="pieza" style="left:400pt; top:172pt; width:180pt; height:100pt">
-  <div class="fr"><i style="left:0"></i><i style="left:2.6pt"></i><i style="left:5.2pt"></i></div>
-  <img style="position:absolute; left:22pt; top:20pt; width:113pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg">
-  <div style="position:absolute; left:22pt; top:58pt">
-    <div class="nom">Nombre Apellido</div>
-    <div class="car">Cargo</div>
-    <div class="dato" style="margin-top:4pt">+56 9 0000 0000<br>nombre@landera.cl<br>landera.cl</div>
+<!-- ── hoja carta con cotas ─────────────────────────────────── -->
+<p class="rotulo" style="left:400pt; top:134.8pt">Carta · A4</p>
+<div class="pz" style="left:412pt; top:172pt; width:148pt; height:209pt">
+  <div class="fr" style="width:7.4pt"><i style="left:0; width:1.5pt"></i><i style="left:2.25pt; width:1.5pt"></i><i style="left:4.5pt; width:1.5pt"></i><i style="left:6.75pt; width:0.65pt"></i></div>
+  <div class="m" style="left:16pt; top:8.5pt; right:8.5pt; bottom:8.5pt"></div>
+  <img style="position:absolute; left:16pt; top:8.5pt; width:36.7pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg">
+  <div style="position:absolute; left:16pt; right:8.5pt; top:28pt; height:0.35pt; background:var(--verde)"></div>
+  <div class="dat" style="position:absolute; left:16pt; top:38pt; right:8.5pt; font-size:3.2pt; line-height:4.9pt">
+    Santiago, 5 de septiembre de 2026<br><br>Estimado señor Pérez:<br><br>
+    <span style="display:block; height:2.3pt; background:#ECEAE6; margin:1pt 0; width:100%"></span>
+    <span style="display:block; height:2.3pt; background:#ECEAE6; margin:1pt 0; width:96%"></span>
+    <span style="display:block; height:2.3pt; background:#ECEAE6; margin:1pt 0; width:88%"></span>
+    <span style="display:block; height:2.3pt; background:#ECEAE6; margin:1pt 0; width:92%"></span>
+    <span style="display:block; height:2.3pt; background:#ECEAE6; margin:1pt 0; width:60%"></span></div>
+  <div class="dat" style="position:absolute; left:16pt; bottom:8.5pt; font-size:3pt; letter-spacing:0.04em">landera.cl · Santiago, Chile</div>
+</div>
+<div class="cota" style="left:412pt; top:160pt; width:7.4pt"><span>5 %</span></div>
+<div class="cota abajo" style="left:419.4pt; top:160pt; width:8.6pt"><span>12 mm</span></div>
+<div class="cota" style="left:428pt; top:160pt; width:36.7pt"><span>25 % · 52 mm</span></div>
+<div class="cota v izq" style="left:400pt; top:172pt; height:8.5pt"><span>12</span></div>
+
+<!-- ── tarjeta anverso y reverso ────────────────────────────── -->
+<p class="rotulo" style="left:604pt; top:134.8pt">Tarjeta · 90 × 50 mm</p>
+<div class="pz" style="left:604pt; top:172pt; width:150pt; height:83.3pt">
+  <div class="fr" style="width:7.5pt"><i style="left:0; width:1.5pt"></i><i style="left:2.25pt; width:1.5pt"></i><i style="left:4.5pt; width:1.5pt"></i><i style="left:6.75pt; width:0.75pt"></i></div>
+  <div class="m" style="left:17.5pt; top:10pt; right:10pt; bottom:10pt"></div>
+  <img style="position:absolute; left:17.5pt; top:10pt; width:66.7pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg">
+  <div style="position:absolute; left:17.5pt; top:44pt">
+    <div class="nom" style="font-size:6pt">Nombre Apellido</div>
+    <div class="car" style="font-size:4.3pt; margin-top:1pt">Gerente de inversiones</div>
+    <div class="dat" style="font-size:4.6pt; line-height:6.4pt; margin-top:3pt">+56 9 0000 0000 · nombre@landera.cl<br>landera.cl</div>
   </div>
 </div>
-<div class="pieza" style="left:596pt; top:172pt; width:180pt; height:100pt; background:#33353E">
-  <img style="position:absolute; left:34pt; top:32pt; width:113pt" src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_HOR-FARM_MONO-CREMA.svg">
+<div class="cota" style="left:621.5pt; top:160pt; width:66.7pt"><span>45 % · 40 mm</span></div>
+<div class="cota v" style="left:756pt; top:172pt; height:10pt"><span>6 mm</span></div>
+<div class="cota v" style="left:756pt; top:216pt; height:12pt"><span>Bold 9</span></div>
+<div class="cota v" style="left:756pt; top:230pt; height:20pt"><span>6,5 · 7</span></div>
+
+<div class="pz" style="left:604pt; top:266pt; width:150pt; height:83.3pt; background:#33353E; border-color:#33353E">
+  <img style="position:absolute; left:41.6pt; top:30pt; width:66.7pt" src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_HOR-FARM_MONO-CREMA.svg">
 </div>
-<p class="caption" style="left:400pt; top:280pt; width:376pt">Anverso y reverso</p>
+<p class="caption" style="left:604pt; top:354pt; width:150pt">Reverso corporativo — tinta, logotipo centrado</p>
 
-<p class="rotulo" style="left:792pt; top:134.8pt">Sobre · DL</p>
-<div class="pieza" style="left:792pt; top:172pt; width:184pt; height:92pt">
-  <div class="fr"><i style="left:0"></i><i style="left:2.6pt"></i><i style="left:5.2pt"></i></div>
-  <img style="position:absolute; left:22pt; top:16pt; width:100pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg">
-  <div class="dato" style="position:absolute; left:22pt; top:44pt">
-    Av. Ejemplo 0000, Of. 000<br>Santiago · Chile</div>
+<!-- ── sobre ─────────────────────────────────────────────────── -->
+<p class="rotulo" style="left:792pt; top:134.8pt">Sobre · DL 220 × 110</p>
+<div class="pz" style="left:792pt; top:172pt; width:184pt; height:92pt">
+  <div class="fr" style="width:9.2pt"><i style="left:0; width:1.9pt"></i><i style="left:2.8pt; width:1.9pt"></i><i style="left:5.6pt; width:1.9pt"></i><i style="left:8.4pt; width:0.8pt"></i></div>
+  <div class="m" style="left:19pt; top:10pt; right:10pt; bottom:10pt"></div>
+  <img style="position:absolute; left:19pt; top:10pt; width:40.5pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg">
+  <div class="dat" style="position:absolute; left:19pt; top:30pt; font-size:4pt; line-height:5.6pt">Av. Ejemplo 0000, Of. 000<br>Santiago · Chile</div>
 </div>
-<p class="caption" style="left:792pt; top:272pt; width:184pt">Sobre</p>
+<div class="cota" style="left:811pt; top:160pt; width:40.5pt"><span>22 % · 48 mm</span></div>
 
-<p class="rotulo" style="left:400pt; top:316pt">Hoja carta · A4</p>
-<div class="pieza" style="left:400pt; top:354pt; width:148pt; height:209pt">
-  <div class="fr"><i style="left:0"></i><i style="left:2.6pt"></i><i style="left:5.2pt"></i></div>
-  <img style="position:absolute; left:20pt; top:18pt; width:94pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg">
-  <div style="position:absolute; left:20pt; right:16pt; top:56pt">
-    <div style="height:0.4pt; background:#687B5D"></div>
-    <div class="dato" style="margin-top:8pt; line-height:6pt">
-      &nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;</div>
-  </div>
-  <div class="dato" style="position:absolute; left:20pt; bottom:12pt">
-    landera.cl · Santiago, Chile</div>
+<!-- ── corporativa vs operacional + incorrectos ─────────────── -->
+<p class="rotulo" style="left:792pt; top:268pt">Operacional · Gestión Agrícola</p>
+<div class="mini" style="left:792pt; top:290pt">
+  <div class="fr" style="width:5.6pt"><i style="left:0; width:1.1pt"></i><i style="left:1.7pt; width:1.1pt"></i><i style="left:3.4pt; width:1.1pt"></i></div>
+  <img style="position:absolute; left:13pt; top:7.5pt; width:50pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-GESA.svg">
+  <div class="nom" style="position:absolute; left:13pt; top:34pt; font-size:4.5pt">Nombre Apellido</div>
+  <div class="car" style="position:absolute; left:13pt; top:40pt; font-size:3.3pt">Jefe de campo</div>
 </div>
-<p class="caption" style="left:400pt; top:570pt; width:148pt">Carta</p>
+<div class="mini" style="left:864pt; top:290pt; background:#687B5D; border-color:#687B5D">
+  <img style="position:absolute; left:31pt; top:22pt; width:50pt" src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_HOR-GESA_MONO-CREMA.svg">
+</div>
+<p class="caption" style="left:792pt; top:356pt; width:184pt">Anverso igual · reverso verde, no tinta</p>
 
-<p class="caption" style="left:576pt; top:340pt; width:400pt; text-transform:none; font-size:10pt">La firma de correo tiene su propia lámina — ver <b>Firmas de correo</b>.</p>
+<p class="rotulo" style="left:400pt; top:392pt">Lo que no se hace</p>
+<div class="mini mal cruz" style="left:400pt; top:412pt">
+  <img style="position:absolute; left:31pt; top:14pt; width:50pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg">
+  <div class="nom" style="position:absolute; left:0; right:0; top:38pt; text-align:center; font-size:4.5pt">Nombre Apellido</div>
+</div>
+<p class="caption" style="left:400pt; top:478pt; width:112pt; font-size:7pt">Centrado, sin franja</p>
+<div class="mini mal cruz" style="left:522pt; top:412pt">
+  <div class="fr" style="left:auto; right:0; width:5.6pt"><i style="left:0; width:1.1pt"></i><i style="left:1.7pt; width:1.1pt"></i><i style="left:3.4pt; width:1.1pt"></i></div>
+  <img style="position:absolute; left:8pt; top:7.5pt; width:50pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg">
+</div>
+<p class="caption" style="left:522pt; top:478pt; width:112pt; font-size:7pt">Franja a la derecha</p>
+<div class="mini mal cruz" style="left:644pt; top:412pt">
+  <div class="fr" style="width:22pt"><i style="left:0; width:4pt"></i><i style="left:6pt; width:4pt"></i><i style="left:12pt; width:4pt"></i><i style="left:18pt; width:4pt"></i></div>
+  <img style="position:absolute; left:30pt; top:7.5pt; width:50pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg">
+</div>
+<p class="caption" style="left:644pt; top:478pt; width:112pt; font-size:7pt">Franja sobre el 8 %</p>
+<div class="mini mal cruz" style="left:766pt; top:412pt">
+  <div class="fr" style="width:5.6pt"><i style="left:0; width:1.1pt"></i><i style="left:1.7pt; width:1.1pt"></i><i style="left:3.4pt; width:1.1pt"></i></div>
+  <img style="position:absolute; left:13pt; top:6pt; width:44pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg">
+  <img style="position:absolute; left:60pt; top:6pt; width:44pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-GESA.svg">
+</div>
+<p class="caption" style="left:766pt; top:478pt; width:112pt; font-size:7pt">Las dos bajadas</p>
+<div class="mini mal cruz" style="left:888pt; top:412pt; background:#E4361F; border-color:#E4361F">
+  <img style="position:absolute; left:31pt; top:22pt; width:50pt" src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_HOR-FARM_MONO-CREMA.svg">
+</div>
+<p class="caption" style="left:888pt; top:478pt; width:88pt; font-size:7pt">Terracota de fondo</p>
 
-<p class="folio"><b>16</b> · Aplicaciones</p>
+<div class="iv" style="top:494pt; height:68pt">
+  <div><p class="h">Invariables</p>
+    <p>Franja al canto izquierdo, <b>5 % del ancho</b> (tope 8 %) · logotipo arriba a la izquierda, borde superior en el margen · margen <b>6 % del lado menor</b> · todo alineado al eje del logotipo · Aptos: nombre Bold, cargo Regular versales, datos Light · blanco donde se lee, crema en tapas, tinta sólo en reverso corporativo.</p></div>
+  <div class="var"><p class="h">Variables</p>
+    <p>La bajada (Farmland Management / Gestión Agrícola) y con ella el color del reverso · papel y gramaje · datos de contacto · la carta puede llevar o no filete bajo el logotipo · en piezas mayores a A4 la franja se calcula sobre el lado menor.</p></div>
+</div>
+
+<p class="folio"><b>17</b> · Aplicaciones</p>
 <p class="folio-marca">Landera · Manual de marca</p>

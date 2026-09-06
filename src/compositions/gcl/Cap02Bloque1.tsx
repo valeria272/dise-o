@@ -101,7 +101,7 @@ export const Cap02Bloque1: React.FC = () => {
 
       {/* SHOT 01 · EL TUBO · negro 4 f, después la carpeta cae. Cut on impact. */}
       <Sequence from={0} durationInFrames={21}>
-        <Clip src="s01_tubo.mp4" desdeS={2.15} />   {/* la carpeta asoma a los 2,3 s y cae a los 2,9: sale del tubo en el f.6, impacto en el f.19 */}
+        <Clip src="s01_tubo.mp4" desdeS={1.7} />   {/* medido en stills: la tapa se abre a 1,9 s, la carpeta asoma a 2,1 y cae a 2,35 → vuela en f.8–17, impacto f.19 */}
         {f < 4 ? <AbsoluteFill style={{backgroundColor: "#000"}} /> : null}
       </Sequence>
 

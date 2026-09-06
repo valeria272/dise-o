@@ -201,6 +201,33 @@ sorprende, no sale.
 
 ---
 
+## LOCK 9 · R.01 — diseño canon
+
+**Una aspiradora robot doméstica de ~2010, negra descolorida a grafito,
+intervenida por G.C.L.: una placa industrial remachada (`R.01 — OPERACIONES DE
+PISO — CARGA MAX 0,8 KG`), dos elásticos cruzados sobre la tapa como único
+sistema de carga, y un mástil de varilla flexible con una marca de cinta Copy
+Pink vieja, torcida y mate.** La imagen madre es
+`03_G_CREW/R01/laminas/01_master_34.png` (V2, 05-09-2026); toda vista de R.01
+se deriva de ella y se verifica contra ella.
+
+Candados: el mástil **siempre**, en toda vista y en silueta · la placa legible ·
+un solo segmento rosado del anillo · sin cara, jamás · sin baliza (se decidió
+viéndolo: no le falta) · sin notas ni post-its permanentes encima.
+**«R.01 no sabe que es gracioso.»**
+
+---
+
+## LOCK 10 · Just-in-time asset lock (método)
+
+Desde el 05-09-2026 **no se completan character sheets exhaustivos antes de
+producir**. Se cierra únicamente el asset que necesita el plano que viene, se
+verifica contra su madre, y se sigue. Asset que el capítulo necesita → se
+bloquea. Asset que todavía no aparece → espera. G.C.L. termina de construirse
+en los capítulos, no antes.
+
+---
+
 ## 6 · Registro de candados
 
 | # | Fecha | Decisión | Estado |
@@ -213,3 +240,5 @@ sorprende, no sale.
 | 6 | 05-09-2026 | **Un solo registro de G:** competente, observador, deadpan, cálido cuando corresponde, humor seco, pequeñas reacciones. Cap.01 exento; Revisión 7 = referencia técnica | vigente |
 | 7 | 05-09-2026 | El set de «Revisión 7» **no es canon**. El CAP.02 se construye desde el Nivel -1 | vigente |
 | 8 | 05-09-2026 | **Capa satírica** (Copywriters incluido) + regla **ME RECONOZCO / ME SORPRENDE / ME ENCARIÑO ≥ 2 de 3** | vigente |
+| 9 | 05-09-2026 | **R.01 diseño canon**: aspiradora intervenida + placa + elásticos + mástil con cinta. Madre: `R01/laminas/01_master_34.png` | vigente |
+| 10 | 05-09-2026 | **Just-in-time asset lock**: se cierra lo que el plano necesita, no bibliotecas enteras | vigente |

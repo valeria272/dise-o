@@ -1,0 +1,3 @@
+→ Nano Banana Pro · reel · 2K · 2 referencias
+✗ HTTP 400 en /v1/ai/text-to-image/nano-banana-pro
+  {"message":"Validation error","invalid_params":[{"field":"body.prompt","reason":"String should have at most 3000 characters"}]}

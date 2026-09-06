@@ -97,12 +97,12 @@ const LCD: React.FC<{linea1: string; linea2?: string; caja: {x: number; y: numbe
 // Las tres alarmas duran lo mismo (12 f) y G un poco más (15 f): tres golpes
 // iguales y un silencio. Total 138 f = 4,6 s — 0,2 s menos que la V1 sin
 // perder nada, porque los 9 frames de whip no contaban nada.
-export const Cap02Bloque1: React.FC = () => {
+export const Cap02Bloque1: React.FC<{audio?: string}> = ({audio = "bloque1_audio.wav"}) => {
   asegurarFuentes();
   const f = useCurrentFrame();
   return (
     <AbsoluteFill style={{backgroundColor: "#000"}}>
-      <Audio src={staticFile("assets/gcl/cap02/bloque1_audio.wav")} />
+      <Audio src={staticFile(`assets/gcl/cap02/${audio}`)} />
 
       {/* SHOT 01 · EL TUBO · f.0–20 · negro 4 f, la carpeta vuela y cae. Cut on impact. */}
       <Sequence from={0} durationInFrames={21}>
@@ -137,6 +137,42 @@ export const Cap02Bloque1: React.FC = () => {
       </Sequence>
 
       <Grano op={0.05} />
+    </AbsoluteFill>
+  );
+};
+
+
+// ── LA VOZ EN CONTEXTO · 4A · 4B · 4C sobre el mismo SHOT 02d ────────────────
+// Tres pasadas del mismo tramo —R.01 frena → G baja la taza y suena → smash cut
+// al wide— con una voz distinta cada vez. Mismo timing, misma actuación: lo
+// único que cambia es el archivo de audio. Una placa de 12 frames dice cuál es.
+const DESDE = 45;   // R.01 frena
+const HASTA = 102;  // un segundo dentro del wide
+const TRAMO = HASTA - DESDE;
+const PLACA = 12;
+export const VOZ_COMPARACION_FRAMES = 3 * (PLACA + TRAMO);
+
+export const Cap02VozComparacion: React.FC = () => {
+  asegurarFuentes();
+  return (
+    <AbsoluteFill style={{backgroundColor: "#000"}}>
+      {(["4A", "4B", "4C"] as const).map((v, i) => {
+        const ini = i * (PLACA + TRAMO);
+        return (
+          <React.Fragment key={v}>
+            <Sequence from={ini} durationInFrames={PLACA}>
+              <AbsoluteFill style={{backgroundColor: "#080F14", justifyContent: "center", alignItems: "center"}}>
+                <div style={{fontFamily: VOZ.data, color: "#FF2D8D", fontSize: 54, letterSpacing: 6}}>VOZ {v}</div>
+              </AbsoluteFill>
+            </Sequence>
+            <Sequence from={ini + PLACA} durationInFrames={TRAMO}>
+              <Sequence from={-DESDE}>
+                <Cap02Bloque1 audio={`bloque1_audio_${v}.wav`} />
+              </Sequence>
+            </Sequence>
+          </React.Fragment>
+        );
+      })}
     </AbsoluteFill>
   );
 };

@@ -137,7 +137,48 @@ def voz_E():
     return norm(v)
 
 
-VOCES = {"A": voz_A, "B": voz_B, "C": voz_C, "D": voz_D, "E": voz_E}
+# ── LA MICRO-RONDA SOBRE LA D (05-09 · Valeria eligió la 4 como dirección) ───
+# «G no está diciendo eh? deliberadamente. Su sistema acaba de emitir un sonido
+# que nosotros entendemos como eh?». Tres variaciones mínimas, misma identidad.
+def _granos(granos, crush=6, mezcla_seno=0.5, lp_hz=3000, caida_final=0.05):
+    v = np.zeros(N)
+    for k, (t0, d, f0, f1) in enumerate(granos):
+        i = int(t0 * SR); n = int(d * SR); tt = np.arange(n) / SR
+        f = f0 + (f1 - f0) * (tt / d)                                # f0 → f1 dentro del grano
+        ph = fase(f)
+        s = np.sign(np.sin(ph)) * (1 - mezcla_seno) + np.sin(ph) * mezcla_seno
+        s = np.round(s * crush) / crush
+        s = lp(s, lp_hz, 1)
+        ultimo = k == len(granos) - 1
+        v[i:i + n] = borde(s, 0.001, caida_final if ultimo else 0.008)
+    return norm(v)
+
+
+def voz_4A():
+    """Prácticamente idéntica, 10–15 % más corta y más seca: los granos más
+    juntos, el último más corto y con la cola cortada. Menos filtro: más crujido."""
+    return _granos(((0.00, 0.040, 700, 700), (0.065, 0.040, 700, 700), (0.135, 0.120, 990, 990)),
+                   crush=6, mezcla_seno=0.5, lp_hz=3400, caida_final=0.028)
+
+
+def voz_4B():
+    """Misma identidad, un poco menos humana: más bitcrush (4 niveles), sin seno
+    —onda cuadrada pura—, y los dos primeros granos apenas desafinados entre sí,
+    como si el sistema no los generara idénticos."""
+    return _granos(((0.00, 0.045, 700, 700), (0.075, 0.045, 716, 716), (0.16, 0.14, 990, 990)),
+                   crush=4, mezcla_seno=0.0, lp_hz=3600, caida_final=0.05)
+
+
+def voz_4C():
+    """Misma identidad, con la interrogación un poco más perceptible: el último
+    grano ya no es plano, SUBE de 900 a 1180 Hz dentro de sí mismo, y dura un
+    poco más. Lo demás no cambia."""
+    return _granos(((0.00, 0.045, 700, 700), (0.075, 0.045, 700, 700), (0.16, 0.165, 900, 1180)),
+                   crush=6, mezcla_seno=0.5, lp_hz=3000, caida_final=0.05)
+
+
+VOCES = {"A": voz_A, "B": voz_B, "C": voz_C, "D": voz_D, "E": voz_E,
+         "4A": voz_4A, "4B": voz_4B, "4C": voz_4C}
 
 
 def escribe(ruta, x):
@@ -148,11 +189,12 @@ def escribe(ruta, x):
 
 
 if __name__ == "__main__":
-    todas = []
+    todas, ronda = [], []
     for k, fn in VOCES.items():
         x = fn()
         escribe(OUT / f"G_eh_{k}.wav", x)
-        todas += [x, np.zeros(SR)]
+        (ronda if k.startswith("4") else todas).extend([x, np.zeros(SR)])
         print(f"  ✓ G_eh_{k}.wav  {len(x)/SR:.2f} s  pico {np.max(np.abs(x)):.2f}")
     escribe(OUT / "G_eh_5_alternativas.wav", np.concatenate(todas))
-    print(f"  ✓ G_eh_5_alternativas.wav  ({len(todas)//2} voces, un segundo entre cada una)")
+    escribe(OUT / "G_eh_ronda4_ABC.wav", np.concatenate([VOCES["D"](), np.zeros(SR)] + ronda))
+    print("  ✓ G_eh_5_alternativas.wav · G_eh_ronda4_ABC.wav (la 4 base, y después 4A · 4B · 4C)")

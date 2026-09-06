@@ -41,8 +41,9 @@ BEAT_F = 16
 DUR = FRAMES / FPS + 0.4
 
 RAIZ = Path(__file__).resolve().parent.parent
-SALIDA = RAIZ / "public/assets/gcl/cap02/bloque1_audio.wav"
-VOZ = RAIZ / "public/assets/gcl/voz" / f"G_eh_{__import__('os').environ.get('VOZ_G', 'E')}.wav"   # VOZ_G=A..E
+_V = __import__("os").environ.get("VOZ_G", "D")
+SALIDA = RAIZ / "public/assets/gcl/cap02" / (f"bloque1_audio_{_V}.wav" if __import__("os").environ.get("SUFIJO") else "bloque1_audio.wav")
+VOZ = RAIZ / "public/assets/gcl/voz" / f"G_eh_{_V}.wav"   # VOZ_G=A..E · 4A · 4B · 4C
 
 pista = np.zeros(int(DUR * SR))
 _rng = np.random.default_rng(20260905)

@@ -8,6 +8,18 @@
 
 ---
 
+## 2026-09-06 (noche, 2) · Valeria — G.CL Cap. 02 · PREMASTER REVIEW CUT
+
+**Qué se hizo:** exportación completa de la V4 para revisión humana, con el FAIL del 04 marcado en
+pantalla. Verificaciones: deriva del prólogo ≤ 2 px (medida en los bordes de la pantalla), tramos exactos
+del S19 (todos < 3,0 s), el reverse del final (f.1435–1455) invierte una hoja de Marta y la tira del piso,
+y la workstation de G MUTA entre 06 (sin computador), 09 (monitor de frente) y S19 (monitor de espaldas).
+**Dónde quedó:** `out/gcl/cap02/premaster/` + `~/Desktop/GCL_CAP02_PREMASTER_REVIEW/` + Drive. Reporte
+`CAP_02/GCL_CAP02_PREMASTER_REVIEW_REPORT.md`. Composición `Cap02PremasterReview` (= `Cap02V4` con marcas).
+**Qué sigue:** Valeria revisa y decide qué se regenera (04 seguro; workstation 06/09; final si el reverse se nota).
+Después MASTER y sound lock. NO iterar antes.
+**Abierto:** nada nuevo.
+
 ## 2026-09-06 (noche) · Valeria — G.CL Cap. 02 · V4 NARRATIVE + CHARACTER CUT
 
 **Qué se hizo:** pasada quirúrgica sobre la V3: microprólogo ARRIBA (S00: oficina real, mano humana,

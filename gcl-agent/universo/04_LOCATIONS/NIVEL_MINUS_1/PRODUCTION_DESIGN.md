@@ -33,7 +33,7 @@ a la **derecha**. G se sienta al sur, mirando al norte, **en medio de los dos**.
 | **Estación de G** | `x 8–10,5 · y 0,6–2,2` | sur | Escritorio humano de 1,6 m, **mirando al norte**, hacia la sala. Detalle en §C |
 | **Archivo** | `x 10,5–15 · y 0–1,1` | sur | Estantería metálica de 2,4 m. Cajas por año, `1998 → 2026`. Escalera con ruedas. Una caja dice `CAMBIOS CHICOS` |
 | **Mesa central** | `x 7–10,5 · y 3,8–6,2` | centro | 3,5 × 1,4 m. La mesa de directorio vieja de la agencia, bajada. Una pata es una pila de memorias anuales. **El escenario de la escalada** |
-| **Intake · desde arriba** | `x 6,6–7,4 · y 9,4–10` | norte | Boca de bronce de un **tubo neumático** a 1,3 m, y una canasta de alambre debajo. Por ahí caen los briefs. Detalle en §C |
+| **Intake · desde arriba** | `x 5,6 · y 7,6` — **la cara sur del pilar norte del primer plano** (corregido el 05-09 al generar el MF-01) | pilar | Boca de bronce de un **tubo neumático** a 1,3 m, y una canasta de alambre debajo. Por ahí caen los briefs. Detalle en §C |
 | **Rincón de Marta** | `x 8,5–10 · y 9–10` | norte | Sobre un carro metálico, con su propia lámpara. Detalle en §C |
 | **Repisa rara** | `x 10,5–13 · y 9–10` | norte | Restos de campañas: una mano de espuma de 1 m, un torso de maniquí con la gorra de un cliente, un neón `OFERTA` desenchufado, un trofeo sin placa |
 | **Puerta tapada** | `x 14–15 · y 9–10` | norte | Sin manilla, pintada del color de la pared. Se nota el contorno. **Misterio 2** |
@@ -195,12 +195,18 @@ Server. **Es el mismo eje.** Todo lo que baja de Copywriters entra por acá, con
 luz fría, y camina 16 metros hacia la luz ámbar. Un humano que llega **entra por
 detrás de la cámara** en todos los masters (ver §D): nunca aparece de la nada.
 
-### Y el intake, que también es fijo · `x 6,6–7,4 · y 9,4–10` · pared norte
+### Y el intake, que también es fijo · `x 5,6 · y 7,6` · cara sur del pilar norte
 
 La boca de bronce del tubo neumático a 1,3 m, a la **izquierda de Marta** desde
 G. Los briefs, los mensajes y las carpetas caen por ahí a la canasta de alambre.
-Un cable sube por el cielo justo encima: es la otra conexión con arriba. Cuando
-cae algo, Marta es la primera en enterarse — están a 1,5 m.
+Un cable sube por el cielo justo encima: es la otra conexión con arriba.
+
+> **Corrección del 05-09-2026, al generar el wide madre:** el MF-01 puso el
+> intake en **la cara sur del pilar norte del primer plano** `(5,6 · 7,6)`, no en
+> la pared norte junto a Marta. Se acepta, y es mejor: cuando cae algo, cae
+> **cerca de cámara** en el wide, y G camina **hacia cámara** a buscarlo. Marta
+> queda a 4 m y aun así es la primera en enterarse — eso es Marta. El MF-08 (el
+> inserto del intake) es la cara sur de ese pilar, con Marta al fondo-derecha.
 
 ---
 

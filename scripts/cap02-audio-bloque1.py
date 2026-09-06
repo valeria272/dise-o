@@ -36,12 +36,13 @@ import numpy as np
 
 SR = 48_000
 FPS = 30
-FRAMES = 144
+FRAMES = 138            # V2 hard cuts: 21 · 12 · 12 · 12 · 15 · 66
 BEAT_F = 16
 DUR = FRAMES / FPS + 0.4
 
 RAIZ = Path(__file__).resolve().parent.parent
 SALIDA = RAIZ / "public/assets/gcl/cap02/bloque1_audio.wav"
+VOZ = RAIZ / "public/assets/gcl/voz" / f"G_eh_{__import__('os').environ.get('VOZ_G', 'E')}.wav"   # VOZ_G=A..E
 
 pista = np.zeros(int(DUR * SR))
 _rng = np.random.default_rng(20260905)
@@ -206,20 +207,25 @@ def bajo(hz, dur):
 # EL MONTAJE DEL BLOQUE
 # ─────────────────────────────────────────────────────────────────────────────
 
-# el zumbido del Server existe desde el frame 0 y MUERE a muestra cero en el f.36
-zum = zumbido_server(f2s(36))
+# V2 · hard cuts. Estaciones: Marta 21–32 · Server 33–44 · R.01 45–56 · G 57–71 · wide 72–137
+# el zumbido del Server existe desde el frame 0 y MUERE a muestra cero en el f.33
+zum = zumbido_server(f2s(33))
 zum[-int(0.004 * SR):] *= np.linspace(1, 0, int(0.004 * SR))       # 4 ms para que no haga clic
 poner(zum, 0)
 
 poner(tsh_tunk(), 0)                                  # SHOT 01 · f.0
 
-poner(cabezal_marta(f2s(15), lineas=5), 21)           # SHOT 02a · Marta, f.21–36
-# f.36 · el Server se apaga: el zumbido ya se cortó arriba. Silencio de 15 frames.
-poner(r01_frena(), 51)                                # SHOT 02c · R.01, f.51
-poner(eh_de_g(), 63)                                  # SHOT 02d · «eh?», f.63
+poner(cabezal_marta(f2s(12), lineas=4), 21)           # 02a · Marta, f.21–32
+# f.33 · el Server se apaga: el zumbido ya se cortó arriba. Silencio de 12 frames.
+poner(r01_frena(), 45)                                # 02c · R.01, f.45
+# 02d · «eh?» · f.60 — la voz viene de un archivo: es la que se está probando
+def _voz():
+    w = wave.open(str(VOZ)); x = np.frombuffer(w.readframes(w.getnframes()), dtype="<i2").reshape(-1, 2).mean(1) / 32768.0
+    return x
+poner(_voz(), 60, 0.9)
 
-# SHOT 03 · f.78 · smash cut al wide: ENTRA EL GROOVE. El compás empieza acá.
-INICIO = 78
+# SHOT 03 · f.72 · smash cut al wide: ENTRA EL GROOVE. El compás empieza acá.
+INICIO = 72
 NOTAS = [55.0, 55.0, 82.41, 55.0, 73.42, 55.0, 65.41, 61.74]
 for b in range(4):
     f = INICIO + b * BEAT_F

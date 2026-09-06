@@ -35,7 +35,7 @@ const Clip: React.FC<{src: string; desdeS?: number; escala?: number}> = ({src, d
   </AbsoluteFill>
 );
 
-// ── EL WHIP ──────────────────────────────────────────────────────────────────
+// ── EL WHIP · DESCARTADO en la V2 (se deja como registro) ────────────────────
 // La RONDA se diseñó como un plano con tres whips y se produce como cuatro
 // fijos. El whip es lo que los vuelve UN plano: los últimos `n` frames de una
 // estación se van (whip-out) en una dirección y los primeros `n` de la
@@ -52,7 +52,7 @@ const Clip: React.FC<{src: string; desdeS?: number; escala?: number}> = ({src, d
 type Dir = "der" | "izq" | "abajo" | "arriba";
 const VEC: Record<Dir, [number, number]> = {der: [1, 0], izq: [-1, 0], abajo: [0, 1], arriba: [0, -1]};
 
-const Whip: React.FC<{
+export const Whip: React.FC<{
   dur: number; salida?: Dir; entrada?: Dir; n?: number; children: React.ReactNode;
 }> = ({dur, salida, entrada, n = 3, children}) => {
   const f = useCurrentFrame();
@@ -91,7 +91,12 @@ const LCD: React.FC<{linea1: string; linea2?: string; caja: {x: number; y: numbe
   </div>
 );
 
-// ── EL BLOQUE ────────────────────────────────────────────────────────────────
+// ── EL BLOQUE · V2 HOOK POLISH · hard cuts ──────────────────────────────────
+// 05-09 · Valeria: «no quiero que las transiciones llamen más la atención que
+// las reacciones». Fuera los whips. ALARMA / ALARMA / ALARMA / G NO ENTIENDE.
+// Las tres alarmas duran lo mismo (12 f) y G un poco más (15 f): tres golpes
+// iguales y un silencio. Total 138 f = 4,6 s — 0,2 s menos que la V1 sin
+// perder nada, porque los 9 frames de whip no contaban nada.
 export const Cap02Bloque1: React.FC = () => {
   asegurarFuentes();
   const f = useCurrentFrame();
@@ -99,44 +104,36 @@ export const Cap02Bloque1: React.FC = () => {
     <AbsoluteFill style={{backgroundColor: "#000"}}>
       <Audio src={staticFile("assets/gcl/cap02/bloque1_audio.wav")} />
 
-      {/* SHOT 01 · EL TUBO · negro 4 f, después la carpeta cae. Cut on impact. */}
+      {/* SHOT 01 · EL TUBO · f.0–20 · negro 4 f, la carpeta vuela y cae. Cut on impact. */}
       <Sequence from={0} durationInFrames={21}>
-        <Clip src="s01_tubo.mp4" desdeS={1.7} />   {/* medido en stills: la tapa se abre a 1,9 s, la carpeta asoma a 2,1 y cae a 2,35 → vuela en f.8–17, impacto f.19 */}
+        <Clip src="s01_tubo.mp4" desdeS={1.7} />
         {f < 4 ? <AbsoluteFill style={{backgroundColor: "#000"}} /> : null}
       </Sequence>
 
-      {/* 02a · MARTA · f.21–35 · LISTA → AY. y la primera hoja · whip-out a la derecha */}
-      <Sequence from={21} durationInFrames={18}>
-        <Whip dur={18} salida="der">
-          <Clip src="s02a_marta.mp4" desdeS={3.6} />   {/* la hoja sube 3,6–4,1 s */}
-          <LCD linea1={f - 21 < 7 ? "LISTA" : "AY."} caja={{x: 250, y: 640, w: 170, h: 62}} />
-        </Whip>
+      {/* 02a · MARTA · f.21–32 · LISTA → AY. (f.27) y la primera hoja · HARD CUT */}
+      <Sequence from={21} durationInFrames={12}>
+        <Clip src="s02a_marta.mp4" desdeS={3.6} />
+        <LCD linea1={f - 21 < 6 ? "LISTA" : "AY."} caja={{x: 250, y: 640, w: 170, h: 62}} />
       </Sequence>
 
-      {/* 02b · SERVER · f.36–50 · la ámbar se apaga, el ticker se borra · whip-in desde la izquierda, whip-out abajo */}
-      <Sequence from={36} durationInFrames={18}>
-        <Whip dur={18} entrada="izq" salida="abajo">
-          <Clip src="s02b_server.mp4" desdeS={3.55} />  {/* la ámbar se apaga a los 3,8 s: 7 frames encendida, 8 apagada */}
-        </Whip>
+      {/* 02b · SERVER · f.33–44 · la ámbar se apaga en el f.38 · HARD CUT */}
+      <Sequence from={33} durationInFrames={12}>
+        <Clip src="s02b_server.mp4" desdeS={3.62} />
       </Sequence>
 
-      {/* 02c · R.01 · f.51–62 · frena en seco, el mástil azota · whip-in desde arriba, tilt-up al final */}
-      <Sequence from={51} durationInFrames={15}>
-        <Whip dur={15} entrada="arriba" salida="arriba">
-          <Clip src="s02c_r01.mp4" desdeS={1.95} />   {/* frena a los 2,1 s, el mástil azota 2,2–2,4 */}
-        </Whip>
+      {/* 02c · R.01 · f.45–56 · frena en seco, el mástil azota · HARD CUT */}
+      <Sequence from={45} durationInFrames={12}>
+        <Clip src="s02c_r01.mp4" desdeS={1.95} />
       </Sequence>
 
-      {/* 02d · G · f.63–77 · la taza en la boca, la baja, «eh?» · whip-in desde abajo (viene del tilt) */}
-      <Sequence from={63} durationInFrames={15}>
-        <Whip dur={15} entrada="abajo">
-          <Clip src="s02d_g.mp4" desdeS={1.9} />   {/* baja la taza 1,9–2,4 s. ⚠️ kling metió un push-in lento: en 15 frames casi no se nota, pero es polish pendiente */}
-        </Whip>
+      {/* 02d · G · f.57–71 · baja apenas la taza, micro inclinación · «eh?» en el f.60 · SMASH CUT */}
+      <Sequence from={57} durationInFrames={15}>
+        <Clip src="s02d_g.mp4" desdeS={0.6} />
       </Sequence>
 
-      {/* SHOT 03 · EL ÚNICO QUE CAMINA · f.78–143 · smash cut al wide. Entra la música. */}
-      <Sequence from={78} durationInFrames={66}>
-        <Clip src="s03_wide.mp4" desdeS={2.2} />   {/* se para a los 2,3 s y camina hacia cámara-izquierda hasta los 4,4 */}
+      {/* SHOT 03 · EL ÚNICO QUE CAMINA · f.72–137 · el wide. Entra la música. NO SE TOCA. */}
+      <Sequence from={72} durationInFrames={66}>
+        <Clip src="s03_wide.mp4" desdeS={2.2} />
       </Sequence>
 
       <Grano op={0.05} />

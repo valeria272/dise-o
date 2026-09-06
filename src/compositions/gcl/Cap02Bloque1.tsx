@@ -92,7 +92,7 @@ export const Cap02Bloque1: React.FC = () => {
 
       {/* SHOT 01 · EL TUBO · negro 4 f, después la carpeta cae. Cut on impact. */}
       <Sequence from={0} durationInFrames={21}>
-        <Clip src="s01_tubo.mp4" desdeS={2.35} />   {/* la carpeta sale a los 2,4 s y cae a los 2,9: el impacto queda en el f.17 */}
+        <Clip src="s01_tubo.mp4" desdeS={2.15} />   {/* la carpeta asoma a los 2,3 s y cae a los 2,9: sale del tubo en el f.6, impacto en el f.19 */}
         {f < 4 ? <AbsoluteFill style={{backgroundColor: "#000"}} /> : null}
       </Sequence>
 
@@ -114,7 +114,7 @@ export const Cap02Bloque1: React.FC = () => {
       {/* 02c · R.01 · f.51–62 · frena en seco, el mástil azota · whip-in desde arriba, tilt-up al final */}
       <Sequence from={51} durationInFrames={12}>
         <Whip dur={12} entrada="arriba" salida="arriba">
-          <Clip src="s02c_r01.mp4" desdeS={0} />
+          <Clip src="s02c_r01.mp4" desdeS={1.95} />   {/* frena a los 2,1 s, el mástil azota 2,2–2,4 */}
         </Whip>
       </Sequence>
 

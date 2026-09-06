@@ -82,7 +82,7 @@ import {Cap02Bloque2} from "./compositions/gcl/Cap02Bloque2";
 import {Cap02FullRough, Cap02FullRoughClean, FULL_FRAMES} from "./compositions/gcl/Cap02FullRough";
 import {Cap02ClarityCut, V2_FRAMES} from "./compositions/gcl/Cap02ClarityCut";
 import {Cap02ClarityCutV3, V3_FRAMES} from "./compositions/gcl/Cap02ClarityCutV3";
-import {Cap02V4, V4_FRAMES} from "./compositions/gcl/Cap02V4";
+import {Cap02V4, Cap02PremasterReview, V4_FRAMES} from "./compositions/gcl/Cap02V4";
 
 // Social templates
 import {TikTokVideo} from "./templates/social/TikTokVideo";
@@ -361,6 +361,7 @@ export const RemotionRoot: React.FC = () => {
         {/* G.CL · Cap. 02 «Revisión 7» — ROUGH CUT v3. 776f · 25,87 s · 112,5 BPM */}
         <Composition id="GclCap02Bloque1" component={Cap02Bloque1} durationInFrames={138} fps={30} width={1080} height={1920} />
         <Composition id="GclCap02FullRough" component={Cap02FullRough} durationInFrames={FULL_FRAMES} fps={30} width={1080} height={1920} />
+        <Composition id="GclCap02PremasterReview" component={Cap02PremasterReview} durationInFrames={V4_FRAMES} fps={30} width={1080} height={1920} />
         <Composition id="GclCap02V4" component={Cap02V4} durationInFrames={V4_FRAMES} fps={30} width={1080} height={1920} />
         <Composition id="GclCap02ClarityCutV3" component={Cap02ClarityCutV3} durationInFrames={V3_FRAMES} fps={30} width={1080} height={1920} />
         <Composition id="GclCap02ClarityCut" component={Cap02ClarityCut} durationInFrames={V2_FRAMES} fps={30} width={1080} height={1920} />

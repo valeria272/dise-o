@@ -193,7 +193,12 @@ const M3D_MONITOR09 = "matrix3d(0.385659, -0.004407, 0.000000, -0.000033, 0.0000
 
 export const V4_FRAMES = 1524;
 
-export const Cap02V4: React.FC = () => {
+/** La marca de revisión: un FAIL declarado se ve en pantalla (sólo en el REVIEW CUT). */
+const MarcaFail: React.FC<{texto: string}> = ({texto}) => (
+  <div style={{position: "absolute", left: 40, top: 40, padding: "10px 16px", background: ROSA, color: "#080F14", fontFamily: VOZ.data, fontSize: 26, letterSpacing: 2}}>{texto}</div>
+);
+
+export const Cap02V4: React.FC<{marcas?: boolean}> = ({marcas = false}) => {
   asegurarFuentes();
   const f = useCurrentFrame();
   const Arriba = <><Clip src={b3("s00_arriba.mp4")} desdeS={0.3} /><Quad m3d={M3D_LAPTOP} w={1000} h={620}><Composer f={f} /></Quad></>;
@@ -220,7 +225,10 @@ export const Cap02V4: React.FC = () => {
       <Sequence from={132} durationInFrames={48}><Clip src={b1("s03_wide.mp4")} desdeS={2.2} /></Sequence>
 
       {/* ═══ REVELACIÓN · 04 · 180–276 · G recoge la solicitud del intake y la lee ═══ */}
-      <Sequence from={180} durationInFrames={52}><Clip src={b2("s04_postit.mp4")} desdeS={2.3} /></Sequence>
+      <Sequence from={180} durationInFrames={52}>
+        <Clip src={b2("s04_postit.mp4")} desdeS={2.3} />
+        {marcas ? <MarcaFail texto="FAIL — G SCALE / PROPORTION · regenerar para MASTER" /> : null}
+      </Sequence>
       <Sequence from={232} durationInFrames={45}><PostItMacro texto={<>es un<br />cambio<br />chico</>} /></Sequence>
 
       {/* ═══ COPY · DISEÑO · 277–384 ═══ */}
@@ -339,3 +347,6 @@ export const Cap02V4: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+/** REVIEW CUT pre-master: la V4 tal cual, con los FAIL declarados marcados en pantalla. */
+export const Cap02PremasterReview: React.FC = () => <Cap02V4 marcas />;

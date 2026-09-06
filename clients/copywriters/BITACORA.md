@@ -8,6 +8,20 @@
 
 ---
 
+## 2026-09-06 (noche) · Valeria — G.CL Cap. 02 · V4 NARRATIVE + CHARACTER CUT
+
+**Qué se hizo:** pasada quirúrgica sobre la V3: microprólogo ARRIBA (S00: oficina real, mano humana,
+«es un cambio chico» → Enviar, UI en post sobre homografía medida) → whip vertical → intake; tres insertos
+de G ULTRARRÁPIDO (S19, cabeza quieta, a ×2/×2,5/×3); falsa victoria (LISTO ✓, cada uno se apaga con
+su sonido, silencio 2 s, café); segunda solicitud; payoff por comportamiento (R.01 sale y BIP, Server
+OVERLOAD→STANDBY, Marta trrr… CLAC) y G ya trabajando; última imagen: todos fundidos, G operativo.
+**Fuera el «NO.»**. 1524 f = 50,8 s.
+**Dónde quedó:** `out/gcl/cap02/v4/` + `~/Desktop/GCL_CAP02_V4/` + Drive. Composición
+`src/compositions/gcl/Cap02V4.tsx`, pista `scripts/cap02-audio-v4.py`, control `scripts/cap02-qc-hojas-v4.py`,
+homografía `scripts/homografia-css.py`. Resumen en `CAP_02/CAP02_V3_V4_CHANGES.md`.
+**Qué sigue:** Valeria mira la V4. Sin nueva ronda de polish (por instrucción). MASTER: 04 (G alto) + sound lock.
+**Abierto:** el S19 sirve sólo hasta 3,0 s (el visor se vuelve pantalla); el S17 hasta 2,6 s (la G deriva a anillo).
+
 ## 2026-09-06 (tarde) · Valeria — G.CL Cap. 02 · CLARITY CUT V3 (final de claridad)
 
 **Qué se hizo:** fuera el ascensor, el guante gigante y las piernas humanas (nada que obligue a

@@ -191,6 +191,37 @@ Traverso, y DT / QB / Piso18 del complejo Hilton.
 
 > **PENDIENTE (2026-07-19):** Hacer **UGC real con Higgsfield**. Higgsfield es conector de claude.ai que quedó APAGADO — la usuaria lo reconecta (`/mcp reconnect all` o claude.ai → Connectors) y abre **chat nuevo** para que cargue. Al iniciar, verificar con `ToolSearch "+higgsfield"`; si aparece, revisar el aparato de UGC y generar. Checklist y estado en la memoria `higgsfield-ugc-next.md`. El reel de bienvenida **Tierra Calma quedó terminado** (`~/Downloads/tierra-calma-bienvenida.mp4`, `src/compositions/TierraCalmaReel.tsx`).
 
+## La fábrica de video — la cola y la mesa
+
+Dos piezas que existen desde el 06-09-2026 para que producir un capítulo deje de
+ser plano por plano y turno por turno.
+
+| Qué | Para qué |
+|---|---|
+| `python3 scripts/cola.py enviar <plan.json>` · `esperar` · `recoger` | **La cola.** Manda TODOS los planos de una vez y espera una sola vez por todos. `magnific-video.py` manda uno y se bloquea hasta 15 min: con 8 cortes eran 8 esperas en serie |
+| `python3 scripts/mesa.py parte <pieza>` | **La mesa, ida.** Arma `mesa/salida/<pieza>/parte.md` + hoja de contacto — los dos archivos que se le arrastran al chat de ChatGPT |
+| `python3 scripts/mesa.py plan <pieza>` | **La mesa, vuelta.** Traduce lo que contestó GPT a un plan ejecutable, con la compuerta del gasto puesta |
+
+**La ley del intercambio con GPT está en [`mesa/CONTRATO.md`](mesa/CONTRATO.md).**
+Léelo antes de tocar cualquiera de los dos scripts.
+
+⚠️ **Tres cosas que no se negocian**, y están impuestas por programa:
+
+1. **El presupuesto manda.** La respuesta de GPT trae un campo `presupuesto` —
+   cuántas regeneraciones autoriza esa ronda. Si pide más, `mesa.py plan` **no
+   arma el plan**. Cada generación es plata de Freepik.
+2. **El canon gana sobre GPT.** Si una corrección contradice
+   [`gcl-agent/universo/CANON_LOCK.md`](gcl-agent/universo/CANON_LOCK.md), manda
+   el canon. GPT dirige adentro de los candados, nunca sobre ellos.
+3. **GPT no ve el video, ve fotogramas.** Ritmo, largo de corte y timing musical
+   no se juzgan desde stills: eso sale de `_timeline.json`. No le pidas montaje.
+
+⚠️ El plan que arma `mesa.py plan` es un **borrador**: mete la corrección de GPT
+en el prompt tal como llegó. Redactar el prompt sigue siendo trabajo tuyo — es
+donde se gana o se pierde un plano.
+
+---
+
 ## Idioma — español de Chile (regla innegociable)
 
 Todo lo que este proyecto escriba —correos, mensajes de Slack, copys de anuncios,

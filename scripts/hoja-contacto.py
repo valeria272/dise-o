@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Hoja de contacto — ver TODO el material de una marca de una sola mirada.
 
-Uso:  python3 scripts/hoja-contacto.py raw/<marca> out/_verificacion/<marca>.png
+Uso:  python3 scripts/hoja-contacto.py raw/<marca> out/_verificacion/<marca>.png [columnas]
 
 Para qué: el 25-08-2026 la carpeta de referencias de Casablanca tenía 13 piezas
 de Between (una cafetería) y nadie lo vio, porque nunca se miró el material junto.
@@ -85,4 +85,5 @@ if __name__ == "__main__":
     if len(sys.argv) < 3:
         print(__doc__)
         sys.exit(2)
-    sys.exit(main(sys.argv[1], sys.argv[2]))
+    cols = int(sys.argv[3]) if len(sys.argv) > 3 else 6
+    sys.exit(main(sys.argv[1], sys.argv[2], cols))

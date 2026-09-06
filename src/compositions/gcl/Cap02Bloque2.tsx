@@ -91,12 +91,12 @@ const PostItMacro: React.FC = () => (
   </AbsoluteFill>
 );
 
-export const Cap02Bloque2: React.FC = () => {
+export const Cap02Bloque2: React.FC<{audio?: string | null}> = ({audio = "bloque2_audio.wav"}) => {
   asegurarFuentes();
   const f = useCurrentFrame();
   return (
     <AbsoluteFill style={{backgroundColor: "#000"}}>
-      <Audio src={staticFile("assets/gcl/cap02/bloque2_audio.wav")} />
+      {audio ? <Audio src={staticFile(`assets/gcl/cap02/${audio}`)} /> : null}
 
       {/* SHOT 04 · EL POST-IT · f.0–71 · G llega, levanta la carpeta, despega el post-it y lo lee. «mm.» en el f.50 */}
       <Sequence from={0} durationInFrames={72}>

@@ -97,12 +97,12 @@ const LCD: React.FC<{linea1: string; linea2?: string; caja: {x: number; y: numbe
 // Las tres alarmas duran lo mismo (12 f) y G un poco más (15 f): tres golpes
 // iguales y un silencio. Total 138 f = 4,6 s — 0,2 s menos que la V1 sin
 // perder nada, porque los 9 frames de whip no contaban nada.
-export const Cap02Bloque1: React.FC<{audio?: string}> = ({audio = "bloque1_audio.wav"}) => {
+export const Cap02Bloque1: React.FC<{audio?: string | null}> = ({audio = "bloque1_audio.wav"}) => {
   asegurarFuentes();
   const f = useCurrentFrame();
   return (
     <AbsoluteFill style={{backgroundColor: "#000"}}>
-      <Audio src={staticFile(`assets/gcl/cap02/${audio}`)} />
+      {audio ? <Audio src={staticFile(`assets/gcl/cap02/${audio}`)} /> : null}
 
       {/* SHOT 01 · EL TUBO · f.0–20 · negro 4 f, la carpeta vuela y cae. Cut on impact. */}
       <Sequence from={0} durationInFrames={21}>

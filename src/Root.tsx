@@ -79,6 +79,7 @@ import {
 import {Cap02Revision7} from "./compositions/gcl/Cap02Revision7";
 import {Cap02Bloque1, Cap02VozComparacion, VOZ_COMPARACION_FRAMES} from "./compositions/gcl/Cap02Bloque1";
 import {Cap02Bloque2} from "./compositions/gcl/Cap02Bloque2";
+import {Cap02FullRough, Cap02FullRoughClean, FULL_FRAMES} from "./compositions/gcl/Cap02FullRough";
 
 // Social templates
 import {TikTokVideo} from "./templates/social/TikTokVideo";
@@ -356,6 +357,8 @@ export const RemotionRoot: React.FC = () => {
         />
         {/* G.CL · Cap. 02 «Revisión 7» — ROUGH CUT v3. 776f · 25,87 s · 112,5 BPM */}
         <Composition id="GclCap02Bloque1" component={Cap02Bloque1} durationInFrames={138} fps={30} width={1080} height={1920} />
+        <Composition id="GclCap02FullRough" component={Cap02FullRough} durationInFrames={FULL_FRAMES} fps={30} width={1080} height={1920} />
+        <Composition id="GclCap02FullRoughClean" component={Cap02FullRoughClean} durationInFrames={FULL_FRAMES} fps={30} width={1080} height={1920} />
         <Composition id="GclCap02Bloque2" component={Cap02Bloque2} durationInFrames={294} fps={30} width={1080} height={1920} />
         <Composition id="GclCap02VozComparacion" component={Cap02VozComparacion} durationInFrames={VOZ_COMPARACION_FRAMES} fps={30} width={1080} height={1920} />
         <Composition

@@ -40,17 +40,30 @@ para terminar en 20,8). Se mide sobre la propia foto.
 bajados completos** (los que se necesitaron); los otros siete están sólo como
 póster para no bajar 1,9 GB sin motivo. Un fotograma de esos videos es una foto 4K.
 
-### ⛔ Lo que sigue pendiente
+### ✅ Drive y repo, cerrados el mismo día
 
-1. **Nada subido al Drive** — ni este carrusel ni el de Promos To Go. Y ojo: en la
-   carpeta de la S3 hay archivos «BW FEED 14-09 Promos To Go …» de cuando ese
-   carrusel era de esta semana. Hay que sacarlos o se entrega el equivocado. Para
-   Promos To Go sigue abierta la decisión de Eli: crear `S4 · BW` o reemplazar por
-   id en `S3 · BW` para no romper los enlaces del portal.
-2. **Sin commit**, y los fondos viven en `public/assets/` y `raw/`, las dos en el
-   `.gitignore`. Sin forzarlas, esto no se reproduce en otra máquina.
-3. Los emojis del mock siguen rindiendo lila en Windows (falta empaquetar Noto
-   Color Emoji) y `clients/hilton/reglas.yaml` sigue sin existir.
+**Eli ordenó la carpeta de Drive y dejó la entrega lista** (07-09): sacó los
+archivos viejos «BW FEED 14-09 Promos To Go …», que eran de cuando ese carrusel
+todavía era de la S3, y resolvió dónde queda cada uno. **Septiembre de Between
+queda entregado.**
+
+En el repo (commit `b50a9e7`) viajan **forzados**, porque `public/assets/` y `raw/`
+están en el `.gitignore`: los fondos gradados de los dos carruseles aprobados, las
+tres piezas que hizo Eli y todos los scripts de las rondas. Verificado con `cmp`:
+re-renderizar la slide 4 desde el repo da el **mismo PNG byte a byte**.
+
+⚠️ Lo único que NO viaja son las generaciones PNG de `ia-sept` (~95 MB). No hacen
+falta para rendir —eso sale de los `.jpg` gradados— y los prompts para rehacerlas
+están en `clients/hilton/PROMPTS-DE-ELI.md`.
+
+### ⛔ Lo que sigue pendiente, y ya no es de septiembre
+
+1. Los emojis del mock rinden **lila en Windows**: falta empaquetar Noto Color
+   Emoji en `public/assets/hilton/between/fonts/` y nombrarla primera en la pila.
+2. **`clients/hilton/reglas.yaml` sigue sin existir**, así que Between pasa sólo
+   por `between-qa.py` y no por `qa/motor.py`, que es la compuerta del estudio.
+3. Del carrusel «Primero la foto» queda el viejo reparo del **vaso KIMBO en la
+   G1** («ese kimbo hay que quitarlo»), que Eli no ha vuelto a pedir.
 
 ---
 

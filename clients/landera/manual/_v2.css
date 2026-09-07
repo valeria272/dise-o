@@ -17,6 +17,13 @@
 .iv .var .h { color:var(--gris); }
 .iv p { margin:0; font-size:8pt; line-height:11pt; font-weight:300; color:var(--tinta); }
 .iv p b { font-weight:600; }
+/* ronda 3: listas de consulta rápida, a dos columnas, no párrafos */
+.iv ul { margin:0; padding:0 0 0 8pt; columns:2; column-gap:12pt; font-size:7.2pt; line-height:9.2pt;
+         font-weight:300; color:var(--tinta); }
+.iv li { margin:0 0 1.5pt; break-inside:avoid; padding-left:1pt; }
+.iv li::marker { color:var(--verde); }
+.iv .var li::marker { color:#A5A29E; }
+.iv li b { font-weight:600; }
 
 /* ── ficha de especificación ─────────────────────────────────────────── */
 .spec { position:absolute; margin:0; font-size:8.2pt; line-height:11pt; color:var(--gris); }
@@ -76,4 +83,4 @@
 .kpi .d.neg { color:var(--terracota); }
 
 .lupa { position:absolute; font-size:6.4pt; color:#A5A29E; letter-spacing:0.06em;
-        text-transform:uppercase; margin:0; }
+        text-transform:uppercase; margin:0; width:420pt; line-height:8pt; }

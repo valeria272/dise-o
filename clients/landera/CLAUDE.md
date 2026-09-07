@@ -1,9 +1,31 @@
 # LANDERA — Farmland Management
 
-> **Estado al 05-09-2026 (tarde): manual v2.0 entregado — 37 láminas.** La identidad
-> aprobada no se tocó; las **aplicaciones se reescribieron como norma reproducible**
-> (§0.2). Antes, la v1.1 aplicó la primera ronda del cliente (§0.1). Barkentina es
-> secundaria de detalle y su **licencia comercial** sigue abierta (§2).
+> **Estado al 05-09-2026 (noche): manual v3.0 entregado — 42 láminas.** Tres rondas
+> el mismo día: la del cliente (§0.1 → v1.1), la de norma (§0.2 → v2.0) y la de
+> **dirección de arte** (§0.3 → v3.0). La identidad aprobada no se tocó en ninguna.
+> Barkentina es secundaria de detalle y su **licencia comercial** sigue abierta (§2).
+
+## 0.3 La tercera ronda — dirección de arte, v3.0, 05-09-2026
+
+Brief de Valeria con dos referencias generadas por GPT como **nivel a alcanzar, no
+como activos**: «menos plantilla, más territorio; menos repetición, más ritmo
+editorial; menos marca pegada encima, más marca integrada al soporte». Y la frase
+que manda: **«No crear una versión inspirada en Landera. Crear Landera, mejor
+aplicada.»**
+
+| Qué | Cómo se resolvió |
+|---|---|
+| Marca «pegada encima» | **`scripts/landera_montaje.py`**: el SVG oficial se proyecta sobre el cuadrilátero real del soporte (perspectiva), hereda la luz de la foto y se funde según material: pintura, vinilo, bordado, grabado. Specs en `clients/landera/montajes/*.json`; los quads se miden con una rejilla sobre la foto |
+| Escenas | 14 escenas nuevas con el **soporte en blanco** (tótem de hormigón, portón con placa, caseta, puerta de oficina, camioneta, trabajador de espaldas, gerencia, invierno, seguridad, riego, surcos, viñedo, suelo, cosecha) en `fotos/v2/esc-*.jpg` |
+| Ritmo del manual | 5 **aperturas de capítulo** (04, 13, 19, 27, 34): foto a sangre + panel tinta; alternan con normativas, hero (Instagram, señalética), comparativas y técnicas. Renumeración completa: 42 láminas |
+| INVARIABLES / VARIABLES | Pasaron de párrafo a **listas a dos columnas** (`_v2.css › .iv ul`) |
+| Ecosistema digital | 28: tres comportamientos distintos de lejos — **territorio** (foto manda, marca mínima), **dato** (editorial, cifra con aire) y **gestión** (foto + cifra). 29 web editorial (hero, cifra sobre foto, cortes de surcos, predios en filas). 30 LinkedIn corporativo (caso, resultado, mapa, gráfico, pensamiento firmado, territorio). 32 Instagram: 55–60 % territorio, fotos limpias sin logo, nunca tres iguales |
+| Terreno | 35 señalética con tótem, portón, caseta y oficina montados en el material · 36 operación (vehículo 2/3 del paño en vinilo, tractor isotipo, infraestructura franja + identificación, container y caseta como paños compuestos) · 38 vestuario **por situación** (terreno, gerencia y visita, invierno, seguridad) con posición, tamaño, versión, color y técnica · 39 predios en seis soportes |
+| Fotografía | Sigue siendo **de referencia generada** y rotulada. La sesión real es lo único que falta para que el manual sea final |
+
+**Lección técnica:** un panel crema sobre una foto crema no se umbraliza (la botella
+del 05-09 por la mañana); un soporte oscuro sí. Y para montar sin pedirle nada al
+modelo basta medir el cuadrilátero y proyectar: el logotipo nunca pasa por la IA.
 
 ## 0.2 La segunda ronda — v2.0, 05-09-2026
 
@@ -392,6 +414,11 @@ eventos» de Pivot.
 ---
 
 ## 6. Historial
+
+**05-09-2026 (noche)** — Tercera ronda, dirección de arte (§0.3): **v3.0 de 42
+láminas**. Motor de montaje con perspectiva y material, 14 escenas con soporte en
+blanco, aperturas de capítulo, digital por comportamientos, terreno y vestuario
+montados. Subida a Drive.
 
 **05-09-2026 (tarde)** — Segunda ronda (15 puntos, dirección de Valeria) aplicada
 íntegra en la **v2.0 de 37 láminas**: las aplicaciones pasan de maqueta a norma

@@ -16,14 +16,14 @@ RAIZ = Path(__file__).resolve().parent.parent
 MAN = RAIZ / "clients/landera/manual"
 PLA = RAIZ / "clients/landera/plantillas"
 OUT = RAIZ / "out/landera/manual"
-VERSION = "2.0"
+VERSION = "3.0"
 ANTERIOR = OUT / "LANDERA-manual-de-marca-v1.0.pdf"
-HEREDADAS = {15: (ANTERIOR, 14)}          # nº de lámina → (pdf, índice de página)
+HEREDADAS = {17: (ANTERIOR, 14)}          # nº de lámina → (pdf, índice de página)
 
 LEEME = f"""LANDERA — Manual de marca v{VERSION} · archivos editables
 ====================================================
 
-laminas-editables/   Las 37 láminas, una por archivo PDF.
+laminas-editables/   Las 42 láminas, una por archivo PDF.
                      Se abren y se editan en Illustrator: el texto está VIVO
                      (no trazado) y Aptos va incrustada. Para editarlo hay que
                      tener Aptos instalada — viene con Microsoft Office.
@@ -36,25 +36,20 @@ plantillas/          Las piezas digitales: firmas de correo (HTML, listas para
                      pegar), banners, feed, historias, fondos de escritorio y las
                      4 maestras de presentación. ./render.sh <nombre> <ancho> <alto>
 
-Qué cambió en la v{VERSION} (segunda ronda, 05-09-2026)
---------------------------------------------------
-La identidad no se tocó: logotipo, isotipo, tipografías, colores, iconografía y
-las cuatro maestras de presentación son las aprobadas. La v2 profesionaliza las
-APLICACIONES para que una agencia externa pueda producir una pieza nueva sólo
-con este PDF:
-· Cada lámina de aplicación cierra con un bloque INVARIABLES / VARIABLES:
-  lo que nunca cambia y lo que se adapta al contenido.
-· 16 Fotografía: el criterio (qué imagen pertenece a Landera).
-· 17 Papelería con retícula, cotas, fondos, corporativa vs. operacional e incorrectos.
-· 18–21 Informe de gestión en cuatro láminas: retícula y portadas · tablas y datos
-  · gráficos, mapas y KPI · fotografía, casos y narrativa.
-· 22–23 Presentación: las cuatro maestras + ocho casos resueltos dentro de ellas.
-· 24–28 Ecosistema digital ordenado por lógica visual (dato / institucional /
-  territorio): web, LinkedIn, documentos digitales, Instagram sin secuencia rígida.
-· 29 Firmas condensadas a dos, con especificación (logotipo a 200 px).
-· 30–32 Señalética corporativa, operación (vehículos y maquinaria) y seguridad.
-· 33 Vestuario de terreno (qué se borda y dónde) · 34 Identificación de predios.
-· 35 Patrones, ahora al final · 36 Landera en 30 segundos.
+Qué cambió en la v{VERSION} (ronda de dirección de arte, 05-09-2026)
+-----------------------------------------------------------------
+La identidad no se tocó. La v3 sube el nivel de las APLICACIONES: menos
+plantilla, más territorio; la marca integrada al soporte (perspectiva y
+material, scripts/landera_montaje.py) y no pegada encima.
+· Cinco aperturas de capítulo (04, 13, 19, 27, 34) para alternar el ritmo.
+· INVARIABLES / VARIABLES como listas de consulta rápida.
+· Ecosistema digital con tres comportamientos distintos: territorio (foto
+  protagonista), dato (editorial, cifras) y gestión (foto + cifra, casos).
+· Instagram como sistema editorial flexible (55–60 % territorio); LinkedIn
+  corporativo; web editorial; documentos diferenciados.
+· Terreno con montajes reales: tótem, portón, caseta, oficina, vehículo,
+  maquinaria; seguridad con la norma intacta; vestuario por situación de uso;
+  predios aplicados en seis soportes.
 
 Pendientes conocidos
 --------------------
@@ -77,6 +72,18 @@ def laminas():
     return r
 
 
+APTOS = "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Aptos.ttf"
+
+
+def refoliar(pagina, n, seccion):
+    """La lámina heredada trae el folio de la versión anterior pintado: se tapa
+    y se escribe el nuevo con la misma anatomía (x 60,2 · 30 pt del pie · 8 pt)."""
+    pagina.draw_rect(fitz.Rect(56, 570, 260, 590), color=None, fill=(1, 1, 1))
+    pagina.insert_font(fontname="Aptos", fontfile=APTOS)
+    pagina.insert_text((60.2, 582.5), f"{n:02d} · {seccion.upper()}", fontsize=8,
+                       fontname="Aptos", color=(0.66, 0.64, 0.61))
+
+
 def ensamblar():
     doc = fitz.open()
     contacto = []
@@ -88,6 +95,7 @@ def ensamblar():
         if n + 1 in HEREDADAS:
             src, idx = HEREDADAS[n + 1]
             doc.insert_pdf(fitz.open(src), from_page=idx, to_page=idx)
+            refoliar(doc[-1], n + 1, "Sistema")
     salida = OUT / f"LANDERA-manual-de-marca-v{VERSION}.pdf"
     doc.set_metadata({"title": f"Landera · Manual de marca v{VERSION}",
                       "author": "Copywriters · Grupo Copylab"})
@@ -118,9 +126,9 @@ def zip_editables(n_laminas):
             z.write(OUT / (html.stem + ".pdf"), f"_zip/laminas-editables/{html.stem}.pdf")
             z.write(html, f"_zip/fuente-html/{html.name}")
         # la 15 heredada, como PDF suelto
-        src, idx = HEREDADAS[15]
+        src, idx = HEREDADAS[17]
         d = fitz.open(); d.insert_pdf(fitz.open(src), from_page=idx, to_page=idx)
-        z.writestr("_zip/laminas-editables/15-iconografia.pdf", d.tobytes())
+        z.writestr("_zip/laminas-editables/17-iconografia.pdf", d.tobytes())
         for f in ["base.css", "_comun.css", "_v2.css", "render.sh", "T1-la-voz.html", "T2-como-escribimos.html"]:
             z.write(MAN / f, f"_zip/fuente-html/{f}")
         for f in sorted(PLA.iterdir()):

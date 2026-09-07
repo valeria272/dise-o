@@ -53,6 +53,23 @@ PEDIDOS = {
     # criterio fotográfico — lo que NO (el cliché, para mostrarlo tachado)
     "foto-no-manos":      ("Stock photo cliché: close-up of cupped hands holding dark soil with a tiny green seedling, warm bokeh, over-saturated.", "classic_4_3"),
     "foto-no-atardecer":  ("Stock photo cliché: emotional golden sunset over a generic field, lens flare, heavy orange filter, over-saturated.", "classic_4_3"),
+
+    # ── ronda 3 (dirección de arte): escenas con el soporte EN BLANCO para montar
+    #    la marca con perspectiva y material, no pegada encima.
+    "esc-totem":       (CAMPO + "A tall plain concrete monolith sign at a farm entrance, blank smooth face, low stone wall and gravel road, mountains far behind, soft morning light, three-quarter view.", "classic_4_3"),
+    "esc-porton":      (CAMPO + "A wooden farm gate with a plain blank dark metal plate bolted to the horizontal beam, orchard rows behind, front three-quarter view, overcast soft light.", "classic_4_3"),
+    "esc-caseta":      (CAMPO + "A small cream painted field cabin with a blank wall beside the door, gravel yard, vineyard behind, side view.", "classic_4_3"),
+    "esc-oficina":     ("Interior photograph, natural light: a plain light wooden office door with a blank small rectangular plate beside it, cream wall, no text.", "traditional_3_4"),
+    "esc-vehiculo":    (CAMPO + "A clean white double-cab pickup truck parked on a dirt road between orchards, side view of the front door, plain door panel, soft light.", "classic_4_3"),
+    "esc-riego":       (CAMPO + "A center-pivot irrigation system spraying water over a young green crop field, low angle, morning light, water droplets.", "classic_4_3"),
+    "esc-surcos":      (CAMPO + "Top-down aerial photograph of straight ploughed furrows and orchard rows forming a geometric pattern, natural earth and green tones.", "square_1_1"),
+    "esc-vinedo":      (CAMPO + "Rows of vines seen from the end of a row, converging lines, a worker far away pruning, soft overcast light.", "classic_4_3"),
+    "esc-suelo":       (CAMPO + "Macro photograph of a cherry tree branch with fruit and a drip irrigation line, natural light, shallow depth of field.", "classic_4_3"),
+    "esc-cosecha":     (CAMPO + "Wooden harvest bins full of cherries stacked at the edge of an orchard, a forklift in the background, natural light.", "classic_4_3"),
+    "esc-trabajador":  (CAMPO + "A farm worker seen from behind wearing a plain olive green cap and plain dark grey fleece jacket, looking at an orchard, blank garments, no logo, waist-up.", "traditional_3_4"),
+    "esc-gerencia":    (CAMPO + "Two people seen from behind at the edge of a vineyard, one wearing a plain dark padded vest over a cream shirt, discussing, tablet in hand, no faces, natural light.", "classic_4_3"),
+    "esc-invierno":    (CAMPO + "A worker seen from the side in a plain olive green windbreaker with hood, frost on the ground, orchard in winter, blank garment, no face visible.", "traditional_3_4"),
+    "esc-seguridad":   (CAMPO + "A worker seen from behind wearing a plain white safety helmet and a plain high-visibility vest near a tractor, no logos, no face.", "traditional_3_4"),
     "foto-no-posado":     ("Stock photo cliché: a smiling farmer in a clean checked shirt posing with crossed arms looking at camera in a field, over-saturated green filter.", "classic_4_3"),
 }
 

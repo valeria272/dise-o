@@ -1,0 +1,30 @@
+{
+ "foto": "public/assets/landera/fotos/v2/esc-porton.jpg",
+ "salida": "out/landera/montajes/porton.jpg",
+ "capas": [
+  {
+   "tipo": "logo",
+   "archivo": "public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_HOR-FARM_MONO-CREMA.svg",
+   "quad": [
+    [
+     921,
+     681
+    ],
+    [
+     1434,
+     676
+    ],
+    [
+     1434,
+     786
+    ],
+    [
+     921,
+     790
+    ]
+   ],
+   "encaje": 0.72,
+   "material": "vinilo"
+  }
+ ]
+}

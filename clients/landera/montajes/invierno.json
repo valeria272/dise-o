@@ -1,0 +1,30 @@
+{
+ "foto": "public/assets/landera/fotos/v2/esc-invierno.jpg",
+ "salida": "out/landera/montajes/invierno.jpg",
+ "capas": [
+  {
+   "tipo": "logo",
+   "archivo": "public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_ISO_MONO-CREMA.svg",
+   "quad": [
+    [
+     890,
+     1790
+    ],
+    [
+     1040,
+     1790
+    ],
+    [
+     1040,
+     2000
+    ],
+    [
+     890,
+     2000
+    ]
+   ],
+   "encaje": 0.55,
+   "material": "bordado"
+  }
+ ]
+}

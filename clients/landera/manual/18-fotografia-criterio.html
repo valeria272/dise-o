@@ -1,0 +1,73 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="_comun.css"><link rel="stylesheet" href="_v2.css">
+<!-- 16 · Fotografía: el criterio. Ronda 2 (05-09): «definir qué fotos pertenecen
+     a Landera, sin tocar nada aprobado». Una lámina: lo que SÍ y lo que NO.
+     Las fotos son de referencia generada hasta que el cliente entregue archivo
+     real; el criterio es lo que se norma, no la foto. -->
+<style>
+  .f { position:absolute; width:136pt; height:92pt; overflow:hidden; background:#EEEAE3; }
+  .f img { width:100%; height:100%; object-fit:cover; display:block; }
+  .f.no::after { content:""; position:absolute; inset:0;
+    background:
+      linear-gradient(to bottom right, transparent calc(50% - 0.7pt), #E4361F calc(50% - 0.7pt), #E4361F calc(50% + 0.7pt), transparent calc(50% + 0.7pt)),
+      linear-gradient(to bottom left,  transparent calc(50% - 0.7pt), #E4361F calc(50% - 0.7pt), #E4361F calc(50% + 0.7pt), transparent calc(50% + 0.7pt)); }
+  .cap { position:absolute; width:136pt; font-size:7.6pt; line-height:10pt; font-weight:300; color:var(--gris); margin:0; }
+  .cap b { font-weight:600; color:var(--tinta); }
+</style>
+
+<h1 class="titulo">Sistema</h1>
+<p class="bajada">Fotografía: qué imagen pertenece a Landera</p>
+<div class="filete-cab"></div>
+<div class="divisoria" style="left:360pt"></div>
+
+<div class="columna" style="left:60.2pt; top:134.8pt; width:270pt">
+  <p class="rotulo">El criterio</p>
+  <p class="entrada">Landera muestra <b>campo productivo real</b>: luz natural,
+  escala verdadera y colores como son. La foto documenta; no emociona por
+  encargo.</p>
+  <p class="rotulo">Sí</p>
+  <p class="cuerpo">Luz natural · escala real · campo en producción · maquinaria
+  de verdad · personas trabajando, nunca mirando a cámara · aéreas geométricas
+  · detalle agrícola · colores naturales.</p>
+  <p class="rotulo">No</p>
+  <p class="cuerpo">Banco de imágenes evidente · manos con tierra · atardecer
+  emocional · retrato posado · filtro verde · saturación excesiva · cielos
+  reemplazados.</p>
+  <p class="rotulo">De dónde salen</p>
+  <p class="cuerpo">Del archivo de Landera y de sus predios. Una sesión mínima
+  cubre el manual: <span class="cifra">10</span> de campo,
+  <span class="cifra">3</span> de equipo, <span class="cifra">3</span> de maquinaria
+  y <span class="cifra">3</span> aéreas.</p>
+</div>
+
+<p class="rotulo" style="left:400pt; top:134.8pt">Lo que sí</p>
+<div class="f" style="left:400pt; top:158pt"><img src="../../../public/assets/landera/fotos/01-clara.jpg"></div>
+<p class="cap" style="left:400pt; top:254pt"><b>Campo productivo</b> — cultivo en hilera, cielo real</p>
+<div class="f" style="left:546pt; top:158pt"><img src="../../../public/assets/landera/fotos/v2/foto-si-aerea.jpg"></div>
+<p class="cap" style="left:546pt; top:254pt"><b>Aérea geométrica</b> — el surco como patrón</p>
+<div class="f" style="left:692pt; top:158pt"><img src="../../../public/assets/landera/fotos/v2/foto-si-maquinaria.jpg"></div>
+<p class="cap" style="left:692pt; top:254pt"><b>Maquinaria en uso</b> — polvo, luz de trabajo</p>
+<div class="f" style="left:838pt; top:158pt"><img src="../../../public/assets/landera/fotos/v2/foto-si-personas.jpg"></div>
+<p class="cap" style="left:838pt; top:254pt"><b>Personas trabajando</b> — de espaldas, a escala</p>
+
+<p class="rotulo" style="left:400pt; top:292pt">Lo que no</p>
+<div class="f no" style="left:400pt; top:316pt"><img src="../../../public/assets/landera/fotos/v2/foto-no-manos.jpg"></div>
+<p class="cap" style="left:400pt; top:412pt"><b>Manos con tierra</b> — el cliché agrícola</p>
+<div class="f no" style="left:546pt; top:316pt"><img src="../../../public/assets/landera/fotos/v2/foto-no-atardecer.jpg"></div>
+<p class="cap" style="left:546pt; top:412pt"><b>Atardecer emocional</b> — filtro naranja, destello</p>
+<div class="f no" style="left:692pt; top:316pt"><img src="../../../public/assets/landera/fotos/v2/foto-no-posado.jpg"></div>
+<p class="cap" style="left:692pt; top:412pt"><b>Retrato posado</b> — mirando a cámara, camisa limpia</p>
+<div class="f no" style="left:838pt; top:316pt"><img style="filter:saturate(2.4) hue-rotate(-8deg) contrast(1.1)" src="../../../public/assets/landera/fotos/01-clara.jpg"></div>
+<p class="cap" style="left:838pt; top:412pt"><b>Filtro verde</b> — la misma foto, saturada: ya no es Landera</p>
+
+<p class="lupa" style="left:400pt; top:446pt">⚠ Imágenes de referencia generadas para ilustrar el criterio — el archivo real las reemplaza en la próxima versión</p>
+
+<div class="iv">
+  <div><p class="h">Invariables</p>
+    <ul><li><b>Luz natural</b> y colores sin filtro</li><li><b>escala real</b>, sin gran angular deformante</li><li><b>nadie mira a cámara</b></li><li>el campo se muestra en producción, no como paisaje</li><li>toda foto se entrega en color; el blanco y negro no existe en Landera.</li></ul></div>
+  <div class="var"><p class="h">Variables</p>
+    <ul><li>Hora del día y estación</li><li>de pie, desde vehículo o dron</li><li>con o sin personas</li><li>formato horizontal o vertical según la pieza</li><li>recorte y velo según la lámina 12</li><li>cultivo, predio y región.</li></ul></div>
+</div>
+
+<p class="folio"><b>18</b> · Sistema</p>
+<p class="folio-marca">Landera · Manual de marca</p>

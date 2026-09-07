@@ -12,10 +12,10 @@
   "antes": "C&D / CYD Management — Landera es la marca nueva",
   "manual": {
     "_antes": "clients/landera/CLAUDE.md",
-    "version": "2.0",
-    "laminas": 37,
+    "version": "3.0",
+    "laminas": 42,
     "fecha": "2026-09-05",
-    "archivo": "out/landera/manual/LANDERA-manual-de-marca-v2.0.pdf",
+    "archivo": "out/landera/manual/LANDERA-manual-de-marca-v3.0.pdf",
     "nuevas_en_1_1": [
       "07 versiones con uso por soporte",
       "12 tipografía jerarquizada",
@@ -23,14 +23,16 @@
       "24 patrones: fondos de escritorio + botella"
     ],
     "heredadas_del_pdf_del_cliente": [
-      "15 iconografía"
+      "17 iconografía"
     ],
     "v2_que_cambio": "La identidad no se tocó. Las aplicaciones se reescribieron como norma reproducible: bloque INVARIABLES/VARIABLES en cada una, criterio fotográfico (16), papelería con retícula (17), informe en 4 láminas (18–21), casos de presentación (23), ecosistema digital por lógica visual dato/institucional/territorio (24–28), firmas condensadas (29), señalética en 3 láminas (30–32), vestuario (33), predios (34), patrones al final (35), guía rápida (36).",
     "sistemas_digitales": {
       "dato": "crema o blanco, cifra SemiBold, verde titula",
       "institucional": "tinta, franja tenue, logotipo crema, filete terracota único acento",
       "territorio": "foto con velo de tinta a 4,5:1, logotipo crema abajo a la izquierda"
-    }
+    },
+    "v3_que_cambio": "Ronda de dirección de arte (Valeria, 05-09): menos plantilla, más territorio; la marca integrada al soporte con perspectiva y material (scripts/landera_montaje.py) en vez de pegada encima; 5 aperturas de capítulo (04, 13, 19, 27, 34); INVARIABLES/VARIABLES como listas; digital por tres comportamientos (territorio / dato / gestión); Instagram editorial 55–60 % territorio sin logo en cada post; LinkedIn corporativo; web editorial; terreno con montajes reales; vestuario por situación de uso; predios en seis soportes.",
+    "numeracion_v3": "01–03 marca · 04 apertura · 05–12 logotipo · 13 apertura · 14–18 sistema · 19 apertura · 20–26 documentos y presentaciones · 27 apertura · 28–33 ecosistema digital · 34 apertura · 35–40 terreno · 41 guía rápida · 42 contraportada"
   },
   "estado": "EN DEFINICIÓN — colores y logotipo todavía en ronda con el cliente. NO producir piezas hasta que cierren.",
   "formato_manual": {
@@ -221,6 +223,14 @@
       "barkentina": "sólo en la portada de la ficha de predio"
     },
     "instagram": "tres familias sin secuencia; ≥ 50 % territorio; nunca tres seguidas iguales",
-    "firmas": "logotipo PNG 200 px (corregido de 150), filete 2 px verde, Bold 15 / versales 11 / Light 12-18"
+    "firmas": "logotipo PNG 200 px (corregido de 150), filete 2 px verde, Bold 15 / versales 11 / Light 12-18",
+    "digital_comportamientos": {
+      "territorio": "foto a sangre, marca mínima o ausente, pie en versales",
+      "dato": "crema/blanco, una cifra SemiBold con aire, sin cajas ni franja, firma en versales",
+      "gestion": "foto + cifra juntas: casos de predio, resultados, mapas; manda en LinkedIn y PDF",
+      "instagram": "55–60 % territorio · 25–30 % dato/gestión · 10–15 % insight; nunca tres iguales; el logo no va en cada post",
+      "linkedin": "gestión y resultado 50 % · pensamiento 20 % · territorio 20 % · institucional 10 %"
+    },
+    "montaje": "La marca se monta sobre el soporte con perspectiva y material (pintura / vinilo / bordado / grabado): clients/landera/montajes/*.json + scripts/landera_montaje.py; los quads se miden sobre la foto con la rejilla"
   }
 }

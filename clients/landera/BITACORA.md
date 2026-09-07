@@ -1,5 +1,35 @@
 # Landera — bitácora
 
+## 2026-09-05 (noche) — Valeria Traverso
+
+**Qué se hizo:** Tercera ronda del día, esta vez de **dirección de arte**: dos
+referencias GPT como nivel (no como activos) y el brief «menos plantilla, más
+territorio; marca integrada al soporte». Salió la **v3.0: 42 láminas**.
+- Motor de montaje (`scripts/landera_montaje.py`): el SVG oficial proyectado con
+  perspectiva sobre el soporte real, con la luz de la foto y el material (pintura,
+  vinilo, bordado). Nueve montajes en `out/landera/montajes/`, specs en
+  `clients/landera/montajes/`.
+- 14 escenas nuevas con soporte en blanco (`fotos/v2/esc-*.jpg`).
+- Cinco aperturas de capítulo; renumeración completa (mapa en `02-indice`).
+- Invariables/variables como listas. Digital por tres comportamientos; Instagram
+  editorial sin logo en cada post; LinkedIn corporativo; web editorial.
+- Terreno: señalética, operación, vestuario por situación y predios en seis
+  soportes, todos con la marca montada en el material.
+
+**Dónde quedó:** `out/landera/manual/LANDERA-manual-de-marca-v3.0.pdf`,
+`LANDERA-editables-v3.0.zip`, `CONTACTO-42-laminas.png`. Subido a Drive.
+
+**Qué sigue:**
+1. **Sesión fotográfica real** (10 campo · 3 equipo · 3 maquinaria · 3 aéreas): todo
+   sigue rotulado como referencia generada.
+2. Licencia de Barkentina.
+3. Cuarta ronda del cliente sobre la v3.0. Confirmar vestuario (33 → ahora 38).
+4. `landera.cl/img/logo-landera.png` antes de repartir firmas.
+
+**Abierto:** los quads de los montajes están medidos a ojo sobre la rejilla (±1 %);
+si se cambia la foto se vuelven a medir. Las reglas de terreno (versal 1 cm / 4 m,
+isotipo 25 cm, 2/3 del paño) siguen sin validar en obra.
+
 ## 2026-09-05 (tarde) — Valeria Traverso
 
 **Qué se hizo:** Segunda ronda, esta vez de dirección (Valeria): «el problema ya

@@ -1,0 +1,100 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="_comun.css"><link rel="stylesheet" href="_v2.css">
+<!-- 38 · Vestuario — ronda 3 (05-09, dirección): «ordenar por situación de uso:
+     terreno, gerencia/visita, invierno, seguridad; mostrar posición, tamaño,
+     versión, color y técnica; evitar que parezca merchandising». Las prendas se
+     ven puestas y en el campo, no en catálogo; el bordado va montado con relieve
+     (scripts/landera_montaje.py). -->
+<style>
+  .m { position:absolute; overflow:hidden; background:#EEEAE3; }
+  .m img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .sit { position:absolute; width:136pt; }
+  .sit .n { margin:6pt 0 0; font-size:8.4pt; font-weight:700; color:var(--tinta); }
+  .sit table { border-collapse:collapse; width:100%; margin-top:3pt; font-size:6.2pt; line-height:8pt; color:var(--gris); font-weight:300; }
+  .sit td { padding:1.4pt 0; border-top:0.3pt solid var(--filete); vertical-align:top; }
+  .sit td:first-child { width:38pt; color:var(--verde); text-transform:uppercase; letter-spacing:0.08em; font-size:5.2pt; font-weight:400; padding-top:2.2pt; }
+  .sit td b { font-weight:600; color:var(--tinta); }
+</style>
+
+<h1 class="titulo">Terreno</h1>
+<p class="bajada">Vestuario: por situación de uso, no por prenda</p>
+<div class="filete-cab"></div>
+<div class="divisoria" style="left:360pt"></div>
+
+<div class="columna" style="left:60.2pt; top:134.8pt; width:270pt">
+  <p class="rotulo">Ropa que se usa, no que se regala</p>
+  <p class="entrada">Cuatro situaciones: <b>terreno, gerencia y visita, invierno,
+  seguridad</b>. Cada una dice qué prenda, dónde va la marca, a qué tamaño, en
+  qué versión, de qué color y con qué técnica.</p>
+  <p class="rotulo">La regla común</p>
+  <p class="cuerpo">Se borda el <b>isotipo a una tinta</b>: verde sobre prenda clara,
+  crema sobre oscura. Al pecho izquierdo, <span class="cifra">6 cm</span>.</p>
+  <p class="cuerpo">El logotipo completo va <b>sólo en la espalda</b>, a
+  <span class="cifra">24 cm</span>, una tinta, bordado o serigrafiado. Con la
+  bajada que corresponde a quien lo viste.</p>
+  <p class="cuerpo">Prendas en verde oliva, gris carbón o crema. Nunca terracota:
+  en terreno es el color de la señal de seguridad.</p>
+  <p class="rotulo">Seguridad</p>
+  <p class="cuerpo">El chaleco reflectante y el casco son equipo normativo:
+  <b>el chaleco no se marca</b>; el casco lleva el isotipo verde en vinilo, 4 cm,
+  y nada más.</p>
+</div>
+
+<div class="sit" style="left:400pt; top:134.8pt">
+  <div class="m" style="position:relative; width:136pt; height:150pt"><img style="object-position:50% 58%" src="../../../out/landera/montajes/trabajador.jpg"></div>
+  <p class="n">Terreno</p>
+  <table>
+    <tr><td>Prenda</td><td>Polar gris carbón · jockey oliva · camisa crema</td></tr>
+    <tr><td>Marca</td><td><b>Espalda</b>: logotipo 24 cm · pecho: isotipo 6 cm</td></tr>
+    <tr><td>Versión</td><td>Gestión Agrícola · una tinta crema</td></tr>
+    <tr><td>Técnica</td><td>Bordado</td></tr>
+  </table>
+</div>
+<div class="sit" style="left:546pt; top:134.8pt">
+  <div class="m" style="position:relative; width:136pt; height:150pt"><img style="object-position:28% 50%" src="../../../out/landera/montajes/gerencia.jpg"></div>
+  <p class="n">Gerencia y visita</p>
+  <table>
+    <tr><td>Prenda</td><td>Chaleco gris carbón sobre camisa crema</td></tr>
+    <tr><td>Marca</td><td><b>Espalda</b>: logotipo 24 cm · sin marca al frente</td></tr>
+    <tr><td>Versión</td><td>Farmland Management · crema</td></tr>
+    <tr><td>Técnica</td><td>Bordado</td></tr>
+  </table>
+</div>
+<div class="sit" style="left:692pt; top:134.8pt">
+  <div class="m" style="position:relative; width:136pt; height:150pt"><img style="object-position:52% 70%" src="../../../out/landera/montajes/invierno.jpg"></div>
+  <p class="n">Invierno</p>
+  <table>
+    <tr><td>Prenda</td><td>Cortaviento con capucha, verde oliva</td></tr>
+    <tr><td>Marca</td><td><b>Pecho izquierdo</b>: isotipo 6 cm · espalda: logotipo 24 cm</td></tr>
+    <tr><td>Versión</td><td>Gestión Agrícola · crema</td></tr>
+    <tr><td>Técnica</td><td>Bordado; serigrafía si la tela es impermeable</td></tr>
+  </table>
+</div>
+<div class="sit" style="left:838pt; top:134.8pt; width:138pt">
+  <div class="m" style="position:relative; width:138pt; height:150pt"><img style="object-position:50% 34%" src="../../../out/landera/montajes/seguridad.jpg"></div>
+  <p class="n">Seguridad</p>
+  <table>
+    <tr><td>Prenda</td><td>Casco blanco · chaleco reflectante normativo</td></tr>
+    <tr><td>Marca</td><td><b>Casco</b>: isotipo 4 cm · <b>chaleco: nada</b></td></tr>
+    <tr><td>Versión</td><td>Isotipo verde, una tinta</td></tr>
+    <tr><td>Técnica</td><td>Vinilo, nunca bordado</td></tr>
+  </table>
+</div>
+
+<!-- lo que no -->
+<p class="rotulo" style="left:400pt; top:412pt">Lo que no se hace</p>
+<div class="m mal cruz" style="left:400pt; top:430pt; width:92pt; height:48pt"><img src="../../../public/assets/landera/fotos/v2/ropa-polar.jpg"><img style="position:absolute; left:30%; top:34%; width:40%; height:auto" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg"></div>
+<p class="cap" style="position:absolute; left:500pt; top:432pt; width:130pt; margin:0; font-size:7pt; line-height:9.2pt; color:var(--gris); font-weight:300">Logotipo completo a color al pecho, en prenda de catálogo: eso es merchandising.</p>
+<div class="m mal cruz" style="left:640pt; top:430pt; width:92pt; height:48pt; background:#E4361F"><img style="position:absolute; left:20%; top:20%; width:60%; height:auto" src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_HOR-FARM_MONO-CREMA.svg"></div>
+<p class="cap" style="position:absolute; left:740pt; top:432pt; width:236pt; margin:0; font-size:7pt; line-height:9.2pt; color:var(--gris); font-weight:300">Prenda terracota. En terreno el terracota es de la señal de seguridad, no de la ropa.</p>
+
+<div class="iv" style="top:490pt; height:72pt">
+  <div><p class="h">Invariables</p><ul>
+    <li>Isotipo a una tinta al pecho izquierdo, 6 cm</li><li>Logotipo completo sólo en la espalda, 24 cm, una tinta</li><li>Verde sobre claro, crema sobre oscuro</li><li>Prendas oliva, gris carbón o crema</li><li>Casco: isotipo verde 4 cm en vinilo</li><li>El chaleco reflectante no se marca</li></ul></div>
+  <div class="var"><p class="h">Variables</p><ul>
+    <li>La prenda y el proveedor por situación</li><li>Bordado o serigrafía según la tela</li><li>Bajada según quién la viste</li><li>Nombre del predio bajo el logotipo de espalda, opcional</li><li>Jockey con o sin isotipo</li></ul></div>
+</div>
+<p class="lupa" style="left:400pt; top:566pt">⚠ Escenas de referencia generadas; el bordado se montó por código — la muestra física se aprueba antes de producir</p>
+
+<p class="folio"><b>38</b> · Terreno</p>
+<p class="folio-marca">Landera · Manual de marca</p>

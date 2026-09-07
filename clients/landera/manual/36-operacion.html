@@ -1,0 +1,79 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="_comun.css"><link rel="stylesheet" href="_v2.css">
+<!-- 36 · Operación — ronda 3 (05-09, dirección): «diferenciar por soporte:
+     vehículo con logotipo horizontal y proporción definida; maquinaria con
+     isotipo; infraestructura con franja + identificación; containers y casetas
+     trabajando paños y composición, no logo centrado por defecto». La camioneta
+     y la caseta van montadas con perspectiva (scripts/landera_montaje.py). -->
+<style>
+  .m { position:absolute; overflow:hidden; background:#EEEAE3; }
+  .m img.f { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .cap { position:absolute; margin:0; font-size:7pt; line-height:9.2pt; color:var(--gris); font-weight:300; }
+  .cap b { display:block; font-weight:600; color:var(--tinta); }
+</style>
+
+<h1 class="titulo">Terreno</h1>
+<p class="bajada">Operación: vehículos, maquinaria e infraestructura</p>
+<div class="filete-cab"></div>
+<div class="divisoria" style="left:360pt"></div>
+
+<div class="columna" style="left:60.2pt; top:134.8pt; width:270pt">
+  <p class="rotulo">Cuatro soportes, cuatro respuestas</p>
+  <p class="entrada">El soporte decide la versión: <b>vehículo</b> logotipo
+  horizontal en proporción; <b>maquinaria</b> isotipo; <b>infraestructura</b>
+  franja e identificación; <b>container y caseta</b> paños compuestos, no un logo
+  centrado.</p>
+  <p class="rotulo">Vehículo</p>
+  <p class="cuerpo">Horizontal, Gestión Agrícola, en vinilo de corte a dos tintas,
+  <span class="cifra">2/3</span> del ancho del paño de la puerta y a la altura de
+  la manilla. Nunca en capó, parabrisas ni portalón.</p>
+  <p class="rotulo">Maquinaria</p>
+  <p class="cuerpo">Isotipo a una tinta, <span class="cifra">25 cm</span>, en el
+  paño plano de la cabina. Verde sobre máquina clara, crema sobre oscura.</p>
+  <p class="rotulo">Infraestructura</p>
+  <p class="cuerpo">Bodegas y estanques: <b>franja al canto</b> e identificación en
+  Bold («Bodega 2»). El logotipo, sólo en el acceso (lámina 35).</p>
+  <p class="rotulo">Container y caseta</p>
+  <p class="cuerpo">Se trabaja el paño: franja en un extremo, placa junto a la
+  puerta, nombre del cuartel. Nunca el logotipo centrado en la cara larga.</p>
+</div>
+
+<!-- vehículo grande -->
+<div class="m" style="left:400pt; top:134.8pt; width:290pt; height:196pt"><img class="f" style="object-position:62% 60%" src="../../../out/landera/montajes/vehiculo.jpg"></div>
+<p class="cap" style="left:400pt; top:334pt; width:290pt"><b>Camioneta · vinilo de corte a dos tintas</b>Horizontal, Gestión Agrícola, 2/3 del paño de la puerta, a la altura de la manilla</p>
+
+<!-- maquinaria -->
+<div class="m" style="left:702pt; top:134.8pt; width:274pt; height:94pt"><img class="f" style="object-position:40% 50%" src="../../../public/assets/landera/fotos/v2/op-tractor.jpg"><img style="position:absolute; left:33%; top:38%; width:5%" src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_ISO_MONO-CREMA.svg"></div>
+<p class="cap" style="left:702pt; top:232pt; width:274pt"><b>Maquinaria · isotipo 25 cm</b>Una tinta crema en la cabina; nunca el logotipo completo</p>
+
+<!-- caseta montada -->
+<div class="m" style="left:702pt; top:262pt; width:274pt; height:94pt"><img class="f" style="object-position:58% 46%" src="../../../out/landera/montajes/caseta.jpg"></div>
+<p class="cap" style="left:702pt; top:358pt; width:274pt; font-size:6.6pt; line-height:8.4pt"><b>Caseta · paño compuesto</b>Placa junto a la puerta; el muro queda limpio</p>
+
+<!-- infraestructura: bodega y estanque con franja + identificación -->
+<div class="m" style="left:400pt; top:372pt; width:140pt; height:100pt"><img class="f" src="../../../public/assets/landera/fotos/v2/op-bodega.jpg">
+  <div style="position:absolute; left:30%; top:30%; width:40%; height:10%; background:#33353E"><div class="fr auto tenue" style="--m:1.4pt; height:100%"><i></i><i></i><i></i><i></i></div><div style="position:absolute; left:20%; top:18%; font-size:5pt; font-weight:700; color:#FAF1E8">Bodega 2</div></div>
+</div>
+<p class="cap" style="left:400pt; top:476pt; width:140pt"><b>Bodega</b>Franja + identificación sobre el portón; sin logotipo</p>
+<div class="m" style="left:550pt; top:372pt; width:140pt; height:100pt"><img class="f" style="object-position:55% 40%" src="../../../public/assets/landera/fotos/v2/op-estanque.jpg">
+  <div style="position:absolute; left:50%; top:36%; font-size:4.6pt; font-weight:700; color:#687B5D; letter-spacing:0.04em">Estanque norte</div>
+  <img style="position:absolute; left:50%; top:44%; width:7%" src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_ISO_MONO-VERDE.svg">
+</div>
+<p class="cap" style="left:550pt; top:476pt; width:140pt"><b>Estanque</b>Identificación en Bold e isotipo verde a 1/5 del diámetro</p>
+<div class="m" style="left:702pt; top:372pt; width:274pt; height:100pt"><img class="f" style="object-position:40% 55%" src="../../../public/assets/landera/fotos/v2/op-container.jpg">
+  <div style="position:absolute; left:14%; top:40%; width:3.4%; height:30%; background:#687B5D; opacity:.85"></div><div style="position:absolute; left:18.6%; top:40%; width:3.4%; height:30%; background:#687B5D; opacity:.85"></div><div style="position:absolute; left:23.2%; top:40%; width:3.4%; height:30%; background:#687B5D; opacity:.85"></div>
+  <div style="position:absolute; left:30%; top:46%; font-size:6pt; font-weight:700; color:#FAF1E8">Oficina de campo · Cuartel 3</div>
+  <img style="position:absolute; left:30%; top:58%; width:14%" src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_HOR-GESA_MONO-CREMA.svg">
+</div>
+<p class="cap" style="left:702pt; top:476pt; width:274pt"><b>Container · paño compuesto</b>Franja en el extremo, identificación y logotipo pequeño en el tercio; nunca centrado en la cara larga</p>
+
+<div class="iv" style="top:496pt; height:66pt">
+  <div><p class="h">Invariables</p><ul>
+    <li>Vehículo: horizontal GA, 2/3 del paño, vinilo dos tintas</li><li>Maquinaria: isotipo 25 cm una tinta</li><li>Infraestructura: franja + identificación, sin logotipo</li><li>Container y caseta: paño compuesto, logo nunca centrado</li><li>Nada en capó, parabrisas ni portalón</li><li>Nunca el logotipo sobre corrugado</li></ul></div>
+  <div class="var"><p class="h">Variables</p><ul>
+    <li>Tamaño según el paño real, medido</li><li>Crema o verde según el color del soporte</li><li>Con o sin nombre del predio</li><li>Imán en flota arrendada</li><li>Placa o pintura directa en casetas</li></ul></div>
+</div>
+<p class="lupa" style="left:400pt; top:566pt">⚠ Soportes de referencia generados; la marca se montó por código — se mide sobre el vehículo o la obra real</p>
+
+<p class="folio"><b>36</b> · Terreno</p>
+<p class="folio-marca">Landera · Manual de marca</p>

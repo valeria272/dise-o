@@ -1,0 +1,105 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="_comun.css"><link rel="stylesheet" href="_v2.css">
+<!-- 18 · Informe de gestión I — portadas y aperturas. Ronda 2 (05-09): el informe
+     es la pieza principal y una lámina era poco; son cuatro (18–21). Esta fija
+     la retícula del documento y los tres tipos de página que abren: portada,
+     apertura de capítulo y resumen ejecutivo.
+     Escala de las hojas: A4 → 150 × 212 pt (0,714 pt/mm). -->
+<style>
+  .hoja { position:absolute; width:150pt; height:212pt; background:#fff; border:0.4pt solid #E0DEDA; overflow:hidden; }
+  .g { position:absolute; left:10.7pt; right:10.7pt; top:10.7pt; bottom:10.7pt; pointer-events:none;
+       background:repeating-linear-gradient(to right, rgba(228,54,31,.10) 0 7.2pt, transparent 7.2pt 10.7pt); }
+</style>
+
+<h1 class="titulo">Aplicaciones</h1>
+<p class="bajada">Informe de gestión I: retícula, portada y aperturas</p>
+<div class="filete-cab"></div>
+<div class="divisoria" style="left:360pt"></div>
+
+<div class="columna" style="left:60.2pt; top:134.8pt; width:270pt">
+  <p class="rotulo">La retícula del documento</p>
+  <p class="entrada">A4 vertical, <b>12 columnas</b>, margen de
+  <span class="cifra">15 mm</span> y medianil de <span class="cifra">5 mm</span>.
+  Todo lo que viene en las láminas 22 a 24 se apoya en esta grilla.</p>
+  <p class="rotulo">Tres páginas que abren</p>
+  <p class="cuerpo"><b>Portada</b>: crema, franja de <span class="cifra">12 mm</span>
+  al canto, logotipo a 52 mm, título en Aptos Bold 28/32, período en versales.</p>
+  <p class="cuerpo"><b>Apertura de capítulo</b>: tinta, número del capítulo en
+  Bold 72, título en Bold 20, franja tenue. Es la única página oscura del informe.</p>
+  <p class="cuerpo"><b>Resumen ejecutivo</b>: blanco, tres cifras en SemiBold 36
+  con su rótulo y su variación, y un párrafo de 6 líneas. Nunca más de tres.</p>
+  <p class="rotulo">La franja</p>
+  <p class="cuerpo">Sólo en portada y aperturas. En las páginas interiores no hay
+  franja: la grilla ya ordena.</p>
+</div>
+
+<!-- portada -->
+<p class="rotulo" style="left:400pt; top:134.8pt">Portada</p>
+<div class="hoja" style="left:400pt; top:172pt; background:#FAF1E8">
+  <div class="fr" style="width:8.6pt"><i style="left:0; width:1.8pt"></i><i style="left:2.7pt; width:1.8pt"></i><i style="left:5.4pt; width:1.8pt"></i><i style="left:8.1pt; width:0.5pt"></i></div>
+  <img style="position:absolute; left:19pt; top:10.7pt; width:37pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg">
+  <div style="position:absolute; left:19pt; top:118pt; right:10.7pt">
+    <div class="mt" style="font-size:9.5pt; line-height:11pt">Informe de gestión</div>
+    <div class="mr" style="font-size:4.4pt; margin-top:3pt; color:var(--gris)">Primer trimestre · 2026</div>
+    <div style="height:0.4pt; background:var(--verde); width:34pt; margin-top:6pt"></div>
+  </div>
+  <div class="mr" style="position:absolute; left:19pt; bottom:10.7pt; font-size:3.6pt; color:var(--gris)">Farmland Management · Confidencial</div>
+</div>
+<div class="cota abajo" style="left:400pt; top:160pt; width:8.6pt"><span>12 mm</span></div>
+<div class="cota" style="left:419pt; top:160pt; width:37pt"><span>52 mm</span></div>
+<div class="cota v" style="left:552pt; top:290pt; height:11pt"><span>Bold 28</span></div>
+
+<!-- apertura -->
+<p class="rotulo" style="left:590pt; top:134.8pt">Apertura de capítulo</p>
+<div class="hoja" style="left:590pt; top:172pt; background:#33353E; border-color:#33353E">
+  <div class="fr tenue" style="width:8.6pt"><i style="left:0; width:1.8pt"></i><i style="left:2.7pt; width:1.8pt"></i><i style="left:5.4pt; width:1.8pt"></i><i style="left:8.1pt; width:0.5pt"></i></div>
+  <div style="position:absolute; left:19pt; top:80pt; font-size:26pt; font-weight:700; color:#FAF1E8; line-height:26pt; letter-spacing:-0.02em">02</div>
+  <div style="position:absolute; left:19pt; top:112pt; right:10.7pt; font-size:7.2pt; font-weight:700; color:#FAF1E8; line-height:8.6pt">Superficie y rendimiento</div>
+  <div style="position:absolute; left:19pt; top:126pt; width:22pt; height:0.4pt; background:#687B5D"></div>
+  <div class="mr" style="position:absolute; left:19pt; bottom:10.7pt; font-size:3.6pt; color:#9FA6A0">Informe de gestión · Q1 2026</div>
+</div>
+<div class="cota v" style="left:742pt; top:252pt; height:26pt"><span>Bold 72</span></div>
+<div class="cota v" style="left:742pt; top:284pt; height:8.6pt"><span>Bold 20</span></div>
+
+<!-- resumen ejecutivo -->
+<p class="rotulo" style="left:790pt; top:134.8pt">Resumen ejecutivo</p>
+<div class="hoja" style="left:790pt; top:172pt">
+  <div class="g"></div>
+  <div class="mr" style="position:absolute; left:10.7pt; top:10.7pt; font-size:3.8pt">Resumen ejecutivo</div>
+  <div style="position:absolute; left:10.7pt; right:10.7pt; top:17pt; height:0.35pt; background:var(--verde)"></div>
+  <div class="kpi" style="left:10.7pt; top:26pt; width:40pt"><div class="v" style="font-size:12pt">776</div><div class="l" style="font-size:3.2pt; margin-top:2pt">ha en gestión</div><div class="d" style="font-size:3.4pt">+3 %</div></div>
+  <div class="kpi" style="left:54pt; top:26pt; width:40pt"><div class="v" style="font-size:12pt">8,7</div><div class="l" style="font-size:3.2pt; margin-top:2pt">t/ha rendimiento</div><div class="d" style="font-size:3.4pt">+1,2 %</div></div>
+  <div class="kpi" style="left:97pt; top:26pt; width:44pt"><div class="v" style="font-size:12pt">−4 %</div><div class="l" style="font-size:3.2pt; margin-top:2pt">OPEX vs. presupuesto</div><div class="d neg" style="font-size:3.4pt">desviación</div></div>
+  <div class="mc" style="position:absolute; left:10.7pt; right:10.7pt; top:62pt; font-size:3.6pt; line-height:5.6pt">
+    El trimestre cierra con la superficie en gestión creciendo un 3 % por la incorporación del Predio D. El rendimiento promedio sube levemente; la desviación de OPEX responde al adelanto de la poda en el Predio C y se compensa en el segundo trimestre.
+    <span style="display:block; height:2pt; background:#ECEAE6; margin:2pt 0; width:100%"></span>
+    <span style="display:block; height:2pt; background:#ECEAE6; margin:2pt 0; width:92%"></span>
+    <span style="display:block; height:2pt; background:#ECEAE6; margin:2pt 0; width:70%"></span></div>
+  <div class="mr" style="position:absolute; left:10.7pt; bottom:10.7pt; font-size:3.4pt; color:var(--gris)">Landera · Informe de gestión Q1 2026 · 3</div>
+</div>
+<div class="cota" style="left:800.7pt; top:160pt; width:128.6pt"><span>12 col · margen 15 · medianil 5</span></div>
+<div class="cota v" style="left:942pt; top:198pt; height:12pt"><span>SB 36</span></div>
+
+<p class="caption" style="left:400pt; top:390pt; width:576pt">Franja sólo en portada y aperturas · la grilla (en rojo) ordena las interiores</p>
+
+<!-- incorrecto -->
+<p class="rotulo" style="left:400pt; top:404pt">Lo que no se hace</p>
+<div class="hoja mal cruz" style="left:400pt; top:426pt; width:112pt; height:56pt; border:0">
+  <img style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover" src="../../../public/assets/landera/fotos/03-conflictiva.jpg">
+  <img style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:60pt" src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_HOR-FARM.svg">
+</div>
+<p class="caption" style="left:520pt; top:428pt; width:200pt; text-transform:none; font-size:8.5pt; line-height:12pt">Portada con foto a sangre y logotipo centrado sin velo. La foto va en interiores (lámina 24); la portada es crema.</p>
+<div class="hoja mal cruz" style="left:740pt; top:426pt; width:112pt; height:56pt; background:#33353E; border:0">
+  <div style="position:absolute; left:10pt; top:10pt; width:90pt; font-size:4pt; color:#FAF1E8; line-height:6pt">01 · Introducción<br>02 · Superficie<br>03 · Rendimiento<br>04 · Presupuesto</div>
+</div>
+<p class="caption" style="left:860pt; top:428pt; width:116pt; text-transform:none; font-size:8.5pt; line-height:12pt">Varias páginas tinta: la apertura es una por capítulo.</p>
+
+<div class="iv">
+  <div><p class="h">Invariables</p>
+    <ul><li>A4</li><li>12 columnas</li><li>margen 15 mm</li><li>medianil 5 mm</li><li>portada crema con franja de 12 mm y logotipo a 52 mm</li><li>apertura de capítulo en tinta, una por capítulo</li><li>resumen ejecutivo con <b>tres cifras como máximo</b></li><li>el verde titula, la cifra va en tinta, el terracota sólo marca desviación</li><li>folio abajo a la izquierda en versales 7 pt.</li></ul></div>
+  <div class="var"><p class="h">Variables</p>
+    <ul><li>El título y el período</li><li>cuántos capítulos y sus nombres</li><li>qué tres cifras abren el resumen</li><li>la extensión del párrafo (hasta 6 líneas)</li><li>la bajada (Farmland Management en informes a inversionistas)</li><li>idioma de las versales.</li></ul></div>
+</div>
+
+<p class="folio"><b>21</b> · Aplicaciones</p>
+<p class="folio-marca">Landera · Manual de marca</p>

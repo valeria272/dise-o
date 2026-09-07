@@ -1,0 +1,30 @@
+{
+ "foto": "public/assets/landera/fotos/v2/esc-gerencia.jpg",
+ "salida": "out/landera/montajes/gerencia.jpg",
+ "capas": [
+  {
+   "tipo": "logo",
+   "archivo": "public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_HOR-FARM_MONO-CREMA.svg",
+   "quad": [
+    [
+     340,
+     900
+    ],
+    [
+     700,
+     900
+    ],
+    [
+     700,
+     1000
+    ],
+    [
+     340,
+     1000
+    ]
+   ],
+   "encaje": 0.8,
+   "material": "bordado"
+  }
+ ]
+}

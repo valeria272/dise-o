@@ -1,3 +1,102 @@
+## 2026-09-07 (cierre 3) · Eli (Windows) — BETWEEN: las dos stories del cumpleaños
+
+**Qué se hizo:** Eli rehizo y subió el carrusel de cumpleaños del feed
+(`C1 S2 CUMPLE N1/N2.png`, Drive `1P5NSpKHGCRwqCVZYlPU4zKkH09-YcqKk`) y pidió
+**dos stories de secuencia** a partir de él, con sticker interactivo. Se armaron,
+pasaron dos rondas de correcciones suyas, las **aprobó** y quedaron **subidas al
+Drive**. Se corrigió además un defecto de emojis que afectaba a toda la marca.
+
+### Lo entregado
+
+`out/hilton/between/entrega-st-cumple-09-09/` — 2250×4000:
+
+    BW ST 09-09 Cafe de regalo cumpleanos 1.png   ← el vaso
+    BW ST 09-09 Cafe de regalo cumpleanos 2.png   ← las condiciones
+    …1 GUIA CM.png · …2 GUIA CM.png               ← internas, NO van al Drive
+
+Subidas a **S2 HILTON SEP 2026 / BW / STS** (`1lupGWfILmS9JQ4tznkqqddTKOh6uFtEe`),
+pesos verificados contra los locales. Copia también en
+`~/COPYLAB-ENTREGAS/BETWEEN-S2-SEP2026/`, con las guías en su subcarpeta.
+Composición: `src/compositions/hilton/BetweenStCumpleCarrusel.tsx`.
+
+### Las tres correcciones de Eli, y qué enseñó cada una
+
+1. ⭐⭐ **«Debe ser una transición de la foto el slide 1 y la 2.»** Las dos escenas
+   generadas por separado se botaron. Ahora hay **UNA sola fotografía continua**
+   de 4096×4096 y los dos fondos son sus mitades
+   (`scripts/between-st-cumple-panorama.py`): la mesa, las cintas, el follaje y la
+   luz siguen de una historia a la otra. **Es la misma orden que ya había dado el
+   04-09 para el carrusel de feed** («que sea una continuidad con la slide dos»),
+   o sea que es criterio de marca y no un pedido suelto — vale para el próximo
+   carrusel, no hay que esperar a que lo pida.
+   La frase que lo destrabó fue la del **encuadre**: hay que decirle al generador
+   dónde va el sujeto dentro del cuadro, porque de un cuadrado salen dos 9:16 y
+   sobra poco. El primer intento puso el vaso abajo y el sticker chocaba con su
+   base.
+2. **«No agregues logo en portada por el vaso.»** Fuera el lockup, y de las DOS:
+   en la 1 firma el vaso con su logotipo impreso, en la 2 la tarjeta con el avatar
+   y el handle — y las dos láminas del carrusel aprobado tampoco lo llevan. Al
+   sacarlo el titular sube de y=441 a y=300 (el ancla de 441 está calculada para
+   caer bajo el logo) y la tarjeta de la 2, de 430 a 330.
+3. **«El legal más abajo donde se lea mejor.»** De y=1524 a **y=1640**: en 1524
+   caía sobre el plato y las cintas, en 1640 cae sobre la madera limpia.
+
+### ⛔ Tres reglas nuevas que salen de acá (todas en `PROMPTS-DE-ELI.md` §3)
+
+- **Los emojis del sistema NO sirven en esta máquina.** Windows resuelve
+  `Segoe UI Emoji` y el ☕ sale **lila** — el defecto que Eli ya había cazado en
+  los renders del estudio. Apple Color Emoji no se puede redistribuir, así que se
+  **recortan de la lámina aprobada** con `scripts/between-emoji-extraer.py` y
+  entran como PNG con transparencia, desde
+  `public/assets/hilton/between/emoji/`. **Vale para TODA pieza de Between con
+  emojis**, no solo para ésta.
+- **El garabato de línea se apoya en el FONDO, nunca sobre el producto ni sobre
+  quien lo sostiene.** A la derecha del vaso se montaba encima del logotipo
+  impreso y se leía «BETWEENS», con la cuerda cruzando el wordmark; antes, abajo
+  a la izquierda, caía sobre la mano. Romper el logotipo del vaso es el peor error
+  posible en una pieza cuyo tema es ese vaso.
+- **Las cajas del listado van con `letterSpacing: -0.015em`.** Con el tracking por
+  defecto la misma línea medía 361 px contra los **348,5 medidos en la pieza
+  aprobada** (3,6 % más suelta), y esos 12 px de más echaban el emoji a una línea
+  nueva: las filas crecían de 95 a 132 px.
+
+### Lo interactivo se resolvió como ZONA RESERVADA
+
+660×210 limpios en y=1280. El sticker lo pone el CM al publicar con el sticker
+**real** de Instagram (ST1 deslizador 🎂 · ST2 encuesta «¿Ya lo canjeaste?»). Un
+sticker dibujado en el PNG se ve interactivo y no lo es. Las copias `GUIA CM`
+llevan la zona marcada y son para el CM: **no se suben ni se mandan al cliente.**
+
+### Reproducibilidad, comprobada y no supuesta
+
+Se forzaron al repo los dos fondos, la ventana, los cuatro emojis y **el panorama
+de origen** (38 MB). El panorama va aunque pese: sin él, un recorte distinto
+mañana obligaría a regenerar y **no sería la misma foto**. Verificado con `cmp`:
+los fondos se re-cortan **idénticos byte a byte**, la ST 2 se re-renderiza
+idéntica y la ST 1 difiere en **95 píxeles de 9.000.000 con máximo 2/255** en la
+zona del titular — antialiasing de Chrome, invisible.
+
+**Dónde quedó:** todo commiteado y subido. `MarcoIGPost` NO se tocó: se quedó
+atrás respecto de lo aprobado (fondo blanco en vez de crema, viñetas «•» en vez de
+casillas) pero lo usan piezas ya aprobadas y cambiarlo las re-flujaría, así que la
+tarjeta nueva se armó aparte con la geometría medida.
+
+**Qué sigue:** el manual quedó con la línea de tiempo de las tres órdenes
+contradictorias sobre si la ST de cumpleaños es una o dos (28-08 dos → 01-09 una →
+07-09 dos). Lo próximo de la S2 sigue siendo lo que ya estaba: `BW FEED 09-09
+Primero la foto` y `BW FEED 11-09 Ella hablo ella escucho`.
+
+**Abierto:**
+- ⚠️ **Si alguna de estas dos stories pasa a PAUTA, hay que subir el legal de la
+  ST 2**: hoy entra 90 px en la franja inferior de 340 px de Meta y `between-qa.py`
+  lo marca. Es decisión de Eli y tiene precedente (su plantilla de story con logo
+  abajo entra 104 px), pero en orgánico solamente.
+- Las guías `GUIA CM` **todavía no le llegaron al CM**: están sólo en la carpeta
+  local de Eli. Hay que decidir si se le mandan por Slack o si se sube una
+  subcarpeta al Drive que el portal no levante.
+- `MarcoIGPost` quedó desalineado con la marca. Cuando se rehagan `BetweenCumple`
+  y la G2 de `BetweenSeptiembre`, hay que subirle el fondo crema y las casillas.
+
 ## 2026-09-07 (cierre 2) · Eli (Windows) — BETWEEN: la torta comida del carrusel del 14-09
 
 **Cambio de último minuto de Eli:** la última slide del carrusel del **14-09** debe

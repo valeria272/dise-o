@@ -80,7 +80,7 @@ Si no existe `~/copylab-venv`:
 ```bash
 python3 -m venv ~/copylab-venv
 ~/copylab-venv/bin/python3 -m pip install --upgrade pip
-~/copylab-venv/bin/python3 -m pip install pillow numpy requests certifi fonttools \
+~/copylab-venv/bin/python3 -m pip install pillow numpy scipy requests certifi fonttools \
     cryptography google-api-python-client google-auth google-auth-oauthlib \
     openpyxl python-docx
 ```

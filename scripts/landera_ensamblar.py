@@ -16,12 +16,13 @@ RAIZ = Path(__file__).resolve().parent.parent
 MAN = RAIZ / "clients/landera/manual"
 PLA = RAIZ / "clients/landera/plantillas"
 OUT = RAIZ / "out/landera/manual"
-VERSION = "3.0"
+VERSION = "3.0"          # interna: sólo en el historial del repo
+SUFIJO = ""              # el cliente recibe un manual sin número
 ANTERIOR = OUT / "LANDERA-manual-de-marca-v1.0.pdf"
 HEREDADAS = {17: (ANTERIOR, 14)}          # nº de lámina → (pdf, índice de página)
 
-LEEME = f"""LANDERA — Manual de marca v{VERSION} · archivos editables
-====================================================
+LEEME = f"""LANDERA — Manual de marca · archivos editables · septiembre 2026
+==================================================================
 
 laminas-editables/   Las 42 láminas, una por archivo PDF.
                      Se abren y se editan en Illustrator: el texto está VIVO
@@ -35,21 +36,6 @@ fuente-html/         El código que genera las láminas. Editar el .html y corre
 plantillas/          Las piezas digitales: firmas de correo (HTML, listas para
                      pegar), banners, feed, historias, fondos de escritorio y las
                      4 maestras de presentación. ./render.sh <nombre> <ancho> <alto>
-
-Qué cambió en la v{VERSION} (ronda de dirección de arte, 05-09-2026)
------------------------------------------------------------------
-La identidad no se tocó. La v3 sube el nivel de las APLICACIONES: menos
-plantilla, más territorio; la marca integrada al soporte (perspectiva y
-material, scripts/landera_montaje.py) y no pegada encima.
-· Cinco aperturas de capítulo (04, 13, 19, 27, 34) para alternar el ritmo.
-· INVARIABLES / VARIABLES como listas de consulta rápida.
-· Ecosistema digital con tres comportamientos distintos: territorio (foto
-  protagonista), dato (editorial, cifras) y gestión (foto + cifra, casos).
-· Instagram como sistema editorial flexible (55–60 % territorio); LinkedIn
-  corporativo; web editorial; documentos diferenciados.
-· Terreno con montajes reales: tótem, portón, caseta, oficina, vehículo,
-  maquinaria; seguridad con la norma intacta; vestuario por situación de uso;
-  predios aplicados en seis soportes.
 
 Pendientes conocidos
 --------------------
@@ -96,8 +82,8 @@ def ensamblar():
             src, idx = HEREDADAS[n + 1]
             doc.insert_pdf(fitz.open(src), from_page=idx, to_page=idx)
             refoliar(doc[-1], n + 1, "Sistema")
-    salida = OUT / f"LANDERA-manual-de-marca-v{VERSION}.pdf"
-    doc.set_metadata({"title": f"Landera · Manual de marca v{VERSION}",
+    salida = OUT / f"LANDERA-manual-de-marca{SUFIJO}.pdf"
+    doc.set_metadata({"title": "Landera · Manual de marca · septiembre 2026",
                       "author": "Copywriters · Grupo Copylab"})
     doc.save(salida, garbage=4, deflate=True)
     print(f"✓ {salida.name} · {len(doc)} láminas")
@@ -119,7 +105,7 @@ def ensamblar():
 
 
 def zip_editables(n_laminas):
-    salida = OUT / f"LANDERA-editables-v{VERSION}.zip"
+    salida = OUT / f"LANDERA-editables{SUFIJO}.zip"
     with zipfile.ZipFile(salida, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("_zip/LEEME.txt", LEEME)
         for n, html in laminas():

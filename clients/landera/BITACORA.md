@@ -16,8 +16,12 @@ territorio; marca integrada al soporte». Salió la **v3.0: 42 láminas**.
 - Terreno: señalética, operación, vestuario por situación y predios en seis
   soportes, todos con la marca montada en el material.
 
-**Dónde quedó:** `out/landera/manual/LANDERA-manual-de-marca-v3.0.pdf`,
-`LANDERA-editables-v3.0.zip`, `CONTACTO-42-laminas.png`. Subido a Drive.
+**Dónde quedó:** la entrega al cliente va **sin número de versión**: las rondas
+v1.1 / v2.0 / v3.0 son internas (decisión de Valeria, 05-09 noche).
+`out/landera/manual/LANDERA-manual-de-marca.pdf`, `LANDERA-editables.zip`,
+`LANDERA-guia-de-tono.pdf`, `CONTACTO-42-laminas.png`. En Drive quedaron sólo esos
+tres; los archivos con sufijo de versión se mandaron a la papelera. Los PDF
+versionados siguen en `out/landera/manual/` como historial local.
 
 **Qué sigue:**
 1. **Sesión fotográfica real** (10 campo · 3 equipo · 3 maquinaria · 3 aéreas): todo

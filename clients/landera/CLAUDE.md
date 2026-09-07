@@ -23,6 +23,13 @@ aplicada.»**
 | Terreno | 35 señalética con tótem, portón, caseta y oficina montados en el material · 36 operación (vehículo 2/3 del paño en vinilo, tractor isotipo, infraestructura franja + identificación, container y caseta como paños compuestos) · 38 vestuario **por situación** (terreno, gerencia y visita, invierno, seguridad) con posición, tamaño, versión, color y técnica · 39 predios en seis soportes |
 | Fotografía | Sigue siendo **de referencia generada** y rotulada. La sesión real es lo único que falta para que el manual sea final |
 
+⚠️ **Al cliente no le llegan números de versión.** Las rondas (v1.1, v2.0, v3.0)
+son internas y viven en git y en esta bitácora. La entrega se llama
+`LANDERA-manual-de-marca.pdf` (+ `LANDERA-editables.zip`, `LANDERA-guia-de-tono.pdf`),
+la portada dice «Septiembre 2026» y la carpeta de Drive tiene sólo esos tres.
+`landera_ensamblar.py` conserva `VERSION` para el historial y `SUFIJO=""` para el
+nombre de salida.
+
 **Lección técnica:** un panel crema sobre una foto crema no se umbraliza (la botella
 del 05-09 por la mañana); un soporte oscuro sí. Y para montar sin pedirle nada al
 modelo basta medir el cuadrilátero y proyectar: el logotipo nunca pasa por la IA.

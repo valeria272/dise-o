@@ -111,6 +111,9 @@ import {
   StCowork, StDieciocho, StStrudel, StPrimavera, StHumorToGo, StPlateada,
   Cumple1, Cumple2,
 } from "./compositions/hilton/BetweenSeptiembre";
+import {
+  StCumpleC1, StCumpleC2, StCumpleC1Guia, StCumpleC2Guia,
+} from "./compositions/hilton/BetweenStCumpleCarrusel";
 
 import {SelfieBannerSemanaPeluquero} from "./compositions/SelfieBannerSemanaPeluquero";
 import {SelfieCarruselFrizz} from "./compositions/SelfieCarruselFrizz";
@@ -151,6 +154,13 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="BW-F-Cowork-4" component={Cowork4} {...btFeed} />
         <Composition id="BW-S-ToGoDulce" component={StToGoDulce} {...btStory} />
         <Composition id="BW-S-Cumple" component={StCumple} {...btStory} />
+        {/* S2 · cumpleanos — las dos stories de secuencia del 07-09.
+            Las `-Guia` llevan marcada la zona del sticker: son para el CM y NO
+            se entregan al cliente. */}
+        <Composition id="BW-S-Cumple-C1" component={StCumpleC1} {...btStory} />
+        <Composition id="BW-S-Cumple-C2" component={StCumpleC2} {...btStory} />
+        <Composition id="BW-S-Cumple-C1-Guia" component={StCumpleC1Guia} {...btStory} />
+        <Composition id="BW-S-Cumple-C2-Guia" component={StCumpleC2Guia} {...btStory} />
         <Composition id="BW-S-Calculos" component={StCalculos} {...btStory} />
         <Composition id="BW-S-Emergencia" component={StEmergencia} {...btStory} />
         <Composition id="BW-S-HoraCafe" component={StHoraCafe} {...btStory} />

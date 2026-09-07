@@ -1281,6 +1281,27 @@ banda baja **tapa el logotipo del vaso** —justo lo que el cliente pidió que s
 textos del feed con el vaso entero, y `BW-S-Cumple-2` lleva el listado con sus
 emojis y su legal, a cuerpo completo. Se publican seguidos.
 
+> 🔄 **ESTE PUNTO CAMBIÓ DOS VECES. Vale la última.**
+>
+> | fecha | orden de Eli | qué quedó |
+> |---|---|---|
+> | 28-08 | dos frames (lo de arriba) | — |
+> | **01-09** | «la ST de cumpleaños es uno solo… que se vean las dos informaciones […] en una sola ST, **no dos como carrusel**» | `StCumple`, con el listado abajo. Cabía porque el vaso de ESA escena es más chico |
+> | **07-09** | «necesito que hagas **dos Stories de carrusel estático**. Para que sea interactivo, igual al carrusel aprobado» | `BW-S-Cumple-C1` y `-C2` |
+>
+> Las tres son coherentes con su contexto: el 01-09 el listado cabía en la escena
+> del vaso chico; el 07-09 el carrusel del feed se rehízo, la escena nueva tiene
+> el vaso GRANDE y hay que dejarle sitio al sticker interactivo abajo.
+> **`StCumple` no se tocó** — sigue siendo la pieza aprobada de su ronda. Las dos
+> nuevas viven en `src/compositions/hilton/BetweenStCumpleCarrusel.tsx`, y el
+> método con el que se generaron está en
+> [`PROMPTS-DE-ELI.md`](PROMPTS-DE-ELI.md) §3.
+>
+> ⛔ **De ahí sale una regla que vale para TODA pieza de Between con emojis:**
+> en Windows el ☕ del sistema sale **lila**. Los emojis se toman de
+> `public/assets/hilton/between/emoji/` (recortados de la lámina aprobada con
+> `scripts/between-emoji-extraer.py`), nunca como glifo de fuente.
+
 ## 5. ⚠️ El listado que adjuntó el cliente tiene CINCO ítems, no cuatro
 
 En la grilla, anclada en `FEED!E13` (columna del post del 3-sep), hay una imagen

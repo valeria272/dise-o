@@ -149,3 +149,142 @@ orden:
 8. **los hex de marca** para cualquier texto o señalética;
 9. **los candados del concepto** («sin romper aun», «los tres juntos»);
 10. **el aire que la diagramación necesita** («deja espacio abajo para dar aire»).
+
+---
+
+## 3. LAS DOS STORIES DEL CUMPLEAÑOS (S2 · 09-09) — 07-09-2026
+
+Eli: «Se actualizó carrusel de cumpleaños […] necesito que hagas dos Stories de
+carrusel estático. Para que sea interactivo, igual al carrusel aprobado.»
+
+Resultado: `out/hilton/between/entrega-st-cumple-09-09/`
+(`BW ST 09-09 Cafe de regalo cumpleanos 1` y `2`, más sus dos `GUIA CM`).
+Composición: `src/compositions/hilton/BetweenStCumpleCarrusel.tsx`.
+
+**Las escenas se GENERARON con el método de ella**, pasándole como referencia el
+carrusel que acababa de subir (`C1 S2 CUMPLE N1/N2.png`, Drive
+`1P5NSpKHGCRwqCVZYlPU4zKkH09-YcqKk`). Nano Banana Pro · 9:16 · 4K · `--refs`.
+
+**Prompt de la escena 1** (ref: la lámina 1):
+
+> Extiende la escena de la @img1 a formato vertical de historia 9:16. El vaso de
+> cafe Between sostenido en la mano queda igual, como heroe, con su logotipo
+> impreso nitido y centrado a media altura. Mantiene las hojas de oro sobre el
+> carton. Cintas y serpentinas doradas de cumpleanos sobre la mesa de madera
+> oscura, en foco, con su brillo y su sombra. El plato con medialunas a la
+> derecha, cortado por el canto. Arriba follaje verde desenfocado. Realista, que
+> se vea delicioso y apetitoso, alta calidad 4k. Deja la franja inferior con mesa
+> de madera limpia para dar aire. Sin ningun texto, sin letras, sin logotipos
+> flotantes.
+
+**Prompt de la escena 2** (ref: la lámina 2):
+
+> Extiende la escena de la @img1 a formato vertical de historia 9:16, pero SIN la
+> tarjeta blanca ni ningun recuadro encima: solo la escena. Plato gris con
+> medialunas doradas y hojaldradas espolvoreadas con azucar, sobre mesa de madera
+> oscura. Cintas y serpentinas doradas de cumpleanos alrededor, en foco, con
+> brillo y sombra. Arriba follaje verde muy desenfocado y oscuro. Realista, que
+> se vea delicioso y apetitoso, alta calidad 4k. La zona central queda tranquila
+> y sin detalle fuerte para poder poner un texto encima. Sin ningun texto, sin
+> letras, sin logotipos.
+
+### Lo que confirmó el método
+
+**«Extiende la escena de la @img1 a 9:16» funciona y conserva el producto.** El
+vaso llegó con su logotipo impreso correcto (la E invertida incluida), sus hojas
+de oro y su luz, sin ningún recorte pegado. Adaptar una pieza aprobada a otro
+formato NO es motivo para recomponer: se le pide al generador que la extienda.
+
+**«Sin ningun texto» es obligatorio si la tipografía la pone Remotion.** Nano
+Banana escribe texto legible —y en la vitrina de emergencia eso fue lo correcto—
+pero cuando la pieza tiene que respetar geometría medida (ancla y=441, columna
+810, logo en y=271) el texto va en código, y hay que pedirle al generador que no
+escriba nada.
+
+### Tres cosas que se aprendieron ARMANDO estas dos
+
+1. **⛔ Los emojis del sistema NO sirven en Windows.** Chrome resuelve
+   `Segoe UI Emoji` y el ☕ sale **lila** — el defecto que Eli ya había cazado.
+   Apple Color Emoji no se puede redistribuir, así que los cuatro emojis se
+   **recortan de la lámina 2 aprobada** con `scripts/between-emoji-extraer.py`
+   y entran como PNG con transparencia. Son la obra del propio cliente y calzan
+   exacto. **Toda pieza de Between con emojis tiene que usar esos PNG.**
+2. **El interlineado de las cajas hay que apretarlo.** Con el tracking por
+   defecto la misma línea salía **361 px contra los 348,5** de la pieza aprobada
+   (3,6 % más suelta), y esos 12 px de más mandaban el emoji a una línea nueva.
+   Va `letterSpacing: -0.015em`.
+3. **El emoji se mete en el relleno derecho de la caja, no lo empuja.** En la
+   lámina aprobada el ☕ termina en x=779 con la fila en 783. Reservarle su ancho
+   completo hace que la fila crezca de 95 a 132 px.
+
+### Lo interactivo: zona reservada, NO sticker dibujado
+
+Decisión de Eli: el sticker lo pone el CM al publicar, con el **sticker real de
+Instagram**. La pieza deja la zona limpia (660×210 en y=1280) y se entrega
+además una copia `GUIA CM` con esa zona marcada. Un sticker dibujado en el PNG
+se ve interactivo y no lo es: nadie vota.
+
+  · ST 1 → **deslizador** con emoji 🎂
+  · ST 2 → **encuesta** «¿Ya lo canjeaste?» · Sí / Voy en camino
+
+⚠️ **Esto revierte la orden del 01-09** («la ST de cumpleaños es uno solo… no dos
+como carrusel»). La pieza de esa ronda, `StCumple`, NO se tocó.
+
+### Ronda 2 de la misma tarde (07-09) — tres correcciones de Eli
+
+> «Pero debe ser una transición de la foto el slide 1 y la 2, no agregues logo en
+> portada por el vaso y el legal más abajo donde se lea mejor de la slide 2.»
+
+**1. «Una transición de la foto».** Se botaron las dos escenas generadas por
+separado. Ahora se genera **UNA sola fotografía continua** (`--aspecto feed`, 4K
+→ 4096×4096) y los dos fondos son sus dos mitades, cortadas con
+`scripts/between-st-cumple-panorama.py`. La mesa, las cintas, el follaje y la luz
+siguen de una historia a la otra: al deslizar, la cámara parece moverse por la
+mesa. **Es la misma orden que dio el 04-09 para el carrusel de feed** («que sea
+una continuidad con la slide dos. Puede ser solamente el fondo mismo de la
+mesa»), o sea que ya es criterio de la marca, no un pedido suelto.
+
+Prompt del panorama (refs: la ST1 anterior y la lámina 2 aprobada):
+
+> Una sola fotografia continua y horizontal de la MISMA mesa, sin corte al medio.
+> A la IZQUIERDA, el vaso de cafe Between sostenido en la mano igual al de la
+> @img1, con su logotipo impreso nitido y centrado y las hojas de oro sobre el
+> carton. A la DERECHA, sobre la misma mesa de madera oscura y en la misma linea
+> de mesa, el plato gris con las medialunas doradas y hojaldradas espolvoreadas
+> con azucar de la @img2. Entre los dos la mesa sigue continua, con cintas y
+> serpentinas doradas de cumpleanos, en foco. ENCUADRE: el vaso y el plato van en
+> el TERCIO SUPERIOR-MEDIO del cuadro, bastante altos, y la mitad INFERIOR es un
+> primer plano amplio de mesa de madera VACIA y limpia, sin objetos. Arriba, una
+> franja de follaje verde muy desenfocado y oscuro, continua de lado a lado. Una
+> sola luz y una sola mesa para toda la escena. Realista, que se vea delicioso y
+> apetitoso, alta calidad 4k. Sin ningun texto, sin letras, sin logotipos
+> flotantes.
+
+⚠️ **La frase que hizo la diferencia es la del ENCUADRE.** El primer intento
+puso el vaso y el plato en la mitad baja y no quedaba mesa libre: en 9:16 el
+sticker chocaba con la base del vaso. Hay que pedirle al generador **dónde va el
+sujeto dentro del cuadro**, porque de un cuadrado salen dos 9:16 y sobra poco.
+
+**2. «No agregues logo en portada por el vaso».** Fuera el lockup — y de las DOS,
+no solo de la portada: en la 1 firma el vaso con su logotipo impreso, en la 2
+firma la tarjeta con el avatar y el handle, y **las dos láminas del carrusel
+aprobado tampoco llevan lockup arriba**. Al sacarlo, el titular sube de y=441 a
+y=300 (el ancla de 441 estaba calculada para caer bajo el logo) y la tarjeta de
+la 2 sube de 430 a 330.
+
+**3. «El legal más abajo donde se lea mejor».** De y=1524 a **y=1640**. En 1524
+caía sobre el plato y las cintas; en 1640 cae sobre la mesa de madera limpia, que
+es el único sitio del cuadro donde un texto beige se lee sin ayuda. Entra 90 px
+en la franja inferior de Meta y `between-qa.py` lo marca: es decisión de ella y
+tiene precedente (su propia plantilla de story con logo abajo entra 104 px).
+**Si esta pieza pasara a pauta, hay que subirlo.**
+
+### ⛔ Y una regla nueva: el garabato no toca el producto
+
+El globo de línea iba a la derecha del vaso, como en la lámina 1. Con el encuadre
+nuevo el vaso llega hasta x=900 y el globo **se le montó encima del logotipo
+impreso**: se leía «BETWEENS» y la cuerda cruzaba el wordmark. Se movió al
+follaje de la izquierda. Junto con el intento anterior —que caía sobre la mano—
+queda dicho: **el repertorio de línea de Between se apoya en el FONDO, nunca
+sobre el producto ni sobre quien lo sostiene.** Y romper el logotipo del vaso es
+el peor error posible en una pieza cuyo tema es justamente ese vaso.

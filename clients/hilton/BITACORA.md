@@ -1,3 +1,59 @@
+## 2026-09-07 (cierre 2) · Eli (Windows) — BETWEEN: la torta comida del carrusel del 14-09
+
+**Cambio de último minuto de Eli:** la última slide del carrusel del **14-09** debe
+ser «una torta casi en totalidad comida, pero que se vea lindo aún». Nos dejó el
+video de la torta real y una carpeta de dulces y tortas.
+
+⚠️ Y lo primero fue no confundirse de pieza: **el del 14-09 no es Promos To Go**
+(ése se movió a la S4 del 22-09), es **«PRIMERO LA FOTO… ¿O NO?»**, cuyo remate es
+«¡NOOO! Se me olvidó la foto». La torta comida es el chiste de la pieza.
+
+### Lo entregado
+
+`out/entrega-r25/S3/` — las 4 slides, 2250×2812, 4/4 limpias en `between-qa.py`:
+
+    BW FEED 14-09 Primero la foto 1 desayuno.png
+    BW FEED 14-09 Primero la foto 2 latte.png
+    BW FEED 14-09 Primero la foto 3 croissant.png
+    BW FEED 14-09 Primero la foto 4 torta comida.png   ← la nueva
+
+### Las dos cosas que enseñó, y están en el manual (ronda 25)
+
+1. **El encargo traía una condición más, y estaba en la grilla.** `FEED!H15` tenía
+   sin tachar: «que se vea más vacío el plato […] **que sea desde arriba también
+   como los 2 anteriores**». O sea plato vacío **y** cenital.
+2. ⭐⭐ **Una foto de carrusel no se aprueba suelta, se aprueba MONTADA.** La r24
+   cumplía todo lo pedido y estaba mala: iba sobre mármol blanco mientras sus tres
+   hermanas van sobre los listones oscuros. Rompía el mundo del carrusel (mediana
+   219 contra ~102) y dejaba el titular blanco casi ilegible. Leído con eso a la
+   vista, «como los 2 anteriores» **no hablaba del ángulo: hablaba de la mesa.**
+   La r25 es la misma torta con una sola variable cambiada, y salió a la primera.
+
+También quedó corregida una nota de la ronda 19: el factor de calidez de
+`iguala_tono()` **no es fijo** (allá era pedir 60 para terminar en 34, acá 22,8
+para terminar en 20,8). Se mide sobre la propia foto.
+
+### El banco de dulces y tortas
+
+`raw/hilton/between/dulces-tortas/` con `LEEME.md`: los **9 videos verticales
+2160×3840 a 60 fps** indexados, con su póster cada uno y hoja de contacto. **Dos
+bajados completos** (los que se necesitaron); los otros siete están sólo como
+póster para no bajar 1,9 GB sin motivo. Un fotograma de esos videos es una foto 4K.
+
+### ⛔ Lo que sigue pendiente
+
+1. **Nada subido al Drive** — ni este carrusel ni el de Promos To Go. Y ojo: en la
+   carpeta de la S3 hay archivos «BW FEED 14-09 Promos To Go …» de cuando ese
+   carrusel era de esta semana. Hay que sacarlos o se entrega el equivocado. Para
+   Promos To Go sigue abierta la decisión de Eli: crear `S4 · BW` o reemplazar por
+   id en `S3 · BW` para no romper los enlaces del portal.
+2. **Sin commit**, y los fondos viven en `public/assets/` y `raw/`, las dos en el
+   `.gitignore`. Sin forzarlas, esto no se reproduce en otra máquina.
+3. Los emojis del mock siguen rindiendo lila en Windows (falta empaquetar Noto
+   Color Emoji) y `clients/hilton/reglas.yaml` sigue sin existir.
+
+---
+
 # Bitácora — HILTON (DT · QB · Between · Piso18)
 
 > Una entrada por sesión, la más nueva arriba. Sirve para que otro diseñador
@@ -5,6 +61,240 @@
 
 ---
 
+## 2026-09-07 (cierre) · Eli (Windows) — BETWEEN: el carrusel PROMOS TO GO queda APROBADO
+
+**Eli: «aprobados».** Las cuatro piezas del carrusel Promos To Go, que pasó a la
+**S4 del 22-09** (antes S3 del 14-09), quedan aprobadas.
+
+| slide | foto | archivo de entrega |
+|---|---|---|
+| 1 · portada | `togo-portada-r18.jpg` | `BW FEED 22-09 Promos To Go 1 portada.png` |
+| 2 · café + sándwich | `togo-s2-r20.jpg` | `…2 sandwich.png` |
+| 3 · café + dulce | `togo-s3-r21.jpg` | `…3 dulce.png` |
+| 4 · los tres | `togo-s4-r22.jpg` | `…4 los tres.png` |
+
+Están en `out/entrega-r21/S4/`, 2250×2812, y las cuatro limpias en
+`between-qa.py`.
+
+### Qué se hizo para llegar acá, en dos frases
+
+La ronda 20 corrigió lo estructural: **la jerarquía del brief estaba invertida en
+las tres slides interiores** (la bajada hacía de titular y el titular del brief
+iba dentro de la barra del precio), y las fotos se regeneraron con el método de
+Eli —prompt propio por slide, con su pieza aprobada y las fotos reales del
+producto como referencias— en vez de componer recortes. La ronda 21 arregló sus
+dos últimos reparos: la medialuna exagerada de la slide 3 y el plato de cerámica
+para el muffin de la slide 4.
+
+### ⛔ Lo que NO se hizo, y es lo único que falta
+
+1. **Nada subido al Drive.** El carrusel cambió de semana, así que **no hay
+   carpeta destino todavía**: las piezas viejas viven en `S3 · BW`
+   (`1QOreVz6NVYvuri9RAYQRMNiilV_IN8XZ`) y estas van a la S4. Hay que decidir si
+   se crea `S4 · BW` o si se reemplazan por id las de la S3 para conservar los
+   enlaces del portal. **Decisión de Eli.**
+2. **Sin commit.** Y ojo con esto: los fondos y las generaciones viven en
+   `public/assets/` y `raw/`, las dos en el `.gitignore`. Sin forzarlas al commit
+   **este carrusel no se reproduce en otra máquina** — es exactamente el problema
+   que Revex ya tuvo. Son unos 60 MB entre las generaciones de esta jornada y las
+   tres piezas de Eli.
+
+### El estado de septiembre, después de esta jornada
+
+| pieza | semana | estado |
+|---|---|---|
+| Carrusel Promos To Go | S4 · 22-09 | ✅ **aprobado** (4 piezas) |
+| ST Emergencia | S2 · 09-09 | ✅ aprobado — **la hizo Eli**, ya subida por ella |
+| Carrusel Cumpleaños | S2 · 09-09 | ✅ aprobado — **lo hizo Eli** |
+
+⭐ Y el aprendizaje de la jornada, que vale más que las piezas, está en
+`clients/hilton/PROMPTS-DE-ELI.md`: **no se compone, se genera**, con las fotos
+reales como referencia y una sola variable por vez.
+
+---
+## 2026-09-07 (tarde) · Eli (Windows) — BETWEEN rondas 17-19: ELI REHIZO DOS PIEZAS Y ESO ES LA NOTICIA
+
+**Eli rechazó la ST de Emergencia y el carrusel de Cumpleaños, los rehizo ella
+misma y dejó los prompts a la vista.** Esa es la entrada más importante de esta
+bitácora en semanas: no es una ronda más de correcciones, es un cambio de método.
+
+### ⛔ Lo que quedó rechazado, y por qué
+
+Cinco rondas seguidas del estudio sobre las mismas piezas, con esta secuencia de
+veredictos:
+
+    r11  papelitos de color plano sembrados en la mesa   → «infantil»
+    r12  oro metálico dibujado                           → «parece un plátano»
+    r14  el vector de Eli sembrado                       → «quemado»
+    r17  cinta FOTOGRÁFICA con 15-26 % de especular      → «falsa, quemada»
+    r19  fondo generado + recortes + logo estampado       → «parecen de paint pegoteados»
+
+El MATERIAL mejoró en cada vuelta y el veredicto no cambió nunca. Porque el
+problema no era el material.
+
+> ⭐⭐⭐ **El método era el error: el estudio COMPONÍA y Eli GENERA.** Ella le pasa
+> las fotos reales del producto como referencias (`@img1 @img2 @img3`), describe
+> la escena terminada, y el generador entrega el producto, su logotipo impreso, la
+> luz, las sombras y **hasta el texto de la señalética** ya integrados. Cada
+> elemento que el estudio pegaba encima era una costura más.
+
+Y una conclusión mía que resultó **falsa** y conviene tenerla anotada: después del
+«falsa, quemada» de la r17 decidí que el dorado tenía que irse al fondo y fuera de
+foco, porque nítido sobre la mesa siempre se leía pegoteado. La pieza de Eli lo
+desmiente: su dorado está **sobre la mesa y en foco**, y se ve de lujo.
+
+### ⭐ Dónde está todo lo de Eli
+
+| pieza | archivo |
+|---|---|
+| ST Emergencia (S2 · 09-09) | `raw/hilton/between/de-eli/emergencia-s2/BW ST 09-09 Emergencia Between.png` |
+| Cumpleaños 1 y 2 (S2 · 09-09) | `raw/hilton/between/de-eli/cumple-s2/C1 S2 CUMPLE N{1,2}.png` |
+| **sus PROMPTS, textuales** | **`clients/hilton/PROMPTS-DE-ELI.md`** ← leer antes de escribir cualquier prompt de esta marca |
+
+La ST de Emergencia **ya la subió ella al Drive** (`S2 · BW / STS`, 07-09 16:05).
+Mis versiones de las tres piezas se borraron de `out/entrega-r18/` y quedó un
+LEEME explicando cuál manda, para que nadie entregue el archivo equivocado.
+
+### ✅ Lo que SÍ quedó del estudio: el carrusel PROMOS TO GO
+
+Pasó a la **S4 del 22-09** (antes S3 14-09). Entregado en `out/entrega-r19/S4/`,
+4 de 4 limpias en `between-qa.py`, y hecho ya con el método de Eli:
+
+- **portada**: Eli dejó el fondo aprobado; se corrigieron los «textos corridos» —
+  y no era el centrado (las cinco líneas caen a ±2 px del eje) sino el AIRE, con
+  la jerarquía invertida: 23 px de script→titular contra 63 px entre las dos
+  líneas del titular. Con `aireScriptATitulo={44}` queda 96 contra 63;
+- **slides 2, 3 y 4**: una generación con prompt propio cada una, pasándole la
+  pieza aprobada de Eli como referencia de vaso y de calidad. **El logotipo del
+  vaso viene nativo en la imagen, no estampado**, así que no hay costura;
+- **slide 4**: la bolsa va **lisa, sin logo** — instrucción literal de Eli, «borra
+  los logos, déjala sólo en el vaso de TOGO»;
+- se sacó la etiqueta «Croissant» y su flecha: sus coordenadas estaban medidas
+  sobre la foto anterior;
+- tono igualado a la portada (calidez 29-35 contra 34,2 de ella).
+
+⚠️ Ojo con un detalle no obvio del igualador: `iguala_tono()` corrige la calidez
+ANTES de la saturación, y el paso de saturación la vuelve a comprimir. Para
+terminar en 34 hay que **pedir 60**. Pidiendo 34 el resultado cae en 19-20, o sea
+más frío que la portada.
+
+### ⚠️ Lo que queda abierto
+
+1. **Los emojis del mock rinden distinto según la máquina.** La pieza de Eli tiene
+   el ☕ correcto (una taza de café); en Windows la pila cae en Segoe UI Emoji y
+   sale una **taza lila**. Se cierra empaquetando Noto Color Emoji en
+   `public/assets/hilton/between/fonts/` y nombrándola PRIMERA en la pila.
+2. **`clients/hilton/reglas.yaml` sigue sin existir**, así que Between no pasa por
+   `qa/motor.py` — la compuerta del estudio — sino sólo por `between-qa.py`.
+3. **Nada del carrusel To Go subido al Drive.** Falta el paso de entrega.
+4. Siguen los pendientes viejos: `FEED!H16` sin responder, nombres con fechas
+   viejas en Drive y el duplicado «…4 trio.png».
+
+### Los scripts de estas rondas
+
+`between-emergencia-r16/r17/r18.py` · `between-cumple-muro-r16/r18.py` ·
+`between-cumple-cintas-r17.py` · `between-cintas-recortar.py` ·
+`between-croissant-recortar-r17.py` · `between-togo1-r16/r18.py` ·
+`between-togo4-r16.py` · `between-togo-slides-r19.py`
+
+⚠️ Los de Emergencia y Cumpleaños quedan como **historial**, no como pipeline: esas
+dos piezas ya no se producen así. El que sigue vivo es
+`between-togo-slides-r19.py`, que es el único escrito con el método nuevo.
+
+---
+## 2026-09-07 · Eli (Windows) — BETWEEN ronda 16: la referencia era de geometría
+
+**Eli mandó tres encargos con una referencia de Pinterest en la mano** —una caja
+de «romper el vidrio en caso de emergencia»— y las tres piezas salieron. Cuatro
+piezas rendidas, `between-qa.py` limpio en 7 de 7 (incluidas las slides 2 y 3 que
+no se tocaron, rendidas sólo para el control de carrusel).
+
+### Lo que se hizo
+
+| pieza | qué pidió | qué se hizo |
+|---|---|---|
+| **ST Emergencia** (S2, 09-09) | «igual a la referencia, con café TOGO, croissant jamón queso y muffin de chocolate» | **rehecha entera**: caja vertical que manda en el cuadro, titular SOBRE el vidrio, llamado en la BARRA del marco, los 3 productos reales apoyados en una línea de base |
+| **Cumpleaños 1 y 2** (S1, 03-09) | «volver a hacer el fondo, genera en magnific, globos de fondo sutil, que se note que es Between» | **sólo el muro**: 3 globos champán generados y compuestos en el muro vegetal REAL de la 257 — el par abre en la slide 1 y uno solo cierra en la 2 |
+| **To Go 1 portada** (S3, 14-09) | «arregla el logo» | el logotipo pasó de **0,158 a 0,32** del alto del cuerpo (el vaso real da 0,485), con comba de 8 px y enmascarado por los dedos |
+| **To Go 4 los tres** (S3, 14-09) | «vuelve a hacer ese, se ve extraño la foto de fondo y todo» | **escena regenerada** con el muro verde y la mesa miel de sus hermanas, los 2 logotipos re-medidos y el tono igualado a las slides 2 y 3 |
+
+### ⭐ El hallazgo de la sesión, y es de método
+
+**Las cuatro piezas llevaban 3 o 4 rondas de ajustar parámetros dentro de un
+planteamiento equivocado.** La regla de la ronda 15 («a la segunda vez que se
+repite un comentario, mira el insumo») necesitaba un piso más:
+
+> **A la TERCERA ronda de parámetros sobre la misma pieza, lo que está mal es la
+> geometría o la escena.**
+
+- La ST de Emergencia: la caja era **apaisada** (1,20 : 1) y ocupaba el 35 % del
+  alto, con 292 px de vacío arriba y 465 abajo. La referencia es vertical y manda
+  en el cuadro. Se vio en un segundo poniendo **la pieza al lado de la referencia
+  al mismo alto** — el control que el método pide y que esta pieza nunca tuvo.
+- El logo de la portada: cuatro rondas tratando de **esquivar la mano**, y la
+  ronda 15 terminó peor que la 9 (0,158 contra el 0,32 aceptado). Los dedos
+  cruzan el centro del vaso porque **así se toma un vaso**: la salida es que los
+  dedos lo TAPEN, no que lo empujen a la tapa.
+- La slide 4: tres rondas de revelado peleando contra un **interior de bar** en
+  un carrusel de bodegones de luz de día. El problema era la escena.
+
+Todo medido y escrito en `clients/hilton/CLAUDE.md § RONDA 16`, con los 13
+aprendizajes y sus cifras.
+
+### ⚠️ Dos decisiones que hay que confirmar
+
+1. **La Cumpleaños 1 ahora tiene globos REALES en el fondo y los globos
+   ILUSTRADOS de Eli encima**, los dos en el mismo tercio izquierdo. Es decir dos
+   veces lo mismo con dos materiales. Se dejaron los dos porque el criterio con
+   que Eli aprobó esa slide fue *«que sean ilustradas, con el trazado que ya se
+   sabe y se conoce»* y hoy pidió globos en el fondo generado: **no se resuelve
+   en silencio.** Si sobran, se quitan los ilustrados en una línea.
+2. **La slide 4 dice «¡LLÉVATE LOS 3!» y el brief que Eli pegó hoy dice «Llévalo
+   contigo.»** El «¡Llévate los 3!» salió de una corrección del cliente
+   (Scarlette, ronda 4: «en lugar de llévalo contigo, pongamos algo que haga más
+   sentido»), está aplicado y tachado en la grilla. Se conservó la corrección del
+   cliente por sobre el brief, que nunca se actualizó. **Confirmar cuál manda.**
+
+### ⛔ Lo que NO se hizo
+
+- **Nada se subió al Drive.** Las cuatro piezas están en
+  `out/hilton-between-r16/` y falta correr `between-r15-entrega-subir.py`
+  adaptado a la r16 para reemplazar por id y conservar los enlaces.
+- **Los emojis del mock de la Cumpleaños 2 siguen mal**: el ☕ sale como una taza
+  **lila** porque en Windows la pila cae en Segoe UI Emoji. Y peor: en el Mac
+  caería en Apple Color Emoji, o sea que **la misma pieza rinde distinto según
+  quién la rinda**. Se cierra empaquetando Noto Color Emoji y poniéndola primera
+  en la pila. No estaba en el encargo de hoy.
+- `clients/hilton/reglas.yaml` **sigue sin existir**, así que Between no pasa por
+  `qa/motor.py` (la compuerta del estudio) sino sólo por el `between-qa.py` a
+  medida.
+- Siguen abiertos los pendientes de la r15: `FEED!H16` sin responder, los nombres
+  con fechas viejas en Drive, el duplicado «…4 trio.png» y la ST 03-09 generada.
+
+### Dónde está todo
+
+- Piezas: `out/hilton-between-r16/` (2250×2812 feed · 2250×4000 story)
+- Escenarios y generaciones: `public/assets/hilton/between/ia-sept/`
+  (`emergencia-fondo-r16.png`, `cumple-globos-r16.png`, `cumple-fondo-r16b.png`,
+  `togo-portada-gen-r16.png`, `togo-trio-gen-r16.png`)
+- Fotos reveladas: `fotos-gradadas/cumple-r16-{1,2}.jpg`, `togo-portada-r16.jpg`,
+  `togo-trio-r16.jpg`
+- Base con el muro nuevo: `raw/hilton/between/togo-25jul2025/base-r16-muro.jpg`
+- Scripts: `between-emergencia-r16.py` · `between-cumple-muro-r16.py` ·
+  `between-togo1-r16.py` · `between-togo4-r16.py`
+- Cómo se reproduce la Cumpleaños de punta a punta:
+
+```bash
+python scripts/between-cumple-muro-r16.py
+BW_CUMPLE_ORIGEN=raw/hilton/between/togo-25jul2025/base-r16-muro.jpg \
+  BW_CUMPLE_RONDA=r16pre python scripts/between-cumple-fondo.py
+BW_CUMPLE_RONDA=r16pre BW_CUMPLE_RONDA_OUT=r16 \
+  python scripts/between-cumple-confeti-r14.py
+npx remotion still src/BetweenEntry.tsx BW-F-Cumple-1 \
+  out/hilton-between-r16/BW-F-Cumple-1.png --scale=2.0833
+```
+
+---
 ## 2026-09-05 · Eli (Windows) — BETWEEN ronda 15: la reiteración era el diagnóstico
 
 **Eli devolvió la ronda 14 entera**, y con una frase que vale más que las cuatro

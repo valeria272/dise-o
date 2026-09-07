@@ -93,6 +93,7 @@ medición, pero **no se llaman**.
 
 Salidas: cumple-r13-1.jpg y cumple-r13-2.jpg en fotos-gradadas/.
 """
+import os
 import sys
 from pathlib import Path
 
@@ -109,7 +110,15 @@ except Exception:
     pass
 
 RAIZ = Path(__file__).resolve().parent.parent
-ORIGEN = RAIZ / "raw/hilton/between/togo-25jul2025/Double Tree 25 jul 25-257.jpg"
+# ⭐ RONDA 16 (07-09-2026): la toma de origen y el nombre de salida se pueden
+# cambiar por entorno, para poder correr este MISMO revelado —que es el que Eli
+# aprobó— sobre una base distinta sin duplicar el script:
+#     BW_CUMPLE_ORIGEN=<jpg>  BW_CUMPLE_RONDA=r16pre  python between-cumple-fondo.py
+# Sin las variables se comporta exactamente igual que antes.
+ORIGEN = Path(os.environ.get(
+    "BW_CUMPLE_ORIGEN",
+    RAIZ / "raw/hilton/between/togo-25jul2025/Double Tree 25 jul 25-257.jpg"))
+RONDA = os.environ.get("BW_CUMPLE_RONDA", "r13")
 FOTOS = RAIZ / "public/assets/hilton/between/fotos-gradadas"
 PASOS = RAIZ / "out/hilton-between-r13/pasos"
 
@@ -382,11 +391,11 @@ def una(n):
     print(f"   final: vaso mediana {np.median(b[vaso]):.0f} · "
           f"calidez del vaso {b[vaso.nonzero()[0], vaso.nonzero()[1], 0].mean() - b[vaso.nonzero()[0], vaso.nonzero()[1], 2].mean():.1f}")
     informe(im, "final")
-    destino = FOTOS / f"cumple-r13-{n}.jpg"
+    destino = FOTOS / f"cumple-{RONDA}-{n}.jpg"
     im.save(destino, quality=95, subsampling=0)
     PASOS.mkdir(parents=True, exist_ok=True)
     im.resize((im.width // 3, im.height // 3), Image.LANCZOS).save(
-        PASOS / f"cumple-r13-{n}.jpg", quality=88)
+        PASOS / f"cumple-{RONDA}-{n}.jpg", quality=88)
     print(f"   -> {destino.name}")
 
 

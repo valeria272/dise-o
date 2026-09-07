@@ -57,6 +57,7 @@ la luz»), aplicada a cada serpentina:
 Entrada:  fotos-gradadas/cumple-r13-{1,2}.jpg  (las de la ronda 13, intactas)
 Salida:   fotos-gradadas/cumple-r14-{1,2}.jpg
 """
+import os
 import sys
 from pathlib import Path
 
@@ -73,8 +74,22 @@ except Exception:
     pass
 
 RAIZ = Path(__file__).resolve().parent.parent
+
+# ⭐ RONDA 16 (07-09-2026): de qué ronda lee y a qué ronda escribe, por entorno.
+# Así la MISMA siembra de serpentinas —la que Eli aprobó— corre sobre una base
+# nueva sin tocar una sola cifra. Sin variables se comporta igual que antes.
+RONDA_IN = os.environ.get("BW_CUMPLE_RONDA", "r13")
+RONDA_OUT = os.environ.get("BW_CUMPLE_RONDA_OUT", "r14")
 FOTOS = RAIZ / "public/assets/hilton/between/fotos-gradadas"
-PIEZAS = RAIZ / "public/assets/hilton/between/recursos/confeti-oro"
+# ⭐ RONDA 17 (07-09-2026): la carpeta del material, el prefijo de sus archivos y
+# el ASIENTO se pueden cambiar por entorno, para poder correr esta MISMA receta de
+# montaje —que lleva cuatro rondas de correcciones— sobre un material distinto.
+# Lo usa `between-cumple-cintas-r17.py` con cinta metálica FOTOGRÁFICA en vez del
+# vector, porque Eli pidió «un dorado brillante» y un vector no tiene rango.
+PIEZAS = Path(os.environ.get(
+    "BW_CINTA_PIEZAS",
+    RAIZ / "public/assets/hilton/between/recursos/confeti-oro"))
+PREFIJO = os.environ.get("BW_CINTA_PREFIJO", "confeti-oro")
 PASOS = RAIZ / "out/hilton-between-r14/pasos"
 
 #: La luz de la toma entra por ARRIBA A LA IZQUIERDA — se lee en la sombra del
@@ -102,7 +117,15 @@ ILUMINANTE = (0.983, 1.000, 1.030)
 #: la pieza pasa por `hombro()`, la curva de la marca que impide que nada llegue
 #: a blanco: la veta especular del vector llega a 246 y sobre madera oscura eso
 #: es exactamente un reflejo quemado. Con el hombro cierra en 235.
-ASIENTO = 0.80
+# ⛔⛔ RONDA 17 — ESTA CORRECCIÓN SE PASÓ DE LARGO Y HAY QUE SABERLO.
+# Bajar el asiento a 0,80 y meter `hombro()` arregló el «se ve quemado» de la
+# ronda 15 apagando los BRILLOS, y con eso el oro quedó con **0,0 % de píxeles
+# especulares** contra el 3,4 % de la pieza que Eli tiene aprobada. Resultado:
+# ronda 16, «se ve de un color dorado opaco». Un metal sin especular es pintura.
+# El problema nunca fue el brillo máximo — era que el vector no tiene RANGO.
+# Con material fotográfico el asiento sube (se pasa 1,0 por entorno) y el hombro
+# solo se encarga de que nada llegue a blanco puro.
+ASIENTO = float(os.environ.get("BW_CINTA_ASIENTO", "0.80"))
 
 #: Siembra de la SLIDE 1. Cada entrada: (pieza, x, y, ancho, rotación, desenfoque,
 #: sombra). Las coordenadas son del lienzo de 2250×2812 y salen de la cuadrícula
@@ -173,7 +196,7 @@ def balance(a, x, y, w, h):
 
 
 def una(n, siembra):
-    origen = FOTOS / f"cumple-r13-{n}.jpg"
+    origen = FOTOS / f"cumple-{RONDA_IN}-{n}.jpg"
     if not origen.exists():
         sys.exit(f"falta la foto de la ronda 13: {origen}")
     base = Image.open(origen).convert("RGB")
@@ -185,7 +208,7 @@ def una(n, siembra):
     sombras = np.zeros((base.height, base.width), np.float32)
 
     for pieza, x, y, ancho, rot, blur, fuerza in siembra:
-        p = PIEZAS / f"confeti-oro-{pieza}.png"
+        p = PIEZAS / f"{PREFIJO}-{pieza}.png"
         if not p.exists():
             sys.exit(f"falta la serpentina {p.name} — corre between-confeti-recortar.py")
         im = Image.open(p).convert("RGBA")
@@ -271,11 +294,11 @@ def una(n, siembra):
         a[y0:y1, x0:x1] = a[y0:y1, x0:x1] * (1.0 - za) + zc
     salida = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
     informe(salida, f"slide {n} con serpentinas")
-    destino = FOTOS / f"cumple-r14-{n}.jpg"
+    destino = FOTOS / f"cumple-{RONDA_OUT}-{n}.jpg"
     salida.save(destino, quality=95, subsampling=0)
     PASOS.mkdir(parents=True, exist_ok=True)
     salida.resize((salida.width // 3, salida.height // 3), Image.LANCZOS).save(
-        PASOS / f"cumple-r14-{n}.jpg", quality=88)
+        PASOS / f"cumple-{RONDA_OUT}-{n}.jpg", quality=88)
     print(f"   -> {destino.name}")
 
 

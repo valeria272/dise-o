@@ -1,6 +1,6 @@
 {
   "_que_es": "Registro de la última vez que se revisó el Drive con /al-dia. No editar a mano.",
-  "ultima_revision": "2026-09-05",
+  "ultima_revision": "2026-09-07",
   "por_marca": {
     "ebema": {
       "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
@@ -19,8 +19,8 @@
       "ultimo_hallazgo": "MOVIMIENTO NUEVO, pero de la CM, no de diseno: Constanza OLIVARES (CM) ordeno el 03-09 14:35Z dentro de '9. SEPTIEMBRE/FEED' de Diego (1ieEFVvmJNPTl1UoKpnzknZNs772tB7Vp) tres carpetas de carrusel: 'carrusel hilos' (4 PNG 'HILOS UNEN' de Diego, 27-08), 'carrusel frizz' (5 PNG 'INV O VER' de Diego, 28-08) y 'carrusel olix canas' > 'para diseñar' (1KJ2rAiI6APJfgHJJE2C1D32qCMi8kkZZ) = UN BRIEF NUEVO SIN DISENAR: 'HANDBOOK OLIX_v5.ai' (385 MB, de Raimundo / DIAZ DISENO, mesa 1920x1080, fuentes Bebas Neue Pro Bold + Helvetica Neue + Onest + Felonia, 13 Pantones), su Report.txt, el PDF del handbook, 'FICHA TECNICA RETOCA RAICES.pdf' y 3 'touchup jpg-01..03'. Es material del PROVEEDOR (Olix), no del sistema Selfie: sirve de packshot/ficha, no de gramatica. La grilla Selfie sept se modifico 18:15Z. Constanza LIZANA sigue con cero archivos desde el 28-08 (8 dias). Sigue abierto quien firma Selfie."
     },
     "hilton": {
-      "revisado": "2026-09-05 (manana -- pasada de /abrir between)",
-      "ultimo_hallazgo": "BETWEEN: la grilla xlsx (1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY, 65,44 MB) se modifico el 04-09 20:49:49Z. Diff completo contra la copia de las 18:24Z (bw-0904b.xlsx): SOLO DOS CELDAS. (1) FEED!J16 'Ella hablo / Ella escucho' (16-09): EN CAMBIOS -> CORREGIDO -- la grilla se puso al dia con la aprobacion de Eli de la ronda 12; no es trabajo nuevo. (2) STORIES!I16 'ST Emergencia Between' (09-09): REVISAR CONTENIDO -> EN CAMBIOS, pero SIN comentario nuevo (I14 e I15 identicas) y el cambio ocurrio a las 20:49Z, ANTES de que la ronda 13 subiera la pieza rehecha (21:31Z): apunta al render viejo. Los dos comentarios de I15 ya estan aplicados (croissant+muffin en la ronda 13, rediagramacion antes). comments1.xml/comments2.xml SIN comentarios nativos nuevos (el unico byte que cambio es el roundtripDataSignature de Google). Las 5 piezas de la ronda 13 en Drive (mod 21:30-21:31Z) tienen CERO comentarios. Nada de Eli ni de Scarlette despues de las 21:35Z. El editable 'Editable cumpleanos BW' (1kjIL3VuLnKH0ED3h8lx9kQ4GPUI5XHVF, 2 EPS del 04-09 18:22Z) ya esta bajado en raw/hilton/between/editable-cumple. == Fuera de Between == Eli subio 'ST n°6 S2.mp4' a QB/STS (04-09 20:46Z): con eso QB S2 queda 6 de 7 (falta la n°2). Y abrio 'C2 ER FIESTAS PATRIAS' (DT) con 2 KV mas y 'Cartel MC 2026 ALGARROBAL' (Mas Center, cartel 7x5,5 m + 3,5x2,75 m, .ai/.pdf/.tif). Copia nueva de la grilla: scratchpad de esta sesion, bw-0905.xlsx."
+      "revisado": "2026-09-07 (cierre)",
+      "ultimo_hallazgo": "BETWEEN septiembre CERRADO en las tres piezas de la jornada. Carrusel PROMOS TO GO movido a la S4 del 22-09 (antes S3 14-09): 4 piezas APROBADAS por Eli, en out/entrega-r21/S4/, 4/4 limpias en between-qa.py. NO SUBIDO AL DRIVE: el cambio de semana deja sin carpeta destino (las viejas estan en S3 BW 1QOreVz6NVYvuri9RAYQRMNiilV_IN8XZ) y hay que decidir si se crea S4 BW o se reemplaza por id para conservar los enlaces del portal. ST EMERGENCIA (S2 09-09) y CARRUSEL CUMPLEANOS (S2 09-09): los rehizo ELI y son los aprobados; la ST ya la subio ella a S2 BW/STS. Sus archivos y SUS PROMPTS quedaron en el repo (raw/hilton/between/de-eli/ y clients/hilton/PROMPTS-DE-ELI.md). LECCION DE LA JORNADA: no se compone, se GENERA — fotos reales como referencia y una sola variable por vez. El estudio fallo 5 rondas componiendo recortes sobre fondos generados. PENDIENTE TECNICO: sin commit, y los fondos viven en public/assets y raw, los dos en .gitignore, asi que el carrusel NO se reproduce en otra maquina hasta forzarlos (~60 MB)."
     },
     "tierra-calma": {
       "revisado": "2026-09-04 (manana, 07:50 -- pasada de /abrir sin marca)",
@@ -77,10 +77,10 @@
     "sebastian.serrano@copywriters.cl"
   ],
   "_notas_de_esta_revision": [
-    "Pasada del 05-09 desde /abrir between, acotada a Between. git pull: rama al dia (nada nuevo de los demas); 0 notas nuevas de memoria.",
-    "La ronda nueva se busco por DIFF del xlsx (bw-0904b.xlsx 18:24Z -> bw-0905.xlsx) y por diff de comments1/2.xml, no leyendo celdas.",
-    "VEREDICTO: NO hay ronda 14. Los dos cambios de la grilla son de ESTADO, no de contenido, y ninguno pide trabajo nuevo.",
-    "Las 5 piezas de la ronda 13 estan en Drive sin un solo comentario: sigue en pie lo del cierre de ayer -- 'no aprobada' no es 'rechazada', hay que ESPERAR a Eli.",
+    "Pasada del 07-09 desde /abrir between, acotada a Between. git pull trajo 15 commits, TODOS de la cuenta propia (G.C.L. Cap.02) -- nada de Between ni de otro diseñador sobre Hilton. 0 notas nuevas de memoria (57 ya existian).",
+    "⭐ La grilla puede cambiar de modifiedTime SIN cambiar de contenido: Google la re-guarda al abrirla y renumera las 26 imagenes incrustadas. La prueba barata es el SET DE HASHES de xl/media (identico = renumeracion) y uniqueCount de sharedStrings. Sin eso, el tamaño distinto de image1..26 parece una pieza nueva pegada en la grilla.",
+    "El diff se hizo por VALOR y por TACHADO (font.strike sobre rich_text): un cambio de estado o un comentario resuelto no se veria solo con data_only.",
+    "VEREDICTO: nada nuevo que hacer en Between por iniciativa propia. Sigue en pie el cierre del 04-09 -- 'no aprobada' no es 'rechazada'. Hay que PREGUNTARLE a Eli por las 5 de la ronda 15.",
     "El conector de Drive devuelve paginas de 5 aunque se pida 50: seguir siempre el nextPageToken."
   ]
 }

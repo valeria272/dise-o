@@ -1,0 +1,13 @@
+DEJA ACÁ las fotos y pantallazos que quieras que use.
+
+Ruta para copiar y pegar en el Explorador:
+    C:\Users\Elisabet\EDITOR VIDEOS\raw\hilton\between\de-eli
+
+Sirve cualquier formato: .jpg .png capturas de pantalla, fotogramas de video.
+Ponles un nombre que se entienda (por ejemplo "2do-piso-mesas.png"); no hace
+falta ordenarlas ni renombrarlas con código.
+
+Cuando estén, dímelo y las leo de acá.
+
+⚠️ raw/ está en .gitignore: esto NO se sube al repositorio ni ocupa espacio a
+los demás diseñadores. Si alguna termina en una pieza, el resultado sí viaja.

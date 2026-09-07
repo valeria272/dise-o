@@ -555,7 +555,7 @@ export const Cumple1: React.FC = () => (
           La foto vuelve a ser sólo foto y el adorno va ENCIMA, en el beige de
           marca. Un doodle no compite con la fotografía porque no pretende ser
           parte de ella. */}
-    <FotoFondo src={F + 'cumple-r14-1.jpg'} oscurecer={0.08} />
+    <FotoFondo src={F + 'cumple-r18-1.jpg'} oscurecer={0.08} />
     {/* ⛔ RONDA 11 — la G1 va SIN doodles, y es la misma razón que ya escribió la
         ronda 10 pero ahora sí se cumple: los papelitos de cumpleaños están
         DENTRO de la escena, sobre la mesa, que es lo que pidió el cliente.
@@ -722,7 +722,7 @@ export const Cumple1: React.FC = () => (
  */
 export const Cumple2: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
-    <FotoFondo src={F + 'cumple-r14-2.jpg'} oscurecer={0.2} />
+    <FotoFondo src={F + 'cumple-r18-2.jpg'} oscurecer={0.2} />
     <Globos
       posiciones={[
         /* Las posiciones son las del editable de Eli —el par abre por el flanco
@@ -780,7 +780,7 @@ export const Cumple2: React.FC = () => (
            adentro y no se actualiza solo. */
         foto={
           <Img
-            src={staticFile(F + 'cumple-r14-1.jpg')}
+            src={staticFile(F + 'cumple-r18-1.jpg')}
             style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 40%'}}
           />
         }
@@ -955,7 +955,16 @@ export const Foto3: React.FC = () => (
 
 export const Foto4: React.FC = () => (
   <PiezaFeedBodegon
-    foto={F + 'h4-postre-empezado.jpg'}
+    /* ⭐ RONDA 25 (07-09) — Eli: «debe ser una torta casi en totalidad comida,
+       pero que se vea lindo aún». Coincide con el comentario del cliente que
+       seguía sin tachar en FEED!H15: «que se vea más vacío el plato […] desde
+       arriba también como los 2 anteriores».
+       ⚠️ La r24 cumplía las dos condiciones pero estaba sobre MÁRMOL BLANCO, y
+       eso no se ve hasta montarla: rompía el mundo del carrusel (sus tres
+       hermanas van sobre los listones oscuros) y dejaba el texto blanco casi
+       ilegible. «Como los 2 anteriores» no hablaba sólo del ángulo: hablaba de
+       la mesa. */
+    foto={F + 'h4-torta-comida-r25.jpg'}
     script="“¡Nooo!"
     caps={'Se me olvidó\nla foto.”'}
     scriptSans
@@ -1119,8 +1128,24 @@ export const ToGo1: React.FC = () => (
        sólo que tome el vaso MÁS ABAJO. Ahora hay 83 px limpios, el logotipo
        entra entero a 0,86 del ancho del vaso y queda centrado en su eje con 17
        y 16 px de aire. Ver `scripts/between-togo1-r15.py`. */
-    foto={F + 'togo-portada-r15.jpg'}
+    foto={F + 'togo-portada-r18.jpg'}
     script="¿Vas con poco tiempo?"
+    /* ⭐⭐ RONDA 19 (07-09) — Eli: «los textos se ven corridos en la portada».
+       Y no era el centrado: medido sobre el render, las cinco líneas caen a ±2 px
+       del eje del lienzo. Lo corrido era el AIRE, con la jerarquía al revés:
+
+           script → titular   (salto ENTRE niveles) .....  23 px
+           línea 1 → línea 2  (salto DENTRO del nivel) ...  63 px
+
+       La script quedaba PEGADA al titular mientras las dos líneas del titular
+       estaban casi tres veces más separadas entre sí. Es el defecto que el manual
+       ya tiene escrito —«el salto entre niveles es mayor que el salto dentro del
+       nivel»— y su causa también: «¿Vas con poco tiempo?» trae descendentes (las
+       dos «p» y la cola del «¿») y sus colas bajan dentro del token medido de
+       9 px, que se midió sobre una script SIN descendentes.
+       Con 44 el salto entre niveles sube a ~95 px contra los 63 de dentro del
+       nivel: la relación 1,5× que pide la regla. */
+    aireScriptATitulo={44}
     caps={'Tu desayuno\nva contigo'}
     datos={['Promos To Go', HORARIO_TOGO]}
     /* ⭐ RONDA 9 (03-09, Eli): «borra el fondo de este texto "Lunes a viernes ·
@@ -1177,9 +1202,26 @@ export const ToGo2: React.FC = () => (
        la comida y contraste local sobre el vaso para devolverle la tinta al
        logotipo impreso —sin re-estamparlo, que es lo que lo deformó en la
        ronda 5. */
-    foto={F + 'togo-sandwich-45-r11.jpg'}
-    script="Para empezar con algo"
-    caps="rico y contundente"
+    foto={F + 'togo-s2-r20.jpg'}
+    /* ⭐⭐⭐ RONDA 20 (07-09) — Eli: «recuerda guiarte del brief de lo que pide
+       visualmente, los textos armónicos y jerarquía».
+       Y ahí había un error de fondo que esta pieza arrastraba desde el principio:
+       **la jerarquía del brief estaba INVERTIDA.** El brief de esta slide dice
+
+           titular  CAFÉ + SÁNDWICH
+           bajada   Para empezar con algo rico y contundente.
+           precio   Desde $4.290
+
+       y la pieza usaba la BAJADA partida en dos (script + caja alta) como
+       titular, y metía el TITULAR del brief dentro de la barra del precio. O sea
+       que lo que el brief pone primero se leía último y en cuerpo chico.
+       Ahora los tres niveles son los del brief, y los tres son iguales en las
+       tres slides interiores: titular en caja alta · bajada · precio en la barra.
+       ⚠️ Y se va la script: la regla de Eli del 01-09 es «desde el slide 2 no
+       agregues la tipografía brushwell, así se diferencia de la portada». La
+       script queda como marca de la PORTADA. */
+    caps="Café + Sándwich"
+    bajada="Para empezar con algo rico y contundente."
     legal="*Imágenes referenciales."
     oscurecer={0.08}
   >
@@ -1197,7 +1239,7 @@ export const ToGo2: React.FC = () => (
           se resuelve solo lo de «la caja se repite» que Eli marcó en la portada.
           `igualarAncho` se queda porque no estorba con una línea y evita tener
           que reponerlo si vuelve el rótulo. */
-      lineas={[{texto: 'Café + Sándwich desde $4.290', fuerte: true}]}
+      lineas={[{texto: 'Desde $4.290', fuerte: true}]}
       igualarAncho
     />
   </PiezaFeedBodegon>
@@ -1235,9 +1277,12 @@ export const ToGo3: React.FC = () => (
        la comida y contraste local sobre el vaso para devolverle la tinta al
        logotipo impreso —sin re-estamparlo, que es lo que lo deformó en la
        ronda 5. */
-    foto={F + 'togo-dulce-45-r11.jpg'}
-    script="Ese gustito que mejora"
-    caps="cualquier mañana"
+    foto={F + 'togo-s3-r21.jpg'}
+    /* ⭐⭐⭐ RONDA 20 — misma corrección de jerarquía que la slide 2: el brief
+       pide titular «CAFÉ + DULCE», bajada «Ese gustito que mejora cualquier
+       mañana.» y precio «Desde $3.790». Sin script, que es de la portada. */
+    caps="Café + Dulce"
+    bajada="Ese gustito que mejora cualquier mañana."
     legal="*Imágenes referenciales."
     oscurecer={0.08}
   >
@@ -1251,8 +1296,14 @@ export const ToGo3: React.FC = () => (
         margen. La flecha se mueve lo mismo (+42) para que siga naciendo debajo
         de su etiqueta; su punta sigue cayendo sobre el croissant, que ocupa todo
         el centro del plato. */}
-    <Etiqueta x={182} y={648} size={42}>Croissant</Etiqueta>
-    <Ilustra cual="flechaBucle" x={214} y={706} ancho={112} opacidad={0.95} />
+    {/* ⛔ RONDA 19 — FUERA la etiqueta «Croissant» y su flecha. Sus coordenadas
+        (x 182 · y 648, flecha en x 214 · y 706) estaban MEDIDAS sobre la foto
+        anterior, y esta slide tiene foto nueva: la flecha apuntaría a un sitio
+        donde ya no hay croissant. El manual es explícito en que estas etiquetas
+        NO son obligatorias (§«las etiquetas con flecha no son obligatorias»), y
+        Eli pidió en esta ronda que los rótulos dejen de estar mal puestos. Una
+        etiqueta cuya posición no se puede verificar contra la foto no se
+        conserva: se saca. */}
     {/* ⭐ RONDA 5 (31-08): «Debe decir "desde $3.790". Sacar lo que dice café
         grande.» El «desde» ya venía de la ronda 4; se va la etiqueta del café y
         su flecha. La del croissant se queda: nadie la objetó. */}
@@ -1265,7 +1316,7 @@ export const ToGo3: React.FC = () => (
           se resuelve solo lo de «la caja se repite» que Eli marcó en la portada.
           `igualarAncho` se queda porque no estorba con una línea y evita tener
           que reponerlo si vuelve el rótulo. */
-      lineas={[{texto: 'Café + Dulce desde $3.790', fuerte: true}]}
+      lineas={[{texto: 'Desde $3.790', fuerte: true}]}
       igualarAncho
     />
   </PiezaFeedBodegon>
@@ -1328,9 +1379,26 @@ export const ToGo4: React.FC = () => (
          editó SU imagen —no se generó de cero— para agregar el muffin y para
          bajar los productos a la mitad inferior, porque la mano y el asa
          llegaban al tercio superior y ahí va este titular. */
-    foto={F + 'togo-trio-r12.jpg'}
-    script="¿Por qué elegir uno?"
-    caps="¡Llévate los 3!"
+    foto={F + 'togo-s4-r22.jpg'}
+    /* ⭐⭐⭐ RONDA 20 — el brief pone «¿POR QUÉ ELEGIR UNO?» como TITULAR y esta
+       pieza lo tenía en la script, con «¡Llévate los 3!» de titular. Se invierte
+       para que la slide de cierre siga la misma jerarquía que sus hermanas.
+       ⚠️ «¡Llévate los 3!» se conserva y NO se cambia por el «Llévalo contigo.»
+       del brief: esa línea la reemplazó el cliente (Scarlette, ronda 4 — «en
+       lugar de llévalo contigo, pongamos algo que haga más sentido con lo que se
+       está mostrando, podría ser ¡Llévate los 3!») y está aplicada y tachada en
+       la grilla. La corrección del cliente manda sobre un brief que nunca se
+       actualizó. Queda dicho acá para que nadie lo «arregle» de vuelta.
+       Y la barra de esta slide conserva las dos líneas del brief («Café + salado
+       + dulce» y «Desde $5.290») porque es la que resume el carrusel. */
+    caps="¿Por qué elegir uno?"
+    /* ⚠️ La bajada es la línea DESCRIPTIVA del brief («Café + salado + dulce»),
+       no el llamado. Con «¡Llévate los 3!» de bajada la slide quedaba con tres
+       palabras en cuerpo de bajada donde sus hermanas llevan una frase entera:
+       se leía tímida y rompía la armonía del carrusel. El llamado del cliente se
+       va a la BARRA, que es el sitio fuerte, y ahí queda paralela a las otras
+       («Desde $4.290» · «Desde $3.790» · «¡Llévate los 3! desde $5.290»). */
+    bajada="Café + salado + dulce"
     /* ⭐ RONDA 7 — mismo defecto previo de margen que `ToGo1`: tinta a 74 px del
        canto izquierdo, medida en y≈244–270, que es la banda de la script («¿Por
        qué elegir uno?», otra que abre con «¿»). Se compone en la columna. */
@@ -1356,7 +1424,7 @@ export const ToGo4: React.FC = () => (
           `igualarAncho` se queda porque no estorba con una línea y evita tener
           que reponerlo si vuelve el rótulo. */
       lineas={[
-        {texto: 'Café + Salado + Dulce desde $5.290', fuerte: true},
+        {texto: '¡Llévate los 3! desde $5.290', fuerte: true},
       ]}
       igualarAncho
     />
@@ -1607,119 +1675,144 @@ export const StCalculos: React.FC = () => (
        cliente. Se dibuja para que el sticker no termine puesto sobre la caja.
    Sin logo arriba: el vaso ya lo lleva impreso, y la regla de la diseñadora es
    que cuando el vaso trae el logo, no se repite en la pieza.                  */
+/* ⭐⭐⭐ RONDA 16 (07-09) — LA PIEZA SE REHACE CONTRA LA REFERENCIA DE ELI.
+
+   Eli, con el pin en la mano
+   (https://cl.pinterest.com/pin/1040683426409551586/):
+
+     «necesito que sean café TOGO, croissant jamón queso y muffin de chocolate,
+      debe ser igual a la referencia con los textos del brief»
+
+   ⛔ Y NO SE AJUSTA LA ANTERIOR — SE CAMBIA EL PLANTEAMIENTO. Es la regla de
+   proceso que salió de la ronda 15: a la segunda vez que un comentario se
+   repite se prohíbe tocar el parámetro. Esta pieza llevaba cuatro rondas de
+   escala, piso, sombra y luz sobre una GEOMETRÍA equivocada.
+
+   Lo que la referencia hace y la versión anterior no:
+
+     · la caja es VERTICAL y manda en el cuadro (antes: apaisada, 810×675, con
+       292 px de vacío arriba y 465 abajo);
+     · el TITULAR va SOBRE EL VIDRIO, dentro de la caja (antes: flotando en la
+       pared, y por eso la caja parecía un adorno lejano);
+     · el llamado va en la BARRA del marco, que es el gesto que hace que se lea
+       como una caja de romper (antes: no había barra);
+     · el producto es grande dentro del nicho.
+
+   ⚠️ El escenario —muro, marco con bisel, nicho hundido, los tres productos
+   reales apoyados y el vidrio encima— lo arma `scripts/between-emergencia-r16.py`
+   y sus cifras son las MISMAS que usa este componente, porque las dos se
+   escriben en el espacio lógico de 1080×1920:
+
+     ⭐ RONDA 17: la caja ya NO se dibuja — se GENERA vacía con Nano Banana Pro
+     (`ia-sept/emergencia-caja-r17.png`) y `between-emergencia-r17.py` le monta
+     los tres productos reales sobre su estante de madera. La caja dibujada con
+     degradados era lo que Eli leía como «armada, no diseñada»: su esquina era un
+     degradado borroso en vez de una arista, y su «piso» una tira plana donde
+     nada podía apoyar. Ver la cabecera de ese script.
+
+     ⭐ RONDA 18 — la caja se compone MÁS CHICA a propósito, porque Eli pidió
+     «espacio para que contenido pueda colocar una caja de preguntas». El marco
+     cierra en y=1215 y deja 365 px lógicos de muro limpio debajo.
+
+     nicho      x 358..752   y  389..1036     ← el vidrio, donde va el titular
+     barra      y 1044..1115                  ← donde va «¿CUÁL TOMARÍAS?»
+     muro libre bajo la caja  y 1215..1580   ← para la CAJA DE PREGUNTAS de la CM
+
+   ⚠️ SIN el sticker de encuesta dibujado, y es una decisión, no un olvido.
+   La fila INTERACCIÓN de la grilla lo anota entre corchetes —«[STICKER QUIZ /
+   ENCUESTA]»—, o sea que lo pone la CM en Instagram. Dibujarlo además obligaba
+   a repetir «¿Cuál tomarías?» dos veces (en la barra y en el mock) y sus emojis
+   salían mal: el ☕ se rendía como una bola morada y el 🥪 como un plátano.
+   La opción «Todas las anteriores» que pidió el cliente en `STORIES!I14` es una
+   opción de la ENCUESTA, y va en el sticker que configura la CM. Por eso la
+   pared de abajo queda limpia: el sticker cae ahí y no sobre la caja, que era
+   el reclamo original («no se cacha bien al tapar la vitrina con el texto»).
+
+   Sin logo: el vaso ya lo lleva impreso y la regla de la diseñadora es que
+   cuando el vaso firma, no se repite en la pieza.                            */
 export const StEmergencia: React.FC = () => (
-  /* ⭐⭐⭐ RONDA 8 (02-09) — la pieza se rehízo entera. Dos comentarios que
-     dicen lo mismo desde dos lados:
-       Cliente:   «No se cacha bien al tapar la vitrina con el texto, veamos
-                   otra diagramación?»
-       Scarlette: «no se parece a na ref, hagámosla más simple, NO ambientada en
-                   un lugar sino que tenga más PROTAGONISMO LA MISMA CAJA, y ojo
-                   con la diagramación de los textos: tapa mucho la caja.»
+  <AbsoluteFill style={{backgroundColor: '#eee2d0'}}>
+    <FotoFondo src={IA + 'emergencia-fondo-r18.png'} oscurecer={0} />
 
-     Lo que había (`emergencia-caja-2-logo.png`) fallaba en cinco cosas y las
-     cinco están en esos comentarios: era un NICHO en una pared —o sea ambientada
-     y sin vidrio, cuando el brief pide «caja de emergencia CON VIDRIO»—, el
-     titular iba DENTRO de la caja sobre la pared del fondo, y faltaba un
-     producto: el brief pide TRES (café, pastelería y sándwich) y había dos,
-     mientras la encuesta ofrecía «algo salado» que no estaba en cuadro.
-
-     Ahora: vitrina frontal con vidrio sobre fondo liso, los tres productos en
-     tres compartimentos, y **el texto vive fuera de la caja** — arriba el
-     titular, abajo la bajada y la encuesta.
-     `scripts/between-emergencia-magnific.py` + el logotipo real estampado sobre
-     el vaso liso con `between-logo-vaso.py --centro 960 2870 --ancho 318`. */
-  <AbsoluteFill style={{backgroundColor: '#efdfcd'}}>
-    {/* `oscurecer` a 0: el fondo es crema claro y el texto va en café, así que
-        apagar la foto sólo la ensuciaría. */}
-    {/* ⭐⭐ RONDA 10 (04-09) — comentario del cliente en `STORIES!I15`, el único
-        de esa celda que sigue SIN TACHAR: «Cambiaría que el salado sea un
-        crosant jamon queso y que el dulce sea un muffin».
-        → `scripts/between-emergencia-productos.py` cambia los dos productos de
-          la vitrina por **fotografía real del cliente** recortada de la sesión
-          25-jul-2025 (`between-recortes-reales.py`, grabCut):
-            compartimento 2 · DULCE   croissant simple  → muffin de chocolate
-            compartimento 3 · SALADO  sándwich baguette → croissant jamón queso
-        ⚠️ Y los textos de la encuesta NO se tocan: «☕ Café / 🥐 Algo dulce /
-           🥪 Algo salado» siguen siendo los tres del brief y siguen calzando con
-           lo que hay dentro de la vitrina. El cliente cambió el producto, no la
-           pregunta. */}
-    {/* ⭐⭐⭐ RONDA 13 (04-09) — Eli: «se ve muy mal el fondo. Tiene que ser
-        mejor editado, mejor elaborado. Vuelve a hacer esa misma historia […] con
-        el café To Go, con el vaso que ya habíamos logrado, el que está aprobado.
-        El croissant, que es lo salado. Un muffin de chocolate.»
-        ⛔ La vitrina anterior era crema sobre crema, sin vidrio reconocible, y
-           los tres productos FLOTABAN: sin piso, sin línea de base común, sin
-           sombra de contacto y a escalas incoherentes entre sí.
-        → `scripts/between-emergencia-r13.py`: la vitrina se genera VACÍA —marco
-          de madera con filete de latón, vidrio con su reflejo y tres
-          compartimentos verticales— y los tres productos son FOTOGRAFÍA REAL
-          recortada del cliente: el vaso To Go aprobado (que ya trae su logotipo
-          impreso), el croissant de jamón queso y el muffin de chocolate. Los
-          tres apoyan en la MISMA línea de base, con sombra de contacto, con el
-          campo de luz de su compartimento y con el reflejo del vidrio ENCIMA.
-        ⚠️ Los textos de la encuesta no se tocan. */}
-    <FotoFondo src={IA + 'emergencia-fondo-r13.png'} oscurecer={0} />
-    {/* ── el titular, ARRIBA de la vitrina y sobre el fondo liso ──
-        La vitrina ocupa de y=560 a y=1235 —montada a esa escala a propósito, ver
-        `scripts/between-emergencia-montar.py`—, así que el bloque de arriba tiene
-        de 268 (bajo la zona segura de Meta) a 560 para él solo. Y como ya no se
-        compone dentro de la caja, el titular recupera la columna entera (810)
-        en vez de los 544 a los que estaba encogido. */}
+    {/* ── EL TITULAR, SOBRE EL VIDRIO ──
+        Va dentro del nicho (x 176..904 → columna de 728) y sobre la parte ALTA
+        del gradiente, que el script del escenario deja oscura a propósito para
+        que el beige de marca se lea. `tono="beige"` y no "cafe": acá el fondo
+        es el interior de la caja, no la pared crema. */}
     <div
       style={{
         position: 'absolute',
-        left: BETWEEN.bloque.margenX,
-        right: BETWEEN.bloque.margenX,
-        top: 268,
+        left: 358,
+        width: 394,
+        top: 452,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
     >
-      {/* ⚠️ `tono="cafe"`: el fondo pasó de foto oscura a crema claro, y el
-          beige de marca sobre crema NO SE LEE. El café #675b49 es el otro tono
-          del kit y es el mismo de la caja taupe. */}
       <TitularBetween
         caps={'Romper en caso\nde antojo'}
         alinear="centro"
-        tono="cafe"
-        sizeCaps={92}
-        anchoDisponible={BETWEEN.bloque.columna}
+        tono="beige"
+        sizeCaps={48}
+        anchoDisponible={356}
       />
+      {/* La bajada del brief, en el mismo vidrio y bajo el titular.
+          ⚠️ El salto ENTRE niveles tiene que ser mayor que el salto DENTRO del
+          nivel: las dos líneas del titular se separan ~24 px, así que acá van
+          38 — es la regla de jerarquía del manual, no un número al gusto. */}
+      <div
+        style={{
+          marginTop: 26,
+          textAlign: 'center',
+          fontFamily: BETWEEN.fuentes.sans,
+          fontWeight: BETWEEN.pesos.semibold,
+          fontSize: 23,
+          lineHeight: 1.20,
+          letterSpacing: '0.005em',
+          color: BETWEEN.colores.beige,
+          opacity: 0.92,
+        }}
+      >
+        {/* ⚠️ El salto va A MANO. En una línea, dentro del nicho de 567 px, el
+            texto rompe solo y deja «primero…» SOLA en la segunda línea — una
+            palabra viuda, que la regla de la marca prohíbe en la caja de bajada.
+            Partido así, las dos líneas quedan parejas. */}
+        Si solo pudieras
+        <br />
+        sacar uno primero…
+      </div>
     </div>
-    {/* ── la bajada del brief, ABAJO de la vitrina ── */}
+
+    {/* ── EL LLAMADO, EN LA BARRA DEL MARCO ──
+        La barra va de y=1044 a y=1115; el bloque se centra en su eje (1080).
+        Es el «QUEBRE O VIDRO» de la referencia: el gesto que convierte un marco
+        con vidrio en una caja de emergencia. */}
     <div
       style={{
         position: 'absolute',
-        left: BETWEEN.bloque.margenX,
-        right: BETWEEN.bloque.margenX,
-        top: 1290,
-        textAlign: 'center',
-        fontFamily: BETWEEN.fuentes.sans,
-        fontWeight: BETWEEN.pesos.semibold,
-        fontSize: 36,
-        lineHeight: 1.15,
-        color: BETWEEN.colores.cafe,
+        left: 358,
+        width: 394,
+        top: 1044,
+        height: 71,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
-      Si solo pudieras sacar uno primero…
-    </div>
-    {/* la encuesta cierra antes de y=1580, que es donde empieza la zona segura
-        inferior de Meta en historias */}
-    <div style={{position: 'absolute', left: 0, right: 0, top: 1350, display: 'flex', justifyContent: 'center'}}>
-      <StickerQuiz
-        /* TEXTOS LITERALES DEL BRIEF (ronda 6): el «¿CUÁL TOMARÍAS?» es el
-           tercer bloque de texto del brief y va acá como pregunta de la
-           encuesta; las opciones son las tres del brief —«☕ Café / 🥐 Algo
-           dulce / 🥪 Algo salado»— más «todas las anteriores», que la agregó el
-           cliente en la fila 14. Las tres primeras son EXACTAMENTE los tres
-           productos que ahora sí están dentro de la vitrina. */
-        pregunta="¿Cuál tomarías?"
-        opciones={['☕ Café', '🥐 Algo dulce', '🥪 Algo salado', 'Todas las anteriores']}
-        ancho={620}
-        compacto
-        dosColumnas
-      />
+      <div
+        style={{
+          fontFamily: BETWEEN.fuentes.sans,
+          fontWeight: BETWEEN.pesos.extrabold,
+          fontSize: 28,
+          lineHeight: 1,
+          letterSpacing: '0.05em',
+          textTransform: 'uppercase',
+          color: BETWEEN.colores.beige,
+        }}
+      >
+        ¿Cuál tomarías?
+      </div>
     </div>
   </AbsoluteFill>
 );

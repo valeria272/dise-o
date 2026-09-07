@@ -3647,3 +3647,703 @@ hacia arriba, así el pan y el kraft no se tocan.
 
 > **Al comparar dos piezas del mismo carrusel se miran mediana Y percentil 10.**
 > La mediana sola dice que están iguales cuando no lo están.
+
+---
+
+# ⭐⭐⭐ RONDA 16 — la referencia manda la GEOMETRÍA, no el retoque (07-09-2026)
+
+Eli mandó tres encargos y una referencia de Pinterest
+(`https://cl.pinterest.com/pin/1040683426409551586/`):
+
+> «Trabajaremos editando nuevamente la ST de emergencia […] necesito que sean
+>  café TOGO, croissant jamón queso y muffin de chocolate, debe ser igual a la
+>  referencia con los textos del brief»
+> «para la s1 de between debes volver a hacer el fondo, genera en magnific […]
+>  detalle de cumpleaños con elegancia de serpentina dorada o […] globos de
+>  fondo sutil, recordando que se note que es between el fondo»
+> «Arregla el logo del slide 1 [de la S3] y el 4 vuelve a hacer ese ya que se ve
+>  extraño la foto de fondo y todo»
+
+## ⭐⭐⭐ 1. Cuando una pieza lleva tres rondas de parámetros, el defecto es de PLANTEAMIENTO
+
+La ST de Emergencia llevaba las rondas 13, 14 y 15 ajustando escala, piso,
+sombra, campo de luz y recorte — todas dentro de una geometría equivocada:
+
+| | ronda 15 | la referencia |
+|---|---|---|
+| caja | 810 × 675 px, **apaisada** (1,20 : 1) | **vertical**, 1 : 1,37 |
+| caja / lienzo | 0,75 del ancho pero 0,35 del alto | 0,72 del ancho, 0,62 del alto |
+| titular | flotando en la pared, sobre la caja | **sobre el vidrio**, dentro |
+| llamado | no existía | en la **barra del marco** |
+| vacío sin usar | 292 px arriba + 465 abajo | márgenes parejos |
+
+> **Regla: si tres rondas seguidas ajustan parámetros de la misma pieza, lo que
+> está mal es el planteamiento.** El corolario de la ronda 15 («a la segunda vez
+> que se repite un comentario, mira el insumo») tiene un piso más: a la tercera,
+> mira la GEOMETRÍA.
+
+Y el control que lo hizo evidente es el que el método pide y esta pieza nunca
+había tenido: **la pieza al lado de la referencia, las dos al mismo alto.**
+
+⚠️ **La referencia no se copia entera, y eso se razona.** Su caja es 1 : 1,37
+porque lleva UN producto centrado. Acá el brief pide TRES y la encuesta le pide
+al seguidor elegir uno, así que los tres tienen que reconocerse: con el ancho de
+la referencia el nicho quedaba en 608 px y los tres productos entraban a 205 px
+cada uno — chicos y apretados, que es el defecto de la r13. La caja se ensanchó
+a 0,80 del lienzo y quedó en 1 : 1,28.
+
+⚠️ El sticker de encuesta **no se dibuja**. La fila INTERACCIÓN de la grilla lo
+anota entre corchetes («[STICKER QUIZ / ENCUESTA]»), o sea que lo pone la CM en
+Instagram; dibujarlo obligaba a repetir «¿Cuál tomarías?» dos veces —en la barra
+y en el mock— y sus emojis salían mal. La pared bajo la caja queda limpia (y
+1430..1580) para que el sticker real caiga ahí y no sobre la caja, que era el
+reclamo original.
+
+## ⭐⭐ 2. El ancla de un recorte es su APOYO, no su caja
+
+El croissant de jamón queso se leía flotando aunque su `bbox` inferior estuviera
+exactamente en la línea de base. La causa, medida:
+
+    contorno inferior · máximo (el queso derretido) ..... fila 1155
+    contorno inferior · percentil 72 (la masa) .......... fila ~1070
+
+**85 px de diferencia.** Alinear la caja apoya sólo el queso y deja la masa en el
+aire. Se ancla por un percentil alto del contorno inferior sobre el 70 % central
+de las columnas (`apoyo()` en `between-emergencia-r16.py`).
+
+⛔ **Y NO se nivela girando.** El primer intento ajustaba una recta al contorno
+inferior y rotaba por su pendiente: el vaso salió a −14° y el croissant también,
+los dos tocando el tope. La base de un vaso es una **elipse**, y ajustarle una
+recta a una curva devuelve una pendiente inventada. Los tres se fotografiaron
+apoyados en una mesa: ya vienen derechos. Estaba mal el ancla, no el ángulo.
+
+## ⭐⭐ 3. La línea de base va a MEDIA PROFUNDIDAD del piso
+
+Con la base en el canto de atrás del piso los tres quedan **detrás** de la tira
+clara y se leen flotando sobre ella — el defecto de la r13 con otra cara. La base
+va dentro de la tira (acá 22 px por delante de su canto trasero).
+
+## ⭐ 4. Un reflejo de vidrio no tiene canto, y un destello no es un signo «+»
+
+- el reflejo diagonal a opacidad 52 con 9 px de desenfoque dejaba una **arista
+  recta** que sobre el gradiente oscuro del nicho se leía como un pliegue de
+  papel. Va a 26 con **36 px**: un cristal no tiene borde;
+- los destellos dibujados con dos líneas de grosor constante salían como signos
+  de tipografía. Un destello es un núcleo con cuatro puntas que **se afinan**.
+
+Y la elipse de la sombra de contacto va **más ancha que la huella** (0,56 del
+ancho): si mide lo mismo, el objeto la tapa entera y parece que no hay sombra.
+
+## ⭐⭐ 5. El interior de un contenedor CONTRASTA con su marco
+
+El nicho iba en un pardo oliva del mismo valor que el marco y la caja se leía
+como una sola masa café, con el muffin de chocolate fundido en el fondo. Con la
+paleta de BETWEEN (beige + café) el contraste no puede ser de matiz, así que se
+hace **de valor y de temperatura**: espresso profundo arriba —donde va el titular
+beige— y caramelo cálido abajo, donde apoyan los productos.
+
+## ⭐⭐⭐ 6. EL LOGOTIPO DEL VASO: los dedos lo TAPAN, no lo empujan
+
+Cuatro rondas (12–15) buscando dónde poner el logotipo de la portada To Go, y la
+ronda 15 terminó **peor que la 9**:
+
+| | centro / alto del cuerpo |
+|---|---:|
+| vaso real (manual, ronda 9) | **0,485** |
+| lo que la ronda 9 dejó aceptado | 0,32 |
+| **lo que entregó la ronda 15** | **0,158** |
+
+Una regresión, y exactamente el defecto que Eli ya había descrito: *«el logo iba
+pegado a la tapa, y eso es lo que lo delata como calcomanía»*. No era el grano ni
+el desenfoque —los dos estaban aplicados y medidos, 1,36 px y sigma 2,01—: era la
+posición.
+
+**Por qué ninguna ronda pudo bajarlo.** Todas trataron de *esquivar la mano*:
+buscaban el rectángulo de cartón limpio más grande y metían el logotipo ahí. Ese
+rectángulo está siempre pegado a la tapa, porque los dedos cruzan el centro del
+vaso — y lo cruzan por una razón que ninguna generación puede cambiar: **así se
+toma un vaso.** Ni bajando el agarre alcanza:
+
+    generación r15 · banda limpia bajo la tapa .....  83 px
+    generación r16 · banda limpia bajo la tapa ..... 107 px  (agarre en la base)
+    107 px sobre un cuerpo de 297 → centro en 0,178
+
+> ⭐⭐⭐ **La salida: el logotipo no esquiva los dedos — los dedos lo tapan.** En
+> un vaso real impreso la mano oculta parte del logotipo, y eso es justo lo que
+> le falta a un estampado para no parecer calcomanía. Se pone donde va —eje del
+> vaso, 0,86 de ancho— y donde los dedos pasan por delante, se enmascara.
+
+La piel se separa del cartón por color, medido en la toma:
+
+| zona | G/R | B/G |
+|---|---:|---:|
+| cartón limpio | 0,736 | 0,793 |
+| piel · yema del índice | 0,572 | 0,897 |
+| piel · dedo 2 | 0,573 | 0,884 |
+
+`G/R` los separa sin ambigüedad — umbral en **0,665**. ⚠️ Y **B/R NO sirve**: en
+esta marca la piel da B/R ≈0,51, más bajo que el cartón en sombra.
+
+⚠️ **Hay un límite de lectura.** A 0,38 la segunda línea caía sobre la yema y la
+máscara se comía el «CO» de COFFEE: el dedo tapando la base de la «B» se lee
+impreso, pero «COFFEE» leyéndose «FFEE» se lee como un **typo**, porque ahí el
+canto del dedo es pálido y de bajo contraste. **Una oclusión sólo funciona si se
+VE quién ocluye.** Se bajó a 0,32 —el valor que la ronda 9 dejó aceptado— y las
+letras quedan enteras con el dedo rozando la «C».
+
+## ⭐ 7. La comba del cilindro: 8 px, y sale de la cuadrícula
+
+El aro inferior de la tapa cae **14 px** del canto al centro (y=1120 en x=800,
+y=1135 en x=907, y=1122 en x=1020): la toma mira el vaso un poco desde arriba, y
+una línea que da la vuelta al cilindro se ve combada **hacia abajo**. El sello se
+comba 8 px, la mitad, porque el efecto a media altura es menor que en el canto.
+⚠️ Combar no es deformar: cada columna se desplaza en Y y el logotipo conserva
+escala y proporción.
+
+## ⚠️ 8. La nitidez del cartón se mide en un parche LIMPIO
+
+`radio = clip(1,6 − nitidez/90)` es correcto, pero **sobre qué zona** decide todo.
+Medida en todo el cuerpo del vaso daba 125 de varianza —ahí entran los cantos de
+los dedos y el aro blanco de la base— y la fórmula pedía 0,35 px, o sea ninguno:
+volvía el canto matemático. Sobre cartón limpio da 90 → 0,60 px.
+
+## ⭐⭐ 9. Un adorno generado se calibra FOLLAJE contra FOLLAJE
+
+Los globos del fondo del cumpleaños entraban con canto nítido sobre un muro
+vegetal muy fuera de foco. El primer intento midió la varianza del laplaciano
+**dentro** del globo y la comparó con la del muro: 4,6 contra 34, y concluyó «no
+hace falta desenfocar». La medición estaba mal planteada — el interior de un
+globo **es** liso, no tiene detalle que medir. Lo que delata un montaje es el
+canto.
+
+> **Se compara lo comparable: el muro vegetal de la generación de origen contra
+> el de la toma que lo recibe, a la misma escala de píxel.** Acá el origen dio
+> 6,2 contra 34 del destino: ya venía más blando, y no hizo falta desenfocar.
+
+Y tres cosas más de este montaje:
+
+- ⛔ **el alfa tiene que morir en el borde del recorte.** El primer globo tocaba
+  el canto superior de su recorte, así que su alfa valía 1 justo en el borde y
+  dejaba un **canto rectangular** visible: un rectángulo pegado, el peor delator
+  posible. Se fuerza una caída a 0 en un margen del 4 % del lado;
+- **no se recortan globos cortados por el cuadro.** Los de la generación de la
+  escena salían sin cuello ni hilo y recortados se leían como manchas pálidas.
+  Se generó material propio con los tres globos enteros, separados y con espacio
+  alrededor, justo para poder recortarlos (`ia-sept/cumple-globos-r16.png`);
+- el brillo se lleva a **2,45 ×** la mediana del follaje del muro (no 1,9: ahí
+  quedaban al mismo valor que el follaje y se leían grises) y se le devuelve la
+  calidez que el escalado plano le quita. **«Sutil» es que sea pequeño y esté
+  fuera de foco, no que esté apagado.**
+
+⚠️ Y **dónde**: el par baja a y=430, no y=60. Arriba choca con el titular, que en
+la slide 1 ocupa el borde superior de lado a lado. Y no puede irse a la derecha:
+la franja exclusiva de la slide 1 es sólo x 1830..2688 (de ahí en adelante la ve
+también la slide 2 y el adorno se repetiría).
+
+## ⭐⭐⭐ 10. Tres rondas de revelado que no meten una pieza en su carrusel = es la ESCENA
+
+La slide 4 del To Go tenía un **panel azul marino** con listones cortados arriba y
+una mesa barnizada con reflejos naranjas: un interior de bar, mientras sus
+hermanas 2 y 3 son mesa de madera miel con muro vegetal verde. Tres rondas de
+revelado peleando contra eso:
+
+    ronda 12   «se ve quemada»          → naranja saturado (calidez 55,3)
+    ronda 13   «se ve extraño el color» → se pasó: saturación bajo las hermanas
+    ronda 14   se calibra contra el render
+    ronda 15   «sigue oscuro»           → se levantan las sombras (p10 30 → 46)
+
+> **Cuando tres rondas de revelado no logran meter una pieza en su carrusel, el
+> problema es la ESCENA, no el revelado.**
+
+Se regeneró con Nano Banana Pro pasándole la propia slide 4 como referencia y
+cambiando **sólo el fondo y la mesa**. Y con la escena nueva **la corrección se
+invierte**:
+
+| pieza | mediana | p10 | calidez | saturación |
+|---|---:|---:|---:|---:|
+| slide 2 (intacta) | 104,0 | 28,3 | 26,6 | 44,3 |
+| slide 3 (intacta) | 114,7 | 37,8 | 38,8 | 40,4 |
+| slide 4 · ronda 15 | 109,1 | 49,2 | 28,7 | 34,2 |
+| slide 4 · r16 generada cruda | 151,5 | 70,8 | **76,6** | 50,7 |
+| **slide 4 · r16 final** | **115,2** | **32,9** | **30,8** | **41,6** |
+
+⛔ Y **NO se llama `abre_sombras()`**: su p10 crudo ya estaba en 70,8 contra los
+28-38 de las hermanas. Aplicarlo por costumbre, porque «la ronda 15 lo
+necesitaba», es exactamente el error de arrastrar un parámetro a otra escena.
+
+## ⛔⛔ 11. Una máscara heredada RESTA. Su umbral se re-mide en cada escena
+
+El logotipo del vaso de la slide 4 salió roto —«TWEEN / FEE & BAR»— porque
+`mascarar_carton` separa cartón de piel por **B/R < 0,62**, y en la escena nueva
+el flanco izquierdo del vaso recibe rebote verde del muro y su B/R sube a 0,70:
+
+    x 393..453 → 0,703      x 573..633 → 0,535
+    x 453..513 → 0,667      x 693..753 → 0,429
+
+La máscara declaraba «no cartón» el tercio izquierdo del vaso. Y sobre todo: **no
+había nada que enmascarar** — la caja del logotipo va de y=1229 a y=1370 y la mano
+empieza en y=1387.
+
+> **Una máscara sólo se enciende si hay algo que tape, y su umbral se re-mide en
+> cada escena.** Heredada de otra toma, resta en vez de proteger.
+
+⚠️ Y de paso: la geometría del vaso **no se lee de una cuadrícula a ojo**. La
+primera pasada puso el cuerpo en x 205..565 y estaba mal por 130 px. Se aísla la
+**tapa negra** por componentes conexas (oscura y neutra) y de ahí sale todo:
+x 327..890 (563) · y 1028..1212.
+
+## ⭐ 12. Y lo que ya estaba resuelto no se rehizo
+
+Del encargo de la S1, dos tercios ya estaban hechos y sólo había que reconocerlo:
+
+- «utilizando la foto … pero con el vaso actual de TOGO» → el EXIF ya había
+  probado que el adjunto de Scarlette y `Double Tree 25 jul 25-257.jpg` son la
+  misma mesa 63 segundos después, y la 257 es la que trae el vaso nuevo;
+- «continuo de slide 1 y 2» → ya se hace con dos recortes 4:5 **reales**;
+- las serpentinas doradas de la mesa son la ilustración de Eli, con el alfa ya
+  arreglado en la r15, y están aprobadas.
+
+Así que la ronda sólo tocó **el muro**. Para correr el revelado y la siembra YA
+APROBADOS sobre una base nueva sin duplicar una línea,
+`between-cumple-fondo.py` y `between-cumple-confeti-r14.py` aceptan
+`BW_CUMPLE_ORIGEN`, `BW_CUMPLE_RONDA` y `BW_CUMPLE_RONDA_OUT` por entorno. Sin
+variables se comportan igual que antes.
+
+## ⚠️ 13. PENDIENTE — los emojis cambian según la máquina que rinde
+
+El mock de la slide 2 del cumpleaños pide la pila
+`Raleway, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji'`. En Windows
+resuelve a **Segoe UI Emoji**, cuyo ☕ es una taza **lila**, fuera de la paleta
+cálida de la marca; en el Mac resolvería a Apple Color Emoji y saldría distinto.
+O sea: **la misma pieza rinde emojis distintos según quién la rinda.** Se cierra
+empaquetando Noto Color Emoji en `public/assets/hilton/between/fonts/` y
+nombrándola PRIMERA en la pila.
+
+## Los scripts de esta ronda
+
+| script | qué hace |
+|---|---|
+| `between-emergencia-r16.py` | el escenario de la ST: muro, marco con bisel, nicho hundido, los 3 productos apoyados y el vidrio encima |
+| `between-cumple-muro-r16.py` | los globos generados, compuestos en el muro real de la 257 |
+| `between-togo1-r16.py` | la portada: logotipo en el eje, a 0,86 y 0,32, con comba y enmascarado por los dedos |
+| `between-togo4-r16.py` | la slide 4: escena regenerada + los dos logotipos + tono igualado a las hermanas |
+
+---
+
+# ⭐⭐⭐ RONDA 17-19 — SE GENERA LA ESCENA, NO SE COMPONE (07-09-2026)
+
+> ⭐⭐⭐ **ANTES DE ESCRIBIR UN PROMPT PARA ESTA MARCA, LEER
+> [`PROMPTS-DE-ELI.md`](PROMPTS-DE-ELI.md).** Ahí están, textuales, los dos
+> prompts con los que Eli resolvió la ST de Emergencia y el carrusel de
+> Cumpleaños el 07-09-2026 —después de que el estudio fallara cinco rondas
+> seguidas—, sus ajustes de Magnific (nano banana 2 · 9:16 · 2K Fast · **AI
+> prompt ACTIVADO**), lo que cada prompt hace bien, y la plantilla de diez
+> puntos que sale de los dos. Eli: «Recuerda el prompt y resultado es
+> importante.»
+>
+> ⚠️ Y una corrección a lo que este manual decía hasta hoy: **el titular y la
+> señalética de una pieza con contenedor los puede ESCRIBIR el generador**,
+> pasándole los hex de marca ( señalética,  texto). Nano Banana
+> escribe texto legible. Ponerlo en Remotion encima de una caja dibujada fue
+> parte de lo que se leía como «armada, no diseñada».
+
+## ⭐⭐⭐ 1. LA LECCIÓN GRANDE: Eli no compone, GENERA
+
+Eli rechazó el carrusel de cumpleaños, **lo rehizo ella misma** y dejó su prompt
+a la vista:
+
+> «Reemplaza el vaso de la @img1 por la del vaso igual al de la @img2. Necesito
+> que el plato con medialunas quede en la derecha y mejora calidad, que se vea
+> delicioso y apetitoso, añade detalles de serpentina de cumpleaños elegante y
+> dorada alrededor, debe ser realista y de alta calidad 4k»
+
+Dos imágenes de referencia, una instrucción, una escena terminada. El vaso, su
+logotipo impreso, la serpentina dorada, la luz y las sombras **nacen dentro de la
+imagen**, así que no hay nada que integrar después.
+
+Lo que yo venía haciendo era lo contrario, y en cuatro rondas seguidas:
+
+| ronda | qué hice | veredicto de Eli |
+|---|---|---|
+| 11 | fondo generado + papelitos dibujados encima | «infantil» |
+| 12 | fondo generado + oro metálico dibujado encima | «parece un plátano» |
+| 14 | fondo generado + su vector sembrado encima | «quemado» |
+| 17 | fondo generado + cinta fotográfica sembrada encima | «falsa, quemada» |
+| 19 | fondo generado + recortes + logo vectorial estampado | «parecen de paint pegoteados» |
+
+El MATERIAL mejoró en cada vuelta —de color plano a vector a fotografía con
+especular medido a 15-26 %— y el veredicto no cambió nunca. Porque el material no
+era el problema.
+
+> **⭐⭐⭐ REGLA: si el generador puede producir la escena COMPLETA con las fotos
+> reales como referencia, se genera completa. Componer recortes encima es el
+> camino de ÚLTIMO recurso, no el primero.**
+>
+> Cada elemento que se pega es una costura, y ninguna receta de montaje —apoyo
+> medido, sombra de contacto, campo de luz, luz envolvente, grano, desenfoque
+> local— compite con un render que ya nace unido.
+
+⚠️ **Y el corolario para la jerarquía de imagen del manual**, que hay que leer con
+cuidado porque matiza una regla vieja: la IA sí puede rehacer **el producto**
+cuando va **guiada por la foto del producto real** — entonces su forma, su
+proporción y su logotipo impreso salen de la cosa real. Eso es distinto de
+inventar un producto, que sigue prohibido. La frontera no es «IA sí / IA no»: es
+**si hay una foto real mandando o no**.
+
+## ⛔⛔ 2. Y el error mío que lo explica: MOVÍ EL ADORNO EN VEZ DE CAMBIAR EL MÉTODO
+
+Después del «falsa, quemada» de la ronda 17 concluí que el dorado tenía que irse
+**al fondo y fuera de foco**, porque nítido sobre la mesa siempre se leía
+pegoteado. Generé un fondo con las cintas colgando en el aire, desenfocadas, y le
+reemplacé el muro a la toma real.
+
+La pieza de Eli demuestra que la conclusión era falsa: **su dorado está sobre la
+mesa y en foco**, y se ve de lujo. Lo que estaba mal no era dónde iba el adorno —
+era que yo lo pegaba encima en vez de pedirle al generador que lo produjera
+dentro de la escena.
+
+> **Cuando algo falla cuatro veces con cuatro materiales distintos, lo que hay que
+> cambiar no es el material ni la posición: es el MÉTODO.**
+
+## ⭐ 3. Lo que la pieza de Eli enseña, punto por punto
+
+Su carrusel (`raw/hilton/between/de-eli/cumple-s2/`) fija cosas que no estaban
+escritas:
+
+- **la composición es un VASO HÉROE EN LA MANO**, no un bodegón de mesa. El vaso
+  ocupa el centro, cerca, con el logotipo grande y centrado a media altura;
+- **hojas de oro sobre el propio vaso** — un detalle que no se me había ocurrido y
+  que ata el adorno al producto;
+- las cintas doradas **en la mesa, en foco**, con su brillo y su sombra propios;
+- el plato con medialunas **a la derecha y cortado por el canto**, de apoyo;
+- **el mock de post es CREMA, no blanco**, con la UI en taupe y el avatar real de
+  Between con anillo;
+- los ítems del listado van en **casillas de verificación** (✓ en cuadrado
+  redondeado), no en viñetas;
+- **CUATRO ítems, no cinco.** El quinto («¡Pregúntanos por los cafés
+  disponibles!») no va, y el cuarto es «Presenta tu carnet en la caja»;
+- y los **emojis salen en color y correctos** — su ☕ es una taza de café de
+  verdad. Confirma que el ☕ lila de mis renders es un defecto de la pila de
+  fuentes en Windows, no del diseño. Ver el pendiente de Noto Color Emoji.
+
+## ⭐⭐ 4. «Los textos se ven corridos» NO era el centrado
+
+Eli, de la portada To Go. Medido sobre el render, las cinco líneas caen a **±2 px
+del eje** del lienzo: el centrado estaba perfecto. Lo corrido era el AIRE, y la
+jerarquía estaba invertida:
+
+    script → titular   (salto ENTRE niveles) .....  23 px
+    línea 1 → línea 2  (salto DENTRO del nivel) ...  63 px
+
+La script quedaba pegada al titular mientras las dos líneas del titular estaban
+casi tres veces más separadas entre sí. Es el defecto que el manual ya tenía
+escrito y su causa también: «¿Vas con poco tiempo?» trae descendentes (las dos
+«p» y la cola del «¿») y sus colas bajan dentro del token medido de 9 px, que se
+midió sobre una script SIN descendentes. Con `aireScriptATitulo={44}` el salto
+entre niveles sube a 96 px contra 63: la relación 1,5× que pide la regla.
+
+> **«Corrido» puede no ser el eje. Antes de mover nada, se miden los DOS saltos:
+> el de dentro del nivel y el de entre niveles.**
+
+## ⭐ 5. La ST de Emergencia: tres correcciones de geometría
+
+Eli: «que el café togo, el muffin y el croissant tengan medidas similares; que
+estén dentro del vidrio, porque es romper en caso de emergencia; y deja espacio
+para que contenido pueda colocar una caja de preguntas.»
+
+- **medidas similares → se igualan por ANCHO (265 px), no por lado mayor.**
+  Igualando el alto, el vaso quedaba en 203 px de ancho y **su logotipo impreso
+  dejaba de leerse**, y es el que firma la pieza;
+- **dentro del vidrio** → una sola línea de base dentro del nicho, y nada
+  adelantado más allá del canto del estante. En la r17 el croissant iba 60 px
+  adelantado y su canto bajaba del estante: se leía delante del cristal, y en una
+  caja de «romper el vidrio» eso rompe el concepto;
+- **espacio para la caja de preguntas** → la escala de la caja sale de ahí, no del
+  gusto: para dejar 365 px lógicos de muro limpio abajo, el marco tiene que medir
+  1927 px de los 3780 de la generación (factor 0,50979).
+
+⚠️ **Y un choque de reglas que quedó abierto:** con la caja vertical y la banda
+para el sticker, el titular sobre el vidrio ocupa **33 % del ancho del lienzo** y
+`between-qa.py` pide 50-80 %. Los tres no caben juntos en un 9:16 — se probó una
+caja apaisada y su nicho salió 2,8:1, tan bajo que el vaso no cabe de pie.
+Medido contra su propio NICHO el titular ocupa el 90 %. **Está sin resolver: o se
+acepta la excepción, o el titular sale del vidrio al muro.** Decisión de Eli.
+
+## ⭐⭐ 6. La caja de la vitrina se GENERA (y yo la había dibujado)
+
+La ronda 16 construyó el contenedor con `ImageDraw`: polígonos para el bisel, un
+`linspace` para el fondo del nicho, una tira plana de «piso». Al 300 % eso da
+exactamente «se ve armada, no diseñada»:
+
+- la esquina del marco es un **degradado borroso**, no una arista biselada;
+- el «piso» es una tira plana con canto recto, así que nada apoya en ninguna
+  superficie;
+- el reflejo del vidrio deja una arista que se lee como un pliegue de papel.
+
+El manual ya lo decía desde la ronda 13 —«el contenedor se genera VACÍO»— y yo me
+salté el paso. Generado, trae marco macizo con aristas de verdad, nicho con
+profundidad, **estante de madera real** y vidrio con su reflejo.
+
+⚠️ Y el reflejo del vidrio, que viene pintado en la generación, hay que **aislarlo
+y volver a ponerlo ENCIMA** de los productos: si no, los productos quedan delante
+del cristal de su propia vitrina y se leen pegados.
+
+## ⛔ 7. Tres bugs de máscara que costaron pasadas, y su regla
+
+1. **`floodFill` desde (0,0)** para rellenar huecos: si la esquina ya pertenece a
+   la máscara, el relleno no propaga y `== 0` marca TODO el fondo. El recorte del
+   croissant salió con el plato y la mesa incluidos. **Se acolcha la máscara con
+   un marco de ceros y se inunda desde ahí.**
+2. **Llavear por color lo que el color no separa.** El croissant se intentó
+   recortar por calidez (R−B): medido, la **mesa de madera desenfocada da 88 de
+   calidez contra 98 del croissant** — son indistinguibles, y el croissant toca
+   la mesa por arriba. La separación tuvo que ser geométrica (`grabCut` con el
+   rectángulo del producto). **Antes de llavear, se mide si las dos zonas de
+   verdad se separan.**
+3. **Una máscara heredada RESTA.** `mascarar_carton` separa cartón de piel por
+   B/R < 0,62; en la escena nueva el flanco izquierdo del vaso recibe rebote
+   verde del muro y su B/R sube a 0,70, así que la máscara declaraba «no cartón»
+   un tercio del vaso y el logotipo salió «TWEEN / FEE & BAR». **Una máscara sólo
+   se enciende si hay algo que tape, y su umbral se re-mide en cada escena.**
+
+## ⚠️ 8. Y una de aritmética que conviene no volver a pensar
+
+**Recortar más cerca NO agranda el logotipo respecto del vaso.** La proporción
+logo/cuerpo es una propiedad de la FOTO, no del encuadre: al recortar crecen los
+dos igual. Lo único que mueve esa cifra es dónde está la mano. Hicieron falta
+cuatro generaciones de la misma portada para llegar al 0,485 del vaso oficial:
+
+    r15  «agarre cerca de la base»                    banda limpia  83 px → 0,158
+    r16  «agarre en la base, dedos en el quinto bajo»               107 px → 0,178
+    r17  «tomado desde abajo como la referencia»                     60 px → 0,220
+    r18  «LA MANO ENTERA POR DEBAJO DEL VASO»                       293 px → 0,485 ✓
+
+> **A un generador no se le pide un grado («más abajo»), se le pide una condición
+> que se pueda COMPROBAR después.** «Más abajo» dio tres fotos distintas y ninguna
+> servía. «La mano entera por debajo del aro blanco, ni una yema al costado del
+> cartón» dio la buena a la primera, y se verificó midiendo: **0 px de piel** en
+> todo el cuerpo del vaso.
+
+---
+
+# ⭐⭐⭐ RONDA 20 — LA JERARQUÍA DEL BRIEF ESTABA INVERTIDA (07-09-2026)
+
+Eli: «El carrusel de S4 promos, debes hacerlo nuevamente ya que no cumplió con el
+resultado. Hazlo y guíate de mis prompt que utilicé y recuerda guiarte del brief
+de lo que pide visualmente, los textos armónicos y jerarquía.»
+
+## ⛔⛔ 1. El error que este carrusel arrastraba desde el principio
+
+El brief de la slide 2 dice, en este orden:
+
+    titular   CAFÉ + SÁNDWICH
+    bajada    Para empezar con algo rico y contundente.
+    precio    Desde $4.290
+
+Y la pieza usaba **la BAJADA partida en dos** (script + caja alta) como titular, y
+metía **el TITULAR del brief dentro de la barra del precio**. O sea: lo que el
+brief pone primero se leía último y en cuerpo chico. Lo mismo en las tres slides
+interiores. Nadie lo había cazado en veinte rondas porque cada corrección miraba
+una pieza, no la relación entre el brief y la pieza.
+
+> **Regla: la jerarquía del brief es parte del brief.** El orden en que están
+> escritos los textos ES la jerarquía pedida; no se reordena para que calce con
+> una plantilla. Si el brief pone «CAFÉ + SÁNDWICH» primero, ése es el titular.
+
+Corregido, las tres interiores quedan iguales entre sí y eso es la «armonía»:
+**titular en caja alta · bajada de una frase · precio en la barra.**
+
+⚠️ Y se fue la script de las interiores, que además cumple la regla de Eli del
+01-09 («desde el slide 2 no agregues la tipografía brushwell, así se diferencia
+de la portada»): la Brushwell queda como marca de la PORTADA.
+
+## ⭐ 2. La slide de cierre: la bajada es la descriptiva, el llamado va a la barra
+
+La slide 4 quedó primero con `bajada="¡Llévate los 3!"` y se leía **tímida**: tres
+palabras en cuerpo de bajada donde sus hermanas llevan una frase entera. El brief
+tiene ahí una línea descriptiva que sí es paralela («Café + salado + dulce»), así
+que ésa es la bajada y el llamado del cliente se va a la BARRA, que es el sitio
+fuerte:
+
+    slide 2   Desde $4.290
+    slide 3   Desde $3.790
+    slide 4   ¡Llévate los 3! desde $5.290
+
+⚠️ «¡Llévate los 3!» **no se cambia** por el «Llévalo contigo.» del brief: esa
+línea la reemplazó el cliente (Scarlette, ronda 4) y está aplicada y tachada en la
+grilla. **La corrección del cliente manda sobre un brief que nunca se actualizó.**
+
+## ⭐⭐ 3. Los prompts, ahora con el método de Eli — y una diferencia que importa
+
+Las tres fotos nuevas se generaron con su plantilla de diez puntos (ver
+[`PROMPTS-DE-ELI.md`](PROMPTS-DE-ELI.md)), pasándole como referencias **su propia
+pieza aprobada** (`C1 S2 CUMPLE N1.png`, que trae el vaso real con su logotipo) y
+las fotos reales del sándwich y del muffin.
+
+⚠️ **Pero hay una diferencia operativa que hay que tener presente:** Eli trabaja en
+la web de Magnific con **`AI prompt` ACTIVADO**, así que sus prompts cortos y en
+español se expanden solos. `scripts/magnific.py pro` llama a Nano Banana Pro
+**directo, sin ese expansor**. Por eso acá los prompts tienen que ser su misma
+ESTRUCTURA pero explícitos: qué reproducir de cada referencia, el formato para
+llevar, la mesa y el muro, la luz, «mejorando jerarquía y luz destacando los N
+productos», «que se vea delicioso y apetitoso», la medida y el aire para el texto.
+
+Lo que cambió respecto de la ronda 19, y es lo que la hacía fallar: la r19 pedía
+la escena pero **no pedía jerarquía ni apetito**, y no pasaba la pieza aprobada de
+Eli como referencia de calidad. Con los dos agregados el muro pasa a tener bokeh
+de verdad, el hojaldre capas y azúcar visibles, y la slide 3 cumple el «una
+composición más cercana y apetecible» que el brief pedía y que la r19 ignoró.
+
+## ⭐ 4. `iguala_tono()`: la calidez se pide MÁS ALTA de la que se quiere
+
+La función corrige la calidez ANTES de la saturación, y el paso de saturación
+(×0,50-0,74 acá) vuelve a comprimir la diferencia R−B. Para terminar en los 34,2
+de la portada hay que **pedir 60**. Pidiendo 34 el resultado cae en 19-20, o sea
+más frío que la portada y visible al deslizar el carrusel.
+
+## ⭐⭐ 5. RONDA 21 — dos correcciones de Eli, y las dos enseñan algo
+
+> «La slide 3 las medias lunas se ven muy grandes, se ve exagerado, y la slide 4
+> usa platos de cerámica para el muffin.»
+
+### ⭐⭐ A la escala hay que darle un ANCLA FÍSICA, o el generador la infla
+
+Medido sobre la slide 3 rechazada: la medialuna quedó a **0,70 del alto del vaso**
+y **2,5 veces más ancha** que él, además de **cortada por el canto izquierdo**.
+
+La causa es mía y está en el prompt: le pedí «el dulce grande en primer plano» y
+«composición más cercana», traduciendo el «más cercana y apetecible» del brief. Y
+me pasé, porque no le di el dato que lo limita.
+
+> **Regla: cuando se le pide escala a un generador, hay que darle el ANCLA
+> FÍSICA, no un adjetivo.** «Grande en primer plano» no acota nada; **«una
+> medialuna es claramente más baja y más pequeña que un vaso de café para
+> llevar»** sí. Con esa frase el resultado salió a la primera, con una sola
+> medialuna, entera y en proporción.
+
+### ⛔ El plato de cerámica CONTRADICE la ronda 12, y manda Eli
+
+La ronda 12 sacó los platos de cerámica de esta pieza con este argumento escrito:
+*«No era formato To Go. La pieza mostraba un croissant y un muffin en PLATOS DE
+CERÁMICA sobre la mesa: eso es consumo en local, y el brief pide los tres
+productos para llevar.»*
+
+Eli pide ahora, explícitamente, **plato de cerámica para el muffin** en la slide
+4. Se aplica: su instrucción es posterior y ella firma la marca. **Queda anotado
+acá para que nadie lo «arregle» de vuelta creyendo que es el error de la r12.**
+
+El sándwich sigue sobre papel de horno —eso no lo objetó— así que la slide mezcla
+papel y cerámica a propósito.
+
+### ⭐⭐ Y la técnica que ya funcionó dos veces: UNA SOLA VARIABLE
+
+Pedir el plato de cero degradó la composición: los tres productos salieron más
+chicos y bajos, con la bolsa dominando. La salida fue pasarle **la generación
+anterior como referencia** y pedirle que reprodujera todo idéntico —misma mesa,
+mismo muro, misma luz, mismos tamaños y posiciones— cambiando **sólo** el plato.
+Salió a la primera con la composición buena y el plato puesto.
+
+> Es la misma técnica que resolvió la portada To Go (cuatro generaciones pidiendo
+> «más abajo» contra una pidiendo «la mano entera por debajo del aro blanco»).
+> **A un generador se le cambia UNA variable por vez, y la condición se escribe de
+> forma que se pueda comprobar después.**
+
+---
+
+# ⭐⭐ RONDA 25 — «COMO LOS 2 ANTERIORES» NO HABLABA DEL ÁNGULO: HABLABA DE LA MESA (07-09-2026)
+
+Eli, cambio de último minuto: «para el carrusel slide último **14/09/2026**, debe
+ser una **torta casi en totalidad comida, pero que se vea lindo aún**», con un
+video de Drive marcado en el segundo 2,799 como la torta real, y una carpeta de
+dulces y tortas para guardar.
+
+> ⚠️ **El carrusel del 14-09 NO es Promos To Go.** Ése se movió a la S4 del 22-09.
+> El del 14-09 es **«PRIMERO LA FOTO… ¿O NO?»** —columna H de la grilla, semana
+> 3—, cuyo remate es «¡NOOO! Se me olvidó la foto». **La torta comida ES el
+> chiste de la pieza**, no un bodegón más.
+
+## ⭐ 1. El encargo traía DOS condiciones, y la segunda estaba en la grilla
+
+Revisando `FEED!H15` seguía **sin tachar** este comentario del cliente:
+
+> «G4: Aquí la idea es que se vea más vacío el plato, veamos otra opción de foto,
+> **que sea desde arriba también como los 2 anteriores** (como la refe)»
+
+O sea que el pedido de Eli y el del cliente son el mismo pedido, y suman: **plato
+casi vacío** + **toma cenital**. Leer la grilla antes de generar ahorró una ronda.
+
+## ⭐ 2. Primero se buscó en el material, y por eso se pudo generar tranquilo
+
+La carpeta de Eli trae **9 videos verticales 2160×3840 a 60 fps** — un fotograma
+de ésos es una foto 4K, así que son banco de imagen (índice en
+`raw/hilton/between/dulces-tortas/LEEME.md`). Se revisó el que ella marcó y los
+**11,1 s completos** del otro, fotograma a fotograma: **el postre está intacto de
+principio a fin.** La torta comida no existe en la sesión. Recién ahí se generó.
+
+> Es la regla de siempre —recortar > montar > generar— pero al revés de como se
+> suele aplicar: **comprobar que NO está sirve para poder generar sin culpa.**
+
+## ⛔⛔ 3. El defecto que la foto sola no muestra: hay que MONTARLA para verlo
+
+La ronda 24 cumplía las dos condiciones —plato casi vacío, cenital, decoración
+intacta, se ve lindo— y **estaba mala**. Porque estaba sobre **mármol blanco** y
+sus tres hermanas están sobre los **listones de madera oscura**. Dos consecuencias,
+y ninguna se ve mirando la foto suelta:
+
+1. **rompe el mundo del carrusel** — medido: mediana 219 contra ~102 de las tres
+   hermanas. Es el patito feo apenas se desliza;
+2. **deja el titular blanco sobre fondo claro**, casi ilegible. Y eso no se
+   arregla gradando: forzar la r24 al tono de las hermanas dejaba el mármol gris
+   sucio, no madera.
+
+Releído con eso a la vista, el comentario del cliente ya lo decía. **«Desde arriba
+como los 2 anteriores» no era sólo el ángulo: era la mesa.**
+
+> ⭐⭐ **Una foto de carrusel no se aprueba suelta: se aprueba MONTADA y al lado de
+> sus hermanas.** El defecto de la r24 no estaba en la foto, estaba en el conjunto
+> — y el conjunto es la unidad de trabajo.
+
+La r25 es la misma torta con **una sola variable cambiada**: `ref-mesa-listones.jpg`
+(sacada de la h2) para el escenario y `ref-torta-comida-r24.jpg` para el postre.
+Salió a la primera.
+
+## ⭐ 4. El factor de calidez de `iguala_tono()` NO es fijo
+
+La ronda 19 dejó anotado que para terminar en 34 hay que pedir 60. **Ese número
+era de esa foto.** El factor es cuánto desatura el paso de saturación en esa
+imagen en particular, y acá fue x0,786: pedir 36 terminó en 28,3, y hubo que
+afinar en dos pasadas hasta **22,8 para aterrizar en los 20,8** de las hermanas.
+
+> **La receta es «medir el resultado y corregir el pedido», no el número.** Se
+> mide sobre la propia foto, no se copia del script anterior.
+
+| pieza | mediana | calidez | saturación |
+|---|---|---|---|
+| h1 desayuno · h2 latte · h3 croissant | 103 · 109 · 94 | 20,9 · 20,4 · 21,1 | 32,7 · 27,4 · 30,9 |
+| **h4 torta comida (r25)** | **108** | **22,1** | **31,4** |
+
+Y el contraste del titular, medido bajo la tinta: fondo mediana 99,3 y p90 129,8 —
+la slide 4 queda **más segura que la 3**, cuyo p90 es 206 por los brillos del
+croissant.
+
+## ⭐ 5. Lo que mantiene el plato «lindo aún» con la torta comida
+
+Del postre real se conservan y hay que verificar en cada pasada: **plato de
+cerámica verde oliva con anillos concéntricos**, rodaja de **limón deshidratado**,
+**flor de pensamiento amarilla**, **frutilla**, perlitas de caramelo, la mancha de
+crema y las migas. Con eso, un plato vacío sigue leyéndose como pastelería — y el
+**último bocado más la cuchara** son los que cuentan que alguien se lo comió.
+
+## Entrega y scripts
+
+`out/entrega-r25/S3/` — 4 piezas 2250×2812, 4/4 limpias en `between-qa.py`:
+
+    BW FEED 14-09 Primero la foto 1 desayuno.png
+    BW FEED 14-09 Primero la foto 2 latte.png
+    BW FEED 14-09 Primero la foto 3 croissant.png
+    BW FEED 14-09 Primero la foto 4 torta comida.png
+
+Script: `scripts/between-foto4-torta-r24.py` (apunta a la r25).
+⚠️ **Ojo con el nombre en Drive:** en la carpeta ya hay archivos «BW FEED 14-09
+Promos To Go …» de cuando ese carrusel era de esta semana. Hay que sacarlos o se
+entrega el equivocado.

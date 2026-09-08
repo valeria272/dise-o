@@ -1,3 +1,83 @@
+## 2026-09-08 (ronda 2) · Eli (Windows) — BETWEEN S3: las tres stories rehechas con foto PRODUCIDA
+
+**Qué pasó:** Eli devolvió las tres de la mañana — «Hazlos de nuevo las 3 stories
+ya que no cumplen, **debes dejar mejores fotografías, mejor imagenes hazlo en
+conjunto a magnific**» — y adjuntó tres referentes en Drive
+(`12S5bEGzPtZmE82U_ZxrboyZwsvOOQoZ0`, bajados a
+`raw/hilton/between/ref-s3-eli/`), con la condición: «deben ser colores y fondos
+de Between, pero puedes guiarte de elementos de la referencia para hacerlos
+similar. Con la identidad visual de BW». Se rehicieron las tres y quedaron
+**reemplazadas en el mismo archivo** de la carpeta STORIES, así que los enlaces
+que ya tenía no cambiaron.
+
+### ⭐⭐ La lección, y corrige la de la mañana
+
+La ronda 1 gastó el día resolviendo **cómo recortar** el banco 4:5 a 9:16 —hasta
+subir las fotos a 2× con el upscaler para ganar libertad vertical— y funcionaba.
+Y aun así las tres estaban mal, porque el problema no era el recorte:
+
+> **Una historia de Between no se recorta: se PRODUCE.** Si la foto no trae el
+> hueco que la diagramación necesita, el texto termina apoyado en cajas taupe — y
+> con tres piezas resueltas así, las tres se parecen entre sí.
+
+Los tres referentes de Eli hacen lo contrario y **el hueco es su tema**: un torso
+de color liso que llena el cuadro, una pared plana en el tercio de arriba, un
+plano del local muy desenfocado. En los tres el titular va grande y sin caja.
+El `escalar 2x` de la mañana no se deroga: pasa a ser el plan B, para cuando hay
+que llevar una foto real del banco a 9:16.
+
+### Las tres, y qué elemento se tomó de cada referente
+
+| Pieza | Referente | Traducido a Between |
+|---|---|---|
+| **14-09** | torso con camisa azul llenando el cuadro + taza sostenida abajo | **campo de color café `#675B49`** (un sweater liso) + taza blanca con rosetón en el tercio inferior. Los 880 px de campo limpio dejan el quiz de su porte REAL, 660×360 |
+| **16-09** | pared plana gris arriba + titular enorme + mesa con notebook | **pared beige** desenfocada arriba → y por eso es la **primera pieza de Between con titular en tinta café**, que es para lo que el kit define ese color |
+| **18-09** | panel crema sobre la foto del local + dos manos brindando dibujadas | **panel beige `#FFF9EB`** con tinta café y el lockup café adentro; y el **brindis va con dos tazas de verdad, en la fotografía** |
+
+⭐ El brindis en la FOTO y no dibujado es una decisión de sistema: el repertorio de
+línea de Between son los trazos del `.svg` de Eli y ahí no hay un brindis; el
+manual prohíbe dibujar o generar trazos nuevos. Pedírselo al generador con las dos
+tazas reales como referencia respeta las dos cosas.
+
+### Lo que hubo que arreglar después del generador
+
+1. **El color de marca no llega exacto.** El sweater salió `#564134`. Corregido a
+   `#675B49` con ganancia multiplicativa por canal sobre máscara blanda de
+   luminancia. ⚠️ Y la ganancia se mide sobre un rectángulo de **medio tono**: el
+   primer intento la calculó sobre el promedio de la máscara —que arrastra las
+   sombras y da `#412f25`— y pedía ×1,57–1,97, reventando los medios. **El color
+   de una prenda es su medio tono, no su promedio con sombras.**
+2. **La IA metió una marca de tercero:** el logotipo de un fabricante de
+   computadores en la tapa del notebook. Fuera, con la interpolación horizontal.
+3. **«Los dos tercios de abajo son MESA de madera» produjo una COSTURA.** El
+   generador pegó un plano recto en primer plano con un salto horizontal visible a
+   media pieza. Se rehizo pidiendo que la MISMA escena siga hacia abajo y
+   prohibiendo la línea. Vale como regla de prompt.
+4. **El bloque de dato del 16-09 tapaba la taza.** Puesto al pie como en el
+   referente, las dos cajas caían sobre y=1120–1320, que es donde está la taza: la
+   pieza que habla del café lo escondía. Subió a bajo el titular. **La estructura
+   del referente se respeta hasta que choca con la foto propia; ahí manda la foto.**
+5. **Las manos, revisadas al 300 %** una por una — las tres pasan: pulgar y dedos
+   con uña, nudillos y pliegues, sin masas lisas.
+
+### QA
+
+`between-qa.py`: **3/5 limpias**, con dos avisos por el cierre del 14-09, que
+entra **55 px** en la franja inferior de Meta. Es menos que los 90 px del legal
+que Eli aprobó en la ST 2 del cumpleaños, y no se puede subir más: medido, la taza
+y la mano llegan hasta y=1600. Vale en orgánico; si pasa a pauta, hay que subirlo.
+`qa/motor.py --marca hilton` sigue negándose: Between no tiene `reglas.yaml`.
+
+**Los prompts, textuales, quedaron en `PROMPTS-DE-ELI.md` §4** — «recuerda el
+prompt y resultado es importante».
+
+**Abierto:**
+- Las **guías del CM** siguen sólo en local (`out/hilton/between/entrega-st-s3/GUIAS CM/`).
+  Es el tercer día que queda pendiente cómo se le hacen llegar.
+- El comentario de `STORIES!N` sigue sin tachar en la grilla.
+- Las tres escenas generadas (48 MB) van forzadas al repo: Nano Banana **no es
+  determinista** y sin ellas las piezas no se pueden volver a armar iguales.
+
 ## 2026-09-08 · Eli (Windows) — BETWEEN S3: las tres stories que faltaban, entregadas
 
 **Qué se hizo:** Eli pidió la S3 de stories — «lo harás nuevamente con la

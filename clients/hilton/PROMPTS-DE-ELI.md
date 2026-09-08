@@ -288,3 +288,126 @@ follaje de la izquierda. Junto con el intento anterior —que caía sobre la man
 queda dicho: **el repertorio de línea de Between se apoya en el FONDO, nunca
 sobre el producto ni sobre quien lo sostiene.** Y romper el logotipo del vaso es
 el peor error posible en una pieza cuyo tema es justamente ese vaso.
+
+
+---
+
+## 4. LAS TRES STORIES DE LA S3 (14, 16 y 18-09) — 08-09-2026
+
+Eli devolvió las tres de la ronda 1: «Hazlos de nuevo las 3 stories ya que no
+cumplen, **debes dejar mejores fotografías, mejor imagenes hazlo en conjunto a
+magnific**», con tres referentes adjuntos y una condición: «deben ser colores y
+fondos de Between, pero puedes guiarte de elementos de la referencia para
+hacerlos similar. Con la identidad visual de BW».
+
+**El diagnóstico, y vale para toda historia de esta marca:** la ronda 1 usaba
+FOTO DE BANCO recortada, y el banco de Between está pensado en 4:5. Al llevarlo a
+9:16 no queda hueco donde la diagramación lo necesita, así que el texto termina
+apoyado en cajas taupe. Los tres referentes hacen lo contrario: **la foto está
+producida con el hueco adentro**. O sea que no era un problema de diagramación,
+era que la foto no se había producido — y producirla es este método.
+
+Herramienta: `python scripts/magnific.py pro "<prompt>" --aspecto story
+--resolucion 4K --refs <refs>` (Nano Banana Pro). Todo en
+`scripts/between-st-s3-generar.py`, con las referencias reducidas a 1024 px
+porque viajan en base64 dentro del POST.
+
+### Prompt 14-09 — el CAMPO DE COLOR (refs: la taza con rosetón, la mano con taza)
+
+> Fotografia vertical de historia 9:16 de una persona de pie que sostiene con UNA
+> SOLA MANO una taza de ceramica blanca total con capuchino y arte latte de
+> roseton, igual a la taza de la @img1 y sostenida como en la @img2. Se ve solo el
+> torso, sin cara. Lleva un sweater liso de color cafe #675b49 que llena todo el
+> cuadro y hace de fondo, sin estampados, sin botones y sin bolsillos. Luz suave y
+> calida de un solo lado, con una sombra propia muy sutil. ENCUADRE: la taza va
+> BAJA, en el tercio inferior del cuadro, sostenida cerca del cuerpo, y los DOS
+> TERCIOS DE ARRIBA son sweater cafe liso y limpio, sin nada encima. La taza es
+> blanca total, sin ninguna letra ni logo. Realista, piel real, una sola mano,
+> dedos separados con el nudillo visible, alta calidad 4k. Sin ningun texto, sin
+> letras, sin logotipos.
+
+⭐ **«Un sweater liso de color café que llena todo el cuadro y hace de fondo» es
+el hallazgo.** El referente resuelve el fondo con una camisa azul que ocupa la
+pieza entera; traducido a Between, el fondo pasa a ser el **café de marca** y de
+paso deja 880 px de campo liso donde el sticker de quiz cabe de su porte real.
+Es la forma más barata de producir aire en una historia.
+
+### Prompt 16-09 — la PARED PLANA (refs: la taza, la mesa del cowork, el lounge)
+
+> Fotografia vertical de historia 9:16 de una mesa de cowork en una cafeteria. En
+> primer plano, vista de costado y desde bajo, una mesa de madera oscura con un
+> notebook abierto y encendido, una taza de ceramica blanca total con capuchino
+> sobre su platillo igual a la de la @img1, una libreta cerrada con un lapiz
+> encima y un plato chico con un croissant. Al fondo, a un costado, sillas de
+> madera y algo de follaje verde muy desenfocado, como en la @img2 y la @img3.
+> ENCUADRE: el TERCIO DE ARRIBA es una pared beige limpia, plana y desenfocada,
+> sin nada encima; la mesa con el notebook y la taza ocupa la franja del medio; y
+> la franja de abajo es mesa y suelo tranquilos, sin objetos. Luz natural calida
+> de tarde, poca profundidad de campo. La taza es blanca total, sin letras ni
+> logo. Realista, que se vea apetitoso, alta calidad 4k. Sin ninguna persona, sin
+> ningun texto, sin letras, sin logotipos.
+
+⭐ **«El tercio de arriba es una pared beige limpia, plana y desenfocada, sin nada
+encima»** es lo que permite que el titular vaya grande y SIN caja. Y como la
+pared sale clara (L=177 medido), esa pieza es la primera de Between con el
+**titular y el lockup en tinta café** — que es justo para lo que el kit define el
+café: «texto sobre fondos muy claros».
+
+### Prompt 18-09 — el BRINDIS (refs: las dos tazas, la terraza con ampolletas)
+
+> Fotografia vertical de historia 9:16 de un brindis con cafe en una cafeteria
+> calida. DOS manos, una por cada lado del cuadro, levantan y juntan dos tazas de
+> ceramica blanca total con capuchino, iguales a las de la @img1. Detras, el local
+> de la @img2 muy desenfocado: madera, ampolletas Edison encendidas y vegetacion,
+> convertidos en manchas calidas de luz. ENCUADRE: las dos tazas juntandose van
+> ARRIBA, en el tercio superior del cuadro, y los DOS TERCIOS DE ABAJO son el
+> MISMO local siguiendo hacia abajo, cada vez mas desenfocado y mas oscuro,
+> tranquilo y sin objetos, para poder poner un texto encima. Es UNA SOLA
+> fotografia continua: NO pongas una mesa en primer plano, NO pongas una
+> superficie plana abajo y NINGUNA linea horizontal que corte el cuadro. Luz
+> calida de atardecer con contraluz suave. Las tazas son blancas totales, sin
+> letras ni logo. Realista, exactamente dos manos, dedos separados con el nudillo
+> visible, alta calidad 4k. Sin ningun texto, sin letras, sin logotipos.
+
+⛔ **La primera tirada decía «los dos tercios de abajo son MESA de madera oscura»
+y el generador lo entendió literal:** pegó un plano de mesa recto en primer plano
+con una **costura horizontal visible** a media pieza. Pedir «mesa» invita a pegar
+un plano. Hay que pedir que **la misma escena siga hacia abajo** y prohibir
+explícitamente la línea horizontal.
+
+⭐ Y el brindis del referente —dos manos dibujadas chocando copas— se resolvió
+**en la fotografía, con dos tazas de Between de verdad**. El repertorio de línea
+de la marca son los trazos del `.svg` de Eli y ahí no hay un brindis; el manual
+prohíbe dibujar o generar trazos nuevos. Pedírselo al generador respeta las dos
+cosas: se toma el elemento del referente y no se le inventa un garabato a la
+marca.
+
+### Los tres candados que van en TODOS estos prompts
+
+1. **«Sin ningún texto, sin letras, sin logotipos»** — la tipografía la pone
+   Remotion con la geometría medida. Nano Banana escribe texto legible (y en la
+   vitrina de emergencia eso fue lo correcto), pero cuando hay ancla, columna y
+   logo medidos, el texto va en código.
+2. **«Taza blanca total, sin letras ni logo»** — la regla KIMBO. Y además la IA
+   nunca hace el logotipo de la marca: una taza generada «con marca» sería una
+   marca inventada.
+3. **El ENCUADRE explícito, franja por franja.** «Va baja, en el tercio
+   inferior»; «los dos tercios de arriba son X limpio, sin nada encima». Es la
+   misma frase que destrabó el panorama del cumpleaños.
+
+### ⛔ Y dos cosas que hay que arreglar DESPUÉS del generador, siempre
+
+- **El color de marca no llega exacto.** El sweater salió `#564134` —más rojo y
+  más oscuro que el `#675B49` de Between— y Eli había pedido explícitamente
+  «colores de Between». Se corrige con una **ganancia multiplicativa por canal**
+  sobre una máscara blanda de luminancia: multiplicar conserva el tejido y sus
+  pliegues, sumar un offset lo aplana y se ve de plástico.
+  ⚠️ Y la ganancia se calcula sobre un **rectángulo de medio tono**, no sobre el
+  promedio de la máscara: el promedio incluye las sombras profundas (daba
+  `#412f25`) y llevar ESO al café de marca reventaba los medios. **El color de una
+  prenda es su medio tono, no su promedio con sombras.**
+- **La IA mete marcas de terceros.** La escena del cowork llegó con el logotipo
+  de un fabricante de computadores en la tapa del notebook. En una pieza de
+  cliente no va, y el referente tampoco lo tiene. Se borra con la interpolación
+  horizontal de `between-quitar-kimbo.py` — la tapa es un degradado liso, así que
+  la recta entre sus dos costados ES la superficie.

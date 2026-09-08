@@ -4516,3 +4516,102 @@ propias sólo correrían las de agencia y eso daría un visto bueno que la marca
 se ganó. La compuerta que sí corre es `scripts/between-qa.py`, y las cinco piezas
 de la S3 pasaron limpias. Escribirle el `reglas.yaml` a Between queda pendiente:
 hay que firmarlo con Eli, porque son sus medidas.
+
+---
+
+# ⭐⭐⭐ S3 · RONDA 2 — «no cumplen»: la lección es que la FOTO SE PRODUCE (08-09-2026)
+
+Eli devolvió las tres stories de la S3: «Hazlos de nuevo las 3 stories ya que no
+cumplen, **debes dejar mejores fotografías, mejor imagenes hazlo en conjunto a
+magnific**», y adjuntó tres referentes
+(`12S5bEGzPtZmE82U_ZxrboyZwsvOOQoZ0` → `raw/hilton/between/ref-s3-eli/`) con la
+condición: «deben ser colores y fondos de Between, pero puedes guiarte de
+elementos de la referencia para hacerlos similar. Con la identidad visual de BW».
+
+## ⭐ 1. La regla que sale de acá, y reemplaza a la de la ronda 1
+
+La ronda 1 gastó el día resolviendo **cómo recortar** el banco 4:5 a 9:16 —hasta
+subir las fotos a 2× con el upscaler para ganar libertad vertical—. Funcionaba, y
+aun así las tres piezas estaban mal, porque el problema no era el recorte:
+
+> **Una historia de Between no se recorta: se PRODUCE.** El banco está pensado en
+> 4:5 y ninguna de sus fotos deja el hueco que la diagramación necesita en 9:16.
+> Si la foto no trae el hueco, el texto termina apoyado en cajas taupe — y con
+> tres piezas resueltas así, las tres se parecen entre sí.
+
+Los tres referentes de Eli hacen exactamente lo contrario, y **el hueco es su
+tema**: un torso de color liso que llena el cuadro, una pared plana en el tercio
+de arriba, un plano del local muy desenfocado. En los tres el titular va grande y
+**sin ninguna caja**.
+
+⚠️ Esto NO deroga el `escalar 2x` de la ronda 1: sigue siendo la receta cuando hay
+que llevar una foto real del banco a 9:16 (un packshot aprobado, una foto del
+cliente). Lo que cambia es el orden: **primero se ve si la escena se puede
+producir**; recortar el banco es el plan B.
+
+## ⭐⭐ 2. Tres formas de producir el hueco, con los colores de la marca
+
+Son las tres traducciones de los referentes, y quedan como repertorio:
+
+| Recurso | Cómo se produce | Dónde va el texto |
+|---|---|---|
+| **Campo de color de marca** | una prenda lisa del **café `#675B49`** que llena el cuadro, con la taza sostenida en el tercio inferior | beige suelto sobre el campo, y el sticker cabe de su porte real |
+| **Pared plana** | «el TERCIO DE ARRIBA es una pared beige limpia, plana y desenfocada, sin nada encima» — es el vocabulario que Eli ya usaba en la vitrina de emergencia | **tinta café**, porque la pared sale clara (L=177 medido) |
+| **Panel sobre la escena** | el local muy desenfocado + un panel **beige `#FFF9EB`** con tinta café y el lockup café adentro | todo dentro del panel |
+
+⭐ **El panel beige es la caja taupe al revés**, no un elemento nuevo: son los dos
+colores de la marca y la inversión ya existe en el mock de post crema. Y cuando la
+identidad va dentro del panel, **el lockup flotante de arriba se saca** — leerla
+dos veces es el mismo defecto que repetir el lockup sobre una foto con el vaso
+impreso (regla 8).
+
+## ⭐ 3. La primera pieza de Between con TINTA CAFÉ en el titular
+
+El kit define el café `#675B49` como «texto sobre fondos muy claros» y hasta ahora
+no había ninguna pieza que lo usara en un titular. La del 16-09 lo usa —lockup
+café + script café + caja alta café sobre la pared beige— y es lo que permite que
+el titular vaya grande y sin caja, como el referente. `TitularBetween` y
+`LogoBetween` ya soportan `tono="cafe"`; `TitularBetween` además le quita la
+sombra sola, que sobre fondo claro sería suciedad.
+
+**El criterio, en una línea:** la tinta la decide la LUMINANCIA de la franja donde
+cae el texto, no la costumbre. Bajo L≈120 va beige; sobre L≈150 va café.
+
+## ⛔ 4. Lo que hay que arreglar SIEMPRE después del generador
+
+1. **El color de marca no llega exacto.** El sweater salió `#564134`, más rojo y
+   oscuro que el `#675B49`. Se corrige con **ganancia multiplicativa por canal**
+   sobre una máscara blanda de luminancia — multiplicar conserva el tejido, sumar
+   un offset lo aplana.
+   ⚠️ Y la ganancia se mide sobre un **rectángulo de MEDIO TONO**, no sobre el
+   promedio de la máscara: ese promedio arrastra las sombras profundas (`#412f25`)
+   y llevarlo al café de marca revienta los medios. **El color de una prenda es su
+   medio tono, no su promedio con sombras.**
+2. **La IA mete marcas de terceros.** La escena del cowork llegó con el logotipo
+   de un fabricante de computadores en la tapa del notebook. En una pieza de
+   cliente no va — y el referente tampoco lo lleva. Fuera, con la interpolación
+   horizontal de `between-quitar-kimbo.py`.
+3. **Nunca pedirle «una mesa en primer plano» para el tercio de abajo.** El
+   generador pega un plano recto y deja una **costura horizontal** a media pieza.
+   Hay que pedir que la MISMA escena siga hacia abajo y prohibir la línea.
+4. **Las manos, al 300–400 %, una por una.** En estas tres se revisaron las tres
+   manos y pasaron: pulgar y dedos con uña, nudillos y pliegues, sin masas lisas.
+
+## ⭐ 5. El bloque de dato NO va donde el referente lo pone si ahí está el sujeto
+
+El referente del 16-09 pone el horario al pie, y se probó igual: las dos cajas
+taupe **taparon la taza** —medido, la taza con su platillo ocupa y=1120–1320—, o
+sea que la pieza que habla del café escondía el café. En el referente el pie está
+vacío; en esta foto es donde está el sujeto. **La estructura del referente se
+respeta hasta que choca con la foto propia; ahí manda la foto.**
+
+## Estado de la entrega
+
+`out/hilton/between/entrega-st-s3/` a 2250×4000 · 150 ppp, subidas y
+**reemplazadas en el mismo archivo** de la carpeta STORIES
+(`1SNBRIvKLvQSC2bYF3u5_oPL5UumIo-gM`), así que los enlaces no cambiaron.
+`between-qa.py`: 3/5 limpias y 2 avisos por el cierre del 14-09, que entra 55 px
+en la franja inferior de Meta — menos que el legal de 90 px que Eli aprobó en la
+ST 2 del cumpleaños. Vale en orgánico; si pasa a pauta, hay que subirlo.
+
+Los prompts, textuales, en [`PROMPTS-DE-ELI.md`](PROMPTS-DE-ELI.md) §4.

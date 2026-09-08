@@ -1,34 +1,39 @@
 #!/usr/bin/env python3
-"""Las tres fotos de las STORIES de la S3 de septiembre (14, 16 y 18-09).
+"""Deja listas las tres fotos de las STORIES de la S3 (14, 16 y 18-09).
 
-⭐ 08-09-2026. La grilla pide tres historias y las tres son ESTÁTICAS con foto
-de fondo. El banco de Between está en 4:5 (2250×2812) y la historia es 9:16, así
-que hay un problema real de encuadre: **al recortar 4:5 a 9:16 se conserva todo
-el alto y se corta el ancho**, o sea que el sujeto NO se mueve de altura. En las
-tres fotos el sujeto cae justo en la franja donde va el sticker de Instagram.
+⭐ RONDA 2 · 08-09-2026 — este script se reescribió entero.
 
-La salida no es estirar (`docs/SISTEMA-DE-MARCAS.md` y la skill de dirección de
-arte lo prohíben: en la story de Revex Las Condes las rayas verticales ocuparon
-el 34 % de la pieza). La salida es **subir la foto a 2× con el upscaler que ya
-pagamos y recortar con holgura**:
+En la ronda 1 las tres fotos salían de RECORTAR el banco 4:5 a 9:16, y Eli las
+devolvió: «no cumplen, debes dejar mejores fotografías, mejor imagenes hazlo en
+conjunto a magnific». Tenía razón, y el diagnóstico es uno solo: **una foto de
+banco recortada no deja el hueco que la diagramación necesita**, así que el texto
+terminaba apoyado en cajas taupe y las tres piezas se parecían entre sí. Sus tres
+referentes hacen lo contrario — la foto está PRODUCIDA con el hueco adentro.
 
-    python scripts/magnific.py escalar <foto> --out raw/hilton/between/st-s3/<foto>-2x.png --escala 2x
+Ahora las escenas se GENERAN (`scripts/between-st-s3-generar.py`, método de Eli:
+Nano Banana Pro + las fotos reales como referencia) y este script sólo hace el
+trabajo de laboratorio que la IA no debe hacer:
 
-Con la fuente a 4496×5624 se puede recortar una ventana de 9:16 MÁS CHICA que el
-alto total, y ahí sí se elige a qué altura queda el sujeto. Las tres ventanas de
-abajo salen a 2250×4000 **reduciendo**, nunca ampliando.
-
-⛔ Y el KIMBO. `desayuno-completo-2.jpg` es la única de las tres con taza de loza
-en 45°, así que trae el wordmark del proveedor que el cliente lleva pidiendo
-sacar desde la ronda 4 («ya no servimos en esas tazas»). Se borra con el mismo
-método de `between-quitar-kimbo.py` —interpolación horizontal entre el esmalte
-limpio de los dos costados, NO clonado, porque la taza tiene degradado lateral y
-un parche clonado deja un rectángulo visible—. La caja se midió sobre la imagen
-a 2× buscando los píxeles rojos, no a ojo.
+  1. **14-09 — el sweater al café de marca.** El generador entregó un café
+     `#564134`, más rojo y más oscuro que el `#675B49` de Between. Se corrige con
+     una GANANCIA MULTIPLICATIVA por canal aplicada sólo al sweater: multiplicar
+     conserva la textura del tejido y sus pliegues, mientras que sumar un offset
+     lo aplana y el sweater se ve de plástico. La máscara es blanda y por
+     luminancia — el sweater tiene su canal más alto en ~86 de 255 y la piel en
+     ~215, así que se separan solos, sin recortar a mano.
+  2. **16-09 — fuera el logotipo del notebook.** La escena llegó con la marca de
+     un computador en la tapa. En una pieza de cliente no va la marca de un
+     tercero, y el referente de Eli tampoco la lleva. Se borra con la
+     interpolación horizontal de `between-quitar-kimbo.py`, que es lo correcto
+     acá: la tapa es un degradado liso, así que la recta entre sus dos costados
+     ES la superficie.
+  3. **Las tres — el encuadre final a 2250×4000.** Nano Banana devuelve
+     3072×5504, que da 0,558 y no 0,5625: sobran 43 px de alto. Se quitan del
+     lado que no mueve al sujeto y después se REDUCE (×0,73). Ninguna se amplía.
 
 Uso:
     python scripts/between-st-s3-fotos.py
-    python scripts/between-st-s3-fotos.py --revisar   # además deja los QA con zoom
+    python scripts/between-st-s3-fotos.py --revisar    # deja los QA con zoom
 """
 import argparse
 import sys
@@ -52,61 +57,45 @@ DESTINO = RAIZ / "public/assets/hilton/between/st-s3"
 
 SALIDA = (2250, 4000)  # el master de Eli: 1080×1920 × 2,0833
 
-#: Cajas del logotipo KIMBO en `desayuno-completo-2-2x.png`. La primera se midió
-#: aislando los píxeles rojos (R>110, R−G>50, R−B>50) dentro de la taza —bbox del
-#: wordmark 2227–2375 × 2900–3272— y se agrandó a mano para tomar también la
-#: BARRA GRIS de abajo, que no es roja y por eso no sale en la máscara.
-#:
-#: ⚠️ Son DOS cajas y no una, y la razón es geométrica. La interpolación
-#: horizontal conserva cualquier rasgo que sea HORIZONTAL, porque cada fila se
-#: rellena con su propio tono; lo que no aguanta es que un rasgo CURVO cruce una
-#: caja ancha. Acá lo cruza: la línea donde la taza se apoya en el platillo pasa
-#: justo por la punta de la barra gris. Con una sola caja hasta y=3278 esa línea
-#: salía aplanada y se veía el parche. Así que la caja grande se corta ANTES de
-#: la línea (y=3258) y la punta que queda asomando se tapa con una caja chica de
-#: 70 px de ancho, donde la curva casi no se mueve.
-KIMBO = [
-    (2215, 2880, 2390, 3258),   # wordmark rojo + casi toda la barra gris
-    (2220, 3252, 2290, 3286),   # la punta de la barra, bajo la línea del platillo
-]
+#: El café de marca, en RGB. Es el objetivo de la corrección del sweater.
+CAFE_MARCA = np.array([0x67, 0x5B, 0x49], dtype=np.float32)
 
-#: Las tres ventanas 9:16. (archivo, x0, y0, ancho) — el alto sale de 16/9.
-#:
-#: Cómo se eligió cada una: se dibujó encima la rejilla real de la pieza (zonas
-#: seguras de Meta a 250 y 1580, bloque de titular en y=441 y la zona reservada
-#: del sticker) y se miró que el titular caiga sobre superficie CALMA y que la
-#: zona del sticker caiga sobre superficie LIMPIA. Ver la bitácora del 08-09.
-VENTANAS = {
-    # 14-09 · el capuchino sube para dejar la mesa libre bajo la taza: ahí va el
-    # sticker de quiz. El titular cae sobre los sillones desenfocados del lounge,
-    # que son oscuros y neutros — se lee sin velo.
-    "st-14-09-hora-cafe.jpg": ("mesa-cafe-2piso-2x.png", 960, 1080, 2500),
-    # 16-09 · la ventana se cierra y baja por dos razones medidas. Una, dejar
-    # FUERA la sombrilla blanca del toldo: con el encuadre completo el lockup
-    # beige caía justo sobre ella y desaparecía. Dos, acortar la franja de sillas
-    # y adoquín del pie: con la ventana ancha ocupaba media pieza y el mensaje es
-    # «te esperamos», o sea que lo que tiene que pesar es la MESA SERVIDA, no el
-    # suelo vacío. Acá la mesa con el notebook, la taza, la libreta y el celular
-    # ocupa el centro, y abajo queda sólo lo justo para el sticker de enlace.
-    "st-16-09-cowork.jpg": ("cowork-terraza-2x.png", 980, 1000, 2300),
-    # 18-09 · la ventana se pega ARRIBA (y0=0) para que la mesa oscura y el muro
-    # de ladrillo desenfocado ocupen el tercio superior: es el único sitio de
-    # esta foto donde un titular beige se lee sin caja. El ancho es 2250 exactos,
-    # o sea que esta pieza sale SIN reescalar — 1:1 desde la fuente a 2×.
-    "st-18-09-dieciocho.jpg": ("desayuno-completo-2-2x.png", 375, 0, 2250),
+#: Caja del logotipo del notebook en `gen-16-09-cowork.png`, medida sobre la tapa.
+#: Generosa a propósito: mejor sobrar aluminio liso que dejar asomando un trozo.
+LOGO_NOTEBOOK = (2586, 2760, 2716, 3000)
+
+#: Las tres escenas. `recorte_alto` dice de dónde se quitan los px que sobran
+#: para dar 9:16 exacto: 'arriba' cuando el sujeto está abajo (así no se mueve),
+#: 'abajo' cuando está arriba.
+ESCENAS = {
+    "st-14-09-hora-cafe.jpg": {
+        "fuente": "gen-14-09-taza-sostenida.png",
+        "recorte_alto": "arriba",
+        "sweater_a_cafe": True,
+    },
+    "st-16-09-cowork.jpg": {
+        "fuente": "gen-16-09-cowork.png",
+        "recorte_alto": "abajo",
+        "borrar": [LOGO_NOTEBOOK],
+    },
+    "st-18-09-dieciocho.jpg": {
+        "fuente": "gen-18-09-brindis-v2.png",
+        "recorte_alto": "abajo",
+    },
 }
 
 
-def borra_kimbo(im: Image.Image, caja, apoyo: int = 20) -> Image.Image:
-    """Rellena la caja interpolando entre el esmalte limpio de sus dos costados.
+def borra_por_interpolacion(im, caja, apoyo=24):
+    """Rellena la caja interpolando entre las columnas limpias de sus dos costados.
 
-    Copiado del método ya probado en `between-quitar-kimbo.py`: la taza está
-    fuera de foco y su superficie es un degradado suave, así que la recta que une
-    los dos costados ES la superficie y no queda empalme.
+    Método ya probado en `between-quitar-kimbo.py`. Sirve cuando la superficie es
+    un degradado suave: la recta que une los dos costados ES la superficie, así
+    que no queda empalme. NO se clona una franja vecina: en una superficie con
+    degradado lateral el parche llega con otra luminancia y deja un rectángulo.
     """
     x0, y0, x1, y1 = caja
     if not (apoyo <= x0 and x1 + apoyo <= im.width and 0 <= y0 <= y1 <= im.height):
-        sys.exit(f"✗ la caja {caja} no deja {apoyo} px de apoyo dentro de {im.size}")
+        sys.exit(f"la caja {caja} no deja {apoyo} px de apoyo dentro de {im.size}")
     a = np.asarray(im.convert("RGB")).astype(np.float32)
     izq = a[y0:y1, x0 - apoyo:x0].mean(axis=1)
     der = a[y0:y1, x1:x1 + apoyo].mean(axis=1)
@@ -126,57 +115,97 @@ def borra_kimbo(im: Image.Image, caja, apoyo: int = 20) -> Image.Image:
     ImageDraw.Draw(mask).rectangle([m, m, mask.width - m, mask.height - m], fill=255)
     mask = mask.filter(ImageFilter.GaussianBlur(m / 2.0))
     fuera.paste(Image.composite(suave, zona, mask), (zx0, zy0))
-    print(f"  · KIMBO borrado: caja {caja} · apoyo {apoyo} · difuminado {m}")
+    print(f"  · marca borrada: caja {caja} · apoyo {apoyo} · difuminado {m}")
     return fuera
+
+
+#: Rectángulo de MEDICIÓN del sweater en `gen-14-09-taza-sostenida.png`
+#: (x0, y0, x1, y1). Es tejido limpio y bien iluminado, sin piel, sin taza y sin
+#: los pliegues profundos de los costados.
+#:
+#: ⚠️ La ganancia se calcula acá y NO sobre toda la máscara. La primera pasada la
+#: calculó contra el promedio de los píxeles con peso 1 —que son el 67 % del
+#: cuadro e incluyen las sombras profundas del tejido— y ese promedio da `#412f25`:
+#: llevarlo a `#675B49` pedía una ganancia de ×1,57–1,97 y reventaba los medios.
+#: El color de una prenda es su MEDIO TONO, no el promedio con sus sombras.
+MUESTRA_SWEATER = (700, 900, 2400, 2600)
+
+
+def sweater_al_cafe(im):
+    """Lleva el sweater del 14-09 al café `#675B49` sin tocar piel ni taza."""
+    a = np.asarray(im.convert("RGB")).astype(np.float32)
+    maxc = a.max(axis=2)
+    # Máscara blanda por luminancia: el tejido está en Rmax≈86 y la piel en ≈215.
+    w = np.clip((150.0 - maxc) / 60.0, 0.0, 1.0)[:, :, None]
+
+    mx0, my0, mx1, my1 = MUESTRA_SWEATER
+    med = a[my0:my1, mx0:mx1].reshape(-1, 3).mean(axis=0)
+    gan = CAFE_MARCA / med
+    hexmed = "#%02x%02x%02x" % tuple(int(v) for v in med)
+    print(f"  · sweater medido {hexmed} → objetivo #675b49 · ganancia "
+          f"{gan.round(3)} · máscara con peso 1 en {(w[:, :, 0] > 0.98).mean() * 100:.1f} %")
+
+    a = a * (1 - w) + (a * gan) * w
+    fin = np.clip(a, 0, 255).astype(np.uint8)
+    nuevo = fin[my0:my1, mx0:mx1].reshape(-1, 3).astype(np.float32).mean(axis=0)
+    hexnew = "#%02x%02x%02x" % tuple(int(v) for v in nuevo)
+    print(f"  · sweater quedó  {hexnew}")
+    return Image.fromarray(fin)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--revisar", action="store_true",
-                    help="guarda recortes con zoom del empalme del KIMBO")
+                    help="guarda recortes con zoom de los retoques")
     a = ap.parse_args()
 
     DESTINO.mkdir(parents=True, exist_ok=True)
-    for nombre, (fuente, x0, y0, ancho) in VENTANAS.items():
-        src = FUENTES / fuente
+    for nombre, e in ESCENAS.items():
+        src = FUENTES / e["fuente"]
         if not src.is_file():
-            sys.exit(f"✗ falta {src}\n"
-                     f"  Se genera con: python scripts/magnific.py escalar "
-                     f"public/assets/hilton/between/fotos-gradadas/"
-                     f"{fuente.replace('-2x.png', '.jpg')} --out {src} --escala 2x")
+            sys.exit(f"falta {src}\n"
+                     f"  Se genera con: python scripts/between-st-s3-generar.py")
+        print(f"{nombre}  <-  {e['fuente']}")
         im = Image.open(src).convert("RGB")
-        if fuente.startswith("desayuno"):
-            # La ventana de QA cubre las dos cajas juntas, con 120 px de aire.
-            zx0 = min(c[0] for c in KIMBO) - 120
-            zy0 = min(c[1] for c in KIMBO) - 120
-            zx1 = max(c[2] for c in KIMBO) + 120
-            zy1 = max(c[3] for c in KIMBO) + 120
-            if a.revisar:
-                z = im.crop((zx0, zy0, zx1, zy1))
-                z.resize((z.width * 2, z.height * 2), Image.LANCZOS).save(
-                    FUENTES / "_qa-kimbo-antes.jpg", quality=94)
-            for caja in KIMBO:
-                im = borra_kimbo(im, caja, apoyo=18)
-            if a.revisar:
-                z = im.crop((zx0, zy0, zx1, zy1))
-                z.resize((z.width * 2, z.height * 2), Image.LANCZOS).save(
-                    FUENTES / "_qa-kimbo-despues.jpg", quality=94)
 
-        alto = int(round(ancho * 16 / 9))
-        if x0 + ancho > im.width or y0 + alto > im.height:
-            sys.exit(f"✗ {nombre}: la ventana {ancho}×{alto} en ({x0},{y0}) "
-                     f"se sale de {im.size}")
-        # ⚠️ La comprobación que importa: la ventana tiene que ser MÁS GRANDE que
-        # la salida. Si no, la pieza se entregaría ampliada y eso ya costó una
-        # story rechazada en otra marca.
-        if ancho < SALIDA[0]:
-            sys.exit(f"✗ {nombre}: la ventana ({ancho}) es más chica que la "
-                     f"entrega ({SALIDA[0]}): saldría ampliada.")
-        rec = im.crop((x0, y0, x0 + ancho, y0 + alto)).resize(SALIDA, Image.LANCZOS)
+        if e.get("sweater_a_cafe"):
+            if a.revisar:
+                im.crop((300, 900, 1500, 1900)).save(
+                    FUENTES / "_qa-sweater-antes.jpg", quality=94)
+            im = sweater_al_cafe(im)
+            if a.revisar:
+                im.crop((300, 900, 1500, 1900)).save(
+                    FUENTES / "_qa-sweater-despues.jpg", quality=94)
+
+        for caja in e.get("borrar", []):
+            if a.revisar:
+                z = im.crop((caja[0] - 150, caja[1] - 150, caja[2] + 150, caja[3] + 150))
+                z.resize((z.width * 2, z.height * 2), Image.LANCZOS).save(
+                    FUENTES / "_qa-notebook-antes.jpg", quality=94)
+            im = borra_por_interpolacion(im, caja)
+            if a.revisar:
+                z = im.crop((caja[0] - 150, caja[1] - 150, caja[2] + 150, caja[3] + 150))
+                z.resize((z.width * 2, z.height * 2), Image.LANCZOS).save(
+                    FUENTES / "_qa-notebook-despues.jpg", quality=94)
+
+        # El alto que sobra para dar 9:16 exacto, quitado del lado que no mueve
+        # al sujeto.
+        alto_916 = int(round(im.width / 0.5625))
+        sobra = im.height - alto_916
+        if sobra < 0:
+            sys.exit(f"{nombre}: la fuente {im.size} es MAS ANGOSTA que 9:16")
+        y0 = sobra if e["recorte_alto"] == "arriba" else 0
+        rec = im.crop((0, y0, im.width, y0 + alto_916))
+
+        if rec.width < SALIDA[0]:
+            sys.exit(f"{nombre}: la ventana ({rec.width}) es mas chica que la "
+                     f"entrega ({SALIDA[0]}): saldria ampliada.")
+        rec = rec.resize(SALIDA, Image.LANCZOS)
         dst = DESTINO / nombre
         rec.save(dst, quality=95, subsampling=1)
-        print(f"✓ {nombre}  ventana {ancho}×{alto} @({x0},{y0}) de {im.size[0]}×{im.size[1]}"
-              f"  → {SALIDA[0]}×{SALIDA[1]}  (reducción ×{SALIDA[0] / ancho:.2f})")
+        print(f"  ok {im.size[0]}x{im.size[1]} -> recorte {im.width}x{alto_916}"
+              f" (-{sobra} px {e['recorte_alto']}) -> {SALIDA[0]}x{SALIDA[1]}"
+              f"  reduccion x{SALIDA[0] / im.width:.2f}\n")
 
 
 if __name__ == "__main__":

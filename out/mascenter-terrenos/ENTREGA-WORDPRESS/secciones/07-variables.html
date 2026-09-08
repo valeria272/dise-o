@@ -1,0 +1,80 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 07 — MÁS QUE UN TERRENO — las variables que evaluamos
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/07-*.jpg
+     Nota: Listado de lo que mira el equipo de desarrollo antes de decidir.
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── MÁS QUE UN TERRENO — las 7 variables ─────────────────────── */
+.variables{background:var(--gris);padding:clamp(80px,10vw,140px) 0}
+.variables .cabeza{max-width:62ch;margin-bottom:clamp(44px,5vw,70px)}
+.variables .cabeza p{color:var(--texto-med);margin-top:14px}
+.rejilla-var{--gv:clamp(16px,1.8vw,22px);display:flex;flex-wrap:wrap;
+  justify-content:center;gap:var(--gv)}
+.rejilla-var>.variable{flex:0 1 calc(25% - var(--gv)*0.75)}
+@media (max-width:1180px){.rejilla-var>.variable{flex:0 1 calc(33.333% - var(--gv)*0.667)}}
+@media (max-width:900px){.rejilla-var>.variable{flex:0 1 calc(50% - var(--gv)*0.5)}}
+@media (max-width:620px){.rejilla-var>.variable{flex:0 1 100%}}
+.variable{background:#fff;border-radius:18px;padding:clamp(24px,2.6vw,32px);display:flex;gap:20px;
+  align-items:flex-start;transition:transform .5s var(--exp),box-shadow .5s var(--exp)}
+.variable:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.10)}
+.variable .icono{width:46px;height:46px;flex-shrink:0;color:var(--rojo)}
+.variable .icono svg{width:100%;height:100%;fill:currentColor}
+.variable h3{font-size:1rem;font-weight:600;margin-bottom:6px}
+.variable p{font-size:.88rem;color:var(--texto-med);line-height:1.6}
+.variables .cierre{margin-top:clamp(38px,4vw,56px);font-size:clamp(1rem,1.5vw,1.18rem);font-weight:300;
+  color:var(--texto);max-width:62ch;line-height:1.6;border-left:3px solid var(--rojo);padding-left:26px}
+</style>
+
+<!-- ════════════ MÁS QUE UN TERRENO ════════════ -->
+<section class="variables">
+  <div class="contenedor">
+    <div class="cabeza">
+      <span class="eyebrow fade-up">Cómo evaluamos</span>
+      <h2 class="titulo-seccion fade-up d1">Más que un terreno:<span class="fina">una oportunidad comercial</span></h2>
+      <div class="regla fade-up d2"></div>
+      <p class="fade-up d2">
+        Buscamos desarrollar un ecosistema comercial cercano, accesible y conectado con
+        las necesidades de las personas. Por eso, analizamos cada oportunidad considerando
+        múltiples variables:
+      </p>
+    </div>
+    <div class="rejilla-var">
+      <article class="variable fade-up d1">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
+        <div><h3>Ubicación</h3><p>Avenidas y ejes con alta exposición.</p></div>
+      </article>
+      <article class="variable fade-up d2">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M11.25 2h1.5v2.25H19a1 1 0 0 1 .78.37l1.6 2a1 1 0 0 1 0 1.26l-1.6 2a1 1 0 0 1-.78.37h-6.25v1.5H17a1 1 0 0 1 .78.37l1.6 2a1 1 0 0 1 0 1.26l-1.6 2a1 1 0 0 1-.78.37h-4.25V22h-1.5v-4.25H5a1 1 0 0 1-.78-.37l-1.6-2a1 1 0 0 1 0-1.26l1.6-2A1 1 0 0 1 5 11.75h6.25v-1.5H7a1 1 0 0 1-.78-.37l-1.6-2a1 1 0 0 1 0-1.26l1.6-2A1 1 0 0 1 7 4.25h4.25V2z"/></svg></div>
+        <div><h3>Accesibilidad</h3><p>Buena conectividad vial y cercanía a vías principales y medios de desplazamiento.</p></div>
+      </article>
+      <article class="variable fade-up d3">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M12 5C6.5 5 2.3 8.6 1 12c1.3 3.4 5.5 7 11 7s9.7-3.6 11-7c-1.3-3.4-5.5-7-11-7zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-2a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></div>
+        <div><h3>Visibilidad</h3><p>Terrenos con alta exposición desde calles y avenidas, y buena presencia urbana.</p></div>
+      </article>
+      <article class="variable fade-up d4">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5 0a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM9 12.6c-2.9 0-6 1.45-6 3.4V19h12v-3c0-1.95-3.1-3.4-6-3.4zm7.5.4c-.6 0-1.3.07-2 .2 1.2.85 2 2 2 3.2V19h6v-2.6c0-1.75-2.7-3-6-3.4z"/></svg></div>
+        <div><h3>Flujo</h3><p>Sectores con un flujo relevante y constante de personas y vehículos.</p></div>
+      </article>
+      <article class="variable fade-up d5">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M3 21V9l6-4.5V7l6-4.5v6l6-2.5V21H3zm4-3h2v-3H7v3zm4 0h2v-3h-2v3zm4 0h2v-3h-2v3zM7 12.5h2v-2.4H7v2.4zm4 0h2v-2.4h-2v2.4zm4 0h2v-2.4h-2v2.4z"/></svg></div>
+        <div><h3>Entorno</h3><p>Ubicaciones cercanas a colegios, supermercados, estaciones de servicio, oficinas y transporte.</p></div>
+      </article>
+      <article class="variable fade-up d6">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM6.2 15h11.3a1 1 0 0 0 .96-.73L21 6H6.4L5.6 3.6A1 1 0 0 0 4.65 3H2v2h1.93l3.3 9.55L6 16.5c-.5.83.1 1.5 1 1.5h12v-2H7.4l-1.2-1z"/></svg></div>
+        <div><h3>Demanda comercial</h3><p>Sectores con base de consumidores consolidada o demanda creciente por servicios y comercio de proximidad.</p></div>
+      </article>
+      <article class="variable fade-up d7">
+        <div class="icono"><svg viewBox="0 0 24 24"><path d="M3.5 18.5 9 13l4 4 7.1-7.9L21.5 10.5 13 20l-4-4-4.1 4.1L3.5 18.5zM16 4h6v6h-2V7.4l-5.3 5.3-1.4-1.4L18.6 6H16V4z"/></svg></div>
+        <div><h3>Potencial de desarrollo</h3><p>Oportunidades que permitan desarrollar proyectos comerciales capaces de generar valor en su entorno.</p></div>
+      </article>
+    </div>
+    <p class="cierre fade-up d2">
+      Este análisis nos permite seleccionar terrenos que puedan transformarse en
+      proyectos comerciales exitosos y sostenibles en el tiempo.
+    </p>
+  </div>
+</section>

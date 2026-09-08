@@ -1,0 +1,62 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 05 — NUESTRO RESPALDO — las cifras
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/05-*.jpg
+     Nota: Los números suben solos cuando la sección aparece en pantalla.
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── VALOR / CIFRAS ───────────────────────────────────────────── */
+.valor{position:relative;background:var(--vino);color:#fff;padding:clamp(80px,10vw,140px) 0;overflow:hidden}
+.valor::after{content:'';position:absolute;right:-8%;top:50%;transform:translateY(-50%);
+  width:52vw;height:52vw;max-width:760px;max-height:760px;border-radius:50%;
+  background:radial-gradient(circle,rgba(229,37,33,.34) 0%,rgba(229,37,33,0) 68%);pointer-events:none}
+.valor .contenedor{position:relative;z-index:2}
+.valor .cabeza{max-width:56ch;margin-bottom:clamp(48px,5vw,74px)}
+.valor .cabeza p{color:rgba(255,255,255,.82);margin-top:14px}
+.rejilla-cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:clamp(24px,3vw,44px)}
+.cifra{border-top:2px solid rgba(255,255,255,.24);padding-top:26px;position:relative}
+.cifra::before{content:'';position:absolute;left:0;top:-2px;width:0;height:2px;background:var(--rojo);
+  transition:width 1s var(--exp) .2s}
+.cifra.is-visible::before{width:56px}
+.cifra .n{font-size:clamp(2.4rem,4.6vw,3.7rem);font-weight:700;line-height:1;letter-spacing:-.03em;
+  display:flex;align-items:baseline;gap:2px}
+.cifra .n sup{font-size:.42em;font-weight:600;align-self:flex-start;margin-top:.5em}
+.cifra .r{font-size:.95rem;font-weight:500;margin-top:12px;color:rgba(255,255,255,.94)}
+.cifra .d{font-size:.84rem;color:rgba(255,255,255,.66);margin-top:6px;line-height:1.55}
+</style>
+
+<!-- ════════════ EL VALOR DE MÁS CENTER ════════════ -->
+<section class="valor" id="valor">
+  <div class="contenedor">
+    <div class="cabeza">
+      <span class="eyebrow claro fade-up">El valor de Más Center</span>
+      <h2 class="titulo-seccion fade-up d1" style="color:#fff">
+        Trayectoria consolidada<span class="fina">en desarrollo y operación de strip centers</span>
+      </h2>
+      <p class="fade-up d2">
+        Desarrollamos, operamos y hacemos crecer proyectos comerciales que hoy están
+        activos, con locales arrendados y flujo constante de clientes a lo largo de Chile.
+      </p>
+    </div>
+    <div class="rejilla-cifras">
+      <div class="cifra fade-up d1">
+        <div class="n"><span>+</span><span class="contador" data-a="69000" data-sep="1">0</span> <sup>m²</sup></div>
+        <div class="r">de locales comerciales</div>
+        <div class="d">Superficie arrendable construida y en operación.</div>
+      </div>
+      <div class="cifra fade-up d2">
+        <div class="n"><span>+</span><span class="contador" data-a="30">0</span></div>
+        <div class="r">strip centers</div>
+        <div class="d">A lo largo del país, de Copiapó a Coyhaique.</div>
+      </div>
+      <div class="cifra fade-up d3">
+        <div class="n"><span>+</span><span class="contador" data-a="400">0</span></div>
+        <div class="r">contratos de arriendo</div>
+        <div class="d">Con operadores nacionales y comercio de proximidad.</div>
+      </div>
+    </div>
+  </div>
+</section>

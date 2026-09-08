@@ -40,9 +40,10 @@ encima — la regla del sistema. Los iconos son **rellenos**, como exige el manu
 
 1. **La superficie mínima dice «XX m²».** Así venía en el brief. Está marcada con un
    comentario HTML en la tarjeta «Superficie» — es un solo lugar que cambiar.
-2. **El correo de contacto es `contacto@mascenter.cl`**, tomado de su sitio. Si la
-   captación de terrenos tiene un buzón propio (tipo `terrenos@` o `desarrollo@`),
-   hay que cambiarlo. No se puso teléfono porque no tenemos uno confirmado para esto.
+2. ~~**El correo de contacto es `contacto@mascenter.cl`**~~ — **RESUELTO 08-09-2026:**
+   el cliente confirmó el buzón de captación de terrenos y la landing ya dice
+   **`terrenos@ifbinversiones.cl`** (enlace `mailto:` y texto visible, sección
+   «Conversemos»). Sigue sin teléfono: no tenemos uno confirmado para esto.
 3. **Los 4 pasos del proceso son propuesta de la agencia**, adaptados de la referencia
    de Arcos Dorados. Falta que Más Center confirme los plazos reales y **cómo se llama
    el área que evalúa** — quedó como «equipo de desarrollo» (en McDonald's es «Real Estate»).
@@ -191,6 +192,34 @@ las fotos viejas.
    `raw/mascenter-terrenos/fotos-drive-2026-03/LC-Coyhaique.png` por si el cliente
    prefiere que aparezca; hoy **no está publicada**.
 2. Sigue pendiente de la ronda 2: el rojo oscuro a la espera de la revisión de Fran,
-   el formulario sin backend, el correo de contacto y el dominio definitivo.
+   el formulario sin backend y el dominio definitivo. **El correo ya no está pendiente:
+   es `terrenos@ifbinversiones.cl` desde el 08-09-2026.**
 3. Confirmar que las fotos de **Las Flores** y **San Carlos** (los dos de Las Condes)
    no quedaron cruzadas.
+
+---
+
+## Ronda 4 — 08-09-2026 · un solo cambio
+
+| # | Qué pidió el cliente | Qué se hizo |
+|---|---|---|
+| 1 | Cambiar el correo de contacto | `contacto@mascenter.cl` → **`terrenos@ifbinversiones.cl`**, en el `mailto:` y en el texto visible de la sección «Conversemos». Nada más se tocó. |
+
+### Paquete para WordPress
+
+Se armó `ENTREGA-WORDPRESS/` y su ZIP en `out/ENTREGA-TERRENOS-MASCENTER-WORDPRESS.zip`,
+con el mismo formato que ya funcionó en Algarrobal:
+
+- `sitio-completo.html` — la landing entera, autocontenida, para abrir con doble clic
+- `secciones/` — la página cortada en 13 bloques (`00-estilos-base`, `01`–`11`, `99-scripts`)
+  con instrucciones adentro de cada archivo y una vista previa `.jpg` por sección
+- `recursos/` — imágenes (incluidas las 23 de centros), logos y Poppins en 5 pesos
+- `INSTRUCTIVO.html` — 11 pasos, de subir los archivos a conectar Contact Form 7
+- `TEXTOS-PARA-COPIAR.txt` y `LEEME.txt`
+
+**Verificado:** la página reconstruida pegando las 13 secciones en orden es
+**idéntica píxel a píxel** a `sitio-completo.html` (8.002 px de alto, diferencia media 0,0)
+y ninguna de las dos tira errores de consola.
+
+El destinatario del formulario en Contact Form 7 tiene que ser
+`terrenos@ifbinversiones.cl` — está escrito en el paso 7 del instructivo.

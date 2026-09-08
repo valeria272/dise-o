@@ -1,3 +1,146 @@
+## 2026-09-08 (CIERRE 2 · tarde) · Eli (Windows) — BETWEEN: el legal de los extras
+
+Segunda sesión del mismo día. La de la mañana cerró las tres stories de la S3
+(entrada más abajo); ésta arrancó con `/abrir between` y **la grilla se había
+movido entre medio**.
+
+**Qué se hizo:**
+
+1. **`/al-dia` cazó una ronda nueva del cliente**, entrada entre las 09:21Z y las
+   16:39Z — o sea después de la pasada de la mañana. El tema es **el legal**, y
+   toca tres piezas.
+2. **Se arregló el legal de la story 2 del cumpleaños** y se entregó al Drive
+   reemplazando el mismo archivo.
+3. Se escribió en el manual la regla de fondo que explica el error.
+
+### La ronda: «sacaron el legal de los extras 😭, hay que dejarlo»
+
+| Pieza | Antes | Ahora | Comentario nuevo |
+|---|---|---|---|
+| FEED col E · 09-09 · Café de cumpleaños | `CORREGIDO` | `REVISAR CONTENIDO` | «Pero sacaron el legal de los extras 😭, hay que dejarlo, con eso queda ok» |
+| STORIES col D · ST café de regalo | `CORREGIDO` | `REVISAR CONTENIDO` | «Mismo comentario del legal» |
+| STORIES col G · 09-09 · **Reel Café Bombón** | `EN REVISIÓN` | `REVISAR CONTENIDO` | «Agreguemos legal imagen referencial y OK» — y **se tachó** la duda de hace 12 días |
+| STORIES col I · Emergencia | `CORREGIDO` | **`APROBADO`** | — |
+| STORIES col J · 11-09 · Así se hace tu café | `CORREGIDO` | **`APROBADO`** | — |
+
+También: los 3 reels orgánicos sin fecha recibieron 11, 24 y 28-09 con el brief
+reescrito (son con colaboradores reales: metraje, no IA), y la Promo To Go se
+corrió de 08-09 a 10-09.
+
+⚠️ **Las tres stories de la S3 no se tocaron en la grilla**: la 14 y la 18 siguen
+`OK PARA DISEÑAR` y la 16 `CORREGIDO`. El OK de Eli fue **interno**; el cliente
+todavía no marca.
+
+### ⭐⭐ De dónde salió el texto del legal: de la PIEZA, no del comentario
+
+El comentario dice *qué* falta; **la pieza viva del Drive dice cómo está
+escrito**. Eli ya había corregido el carrusel de feed ella misma —reemplazó
+`C1 S2 CUMPLE N2.png` el 08-09 a las **12:31**— así que bastó calcarlo. Y calcarlo
+cambió la respuesta: no es una frase de dos oraciones, son **DOS LÍNEAS, cada una
+con su propio asterisco**:
+
+```
+*Presenta tu cédula de identidad para canjear tu café el día de tu cumpleaños.
+*Extras y personalizaciones no incluidas.
+```
+
+Si se hubiera deducido del comentario, habría salido una sola línea larga.
+
+### Cómo se perdió el legal, reconstruido
+
+Eli hizo **dos** versiones del carrusel el 07-09, las dos en `raw/hilton/between/de-eli/`:
+
+| | Cédula / «el día» | Extras |
+|---|---|---|
+| `cumple-s2/` (14:53) | ⛔ «de cumpleaños» | ✅ sí |
+| `cumple-s2-v2/` (17:40) | ✅ corregido | ⛔ **se perdió acá** |
+
+La corrección de la fecha **reescribió la frase completa** y en el camino borró la
+segunda oración, que el comentario no mencionaba. De ahí la regla nueva del
+manual: **el legal es acumulativo — se le agrega, no se redacta de cero.**
+
+### La story 1 NO se tocó, y hay motivo
+
+La lámina N1 del carrusel lleva la **dirección** (`AV. Vitacura 2727, Las Condes`),
+no el legal. El legal vive sólo en la lámina 2 → sólo en la story 2. Verificado
+leyendo las dos láminas, no supuesto.
+
+### Lo medido antes de dar la pieza por buena
+
+| | Antes (1 línea) | Ahora (2 líneas) |
+|---|---|---|
+| tinta del legal | y 1646,4 – 1669,9 | y 1646,4 – **1702,1** |
+| cierra a | 247 px del borde | **218 px** |
+| franja inferior de Meta (340 px) | 90 px | **122 px** |
+
+- El bloque creció **hacia abajo**: la línea 1 **no se movió un píxel** (0 px de
+  diferencia sobre y=3497 contra el render anterior), o sea que sigue donde Eli la
+  aprobó el 07-09.
+- La banda de la línea 2 está **más oscura** que la de la 1 — luminancia 0,071
+  contra 0,155 midiendo **por tercios** de la columna, ~8:1 contra el beige
+  `#fff9eb`. El pie se lee **mejor** abajo que arriba.
+- Subir el bloque para recuperar franja lo devolvería sobre el **plato y las
+  cintas**, que es justo lo que Eli mandó corregir.
+
+### Un susto que no era: la ST 1 «no reproducía»
+
+Al re-rendir, la story 1 salía con **21.500 px distintos** contra la entregada, y
+las dos líneas del titular se veían más gordas. No era una regresión:
+
+- los anchos de tinta son **idénticos al píxel** (script 1710 px, Raleway 1635 px);
+- no hay corrimiento (probado ±2 px: el mínimo está en 0);
+- el código de la pieza **no cambió** entre el commit de la entrega y HEAD, y los
+  cambios de `BetweenSistema.tsx` de la ronda 8 son todos **opt-in con el valor
+  por defecto anterior**;
+- a zoom 2× los glifos son los mismos.
+
+Es **rasterización** (~3 % más tinta de antialiasing), no diseño. Igual dejó una
+lección: la diferencia bruta de píxeles no sirve de veredicto — hay que medir
+extensiones, corrimiento y tinta antes de gritar regresión.
+
+**Dónde quedó:**
+
+- `src/compositions/hilton/BetweenStCumpleCarrusel.tsx` — el legal en dos `<div>`
+  (uno por línea; con un `<br/>` suelto JSX deja el salto del código como espacio
+  y descentra la línea).
+- Entrega: `out/hilton/between/entrega-st-cumple-09-09-r2/` — la story 2 y su
+  `GUIA CM`, 2250×4000.
+- **Subida a STS** (`1lupGWfILmS9JQ4tznkqqddTKOh6uFtEe`) **reemplazando el mismo
+  archivo**: id `1lCkTS4wzhTi3a0CJR3X6r001Ihtx8kxZ`, **el enlace no cambió**.
+  Verificado por `md5Checksum` (Drive = local, `6d2db4a702…`), por `parents` y
+  comprobando que la story 1 sigue intacta (`b5671a6242…`, fecha 07-09).
+- **Reproducible byte a byte**: `cmp` limpio entre el render y el archivo entregado.
+- `clients/hilton/CLAUDE.md` — la redacción real, la tabla de medidas y la regla
+  del legal acumulativo.
+- `clients/hilton/grillas/between-septiembre-2026.md` — instantánea nueva, que es
+  la base del diff de mañana.
+
+**Qué sigue:**
+
+1. **El reel Café Bombón** — está agendado el **09-09 (mañana)**, no existe
+   composición todavía y el cliente acaba de contestar la pregunta que lo tenía
+   frenado desde el 27-08. Hay propuesta escrita en
+   `clients/hilton/PROPUESTA-reel-cafe-bombon.md`. ⚠️ **Antes de producir hay que
+   preguntarle a Eli** si esa propuesta es la que el cliente aceptó: el estado
+   quedó en `REVISAR CONTENIDO`, no en `OK PARA DISEÑAR`, y lo único que pidieron
+   por escrito es el legal de «imagen referencial» — que **no es el mismo legal**
+   de esta sesión.
+2. La lámina de FEED del cumpleaños ya la corrigió Eli; el slot sigue en
+   `REVISAR CONTENIDO` esperando que el cliente lo marque.
+
+**Abierto:**
+
+- ⛔ **`BetweenCumple.tsx:112` y `BetweenSeptiembre.tsx:794` siguen con el legal
+  VIEJO** («de cumpleaños», y la primera además dice «carnet»). Quien rehaga una
+  de esas dos tiene que corregirlo en la misma pasada.
+- ⚠️ **El QA marca la story 2 con 122 px** dentro de la franja inferior de Meta,
+  contra los 90 de antes y los **104 de la propia plantilla de Eli**. En orgánico
+  funciona con la sombra; **si la pieza pasa a pauta hay que rehacer el pie**, no
+  sólo subirlo. Es decisión de Eli.
+- Siguen en pie del cierre de la mañana: Between **sin `clients/hilton/reglas.yaml`**
+  (`qa/motor.py --marca hilton` no corre), las **`GUIA CM`** en local sin decidir
+  cómo llegan al CM (9 días), y **`BETWEEN.logo.cafe` apuntando a un PNG negro**.
+
 ## 2026-09-08 (CIERRE DEL DÍA) · Eli (Windows) — resumen para el relevo
 
 Jornada completa sobre **BETWEEN, stories de la S3** (14, 16 y 18-09): ocho rondas

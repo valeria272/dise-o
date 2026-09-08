@@ -479,7 +479,13 @@ export const StCumpleC2: React.FC<{guia?: boolean}> = ({guia = false}) => {
 
       {guia ? <ZonaReservada etiqueta={'ENCUESTA\n«¿Ya lo canjeaste?»\n660 × 210'} /> : null}
 
-      {/* El legal, literal de la lámina 2 aprobada. En cursiva y al pie. */}
+      {/* El legal, literal de la lámina 2 aprobada. En cursiva y al pie.
+          ⭐ 08-09-2026: son DOS líneas, cada una con su propio asterisco, calcadas
+          del carrusel de feed que Eli subió hoy 12:31 («C1 S2 CUMPLE N2.png»).
+          El cliente reclamó que «sacaron el legal de los extras 😭, hay que
+          dejarlo»: la corrección de la mañana reescribió la frase completa y en
+          el camino borró la segunda oración, que las versiones viejas sí traían.
+          ⛔ El legal es ACUMULATIVO — se le agrega, no se redacta de cero. */}
       <div
         style={{
           position: 'absolute',
@@ -489,12 +495,20 @@ export const StCumpleC2: React.FC<{guia?: boolean}> = ({guia = false}) => {
              caía sobre el plato y las cintas y peleaba con el hojaldre. Acá, en
              1640, cae sobre la MESA de madera limpia y oscura, que es el único
              sitio del cuadro donde un texto beige se lee sin ayuda.
-             ⚠️ Entra ~93 px en la franja inferior de 340 px de Meta y por eso
+             ⚠️ Entra en la franja inferior de 340 px de Meta y por eso
              `between-qa.py` lo marca. Es una decisión de ella y tiene
              precedente: la plantilla de story con logo abajo de la propia Eli
-             entra 104 px. Cierra en ~1673, o sea a 247 px del borde, muy por
-             encima de la barra de respuesta de Instagram. Si esta pieza pasara
-             a pauta, hay que volver a subirlo. */
+             entra 104 px. **Medido con el legal de DOS líneas (08-09):** la
+             tinta va de y=1646,4 a y=1702,1 y cierra a 218 px del borde, o sea
+             122 px dentro de la franja — antes, con una línea, eran 93.
+             El bloque creció HACIA ABAJO a propósito: la línea 1 queda
+             exactamente donde Eli la aprobó (0 px de diferencia contra el
+             render anterior) y la banda de la línea 2 está MÁS oscura que la de
+             la 1 (luminancia 0,071 contra 0,155 midiendo por tercios), así que
+             el beige se lee mejor abajo que arriba. Subir el bloque para
+             ganar franja lo devolvería sobre el plato y las cintas, que es
+             justo lo que ella mandó corregir. Si esta pieza pasara a pauta, hay
+             que rehacer el pie — 122 px es más que sus propios 104. */
           top: 1640,
           textAlign: 'center',
           fontFamily: BETWEEN.fuentes.sans,
@@ -507,7 +521,10 @@ export const StCumpleC2: React.FC<{guia?: boolean}> = ({guia = false}) => {
           textShadow: '0 2px 14px rgba(0,0,0,0.6)',
         }}
       >
-        *Presenta tu cédula de identidad para canjear tu café el día de tu cumpleaños.
+        {/* Cada línea en su propio div: con un <br/> suelto, JSX deja el salto
+            de línea del código como espacio y descentra la línea. */}
+        <div>*Presenta tu cédula de identidad para canjear tu café el día de tu cumpleaños.</div>
+        <div>*Extras y personalizaciones no incluidas.</div>
       </div>
     </AbsoluteFill>
   );

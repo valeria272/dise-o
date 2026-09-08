@@ -4382,11 +4382,21 @@ tachadas en la grilla:
 > canjear tu café el día de tu cumpleaños. (para aclarar que debe ser solo ese
 > día), con eso OK! Y aprovechemos de poner la dirección en G1 abajo»
 
+> ⛔⛔ **CORREGIDO el 08-09-2026 por la tarde.** La redacción son **DOS líneas,
+> cada una con su propio asterisco** — no una frase de dos oraciones. Está
+> **leída del carrusel vivo del Drive** (`C1 S2 CUMPLE N2.png`, que Eli reemplazó
+> el 08-09 a las 12:31), no deducida. Ver §«El legal no se reescribe: se le
+> AGREGA» al final de esta sección.
+
 **La redacción aprobada, literal — no se parafrasea:**
 
 ```
 *Presenta tu cédula de identidad para canjear tu café el día de tu cumpleaños.
+*Extras y personalizaciones no incluidas.
 ```
+
+⚠️ **El asterisco va en las DOS líneas**, y son dos líneas de verdad (dos `<div>`,
+no un salto por reflujo): así está en el carrusel y así se calcó en la story.
 
 Dos cosas que la distinguen de las versiones anteriores y que son justamente lo
 que el cliente pidió:
@@ -4421,6 +4431,84 @@ desde `BetweenSeptiembre` (G2) o desde `BetweenCumple`, hay que corregirles el
 legal ANTES de rendir, o se entrega la redacción que el cliente ya mandó
 cambiar. Las dos ya estaban en la bitácora por otro motivo (el `MarcoIGPost`
 desalineado); esto se arregla en la misma pasada.
+
+## ⛔⛔ El legal no se reescribe: se le AGREGA
+
+Detectado por la **segunda** pasada de `/al-dia` del 08-09-2026 (la grilla se
+movió entre las 09:21Z y las 16:39Z, o sea después de la pasada de la mañana).
+Comentario nuevo del cliente, prependido en FEED col E y repetido en STORIES
+col D como «Mismo comentario del legal»:
+
+> «Pero sacaron el legal de los extras 😭, hay que dejarlo, con eso queda ok»
+
+**«El legal de los extras» es esta oración**, que las versiones viejas sí traían
+y que se perdió al aplicar la corrección de la mañana:
+
+```
+Extras y personalizaciones no incluidas.
+```
+
+Lo que pasó, medido sobre el código:
+
+| Archivo | Cédula / el día | Extras | |
+|---|---|---|---|
+| `BetweenCumple.tsx:112` | ⛔ «carnet», «de cumpleaños» | ✅ sí | el más viejo |
+| `BetweenSeptiembre.tsx:794` | ⛔ «de cumpleaños» | ✅ sí | viejo |
+| `BetweenStCumpleCarrusel.tsx` | ✅ correcto | ✅ **CORREGIDO 08-09** | las dos stories |
+
+Ninguna de las tres tenía el legal completo, y la que se entregó —la buena en
+todo lo demás— era justo la que había perdido los extras. El cliente venía dando
+«con eso OK» condicionado desde la mañana; ésta era la condición que faltaba.
+**`BetweenStCumpleCarrusel.tsx` ya quedó con las dos líneas** (08-09); las otras
+dos siguen con el legal viejo y se arreglan cuando se rehagan.
+
+### Cómo quedó en la story, medido
+
+El bloque creció **hacia abajo**, y eso es deliberado:
+
+| | Antes (1 línea) | Ahora (2 líneas) |
+|---|---|---|
+| tinta del legal | y 1646,4 – 1669,9 | y 1646,4 – **1702,1** |
+| cierra a | 247 px del borde | **218 px** |
+| entra en la franja de 340 px | 93 px | **122 px** |
+
+- La **línea 1 no se movió un píxel**: comparado el render nuevo contra el
+  anterior, sobre y=3497 (entrega 2250×4000) hay **0 px** de diferencia. Sigue
+  exactamente donde Eli la aprobó.
+- La banda de la línea 2 está **más oscura** que la de la línea 1 — luminancia
+  0,071 contra 0,155 midiendo **por tercios** de la columna, o sea ~8:1 de
+  contraste contra el beige `#fff9eb`. El pie se lee **mejor** abajo que arriba.
+- Subir el bloque para recuperar franja lo devolvería sobre el **plato y las
+  cintas**, que es justo lo que Eli mandó corregir el 07-09.
+- ⚠️ Pero 122 px es **más que los 104 px de su propia plantilla**. En orgánico
+  funciona; **si esta pieza pasa a pauta hay que rehacer el pie**, no sólo subirlo.
+
+> **La regla, y vale para toda la marca, no sólo para el cumpleaños:** cuando el
+> cliente pide corregir *una parte* del legal, se corrige **esa parte y nada
+> más**. El legal es acumulativo: cada oración la puso alguien por un motivo
+> —los extras acotan qué entra en el canje, «el día de tu cumpleaños» acota
+> cuándo— y reescribir la frase completa desde el comentario **borra las
+> cláusulas que el comentario no menciona**. Se parte del legal vigente y se le
+> aplica el cambio, jamás se redacta de cero.
+
+**Estado.** El **carrusel de feed lo corrigió Eli** ella misma: reemplazó
+`C1 S2 CUMPLE N2.png` en Drive el 08-09 a las 12:31 y ésa es la fuente de la
+redacción de arriba. Las **dos stories del 09-09 salen de nuestro pipeline** y
+quedaron corregidas el 08-09 (`BetweenStCumpleCarrusel.tsx`); la entrega vive en
+`out/hilton/between/entrega-st-cumple-09-09-r2/`. **La versión de STS
+(`1lupGWfILmS9JQ4tznkqqddTKOh6uFtEe`) sigue siendo la del 07-09 con el legal
+incompleto** hasta que se reemplace.
+
+> ⭐ **De dónde se saca el texto de un legal:** de la **pieza viva del Drive**, no
+> del comentario de la grilla. El comentario dice *qué* falta («sacaron el legal
+> de los extras»); la pieza dice *cómo* está escrito — cuántas líneas, dónde va
+> el asterisco. Acá el carrusel ya venía corregido y bastó calcarlo.
+
+⚠️ Y ojo con el ALTO: la segunda línea hace crecer el bloque. En la story el
+legal está anclado en **y=1640** por pedido de Eli («más abajo donde se lea
+mejor»), que es donde cae sobre la madera limpia. Al agregar una línea hay que
+volver a medir la zona segura inferior de Meta —340 px en 9:16— antes de dar la
+pieza por buena; las medidas del caso están en la tabla de arriba.
 
 ---
 

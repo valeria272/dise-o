@@ -1,7 +1,7 @@
 # Grilla BETWEEN — instantánea
 
 > Instantánea del 08-09-2026 tomada con `/al-dia`.
-> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/6c53638c-cb34-4c7f-aaf4-91e4fea4d8ba/scratchpad/between-0908.xlsx`.
+> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/dc0852c6-1179-4d7e-9b6d-b39d31000f22/scratchpad/between-0908b.xlsx`.
 > **Sirve de base para el DIFF de la próxima ronda**: los comentarios se
 > prependen sobre los viejos en la misma celda, así que sin esta copia no se
 > distingue lo nuevo de lo ya resuelto.
@@ -124,7 +124,7 @@ Comentario wsp
 > ~~Comentario wsp~~
 
 
-### Columna E — **CORREGIDO**
+### Columna E — **REVISAR CONTENIDO**
 
 **LINK MATERIAL FEED:**
 
@@ -190,6 +190,9 @@ Te esperamos para celebrar contigo.
 **COMENTARIOS DISEÑO:**
 
 ```
+Pero sacaron el legal de los extras 😭, hay que dejarlo, con eso queda ok
+
+
 PerfectooOO! solo ajustar en el legar: *Presenta tu cédula de identidad para canjear tu café el día de tu cumpleaños. (para aclarar que debe ser solo ese día), con eso OK! Y aprovechemos de poner la dirección en G1 abajo
 
 
@@ -210,8 +213,12 @@ Agregar elementos cumpleañeros como en el anterior
 ```
 
 *Tachado en la grilla (ya resuelto, NO volver a aplicar):*
-> ~~PerfectooOO! solo ajustar en el legar: *Presenta tu cédula de identidad para canjear tu café el día de tu cumpleaños. (para aclarar que debe ser solo ese día), con eso OK! Y aprovechemos de poner la dirección en G1 abajo~~
-> ~~G1: Que diga solo ¿Estás de cumpleaños? sin el septiembre, eliminar ¡VEN POR TU CAFÉ DE REGALO!
+> ~~PerfectooOO! solo ajustar en el legar: *Presenta tu cédula de identidad para canjear tu café el día de tu cumpleaños. (para aclarar que debe ser solo ese día), con eso OK! Y aprovechemos de poner la dirección en G1 abajo
+
+
+
+
+G1: Que diga solo ¿Estás de cumpleaños? sin el septiembre, eliminar ¡VEN POR TU CAFÉ DE REGALO!
 La foto está extraña, hagamos algo más similar a lo que hiciemos el primer post, algo más natural que no se vea tan IA, en este caso creo que menos es más. Para la segunda slide proponer otra foto de fondo, distinta a G1
 
 
@@ -711,12 +718,12 @@ Ok, enlace a carta!
 ```
 
 
-### Columna D — **CORREGIDO**
+### Columna D — **REVISAR CONTENIDO**
 
 **LINK MATERIAL STORIES:**
 
 ```
-04-09-2026
+X DEFINIR
 ```
 
 **TIPO:**
@@ -759,6 +766,9 @@ Icono " 🎁 "
 **COMENTARIOS DISEÑO:**
 
 ```
+Mismo comentario del legal
+
+
 Adaptemos tal cual la gráfica de feed, en 2 partes (considerar los últimos 2 ajustes)
 
 
@@ -773,8 +783,9 @@ Darle una vuelta a la palabra cafeína, puede sonar a algo negativo quizás deja
 > ~~Adaptemos tal cual la gráfica de feed, en 2 partes (considerar los últimos 2 ajustes)
 
 
-Tomemos mismos textos de la publicación de feed, manteniendo imagen de fondo de esta propuesta, pero que el vaso tenga logo~~
-> ~~Cambiar de fecha por la interactiva emergencia
+Tomemos mismos textos de la publicación de feed, manteniendo imagen de fondo de esta propuesta, pero que el vaso tenga logo
+
+Cambiar de fecha por la interactiva emergencia
 
 Darle una vuelta a la palabra cafeína, puede sonar a algo negativo quizás dejar el segundo texto solamente~~
 
@@ -788,72 +799,7 @@ SEMANA 2
 ```
 
 
-### Columna G — **APROBADO**
-
-**LINK MATERIAL STORIES:**
-
-```
-08-09-2026
-```
-
-**TIPO:**
-
-```
-ESTÁTICA
-```
-
-**DISEÑO:**
-
-```
-ST ESTÁTICA – PROMO TO GO | CAFÉ + DULCE
-
-Visual:
-Fotografía cenital o en plano 45° de un café Between en formato To Go acompañado de una de las opciones dulces de la promoción. Idealmente, una mano tomando el café y la otra sosteniendo el dulce, transmitiendo una mañana en movimiento. Fondo limpio, luz natural y estética cálida de Between.
-
-Texto en imagen:
-
-UN DULCE COMIENZO
-PARA TU MAÑANA.
-
-Café + dulce
-desde $3.790
-
-Lunes a viernes
-08:00 a 10:00 hrs.
-
-TO GO
-
-CTA:
-Pasa por Between y llévalo contigo.
-```
-
-**INTERACCIÓN:**
-
-```
-UBICACIÓN
-```
-
-**COMENTARIOS DISEÑO:**
-
-```
-Eliminar PASA POR BETWEEN y llévalo contigo
-Que diga Café + Dulce To Go - desde
-
-Con eso ok!
-
-
-Café con logo Between!
-```
-
-*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
-> ~~Eliminar PASA POR BETWEEN y llévalo contigo
-Que diga Café + Dulce To Go - desde
-
-Con eso ok!~~
-> ~~Café con logo Between!~~
-
-
-### Columna H — **EN REVISIÓN**
+### Columna G — **REVISAR CONTENIDO**
 
 **LINK MATERIAL STORIES:**
 
@@ -913,17 +859,82 @@ LINK CARTA
 **COMENTARIOS DISEÑO:**
 
 ```
+Agreguemos legal imagen referencial y OK
+
+
 Cómo mostraremos la leche condensada al principo?
 ```
 
+*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Cómo mostraremos la leche condensada al principo?~~
 
-### Columna I — **CORREGIDO**
+
+### Columna H — **APROBADO**
 
 **LINK MATERIAL STORIES:**
 
 ```
 10-09-2026
 ```
+
+**TIPO:**
+
+```
+ESTÁTICA
+```
+
+**DISEÑO:**
+
+```
+ST ESTÁTICA – PROMO TO GO | CAFÉ + DULCE
+
+Visual:
+Fotografía cenital o en plano 45° de un café Between en formato To Go acompañado de una de las opciones dulces de la promoción. Idealmente, una mano tomando el café y la otra sosteniendo el dulce, transmitiendo una mañana en movimiento. Fondo limpio, luz natural y estética cálida de Between.
+
+Texto en imagen:
+
+UN DULCE COMIENZO
+PARA TU MAÑANA.
+
+Café + dulce
+desde $3.790
+
+Lunes a viernes
+08:00 a 10:00 hrs.
+
+TO GO
+
+CTA:
+Pasa por Between y llévalo contigo.
+```
+
+**INTERACCIÓN:**
+
+```
+UBICACIÓN
+```
+
+**COMENTARIOS DISEÑO:**
+
+```
+Eliminar PASA POR BETWEEN y llévalo contigo
+Que diga Café + Dulce To Go - desde
+
+Con eso ok!
+
+
+Café con logo Between!
+```
+
+*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Eliminar PASA POR BETWEEN y llévalo contigo
+Que diga Café + Dulce To Go - desde
+
+Con eso ok!~~
+> ~~Café con logo Between!~~
+
+
+### Columna I — **APROBADO**
 
 **TIPO:**
 
@@ -992,7 +1003,7 @@ No se cacha bien al tapar la vitrina con el texto, veamos otra diagramación?
 No se cacha bien al tapar la vitrina con el texto, veamos otra diagramación?~~
 
 
-### Columna J — **CORREGIDO**
+### Columna J — **APROBADO**
 
 **LINK MATERIAL STORIES:**
 
@@ -1452,7 +1463,7 @@ LINK CARTA
 **LINK MATERIAL ORGÁNICOS:**
 
 ```
-SEMANA 1
+SEMANA 2
 ```
 
 
@@ -1461,7 +1472,7 @@ SEMANA 1
 **LINK MATERIAL ORGÁNICOS:**
 
 ```
-X DEFINIR
+11-09-2026
 ```
 
 **HORARIO:**
@@ -1479,9 +1490,14 @@ REEL
 **DISEÑO:**
 
 ```
-Lo siento, no le podemos llenar su termo con café
+REEL ORGÁNICO - "NO PODEMOS LLENAR SU TERMO"
+
 Visual 1:
-Vemos al trabajador en un plano general haciendo mímica con su boca mientras dice el texto "lo siento, no le podemos llenar su termo con café"
+Vemos al trabajador en un plano general haciendo mímica con su boca.
+
+DIÁLOGO/TEXTO EN PANTALLA:
+ "lo siento, no le podemos llenar su termo con café"
+
 Visual 2:
 Tras un paneo, vemos al cliente con un "termo" exageradamente grande, quien se enoja y se va del local indignado.
 ```
@@ -1516,7 +1532,7 @@ Que quede para principios de sept
 **LINK MATERIAL ORGÁNICOS:**
 
 ```
-SEMANA 3
+SEMANA 4
 ```
 
 
@@ -1525,7 +1541,7 @@ SEMANA 3
 **LINK MATERIAL ORGÁNICOS:**
 
 ```
-X DEFINIR
+24-09-2026
 ```
 
 **HORARIO:**
@@ -1543,9 +1559,13 @@ REEL
 **DISEÑO:**
 
 ```
-VISUAL - TEXTO EN PANTALLA:
-"Te lo juro, puedo tomarme 5 cafés y no me pasa nada"
+REEL ORGÁNICO - "NO ME PASA NADA"
+
+VISUAL
 Vemos al colaborador en pantalla como si estuviese hablando a cámara. Posteriormente una vez dicho el diálogo, cambiamos a un plano general y vemos que el colaborador está hablando solo.
+
+ TEXTO EN PANTALLA:
+"Te lo juro, puedo tomarme 5 cafés y no me pasa nada"
 ```
 
 **LINKS:** ([enlace](https://www.instagram.com/reel/DYc9yt9v-Wl/?igsi=MTl0bTBvdHlpZTMwdw==))
@@ -1578,7 +1598,7 @@ Cambiémos este para QB para variarr
 **LINK MATERIAL ORGÁNICOS:**
 
 ```
-SEMANA 4
+SEMANA 5
 ```
 
 
@@ -1587,7 +1607,7 @@ SEMANA 4
 **LINK MATERIAL ORGÁNICOS:**
 
 ```
-X DEFINIR
+28-09-2026
 ```
 
 **HORARIO:**
@@ -1605,7 +1625,9 @@ REEL
 **DISEÑO:**
 
 ```
-La razón pr la que naciste con dos manos 
+REEL ORGÁNICO - La razón pr la que naciste con dos manos 
+
+
 Visual 1:
 Vemos en un plano medio el torso y las manos del colaborador, a quien le aparece un pastel en una mano y un café en otra al ritmo de la música (PRODUCTOS DE BT).
 ```

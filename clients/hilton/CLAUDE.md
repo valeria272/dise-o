@@ -4720,3 +4720,116 @@ de luz dorada, que es el papel que cumple el loft del referente.
 toca: `scripts/between-st-s3-entrega.py --solo` existe para poder re-subir las
 otras sin tocarla. Las tres, subidas reemplazando el mismo archivo en STORIES
 (`1SNBRIvKLvQSC2bYF3u5_oPL5UumIo-gM`), verificadas por `md5` y por `parents`.
+
+---
+
+# ⭐⭐ S3 · RONDA 4 — cinco correcciones, y una es un defecto del kit (08-09-2026)
+
+Eli: «La storie n°2 te dejo el cambio: Agrandar un poco el texto de abajo ya que
+no se lee bien. que sea italic pero un poco más grande. y el título de puedes
+venir... ese debe ir fuera del recuadro café between. Por último **el color del
+logo debe ser el café de between ese color**. Para la storie n°3 añade una
+**ilustración cute de la bandera de Chile**, similar a la ilustracion. Además, que
+el cuadro beige de texto debe ser una **textura de papel beige**, similar a la
+referencia.»
+
+## ⛔⛔ 1. `BETWEEN.logo.cafe` NO ES CAFÉ: ES NEGRO PURO
+
+Es un defecto del kit y estaba ahí desde el principio. El token dice `cafe` y
+apunta a `logo-negro.png`, cuyos píxeles opacos miden **`#000000`** — medido, no
+supuesto. O sea que **toda pieza que pidió «el logo en café» venía saliendo con el
+logo NEGRO**, que no está en la paleta de Between. Eli lo cazó a ojo.
+
+El archivo correcto —`logo-cafe-marca.png`, el café `#675B49` sobre el CANAL ALFA
+del logo oficial— lo genera `scripts/between-st-s3-materiales.py`.
+
+⚠️ **El token no se tocó, y es a propósito.** `BETWEEN.logo.cafe` lo usan piezas
+YA APROBADAS (`BetweenCumple`, la G2 de `BetweenSeptiembre`, la tarjeta del
+carrusel del cumpleaños); cambiarles el logo de negro a café las re-flujaría sin
+que nadie lo haya pedido — la misma razón por la que `columnaTitular` entró como
+opt-in. **Quien rehaga cualquiera de esas piezas tiene que cambiarle el logo a
+`logo-cafe-marca.png` en la misma pasada**, y ahí sí conviene corregir el token.
+
+⛔ Y no se recolorea el negro con un `filter` de Chrome: un filtro sobre un PNG
+negro no da un hex exacto, y el hex es justamente lo que se pidió.
+
+## ⭐⭐ 2. Un titular BEIGE suelto se ubica midiendo POR TERCIOS, no por franja
+
+Eli pidió el titular fuera del cartel, y en la ronda 3 ya había pedido que fuera
+beige. Las dos cosas juntas obligan a elegir la altura con cuidado, y el promedio
+de la franja **no alcanza**: hay que medir por tercios de la columna.
+
+Contraste del beige `#FFF9EB` contra el fondo, en la foto del 16-09:
+
+| y | izquierda | centro | derecha |
+|---|---|---|---|
+| 620 | 1,36 | 1,50 | 2,20 |
+| 800 | 1,41 | 2,07 | 2,45 |
+| **880** | **2,71** | **2,19** | **2,87** |
+| 980 | 2,73 | 2,82 | 3,27 |
+
+El tercio IZQUIERDO sigue siendo pared clara hasta y≈860. Un titular beige puesto
+arriba se leería por la derecha y **desaparecería por la izquierda** — que es
+exactamente el defecto que Eli marcó. La primera altura donde el beige pasa de
+2:1 en los TRES tercios es **y=880**, y ahí va.
+
+> **La regla:** para texto suelto sobre foto, el promedio de la franja miente. Se
+> mide en los tres tercios de la columna y manda el PEOR de los tres.
+
+Y como el titular sale del cartel, el cartel se queda sólo con el dato y **baja a
+y=1330** — bajo la taza, que ocupa 1120–1320. El sitio del sticker de enlace se
+mueve entonces a la **pared** (y=650): con el pie ocupado, la pared es la
+superficie más limpia que tiene la pieza (desvío 9 sobre 255, sin nada detrás).
+
+## ⭐ 3. El cierre de una story: 28 px es el legal, no un cierre
+
+`LegalAlPie` pinta 28 px en story, que es la medida del LEGAL. Cuando el brief
+manda un «cierre pequeño» con contenido —«WiFi · Café · Espacios para trabajar»—
+28 px se lee chico: Eli pidió agrandarlo. Va en **38 px, cursiva**, con `Cierre`
+en vez de `LegalAlPie` (que tiene el cuerpo fijo).
+
+⚠️ Y la cursiva a 38 px baja más de lo que uno calcula: en y=1540 `between-qa.py`
+marcaba 5 px dentro de la franja de Meta. Va en **1532**.
+
+## ⭐ 4. La textura de papel se SINTETIZA, no se genera con IA
+
+`papel-beige.png`, en `scripts/between-st-s3-materiales.py`: grano fino + fibra
+horizontal + un manchado muy leve sobre el beige de marca, con **semilla fija**.
+
+Dos razones para no pedírsela al generador: el tinte tiene que caer **exacto** en
+`#FFF9EB` (una textura generada llega con su propio color y hay que corregirla) y
+con semilla fija esto se reproduce byte a byte.
+
+Las amplitudes importan: desvío final **2,86 niveles sobre 255**. El primer
+intento tenía el manchado en 4,6 y la hoja se leía como **nubes** — el papel del
+referente es parejo con grano, no jaspeado. Y sobre el texto café un grano fuerte
+se lee como suciedad. La fibra es lo que hace que se lea como PAPEL: es el mismo
+ruido estirado en horizontal, y con un desenfoque isótropo queda ruido borroso.
+
+## ⭐ 5. La bandera de Chile en UNA tinta: manda la geometría
+
+Eli pidió «una ilustración cute de la bandera de Chile» y, en el mismo mensaje,
+«con los colores de between». El rojo y el azul de la bandera no están en la
+paleta, así que la bandera se dibuja **como se dibuja una bandera en una
+ilustración de una tinta: la geometría hace el trabajo.** Cantón cuadrado arriba a
+la izquierda, estrella de cinco puntas **calada en el color del papel** (como el
+blanco de la bandera real) y división horizontal. Ninguna otra bandera tiene esa
+combinación, así que se lee chilena sin el tricolor.
+
+Lo «cute»: la tela ondea, el mástil es corto y todo va inclinado. Una bandera
+recta y rectangular se lee como un ícono de menú de idioma.
+
+⚠️ **Dos defectos que sólo aparecen al zoom, y hay que revisarlos siempre:**
+- el cantón se dibujó primero a ojo (bordes en y=48 y 99) y quedaba **14 px más
+  abajo que la división**: se veía un escalón en su esquina. Sus bordes tienen que
+  ir SOBRE las mismas curvas de la tela y de la división, evaluadas en x=118
+  (arriba y≈41, abajo y≈91). Si se mueve la onda de la tela, hay que volver a
+  evaluar esos dos puntos;
+- la división terminaba en x=266 y el borde libre de la tela pasa por x≈268: con
+  la punta redondeada del trazo **sobresalía** y se veía una espina.
+
+## Estado
+
+`between-qa.py`: **3/5 limpias**, con los dos avisos ya aprobados del cierre de la
+14-09. La 14-09 no se re-subió (está aprobada); la 16-09 y la 18-09 quedaron
+reemplazadas sobre el mismo archivo en STORIES, verificadas por `md5`.

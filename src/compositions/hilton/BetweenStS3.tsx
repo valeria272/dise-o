@@ -85,13 +85,44 @@ import {BETWEEN} from '../../brand/hilton-between';
 import {
   CajaDato,
   FotoFondo,
-  LegalAlPie,
   LogoBetween,
   TitularBetween,
 } from './BetweenSistema';
-import {BrindisTazas, GuirnaldaBanderitas} from './BetweenIlustraS3';
+import {BanderaChile, BrindisTazas, GuirnaldaBanderitas} from './BetweenIlustraS3';
 
 const F = 'assets/hilton/between/st-s3/';
+
+/**
+ * ⛔ EL LOGO EN CAFÉ NO SALE DE `BETWEEN.logo.cafe`.
+ *
+ * Eli, ronda 4: «el color del logo debe ser el café de between ese color». Y el
+ * token `BETWEEN.logo.cafe` apunta a `logo-negro.png`, que medido sobre sus
+ * píxeles opacos es **negro puro `#000000`** — no el café `#675B49`. O sea que
+ * las dos piezas de la S3 venían con el logo NEGRO, fuera de paleta.
+ *
+ * El archivo correcto lo genera `scripts/between-st-s3-materiales.py` a partir
+ * del CANAL ALFA del logo oficial. El token del kit NO se toca: lo usan piezas
+ * ya aprobadas y cambiarlo las re-flujaría (misma razón que `columnaTitular`).
+ */
+const LOGO_CAFE = 'assets/hilton/between/logo-cafe-marca.png';
+
+/** Lockup en el café de marca, en la geometría `storyLogoArriba` de Eli. */
+const LogoCafeMarca: React.FC = () => {
+  const g = BETWEEN.margenes.storyLogoArriba;
+  return (
+    <Img
+      src={staticFile(LOGO_CAFE)}
+      style={{
+        position: 'absolute',
+        left: (1080 - g.ancho) / 2,
+        top: g.wordmarkY,
+        width: g.ancho,
+        height: g.ancho / BETWEEN.logo.ratio,
+        objectFit: 'contain',
+      }}
+    />
+  );
+};
 
 /* ══════════════════════════════════════════════════════════════════════════
    LA ZONA RESERVADA — mismo aparato que `BetweenStCumpleCarrusel.tsx`, con el
@@ -273,64 +304,96 @@ export const StS3HoraCafe: React.FC<{guia?: boolean}> = ({guia = false}) => (
    arriba como aire con el lockup café, que es lo que hace el referente.
    ══════════════════════════════════════════════════════════════════════════ */
 
-/* top 1330: la taza y su platillo terminan en y=1320 (medido), así que la
-   pastilla del enlace arranca justo debajo y cierra en 1470, con 110 px de aire
-   antes de la franja inferior de Meta. */
-const ZONA_ENLACE: Zona = {ancho: 660, alto: 140, top: 1330};
+/* ⭐ RONDA 4 — la zona del enlace se va A LA PARED, y es el mejor sitio que
+   tiene la pieza. Con el titular fuera del cartel (ver abajo) el pie se ocupa
+   con el cartel de dato y el cierre, y ya no queda hueco limpio ahí. La pared
+   beige del tercio de arriba, en cambio, es la superficie más limpia de toda la
+   pieza: desvío estándar 9 sobre 255, sin un solo objeto detrás. Un sticker de
+   enlace ahí se pega sobre nada. Va anotado en la `GUIA CM`. */
+const ZONA_ENLACE: Zona = {ancho: 660, alto: 140, top: 650};
 
 export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
   <AbsoluteFill style={{backgroundColor: '#241a12'}}>
     <FotoFondo src={F + 'st-16-09-cowork.jpg'} oscurecer={0.04} />
 
-    {/* Lockup en café, no beige: cae sobre la pared clara. */}
-    <LogoBetween formato="story" posicion="arriba" tono="cafe" />
+    {/* El lockup en el CAFÉ DE MARCA, no en el negro de `BETWEEN.logo.cafe`.
+        Ver `LOGO_CAFE` arriba: es el pedido literal de Eli en la ronda 4. */}
+    <LogoCafeMarca />
 
-    {/* EL CARTEL. Arranca en el ancla medida de story (y=441, los 77 px de aire
-        bajo el lockup) y cierra en ~y=880, o sea 240 px antes de la taza: la
-        mesa servida —taza con arte latte, notebook, libreta y croissant— queda
-        entera a la vista, que es la corrección de la ronda 2. */}
+    {guia ? (
+      <ZonaReservada
+        zona={ZONA_ENLACE}
+        etiqueta={'ENLACE · «VER LA CARTA»\n660 × 140'}
+      />
+    ) : null}
+
+    {/* ⭐⭐ RONDA 4 — EL TITULAR SALE DEL CARTEL, Y BAJA A y=880.
+        Eli: «el título de puedes venir... ese debe ir fuera del recuadro café
+        between». Suelto sobre la foto sigue teniendo que ser BEIGE, que es lo
+        que ella pidió en la ronda anterior, y ahí está el detalle que decide la
+        posición: el beige NO se lee en cualquier parte de esta foto.
+
+        Medido por tercios de la columna, contraste del beige contra el fondo:
+
+        | y     | izquierda | centro | derecha |
+        |-------|-----------|--------|---------|
+        | 620   | 1,36      | 1,50   | 2,20    |
+        | 800   | 1,41      | 2,07   | 2,45    |
+        | **920** | **2,71** | **2,19** | **2,87** |
+        | 980   | 2,73      | 2,82   | 3,27    |
+
+        El tercio IZQUIERDO sigue siendo pared clara hasta y≈860, así que un
+        titular beige puesto arriba se leería sólo por la derecha y desaparecería
+        por la izquierda — el defecto que Eli marcó. La primera franja donde el
+        beige pasa de 2:1 en los TRES tercios es y=880. Ahí va. */}
+    <Columna top={880}>
+      <TitularBetween
+        script="Puedes venir"
+        caps="¡Te esperamos!"
+        alinear="centro"
+        tono="beige"
+        anchoDisponible={BETWEEN.bloque.columna}
+      />
+    </Columna>
+
+    {/* EL CARTEL, ahora sólo con el DATO. Baja a y=1330: la taza con su platillo
+        ocupa y=1120–1320 (medido) y la mesa servida —taza con arte latte,
+        notebook, libreta y croissant— tiene que quedar a la vista, que es la
+        corrección de la ronda 2. */}
     <div
       style={{
         position: 'absolute',
         left: (1080 - BETWEEN.bloque.columna) / 2,
-        top: BETWEEN.bloque.yStory,
+        top: 1330,
         width: BETWEEN.bloque.columna,
         boxSizing: 'border-box',
         background: BETWEEN.cajas.fondo,
         borderRadius: BETWEEN.cajas.radio,
-        padding: '34px 44px 30px',
+        padding: '24px 44px 22px',
         boxShadow: '0 22px 60px rgba(36,26,18,0.34)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
     >
-      <TitularBetween
-        script="Puedes venir"
-        caps="¡Te esperamos!"
-        alinear="centro"
-        tono="beige"
-        anchoDisponible={BETWEEN.bloque.columna - 2 * 44}
-      />
       {/* El horario, literal de la grilla. Va SIN caja: dentro de un cartel que
           ya es taupe, meterle otra caja taupe no agrega jerarquía — es la regla
           «una sola línea fuerte por pila». `sinFondo` conserva la tipografía, la
           caja alta y la altura de fila, y `CajaDato` sigue pasando las cifras
           por la caja tabular (son dos «0» dobles y sin eso los dígitos bailan). */}
-      <CajaDato sinFondo anchoDisponible={BETWEEN.bloque.columna - 2 * 44}
-                style={{marginTop: 10}}>
+      <CajaDato sinFondo anchoDisponible={BETWEEN.bloque.columna - 2 * 44}>
         Lunes a viernes · 08:00 a 22:00 hrs.
       </CajaDato>
       {/* La bajada, literal. Los saltos a mano: partida por el navegador dejaba
           «para ti.» sola en la última línea. */}
       <div
         style={{
-          marginTop: 6,
+          marginTop: 2,
           textAlign: 'center',
           fontFamily: BETWEEN.fuentes.sans,
           fontWeight: BETWEEN.pesos.semibold,
-          fontSize: 34,
-          lineHeight: 1.26,
+          fontSize: 32,
+          lineHeight: 1.24,
           color: BETWEEN.colores.beige,
         }}
       >
@@ -338,13 +401,18 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
       </div>
     </div>
 
-    {guia ? (
-      <ZonaReservada zona={ZONA_ENLACE} etiqueta={'ENLACE · «VER LA CARTA»\n660 × 140'} />
-    ) : null}
-
-    {/* El «cierre pequeño» del brief, literal. `LegalAlPie` en story lo deja
-        cerrando justo por encima de y=1580, fuera de la franja de Meta. */}
-    <LegalAlPie formato="story">WiFi · Café · Espacios para trabajar</LegalAlPie>
+    {/* El «cierre pequeño» del brief, literal.
+        ⭐ RONDA 4 — Eli: «Agrandar un poco el texto de abajo ya que no se lee
+        bien. que sea italic pero un poco más grande». `LegalAlPie` lo pintaba a
+        **28 px**, que es la medida del legal de una story y acá se leía chico.
+        Sube a **38 px** manteniendo la cursiva, y por eso deja de usar
+        `LegalAlPie` —que tiene el cuerpo fijo— y pasa a `Cierre`.
+        En y=1540 `between-qa.py` marcaba 5 px dentro de la franja inferior de
+        Meta (la cursiva a 38 px baja más de lo que uno calcula), así que va en
+        1532 y la pieza sale LIMPIA. */}
+    <Cierre top={1532} size={38}>
+      WiFi · Café · Espacios para trabajar
+    </Cierre>
   </AbsoluteFill>
 );
 
@@ -386,6 +454,25 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
    (≈1130 px) y arranca en y=330, lo que deja 80 px de foto arriba y 119 abajo. */
 const CARTEL = {ancho: 812, padX: 52, top: 330};
 
+/**
+ * ⭐ RONDA 4 — el cartel es PAPEL, no un plano de color.
+ *
+ * Eli: «el cuadro beige de texto debe ser una textura de papel beige, similar a
+ * la referencia». El cartel del referente es papel crema con grano.
+ *
+ * La textura la sintetiza `scripts/between-st-s3-materiales.py` con semilla
+ * fija —grano fino + fibra horizontal + un manchado muy leve sobre el beige de
+ * marca `#FFF9EB`— en vez de generarla con IA, por dos razones: el tinte tiene
+ * que caer exacto en el hex de la marca, y con semilla fija esto se reproduce.
+ * Desvío medido: 2,86 niveles sobre 255. Se tiene que notar en el canto y a
+ * tamaño real, no convertirse en un fondo con dibujo: sobre el texto café un
+ * grano fuerte se lee como suciedad.
+ *
+ * `backgroundColor` va ADEMÁS de la imagen, no en su lugar: si el PNG no cargara
+ * el cartel seguiría siendo beige y no un agujero transparente.
+ */
+const PAPEL = 'assets/hilton/between/papel-beige.png';
+
 export const StS3Dieciocho: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: '#241a12'}}>
     {/* 0,18: el ambiente viene claro y con mucho bokeh dorado, y el cartel beige
@@ -400,7 +487,10 @@ export const StS3Dieciocho: React.FC = () => (
         top: CARTEL.top,
         width: CARTEL.ancho,
         boxSizing: 'border-box',
-        background: BETWEEN.colores.beige,
+        backgroundColor: BETWEEN.colores.beige,
+        backgroundImage: `url(${staticFile(PAPEL)})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         borderRadius: BETWEEN.cajas.radio,
         padding: `40px ${CARTEL.padX}px 34px`,
         boxShadow: '0 30px 80px rgba(36,26,18,0.45)',
@@ -409,11 +499,12 @@ export const StS3Dieciocho: React.FC = () => (
         alignItems: 'center',
       }}
     >
+      {/* El lockup en el CAFÉ DE MARCA, no en el negro de `BETWEEN.logo.cafe`
+          — ver `LOGO_CAFE` arriba. 196 px es el mínimo de la plantilla de story
+          de Eli y dentro de un cartel no necesita más; el alto sale del ratio
+          3,0298 para que nunca se vea achatado. */}
       <Img
-        src={staticFile(BETWEEN.logo.cafe)}
-        /* 196 px es el mínimo de la plantilla de story de Eli, y dentro de un
-           cartel no necesita más. El alto sale del ratio 3,0298 para que nunca
-           se vea achatado. */
+        src={staticFile(LOGO_CAFE)}
         style={{width: 196, height: 196 / BETWEEN.logo.ratio, objectFit: 'contain'}}
       />
 
@@ -433,7 +524,25 @@ export const StS3Dieciocho: React.FC = () => (
         />
       </div>
 
-      <div style={{marginTop: 14}}>
+      {/* ⭐ RONDA 4 — la banderita de Chile. Eli: «añade una ilustración cute de
+          la bandera de Chile, similar a la ilustracion».
+          Va DEBAJO del brindis y chica (168 px, 21 % del ancho del cartel): es
+          un detalle, no un tercer motivo compitiendo con la guirnalda y las
+          tazas. Y va en una sola tinta café, con la geometría haciendo el
+          trabajo —cantón cuadrado, estrella calada, división horizontal—, porque
+          el rojo y el azul de la bandera no están en la paleta de Between y Eli
+          pidió los colores de la marca en el mismo mensaje. El `fondo` es el
+          beige del papel: la estrella se cala con él, como el blanco de la
+          bandera de verdad. */}
+      <div style={{marginTop: -6}}>
+        <BanderaChile
+          ancho={168}
+          tinta={BETWEEN.colores.cafe}
+          fondo={BETWEEN.colores.beige}
+        />
+      </div>
+
+      <div style={{marginTop: 8}}>
         <TitularBetween
           script="Por los sabores"
           caps="Que nos reúnen"

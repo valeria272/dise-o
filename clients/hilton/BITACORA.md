@@ -1,3 +1,83 @@
+## 2026-09-08 (ronda 4) · Eli (Windows) — BETWEEN S3: cinco correcciones, y una era un defecto del kit
+
+**Qué pidió Eli:** en la ST 2, agrandar el texto de abajo («que sea italic pero un
+poco más grande»), sacar el titular «Puedes venir…» del recuadro café, y que el
+logo sea «el café de between ese color». En la ST 3, una **ilustración cute de la
+bandera de Chile** y que el cuadro beige sea una **textura de papel**.
+
+### ⛔⛔ El hallazgo: `BETWEEN.logo.cafe` no es café, es NEGRO PURO
+
+El token del kit dice `cafe` y apunta a `logo-negro.png`, cuyos píxeles opacos
+miden `#000000`. O sea que **toda pieza que pidió «el logo en café» venía saliendo
+con el logo negro**, fuera de la paleta de Between. Eli lo cazó a ojo y llevaba dos
+rondas insistiendo.
+
+El archivo correcto (`logo-cafe-marca.png`: el café `#675B49` sobre el canal alfa
+del logo oficial) lo genera `scripts/between-st-s3-materiales.py`. **El token NO se
+tocó**: lo usan piezas ya aprobadas y cambiarlo las re-flujaría. Queda escrito en
+el manual que quien rehaga `BetweenCumple`, la G2 de `BetweenSeptiembre` o la
+tarjeta del carrusel del cumpleaños tiene que cambiarles el logo en la misma
+pasada — y ahí sí corregir el token.
+
+### ST 2 — un titular beige suelto se ubica midiendo POR TERCIOS
+
+Sacar el titular del cartel obligó a decidir a qué altura va, y el promedio de la
+franja **no alcanza**. Medido por tercios de la columna, el contraste del beige:
+
+| y | izq | centro | der |
+|---|---|---|---|
+| 620 | 1,36 | 1,50 | 2,20 |
+| 800 | 1,41 | 2,07 | 2,45 |
+| **880** | **2,71** | **2,19** | **2,87** |
+
+El tercio izquierdo sigue siendo pared clara hasta y≈860: un titular beige arriba
+se leería por la derecha y desaparecería por la izquierda — el defecto que Eli
+marcó. La primera altura donde pasa de 2:1 en los TRES tercios es y=880.
+
+**Regla que deja:** para texto suelto sobre foto, el promedio de la franja miente.
+Se mide en los tres tercios y manda el peor de los tres.
+
+Con el titular afuera, el cartel se queda sólo con el dato y baja a y=1330 (bajo
+la taza, que ocupa 1120–1320), y el sitio del sticker de enlace se mueve a la
+**pared**, que con el pie ocupado es la superficie más limpia de la pieza.
+
+El cierre pasó de 28 a **38 px** en cursiva: 28 es la medida del LEGAL de una
+story, y cuando el brief manda un cierre con contenido se lee chico. Va en y=1532
+porque la cursiva a 38 baja más de lo que uno calcula (en 1540 el QA marcaba 5 px).
+
+### ST 3 — papel sintetizado y bandera en una tinta
+
+**La textura de papel se sintetiza, no se genera con IA:** el tinte tiene que caer
+exacto en `#FFF9EB` y con semilla fija se reproduce byte a byte. Grano fino +
+fibra horizontal + manchado muy leve, desvío final 2,86 niveles sobre 255. El
+primer intento tenía el manchado casi al doble y la hoja se leía como **nubes** —
+el papel del referente es parejo con grano, no jaspeado.
+
+**La bandera va en UNA tinta y manda la geometría:** Eli pidió la bandera de Chile
+y, en el mismo mensaje, los colores de Between. El rojo y el azul no están en la
+paleta, así que se dibuja como se dibuja una bandera en una ilustración de una
+tinta — cantón cuadrado, estrella calada en el color del papel, división
+horizontal. Ninguna otra bandera tiene esa combinación, así que se lee chilena sin
+el tricolor. Ondea, el mástil es corto y va inclinada: una bandera recta se lee
+como un ícono de menú de idioma.
+
+⚠️ Dos defectos que sólo aparecieron al zoom y hay que revisar siempre en un
+dibujo: el cantón, puesto a ojo, quedaba 14 px más abajo que la división y dejaba
+un escalón en la esquina (sus bordes tienen que ir sobre las mismas curvas de la
+tela, evaluadas en x=118); y la división sobresalía del borde libre de la tela y
+se veía una espina.
+
+### QA y entrega
+
+`between-qa.py`: **3/5 limpias**, con los dos avisos ya aprobados del cierre de la
+14-09. **La 14-09 no se re-subió** — está aprobada, y para eso se le agregó
+`--solo` al script de entrega. La 16-09 y la 18-09 quedaron reemplazadas sobre el
+mismo archivo en STORIES, verificadas por `md5` y por `parents`.
+
+**Abierto:** las guías del CM siguen sólo en local (quinto día); el comentario de
+`STORIES!N` sigue sin tachar; Between sigue sin `reglas.yaml`; y queda pendiente
+corregir `BETWEEN.logo.cafe` cuando se rehagan las tres piezas que lo usan.
+
 ## 2026-09-08 (ronda 3) · Eli (Windows) — BETWEEN S3: la 14-09 APROBADA, y las otras dos rehechas
 
 **Qué dijo Eli:** «La primera ST queda aprobada, para la segunda ST el logo es el

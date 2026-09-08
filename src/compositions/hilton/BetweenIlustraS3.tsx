@@ -201,3 +201,85 @@ export const BrindisTazas: React.FC<{
     </svg>
   );
 };
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LA BANDERITA DE CHILE
+
+   Eli, ronda 4: «añade una ilustración cute de la bandera de Chile, similar a la
+   ilustracion». O sea: el motivo es la bandera, pero el lenguaje es el mismo que
+   la guirnalda y el brindis — línea suelta, un solo color, puntas redondeadas.
+
+   ⚠️ VA EN UNA SOLA TINTA, y es una decisión de paleta, no un olvido. Eli pidió
+   dos cosas en el mismo mensaje: la bandera de Chile Y «los colores de between».
+   El rojo y el azul de la bandera no están en la paleta de la marca, y meterlos
+   rompería la pieza — así que la bandera se dibuja como se dibuja una bandera en
+   una ilustración de una tinta: **la geometría hace el trabajo**. El cantón
+   cuadrado arriba a la izquierda, la estrella de cinco puntas calada dentro de
+   él y la división horizontal son lo que la vuelve inconfundiblemente chilena;
+   ninguna otra bandera tiene esa combinación.
+
+   La estrella se dibuja en el color del PAPEL y no en `none`: sobre el cantón
+   macizo tiene que leerse en negativo, como el blanco de la bandera de verdad.
+   Por eso el componente pide `fondo`.
+
+   Lo «cute»: la tela ondea —el borde libre es una S y las dos franjas la siguen—,
+   el mástil es corto y con la punta redondeada, y todo va inclinado. Una bandera
+   recta y rectangular se lee como un ícono de menú de idioma.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const VB_BANDERA = {w: 300, h: 240};
+
+export const BanderaChile: React.FC<{
+  ancho: number;
+  tinta: string;
+  /** Color del papel: la estrella se cala con él sobre el cantón macizo. */
+  fondo: string;
+  trazo?: number;
+  /** Inclinación en grados. Positiva = la punta sube a la derecha. */
+  giro?: number;
+}> = ({ancho, tinta, fondo, trazo = 5, giro = -8}) => {
+  const escala = ancho / VB_BANDERA.w;
+  return (
+    <svg
+      width={ancho}
+      height={VB_BANDERA.h * escala}
+      viewBox={`0 0 ${VB_BANDERA.w} ${VB_BANDERA.h}`}
+      fill="none"
+      stroke={tinta}
+      strokeWidth={trazo}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <g transform={`rotate(${giro} 150 130)`}>
+        {/* el mástil */}
+        <path d="M56,224 L56,36" strokeWidth={trazo * 1.4} />
+        {/* la tela: el borde de arriba y el de abajo ondean, y el borde libre
+            es una S — es lo que da el vuelo */}
+        <path d="M56,44 C112,30 168,58 224,44 C244,39 258,42 268,48 C258,74 258,112 268,140 C258,146 244,149 224,144 C168,158 112,130 56,144 Z" />
+        {/* La división horizontal, siguiendo la misma onda que la tela.
+            ⚠️ TERMINA EN x=256 y no en 266: el borde libre de la tela pasa por
+            x≈268 y con la punta redondeada del trazo la línea SOBRESALÍA de la
+            bandera — al zoom se veía una espina saliendo por la derecha. */}
+        <path d="M56,94 C112,80 168,108 224,94 C240,90 250,92 256,95" />
+        {/* El cantón: cuadrado, arriba a la izquierda, macizo.
+            ⚠️ Sus bordes de arriba y de abajo van SOBRE las mismas curvas de la
+            tela y de la división, evaluadas en x=118: arriba y≈41, abajo y≈91.
+            La primera versión los puso en 48 y 99 —a ojo— y el cantón quedaba
+            14 px más abajo que la división: al zoom se veía un escalón en la
+            esquina inferior derecha. Si se mueve la onda de la tela, hay que
+            volver a evaluar estos dos puntos. */}
+        <path d="M56,44 C77,38 98,39 118,41 C117,58 117,76 118,91 C98,88 77,89 56,94 Z"
+              fill={tinta} />
+        {/* La estrella de cinco puntas, calada en el color del papel. Centro
+            (87,66) —el centro real del cantón— radio 21 y radio interior 8,6. */}
+        <path
+          d="M87,45 L92.1,59 L107,59.5 L95.2,68.7 L99.3,83 L87,74.6 L74.7,83 L78.8,68.7 L67,59.5 L81.9,59 Z"
+          fill={fondo}
+          stroke={fondo}
+          strokeWidth={trazo * 0.5}
+        />
+      </g>
+    </svg>
+  );
+};

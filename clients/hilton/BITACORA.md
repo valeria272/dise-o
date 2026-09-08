@@ -1,3 +1,102 @@
+## 2026-09-08 · Eli (Windows) — BETWEEN S3: las tres stories que faltaban, entregadas
+
+**Qué se hizo:** Eli pidió la S3 de stories — «lo harás nuevamente con la
+información que ya tienes», guiándose del brief y de las referencias de Pinterest
+de la grilla, «pero ligado siempre a la marca de Between», y dejando **aire libre**
+donde va la interacción en vez de dibujarla. Se rehicieron las tres de cero, se
+pasaron por la compuerta y quedaron **subidas al Drive**.
+
+### Lo entregado
+
+`out/hilton/between/entrega-st-s3/` — 2250×4000 · 150 ppp:
+
+    BW ST 14-09 Cuando es hora de cafe.png
+    BW ST 16-09 Cowork te esperamos.png
+    BW ST 18-09 Saludo Fiestas Patrias.png
+    GUIAS CM/ …2 copias con la zona marcada   ← internas, NO van al Drive
+
+Subidas a la carpeta **STORIES** (`1SNBRIvKLvQSC2bYF3u5_oPL5UumIo-gM`), el enlace
+que pasó Eli. Verificado por `md5Checksum` contra el archivo local y por
+`parents`: las tres están DENTRO de STORIES, no en «Mi unidad» (con scope
+`drive.file` eso puede pasar en silencio).
+
+Composición: `src/compositions/hilton/BetweenStS3.tsx`
+(`BW-S3-HoraCafe` · `BW-S3-Cowork` · `BW-S3-Dieciocho` + dos `-Guia`).
+
+### Por qué se rehicieron y no se editaron
+
+`StHoraCafe`, `StCowork` y `StDieciocho` del set del 31-08 están entre las **8
+historias que ya no se pueden rehacer**: sus fotos de origen no existen en ningún
+disco. Y había que rehacerlas igual, porque arrastraban tres defectos que hoy son
+reglas escritas:
+
+1. la del 14-09 llevaba una **modelo de la sesión de julio 2023 con la cara
+   enfocada**, y el cliente pidió el 08-09 «modificar el aspecto de estas
+   modelos, ya no las podemos usar tal cual»;
+2. las tres **dibujaban el sticker** de Instagram;
+3. la del 16-09 mostraba el local **vacío**, que es justo lo que dispara el
+   comentario abierto «se puede entender que estuvimos cerrados».
+
+### El hallazgo de la jornada: el 4:5 del banco contra el 9:16 de la story
+
+Es el problema de fondo de toda historia de Between y hasta hoy no estaba
+nombrado. Al recortar 4:5 a 9:16 se conserva **todo el alto** y se corta el
+ancho, o sea que el sujeto no se mueve de altura: en las tres fotos caía justo
+donde va el sticker. Se resolvió subiendo las fuentes a **2× con el upscaler de
+Freepik** y recortando una ventana más chica que el alto total, que es lo único
+que da libertad vertical. Las tres salieron **reduciendo** (×0,90 · ×0,98 ·
+×1,00): ninguna ampliada, contra el ×1,42 que obligaba el camino anterior.
+Receta y tabla de franjas en el manual, § «S3 · LAS TRES STORIES».
+
+### Las decisiones de imagen, una por una
+
+- **14-09** `mesa-cafe-2piso.jpg` — capuchino en la mesa del lounge. Se eligió
+  por medición: su franja calma está en y=480–640 (L=45) para el titular, y deja
+  **madera limpia de 1360 abajo** para el quiz.
+- **16-09** `cowork-terraza.jpg` — mesa de la terraza con notebook, taza,
+  libreta y celular, con las ampolletas encendidas. La ventana se cerró a 2300 px
+  por dos razones medidas: dejar fuera la **sombrilla blanca** (el lockup beige
+  desaparecía encima) y acortar la franja de sillas y adoquín del pie, que se
+  comía media pieza cuando el mensaje es «te esperamos».
+- **18-09** `desayuno-completo-2.jpg` — desayuno para compartir. **KIMBO borrado**
+  con dos cajas de interpolación horizontal, no una: la línea donde la taza se
+  apoya en el platillo cruza la punta de la barra gris y con una caja ancha
+  salía aplanada. Verificado al 100 % en la pieza final.
+
+Las tres estaban **sin usar** en septiembre: se cruzó contra `BetweenSeptiembre.tsx`
+para no repetir foto dentro del mes.
+
+### Las referencias de Pinterest, traducidas
+
+Los tres pines vienen en la grilla y se bajaron por `i.pinimg.com` (la página del
+pin no expone `og:image`, pero el HTML sí trae la URL). De cada uno se tomó la
+ESTRUCTURA, no el aspecto: la tarjeta con la pregunta arriba y la taza abajo
+(14-09) → titular + zona reservada; el antetítulo espaciado con el horario al pie
+(16-09) → script Brushwell + caja taupe; el panel de color sobre la foto (18-09)
+→ la caja `#675B49`, que es el mecanismo que el cliente autorizó por escrito.
+
+### QA
+
+`scripts/between-qa.py` → **5/5 limpias**, incluidas las dos guías. `qa/motor.py
+--marca hilton` **se niega a correr**: Between no tiene `reglas.yaml` y el motor
+prefiere negarse antes que dar un visto bueno con reglas de agencia. Queda
+pendiente escribírselo con Eli.
+
+**Reproducibilidad:** comprobada con `cmp`, no supuesta — los tres recortes se
+regeneran **byte a byte** desde las fuentes a 2×. Esas fuentes (80 MB) van
+forzadas al repo por la misma razón que el panorama del cumpleaños: el upscaler
+no es determinista y sin ellas un recorte distinto mañana no sería la misma foto.
+
+**Abierto:**
+- El comentario de `STORIES!N` sigue **sin tachar** en la grilla. Acá se atacó por
+  la foto (mesa servida y en uso) y el copy va literal del brief ya corregido. Si
+  el cliente quería además otra redacción, la decide el CM, no diseño.
+- No se pudo LISTAR la carpeta STORIES antes de subir (el token es `drive.file`).
+  Si el set del 31-08 sigue ahí con estos mismos nombres, el uploader **reemplazó**
+  el archivo; si estaba con otro nombre, hay que borrar el viejo a mano.
+- Las **guías del CM** otra vez quedan sólo en local. Sigue sin decidirse si se le
+  mandan por Slack o si va una subcarpeta al Drive que el portal no levante.
+
 ## 2026-09-07 (cierre 3) · Eli (Windows) — BETWEEN: las dos stories del cumpleaños
 
 **Qué se hizo:** Eli rehizo y subió el carrusel de cumpleaños del feed

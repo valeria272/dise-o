@@ -1,7 +1,7 @@
 # Grilla BETWEEN — instantánea
 
-> Instantánea del 04-09-2026 tomada con `/al-dia`.
-> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/6c874d7a-14b1-41f4-87b6-bca33205f16a/scratchpad/bw-0904b.xlsx`.
+> Instantánea del 08-09-2026 tomada con `/al-dia`.
+> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/6c53638c-cb34-4c7f-aaf4-91e4fea4d8ba/scratchpad/between-0908.xlsx`.
 > **Sirve de base para el DIFF de la próxima ronda**: los comentarios se
 > prependen sobre los viejos en la misma celda, así que sin esta copia no se
 > distingue lo nuevo de lo ya resuelto.
@@ -17,7 +17,7 @@ SEMANA 2
 ```
 
 
-### Columna C — **APROBADO**
+### Columna C — **YA POSTEADO**
 
 **LINK MATERIAL FEED:**
 
@@ -28,7 +28,7 @@ SEMANA 2
 **HORARIO:**
 
 ```
-10:00:00
+13:00:00
 ```
 
 **TIPO:**
@@ -124,7 +124,7 @@ Comentario wsp
 > ~~Comentario wsp~~
 
 
-### Columna E — **EN CAMBIOS**
+### Columna E — **CORREGIDO**
 
 **LINK MATERIAL FEED:**
 
@@ -190,6 +190,11 @@ Te esperamos para celebrar contigo.
 **COMENTARIOS DISEÑO:**
 
 ```
+PerfectooOO! solo ajustar en el legar: *Presenta tu cédula de identidad para canjear tu café el día de tu cumpleaños. (para aclarar que debe ser solo ese día), con eso OK! Y aprovechemos de poner la dirección en G1 abajo
+
+
+
+
 G1: Que diga solo ¿Estás de cumpleaños? sin el septiembre, eliminar ¡VEN POR TU CAFÉ DE REGALO!
 La foto está extraña, hagamos algo más similar a lo que hiciemos el primer post, algo más natural que no se vea tan IA, en este caso creo que menos es más. Para la segunda slide proponer otra foto de fondo, distinta a G1
 
@@ -205,14 +210,19 @@ Agregar elementos cumpleañeros como en el anterior
 ```
 
 *Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~PerfectooOO! solo ajustar en el legar: *Presenta tu cédula de identidad para canjear tu café el día de tu cumpleaños. (para aclarar que debe ser solo ese día), con eso OK! Y aprovechemos de poner la dirección en G1 abajo~~
 > ~~G1: Que diga solo ¿Estás de cumpleaños? sin el septiembre, eliminar ¡VEN POR TU CAFÉ DE REGALO!
-La foto está extraña, hagamos algo más similar a lo que hiciemos el primer post, algo más natural que no se vea tan IA, en este caso creo que menos es más. Para la segunda slide proponer otra foto de fondo, distinta a G1~~
-> ~~Haría más énfasis en el cumpleaños, puede ser texto principal ¿Estás de cumpleaños?
+La foto está extraña, hagamos algo más similar a lo que hiciemos el primer post, algo más natural que no se vea tan IA, en este caso creo que menos es más. Para la segunda slide proponer otra foto de fondo, distinta a G1
+
+
+Haría más énfasis en el cumpleaños, puede ser texto principal ¿Estás de cumpleaños?
 luego complemento con Este café es para ti.
 Luego complemento con ¡Ven por tu café de regalo!
 
-En la G2 considerar este listado e incluir emojis nuevamente~~
-> ~~Agregar elementos cumpleañeros como en el anterior~~
+En la G2 considerar este listado e incluir emojis nuevamente
+
+
+Agregar elementos cumpleañeros como en el anterior~~
 
 
 ### Columna F — **APROBADO**
@@ -264,6 +274,8 @@ Haz una pausa, pide tu favorito y deja que el resto del día espere un poquito. 
 
 Ven por tu momento Between.
 
+📍 Vitacura 2727, Las Condes, Santiago.
+
 #BetweenCoffee #CafeSantiago #CoffeeBreak #LasCondes
 ```
 
@@ -283,7 +295,7 @@ SEMANA 3
 ```
 
 
-### Columna H — **REVISAR CONTENIDO**
+### Columna H — **APROBADO**
 
 **LINK MATERIAL FEED:**
 
@@ -378,6 +390,7 @@ Ok los textos, pero las fotos deben ser de cosas para comer y no de gente, como 
 ```
 
 *Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Qué plato es el que ya está comido?~~
 > ~~Ese kimbo en la G1 hay que quitarlo, porque ya no servimos en esas tazas
 G3: Que pinta tiene x Se ve muy bueno...
 G4: Aquí la idea es que se vea más vacío el plato, veamos otra opción de foto, que sea desde arriba también como los 2 anteriores (como la refe)
@@ -386,7 +399,7 @@ G4: Aquí la idea es que se vea más vacío el plato, veamos otra opción de fot
 Ok los textos, pero las fotos deben ser de cosas para comer y no de gente, como el la refee~~
 
 
-### Columna J — **EN CAMBIOS**
+### Columna J — **APROBADO**
 
 **LINK MATERIAL FEED:**
 
@@ -443,6 +456,8 @@ Para el último cahuín, la actualización completa o simplemente ponerse al dí
 
 Etiqueta a esa amiga con la que un café nunca es solo un café.
 
+📍 Vitacura 2727, Las Condes, Santiago.
+
 #BetweenCoffee #CafeteriaSantiago #CoffeeTime #LasCondes
 ```
 
@@ -458,8 +473,10 @@ En cuanto al diseño, me gustaría ver textos más limpios (sin el recuadro atr�
 ```
 
 *Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Arriba ella hablo y abajo ella escuchó y queda OK~~
 > ~~Pondría un café que se vea más lindo, algo con arte late y el otro se tiene que ver como que en algún momento hubo café en la taza jasajs.
 En cuanto al diseño, me gustaría ver textos más limpios (sin el recuadro atrás) y qque el de Ella habló esté más cerca de su respectiva taza~~
+> ~~~~
 
 
 ### Columna K — **sin estado**
@@ -471,7 +488,7 @@ SEMANA 4
 ```
 
 
-### Columna L — **EN CAMBIOS**
+### Columna L — **CORREGIDO**
 
 **LINK MATERIAL FEED:**
 
@@ -580,6 +597,8 @@ Intercambiemos fechas con el de cowork
 ```
 
 *Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Mismo comentario que antes sobre la G1, el fondo no tiene nada que ver con BT, tenemos algunos videos que hemos hecho en la entrada de BT, saquemos el fondo de ahí?
+Pensando en los precios, mejor vámonos a la segura como hacemos siempre con los precios desde (que diga desde) y eliminar el texto y flecha que dice Café grande~~
 > ~~Me gusta que sea otra propuesta la G1, pero ella se ve muy derrotada y el fondo no es muy Between, veamos opciones?
 En la G 4 debemos poner un dulce y un salado en la foto y que el vaso sea como el del resto de las slides. (en lugar de llévalo contigo, pongamos algo que haga más sentido con lo que se está mostrando, podría ser ¡Llévate los 3!
 
@@ -740,6 +759,9 @@ Icono " 🎁 "
 **COMENTARIOS DISEÑO:**
 
 ```
+Adaptemos tal cual la gráfica de feed, en 2 partes (considerar los últimos 2 ajustes)
+
+
 Tomemos mismos textos de la publicación de feed, manteniendo imagen de fondo de esta propuesta, pero que el vaso tenga logo
 
 Cambiar de fecha por la interactiva emergencia
@@ -748,11 +770,22 @@ Darle una vuelta a la palabra cafeína, puede sonar a algo negativo quizás deja
 ```
 
 *Tachado en la grilla (ya resuelto, NO volver a aplicar):*
-> ~~Tomemos mismos textos de la publicación de feed, manteniendo imagen de fondo de esta propuesta, pero que el vaso tenga logo~~
-> ~~~~
+> ~~Adaptemos tal cual la gráfica de feed, en 2 partes (considerar los últimos 2 ajustes)
+
+
+Tomemos mismos textos de la publicación de feed, manteniendo imagen de fondo de esta propuesta, pero que el vaso tenga logo~~
 > ~~Cambiar de fecha por la interactiva emergencia
 
 Darle una vuelta a la palabra cafeína, puede sonar a algo negativo quizás dejar el segundo texto solamente~~
+
+
+### Columna E — **sin estado**
+
+**LINK MATERIAL STORIES:**
+
+```
+SEMANA 2
+```
 
 
 ### Columna G — **APROBADO**
@@ -760,7 +793,7 @@ Darle una vuelta a la palabra cafeína, puede sonar a algo negativo quizás deja
 **LINK MATERIAL STORIES:**
 
 ```
-07-09-2026
+08-09-2026
 ```
 
 **TIPO:**
@@ -820,12 +853,12 @@ Con eso ok!~~
 > ~~Café con logo Between!~~
 
 
-### Columna H — **OK PARA DISEÑAR**
+### Columna H — **EN REVISIÓN**
 
 **LINK MATERIAL STORIES:**
 
 ```
-08-09-2026
+09-09-2026
 ```
 
 **TIPO:**
@@ -884,12 +917,12 @@ Cómo mostraremos la leche condensada al principo?
 ```
 
 
-### Columna I — **REVISAR CONTENIDO**
+### Columna I — **CORREGIDO**
 
 **LINK MATERIAL STORIES:**
 
 ```
-09-09-2026
+10-09-2026
 ```
 
 **TIPO:**
@@ -940,6 +973,9 @@ Agregar opción todas las anteriores
 **COMENTARIOS DISEÑO:**
 
 ```
+Si solo pudieras sacar uno.... con eso OK
+
+
 Cambiaría que el salado sea un crosant jamon queso y que el dulce sea un muffin
 
 
@@ -948,10 +984,15 @@ No se cacha bien al tapar la vitrina con el texto, veamos otra diagramación?
 ```
 
 *Tachado en la grilla (ya resuelto, NO volver a aplicar):*
-> ~~No se cacha bien al tapar la vitrina con el texto, veamos otra diagramación?~~
+> ~~Si solo pudieras sacar uno.... con eso OK~~
+> ~~Cambiaría que el salado sea un crosant jamon queso y que el dulce sea un muffin
 
 
-### Columna J — **POR GRABAR**
+
+No se cacha bien al tapar la vitrina con el texto, veamos otra diagramación?~~
+
+
+### Columna J — **CORREGIDO**
 
 **LINK MATERIAL STORIES:**
 
@@ -1021,7 +1062,26 @@ REF
 **COMENTARIOS DISEÑO:**
 
 ```
+Podemos usar fotos en que no salga directamente Nico? que se vean sus manos solamente
+
+
+
+
 Ok, aprovechemos el viernes de sacar estas fotos para que se vea bonito
+```
+
+*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Podemos usar fotos en que no salga directamente Nico? que se vean sus manos solamente~~
+> ~~~~
+> ~~Ok, aprovechemos el viernes de sacar estas fotos para que se vea bonito~~
+
+
+### Columna K — **sin estado**
+
+**LINK MATERIAL STORIES:**
+
+```
+SEMANA 3
 ```
 
 
@@ -1181,6 +1241,15 @@ REF
 ```
 
 
+### Columna P — **sin estado**
+
+**LINK MATERIAL STORIES:**
+
+```
+SEMANA 4
+```
+
+
 ### Columna Q — **OK PARA DISEÑAR**
 
 **LINK MATERIAL STORIES:**
@@ -1279,6 +1348,15 @@ REF
 
 ```
 LINK CARTA
+```
+
+
+### Columna S — **sin estado**
+
+**LINK MATERIAL STORIES:**
+
+```
+SEMANA 5
 ```
 
 

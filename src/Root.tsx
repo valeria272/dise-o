@@ -114,6 +114,9 @@ import {
 import {
   StCumpleC1, StCumpleC2, StCumpleC1Guia, StCumpleC2Guia,
 } from "./compositions/hilton/BetweenStCumpleCarrusel";
+import {
+  StS3HoraCafe, StS3Cowork, StS3Dieciocho, StS3HoraCafeGuia, StS3CoworkGuia,
+} from "./compositions/hilton/BetweenStS3";
 
 import {SelfieBannerSemanaPeluquero} from "./compositions/SelfieBannerSemanaPeluquero";
 import {SelfieCarruselFrizz} from "./compositions/SelfieCarruselFrizz";
@@ -161,6 +164,17 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="BW-S-Cumple-C2" component={StCumpleC2} {...btStory} />
         <Composition id="BW-S-Cumple-C1-Guia" component={StCumpleC1Guia} {...btStory} />
         <Composition id="BW-S-Cumple-C2-Guia" component={StCumpleC2Guia} {...btStory} />
+        {/* S3 · las tres historias de la semana 3, rehechas el 08-09.
+            Reemplazan a BW-S-HoraCafe / BW-S-Cowork / BW-S-Dieciocho, que no
+            rinden porque sus fotos de origen ya no existen — ver el manual
+            § «8 historias de septiembre YA NO SE PUEDEN REHACER».
+            Las `-Guia` llevan marcada la zona del sticker: son para el CM y NO
+            se entregan al cliente. La del 18-09 no lleva interacción. */}
+        <Composition id="BW-S3-HoraCafe" component={StS3HoraCafe} {...btStory} />
+        <Composition id="BW-S3-Cowork" component={StS3Cowork} {...btStory} />
+        <Composition id="BW-S3-Dieciocho" component={StS3Dieciocho} {...btStory} />
+        <Composition id="BW-S3-HoraCafe-Guia" component={StS3HoraCafeGuia} {...btStory} />
+        <Composition id="BW-S3-Cowork-Guia" component={StS3CoworkGuia} {...btStory} />
         <Composition id="BW-S-Calculos" component={StCalculos} {...btStory} />
         <Composition id="BW-S-Emergencia" component={StEmergencia} {...btStory} />
         <Composition id="BW-S-HoraCafe" component={StHoraCafe} {...btStory} />

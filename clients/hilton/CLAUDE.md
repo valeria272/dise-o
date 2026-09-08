@@ -4368,3 +4368,151 @@ Script: `scripts/between-foto4-torta-r24.py` (apunta a la r25).
 ⚠️ **Ojo con el nombre en Drive:** en la carpeta ya hay archivos «BW FEED 14-09
 Promos To Go …» de cuando ese carrusel era de esta semana. Hay que sacarlos o se
 entrega el equivocado.
+
+---
+
+# ⚖️ El legal del CAFÉ DE CUMPLEAÑOS — redacción aprobada (08-09-2026)
+
+Detectado por `/al-dia` el 08-09-2026 al diffear la grilla contra la instantánea
+del 04-09. El cliente cerró la ronda del carrusel de cumpleaños con un
+**«con eso OK» condicionado a dos cosas**, y las dos ya están aplicadas y
+tachadas en la grilla:
+
+> «PerfectooOO! solo ajustar en el legal: *Presenta tu cédula de identidad para
+> canjear tu café el día de tu cumpleaños. (para aclarar que debe ser solo ese
+> día), con eso OK! Y aprovechemos de poner la dirección en G1 abajo»
+
+**La redacción aprobada, literal — no se parafrasea:**
+
+```
+*Presenta tu cédula de identidad para canjear tu café el día de tu cumpleaños.
+```
+
+Dos cosas que la distinguen de las versiones anteriores y que son justamente lo
+que el cliente pidió:
+
+1. **«cédula de identidad», no «carnet».** En el cuerpo de la pieza la píldora
+   sí dice «Presenta tu carnet en la caja» —eso está aprobado y se queda—, pero
+   **la nota legal usa «cédula de identidad».**
+2. **«el día de tu cumpleaños», no «de cumpleaños».** Es el punto entero del
+   comentario: acota el canje a ese día y sólo ese día. Perder esas cuatro
+   palabras es perder la corrección.
+
+Y la segunda condición: **la dirección va al pie de la G1** (no sólo en el copy
+del posteo):
+
+```
+📍 Vitacura 2727, Las Condes, Santiago.
+```
+
+## ⚠️ Dos composiciones cargan todavía el legal VIEJO
+
+`BetweenStCumpleCarrusel.tsx` —el carrusel que Eli rehizo el 07-09 y del que
+salen las dos stories entregadas— está **correcto**. Las otras dos no:
+
+| Archivo | Qué dice hoy | Estado |
+|---|---|---|
+| `BetweenStCumpleCarrusel.tsx:510` | «…canjear tu café **el día de tu cumpleaños**.» | ✅ aprobado |
+| `BetweenSeptiembre.tsx:794` | «…canjear tu café **de cumpleaños**. Extras y personalizaciones no incluidas.» | ⛔ viejo |
+| `BetweenCumple.tsx:112` | «Presenta tu **carnet** para canjear tu café **de cumpleaños**…» | ⛔ el más viejo |
+
+**La regla:** si se vuelve a rendir cualquier pieza de la promo de cumpleaños
+desde `BetweenSeptiembre` (G2) o desde `BetweenCumple`, hay que corregirles el
+legal ANTES de rendir, o se entrega la redacción que el cliente ya mandó
+cambiar. Las dos ya estaban en la bitácora por otro motivo (el `MarcoIGPost`
+desalineado); esto se arregla en la misma pasada.
+
+---
+
+# ⭐⭐ S3 · LAS TRES STORIES DEL 14, 16 Y 18-09 (08-09-2026)
+
+Pieza: `src/compositions/hilton/BetweenStS3.tsx` · fotos:
+`scripts/between-st-s3-fotos.py` · entrega: `scripts/between-st-s3-entrega.py`.
+
+## ⛔ 1. El banco de Between es 4:5 y la story es 9:16 — y eso NO es un recorte
+
+Es el problema de fondo de toda historia de esta marca, y hasta ahora se venía
+resolviendo sin nombrarlo. Al recortar una foto 4:5 a 9:16 **se conserva todo el
+alto y se corta el ancho**: el sujeto no se mueve de altura ni un píxel. En las
+tres fotos de la S3 el sujeto caía justo en la franja donde va el sticker de
+Instagram, y no había forma de arreglarlo eligiendo otro `objectPosition`.
+
+**La salida, y queda como receta de la marca:**
+
+```bash
+python scripts/magnific.py escalar <foto 2250×2812> --out raw/hilton/between/<x>-2x.png --escala 2x
+```
+
+Con la fuente a 4496×5624 se puede recortar una ventana de 9:16 **más chica que
+el alto total**, y ahí sí se elige a qué altura queda el sujeto. Las tres piezas
+de la S3 salieron a 2250×4000 **reduciendo** (×0,90 · ×0,98 · ×1,00): ninguna se
+amplió. Antes, un 9:16 desde el 4:5 obligaba a ampliar ×1,42.
+
+⚠️ **El upscaler NO es determinista.** Por eso las tres fuentes a 2× (80 MB) van
+forzadas al repo, igual que el panorama del cumpleaños: sin ellas, un recorte
+distinto mañana obliga a volver a escalar y **no sería la misma foto**.
+Comprobado con `cmp`: los tres recortes se reproducen byte a byte.
+
+## ⭐ 2. El encuadre se elige MIDIENDO la foto por franjas, no a ojo
+
+Antes de decidir dónde va el titular, se saca el perfil de la foto en franjas de
+80 px sobre la columna central (x 135–945): **luminancia media y desvío
+estándar**. Es lo que dice si un texto beige se va a leer ahí:
+
+| sd de la franja | Qué significa | Qué se puede poner |
+|---|---|---|
+| < 18 | superficie calma (madera, mesa, muro liso) | titular suelto, y ahí va la zona del sticker |
+| 18–32 | estructura suave (mobiliario desenfocado) | titular suelto si además L < 90 |
+| > 32 | ruidosa (follaje, comida, vajilla) | **caja taupe**, nunca titular suelto |
+
+Medido en estas tres: la del 14-09 tiene su franja calma en y=480–640 (L=45) y
+madera limpia de 1360 abajo; la del 18-09 sólo tiene calma en y=240–560 (sd 4–12);
+y la del 16-09 **no tiene ninguna franja calma** —sd de 45 a 72 en todo el alto—,
+y por eso es la única de las tres donde el horario y la bajada van en caja.
+
+Es la regla del cliente aplicada con un número en la mano: «cuando no se logra
+visualizar los textos, puedes dejarlo en una caja del color café #675B49».
+
+## ⭐ 3. La zona reservada tiene DOS tamaños, no uno
+
+El 07-09 quedó que lo interactivo va como hueco limpio y nunca dibujado. Lo que
+faltaba era el porte, y no es uno:
+
+| Interacción de la grilla | Zona | De dónde sale |
+|---|---|---|
+| encuesta de 2 opciones · deslizador | 660 × 210 | las dos stories del cumpleaños |
+| **quiz de 4 alternativas** | **660 × 300** | `StickerQuiz` con `dosColumnas` |
+| **sticker de enlace** (carta) | **660 × 140** | `StickerEnlace` |
+
+Y la zona **cierra en 1580**, no arranca en un número fijo: se ancla al borde de
+la franja inferior de Meta y crece hacia arriba. Así la del quiz pasó de 1240 a
+1280 y dejó de pisar el platillo de la taza.
+
+## ⭐ 4. «Se puede entender que estuvimos cerrados» era un defecto de FOTO
+
+El comentario abierto de `STORIES!N` se venía leyendo como un problema de copy, y
+el copy ya estaba corregido en la grilla desde antes («PUEDES VENIR, ¡TE
+ESPERAMOS!»; «COWORK | YA ABRIMOS» es sólo el nombre interno de la fila y nunca
+va en pantalla). Lo que seguía sin corregir era la imagen: la versión del 31-08
+mostraba **mesas altas vacías, enfocadas y sin nadie**.
+
+**La regla:** una pieza que invita a venir se ilustra con una mesa **servida y en
+uso** —notebook abierto, taza con su platillo, libreta, luces encendidas—, no con
+el local vacío. Es la misma lección que ya estaba escrita en «Que se parezca a
+Between no es que salga el local»: manda el plano corto y cálido.
+
+## ⭐ 5. Una pila de cajas se iguala SIN medir en JS
+
+La regla §1 bis («una pila = un borde derecho») estaba resuelta sólo dentro de
+`PilaEsquina`. Cuando la pila se arma a mano —una `CajaDato` y un `PanelTaupe`
+apilados— hay que igualarla igual, y sale sin JavaScript: contenedor
+`inline-flex` (se encoge al ancho de la caja más ancha) con los hijos en
+`alignItems: 'stretch'`. Está en `BetweenStS3.tsx` como `PilaIgualada`.
+
+## ⚠️ 6. Between todavía no tiene `reglas.yaml`
+
+`python qa/motor.py --marca hilton <piezas>` **se niega a correr**: sin reglas
+propias sólo correrían las de agencia y eso daría un visto bueno que la marca no
+se ganó. La compuerta que sí corre es `scripts/between-qa.py`, y las cinco piezas
+de la S3 pasaron limpias. Escribirle el `reglas.yaml` a Between queda pendiente:
+hay que firmarlo con Eli, porque son sus medidas.

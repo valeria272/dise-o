@@ -1,3 +1,72 @@
+## 2026-09-08 (CIERRE DEL DÍA) · Eli (Windows) — resumen para el relevo
+
+Jornada completa sobre **BETWEEN, stories de la S3** (14, 16 y 18-09): ocho rondas
+con Eli en vivo. Las entradas de cada ronda están más abajo; esto es el estado.
+
+**Qué se hizo:** se rehicieron de cero las tres historias de la S3 —las del set
+del 31-08 no se podían editar porque sus fotos de origen ya no existen— y se
+entregaron a la carpeta STORIES del Drive. En el camino se cambió el método de
+imagen de la marca (las escenas ahora se GENERAN con el hueco del texto adentro,
+no se recortan del banco 4:5), se dibujaron tres ilustraciones nuevas para la
+pieza del 18 y se arreglaron dos defectos del sistema que afectaban a toda la
+marca.
+
+**Dónde quedó:**
+
+| Pieza | Estado |
+|---|---|
+| `BW ST 14-09 Cuando es hora de cafe.png` | ✅ **APROBADA** |
+| `BW ST 16-09 Cowork te esperamos.png` | última corrección entregada (kerning del horario) — **falta el OK de Eli** |
+| `BW ST 18-09 Saludo Fiestas Patrias.png` | ✅ **APROBADA** |
+
+Carpeta STORIES: `1SNBRIvKLvQSC2bYF3u5_oPL5UumIo-gM`. Las tres se subieron
+**reemplazando el mismo archivo**, así que los enlaces que ya tiene Eli siguen
+sirviendo. Verificado por `md5Checksum` y por `parents` en cada subida.
+
+Código: `src/compositions/hilton/BetweenStS3.tsx` y `BetweenIlustraS3.tsx`.
+Scripts: `between-st-s3-generar.py` (escenas), `-materiales.py` (logo café +
+textura de papel), `-fotos.py` (retoques y recorte), `-entrega.py` (empaque y
+subida, con `--solo` para no re-subir una pieza aprobada).
+Todo rendido, con QA pasado y commiteado ronda por ronda.
+
+**Qué sigue:** esperar el OK de Eli sobre la **16-09**. Si lo da, la S3 de stories
+queda cerrada y lo siguiente de Between es la S4 (21-09 strudel, 22-09 primavera)
+y la S5 (28-09 humor to go, 30-09 plateada), que están todas `OK PARA DISEÑAR` en
+la grilla y son de las 8 historias que **no se pueden editar: se rehacen**.
+
+**Abierto:**
+- ⛔ **`BETWEEN.logo.cafe` apunta a un PNG NEGRO `#000000`**, no al café de marca.
+  Se generó el archivo correcto (`logo-cafe-marca.png`) y se usa en la S3, pero el
+  token NO se tocó porque lo usan `BetweenCumple`, la G2 de `BetweenSeptiembre` y
+  la tarjeta del carrusel del cumpleaños. **Quien rehaga una de esas tres tiene
+  que cambiarle el logo en la misma pasada.**
+- Las **guías `GUIA CM`** (con la zona del sticker marcada) siguen sólo en local,
+  en `out/hilton/between/entrega-st-s3/GUIAS CM/`. Van **ocho días** sin que se
+  decida cómo le llegan al community manager: Slack o una subcarpeta del Drive que
+  el portal no levante. Es decisión de Eli.
+- **Between sigue sin `clients/hilton/reglas.yaml`**, así que
+  `qa/motor.py --marca hilton` se niega a correr. Hay que escribirlo con Eli
+  porque son sus medidas.
+- El comentario de `STORIES!N` («se puede entender que estuvimos cerrados») sigue
+  **sin tachar** en la grilla. Se atacó por la foto —mesa servida y en uso— y el
+  copy va literal del brief ya corregido; si el cliente quería otra redacción, la
+  decide el CM.
+- ⚠️ Si la **16-09** pasa a PAUTA hay que revisar el titular: es beige sobre pared
+  clara (1,33:1 medido) por pedido expreso de Eli. En orgánico funciona con la
+  sombra; comprimido y en pantalla chica se pierde.
+
+**Y una cosa que NO es de Between, del cierre:** quedaba sin commitear una pasada
+de **`/al-dia` a DOUBLETREE** (grilla modificada el 08-09 15:31Z por Carlos
+Figueroa). Entra en este commit, y trae dos cosas que alguien tiene que mirar:
+- **un comentario nuevo** en FEED col G (10-09) — «POST · NOCHE DE BODAS»: el
+  carrusel de agosto tiene un error, debería decir *Noche de Bodas*. **Eli ya lo
+  entregó** (`C1 S1 N°1/2.png` en `S2 HILTON SEP 2026/DT/NOCHE DE BODAS`);
+- **producible hoy en DT: sólo la estática del Día del Turismo (27-09)**. El
+  estático de Opinión Booking (14-09) sigue bloqueado desde el 03-09 porque la
+  carpeta de reseñas devuelve 0 archivos por el conector y falta el texto literal.
+  Y DT sigue **sin ADN**: no hay `marca.json`, ni `reglas.yaml`, ni
+  `src/brand/doubletree.ts`.
+
 ## 2026-09-08 (ronda 8) · Eli (Windows) — BETWEEN: el tracking no llegaba a las cifras tabulares
 
 **Qué dijo Eli**, sobre el bloque del horario de la ST 2: «recuerda el uso de

@@ -34,10 +34,39 @@
 - **Primaria: Stag LCG** — titulares y títulos.
 - **Secundaria: Trade Gothic LT Std** — cuerpo.
 
-> ⚠️ **Es Stag _LCG_, no Stag a secas.** LCG es la versión con juego de glifos
-> ampliado. Los 9 cortes instalados en `public/assets/hilton/dt/fonts/` son **Stag
-> normal, 354 glifos, sin `$ % ¿ ¡ @`**. Que Stag «no pueda escribir un precio» no
-> es una regla de la marca: es que tenemos la familia equivocada.
+### ⛔ Lo que el manual pide y lo que realmente tenemos
+
+Confirmado por Eli el 08-09-2026: **el cliente todavía no le facilita las fuentes
+que faltan.** Esto no es una duda pendiente, es un límite conocido del sistema.
+
+| El manual pide | ¿Tenemos el archivo? | Con qué se trabaja |
+|---|---|---|
+| **Stag LCG** (Bold, SemiBold It., Medium It., Book It.) | ❌ **No** | Stag normal, 9 cortes, **354 glifos** |
+| **Trade Gothic LT Std Regular** | ✅ Sí | — |
+| **Trade Gothic LT Std Bold** *(destacados)* | ❌ **No** | Bold Condensed No. 20 |
+| Trade Gothic Next LT Pro Bold *(la usa el editable de sept.)* | ❌ **No** | — |
+
+**Las tres consecuencias, y hay que asumirlas, no taparlas:**
+
+1. **La regla «los precios y las preguntas van en Trade» SIGUE VIGENTE** — pero por
+   una razón distinta de la que se escribió el 03-09. No es que la marca lo mande:
+   es que **la Stag que tenemos no puede escribir `$ % ¿ ¡ @`**. Es una solución de
+   apaño con fecha de vencimiento: **cuando llegue Stag LCG hay que volver a mirar
+   esta regla**, porque con ella un titular sí podría preguntar «¿Ya eres Hilton Honors?».
+
+2. **El bloque de precio no va a quedar idéntico al aprobado.** No hay un Trade Bold
+   de ancho normal, que es el corte con el que está compuesta la cifra de `C1 FT N°2`.
+   El único sustituto es **Bold Condensed No. 20**, y al mismo alto de dígito la
+   píldora pasa de ~630 px a ~410 px: cambia la proporción del bloque, no sólo la letra.
+
+3. **Por lo tanto el examen de admisión no puede dar 100 % sobre el Family Time**,
+   que lleva `$125.000`. Todo lo demás de esa pieza sí tiene que calzar. **El bloque
+   de precio queda como desviación conocida y declarada**, con su render al lado para
+   que Eli decida si el condensado pasa o si esa pieza espera la fuente.
+
+> **Regla de trabajo mientras tanto:** ninguna pieza con precio se da por «reproducida»
+> sin que Eli mire el render del bloque. Y el QA marca el bloque de precio como
+> *revisión humana obligatoria*, no como aprobado automático.
 
 ### El reparto que fija el manual
 
@@ -130,11 +159,94 @@ El logo son tres partes: **icono + firma «DoubleTree» + bajada Hilton**. Es un
 - ⛔ No usar el reversado sobre fondo claro.
 - ⛔ No alterar proporción ni meter texto o elementos en el área de aire.
 
-> ⚠️ **Esto choca con la práctica viva de la cuenta.** Las piezas de agosto y
-> septiembre montan `logo horizontal blanco.png` **sobre fotografía**, y el nombre
-> de la propiedad va en piezas que usan el horizontal. Antes de escribirlo como
-> regla del sistema hay que resolverlo con Eli y con el cliente — ver
-> `BITACORA.md`, sesión del 08-09.
+### ⭐⭐ La regla viva del estudio — dictada y medida el 08-09-2026
+
+> **El manual es apoyo. La diseñadora es Eli.** El manual manda en **color,
+> tipografía y su uso**; en **composición y uso del logo manda el criterio de Eli**.
+> Donde choquen, gana Eli — está escrito así por decisión suya.
+
+**1 · El logo no va siempre. En feed, por defecto NO va.**
+
+> «Tratar en feed de no usarlo, ya que ensucia el feed.»
+
+Se usa sólo en **los programas del hotel** y en **piezas importantes**. Una pieza
+de feed corriente **no lleva logo**, y eso no es un olvido: es la regla.
+
+**2 · Cuando va, va el vertical de propiedad.** El lockup completo de cuatro líneas
+—icono, «DoubleTree», «by Hilton™» y **«SANTIAGO–VITACURA»**— en blanco, **centrado
+horizontalmente** y arriba.
+
+**3 · El horizontal sólo si el cliente lo pide expresamente. O sea casi nunca.**
+Concuerda con §4.3: el horizontal no admite el nombre de la propiedad.
+
+### Los dos archivos que se usan — y son sólo dos
+
+Carpeta `1juLRu6ctgw-t56kfp6uZwDE9bSqBjsLb`, entregada por Eli el 08-09-2026.
+
+| Archivo | Lienzo | Tinta | Proporción | Para qué |
+|---|---|---|---|---|
+| **`logo DT.png`** | 1977 × 1646 | 1603 × 1307 | **1,2265** | El principal. Vertical de propiedad |
+| **`Hilton Honors Logo_White PNG.png`** | 1091 × 470 | — | **2,3213** | **Sólo para hablar de beneficios** — el programa Hilton Honors |
+
+**El logo principal**, medido por canal alfa: blanco puro, **un solo color** (es el
+reversado). Cuatro líneas — icono **617 px** · «DoubleTree» **193 px** ·
+«by Hilton™» **154 px** · «SANTIAGO–VITACURA» **86 px**.
+
+> ⭐ **El archivo ya trae su aire incorporado**: 187 px a los lados y 169–170 px
+> arriba y abajo, contra los 193 px de alto de la línea «DoubleTree». O sea que el
+> margen embebido es ≈ **la altura de la «D»**, que es exactamente el aire que exige
+> §3.2 del manual. **Al colocarlo no hay que sumar aire: el PNG ya lo tiene.**
+> Recortarlo al borde de la tinta rompería la norma sin que se note.
+
+**El Hilton Honors no es un logo del hotel: es el del programa.** Entra sólo cuando
+la pieza habla de beneficios Hilton Honors. No sustituye al logo DT ni compite con él.
+
+### Las medidas de colocación, sobre `MARGEN DE LOGOS`
+
+Medidas por canal alfa sobre los tres archivos de referencia que dejó Eli
+(`raw/hilton/dt/identidad/logos/`). Traducidas a **mesa de trabajo 1080**:
+
+| Formato | Mesa | Caja del logo | Margen superior | Eje |
+|---|---|---|---|---|
+| **Feed** | 1080 × 1350 | **160,3 × 130,6 px** | **111,4 px** | centrado |
+| **Historia** | 1080 × 1920 | **167,0 × 136,3 px** | **241,0 px** | centrado |
+
+A tamaño de entrega (×2,0833): feed 334×272 px a 232 px del borde; historia
+348×284 px a 502 px.
+
+- **Proporción del lockup: 1,223–1,228** en las tres mediciones independientes.
+  Confirma el 1,2266 medido el 03-09 contra otros dos archivos. **Es la proporción
+  del vertical de propiedad; el horizontal es 2,945** (1069×363).
+### Las zonas seguras de Eli — medidas sobre su propia plantilla
+
+`Zona segura PNG.png` estaba dentro de los `Links` del editable de stories
+(1300×2311 px, colocada a 1080×1920). Medida por canal alfa, sobre mesa 1080×1920:
+
+| Tramo | Alto | Qué es |
+|---|---|---|
+| y 0 – 209 | **209 px** | **Bloqueado arriba** — negro opaco |
+| y 210 – 1117 | 908 px | Libre |
+| y 1119 – 1549 | 431 px | **Precaución** — velo intermedio |
+| y 1551 – 1919 | **369 px** | **Bloqueado abajo** — negro opaco |
+
+> ⚠️ **No son los números genéricos de la agencia.** La regla global del estudio para
+> 9:16 dice 250 arriba y 340 abajo (memoria `paid-media-zonas-seguras`). **La
+> plantilla de Eli dice 209 arriba y 369 abajo** — más permisiva arriba y más
+> conservadora abajo. En DT manda la plantilla de Eli.
+
+**Y encaja con el logo:** el logo va a 241 px del borde superior, o sea **32 px por
+debajo de su banda bloqueada de 209**. El margen del logo no es un número suelto —
+está apoyado en su propia plantilla, no en la regla genérica.
+- El desglose del lockup en la pieza de 2250×4000: icono 151 px · «DoubleTree» 47 px ·
+  «by Hilton™» 37 px · «SANTIAGO–VITACURA» 20 px.
+
+### ⚠️ Sobre el azul: no es un error, es el Pantone
+
+El fondo de `15.png` mide **`#111C4E` uniforme**, no el `#09194E` del manual.
+La explicación más probable **no es un descuido**: el editable declara
+**PANTONE 2766 C como tinta plana en Lab**, y al exportar a sRGB el Lab da un valor
+distinto del RGB nominal que publica el manual. Falta decidir cuál de los dos fija
+el sistema — ver la pregunta abierta en la bitácora del 08-09.
 
 ---
 

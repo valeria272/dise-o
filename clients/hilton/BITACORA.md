@@ -1,3 +1,110 @@
+## 2026-09-08 (CIERRE 3 · noche) · Eli (Windows) — DOUBLETREE: la identidad queda cerrada y medida
+
+Tercera sesión del día, la primera de **ADN de DT**. Arrancó con `/abrir Doubletree`
+y terminó con la capa de identidad completa. Eli fue subiendo material durante la
+sesión: la carpeta `GRILLA IA DT`, ocho carpetas de sesiones fotográficas, las
+referencias de margen y los dos logos.
+
+**Qué se hizo:**
+
+1. **`/al-dia` cazó ronda nueva en la grilla de DT** (08-09 15:31Z, Carlos Figueroa).
+   ⚠️ **La grilla se reestructuró**: se insertaron columnas «SEMANA n» y todas las
+   letras corrieron, así que el diff por columna es ruido — hay que comparar por
+   contenido. **Un solo comentario nuevo en todo el mes**: FEED 10-09 «Noche de Bodas»
+   («el carrusel de agosto tiene un error, debería ser Noche de Bodas… agregar
+   dirección»), y **Eli ya lo entregó** el 07-09. Instantánea nueva en
+   `clients/hilton/grillas/dt-septiembre-2026.md`.
+2. **Se extrajo el manual oficial de Hilton** (dic 2021, 50 mil caracteres) y se
+   destiló a reglas en español en **`clients/hilton/dt-manual-oficial.md`**.
+3. **Se leyeron los 9 `Informe.txt`** de los editables empaquetados y se midieron
+   logos y zonas seguras por canal alfa.
+4. **Se mapeó el banco de imágenes** — 8 carpetas con IDs y orden de búsqueda, en
+   **`clients/hilton/dt-banco-de-imagenes.md`**.
+5. **Se abrió `clients/hilton/CHECKLIST-CLIENTE.md`** con lo que hay que pedirle al
+   cliente, con el argumento de a qué piezas afecta cada cosa.
+
+**⭐ Las reglas que dictó Eli, y que MANDAN sobre el manual:**
+
+> **«El manual es un apoyo, pero al final la diseñadora soy yo.»** El manual manda en
+> **color, tipografía y su uso**; en **composición y uso del logo manda Eli**.
+
+- **Tipografía:** Stag + Trade es el default de grilla. **Raleway salió en 2026
+  porque no está en el manual.** Kallimata tampoco va en grilla — **entra sólo por
+  ocasión especial** (San Valentín, Cyber, Año Nuevo, eventos), igual que cualquier
+  otra elegante o curva. Es excepción por fecha, no recurso de grilla.
+- **Logo:** **en feed, por defecto NO va** («ensucia el feed»). Sólo en programas del
+  hotel y piezas importantes. **El horizontal, sólo si el cliente lo pide — casi nunca.**
+
+**Lo medido (todo por canal alfa, no deducido):**
+
+- **Logo, colocación en mesa 1080** — feed: 160,3 × 130,6 px a **111,4 px** del borde
+  superior, centrado. Historia: 167,0 × 136,3 px a **241,0 px**, centrado.
+- **`logo DT.png`**: tinta 1603 × 1307, **proporción 1,2265**, blanco puro, 4 líneas
+  (icono 617 · DoubleTree 193 · by Hilton 154 · SANTIAGO–VITACURA 86).
+  ⭐ **Trae su aire incorporado**: 187 px a los lados ≈ la altura de la «D», que es
+  justo el aire de §3.2. **Al colocarlo no se suma margen, y recortarlo al borde de
+  la tinta rompería la norma sin que se note.**
+- **`Hilton Honors Logo_White PNG.png`**: 1091 × 470, proporción 2,3213. **No es logo
+  del hotel: es del programa.** Sólo cuando la pieza habla de beneficios.
+- **⚠️ Zonas seguras de Eli, y NO son las genéricas de la agencia:** su
+  `Zona segura PNG.png` (estaba dentro de los `Links` del editable de stories) marca
+  **209 px bloqueados arriba y 369 abajo** en mesa 1080×1920, más una franja de
+  precaución entre 1119 y 1549. La regla global del estudio dice 250/340. **En DT
+  manda la plantilla de Eli.** El logo a 241 px queda 32 px bajo su banda.
+- **Del manual:** primera línea del titular en **verde `#A3CD39`** y el resto en blanco ·
+  titular interlínea 100 % y tracking 40 · cuerpo 160 % y tracking 10 · contraste
+  logo/fondo mínimo 33 % · sobre fondo verde va el logo **azul** · **SPANISH LA usa
+  las mismas fuentes que el inglés** · Cookie con mayúscula cuando es la de la marca.
+
+**⛔ El límite que hay que asumir — confirmado por Eli: el cliente no le facilita las
+fuentes.** Tenemos Stag normal (354 glifos) + Trade Gothic LT Std Regular + Bold
+Condensed No. 20. **Faltan Stag LCG, Trade Gothic LT Std Bold y Trade Gothic Next LT
+Pro Bold.** Tres consecuencias:
+
+1. La regla «precios y preguntas en Trade» **sigue vigente pero por otra razón**: no
+   la manda la marca, es que **nuestra Stag no puede escribir `$ % ¿ ¡ @`**. Es apaño
+   con fecha de vencimiento.
+2. **El bloque de precio no va a quedar idéntico al aprobado** — el sustituto comprime
+   la píldora de ~630 px a ~410 px al mismo alto de dígito.
+3. **El examen de admisión no puede dar 100 % sobre el Family Time** (lleva `$125.000`).
+   El bloque de precio queda como **desviación declarada**, y el QA lo marca como
+   revisión humana obligatoria, no aprobado automático.
+
+**Dos correcciones a cosas que yo había escrito mal:**
+- Dije que los 241 px del logo eran «la zona segura de Instagram de 250». **No:** la
+  plantilla de Eli dice 209. El número sale de su plantilla, no de la regla genérica.
+- Pedí el `.ai` del Family Time. **Sobra:** casi seguro está dentro de
+  `GRILLA FEED DT S1 SEP.ai`, que Eli ya subió.
+
+**Dónde quedó.** Capas del sistema: **identidad, formatos y copy LISTAS**; imagen
+mapeada; **gramática, pipeline y QA pendientes**. Página de estado (artefacto):
+`https://claude.ai/code/artifact/62c1cbbf-874c-418f-979d-78dbe75c8e15`.
+Material bajado a `raw/hilton/dt/` (no viaja en git): manual en texto, los dos logos,
+la zona segura y la grilla nueva.
+
+**Qué sigue.** **Medir la gramática pieza por pieza** sobre Family Time, Escapada
+Romántica y Noche de Bodas — es lo único que queda por hacer con el material que hay.
+Después `marca-dt.json` + `src/brand/doubletree.ts` + `reglas-dt.yaml`.
+
+**Abierto.**
+- **Eli habla mañana de las reglas de uso de foto y video** (qué se puede usar y qué
+  no) **y de cómo se deben ver las piezas**. Eso es justo la capa de Imagen y la de
+  Gramática/QA: **con esa conversación el sistema queda completo.** Pedirle sobre todo
+  los casos en que dijo que NO — un rechazo enseña el límite más rápido que diez aprobadas.
+- **Dos decisiones suyas pendientes:** ¿sigue vigente el titular con la primera línea
+  en verde? ¿y el rosa `#DC224B` que aparece como tinta plana en el pie de firma y no
+  está en la paleta?
+- **El azul:** `#09194E` del manual vs `#111C4E` medido. No es error — el editable
+  lleva el PANTONE 2766 C en Lab y al exportar a sRGB da otro valor. Falta elegir cuál
+  fija el sistema (recomendado: el de Eli, que es el que se publica).
+- **Bloqueantes de cliente** (en `CHECKLIST-CLIENTE.md`): las dos fuentes, y el texto
+  literal + iniciales + rating de la reseña de Booking, que sigue frenando el estático
+  del 14-09.
+- **Falta el `Informe.txt`** de `GRILLA FEED DT S1 SEP` — el único de los nueve paquetes
+  que llegó sin él.
+
+---
+
 ## 2026-09-08 (CIERRE 2 · tarde) · Eli (Windows) — BETWEEN: el legal de los extras
 
 Segunda sesión del mismo día. La de la mañana cerró las tres stories de la S3

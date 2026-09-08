@@ -4915,3 +4915,71 @@ y el mástil aparecía cortado. Las dos banderas se leían como cintas sin palo.
 > **La regla:** cuando un dibujo se inclina, hay que evaluar sus puntos extremos
 > girados y comprobar que caben. Si se cambia la inclinación, se vuelve a
 > verificar.
+
+---
+
+# ⭐⭐ S3 · RONDA 6 — «se están solapando y no tienen kernig optimo» (08-09-2026)
+
+La ST 3 quedó **APROBADA**. Sobre la ST 2, Eli: «necesito que cuides como están
+los textos, se están solapando y no tienen kernig optimo».
+
+Eran **tres** defectos distintos, y los tres se midieron sobre el render.
+
+## ⛔ 1. El aire script → caja alta daba 12,5 px (el token es para un caso que no era éste)
+
+`BETWEEN.aire.scriptATitulo` vale **9** y está medido sobre una script **sin
+descendentes**. «Puedes venir» tiene la «P» de Brushwell con una cola larguísima,
+así que esos 9 px se los come la cola y las dos líneas se leen pegadas. Medido:
+**12,5 px** de tinta a tinta.
+
+Va en **30** con `aireScriptATitulo`, que es el opt-in que el sistema ya tenía
+documentado justo para esto. Medido después: **35 px**.
+
+> Y la comparación que importa: dentro de la bajada la interlínea de tinta es
+> ~13 px. Con 12,5 entre la script y el titular, el salto ENTRE niveles era igual
+> al salto DENTRO de un nivel — la jerarquía al revés.
+
+## ⛔ 2. El «kerning»: −0,024em es correcto para 8 letras, no para 14
+
+`BETWEEN.trackingCaps` = **−0,024em** está calibrado sobre «PERFECTO» (8 letras).
+Sobre «¡TE ESPERAMOS!» —14— acumula **~36 px de cierre** y las letras salen
+comprimidas. Es lo que Eli vio.
+
+Se agregó `trackingCapsEm` a `TitularBetween` como **opt-in** (misma razón que
+`anchoDisponible` y `aireScriptATitulo`: el token está calibrado y moverlo
+re-flujaría toda pieza aprobada). Acá va en **−0,006em**.
+
+⚠️ **Aflojar el tracking ENSANCHA la línea**, así que `encoger` baja el cuerpo
+para que siga cabiendo. Es el intercambio correcto —una letra un poco menos
+grande pero bien espaciada se lee mejor que una grande y comprimida— pero hay que
+mirar el resultado. Acá quedó en **altura de mayúscula 75 px**, que es el orden de
+la pieza aprobada del cumpleaños (72).
+
+### Y el techo de esta línea, calculado
+La pared clara llega hasta x≈909 y el bloque va **centrado sobre el eje** (la
+gramática de Between), así que una línea centrada no puede pasar de
+2 × (909 − 540) = **738 px de tinta**. Con eso y un tracking cómodo, la altura de
+mayúscula tope de esta línea es ~75. Más grande **no cabe** sin salirse al
+follaje o descentrarse, y descentrar no es la gramática de la marca.
+
+## ⛔ 3. El ritmo DENTRO del cartel estaba invertido
+
+`CajaDato` mide 66 px de alto con el texto centrado, así que aporta ~16 px de aire
+por debajo. Con `marginTop: 2` el salto horario → bajada quedaba en **~18 px**,
+menos que los ~40 px de interlínea de la propia bajada: otra vez el salto ENTRE
+niveles más chico que el salto DENTRO del nivel.
+
+Corregido a 22 y 26. Medido después: horario → bajada **51 px**, bajada → cierre
+**44 px**, y dentro de la bajada **~13 px**. Ahora sí.
+
+## ⭐ La regla que deja, y vale para toda pieza de la marca
+
+> Los tres defectos son el mismo error de método: **usar un token medido en otra
+> línea sin comprobarlo en ésta.** El aire de 9 px, el tracking de −0,024em y el
+> margen de 2 px estaban todos «según el manual», y los tres estaban mal acá —
+> porque la línea tiene descendentes, porque tiene 14 letras y porque la caja de
+> arriba ya traía relleno propio.
+>
+> **Antes de dar por bueno un bloque de texto: medir sobre el render los saltos de
+> tinta a tinta y comprobar que el salto entre niveles es mayor que el salto
+> dentro de cada nivel.** Es una pasada de tres minutos y caza las tres cosas.

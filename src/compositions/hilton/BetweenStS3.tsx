@@ -359,30 +359,71 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
         El ancho baja a 770 (de 810) por lo mismo: a esa altura la pared clara
         llega hasta x≈912 y con la columna completa el «!» final se salía al
         follaje. */}
-    <Columna top={405}>
+    {/* ⭐⭐ RONDA 6 — Eli: «cuides como están los textos, se están solapando y no
+        tienen kernig optimo».
+
+        MEDIDO sobre el render, no a ojo:
+          · el aire de tinta a tinta entre la script y la caja alta daba **12,5 px**
+            — el token `aire.scriptATitulo` es 9 y está medido sobre una script SIN
+            descendentes. «Puedes venir» tiene la «P» de Brushwell con una cola
+            larguísima, así que 9 se los come la cola y las dos líneas se leen
+            pegadas. Es exactamente el caso que `aireScriptATitulo` documenta como
+            opt-in, y acá va en **30**;
+          · la caja alta iba al tope del tracking de marca (−0,024em). Sobre 8
+            letras eso no se nota, pero «¡TE ESPERAMOS!» son 14 y acumulan ~36 px
+            de cierre: las letras salían comprimidas. Va en **−0,004em** con
+            `trackingCapsEm`, que es el opt-in nuevo del sistema.
+
+        Y las dos cosas juntas hacen crecer el bloque, así que hay que devolver
+        alto por otro lado o el titular se cae al follaje:
+          · la script baja a **104** (de 123). Es la que ACOMPAÑA —el manual lo
+            dice— y con la caja alta en su cuerpo pleno la jerarquía queda mejor
+            que con las dos casi iguales;
+          · el ancho queda en **745**. Medido fila por fila, la pared se mantiene
+            clara hasta x≈909–912 hasta y=610 y con 770 el «!» final llegaba a
+            x=941: se salía al follaje. Con 745 la tinta cierra en x≈913;
+          · y el bloque arranca en **400**, para que la base de la caja alta no
+            pase de y≈612, que es donde la pared empieza a derrumbarse (a y=640
+            ya sólo llega a x=639). */}
+    <Columna top={400}>
       <TitularBetween
         script="Puedes venir"
         caps="¡Te esperamos!"
         alinear="centro"
         tono="cafe"
-        anchoDisponible={770}
+        anchoDisponible={745}
+        sizeScript={104}
+        aireScriptATitulo={30}
+        trackingCapsEm={-0.006}
       />
     </Columna>
 
-    {/* EL CARTEL, subido a y=625 y ahora con las TRES líneas de dato adentro.
+    {/* EL CARTEL, en y=655 y con las TRES líneas de dato adentro.
+
+        ⛔ 655 y no 625, y ACÁ ESTABA EL SOLAPE QUE MARCÓ ELI. Medido fila por
+        fila sobre el render: la caja alta no termina en su línea de base, porque
+        el «¡» de «¡TE ESPERAMOS!» **desciende 34 px por debajo**. Con el cartel
+        en 625 esa cola llegaba a 652 y el cartel —que se pinta después— la
+        TAPABA: el signo salía cortado. En 655 quedan 32 px limpios entre la cola
+        y el canto del cartel.
+        La regla que deja: al medir un titular en caja alta hay que contar sus
+        DESCENDENTES. «¡» y «¿» descienden, y en una línea que empieza con signo
+        de apertura la caja de tinta es ~40 % más alta que la altura de
+        mayúscula.
+
         El cierre entra al cartel porque la llave que dibujó Eli lo envuelve
         junto al horario y la bajada — y porque afuera, a esa altura, tendría que
         ser beige mientras el titular es café, y dos tintas sueltas en la misma
         pieza se leen como un descuido. Dentro del cartel las tres van en beige.
 
-        Y el cartel cierra en ~y=885, o sea que la mesa servida —taza con arte
+        Y el cartel cierra en ~y=915, o sea que la mesa servida —taza con arte
         latte, notebook, libreta y croissant— se queda con TODA la mitad de
         abajo. Es la corrección de la ronda 2 y ahora con más aire que nunca. */}
     <div
       style={{
         position: 'absolute',
         left: (1080 - BETWEEN.bloque.columna) / 2,
-        top: 625,
+        top: 655,
         width: BETWEEN.bloque.columna,
         boxSizing: 'border-box',
         background: BETWEEN.cajas.fondo,
@@ -402,10 +443,18 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
         Lunes a viernes · 08:00 a 22:00 hrs.
       </CajaDato>
       {/* La bajada, literal. Los saltos a mano: partida por el navegador dejaba
-          «para ti.» sola en la última línea. */}
+          «para ti.» sola en la última línea.
+
+          ⭐ RONDA 6 — el margen sube de 2 a 22, y es la OTRA mitad del «cuides
+          como están los textos» de Eli. `CajaDato` mide 66 px de alto con el
+          texto centrado, así que sólo aportaba ~16 px de aire por debajo: con 2
+          de margen el salto horario→bajada quedaba en ~18 px, MENOS que los
+          ~40 px de interlínea de la propia bajada. O sea el salto ENTRE niveles
+          más chico que el salto DENTRO del nivel: la jerarquía al revés, que es
+          justo lo que el manual tiene escrito como defecto. */}
       <div
         style={{
-          marginTop: 2,
+          marginTop: 22,
           textAlign: 'center',
           fontFamily: BETWEEN.fuentes.sans,
           fontWeight: BETWEEN.pesos.semibold,
@@ -422,7 +471,10 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
           story; acá va a 38 px en cursiva. */}
       <div
         style={{
-          marginTop: 16,
+          /* 26 por lo mismo: el cierre es otro nivel, así que su salto tiene que
+             ser mayor que la interlínea de la bajada (~40 px). Con 16 se leía
+             como una tercera línea del mismo párrafo. */
+          marginTop: 26,
           textAlign: 'center',
           fontFamily: BETWEEN.fuentes.sans,
           fontStyle: 'italic',

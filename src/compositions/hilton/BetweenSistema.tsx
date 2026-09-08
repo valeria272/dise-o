@@ -1067,6 +1067,24 @@ export const TitularBetween: React.FC<{
    * las piezas ya aprobadas. Se pasa a mano en la pieza que lo necesita.
    */
   aireScriptATitulo?: number;
+  /**
+   * ⭐ Tracking de la caja alta, en `em`. Por defecto `BETWEEN.trackingCaps`
+   * (−0,024), que es el valor MEDIDO sobre la pieza de referencia: con él
+   * «PERFECTO» da 568 px a 117.
+   *
+   * Es opt-in por la misma razón que `anchoDisponible` y `aireScriptATitulo`:
+   * el token está calibrado y moverlo re-flujaría toda pieza ya aprobada. Se
+   * pasa a mano cuando la LÍNEA CONCRETA lo pide, y eso pasa cuando es larga:
+   * un −0,024em sobre 8 letras casi no se nota, pero sobre 14 —«¡TE
+   * ESPERAMOS!»— acumula ~36 px de cierre y las letras se leen apretadas.
+   * Eli lo marcó en la ST 2 de la S3: «no tienen kernig optimo».
+   *
+   * ⚠️ Aflojar el tracking ENSANCHA la línea, así que `encoger` va a bajar el
+   * cuerpo para que siga cabiendo en `anchoDisponible`. Es el intercambio
+   * correcto —una letra menos grande pero bien espaciada se lee mejor que una
+   * grande y comprimida— pero hay que mirar el resultado, no suponerlo.
+   */
+  trackingCapsEm?: number;
   tono?: Tono;
   alinear?: 'centro' | 'izquierda';
   /**
@@ -1100,6 +1118,7 @@ export const TitularBetween: React.FC<{
   sizeCaps = BETWEEN.tipos.tituloCaps,
   sizeScript,
   aireScriptATitulo,
+  trackingCapsEm,
   tono = 'beige',
   alinear = 'centro',
   anchoDisponible = 1080 - 2 * BETWEEN.bloque.margenX,
@@ -1128,6 +1147,7 @@ export const TitularBetween: React.FC<{
   }
 
   const trScript = scriptSans ? 0.02 : BETWEEN.trackingScript;
+  const trCaps = trackingCapsEm ?? BETWEEN.trackingCaps;
   const cssCaps = (n: number) => `${BETWEEN.pesos.extrabold} ${n}px ${BETWEEN.fuentes.sans}`;
   const cssScript = (n: number) => scriptSans
     ? `500 ${n}px ${BETWEEN.fuentes.sans}`
@@ -1157,7 +1177,7 @@ export const TitularBetween: React.FC<{
     ? textoCaps.split('\n').map((l) => l.trim().toUpperCase()).filter(Boolean)
     : [];
   const nCaps = lineasCaps.reduce(
-    (menor, l) => Math.min(menor, encoger(l, sizeCaps, cssCaps, BETWEEN.trackingCaps)),
+    (menor, l) => Math.min(menor, encoger(l, sizeCaps, cssCaps, trCaps)),
     sizeCaps,
   );
   const nScript = encoger(
@@ -1167,8 +1187,8 @@ export const TitularBetween: React.FC<{
     trScript,
   );
 
-  const tCapsPorLinea = lineasCaps.map((l) => medirTinta(l, cssCaps(nCaps), BETWEEN.trackingCaps, nCaps));
-  const tCaps = tCapsPorLinea[0] ?? medirTinta('', cssCaps(nCaps), BETWEEN.trackingCaps, nCaps);
+  const tCapsPorLinea = lineasCaps.map((l) => medirTinta(l, cssCaps(nCaps), trCaps, nCaps));
+  const tCaps = tCapsPorLinea[0] ?? medirTinta('', cssCaps(nCaps), trCaps, nCaps);
   /**
    * Aire entre dos líneas de caja alta. MEDIDO en «¿YA TOMASTE TU / CAFECITO DEL
    * DÍA?» (post n°2 s4): 21 px de tinta a tinta sobre una altura de caja de 59,
@@ -1242,7 +1262,7 @@ export const TitularBetween: React.FC<{
             {linea(l, tCapsPorLinea[i], nCaps, arriba, {
               fontFamily: BETWEEN.fuentes.sans,
               fontWeight: BETWEEN.pesos.extrabold,
-              letterSpacing: `${BETWEEN.trackingCaps}em`,
+              letterSpacing: `${trCaps}em`,
               textTransform: 'uppercase',
             })}
           </React.Fragment>

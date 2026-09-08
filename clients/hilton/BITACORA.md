@@ -1,3 +1,60 @@
+## 2026-09-08 (ronda 6) · Eli (Windows) — BETWEEN S3: la ST 3 APROBADA; la tipografía de la ST 2, corregida
+
+**Qué dijo Eli:** «La st 3 aprobada, la ST 2 necesito que cuides como están los
+textos, se están solapando y no tienen kernig optimo».
+
+**ST 3: APROBADA.** No se toca ni se re-sube.
+
+### Eran TRES defectos, y los tres se midieron sobre el render
+
+1. **El aire script → caja alta daba 12,5 px.** El token
+   `BETWEEN.aire.scriptATitulo` vale 9 y está medido sobre una script SIN
+   descendentes; «Puedes venir» tiene la «P» de Brushwell con una cola larguísima
+   que se come esos 9. Va en 30 con el opt-in `aireScriptATitulo`; medido después:
+   35 px. Ojo con la comparación: dentro de la bajada la interlínea de tinta es
+   ~13 px, así que con 12,5 el salto ENTRE niveles era igual al salto DENTRO de un
+   nivel — la jerarquía al revés.
+
+2. **El «kerning»: −0,024em es correcto para 8 letras, no para 14.**
+   `BETWEEN.trackingCaps` está calibrado sobre «PERFECTO»; sobre «¡TE ESPERAMOS!»
+   acumula ~36 px de cierre y las letras salen comprimidas. Se agregó
+   `trackingCapsEm` a `TitularBetween` como **opt-in** —el token no se toca porque
+   lo usan piezas aprobadas— y acá va en −0,006em.
+   ⚠️ Aflojar el tracking ensancha la línea y `encoger` baja el cuerpo: quedó en
+   altura de mayúscula 75 px, el orden de la pieza aprobada del cumpleaños (72).
+   Y hay un TECHO calculado: la pared clara llega a x≈909 y el bloque va centrado
+   sobre el eje, así que una línea centrada no pasa de 738 px de tinta — más
+   grande no cabe sin salirse al follaje o sin descentrar, y descentrar no es la
+   gramática de Between.
+
+3. **El ritmo DENTRO del cartel estaba invertido.** `CajaDato` mide 66 px con el
+   texto centrado, así que ya aporta ~16 px de aire; con `marginTop: 2` el salto
+   horario → bajada quedaba en ~18 px, menos que los ~40 de interlínea de la
+   propia bajada. Corregido a 22 y 26: medido después, horario → bajada 51 px,
+   bajada → cierre 44 px, dentro de la bajada ~13 px.
+
+### La regla que deja
+
+Los tres son **el mismo error de método**: usar un token medido en otra línea sin
+comprobarlo en ésta. El aire de 9, el tracking de −0,024em y el margen de 2
+estaban todos «según el manual», y los tres estaban mal acá — porque la línea
+tiene descendentes, porque tiene 14 letras y porque la caja de arriba ya traía
+relleno propio.
+
+> **Antes de dar por bueno un bloque de texto: medir sobre el render los saltos de
+> tinta a tinta y comprobar que el salto entre niveles es mayor que el salto
+> dentro de cada nivel.** Tres minutos, y caza las tres cosas.
+
+### QA y entrega
+
+`between-qa.py`: 3/5 limpias, con los dos avisos ya aprobados del cierre de la
+14-09. Sólo se re-subió la 16-09, reemplazando el mismo archivo en STORIES y
+verificada por `md5`. La 14-09 y la 18-09 están aprobadas y no se tocaron.
+
+**Abierto:** las guías del CM siguen sólo en local (séptimo día); el comentario de
+`STORIES!N` sin tachar; Between sin `reglas.yaml`; `BETWEEN.logo.cafe` sigue
+apuntando al PNG negro para las tres piezas viejas que lo usan.
+
 ## 2026-09-08 (ronda 5) · Eli (Windows) — BETWEEN S3: subir el texto de la 2, dos banderas en la 3
 
 **Qué pidió Eli**, marcando las piezas con rojo: en la ST 2, «solo subir el texto

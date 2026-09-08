@@ -1,3 +1,64 @@
+## 2026-09-08 (ronda 8) · Eli (Windows) — BETWEEN: el tracking no llegaba a las cifras tabulares
+
+**Qué dijo Eli**, sobre el bloque del horario de la ST 2: «recuerda el uso de
+kerning y tracking de separación optima ya que se pierde y esta muy junto. Debe
+verse armonico y bien visualmente. Separalos un poco en los lados espacio entre
+letras no parrafos».
+
+Eran **tres** cosas, y la segunda es un defecto del SISTEMA que afectaba a toda
+pieza de Between con horario.
+
+### 1. El tracking del horario ya estaba en el kit y no se estaba usando
+
+La línea iba en 0,02em. La marca ya tiene el valor: el token
+`BETWEEN.trackingHorario` es 7 px y `Dato` lo aplica a cuerpo 29–30 (~0,24em), y
+`CajaTexto` —el chip de horarios de Eli— usa 3 px a cuerpo 30 (0,10em). La línea
+va en ExtraBold, que pide más aire que un semibold, así que se tomó el valor del
+chip como piso: **0,10em**. Con eso las dos líneas miden 443 y 467 px dentro de
+los 722 útiles del cartel.
+
+### ⛔⛔ 2. EL HALLAZGO: `letter-spacing` no alcanza a un `inline-block`
+
+`cifrasTabulares` mete cada dígito en un `inline-block` de ancho fijo, que es lo
+que alinea las cifras. Pero **Chrome no le aplica `letter-spacing` a una caja
+atómica**. O sea que en una línea con tracking abierto las LETRAS se separan y las
+CIFRAS no. Medido a 0,10em: letras con 5,8–10,6 px de hueco y los dígitos de cada
+grupo **pegados, 0,5 y 2,9 px**. Se veía como si la hora estuviera en otra
+tipografía.
+
+Corregido en `cifrasTabulares`, que ahora acepta `trackingEm` y lo replica como
+`marginRight` en cada dígito — que es lo que hace `letter-spacing` con un carácter
+normal. **Por defecto 0, así que ninguna pieza ya aprobada cambia.**
+
+> **Regla:** toda vez que una línea con cifras tabulares lleve tracking, hay que
+> pasárselo también a `conCifras`. Vale para horarios, precios y cualquier dato.
+
+### 3. Lo que el tracking parejo destapa en una hora: los dos puntos flotan
+
+Con la línea abierta, el «:» trae sus propios laterales y encima recibe el
+tracking por los dos lados: quedaba con 12,0 y 13,0 px alrededor contra 5,3 entre
+dígitos. Eso es **kerning**, no tracking: se corrige por PAR. Cada «:» va en un
+span que anula el tracking y se mete 2 px por lado (`horarioKerneado`). Medido
+después: 5,3–7,7 px, el mismo rango que los dígitos.
+
+⚠️ Los huecos entre dígitos siguen levemente desiguales (2,9 a 7,7) y eso **es
+correcto**: la caja tabular iguala los AVANCES, no la tinta, y el «2» es 34
+milésimas más angosto que el «0». Igualar la tinta rompería la alineación de
+cifras, que es para lo que existe la caja.
+
+### El orden del diagnóstico, que queda escrito
+
+**Primero el largo, después el tracking, después el kerning del par.** Si hay que
+achicar una línea más de ~20 % para que quepa, ningún tracking la va a salvar
+(ronda 7); con el cuerpo bien, se abre el tracking con el valor del kit; y recién
+ahí se miran los pares que quedaron flotando.
+
+### Entrega
+
+Sólo la 16-09, reemplazando el mismo archivo en STORIES y verificada por `md5`. La
+14-09 y la 18-09 están aprobadas y no se tocaron. `between-qa.py`: la 16-09 y la
+18-09 limpias; los dos avisos que quedan son los del cierre de la 14-09.
+
 ## 2026-09-08 (ronda 7) · Eli (Windows) — BETWEEN S3: el horario partido en dos y el titular en beige
 
 **Qué pidió Eli**, recortando la línea del horario: «este texto está muy pegado. y

@@ -169,6 +169,22 @@ export const cifrasTabulares = (
   texto: string,
   /** Peso con el que se está pintando: decide el ancho de la caja. */
   peso: number = 800,
+  /**
+   * ⭐⭐ Tracking en `em` que la línea lleva por CSS, para replicarlo dentro de
+   * la caja tabular. Añadido el 08-09-2026, y arregla un defecto real:
+   *
+   * cada cifra va en un `inline-block`, y **Chrome no le aplica `letter-spacing`
+   * a una caja atómica** — sí a los caracteres de texto. O sea que en una línea
+   * con tracking abierto las LETRAS se separan y las CIFRAS no: medido en
+   * «08:00 A 22:00 HRS.» a 0,10em, las letras quedaban con 5,8–10,6 px de hueco
+   * y los dígitos de cada grupo **pegados** (0,5 y 2,9 px). Se veía como si la
+   * hora estuviera en otra tipografía.
+   *
+   * Se replica como `marginRight` en cada dígito, que es lo que hace
+   * `letter-spacing` con un carácter normal. Por defecto 0, así que ninguna
+   * pieza ya aprobada cambia.
+   */
+  trackingEm: number = 0,
 ): React.ReactNode => {
   const caja = ANCHO_CIFRA_EM_POR_PESO[peso] ?? ANCHO_CIFRA_EM;
   const reales = ANCHOS_DIGITO_POR_PESO[peso] ?? ANCHOS_DIGITO_POR_PESO[800];
@@ -212,9 +228,11 @@ export const cifrasTabulares = (
             // la función viaja PEGADA a la caja: si un día se hereda otra cosa,
             // el glifo y el ancho medido siguen siendo el mismo par.
             ...CIFRAS_ALTAS,
-            // los bordes del grupo van a ras; el interior reparte el hueco
+            // los bordes del grupo van a ras; el interior reparte el hueco.
+            // Y al margen derecho se le SUMA el tracking de la línea, porque la
+            // caja es atómica y `letter-spacing` no la alcanza (ver arriba).
             marginLeft: n === 0 ? `${-sobra}em` : undefined,
-            marginRight: n === grupo.length - 1 ? `${-sobra}em` : undefined,
+            marginRight: `${(n === grupo.length - 1 ? -sobra : 0) + trackingEm}em`,
           }}
         >
           {d}
@@ -234,8 +252,15 @@ export const tieneCifras = (texto: string) => /\d/.test(texto);
  * si lo que llega es texto plano con dígitos lo pasa por la caja tabular, y si
  * es cualquier otra cosa (un nodo ya armado) lo deja intacto.
  */
-export const conCifras = (hijos: React.ReactNode, peso: number = 800): React.ReactNode =>
-  typeof hijos === 'string' && tieneCifras(hijos) ? cifrasTabulares(hijos, peso) : hijos;
+export const conCifras = (
+  hijos: React.ReactNode,
+  peso: number = 800,
+  /** Tracking de la línea, en `em`. Ver `cifrasTabulares`. */
+  trackingEm: number = 0,
+): React.ReactNode =>
+  typeof hijos === 'string' && tieneCifras(hijos)
+    ? cifrasTabulares(hijos, peso, trackingEm)
+    : hijos;
 
 /* ---------- foto de fondo + multiply ---------- */
 

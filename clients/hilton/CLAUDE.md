@@ -5040,3 +5040,77 @@ gris media.
 La 14-09 y la 18-09 están **APROBADAS**. La 16-09 quedó reemplazada sobre el mismo
 archivo en STORIES, verificada por `md5`. `between-qa.py`: la 16-09 y la 18-09
 limpias; los dos avisos que quedan son los del cierre de la 14-09, ya aprobados.
+
+---
+
+# ⭐⭐⭐ S3 · RONDA 8 — el tracking NO llega a las cifras tabulares (08-09-2026)
+
+Eli, sobre el bloque del horario: «recuerda el uso de kerning y tracking de
+separación optima ya que se pierde y esta muy junto. Debe verse armonico y bien
+visualmente. Separalos un poco en los lados espacio entre letras no parrafos».
+
+Son **tres** cosas distintas, y la segunda es un defecto del sistema que afectaba
+a toda pieza de la marca con horario.
+
+## ⭐ 1. El tracking del horario ya estaba en el kit, y no se estaba usando
+
+La línea iba en **0,02em**, que es casi nada. La marca YA tiene el valor:
+
+| Dónde | Valor |
+|---|---|
+| `BETWEEN.trackingHorario` (token) | 7 px, y `Dato` lo aplica a cuerpo 29–30 → **~0,24em** |
+| `CajaTexto` — el chip de horarios de Eli | 3 px a cuerpo 30 → **0,10em** |
+
+La línea va en ExtraBold, que necesita más aire que un semibold, así que se toma
+el valor del chip como piso: **0,10em** (4,5 px a cuerpo 45). Y hay sitio de
+sobra: con ese tracking las dos líneas miden 443 y 467 px dentro de los 722
+útiles del cartel.
+
+## ⛔⛔ 2. `letter-spacing` NO alcanza a una caja `inline-block`: las cifras quedaban PEGADAS
+
+Éste es el hallazgo, y es del sistema, no de la pieza.
+
+`cifrasTabulares` mete cada dígito en un `inline-block` de ancho fijo — que es lo
+que alinea las cifras. Pero **Chrome no aplica `letter-spacing` a una caja
+atómica**: se lo aplica a los caracteres de texto. O sea que en una línea con
+tracking abierto **las letras se separan y las cifras no**. Medido sobre el render
+a 0,10em:
+
+```
+letras                5,8 – 10,6 px de hueco
+dígitos de cada grupo  0,5 y 2,9 px   ← pegados
+```
+
+Se veía como si la hora estuviera puesta en otra tipografía. Corregido en
+`cifrasTabulares`, que ahora acepta `trackingEm` y lo replica como `marginRight`
+en cada dígito —que es exactamente lo que hace `letter-spacing` con un carácter
+normal—. Por defecto **0**, así que ninguna pieza ya aprobada cambia.
+
+> **La regla:** toda vez que una línea con cifras tabulares lleve tracking, hay
+> que pasárselo también a `conCifras`. Si no, la parte numérica sale comprimida.
+> Vale para horarios, precios y cualquier dato de la grilla.
+
+## ⭐ 3. Y lo que el tracking parejo destapa en una hora: los dos puntos flotan
+
+Con la línea abierta, el «:» de Raleway trae sus propios laterales **y encima
+recibe el tracking por los dos lados**: quedaba con 12,0 y 13,0 px alrededor
+contra 5,3 entre dígitos. Eso es **kerning**, no tracking — se corrige por PAR y
+no en toda la línea. Cada «:» va en un span que anula el tracking y se mete 2 px
+por lado (`horarioKerneado` en la pieza).
+
+Resultado medido: los huecos alrededor del «:» bajaron a **5,3–7,7 px**, en el
+mismo rango que los de los dígitos (2,9–7,7). Ya no flota.
+
+⚠️ Los huecos entre dígitos siguen siendo levemente desiguales (2,9 a 7,7) y eso
+**es correcto**: la caja tabular iguala los AVANCES, no la tinta, y el «2» de
+Raleway es 34 milésimas más angosto que el «0». Igualar la tinta rompería la
+alineación de cifras, que es para lo que existe la caja.
+
+## ⭐ 4. Y antes de todo eso: si hay que achicar más de ~20 %, el problema es el LARGO
+
+Queda de la ronda 7 y es el primer paso del diagnóstico. El horario iba en UNA
+línea de 36 caracteres que a cuerpo 45 mide 826 px contra 722 útiles, así que
+`CajaDato` lo achicaba a **~31 px** —altura de mayúscula 23 contra las 33 de la
+pieza aprobada— y a ese cuerpo cualquier tracking se ve apelmazado. Partido en
+dos líneas entra al cuerpo pleno. **Primero el largo, después el tracking,
+después el kerning del par.**

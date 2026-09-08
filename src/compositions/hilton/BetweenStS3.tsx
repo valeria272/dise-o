@@ -176,6 +176,51 @@ const Columna: React.FC<{top: number; children: React.ReactNode}> = ({top, child
   </div>
 );
 
+/**
+ * ⭐⭐ EL HORARIO CON LOS DOS PUNTOS KERNEADOS (ronda 8).
+ *
+ * Eli: «recuerda el uso de kerning y tracking de separación optima ya que se
+ * pierde y esta muy junto». El tracking se resolvió abriendo la línea a 0,10em
+ * —el valor del chip de horarios de la propia marca—, pero al abrirla apareció
+ * lo que el tracking parejo siempre destapa en una hora: **los dos puntos quedan
+ * flotando**. Medido sobre el render, en «08:00» los huecos daban
+ * **12,0 y 13,0 px** alrededor del «:» contra **5,3 px** entre dígitos, porque el
+ * «:» de Raleway trae sus propios laterales y encima recibe el tracking por los
+ * dos lados.
+ *
+ * Eso es kerning, no tracking: se corrige por PAR, no en toda la línea. Cada «:»
+ * va en un span que anula el tracking y se mete 4 px por lado.
+ *
+ * ⚠️ Se conserva `conCifras` en los trozos numéricos: las cifras tabulares son
+ * pedido de Eli para toda la grilla. El corte por «:» no lo rompe — cada trozo
+ * («08», «00 a 22», «00 hrs.») sigue entrando entero a la caja tabular, que
+ * agrupa los dígitos consecutivos por su cuenta.
+ */
+/** El tracking de la línea del horario, en `em`. Se usa en el CSS y dentro de la
+ *  caja tabular, que no lo recibe por `letter-spacing`. */
+const TRACK_HORARIO = 0.1;
+
+const horarioKerneado = (texto: string): React.ReactNode[] => {
+  const partes = texto.split(':');
+  const out: React.ReactNode[] = [];
+  partes.forEach((parte, i) => {
+    out.push(
+      <span key={`h${i}`}>{conCifras(parte, BETWEEN.pesos.extrabold, TRACK_HORARIO)}</span>,
+    );
+    if (i < partes.length - 1) {
+      out.push(
+        <span
+          key={`c${i}`}
+          style={{letterSpacing: 'normal', marginLeft: -2, marginRight: -2}}
+        >
+          :
+        </span>,
+      );
+    }
+  });
+  return out;
+};
+
 /** Cierre en cursiva, suelto sobre la foto. */
 const Cierre: React.FC<{top: number; size?: number; children: React.ReactNode}> = ({
   top,
@@ -464,13 +509,24 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
           fontWeight: BETWEEN.pesos.extrabold,
           fontSize: BETWEEN.tipos.cajaDato,
           lineHeight: 1.18,
-          letterSpacing: '0.02em',
+          /* ⭐⭐ RONDA 8 — Eli: «recuerda el uso de kerning y tracking de
+             separación optima ya que se pierde y esta muy junto […] Separalos un
+             poco en los lados espacio entre letras no parrafos».
+             0,02em era casi nada. La marca YA tiene el valor: el token
+             `BETWEEN.trackingHorario` es 7 px y `Dato` lo aplica a cuerpo 29–30,
+             o sea ~0,24em; y `CajaTexto` —el chip de horarios de Eli— usa 3 px a
+             cuerpo 30, o sea 0,10em. Acá la línea va en ExtraBold, que necesita
+             MÁS aire que un semibold, así que se toma el valor del chip como
+             piso: **0,10em** = 4,5 px a cuerpo 45.
+             Y hay sitio de sobra: con ese tracking las dos líneas miden 452 y
+             483 px dentro de los 722 útiles del cartel. */
+          letterSpacing: `${TRACK_HORARIO}em`,
           textTransform: 'uppercase',
           color: BETWEEN.colores.beige,
         }}
       >
         <div>Lunes a viernes</div>
-        <div><span>{conCifras('08:00 a 22:00 hrs.', BETWEEN.pesos.extrabold)}</span></div>
+        <div>{horarioKerneado('08:00 a 22:00 hrs.')}</div>
       </div>
       {/* La bajada, literal. Los saltos a mano: partida por el navegador dejaba
           «para ti.» sola en la última línea.

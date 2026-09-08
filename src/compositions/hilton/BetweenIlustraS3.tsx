@@ -227,7 +227,13 @@ export const BrindisTazas: React.FC<{
    recta y rectangular se lee como un ícono de menú de idioma.
    ══════════════════════════════════════════════════════════════════════════ */
 
-const VB_BANDERA = {w: 300, h: 240};
+/* ⚠️ El alto del `viewBox` es 270 y no 240, y no es decorativo: la bandera se
+   dibuja recta y se INCLINA con `rotate` sobre (150,130). Al girarla 22° el pie
+   del mástil —que está en (56,224)— se va a y≈252, o sea que con el alto en 240
+   quedaba FUERA y el mástil aparecía CORTADO: las dos banderas de la 18-09 se
+   leían como cintas sin palo. Si se sube la inclinación, hay que volver a
+   verificar este número. */
+const VB_BANDERA = {w: 300, h: 270};
 
 export const BanderaChile: React.FC<{
   ancho: number;
@@ -235,9 +241,18 @@ export const BanderaChile: React.FC<{
   /** Color del papel: la estrella se cala con él sobre el cantón macizo. */
   fondo: string;
   trazo?: number;
-  /** Inclinación en grados. Positiva = la punta sube a la derecha. */
+  /** Inclinación en grados. Negativa = la punta apunta hacia arriba. */
   giro?: number;
-}> = ({ancho, tinta, fondo, trazo = 5, giro = -8}) => {
+  /**
+   * Espeja la banderita, para poner un par flanqueando un motivo.
+   *
+   * El espejo va POR FUERA de la rotación, así que con el mismo `giro` la
+   * bandera espejada apunta al lado contrario: un par con `giro` igual y
+   * `espejo` en una de las dos queda simétrico, apuntando las dos hacia afuera.
+   * Es lo que pidió Eli en la ronda 5 marcando dos flechas en «V».
+   */
+  espejo?: boolean;
+}> = ({ancho, tinta, fondo, trazo = 5, giro = -8, espejo = false}) => {
   const escala = ancho / VB_BANDERA.w;
   return (
     <svg
@@ -251,6 +266,7 @@ export const BanderaChile: React.FC<{
       strokeLinejoin="round"
       aria-hidden
     >
+      <g transform={espejo ? `translate(${VB_BANDERA.w} 0) scale(-1 1)` : undefined}>
       <g transform={`rotate(${giro} 150 130)`}>
         {/* el mástil */}
         <path d="M56,224 L56,36" strokeWidth={trazo * 1.4} />
@@ -279,6 +295,7 @@ export const BanderaChile: React.FC<{
           stroke={fondo}
           strokeWidth={trazo * 0.5}
         />
+      </g>
       </g>
     </svg>
   );

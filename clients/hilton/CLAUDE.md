@@ -4833,3 +4833,85 @@ recta y rectangular se lee como un ícono de menú de idioma.
 `between-qa.py`: **3/5 limpias**, con los dos avisos ya aprobados del cierre de la
 14-09. La 14-09 no se re-subió (está aprobada); la 16-09 y la 18-09 quedaron
 reemplazadas sobre el mismo archivo en STORIES, verificadas por `md5`.
+
+---
+
+# ⭐ S3 · RONDA 5 — subir el texto, y dos banderas (08-09-2026)
+
+Eli marcó las piezas con rojo y escribió: «solo subir el texto según lo que te
+pido en el ejemplo» (ST 2) y «pon dos banderas en la dirección que te dejo el
+ejemplo 2 y que puedas acomodar más los textos» (ST 3).
+
+## ⛔ 1. En esta foto, «titular beige» y «titular arriba» son INCOMPATIBLES
+
+Y no es una opinión: es el mismo cálculo de contraste, ahora completo.
+
+| y | tercio | beige | café |
+|---|---|---|---|
+| 470 | izq | 1,33 | **1,93** |
+| 470 | der | 1,47 | **1,75** |
+| 890 | izq | **2,38** | 1,08 |
+| 890 | der | **2,80** | 1,09 |
+
+Arriba la pared es clara: el beige no existe (1,33:1) y el café da 1,90:1 — que es
+lo mejor que ofrece esa superficie y es lo que hace el referente, tipografía
+oscura sobre pared plana. Abajo es exactamente al revés. Así que se puede tener el
+titular beige (abajo, ronda 4) o el titular arriba (café, ronda 5), no las dos.
+Mandó el pedido nuevo.
+
+⚠️ **Y hay una franja PROHIBIDA: y 610–820.** Ahí la foto se parte —el tercio
+izquierdo sigue siendo pared clara y el derecho ya es follaje oscuro— y ninguna de
+las dos tintas se lee en todo el ancho. Ningún titular puede quedar ahí.
+
+## ⭐ 2. El titular tiene un TECHO, y se busca fila por fila
+
+No basta con «subirlo»: hay que saber hasta dónde. Buscando el borde del follaje
+fila por fila (el primer `x` desde la derecha donde la pared deja de estar sobre
+L=150):
+
+```
+y 440 -> pared clara hasta x=1077      y 590 -> hasta x=912
+y 530 -> hasta x= 915                  y 620 -> hasta x=642   <- se derrumba
+```
+
+O sea que el titular tiene que **cerrar antes de y=590**. El bloque mide ~180 px,
+así que arranca en **405**. Eso deja 41 px de aire bajo el lockup en vez de los 77
+medidos en las plantillas de Eli: es una concesión consciente — entre respetar el
+token de aire y que el titular se lea, gana que se lea. Y el ancho baja de 810 a
+**770**, porque a esa altura la pared llega hasta x≈912 y con la columna completa
+el «!» final se salía al follaje.
+
+## ⭐ 3. El cierre entra al cartel
+
+La llave que dibujó Eli envuelve el titular, el horario, la bajada **y el cierre**.
+Con el titular afuera y en café, el cierre suelto tendría que ser beige (a esa
+altura el café no se lee), y dos tintas sueltas en la misma pieza se leen como un
+descuido. Así que el cierre entra al cartel, en beige y en cursiva a 38 px. El
+cartel queda con las tres líneas de dato y cierra en y≈885: la mesa servida se
+queda con toda la mitad de abajo.
+
+## ⭐ 4. Un par de ilustraciones simétricas: el espejo va POR FUERA de la rotación
+
+`BanderaChile` tiene `espejo`, y está implementado como un `scale(-1 1)` **por
+fuera** del `rotate`. Eso hace que con el MISMO `giro` la bandera espejada apunte
+al lado contrario, así que un par con `giro` igual y `espejo` en una de las dos
+queda simétrico y las dos apuntan hacia afuera — que es lo que Eli marcó con dos
+flechas en «V».
+
+Y van **dentro del bloque del brindis**, en posición absoluta sobre sus flancos:
+el `viewBox` del brindis mide 760 y las tazas ocupan de 248 a 512, o sea que a los
+costados sobran ~230 px de nada. Puestas ahí no le quitan ancho al motivo
+principal y **el cartel no crece de alto** — que es lo que dejó sitio para
+«acomodar más los textos» (30 px del dibujo al titular, 34 al párrafo y 34 a la
+caja del saludo).
+
+## ⛔ 5. Un dibujo que se ROTA necesita `viewBox` de sobra
+
+`VB_BANDERA` pasó de 240 a **270 de alto**. La bandera se dibuja recta y se inclina
+con `rotate` sobre (150,130): al girarla 22° el pie del mástil —que está en
+(56,224)— se va a y≈252, o sea que con el alto en 240 quedaba fuera del `viewBox`
+y el mástil aparecía cortado. Las dos banderas se leían como cintas sin palo.
+
+> **La regla:** cuando un dibujo se inclina, hay que evaluar sus puntos extremos
+> girados y comprobar que caben. Si se cambia la inclinación, se vuelve a
+> verificar.

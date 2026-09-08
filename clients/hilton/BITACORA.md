@@ -1,3 +1,63 @@
+## 2026-09-08 (ronda 5) · Eli (Windows) — BETWEEN S3: subir el texto de la 2, dos banderas en la 3
+
+**Qué pidió Eli**, marcando las piezas con rojo: en la ST 2, «solo subir el texto
+según lo que te pido en el ejemplo» —una llave que envuelve el titular, el cartel
+y el cierre, con una flecha hacia arriba—; en la ST 3, «pon dos banderas en la
+dirección que te dejo el ejemplo 2 y que puedas acomodar más los textos».
+
+### ⛔ La ST 2: «titular beige» y «titular arriba» no pueden ir juntos
+
+Medido: arriba la pared es clara y el beige da **1,33:1** mientras el café da
+1,90:1; abajo es exactamente al revés (beige 2,38–2,80, café 1,08). O sea que se
+puede tener el titular beige (abajo, como en la ronda 4) o el titular arriba (en
+café), **no las dos cosas**. Mandó el pedido nuevo: subió y pasó a café — que
+además es lo que hace el referente, tipografía oscura sobre pared plana.
+
+Y aparecieron dos cosas más que quedaron escritas:
+
+- **hay una franja PROHIBIDA, y 610–820**: ahí la foto se parte (izquierda pared
+  clara, derecha follaje oscuro) y ninguna de las dos tintas se lee en todo el
+  ancho. Ningún titular puede quedar ahí;
+- **el titular tiene un TECHO**: buscando el borde del follaje fila por fila, la
+  pared se mantiene clara en todo el ancho hasta y≈590 y a 620 se derrumba a
+  x=642. El bloque mide 180 px, así que arranca en 405 — 41 px de aire bajo el
+  lockup en vez de los 77 del token. Concesión consciente: entre el token y que se
+  lea, gana que se lea. El ancho baja a 770 porque con 810 el «!» final se salía
+  al follaje.
+
+El cierre entró al cartel (beige, cursiva 38 px) porque la llave de Eli lo
+envuelve con el horario y la bajada, y porque suelto a esa altura tendría que ser
+beige mientras el titular es café: dos tintas sueltas se leen como descuido. El
+cartel cierra en y≈885 y **la mesa servida se queda con toda la mitad de abajo**.
+
+### La ST 3: dos banderas apuntando hacia afuera
+
+`BanderaChile` ganó `espejo`, y está hecho como un `scale(-1 1)` **por fuera** del
+`rotate`: así, con el mismo `giro`, la espejada apunta al lado contrario y el par
+queda simétrico hacia afuera — las dos flechas en «V» que dibujó Eli.
+
+Van **dentro del bloque del brindis**, en absoluto sobre sus flancos vacíos (el
+`viewBox` mide 760 y las tazas ocupan 248–512, así que sobran ~230 px por lado).
+No le quitan ancho al motivo principal y el cartel no crece de alto: ese aire es
+el que se usó para «acomodar más los textos» (30 px del dibujo al titular, 34 al
+párrafo, 34 a la caja del saludo).
+
+⛔ **Y un defecto de dibujo que costó una pasada:** las dos banderas salieron
+CORTADAS, leyéndose como cintas sin palo. La bandera se dibuja recta y se inclina
+con `rotate` sobre (150,130), y al girarla el pie del mástil —(56,224)— se va a
+y≈252, fuera del `viewBox` de 240 de alto. Subió a 270. **Regla: cuando un dibujo
+se inclina, hay que evaluar sus puntos extremos girados y comprobar que caben.**
+
+### QA y entrega
+
+`between-qa.py`: **3/5 limpias**, con los dos avisos ya aprobados del cierre de la
+14-09. La 14-09 no se tocó ni se re-subió. La 16-09 y la 18-09 reemplazadas sobre
+el mismo archivo en STORIES, verificadas por `md5` y por `parents`.
+
+**Abierto:** las guías del CM siguen sólo en local (sexto día); el comentario de
+`STORIES!N` sin tachar; Between sin `reglas.yaml`; y `BETWEEN.logo.cafe` sigue
+apuntando al PNG negro para las tres piezas viejas que lo usan.
+
 ## 2026-09-08 (ronda 4) · Eli (Windows) — BETWEEN S3: cinco correcciones, y una era un defecto del kit
 
 **Qué pidió Eli:** en la ST 2, agrandar el texto de abajo («que sea italic pero un

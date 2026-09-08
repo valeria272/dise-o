@@ -1,6 +1,6 @@
 ---
 name: direccion-de-arte
-description: Criterio de dirección de arte para piezas de cliente del estudio COPYLAB. Cómo leer una referencia, cómo decidir cuando el brief no alcanza, qué hace que una pieza sea buena o vergonzosa, y cuándo parar en vez de producir. Úsala en toda pieza de marca — antes de armar y antes de entregar.
+description: Criterio de dirección de arte para piezas de cliente del estudio COPYLAB. Cómo leer una referencia, cómo decidir cuando el brief no alcanza, qué modelo de IA usar para cada trabajo (imagen, video, audio) y qué tiene prohibido tocar, qué hace que una pieza sea buena o vergonzosa, y cuándo parar en vez de producir. Úsala en toda pieza de marca — antes de armar, antes de generar cualquier imagen o video, y antes de entregar.
 ---
 
 # Dirección de arte — el criterio, no la ejecución
@@ -129,7 +129,50 @@ producto, el logo ni un dato.
 
 ---
 
-## 4. Antes de mostrar
+## 4. Si la imagen la hace la IA, el modelo es una decisión de dirección
+
+Bajar hasta IA en la jerarquía de material (§2 del sistema) no es «generar una
+imagen»: es **elegir una herramienta**. El catálogo completo y la tabla de decisión
+están en [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](../../../docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md)
+— ábrelo **antes** de la primera generación, no después de la tercera.
+
+| Si la pieza necesita… | Modelo |
+|---|---|
+| fondo o ambiente, sin texto | **Mystic** |
+| texto legible dentro de la imagen | **Nano Banana Pro** — Mystic rompe letras y se come la ñ |
+| parecerse a una foto real del cliente | **Nano Banana Pro** con esa foto como referencia, pidiendo no tocar arquitectura, vegetación ni encuadre |
+| agrandar algo **ya aprobado** | `image-upscaler/precision` — el creativo te reescribe el logo |
+| otra luz sin perder la composición | `relight`, **sólo sobre el fondo** |
+| calzar con la campaña del mes pasado | `style-transfer` |
+| pasar de 1:1 a 9:16 | `image-expand` — no recortes y pierdas producto |
+| encadenar dos planos de video | `pixverse-v5-transition`: primer **y último** fotograma |
+| que se mueva como un reel de referencia | `kling-motion` |
+| animar una ilustración o un doodle | `minimax-video-01-live` — Kling está entrenado en fotografía |
+| una persona hablando a cámara | `video/omni-human-1-5` |
+| música o un efecto de sonido | `music-generation` · `sound-effects` |
+
+### Las tres que no se negocian
+
+1. **La IA hace ambiente y fondo. Nunca el producto, nunca el logo, nunca un dato.**
+   El relight sobre el KV compuesto de CAVA destruyó las botellas (Δ ≈ 60): el tinto
+   en vidrio verde se leyó ámbar y la etiqueta blanca se puso amarilla. La luz sobre
+   el producto se integra **por código**, con `integra_luz()`.
+2. **Si existe material real, manda el material real.** Lo generado se rotula como
+   generado —los fondos de Cedral, las 18 fotos del manual de Landera— justamente
+   para poder reemplazarlo el día que llegue la foto de verdad.
+3. **A la segunda vez que el cliente repite un comentario, se prohíbe tocar el
+   parámetro.** Anda a mirar el insumo con zoom. Tres rondas de Between se fueron
+   puliendo el montaje de un vaso con el canto mordido, y una cuarta centrando un
+   logo que **no cabía**: la banda limpia medía 25 px y el lockup pide 56. Se cambia
+   la foto, no el valor.
+
+⚠️ Antes de decirle a alguien «eso no se puede con lo que pagamos», corre
+`python3 scripts/magnific-sondear.py`. La lista de «lo que no tenemos» ya estuvo mal
+una vez, por rutas mal escritas.
+
+---
+
+## 5. Antes de mostrar
 
 ```bash
 python3 scripts/ver-pieza.py out/<marca>/<periodo>     # míralas todas juntas
@@ -149,7 +192,7 @@ Checklist duro:
 
 ---
 
-## 5. Cuándo parar
+## 6. Cuándo parar
 
 Para y dilo — no produzcas — cuando:
 
@@ -163,7 +206,7 @@ Decirlo cuesta un mensaje. No decirlo cuesta tres rondas.
 
 ---
 
-## 6. Cerrar el ciclo
+## 7. Cerrar el ciclo
 
 Toda corrección del cliente **se codifica en `clients/<marca>/CLAUDE.md` en el mismo
 commit**. El manual es la memoria del estudio: lo que no queda escrito se vuelve a

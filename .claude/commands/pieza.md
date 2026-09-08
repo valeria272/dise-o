@@ -70,6 +70,14 @@ foto aprobada → banco curado → e-commerce → editables → pieza aprobada �
 Cada salto hacia abajo tiene que poder justificarse. Respeta las reglas de imagen
 escritas en el manual de la marca.
 
+**Si llegas hasta IA, el modelo también se elige.** La tabla de decisión está en la
+skill `direccion-de-arte` §4 y el catálogo completo —imagen, video, texto→video y
+audio— en [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](../../docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md).
+Lo esencial: **Mystic** para fondos sin texto, **Nano Banana Pro** cuando hay texto en
+la imagen o hay que partir de una foto real del cliente, `image-upscaler/precision`
+para agrandar algo ya aprobado, y **nunca relight sobre el producto**. Antes de decir
+«no se puede», corre `python3 scripts/magnific-sondear.py`.
+
 ## ④ Armar
 
 Usa el pipeline de la marca (`clients/<marca>/sistema/` o su composición Remotion).

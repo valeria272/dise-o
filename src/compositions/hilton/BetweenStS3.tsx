@@ -87,6 +87,7 @@ import {
   FotoFondo,
   LogoBetween,
   TitularBetween,
+  conCifras,
 } from './BetweenSistema';
 import {BanderaChile, BrindisTazas, GuirnaldaBanderitas} from './BetweenIlustraS3';
 
@@ -390,7 +391,7 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
         script="Puedes venir"
         caps="¡Te esperamos!"
         alinear="centro"
-        tono="cafe"
+        tono="beige"
         anchoDisponible={745}
         sizeScript={104}
         aireScriptATitulo={30}
@@ -435,13 +436,42 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
         alignItems: 'center',
       }}
     >
-      {/* El horario, literal de la grilla. Va SIN caja: dentro de un cartel que
-          ya es taupe, otra caja taupe no agrega jerarquía — es la regla «una
-          sola línea fuerte por pila». `CajaDato` sigue pasando las cifras por la
-          caja tabular (son dos «0» dobles y sin eso los dígitos bailan). */}
-      <CajaDato sinFondo anchoDisponible={BETWEEN.bloque.columna - 2 * 44}>
-        Lunes a viernes · 08:00 a 22:00 hrs.
-      </CajaDato>
+      {/* EL HORARIO, literal de la grilla, en DOS LÍNEAS.
+
+          ⭐⭐ RONDA 7 — Eli, recortando justo esta línea: «este texto está muy
+          pegado». La causa es de medida, no de tracking: en UNA sola línea son
+          **36 caracteres**, y a cuerpo 45 miden 826 px contra los 722 útiles del
+          cartel. `CajaDato` la achicaba entonces hasta **~31 px** para que
+          cupiera —altura de mayúscula 23 contra las 33 de la pieza aprobada— y a
+          ese cuerpo, con tracking cero, las letras se apelmazan.
+
+          Partida en dos entra al CUERPO PLENO de la marca: medido con la fuente
+          real, «LUNES A VIERNES» da 402 px y «08:00 A 22:00 HRS.» da 421 px a
+          cuerpo 45 con +0,02em — las dos con holgura dentro de 722. Y es la misma
+          estructura que el referente, que también parte el horario en dos.
+
+          Va suelto y no en `CajaDato`: dentro de un cartel que ya es taupe otra
+          caja taupe no agrega jerarquía (regla «una sola línea fuerte por pila»),
+          y `CajaDato` además impone `nowrap` y 66 px de alto por línea.
+          ⚠️ El `<span>` alrededor de `conCifras` NO es decorativo: la función
+          devuelve un ARRAY y sin envolver, los trozos que son sólo espacio no se
+          pintan — el horario salía «·08:00A22:00HRS.». Está documentado en
+          `CajaDato`. */}
+      <div
+        style={{
+          textAlign: 'center',
+          fontFamily: BETWEEN.fuentes.sans,
+          fontWeight: BETWEEN.pesos.extrabold,
+          fontSize: BETWEEN.tipos.cajaDato,
+          lineHeight: 1.18,
+          letterSpacing: '0.02em',
+          textTransform: 'uppercase',
+          color: BETWEEN.colores.beige,
+        }}
+      >
+        <div>Lunes a viernes</div>
+        <div><span>{conCifras('08:00 a 22:00 hrs.', BETWEEN.pesos.extrabold)}</span></div>
+      </div>
       {/* La bajada, literal. Los saltos a mano: partida por el navegador dejaba
           «para ti.» sola en la última línea.
 

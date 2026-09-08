@@ -1,3 +1,45 @@
+## 2026-09-08 (ronda 7) · Eli (Windows) — BETWEEN S3: el horario partido en dos y el titular en beige
+
+**Qué pidió Eli**, recortando la línea del horario: «este texto está muy pegado. y
+el otro quiero que sea beige de BW».
+
+### «Muy pegado» no era el tracking: era el LARGO de la línea
+
+El horario iba en UNA línea de **36 caracteres** que a cuerpo 45 mide 826 px
+contra los 722 útiles del cartel, así que `CajaDato` la achicaba hasta **~31 px**:
+altura de mayúscula 23 contra las 33 de la pieza aprobada. A ese cuerpo y con
+tracking cero, las letras se apelmazan. Aflojar el tracking lo empeora, porque
+encoge más el cuerpo.
+
+Se partió en dos líneas y entró al cuerpo pleno de la marca: medido con la fuente
+real, «LUNES A VIERNES» da 402 px y «08:00 A 22:00 HRS.» 421 px a cuerpo 45 con
++0,02em, las dos con holgura dentro de 722. Y es la estructura del referente, que
+también parte el horario en dos.
+
+> **Regla:** cuando una línea de dato hay que achicarla más de ~20 % para que
+> quepa, el problema es el LARGO, no el cuerpo ni el tracking. Se parte la línea.
+
+### El titular en beige: decisión de Eli, y está medida
+
+Sobre esta pared el beige da 1,33:1 de contraste contra los 1,90:1 del café — está
+medido y quedó escrito en la ronda 5, y Eli lo pidió igual después de eso. Manda
+ella. Lo que lo sostiene es la sombra que `TitularBetween` aplica sola en `tono
+beige`, que le da un canto oscuro suave y despega la letra de la pared: queda como
+tipografía clara sobre fondo claro, que es un registro legítimo y es lo que hace
+el referente (ahí la pared es gris media). **Si la pieza pasara a pauta hay que
+revisarlo**: en pantalla chica un 1,33:1 se pierde.
+
+### Estado
+
+La 14-09 y la 18-09 **APROBADAS**, no se tocaron. La 16-09 reemplazada sobre el
+mismo archivo en STORIES y verificada por `md5`. `between-qa.py`: la 16-09 y la
+18-09 limpias; los dos avisos que quedan son los del cierre de la 14-09, ya
+aprobados.
+
+**Abierto:** las guías del CM siguen sólo en local (octavo día); el comentario de
+`STORIES!N` sin tachar; Between sin `reglas.yaml`; `BETWEEN.logo.cafe` sigue
+apuntando al PNG negro para las tres piezas viejas que lo usan.
+
 ## 2026-09-08 (ronda 6) · Eli (Windows) — BETWEEN S3: la ST 3 APROBADA; la tipografía de la ST 2, corregida
 
 **Qué dijo Eli:** «La st 3 aprobada, la ST 2 necesito que cuides como están los

@@ -4983,3 +4983,60 @@ Corregido a 22 y 26. Medido después: horario → bajada **51 px**, bajada → c
 > **Antes de dar por bueno un bloque de texto: medir sobre el render los saltos de
 > tinta a tinta y comprobar que el salto entre niveles es mayor que el salto
 > dentro de cada nivel.** Es una pasada de tres minutos y caza las tres cosas.
+
+---
+
+# ⭐ S3 · RONDA 7 — el horario apelmazado y el titular en beige (08-09-2026)
+
+Eli, recortando la línea del horario: «este texto está muy pegado. y el otro
+quiero que sea beige de BW».
+
+## ⭐⭐ 1. «Muy pegado» no era el tracking: era el LARGO de la línea
+
+El horario iba en UNA línea —«LUNES A VIERNES · 08:00 A 22:00 HRS.», **36
+caracteres**— que a cuerpo 45 mide 826 px contra los 722 útiles del cartel. Así
+que `CajaDato` la achicaba hasta **~31 px** para que cupiera: altura de mayúscula
+**23** contra las **33** de la pieza aprobada. Y a ese cuerpo, con tracking cero,
+las letras se apelmazan.
+
+Aflojar el tracking no lo arregla —encoge más el cuerpo—. **Se parte en dos
+líneas** y entra al cuerpo pleno de la marca:
+
+| línea | caracteres | ancho a 45 con +0,02em |
+|---|---|---|
+| LUNES A VIERNES | 15 | 402 px |
+| 08:00 A 22:00 HRS. | 18 | 421 px |
+
+Las dos con holgura dentro de 722. Y es la misma estructura del referente, que
+también parte el horario en dos.
+
+> **La regla:** cuando una línea de dato hay que achicarla más de ~20 % para que
+> quepa, el problema es el LARGO, no el cuerpo ni el tracking. Se parte la línea.
+> Achicar hasta que entre es lo que produce el texto apelmazado.
+
+⚠️ Va suelto y no en `CajaDato`: dentro de un cartel que ya es taupe otra caja
+taupe no agrega jerarquía, y `CajaDato` impone `nowrap` y 66 px de alto por línea.
+Y el `<span>` alrededor de `conCifras` **no es decorativo** — la función devuelve
+un array y sin envolver, los trozos que son sólo espacio no se pintan: el horario
+salía «·08:00A22:00HRS.».
+
+## ⚠️ 2. El titular en beige sobre la pared clara: es decisión de Eli, y está medida
+
+Eli pidió el titular en el beige de la marca. Sobre esta pared el contraste del
+beige es **1,33:1** contra los 1,90:1 del café — está medido y escrito en la ronda
+5, y ella lo pidió igual después de eso. **Manda ella.**
+
+Lo que lo hace funcionar es la sombra que `TitularBetween` aplica sola en `tono
+beige` (`0 2px 14px rgba(36,26,18,0.45)`): le da un canto oscuro suave que
+despega la letra de la pared. Queda como tipografía clara sobre fondo claro, que
+es un registro legítimo — y es lo que hace el referente, sólo que ahí la pared es
+gris media.
+
+> Si esta pieza pasara a PAUTA hay que revisarlo: en feed comprimido y en pantalla
+> chica un 1,33:1 se pierde. En orgánico, con la sombra, funciona.
+
+## Estado
+
+La 14-09 y la 18-09 están **APROBADAS**. La 16-09 quedó reemplazada sobre el mismo
+archivo en STORIES, verificada por `md5`. `between-qa.py`: la 16-09 y la 18-09
+limpias; los dos avisos que quedan son los del cierre de la 14-09, ya aprobados.

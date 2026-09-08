@@ -28,40 +28,82 @@ import urllib.error
 import urllib.request
 
 import certifi
+import time
 
 BASE = "https://api.freepik.com"      # api.magnific.com responde igual
 CTX = ssl.create_default_context(cafile=certifi.where())
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Lo que usamos hoy + lo que ofrece el catálogo público de Magnific.
+# Catálogo completo de docs.magnific.com/llms.txt (traído el 08-09-2026) + las rutas
+# viejas que usan los scripts del estudio. Magnific RENOMBRÓ endpoints: se sondean las
+# dos formas para saber cuál sigue viva antes de tocar un script de producción.
 MODELOS = [
-    # ── VIDEO (agregado 03-09-2026: el sondeo anterior no miraba video) ────────
-    ("image-to-video/pixverse-v5-transition", "VIDEO · PRIMER Y ÚLTIMO FOTOGRAMA ⭐"),
-    ("image-to-video/pixverse-v5",            "VIDEO · Pixverse v5"),
-    ("image-to-video/kling-v2-1-pro",         "VIDEO · Kling 2.1 pro"),
-    ("image-to-video/kling-v2-1-master",      "VIDEO · Kling 2.1 master"),
-    ("image-to-video/kling-v2-5-pro",         "VIDEO · Kling 2.5 pro"),
-    ("image-to-video/minimax-hailuo-02-1080p","VIDEO · Hailuo 02 1080p"),
-    ("image-to-video/wan-v2-2-720p",          "VIDEO · Wan 2.2 720p"),
-    ("text-to-image/seedream-v4",             "IMAGEN · Seedream 4"),
-    ("text-to-image/seedream-v4-edit",        "IMAGEN · Seedream 4 edit"),
-    ("text-to-image/flux-dev",                "IMAGEN · Flux dev"),
-    ("text-to-image/hyperflux",               "IMAGEN · HyperFlux"),
-    ("image-expand/flux-pro",                 "EDICIÓN · outpaint"),
+    # ── TEXTO → IMAGEN ────────────────────────────────────────────────────────
+    ("text-to-image/nano-banana-pro",        "IMAGEN · Gemini 3 Pro · texto legible + 4K ⭐"),
+    ("gemini-2-5-flash-image-preview",       "IMAGEN · Nano Banana · imagen→imagen"),
+    ("text-to-image/seedream-4",             "IMAGEN · Seedream 4"),
+    ("text-to-image/seedream-4-5",           "IMAGEN · Seedream 4.5"),
+    ("text-to-image/seedream-v4",            "IMAGEN · Seedream 4 (ruta vieja)"),
+    ("text-to-image/z-image-turbo",          "IMAGEN · Z-Image Turbo"),
+    ("text-to-image/flux-2-pro",             "IMAGEN · Flux 2 Pro"),
+    ("text-to-image/flux-2-turbo",           "IMAGEN · Flux 2 Turbo"),
+    ("text-to-image/flux-2-klein",           "IMAGEN · Flux 2 Klein"),
+    ("text-to-image/flux-kontext-pro",       "IMAGEN · Flux Kontext Pro"),
+    ("text-to-image/flux-pro-v1-1",          "IMAGEN · Flux Pro 1.1"),
+    ("text-to-image/flux-dev",               "IMAGEN · Flux Dev"),
+    ("text-to-image/hyperflux",              "IMAGEN · HyperFlux"),
+    ("text-to-image/runway",                 "IMAGEN · Runway texto→imagen"),
+    ("text-to-icon",                         "IMAGEN · iconos"),
 
-    ("mystic",                          "texto→imagen 2K"),
-    ("gemini-2-5-flash-image-preview",  "Nano Banana · imagen→imagen"),
-    ("image-upscaler",                  "escalado creativo"),
-    ("image-upscaler-precision",        "escalado sin reinventar detalle"),
-    ("image-relight",                   "reiluminar escena"),
-    ("image-style-transfer",            "copiar look de una referencia"),
-    ("text-to-image/nano-banana-pro",   "Gemini 3 Pro · texto legible + 4K"),
-    ("seedream-v4-5",                   "Seedream 4.5"),
-    ("flux-2-pro",                      "Flux 2 Pro"),
-    ("flux-2-turbo",                    "Flux 2 Turbo"),
-    ("flux-dev",                        "Flux Dev"),
-    ("hyperflux",                       "Hyperflux"),
-    ("remove-background",               "recorte automático"),
+    # ── EDICIÓN DE IMAGEN ─────────────────────────────────────────────────────
+    ("image-editing/seedream-4-5-edit",      "EDICIÓN · Seedream 4.5 edit (por instrucción)"),
+    ("text-to-image/seedream-v4-edit",       "EDICIÓN · Seedream 4 edit (ruta vieja)"),
+    ("image-upscaler/creative",              "EDICIÓN · escalado creativo"),
+    ("image-upscaler/precision",             "EDICIÓN · escalado que NO reinventa detalle ⭐"),
+    ("image-upscaler",                       "EDICIÓN · escalado (ruta vieja, en uso)"),
+    ("image-upscaler-precision",             "EDICIÓN · precision (ruta vieja, en uso)"),
+    ("relight",                              "EDICIÓN · reiluminar escena"),
+    ("image-relight",                        "EDICIÓN · relight (ruta vieja, en uso)"),
+    ("style-transfer",                       "EDICIÓN · copiar el look de una referencia"),
+    ("image-style-transfer",                 "EDICIÓN · style transfer (ruta vieja, en uso)"),
+    ("remove-background",                    "EDICIÓN · recorte automático"),
+    ("beta/image-remove-background",         "EDICIÓN · recorte (ruta vieja, en uso)"),
+    ("image-expand",                         "EDICIÓN · outpaint / ampliar encuadre"),
+    ("image-expand/flux-pro",                "EDICIÓN · outpaint (ruta vieja)"),
+
+    # ── IMAGEN → VIDEO ────────────────────────────────────────────────────────
+    ("image-to-video/kling-2-6-pro",         "VIDEO · Kling 2.6 Pro"),
+    ("image-to-video/kling-2-5-pro",         "VIDEO · Kling 2.5 Pro"),
+    ("image-to-video/kling-2-1-pro",         "VIDEO · Kling 2.1 Pro"),
+    ("image-to-video/kling-motion",          "VIDEO · Kling 2.6 control de movimiento ⭐"),
+    ("image-to-video/kling-o1-pro",          "VIDEO · Kling O1 Pro"),
+    ("image-to-video/kling-v2-1-pro",        "VIDEO · Kling 2.1 pro (ruta vieja, en uso)"),
+    ("image-to-video/kling-v2-1-master",     "VIDEO · Kling 2.1 master (ruta vieja)"),
+    ("image-to-video/kling-v2-5-pro",        "VIDEO · Kling 2.5 pro (ruta vieja)"),
+    ("image-to-video/seedance-pro-1080p",    "VIDEO · Seedance Pro 1080p"),
+    ("image-to-video/wan-2-6-1080p",         "VIDEO · WAN 2.6 1080p"),
+    ("image-to-video/wan-2-5-i2v-1080p",     "VIDEO · WAN 2.5 imagen→video"),
+    ("image-to-video/wan-v2-2-720p",         "VIDEO · Wan 2.2 720p (ruta vieja)"),
+    ("image-to-video/minimax-hailuo-2-3-1080p", "VIDEO · Hailuo 2.3 1080p"),
+    ("image-to-video/minimax-hailuo-02-1080p",  "VIDEO · Hailuo 02 1080p"),
+    ("image-to-video/minimax-video-01-live", "VIDEO · Video-01-Live (anima ilustración)"),
+    ("image-to-video/runway-gen4-turbo",     "VIDEO · Runway Gen-4 Turbo"),
+    ("image-to-video/runway-act-two",        "VIDEO · Runway Act-Two (actuación) ⭐"),
+    ("image-to-video/pixverse",              "VIDEO · PixVerse V5"),
+    ("image-to-video/pixverse-v5",           "VIDEO · PixVerse V5 (ruta vieja)"),
+    ("image-to-video/pixverse-v5-transition","VIDEO · PRIMER Y ÚLTIMO FOTOGRAMA ⭐"),
+    ("video/omni-human-1-5",                 "VIDEO · OmniHuman 1.5 (avatar que habla) ⭐"),
+    ("video/vfx",                            "VIDEO · efectos VFX sobre un clip"),
+
+    # ── TEXTO → VIDEO ─────────────────────────────────────────────────────────
+    ("text-to-video/ltx-2-pro",              "VIDEO · LTX 2.0 Pro (texto→video)"),
+    ("text-to-video/wan-2-5-t2v-1080p",      "VIDEO · WAN 2.5 (texto→video)"),
+
+    # ── AUDIO ─────────────────────────────────────────────────────────────────
+    ("music-generation",                     "AUDIO · música original ⭐"),
+    ("sound-effects",                        "AUDIO · efectos de sonido ⭐"),
+    ("audio-isolation",                      "AUDIO · aislar voz del ruido"),
+    ("text-to-speech",                       "AUDIO · voz (ruta estable)"),
 ]
 
 
@@ -89,7 +131,7 @@ SOLO_GET = {"loras": "estilos entrenados de la cuenta"}
 def main():
     k = clave()
     tengo, no_tengo = [], []
-    print(f"{'modelo':<34} {'':4} qué es")
+    print(f"{'modelo':<42} {'':4} qué es")
     print("-" * 78)
     for ruta, desc in list(SOLO_GET.items()) + MODELOS:
         if ruta in SOLO_GET:
@@ -101,11 +143,11 @@ def main():
             except urllib.error.HTTPError as e:
                 ok = e.code != 404   # 502/503 = la ruta EXISTE y el proveedor está ocupado
             (tengo if ok else no_tengo).append(ruta)
-            print(f"{ruta:<34} {'✅' if ok else '❌':4} {desc}  (se consulta con GET)")
+            print(f"{ruta:<42} {'✅' if ok else '❌':4} {desc}  (se consulta con GET)")
             continue
         if ruta in SALTAR:
             tengo.append(ruta)
-            print(f"{ruta:<34} {'✅':4} {desc}  (en uso; no se sondea)")
+            print(f"{ruta:<42} {'✅':4} {desc}  (en uso; no se sondea)")
             continue
         req = urllib.request.Request(f"{BASE}/v1/ai/{ruta}", data=b"{}", method="POST",
                                      headers={"x-freepik-api-key": k,
@@ -115,12 +157,17 @@ def main():
             ok = True                      # 200: aceptó — ojo, pudo encolar
             desc += "  ⚠️ aceptó el POST: pudo consumir un crédito"
         except urllib.error.HTTPError as e:
-            ok = e.code != 404   # 502/503 = la ruta EXISTE y el proveedor está ocupado             # 400/401/403 → el endpoint existe
+            if e.code == 403 and "Penalty Box" in e.read()[:400].decode("utf-8", "replace"):
+                sys.exit("\n⛔ WAF: la IP quedó en penalty box. Espera ~10 min y repite.\n"
+                         "   Lo dispara mandar un cuerpo mal formado. Sondea SIEMPRE con b'{}'.")
+            ok = e.code != 404   # 502/503 = la ruta EXISTE y el proveedor está ocupado
+                                 # 400/401/403 → el endpoint existe
         except Exception as e:
-            print(f"{ruta:<34} {'—':4} red: {type(e).__name__}")
+            print(f"{ruta:<42} {'—':4} red: {type(e).__name__}")
             continue
         (tengo if ok else no_tengo).append(ruta)
-        print(f"{ruta:<34} {'✅' if ok else '❌':4} {desc}")
+        print(f"{ruta:<42} {'✅' if ok else '❌':4} {desc}", flush=True)
+        time.sleep(0.7)   # el WAF se despierta con ráfagas
 
     print(f"\nDisponibles: {len(tengo)} · Fuera del plan: {len(no_tengo)}")
     if no_tengo:

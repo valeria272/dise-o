@@ -1,84 +1,65 @@
-# Magnific / Freepik — el catálogo completo y cómo elegir
+# Magnific / Freepik — qué tenemos de verdad y cuál usar para qué
 
-> **Catálogo traído de `docs.magnific.com/llms.txt` el 08-09-2026.** La verificación
-> contra nuestra clave es del 03-09-2026 y **quedó corta**: el catálogo creció y, sobre
-> todo, **Magnific renombró rutas**. Antes de decirle a alguien «no se puede», corre:
+> **Verificado contra nuestra clave el 08-09-2026**, sondeando las 60 rutas del
+> catálogo público (`docs.magnific.com/llms.txt`) más las que usan nuestros scripts.
+> **39 disponibles · 19 fuera del plan.**
 >
-> ```bash
-> python3 scripts/magnific-sondear.py
-> ```
->
-> Sondea las 60 rutas —las nuevas y las viejas— sin gastar créditos, y marca cuáles
-> responden con nuestro plan. **Es la única fuente que vale para el ✅ / ❌.**
-
-Freepik **se rebrandeó a Magnific el 28-04-2026**. La documentación vive en
-`docs.magnific.com` y el host nuevo es `api.magnific.com`, pero **`api.freepik.com`
-sigue respondiendo igual** — los 19 scripts del estudio que apuntan ahí no hay que
-tocarlos por eso.
+> Se rehace con `python3 scripts/magnific-sondear.py`. No cuesta créditos.
 
 ---
 
-## ⛔ Lo primero: las rutas cambiaron de nombre
+## ⛔ Lo primero, porque cambia todo: en `api.freepik.com` mandan los nombres VIEJOS
 
-Esto es lo más importante de esta revisión. Varios endpoints que usamos a diario
-existen hoy con **otro nombre**, y el nombre viejo puede seguir vivo, puede estar
-deprecado, o puede haberse caído sin que nos enteremos.
+`docs.magnific.com` documenta el host nuevo (`api.magnific.com`) y ahí los endpoints
+se llaman distinto. **Nuestra clave trabaja contra `api.freepik.com`, donde los nombres
+nuevos dan `404` y los viejos responden.** Medido, par por par:
 
-| Lo que usan nuestros scripts | Lo que dice el catálogo hoy |
-|---|---|
-| `/v1/ai/image-relight` | `/v1/ai/relight` |
-| `/v1/ai/image-style-transfer` | `/v1/ai/style-transfer` |
-| `/v1/ai/image-upscaler` | `/v1/ai/image-upscaler/creative` |
-| `/v1/ai/image-upscaler-precision` | `/v1/ai/image-upscaler/precision` |
-| `/v1/ai/beta/image-remove-background` | `/v1/ai/remove-background` |
-| `/v1/ai/image-expand/flux-pro` | `/v1/ai/image-expand` |
-| `/v1/ai/image-to-video/kling-v2-1-pro` | `/v1/ai/image-to-video/kling-2-1-pro` |
-| `/v1/ai/image-to-video/pixverse-v5` | `/v1/ai/image-to-video/pixverse` |
-| `/v1/ai/text-to-image/seedream-v4` | `/v1/ai/text-to-image/seedream-4` |
+| Lo que usan nuestros scripts | Lo que dice el catálogo nuevo | |
+|---|---|---|
+| `image-upscaler` ✅ | `image-upscaler/creative` ❌ | |
+| `image-upscaler-precision` ✅ | `image-upscaler/precision` ❌ | |
+| `image-relight` ✅ | `relight` ❌ | |
+| `image-style-transfer` ✅ | `style-transfer` ❌ | |
+| `beta/image-remove-background` ✅ | `remove-background` ❌ | |
+| `image-expand/flux-pro` ✅ | `image-expand` ❌ | |
+| `image-to-video/kling-v2-1-pro` ✅ | `image-to-video/kling-2-1-pro` ❌ | |
+| `image-to-video/pixverse-v5` ✅ | `image-to-video/pixverse` ❌ | |
+| `text-to-image/seedream-v4` ✅ | `text-to-image/seedream-4` ❌ | |
 
-> El patrón es claro: **se fue la `v` de las versiones** (`v2-1` → `2-1`) y **se fue el
-> prefijo `image-`** de las operaciones sueltas. `scripts/magnific-sondear.py` sondea
-> las dos formas justamente para saber cuál sigue en pie antes de tocar un script de
-> producción.
-
-### 🔴 Y por lo mismo, la lista de «lo que NO tenemos» estaba mal
-
-La versión anterior de este documento daba por ausentes **`flux-2-pro`, `flux-2-turbo`
-y `seedance`**. Se sondearon en `/v1/ai/flux-2-pro`, y la ruta real es
-`/v1/ai/text-to-image/flux-2-pro`. **Es exactamente la misma trampa** que tuvo a Nano
-Banana Pro marcado como «fuera del plan» durante días. Hasta que el sondeo nuevo corra,
-esos tres van como **no verificados**, no como ausentes.
+> ✅ **No hay que migrar nada.** Los 19 scripts del estudio están apuntando bien. Si
+> alguien copia una ruta de la documentación de Magnific y le da 404, **el problema es
+> el host, no el plan**: hay que usar el nombre viejo.
 
 ---
 
-## El catálogo, por lo que sirve
+## ✅ Lo que la cuenta SÍ tiene — 39 modelos
 
 ### Texto → imagen
 
 | Modelo | Ruta | Cuándo es el correcto |
 |---|---|---|
-| **Nano Banana Pro** ⭐ | `text-to-image/nano-banana-pro` | **Texto legible dentro de la imagen**, 4K nativo, composición controlada y hasta 14 referencias. Es el que hizo la portada To Go de Between y los fondos de Cedral |
-| **Mystic** | `mystic` | Fondos y ambientes sin texto. Más barato. El caballo de batalla: 18 scripts |
-| **Seedream 4 / 4.5** | `text-to-image/seedream-4`, `-4-5` | Alternativa fotográfica |
-| **Z-Image Turbo** | `text-to-image/z-image-turbo` | Bocetos rápidos para elegir dirección |
-| **Flux 2 Pro / Turbo / Klein** | `text-to-image/flux-2-*` | Pro para calidad, Turbo para volumen, Klein para pruebas |
-| **Flux Kontext Pro** | `text-to-image/flux-kontext-pro` | Mantiene el contexto entre generaciones — sirve para series |
-| **Flux Pro 1.1 · Dev · HyperFlux** | `text-to-image/flux-*` | La familia vieja |
-| **Runway** | `text-to-image/runway` | |
+| **Nano Banana Pro** ⭐ | `text-to-image/nano-banana-pro` | **Texto legible dentro de la imagen**, 4K nativo, composición controlada, hasta 14 referencias. Hizo la portada To Go de Between y los fondos de Cedral |
+| **Mystic** | `mystic` | Fondos y ambientes sin texto. Más barato. 18 scripts |
 | **Nano Banana** | `gemini-2-5-flash-image-preview` | Imagen → imagen. 8 scripts |
+| **Flux 2 Pro** | `text-to-image/flux-2-pro` | 🆕 el doc lo daba por ausente |
+| **Flux 2 Turbo / Klein** | `text-to-image/flux-2-turbo`, `-klein` | 🆕 Turbo para volumen, Klein para pruebas |
+| **Flux Kontext Pro** | `text-to-image/flux-kontext-pro` | 🆕 mantiene el contexto entre generaciones — **series** |
+| **Flux Pro 1.1 · Dev · HyperFlux** | `text-to-image/flux-pro-v1-1`, `flux-dev`, `hyperflux` | La familia vieja |
+| **Seedream 4** | `text-to-image/seedream-v4` | Alternativa fotográfica |
+| **Runway** | `text-to-image/runway` | 🆕 |
+| **Iconos** | `text-to-icon` | |
 
 ### Edición
 
 | Modelo | Ruta | Cuándo |
 |---|---|---|
-| **Upscaler Precision** ⭐ | `image-upscaler/precision` | **Cualquier cosa con marca encima.** El creativo *inventa* detalle: sobre una etiqueta o un logo te cambia el dibujo |
-| **Upscaler Creative** | `image-upscaler/creative` | Sólo fondos |
-| **Seedream 4.5 Edit** | `image-editing/seedream-4-5-edit` | Edición por instrucción, sin regenerar |
-| **Relight** | `relight` | Cambiar la luz de un fondo sin perder la composición ya calibrada. **Nunca sobre el producto** — ver la regla dura abajo |
-| **Style Transfer** | `style-transfer` | Que una imagen nueva calce con el look del mes anterior. La vía barata de la continuidad |
-| **Remove Background** | `remove-background` | Recorte. Estuvo caído (503) el 05-09 |
-| **Image Expand** | `image-expand` | Outpaint: ampliar el encuadre. Sirve para sacar un 9:16 de una foto 1:1 |
-| **Text to Icon** | `text-to-icon` | |
+| **Upscaler Precision** ⭐ | `image-upscaler-precision` | **Cualquier cosa con marca encima.** El creativo *inventa* detalle: sobre una etiqueta o un logo te cambia el dibujo |
+| **Upscaler creativo** | `image-upscaler` | Sólo fondos |
+| **Seedream 4 Edit** | `text-to-image/seedream-v4-edit` | Edición por instrucción, sin regenerar |
+| **Relight** | `image-relight` | Cambiar la luz de un fondo sin perder la composición. **Nunca sobre el producto** — regla dura abajo |
+| **Style Transfer** | `image-style-transfer` | Que lo nuevo calce con el look del mes pasado. La vía barata de la continuidad |
+| **Remove Background** | `beta/image-remove-background` | Recorte. Estuvo caído (503) el 05-09 |
+| **Image Expand** | `image-expand/flux-pro` | Outpaint: sacar un 9:16 de una foto 1:1 sin perder producto |
 | **LoRAs** | `loras` (**GET**) | Los estilos entrenados de la cuenta. **Nunca los hemos consultado** |
 
 ### Imagen → video
@@ -86,31 +67,28 @@ esos tres van como **no verificados**, no como ausentes.
 | Modelo | Ruta | Cuándo |
 |---|---|---|
 | **PixVerse transición** ⭐⭐ | `image-to-video/pixverse-v5-transition` | **Primer Y último fotograma.** El único que deja encadenar planos: el último frame de un plano ES el primero del siguiente, por construcción |
-| **Kling 2.6 Pro** | `image-to-video/kling-2-6-pro` | Lo más nuevo. Nosotros veníamos en 2.1 |
-| **Kling 2.5 / 2.1 Pro** | `image-to-video/kling-2-5-pro`, `-2-1-pro` | 2.1 es lo que hizo los reels de Más Center y el Cap. 02 |
-| **Kling Motion Control** ⭐ | `image-to-video/kling-motion` | **Copiar el movimiento de un clip de referencia.** Es la respuesta a «quiero que se mueva como este reel» |
-| **Kling O1 Pro** | `image-to-video/kling-o1-pro` | |
-| **Runway Act-Two** ⭐ | `image-to-video/runway-act-two` | **Actuación**: le pasas una interpretación y la traslada al personaje |
-| **Runway Gen-4 Turbo** | `image-to-video/runway-gen4-turbo` | Rápido |
-| **Seedance Pro 1080p** | `image-to-video/seedance-pro-1080p` | El doc viejo lo daba por ausente |
-| **WAN 2.6 / 2.5** | `image-to-video/wan-2-6-1080p`, `wan-2-5-i2v-1080p` | |
-| **Hailuo 2.3 / 02** | `image-to-video/minimax-hailuo-*` | |
-| **Video-01-Live** | `image-to-video/minimax-video-01-live` | **Anima ilustración**, no fotografía. Para los doodles de Between o el personaje G |
-| **OmniHuman 1.5** ⭐⭐ | `video/omni-human-1-5` | **Avatar que habla.** Es lo que estaba bloqueado por Higgsfield sin créditos: el UGC y la gemela digital |
-| **VFX** | `video/vfx` | Efectos sobre un clip ya rodado |
+| **Kling 2.5 Pro** | `image-to-video/kling-v2-5-pro` | El mejor que tenemos |
+| **Kling 2.1 Pro / Master** | `image-to-video/kling-v2-1-pro`, `-master` | Hizo los reels de Más Center y el Cap. 02 |
+| **Kling O1 Pro** | `image-to-video/kling-o1-pro` | 🆕 |
+| **Video-01-Live** ⭐ | `image-to-video/minimax-video-01-live` | 🆕 **Anima ilustración**, no fotografía: los doodles de Between, el personaje G. Kling está entrenado en foto y por eso los deforma |
+| **Hailuo 2.3 / 02** | `image-to-video/minimax-hailuo-2-3-1080p`, `-02-1080p` | 🆕 la 2.3 |
+| **Runway Gen-4 Turbo** | `image-to-video/runway-gen4-turbo` | 🆕 rápido |
+| **WAN 2.5 / 2.2** | `image-to-video/wan-2-5-i2v-1080p`, `wan-v2-2-720p` | 🆕 la 2.5 |
+| **OmniHuman 1.5** ⭐⭐ | `video/omni-human-1-5` | 🆕 **Avatar que habla.** Es lo que estaba bloqueado por Higgsfield sin créditos: el UGC y la gemela digital |
+| **VFX** | `video/vfx` | 🆕 efectos sobre un clip ya rodado |
 
-### Texto → video *(no lo teníamos fichado)*
+### Texto → video 🆕
 
 | Modelo | Ruta |
 |---|---|
 | **LTX 2.0 Pro** | `text-to-video/ltx-2-pro` |
 | **WAN 2.5 T2V** | `text-to-video/wan-2-5-t2v-1080p` |
 
-### 🔊 Audio *(no lo teníamos fichado, y es el que más trabajo ahorra)*
+### 🔊 Audio 🆕 — lo que más trabajo ahorra y nadie sabía que estaba
 
-| Modelo | Ruta | Para qué en el estudio |
+| Modelo | Ruta | Para qué acá |
 |---|---|---|
-| **Música** ⭐ | `music-generation` | **Pista original por reel.** Hoy reusamos la de julio/agosto en Más Center porque conseguir música es lento |
+| **Música** ⭐ | `music-generation` | **Pista original por reel.** Hoy se reusa la de julio/agosto en Más Center porque conseguir música es lento |
 | **Efectos de sonido** ⭐ | `sound-effects` | El BIP de R.01, el CLAC de Marta, el tintineo de una taza. En el Cap. 02 se armaron a mano |
 | **Aislar audio** | `audio-isolation` | Sacar la voz de un video con ruido de fondo |
 
@@ -118,22 +96,43 @@ Los tres tienen `GET` para listar tareas y `GET /{task-id}` para el estado.
 
 ---
 
+## ❌ Lo que NO está en el plan (404 verificado)
+
+`kling-2-6-pro` · `kling-motion` (control de movimiento) · `seedance-pro-1080p` ·
+`wan-2-6-1080p` · `runway-act-two` · `z-image-turbo` · `seedream-4-5` y su `edit` ·
+`text-to-speech`
+
+Dos que duelen: **Kling Motion Control** —copiar el movimiento de un clip de
+referencia— y **Runway Act-Two** —trasladar una actuación a un personaje—. Los dos
+resolverían de raíz el «quiero que se mueva como este reel». Si algún día se evalúa
+subir de plan, son el argumento.
+
+Para voz seguimos con **ElevenLabs**, que es lo que usa el Cap. 02.
+
+---
+
 ## Cómo elige un diseñador — la tabla de decisión
+
+> Esta misma tabla está en la skill `direccion-de-arte` §4, que `/pieza` carga sola.
+> Acá está la versión larga.
 
 | Si necesitas… | Usa | Y NO uses |
 |---|---|---|
-| Un fondo o ambiente, sin texto | **Mystic** | Nano Banana Pro (gasta más) |
+| Un fondo o ambiente, sin texto | **Mystic** | Nano Banana Pro: gasta más |
 | Texto legible dentro de la gráfica | **Nano Banana Pro** | Mystic: rompe letras y se come la ñ |
-| Que la escena se parezca a una foto real del cliente | **Nano Banana Pro** con la foto como referencia, pidiendo no tocar arquitectura ni encuadre | Generar desde cero |
-| Agrandar una pieza **ya aprobada** | **Upscaler Precision** | Upscaler Creative: te reescribe el logo |
-| Que el fondo tenga otra luz | **Relight** sólo sobre el fondo | Relight sobre la pieza compuesta |
-| Continuidad con la campaña del mes pasado | **Style Transfer** | Volver a describir el look con palabras |
-| Sacar un 9:16 de una foto 1:1 | **Image Expand** | Recortar y perder producto |
-| Encadenar dos planos de video | **PixVerse transición** | Un solo fotograma: no controlas dónde termina el clip |
-| Que se mueva como un reel de referencia | **Kling Motion Control** | Describir el movimiento con palabras |
-| Animar una ilustración o un doodle | **Video-01-Live** | Kling, que está entrenado en fotografía |
-| Una persona hablando a cámara | **OmniHuman 1.5** | Higgsfield (sin créditos) |
-| Música para un reel | **music-generation** | Reusar la pista del mes pasado |
+| Que la escena se parezca a una foto real del cliente | **Nano Banana Pro** con la foto como referencia, pidiendo no tocar arquitectura, vegetación ni encuadre | Generar desde cero |
+| Una serie coherente entre piezas | **Flux Kontext Pro** | Repetir el prompt y cruzar los dedos |
+| Agrandar una pieza **ya aprobada** | **`image-upscaler-precision`** | `image-upscaler`: te reescribe el logo |
+| Que el fondo tenga otra luz | **`image-relight`**, sólo sobre el fondo | Relight sobre la pieza compuesta |
+| Continuidad con la campaña del mes pasado | **`image-style-transfer`** | Volver a describir el look con palabras |
+| Sacar un 9:16 de una foto 1:1 | **`image-expand/flux-pro`** | Recortar y perder producto |
+| Encadenar dos planos de video | **`pixverse-v5-transition`** | Un solo fotograma: no controlas dónde termina el clip |
+| Animar una ilustración o un doodle | **`minimax-video-01-live`** | Kling: está entrenado en fotografía |
+| El mejor video imagen→video | **`kling-v2-5-pro`** | |
+| Una persona hablando a cámara | **`video/omni-human-1-5`** | Higgsfield: sin créditos |
+| Música para un reel | **`music-generation`** | Reusar la pista del mes pasado |
+| Un efecto de sonido puntual | **`sound-effects`** | Armarlo a mano |
+| Que se mueva como un reel de referencia | *no lo tenemos* — se calca a mano midiendo la referencia | |
 
 ---
 
@@ -170,7 +169,7 @@ manual de Landera van rotuladas como referencia generada hasta que haya sesión 
 
 ---
 
-## Cómo sondear la API sin gastar créditos
+## Cómo sondear sin gastar créditos
 
 ```bash
 python3 scripts/magnific-sondear.py
@@ -179,33 +178,37 @@ python3 scripts/magnific-sondear.py
 Manda un **POST con cuerpo `{}`**: el endpoint que existe contesta `400 Validation error`
 pidiendo el campo que falta; el que no existe, `404`. No genera nada.
 
-Cuatro trampas, todas pisadas de verdad:
-
-1. ⛔ **GET no sirve para sondear.** Esta API devuelve `404` (no `405`) en rutas que sólo
-   aceptan POST, así que marcaba como ausentes `image-upscaler` y Nano Banana, que usamos
-   todos los días. La excepción es `/v1/ai/loras`, que **es** GET.
-2. ⛔ **`mystic` no se sondea.** Con cuerpo vacío devuelve `200`: acepta la tarea y
-   **consume un crédito**. Se descubrió gastando uno.
-3. ⛔ **Un `404` puede ser la ruta mal escrita, no un modelo ausente.** Confirmar siempre
-   en `docs.magnific.com/llms.txt` antes de concluir que algo no está.
-4. ⛔ **NUNCA mandes un cuerpo mal formado.** *(nuevo, 08-09-2026)* Probando con un `{`
-   suelto, el WAF de Freepik metió la IP del estudio en **penalty box** y durante ~10
-   minutos **todo** devolvió `403`. Y como el sondeo trata `403` como «existe», un sondeo
-   corrido en ese estado marca **todo el catálogo como disponible**. El script ahora
-   detecta el penalty box y aborta, pero la regla es no provocarlo.
-
 **Sólo el `404` prueba ausencia.** Un `502` o un `503` significan que la ruta existe y el
 proveedor de atrás está ocupado.
+
+### Cinco trampas, todas pisadas de verdad
+
+1. ⛔ **El WAF de Freepik bloquea el User-Agent de urllib.** *(08-09-2026)*
+   `Python-urllib/3.10` recibe `403 Penalty Box for WAF` en **todos** los POST, mientras
+   el mismo request con un UA normal pasa. Y como el sondeo trata `403` como «existe», sin
+   User-Agent propio **marca el catálogo entero como disponible**. El script manda
+   `copylab-estudio/1.0` y aborta si ve el penalty box. Vale para cualquier script nuevo
+   que hable con esta API.
+2. ⛔ **Nunca mandes un cuerpo mal formado.** Un `{` suelto mete la IP en el penalty box y
+   durante ~10 minutos todo devuelve `403`.
+3. ⛔ **Hay endpoints que cobran por sondearlos.** Con cuerpo vacío devuelven `200`
+   —aceptan la tarea— en vez de `400`. Son `mystic`, `seedream-v4`, `seedream-v4-edit`,
+   `flux-pro-v1-1`, `hyperflux` y `kling-v2-5-pro`. Están en la lista `SALTAR` del script
+   y **no se vuelven a golpear**: ya están confirmados.
+4. ⛔ **GET no sirve para sondear.** Esta API devuelve `404` (no `405`) en rutas que sólo
+   aceptan POST, así que marcaba como ausentes `image-upscaler` y Nano Banana, que usamos
+   todos los días. La excepción es `/v1/ai/loras`, que **es** GET.
+5. ⛔ **Un `404` puede ser el host equivocado.** Ver la primera sección: los nombres de
+   `docs.magnific.com` no existen en `api.freepik.com`.
 
 ---
 
 ## Lo que sigue pendiente
 
-| | Qué | Por qué importa |
+| | Qué | Por qué |
 |---|---|---|
-| 🔴 1 | **Correr `magnific-sondear.py`** y pegar acá el ✅/❌ por modelo | Es lo único que dice qué tiene NUESTRO plan. Todo lo de arriba es catálogo público |
-| 🔴 2 | Verificar si las **rutas viejas** de los 19 scripts siguen vivas | Si Magnific las apaga, se caen las producciones sin aviso |
-| 🟡 3 | Consultar `loras` | Capacidad pagada que nunca miramos: estilos entrenados de la cuenta |
-| 🟡 4 | Extender `scripts/magnific-video.py` para **primer y último fotograma** | Hoy manda una sola imagen. ⚠️ Pide URLs, no base64: los keyframes tienen que estar accesibles por HTTP |
-| 🟡 5 | Probar **OmniHuman 1.5** | Desbloquea el UGC y la gemela digital, hoy parados por Higgsfield sin créditos |
-| 🟢 6 | Probar **music-generation** en un reel | Deja de reusarse la pista del mes anterior |
+| 🟡 1 | Consultar `loras` | Capacidad pagada que nunca miramos: los estilos entrenados de la cuenta |
+| 🟡 2 | Extender `scripts/magnific-video.py` a **primer y último fotograma** | Hoy manda una sola imagen. ⚠️ Pide URLs, no base64: los keyframes tienen que estar accesibles por HTTP |
+| 🟡 3 | Probar **OmniHuman 1.5** | Desbloquea el UGC y la gemela digital, parados desde julio por Higgsfield sin créditos |
+| 🟢 4 | Probar **music-generation** en un reel | Deja de reusarse la pista del mes anterior |
+| 🟢 5 | Probar **Video-01-Live** con un doodle de Between | Es el modelo correcto para ilustración y nunca se usó |

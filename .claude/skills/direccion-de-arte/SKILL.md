@@ -141,15 +141,18 @@ están en [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](../../../docs/MAGNIFIC-LO-QUE-Y
 | fondo o ambiente, sin texto | **Mystic** |
 | texto legible dentro de la imagen | **Nano Banana Pro** — Mystic rompe letras y se come la ñ |
 | parecerse a una foto real del cliente | **Nano Banana Pro** con esa foto como referencia, pidiendo no tocar arquitectura, vegetación ni encuadre |
-| agrandar algo **ya aprobado** | `image-upscaler/precision` — el creativo te reescribe el logo |
-| otra luz sin perder la composición | `relight`, **sólo sobre el fondo** |
-| calzar con la campaña del mes pasado | `style-transfer` |
-| pasar de 1:1 a 9:16 | `image-expand` — no recortes y pierdas producto |
+| una serie coherente entre piezas | **Flux Kontext Pro** |
+| agrandar algo **ya aprobado** | `image-upscaler-precision` — el creativo te reescribe el logo |
+| otra luz sin perder la composición | `image-relight`, **sólo sobre el fondo** |
+| calzar con la campaña del mes pasado | `image-style-transfer` |
+| pasar de 1:1 a 9:16 | `image-expand/flux-pro` — no recortes y pierdas producto |
 | encadenar dos planos de video | `pixverse-v5-transition`: primer **y último** fotograma |
-| que se mueva como un reel de referencia | `kling-motion` |
-| animar una ilustración o un doodle | `minimax-video-01-live` — Kling está entrenado en fotografía |
+| el mejor imagen→video que tenemos | `kling-v2-5-pro` |
+| animar una ilustración o un doodle | `minimax-video-01-live` — Kling está entrenado en fotografía y la deforma |
 | una persona hablando a cámara | `video/omni-human-1-5` |
-| música o un efecto de sonido | `music-generation` · `sound-effects` |
+| música original para un reel | `music-generation` — no reuses la pista del mes pasado |
+| un efecto de sonido puntual | `sound-effects` |
+| que se mueva como un reel de referencia | **no lo tenemos** (`kling-motion` está fuera del plan): se calca a mano midiendo la referencia |
 
 ### Las tres que no se negocian
 
@@ -166,9 +169,14 @@ están en [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](../../../docs/MAGNIFIC-LO-QUE-Y
    logo que **no cabía**: la banda limpia medía 25 px y el lockup pide 56. Se cambia
    la foto, no el valor.
 
+⚠️ **Las rutas de arriba son las que responden en `api.freepik.com`, que es contra
+quien trabaja nuestra clave.** Si copias una de `docs.magnific.com` te va a dar 404:
+ese host usa nombres nuevos (`relight`, `image-upscaler/precision`, `kling-2-1-pro`)
+que acá no existen. **El 404 es del host, no del plan.**
+
 ⚠️ Antes de decirle a alguien «eso no se puede con lo que pagamos», corre
-`python3 scripts/magnific-sondear.py`. La lista de «lo que no tenemos» ya estuvo mal
-una vez, por rutas mal escritas.
+`python3 scripts/magnific-sondear.py` (39 disponibles al 08-09-2026). La lista de «lo
+que no tenemos» ya estuvo mal una vez.
 
 ---
 

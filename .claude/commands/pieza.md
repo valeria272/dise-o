@@ -74,7 +74,7 @@ escritas en el manual de la marca.
 skill `direccion-de-arte` §4 y el catálogo completo —imagen, video, texto→video y
 audio— en [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](../../docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md).
 Lo esencial: **Mystic** para fondos sin texto, **Nano Banana Pro** cuando hay texto en
-la imagen o hay que partir de una foto real del cliente, `image-upscaler/precision`
+la imagen o hay que partir de una foto real del cliente, `image-upscaler-precision`
 para agrandar algo ya aprobado, y **nunca relight sobre el producto**. Antes de decir
 «no se puede», corre `python3 scripts/magnific-sondear.py`.
 

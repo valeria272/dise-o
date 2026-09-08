@@ -31,6 +31,12 @@ import certifi
 import time
 
 BASE = "https://api.freepik.com"      # api.magnific.com responde igual
+
+# ⛔ El WAF de Freepik BLOQUEA el User-Agent por defecto de urllib
+# ("Python-urllib/3.10"): devuelve 403 "Penalty Box for WAF" a todos los POST,
+# mientras el mismo request con un UA normal pasa. Verificado el 08-09-2026.
+# Y como el sondeo trata 403 como "existe", sin esto marcaría TODO como disponible.
+UA = "copylab-estudio/1.0 (+https://copywriters.cl)"
 CTX = ssl.create_default_context(cafile=certifi.where())
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -122,8 +128,17 @@ def clave():
     sys.exit("✗ No encuentro la clave (~/.magnific_key o FREEPIK_API_KEY en el .env)")
 
 
-# Sondearlos cuesta un crédito (ver arriba). Los usamos a diario: existen.
-SALTAR = {"mystic"}
+# Sondearlos CUESTA UN CRÉDITO: con cuerpo vacío devuelven 200 (aceptan la tarea)
+# en vez de 400. Los cinco de abajo se descubrieron a la mala en el sondeo del
+# 08-09-2026 — existen, están confirmados, y no se vuelven a golpear.
+SALTAR = {
+    "mystic",
+    "text-to-image/seedream-v4",
+    "text-to-image/seedream-v4-edit",
+    "text-to-image/flux-pro-v1-1",
+    "text-to-image/hyperflux",
+    "image-to-video/kling-v2-5-pro",
+}
 # Endpoints que son GET por naturaleza: con POST devuelven 404 y parecen ausentes.
 SOLO_GET = {"loras": "estilos entrenados de la cuenta"}
 
@@ -136,7 +151,7 @@ def main():
     for ruta, desc in list(SOLO_GET.items()) + MODELOS:
         if ruta in SOLO_GET:
             req = urllib.request.Request(f"{BASE}/v1/ai/{ruta}", method="GET",
-                                         headers={"x-freepik-api-key": k})
+                                         headers={"x-freepik-api-key": k, "User-Agent": UA})
             try:
                 urllib.request.urlopen(req, context=CTX, timeout=25)
                 ok = True
@@ -151,15 +166,18 @@ def main():
             continue
         req = urllib.request.Request(f"{BASE}/v1/ai/{ruta}", data=b"{}", method="POST",
                                      headers={"x-freepik-api-key": k,
-                                              "Content-Type": "application/json"})
+                                              "Content-Type": "application/json",
+                                              "User-Agent": UA})
         try:
             urllib.request.urlopen(req, context=CTX, timeout=30)
             ok = True                      # 200: aceptó — ojo, pudo encolar
             desc += "  ⚠️ aceptó el POST: pudo consumir un crédito"
         except urllib.error.HTTPError as e:
             if e.code == 403 and "Penalty Box" in e.read()[:400].decode("utf-8", "replace"):
-                sys.exit("\n⛔ WAF: la IP quedó en penalty box. Espera ~10 min y repite.\n"
-                         "   Lo dispara mandar un cuerpo mal formado. Sondea SIEMPRE con b'{}'.")
+                sys.exit("\n⛔ WAF: 403 penalty box. Dos causas, en este orden:\n"
+                         "   1. falta el User-Agent (urllib por defecto está vetado) — ver UA arriba;\n"
+                         "   2. se mandó un cuerpo mal formado y la IP quedó castigada ~10 min.\n"
+                         "   Sondea SIEMPRE con b'{}' y con UA propio.")
             ok = e.code != 404   # 502/503 = la ruta EXISTE y el proveedor está ocupado
                                  # 400/401/403 → el endpoint existe
         except Exception as e:

@@ -46,6 +46,12 @@ else
     || warn "Sin ~/copylab-venv ni Python con PIL+numpy — ver docs/ONBOARDING-DISENADORES.md paso 3"
 fi
 
+# El intérprete se resuelve UNA vez y se reusa de aquí en adelante: en Windows
+# el venv NO crea `python3.exe`, así que un `python3` a pelo cae en el atajo de
+# la Microsoft Store — que no es Python — y la comprobación de las fichas daba
+# las 12 por «JSON inválido» estando perfectas. Comprobado el 08-09-2026.
+PYQA="${PY_VENV:-}"; [ -n "$PYQA" ] || PYQA=$(command -v python3 || command -v python)
+
 # ⭐ scipy es lo que usan las comprobaciones del motor de QA. Si falta, el motor
 # NO se cae: convierte cada regla en un aviso «la comprobación reventó» y la
 # compuerta pasa a ser decorativa. Un fallo silencioso, como el de Brushwell.
@@ -112,12 +118,11 @@ for j in clients/*/marca.json; do
   # que no tiene definidos los bytes 0x81/0x8D/0x90. Las fichas que llevan Á, Í,
   # ⭐ o ← reventaban y el doctor las daba por «JSON inválido» estando perfectas
   # — 4 falsas alarmas sobre 8 fichas, comprobado el 01-09-2026.
-  python3 -c "import json,sys;json.load(open(sys.argv[1],encoding='utf-8'))" "$j" 2>/dev/null \
+  "$PYQA" -c "import json,sys;json.load(open(sys.argv[1],encoding='utf-8'))" "$j" 2>/dev/null \
     && ok "$j" || bad "$j — JSON inválido"
 done
 
 echo; echo "══ Llavero (las credenciales del estudio) ══"
-PYQA="${PY_VENV:-}"; [ -n "$PYQA" ] || PYQA=$(command -v python3 || command -v python)
 if [ -f credentials/llavero.copylab ]; then
   ok "credentials/llavero.copylab está en el repo"
 else

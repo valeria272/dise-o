@@ -1,3 +1,71 @@
+## 2026-09-08 (ronda 3) · Eli (Windows) — BETWEEN S3: la 14-09 APROBADA, y las otras dos rehechas
+
+**Qué dijo Eli:** «La primera ST queda aprobada, para la segunda ST el logo es el
+color café de between, y los titulos en beige por favor para que se lea y sea
+visible. Para la ST 3 sucede que el contexto es 18 de septiembre de fiestas
+patrias de Chile, necesito que sea detalles ilustrados y haz más similar a la
+referencia con los colores de between.»
+
+**14-09: APROBADA.** No se tocó. Se le agregó `--solo` a
+`scripts/between-st-s3-entrega.py` para poder re-subir las otras dos sin volver a
+tocar una pieza aprobada.
+
+### ST 2 — «los títulos en beige para que se lea»: la tinta la manda el fondo
+
+Medido: sobre la pared beige de la foto (L=177) el beige `#FFF9EB` da **1,43:1**
+de contraste y el café `#675B49` da 2,0:1. O sea que cambiarle el color al texto
+por sí solo lo hace DESAPARECER — y en esta foto el beige no pasa de 1,9:1 hasta
+y≈880, que es donde empieza la mesa y queda a 240 px de la taza.
+
+La salida es la que el cliente dejó escrita («cuando no se logra visualizar los
+textos, puedes dejarlo en una caja del color café #675B49»): el titular, el
+horario y la bajada entran a **un solo cartel taupe con todo el texto en beige**,
+y el lockup se queda en **café** arriba, sobre la pared clara. Las dos cosas que
+pidió Eli, y con la mesa servida entera a la vista.
+
+> **La regla que deja:** se mide la luminancia de la franja donde cae el texto.
+> Bajo L≈120 va beige suelto; sobre L≈150 va café suelto; y si el texto tiene que
+> ser beige sobre fondo claro, no se cambia la tinta — se le pone el cartel debajo.
+
+### ST 3 — detalles ilustrados, y la regla del trazo queda acotada
+
+El manual prohíbe dibujar trazos nuevos para Between, y en las rondas 1 y 2 eso se
+respetó (el brindis se resolvió fotografiado). Acá Eli pidió lo contrario
+explícitamente, así que la regla cede **acotada**: se puede dibujar un motivo
+nuevo cuando la diseñadora lo pide, el motivo no existe en su `.svg`, va en UN
+solo color de marca, y el trazo es de grosor constante con puntas redondeadas
+como el referente — sin imitar el pincel de Brushwell.
+
+Entran dos motivos, en `src/compositions/hilton/BetweenIlustraS3.tsx`:
+**guirnalda de banderitas** y **brindis de dos tazas**, los dos en café `#675B49`.
+Nada de rojo, azul ni blanco de bandera: el 18 se lee por las banderitas, no por
+el tricolor — Eli pidió los colores de Between.
+
+**El brindis costó tres intentos y va sin brazos ni manos, a propósito.** La mano
+maciza dejó dos manchas que sobre el beige se leían como borrones; la de contorno
+dejó dos aros cruzando la taza y el asa. Una mano mal dibujada es peor que
+ninguna, que es la misma lección que ya estaba escrita para las manos de IA. Y la
+geometría que sí funciona quedó medida en el manual: bases a 160 px, giro de 10°
+sobre la base hacia el centro (ojo con el sentido), bocas a 8 px, asa al lado de
+afuera y chispas cortas metidas entre las dos columnas de vapor.
+
+**Y «más similar a la referencia» resultó ser la PROPORCIÓN.** La ronda 2 ya tenía
+panel beige y ambiente detrás; lo que no tenía era que el cartel ocupara ~80 % del
+alto con la foto como marco. Al invertir eso, la pieza se lee como el referente.
+El cartel se ajusta a su contenido: con `minHeight` fijo quedaban 160 px de beige
+muerto al pie. Y como el brindis pasó a ser dibujo, la foto del brindis sobraba —
+el fondo es ahora el local muy desenfocado, con las ampolletas como manchas de luz.
+
+### QA y entrega
+
+`between-qa.py`: **3/5 limpias**, con los dos avisos conocidos del cierre del
+14-09 (55 px en la franja de Meta, ya aprobado). Las tres subidas **reemplazando
+el mismo archivo** en STORIES, verificadas por `md5` y por `parents`: los enlaces
+no cambiaron.
+
+**Abierto:** las guías del CM siguen sólo en local (cuarto día); el comentario de
+`STORIES!N` sigue sin tachar en la grilla; Between sigue sin `reglas.yaml`.
+
 ## 2026-09-08 (ronda 2) · Eli (Windows) — BETWEEN S3: las tres stories rehechas con foto PRODUCIDA
 
 **Qué pasó:** Eli devolvió las tres de la mañana — «Hazlos de nuevo las 3 stories

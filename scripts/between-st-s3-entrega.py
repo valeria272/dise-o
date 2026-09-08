@@ -83,7 +83,11 @@ def copiar(cid: str, nombre: str, destino: Path) -> Path:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--subir", action="store_true",
-                    help="sube las tres piezas del cliente a la carpeta STORIES")
+                    help="sube las piezas del cliente a la carpeta STORIES")
+    ap.add_argument("--solo", nargs="*", metavar="FECHA",
+                    help="sube sólo estas fechas (14-09 · 16-09 · 18-09). Sirve "
+                         "para no re-subir una pieza YA APROBADA: la del 14-09 "
+                         "quedó aprobada en la ronda 3 y no se vuelve a tocar.")
     a = ap.parse_args()
 
     print(f"Entrega en {ENTREGA}")
@@ -95,6 +99,11 @@ def main():
     if not a.subir:
         print("\nNo se subió nada. Para subir:  --subir")
         return
+
+    if a.solo:
+        listas = [p for p in listas if any(f in p.name for f in a.solo)]
+        if not listas:
+            sys.exit(f"✗ --solo {a.solo} no calza con ninguna pieza")
 
     print(f"\nSubiendo a la carpeta STORIES ({CARPETA_STORIES})")
     for p in listas:

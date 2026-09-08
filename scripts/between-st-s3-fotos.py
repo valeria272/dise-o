@@ -78,8 +78,10 @@ ESCENAS = {
         "recorte_alto": "abajo",
         "borrar": [LOGO_NOTEBOOK],
     },
+    # RONDA 3: el brindis fotográfico sale y entra AMBIENTE puro, porque el
+    # brindis pasó a ser DIBUJO dentro del cartel — que es lo que hace la REF 3.
     "st-18-09-dieciocho.jpg": {
-        "fuente": "gen-18-09-brindis-v2.png",
+        "fuente": "gen-18-09-ambiente.png",
         "recorte_alto": "abajo",
     },
 }

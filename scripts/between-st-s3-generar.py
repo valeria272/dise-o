@@ -115,7 +115,31 @@ ESCENAS = {
             "ningun texto, sin letras, sin logotipos."
         ),
     },
-    # ── 18-09 · el brindis de la REF 3, en la foto ───────────────────────────
+    # ── 18-09 · RONDA 3 · el AMBIENTE solo, para que el cartel sea el héroe ──
+    #    Eli, ronda 3: «el contexto es 18 de septiembre de fiestas patrias de
+    #    Chile, necesito que sea detalles ILUSTRADOS y haz más similar a la
+    #    referencia». En la REF 3 el brindis es un DIBUJO dentro del cartel, no
+    #    una foto — así que el brindis fotográfico de la ronda 2 sale y el fondo
+    #    pasa a ser puro ambiente muy desenfocado, como el loft de la referencia.
+    #    Las banderitas y el brindis se dibujan en SVG en la composición, con la
+    #    tinta café de la marca.
+    "18-09-fondo": {
+        "salida": "gen-18-09-ambiente",
+        "refs": ["terraza-ampolletas.jpg", "lounge-madera.jpg"],
+        "prompt": (
+            "Fotografia vertical de historia 9:16 del interior de una cafeteria "
+            "calida, MUY desenfocada, para usar como fondo. Madera oscura, "
+            "ampolletas Edison encendidas colgando, vegetacion y una barra al fondo, "
+            "todo convertido en manchas calidas de luz dorada, como en la @img1 y la "
+            "@img2. Sin ningun sujeto en primer plano: sin personas, sin manos, sin "
+            "tazas y sin ningun objeto nitido. Es SOLO ambiente. ENCUADRE: una sola "
+            "imagen continua y homogenea, sin lineas horizontales que corten el "
+            "cuadro, un poco mas oscura en la franja del medio para poder poner un "
+            "cartel encima. Luz calida de atardecer. Realista, alta calidad 4k. Sin "
+            "ningun texto, sin letras, sin logotipos."
+        ),
+    },
+    # ── 18-09 · el brindis de la REF 3, en la foto (RONDA 2, reemplazado) ─────
     # ⛔ La primera tirada pedía «los dos tercios de abajo son MESA de madera
     #    oscura» y el generador la entendió literal: puso un plano de mesa
     #    plano y recto en primer plano, con una COSTURA horizontal visible a

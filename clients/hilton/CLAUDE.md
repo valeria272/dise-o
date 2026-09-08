@@ -4615,3 +4615,108 @@ en la franja inferior de Meta — menos que el legal de 90 px que Eli aprobó en
 ST 2 del cumpleaños. Vale en orgánico; si pasa a pauta, hay que subirlo.
 
 Los prompts, textuales, en [`PROMPTS-DE-ELI.md`](PROMPTS-DE-ELI.md) §4.
+
+---
+
+# ⭐⭐ S3 · RONDA 3 — la 14-09 aprobada, y dos reglas nuevas (08-09-2026)
+
+Eli, sobre las tres de la ronda 2: «**La primera ST queda aprobada**, para la
+segunda ST el logo es el color café de between, y los titulos en beige por favor
+para que se lea y sea visible. Para la ST 3 sucede que el contexto es 18 de
+septiembre de fiestas patrias de Chile, necesito que sea **detalles ilustrados** y
+haz **más similar a la referencia** con los colores de between.»
+
+## ⭐ 1. La tinta la manda el FONDO, y eso se mide antes de elegirla
+
+Es la regla que sale de la ST 2, y vale para toda pieza de la marca. En la ronda 2
+el titular iba en café sobre la pared beige (que es lo que el kit define para
+fondos claros) y aun así no se leía lo suficiente. Las cifras:
+
+| Tinta sobre la pared beige (L=177) | Contraste |
+|---|---|
+| café `#675B49` | 2,0:1 |
+| beige `#FFF9EB` | **1,43:1** |
+
+O sea que «los títulos en beige» no se resuelve cambiándole el color al texto: el
+beige sobre esa pared desaparece. Y en esta foto el beige no pasa de 1,9:1 hasta
+y≈880, que ya es donde empieza la mesa y queda a 240 px de la taza.
+
+La salida es la que el propio cliente dejó escrita: «cuando no se logra visualizar
+los textos, puedes dejarlo en una caja del color café #675B49». El titular, el
+horario y la bajada entran a **UN SOLO CARTEL taupe con todo el texto en beige**,
+y el lockup se queda en café arriba, sobre la pared clara. Un cartel y no tres
+cajas apiladas: es la regla §1 bis llevada al límite.
+
+> **El criterio, en una línea:** se mide la luminancia de la franja donde cae el
+> texto. Bajo L≈120 va beige suelto; sobre L≈150 va café suelto; y si el texto
+> tiene que ser beige sobre un fondo claro, no se cambia la tinta: se le pone el
+> cartel debajo.
+
+## ⭐⭐ 2. Cuándo SÍ se dibuja un trazo nuevo para Between
+
+El manual dice —y sigue diciendo— que «los globos y flechas salen del `.svg` de
+Eli; no se dibujan a mano ni se generan con IA». En las rondas 1 y 2 eso se
+respetó: el brindis de la referencia se resolvió con dos tazas fotografiadas.
+
+En la ronda 3 Eli pidió lo contrario **para esta pieza y con estas palabras**:
+«necesito que sea detalles ilustrados y haz más similar a la referencia con los
+colores de between». Ahí la regla cede, y queda acotada así:
+
+**Se puede dibujar un motivo nuevo cuando (y sólo cuando):**
+1. la diseñadora lo pide explícitamente para una pieza;
+2. el motivo **no existe** en el `.svg` de Eli (acá no había ni brindis ni
+   guirnalda);
+3. va en **un solo color de la marca** — el café `#675B49`. Nada de rojo, azul ni
+   blanco de bandera: el 18 se lee por las **banderitas**, no por el tricolor;
+4. el trazo es **de grosor constante con puntas redondeadas**, como el referente,
+   y NO imita el pincel de Brushwell ni los garabatos del `.svg`. Mezclar los dos
+   lenguajes sí sería inventarle un trazo a la marca.
+
+Vive en `src/compositions/hilton/BetweenIlustraS3.tsx`: `GuirnaldaBanderitas` y
+`BrindisTazas`, las dos sobre `viewBox` fijo y escaladas por ancho, así que se
+reusan en cualquier formato sin deformarse.
+
+### El brindis va SIN brazos ni manos — es decisión, no omisión
+
+El referente los tiene y se intentaron dos veces. La mano maciza dejó dos manchas
+café que sobre el beige se leían como borrones; la de contorno dejó dos aros
+cruzando la taza y el asa, que a tamaño de historia no se leían como mano.
+**Una mano mal dibujada es peor que ninguna** — la misma lección que el manual ya
+tiene para las manos generadas con IA. Dos tazas chocándose con sus chispas es un
+pictograma que se lee solo.
+
+### La geometría que hace que se lea un brindis (medida, no estimada)
+
+- bases separadas 160 px y cada taza girada **10° sobre su base** hacia el centro.
+  Ojo con el sentido: la izquierda `rotate(+10)`, la derecha
+  `rotate(-10) scale(-1 1)`. Con los signos al revés las bocas se abren hacia
+  afuera y las tazas quedan a 200 px — no hay brindis;
+- con esos valores las bocas quedan a **8 px**: si se solapan se leen como un
+  objeto raro, si se separan más de ~20 se pierde el gesto;
+- el **asa siempre al lado de afuera**, para que el punto de contacto sea sólo
+  borde contra borde;
+- las chispas van **cortas y metidas entre las dos columnas de vapor**: estiradas
+  hacia afuera se cruzan con las volutas y el remate se lee como una maraña. La
+  recta contra la onda es lo que las distingue del vapor.
+
+## ⭐ 3. «Más similar a la referencia» es la PROPORCIÓN, no sólo el recurso
+
+La ronda 2 ya tenía panel beige y ambiente detrás, y aun así no se parecía: en el
+referente **el cartel ocupa ~80 % del alto y la foto es el marco**, y en la ronda
+2 era un panel chico en la mitad de abajo. Al invertir la proporción —cartel de
+812 × ~1130 arrancando en y=330— la pieza se lee como el referente.
+
+Y el cartel **no lleva alto fijo**. Se probó con `minHeight` para calzar la
+proporción exacta y dejó 160 px de beige muerto al pie: se lee como un error de
+diagramación, no como el aire de un cartel. Se ajusta al contenido.
+
+Además, como el brindis pasó a ser dibujo, la foto del brindis sobraba: el fondo
+es ahora el local **muy desenfocado** con las ampolletas convertidas en manchas
+de luz dorada, que es el papel que cumple el loft del referente.
+
+## Estado
+
+`BW ST 14-09 Cuando es hora de cafe.png` — **APROBADA por Eli el 08-09**. No se
+toca: `scripts/between-st-s3-entrega.py --solo` existe para poder re-subir las
+otras sin tocarla. Las tres, subidas reemplazando el mismo archivo en STORIES
+(`1SNBRIvKLvQSC2bYF3u5_oPL5UumIo-gM`), verificadas por `md5` y por `parents`.

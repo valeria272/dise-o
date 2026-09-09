@@ -7,6 +7,15 @@ contra el 0,5625 de una historia. La diferencia es chica pero real: si se
 reescala sin mas, la pieza se estira un 0,8 % en vertical. Se hace COVER y se
 recorta CENTRADO en el eje que sobra, que es lo que hizo la S3.
 
+⚠️ Y OJO CON EL ORDEN: este script es el que decide qué foto RINDE la pieza.
+El 09-09 se generó una segunda tirada del strudel (plato más chico) y NO se
+volvió a correr esto antes de rendir la entrega, así que la pieza que se subió
+—y que Eli aprobó— salió con la tirada 1. Cuando después sí se corrió, el repo
+dejó de reproducir lo entregado. La tirada 1 quedó restaurada como
+`gen-21-09-strudel.png` y la otra como `_alternativa-21-09-plato-chico.png`.
+**Regla: después de regenerar una escena, correr este script ANTES de rendir, y
+cerrar con `cmp` contra el archivo entregado.**
+
 ⚠️ NO se grada. El manual es explicito con esto («la comida clara se grada con
 mano SUAVE»): la pasada estandar de `between-gradar.py` le quemo las altas al
 croissant y el cliente lo cazo. Las dos escenas salieron ya bien expuestas —

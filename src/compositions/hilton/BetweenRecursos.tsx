@@ -36,6 +36,27 @@ export const ILUSTRACIONES = {
   flechaBucle: 'assets/hilton/between/recursos/flecha-bucle.png',
   flechaGrande: 'assets/hilton/between/recursos/flecha-grande.png',
   flechaCirculo: 'assets/hilton/between/recursos/flecha-circulo.png',
+
+  /**
+   * ⭐ SOL y NUBES — 09-09-2026, pedido de Eli para la ST del 22-09: «la
+   * referencia de la ST tenía líneas de dibujo como BW, debes añadir sol y nubes
+   * como ilustración, guíate de mis editables para dibujarlo correctamente».
+   *
+   * ⚠️ Estos tres NO salen de su `.svg`: se comprobó rindiendo su plancha
+   * completa (composición `BW-Plancha-Trazos`) y ahí sólo hay confeti, corazón,
+   * tres flechas, una flecha abajo y tres globos. O sea que «guíate de mis
+   * editables» es **dibújalos con MI mano**, no «cópialos».
+   *
+   * Se dibujan en `scripts/between-trazos-sol-nubes.py` con su mano MEDIDA sobre
+   * su propio archivo: tinta `#fffaee` (su clase `.st2`, que no es el beige
+   * `#fff9eb` del texto), contorno RELLENO y no trazo —su pincel está expandido
+   * a contornos—, su sombra `drop-shadow-2` (4/4/3, negro 25 %) y el grosor del
+   * trazo al 2 % del ancho del dibujo, que es lo que miden los doodles de la
+   * referencia de contenido.
+   */
+  sol: 'assets/hilton/between/recursos/sol.png',
+  nube: 'assets/hilton/between/recursos/nube.png',
+  nubeChica: 'assets/hilton/between/recursos/nube-chica.png',
 } as const;
 
 export type Ilustracion = keyof typeof ILUSTRACIONES;

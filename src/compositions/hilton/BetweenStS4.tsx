@@ -88,7 +88,7 @@
  *
  * | | 21-09 | 22-09 |
  * |---|---|---|
- * | el cuadro está libre hasta | y=737 (borde del plato) | y=860 (la brocheta de moras) |
+ * | el cuadro está libre hasta | y≈717 (borde del plato) | y=860 (la brocheta de moras) |
  * | tinta que gana arriba | beige 8,2–12,8:1 | beige 14,6–15,7:1 |
  * | costuras (salto entre filas contiguas) | ninguna sobre media+6σ | ninguna sobre media+6σ |
  */
@@ -102,6 +102,7 @@ import {
   PilaDatos,
   TitularBetween,
 } from './BetweenSistema';
+import {Ilustra} from './BetweenRecursos';
 
 const F = 'assets/hilton/between/s4/';
 
@@ -230,15 +231,17 @@ export const StS4Strudel: React.FC<{guia?: boolean}> = ({guia = false}) => (
 
     {/* ⭐ EL BLOQUE ARRANCA EN 400, NO EN 441, y son 41 px MEDIDOS.
         Con el ancla del kit el titular cerraba en y=727 y el borde del plato
-        está en y=737: **10 px de aire**, que a tamaño real se lee como si la
-        caja alta se apoyara en la loza. Subiéndolo, la última línea cierra en
-        ~687 y quedan ~50 px, que es el orden del `aire.tituloACaja` (18) por
-        dos. El precio es el aire logo→tinta: la tinta arranca en 403 y el
-        lockup completo —wordmark + «COFFEE & BAR»— cierra en y=364, así que
-        quedan **39 px** contra los 77 que miden las plantillas de Eli. Es
-        exactamente la concesión que ya se aceptó en la ST del cowork (41 px), y
-        por el mismo motivo: entre respetar el token de aire y que el titular no
-        se apoye en la loza, gana que no se apoye.
+        está en y≈717: la caja alta se apoyaba en la loza. Subiéndolo, la última
+        línea cierra en **686** y el azúcar flor del strudel entra en **721**, o
+        sea **35 px de aire** — medido sobre la pieza ENTREGADA, a 2250: la
+        tinta del titular termina en y=1430 y el bloque siguiente arranca en
+        1503. Es el orden del `aire.tituloACaja` (18) por dos.
+        El precio es el aire logo→tinta: la tinta arranca en 403 y el lockup
+        completo —wordmark + «COFFEE & BAR»— cierra en y=364, así que quedan
+        **39 px** contra los 77 que miden las plantillas de Eli. Es exactamente
+        la concesión que ya se aceptó en la ST del cowork (41 px), y por el
+        mismo motivo: entre respetar el token de aire y que el titular no se
+        apoye en la loza, gana que no se apoye.
         ⚠️ Ojo con medir esto: el bloque de tinta del lockup que devuelve un
         umbral de beige es sólo el WORDMARK (271–330). La bajada «COFFEE & BAR»
         es más fina y no pasa el umbral, así que si se mide contra 330 el aire
@@ -329,28 +332,55 @@ export const StS4Primavera: React.FC<{guia?: boolean}> = ({guia = false}) => (
 
     <LogoBetween formato="story" posicion="arriba" tono="beige" />
 
-    {/* ⭐ EL BLOQUE ARRANCA EN 402 PARA QUE LA TINTA CAIGA EN 441.
+    {/* ⭐ EL CONTENEDOR VUELVE A 441, Y EL MOTIVO ES LA TIPOGRAFÍA.
         `BETWEEN.bloque.yStory` (441) es la primera línea de TINTA, no el borde
-        del contenedor — y Brushwell trae un hueco de ascendente grande, así que
-        con el contenedor en 441 la tinta de «La primavera» aterrizaba en 480:
-        39 px más abajo de lo que dice el token, y 116 px de aire bajo el lockup
-        contra los 77 que miden las plantillas de Eli. Con el contenedor en 402
-        la tinta cae en 441 y el aire vuelve a 77 exactos (el lockup completo
-        —wordmark + «COFFEE & BAR»— cierra en y=364).
-        Y no es cosmético: esos 39 px son los que le faltaban al cierre para no
-        quedar pegado a la brocheta de moras. */}
-    <Columna top={402}>
+        del contenedor, y el desfase entre las dos cosas depende de la FUENTE:
+          · con Brushwell (rondas 1 y 2) el acompañamiento traía un hueco de
+            ascendente de 39 px, así que el contenedor tenía que ir en 402 para
+            que la tinta cayera en 441;
+          · con el acompañamiento en Raleway y en CAJA ALTA —lo que pidió Eli en
+            la ronda 3— ese hueco desaparece: la tinta arranca donde arranca el
+            contenedor.
+        Medido en los dos casos, el aire bajo el lockup queda en los 77 px de
+        sus plantillas (el lockup completo —wordmark + «COFFEE & BAR»— cierra en
+        y=364). ⚠️ O sea que el ancla NO se copia entre piezas si cambia la
+        fuente del acompañamiento: se rinde y se mide la tinta. */}
+    <Columna top={BETWEEN.bloque.yStory}>
+      {/* ⭐ RONDA 3 (09-09) — Eli: «los títulos que sean en raleway semi bold».
+          Dos cambios en una frase, y los dos van con la gramática que la marca
+          ya tiene escrita:
+            · `scriptSans` pasa el acompañamiento de Brushwell a Raleway. Es el
+              mismo recurso que ella pidió el 01-09 para las slides interiores
+              del Cowork («que sea de la familia de raleway»), así que la script
+              queda como marca de PORTADA y esta historia va a un solo alfabeto.
+            · `pesoCaps` 600 baja la caja alta del ExtraBold de siempre a
+              SemiBold. Es opt-in a propósito: el 800 está calibrado con el
+              tracking y los anchos de cifra del kit, y moverlo por defecto
+              re-flujaría toda pieza aprobada.
+          ⚠️ SemiBold es más angosto, así que `ajustarACaber` sube el cuerpo
+          dentro de la misma columna de 810: la línea pesa menos pero ocupa
+          igual, y la jerarquía la sostiene el TAMAÑO. */}
       <TitularBetween
         script="La primavera"
         caps="Se disfruta así."
+        scriptSans
+        pesoCaps={600}
         alinear="centro"
         tono="beige"
         anchoDisponible={BETWEEN.bloque.columna}
       />
+      {/* «segundo texto añádele un poco más de grosor»: Regular (400) → Medium
+          (500). Un paso, no dos: con el titular en SemiBold (600), 500 mantiene
+          el salto de peso entre título y párrafo, y 600 los igualaría. */}
       <Bajada
         size={40}
         tono="beige"
-        style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: 'center', whiteSpace: 'pre-line'}}
+        style={{
+          marginTop: BETWEEN.aire.tituloABajada,
+          textAlign: 'center',
+          whiteSpace: 'pre-line',
+          fontWeight: 500,
+        }}
       >
         {'Un milkshake, nuestra terraza\ny una pausa al sol.'}
       </Bajada>
@@ -364,13 +394,56 @@ export const StS4Primavera: React.FC<{guia?: boolean}> = ({guia = false}) => (
           ~830 y la brocheta de moras entra en y=860, o sea 30 px de aire.
           De paso la franja de abajo queda de pura fotografía, que es lo que
           hace la ST del cowork del 16-09. */}
+      {/* ⭐ RONDA 3 — «el último que sea más abajo estilo un poco más grande, no
+          se lee bien». Las dos cosas son la misma: la bajada estaba a 34 px y a
+          20 px del párrafo, o sea pegada y más chica que él, y así no se leía
+          como tercer nivel — se leía como una nota al pie del párrafo.
+          Sube a 38 px y el aire sobre ella pasa de 20 a 44: el salto ENTRE
+          niveles queda mayor que el salto DENTRO del párrafo (interlínea ~56 a
+          40 px de cuerpo), que es la regla de jerarquía del manual.
+          El sitio para bajarla sale de que el titular ahora es SemiBold en
+          Raleway y no Brushwell: el acompañamiento en caja alta es más bajo que
+          la script y libera ~24 px de alto de bloque. */}
       <Cierre
-        style={{marginTop: 20}}
-        size={34}
+        style={{marginTop: 44}}
+        size={38}
       >
         Ven a disfrutarlo en Between.
       </Cierre>
     </Columna>
+
+    {/* ⭐ SOL Y NUBES — «la referencia de la ST tenía líneas de dibujo como BW,
+        debes añadir sol y nubes como ilustración». Dibujados con su mano en
+        `scripts/between-trazos-sol-nubes.py` (ver la nota de `ILUSTRACIONES`).
+
+        Las tres posiciones salen de la silueta MEDIDA de la copa —el batido
+        morado ocupa x 360–730 de y=860 a y=1560— y de las dos franjas que el
+        texto y el sticker ya ocupan. Ninguno toca el producto: la regla de la
+        marca es que el repertorio de línea se apoya en el FONDO.
+          · el sol arriba a la izquierda, como en la referencia, cerrando en
+            y=432 (la primera tinta del titular entra en 441);
+          · la nube grande a la derecha del vaso, sobre el follaje oscuro
+            (L=82 medido, o sea que el trazo beige se lee);
+          · la nube chica abajo a la izquierda, en y=1400–1536, que es más
+            oscuro que la franja de 1200 (L=67 contra L=143) y queda dentro de
+            la zona segura.
+        Los TAMAÑOS también son el hueco que hay, no un gusto. Medida la tinta
+        del texto sobre el render: la script entra en y=441 y su primera letra
+        en x=238, así que en la esquina de arriba a la izquierda caben 185 px
+        de sol y ni uno más — y el sol es el único que se deja ENTERO, porque
+        es el que está pegado a la franja donde Instagram pone su interfaz.
+
+        ⭐ LAS NUBES SANGRAN POR EL BORDE, y eso lo dice la referencia: sus dos
+        nubes tienen bbox `x 0–192` y `x 736–1079`, o sea que las DOS se salen
+        del cuadro. Es lo que les permite leerse grandes sin apretar la pieza.
+        Acá van a 330 y 300 px saliéndose 80 y 58 px por su lado, contra los
+        260 y 250 que caben enteras — con las mismas medidas de la referencia
+        (192 y 342 normalizados a 1080).
+        `opacidad` 0,85–0,9: la regla de uso de Eli es que las ilustraciones
+        «acompañan, no dominan». */}
+    <Ilustra cual="sol" x={50} y={248} ancho={185} opacidad={0.9} />
+    <Ilustra cual="nube" x={828} y={876} ancho={330} opacidad={0.88} />
+    <Ilustra cual="nubeChica" x={-58} y={1330} ancho={300} opacidad={0.85} />
 
     {guia ? (
       <ZonaReservada zona={ZONA_ENLACE} etiqueta={'STICKER\nDE ENLACE\n(carta)\n300 × 140'} />

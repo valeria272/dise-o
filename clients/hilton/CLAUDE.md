@@ -5726,3 +5726,108 @@ lo que la referencia hace y lo que la ronda 1 de la S3 no pudo hacer.
    primavera se resolvió **por la luz** —follaje a contraluz, ampolletas, verde
    luminoso— como el brindis del 18-09 se resolvió con dos tazas de verdad. Si
    el sol y las nubes tienen que estar, hacen falta los trazos en `.svg`.
+
+## ⭐⭐ 4 ter. RONDA 3 del 22-09 (09-09-2026) — el sol, las nubes y la jerarquía
+
+Eli aprobó la del Strudel («la uno de la historia aprobada») y devolvió la del
+milkshake con cuatro cosas, tres de ellas marcadas sobre una captura: **rojo el
+título, amarillo el segundo texto, verde la bajada.**
+
+### 1. «Debes añadir sol y nubes como ilustración, guíate de mis editables»
+
+⚠️ **En su editable NO hay sol ni nubes.** Se comprobó rindiendo su plancha
+completa —`Flechas y trazados, globos BETWEEN.svg`
+(`1EZHJab1Rp8c8vuTHqAehF6tCk-CiRsXa`)— con la composición nueva
+`BW-Plancha-Trazos`: lo que hay es confeti, un corazón, tres flechas y tres
+globos, o sea exactamente los ocho que ya estaban extraídos.
+
+> Así que **«guíate de mis editables» no es «cópialos»: es «dibújalos con MI
+> mano»**. Y eso reemplaza a la regla anterior del manual («los trazos no se
+> dibujan: ya existen»), que sigue valiendo para los ocho que existen pero no
+> puede bloquear un elemento que la referencia pide y ella autoriza.
+
+Su mano, medida sobre su propio archivo (`scripts/between-trazos-sol-nubes.py`):
+
+| qué | valor | de dónde |
+|---|---|---|
+| tinta | **`#fffaee`** | su clase `.st2`. ⚠️ **No** es el beige `#fff9eb` del texto |
+| construcción | **contorno RELLENO, no trazo** | 1811 `<path>` y 178 `<polygon>` con `fill` y cero `stroke`: su pincel está expandido a contornos |
+| sombra | `dx 4 · dy 4 · blur 3 · negro 25 %` | su filtro `drop-shadow-2` |
+| grosor | **~4,5 px** en su lienzo de 2660 | transformada de distancia sobre el alfa |
+
+Y el **tamaño** sale de la referencia de contenido, no de la plancha: los doodles
+blancos de `Ref S4 Storie 2.jpg`, normalizados a 1080 de ancho, miden 263 (sol) y
+192 y 342 (nubes) con 4–5,5 px de trazo. O sea que **el trazo pesa ~2 % del ancho
+del dibujo** — ése es el número que hay que conservar al escalar.
+
+⛔ Un `stroke` de ancho constante se ve de vector al lado de los suyos. Cada
+trazo se construye como polígono: se recorre la línea central y se ofrecen los
+costados a una semi-anchura que **se afina en las puntas** (perfil `sin(πt)^0,35`)
+y **respira** con ruido de baja frecuencia.
+⛔ Y la nube no son medios círculos sueltos: así se juntan ABAJO y quedan muescas
+en V. Es la **envolvente superior** de los lomos, que los suelda por el flanco de
+arriba.
+
+### ⭐ 2. Las nubes SANGRAN por el borde, y eso lo dice la referencia
+
+Sus dos nubes tienen bbox `x 0–192` y `x 736–1079`: las dos se salen del cuadro.
+**Es lo que les permite leerse grandes sin apretar la pieza.** Con las nubes
+enteras dentro del margen sólo cabían 260 y 250 px y se leían como dibujitos;
+sangrando 80 y 58 px van a 330 y 300.
+
+⚠️ El sol es el único que va **entero**: está pegado a la franja de 250 px donde
+Instagram pone su interfaz, y ahí lo taparía. Su tamaño (185 px) no es una
+elección sino el hueco que queda: medida la tinta del render, la script entra en
+y=441 y su primera letra en x=238.
+
+⚠️ Y `between-qa.py` va a marcar «texto a 0 px del borde» en toda pieza con
+sangrado. **Es la ilustración, no texto** — se verifica imprimiendo dónde están
+los píxeles marcados, igual que con la comida clara.
+
+### 3. La jerarquía: título · párrafo · bajada
+
+| nivel | antes | ahora | por qué |
+|---|---|---|---|
+| título | Brushwell + Raleway **ExtraBold 800** | las dos líneas en Raleway **SemiBold 600** | «los títulos que sean en raleway semi bold». `scriptSans` + la prop nueva `pesoCaps` |
+| párrafo | Raleway Regular 400 | Raleway **Medium 500** | «añádele un poco más de grosor». Un paso, no dos: con el título en 600, un 600 acá los igualaría |
+| bajada | 34 px, a 20 px del párrafo | **38 px, a 44 px** | «que sea más abajo estilo un poco más grande, no se lee bien» — estaba más chica que el párrafo y pegada a él, o sea leyéndose como su nota al pie |
+
+⭐ **`pesoCaps` es opt-in en `TitularBetween`,** igual que `anchoDisponible` y
+`trackingCapsEm`: el ExtraBold está calibrado con el tracking y los anchos de
+cifra del kit, y cambiar el defecto re-flujaría toda pieza aprobada. Comprobado:
+con la prop puesta, la ST del cowork del 16-09 re-rinde con **0 píxeles** de
+diferencia.
+
+⚠️ **Un peso más liviano es más angosto**, así que `ajustarACaber` sube el cuerpo
+dentro de la misma columna: la línea pesa menos y ocupa igual. Hay que mirar el
+render.
+
+### ⛔⛔ 4. Y el ancla del bloque DEPENDE DE LA FUENTE del acompañamiento
+
+`BETWEEN.bloque.yStory` (441) es la primera línea de **tinta**, no el borde del
+contenedor, y el desfase entre las dos cosas cambia con la tipografía:
+
+| acompañamiento | desfase contenedor → tinta | contenedor |
+|---|---|---|
+| Brushwell (rondas 1–2) | **39 px** de hueco de ascendente | 402 |
+| Raleway en caja alta (ronda 3) | **0 px** | 441 |
+
+O sea que **el `top` de una pieza no se copia a otra si cambia la fuente**: se
+rinde y se mide la tinta. Con Brushwell y el contenedor en 441 la tinta caía en
+480 y el aire bajo el lockup era de 116 px contra los 77 de sus plantillas.
+
+### ⛔⛔⛔ 5. La trampa que casi dejó el repo mintiendo
+
+Se generó una segunda tirada del Strudel (plato más chico) y **no se volvió a
+correr `between-st-s4-fotos.py` antes de rendir la entrega**, así que la pieza
+que se subió —y que Eli aprobó— salió con la tirada 1. Cuando el script sí se
+corrió, más tarde y por la otra pieza, el repo empezó a reproducir una foto que
+NUNCA se entregó: 92 % de los píxeles distintos.
+
+> **Después de regenerar una escena hay que correr el paso de assets ANTES de
+> rendir, y cerrar SIEMPRE con `cmp` contra el archivo entregado.** El `cmp`
+> solo no basta como diagnóstico —la cabecera del PNG cambia siempre— así que
+> cuando falla hay que medir: píxeles distintos, bbox de la tinta y corrimiento.
+> Con eso se vio que la ST del cowork estaba intacta (0 px) y que el Strudel no.
+> Quedó restaurada la tirada aprobada; la otra vive como
+> `_alternativa-21-09-plato-chico.png`.

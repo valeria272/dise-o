@@ -1110,6 +1110,21 @@ export const TitularBetween: React.FC<{
    * grande y comprimida— pero hay que mirar el resultado, no suponerlo.
    */
   trackingCapsEm?: number;
+  /**
+   * ⭐ PESO de la caja alta del titular, y del acompañamiento cuando va en
+   * Raleway (`scriptSans`). Por defecto ExtraBold (800), que es el valor MEDIDO
+   * en la pieza de referencia y con el que están calibrados el tracking y los
+   * anchos de cifra — así que es OPT-IN por la misma razón que `anchoDisponible`
+   * y `trackingCapsEm`: cambiar el defecto re-flujaría toda pieza ya aprobada.
+   *
+   * Se pasa a mano cuando la diseñadora lo pide para una pieza. Eli, 09-09-2026,
+   * sobre la ST del 22-09: «los títulos que sean en raleway semi bold».
+   *
+   * ⚠️ Un peso más liviano es más ANGOSTO, así que `ajustarACaber` va a permitir
+   * un cuerpo mayor dentro del mismo `anchoDisponible`. Es lo correcto —la línea
+   * ocupa la columna igual— pero hay que MIRAR el render, no suponerlo.
+   */
+  pesoCaps?: number;
   tono?: Tono;
   alinear?: 'centro' | 'izquierda';
   /**
@@ -1144,6 +1159,7 @@ export const TitularBetween: React.FC<{
   sizeScript,
   aireScriptATitulo,
   trackingCapsEm,
+  pesoCaps,
   tono = 'beige',
   alinear = 'centro',
   anchoDisponible = 1080 - 2 * BETWEEN.bloque.margenX,
@@ -1173,9 +1189,13 @@ export const TitularBetween: React.FC<{
 
   const trScript = scriptSans ? 0.02 : BETWEEN.trackingScript;
   const trCaps = trackingCapsEm ?? BETWEEN.trackingCaps;
-  const cssCaps = (n: number) => `${BETWEEN.pesos.extrabold} ${n}px ${BETWEEN.fuentes.sans}`;
+  const wCaps = pesoCaps ?? BETWEEN.pesos.extrabold;
+  // el acompañamiento en Raleway sigue al titular: si el titular baja de peso,
+  // baja con él (Medium 500 cuando el titular está en el ExtraBold de siempre).
+  const wScript = pesoCaps ?? 500;
+  const cssCaps = (n: number) => `${wCaps} ${n}px ${BETWEEN.fuentes.sans}`;
   const cssScript = (n: number) => scriptSans
-    ? `500 ${n}px ${BETWEEN.fuentes.sans}`
+    ? `${wScript} ${n}px ${BETWEEN.fuentes.sans}`
     : `${n}px ${BETWEEN.fuentes.script}`;
 
   const encoger = (texto: string, base: number, css: (n: number) => string, tr: number) => {
@@ -1274,7 +1294,7 @@ export const TitularBetween: React.FC<{
             scriptSans ? textoScript : signosVolteados(textoScript),
             tScript, nScript, 0,
             scriptSans
-              ? {fontFamily: BETWEEN.fuentes.sans, fontWeight: 500, letterSpacing: '0.02em'}
+              ? {fontFamily: BETWEEN.fuentes.sans, fontWeight: wScript, letterSpacing: '0.02em'}
               : {fontFamily: BETWEEN.fuentes.script, letterSpacing: `${BETWEEN.trackingScript}em`},
           )
         : null}
@@ -1286,7 +1306,7 @@ export const TitularBetween: React.FC<{
           <React.Fragment key={i}>
             {linea(l, tCapsPorLinea[i], nCaps, arriba, {
               fontFamily: BETWEEN.fuentes.sans,
-              fontWeight: BETWEEN.pesos.extrabold,
+              fontWeight: wCaps,
               letterSpacing: `${trCaps}em`,
               textTransform: 'uppercase',
             })}

@@ -1,0 +1,82 @@
+{
+  "01-entrada": [
+    "01-entrada-01.jpg",
+    "01-entrada-02.jpg",
+    "01-entrada-03.jpg",
+    "01-entrada-08.jpg",
+    "01-entrada-09.jpg",
+    "01-entrada-11.jpg"
+  ],
+  "02-recepcion": [
+    "02-recepcion-02.jpg",
+    "02-recepcion-05.jpg",
+    "02-recepcion-08.jpg",
+    "02-recepcion-10.jpg",
+    "02-recepcion-11.jpg",
+    "02-recepcion-12.jpg"
+  ],
+  "03-lobby": [
+    "03-lobby-04.jpg",
+    "03-lobby-05.jpg",
+    "03-lobby-06.jpg",
+    "03-lobby-08.jpg",
+    "03-lobby-09.jpg",
+    "03-lobby-11.jpg"
+  ],
+  "04-habitaciones": [
+    "04-habitaciones-01.jpg",
+    "04-habitaciones-b09.jpg",
+    "04-habitaciones-03.jpg",
+    "04-habitaciones-05.jpg",
+    "04-habitaciones-b05.jpg",
+    "04-habitaciones-08.jpg"
+  ],
+  "05-cowork": [
+    "05-cowork-b08.jpg",
+    "05-cowork-b07.jpg",
+    "05-cowork-b09.jpg",
+    "05-cowork-b04.jpg",
+    "05-cowork-b06.jpg",
+    "05-cowork-b01.jpg"
+  ],
+  "06-cafeteria": [
+    "06-cafeteria-04.jpg",
+    "06-cafeteria-06.jpg",
+    "06-cafeteria-12.jpg",
+    "06-cafeteria-07.jpg",
+    "06-cafeteria-08.jpg",
+    "06-cafeteria-10.jpg"
+  ],
+  "07-restaurant": [
+    "07-restaurant-03.jpg",
+    "07-restaurant-04.jpg",
+    "07-restaurant-05.jpg",
+    "07-restaurant-08.jpg",
+    "07-restaurant-11.jpg",
+    "07-restaurant-07.jpg"
+  ],
+  "08-gimnasio": [
+    "08-gimnasio-01.jpg",
+    "08-gimnasio-02.jpg",
+    "08-gimnasio-03.jpg",
+    "08-gimnasio-07.jpg",
+    "08-gimnasio-09.jpg",
+    "08-gimnasio-10.jpg"
+  ],
+  "09-wellness-spa": [
+    "09-wellness-spa-01.jpg",
+    "09-wellness-spa-03.jpg",
+    "09-wellness-spa-04.jpg",
+    "09-wellness-spa-07.jpg",
+    "09-wellness-spa-08.jpg",
+    "09-wellness-spa-10.jpg"
+  ],
+  "10-salones": [
+    "10-salones-01.jpg",
+    "10-salones-02.jpg",
+    "10-salones-03.jpg",
+    "10-salones-05.jpg",
+    "10-salones-07.jpg",
+    "10-salones-08.jpg"
+  ]
+}

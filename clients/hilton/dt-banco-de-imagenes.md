@@ -95,6 +95,85 @@ Más `Rooms.rar` de 484 MB.
 
 ---
 
+---
+
+## ⭐⭐ Qué tiene y qué le falta a la sesión, medido el 09-09-2026
+
+Medido al armar el MoodBoard de la sesión nueva. **Antes de pedir una foto, mira acá.**
+
+### Lo que es video de iPhone y NO fotografía
+
+Cuatro espacios importantes **no tienen una sola foto** — sólo `.MOV` y `.HEIC` de iPhone:
+
+| Espacio | Carpeta | Qué hay |
+|---|---|---|
+| **GYM** | `1Xl8ECYMSqtfJNlseP9zddRi9gI43Kz6i` | 7 `.MOV` |
+| **CO WORK** | `1HbSgFhpS05ECStx-zMfiauTK83l55xKd` | `.MOV` + `.HEIC`, jul 2026 |
+| **Salones Astoria** | `1jJ3DUmc8sLom1DwoQ52kXfW2JUzU35SM` | 7 `.MOV`, feb 2026 |
+| **Salones Conrat** | `1yUI_TL9XV6Fstp15hbpbdDq6PfPtZe1G` | 5 `.MOV`, feb 2026 |
+| **Evento salón** | `162sOJdK_e87plDpa1Xj7_kGIFmzMF1ny` | 6 `.MOV`, abr 2026 |
+
+⚠️ **`.HEIC` no lo abren ni Chrome ni Remotion.** Y un fotograma de `.MOV` de iPhone
+sirve como foto sólo si se verifica la resolución antes de darlo por bueno.
+
+### La sesión profesional sí cubre los salones — y esto es lo que le falta
+
+`Hotel sesión general` → **`FINAL 1`** (`1qzlFChmIc_xAKE8Rb1A3uUJXjLQ9bnYm`) es la
+**sesión de eventos corporativos**: Astoria y Conrat montados en escuela, en U, en
+mesa redonda y board room, más el coffee break y el salón alto con vista.
+**370 archivos.** Dentro hay `JPG` (20–27 MB) y ⭐ **`JPG Baja sin editar`**
+(`1kmN5buJleiE4KLwjXGZqskNuRFrwliO5`, **1920×1280 y ~1,6 MB**) — para referencia y
+maquetas usa **la baja**, no la pesada.
+
+`FINAL 2` → `JPB Baja sin editar` (`1u7Ed05OwRkmTbmqoLEo_lHEYXfID2P0-`, 265 archivos)
+trae habitaciones, restaurante, lobby, bar y **las terrazas reales**
+(`_MG_9380` jardín vertical · `_MG_9398` · `_MG_9463` terraza cubierta con vista ·
+`_MG_0697` comedor abierto a la terraza), el **escritorio de trabajo** (`_MG_9627`),
+la **cafetera con tazas** (`_MG_0633`) y las habitaciones con escritorio
+(`_MG_0286` · `_MG_0321` · `_MG_0376`).
+
+**Los cuatro huecos, medidos sobre una muestra de 48 de cada carpeta:**
+
+1. ⛔ **Casi todo es horizontal.** En la muestra de salones, **4 de 48 son verticales
+   (~8 %)**. Para historias 9:16 **no hay material** y recortar el 3:2 no deja hueco
+   para el texto — ver [[foto-se-produce-no-se-recorta]].
+2. ⛔ **Un solo encuadre repetido:** gran angular desde la esquina, sala vacía, a la
+   altura del pecho. Cuarenta fotos casi idénticas.
+3. ⛔ **Casi no hay plano de detalle** — el puesto, la carpeta, la taza, el vaso. Son
+   justo los que sirven para historia y para carrusel.
+4. ⛔ **Nadie en cuadro.** Correcto para la regla de rostros, pero para vender el
+   cowork y los salones a una empresa **falta la persona desenfocada** con el PC y el
+   café en foco. Eli, 09-09-2026: el espacio manda y la persona va fuera de foco.
+
+### ⭐ Dos huecos más, medidos el 09-09-2026
+
+**⛔ La COOKIE no está fotografiada como producto, y es el ícono de la marca.**
+`COOKIE DAY 2026` (`1M5-zVEbGgc-FYyjReuqPjZdxkRi3hRYp`) son **`.HEIC` de iPhone del
+evento interno**: el equipo posando con carteles y paletas de galleta, todos con
+rostro. Sirve de registro de la actividad, **no** de imagen de producto. No hay una
+sola foto de la cookie en plato, en bolsita ni entregada en mano.
+*(Los `.HEIC` sí se pueden abrir: `pip install pillow-heif` y
+`pillow_heif.register_heif_opener()` antes de `Image.open`.)*
+
+**⛔ Del FRONTIS casi no hay nada, y lo que hay no baja.** En el banco maestro,
+`Fachada` (`1MilPQGVDJQiFXkFcAmb0Swgu17u9E5Ob`) tiene `Foto fachada.tif` (27 MB),
+`Exterior 2.jpg` (348 KB) y `156.jpg` (113 KB); `Business Center`
+(`1eC0r2r0czUv8zV8H9esbnplZ28JekFD_`) tiene **una sola foto**. ⚠️ **El banco maestro
+`Imágenes` no está compartido por enlace**: `embeddedfolderview` da `401` y
+`uc?export=download` devuelve los ~908 KB de la página de login. Se buscaron copias
+por título y las que aparecen son de **otros clientes**, no del DoubleTree.
+**Se destraba compartiendo esa carpeta.**
+
+> 📌 **Decisión de contenido (Eli, 09-09-2026):** DT se enfoca en el **desayuno buffet
+> del restaurante**, no en el desayuno en la habitación. Las bandejas de room service
+> de la sesión (`_MG_9665`, `_MG_9681`) pasan a segundo plano.
+
+> 🗂️ **El moodboard de la sesión nueva son 75 láminas** —referencias por espacio, en los
+> dos formatos (post horizontal / historia vertical) y con láminas de «lo que ya
+> tenemos» al lado de cada una—. El criterio vive en `scripts/dt-moodboard-definir.py`,
+> se arma con `dt-moodboard-armar.py` y se sube con `dt-moodboard-subir.py --actualizar`.
+
+
 ## Lo que sigue faltando
 
 - **`Zona segura PNG.png`** — la plantilla de zonas seguras de historia que Eli monta

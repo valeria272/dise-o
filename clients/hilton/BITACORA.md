@@ -1,3 +1,61 @@
+## 2026-09-09 (CIERRE 3 · tarde) — Eli (Windows), DOUBLETREE: el moodboard de la sesión de fotos
+
+**Qué se hizo.** Se armó el **moodboard para la sesión fotográfica del hotel**, de cero
+y en seis rondas de pedidos de Eli: frontis, entrada, recepción, check-in, lobby,
+pasillos, ascensores, los **cinco tipos de habitación**, cowork (espacio, sillones y
+mesas, y trabajo con persona desenfocada), cafetería, las dos terrazas, restaurante,
+desayuno buffet, gimnasio, wellness, eventos corporativos, el salón real (entrada,
+señalética, pantalla + mesas, montaje sencillo tipo cowork) y mesas redondas. Cada
+lámina lleva escrita **la regla de rostros que aplica** y el formato —POST horizontal
+/ HISTORIA vertical—. Se entregaron **75 láminas**.
+
+**⭐ El hallazgo de la sesión, y vale más que el entregable.** Se midió el banco real
+del hotel y **casi nada de lo que la cuenta necesita está fotografiado**:
+
+- **Todo `CONTENIDO HOTEL 2026` es video de iPhone.** Los cinco tipos de habitación,
+  el exterior, el wellness, el gym, el cowork y los salones Astoria/Conrat: **puros
+  `.MOV` y `.HEIC`**. La carpeta «Exterior hotel» tiene **un solo archivo, y es video**.
+- **La sesión profesional (`FINAL 1`, 370 archivos) sí cubre los salones** y no se
+  estaba usando. Pero medido sobre muestras de 48: **~92 % horizontal** (4 verticales
+  de 48, o sea **para historias 9:16 no hay material**), **un solo encuadre repetido**
+  cuarenta veces, **casi ningún plano de detalle** y **nadie en cuadro**.
+- ⛔ **La COOKIE no existe fotografiada como producto**, siendo el ícono de la marca:
+  `COOKIE DAY 2026` son fotos del **evento interno** del equipo posando con carteles.
+- ⛔ **Del FRONTIS casi no hay nada** y no baja: el banco maestro `Imágenes` no está
+  compartido por enlace (401 / página de login), y no hay copias por título.
+
+**Dónde quedó.** El moodboard de 75 láminas en
+[Drive](https://docs.google.com/presentation/d/1PC0mqZF2iW78uFSGAzvHJYz7Ok-W9S8VzYrYt2NR-28/edit).
+**Eli lo rearmó en su propio documento** —«MoodBoard Hotel sesión», 44 láminas, portada
+COPYWRITERS 2026— con su plantilla y su nomenclatura. Se midió esa plantilla y se le
+dejaron las **7 láminas que faltaban, calcadas a ella**, en un archivo aparte para
+copiar y pegar:
+[láminas que faltan](https://docs.google.com/presentation/d/19-XE-aevwu6ZYGgakXNoEhMbYDBwYkG8pq2u8nTegP4/edit).
+Código: `scripts/dt-moodboard-{pinterest,definir,armar,subir,laminas-eli}.py` y
+`clients/hilton/dt-moodboard-laminas.json`. Diagnóstico completo del material en
+`clients/hilton/dt-banco-de-imagenes.md`.
+
+**Qué sigue.** **Medir la geometría de DT** sobre las 3 piezas aprobadas del Family
+Time y con eso cerrar `marca.json` + `src/brand/doubletree.ts` + `reglas.yaml` — es lo
+que quedó pendiente desde la mañana y no se alcanzó.
+
+**Abierto.**
+- ⛔ **Para Eli, antes de escribir `reglas.yaml`:** ¿entra primero la geometría, o los
+  dos checks nuevos de `qa/checks.py` (`titulo_sin_punto`, `caja_uniforme`)? Un
+  `reglas.yaml` parcial haría que `qa/motor.py --marca hilton` empiece a aprobar con
+  cobertura incompleta. **Se preguntó dos veces y sigue sin respuesta.**
+- ⛔ **Compartir el banco maestro `Imágenes`** (`1A38ASrVjXdTt1s4nMr2tnfG-15--RmYR`) o
+  arrastrar a mano `Fachada` y `Business Center`: hoy no bajan.
+- **Tres planos que la sesión tiene que producir sí o sí** porque no existen en ningún
+  lado: **la cookie, el frontis y el gimnasio**.
+- ⚠️ **Nomenclatura:** Eli rotula los locales **con su marca** (`CAFETERÍA BW`,
+  `RESTAURANT QB`, `TERRAZA DE QB`). Lo de «no como marca» que dijo era sobre el
+  tratamiento de la foto, no sobre el título. **Su rótulo manda.**
+- Siguen frenadas: `STORIES J` del 21-09 (dice «desde $109.000», §G), las tres fuentes
+  que faltan y la carpeta de la reseña del 14-09.
+
+---
+
 ## 2026-09-09 (CIERRE 3 · tarde) · Eli (Windows) — PISO18: la marca entra al sistema, y entra como marca propia
 
 Primera vez que el estudio abre **Piso18**. Arrancó con `/abrir piso18`.

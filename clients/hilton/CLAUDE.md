@@ -149,14 +149,34 @@ un pedido de redefinir el brief — el formato lo fija el cliente (ver §G).
 
 | Programa | Precio vigente | Nota |
 |---|---|---|
-| **Family Time** | **$125.000** | Precio **e incluidos** pueden cambiar. **La fuente de verdad es el último carrusel que dejó Eli** — ése está vigente. Eli avisa cuando cambie algo |
-| ⛔ | | **Ese carrusel NO está en esta máquina.** Es `C1 FT N°1.png` (6,73 MB) + `C1 FT N°2.png` (3,03 MB), y Eli los dejó el 08-09 20:15Z en la carpeta de Drive **`C1 FAMILY TIME`** (`1eCrtkz0HUAiDT27qlXlKm8xKJxjKvJ-p`). **No se pueden bajar desde acá:** por enlace llega la página de login (no está compartida) y el conector devuelve contenido vacío. **Hay que traerlos a `raw/hilton/dt/aprobadas-sept/` a mano, o compartir la carpeta por enlace.** Mientras no estén, la regla del Family Time está escrita pero **no es ejecutable** |
+| **Family Time** | **$125.000** | Precio **e incluidos** pueden cambiar. **La fuente de verdad es el último carrusel que dejó Eli** — ése está vigente. Eli avisa cuando cambie algo. ⭐ **Leído del carrusel el 09-09** (`raw/hilton/dt/aprobadas-sept/C1 FT N2.png`): **`$125.000`** con **`IVA INCLUIDO`** bajo la cifra, y tres incluidos con ícono de línea: **Habitación doble** · **2 adultos + 2 niños hasta 12 años** · **Desayuno buffet**. Correo `reservas.dtv@hilton.com`. Legal al pie: `*Válido de jueves a domingo y festivos. Sujeto a disponibilidad.` **Esto va literal, no se parafrasea** |
+| ✅ | | **El carrusel YA está en esta máquina** (09-09): `raw/hilton/dt/aprobadas-sept/C1 FT N1.png` (6 733 610 B) + `C1 FT N2.png` (3 029 114 B) + `DT FT S3.png` (6 709 065 B), los tres **2250 × 2813 RGBA**. La regla del Family Time ya **es ejecutable**. ⭐ **Cómo se consiguieron, porque importa:** la carpeta `C1 FAMILY TIME` (`1eCrtkz0HUAiDT27qlXlKm8xKJxjKvJ-p`) **sigue sin bajar** — por enlace da login y `download_file_content` del conector responde «session expired» con esos dos IDs. Lo que funcionó fue **buscar las COPIAS por título**: la misma pieza vive en cuatro carpetas y la de `1t1RJXuj5L5r7KQBzmTRfL90jwpBk2E5v` **sí es pública** (`uc?export=download` la entrega completa). **Bytes idénticos a los que declara Drive** — no es una re-exportación |
 | **Escapada Romántica** | **$99.000** | ⭐ Puede aparecer una **promo con descuento** sobre los $99.000, **sólo cuando el cliente la pida**. **No es permanente.** La de **septiembre 2026 fue de `$89.000`** (ventana de reserva 11 al 20 de septiembre, Fiestas Patrias) |
 | **Noche de Bodas** | **$189.000** | Confirmado por Eli el 09-09 |
 
 ⚠️ **La promo tiene fecha de vencimiento y hay que desarmarla.** Cuando termine el mes
 hábil de la promo, **las piezas gráficas se cambian y el precio vuelve a $99.000**. O
 sea: una pieza con $89.990 **no se reutiliza** al mes siguiente sin editarla.
+
+#### Cómo volver a bajar el carrusel de Family Time (otra máquina, o si se borra)
+
+`raw/` no viaja en git, así que en una máquina nueva estos tres PNG **no están**.
+Bajan con un comando, sin token y sin conector — son las copias **públicas**:
+
+```bash
+D="raw/hilton/dt/aprobadas-sept"; mkdir -p "$D"
+curl -sL "https://drive.google.com/uc?export=download&id=1qenMhGf_lXBonh4In6WtrBLjXn17iMao" -o "$D/C1 FT N1.png"
+curl -sL "https://drive.google.com/uc?export=download&id=1inVo4vJHzc5ADhG_luVg0HXzdxJtHxGs" -o "$D/C1 FT N2.png"
+curl -sL "https://drive.google.com/uc?export=download&id=1lKek-0QcEVgWs5S5s685XhafuuuHsFWS" -o "$D/DT FT S3.png"
+```
+
+**Verifica el tamaño antes de confiar** — si llega ~900 KB de HTML es la página de
+login, no el PNG: deben pesar **6 733 610**, **3 029 114** y **6 709 065** bytes, y
+los tres son **2250 × 2813 RGBA**.
+
+⛔ **No sirven los IDs de las otras tres carpetas** (`C1 FAMILY TIME`, `C1 FT` de la
+entrega DT, ni la de agosto): esas piden login. Los IDs de arriba son los que
+funcionan, y viven en `1t1RJXuj5L5r7KQBzmTRfL90jwpBk2E5v`.
 
 ### D. Las fotos de los programas: propias, con el rostro cambiado
 

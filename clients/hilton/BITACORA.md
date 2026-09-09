@@ -1,3 +1,94 @@
+## 2026-09-09 (CIERRE 2 · tarde) · Eli (Windows) — DOUBLETREE: cae el bloqueante del Family Time, y la lección es de método
+
+Sesión corta, de una sola cosa, y esa cosa era el **bloqueante número uno** que dejó
+el cierre de esta mañana. Arrancó con `/abrir Doubletree`.
+
+**Qué se hizo:**
+
+1. **`/al-dia` acotado a DT: sin ronda nueva.** El sheet `DOUBLETREE | GRILLA
+   SEPTIEMBRE 2026` sigue en **`08-09 20:42:32Z`** — la marca de tiempo *exacta* de la
+   instantánea de la mañana. El estado del mes no se movió, y Eli no subió archivos hoy.
+2. **⭐⭐ Se bajó el carrusel de Family Time, que ayer se declaró imposible.** Ya está en
+   `raw/hilton/dt/aprobadas-sept/`: `C1 FT N1.png` (6 733 610 B), `C1 FT N2.png`
+   (3 029 114 B) y de paso `DT FT S3.png` (6 709 065 B) — los tres **2250 × 2813 RGBA**
+   y con **bytes idénticos** a los que declara Drive, así que no son re-exportaciones.
+   **La regla del Family Time pasó de escrita a ejecutable.**
+3. **Se leyó el carrusel y trajo contenido que faltaba en el manual** (ver abajo).
+4. **Octubre avanzó fuerte, pero no es nuestra lane.** El doc `TEMAS OCTUBRE | HILTON`
+   se movió a las 14:33Z y Scarlette **resolvió 14 hilos** entre 13:46 y 14:12Z. Ya **no
+   son 13 comentarios abiertos**: queda **uno solo, y es de QB** (deco de Halloween,
+   «confirmar con cliente… anclado a alguna acción comercial»).
+
+**⭐⭐ La lección del día, y es de método — vale más que el archivo:**
+
+> **Un archivo de Drive que no baja NO es un bloqueante hasta haber buscado sus COPIAS
+> POR TÍTULO. El permiso vive en la CARPETA, no en el archivo.**
+
+`C1 FT N°1.png` existe en **cuatro** carpetas con bytes idénticos: tres piden login y
+**la cuarta es pública**. Ayer se cerró la sesión declarándolo bloqueante después de
+probar dos caminos **sobre una sola carpeta**. Era un bloqueante falso, y costó una
+sesión. La búsqueda que lo resolvió:
+
+```
+search_files: title contains 'FT' and mimeType contains 'image/'
+              and owner = 'elisabet.soto@copywriters.cl'
+```
+
+⚠️ **Y un aviso sobre las herramientas:** el conector de Drive **no estaba caído**.
+`search_files`, `get_file_metadata` y `read_file_content` respondieron bien en esta
+misma sesión, mientras `download_file_content` devolvió «session expired» **tres veces
+seguidas** con esos dos PNG. **La herramienta que falla no prueba que el archivo no
+esté.** Quedó ampliada la memoria `agotar-material-antes-de-bloquear` con este paso.
+
+**Lo que trajo el carrusel, ya escrito en el manual §C:** Family Time es **`$125.000`**
+con **`IVA INCLUIDO`** bajo la cifra, y tres incluidos con ícono de línea —
+**Habitación doble** · **2 adultos + 2 niños hasta 12 años** · **Desayuno buffet**.
+Correo `reservas.dtv@hilton.com` y legal al pie `*Válido de jueves a domingo y
+festivos. Sujeto a disponibilidad.` **El precio CALZA con el manual: no hay
+discrepancia.** Estos textos van literales, no se parafrasean.
+
+**Y confirma dos reglas ya escritas, medidas sobre la pieza aprobada:** el `$` del
+precio y el `@` del correo **son Trade Gothic** (las nueve Stag no traen ninguno de los
+dos), y el titular va **a dos pesos en caja baja y sin punto** («Este es su panorama /
+Ideal en familia»), que es exactamente lo que dictó Eli esta mañana.
+
+**Dónde quedó.** Archivos tocados: `clients/hilton/CLAUDE.md` (fila del Family Time de
+⛔ a ✅ + los incluidos en §C + bloque nuevo con el **comando de recuperación**),
+`clients/_estado-sync.json`, y la memoria `agotar-material-antes-de-bloquear` (+ su
+línea en `MEMORY.md`). **No se rindió ni se entregó ninguna pieza**, así que no hay
+scripts ni fondos que commitear por la regla del render.
+
+⚠️ **Los tres PNG NO viajan en git** (`.gitignore: raw/*`). Por eso el manual quedó con
+el **comando exacto** para volver a bajarlos en otra máquina —los tres IDs públicos y
+los bytes que tienen que pesar—, justo antes de §D. Si llegan ~900 KB de HTML, es la
+página de login y no el PNG.
+
+**Qué sigue.** Lo mismo que dejó el cierre de la mañana, ahora **desbloqueado**:
+**medir la geometría de DT** sobre estas tres piezas aprobadas y con eso cerrar
+`marca.json` + `src/brand/doubletree.ts` + `reglas.yaml`.
+
+**Abierto.**
+- ⛔ **Decisión para Eli, y hay que hacerla antes de escribir `reglas.yaml`:** el
+  archivo **no queda completo sin dos checks nuevos** en `qa/checks.py`
+  (`titulo_sin_punto` y `caja_uniforme`), porque operan sobre `ctx["textos"]` y no
+  sobre el PNG. Un `reglas.yaml` parcial haría que `qa/motor.py --marca hilton`
+  **empiece a aprobar piezas con cobertura incompleta**, que es peor que no correr.
+  **¿Entra primero la geometría, o los dos checks?** Se le preguntó y no alcanzó a
+  responder.
+- **`STORIES J` (21-09)** sigue frenada: dice «desde $109.000» y no calza con ningún
+  programa. **No se toca hasta que el cliente confirme** (§G).
+- **Siguen abiertas las tres decisiones de Eli del 08-09:** ¿el titular con la primera
+  línea en verde sigue vigente? ¿entra el rosa `#DC224B` a la paleta? ¿el azul es
+  `#09194E` (manual) o `#111C4E` (medido)?
+- **Bloqueantes de cliente** (`CHECKLIST-CLIENTE.md`), **sin cambios hoy:** las tres
+  fuentes que faltan (Stag LCG, Trade Gothic LT Std Bold, Trade Gothic Next LT Pro
+  Bold) y la carpeta de la reseña del 14-09, que **sigue devolviendo vacía**
+  (`1Dlki995RRdwueFGlZOkF9rybf7maMJ5u`).
+- **¿La regla §G vale también para QB, Between y Piso18?** Se dictó **para DT** y no se
+  dio por extendida. Lo tiene que decir Eli.
+
+---
+
 ## 2026-09-09 (CIERRE) · Eli (Windows) — DOUBLETREE: Eli dictó la capa de imagen y redacción, y fijó el límite del encargo
 
 Sesión corta y de una sola cosa: **cerrar el sistema de DT con lo que faltaba**, que

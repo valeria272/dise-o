@@ -117,6 +117,9 @@ import {
 import {
   StS3HoraCafe, StS3Cowork, StS3Dieciocho, StS3HoraCafeGuia, StS3CoworkGuia,
 } from "./compositions/hilton/BetweenStS3";
+import {
+  StS4Strudel, StS4Primavera, StS4StrudelGuia, StS4PrimaveraGuia,
+} from "./compositions/hilton/BetweenStS4";
 
 import {SelfieBannerSemanaPeluquero} from "./compositions/SelfieBannerSemanaPeluquero";
 import {SelfieCarruselFrizz} from "./compositions/SelfieCarruselFrizz";
@@ -175,6 +178,14 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="BW-S3-Dieciocho" component={StS3Dieciocho} {...btStory} />
         <Composition id="BW-S3-HoraCafe-Guia" component={StS3HoraCafeGuia} {...btStory} />
         <Composition id="BW-S3-Cowork-Guia" component={StS3CoworkGuia} {...btStory} />
+        {/* S4 · las dos historias estaticas de la semana 4 (21 y 22-09).
+            Encargo de Eli del 09-09: guiadas por las dos referencias que dejo
+            contenido en Drive. Las `-Guia` llevan marcada la zona del sticker:
+            son para el CM y NO se entregan al cliente. */}
+        <Composition id="BW-S4-Strudel" component={StS4Strudel} {...btStory} />
+        <Composition id="BW-S4-Primavera" component={StS4Primavera} {...btStory} />
+        <Composition id="BW-S4-Strudel-Guia" component={StS4StrudelGuia} {...btStory} />
+        <Composition id="BW-S4-Primavera-Guia" component={StS4PrimaveraGuia} {...btStory} />
         <Composition id="BW-S-Calculos" component={StCalculos} {...btStory} />
         <Composition id="BW-S-Emergencia" component={StEmergencia} {...btStory} />
         <Composition id="BW-S-HoraCafe" component={StHoraCafe} {...btStory} />

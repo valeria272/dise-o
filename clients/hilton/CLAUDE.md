@@ -5528,3 +5528,122 @@ línea de 36 caracteres que a cuerpo 45 mide 826 px contra 722 útiles, así que
 pieza aprobada— y a ese cuerpo cualquier tracking se ve apelmazado. Partido en
 dos líneas entra al cuerpo pleno. **Primero el largo, después el tracking,
 después el kerning del par.**
+
+---
+
+# ⭐⭐ S4 · LAS DOS STORIES ESTÁTICAS DEL 21 Y 22-09 (09-09-2026)
+
+Encargo de Eli: «Trabajaremos con los diseños de las historias estáticas de la
+s4 de grilla […] y **guíate de las referencias que adjunta contenido** […] **No
+tomes como gráficas las interacciones de contenido, solo deja aire visual o
+espacio para que agreguen esas interacciones.**»
+
+Piezas: `src/compositions/hilton/BetweenStS4.tsx` · escenas en
+`scripts/between-st-s4-generar.py` · entrega en
+`out/hilton/between/entrega-st-s4-21-22-09/`, subida a `S4 HILTON SEP 2026/BW/STS`.
+
+Las referencias de contenido son dos y están en
+`raw/hilton/between/ref-s4-eli/`: un **mosaico de cuatro cuadrantes** de
+ingredientes con el producto centrado (para el Strudel del 21-09) y un
+**producto alto sostenido contra un campo de color** con aire generoso para el
+texto (para la Primavera del 22-09).
+
+## ⭐⭐⭐ 1. La zona de la interacción NO va siempre centrada: va donde hay canal
+
+Es la extensión de la regla del sticker, y la destapó la pieza del milkshake.
+El carrusel del cumpleaños y las tres de la S3 pusieron la zona reservada
+**centrada** (660×210 · 660×360 · 660×140), porque en esas fotos el centro bajo
+era mesa limpia. En el 22-09 no: medido, **el batido beige ocupa el eje del
+cuadro de y=981 a y=1775**, así que una pastilla centrada le caía encima al
+cuenco y al pie del vaso — justo lo contrario de «dejar aire».
+
+> **Cuando el producto es alto y central, el aire de la interacción está en el
+> CANAL de un costado.** Acá: 380×140 en x=80, y=1300, sobre el mobiliario
+> desenfocado de la izquierda. `ZonaReservada` acepta `left` opcional para eso.
+
+Y el corolario que vale para toda pieza: **el porte de la zona se decide después
+de medir la silueta del producto**, no antes.
+
+## ⭐⭐ 2. La concesión de la zona segura de Meta se hereda sin medir
+
+El cierre del brief salió primero en y=1610, que es donde lo llevan la ST del
+14-09 y el legal de la ST 2 del cumpleaños. `between-qa.py` lo marcó y tenía
+razón: la tinta caía en y=1626–1643, **63 px dentro de la franja inferior de
+340 px**. En esas dos piezas la concesión estaba justificada —la taza ocupaba el
+cuadro hasta y=1600 y no había otro sitio—, pero acá sí lo había.
+
+Medido por tercios de la columna en la foto del 22-09:
+
+| franja | beige | café |
+|---|---|---|
+| y 1440–1559 | **6,94:1** | 1,10:1 |
+| y 1560–1679 | 5,93:1 | 1,06:1 |
+
+O sea que subirlo a y=1512 lo deja **entero dentro de la zona segura Y con mejor
+contraste**. La concesión no hacía falta: era falta de medir.
+
+> **Un precedente aprobado autoriza la concesión en ESA pieza, no en la
+> siguiente.** Antes de heredarla, se mide si la foto nueva la necesita.
+
+## ⚠️ 3. `between-qa.py` da falsos positivos cuando la FOTO es beige
+
+Las dos piezas salieron marcadas y hay que saber leerlo. El QA aísla el beige de
+marca «en forma de trazo», y su filtro de ancho ya existe justamente por esta
+historia («pasó con la historia del strudel») — pero cuando el cuadro entero es
+comida clara, no alcanza. Verificado imprimiendo dónde están los píxeles:
+
+| pieza | lo que marcó | qué era de verdad |
+|---|---|---|
+| 21-09 | «texto a 80 px del borde izquierdo» | **6 px** en y 989–995: el brillo del cuadrante de masa |
+| 21-09 | «entra 304 px en la zona segura inferior» | 590 px en x 541–545: la **costura central del mosaico**, y los brillos de los cuadrantes claros |
+| 22-09 | «entra 220 px en la zona segura inferior» | el cierre (real, ya corregido) + **72 px** de reflejo del pie de la copa |
+
+> **Ante un aviso del QA sobre una pieza de comida clara, no se acata ni se
+> descarta: se imprime DÓNDE están los píxeles marcados.** El texto de la pieza
+> se sabe dónde está —sale de la geometría— así que la comparación es directa.
+
+## ⚠️ 4. Between NO tiene fotografía del Strudel de manzana
+
+Buscado en las 202 de `3 ENERO _ PLATOS - DESAYUNOS`, en
+`BETWEEN DESAYUNOS AGO 2026`, en `dulces-tortas` y en la carta: no está. En la
+pieza del 21-09 **el producto es GENERADO**, y va rotulado como tal para poder
+reemplazarlo el día que llegue la foto. Lo real que entra son el **hojaldre** y
+el **plato de cerámica verde oliva con anillos** de `Between-28.jpg`, pasados
+como referencia. ⚠️ Ese recorte se hace de la MITAD INFERIOR de la foto: arriba
+está la taza con el logotipo **KIMBO**.
+
+En cambio **el milkshake del 22-09 es real**: `Between-214.jpg` de la misma
+sesión (Canon EOS 5D Mark III, EXIF verificado) — copa de vidrio con pie, borde
+escarchado de coco, frutilla y bombilla negra. Sólo se le cambió el fondo, que
+es el método que el manual ya describe: «no genera escenas desde cero, EDITA la
+foto real».
+
+## ⭐ 5. El orden de los cuadrantes de un mosaico lo manda la LUMINANCIA
+
+El brief numera los ingredientes (1 masa · 2 manzana · 3 canela · 4 nueces) y no
+fija sus posiciones. Se ordenaron así:
+
+    canela (oscura)  │  nueces (oscuras)   ← acá cae el titular beige
+    ─────────────────┼──────────────────
+    masa dorada      │  manzana verde
+
+El titular ancla arriba y el mosaico parte los cuadrantes en y=960, así que el
+bloque cae ENTERO en la mitad de arriba. Con un cuadrante claro y otro oscuro
+arriba el titular se parte en dos legibilidades — el defecto que este manual ya
+documenta en la pieza del cowork. Con los dos oscuros, el beige da **8,2 a
+12,8:1** de y=240 a y=719, y el titular va **sin ninguna caja debajo**, que es
+lo que la referencia hace y lo que la ronda 1 de la S3 no pudo hacer.
+
+## ⚠️ 6. Dos cosas quedaron abiertas y las decide Eli
+
+1. **El `🌸` del titular del 22-09 no va.** Between tiene exactamente cuatro
+   emojis usables —`cafe`, `estrella`, `regalo` y `sonrisa`, recortados de la
+   lámina 2 del carrusel aprobado— y no hay flor. Los del sistema no sirven (en
+   Windows el ☕ sale lila) y Apple Color Emoji no se puede redistribuir. El
+   brief además dice «Texto recomendado». Si Eli lo quiere, manda el PNG y entra.
+2. **La referencia del 22-09 trae garabatos de línea blancos** (un sol y nubes) y
+   el repertorio de trazos de Eli no los tiene: son globos, confeti, corazón y
+   tres flechas. El manual prohíbe dibujar o generar trazos nuevos, así que la
+   primavera se resolvió **por la luz** —follaje a contraluz, ampolletas, verde
+   luminoso— como el brindis del 18-09 se resolvió con dos tazas de verdad. Si
+   el sol y las nubes tienen que estar, hacen falta los trazos en `.svg`.

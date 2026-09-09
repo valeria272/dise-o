@@ -1,7 +1,7 @@
 # Grilla BETWEEN — instantánea
 
-> Instantánea del 08-09-2026 tomada con `/al-dia`.
-> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/dc0852c6-1179-4d7e-9b6d-b39d31000f22/scratchpad/between-0908b.xlsx`.
+> Instantánea del 09-09-2026 tomada con `/al-dia`.
+> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/479f3b86-15ce-43a7-adca-b6d3e622fc00/scratchpad/bw-0909.xlsx`.
 > **Sirve de base para el DIFF de la próxima ronda**: los comentarios se
 > prependen sobre los viejos en la misma celda, así que sin esta copia no se
 > distingue lo nuevo de lo ya resuelto.
@@ -124,7 +124,7 @@ Comentario wsp
 > ~~Comentario wsp~~
 
 
-### Columna E — **REVISAR CONTENIDO**
+### Columna E — **CORREGIDO**
 
 **LINK MATERIAL FEED:**
 
@@ -213,6 +213,7 @@ Agregar elementos cumpleañeros como en el anterior
 ```
 
 *Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Pero sacaron el legal de los extras 😭, hay que dejarlo, con eso queda ok~~
 > ~~PerfectooOO! solo ajustar en el legar: *Presenta tu cédula de identidad para canjear tu café el día de tu cumpleaños. (para aclarar que debe ser solo ese día), con eso OK! Y aprovechemos de poner la dirección en G1 abajo
 
 
@@ -718,7 +719,7 @@ Ok, enlace a carta!
 ```
 
 
-### Columna D — **REVISAR CONTENIDO**
+### Columna D — **EN CAMBIOS**
 
 **LINK MATERIAL STORIES:**
 
@@ -799,7 +800,7 @@ SEMANA 2
 ```
 
 
-### Columna G — **REVISAR CONTENIDO**
+### Columna G — **EN CAMBIOS**
 
 **LINK MATERIAL STORIES:**
 

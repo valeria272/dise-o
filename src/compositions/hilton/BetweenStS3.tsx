@@ -318,10 +318,34 @@ export const StS3HoraCafe: React.FC<{guia?: boolean}> = ({guia = false}) => (
 );
 
 /* ══════════════════════════════════════════════════════════════════════════
-   ST 16-09 · COWORK  (col N · CORREGIDO, con un comentario ABIERTO)
+   ST 16-09 · COWORK  (col N · EN CAMBIOS tras la ronda del cliente del 09-09)
 
-   ⚠️ EL COMENTARIO DEL CLIENTE, Y CÓMO SE ATACA.
-   `STORIES!N` trae sin tachar: «Se puede entender que estuvimos cerrados,
+   ⭐⭐ RONDA 7 (09-09) — EL CLIENTE, en rojo sobre `STORIES!N`: «Saquemos el
+   "Puedes venir", reemplacémoslo por Cowork, para dar contexto».
+
+   El script pasa a «Cowork» y el titular queda «Cowork / ¡TE ESPERAMOS!». Lo
+   que pide es CONTEXTO: «Puedes venir» no dice de qué se trata la pieza, y el
+   servicio se nombraba sólo dentro del cartel («Ven a trabajar desde Between»).
+   Ojo que hasta esta ronda «COWORK | YA ABRIMOS» era el nombre INTERNO de la
+   fila y tenía prohibido salir en pantalla — ese candado se levanta acá, pero
+   sólo para la palabra «Cowork»: «YA ABRIMOS» sigue fuera, porque es
+   exactamente lo que el cliente mandó a sacar en la ronda anterior.
+
+   ⚠️ NO se tocaron `sizeScript`, `anchoDisponible` ni `aireScriptATitulo`, y la
+   razón es medida, no pereza. `TitularBetween` posiciona por TINTA, así que al
+   acortarse la script el bloque se recalcula solo:
+     · aire tinta a tinta 69 → 64 px (33,1 → 30,7 a escala 1080). La diferencia
+       es de 2,4 px a 1080: imperceptible, y el token sigue haciendo lo que Eli
+       aprobó en la ronda 6;
+     · la caja alta sube 13 px (su tinta cierra en y=1215 y no en 1228), o sea
+       que quedan **149 px** libres hasta el cartel de y=1364 en vez de 136. El
+       solape de la ronda 6 se aleja, no se acerca;
+     · la tinta de la script pasa de 945 a 562 px de ancho, muy lejos de los 745
+       de `anchoDisponible` — el que manda ese ancho es «¡TE ESPERAMOS!», que no
+       cambió.
+
+   ⚠️ EL COMENTARIO ANTERIOR, YA TACHADO EN LA GRILLA (resuelto, no rehacer).
+   `STORIES!N` traía: «Se puede entender que estuvimos cerrados,
    démosle una vuelta a ese texto». El copy de la grilla YA está corregido —dice
    «PUEDES VENIR, ¡TE ESPERAMOS!» y no «ya abrimos»; «COWORK | YA ABRIMOS» es
    sólo el NOMBRE INTERNO de la fila y no va en pantalla—. Lo que seguía sin
@@ -433,7 +457,7 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
             ya sólo llega a x=639). */}
     <Columna top={400}>
       <TitularBetween
-        script="Puedes venir"
+        script="Cowork"
         caps="¡Te esperamos!"
         alinear="centro"
         tono="beige"
@@ -585,9 +609,29 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
 );
 
 /* ══════════════════════════════════════════════════════════════════════════
-   ST 18-09 · SALUDO FIESTAS PATRIAS  (col O · OK PARA DISEÑAR)
+   ST 18-09 · SALUDO FIESTAS PATRIAS  (col O · EN CAMBIOS tras la ronda del 09-09)
 
    La grilla NO pide interacción, así que no lleva zona reservada.
+
+   ⭐⭐ RONDA 7 (09-09) — EL CLIENTE, en rojo sobre `STORIES!O`: «Para no
+   redundar, pongamos ¡Feliz 18 de septiembre! con eso super ok».
+
+   La redundancia era real y estaba MEDIDA en el propio copy: «Fiestas Patrias»
+   aparecía dos veces en el mismo cartel —en el párrafo del brief y otra vez en
+   la caja de cierre—. Cambia SÓLO la caja: «¡Felices Fiestas Patrias!» →
+   «¡Feliz 18 de septiembre!». El párrafo es literal del brief y no se toca.
+
+   ⛔ Y acá entra la trampa de `tracking-no-llega-a-inline-block`: el texto nuevo
+   trae un NÚMERO. `CajaDato` ya lo resuelve con `conCifras`, pero hay que
+   verificarlo en el render y no darlo por hecho. MEDIDO sobre el PNG:
+     · el hueco entre el «1» y el «8» es de **9 px**, dentro del rango de 7–15 px
+       que dan los huecos entre letras — o sea que los dígitos NO quedaron
+       pegados mientras las letras se abrían;
+     · los tres espacios de palabra dan 29 / 31 / 27 px, parejos;
+     · la caja mide 1453 px dentro de un cartel de 1692 y queda centrada con
+       143 px a cada lado. `ajustarACaber` calcula el cuerpo sobre el texto plano
+       y la caja tabular ENSANCHA, así que este margen es el que hay que volver a
+       mirar si alguna vez cambia el texto.
 
    ⭐⭐ RONDA 3 (08-09) — Eli: «el contexto es 18 de septiembre de fiestas patrias
    de Chile, necesito que sea detalles ILUSTRADOS y haz más similar a la
@@ -770,7 +814,7 @@ export const StS3Dieciocho: React.FC = () => (
           línea fuerte por pila (manual §1 bis). */}
       <div style={{marginTop: 34}}>
         <CajaDato anchoDisponible={CARTEL.ancho - 2 * CARTEL.padX}>
-          ¡Felices Fiestas Patrias!
+          ¡Feliz 18 de septiembre!
         </CajaDato>
       </div>
     </div>

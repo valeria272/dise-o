@@ -22,8 +22,8 @@
  * zona marcada, que NO se sube al Drive.
  *
  *   21-09 → `INTERACCIÓN: Ícono "🍎"`  → 300 × 180 en y=1395
- *   22-09 → `INTERACCIÓN: LINK CARTA` → 380 × 140 en y=1300, en el CANAL
- *           IZQUIERDO: la copa ocupa el eje del cuadro de y=981 a y=1775, así
+ *   22-09 → `INTERACCIÓN: LINK CARTA` → 300 × 140 en y=1020, en el CANAL
+ *           IZQUIERDO: la copa ocupa el eje del cuadro de y=860 a y=1560, así
  *           que la pastilla centrada del cowork acá le caía encima al vaso
  *
  * ⚠️ Y por lo mismo, el `🍎` NO va dibujado en ninguna parte: es la interacción,
@@ -39,13 +39,16 @@
  * recortado a 9:16 no deja el hueco donde la diagramación lo necesita, así que
  * el texto termina apoyado en cajas. **La foto se produce con el hueco adentro.**
  *
- * · **22-09 · el milkshake es REAL.** `Between-214.jpg` de la sesión del 3 de
- *   enero (Canon EOS 5D Mark III, 1500×2250, EXIF verificado) es el milkshake
- *   del cliente: copa de vidrio con pie, borde escarchado de coco, frutilla y
- *   bombilla negra. Sólo se le CAMBIÓ EL FONDO —la pared de piedra oscura por
- *   la terraza real de Between (`espacios/_terraza-base-45.jpg` y `HDT_52.jpg`)—
- *   que es exactamente lo que el manual describe como el método de ella: «no
- *   genera escenas desde cero, EDITA la foto real».
+ * · **22-09 · el milkshake es REAL, y es EL de Between.** Sale de la sesión del
+ *   producto que mandó Eli el 09-09 (`raw/hilton/between/milkshakes-jun2025/`,
+ *   35 fotos de Ámbar Gallardo del 30-06-2025, iPhone 4284×5712): copa alta
+ *   ACANALADA con PIE ESCALONADO, batido de moras, brocheta con dos moras y una
+ *   frambuesa, sin bombilla. La ronda 1 usó `Between-214.jpg` de la sesión del
+ *   3 de enero —real, pero **otro producto**— y por eso se cayó entera.
+ *   Se le cambió el entorno: de la barra a la TERRAZA real del local
+ *   (`espacios/_terraza-base-45.jpg` y `HDT_52.jpg`), que es lo que el manual
+ *   describe como el método de ella: «no genera escenas desde cero, EDITA la
+ *   foto real».
  *
  * · ⚠️ **21-09 · el strudel es GENERADO, y hay que decirlo.** Between no tiene
  *   ninguna fotografía del Strudel de manzana: se buscó en las 202 de
@@ -85,8 +88,8 @@
  *
  * | | 21-09 | 22-09 |
  * |---|---|---|
- * | el cuadro está libre hasta | y=737 (borde del plato) | y=790 (punta de la bombilla) |
- * | tinta que gana arriba | beige 8,2–12,8:1 | beige 8,2–14,1:1 |
+ * | el cuadro está libre hasta | y=737 (borde del plato) | y=860 (la brocheta de moras) |
+ * | tinta que gana arriba | beige 8,2–12,8:1 | beige 14,6–15,7:1 |
  * | costuras (salto entre filas contiguas) | ninguna sobre media+6σ | ninguna sobre media+6σ |
  */
 import React from 'react';
@@ -159,18 +162,19 @@ const Columna: React.FC<{top: number; children: React.ReactNode}> = ({top, child
   </div>
 );
 
-/** Cierre en cursiva, suelto sobre la foto. Mismo componente que la S3. */
-const Cierre: React.FC<{top: number; size?: number; children: React.ReactNode}> = ({
-  top,
+/**
+ * Cierre en cursiva. A diferencia del de `BetweenStS3.tsx`, este NO va
+ * posicionado en absoluto al pie: va como último hijo de la `Columna`, porque en
+ * esta pieza el sitio libre está ARRIBA y no abajo. Ver la nota del 22-09.
+ */
+const Cierre: React.FC<{size?: number; style?: React.CSSProperties; children: React.ReactNode}> = ({
   size = 34,
+  style,
   children,
 }) => (
   <div
     style={{
-      position: 'absolute',
-      left: (1080 - BETWEEN.bloque.columna) / 2,
       width: BETWEEN.bloque.columna,
-      top,
       textAlign: 'center',
       fontFamily: BETWEEN.fuentes.sans,
       fontStyle: 'italic',
@@ -181,6 +185,7 @@ const Cierre: React.FC<{top: number; size?: number; children: React.ReactNode}> 
       opacity: 0.95,
       textShadow: '0 2px 16px rgba(36,26,18,0.75)',
       whiteSpace: 'pre-line',
+      ...style,
     }}
   >
     {children}
@@ -228,9 +233,17 @@ export const StS4Strudel: React.FC<{guia?: boolean}> = ({guia = false}) => (
         está en y=737: **10 px de aire**, que a tamaño real se lee como si la
         caja alta se apoyara en la loza. Subiéndolo, la última línea cierra en
         ~687 y quedan ~50 px, que es el orden del `aire.tituloACaja` (18) por
-        dos. El precio es que el aire logo→tinta baja de los 77 px medidos en
-        las plantillas de Eli a 72: una concesión de 5 px, muy por debajo de la
-        que ya se aceptó en la ST del cowork (41). */}
+        dos. El precio es el aire logo→tinta: la tinta arranca en 403 y el
+        lockup completo —wordmark + «COFFEE & BAR»— cierra en y=364, así que
+        quedan **39 px** contra los 77 que miden las plantillas de Eli. Es
+        exactamente la concesión que ya se aceptó en la ST del cowork (41 px), y
+        por el mismo motivo: entre respetar el token de aire y que el titular no
+        se apoye en la loza, gana que no se apoye.
+        ⚠️ Ojo con medir esto: el bloque de tinta del lockup que devuelve un
+        umbral de beige es sólo el WORDMARK (271–330). La bajada «COFFEE & BAR»
+        es más fina y no pasa el umbral, así que si se mide contra 330 el aire
+        parece 72 px y no lo es. El valor bueno sale de la plantilla:
+        `bajadaY 348 + bajadaAlto 16 = 364`. */}
     <Columna top={400}>
       <TitularBetween
         script="Cuatro ingredientes"
@@ -276,22 +289,36 @@ export const StS4Strudel: React.FC<{guia?: boolean}> = ({guia = false}) => (
    NUNCA llevan punto final», y `sinPuntoFinal` lo saca solo (no se pasa
    `mantenerPunto`). En la bajada sí se conserva, que es texto corrido.
 
-   MEDIDO sobre la foto: el cuadro está libre de vaso hasta y=790 (ahí arrancan
-   las puntas de la bombilla, en x 575–640) y el borde de coco entra en y=867.
-   El bloque de arriba cierra en ~778, o sea 12 px antes del vaso.
+   ⛔⛔ RONDA 2 (09-09) — EL PRODUCTO DE LA RONDA 1 NO ERA UN MILKSHAKE DE
+   BETWEEN. Eli mandó la sesión del producto («te dejo acá la sesión que tenemos
+   de cómo son») y con eso cayó la pieza entera: el milkshake del cliente va en
+   una copa ACANALADA con PIE ESCALONADO, sin bombilla y sin borde escarchado, y
+   se adorna con una BROCHETA de moras y una frambuesa. Se eligió el de moras
+   —`IMG_3607` de `raw/hilton/between/milkshakes-jun2025/`— porque el morado es
+   el que más lee «primavera» contra el verde y porque separa esta pieza de la
+   del 21-09, que es toda marrón y verde manzana. El detalle completo, con la
+   tabla de lo que estaba mal, está en `scripts/between-st-s4-generar.py`.
+
+   MEDIDO sobre la foto nueva: aislando el batido morado por color, el cuadro
+   está **libre de copa hasta y=860** (ahí entra la brocheta con las moras), así
+   que el bloque de arriba, que cierra en ~778, deja **82 px de aire**. Y el
+   contraste del beige en la banda del titular subió a **14,6–15,7:1** (era
+   8,2–14,1 en la ronda 1): el fondo nuevo es follaje profundo a contraluz, no
+   bokeh claro con lona de quitasol.
    ══════════════════════════════════════════════════════════════════════════ */
 
 /**
  * ⭐ LA ZONA DEL ENLACE SE VA AL CANAL IZQUIERDO, y es medido.
  *
  * La ST del cowork del 16-09 la puso centrada, 660×140, porque ahí el centro
- * bajo era mesa limpia. Acá NO: la copa ocupa el eje del cuadro de y=981 a
- * y=1775 —el batido beige medido de corrido— y la pastilla centrada le caía
- * encima al cuenco y al pie. El canal libre está a la izquierda: de x=0 a
- * x≈330 la foto es mobiliario y follaje muy desenfocados, sin nada nítido.
- * 380×140 es el porte de un sticker de enlace con etiqueta corta.
+ * bajo era mesa limpia. Acá NO: aislando el batido morado por color, la copa
+ * ocupa el eje del cuadro de y=860 a y=1560 y su borde izquierdo nunca pasa de
+ * x=360, así que una pastilla centrada le caería encima. El canal libre está a
+ * la izquierda —de x=0 a x≈355 la foto es mesa y follaje muy desenfocados— y en
+ * la franja y=1020–1160 el borde de la copa está en x≈374, o sea que una zona
+ * de 300 px que cierra en x=350 deja 24 px de aire.
  */
-const ZONA_ENLACE: Zona = {ancho: 380, alto: 140, top: 1300, left: 80};
+const ZONA_ENLACE: Zona = {ancho: 300, alto: 140, top: 1020, left: 50};
 
 export const StS4Primavera: React.FC<{guia?: boolean}> = ({guia = false}) => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
@@ -302,7 +329,17 @@ export const StS4Primavera: React.FC<{guia?: boolean}> = ({guia = false}) => (
 
     <LogoBetween formato="story" posicion="arriba" tono="beige" />
 
-    <Columna top={BETWEEN.bloque.yStory}>
+    {/* ⭐ EL BLOQUE ARRANCA EN 402 PARA QUE LA TINTA CAIGA EN 441.
+        `BETWEEN.bloque.yStory` (441) es la primera línea de TINTA, no el borde
+        del contenedor — y Brushwell trae un hueco de ascendente grande, así que
+        con el contenedor en 441 la tinta de «La primavera» aterrizaba en 480:
+        39 px más abajo de lo que dice el token, y 116 px de aire bajo el lockup
+        contra los 77 que miden las plantillas de Eli. Con el contenedor en 402
+        la tinta cae en 441 y el aire vuelve a 77 exactos (el lockup completo
+        —wordmark + «COFFEE & BAR»— cierra en y=364).
+        Y no es cosmético: esos 39 px son los que le faltaban al cierre para no
+        quedar pegado a la brocheta de moras. */}
+    <Columna top={402}>
       <TitularBetween
         script="La primavera"
         caps="Se disfruta así."
@@ -317,27 +354,31 @@ export const StS4Primavera: React.FC<{guia?: boolean}> = ({guia = false}) => (
       >
         {'Un milkshake, nuestra terraza\ny una pausa al sol.'}
       </Bajada>
+      {/* ⭐ EL CIERRE ENTRA AL BLOQUE DE ARRIBA, no al pie.
+          Primero fue al pie en y=1512, que es donde la ST del 14-09 lleva el
+          suyo. Pero en esa pieza el pie es sweater liso: acá la copa ocupa el
+          eje del cuadro de y=860 a y=1560, así que el cierre caía ENCIMA del
+          producto — y la regla de la marca es que el garabato y el texto se
+          apoyan en el fondo, nunca sobre el producto ni sobre quien lo
+          sostiene. Arriba sí hay sitio medido: la tinta del bloque cierra en
+          ~830 y la brocheta de moras entra en y=860, o sea 30 px de aire.
+          De paso la franja de abajo queda de pura fotografía, que es lo que
+          hace la ST del cowork del 16-09. */}
+      <Cierre
+        style={{marginTop: 20}}
+        size={34}
+      >
+        Ven a disfrutarlo en Between.
+      </Cierre>
     </Columna>
 
     {guia ? (
-      <ZonaReservada zona={ZONA_ENLACE} etiqueta={'STICKER\nDE ENLACE\n(carta)\n380 × 140'} />
+      <ZonaReservada zona={ZONA_ENLACE} etiqueta={'STICKER\nDE ENLACE\n(carta)\n300 × 140'} />
     ) : null}
 
-    {/* ⭐ EL CIERRE VA EN 1512, Y ASÍ NO PIDE NINGUNA CONCESIÓN.
-        La primera pasada lo puso en 1610, que es donde lo llevan la ST del 14-09
-        y el legal de la ST 2 del cumpleaños. `between-qa.py` lo marcó y tenía
-        razón: la tinta caía en y=1626–1643, o sea **63 px dentro de la franja
-        inferior de 340 px de Meta**. En esas dos piezas la concesión se aceptó
-        porque no había otro sitio —la taza ocupaba el cuadro hasta y=1600—; acá
-        sí lo hay. Medido por tercios: de y=1440 a 1559 la mesa de madera da
-        **beige 6,94:1**, MEJOR que los 5,93:1 de 1560–1679, y a esa altura la
-        copa es sólo la caña del pie (~90 px de vidrio translúcido), no el cuenco
-        ni el borde de coco. Con la tinta en ~1531–1548 la pieza queda ENTERA
-        dentro de la zona segura y además se lee mejor.
-        O sea que la concesión heredada no hacía falta: era falta de medir. */}
-    <Cierre top={1512} size={34}>
-      Ven a disfrutarlo en Between.
-    </Cierre>
+    {/* ⚠️ La franja de abajo queda de PURA FOTOGRAFÍA, a propósito: el cierre se
+        subió al bloque de arriba (ver la nota ahí) y así la copa se ve entera,
+        sin nada encima. Es lo mismo que hace la ST del cowork del 16-09. */}
   </AbsoluteFill>
 );
 

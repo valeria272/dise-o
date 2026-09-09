@@ -113,7 +113,37 @@ ESCENAS = {
             "sin manos."
         ),
     },
-    # ── 22-09 · la foto REAL con el fondo cambiado a la terraza ──────────────
+    # ── 22-09 · el milkshake REAL de Between, en la terraza ─────────────────
+    #
+    # ⛔⛔ RONDA 2 (09-09-2026) — EL PRODUCTO ESTABA MAL, y no era un detalle.
+    #
+    # Eli: «te dejo acá la sesión que tenemos de cómo son» + «el fondo debe ser
+    # mejor realizado». Las dos cosas mandaron a rehacer la pieza entera.
+    #
+    # La ronda 1 usó `Between-214.jpg` de la sesión del 3 de enero, que es una
+    # foto REAL del cliente — pero **no es un milkshake de Between**. Comparado
+    # con la sesión que dejó Eli (`raw/hilton/between/milkshakes-jun2025/`, 35
+    # fotos de Ámbar Gallardo del 30-06-2025, iPhone 4284×5712):
+    #
+    # | | Between-214 (lo que usé) | el milkshake REAL |
+    # |---|---|---|
+    # | copa | *hurricane* curva, de cóctel | **acanalada, alta, con PIE ESCALONADO** de vidrio labrado |
+    # | borde | escarchado de coco | limpio, sin escarchar |
+    # | bombilla | negra | **no lleva** |
+    # | adorno | frutilla en el borde | **brocheta de madera con moras y una frambuesa** |
+    # | sabores | uno, beige | **moras (morado) · café · maracuyá · manzana** |
+    # | dónde | mesa de madera, muro de piedra | **la barra**, con la estantería de botellas al fondo |
+    #
+    # O sea que era el mismo error de clase que la taza KIMBO y el vaso To Go
+    # antiguo: **una foto real del cliente no garantiza que sea el producto
+    # vigente.** La compuerta que faltó no es «¿es real?», es «¿es ESTE
+    # producto?» — y se contesta pidiendo la sesión del producto, no buscando
+    # por parecido en el banco general.
+    #
+    # Se eligió el de MORAS (`IMG_3607`, la toma más completa: copa entera, pie
+    # visible, brocheta nítida) por dos razones: el morado es el que más lee
+    # «primavera» junto al verde del follaje, y separa la pieza de la del 21-09,
+    # que es toda marrón y verde manzana. Las otras tres están disponibles.
     #
     # ⛔ TIRADA 1 (`gen-22-09-primavera.png`) — DESCARTADA, y por dos defectos
     #    MEDIDOS, no por gusto:
@@ -142,30 +172,37 @@ ESCENAS = {
     #    Se mantiene «fresca y de primavera» y el beige recupera contraste.
     "22-09": {
         "salida": "gen-22-09-primavera",
-        "refs": ["milkshake.jpg", "terraza.jpg", "terraza-ancha.jpg"],
+        "refs": ["milkshake-real.jpg", "terraza.jpg", "terraza-ancha.jpg"],
         "prompt": (
-            "Extiende la escena de la @img1 a formato vertical de historia 9:16. La "
-            "copa alta de milkshake queda EXACTAMENTE IGUAL a la de la @img1: la misma "
-            "copa de vidrio con pie, el mismo batido cremoso de color beige, el borde "
-            "escarchado de coco, la frutilla apoyada en el borde y la bombilla negra. "
-            "CAMBIA EL FONDO: en vez de la pared de piedra oscura, la terraza de la "
-            "@img2 y la @img3 MUY desenfocada, con las plantas, el follaje y las "
-            "ampolletas convertidos en manchas de luz. La copa esta apoyada sobre una "
-            "mesa de madera oscura de la terraza vista EN PERSPECTIVA y en angulo, con "
-            "su propia sombra de contacto bajo el pie de la copa, y la mesa va "
-            "perdiendo foco hacia el fondo. ENCUADRE, y es lo mas importante: la copa "
-            "COMPLETA —vidrio, batido, borde de coco, frutilla y bombilla incluidos— "
-            "ocupa SOLO EL 45% INFERIOR del cuadro y va centrada; la punta de la "
-            "bombilla NO pasa del 55% de altura. EL 55% DE ARRIBA del cuadro es "
-            "follaje verde PROFUNDO y OSCURO a contraluz, continuo de lado a lado, muy "
-            "desenfocado y homogeneo, COMPLETAMENTE VACIO: ahi no hay copa, ni "
-            "bombilla, ni frutilla, ni quitasol, ni toldo, ni cielo, ni edificios, ni "
-            "ninguna superficie clara. La luz entra POR DETRAS del follaje, calida y de "
-            "primavera. Es UNA SOLA fotografia "
-            "continua: NINGUNA linea horizontal recta que cruce todo el cuadro, ningun "
-            "borde recto y ningun plano pegado. Poca profundidad de campo. Realista, "
-            "alta calidad 4k. Sin ningun texto, sin letras, sin logotipos, sin "
-            "personas y sin manos."
+            "Fotografia vertical de historia 9:16 de un milkshake en la terraza de una "
+            "cafeteria. EL PRODUCTO ES EL DE LA @img1 Y NO CAMBIA: la misma copa alta "
+            "de vidrio transparente ACANALADA, con el mismo PIE ESCALONADO de vidrio "
+            "labrado; el mismo batido espeso de MORAS, de color morado, lleno hasta el "
+            "borde; y apoyada en el borde la misma brocheta de madera clara con DOS "
+            "MORAS y UNA FRAMBUESA. La copa no lleva bombilla. "
+            "ES UN PRIMER PLANO DE PRODUCTO: la camara esta A LA ALTURA DE LA MESA y "
+            "cerca de la copa. La MESA DE MADERA OSCURA de la terraza ocupa toda la "
+            "franja inferior del cuadro, de lado a lado, nitida junto al pie de la copa "
+            "y perdiendo foco hacia atras. La copa esta apoyada SOBRE LA MESA, nunca en "
+            "el suelo, y se ve del tamano de un vaso de mesa, no gigante. Detras de la "
+            "mesa, la terraza de la @img2 y la @img3 MUY desenfocada, convertida en "
+            "manchas de verde y de luz calida: NO se distingue ninguna silla, ninguna "
+            "baldosa, ningun piso ni ningun mueble nitido. "
+            "UNA SOLA LUZ para toda la escena: el sol de primavera entra POR DETRAS del "
+            "follaje y un poco desde un costado, asi que la copa recibe un CONTRALUZ "
+            "calido que le dibuja el canto del vidrio, un brillo suave en la superficie "
+            "del batido, y proyecta sobre la madera una SOMBRA DE CONTACTO real bajo el "
+            "pie, en la direccion contraria a la luz. "
+            "ENCUADRE, y es lo mas importante: la copa COMPLETA, con su brocheta y sus "
+            "moras incluidas, ocupa SOLO EL 45% INFERIOR del cuadro y va centrada; nada "
+            "de la copa pasa del 55% de altura. EL 55% DE ARRIBA del cuadro es follaje "
+            "verde PROFUNDO y OSCURO a contraluz, continuo de lado a lado, muy "
+            "desenfocado y homogeneo, COMPLETAMENTE VACIO: ahi no hay copa, ni frutas, "
+            "ni quitasol, ni toldo, ni cielo, ni edificios, ni ninguna superficie clara. "
+            "NINGUNA linea horizontal recta que cruce todo el cuadro, ningun borde recto "
+            "y ningun plano pegado. Poca profundidad de campo, realista, fotografia de "
+            "producto de alta gama, alta calidad 4k. Sin ningun texto, sin letras, sin "
+            "logotipos, sin personas y sin manos."
         ),
     },
 }

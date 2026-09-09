@@ -5602,6 +5602,85 @@ comida clara, no alcanza. Verificado imprimiendo dónde están los píxeles:
 > descarta: se imprime DÓNDE están los píxeles marcados.** El texto de la pieza
 > se sabe dónde está —sale de la geometría— así que la comparación es directa.
 
+## ⛔⛔⛔ 4 bis. RONDA 2 — «LA SESIÓN QUE TENEMOS DE CÓMO SON»: el producto estaba mal
+
+Eli devolvió la del milkshake con dos frases: **«te dejo acá la sesión que
+tenemos de cómo son»** (`1IykEwOr5hl8wMHyWXaVRTxZ5hOaAhOry`) y **«el fondo debe
+ser mejor realizado»**. La primera botó la pieza entera, y no por el fondo.
+
+La ronda 1 usó `Between-214.jpg`, de la sesión del 3 de enero. Es una foto REAL
+del cliente — y **no es un milkshake de Between**:
+
+| | `Between-214` (lo que se usó) | el milkshake REAL |
+|---|---|---|
+| copa | *hurricane* curva, de cóctel | **acanalada, alta, con PIE ESCALONADO** de vidrio labrado |
+| borde | escarchado de coco | limpio |
+| bombilla | negra | **no lleva** |
+| adorno | frutilla en el borde | **brocheta de madera con dos moras y una frambuesa** |
+| sabores | uno, beige | **moras (morado) · café · maracuyá · manzana** |
+| dónde | mesa de madera, muro de piedra | **la barra**, con la estantería de botellas al fondo |
+
+> **⛔ QUE LA FOTO SEA REAL NO PRUEBA QUE SEA EL PRODUCTO.** Es el mismo error de
+> clase que la taza KIMBO y que el vaso To Go antiguo, y ya van tres. La
+> compuerta que faltaba no es «¿es real?» —eso ya estaba en el manual— es
+> **«¿es ESTE producto, hoy?»**, y no se contesta buscando por parecido en el
+> banco general: se contesta **pidiendo la sesión de ESE producto**.
+
+La sesión del producto son 35 fotos de Ámbar Gallardo del 30-06-2025 (iPhone,
+4284×5712), bajadas a `raw/hilton/between/milkshakes-jun2025/`. ⚠️ Son **HEIC**
+y la carpeta **no está compartida por enlace**: `uc?export=download` devuelve la
+página de login y el token del estudio no la ve (scope `drive.file`). El camino
+que funciona es `download_file_content` del conector MCP y decodificar el base64;
+`pillow_heif` ya está instalado y las convierte.
+
+Se eligió el de **moras** (`IMG_3607`, la toma más completa: copa entera, pie
+visible, brocheta nítida) porque el morado es el que más lee «primavera» contra
+el verde del follaje y porque separa la pieza de la del 21-09, que es toda marrón
+y verde manzana. Las otras tres quedan disponibles.
+
+### Y «el fondo mejor realizado» eran DOS defectos, los dos de encuadre
+
+1. **La copa terminó en el SUELO.** Pedir «una mesa de madera vista en
+   perspectiva» dentro de una escena de terraza le hizo construir un plano
+   general y dejar la copa sobre las baldosas, entre las sillas — y a esa
+   distancia la copa se lee del tamaño de una persona. Lo que lo arregló fue
+   pedir **plano de producto**: «la cámara está A LA ALTURA DE LA MESA y cerca de
+   la copa; la mesa ocupa toda la franja inferior; detrás, la terraza MUY
+   desenfocada, sin ninguna silla ni baldosa nítida; la copa se ve del tamaño de
+   un vaso de mesa, no gigante».
+2. **Faltaba una sola luz para toda la escena.** Se pide explícito: el sol entra
+   POR DETRÁS del follaje, y por eso la copa recibe **contraluz cálido en el
+   canto del vidrio**, un brillo en la superficie del batido y una **sombra de
+   contacto** bajo el pie en la dirección contraria. Sin eso el producto se ve
+   pegado aunque el fondo esté bien.
+
+El resultado, medido: **cero costuras** (ningún salto entre filas contiguas sobre
+media+6σ), y el beige del titular pasó de 8,2–14,1:1 a **14,6–15,7:1**.
+
+### El anclaje del bloque: el token es la TINTA, no el contenedor
+
+Al rehacerlo apareció un error de 39 px que venía de antes. `BETWEEN.bloque.yStory`
+(441) es **la primera línea de tinta**, pero Brushwell trae un hueco de ascendente
+grande: con el contenedor en 441 la tinta de «La primavera» aterrizaba en **480**,
+o sea 116 px de aire bajo el lockup contra los 77 que miden las plantillas de Eli.
+Con el contenedor en 402 la tinta cae en 441 y el aire vuelve a 77.
+
+⚠️ Y ojo con medir ese aire: un umbral de beige sólo caza el **wordmark**
+(271–330) porque la bajada «COFFEE & BAR» es más fina y no lo pasa. El lockup
+completo cierra en **y=364** (`bajadaY 348 + bajadaAlto 16`). Midiendo contra 330
+el aire parece 34 px más de lo que es.
+
+### El texto no se apoya en el producto
+
+El cierre fue primero al pie (y=1512), que es donde lo lleva la ST del 14-09.
+Pero en esa pieza el pie es sweater liso, y acá la copa ocupa el eje del cuadro
+de y=860 a y=1560: el cierre caía **encima del producto**. Se subió al bloque de
+arriba, donde la medición daba sitio (la tinta cierra en 817 y la brocheta entra
+en 860 → 43 px), y la franja de abajo quedó de pura fotografía, como en la ST del
+cowork. Es la misma regla que ya estaba escrita para los garabatos —«el
+repertorio de línea se apoya en el FONDO, nunca sobre el producto»— y vale
+igual para el texto.
+
 ## ⚠️ 4. Between NO tiene fotografía del Strudel de manzana
 
 Buscado en las 202 de `3 ENERO _ PLATOS - DESAYUNOS`, en

@@ -5879,3 +5879,69 @@ alta, el asta pasó de **8,9 a 10,8 px** (+21 %) y la tinta de 21 235 a 25 482 p
 `ajustarACaber` baja el cuerpo para que la línea siga entrando en la columna de
 810. O sea que **el bbox no sirve para verificar un cambio de peso**: hay que
 medir el asta o el área de tinta.
+
+## ⭐⭐⭐ 4 quinquies. RONDAS 5 y 6 — la TEXTURA del trazo, medida
+
+Eli: «necesito esas ilustraciones **más irregulares y no tan bien hechas**, que
+sea orgánica pero **bien dibujada, como textura de pincel**». Y después, sobre la
+pieza siguiente: «borra lo encerrado en rojo, y lo amarillo es para que añadas
+esa ilustración. Recuerda usar el **color beige de BW** para las ilustraciones».
+
+### ⭐ Su textura tiene tres rasgos, y se ven al 400 %
+
+Ampliando sus propios trazos (`globo.png`, `confeti.png`) queda claro qué le
+faltaba a los míos:
+
+| rasgo | lo que yo hacía | lo que ella tiene |
+|---|---|---|
+| el canto | un vaivén largo y suave (5–7 tramos) | **aserrado a ALTA frecuencia**: muescas de 1–3 px cada pocos píxeles |
+| los costados | la MISMA semi-anchura para los dos | **independientes**: un lado abulta donde el otro no |
+| el ancho | ±18 % | varía mucho más a lo largo del recorrido |
+
+> **⛔ La muesca va en PÍXELES ABSOLUTOS, no en porcentaje del grosor.** Fue el
+> error de la primera pasada: «±10 % de la semi-anchura» son 2 px a 4× de
+> supermuestreo, o sea **medio píxel** en la imagen final — se lo come el
+> remuestreo y el trazo vuelve a salir liso. Sus muescas son de 1–3 px del PNG,
+> así que a 4× hay que pedir 6–10 px y da igual lo gordo que sea el trazo.
+
+### ⭐ Y la GEOMETRÍA también tiene que ser irregular
+
+«No tan bien hechas» no es sólo el canto: un círculo perfecto con el borde
+aserrado sigue leyéndose hecho con compás. Ahora el radio del sol **respira**
+(±6 % con ruido suave, así que sale un óvalo de mano), los rayos van con el
+ángulo y el largo sorteados, y cada lomo de la nube corre su centro y su radio.
+
+### ⛔ Dos cosas que se probaron y se descartaron, con el motivo
+
+1. **Los «claros» del pincel** (motas transparentes dentro del trazo): salían
+   círculos perfectos y del mismo porte, o sea lunares. El rasgo que da la
+   textura es el CANTO, no los huecos.
+2. **El doble contorno con `separacion` < 1**: las dos pasadas se fundían en un
+   solo trazo gordo. Se caza con una medida barata — **`canto/tinta`**, o sea
+   píxeles de borde por píxel de tinta: los trazos de Eli dan **0,28–0,34** y las
+   nubes fundidas daban **0,14**, la firma de un trazo grueso y liso. Con la
+   separación en 1,7–1,85 (mayor que el grosor) subieron a **0,23–0,25** y el
+   doble contorno se lee. ⭐ **Esa razón es el test de textura**: si baja mucho
+   de 0,25, el trazo se está leyendo liso.
+   Y la pasada repasada va **más fina** (0,78), porque la mano aprieta menos al
+   volver sobre la línea.
+
+### La tinta: `#FFF9EB`, no `#FFFAEE`
+
+Los trazos se venían dibujando en `#fffaee`, que es el hex EXACTO de la clase
+`.st2` de su editable — medido, no inventado. Pero Eli pidió **el beige de la
+marca** (`BETWEEN.colores.beige`, `#FFF9EB`), el mismo del texto: la ilustración
+y la tipografía van en una sola tinta.
+
+⚠️ Queda una diferencia de 2 puntos en verde y 3 en azul contra los **ocho**
+trazos recortados de su plancha (globo, confeti, corazón, flechas), que
+conservan su `#fffaee` porque son su obra y no se re-tiñen.
+
+### Las rayitas no van, y el hueco pedía una nube
+
+Encerró en rojo las dos `rayitas` y en amarillo el hueco del canal izquierdo a
+media altura. El asset queda en el kit, pero **sueltas y chicas se leen como una
+mancha, no como un dibujo**: la capa de línea de esta historia son el sol y las
+nubes. Con la nube nueva, la columna izquierda queda de **tres nubes
+escalonadas** (1040–1235 · 1268–1529 · 1545–1785) y la zona del sticker sube al
+único tramo libre que dejó eso: y=880–1020.

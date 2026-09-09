@@ -22,7 +22,7 @@
  * zona marcada, que NO se sube al Drive.
  *
  *   21-09 → `INTERACCIÓN: Ícono "🍎"`  → 300 × 180 en y=1395
- *   22-09 → `INTERACCIÓN: LINK CARTA` → 300 × 140 en y=1020, en el CANAL
+ *   22-09 → `INTERACCIÓN: LINK CARTA` → 300 × 140 en y=880, en el CANAL
  *           IZQUIERDO: la copa ocupa el eje del cuadro de y=860 a y=1560, así
  *           que la pastilla centrada del cowork acá le caía encima al vaso
  *
@@ -317,11 +317,17 @@ export const StS4Strudel: React.FC<{guia?: boolean}> = ({guia = false}) => (
  * bajo era mesa limpia. Acá NO: aislando el batido morado por color, la copa
  * ocupa el eje del cuadro de y=860 a y=1560 y su borde izquierdo nunca pasa de
  * x=360, así que una pastilla centrada le caería encima. El canal libre está a
- * la izquierda —de x=0 a x≈355 la foto es mesa y follaje muy desenfocados— y en
- * la franja y=1020–1160 el borde de la copa está en x≈374, o sea que una zona
- * de 300 px que cierra en x=350 deja 24 px de aire.
+ * la izquierda —de x=0 a x≈355 la foto es mesa y follaje muy desenfocados.
+ *
+ * ⭐ RONDA 6: la zona SUBE de y=1020 a y=880. En la ronda 6 Eli pidió una nube
+ * justo en el hueco del canal izquierdo a media altura, que era donde estaba la
+ * zona, así que la columna izquierda quedó de tres nubes escalonadas
+ * (1040–1235 · 1268–1529 · 1545–1785) y el único tramo libre pasó a ser el de
+ * arriba: de y=870, donde termina el bloque de texto, a y=1030. Medido, el
+ * borde de la copa en esa franja está en x≈360–374, así que 300 px que cierran
+ * en x=345 dejan 15 px de aire.
  */
-const ZONA_ENLACE: Zona = {ancho: 300, alto: 140, top: 1020, left: 50};
+const ZONA_ENLACE: Zona = {ancho: 300, alto: 140, top: 880, left: 45};
 
 export const StS4Primavera: React.FC<{guia?: boolean}> = ({guia = false}) => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
@@ -441,13 +447,20 @@ export const StS4Primavera: React.FC<{guia?: boolean}> = ({guia = false}) => (
         (192 y 342 normalizados a 1080).
         `opacidad` 0,85–0,9: la regla de uso de Eli es que las ilustraciones
         «acompañan, no dominan». */}
+    {/* ⛔ RONDA 6 — FUERA LAS RAYITAS. Eli las encerró en rojo las dos («borra lo
+        encerrado en rojo»): una junto a la brocheta y la otra a la derecha del
+        vaso. El asset queda en el kit, pero en esta pieza no van — sueltas y
+        chicas se leen como una mancha, no como un dibujo. La capa de línea de
+        esta historia son el sol y las nubes.
+        ⭐ Y donde ella dibujó de amarillo entra OTRA NUBE: el hueco del canal
+        izquierdo a media altura era el único sitio de la pieza sin dibujo, y con
+        él la columna izquierda queda de tres nubes escalonadas. */}
     <Ilustra cual="solGrande" x={-420} y={-470} ancho={900} opacidad={0.82} />
     <Ilustra cual="nubeDoble" x={700} y={-92} ancho={470} opacidad={0.82} />
     <Ilustra cual="nubeDoble" x={800} y={800} ancho={430} opacidad={0.86} />
-    <Ilustra cual="nubeDobleChica" x={-120} y={1206} ancho={420} opacidad={0.86} />
-    <Ilustra cual="nubeChica" x={-56} y={1418} ancho={330} opacidad={0.8} />
-    <Ilustra cual="rayitas" x={192} y={862} ancho={120} opacidad={0.8} />
-    <Ilustra cual="rayitas" x={808} y={1248} ancho={132} opacidad={0.8} espejo />
+    <Ilustra cual="nubeDobleChica" x={-40} y={1040} ancho={270} opacidad={0.86} />
+    <Ilustra cual="nubeDoble" x={-130} y={1268} ancho={380} opacidad={0.84} />
+    <Ilustra cual="nubeChica" x={-50} y={1545} ancho={300} opacidad={0.8} />
 
     {guia ? (
       <ZonaReservada zona={ZONA_ENLACE} etiqueta={'STICKER\nDE ENLACE\n(carta)\n300 × 140'} />

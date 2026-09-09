@@ -64,7 +64,15 @@ RAIZ = Path(__file__).resolve().parent.parent
 DEST = RAIZ / "public/assets/hilton/between/recursos"
 DEST.mkdir(parents=True, exist_ok=True)
 
-TINTA = (255, 250, 238)          # .st2 de su SVG
+# ⭐ RONDA 6 (09-09-2026). Eli: «recuerda usar el color beige de BW para las
+# ilustraciones». Se venía usando `#fffaee`, que es el hex EXACTO de la clase
+# `.st2` de su editable — o sea que estaba medido, no inventado. Pero el color de
+# la marca es `#FFF9EB` (`BETWEEN.colores.beige`), el mismo del texto, y manda
+# ella: la ilustración y la tipografía tienen que ser la misma tinta.
+# ⚠️ Queda una diferencia de 2 puntos en verde y 3 en azul contra los OCHO trazos
+# que salieron recortados de su plancha (globo, confeti, corazón y las flechas),
+# que conservan su `#fffaee` porque son su obra y no se re-tiñen.
+TINTA = (255, 249, 235)          # BETWEEN.colores.beige
 SOMBRA = (0, 0, 0, 64)           # negro 25 %
 SOMBRA_DXY, SOMBRA_BLUR = 4, 3   # su filtro drop-shadow-2
 SS = 4                           # supermuestreo
@@ -91,37 +99,97 @@ def trazo(dib: ImageDraw.ImageDraw, pts, grosor: float, cerrado=False,
     la normal, en múltiplos del grosor.
     """
     for k in range(pasadas):
-        _una_pasada(dib, pts, grosor, cerrado, separacion * grosor * k)
+        # ⚠️ La pasada repasada va MÁS FINA: cuando la mano vuelve sobre el
+        # trazo aprieta menos. Y `separacion` tiene que ser MAYOR que 1, o las
+        # dos pasadas se funden en un solo trazo gordo — medido: con 0,85 el
+        # `canto/tinta` caía a 0,14 contra el 0,28–0,34 de los trazos de Eli,
+        # que es la firma de un trazo grueso y liso, no de dos líneas.
+        _una_pasada(dib, pts, grosor * (1.0 if k == 0 else 0.78), cerrado,
+                    separacion * grosor * k)
+
+
+def _octavas(n: int, octavas) -> np.ndarray:
+    """Ruido de varias octavas sumadas: la textura del pincel no es una sola
+    escala. La baja hace que el trazo engorde y adelgace a lo largo, y las altas
+    son las que muerden el borde."""
+    out = np.zeros(n)
+    for tramos, amplitud in octavas:
+        out = out + ruido_suave(n, amplitud, tramos)
+    return out
 
 
 def _una_pasada(dib: ImageDraw.ImageDraw, pts, grosor: float, cerrado: bool,
                 corrimiento: float) -> None:
+    """Un trazo de pincel: contorno relleno con el BORDE ASERRADO.
+
+    ⭐ RONDA 5 (09-09-2026). Eli: «necesito esas ilustraciones más irregulares y
+    no tan bien hechas, que sea orgánica pero bien dibujada, como textura de
+    pincel». Tenía razón y el defecto era medible: la versión anterior ofrecía
+    los DOS costados con la MISMA semi-anchura y con una sola octava de ruido
+    suave (5–7 tramos), así que el trazo salía como una cinta lisa con un vaivén
+    — regular, justo lo que ella no quiere.
+
+    Mirando sus trazos originales al 400 % (`globo.png`, `confeti.png`) la
+    textura real tiene tres rasgos, y son los tres que faltaban:
+
+      1. **el borde va aserrado a ALTA frecuencia** — muescas de 1 a 3 px que se
+         repiten cada pocos píxeles, no un vaivén largo;
+      2. **los dos costados son INDEPENDIENTES** — un lado abulta donde el otro
+         no, así que el eje del trazo se mueve solo;
+      3. **el ancho varía mucho** a lo largo del recorrido, bastante más que el
+         ±18 % que tenía.
+
+    Así que la semi-anchura se sortea por separado para cada costado y suma tres
+    octavas: una larga que engorda y adelgaza el trazo, y dos cortas —**en píxeles
+    absolutos**— que son las que muerden el canto.
+
+    ⛔ Y se probó agregarle «claros» del pincel (motas transparentes dentro del
+    trazo). Se descartó: salían círculos perfectos y del mismo porte, o sea que
+    se leían como lunares y no como un salto de pincel. El rasgo que de verdad
+    da la textura es el CANTO, no los huecos.
+    """
     p = np.asarray(pts, dtype=float)
     if cerrado:
         p = np.vstack([p, p[:1]])
-    # remuestreo uniforme para que el ruido no dependa del paso original
     d = np.r_[0, np.cumsum(np.hypot(*np.diff(p, axis=0).T))]
     if d[-1] <= 0:
         return
-    n = max(24, int(d[-1] / 2))
+    # paso de 1,5 px a 4×: sin muestreo denso la octava alta no alcanza a morder
+    n = max(40, int(d[-1] / 1.5))
     t = np.linspace(0, d[-1], n)
-    cx = np.interp(t, d, p[:, 0]) + ruido_suave(n, grosor * 0.20)
-    cy = np.interp(t, d, p[:, 1]) + ruido_suave(n, grosor * 0.20)
-    # normal unitaria
-    dx = np.gradient(cx)
-    dy = np.gradient(cy)
+    cx = np.interp(t, d, p[:, 0]) + ruido_suave(n, grosor * 0.18)
+    cy = np.interp(t, d, p[:, 1]) + ruido_suave(n, grosor * 0.18)
+    dx, dy = np.gradient(cx), np.gradient(cy)
     ln = np.hypot(dx, dy)
     ln[ln == 0] = 1
     nx, ny = -dy / ln, dx / ln
-    u = np.linspace(0, 1, n)
-    # afilado en las puntas + respiración del pincel
-    perfil = np.sin(np.pi * u) ** 0.35 if not cerrado else np.ones(n) * 0.92
-    semi = (grosor / 2) * perfil * (1 + ruido_suave(n, 0.18, 7))
     if corrimiento:
-        cx = cx + nx * corrimiento
-        cy = cy + ny * corrimiento
-    izq = np.c_[cx + nx * semi, cy + ny * semi]
-    der = np.c_[cx - nx * semi, cy - ny * semi][::-1]
+        cx, cy = cx + nx * corrimiento, cy + ny * corrimiento
+    u = np.linspace(0, 1, n)
+    # la punta se afina, pero MENOS que antes: sus trazos acaban romos y
+    # deshilachados, no en aguja
+    perfil = np.sin(np.pi * u) ** 0.22 if not cerrado else np.full(n, 0.94)
+    largo = max(6, int(d[-1] / max(grosor, 1)))
+    # ⭐ LA MUESCA VA EN PÍXELES ABSOLUTOS, no en porcentaje del grosor.
+    # Fue el error de la primera pasada: una octava alta de «±10 % de la
+    # semi-anchura» son 2 px a 4×, o sea MEDIO píxel en la imagen final — se la
+    # come el remuestreo y el trazo vuelve a salir liso. Medidas sobre sus
+    # propios trazos, las muescas son de 1 a 3 px del PNG, así que a 4× hay que
+    # pedir 6–10 px y da igual lo gordo que sea el trazo.
+    MUESCA_MEDIA, MUESCA_FINA = 2.1 * SS, 1.2 * SS
+    def _canto() -> np.ndarray:
+        return (
+            # octava larga: el trazo engorda y adelgaza a lo largo (relativa)
+            (grosor / 2) * _octavas(n, ((max(5, largo // 3), 0.22),))
+            # octavas cortas: las que muerden el canto (absolutas)
+            + ruido_suave(n, MUESCA_MEDIA, max(14, largo * 2))
+            + ruido_suave(n, MUESCA_FINA, max(40, largo * 8))
+        )
+    base = (grosor / 2) * perfil
+    semi_l = np.clip(base + _canto(), grosor * 0.10, grosor)
+    semi_r = np.clip(base + _canto(), grosor * 0.10, grosor)
+    izq = np.c_[cx + nx * semi_l, cy + ny * semi_l]
+    der = np.c_[cx - nx * semi_r, cy - ny * semi_r][::-1]
     dib.polygon([tuple(v) for v in np.vstack([izq, der])], fill=TINTA + (255,))
 
 
@@ -152,14 +220,18 @@ im, dib = lienzo(W, H)
 cx = cy = W * SS / 2
 r = W * SS * 0.215
 a0 = math.radians(-100)
-arco = [(cx + r * math.cos(a0 + 2 * math.pi * s * 1.06),
-         cy + r * math.sin(a0 + 2 * math.pi * s * 1.06)) for s in np.linspace(0, 1, 90)]
+# ⭐ el círculo NO es un círculo: el radio respira, así que sale un óvalo de mano
+_ts = np.linspace(0, 1, 120)
+_rr = r * (1 + ruido_suave(len(_ts), 0.055, 4))
+arco = [(cx + rr * math.cos(a0 + 2 * math.pi * t * 1.06),
+         cy + rr * math.sin(a0 + 2 * math.pi * t * 1.06)) for t, rr in zip(_ts, _rr)]
 trazo(dib, arco, GROSOR)
 for k in range(8):
-    a = a0 + k * 2 * math.pi / 8 + 0.12
-    r1, r2 = r * 1.42, r * 1.42 + W * SS * (0.105 if k % 2 == 0 else 0.082)
+    a = a0 + k * 2 * math.pi / 8 + 0.12 + rng.uniform(-0.10, 0.10)
+    r1 = r * rng.uniform(1.34, 1.50)
+    r2 = r1 + W * SS * (0.105 if k % 2 == 0 else 0.082) * rng.uniform(0.82, 1.18)
     trazo(dib, [(cx + r1 * math.cos(a), cy + r1 * math.sin(a)),
-                (cx + r2 * math.cos(a), cy + r2 * math.sin(a))], GROSOR * 0.92)
+                (cx + r2 * math.cos(a), cy + r2 * math.sin(a))], GROSOR * rng.uniform(0.82, 1.0))
 cerrar(im, W, H, "sol.png")
 
 
@@ -183,13 +255,18 @@ def nube(w: int, h: int, bollos, nombre: str, grosor_px: float) -> None:
     x0, x1 = W2 * 0.10, W2 * 0.90
     xs = np.linspace(x0, x1, 220)
     alto = np.zeros_like(xs)
+    # ⭐ los lomos NO son iguales: cada uno corre su centro y su radio, y el
+    #    perfil entero respira. Una nube de tres semicírculos exactos se lee
+    #    dibujada con compás — que es justo lo que Eli marcó.
     for cxf, rf in bollos:
-        bx, br = W2 * cxf, W2 * rf
+        bx = W2 * cxf * rng.uniform(0.975, 1.025)
+        br = W2 * rf * rng.uniform(0.88, 1.12)
         dentro = np.abs(xs - bx) < br
         h_i = np.zeros_like(xs)
-        h_i[dentro] = np.sqrt(br ** 2 - (xs[dentro] - bx) ** 2) * 1.06
+        h_i[dentro] = np.sqrt(br ** 2 - (xs[dentro] - bx) ** 2) * rng.uniform(1.0, 1.14)
         alto = np.maximum(alto, h_i)
-    pts = list(zip(xs, base_y - alto))
+    alto = alto * (1 + ruido_suave(len(xs), 0.045, 6))
+    pts = list(zip(xs, base_y - alto + ruido_suave(len(xs), GROSOR * 0.22, 5)))
     trazo(dib, pts, GROSOR)
     # la base: un trazo suelto y un poco más corto, como la cierra a mano
     trazo(dib, [(W2 * 0.155, base_y + GROSOR * 0.10),
@@ -221,15 +298,17 @@ im, dib = lienzo(W, H)
 cx = cy = W * SS / 2
 r = W * SS * 0.225
 a0 = math.radians(-96)
-arco = [(cx + r * math.cos(a0 + 2 * math.pi * t * 1.04),
-         cy + r * math.sin(a0 + 2 * math.pi * t * 1.04)) for t in np.linspace(0, 1, 110)]
-trazo(dib, arco, GROSOR, pasadas=2, separacion=0.55)
+_ts = np.linspace(0, 1, 150)
+_rr = r * (1 + ruido_suave(len(_ts), 0.06, 4))
+arco = [(cx + rr * math.cos(a0 + 2 * math.pi * t * 1.04),
+         cy + rr * math.sin(a0 + 2 * math.pi * t * 1.04)) for t, rr in zip(_ts, _rr)]
+trazo(dib, arco, GROSOR, pasadas=2, separacion=1.55)
 for k in range(9):
-    a = a0 + k * 2 * math.pi / 9 + 0.10
-    r1 = r * 1.40
-    r2 = r1 + W * SS * (0.115 if k % 2 == 0 else 0.085)
+    a = a0 + k * 2 * math.pi / 9 + 0.10 + rng.uniform(-0.11, 0.11)
+    r1 = r * rng.uniform(1.32, 1.48)
+    r2 = r1 + W * SS * (0.115 if k % 2 == 0 else 0.085) * rng.uniform(0.80, 1.22)
     trazo(dib, [(cx + r1 * math.cos(a), cy + r1 * math.sin(a)),
-                (cx + r2 * math.cos(a), cy + r2 * math.sin(a))], GROSOR * 0.9)
+                (cx + r2 * math.cos(a), cy + r2 * math.sin(a))], GROSOR * rng.uniform(0.80, 1.0))
 cerrar(im, W, H, "sol-grande.png")
 
 
@@ -244,16 +323,19 @@ def nube_doble(w, h, bollos, nombre, grosor_px):
     xs = np.linspace(W2 * 0.08, W2 * 0.92, 240)
     alto = np.zeros_like(xs)
     for cxf, rf in bollos:
-        bx, br = W2 * cxf, W2 * rf
+        bx = W2 * cxf * rng.uniform(0.975, 1.025)
+        br = W2 * rf * rng.uniform(0.88, 1.12)
         dentro = np.abs(xs - bx) < br
         h_i = np.zeros_like(xs)
-        h_i[dentro] = np.sqrt(br ** 2 - (xs[dentro] - bx) ** 2) * 1.08
+        h_i[dentro] = np.sqrt(br ** 2 - (xs[dentro] - bx) ** 2) * rng.uniform(1.02, 1.16)
         alto = np.maximum(alto, h_i)
-    trazo(dib, list(zip(xs, base_y - alto)), GROSOR, pasadas=2, separacion=0.85)
+    alto = alto * (1 + ruido_suave(len(xs), 0.05, 6))
+    trazo(dib, list(zip(xs, base_y - alto + ruido_suave(len(xs), GROSOR * 0.20, 5))),
+          GROSOR, pasadas=2, separacion=1.85)
     trazo(dib, [(W2 * 0.14, base_y + GROSOR * 0.10),
                 (W2 * 0.52, base_y + GROSOR * 0.32),
                 (W2 * 0.88, base_y + GROSOR * 0.04)], GROSOR * 0.95,
-          pasadas=2, separacion=0.75)
+          pasadas=2, separacion=1.70)
     cerrar(im, w, h, nombre)
 
 

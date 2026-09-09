@@ -5983,3 +5983,35 @@ aire, y aun así cierra en x=992, 4 px antes del margen de 996.
 > **Corolario para todo el manual: una regla escrita en general a partir de UN
 > caso hay que releerla antes de usarla para descartar algo.** Ésta costó dos
 > rondas, y las dos veces yo mismo la cité como motivo.
+
+## ✅ S4 · LAS DOS APROBADAS POR ELI (09-09-2026)
+
+| pieza | estado en la grilla | Eli |
+|---|---|---|
+| 21-09 · ST Strudel de manzana (col Q) | `OK PARA DISEÑAR` | ✅ **aprobada** («la uno de la historia aprobada») |
+| 22-09 · ST Primavera en Between (col R) | `OK PARA DISEÑAR` | ✅ **aprobada** tras 6 rondas |
+
+⚠️ **El OK es INTERNO: el cliente todavía no marca.** Las dos columnas siguen en
+`OK PARA DISEÑAR` en la grilla, igual que pasó con las tres de la S3. Lo que el
+cliente diga entra por el diff de `/al-dia`.
+
+Entregadas en `S4 HILTON SEP 2026/BW/STS`, 2250×4000, verificadas por bytes
+contra el local y **reproducibles byte a byte** desde el repo:
+
+- `BW ST 21-09 Strudel de manzana.png` — `173nqK9PFefnQpN6Skyi9-vBpVzgYRFjC`
+- `BW ST 22-09 Primavera en Between.png` — `1PZZS-7L2xL89oNAyqY_yaFysxXKO1CoV`
+
+Las copias `GUIA CM` con la zona del sticker marcada quedaron **sólo en local**
+(`out/hilton/between/entrega-st-s4-21-22-09/GUIAS CM/`) y sigue sin decidirse
+cómo llegan al CM — es el mismo pendiente abierto desde la S1.
+
+### Lo que las seis rondas dejaron para la marca
+
+1. **La compuerta del producto**: que la foto sea real no prueba que sea el
+   producto vigente. Se pide la sesión de ESE producto (§4 bis).
+2. **La capa de línea**: se lee por el SANGRADO y el trazo repasado, no por el
+   número de dibujos (§4 quater), y su textura es el canto aserrado en píxeles
+   absolutos, con `canto/tinta` como test (§4 quinquies).
+3. **Los emojis son por glifo, no por fuente** (§4 sexies).
+4. **`pesoCaps`** en `TitularBetween` y la **flor** en el kit de emojis quedan
+   disponibles para el resto del mes.

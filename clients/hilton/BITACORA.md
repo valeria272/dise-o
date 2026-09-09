@@ -1,3 +1,98 @@
+## 2026-09-09 (CIERRE 4 · noche) · Eli (Windows) — BETWEEN S4: las dos stories del 21 y 22-09, APROBADAS en 6 rondas
+
+Sesión de Between (las tres anteriores del día fueron de DT y Piso18). Arrancó con
+`/abrir between` y cerró con las dos piezas aprobadas por Eli y subidas.
+
+**Qué se hizo:**
+
+1. **`/al-dia` cazó una ronda nueva del cliente**, entrada hoy a las 12:48:37Z.
+   Desapareció `REVISAR CONTENIDO` de TODA la grilla: el FEED del cumpleaños pasó
+   a `CORREGIDO` con el comentario del legal **tachado** y su vista previa
+   reemplazada por la lámina corregida, y **STORIES D y G pasaron a `EN CAMBIOS`**.
+   Contenido pegó además **nuestras tres stories de la S3** en las columnas M, N y
+   O (estados sin mover: el cliente aún no marca).
+2. **Se produjeron las dos stories estáticas de la S4** —21-09 Strudel y 22-09
+   Primavera— por encargo de Eli, guiadas por las dos referencias que dejó
+   contenido. **Seis rondas** hasta el OK.
+3. Se dibujaron **siete trazos nuevos** para el kit y entró el **quinto emoji**.
+
+### La ronda del cliente, pieza por pieza
+
+| Pieza | Antes | Ahora |
+|---|---|---|
+| FEED col E · 09-09 Café de cumpleaños | `REVISAR CONTENIDO` | **`CORREGIDO`** — legal cerrado, comentario tachado |
+| STORIES col D · ST café de regalo | `REVISAR CONTENIDO` | **`EN CAMBIOS`** |
+| STORIES col G · 09-09 **Reel Café Bombón** | `REVISAR CONTENIDO` | **`EN CAMBIOS`** |
+| STORIES M · N · O (la S3) | sin cambio | nuestras piezas **pegadas** en la grilla |
+
+⚠️ Salió de la hoja un GIF animado de 104 frames (vaso Between vacío sobre madera)
+que calza con la escena 1 del Café Bombón. Respaldado en
+`raw/hilton/between/de-grilla/` antes de que se perdiera.
+
+### Las seis rondas de la S4, y qué dejó cada una
+
+| # | Lo que dijo Eli | Lo que cambió |
+|---|---|---|
+| 1 | (encargo) | las dos piezas, con el sticker en zona reservada |
+| 2 | «te dejo la sesión que tenemos de **cómo son**» + «el fondo debe ser mejor realizado» | ⛔ **el milkshake estaba mal**: se había usado `Between-214.jpg`, foto REAL del cliente pero de OTRO producto. Se rehízo con la sesión del producto |
+| 3 | «sol y nubes como ilustración, guíate de mis editables» + «títulos en raleway semi bold» | los tres trazos nuevos, `pesoCaps` en el titular y la jerarquía título/párrafo/bajada |
+| 4 | «una ilustración como la de esta captura» + «raleway con más grosor» | la capa de línea **sangra** por los bordes y va **repasada**; el titular a Bold 700 |
+| 5 | «más irregulares y no tan bien hechas, como textura de pincel» | el canto **aserrado en píxeles absolutos** y la geometría irregular |
+| 6 | borrar las rayitas, añadir nube, «usar el beige de BW» | tinta a `#FFF9EB`, tres nubes escalonadas a la izquierda |
+| — | «en el título te faltó añadir este emoji 🌸» | el 🌸 entra: la regla de los emojis estaba **mal generalizada** |
+
+**Dónde quedó:**
+
+- `src/compositions/hilton/BetweenStS4.tsx` — las dos piezas y sus dos `GUIA CM`.
+- `scripts/between-st-s4-generar.py` · `-fotos.py` — las escenas y el paso a 2250.
+- `scripts/between-trazos-sol-nubes.py` — los 7 trazos, con la mano de Eli medida.
+- `src/compositions/hilton/BetweenPlanchaTrazos.tsx` y `BetweenPruebaEmoji.tsx` —
+  dos utilidades de comprobación (rendir su `.svg` y probar emojis). No son piezas.
+- `BetweenSistema.tsx` — la prop **`pesoCaps`**, opt-in. Comprobado: la ST del
+  cowork del 16-09 re-rinde con **0 píxeles** de diferencia.
+- Kit: `sol`, `solGrande`, `nube`, `nubeChica`, `nubeDoble`, `nubeDobleChica`,
+  `rayitas` y el emoji `flor`.
+- Entrega: `out/hilton/between/entrega-st-s4-21-22-09/` (+ `GUIAS CM/`), 2250×4000.
+- **Subidas a `S4 HILTON SEP 2026/BW/STS`** y verificadas por `fileSize` contra el
+  local: Strudel `173nqK9PFefnQpN6Skyi9-vBpVzgYRFjC`, Primavera
+  `1PZZS-7L2xL89oNAyqY_yaFysxXKO1CoV` (se reemplazó 6 veces el MISMO archivo, así
+  que el enlace nunca cambió).
+- **Las dos reproducen byte a byte** desde el repo.
+- `clients/hilton/CLAUDE.md` — seis secciones nuevas (§4 bis a §4 sexies + la de
+  aprobación) y la instantánea nueva de la grilla.
+
+**Qué sigue:**
+
+1. **El reel Café Bombón.** Pasó a `EN CAMBIOS`, estaba agendado **hoy** y no
+   existe composición. Lo único que el cliente pidió por escrito es el legal de
+   «imagen referencial»; **nadie anotó cuál de los tres caminos para la leche
+   condensada se aceptó** — la propuesta está en
+   `clients/hilton/PROPUESTA-reel-cafe-bombon.md` y hay que preguntárselo a Eli.
+2. **STORIES col D** (ST café de regalo) también está en `EN CAMBIOS`, aunque la
+   corrección del legal se entregó el 08-09. Hay que confirmar qué falta.
+3. La S4 la puede seguir el resto del mes con lo que quedó en el kit.
+
+**Abierto:**
+
+- ⚠️ **El Strudel es un producto GENERADO.** Between no tiene ninguna foto del
+  Strudel de manzana (buscado en las 202 de la sesión de enero, en los desayunos
+  de agosto, en `dulces-tortas` y en la carta). Está rotulado para poder
+  reemplazarlo el día que llegue la foto.
+- ⚠️ Los ocho trazos recortados de la plancha de Eli conservan su `#fffaee`,
+  mientras los siete nuevos van en el `#FFF9EB` de la marca que ella pidió. Son
+  2 y 3 puntos de diferencia; si molesta, se re-tiñen los ocho.
+- ⚠️ **`between-qa.py` marca las dos piezas y en los dos casos es FALSO POSITIVO**
+  (la comida clara y las nubes que sangran). Verificado imprimiendo dónde están
+  los píxeles. Convendría darle al script una forma de distinguir ilustración de
+  texto.
+- Siguen del cierre anterior: Between **sin `clients/hilton/reglas.yaml`** (así que
+  `qa/motor.py --marca hilton` no corre), las **`GUIA CM`** en local sin decidir
+  cómo llegan al CM (10 días), y **`BETWEEN.logo.cafe` apuntando a un PNG negro**.
+- ⛔ Y sigue en pie: **`BetweenCumple.tsx:112` y `BetweenSeptiembre.tsx:794` con el
+  legal VIEJO** del cumpleaños.
+
+---
+
 ## 2026-09-09 (CIERRE 3 · tarde) — Eli (Windows), DOUBLETREE: el moodboard de la sesión de fotos
 
 **Qué se hizo.** Se armó el **moodboard para la sesión fotográfica del hotel**, de cero

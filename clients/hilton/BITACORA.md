@@ -1,3 +1,140 @@
+## 2026-09-09 (CIERRE) · Eli (Windows) — DOUBLETREE: Eli dictó la capa de imagen y redacción, y fijó el límite del encargo
+
+Sesión corta y de una sola cosa: **cerrar el sistema de DT con lo que faltaba**, que
+era la conversación de Eli sobre uso de foto/video y cómo se deben ver las piezas.
+Arrancó con `/abrir DT`.
+
+**Qué se hizo:**
+
+1. **`/al-dia` cazó ronda nueva de DT** — la grilla se movió a las **20:42Z del 08-09**,
+   o sea *después* de la pasada de la tarde. Diff limpio: **3 celdas de 195 en FEED**,
+   0 en STORIES, 0 en REELSORGÁNICOS, 0 en las otras dos hojas. Esta vez **las columnas
+   NO se corrieron** (los titulares de la fila 10 son idénticos).
+   - **FEED G (10-09, `POST - NOCHE DE BODAS`): `CORREGIDA` → `APROBADO`.** Es la pieza
+     que Eli entregó el 07-09. **Cerrada.**
+   - **FEED K (23-09, `REEL - HILTON HONORS formato POV`): `POR GRABAR` → `REVISAR
+     CONTENIDO`**, y el comentario cambió de «Podríamos hacer como un video todo en POV»
+     a «**Este que mejor sea un estático**, ya hicimos reel hace poco (guardemos la idea
+     de todas formas)». ⚠️ La fila `DISEÑOS` sigue diciendo REEL y el brief sigue
+     describiendo 5 escenas con rodaje coordinado con Sebastián Serrano.
+2. **⭐⭐ Eli dictó LA LEY DE DT** y quedó escrita en `clients/hilton/CLAUDE.md` como
+   bloque nuevo (§A–§G): rostros, logo, programas, fotos, tono, títulos y el límite del
+   encargo. Detalle abajo.
+3. **⛔⛔ Y fijó el límite del encargo, que manda sobre todo:** «Para esta cuenta no
+   tienes que tocar nada de brief ni contenido, solamente ayudarme a mí a diseñar. Eso
+   lo decide netamente cliente con contenido, por respeto a las grillas y brief que
+   ellos dejen. El cliente si solicita ajustes, ahí nosotros lo veremos.» Está como
+   aviso al inicio del manual **y** completa en §G, con memoria propia
+   (`solo-diseno-el-brief-no-es-mio`).
+4. **Se re-midió la cobertura de glifos de las fuentes de DT, peso por peso.**
+5. **Se cruzaron los precios del mes entero** contra lo que dictó Eli.
+
+**⭐ Las reglas de Eli, en corto:**
+
+- **Rostros de trabajadores: por defecto NO.** En imagen (post/story), **del torso hacia
+  abajo**, y **las manos** en preparaciones de cocina. **En video SÍ**, porque habla la
+  propia persona. Excepción en imagen: **fechas del oficio** (ej. día del housekeeping).
+  ⚠️ Consecuencia: el Hilton Honors del 23-09, al pasar de reel a estático, **pierde el
+  permiso de mostrar rostros**.
+- **Logo:** siempre el **principal** (vertical, 4 líneas). El **horizontal sólo si el
+  cliente lo pide**. **Blanco por defecto**, y **azul DoubleTree cuando el fondo es
+  demasiado blanco** y el logo se pierde. No choca con la regla del 08-09 («en feed por
+  defecto no va»): esa decide *si* aparece, ésta *cuál y de qué color*.
+- **Programas:** Family Time **$125.000** · Escapada Romántica **$99.000** · Noche de
+  Bodas **$189.000** (confirmado hoy). La promo de ER **no es permanente** y la de
+  septiembre 2026 fue de **$89.000** (reserva 11–20 de sept, Fiestas Patrias). ⚠️ Al
+  terminar el mes hábil, **las piezas se cambian y el precio vuelve a $99.000**: una
+  pieza con promo no se reutiliza sin editar.
+- **Fotos de los programas: siempre las nuestras**, pero **con el rostro reemplazado por
+  uno generado** (uno de hombre y uno de mujer) **y variando** entre piezas, para no
+  ensuciar el feed ni las historias.
+- **Tono:** elegante, minimalista, sencillo. **No saturado.**
+- **Títulos:** ⛔ **sin punto nunca** (el punto es de los párrafos largos o del texto que
+  viene después) y ⛔ **sin mezclar cajas** — todo en caja baja o todo en versales.
+  ⚠️ Esto **no** prohíbe el titular a dos pesos (Stag Bold + Stag Light): los dos pesos
+  se permiten, la mezcla de cajas no.
+
+**Lo medido hoy:** las **nueve** Stag del repo son *el mismo* subconjunto de **354
+glifos** y a **todas** les faltan `$ % ¿ ¡ @ € º ª # *` — no es sólo la «Stag normal»,
+como decía la nota de ayer. Las dos Trade Gothic (287 glifos) cubren todo el set de
+prueba. Corolario práctico nuevo: además del precio, **el `@` de un correo y el `%` de
+un descuento también son Trade**.
+
+**⛔ Y las fuentes que Eli subió anoche NO eran nuevas.** Las dos carpetas `Fonts` de
+`GRILLA IA DT` (19:54–20:56Z) traen **los mismos archivos** que ya estaban en
+`public/assets/hilton/dt/fonts/` — bytes idénticos (Stag Regular 70 116, Medium 70 164,
+SemiBold 70 008, Italic 77 424, MediumItalic 77 880, Light 70 680; Trade Regular 28 936
+y BoldCn20 29 251). **Siguen faltando Stag LCG, Trade Gothic LT Std Bold y Trade Gothic
+Next LT Pro Bold**, y sólo el cliente los tiene.
+
+**El cruce de precios (diagnóstico, NO lista de correcciones):** `FEED C` $99.000 ✓ ·
+`FEED D` $89.000 ✓ (era la promo) · `FEED F` $125.000 ✓ · `FEED G` $189.000 ✓ ·
+⛔ **`STORIES J` (21-09, `ANIMADA - ESCAPADA ROMÁNTICA`) dice «desde $109.000»**, que no
+calza con ninguno. **Decisión de Eli: no se toca hasta que el cliente confirme.**
+
+> 🔴 **El error del día, anotado a propósito:** al encontrar los $109.000 **recomendé
+> diseñarla con $99.000 y avisarle al cliente**. Eso era editarle el brief, y de ahí
+> salió la regla §G. **Detectar la discrepancia sirve; resolverla no me toca.**
+
+**Dónde quedó.** Capas del sistema DT: **identidad, formatos, copy, imagen y gramática
+de redacción LISTAS**. Falta la **geometría medida** (y con ella `marca.json`,
+`src/brand/doubletree.ts` y `reglas.yaml`). Archivos tocados hoy:
+`clients/hilton/CLAUDE.md` (bloque nuevo + aviso de cabecera + nota de glifos),
+`clients/hilton/grillas/dt-septiembre-2026.md` (instantánea del 09-09, base del próximo
+diff), `clients/_estado-sync.json`, y `raw/hilton/dt/DT-grilla-septiembre-2026.xlsx`
+actualizado (no viaja en git). **No se rindió ni se entregó ninguna pieza**, así que no
+hay scripts ni fondos nuevos que commitear.
+
+**Qué sigue.** **Medir la geometría** de las piezas aprobadas y con eso cerrar
+`marca.json` + `src/brand/doubletree.ts` + `reglas.yaml`.
+
+⛔ **Pero está bloqueado por un archivo, y es el bloqueante número uno de mañana:** la
+regla del Family Time dice que la fuente de verdad es **el último carrusel de Eli**, y
+ése **no está en esta máquina**. Son `C1 FT N°1.png` (6,73 MB) y `C1 FT N°2.png`
+(3,03 MB), que Eli dejó el 08-09 20:15Z en la carpeta de Drive **`C1 FAMILY TIME`**
+(`1eCrtkz0HUAiDT27qlXlKm8xKJxjKvJ-p`). **No se pueden bajar desde acá:** por enlace
+llega la página de login (la carpeta no está compartida) y el conector MCP devuelve
+**contenido vacío** con los dos. **Hay que copiarlos a mano a
+`raw/hilton/dt/aprobadas-sept/` o compartir la carpeta por enlace.**
+
+**Sobre el `reglas.yaml` de DT — se puede, pero no se improvisó hoy.** Los checks que ya
+existen cubren parte (`zona_segura` con los 209/369 de Eli, `contraste_texto` para el
+33 % del manual, `formato_clp`, `respiro_borde`), **pero las dos reglas de título
+necesitan checks nuevos** en `qa/checks.py` (algo como `titulo_sin_punto` y
+`caja_uniforme`, que operarían sobre `ctx["textos"]`, no sobre el PNG). Se dejó sin
+crear a propósito: un `reglas.yaml` parcial haría que `qa/motor.py --marca hilton`
+**empiece a aprobar piezas con cobertura incompleta**, que es peor que no correr.
+
+**Abierto.**
+- ⛔ **Los dos PNG del carrusel de Family Time** (arriba). Sin ellos la regla del Family
+  Time está escrita pero **no es ejecutable**.
+- **`STORIES J` (21-09)** frenada esperando que el cliente confirme el precio.
+- **Siguen abiertas las tres decisiones de Eli del 08-09:** ¿sigue vigente el titular con
+  la primera línea en verde? ¿el rosa `#DC224B` entra a la paleta? ¿el azul del sistema
+  es `#09194E` (manual) o `#111C4E` (medido)?
+- **Bloqueantes de cliente** (`CHECKLIST-CLIENTE.md`): las dos fuentes que faltan, y el
+  estático de reseña del 14-09 — **la carpeta que el brief nombra devuelve vacía**
+  (`1Dlki995RRdwueFGlZOkF9rybf7maMJ5u`). Lo que sí hay es el `REF` de I11
+  (`1yoXATM5Kh3v1IfBqyPUVaMW1wzBfPh0-`): dos PNG de Diego Aguilar del 12-08, la misma
+  pieza de agosto en español e inglés, con la reseña literal. ⚠️ Son de **Tripadvisor** y
+  firman con nombre («Sam»), mientras septiembre pide **Booking con iniciales** y octubre
+  **Expedia**. Sirven de **gramática** de la pieza, no de contenido.
+- **⭐ Octubre ya está en juego, y NO es nuestra lane:** `TEMAS OCTUBRE | HILTON | 04/09`
+  (`1W-1a7axLS3FMif1mZJxIitLRu4H2dfqFz8k7YCe9VP8`) se modificó **hoy 13:18Z** y trae
+  **13 comentarios abiertos de Scarlette Muñoz**. DT en octubre: 7 posts (2 reels
+  orgánicos) + 6 stories, la reseña pasa a Expedia y el reel del día del chef **sale
+  desde DT** en colab con las otras 3 marcas (un solo video para las cuatro). Por §G,
+  **se lee y se espera** — lo negocian contenido y el cliente.
+- **¿La regla §G vale también para QB, Between y Piso18?** Se dictó **para DT** y no se
+  dio por extendida. Lo tiene que decir Eli.
+
+**Otras marcas del complejo (no revisadas a fondo, `/al-dia` fue acotado a DT):** la
+grilla de **Between se movió hoy 09-09 12:48Z**, QB el 08-09 20:52Z y Piso18 el 08-09
+20:40Z. Eli trabajó anoche en QB (`CARTA QB DIGITAL GENERAL`, `KV FLYER QB GENERAL 2026
+SEP`) y en brochures del hotel.
+
+---
+
 ## 2026-09-08 (CIERRE 3 · noche) · Eli (Windows) — DOUBLETREE: la identidad queda cerrada y medida
 
 Tercera sesión del día, la primera de **ADN de DT**. Arrancó con `/abrir Doubletree`

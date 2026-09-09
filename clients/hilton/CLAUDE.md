@@ -4,6 +4,19 @@
 > **Dirección común de las 4 marcas:** Av. Vitacura 2727, Las Condes, Santiago
 > **Analizado:** 24-08-2026 (Drive completo). Cuenta de MUCHOS cambios y alto volumen.
 
+> ## ⛔⛔ LEE ESTO ANTES DE CUALQUIER COSA — el encargo en DT es SÓLO DISEÑO
+>
+> **El brief y el contenido no se tocan.** La grilla la dejan el cliente y el equipo
+> de contenido, y se respeta como viene: no se reescribe un copy, no se corrige un
+> precio, no se propone otro formato, no se redefine un brief contradictorio y no se
+> escribe ni se comenta en la grilla. Si algo se ve raro, **se le informa a Eli y ahí
+> para**; el ajuste sólo entra cuando el cliente lo pide.
+>
+> **La regla completa, con lo que sí se hace y el error que la originó, está más abajo
+> en `### G. EL LÍMITE DEL ENCARGO`, dentro del bloque «DT — LA LEY DE ELI».**
+> Dictada por Eli el 09-09-2026 **para DT**; si vale igual para QB, Between y Piso18,
+> lo dice Eli — acá no se da por extendida.
+
 ## Las 4 cuentas (marcas del complejo)
 
 | Sigla | Marca | Qué es | Contacto/CTA típico |
@@ -40,6 +53,20 @@ trae — cobertura completa. O sea que Stag no puede escribir un precio ni una
 pregunta *por diseño de la familia*: eso es trabajo de Trade. Si una pieza necesita
 `$125.000` o «¿Ya eres Hilton Honors?», **esa línea es Trade, no Stag**.
 
+**Re-medido peso por peso el 09-09** (`cmap` de cada archivo, no deducido de uno):
+los **nueve** cortes de Stag son *el mismo* subconjunto de 354 glifos, así que no hay
+un peso que se salve. La lista completa de lo que le falta a todos es
+**`$ % ¿ ¡ @ € º ª # *`**. Las dos Trade Gothic dan 287 glifos y cubren todo eso.
+Corolario práctico: además del precio, **el `@` de un correo y el `%` de un descuento
+también son Trade**.
+
+> **Y no van a llegar por Drive.** El 08-09 Eli subió dos carpetas `Fonts` a
+> `GRILLA IA DT`; se compararon por tamaño y son **los mismos archivos** que ya están
+> en `public/assets/hilton/dt/fonts/` (Stag Regular 70 116 B, Medium 70 164, SemiBold
+> 70 008, Italic 77 424, MediumItalic 77 880, Light 70 680; Trade Gothic Regular
+> 28 936 y BoldCn20 29 251). Siguen faltando **Stag LCG**, **Trade Gothic LT Std Bold**
+> y **Trade Gothic Next LT Pro Bold**, y sólo el cliente los tiene.
+
 **✅ Las piezas ya entregadas SÍ están en sistema — medido, no supuesto.**
 La huella que decide es **alto del `$` ÷ alto del `0`**, que no depende del tamaño ni
 del peso: la cifra `$125.000` del `C1 FT N°2` da **1,225**; Trade Gothic da 1,24 y
@@ -75,6 +102,153 @@ Chrome rechazó con Brushwell y que hizo que Remotion rindiera 27 piezas de Betw
 con una serif de reemplazo, sin avisar. Antes de rendir nada de DT en código hay que
 convertirlas a TTF/WOFF2 y verificar con `document.fonts.check`. Ver la memoria
 `brushwell-no-cargaba-en-chrome`.
+
+## ⭐⭐ DT — LA LEY DE ELI (dictada el 09-09-2026)
+
+> Ésta es la capa que faltaba: **imagen, programas y redacción**. Manda sobre el
+> manual oficial de Hilton en todo lo que sea **composición, uso de foto y texto**;
+> el manual oficial sigue mandando en **color y tipografía**. Es la misma jerarquía
+> que Eli fijó el 08-09: «el manual es un apoyo, pero al final la diseñadora soy yo».
+
+### A. Rostros de trabajadores — el no-uso principal
+
+**En DT, por defecto NO se muestra el rostro de un trabajador.**
+
+| Soporte | Rostro | Qué se muestra |
+|---|---|---|
+| **Imagen** (post, story) | ⛔ **No** | **Del torso hacia abajo.** En preparaciones de cocina, **las manos** |
+| **Video / reel** | ✅ **Sí** | Se permite porque **habla la propia persona** (ej. alguien de cocina contando lo que hace) |
+
+**La única excepción en imagen son las fechas importantes del oficio** — por ejemplo
+el **día del housekeeping**. Ahí sí va el rostro, porque la pieza es *sobre* esa persona.
+
+⚠️ Consecuencia de diseño en dos piezas de la grilla de septiembre: el reel orgánico
+«Cuándo conoces a todos quienes están detrás de un buen servicio» (21-09, 5 escenas
+con colaboradores) **es video, así que los rostros van**; y el `REEL - HILTON HONORS`
+del 23-09, que el cliente pidió pasar a **estático**, cambia de régimen al hacerlo:
+**si deja de ser video, deja de poder mostrar rostros.** Es un dato para armarla, no
+un pedido de redefinir el brief — el formato lo fija el cliente (ver §G).
+
+### B. El logotipo: cuál y de qué color
+
+1. **Siempre el logotipo principal** — el vertical de cuatro líneas (`logo DT.png`:
+   ícono · DoubleTree · by Hilton · SANTIAGO–VITACURA).
+2. **El horizontal es excepción y lo pide el cliente**, no lo elegimos nosotros. Los
+   editables existen para cuando lo pida.
+3. **El color por defecto es blanco.**
+4. **Va en azul DoubleTree cuando el fondo es demasiado blanco y el logo se pierde.**
+   Es el mismo logotipo principal, sólo cambia la tinta.
+
+> **Cómo se junta con la regla del 08-09** («en feed el logo por defecto no va, ensucia
+> el feed; sólo en programas del hotel y piezas importantes»): no se contradicen. Esa
+> regla decide **si** aparece; ésta decide **cuál y de qué color** cuando aparece. Y los
+> tres programas son justamente el caso en que sí aparece — por eso el brief del Family
+> Time pide «Incluir logo DoubleTree by Hilton».
+
+### C. Los tres programas — precios vigentes
+
+| Programa | Precio vigente | Nota |
+|---|---|---|
+| **Family Time** | **$125.000** | Precio **e incluidos** pueden cambiar. **La fuente de verdad es el último carrusel que dejó Eli** — ése está vigente. Eli avisa cuando cambie algo |
+| ⛔ | | **Ese carrusel NO está en esta máquina.** Es `C1 FT N°1.png` (6,73 MB) + `C1 FT N°2.png` (3,03 MB), y Eli los dejó el 08-09 20:15Z en la carpeta de Drive **`C1 FAMILY TIME`** (`1eCrtkz0HUAiDT27qlXlKm8xKJxjKvJ-p`). **No se pueden bajar desde acá:** por enlace llega la página de login (no está compartida) y el conector devuelve contenido vacío. **Hay que traerlos a `raw/hilton/dt/aprobadas-sept/` a mano, o compartir la carpeta por enlace.** Mientras no estén, la regla del Family Time está escrita pero **no es ejecutable** |
+| **Escapada Romántica** | **$99.000** | ⭐ Puede aparecer una **promo con descuento** sobre los $99.000, **sólo cuando el cliente la pida**. **No es permanente.** La de **septiembre 2026 fue de `$89.000`** (ventana de reserva 11 al 20 de septiembre, Fiestas Patrias) |
+| **Noche de Bodas** | **$189.000** | Confirmado por Eli el 09-09 |
+
+⚠️ **La promo tiene fecha de vencimiento y hay que desarmarla.** Cuando termine el mes
+hábil de la promo, **las piezas gráficas se cambian y el precio vuelve a $99.000**. O
+sea: una pieza con $89.990 **no se reutiliza** al mes siguiente sin editarla.
+
+### D. Las fotos de los programas: propias, con el rostro cambiado
+
+1. **Siempre fotografía del cliente** — para los tres programas se usan **nuestras
+   fotos**, no banco ni escena generada de cero.
+2. **Pero el rostro se reemplaza por uno generado**, uno de hombre y uno de mujer.
+3. **Y se va variando.** El motivo es exactamente ése: **no se puede mostrar el mismo
+   rostro todo el tiempo** porque ensucia el feed y las historias.
+
+> Esto encaja con dos reglas ya escritas del estudio y conviene leerlas juntas:
+> `no-generar-producto-que-existe` (la foto real primero) y
+> `la-foto-de-banco-se-revela` (un montaje se delata por la luz). Acá la foto base es
+> real y lo único generado es la cara, así que **el rostro nuevo tiene que entrar con
+> la luz de la foto**, no al revés.
+
+### E. El tono de la marca
+
+**DoubleTree es elegante, minimalista y sencillo. No debe estar saturado.**
+Es el criterio con el que se descarta una pieza que «cumple el brief» pero llegó
+cargada.
+
+### F. Los títulos — dos reglas duras de redacción
+
+1. ⛔ **Los títulos no llevan punto.** Ni final ni intermedio. El punto es sólo de los
+   **párrafos largos** o del texto que **viene después** del título.
+2. ⛔ **No se mezclan cajas dentro de un mismo título.** No puede ir una línea en caja
+   baja y la de abajo en versales: **o todo el título en caja baja, o todo en versales.**
+
+> La primera ya estaba escrita en el repo para otras piezas del complejo; queda
+> confirmada como regla de DT dicha por la diseñadora. La segunda es nueva, y **choca
+> con el recurso de titular a dos pesos** que sí es válido en DT (Stag Bold + Stag
+> Light): los **dos pesos se permiten, la mezcla de cajas no**.
+
+### G. ⛔⛔ EL LÍMITE DEL ENCARGO: en esta cuenta sólo se DISEÑA
+
+> **Dictado por Eli el 09-09-2026, y manda sobre todo lo demás de esta sección.**
+> **«Para esta cuenta no tienes que tocar nada de brief ni contenido, solamente
+> ayudarme a mí a diseñar. Eso lo decide netamente cliente con contenido, por
+> respeto a las grillas y brief que ellos dejen.»**
+
+**El encargo es el diseño. El brief y el contenido NO son nuestros.** La grilla la
+dejan **el cliente y el equipo de contenido** (Carlos Figueroa, Scarlette Muñoz), y
+se respeta como viene.
+
+**Qué está fuera de límite — no se hace, ni siquiera como sugerencia:**
+
+- ⛔ Reescribir, «corregir» o mejorar un copy, un titular o un CTA de la grilla.
+- ⛔ Cambiar un precio, una fecha o un incluido porque no calza con otra celda.
+- ⛔ Proponer otro formato, otro tema o otra pieza que la que pide el brief.
+- ⛔ Redefinir un brief que se contradice a sí mismo.
+- ⛔ Escribir en la grilla, comentar en ella o responder los comentarios del cliente.
+- ⛔ Trabajar sobre los temas del mes siguiente mientras están en negociación entre
+  contenido y el cliente.
+
+**Qué sí:** **diseñar lo que el brief pide**, con el sistema de esta marca.
+
+**Y si algo del brief se ve raro** —un precio que no calza, un formato que pelea con
+el brief, una referencia que no está—: **se le informa a Eli y ahí para.** Eli decide
+si lo lleva al cliente. **El ajuste sólo entra cuando el cliente lo pide:** «el cliente
+si solicita ajustes, ahí nosotros lo veremos». Nunca al revés.
+
+> 🔴 **Esta regla nació de un error mío del 09-09.** Al cruzar los precios encontré
+> que la story del 21-09 decía `$109.000` y **recomendé diseñarla con $99.000
+> avisándole al cliente**. Eso era editarle el brief. La respuesta correcta era la que
+> eligió Eli: **no tocarla y esperar al cliente.** Detectar la discrepancia sirve;
+> resolverla no me toca.
+
+### Cruce de precios contra la grilla (09-09) — y la pieza que quedó frenada
+
+Al escribir estas reglas se pasó el mes entero buscando `$`. El resultado:
+
+| Pieza | Dice | Veredicto |
+|---|---|---|
+| `FEED C` (04-09, posteado) | desde **$99.000** | ✅ calza |
+| `FEED D` (posteado, Fiestas Patrias) | **$89.000** | ✅ correcto — **ésa fue la promo de septiembre**, resuelto por Eli el 09-09 |
+| `FEED F` (Family Time) | **$125.000** | ✅ calza |
+| `FEED G` (Noche de Bodas) | **$189.000** | ✅ confirmado por Eli el 09-09 |
+| ⛔ `STORIES J` (21-09) | desde **$109.000** | **NO calza con nada** |
+
+> ⛔ **`STORIES J` — `ANIMADA - ESCAPADA ROMÁNTICA`, 21-09 — está FRENADA.**
+> Dice «desde `$109.000`», que no es ni el vigente ($99.000) ni la promo ($89.000).
+> **Decisión de Eli el 09-09: no se toca hasta que el cliente confirme.** Ya está en
+> `REVISAR CONTENIDO`, así que se espera la ronda del cliente. **No inventarle el
+> precio.**
+
+> **Para qué sirve esta tabla, y para qué NO.** Sirve para que Eli tenga el dato a la
+> vista y decida. **NO es una lista de correcciones**: por la regla §G, una cifra que
+> no calza **no se arregla en la pieza** — se informa y se espera. La tabla es
+> diagnóstico, no permiso.
+
+Los `$21.000` y `$100.000` de `FEED C` no son el programa: son los agregados de
+sunset y masajes.
 
 ## Brand kit BETWEEN (calibrado 24-08-2026 con el feedback escrito de Eli)
 

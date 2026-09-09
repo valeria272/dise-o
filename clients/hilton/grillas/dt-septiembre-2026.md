@@ -1,6 +1,6 @@
 # Grilla DOUBLETREE — instantánea
 
-> Instantánea del 08-09-2026 tomada con `/al-dia`.
+> Instantánea del 09-09-2026 tomada con `/al-dia`.
 > Origen: `raw/hilton/dt/DT-grilla-septiembre-2026.xlsx`.
 > **Sirve de base para el DIFF de la próxima ronda**: los comentarios se
 > prependen sobre los viejos en la misma celda, así que sin esta copia no se
@@ -242,7 +242,7 @@ G2: Cambiar a legal: *Válido de jueves a domingo y festivos. Sujeto a disponibi
 G2: Cambiar a legal: *Válido de jueves a domingo y festivos. Sujeto a disponibilidad~~
 
 
-### Columna G — **CORREGIDA**
+### Columna G — **APROBADO**
 
 **FECHA:**
 
@@ -397,7 +397,7 @@ SEMANA 4
 ```
 
 
-### Columna K — **POR GRABAR**
+### Columna K — **REVISAR CONTENIDO**
 
 **FECHA:**
 
@@ -463,7 +463,7 @@ Tarifas exclusivas, upgrades de habitación y puntos en cada estadía en DoubleT
 **COMENTARIOS PARA DISEÑO:**
 
 ```
-Podríamos hacer como un video todo en POV
+Este que mejor sea un estático, ya hicimos reel hace poco (guardemos la idea de todas formas)
 ```
 
 

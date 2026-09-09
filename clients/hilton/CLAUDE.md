@@ -5945,3 +5945,41 @@ mancha, no como un dibujo**: la capa de línea de esta historia son el sol y las
 nubes. Con la nube nueva, la columna izquierda queda de **tres nubes
 escalonadas** (1040–1235 · 1268–1529 · 1545–1785) y la zona del sticker sube al
 único tramo libre que dejó eso: y=880–1020.
+
+## ⛔⛔⛔ 4 sexies. «La regla de los emojis estaba mal generalizada»
+
+Eli: «en el título te faltó añadir este emoji 🌸». Y tenía razón: yo lo había
+descartado **dos rondas seguidas** apoyándome en una regla de este manual que,
+como estaba escrita, era falsa.
+
+Lo que decía: «los emojis del sistema NO sirven en Windows. Chrome resuelve
+`Segoe UI Emoji` y el ☕ sale **lila**». Lo que se comprobó el 09-09 rindiendo
+cuatro candidatos juntos con la composición `BW-Prueba-Emoji`:
+
+| glifo | cómo sale |
+|---|---|
+| 🌸 `U+1F338` | **en color y correcto** — flor de cerezo rosada |
+| 🌼 `U+1F33C` | **en color y correcto** |
+| ☘ `U+2618` | **negro** |
+| 🏵 `U+1F3F5` | **negro** |
+
+> **Es una regla por GLIFO, no por fuente.** Los que fallan son los que
+> `Segoe UI Emoji` sólo trae en su capa monocroma. Antes de dar por perdido un
+> emoji hay que RENDIRLO — cuesta un `remotion still` y un vistazo.
+
+El 🌸 se recortó por alfa a `assets/hilton/between/emoji/flor.png` (514×496),
+que es el mismo camino por el que entraron los otros cuatro. Ahora el kit tiene
+**cinco**: `cafe`, `estrella`, `regalo`, `sonrisa` y `flor`.
+
+⚠️ **El emoji va como elemento POSICIONADO, nunca dentro de `TitularBetween`.**
+El componente mide la línea con canvas para ajustarle el cuerpo, y un `<img>`
+metido en el texto le rompe la medición.
+
+⚠️ Y ojo con el aire: el PNG está **recortado por alfa**, así que los pétalos
+arrancan justo en el borde del archivo y no hay relleno que haga de espacio. Con
+50 px y 12 px de separación se leía PEGADO a la «Í»; va en 46 px con 19 px de
+aire, y aun así cierra en x=992, 4 px antes del margen de 996.
+
+> **Corolario para todo el manual: una regla escrita en general a partir de UN
+> caso hay que releerla antes de usarla para descartar algo.** Ésta costó dos
+> rondas, y las dos veces yo mismo la cité como motivo.

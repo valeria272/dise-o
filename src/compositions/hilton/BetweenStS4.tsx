@@ -93,7 +93,7 @@
  * | costuras (salto entre filas contiguas) | ninguna sobre media+6σ | ninguna sobre media+6σ |
  */
 import React from 'react';
-import {AbsoluteFill} from 'remotion';
+import {AbsoluteFill, Img, staticFile} from 'remotion';
 import {BETWEEN} from '../../brand/hilton-between';
 import {
   Bajada,
@@ -465,6 +465,33 @@ export const StS4Primavera: React.FC<{guia?: boolean}> = ({guia = false}) => (
     {guia ? (
       <ZonaReservada zona={ZONA_ENLACE} etiqueta={'STICKER\nDE ENLACE\n(carta)\n300 × 140'} />
     ) : null}
+
+    {/* ⭐⭐ EL 🌸 DEL BRIEF, QUE AL FINAL SÍ SE PUEDE. Eli: «en el título te faltó
+        añadir este emoji 🌸».
+        Las rondas anteriores lo dejaron fuera por la regla del manual —«los
+        emojis del sistema no sirven en Windows: Chrome resuelve Segoe UI Emoji
+        y el ☕ sale lila»— y esa regla estaba MAL GENERALIZADA. Comprobado
+        rindiendo cuatro candidatos juntos con la composición `BW-Prueba-Emoji`:
+        el 🌸 (U+1F338) sale **en color y correcto**, mientras el ☘ y el 🏵 salen
+        NEGROS. **Es una regla por GLIFO, no por fuente.**
+        Se recortó por alfa a `assets/hilton/between/emoji/flor.png` (514×496),
+        que es el mismo camino por el que entraron los otros cuatro emojis.
+
+        Va como elemento posicionado y NO dentro del titular a propósito:
+        `TitularBetween` mide la línea con canvas para ajustarle el cuerpo, y un
+        `<img>` metido en el texto le rompe esa medición. La posición sale del
+        render: la caja alta cierra su tinta en x=927 y el margen de la marca
+        está en 996 (1080 − 84), así que hay 69 px para la flor y su aire.
+        ⚠️ El primer intento la puso en 50 px a 12 px de la «Í» y se leía PEGADA:
+        el PNG está recortado por alfa, así que los pétalos arrancan justo en el
+        borde y no hay relleno que haga de espacio. Con 46 px y 19 px de aire
+        respira, y cierra en x=992, 4 px antes del margen.
+        Verticalmente se apoya en la base de la caja alta (su tinta va de 531 a
+        603), como un carácter más de la línea. */}
+    <Img
+      src={staticFile('assets/hilton/between/emoji/flor.png')}
+      style={{position: 'absolute', left: 946, top: 556, width: 46, height: 44}}
+    />
 
     {/* ⚠️ La franja de abajo queda de PURA FOTOGRAFÍA, a propósito: el cierre se
         subió al bloque de arriba (ver la nota ahí) y así la copa se ve entera,

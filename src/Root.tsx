@@ -118,6 +118,7 @@ import {
   StS3HoraCafe, StS3Cowork, StS3Dieciocho, StS3HoraCafeGuia, StS3CoworkGuia,
 } from "./compositions/hilton/BetweenStS3";
 import {PlanchaTrazos} from "./compositions/hilton/BetweenPlanchaTrazos";
+import {PruebaEmoji} from "./compositions/hilton/BetweenPruebaEmoji";
 import {
   StS4Strudel, StS4Primavera, StS4StrudelGuia, StS4PrimaveraGuia,
 } from "./compositions/hilton/BetweenStS4";
@@ -190,6 +191,8 @@ export const RemotionRoot: React.FC = () => {
         {/* utilidad de extraccion, no una pieza: ver BetweenPlanchaTrazos.tsx */}
         <Composition id="BW-Plancha-Trazos" component={PlanchaTrazos}
           durationInFrames={1} fps={30} width={2660} height={828} />
+        <Composition id="BW-Prueba-Emoji" component={PruebaEmoji}
+          durationInFrames={1} fps={30} width={640} height={640} />
         <Composition id="BW-S-Calculos" component={StCalculos} {...btStory} />
         <Composition id="BW-S-Emergencia" component={StEmergencia} {...btStory} />
         <Composition id="BW-S-HoraCafe" component={StHoraCafe} {...btStory} />

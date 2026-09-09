@@ -554,6 +554,12 @@ Puede ser como un carrusel de videos en que se ponga en cada slide una hora, EJ:
 
 ### Columna B — **sin estado**
 
+**C11:**
+
+```
+C11
+```
+
 **FECHA:**
 
 ```
@@ -777,7 +783,7 @@ SEMANA 4
 ```
 
 
-### Columna J — **REVISAR CONTENIDO**
+### Columna J — **EN CAMBIOS**
 
 **FECHA:**
 

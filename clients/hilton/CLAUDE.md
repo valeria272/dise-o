@@ -244,6 +244,124 @@ si solicita ajustes, ahí nosotros lo veremos». Nunca al revés.
 > eligió Eli: **no tocarla y esperar al cliente.** Detectar la discrepancia sirve;
 > resolverla no me toca.
 
+### ⭐⭐ DT ya tiene KIT DE CÓDIGO y GEOMETRÍA MEDIDA (09-09-2026)
+
+Cerrado al armar la historia del Día del Turismo. **El pendiente que arrastraban
+los tres cierres del 09-09 («medir la geometría de DT») está resuelto**, y vive
+en [`src/brand/doubletree.ts`](../../src/brand/doubletree.ts).
+
+**⭐ La fuente buena de la geometría estaba ahí desde el 08-09 y no se había
+mirado: las PLANTILLAS DE MÁRGENES de Eli**, en
+`raw/hilton/dt/identidad/logos/` — `logo-ST.png` (2250×4000, historia) y
+`logo-post.png` (2250×2813, feed). Son el logotipo YA COLOCADO en el lienzo de
+entrega, así que dan posición y tamaño sin estimar nada.
+
+| Normalizado a 1080 de ancho | ancho | alto | tope y | centro x |
+|---|---|---|---|---|
+| **historia** (`logo-ST.png`) | **167,0** | 136,3 | **241,0** | 539,8 |
+| **feed 4:5** (`logo-post.png`) | **160,3** | 130,6 | **111,4** | 539,8 |
+
+En los dos formatos el logotipo va **centrado**. Y su proporción coincide en
+**cuatro** fuentes independientes —plantilla de historia 1,2254 · plantilla de
+feed 1,2279 · pieza aprobada `C1 FT N1` 1,226 · bbox opaco del archivo 1,2265—,
+o sea que **se usa a su proporción real**: se escala uniforme, jamás por
+geometría.
+
+**Lo demás, medido sobre las tres piezas aprobadas:**
+
+- **Azul `#09194E` confirmado por medición**, no sólo por el manual: cuantizando
+  los píxeles azul-oscuro de las tres piezas, la moda cae en el mismo lugar.
+- **Margen lateral del bloque de texto: 88 px** simétrico (`C1 FT N2`, de x=87 a
+  x=992, centro 539,5).
+- **Caja de esquinas redondeadas con filete blanco: ancho 730** y centrada
+  (`DT FT S3`). Es el contenedor de DT.
+- ⭐ **El titular a dos pesos va al revés de lo intuitivo:** arriba **Bold y más
+  chica**, abajo **Light y más grande**. Medido en `C1 FT N1` («Este es su
+  panorama» ≈ cuerpo 58 · «Ideal en familia» ≈ cuerpo 94, calibrado contra el
+  render propio). **El énfasis lo lleva la línea liviana.**
+- Versales de la dirección al pie: caja de 15 px.
+- **El máster de historia son 2250×4000** — hay 66 historias entregadas a ese
+  tamaño. Se rinde con `--scale 2.0833` desde una mesa de 1080.
+
+### Cómo se produce una historia de DT (el aparato, 09-09-2026)
+
+Primera pieza hecha con él: la historia del **Día del Turismo** (STORIES col K,
+27-09), entregada en `S4 HILTON SEP 2026 › DT › STS`.
+
+```bash
+python scripts/dt-logo-tintas.py          # el logotipo en sus dos tintas
+python scripts/dt-st-turismo-foto.py      # recorta la foto a 9:16 y la revela
+python scripts/dt-rendir.py --guias       # rinde a 2250x4000 (--scale 2.0833)
+python scripts/dt-qa.py                   # la compuerta
+python scripts/dt-st-turismo-entrega.py --subir
+```
+
+| Pieza del aparato | Dónde |
+|---|---|
+| Kit de código | `src/brand/doubletree.ts` |
+| La composición | `src/compositions/hilton/DtStTurismo.tsx` |
+| Entry de Remotion | `src/DtEntry.tsx` |
+
+**Lo que revisa `dt-qa.py`, y por qué cada cosa:**
+
+1. **Máster 2250×4000** — rendir a 1080 fue entregar la mitad de resolución.
+2. ⛔ **Sustitución de fuente** — la trampa de Brushwell. **No se compara el
+   ancho de tinta: se probó y da ±5 % con la fuente correcta**, o sea falsas
+   alarmas. Lo que discrimina es la FORMA: se correlaciona el perfil de tinta
+   por columna del titular con el mismo texto compuesto por PIL. Stag-Light dio
+   **r=+0,83** contra georgia +0,49 · times +0,32 · **y Stag-Bold +0,36**: la
+   prueba distingue incluso el peso equivocado de la familia correcta.
+3. **Contraste de cada tinta** contra su fondo real, por tercios de la columna.
+4. **El logotipo contra SU PROPIA SILUETA** (IoU), no contra un rango de color.
+   ⚠️ La primera versión buscaba «píxeles azules» y se rompía sola: al subirle
+   el contraste a la foto, la cara oscura de la torre entró en el rango de
+   `#09194E` y el QA reportó el logo descentrado y de 243 px **cuando estaba
+   perfecto**. El umbral 0,52 está calibrado contra variantes malas a propósito
+   (correcta 0,594 · 10 % chica 0,438 · deformada 0,464-0,474).
+5. **Zona segura inferior limpia** — la interacción no se dibuja nunca.
+
+⚠️ **El logotipo queda 9 px dentro de los 250 px de zona segura superior**
+(arranca en 241). No es un error: **es la posición de la plantilla de Eli**, y
+los 250 px son la zona segura de *Meta Ads*, no la de una historia orgánica.
+Si alguna vez esta pieza se pauta, ahí sí hay que bajarlo.
+
+### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
+
+Verificado glifo a glifo con `fontTools` sobre los archivos de esta máquina: los
+**nueve** cortes de Stag traen el mismo subconjunto de 354 glifos y a todos les
+falta `U+00A1 ¡` y `U+00BF ¿`. Trade Gothic (287 glifos) sí los trae.
+
+O sea que un titular como «¡Feliz Día del Turismo!» **no se puede escribir en
+Stag**. Se usa `volteaApertura()` —el signo de cierre rotado 180°, que es lo que
+hace Eli— y ya está en `src/brand/doubletree.ts` junto con `stagSirve()` para
+saberlo ANTES de renderizar en vez de descubrir el tofu.
+
+### ⭐ CORRECCIÓN al diagnóstico del banco: el FRONTIS sí existe, y en alta
+
+El cierre del 09-09 dejó escrito «⛔ Del FRONTIS casi no hay nada y no baja».
+**Es falso.** Están en la sesión profesional, no en el banco maestro:
+
+| | ID | Peso | Qué es |
+|---|---|---|---|
+| **`HDT_43.jpg`** | `1FJK5sThX5LL1E8nOHbbAHRMh-8q1HIH8` | 20 354 182 B | **El frontis, VERTICAL** (4475×6718). La esquina, cielo limpio arriba |
+| `HDT_42.jpg` | `1ZDTsdvx8B5Mc8Wn2p22nPYBTlDYNtCGr` | 31 598 474 B | El frontis con la plaza, encuadre casi cuadrado |
+
+Los dos viven en `JPG DT,QB,BW,HABITACIÓNES` (`1XhKQS8XlQTLCSk_59ZVjbs8tqnAroz7n`)
+y **bajan con `uc?export=download`**, sin token ni conector. El que no baja es el
+banco maestro `Imágenes`, que es otra carpeta.
+
+**⭐⭐ Y la técnica que lo destrabó vale para cualquier marca:** esa carpeta tiene
+40 archivos de 19 a 37 MB y bajarlos a ciegas es inviable. Se armó la hoja de
+contacto con **las miniaturas de Drive** —`drive.google.com/thumbnail?id=<id>&sz=w400`—
+que pesan ~30 KB cada una. Ahí se vio de un golpe que había frontis, y también
+que hay **habitaciones con la vista de Santiago por la ventana** (`HDT_63`, `65`,
+`67`, `70`) y **el gimnasio en alta** (`HDT_81`, `82`, `83`), que el diagnóstico
+también daba por faltantes. Para un máster se baja el original; para ELEGIR, la
+miniatura alcanza.
+
+⚠️ Lo que sigue sin estar fotografiado es **la cookie como producto**. Eso no
+cambió.
+
 ### Cruce de precios contra la grilla (09-09) — y la pieza que quedó frenada
 
 Al escribir estas reglas se pasó el mes entero buscando `$`. El resultado:

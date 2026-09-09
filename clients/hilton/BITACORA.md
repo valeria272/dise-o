@@ -1,3 +1,106 @@
+## 2026-09-09 (CIERRE 6 · noche) · Eli (Windows) — DOUBLETREE: la historia del Día del Turismo, y DT deja de no tener sistema
+
+**Qué se hizo.** Se **diseñó y entregó la última historia de la S4**, `ESTÁTICA ·
+DÍA DEL TURISMO` (STORIES col K, 27-09, estado `OK PARA DISEÑO`, sin comentarios
+para diseño). Eli pidió guiarse de la referencia que ella misma dejó en
+`REFERENCIAS S4 DT` pero con los lineamientos de DT. Salió en **tres rondas**, las
+tres con marcas de ella. Y para poder hacerla hubo que **medir la geometría de DT
+y escribirle un kit de código**, que era el pendiente que arrastraban los tres
+cierres anteriores del día.
+
+**Antes de diseñar, el `/al-dia` encontró ronda del cliente en la grilla** — y esta
+vez el blob sí la traía. Ver el detalle en `clients/_estado-sync.json`; en corto:
+**STORIES J16 pasó de `REVISAR CONTENIDO` a `EN CAMBIOS`** (la Escapada Romántica
+del 21-09, la que estaba frenada por §G), y **desapareció del archivo el GIF de la
+pieza ya entregada**. Se rescató del xlsx viejo antes de perderla
+(`raw/hilton/dt/recuperado/`) y al abrirla apareció lo importante: **ya decía
+`$99.000`**, o sea que la corrección de precio estaba hecha y la que quedó atrás
+es la grilla, no la pieza.
+
+**La pieza, y las decisiones que la sostienen:**
+
+- **Foto real del cliente, nada generado.** `HDT_43.jpg` — el **frontis del
+  hotel**, 4475×6718, de la sesión profesional. Recortada a 9:16 y **reducida** a
+  2250×4000: nunca ampliada ni estirada.
+- **El encuadre se midió, no se eligió a ojo.** La ventana centrada dejaba el
+  logotipo tocando la cornisa; se midió el «no-cielo» dentro de la caja del
+  logotipo para cada offset y se tomó el **174**, que da **0 % de intrusión**.
+- **El logotipo va en AZUL DoubleTree, no en blanco.** Es la regla §B.4 aplicada
+  con medición: sobre el cielo pálido el blanco daba **1,79:1** y el azul da
+  **6,7 a 9,3:1** sin ningún velo encima. Así la mitad de arriba queda limpia.
+- **El titular a dos pesos de Stag**, con el orden de la marca (arriba la chica,
+  abajo la grande y liviana).
+- ⛔ **Stag no puede escribir `¡`** — verificado glifo a glifo: a los nueve cortes
+  les falta `U+00A1` y `U+00BF`. Se resolvió con **el truco de Eli**
+  (`volteaApertura`), no cambiando el titular de familia.
+- **Los textos van LITERALES del brief** y no se agregó dirección, correo, CTA ni
+  legal: el brief dice «saludo simple, sin promoción» (§G).
+
+**Las tres rondas de Eli, y qué cambió cada una:**
+
+| Ronda | Qué pidió | Qué se hizo |
+|---|---|---|
+| 1 | — | Titular 58/94, marco 730, filete 2 px al 55 %, velo fuerte |
+| 2 | «título más grande, ajusta el espaciado, la línea como la referencia, baja la transparencia» | Titular a 72/116 (de 50 % a 61 % del ancho); salto titular→subtexto de 30 a 58; **filete a 1 px en blanco pleno** y marco a 766; velo de 0,90 a 0,60 |
+| 3 | «agranda todo más y súbelo, la línea como la referencia, el Feliz Día menos grueso, el secundario que crezca» | Marco a **800 de ancho y tope en 680** (subió 425 px); titular a 80/130 (**68,7 %** del ancho); **«¡Feliz Día» de Bold 700 a Medium 500**; subtexto de 30 a **38** |
+
+**⭐ Lo que hay que quedarse de la ronda 2, porque es método:** la línea blanca no
+se ajustó «a ojo hasta que se pareciera». Se **midió la de la referencia**: en su
+borde superior el píxel es `rgb(255,253,250)` y **mide 1 px**. La nuestra eran 2 px
+al 55 %, y por eso se veía blanda. Una referencia se mide igual que una pieza.
+
+**⭐⭐ Y la corrección al diagnóstico del banco de imágenes:** el cierre de la tarde
+dejó escrito «⛔ Del FRONTIS casi no hay nada y no baja». **Es falso.** `HDT_42` y
+`HDT_43` son el frontis, en alta, y bajan sin token. Lo que no baja es el banco
+maestro `Imágenes`, que es otra carpeta. La técnica que lo destrabó vale para
+cualquier marca: **la hoja de contacto con las miniaturas de Drive**
+(`thumbnail?id=…&sz=w400`, ~30 KB) en vez de bajar 40 archivos de 20-37 MB a
+ciegas. Ahí se vio además que hay **habitaciones con la vista de Santiago** y **el
+gimnasio en alta**, también dados por faltantes. Lo único que sigue sin estar
+fotografiado es **la cookie como producto**.
+
+**⚠️ Dos veces el QA se acusó a sí mismo, y las dos quedaron arregladas en el
+código.** Primero la máscara de blanco tomaba el brillo del edificio como si fuera
+tinta; después, al subirle el contraste a la foto, la cara oscura de la torre entró
+en el rango de `#09194E` y el QA reportó **el logotipo descentrado y de 243 px
+cuando estaba perfecto**. La lección: *un umbral de color no distingue un elemento
+gráfico de la foto*. Ahora el logotipo se verifica **contra su propia silueta**
+(IoU, umbral 0,52 calibrado contra variantes malas a propósito) y la fuente **por
+forma** (correlación del perfil de tinta), no por ancho — el ancho daba ±5 % con la
+fuente correcta, o sea falsas alarmas.
+
+**Dónde quedó.** La pieza está en Drive, en `S4 HILTON SEP 2026 › DT › STS`:
+[DT ST 27-09 Dia del Turismo.png](https://drive.google.com/file/d/12bBQuWsgPsNu8xZ0C1CL_l-0CScGeyuZ/view)
+— 2250×4000, 150 ppp, 11 350 675 B, verificado contra el `parentId` (no cayó en «Mi
+unidad»). Las tres rondas se subieron **al mismo archivo**, así que el enlace no
+cambió. Código nuevo: `src/brand/doubletree.ts`, `src/compositions/hilton/DtStTurismo.tsx`,
+`src/DtEntry.tsx` y `scripts/dt-{logo-tintas,st-turismo-foto,rendir,qa,st-turismo-entrega}.py`.
+El manual quedó con la geometría medida, el aparato y sus cinco chequeos.
+**Reproducible: se regeneró y `cmp` dio idéntico byte a byte.**
+
+**Qué sigue.** **Preguntarle a Carlos qué son los AD ONS** de la Escapada Romántica
+(STORIES J, 21-09). Es lo único que falta para cerrarla: la animación existe, el
+precio ya está en `$99.000` y la fecha (21-09) ya es post 18. El hilo
+`STORIES!J15` está OPEN porque **Eli preguntó y nadie contestó**.
+
+**Abierto.**
+- ⛔ **Los AD ONS** — bloqueante de contenido, no de diseño. No se inventan (§G).
+- ⚠️ **El logotipo queda 9 px dentro de los 250 px de zona segura superior**
+  (arranca en 241). **No es error: es la posición de la plantilla de Eli**, y los
+  250 px son la zona segura de *Meta Ads*, no la de una historia orgánica. Si esta
+  pieza se pauta, hay que bajarlo.
+- **El letrero «DOUBLETREE» de la propia fachada** cae detrás del subtexto. Se
+  apagó con una sombra local suave (no subiendo el velo de toda la pieza, que es lo
+  que Eli pidió evitar). Si ella prefiere verlo, se saca en un minuto.
+- Siguen frenadas **las tres fuentes que faltan** (Stag LCG, Trade Gothic LT Std
+  Bold, Trade Gothic Next LT Pro Bold — sólo las tiene el cliente) y **la carpeta de
+  la reseña del 14-09**, que sigue devolviendo vacía.
+- Sin respuesta desde la mañana: **¿`reglas.yaml` entra con la geometría, o primero
+  los dos checks nuevos de `qa/checks.py`?** Con el kit ya escrito, ahora la
+  geometría se puede volcar cuando ella diga.
+
+---
+
 ## 2026-09-09 (CIERRE 5 · noche) · Eli (Windows) — BETWEEN S3: la primera ronda del CLIENTE, dos correcciones de copy
 
 Quinta sesión del día y segunda de Between (las otras tres fueron de DT y Piso18).

@@ -90,6 +90,13 @@ public/assets/**
 !public/assets/cava/bottles/**
 !public/assets/cava/kv/**
 
+# DOUBLETREE: el fondo de la historia del Día del Turismo (4 MB). Misma
+# excepción que Revex y CAVA: `scripts/dt-rendir.py` no rinde la pieza sin esta
+# foto, y el original de 20 MB vive en `raw/` (que no viaja). Con esto otra
+# máquina reproduce la entrega byte a byte; sin esto, vuelve a empezar de cero.
+# El original se rebaja con el curl que documenta scripts/dt-st-turismo-foto.py.
+!public/assets/hilton/dt/st-turismo-*.jpg
+
 # Landera: el logo. Los 10 bloqueos extraídos del PDF del cliente y el kit
 # completo (40 piezas × PDF/SVG/PNG) reconstruido con la paleta aprobada. Sin
 # esto no se compone ninguna lámina del manual ni ninguna plantilla.

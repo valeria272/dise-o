@@ -57,6 +57,28 @@ export const ILUSTRACIONES = {
   sol: 'assets/hilton/between/recursos/sol.png',
   nube: 'assets/hilton/between/recursos/nube.png',
   nubeChica: 'assets/hilton/between/recursos/nube-chica.png',
+
+  /**
+   * ⭐⭐ SEGUNDA TANDA — el boceto que mandó Eli el mismo 09-09 sobre la pieza
+   * ya corregida: «necesito una ilustración como la que te dejo en esta
+   * captura». Su dibujo pide tres cosas que la primera tanda no tenía:
+   *
+   *   1. **tamaño**: dibujos grandes que **sangran por los bordes** del cuadro,
+   *      no viñetas contenidas dentro del margen;
+   *   2. **doble contorno**: la línea va REPASADA, como cuando la mano vuelve
+   *      sobre el trazo. Se consigue dibujando la misma línea dos veces — el
+   *      temblor se sortea en cada pasada, así que salen parecidas y no iguales;
+   *   3. **rayitas de acento**: grupos de dos o tres trazos cortos y curvos,
+   *      sueltos, que llenan el aire sin dibujar nada concreto. Son el primo
+   *      discreto del `confeti` que ya está en su plancha.
+   *
+   * `solGrande` está pensado para poner el centro FUERA del cuadro: lo que se ve
+   * es un arco enorme en la esquina con sus rayos, que es lo que hace su boceto.
+   */
+  solGrande: 'assets/hilton/between/recursos/sol-grande.png',
+  nubeDoble: 'assets/hilton/between/recursos/nube-doble.png',
+  nubeDobleChica: 'assets/hilton/between/recursos/nube-doble-chica.png',
+  rayitas: 'assets/hilton/between/recursos/rayitas.png',
 } as const;
 
 export type Ilustracion = keyof typeof ILUSTRACIONES;

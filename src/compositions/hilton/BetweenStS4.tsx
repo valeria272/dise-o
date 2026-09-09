@@ -364,7 +364,7 @@ export const StS4Primavera: React.FC<{guia?: boolean}> = ({guia = false}) => (
         script="La primavera"
         caps="Se disfruta así."
         scriptSans
-        pesoCaps={600}
+        pesoCaps={700}
         alinear="centro"
         tono="beige"
         anchoDisponible={BETWEEN.bloque.columna}
@@ -441,9 +441,13 @@ export const StS4Primavera: React.FC<{guia?: boolean}> = ({guia = false}) => (
         (192 y 342 normalizados a 1080).
         `opacidad` 0,85–0,9: la regla de uso de Eli es que las ilustraciones
         «acompañan, no dominan». */}
-    <Ilustra cual="sol" x={50} y={248} ancho={185} opacidad={0.9} />
-    <Ilustra cual="nube" x={828} y={876} ancho={330} opacidad={0.88} />
-    <Ilustra cual="nubeChica" x={-58} y={1330} ancho={300} opacidad={0.85} />
+    <Ilustra cual="solGrande" x={-420} y={-470} ancho={900} opacidad={0.82} />
+    <Ilustra cual="nubeDoble" x={700} y={-92} ancho={470} opacidad={0.82} />
+    <Ilustra cual="nubeDoble" x={800} y={800} ancho={430} opacidad={0.86} />
+    <Ilustra cual="nubeDobleChica" x={-120} y={1206} ancho={420} opacidad={0.86} />
+    <Ilustra cual="nubeChica" x={-56} y={1418} ancho={330} opacidad={0.8} />
+    <Ilustra cual="rayitas" x={192} y={862} ancho={120} opacidad={0.8} />
+    <Ilustra cual="rayitas" x={808} y={1248} ancho={132} opacidad={0.8} espejo />
 
     {guia ? (
       <ZonaReservada zona={ZONA_ENLACE} etiqueta={'STICKER\nDE ENLACE\n(carta)\n300 × 140'} />

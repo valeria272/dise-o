@@ -5831,3 +5831,51 @@ NUNCA se entregó: 92 % de los píxeles distintos.
 > Con eso se vio que la ST del cowork estaba intacta (0 px) y que el Strudel no.
 > Quedó restaurada la tirada aprobada; la otra vive como
 > `_alternativa-21-09-plato-chico.png`.
+
+## ⭐⭐ 4 quater. RONDA 4 del 22-09 — la capa de ilustración, y qué la hace leerse
+
+Eli mandó un **boceto dibujado encima de la pieza**: «necesito una ilustración
+como la que te dejo en esta captura, y que los títulos sea en raleway con más
+grosor».
+
+### El boceto pide TRES cosas que la ronda 3 no tenía
+
+| | ronda 3 | ronda 4 |
+|---|---|---|
+| **tamaño** | tres dibujos contenidos, 185–330 px | seis, de 260 a 900 px |
+| **borde** | dos nubes sangrando un poco | **sangran por los cuatro bordes**, y el sol tiene el centro FUERA del cuadro |
+| **trazo** | una línea | **doble contorno**: la línea va repasada |
+| **acentos** | — | **rayitas** sueltas: grupos de 2–3 trazos cortos y curvos |
+
+> **Lo que hace que una capa de línea se lea no es el número de dibujos: es que
+> SANGREN y que el trazo esté repasado.** Con los dibujos enteros dentro del
+> margen y una sola línea, la misma cantidad de tinta se lee como viñetas
+> pegadas; sangrando y repasada se lee como una mano que dibujó encima de la
+> foto. Es la diferencia entre las rondas 3 y 4 con el mismo fondo.
+
+Los trazos nuevos (`solGrande`, `nubeDoble`, `nubeDobleChica`, `rayitas`) están en
+`ILUSTRACIONES` y los dibuja el mismo script, con la misma mano medida. El **doble
+contorno** se consigue dibujando la misma línea **dos veces**: como el temblor y
+la respiración del pincel se sortean en cada pasada, salen parecidas y no
+iguales, que es exactamente lo que hace una mano al repasar.
+
+⚠️ **Un sol chico y el sol grande NO conviven.** El boceto de Eli mostraba los
+dos porque ella dibujó encima de mi render y el chico era mío: al ponerlos
+juntos, los rayos del grande caen sobre el chico y se lee como un borrón. Un
+sol por pieza.
+
+⚠️ **`between-qa.py` marca «texto a 0 px del borde» en toda pieza con sangrado.**
+Verificado imprimiendo dónde están los píxeles: son las nubes. El texto sí
+respeta el margen — medido, el titular va de x=147 a 927 y el resto más adentro.
+
+### «Los títulos en raleway con más grosor» → Bold 700
+
+`pesoCaps` pasa de 600 a **700**, y se comprobó que el cambio se PINTA de verdad,
+no sólo se declara: medido con transformada de distancia sobre la línea de caja
+alta, el asta pasó de **8,9 a 10,8 px** (+21 %) y la tinta de 21 235 a 25 482 px
+(+20 %).
+
+⚠️ Y el bbox de la línea **no cambia** (x 147–927 en los dos casos), porque
+`ajustarACaber` baja el cuerpo para que la línea siga entrando en la columna de
+810. O sea que **el bbox no sirve para verificar un cambio de peso**: hay que
+medir el asta o el área de tinta.

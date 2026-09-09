@@ -79,8 +79,23 @@ def ruido_suave(n: int, amplitud: float, tramos: int = 5) -> np.ndarray:
     return np.interp(x, np.arange(tramos), base) * amplitud
 
 
-def trazo(dib: ImageDraw.ImageDraw, pts, grosor: float, cerrado=False) -> None:
-    """Pinta una línea central como CONTORNO RELLENO con punta afilada."""
+def trazo(dib: ImageDraw.ImageDraw, pts, grosor: float, cerrado=False,
+          pasadas: int = 1, separacion: float = 0.0) -> None:
+    """Pinta una línea central como CONTORNO RELLENO con punta afilada.
+
+    ⭐ `pasadas=2` dibuja la MISMA línea dos veces. Como el temblor y la
+    respiración del pincel se sortean en cada pasada, las dos salen parecidas y
+    no iguales — que es exactamente lo que hace una mano cuando repasa un
+    contorno. Es el rasgo que Eli marcó en su boceto del 09-09: sus nubes tienen
+    doble contorno, no una línea sola. `separacion` corre la segunda pasada por
+    la normal, en múltiplos del grosor.
+    """
+    for k in range(pasadas):
+        _una_pasada(dib, pts, grosor, cerrado, separacion * grosor * k)
+
+
+def _una_pasada(dib: ImageDraw.ImageDraw, pts, grosor: float, cerrado: bool,
+                corrimiento: float) -> None:
     p = np.asarray(pts, dtype=float)
     if cerrado:
         p = np.vstack([p, p[:1]])
@@ -102,6 +117,9 @@ def trazo(dib: ImageDraw.ImageDraw, pts, grosor: float, cerrado=False) -> None:
     # afilado en las puntas + respiración del pincel
     perfil = np.sin(np.pi * u) ** 0.35 if not cerrado else np.ones(n) * 0.92
     semi = (grosor / 2) * perfil * (1 + ruido_suave(n, 0.18, 7))
+    if corrimiento:
+        cx = cx + nx * corrimiento
+        cy = cy + ny * corrimiento
     izq = np.c_[cx + nx * semi, cy + ny * semi]
     der = np.c_[cx - nx * semi, cy - ny * semi][::-1]
     dib.polygon([tuple(v) for v in np.vstack([izq, der])], fill=TINTA + (255,))
@@ -183,5 +201,81 @@ def nube(w: int, h: int, bollos, nombre: str, grosor_px: float) -> None:
 nube(520, 400, [(0.30, 0.170), (0.51, 0.235), (0.72, 0.175)], "nube.png", 9)
 nube(400, 320, [(0.34, 0.195), (0.63, 0.240)], "nube-chica.png", 8.5)
 
-print("\nMÍRALAS al lado de las suyas antes de usarlas:")
-print("  python scripts/hoja-contacto.py public/assets/hilton/between/recursos out/_verif/trazos.png")
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⭐⭐ SEGUNDA TANDA — el boceto que mandó Eli el 09-09
+# ══════════════════════════════════════════════════════════════════════════════
+# Su captura pide MUCHA más presencia que la primera tanda: dibujos grandes que
+# sangran por los cuatro bordes, **doble contorno** (la mano repasa la línea) y
+# unas rayitas de acento sueltas. Los tres rasgos se leen en el boceto y los tres
+# se pueden construir; lo que NO cambia es la mano medida sobre su editable —
+# tinta `#fffaee`, su sombra y el grosor al 2 % del ancho del dibujo.
+
+# ── EL SOL GRANDE ────────────────────────────────────────────────────────────
+# Mismo dibujo que el `sol`, pero grande y con el círculo REPASADO. Va pensado
+# para poner el centro casi fuera del cuadro: lo que se ve entonces es un arco
+# enorme en la esquina con sus rayos, que es justo lo que hace su boceto.
+W = H = 700
+GROSOR = 11 * SS
+im, dib = lienzo(W, H)
+cx = cy = W * SS / 2
+r = W * SS * 0.225
+a0 = math.radians(-96)
+arco = [(cx + r * math.cos(a0 + 2 * math.pi * t * 1.04),
+         cy + r * math.sin(a0 + 2 * math.pi * t * 1.04)) for t in np.linspace(0, 1, 110)]
+trazo(dib, arco, GROSOR, pasadas=2, separacion=0.55)
+for k in range(9):
+    a = a0 + k * 2 * math.pi / 9 + 0.10
+    r1 = r * 1.40
+    r2 = r1 + W * SS * (0.115 if k % 2 == 0 else 0.085)
+    trazo(dib, [(cx + r1 * math.cos(a), cy + r1 * math.sin(a)),
+                (cx + r2 * math.cos(a), cy + r2 * math.sin(a))], GROSOR * 0.9)
+cerrar(im, W, H, "sol-grande.png")
+
+
+# ── NUBES DE DOBLE CONTORNO ──────────────────────────────────────────────────
+def nube_doble(w, h, bollos, nombre, grosor_px):
+    """Igual que `nube`, pero con el contorno REPASADO (dos pasadas)."""
+    global GROSOR
+    GROSOR = grosor_px * SS
+    im, dib = lienzo(w, h)
+    W2, H2 = w * SS, h * SS
+    base_y = H2 * 0.76
+    xs = np.linspace(W2 * 0.08, W2 * 0.92, 240)
+    alto = np.zeros_like(xs)
+    for cxf, rf in bollos:
+        bx, br = W2 * cxf, W2 * rf
+        dentro = np.abs(xs - bx) < br
+        h_i = np.zeros_like(xs)
+        h_i[dentro] = np.sqrt(br ** 2 - (xs[dentro] - bx) ** 2) * 1.08
+        alto = np.maximum(alto, h_i)
+    trazo(dib, list(zip(xs, base_y - alto)), GROSOR, pasadas=2, separacion=0.85)
+    trazo(dib, [(W2 * 0.14, base_y + GROSOR * 0.10),
+                (W2 * 0.52, base_y + GROSOR * 0.32),
+                (W2 * 0.88, base_y + GROSOR * 0.04)], GROSOR * 0.95,
+          pasadas=2, separacion=0.75)
+    cerrar(im, w, h, nombre)
+
+
+nube_doble(640, 440, [(0.28, 0.150), (0.50, 0.215), (0.73, 0.160)], "nube-doble.png", 11)
+nube_doble(470, 340, [(0.33, 0.180), (0.62, 0.225)], "nube-doble-chica.png", 10)
+
+
+# ── LAS RAYITAS DE ACENTO ────────────────────────────────────────────────────
+# En su boceto hay grupos de dos o tres trazos cortos y curvos, sueltos, que
+# rellenan el aire sin dibujar nada concreto. Son el equivalente del confeti que
+# ya existe en su plancha, pero más discretos.
+GROSOR = 10 * SS
+W, H = 260, 220
+im, dib = lienzo(W, H)
+for i, (x0, y0, largo, curva) in enumerate((
+        (0.16, 0.16, 0.52, -0.16),
+        (0.30, 0.48, 0.44, -0.13),
+        (0.20, 0.78, 0.34, -0.10))):
+    px = [(W * SS * (x0 + largo * t),
+           H * SS * (y0 + curva * math.sin(math.pi * t)))
+          for t in np.linspace(0, 1, 26)]
+    trazo(dib, px, GROSOR * (1.0 - 0.12 * i))
+cerrar(im, W, H, "rayitas.png")
+
+print("\nMÍRALAS al lado de las suyas antes de usarlas.")

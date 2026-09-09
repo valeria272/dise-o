@@ -6015,3 +6015,135 @@ cómo llegan al CM — es el mismo pendiente abierto desde la S1.
 3. **Los emojis son por glifo, no por fuente** (§4 sexies).
 4. **`pesoCaps`** en `TitularBetween` y la **flor** en el kit de emojis quedan
    disponibles para el resto del mes.
+
+---
+
+# ⭐⭐ S3 · RONDA 9 — LA PRIMERA DEL CLIENTE SOBRE LA S3 (09-09-2026)
+
+Ojo con el número: las **rondas 6, 7 y 8 de la S3 son del 08-09 y son de Eli**
+(el kerning, el horario apelmazado, las cifras tabulares). Ésta es la novena y la
+primera que viene **del cliente** sobre esta semana. Las dos piezas volvieron a
+`EN CAMBIOS` y las dos correcciones son **de copy**, no de diagramación.
+
+## 1. Las dos correcciones, literales
+
+| Col | Pieza | El rojo del cliente | Qué cambió |
+|---|---|---|---|
+| N | 16-09 Cowork | «Saquemos el "Puedes venir", reemplacémoslo por Cowork, para dar contexto» | titular → **«Cowork / ¡TE ESPERAMOS!»** |
+| O | 18-09 Saludo | «Para no redundar, pongamos ¡Feliz 18 de septiembre! con eso super ok» | caja de cierre → **«¡FELIZ 18 DE SEPTIEMBRE!»** |
+
+La M (14-09, el quiz) **no traía comentario** y no se tocó. Reproduce byte a byte
+los 8 077 154 B que ya estaban en Drive — la prueba de que la pieza aprobada no
+se movió.
+
+## 2. ⭐ Se levanta el candado de «COWORK», pero sólo esa palabra
+
+Hasta hoy el manual daba `COWORK | YA ABRIMOS` por **nombre interno de la fila**,
+con prohibición de salir en pantalla. El cliente acaba de pedir «Cowork» en el
+titular, así que:
+
+- **«Cowork» SÍ va en pantalla** cuando la pieza es del servicio de cowork. Su
+  razón está dicha por el cliente: **dar contexto**. «Puedes venir» no nombra de
+  qué se trata la pieza, y el servicio quedaba nombrado sólo dentro del cartel.
+- **«YA ABRIMOS» sigue prohibido**, y no es una interpretación: es exactamente lo
+  que el cliente mandó a sacar antes («se puede entender que estuvimos cerrados»).
+
+O sea que el nombre interno de una fila no es un bloque: se puede tomar **la parte
+que da contexto** y dejar afuera la que el cliente ya vetó.
+
+## 3. ⚠️ Un cambio de copy en un titular NO obliga a re-medir el bloque
+
+Tentación evidente: `sizeScript`, `anchoDisponible` y `aireScriptATitulo` estaban
+calibrados a mano para «Puedes venir» (12 caracteres, con la cola larga de la «P»
+de Brushwell). «Cowork» son 6. Parece que hay que recalibrar los tres.
+
+**No hay que tocar ninguno, y la razón es medida.** `TitularBetween` posiciona por
+**TINTA**, no por avance ni por caja, así que al acortarse la script el bloque se
+recalcula solo. Medido sobre el render, antes → después:
+
+| Qué | «Puedes venir» | «Cowork» |
+|---|---|---|
+| tinta de la script | 945 px de ancho, 189 de alto | **562 × 181** |
+| aire tinta a tinta script → caja alta | 69 px (33,1 a escala 1080) | **64 px (30,7)** |
+| cierre de la tinta de la caja alta | y = 1228 | **y = 1215** |
+| aire libre hasta el cartel (y = 1364) | 136 px | **149 px** |
+
+Las dos conclusiones:
+
+1. el aire se mueve **2,4 px a escala 1080** — imperceptible, y el token que Eli
+   aprobó en la ronda 6 sigue haciendo lo suyo;
+2. el solape que ella marcó en la ronda 6 **se aleja**, no se acerca. Acortar la
+   script sólo puede dar más aire.
+
+Y `anchoDisponible` no se toca porque el que manda ese ancho es la caja alta
+—«¡TE ESPERAMOS!», 1492 px de tinta—, no la script, que ahora sobra por 183 px.
+
+> **La regla:** en un componente que ancla por tinta, un texto MÁS CORTO no puede
+> romper la geometría. Se vuelve a medir cuando el texto **crece**, o cuando cambia
+> la fuente o el cuerpo.
+
+## 4. ⛔ El «18» del botón cae justo en la trampa de las cifras — y hay que VERIFICARLO
+
+«¡Feliz 18 de septiembre!» trae un número, o sea que entra de lleno en la ronda 8
+(`letter-spacing` no alcanza una caja `inline-block` y los dígitos quedan pegados).
+`CajaDato` ya lo resuelve con `conCifras`, **pero eso no se da por hecho: se mide en
+el PNG**, porque `ajustarACaber` calcula el cuerpo sobre el texto PLANO mientras la
+caja tabular ENSANCHA la línea.
+
+Medido sobre `BW-S3-Dieciocho.png`:
+
+- hueco entre el «1» y el «8»: **9 px**, dentro del rango de **7–15 px** de los
+  huecos entre letras → los dígitos no quedaron pegados;
+- los tres espacios de palabra: **29 / 31 / 27 px**, parejos;
+- la caja mide **1453 px** dentro de un cartel de 1692 y queda centrada con
+  **143 px a cada lado**.
+
+Ese margen de 143 px es el número a revisar si algún día cambia el texto del botón.
+
+## 5. ⭐⭐⭐ Y LA DE MÉTODO, QUE VALE MÁS QUE LAS DOS PIEZAS
+
+**Una ronda del cliente puede existir en el editor de Google y NO estar en el
+`.xlsx` que Drive guarda.** Hoy pasó, y rompe el método de detección del estudio.
+
+Lo que se vio, con las dos pruebas:
+
+- la grilla movió su `modifiedTime` de 12:48Z a **18:33Z**;
+- el archivo bajado con `curl uc?export=download` tiene **el mismo md5** que el de
+  las 12:03 (`5d6d9502…`, 100 576 551 B) — cero celdas distintas;
+- cruzado con `read_file_content` del conector MCP, que lee el archivo vigente
+  según Drive: **devuelve lo mismo**;
+- y sin embargo Eli tenía a la vista, en su navegador, **dos comentarios en rojo
+  con las dos piezas en `EN CAMBIOS`** que no están en ninguna de las dos lecturas.
+
+Las consecuencias, y son duras:
+
+1. ⛔ **«El md5 coincide» NO prueba que no haya ronda nueva.** Prueba que el blob
+   no cambió, que es otra cosa. Sirve para decir «no hay nada que diffear en el
+   archivo», nunca «el cliente no escribió».
+2. ⛔ **Un `modifiedTime` que se mueve sin cambiar el blob es SOSPECHA de ronda**,
+   no ruido. Hoy se leyó como «alguien sólo la abrió» y era el cliente escribiendo.
+   La regla nueva: si la marca de tiempo se movió y el md5 no, **hay que
+   preguntarle a la diseñadora si ve algo en pantalla** antes de declarar que no
+   hay ronda.
+3. La captura de pantalla de la diseñadora es **fuente válida y preferente** sobre
+   el archivo cuando las dos no coinciden.
+4. ⚠️ Y al revés: lo que Eli ve **no lo va a ver el próximo que abra la grilla por
+   script**. Hay que avisárselo, porque el diff del día siguiente puede mostrar
+   estos comentarios como «entrada nueva» cuando en realidad son de hoy.
+
+> Complementa `comentarios-nativos-de-excel` y la sección «CÓMO SE BAJA LA GRILLA»:
+> el diff por conjunto de cadenas sigue siendo la prueba buena **para lo que está en
+> el archivo**. Lo que esta ronda agrega es que el archivo puede ir atrás de la
+> realidad.
+
+## 6. Estado de la S3 al cierre del 09-09
+
+| Col | Pieza | Estado en la grilla | En Drive |
+|---|---|---|---|
+| M | 14-09 quiz | `OK PARA DISEÑAR` | sin tocar desde el 08-09 (`1yBvovV-DfOlLfw4t8yAFSpfiOkaMJ4aG`) |
+| N | 16-09 cowork | `EN CAMBIOS` → **corregida y subida** | `1lAgqPkkA25L4VRlnIg9UayWPdZxDuqwk` · 6 000 522 B |
+| O | 18-09 saludo | `EN CAMBIOS` → **corregida y subida** | `1NxF_9CEv2GsgDeDns84dCHdW6wuWeM5M` · 7 249 755 B |
+
+Se reemplazó el **mismo archivo** en las dos, así que los enlaces no cambiaron.
+Verificadas por `fileSize` contra el local. `between-qa.py`: 2/2 limpias.
+Las `GUIA CM` se regeneraron y **no se subieron**, como corresponde.

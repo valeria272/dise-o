@@ -320,7 +320,7 @@ export const StS3HoraCafe: React.FC<{guia?: boolean}> = ({guia = false}) => (
 /* ══════════════════════════════════════════════════════════════════════════
    ST 16-09 · COWORK  (col N · EN CAMBIOS tras la ronda del cliente del 09-09)
 
-   ⭐⭐ RONDA 7 (09-09) — EL CLIENTE, en rojo sobre `STORIES!N`: «Saquemos el
+   ⭐⭐ RONDA 9 · LA PRIMERA DEL CLIENTE (09-09) — en rojo sobre `STORIES!N`: «Saquemos el
    "Puedes venir", reemplacémoslo por Cowork, para dar contexto».
 
    El script pasa a «Cowork» y el titular queda «Cowork / ¡TE ESPERAMOS!». Lo
@@ -613,7 +613,7 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
 
    La grilla NO pide interacción, así que no lleva zona reservada.
 
-   ⭐⭐ RONDA 7 (09-09) — EL CLIENTE, en rojo sobre `STORIES!O`: «Para no
+   ⭐⭐ RONDA 9 · LA PRIMERA DEL CLIENTE (09-09) — en rojo sobre `STORIES!O`: «Para no
    redundar, pongamos ¡Feliz 18 de septiembre! con eso super ok».
 
    La redundancia era real y estaba MEDIDA en el propio copy: «Fiestas Patrias»

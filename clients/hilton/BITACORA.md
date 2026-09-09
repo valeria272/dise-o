@@ -1,3 +1,76 @@
+## 2026-09-09 (CIERRE 5 · noche) · Eli (Windows) — BETWEEN S3: la primera ronda del CLIENTE, dos correcciones de copy
+
+Quinta sesión del día y segunda de Between (las otras tres fueron de DT y Piso18).
+Arrancó con `/abrir between` y cerró con las dos piezas corregidas y subidas.
+
+**Qué se hizo:**
+
+1. **`/al-dia` NO encontró ronda nueva, y se equivocó** — ver «Abierto», es el
+   hallazgo de la sesión. La grilla había movido su `modifiedTime` a 18:33Z con el
+   md5 intacto, así que se leyó como «alguien sólo la abrió». Eli tenía en pantalla
+   dos comentarios en rojo que el archivo de Drive no trae.
+2. **Se corrigieron las dos stories de la S3 que el cliente devolvió**, con sus
+   comentarios pasados por captura de pantalla. Las dos son de **copy**:
+   · col N (16-09 Cowork) — «Saquemos el "Puedes venir", reemplacémoslo por
+     Cowork, para dar contexto» → titular «Cowork / ¡TE ESPERAMOS!»;
+   · col O (18-09 Saludo) — «Para no redundar, pongamos ¡Feliz 18 de septiembre!
+     con eso super ok» → la caja de cierre cambia; el párrafo del brief no se toca.
+3. El **14-09 (quiz) no se tocó**: no traía comentario. Verificado que reproduce
+   byte a byte los 8 077 154 B que ya estaban en Drive.
+
+**Dónde quedó:**
+
+- `src/compositions/hilton/BetweenStS3.tsx` — los dos cambios, con la ronda escrita
+  en las cabeceras de las dos piezas. Renders en `out/hilton/between/st-s3/`
+  (gitignored) y entrega en `out/hilton/between/entrega-st-s3/`, 2250×4000 a 150 ppp.
+- Fondos ya versionados desde el 08-09 en `public/assets/hilton/between/st-s3/`:
+  **nada nuevo que commitear ahí**, sólo cambió texto.
+- **Subidas a `S3 HILTON SEP 2026/BW/STORIES`** (`1SNBRIvKLvQSC2bYF3u5_oPL5UumIo-gM`)
+  reemplazando el MISMO archivo, así que los enlaces no cambiaron. Verificadas por
+  `fileSize` contra el local: 16-09 `1lAgqPkkA25L4VRlnIg9UayWPdZxDuqwk` (6 000 522 B)
+  y 18-09 `1NxF_9CEv2GsgDeDns84dCHdW6wuWeM5M` (7 249 755 B).
+- `between-qa.py`: 2/2 limpias. Las `GUIA CM` se regeneraron y **no se subieron**.
+- Comprobado con `cmp` que el render sale **idéntico byte a byte** al re-rendir.
+- `clients/hilton/CLAUDE.md` — sección nueva «S3 · RONDA 9».
+  ⚠️ **Ojo con la numeración:** las rondas 6, 7 y 8 de la S3 son del 08-09 y son de
+  Eli. Ésta es la 9 y es la primera del cliente. El commit `3a1782f` la llama
+  «ronda 7» por error; el manual y la composición dicen 9, que es lo correcto.
+
+**Qué sigue:**
+
+1. **El reel Café Bombón (col G) YA NO ES TAREA DE ESTA CUENTA HOY:** Eli dijo
+   «la del café bombón ya lo dejé corregido». ⚠️ Pero la corrección **no aparece
+   en ninguna parte** — la grilla no se movió y no hay ningún archivo de Café
+   Bombón en Drive buscado por título. Antes de volver a producirlo hay que
+   preguntarle **dónde lo dejó**, para no duplicar. La propuesta de los tres
+   caminos sigue en `clients/hilton/PROPUESTA-reel-cafe-bombon.md`.
+2. **STORIES col D** (ST café de regalo) sigue en `EN CAMBIOS` con «Mismo
+   comentario del legal» sin tachar, aunque el legal se entregó el 08-09. Sigue sin
+   saberse qué falta.
+3. Confirmar si el cliente marca las tres de la S3 ahora que las dos volvieron.
+
+**Abierto:**
+
+- ⭐⭐⭐ **UNA RONDA DEL CLIENTE PUEDE NO ESTAR EN EL `.xlsx`.** Es el hallazgo de
+  la sesión y está escrito en el manual (§ S3 · RONDA 9.5). Resumen: `modifiedTime`
+  se movió 12:48Z → 18:33Z, el md5 del archivo bajado quedó IGUAL, el conector MCP
+  confirmó lo mismo — y aun así el cliente había escrito dos comentarios en rojo y
+  movido dos piezas a `EN CAMBIOS`. **«El md5 coincide» NO prueba que no haya
+  ronda.** Un `modifiedTime` que se mueve con el blob intacto es SOSPECHA: hay que
+  preguntarle a la diseñadora qué ve en pantalla.
+- ⚠️ Y su corolario: los rojos de hoy **no los va a ver el próximo que abra la
+  grilla por script**, así que el diff de mañana puede mostrarlos como entrada
+  nueva cuando son de hoy.
+- Siguen de los cierres anteriores: Between **sin `clients/hilton/reglas.yaml`**
+  (así que `qa/motor.py --marca hilton` no corre), las **`GUIA CM`** en local sin
+  decidir cómo llegan al CM, **`BETWEEN.logo.cafe` apuntando a un PNG negro**, el
+  Strudel de la S4 como producto GENERADO a la espera de foto real, y los dos
+  falsos positivos de `between-qa.py` en la S4.
+- ⛔ Y sigue en pie: **`BetweenCumple.tsx:112` y `BetweenSeptiembre.tsx:794` con el
+  legal VIEJO** del cumpleaños.
+
+---
+
 ## 2026-09-09 (CIERRE 4 · noche) · Eli (Windows) — BETWEEN S4: las dos stories del 21 y 22-09, APROBADAS en 6 rondas
 
 Sesión de Between (las tres anteriores del día fueron de DT y Piso18). Arrancó con

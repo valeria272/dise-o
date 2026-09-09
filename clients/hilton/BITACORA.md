@@ -1,3 +1,88 @@
+## 2026-09-09 (CIERRE 3 · tarde) · Eli (Windows) — PISO18: la marca entra al sistema, y entra como marca propia
+
+Primera vez que el estudio abre **Piso18**. Arrancó con `/abrir piso18`.
+
+**Qué se hizo:**
+
+1. **`/al-dia` acotado a P18: la grilla nunca se había abierto.** `PISO18 _GRILLA
+   SEPTIEMBRE 2026` (`1kF9OwDflz3mFR_NAodu0Y0YJvQj5wbbmAlN7SdRTFAo`, de Carlos) se
+   movió **hoy 13:36:47Z** y venía **sin `viewedByMeTime`**. Se bajó completa (46,9 MB
+   de xlsx real) y se leyeron las 4 hojas.
+2. **⛔ Hay un hilo ABIERTO y es para Eli.** Comentario de Carlos de **hoy 13:25Z** en
+   `FEED!F13` = celda COMENTARIOS CLIENTE del post del **10-09** («Sección fotos novios
+   en hotel»), estado `REVISAR CONTENIDO`. **Sale mañana a las 12:00.** El comentario
+   sólo dice «me ayudas aquí?»: el encargo está en la celda, no en el hilo. ⚠️ Esa misma
+   celda recibió la **misma pregunta cuatro veces** (31-08, 02-09, 07-09 y hoy); las tres
+   primeras están resueltas. Es la pieza que rebota.
+3. **⭐⭐ Eli dictó la identidad de la marca, y lo primero es un cortafuegos:** *«Todo es
+   propio y diferente a DT, recuerda no mezclar las marcas.»* Piso18 es un **centro de
+   eventos dentro del hotel, en el piso 18** — relación de dirección física, **no de
+   identidad**. El asunto son los **espacios y su decoración**. Cinco verticales:
+   matrimonio · cumpleaños · corporativo · bautizo · otros, y **la marca se está
+   abriendo**: *«últimamente van por más eventos, no sólo es matrimonio»*.
+4. **Se auditó el mes contra ese criterio** (medido, no estimado): **matrimonio 8 ·
+   cumpleaños 3 · corporativo 2 (las dos de refilón) · bautizo 0 · genérico 10**. La
+   grilla todavía no refleja la apertura. Se dejó escrito **como diagnóstico, no como
+   corrección** — la grilla la escriben cliente y contenido.
+
+**Dónde quedó:**
+
+- `clients/hilton/CLAUDE.md` — sección nueva **§PISO18 — MARCA PROPIA** (línea ~273) con
+  el cortafuegos, las 5 verticales, la auditoría, el estado de las 7 capas (**tiene 0**)
+  y cómo volver a bajar la grilla. Corregida la fila P18 de «Las 4 cuentas», que decía
+  «eventos con vista (cumpleaños, novios, corporativo)» y se comía el bautizo.
+- `clients/hilton/CHECKLIST-CLIENTE.md` — partido en **dos bloques que no se cruzan**.
+  Nuevos bloqueantes **P1–P5** de Piso18 y las decisiones abiertas.
+- `clients/hilton/grillas/p18-septiembre-2026.md` — instantánea nueva (1.389 líneas).
+  **Es la base del diff de la próxima ronda**, que P18 no tenía.
+- `raw/hilton/piso18/` (no viaja en git) — árbol de aterrizaje con `LEEME.md`:
+  `ref-eli-sep2026/`, `editables/`, `logo/`, `fotos/`. Las dos fotos que estaban en
+  `Downloads` se movieron a `fotos/`.
+- **No se produjo ninguna pieza**, y fue a propósito: sin gramática medida, cualquier
+  pieza le inventa un sistema a la marca.
+
+**Qué sigue:**
+
+`/adn piso18` en cuanto Eli deje los editables — mide paleta, tipografías y gramática de
+una pasada. Y con eso, la pieza del **10-09**, que es la urgente.
+
+**Abierto:**
+
+- ⛔ **El bloqueante n°1: las piezas de referencia no bajan.** Las **10** de la carpeta
+  `P18` de la S1 (`1TR-CiAE84ryQ1gTA2PvkEthsWhwSm5yA`) más 4 de julio (`C1 S5 P18 n°1–4`):
+  **las 14 devuelven ~908 KB de página de login**. Se aplicó la regla de buscar **copias
+  por título** (la que salvó el Family Time): hay copias públicas, **pero son de otras
+  marcas** — `CARRUSEL NB 1` es Noche de Bodas de DT y `C1 S2 CUMPLEAÑOS` vive dentro de
+  la carpeta `BW`. De Piso18, cero. Se destraba compartiendo la carpeta por enlace o
+  copiando los PNG a `raw/hilton/piso18/ref-eli-sep2026/`.
+- **Eli va a dejar los editables y el universo completo de Piso18** (comprometido hoy).
+- **Faltan además:** logo P18 en PNG con transparencia (hay un pendiente del cliente,
+  «quedó algo extraño detrás del logo», que **no se puede ni diagnosticar** sin el
+  archivo), las tipografías propias, la galería del fotógrafo y la medida del máster.
+- **Tres decisiones que las dicta Eli:** ¿la **§G** vale para Piso18? ¿la regla de
+  **rostros de trabajadores** vale acá? (la grilla de P18 pide «sin caras directas» por
+  su cuenta, así que converge, pero no está dictada) y **¿quién hace las semanas 2 y 3?**
+  — hay **13 piezas en `OK PARA DISEÑAR`** y no existe carpeta `P18` en la S2 ni en la S3,
+  mientras Between tiene las tres.
+- **1 story bloqueada por cliente:** el menú del 09-09 espera los PDF actualizados.
+
+**⭐ Lo aprendido, que sirve para cualquier marca:**
+
+> Un **Sheet nativo** de Google se baja con `/export?format=xlsx`, **no** con
+> `uc?export=download` — ese es para un `.xlsx` ya subido, como la grilla de Between.
+
+> Un comentario de Drive que sólo dice «me ayudas aquí?» **no trae el encargo**: el qué
+> vive en la **celda que el comentario ancla**. Leer el ancla, no el hilo.
+
+⚠️ **Aviso para quien abra mañana:** hoy hubo **dos sesiones en paralelo** sobre este
+repo. La otra (`479f3b86`) trabajó las **stories S4 de Between** y dejó sin commitear
+`scripts/between-st-s4-generar.py` y la instantánea `between-septiembre-2026.md`
+actualizada al 09-09. **Este cierre NO las subió a propósito** — no se commitea el
+trabajo a medias de otra sesión bajo un mensaje de Piso18. Esa sesión tiene que cerrar
+lo suyo, o se pierde.
+
+---
+
 ## 2026-09-09 (CIERRE 2 · tarde) · Eli (Windows) — DOUBLETREE: cae el bloqueante del Family Time, y la lección es de método
 
 Sesión corta, de una sola cosa, y esa cosa era el **bloqueante número uno** que dejó

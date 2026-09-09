@@ -1,9 +1,12 @@
 # HILTON — qué falta para que el sistema corra solo
 
-> Actualizado 08-09-2026. Marcar `[x]` cuando llegue y borrar la fila al resolverse.
-> Por ahora sólo cubre **DT**; QB, Between y Piso18 se agregan cuando entren al sistema.
+> Actualizado 09-09-2026. Marcar `[x]` cuando llegue y borrar la fila al resolverse.
+> Cubre **DT** y **PISO18**, en bloques separados. QB y Between se agregan cuando entren.
+>
+> ⛔ **Los bloques no se cruzan.** Piso18 es marca propia y nada de DT le sirve de
+> reemplazo — ni una tipografía, ni un color, ni una foto.
 
-## 🔴 Bloqueantes — sin esto hay que improvisar cada vez
+## 🔴 DT — Bloqueantes — sin esto hay que improvisar cada vez
 
 | # | Qué | A quién | Por qué bloquea |
 |---|---|---|---|
@@ -29,6 +32,37 @@
 |---|---|---|
 | 6 | Las 24 fotos `.HEIC` de «Recursos gráficos» convertidas a JPG | HEIC no lo abre Chrome ni Remotion. Hoy esa carpeta es inutilizable desde código |
 | 7 | Confirmar el azul: `#09194E` del manual vs `#111C4E` del Pantone exportado | Para fijar uno solo y que el QA rechace el resto |
+
+---
+
+## 🔴 PISO18 — Bloqueantes
+
+> Piso18 tiene **0 de las 7 capas** del sistema. Nada de DT sirve de reemplazo.
+
+| # | Qué | A quién | Por qué bloquea |
+|---|---|---|---|
+| P1 | **Las 10 piezas aprobadas de la carpeta `P18`** de la S1 (`1TR-CiAE84ryQ1gTA2PvkEthsWhwSm5yA`) — por enlace, o copiadas a `raw/hilton/piso18/ref-eli-sep2026/` | Eli | Es la única gramática que existe. Las 14 piezas conocidas **devuelven ~908 KB de página de login**. Sin ellas no se miden las capas 1, 2 y 3, y el examen de admisión (reproducir una pieza ya aprobada hasta que quede idéntica) **es imposible** |
+| P2 | **Los editables de Piso18** — el `.ai` con sus carpetas `Fonts/` y `Links/`, y sobre todo el **`Informe.txt`** | Eli — ya comprometidos el 09-09 | El `Informe.txt` es la fuente más fiel de fuentes, mesa de trabajo y prompts, y evita bajar un `.ai` de cientos de MB. Con eso corre `/adn piso18` |
+| P3 | **El logo P18 en PNG con transparencia**, y qué versión va sobre fondo claro y cuál sobre oscuro | Eli | Hay un pendiente del cliente —«aquí quedó algo extraño detrás del logo de P18, podemos revisarlo?»— que **no se puede ni diagnosticar** sin el archivo |
+| P4 | **Las tipografías propias de Piso18** | Eli / Cliente | ⛔ **No son las de DT.** El repo no tiene ninguna de las dos familias, y asumir Stag/Trade sería mezclar marcas |
+| P5 | **La carpeta de la galería del fotógrafo** | Eli / Cliente | La grilla la nombra en 4 piezas («galería fotografo», ambiente de matrimonio, arreglos florales). Sin ella no hay imagen, y la jerarquía obliga a foto real antes que IA |
+
+## 🟡 PISO18 — Importantes
+
+| # | Qué | A quién | Para qué |
+|---|---|---|---|
+| P6 | La medida del **máster** de feed y de story | Eli | DT y Between son 2250 × 2813. Para P18 **no se asume** |
+| P7 | Fotos de **bautizo** y de **corporativo** | Cliente | Son dos de las cinco verticales. El banco no las cubre y **bautizo no aparece ninguna vez** en septiembre |
+
+## Decisiones abiertas de Piso18 — las dicta Eli, no se resuelven solas
+
+- ¿La **§G** (en esta cuenta sólo se diseña; el brief es del cliente) vale para Piso18?
+  Se dictó para DT y sigue sin extenderse.
+- ¿La regla de **no usar rostros de trabajadores** vale para Piso18? La grilla de P18
+  pide por su cuenta «cambiar caras con IA» y «sin caras directas», así que va en la
+  misma dirección — pero la regla no está dictada.
+- **¿Quién hace las semanas 2 y 3?** Hay **13 piezas en `OK PARA DISEÑAR`** y no existe
+  carpeta `P18` en la S2 ni en la S3, mientras Between tiene las tres.
 
 ---
 

@@ -24,7 +24,7 @@
 | **DT** | DoubleTree by Hilton Santiago-Vitacura | El hotel | reservas.dtv@hilton.com · reservas@doubletreebyhilton.cl |
 | **QB** | QB Restaurant (Quotidien Bistró) | Restaurante + terraza + DJs | reservas@qbrestaurant.cl · +56 9 3373 3247 · reservas por CoverManager |
 | **BW** | Between Coffee & Bar | Cafetería/bar, after office | contacto@cafeteriabetween.cl · cafeteriabetween.cl |
-| **P18** | Piso18 Centro de Eventos | Eventos con vista (cumpleaños, novios, corporativo) | eventos@piso18.cl · piso18.cl |
+| **P18** | Piso18 Centro de Eventos | **Centro de eventos dentro del hotel, en el piso 18.** Cinco verticales: matrimonio · cumpleaños · corporativo · bautizo · otros. Pesa el matrimonio, pero **se está abriendo a más eventos**. El asunto son los **espacios y su decoración**. ⛔ **Marca propia — nada de DT se le traspasa** (ver §PISO18) | eventos@piso18.cl · piso18.cl |
 
 **Programas/temas recurrentes DT:** Family Time ($125.000 IVA inc., 2 adultos + 2 niños, desayuno buffet, jueves a domingo), Escapada Romántica (desde $99.000–$109.000, espumante + desayuno), Hilton Honors (inscripción gratis), Cookie de bienvenida (ícono de la marca), Wellness Lounge / SPA by Scape, gimnasio 24 h, salones Astoria y Conrat, cowork, reseñas Booking/Expedia.
 **QB:** promos de tragos mensuales (ej. mes de la piscola 2x$5.000), Sunset Experience, sesiones DJ. **BW:** cervezas LOA, 2x1 pizzas, desayunos. **P18:** descuentos salón (ej. 30% OFF cumpleaños), colab Novios Falabella.
@@ -269,6 +269,138 @@ Al escribir estas reglas se pasó el mes entero buscando `$`. El resultado:
 
 Los `$21.000` y `$100.000` de `FEED C` no son el programa: son los agregados de
 sunset y masajes.
+
+## ⭐⭐ PISO18 — MARCA PROPIA (dictado por Eli el 09-09-2026)
+
+> **La regla madre de esta cuenta: Piso18 es marca propia y TODO en ella es distinto
+> de DT. Nada de DT se le traspasa** — ni tipografía, ni paleta, ni logo, ni banco de
+> imágenes, ni las reglas de la §G, ni «LA LEY DE ELI» de más arriba, que se dictó
+> **para DT** y sigue sin extenderse.
+
+Palabras de Eli: *«Todo es propio y diferente a DT, recuerda no mezclar las marcas.»*
+
+Esto ya está impuesto por programa: `qa/motor.py` exige `--marca`, carga sólo las
+reglas de esa marca y rechaza piezas de otra en la misma corrida. Lo que falta es que
+Piso18 **tenga** reglas, porque hoy no tiene ninguna.
+
+### Qué es la marca
+
+**Piso18 Centro de Eventos.** Un centro de eventos que queda **dentro del hotel
+DoubleTree by Hilton, en el piso 18**. Ojo con esa frase: la relación con DT es
+**de dirección física, no de identidad**. Comparten edificio; no comparten sistema
+gráfico.
+
+- Contacto/CTA: `eventos@piso18.cl` · `piso18.cl`
+- Cierre de dirección que usa la grilla, literal: `Av. Vitacura 2727, Las Condes`
+
+### El asunto de la marca: los ESPACIOS y su decoración
+
+El tema que se muestra es **el espacio y su decoración/ambientación**. No es el plato,
+no es la persona: es el salón montado. La grilla de septiembre lo repite por su lado
+—«la idea de estas gráficas simples es principalmente mostrar el espacio»— y de ahí
+sale la regla que el cliente ya viene aplicando:
+
+> **En feed van fotos limpias de ambiente; el tratamiento con caras y recortes se va
+> a stories.** Literal del cliente: *«Recordemos que este tipo de diseños sean más
+> para stories, en feed que se vean fotos limpias»* y *«que sean de ambiente, sin
+> caras directas»*.
+
+### Las cinco verticales de evento
+
+**Matrimonio · Cumpleaños · Corporativo · Bautizo · Otros.**
+
+⭐ **La marca se está abriendo, y esto es criterio de Eli, no lectura mía:**
+históricamente pesa el matrimonio, pero *«últimamente van por más eventos, no sólo
+es matrimonio»*. Una grilla que sólo habla de novios ya no representa a la cuenta.
+
+**Auditoría del mes de septiembre 2026** (medida sobre la grilla, no estimada):
+
+| Vertical | Piezas | Nota |
+|---|---|---|
+| **Matrimonio** | **8** | Sigue siendo el eje |
+| Cumpleaños | 3 | |
+| Corporativo | 2 | Y las dos de refilón: el trinchado es gastronomía y el reel sólo lo nombra en hashtags |
+| **Bautizo** | **0** | La vertical no aparece **ninguna vez** en todo el mes |
+| Otros / genérico | 10 | |
+
+> **Para qué sirve esta tabla y para qué NO.** Es **diagnóstico para Eli y para
+> contenido**, no una lista de correcciones: la grilla la escriben el cliente y
+> contenido, y una discrepancia **se informa, no se resuelve**. El reparto de
+> verticales no se toca desde diseño.
+
+El propio cliente ya empujó en esa dirección dentro de la grilla, en el post del
+09-09: *«que quede abierto en cuanto a tipo de evento, no cerrarnos en matrimonio»*.
+
+### ⛔ Lo que TODAVÍA no está medido — no se produce hasta que lo esté
+
+Piso18 tiene **0 de las 7 capas** del sistema de marcas. Falta lo siguiente, y
+**ningún valor de DT ni de Between sirve de reemplazo provisorio**:
+
+| Capa | Estado |
+|---|---|
+| 1 · Identidad (paleta, tipografías, logo) | ⛔ **Sin medir.** Eli va a dejar sus editables y el universo completo de Piso18 |
+| 2 · Gramática (composición) | ⛔ Sin medir. Las 10 piezas aprobadas existen pero **no bajan** (ver abajo) |
+| 3 · Formatos (máster, zonas seguras) | ⛔ Sin confirmar el máster. Las zonas seguras Meta sí aplican: son regla global |
+| 4 · Imagen | 🟡 Parcial: la grilla nombra la **galería del fotógrafo** como fuente. Falta la carpeta |
+| 5 · Copy (tono, CTA, legales) | ✅ **Se puede leer de la grilla**: tono, CTA, hashtags por tema y el cierre de dirección |
+| 6 · Pipeline | ⛔ No existe `clients/piso18/`, ni `marca.json`, ni kit en `src/brand/` |
+| 7 · QA | ⛔ Sin reglas en `qa/motor.py` |
+
+### El material de referencia, y por qué hoy no baja
+
+Las **10 piezas aprobadas** de Eli están en la carpeta **P18** de la S1
+(`1TR-CiAE84ryQ1gTA2PvkEthsWhwSm5yA`), más 4 de julio (`C1 S5 P18 n°1–4`).
+**Ninguna de las 14 se puede bajar:** las 14 devuelven ~908 KB, que es la página de
+login guardada con extensión `.png` — la trampa de la compuerta de material.
+
+Se aplicó la regla de buscar **copias por título** (la que salvó el carrusel de
+Family Time el 09-09): hay copias públicas, **pero son de otras marcas** —
+`CARRUSEL NB 1` es Noche de Bodas de DT y `C1 S2 CUMPLEAÑOS` vive dentro de la
+carpeta `BW` de Between. De Piso18, cero. El token local es `drive.file` y tampoco
+las ve.
+
+**Se destraba de dos maneras:** compartir por enlace la carpeta `P18`, o copiar los
+PNG a `raw/hilton/piso18/ref-eli-sep2026/`.
+
+### El banco fotográfico — lo poco medido, que ya manda una regla
+
+Dos fotos del fotógrafo aparecieron en `Downloads` (`Piso_18-41.jpg`, `-45.jpg`):
+**Canon EOS 5D Mark III**, reveladas en Lightroom Classic 12.4, disparadas el
+31-07-2023, y exportadas a **2250 × 1500 — o sea 3:2 horizontal**.
+
+⭐ De ahí sale una regla dura antes de tener el resto del sistema: **el banco es
+horizontal y el feed pide 4:5 y las stories 9:16, así que la foto se PRODUCE, no se
+recorta.** Recortar un 3:2 a 9:16 no deja hueco para el texto y termina en una caja
+de color encima.
+
+⚠️ Y un aviso de contenido: la `Piso_18-41` es del trinchado y **sale el cocinero de
+frente, con delantal DoubleTree**. La grilla de Piso18 pide por su cuenta «cambiar
+caras con IA» y «sin caras directas», pero **la regla de rostros de trabajadores de
+DT no está extendida a Piso18** — la tiene que dictar Eli.
+
+### Cómo volver a bajar la grilla de Piso18 (otra máquina, o si se borra)
+
+`raw/` no viaja en git. La grilla es un **Sheet nativo de Google**, así que **no**
+sirve el `uc?export=download` que se usa con la de Between (esa sí es un `.xlsx`
+subido). El endpoint que funciona es el de exportación:
+
+```bash
+mkdir -p raw/hilton/piso18
+curl -sL "https://docs.google.com/spreadsheets/d/1kF9OwDflz3mFR_NAodu0Y0YJvQj5wbbmAlN7SdRTFAo/export?format=xlsx"   -o "raw/hilton/piso18/P18-grilla-septiembre-2026.xlsx"
+file raw/hilton/piso18/P18-grilla-septiembre-2026.xlsx   # debe decir «Microsoft Excel 2007+»
+```
+
+Pesó **46 938 571 B** el 09-09-2026. ⚠️ Si llegan ~900 KB es la página de login.
+El token local (`credentials/token.json`) tiene scope `drive.file` y **no la ve**:
+sólo ve lo que creó la propia app.
+
+### Instantánea de la grilla
+
+`clients/hilton/grillas/p18-septiembre-2026.md` (09-09-2026). **Es la base del DIFF
+de la próxima ronda**: sin ella no se distingue el comentario nuevo del ya resuelto,
+porque se acumulan en la misma celda.
+
+---
 
 ## Brand kit BETWEEN (calibrado 24-08-2026 con el feedback escrito de Eli)
 

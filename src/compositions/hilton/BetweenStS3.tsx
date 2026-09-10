@@ -535,6 +535,28 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
         estar fotografiada desde arriba»: eso valía para MONTARLA. Como REFERENCIA
         el ángulo da igual, porque el modelo la redibuja en la perspectiva de la
         escena. */}
+    {/* ⭐⭐⭐ RONDA 13 (10-09-2026) — «me cambiaste el sándwich y ese estaba
+        correcto» + «la taza está demasiado cerca, aléjalo un poco muy sutil».
+
+        ⭐ LA REFERENCIA DEL DESAYUNO PASA A SER **LA PROPIA VERSIÓN APROBADA**. En
+        la ronda 12 seguía apuntando a `DSC_0823.jpg`, la foto de la sesión con sus
+        triángulos de tostada, y el modelo la obedeció: cambió el sándwich de jamón
+        y queso que Eli ya había aprobado. La referencia apuntaba al MATERIAL DE
+        ORIGEN cuando lo que había que conservar era la INTERPRETACIÓN APROBADA de
+        ese material.
+
+        La regla: una vez que el cliente aprueba una escena generada, esa imagen
+        entra al set de referencias y desplaza al material que la originó. Es lo
+        que hace que una serie no se desarme ronda a ronda.
+
+        Y simplifica: la aprobada trae también la laptop y el tratamiento, así que
+        la edición de Magnific de Eli dejó de hacer falta. De 4 referencias a 3, y
+        el prompt de 3231 a 2768 caracteres sin perder instrucciones.
+
+        ⭐ Y EL HUECO SE MIDE: «un poco muy sutil» es cantidad, así que se contó la
+        madera entre plato y platillo en las tres variantes — 481 px (15,7 %),
+        754 (24,5 %) y 941 (30,6 %)— y se eligió la más chica. Cuando el pedido
+        trae un adverbio de cantidad hay una medida detrás. */}
     <FotoFondo src={F + 'st-16-09-cowork-escena.jpg'} oscurecer={0.04} />
 
     {/* El lockup en BEIGE: sobre el cielo gris de la foto real el café no se

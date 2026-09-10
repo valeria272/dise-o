@@ -58,13 +58,17 @@ except Exception:
     pass
 
 RAIZ = Path(__file__).resolve().parent.parent
-SALIDA = RAIZ / "out/hilton/between/ia-cowork-taza"
+SALIDA = RAIZ / "out/hilton/between/ia-cowork-taza2"
 
 REFS = [
     RAIZ / "public/assets/hilton/between/st-s3/st-16-09-cowork-real.jpg",
-    RAIZ / "raw/hilton/between/ediciones-ia-eli/magnific_agrega-una-laptop-en-la-m_iAi90W63uK.png",
     RAIZ / "public/assets/hilton/between/taza-cappuccino-nobg.png",
-    RAIZ / "raw/hilton/between/desayunos-ago2026/DSC_0823.jpg",
+    # ⭐ RONDA 13: la tercera referencia es LA PROPIA VERSION APROBADA. Eli: «me
+    # cambiaste el sandwich y ese estaba correcto, vuelve al sandwich anterior de
+    # jamon y queso». Cuando lo aprobado es un resultado del modelo, la referencia
+    # mas fiel es ese resultado — y de paso trae la laptop y el tratamiento, asi
+    # que la edicion de Magnific de Eli deja de hacer falta como referencia.
+    RAIZ / "out/hilton/between/ia-cowork-escena/escena-v3.png",
 ]
 
 K = clave_freepik() or sys.exit("x falta la clave de Freepik — corre llavero.py abrir")
@@ -84,41 +88,37 @@ except Exception:
 # pone al final, el modelo ya reescribio la escena.
 
 REFERENCIAS = (
-    "Four references. REF1 is the photograph to keep: the real second-floor lounge "
-    "of the Between coffee bar, shot from a seat at a wooden table. REF2 shows how "
-    "this brand photographs a working table (laptop, cup and food on wood, warm "
-    "light, shallow depth of field) - copy only its treatment and object scale. "
-    "REF3 is the brand's real cappuccino: a plain white ceramic cup on a matching "
-    "white saucer, with latte art on the crema and a spoon on the saucer; "
-    "reproduce it faithfully. REF4 is a real Between breakfast: toasted sandwich "
-    "triangles on a white plate. "
+    "Three references. REF1 is the photograph to keep: the real second-floor lounge "
+    "of the Between coffee bar, shot from a seat at a wooden table. REF2 is the "
+    "brand's cappuccino: a plain white ceramic cup on a matching white saucer, "
+    "latte art on the crema, a spoon on the saucer. REF3 is the APPROVED version of "
+    "this same picture: copy its laptop and its breakfast exactly. "
 )
 
 CONSERVAR = (
     "KEEP REF1 EXACTLY. Do not change framing, crop, camera angle, perspective or "
     "focal length. Do not redraw or move the ceiling, the downlights, the arched "
-    "floor lamp with its woven shade, the framed city photographs, "
-    "the dark slat wall, the grey armchairs, the tan banquette, the console, the "
-    "carpet or the table. Keep the exact wood grain, colour, knots and sheen of the "
-    "table top, and the existing lighting, white balance, contrast and background "
-    "blur. It must read as the same photograph. "
+    "floor lamp with its woven shade, the framed city photographs, the dark slat "
+    "wall, the grey armchairs, the tan banquette, the console, the carpet or the "
+    "table. Keep the exact wood grain, colour, knots and sheen of the table top, "
+    "and the existing lighting, white balance, contrast and background blur. It "
+    "must read as the same photograph. "
 )
 
 AGREGAR = (
     "ADD THREE OBJECTS resting on the wooden table in the foreground, each with a "
     "realistic contact shadow. "
-    "(a) AN OPEN LAPTOP, slightly left of centre, set back: thin aluminium, space "
-    "grey, matte, lid open at a natural working angle, seen from a rear "
-    "three-quarter view so the back of the lid faces the camera, with a small "
-    "subtle dark apple-shaped logo centred on the lid - understated, not bright, "
-    "not enlarged. No screen interface, no text. "
-    "(b) A BREAKFAST PLATE from REF4, in front of the laptop and slightly left: a "
-    "white plate with toasted sandwich triangles, appetising, seen from the same "
-    "low table-level angle. "
-    "(c) THE WHITE CAPPUCCINO from REF3, on its white saucer, standing on the table "
-    "IMMEDIATELY BESIDE THE PLATE, just to its right and almost touching it, so "
-    "plate and cup read as one breakfast served together. Same angle, latte art "
-    "visible on the crema. "
+    "(a) THE OPEN LAPTOP FROM REF3, slightly left of centre and set back: thin "
+    "space-grey aluminium, lid open, rear three-quarter view so the back of the lid "
+    "faces the camera, with the same small subtle dark apple logo on the lid. No "
+    "screen interface, no text. "
+    "(b) THE BREAKFAST PLATE FROM REF3, in front of the laptop and slightly left: "
+    "the round white plate with the toasted ham and cheese sandwich cut into two "
+    "halves, the melted cheese and the ham visible at the cut, exactly as in REF3. "
+    "(c) THE WHITE CAPPUCCINO from REF2, on its saucer, to the RIGHT of the plate, "
+    "near it but NOT touching: leave a narrow strip of bare wood between the saucer "
+    "and the plate, about a third of the saucer's width. Same low table-level "
+    "angle, latte art visible on the crema. "
 )
 
 LUZ = (
@@ -131,19 +131,19 @@ LUZ = (
 
 COMPOSICION = (
     "COMPOSITION: all three objects sit in the LOWER HALF of the vertical frame, "
-    "below the middle line. The plate and the cup go TOGETHER as one served pair, "
-    "side by side and close; the laptop sits behind them with clear wood between. "
-    "The UPPER HALF stays completely untouched and free of new objects - graphic "
-    "text goes there. Keep the near table edge mostly empty. "
+    "below the middle line. The plate and the cup read as one breakfast served "
+    "together, side by side but separated by a narrow strip of wood; the laptop "
+    "sits behind them with more wood between. The UPPER HALF stays completely "
+    "untouched and free of new objects - graphic text goes there. Keep the near "
+    "table edge mostly empty. "
 )
 
 NEGATIVO = (
-    "No people, hands, phones, sunglasses, cables, plants, takeaway cups or a second "
-    "cup. No brand name, sign, logo or watermark anywhere except the "
-    "small apple on the laptop lid. No captions. Do not import "
-    "backgrounds from the other references: ignore REF2's foliage, brownie, phone "
-    "and sunglasses, and REF4's marble table, ham, cheese and avocado. "
-    "Photorealistic, one coherent photo."
+    "No people, hands, phones, sunglasses, cables, plants, takeaway cups or a "
+    "second cup. No brand name, sign, logo or watermark except the small apple on "
+    "the laptop lid. No captions. Take ONLY the laptop and the plate from REF3 - "
+    "ignore its takeaway cup, which must not appear. Photorealistic, one coherent "
+    "photo."
 )
 
 PROMPT = REFERENCIAS + CONSERVAR + AGREGAR + LUZ + COMPOSICION + NEGATIVO

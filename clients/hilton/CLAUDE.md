@@ -6879,3 +6879,73 @@ cuadrado se parece más al de `DSC_0823`, pero la taza queda a un tramo.
   cero a la derecha y abajo. **Sexta pieza seguida** con el mismo defecto: el
   script cuenta como texto cualquier blanco de marca con un borde oscuro cerca, y
   ahora también la loza. Ya conviene arreglarlo.
+
+---
+
+# S3 · RONDA 13 (10-09-2026) — VUELVE EL SÁNDWICH APROBADO, Y LA TAZA SE SEPARA
+
+> «Me cambiaste el sándwich y ese estaba correcto. La taza está demasiado cerca,
+> aléjalo un poco muy sutil. Vuelve al sándwich anterior de jamón y queso.»
+
+## 1. ⭐⭐⭐ CUANDO LO APROBADO ES UN RESULTADO DEL MODELO, LA REFERENCIA ES ESE RESULTADO
+
+Es el hallazgo de la ronda, y evita el problema que la causó. En la ronda 12 la
+referencia del desayuno seguía siendo **`DSC_0823.jpg`**, la foto de la sesión
+—triángulos de tostada en abanico—, y el modelo la obedeció: cambió el sándwich
+de jamón y queso que Eli ya había aprobado.
+
+**El error de método:** la referencia apuntaba al *material de origen* cuando lo
+que había que conservar era **la interpretación ya aprobada de ese material**.
+
+**El arreglo:** la tercera referencia pasa a ser **la propia versión aprobada**
+(`out/hilton/between/ia-cowork-escena/escena-v3.png`), descrita como «REF3 is the
+APPROVED version of this same picture: copy its laptop and its breakfast
+exactly». El sándwich volvió idéntico en las tres variantes.
+
+> ⭐ **La regla:** una vez que el cliente aprueba una escena generada, esa imagen
+> **entra al set de referencias** y desplaza al material que la originó. Es lo que
+> hace que una serie no se desarme ronda a ronda.
+
+**Y de paso simplifica:** la aprobada trae también la laptop y el tratamiento, así
+que **la edición de Magnific de Eli dejó de hacer falta** como referencia. Se pasó
+de cuatro referencias a **tres**, y el prompt bajó de 3231 a **2768** caracteres
+—con margen de sobra bajo el tope de 3000— sin perder una sola instrucción.
+
+## 2. ⭐ EL HUECO SE MIDE, NO SE MIRA
+
+«Aléjalo un poco **muy sutil**» es una instrucción de cantidad, así que se midió:
+en la franja donde el plato y el platillo son más anchos se cuenta la **madera que
+queda entre las dos losas**.
+
+| Variante | Hueco | |
+|---|---|---|
+| **v2 · elegida** | **481 px · 15,7 %** del ancho | la separación más sutil |
+| v3 | 754 px · 24,5 % | se despega más de la cuenta |
+| v1 | 941 px · 30,6 % | y además una veta clara rara en la mesa |
+
+Se eligió la **v2** por ser la más chica. La v3 queda ofrecida en el HTML por si a
+Eli le parece corta.
+
+```python
+# la medicion, en la franja de plato + platillo
+banda = a[int(H*0.72):int(H*0.80), :]
+blanco = (banda > 150).mean(axis=0) > 0.5     # columnas de loza
+# el hueco = el corte mas largo de NO-loza entre el primer y el ultimo blanco
+```
+
+> ⭐ Cuando el pedido trae un **adverbio de cantidad** —«un poco», «muy sutil»,
+> «más cerca»— hay una medida detrás. Generar varias variantes y **medir la
+> diferencia** convierte el adverbio en un número y la elección deja de ser
+> opinión contra opinión.
+
+## 3. Estado de la pieza
+
+- Fondo: `st-16-09-cowork-escena.jpg` (la v2 de esta ronda).
+- Entrega **7 212 471 B**, 2250 × 4000 a 150 ppp, reemplazando el mismo archivo
+  `1lAgqPkkA25L4VRlnIg9UayWPdZxDuqwk` — **el enlace no cambió**. Verificado por
+  `fileSize` y `parentId`.
+- Reproduce **byte a byte** (`cmp`).
+- `between-qa.py`: cuatro avisos, los cuatro falsos positivos — **2 píxeles** en el
+  borde derecho y **30** del foco del cielo; cero a la izquierda y abajo.
+  **Séptima pieza seguida** con el mismo defecto.
+- Revisión publicada: `scripts/between-cowork-r10-artifact.py`.

@@ -29,7 +29,7 @@ RAIZ = Path(__file__).resolve().parent.parent
 SALIDA = RAIZ / "out/hilton/between/ronda10-artifact.html"
 
 FUENTES = {
-    "antes":      (RAIZ / "out/hilton/between/ronda12-antes.jpg", 720),
+    "antes":      (RAIZ / "out/hilton/between/ronda13-antes.jpg", 720),
     "despues":    (RAIZ / "out/hilton/between/st-s3/BW-S3-Cowork.png", 720),
     "refeli":     (RAIZ / "raw/hilton/between/ediciones-ia-eli"
                    / "magnific_agrega-una-laptop-en-la-m_iAi90W63uK.png", 460),
@@ -37,7 +37,7 @@ FUENTES = {
     "crudo":      (RAIZ / "raw/hilton/between/cowork-2do-piso/fotos/IMG_8539.jpg", 360),
     "limpia":     (RAIZ / "out/hilton/between/st-s3/BW-S3-Cowork-sin-vaso.png", 360),
     "montaje":    (RAIZ / "out/hilton/between/ronda11-montaje-rechazado.jpg", 360),
-    "variante":   (RAIZ / "out/hilton/between/ronda12-variante-v1.jpg", 460),
+    "variante":   (RAIZ / "out/hilton/between/ronda13-variante-v3.jpg", 460),
     "generada":   (RAIZ / "out/hilton/between/ronda10-antes.jpg", 360),
 }
 
@@ -205,7 +205,7 @@ def main():
 
     h = []
     a = h.append
-    a("<title>Cowork 16-09 · ronda 12</title>")
+    a("<title>Cowork 16-09 · ronda 13</title>")
     a('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
       "family=IBM+Plex+Mono:wght@400;500&"
       "family=Raleway:wght@500;600;700;800&"
@@ -214,23 +214,24 @@ def main():
     a('<div class="env">')
 
     a('<p class="eyebrow">Between · Coffee &amp; Bar — historia del 16 de septiembre</p>')
-    a("<h1>La taza reemplaza al vaso To Go</h1>")
-    a('<p class="bajada">Columna N de la hoja STORIES, ronda 12. La versión anterior '
-      "quedó aprobada; este ajuste cambia el vaso To&nbsp;Go por una taza blanca de "
-      "cappuccino y la acerca al plato.</p>")
+    a("<h1>Vuelve el sándwich, y la taza se separa</h1>")
+    a('<p class="bajada">Columna N de la hoja STORIES, ronda 13. Dos correcciones: '
+      "el sándwich de jamón y queso de la versión aprobada vuelve tal cual, y la "
+      "taza se aleja del plato lo justo.</p>")
 
-    a('<div class="pedido"><div class="quien">Eli · sobre la versión aprobada</div>'
-      "<q>Aprobada la del drive, el resultado quedó mucho mejor. Quiero que "
-      "reemplaces el vaso To Go por un café de taza blanca de capuccino, se va a "
-      "ver más real. Y que esté más cerca del plato de sándwiches.</q></div>")
+    a('<div class="pedido"><div class="quien">Eli</div>'
+      "<q>Me cambiaste el sándwich y ese estaba correcto. La taza está demasiado "
+      "cerca, aléjalo un poco muy sutil. Vuelve al sándwich anterior de jamón y "
+      "queso.</q></div>")
 
     a('<div class="fila">')
-    a(fig(im["antes"], "Antes <em>· la aprobada</em>",
-          "La versión que quedó aprobada, con el vaso To&nbsp;Go y el plato "
-          "separados por un tramo de mesa.", hero=True))
+    a(fig(im["antes"], "Antes <em>· ronda 12</em>",
+          "La taza quedó pegada al plato, y el sándwich se había convertido en "
+          "triángulos de tostada: los dos defectos que marcaste.", hero=True))
     a(fig(im["despues"], "Después <em>· en Drive</em>",
-          "Taza blanca de cappuccino con arte latte, sobre su platillo y pegada al "
-          "plato: los dos se leen como un solo desayuno servido.", hero=True))
+          "El sándwich de jamón y queso vuelve idéntico al de la versión que "
+          "aprobaste, y entre el plato y el platillo queda una franja de madera.",
+          hero=True))
     a("</div>")
 
     a("<h2>Tu edición de Magnific fue la referencia</h2>")
@@ -258,21 +259,31 @@ def main():
     a(fig(im["montaje"], "El montaje, descartado", "Aquí el vaso se pegaba encima con "
           "el script de montaje. Se veía pegado, y es lo que mandaste a rehacer.",
           paso="03"))
+    a(fig(im["antes"], "El vaso To Go", "La versión que aprobaste. De aquí sale el "
+          "sándwich que había que recuperar.", paso="04"))
     a("</div>")
 
-    a("<h2>La otra variante</h2>")
-    a('<p class="nota">Se generaron tres con el mismo prompt. Elegí ésta porque la '
-      "taza queda <strong>tocando el plato</strong>, que es lo que pediste, y "
-      "porque no deja una cuchara suelta sobre la mesa. La alternativa trae plato "
-      "cuadrado —más parecido al de las fotos de desayuno del cliente— pero la taza "
-      "queda separada.</p>")
+    a("<h2>El hueco se midió, no se calculó a ojo</h2>")
+    a('<p class="nota">Pediste alejarla «un poco muy sutil», así que en las tres '
+      "variantes se midió la madera que queda entre el plato y el platillo, en la "
+      "franja donde los dos son más anchos. Se eligió la del hueco <strong>más "
+      "chico</strong>.</p>")
+    a('<div class="tabla-envoltura"><table>'
+      "<tr><th>variante</th><th>hueco entre plato y platillo</th><th></th></tr>"
+      '<tr><td><strong>la elegida</strong></td><td class="n sube">481 px · 15,7 %</td>'
+      "<td>la separación más sutil</td></tr>"
+      '<tr><td>alternativa</td><td class="n">754 px · 24,5 %</td>'
+      "<td>se despega más de la cuenta</td></tr>"
+      '<tr><td>descartada</td><td class="n">941 px · 30,6 %</td>'
+      "<td>además, una veta clara rara en la mesa</td></tr>"
+      "</table></div>")
     a('<div class="fila">')
-    a(fig(im["variante"], "Variante · plato cuadrado",
-          "Plato cuadrado y cuchara sobre la mesa. La taza queda a un tramo del "
-          "plato, no pegada."))
+    a(fig(im["variante"], "La alternativa",
+          "Misma escena con el hueco más ancho. Si te parece que la elegida quedó "
+          "corta, ésta es la que sigue."))
     a(fig(im["fondo"], "La elegida, sin texto",
-          "El fondo tal como quedó: plato redondo, taza y platillo tocándolo, y la "
-          "laptop detrás."))
+          "El fondo tal como quedó: el sándwich de la aprobada, la taza sobre su "
+          "platillo con la cuchara, y la laptop detrás."))
     a("</div>")
 
     a("<h2>Por qué esta foto y no otra de las 91</h2>")
@@ -370,7 +381,7 @@ def main():
 
     a('<div class="cierre">')
     for k, v in [("Entrega", "2250 × 4000 · 150 ppp"),
-                 ("Peso", "7 140 552 B"),
+                 ("Peso", "7 212 471 B"),
                  ("En Drive", "mismo archivo · el enlace no cambió"),
                  ("Reproducible", "byte a byte (cmp)")]:
         a('<div class="dato"><div class="k">%s</div><div class="v">%s</div></div>' % (k, v))

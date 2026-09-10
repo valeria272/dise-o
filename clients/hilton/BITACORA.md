@@ -1,3 +1,43 @@
+## 2026-09-10 (CIERRE 2) · Eli (Windows) — NO es sesión de diseño: 5 archivos de DT no sirven para producir
+
+**Qué se hizo.** Verificación del estudio en el Windows de Eli (`/arranque`). **No
+se tocó ninguna pieza de Hilton.** Se anota acá sólo porque la compuerta de
+material encontró **5 archivos de `raw/hilton/dt/` que no se pueden usar**, y
+quien abra DT mañana se topa con ellos.
+
+**⛔ Cuatro nunca se bajaron — son la pantalla de login de Google.** Pesan ~908 KB
+cada uno y empiezan con `<!doctype html>` apuntando a `accounts.google.com/v3/signin`.
+Es exactamente el patrón de la memoria `compuerta-de-material`: el enlace de Drive
+devolvió el login en vez del archivo y `curl` lo guardó igual, con nombre de foto.
+
+| Archivo | Qué es de verdad |
+|---|---|
+| `dt/ref-s4/ref-dia-turismo.jpg` | HTML de login |
+| `dt/sesion-real/banco-maestro/businesscenter.jpg` | HTML de login |
+| `dt/sesion-real/banco-maestro/exterior2.jpg` | HTML de login |
+| `dt/sesion-real/banco-maestro/fachada156.jpg` | HTML de login |
+| `dt/moodboard-refs/03-lobby/03-lobby-02.jpg` | **TIFF válido** 4192×3104 RGB, mal nombrado |
+
+**⭐ El quinto NO está roto y el diagnóstico se equivocó.** `doctor.sh` lo reportó
+como «desconocido, no una imagen»: es un **TIFF RGB de 4192×3104** con extensión
+`.jpg`. La foto está entera. Pero **Chrome no carga TIFF**, así que tampoco sirve
+para una composición tal cual — hay que convertirlo antes de usarlo, no volver a
+bajarlo.
+
+**Dónde quedó.** Nada rendido y nada tocado en `raw/` (va en `.gitignore` de todas
+formas). Los tres de `banco-maestro/` son del banco maestro de la sesión real, así
+que el hueco es de fotos de producción, no de referencias sueltas.
+
+**Qué sigue.** Antes de la próxima pieza de DT: volver a bajar los cuatro del Drive
+con el método que sí funciona (`curl uc?export=download`, memoria
+`bajar-grilla-ajena-de-drive`), y convertir el TIFF del lobby a JPG. Después
+`python3 scripts/verificar-material.py raw/hilton` tiene que salir limpio.
+
+**Abierto.** Sigue pendiente la **ronda nueva del cliente en DT** que encontró el
+`/al-dia` de la mañana (ver CIERRE 1 de hoy) — no se tocó en esta sesión.
+
+---
+
 ## 2026-09-10 (CIERRE 1) · Eli (Windows) — DOUBLETREE: la ST del Día del Turismo APROBADA y subida, y el manual pierde la razón de cuerpos
 
 **Qué se hizo.** Se cerró la historia del **Día del Turismo** (STORIES col K,

@@ -1,3 +1,20 @@
+## 2026-09-10 — Valeria Traverso (con Claude)
+
+**Qué se hizo:** V7 del reel «Los de siempre» (`out/traverso/lds2/los-de-siempre-V7.mp4`, `TraversoV7`, 21 s).
+Feedback sobre V6: (1) la presentación tiene que ser WOW → los personajes llegan con las luces apagadas
+(brightness 0,35, saturación 0,8 sobre el plano de «paran») y en el DROP los focos se ENCIENDEN de golpe
+(flash cálido de 3 f + CLACK) sobre el reveal y «LOS DE SIEMPRE.»; (2) fuera el paso por la oficina: la
+luz de la puerta se convierte directamente en la sala y YA están sentados leyendo un contrato con dos
+personas del equipo de espaldas conversando (keyframe nuevo `e10b_reunion_equipo` + clip `c16`, único
+clip nuevo, generado desde el trío LOCKED); (3) cierre en tres placas: LOS DE SIEMPRE / AHORA TAMBIÉN EN
+NUESTRA MESA → BIENVENIDOS, TRAVERSO + logo Traverso → AHORA EN GRUPO COPYLAB + el logo animado de
+Copylab (el punto que viaja, como en el cierre de G). Misma canción (`banda-v7.mp3`, 21 s).
+**Dónde quedó:** todo en `public/assets/traverso/lds2/` y `src/compositions/traverso/LosDeSiempreV7.tsx`;
+render en el Escritorio de Valeria y en `out/traverso/lds2/`.
+**Qué sigue:** escuchar V7 (balance canción–foley); si se aprueba, versión 1:1 para feed y subir al Drive.
+**Abierto:** el rótulo GRUPO COPYLAB sobre la puerta es tipografía genérica dentro del clip de Kling (no el
+logo real); si molesta, se regenera ese keyframe con el logo compuesto antes de animar.
+
 ## 2026-09-09 — Valeria Traverso (con Claude)
 
 **Qué se hizo:** Reel de bienvenida «Los de siempre» de punta a punta, en dos vueltas. (1) Versión

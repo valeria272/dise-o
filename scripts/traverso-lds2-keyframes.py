@@ -335,4 +335,18 @@ PLANOS.update({
         [LOCK_TRIO, BOARD]),
 })
 
+# V7 (10-09-2026): la reunión con gente de Copylab de espaldas, conversando con ellos
+PLANOS.update({
+    "keyframes/e10b_reunion_equipo": ("reel",
+        "THE MEETING, same room, camera and warm light as the reference room image: the three LOCKED "
+        "characters SEATED on the far side of the table facing camera, dead serious — gold MOSTAZA "
+        "TRADICIONAL in the centre holding an open printed contract with both white gloves and reading "
+        "it, yellow MOSTAZA SUAVE left with a coffee cup, red KETCHUP right in front of a laptop. In the "
+        "FOREGROUND, on the near side of the table, TWO real people from the agency seen ONLY FROM "
+        "BEHIND (backs of heads and shoulders, slightly out of focus, a woman with dark hair and a man "
+        "in a dark shirt), talking to the characters, one gesturing with a hand. No faces. Notebooks, "
+        "cups and documents on the table. Frosted 'Grupo CopyLab' logo on the glass as in the reference. "
+        + LOCKED + CAM + NEG, [LOCK_TRIO, os.path.join(A, "keyframes", "e10_reunion.png"), BOARD]),
+})
+
 if __name__ == "__main__": main()

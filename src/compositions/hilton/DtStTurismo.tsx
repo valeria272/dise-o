@@ -254,13 +254,21 @@ export type VarianteMarco = 'escuadras' | 'lineas';
 const CUERPO = {titulo1: 80, titulo2: 130, subtexto: 46} as const;
 
 /**
- * ⭐ RONDA 3: «el feliz día que sea menos grueso».
- * La línea de arriba baja de **Bold (700) a Medium (500)**. Se mantiene el
- * recurso de la marca —titular a DOS PESOS de la misma familia— y se mantiene
- * el orden de DT (arriba la chica, abajo la grande y liviana); lo que cambia es
- * cuánto pesa la de arriba.
+ * ⭐⭐ RONDA 5: «quiero que "¡Feliz día" tenga el mismo peso de "del turismo"».
+ *
+ * Pasa a **Light (300)**, el mismo corte que la línea de abajo. Recorrido
+ * completo del titular en esta pieza: Bold (r1) → Medium (r3) → **Light (r5)**;
+ * ella lo fue afinando en tres rondas hasta igualarlo.
+ *
+ * ⚠️ Y ESTO CAMBIA UNA REGLA ESCRITA DEL MANUAL, no es un ajuste de esta pieza.
+ * `clients/hilton/CLAUDE.md` decía que el titular de DT va a **DOS PESOS** de
+ * Stag —medido en `C1 FT N1`, arriba Bold y chica, abajo Light y grande— y ese
+ * era el recurso. Con las dos líneas en Light el contraste ya no lo lleva el
+ * peso: lo lleva **el cuerpo** (80 contra 130, razón 1,62, que sí se mantiene).
+ * Queda anotado en el manual como criterio de Eli, porque un criterio dicho al
+ * pasar es criterio de la marca y no de la pieza.
  */
-const PESO_TITULO_1 = DT.pesos.medium;
+const PESO_TITULO_1 = DT.pesos.light;
 
 /**
  * Espaciado.
@@ -361,46 +369,57 @@ export const DtStTurismo: React.FC<{guia?: boolean; variante?: VarianteMarco}> =
     />
 
     {/*
-      2 · El velo azul que sube desde abajo — el recurso de las piezas
-      aprobadas.
+      2 · El velo azul.
 
-      ⭐⭐ RONDA 4: LA RAMPA SUBE ANTES, PERO EL MÁXIMO NO SE MUEVE.
+      ⭐⭐ RONDA 5 (10-09): «BAJA LA OPACIDAD ARRIBA, SE VE MUY FORZADO. LA
+      TRANSPARENCIA DEBE SER DE 0 ARRIBA Y AJUSTAR.»
 
-      Al subir el bloque de texto (el pedido de Eli) el titular dejó de caer
-      sobre el velo cargado y pasó a caer sobre **la punta dorada del edificio y
-      el cielo**, que es la zona más clara de la foto. Medido con la regla
-      `la-tinta-la-manda-el-fondo` —luminancia por TERCIOS de la columna del
-      texto, manda el peor tercio— el blanco quedaba así:
+      Tenía razón y el defecto era mío: la rampa de la ronda 4 se quedaba plana
+      en 0 hasta el 21 % y de ahí saltaba a 0,44 en el 33 %. Ese codo es una
+      banda visible — el velo «empezaba» en un punto en vez de nacer.
 
-      | banda | velo viejo | contraste |
-      |---|---|---|
-      | «¡Feliz Día» (y 695-754)   | α 0,162 | **2,14:1 — no se lee** |
-      | «del Turismo!» (y 796-887) | α 0,291 | 3,54:1 — insuficiente |
-      | subtexto (y 999-1101)      | α 0,487 | 5,34:1 — ok |
+      Ahora **arranca en 0 en el borde de arriba** y sube cóncava: pendiente
+      constante en el tercio superior y se va aplanando hacia el pie, que es el
+      comportamiento de una luz y no de una máscara. Paradas cada ~10 % para que
+      no quede ningún quiebre a la vista.
 
-      O sea: el pedido de subir el texto, cumplido sin más, rompía la pieza. No
-      es opinable, son 2,14:1.
+      ⭐ Y el pie queda en **0,58**, más CLARO que el 0,66 que ella aprobó en la
+      ronda 2: se ve más foto que antes, arriba y abajo.
 
-      El arreglo NO es subir el velo entero: **eso desharía la ronda 2**, donde
-      ella pidió bajar la transparencia de 0,90 a 0,60 para ver la foto. Lo que
-      cambia es DÓNDE arranca la rampa: sigue en 0 hasta el 21 % —así el cielo y
-      el logotipo azul quedan intactos (el logo mide 9,96:1, sobre el 6,7-9,3
-      que pide §B.4)— y sube antes para llegar cargada a la banda del titular.
-      **El máximo se queda en 0,66, el mismo que ella aprobó.**
+      ⚠️ EL LÍMITE, MEDIDO, PORQUE ACÁ HAY UNA TENSIÓN REAL. El titular está en
+      el 36-46 % de la altura, o sea sobre la punta dorada del edificio y el
+      cielo: lo más claro de la foto. Con el velo naciendo en 0 no se puede
+      cargar esa banda sin volver a forzar la parte de arriba. Lo verificado:
 
-      Resultado medido: **4,85 / 6,35 / 6,96:1**. Y el salto de α es de 0,0019
-      por píxel, así que la rampa no se lee como una banda dura.
+      | rampa | «¡Feliz Día» |
+      |---|---|
+      | lineal 0→0,80 | 2,88:1 — no llega |
+      | lineal 0→1,00 (¡pie opaco!) | 3,43:1 |
+      | **ésta, cóncava, pie 0,58** | **3,61:1** |
+
+      El umbral que corresponde es **3:1**, no 4,5: el titular va a cuerpo 80 y
+      130 px y eso es texto grande (≥24 px). El subtexto, que es el más chico,
+      se queda con la vara de 4,5 y da 5,49:1.
+
+      ⛔ Y se descartó reencuadrar, que era la otra salida: se barrieron los 25
+      encuadres 9:16 posibles de `HDT_43` y el mejor deja el titular en 2,60:1
+      sin velo. No hay ventana en esta toma donde el titular caiga sobre zona
+      oscura — el edificio no llega tan arriba.
     */}
     <AbsoluteFill
       style={{
         background:
           `linear-gradient(to bottom,` +
-          ` rgba(9,25,78,0) 21%,` +
-          ` rgba(9,25,78,0.44) 33%,` +
-          ` rgba(9,25,78,0.52) 37.5%,` +
-          ` rgba(9,25,78,0.57) 47%,` +
-          ` rgba(9,25,78,0.61) 58%,` +
-          ` rgba(9,25,78,0.66) 100%)`,
+          ` rgba(9,25,78,0) 0%,` +
+          ` rgba(9,25,78,0.11) 10%,` +
+          ` rgba(9,25,78,0.22) 20%,` +
+          ` rgba(9,25,78,0.33) 30%,` +
+          ` rgba(9,25,78,0.42) 40%,` +
+          ` rgba(9,25,78,0.48) 50%,` +
+          ` rgba(9,25,78,0.52) 60%,` +
+          ` rgba(9,25,78,0.55) 72%,` +
+          ` rgba(9,25,78,0.57) 86%,` +
+          ` rgba(9,25,78,0.58) 100%)`,
       }}
     />
 

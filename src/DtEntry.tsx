@@ -18,21 +18,11 @@ const Raiz: React.FC = () => (
   <>
     <Folder name="DT-Stories">
       {/*
-        ⭐ RONDA 4 — dos lecturas de «la línea de una esquina a la otra». Se
-        rinden las dos para que Eli elija; ver `VarianteMarco` en la pieza.
+        ⭐ Eli aprobó la variante A (escuadras) el 10-09. La variante B —sólo
+        las dos horizontales— queda descartada y se retiró: dejarla registrada
+        es dejar a mano la pieza que NO se entrega.
       */}
-      <Composition
-        id="DT-S-DiaTurismo"
-        component={DtStTurismo}
-        defaultProps={{variante: 'escuadras' as const}}
-        {...story}
-      />
-      <Composition
-        id="DT-S-DiaTurismo-Lineas"
-        component={DtStTurismo}
-        defaultProps={{variante: 'lineas' as const}}
-        {...story}
-      />
+      <Composition id="DT-S-DiaTurismo" component={DtStTurismo} {...story} />
       <Composition id="DT-S-DiaTurismo-Guia" component={DtStTurismoGuia} {...story} />
     </Folder>
   </>

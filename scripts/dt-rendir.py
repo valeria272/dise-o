@@ -34,8 +34,6 @@ ESCALA = "2.0833"
 # id de composición → nombre del archivo de entrega
 NOMBRES = {
     "DT-S-DiaTurismo": "DT ST 27-09 Dia del Turismo.png",
-    # ⭐ Ronda 4: la variante de sólo dos líneas, para que Eli compare.
-    "DT-S-DiaTurismo-Lineas": "DT ST 27-09 Dia del Turismo - B lineas.png",
     "DT-S-DiaTurismo-Guia": "GUIAS QA/DT ST 27-09 Dia del Turismo - GUIA.png",
 }
 

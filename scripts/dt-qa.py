@@ -78,7 +78,8 @@ SEÑUELOS = ["C:/Windows/Fonts/georgia.ttf", "C:/Windows/Fonts/times.ttf",
 # Se les deja un margen de ±20 px para que un ajuste fino no vuelva a romperlo.
 ELEMENTOS = [
     {"nombre": "titular 1 «¡Feliz Día»", "texto": "!Feliz Día",
-     "fuente": "Stag-Medium.ttf", "banda": (675, 775), "xrango": (152, 928),
+     # ⭐ Ronda 5: Eli igualó el peso al de la línea de abajo -> Light.
+     "fuente": "Stag-Light.ttf", "banda": (675, 775), "xrango": (152, 928),
      "umbral": 200},
     {"nombre": "titular 2 «del Turismo!»", "texto": "del Turismo!",
      "fuente": "Stag-Light.ttf", "banda": (776, 910), "xrango": (152, 928),

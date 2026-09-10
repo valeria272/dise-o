@@ -51,6 +51,14 @@ Todos los cortes del montaje están sobre esos eventos medidos. Cero clips nuevo
 Historia única: llegan → los descubrimos (Suave → whip → Tradicional → whip → Ketchup → vuelta al trío
 en el hit) → reveal → match cut a GRUPO COPYLAB → cruzan, Ketchup tapa la lente → ya sentados →
 end card. Fuera el product porn y toda caminata dentro de la oficina. Test sin textos/audio: pasa.
+**Ronda 7 (23:25), V5 aprobada en concepto → V6 director's cut** (`out/traverso/lds2/los-de-siempre-V6.mp4`,
+`TraversoV6`, 19,6 s). Quitar, conectar y acelerar: primer acto comprimido a una sola entrada (trío en
+movimiento → macro → amarillo 0,44 s → dorado 0,48 s → rojo 0,72 s → trío); los inserts de Tradicional y
+Ketchup (c06 desenfocado, c07 distinto al master) se ELIMINARON y se reemplazaron por recortes del propio
+trío master (c09 antes de abrirse): idénticos al lock. Reveal → CUT directo a GRUPO COPYLAB (un solo plano
+desde atrás) → wipe de Ketchup → ya sentados con push-in sobre las microacciones → end card 2,5 s. Misma
+canción (`audio/banda-v6.mp3`, offset 4,42) con sus eventos naturales en paran 3,58 / vacío 6,15–6,6 /
+DROP 6,6 / puerta 11,58 / wipe 12,58 / bajón 14,58 / HIT 19,08 / corte 19,6.
 **Qué sigue:** que Valeria ESCUCHE el v1 (pista y mezcla cuadradas por envolvente, no de oído) y
 decida si la música original se queda o se licencia una; ajustar niveles de SFX; subir clips y
 render al Drive de Traverso; si se aprueba, versión 1:1 para feed.

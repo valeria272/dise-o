@@ -51,40 +51,74 @@ def repaths(t, pre):
 # ── sitio-completo.html ───────────────────────────────────────────────
 io.open(DEST/"sitio-completo.html", "w", encoding="utf-8").write(repaths(src, ""))
 
-# ── troceo por líneas ─────────────────────────────────────────────────
+# ── troceo por marcadores ─────────────────────────────────────────────
+# ⚠️ Antes esto cortaba por números de línea quemados —tramo(263, 292)— y
+# cualquier edición al CSS o al HTML de una sección corría todas las de abajo:
+# la entrega salía con bloques mezclados y sin ningún error. Ahora cada bloque
+# se ubica por su propio rótulo (09-09-2026 el JS, 10-09-2026 el resto).
 L = src.split("\n")                      # L[0] == línea 1
+
+def linea(patron, desde=0):
+    """1ª línea (1-indexada) que empieza con `patron`."""
+    for i in range(desde, len(L)):
+        if L[i].startswith(patron):
+            return i + 1
+    raise SystemExit("✗ No encontré el rótulo %r en index.html — no puedo trocear." % patron)
+
 def tramo(a, b):                         # 1-indexado, inclusivo
     return "\n".join(L[a-1:b]).rstrip()
 
-CSS = {
-    "base":       tramo(15, 69),
-    "titulos":    tramo(139, 147),
-    "responsive": tramo(319, 346),
-    "cabecera":   tramo(70, 92),
-    "hero":       tramo(93, 138),
-    "intro":      tramo(148, 157),
-    "buscamos":   tramo(158, 175),
-    "valor":      tramo(176, 194),
-    "centros":    tramo(195, 220),
-    "variables":  tramo(221, 240),
-    "proceso":    tramo(241, 262),
-    "formulario": tramo(263, 292),
-    "pie":        tramo(293, 308),
-    "flotante":   tramo(309, 318),
-}
-HTML = {
-    "cabecera":   tramo(351, 368),
-    "hero":       tramo(370, 396),
-    "intro":      tramo(398, 424),
-    "buscamos":   tramo(426, 468),
-    "valor":      tramo(470, 501),
-    "centros":    tramo(503, 553),
-    "variables":  tramo(555, 603),
-    "proceso":    tramo(605, 650),
-    "formulario": tramo(652, 734),
-    "pie":        tramo(736, 769),
-    "flotante":   tramo(771, 774),
-}
+def bloques(rotulos, primero, ultimo):
+    """rotulos: [(clave, rótulo)] en el ORDEN del archivo. Cada bloque termina
+    donde empieza el siguiente; el último, en `ultimo`."""
+    partidas = [primero] + [linea(r) for _, r in rotulos[1:]]
+    out = {}
+    for i, (clave, _) in enumerate(rotulos):
+        fin = (partidas[i+1] - 1) if i+1 < len(partidas) else ultimo
+        out[clave] = tramo(partidas[i], fin)
+        if not out[clave].strip():
+            raise SystemExit("✗ El bloque %r salió vacío — revisa los rótulos." % clave)
+    return out
+
+CSS = bloques([
+    ("base",       None),
+    ("cabecera",   "/* ── CABECERA ──"),
+    ("hero",       "/* ── HERO ──"),
+    ("titulos",    "/* ── TÍTULOS DE SECCIÓN ──"),
+    ("intro",      "/* ── INTRO ──"),
+    ("buscamos",   "/* ── QUÉ BUSCAMOS ──"),
+    ("valor",      "/* ── VALOR / CIFRAS ──"),
+    ("centros",    "/* ── CENTROS EN OPERACIÓN ──"),
+    ("variables",  "/* ── MÁS QUE UN TERRENO"),
+    ("proceso",    "/* ── PASO A PASO"),
+    ("formulario", "/* ── FORMULARIO ──"),
+    ("pie",        "/* ── PIE ──"),
+    ("flotante",   "/* ── BOTÓN FLOTANTE ──"),
+    ("responsive", "/* ── RESPONSIVE ──"),
+], primero=linea("<style>") + 1, ultimo=linea("</style>") - 1)
+
+_flot = linea('<a href="#contacto" class="flotante"')
+HTML = bloques([
+    ("cabecera",   None),
+    ("hero",       "<!-- ════════════ HERO ═"),
+    ("intro",      "<!-- ════════════ INTRO ═"),
+    ("buscamos",   "<!-- ════════════ QUÉ BUSCAMOS ═"),
+    ("valor",      "<!-- ════════════ EL VALOR DE MÁS CENTER ═"),
+    ("centros",    "<!-- ════════════ CENTROS EN OPERACIÓN ═"),
+    ("variables",  "<!-- ════════════ MÁS QUE UN TERRENO ═"),
+    ("proceso",    "<!-- ════════════ PASO A PASO ═"),
+    ("formulario", "<!-- ════════════ FORMULARIO ═"),
+    ("pie",        "<!-- ════════════ PIE ═"),
+], primero=linea("<!-- ════════════ CABECERA ═"), ultimo=_flot - 1)
+HTML["flotante"] = tramo(_flot, linea("</a>", _flot))
+
+for clave, txt in HTML.items():
+    if not txt.lstrip().startswith("<"):
+        raise SystemExit("✗ El bloque HTML %r no empieza con una etiqueta." % clave)
+for clave, txt in CSS.items():
+    if "<" in txt:
+        raise SystemExit("✗ El bloque CSS %r trae HTML adentro — los rótulos se corrieron." % clave)
+
 # ⚠️ El bloque <script> se localiza SOLO, no por número de línea fija.
 # Estaba quemado como tramo(776, 927) y al crecer el JS la entrega salió con el
 # JavaScript cortado a la mitad, sin aviso (09-09-2026). Los demás tramos van
@@ -163,8 +197,8 @@ SECCIONES = [
   [], "Los 4 pasos del proceso de evaluación."),
  ("09","formulario","CONVERSEMOS — datos de contacto y formulario",
   [], "ACÁ ESTÁ EL CORREO terrenos@ifbinversiones.cl. El formulario valida los campos "
-      "pero todavía NO envía correo: hay que conectarlo a Contact Form 7 (paso 8 del "
-      "instructivo)."),
+      "—incluidos los adjuntos: tipo y peso— pero todavía NO envía correo ni sube el "
+      "archivo: hay que conectarlo a Contact Form 7 (paso 7 del instructivo)."),
  ("10","pie","PIE DE PÁGINA",
   ["recursos/logos/logo-mascenter-blanco.svg","recursos/logos/logo-ifb.png"],
   "Incluye la barra de copyright, con el año que se pone solo."),

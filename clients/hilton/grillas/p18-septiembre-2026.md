@@ -1,7 +1,7 @@
 # Grilla PISO18 — instantánea
 
-> Instantánea del 09-09-2026 tomada con `/al-dia`.
-> Origen: `raw/hilton/piso18/P18-grilla-septiembre-2026.xlsx`.
+> Instantánea del 10-09-2026 tomada con `/al-dia`.
+> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/ccb4b8cd-ad80-4f6e-9dd2-6dafa8305a4a/scratchpad/P18-sept-HOY.xlsx`.
 > **Sirve de base para el DIFF de la próxima ronda**: los comentarios se
 > prependen sobre los viejos en la misma celda, así que sin esta copia no se
 > distingue lo nuevo de lo ya resuelto.
@@ -193,7 +193,7 @@ Puede ser un carrusel continuo de ambiente de matrimonio (galería fotografo)
 Que el mensaje sea más orientado a que quedan pocos meses y que no te quedes sin tu evento de fin de año. (Y que quede abierto en cuanto a tipo de evento, no cerrarnos en matrimonio)~~
 
 
-### Columna F — **REVISAR CONTENIDO**
+### Columna F — **CORREGIDO**
 
 **FECHA:**
 
@@ -274,6 +274,7 @@ Recordemos que este tipo de diseños sean más para stories, en feed que se vean
 ```
 
 *Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Esta opción ya la habíamos visto, está buena, pero la modelo se parece demasiado a la original, si la podemos cambiar para que no parezca ella, ok~~
 > ~~~~
 > ~~Están demasiado rubios, me gusta la primera opción, pero cambiaría el aspecto del novio (se ve muy joven también) y agregar logo p18
 
@@ -342,7 +343,7 @@ Cotiza tu fecha en piso18.cl
 **FECHA:**
 
 ```
-SEMANA 2
+SEMANA 3
 ```
 
 

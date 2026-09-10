@@ -109,13 +109,49 @@
  * cambiaría el titular de familia — el truco es lo que ella misma hace.
  *
  * ══════════════════════════════════════════════════════════════════════════
+ * ⭐ RONDA 4 (10-09): «LA LÍNEA DE UNA ESQUINA A LA OTRA», Y EL BLOQUE ARRIBA
+ * ══════════════════════════════════════════════════════════════════════════
+ * Marca de Eli sobre el PNG entregado: «necesito que la línea comience de una
+ * esquina y termine en la otra. Como la referencia. Aumenta el tamaño del texto
+ * más pequeño y súbelos incluso el título que están muy abajo. Hazlo más
+ * similar a la referencia no se está pareciendo mucho.»
+ *
+ * Se volvió a MEDIR la referencia en vez de ajustar a ojo (`ref-dia-turismo.png`,
+ * 1080×1350). Tres hallazgos, y los tres explican el pedido:
+ *
+ * 1 · **El marco de la referencia NO está contenido: SANGRA.** Sus tramos
+ *     horizontales se van fuera del lienzo. Ampliadas las cuatro esquinas al
+ *     200 %, el borde inferior sale por el borde izquierdo y por el derecho, y
+ *     el superior corre hasta perderse en la pared iluminada (tramo contiguo
+ *     medido: 508 px, x=294→801, filete de realce 203 ⇒ blanco pleno).
+ *     Lo que había acá era un rectángulo cerrado de 800 px centrado — o sea
+ *     justo lo contrario. **Eso es «de una esquina a la otra».**
+ *
+ * 2 · **El bloque de texto de la referencia arranca al 35,6 % de la altura**
+ *     (y=481 de 1350). El de la entrega arrancaba en y=931 de 1920 = **48,5 %**,
+ *     casi 250 px más abajo. La causa es de código, no de gusto: el texto iba
+ *     `justifyContent: center` dentro de un marco de 880 de alto, así que se
+ *     hundía hasta la mitad. Ahora el bloque se **ancla arriba** con aire
+ *     medido, y el marco sube.
+ *
+ * 3 · Aire arriba/abajo del texto DENTRO del marco en la referencia: 183 y 284
+ *     ⇒ razón **0,64**. Acá queda 215 / 314 = 0,68. Se calca la proporción, no
+ *     el número: la referencia es 4:5 y esto es 9:16.
+ *
+ * ⛔ Lo que NO se toca: el titular **no crece**. Ella pidió agrandar «el texto
+ * más pequeño», y además ya no cabe: «del Turismo!» mide 593 px @1080 (55 % del
+ * ancho) contra los 553 (51 %) de «Crafting» en la referencia — el titular ya
+ * iba MÁS ancho que el del pin. Lo que estaba mal era su altura, no su cuerpo.
+ *
+ * ══════════════════════════════════════════════════════════════════════════
  * LA REJILLA (1080×1920; se entrega a 2250×4000, ×2,0833)
  * ══════════════════════════════════════════════════════════════════════════
  *    250 ─ fin de la zona segura superior de Instagram
  *    241 ─ tope del logotipo  ← plantilla `logo-ST.png` de Eli
  *    377 ─ pie del logotipo
- *    680 ─ tope del marco redondeado (ronda 3: subió y creció, marca de Eli)
- *   1560 ─ pie del marco (alto fijo 880)
+ *    470 ─ tope del marco (ronda 4: subió 210 px; deja 93 de aire bajo el logo)
+ *    685 ─ tope de la tinta del titular  = **35,7 %**, el 35,6 % de la referencia
+ *   1420 ─ pie del marco (alto 950)
  *   1580 ─ empieza la zona segura inferior (1920 − 340)
  *
  * ⚠️ La columna K del brief **no trae campo INTERACCIÓN**, así que no hay
@@ -155,24 +191,67 @@ const SUBTEXTO = ['Gracias por elegir vivir', 'experiencias con nosotros.'];
  *     Se adopta el 766 de la referencia, que es lo que ella pidió.
  */
 const MARCO = {
-  ancho: 800,
-  y: 680,
-  alto: 880,
-  radio: 48,
+  /** Verticales del marco. Se conservan las del rectángulo aprobado (140 y 940). */
+  izquierda: 140,
+  derecha: 940,
+  /** ⭐ Ronda 4: sube 210 px. El texto ya no se hunde en el centro de la caja. */
+  y: 470,
+  alto: 950,
+  /**
+   * Radio medido en la referencia ampliada al 200 %: la curva de la esquina
+   * superior izquierda va de x≈232 a x≈290 ⇒ **≈56**. Antes iba en 48.
+   */
+  radio: 56,
+  /**
+   * ⭐ Ronda 2, y sigue vigente: en el borde superior de la referencia (y=298,
+   * x=520) el píxel es **rgb(255,253,250)** y las filas vecinas están en 18 y
+   * 12 ⇒ filete de **1 px, blanco PLENO**. Lo que había eran 2 px al 55 %, y
+   * por eso se veía blando.
+   */
   filete: 1,
 } as const;
 
+/** Pie del marco. */
+const MARCO_PIE = MARCO.y + MARCO.alto;
+
 /**
- * Cuerpos del titular. **Ronda 2: Eli lo vio chico y se subió.**
- * La referencia compone «Crafting» a **700 px de ancho sobre 1080 (65 %)**;
- * la ronda 1 iba en 540 (50 %). Con cuerpo 116 la línea grande mide 666 px
- * (**61,7 %**) y deja 50 px de aire a cada lado dentro del marco — se queda un
- * punto por debajo de la referencia, que lleva el titular casi al ras del filete.
+ * ⭐⭐ RONDA 4 — LAS DOS LECTURAS DE «QUE LA LÍNEA VAYA DE UNA ESQUINA A LA OTRA».
  *
- * ⭐ La proporción entre las dos líneas se mantiene en **1,62**, que es la de la
- * marca medida en `C1 FT N1` (58 / 94). Se subieron las dos juntas, no una.
+ * Su marca roja extiende una horizontal del marco hasta el borde de la pieza, y
+ * la referencia hace exactamente eso. Pero admite dos resoluciones, y las dos
+ * son defendibles, así que se rinden LAS DOS y ella elige de una mirada:
+ *
+ * · `escuadras` — dos escuadras opuestas, que es lo que hay MEDIDO en el pin.
+ *   La superior lleva su esquina redondeada arriba a la izquierda y su
+ *   horizontal se va hasta el borde DERECHO; la inferior lleva la esquina
+ *   abajo a la derecha y su horizontal se va hasta el borde IZQUIERDO. Cada
+ *   línea nace en una esquina redondeada y muere en el canto del lienzo.
+ *
+ * · `lineas` — sólo las dos horizontales, de canto a canto, sin verticales.
+ *   Es la lectura literal de la frase y la más cercana al tono declarado de la
+ *   marca en el manual: «elegante, minimalista y sencillo».
+ *
+ * ⛔ Lo que NO se hace: dejar el rectángulo cerrado y colgarle un par de alas
+ * hasta los bordes. Deja las curvas de las esquinas EN MEDIO de una línea
+ * horizontal continua, y eso se lee como un error de trazado.
  */
-const CUERPO = {titulo1: 80, titulo2: 130, subtexto: 38} as const;
+export type VarianteMarco = 'escuadras' | 'lineas';
+
+/**
+ * Cuerpos. **Ronda 4: crece SÓLO el subtexto, 38 → 46 (+21 %).**
+ *
+ * Medido en la referencia y normalizado a un lienzo de 1920 de alto, su nivel
+ * más chico lleva **≈30 px de altura de mayúscula**. Con Trade Gothic a cuerpo
+ * 38 la mayúscula daba ≈27 y con 46 da ≈32 — o sea el 38 iba por DEBAJO de la
+ * referencia y el 46 la alcanza. No es «un poco más grande» a ojo.
+ *
+ * El titular se queda donde está: ver el ⛔ de la cabecera. Ya iba más ancho
+ * que el del pin (55 % contra 51 %); lo que estaba mal era su ALTURA.
+ *
+ * ⭐ La proporción entre las dos líneas del titular se mantiene en **1,62**, la
+ * de la marca medida en `C1 FT N1` (58 / 94).
+ */
+const CUERPO = {titulo1: 80, titulo2: 130, subtexto: 46} as const;
 
 /**
  * ⭐ RONDA 3: «el feliz día que sea menos grueso».
@@ -184,14 +263,19 @@ const CUERPO = {titulo1: 80, titulo2: 130, subtexto: 38} as const;
 const PESO_TITULO_1 = DT.pesos.medium;
 
 /**
- * Espaciado. **Ronda 2: Eli pidió ajustarlo.**
- * Regla `jerarquia-de-bloque-de-texto`: el salto ENTRE niveles tiene que ser
- * ~1,5× el salto DENTRO del nivel. El interlineado del subtexto es 30 × 1,3 =
- * 39, así que el salto del titular al subtexto va en **58** (≈1,5×). Antes era
- * 30 — más chico que el salto interno, o sea la jerarquía al revés.
- * Las dos líneas del titular son UN nivel: van pegadas (2 px).
+ * Espaciado.
+ *
+ * · `tituloASubtexto: 74` — rondas 2 y 3. Regla `jerarquia-de-bloque-de-texto`:
+ *   el salto ENTRE niveles va ~1,5× el salto DENTRO del nivel. Las dos líneas
+ *   del titular son UN nivel y van pegadas (2 px).
+ *
+ * · ⭐ `sobreTitular: 215` — **ronda 4, y es el arreglo del «están muy abajo».**
+ *   El bloque ya NO se centra vertical dentro del marco: se ancla arriba con
+ *   este aire, y así la tinta del titular arranca en **y=685 = 35,7 %** de la
+ *   altura, contra el 35,6 % de la referencia. Antes caía en el 48,5 %.
+ *   Aire abajo resultante: 314 ⇒ razón 215/314 = 0,68, contra el 0,64 del pin.
  */
-const AIRE = {entreTitulares: 2, tituloASubtexto: 74, interlineado: 1.3} as const;
+const AIRE = {entreTitulares: 2, tituloASubtexto: 74, interlineado: 1.3, sobreTitular: 215} as const;
 
 /**
  * Dibuja un texto que lleva `¡` o `¿` en Stag, volteando el signo de apertura.
@@ -217,7 +301,58 @@ const TextoStag: React.FC<{
   </div>
 );
 
-export const DtStTurismo: React.FC<{guia?: boolean}> = ({guia = false}) => (
+/**
+ * El marco, en SVG. Se dibuja con `path` y no con `border` porque un borde de
+ * CSS no puede SALIRSE de su propia caja, y salirse es justamente el pedido.
+ *
+ * `vectorEffect="non-scaling-stroke"` mantiene el filete en 1 px de la mesa al
+ * escalar a 2250 — el mismo criterio con el que se midió en la ronda 2.
+ */
+const Marco: React.FC<{variante: VarianteMarco}> = ({variante}) => {
+  const {izquierda: L, derecha: R, y: T, radio: r, filete} = MARCO;
+  const B = MARCO_PIE;
+  const trazo = {
+    fill: 'none',
+    stroke: DT.colores.blanco,
+    strokeWidth: filete,
+    vectorEffect: 'non-scaling-stroke' as const,
+  };
+
+  return (
+    <svg
+      width={1080}
+      height={1920}
+      viewBox="0 0 1080 1920"
+      style={{position: 'absolute', top: 0, left: 0}}
+    >
+      {variante === 'escuadras' ? (
+        <>
+          {/*
+            Escuadra SUPERIOR: sube por la vertical izquierda, dobla en la
+            esquina redondeada y su horizontal se va hasta el borde DERECHO.
+          */}
+          <path d={`M ${L} 1100 L ${L} ${T + r} Q ${L} ${T} ${L + r} ${T} L 1080 ${T}`} {...trazo} />
+          {/*
+            Escuadra INFERIOR: baja por la vertical derecha, dobla abajo y su
+            horizontal se va hasta el borde IZQUIERDO.
+          */}
+          <path d={`M ${R} 790 L ${R} ${B - r} Q ${R} ${B} ${R - r} ${B} L 0 ${B}`} {...trazo} />
+        </>
+      ) : (
+        <>
+          {/* Sólo las dos horizontales, de canto a canto. */}
+          <path d={`M 0 ${T} L 1080 ${T}`} {...trazo} />
+          <path d={`M 0 ${B} L 1080 ${B}`} {...trazo} />
+        </>
+      )}
+    </svg>
+  );
+};
+
+export const DtStTurismo: React.FC<{guia?: boolean; variante?: VarianteMarco}> = ({
+  guia = false,
+  variante = 'escuadras',
+}) => (
   <AbsoluteFill style={{backgroundColor: DT.colores.azul}}>
     {/* 1 · La foto real del frontis, a sangre */}
     <Img
@@ -227,17 +362,44 @@ export const DtStTurismo: React.FC<{guia?: boolean}> = ({guia = false}) => (
 
     {/*
       2 · El velo azul que sube desde abajo — el recurso de las piezas
-      aprobadas. Arranca transparente en el 42 % para no tocar el cielo ni el
-      logotipo, y llega al 0,94 al borde inferior.
+      aprobadas.
+
+      ⭐⭐ RONDA 4: LA RAMPA SUBE ANTES, PERO EL MÁXIMO NO SE MUEVE.
+
+      Al subir el bloque de texto (el pedido de Eli) el titular dejó de caer
+      sobre el velo cargado y pasó a caer sobre **la punta dorada del edificio y
+      el cielo**, que es la zona más clara de la foto. Medido con la regla
+      `la-tinta-la-manda-el-fondo` —luminancia por TERCIOS de la columna del
+      texto, manda el peor tercio— el blanco quedaba así:
+
+      | banda | velo viejo | contraste |
+      |---|---|---|
+      | «¡Feliz Día» (y 695-754)   | α 0,162 | **2,14:1 — no se lee** |
+      | «del Turismo!» (y 796-887) | α 0,291 | 3,54:1 — insuficiente |
+      | subtexto (y 999-1101)      | α 0,487 | 5,34:1 — ok |
+
+      O sea: el pedido de subir el texto, cumplido sin más, rompía la pieza. No
+      es opinable, son 2,14:1.
+
+      El arreglo NO es subir el velo entero: **eso desharía la ronda 2**, donde
+      ella pidió bajar la transparencia de 0,90 a 0,60 para ver la foto. Lo que
+      cambia es DÓNDE arranca la rampa: sigue en 0 hasta el 21 % —así el cielo y
+      el logotipo azul quedan intactos (el logo mide 9,96:1, sobre el 6,7-9,3
+      que pide §B.4)— y sube antes para llegar cargada a la banda del titular.
+      **El máximo se queda en 0,66, el mismo que ella aprobó.**
+
+      Resultado medido: **4,85 / 6,35 / 6,96:1**. Y el salto de α es de 0,0019
+      por píxel, así que la rampa no se lee como una banda dura.
     */}
     <AbsoluteFill
       style={{
         background:
           `linear-gradient(to bottom,` +
-          ` rgba(9,25,78,0) 28%,` +
-          ` rgba(9,25,78,0.20) 40%,` +
-          ` rgba(9,25,78,0.44) 50%,` +
-          ` rgba(9,25,78,0.58) 64%,` +
+          ` rgba(9,25,78,0) 21%,` +
+          ` rgba(9,25,78,0.44) 33%,` +
+          ` rgba(9,25,78,0.52) 37.5%,` +
+          ` rgba(9,25,78,0.57) 47%,` +
+          ` rgba(9,25,78,0.61) 58%,` +
           ` rgba(9,25,78,0.66) 100%)`,
       }}
     />
@@ -283,20 +445,28 @@ export const DtStTurismo: React.FC<{guia?: boolean}> = ({guia = false}) => (
       }}
     />
 
-    {/* 4 · El marco de esquinas redondeadas con el saludo adentro */}
+    {/* 4 · El marco — ronda 4: sus horizontales salen por los bordes */}
+    <Marco variante={variante} />
+
+    {/*
+      5 · El saludo. ⭐ RONDA 4: el bloque se ANCLA ARRIBA (`flex-start` + el
+      aire medido), no se centra en la caja. Centrado, con un marco de 950 de
+      alto, la tinta del titular se hundía hasta el 48,5 % de la pieza — que es
+      el «están muy abajo» de Eli. Anclado arriba cae en el 35,7 %, que es donde
+      lo pone la referencia (35,6 %).
+    */}
     <div
       style={{
         position: 'absolute',
-        left: (1080 - MARCO.ancho) / 2,
+        left: MARCO.izquierda,
         top: MARCO.y,
-        width: MARCO.ancho,
+        width: MARCO.derecha - MARCO.izquierda,
         height: MARCO.alto,
-        border: `${MARCO.filete}px solid ${DT.colores.blanco}`,
-        borderRadius: MARCO.radio,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: AIRE.sobreTitular,
         boxSizing: 'border-box',
       }}
     >
@@ -330,7 +500,8 @@ export const DtStTurismo: React.FC<{guia?: boolean}> = ({guia = false}) => (
           lineHeight: AIRE.interlineado,
           color: DT.colores.blanco,
           textAlign: 'center',
-          maxWidth: MARCO.ancho - 110,
+          /* Con cuerpo 46 la línea larga necesita más caja que los 690 de antes. */
+          maxWidth: 780,
           marginTop: AIRE.tituloASubtexto,
           opacity: 0.94,
         }}
@@ -341,7 +512,7 @@ export const DtStTurismo: React.FC<{guia?: boolean}> = ({guia = false}) => (
       </div>
     </div>
 
-    {/* 5 · Guía de zonas seguras — sólo para revisar, NO se entrega */}
+    {/* 6 · Guía de zonas seguras — sólo para revisar, NO se entrega */}
     {guia ? (
       <>
         <div

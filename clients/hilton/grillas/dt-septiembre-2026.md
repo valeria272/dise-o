@@ -1,7 +1,7 @@
 # Grilla DOUBLETREE — instantánea
 
-> Instantánea del 09-09-2026 tomada con `/al-dia`.
-> Origen: `raw/hilton/dt/DT-grilla-septiembre-2026.xlsx`.
+> Instantánea del 10-09-2026 tomada con `/al-dia`.
+> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/ccb4b8cd-ad80-4f6e-9dd2-6dafa8305a4a/scratchpad/DT-sept-HOY.xlsx`.
 > **Sirve de base para el DIFF de la próxima ronda**: los comentarios se
 > prependen sobre los viejos en la misma celda, así que sin esta copia no se
 > distingue lo nuevo de lo ya resuelto.
@@ -325,7 +325,7 @@ SEMANA 3
 ```
 
 
-### Columna I — **OK PARA DISEÑO**
+### Columna I — **EN REVISIÓN**
 
 **FECHA:**
 
@@ -397,7 +397,7 @@ SEMANA 4
 ```
 
 
-### Columna K — **REVISAR CONTENIDO**
+### Columna K — **CORREGIDA**
 
 **FECHA:**
 
@@ -414,50 +414,62 @@ SEMANA 4
 **DISEÑOS:**
 
 ```
-REEL
+ESTÁTICO
 ```
 
 **DISEÑO:**
 
 ```
-REEL - HILTON HONORS formato POV
+ESTÁTICO HILTON HONORS, TODOS LOS BENEFICIOS
 
-Grabar con material propio en la 2da jornada de grabación (NO generar con IA). Coordinar la filmación con Sebastián Serrano.
+SECCIÓN 1 – FONDO Y TÍTULO (GANCHO)
 
-Reel filmado mostrando los beneficios de ser miembro Hilton Honors, con tomas reales del hotel: recepción, habitaciones, pasillos y servicios (gimnasio, restaurante, etc.).
+Visual: Fotografía real de alta calidad ocupando todo el fondo (idealmente una perspectiva cenital o angular elegante de las instalaciones, piscina, lobby o habitación de DoubleTree by Hilton Santiago Vitacura).
 
-ESCENA 1 - GANCHO
-Visual: Toma real de la fachada o recepción del hotel, staff dando la bienvenida.
-Texto en pantalla: "¿Ya eres Hilton Honors?"
-Voz en off: "Ser parte de Hilton Honors tiene sus beneficios."
+Texto en pantalla (Zona superior izquierda):
+"BENEFICIOS
+HILTON HONORS"
 
-ESCENA 2 - BENEFICIOS
-Visual: Secuencia de tomas reales por distintos espacios del hotel (habitación, pasillo, gimnasio, servicio en general).
-Texto en pantalla: "Tarifas exclusivas, upgrades y más puntos."
-Voz en off: "Tarifas exclusivas, upgrades de habitación y acumulación de puntos en cada estadía."
+SECCIÓN 2 – CAJA CENTRAL (BENEFICIOS)
 
-ESCENA 3 - CIERRE / CTA
-Visual: Logo DoubleTree by Hilton + Hilton Honors sobre una toma real del lobby o fachada.
-Texto en pantalla: "Únete gratis hoy."
-Voz en off: "Únete gratis a Hilton Honors y empieza a disfrutar tus beneficios."
+Visual: Caja superpuesta (estilo cristal o translúcida) dividida en 6 cuadrantes con líneas finas. Cada cuadrante debe tener un ícono minimalista.
+
+Texto en pantalla (Por cuadrante, acompañando al ícono):
+
+(Ícono etiqueta de descuento) "Tarifas Exclusivas"
+
+(Ícono cama o flecha arriba) "Upgrades de Habitación"
+
+(Ícono señal wifi) "WiFi Premium"
+
+(Ícono smartphone) "Check-in Digital"
+
+(Ícono luna o regalo) "Noches Gratis"
+
+(Ícono moneda o puntos) "Acumula Puntos"
+
+Sección 3 - Footer
+
+Texto: Inscríbete gratis en el link de la bio
 ```
 
-**LINKS:** ([enlace](https://www.tiktok.com/@audreyjy_06/video/7533647509965524232?is_from_webapp=1&sender_device=pc&web_id=7621298545341892117))
+**LINKS:** ([enlace](https://cl.pinterest.com/pin/1045820344739252999/))
 
 ```
 REF
 ```
 
-**COPY:** ([enlace](http://hilton.com/hiltonhonors))
+**COPY:**
 
 ```
-Ser Hilton Honors tiene sus beneficios 💙 
+Tu lealtad tiene recompensa 😉
 
-Tarifas exclusivas, upgrades de habitación y puntos en cada estadía en DoubleTree by Hilton Santiago Vitacura. 
+Acumula puntos, consigue upgrades de habitación y aprovecha precios especiales en cada estadía en DoubleTree by Hilton Santiago Vitacura.
 
-Únete gratis y empieza a disfrutar. 📩 hilton.com/hiltonhonors 
+Inscríbete gratis en Hilton Honors y haz que cada viaje valga más.
+📩 hilton.com/hiltonhonors
 
-#DoubleTreeByHilton #HiltonHonors #HospitalidadHilton
+#DoubleTreeByHilton #HiltonHonors #ViajaMejor
 ```
 
 **COMENTARIOS PARA DISEÑO:**
@@ -783,7 +795,7 @@ SEMANA 4
 ```
 
 
-### Columna J — **EN CAMBIOS**
+### Columna J — **CORREGIDA**
 
 **FECHA:**
 

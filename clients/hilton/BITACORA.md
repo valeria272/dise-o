@@ -1,3 +1,154 @@
+## 2026-09-10 (CIERRE 1) · Eli (Windows) — DOUBLETREE: la ST del Día del Turismo APROBADA y subida, y el manual pierde la razón de cuerpos
+
+**Qué se hizo.** Se cerró la historia del **Día del Turismo** (STORIES col K,
+27-09) en **tres rondas más** sobre la que se había entregado anoche: la 4, la 5
+y la 6. **Aprobada y subida** al mismo archivo de Drive, así que el enlace no
+cambió. Y de paso el `/al-dia` de la mañana encontró **ronda nueva del cliente**
+en DT, que queda para la próxima sesión.
+
+**⭐ La ronda 4 — «la línea de una esquina a la otra».** Eli marcó el PNG en rojo:
+la línea de canto a canto como la referencia, el texto más chico más grande, y
+todo más arriba. Se volvió a **medir el pin** en vez de ajustar a ojo, y ahí
+estaban las tres respuestas:
+
+| | La referencia | Lo entregado | Corregido |
+|---|---|---|---|
+| Arranque del bloque | 35,6 % de la altura | **48,5 %** | 36,6 % |
+| Horizontales del marco | **salen del lienzo** | 800 px centradas | de canto a canto |
+| Nivel más chico | ≈30 px de mayúscula | 27 px (cuerpo 38) | 32 px (cuerpo 46) |
+
+· **La causa del «están muy abajo» era de código, no de gusto:** el texto iba
+  `justifyContent: center` dentro de un marco de 880 de alto, así que se hundía
+  hasta la mitad. Ahora se ancla arriba con el aire medido del pin (razón
+  arriba/abajo 0,68 contra su 0,64).
+· **El marco de la referencia SANGRA.** Ampliadas las cuatro esquinas al 200 %,
+  su borde inferior se va fuera del lienzo por los dos lados. Se rindieron **dos
+  lecturas** del pedido y Eli eligió: **A, dos escuadras opuestas**, cada
+  horizontal naciendo en una esquina redondeada y muriendo en el canto. La B
+  (sólo las dos horizontales) se **retiró del repo y del disco** — dejarla
+  registrada es dejar a mano la pieza que no se entrega.
+· ⛔ **El titular NO creció**, y es a propósito: ya iba más ancho que el del pin
+  (55 % contra 51 %). Lo que estaba mal era su altura.
+
+**⭐⭐ La ronda 5 — el velo, y un defecto que introdujo el propio arreglo.** Subir
+el texto lo sacó de la zona velada y lo puso sobre la punta dorada del edificio:
+medido por tercios, **«¡Feliz Día» quedaba en 2,14:1 y no se leía**. O sea que
+cumplir el pedido sin más rompía la pieza. Se subió la rampa del velo, y Eli
+respondió: **«baja la opacidad arriba, se ve muy forzado; la transparencia debe
+ser de 0 arriba y ajustar»**. Tenía razón y el defecto era mío: la rampa se
+quedaba PLANA en 0 hasta el 21 % y de ahí saltaba a 0,44 — **ese codo es una
+banda visible**, el velo «empezaba» en un punto en vez de nacer. Ahora arranca en
+**0 en el borde** y sube cóncava con paradas cada ~10 %.
+
+⭐ Y quedó con **menos** velo que antes donde importa: en la banda del titular
+bajó de 0,538 a **0,399**, y en el pie de 0,66 a **0,58**. Se ve más foto.
+
+**⚠️⚠️ La ronda 6 — LEÍ MAL EL PEDIDO Y HAY QUE NO REPETIRLO.** Eli pidió que
+«¡Feliz Día» tuviera **«el mismo peso»** que «del Turismo», y se leyó como
+GROSOR: se le bajó el corte a Light. Ella corrigió: **«me refería al tamaño de la
+tipografía, no a cambiar el grosor»**. Corregido en los dos sentidos — cuerpo
+80 → **130** (igual al de abajo) y grosor de vuelta a **Medium**, como ella lo
+había dejado en la ronda 3. Al mismo cuerpo lo que distingue las dos líneas es el
+largo de la frase: «¡Feliz Día» da **514 px** y «del Turismo!» **742**, con 143
+px de holgura en los 800 útiles del marco.
+
+**⭐ Y ESO CAMBIÓ EL MANUAL — con un paso en falso que quedó anotado.** El manual
+decía que el titular de DT va a **dos pesos** (medido en `C1 FT N1`) y que la
+razón de cuerpos es **1,62** (58 / 94). Lo que vale ahora:
+· **los dos pesos SIGUEN** (Medium arriba, Light abajo) — ése es el recurso;
+· **la razón de cuerpos YA NO RIGE**: las dos líneas miden lo mismo.
+En la ronda 5 se había escrito **al revés** (que se iban los pesos y quedaba la
+diferencia de cuerpo) y se corrigió en los dos lugares del manual. ⚠️ Con la
+advertencia al lado: `C1 FT N1` es una pieza de **Family Time**, así que si
+aparece una pieza nueva de esa campaña **hay que preguntarle a Eli** si el
+criterio del cuerpo único la alcanza o si es sólo de las historias.
+
+**⚠️ Y una regla técnica nueva, que salió de medir:** el contraste del titular
+**subió de 3,61 a 3,76:1 al volver a Medium**, porque el trazo grueso lleva más
+tinta. Por eso: **el grosor NO se toca para arreglar legibilidad** — afinarlo
+cuesta contraste. Si hace falta, se resuelve con el velo o con el color.
+
+**El techo de esta toma, medido y aceptado.** El titular vive en el 36-46 % de la
+altura, o sea sobre lo más claro de la foto, y con el velo naciendo en cero no se
+puede cargar esa banda sin volver a forzar arriba. Quedó en **3,76:1**: pasa,
+porque a cuerpo 130 es **texto grande** y ahí la vara es **3:1, no 4,5** (se
+venía exigiendo la de texto chico). Se agotaron las dos salidas antes de
+aceptarlo: con rampa lineal **ni el pie totalmente opaco pasa de 3,43:1**, y
+barridos los **25 encuadres 9:16 posibles** de `HDT_43` el mejor deja el titular
+en **2,60:1 sin velo** — no hay ventana donde caiga sobre zona oscura, el
+edificio no llega tan arriba. ⭐ **La vía del sistema, si algún día se quiere
+margen de sobra: el titular en AZUL DT como el logotipo (§B.4), que sobre este
+cielo mide 9:1 sin nada de velo.** No se hizo porque nadie lo pidió.
+
+**⚠️ El QA se acusó a sí mismo por TERCERA vez.** Sus bandas de tinta estaban
+fijas en las filas de la ronda anterior, así que al subir el texto reportó «sin
+tinta» en las cuatro líneas **más una falsa sustitución de fuente**. Era el QA,
+no la pieza: reapuntadas, las huellas salen correctas (Stag Light r=+0,84 contra
+0,35 del mejor señuelo; Stag Medium r=+0,80 contra 0,53). Quedó escrito en
+`scripts/dt-qa.py`: **las bandas se re-miden en cada ronda que mueva el texto, y
+el QA se corre DESPUÉS de eso, nunca antes.**
+
+**Dónde quedó.** Subida y **verificada contra Drive**:
+[DT ST 27-09 Dia del Turismo.png](https://drive.google.com/file/d/12bBQuWsgPsNu8xZ0C1CL_l-0CScGeyuZ/view)
+— `parentId` = `1dB-uwVA2Xdhxl0olsc2SMn6KMZ4J_h8E`, o sea **STS de la S4 de DT** y
+no «Mi unidad»; 11 803 167 B, 2250×4000, 150 ppp. Es el **mismo archivo** de
+anoche, reemplazado: **el enlace no cambió**. Reproducible desde el repo — el
+script, la foto (`public/assets/hilton/dt/st-turismo-frontis.jpg`), las fuentes y
+el logotipo están todos versionados, y `cmp` dio idéntico byte a byte.
+Commits: `422d5f8` (r4), `b4cebd4` (r5), `507dc96` (r6).
+
+**⭐ Cómo se revisa una ronda desde ahora.** Eli pidió, con «siempre», que el
+antes/después se entregue **en HTML** y no como lámina en el chat: ella aprueba
+mirando y comparado. La página de esta pieza (cortina antes/después, guías de
+altura y canto, la referencia al lado y las mediciones abajo) quedó publicada, y
+la preferencia está en la memoria como `antes-y-despues-en-html`.
+
+**Qué sigue — RONDA NUEVA DEL CLIENTE, encontrada hoy por el `/al-dia`.**
+Confirmada por **diff de contenido** contra la instantánea de anoche (el
+`modifiedTime` se movió y el tamaño del blob bajó de 93 a 66 MB sin significar
+nada: la grilla es nativa de Sheets):
+
+1. ⛔ **FEED col I — OPINIÓN BOOKING del 14-09: `OK PARA DISEÑO` → `EN REVISIÓN`**,
+   y con ella un **hilo nativo NUEVO y OPEN** (`AAACGzJtEYc`, anclado en
+   `FEED!I14`, de Carlos hoy 12:24:19Z): «*@elisabet.soto holaaa, podemos agregar
+   la bandera de Panamá a la reseña?*» — **sin responder, y la pieza publica en 4
+   días.** El material ya está decidido en la celda («Ok el que sugiere Carlos» →
+   `imagen_2026-08-14_112424991.png`). ⚠️ La carpeta de referencias
+   (`1Dlki995RRdwueFGlZOkF9rybf7maMJ5u`) **sigue devolviendo vacía**.
+2. ⭐ **FEED col K — 23-09: el reel se volvió ESTÁTICO y YA ES DISEÑABLE.** Era
+   «REEL - HILTON HONORS formato POV», frenado desde el 13-08 por Scarlette
+   (grabar con material propio en la 2da jornada, coordinar con Sebastián
+   Serrano), y ahora es **«ESTÁTICO HILTON HONORS, TODOS LOS BENEFICIOS»** con
+   brief completo (foto real a sangre, caja translúcida de 6 cuadrantes con
+   iconos, footer «Inscríbete gratis en el link de la bio»), copy nuevo entero y
+   la referencia cambiada de TikTok a Pinterest. Comentario de la celda: «*este
+   que mejor sea un estático, ya hicimos reel hace poco (guardemos la idea de
+   todas formas)*». **El bloqueo era de formato y desapareció.** ⚠️ El hilo de
+   Scarlette (`AAACB_tY1w4`, `FEED!K10`) sigue marcado OPEN pero quedó
+   **obsoleto**: ya no hay reel que grabar.
+3. ⚠️ **STORIES col J — ESCAPADA ROMÁNTICA del 21-09: `EN CAMBIOS` → `CORREGIDA`**
+   y el hilo de los **AD ONS** (`AAACGx-K8dA`) pasó de OPEN a **RESOLVED — pero
+   se cerró SIN CONTESTAR.** Nadie respondió el «no entiendo qué es AD ONS» de
+   Eli, el comentario de la celda está **intacto palabra por palabra** y el brief
+   **sigue diciendo $109.000** cuando la pieza entregada ya dice $99.000. O sea
+   se movió el estado, no el brief. **No se inventa** (§G): hay que preguntarle a
+   Carlos si la pieza se cierra tal como está entregada o si los AD ONS entran.
+
+**Abierto.**
+- ⛔ **La bandera de Panamá** (punto 1) — es la tarea más urgente por fecha.
+- ⛔ **Los AD ONS** (punto 3) — bloqueante de contenido, no de diseño.
+- **¿El criterio del cuerpo único alcanza a Family Time?** — preguntarle a Eli.
+- Siguen frenadas **las tres fuentes** que sólo tiene el cliente (Stag LCG, Trade
+  Gothic LT Std Bold, Trade Gothic Next LT Pro Bold) y **la carpeta de la reseña
+  del 14-09**.
+- Sin respuesta por **cuarta** vez: ¿`reglas.yaml` entra con la geometría de DT, o
+  primero los dos checks nuevos de `qa/checks.py`?
+- **PISO18** tuvo ronda menor hoy y **no pide trabajo de diseño**: FEED col F
+  (10-09, fotos de novios) pasó a `CORREGIDO`, un comentario quedó tachado y una
+  etiqueta de semana cambió. **Cero hilos nativos OPEN** en esa grilla.
+
+---
+
 ## 2026-09-09 (CIERRE 6 · noche) · Eli (Windows) — DOUBLETREE: la historia del Día del Turismo, y DT deja de no tener sistema
 
 **Qué se hizo.** Se **diseñó y entregó la última historia de la S4**, `ESTÁTICA ·

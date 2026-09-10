@@ -435,3 +435,13 @@ out/rentas/**/mail/
 # plano consistente, y el pack llegó por ZIP a Descargas, que no lo respalda nadie.
 !gcl-agent/universo/
 !gcl-agent/universo/**
+
+# ── TRAVERSO «Los de siempre» (09-09-2026): viaja el núcleo, no el material pesado ──
+# Casting LOCKED, keyframes y sets como JPEG 93; packshots recortados; música y SFX.
+# Los PNG de Nano Banana (5 MB c/u) y los 15 clips de Kling (~80 MB) quedan locales
+# (copia en el Escritorio de Valeria + out/traverso/lds2). El render va aparte.
+!public/assets/traverso/lds2/**/*.jpg
+!public/assets/traverso/lds2/packshots/*.png
+!public/assets/traverso/lds2/audio/musica-entrance.mp3
+!public/assets/traverso/lds2/audio/sfx-*.mp3
+!public/assets/traverso/lds/audio/*.mp3

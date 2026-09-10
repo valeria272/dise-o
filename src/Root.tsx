@@ -65,6 +65,8 @@ import {
   TRAVERSO_REEL_DURATION,
   TRAVERSO_REEL_FPS,
 } from "./compositions/TraversoPasamelaReel";
+import {LosDeSiempre, LDS_FPS, LDS_W, LDS_H, LDS_DURATION} from "./compositions/traverso/LosDeSiempre";
+import {LosDeSiempreEntrance, ENT_FPS, ENT_W, ENT_H, ENT_DURATION} from "./compositions/traverso/LosDeSiempreEntrance";
 import {GclPost, GCL_POST_DEMO} from "./compositions/gcl/GclPost";
 import {
   GclOrigenReel,
@@ -384,6 +386,22 @@ export const RemotionRoot: React.FC = () => {
             />
           )),
         )}
+        <Composition
+          id="TraversoEntrance"
+          component={LosDeSiempreEntrance}
+          durationInFrames={ENT_DURATION}
+          fps={ENT_FPS}
+          width={ENT_W}
+          height={ENT_H}
+        />
+        <Composition
+          id="TraversoLosDeSiempre"
+          component={LosDeSiempre}
+          durationInFrames={LDS_DURATION}
+          fps={LDS_FPS}
+          width={LDS_W}
+          height={LDS_H}
+        />
         <Composition
           id="TraversoPasamelaReel"
           component={TraversoPasamelaReel}

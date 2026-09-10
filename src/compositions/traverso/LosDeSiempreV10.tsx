@@ -46,7 +46,7 @@ const PLANOS: Plano[] = [
   {id: "stage", from: T.stop, to: T.reveal, src: "c09.mp4", trim: 0.0, rate: 0.55, push: [1.0, 1.04], origin: "50% 32%", stage: true},
   {id: "reveal", from: T.reveal, to: T.destino, src: "c09.mp4", trim: 1.4, rate: 1.4, push: [1.18, 1.0], origin: "50% 45%", shake: true},
   // entrada APROBADA: un plano hero; la luz de la puerta quema y se convierte en la sala
-  {id: "destino", from: T.destino, to: T.mesa, src: "c17.mp4", trim: 0.4, rate: 1.9, burn: true, zoom: 1.08, shiftY: 190, shiftX: -70, origin: "50% 50%"},
+  {id: "destino", from: T.destino, to: T.mesa, src: "c17.mp4", trim: 0.4, rate: 1.9, burn: true, zoom: 1.04, shiftY: 190, shiftX: 0, origin: "50% 50%"},
   // YA están sentados. Nada entre medio.
   {id: "mesa", from: T.mesa, to: T.end, src: "c16.mp4", trim: 0.2, rate: 0.9, push: [1.0, 1.05], origin: "50% 45%", fromWhite: true},
 ];
@@ -124,7 +124,7 @@ const HeroText: React.FC = () => {
   const enter = spring({fps, frame, config: {damping: 12, stiffness: 300, mass: 0.6}});
   return (
     <AbsoluteFill style={{justifyContent: "center", alignItems: "center"}}>
-      <div style={{transform: `scale(${interpolate(enter, [0, 1], [1.6, 1])}) translateY(-500px)`, fontFamily: ARCHIVO, fontVariationSettings: '"wdth" 62, "wght" 900', fontSize: 200, lineHeight: 0.9, color: MOSTAZA, textAlign: "center", letterSpacing: "-0.01em", textShadow: "0 14px 40px rgba(0,0,0,0.85), 0 0 120px rgba(232,179,37,0.25)"}}>LOS DE<br />SIEMPRE.</div>
+      <div style={{transform: `scale(${interpolate(enter, [0, 1], [1.6, 1])}) translateY(-540px)`, fontFamily: ARCHIVO, fontVariationSettings: '"wdth" 62, "wght" 900', fontSize: 172, lineHeight: 0.9, color: MOSTAZA, textAlign: "center", letterSpacing: "-0.01em", textShadow: "0 14px 40px rgba(0,0,0,0.85), 0 0 120px rgba(232,179,37,0.25)"}}>LOS DE<br />SIEMPRE.</div>
     </AbsoluteFill>
   );
 };
@@ -188,7 +188,7 @@ export const LosDeSiempreV10: React.FC = () => {
       {PLANOS.map((p) => (
         <Sequence key={p.id} from={F(p.from)} durationInFrames={Math.max(1, F(p.to - p.from))} layout="none">
           {p.id === "stage" || p.id === "reveal"
-            ? <AbsoluteFill style={{WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.3) 15%, #000 27%, #000 100%)", maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.3) 15%, #000 27%, #000 100%)"}}><Shot p={p} /></AbsoluteFill>
+            ? <AbsoluteFill style={{WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.25) 26%, #000 36%, #000 100%)", maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.25) 26%, #000 36%, #000 100%)"}}><Shot p={p} /></AbsoluteFill>
             : <Shot p={p} />}
         </Sequence>
       ))}

@@ -25,6 +25,13 @@ corregida — caminan (0–1,62) → macro del guante (1,62–2,42) → YA deten
 caminata y fuera los tres inserts (los presentan los focos). Fuera el plano caminando en la sala: puerta →
 luz → YA sentados. Copy: «PRIMERA REUNIÓN. / NADIE NECESITA PRESENTARLOS.» (elección de Valeria). Cierre:
 logos Traverso × Grupo CopyLab a 1,7× con peso parejo, bloque más arriba, ≥ 1,5 s limpios al final.
+**V10 (08:25)** (`out/traverso/lds2/los-de-siempre-V10.mp4`, `TraversoV10`, 18,3 s): al encenderse el tercer foco
+abren AL TIRO — fuera el beat de manos a las solapas que «volvía atrás». Para eso la canción se reubicó
+(`banda-v10.mp3`, offset 6,02): tres golpes seguidos 3,60 / 4,06 / 4,50 bajo los CLACKs (con el bache
+natural debajo) y el hit en 5,00 = apertura; la parada de la puerta (9,98) y el bajón de la reunión
+(12,98) siguen cayendo en su sitio. Copy de la mesa: «PRIMERA REUNIÓN.» → pausa → «CERO PRESENTACIONES.»
+grande, bold ancho, entrada por golpe con leve rotación (decisión verbal de Valeria; reemplaza a «Nadie
+necesita presentarlos»). Cierre: textos 1,3× más grandes con el mismo golpe y logos con sobreimpulso.
 **Dónde quedó:** todo en `public/assets/traverso/lds2/` y `src/compositions/traverso/LosDeSiempreV7.tsx`;
 render en el Escritorio de Valeria y en `out/traverso/lds2/`.
 **Qué sigue:** escuchar V7 (balance canción–foley); si se aprueba, versión 1:1 para feed y subir al Drive.

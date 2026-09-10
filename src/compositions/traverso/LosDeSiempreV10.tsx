@@ -173,7 +173,7 @@ const SFX: {src: string; at: number; vol: number; dur?: number; base?: string}[]
   {src: "sfx-pasos.mp3", at: T.destino, vol: 0.35, dur: 1.4, base: "lds"}, {src: "sfx-riser.mp3", at: T.mesa - 1.1, vol: 0.55}, {src: "sfx-puerta.mp3", at: T.mesa - 0.45, vol: 0.6, base: "lds"},
   {src: "sfx-camara.mp3", at: T.mesa - 0.06, vol: 0.5}, {src: "sfx-oficina.mp3", at: T.mesa, vol: 0.28, dur: 5.5, base: "lds"}, {src: "sfx-carpeta.mp3", at: T.mesa + 0.8, vol: 0.45},
   {src: "sfx-impacto.mp3", at: 12.98, vol: 0.5},
-  {src: "sfx-impacto.mp3", at: T.end, vol: 0.45}, {src: "sfx-bass.mp3", at: 17.48, vol: 0.9},
+  {src: "sfx-impacto.mp3", at: T.end, vol: 0.45}, {src: "sfx-bass.mp3", at: 17.48, vol: 0.75},
 ];
 
 export const LosDeSiempreV10: React.FC = () => {
@@ -204,7 +204,8 @@ export const LosDeSiempreV10: React.FC = () => {
           <Marcas />
         </Sequence>
       </Sequence>
-      <Audio src={staticFile(`${A}/audio/banda-v10.mp3`)} volume={0.95} />
+      {/* la música baja desde el end card (15,48) para que el cierre se entienda: 0,95 → 0,35 hasta el golpe final, y muere en el negro */}
+      <Audio src={staticFile(`${A}/audio/banda-v10.mp3`)} volume={(f) => interpolate(f, [F(T.end), F(17.3), F(17.48), F(T.fin) - 2, F(T.fin)], [0.95, 0.35, 0.55, 0.3, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})} />
       {SFX.map((s, i) => (
         <Sequence key={i} from={F(s.at)} durationInFrames={s.dur ? F(s.dur) : undefined} layout="none">
           <Audio src={staticFile(`${s.base === "lds" ? "assets/traverso/lds" : A}/audio/${s.src}`)} volume={s.vol} />

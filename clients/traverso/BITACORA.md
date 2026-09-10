@@ -19,6 +19,12 @@ queda al doble de la altura de los personajes; revisado frame a frame 9,4–11,5
 ni pies) → Ketchup pasa frente a lente → reunión con el equipo. Cierre en DOS cards (fuera «Ahora en Grupo
 CopyLab» y el logo animado). SFX reducidos a: pasos, tela, 3 CLACKs, acento, sub-hit + solapas, riser/puerta/
 aire, oficina, carpeta, golpe final. Misma canción (`banda-v6.mp3`).
+**V9 FINAL CUT (08:20)** (`out/traverso/lds2/los-de-siempre-V9.mp4`, `TraversoV9`, 19,6 s): lógica del inicio
+corregida — caminan (0–1,62) → macro del guante (1,62–2,42) → YA detenidos en semisilueta (expectativa 1,2 s)
+→ CLACK izq 3,58 · centro 4,04 · der 4,74 → trío completo de golpe → LOS DE SIEMPRE. Fuera la segunda
+caminata y fuera los tres inserts (los presentan los focos). Fuera el plano caminando en la sala: puerta →
+luz → YA sentados. Copy: «PRIMERA REUNIÓN. / NADIE NECESITA PRESENTARLOS.» (elección de Valeria). Cierre:
+logos Traverso × Grupo CopyLab a 1,7× con peso parejo, bloque más arriba, ≥ 1,5 s limpios al final.
 **Dónde quedó:** todo en `public/assets/traverso/lds2/` y `src/compositions/traverso/LosDeSiempreV7.tsx`;
 render en el Escritorio de Valeria y en `out/traverso/lds2/`.
 **Qué sigue:** escuchar V7 (balance canción–foley); si se aprueba, versión 1:1 para feed y subir al Drive.

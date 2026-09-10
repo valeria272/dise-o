@@ -44,7 +44,7 @@ const PLANOS: Plano[] = [
   // ya detenidos: semisilueta; el escenario los presenta foco a foco
   // detenidos, quietos (c09 antes de abrirse): los focos los presentan y en el DROP abren AL TIRO
   {id: "stage", from: T.stop, to: T.reveal, src: "c09.mp4", trim: 0.0, rate: 0.55, push: [1.0, 1.04], origin: "50% 32%", stage: true},
-  {id: "reveal", from: T.reveal, to: T.destino, src: "c09.mp4", trim: 1.4, rate: 1.4, push: [1.18, 1.0], origin: "50% 45%", shake: true},
+  {id: "reveal", from: T.reveal, to: T.destino, src: "c09.mp4", trim: 2.0, rate: 1.1, push: [1.18, 1.0], origin: "50% 45%", shake: true},
   // entrada APROBADA: un plano hero; la luz de la puerta quema y se convierte en la sala
   {id: "destino", from: T.destino, to: T.mesa, src: "c17.mp4", trim: 0.4, rate: 1.9, burn: true, zoom: 1.04, shiftY: 190, shiftX: 0, origin: "50% 50%"},
   // YA están sentados. Nada entre medio.

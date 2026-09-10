@@ -183,15 +183,13 @@ export const LosDeSiempreV10: React.FC = () => {
   void fontPromise;
   return (
     <AbsoluteFill style={{background: INK}}>
-      {/* reveal 1: LOS DE SIEMPRE. en el tercer CLACK, detrás de los personajes hasta que termina el reveal 2 */}
-      <Sequence from={F(T.foco3)} durationInFrames={F(T.destino - T.foco3)} layout="none"><HeroText /></Sequence>
       {PLANOS.map((p) => (
         <Sequence key={p.id} from={F(p.from)} durationInFrames={Math.max(1, F(p.to - p.from))} layout="none">
-          {p.id === "stage" || p.id === "reveal"
-            ? <AbsoluteFill style={{WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.25) 26%, #000 36%, #000 100%)", maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.25) 26%, #000 36%, #000 100%)"}}><Shot p={p} /></AbsoluteFill>
-            : <Shot p={p} />}
+          <Shot p={p} />
         </Sequence>
       ))}
+      {/* reveal 1: LOS DE SIEMPRE. en el tercer CLACK — ENCIMA de la imagen, opaco, entero */}
+      <Sequence from={F(T.foco3)} durationInFrames={F(T.destino - T.foco3)} layout="none"><HeroText /></Sequence>
       {/* reunión: dos textos con un beat de comedia entre medio */}
       <Sequence from={F(10.98)} durationInFrames={F(T.end - 10.98)} layout="none"><Titular lineas={["Primera reunión."]} size={84} bottom={640} /></Sequence>
       <Sequence from={F(12.38)} durationInFrames={F(T.end - 12.38)} layout="none"><Golpe lineas={["Cero", "presentaciones."]} size={104} color={MOSTAZA} bottom={400} /></Sequence>

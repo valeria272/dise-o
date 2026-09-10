@@ -44,7 +44,7 @@
 
 | Familia | Para qué | Medido en |
 |---|---|---|
-| **Stag** | Titulares. ⛔ **Desde el 10-09-2026 las dos líneas van al MISMO peso (Light)** y lo que las distingue es el cuerpo — criterio de Eli; ver §Gramática. Lo anterior, ya superado: dos pesos de la misma familia (Family Time: «Este es su panorama» Bold + «Ideal en familia» Light) | `C1 FT N°1.png`, `C1 FT N°2.png`, `DT ST 27-09 Dia del Turismo.png` |
+| **Stag** | Titulares. Van a **dos pesos de la misma familia** (Medium arriba + Light abajo) y —desde el 10-09-2026, criterio de Eli— **a un mismo cuerpo**: lo que separa las dos líneas es el peso, no el tamaño. Ver §Gramática | `C1 FT N°1.png`, `C1 FT N°2.png`, `DT ST 27-09 Dia del Turismo.png` |
 | **Trade Gothic** | **Cifras, precios, versales, cuerpo, CTA y legal** | manual oficial Hilton |
 
 **Por qué el reparto es ése y no otro, medido el 03-09:** los 9 pesos de Stag
@@ -275,24 +275,25 @@ geometría.
   x=992, centro 539,5).
 - **Caja de esquinas redondeadas con filete blanco: ancho 730** y centrada
   (`DT FT S3`). Es el contenedor de DT.
-- ⛔⛔ **EL TITULAR YA NO VA A DOS PESOS — corregido por Eli el 10-09-2026.**
-  «Quiero que "¡Feliz día" tenga el mismo peso de "del turismo"». Las dos líneas
-  van en **Stag Light**, y lo que las distingue es **el cuerpo, no el peso**.
-  En la historia del Día del Turismo lo llevó de Bold (ronda 1) a Medium (ronda 3)
-  a **Light (ronda 5)**: no fue un ajuste de una pieza, fue afinarlo hasta
-  igualarlo.
-  · **La razón de cuerpos SÍ se mantiene en 1,62** — medida en `C1 FT N1`
-    (58 / 94) y aplicada acá como 80 / 130.
-  · **Y el orden también:** arriba la chica, abajo la grande. El énfasis lo
-    sigue llevando la línea de abajo.
-  · Lo que decía antes este manual, y ya no vale: «arriba Bold y más chica, abajo
-    Light y más grande… el énfasis lo lleva la línea liviana». Vino de medir
-    `C1 FT N1`, que es una pieza de **Family Time**; si aparece una pieza nueva
-    de esa campaña con el titular a dos pesos, hay que preguntarle a Eli si el
-    criterio nuevo la alcanza o si es sólo de las historias.
-  · ⚠️ Y tiene consecuencia técnica: un trazo Light necesita **más** contraste
-    que uno Bold al mismo cuerpo. Si el titular Light cae sobre foto clara, se
-    mide antes de entregar (ver la §del velo más abajo).
+- ⭐ **El titular va a DOS PESOS y a UN MISMO CUERPO** (corregido con Eli el
+  10-09-2026, en dos pasos).
+  · **Los dos pesos siguen siendo el recurso de DT**: arriba **Stag Medium**,
+    abajo **Stag Light**. Eso no cambió.
+  · **Lo que cambió es el cuerpo: las dos líneas miden LO MISMO.** En la
+    historia del Día del Turismo, 130 y 130. Eli: «quiero que "¡Feliz día" tenga
+    el mismo peso de "del turismo"» y, al aclararlo, **«me refería al tamaño de
+    la tipografía, no a cambiar el grosor»**.
+  · ⛔ **Por lo tanto la razón de cuerpos 1,62 de `C1 FT N1` (58 / 94) ya no
+    rige.** Esa medición sigue siendo válida como descripción de esa pieza de
+    Family Time, pero no se aplica a una historia nueva: al mismo cuerpo, lo que
+    distingue las dos líneas es el peso, y el largo de cada frase hace el resto
+    («¡Feliz Día» da 514 px y «del Turismo!» 742 px al mismo cuerpo 130).
+  · El orden se mantiene: la línea corta arriba, la larga abajo.
+  · ⚠️ Ojo con `C1 FT N1`: es de **Family Time**. Si aparece una pieza nueva de
+    esa campaña, preguntarle a Eli si el criterio del cuerpo único la alcanza.
+  · ⚠️ Y el grosor NO se toca para arreglar legibilidad: bajarlo afina el trazo
+    y baja el contraste. Si el titular cae sobre foto clara, se resuelve con el
+    velo o con el color, y se mide antes de entregar.
 - Versales de la dirección al pie: caja de 15 px.
 - **El máster de historia son 2250×4000** — hay 66 historias entregadas a ese
   tamaño. Se rinde con `--scale 2.0833` desde una mesa de 1080.

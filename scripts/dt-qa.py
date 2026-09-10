@@ -69,25 +69,26 @@ SEÑUELOS = ["C:/Windows/Fonts/georgia.ttf", "C:/Windows/Fonts/times.ttf",
 # ⚠️ `xrango` acota la medición al INTERIOR del marco. Sin eso, el filete
 # vertical cae en las mismas filas que el texto y todas las líneas reportaban
 # 766 px de ancho — el ancho del marco, no el del texto.
-# ⭐ RONDA 4 (10-09): las bandas SE MOVIERON porque el bloque subió 236 px (Eli:
-# «súbelos incluso el título que están muy abajo»). Las de la ronda 3 quedaron
-# apuntando a filas vacías y el QA reportaba «sin tinta» en las cuatro líneas —
-# el QA estaba viejo, la pieza estaba bien. Medidas sobre el PNG nuevo:
-#   ¡Feliz Día    y 695-754      del Turismo!  y 796-887
-#   subtexto L1   y 999-1041     subtexto L2   y 1059-1101
-# Se les deja un margen de ±20 px para que un ajuste fino no vuelva a romperlo.
+# ⭐ RONDA 6 (10-09): las bandas se movieron OTRA VEZ porque el titular 1 pasó
+# a cuerpo 130 (Eli: «me refería al tamaño, no al grosor»). Medidas sobre el PNG:
+#   ¡Feliz Día    y 703-797      del Turismo!  y 846-937
+#   subtexto L1   y 1050-1092    subtexto L2   y 1118-1143
+# Se les deja margen para que un ajuste fino no vuelva a reportar «sin tinta».
+#
+# ⚠️ Y la lección, que ya van tres: un umbral o una banda FIJA en el QA acusa a
+# la pieza cuando lo que cambió es el diseño. Las bandas se re-miden en cada
+# ronda que mueva el texto, y se re-corre el QA DESPUÉS de eso, nunca antes.
 ELEMENTOS = [
     {"nombre": "titular 1 «¡Feliz Día»", "texto": "!Feliz Día",
-     # ⭐ Ronda 5: Eli igualó el peso al de la línea de abajo -> Light.
-     "fuente": "Stag-Light.ttf", "banda": (675, 775), "xrango": (152, 928),
+     "fuente": "Stag-Medium.ttf", "banda": (683, 817), "xrango": (152, 928),
      "umbral": 200},
     {"nombre": "titular 2 «del Turismo!»", "texto": "del Turismo!",
-     "fuente": "Stag-Light.ttf", "banda": (776, 910), "xrango": (152, 928),
+     "fuente": "Stag-Light.ttf", "banda": (818, 957), "xrango": (152, 928),
      "umbral": 200},
     {"nombre": "subtexto línea 1", "texto": None,
-     "fuente": None, "banda": (980, 1050), "xrango": (152, 928), "umbral": 185},
+     "fuente": None, "banda": (1030, 1100), "xrango": (152, 928), "umbral": 185},
     {"nombre": "subtexto línea 2", "texto": None,
-     "fuente": None, "banda": (1051, 1120), "xrango": (152, 928), "umbral": 185},
+     "fuente": None, "banda": (1101, 1165), "xrango": (152, 928), "umbral": 185},
 ]
 
 

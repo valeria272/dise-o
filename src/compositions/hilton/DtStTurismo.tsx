@@ -238,37 +238,33 @@ const MARCO_PIE = MARCO.y + MARCO.alto;
 export type VarianteMarco = 'escuadras' | 'lineas';
 
 /**
- * Cuerpos. **Ronda 4: crece SÓLO el subtexto, 38 → 46 (+21 %).**
+ * Cuerpos.
  *
- * Medido en la referencia y normalizado a un lienzo de 1920 de alto, su nivel
- * más chico lleva **≈30 px de altura de mayúscula**. Con Trade Gothic a cuerpo
- * 38 la mayúscula daba ≈27 y con 46 da ≈32 — o sea el 38 iba por DEBAJO de la
- * referencia y el 46 la alcanza. No es «un poco más grande» a ojo.
+ * ⭐⭐ RONDA 6: LAS DOS LÍNEAS DEL TITULAR VAN AL MISMO CUERPO — 130.
+ * «Me refería al tamaño de la tipografía, no a cambiar el grosor.» O sea que el
+ * pedido de la ronda 5 («mismo peso») era **de tamaño**, y la ronda 5 lo leyó
+ * como grosor: se le bajó el corte a Light y no era eso. El grosor vuelve a
+ * **Medium**, que es como ella lo dejó en la ronda 3.
  *
- * El titular se queda donde está: ver el ⛔ de la cabecera. Ya iba más ancho
- * que el del pin (55 % contra 51 %); lo que estaba mal era su ALTURA.
+ * ⛔ Y por lo tanto **la razón de cuerpos 1,62 de `C1 FT N1` (58/94) ya no rige
+ * en esta pieza**: las dos líneas miden lo mismo y lo único que las distingue
+ * es el peso. Vuelve a ser el recurso de DT de siempre —titular a dos pesos de
+ * la misma familia— sólo que a un único cuerpo.
  *
- * ⭐ La proporción entre las dos líneas del titular se mantiene en **1,62**, la
- * de la marca medida en `C1 FT N1` (58 / 94).
+ * · El subtexto se queda en 46 (ronda 4): normalizada a 1920, la referencia
+ *   lleva su nivel más chico en ≈30 px de mayúscula y con 46 da ≈32.
  */
-const CUERPO = {titulo1: 80, titulo2: 130, subtexto: 46} as const;
+const CUERPO = {titulo1: 130, titulo2: 130, subtexto: 46} as const;
 
 /**
- * ⭐⭐ RONDA 5: «quiero que "¡Feliz día" tenga el mismo peso de "del turismo"».
+ * ⭐ RONDA 3, y sigue siendo lo vigente: «el feliz día que sea menos grueso».
+ * La línea de arriba va en **Medium (500)** — bajó de Bold, no más.
  *
- * Pasa a **Light (300)**, el mismo corte que la línea de abajo. Recorrido
- * completo del titular en esta pieza: Bold (r1) → Medium (r3) → **Light (r5)**;
- * ella lo fue afinando en tres rondas hasta igualarlo.
- *
- * ⚠️ Y ESTO CAMBIA UNA REGLA ESCRITA DEL MANUAL, no es un ajuste de esta pieza.
- * `clients/hilton/CLAUDE.md` decía que el titular de DT va a **DOS PESOS** de
- * Stag —medido en `C1 FT N1`, arriba Bold y chica, abajo Light y grande— y ese
- * era el recurso. Con las dos líneas en Light el contraste ya no lo lleva el
- * peso: lo lleva **el cuerpo** (80 contra 130, razón 1,62, que sí se mantiene).
- * Queda anotado en el manual como criterio de Eli, porque un criterio dicho al
- * pasar es criterio de la marca y no de la pieza.
+ * ⛔ NO va en Light. La ronda 5 la pasó a Light leyendo «mismo peso» como
+ * grosor, y Eli corrigió: hablaba del TAMAÑO. Se mantiene el recurso de la
+ * marca —titular a DOS PESOS de la misma familia— y ahora a un mismo cuerpo.
  */
-const PESO_TITULO_1 = DT.pesos.light;
+const PESO_TITULO_1 = DT.pesos.medium;
 
 /**
  * Espaciado.

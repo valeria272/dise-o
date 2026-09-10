@@ -37,6 +37,13 @@ DROP 9,75 → riser → groove suave en la reunión → HIT 22,4 → corte 23,0)
 en el BOOM). Misma garage original (`audio/rutas/A-garage-1.mp3`, 130 bpm) cortada a sus golpes medidos con
 `scripts/beatmap.py`; vacío de música 9,02–9,52 y DROP en 9,52. Documento `reel-los-de-siempre/EDICION-RUTAS-MUSICALES.md`.
 Composición `LosDeSiempreTestRutas.tsx`. Cero clips nuevos. **Decisión pendiente de Valeria: ruta A o B.**
+**Ronda 5 (23:05), decisión: RUTA B híbrida → V4 definitiva** (`out/traverso/lds2/los-de-siempre-THE-ENTRANCE-v4-rutaB.mp4`,
+`TraversoEntranceV4`, 22,5 s). Banda `audio/banda-v4.mp3` armada con `scripts/traverso-lds2-banda-v4.py`:
+cuerdas italianas sólo 0–1,3 s (falsa expectativa, −5 dB) → QUIEBRE con la garage entrando en su golpe →
+vacío 8,66–9,18 sobre el bache natural → DROP 9,18 = reveal → tres golpes 11,94/12,38/12,86 = product
+porn → parada natural 14,16–14,66 + riser → hit 15,16 = luz de la puerta → 17,66–20,0 la banda «da un
+paso atrás» (pasa-bajos 900 Hz, −7 dB) para el deadpan → vuelve 20,0 → HIT 21,66 → corte 22,5.
+Todos los cortes del montaje están sobre esos eventos medidos. Cero clips nuevos.
 **Qué sigue:** que Valeria ESCUCHE el v1 (pista y mezcla cuadradas por envolvente, no de oído) y
 decida si la música original se queda o se licencia una; ajustar niveles de SFX; subir clips y
 render al Drive de Traverso; si se aprueba, versión 1:1 para feed.

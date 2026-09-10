@@ -14,6 +14,19 @@ def pedir(r,c=None):
         with urllib.request.urlopen(q,context=CTX,timeout=120) as x: return json.loads(x.read())
     except urllib.error.HTTPError as e: sys.exit(f'✗ HTTP {e.code}: {e.read().decode()[:300]}')
 P={
+ 'v2-drama': ("Epic dramatic Chilean telenovela opening theme from the late 1990s, orchestral: bold string "
+   "stabs, a proud brass fanfare melody you can hum, timpani rolls, a dark piano motif, slow-burning and "
+   "grandiose, like a legendary character walking in slow motion. Tension riser around second 8, a short "
+   "silence, then a huge orchestral hit at second 9 and the full theme at maximum drama until a final "
+   "stinger at second 23 and a hard stop. 24 seconds, instrumental, no drums-machine, no EDM."),
+ 'v2-swagger': ("Cinematic swagger walk-in music: a heavy slow hip-hop drum groove with a fat electric bass "
+   "riff, dramatic Latin strings and mariachi-style trumpet stabs, confident and slightly comedic, like "
+   "three legends entering a room. Riser at second 8, half a second of silence, massive drop with brass "
+   "and 808 at second 9, groove to the end, final hit at second 23, hard stop. 24 seconds, instrumental."),
+ 'v2-runway': ("High-fashion runway show music with a dark cinematic twist: pulsing deep bass, sharp snare and "
+   "clap hits, dramatic staccato strings, an elegant brass hook, minimal and expensive. Build and riser "
+   "at second 8, brief silence, big drop at second 9 with the full beat and strings, keeps driving until "
+   "a final hit at second 23 and an abrupt cut. 24 seconds, instrumental, no vocals."),
  'entrance-a': ("Cinematic fashion-runway trailer music with the DNA of a 1990s Chilean telenovela opening: "
    "0-2 s three dry percussive hits over silence, 2-7 s a driving groove with a recognisable deep electric bass "
    "riff, dramatic strings and sharp snare hits, 7-8.5 s rising tension, 8.5-9 s HALF A SECOND OF TOTAL SILENCE, "

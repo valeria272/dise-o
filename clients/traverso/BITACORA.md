@@ -14,6 +14,24 @@ sets en `lds2/keyframes`, `lds2/sets` (JPEG en git, PNG local); clips en `lds2/c
 viajan); composición `src/compositions/traverso/LosDeSiempreEntrance.tsx` (`TraversoEntrance`);
 render `out/traverso/lds2/los-de-siempre-THE-ENTRANCE-v1.mp4` y copia en el Escritorio.
 Generadores: `scripts/traverso-lds2-keyframes.py`, `-clips.py`, `-musica.py`.
+**Ronda 2 (22:30), feedback de Valeria sobre el v1 → v2 rendida** (`out/traverso/lds2/los-de-siempre-THE-ENTRANCE-v2.mp4`,
+composición `TraversoEntranceV2`, 25 s): hook «Ya se supo...» a máquina con pulso grave y CLACKs con micro
+push-in; textos que entran por golpe y salen por corte; en la oficina UNA sola sentada (entran como
+rockstars → corte a la mesa), sin «Primera reunión»; cierre con texto a máquina «Traverso. Los de
+siempre, ahora también en nuestra mesa. Bienvenidos a Grupo CopyLab.» y el logo animado de Copylab
+(el punto que viaja, adaptado de GclOrigenReel). Música nueva «drama teleserie» (`v2-drama.mp3`,
+golpe en 9,2 s); alternativas en el Escritorio (A drama · B runway · C la de la v1). Se cambia con
+la constante `MUSICA` y el `DROP` de la composición.
+**Ronda 3 (22:45), feedback frame a frame de Valeria → V3** (`out/traverso/lds2/los-de-siempre-THE-ENTRANCE-v3.mp4`,
+`TraversoEntranceV3`, 23 s). Regla: «no más escenas, más dirección en los segundos que hay» → cero
+clips nuevos. Microhook tráiler 0–2 s (CLACK/CLACK/TAC/BOOM, cortes de 0,4 s, «Ya se supo...» chico
+sobre imagen, nunca sobre negro); tres personalidades a tres escalas por recorte; sin pantalla negra
+antes del reveal (microvacío de audio de 4 f); reveal con bass hit + impacto de cámara + push-in que
+frena; triple product porn de 0,4 s; puerta → sobreexposición → ventana; wipe → ya sentados con
+«Primera reunión / Cero presentaciones»; end card de 2,5 s y hard cut. **Banda sonora EDITADA para la
+película** (`scripts/traverso-lds2-banda.py` → `audio/banda-v3.mp3`): tramos de las pistas
+generadas cortados al mapa musical (tensión → groove con golpes en 3/4,5/6/7,5 → microvacío →
+DROP 9,75 → riser → groove suave en la reunión → HIT 22,4 → corte 23,0) + foley encima.
 **Qué sigue:** que Valeria ESCUCHE el v1 (pista y mezcla cuadradas por envolvente, no de oído) y
 decida si la música original se queda o se licencia una; ajustar niveles de SFX; subir clips y
 render al Drive de Traverso; si se aprueba, versión 1:1 para feed.

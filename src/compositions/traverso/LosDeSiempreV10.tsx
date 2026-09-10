@@ -157,9 +157,9 @@ const Marcas: React.FC = () => {
   const op = interpolate(enter, [0, 1], [0, 1]); const y = interpolate(enter, [0, 1], [40, 0]);
   const CW = 370, CH = (CW * 889) / 1000;                 // caja del logo de Copylab
   const dot = {x: LOGO_DOT.x * CW, y: LOGO_DOT.y * CH, r: LOGO_DOT.r * CW};
-  // el guiño: a los 0,9 s el punto se cierra (aplasta) y se abre, como un ojo
+  // el guiño: un PÁRPADO (disco negro) baja sobre el punto, lo cierra hasta dejar una luna, se queda 3 f y sube
   const W0 = F(0.9);
-  const wink = interpolate(frame, [W0, W0 + 3, W0 + 4, W0 + 8], [1, 0.08, 0.08, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+  const lid = interpolate(frame, [W0, W0 + 4, W0 + 8, W0 + 13], [-2.4, -0.95, -0.95, -2.4], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   return (
     <AbsoluteFill style={{justifyContent: "flex-end", alignItems: "center", paddingBottom: 580, opacity: op, transform: `translateY(${y}px) scale(${interpolate(enter, [0, 1], [1.15, 1])})`}}>
       <div style={{display: "flex", alignItems: "center", gap: 48}}>
@@ -169,7 +169,9 @@ const Marcas: React.FC = () => {
           <Img src={staticFile("brand/copylab/copylab-white.png")} style={{position: "absolute", left: 0, top: 0, width: CW, height: CH}} />
           {/* tapamos el punto del PNG y dibujamos el nuestro, que guiña */}
           <div style={{position: "absolute", left: dot.x - dot.r - 2, top: dot.y - dot.r - 2, width: (dot.r + 2) * 2, height: (dot.r + 2) * 2, borderRadius: "50%", background: INK}} />
-          <div style={{position: "absolute", left: dot.x - dot.r, top: dot.y - dot.r, width: dot.r * 2, height: dot.r * 2, borderRadius: "50%", background: "#fff", transform: `scaleY(${wink})`}} />
+          <div style={{position: "absolute", left: dot.x - dot.r, top: dot.y - dot.r, width: dot.r * 2, height: dot.r * 2, borderRadius: "50%", background: "#fff", overflow: "hidden"}}>
+            <div style={{position: "absolute", left: -dot.r * 0.15, top: 0, width: dot.r * 2.3, height: dot.r * 2.3, borderRadius: "50%", background: INK, transform: `translateY(${lid * dot.r}px)`}} />
+          </div>
         </div>
       </div>
     </AbsoluteFill>

@@ -349,4 +349,19 @@ PLANOS.update({
         + LOCKED + CAM + NEG, [LOCK_TRIO, os.path.join(A, "keyframes", "e10_reunion.png"), BOARD]),
 })
 
+# V8 (10-09-2026): la entrada con la franja horizontal ARRIBA de las boquillas (arquitectura, no personajes)
+PLANOS.update({
+    "keyframes/k08b_entrada_alta": ("reel",
+        "SHOT 'A DONDE VAN': camera BEHIND the three LOCKED characters at hip height. We see their BACKS "
+        "(black tuxedo backs, caps, short legs and big feet: yellow left, gold centre one step ahead, red "
+        "right) standing close to the glass entrance of the agency, about to go in. ARCHITECTURE RULE: the "
+        "doorway is TALL — its horizontal transom bar and every horizontal frame line sit clearly ABOVE the "
+        "top of the highest cap, at about twice the characters' height; only vertical mullions and the open "
+        "glass doors are at character height, and nothing crosses, overlaps or shows through any character. "
+        "Above the doorway, integrated in the architecture, clean white sans-serif lettering reads exactly "
+        "'GRUPO COPYLAB'. Warm light glows from inside; wet glossy black floor with reflections; deep blacks. "
+        "Same look as the reference entrance. " + LOCKED + CAM + NEG,
+        [LOCK_TRIO, os.path.join(A, "keyframes", "k08_hacia_copylab.png")]),
+})
+
 if __name__ == "__main__": main()

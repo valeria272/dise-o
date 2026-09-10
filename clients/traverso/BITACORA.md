@@ -9,6 +9,16 @@ personas del equipo de espaldas conversando (keyframe nuevo `e10b_reunion_equipo
 clip nuevo, generado desde el trío LOCKED); (3) cierre en tres placas: LOS DE SIEMPRE / AHORA TAMBIÉN EN
 NUESTRA MESA → BIENVENIDOS, TRAVERSO + logo Traverso → AHORA EN GRUPO COPYLAB + el logo animado de
 Copylab (el punto que viaja, como en el cierre de G). Misma canción (`banda-v7.mp3`, 21 s).
+**V8 FINAL POLISH (08:05)** (`out/traverso/lds2/los-de-siempre-V8.mp4`, `TraversoV8`, 19,6 s): la presentación
+escénica se construyó en post sobre el hero shot c08 — silueta en penumbra (brightness 0,22 / contraste 1,35)
+y tres máscaras elípticas que destapan la iluminación real del plano: foco izquierdo 4,04, centro 4,26,
+derecho 4,74 (tres onsets reales de la canción), cada uno con su CLACK; en el tercero cae LOS DE SIEMPRE.
+sin fade (reveal 1). Solapas → microvacío 6,15–6,6 → DROP 6,6 abren → etiquetas (reveal 2), 1,9 s después.
+Entrada: keyframe `k08b_entrada_alta` + clip `c17` (única regeneración, de ARQUITECTURA: la franja horizontal
+queda al doble de la altura de los personajes; revisado frame a frame 9,4–11,5 s, nada atraviesa boquillas
+ni pies) → Ketchup pasa frente a lente → reunión con el equipo. Cierre en DOS cards (fuera «Ahora en Grupo
+CopyLab» y el logo animado). SFX reducidos a: pasos, tela, 3 CLACKs, acento, sub-hit + solapas, riser/puerta/
+aire, oficina, carpeta, golpe final. Misma canción (`banda-v6.mp3`).
 **Dónde quedó:** todo en `public/assets/traverso/lds2/` y `src/compositions/traverso/LosDeSiempreV7.tsx`;
 render en el Escritorio de Valeria y en `out/traverso/lds2/`.
 **Qué sigue:** escuchar V7 (balance canción–foley); si se aprueba, versión 1:1 para feed y subir al Drive.

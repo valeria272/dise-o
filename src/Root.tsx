@@ -70,6 +70,7 @@ import {LosDeSiempreEntrance, ENT_FPS, ENT_W, ENT_H, ENT_DURATION} from "./compo
 import {LosDeSiempreEntranceV2, ENT2_FPS, ENT2_W, ENT2_H, ENT2_DURATION} from "./compositions/traverso/LosDeSiempreEntranceV2";
 import {LosDeSiempreEntranceV3, ENT3_FPS, ENT3_W, ENT3_H, ENT3_DURATION} from "./compositions/traverso/LosDeSiempreEntranceV3";
 import {LosDeSiempreEntranceV4, ENT4_FPS, ENT4_W, ENT4_H, ENT4_DURATION} from "./compositions/traverso/LosDeSiempreEntranceV4";
+import {LosDeSiempreV8, V8_FPS, V8_W, V8_H, V8_DURATION} from "./compositions/traverso/LosDeSiempreV8";
 import {LosDeSiempreV7, V7_FPS, V7_W, V7_H, V7_DURATION} from "./compositions/traverso/LosDeSiempreV7";
 import {LosDeSiempreV6, V6_FPS, V6_W, V6_H, V6_DURATION} from "./compositions/traverso/LosDeSiempreV6";
 import {LosDeSiempreV5, V5_FPS, V5_W, V5_H, V5_DURATION} from "./compositions/traverso/LosDeSiempreV5";
@@ -393,6 +394,7 @@ export const RemotionRoot: React.FC = () => {
             />
           )),
         )}
+        <Composition id="TraversoV8" component={LosDeSiempreV8} durationInFrames={V8_DURATION} fps={V8_FPS} width={V8_W} height={V8_H} />
         <Composition id="TraversoV7" component={LosDeSiempreV7} durationInFrames={V7_DURATION} fps={V7_FPS} width={V7_W} height={V7_H} />
         <Composition id="TraversoV6" component={LosDeSiempreV6} durationInFrames={V6_DURATION} fps={V6_FPS} width={V6_W} height={V6_H} />
         <Composition id="TraversoV5" component={LosDeSiempreV5} durationInFrames={V5_DURATION} fps={V5_FPS} width={V5_W} height={V5_H} />

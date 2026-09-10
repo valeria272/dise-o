@@ -460,7 +460,7 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
         por si Eli prefiere la foto limpia — Scarlette ya rechazó una vez un
         montaje («se ve un montaje muy raro el vaso pegado en la foto»), así que
         las dos van al HTML de antes y después. */}
-    <FotoFondo src={F + 'st-16-09-cowork-real-vaso.jpg'} oscurecer={0.04} />
+    <FotoFondo src={F + 'st-16-09-cowork-real-laptop.jpg'} oscurecer={0.04} />
 
     {/* El lockup en BEIGE: sobre el cielo gris de la foto real el café no se
         lee (1,80–2,09:1). Ver `LogoBeigeMarca`. */}

@@ -52,8 +52,12 @@ def main():
     fuentes = {
         "antes": (RAIZ / "out/hilton/between/ronda10-antes.jpg", 760),
         "despues": (RAIZ / "out/hilton/between/st-s3/BW-S3-Cowork.png", 760),
-        "limpia": (RAIZ / "out/hilton/between/st-s3/BW-S3-Cowork-sin-vaso.png", 520),
-        "crudo": (RAIZ / "raw/hilton/between/cowork-2do-piso/fotos/IMG_8539.jpg", 520),
+        "intermedia": (RAIZ / "out/hilton/between/ronda10-intermedia.jpg", 430),
+        "limpia": (RAIZ / "out/hilton/between/st-s3/BW-S3-Cowork-sin-vaso.png", 430),
+        "crudo": (RAIZ / "raw/hilton/between/cowork-2do-piso/fotos/IMG_8539.jpg", 430),
+        "refeli": (RAIZ / "raw/hilton/between/ediciones-ia-eli"
+                   / "magnific_agrega-una-laptop-en-la-m_iAi90W63uK.png", 430),
+        "fondo": (RAIZ / "public/assets/hilton/between/st-s3/st-16-09-cowork-real-laptop.jpg", 430),
     }
     p = {}
     for k, (ruta, ancho) in fuentes.items():
@@ -120,19 +124,38 @@ def main():
     partes.append(marco(p["antes"], "Antes · foto generada",
                         "La escena entera —mesa, taza, croissant, notebook y planta— "
                         "salio de un prompt. No es Between."))
-    partes.append(marco(p["despues"], "Despues · foto real del 2.º piso",
-                        "IMG_8539 reencuadrado, con el vaso To Go real del cliente montado "
-                        "sobre la mesa. Es lo que quedo en Drive.", destacado=True))
+    partes.append(marco(p["despues"], "Despues · foto real, servida",
+                        "IMG_8539 reencuadrado, con la laptop y la libreta agregadas al modo "
+                        "de tu edicion de Magnific, y el vaso To Go real montado encima. "
+                        "Es lo que quedo en Drive.", destacado=True))
     partes.append("</div>")
 
-    partes.append("<h2>La alternativa, por si prefieres la foto sin intervenir</h2>")
+    partes.append("<h2>Tu edicion de Magnific fue la referencia</h2>")
+    partes.append('<p class="nota">De <code>raw/hilton/between/ediciones-ia-eli/</code>: '
+                  "el nombre del archivo guarda tu propio prompt, "
+                  "<code>magnific_agrega-una-laptop-en-la-m…</code>. De ahi salio el "
+                  "tratamiento de la laptop — material, color, escala respecto de la mesa "
+                  "y luz natural calida.</p>")
     partes.append('<div class="fila">')
-    partes.append(marco(p["limpia"], "Sin el vaso",
-                        "La foto real tal cual. La mesa queda vacia: la mitad de abajo es "
-                        "una tabla sin nada, y el manual §4 pide mesa servida."))
-    partes.append(marco(p["crudo"], "El material, sin tocar",
-                        "IMG_8539 completo. Al reencuadrar se le saco techo por arriba: "
-                        "el cielo de la sala es lo peor de la toma."))
+    partes.append(marco(p["refeli"], "Tu referencia · Magnific",
+                        "Mesa de madera, portatil, el vaso Between REAL con arte latte y "
+                        "follaje detras. El tratamiento que se calco."))
+    partes.append(marco(p["fondo"], "El fondo nuevo",
+                        "La foto real del cowork con la laptop y la libreta agregadas, y el "
+                        "vaso real montado despues. Sin texto encima."))
+    partes.append("</div>")
+
+    partes.append("<h2>El camino, paso a paso</h2>")
+    partes.append('<div class="fila">')
+    partes.append(marco(p["crudo"], "1 · El material, sin tocar",
+                        "IMG_8539 completo, tal como salio del telefono. Al reencuadrar se le "
+                        "saco techo: el cielo de la sala es lo peor de la toma."))
+    partes.append(marco(p["limpia"], "2 · Solo la foto real",
+                        "La mesa queda vacia: la mitad de abajo es una tabla sin nada, y el "
+                        "manual §4 pide mesa servida."))
+    partes.append(marco(p["intermedia"], "3 · Con el vaso real",
+                        "Mejor, pero seguia faltando el notebook que pide el brief y la mesa "
+                        "se veia sola."))
     partes.append("</div>")
 
     partes.append("<h2>Por que esta foto y no otra de las 91</h2>")
@@ -154,25 +177,31 @@ def main():
                   "</ul>")
 
     partes.append('<div class="ojo">'
-                  "<strong>⚠️ El notebook del brief no esta, y es un hueco de material.</strong> "
-                  "El brief pide «notebook abierto + cafe Between + libreta». El cliente "
-                  "<strong>no tiene ningun notebook fotografiado</strong>: los unicos fotogramas "
-                  "con notebook son del <em>lounge del hotel</em>, con caras reconocibles, y no "
-                  "son el cowork. No se genero uno — se pide la foto."
+                  "<strong>⚠️ El notebook no existia en el material, y se resolvio como lo "
+                  "resolviste tu.</strong> El brief pide «notebook abierto + cafe Between + "
+                  "libreta» y el cliente <strong>no tiene ningun notebook "
+                  "fotografiado</strong> en el cowork: los unicos fotogramas con notebook son "
+                  "del <em>lounge del hotel</em>, con caras reconocibles y en otro espacio. En "
+                  "vez de dejar el hueco, se calco tu edicion de Magnific. <strong>Sigue "
+                  "siendo razonable pedirle al cliente una foto real trabajando en el "
+                  "cowork</strong>: es lo unico que dejaria de necesitar el paso de IA."
                   "</div>")
 
     partes.append("<h2>Los numeros</h2>")
     partes.append('<p class="nota">Contraste del titular beige <code>#fff9eb</code> contra la '
                   "foto, medido en las filas donde va el texto. <strong>La foto real lo "
-                  "mejora</strong>, que era la duda: por eso no se movio ninguna medida de la "
+                  "mejora</strong>, que era la duda: el PEOR tercio de toda la zona del texto "
+                  "pasa de <strong>2,08</strong> a <strong>3,02</strong>, y el resto del "
+                  "bloque va entre 3,4 y 17. Por eso no se movio ninguna medida de la "
                   "geometria que aprobaste en las rondas 5, 6 y 7.</p>")
-    filas = [("400", "izquierdo", "2,08", "3,18"),
-             ("400", "centro", "2,12", "3,30"),
-             ("400", "derecho", "2,69", "4,09"),
-             ("470", "izquierdo", "2,10", "3,38"),
-             ("540", "centro", "2,30", "3,60")]
+    filas = [("200", "centro", "2,17", "3,02"),
+             ("300", "izquierdo", "2,08", "3,42"),
+             ("400", "izquierdo", "2,08", "5,58"),
+             ("400", "centro", "2,12", "10,49"),
+             ("470", "izquierdo", "2,10", "3,75"),
+             ("540", "centro", "2,30", "6,30")]
     t = ["<table><tr><th>y</th><th>tercio</th><th>beige · foto generada</th>"
-         "<th>beige · foto real</th></tr>"]
+         "<th>beige · foto real final</th></tr>"]
     for y, ter, a, b in filas:
         t.append('<tr><td class="n">' + y + "</td><td>" + ter + '</td>'
                  '<td class="n pierde">' + a + '</td><td class="n gana">' + b + "</td></tr>")
@@ -193,31 +222,69 @@ def main():
                   '<td class="n gana">3,17 · 3,29 · 3,02</td></tr>'
                   "</table>")
 
+    partes.append("<h2>El paso de IA, y en que orden</h2>")
+    partes.append("<ul>"
+                  "<li>Modelo: <strong>Nano Banana Pro</strong> con <strong>dos "
+                  "referencias</strong> — la foto real del cowork y tu edicion de "
+                  "Magnific — a 4K. Es lo que manda la tabla de decision de "
+                  "<code>MAGNIFIC-LO-QUE-YA-PAGAMOS.md</code> cuando la escena tiene que "
+                  "parecerse a una foto real del cliente. Salio a 3072 × 5504: "
+                  "resolucion de sobra para los 2250 × 4000 de la entrega.</li>"
+                  "<li>Se probo tambien el modelo imagen→imagen y <strong>se descarto "
+                  "por resolucion</strong>: devolvio 768 × 1344, un tercio de lo que pide "
+                  "la entrega. La escena la respetaba igual de bien.</li>"
+                  "<li>⛔ <strong>El orden importa, y es la regla de la casa:</strong> la "
+                  "IA trabajo sobre la base <strong>limpia, sin el vaso</strong>, y el vaso "
+                  "real se monto <strong>despues</strong>. Asi el logotipo impreso del vaso "
+                  "no lo toca nunca el modelo — es la misma razon por la que el relight no "
+                  "va sobre el producto.</li>"
+                  "<li>El prompt lleva por delante la lista de lo que <strong>no se "
+                  "toca</strong>: encuadre, angulo, cielo, focos, la lampara de arco, los "
+                  "cuadros de NY, el muro de listones, los sillones, la alfombra y la veta "
+                  "de la mesa.</li>"
+                  "<li>⚠️ <strong>Le saque el logo de Apple.</strong> Los dos modelos "
+                  "pusieron un MacBook con su logotipo visible — lo copiaron de tu "
+                  "referencia, que tiene uno — y una marca ajena no va en una pieza de "
+                  "Between. Se relleno la tapa interpolando su degradado fila por fila y "
+                  "devolviendole el grano medido (sigma 3,55). Verificado a 2x: no se ve el "
+                  "parche.</li>"
+                  "<li>La libreta con lapiz de la izquierda tambien la puso la IA, y cierra "
+                  "el brief: <strong>notebook + cafe Between + libreta</strong>, los tres "
+                  "elementos que pedia.</li>"
+                  "</ul>")
     partes.append("<h2>El montaje del vaso</h2>")
     partes.append("<ul>"
                   "<li>Es el recorte <strong>real</strong> del cliente "
                   "(<code>togo-vaso-real-nobg.png</code>, de la sesion del 25-07), montado con "
                   "<code>scripts/between-montar-vaso.py</code>: iguala nitidez, nivel y "
                   "temperatura, y dibuja la sombra de contacto.</li>"
-                  "<li><strong>Luz medida en la mesa: viene de la derecha</strong> — brillo "
-                  "174–192 a x≈1500–1890 contra 80–138 en el borde izquierdo. Por eso la sombra "
-                  "cae a la izquierda.</li>"
-                  "<li>Desenfoque aplicado al recorte: 1,3 px, para bajarlo a la nitidez de la "
-                  "escena.</li>"
+                  "<li><strong>Luz medida en la mesa: viene de la derecha</strong>, y se volvio a "
+                  "medir sobre el fondo nuevo porque la IA relumino la mesa: junto a la "
+                  "laptop 163,8 a la izquierda contra <strong>179,6</strong> a la derecha; "
+                  "junto a la libreta 136,3 contra <strong>152,4</strong>. Por eso la sombra "
+                  "cae a la izquierda, igual que las de la laptop y la libreta.</li>"
+                  "<li>Va al frente-centro (centro 900, piso 3180, ancho 380). La escala no "
+                  "se eligio a ojo: un vaso de 12 oz mide <strong>0,28 del ancho</strong> de "
+                  "un portatil de 13 pulgadas, y la laptop mide 1 060 px en el cuadro.</li>"
+                  "<li>Desenfoque aplicado al recorte: 0,95 px, para bajarlo a la nitidez de "
+                  "la escena.</li>"
                   "<li>El vaso <strong>no se espeja</strong>: invertiria el logotipo.</li>"
                   "</ul>")
 
     partes.append("<h2>QA y entrega</h2>")
     partes.append("<ul>"
-                  "<li><code>between-qa.py</code> marca dos avisos y los dos son <strong>falsos "
+                  "<li><code>between-qa.py</code> marca tres avisos y los tres son <strong>falsos "
                   "positivos</strong>, verificado imprimiendo donde estan los pixeles: "
-                  "<strong>7 pixeles</strong> en el borde derecho (un brillo especular del muro "
-                  "de listones, a y 1 461) y <strong>2 pixeles</strong> en la zona segura "
-                  "superior (el foco del cielo). El texto real esta dentro de margenes.</li>"
-                  "<li>Entrega: 2250 × 4000 a 150 ppp · 6 775 199 B.</li>"
+                  "<strong>2 pixeles</strong> en el borde izquierdo (el vano de luz del "
+                  "fondo) y <strong>13 pixeles</strong> en la zona segura superior (el foco "
+                  "del cielo); en el borde derecho, <strong>cero</strong>. El texto real esta "
+                  "dentro de margenes. Con esta van <strong>cuatro piezas seguidas</strong> "
+                  "con el mismo falso positivo: al script le falta distinguir un brillo de "
+                  "foto de un trazo de letra.</li>"
+                  "<li>Entrega: 2250 × 4000 a 150 ppp · 7 897 824 B.</li>"
                   "<li>Subida <strong>reemplazando el mismo archivo</strong> de "
                   "<code>S3 HILTON SEP 2026/BW/STORIES</code>, asi que <strong>el enlace no "
-                  "cambio</strong>. Verificado contra Drive: <code>fileSize</code> 6 775 199 B, "
+                  "cambio</strong>. Verificado contra Drive: <code>fileSize</code> 7 897 824 B, "
                   "en la carpeta STORIES (no cayo en «Mi unidad»).</li>"
                   "<li>Las otras dos piezas de la S3 (14-09 y 18-09) <strong>no se "
                   "tocaron</strong>: siguen en 8 077 154 B y 7 249 755 B.</li>"

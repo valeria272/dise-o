@@ -6542,3 +6542,124 @@ Y se rinde con `npx remotion still src/index.ts BW-S3-Cowork <salida> --scale=2.
 ⚠️ `BetweenEntry.tsx` **no sirve** para las piezas de la S3: su `BW-S-Cowork` es la
 pieza vieja de `BetweenSeptiembre.tsx`. Las de la S3 sólo están en `src/index.ts`.
 Comprobado con `cmp`: el render reproduce byte a byte.
+
+---
+
+## 9. ⭐⭐ RONDA 10 bis — LA LAPTOP ENTRA CALCANDO LA EDICIÓN DE MAGNIFIC DE ELI
+
+La §7 de arriba cerró diciendo «el notebook del brief no está y se pide la
+foto». **Eli lo resolvió de otra manera y hay que dejarlo escrito**, porque es un
+recurso de la cuenta que estaba disponible y no se había mirado:
+
+> «toma de referencia una de las fotos que se editó con magnific en los
+> editables que te pasé, para que añadas uno similar»
+
+### ⭐⭐⭐ EL NOMBRE DEL ARCHIVO DE MAGNIFIC GUARDA EL PROMPT
+
+Es el hallazgo reutilizable. En `raw/hilton/between/ediciones-ia-eli/` hay **42
+ediciones** de Eli y **el nombre de cada archivo lleva su propio prompt en el
+slug**, así que la carpeta es un **catálogo consultable de cómo esta cuenta usa
+la IA** — no hace falta ningún `Informe.txt`:
+
+| Archivo | Lo que pidió Eli |
+|---|---|
+| `magnific_agrega-una-laptop-en-la-m_…` | **«agrega una laptop en la mesa»** |
+| `magnific_haz-un-cambio-de-perspect_…` (×3) | cambios de perspectiva |
+| `magnific_img2-img1-fotografia-life_…` (×4) | fotografía lifestyle combinando dos imágenes |
+| `magnific_haz-que-la-tapa-de-la-img_…` (×2) | la tapa del vaso |
+| `magnific__borra-los-vasos-de-caf-sin-perder-los-dems-detalle__…` | borrar vasos sin perder el resto |
+| `magnific_haz-que-el-muffin-y-choco_…` | el muffin y el chocolate |
+
+> ⭐ **Antes de proponer un prompt nuevo para Between, hay que leer esa carpeta.**
+> Ahí está lo que la diseñadora ya pidió y aprobó, con sus palabras.
+
+**La referencia que se usó:** `magnific_agrega-una-laptop-en-la-m_iAi90W63uK.png`
+(1536 × 2752) — mesa de madera a 45°, un portátil, el **vaso Between real** con
+arte latte y vapor, comida en platos y follaje detrás. De ahí se calcó material,
+color, escala respecto de la mesa y el tratamiento de luz cálida.
+
+### El modelo, y por qué ese
+
+Manda la tabla de `docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`: «que la escena se
+parezca a una foto real del cliente → **Nano Banana Pro** con la foto como
+referencia, pidiendo no tocar arquitectura, vegetación ni encuadre».
+
+- **Nano Banana Pro**, `text-to-image/nano-banana-pro`, **dos referencias** (la
+  foto real del cowork y la edición de Eli) a 4K → salió **3072 × 5504**.
+- Se probó también **Nano Banana imagen→imagen**
+  (`gemini-2-5-flash-image-preview`), que respetó la escena igual de bien pero
+  devolvió **768 × 1344**: un tercio de lo que pide la entrega. ⛔ **Descartado
+  por resolución, no por calidad** — anotarlo, porque para una story de
+  2250 × 4000 el imagen→imagen de Freepik no alcanza.
+- Todo en `scripts/between-cowork-laptop-ia.py`, que corre los dos caminos.
+
+### ⛔ EL ORDEN: LA IA VA ANTES DEL PACKSHOT, NUNCA DESPUÉS
+
+1. La IA trabaja sobre la base **limpia** (`st-16-09-cowork-real.jpg`), **sin el
+   vaso**.
+2. El vaso real se monta **después** con `between-montar-vaso.py`.
+
+Así el **logotipo impreso del vaso no lo toca nunca el modelo**. Es la misma
+razón por la que el relight no va sobre el producto (regla dura 1 del catálogo) y
+la técnica que Eli ya usaba: **packshot real + fondo IA**.
+
+### ⚠️ HAY QUE SACARLE EL LOGO DE APPLE
+
+Los **dos** modelos pusieron un MacBook con el logotipo visible —lo copiaron de
+la referencia de Eli, que tiene uno— y **una marca ajena no va en una pieza de
+Between**, aunque el prompt diga «no logos». Se quitó a mano sobre la tapa, que
+es un degradado liso:
+
+- caja `(2140, 2945)–(2320, 3185)` en el archivo de 3072 × 5504;
+- relleno **fila por fila** interpolando la tapa entre 26 px de muestra a cada
+  lado, suavizado gaussiano de 9 px y **grano devuelto con la sigma medida
+  afuera de la caja (3,55)**;
+- borde plumeado con un desenfoque de 18 px para que no se vea el parche.
+
+Verificado a 2×: la tapa queda limpia y sin costura.
+
+> ⚠️ **Revisa siempre el resultado buscando marcas ajenas.** El modelo copia la
+> marca del objeto de la referencia, no sólo su forma.
+
+### La luz se vuelve a medir DESPUÉS del paso de IA
+
+La IA **reiluminó la mesa** (agregó un charco de luz), así que la medición de la
+§6 ya no servía para montar el vaso. Medido sobre el fondo nuevo:
+
+| Dónde | izquierda | derecha |
+|---|---|---|
+| junto a la base de la laptop | 163,8 | **179,6** |
+| mesa al frente | 136,6 | **147,0** |
+| junto a la libreta | 136,3 | **152,4** |
+
+Sigue viniendo de la **derecha**, así que la sombra del vaso cae a la izquierda,
+igual que las de la laptop y la libreta. Montaje: `--centro 900 --piso 3180
+--ancho 380 --luz derecha`, desenfoque 0,95 px.
+
+⭐ **La escala del vaso no se eligió a ojo:** un vaso de 12 oz mide **0,28 del
+ancho** de un portátil de 13″, y la laptop mide 1 060 px en el cuadro.
+
+### Y el contraste aguantó
+
+El fondo nuevo es más claro en la mesa, así que había que re-medir. El **peor
+tercio** de toda la zona del texto pasa de **2,08** (foto generada) a **3,02**, y
+el resto del bloque va entre 3,4 y 17,6. La geometría sigue intacta.
+
+### Estado final de la pieza
+
+- Fondo: `st-16-09-cowork-real-laptop.jpg`, versionado.
+- Entrega **7 897 824 B**, 2250 × 4000 a 150 ppp, reemplazando el mismo archivo
+  `1lAgqPkkA25L4VRlnIg9UayWPdZxDuqwk` — **el enlace no cambió**. Verificado por
+  `fileSize` y `parentId`.
+- Reproduce **byte a byte** (`cmp`).
+- `between-qa.py`: tres avisos, los tres falsos positivos (2 px del vano de luz
+  izquierdo y 13 px del foco del cielo; cero en el borde derecho). **Cuarta pieza
+  seguida** con el mismo defecto del script.
+- ✅ **El brief queda completo**: notebook + café Between + libreta.
+- Los cuatro fondos quedan versionados y el HTML los muestra en orden:
+  `st-16-09-cowork.jpg` (generado) → `-real.jpg` (foto sola) →
+  `-real-vaso.jpg` (con el vaso) → `-real-laptop.jpg` (el entregado).
+
+> ⚠️ **Lo que sigue siendo razonable pedirle al cliente:** una foto real de
+> alguien trabajando en el cowork. Es lo único que dejaría de necesitar el paso
+> de IA.

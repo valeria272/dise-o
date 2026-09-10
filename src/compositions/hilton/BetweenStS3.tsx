@@ -517,6 +517,24 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
         Los fondos anteriores quedan versionados para el histórico:
         `st-16-09-cowork.jpg` (generado, ronda 9) · `-real.jpg` (foto sola) ·
         `-real-vaso.jpg` y `-real-laptop.jpg` (los montajes de la ronda 10). */}
+    {/* ⭐ RONDA 12 (10-09-2026) — la ronda 11 quedó APROBADA y esto es un ajuste
+        de dirección de arte: «reemplaces el vaso TOGO por un café de taza blanca de
+        capuccino se va a ver más real. Y que esté más cerca del plato».
+
+        ⭐ **El recipiente dice si el cliente se queda o se va.** La pieza invita a
+        quedarse a trabajar de 08:00 a 22:00 y un vaso PARA LLEVAR la contradecía.
+        To Go para las piezas de llevar; taza y platillo para las de quedarse.
+
+        En el prompt sólo cambiaron la REF3 (`taza-cappuccino-nobg.png`, el otro
+        recorte real del kit) y la posición —«pegada al plato, casi tocando, para
+        que se lean como un solo desayuno servido»—. ⛔ Y hubo que QUITAR de las
+        negaciones el «no second cup» de la ronda 11: prohíbía justo lo que se
+        pedía. Al cambiar el objeto principal hay que releer las negaciones.
+
+        ⭐ Y se cae la nota de la ronda 10 que decía que esta taza «no servía por
+        estar fotografiada desde arriba»: eso valía para MONTARLA. Como REFERENCIA
+        el ángulo da igual, porque el modelo la redibuja en la perspectiva de la
+        escena. */}
     <FotoFondo src={F + 'st-16-09-cowork-escena.jpg'} oscurecer={0.04} />
 
     {/* El lockup en BEIGE: sobre el cielo gris de la foto real el café no se

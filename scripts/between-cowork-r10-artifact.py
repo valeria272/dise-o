@@ -29,7 +29,7 @@ RAIZ = Path(__file__).resolve().parent.parent
 SALIDA = RAIZ / "out/hilton/between/ronda10-artifact.html"
 
 FUENTES = {
-    "antes":      (RAIZ / "out/hilton/between/ronda10-antes.jpg", 720),
+    "antes":      (RAIZ / "out/hilton/between/ronda12-antes.jpg", 720),
     "despues":    (RAIZ / "out/hilton/between/st-s3/BW-S3-Cowork.png", 720),
     "refeli":     (RAIZ / "raw/hilton/between/ediciones-ia-eli"
                    / "magnific_agrega-una-laptop-en-la-m_iAi90W63uK.png", 460),
@@ -37,7 +37,8 @@ FUENTES = {
     "crudo":      (RAIZ / "raw/hilton/between/cowork-2do-piso/fotos/IMG_8539.jpg", 360),
     "limpia":     (RAIZ / "out/hilton/between/st-s3/BW-S3-Cowork-sin-vaso.png", 360),
     "montaje":    (RAIZ / "out/hilton/between/ronda11-montaje-rechazado.jpg", 360),
-    "variante":   (RAIZ / "out/hilton/between/ronda11-variante-v2.jpg", 460),
+    "variante":   (RAIZ / "out/hilton/between/ronda12-variante-v1.jpg", 460),
+    "generada":   (RAIZ / "out/hilton/between/ronda10-antes.jpg", 360),
 }
 
 
@@ -204,7 +205,7 @@ def main():
 
     h = []
     a = h.append
-    a("<title>Cowork 16-09 · ronda 11</title>")
+    a("<title>Cowork 16-09 · ronda 12</title>")
     a('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
       "family=IBM+Plex+Mono:wght@400;500&"
       "family=Raleway:wght@500;600;700;800&"
@@ -213,28 +214,23 @@ def main():
     a('<div class="env">')
 
     a('<p class="eyebrow">Between · Coffee &amp; Bar — historia del 16 de septiembre</p>')
-    a("<h1>La escena del Cowork, producida entera</h1>")
-    a('<p class="bajada">Columna N de la hoja STORIES, ronda 11. El fondo es el '
-      "segundo piso real de Between, fotografiado por el cliente; el vaso, la "
-      "laptop y el desayuno se agregaron dentro de la escena en vez de pegarse "
-      "encima.</p>")
+    a("<h1>La taza reemplaza al vaso To Go</h1>")
+    a('<p class="bajada">Columna N de la hoja STORIES, ronda 12. La versión anterior '
+      "quedó aprobada; este ajuste cambia el vaso To&nbsp;Go por una taza blanca de "
+      "cappuccino y la acerca al plato.</p>")
 
-    a('<div class="pedido"><div class="quien">Eli · sobre la entrega anterior</div>'
-      "<q>Me parece que el montaje está mal logrado, la foto de fondo original "
-      "debes añadir un vaso togo, un notebook con logo apple, da lo mismo si "
-      "aparece que sea sutil. Un desayuno de sándwich, como se ven en las fotos. "
-      "Hazlo nuevamente y recuerda hacer un buen prompt, en magnific.</q></div>")
-    a('<p class="nota" style="margin:-24px 0 40px;">Y antes, lo que abrió la ronda: '
-      "Scarlette Muñoz sobre <code>STORIES!N</code>, «podemos cambiar la imagen a "
-      "una real de cowork?».</p>")
+    a('<div class="pedido"><div class="quien">Eli · sobre la versión aprobada</div>'
+      "<q>Aprobada la del drive, el resultado quedó mucho mejor. Quiero que "
+      "reemplaces el vaso To Go por un café de taza blanca de capuccino, se va a "
+      "ver más real. Y que esté más cerca del plato de sándwiches.</q></div>")
 
     a('<div class="fila">')
-    a(fig(im["antes"], "Antes", "La escena entera —mesa, taza, croissant, notebook y "
-          "planta— salió de un prompt. No es Between.", hero=True))
+    a(fig(im["antes"], "Antes <em>· la aprobada</em>",
+          "La versión que quedó aprobada, con el vaso To&nbsp;Go y el plato "
+          "separados por un tramo de mesa.", hero=True))
     a(fig(im["despues"], "Después <em>· en Drive</em>",
-          "El segundo piso real. El vaso To&nbsp;Go, la laptop con su manzana y el "
-          "desayuno de sándwich se pintaron dentro de la escena, con su luz y su "
-          "profundidad de campo.", hero=True))
+          "Taza blanca de cappuccino con arte latte, sobre su platillo y pegada al "
+          "plato: los dos se leen como un solo desayuno servido.", hero=True))
     a("</div>")
 
     a("<h2>Tu edición de Magnific fue la referencia</h2>")
@@ -254,27 +250,29 @@ def main():
 
     a("<h2>El camino</h2>")
     a('<div class="fila tres">')
-    a(fig(im["crudo"], "El material", "IMG_8539 tal como salió del teléfono. Al "
-          "reencuadrar se le quitó techo: el cielo de la sala es lo peor de la toma.",
-          paso="01"))
-    a(fig(im["limpia"], "Sólo la foto", "La mesa queda vacía y la mitad de abajo es "
-          "una tabla sin nada. El manual §4 pide mesa servida.", paso="02"))
+    a(fig(im["generada"], "Todo generado", "La pieza que estaba en Drive: la escena "
+          "entera salió de un prompt y no era Between. Es lo que Scarlette mandó a "
+          "cambiar por una foto real.", paso="01"))
+    a(fig(im["limpia"], "Sólo la foto real", "El segundo piso de Between. La mesa "
+          "queda vacía y la mitad de abajo es una tabla sin nada.", paso="02"))
     a(fig(im["montaje"], "El montaje, descartado", "Aquí el vaso se pegaba encima con "
           "el script de montaje. Se veía pegado, y es lo que mandaste a rehacer.",
           paso="03"))
     a("</div>")
 
-    a("<h2>La otra variante, por si prefieres ese desayuno</h2>")
-    a('<p class="nota">Se generaron tres. Elegí la del sándwich: los cuatro '
-      "triángulos de la otra salen algo secos y repetidos, y acá el vaso queda más "
-      "legible. Pero el desayuno es decisión tuya y cambiarlo es una línea.</p>")
+    a("<h2>La otra variante</h2>")
+    a('<p class="nota">Se generaron tres con el mismo prompt. Elegí ésta porque la '
+      "taza queda <strong>tocando el plato</strong>, que es lo que pediste, y "
+      "porque no deja una cuchara suelta sobre la mesa. La alternativa trae plato "
+      "cuadrado —más parecido al de las fotos de desayuno del cliente— pero la taza "
+      "queda separada.</p>")
     a('<div class="fila">')
-    a(fig(im["variante"], "Variante · triángulos de tostada",
-          "Es más literal respecto de las fotos de desayuno del cliente, que sirven "
-          "los triángulos en abanico sobre plato blanco."))
+    a(fig(im["variante"], "Variante · plato cuadrado",
+          "Plato cuadrado y cuchara sobre la mesa. La taza queda a un tramo del "
+          "plato, no pegada."))
     a(fig(im["fondo"], "La elegida, sin texto",
-          "El fondo tal como quedó: sándwich tostado, el vaso con su logotipo y la "
-          "laptop con la manzana apenas sugerida."))
+          "El fondo tal como quedó: plato redondo, taza y platillo tocándolo, y la "
+          "laptop detrás."))
     a("</div>")
 
     a("<h2>Por qué esta foto y no otra de las 91</h2>")
@@ -298,17 +296,17 @@ def main():
     a('<p class="nota">Toda la geometría del titular está calibrada contra la foto '
       "vieja, así que cambiar la foto podía obligar a rehacerla. Medido el beige "
       "<code>#fff9eb</code> en las filas donde va el texto, pasa lo contrario: "
-      "<strong>mejora</strong>. El peor tercio sube de 2,08 a 3,02 y el resto del "
+      "<strong>mejora</strong>. El peor tercio sube de 2,08 a 3,03 y el resto del "
       "bloque va entre 3,4 y 17,6, así que <strong>no se movió ninguna "
       "medida</strong>.</p>")
     a('<div class="tabla-envoltura"><table>'
       "<tr><th>y</th><th>tercio</th><th>foto generada</th><th>foto real</th></tr>")
-    for y, ter, viejo, nuevo in [("200", "centro", "2,17", "3,02"),
+    for y, ter, viejo, nuevo in [("200", "centro", "2,17", "3,03"),
                                  ("300", "izquierdo", "2,08", "3,42"),
                                  ("400", "izquierdo", "2,08", "5,58"),
-                                 ("400", "centro", "2,12", "10,49"),
+                                 ("400", "centro", "2,12", "10,56"),
                                  ("470", "izquierdo", "2,10", "3,75"),
-                                 ("540", "centro", "2,30", "6,30")]:
+                                 ("540", "centro", "2,30", "6,38")]:
         a('<tr><td class="n">%s</td><td>%s</td><td class="n baja">%s</td>'
           '<td class="n sube">%s</td></tr>' % (y, ter, viejo, nuevo))
     a("</table></div>")
@@ -362,16 +360,17 @@ def main():
       "el cliente no tiene ningún notebook fotografiado ahí: los únicos fotogramas "
       "con notebook son del lounge del hotel, con caras reconocibles y en otro "
       "espacio. Con esa foto, esta pieza dejaría de necesitar el paso de IA.</p>"
-      "<p><strong>El QA marca cuatro avisos y los cuatro son falsos positivos</strong>, "
-      "verificado imprimiendo dónde están los píxeles: son <strong>29 píxeles</strong> "
-      "del foco del cielo en la primera fila de la imagen, y en los otros tres bordes "
-      "hay <strong>cero</strong>. Van <strong>cinco piezas seguidas</strong> con el "
+      "<p><strong>El QA marca tres avisos y los tres son falsos positivos</strong>, "
+      "verificado imprimiendo dónde están los píxeles: <strong>43 píxeles</strong> "
+      "del borde blanco del plato junto al canto izquierdo y <strong>17</strong> del "
+      "foco del cielo; en el borde derecho y abajo, <strong>cero</strong>. Van "
+      "<strong>seis piezas seguidas</strong> con el "
       "mismo defecto: al script le falta distinguir un brillo de foto de un trazo de "
       "letra.</p></div>")
 
     a('<div class="cierre">')
     for k, v in [("Entrega", "2250 × 4000 · 150 ppp"),
-                 ("Peso", "7 350 797 B"),
+                 ("Peso", "7 140 552 B"),
                  ("En Drive", "mismo archivo · el enlace no cambió"),
                  ("Reproducible", "byte a byte (cmp)")]:
         a('<div class="dato"><div class="k">%s</div><div class="v">%s</div></div>' % (k, v))

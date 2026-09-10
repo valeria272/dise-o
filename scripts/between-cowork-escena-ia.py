@@ -58,12 +58,12 @@ except Exception:
     pass
 
 RAIZ = Path(__file__).resolve().parent.parent
-SALIDA = RAIZ / "out/hilton/between/ia-cowork-escena"
+SALIDA = RAIZ / "out/hilton/between/ia-cowork-taza"
 
 REFS = [
     RAIZ / "public/assets/hilton/between/st-s3/st-16-09-cowork-real.jpg",
     RAIZ / "raw/hilton/between/ediciones-ia-eli/magnific_agrega-una-laptop-en-la-m_iAi90W63uK.png",
-    RAIZ / "public/assets/hilton/between/togo-vaso-real-nobg.png",
+    RAIZ / "public/assets/hilton/between/taza-cappuccino-nobg.png",
     RAIZ / "raw/hilton/between/desayunos-ago2026/DSC_0823.jpg",
 ]
 
@@ -88,8 +88,8 @@ REFERENCIAS = (
     "of the Between coffee bar, shot from a seat at a wooden table. REF2 shows how "
     "this brand photographs a working table (laptop, cup and food on wood, warm "
     "light, shallow depth of field) - copy only its treatment and object scale. "
-    "REF3 is the brand's real takeaway cup: kraft body, matte black dome lid, the "
-    "wordmark BETWEEN above smaller COFFEE & BAR in a thin dark sans-serif; "
+    "REF3 is the brand's real cappuccino: a plain white ceramic cup on a matching "
+    "white saucer, with latte art on the crema and a spoon on the saucer; "
     "reproduce it faithfully. REF4 is a real Between breakfast: toasted sandwich "
     "triangles on a white plate. "
 )
@@ -97,11 +97,11 @@ REFERENCIAS = (
 CONSERVAR = (
     "KEEP REF1 EXACTLY. Do not change framing, crop, camera angle, perspective or "
     "focal length. Do not redraw or move the ceiling, the downlights, the arched "
-    "floor lamp with its woven shade, the framed black-and-white city photographs, "
+    "floor lamp with its woven shade, the framed city photographs, "
     "the dark slat wall, the grey armchairs, the tan banquette, the console, the "
     "carpet or the table. Keep the exact wood grain, colour, knots and sheen of the "
     "table top, and the existing lighting, white balance, contrast and background "
-    "blur. It must read as the same photograph with objects that were always there. "
+    "blur. It must read as the same photograph. "
 )
 
 AGREGAR = (
@@ -112,37 +112,38 @@ AGREGAR = (
     "three-quarter view so the back of the lid faces the camera, with a small "
     "subtle dark apple-shaped logo centred on the lid - understated, not bright, "
     "not enlarged. No screen interface, no text. "
-    "(b) THE BETWEEN CUP from REF3, right of the laptop and closer to camera, "
-    "upright: kraft cup, matte black dome lid, BETWEEN and COFFEE & BAR legible and "
-    "correctly spelled at a natural size. "
-    "(c) A BREAKFAST PLATE from REF4, in front of the laptop and slightly left: a "
+    "(b) A BREAKFAST PLATE from REF4, in front of the laptop and slightly left: a "
     "white plate with toasted sandwich triangles, appetising, seen from the same "
     "low table-level angle. "
+    "(c) THE WHITE CAPPUCCINO from REF3, on its white saucer, standing on the table "
+    "IMMEDIATELY BESIDE THE PLATE, just to its right and almost touching it, so "
+    "plate and cup read as one breakfast served together. Same angle, latte art "
+    "visible on the crema. "
 )
 
 LUZ = (
     "LIGHT: the warm interior light comes from the RIGHT - measured on the table, "
     "the right side is brighter. Light every added object from the right, brighter "
     "edge on the right, soft contact shadow falling LEFT and slightly toward the "
-    "camera. Match the warm indoor white balance, and the grain and softness of the "
-    "photograph: the objects must not look sharper or cleaner than the wood. "
+    "camera. Match the room's white balance and the grain of the photograph: "
+    "nothing may look sharper than the wood. "
 )
 
 COMPOSICION = (
     "COMPOSITION: all three objects sit in the LOWER HALF of the vertical frame, "
-    "below the middle line, as a loose triangle with clear wood between and around "
-    "them; they must not touch. The UPPER HALF stays completely untouched and free "
-    "of new objects - graphic text goes there. Keep the near bottom edge of the "
-    "table mostly empty. "
+    "below the middle line. The plate and the cup go TOGETHER as one served pair, "
+    "side by side and close; the laptop sits behind them with clear wood between. "
+    "The UPPER HALF stays completely untouched and free of new objects - graphic "
+    "text goes there. Keep the near table edge mostly empty. "
 )
 
 NEGATIVO = (
-    "Do not add people, hands, phones, sunglasses, cables, plants, mugs or extra "
-    "cups. No brand name, sign or watermark anywhere except the BETWEEN wordmark "
-    "on the cup. No captions. Do not import "
+    "No people, hands, phones, sunglasses, cables, plants, takeaway cups or a second "
+    "cup. No brand name, sign, logo or watermark anywhere except the "
+    "small apple on the laptop lid. No captions. Do not import "
     "backgrounds from the other references: ignore REF2's foliage, brownie, phone "
     "and sunglasses, and REF4's marble table, ham, cheese and avocado. "
-    "Photorealistic, one coherent photograph."
+    "Photorealistic, one coherent photo."
 )
 
 PROMPT = REFERENCIAS + CONSERVAR + AGREGAR + LUZ + COMPOSICION + NEGATIVO

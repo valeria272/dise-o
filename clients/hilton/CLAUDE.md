@@ -6796,3 +6796,86 @@ cambiarla es una línea.
 
 > ⚠️ Sigue en pie lo único que dejaría de necesitar el paso de IA: **una foto
 > real de alguien trabajando en el cowork**.
+
+---
+
+# S3 · RONDA 12 (10-09-2026) — LA TAZA REEMPLAZA AL VASO TO GO
+
+La ronda 11 quedó **APROBADA** («aprobada la del drive, el resultado quedó mucho
+mejor»). Este ajuste es de dirección de arte, no de corrección:
+
+> «quiero que reemplaces el vaso TOGO por un café de taza blanca de capuccino se
+> va a ver más real. Y que esté más cerca del plato de sándwiches.»
+
+## 1. ⭐ EL VASO TO GO CONTRADECÍA LA PIEZA, Y ELI LO VIO ANTES QUE NADIE
+
+Vale la pena dejarlo escrito porque es criterio, no gusto: **la pieza invita a
+quedarse a trabajar** —«Ven a trabajar desde Between. Tenemos una mesa para ti»,
+de 08:00 a 22:00— y un vaso **para llevar** dice lo contrario. La taza de loza
+sobre su platillo es la de alguien que se sentó.
+
+**La regla:** el recipiente del café dice si el cliente se queda o se va. To Go
+para las piezas de llevar; **taza y platillo para las de quedarse**.
+
+## 2. Los dos cambios del prompt, y nada más
+
+Sólo se tocaron la referencia 3 y la posición. El resto —lo que no se toca, la
+luz, el marco, las negaciones— quedó igual, que es la ventaja de tener el prompt
+por bloques en `scripts/between-cowork-escena-ia.py`:
+
+- **REF3** pasa de `togo-vaso-real-nobg.png` a **`taza-cappuccino-nobg.png`**, el
+  otro recorte real que ya estaba en el kit. Descrito como «taza blanca de loza
+  sobre su platillo, con arte latte en la crema y una cuchara en el platillo».
+- La posición pasa a **«IMMEDIATELY BESIDE THE PLATE, just to its right and almost
+  touching it, so plate and cup read as one breakfast served together»**, y en el
+  bloque de composición el par plato + taza va **junto**, con la laptop detrás.
+
+> ⛔ Y hubo que **quitar de las negaciones** el «no second cup / no mugs» que traía
+> la ronda 11: estaba escrito para impedir tazas cuando el protagonista era el
+> vaso, y ahora prohibía justo lo que se pedía. **Al cambiar el objeto principal
+> hay que releer las negaciones**, o el prompt se contradice solo.
+
+⚠️ Y el prompt volvió a pasarse del tope: **3231** caracteres. Se recortó a 2998
+sin perder ninguna instrucción (frases más cortas, no menos reglas). El `assert`
+del script lo cazó antes de gastar una corrida.
+
+## 3. ⭐ LA PERSPECTIVA DEL RECORTE YA NO IMPORTA — y eso invalida una nota de la ronda 10
+
+La §6 de la ronda 10 dice que la taza de cappuccino **no servía** porque está
+fotografiada **desde arriba** y la mesa está a la altura del ojo: montarla
+delataba el montaje sola.
+
+**Eso valía para el montaje a mano.** Como referencia de IA el ángulo del recorte
+da igual: el modelo **redibuja el objeto en la perspectiva de la escena** y sólo
+toma de la referencia el material, el color y la forma. La misma taza que era
+inservible para pegar es perfecta para referenciar.
+
+> **La regla:** para MONTAR, el ángulo de cámara del recorte tiene que calzar. Para
+> REFERENCIAR, no.
+
+## 4. Las tres variantes
+
+| | Plato | Taza | Veredicto |
+|---|---|---|---|
+| **v3** | redondo, 3 triángulos | **tocando el plato**, sin cuchara suelta | **elegida** |
+| v1 | cuadrado (más fiel a las fotos del cliente) | separada del plato, cuchara suelta sobre la mesa | alternativa |
+| v2 | rectangular grande | sobredimensionada respecto del plato | descartada |
+
+Se eligió la **v3** porque cumple literalmente lo pedido —la taza toca el plato— y
+porque no deja la cuchara suelta. La v1 queda ofrecida en el HTML: su plato
+cuadrado se parece más al de `DSC_0823`, pero la taza queda a un tramo.
+
+## 5. Estado de la pieza
+
+- Fondo: `st-16-09-cowork-escena.jpg` (reemplazado por la v3 de esta ronda).
+- Entrega **7 140 552 B**, 2250 × 4000 a 150 ppp, reemplazando el mismo archivo
+  `1lAgqPkkA25L4VRlnIg9UayWPdZxDuqwk` — **el enlace no cambió**. Verificado por
+  `fileSize` y `parentId`.
+- Reproduce **byte a byte** (`cmp`).
+- Contraste del titular **sin cambio**: el peor tercio queda en **3,03** (era 3,02),
+  porque lo que se movió está debajo del cartel.
+- `between-qa.py`: tres avisos, los tres falsos positivos — **43 píxeles** del
+  borde blanco del plato junto al canto izquierdo y **17** del foco del cielo;
+  cero a la derecha y abajo. **Sexta pieza seguida** con el mismo defecto: el
+  script cuenta como texto cualquier blanco de marca con un borde oscuro cerca, y
+  ahora también la loza. Ya conviene arreglarlo.

@@ -6310,3 +6310,235 @@ Las consecuencias, y son duras:
 Se reemplazó el **mismo archivo** en las dos, así que los enlaces no cambiaron.
 Verificadas por `fileSize` contra el local. `between-qa.py`: 2/2 limpias.
 Las `GUIA CM` se regeneraron y **no se subieron**, como corresponde.
+
+---
+
+# S3 · RONDA 10 (10-09-2026) — LA FOTO DEL COWORK PASA A SER REAL
+
+Ronda pedida por el cliente, y no por la grilla: **comentario nativo** de
+Scarlette Muñoz sobre `STORIES!N`, hoy a las 12:55.
+
+> «@elisabet.soto podemos cambiar la imagen a una real de cowork?»
+
+Los **dos comentarios de celda** de esa columna aparecen **TACHADOS** en la
+grilla viva —«Saquemos el "Puedes venir"…» y «Se puede entender que estuvimos
+cerrados…»—, o sea que están resueltos y el nativo era el único pedido en pie.
+
+## 1. ⭐⭐⭐ EL `.xlsx` DE BETWEEN ESTÁ CONGELADO, Y LA GRILLA VIVA SE LEE POR CSV
+
+Es el hallazgo de método de la sesión, y **cierra el misterio que quedó abierto
+el 09-09**. La grilla de Between es un `.xlsx` SUBIDO, y `uc?export=download`
+devuelve el **blob guardado**, que Google deja de reescribir: hoy bajó con el
+**md5 idéntico** al del 09-09 y al del 18:33Z de esa noche, mientras el
+`modifiedTime` sí se movió a las 19:12Z. La ronda del cliente vive en la **capa
+viva del editor de Sheets** y nunca se volcó al blob.
+
+Se lee así, y esto es lo que hay que correr de ahora en adelante:
+
+```bash
+ID=1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY
+curl -sL "https://docs.google.com/spreadsheets/d/$ID/export?format=csv&gid=<GID>"
+```
+
+Los cuatro `gid` de la grilla de Between, sacados de `…/htmlview`:
+
+| gid | Pestaña |
+|---|---|
+| `1537718358` | FEED |
+| `1367300884` | STORIES |
+| `1543656935` | ORGÁNICOS |
+| `688659470` | Vista mensual |
+
+**La prueba de que el blob miente:** su vista mensual dice «PLANIFICACIÓN
+MENSUAL **AGOSTO** 2026» y la viva dice «SEPT». Y en STORIES el blob trae las
+fechas 1/3/4/7/9/11 de septiembre mientras la viva trae 2/10/11/14/15/16/18.
+
+> ⛔ Queda **invalidada** la nota del 09-09 que decía «si el md5 coincide, no hay
+> ronda y no hay nada que diffear». Vale sólo para un `.xlsx` que nadie abrió en
+> el editor. Y la instantánea viva de las cuatro pestañas queda en
+> `clients/hilton/grillas/between-septiembre-2026-vivo/`: **ésa** es la base del
+> próximo diff, no el `.md` hecho sobre el blob.
+>
+> ⚠️ Y el comentario nativo **tampoco sale en el CSV**. El camino que lo dio fue
+> `read_file_content` del conector MCP con `includeComments=true`.
+
+## 2. ⛔ LA FOTO ERA ENTERAMENTE GENERADA, Y EL CLIENTE TENÍA EL LOCAL FOTOGRAFIADO
+
+`gen-16-09-cowork.png` era una escena de prompt completa: mesa, taza, croissant,
+notebook y planta. No era Between. Es exactamente lo que prohíbe
+`no-generar-producto-que-existe`, porque el material existía y estaba en el
+repo: **`raw/hilton/between/cowork-2do-piso/`**, 22 videos y 20 HEIC del segundo
+piso, de los que salen **91 fotogramas y todos son verticales 9:16 nativos** —
+no hay que recortar nada. Compuerta: 91 válidos, 0 rotos.
+
+## 3. ⭐ CÓMO SE ELIGIÓ EL FOTOGRAMA, MIDIENDO LOS 91
+
+Se midió en cada uno cuán plana tiene el **40 % de arriba** (donde van el lockup
+y el titular): media, desviación y diferencia entre tercios.
+
+- Los **más limpios** son `8551`, `8554`, `8555`, `8558` —pared beige lisa con
+  una mesa delante, diferencia entre tercios de 2 a 12 puntos— y **son los que
+  menos sirven**: se leen como sala de espera vacía, que es justo lo que el
+  cliente rechazó el 31-08 («mesas altas vacías»).
+- ⭐ **La restricción que de verdad decide no era el texto: era el cartel.**
+  El cartel taupe cierra en **y≈1906** de 4000, así que la mesa tiene que estar
+  en la **mitad de abajo** o desaparece detrás. De los 91 fotogramas **sólo
+  `8539` cumple eso** (su mesa arranca en y≈2480). En `8558` la mesa redonda cae
+  en y 1820–2300 y el vaso habría quedado tapado por el cartel.
+- Y `8539` es además el encuadre del brief: «fotografía vertical tomada desde una
+  de las mesas de Between. En primer plano, una mesa de madera. Al fondo, parte
+  de la cafetería».
+
+**Se reencuadró** para sacarle techo: recorte `1874 × 3332` desde `(197, 700)` y
+subida a 2250 × 4000 (escala 1,2006). El cielo de placas acústicas con difusores
+es lo peor de la toma y en el encuadre completo se comía el tercio superior.
+
+> ⚠️ El techo es inevitable en las tomas anchas: el teléfono va a la altura del
+> pecho en una sala de techo bajo. Los únicos fotogramas sin cielo son los muy
+> cercanos (`8539`, `8541`, mesa) o los de pared (`8555`, `8558`).
+
+## 4. ⭐⭐ LA FOTO REAL **MEJORA** EL TITULAR, ASÍ QUE NO SE MOVIÓ NINGUNA MEDIDA
+
+Era la duda de la ronda, porque toda la geometría —tope 400, ancho 745,
+`sizeScript` 104, `aireScriptATitulo` 30, el tracking— está calibrada contra la
+foto vieja. Medido el beige `#fff9eb` en las filas del texto:
+
+| y | tercio | foto generada | foto real |
+|---|---|---|---|
+| 400 | izq | 2,08 | **3,18** |
+| 400 | centro | 2,12 | **3,30** |
+| 400 | der | 2,69 | **4,09** |
+| 470 | izq | 2,10 | **3,38** |
+| 540 | centro | 2,30 | **3,60** |
+
+Sube en los tres tercios y se mantiene parejo, así que **la geometría de las
+rondas 5, 6 y 7 queda intacta**. Y se cae el techo de `y=590` de la ronda 5
+—ya no hay follaje entrando por la derecha—, pero se deja igual: es la posición
+que Eli aprobó.
+
+## 5. ⚠️ LO ÚNICO QUE CAMBIÓ DE TINTA ES EL LOCKUP
+
+El lockup iba en el café de marca porque la foto generada tenía pared clara.
+Sobre el cielo gris de la foto real —luminancia media, la peor superficie para
+una tinta oscura— se cae:
+
+| Zona | café `#675b49` | beige `#fff9eb` |
+|---|---|---|
+| y 200 · tres tercios | 2,00 · 1,80 · 1,54 | **3,16 · 3,51 · 4,09** |
+| y 300 · tres tercios | 1,99 · 1,92 · 2,09 | **3,17 · 3,29 · 3,02** |
+
+Pasa a beige con `LogoBeigeMarca`, componente nuevo en `BetweenStS3.tsx` con la
+**misma geometría `storyLogoArriba`** de Eli y el asset `logo-blanco.png`.
+
+> ⭐ **No es un cambio de criterio.** `logoTono` del sistema ya viene en
+> `'beige'` por defecto: el café de esta pieza era la EXCEPCIÓN que pedía la
+> pared clara. Al volver la foto a ser real, se cae la excepción.
+> `LogoCafeMarca` quedó huérfano y se removió; `LOGO_CAFE` sigue en uso por la
+> pieza del 18.
+
+## 6. ⚠️ LA MESA VA SERVIDA, Y EL MATERIAL REAL LLEGA VACÍO
+
+La regla es de la ronda 2 («la mesa servida se queda con toda la mitad de
+abajo») y del §4 del manual («una pieza que invita a venir se ilustra con una
+mesa servida y en uso, no con el local vacío»). Los 91 fotogramas tienen las
+mesas **vacías**, así que se sirvió con el **vaso To Go real del cliente**
+(`togo-vaso-real-nobg.png`, de la sesión del 25-07) montado con
+`scripts/between-montar-vaso.py`.
+
+- **Luz medida en la mesa: viene de la DERECHA** — brillo 174–192 a x≈1500–1890
+  contra 80–138 en el borde izquierdo. La sombra de contacto cae a la izquierda.
+- Desenfoque 1,3 px para bajar el recorte a la nitidez de la escena.
+- El vaso **no se espeja**: invertiría el logotipo.
+- ⛔ **La taza de cappuccino NO servía**, y la razón es de perspectiva:
+  `taza-cappuccino-nobg.png` está tomada **desde arriba** y la mesa de `8539`
+  está a la altura del ojo. Esa mezcla delata el montaje sola. El vaso To Go,
+  tomado de frente y algo elevado, calza — y además trae el logotipo impreso de
+  verdad, no estampado plano.
+
+**Se comparó con la versión sin montaje y la del vaso gana claro:** sin él la
+mitad de abajo queda como una tabla muerta. La foto limpia queda versionada como
+`st-16-09-cowork-real.jpg` por si el cliente vuelve a objetar el montaje —ya lo
+hizo una vez en la ronda 5— y las dos van al HTML de antes y después.
+
+## 7. ⚠️ EL NOTEBOOK DEL BRIEF NO ESTÁ, Y ES UN HUECO DE MATERIAL
+
+El brief pide «notebook abierto + café Between + libreta». El cliente **no tiene
+ningún notebook fotografiado**: los únicos fotogramas con notebook son del
+**lounge del hotel** —sillones verdes, espejos, la obra roja, el bar de vinos—,
+con **caras reconocibles** y en otro espacio que no es el cowork. No se generó
+uno: **se pide la foto**. Es lo que hay que pedirle al cliente para que esta
+pieza quede como el brief la imaginó.
+
+## 8. La pieza, y el estado de la S3 y del FEED al 10-09
+
+Entrega 2250 × 4000 a 150 ppp · **6 775 199 B**. Subida reemplazando el **mismo
+archivo** `1lAgqPkkA25L4VRlnIg9UayWPdZxDuqwk` en `S3 HILTON SEP 2026/BW/STORIES`
+(`1SNBRIvKLvQSC2bYF3u5_oPL5UumIo-gM`), así que **el enlace no cambió** —
+verificado por `fileSize` contra el local y por `parentId` (no cayó en «Mi
+unidad»). Las otras dos de la S3 **no se tocaron**: 8 077 154 B y 7 249 755 B.
+
+`between-qa.py` marca dos avisos y los dos son **falsos positivos**, verificado
+imprimiendo dónde están los píxeles: **7 píxeles** en el borde derecho (brillo
+especular del muro de listones, a y 1 461) y **2 píxeles** en la zona segura
+superior (el foco del cielo). Con éste van **tres piezas seguidas** con el mismo
+falso positivo: al script le falta distinguir un brillo de foto de un trazo de
+texto.
+
+Antes y después: `out/hilton/between/ronda10-cowork-antes-despues.html`,
+armado por `scripts/between-cowork-r10-html.py`.
+
+### STORIES, estado vivo
+
+| Col | Fecha | Pieza | Estado |
+|---|---|---|---|
+| C | 02-09 | Según mis cálculos | `YA POSTEADO` |
+| D | X | Café de regalo cumpleaños | **`APROBADO`** ⭐ era `EN CAMBIOS` |
+| G | 10-09 | **Reel Café Bombón** | **`APROBADO`** ⭐⭐ era `EN CAMBIOS` |
+| H | 11-09 | Promo To Go café + dulce | `APROBADO` |
+| I | — | Emergencia Between | `APROBADO` |
+| K | 14-09 | Así se hace tu café | `APROBADO` |
+| L | X | Promociones desayunos | `PENDIENTE POR CLIENTE` |
+| M | 15-09 | ¿Cuándo es hora de café? | `APROBADO` |
+| N | 16-09 | **Cowork** | `EN CAMBIOS` → **corregida y subida hoy** |
+| O | 18-09 | Saludo 18 sept | `EN REVISIÓN` |
+| Q · R | 21 · 22-09 | Strudel · Primavera | `OK PARA DISEÑAR` (entregadas el 09-09; el cliente no las ha marcado) |
+| T · U | 28 · 30-09 | Humor To Go · Plateada al Carmenere | `OK PARA DISEÑAR` — **sin producir** |
+
+> ⭐⭐ **Se cierran los dos pendientes que arrastraba la cuenta.** El **reel Café
+> Bombón** y la **ST del café de regalo** pasaron a `APROBADO`. El Café Bombón
+> venía anotado como bloqueante desde el 09-09 («no existe composición», «nadie
+> anotó cuál de los tres caminos para la leche condensada se aceptó») y Eli había
+> dicho «ya lo dejé corregido»: el cliente lo aprobó, así que **la corrección de
+> Eli existió y no hay que rehacerlo**. `PROPUESTA-reel-cafe-bombon.md` deja de
+> estar en pie.
+>
+> ⚠️ **Lo que queda por producir de la cuenta son la T y la U** (28 y 30-09).
+
+### FEED, estado vivo
+
+Todo cerrado: C y E `YA POSTEADO`; F, H y J `APROBADO`; L `CORREGIDO`;
+O `PENDIENTE POR CLIENTE`. **No hay trabajo de diseño pendiente en el FEED.**
+
+### Cómo se regenera el fondo desde el material crudo
+
+El fondo va versionado, así que la pieza reproduce byte a byte sin esto. Pero si
+hay que volver a armarlo desde `raw/` (que no viaja en git):
+
+```bash
+python - <<'PY'
+from PIL import Image
+im = Image.open('raw/hilton/between/cowork-2do-piso/fotos/IMG_8539.jpg').convert('RGB')
+im.crop((197, 700, 2071, 4032)).resize((2250, 4000), Image.LANCZOS) \
+  .save('public/assets/hilton/between/st-s3/st-16-09-cowork-real.jpg', quality=95)
+PY
+
+python scripts/between-montar-vaso.py \
+  public/assets/hilton/between/st-s3/st-16-09-cowork-real.jpg \
+  public/assets/hilton/between/st-s3/st-16-09-cowork-real-vaso.jpg \
+  --centro 828 --piso 3226 --ancho 576 --luz derecha
+```
+
+Y se rinde con `npx remotion still src/index.ts BW-S3-Cowork <salida> --scale=2.0833`.
+⚠️ `BetweenEntry.tsx` **no sirve** para las piezas de la S3: su `BW-S-Cowork` es la
+pieza vieja de `BetweenSeptiembre.tsx`. Las de la S3 sólo están en `src/index.ts`.
+Comprobado con `cmp`: el render reproduce byte a byte.

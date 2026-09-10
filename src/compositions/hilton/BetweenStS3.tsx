@@ -106,13 +106,23 @@ const F = 'assets/hilton/between/st-s3/';
  * ya aprobadas y cambiarlo las re-flujaría (misma razón que `columnaTitular`).
  */
 const LOGO_CAFE = 'assets/hilton/between/logo-cafe-marca.png';
+const LOGO_BEIGE = 'assets/hilton/between/logo-blanco.png';
 
-/** Lockup en el café de marca, en la geometría `storyLogoArriba` de Eli. */
-const LogoCafeMarca: React.FC = () => {
+/** Lockup en BEIGE (`logo-blanco.png`, que es el que el sistema mapea a
+ *  `tono='beige'`), en la MISMA geometría `storyLogoArriba` de Eli.
+ *
+ *  ⭐ Existe desde la ronda 10 del Cowork: sobre la foto REAL del segundo piso
+ *  el lockup café se cae a 1,80–2,09:1 —es un cielo gris de luminancia media,
+ *  la peor superficie para una tinta oscura— mientras el beige da 3,16–3,51:1
+ *  parejo en los tres tercios. No es un cambio de criterio: `logoTono` del
+ *  sistema ya viene en `'beige'` por defecto y el café de esta pieza era la
+ *  EXCEPCIÓN que pedía la pared clara de la foto generada. Al volver la foto a
+ *  ser real, se cae la excepción. */
+const LogoBeigeMarca: React.FC = () => {
   const g = BETWEEN.margenes.storyLogoArriba;
   return (
     <Img
-      src={staticFile(LOGO_CAFE)}
+      src={staticFile(LOGO_BEIGE)}
       style={{
         position: 'absolute',
         left: (1080 - g.ancho) / 2,
@@ -382,10 +392,79 @@ const ZONA_ENLACE: Zona = {ancho: 660, alto: 140, top: 1350};
 
 export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
   <AbsoluteFill style={{backgroundColor: '#241a12'}}>
-    <FotoFondo src={F + 'st-16-09-cowork.jpg'} oscurecer={0.04} />
+    {/* ⭐⭐ RONDA 10 (10-09-2026) — LA FOTO PASA A SER REAL, y es pedido del
+        cliente por comentario nativo en la grilla. Scarlette Muñoz, hoy 12:55,
+        sobre `STORIES!N`:
 
-    {/* El lockup en el CAFÉ DE MARCA, no en el negro de `BETWEEN.logo.cafe`. */}
-    <LogoCafeMarca />
+            «@elisabet.soto podemos cambiar la imagen a una real de cowork?»
+
+        Los dos comentarios de celda de esa columna quedaron TACHADOS en la
+        grilla viva —o sea resueltos—, así que éste es el único pedido en pie.
+
+        ⛔ La foto que salió era `gen-16-09-cowork.png`: una escena ENTERAMENTE
+        GENERADA (mesa, taza, croissant, notebook y planta), y no era Between.
+        Es exactamente lo que la memoria `no-generar-producto-que-existe`
+        prohíbe, porque el cliente TIENE el espacio fotografiado: 22 videos y 20
+        HEIC del segundo piso en `raw/hilton/between/cowork-2do-piso/`, de los
+        que salen 91 fotogramas, TODOS verticales 9:16 nativos. Pasaron la
+        compuerta: 91 válidos, 0 rotos.
+
+        ⭐ POR QUÉ IMG_8539 Y NO OTRO. Se midió la zona del texto (40 % de
+        arriba) en los 91 y se ordenaron por cuán plana la tienen. Los más
+        limpios —8551, 8554, 8555, 8558— son pared beige lisa con una mesa
+        delante, y son los que MENOS sirven: se leen como sala de espera vacía,
+        que es justo lo que el cliente rechazó el 31-08 («mesas altas vacías»).
+        8539 es el encuadre que pide el brief —«fotografía vertical tomada desde
+        una de las mesas de Between. En primer plano, una mesa de madera. Al
+        fondo, parte de la cafetería»— con la lámpara de mimbre, las fotos de
+        NY y el muro de listones reconocibles.
+
+        ⭐⭐ Y LA FOTO REAL MEJORA EL TITULAR, que era la duda. Medido con las
+        dos tintas de marca sobre las filas donde va el texto:
+
+        | y   | tercio | beige ANTES | beige AHORA |
+        |-----|--------|-------------|-------------|
+        | 400 | izq    | 2,08        | **3,18** |
+        | 400 | centro | 2,12        | **3,30** |
+        | 400 | der    | 2,69        | **4,09** |
+        | 470 | izq    | 2,10        | **3,38** |
+        | 540 | centro | 2,30        | **3,60** |
+
+        O sea que la geometría calibrada en las rondas 5, 6 y 7 —tope 400, ancho
+        745, `sizeScript` 104, el tracking— NO se toca: sube el contraste sin
+        mover una medida. Y se cae el techo de y=590 de la ronda 5, porque ya no
+        hay follaje entrando por la derecha; se deja igual de todas formas, que
+        es la posición que Eli aprobó.
+
+        ⚠️ LO QUE SÍ CAMBIA ES EL LOCKUP: ver `LogoBeigeMarca`. El café se cae a
+        1,80–2,09:1 sobre el cielo gris y el beige da 3,16–3,51:1.
+
+        ⚠️ LA MESA VA SERVIDA, y no es decoración: es la regla de la ronda 2
+        («la mesa servida se queda con toda la mitad de abajo») y la del manual
+        §4 («una pieza que invita a venir se ilustra con una mesa servida y en
+        uso, no con el local vacío»). El material real llega con las mesas
+        VACÍAS, así que se sirve con el vaso To Go REAL del cliente —el mismo
+        recorte `togo-vaso-real-nobg.png` de la sesión del 25-07— montado con
+        `scripts/between-montar-vaso.py`, que iguala nitidez, nivel y
+        temperatura y le dibuja la sombra de contacto. Luz de la escena medida
+        en la mesa: viene de la DERECHA (brillo 174–192 a x≈1500–1890 contra
+        80–138 en el borde izquierdo), así que la sombra cae a la izquierda.
+
+        ⚠️ EL NOTEBOOK DEL BRIEF NO ESTÁ, y es un hueco de MATERIAL, no una
+        omisión: el brief pide «notebook abierto + café Between + libreta» y el
+        cliente no tiene ningún notebook fotografiado en su material. Los únicos
+        fotogramas con notebook son del LOUNGE DEL HOTEL, con caras
+        reconocibles, y no son el cowork. No se genera uno: se pide la foto.
+
+        El fondo sin el vaso queda versionado como `st-16-09-cowork-real.jpg`
+        por si Eli prefiere la foto limpia — Scarlette ya rechazó una vez un
+        montaje («se ve un montaje muy raro el vaso pegado en la foto»), así que
+        las dos van al HTML de antes y después. */}
+    <FotoFondo src={F + 'st-16-09-cowork-real-vaso.jpg'} oscurecer={0.04} />
+
+    {/* El lockup en BEIGE: sobre el cielo gris de la foto real el café no se
+        lee (1,80–2,09:1). Ver `LogoBeigeMarca`. */}
+    <LogoBeigeMarca />
 
     {/* ⭐⭐ RONDA 5 — TODO EL TEXTO SUBE, y por eso el titular vuelve a CAFÉ.
         Eli marcó sobre la pieza una llave que envuelve el titular, el cartel y

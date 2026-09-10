@@ -69,6 +69,7 @@ import {LosDeSiempre, LDS_FPS, LDS_W, LDS_H, LDS_DURATION} from "./compositions/
 import {LosDeSiempreEntrance, ENT_FPS, ENT_W, ENT_H, ENT_DURATION} from "./compositions/traverso/LosDeSiempreEntrance";
 import {LosDeSiempreEntranceV2, ENT2_FPS, ENT2_W, ENT2_H, ENT2_DURATION} from "./compositions/traverso/LosDeSiempreEntranceV2";
 import {LosDeSiempreEntranceV3, ENT3_FPS, ENT3_W, ENT3_H, ENT3_DURATION} from "./compositions/traverso/LosDeSiempreEntranceV3";
+import {TraversoRutaA, TraversoRutaB, RUTA_FPS, RUTA_W, RUTA_H, RUTA_DURATION} from "./compositions/traverso/LosDeSiempreTestRutas";
 import {GclPost, GCL_POST_DEMO} from "./compositions/gcl/GclPost";
 import {
   GclOrigenReel,
@@ -388,6 +389,8 @@ export const RemotionRoot: React.FC = () => {
             />
           )),
         )}
+        <Composition id="TraversoRutaA" component={TraversoRutaA} durationInFrames={RUTA_DURATION} fps={RUTA_FPS} width={RUTA_W} height={RUTA_H} />
+        <Composition id="TraversoRutaB" component={TraversoRutaB} durationInFrames={RUTA_DURATION} fps={RUTA_FPS} width={RUTA_W} height={RUTA_H} />
         <Composition
           id="TraversoEntranceV3"
           component={LosDeSiempreEntranceV3}

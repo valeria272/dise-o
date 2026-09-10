@@ -32,6 +32,11 @@ frena; triple product porn de 0,4 s; puerta → sobreexposición → ventana; wi
 película** (`scripts/traverso-lds2-banda.py` → `audio/banda-v3.mp3`): tramos de las pistas
 generadas cortados al mapa musical (tensión → groove con golpes en 3/4,5/6/7,5 → microvacío →
 DROP 9,75 → riser → groove suave en la reunión → HIT 22,4 → corte 23,0) + foley encima.
+**Ronda 4 (22:50), nueva dirección musical → test de rutas sobre 12 s:** `out/traverso/lds2/RUTA-A-12s.mp4`
+(garage/indie desde el primer beat) y `RUTA-B-12s.mp4` (cuerdas italianas 0–1,64 s que se rompen en garage
+en el BOOM). Misma garage original (`audio/rutas/A-garage-1.mp3`, 130 bpm) cortada a sus golpes medidos con
+`scripts/beatmap.py`; vacío de música 9,02–9,52 y DROP en 9,52. Documento `reel-los-de-siempre/EDICION-RUTAS-MUSICALES.md`.
+Composición `LosDeSiempreTestRutas.tsx`. Cero clips nuevos. **Decisión pendiente de Valeria: ruta A o B.**
 **Qué sigue:** que Valeria ESCUCHE el v1 (pista y mezcla cuadradas por envolvente, no de oído) y
 decida si la música original se queda o se licencia una; ajustar niveles de SFX; subir clips y
 render al Drive de Traverso; si se aprueba, versión 1:1 para feed.

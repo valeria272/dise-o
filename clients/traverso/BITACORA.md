@@ -43,6 +43,9 @@ dura 1,9 s (15,48–17,4) y el segundo 1,6 s; la banda se extendió a 19,0 s con
 Copylab 370 px (bloque ≤ 1.000 px para no salirse); el punto de la «g» de Copylab hace un GUIÑO a los 0,9 s del
 card final (se tapa el punto del PNG con negro y se dibuja uno propio con scaleY 1 → 0,08 → 1 en 8 f). Banda
 extendida a 20,9 s (mismo offset), golpe final en 19,98 (hit real), música bajando hasta el negro.
+**Cierre de Valeria (10:05) → V10 final de 19,5 s:** la reunión corta en 14,3 s (c16 a 0,9×) porque a los ~15 s la
+mostaza «rompía la carpeta» (artefacto de Kling al final del clip); «CERO PRESENTACIONES.» se adelantó a 12,38;
+card 1 14,3–17,44 (3,1 s), card 2 17,44–19,5 con el golpe real de la canción al entrar y el guiño a los 0,9 s.
 **Dónde quedó:** todo en `public/assets/traverso/lds2/` y `src/compositions/traverso/LosDeSiempreV7.tsx`;
 render en el Escritorio de Valeria y en `out/traverso/lds2/`.
 **Qué sigue:** escuchar V7 (balance canción–foley); si se aprueba, versión 1:1 para feed y subir al Drive.

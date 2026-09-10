@@ -22,7 +22,7 @@ import {Video} from "@remotion/media";
 export const V10_FPS = 24;
 export const V10_W = 1080;
 export const V10_H = 1920;
-export const V10_DURATION = Math.round(20.9 * V10_FPS); // 502
+export const V10_DURATION = Math.round(19.5 * V10_FPS); // 468
 const A = "assets/traverso/lds2";
 const F = (s: number) => Math.round(s * V10_FPS);
 const INK = "#050505", BONE = "#F2EEE7", MOSTAZA = "#E8B325", ARCHIVO = "LDS Archivo";
@@ -34,7 +34,7 @@ const fontPromise = typeof FontFace !== "undefined" ? new FontFace(ARCHIVO, `url
 // Feedback del equipo (Coni): menos negro antes de los focos (la caminata y el macro ocupan ese tiempo) y
 // el primer end card se alarga para que se lea la segunda línea.
 const T = {walk: 0.0, macro: 2.44, stop: 3.14, foco1: 3.6, foco2: 4.06, foco3: 4.5, reveal: 5.0,
-  destino: 7.76, mesa: 9.98, end: 15.48, card2: 18.9, fin: 20.9};
+  destino: 7.76, mesa: 9.98, end: 14.3, card2: 17.44, fin: 19.5};
 
 type Plano = {id: string; from: number; to: number; src: string; trim?: number; rate?: number; punch?: number; zoom?: number; origin?: string; push?: [number, number];
   whipOut?: boolean; whipIn?: boolean; burn?: boolean; fromWhite?: boolean; wipeOut?: boolean; shake?: boolean; stage?: boolean};
@@ -48,7 +48,7 @@ const PLANOS: Plano[] = [
   // entrada APROBADA: un plano hero; la luz de la puerta quema y se convierte en la sala
   {id: "destino", from: T.destino, to: T.mesa, src: "c17.mp4", trim: 0.4, rate: 1.9, burn: true},
   // YA están sentados. Nada entre medio.
-  {id: "mesa", from: T.mesa, to: T.end, src: "c16.mp4", trim: 0.2, rate: 1.0, push: [1.0, 1.05], origin: "50% 45%", fromWhite: true},
+  {id: "mesa", from: T.mesa, to: T.end, src: "c16.mp4", trim: 0.2, rate: 0.9, push: [1.0, 1.05], origin: "50% 45%", fromWhite: true},
 ];
 
 /** Los tres focos: máscaras elípticas centradas en cada personaje que destapan la versión iluminada. */
@@ -186,9 +186,9 @@ const SFX: {src: string; at: number; vol: number; dur?: number; base?: string}[]
   {src: "sfx-clack.mp3", at: T.foco1, vol: 0.9}, {src: "sfx-clack.mp3", at: T.foco2, vol: 0.9}, {src: "sfx-clack.mp3", at: T.foco3, vol: 1.0}, {src: "sfx-impacto.mp3", at: T.foco3, vol: 0.5},
   {src: "sfx-bass.mp3", at: T.reveal, vol: 1.0}, {src: "sfx-solapas.mp3", at: T.reveal + 0.1, vol: 0.85, base: "lds"},
   {src: "sfx-pasos.mp3", at: T.destino, vol: 0.35, dur: 1.4, base: "lds"}, {src: "sfx-riser.mp3", at: T.mesa - 1.1, vol: 0.55}, {src: "sfx-puerta.mp3", at: T.mesa - 0.45, vol: 0.6, base: "lds"},
-  {src: "sfx-camara.mp3", at: T.mesa - 0.06, vol: 0.5}, {src: "sfx-oficina.mp3", at: T.mesa, vol: 0.28, dur: 5.5, base: "lds"}, {src: "sfx-carpeta.mp3", at: T.mesa + 0.8, vol: 0.45},
-  {src: "sfx-impacto.mp3", at: 12.98, vol: 0.5},
-  {src: "sfx-impacto.mp3", at: T.end, vol: 0.45}, {src: "sfx-bass.mp3", at: 19.98, vol: 0.28},
+  {src: "sfx-camara.mp3", at: T.mesa - 0.06, vol: 0.5}, {src: "sfx-oficina.mp3", at: T.mesa, vol: 0.28, dur: 4.3, base: "lds"}, {src: "sfx-carpeta.mp3", at: T.mesa + 0.8, vol: 0.45},
+  {src: "sfx-impacto.mp3", at: 12.38, vol: 0.5},
+  {src: "sfx-impacto.mp3", at: T.end, vol: 0.45}, {src: "sfx-bass.mp3", at: T.card2, vol: 0.28},
 ];
 
 export const LosDeSiempreV10: React.FC = () => {
@@ -206,7 +206,7 @@ export const LosDeSiempreV10: React.FC = () => {
       ))}
       {/* reunión: dos textos con un beat de comedia entre medio */}
       <Sequence from={F(10.98)} durationInFrames={F(T.end - 10.98)} layout="none"><Titular lineas={["Primera reunión."]} size={88} bottom={360} /></Sequence>
-      <Sequence from={F(12.98)} durationInFrames={F(T.end - 12.98)} layout="none"><Golpe lineas={["Cero", "presentaciones."]} size={112} color={MOSTAZA} bottom={150} /></Sequence>
+      <Sequence from={F(12.38)} durationInFrames={F(T.end - 12.38)} layout="none"><Golpe lineas={["Cero", "presentaciones."]} size={112} color={MOSTAZA} bottom={150} /></Sequence>
       {/* cierre: DOS cards, golpe final y negro seco */}
       <Sequence from={F(T.end)} durationInFrames={F(T.fin - T.end)} layout="none">
         <AbsoluteFill style={{background: INK}} />
@@ -220,7 +220,7 @@ export const LosDeSiempreV10: React.FC = () => {
         </Sequence>
       </Sequence>
       {/* la música baja desde el end card (15,48) para que el cierre se entienda: 0,95 → 0,35 hasta el golpe final, y muere en el negro */}
-      <Audio src={staticFile(`${A}/audio/banda-v10.mp3`)} volume={(f) => interpolate(f, [F(T.end), F(17.0), F(T.card2), F(T.fin) - 2, F(T.fin)], [0.95, 0.4, 0.35, 0.22, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})} />
+      <Audio src={staticFile(`${A}/audio/banda-v10.mp3`)} volume={(f) => interpolate(f, [F(T.end), F(16.3), F(T.card2), F(T.fin) - 2, F(T.fin)], [0.95, 0.4, 0.35, 0.22, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})} />
       {SFX.map((s, i) => (
         <Sequence key={i} from={F(s.at)} durationInFrames={s.dur ? F(s.dur) : undefined} layout="none">
           <Audio src={staticFile(`${s.base === "lds" ? "assets/traverso/lds" : A}/audio/${s.src}`)} volume={s.vol} />

@@ -460,7 +460,64 @@ export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
         por si Eli prefiere la foto limpia — Scarlette ya rechazó una vez un
         montaje («se ve un montaje muy raro el vaso pegado en la foto»), así que
         las dos van al HTML de antes y después. */}
-    <FotoFondo src={F + 'st-16-09-cowork-real-laptop.jpg'} oscurecer={0.04} />
+    {/* ⭐⭐ RONDA 11 (10-09-2026) — LA ESCENA SE PRODUCE ENTERA, Y SE ACABA EL
+        MONTAJE A MANO. Eli, sobre la entrega de la ronda 10:
+
+            «Me parece que el montaje esta mal logrado, la foto de fondo original
+            debes añadir un vaso togo, un notebook con logo apple, da lo mismo si
+            aparece que sea sutil. Un desayuno de sándwich. como se ven en las
+            fotos. Hazlo nuevamente y recuerda hacer un buen prompt, en magnific.»
+
+        Tres correcciones, y ninguna es de gusto:
+
+        1. ⛔ **EL VASO YA NO SE PEGA DESPUÉS.** La ronda 10 montaba el recorte
+           real con `between-montar-vaso.py` encima del fondo. Se veía pegado. Ahora
+           el vaso lo pinta el modelo DENTRO de la escena, con su luz y su
+           profundidad de campo. `between-montar-vaso.py` sigue siendo la
+           herramienta correcta para meter un packshot en un fondo liso — pero no
+           para poner un objeto sobre una mesa fotografiada.
+        2. ✅ **EL LOGO DE APPLE SE QUEDA.** En la ronda 10 se lo quité por prudencia
+           («una marca ajena no va en una pieza de cliente») y Eli lo devolvió: «da
+           lo mismo si aparece que sea sutil». Es criterio de la diseñadora y manda.
+        3. ➕ Entra el **desayuno de sándwich**, «como se ven en las fotos»: el de la
+           sesión real del cliente, no uno inventado.
+
+        ⭐⭐⭐ **LO QUE HIZO QUE EL LOGOTIPO SALIERA BIEN: pasarle el vaso REAL como
+        referencia.** Es la diferencia entre esta ronda y la 4, donde el cliente
+        rechazó un logotipo estampado sobre un vaso generado. Con
+        `togo-vaso-real-nobg.png` entre las referencias, dos de las tres variantes
+        escribieron la **Ǝ invertida** y la W angular de la marca. La que no la
+        recibió bien (v1) escribió un «BETWEEN» con E normal: se descartó.
+
+        Las CUATRO referencias, y para qué va cada una — está en
+        `scripts/between-cowork-escena-ia.py`:
+
+        | # | Referencia | Para qué |
+        |---|---|---|
+        | 1 | `st-16-09-cowork-real.jpg` | la escena que hay que conservar |
+        | 2 | `magnific_agrega-una-laptop-en-la-m_…` | el tratamiento de Eli |
+        | 3 | `togo-vaso-real-nobg.png` | **el logotipo, para que no lo invente** |
+        | 4 | `desayunos-ago2026/DSC_0823.jpg` | el plato y el pan reales |
+
+        ⚠️ **El prompt topa en 3000 caracteres** y la API devuelve HTTP 400 sin
+        avisar de otra cosa. El primero medía 4087 y hubo que condensarlo. Va
+        estructurado: qué es cada referencia → lo que NO se toca → lo que se agrega
+        objeto por objeto → la luz medida → la composición → las negaciones. Lo que
+        no se toca va ANTES de lo que se agrega: si va al final, el modelo ya
+        reescribió la escena.
+
+        ⭐ Y la composición se le pide por la restricción real: «todos los objetos en
+        la MITAD DE ABAJO del cuadro», porque el cartel taupe cierra en y≈1906 y
+        todo lo que quede más arriba se pierde detrás.
+
+        Se generaron **tres variantes** y se eligió la **v3**: el sándwich se lee
+        como desayuno de verdad (los cuatro triángulos de la v2 salen secos y
+        repetidos), el vaso queda más legible y la composición gana profundidad.
+
+        Los fondos anteriores quedan versionados para el histórico:
+        `st-16-09-cowork.jpg` (generado, ronda 9) · `-real.jpg` (foto sola) ·
+        `-real-vaso.jpg` y `-real-laptop.jpg` (los montajes de la ronda 10). */}
+    <FotoFondo src={F + 'st-16-09-cowork-escena.jpg'} oscurecer={0.04} />
 
     {/* El lockup en BEIGE: sobre el cielo gris de la foto real el café no se
         lee (1,80–2,09:1). Ver `LogoBeigeMarca`. */}

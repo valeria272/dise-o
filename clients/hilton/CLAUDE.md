@@ -6663,3 +6663,136 @@ el resto del bloque va entre 3,4 y 17,6. La geometría sigue intacta.
 > ⚠️ **Lo que sigue siendo razonable pedirle al cliente:** una foto real de
 > alguien trabajando en el cowork. Es lo único que dejaría de necesitar el paso
 > de IA.
+
+---
+
+# S3 · RONDA 11 (10-09-2026) — LA ESCENA SE PRODUCE ENTERA, Y SE ACABA EL MONTAJE
+
+Eli, sobre la entrega de la ronda 10:
+
+> «Me parece que el montaje está mal logrado, la foto de fondo original debes
+> añadir un vaso togo, un notebook con logo apple, da lo mismo si aparece que sea
+> sutil. Un desayuno de sándwich. como se ven en las fotos. Hazlo nuevamente y
+> recuerda hacer un buen prompt, en magnific.»
+
+## 1. ⛔⛔ EL MONTAJE A MANO NO SIRVE PARA PONER UN OBJETO SOBRE UNA MESA FOTOGRAFIADA
+
+Es la lección de la ronda y corrige lo que la ronda 10 dio por bueno.
+`between-montar-vaso.py` iguala **nitidez, nivel, temperatura y sombra de
+contacto**, y aun así el vaso se leía pegado. La razón es que sobre una mesa
+fotografiada faltan cosas que ese aparato no hace: el objeto no recibe el
+**reflejo de la madera**, no ocluye nada, no participa de la **profundidad de
+campo** del plano y su sombra es una elipse dibujada, no la sombra que esa
+lámpara proyectaría.
+
+**La regla que queda:**
+
+| Situación | Herramienta |
+|---|---|
+| Packshot sobre un fondo liso o un color | `between-montar-vaso.py` **sí** |
+| Objeto sobre una superficie fotografiada, con perspectiva y luz propias | **la IA lo pinta dentro de la escena** |
+
+⛔ Y la §6 de la ronda 10 («la mesa se sirve con el vaso REAL montado») queda
+**superada**: ese camino era el correcto cuando el modelo no podía escribir el
+logotipo, y la §2 de acá muestra que sí puede.
+
+## 2. ⭐⭐⭐ EL LOGOTIPO SALE BIEN SI SE LE PASA EL RECORTE REAL COMO REFERENCIA
+
+Es el hallazgo reutilizable y **cierra un problema que venía desde la ronda 4**,
+cuando el cliente rechazó un logotipo estampado sobre un vaso generado. Desde
+entonces la cuenta montaba el vaso real a mano para no arriesgar la marca.
+
+Con `togo-vaso-real-nobg.png` **entre las referencias** del modelo, **dos de las
+tres variantes** escribieron la **Ǝ invertida** y la **W angular** de Between,
+más «COFFEE & BAR» bien espaciado. La tercera escribió un «BETWEEN» con E normal
+y se descartó.
+
+> ⭐ **Por eso hay que generar más de una variante cuando la pieza lleva el
+> logotipo:** el modelo lo acierta la mayoría de las veces, no todas, y la
+> revisión es mirar el vaso a tamaño real y comparar contra el archivo de marca.
+
+## 3. Las cuatro referencias, y para qué va cada una
+
+En `scripts/between-cowork-escena-ia.py`. Cada una tiene un trabajo y el prompt
+las nombra por número, que es lo que evita que el modelo mezcle sus fondos:
+
+| # | Referencia | Para qué |
+|---|---|---|
+| 1 | `st-16-09-cowork-real.jpg` | la escena que hay que conservar |
+| 2 | `magnific_agrega-una-laptop-en-la-m_…` | el tratamiento de Eli |
+| 3 | `togo-vaso-real-nobg.png` | **el logotipo, para que no lo invente** |
+| 4 | `desayunos-ago2026/DSC_0823.jpg` | el plato y el pan reales |
+
+⚠️ Y hay que **negar explícitamente los fondos de las referencias**: «ignora el
+follaje, el brownie, el teléfono y los anteojos de la REF2, y el mármol, el
+jamón, el queso y la palta de la REF4». Sin eso el modelo importa el entorno
+junto con el objeto.
+
+## 4. ⚠️ EL PROMPT TOPA EN 3000 CARACTERES
+
+`nano-banana-pro` devuelve **HTTP 400** con
+`"String should have at most 3000 characters"`. El primero medía **4087** y hubo
+que condensarlo a 2988. El script trae la comprobación puesta:
+
+```python
+assert len(PROMPT) <= 3000, "el prompt mide %d y el tope son 3000" % len(PROMPT)
+```
+
+**La estructura que funcionó**, en este orden:
+
+1. **qué es cada referencia** (numeradas);
+2. **lo que NO se toca** — encuadre, ángulo, cielo, focos, lámpara de arco,
+   cuadros, muro de listones, sillones, alfombra, veta de la mesa;
+3. **lo que se agrega**, objeto por objeto, con su posición;
+4. **la luz medida** («viene de la derecha, la sombra cae a la izquierda»);
+5. **la composición**;
+6. **las negaciones**.
+
+⭐ **Lo que no se toca va ANTES de lo que se agrega.** Puesto al final, el modelo
+ya reescribió la escena.
+
+⭐ Y la composición se le pide por la **restricción real**: «todos los objetos en
+la mitad de abajo del cuadro», porque el cartel taupe cierra en y≈1906 y todo lo
+que quede más arriba se pierde detrás. Decirle «abajo» en vez de «no tapes el
+texto» es lo que lo hace obedecer.
+
+## 5. ✅ EL LOGO DE APPLE SE QUEDA — y la lección es de criterio
+
+En la ronda 10 se lo quité por prudencia («una marca ajena no va en una pieza de
+cliente») y Eli lo devolvió: «da lo mismo si aparece que sea sutil». Es **criterio
+de la diseñadora y manda**. Queda escrito para no volver a quitarlo por cuenta
+propia: la prudencia sobre marcas de terceros **se consulta, no se ejecuta**.
+
+## 6. Las tres variantes, y por qué la v3
+
+Se generaron tres con el mismo prompt.
+
+| | Desayuno | Logotipo del vaso | Veredicto |
+|---|---|---|---|
+| v1 | triángulos de tostada | ⛔ «BETWEEN» con **E normal** | descartada |
+| v2 | 4 triángulos en abanico | ✅ Ǝ invertida | alternativa |
+| **v3** | **sándwich tostado partido** | ✅ Ǝ invertida, el más legible | **elegida** |
+
+La v3 gana porque el sándwich **se lee como desayuno de verdad** —los cuatro
+triángulos de la v2 salen secos y repetidos—, el vaso queda más grande y legible
+y la composición gana profundidad. La v2 es más literal respecto de las fotos de
+desayuno del cliente, así que queda ofrecida en el HTML por si Eli la prefiere:
+cambiarla es una línea.
+
+## 7. Estado de la pieza
+
+- Fondo: `st-16-09-cowork-escena.jpg`, versionado.
+- Entrega **7 350 797 B**, 2250 × 4000 a 150 ppp, reemplazando el mismo archivo
+  `1lAgqPkkA25L4VRlnIg9UayWPdZxDuqwk` — **el enlace no cambió**. Verificado por
+  `fileSize` y `parentId`.
+- Reproduce **byte a byte** (`cmp`).
+- `between-qa.py`: cuatro avisos y los cuatro falsos positivos — **29 píxeles**
+  del foco del cielo en la primera fila, y **cero** en los otros tres bordes.
+  **Quinta pieza seguida** con el mismo defecto del script.
+- Revisión publicada: `scripts/between-cowork-r10-artifact.py`.
+- Fondos versionados para el histórico: `st-16-09-cowork.jpg` (generado, ronda 9)
+  · `-real.jpg` (foto sola) · `-real-vaso.jpg` y `-real-laptop.jpg` (los montajes
+  de la ronda 10) · `-escena.jpg` (el entregado).
+
+> ⚠️ Sigue en pie lo único que dejaría de necesitar el paso de IA: **una foto
+> real de alguien trabajando en el cowork**.

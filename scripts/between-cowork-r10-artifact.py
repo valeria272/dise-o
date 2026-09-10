@@ -33,10 +33,11 @@ FUENTES = {
     "despues":    (RAIZ / "out/hilton/between/st-s3/BW-S3-Cowork.png", 720),
     "refeli":     (RAIZ / "raw/hilton/between/ediciones-ia-eli"
                    / "magnific_agrega-una-laptop-en-la-m_iAi90W63uK.png", 460),
-    "fondo":      (RAIZ / "public/assets/hilton/between/st-s3/st-16-09-cowork-real-laptop.jpg", 460),
-    "crudo":      (RAIZ / "raw/hilton/between/cowork-2do-piso/fotos/IMG_8539.jpg", 380),
-    "limpia":     (RAIZ / "out/hilton/between/st-s3/BW-S3-Cowork-sin-vaso.png", 380),
-    "intermedia": (RAIZ / "out/hilton/between/ronda10-intermedia.jpg", 380),
+    "fondo":      (RAIZ / "public/assets/hilton/between/st-s3/st-16-09-cowork-escena.jpg", 460),
+    "crudo":      (RAIZ / "raw/hilton/between/cowork-2do-piso/fotos/IMG_8539.jpg", 360),
+    "limpia":     (RAIZ / "out/hilton/between/st-s3/BW-S3-Cowork-sin-vaso.png", 360),
+    "montaje":    (RAIZ / "out/hilton/between/ronda11-montaje-rechazado.jpg", 360),
+    "variante":   (RAIZ / "out/hilton/between/ronda11-variante-v2.jpg", 460),
 }
 
 
@@ -203,7 +204,7 @@ def main():
 
     h = []
     a = h.append
-    a("<title>Cowork 16-09 · ronda 10</title>")
+    a("<title>Cowork 16-09 · ronda 11</title>")
     a('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
       "family=IBM+Plex+Mono:wght@400;500&"
       "family=Raleway:wght@500;600;700;800&"
@@ -212,22 +213,28 @@ def main():
     a('<div class="env">')
 
     a('<p class="eyebrow">Between · Coffee &amp; Bar — historia del 16 de septiembre</p>')
-    a("<h1>La foto del Cowork pasa a ser real</h1>")
-    a('<p class="bajada">Columna N de la hoja STORIES, ronda 10. La pieza que estaba '
-      "en Drive tenía una escena hecha entera con IA; ahora es el segundo piso de "
-      "Between, fotografiado por el cliente.</p>")
+    a("<h1>La escena del Cowork, producida entera</h1>")
+    a('<p class="bajada">Columna N de la hoja STORIES, ronda 11. El fondo es el '
+      "segundo piso real de Between, fotografiado por el cliente; el vaso, la "
+      "laptop y el desayuno se agregaron dentro de la escena en vez de pegarse "
+      "encima.</p>")
 
-    a('<div class="pedido"><div class="quien">Scarlette Muñoz · 10-09, 12:55 · '
-      "comentario sobre <code>STORIES!N</code></div>"
-      "<q>@elisabet.soto podemos cambiar la imagen a una real de cowork?</q></div>")
+    a('<div class="pedido"><div class="quien">Eli · sobre la entrega anterior</div>'
+      "<q>Me parece que el montaje está mal logrado, la foto de fondo original "
+      "debes añadir un vaso togo, un notebook con logo apple, da lo mismo si "
+      "aparece que sea sutil. Un desayuno de sándwich, como se ven en las fotos. "
+      "Hazlo nuevamente y recuerda hacer un buen prompt, en magnific.</q></div>")
+    a('<p class="nota" style="margin:-24px 0 40px;">Y antes, lo que abrió la ronda: '
+      "Scarlette Muñoz sobre <code>STORIES!N</code>, «podemos cambiar la imagen a "
+      "una real de cowork?».</p>")
 
     a('<div class="fila">')
     a(fig(im["antes"], "Antes", "La escena entera —mesa, taza, croissant, notebook y "
           "planta— salió de un prompt. No es Between.", hero=True))
     a(fig(im["despues"], "Después <em>· en Drive</em>",
-          "El segundo piso real, reencuadrado. La laptop y la libreta se agregaron "
-          "calcando tu edición de Magnific; el vaso To&nbsp;Go es el recorte real, "
-          "montado después.", hero=True))
+          "El segundo piso real. El vaso To&nbsp;Go, la laptop con su manzana y el "
+          "desayuno de sándwich se pintaron dentro de la escena, con su luz y su "
+          "profundidad de campo.", hero=True))
     a("</div>")
 
     a("<h2>Tu edición de Magnific fue la referencia</h2>")
@@ -252,8 +259,22 @@ def main():
           paso="01"))
     a(fig(im["limpia"], "Sólo la foto", "La mesa queda vacía y la mitad de abajo es "
           "una tabla sin nada. El manual §4 pide mesa servida.", paso="02"))
-    a(fig(im["intermedia"], "Con el vaso", "Mejor, pero seguía faltando el notebook "
-          "del brief y la mesa se veía sola.", paso="03"))
+    a(fig(im["montaje"], "El montaje, descartado", "Aquí el vaso se pegaba encima con "
+          "el script de montaje. Se veía pegado, y es lo que mandaste a rehacer.",
+          paso="03"))
+    a("</div>")
+
+    a("<h2>La otra variante, por si prefieres ese desayuno</h2>")
+    a('<p class="nota">Se generaron tres. Elegí la del sándwich: los cuatro '
+      "triángulos de la otra salen algo secos y repetidos, y acá el vaso queda más "
+      "legible. Pero el desayuno es decisión tuya y cambiarlo es una línea.</p>")
+    a('<div class="fila">')
+    a(fig(im["variante"], "Variante · triángulos de tostada",
+          "Es más literal respecto de las fotos de desayuno del cliente, que sirven "
+          "los triángulos en abanico sobre plato blanco."))
+    a(fig(im["fondo"], "La elegida, sin texto",
+          "El fondo tal como quedó: sándwich tostado, el vaso con su logotipo y la "
+          "laptop con la manzana apenas sugerida."))
     a("</div>")
 
     a("<h2>Por qué esta foto y no otra de las 91</h2>")
@@ -304,46 +325,36 @@ def main():
       '<td class="n sube">3,17 · 3,29 · 3,02</td></tr>'
       "</table></div>")
 
-    a("<h2>El paso de IA, y en qué orden</h2>")
+    a("<h2>El paso de IA, y el prompt</h2>")
     a("<ul>"
-      "<li><strong>Nano Banana Pro</strong> con <strong>dos referencias</strong> —la "
-      "foto real del cowork y tu edición— a 4K. Es lo que manda la tabla de decisión "
-      "cuando la escena tiene que parecerse a una foto real del cliente. Salió a "
-      "3072 × 5504: resolución de sobra para los 2250 × 4000 de la entrega.</li>"
-      "<li>Se probó también el modelo imagen→imagen y <strong>se descartó por "
-      "resolución</strong>: devolvió 768 × 1344, un tercio de lo que pide una story. "
-      "La escena la respetaba igual de bien.</li>"
-      "<li><strong>El orden importa:</strong> la IA trabajó sobre la base limpia, "
-      "<strong>sin el vaso</strong>, y el vaso real se montó <strong>después</strong>. "
-      "Así el logotipo impreso no lo toca nunca el modelo. Es tu propia técnica: "
-      "packshot real + fondo IA.</li>"
-      "<li>El prompt lleva por delante la lista de lo que no se toca: encuadre, "
-      "ángulo, cielo, focos, la lámpara de arco, los cuadros de NY, el muro de "
-      "listones, los sillones y la veta de la mesa.</li>"
+      "<li><strong>Nano Banana Pro</strong> con <strong>cuatro referencias</strong> "
+      "a 4K, que salió a 3072 × 5504: resolución de sobra para los 2250 × 4000 de "
+      "la entrega. Es lo que manda la tabla de decisión cuando la escena tiene que "
+      "parecerse a una foto real del cliente.</li>"
+      "<li>Se probó antes el modelo imagen→imagen y <strong>se descartó por "
+      "resolución</strong>: devuelve 768 × 1344, un tercio de lo que pide una "
+      "story.</li>"
+      "<li><strong>Cada referencia hace un trabajo:</strong> la foto real del cowork "
+      "es la escena que se conserva; tu edición de Magnific da el tratamiento; el "
+      "recorte del vaso real da el logotipo; y una foto de la sesión de desayunos "
+      "da el plato y el pan.</li>"
+      "<li>El prompt va estructurado —qué es cada referencia, lo que <em>no</em> se "
+      "toca, lo que se agrega objeto por objeto, la luz medida, la composición y al "
+      "final las negaciones— y <strong>lo que no se toca va antes de lo que se "
+      "agrega</strong>: puesto al final, el modelo ya reescribió la escena.</li>"
+      "<li>⚠️ <strong>El prompt topa en 3000 caracteres.</strong> El primero medía "
+      "4087 y la API devolvía un 400 sin más explicación. Quedó en 2988.</li>"
+      "<li>La composición se le pide por la restricción real: «todos los objetos en "
+      "la mitad de abajo del cuadro», porque el cartel taupe cierra en y≈1906 y todo "
+      "lo que quede más arriba se pierde detrás.</li>"
       "</ul>")
-    a('<div class="ojo"><p><strong>Le saqué el logo de Apple.</strong> Los dos '
-      "modelos pusieron un MacBook con el logotipo visible —lo copiaron de tu "
-      "referencia, que tiene uno— y una marca ajena no va en una pieza de Between, "
-      "aunque el prompt diga «no logos».</p>"
-      "<p>Se rellenó la tapa interpolando su degradado fila por fila entre muestras "
-      "de los dos lados, con el grano devuelto según la sigma medida afuera de la "
-      "caja (3,55) y el borde plumeado. Verificado a 2×: no se ve el parche.</p></div>")
 
-    a("<h2>El montaje del vaso</h2>")
-    a("<ul>"
-      "<li>Es el recorte real del cliente (<code>togo-vaso-real-nobg.png</code>, de la "
-      "sesión del 25-07), montado con <code>between-montar-vaso.py</code>: iguala "
-      "nitidez, nivel y temperatura, y dibuja la sombra de contacto.</li>"
-      "<li><strong>La luz se volvió a medir después del paso de IA</strong>, porque el "
-      "modelo reiluminó la mesa: junto a la laptop 163,8 a la izquierda contra "
-      "<strong>179,6</strong> a la derecha; junto a la libreta 136,3 contra "
-      "<strong>152,4</strong>. Viene de la derecha, así que su sombra cae a la "
-      "izquierda, igual que las de la laptop y la libreta.</li>"
-      "<li><strong>La escala no se eligió a ojo:</strong> un vaso de 12 oz mide 0,28 "
-      "del ancho de un portátil de 13″, y la laptop mide 1 060 px en el cuadro. Va al "
-      "frente-centro, con desenfoque de 0,95 px.</li>"
-      "<li>El vaso <strong>no se espeja</strong>: invertiría el logotipo.</li>"
-      "</ul>")
+    a("<h2>Lo que hizo que el logotipo saliera bien</h2>")
+    a('<p class="nota">Es la diferencia con la ronda 4, cuando el cliente rechazó un '
+      "logotipo estampado sobre un vaso generado: <strong>pasarle el vaso real como "
+      "referencia</strong>. Con él entre las referencias, dos de las tres variantes "
+      "escribieron la <strong>Ǝ invertida</strong> y la W angular de la marca. La "
+      "que no la tomó bien escribió un «BETWEEN» con E normal y se descartó.</p>")
 
     a("<h2>Lo que queda abierto</h2>")
     a('<div class="ojo"><p><strong>Una foto real de alguien trabajando en el '
@@ -351,16 +362,16 @@ def main():
       "el cliente no tiene ningún notebook fotografiado ahí: los únicos fotogramas "
       "con notebook son del lounge del hotel, con caras reconocibles y en otro "
       "espacio. Con esa foto, esta pieza dejaría de necesitar el paso de IA.</p>"
-      "<p><strong>El QA marca tres avisos y los tres son falsos positivos</strong>, "
-      "verificado imprimiendo dónde están los píxeles: 2 en el borde izquierdo (el "
-      "vano de luz del fondo) y 13 en la zona segura superior (el foco del cielo); "
-      "en el borde derecho, cero. Van <strong>cuatro piezas seguidas</strong> con el "
+      "<p><strong>El QA marca cuatro avisos y los cuatro son falsos positivos</strong>, "
+      "verificado imprimiendo dónde están los píxeles: son <strong>29 píxeles</strong> "
+      "del foco del cielo en la primera fila de la imagen, y en los otros tres bordes "
+      "hay <strong>cero</strong>. Van <strong>cinco piezas seguidas</strong> con el "
       "mismo defecto: al script le falta distinguir un brillo de foto de un trazo de "
       "letra.</p></div>")
 
     a('<div class="cierre">')
     for k, v in [("Entrega", "2250 × 4000 · 150 ppp"),
-                 ("Peso", "7 897 824 B"),
+                 ("Peso", "7 350 797 B"),
                  ("En Drive", "mismo archivo · el enlace no cambió"),
                  ("Reproducible", "byte a byte (cmp)")]:
         a('<div class="dato"><div class="k">%s</div><div class="v">%s</div></div>' % (k, v))

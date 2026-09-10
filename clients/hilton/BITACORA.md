@@ -1,3 +1,101 @@
+## 2026-09-10 (CIERRE 3 · noche) · Eli (Windows) — BETWEEN: la ST del Cowork pasa de generada a real, en 4 rondas
+
+Sesión de Between (las dos anteriores del día fueron de DT). Arrancó con
+`/abrir between` y cerró con la pieza subida y una página de revisión publicada.
+
+**Qué se hizo:**
+
+1. **`/al-dia` destapó por qué el archivo iba atrás de la realidad** — ver
+   «Abierto», es el hallazgo de método de la sesión y **cierra el misterio que
+   quedó abierto anoche**.
+2. **La ST del Cowork (STORIES col N, 16-09) se rehízo cuatro veces** por pedido
+   del cliente y de Eli, hasta quedar aprobada la base y ajustada dos veces más:
+   · **ronda 10** — Scarlette Muñoz, comentario nativo de las 12:55 sobre
+     `STORIES!N`: «podemos cambiar la imagen a una real de cowork?». La foto que
+     salía era una escena **enteramente generada** y no era Between;
+   · **ronda 11** — Eli: «el montaje está mal logrado». Se acabó pegar el vaso a
+     mano; la escena se produce entera con IA sobre la foto real;
+   · **ronda 12** — Eli: el vaso To Go pasa a **taza blanca de cappuccino**;
+   · **ronda 13** — Eli: vuelve el **sándwich de jamón y queso** de la versión
+     aprobada y la taza se separa del plato «un poco muy sutil».
+3. **La revisión se publica como página**, no como archivo local (memoria
+   `antes-y-despues-en-html`): <https://claude.ai/code/artifact/0c5e87e2-4a2f-448a-994e-ff7b2453ef92>
+   — va por la versión 4 y la dirección no cambia.
+
+**Dónde quedó:**
+
+- `src/compositions/hilton/BetweenStS3.tsx` — las cuatro rondas escritas en la
+  cabecera de la pieza. Componente nuevo **`LogoBeigeMarca`** (el lockup café se
+  cae a 1,80:1 sobre el cielo gris de la foto real); `LogoCafeMarca` quedó
+  huérfano y se removió, `LOGO_CAFE` sigue en uso por la pieza del 18.
+- Fondos versionados, **el histórico completo** en
+  `public/assets/hilton/between/st-s3/`: `st-16-09-cowork.jpg` (generado) ·
+  `-real.jpg` (foto sola) · `-real-vaso.jpg` y `-real-laptop.jpg` (los montajes
+  descartados) · **`-escena.jpg`** (el entregado).
+- Scripts nuevos: **`between-cowork-escena-ia.py`** (el que produce la escena),
+  `between-cowork-laptop-ia.py`, `between-cowork-r10-html.py` y
+  `between-cowork-r10-artifact.py`.
+- Instantánea **viva** de las cuatro pestañas de la grilla en
+  `clients/hilton/grillas/between-septiembre-2026-vivo/` — **ésa es la base del
+  próximo diff**, no el `.md` hecho sobre el blob.
+- **Subida a `S3 HILTON SEP 2026/BW/STORIES`** reemplazando el **mismo archivo**
+  `1lAgqPkkA25L4VRlnIg9UayWPdZxDuqwk`: **el enlace no cambió**. Última versión
+  **7 212 471 B**, 2250 × 4000 a 150 ppp, verificada por `fileSize` y `parentId`.
+- Las otras dos de la S3 **no se tocaron**: 8 077 154 B y 7 249 755 B.
+- Comprobado con `cmp` en cada ronda: **reproduce byte a byte**.
+- `clients/hilton/CLAUDE.md` — cuatro secciones nuevas (rondas 10 a 13).
+
+**Qué sigue:**
+
+1. **Producir la col T (28-09, Humor To Go) y la col U (30-09, Plateada al
+   Carmenere)**, las dos en `OK PARA DISEÑAR`. Es lo único de Between sin hacer:
+   el FEED está entero `YA POSTEADO` / `APROBADO` / `CORREGIDO`.
+2. **Arreglar `between-qa.py`.** Van **siete piezas seguidas** con el mismo falso
+   positivo: cuenta como texto cualquier blanco de marca con un borde oscuro
+   cerca — el foco del cielo, el brillo del muro de listones y ahora la loza del
+   plato. Hay que darle una forma de distinguir un brillo de foto de un trazo de
+   letra. Eli ya sabe que está pendiente.
+3. Confirmar si el cliente marca la N ahora que volvió corregida, y si la O
+   (18-09, `EN REVISIÓN`) se cierra.
+
+**Abierto:**
+
+- ⭐⭐⭐ **EL `.xlsx` DE LA GRILLA DE BETWEEN ESTÁ CONGELADO, Y LA GRILLA VIVA SE
+  LEE POR CSV.** Es la respuesta al misterio de anoche. `uc?export=download`
+  devuelve el **blob subido**, que Google deja de reescribir: hoy bajó con el
+  **md5 idéntico** al del 09-09 con el `modifiedTime` movido a las 19:12Z. La capa
+  viva se lee con
+  `docs.google.com/spreadsheets/d/<id>/export?format=csv&gid=<gid>`, y los `gid`
+  salen de `<id>/htmlview` (la página `/edit` no los trae). Los de Between: FEED
+  `1537718358`, STORIES `1367300884`, ORGÁNICOS `1543656935`, mensual `688659470`.
+  **La prueba de que el blob miente:** su vista mensual dice «AGOSTO» y la viva
+  dice «SEPT». ⛔ Queda **invalidada** la nota del 09-09 «si el md5 coincide, no
+  hay ronda». ⚠️ Y el comentario **nativo** tampoco sale en el CSV: ése se lee con
+  `read_file_content` del conector MCP con `includeComments=true`. Son **tres**
+  fuentes, no dos.
+- ⭐⭐ **SE CIERRAN LOS DOS PENDIENTES QUE ARRASTRABA LA CUENTA.** STORIES col G
+  (**reel Café Bombón**) y col D (**ST café de regalo**) pasaron de `EN CAMBIOS` a
+  **`APROBADO`**. El Café Bombón venía anotado como bloqueante desde el 09-09 («no
+  existe composición», «nadie anotó cuál de los tres caminos para la leche
+  condensada se aceptó») y Eli había dicho «ya lo dejé corregido»: **el cliente lo
+  aprobó, así que su corrección existió y no hay que rehacerlo**.
+  `PROPUESTA-reel-cafe-bombon.md` deja de estar en pie.
+- ⚠️ **Material que sigue faltando: una foto real de alguien trabajando en el
+  cowork.** El brief pide «notebook abierto + café Between + libreta» y el cliente
+  no tiene ningún notebook fotografiado ahí — los únicos fotogramas con notebook
+  son del **lounge del hotel**, con caras reconocibles y en otro espacio. Con esa
+  foto la pieza dejaría de necesitar el paso de IA. Vale la pena pedírsela.
+- ⚠️ **Hay una variante ofrecida y sin decidir:** la misma escena con el hueco
+  entre plato y taza más ancho (754 px contra los 481 de la entregada). Está en la
+  página de revisión; si Eli la prefiere, cambiarla es una línea.
+- Siguen de los cierres anteriores: Between **sin `clients/hilton/reglas.yaml`**
+  (así que `qa/motor.py --marca hilton` no corre), las **`GUIA CM`** en local sin
+  decidir cómo llegan al CM, y **`BETWEEN.logo.cafe` apuntando a un PNG negro**.
+- ⛔ Y sigue en pie: **`BetweenCumple.tsx:112` y `BetweenSeptiembre.tsx:794` con el
+  legal VIEJO** del cumpleaños.
+
+---
+
 ## 2026-09-10 (CIERRE 2) · Eli (Windows) — NO es sesión de diseño: 5 archivos de DT no sirven para producir
 
 **Qué se hizo.** Verificación del estudio en el Windows de Eli (`/arranque`). **No

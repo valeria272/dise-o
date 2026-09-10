@@ -35,6 +35,10 @@ necesita presentarlos»). Cierre: textos 1,3× más grandes con el mismo golpe y
 **V10 cierre de audio (08:35):** la música baja desde el end card (0,95 → 0,35 en 15,5–17,3 s) y sigue bajando
 hasta el negro; el golpe final queda a 0,28 para no pasar por encima. Medido: cuerpo −16 dB, end card −20/−25,
 golpe −14. Es la versión que Valeria dio por cerrada («con eso ya estaríamos cerrando»).
+**Comentarios del equipo (Coni, 09:35) → V10 corregida (19,0 s):** (1) demasiado negro antes de los focos → la
+caminata va hasta 2,44 y el macro hasta 3,14; el negro queda en 0,46 s antes del primer CLACK (los CLACKs
+siguen en sus golpes 3,60/4,06/4,50); (2) «AHORA TAMBIÉN EN NUESTRA MESA» no se leía → el primer end card
+dura 1,9 s (15,48–17,4) y el segundo 1,6 s; la banda se extendió a 19,0 s con el mismo offset.
 **Dónde quedó:** todo en `public/assets/traverso/lds2/` y `src/compositions/traverso/LosDeSiempreV7.tsx`;
 render en el Escritorio de Valeria y en `out/traverso/lds2/`.
 **Qué sigue:** escuchar V7 (balance canción–foley); si se aprueba, versión 1:1 para feed y subir al Drive.

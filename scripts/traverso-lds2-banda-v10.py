@@ -10,7 +10,7 @@ Sin pasa-bajos ni cambios de pista: sólo la dinámica propia de la canción + e
 import os, subprocess, tempfile, wave, numpy as np
 RAIZ=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AU=os.path.join(RAIZ,'public','assets','traverso','lds2','audio'); FF=os.path.join(RAIZ,'node_modules','@remotion','compositor-darwin-arm64','ffmpeg')
-SR=48000; DUR=18.3; N=int(SR*DUR); OFF=6.02
+SR=48000; DUR=19.0; N=int(SR*DUR); OFF=6.02
 env=dict(os.environ, DYLD_LIBRARY_PATH=os.path.dirname(FF))
 tmp=os.path.join(tempfile.gettempdir(),'v5_garage.wav')
 subprocess.run([FF,'-v','error','-y','-i',os.path.join(AU,'rutas','A-garage-1.mp3'),'-ac','2','-ar',str(SR),'-c:a','pcm_s16le',tmp],env=env,check=True,cwd=os.path.dirname(FF))
@@ -21,7 +21,7 @@ t=np.arange(N)/SR; g=np.ones(N)
 g[:s2i(0.03)]*=np.linspace(0,1,s2i(0.03))                       # entrada limpia
 # sin vacío: el bache natural 10,0–10,5 del archivo cae bajo los CLACKs (reel 3,98–4,48)
 
-g[s2i(18.27):]*=np.linspace(1,0,N-s2i(18.27))                    # corte seco
+g[s2i(18.97):]*=np.linspace(1,0,N-s2i(18.97))                    # corte seco
 mix*=g[:,None]; peak=np.abs(mix).max(); mix*=(10**(-1/20))/max(peak,1e-9)
 wav=os.path.join(AU,'banda-v10.wav'); mp3=os.path.join(AU,'banda-v10.mp3')
 o=wave.open(wav,'wb'); o.setnchannels(2); o.setsampwidth(2); o.setframerate(SR); o.writeframes((np.clip(mix,-1,1)*32767).astype(np.int16).tobytes()); o.close()

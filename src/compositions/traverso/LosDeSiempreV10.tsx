@@ -22,7 +22,7 @@ import {Video} from "@remotion/media";
 export const V10_FPS = 24;
 export const V10_W = 1080;
 export const V10_H = 1920;
-export const V10_DURATION = Math.round(18.3 * V10_FPS); // 439
+export const V10_DURATION = Math.round(19.0 * V10_FPS); // 456
 const A = "assets/traverso/lds2";
 const F = (s: number) => Math.round(s * V10_FPS);
 const INK = "#050505", BONE = "#F2EEE7", MOSTAZA = "#E8B325", ARCHIVO = "LDS Archivo";
@@ -31,8 +31,10 @@ const fontPromise = typeof FontFace !== "undefined" ? new FontFace(ARCHIVO, `url
 // banda-v10 (offset 6,02): macro 1,98 · paran 2,44 · CLACK 3,60 / 4,06 / 4,50 (bache natural debajo) ·
 // DROP 5,00 = abren AL TIRO · 7,76 GRUPO COPYLAB · parada 9,98–10,48 (la puerta) · 10,98 sentados ·
 // bajón 12,98 (CERO PRESENTACIONES) · 15,48 end card · HIT 17,48 · corte 18,3
-const T = {walk: 0.0, macro: 1.98, stop: 2.44, foco1: 3.6, foco2: 4.06, foco3: 4.5, reveal: 5.0,
-  destino: 7.76, mesa: 9.98, end: 15.48, card2: 16.6, fin: 18.3};
+// Feedback del equipo (Coni): menos negro antes de los focos (la caminata y el macro ocupan ese tiempo) y
+// el primer end card se alarga para que se lea la segunda línea.
+const T = {walk: 0.0, macro: 2.44, stop: 3.14, foco1: 3.6, foco2: 4.06, foco3: 4.5, reveal: 5.0,
+  destino: 7.76, mesa: 9.98, end: 15.48, card2: 17.4, fin: 19.0};
 
 type Plano = {id: string; from: number; to: number; src: string; trim?: number; rate?: number; punch?: number; zoom?: number; origin?: string; push?: [number, number];
   whipOut?: boolean; whipIn?: boolean; burn?: boolean; fromWhite?: boolean; wipeOut?: boolean; shake?: boolean; stage?: boolean};

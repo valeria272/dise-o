@@ -37,7 +37,7 @@ const T = {walk: 0.0, macro: 2.44, stop: 3.14, foco1: 3.6, foco2: 4.06, foco3: 4
   destino: 7.76, mesa: 9.98, end: 14.3, card2: 17.44, fin: 19.5};
 
 type Plano = {id: string; from: number; to: number; src: string; trim?: number; rate?: number; punch?: number; zoom?: number; origin?: string; push?: [number, number];
-  whipOut?: boolean; whipIn?: boolean; burn?: boolean; fromWhite?: boolean; wipeOut?: boolean; shake?: boolean; stage?: boolean; shiftY?: number};
+  whipOut?: boolean; whipIn?: boolean; burn?: boolean; fromWhite?: boolean; wipeOut?: boolean; shake?: boolean; stage?: boolean; shiftY?: number; shiftX?: number};
 const PLANOS: Plano[] = [
   {id: "walk",  from: T.walk, to: T.macro, src: "c04.mp4", trim: 0.20, rate: 1.0, punch: 1.06},
   {id: "macro", from: T.macro, to: T.stop, src: "c02.mp4", trim: 0.30, rate: 1.0, punch: 1.12},
@@ -46,7 +46,7 @@ const PLANOS: Plano[] = [
   {id: "stage", from: T.stop, to: T.reveal, src: "c09.mp4", trim: 0.0, rate: 0.55, push: [1.0, 1.04], origin: "50% 32%", stage: true},
   {id: "reveal", from: T.reveal, to: T.destino, src: "c09.mp4", trim: 1.4, rate: 1.4, push: [1.18, 1.0], origin: "50% 45%", shake: true},
   // entrada APROBADA: un plano hero; la luz de la puerta quema y se convierte en la sala
-  {id: "destino", from: T.destino, to: T.mesa, src: "c17.mp4", trim: 0.4, rate: 1.9, burn: true, zoom: 1.06, shiftY: 190, origin: "50% 50%"},
+  {id: "destino", from: T.destino, to: T.mesa, src: "c17.mp4", trim: 0.4, rate: 1.9, burn: true, zoom: 1.08, shiftY: 190, shiftX: -70, origin: "50% 50%"},
   // YA están sentados. Nada entre medio.
   {id: "mesa", from: T.mesa, to: T.end, src: "c16.mp4", trim: 0.2, rate: 0.9, push: [1.0, 1.05], origin: "50% 45%", fromWhite: true},
 ];
@@ -70,7 +70,7 @@ const Shot: React.FC<{p: Plano}> = ({p}) => {
   const burn = p.burn ? interpolate(frame, [dur - 8, dur], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}) : 0;
   const white = p.fromWhite ? interpolate(frame, [0, 6], [1, 0], {extrapolateRight: "clamp"}) : 0;
   const wipe = p.wipeOut ? interpolate(frame, [dur - 4, dur], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}) : 0;
-  const transform = `translateX(${outX + inX}%) translateY(${p.shiftY ?? 0}px) scale(${push * punch * shake * whipScale * (p.zoom ?? 1)})`;
+  const transform = `translateX(${outX + inX}%) translate(${p.shiftX ?? 0}px, ${p.shiftY ?? 0}px) scale(${push * punch * shake * whipScale * (p.zoom ?? 1)})`;
   const video = <Video src={staticFile(`${A}/clips/${p.src}`)} trimBefore={F(p.trim ?? 0)} playbackRate={p.rate ?? 1} volume={0} style={{width: "100%", height: "100%", objectFit: "cover"}} />;
   if (p.stage) {
     // tiempo absoluto del plano dentro del reel

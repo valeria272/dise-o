@@ -133,10 +133,10 @@ const Marcas: React.FC = () => {
   const op = interpolate(enter, [0, 1], [0, 1]); const y = interpolate(enter, [0, 1], [24, 0]);
   return (
     <AbsoluteFill style={{justifyContent: "flex-end", alignItems: "center", paddingBottom: 620, opacity: op, transform: `translateY(${y}px)`}}>
-      <div style={{display: "flex", alignItems: "center", gap: 96}}>
-        <Img src={staticFile("assets/traverso/logo-blanco.png")} style={{width: 500, objectFit: "contain"}} />
+      <div style={{display: "flex", alignItems: "center", gap: 64}}>
+        <Img src={staticFile("assets/traverso/logo-blanco.png")} style={{width: 430, objectFit: "contain"}} />
         <div style={{fontFamily: ARCHIVO, fontVariationSettings: '"wdth" 80, "wght" 300', fontSize: 84, color: BONE, opacity: 0.85}}>×</div>
-        <Img src={staticFile("brand/copylab/copylab-white.png")} style={{width: 400, objectFit: "contain"}} />
+        <Img src={staticFile("brand/copylab/copylab-white.png")} style={{width: 340, objectFit: "contain"}} />
       </div>
     </AbsoluteFill>
   );

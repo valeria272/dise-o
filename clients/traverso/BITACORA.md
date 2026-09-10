@@ -39,6 +39,10 @@ golpe −14. Es la versión que Valeria dio por cerrada («con eso ya estaríamo
 caminata va hasta 2,44 y el macro hasta 3,14; el negro queda en 0,46 s antes del primer CLACK (los CLACKs
 siguen en sus golpes 3,60/4,06/4,50); (2) «AHORA TAMBIÉN EN NUESTRA MESA» no se leía → el primer end card
 dura 1,9 s (15,48–17,4) y el segundo 1,6 s; la banda se extendió a 19,0 s con el mismo offset.
+**Última ronda de Valeria (09:55) → V10 de 20,9 s:** card 1 alargado a 3,4 s (15,48–18,9); logos Traverso 460 px ×
+Copylab 370 px (bloque ≤ 1.000 px para no salirse); el punto de la «g» de Copylab hace un GUIÑO a los 0,9 s del
+card final (se tapa el punto del PNG con negro y se dibuja uno propio con scaleY 1 → 0,08 → 1 en 8 f). Banda
+extendida a 20,9 s (mismo offset), golpe final en 19,98 (hit real), música bajando hasta el negro.
 **Dónde quedó:** todo en `public/assets/traverso/lds2/` y `src/compositions/traverso/LosDeSiempreV7.tsx`;
 render en el Escritorio de Valeria y en `out/traverso/lds2/`.
 **Qué sigue:** escuchar V7 (balance canción–foley); si se aprueba, versión 1:1 para feed y subir al Drive.

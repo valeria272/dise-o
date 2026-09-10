@@ -22,7 +22,7 @@ import {Video} from "@remotion/media";
 export const V10_FPS = 24;
 export const V10_W = 1080;
 export const V10_H = 1920;
-export const V10_DURATION = Math.round(19.0 * V10_FPS); // 456
+export const V10_DURATION = Math.round(20.9 * V10_FPS); // 502
 const A = "assets/traverso/lds2";
 const F = (s: number) => Math.round(s * V10_FPS);
 const INK = "#050505", BONE = "#F2EEE7", MOSTAZA = "#E8B325", ARCHIVO = "LDS Archivo";
@@ -34,7 +34,7 @@ const fontPromise = typeof FontFace !== "undefined" ? new FontFace(ARCHIVO, `url
 // Feedback del equipo (Coni): menos negro antes de los focos (la caminata y el macro ocupan ese tiempo) y
 // el primer end card se alarga para que se lea la segunda línea.
 const T = {walk: 0.0, macro: 2.44, stop: 3.14, foco1: 3.6, foco2: 4.06, foco3: 4.5, reveal: 5.0,
-  destino: 7.76, mesa: 9.98, end: 15.48, card2: 17.4, fin: 19.0};
+  destino: 7.76, mesa: 9.98, end: 15.48, card2: 18.9, fin: 20.9};
 
 type Plano = {id: string; from: number; to: number; src: string; trim?: number; rate?: number; punch?: number; zoom?: number; origin?: string; push?: [number, number];
   whipOut?: boolean; whipIn?: boolean; burn?: boolean; fromWhite?: boolean; wipeOut?: boolean; shake?: boolean; stage?: boolean};
@@ -150,16 +150,27 @@ const Golpe: React.FC<{lineas: string[]; size?: number; color?: string; bottom?:
 
 /** TRAVERSO × GRUPO COPYLAB con peso visual parejo (ancho similar), 1,7× que en V8, y el último frame
  *  aguanta como gráfica de campaña: la animación termina en 0,4 s y quedan ≥ 1,5 s limpios. */
+const LOGO_DOT = {x: 0.4156, y: 0.3315, r: 0.0615}; // el punto de la «g» dentro del PNG (1000×889)
 const Marcas: React.FC = () => {
   const frame = useCurrentFrame(); const {fps} = useVideoConfig();
   const enter = spring({fps, frame: frame - 6, config: {damping: 11, stiffness: 240, mass: 0.7}});
   const op = interpolate(enter, [0, 1], [0, 1]); const y = interpolate(enter, [0, 1], [40, 0]);
+  const CW = 370, CH = (CW * 889) / 1000;                 // caja del logo de Copylab
+  const dot = {x: LOGO_DOT.x * CW, y: LOGO_DOT.y * CH, r: LOGO_DOT.r * CW};
+  // el guiño: a los 0,9 s el punto se cierra (aplasta) y se abre, como un ojo
+  const W0 = F(0.9);
+  const wink = interpolate(frame, [W0, W0 + 3, W0 + 4, W0 + 8], [1, 0.08, 0.08, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   return (
-    <AbsoluteFill style={{justifyContent: "flex-end", alignItems: "center", paddingBottom: 600, opacity: op, transform: `translateY(${y}px) scale(${interpolate(enter, [0, 1], [1.15, 1])})`}}>
-      <div style={{display: "flex", alignItems: "center", gap: 64}}>
-        <Img src={staticFile("assets/traverso/logo-blanco.png")} style={{width: 430, objectFit: "contain"}} />
+    <AbsoluteFill style={{justifyContent: "flex-end", alignItems: "center", paddingBottom: 580, opacity: op, transform: `translateY(${y}px) scale(${interpolate(enter, [0, 1], [1.15, 1])})`}}>
+      <div style={{display: "flex", alignItems: "center", gap: 48}}>
+        <Img src={staticFile("assets/traverso/logo-blanco.png")} style={{width: 460, objectFit: "contain"}} />
         <div style={{fontFamily: ARCHIVO, fontVariationSettings: '"wdth" 80, "wght" 300', fontSize: 84, color: BONE, opacity: 0.85}}>×</div>
-        <Img src={staticFile("brand/copylab/copylab-white.png")} style={{width: 340, objectFit: "contain"}} />
+        <div style={{position: "relative", width: CW, height: CH}}>
+          <Img src={staticFile("brand/copylab/copylab-white.png")} style={{position: "absolute", left: 0, top: 0, width: CW, height: CH}} />
+          {/* tapamos el punto del PNG y dibujamos el nuestro, que guiña */}
+          <div style={{position: "absolute", left: dot.x - dot.r - 2, top: dot.y - dot.r - 2, width: (dot.r + 2) * 2, height: (dot.r + 2) * 2, borderRadius: "50%", background: INK}} />
+          <div style={{position: "absolute", left: dot.x - dot.r, top: dot.y - dot.r, width: dot.r * 2, height: dot.r * 2, borderRadius: "50%", background: "#fff", transform: `scaleY(${wink})`}} />
+        </div>
       </div>
     </AbsoluteFill>
   );
@@ -175,7 +186,7 @@ const SFX: {src: string; at: number; vol: number; dur?: number; base?: string}[]
   {src: "sfx-pasos.mp3", at: T.destino, vol: 0.35, dur: 1.4, base: "lds"}, {src: "sfx-riser.mp3", at: T.mesa - 1.1, vol: 0.55}, {src: "sfx-puerta.mp3", at: T.mesa - 0.45, vol: 0.6, base: "lds"},
   {src: "sfx-camara.mp3", at: T.mesa - 0.06, vol: 0.5}, {src: "sfx-oficina.mp3", at: T.mesa, vol: 0.28, dur: 5.5, base: "lds"}, {src: "sfx-carpeta.mp3", at: T.mesa + 0.8, vol: 0.45},
   {src: "sfx-impacto.mp3", at: 12.98, vol: 0.5},
-  {src: "sfx-impacto.mp3", at: T.end, vol: 0.45}, {src: "sfx-bass.mp3", at: 17.48, vol: 0.28},
+  {src: "sfx-impacto.mp3", at: T.end, vol: 0.45}, {src: "sfx-bass.mp3", at: 19.98, vol: 0.28},
 ];
 
 export const LosDeSiempreV10: React.FC = () => {
@@ -207,7 +218,7 @@ export const LosDeSiempreV10: React.FC = () => {
         </Sequence>
       </Sequence>
       {/* la música baja desde el end card (15,48) para que el cierre se entienda: 0,95 → 0,35 hasta el golpe final, y muere en el negro */}
-      <Audio src={staticFile(`${A}/audio/banda-v10.mp3`)} volume={(f) => interpolate(f, [F(T.end), F(17.3), F(17.48), F(T.fin) - 2, F(T.fin)], [0.95, 0.35, 0.35, 0.22, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})} />
+      <Audio src={staticFile(`${A}/audio/banda-v10.mp3`)} volume={(f) => interpolate(f, [F(T.end), F(17.0), F(T.card2), F(T.fin) - 2, F(T.fin)], [0.95, 0.4, 0.35, 0.22, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})} />
       {SFX.map((s, i) => (
         <Sequence key={i} from={F(s.at)} durationInFrames={s.dur ? F(s.dur) : undefined} layout="none">
           <Audio src={staticFile(`${s.base === "lds" ? "assets/traverso/lds" : A}/audio/${s.src}`)} volume={s.vol} />

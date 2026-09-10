@@ -294,6 +294,36 @@ geometría.
   · ⚠️ Y el grosor NO se toca para arreglar legibilidad: bajarlo afina el trazo
     y baja el contraste. Si el titular cae sobre foto clara, se resuelve con el
     velo o con el color, y se mide antes de entregar.
+- ⭐⭐ **EL VELO AZUL SE HACE NACIENDO EN CERO, NO EMPEZANDO EN UN PUNTO**
+  (criterio de Eli, 10-09-2026: «baja la opacidad arriba, se ve muy forzado; la
+  transparencia debe ser de 0 arriba y ajustar»).
+  · ⛔ **El error a no repetir:** dejar el velo PLANO en 0 una franja y hacerlo
+    arrancar de golpe más abajo. Ese codo es **una banda visible** — se lee como
+    una máscara pegada encima de la foto, no como luz. Pasó en la ronda 4 de la
+    ST del Día del Turismo (plano hasta el 21 % y salto a 0,44 en el 33 %) y fue
+    exactamente lo que ella marcó como «forzado».
+  · ✅ **Cómo va:** α = 0 **en el borde superior** y de ahí sube **cóncavo** —
+    pendiente en el tercio de arriba, aplanándose hacia el pie. Paradas cada
+    ~10 % de la altura para que no quede ningún quiebre a la vista. Las de la ST
+    del Día del Turismo, que están aprobadas: `0 · 0,11 · 0,22 · 0,33 · 0,42 ·
+    0,48 · 0,52 · 0,55 · 0,57 · 0,58`.
+  · **El pie va cerca de 0,58 y no más** (ronda 2: «baja la transparencia», de
+    0,90 a 0,60). Un velo que tapa la foto contradice el encargo: la foto real
+    del hotel es el argumento de la pieza.
+  · ⚠️ **Y el velo se mide, no se estima.** Regla `la-tinta-la-manda-el-fondo`:
+    luminancia **por tercios** de la columna del texto y **manda el peor
+    tercio** (para tinta blanca, el tercio más CLARO). Varas: **3:1 para el
+    titular** —a cuerpo 80-130 px es texto grande— y **4,5:1 para el subtexto**.
+    Exigirle 4,5 al titular es aplicarle la vara del texto chico.
+  · ⚠️ **Cuidado con el logotipo cuando el velo sube:** va en azul (§B.4) y el
+    velo es del mismo azul, así que cargarlo detrás del logo **le baja** el
+    contraste. Con estas paradas el logo queda en 7,12:1, dentro del 6,7-9,3 que
+    pide §B.4. Si el velo se toca, se re-mide el logo.
+  · ⭐ **Si el titular queda sin margen sobre foto clara, la salida NO es cargar
+    el velo:** es ponerlo en **azul DT como el logotipo**. Medido en la ST del
+    Día del Turismo, el azul sobre ese cielo da **9:1 sin velo alguno**. Y ⛔ la
+    salida tampoco es reencuadrar por reencuadrar: se barrieron los 25 encuadres
+    9:16 posibles de `HDT_43` y el mejor dejaba el titular en 2,60:1.
 - Versales de la dirección al pie: caja de 15 px.
 - **El máster de historia son 2250×4000** — hay 66 historias entregadas a ese
   tamaño. Se rinde con `--scale 2.0833` desde una mesa de 1080.

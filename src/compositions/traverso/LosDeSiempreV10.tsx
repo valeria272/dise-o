@@ -37,7 +37,7 @@ const T = {walk: 0.0, macro: 2.44, stop: 3.14, foco1: 3.6, foco2: 4.06, foco3: 4
   destino: 7.76, mesa: 9.98, end: 14.3, card2: 17.44, fin: 19.5};
 
 type Plano = {id: string; from: number; to: number; src: string; trim?: number; rate?: number; punch?: number; zoom?: number; origin?: string; push?: [number, number];
-  whipOut?: boolean; whipIn?: boolean; burn?: boolean; fromWhite?: boolean; wipeOut?: boolean; shake?: boolean; stage?: boolean};
+  whipOut?: boolean; whipIn?: boolean; burn?: boolean; fromWhite?: boolean; wipeOut?: boolean; shake?: boolean; stage?: boolean; shiftY?: number};
 const PLANOS: Plano[] = [
   {id: "walk",  from: T.walk, to: T.macro, src: "c04.mp4", trim: 0.20, rate: 1.0, punch: 1.06},
   {id: "macro", from: T.macro, to: T.stop, src: "c02.mp4", trim: 0.30, rate: 1.0, punch: 1.12},
@@ -46,7 +46,7 @@ const PLANOS: Plano[] = [
   {id: "stage", from: T.stop, to: T.reveal, src: "c09.mp4", trim: 0.0, rate: 0.55, push: [1.0, 1.04], origin: "50% 32%", stage: true},
   {id: "reveal", from: T.reveal, to: T.destino, src: "c09.mp4", trim: 1.4, rate: 1.4, push: [1.18, 1.0], origin: "50% 45%", shake: true},
   // entrada APROBADA: un plano hero; la luz de la puerta quema y se convierte en la sala
-  {id: "destino", from: T.destino, to: T.mesa, src: "c17.mp4", trim: 0.4, rate: 1.9, burn: true},
+  {id: "destino", from: T.destino, to: T.mesa, src: "c17.mp4", trim: 0.4, rate: 1.9, burn: true, zoom: 1.06, shiftY: 190, origin: "50% 50%"},
   // YA están sentados. Nada entre medio.
   {id: "mesa", from: T.mesa, to: T.end, src: "c16.mp4", trim: 0.2, rate: 0.9, push: [1.0, 1.05], origin: "50% 45%", fromWhite: true},
 ];
@@ -70,7 +70,7 @@ const Shot: React.FC<{p: Plano}> = ({p}) => {
   const burn = p.burn ? interpolate(frame, [dur - 8, dur], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}) : 0;
   const white = p.fromWhite ? interpolate(frame, [0, 6], [1, 0], {extrapolateRight: "clamp"}) : 0;
   const wipe = p.wipeOut ? interpolate(frame, [dur - 4, dur], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}) : 0;
-  const transform = `translateX(${outX + inX}%) scale(${push * punch * shake * whipScale * (p.zoom ?? 1)})`;
+  const transform = `translateX(${outX + inX}%) translateY(${p.shiftY ?? 0}px) scale(${push * punch * shake * whipScale * (p.zoom ?? 1)})`;
   const video = <Video src={staticFile(`${A}/clips/${p.src}`)} trimBefore={F(p.trim ?? 0)} playbackRate={p.rate ?? 1} volume={0} style={{width: "100%", height: "100%", objectFit: "cover"}} />;
   if (p.stage) {
     // tiempo absoluto del plano dentro del reel
@@ -124,7 +124,7 @@ const HeroText: React.FC = () => {
   const enter = spring({fps, frame, config: {damping: 12, stiffness: 300, mass: 0.6}});
   return (
     <AbsoluteFill style={{justifyContent: "center", alignItems: "center"}}>
-      <div style={{transform: `scale(${interpolate(enter, [0, 1], [1.6, 1])}) translateY(-620px)`, fontFamily: ARCHIVO, fontVariationSettings: '"wdth" 62, "wght" 900', fontSize: 212, lineHeight: 0.9, color: MOSTAZA, textAlign: "center", letterSpacing: "-0.01em", textShadow: "0 14px 40px rgba(0,0,0,0.85), 0 0 120px rgba(232,179,37,0.25)"}}>LOS DE<br />SIEMPRE.</div>
+      <div style={{transform: `scale(${interpolate(enter, [0, 1], [1.6, 1])}) translateY(-500px)`, fontFamily: ARCHIVO, fontVariationSettings: '"wdth" 62, "wght" 900', fontSize: 200, lineHeight: 0.9, color: MOSTAZA, textAlign: "center", letterSpacing: "-0.01em", textShadow: "0 14px 40px rgba(0,0,0,0.85), 0 0 120px rgba(232,179,37,0.25)"}}>LOS DE<br />SIEMPRE.</div>
     </AbsoluteFill>
   );
 };
@@ -150,29 +150,17 @@ const Golpe: React.FC<{lineas: string[]; size?: number; color?: string; bottom?:
 
 /** TRAVERSO × GRUPO COPYLAB con peso visual parejo (ancho similar), 1,7× que en V8, y el último frame
  *  aguanta como gráfica de campaña: la animación termina en 0,4 s y quedan ≥ 1,5 s limpios. */
-const LOGO_DOT = {x: 0.4156, y: 0.3315, r: 0.0615}; // el punto de la «g» dentro del PNG (1000×889)
 const Marcas: React.FC = () => {
   const frame = useCurrentFrame(); const {fps} = useVideoConfig();
   const enter = spring({fps, frame: frame - 6, config: {damping: 11, stiffness: 240, mass: 0.7}});
   const op = interpolate(enter, [0, 1], [0, 1]); const y = interpolate(enter, [0, 1], [40, 0]);
   const CW = 370, CH = (CW * 889) / 1000;                 // caja del logo de Copylab
-  const dot = {x: LOGO_DOT.x * CW, y: LOGO_DOT.y * CH, r: LOGO_DOT.r * CW};
-  // el guiño: un PÁRPADO (disco negro) baja sobre el punto, lo cierra hasta dejar una luna, se queda 3 f y sube
-  const W0 = F(0.9);
-  const lid = interpolate(frame, [W0, W0 + 4, W0 + 8, W0 + 13], [-2.4, -0.95, -0.95, -2.4], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   return (
     <AbsoluteFill style={{justifyContent: "flex-end", alignItems: "center", paddingBottom: 580, opacity: op, transform: `translateY(${y}px) scale(${interpolate(enter, [0, 1], [1.15, 1])})`}}>
       <div style={{display: "flex", alignItems: "center", gap: 48}}>
         <Img src={staticFile("assets/traverso/logo-blanco.png")} style={{width: 460, objectFit: "contain"}} />
         <div style={{fontFamily: ARCHIVO, fontVariationSettings: '"wdth" 80, "wght" 300', fontSize: 84, color: BONE, opacity: 0.85}}>×</div>
-        <div style={{position: "relative", width: CW, height: CH}}>
-          <Img src={staticFile("brand/copylab/copylab-white.png")} style={{position: "absolute", left: 0, top: 0, width: CW, height: CH}} />
-          {/* tapamos el punto del PNG y dibujamos el nuestro, que guiña */}
-          <div style={{position: "absolute", left: dot.x - dot.r - 2, top: dot.y - dot.r - 2, width: (dot.r + 2) * 2, height: (dot.r + 2) * 2, borderRadius: "50%", background: INK}} />
-          <div style={{position: "absolute", left: dot.x - dot.r, top: dot.y - dot.r, width: dot.r * 2, height: dot.r * 2, borderRadius: "50%", background: "#fff", overflow: "hidden"}}>
-            <div style={{position: "absolute", left: -dot.r * 0.15, top: 0, width: dot.r * 2.3, height: dot.r * 2.3, borderRadius: "50%", background: INK, transform: `translateY(${lid * dot.r}px)`}} />
-          </div>
-        </div>
+        <Img src={staticFile("brand/copylab/copylab-white.png")} style={{width: CW, height: CH}} />
       </div>
     </AbsoluteFill>
   );
@@ -205,8 +193,8 @@ export const LosDeSiempreV10: React.FC = () => {
         </Sequence>
       ))}
       {/* reunión: dos textos con un beat de comedia entre medio */}
-      <Sequence from={F(10.98)} durationInFrames={F(T.end - 10.98)} layout="none"><Titular lineas={["Primera reunión."]} size={88} bottom={360} /></Sequence>
-      <Sequence from={F(12.38)} durationInFrames={F(T.end - 12.38)} layout="none"><Golpe lineas={["Cero", "presentaciones."]} size={112} color={MOSTAZA} bottom={150} /></Sequence>
+      <Sequence from={F(10.98)} durationInFrames={F(T.end - 10.98)} layout="none"><Titular lineas={["Primera reunión."]} size={84} bottom={640} /></Sequence>
+      <Sequence from={F(12.38)} durationInFrames={F(T.end - 12.38)} layout="none"><Golpe lineas={["Cero", "presentaciones."]} size={104} color={MOSTAZA} bottom={400} /></Sequence>
       {/* cierre: DOS cards, golpe final y negro seco */}
       <Sequence from={F(T.end)} durationInFrames={F(T.fin - T.end)} layout="none">
         <AbsoluteFill style={{background: INK}} />

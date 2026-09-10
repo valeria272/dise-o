@@ -46,6 +46,11 @@ extendida a 20,9 s (mismo offset), golpe final en 19,98 (hit real), música baja
 **Cierre de Valeria (10:05) → V10 final de 19,5 s:** la reunión corta en 14,3 s (c16 a 0,9×) porque a los ~15 s la
 mostaza «rompía la carpeta» (artefacto de Kling al final del clip); «CERO PRESENTACIONES.» se adelantó a 12,38;
 card 1 14,3–17,44 (3,1 s), card 2 17,44–19,5 con el golpe real de la canción al entrar y el guiño a los 0,9 s.
+**QA de zonas seguras para Reel (10:20):** fuera el guiño del punto (no se leía). Overlay 250 px arriba / 340 abajo /
+115 derecha sobre 12 fotogramas: todos los textos dentro (PRIMERA REUNIÓN bottom 640, CERO PRESENTACIONES bottom 400,
+LOS DE SIEMPRE bajado 120 px, end cards y logos en el centro); el rótulo GRUPO COPYLAB caía en la franja superior → el
+plano de la puerta baja 190 px (zoom 1,06). Lo único que toca las franjas son los pies de los personajes en los
+hero shots (encuadre del clip, no crítico) y la gente de espaldas en la reunión.
 **Dónde quedó:** todo en `public/assets/traverso/lds2/` y `src/compositions/traverso/LosDeSiempreV7.tsx`;
 render en el Escritorio de Valeria y en `out/traverso/lds2/`.
 **Qué sigue:** escuchar V7 (balance canción–foley); si se aprueba, versión 1:1 para feed y subir al Drive.

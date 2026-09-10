@@ -44,6 +44,13 @@ vacío 8,66–9,18 sobre el bache natural → DROP 9,18 = reveal → tres golpes
 porn → parada natural 14,16–14,66 + riser → hit 15,16 = luz de la puerta → 17,66–20,0 la banda «da un
 paso atrás» (pasa-bajos 900 Hz, −7 dB) para el deadpan → vuelve 20,0 → HIT 21,66 → corte 22,5.
 Todos los cortes del montaje están sobre esos eventos medidos. Cero clips nuevos.
+**Ronda 6 (23:12), V4 no aprobada → V5 de montaje y storytelling** (`out/traverso/lds2/los-de-siempre-V5.mp4`,
+`TraversoV5`, 22,5 s). UNA sola canción de punta a punta (`audio/banda-v5.mp3` = la garage desde 1,52 s,
+único vacío 9,1–9,5); con ese offset los baches y golpes naturales caen donde la historia los pide
+(breakdown antes del reveal, parada al cruzar la puerta, bajón en la reunión, HIT final 21,94).
+Historia única: llegan → los descubrimos (Suave → whip → Tradicional → whip → Ketchup → vuelta al trío
+en el hit) → reveal → match cut a GRUPO COPYLAB → cruzan, Ketchup tapa la lente → ya sentados →
+end card. Fuera el product porn y toda caminata dentro de la oficina. Test sin textos/audio: pasa.
 **Qué sigue:** que Valeria ESCUCHE el v1 (pista y mezcla cuadradas por envolvente, no de oído) y
 decida si la música original se queda o se licencia una; ajustar niveles de SFX; subir clips y
 render al Drive de Traverso; si se aprueba, versión 1:1 para feed.

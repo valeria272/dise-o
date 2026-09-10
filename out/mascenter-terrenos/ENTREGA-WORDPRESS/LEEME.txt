@@ -1,5 +1,5 @@
 POSTULA TU TERRENO — LANDING PARA WORDPRESS
-Más Center · Grupo IFB — entrega del 08-09-2026
+Más Center · Grupo IFB — entrega del 09-09-2026
 
 EMPIEZA POR ACÁ (2 pasos):
 
@@ -23,13 +23,19 @@ QUÉ HAY EN CADA CARPETA:
                            armar las secciones con el constructor del tema.
 
 QUÉ CAMBIÓ EN ESTA ENTREGA:
-  El correo de contacto. Ahora es  terrenos@ifbinversiones.cl
-  (antes decía contacto@mascenter.cl). Está en la sección 09, dos veces:
-  en el enlace mailto: y en el texto que se ve.
+  1) El correo de contacto. Ahora es  terrenos@ifbinversiones.cl
+     (antes decía contacto@mascenter.cl). Está en la sección 09, dos veces:
+     en el enlace mailto: y en el texto que se ve.
+
+  2) El formulario ya no miente. Antes decía "Recibimos tu postulación"
+     sin mandar nada a ninguna parte. Ahora arma la postulación con los
+     8 campos y abre el correo del visitante, dirigida a
+     terrenos@ifbinversiones.cl.
 
 LO ÚNICO QUE FALTA:
-  El formulario valida los campos pero todavía NO envía correo.
-  Hay que conectarlo a Contact Form 7 y apuntarlo a terrenos@ifbinversiones.cl
-  — está explicado en el paso 7 del instructivo, con los nombres de cada campo.
+  Que el envío sea silencioso, sin abrir el correo del visitante.
+  Hay que conectar el formulario a Contact Form 7 y apuntarlo a
+  terrenos@ifbinversiones.cl — está explicado en el paso 7 del
+  instructivo, con los nombres de cada campo.
 
 Dudas de maquetación: la respuesta siempre está en sitio-completo.html.

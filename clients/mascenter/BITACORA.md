@@ -1,3 +1,35 @@
+## 2026-09-09 → 2026-09-10 — Valeria Traverso (con Claude)
+
+**Qué se hizo:** Ronda 5 de la **landing de terrenos**, gatillada por un correo de Francesca
+Pavissich: decía que la landing seguía mostrando `contacto@mascenter.cl` y preguntaba si el
+formulario derivaba al buzón nuevo. Las dos cosas destaparon problemas más grandes que el reclamo.
+(1) El cambio de correo estaba commiteado desde el 08-09 (`c10a952`) pero **nunca se desplegó** —
+Vercel seguía sirviendo el build anterior, así que el archivo local decía una cosa y la URL del
+cliente otra durante un día entero. (2) El formulario **le mentía al visitante**: respondía
+«¡Gracias! Recibimos tu postulación» y no enviaba nada a ninguna parte, sin `action` ni backend.
+Estaba anotado como pendiente para Contact Form 7, pero la página ya estaba publicada y
+circulando: una postulación real se habría perdido en silencio.
+
+**Dónde quedó:** **En vivo y verificado contra la URL**, no contra el archivo local:
+`mascenter-terrenos.vercel.app` sirve `terrenos@ifbinversiones.cl` (cero rastros del correo viejo)
+y el formulario ahora arma la postulación con los 8 campos y abre el correo del visitante dirigido
+a ese buzón — 806 caracteres con datos reales, bajo el límite de los clientes de correo, acentos
+intactos. Paquete de WordPress regenerado y consistente: `index.html`, `sitio-completo.html` y las
+13 secciones traen **el mismo JavaScript** (sha1 `869c7c0423d3`). ZIP en
+`out/ENTREGA-TERRENOS-MASCENTER-WORDPRESS.zip` y copia para mano en el Escritorio
+(«MAS CENTER — Landing terrenos»). Todo en `out/mascenter-terrenos/`.
+
+**Qué sigue:** Responderle a Francesca: el correo ya está corregido y el formulario sí llega a
+`terrenos@ifbinversiones.cl`, pero **abriendo el correo del visitante** — el envío silencioso
+llega cuando se monte en WordPress con Contact Form 7 (paso 7 del instructivo). Mandarle el ZIP a
+quien vaya a maquetear.
+
+**Abierto:** El envío real del formulario depende de WordPress y de los plugins de IFB — no es
+nuestro. Sigue pendiente de rondas anteriores el **dominio definitivo** (hoy
+`mascenter-terrenos.vercel.app`; la sugerencia era `terrenos.mascenter.cl`) y el **rojo oscuro a
+la espera de la revisión de Fran**. Y sigue sin aplicarse la desconexión del proyecto de Vercel
+respecto del repo del estudio (ver memoria `mascenter-landing-terrenos`).
+
 ## 2026-09-04 → 2026-09-05 — Valeria Traverso (con Claude)
 
 **Qué se hizo:** Se abrió la marca en el estudio (`clients/mascenter/`: manual, `marca.json`,

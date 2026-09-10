@@ -181,3 +181,13 @@ historia. Música: la misma pista de los reels de julio y agosto del cliente (ve
 - **04-09-2026** — los reels salieron **sin música y con barrido deslizante**; el cliente los
   lleva con pista y con un golpe de rojo pleno de 0,30 s. Medir el reel de referencia a 60 fps
   antes de animar.
+- **09-09-2026** — la landing de terrenos tenía el correo **genérico** de la marca. La captación
+  de terrenos NO usa `contacto@mascenter.cl`: va a **`terrenos@ifbinversiones.cl`**, el buzón
+  propio del área de desarrollo de Grupo IFB. Lo corrigió Francesca Pavissich por correo.
+- **09-09-2026** — el cambio anterior se **commiteó y no se desplegó**: Vercel siguió sirviendo el
+  build viejo un día entero y el cliente vio el correo antiguo. En esta marca hay dos landings en
+  Vercel (terrenos y Algarrobal): **un cambio de cara al cliente se verifica con `curl` contra la
+  URL en vivo, nunca contra el archivo local.**
+- **09-09-2026** — el formulario de la landing decía «Recibimos tu postulación» y **no enviaba
+  nada**. Un pendiente técnico deja de ser un pendiente cuando la página ya está publicada: si no
+  se puede enviar de verdad, el mensaje no puede prometer que sí.

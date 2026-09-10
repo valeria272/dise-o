@@ -894,9 +894,12 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   });
   pintarPuntos(); mover();
 
-  /* ── Formulario ── */
-  /* ⚠️ VALIDA PERO NO ENVÍA. Falta enchufarlo al backend / Contact Form 7.
-     Ver NOTAS-DE-ENTREGA.md, sección "Formulario". */
+  /* ── Formulario ──
+     Sin backend: arma la postulación y la abre en el correo del visitante, ya
+     dirigida al buzón de captación. Cuando la landing se monte en WordPress con
+     Contact Form 7, este bloque se reemplaza por el envío real — mismo
+     destinatario. Ver NOTAS-DE-ENTREGA.md, sección "Formulario". */
+  var BUZON = 'terrenos@ifbinversiones.cl';
   var form = document.getElementById('formulario'), aviso = document.getElementById('aviso');
   form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -914,9 +917,30 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
       malos[0].focus();
       return;
     }
+    var v = function(id){ return document.getElementById(id).value.trim(); };
+    var asunto = 'Postulación de terreno — ' + v('comuna') + ', ' + v('region');
+    var cuerpo = [
+      'Nueva postulación de terreno desde la landing de Más Center.',
+      '',
+      'Nombre y apellido: ' + v('nombre'),
+      'Correo electrónico: ' + v('email'),
+      'Teléfono: ' + v('telefono'),
+      '',
+      'Región: ' + v('region'),
+      'Comuna: ' + v('comuna'),
+      'Superficie: ' + v('superficie') + ' m2',
+      'Dirección o rol: ' + v('direccion'),
+      '',
+      'Sobre el terreno:',
+      v('mensaje')
+    ].join('\r\n');
+    window.location.href = 'mailto:' + BUZON +
+      '?subject=' + encodeURIComponent(asunto) +
+      '&body=' + encodeURIComponent(cuerpo);
     aviso.className = 'aviso-form ok';
-    aviso.textContent = '¡Gracias! Recibimos tu postulación. Nuestro equipo te contactará a la brevedad.';
-    form.reset();
+    aviso.textContent = 'Te abrimos el correo con la postulación lista para enviar a ' + BUZON +
+      '. Revísala y dale enviar. Si no se abrió tu programa de correo, escríbenos directamente a ' +
+      BUZON + ' y cuéntanos sobre tu terreno.';
   });
   form.querySelectorAll('input,select,textarea').forEach(function(c){
     c.addEventListener('input', function(){ c.classList.remove('error'); });

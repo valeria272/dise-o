@@ -47,9 +47,14 @@ encima — la regla del sistema. Los iconos son **rellenos**, como exige el manu
 3. **Los 4 pasos del proceso son propuesta de la agencia**, adaptados de la referencia
    de Arcos Dorados. Falta que Más Center confirme los plazos reales y **cómo se llama
    el área que evalúa** — quedó como «equipo de desarrollo» (en McDonald's es «Real Estate»).
-4. **El formulario valida pero no envía correo.** Falta enchufarlo al backend o a
-   Contact Form 7. Campos: nombre, email, teléfono, región, comuna, superficie,
-   dirección/rol, mensaje.
+4. **El formulario abre el correo del visitante, no envía por su cuenta.** Al
+   validar OK arma la postulación —con los 8 campos ya escritos— y la abre dirigida a
+   `terrenos@ifbinversiones.cl`. El visitante tiene que darle enviar. Es el puente
+   hasta que se monte en WordPress con Contact Form 7, donde el envío pasa a ser
+   silencioso y al mismo destinatario. Campos: nombre, email, teléfono, región,
+   comuna, superficie, dirección/rol, mensaje.
+   ⚠️ Hasta el 09-09-2026 el formulario le decía al visitante «Recibimos tu
+   postulación» sin mandar nada a ninguna parte. Corregido.
 5. **Dominio.** Hoy vive en `mascenter-terrenos.vercel.app`. Sugerencia:
    `terrenos.mascenter.cl` con CNAME a Vercel, o como página dentro del WordPress actual.
 
@@ -223,3 +228,16 @@ y ninguna de las dos tira errores de consola.
 
 El destinatario del formulario en Contact Form 7 tiene que ser
 `terrenos@ifbinversiones.cl` — está escrito en el paso 7 del instructivo.
+
+
+---
+
+## Ronda 5 — 09-09-2026 · lo que Fran vio y lo que había debajo
+
+| # | Qué pasó | Qué se hizo |
+|---|---|---|
+| 1 | Fran reporta que la landing **sigue mostrando `contacto@mascenter.cl`** | El cambio del 08-09 estaba en el repo pero **nunca se desplegó**: Vercel seguía sirviendo el build anterior. Se redesplegó. |
+| 2 | Fran pregunta si el formulario deriva a `terrenos@ifbinversiones.cl` | **No lo hacía, y encima decía que sí.** Respondía «¡Gracias! Recibimos tu postulación» sin enviar nada. Ahora abre el correo del visitante con la postulación completa dirigida a ese buzón. |
+
+**La lección:** commitear no es publicar. Un cambio de cara al cliente no está hecho
+hasta que se verifica **contra la URL en vivo**, no contra el archivo local.

@@ -7,7 +7,20 @@ DEST = BASE / "ENTREGA-WORDPRESS"
 SEC  = DEST / "secciones"
 REC  = DEST / "recursos"
 
+# ⚠️ Estos tres se escriben a mano y el script NO los regenera: si se borran con
+# el rmtree, la entrega sale sin instructivo. Se guardan y se reponen.
+# (Pasó el 09-09-2026 al rehacer el paquete.)
+A_MANO = ("INSTRUCTIVO.html", "LEEME.txt", "TEXTOS-PARA-COPIAR.txt")
+# Las capturas de secciones/vista-previa/ tampoco las genera el script: son
+# fotos de cada bloque, y el LEEME las promete. Se guardan igual que las de arriba.
+_guardados, _vistas = {}, {}
 if DEST.exists():
+    for _n in A_MANO:
+        if (DEST / _n).exists():
+            _guardados[_n] = (DEST / _n).read_bytes()
+    for _f in (SEC / "vista-previa").glob("*"):
+        if _f.is_file():
+            _vistas[_f.name] = _f.read_bytes()
     shutil.rmtree(DEST)
 for d in (SEC, SEC/"vista-previa", REC/"tipografias", REC/"logos",
           REC/"imagenes", REC/"imagenes"/"centros"):
@@ -72,7 +85,16 @@ HTML = {
     "pie":        tramo(736, 769),
     "flotante":   tramo(771, 774),
 }
-SCRIPTS = tramo(776, 927)
+# ⚠️ El bloque <script> se localiza SOLO, no por número de línea fija.
+# Estaba quemado como tramo(776, 927) y al crecer el JS la entrega salió con el
+# JavaScript cortado a la mitad, sin aviso (09-09-2026). Los demás tramos van
+# antes del <script>, así que a esos no los mueve editar el JS.
+_ini = next(i for i, l in enumerate(L) if l.strip() == "<script>")
+_fin = next(i for i, l in enumerate(L) if l.strip() == "</script>")
+SCRIPTS = "\n".join(L[_ini:_fin + 1]).rstrip()
+if not SCRIPTS.rstrip().endswith("</script>") or "})();" not in SCRIPTS:
+    raise SystemExit("✗ El bloque <script> salió incompleto — la entrega quedaría rota. "
+                     "Revisa index.html antes de seguir.")
 
 RAYA = "════════════════════════════════════════════════════════════════════════"
 def cabecera_archivo(num, titulo, previa, usa, nota, cierre):
@@ -168,3 +190,18 @@ io.open(SEC/"99-scripts.html","w",encoding="utf-8").write(c99 + "\n" + SCRIPTS +
 
 print("OK — secciones:", len(list(SEC.glob('*.html'))))
 print("centros:", len(CENTROS))
+
+# ── reponer lo que se escribe a mano ──────────────────────────────────
+for _n, _b in _guardados.items():
+    (DEST / _n).write_bytes(_b)
+for _n, _b in _vistas.items():
+    (SEC / "vista-previa" / _n).write_bytes(_b)
+if _vistas:
+    print("vistas previas repuestas:", len(_vistas))
+else:
+    print("⚠️ OJO: la entrega quedó SIN las capturas de secciones/vista-previa/.")
+if _guardados:
+    print("repuestos a mano:", ", ".join(sorted(_guardados)))
+else:
+    print("⚠️ OJO: no había INSTRUCTIVO.html / LEEME.txt / TEXTOS-PARA-COPIAR.txt "
+          "que reponer — la entrega queda incompleta hasta escribirlos.")

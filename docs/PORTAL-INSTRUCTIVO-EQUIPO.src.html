@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<title>Portal de aprobaciones · Instructivo del equipo</title>
+<style>
+  @page { size: A4; margin: 16mm 16mm 18mm 16mm; }
+  :root{ --tinta:#14171c; --tinta2:#4d545f; --tinta3:#7a828e; --linea:#dfe3e8; --fondo:#f3f4f6;
+    --azul:#2f5bd7; --azul-s:#eaf0ff; --ok:#0f8a54; --ok-s:#e6f5ee; --alerta:#b8791b; --alerta-s:#fdf3e2; --peligro:#c22f3d; --peligro-s:#fdecee; --lila:#6c5ce0; --lila-s:#f0edfd; }
+  *{box-sizing:border-box}
+  body{margin:0;color:var(--tinta);font:12.5pt/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  h1{font-size:30pt;line-height:1.1;margin:0 0 8pt;letter-spacing:-.02em}
+  h2{font-size:19pt;margin:0 0 10pt;letter-spacing:-.01em;break-after:avoid}
+  h3{font-size:13.5pt;margin:14pt 0 4pt;break-after:avoid}
+  p{margin:0 0 8pt}
+  .eti{font-size:9.5pt;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);font-weight:700;margin-bottom:6pt}
+  .portada{min-height:240mm;display:flex;flex-direction:column;justify-content:space-between;break-after:page}
+  .portada .lead{font-size:15pt;color:var(--tinta2);max-width:60ch}
+  .pag{break-before:page}
+  .roles{display:grid;grid-template-columns:1fr 1fr;gap:10pt;margin:10pt 0}
+  .rol{border:1px solid var(--linea);border-radius:8pt;padding:10pt 12pt;break-inside:avoid}
+  .rol b{display:block;font-size:13pt;margin-bottom:3pt}
+  .rol small{display:block;color:var(--tinta3);font-size:10pt;margin-bottom:6pt}
+  .rol ul{margin:0;padding-left:16pt}
+  .rol li{margin-bottom:3pt}
+  ol.pasos{list-style:none;padding:0;margin:0;counter-reset:p}
+  ol.pasos li{display:grid;grid-template-columns:30pt 1fr;gap:10pt;padding:9pt 0;border-top:1px solid var(--linea);counter-increment:p;break-inside:avoid}
+  ol.pasos li:before{content:counter(p);width:26pt;height:26pt;border-radius:50%;background:var(--tinta);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12pt}
+  ol.pasos li b{display:block;font-size:13pt;margin-bottom:2pt}
+  ol.pasos li .quien{display:inline-block;font-size:9.5pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:1pt 7pt;border-radius:99pt;margin-left:6pt;vertical-align:middle}
+  .q-dis{background:var(--lila-s);color:var(--lila)} .q-kam{background:var(--azul-s);color:var(--azul)} .q-cli{background:var(--alerta-s);color:var(--alerta)} .q-cm{background:var(--ok-s);color:var(--ok)} .q-portal{background:var(--fondo);color:var(--tinta2)}
+  .estados{display:flex;flex-wrap:wrap;gap:6pt;align-items:center;margin:8pt 0 12pt}
+  .est{padding:5pt 10pt;border-radius:8pt;font-weight:700;font-size:11pt;border:1px solid var(--linea);background:#fff}
+  .est small{display:block;font-weight:400;color:var(--tinta3);font-size:9.5pt}
+  .est.gris{background:var(--fondo)} .est.azul{background:var(--azul-s);border-color:#c9d9fb} .est.alerta{background:var(--alerta-s);border-color:#eed7a8} .est.lila{background:var(--lila-s);border-color:#d9d2fb} .est.ok{background:var(--ok-s);border-color:#bfe3cf}
+  .fl{color:var(--tinta3);font-size:14pt}
+  .caja{border-left:4pt solid var(--azul);background:var(--azul-s);padding:8pt 12pt;border-radius:0 8pt 8pt 0;margin:10pt 0;break-inside:avoid}
+  .caja.alerta{border-left-color:var(--alerta);background:var(--alerta-s)}
+  .caja.peligro{border-left-color:var(--peligro);background:var(--peligro-s)}
+  .caja.ok{border-left-color:var(--ok);background:var(--ok-s)}
+  .caja p:last-child{margin:0}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:10.5pt;background:var(--fondo);padding:1pt 5pt;border-radius:4pt}
+  figure{margin:10pt 0 14pt;break-inside:avoid}
+  figure img{width:100%;border:1px solid var(--linea);border-radius:8pt;display:block}
+  figcaption{font-size:10pt;color:var(--tinta3);margin-top:4pt}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:10pt}
+  table{border-collapse:collapse;width:100%;font-size:11pt;margin:8pt 0 12pt}
+  th,td{border-bottom:1px solid var(--linea);padding:6pt 8pt;text-align:left;vertical-align:top}
+  th{font-size:9.5pt;text-transform:uppercase;letter-spacing:.06em;color:var(--tinta3);background:var(--fondo)}
+  .pie{font-size:9.5pt;color:var(--tinta3);border-top:1px solid var(--linea);padding-top:6pt;margin-top:16pt}
+  .chk{list-style:none;padding:0;margin:0}
+  .chk li{padding:4pt 0 4pt 24pt;position:relative;border-bottom:1px dashed var(--linea)}
+  .chk li:before{content:"";position:absolute;left:0;top:7pt;width:12pt;height:12pt;border:1.5pt solid var(--tinta3);border-radius:3pt}
+</style>
+</head>
+<body>
+
+<section class="portada">
+  <div>
+    <p class="eti">Grupo Copylab · Portal de aprobaciones · Alimentos Traverso</p>
+    <h1>Cómo usamos el portal, paso a paso</h1>
+    <p class="lead">Un solo lugar para que el cliente apruebe las piezas, con evidencia de rondas y tiempos. La grilla se sigue armando en el Sheet; el portal toma de ahí las tarjetas, cuelga las gráficas solo, se las muestra al cliente, programa lo aprobado y avisa por Slack a quien le toque actuar.</p>
+  </div>
+  <div>
+    <div class="caja">
+      <p><strong>La regla de oro.</strong> Las aprobaciones, los comentarios y las solicitudes viven en el portal. WhatsApp queda para urgencias y para avisar «hay piezas nuevas». Lo que no está en el portal, no pasó.</p>
+    </div>
+    <p style="color:var(--tinta3);font-size:10.5pt">Versión del 08-09-2026 · Enlace del equipo: <strong>portal-copylab.vercel.app/?c=traverso</strong> · PIN del equipo: <strong>9688</strong> · Canal de Slack: <strong>#traverso-alimentos</strong></p>
+  </div>
+</section>
+
+<section class="pag">
+  <p class="eti">Primero</p>
+  <h2>Quién hace qué</h2>
+  <div class="roles">
+    <div class="rol"><b>Contenidos</b><small>Nicolás Ávila · Coni</small><ul><li>Arman la grilla del mes en el Sheet, como siempre: una columna por pieza con fecha, formato, brief, hora y copy.</li><li>Pasan el estado a <em>Por diseñar</em> o <em>Corregido</em> cuando el cliente aprueba el brief.</li><li>No suben nada al portal: las tarjetas se crean solas.</li></ul></div>
+    <div class="rol"><b>Diseño</b><small>Paulina</small><ul><li>Pega la gráfica terminada en la grilla, sobre la columna de su pieza (como hasta ahora), o la deja en la carpeta de Drive del mes con la fecha delante del nombre.</li><li>Los videos finales de los reels van al Drive: en el Sheet sólo cabe un GIF de vista previa.</li><li>Para una corrección, reemplaza la imagen. El portal la sube como V2 solo.</li></ul></div>
+    <div class="rol"><b>KAM</b><small>Constanza Olivares «Coni»</small><ul><li>Revisa las piezas en «Sin enviar» y aprieta <strong>Enviar a revisión</strong>. Ahí el cliente ve las piezas y arranca su plazo de 72 horas hábiles.</li><li>Mira Calendario cada mañana: vencidas y lo que sale en 3 días sin aprobar.</li><li>Cuando el cliente gasta la tercera ronda, cierra la conversación: lo que sigue se cotiza.</li></ul></div>
+    <div class="rol"><b>Community manager</b><small>Nicolás Ávila</small><ul><li>No programa a mano: al aprobar, cada pieza queda programada con la fecha y hora de la grilla.</li><li>Sube a mano lo que Instagram no acepta por API (historias con stickers) y, mientras la cuenta no esté conectada, todo lo aprobado a su hora. El portal le avisa por Slack.</li><li>Después de subir, marca <strong>Publicada</strong> en la tarjeta.</li></ul></div>
+  </div>
+  <div class="caja alerta"><p><strong>El cliente:</strong> Paloma Irribarra (PM de Traverso) es la única que consolida los cambios y aprueba. Otras personas del cliente pueden anotar comentarios, pero no cierran. Entra con su enlace privado, sin clave, y sólo ve lo que la KAM ya envió a revisión.</p></div>
+</section>
+
+<section class="pag">
+  <p class="eti">El mes de punta a punta</p>
+  <h2>Los 9 pasos</h2>
+  <ol class="pasos">
+    <li><div><b>La grilla se arma en el Sheet <span class="quien q-kam">Contenidos</span></b>Una columna por pieza: fecha, formato, brief, tema, hora, copy y estado. El cliente aprueba o corrige cada brief en la fila «Comentarios cliente briefs», como hasta ahora. <strong>La grilla manda todo el mes:</strong> si después mueven una pieza de día, el portal la sigue (ver la página siguiente).</div></li>
+    <li><div><b>El portal crea las tarjetas <span class="quien q-portal">Solo, cada hora</span></b>Toma todas las columnas que tengan algo escrito en ESTADO —salvo las que sigan en manos del cliente— y crea una tarjeta por pieza con título, copy literal, fecha y hora de publicación. Quedan en «Sin enviar»: el cliente no las ve. Si un copy cambia en el Sheet, la tarjeta se actualiza sola.</div></li>
+    <li><div><b>Diseño deja la gráfica <span class="quien q-dis">Diseño</span></b>Pegada en la grilla sobre la columna de la pieza, o en la carpeta <code>DISEÑOS / GRILLAS / 9. SEPTIEMBRE</code> con la fecha delante: <code>01-09 Señales 1.png</code>. Varias imágenes con el mismo nombre y número son un carrusel. El video del reel va al Drive.</div></li>
+    <li><div><b>El portal cuelga el arte en su tarjeta <span class="quien q-portal">Solo, cada hora</span></b>Reconoce la pieza por la columna o por la fecha. Si diseño reemplaza la imagen, la sube como V2 y deja resueltos los comentarios anteriores.</div></li>
+    <li><div><b>La KAM revisa y envía a revisión <span class="quien q-kam">KAM</span></b>En Piezas, botón <strong>Enviar a revisión</strong>. Avisa al canal de Slack y arranca el plazo de 72 horas hábiles. Es el único filtro humano antes del cliente. Después le escribe al cliente: «hay piezas nuevas en el portal».</div></li>
+    <li><div><b>El cliente revisa <span class="quien q-cli">Cliente</span></b>Aprueba cada pieza con su copy, o anota cambios. Puede comentar sobre el diseño o sobre el copy, en el minuto exacto de un video o en la lámina exacta de un carrusel. Los comentarios se juntan y se envían en una sola ronda. Tiene 3 rondas por pieza.</div></li>
+    <li><div><b>Diseño corrige, la KAM reenvía <span class="quien q-dis">Diseño</span><span class="quien q-kam">KAM</span></b>Diseño reemplaza la imagen (V2). La pieza pasa a «Actualización». La KAM aprieta de nuevo <strong>Enviar a revisión</strong> y el cliente ve la V2 con los comentarios anteriores tachados.</div></li>
+    <li><div><b>El cliente aprueba y la pieza queda programada <span class="quien q-cli">Cliente</span><span class="quien q-portal">Portal</span></b>Al aprobar, la pieza se cierra y queda programada con la fecha y hora de la grilla. El copy aprobado es el que se publica. Se avisa por Slack.</div></li>
+    <li><div><b>Se publica <span class="quien q-cm">CM</span><span class="quien q-portal">Portal</span></b>Con la cuenta de Instagram conectada, el portal publica solo a la hora. Mientras no lo esté, y siempre en las historias con stickers, el portal avisa a la hora y el CM la sube a mano y marca <strong>Publicada</strong>.</div></li>
+  </ol>
+</section>
+
+<section class="pag">
+  <p class="eti">Lo que más se usa</p>
+  <h2>Cuando la grilla se reacomoda</h2>
+  <p>Las fechas de un mes se mueven: entra un evento, se atrasa una grabación, el cliente pide correr un post. <strong>La grilla vigente manda siempre</strong> y el portal la sigue solo, cada hora. No hay que avisarle nada ni volver a subir nada.</p>
+  <table>
+    <thead><tr><th>Lo que hacen en la grilla</th><th>Lo que hace el portal</th></tr></thead>
+    <tbody>
+      <tr><td>Cambian la fecha de una pieza</td><td>La misma tarjeta cambia de día, con su arte, sus comentarios y sus rondas. Si estaba programada, la programación se mueve con ella.</td></tr>
+      <tr><td>Mueven la pieza de columna, o de hoja</td><td>La reconoce por el título: sigue siendo la misma tarjeta.</td></tr>
+      <tr><td>Le retocan el título o el copy</td><td>Los actualiza. Un copy ya marcado como aprobado no se pisa.</td></tr>
+      <tr><td>Cambian el formato (de carrusel a post)</td><td>Lo actualiza, sin crear una tarjeta nueva.</td></tr>
+      <tr><td>Agregan una pieza nueva</td><td>Aparece como tarjeta nueva en «Sin enviar».</td></tr>
+      <tr><td>Sacan una pieza del mes</td><td>Si estaba vacía, la archiva. Si ya tenía arte o comentarios, la marca <strong>«Ya no está en la grilla»</strong> para que ustedes decidan. Nunca borra trabajo.</td></tr>
+    </tbody>
+  </table>
+  <div class="caja alerta">
+    <p><strong>La única regla nueva:</strong> si arman una hoja nueva con las fechas nuevas, <strong>escondan la anterior</strong> — clic derecho en la pestaña → Ocultar. Si quedan las dos visibles, el portal las lee como dos meses distintos y duplica las tarjetas. Una hoja oculta es una hoja jubilada: se ignora.</p>
+  </div>
+  <div class="caja">
+    <p><strong>Si el archivo del Drive quedó con la fecha vieja</strong> (lo nombraron antes de mover la pieza), igual lo engancha: lo busca por el tema del nombre. No hace falta renombrarlo.</p>
+  </div>
+  <p>Todo esto corre solo cada hora. Para verlo al instante: botón <strong>Releer la grilla</strong> en Piezas, y en <strong>Ajustes</strong> el botón <strong>Traer el arte pegado en la grilla</strong>.</p>
+</section>
+
+<section class="pag">
+  <p class="eti">Para leer las tarjetas</p>
+  <h2>Los estados de una pieza</h2>
+  <div class="estados">
+    <span class="est gris">Sin enviar<small>sólo la ve el equipo</small></span><span class="fl">→</span>
+    <span class="est azul">Por revisar<small>V1 · plazo corriendo</small></span><span class="fl">→</span>
+    <span class="est alerta">Con cambios<small>ronda 1 enviada</small></span><span class="fl">→</span>
+    <span class="est lila">Actualización<small>lista, falta enviarla · sólo agencia</small></span><span class="fl">→</span>
+    <span class="est azul">Por revisar<small>V2</small></span><span class="fl">→</span>
+    <span class="est ok">Aprobada<small>programada sola</small></span><span class="fl">→</span>
+    <span class="est ok">Publicada</span>
+  </div>
+  <table>
+    <thead><tr><th>Lo que dice la tarjeta</th><th>Qué significa</th><th>A quién le toca</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Sin enviar</strong></td><td>La tarjeta existe (vino de la grilla), con o sin arte. El cliente no la ve.</td><td>Diseño si dice «Sin archivo»; KAM si ya tiene arte.</td></tr>
+      <tr><td><strong>Por revisar · Quedan 3 días</strong></td><td>Se le envió al cliente y su plazo corre (72 h hábiles).</td><td>Cliente.</td></tr>
+      <tr><td><strong>Con cambios · Ronda 1 de 3</strong></td><td>El cliente envió una ronda con comentarios.</td><td>Diseño.</td></tr>
+      <tr><td><strong>Actualización</strong></td><td>Diseño subió la corrección. Falta reenviarla. <strong>El cliente no ve este estado</strong>: la pieza reaparece en su vista al enviarla.</td><td>KAM: «Enviar a revisión».</td></tr>
+      <tr><td><strong>⛔ Último cambio: consolidar</strong></td><td>Se usaron las 3 rondas. Esta corrección tiene que dejar la pieza cerrada.</td><td>KAM cierra con el cliente; lo que siga se cotiza a 2 UF/HH.</td></tr>
+      <tr><td><strong>Aprobada · Programado 14/9 12:00</strong></td><td>Cerrada y con fecha. Nadie la toca más.</td><td>El portal (o el CM a la hora, si es manual).</td></tr>
+      <tr><td><strong>Vista previa · falta el video final</strong></td><td>Es el GIF pegado en la grilla. Se puede aprobar el concepto, no se publica.</td><td>Diseño deja el video en el Drive.</td></tr>
+      <tr><td><strong>Ya no está en la grilla</strong></td><td>La columna de esa pieza desapareció de la grilla vigente, pero la tarjeta tiene trabajo hecho.</td><td>Contenidos: si sigue yendo, vuelve a la grilla; si no, se elimina.</td></tr>
+      <tr><td><strong>Con interacción: encuesta</strong></td><td>Historia con sticker. Se aprueba arte y texto; el sticker se pone al subirla.</td><td>CM la sube a mano.</td></tr>
+    </tbody>
+  </table>
+  <figure><img src="IMG_EQUIPO" alt="Vista del equipo: piezas con arte y sin arte"><figcaption>Vista del equipo con las fechas de la grilla vigente. Las tarjetas con imagen ya tienen la gráfica tomada de la grilla; las blancas están definidas en la grilla pero diseño no las ha hecho. El cliente no ve ninguna de las dos hasta «Enviar a revisión».</figcaption></figure>
+</section>
+
+<section class="pag">
+  <p class="eti">Lo que ve Paloma</p>
+  <h2>La vista del cliente</h2>
+  <p>Entra con su enlace privado, escribe su nombre arriba a la derecha y ve sólo lo enviado a revisión. Cada tarjeta trae el arte, el copy, el plazo que le queda y cuántas rondas usó. Al abrir una pieza ve el arte en grande, puede ampliarlo al tamaño real, leer el copy y comentar sobre el diseño o sobre el copy. En un video, pausa y toca «Comentar en este minuto». En un carrusel, el comentario queda pegado a la lámina que está mirando.</p>
+  <figure><img src="IMG_CLIENTE" alt="Vista del cliente"><figcaption>Piezas «Por revisar» (V1) con el plazo a la vista, y una pieza «Con cambios» ya en V2. El comentario amarillo es un borrador: todavía no se envió como ronda.</figcaption></figure>
+  <figure><img src="IMG_CLIENTE_MODAL" alt="Pieza abierta por el cliente en V2"><figcaption>Una pieza abierta en V2, ronda 2 de 3. Debajo del arte: ampliar, el copy con «Comentar el copy», y el selector «sobre el diseño / el copy».</figcaption></figure>
+  <div class="caja"><p><strong>Cómo aprueba:</strong> botón verde <strong>Aprobar</strong> en la tarjeta o dentro de la pieza. <strong>Cómo pide cambios:</strong> «Anotar comentario» las veces que quiera y después «Enviar ronda». Todos los comentarios salen juntos y gastan una ronda. Sólo Paloma puede enviar rondas y aprobar.</p></div>
+</section>
+
+<section class="pag">
+  <p class="eti">Cada mañana</p>
+  <h2>Las alertas y los avisos</h2>
+  <p>Arriba de <strong>Piezas</strong>, y sólo para la agencia, están las cuatro listas que hay que mirar cada mañana: <strong>ya debían salir y no están aprobadas</strong>, <strong>salen en 3 días y no están aprobadas</strong>, <strong>le toca al CM</strong> (lo que hay que subir a mano) y <strong>ya no están en la grilla</strong>. Cada línea abre la pieza con un clic. Las piezas, además, van en orden cronológico: la que sale primero, primero.</p>
+  <figure><img src="IMG_CALENDARIO" alt="Alertas del equipo"><figcaption>Las alertas, arriba de Piezas. El cliente no las ve.</figcaption></figure>
+  <h3>Lo que llega a #traverso-alimentos</h3>
+  <table>
+    <thead><tr><th>Aviso</th><th>Cuándo</th><th>Para quién</th></tr></thead>
+    <tbody>
+      <tr><td>📅 Resumen del día</td><td>Cada mañana a las 9:00</td><td>Todos: qué sale hoy y quién lo publica, qué vence, qué falta aprobar.</td></tr>
+      <tr><td>📤 Piezas en revisión</td><td>Cuando la KAM envía</td><td>Registro: cuántas piezas y hasta cuándo tiene el cliente.</td></tr>
+      <tr><td>✏ Ronda enviada</td><td>Cuando el cliente envía cambios</td><td>Diseño y KAM: la lista de cambios y cuántas rondas quedan.</td></tr>
+      <tr><td>🎨 Corrección subida</td><td>Cuando diseño reemplaza el arte</td><td>KAM: falta reenviarla a revisión.</td></tr>
+      <tr><td>✅ Pieza aprobada</td><td>Cuando el cliente aprueba</td><td>CM: queda programada, o hay que subirla a mano.</td></tr>
+      <tr><td>⏰ Hora de publicar a mano</td><td>A la hora programada</td><td>CM: sube la pieza y marca «Publicada».</td></tr>
+      <tr><td>⛔ Plazo vencido / Último cambio</td><td>Al pasar las 72 h · al gastar la 3.ª ronda</td><td>KAM: hablar con el cliente.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="pag">
+  <p class="eti">Para no equivocarse</p>
+  <h2>Reglas que el portal hace cumplir</h2>
+  <ul class="chk">
+    <li><strong>3 rondas de cambio por pieza.</strong> La cuarta no se puede enviar: el botón pasa a «Solicitar cambio adicional» y queda registrado a 2 UF por hora hombre, mínimo 1,5 UF.</li>
+    <li><strong>72 horas hábiles</strong> desde «Enviar a revisión». El fin de semana no cuenta. Vencido, la pieza se marca y suena en Slack; no se aprueba sola.</li>
+    <li><strong>Una vez aprobada, se cierra.</strong> Ni diseño ni el cliente la reabren. Un archivo nuevo en el Drive no la toca.</li>
+    <li><strong>Una sola contraparte.</strong> Sólo Paloma consolida y aprueba. El resto anota.</li>
+    <li><strong>El copy va con la pieza.</strong> Se aprueba junto con el arte y es el que se publica. Si el cliente propone otro texto, el equipo lo aplica con un clic y vuelve a revisión.</li>
+    <li><strong>Nada se publica sin visto bueno.</strong> Ni el portal ni el CM suben una pieza que no esté aprobada en el portal.</li>
+  </ul>
+  <h3>Preguntas que van a aparecer</h3>
+  <p><strong>«El cliente dice que no ve nada.»</strong> Está usando su enlace y todavía no hay piezas enviadas a revisión. Enviar a revisión primero.</p>
+  <p><strong>«Subí la gráfica y no aparece.»</strong> El portal la busca cada hora. Para no esperar: Ajustes → «Traer el arte pegado en la grilla» o «Traer ahora del Drive». Si el archivo está en el Drive, revisa que empiece con la fecha (DD-MM).</p>
+  <p><strong>«Aprobó pero no se publicó.»</strong> Mientras la cuenta de Instagram no esté conectada, publica el CM a la hora que avisa Slack. Para que el portal publique solo, el cliente tiene que dar acceso a su cuenta desde Meta Business Suite.</p>
+  <p><strong>«El cliente quiere un cambio en una pieza aprobada.»</strong> Se pide desde la pieza con «Solicitar cambio adicional». Queda registrado con tarifa y no se ejecuta sin que apruebe alcance y horas.</p>
+  <p><strong>«¿Dónde veo cuánto se demoró el cliente?»</strong> Pestaña Reportes: rondas por pieza, demora media, aprobadas a la primera, quién pidió los cambios y la tabla de fuera de alcance. Es lo que se lleva a la reunión de cuenta.</p>
+  <p class="pie">Portal: portal-copylab.vercel.app · Documentación completa para KAM y CM en <code>EDITOR VIDEOS/docs/PORTAL-VALIDACIONES.html</code> · Técnica en <code>~/copylab-work/portal-copylab/FLUJO.md</code> · Grupo Copylab, septiembre 2026.</p>
+</section>
+</body>
+</html>

@@ -166,6 +166,15 @@ const Marcas: React.FC = () => {
   );
 };
 
+/** GRUPO COPYLAB sobre el dintel: placa negra sólida de borde a borde del marco y letras blancas. */
+const Rotulo: React.FC = () => (
+  <AbsoluteFill>
+    <div style={{position: "absolute", left: 0, top: 222, width: 1080, height: 250, background: "#0A0A0A", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 0 rgba(255,255,255,0.06)"}}>
+      <div style={{fontFamily: ARCHIVO, fontVariationSettings: '"wdth" 100, "wght" 560', fontSize: 78, letterSpacing: "0.08em", color: "#F4F1EC"}}>GRUPO COPYLAB</div>
+    </div>
+  </AbsoluteFill>
+);
+
 // Pocos SFX, de calidad: 3 CLACKs · acento · DROP (sub + tela) · puerta/aire · oficina · golpe final
 const SFX: {src: string; at: number; vol: number; dur?: number; base?: string}[] = [
   {src: "sfx-pasos.mp3", at: 0.0, vol: 0.45, dur: 1.9, base: "lds"},
@@ -188,6 +197,8 @@ export const LosDeSiempreV10: React.FC = () => {
           <Shot p={p} />
         </Sequence>
       ))}
+      {/* el rótulo de la entrada sobre una placa negra sólida (el del clip queda debajo, tapado) */}
+      <Sequence from={F(T.destino)} durationInFrames={F(T.mesa - T.destino)} layout="none"><Rotulo /></Sequence>
       {/* reveal 1: LOS DE SIEMPRE. en el tercer CLACK — ENCIMA de la imagen, opaco, entero */}
       <Sequence from={F(T.foco3)} durationInFrames={F(T.destino - T.foco3)} layout="none"><HeroText /></Sequence>
       {/* reunión: dos textos con un beat de comedia entre medio */}

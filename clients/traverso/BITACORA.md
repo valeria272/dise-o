@@ -32,6 +32,9 @@ natural debajo) y el hit en 5,00 = apertura; la parada de la puerta (9,98) y el 
 (12,98) siguen cayendo en su sitio. Copy de la mesa: «PRIMERA REUNIÓN.» → pausa → «CERO PRESENTACIONES.»
 grande, bold ancho, entrada por golpe con leve rotación (decisión verbal de Valeria; reemplaza a «Nadie
 necesita presentarlos»). Cierre: textos 1,3× más grandes con el mismo golpe y logos con sobreimpulso.
+**V10 cierre de audio (08:35):** la música baja desde el end card (0,95 → 0,35 en 15,5–17,3 s) y sigue bajando
+hasta el negro; el golpe final queda a 0,28 para no pasar por encima. Medido: cuerpo −16 dB, end card −20/−25,
+golpe −14. Es la versión que Valeria dio por cerrada («con eso ya estaríamos cerrando»).
 **Dónde quedó:** todo en `public/assets/traverso/lds2/` y `src/compositions/traverso/LosDeSiempreV7.tsx`;
 render en el Escritorio de Valeria y en `out/traverso/lds2/`.
 **Qué sigue:** escuchar V7 (balance canción–foley); si se aprueba, versión 1:1 para feed y subir al Drive.

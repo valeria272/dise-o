@@ -173,7 +173,7 @@ const SFX: {src: string; at: number; vol: number; dur?: number; base?: string}[]
   {src: "sfx-pasos.mp3", at: T.destino, vol: 0.35, dur: 1.4, base: "lds"}, {src: "sfx-riser.mp3", at: T.mesa - 1.1, vol: 0.55}, {src: "sfx-puerta.mp3", at: T.mesa - 0.45, vol: 0.6, base: "lds"},
   {src: "sfx-camara.mp3", at: T.mesa - 0.06, vol: 0.5}, {src: "sfx-oficina.mp3", at: T.mesa, vol: 0.28, dur: 5.5, base: "lds"}, {src: "sfx-carpeta.mp3", at: T.mesa + 0.8, vol: 0.45},
   {src: "sfx-impacto.mp3", at: 12.98, vol: 0.5},
-  {src: "sfx-impacto.mp3", at: T.end, vol: 0.45}, {src: "sfx-bass.mp3", at: 17.48, vol: 0.45},
+  {src: "sfx-impacto.mp3", at: T.end, vol: 0.45}, {src: "sfx-bass.mp3", at: 17.48, vol: 0.28},
 ];
 
 export const LosDeSiempreV10: React.FC = () => {

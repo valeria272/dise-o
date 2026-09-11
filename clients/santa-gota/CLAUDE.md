@@ -152,5 +152,10 @@ no usar** · loop 11,0–11,9 emplata el ají · loop 13,0 monja al fuego de fre
 - V2: la monja al 62 % en la huincha se leía chica. Al 72 % la cara llena la banda y recién ahí «asoma».
 - V3: un plano largo del reel cruza sus propios cortes (0,70 · 9,35 · 11,0 con logo). Cada `Plano` se acota
   a la duración real del plano fuente; se comprueba en la hoja de contacto del render.
+- V3 (rechazada por oficio, no por concepto): zooms/empujes «para llenar», planos que cruzan cortes del reel,
+  franja que no llegaba al borde (parecía lower third), monja chica, «plato gigante» congelado, látigo lima que
+  parecía error. La V4 es la pauta de montaje cerrada de Valeria: **cortes secos motivados, nada de zoom, franjas
+  de borde a borde, un solo cambio de plano sutil en el claim (cut-in), end frame quieto.**
+- El preview del virtual va a escala 1:1 (a toda la altura del cuadro): al 72 % la monja se leía chica.
 - V3: el fotograma de la huincha del canal (`_tv-frame-huincha.png`) traía la huincha de OTRA marca; con alfa
   real se veía detrás. Los previews se montan sobre `_tv-frame-set.png`.

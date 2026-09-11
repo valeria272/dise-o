@@ -1,5 +1,20 @@
 # SANTA GOTA — bitácora
 
+## 2026-09-11 (noche, 2) · Valeria (con Claude) — V4: pauta de montaje cerrada (previews)
+
+**Los V3 no se aprobaron.** El problema pasó a ser de oficio: timing, encuadres, escala, terminaciones. Valeria
+mandó una pauta de montaje cerrada («no agregues decisiones automáticas») y se ejecutó literal:
+- Full: sin zooms ni empujes; recortes 16:9 estáticos; hook de fuego (3,32→3,92 a 0,5×); aceite con botella,
+  chorro y sartén; ingredientes; pasta; monja + producto; cocina 2; claim sobre la monja GRANDE (K=1,0 → cut-in
+  a 1,2 en REVOLUCIONAR); payoff = lanza la pasta (8,667→9,24: después la pasta se sale por la izquierda) + pinzas
+  y plato; corte directo a un end frame quieto. Sin látigo lima. Sólo 2 whooshes.
+- Huincha: la cara ocupa toda la altura (s=1,0, cornette fuera de cuadro), franja petróleo de 1920 px de borde a
+  borde (y 40→216) con la monja superpuesta; claim 100 px; la misma franja cambia a logo 300 px + CTA 62.
+- Virtual: monja al 112 % (cabeza + torso), gesto real de sartén ida y vuelta (cuadros 3→5→3, sin el «plato
+  gigante»), claim tipográfico sin caja detrás de ella, losa de borde a borde para la marca. **El preview ahora la
+  muestra a escala 1:1** (775×1080 a toda la altura del cuadro); al 72 % del V3 se veía chica junto al conductor.
+- Previews V4 en `04_PREVIEWS/V4/`. Másters siguen sin exportar hasta la aprobación.
+
 ## 2026-09-11 (noche) · Valeria (con Claude) — V3 de los 3 placements: última ronda creativa (previews)
 
 **Brief:** «Corrección final obligatoria»: edición publicitaria de verdad (transiciones motivadas, kinetic type,

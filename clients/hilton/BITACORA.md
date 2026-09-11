@@ -44,8 +44,24 @@ tipografías y la persona quedaron como estaban. Se reemplazó el contenido del
 - Drive: mismo id, 9 926 928 bytes, verificado.
 - Revisión (versión 3): <https://claude.ai/code/artifact/7a48f6ca-fded-4a5a-bb00-70c3046a1072>
 
+**Qué sigue:** **septiembre de Between queda cerrado** — las 27 piezas del feed y
+las 13 historias están entregadas, y las dos últimas (col T y col U de STORIES) se
+subieron hoy. Lo concreto para mañana:
+
+1. **Mirar si el cliente marcó las columnas T y U.** Se leen con
+   `docs.google.com/spreadsheets/d/1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY/export?format=csv&gid=1367300884`
+   y se comparan por DIFF contra
+   `clients/hilton/grillas/between-septiembre-2026-vivo/gid-1367300884.csv`. La
+   del 30 ya está aprobada por Eli; falta el visto del cliente y el de la del 28.
+2. **Si vuelve corregida la del 28**, la escena sin costura ni logotipo está en
+   `raw/hilton/between/s5/r4-togo-sin-costura.png`: se re-estampa y listo, no hay
+   que volver a generar.
+3. **Cuando llegue la grilla de octubre**, `/abrir between` y a producir.
+
 **Abierto:** lo mismo de la ronda 2 — el video sin audio, el corte de línea del
 titular del 28-09, la chica generada y el falso positivo de `between-qa.py`.
+Y sigue pendiente **pedirle al cliente una foto real de alguien trabajando en el
+cowork**, que es lo único que aún obliga a generar una escena.
 
 ## 2026-09-11 (RONDA 2) · Eli (Windows) — BETWEEN S5: aparece el plato real y el vaso deja de parecer maqueta
 

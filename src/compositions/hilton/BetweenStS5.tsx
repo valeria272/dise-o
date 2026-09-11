@@ -24,17 +24,14 @@
  * |---|---|---|
  * | vaso To Go | kraft **SIN logotipo** — el reclamo que el cliente hizo TRES veces | logotipo real estampado |
  * | lugar | muro de estuco crema con teja y platanera: **no es Between** | el patio real (pizarra + teca + jardín vertical) |
- * | plateada | carne en **cubos** sobre plato blanco, inventada | la **foto real** del plato, con su loza de borde turquesa |
+ * | plateada | carne en **cubos**, inventada | la **foto real de Between**: plato blanco, puré a la ciboulette, rábano |
  * | col U | PNG estático | **video de 9 s**, que es lo que pide la grilla |
  * | contraste del beige | 1,4–1,9:1 (ilegible, sostenido por cajas) | 8,1–16,0:1 medido por tercios |
  *
- * ══════════════════════════════════════════════════════════════════════════
- * DE DÓNDE SALE CADA IMAGEN, Y QUÉ ES REAL EN CADA UNA
- * ══════════════════════════════════════════════════════════════════════════
  * Las dos escenas se PRODUJERON con el método de Eli
  * (`clients/hilton/PROMPTS-DE-ELI.md`) en un espacio de Magnific abierto para
  * la semana, con Nano Banana Pro 9:16 · 4K y las fotos reales como referencia.
- * Los prompts están en `scripts/between-st-s5-generar.md`.
+ * Los prompts, vuelta por vuelta, están en `scripts/between-st-s5-generar.md`.
  *
  * ══════════════════════════════════════════════════════════════════════════
  * ⭐⭐ RONDA 2 (11-09, tarde) — ELI MANDÓ DOS SESIONES Y LAS DOS PIEZAS CAMBIARON
@@ -93,8 +90,8 @@
  *   manual: «se pide el vaso sin marca y se estampa el real». En las dos
  *   primeras vueltas Nano Banana escribió un «BETWEEN» inventado en una sans
  *   cualquiera, sin la Ǝ invertida — exactamente el defecto de la ronda 4.
- *   El logotipo va **rotado 27°** con el vaso: rotación RÍGIDA, proporción
- *   3,0278 intacta. Rotar no es deformar; arquear sí (regla del 31-08).
+ *   El logotipo va **rotado 5° y envuelto al cilindro** (ronda 3): rotación
+ *   RÍGIDA más proyección cilíndrica medida, proporción 3,0278 intacta.
  *   ⚠️ **La chica no muestra la cara**: el vaso se la tapa. Es lo que hace la
  *   referencia que eligió contenido y de paso deja la pieza fuera del problema
  *   de los rostros.
@@ -110,6 +107,48 @@
  *   existía. Se había buscado en `platos-ene` (31 archivos en disco) y no en
  *   las **202 miniaturas** de la misma carpeta, que son la sesión completa.
  *   Antes de decir «no hay foto», mirar la sesión ENTERA en hoja de contacto.
+ *
+ * ══════════════════════════════════════════════════════════════════════════
+ * ⭐ RONDA 3 (11-09, tarde) — LA ANIMADA APROBADA, Y EL DETALLE DEL VASO
+ * ══════════════════════════════════════════════════════════════════════════
+ * > «La historia número dos animada queda aprobada. La número uno tiene un leve
+ * > problema en el vaso. Tienes que borrar esa línea que se ve y que el logo se
+ * > vea más centrado al vaso, como un mockup. El logo debe verse realista que
+ * > está en el vaso, como los originales. El tamaño está ideal del vaso y
+ * > también está bien las tipografías y la persona.»
+ *
+ * **La del 30-09 quedó APROBADA** y no se tocó.
+ *
+ * ⛔ **La línea la pedí yo.** El prompt de la ronda 2 traía «una costura
+ * vertical del cartón» dentro de la lista de detalles físicos que arreglaron el
+ * realismo, y el generador la puso **justo al medio de la cara visible**,
+ * partiendo el logotipo en «BETW | EEN». En el vaso real esa costura existe pero
+ * cae al costado.
+ * ⭐⭐ **Regla: a un generador, los detalles DIRECCIONALES hay que ubicarlos.**
+ * «Costura», «etiqueta», «asa», «pliegue» — sin un «al costado, fuera de la cara
+ * principal» van a parar donde más estorban.
+ * Se borra con `scripts/between-s5-vaso-costura.py`, que reconstruye la franja
+ * fila a fila interpolando el cartón de sus dos costados y le devuelve el grano.
+ * Medido: la caída de luminancia en esa columna pasó de **−13,2 a −2,8**.
+ *
+ * ⭐⭐ **«Se ve descentrado» no era el logotipo, era la línea.** Estaba en
+ * x=1800 y el eje real del vaso está en **x≈1750**: 50 px sobre 1900 de ancho,
+ * un 2,6 %. Lo que se leía corrido era el conjunto *logotipo + línea*, porque la
+ * costura dejaba un paño ancho a la izquierda y uno angosto a la derecha.
+ *
+ * ⚠️ **Y el eje de un objeto ocluido se mide donde NO está ocluido.** El borde
+ * izquierdo del vaso lo tapa el brazo, así que un detector de cartón sobre esa
+ * fila toma el fondo oscuro por vaso y devuelve un centro corrido 200 px — se
+ * llegó a estampar sobre ese valor falso. El eje bueno lo da **la tapa**, que es
+ * lo único que se ve entero.
+ *
+ * ⭐ **La envoltura cilíndrica** (`--radio` de `between-s5-logo-vaso.py`): el
+ * logotipo se trata como impreso sobre la superficie, así que su ancho es un
+ * ARCO y lo que se ve es la CUERDA. **No contradice la regla del 31-08**: el
+ * radio se MIDE del propio vaso (948 px), la línea de base queda RECTA y la
+ * compresión es del 8 % en el borde y progresiva — contra la sinusoide inventada
+ * con 18 % fijo que dejaba «COFFEE & BAR» irreconocible.
+ * Parámetros finales: `--centro 1755 3870 --ancho 780 --angulo -5 --radio 948`.
  *
  * ══════════════════════════════════════════════════════════════════════════
  * LO INTERACTIVO: ZONA RESERVADA, NUNCA DIBUJADA

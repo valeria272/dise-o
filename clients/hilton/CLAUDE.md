@@ -7171,3 +7171,70 @@ a 5° porque con el encuadre nuevo el vaso quedó casi vertical.
 > ⚠️ Y una consecuencia del acercamiento que conviene anotar: **el logotipo del
 > producto también tiene zona segura**. Cuando el producto crece dentro del
 > cuadro, su marca puede terminar bajo la barra de la app. Hay que mirarlo.
+
+## ⭐ RONDA 3 DE LA S5 (11-09, tarde) — el detalle del vaso
+
+> «La historia número dos animada queda aprobada. La número uno tiene un leve
+> problema en el vaso. Tienes que borrar esa línea que se ve y que el logo se vea
+> más centrado al vaso, como un mockup. El logo debe verse realista que está en el
+> vaso, como los originales. El tamaño está ideal del vaso y también está bien las
+> tipografías y la persona.»
+
+**La del 30-09 queda APROBADA** y no se tocó.
+
+### ⛔ LA LÍNEA LA PEDÍ YO — «costura vertical» sin decir DÓNDE
+
+El prompt de la ronda 2 traía «una costura vertical del cartón» dentro de la lista
+de detalles físicos que hicieron que el vaso dejara de verse falso. Funcionó
+demasiado bien: el generador la puso **justo al medio de la cara visible**,
+partiendo el logotipo en «BETW | EEN». En el vaso real la costura existe, pero cae
+al costado y casi no se nota.
+
+> ⭐⭐ **Regla: a un generador, los detalles DIRECCIONALES hay que ubicarlos.**
+> «Costura vertical», «etiqueta», «asa», «pliegue» — sin un «al costado, fuera de
+> la cara principal» van a parar donde más estorban, que es el centro. La lista de
+> piezas físicas de un objeto sirve para el realismo (ronda 2), pero cada pieza que
+> sea direccional necesita su ubicación.
+
+Se borró con `scripts/between-s5-vaso-costura.py`: para cada fila se reconstruye
+la franja interpolando el cartón de sus dos costados y se le devuelve el grano
+copiando la textura de la franja izquierda — el mismo criterio de
+`_parche_lateral` de `between-logo-vaso.py`. **Medido:** la caída de luminancia en
+esa columna pasó de **−13,2 a −2,8** niveles de gris. La detección va **fila a
+fila**, no asume la costura recta, porque sigue el eje del vaso.
+
+### ⭐⭐ «SE VE DESCENTRADO» PODÍA NO SER EL LOGOTIPO — ERA LA LÍNEA
+
+El logotipo estaba en x=1800 y el eje real del vaso está en **x≈1750**: cincuenta
+píxeles sobre un vaso de 1900 de ancho, un 2,6 %. Casi centrado. Lo que se leía
+corrido era el conjunto **logotipo + línea**: la costura dejaba un paño ancho a la
+izquierda y uno angosto a la derecha, y el ojo lee el bloque contra el paño grande.
+
+⚠️ **Y encontrar el eje costó, porque el borde izquierdo del vaso NO SE VE: lo tapa
+el brazo.** Un detector de «cartón» sobre esa fila toma el fondo oscuro por vaso y
+devuelve un centro corrido 200 px a la izquierda — llegué a estampar sobre ese
+valor falso antes de cazarlo. **El eje se saca de la TAPA**, que es lo único que se
+ve entero, midiendo su borde izquierdo y derecho. Cuando un objeto está
+parcialmente ocluido, el eje se mide en la parte que no lo está.
+
+### ⭐ LA ENVOLTURA CILÍNDRICA — y por qué NO contradice la regla del 31-08
+
+Eli pidió «como un mockup… realista que está en el vaso, como los originales».
+`between-s5-logo-vaso.py` tiene ahora `--radio`, que trata el logotipo como
+impreso sobre la superficie: su ancho es un **arco** y lo que se ve en pantalla es
+la **cuerda**, así que cada columna se coloca en `x = R·sin(s/R)`.
+
+| | la comba prohibida del 31-08 | `--radio` |
+|---|---|---|
+| origen del valor | inventado | el **radio medido** del propio vaso |
+| línea de base | **arqueada** por una sinusoide | **recta** |
+| compresión lateral | fija, 18 %, en los extremos | progresiva, **8 % en el borde** |
+| resultado | «COFFEE & BAR» irreconocible | serigrafía creíble |
+
+La regla sigue en pie: **el logotipo no se deforma a mano**. Lo que se hace es
+reproducir lo que la óptica hace con una superficie curva, con el radio medido. La
+proporción de la marca, 3,0278, queda intacta.
+
+Parámetros finales:
+`--centro 1755 3870 --ancho 780 --angulo -5 --radio 948` — el logotipo abarca
+48,4° del cilindro y su ancho aparente baja de 800 a 776 px.

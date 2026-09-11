@@ -1,3 +1,52 @@
+## 2026-09-11 (RONDA 3) · Eli (Windows) — BETWEEN S5: la animada aprobada, y el detalle del vaso
+
+**La historia 2 (30-09, animada) quedó APROBADA** y no se tocó. En la 1 (28-09)
+Eli pidió dos arreglos de detalle sobre el vaso; el tamaño del vaso, las
+tipografías y la persona quedaron como estaban. Se reemplazó el contenido del
+**mismo archivo** de Drive: el enlace no cambió.
+
+**Lo que pidió, textual:**
+
+> «Tienes que borrar esa línea que se ve y que el logo se vea más centrado al vaso,
+> como un mockup. El logo debe verse realista que está en el vaso, como los
+> originales.»
+
+**Los tres hallazgos:**
+
+1. ⛔ **La línea la pedí yo.** El prompt de la ronda 2 decía «una costura vertical
+   del cartón» —iba en la lista de detalles físicos que arreglaron el realismo— y
+   el generador la puso justo al medio, partiendo el logotipo en «BETW | EEN».
+   → **Regla: a un generador, los detalles DIRECCIONALES hay que ubicarlos.**
+   Sin un «al costado», van donde más estorban.
+2. ⭐⭐ **«Se ve descentrado» podía no ser el logotipo.** Estaba a 50 px del eje
+   (2,6 %). Lo que desbalanceaba era la línea, que partía la cara del vaso en dos
+   paños desiguales. Antes de mover un elemento, mirar qué más hay en su entorno.
+3. ⚠️ **El eje de un objeto ocluido se mide donde NO está ocluido.** El borde
+   izquierdo del vaso lo tapa el brazo, así que el detector tomaba el fondo oscuro
+   por cartón y daba un centro corrido 200 px. El eje bueno lo da **la tapa**, que
+   se ve entera. Llegué a estampar sobre el valor falso antes de cazarlo.
+
+**Lo que se hizo:**
+
+- `scripts/between-s5-vaso-costura.py` — **script nuevo**: borra la costura fila a
+  fila interpolando el cartón lateral y devolviéndole el grano. Medido: la caída de
+  luminancia en esa columna pasó de −13,2 a −2,8 niveles de gris.
+- `scripts/between-s5-logo-vaso.py` — opción **`--radio`**: envoltura cilíndrica
+  real (el ancho del logotipo es un arco, lo que se ve es la cuerda). No contradice
+  la regla del 31-08: la línea de base queda recta, el radio se mide y la
+  compresión es del 8 % en el borde, progresiva.
+- QA: margen 99/97, zonas seguras libres, contraste 8,7–11,8:1 — sin cambios.
+
+**Dónde quedó:**
+
+- `public/assets/hilton/between/s5/st-28-09-togo.jpg` — el fondo nuevo.
+- `raw/hilton/between/s5/r4-togo-sin-costura.png` — la escena sin costura ni logo.
+- Drive: mismo id, 9 926 928 bytes, verificado.
+- Revisión (versión 3): <https://claude.ai/code/artifact/7a48f6ca-fded-4a5a-bb00-70c3046a1072>
+
+**Abierto:** lo mismo de la ronda 2 — el video sin audio, el corte de línea del
+titular del 28-09, la chica generada y el falso positivo de `between-qa.py`.
+
 ## 2026-09-11 (RONDA 2) · Eli (Windows) — BETWEEN S5: aparece el plato real y el vaso deja de parecer maqueta
 
 Eli mandó **dos sesiones de fotos** y con eso cayeron los dos puntos débiles de la

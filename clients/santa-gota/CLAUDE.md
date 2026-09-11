@@ -99,7 +99,30 @@ Cierre oficial: logo a color sobre el plato oscuro (así termina el reel). Reel 
 - [ ] Recorte de la monja con zoom 3× (cornette, lentes, mango de la sartén).
 - [ ] Alfa real en huincha y virtual (mirar sobre gris, no sobre blanco: la aureola blanca «desaparece»).
 
+## 8b. Fase 2 — producción de TV (11-09-2026, dirección aprobada)
+**Cambió respecto de la Fase 1:** nada de campo lima plano. Fotografía primero (el reel), titular
+blanco + REVOLUCIONAR en lima, naranja sólo como gesto (halo, plumón, pastilla del CTA), logo SÓLO
+el PNG oficial a color (los «planos» de la Fase 1 quedan prohibidos para entrega), producto SÓLO real.
+
+**Lista de planos del reel (seek exacto — no confiar en `-ss` antes de `-i` del ffmpeg de Remotion):**
+0,00–0,70 abierto · 0,75–1,20 camarones crudos · 1,25–1,95 abierto · **2,00–2,95 el chorro del squeeze
+(producto real)** · 3,00–3,20 mano+botella · **3,25–3,95 llamas** · 4,00–4,45 ají cayendo · 4,50–4,95 sartén
+al fuego · 5,00–5,95 macro camarones · 6,00–7,45 colador · 7,50–8,20 vierte la pasta · 8,25–8,70 pasta al
+fuego · **8,75–9,45 la monja de frente lanza la pasta (0,7 s — es todo lo que hay de cara)** · 9,50–10,45
+pinzas · 10,50–10,95 plato · 11,00–12,46 plato con logo.
+
+**Pipeline:** `src/compositions/santagota/tv/` (comun · HuinchaTV · VirtualTV · FullTV · Previews) →
+render en el sandbox `/private/tmp/sgrender` (Chrome del sistema) → `scripts/santagota-entrega-tv.py`
+arma `SANTA_GOTA_TV_FINAL/` (TGA 32 bit con PIL, MXF XDCAM HD422 con el ffmpeg de `imageio_ffmpeg` del
+venv compartido, previews H.264, VERIFICACION.txt).
+- Huincha 1920×216 · 7 s · alfa · monja al 62 % (cabeza 200 px) · info por etapas 0–1,5 / 1,5–4,5 / 4,5–7.
+- Virtual 775×1080 · 15 s · alfa · ⚠ plantilla del canal PENDIENTE (márgenes 48 px provisorios).
+- Full 1920×1080 · 19,95 s · 29,97 · MXF · columna 9:16 sobre placa desenfocada o recorte 16:9; nunca estirar.
+- ⚠ `OffthreadVideo startFrom` se cuenta en fotogramas de la COMPOSICIÓN (29,97), no del reel (24).
+
 ## 9. Errores ya cometidos (para no repetirlos)
+- Fase 2: `-ss` ANTES de `-i` con el ffmpeg de Remotion etiquetó mal los fotogramas (el «8,7 s» era 8,75 pero el
+  «3,0 s» era ~2,3): la lista de planos se hace con `-vf fps=4` o `-ss` DESPUÉS de `-i`.
 - Fotograma 9,3 s en still: la pasta en el aire sale como mancha. Medir el foco antes de elegir el frame.
 - El plumón dentro de un bloque con `zIndex` queda debajo: pasarle `z`.
 - Interlínea 0,92 con tildes: la Ó choca con la línea de arriba. Mínimo 0,98.

@@ -11,6 +11,11 @@ import {HuinchaTV} from "./compositions/santagota/HuinchaTV";
 import {VirtualTV} from "./compositions/santagota/VirtualTV";
 import {FullScreenTV} from "./compositions/santagota/FullScreenTV";
 import {CierreTV} from "./compositions/santagota/CierreTV";
+// Fase 2 — producción: video con alfa (huincha, virtual), full screen y previews.
+import {HuinchaTV as HuinchaTVAnim, DUR_HUINCHA} from "./compositions/santagota/tv/HuinchaTV";
+import {VirtualTV as VirtualTVAnim, DUR_VIRTUAL} from "./compositions/santagota/tv/VirtualTV";
+import {FullTV, DUR_FULL} from "./compositions/santagota/tv/FullTV";
+import {HuinchaPreview, VirtualPreview} from "./compositions/santagota/tv/Previews";
 
 
 // COPYWRITERS — Creative Operating System v1.0. Una pieza = un archivo = una
@@ -1164,6 +1169,12 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="SG-Virtual" component={VirtualTV}    durationInFrames={1} fps={30} width={775}  height={1080} />
         <Composition id="SG-Full"    component={FullScreenTV} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="SG-Cierre"  component={CierreTV}     durationInFrames={1} fps={30} width={1920} height={1080} />
+        {/* Fase 2 — masters a 29,97 (NTSC). Huincha y Virtual se renderizan como secuencia PNG con alfa → TGA. */}
+        <Composition id="SG-HuinchaTV" component={HuinchaTVAnim} durationInFrames={DUR_HUINCHA} fps={29.97} width={1920} height={216} />
+        <Composition id="SG-VirtualTV" component={VirtualTVAnim} durationInFrames={DUR_VIRTUAL} fps={29.97} width={775}  height={1080} />
+        <Composition id="SG-FullTV"    component={FullTV}        durationInFrames={DUR_FULL}    fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-HuinchaTV-Preview" component={HuinchaPreview} durationInFrames={DUR_HUINCHA} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-VirtualTV-Preview" component={VirtualPreview} durationInFrames={DUR_VIRTUAL} fps={29.97} width={1920} height={1080} />
       </Folder>
       <Folder name="Copywriters">
         {/* Feed 4:5 — el formato principal del sistema. */}

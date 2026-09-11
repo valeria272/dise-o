@@ -710,3 +710,6 @@ out/ebema/20260925_linkedin_octubre/*
 !out/santagota/
 !out/santagota/kv-v4/
 !out/santagota/kv-v4/**
+
+# SANTA GOTA: los MP4 del reel son copias de raw/ (52 MB) — no viajan en git
+public/assets/santagota/*.mp4

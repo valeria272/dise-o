@@ -31,7 +31,7 @@
       "fuente": "empaquetada",
       "archivos": "TradeGothicLTStd-Regular y -BoldCn20, en .otf Y .woff2",
       "empaquetable": true,
-      "✅_chrome_resuelto": "Las .otf son CFF/PostScript — el formato que Chrome rechaza en silencio y que hizo rendir 27 piezas de Between con una serif de reemplazo. Ya existe el .woff2 de los dos cortes: en código se carga el .woff2, NO el .otf, y se verifica con document.fonts.check. Ver memoria brushwell-no-cargaba-en-chrome.",
+      "⚠️_chrome_a_medio_resolver": "Las .otf son CFF/PostScript — el formato que Chrome rechaza en silencio y que hizo rendir 27 piezas de Between con una serif de reemplazo. Ya existe el .woff2 de los dos cortes — eso está comprobado (11-09-2026). Lo que NO está comprobado es que Chrome los cargue: falta correr document.fonts.check en una pieza real. Hasta entonces, en código se carga el .woff2 y NUNCA el .otf, y la primera pieza de DT que se rinda se mira al 100 % antes de darla por buena. Ver memoria brushwell-no-cargaba-en-chrome.",
       "⚠️_falta_el_corte_del_precio": "NO hay un Trade Gothic Bold de ancho normal, que es justo el que pide un bloque de precio (ancho 1/0 de la pieza = 0,764; Regular da 0,654 y BoldCn20 0,600). Sustituto en función: Bold Condensed No. 20, pero comprime la píldora de ~630 px a ~410 px al mismo alto de dígito — la geometría del bloque cambia y hay que revisarla a ojo."
     },
     "dt_⛔_prohibida": {

@@ -36,6 +36,53 @@
  * la semana, con Nano Banana Pro 9:16 · 4K y las fotos reales como referencia.
  * Los prompts están en `scripts/between-st-s5-generar.md`.
  *
+ * ══════════════════════════════════════════════════════════════════════════
+ * ⭐⭐ RONDA 2 (11-09, tarde) — ELI MANDÓ DOS SESIONES Y LAS DOS PIEZAS CAMBIARON
+ * ══════════════════════════════════════════════════════════════════════════
+ * > «en esta carpeta puedes encontrar platos de Between […] creo que acá puedes
+ * > encontrar referente del plato o el mismo plato. Para la historia del vaso
+ * > togo estática el vaso se ve muy falso y mal el logo. Hazlo más realista y
+ * > acerca más a la chica y el vaso, para que el fondo pase a 2do plano.»
+ *
+ * **30-09 · el plato ESTABA, y era muy distinto del que se había usado.**
+ * `Between-131` a `143` de la sesión de platos (carpeta `18SrYXjLYVv…`): plato
+ * **BLANCO** redondo, trozos de carne braseada en salsa de vino, puré
+ * espolvoreado con **ciboulette**, hojas verdes y dos rodajas de **rábano**. El
+ * de QB que se había usado de referencia iba en loza de borde turquesa y con
+ * champiñones — nada que ver. Se le pidió al generador cambiar **sólo el
+ * plato** y dejar idéntico el resto de la escena, que ya estaba aprobada.
+ * ⭐ Y como el plato ocupa el mismo sitio, **la diagramación no se movió**: la
+ * banda limpia sigue llegando a y=1058 y el contraste quedó en 12,3–15,8:1.
+ *
+ * **28-09 · el vaso se veía falso porque el cartón estaba mal.** El generado
+ * era kraft anaranjado y liso. El real —`Double Tree 25 jul 25-248.jpg`,
+ * recortado de cerca— es **crema pálido con la fibra y las motas a la vista**,
+ * borde superior enrollado, **costura vertical**, **anillo blanco** en la base y
+ * tapa negra de domo con **nervaduras concéntricas**. Esa lista va en el prompt
+ * uno por uno: pedir «cartón kraft» no alcanza, hay que nombrar las piezas.
+ *
+ * ⭐ **Acercar la cámara le quita sitio al titular, y hay que devolvérselo.**
+ * Con el plano cerrado que pidió Eli, la banda limpia se desplomó a **y=443**
+ * (el vaso entraba por arriba) y el bloque de texto no cabía. Se resolvió con
+ * una vuelta más pidiendo la **cámara apuntando más arriba**: el vaso baja, la
+ * tapa queda a media altura y la banda limpia vuelve a **y=960**. El vaso sigue
+ * igual de cerca; lo que se movió es el encuadre, no la distancia.
+ *
+ * ⭐ **El logotipo pasó de 133 a 274 px de ancho** sobre el lienzo de 1080,
+ * porque el vaso ocupa el doble. Va **entre la tapa y el brazo** y eso es
+ * medido, no estético: a media altura del vaso —donde está en la foto real— lo
+ * cruza el brazo, y más abajo cae dentro de la zona segura inferior, donde
+ * Instagram pone su barra. La franja limpia entre la tapa y la mano es el único
+ * sitio donde se ve entero y nada lo tapa.
+ *
+ * ⛔ **Los frames 336 · 337 · 338 · 339 de esa sesión siguen vetados.** Son
+ * packshots frontales del vaso sobre fondo blanco y parecen la solución, pero
+ * son del **vaso ANTIGUO** (cuerpo oscuro con faja de papel). Confirmado otra
+ * vez mirándolos.
+ *
+ * ══════════════════════════════════════════════════════════════════════════
+ * DE DÓNDE SALE CADA IMAGEN, Y QUÉ ES REAL EN CADA UNA
+ * ══════════════════════════════════════════════════════════════════════════
  * · **28-09 · el VASO es el real, y el logotipo es el archivo oficial.**
  *   Referencias: `togo-vaso-real-nobg.png` (el recorte del vaso vigente) y
  *   `Double Tree 25 jul 25-257.jpg`. El escenario es el patio real de Between
@@ -52,16 +99,17 @@
  *   referencia que eligió contenido y de paso deja la pieza fuera del problema
  *   de los rostros.
  *
- * · ⚠️ **30-09 · el PLATO es real, pero la foto NO es de Between.** Sale de
- *   `Quotidien-176.jpg res al carmenere`, de la sesión de platos de **QB**
- *   (el restaurante del mismo complejo). Between no tiene ninguna fotografía
- *   de la Plateada al Carmenere: se buscó en las 202 de `3 ENERO PLATOS -
- *   DESAYUNOS`, en `BETWEEN DESAYUNOS AGO 2026`, en `dulces-tortas` y en
- *   `platos-ene`. Lo que entra de esa foto es lo que importa —el corte de
- *   carne braseada entero, la loza de borde turquesa moteado, el puré, los
- *   champiñones y la salsa— y la escena se reambienta en la mesa de teca de
- *   Between. **Hay que decírselo a Eli**: si el cliente quiere la foto de su
- *   propio plato, hace falta que la tomen.
+ * · ✅ **30-09 · el PLATO es el de Between** (ronda 2). Referencias:
+ *   `Between-135` (vertical, el plato entero sobre mesa de madera) y
+ *   `Between-141` (primer plano del producto), de la sesión de platos que mandó
+ *   Eli. ⛔ La ronda 1 usaba `Quotidien-176.jpg res al carmenere`, de la sesión
+ *   de **QB**, y estaba mal: ese plato va en loza de borde turquesa y con
+ *   champiñones. El de Between es plato BLANCO, con puré a la ciboulette,
+ *   hojas verdes y rábano.
+ *   ⚠️ **La lección de método:** se dio por inexistente una foto que sí
+ *   existía. Se había buscado en `platos-ene` (31 archivos en disco) y no en
+ *   las **202 miniaturas** de la misma carpeta, que son la sesión completa.
+ *   Antes de decir «no hay foto», mirar la sesión ENTERA en hoja de contacto.
  *
  * ══════════════════════════════════════════════════════════════════════════
  * LO INTERACTIVO: ZONA RESERVADA, NUNCA DIBUJADA

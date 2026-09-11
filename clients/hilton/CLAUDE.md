@@ -7072,14 +7072,102 @@ a 5,6:1 al terminar**. Sigue en rango, pero hay que medir los dos extremos.
 
 ## ⚠️ Lo que falta y hay que pedir
 
-- **Una foto real de la Plateada al Carmenere de Between.** No existe: se buscó en
-  las 202 de `3 ENERO PLATOS - DESAYUNOS`, en `BETWEEN DESAYUNOS AGO 2026`, en
-  `dulces-tortas` y en `platos-ene`. La que entró como referencia es
-  `Quotidien-176.jpg res al carmenere`, de la sesión de platos de **QB**. El plato
-  llega fiel —corte entero, loza de borde turquesa, puré, champiñones, salsa— y la
-  escena se reambientó en la mesa de teca de Between, pero **la foto no es de
-  Between y eso hay que decirlo**.
+- ✅ **RESUELTO en la ronda 2: la foto de la Plateada SÍ existe.** Está en la
+  sesión de platos de Between (`Between-131` a `143`). Lo que había fallado es
+  que se miraron los 31 archivos de la raíz de `platos-ene/` y no las **202
+  miniaturas** de esa misma carpeta, que son la sesión completa. Ver la sección
+  de la ronda 2 abajo.
 - **`between-qa.py` sigue con el falso positivo**, van ocho piezas: cuenta como
   texto cualquier blanco de marca con un borde oscuro cerca. Acá marcó el **filo
   del cuchillo** y el brillo de la loza. La medición se hizo aislando la gráfica a
   mano (color plano de marca + desviación local baja + manchas grandes).
+
+## ⭐⭐ RONDA 2 DE LA S5 (11-09, tarde) — las dos sesiones que mandó Eli
+
+> «en esta carpeta puedes encontrar platos de Between […] creo que acá puedes
+> encontrar referente del plato o el mismo plato. Para la historia del vaso togo
+> estática el vaso se ve muy falso y mal el logo. Hazlo más realista y acerca más
+> a la chica y el vaso, para que el fondo pase a 2do plano.»
+
+Dos carpetas nuevas, y las dos resolvieron un bloqueo:
+
+| Carpeta | Qué trae | Para qué sirvió |
+|---|---|---|
+| `18SrYXjLYVvro06Li3boGXOg-4uVf37BD` | la **sesión de platos** completa (202 fotos `Between-NNN.jpg`) | **la Plateada al Carmenere real**: `Between-131` a `143` |
+| `1gI00XGbBV5YjqcSjG3SmmkMuxr-ev_60` | la **sesión del 25 jul 2025** completa (347 fotos) | el **vaso To Go vigente de cerca**, que es lo que faltaba para que dejara de verse falso |
+
+### ⛔⛔ LA FOTO DE LA PLATEADA EXISTÍA, Y SE DIO POR INEXISTENTE
+
+La ronda 1 concluyó que Between no tenía ninguna foto de la Plateada y usó la de
+**QB** (`Quotidien-176.jpg res al carmenere`). **Era falso.** La foto estaba en
+la sesión de platos de la propia marca, y los dos platos no se parecen en nada:
+
+| | QB (lo que se usó mal) | **Between (el real)** |
+|---|---|---|
+| loza | plato de **borde turquesa moteado** | **plato BLANCO** redondo con relieve fino en el ala |
+| guarnición | puré liso + **champiñones** | puré espolvoreado con **ciboulette** |
+| adorno | ramita de hierba | hojas verdes + **dos rodajas de rábano** de borde fucsia |
+
+**Por qué se falló:** se miró `raw/hilton/between/platos-ene/`, que tiene **31
+archivos** en la raíz —todos desayunos, bowls y croissants— y se concluyó que la
+sesión no tenía platos de fondo. Pero la MISMA carpeta trae
+`platos-ene/miniaturas/` con las **202** de la sesión completa, y ahí estaban los
+platos de almuerzo (carne, salmón, quinoa) desde la `76` en adelante.
+
+> ⭐ **Regla: antes de decir «no hay foto», mirar la sesión ENTERA en hoja de
+> contacto, miniaturas incluidas.** `scripts/hoja-contacto.py` lo hace en un
+> minuto; sin eso se inventa un producto que el cliente ya tiene fotografiado, y
+> eso es exactamente lo que prohíbe la memoria `no-generar-producto-que-existe`.
+
+La corrección se pidió en una frase —«cambia SÓLO EL PLATO»— con la escena
+aprobada como `@img1` y las dos fotos reales como `@img2` y `@img3`. Como el
+plato ocupa el mismo sitio, **la diagramación no se movió**: banda limpia hasta
+y=1058 y contraste 12,3–15,8:1, iguales a la ronda 1.
+
+### ⭐ «SE VE FALSO» ES UNA LISTA DE PIEZAS QUE FALTAN, NO UN AJUSTE DE REALISMO
+
+El vaso generado era **kraft anaranjado y liso**. El real, visto de cerca
+(`Double Tree 25 jul 25-248.jpg`, recortado), es otra cosa:
+
+- cartón **crema pálido**, no anaranjado;
+- **fibra y motas** del cartón reciclado a la vista;
+- **borde superior enrollado** bajo la tapa;
+- una **costura vertical** del cartón;
+- **anillo blanco liso** en la base;
+- tapa negra mate de domo con **tres nervaduras concéntricas** y su pestaña.
+
+Pedir «cartón kraft realista» no alcanza: hay que **nombrar las seis piezas** en
+el prompt. Con esa lista, el vaso pasó de maqueta a producto en una vuelta.
+
+### ⭐⭐ ACERCAR LA CÁMARA LE QUITA SITIO AL TITULAR — Y HAY QUE DEVOLVÉRSELO
+
+Al pedir el plano cerrado, el vaso entró por arriba y **la banda limpia se
+desplomó de y=879 a y=443**: el bloque de texto ya no cabía. Es un efecto
+secundario que no se ve venir y que aparece en toda pieza donde el producto crece.
+
+**La solución no es alejar la cámara** —eso deshace lo que la diseñadora pidió—
+sino **subir el encuadre**: «la CÁMARA APUNTANDO MÁS ARRIBA: el vaso y la chica
+BAJAN dentro del cuadro, la tapa queda a la MITAD de la altura y la MITAD
+SUPERIOR es sólo muro». El vaso sigue igual de cerca; lo que se mueve es hacia
+dónde mira la cámara. La banda limpia volvió a **y=960**, contraste 8,7–11,8:1.
+
+### ⭐ DÓNDE VA EL LOGOTIPO CUANDO EL VASO ESTÁ CERCA
+
+Pasó de **133 px a 274 px** de ancho sobre el lienzo de 1080 — el vaso ocupa el
+doble, así que el logotipo entra con el doble de resolución. Recién ahí se lee la
+`Ǝ` invertida y el tracking de «COFFEE & BAR».
+
+Va **entre la tapa y el brazo**, y es medido:
+
+| altura | qué pasa |
+|---|---|
+| a media altura del vaso (donde está en la foto real) | **lo cruza el brazo** |
+| más abajo (y=1716 del lienzo) | cae en la **zona segura inferior**: la barra de Instagram lo tapa |
+| **entre la tapa y la mano (y=1348)** | ✅ se ve entero y nada lo tapa |
+
+Parámetros: `--centro 1800 3855 --ancho 780 --angulo -5`. El ángulo bajó de 27°
+a 5° porque con el encuadre nuevo el vaso quedó casi vertical.
+
+> ⚠️ Y una consecuencia del acercamiento que conviene anotar: **el logotipo del
+> producto también tiene zona segura**. Cuando el producto crece dentro del
+> cuadro, su marca puede terminar bajo la barra de la app. Hay que mirarlo.

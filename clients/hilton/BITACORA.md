@@ -1,3 +1,73 @@
+## 2026-09-11 (RONDA 2) · Eli (Windows) — BETWEEN S5: aparece el plato real y el vaso deja de parecer maqueta
+
+Eli mandó **dos sesiones de fotos** y con eso cayeron los dos puntos débiles de la
+entrega de la mañana. Las dos piezas se rehicieron y se **reemplazó el contenido
+de los mismos archivos de Drive**: el enlace no cambió.
+
+**Lo que pidió, textual:**
+
+> «en esta carpeta puedes encontrar platos de Between […] creo que acá puedes
+> encontrar referente del plato o el mismo plato. Para la historia del vaso togo
+> estática el vaso se ve muy falso y mal el logo. Hazlo más realista y acerca más
+> a la chica y el vaso, para que el fondo pase a 2do plano.»
+
+**Lo que se hizo:**
+
+1. **30-09 · el plato ahora es el de Between.** `Between-131` a `143` de la
+   sesión de platos: plato BLANCO, carne braseada en salsa de vino, puré con
+   ciboulette, hojas verdes y rábano. Se le pidió al generador cambiar **sólo el
+   plato** y dejar idéntica la escena aprobada. La diagramación no se movió.
+2. **28-09 · el vaso se rehizo tres veces.** Realismo del cartón (con la foto del
+   vaso vigente de cerca), plano cerrado con el fondo desenfocado, y una vuelta
+   más para devolverle sitio al titular.
+3. **El logotipo pasó de 133 a 274 px** y se movió a la franja entre la tapa y el
+   brazo.
+4. Página de revisión actualizada **en la misma dirección** (versión 2).
+
+**Los tres hallazgos, y el primero duele:**
+
+1. ⛔⛔ **LA FOTO DE LA PLATEADA EXISTÍA Y SE DIO POR INEXISTENTE.** En la mañana
+   se concluyó que Between no la tenía y se usó la de **QB**, que es otro plato
+   (loza de borde turquesa, champiñones). La causa: se miraron los **31 archivos
+   de la raíz** de `raw/hilton/between/platos-ene/` y no las **202 miniaturas**
+   de esa misma carpeta, que son la sesión completa. Los platos de almuerzo
+   empiezan en la `76`.
+   → **Regla nueva: antes de decir «no hay foto», hoja de contacto de la sesión
+   ENTERA, miniaturas incluidas.** `scripts/hoja-contacto.py` tarda un minuto.
+2. ⭐ **«Se ve falso» es una lista de piezas que faltan, no un ajuste de
+   realismo.** El vaso real tiene seis cosas que el generado no tenía: cartón
+   crema (no anaranjado), fibra y motas, borde enrollado, costura vertical,
+   anillo blanco en la base y nervaduras en la tapa. Hay que **nombrarlas una por
+   una** en el prompt; «cartón kraft realista» no alcanza.
+3. ⭐⭐ **Acercar la cámara le quita sitio al titular.** Con el plano cerrado la
+   banda limpia se desplomó de y=879 a **y=443** y el texto no cabía. La solución
+   no es alejar —eso deshace lo pedido— sino **subir el encuadre**: el vaso baja
+   dentro del cuadro y la banda vuelve a y=960. El vaso sigue igual de cerca.
+   Corolario: **el logotipo del producto también tiene zona segura** — a su altura
+   natural quedaba bajo la barra de Instagram.
+
+**Dónde quedó:**
+
+- `src/compositions/hilton/BetweenStS5.tsx` — cabecera con la ronda 2 escrita.
+  **Los componentes no se tocaron:** sólo cambiaron las dos fotografías.
+- `public/assets/hilton/between/s5/` — los dos fondos nuevos (`st-28-09-togo.jpg`
+  con el logotipo ya estampado, `st-30-09-plateada.mp4`).
+- `raw/hilton/between/plateada-real/` — `bw-135`, `bw-138` y `bw-141`, las tres
+  fotos reales del plato.
+- Drive: mismos ids, bytes nuevos, verificado por `fileSize` y `modifiedTime`.
+- Revisión: <https://claude.ai/code/artifact/7a48f6ca-fded-4a5a-bb00-70c3046a1072>
+
+**Abierto:**
+
+- ⚠️ El video sigue **sin audio**: la grilla no lo pide y no hay pista aprobada.
+- ⚠️ El corte de línea del titular del 28-09 respeta las dos líneas del brief, lo
+  que deja el cuerpo bajo el token de 117. Si Eli lo quiere más grande, se rompe
+  en tres líneas.
+- ⚠️ La chica del 28-09 sigue siendo **generada**. No se le ve la cara, así que la
+  pieza queda fuera del asunto de los rostros; si Eli prefiere una modelo de la
+  sesión real, hay que elegir el fotograma.
+- ⚠️ `between-qa.py` sigue con el falso positivo — van nueve piezas.
+
 ## 2026-09-11 · Eli (Windows) — NO es sesión de diseño: se cerró el hueco de material de DT y Hilton por fin tiene ficha
 
 Verificación del estudio (`/arranque`) en el Windows de Eli. **No se tocó ninguna

@@ -163,3 +163,78 @@ composición con `objectFit: cover` y los fps se fijan con `-r`, no con el filtr
    forma fiable; el logotipo se estampa con el archivo oficial.
 3. ⚠️ **Falta la foto real de la Plateada al Carmenere de Between.** La que se
    usó de referencia es de la sesión de **QB**. Vale la pena pedirla.
+
+---
+
+# RONDA 2 (11-09, tarde) — las dos sesiones de Eli
+
+Referencias nuevas, las dos reales:
+
+| | qué es | archivo |
+|---|---|---|
+| el vaso vigente **de cerca** | recorte de la foto más frontal de la sesión de julio | `raw/hilton/between/togo-25jul2025/Double Tree 25 jul 25-248.jpg` |
+| la **Plateada real de Between** | vertical, plato entero sobre mesa de madera | `raw/hilton/between/plateada-real/bw-135-plateada.jpg` |
+| la Plateada, primer plano | detalle del producto | `raw/hilton/between/plateada-real/bw-141-plateada.jpg` |
+
+## 30-09 · cambiar SÓLO el plato
+
+> Toma la escena de la @img1 y cambia SÓLO EL PLATO. El plato pasa a ser
+> exactamente el de la @img2 y la @img3: la Plateada al Carmenere de Between,
+> servida en un PLATO BLANCO redondo de cerámica con un relieve fino en el ala.
+> Encima: trozos de carne braseada oscura y brillante, bañados en una salsa espesa
+> de vino tinto; al lado un puré de papas cremoso y pálido espolvoreado con
+> CIBOULETTE picada; y delante un pequeño bouquet de hojas verdes con dos rodajas
+> de RÁBANO de borde fucsia. ⛔ Nada de champiñones. ⛔ Nada de plato con borde
+> turquesa.
+> Todo lo demás de la @img1 queda IGUAL: la misma mesa de listones de madera de
+> teca, el mismo notebook cerrado, el mismo celular boca abajo, los mismos
+> anteojos, el mismo vaso de agua, el mismo muro de piedra en penumbra y
+> desenfocado al fondo, la misma luz lateral y suave de mediodía, y el mismo
+> encuadre vertical 9:16 con el plato en el TERCIO INFERIOR y la MITAD SUPERIOR
+> limpia y oscura para poner un texto encima.
+> Realista, que se vea delicioso y apetitoso, alta calidad 4k. Sin ningún texto,
+> sin letras, sin logotipos.
+
+⭐ **Los dos `⛔` del prompt hacen el trabajo.** La primera variante de las tres
+volvió con el plato de borde turquesa igual; las prohibiciones explícitas son lo
+que separó las que sirvieron de la que no.
+
+## 28-09 · el vaso, en dos vueltas
+
+**Vuelta 1 — realismo y plano cerrado.** La lista de las seis piezas físicas del
+vaso (cartón crema con fibra y motas, borde enrollado, costura vertical, anillo
+blanco, tapa con nervaduras) más «profundidad de campo corta como un 85 mm a
+f/1.8». Resultado: el cartón dejó de parecer maqueta. **Pero la banda limpia se
+desplomó a y=443** y el titular no cabía.
+
+**Vuelta 2 — devolverle sitio al titular sin alejar la cámara:**
+
+> Misma escena, mismo plano cerrado y mismo vaso de la @img1, pero con la CÁMARA
+> APUNTANDO MÁS ARRIBA: el vaso gigante y la chica BAJAN dentro del cuadro, de
+> modo que la tapa negra del vaso quede a la MITAD de la altura del cuadro y el
+> vaso salga cortado por el borde inferior. La MITAD SUPERIOR del cuadro es sólo
+> el muro de piedra pizarra OSCURA del patio, desenfocado, en penumbra, limpio y
+> completamente vacío, para poder poner un texto claro encima.
+
+Banda limpia de vuelta en **y=960**, contraste 8,7–11,8:1.
+
+Estampado final:
+
+```bash
+python scripts/between-s5-logo-vaso.py \
+  raw/hilton/between/s5/r3-togo-f.png \
+  raw/hilton/between/s5/st-28-09-togo-r2-logo.png \
+  --centro 1800 3855 --ancho 780 --angulo -5 --fuerza 1.0 --absorcion 0.14
+```
+
+## Lo que se agrega a la lista de la próxima
+
+4. **Antes de decir «no hay foto», hoja de contacto de la sesión ENTERA.** La
+   Plateada existía y se dio por inexistente por mirar sólo los archivos de la
+   raíz de la carpeta y no las 202 miniaturas.
+5. **«Se ve falso» = nombrar las piezas físicas del objeto**, no pedir «más
+   realista».
+6. **Acercar la cámara le quita banda limpia al titular.** Se recupera subiendo
+   el encuadre, no alejando.
+7. **El logotipo del producto también tiene zona segura.** Con el producto grande,
+   su marca puede terminar bajo la barra de la app.

@@ -70,6 +70,79 @@ Between que no es de esta sesión.
 
 ---
 
+## 2026-09-11 · Eli (Windows) — BETWEEN S5: las dos últimas historias, y septiembre queda cerrado
+
+Sesión de Between. Se produjeron las **columnas T y U** de la hoja STORIES —lo
+único que le quedaba a la cuenta— y con eso **la grilla de septiembre de Between
+no tiene ninguna columna sin producir**, ni en STORIES ni en FEED.
+
+**Qué se hizo:**
+
+1. **La grilla se leyó VIVA por CSV** (`export?format=csv&gid=1367300884`), no del
+   `.xlsx` congelado. Col T: `ST ESTÁTICA – HUMOR | CAFÉ TO GO`. Col U:
+   `ST ESTÁTICA – ANIMADA | PLATEADA AL CARMENERE`, con `INTERACCIÓN: LINK CARTA`.
+   Las dos en `OK PARA DISEÑAR`.
+2. **Se descubrió que las dos YA ESTABAN en Drive**, del lote de 27 del 27-08, y
+   que nunca pasaron por ninguna de las 13 rondas posteriores. Estaban congeladas
+   en el sistema de agosto: vaso sin logotipo, escenario que no es Between, plato
+   inventado, y la col U como PNG cuando la grilla la pide animada. Se rehicieron
+   las dos.
+3. **Se abrió un espacio de Magnific para la semana** con las 5 referencias reales
+   adentro, y ahí quedaron las 8 escenas generadas y el video:
+   <https://www.magnific.com/app/spaces/a2b896f3-0597-4ff7-9bcf-2a2d772324de>
+4. **Subidas a `S5 · BW · STS`** (`1r_spPoBx-vR63J8GTRVCUkbZGGyNLnJg`), verificadas
+   por `fileSize` y `parentId`.
+5. **La revisión se publicó como página**, no como archivo local:
+   <https://claude.ai/code/artifact/7a48f6ca-fded-4a5a-bb00-70c3046a1072>
+
+**Dónde quedó:**
+
+- `src/compositions/hilton/BetweenStS5.tsx` — las dos piezas, con la medición
+  escrita en la cabecera. Registradas en `src/Root.tsx` como `BW-S5-HumorToGo`,
+  `BW-S5-Plateada` y sus dos `-Guia`.
+- `scripts/between-s5-logo-vaso.py` — **script nuevo**: estampa el logotipo real
+  sobre un vaso INCLINADO con rotación rígida. `between-logo-vaso.py` no rota y el
+  vaso de esta pieza va tumbado 27°.
+- `scripts/between-s5-subir-drive.py` — **script nuevo**: el de siempre sólo mira
+  `*.png` y acá una de las dos piezas es un MP4.
+- `scripts/between-st-s5-generar.md` — los prompts textuales y las tres vueltas.
+- Material versionado: `public/assets/hilton/between/s5/` (la foto del To Go con
+  el logotipo ya estampado y el MP4 de fondo) y `raw/hilton/between/s5/` (las 8
+  escenas generadas, incluidas las descartadas), más
+  `raw/hilton/between/refs-s5/` (lo que dejó contenido) y
+  `raw/hilton/between/plateada-real/`.
+- `clients/hilton/CLAUDE.md` — sección nueva de la S5 y la tabla de estado al día.
+
+**Los tres hallazgos de la sesión:**
+
+1. ⭐⭐ **El muro de Between es oscuro y el generador lo aclara solo.** Las dos
+   primeras vueltas de las DOS piezas se perdieron por eso: el beige daba 1,3–1,9:1
+   contra el 8–15:1 de las piezas aprobadas. Se arregla pidiendo la penumbra en el
+   tercio superior dentro del prompt, no con multiply.
+2. ⭐⭐ **En una historia animada la geometría no es una, son 270.** La zona del
+   sticker y el contraste hay que medirlos en el ÚLTIMO fotograma: con el
+   acercamiento el corredor libre se encogió de ~300 px a 175 px.
+3. ⭐ **El vaso se pide liso siempre.** No hay prompt fiable para la `Ǝ` invertida:
+   en dos vueltas Nano Banana escribió un «BETWEEN» inventado en una sans
+   cualquiera. Se estampa el archivo oficial.
+
+**Abierto:**
+
+- ⚠️ **Falta una foto real de la Plateada al Carmenere de Between.** No existe en
+  ninguna carpeta de la marca. La referencia que se usó es
+  `Quotidien-176.jpg res al carmenere`, de la sesión de platos de **QB**. El plato
+  llega fiel y la escena se reambientó en la mesa de teca de Between, pero la foto
+  no es de Between y **está informado en la página de revisión**. Vale la pena
+  pedírsela al cliente.
+- ⚠️ **El video va sin audio a propósito**: la grilla no lo pide y no hay pista
+  aprobada para Between. Si Eli quiere música, se monta sin cambiar la duración.
+- ⚠️ **`between-qa.py` sigue con el falso positivo, van ocho piezas.** Acá contó
+  como texto el filo del cuchillo y el brillo de la loza. La medición de esta
+  entrega se hizo aislando la gráfica a mano.
+- El corte de línea del titular del 28-09 respeta las dos líneas del brief, lo que
+  deja el cuerpo bajo el token de 117. Si Eli lo quiere más grande, se rompe en
+  tres líneas: es una línea de código.
+
 ## 2026-09-10 (CIERRE 3 · noche) · Eli (Windows) — BETWEEN: la ST del Cowork pasa de generada a real, en 4 rondas
 
 Sesión de Between (las dos anteriores del día fueron de DT). Arrancó con

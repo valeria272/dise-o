@@ -6502,7 +6502,7 @@ armado por `scripts/between-cowork-r10-html.py`.
 | N | 16-09 | **Cowork** | `EN CAMBIOS` → **corregida y subida hoy** |
 | O | 18-09 | Saludo 18 sept | `EN REVISIÓN` |
 | Q · R | 21 · 22-09 | Strudel · Primavera | `OK PARA DISEÑAR` (entregadas el 09-09; el cliente no las ha marcado) |
-| T · U | 28 · 30-09 | Humor To Go · Plateada al Carmenere | `OK PARA DISEÑAR` — **sin producir** |
+| T · U | 28 · 30-09 | Humor To Go · Plateada al Carmenere | `OK PARA DISEÑAR` — **producidas y entregadas el 11-09** |
 
 > ⭐⭐ **Se cierran los dos pendientes que arrastraba la cuenta.** El **reel Café
 > Bombón** y la **ST del café de regalo** pasaron a `APROBADO`. El Café Bombón
@@ -6512,7 +6512,9 @@ armado por `scripts/between-cowork-r10-html.py`.
 > Eli existió y no hay que rehacerlo**. `PROPUESTA-reel-cafe-bombon.md` deja de
 > estar en pie.
 >
-> ⚠️ **Lo que queda por producir de la cuenta son la T y la U** (28 y 30-09).
+> ✅ **La T y la U se produjeron el 11-09-2026 y están en `S5 · BW · STS`.**
+> Con eso **la grilla de septiembre de Between queda cerrada**: no hay ninguna
+> columna de STORIES ni de FEED sin producir. Ver la sección de la S5 al final.
 
 ### FEED, estado vivo
 
@@ -6949,3 +6951,135 @@ blanco = (banda > 150).mean(axis=0) > 0.5     # columnas de loza
   borde derecho y **30** del foco del cielo; cero a la izquierda y abajo.
   **Séptima pieza seguida** con el mismo defecto.
 - Revisión publicada: `scripts/between-cowork-r10-artifact.py`.
+
+---
+
+# ⭐ BETWEEN · S5 — LAS DOS ÚLTIMAS HISTORIAS (11-09-2026)
+
+Encargo de Eli: «Trabajaremos diseñando las historias de la grilla de between S5
+[…] una es estática y otra es animada "video" […] no deben durar más de 15
+segundos […] puede ser mínimo de 8 a 9 segundos […] recuerdes las reglas de los
+vasos TOGO, que se vea realista».
+
+| | col T · 28-09 | col U · 30-09 |
+|---|---|---|
+| tipo | ESTÁTICA | **ANIMADA** |
+| entrega | `BW ST 28-09 Humor cafe gigante.png` · 2250×4000 | `BW ST 30-09 Plateada al Carmenere.mp4` · 1080×1920 · 30 fps · **9,00 s** · sin audio |
+| interacción | la grilla no pide | `LINK CARTA` → zona reservada 340×140 en y=990 |
+| lockup | **NO** (el vaso ya firma) | sí, arriba |
+
+Composición: `src/compositions/hilton/BetweenStS5.tsx`.
+Prompts y vueltas: `scripts/between-st-s5-generar.md`.
+Subida: `scripts/between-s5-subir-drive.py` → carpeta `STS` de la S5 de BW.
+Página de revisión: <https://claude.ai/code/artifact/7a48f6ca-fded-4a5a-bb00-70c3046a1072>
+
+## ⛔ Las dos YA EXISTÍAN en el Drive, y por eso se rehicieron
+
+Salieron en el lote de 27 del 27-08 (`StHumorToGo` y `StPlateada` de
+`BetweenSeptiembre.tsx`) y **nunca pasaron por ninguna de las 13 rondas
+posteriores**, así que arrastraban entero el estado del sistema de agosto:
+
+| | v0 del 27-08 | la nueva |
+|---|---|---|
+| vaso To Go | kraft **sin logotipo** — el reclamo que el cliente hizo tres veces | logotipo oficial estampado |
+| lugar | muro de estuco crema con teja y platanera | el patio real (pizarra + teca + jardín vertical) |
+| plateada | carne en **cubos** sobre plato blanco | la **foto real**, con su loza de borde turquesa |
+| col U | PNG estático | video de 9 s, que es lo que pide la grilla |
+| contraste del beige | 1,3–2,4:1 | 5,6–16,0:1 |
+
+> ⚠️ **Lección de método:** una pieza que quedó fuera de las rondas no está
+> «lista», está **congelada en el estado anterior del sistema**. Antes de dar por
+> entregada cualquier columna vieja, hay que compararla contra las reglas que se
+> escribieron después.
+
+## ⭐⭐ EL MURO DE BETWEEN ES OSCURO, Y EL GENERADOR LO ACLARA SOLO
+
+Las dos primeras vueltas de las DOS piezas se perdieron por lo mismo: Nano Banana
+pinta el muro de pizarra en gris claro, y ahí el beige `#FFF9EB` da **1,3–1,9:1**.
+La gramática aprobada de Between vive en **8–15:1**.
+
+**Y la respuesta no es el multiply.** El manual lo prohíbe («si un texto no se
+lee, no se oscurece la foto») y encima apagaría el vaso o el plato, que es lo que
+la pieza muestra. La respuesta es la regla que ya está escrita —*la foto se
+produce con el hueco adentro*— y acá el hueco es de LUZ:
+
+> LUZ: un haz de sol bajo entra por la derecha y alumbra a la chica y al vaso,
+> pero el TERCIO SUPERIOR del cuadro queda en SOMBRA, en penumbra, muro de
+> pizarra casi negro.
+
+Con esa frase el contraste subió de 1,5:1 a **8,1–14,8:1**. **En todo prompt de
+Between que lleve texto arriba hay que pedir la penumbra explícitamente.**
+
+## ⭐ EL VASO SE PIDE LISO Y EL LOGOTIPO SE ESTAMPA — también cuando va inclinado
+
+Nano Banana escribió un «BETWEEN» inventado, en una sans cualquiera y sin la `Ǝ`
+invertida, en las dos vueltas donde se le pidió el vaso con marca. Es el mismo
+defecto de la ronda 4 de agosto. La regla del manual se confirma: **se pide el
+vaso sin marca y se estampa el archivo real.**
+
+Lo nuevo es que acá el vaso va **tumbado 27°**, y `between-logo-vaso.py` no rota.
+Se escribió `scripts/between-s5-logo-vaso.py`, que hace una **rotación rígida**:
+
+> ⛔ La regla del 31-08 sigue en pie — **el logotipo no se deforma**. Rotar
+> conserva forma y proporción (3,0278 intacta); arquear no. No hay comba
+> cilíndrica, no hay acortado lateral, no hay alto independiente del ancho.
+
+Los tres números salen de medir, no de estimar:
+
+| valor | cómo se sacó |
+|---|---|
+| **ángulo −27,0°** | regresión del eje del vaso sobre sus filas limpias (dx/dy = −0,5085). ⚠️ Medir sólo el tramo sin la tapa ni la mano: incluyéndolos la regresión daba 13,6°, la mitad |
+| **ancho 377 px** | 0,75 × el **diámetro**. ⚠️ El ancho horizontal de una fila NO es el diámetro en un objeto inclinado: hay que corregir por `cos 27°` o el logotipo sale 10 % grande |
+| **centro (1605, 3000)** | el eje del vaso a 0,43 del alto del cuerpo — las dos proporciones medidas sobre `togo-vaso-real-nobg.png` |
+
+Densidad comprobada contra el impreso real: la nuestra da **4,8:1** contra el
+cartón y la del vaso real **2,8:1**. Se lee más, no menos.
+
+## ⭐ EN UNA HISTORIA ANIMADA, LA ZONA DEL STICKER SE MIDE EN EL ÚLTIMO FOTOGRAMA
+
+Es la diferencia de fondo con una pieza estática y hay que escribirla: **la cámara
+se mueve, así que la geometría no es una, son 270**. Con el acercamiento el plato
+sube dentro del cuadro y el corredor libre entre el cierre del bloque (y≈965) y el
+borde del plato **se encoge de ~300 px a 175 px**. La pastilla se dimensiona
+contra ese peor caso: 340 × 140 en y=990.
+
+Lo mismo vale para el contraste: en la banda del bloque va de **12,3:1 al empezar
+a 5,6:1 al terminar**. Sigue en rango, pero hay que medir los dos extremos.
+
+## Las decisiones de animación
+
+- **Se mueve la foto, no el texto.** Acercamiento lentísimo, vapor de la carne y
+  hojas del fondo. El texto sólo entra —escalonado en los primeros 60 frames— y
+  después la pieza queda quieta 210 frames. La marca es «juvenil pero con un punto
+  de estatus»: una tipografía que rebota la abarata.
+- **La lista de lo que NO se mueve es la parte útil del prompt.** Sin ella el
+  modelo de video le cambia la forma a la comida a mitad de plano y el plato deja
+  de ser el del cliente.
+- **Sin audio.** La grilla no lo pide y no hay pista aprobada para Between.
+
+## ⚠️ Trampas técnicas que costaron tiempo
+
+1. **El video de Magnific llega HEVC 10 bits, 1076×1928, 24 fps.** Chrome no lo
+   digiere y Remotion rinde negro. Hay que transcodificar a H.264 8 bits antes.
+2. **El ffmpeg que trae Remotion está compilado casi sin filtros:** `crop` y `fps`
+   NO existen, sólo `scale`. El reencuadre lo hace la composición con
+   `objectFit: cover` y los fps se fijan con `-r`, no con el filtro.
+3. **El entry point de Remotion en este repo es `src/index.ts`**, no `src/Root.tsx`
+   (`Root.tsx` no llama a `registerRoot`). `BetweenEntry.tsx` sí es entry, pero no
+   tiene registradas las piezas de S3/S4/S5 — ésas viven en `Root.tsx`.
+4. **`npx.cmd` en Windows rompe con rutas de salida que llevan espacios.** Los
+   `GUIA CM` se rinden como `-GUIA-CM.png`.
+
+## ⚠️ Lo que falta y hay que pedir
+
+- **Una foto real de la Plateada al Carmenere de Between.** No existe: se buscó en
+  las 202 de `3 ENERO PLATOS - DESAYUNOS`, en `BETWEEN DESAYUNOS AGO 2026`, en
+  `dulces-tortas` y en `platos-ene`. La que entró como referencia es
+  `Quotidien-176.jpg res al carmenere`, de la sesión de platos de **QB**. El plato
+  llega fiel —corte entero, loza de borde turquesa, puré, champiñones, salsa— y la
+  escena se reambientó en la mesa de teca de Between, pero **la foto no es de
+  Between y eso hay que decirlo**.
+- **`between-qa.py` sigue con el falso positivo**, van ocho piezas: cuenta como
+  texto cualquier blanco de marca con un borde oscuro cerca. Acá marcó el **filo
+  del cuchillo** y el brillo de la loza. La medición se hizo aislando la gráfica a
+  mano (color plano de marca + desviación local baja + manchas grandes).

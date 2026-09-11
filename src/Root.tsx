@@ -134,6 +134,10 @@ import {PruebaEmoji} from "./compositions/hilton/BetweenPruebaEmoji";
 import {
   StS4Strudel, StS4Primavera, StS4StrudelGuia, StS4PrimaveraGuia,
 } from "./compositions/hilton/BetweenStS4";
+import {
+  StS5HumorToGo, StS5Plateada, StS5HumorToGoGuia, StS5PlateadaGuia,
+  DURACION_PLATEADA,
+} from "./compositions/hilton/BetweenStS5";
 
 import {SelfieBannerSemanaPeluquero} from "./compositions/SelfieBannerSemanaPeluquero";
 import {SelfieCarruselFrizz} from "./compositions/SelfieCarruselFrizz";
@@ -200,6 +204,17 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="BW-S4-Primavera" component={StS4Primavera} {...btStory} />
         <Composition id="BW-S4-Strudel-Guia" component={StS4StrudelGuia} {...btStory} />
         <Composition id="BW-S4-Primavera-Guia" component={StS4PrimaveraGuia} {...btStory} />
+        {/* ── S5 · 28 y 30 de septiembre ──
+            La del 28 es ESTATICA y va sin lockup: el vaso gigante ya trae el
+            logotipo impreso. La del 30 es ANIMADA — 9 s, que es lo que pidio
+            Eli el 11-09 ("minimo de 8 a 9 segundos", tope 15). Las `-Guia`
+            llevan marcada la zona del sticker y NO se entregan al cliente. */}
+        <Composition id="BW-S5-HumorToGo" component={StS5HumorToGo} {...btStory} />
+        <Composition id="BW-S5-HumorToGo-Guia" component={StS5HumorToGoGuia} {...btStory} />
+        <Composition id="BW-S5-Plateada" component={StS5Plateada}
+          durationInFrames={DURACION_PLATEADA} fps={30} width={1080} height={1920} />
+        <Composition id="BW-S5-Plateada-Guia" component={StS5PlateadaGuia}
+          durationInFrames={DURACION_PLATEADA} fps={30} width={1080} height={1920} />
         {/* utilidad de extraccion, no una pieza: ver BetweenPlanchaTrazos.tsx */}
         <Composition id="BW-Plancha-Trazos" component={PlanchaTrazos}
           durationInFrames={1} fps={30} width={2660} height={828} />

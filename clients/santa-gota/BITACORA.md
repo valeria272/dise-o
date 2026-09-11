@@ -1,5 +1,31 @@
 # SANTA GOTA — bitácora
 
+## 2026-09-11 (noche) · Valeria (con Claude) — V3 de los 3 placements: última ronda creativa (previews)
+
+**Brief:** «Corrección final obligatoria»: edición publicitaria de verdad (transiciones motivadas, kinetic type,
+ritmo), nada de rectángulos de video ni blur de relleno, monja grande y reconocible, huincha ≤ 7,00 s, autocontrol
+cuadro a cuadro antes de entregar. Sólo previews; los másters se exportan tras la aprobación.
+
+**Qué se hizo**
+- La monja recortada EN MOVIMIENTO (11 cuadros del reel con alfa, `public/assets/santagota/monja-seq/`): entra por
+  el borde, mira, lanza la pasta. Es lo que hace que el virtual sea «una monja entró al matinal» y no una pantallita.
+- La cocina extendida por IA (sólo periferia) para que el claim del Full vaya sobre la monja real a cuadro completo.
+- 8 efectos de sonido generados en Freepik + cama del reel; sin música (derechos).
+- Huincha 209 f (6,97 s): losa petróleo con bisel, claim cinético, logo + URL grandes, resto transparente.
+- Virtual 15 s: franjas apiladas para el claim, losa para la marca, la monja al 95 %.
+- Full 19,95 s: fuego (burn-through) → monja → chorro → ají → camarones → pasta → producto → emplatado → claim
+  sobre la monja real → lanza la pasta con empuje → plato → látigo lima → end frame petróleo.
+- Previews V3 en `~/Desktop/SANTA_GOTA_TV_FINAL/04_PREVIEWS/V3/` (audio a −24 LKFS, 29,97).
+
+**Revisión propia (hoja de contacto a 6 fps de cada MP4):** se corrigieron el hook de fuego (a 3,30 todavía no había
+llamas: empieza en 3,40), el lanzamiento que se pasaba a las pinzas (corte del reel en 9,35) y el plano del plato que
+llegaba al logo que trae el reel (11,0). Detalles en `CLAUDE.md` §8b y §9.
+
+**Pendiente**
+- Aprobación de Valeria de los V3 → exportar másters con `scripts/santagota-entrega-tv.py` (huincha a 209 cuadros).
+- ⛔ Plantilla técnica del Virtual: sigue sin llegar. No se entrega al canal sin calzarla.
+- Logo vectorial y packshots PNG: siguen sin llegar (el producto sólo aparece real en el chorro del reel).
+
 ## 2026-09-11 (tarde) · Valeria (con Claude) — Fase 2: PRODUCCIÓN FINAL de los 3 placements de TV
 
 **Dirección aprobada con cambios:** nada de campo lima plano; fotografía primero (el reel), titular

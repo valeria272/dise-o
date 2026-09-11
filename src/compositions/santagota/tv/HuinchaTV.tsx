@@ -1,77 +1,105 @@
 // ============================================================================
-// SANTA GOTA · HUINCHA TV · 1920×216 · 29,97 · 7 s (210 f) · alfa real
+// SANTA GOTA · HUINCHA TV · 1920×216 · 29,97 · 209 f = 6,97 s (≤ 7,00 s) · alfa real
 // ----------------------------------------------------------------------------
-// La monja GRANDE asoma desde el borde inferior (cabeza = 200 de los 216 px).
-// Placa fotográfica: la foto de Instagram del wok con llamas, desenfocada y
-// oscurecida (sólo ambiente). Información por etapas para que todo tenga
-// tamaño:  0–1,5 s monja · 1,5–4,5 s claim · 4,5–7 s logo + SANTAGOTA.CL.
-// Todo lo que no es la banda es transparente.
+// V3 — «La monja se mete en la tele»: intervención sobre el programa, no banda.
+//   0,00–0,50  HOOK   la monja ASOMA por el borde inferior (cara + lentes + hábito,
+//                     cabeza de ~200 px), sube con overshoot y se detiene seca.
+//   1,45–4,40  CLAIM  una losa petróleo se barre desde la izquierda y el claim entra
+//                     cinético: EL ACEITE QUE LLEGÓ A · REVOLUCIONAR (golpe, lima) ·
+//                     TU COCINA. · plumón naranja. La monja se hunde 8 px con el golpe.
+//   4,40–6,55  MARCA  el claim sale por la izquierda, la losa se acorta y entran el
+//                     logo oficial y SANTAGOTA.CL, grandes.
+//   6,55–6,97  SALIDA la losa se barre hacia la izquierda y la monja vuelve a bajar.
+// Todo lo que no es monja ni losa es TRANSPARENTE (se ve el programa).
 // ============================================================================
 import React from "react";
-import {AbsoluteFill, Img, staticFile} from "remotion";
-import {Monja, MONJA} from "../../../brand/santagotaUI";
-import {C, Cta, HaloAnim, Linea, Logo, Plumon, entra, fade, seg, useFrameFps} from "./comun";
+import {AbsoluteFill, Sequence} from "remotion";
+import {MONJA} from "../../../brand/santagotaUI";
+import {Bloque, Cta, HaloAnim, Linea, Logo, MonjaViva, Plumon, Revela, SFX, Sfx, cae, entra, fade, golpe, pingpong, seg, useFrameFps} from "./comun";
 
-export const DUR_HUINCHA = seg(7);
+export const DUR_HUINCHA = 209; // 6,97 s — bajo los 7,00 s exactos
+
+const W = 1920, H = 216;
 
 export const HuinchaTV: React.FC = () => {
   const {frame, fps} = useFrameFps();
-  const W = 1920, H = 216;
 
-  // — monja: cabeza de ~200 px, centrada en x=300, sube desde abajo —
-  const s = 0.62;
-  const cabezaCx = 300;
-  const tx = cabezaCx - MONJA.cabezaCx * s;
-  const tyFinal = 26 - MONJA.cabezaTop * s;
-  const subida = entra(frame, fps, 3, 26);
-  const ty = tyFinal + (1 - subida) * 230;
-  const halo = fade(frame, seg(1.0), seg(1.4));
+  // — la monja: cabeza de ~200 px, cornette en y=22, asoma desde abajo —
+  const s = 0.72;
+  const cx = 250;
+  const tx = cx - MONJA.cabezaCx * s;
+  const tyFinal = 22 - MONJA.cabezaTop * s;
+  const sube = golpe(frame, fps, 0, 18);
+  const hunde = 8 * Math.sin(Math.PI * fade(frame, seg(1.45), seg(1.8)));        // reacciona al golpe de la losa
+  const baja = cae(frame, DUR_HUINCHA - 13, DUR_HUINCHA - 1) * 300;               // salida: vuelve a bajar
+  const ty = tyFinal + (1 - sube) * 280 + hunde + baja;
+  const cuadro = pingpong(frame - 16, 7);                                         // micro-vida de la pose
 
-  // — claim (1,5–4,5 s) —
-  const c1 = entra(frame, fps, seg(1.5));
-  const c2 = entra(frame, fps, seg(1.85));
-  const plumon = fade(frame, seg(2.5), seg(3.0));
-  const claimOut = fade(frame, seg(4.4), seg(4.75), 1, 0);
+  const halo = fade(frame, seg(0.75), seg(1.1));
 
-  // — marca (4,5–7 s) —
-  const l1 = entra(frame, fps, seg(4.6), 20);
-  const l2 = entra(frame, fps, seg(4.85), 20);
+  // — la losa —
+  const xB = 505;
+  const losaIn = golpe(frame, fps, seg(1.45), 14);
+  const losaW = fade(frame, seg(4.4), seg(4.75), 1190, 860);                      // se acorta para la marca
+  const losaOut = cae(frame, DUR_HUINCHA - 12, DUR_HUINCHA - 2);
 
-  const bandaOp = fade(frame, DUR_HUINCHA - 8, DUR_HUINCHA - 1, 1, 0);
-  const bandaSube = entra(frame, fps, 0, 12); // la banda entra desde abajo en 0,35 s
-  const xClaim = 600;
+  // — claim —
+  const c1 = entra(frame, fps, seg(1.55), 14);
+  const c2 = golpe(frame, fps, seg(1.85), 16);
+  const c3 = entra(frame, fps, seg(2.15), 14);
+  const plumon = fade(frame, seg(2.55), seg(3.0));
+  const claimOut = fade(frame, seg(4.4), seg(4.62));
+  const xT = 552;
+
+  // — marca —
+  const l1 = golpe(frame, fps, seg(4.62), 18);
+  const l2 = golpe(frame, fps, seg(4.85), 18);
+  const marcaOp = fade(frame, DUR_HUINCHA - 12, DUR_HUINCHA - 6, 1, 0);
 
   return (
-    <AbsoluteFill style={{overflow: "hidden", opacity: bandaOp, transform: `translateY(${(1 - bandaSube) * H}px)`}}>
-      {/* La banda: placa fotográfica (ambiente) */}
-      <div style={{position: "absolute", left: 0, top: 0, width: W, height: H, overflow: "hidden", background: "#1A1410"}}>
-        <Img src={staticFile("assets/santagota/ig-monja-wok.jpg")}
-          style={{position: "absolute", left: 0, top: -1160, width: 1920, height: 1920, filter: "blur(7px) brightness(0.5) saturate(1.15)", transform: "scale(1.06)"}} />
-        <div style={{position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(10,8,6,0.15) 0%, rgba(10,8,6,0.55) 35%, rgba(10,8,6,0.55) 80%, rgba(10,8,6,0.3) 100%)"}} />
-        <div style={{position: "absolute", left: 0, right: 0, top: 0, height: 3, background: C.lima, opacity: 0.9}} />
+    <AbsoluteFill style={{overflow: "hidden"}}>
+      {/* La monja asoma (recortada por el borde inferior de la huincha) */}
+      <div style={{position: "absolute", left: 0, top: 0, width: W, height: H, overflow: "hidden", zIndex: 2}}>
+        <MonjaViva cuadro={cuadro} s={s} tx={tx} ty={ty} z={2} />
       </div>
+      <HaloAnim cx={cx + 4} cy={14 + hunde + baja} w={124} h={22} p={halo} grosor={5} z={6} />
 
-      {/* La monja asoma */}
-      <div style={{position: "absolute", left: 0, top: 0, width: W, height: H, overflow: "hidden"}}>
-        <Monja s={s} tx={tx} ty={ty} z={2} />
-      </div>
-      <HaloAnim cx={cabezaCx + 4} cy={12} w={92} h={17} p={halo} grosor={5} />
-
-      {/* El claim */}
-      <div style={{position: "absolute", left: xClaim, top: 26, opacity: claimOut, zIndex: 4}}>
-        <Linea size={46} op={c1} dy={(1 - c1) * 30}>El aceite que llegó a</Linea>
-        <div style={{display: "flex", alignItems: "baseline", gap: 22, marginTop: 6, opacity: c2, transform: `translateY(${(1 - c2) * 34}px)`}}>
-          <Linea size={86} weight={900} lima>Revolucionar</Linea>
-          <Linea size={52}>tu cocina.</Linea>
+      {/* La losa petróleo: claim → marca */}
+      <Bloque x={xB} y={-6} w={losaW} h={H + 12} p={losaIn} q={losaOut} z={3}>
+        {/* claim */}
+        <div style={{position: "absolute", left: xT - xB, top: 22, transform: `translateX(${-claimOut * 140}px)`, opacity: 1 - claimOut}}>
+          <Revela p={c1} modo="izq">
+            <Linea size={40} weight={700} sombra={false}>El aceite que llegó a</Linea>
+          </Revela>
+          <div style={{display: "flex", alignItems: "baseline", gap: 24, marginTop: 2}}>
+            <Revela p={c2} modo="golpe" origen="0% 70%">
+              <Linea size={90} weight={900} lima sombra={false} style={{letterSpacing: "-0.03em"}}>Revolucionar</Linea>
+            </Revela>
+            <Revela p={c3} modo="abajo">
+              <Linea size={48} sombra={false}>tu cocina.</Linea>
+            </Revela>
+          </div>
         </div>
-      </div>
-      <div style={{opacity: claimOut}}>
-        <Plumon x={xClaim - 4} y={182} w={800} grosor={10} p={plumon} />
-      </div>
+        <div style={{opacity: 1 - claimOut}}>
+          <Plumon x={xT - xB - 4} y={182} w={740} grosor={9} p={plumon} />
+        </div>
+        {/* marca */}
+        <div style={{opacity: marcaOp}}>
+          <Logo x={60} y={28} w={250} op={Math.min(1, l1 * 2)} sc={0.7 + 0.3 * l1} sombra={false} />
+          <Cta x={365} y={70} size={54} op={Math.min(1, l2 * 2)} sc={0.7 + 0.3 * l2} />
+        </div>
+      </Bloque>
 
-      {/* Marca */}
-      <Logo x={840} y={30} w={250} op={l1} sc={0.85 + 0.15 * l1} />
-      <Cta x={1180} y={64} size={54} op={l2} sc={0.85 + 0.15 * l2} />
+      {/* Sonido (solo para el preview; la huincha se entrega muda) */}
+      <Sequence from={0} layout="none">
+        <Sfx src={SFX.whoosh2} at={0} vol={0.9} />
+        <Sfx src={SFX.whoosh} at={1.45} vol={0.8} />
+        <Sfx src={SFX.impact} at={1.85} vol={0.9} />
+        <Sfx src={SFX.marker} at={2.55} vol={0.7} />
+        <Sfx src={SFX.whoosh2} at={4.4} vol={0.6} />
+        <Sfx src={SFX.sting} at={4.62} vol={0.9} />
+        <Sfx src={SFX.whoosh2} at={6.55} vol={0.6} />
+      </Sequence>
     </AbsoluteFill>
   );
 };

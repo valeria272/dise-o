@@ -9,7 +9,7 @@ import {VirtualTV} from "./VirtualTV";
 
 export const HuinchaPreview: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
-    <Img src={staticFile("assets/santagota/_tv-frame-huincha.png")} style={{position: "absolute", left: 0, top: 0, width: 1920, height: 1080}} />
+    <Img src={staticFile("assets/santagota/_tv-frame-set.png")} style={{position: "absolute", left: 0, top: 0, width: 1920, height: 1080}} />
     <div style={{position: "absolute", left: 0, top: 1080 - 216, width: 1920, height: 216}}>
       <HuinchaTV />
     </div>

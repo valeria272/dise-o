@@ -6,6 +6,12 @@ import {SanEstebanReel, SE_REEL_FPS, SE_REEL_DURACION} from "./compositions/SanE
 import {REEL_TRAFICO, REEL_WSP_ANTOFAGASTA, REEL_MUDANZA} from "./compositions/sanEstebanReelesOctubre";
 import {MasCenterReel, REEL_02, REEL_03, duracionReel} from "./compositions/mascenter/MasCenterReel";
 
+// SANTA GOTA — placements de TV (huincha / virtual / full screen). Fase 1: stills.
+import {HuinchaTV} from "./compositions/santagota/HuinchaTV";
+import {VirtualTV} from "./compositions/santagota/VirtualTV";
+import {FullScreenTV} from "./compositions/santagota/FullScreenTV";
+import {CierreTV} from "./compositions/santagota/CierreTV";
+
 
 // COPYWRITERS — Creative Operating System v1.0. Una pieza = un archivo = una
 // dirección de arte. No hay una composición "CopylabPost" con un prop `plantilla`,
@@ -1151,6 +1157,13 @@ export const RemotionRoot: React.FC = () => {
           width={1080}
           height={1920}
         />
+      </Folder>
+      <Folder name="SantaGota">
+        {/* Placements de TV — Fase 1: key visuals estáticos. fps 29.97 NTSC en Fase 2. */}
+        <Composition id="SG-Huincha" component={HuinchaTV}    durationInFrames={1} fps={30} width={1920} height={216} />
+        <Composition id="SG-Virtual" component={VirtualTV}    durationInFrames={1} fps={30} width={775}  height={1080} />
+        <Composition id="SG-Full"    component={FullScreenTV} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="SG-Cierre"  component={CierreTV}     durationInFrames={1} fps={30} width={1920} height={1080} />
       </Folder>
       <Folder name="Copywriters">
         {/* Feed 4:5 — el formato principal del sistema. */}

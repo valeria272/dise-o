@@ -1,0 +1,74 @@
+{
+  "slug": "santa-gota",
+  "nombre": "Santa Gota (Patagonia de Chile)",
+  "rubro": "Aceite de oliva extra virgen — marca pop/irreverente",
+  "pais": "CL",
+  "moneda": "CLP",
+  "web": "https://santagota.cl",
+  "ecommerce": {"url": "https://santagota.cl", "tipo": "custom", "api_publica": false, "endpoints": {}},
+  "manual": "clients/santa-gota/CLAUDE.md",
+  "kit_codigo": "src/brand/santagota.ts",
+  "sistema": "src/compositions/santagota/",
+
+  "colores": {
+    "_nota": "Muestreados píxel a píxel el 11-09-2026 sobre el logo oficial, el feed de septiembre y el e-commerce",
+    "lima": "#C3D600",
+    "lima_tapa": "#7ED140",
+    "verde_logo": "#5C921C",
+    "naranja": "#F26513",
+    "botella": "#0E1C03",
+    "hueso": "#D2CEC5",
+    "blanco": "#FFFFFF"
+  },
+  "fuentes": {
+    "titular": {"familia": "Montserrat", "pesos": [800, 900]},
+    "intro": {"familia": "Montserrat", "pesos": [300]},
+    "cuerpo": {"familia": "Montserrat", "pesos": [400, 700]},
+    "_ruta": "public/assets/fonts/Montserrat.ttf"
+  },
+  "logos": {
+    "regla": "A color sólo sobre botella/hueso/blanco. Sobre lima, plano botella. Sobre foto, plano blanco. No existe vector: pedirlo.",
+    "color": "public/assets/santagota/logo-color.png",
+    "plano_blanco": "public/assets/santagota/logo-plano-blanco.png",
+    "plano_botella": "public/assets/santagota/logo-plano-botella.png"
+  },
+
+  "formatos": {
+    "feed": {"w": 1080, "h": 1080, "ratio": "1:1"},
+    "story": {"w": 1080, "h": 1920, "ratio": "9:16"},
+    "tv_huincha": {"w": 1920, "h": 216, "alpha": true, "seg": 7, "salida": "targa+alfa"},
+    "tv_virtual": {"w": 775, "h": 1080, "alpha": true, "seg": 20, "salida": "targa+alfa", "plantilla_canal": "PENDIENTE"},
+    "tv_full": {"w": 1920, "h": 1080, "fps": 29.97, "seg": 20, "salida": "MXF NTSC"}
+  },
+  "zonas_seguras": {"story": {"top": 250, "bottom": 340, "right": 115}, "tv": {"title_safe_pct": 5}, "respiro_minimo": 48},
+
+  "esquemas": {
+    "feed": "foto a sangre + UNA intervención (logo plano blanco | botella en línea | aureola | plumón lima)",
+    "tv": "campo lima + tinta botella + naranja sólo en aureola y plumón + bloque botella con logo a color y URL lima"
+  },
+  "geometria_px_sobre_1080": {
+    "monja_recorte": {"archivo": "public/assets/santagota/monja-sarten-nobg.png", "cabeza_top": 641, "cabeza_cx": 596, "sarten_base": 1520, "pie_solido": 1766}
+  },
+
+  "briefs": {"tv_placements_2026-09-11": "3 placements TV — huincha, virtual, full screen. Concepto: EL ACEITE QUE LLEGÓ A REVOLUCIONAR TU COCINA. CTA: SANTAGOTA.CL"},
+  "drive": {"carpeta": "1VRQ_9ggb6n1DhQbOZiYoLP0iW-imswG9", "brand_soul": "1kQaip95iBTSx9uUvQLxk9zTrPbgxMveR", "logo": "1RZxAOzCHqqE18vYzdq8-pZbngBQop2Fv", "social_media_pdf": "1GC-pL_i4QPofb0xtzg5P30c4oTUsi5Um"},
+  "equipo_cliente": {"dueño": "patagoniadechile@gmail.com", "estrategia": "Diana Meinhardt", "diseño": "Luis Piano"},
+  "reglas_duras": [
+    "Nada de códigos de aceite tradicional: oliva, madera, beige, dorado, gourmet, degradados",
+    "Logo a color nunca sobre lima",
+    "La IA no toca producto, logo ni monja",
+    "Concepto y CTA literales del brief",
+    "Dos aceites distintos (750 cocinar / 500 terminar), nunca 'dos tamaños'"
+  ],
+
+  "madurez": {
+    "identidad": "completa",
+    "gramatica": "parcial",
+    "formatos": "parcial",
+    "imagen": "parcial",
+    "copy": "completa",
+    "pipeline": "parcial",
+    "qa": "parcial"
+  },
+  "actualizado": "2026-09-11"
+}

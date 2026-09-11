@@ -704,3 +704,9 @@ out/ebema/20260925_linkedin_octubre/*
 !out/ebema/20260925_linkedin_octubre/ENTREGA.md
 !out/ebema/20260925_linkedin_octubre/resolver_r1.py
 !out/ebema/20260925_linkedin_octubre/comentarios-r1.json
+
+# ── SANTA GOTA: los assets de TV (logo, monja recortada) y los KV entregados el 11-09-2026 ──
+!public/assets/santagota/**
+!out/santagota/
+!out/santagota/kv-v4/
+!out/santagota/kv-v4/**

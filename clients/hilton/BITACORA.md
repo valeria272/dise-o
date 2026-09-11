@@ -40,9 +40,10 @@ Between que no es de esta sesión.
    · La ficha declara **sólo tipografías, a propósito**. Colores, formatos y zonas
      seguras se dejaron FUERA porque no están medidos y escribirlos de memoria sería
      inventarle un sistema a la marca (memoria `no-inventar-sistema-de-marca`).
-   · Se anotó en la ficha que **las dos Trade ya tienen su `.woff2`**, así que la
-     advertencia del manual está cubierta: en código se carga el `.woff2`, nunca el
-     `.otf` CFF.
+   · Se anotó en la ficha que **las dos Trade ya tienen su `.woff2`** — eso está
+     comprobado. Lo que **NO** está comprobado es que Chrome los cargue: falta correr
+     `document.fonts.check` sobre una pieza real. En código se carga el `.woff2` y
+     nunca el `.otf` CFF, y la primera pieza de DT que se rinda se mira al 100 %.
    · **Trampa cazada:** al declarar los 3 cortes que sólo tiene el cliente (Stag LCG
      y los dos Trade Bold), el script los leyó como declarados y les puso **✓ verde
      falso**. Un falso ✓ es peor que no tener el dato. Se renombró la clave a

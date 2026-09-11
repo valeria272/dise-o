@@ -1,0 +1,88 @@
+{
+  "slug": "hilton",
+  "nombre": "Complejo Hilton Vitacura — DoubleTree / QB / Between / Piso18",
+  "rubro": "Hotelería — 4 marcas bajo un mismo complejo",
+  "pais": "Chile",
+  "moneda": "CLP",
+  "manual": "clients/hilton/CLAUDE.md",
+  "kit_codigo": "src/brand/hilton-between.ts",
+
+  "_ALCANCE": "⚠️ FICHA PARCIAL — SÓLO TIPOGRAFÍAS. Se creó el 11-09-2026 para que scripts/verificar-fuentes.py dejara de saltarse Hilton: al no existir marca.json, su informe decía «todo bien» sin haber mirado ni una fuente de DT ni de Between. NO declara colores, formatos ni zonas seguras a propósito: esos NO están medidos y escribirlos de memoria sería inventarle un sistema a la marca. El manual manda: clients/hilton/CLAUDE.md",
+
+  "regla_madre": "Las 4 marcas comparten Drive y complejo, pero NO comparten criterio. Nada de DT se le traspasa a Between ni al revés — ni tipografía, ni paleta, ni logo, ni banco de imágenes.",
+
+  "fuentes": {
+    "_ruta": "public/assets/hilton/<submarca>/fonts/",
+    "_nota": "Cada submarca tiene su propio par tipográfico. No se cruzan.",
+
+    "dt_titulares": {
+      "familia": "Stag",
+      "submarca": "DoubleTree",
+      "uso": "Titulares. Dos pesos de la misma familia (Medium arriba + Light abajo) al MISMO cuerpo: separa el peso, no el tamaño (criterio de Eli, 10-09-2026).",
+      "fuente": "empaquetada",
+      "archivos": "Stag-*.ttf — 9 cortes en public/assets/hilton/dt/fonts/",
+      "empaquetable": true,
+      "⛔_limite_medido": "Los 9 cortes traen el MISMO subconjunto de 354 glifos y NO incluyen $ % ¿ ¡ @ € º ª # *. Stag no puede escribir un precio, una pregunta, un correo ni un descuento: esa línea es Trade Gothic, por diseño de la familia."
+    },
+    "dt_texto": {
+      "familia": "Trade Gothic",
+      "submarca": "DoubleTree",
+      "uso": "Cifras, precios, versales, cuerpo, CTA y legal. Todo lo que Stag no puede escribir.",
+      "fuente": "empaquetada",
+      "archivos": "TradeGothicLTStd-Regular y -BoldCn20, en .otf Y .woff2",
+      "empaquetable": true,
+      "✅_chrome_resuelto": "Las .otf son CFF/PostScript — el formato que Chrome rechaza en silencio y que hizo rendir 27 piezas de Between con una serif de reemplazo. Ya existe el .woff2 de los dos cortes: en código se carga el .woff2, NO el .otf, y se verifica con document.fonts.check. Ver memoria brushwell-no-cargaba-en-chrome.",
+      "⚠️_falta_el_corte_del_precio": "NO hay un Trade Gothic Bold de ancho normal, que es justo el que pide un bloque de precio (ancho 1/0 de la pieza = 0,764; Regular da 0,654 y BoldCn20 0,600). Sustituto en función: Bold Condensed No. 20, pero comprime la píldora de ~630 px a ~410 px al mismo alto de dígito — la geometría del bloque cambia y hay que revisarla a ojo."
+    },
+    "dt_⛔_prohibida": {
+      "familia": "Raleway",
+      "submarca": "DoubleTree",
+      "_prohibida_en": "DT",
+      "regla": "⛔ Raleway quedó FUERA de DT (Eli, 03-09-2026). Las dos familias oficiales del manual Hilton son Stag y Trade Gothic. No es preferencia, es la marca. Sigue siendo válida en Between."
+    },
+
+    "between_titulares": {
+      "familia": "Raleway",
+      "submarca": "Between",
+      "uso": "Titulares en mayúscula. ExtraBold es el default porque lee claro sin engrosar; Bold y Black también válidos. Rango completo de pesos.",
+      "fuente": "libre",
+      "archivos": "Raleway-*.ttf — 11 cortes en public/assets/hilton/between/fonts/",
+      "empaquetable": true
+    },
+    "between_script": {
+      "familia": "Brushwell",
+      "submarca": "Between",
+      "uso": "Acompañamiento manuscrito. SÓLO en títulos o una palabra clave: jamás en números ni en párrafos.",
+      "fuente": "de pago — licencia del cliente",
+      "archivos": "Brushwell.otf + .ttf + .woff2",
+      "empaquetable": true,
+      "✅_resuelto": "382 glifos, v1.000. Trae Ñ, tildes y signos de apertura. Convertida a TTF/WOFF2 porque Chrome rechaza la .otf CFF."
+    },
+
+    "_qb_y_piso18": "⛔ SIN MEDIR. Ninguna de las dos tiene tipografía levantada. Eli va a dejar sus editables; hasta entonces no se produce QB ni Piso18 en código. Ver clients/hilton/CLAUDE.md §madurez."
+  },
+
+  "_cortes_que_solo_tiene_el_cliente_NO_LEER_COMO_DISPONIBLES": [
+    "Stag LCG",
+    "Trade Gothic LT Std Bold (ancho normal) — el del bloque de precio",
+    "Trade Gothic Next LT Pro Bold"
+  ],
+
+  "madurez": {
+    "identidad": "parcial — DT y Between con tipografía medida; QB y Piso18 sin medir",
+    "gramatica": "completa en Between y DT; nula en QB y Piso18",
+    "formatos": "sin declarar en ficha — ver manual",
+    "imagen": "parcial",
+    "copy": "completa",
+    "pipeline": "parcial",
+    "qa": "parcial"
+  },
+
+  "pendientes": [
+    "Medir identidad y gramática de QB y Piso18 desde los editables de Eli (/adn)",
+    "Pedir al cliente el Trade Gothic Bold de ancho normal — sin él, todo bloque de precio de DT va con un sustituto que cambia la geometría",
+    "Completar esta ficha con colores, formatos y zonas seguras MEDIDOS, no de memoria"
+  ],
+
+  "actualizado": "2026-09-11"
+}

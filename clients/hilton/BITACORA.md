@@ -1,3 +1,74 @@
+## 2026-09-11 · Eli (Windows) — NO es sesión de diseño: se cerró el hueco de material de DT y Hilton por fin tiene ficha
+
+Verificación del estudio (`/arranque`) en el Windows de Eli. **No se tocó ninguna
+pieza de ninguna de las 4 marcas.** Se anota acá porque deja resuelto lo que el
+CIERRE 2 de ayer había dejado abierto en DT, y porque aparece un pendiente de
+Between que no es de esta sesión.
+
+**Qué se hizo:**
+
+1. **Los 5 archivos de `raw/hilton/dt/` quedaron resueltos, y eran DOS problemas
+   distintos, no uno.**
+   · **El TIFF del lobby no estaba roto** (ya lo decía el CIERRE 2) pero sí era
+     inservible para rendir: **Chrome no carga TIFF**, o sea el mismo modo de falla
+     silencioso de Brushwell. Se conservó el original como
+     `03-lobby-02.tif` y se generó `03-lobby-02.jpg` (4192x3104, calidad 95,
+     6,2 MB) que Chrome sí carga.
+   · **Los otros 4 eran HTML de login**, confirmado. Se renombraron a
+     `*.DESCARGA-FALLIDA.html` — **no se borraron**: quedan visibles por lo que son
+     y la compuerta deja de contarlos como imagen rota.
+
+2. **⭐ El hueco de fotos NO existía, y por eso no hay nada que pedirle al cliente.**
+   Antes de declarar material faltante se aplicó la memoria
+   `agotar-material-antes-de-bloquear`: hoja de contacto de las 109 fotos de
+   `sesion-real/` y se miró.
+   · `ref-dia-turismo.jpg` **tenía su `.png` sano al lado**, misma imagen 1080x1350.
+   · Los 3 de `banco-maestro/` (`businesscenter`, `exterior2`, `fachada156`) tienen
+     nombre de galería web, no de la sesión (que son `_MG_####`). **Lo que prometían
+     ya está cubierto por las 96 fotos sanas de `muestra/` y `muestra2/`**: frontis
+     (`alta/HDT_43-frontis.jpg`), exterior, y los salones de reuniones completos con
+     montaje y proyector, que es el «business center». Se dejó un `LEEME.txt` en
+     `banco-maestro/` explicando dónde está cada cosa para que nadie los persiga de
+     nuevo.
+   · `python scripts/verificar-material.py raw/hilton` → **1858 válidos, 0 rotos.**
+
+3. **⭐⭐ Hilton ya tiene `clients/hilton/marca.json`, y el motivo importa.**
+   `scripts/verificar-fuentes.py` recorre `clients/*/marca.json`: al no existir la
+   ficha, **se saltaba Hilton entero y su informe decía «todo bien» sin haber mirado
+   ni una fuente de DT ni de Between**. Ahora las 4 salen verificadas:
+   **Stag · Trade Gothic · Raleway · Brushwell**.
+   · La ficha declara **sólo tipografías, a propósito**. Colores, formatos y zonas
+     seguras se dejaron FUERA porque no están medidos y escribirlos de memoria sería
+     inventarle un sistema a la marca (memoria `no-inventar-sistema-de-marca`).
+   · Se anotó en la ficha que **las dos Trade ya tienen su `.woff2`**, así que la
+     advertencia del manual está cubierta: en código se carga el `.woff2`, nunca el
+     `.otf` CFF.
+   · **Trampa cazada:** al declarar los 3 cortes que sólo tiene el cliente (Stag LCG
+     y los dos Trade Bold), el script los leyó como declarados y les puso **✓ verde
+     falso**. Un falso ✓ es peor que no tener el dato. Se renombró la clave a
+     `_cortes_que_solo_tiene_el_cliente_NO_LEER_COMO_DISPONIBLES` y quedan sólo como
+     texto en `pendientes`.
+
+**Dónde quedó.** Nada rendido y nada entregado. Lo único versionable es
+`clients/hilton/marca.json`; lo de `raw/` va en `.gitignore` de todas formas.
+`doctor.sh` cierra con **2379 archivos válidos, 0 rotos** y TypeScript limpio.
+
+**Qué sigue.** DT ya no tiene excusa de material: la próxima sesión entra directo a
+**la ronda nueva del cliente en DT** que sigue abierta desde el `/al-dia` del 10-09.
+
+**Abierto.**
+- ⚠️ **`scripts/between-s5-logo-vaso.py` estaba sin commitear** (creado hoy 11:42,
+  antes de esta sesión). Es la rotación rígida del logotipo sobre el vaso To Go
+  inclinado de la ST del 28-09 (S5). Compila limpio y usa
+  `public/assets/hilton/between/logo-negro.png`, que ya está en el repo. **Se
+  commitea hoy por la regla `el-render-vuelve-al-repo`, pero esta sesión NO trabajó
+  Between: en qué ronda va esa ST y si se entregó lo confirma Eli.**
+- Sigue pendiente la **ronda nueva del cliente en DT** (viene del 10-09).
+- Faltan por pedir al cliente: **Stag LCG**, **Trade Gothic LT Std Bold de ancho
+  normal** (el del bloque de precio) y **Trade Gothic Next LT Pro Bold**.
+
+---
+
 ## 2026-09-10 (CIERRE 3 · noche) · Eli (Windows) — BETWEEN: la ST del Cowork pasa de generada a real, en 4 rondas
 
 Sesión de Between (las dos anteriores del día fueron de DT). Arrancó con

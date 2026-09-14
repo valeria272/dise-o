@@ -3,6 +3,63 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-14 — Paulina Bustamante
+
+**Qué se hizo:** Se produjo la **story 19** de la grilla de septiembre (Ebema Click,
+sticker de enlace) como prueba del pipeline — y esa prueba destapó el problema real
+del mes: **todo lo que este manual llamaba «el sistema» era el sistema de PAID**.
+`sistema/base.css` lo decía en su primera línea desde siempre («EBEMA PAID —
+Septiembre 2026») y las referencias que sostenían §4 salen de
+`EBEMA/PERFORMANCE/2026/8. Agosto/`. La story se calcó de anuncios y **queda
+descartada como entrega**. A partir de ahí, y con las referencias de grilla que dejó
+Paulina (5 carruseles, 3 stories, 6 posts, 5 reels), se **midió la gramática de
+grilla completa** y se escribió el **sistema de producción que no existía**.
+
+Tres correcciones de Paulina quedaron codificadas el mismo día:
+- **Grilla y paid son sistemas distintos**, y no se organizan por el mismo eje:
+  grilla por **familia de contenido** (producto en stock · información de servicio ·
+  invitación a plataformas) y paid por **submarca**. **SPC no existe en grilla**: son
+  ofertas puntuales que pide el cliente, y van a paid.
+- **Acá sólo se diseña** (§0-bis): el brief lo arma contenido y trae decidido el
+  proveedor, el formato, el pilar, los textos y el ángulo. Una discrepancia **se
+  informa, no se resuelve**.
+- **Lo que el brief pide generar va por Magnific**: `text-to-image/nano-banana-pro`
+  para imagen, `image-to-video/kling-v2-5-pro` para video.
+
+**Dónde quedó:**
+- `clients/ebema/CLAUDE.md` — §0 la matriz y cómo se pide una pieza · §0-bis sólo se
+  diseña · §4 el esquema Click de paid corregido · **§4-bis la gramática de grilla
+  medida** (ancla de marca, las 3 familias, el arco de carrusel, la story y el reel).
+- `clients/ebema/sistema-grilla/` — **nuevo**: `base-grilla.css`, `build_carrusel.py`,
+  `render.sh` (diseña a 1080, entrega a 2250). Calibrado contra `ebema_c_cedral5`:
+  el botón de WhatsApp sale idéntico al píxel y el anillo con menos de 1 px.
+- `raw/ebema/1-referencias/` — partido en `grilla/` y `paid/`, y dentro por formato.
+- `out/ebema/20260914_st19_click/` — la story descartada, con el aviso en su
+  `ENTREGA.md`. **No se subió al Drive.**
+- `scripts/_chrome.sh` — los 5 `render.sh` del estudio tenían quemada la ruta de
+  Chrome del Mac y no corrían en Windows. Arreglados y probados.
+
+**Qué sigue:** **aparear la grilla de septiembre con sus piezas** — emparejar cada
+diapositiva del deck con la pieza que salió, para aprender la traducción brief →
+pieza, que es lo que va a hacer falta en octubre. Lo hace Claude solo; Paulina sólo
+revisa el apareo y corrige.
+
+**Abierto:**
+- 🔴 **Kling 3.0 no está disponible por API.** Sondeado hoy: no aparece en el
+  catálogo de nuestra clave ni como fuera de plan; el tope que responde es Kling 2.5
+  Pro. Si Paulina genera con Kling 3.0 lo hace en la **web** de Magnific → hay piezas
+  que ella puede hacer a mano y que no se reproducen por código. **Decisión pendiente:
+  subir el plan de Magnific, o que ella genere los videos y acá se monte.**
+- Faltan los **logos de los proveedores** (Cedral, Cintac, Novoplast, Surpol, Toro,
+  Polpaico, CMPC, VH) y el **PNG de la flecha** del pie de portada. Sin ellos la
+  cápsula de co-marca queda coja. Van en `raw/ebema/3-logos-y-packshots/`.
+- Faltan **rondas con corrección** (piezas rechazadas + su versión corregida). Es lo
+  que más enseña y lo único que no se puede deducir midiendo.
+- **EBEMA sigue sin `clients/ebema/reglas.yaml`**, así que `qa/motor.py --marca ebema`
+  se niega a correr y el QA se hace a mano. Viene pendiente desde el 01-09.
+- Sin generador para las familias **B** y **C** (sus medidas ya están en el CSS) y sin
+  pipeline de reel en Remotion.
+
 ## 2026-09-02 — Valeria Traverso
 
 **Qué se hizo:** Valeria pidió **otro diseño** para el carrusel de Cedral de la

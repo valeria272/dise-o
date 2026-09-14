@@ -250,7 +250,7 @@
   ],
   "madurez": {
     "identidad": "completa",
-    "gramatica": "PAID completa · GRILLA: carrusel y story de click medidos; post, video y SPC pendientes",
+    "gramatica": "PAID completa (3 submarcas) · GRILLA medida en las 3 familias; faltan los reels",
     "formatos": "completa",
     "imagen": "parcial — faltan fotos de Chillán, Rancagua y San Bernardo",
     "copy": "completa",
@@ -259,71 +259,25 @@
   },
   "actualizado": "2026-09-14",
   "ejes": {
-    "_que_es": "EBEMA no tiene un sistema, tiene una matriz DESTINO x SUBMARCA. Toda pieza es una casilla y se declara ANTES de disenar. Ver seccion 0 del manual.",
+    "_que_es": "GRILLA se organiza por FAMILIA DE CONTENIDO; PAID por SUBMARCA. No es el mismo eje. Ver seccion 0 del manual.",
     "destino": [
       "grilla",
       "paid"
     ],
-    "submarca": [
-      "sucursal",
-      "click",
-      "spc"
-    ],
     "referencias": "raw/ebema/1-referencias/<destino>/<formato>/  (formato: post|carrusel|story|video). La submarca NO se elige al dejar el archivo: se reconoce midiendo la pieza.",
-    "pedido": "/pieza ebema <destino> <submarca> <que necesitas>",
+    "pedido": "/pieza ebema grilla <producto|servicio|plataformas> ... | /pieza ebema paid <sucursal|click|spc> ...",
     "regla": "Si el destino no viene dicho, se pregunta. Nunca se rellena con referencias de la otra columna.",
-    "matriz": {
-      "grilla": {
-        "_tono": "cercano, instructivo y comercial (Paulina, 14-09-2026). Otro tipo de imagenes y otro orden.",
-        "boton_dibujado": false,
-        "legal_al_pie": false,
-        "brief": "Grilla mensual (Google Slides)",
-        "sucursal": {
-          "gramatica_medida": false,
-          "nota": "hay 2 stories (La Calera, Talca) sin medir"
-        },
-        "click": {
-          "gramatica_medida": true,
-          "nota": "MEDIDA 14-09-2026, seccion 4-bis: story sobre ebema_storie_click.png"
-        },
-        "spc": {
-          "gramatica_medida": false,
-          "nota": "sin referencias todavia"
-        },
-        "_por_formato": {
-          "carrusel": "MEDIDO: arco fijo de 5 laminas, seccion 4-bis",
-          "story": "MEDIDA (click)",
-          "post": "6 referencias sin medir",
-          "video": "5 reels sin medir"
-        },
-        "_carrusel_arco": [
-          "L1 portada: el problema",
-          "L2 causa o puente",
-          "L3 solucion con el producto",
-          "L4 tip pro",
-          "L5 cierre: anillo + boton whatsapp"
-        ]
-      },
-      "paid": {
-        "_tono": "conversion: beneficio, oferta, CTA",
-        "boton_dibujado": true,
-        "legal_al_pie": true,
-        "brief": "Ebema - Brief Performance - <Mes>.xlsx",
-        "drive_entrega": "EBEMA/PERFORMANCE/2026/<N>. <Mes>/graficas <mes> 26/",
-        "sucursal": {
-          "gramatica_medida": true,
-          "nota": "seccion 4 del manual y sistema/base.css"
-        },
-        "click": {
-          "gramatica_medida": true,
-          "nota": "seccion 4, medido sobre las 4 stories de agosto"
-        },
-        "spc": {
-          "gramatica_medida": true,
-          "nota": "seccion 4 del manual"
-        }
-      }
+    "_carrusel": "UNA CARPETA POR CARRUSEL con las laminas numeradas desde 01. El orden es la informacion.",
+    "grilla_familias": {
+      "producto": "producto en stock de sucursal, en co-marca con el proveedor. Carrusel de 5 laminas. MEDIDA.",
+      "servicio": "horarios, direcciones y datos de sucursal. MEDIDA.",
+      "plataformas": "invitacion a Ebema Click, catalogo online y ebema.cl. MEDIDA."
     },
-    "_carrusel": "UNA CARPETA POR CARRUSEL con las laminas numeradas desde 01. El orden es la informacion."
+    "paid_submarcas": {
+      "sucursal": "MEDIDA",
+      "click": "MEDIDA",
+      "spc": "MEDIDA. Ofertas puntuales que pide el cliente, no permanente. NO existe en grilla."
+    },
+    "_ancla_marca_grilla": "Capsula blanca pegada al borde izquierdo (x=0), alto 155.5, con la pastilla roja del logo en x71.0-189.6 (ancho 118.1, alto 121.9). Identica en 7 piezas. En la familia SERVICIO el logo va centrado arriba (x462.7-620.2, ancho 157.4)."
   }
 }

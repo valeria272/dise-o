@@ -23,30 +23,46 @@ casilla, y hay que nombrarla antes de mirar una referencia y antes de diseñar:
 **DESTINO** — para qué existe la pieza
 : `grilla` (feed y stories orgánicas del mes) · `paid` (anuncio en Meta)
 
-**SUBMARCA** — de quién habla la pieza
-: `sucursal` (EBEMA retail/obra) · `click` (el portal B2B) · `spc` (pisos y cerámicas)
+**Y dentro de cada destino el eje NO es el mismo.**
 
-|  | **GRILLA** | **PAID** |
+### GRILLA se organiza por **familia de contenido** (Paulina, 14-09-2026)
+
+| Familia | Qué hace | Gramática |
 |---|---|---|
-| **sucursal** | 🟡 sólo la story de sucursal, sin medir | ✅ medido — §4, `sistema/base.css` |
-| **click** | ✅ **medido — §4-bis** (story) | ✅ medido — §4 |
-| **spc** | 🟡 sin referencias todavía | ✅ medido — §4 |
+| **A · producto en stock** | promociona un producto que hay en las sucursales, en co-marca con el proveedor | ✅ medida — §4-bis |
+| **B · información de servicio** | horarios, direcciones, datos de sucursal | ✅ medida — §4-bis |
+| **C · invitación a plataformas** | lleva a Ebema Click, al catálogo online, a ebema.cl | ✅ medida — §4-bis |
 
-Y por formato, dentro de GRILLA: **carrusel ✅ medido** (5 arcos completos) ·
-**story ✅ medida** (la de Click) · **post 🟡 sin medir** · **video 🟡 sin medir**.
+### PAID se organiza por **submarca**
 
-> ⚠️ **La columna PAID está medida entera. La de GRILLA se empezó a medir el
-> 14-09-2026** con las referencias que dejó Paulina — ver §4-bis.
+| Submarca | Nota | Gramática |
+|---|---|---|
+| **sucursal** | EBEMA retail/obra | ✅ medida — §4 |
+| **click** | el portal B2B | ✅ medida — §4 |
+| **spc** | pisos y cerámicas — **ofertas puntuales que pide el cliente, no es permanente** | ✅ medida — §4 |
+
+> ⛔ **SPC no existe en grilla.** Son ofertas que el cliente pide de vez en cuando y
+> van a **paid**. Buscarle un lugar en la grilla es inventar un formato que nadie usa.
+
+> ⛔ **Y «Ebema Click» no es una familia de grilla.** En grilla, una pieza de Click es
+> de la **familia C** (invitación a plataformas), junto con las del catálogo online y
+> las de ebema.cl. Click es una plataforma a la que se invita, no un tipo de pieza.
+
+> ⚠️ **Todo lo que este manual llamaba «el sistema» es el sistema de PAID.**
 > `sistema/base.css` lo dice en su primera línea desde siempre («EBEMA PAID —
-> Septiembre 2026»), y las 4 referencias de Click que sostienen §4 salen de
-> `EBEMA/PERFORMANCE/2026/8. Agosto/`. Lo que este manual llama «el sistema» es,
-> hasta hoy, **el sistema de paid**.
+> Septiembre 2026») y las referencias que sostienen §4 salen de
+> `EBEMA/PERFORMANCE/2026/8. Agosto/`. La gramática de GRILLA se midió el
+> 14-09-2026 y vive en **§4-bis**.
 
 ### Cómo se pide una pieza
 ```
-/pieza ebema <destino> <submarca> <qué necesitas>
-   ej:  /pieza ebema grilla click story del sorteo de la gift card
-        /pieza ebema paid sucursal feed de Temuco
+/pieza ebema grilla <familia>  <qué necesitas>    familia: producto | servicio | plataformas
+/pieza ebema paid   <submarca> <qué necesitas>    submarca: sucursal | click | spc
+
+   ej: /pieza ebema grilla plataformas story del sorteo de la gift card
+       /pieza ebema grilla producto carrusel de Cedral para el 18
+       /pieza ebema grilla servicio story de horarios de Talca
+       /pieza ebema paid sucursal feed de Temuco
 ```
 **Si el destino no viene dicho, se pregunta.** No se asume, y no se usan
 referencias de la otra columna para rellenar.
@@ -57,7 +73,7 @@ referencias de la otra columna para rellenar.
 |---|---|---|
 | De dónde sale el brief | la grilla mensual (Slides) | `Ebema - Brief Performance - <Mes>.xlsx` |
 | Dónde viven las piezas en Drive | fuera de `PERFORMANCE/` | `EBEMA/PERFORMANCE/2026/<N>. <Mes>/graficas <mes> 26/` |
-| Referencias en el repo | `raw/ebema/1-referencias/grilla/<submarca>/` | `raw/ebema/1-referencias/paid/<submarca>/` |
+| Referencias en el repo | `raw/ebema/1-referencias/grilla/<formato>/` | `raw/ebema/1-referencias/paid/<formato>/` |
 | Botón dibujado | **no** — lo pone la plataforma (sticker, CTA de IG) | **sí** (`Regístrate Gratis`, `Cotiza por WhatsApp`) |
 | Línea legal al pie | no por defecto | habitual |
 | Tono | **cercano, instructivo y comercial** | conversión: beneficio, oferta, CTA |
@@ -88,15 +104,12 @@ entra, si el bloque va arriba o abajo. Se mide, no se supone.
 > Entrega afectada: `out/ebema/20260914_st19_click/` (descartada como entrega; sirve
 > como prueba del pipeline).
 
-### Qué falta para llenar la columna GRILLA
-1. **Piezas de grilla publicadas**, por submarca, en
-   `raw/ebema/1-referencias/grilla/<sucursal|click|spc>/`.
-2. Traducir «cercano / instructivo / comercial» a reglas verificables, con Paulina.
-3. Medir la gramática igual que se midió la de paid y escribirla acá. Recién
-   entonces se borra este aviso.
+### Estado
+La gramática de GRILLA **ya está medida** para las tres familias — §4-bis. Falta
+medir los 5 reels y confirmar si las familias B y C tienen arco de carrusel propio.
 
-**Mientras tanto:** ninguna pieza de grilla se entrega como definitiva. Se entrega
-diciendo que su gramática viene de referencias de paid y está pendiente de validar.
+**Regla que sigue en pie:** si el destino no viene dicho en el pedido, **se pregunta**.
+Nunca se rellena una pieza de grilla con referencias de paid, ni al revés.
 
 ---
 
@@ -272,6 +285,24 @@ completos** (Cedral, Cintac, Novoplast, Surpol, Toro — 25 láminas), 3 stories
 6 posts. Todo normalizado a 1080 de ancho. Feed/carrusel llegan a **2250×2813**
 (4:5) y las stories a **2250×4000** (9:16).
 
+### ⭐ El ancla de marca de GRILLA — la pastilla roja, idéntica en 7 piezas
+
+Antes de las familias, el elemento que las cose a todas. En grilla, EBEMA firma con
+una **cápsula blanca arriba a la izquierda, pegada al borde** (`x = 0`), y dentro la
+pastilla roja del logo:
+
+| Medida | Valor | Dónde se repite |
+|---|---|---|
+| Pastilla roja del logo | **x 71,0–189,6 · ancho 118,1–118,6 · alto 121,9 · y ≈ 172** | las 5 portadas de carrusel **y** los 2 posts de catálogo |
+| Cápsula blanca que la contiene | alto **155,5**, y 154,6–310,1, arranca en `x = 0` | idem |
+
+O sea: **la misma firma sirva la pieza a un proveedor o al catálogo.** El ancho de la
+cápsula lo fija el logo del proveedor cuando lo hay.
+
+⚠️ En la **familia B** (servicio) la firma cambia: el logo va **centrado arriba**
+(x 462,7–620,2, ancho 157,4, alto 161,8) — medido idéntico en las stories de La
+Calera y Talca.
+
 ### Lo que distingue a GRILLA de PAID, de un vistazo
 
 | | **GRILLA** | **PAID** |
@@ -282,7 +313,7 @@ completos** (Cedral, Cintac, Novoplast, Surpol, Toro — 25 láminas), 3 stories
 | Caja roja del titular | **una sola por lámina**, centrada, y va donde la foto deja sitio | posición fija por esquema |
 | Elementos propios | cápsula de co-marca, **flecha dibujada**, cápsula de borde para la bajada | fila de íconos, legal al pie |
 
-### El carrusel — arco fijo de 5 láminas
+### Familia A · PRODUCTO EN STOCK — el carrusel, arco fijo de 5 láminas
 
 Los 5 carruseles medidos tienen **la misma estructura**, y no es casualidad:
 
@@ -323,7 +354,7 @@ Los 5 carruseles medidos tienen **la misma estructura**, y no es casualidad:
 | «en el link de la bio!» | ancho 429,1, cx 538,3 |
 | Bajada `<Producto>, disponible en Ebema.` | sobre el anillo, centrada |
 
-### La story de GRILLA — medida sobre `ebema_storie_click.png`
+### Familia C1 · la story de Click — medida sobre `ebema_storie_click.png`
 
 Es la **misma pieza** que la story 19 del brief de septiembre, resuelta por la
 diseñadora. Comparada con la story de paid, **casi nada coincide**:
@@ -341,6 +372,48 @@ diseñadora. Comparada con la story de paid, **casi nada coincide**:
 > ⛔ **El lockup de Click NO mide lo mismo en grilla que en paid.** Es un 50 % más
 > grande y va más arriba. Si se calca el de paid, la pieza se ve de otra marca.
 
+### Familia B · INFORMACIÓN DE SERVICIO — horarios y direcciones
+
+Medida sobre `ebema_st-1.png` (La Calera), `ebema_st-2.png` (Talca) y
+`ebema_estatico_horario.png`.
+
+**Story de sucursal** — las dos son la misma plantilla, sólo cambian los datos:
+
+| Elemento | Medida (idéntica en La Calera y Talca) |
+|---|---|
+| Logo EBEMA | **centrado arriba**: x 462,7–620,2 (ancho 157,4), y 138,2–300,0 (alto 161,8) |
+| Titular en caja roja | y 480,0–542,4, **alto 62,4** — «VISITANOS EN NUESTRA SUCURSAL DE…» |
+| Dirección, en caja roja bajo el titular | y ≈ 575, **alto 37,4–37,9** |
+| **Dos barras rojas de horario** | y 1405,4–1499,0 y y 1535,0–1628,6 · **alto 93,6 cada una** · ancho ≈ 802–809 · cx 539,8 |
+
+Las dos barras son el corazón de la familia: una por tramo (lunes-martes /
+miércoles-viernes). **Toda cifra de horario va en Helvetica Bold** — §3.
+
+**Post de horario nacional** (`ebema_estatico_horario`): banda roja superior desde
+`x = 0` (ancho 696, alto 140,6), logo en pastilla, y una **caja roja de cuerpo
+completo** (y 374,4–1349,8) que contiene la tabla. Es la variante de tabla, no de foto.
+
+### Familia C · INVITACIÓN A PLATAFORMAS — Click, catálogo, ebema.cl
+
+Medida sobre `ebema_click_sucursales`, `ebema_estatico_cat`, `cat (2)`, `cat (3)`,
+`cat2_click_sucursales` y `ebema_storie_click`.
+
+Dos sub-registros, y conviene no mezclarlos:
+
+**C1 · con lockup de Click** (cuando la plataforma es Ebema Click)
+La story está medida en detalle más abajo. En feed, la pastilla `CLICK` baja a
+alto 29,8 (x 589,4–726,2, ancho 136,8) — **es más chica que en paid**, donde mide 41,8.
+
+**C2 · con la firma EBEMA** (catálogo online, ebema.cl)
+Usa el **ancla de marca** descrita arriba: pastilla en x 71,0–189,6, alto 121,9.
+El CTA es una **caja roja ancha y baja al pie**: y 949,4–1179,4, **ancho 963,8**,
+cx 539,8 — idéntica en `cat (2)` y `cat (3)`. Es el bloque más ancho de todo el
+sistema de grilla, y ahí van la URL y el llamado.
+
+> El CTA cambia según la plataforma: `WWW.EBEMA.CL` para el catálogo,
+> `Regístrate Gratis` para Click, `¡Cotiza por whatsapp / en el link de la bio!`
+> cuando la pieza cierra en venta. **Verbatim del brief, siempre.**
+
 ### Cómo se traduce «cercano, instructivo y comercial»
 
 Ahora tiene respaldo medido:
@@ -354,9 +427,10 @@ Ahora tiene respaldo medido:
   aterriza en **«¡Cotiza por whatsapp» / en el link de la bio!**.
 
 ### Lo que todavía falta
-- **Posts** y **videos** de grilla: hay 6 y 5 referencias sin medir.
-- **SPC en grilla**: no hay referencias.
-- La **story de sucursal** (`ebema_st-1/2.png`, La Calera y Talca) está sin medir.
+- **Los 5 reels** de grilla, sin medir (`grilla/video/`): ritmo, cortes, entrada del
+  texto y cierre. De ahí sale la gramática de motion, que §7 no tiene para grilla.
+- El **carrusel de la familia C** (`cat2_click_sucursales` sugiere que existe) y si
+  las familias B y C tienen arco de carrusel propio o sólo piezas sueltas.
 
 ---
 

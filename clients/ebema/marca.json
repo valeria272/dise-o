@@ -250,12 +250,32 @@
   ],
   "madurez": {
     "identidad": "completa",
-    "gramatica": "completa",
+    "gramatica": "completa en PAID · SIN MEDIR en GRILLA",
     "formatos": "completa",
     "imagen": "parcial — faltan fotos de Chillán, Rancagua y San Bernardo",
     "copy": "completa",
     "pipeline": "completa",
     "qa": "completa"
   },
-  "actualizado": "2026-08-25"
+  "actualizado": "2026-09-14",
+  "destinos": {
+    "_que_es": "GRILLA y PAID son dos sistemas graficos distintos. Se declara ANTES de disenar. Ver seccion 0 del manual.",
+    "grilla": {
+      "brief": "Grilla mensual (Google Slides)",
+      "referencias": "raw/ebema/1-referencias/grilla/",
+      "boton_dibujado": false,
+      "legal_al_pie": false,
+      "gramatica_medida": false,
+      "nota": "PENDIENTE de medir. Hoy se usa la gramatica de paid como sustituto declarado."
+    },
+    "paid": {
+      "brief": "Ebema - Brief Performance - <Mes>.xlsx",
+      "referencias": "raw/ebema/1-referencias/paid/",
+      "drive_entrega": "EBEMA/PERFORMANCE/2026/<N>. <Mes>/graficas <mes> 26/",
+      "boton_dibujado": true,
+      "legal_al_pie": true,
+      "gramatica_medida": true,
+      "nota": "sistema/base.css y las secciones 2 y 4 del manual salen de aca."
+    }
+  }
 }

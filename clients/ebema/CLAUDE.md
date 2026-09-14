@@ -15,6 +15,44 @@ Antes de diseñar, leer también [`docs/SISTEMA-DE-MARCAS.md`](../../docs/SISTEM
 
 ---
 
+## 0. ⛔ GRILLA o PAID — se decide ANTES de abrir nada
+
+**Son dos sistemas gráficos distintos, no el mismo con otro texto.** Antes de
+mirar una referencia hay que saber a cuál de los dos pertenece, y antes de
+diseñar hay que saber cuál se está produciendo.
+
+| | **GRILLA** (orgánico) | **PAID** (anuncio) |
+|---|---|---|
+| De dónde sale el brief | la grilla mensual del mes (Slides) | `Ebema - Brief Performance - <Mes>.xlsx` |
+| Dónde viven las piezas en Drive | fuera de `PERFORMANCE/` | **`EBEMA/PERFORMANCE/2026/<N>. <Mes>/graficas <mes> 26/`** |
+| Referencias en el repo | `raw/ebema/1-referencias/grilla/` | `raw/ebema/1-referencias/paid/` |
+| Botón dibujado | **no** — lo pone la plataforma (sticker de enlace, CTA de IG) | **sí** (`Regístrate Gratis`, `Cotiza por WhatsApp`) |
+| Línea legal al pie | no por defecto | habitual |
+| Zonas seguras Meta | las de la plataforma | **obligatorias y medidas** |
+| Lineamiento gráfico | 🟡 **SIN MEDIR TODAVÍA — ver abajo** | medido: §2, §4 y `sistema/base.css` |
+
+> ⚠️ **Todo lo que este manual llama «el sistema» está medido sobre piezas de
+> PAID.** `sistema/base.css` lo dice en su primera línea («EBEMA PAID —
+> Septiembre 2026»), y las 4 referencias de Click que sostienen §4 salen de
+> `PERFORMANCE/2026/8. Agosto/`. **Para grilla todavía no hay gramática medida.**
+
+> 🔴 **Error ya cometido (14-09-2026).** La story 19 de la grilla de septiembre se
+> produjo calcando `ebema_click_st1..st4`, que son **anuncios**. Nadie lo pidió mal:
+> este manual sólo registraba la ruta de PERFORMANCE como «Drive de entrega», así
+> que las referencias de paid eran las únicas a la vista. Lo detectó Paulina.
+> Entrega afectada: `out/ebema/20260914_st19_click/`.
+
+### Qué falta para cerrar esto
+1. **Piezas de grilla publicadas** en `raw/ebema/1-referencias/grilla/` — para medir
+   su gramática igual que se midió la de paid.
+2. Que Paulina diga **qué cambia** entre una y otra más allá del botón y el legal.
+3. Escribir acá la gramática de grilla medida, y recién entonces borrar este aviso.
+
+**Mientras tanto:** toda pieza de grilla se entrega diciendo explícitamente que su
+gramática viene de referencias de paid y está pendiente de validación.
+
+---
+
 ## 1. Qué es la marca
 
 **EBEMA S.A.** distribuye y produce materiales para la construcción: cemento

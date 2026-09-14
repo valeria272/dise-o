@@ -1,5 +1,15 @@
 # Entrega — Story 19 · EBEMA CLICK · grilla septiembre 2026
 
+> 🔴 **AVISO — leer antes que nada (agregado el 14-09-2026, después de entregar).**
+> Esta pieza es de **GRILLA**, pero su gramática está calcada de
+> `ebema_click_st1..st4`, que son piezas de **PAID** (viven en
+> `EBEMA/PERFORMANCE/2026/8. Agosto/`). Se descubrió cuando Paulina preguntó cómo
+> se distinguen los dos lineamientos. **La composición, el cuerpo del titular, la
+> caja roja y la posición del lockup quedan pendientes de validación contra
+> referencias de grilla reales**, que todavía no existen en el repo.
+> Lo único que no cambia es el contenido: los textos son verbatim del brief.
+> Ver §0 del manual de la marca.
+
 **Pieza:** `story/st19_click_story.png` — 1080 × 1920 (9:16)
 **Esquema:** EBEMA CLICK (sin marco, sin puntitos, lockup centrado arriba)
 **Fecha:** 14-09-2026

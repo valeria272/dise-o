@@ -547,6 +547,48 @@ El e-commerce **no expone precios sin login** y el catálogo público es limitad
 Los packshots salen del kit oficial (`imagenes_png/`) o de las URLs de producto que
 el brief entrega en la celda de referencia. Códigos y precios **verbatim del brief**.
 
+### ⭐ Lo que el brief pide generar se genera con MAGNIFIC (Paulina, 14-09-2026)
+
+> «Las imágenes que pida el brief debes trabajar con Magnific para generarlas, los
+> videos también. Usualmente para generar las imágenes uso Nano Banana 2 y videos
+> Kling 3.0. Cuando te falte alguna imagen o algo no te cuadre, recuerda siempre
+> avisármelo y lo solucionamos juntos.»
+
+Los briefs de grilla piden visuales generados de forma explícita — «Visual (IA):
+persona mirando el patio sin saber qué comprar primero». Eso **no es una licencia
+para inventar**: es un encargo, y se ejecuta con el generador de la casa.
+
+| Para qué | Ruta que responde en `api.freepik.com` |
+|---|---|
+| **Imagen** — lo que Paulina llama Nano Banana | **`text-to-image/nano-banana-pro`** (Gemini 3 Pro · texto legible + 4K) |
+| Imagen → imagen, partiendo de una foto real | `gemini-2-5-flash-image-preview` |
+| Fondo o ambiente sin texto | `text-to-image/flux-pro-v1-1` (Mystic) |
+| **Video** — imagen → video | **`image-to-video/kling-v2-5-pro`** ← el mejor Kling que responde |
+| Encadenar dos planos (primer y último fotograma) | `image-to-video/pixverse-v5-transition` |
+| Animar una ilustración o un doodle | `image-to-video/minimax-video-01-live` |
+| Música original para un reel | `music-generation` |
+
+> 🔴 **AVISO — Kling 3.0 no está disponible por API.** Sondeado el 14-09-2026: el
+> catálogo de nuestra clave no lo lista **ni siquiera como fuera de plan**. El tope
+> que responde es **Kling 2.5 Pro**; Kling 2.6 Pro existe pero está fuera del plan.
+> Si Paulina genera con Kling 3.0, lo está haciendo **en la web de Magnific**, no por
+> API — o sea hay piezas que ella puede hacer a mano y yo no puedo reproducir por
+> código. **Hay que decidirlo juntos**: o se sube el plan, o los videos de Kling 3.0
+> los genera ella y yo monto.
+
+> ⚠️ Antes de decir «eso no se puede», correr `python3 scripts/magnific-sondear.py`.
+> Las rutas nuevas de `docs.magnific.com` dan 404 contra nuestra clave: el 404 es del
+> host, no del plan.
+
+**Y la jerarquía sigue mandando.** Que el brief pida IA no cambia §2 del sistema de
+marcas: la IA hace **ambiente y fondo**, nunca el producto, nunca el logo, nunca un
+dato. Si existe foto real aprobada, manda la foto real.
+
+### Cuando falta algo, se avisa — no se rellena
+Regla de Paulina, y aplica a todo: si falta una imagen, si el brief pide un ángulo
+que el material no tiene, si algo no cuadra — **se avisa y se resuelve entre los
+dos**. Rellenarlo por cuenta propia es cómo se pierden rondas.
+
 ### 4º — IA (Magnific / Freepik) — sólo ambiente
 Reglas de imagen de Paulina, rondas 1–3. Se cumplen o la pieza se rechaza:
 

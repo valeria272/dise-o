@@ -269,7 +269,7 @@
       "click",
       "spc"
     ],
-    "referencias": "raw/ebema/1-referencias/<destino>/<submarca>/",
+    "referencias": "raw/ebema/1-referencias/<destino>/<formato>/  (formato: post|carrusel|story|video). La submarca NO se elige al dejar el archivo: se reconoce midiendo la pieza.",
     "pedido": "/pieza ebema <destino> <submarca> <que necesitas>",
     "regla": "Si el destino no viene dicho, se pregunta. Nunca se rellena con referencias de la otra columna.",
     "matriz": {
@@ -310,6 +310,7 @@
           "nota": "seccion 4 del manual"
         }
       }
-    }
+    },
+    "_carrusel": "UNA CARPETA POR CARRUSEL con las laminas numeradas desde 01. El orden es la informacion."
   }
 }

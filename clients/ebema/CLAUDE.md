@@ -15,41 +15,84 @@ Antes de diseñar, leer también [`docs/SISTEMA-DE-MARCAS.md`](../../docs/SISTEM
 
 ---
 
-## 0. ⛔ GRILLA o PAID — se decide ANTES de abrir nada
+## 0. ⛔ Los dos ejes — se declaran ANTES de abrir nada
 
-**Son dos sistemas gráficos distintos, no el mismo con otro texto.** Antes de
-mirar una referencia hay que saber a cuál de los dos pertenece, y antes de
-diseñar hay que saber cuál se está produciendo.
+EBEMA no tiene **un** sistema gráfico. Tiene una **matriz**. Toda pieza es una
+casilla, y hay que nombrarla antes de mirar una referencia y antes de diseñar:
 
-| | **GRILLA** (orgánico) | **PAID** (anuncio) |
+**DESTINO** — para qué existe la pieza
+: `grilla` (feed y stories orgánicas del mes) · `paid` (anuncio en Meta)
+
+**SUBMARCA** — de quién habla la pieza
+: `sucursal` (EBEMA retail/obra) · `click` (el portal B2B) · `spc` (pisos y cerámicas)
+
+|  | **GRILLA** | **PAID** |
 |---|---|---|
-| De dónde sale el brief | la grilla mensual del mes (Slides) | `Ebema - Brief Performance - <Mes>.xlsx` |
-| Dónde viven las piezas en Drive | fuera de `PERFORMANCE/` | **`EBEMA/PERFORMANCE/2026/<N>. <Mes>/graficas <mes> 26/`** |
-| Referencias en el repo | `raw/ebema/1-referencias/grilla/` | `raw/ebema/1-referencias/paid/` |
-| Botón dibujado | **no** — lo pone la plataforma (sticker de enlace, CTA de IG) | **sí** (`Regístrate Gratis`, `Cotiza por WhatsApp`) |
-| Línea legal al pie | no por defecto | habitual |
-| Zonas seguras Meta | las de la plataforma | **obligatorias y medidas** |
-| Lineamiento gráfico | 🟡 **SIN MEDIR TODAVÍA — ver abajo** | medido: §2, §4 y `sistema/base.css` |
+| **sucursal** | 🟡 sin medir | ✅ medido — §4, `sistema/base.css` |
+| **click** | 🟡 sin medir ← *acá cae la story 19* | ✅ medido — §4 |
+| **spc** | 🟡 sin medir | ✅ medido — §4 |
 
-> ⚠️ **Todo lo que este manual llama «el sistema» está medido sobre piezas de
-> PAID.** `sistema/base.css` lo dice en su primera línea («EBEMA PAID —
+> ⚠️ **Toda la columna PAID está medida. Toda la columna GRILLA está vacía.**
+> `sistema/base.css` lo dice en su primera línea desde siempre («EBEMA PAID —
 > Septiembre 2026»), y las 4 referencias de Click que sostienen §4 salen de
-> `PERFORMANCE/2026/8. Agosto/`. **Para grilla todavía no hay gramática medida.**
+> `EBEMA/PERFORMANCE/2026/8. Agosto/`. Lo que este manual llama «el sistema» es,
+> hasta hoy, **el sistema de paid**.
+
+### Cómo se pide una pieza
+```
+/pieza ebema <destino> <submarca> <qué necesitas>
+   ej:  /pieza ebema grilla click story del sorteo de la gift card
+        /pieza ebema paid sucursal feed de Temuco
+```
+**Si el destino no viene dicho, se pregunta.** No se asume, y no se usan
+referencias de la otra columna para rellenar.
+
+### Qué cambia entre las dos columnas
+
+| | **GRILLA** | **PAID** |
+|---|---|---|
+| De dónde sale el brief | la grilla mensual (Slides) | `Ebema - Brief Performance - <Mes>.xlsx` |
+| Dónde viven las piezas en Drive | fuera de `PERFORMANCE/` | `EBEMA/PERFORMANCE/2026/<N>. <Mes>/graficas <mes> 26/` |
+| Referencias en el repo | `raw/ebema/1-referencias/grilla/<submarca>/` | `raw/ebema/1-referencias/paid/<submarca>/` |
+| Botón dibujado | **no** — lo pone la plataforma (sticker, CTA de IG) | **sí** (`Regístrate Gratis`, `Cotiza por WhatsApp`) |
+| Línea legal al pie | no por defecto | habitual |
+| Tono | **cercano, instructivo y comercial** | conversión: beneficio, oferta, CTA |
+| Imágenes | **otro tipo** — por medir | ambiente/persona con velo, según §5 |
+| Orden y jerarquía | **otro** — por medir | medido en §4 |
+
+### Lo que sí sabemos de GRILLA — dicho por Paulina (14-09-2026)
+
+> «La forma de diseñar para la grilla no es la misma que para paid o Ebema Click.
+> Son **otro tipo de imágenes** y **otro orden**. Es más **cercano, instructivo y
+> comercial**.»
+
+Tres palabras que hay que traducir a decisiones, y **todavía no están medidas**:
+
+| Palabra | Qué mirar en las referencias para convertirla en regla |
+|---|---|
+| **cercano** | ¿foto de producto o de persona? ¿posada o de situación? ¿la marca habla en primera persona? |
+| **instructivo** | ¿hay paso a paso, «cómo se hace», un tip? ¿el titular enseña algo o sólo enuncia un beneficio? |
+| **comercial** | ¿se nombra producto y proveedor? ¿hay precio? ¿el cierre invita a cotizar o a aprender? |
+
+Y «**otro orden**» es jerarquía y composición: dónde cae el titular, cuánto texto
+entra, si el bloque va arriba o abajo. Se mide, no se supone.
 
 > 🔴 **Error ya cometido (14-09-2026).** La story 19 de la grilla de septiembre se
-> produjo calcando `ebema_click_st1..st4`, que son **anuncios**. Nadie lo pidió mal:
+> produjo calcando `paid/click/ago2026/`, que son **anuncios**. Nadie lo pidió mal:
 > este manual sólo registraba la ruta de PERFORMANCE como «Drive de entrega», así
 > que las referencias de paid eran las únicas a la vista. Lo detectó Paulina.
-> Entrega afectada: `out/ebema/20260914_st19_click/`.
+> Entrega afectada: `out/ebema/20260914_st19_click/` (descartada como entrega; sirve
+> como prueba del pipeline).
 
-### Qué falta para cerrar esto
-1. **Piezas de grilla publicadas** en `raw/ebema/1-referencias/grilla/` — para medir
-   su gramática igual que se midió la de paid.
-2. Que Paulina diga **qué cambia** entre una y otra más allá del botón y el legal.
-3. Escribir acá la gramática de grilla medida, y recién entonces borrar este aviso.
+### Qué falta para llenar la columna GRILLA
+1. **Piezas de grilla publicadas**, por submarca, en
+   `raw/ebema/1-referencias/grilla/<sucursal|click|spc>/`.
+2. Traducir «cercano / instructivo / comercial» a reglas verificables, con Paulina.
+3. Medir la gramática igual que se midió la de paid y escribirla acá. Recién
+   entonces se borra este aviso.
 
-**Mientras tanto:** toda pieza de grilla se entrega diciendo explícitamente que su
-gramática viene de referencias de paid y está pendiente de validación.
+**Mientras tanto:** ninguna pieza de grilla se entrega como definitiva. Se entrega
+diciendo que su gramática viene de referencias de paid y está pendiente de validar.
 
 ---
 

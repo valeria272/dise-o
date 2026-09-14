@@ -92,9 +92,14 @@ def envolver(logo, radio):
     en horizontal, y de forma progresiva.
     """
     W, H = logo.size
-    if radio <= 0 or W / 2 >= radio:
+    # ⚠️ el tope real es medio arco de 90° (o sea el logotipo dando media vuelta
+    # al vaso), no `W/2 >= radio`, que corta en 1 radián = 57,3°. Con el
+    # logotipo a su proporción real —que en el vaso grande abarca 131° del
+    # cilindro— el guardia viejo devolvía el logotipo SIN envolver y se estampaba
+    # plano y más ancho que el vaso. Detectado el 14-09-2026.
+    theta = (W / 2) / radio if radio > 0 else 9.9     # medio arco, en radianes
+    if radio <= 0 or theta > math.pi / 2:
         return logo                      # el logotipo no cabe en el cilindro
-    theta = (W / 2) / radio              # medio arco, en radianes
     ancho_vis = int(round(2 * radio * math.sin(theta)))
     a = np.asarray(logo).astype(np.float64)
     d = np.linspace(-ancho_vis / 2, ancho_vis / 2, ancho_vis)

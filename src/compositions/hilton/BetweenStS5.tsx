@@ -1,4 +1,29 @@
 /**
+ * ⛔⛔ RONDA 29 (14-09-2026) — LA DEL 28-09 SE GENERA, NO SE COMPONE
+ * ═══════════════════════════════════════════════════════════════════════════
+ * El fondo `st-28-09-togo.jpg` ya NO es un montaje. Las rondas 27 y 28
+ * recortaron el vaso de `IMG_4150` y le corrigieron por código el contorno, el
+ * campo de luz, la textura, la sombra y la luz envolvente — incluso con un
+ * trasplante de luz de Magnific. Tres rechazos seguidos de Eli: «se ve
+ * pegoteado», «parece que tuviera luz de flash», «no aprobado».
+ *
+ * La respuesta estaba escrita desde el 07-09 en `clients/hilton/PROMPTS-DE-ELI.md`,
+ * en su primera línea: **«No se compone: se GENERA.»** Y su regla: cuando algo
+ * falla varias veces con materiales distintos, lo que se cambia no es el
+ * material ni la posición, es el MÉTODO.
+ *
+ * Ahora la escena nace unida —vaso, persona, manos, sombra y fondo— con Nano
+ * Banana Pro y las fotos de la sesión del 09-09 como referencia, que es de
+ * donde llega el logotipo impreso con su Ǝ invertida.
+ *   · generación: `scripts/between-st-s5-togo-generar.py`
+ *   · acabado de color: `scripts/between-st-s5-togo-acabado.py`
+ *   · el montaje descartado queda en `scripts/between-s5-vaso-gigante.py`
+ *
+ * ⭐ El titular bajó de y=300 a **y=262**: en la escena generada el vaso empieza
+ * más arriba y en 300 el bloque chocaba con el brillo de la tapa.
+ */
+
+/**
  * BETWEEN — S5 · LAS DOS STORIES DE LA SEMANA 5 (28 y 30 de septiembre)
  *
  * Las dos últimas columnas de la hoja STORIES de la grilla
@@ -149,6 +174,57 @@
  * compresión es del 8 % en el borde y progresiva — contra la sinusoide inventada
  * con 18 % fijo que dejaba «COFFEE & BAR» irreconocible.
  * Parámetros finales: `--centro 1755 3870 --ancho 780 --angulo -5 --radio 948`.
+ *
+ * ══════════════════════════════════════════════════════════════════════════
+ * ⭐⭐⭐ RONDA 26 (14-09) — EL VASO DEJA DE SER CARTÓN GENERADO
+ * ══════════════════════════════════════════════════════════════════════════
+ * > Eli: «debemos mejorar el vaso y trata de utilizar una foto como la sesión
+ * > nueva de vasos ToGo».
+ *
+ * Puesto el vaso de la pieza al lado del de la sesión del 09-09 y normalizados
+ * al mismo ancho, el generado se delataba en tres cosas MEDIBLES:
+ *
+ * | | pieza (r3) | vaso real 09-09 | pieza (r26) |
+ * |---|---|---|---|
+ * | saturación del cartón | 0,21 | 0,46–0,64 | **0,39** |
+ * | motas de pulpa | sí, de 5 a 15 px | ninguna | **ninguna** |
+ * | logotipo / ancho del vaso | 0,42 | **0,91** | A 0,76 · B 0,88 |
+ * | alto del bloque / ancho | 0,140 | 0,377 | A 0,294 · B 0,386 |
+ *
+ * ⛔ **No se regeneró nada.** `scripts/between-s5-vaso-real.py` le cambia la
+ * SUPERFICIE al vaso ya aprobado, partiendo de la misma base limpia de la r4:
+ * el campo de luz sale del propio vaso (mediana de 21 px, que borra las motas y
+ * deja el pliegue y la sombra de contacto de los dedos), la fibra sale del
+ * packshot real y el tono es el kraft medido bajo el iluminante de ESTA escena.
+ * La silueta, el tamaño, la inclinación, la tapa, las manos y la chica quedan
+ * intactos — es lo que Eli cerró en la ronda 3.
+ *
+ * ⭐⭐ **El logotipo medía menos de la mitad de lo que mide en el vaso real**, y
+ * por eso se leía como calcomanía y no como serigrafía. La proporción sale de
+ * medir la altura de las letras contra el diámetro en la foto y de la
+ * proporción del archivo oficial (3,0278:1): el bloque abarca **131° del
+ * cilindro**, o sea 0,91 del ancho aparente visto de frente.
+ *
+ * ⚠️ **Pero a su proporción real no cabe acá**, y la razón está medida: el
+ * logotipo va a 0,82 del alto del cuerpo, y a esa altura el brazo ya cruza el
+ * vaso. En las fotos de la sesión la mano tapa parte del logotipo y se ve
+ * natural; en una historia donde el vaso ES la marca, «COFFEE & BAR» a medias
+ * no. Por eso hay dos versiones y la decisión es de Eli:
+ *   · **A** — `--centro 1704 3798 --ancho 1600 --radio 897` → 0,76 del ancho.
+ *     Lo más grande que cabe ENTERO entre la tapa y el brazo: 2 px de holgura
+ *     con la sombra de la tapa y 22 px de tinta rozando la piel.
+ *   · **B** — `--centro 1697 3860 --ancho 2025 --radio 887` → 0,88 del ancho.
+ *     La proporción del vaso real; la mano le come 5 149 px de tinta.
+ *
+ * ⛔⛔ **Y había un tope mal puesto en `between-s5-logo-vaso.py`.** La envoltura
+ * cilíndrica se rendía si `W/2 >= radio`, o sea a **1 radián (57,3°)** de medio
+ * arco, cuando el tope real es **90°** (el logotipo dando media vuelta al vaso).
+ * Con el logotipo a su proporción —131° de arco— el guardia devolvía el
+ * logotipo SIN ENVOLVER y se estampaba plano y más ancho que el vaso. Corregido.
+ *
+ * ⚠️ **Lo que sigue distinto del vaso real: la TAPA.** La de la pieza es mate y
+ * de plástico modelado; la de la sesión es brillante, con un reflejo vivo en el
+ * reborde enrollado. Cambiarla es rehacer geometría, no retocar superficie.
  *
  * ══════════════════════════════════════════════════════════════════════════
  * LO INTERACTIVO: ZONA RESERVADA, NUNCA DIBUJADA
@@ -320,7 +396,7 @@ export const StS5HumorToGo: React.FC = () => (
 
     {/* SIN `LogoBetween`: el vaso ya trae el logotipo impreso (regla 8). */}
 
-    <Columna top={300}>
+    <Columna top={262}>
       <TitularBetween
         script="POV:"
         caps={'Yo cargando el peso\nde mis ganas de café'}

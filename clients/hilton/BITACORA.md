@@ -1,3 +1,197 @@
+## 2026-09-14 (RONDAS 27–32) · Eli (Windows) — BETWEEN ST 28-09: el montaje se bota y la escena se GENERA
+
+**Qué se hizo.** La historia del 28-09 («HUMOR | CAFÉ TO GO») se rehizo entera y
+quedó **APROBADA**. Seis rondas en un día, y las tres primeras fueron por el
+camino equivocado.
+
+⛔⛔ **LA LECCIÓN DEL DÍA, Y ESTABA ESCRITA.** Las rondas 27 y 28 recortaron el
+vaso de `IMG_4150` y le corrigieron por código el contorno, el campo de luz, la
+textura de la fibra, la sombra y la luz envolvente — incluso con un trasplante de
+luz de Magnific. Tres rechazos seguidos de Eli: «se ve pegoteado», «parece que
+tuviera luz de flash», «no aprobado». La respuesta llevaba desde el 07-09 en la
+primera línea de [`PROMPTS-DE-ELI.md`](PROMPTS-DE-ELI.md):
+
+> **«No se compone: se GENERA.»** […] generar un fondo y pegarle encima recortes,
+> logotipos vectoriales, sombras de contacto y campos de luz calculados **produjo
+> cinco rechazos seguidos**, y el último con estas palabras: «parecen de paint
+> pegoteados».
+
+Y su regla: **cuando algo falla varias veces con materiales distintos, lo que hay
+que cambiar no es el material ni la posición: es el MÉTODO.** Antes de tocar una
+pieza de Between se lee ese archivo. No se leyó, y costó tres rondas.
+
+**Cómo quedó.** Escena generada con Nano Banana Pro (`magnific.py pro --aspecto
+story --resolucion 4K`) y tres referencias a 1024 px: el vaso grande de la sesión
+del 09-09 (de ahí llega el logotipo impreso), la foto de la persona, y el muro del
+Winter Garden. El vaso, las manos, la sombra y el fondo **nacen juntos**: los dos
+brazos abrazándolo, la sombra sobre el pantalón, el apoyo en la cadera. Nada de
+eso se podía montar.
+
+**Las rondas del cliente, en orden:**
+
+| Ronda | Qué pidió Eli | Cómo se resolvió |
+|---|---|---|
+| 27 | «le falta naturalidad, un recorte preciso del vaso, se ve pegoteado» + «parece que le falta la cabeza» | contorno por grabCut guiado, sombra dirigida, y el lienzo crecido para que la tapa pase 103 px sobre la línea de coronilla |
+| 28 | «parece que tuviera luz de flash» | medido: la fibra estaba 3,7× sobre la del vaso real y el cartón en 232/255 |
+| 28b | «hazlo realista en magnific» (×2) | se corrió: 3 relights lo volvieron gris (Δ logo 43–59) y la edición alisó el material. Se entregó un híbrido |
+| 29 | «no se ve realista, se está suciando el fondo […] guíate de mis prompts» | **se botó el montaje y se generó la escena** |
+| 30 | «prueba con el fondo de winter garden […] se ve una sombra extraña» | Winter Garden + candado contra sombras sueltas |
+| 31 | «no tenemos ese color en Between, debe ser el café de bw» | *(se entendió mal: se cambió el fondo entero)* |
+| 32 | «me refería al degradado verde de arriba, NO al fondo» | plantas + muro del local en café `#675B49` encima. **APROBADA** |
+
+⭐ **El verde lima de arriba NO se puede repintar por código, y se intentó cuatro
+veces**: máscara por detalle (el café se mete entre las hojas), borde por columnas
+a σ=90 (recto), borde «sostenido» a σ=14 (un peine de picos verdes) y transición
+blanda (no llega a cambiar el color). La razón: **esa franja no tiene borde, es un
+degradado**, y buscarle uno es inventarlo. Se le pidió al generador —«las plantas
+llenan el fondo y su COPA es irregular; por encima, el muro del local pintado de
+#675b49; el borde lo dibujan las hojas»— y salió a la primera.
+
+⛔ **El logotipo hay que mirarlo AL 300 % EN CADA TIRADA.** De seis generaciones,
+tres escribieron mal la Ǝ: una con E normal, otra con la Ǝ en la penúltima letra
+(«BETWEƎN») y otra con dos Ǝ. Acierta ≈ una de cada dos. También hubo que
+re-tirar dos veces por el **anillo blanco en la base** —que es del vaso CHICO— y
+ahí quedó otra regla: **volver a tirar sale más barato que parchar el producto**;
+tres intentos de taparlo por código dejaron un peinado de rayas y un arco mal
+ajustado.
+
+**Dos cosas que se arreglan siempre después del generador** (ya estaban en el
+manual de Eli, y se confirmaron): el color de marca no llega exacto —el muro llegó
+`#7E6C59` y se llevó a `#675B49` con ganancia multiplicativa sobre el medio tono—
+y el encuadre hay que pedirlo franja por franja.
+
+⭐ **Y un truco que ahorró una generación:** el titular caía sobre la tapa. Como el
+muro de arriba es plano, se continuó hacia arriba y se bajó la escena 734 px con
+`--bajar`. El salto de tono en esa costura mide **0,03** (sobre 1,5 se vería).
+
+**Dónde quedó.**
+
+- Pieza: `out/hilton-between-s5-r32/BW-S5-HumorToGo.png` (2250 × 4000), fondo en
+  `public/assets/hilton/between/s5/st-28-09-togo.jpg` (versionado).
+- **Subida al Drive reemplazando el archivo**: `1dIH_dM4yBlM2AX5TlCE9tKMgaqlMB1wr`,
+  mismo enlace, 11,0 MB, `modifiedTime` del 14-09. Carpeta `STS` de la S5.
+- Generación: `scripts/between-st-s5-togo-generar.py` (6 escenas, con los prompts
+  textuales) · acabado: `scripts/between-st-s5-togo-acabado.py`.
+- Referencias a 1024 px versionadas en `raw/hilton/between/s5/refs-gen/`.
+- El montaje descartado queda documentado en `scripts/between-s5-vaso-gigante.py`
+  y `scripts/between-s5-vaso-magnific.py` — sirven de registro de por qué no.
+- Composición: `src/compositions/hilton/BetweenStS5.tsx`. El titular bajó de
+  y=300 a **y=262**: en la escena generada el vaso empieza más arriba.
+- Revisión que vio Eli: <https://claude.ai/code/artifact/225d6e23-8761-49ee-90cd-b857724f5a08>
+
+**Medido en la pieza entregada:** contraste del titular 4,9–5,6:1 por tercios
+(beige sobre café de marca), 79 px de aire entre el texto y el filo de la tapa,
+bloque en 263–538 sobre 1920. `between-qa.py` marca el pliegue del pantalón como
+si fuera texto: es el falso positivo de siempre.
+
+**Qué sigue.** La ST del 30-09 (Plateada al Carmenere) sigue en Drive con la
+versión del 11-09 y no se tocó hoy.
+
+**Abierto.**
+
+- ⚠️ **El brief dice «una chica» y la pieza es de un hombre.** El titular es de
+  primera persona y no tiene género, así que se sostiene; queda informado, no
+  resuelto — el brief es del cliente.
+- Sigue pendiente de antes: las columnas T y U en `OK PARA DISEÑAR` desde el
+  11-09, entregadas y sin visto del cliente.
+
+## 2026-09-14 (RONDA 26) · Eli (Windows) — BETWEEN S5: el vaso del 28-09 deja de ser cartón generado
+
+**El encargo.** «Debemos mejorar el vaso y trata de utilizar una foto como la
+sesión nueva de vasos ToGo» — la sesión del 09-09 que entró al banco esta misma
+mañana.
+
+**⭐⭐ El diagnóstico es medible, no de gusto.** Puesto el vaso de la pieza al
+lado del de la sesión y normalizados al mismo ancho, el generado se delata en
+tres cosas:
+
+| | pieza (r3) | vaso real 09-09 | pieza (r26) |
+|---|---|---|---|
+| saturación del cartón | 0,198 | **0,619** | **0,391** |
+| tono del cartón (R/G) | 1,136 | 1,486 | 1,296 |
+| motas de pulpa | sí, de 5 a 15 px | ninguna | ninguna |
+| **logotipo / ancho del vaso** | **0,42** | **0,91** | A 0,76 · B 0,88 |
+| alto del bloque / ancho | 0,140 | 0,377 | A 0,294 · B 0,386 |
+
+⛔ **No se regeneró nada.** `scripts/between-s5-vaso-real.py` (nuevo) le cambia
+la **superficie** al vaso ya aprobado, partiendo de la misma base limpia de la
+ronda 4. La silueta, el tamaño, la inclinación, la tapa, las manos y la chica
+quedan intactos — es lo que Eli cerró en la ronda 3 («el tamaño está ideal del
+vaso y también está bien las tipografías y la persona»).
+
+**Cómo:**
+
+- **La luz de la escena se conserva.** El campo de luz sale del propio vaso con
+  una mediana de 21 px —que borra las motas, que miden 5 a 15— y un desenfoque
+  corto de 9 px que aplana las nubes de 80–150 px del generador. El pliegue del
+  cartón y la sombra de contacto de los dedos quedan intactos, que es lo que
+  hace que la mano se vea apoyada.
+- **La fibra sale de `togo-grande-frontal.jpg`** (IMG_4150, el packshot del vaso
+  grande, la toma más nítida de las 39), dividiéndole su propia luz. Va a 0,45
+  de escala: a 1:1 la trama se lee como damasco, porque el vaso de la pieza es
+  1,4 veces más ancho que el de la foto.
+- **El color es el kraft medido bajo el iluminante de ESTA escena.** El tono de
+  tres tomas de la sesión, corregido a 0,75 por la luz fría del patio: la tapa
+  negra, que es neutra, da B/G 1,16 acá y ≈1,00 en la sesión.
+
+**⭐⭐⭐ Las manos NO se pueden separar por descarte, y me costó tres vueltas.**
+Definir «piel = lo que no es cartón» falla porque **el filo desenfocado del vaso
+da tono 13,9–16,0° y R/G 1,35–1,44 — exactamente los números de la piel en
+sombra**: esa franja se tomaba por mano y quedaba un ribete crema de 60 px
+pegado al contorno. Lo que sí funciona: la piel **tiene un núcleo
+inconfundible** (tono < 8°, R/G > 1,42) que el filo del vaso no tiene en ninguna
+parte, y se deja crecer desde ahí hasta donde el tono sigue siendo de piel, con
+la barrera en 13° y un tope de 60 px de recorrido. Con la barrera en 17° el
+crecimiento se colaba por la sombra de contacto de los dedos y dejaba un halo
+pálido de 40 px alrededor de la mano.
+
+**⛔⛔ Y había un tope mal puesto en `between-s5-logo-vaso.py`.** La envoltura
+cilíndrica se rendía si `W/2 >= radio`, o sea a **1 radián (57,3°)** de medio
+arco, cuando el tope real es **90°**. Con el logotipo a su proporción —que en el
+vaso grande abarca **131° del cilindro**— el guardia devolvía el logotipo **sin
+envolver**, y se estampaba plano y más ancho que el vaso. Corregido.
+
+**⚠️ La decisión que queda abierta: el tamaño del logotipo.** A su proporción
+real el bloque va a 0,82 del alto del cuerpo, y a esa altura **el brazo ya cruza
+el vaso**. En las fotos de la sesión la mano tapa parte del logotipo y se ve
+natural; en una historia donde el vaso ES la marca, «COFFEE & BAR» a medias no.
+Por eso hay dos versiones rendidas y elige Eli:
+
+| | comando | proporción | costo |
+|---|---|---|---|
+| **A** (recomendada, es la que quedó en el asset) | `--centro 1704 3798 --ancho 1600 --radio 897` | 0,76 del ancho | 2 px de holgura con la sombra de la tapa; 22 px de tinta rozando la piel |
+| **B** | `--centro 1697 3860 --ancho 2025 --radio 887` | 0,88 del ancho | la mano le come 5 149 px de tinta |
+
+**Dónde quedó.**
+
+- Piezas: `out/hilton-between-s5-r26/BW-S5-HumorToGo-A.png` y `-B.png`
+  (2250 × 4000). QA `between-qa.py`: 2/2 limpias.
+- Fondos: `raw/hilton/between/s5/r5-togo-carton.png` → `r5-togo-logoA.png` /
+  `logoB.png` → `st-28-09-togo-r26a.jpg` / `r26b.jpg`.
+  **El asset `public/assets/hilton/between/s5/st-28-09-togo.jpg` quedó con la A**
+  (verificado por md5 contra `st-28-09-togo-r26a.jpg`).
+- Scripts: `between-s5-vaso-real.py` (nuevo, con los valores de la entrega como
+  defaults: corriéndolo pelado sale el mismo archivo) y
+  `between-s5-revision-r26.py` (la página).
+- Revisión que vio Eli:
+  <https://claude.ai/code/artifact/7f9539e0-9150-4276-be8d-137b90f3c0a0>
+
+**⛔ NO se subió al Drive.** La pieza del 28-09 está en Drive con id
+`1dIH_dM4yBlM2AX5TlCE9tKMgaqlMB1wr`; hay que reemplazar su contenido
+(`between-s5-subir-drive.py`) **después** de que Eli elija entre A y B.
+
+**Abierto.**
+
+- ⚠️ **La tapa sigue siendo la generada.** La de la pieza es mate y de plástico
+  modelado; la de la sesión es brillante, con un reflejo vivo en el reborde
+  enrollado. Cambiarla es rehacer geometría, no retocar superficie, y no entraba
+  en «mejorar el vaso» sin volver a tocar algo ya aprobado. Es una ronda aparte.
+- ⚠️ **`src/BetweenEntry.tsx` no registra las composiciones de la S5**, así que
+  `between-rendir.py` no las ve. Se rinden con `npx remotion still src/index.ts
+  BW-S5-HumorToGo … --scale=2.0833`. Vale la pena agregarlas al entry.
+- Sigue pendiente de antes: las columnas T y U en `OK PARA DISEÑAR` desde el
+  11-09, entregadas y sin visto del cliente.
+
 ## 2026-09-14 · Eli (Windows) — BETWEEN: el carrusel To Go deja de ser generado, y aparece la sesión real del vaso
 
 **Qué se hizo.** Tres rondas sobre el **CARRUSEL PROMOS TO GO** (FEED columna L,

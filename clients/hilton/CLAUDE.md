@@ -1121,6 +1121,62 @@ Son la vara. El resto de `ref-piezas/` sirve de contexto, no de norma.
 8. **Si el vaso de la foto ya trae el logotipo, la pieza NO sobrepone el lockup.**
    Se lee dos veces la misma marca y se ve mal. Ver la sección ⛔ 2 más abajo.
 
+## ⛔⛔ ANTES DE PRODUCIR UNA PIEZA DE BETWEEN: SE GENERA, NO SE COMPONE
+
+**Lee [`PROMPTS-DE-ELI.md`](PROMPTS-DE-ELI.md) antes de escribir un prompt o de
+abrir un montaje.** Su primera línea es la regla, y el 14-09-2026 costó tres
+rechazos volver a aprenderla:
+
+> «No se compone: se GENERA. […] generar un fondo y pegarle encima recortes,
+> logotipos vectoriales, sombras de contacto y campos de luz calculados produjo
+> **cinco rechazos seguidos**, y el último con estas palabras: *parecen de paint
+> pegoteados*.»
+
+La ST del 28-09 se montó por código durante tres rondas —contorno con grabCut,
+campo de luz medido, textura comprimida, sombra dirigida, luz envolvente, hasta
+un trasplante de luz de Magnific— y Eli la rechazó tres veces seguidas:
+«pegoteado», «luz de flash», «no aprobado». Generada con Nano Banana Pro y las
+fotos reales como referencia, quedó aprobada a la sexta.
+
+**Y su corolario:** cuando algo falla varias veces con materiales distintos, lo
+que se cambia no es el material ni la posición — **es el método.**
+
+### Las cuatro reglas que dejó esa jornada
+
+1. **El logotipo se mira AL 300 % EN CADA TIRADA.** De seis generaciones, tres
+   escribieron mal la Ǝ: una con E normal, otra con la Ǝ en la penúltima letra
+   («BETWEƎN») y otra con dos. Acierta ≈ una de cada dos. **Una tirada sin
+   revisar el logotipo no se entrega.**
+2. **Volver a tirar sale más barato que parchar el producto.** El generador le
+   puso al vaso el *anillo blanco en la base* —que es del vaso CHICO— y taparlo
+   por código costó tres intentos fallidos (un peinado de rayas verticales, un
+   arco mal ajustado). La tirada siguiente vino limpia. El candado va repetido y
+   en negativo en el prompt: «NO tiene anillo blanco, NO tiene banda blanca, NO
+   tiene filo claro ni zócalo en la base».
+3. **Un degradado no tiene borde, así que no se le puede recortar uno.** La
+   franja de verde lima que el generador pone sobre el muro de plantas se
+   intentó repintar cuatro veces por código y las cuatro se vio: el café se mete
+   entre las hojas, o el borde sale recto, o queda un peine de picos. Se le pide
+   al generador — «las plantas llenan el fondo y su COPA es irregular; por
+   encima, el muro del local pintado de `#675b49`; el borde lo dibujan las
+   hojas» — y sale a la primera.
+4. **Mover la escena dentro del cuadro no necesita otra generación.** Si el
+   titular cae sobre la tapa y el fondo de arriba es una superficie plana, se
+   continúa esa superficie y se baja la escena
+   (`between-st-s5-togo-acabado.py --bajar`). En la ST del 28-09 se bajó 734 px
+   y el salto de tono en la costura mide **0,03** — sobre 1,5 se vería.
+
+### El relight de IA sobre el vaso: medido y descartado
+
+Eli pidió dos veces hacerlo en Magnific y se hizo, midiendo. `image-relight`
+sobre el vaso **lo vuelve gris** en los tres estilos probados (Δ del logotipo
+43–59: redibujado), que es el mismo fallo de las botellas de CAVA. La vía de
+edición imagen→imagen conserva el color y la posición del logotipo (Δ 8,3,
+escala 1,000) pero **alisa el cartón hasta dejarlo de render**. Lo único
+aprovechable es su **campo de luz**: trasplantada sólo la baja frecuencia al
+montaje por código, el logotipo queda en Δ 5,3 (intacto). Todo en
+`scripts/between-s5-vaso-magnific.py`, con el medidor del logotipo incluido.
+
 ## ⭐⭐ EL VASO TO GO — la sesión del 09-09-2026 es LA referencia
 
 > **Eli, 14-09-2026:** «te dejo una nueva sesión de fotos de Between para vasos
@@ -1176,6 +1232,46 @@ IMG_4151, que traen los tres juntos sobre la misma mesa.
 ⚠️ **En las 18 del bloque de la entrada el logotipo del vaso queda chico y casi
 siempre parcialmente tapado por la mano.** Si la pieza necesita el logotipo
 legible, la toma es del bloque del packshot, no de ése.
+
+### ⭐⭐ EL LOGOTIPO OCUPA 0,91 DEL ANCHO APARENTE — MEDIDO
+
+Detectado el 14-09-2026 rehaciendo el vaso de la ST del 28-09: el logotipo que
+llevábamos estampando medía **0,42 del ancho del vaso** y en el vaso real mide
+**0,91**. Por eso se leía como calcomanía pegada y no como serigrafía, que es
+justo lo que el cliente reclamó tres veces.
+
+Las dos proporciones salen de medir, no de estimar:
+
+| | valor | de dónde sale |
+|---|---|---|
+| alto del bloque `BETWEEN + COFFEE & BAR` | **0,377 × el diámetro** | altura de las letras centrales de `BETWEEN` en `togo-grande-frontal.jpg` (425 px) × 324/221 del archivo oficial, contra el diámetro a esa altura (1 652 px) |
+| ancho PLANO sobre el papel (el arco) | **1,14 × el diámetro** | el alto × 3,0278, la proporción del archivo oficial |
+| ancho que se VE de frente (la cuerda) | **0,91 × el diámetro** | `D · sen(θ/2)` con θ = 131° |
+| centro del bloque | donde el ancho del vaso vale **0,82 del ancho bajo la tapa** | medido en la misma foto |
+
+⚠️ **El logotipo abarca 131° del cilindro.** Por eso en las fotos de cerca sale
+cortado («ƎTWEEN», «BETWEE») y **eso no es un defecto de la foto**: es que desde
+cerca se ve menos de 180° del vaso. En un vaso gigante visto de lejos sí se ve
+entero, y ahí la proporción que corresponde es la de arriba.
+
+⛔ **Y el tope de `between-s5-logo-vaso.py` estaba mal puesto:** la envoltura
+cilíndrica se rendía a 1 radián (57,3°) de medio arco cuando el tope real es 90°,
+así que un logotipo a su proporción volvía **sin envolver** y se estampaba plano.
+Corregido el 14-09-2026.
+
+### ⭐ EL CARTÓN GENERADO SE DELATA POR SATURACIÓN Y MOTAS
+
+Medido sobre parches de 820 × 820 px sin reescalar:
+
+| | cartón generado | vaso real (sesión 09-09) |
+|---|---|---|
+| saturación HSV | **0,20** — crema grisáceo | **0,62** — kraft |
+| tono (R/G) | 1,14 | 1,49 |
+| textura | **motas oscuras de 5 a 15 px**, tipo pulpa reciclada | fibra fina tramada, **ni una mota** |
+
+> **Regla:** si un vaso To Go de una pieza tiene motas oscuras, es generado. El
+> kraft de Between no las tiene. Y antes de retocar a ojo, se mide: el parche de
+> cartón contra el mismo parche de la sesión.
 
 ### La consecuencia práctica
 

@@ -45,6 +45,14 @@ import {
   OCT_POSTS,
   OCT_STORIES,
 } from "./compositions/tierracalma/Octubre";
+import {
+  ReelPrimaveraOct,
+  ReelDronOct,
+  StoryPetalos,
+  StoryPov,
+  REEL_DURATION as OCT_REEL_DUR,
+  STORY_DURATION as OCT_STORY_DUR,
+} from "./compositions/tierracalma/OctubreVideo";
 import {HistoriaPrimavera, HistoriaPaso, HistoriaEpoca, HISTORIA_DURATION} from "./compositions/tierracalma/HistoriasAnimadas";
 import {PruebaPosts4x5, PruebaHistoria, PruebaReel, PRUEBA_POSTS, PRUEBA_HISTORIA_ANIM_DURATION, PRUEBA_REEL_DURATION} from "./compositions/tierracalma/PruebaCarlos";
 
@@ -595,6 +603,40 @@ export const RemotionRoot: React.FC = () => {
           width={1800}
           height={1450}
         />
+        {/* OCTUBRE 2026 — video. Imagen clave con Magnific → Kling 2.5 → 30 fps */}
+        <Composition
+          id="TCOct01ReelPrimavera"
+          component={ReelPrimaveraOct}
+          durationInFrames={OCT_REEL_DUR}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="TCOct13ReelDron"
+          component={ReelDronOct}
+          durationInFrames={OCT_REEL_DUR}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="TCOct08StoryPetalos"
+          component={StoryPetalos}
+          durationInFrames={OCT_STORY_DUR}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="TCOct15StoryPov"
+          component={StoryPov}
+          durationInFrames={OCT_STORY_DUR}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+
         {/* OCTUBRE 2026 — sobre los marcos bloqueados del diseñador (MARCOS.ai) */}
         <Composition
           id="TCOctCarrusel"

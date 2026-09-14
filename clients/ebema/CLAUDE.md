@@ -28,11 +28,15 @@ casilla, y hay que nombrarla antes de mirar una referencia y antes de diseñar:
 
 |  | **GRILLA** | **PAID** |
 |---|---|---|
-| **sucursal** | 🟡 sin medir | ✅ medido — §4, `sistema/base.css` |
-| **click** | 🟡 sin medir ← *acá cae la story 19* | ✅ medido — §4 |
-| **spc** | 🟡 sin medir | ✅ medido — §4 |
+| **sucursal** | 🟡 sólo la story de sucursal, sin medir | ✅ medido — §4, `sistema/base.css` |
+| **click** | ✅ **medido — §4-bis** (story) | ✅ medido — §4 |
+| **spc** | 🟡 sin referencias todavía | ✅ medido — §4 |
 
-> ⚠️ **Toda la columna PAID está medida. Toda la columna GRILLA está vacía.**
+Y por formato, dentro de GRILLA: **carrusel ✅ medido** (5 arcos completos) ·
+**story ✅ medida** (la de Click) · **post 🟡 sin medir** · **video 🟡 sin medir**.
+
+> ⚠️ **La columna PAID está medida entera. La de GRILLA se empezó a medir el
+> 14-09-2026** con las referencias que dejó Paulina — ver §4-bis.
 > `sistema/base.css` lo dice en su primera línea desde siempre («EBEMA PAID —
 > Septiembre 2026»), y las 4 referencias de Click que sostienen §4 salen de
 > `EBEMA/PERFORMANCE/2026/8. Agosto/`. Lo que este manual llama «el sistema» es,
@@ -258,6 +262,101 @@ con nombre y código debajo.
 | Reel | 1080 × 1920, cierre oficial obligatorio |
 
 Nomenclatura: `YYYYMMDD_ebema_descripcion.ext` · piezas: `<slug>_feed.png` / `<slug>_story.png`.
+
+---
+
+## 4-bis. ⭐ La gramática de GRILLA — medida el 14-09-2026
+
+Medida sobre las referencias de `raw/ebema/1-referencias/grilla/`: **5 carruseles
+completos** (Cedral, Cintac, Novoplast, Surpol, Toro — 25 láminas), 3 stories y
+6 posts. Todo normalizado a 1080 de ancho. Feed/carrusel llegan a **2250×2813**
+(4:5) y las stories a **2250×4000** (9:16).
+
+### Lo que distingue a GRILLA de PAID, de un vistazo
+
+| | **GRILLA** | **PAID** |
+|---|---|---|
+| Quién protagoniza | el **proveedor** (Cedral, Cintac, Toro…) en co-marca con EBEMA | EBEMA o Click |
+| Qué hace la pieza | **enseña**: problema → solución → tip → dónde comprar | ofrece un beneficio y pide el clic |
+| Cierre | anillo EBEMA + botón **«¡Cotiza por whatsapp»** + «en el link de la bio!» | botón `Regístrate Gratis` + legal |
+| Caja roja del titular | **una sola por lámina**, centrada, y va donde la foto deja sitio | posición fija por esquema |
+| Elementos propios | cápsula de co-marca, **flecha dibujada**, cápsula de borde para la bajada | fila de íconos, legal al pie |
+
+### El carrusel — arco fijo de 5 láminas
+
+Los 5 carruseles medidos tienen **la misma estructura**, y no es casualidad:
+
+| Lámina | Qué hace | Ejemplo (Surpol) |
+|---|---|---|
+| **L1 portada** | el problema, en negativo | «LA CASA SIGUE FRÍA POR DENTRO / aunque la calefacción esté encendida» |
+| **L2** | la causa o el puente | «El calor se escapa por muros y entretechos mal aislados» |
+| **L3** | la solución, con el producto | «Aislación térmica liviana y fácil de instalar» |
+| **L4 tip pro** | el consejo de oficio | «Sella bien los bordes de cada plancha» |
+| **L5 cierre** | dónde se compra | «Surpol disponible en Ebema» + anillo + botón WhatsApp |
+
+**L1 — portada** (medidas idénticas en las 5):
+
+| Elemento | Medida |
+|---|---|
+| Cápsula blanca de co-marca `EBEMA ⊕ <proveedor>` | alto **155,5**, y 154,6–310,1, **pegada al borde izquierdo** (x = 0); el ancho lo fija el logo del proveedor |
+| Pastilla roja del logo EBEMA, dentro de la cápsula | **x 71,0–189,1 (ancho 118,1)** · alto **121,9** — idéntica en las 5 |
+| Caja roja del titular | centrada en **cx 539,8**, ancho 873–971 |
+| Pie con **flecha →** | ancho **331,2**, x 374,4–705,6, alto ~64,8 — en 4 de 5 |
+
+**L2–L4 — desarrollo** (15 láminas medidas):
+
+- **Una sola caja roja por lámina.** Nunca dos.
+- **Siempre centrada:** `cx = 539,8` en 14 de 15 (el centro exacto del lienzo es 540).
+- **Alto 70–80** en 13 de 15. Sube a ~108 cuando el texto ocupa dos líneas.
+- **Ancho 523–803:** se ajusta al texto, no al lienzo.
+- La **`y` es libre**: la caja cae donde la foto deja sitio. Ése es el único parámetro
+  que cambia entre láminas, y es lo que hace que no parezca plantilla.
+- Debajo, bajada corta en blanco con **énfasis en ExtraBold** sobre la palabra clave.
+
+**L5 — cierre** (plantilla dura, idéntica en las 5):
+
+| Elemento | Medida |
+|---|---|
+| Fondo | el producto **desenfocado** |
+| Anillo rojo con el logo EBEMA | **298,6 × 307,2**, centrado |
+| Botón **«¡Cotiza por whatsapp»** | **653,8 × 79,7**, x 213,1–866,9, cx 539,8 |
+| «en el link de la bio!» | ancho 429,1, cx 538,3 |
+| Bajada `<Producto>, disponible en Ebema.` | sobre el anillo, centrada |
+
+### La story de GRILLA — medida sobre `ebema_storie_click.png`
+
+Es la **misma pieza** que la story 19 del brief de septiembre, resuelta por la
+diseñadora. Comparada con la story de paid, **casi nada coincide**:
+
+| | **GRILLA** | **PAID** |
+|---|---|---|
+| Pastilla `CLICK` del lockup | alto **63,4**, ancho 207,4, en **y 103** | alto 41,8, ancho 135,8, en y 159 |
+| Caja roja del titular | alto **82,1**, ancho 737,3, y **envuelve la 1ª línea** | envuelve la **2ª** |
+| Titular | **2 líneas blancas debajo** de la caja, cuerpo grande (alto 73,9 y 71,5) | 1 línea arriba + caja en la 2ª |
+| Bajada | dentro de una **cápsula de borde blanco**, 884,2 de ancho, y 1199–1334 | texto suelto |
+| Mensaje secundario | dentro de un **botón rojo** de **710,4 × 115,2** | — |
+| Hueco del sticker | **marcado con un rectángulo dibujado** | — |
+| Cierre | abajo, con **flecha curva dibujada a mano** hacia el sticker | legal chico |
+
+> ⛔ **El lockup de Click NO mide lo mismo en grilla que en paid.** Es un 50 % más
+> grande y va más arriba. Si se calca el de paid, la pieza se ve de otra marca.
+
+### Cómo se traduce «cercano, instructivo y comercial»
+
+Ahora tiene respaldo medido:
+
+- **Cercano** — persona real en situación de trabajo (instalando, aplicando,
+  midiendo), **manos a la obra**, no posando. Y la **flecha dibujada a mano**, que
+  es lo único manuscrito de todo el sistema.
+- **Instructivo** — el arco de 5 láminas *es* el formato instructivo: problema,
+  causa, solución, tip pro. La L4 siempre es un consejo de oficio.
+- **Comercial** — el proveedor se nombra desde la portada y el cierre siempre
+  aterriza en **«¡Cotiza por whatsapp» / en el link de la bio!**.
+
+### Lo que todavía falta
+- **Posts** y **videos** de grilla: hay 6 y 5 referencias sin medir.
+- **SPC en grilla**: no hay referencias.
+- La **story de sucursal** (`ebema_st-1/2.png`, La Calera y Talca) está sin medir.
 
 ---
 

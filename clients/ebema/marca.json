@@ -250,7 +250,7 @@
   ],
   "madurez": {
     "identidad": "completa",
-    "gramatica": "PAID completa en las 3 submarcas · GRILLA sin medir en las 3",
+    "gramatica": "PAID completa · GRILLA: carrusel y story de click medidos; post, video y SPC pendientes",
     "formatos": "completa",
     "imagen": "parcial — faltan fotos de Chillán, Rancagua y San Bernardo",
     "copy": "completa",
@@ -280,16 +280,29 @@
         "brief": "Grilla mensual (Google Slides)",
         "sucursal": {
           "gramatica_medida": false,
-          "nota": "PENDIENTE de medir"
+          "nota": "hay 2 stories (La Calera, Talca) sin medir"
         },
         "click": {
-          "gramatica_medida": false,
-          "nota": "PENDIENTE de medir. Aca cae la story 19 del 14-09."
+          "gramatica_medida": true,
+          "nota": "MEDIDA 14-09-2026, seccion 4-bis: story sobre ebema_storie_click.png"
         },
         "spc": {
           "gramatica_medida": false,
-          "nota": "PENDIENTE de medir"
-        }
+          "nota": "sin referencias todavia"
+        },
+        "_por_formato": {
+          "carrusel": "MEDIDO: arco fijo de 5 laminas, seccion 4-bis",
+          "story": "MEDIDA (click)",
+          "post": "6 referencias sin medir",
+          "video": "5 reels sin medir"
+        },
+        "_carrusel_arco": [
+          "L1 portada: el problema",
+          "L2 causa o puente",
+          "L3 solucion con el producto",
+          "L4 tip pro",
+          "L5 cierre: anillo + boton whatsapp"
+        ]
       },
       "paid": {
         "_tono": "conversion: beneficio, oferta, CTA",

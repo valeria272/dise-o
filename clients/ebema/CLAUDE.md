@@ -16,6 +16,41 @@ Antes de diseñar, leer también [`docs/SISTEMA-DE-MARCAS.md`](../../docs/SISTEM
 
 ---
 
+## 0-bis. ⛔ Acá sólo se diseña — el brief no es nuestro
+
+> «Yo no decido qué proveedores van en cada mes, eso lo ve contenido. Yo, como
+> diseñadora, sólo me guío de lo que dicen los briefs en cada slide del documento.
+> Eso es lo que tú debes hacer también.»
+> — Paulina, 14-09-2026
+
+**La grilla la arma contenido. Diseño ejecuta.** Cada diapositiva trae ya decidido:
+
+| Lo decide el brief, no nosotros | Ejemplo |
+|---|---|
+| Qué proveedor va este mes | Metalcon Cintac, Surpol, Polpaico… |
+| Qué formato tiene la pieza | «CARRUSEL», «REEL — VOZ OFF IA», «STORY ESTÁTICA» |
+| Cuántas piezas y de qué pilar | «Pilar: Proveedores» · «Pilar: Valor» |
+| Los textos | T1…T5 o L1…L5, **verbatim** |
+| El ángulo y la referencia visual | los enlaces de Pinterest y de la cuenta del proveedor |
+
+Lo nuestro empieza después: **traducir eso a la gramática medida** — §4-bis para
+grilla, §4 para paid.
+
+### Qué hacer cuando el brief no cuadra
+**Se informa, no se resuelve.** Si falta un dato, si dos diapositivas se contradicen,
+si el ángulo pide una foto que no existe: se avisa y se sigue con el resto. Cambiarlo
+por cuenta propia es inventarle a contenido una decisión que no es de diseño.
+
+> Es la misma regla que ya costó una corrección en DoubleTree: se recomendó corregir
+> un precio de la grilla y estuvo mal. La grilla es del cliente y de contenido.
+
+### Y tampoco se le pregunta a diseño lo que decide contenido
+Preguntarle a Paulina «¿por qué este tema fue carrusel y no reel?» es perder su
+tiempo con algo que no firma. Si de verdad hace falta saberlo, se lee el brief o se
+le pregunta a **contenido** (Carlos Figueroa en EBEMA).
+
+---
+
 ## 0. ⛔ Los dos ejes — se declaran ANTES de abrir nada
 
 EBEMA no tiene **un** sistema gráfico. Tiene una **matriz**. Toda pieza es una

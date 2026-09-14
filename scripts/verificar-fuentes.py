@@ -32,11 +32,24 @@ except Exception:
 
 RAIZ = Path(__file__).resolve().parent.parent
 REPO_ASSETS = RAIZ / "public" / "assets"
-LIVETYPE = Path.home() / ("Library/Application Support/Adobe/CoreSync/"
-                          "plugins/livetype")
+# Adobe CoreSync guarda las fuentes activadas en un sitio distinto en cada
+# sistema. Se prueban las dos rutas y se usa la que exista: en Windows, con la
+# ruta de macOS quemada, el script decía «Adobe Fonts activas: 0» aunque la
+# persona las tuviera activadas, y mandaba a activar de nuevo lo ya activo.
+# Comprobado el 10-09-2026 en el Windows de Diego (65 archivos en livetype/r).
+_CANDIDATAS_LIVETYPE = [
+    Path.home() / "Library/Application Support/Adobe/CoreSync/plugins/livetype",   # macOS
+    Path(os.environ.get("APPDATA", "")) / "Adobe/CoreSync/plugins/livetype",       # Windows
+]
+LIVETYPE = next((c for c in _CANDIDATAS_LIVETYPE if c.is_dir()),
+                _CANDIDATAS_LIVETYPE[0])
+
 SISTEMA = [Path.home() / "Library/Fonts", Path("/Library/Fonts"),
            Path("/System/Library/Fonts"),
-           Path("/System/Library/Fonts/Supplemental")]
+           Path("/System/Library/Fonts/Supplemental"),
+           # Windows: las del sistema y las que instala un usuario sin ser admin
+           Path(os.environ.get("WINDIR", "C:/Windows")) / "Fonts",
+           Path(os.environ.get("LOCALAPPDATA", "")) / "Microsoft/Windows/Fonts"]
 
 V = "\033[32m✓\033[0m"
 A = "\033[33m▲\033[0m"

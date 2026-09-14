@@ -445,3 +445,10 @@ out/rentas/**/mail/
 !public/assets/traverso/lds2/audio/musica-entrance.mp3
 !public/assets/traverso/lds2/audio/sfx-*.mp3
 !public/assets/traverso/lds/audio/*.mp3
+# TIERRA CALMA · OCTUBRE 2026 — la entrega tiene que ser reproducible byte a byte.
+# Los marcos son el asset BLOQUEADO del diseñador (salen de MARCOS.ai, KINGSTON)
+# y los fondos son las generaciones de Magnific ya elegidas y encuadradas: sin
+# ellos el render de octubre no se puede repetir. Regla: si una pieza se entregó,
+# su script Y sus fondos se commitean el mismo día.
+!public/assets/tierracalma/marcos/**
+!public/assets/tierracalma/oct/**

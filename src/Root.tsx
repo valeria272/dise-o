@@ -37,6 +37,14 @@ import {ReelCelebracion, REEL_CELEBRACION_DURATION} from "./compositions/tierrac
 import {ReelPrimavera, REEL_PRIMAVERA_DURATION} from "./compositions/tierracalma/ReelPrimavera";
 import {Piezas4x5, Piezas9x16, Piezas1x1, PIEZAS_4x5, PIEZAS_9x16, PIEZAS_1x1} from "./compositions/tierracalma/Piezas";
 import {Specimen} from "./compositions/tierracalma/Specimen";
+import {
+  OctCarrusel,
+  OctPosts,
+  OctStories,
+  OCT_CARRUSEL,
+  OCT_POSTS,
+  OCT_STORIES,
+} from "./compositions/tierracalma/Octubre";
 import {HistoriaPrimavera, HistoriaPaso, HistoriaEpoca, HISTORIA_DURATION} from "./compositions/tierracalma/HistoriasAnimadas";
 import {PruebaPosts4x5, PruebaHistoria, PruebaReel, PRUEBA_POSTS, PRUEBA_HISTORIA_ANIM_DURATION, PRUEBA_REEL_DURATION} from "./compositions/tierracalma/PruebaCarlos";
 
@@ -586,6 +594,31 @@ export const RemotionRoot: React.FC = () => {
           fps={30}
           width={1800}
           height={1450}
+        />
+        {/* OCTUBRE 2026 — sobre los marcos bloqueados del diseñador (MARCOS.ai) */}
+        <Composition
+          id="TCOctCarrusel"
+          component={OctCarrusel}
+          durationInFrames={OCT_CARRUSEL.length}
+          fps={30}
+          width={1080}
+          height={1350}
+        />
+        <Composition
+          id="TCOctPosts"
+          component={OctPosts}
+          durationInFrames={OCT_POSTS.length}
+          fps={30}
+          width={1080}
+          height={1350}
+        />
+        <Composition
+          id="TCOctStories"
+          component={OctStories}
+          durationInFrames={OCT_STORIES.length}
+          fps={30}
+          width={1080}
+          height={1920}
         />
         <Composition
           id="TCPiezas4x5"

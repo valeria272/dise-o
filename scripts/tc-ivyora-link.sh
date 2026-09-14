@@ -1,38 +1,20 @@
 #!/usr/bin/env bash
-# Enlaza las variantes de IvyOra activadas por Adobe Fonts para que Chrome (el
-# motor de render de Remotion) pueda usarlas.
+# Enlaza IvyOra (Adobe Fonts) para que Chrome la vea al renderizar Tierra Calma.
 #
-# POR QUÉ HACE FALTA: Adobe descarga las fuentes a su propia carpeta pero, en
-# este equipo, no las registra en CoreText — el sistema no las ve y Chrome
-# tampoco (probado: caen al serif por defecto). Así que se apunta al archivo.
-#
-# ENLACES DUROS, no copias: el archivo tiene UN solo juego de bytes en disco y
-# dos entradas de directorio. Si Adobe borra su copia al desactivar la fuente,
-# esta también deja de estar disponible. La carpeta está en .gitignore, así que
-# nunca sale del equipo. Es el mismo uso que hace Illustrator: leer la fuente
-# instalada para producir una pieza. Lo que la licencia prohíbe —empaquetar el
-# .otf en un entregable o redistribuirlo— no ocurre acá.
-#
-# (Los enlaces simbólicos no sirven: el servidor estático de Remotion no los
-#  sigue y devuelve 404.)
+# La lógica vive ahora en tc-ivyora-link.py: la versión en bash sólo servía en
+# macOS —ruta `~/Library/...` quemada y `strings`, que en Windows no existe— y
+# en el equipo de un diseñador con Windows dejaba el titular en la serif por
+# defecto sin avisar. Este archivo se queda como puerta de entrada para lo que
+# ya lo llamaba por su nombre.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-SRC="$HOME/Library/Application Support/Adobe/CoreSync/plugins/livetype/.w"
-DEST="public/assets/fonts/ivyora"
+for PY in "$HOME/copylab-venv/bin/python3" \
+          "$HOME/copylab-venv/Scripts/python.exe" \
+          "$(command -v python3 || true)" \
+          "$(command -v python || true)"; do
+  [ -n "$PY" ] && [ -x "$PY" ] && exec "$PY" scripts/tc-ivyora-link.py "$@"
+done
 
-if [ ! -d "$SRC" ]; then
-  echo "No está la carpeta de Adobe Fonts. ¿Creative Cloud instalado y IvyOra activada?"; exit 1
-fi
-
-rm -rf "$DEST"; mkdir -p "$DEST"
-n=0
-while IFS= read -r f; do
-  name=$(strings "$f" 2>/dev/null | grep -oE "^IvyOra(Display|Text)-[A-Za-z]+" | head -1)
-  [ -z "$name" ] && continue
-  ln -f "$f" "$DEST/$name.otf" 2>/dev/null || cp "$f" "$DEST/$name.otf"
-  n=$((n + 1))
-done < <(find "$SRC" -name "*.otf")
-
-echo "$n variantes de IvyOra enlazadas en $DEST"
-ls "$DEST"
+echo "No encontré el Python del estudio. Corre /arranque." >&2
+exit 1

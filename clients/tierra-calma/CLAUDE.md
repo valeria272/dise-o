@@ -46,6 +46,22 @@ Diseño Tierra Calma · Septiembre 2026*). Están espejados en
 - colegios, supermercado y bancos a minutos
 - Padre Hurtado, RM
 
+### Ampliación del 08-09-2026 (brief de octubre)
+
+El *Tierra Calma · Propuesta de Temas · Octubre 2026* (Carlos, Drive) suma tres
+datos a la lista blanca. Ya están publicados en el carrusel del 06-10:
+
+- **electricidad subterránea** (ya instalada)
+- **cierre perimetral** (ya hecho)
+- **máximo 2 casas por parcela** (principal + huéspedes)
+- **Ruta 78 / Autopista del Sol + Camino a Melipilla** como descripción de acceso
+
+Y **ratifica la prohibición del agua potable**, esta vez con la palabra "falso":
+*"NO usar «conexión a agua potable» (es noria/pozo que construye cada
+propietario, dato verificado como falso)"*. ⚠️ Ese dato **sí salió publicado** en
+la historia `st-11-09` de septiembre, dentro de la tarjeta "Tu parcela incluye:".
+Vale la pena avisarlo antes de que el cliente lo note.
+
 ### ⛔ Lo que NO se publica sin validar con Fran o Blanca
 
 - **m² exactos** por parcela (usar "~5.000 m²", nunca una cifra cerrada).
@@ -328,6 +344,68 @@ Lo que hace distinto —y que nuestras piezas no hacían—:
 - El slide "O un proyecto que genere ingresos · TINY HOUSES · CABAÑAS · TURISMO
   RURAL" promete lo que el reglamento limita (**máx. 2 casas por parcela**,
   alerta 2.3 de la grilla).
+
+---
+
+## 4 quinquies. ⭐ EL MARCO ES UN ASSET BLOQUEADO (desde octubre 2026)
+
+El 14-09-2026 el diseñador subió a Drive los marcos como **PNG con alfa** listos
+para sobreponer, y con eso el sistema dejó de dibujarse en código:
+
+| Dónde | Qué |
+|---|---|
+| Drive | `MARCOS PUBLICACIONES` y `MAPAS`, dentro de la carpeta de entrega |
+| Editable | `MARCOS.ai` — disco **KINGSTON** (`D:`), en `DIEGO 2023/COPYWRITERS/MAS CENTER/IA TIERRA CALMA/` |
+| Repo | `public/assets/tierracalma/marcos/` (versionado, excepción en `.gitignore`) |
+
+**El marco trae el logo y el contorno de la píldora adentro.** No se redibuja
+ninguno de los dos: se rellena. El `topMarco()` de `sistema.tsx` y el
+`LogoArriba` quedan fuera de juego para octubre en adelante.
+
+### La geometría, medida sobre los PNG — no estimada
+
+|  | Post 4:5 · 1080×1350 | Story · 1080×1920 | Carrusel 4:5 |
+|---|---|---|---|
+| Filete vertical | x 65 → 1016 | x 64 → 1016 | según slide |
+| Regla superior | y 130 (hueco del logo x 392–692) | y 129 | y 130 |
+| Regla inferior | y 1236 | y 1620 | y 1284 |
+| Píldora | x 264–803 · y 1212–1264 (540×53) | x 237–843 · y 1584–1657 (606×73) | **no lleva** |
+| Bloque del logo | y 46–174 | y 45–172 | sólo el slide 1 |
+
+El texto arranca **bajo el logo** (y ≈ 250 en post y story; y ≈ 205 en los slides
+2-4 del carrusel, que no llevan logo).
+
+### El carrusel es UN SOLO OBJETO
+
+Los cuatro PNG no son intercambiables — el filete se corre entre slides y por eso
+al deslizar se lee como una sola pieza:
+
+| Slide | Marco |
+|---|---|
+| 1 | cierra a la **izquierda** (vertical en x 50), lleva el **logo**, las reglas salen por la derecha |
+| 2 y 3 | **bandas** de borde a borde, sin verticales y sin logo (son el mismo dibujo) |
+| 4 | cierra a la **derecha** (vertical en x 1028) |
+
+### Píldoras cortas, y ahora por construcción
+
+La píldora del post mide **540 px**. "TIERRA CALMA · DESDE UF 2.500" entra justo a
+30 px con tracking 0.07em; cualquier cosa más larga se sale. Si el texto no cabe
+en una línea, **el que está mal es el copy, no la píldora**.
+
+### ⚠️ Los MAPAS vienen con los topónimos corruptos
+
+`MAPA-1.png` y `MAPA-2.png` (1856×2304) **no son cartografía real**: son mapas
+generados. Padre Hurtado, Peñaflor, Malloco y Maipú sí están bien, pero conviven
+con **"Pintnia Asdo", "Los Burihes", "San Jocé", "Lono a Pénhilla",
+"Av. Vicuiia Mackenna", "Cr. Maspehro"** y escudos de ruta que no corresponden
+(**G-68**, 76, 73, S-30, D-39 alrededor de Padre Hurtado). Publicar eso nítido
+contradice el propio titular "Sin letra chica" y repite el error de la §3.
+
+**Cómo se usa mientras no haya un mapa oficial:** como **textura**. En
+`p-20-10` va en duotono navy→crema, con desenfoque de 2,6 px y un velo de 0,72
+encima; lo que se lee son **nuestros** rótulos. Receta reproducible en el
+encabezado de `Octubre.tsx`. **Pedirle a Carlos el mapa oficial** sigue abierto
+(es su pendiente #4).
 
 ---
 

@@ -457,3 +457,29 @@ out/rentas/**/mail/
 # `TIERRA CALMA MOTION.mov` del KINGSTON, que NO viaja en el repo.
 !public/assets/tierracalma/audio/**
 !public/assets/tierracalma/tc_motion.mp4
+
+# Story 19 · EBEMA CLICK (sept 2026) — la pieza entregada vuelve al repo con su
+# script Y sus fondos, para que se reproduzca byte a byte. Ver la memoria
+# «el render vuelve al repo el mismo día».
+!out/ebema/20260914_st19_click/
+out/ebema/20260914_st19_click/*
+!out/ebema/20260914_st19_click/BRIEF.md
+!out/ebema/20260914_st19_click/ENTREGA.md
+!out/ebema/20260914_st19_click/editables/
+out/ebema/20260914_st19_click/editables/*
+!out/ebema/20260914_st19_click/editables/st19_click_story.html
+!out/ebema/20260914_st19_click/editables/base.css
+!out/ebema/20260914_st19_click/editables/render.sh
+!out/ebema/20260914_st19_click/editables/foto_contratista_celular.png
+!out/ebema/20260914_st19_click/editables/foto_contratista_celular_story.png
+!out/ebema/20260914_st19_click/story/
+!out/ebema/20260914_st19_click/story/*.png
+!out/ebema/20260914_st19_click/qa/
+!out/ebema/20260914_st19_click/qa/*.png
+
+# Referencia aprobada de Paulina: es la que manda para el esquema CLICK
+!raw/ebema/
+raw/ebema/*
+!raw/ebema/ref-paulina-click-ago2026/
+!raw/ebema/ref-paulina-click-ago2026/*.png
+raw/ebema/ref-paulina-click-ago2026/originales-2250/

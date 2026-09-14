@@ -129,10 +129,36 @@ Todas las medidas están en px sobre lienzo de **1080** de ancho y viven en
    blanco de 2 px**, montados **sobre** la línea inferior del marco, a 95 px del
    borde derecho.
 
-### EBEMA CLICK
-Sin marco y sin puntitos. Lockup Click centrado arriba (132 px de alto). Columna de
-texto con kicker + enunciado + bajada + botón `Regístrate Gratis`, ubicada **en la
-zona libre de la foto**, al lado de la persona — nunca encima.
+### EBEMA CLICK — medido sobre las 4 stories de Paulina (14-09-2026)
+
+Sin marco y sin puntitos. ⚠️ **No es «una columna al lado de la persona»** — eso
+decía este manual y era falso. Medido sobre `ebema_click_st1..st4.png` (agosto
+2026, 2250×4000), la composición es **centrada y en sándwich**: lockup arriba,
+titular, y el bloque de mensaje debajo. Medidas en px sobre 1080×1920:
+
+| Elemento | Medida | Constancia |
+|---|---|---|
+| **Lockup** `logo_click_2_blanco_acento.png` | tinta en **y 158,9–243,4**, x 355,2–724,8 (ancho 369,6) | idéntico en las 4 |
+| — su pastilla roja `CLICK` | y 159,4–201,1 · x 589,4–724,8 | idéntico en las 4 |
+| **Caja roja del titular** | alto 73–95,5 · **ancho 751–814** · centrada en x≈540 | la `y` cambia según dónde esté la zona libre de la foto |
+| **Botón** `Regístrate Gratis` | **494,4 × 73**, centrado (x 292,8–786,7) | idéntico en las 4 |
+| **Bajada** | 28 px / interlineado 1,22 · ancho ≈ 734 | st1, st2 |
+| **Legal al pie** | y 1478,9–1507,7, centrado | st1, st2 |
+
+Tres correcciones que este manual tenía mal:
+
+1. **La caja roja del titular envuelve SÓLO la 2ª línea.** Lo de «2ª línea completa
+   + mitad de la 1ª» es del esquema **sucursal**; en Click la caja no toca la 1ª
+   (en st1 quedan 15 px de aire entre una y otra).
+2. **El lockup de Click NO va pegado al borde superior.** Va a y≈159. La regla del
+   `top:0` es de la **caja blanca del logo EBEMA** (esquema sucursal), que es otro
+   elemento. En Click el lockup respira.
+3. **El botón de Click no usa el radio 6 del botón de sucursal** — es una cápsula
+   de radio amplio y lleva **filete blanco**.
+
+> 🔗 El lockup calza al **0,8 %** escalando `logo_click_2_blanco_acento.png` a
+> 404,9 px de ancho (escala 0,16196; la tinta arranca 27,9 px dentro del PNG).
+> Pieza de referencia ya calcada: `out/ebema/20260914_st19_click/`.
 
 ### SPC / cerámicas
 Sin marco. Caja de logo arriba-izquierda. Contenido **anclado bajo el logo** (no

@@ -1128,7 +1128,28 @@ export const ToGo1: React.FC = () => (
        sólo que tome el vaso MÁS ABAJO. Ahora hay 83 px limpios, el logotipo
        entra entero a 0,86 del ancho del vaso y queda centrado en su eje con 17
        y 16 px de aire. Ver `scripts/between-togo1-r15.py`. */
-    foto={F + 'togo-portada-r18.jpg'}
+    /* ⭐⭐⭐ RONDA 23 (14-09) — LA PORTADA DEJA DE SER GENERADA.
+       Scarlette: «acá hay que cambiar la portada a alguna de las que saco el
+       seba». `FEED!L15` prepended el mismo día: «Ver si podemos armar una foto
+       en la G1 conlas fotos sacadas por Seba».
+       La ronda 12 había dejado escrito que «la escena del brief NO EXISTE» —75
+       fotogramas de los 25 clips del cliente, ni un plano de alguien saliendo
+       con un vaso—, y por eso las rondas 12, 15, 16 y 18 la generaron. El
+       cliente mandó a grabar eso: el 09-09 Sebastián sacó 39 fotos y la escena
+       existe. Ver `scripts/between-togo1-r23.py`.
+       ⚠️ La portada PIERDE dos cosas del brief, informadas a Eli: no se le ve la
+          cara (las 18 tomas del bloque tienen la cabeza cortada) y no hay bolsa
+          To Go. */
+    foto={F + 'togo-portada-r23.jpg'}
+    /* ⭐⭐ RONDA 24 — LOS TEXTOS VUELVEN A COMO ESTABAN. Eli, sobre la r23:
+       «Quiero los textos de la portada como estaban antes, se va a ver bien. Si
+       necesitas algo puedes añadir una transparencia en opacidad o degradado».
+       O sea: fuera la caja taupe del bloque (r23) y de vuelta la gramática del
+       mes —script y titular en beige sobre la foto, la caja sólo en «PROMOS TO
+       GO»—. El problema que la caja resolvía es real y está medido (el tercio
+       inferior son pantalones crema, 1,16-1,48:1 con tinta beige), así que lo
+       resuelve el DEGRADADO, que es lo que ella autorizó. */
+    degradadoPie={0.72}  /* el borde inferior ya se aflojó en el propio degradado */
     script="¿Vas con poco tiempo?"
     /* ⭐⭐ RONDA 19 (07-09) — Eli: «los textos se ven corridos en la portada».
        Y no era el centrado: medido sobre el render, las cinco líneas caen a ±2 px
@@ -1202,7 +1223,33 @@ export const ToGo2: React.FC = () => (
        la comida y contraste local sobre el vaso para devolverle la tinta al
        logotipo impreso —sin re-estamparlo, que es lo que lo deformó en la
        ronda 5. */
-    foto={F + 'togo-s2-r20.jpg'}
+    /* ⭐⭐ RONDA 23 (14-09) — «se ven un poco OPACADAS las imagenes de las demás
+       slides a comparación de los demás materiales» (Scarlette, comentario
+       nativo del 14-09 10:29) + Eli: «añade un poco de color sutil… que se vea
+       con vida pero sutil».
+       Medido contra los materiales aprobados del mes: las tres estaban en
+       mediana 123,3 contra 91,7 y croma 18,4 contra 22,1 — o sea UN TERCIO MÁS
+       CLARAS y con 17 % menos de color, con el contraste ya correcto (1,03×).
+       «Opacadas» era estar LAVADAS, no plana de contraste.
+       ⛔ Y la trampa: realzar SUBE la calidez (29,2 → 33,9 con los parámetros
+          obvios), que es devolver el «filtro medio raro» del 31-08. Por eso
+          `calidez_max=8` en `scripts/between-togo-slides-r23.py`: es la
+          precompensación para aterrizar en la calidez de lo aprobado.
+       Resultado: mediana 101 · calidez 25,9 · croma 21,5 · 0,00 % de blanco. */
+    foto={F + 'togo-s2-r24.jpg'}
+    /* ⭐ RONDA 25 (14-09) — Eli: «para esos textos en todas slides de la 2 en
+       adelante crecer un poco y subir manteniendo espacios».
+       La bajada sube de 40 a 44 (+10 %) y el BLOQUE ENTERO sube de y=171 a
+       y=140, así que los aires internos NO se tocan —titular→bajada sigue en el
+       token de 24— y lo que cambia es dónde se apoya el conjunto.
+       ⚠️ `anchoBajada` va de la mano: con el cuerpo en 46 y el ancho por defecto
+       (820) las bajadas de las slides 2 y 3 SE PARTÍAN EN DOS LÍNEAS mientras la
+       4 —texto corto— seguía en una, y el carrusel perdía consistencia. Medido:
+       la bajada más larga mide 782 px a cuerpo 40, o sea 860 a cuerpo 44; con
+       880 entra en una línea y quedan 32 px hasta el margen. */
+    sizeBajada={44}
+    anchoBajada={880}
+    topBloque={140}
     /* ⭐⭐⭐ RONDA 20 (07-09) — Eli: «recuerda guiarte del brief de lo que pide
        visualmente, los textos armónicos y jerarquía».
        Y ahí había un error de fondo que esta pieza arrastraba desde el principio:
@@ -1277,7 +1324,33 @@ export const ToGo3: React.FC = () => (
        la comida y contraste local sobre el vaso para devolverle la tinta al
        logotipo impreso —sin re-estamparlo, que es lo que lo deformó en la
        ronda 5. */
-    foto={F + 'togo-s3-r21.jpg'}
+    /* ⭐⭐ RONDA 23 (14-09) — «se ven un poco OPACADAS las imagenes de las demás
+       slides a comparación de los demás materiales» (Scarlette, comentario
+       nativo del 14-09 10:29) + Eli: «añade un poco de color sutil… que se vea
+       con vida pero sutil».
+       Medido contra los materiales aprobados del mes: las tres estaban en
+       mediana 123,3 contra 91,7 y croma 18,4 contra 22,1 — o sea UN TERCIO MÁS
+       CLARAS y con 17 % menos de color, con el contraste ya correcto (1,03×).
+       «Opacadas» era estar LAVADAS, no plana de contraste.
+       ⛔ Y la trampa: realzar SUBE la calidez (29,2 → 33,9 con los parámetros
+          obvios), que es devolver el «filtro medio raro» del 31-08. Por eso
+          `calidez_max=8` en `scripts/between-togo-slides-r23.py`: es la
+          precompensación para aterrizar en la calidez de lo aprobado.
+       Resultado: mediana 101 · calidez 25,9 · croma 21,5 · 0,00 % de blanco. */
+    foto={F + 'togo-s3-r24.jpg'}
+    /* ⭐ RONDA 25 (14-09) — Eli: «para esos textos en todas slides de la 2 en
+       adelante crecer un poco y subir manteniendo espacios».
+       La bajada sube de 40 a 44 (+10 %) y el BLOQUE ENTERO sube de y=171 a
+       y=140, así que los aires internos NO se tocan —titular→bajada sigue en el
+       token de 24— y lo que cambia es dónde se apoya el conjunto.
+       ⚠️ `anchoBajada` va de la mano: con el cuerpo en 46 y el ancho por defecto
+       (820) las bajadas de las slides 2 y 3 SE PARTÍAN EN DOS LÍNEAS mientras la
+       4 —texto corto— seguía en una, y el carrusel perdía consistencia. Medido:
+       la bajada más larga mide 782 px a cuerpo 40, o sea 860 a cuerpo 44; con
+       880 entra en una línea y quedan 32 px hasta el margen. */
+    sizeBajada={44}
+    anchoBajada={880}
+    topBloque={140}
     /* ⭐⭐⭐ RONDA 20 — misma corrección de jerarquía que la slide 2: el brief
        pide titular «CAFÉ + DULCE», bajada «Ese gustito que mejora cualquier
        mañana.» y precio «Desde $3.790». Sin script, que es de la portada. */
@@ -1379,7 +1452,33 @@ export const ToGo4: React.FC = () => (
          editó SU imagen —no se generó de cero— para agregar el muffin y para
          bajar los productos a la mitad inferior, porque la mano y el asa
          llegaban al tercio superior y ahí va este titular. */
-    foto={F + 'togo-s4-r22.jpg'}
+    /* ⭐⭐ RONDA 23 (14-09) — «se ven un poco OPACADAS las imagenes de las demás
+       slides a comparación de los demás materiales» (Scarlette, comentario
+       nativo del 14-09 10:29) + Eli: «añade un poco de color sutil… que se vea
+       con vida pero sutil».
+       Medido contra los materiales aprobados del mes: las tres estaban en
+       mediana 123,3 contra 91,7 y croma 18,4 contra 22,1 — o sea UN TERCIO MÁS
+       CLARAS y con 17 % menos de color, con el contraste ya correcto (1,03×).
+       «Opacadas» era estar LAVADAS, no plana de contraste.
+       ⛔ Y la trampa: realzar SUBE la calidez (29,2 → 33,9 con los parámetros
+          obvios), que es devolver el «filtro medio raro» del 31-08. Por eso
+          `calidez_max=8` en `scripts/between-togo-slides-r23.py`: es la
+          precompensación para aterrizar en la calidez de lo aprobado.
+       Resultado: mediana 101 · calidez 25,9 · croma 21,5 · 0,00 % de blanco. */
+    foto={F + 'togo-s4-r24.jpg'}
+    /* ⭐ RONDA 25 (14-09) — Eli: «para esos textos en todas slides de la 2 en
+       adelante crecer un poco y subir manteniendo espacios».
+       La bajada sube de 40 a 44 (+10 %) y el BLOQUE ENTERO sube de y=171 a
+       y=140, así que los aires internos NO se tocan —titular→bajada sigue en el
+       token de 24— y lo que cambia es dónde se apoya el conjunto.
+       ⚠️ `anchoBajada` va de la mano: con el cuerpo en 46 y el ancho por defecto
+       (820) las bajadas de las slides 2 y 3 SE PARTÍAN EN DOS LÍNEAS mientras la
+       4 —texto corto— seguía en una, y el carrusel perdía consistencia. Medido:
+       la bajada más larga mide 782 px a cuerpo 40, o sea 860 a cuerpo 44; con
+       880 entra en una línea y quedan 32 px hasta el margen. */
+    sizeBajada={44}
+    anchoBajada={880}
+    topBloque={140}
     /* ⭐⭐⭐ RONDA 20 — el brief pone «¿POR QUÉ ELEGIR UNO?» como TITULAR y esta
        pieza lo tenía en la script, con «¡Llévate los 3!» de titular. Se invierte
        para que la slide de cierre siga la misma jerarquía que sus hermanas.

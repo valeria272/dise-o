@@ -1,3 +1,101 @@
+## 2026-09-14 · Eli (Windows) — BETWEEN: el carrusel To Go deja de ser generado, y aparece la sesión real del vaso
+
+**Qué se hizo.** Tres rondas sobre el **CARRUSEL PROMOS TO GO** (FEED columna L,
+**22 de septiembre** — ojo, ya no es el 14: la grilla lo movió con la nota
+«Intercambiemos fechas con el de cowork»). Eli las dio por **APROBADAS** y las
+cuatro piezas están subidas al Drive.
+
+**⭐⭐⭐ Lo más importante del día: llegó la sesión real del vaso To Go.** Sebastián
+subió el 14-09 a las 12:17Z **39 fotos** (iPhone 16 Pro, tomadas el 09-09 16:25),
+y Eli las pasó como «vasos TOGO actualizados y **aprobados por cliente**». Entraron
+a **MATERIAL DE MARCA** (`1hHcwg-Z-h9OuOhM0rkc-eotuzSMpUuq9`), o sea al banco
+permanente y NO a la carpeta del mes — por eso un `/al-dia` que sólo mire las
+carpetas del mes no las ve; aparecieron buscando por `owner` + `modifiedTime`.
+
+⭐⭐ **Y el hallazgo que ordena la cuenta: el vaso son TRES tamaños con siluetas
+distintas.** El chico es cónico y lleva **anillo blanco en la base**; el mediano y
+el grande son kraft hasta abajo, y el grande es alto y casi cilíndrico.
+⛔ **`togo-vaso-real-nobg.png` —la referencia que se usó todo septiembre— es el
+vaso CHICO.** Y en la ronda 2 de la ST del 28-09 se le pidió al generador «anillo
+blanco en la base» como detalle de realismo: para un vaso grande eso es **falso**.
+Todo escrito en `clients/hilton/CLAUDE.md § EL VASO TO GO — la sesión del 09-09`.
+
+**Las tres rondas, y las dos primeras las corrigió Eli:**
+
+| Ronda | Qué pidió | Cómo quedó |
+|---|---|---|
+| 23 | Scarlette (14-09 10:29): «cambiar la portada a alguna de las que saco el seba» + «se ven un poco opacadas las demás slides» | Portada = foto real de la entrada. Slides regradadas. **Titular en caja taupe** |
+| 24 | Eli: «los textos de la portada como estaban antes… puedes añadir un degradado» + «casi mejora, necesito más luz y un poco de color» | Fuera la caja, entra `degradadoPie`. Slides con más luz y color |
+| 25 | Eli: bajada «crecer un poco y subir», degradado del pie más suave, «los números se solapan» | Bajada 40→44, bloque 171→140, pie del degradado a 0,88, **caja tabular arreglada** |
+
+**⭐⭐⭐ ESTO CIERRA CUATRO RONDAS DE LA PORTADA.** La ronda 12 había dejado escrito
+que «la escena del brief NO EXISTE» —75 fotogramas de los 25 clips del cliente, ni
+un plano de alguien saliendo con un vaso— y por eso las rondas 12, 15, 16 y 18 la
+generaron. El cliente mandó a grabar eso: **ahora la portada es una fotografía
+real en la entrada del local**, que es el fondo que venía pidiendo desde la ronda 10.
+
+**⛔⛔ Un defecto de SISTEMA que Eli cazó mirando, y afecta a toda la marca.**
+`ANCHO_CIFRA_EM_POR_PESO` estaba en el **promedio** de los diez dígitos (0,600 em
+en ExtraBold) y el «0» mide **0,707**: la caja era 18 % más angosta que el glifo
+más ancho y los ceros se encaballaban. Una caja tabular sólo alinea si cabe el
+dígito más ancho. **Arreglado para cualquier pieza con horario o precio**, no sólo
+ésta. No confundirlo con el defecto del 08-09 (el tracking que no llega al
+`inline-block`): son dos cosas distintas.
+
+**⭐⭐ Y una lección de método que me costó una ronda.** Diagnostiqué «opacadas»
+como «lavadas» y bajé la mediana de 124 a 101 para pegarle al **promedio de lo
+aprobado del mes**. Era la métrica equivocada: ese promedio mezcla interiores
+oscuros (Cumple está en 70) con bodegones de luz natural. Faltaba **color**, no
+densidad. El grupo de comparación se elige por tipo de escena, no por promedio de
+la carpeta.
+
+**Dónde quedó.**
+
+- Piezas rendidas: `out/hilton-between-togo-r25/` (4 PNG, 2250×2812). QA 4/4 limpias.
+- Scripts: `between-togo-slides-r23.py`, `between-togo-slides-r24.py`,
+  `between-togo1-r23.py` — los tres leen de assets versionados.
+- Sistema: props nuevos `bloqueEnCaja` (queda, aunque esta pieza ya no lo use),
+  `degradadoPie`, `sizeBajada` y `anchoBajada` en `PiezaFeedBodegon`.
+- Material: 39 originales en `raw/hilton/between/vasos-togo-sep2026/` (gitignored)
+  y **8 tomas canónicas versionadas** en `public/assets/hilton/between/togo-sep2026/`.
+- Revisión que vio Eli: <https://claude.ai/code/artifact/27435cbe-1970-405c-8731-d275ba71e4be>
+- ⚠️ `out/hilton-between-r24/` **ya estaba ocupada** por el carrusel «Primero la
+  foto» del 07-09; por eso los renders de hoy van en `out/hilton-between-togo-r25/`.
+
+**⛔ La subida al Drive tuvo un tope, y va a repetirse.** Las cuatro piezas que
+estaban en **C1 S4** (`1vZZGvxfiGOIrf73znO39V4aASreumkfZ`) las había subido Eli a
+mano, y el token del estudio tiene scope **`drive.file`**: sólo alcanza lo que él
+mismo creó, así que reemplazar su contenido devolvió **404** en las cuatro. El
+conector MCP tampoco sirve (cambia el título, no el contenido).
+→ Con el visto de Eli: se **renombraron** las cuatro viejas a `v1 SUPERADA - …`
+(no se borraron) y se subieron las nuevas con el nombre del portal. Verificadas
+byte a byte. De paso la portada dejó de llamarse `BW-F-ToGo-1.png` —el nombre del
+render— y el mapa `NOMBRES` de `between-subir-drive.py` se corrigió de 14-09 a
+**22-09** y de «trio» a «los tres».
+
+**Qué sigue.**
+
+1. **Mirar si el cliente marca la columna L.** Sigue en `EN CAMBIOS`; se lee con
+   `export?format=csv&gid=1537718358` y se diffea contra
+   `clients/hilton/grillas/between-septiembre-2026-vivo/gid-1537718358.csv`.
+2. **Las columnas T y U de STORIES siguen en `OK PARA DISEÑAR`** desde el 11-09:
+   entregadas y sin visto del cliente. No es ronda nueva, es falta de marca.
+3. Cuando llegue la grilla de octubre, `/abrir between` y a producir.
+
+**Abierto.**
+
+- ⚠️ **La portada no muestra la cara y no tiene bolsa To Go.** El brief pide «café
+  y bolsa To Go en mano» y las 18 tomas de ese bloque tienen la cabeza cortada por
+  el encuadre. Eli dijo «la imagen okey», así que va — pero si el cliente lo
+  levanta, la portada vuelve a necesitar imagen generada.
+- ⚠️ **Los 4 archivos nuevos del Drive quedaron a nombre de `valeria@copywriters.cl`**
+  (la cuenta del token), no de Eli. Para borrarlos hace falta esa cuenta.
+- ⚠️ **Decisión de fondo pendiente:** o las entregas de Between se suben SIEMPRE
+  con el script, o el token del estudio pasa a scope `drive` completo. Si no, este
+  404 reaparece cada vez que haya que corregir una pieza subida a mano.
+- Sigue pendiente de antes: pedirle al cliente **una foto real de alguien
+  trabajando en el cowork**, que es lo único que aún obliga a generar una escena.
+
 ## 2026-09-11 (RONDA 3) · Eli (Windows) — BETWEEN S5: la animada aprobada, y el detalle del vaso
 
 **La historia 2 (30-09, animada) quedó APROBADA** y no se tocó. En la 1 (28-09)

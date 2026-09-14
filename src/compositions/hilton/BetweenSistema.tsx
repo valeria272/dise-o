@@ -99,14 +99,6 @@ const sombraSobreFoto = '0 2px 14px rgba(36,26,18,0.45)';
  * em a cada lado de su caja — invisible, porque los glifos ya traen su propio
  * espacio lateral— y los angostos dejan de abrir hueco.
  */
-export const ANCHO_CIFRA_EM_POR_PESO: Record<number, number> = {
-  /** Raleway-Medium (500): 690·441·590·585·577·558·606·534·598·606 → 578,5 */
-  500: 0.579,
-  /** Raleway-SemiBold (600): 695·465·599·585·581·563·607·548·601·606 → 585,0 */
-  600: 0.585,
-  /** Raleway-ExtraBold (800): 707·518·619·586·591·575·608·579·607·607 → 599,7 */
-  800: 0.600,
-};
 
 /**
  * ⭐⭐⭐ CIFRAS DE CAJA ALTA — la mitad que faltaba, 03-09-2026.
@@ -150,6 +142,36 @@ export const ANCHOS_DIGITO_POR_PESO: Record<number, number[]> = {
   500: [.690, .441, .590, .585, .577, .558, .606, .534, .598, .606],
   600: [.695, .465, .599, .585, .581, .563, .607, .548, .601, .606],
   800: [.707, .518, .619, .586, .591, .575, .608, .579, .607, .607],
+};
+
+/**
+ * ⛔⛔ LA CAJA TABULAR ES EL DÍGITO MÁS ANCHO, NO EL PROMEDIO. Corregido el
+ * 14-09-2026 con un defecto que Eli cazó mirando: «los numeros y letras se están
+ * acercando mucho se solapan».
+ *
+ * Estaba puesta en el PROMEDIO de los diez dígitos (ExtraBold: 599,7 → 0,600) y
+ * el «0» de ExtraBold mide **707**. O sea que la caja era un 18 % más angosta
+ * que el glifo más ancho, y `sobra = (caja − real) / 2` salía NEGATIVA: el cero
+ * se desbordaba 53 milésimas de em por cada lado. En «08:00 A 10:00 HRS.», que
+ * son puros ceros, cada uno se comía el aire del siguiente y se tocaban.
+ *
+ * El promedio no puede funcionar por definición: una caja tabular sólo alinea si
+ * cabe el dígito más ancho. Ahora se calcula como el MÁXIMO de la fila medida,
+ * así que no puede volver a desajustarse si alguien re-mide la fuente.
+ *
+ * ⚠️ Ensancha las tiradas de cifras (~0,107 em por dígito en ExtraBold). En una
+ * línea larga puede sangrar el ancho disponible: `between-qa.py` lo marca y se
+ * baja el cuerpo. Verificado sobre las cuatro piezas del carrusel To Go.
+ */
+const _maxFila = (peso: number) => Math.max(...ANCHOS_DIGITO_POR_PESO[peso]);
+
+export const ANCHO_CIFRA_EM_POR_PESO: Record<number, number> = {
+  /** Raleway-Medium (500): el más ancho es el «0» con 690. */
+  500: _maxFila(500),
+  /** Raleway-SemiBold (600): el más ancho es el «0» con 695. */
+  600: _maxFila(600),
+  /** Raleway-ExtraBold (800): el más ancho es el «0» con 707. */
+  800: _maxFila(800),
 };
 
 /** Por defecto, el peso de los datos y precios de la marca (ExtraBold). */
@@ -1531,6 +1553,14 @@ export const PiezaFeedBodegon: React.FC<{
   bajada?: React.ReactNode;
   /** Interlínea de la caja de bajada, para apretar un texto de dos líneas. */
   interlineaBajada?: number;
+  /** Cuerpo de la bajada, cuando la jerarquía de la pieza pide otro. */
+  sizeBajada?: number;
+  /**
+   * Ancho máximo de la bajada. El defecto de `Bajada` son 820 px, y al subir el
+   * cuerpo un texto que antes entraba en una línea se parte en dos. Se abre sólo
+   * lo necesario — nunca más allá del margen (912).
+   */
+  anchoBajada?: number;
   /**
    * Ancho de la columna del TITULAR. Por defecto el margen (912), para no
    * mover lo ya aprobado; las piezas que se cortan hoy pasan
@@ -1562,8 +1592,53 @@ export const PiezaFeedBodegon: React.FC<{
    * Si hace falta subirlo por encima de ~0,18 el problema es el encuadre.
    */
   velo?: number;
+  /**
+   * ⭐⭐ DEGRADADO AL PIE — autorizado por Eli el 14-09-2026, sobre la portada
+   * del carrusel To Go: «Quiero los textos de la portada como estaban antes, se
+   * va a ver bien. Si necesitas algo puedes añadir una transparencia en opacidad
+   * o degradado».
+   *
+   * Es una rampa del color sombra de la marca, opaca abajo y transparente hacia
+   * arriba. NO es `oscurecer` —que apaga la foto entera y el manual prohíbe para
+   * ganar legibilidad— ni `velo` —que es plano y va a pantalla completa—: acá el
+   * cielo de la foto queda intacto y sólo se asienta el pie, que es donde cae el
+   * bloque de texto.
+   *
+   * El número es la opacidad en el BORDE INFERIOR. La rampa arranca a media
+   * altura y sube con una parada intermedia, para que no se vea el canto del
+   * degradado. Se elige MIDIENDO el contraste de la tinta beige sobre la franja
+   * del bloque, no a ojo.
+   */
+  degradadoPie?: number;
   /** La bajada va DENTRO de una caja taupe, para cuando la foto no la deja leer. */
   bajadaEnCaja?: boolean;
+  /**
+   * ⭐⭐ EL TITULAR va dentro de la caja taupe. Añadido el 14-09-2026 para la
+   * portada del carrusel To Go (FEED col L, 22-sep).
+   *
+   * Es la regla del manual —«cuando un texto no se lee, la solución es la caja
+   * taupe, no oscurecer la foto»— aplicada al TITULAR y no sólo a la bajada.
+   * La ocasión: la portada pasó a una FOTOGRAFÍA REAL de la entrada del local
+   * (sesión de Sebastián, 09-09) y ahí el tercio inferior son pantalones color
+   * crema. MEDIDO sobre las 18 tomas del bloque y en tres posiciones distintas
+   * del bloque: la tinta beige da entre 1,16 y 1,48:1 y la marca pide 3:1 para
+   * el titular. No hay encuadre que lo arregle —ninguna de las 18 llega— y el
+   * velo tendría que subir a ~0,56, muy por encima del tope de 0,18 que fija el
+   * propio manual («si hace falta subirlo por encima de ~0,18 el problema es el
+   * encuadre»). La caja resuelve con 6,31:1 y NO depende de la foto.
+   *
+   * ⚠️ El texto de adentro se compone sobre `columna − 2 × cajas.padX`: así la
+   * CAJA mide la columna y el titular no se come el margen.
+   *
+   * ⛔ Y va TODO el bloque adentro, no sólo el titular. Primer intento: la caja
+   *    envolvía sólo al titular y «PROMOS TO GO» + el horario quedaban fuera,
+   *    en beige sobre los mismos pantalones crema — o sea el problema se mudaba
+   *    dos líneas más abajo. Meter cada línea en su propia caja tampoco: tres
+   *    bandas taupe apiladas son el «muro» que el manual prohíbe. Una sola caja
+   *    para el bloque resuelve el contraste de todo y se lee como un bloque.
+   *    Por eso `PilaDatos` va aquí SIEMPRE sin fondo: la caja ya es el énfasis.
+   */
+  bloqueEnCaja?: boolean;
   datos?: React.ReactNode[];
   /**
    * Índices de `datos` que van SIN la caja taupe. Ver `CajaDato.sinFondo`:
@@ -1610,12 +1685,16 @@ export const PiezaFeedBodegon: React.FC<{
   bajada,
   bajadaEnCaja,
   interlineaBajada,
+  sizeBajada,
+  anchoBajada,
   columna = 1080 - 2 * BETWEEN.bloque.margenX,
   columnaCaja,
   aireTituloACaja = BETWEEN.aire.tituloACaja,
   velo,
   datos,
   datosSinFondo,
+  bloqueEnCaja,
+  degradadoPie,
   arco,
   pie,
   legal,
@@ -1649,6 +1728,28 @@ export const PiezaFeedBodegon: React.FC<{
         mixBlendMode: 'multiply',
       }} />
     ) : null}
+    {degradadoPie ? (
+      <AbsoluteFill style={{
+        /* ⭐ La rampa NO es lineal, y por eso son cuatro paradas. Con un
+           degradado lineal la opacidad sube demasiado lento justo donde arranca
+           el bloque: medido sobre la portada To Go, la script quedaba en 2,19:1
+           con la tinta beige (la marca pide 3:1) porque a esa altura el lineal
+           sólo había llegado al 24 % de su opacidad. Estas paradas la llevan al
+           59 % a media altura del bloque y dejan el tercio superior de la foto
+           SIN TOCAR, que es la diferencia con `oscurecer`. */
+        background:
+          `linear-gradient(to top,` +
+          /* ⭐ RONDA 25 — Eli: «bájale solo un poco al degradado abajo… muy
+             sutil». Se afloja SÓLO el borde inferior (de opaco a 0,88) y las
+             paradas de en medio quedan igual: así el pie deja de leerse como
+             una banda maciza y el contraste donde cae el bloque no se mueve. */
+          ` ${BETWEEN.colores.sombra}e0 0%,` +
+          ` ${BETWEEN.colores.sombra}d1 35%,` +
+          ` ${BETWEEN.colores.sombra}59 60%,` +
+          ` ${BETWEEN.colores.sombra}00 82%)`,
+        opacity: degradadoPie,
+      }} />
+    ) : null}
     {conLogo ? <LogoBetween formato="feed" posicion={posLogo} tono={logoTono} sombra={logoSombra} /> : null}
     <AbsoluteFill>
       <div
@@ -1668,19 +1769,55 @@ export const PiezaFeedBodegon: React.FC<{
           alignItems: alinear === 'centro' ? 'center' : 'flex-start',
         }}
       >
-        <TitularBetween
-          caps={caps} script={script} scriptSans={scriptSans}
-          sizeCaps={sizeCaps} sizeScript={sizeScript}
-          aireScriptATitulo={aireScriptATitulo}
-          alinear={alinear} anchoDisponible={columna}
-          mantenerPunto={mantenerPunto}
-        />
-        {bajada && bajadaEnCaja ? (
-          <PanelTaupe ancho={columnaCaja ?? columna} interlinea={interlineaBajada} style={{marginTop: aireTituloACaja}}>{bajada}</PanelTaupe>
-        ) : bajada ? (
-          <Bajada style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: alinear === 'centro' ? 'center' : 'left'}}>{bajada}</Bajada>
-        ) : null}
-        {datos?.length ? <PilaDatos datos={datos} sinFondo={datosSinFondo} style={{marginTop: BETWEEN.aire.tituloACaja}} /> : null}
+        {(() => {
+          const anchoCaja = columna ?? 1080 - 2 * BETWEEN.bloque.margenX;
+          const contenido = (
+            <>
+              <TitularBetween
+                caps={caps} script={script} scriptSans={scriptSans}
+                sizeCaps={sizeCaps} sizeScript={sizeScript}
+                aireScriptATitulo={aireScriptATitulo}
+                alinear={alinear}
+                anchoDisponible={bloqueEnCaja ? anchoCaja - 2 * BETWEEN.cajas.padX : columna}
+                mantenerPunto={mantenerPunto}
+              />
+              {bajada && bajadaEnCaja && !bloqueEnCaja ? (
+                <PanelTaupe ancho={columnaCaja ?? columna} interlinea={interlineaBajada} style={{marginTop: aireTituloACaja}}>{bajada}</PanelTaupe>
+              ) : bajada ? (
+                <Bajada size={sizeBajada} style={{marginTop: BETWEEN.aire.tituloABajada, maxWidth: anchoBajada, textAlign: alinear === 'centro' ? 'center' : 'left'}}>{bajada}</Bajada>
+              ) : null}
+              {datos?.length ? (
+                <PilaDatos
+                  datos={datos}
+                  /* dentro de la caja, la caja YA es el énfasis: ningún dato repite banda */
+                  sinFondo={bloqueEnCaja ? datos.map((_, i) => i) : datosSinFondo}
+                  style={{marginTop: BETWEEN.aire.tituloACaja}}
+                />
+              ) : null}
+            </>
+          );
+          return bloqueEnCaja ? (
+            <div
+              style={{
+                /* ⛔ `width` explícito, no `maxWidth`: `TitularBetween` se
+                   dimensiona con `width: '100%'`, así que dentro de una caja
+                   shrink-to-fit colapsa a una banda de ~80 px. Con `border-box`
+                   el contenido mide `anchoCaja − 2 × padX`, que es justo el
+                   `anchoDisponible` que recibe el titular. */
+                width: anchoCaja,
+                boxSizing: 'border-box',
+                padding: `${Math.round(BETWEEN.cajas.alto * 0.28)}px ${BETWEEN.cajas.padX}px`,
+                backgroundColor: BETWEEN.cajas.fondo,
+                borderRadius: BETWEEN.cajas.radio,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: alinear === 'centro' ? 'center' : 'flex-start',
+              }}
+            >
+              {contenido}
+            </div>
+          ) : contenido;
+        })()}
       </div>
     </AbsoluteFill>
     {children}

@@ -1121,7 +1121,76 @@ Son la vara. El resto de `ref-piezas/` sirve de contexto, no de norma.
 8. **Si el vaso de la foto ya trae el logotipo, la pieza NO sobrepone el lockup.**
    Se lee dos veces la misma marca y se ve mal. Ver la sección ⛔ 2 más abajo.
 
+## ⭐⭐ EL VASO TO GO — la sesión del 09-09-2026 es LA referencia
+
+> **Eli, 14-09-2026:** «te dejo una nueva sesión de fotos de Between para vasos
+> TOGO **actualizados y aprobados por cliente**».
+
+**39 fotos, iPhone 16 Pro, 09-09-2026 16:25 hrs, todas verticales 3:4**
+(35 de 3024×4032 y 4 de 4284×5712). Originales en
+`raw/hilton/between/vasos-togo-sep2026/` (con `jpg/` ya convertido desde HEIC);
+las ocho tomas canónicas, versionadas, en
+`public/assets/hilton/between/togo-sep2026/`.
+Drive: `1hHcwg-Z-h9OuOhM0rkc-eotuzSMpUuq9`, dentro de **MATERIAL DE MARCA** —
+o sea entra al banco permanente, no a la carpeta de un mes.
+
+**Esta sesión desplaza a `togo-vaso-real-nobg.png` como referencia del vaso**
+(regla: lo aprobado entra al set de referencias y desplaza al material que lo
+originó). El recorte de julio-2025 no está mal — está **incompleto**, y por qué
+importa va abajo.
+
+### ⭐⭐ SON TRES TAMAÑOS, Y NO TIENEN LA MISMA SILUETA
+
+Es el hallazgo de la sesión, y explica un error que ya se cometió:
+
+| | Chico | Mediano | **Grande** |
+|---|---|---|---|
+| Silueta | **cónica, achaparrada** | intermedia | **alta, casi cilíndrica** |
+| Base | **anillo BLANCO visible** | kraft hasta abajo | **kraft hasta abajo** |
+| Logotipo | ocupa casi todo el frente | proporcional | proporcionalmente **más chico y más arriba** |
+
+Verificado con zoom sobre `togo-tres-tamanos.jpg` (IMG_4157) y su alternativa
+IMG_4151, que traen los tres juntos sobre la misma mesa.
+
+> ⛔ **`togo-vaso-real-nobg.png` es el vaso CHICO.** Durante todo septiembre se
+> usó como «el vaso Between» a secas. Cualquier pieza que pida un café grande
+> —y las promos To Go hablan de eso— venía calcando una silueta achaparrada que
+> no corresponde.
+
+> ⛔ **El anillo blanco de la base es EXCLUSIVO del chico.** En la ronda 2 de la
+> ST del 28-09 se le pidió al generador «anillo blanco en la base» como uno de
+> los seis detalles de realismo del cartón. Para un vaso grande eso es **falso**:
+> le estábamos pidiendo que se pareciera al chico.
+
+### Lo que trae la sesión, por bloque
+
+| Fotos | Qué es | Para qué sirve |
+|---|---|---|
+| `IMG_4149`–`4150` | packshot del **grande**, frontal, mesa de listones, sol duro | la referencia del vaso; logotipo entero y legible |
+| `IMG_4151`–`4157` | **los tres tamaños** alineados en la terraza | comparar siluetas; pieza de «tenemos tres tamaños» |
+| `IMG_4145`–`4148` | vaso en mano sobre la mesa de listones, hombre desenfocado | bodegón con presencia humana |
+| `IMG_4142`–`4144` | vaso sobre mesa oscura con el **tótem BETWEEN + QR** | contexto de local, interior |
+| `IMG_4137`–`4141` | **bebiendo** — sólo boca y nariz, sin rostro identificable | resuelve el asunto de los rostros |
+| `IMG_4158`–`4175` | hombre de pie en la **entrada del local** (vidrio con el logotipo detrás), camisa azul, chaqueta al hombro, **cabeza cortada por el encuadre** | lifestyle «saliendo con el café» |
+
+⚠️ **En las 18 del bloque de la entrada el logotipo del vaso queda chico y casi
+siempre parcialmente tapado por la mano.** Si la pieza necesita el logotipo
+legible, la toma es del bloque del packshot, no de ése.
+
+### La consecuencia práctica
+
+**El vaso To Go ya no se genera ni se estampa para tomas frontales: se usa la
+foto.** `scripts/between-logo-vaso.py` y `scripts/between-s5-logo-vaso.py`
+quedan sólo para el caso en que haya que envolver el logotipo sobre un cilindro
+que no viene de esta sesión.
+
+---
+
 ## ⛔ EL VASO TO GO: hay DOS y el banco de fotos tiene el viejo
+
+> 🗄️ Lo de abajo sigue valiendo **para el banco de fotos anterior**: separa el
+> vaso viejo (faja de papel) del vigente (kraft impreso). Lo que cambió el
+> 14-09 es que el vigente resultó ser **una familia de tres**, no un vaso.
 
 Detectado por Elisabet el 28-08-2026 («el vaso to go es el antiguo»).
 
@@ -1160,6 +1229,80 @@ entero y cortar el plato, que es lo que hace la referencia aprobada «El Match»
 
 > **Regla:** antes de usar una foto con vaso To Go, comparar el vaso contra
 > `togo-vaso-nobg.png`. Si tiene faja de papel, es el viejo: no va.
+
+## ⛔⛔ LA CAJA TABULAR DE LAS CIFRAS ERA EL PROMEDIO — y por eso se solapaban
+
+Detectado por Eli el 14-09-2026 sobre la portada del carrusel To Go, mirando:
+«los numeros y letras se están acercando mucho **se solapan**, sepáralas un poco
+para mejorar legibilidad».
+
+**Era aritmético, y afecta a TODA pieza de la marca con horario o precio.**
+`ANCHO_CIFRA_EM_POR_PESO` estaba puesto en el **promedio** de los diez dígitos
+(ExtraBold: 599,7 → 0,600 em) y el «0» de ExtraBold mide **0,707 em**. O sea que
+la caja era un 18 % más angosta que el glifo más ancho, y la compensación
+`sobra = (caja − real) / 2` salía **negativa**: cada cero se desbordaba 53
+milésimas de em por lado. En «08:00 A 10:00 HRS.», que son puros ceros, cada uno
+se comía el aire del siguiente y se tocaban.
+
+> **La regla: una caja tabular sólo alinea si CABE EL DÍGITO MÁS ANCHO.** El
+> promedio no puede funcionar por definición. Ahora se calcula como el máximo de
+> la fila medida (`_maxFila`), así que no vuelve a desajustarse si alguien
+> re-mide la fuente.
+
+⚠️ Ensancha las tiradas de cifras ~0,107 em por dígito en ExtraBold. En una línea
+larga puede sangrar el ancho disponible: `between-qa.py` lo marca y se baja el
+cuerpo. Verificado sobre las cuatro piezas del carrusel To Go.
+
+⛔ **No confundirlo con el defecto del 08-09** (el tracking que no llega a un
+`inline-block`). Ése se arregló replicando el `letter-spacing` como `marginRight`
+dentro de la caja; éste es la caja en sí, mal dimensionada. Son dos cosas.
+
+## ⭐ EL DEGRADADO AL PIE — la tercera vía entre `oscurecer` y `velo`
+
+Autorizado por Eli el 14-09-2026 sobre la portada del To Go: «Quiero los textos
+de la portada como estaban antes… Si necesitas algo puedes añadir una
+transparencia en opacidad o degradado».
+
+`degradadoPie` en `PiezaFeedBodegon` es una rampa del color sombra, opaca abajo y
+transparente hacia arriba. **No es `oscurecer`** —que apaga la foto entera y el
+manual prohíbe para ganar legibilidad— **ni `velo`** —plano y a pantalla
+completa—: el tercio superior de la foto queda intacto y sólo se asienta el pie.
+
+⚠️ **La rampa NO es lineal, y eso es lo que la hace funcionar.** Con un degradado
+lineal la opacidad sube demasiado lento justo donde arranca el bloque: medido, la
+script quedaba en 2,19:1 con tinta beige (la marca pide 3:1) porque a esa altura
+el lineal sólo había llegado al 24 % de su opacidad. Con cuatro paradas
+(100 % · 82 % · 35 % · 0 desde abajo) la script sube a **4,33:1** y el resto del
+bloque queda entre 6,0 y 7,1:1.
+
+> **Y el número se elige MIDIENDO**, no a ojo: contraste de la tinta beige contra
+> el percentil 75 del peor tercio de la franja donde cae cada línea.
+
+## ⭐⭐ «OPACADA» NO ES LO MISMO QUE «DENSA» — y perseguí la métrica equivocada
+
+Ronda 23→24 del carrusel To Go (14-09). El cliente dijo que las slides se veían
+«un poco **opacadas** a comparación de los demás materiales». Lo diagnostiqué
+midiendo contra el **promedio de lo aprobado del mes** y bajé la mediana de 124 a
+101. Eli lo devolvió: «casi mejora, necesito una mejora **más de luz** y un poco
+de color».
+
+⛔ **El promedio del mes era el objetivo equivocado**: mezcla piezas de interior
+oscuro (Cumple está en mediana 70) con bodegones de luz natural sobre madera
+clara. Lo que faltaba era **color**, no densidad.
+
+    versión              mediana   calidez   croma
+    original               124,0      29,2     18,4
+    ronda 23 (rechazada)   100,7      25,8     21,5   <- densificada de más
+    ronda 24 (aprobada)    110,0      26,4     24,1
+
+> **La regla: antes de igualar una pieza «al resto del mes», mira contra QUÉ
+> piezas la estás igualando.** El grupo de comparación se elige por tipo de
+> escena —bodegón de luz natural con bodegón—, no por promedio de la carpeta.
+
+⚠️ Y en las dos rondas apareció la misma trampa: **realzar sube la calidez**
+(29,2 → 33,9 con los parámetros obvios), que es devolver el «filtro medio raro»
+del 31-08. Los dos scripts precompensan con `calidez_max` para aterrizar en la
+calidez de lo aprobado. Ver `scripts/between-togo-slides-r24.py`.
 
 ## ⚠️ Gradación: la comida clara se grada con mano SUAVE
 

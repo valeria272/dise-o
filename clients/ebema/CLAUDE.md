@@ -7,7 +7,8 @@
 > — **es de la agencia**, no del cliente (confirmado 25-08-2026). También lleva MyZoo.
 > Su criterio gráfico manda: es quien definió el sistema y quien corrige las rondas.
 > Los archivos originales y los editables se le piden **a ella, directo**.
-> **Kit en código:** `src/brand/ebema.ts` · **Sistema de producción:** `clients/ebema/sistema/`
+> **Kit en código:** `src/brand/ebema.ts`
+> **Sistema de producción PAID:** `clients/ebema/sistema/` · **GRILLA:** `clients/ebema/sistema-grilla/`
 > **Ficha máquina:** `clients/ebema/marca.json` · **Qué falta pedir:** `CHECKLIST-CLIENTE.md`
 > **Contexto comercial y cuentas de pauta:** `COPYLAB PROJECTS/EBEMA/` (otro proyecto)
 
@@ -414,6 +415,62 @@ sistema de grilla, y ahí van la URL y el llamado.
 > `Regístrate Gratis` para Click, `¡Cotiza por whatsapp / en el link de la bio!`
 > cuando la pieza cierra en venta. **Verbatim del brief, siempre.**
 
+### El REEL de grilla — medido sobre los 5 de septiembre
+
+`reel_VH · reel_cmpc · reel_polpaico · reel_cat_sept · reel_click_sept`.
+Entregados en **2160×3840** (4K vertical, 9:16), 30 fps (uno a 60), con audio AAC
+44,1 kHz estéreo. Duración **17,7–21,2 s** (media 19,2).
+
+#### El marco permanente — plantilla dura, idéntica en 4 de 5
+
+Dos bandas rojas **en diagonal**, presentes todo el cuerpo del reel:
+
+| Elemento | Medida (px sobre 1080×1920) |
+|---|---|
+| **Banda roja superior** | y **0–226** (alto **226**) · x **0–899** (ancho **899**) — pegada arriba-izquierda |
+| **Cápsula blanca con el logo EBEMA**, dentro de la banda | y 0–226 · x **716–938** (ancho **222**) |
+| **Banda roja inferior** | y **1693–1920** (alto **227**) · x **530–1080** (ancho **550**) — pegada abajo-derecha |
+
+> `reel_click_sept` es la excepción y confirma la regla de las familias: **las piezas
+> de Ebema Click no llevan bandas**, llevan el lockup Click. Las bandas acompañan a
+> la firma EBEMA (familia A y la variante C2 del catálogo).
+
+#### El arco temporal — igual en los cinco
+
+| Tramo | Cuándo | Qué pasa |
+|---|---|---|
+| **T1 · contexto** | 0 – ~2 s | plano del problema, **sin texto**. Sólo el marco |
+| **T2 · entrada** | ~2 s | entra el **logo del proveedor** (cmpc, Polpaico, VH) y el titular con caja roja |
+| **T3 · cuerpo** | ~4 – 14 s | 3–4 bloques de texto, **una caja roja cada uno** + bajada debajo |
+| **T4 · cierre** | **al 71–79 % de la duración** | **corte duro**, dura **4,0–5,5 s** |
+
+**Hay un solo corte duro en todo el reel, y es el del cierre.** Medido en los cinco:
+14,0 / 15,2 / 13,5 / 16,2 / 14,8 s. Dentro del cuerpo no hay cortes: la imagen avanza
+con movimiento continuo. Si un reel nuevo trae cortes rápidos en el cuerpo, está
+fuera del sistema.
+
+#### El cierre — sobre BLANCO, plantilla dura
+
+Fondo **blanco puro** (medido 255,255,255). No es la foto desenfocada del carrusel.
+
+| Elemento | Medida |
+|---|---|
+| Banda roja superior | **se acorta a x 0–528** (ancho 528, contra 899 en el cuerpo) |
+| Banda roja inferior | **idéntica al cuerpo**: y 1693–1920, x 530–1080 |
+| **Anillo rojo EBEMA** | **331 × 340**, cx 545,2 |
+| **Botón «Cotiza directo por WhatsApp»** | **736 × 66**, x 175–911, cx 542,8 |
+| Bajada `<Producto>, disponible en Ebema` | sobre el botón |
+
+El cierre **entra con fundido**, no de golpe: a 1–2 s del corte los elementos aún
+están a media opacidad.
+
+Variantes medidas: en `cat_sept` el anillo va arriba y el botón abajo (ancho 590);
+en `click_sept` el anillo crece a **404 × 415** y el CTA es texto, sin botón.
+
+#### Tipografía del cuerpo
+Altura de tinta del titular **≈ 35–36**; bajada **≈ 28–31**. Consistente en VH, CMPC
+y Click.
+
 ### Cómo se traduce «cercano, instructivo y comercial»
 
 Ahora tiene respaldo medido:
@@ -427,10 +484,9 @@ Ahora tiene respaldo medido:
   aterriza en **«¡Cotiza por whatsapp» / en el link de la bio!**.
 
 ### Lo que todavía falta
-- **Los 5 reels** de grilla, sin medir (`grilla/video/`): ritmo, cortes, entrada del
-  texto y cierre. De ahí sale la gramática de motion, que §7 no tiene para grilla.
-- El **carrusel de la familia C** (`cat2_click_sucursales` sugiere que existe) y si
-  las familias B y C tienen arco de carrusel propio o sólo piezas sueltas.
+- Confirmar si las familias **B (servicio)** y **C (plataformas)** tienen arco de
+  carrusel propio, o sólo piezas sueltas. Hoy sólo hay carruseles de familia A.
+- La **música** de los reels: se midió la imagen, no la pista.
 
 ---
 
@@ -563,6 +619,8 @@ consumidor final. Español de Chile, tuteo.
 | Fotos por sucursal | `EBEMA/inputs/fotos_sucursales/` · Drive `EQUIPO DISEÑO/ACTUAL Cont. Audiovisual` |
 | Cierres oficiales de video | `EBEMA/inputs/cierres_paulina/` · `public/assets/ebema/cierres/` |
 | Assets de composiciones | `public/assets/ebema/` |
+| **Sistema de producción de GRILLA** | `clients/ebema/sistema-grilla/` — CSS medido, generador de carrusel y render |
+| Referencias de grilla medidas | `raw/ebema/1-referencias/grilla/` |
 | Grilla Performance (brief) | Sheet `1zHFfSsXCwo25ID2RylsVCB7daxTXIdvGXWkjCpdkUjI` |
 | Briefs WhatsApp ARIEL | hoja `Briefs wsp <mes> ARIEL` del mismo Sheet |
 | Drive de entrega | `PERFORMANCE/2026/<N>. <Mes>/graficas <mes> 26/` |

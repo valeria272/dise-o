@@ -278,6 +278,8 @@
       "click": "MEDIDA",
       "spc": "MEDIDA. Ofertas puntuales que pide el cliente, no permanente. NO existe en grilla."
     },
-    "_ancla_marca_grilla": "Capsula blanca pegada al borde izquierdo (x=0), alto 155.5, con la pastilla roja del logo en x71.0-189.6 (ancho 118.1, alto 121.9). Identica en 7 piezas. En la familia SERVICIO el logo va centrado arriba (x462.7-620.2, ancho 157.4)."
-  }
+    "_ancla_marca_grilla": "Capsula blanca pegada al borde izquierdo (x=0), alto 155.5, con la pastilla roja del logo en x71.0-189.6 (ancho 118.1, alto 121.9). Identica en 7 piezas. En la familia SERVICIO el logo va centrado arriba (x462.7-620.2, ancho 157.4).",
+    "_reel": "2160x3840, 30fps, 17-21s. Marco de 2 bandas rojas en diagonal, UN solo corte duro al 71-79% y cierre sobre BLANCO de 4-5,5s. Medido en 5 reels, seccion 4-bis."
+  },
+  "sistema_grilla": "clients/ebema/sistema-grilla/"
 }

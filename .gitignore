@@ -111,6 +111,9 @@ public/assets/**
 # Los originales se rebajan del Drive por el conector MCP — ojo, corta en 10 MB.
 !public/assets/hilton/piso18/*.jpg
 !public/assets/hilton/piso18/*.png
+# Y el clip del salon vacio (8 MB): sale de IMG_4177.MOV, que pesa 115 MB y vive
+# en el Drive de videos organicos. Sin el, la ST animada no rinde.
+!public/assets/hilton/piso18/*.mp4
 
 # Landera: el logo. Los 10 bloqueos extraídos del PDF del cliente y el kit
 # completo (40 piezas × PDF/SVG/PNG) reconstruido con la paleta aprobada. Sin

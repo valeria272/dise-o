@@ -72,9 +72,25 @@
  * ⚠️ **El botón de cotización es obligatorio** en historias (dictado de Eli).
  * ⚠️ **La interacción NO se dibuja**: el sticker de link lo pone el CM.
  *
- * ⚠️ Zonas seguras de Instagram, que Eli pidió respetar: el titular vive entre
- * y=760 y y=1010, la bajada en y=1302 y el botón termina en y=1516 — 64 px por
- * encima de los 340 que Instagram se come abajo.
+ * ⚠️ Zonas seguras de Instagram, que Eli pidió respetar: el titular arranca en
+ * y=640, la bajada cae en y=1328 y el botón termina en y=1532 — por encima de los
+ * 340 px que Instagram se come abajo.
+ *
+ * ══════════════════════════════════════════════════════════════════════════
+ * ⭐ RONDA 3 — tres correcciones de Eli sobre el titular
+ * ══════════════════════════════════════════════════════════════════════════
+ * *«El texto principal se ve muy pequeño y no me gusta que hagas esa sombra
+ * paralela, se ve muy notoria. Trata de que sea la más sutil, no tiene que
+ * destacarse tanto. Y súbela un poquito porque está muy al centro y tiene que
+ * estar más arriba.»*
+ *
+ *   · **Cuerpo:** 74/92/74 → **86/108/86**. Casi un 17 % más.
+ *   · **Sombra:** eran DOS sombras apiladas (`0 3px 18px` al 62 % + `0 8px 44px`
+ *     al 42 %) y a ese tamaño se leían como un relieve. Ahora es **una sola,
+ *     difusa y al 38 %** — sostiene el contraste sin dibujarse.
+ *   · **Posición:** el bloque sube 120 px. Para compensar que arriba el cielo es
+ *     más claro, el velo superior se extiende del 44 % al 60 % del alto: el
+ *     contraste ahora lo pone el velo, no la sombra.
  */
 import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
@@ -132,7 +148,7 @@ export const P18StLuzVista: React.FC = () => {
       <AbsoluteFill
         style={{
           background:
-            'linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.10) 26%, rgba(0,0,0,0) 44%)',
+            'linear-gradient(to bottom, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0.22) 30%, rgba(0,0,0,0.10) 46%, rgba(0,0,0,0) 60%)',
         }}
       />
 
@@ -182,18 +198,18 @@ export const P18StLuzVista: React.FC = () => {
           position: 'absolute',
           left: 84,
           right: 84,
-          top: yCorte - 392,
+          top: yCorte - 512,
           textAlign: 'center',
           color: P18.colores.blanco,
           fontFamily: P18.fuentes.titular,
-          textShadow: '0 3px 18px rgba(0,0,0,0.62), 0 8px 44px rgba(0,0,0,0.42)',
+          textShadow: '0 2px 30px rgba(0,0,0,0.38)',
         }}
       >
-        <div style={{fontSize: 74, fontWeight: 300, lineHeight: 1.06}}>Hay luces</div>
-        <div style={{fontSize: 92, fontWeight: 400, fontStyle: 'italic', lineHeight: 1.04}}>
+        <div style={{fontSize: 86, fontWeight: 300, lineHeight: 1.08}}>Hay luces</div>
+        <div style={{fontSize: 108, fontWeight: 400, fontStyle: 'italic', lineHeight: 1.06}}>
           que solo se ven
         </div>
-        <div style={{fontSize: 74, fontWeight: 300, lineHeight: 1.1, letterSpacing: 1}}>
+        <div style={{fontSize: 86, fontWeight: 300, lineHeight: 1.12, letterSpacing: 1}}>
           desde Piso18
         </div>
       </div>
@@ -204,7 +220,7 @@ export const P18StLuzVista: React.FC = () => {
           position: 'absolute',
           left: 128,
           right: 128,
-          top: yCorte + 150,
+          top: yCorte + 176,
           textAlign: 'center',
           color: P18.colores.blanco,
           fontFamily: P18.fuentes.texto,
@@ -230,7 +246,7 @@ export const P18StLuzVista: React.FC = () => {
           position: 'absolute',
           left: 0,
           right: 0,
-          top: yCorte + 322,
+          top: yCorte + 338,
           display: 'flex',
           justifyContent: 'center',
         }}

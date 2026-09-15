@@ -31,18 +31,21 @@
  * ══════════════════════════════════════════════════════════════════════════
  * LAS TRES FOTOS — el arreglo cambió, el salón NO
  * ══════════════════════════════════════════════════════════════════════════
- * ⚠️ En el material de la marca **no hay tres montajes con arreglos distintos**:
- * todo el material floral de la sesión de agosto es del mismo evento, con centros
- * blancos y verdes. Eli resolvió el 15-09: **cambiar la paleta con Magnific**.
+ * ⭐⭐ RONDA 3 — **las flores son REALES y de la sesión que mandó Eli**.
  *
- * A cada foto real se le cambió ÚNICAMENTE el tipo de flor y su color,
- * conservando el florero, las velas, la cristalería, el mantel, el encuadre, la
- * luz y las sombras. Es «cambiar la superficie, no regenerar»: el espacio que se
- * muestra sigue siendo el salón real de Piso18.
+ * Las rondas 1 y 2 usaban el montaje de agosto 2023 —mesas redondas con mantel
+ * blanco— y a dos de las tres se les había cambiado la paleta con IA, porque en
+ * ese material todo el follaje era del mismo evento. Eli lo rechazó: *«ya la mesa
+ * blanca no son las actuales»* y *«usa para todas las que tengan que ver con
+ * flores esta sesión»*.
  *
- *   A · rosado pastel  — peonías y rosas con eucalipto   (base `Piso_18-76`)
- *   B · durazno y coral — rosas, ranúnculos y dalias      (base `Piso_18-75`)
- *   C · lila y lavanda  — lisianthus, rosas malva, astilbe (base `Piso_18-86`)
+ * ⇒ Ahora las tres salen de **`Piso 18_28 ago decoración 2024`** (110 fotos,
+ * 3840×5760), que es la sesión de decoración de verdad: montajes distintos, mesas
+ * de madera y arreglos que ya vienen variados. **Cero IA en estas tres.**
+ *
+ *   A · `piso_18-13`  pampa seca con rosas rosadas y follaje rojo
+ *   B · `piso_18-100` arreglo alto escultórico sobre mesa de madera, contra el ventanal
+ *   C · `piso_18-62`  centro blanco y verde con velas y cristalería azul
  *
  * ══════════════════════════════════════════════════════════════════════════
  * ⚠️ LA INTERACCIÓN NO SE DIBUJA
@@ -70,9 +73,9 @@ const OPCIONES = [
     de la tira y caiga al 40 % de su alto**, y por eso los tres se leen a la
     misma escala aunque en la foto original estuvieran a distancias distintas.
   */
-  {letra: 'A', src: 'assets/hilton/piso18/tira-rosa.jpg', dy: 0},
-  {letra: 'B', src: 'assets/hilton/piso18/tira-durazno.jpg', dy: 54},
-  {letra: 'C', src: 'assets/hilton/piso18/tira-lila.jpg', dy: 0},
+  {letra: 'A', src: 'assets/hilton/piso18/tira-a.jpg', dy: 0},
+  {letra: 'B', src: 'assets/hilton/piso18/tira-b.jpg', dy: 54},
+  {letra: 'C', src: 'assets/hilton/piso18/tira-c.jpg', dy: 0},
 ] as const;
 
 /**

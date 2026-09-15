@@ -15,49 +15,66 @@
  *     INTERACCIÓN: Sticker de link a cotización.
  *
  * ══════════════════════════════════════════════════════════════════════════
- * ⭐⭐ RONDA 2 — «NO SE PARECE A LA REFERENCIA, ÚSALA A MODO DE PLANTILLA»
+ * ⭐⭐⭐ RONDA 3 — SEIS CORRECCIONES DE ELI, Y LA PIEZA CAMBIA ENTERA
  * ══════════════════════════════════════════════════════════════════════════
- * La ronda 1 eran cinco fotos a sangre con un acercamiento lento y el titular
- * encima. Eli la rechazó: *«no se parece a la referencia, úsala a modo de
- * plantilla, analiza las transiciones de foto, etc.»*
+ * *«Me lo estás haciendo muy extraño, mucho zoom y se ve pixelado. Tienes que
+ * tener cuidado con las dimensiones para que la foto no se pierda […] que al
+ * inicio no aparezca ese fondo blanco. Trata de hacer más rápido esa transición.
+ * Si te fijas, hace como una transición de una foto y se mueve hacia el otro lado
+ * y aparece la misma foto, u otra con más montaje. Por último, trata de buscar una
+ * que se vea más vacía, de manera de que se pueda ver esa transición a más
+ * decoración. […] Y de, no, no coloques antes/después. Solamente de todos los
+ * montajes.»*
  *
- * Se midió `ref st 3.mp4` fotograma a fotograma (2 fps, 41 cuadros) y **la
- * referencia tiene una estructura en dos mitades que la ronda 1 no tenía**:
- *
- * | Tiempo | Qué pasa |
+ * | Lo que pidió | Qué se hizo |
  * |---|---|
- * | 0,0–2,5 s | Fondo crema. **Un marco vertical estrecho** a la derecha con foto. A la izquierda, logotipo y titular serif **en versales, alineado a la izquierda**, en líneas cortas |
- * | 2,5–4,5 s | **El marco CRECE** hacia la izquierda y muestra más foto. Sigue el crema |
- * | 4,5–7,0 s | Entra un **segundo marco**; el texto cambia a una frase más corta |
- * | 7,5–10 s | El marco se expande hasta **foto a sangre**. Ya no hay texto |
- * | 10–16 s | Fotos a sangre que se **empujan** lateralmente |
- * | 16–20 s | **Cierre**: velo oscuro, logotipo centrado, frase y CTA |
+ * | Sin el fondo crema del inicio | **Abre a sangre** con el salón vacío. No hay ni un fotograma de fondo plano |
+ * | Sin zoom | **Cero zoom.** La ronda 2 escalaba 1,04–1,06 dentro de cada plano; acá las fotos están quietas |
+ * | Sin pixelado / cuidar dimensiones | Las fotos son **3840×5760** y se muestran a 1080×1920: **reducen a 0,28**. Ninguna se amplía |
+ * | Transición de empuje lateral | El plano nuevo **entra desde la derecha** y empuja al anterior fuera por la izquierda — ver `EMPUJE` |
+ * | Más rápido | El empuje dura **14 frames** (0,47 s) y cada plano **2,2 s**. Antes eran 3,5 |
+ * | Una que se vea más vacía | Abre con el **VIDEO del salón sin montar** |
  *
- * ⭐ **La consecuencia de fondo, y es la que arregla el otro problema:** en la
- * primera mitad **el texto NO va sobre la foto, va al lado**, sobre el crema. Eso
- * es lo que pidió Eli en la misma ronda —*«los textos de esa st animada debes
- * cuidar que no choquen con rostros o logos»*— y acá se resuelve por estructura,
- * no por buscarle un hueco a cada fotograma. En `p18-44` hay un **logotipo PISO18
- * iluminado en la pared**: con el texto fuera del marco, no lo toca nunca.
- *
- * ⚠️ **Duración: 14 s.** Eli fijó el tope en la misma ronda: *«las historias no
- * deben ser de más de 15 segundos»*. La ronda 1 duraba 17.
- *
- * ⚠️ **Zonas seguras de Instagram**, que Eli pidió respetar explícitamente: nada
- * de texto sobre los 250 px de arriba ni los 340 de abajo. Acá el titular vive
- * entre y=560 y y=1180, y el bloque del cierre entre y=980 y y=1430.
+ * ⭐ **Y «no coloques antes/después, solamente todos los montajes»:** la pieza ya
+ * no rotula nada. Es una sola progresión continua de montajes, del espacio vacío
+ * al salón terminado, sin etiquetas.
  *
  * ══════════════════════════════════════════════════════════════════════════
- * LOS CINCO TIEMPOS — de vacío a lleno, con material real
+ * ⛔ LA TRAMPA DEL VIDEO — rotación por metadato
  * ══════════════════════════════════════════════════════════════════════════
- * ⚠️ **No hay ninguna foto del salón vacío** (medido sobre la sesión entera), así
- * que la progresión arranca por lo más desnudo que existe. Decisión de Eli.
+ * `IMG_4177.MOV` **se declara 3840×2160 en el stream y es 2160×3840 al decodificar**:
+ * trae rotación por metadato, como todo `.MOV` de iPhone. Por creerle al stream se
+ * recortó tres veces una franja vertical que mostraba techo y cortinas y nada de
+ * piso. **Ya es 9:16 exacto: sólo hay que escalarlo, no recortarlo.**
  *
- *   1. `p18-44`  el espacio con el logotipo iluminado, sin montar
- *   2. `p18-43`  la barra sola, todavía sin público
- *   3. `p18-73`  las mesas ya vestidas
- *   4. `p18-77`  el detalle de la mesa terminada: centro floral, copas, vajilla
- *   5. `p18-86`  el salón completo ambientado — y el fondo del cierre
+ * Y es HDR HLG (`bt2020nc/arib-std-b67`), así que necesita **tonemap** o sale
+ * lavado — el mismo modo de falla del metraje de dron de Tierra Calma.
+ *
+ * El comando que lo deja listo (3 s del tramo donde entra el sol al piso):
+ *
+ *     ffmpeg -ss 9.4 -t 3.0 -i IMG_4177.MOV \
+ *       -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,\
+ *            tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,\
+ *            format=yuv420p,scale=1080:1920" \
+ *       -r 30 -c:v libx264 -crf 17 -preset slow -an salon-vacio.mp4
+ *
+ * ══════════════════════════════════════════════════════════════════════════
+ * LOS CINCO PLANOS — una sola progresión, de vacío a montado
+ * ══════════════════════════════════════════════════════════════════════════
+ * Las cuatro fotos salen de **`Piso 18_28 ago decoración 2024`**, la sesión que
+ * Eli mandó usar para todo lo de flores. Nada de IA.
+ *
+ *   1. `salon-vacio.mp4`  el salón SIN MONTAR: piso desnudo, mesas altas sueltas
+ *   2. `piso_18-90`       entran las mesas de madera y los primeros arreglos
+ *   3. `piso_18-128`      más arreglos, y al fondo las mesas ya vestidas
+ *   4. `piso_18-72`       la mesa larga montada, con el follaje colgante
+ *   5. `piso_18-153`      el salón terminado — y el fondo del cierre
+ *
+ * ⚠️ Ninguna de las cinco tiene rostros ni el logotipo de la pared, que es lo que
+ * Eli pidió cuidar. El titular además vive **abajo**, sobre su propio velo.
+ *
+ * ⚠️ Zonas seguras de Instagram: el titular ocupa y 1244–1432 y el bloque del
+ * cierre y 812–1394. Nada entra en los 250 de arriba ni en los 340 de abajo.
  */
 import React from 'react';
 import {
@@ -65,7 +82,7 @@ import {
   Easing,
   Img,
   interpolate,
-  Sequence,
+  OffthreadVideo,
   staticFile,
   useCurrentFrame,
 } from 'remotion';
@@ -76,336 +93,231 @@ export const P18_MONTAJE_FPS = 30;
 const W = 1080;
 const H = 1920;
 
-/** ⚠️ 420 frames = **14 s**. El tope que fijó Eli es 15. */
-export const P18_MONTAJE_DUR = 420;
+/** ⚠️ 390 frames = **13 s**. El tope que fijó Eli es 15, y la ronda 2 duraba 14. */
+export const P18_MONTAJE_DUR = 390;
 
-/** Los cortes de los cinco actos, en frames. */
-const T = {
-  acto1: 0,     // marco estrecho + titular
-  acto2: 110,   // el marco crece + entra el segundo
-  acto3: 180,   // primera foto a sangre
-  acto4: 250,   // segunda foto a sangre
-  cierre: 320,
-} as const;
+/** Cuánto dura el empuje de una foto a la siguiente. 14 frames = 0,47 s. */
+const EMPUJE = 14;
 
-/** Zona segura de historia, en píxeles de la mesa 1080×1920. */
-const SEGURA_ARRIBA = P18.seguras.story.arriba; // 250
-const SEGURA_ABAJO = H - P18.seguras.story.abajo; // 1580
+/** Dónde entra cada plano, en frames. */
+const ENTRADA = [0, 84, 150, 216, 282] as const;
+/** Cuándo arranca el bloque de cierre (sobre el último plano). */
+const CIERRE = 282;
 
-const suave = Easing.bezier(0.22, 0.61, 0.36, 1);
+const suave = Easing.bezier(0.3, 0.72, 0.28, 1);
 
 /**
- * El logotipo. Centrado arriba, a la geometría medida — **el sistema de marca
- * manda sobre la referencia en identidad**: en `ref st 3.mp4` el logo va arriba a
- * la izquierda, pero las dos piezas aprobadas de Piso18 lo ponen centrado y ahí
- * se queda. Lo que se toma de la referencia es la estructura, no el logotipo.
+ * El desplazamiento horizontal de un plano, en px, para el frame dado.
+ *
+ * ⭐ Es LA transición que pidió Eli: *«hace como una transición de una foto y se
+ * mueve hacia el otro lado y aparece […] otra con más montaje»*. El plano entra
+ * desde la derecha y, cuando entra el siguiente, sale hacia la izquierda — pero
+ * **más lento que el que entra** (sale 0,3 del ancho, no 1,0), que es lo que le
+ * da profundidad en vez de parecer un pase de diapositivas.
  */
-const Logo: React.FC<{tinta?: boolean; ancho?: number; top?: number}> = ({
-  tinta = false,
-  ancho = P18.geometria.logoAncho,
-  top = P18.geometria.logoYStory,
-}) => (
-  <Img
-    src={staticFile('assets/hilton/piso18/logo.png')}
-    style={{
-      position: 'absolute',
-      width: ancho,
-      height: ancho / P18.geometria.logoProporcion,
-      left: (W - ancho) / 2,
-      top,
-      // El PNG es blanco; sobre el crema se invierte a tinta.
-      filter: tinta ? 'invert(1) brightness(0.12)' : undefined,
-    }}
-  />
-);
-
-/**
- * Un marco: ventana rectangular con una foto dentro, que puede crecer. Es EL
- * recurso de la referencia — la foto vive contenida, no a sangre, y el aire
- * alrededor es lo que deja sitio al texto.
- */
-const Marco: React.FC<{
-  src: string;
-  x: number;
-  y: number;
-  ancho: number;
-  alto: number;
-  pos?: string;
-  opacidad?: number;
-}> = ({src, x, y, ancho, alto, pos = 'center', opacidad = 1}) => (
-  <div
-    style={{
-      position: 'absolute',
-      left: x,
-      top: y,
-      width: ancho,
-      height: alto,
-      overflow: 'hidden',
-      opacity: opacidad,
-      boxShadow: '0 2px 18px rgba(20,17,15,0.13)',
-    }}
-  >
-    <Img
-      src={staticFile(src)}
-      style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: pos}}
-    />
-  </div>
-);
-
-/** El titular de la primera mitad: IvyPresto en VERSALES, alineado a la izquierda. */
-const Titular: React.FC<{lineas: string[]; opacidad: number; top: number}> = ({
-  lineas,
-  opacidad,
-  top,
-}) => (
-  <div
-    style={{
-      position: 'absolute',
-      left: 92,
-      top,
-      width: 430,
-      opacity: opacidad,
-      fontFamily: P18.fuentes.titular,
-      fontWeight: 300,
-      fontSize: 52,
-      lineHeight: 1.26,
-      letterSpacing: 2.6,
-      textTransform: 'uppercase',
-      color: P18.colores.tinta,
-    }}
-  >
-    {lineas.map((l) => (
-      <div key={l}>{l}</div>
-    ))}
-  </div>
-);
-
-/** ── ACTO 1 · marco estrecho a la derecha, titular a la izquierda ───────── */
-const Acto1: React.FC = () => {
-  const f = useCurrentFrame();
-  const dur = T.acto2 - T.acto1;
-  // El marco entra creciendo desde abajo, muy contenido.
-  const entra = interpolate(f, [0, 26], [0, 1], {extrapolateRight: 'clamp', easing: suave});
-  const alto = interpolate(entra, [0, 1], [640, 820]);
-  const y = interpolate(entra, [0, 1], [560, 470]);
-  const texto = interpolate(f, [10, 34, dur - 16, dur], [0, 1, 1, 0], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
-  return (
-    <AbsoluteFill>
-      <Marco
-        src="assets/hilton/piso18/p18-44-alto.jpg"
-        x={596}
-        y={y}
-        ancho={392}
-        alto={alto}
-        pos="center 50%"
-        opacidad={entra}
-      />
-      <Titular lineas={['Así se monta', 'un evento', 'en Piso18']} opacidad={texto} top={620} />
-    </AbsoluteFill>
-  );
-};
-
-/** ── ACTO 2 · el marco crece hacia la izquierda y entra el segundo ──────── */
-const Acto2: React.FC = () => {
-  const f = useCurrentFrame();
-  const dur = T.acto3 - T.acto2;
-  const p = interpolate(f, [0, 34], [0, 1], {extrapolateRight: 'clamp', easing: suave});
-  // El primero se ensancha hacia la izquierda (x baja, ancho sube).
-  const x1 = interpolate(p, [0, 1], [596, 372]);
-  const w1 = interpolate(p, [0, 1], [392, 616]);
-  const y1 = interpolate(p, [0, 1], [470, 392]);
-  const h1 = interpolate(p, [0, 1], [820, 900]);
-  // El segundo entra desde el borde izquierdo, más chico y escalonado.
-  const p2 = interpolate(f, [18, 48], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: suave});
-  const texto = interpolate(f, [24, 46, dur - 14, dur], [0, 1, 1, 0], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
-  return (
-    <AbsoluteFill>
-      <Marco
-        src="assets/hilton/piso18/p18-44-alto.jpg"
-        x={x1}
-        y={y1}
-        ancho={w1}
-        alto={h1}
-        pos="center 50%"
-      />
-      <Marco
-        src="assets/hilton/piso18/p18-43-alto.jpg"
-        x={92}
-        y={interpolate(p2, [0, 1], [1010, 962])}
-        ancho={330}
-        alto={430}
-        pos="center 55%"
-        opacidad={p2}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          left: 92,
-          top: 1436,
-          opacity: texto,
-          fontFamily: P18.fuentes.titular,
-          fontWeight: 400,
-          fontStyle: 'italic',
-          fontSize: 54,
-          letterSpacing: 1.4,
-          color: P18.colores.tinta,
-        }}
-      >
-        paso a paso.
-      </div>
-    </AbsoluteFill>
-  );
-};
-
-/**
- * Una foto a sangre de la segunda mitad. Entra **empujando** desde abajo, que es
- * la transición de la referencia — no un desvanecido.
- */
-const Sangre: React.FC<{src: string; pos: string; dur: number}> = ({src, pos, dur}) => {
-  const f = useCurrentFrame();
-  const entra = interpolate(f, [0, 22], [0, 1], {extrapolateRight: 'clamp', easing: suave});
-  const y = interpolate(entra, [0, 1], [H * 0.16, 0]);
-  const escala = interpolate(f, [0, dur], [1.04, 1.0], {extrapolateRight: 'clamp'});
-  return (
-    <AbsoluteFill style={{transform: `translateY(${y}px)`}}>
-      <AbsoluteFill style={{overflow: 'hidden'}}>
-        <Img
-          src={staticFile(src)}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: pos,
-            transform: `scale(${escala})`,
-          }}
-        />
-      </AbsoluteFill>
-    </AbsoluteFill>
-  );
-};
-
-/** ── CIERRE · velo, logotipo, bajada y botón ────────────────────────────── */
-const Cierre: React.FC = () => {
-  const f = useCurrentFrame();
-  // Cruza con la foto anterior en vez de aparecer de golpe.
-  const cruce = interpolate(f, [0, 18], [0, 1], {extrapolateRight: 'clamp', easing: suave});
-  const velo = interpolate(f, [6, 34], [0, 0.74], {extrapolateRight: 'clamp', easing: suave});
-  const entra = interpolate(f, [14, 40], [0, 1], {
+const desplazamiento = (f: number, indice: number) => {
+  const entra = ENTRADA[indice];
+  const siguiente = ENTRADA[indice + 1];
+  // Todavía no le toca: fuera por la derecha.
+  if (f < entra) return W;
+  // ⛔ El PRIMER plano no entra empujando: **ya está en pantalla en el frame 0**.
+  // Si entra como los demás, el primer fotograma de la historia es medio negro —
+  // y ese fotograma es la miniatura que ve todo el mundo antes de tocar play.
+  const x =
+    indice === 0
+      ? 0
+      : interpolate(f, [entra, entra + EMPUJE], [W, 0], {
+          extrapolateRight: 'clamp',
+          easing: suave,
+        });
+  if (siguiente === undefined) return x;
+  // Ya entró el siguiente: arrastre hacia la izquierda.
+  const salida = interpolate(f, [siguiente, siguiente + EMPUJE], [0, -W * 0.3], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: suave,
   });
-  const sube = interpolate(entra, [0, 1], [24, 0]);
+  return f < siguiente ? x : salida;
+};
+
+/** Un plano: ocupa la pantalla entera y se mueve en bloque. Sin zoom. */
+const Plano: React.FC<{indice: number; children: React.ReactNode}> = ({indice, children}) => {
+  const f = useCurrentFrame();
+  const x = desplazamiento(f, indice);
+  const siguiente = ENTRADA[indice + 1];
+  // Se apaga cuando ya salió del todo, para no apilar capas.
+  const vivo = siguiente === undefined || f < siguiente + EMPUJE + 2;
+  if (!vivo || f < ENTRADA[indice] - 1) return null;
   return (
-    <AbsoluteFill style={{opacity: cruce}}>
-      <AbsoluteFill style={{overflow: 'hidden'}}>
-        <Img
-          src={staticFile('assets/hilton/piso18/p18-86.jpg')}
-          style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 50%'}}
-        />
-      </AbsoluteFill>
-      <AbsoluteFill style={{backgroundColor: `rgba(10,9,8,${velo})`}} />
-      <div style={{opacity: entra, transform: `translateY(${sube}px)`}}>
-        {/* Logotipo grande y centrado — el gesto del cierre de la referencia. */}
-        <Logo ancho={472} top={812} />
-        <div
-          style={{
-            position: 'absolute',
-            left: 122,
-            right: 122,
-            top: 1064,
-            textAlign: 'center',
-            fontFamily: P18.fuentes.texto,
-            fontWeight: 500,
-            fontSize: 33,
-            lineHeight: 1.5,
-            color: P18.colores.blanco,
-          }}
-        >
-          Dejando todo listo, para que solo te preocupes de celebrar.
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            top: 1244,
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: P18.botones.lleno.fondo,
-              color: P18.botones.lleno.texto,
-              fontFamily: P18.fuentes.texto,
-              fontWeight: 700,
-              fontSize: 33,
-              letterSpacing: 0.6,
-              padding: '26px 58px',
-              borderRadius: 999,
-            }}
-          >
-            Cotiza el tuyo en piso18.cl
-          </div>
-        </div>
-      </div>
+    <AbsoluteFill style={{transform: `translateX(${x}px)`}}>
+      <AbsoluteFill style={{overflow: 'hidden', backgroundColor: '#0B0B0D'}}>{children}</AbsoluteFill>
     </AbsoluteFill>
   );
 };
 
+/** Una foto a sangre. `objectPosition` es lo único que encuadra — no hay escala. */
+const Foto: React.FC<{src: string; pos: string}> = ({src, pos}) => (
+  <Img
+    src={staticFile(src)}
+    style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: pos}}
+  />
+);
+
 export const P18StMontaje: React.FC = () => {
   cargarFuentesP18();
   const f = useCurrentFrame();
-  // El logotipo de cabecera acompaña sólo la primera mitad; en el cierre hay otro.
-  const logoArriba = interpolate(f, [0, 14, T.cierre - 20, T.cierre], [0, 1, 1, 0], {
+
+  // El titular acompaña los tres primeros planos y se va antes del cierre.
+  const titular = interpolate(f, [16, 40, CIERRE - 34, CIERRE - 12], [0, 1, 1, 0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
-  // Sobre el crema el logotipo va en tinta; sobre las fotos a sangre, en blanco.
-  const sobreFoto = f >= T.acto3;
+  // El logotipo de cabecera vive hasta que entra el cierre, que trae el suyo.
+  const logoArriba = interpolate(f, [8, 26, CIERRE - 20, CIERRE], [0, 1, 1, 0], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+  // El cierre entra sobre el último plano, que ya está en pantalla.
+  const cierre = interpolate(f, [CIERRE + 10, CIERRE + 34], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+    easing: suave,
+  });
+  const sube = interpolate(cierre, [0, 1], [22, 0]);
 
   return (
-    <AbsoluteFill style={{backgroundColor: P18.colores.tarjeta}}>
-      <Sequence from={T.acto1} durationInFrames={T.acto2 - T.acto1}>
-        <Acto1 />
-      </Sequence>
-      <Sequence from={T.acto2} durationInFrames={T.acto3 - T.acto2}>
-        <Acto2 />
-      </Sequence>
-      <Sequence from={T.acto3} durationInFrames={T.acto4 - T.acto3 + 2}>
-        <Sangre src="assets/hilton/piso18/p18-73.jpg" pos="center 52%" dur={T.acto4 - T.acto3} />
-      </Sequence>
-      <Sequence from={T.acto4} durationInFrames={T.cierre - T.acto4 + 20}>
-        <Sangre src="assets/hilton/piso18/p18-77.jpg" pos="center 58%" dur={T.cierre - T.acto4} />
-      </Sequence>
-      <Sequence from={T.cierre} durationInFrames={P18_MONTAJE_DUR - T.cierre}>
-        <Cierre />
-      </Sequence>
+    <AbsoluteFill style={{backgroundColor: '#0B0B0D'}}>
+      {/* ── LOS CINCO PLANOS, en orden inverso para que el nuevo quede encima ── */}
+      <Plano indice={4}>
+        <Foto src="assets/hilton/piso18/mt-153.jpg" pos="center 52%" />
+      </Plano>
+      <Plano indice={3}>
+        <Foto src="assets/hilton/piso18/mt-72.jpg" pos="center 55%" />
+      </Plano>
+      <Plano indice={2}>
+        <Foto src="assets/hilton/piso18/mt-128.jpg" pos="center 50%" />
+      </Plano>
+      <Plano indice={1}>
+        <Foto src="assets/hilton/piso18/mt-90.jpg" pos="center 50%" />
+      </Plano>
+      <Plano indice={0}>
+        <OffthreadVideo
+          src={staticFile('assets/hilton/piso18/salon-vacio.mp4')}
+          style={{width: '100%', height: '100%', objectFit: 'cover'}}
+          muted
+        />
+      </Plano>
 
       {/*
-        El logotipo de cabecera va POR ENCIMA de todo y cambia de tinta según lo
-        que tenga debajo. En las fotos a sangre lleva un velo corto arriba para
-        sostenerse — mismo recurso que la plantilla de la marca.
+        ── Velos ────────────────────────────────────────────────────────
+        Arriba para el logotipo, abajo para el titular. Van FUERA de los planos
+        para que no se desplacen con ellos: si viajaran, el texto quedaría un
+        instante sin fondo en cada empuje.
       */}
-      <AbsoluteFill style={{opacity: logoArriba, pointerEvents: 'none'}}>
-        {sobreFoto ? (
+      <AbsoluteFill
+        style={{
+          pointerEvents: 'none',
+          background:
+            'linear-gradient(to bottom, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0.12) 20%, rgba(0,0,0,0) 34%, rgba(0,0,0,0) 56%, rgba(0,0,0,0.30) 76%, rgba(0,0,0,0.66) 100%)',
+          opacity: cierre > 0.5 ? 1 - cierre : 1,
+        }}
+      />
+
+      {/* ── Logotipo de cabecera ───────────────────────────────────────── */}
+      <Img
+        src={staticFile('assets/hilton/piso18/logo.png')}
+        style={{
+          position: 'absolute',
+          width: P18.geometria.logoAncho,
+          height: P18.geometria.logoAncho / P18.geometria.logoProporcion,
+          left: (W - P18.geometria.logoAncho) / 2,
+          top: P18.geometria.logoYStory,
+          opacity: logoArriba,
+        }}
+      />
+
+      {/*
+        ── El titular, abajo y sobre su velo ────────────────────────────
+        Verbatim del brief. Va abajo —no encima de la foto— porque es donde el
+        velo lo sostiene sobre los cinco planos sin tapar el montaje, que es lo
+        que la pieza tiene que mostrar.
+      */}
+      <div
+        style={{
+          position: 'absolute',
+          left: 96,
+          right: 96,
+          top: 1244,
+          textAlign: 'center',
+          opacity: titular,
+          color: P18.colores.blanco,
+          fontFamily: P18.fuentes.titular,
+          fontWeight: 300,
+          fontSize: 62,
+          lineHeight: 1.18,
+          textShadow: '0 2px 26px rgba(0,0,0,0.42)',
+        }}
+      >
+        Así se monta un evento en Piso18,{' '}
+        <span style={{fontStyle: 'italic', fontWeight: 400}}>paso a paso.</span>
+      </div>
+
+      {/* ── CIERRE de marca, sobre el último montaje ───────────────────── */}
+      <AbsoluteFill style={{opacity: cierre, pointerEvents: 'none'}}>
+        <AbsoluteFill style={{backgroundColor: 'rgba(10,9,8,0.72)'}} />
+        <div style={{transform: `translateY(${sube}px)`}}>
+          <Img
+            src={staticFile('assets/hilton/piso18/logo.png')}
+            style={{
+              position: 'absolute',
+              width: 472,
+              height: 472 / P18.geometria.logoProporcion,
+              left: (W - 472) / 2,
+              top: 812,
+            }}
+          />
           <div
             style={{
               position: 'absolute',
-              inset: 0,
-              background:
-                'linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.10) 22%, rgba(0,0,0,0) 36%)',
+              left: 122,
+              right: 122,
+              top: 1064,
+              textAlign: 'center',
+              fontFamily: P18.fuentes.texto,
+              fontWeight: 500,
+              fontSize: 33,
+              lineHeight: 1.5,
+              color: P18.colores.blanco,
             }}
-          />
-        ) : null}
-        <Logo tinta={!sobreFoto} />
+          >
+            Dejando todo listo, para que solo te preocupes de celebrar.
+          </div>
+          <div
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 1244,
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <div
+              style={{
+                backgroundColor: P18.botones.lleno.fondo,
+                color: P18.botones.lleno.texto,
+                fontFamily: P18.fuentes.texto,
+                fontWeight: 700,
+                fontSize: 33,
+                letterSpacing: 0.6,
+                padding: '26px 58px',
+                borderRadius: 999,
+              }}
+            >
+              Cotiza el tuyo en piso18.cl
+            </div>
+          </div>
+        </div>
       </AbsoluteFill>
     </AbsoluteFill>
   );
@@ -414,7 +326,7 @@ export const P18StMontaje: React.FC = () => {
 /**
  * Guía de QA: las dos zonas seguras de Instagram sobre la pieza animada.
  * ⚠️ En una pieza animada el botón se mide en el **ÚLTIMO fotograma**, no en el
- * primero — por eso esta guía se mira ahí, con `--frame`.
+ * primero — esta guía se mira ahí, con `--frame`.
  */
 export const P18StMontajeGuia: React.FC = () => (
   <AbsoluteFill>
@@ -426,7 +338,7 @@ export const P18StMontajeGuia: React.FC = () => (
           left: 0,
           right: 0,
           top: 0,
-          height: SEGURA_ARRIBA,
+          height: P18.seguras.story.arriba,
           background: 'rgba(255,0,0,0.22)',
           borderBottom: '2px solid red',
         }}
@@ -436,7 +348,7 @@ export const P18StMontajeGuia: React.FC = () => (
           position: 'absolute',
           left: 0,
           right: 0,
-          top: SEGURA_ABAJO,
+          top: H - P18.seguras.story.abajo,
           bottom: 0,
           background: 'rgba(255,0,0,0.22)',
           borderTop: '2px solid red',

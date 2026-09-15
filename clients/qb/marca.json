@@ -1,0 +1,69 @@
+{
+  "slug": "qb",
+  "nombre": "QB Restaurant (Quotidien Bistró)",
+  "rubro": "Restaurante + bar",
+  "pais": "CL",
+  "moneda": "CLP",
+  "manual": "clients/qb/CLAUDE.md",
+
+  "_ALCANCE": "⛔ FICHA PARCIAL — NO trae colores, tipografías, logos ni geometría A PROPÓSITO: no están medidos, y escribirlos de memoria sería inventarle un sistema a la marca. Se completa cuando lleguen los editables empaquetados de Eli. El manual manda: clients/qb/CLAUDE.md",
+
+  "regla_madre": "QB es marca INDEPENDIENTE. Está dentro del complejo Hilton pero su línea gráfica no está ligada a DoubleTree, Between ni Piso18. Nada se traspasa en ninguna dirección. (Eli, 15-09-2026)",
+
+  "criterio": {
+    "feed": "minimalista y elegante",
+    "sujetos": ["cócteles", "platos", "rostros"]
+  },
+
+  "colores": {
+    "_estado": "SIN MEDIR",
+    "_nota": "Hoy la marca es verde, pero el color es VARIABLE por decisión de marca — Eli: «se puede ir variando, actualmente es el verde». El valor exacto sale de los editables."
+  },
+  "fuentes": {"_estado": "SIN MEDIR — salen del Informe.txt del paquete de Illustrator"},
+  "logos": {"_estado": "SIN RECIBIR"},
+
+  "contacto": {
+    "correo": "reservas@qbrestaurant.cl",
+    "telefono": "+56 9 3373 3247",
+    "reservas": "CoverManager"
+  },
+
+  "promos": {
+    "_nota": "Se actualizan de vez en cuando pero generalmente se mantienen en el tiempo. Eli avisa cuando cambian; una promo vigente no se da por vencida sola.",
+    "recurrentes": ["All You Can Drink", "Sunset QB", "promos de tragos mensuales", "sesiones de DJ", "convenios bancarios"]
+  },
+
+  "imagen": {
+    "fuentes": ["sesiones de fotografía propias", "material orgánico en video"],
+    "metodo_video": "Del video se extraen fotogramas como foto fija, y el mismo video sirve para historia, reel y post en movimiento. Se puede mezclar carrusel con post en movimiento."
+  },
+
+  "zonas_seguras": {
+    "_origen": "regla global de agencia — docs/SISTEMA-DE-MARCAS.md §4. QB no tiene zonas propias medidas.",
+    "_alerta_eli": "Reels, videos, posts E HISTORIAS de QB a veces necesitan márgenes de paid: el texto NO puede salir del margen. Preguntar si va a paid ANTES de diagramar.",
+    "story": {"top": 250, "bottom": 340, "right": 115},
+    "feed": {"bottom_pct": 12},
+    "respiro_minimo": 60,
+    "_animadas": "En pieza animada la zona segura se verifica en el ÚLTIMO fotograma."
+  },
+
+  "madurez": {
+    "identidad": "falta",
+    "gramatica": "falta",
+    "formatos": "parcial",
+    "imagen": "parcial",
+    "copy": "parcial",
+    "pipeline": "falta",
+    "qa": "parcial"
+  },
+
+  "pendientes": [
+    "Editables empaquetados de Eli (link en camino) → color verde exacto, tipografías, geometría",
+    "Logos vectoriales de QB",
+    "Bajar sesiones de fotografía y material orgánico a raw/hilton/qb/",
+    "Confirmar si la regla «en DT sólo diseño» aplica también a QB",
+    "Confirmar qué significa «no solamente a bancos» (se entendió: convenios con tarjetas bancarias)"
+  ],
+
+  "actualizado": "2026-09-15"
+}

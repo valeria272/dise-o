@@ -1742,10 +1742,11 @@ cargar la sombra.
 
 ---
 
-### ⭐⭐ LA S5 PRODUCIDA (15-09-2026) — 3 piezas, y cuatro cosas que quedan de regla
+### ⭐⭐ LA S5 (15-09-2026) — **APROBADA** tras 3 rondas, y siete cosas que quedan de regla
 
-Se entregaron **5 archivos**: el carrusel del 29-09 (3 slides) y las historias del
-28-09 y del 30-09. Subidas a **`S5 HILTON SEP 2026 › PISO18`** —carpeta que creó
+**Aprobadas por Eli el 15-09 tras tres rondas.** Son **5 archivos**: el carrusel
+del 29-09 (3 slides) y las historias del 28-09 y del 30-09. Con esto **septiembre
+de Piso18 queda completo** — la S4 se aprobó el mismo día. Subidas a **`S5 HILTON SEP 2026 › PISO18`** —carpeta que creó
 Eli el 15-09 a las 19:49Z, el mismo minuto en que subió las referencias a `REF`—
 en `C1 S5 PISO18` y `STS`, los mismos nombres de la S4.
 

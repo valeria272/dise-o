@@ -6,6 +6,56 @@
 
 ---
 
+## 2026-09-15 (cierre) — PISO18 · **S5 APROBADA**
+
+**Marca: PISO18.** Eli aprobó las **5 piezas** tras tres rondas. Con esto
+**septiembre de Piso18 queda completo**: la S4 se aprobó más temprano el mismo día
+y la S5 cierra acá.
+
+| Pieza | Archivo en Drive | Tamaño |
+|---|---|---|
+| Historia 28-09 «Planifica tu evento de fin de año» | `STS › ST N°1 S5.png` | 2250 × 4000 |
+| Carrusel 29-09 «Cumpleaños en Piso18» | `C1 S5 PISO18 › C1 S5 N°1..3.png` | 2250 × 2813 |
+| Historia 30-09 «Visita guiada virtual» | `STS › ST N°2 S5.png` | 2250 × 4000 |
+
+En `S5 HILTON SEP 2026 › PISO18`. **Los cinco `fileId` no cambiaron en ninguna de
+las tres rondas** —`files().update`—, así que cualquier enlace que el cliente ya
+tuviera muestra la versión aprobada.
+
+**Las tres rondas, en una línea cada una:**
+
+1. Las 3 piezas de cero. Torta y brindis producidos editando foto real, porque el
+   banco no los tiene. Fondo oscuro plano ⇒ bloqueante de QA ⇒ entra `GranoFondo`.
+2. Portada del carrusel rehecha (se parecía a la del 15-09 y era muy cerrada) y la
+   ST del 30-09 centrada: los teléfonos iban 131 px a la izquierda **y** el
+   tracking descentraba las líneas.
+3. La torta pasa a cuatro pisos, entran velas y globos porque la escena leía
+   matrimonio, y **se borra el logotipo de la portada** por repetitivo.
+
+**Lo reutilizable de toda la jornada está en `clients/hilton/CLAUDE.md` § LA S5**,
+y lo que NO es de Piso18 es esto:
+
+- ⭐⭐⭐ **El `letter-spacing` descentra una línea centrada.** CSS lo pone también
+  después de la última letra, así que sobra aire a la derecha y `text-align:
+  center` lo reparte mal. Se compensa con un `text-indent` del mismo valor. **Vale
+  para todas las marcas del estudio.**
+- ⭐⭐ **Un fondo oscuro PLANO dispara el bloqueante «foto estirada para llenar el
+  formato»** del motor de QA, porque mide rachas de filas idénticas. No es un falso
+  positivo que haya que calibrar: se le da grano al fondo y además se ve mejor.
+- ⭐ **Una portada de carrusel se mide contra la portada anterior de la misma
+  vertical**, no sola.
+
+**Pendiente de la cuenta, no de la S5** (para quien retome PISO18 en octubre):
+
+- La **ST del 21-09** sigue sin brief de diseño; hay que pedírselo a contenido.
+- Falta **`Edwardian Script ITC`**, la cuarta voz del sistema.
+- Sigue sin diagnosticar el **«quedó algo extraño detrás del logo»** del cliente.
+- ⛔ **El banco no tiene torta de cumpleaños ni brindis.** Si octubre los vuelve a
+  pedir, hay que pedirle la sesión a Eli antes de producir nada.
+- La **grilla de octubre** ya está en `clients/hilton/grillas/p18-octubre-2026.md`.
+
+---
+
 ## 2026-09-15 (noche) — PISO18 · S5 RONDA 3 · **la S5 queda cerrada**
 
 **Marca: PISO18.** Última ronda. Eli dio por buenas las otras cuatro piezas —*«las

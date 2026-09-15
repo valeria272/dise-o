@@ -1,3 +1,107 @@
+## 2026-09-15 · Eli (Windows) — PISO18: la marca pasa de no tener nada a poder diseñarse
+
+Sesión larga y **de sistema, no de piezas**: no se entregó nada al cliente, y fue a
+propósito. Se cerró la identidad de una marca que el 09-09 tenía **0 de las 7 capas**.
+
+**Qué se hizo:**
+
+1. **Cayó el bloqueante n°1 que arrastraba desde el 09-09.** Eli subió hoy 14:03–14:22Z
+   la carpeta **`GRILLA IA PISO18`** (`1jNeMFcp02zsbk_cEH-wTYMRaMuLwrN1u`) con los
+   editables empaquetados, el logo, las piezas aprobadas y los proyectos de motion.
+2. **Se midió la identidad** de los cuatro `Informe.txt` (S1, S2, S4, S5): mesa
+   **1080 × 1350**, RGB sRGB, y las tipografías **IvyPresto Headline + Display**,
+   **Raleway** y **Edwardian Script ITC**.
+3. **Eli dictó la marca entera** en dos tandas: la palabra prohibida, las verticales,
+   los botones de cotización, el color oficial, el material, los dos tipos de espacio
+   y el reemplazo de rostros. Todo está en `clients/hilton/CLAUDE.md` §PISO18.
+4. **Se produjeron y aprobaron los dos perfiles de personas**, en dos rondas.
+
+**Dónde quedó:**
+
+| | |
+|---|---|
+| Manual | `clients/hilton/CLAUDE.md` §PISO18 — creció ~30 KB |
+| Grillas | `grillas/p18-septiembre-2026.md` (actualizada, la previa queda como `.PREVIA-10-09.md` para el diff) y **`p18-octubre-2026.md`, nueva** |
+| Fuentes | `public/assets/fonts/piso18/` — Against y Raleway Medium **sí viajan**; IvyPresto **no** (`.gitignore`) |
+| Script | `scripts/p18-ivypresto-link.py` |
+| Material | `raw/hilton/piso18/MATERIAL.md` + `perfiles/APROBADO-*.png` (no viajan) |
+| Rondas | `out/hilton/piso18/perfiles/ronda-1.html` y `ronda-2.html` |
+
+**Lo medido que manda (y que corrige suposiciones):**
+
+- ⭐ **Piso18 trabaja a 1080 px, no a 2250 como DT.** Tres formatos vivos: **1080×1350**
+  feed, **2250×4000** story y **1080×1080** las promos.
+- ⭐ **El color oficial es `#D4145A`**, dado por Eli. Mi medición sobre las promas en
+  JPG daba `#D6145B`/`#D5135A`, a 2 de distancia: es el ruido de compresión.
+  **Medir sobre JPG sirve para verificar, nunca para fijar.**
+- ⭐⭐ **`logo PISO18.png` no es el logotipo: es la plantilla de story** 2250×4000 con un
+  **velo negro en degradado** (alfa 150 en `y=0` → 0 en `y≈1667`) que ocupa el 99,4 %
+  de su alfa. El logotipo son 566 px de ancho, proporción **2,4825**.
+  ⚠️ **Me equivoqué y lo corregí el mismo día:** primero escribí que ese velo era el
+  «algo extraño detrás del logo» que reportó el cliente. **No lo es** — la historia
+  aprobada `ST N°1 S1.png` lo trae puesto, o sea es intencional y da legibilidad.
+  **Ese pendiente del cliente sigue sin diagnosticar.**
+- ⛔⛔ **`tabular-nums` NO FUNCIONA EN RALEWAY.** Medido con `fontTools` sobre los tres
+  Raleway del estudio (Piso18, EBEMA, Between): **ninguno declara `tnum`**, sólo `lnum`,
+  y **Chrome lo ignora en silencio**. El `1` mide 0,450 em y el `0` 0,614 — un 36 % de
+  diferencia, que descuadra a la vista `$6.000.000` contra `$4.500.000`. La instrucción
+  de Eli sobre los signos se cumple **por código**: caja al **máximo** de la fila, nunca
+  al promedio (el defecto que se arregló en Between el 14-09).
+- ⚠️ **Against le faltan `¿` y `¡`.** Un titular con pregunta no se puede componer en ella.
+
+**⭐⭐⭐ IvyPresto: resuelta.** Es Adobe Fonts y no se empaqueta, **pero estaba activada
+en Creative Cloud en esta máquina**. `scripts/p18-ivypresto-link.py` la busca **por su
+nombre interno** (no por el id numérico, que cambia al re-sincronizar) y deja los **20
+cortes** en `public/assets/fonts/piso18/ivypresto/`. **Probado en Chrome headless, no
+supuesto:** las 20 renderizan bien **pese a ser CFF**, que es donde falló Brushwell.
+⛔ La carpeta está en `.gitignore` y nunca sale del equipo.
+
+**Los dos perfiles, aprobados:**
+
+`PISO18-mujer-35` (id `2288933`) y `PISO18-hombre-35` (id `2288934`), fijados como
+**referencias de personaje en la librería de Magnific** — se invocan por id o con
+`@nombre` y la cara sale igual pieza tras pieza. Space **PISO18 · Perfiles de personas**.
+Costo: 10 hojas, **1.000 créditos** (el modo ilimitado no aplicaba en la sesión).
+
+> ⭐⭐ **Lo que costó y queda escrito:** «menos moreno» y «perfil chileno» se empujan
+> entre sí — al aclarar, el modelo se va solo al fenotipo **nórdico**. La salida no fue
+> aclarar menos sino **nombrar el tipo**: «chileno de ascendencia española o alemana,
+> piel clara de subtono cálido, que siga leyéndose latinoamericano y NO nórdico».
+> Y **la edad se pide por rasgos, no por número**: «35 años» daba 38–42; funcionó
+> «frente lisa, mandíbula firme, sin marcas de expresión marcadas».
+
+**Qué sigue:**
+
+Diseñar. Lo primero que vence de las **7 piezas en `OK PARA DISEÑAR`** es **FEED col M
+(22-09, carrusel)** y **STORIES col L (22-09)**.
+
+**Abierto:**
+
+- ⛔ **Tres cosas que las dicta Eli:** el archivo del logo **`PISO18` solo** (no está en
+  la carpeta, sólo el completo) y **qué cuenta como «ocasión»** para usarlo; **en qué
+  pieza** vio el cliente lo del logo; y las tres del 09-09 que siguen sin respuesta
+  (¿vale la §G para P18?, ¿la regla de rostros?, ¿quién hace S2 y S3?).
+- **Eli va a separar las carpetas de matrimonio tradicional y lounge**, y a adjuntar una
+  sesión nueva. Hace falta apenas se toque una pieza con el salón montado.
+- ⚠️ **El material no se puede bajar masivamente.** El token del estudio es `drive.file`
+  y devuelve **0 archivos** en las 4 carpetas de fotos; `curl` da la página de login; no
+  hay Drive para escritorio. Sólo sirve el conector MCP, **de a un archivo** — alcanza
+  para armar una pieza, no para una hoja de contacto del banco. Para eso habría que
+  ampliar el token a `drive.readonly` (misma decisión abierta desde Between el 14-09).
+- ⚠️ **Los `.HEIC` de la sesión de julio no los carga Chrome** y los `.MOV` de iPhone
+  traen rotación por metadato y 60 fps. Convertir antes de rendir.
+- ⚠️ La **paleta** sigue sin salir del `.ai` (pesan 1,5 GB y no se abrieron), y no existe
+  `clients/piso18/` ni `marca.json` ni kit en `src/brand/` ni reglas en `qa/motor.py`.
+
+**⚠️ Aviso para quien abra mañana — hubo DOS sesiones en paralelo sobre este repo.**
+La otra trabajó **DoubleTree** y commiteó `856753d` (el estático de Hilton Honors + el
+QA por pieza). **Sigue con trabajo sin commitear**: `src/compositions/hilton/DtFtHonors.tsx`
+(ronda 4, el aire de los textos) y `raw/hilton/dt/ref-s4/try.jpg`. **Este cierre NO los
+subió a propósito** — no se commitea el trabajo a medias de otra sesión bajo un mensaje
+de Piso18. Esa sesión tiene que cerrar lo suyo, o se pierde.
+
+---
+
 ## 2026-09-15 · Eli (Windows) — DOUBLETREE: el post de Hilton Honors, ENTREGADO
 
 > ✅ **CORRECCIÓN DE LA PROPIA SESIÓN QUE LA HIZO.** Esta entrada la reconstruyó

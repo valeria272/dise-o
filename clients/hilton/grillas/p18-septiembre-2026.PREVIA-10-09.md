@@ -1,7 +1,7 @@
 # Grilla PISO18 — instantánea
 
-> Instantánea del 15-09-2026 tomada con `/al-dia`.
-> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/9ee4a8c6-bef1-48d7-821f-083313fd0bac/scratchpad/p18-hoy.xlsx`.
+> Instantánea del 10-09-2026 tomada con `/al-dia`.
+> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/ccb4b8cd-ad80-4f6e-9dd2-6dafa8305a4a/scratchpad/P18-sept-HOY.xlsx`.
 > **Sirve de base para el DIFF de la próxima ronda**: los comentarios se
 > prependen sobre los viejos en la misma celda, así que sin esta copia no se
 > distingue lo nuevo de lo ya resuelto.
@@ -107,13 +107,90 @@ Comentario wsp
 Comentario wsp~~
 
 
-### Columna E — **sin estado**
+### Columna E — **APROBADO**
 
 **FECHA:**
 
 ```
-SEMANA 3
+09-09-2026
 ```
+
+**HORARIO:**
+
+```
+12:00:00
+```
+
+**DISEÑOS:**
+
+```
+CARRUSEL ESTÁTICO
+```
+
+**DISEÑO
+(8 PUBLICACIONES):**
+
+```
+CARRUSEL ESTÁTICO – NO TE QUEDES SIN TU EVENTO DE FIN DE AÑO
+
+Slide 1 (portada):
+Visual: 
+Foto grande horizontal de ambiente de matrimonio en Piso18.
+Texto:
+ Sin texto
+
+Slide 2:
+Visual
+ Misma fotografía del Slide 1 (idéntica, sin cambio de encuadre).
+Texto: 
+No te quedes sin tu evento de fin de año: reserva tu fecha en Piso18
+```
+
+**LINKS:** ([enlace](https://cl.pinterest.com/pin/523262050479334748/))
+
+```
+REF SLIDE 2
+```
+
+**F13:**
+
+```
+Un matrimonio inolvidable requiere tiempo para cuidar cada detalle. 💍
+
+Reserva tu fecha de 2027 desde ya y celebra tu historia de amor con una vista única.
+
+📩 Cotiza en piso18.cl
+Av. Vitacura 2727, Las Condes.📍
+
+#Matrimonios2027 #Piso18 #EventosSantiago #Novias2027
+```
+
+**COMENTARIOS CLIENTE:**
+
+```
+Modificar copy
+Comentario wsp
+
+Aquí tiene que ser una foto de ambiente, no enfocada en los novios, veamos opción si es que tenemos de la galería del fotógrafo o de cumpleaños, pero la idea es que se vea una fiesta
+
+
+
+Puede ser un carrusel continuo de ambiente de matrimonio (galería fotografo)
+
+Que el mensaje sea más orientado a que quedan pocos meses y que no te quedes sin tu evento de fin de año. (Y que quede abierto en cuanto a tipo de evento, no cerrarnos en matrimonio)
+```
+
+*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Modificar copy~~
+> ~~~~
+> ~~Comentario wsp~~
+> ~~Aquí tiene que ser una foto de ambiente, no enfocada en los novios, veamos opción si es que tenemos de la galería del fotógrafo o de cumpleaños, pero la idea es que se vea una fiesta
+
+
+
+Puede ser un carrusel continuo de ambiente de matrimonio (galería fotografo)
+
+Que el mensaje sea más orientado a que quedan pocos meses y que no te quedes sin tu evento de fin de año. (Y que quede abierto en cuanto a tipo de evento, no cerrarnos en matrimonio)~~
 
 
 ### Columna F — **CORREGIDO**
@@ -121,7 +198,7 @@ SEMANA 3
 **FECHA:**
 
 ```
-14-09-2026
+10-09-2026
 ```
 
 **HORARIO:**
@@ -261,12 +338,21 @@ Cotiza tu fecha en piso18.cl
 ```
 
 
-### Columna H — **CORREGIDO**
+### Columna H — **sin estado**
 
 **FECHA:**
 
 ```
-15-09-2026
+SEMANA 3
+```
+
+
+### Columna I — **OK PARA DISEÑAR**
+
+**FECHA:**
+
+```
+14-09-2026
 ```
 
 **HORARIO:**
@@ -330,19 +416,6 @@ Cócteles de autor, una barra completa y la mejor vista de Santiago para acompa�
 **COMENTARIOS CLIENTE:**
 
 ```
-Faltó cambiar la foto de ambientación
-
-
-
-
-G2: En el de ambientación, usemos foto real de decoración 50 años (la que psuieron es más matri)
-Saquémos descripción de audiovisuales.
-G3: Que diga ¡Fiesta, barra libre y karaoke!
-(ojo con las caras, debemos modificarlas con IA)
-
-
-
-
 Dejé ajustes en el brief
 
 
@@ -356,119 +429,17 @@ Este carrusel podría ser más informativo, con la info que tenemos, basandonos 
 ```
 
 *Tachado en la grilla (ya resuelto, NO volver a aplicar):*
-> ~~Faltó cambiar la foto de ambientación~~
-> ~~~~
-> ~~G2: En el de ambientación, usemos foto real de decoración 50 años (la que psuieron es más matri)
-Saquémos descripción de audiovisuales.
-G3: Que diga ¡Fiesta, barra libre y karaoke!
-(ojo con las caras, debemos modificarlas con IA)
-
-
-
-
-Dejé ajustes en el brief
-
-
-
-Que sea un carrusel en que cada slide sea un beneficio de cumpleaños. Mantener muy simple, fotos de fondo + detalles~~
-> ~~~~
 > ~~Intercalar carruseles con post estáticos/reels
 
 Este carrusel podría ser más informativo, con la info que tenemos, basandonos en el que publicamos en agosto, pero podríamos detenernos en una slide por cada item y que la foto de atrás represente de lo que se está hablando~~
 
 
-### Columna J — **APROBADO**
+### Columna J — **OK PARA DISEÑAR**
 
 **FECHA:**
 
 ```
 16-09-2026
-```
-
-**HORARIO:**
-
-```
-12:00:00
-```
-
-**DISEÑOS:**
-
-```
-CARRUSEL ESTÁTICO
-```
-
-**DISEÑO
-(8 PUBLICACIONES):**
-
-```
-CARRUSEL ESTÁTICO – NO TE QUEDES SIN TU EVENTO DE FIN DE AÑO
-
-Slide 1 (portada):
-Visual: 
-Foto grande horizontal de ambiente de matrimonio en Piso18.
-Texto:
- Sin texto
-
-Slide 2:
-Visual
- Misma fotografía del Slide 1 (idéntica, sin cambio de encuadre).
-Texto: 
-No te quedes sin tu evento de fin de año: reserva tu fecha en Piso18
-```
-
-**LINKS:** ([enlace](https://cl.pinterest.com/pin/523262050479334748/))
-
-```
-REF SLIDE 2
-```
-
-**F13:**
-
-```
-Un matrimonio inolvidable requiere tiempo para cuidar cada detalle. 💍
-
-Reserva tu fecha de 2027 desde ya y celebra tu historia de amor con una vista única.
-
-📩 Cotiza en piso18.cl
-Av. Vitacura 2727, Las Condes.📍
-
-#Matrimonios2027 #Piso18 #EventosSantiago #Novias2027
-```
-
-**COMENTARIOS CLIENTE:**
-
-```
-Modificar copy
-Comentario wsp
-
-Aquí tiene que ser una foto de ambiente, no enfocada en los novios, veamos opción si es que tenemos de la galería del fotógrafo o de cumpleaños, pero la idea es que se vea una fiesta
-
-
-
-Puede ser un carrusel continuo de ambiente de matrimonio (galería fotografo)
-
-Que el mensaje sea más orientado a que quedan pocos meses y que no te quedes sin tu evento de fin de año. (Y que quede abierto en cuanto a tipo de evento, no cerrarnos en matrimonio)
-```
-
-*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
-> ~~Modificar copy~~
-> ~~~~
-> ~~Comentario wsp~~
-> ~~Aquí tiene que ser una foto de ambiente, no enfocada en los novios, veamos opción si es que tenemos de la galería del fotógrafo o de cumpleaños, pero la idea es que se vea una fiesta
-
-
-
-Puede ser un carrusel continuo de ambiente de matrimonio (galería fotografo)
-
-Que el mensaje sea más orientado a que quedan pocos meses y que no te quedes sin tu evento de fin de año. (Y que quede abierto en cuanto a tipo de evento, no cerrarnos en matrimonio)~~
-
-
-### Columna K — **CORREGIDO**
-
-**FECHA:**
-
-```
-17-09-2026
 ```
 
 **HORARIO:**
@@ -522,23 +493,17 @@ En Piso18 la creamos contigo: luces, música y una vista que transforma cualquie
 #Piso18 #EventosSantiago #Fiesta #Celebraciones
 ```
 
-**COMENTARIOS CLIENTE:**
 
-```
-Comentairo WSP
-```
-
-
-### Columna L — **sin estado**
+### Columna K — **sin estado**
 
 **FECHA:**
 
 ```
-SEMANA 4
+SEMANA 3
 ```
 
 
-### Columna M — **OK PARA DISEÑAR**
+### Columna L — **OK PARA DISEÑAR**
 
 **FECHA:**
 
@@ -608,7 +573,7 @@ En cuanto a diseño, lo haría super simple, logo en la primera G y que todas la
 ```
 
 
-### Columna N — **OK PARA DISEÑAR**
+### Columna M — **OK PARA DISEÑAR**
 
 **FECHA:**
 
@@ -652,16 +617,16 @@ Piso18 de noche: la ciudad de Santiago iluminada como telón de fondo para tu ev
 ```
 
 
-### Columna O — **sin estado**
+### Columna N — **sin estado**
 
 **FECHA:**
 
 ```
-SEMANA 5
+SEMANA 4
 ```
 
 
-### Columna P — **EN REVISIÓN**
+### Columna O — **EN REVISIÓN**
 
 **FECHA:**
 
@@ -725,7 +690,7 @@ En Piso18 armamos tu celebración a medida: decoración, gastronomía y la mejor
 ```
 
 
-### Columna Q — **sin estado**
+### Columna P — **sin estado**
 
 **FECHA:**
 
@@ -734,10 +699,10 @@ SEMANA 5
 ```
 
 
+### Columna Q — **EN REVISIÓN**
+
+
 ### Columna R — **EN REVISIÓN**
-
-
-### Columna S — **EN REVISIÓN**
 
 
 ## STORIES
@@ -893,27 +858,18 @@ Pendiente de que tengamos arrbia los PDF actualizados
 ```
 
 
-### Columna E — **sin estado**
+### Columna E — **APROBADO**
 
 **FECHA:**
 
 ```
-SEMANA 3
-```
-
-
-### Columna F — **YA POSTEADO**
-
-**FECHA:**
-
-```
-14-09-2026
+10-09-2026
 ```
 
 **HORARIO:**
 
 ```
-16:00:00
+18:00:00
 ```
 
 **DISEÑOS:**
@@ -978,18 +934,48 @@ Cumpleaños: 30% OFF en cumpleaños realizados en octubre, noviembre o diciembre
 ```
 
 
-### Columna G — **EN REVISIÓN**
+### Columna F — **APROBADO**
+
+**DISEÑOS:**
+
+```
+ESTÁTICA
+```
+
+**INTERACCIÓN:**
+
+```
+Sticker de link a cotización.
+```
+
+**COMENTARIOS DISEÑO:**
+
+```
+Debemos modificar las caras con IA. Este contenido cuando lo dejaron en feed tenía un texto o no? Veamos una opción de texto que vaya acorde a la propuesta
+```
+
+
+### Columna G — **sin estado**
 
 **FECHA:**
 
 ```
-16-09-2026
+SEMANA 3
+```
+
+
+### Columna H — **OK PARA DISEÑAR**
+
+**FECHA:**
+
+```
+14-09-2026
 ```
 
 **HORARIO:**
 
 ```
-13:00:00
+12:00:00
 ```
 
 **DISEÑOS:**
@@ -1024,7 +1010,7 @@ Barra de reacción o sticker 💖.
 ```
 
 
-### Columna H — **EN REVISIÓN**
+### Columna I — **OK PARA DISEÑAR**
 
 **FECHA:**
 
@@ -1069,7 +1055,7 @@ Barra de reacción o sticker 🥳.
 ```
 
 
-### Columna I — **EN REVISIÓN**
+### Columna J — **OK PARA DISEÑAR**
 
 **FECHA:**
 
@@ -1126,45 +1112,12 @@ dejar sin lo de primavera tu fecha ideal, dejar abierto con el CTA Reserva tu ma
 > ~~dejar sin lo de primavera tu fecha ideal, dejar abierto con el CTA Reserva tu matrimonio~~
 
 
-### Columna J — **sin estado**
+### Columna K — **sin estado**
 
 **FECHA:**
 
 ```
 SEMANA 4
-```
-
-
-### Columna K — **APROBADO**
-
-**FECHA:**
-
-```
-21-09-2026
-```
-
-**HORARIO:**
-
-```
-13:00:00
-```
-
-**DISEÑOS:**
-
-```
-ESTÁTICA
-```
-
-**INTERACCIÓN:**
-
-```
-Sticker de link a cotización.
-```
-
-**COMENTARIOS DISEÑO:**
-
-```
-Debemos modificar las caras con IA. Este contenido cuando lo dejaron en feed tenía un texto o no? Veamos una opción de texto que vaya acorde a la propuesta
 ```
 
 

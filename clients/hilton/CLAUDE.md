@@ -1085,6 +1085,68 @@ piel: **no se aísla por descarte**, se marca el núcleo de tono.
 rostros de trabajadores». Acá el encargo es otro —reemplazarlos, no evitarlos— y sigue
 abierto si la §G de DT aplica en esta cuenta.
 
+#### ✅ LOS DOS PERFILES — APROBADOS POR ELI EL 15-09-2026
+
+Están **cerrados y fijados como referencia reutilizable** en la librería de Magnific.
+No se vuelven a generar de cero: **se invocan**.
+
+| Perfil | En la librería | Archivo canónico |
+|---|---|---|
+| **Mujer, 35** | `PISO18-mujer-35` · id `2288933` | `raw/hilton/piso18/perfiles/APROBADO-mujer-35.png` |
+| **Hombre, 35** | `PISO18-hombre-35` · id `2288934` | `raw/hilton/piso18/perfiles/APROBADO-hombre-35.png` |
+
+##### Cómo se usan
+
+En `images_generate`, pasando la referencia de personaje por su **id numérico**:
+
+```json
+"references": [{"type": "character", "identifier": "2288933"}]
+```
+
+o nombrando `@PISO18-mujer-35` dentro del prompt. **Eso es lo que hace que la cara
+sea la misma pieza tras pieza** en vez de una persona distinta cada vez — que era
+justamente el problema que se venía a resolver.
+
+##### Qué son
+
+| | Mujer | Hombre |
+|---|---|---|
+| Edad | 35 | 35 |
+| Piel | Clara, subtono cálido dorado | Clara, subtono cálido dorado |
+| Ojos | Café oscuro | **Café claro**, miel |
+| Pelo | **Largo** hasta media espalda, ondas sueltas, **balayage** de raíz castaña a puntas rubias | **Rubio oscuro** / castaño claro dorado, corto y prolijo |
+| Altura | 1,65 m | 1,78 m |
+
+##### ⭐⭐ Lo que costó llegar, y por qué queda escrito
+
+**«Menos moreno» y «perfil chileno» se empujan entre sí.** En la ronda 2 se aclaró
+piel y pelo tal como se pidió, y el modelo se fue solo al fenotipo **del norte de
+Europa**: los dos hombres salieron leyéndose suecos o alemanes, y la mujer además
+**se envejeció a 40–45**.
+
+> **La salida no fue aclarar menos: fue NOMBRAR el tipo.** «Chileno de ascendencia
+> española o alemana, piel clara de subtono cálido, que siga leyéndose
+> latinoamericano y no nórdico.» Con eso quedó a la primera.
+
+⚠️ Y la edad hay que **pedirla por rasgos, no por número**: «35 años» solo daba
+38–42. Lo que funcionó fue *frente lisa, mandíbula firme, sin marcas de expresión
+marcadas, claramente a mitad de los treinta y NO en los cuarenta*.
+
+##### ⛔ La ropa de la hoja NO se traslada
+
+El gris liso sin estampados, logos ni accesorios es **deliberado**: existe para que
+la hoja no compita con la ropa de la foto donde se monte. **En la pieza se conserva
+la ropa de la foto original** — lo que se cambia es la persona, no el vestuario.
+
+Y lo mismo con la escena: **se reemplaza el rostro, nunca el salón**. La luz, el
+montaje y la postura de la foto real se conservan enteros.
+
+##### El resguardo
+
+Las 10 hojas de las dos rondas están en el Space **PISO18 · Perfiles de personas**
+(`a2c0b3fa-f579-47a1-bb86-77b160a18839`). Las rondas se ven en
+`out/hilton/piso18/perfiles/ronda-1.html` y `ronda-2.html`.
+
 #### ⭐⭐⭐ EL SISTEMA TIPOGRÁFICO Y DE LOGO, DICTADO POR ELI (15-09-2026)
 
 Esto **lo dictó ella**, no sale de medir. Manda sobre cualquier lectura de los

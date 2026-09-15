@@ -6,6 +6,73 @@
 
 ---
 
+## 2026-09-15 (noche) — PISO18 · S5 DE SEPTIEMBRE, ENTREGADA (ronda 1)
+
+**Marca: PISO18.** Sesión aparte de la S4 del mismo día, que ya está aprobada.
+
+**Qué se entregó:** las **3 piezas de la S5**, o sea todo lo que quedaba pendiente
+de la cuenta en septiembre.
+
+| Pieza | Archivo | Dónde |
+|---|---|---|
+| Historia 28-09 «Planifica tu evento de fin de año» | `ST N°1 S5.png` (2250×4000) | `S5 HILTON SEP 2026 › PISO18 › STS` |
+| Carrusel 29-09 «Cumpleaños en Piso18», 3 slides | `C1 S5 N°1..3.png` (2250×2813) | `… › C1 S5 PISO18` |
+| Historia 30-09 «Visita guiada virtual» | `ST N°2 S5.png` (2250×4000) | `… › STS` |
+
+La carpeta de destino **la creó Eli** el 15-09 a las 19:49Z, el mismo minuto en que
+subió las dos referencias a `REF`. Revisión visual en
+`out/piso18/s5/revision/index.html` y como artefacto publicado.
+
+**Las dos referencias que dejó** (`REF`, `1Ten76mKoEQWF-dEg4vsLcybk7id96Mg9`) son
+una **agenda de anillas** con foto sujeta por clip y pestañas de índice (para el
+28-09) y **dos teléfonos escalonados** sobre fondo desaturado (para el 30-09).
+Las dos se tradujeron, no se calcaron. Copiadas en `raw/hilton/piso18/ref-s5/`.
+
+**Lo más reutilizable de la jornada, en cuatro líneas:**
+
+1. ⛔ **El banco no tiene torta ni brindis** — medido sobre 386 fotos (110 deco
+   2024 + 85 ago 2023 + las **191 de `3-Finales 2026`**, bajadas enteras acá por
+   primera vez). Ni siquiera la torta del carrusel publicado el 15-09. Las dos
+   ausencias se produjeron **editando foto real** con Nano Banana Pro, como en la
+   S4. Si vuelve a hacer falta, **hay que pedirle la sesión a Eli**.
+2. ⭐⭐⭐ **Un fondo oscuro PLANO es bloqueante en el QA** («foto estirada para
+   llenar el formato»: 18 % de filas idénticas en la del 28-09). No se aflojó el
+   tope — se le dio **grano** al fondo, que además se ve mejor. Entra `GranoFondo`
+   al kit y **todo fondo oscuro de esta marca lo lleva**.
+3. ⭐ **La historia con sticker de enlace NO lleva botón.** Es la excepción que el
+   propio cliente dictó el 18-09 para no redundar. Si el sticker es de cotización,
+   el botón sí va.
+4. ⚠️ **El feed se rinde a `--scale=2.0837`, no a 2.0833:** con 2,0833 el alto da
+   2812 y el máster aprobado de la cuenta es **2813**.
+
+**Cómo se rehace:**
+
+```bash
+npx remotion still src/P18Entry.tsx P18-ST-Planifica out/piso18/s5/ST-N1-S5.png --scale=2.0833
+npx remotion still src/P18Entry.tsx P18-C1-Cumple-S1 out/piso18/s5/C1-S5-N1.png --scale=2.0837
+python qa/motor.py --marca piso18 --textos clients/piso18/entregas/textos-s5.json out/piso18/s5/*.png
+python scripts/p18-s5-subir.py --dry-run     # y sin --dry-run para subir
+```
+
+**Lo que queda abierto — hay que preguntárselo a Eli:**
+
+- **Las pestañas del planner** dicen las cinco verticales (matrimonio, cumpleaños,
+  corporativo, bautizo, fin de año). Es criterio propio apoyado en su orden de
+  «mostrar más de lo demás» y en que bautizo tiene 0 piezas en todo septiembre.
+  Si no le gusta, se cambia en un minuto.
+- **La bajada del 30-09.** El cliente la tipeó «recorre cada rincón Piso18 desde
+  donde estés» y en la pieza dice «Recorre cada rincón **de** Piso18 desde donde
+  estés.» — se le repuso la preposición y el punto. Está declarado en la entrega.
+- **La torta y el brindis son PRODUCIDOS** y van marcados como tales en la página
+  de revisión. Si prefiere foto real, tiene que subir la sesión del cumpleaños.
+- **El solapamiento del 29-09 con el carrusel de cumpleaños del 15-09**: los mismos
+  cuatro beneficios. Es de contenido, se informó y no se corrigió.
+- Sigue faltando **`Edwardian Script ITC`**, la cuarta voz del sistema. La historia
+  del 30-09 la pedía por referencia y va en IvyPresto mientras tanto.
+- Sigue sin diagnosticar el **«quedó algo extraño detrás del logo»** del cliente.
+
+---
+
 ## 2026-09-15 (tarde) — DT · RONDA 5 DEL ESTÁTICO DE HONORS, HECHA EN ILLUSTRATOR
 
 **Marca: DT.** Continúa el cierre de DT que está más abajo; **reemplaza su entrega**.

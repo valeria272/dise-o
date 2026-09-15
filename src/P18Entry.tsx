@@ -17,6 +17,14 @@ import React from 'react';
 import {Composition, Folder, registerRoot} from 'remotion';
 
 import {P18StLuzVista, P18StLuzVistaGuia} from './compositions/piso18/P18StLuzVista';
+import {P18StPlanifica, P18StPlanificaGuia} from './compositions/piso18/P18StPlanifica';
+import {P18StRecorrido, P18StRecorridoGuia} from './compositions/piso18/P18StRecorrido';
+import {
+  P18C1CumpleS1,
+  P18C1CumpleS2,
+  P18C1CumpleS3,
+  P18C1CumpleGuia,
+} from './compositions/piso18/P18C1Cumple';
 import {P18StEncuesta, P18StEncuestaGuia} from './compositions/piso18/P18StEncuesta';
 import {
   P18StMontaje,
@@ -26,6 +34,8 @@ import {
 } from './compositions/piso18/P18StMontaje';
 
 const story = {durationInFrames: 1, fps: 30, width: 1080, height: 1920} as const;
+/** Feed 4:5 — se compone a 1080×1350 y se entrega a 2250×2813 (×2,0833). */
+const feed = {durationInFrames: 1, fps: 30, width: 1080, height: 1350} as const;
 
 const Raiz: React.FC = () => (
   <>
@@ -55,6 +65,23 @@ const Raiz: React.FC = () => (
         width={1080}
         height={1920}
       />
+      {/* ── S5 de septiembre ──────────────────────────────────────────── */}
+
+      {/* STORIES col P · 28-09 12:00 · ST ESTÁTICA «PLANIFICA TU EVENTO DE FIN DE AÑO» */}
+      <Composition id="P18-ST-Planifica" component={P18StPlanifica} {...story} />
+      <Composition id="P18-ST-Planifica-Guia" component={P18StPlanificaGuia} {...story} />
+
+      {/* STORIES col Q · 30-09 18:00 · ST ESTÁTICA «VISITA GUIADA VIRTUAL» */}
+      <Composition id="P18-ST-Recorrido" component={P18StRecorrido} {...story} />
+      <Composition id="P18-ST-Recorrido-Guia" component={P18StRecorridoGuia} {...story} />
+    </Folder>
+
+    <Folder name="P18-Feed">
+      {/* FEED col Q · 29-09 12:00 · CARRUSEL ESTÁTICO «CUMPLEAÑOS EN PISO18» */}
+      <Composition id="P18-C1-Cumple-S1" component={P18C1CumpleS1} {...feed} />
+      <Composition id="P18-C1-Cumple-S2" component={P18C1CumpleS2} {...feed} />
+      <Composition id="P18-C1-Cumple-S3" component={P18C1CumpleS3} {...feed} />
+      <Composition id="P18-C1-Cumple-Guia" component={P18C1CumpleGuia} {...feed} />
     </Folder>
   </>
 );

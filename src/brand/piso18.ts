@@ -23,6 +23,7 @@
  * noche + 3 historias). Cierra la capa 6 del sistema de marca, que no existía.
  * **Cada número dice de dónde sale.** Lo que no se midió, no está acá.
  */
+import React from 'react';
 import {staticFile} from 'remotion';
 
 export const P18 = {
@@ -346,3 +347,79 @@ export const sinBodas = (texto: string): string =>
 
 /** ¿Quedó alguna «boda» viva en el texto? Para el QA, antes de entregar. */
 export const tieneBodas = (texto: string): boolean => /\bbodas?\b/i.test(texto);
+
+// ───────────────────────────────────────────────────────────────────────────
+// Grano del fondo oscuro
+// ───────────────────────────────────────────────────────────────────────────
+/**
+ * ⭐ GRANO DE FONDO — el `<svg>` que le da materia a un fondo oscuro plano.
+ *
+ * Nació de dos cosas a la vez, y las dos apuntaban al mismo arreglo:
+ *
+ * 1. **Dirección de arte.** La referencia que dejó Eli para la historia del
+ *    28-09 no tiene un negro digital de fondo: tiene un **cuero**. Un fondo
+ *    plano en una marca que compone con papel, velas y cristal se ve barato.
+ *
+ * 2. **QA.** `qa/motor.py --marca piso18` daba **bloqueante** en las dos
+ *    historias de la S5: «foto estirada para llenar el formato — 204 filas
+ *    clonadas seguidas». Medido, la racha real de filas idénticas era del
+ *    **18 %** del alto en la del 28-09 (desde y=82 %) y del **11 %** en la del
+ *    30-09 (desde y=89 %). No había ninguna foto estirada: era el fondo liso.
+ *
+ * ⛔ **Por eso NO se aflojó el tope de la regla.** Esa regla existe porque en
+ * una story de Revex una foto estirada ocupó el 34 % de la pieza, y subirla al
+ * 19 % para que pasara esta entrega la dejaba sin filo. Se arregló la pieza,
+ * que además es lo que se veía mejor.
+ *
+ * Es el mismo `feTurbulence` de la textura de papel, pero **en claro y sobre
+ * oscuro**: dos capas, fibra fina y veta ancha, muy tenues. A `0,05` y `0,035`
+ * de opacidad no se ve como ruido y alcanza para que dos filas contiguas dejen
+ * de ser idénticas.
+ */
+export const GranoFondo: React.FC<{semilla?: number}> = ({semilla = 5}) => (
+  React.createElement(
+    'svg',
+    {
+      width: '100%',
+      height: '100%',
+      style: {position: 'absolute', inset: 0, pointerEvents: 'none'},
+      preserveAspectRatio: 'none',
+    },
+    React.createElement(
+      'filter',
+      {id: `p18-grano-${semilla}`},
+      React.createElement('feTurbulence', {
+        type: 'fractalNoise',
+        baseFrequency: '0.52',
+        numOctaves: 3,
+        seed: semilla,
+      }),
+      React.createElement('feColorMatrix', {type: 'saturate', values: '0'}),
+    ),
+    React.createElement(
+      'filter',
+      {id: `p18-veta-fondo-${semilla}`},
+      React.createElement('feTurbulence', {
+        type: 'fractalNoise',
+        baseFrequency: '0.006 0.021',
+        numOctaves: 3,
+        seed: semilla + 13,
+      }),
+      React.createElement('feColorMatrix', {type: 'saturate', values: '0'}),
+    ),
+    React.createElement('rect', {
+      width: '100%',
+      height: '100%',
+      filter: `url(#p18-grano-${semilla})`,
+      opacity: 0.05,
+      style: {mixBlendMode: 'screen'},
+    }),
+    React.createElement('rect', {
+      width: '100%',
+      height: '100%',
+      filter: `url(#p18-veta-fondo-${semilla})`,
+      opacity: 0.035,
+      style: {mixBlendMode: 'screen'},
+    }),
+  )
+);

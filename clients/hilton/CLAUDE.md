@@ -1741,6 +1741,117 @@ cargar la sombra.
 
 ---
 
+### ⭐⭐ LA S5 PRODUCIDA (15-09-2026) — 3 piezas, y cuatro cosas que quedan de regla
+
+Se entregaron **5 archivos**: el carrusel del 29-09 (3 slides) y las historias del
+28-09 y del 30-09. Subidas a **`S5 HILTON SEP 2026 › PISO18`** —carpeta que creó
+Eli el 15-09 a las 19:49Z, el mismo minuto en que subió las referencias a `REF`—
+en `C1 S5 PISO18` y `STS`, los mismos nombres de la S4.
+
+| Pieza | Archivo | Tamaño |
+|---|---|---|
+| Historia 28-09 «Planifica tu evento de fin de año» | `STS › ST N°1 S5.png` | 2250 × 4000 |
+| Carrusel 29-09 «Cumpleaños en Piso18» | `C1 S5 PISO18 › C1 S5 N°1..3.png` | 2250 × 2813 |
+| Historia 30-09 «Visita guiada virtual» | `STS › ST N°2 S5.png` | 2250 × 4000 |
+
+⭐ **La numeración de las historias es la de Eli**, leída de cómo nombró sus propias
+referencias: `ref st n°1 s5` → 28-09 y `ref st n°2 s5` → 30-09.
+
+#### 1. ⛔⛔ EL BANCO NO TIENE TORTA NI BRINDIS — medido sobre 386 fotos
+
+Se pasaron por hoja de contacto los **tres** bancos alcanzables: las 110 de
+`Piso 18_28 ago decoración 2024`, las 85 de `Piso 18 agosto` (2023) y las **191**
+de `3-Finales 2026` —que se bajaron enteras acá por primera vez—. Resultado:
+
+⛔ **No hay ninguna torta de cumpleaños y ningún brindis en todo el material.**
+Ni siquiera la torta del carrusel publicado el 15-09 (`C1 S3 n°1`, la del topper
+«37»): esa foto **no está en ninguna carpeta que el conector alcance**, y la
+carpeta ordenada de Eli (`GRILLA IA PISO18 › FOTOS SESIONES`) sólo tiene deco
+2024, platos 23-5 y 3-Finales 2026. **Si hace falta otra vez, hay que pedírsela.**
+
+⭐ Lo que sí apareció en `3-Finales 2026`, y no estaba anotado: las fotos **0161 y
+0171 / 0177 / 0178** son el salón montado con **la ciudad entera por los
+ventanales**, que es el plano que la grilla pide una y otra vez («amplitud y buena
+iluminación con vista de Santiago»). La sesión no es sólo cobertura social.
+
+#### 2. ⭐⭐ LA REFERENCIA DE LA AGENDA RESUELVE EL PROBLEMA DE FORMATO
+
+La referencia del 28-09 (`ref st n°1 s5`) es una **agenda de anillas** con una foto
+sujeta por un **clip** y **pestañas de índice** al costado. Traducirla no es sólo
+decorativo: **metiendo la foto dentro de la hoja, entra con su proporción propia**
+y desaparece el problema crónico de esta marca —banco horizontal, historia 9:16—
+sin recortar un 3:2 a vertical ni apoyar el texto en una caja de color.
+
+⇒ **El planner es un recurso reutilizable de la cuenta.** Vive en
+`src/compositions/piso18/P18StPlanifica.tsx`: hoja beige con textura generada,
+anillas y clip dibujados en SVG, pestañas verticales.
+
+⚠️ Y la pestaña **se dimensiona sobre el rótulo más largo, no sobre el promedio**
+—la misma regla de las cifras tabulares—: con 128 px, `CORPORATIVO` y `CUMPLEAÑOS`
+se salían por abajo y se metían en la pestaña siguiente. El alto se calcula.
+
+#### 3. ⭐⭐⭐ EL FONDO OSCURO PLANO ES BLOQUEANTE EN EL QA — y se arregla, no se afloja
+
+Las dos historias salieron **bloqueadas** con «foto estirada para llenar el
+formato»: racha de filas idénticas del **18 %** del alto en la del 28-09 (desde
+y=82 %) y del **11 %** en la del 30-09 (desde y=89 %). No había ninguna foto
+estirada — **era el fondo oscuro liso**. El mismo fondo disparaba además el aviso
+de «una banda tiene otro foco», porque un color plano tiene nitidez cero.
+
+⛔ **No se tocó el tope de la regla.** Existe porque en una story de Revex una foto
+estirada ocupó el 34 % de la pieza; subirlo al 19 % para que pasara esta entrega la
+dejaba sin filo. Se arregló **la pieza**, que además es lo que se veía mejor: la
+referencia de Eli no tiene un negro digital de fondo, tiene un **cuero**.
+
+⇒ Entra `GranoFondo` a `src/brand/piso18.ts`: dos capas de `feTurbulence` en claro
+sobre oscuro (`0,05` y `0,035` de opacidad, `mix-blend-mode: screen`). No se ve
+como ruido y alcanza para que dos filas contiguas dejen de ser idénticas.
+**Todo fondo oscuro plano de esta marca lo lleva.**
+
+#### 4. ⭐ LA HISTORIA CON STICKER DE ENLACE NO LLEVA BOTÓN
+
+La regla dictada dice que **siempre** hay botón en historias. La excepción es del
+propio cliente, sobre la ST del 18-09: *«el botón de cotiza lo eliminamos y dejamos
+solo el botón de enlace cuando lo subamos, para no redundar»*.
+
+⇒ **Si la fila INTERACCIÓN dice «sticker de link a …» que no sea cotización, la
+pieza deja el corredor libre y no dibuja botón.** Pasó en la del 30-09 (sticker de
+link a visita virtual). Cuando el sticker ES de cotización —como en la del 28-09—
+el botón va y repite el CTA que la grilla escribe en esa misma fila.
+
+#### 5. Lo que hay que informarle a contenido, no corregir
+
+El 29-09 es el **segundo carrusel de cumpleaños del mes**: el del 15-09 ya enumera
+ambientación, audiovisuales, estaciones, fiesta y barra libre y trasnoche — los
+mismos cuatro puntos de su slide 2. Lo único nuevo es **el regalo al festejado**.
+La grilla la escriben cliente y contenido: **se informa, no se resuelve**. Lo que
+sí se hizo desde diseño es que las dos piezas no se parezcan (la del 15-09 es
+nocturna y con titular en portada; esta es de día, con la ciudad y portada limpia).
+
+#### 6. Dónde quedó
+
+| Qué | Dónde |
+|---|---|
+| Las 3 piezas | `out/piso18/s5/` · entrega en `out/piso18/s5/entrega/` |
+| Código | `src/compositions/piso18/P18C1Cumple.tsx`, `P18StPlanifica.tsx`, `P18StRecorrido.tsx` |
+| Textos declarados para el QA | `clients/piso18/entregas/textos-s5.json` |
+| Subida a Drive | `scripts/p18-s5-subir.py` |
+| Revisión visual | `out/piso18/s5/revision/index.html` + artefacto publicado |
+| Referencias de Eli | `raw/hilton/piso18/ref-s5/` (`REF` en Drive, `1Ten76mK…`) |
+| La sesión 3-Finales 2026 completa | `raw/hilton/piso18/banco-2026/` (191 fotos) |
+
+```bash
+npx remotion still src/P18Entry.tsx P18-ST-Planifica out/piso18/s5/ST-N1-S5.png --scale=2.0833
+npx remotion still src/P18Entry.tsx P18-C1-Cumple-S1 out/piso18/s5/C1-S5-N1.png --scale=2.0837
+python qa/motor.py --marca piso18 --textos clients/piso18/entregas/textos-s5.json out/piso18/s5/*.png
+python scripts/p18-s5-subir.py --dry-run
+```
+
+⚠️ **El feed va a `--scale=2.0837`, no a 2.0833**: con 2,0833 el alto da 2812 y el
+máster aprobado de esta cuenta es **2813**. La historia sí va a 2,0833 (4000 exacto).
+
+---
+
 ## Brand kit BETWEEN (calibrado 24-08-2026 con el feedback escrito de Eli)
 
 > **Los valores exactos viven en el código, no acá:** `src/brand/hilton-between.ts`

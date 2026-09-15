@@ -68,6 +68,76 @@ a ser la fuente. Hoy quedó a medio camino y por eso el `.tsx` está desfasado.
 
 ---
 
+## 2026-09-15 — PISO18 · S4 **APROBADA** (cierre)
+
+**Marca: PISO18.** Cierra la jornada. Las **8 piezas quedaron aprobadas por Eli**
+tras tres rondas. La entrada de más abajo («S4 DE SEPTIEMBRE, ENTREGADA») es la
+ronda 1 y **sus fotos ya no son las vigentes** — léela sólo para el historial.
+
+**Qué se entregó, y es lo que está publicado en Drive:**
+
+| Pieza | Archivo | Dónde |
+|---|---|---|
+| Carrusel 22-09, 4 slides | `C1 S4 N°1..4.png` (2250×2813) | `S4 HILTON SEP 2026 › PISO18 › C1 S4 PISO18` |
+| Historia 22-09, atardecer | `ST N°2 S4.png` (2250×4000) | `… › STS` |
+| Historia animada 23-09 | `ST N°3 S4.mp4` (1080×1920 · **13,06 s**) | `… › STS` |
+| Historia 25-09, encuesta | `ST N°4 S4.png` (2250×4000) | `… › STS` |
+| Post de feed 25-09 | `Post S4 PISO18 25-09.png` | raíz de `PISO18` |
+
+Los enlaces de Drive **no cambiaron entre rondas**: se reemplazó el contenido con
+`files().update`, así que lo que el cliente ya tenga sigue sirviendo.
+
+**Las tres rondas, en una línea cada una:**
+
+1. Las 8 piezas de cero. Flores recoloreadas con IA porque el banco de entonces
+   tenía un solo estilo floral.
+2. La animada rehecha con la referencia como plantilla; la historia del atardecer
+   pasa a ser dos fotos cosidas por la onda; textura de papel en la encuesta.
+3. **Todas las flores pasan a la sesión de decoración real**; la animada se rehace
+   entera con el salón vacío y empuje lateral; el titular del atardecer crece,
+   sube y pierde la sombra doble.
+
+**⭐⭐⭐ LO MÁS REUTILIZABLE DE LA JORNADA — y no es de Piso18:**
+
+```bash
+curl -sL "https://drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t" -o archivo
+```
+
+Baja de Drive **cualquier tamaño, en paralelo y sin token**. El conector MCP corta
+en 10 MB y se cae con más de 4 llamadas simultáneas; `uc?export=download` devuelve
+920 KB de HTML con archivos grandes. Con el endpoint bueno entraron **110 fotos /
+1,7 GB en una pasada** más cuatro videos de hasta 115 MB.
+⛔ **Las rondas 1 y 2 se entregaron a medias por dar por bloqueante un tope que no
+existía.** Está escrito en `clients/hilton/CLAUDE.md` § LAS RONDAS 2 Y 3, punto 0.
+
+**Lo que cualquiera que retome PISO18 tiene que saber:**
+
+- ⛔ **Para flores, la sesión es `Piso 18_28 ago decoración 2024`**
+  (`1xS-ly0pKHUzyfhSv7PMrEkuFezymVCUk`, 110 fotos a 3840×5760, ya en
+  `raw/hilton/piso18/deco-ago2024/`). Las mesas redondas con mantel blanco de la
+  sesión de agosto 2023 **ya no son el montaje actual**.
+- ⛔ **`IMG_4177.MOV` es el único video de montaje** de los cuatro de «Llegada de
+  la primavera»; los otros tres son una presentadora a cámara. Y **se declara
+  horizontal siendo vertical** (rotación por metadato).
+- ⛔ **Ninguna foto se amplía**: se divide el ancho de destino por el del recorte y
+  tiene que dar menos de 1.
+- ⛔ La historia animada de esta marca **abre a sangre, sin zoom, con empuje
+  lateral y bajo 15 s**.
+
+**⚠️ Qué queda pendiente de la cuenta (no de la S4):**
+
+- **La S5 de septiembre** ya está en la grilla y sin tocar: FEED col Q (29-09,
+  carrusel de cumpleaños, `EN REVISIÓN`) y STORIES cols P y Q (28-09 y 30-09,
+  las dos `OK PARA DISEÑAR`).
+- **La ST del 21-09** sigue fuera: su celda está en APROBADO pero no trae brief de
+  diseño. Hay que pedírselo a contenido.
+- **Falta `Edwardian Script ITC`**, la cuarta voz del sistema. La historia del
+  22-09 la pedía y va en IvyPresto itálica mientras tanto.
+- Sigue sin diagnosticar el **«quedó algo extraño detrás del logo»** del cliente:
+  el velo del PNG plantilla ya se descartó como causa el 15-09.
+
+---
+
 ## 2026-09-15 — PISO18 · S4 DE SEPTIEMBRE, ENTREGADA
 
 **Marca: PISO18.** Sesión aparte de la de DT que corre el mismo día.

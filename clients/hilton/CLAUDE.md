@@ -1556,9 +1556,17 @@ que creó la propia app.
 contexto y el propio harness **lo guarda en un archivo**. De ahí se decodifica el
 base64 a disco sin que pase por el contexto. Es lo que hizo bajar las 85 fotos.
 
-> **Lo que destrabaría esto de raíz** y hoy no está hecho: que Eli comparta la carpeta
-> de fotos como «cualquiera con el enlace», y entonces `curl` baja todo en un minuto.
-> Es una decisión suya, no del estudio.
+> ⭐⭐ **RESUELTO EL MISMO DÍA — y NO hacía falta cambiar ningún permiso.**
+> Hay un endpoint de Drive que **baja cualquier tamaño, en paralelo y sin token**:
+>
+> ```bash
+> curl -sL "https://drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t" -o foto.jpg
+> ```
+>
+> El `confirm=t` es lo que salta la pantalla de «este archivo es muy grande para
+> analizarlo con antivirus», que es la que devolvía los ~920 KB de HTML. Con esto
+> entraron **110 fotos / 1,7 GB en una sola pasada** y los cuatro videos de montaje.
+> Ver § «LA RONDA 3» más abajo: **dos rondas se entregaron a medias por no conocerlo.**
 
 #### 6. Lo que quedó montado — y dónde
 
@@ -1596,6 +1604,140 @@ color de Selfie por usar el suyo. Calibrado a **12** con la medición de la piez
 que es sólo fotografía el check mide la foto, no el texto — la portada aprobada
 `C2 S1 n°1` da 6,5 % y una portada de esta entrega 20,4 %, y la diferencia es cuánta
 luz toca el borde, no la diagramación. Hoy **eso se revisa mirando**.
+
+---
+
+### ⭐⭐⭐ LAS RONDAS 2 Y 3 DE LA S4 (15-09-2026) — APROBADAS
+
+Las 8 piezas quedaron **aprobadas por Eli** tras dos rondas de corrección. Lo que
+sigue es lo que cambió y por qué, porque casi todo es regla de marca reutilizable.
+
+#### ⭐⭐⭐ LO PRIMERO, PORQUE VALE PARA TODAS LAS MARCAS: cómo se baja de Drive
+
+```bash
+curl -sL "https://drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t" -o archivo
+```
+
+| Vía | Qué pasa |
+|---|---|
+| Conector MCP `download_file_content` | **Corta en 10 MB.** Y con más de 4 llamadas en paralelo devuelve `session expired` |
+| `drive.google.com/uc?export=download` | Con archivos grandes devuelve **~920 KB de HTML**: la pantalla de aviso de antivirus |
+| `drive.google.com/thumbnail?id=…&sz=w4000` | Sirve, pero depende del compartido de CADA archivo y no aguanta paralelo |
+| **`drive.usercontent.google.com/download?…&confirm=t`** | ⭐ **Baja cualquier tamaño, en paralelo, sin token.** El `confirm=t` salta el aviso |
+
+**Con esto entraron 110 fotos (1,7 GB) en una sola pasada**, más cuatro videos de
+hasta 115 MB. ⛔ Las rondas 1 y 2 se entregaron a medias —con flores recoloreadas
+por IA y un carrusel sin rehacer— **porque se dio por bloqueante un tope que no
+existía**. Verificar siempre con `file`: si bajó HTML, no es el archivo.
+
+#### 1. ⭐⭐ LA SESIÓN DE FLORES ES `Piso 18_28 ago decoración 2024`
+
+`1xS-ly0pKHUzyfhSv7PMrEkuFezymVCUk` — 110 fotos a **3840 × 5760**. Es LA sesión de
+decoración: mesas de madera, montajes distintos y arreglos que **ya vienen
+variados**, así que no hay que inventarles variedad.
+
+> Dictado de Eli: *«usa para todas las que tengan que ver con flores esta sesión»*
+> y *«ya la mesa blanca no son las actuales»*.
+
+⛔ **La sesión de agosto 2023 (`Piso 18 agosto`) queda fuera para flores**: sus
+mesas redondas con mantel blanco **ya no son el montaje actual del centro de
+eventos**. Sigue sirviendo para barra, cóctel y gastronomía.
+
+⚠️ Y `3-Finales 2026` (191 fotos) **no es banco de espacio**: es la cobertura
+social de un matrimonio —retratos, *getting ready*, zapatos, manos—. No tiene
+arreglos florales.
+
+⭐ **Consecuencia directa:** con esta sesión **no hace falta IA para las flores**.
+En la ronda 1 hubo que recolorear tres arreglos con Magnific porque el material
+viejo tenía un solo estilo floral; con la sesión correcta, cero IA.
+
+#### 2. ⭐⭐ EL SALÓN VACÍO EXISTE — está en los videos orgánicos
+
+`DISEÑO › … › 9.SEPTIEMBRE › PISO 18 › LLEGADA DE LA PRIMAVERA`
+(`1eXKNVwlDcUcZKdW14aqXSOXYdT0oMnq0`), cuatro `.MOV`.
+
+⚠️ **Tres de los cuatro son de una presentadora hablando a cámara**, no de montaje.
+El único que sirve es **`IMG_4177.MOV`** (115 MB): un travelling del salón SIN
+MONTAR — piso desnudo, mesas altas sueltas, el sol entrando. El tramo bueno es
+**9,4 s → 12,4 s**.
+
+⛔⛔ **Y trae la trampa de siempre: `ffprobe` lo declara 3840×2160 y al decodificar
+es 2160×3840.** Es rotación por metadato, como todo `.MOV` de iPhone. Por creerle
+al stream se recortó **tres veces** una franja vertical de techo y cortinas sin
+nada de piso. **Ya es 9:16 exacto: sólo hay que escalarlo, nunca recortarlo.**
+
+Y es **HDR HLG** (`bt2020nc / arib-std-b67`): necesita tonemap o sale lavado —el
+mismo modo de falla del metraje de dron de Tierra Calma. El comando completo está
+en la cabecera de `src/compositions/piso18/P18StMontaje.tsx`.
+
+#### 3. ⭐⭐ LA GRAMÁTICA DE UNA HISTORIA ANIMADA DE ESTA MARCA
+
+La ronda 1 fueron fotos a sangre con acercamiento y titular encima; la ronda 2,
+marcos sobre fondo crema. **Las dos se rechazaron.** Lo aprobado:
+
+| Regla | Por qué |
+|---|---|
+| **Abre a sangre, sin fondo plano** | *«que al inicio no aparezca ese fondo blanco»*. El primer fotograma es la miniatura que se ve antes de tocar play |
+| **Cero zoom** | *«mucho zoom y se ve pixelado»*. Las fotos van quietas |
+| **Transición de EMPUJE lateral** | *«se mueve hacia el otro lado y aparece otra con más montaje»*. El entrante viene de la derecha; el saliente arrastra sólo **0,3 del ancho**, y esa diferencia es la que da profundidad en vez de pase de diapositivas |
+| **Rápido** | Empuje de **14 frames** (0,47 s), planos de **2,2 s** |
+| **Sin rótulos** | *«no coloques antes/después, solamente todos los montajes»*: una sola progresión continua |
+| ⏱️ **Tope 15 s** | *«las historias no deben ser de más de 15 segundos»*. La entregada dura **13,06** |
+
+⚠️ **Y el primer plano NO entra empujando**: arranca ya en pantalla, o el
+fotograma 0 sale medio negro.
+
+#### 4. ⭐ «PIXELADO» ERA UN PROBLEMA DE ORIGEN, NO DE RENDER
+
+Las fotos de la ronda 2 eran de **1500 px** mostradas a 1080 de ancho; las de la
+sesión de decoración son de **3840** y reducen a **0,28**. La regla:
+
+> **Ninguna foto se amplía. Nunca.** Se comprueba dividiendo el ancho de destino
+> por el del recorte: si da más de 1, la foto no sirve para ese encuadre.
+
+⭐ Y para lo que **sí** es generado con IA —y por eso nace blando— existe el
+escalador de precisión: `python scripts/magnific.py escalar entrada.jpg --out
+salida.png --precision --escala 2x`. Medido sobre esta entrega: la ventana subió
+de **534 a 1.888** de nitidez (varianza del laplaciano) y el cielo de **95 a 430**.
+
+#### 5. ⭐ LA SOMBRA DEL TITULAR: UNA SOLA, Y DIFUSA
+
+> *«No me gusta que hagas esa sombra paralela, se ve muy notoria. Trata de que sea
+> la más sutil, no tiene que destacarse tanto.»*
+
+Eran **dos sombras apiladas** (`0 3px 18px` al 62 % + `0 8px 44px` al 42 %) y a
+tamaño grande se leían como relieve. Lo aprobado: **una sola, difusa, al 38 %**
+(`0 2px 30px rgba(0,0,0,0.38)`).
+
+⇒ **El contraste lo pone el VELO, no la sombra.** Si el titular no se lee, se
+extiende el degradado del velo —acá pasó del 44 % al 60 % del alto— en vez de
+cargar la sombra.
+
+#### 6. Las otras dos correcciones de composición
+
+- **Historia partida por una onda:** las dos mitades son **FOTOS**, no foto y
+  color. *«Abajo, en vez de el color de piso18, otra foto.»* El fucsia vuelve al
+  **botón**, que es donde la marca lo usa.
+  ⛔ Y una trampa técnica: **`clip-path: path()` con saltos de línea adentro Chrome
+  lo descarta EN SILENCIO** — el recorte no se aplica y la foto de abajo tapa la
+  pieza entera. `<path d>` de SVG sí los tolera, así que el filo se seguía
+  dibujando y parecía que todo estaba bien. La cadena va con `join(' ')`.
+- **Fondo beige con textura de papel:** entran `beige` (`#EFE6D9`) y `beigeHondo`
+  (`#E6DACA`) al kit. ⚠️ El `tarjeta` (`#F7F5F2`) **es casi blanco** y sobre él un
+  beige no se lee como beige. La textura va **generada con `feTurbulence`**, no
+  como archivo, y calibrada sobre la pieza rendida: a 2250 el escalado suaviza el
+  ruido, y con los valores de la primera versión la desviación del fondo quedaba
+  en 0,83 — invisible.
+
+#### 7. Dónde quedó todo
+
+| Qué | Dónde |
+|---|---|
+| Las 8 piezas | `out/piso18/s4/` · entrega en `out/piso18/s4/entrega/` |
+| Revisión visual de las 3 rondas | `out/piso18/s4/revision/index.html` |
+| La sesión de decoración (110 fotos) | `raw/hilton/piso18/deco-ago2024/` + `_ids.txt` |
+| Los videos de montaje | `raw/hilton/piso18/videos-primavera/` |
+| En Drive | `S4 HILTON SEP 2026 › PISO18` → `C1 S4 PISO18` y `STS` |
 
 ---
 

@@ -37,6 +37,18 @@ Illustrator abierto y corre ExtendScript adentro (leer el documento vivo,
 medirlo, modificarlo, exportar). Así se midieron estos números — no se estimó
 ninguno.
 
+**Qué sigue:** de esta pieza, nada — está entregada y aprobada. Lo siguiente de
+DT en la grilla sigue siendo lo que ya decía el cierre de la mañana: **FEED col I
+(14-09)**, que quedó en `EN REVISIÓN` con la fecha pasada (hay que preguntarle a
+Eli si se publicó), y **STORIES col H (18-09)**, que pasó a `EN EDICIÓN` después
+de subirse. Antes de tocar cualquiera de las dos, correr `/al-dia`.
+
+⭐ Y hay una decisión de método que conviene tomar con Eli: **ahora se le puede
+entregar el editable de cualquier pieza** y trabajar con ella dentro de su
+Illustrator. Si eso va a ser lo normal en DT, la pregunta es si las piezas se
+siguen armando en Remotion y el `.ai` es sólo la última milla, o si el `.ai` pasa
+a ser la fuente. Hoy quedó a medio camino y por eso el `.tsx` está desfasado.
+
 **Abierto / ojo con esto:**
 
 - ⚠️ **`src/compositions/hilton/DtFtHonors.tsx` reproduce la RONDA 4, no la 5.**

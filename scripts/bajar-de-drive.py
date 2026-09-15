@@ -23,8 +23,10 @@ Este script hace tres cosas que el conector no hace:
   · **Este script** — el token OAuth local tiene scope `drive.file`, o sea **sólo ve
     los archivos que creó la propia app**. Para una carpeta de cliente va a devolver
     0 archivos, y eso NO es un error tuyo. Sirve para dos cosas:
-      --publico  : bajar por ID cualquier archivo con enlace compartido, sin límite
-                   de tamaño. Es el camino para los editables .ai y los videos.
+      --publico  : bajar por ID cualquier archivo con enlace compartido. **Sin
+                   tope de tamaño y en paralelo** — es el camino para los
+                   editables .ai, los videos y las sesiones de foto completas.
+                   Acepta un archivo con líneas «ID nombre.jpg» o «nombre=ID».
       verificar  : da igual cómo bajaste, corre la verificación al final.
 
 Las Google Docs/Sheets se exportan (a .xlsx / .docx / .pdf) en vez de descargarse.
@@ -146,40 +148,72 @@ def baja_uno(srv, f, destino):
     return ruta, None
 
 
-def baja_publicos(ids, destino):
-    """Baja por enlace compartido. Sin OAuth y sin el techo de 10 MB del MCP."""
+# ⭐⭐⭐ EL ENDPOINT QUE NO TIENE TOPE (corregido el 15-09-2026).
+#
+# Esta función decía «sin el techo de 10 MB del MCP» y **era falso**: usaba
+# `drive.google.com/uc?export=download`, que con archivos grandes NO devuelve el
+# archivo sino la pantalla de «no se pudo analizar con antivirus» — unos 900 KB de
+# HTML. O sea que fallaba justo en el caso para el que existe.
+#
+# `drive.usercontent.google.com/download` con **`confirm=t`** salta ese aviso y
+# baja cualquier tamaño. Verificado bajando 110 fotos (1,7 GB) y videos de 115 MB.
+#
+# ⛔ Por no tener esto, dos rondas de PISO18 se entregaron con flores recoloreadas
+# por IA en vez de las fotos reales del cliente: se dio por bloqueante un tope que
+# no existía. Ver la memoria `bajar-grilla-ajena-de-drive`.
+URL_DESCARGA = "https://drive.usercontent.google.com/download?id={id}&export=download&confirm=t"
+
+
+def baja_publicos(ids, destino, hilos=8):
+    """Baja por enlace compartido: sin OAuth, sin tope de tamaño y en paralelo."""
     import subprocess
+    from concurrent.futures import ThreadPoolExecutor
     if os.path.isfile(ids):
-        lista = [l.strip() for l in open(ids) if l.strip() and not l.startswith("#")]
+        lista = [l.strip() for l in open(ids, encoding="utf-8")
+                 if l.strip() and not l.startswith("#")]
     else:
         lista = [x.strip() for x in ids.split(",") if x.strip()]
     os.makedirs(destino, exist_ok=True)
-    ok, fallidos = [], []
-    for i, fid in enumerate(lista, 1):
-        # El ID puede venir pegado como "nombre=ID" para conservar el nombre
-        nombre, _, solo_id = fid.rpartition("=")
-        solo_id = solo_id or fid
+
+    def uno(par):
+        i, fid = par
+        # El ID puede venir como "nombre=ID" o como "ID nombre" (dos columnas).
+        if "=" in fid:
+            nombre, _, solo_id = fid.rpartition("=")
+        elif " " in fid:
+            solo_id, _, nombre = fid.partition(" ")
+        else:
+            solo_id, nombre = fid, ""
+        solo_id, nombre = solo_id.strip(), nombre.strip()
         ruta = os.path.join(destino, nombre or solo_id)
-        url = f"https://drive.google.com/uc?export=download&id={solo_id}"
-        subprocess.run(["curl", "-sL", "-o", ruta, url], check=False)
+        if os.path.exists(ruta) and os.path.getsize(ruta) > 0:
+            return (i, ruta, None, "ya estaba")
+        subprocess.run(["curl", "-sL", "--max-time", "600", "-o", ruta,
+                        URL_DESCARGA.format(id=solo_id)], check=False)
         if not os.path.exists(ruta) or os.path.getsize(ruta) == 0:
-            fallidos.append((solo_id, "vacío")); print(f"  [{i}] ✗ {solo_id} — vacío")
-            continue
+            return (i, None, solo_id, "vacío")
         t = tipo_real(ruta)
         if t in ("HTML/texto", "desconocido"):
             os.remove(ruta)
-            fallidos.append((solo_id, f"llegó como {t} — ¿el enlace no es público?"))
-            print(f"  [{i}] ✗ {solo_id} — llegó como {t}")
-        else:
-            ok.append(ruta); print(f"  [{i}] ✓ {os.path.basename(ruta)}  ({t})")
-    print(f"\n── {len(ok)} bajados · {len(fallidos)} fallidos ──")
+            return (i, None, solo_id, "llegó como %s — ¿el enlace no es público?" % t)
+        return (i, ruta, None, t)
+
+    ok, fallidos = [], []
+    with ThreadPoolExecutor(max_workers=hilos) as pool:
+        for i, ruta, fid, nota in sorted(pool.map(uno, enumerate(lista, 1))):
+            if ruta:
+                ok.append(ruta)
+                print("  [%d] ✓ %s  (%s)" % (i, os.path.basename(ruta), nota))
+            else:
+                fallidos.append((fid, nota))
+                print("  [%d] ✗ %s — %s" % (i, fid, nota))
+    print("\n── %d bajados · %d fallidos ──" % (len(ok), len(fallidos)))
     if fallidos:
         print("\n⛔ Los que llegaron como HTML casi siempre significan que el archivo\n"
               "   NO está compartido por enlace. Pídele a quien lo tiene que lo\n"
-              "   comparta, o bájalo con el conector MCP si pesa menos de 10 MB.")
+              "   comparta — y NO es problema de tamaño: este endpoint no tiene tope.")
         return 1
     return 0
-
 
 def main():
     ap = argparse.ArgumentParser(add_help=True)

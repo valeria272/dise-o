@@ -35,6 +35,7 @@
 - Secundarios (solo piezas clave): Yellow `#FFCC00`, Warm Red `#CF4800`
 - Proporción de uso: 70% azul / 20% verde / 10% acentos
 - QB / P18 tienen identidad propia → ver editables de Eli (pendiente extraer paletas; los .ai viven en Drive)
+- ⛔ **QB es marca INDEPENDIENTE y desde el 15-09-2026 tiene manual propio: [`clients/qb/CLAUDE.md`](../qb/CLAUDE.md).** Eli: «si bien está ubicada en el hotel, no está ligada su línea gráfica, porque es independiente». Nada de DT se le traspasa.
 
 ### ⛔ Tipografía de DT: **Stag + Trade. Y nada más.**
 
@@ -1828,7 +1829,73 @@ La grilla la escriben cliente y contenido: **se informa, no se resuelve**. Lo qu
 sí se hizo desde diseño es que las dos piezas no se parezcan (la del 15-09 es
 nocturna y con titular en portada; esta es de día, con la ciudad y portada limpia).
 
-#### 6. Dónde quedó
+#### 6. ⭐⭐ LA RONDA 2 (15-09) — dos correcciones de Eli, y las dos dejan regla
+
+> *«La historia okey, pero el carrusel pasa que se ve muy igual al carrusel portada
+> anterior y es muy cerca, puedes generar otra torta o usar otro fondo con torta que
+> diga 50 años, pero con mejores colores. Primera ST okey, segunda necesito que
+> centres el celular y los textos.»*
+
+##### a · ⛔ UNA PORTADA DE CARRUSEL SE MIDE CONTRA LA ANTERIOR, NO SOLA
+
+La portada de la ronda 1 era correcta pieza por pieza —foto real editada, torta
+protagonista, QA en verde— **y estaba mala en el conjunto**: era otra torta en
+plano cerrado, catorce días después de la del 15-09. Es el mismo error que la
+torta de Between, que cumplía todo lo pedido y estaba sobre mármol mientras sus
+tres hermanas estaban sobre madera.
+
+⇒ **Antes de dar por buena una portada, mirar la portada anterior de la misma
+vertical.** Si las dos se resuelven con el mismo recurso y el mismo encuadre, el
+feed se ve repetido aunque cada pieza esté bien.
+
+Lo que la arregló, y los tres cambios son suyos:
+
+| Qué pidió | Qué se hizo |
+|---|---|
+| «muy igual al anterior» | **Escena distinta**: de la mesa oscura con arreglo seco (`piso_18-141`) a la mesa larga bajo el **jardín colgante** (`piso_18-154`) |
+| «es muy cerca» | **Plano general**, no un detalle: entra el jardín entero, los ventanales y la mesa completa |
+| «que diga 50 años» | Topper de alambre dorado con **`50 años`** —con la eñe— escrito por Nano Banana Pro, que es el único modelo que escribe texto legible |
+| «con mejores colores» | La torta es rosa palo con franja frambuesa y lleva **las mismas flores que ya están en la escena** (ranúnculos y dalias naranjas y fucsias). El color no se agrega: se toma de la foto |
+
+⭐ **Y el color se eligió midiendo, no a ojo.** Se sacó la saturación media de las
+110 fotos de la sesión de decoración: la nueva base queda **14ª de 110** (94,7
+contra 68,4 de media de la sesión) y la anterior era la 32ª. Sirve para no volver
+a elegir «la que se ve más colorida» por impresión.
+
+⚠️ El «50 años» no salió de la nada: el propio cliente había pedido el 15-09
+*«usemos foto real de decoración 50 años (la que pusieron es más matri)»*.
+
+##### b · ⭐⭐ «CENTRA EL CELULAR Y LOS TEXTOS» ERAN DOS CAUSAS DISTINTAS
+
+1. **El bloque de teléfonos estaba 131 px corrido a la izquierda** (medido sobre
+   el máster: iba de x=312 a x=1675, centro en 994 contra 1125). Estaban puestos
+   con **dos coordenadas escritas a mano** —`x={150}` y `x={150 + TEL.ancho - 34}`—
+   y nadie sumó el bloque. ⇒ Ahora el margen se **calcula** (`BLOQUE_X = (W -
+   BLOQUE) / 2`), así que cambiar el solape o el ancho del teléfono no lo vuelve a
+   descentrar.
+
+2. ⭐⭐⭐ **EL TRACKING DESCENTRA UNA LÍNEA CENTRADA, y esto vale para todas las
+   marcas.** CSS pone el `letter-spacing` **después de cada letra, incluida la
+   última**: una línea con tracking queda con ese aire muerto a la derecha y
+   `text-align: center` lo reparte mal. Con 6,5 px de tracking la línea se corre
+   3,25 px a la izquierda (7 px en la entrega a 2250). Se devuelve con un
+   **`text-indent` del mismo valor**.
+   ⚠️ Es primo del que ya estaba escrito —«el tracking no llega a un
+   `inline-block`»— pero no es el mismo: aquel es que el espaciado NO se aplica,
+   este es que se aplica de más.
+
+**Cómo se comprueba, que es lo que no se estaba haciendo:** se mide el bbox de
+tinta por bandas y se compara con el eje del lienzo. En la pieza corregida, desvío
+respecto de 1125: logo **−0,5** · titular **−2,0** · bajada **−5,5** · teléfonos
+**−5,0**. Todo bajo 10 px, que es el 0,4 % del ancho.
+
+##### c · La entrega se reemplaza en el MISMO archivo
+
+Los cinco `fileId` de Drive no cambiaron entre rondas —`files().update`—, así que
+cualquier enlace que el cliente ya tenga sigue sirviendo. Es la regla de la cuenta
+y `scripts/p18-s5-subir.py` ya la trae.
+
+#### 7. Dónde quedó
 
 | Qué | Dónde |
 |---|---|

@@ -6,6 +6,48 @@
 
 ---
 
+## 2026-09-15 (noche) — PISO18 · S5 RONDA 2, las correcciones de Eli aplicadas
+
+**Marca: PISO18.** Continúa la entrada de más abajo y **reemplaza su entrega**: los
+cinco archivos de Drive son los mismos, con el contenido actualizado.
+
+**Qué dijo Eli:** *«La historia okey, pero el carrusel pasa que se ve muy igual al
+carrusel portada anterior y es muy cerca, puedes generar otra torta o usar otro
+fondo con torta que diga 50 años, pero con mejores colores. Primera ST okey,
+segunda necesito que centres el celular y los textos.»*
+
+**Qué se hizo:**
+
+1. **Portada del carrusel, rehecha entera.** Escena nueva —de la mesa oscura con
+   arreglo seco (`piso_18-141`) a la mesa larga bajo el jardín colgante
+   (`piso_18-154`)—, plano general en vez de detalle, y una torta de dos pisos con
+   topper dorado que dice **`50 años`**, en rosa palo con franja frambuesa y las
+   mismas flores que ya están en la foto.
+2. **ST del 30-09 centrada.** Eran **dos** causas: los teléfonos estaban 131 px
+   corridos a la izquierda (dos coordenadas a mano que nadie sumó) y el tracking
+   descentraba las líneas con versales espaciadas.
+3. **ST del 28-09:** no se tocó, quedó aprobada.
+
+**Las dos lecciones que quedan, y ninguna es sólo de Piso18:**
+
+- ⛔ **Una portada de carrusel se mide contra la portada ANTERIOR de la misma
+  vertical, no sola.** La de la ronda 1 era correcta pieza por pieza y estaba mala
+  en el conjunto: otra torta en plano cerrado catorce días después. Mismo error
+  que la torta de Between sobre mármol.
+- ⭐⭐⭐ **El `letter-spacing` descentra una línea centrada**, porque CSS lo pone
+  también después de la última letra. Se compensa con un `text-indent` del mismo
+  valor. Vale para **todas las marcas** del estudio.
+
+**Y cómo se comprueba un centrado:** midiendo el bbox de tinta por bandas contra
+el eje del lienzo, no mirando. En la pieza corregida el desvío máximo es de 5,5 px
+sobre 2250 (0,24 %).
+
+**Sigue abierto** lo mismo que la ronda 1: las pestañas del planner son criterio
+propio, la bajada del 30-09 lleva la preposición repuesta, la torta y el brindis
+son producidos, y falta `Edwardian Script ITC`.
+
+---
+
 ## 2026-09-15 (noche) — PISO18 · S5 DE SEPTIEMBRE, ENTREGADA (ronda 1)
 
 **Marca: PISO18.** Sesión aparte de la S4 del mismo día, que ya está aprobada.

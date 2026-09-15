@@ -90,6 +90,21 @@ const W = 1080;
 const TEL = {ancho: 344, alto: 746, radio: 44, marco: 11};
 
 /**
+ * ⭐ EL BLOQUE DE TELÉFONOS SE CENTRA POR CÁLCULO, NO CON DOS `x` A MANO.
+ *
+ * Ronda 2 de Eli: *«segunda necesito que centres el celular y los textos»*.
+ * Medido sobre la ronda 1: los dos teléfonos ocupaban de x=150 a x=804, o sea
+ * centro en **477 contra los 540 del lienzo — 63 px corridos a la izquierda**.
+ * Estaban puestos con dos números escritos a mano y nadie los sumó.
+ *
+ * Ahora el ancho del bloque sale del solape y el margen izquierdo se deduce, así
+ * que cambiar el solape o el ancho del teléfono no vuelve a descentrarlo.
+ */
+const SOLAPE = 34;
+const BLOQUE = TEL.ancho * 2 - SOLAPE;
+const BLOQUE_X = (W - BLOQUE) / 2;
+
+/**
  * Un teléfono con su pantalla. El marco va oscuro y mate —no negro puro— para
  * que sobre el fondo desaturado se separe sin recortarse como una silueta.
  */
@@ -176,6 +191,7 @@ const Telefono: React.FC<{
             fontWeight: 700,
             fontSize: TEL.ancho * 0.052,
             letterSpacing: 1.6,
+            textIndent: 1.6, // misma compensación de tracking que el rótulo de arriba
             padding: `${TEL.ancho * 0.026}px ${TEL.ancho * 0.062}px`,
             borderRadius: 999,
           }}
@@ -260,6 +276,15 @@ export const P18StRecorrido: React.FC = () => {
           fontWeight: 700,
           fontSize: 22,
           letterSpacing: 6.5,
+          /*
+            ⚠️ EL TRACKING DESCENTRA UNA LÍNEA CENTRADA, y es la segunda causa
+            del «centra los textos» de Eli. CSS pone el `letter-spacing` DESPUÉS
+            de cada letra, incluida la última: el texto queda con 6,5 px de aire
+            muerto a la derecha y `text-align: center` lo reparte mal, corriendo
+            la línea 3,25 px a la izquierda (7 px en la entrega a 2250).
+            Se devuelve con un `text-indent` del mismo valor.
+          */
+          textIndent: 6.5,
           color: 'rgba(255,255,255,0.72)',
         }}
       >
@@ -313,14 +338,14 @@ export const P18StRecorrido: React.FC = () => {
       */}
       <Telefono
         src="assets/hilton/piso18/s5-pantalla-b.jpg"
-        x={150}
+        x={BLOQUE_X}
         y={874}
         giro={-3.4}
         rotulo="EL SALÓN"
       />
       <Telefono
         src="assets/hilton/piso18/s5-pantalla.jpg"
-        x={150 + TEL.ancho - 34}
+        x={BLOQUE_X + TEL.ancho - SOLAPE}
         y={820}
         giro={3.0}
         rotulo="360°"

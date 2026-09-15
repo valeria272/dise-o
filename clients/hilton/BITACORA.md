@@ -1,3 +1,50 @@
+# HILTON — bitácora
+
+> ⚠️ **Este archivo lo comparten las 4 marcas del complejo (DT · QB · Between ·
+> Piso18) y lo escriben varias sesiones el mismo día.** Cada entrada dice de qué
+> marca es. Si vas a retomar una, busca su marca, no la fecha.
+
+---
+
+## 2026-09-15 — Elisabet Soto «Eli» (Windows) · CIERRE DEL DÍA
+
+**Qué se hizo:** el **estático de Hilton Honors** de DT (FEED col K, publica el
+23-09 18:00) de cero a **APROBADO en cuatro rondas**. Foto real del lobby
+(`HDT_36`), caja de cristal con 4 cuadrantes, íconos de las piezas de Eli, y los
+dos logotipos. En paralelo, otra sesión cerró la identidad de **PISO18** (su
+entrada está más abajo) y antes se había aprobado la **ST del 18-09 de Fiestas
+Patrias**.
+
+**Dónde quedó:** `Post n°1 S4 DT.png` (2250×2813, `md5 82d5c7a4…`) subido a
+**S4 › DT** — [`132pCMwB4…`](https://drive.google.com/file/d/132pCMwB46c0nDz7DiyECSrLNFyShkFhv/view).
+Verificado que el archivo del Drive es el mismo (10 216 607 bytes a los dos
+lados) y que **se reproduce byte a byte** desde el repo (`cmp` limpio).
+Composición en `src/compositions/hilton/DtFtHonors.tsx`; los cuatro comandos que
+lo rehacen están en la cabecera de la entrada de DT, más abajo.
+
+**Qué sigue:** nada de esta pieza. Lo siguiente de DT en la grilla es **FEED col I
+(14-09)**, que sigue en `EN REVISIÓN` **con la fecha ya pasada** — hay que
+preguntarle a Eli si se publicó. Y **STORIES col H (18-09)** pasó hoy de
+`OK PARA DISEÑO` a **`EN EDICIÓN`** después de que se subiera: quien retome esa
+pieza que lo mire.
+
+**Abierto:**
+- ⚠️ **6 vs 4 cuadrantes — lo decide el CLIENTE, no diseño (§G).** El brief dice
+  «dividida en 6 cuadrantes» y la lista de rótulos trae 4, porque tachó «WiFi
+  Premium» y «Check-in Digital» y no actualizó esa línea. Se armó con 4. Si los
+  pide de vuelta, la caja pasa a 3×2 y es media hora.
+- ⚠️ El **logotipo DT va en 2,42:1**, bajo la vara de 4,5. Es decisión de Eli
+  (blanco, limpio, sin sombra ni halo) y el QA la lleva declarada como
+  `⚠️ ACEPTADA`, no como «ok». La salida medida, si alguna vez se quiere en
+  regla, es el azul de la §B.4: 4,84:1.
+- ⛔ **Siguen frenadas las 3 fuentes que sólo tiene el cliente**: Stag LCG, Trade
+  Gothic LT Std Bold y Trade Gothic Next LT Pro Bold.
+- ⛔ **El banco de DT no tiene toma CENITAL ni PISCINA.** El brief de esta pieza
+  pedía las dos y hubo que tomar las alternativas que él mismo ofrece. Si el
+  cliente las quiere de verdad, es material que hay que pedirle.
+
+---
+
 ## 2026-09-15 · Eli (Windows) — PISO18: la marca pasa de no tener nada a poder diseñarse
 
 Sesión larga y **de sistema, no de piezas**: no se entregó nada al cliente, y fue a

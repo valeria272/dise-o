@@ -252,6 +252,20 @@ raw/mascenter-terrenos/*
 !raw/mascenter-terrenos/fotos-drive-2026-03/
 !raw/mascenter-terrenos/fotos-drive-2026-03/*.jpg
 
+# DT · REFERENCIAS S4: la referencia sobre la que se MIDIÓ la geometría del
+# estático de Hilton Honors (caja 880, versal 49, salto 68…). Pesa 350 KB y es
+# justo lo más difícil de recuperar: la carpeta de Drive de Eli pide sesión de
+# Google y ni el token del estudio ni `uc?export=download` la abren. Sin esto,
+# la próxima ronda no puede verificar contra qué se midió.
+!raw/hilton/
+raw/hilton/*
+!raw/hilton/dt/
+raw/hilton/dt/*
+!raw/hilton/dt/ref-s4/
+raw/hilton/dt/ref-s4/*
+!raw/hilton/dt/ref-s4/*.jpg
+!raw/hilton/dt/ref-s4/LEEME.txt
+
 # LANDERA: el PDF que mandó el cliente es el insumo de scripts/landera_*.py.
 # Sin él los scripts no reproducen nada, y pesa 400 KB. Los PDF de salida NO
 # se versionan: se regeneran corriendo los dos scripts sobre este archivo.

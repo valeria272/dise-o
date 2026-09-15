@@ -1,7 +1,7 @@
 # Grilla DOUBLETREE — instantánea
 
 > Instantánea del 15-09-2026 tomada con `/al-dia`.
-> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/26bad56a-d8e5-447a-8705-484a7bc1bcdf/scratchpad/DT-hoy.xlsx`.
+> Origen: `raw/hilton/dt/DT-grilla-septiembre-2026.xlsx`.
 > **Sirve de base para el DIFF de la próxima ronda**: los comentarios se
 > prependen sobre los viejos en la misma celda, así que sin esta copia no se
 > distingue lo nuevo de lo ya resuelto.
@@ -406,7 +406,7 @@ SEMANA 4
 ```
 
 
-### Columna K — **APROBADO**
+### Columna K — **OK PARA DISEÑO**
 
 **FECHA:**
 
@@ -436,8 +436,6 @@ SECCIÓN 1 – FONDO Y TÍTULO (GANCHO)
 Visual: Fotografía real de alta calidad ocupando todo el fondo (idealmente una perspectiva cenital o angular elegante de las instalaciones, piscina, lobby o habitación de DoubleTree by Hilton Santiago Vitacura).
 
 Texto en pantalla (Zona superior izquierda):
-"BENEFICIOS
-HILTON HONORS"
 MÁS BENEFICIOS EN CADA ESTADÍA CON HILTON HONORS
 
 SECCIÓN 2 – CAJA CENTRAL (BENEFICIOS)
@@ -450,10 +448,6 @@ Texto en pantalla (Por cuadrante, acompañando al ícono):
 
 (Ícono cama o flecha arriba) "Upgrades de habitación"
 
-(Ícono señal wifi) "WiFi Premium"
-
-(Ícono smartphone) "Check-in Digital"
-
 (Ícono luna o regalo) "Canje de noches gratis"
 
 (Ícono moneda o puntos) "Acumula puntos en cada estadía"
@@ -462,13 +456,6 @@ Sección 3 - Footer
 
 Texto: Inscríbete gratis en el link de la bio
 ```
-
-*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
-> ~~"BENEFICIOS
-HILTON HONORS"~~
-> ~~MÁS BENEFICIOS EN CADA ESTADÍA CON HILTON HONORS~~
-> ~~(Ícono señal wifi) "WiFi Premium"~~
-> ~~(Ícono smartphone) "Check-in Digital"~~
 
 **LINKS:** ([enlace](https://cl.pinterest.com/pin/1045820344739252999/))
 
@@ -499,6 +486,8 @@ Este que mejor sea un estático, ya hicimos reel hace poco (guardemos la idea de
 ```
 
 *Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Les dejé ajustes en el brief~~
+> ~~~~
 > ~~Este que mejor sea un estático, ya hicimos reel hace poco (guardemos la idea de todas formas)~~
 
 
@@ -767,7 +756,7 @@ SEMANA 3
 ```
 
 
-### Columna H — **OK PARA DISEÑO**
+### Columna H — **EN EDICIÓN**
 
 **FECHA:**
 

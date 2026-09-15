@@ -370,6 +370,115 @@ python scripts/dt-st-turismo-entrega.py --subir
 los 250 px son la zona segura de *Meta Ads*, no la de una historia orgánica.
 Si alguna vez esta pieza se pauta, ahí sí hay que bajarlo.
 
+### ⭐⭐ Y AHORA TAMBIÉN HAY APARATO DE **FEED 4:5** (15-09-2026)
+
+Cerrado al armar el **estático de Hilton Honors** (FEED col K, 23-09), que es la
+primera pieza de feed que produce el estudio para esta cuenta.
+
+```bash
+python scripts/dt-ft-honors-foto.py    # recorta el lobby a 4:5 y lo revela
+python scripts/dt-rendir.py DT-F-HiltonHonors DT-F-HiltonHonors-Guia \
+       --salida out/hilton/dt/ft-honors
+python scripts/dt-qa.py "out/hilton/dt/ft-honors/*.png"
+python scripts/dt-ft-honors-revision.py     # la página que mira Eli
+python scripts/drive-subir.py "out/hilton/dt/ft-honors/Post n°1 S4 DT.png" \
+       --carpeta <ID de la carpeta de la semana>
+```
+
+| Pieza del aparato | Dónde |
+|---|---|
+| La composición | `src/compositions/hilton/DtFtHonors.tsx` |
+| Entry de Remotion | `src/DtEntry.tsx`, carpeta `DT-Feed`, mesa **1080×1350** |
+
+#### ⚠️ EL MÁSTER DE FEED NO SE RINDE CON LA ESCALA DE HISTORIA
+
+| Formato | Máster | Mesa | Escala |
+|---|---|---|---|
+| historia 9:16 | 2250×**4000** | 1080×1920 | **2,0833** |
+| **feed 4:5** | 2250×**2813** | 1080×1350 | **2,0837** |
+
+**2813 no es 4:5 exacto** —4:5 de 2250 da 2812,5 y el equipo redondeó hacia
+arriba—, así que con 2,0833 el feed sale **2250×2812** y queda 1 px corto
+respecto de lo que entrega Eli. `dt-rendir.py` elige la escala por el prefijo de
+la composición (`DT-F-` → feed), no por la línea de comandos.
+
+⚠️ **En feed orgánico NO hay zona segura de Instagram.** Los 250/340 px son de
+historia; los de Meta Ads sólo valen si la pieza se pauta, y la grilla no lo dice.
+
+#### ⭐⭐ EL CONTENEDOR DE DT TIENE DOS DENSIDADES, Y LA MANDA EL BRIEF
+
+Medido sobre `DT FT S3`, el panel aprobado de Family Time es **prácticamente
+macizo**: α ≈ **0,84** en el cuerpo y **0,90** en la fila de íconos, sobre
+`#09194E`. O sea que el «panel translúcido» de DT, en realidad, no lo es.
+
+En el estático de Hilton Honors va en **0,30** porque el brief lo pide con todas
+sus letras —«caja superpuesta (estilo cristal o translúcida)»— y la referencia
+hace eso. **El objeto sigue siendo el mismo** (esquinas redondeadas + filete
+blanco de 1 px + divisor interior a media caja); lo que cambia es su densidad.
+Antes de elegir una, mirar qué dice el brief.
+
+Y el ANCHO también tiene dos valores según de dónde venga la pieza:
+
+| Fuente | Ancho @1080 |
+|---|---|
+| panel de DT (`DT FT S3`) | **730** (x 175→904) |
+| referencia de la S4 (el pin de la grilla) | **880** (x 100→980) |
+
+Se adoptó el 880 de la referencia, con el precedente de la historia del Día del
+Turismo: cuando las dos medidas chocan, **Eli pidió parecerse a la referencia**.
+
+#### ⭐ Y `dt-qa.py` aprendió dos cosas con esta pieza
+
+1. **El máster depende del FORMATO.** Estaba quemado en 2250×4000 al nivel del
+   módulo, así que la primera pieza de feed habría rebotado como si estuviera
+   mala — el mismo modo de falla que el 15-09 por la mañana con las bandas de la
+   historia. Ahora cada pieza declara `formato` y la tabla `FORMATOS` trae
+   máster, alto de mesa, zona segura y geometría del logotipo.
+2. ⛔⛔ **La huella de fuente por perfil de columnas NO SIRVE PARA UN TITULAR
+   CORTO EN VERSALES.** Sobre esta pieza, que estaba perfecta, **georgia le ganó
+   a la Stag correcta** en «EN CADA ESTADÍA» (r=+0,697 contra +0,619) y el QA
+   cantó «SUSTITUCIÓN DE FUENTE». La causa: el perfil mide dónde caen los
+   astiles, y 15 versales de anchos parecidos normalizadas a 200 columnas dan un
+   perfil que se parece al de cualquier serif.
+   · Lo que sí decide es comparar **glifo a glifo en 2D** (IoU), que además es la
+     regla del estudio: «para identificar una fuente se comparan GLIFOS, no
+     anchos de línea» (`revex-adn-medido`). Medido acá: **Stag-Light 0,900**
+     contra constantia 0,630 · Stag-Regular 0,576 · georgia 0,539 — y distingue
+     el PESO equivocado de la familia correcta, que es lo que se le pide.
+   · El elemento elige el método con `"huella": "glifos"`. El perfil sigue siendo
+     el bueno para una línea larga en caja baja (Día del Turismo: r=+0,83).
+   · Y `perfil_pil()` ahora compone **con el mismo `letter-spacing` que declara
+     la pieza**. Sin eso se correlacionaba contra un texto de otra forma.
+
+#### ⭐ El banco en alta también tiene el LOBBY, y baja sin token
+
+`HDT_36.jpg` (`19NnC9XyEo0Cyn5exMNlhigiR92gmzR2q`, 6719×4479) — el lobby lounge
+con la fuga del pasillo y el muro verde. Vive en la misma carpeta que el frontis
+(`JPG DT,QB,BW,HABITACIÓNES`, `1XhKQS8XlQTLCSk_59ZVjbs8tqnAroz7n`) y baja con
+`drive.usercontent.google.com/download`, sin token ni conector.
+
+⚠️ **Lo que sigue sin existir en ningún banco: una toma CENITAL del hotel y una
+PISCINA.** El brief de la S4 pedía las dos y hubo que tomar las alternativas que
+él mismo ofrece. Si el cliente las quiere de verdad, es material que hay que
+pedirle.
+
+⛔ Y **las carpetas `muestra/` y `muestra2/` son de 1920 px**: sirven para elegir
+en la hoja de contacto, no para un máster de 2250. El original se baja aparte.
+
+#### ⚠️ Las carpetas de REFERENCIAS de Eli piden sesión de Google
+
+`REFERENCIAS S4 DT` (`13h9GWkz1cjGRFUfViUf1dMZTxJD55Fls`) **no abre** por
+`embeddedfolderview` ni por `uc?export=download`: devuelve la pantalla de login
+y `curl` la guarda igual, con nombre de foto (la trampa de la compuerta de
+material). El token del estudio tampoco la ve — es scope `drive.file`.
+
+Lo que sí funciona: el **conector MCP de Google Drive**, que lista la carpeta y
+baja el archivo. Y en esta pieza hubo un atajo que conviene recordar: el archivo
+de Eli era **un pin de Pinterest**, y el brief enlazaba ese mismo pin en su celda
+LINKS, así que la versión grande se bajó de `i.pinimg.com/originals/` sin pedirle
+permiso a nadie. **Antes de trabarse con una referencia, mirar si la celda LINKS
+la trae.**
+
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 
 Verificado glifo a glifo con `fontTools` sobre los archivos de esta máquina: los

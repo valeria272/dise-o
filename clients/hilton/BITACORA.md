@@ -1,8 +1,23 @@
-## 2026-09-15 · Eli (Windows) — DOUBLETREE: el post de Hilton Honors quedó RENDIDO y SIN ENTREGAR
+## 2026-09-15 · Eli (Windows) — DOUBLETREE: el post de Hilton Honors, ENTREGADO
 
-⚠️ **Esta entrada NO la escribió la sesión que hizo la pieza.** Está reconstruida
-desde los archivos al cerrar el día, para que el trabajo no se pierda si mañana lo
-retoma otra persona. Si algo no calza, manda lo que diga la sesión original.
+> ✅ **CORRECCIÓN DE LA PROPIA SESIÓN QUE LA HIZO.** Esta entrada la reconstruyó
+> otra sesión desde los archivos, con la pieza a medio camino, y por eso decía
+> «rendido y SIN ENTREGAR / no se subió nada». **Ya no es así:** la pieza pasó el
+> QA y se subió a **S4 › DT** (`1sW3paRt7FotnGBe8IZLccTTSNz8rN9TF`) como
+> `Post n°1 S4 DT.png` —
+> [`132pCMwB46c0nDz7DiyECSrLNFyShkFhv`](https://drive.google.com/file/d/132pCMwB46c0nDz7DiyECSrLNFyShkFhv/view) —
+> a las 14:24Z. Queda **a la espera del visto de Eli**, no de la entrega.
+>
+> ⚠️ Como en las otras subidas de la cuenta, el archivo queda a nombre de
+> `valeria@copywriters.cl`: lo sube el token del estudio, no Eli.
+>
+> **La página de revisión NO se subió al Drive a propósito** — trae notas internas
+> y esa carpeta la ve el cliente. Vive en
+> `out/hilton/dt/ft-honors/Post n°1 S4 DT - revision.html` (1,5 MB, un solo
+> archivo, imágenes embebidas) y la arma `scripts/dt-ft-honors-revision.py`.
+>
+> Lo demás de esta entrada está bien, y sigue abajo. Se agregan al final las dos
+> cosas que dejó la compuerta.
 
 **Qué se hizo.** El post estático de **Hilton Honors** (FEED col K, 23-09, 18:00),
 armado contra `Ref post s4.jpg` de REFERENCIAS S4 DT. Rendido a las 11:14 en
@@ -38,6 +53,48 @@ nombre `Post n°1 S4 DT.png` — así lo levanta el portal. **No se subió nada.
    alternativa que el propio brief ofrece en la misma frase: no hay toma
    **cenital** del hotel («o angular elegante») y el complejo no tiene la
    **piscina** fotografiada («instalaciones, lobby o habitación» → se usó el lobby).
+3. **El titular va a la izquierda y al 49 % de la altura**, que es donde lo pone la
+   referencia; el brief dice «zona superior izquierda». Se siguió la referencia,
+   que es lo que Eli mandó hoy para esta pieza, y queda anotado por si lo quiere
+   más arriba. No es un conflicto real —en los dos casos va a la izquierda— pero
+   se informa.
+
+### ⭐⭐ Lo que dejó la compuerta, y vale para toda pieza de FEED que venga
+
+1. **`dt-qa.py` tenía el máster quemado en 2250×4000.** Es el mismo modo de falla
+   que esta misma mañana con las bandas del Día del Turismo, una capa más arriba:
+   ahora era el FORMATO el que estaba al nivel del módulo. La primera pieza de
+   feed de la cuenta habría rebotado como si estuviera mala. Ahora hay `FORMATOS`
+   (máster, alto de mesa, zona segura y geometría del logotipo por formato) y cada
+   pieza declara el suyo. ⚠️ Y la zona segura inferior de 340 px **es sólo de
+   historia**: exigírsela a un post de feed orgánico acusa al pie por estar donde
+   corresponde.
+2. ⛔⛔ **La huella de fuente por perfil de columnas NO sirve para un titular corto
+   en versales, y acusó a esta pieza estando perfecta.** En «EN CADA ESTADÍA»,
+   **georgia le ganó a la Stag correcta** (r=+0,697 contra +0,619). El perfil mide
+   dónde caen los astiles, y 15 versales de anchos parecidos normalizadas a 200
+   columnas dan un perfil parecido en cualquier serif. Se resolvió comparando
+   **glifo a glifo en 2D** —la regla del estudio, `revex-adn-medido`—: Stag-Light
+   **0,900** contra constantia 0,630 · Stag-Regular 0,576 · georgia 0,539. El
+   elemento elige el método con `"huella": "glifos"`; el perfil sigue siendo bueno
+   para una línea larga en caja baja. De paso, `perfil_pil()` ahora compone con el
+   mismo `letter-spacing` que declara la pieza.
+   ⚠️ Verificado que la ST del Día del Turismo sigue pasando igual.
+3. ⭐ **El contenedor de DT tiene dos densidades y las dos son legítimas.** Medido,
+   el panel de `DT FT S3` es casi macizo (α 0,84–0,90 sobre `#09194E`); acá va en
+   0,30 porque el brief pide «estilo cristal o translúcida». Y su ANCHO son 880
+   (la referencia) y no 730 (el panel de DT) — mismo criterio que en el Día del
+   Turismo cuando las dos medidas chocaron.
+4. **Las carpetas de REFERENCIAS de Eli piden sesión de Google**: no abren por
+   `embeddedfolderview` ni por `uc?export=download`, y el token del estudio
+   tampoco las ve. Abre el conector MCP de Drive. ⭐ Y hubo atajo: su archivo era
+   un pin de Pinterest y **el brief enlazaba ese mismo pin en su celda LINKS**, así
+   que la versión grande se bajó de `i.pinimg.com/originals/`. Antes de trabarse
+   con una referencia, mirar la celda LINKS.
+
+**Y una de otra pieza, vista al refrescar la grilla (no es de esta sesión):**
+STORIES col H (18-09, el saludo de Fiestas Patrias que se subió hoy) pasó de
+`OK PARA DISEÑO` a **`EN EDICIÓN`**. Quien retome esa pieza que lo mire.
 
 ---
 

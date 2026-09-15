@@ -117,7 +117,7 @@ import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
 import {P18, cargarFuentesP18} from '../../brand/piso18';
 
-const W = 1080;
+// (el ancho de mesa es 1080; ya no hace falta como constante: la portada perdió el logotipo)
 const H = 1350;
 
 /** Sombra de la marca: UNA sola, difusa. Ver ronda 3 de la S4. */
@@ -139,21 +139,6 @@ const VeloPie: React.FC<{hasta?: number; opacidad?: number}> = ({
       }) ${hasta * 0.32 * 100}%, rgba(8,8,10,${opacidad * 0.30}) ${
         hasta * 0.66 * 100
       }%, rgba(8,8,10,0) ${hasta * 100}%)`,
-    }}
-  />
-);
-
-/** El logotipo completo, blanco, arriba y centrado. Geometría medida. */
-const LogoFeed: React.FC = () => (
-  <Img
-    src={staticFile('assets/hilton/piso18/logo.png')}
-    style={{
-      position: 'absolute',
-      width: P18.geometria.logoAncho,
-      height: P18.geometria.logoAncho / P18.geometria.logoProporcion,
-      left: (W - P18.geometria.logoAncho) / 2,
-      top: P18.geometria.logoYFeed,
-      filter: 'drop-shadow(0 2px 22px rgba(0,0,0,0.45))',
     }}
   />
 );
@@ -208,17 +193,22 @@ export const P18C1CumpleS1: React.FC = () => {
         style={{width: '100%', height: '100%', objectFit: 'cover'}}
       />
       {/*
-        Velo SUPERIOR, no inferior: acá lo único que hay que sostener es el
-        logotipo blanco, y arriba la foto tiene el ventanal claro. Es el mismo
-        degradado de la plantilla de la marca, suave.
+        ⛔⛔ ESTA PORTADA NO LLEVA LOGOTIPO — ronda 3 de Eli, 15-09-2026.
+        *«Y bórrale el logo, muy repetitivo.»*
+
+        Manda sobre lo que dice la gramática medida más arriba («portada: foto a
+        sangre + logotipo completo blanco arriba») y sobre la instrucción que el
+        cliente había dado para el carrusel del 22-09 («logo en la primera G»).
+        El motivo es de FEED, no de pieza: la marca ya viene firmando las piezas
+        vecinas del mes y repetirla acá no suma.
+
+        ⇒ Y con el logotipo se va también el velo superior, que existía sólo para
+        sostenerlo. Sin él la foto entra limpia y a sangre, que es lo que el brief
+        pide para esta slide («Texto: Sin texto»).
+
+        ⚠️ No se generaliza: es el criterio de Eli PARA ESTA PORTADA. En el
+        carrusel aprobado `C2 S1 n°1` el logotipo va, y ahí sigue.
       */}
-      <AbsoluteFill
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.20) 26%, rgba(0,0,0,0.06) 42%, rgba(0,0,0,0) 56%)',
-        }}
-      />
-      <LogoFeed />
     </AbsoluteFill>
   );
 };

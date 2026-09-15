@@ -1889,7 +1889,57 @@ tinta por bandas y se compara con el eje del lienzo. En la pieza corregida, desv
 respecto de 1125: logo **−0,5** · titular **−2,0** · bajada **−5,5** · teléfonos
 **−5,0**. Todo bajo 10 px, que es el 0,4 % del ancho.
 
-##### c · La entrega se reemplaza en el MISMO archivo
+##### c · ⭐⭐⭐ LA RONDA 3 — «la torta no se destaca en nada» y «bórrale el logo»
+
+> *«La portada del carrusel, la torta que se vea más grande y alta, no se destaca
+> en nada. Y añade detalles de cumpleaños, se ve muy de matrimonio aún. Y bórrale
+> el logo, muy repetitivo. Las demás de la S5 okey.»*
+
+Tres cosas, y **las tres son de la misma familia**: una portada de carrusel tiene
+que decir de qué se trata **antes de que nadie lea nada**.
+
+**1 · El tamaño del protagonista se mide, no se estima.** La torta pasó de dos
+pisos a **cuatro**. Aislando el glaseado en la columna central de la pieza, el
+cuerpo de la torta pasó de ocupar el **15 % del alto al 52 %** — tres veces y
+media. El defecto real no era el tamaño absoluto sino que **su cima quedaba por
+debajo de la línea del follaje colgante** y se perdía contra él.
+
+⇒ Regla: en una portada con un solo protagonista, comprobar que **su silueta corta
+contra el fondo** y no queda dentro de la masa visual de otro elemento.
+
+**2 · ⭐⭐ LA ESCENA DE ESTA MARCA LEE «MATRIMONIO» POR DEFECTO.** Jardín colgante,
+mantelería, copones dorados y cristalería son lenguaje de banquete, y **un topper
+de «50 años» no alcanza a desempatarlo**. Lo que sí lo desempata son elementos que
+en un matrimonio no existen:
+
+| Elemento | Por qué funciona |
+|---|---|
+| **Velas de cumpleaños encendidas** | Es el gesto que ninguna otra celebración tiene |
+| **Globos** | Lectura inmediata de fiesta. ⭐ Y no hubo que inventarlos: «globos» está en el brief del propio carrusel, en la slide 2 |
+
+⚠️ La paleta de los añadidos **se toma de la foto**, no se elige aparte: las flores
+de la torta son los mismos ranúnculos y dalias naranjas y fucsias de los centros de
+mesa, y los globos repiten esos dos tonos más el dorado de los copones.
+
+⛔ **No escribir «serpentinas» en un prompt** — en Between eso devolvió serpientes.
+Acá se pidieron «globos» y «velas», y se prohibió explícitamente confeti y
+guirnaldas de papel para que no las agregara por su cuenta.
+
+**3 · ⛔ LA PORTADA DEL CARRUSEL NO SIEMPRE LLEVA LOGOTIPO.** Esto **corrige la
+gramática escrita más arriba** («portada: foto a sangre + logotipo completo blanco
+arriba, centrado») y también la instrucción que el cliente había dado para el
+carrusel del 22-09 («logo en la primera G»).
+
+El motivo que dio Eli es **de feed, no de pieza**: *«muy repetitivo»*. La marca ya
+viene firmando las piezas vecinas del mes y repetirla acá no suma.
+
+⚠️ **No se generaliza a toda la cuenta**: en el carrusel aprobado `C2 S1 n°1` el
+logotipo va. Lo que queda escrito es que **el logotipo de portada es una decisión
+de ritmo del feed y se consulta**, no un elemento obligatorio.
+⇒ Y al sacarlo se va también **el velo superior**, que existía sólo para
+sostenerlo: sin él la foto entra limpia y a sangre.
+
+##### d · La entrega se reemplaza en el MISMO archivo
 
 Los cinco `fileId` de Drive no cambiaron entre rondas —`files().update`—, así que
 cualquier enlace que el cliente ya tenga sigue sirviendo. Es la regla de la cuenta

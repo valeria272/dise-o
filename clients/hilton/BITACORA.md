@@ -6,6 +6,53 @@
 
 ---
 
+## 2026-09-15 (noche) — PISO18 · S5 RONDA 3 · **la S5 queda cerrada**
+
+**Marca: PISO18.** Última ronda. Eli dio por buenas las otras cuatro piezas —*«las
+demás de la S5 okey»*— y corrigió sólo **la portada del carrusel**.
+
+**Qué dijo:** *«La portada del carrusel, la torta que se vea más grande y alta, no
+se destaca en nada. Y añade detalles de cumpleaños, se ve muy de matrimonio aún.
+Y bórrale el logo, muy repetitivo.»*
+
+**Qué se hizo, en la misma escena (`piso_18-154`) y con el mismo archivo de Drive:**
+
+1. **La torta pasó de dos pisos a cuatro.** Medido aislando el glaseado en la
+   columna central: el cuerpo pasó de ocupar el **15 % del alto al 52 %**. El
+   defecto no era el tamaño absoluto sino que su cima quedaba **por debajo de la
+   línea del follaje colgante** y se perdía contra él.
+2. **Entraron velas de cumpleaños encendidas y globos.** La escena de esta marca
+   —jardín colgante, mantelería, copones dorados— **lee matrimonio por defecto**, y
+   un topper de «50 años» no alcanza a desempatarla. Los globos no se inventaron:
+   están en el brief del propio carrusel, en la slide 2.
+3. **Fuera el logotipo** de la portada, y con él el velo superior que existía sólo
+   para sostenerlo.
+
+**Las tres lecciones, que valen más allá de esta pieza:**
+
+- ⭐ **El protagonista de una portada tiene que cortar contra el fondo**, no quedar
+  dentro de la masa visual de otro elemento. Se comprueba mirando la silueta, y el
+  tamaño se mide, no se estima.
+- ⭐⭐ **La escena de Piso18 lee «matrimonio» por defecto.** Para que una pieza diga
+  cumpleaños hacen falta elementos que en un matrimonio no existen: velas
+  encendidas y globos. Y su color se toma de la foto, no se elige aparte.
+- ⛔ **La portada del carrusel no siempre lleva logotipo.** Corrige la gramática
+  escrita y la instrucción del 22-09. Es decisión de **ritmo del feed** y se
+  consulta; no se generaliza (en `C2 S1 n°1` el logotipo va).
+
+⛔ Y el recordatorio de siempre con los prompts: **no escribir «serpentinas»** —en
+Between devolvió serpientes—. Se pidieron «globos» y «velas», y se prohibió
+explícitamente confeti y guirnaldas de papel.
+
+**Estado: la S5 de Piso18 está entregada y sin comentarios abiertos.** Los cinco
+`fileId` de Drive siguen siendo los mismos desde la ronda 1.
+
+**Lo que sigue pendiente de la CUENTA (no de la S5):** la ST del 21-09 sigue sin
+brief de diseño; falta `Edwardian Script ITC`; y sigue sin diagnosticar el «quedó
+algo extraño detrás del logo» del cliente.
+
+---
+
 ## 2026-09-15 (noche) — PISO18 · S5 RONDA 2, las correcciones de Eli aplicadas
 
 **Marca: PISO18.** Continúa la entrada de más abajo y **reemplaza su entrega**: los

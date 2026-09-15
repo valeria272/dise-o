@@ -595,6 +595,83 @@ compuerta en rojo para siempre.
    · ✅ Lo que sí funciona: buscar una versión **más grande** del mismo archivo
      (los de 40 KB para arriba sí quedan en disco), o pedírselo a la diseñadora.
 
+### ⭐⭐ RONDA 3 DEL ESTÁTICO DE HONORS (15-09) — el cristal, y tres reglas
+
+#### ⭐⭐⭐ 1. EL CUADRO DE CRISTAL LLEVA EL FONDO **DIFUMINADO** — y se mide
+
+Eli: «faltó el detalle de la referencia de ese cuadro, mira difuminado dentro del
+cuadro el fondo». **Es lo que hace que la caja se lea como cristal y no como un
+rectángulo pintado**, y es lo que les faltaba a las rondas 1 y 2.
+
+Se mide comparando la energía de alta frecuencia (laplaciano) **cruzando el borde
+de la caja**, donde el material fotográfico es el mismo a los dos lados, y
+buscando qué radio de desenfoque aplicado a la parte de AFUERA reproduce la
+nitidez de ADENTRO. Sobre el pin de la S4:
+
+| borde | ventanas | radio que calza |
+|---|---|---|
+| superior | pasto · pasto · agua · tejas | 1,3 · 1,3 · 3,8 · 4,3 |
+| inferior | pasto · grava · tejas | 6,9 · 2,9 · 3,5 |
+| izquierdo | alto · bajo | 2,8 · 8,0 |
+
+**Mediana 3,5** ⇒ `backdrop-filter: blur(3.5px)` en la mesa de 1080. Dentro del
+cuadro la nitidez cae al **4-29 %** de la de afuera, igual en los cuatro bordes.
+
+⛔ **El error de método a no repetir:** la primera medición comparó la caja
+contra franjas de ARRIBA y de ABAJO y dio «razón 1,01», o sea «no hay
+desenfoque». Estaba mal planteada — arriba hay pasto y abajo grava, dos texturas
+con nitidez propia distinta. **Para medir un desenfoque hay que cruzar el borde,
+no comparar zonas lejanas.**
+
+#### ⭐⭐ 2. UN ÍCONO SE DIBUJA EN SU PROPIA PROPORCIÓN, NO LLENANDO LA RANURA
+
+Eli: «esos íconos se ven achatados, aplastados». Tenía razón y la causa era de
+dibujo: los tres íconos nuevos se hicieron **llenando la caja de 71 × 57** de su
+gramática… que es ancha porque su contenido es una **CAMA**, un objeto que de
+verdad es más ancho que alto. Una etiqueta, un regalo y una pila de monedas no lo
+son, y estirados a lo ancho quedaron aplastados.
+
+✅ **La ranura es de 71 para que los rótulos arranquen todos en la misma
+vertical; lo que cada dibujo ocupa de esa ranura depende del objeto.** Los tres
+dibujados pasaron a un **cuadrado de 52 × 52 centrado**; la cama va a su
+proporción real.
+
+#### ⛔⛔ 3. EXTRAER UN ÍCONO DE UNA PIEZA APROBADA: EL ALFA SE SACA DEL HISTOGRAMA
+
+La primera extracción de la cama sacaba el alfa de una rampa 60→250 sobre la
+luminancia y **arrastraba un halo**: el panel de `C1 FT N2` es translúcido, así
+que los parches de foto que se ven a través quedaban con alfa > 0 y en la pieza
+nueva aparecía una caja oscura fantasma detrás del ícono.
+
+✅ El histograma de esa región es **bimodal** —fondo 0-120, tinta 200-255, con una
+transición delgadísima—, así que la rampa correcta es **120 → 235**: separa
+limpio y conserva el antialias. **Mirar el histograma antes de fijar la rampa**,
+no elegir umbrales a ojo.
+
+#### ⚠️ 4. El logotipo DT queda SIN sombra y bajo la vara — y así se declara
+
+Eli, en la ronda 3: «el logo no le hagas eso del fondo o sombra azul». Se
+retiraron las tres sombras apiladas de la ronda 2. **Costo medido: 2,42:1**
+contra la vara de 4,5.
+
+⭐ **Y de acá sale una regla para la compuerta:** una desviación que decidió la
+diseñadora **no se imprime como «ok»**. `dt-qa.py` tiene ahora tres estados —`ok`
+· `⚠️ ACEPTADA` · `⛔`— y la aceptada sale con su número y su motivo a la vista.
+Si saliera «ok» a secas, en dos semanas nadie se acordaría de que el logotipo de
+esta pieza va bajo la vara a propósito; y si quedara en rojo para siempre, la
+compuerta se deja de mirar.
+
+#### ✅ 5. El logo de Hilton Honors: resuelto, y cómo
+
+Eli abrió el acceso del archivo y bajó entero con `uc?export=download` —
+**13 967 bytes, los que declara Drive**. Vive en
+`public/assets/hilton/dt/hilton-honors-blanco.png`, blanco puro con alfa,
+1091×470, **proporción real 2,3213**. Va centrado en el aire entre el pie de la
+caja y la regla del pie.
+
+⛔ Y queda en pie la trampa: `hilton honors.png` (43 KB) de la misma carpeta **NO
+es el Honors** — es el logotipo Hilton «For The Stay», mal rotulado en el Drive.
+
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 
 Verificado glifo a glifo con `fontTools` sobre los archivos de esta máquina: los

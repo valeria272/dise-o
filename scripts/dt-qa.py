@@ -189,8 +189,8 @@ PIEZAS = [
         # (§B.4), que sobre ese mismo fondo da 4,84:1.
         # ⚠️ El 3,46 además SUBESTIMA lo que se ve: la medición promedia todo el
         # fondo de la caja del logotipo y la sombra va pegada a la tinta.
-        "logo_contraste_minimo": 3.4,
-        "logo_motivo": "blanco pedido por Eli el 15-09; la salida es su sombra paralela",
+        "logo_contraste_minimo": 2.35,
+        "logo_motivo": "blanco y SIN sombra ni halo, pedido por Eli el 15-09 (ronda 3)",
         "elementos": [
             # Bandas RE-MEDIDAS sobre el PNG de la ronda 2, @1080:
             #   titular 1 «MÁS BENEFICIOS»     y 588,0-636,5
@@ -228,6 +228,12 @@ PIEZAS = [
              "banda": (1035, 1110), "xrango": (230, 530), "umbral": 200, "centrado": False},
             {"nombre": "rótulo Acumula puntos", "texto": None, "fuente": None,
              "banda": (1035, 1110), "xrango": (660, 970), "umbral": 200, "centrado": False},
+            # ⭐ RONDA 3: el logotipo de Hilton Honors. Se comprueba como tinta —que
+            # esté, centrado y con contraste— y aparte por su ANCHO, que es lo que
+            # delata una deformación: 52 de alto por su proporción real 2,3213 da
+            # 120,7. Medido sobre el PNG: 120,5.
+            {"nombre": "logotipo Hilton Honors", "texto": None, "fuente": None,
+             "banda": (1180, 1235), "xrango": (400, 680), "umbral": 195},
             {"nombre": "llamado del pie", "texto": None, "fuente": None,
              "banda": (1285, 1318), "xrango": (60, 1020), "umbral": 200},
         ],
@@ -565,8 +571,18 @@ def revisa(ruta: Path) -> list[str]:
             # arreglarla por detrás o de dejar el QA en rojo para siempre.
             minimo = pieza.get("logo_contraste_minimo", 4.5)
             motivo = pieza.get("logo_motivo")
-            marca_c = "ok" if c >= minimo else "⛔"
-            extra = f"  (mínimo {minimo}: {motivo})" if motivo else ""
+            # ⚠️ Tres estados, no dos. Una desviación que decidió la diseñadora NO
+            # se imprime como «ok»: se imprime como ACEPTADA, con su número y su
+            # motivo. Si saliera «ok» a secas, en dos semanas nadie se acordaría
+            # de que el logotipo de esta pieza va bajo la vara a propósito.
+            if c >= 4.5:
+                marca_c, extra = "ok", ""
+            elif c >= minimo:
+                marca_c = "⚠️ ACEPTADA"
+                extra = f"  (bajo la vara de 4,5; piso declarado {minimo} — {motivo})"
+            else:
+                marca_c = "⛔"
+                extra = f"  (piso declarado {minimo} — {motivo})" if motivo else ""
             print(f"   {'':26} tinta {tinta_logo} contra su fondo {c:5.2f}:1  "
                   f"{marca_c}{extra}")
             if c < minimo:

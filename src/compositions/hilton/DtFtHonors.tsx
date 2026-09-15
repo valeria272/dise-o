@@ -201,31 +201,26 @@ const SOMBRA_IMG =
   'drop-shadow(0 2px 7px rgba(9,25,78,0.60)) drop-shadow(0 0 2px rgba(9,25,78,0.45))';
 
 /**
- * ⭐⭐ LA SOMBRA DEL LOGOTIPO DT ES MÁS DENSA QUE LA DEL TEXTO, Y HAY UN PORQUÉ.
+ * ⛔⛔ RONDA 3 · EL LOGOTIPO DT VA SIN SOMBRA Y SIN HALO — Y ESTO ES HISTORIA,
+ * NO CÓDIGO: acá había una `SOMBRA_LOGO` y se retiró.
  *
- * Eli pidió el logotipo en BLANCO y el velo MÁS SUTIL, y las dos cosas chocan
- * justo ahí: el logo cae sobre el **cielorraso del lobby**, que es lo más claro
- * de la foto, y en esa franja el velo ya sólo va en 0,02. Con la sombra del
- * texto daba **2,83:1** sobre el PNG rendido — no se lee.
+ * Eli: «El logo no le hagas eso del fondo o sombra azul.»
  *
- * ⛔ **Lo que se probó y se descartó: un halo radial detrás del logo.** Es el
- * recurso que funcionó en la historia del Día del Turismo para tapar el rótulo
- * de la fachada, y acá NO sirve: allá caía sobre un cielo con textura y acá cae
- * sobre un cielorraso **plano y parejo**, donde cualquier degradado radial se ve
- * como una mancha gris. Se rindió y se miró: era una mancha. Un recurso
- * aprobado en otra pieza no se hereda sin volver a mirarlo.
+ * Lo que se probó, en orden, y por qué se fue cada cosa:
+ *   1. **Halo radial** detrás del logo — el recurso aprobado en la ST del Día
+ *      del Turismo. Allá caía sobre un cielo con textura; acá cae sobre el
+ *      **cielorraso plano** del lobby y se veía como una mancha gris. Botado.
+ *   2. **Tres sombras paralelas apiladas** sobre el propio logotipo. Subía el
+ *      contraste de 2,83:1 a 3,61:1 y a la vista se leía bien… pero es
+ *      justamente «eso del fondo o sombra azul» que ella no quiere. Botado.
+ *   3. ✅ **Nada.** Logotipo blanco, limpio, sobre la foto.
  *
- * ✅ La salida es apilar TRES sombras paralelas concéntricas sobre el propio
- * logotipo: densa y corta, media, y una muy abierta y tenue. Así la densidad se
- * queda pegada a la tinta y se apaga antes de dibujar ningún borde — no hay
- * disco que se vea. Sigue siendo la sombra que ella pidió, sólo que el
- * logotipo, que es tipografía fina y blanca sobre blanco, necesita más que el
- * titular, que va a cuerpo 68.
+ * ⚠️ El costo, medido y asumido: sobre el cielorraso el blanco da ~2,7:1, bajo
+ * la vara de 4,5. **Es una decisión de dirección de arte de Eli**, tomada dos
+ * veces y por escrito, y el QA la lleva declarada con su número a la vista
+ * (`logo_contraste_minimo` + `logo_motivo`). La alternativa medida, si alguna
+ * vez se quiere en regla, es el azul de la §B.4: 4,84:1 sobre ese mismo fondo.
  */
-const SOMBRA_LOGO =
-  'drop-shadow(0 2px 4px rgba(9,25,78,0.85)) ' +
-  'drop-shadow(0 0 10px rgba(9,25,78,0.70)) ' +
-  'drop-shadow(0 0 24px rgba(9,25,78,0.45))';
 
 /** La caja de cristal. Medidas del pin, que es 1080×1350 igual que la pieza. */
 const CAJA = {
@@ -242,6 +237,33 @@ const CAJA = {
   filete: 1.5,
   /** El brief: «estilo cristal o translúcida». Ver el encabezado. */
   relleno: 0.3,
+  /**
+   * ⭐⭐ RONDA 3 · EL DESENFOQUE DEL FONDO DENTRO DEL CUADRO.
+   *
+   * Eli: «falto el detalle de la referencia de ese cuadro, mira difuminado
+   * dentro del cuadro el fondo». Es lo que hace que la caja se lea como CRISTAL
+   * y no como un rectángulo pintado — y es lo que le faltaba a las rondas 1 y 2.
+   *
+   * ⭐ El radio NO se eligió a ojo: se midió sobre el pin. Se comparó la energía
+   * de alta frecuencia (laplaciano) **cruzando el borde de la caja**, donde el
+   * material fotográfico es el mismo a los dos lados, y se buscó qué radio de
+   * desenfoque aplicado a la parte de AFUERA reproduce la nitidez de ADENTRO:
+   *
+   *   borde superior · pasto 1,3 · pasto 1,3 · agua 3,8 · tejas 4,3
+   *   borde inferior · pasto 6,9 · grava 2,9 · tejas 3,5
+   *   borde izquierdo ·          alto 2,8 · bajo 8,0
+   *
+   *   ⇒ mediana **3,5** · media 3,9
+   *
+   * Dentro de la caja la nitidez cae al **4-29 %** de la de afuera, y eso se ve
+   * igual en los cuatro bordes: no es una impresión, es un desenfoque de verdad.
+   *
+   * ⚠️ La primera medición comparó la caja contra franjas de arriba y de abajo y
+   * dio «razón 1,01» —o sea, ningún desenfoque—. Estaba mal planteada: arriba
+   * hay pasto y abajo grava, dos texturas con nitidez propia distinta. **Para
+   * medir un desenfoque hay que cruzar el borde, no comparar zonas lejanas.**
+   */
+  desenfoque: 3.5,
 } as const;
 
 const CAJA_DER = CAJA.x + CAJA.ancho;
@@ -275,9 +297,16 @@ const REGLA_PIE = 1258;
  * vuelve a rendir — no hay que tocar nada más.
  */
 const HONORS = {
-  /** Tope del bloque. El alto manda; el ancho lo da la proporción del archivo. */
-  y: 1186,
-  alto: 46,
+  /**
+   * Tope del bloque. El alto manda; el ancho lo da la proporción real del
+   * archivo (**2,3213**, medida sobre el bbox opaco), así que se escala
+   * uniforme y nunca se deforma.
+   *
+   * Va CENTRADO en el aire que queda entre el pie de la caja (1148) y la regla
+   * del pie (1258): 110 px de hueco, bloque de 52 ⇒ arranca en 1177.
+   */
+  y: 1177,
+  alto: 52,
   archivo: 'assets/hilton/dt/hilton-honors-blanco.png',
 } as const;
 
@@ -321,6 +350,40 @@ const trazo = {
 };
 
 /**
+ * ⭐⭐ RONDA 3 · «ESOS ÍCONOS SE VEN ACHATADOS, APLASTADOS».
+ *
+ * Tenía razón y la causa era de dibujo, no de escala: los tres íconos dibujados
+ * se hicieron **llenando la caja de 71 × 57** de Eli, que es ancha porque su
+ * contenido es una CAMA —un objeto que de verdad es más ancho que alto—. Un
+ * regalo, una etiqueta y una pila de monedas no lo son, así que al estirarlos a
+ * lo ancho de esa caja quedaron aplastados.
+ *
+ * Ahora cada ícono se dibuja en un **cuadrado de 52 × 52 centrado** dentro de la
+ * ranura (`VB_ICONO`), y la cama —que sí es de Eli— va a **su proporción real
+ * medida, 70,6 × 57,1** (147 × 119 px en el PNG aprobado, razón 1,2353), sin
+ * estirarla ni un punto.
+ *
+ * ⛔ La ranura sigue siendo de 71 de ancho para que los cuatro rótulos arranquen
+ * en la misma vertical; lo que cambia es cuánto de esa ranura ocupa cada dibujo.
+ */
+const VB_ICONO = {ancho: 71, alto: 57} as const;
+/** La cama de Eli, a su proporción real. No se deforma. */
+const CAMA = {ancho: 69.9, alto: 57.1} as const;
+/**
+ * ⚠️ RONDA 3 · LA CAMA SE VOLVIÓ A EXTRAER, y el arreglo importa para cualquier
+ * ícono que se saque de una pieza aprobada.
+ *
+ * La primera extracción sacaba el alfa de una rampa 60→250 sobre la luminancia,
+ * y arrastraba **un halo**: el panel azul de `C1 FT N2` es translúcido, así que
+ * los parches de foto que se ven a través quedaban con alfa > 0 y en la pieza
+ * nueva aparecía una caja oscura fantasma detrás del ícono.
+ *
+ * ✅ El histograma de esa región es **bimodal** —fondo 0-120, tinta 200-255, con
+ * una transición delgadísima—, así que la rampa correcta es **120 → 235**:
+ * separa limpio y conserva el antialias del borde. Proporción real 1,2250.
+ */
+
+/**
  * Los tres íconos que hubo que dibujar. El brief nombra cada uno, así que no se
  * eligen: se dibujan los que pide, calcando el trazo de la cama.
  *
@@ -330,9 +393,9 @@ const trazo = {
  */
 const IconoSvg: React.FC<{children: React.ReactNode}> = ({children}) => (
   <svg
-    width={CELDA.iconoAncho}
-    height={CELDA.iconoAlto}
-    viewBox="0 0 71 57"
+    width={VB_ICONO.ancho}
+    height={VB_ICONO.alto}
+    viewBox={`0 0 ${VB_ICONO.ancho} ${VB_ICONO.alto}`}
     style={{flexShrink: 0, filter: SOMBRA_IMG}}
   >
     <g {...trazo}>{children}</g>
@@ -346,11 +409,11 @@ const CELDAS: readonly Celda[] = [
     // Etiqueta de descuento: cuerpo, ojal y el «%» de dos puntos y barra.
     icono: (
       <IconoSvg>
-        <path d="M4 26.5 L25 5.5 a4.5 4.5 0 0 1 3.2-1.3 H61 a4.5 4.5 0 0 1 4.5 4.5 v24.6 a4.5 4.5 0 0 1-1.3 3.2 L44.5 51.6 a4.5 4.5 0 0 1-6.4 0 L4 32.9 a4.5 4.5 0 0 1 0-6.4 Z" />
-        <circle cx="55" cy="14" r="3.9" />
-        <path d="M21 39 L36 24" />
-        <circle cx="21.5" cy="25.5" r="2.7" />
-        <circle cx="35.5" cy="38.5" r="2.7" />
+        <path d="M11 24.5 L31.5 4 a4.6 4.6 0 0 1 3.3-1.4 H56 a4.6 4.6 0 0 1 4.6 4.6 V27 a4.6 4.6 0 0 1-1.4 3.3 L38.7 50.9 a4.6 4.6 0 0 1-6.5 0 L11 31 a4.6 4.6 0 0 1 0-6.5 Z" />
+        <circle cx="51" cy="12.5" r="3.9" />
+        <path d="M24.5 40 L40 24.5" />
+        <circle cx="25" cy="25.5" r="2.7" />
+        <circle cx="39.5" cy="39.5" r="2.7" />
       </IconoSvg>
     ),
     rotulo: ['Tarifas', 'exclusivas'],
@@ -361,8 +424,12 @@ const CELDAS: readonly Celda[] = [
       <Img
         src={staticFile('assets/hilton/dt/icono-cama-eli.png')}
         style={{
-          width: CELDA.iconoAncho,
-          height: CELDA.iconoAlto,
+          // ⚠️ A SU PROPORCIÓN REAL (147 × 119 en el PNG aprobado). El dibujo es
+          // de Eli: se escala uniforme, jamás por geometría.
+          width: CAMA.ancho,
+          height: CAMA.alto,
+          marginLeft: (VB_ICONO.ancho - CAMA.ancho) / 2,
+          marginRight: (VB_ICONO.ancho - CAMA.ancho) / 2,
           flexShrink: 0,
           filter: SOMBRA_IMG,
         }}
@@ -381,11 +448,11 @@ const CELDAS: readonly Celda[] = [
      */
     icono: (
       <IconoSvg>
-        <rect x="6" y="18.5" width="59" height="11" rx="2.5" />
-        <path d="M11 29.5 V50 a2.5 2.5 0 0 0 2.5 2.5 h44 a2.5 2.5 0 0 0 2.5-2.5 V29.5" />
-        <path d="M35.5 18.5 V52.5" />
-        <path d="M35.5 18.5 c-9 0-14-2.2-14-7.2 a5.6 5.6 0 0 1 9.8-3.7 c2.6 3 4.2 7.3 4.2 10.9 Z" />
-        <path d="M35.5 18.5 c9 0 14-2.2 14-7.2 a5.6 5.6 0 0 0-9.8-3.7 c-2.6 3-4.2 7.3-4.2 10.9 Z" />
+        <rect x="11.5" y="20" width="48" height="10.5" rx="2.6" />
+        <path d="M16 30.5 V50.5 a2.6 2.6 0 0 0 2.6 2.6 h33.8 a2.6 2.6 0 0 0 2.6-2.6 V30.5" />
+        <path d="M35.5 20 V53.1" />
+        <path d="M35.5 20 c-8.2 0-12.8-2-12.8-6.6 a5.1 5.1 0 0 1 9-3.4 c2.4 2.8 3.8 6.7 3.8 10 Z" />
+        <path d="M35.5 20 c8.2 0 12.8-2 12.8-6.6 a5.1 5.1 0 0 0-9-3.4 c-2.4 2.8-3.8 6.7-3.8 10 Z" />
       </IconoSvg>
     ),
     rotulo: ['Canje de noches', 'gratis'],
@@ -394,10 +461,10 @@ const CELDAS: readonly Celda[] = [
     // Monedas apiladas: tres discos, que es lo que dice «acumula».
     icono: (
       <IconoSvg>
-        <ellipse cx="35.5" cy="12" rx="27" ry="8.2" />
-        <path d="M8.5 12 v9.3 a27 8.2 0 0 0 54 0 v-9.3" />
-        <path d="M8.5 21.3 v9.3 a27 8.2 0 0 0 54 0 v-9.3" />
-        <path d="M8.5 30.6 v9.3 a27 8.2 0 0 0 54 0 v-9.3" />
+        <ellipse cx="35.5" cy="13.5" rx="23" ry="7.4" />
+        <path d="M12.5 13.5 v10 a23 7.4 0 0 0 46 0 v-10" />
+        <path d="M12.5 23.5 v10 a23 7.4 0 0 0 46 0 v-10" />
+        <path d="M12.5 33.5 v10 a23 7.4 0 0 0 46 0 v-10" />
       </IconoSvg>
     ),
     rotulo: ['Acumula puntos', 'en cada estadía'],
@@ -450,7 +517,7 @@ const Cuadrante: React.FC<{celda: Celda}> = ({celda}) => (
 
 export const DtFtHonors: React.FC<{guia?: boolean; conHonors?: boolean}> = ({
   guia = false,
-  conHonors = false,
+  conHonors = true,
 }) => (
   <AbsoluteFill style={{backgroundColor: DT.colores.azul}}>
     {/*
@@ -479,7 +546,9 @@ export const DtFtHonors: React.FC<{guia?: boolean; conHonors?: boolean}> = ({
         left: (MESA.ancho - G.logoAncho) / 2,
         width: G.logoAncho,
         height: G.logoAncho / G.logoProporcion,
-        filter: SOMBRA_LOGO,
+        // ⭐⭐ RONDA 3: SIN sombra y SIN halo. «El logo no le hagas eso del fondo
+        // o sombra azul.» Ver la nota de `SOMBRA_LOGO`, que queda documentada
+        // como lo que se probó y ella descartó.
       }}
     />
 
@@ -520,6 +589,10 @@ export const DtFtHonors: React.FC<{guia?: boolean; conHonors?: boolean}> = ({
         height: CAJA.alto,
         borderRadius: CAJA.radio,
         background: `rgba(9,25,78,${CAJA.relleno})`,
+        // ⭐⭐ RONDA 3 · EL DETALLE QUE FALTABA DE LA REFERENCIA: el fondo va
+        // DIFUMINADO DENTRO DEL CUADRO. Ver `CAJA.desenfoque`.
+        backdropFilter: `blur(${CAJA.desenfoque}px)`,
+        WebkitBackdropFilter: `blur(${CAJA.desenfoque}px)`,
       }}
     />
 

@@ -155,6 +155,41 @@ está reservado (y 1186, centrado) y la composición lo dibuja con
 Drive. Guardado como `hilton-FOR-THE-STAY (NO es Honors).png` para que nadie lo
 use por error.
 
+### ⭐⭐ RONDA 3 (15-09, tarde) — el cristal, y el pendiente RESUELTO
+
+Eli: «esos iconos se ven achatados, aplastados, déjalos bien puestos. El logo no
+le hagas eso del fondo o sombra azul. Te faltó añadir el logo de Hilton Honors
+[+ enlace]. Y faltó el detalle de la referencia de ese cuadro: mira, difuminado
+dentro del cuadro el fondo.»
+
+Las cuatro aplicadas, re-subida al mismo enlace, QA limpio y la ST del Día del
+Turismo sigue pasando igual.
+
+1. ⭐⭐⭐ **EL CUADRO DE CRISTAL LLEVA EL FONDO DIFUMINADO.** Era el detalle que
+   hacía que la caja se leyera como un rectángulo pintado. Medido sobre el pin
+   cruzando el borde: mediana **3,5** ⇒ `backdrop-filter: blur(3.5px)` @1080.
+   ⛔ La primera medición comparó la caja contra franjas de arriba y abajo y dio
+   «no hay desenfoque» — estaba mal planteada, porque arriba hay pasto y abajo
+   grava. **Para medir un desenfoque hay que cruzar el borde.**
+2. ⭐⭐ **Un ícono se dibuja en SU proporción, no llenando la ranura.** Los tres
+   dibujados llenaban la caja de 71×57 de Eli, que es ancha porque su contenido
+   es una CAMA. Pasaron a un cuadrado de 52×52 centrado.
+3. ⛔⛔ **La cama se volvió a extraer: el alfa se saca del HISTOGRAMA.** La
+   primera extracción usaba una rampa 60→250 y arrastraba un halo (el panel de
+   `C1 FT N2` es translúcido y la foto que se ve a través quedaba con alfa > 0).
+   El histograma es bimodal ⇒ rampa **120→235**.
+4. **El logotipo DT queda limpio, sin sombra ni halo, y bajo la vara: 2,42:1.**
+   De acá sale una regla para la compuerta: **una desviación que decidió la
+   diseñadora no se imprime como «ok»**. `dt-qa.py` tiene ahora tres estados
+   —ok · ⚠️ ACEPTADA · ⛔— y la aceptada sale con su número y su motivo.
+5. ✅ **EL LOGO DE HILTON HONORS, RESUELTO.** Eli abrió el acceso del archivo y
+   bajó entero con `uc?export=download`: **13 967 bytes, los que declara Drive**.
+   Blanco puro con alfa, 1091×470, proporción 2,3213. Puesto donde ella lo
+   dibujó, centrado entre el pie de la caja y la regla del pie.
+
+**Sigue abierto:** la discrepancia de los **6 vs 4 cuadrantes** del brief, que es
+del cliente y no se resuelve acá (§G).
+
 ---
 
 ## 2026-09-15 (RONDAS 1–6) · Eli (Windows) — DOUBLETREE: la ST del 18-09, aprobada y subida

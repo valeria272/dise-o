@@ -31,6 +31,7 @@ DESTINO = SALIDA / "Post n°1 S4 DT - revision.html"
 
 PIEZA = SALIDA / "Post n°1 S4 DT.png"
 RONDA1 = SALIDA / "_rondas/ronda1.png"
+RONDA2 = SALIDA / "_rondas/ronda2.png"
 GUIA = SALIDA / "GUIAS QA/Post n°1 S4 DT - GUIA.png"
 REFERENCIA = RAIZ / "raw/hilton/dt/ref-s4/ref-post-s4-1080.jpg"
 FOTO = RAIZ / "public/assets/hilton/dt/ft-honors-lobby.jpg"
@@ -128,38 +129,75 @@ HTML = """<!doctype html>
   <div class="sello">DoubleTree by Hilton Santiago–Vitacura · Semana 4</div>
   <h1>Estático Hilton Honors</h1>
   <p class="sub">FEED columna K · publica el <b>23-09 a las 18:00</b> · estado de la grilla
-  <b>OK PARA DISEÑO</b>. <b>Ronda 2.</b> Máster a 2250×2813.</p>
+  <b>OK PARA DISEÑO</b>. <b>Ronda 3.</b> Máster a 2250×2813.</p>
 </header>
 
 <h2>Antes, después y la referencia</h2>
-<p class="nota">En el medio la <b>ronda 2</b>, con tus seis marcas aplicadas. A la
-izquierda la ronda 1 para comparar. A la derecha <b>Ref post s4.jpg</b>, la que subiste
-hoy a las 13:43 — que resulta ser el mismo pin que enlaza el brief en su celda LINKS.</p>
+<p class="nota">En el medio la <b>ronda 3</b>, con tus cuatro marcas nuevas aplicadas. A
+la izquierda la ronda 2 para comparar. A la derecha tu referencia.</p>
 <div class="par" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">
   <figure>
-    <img src="__RONDA1__" alt="Ronda 1">
-    <figcaption><b>Ronda 1</b> — titular a la izquierda, logotipo azul, rótulos en Trade
-    Gothic, velo fuerte desde arriba.</figcaption>
+    <img src="__RONDA2__" alt="Ronda 2">
+    <figcaption><b>Ronda 2</b> — íconos achatados, logotipo con sombra azul, cuadro sin
+    difuminar y sin el logo de Hilton Honors.</figcaption>
   </figure>
   <figure style="outline:3px solid var(--verde)">
-    <img src="__PIEZA__" alt="Ronda 2">
-    <figcaption><b>Ronda 2 — la que va</b>. Titular centrado, logotipo blanco con sombra,
-    tus íconos, velo más abajo y más suave.</figcaption>
+    <img src="__PIEZA__" alt="Ronda 3">
+    <figcaption><b>Ronda 3 — la que va</b>. Íconos a su proporción, logotipo limpio,
+    Hilton Honors puesto y el cuadro con el fondo difuminado.</figcaption>
   </figure>
   <figure>
     <img src="__REF__" alt="Referencia">
-    <figcaption><b>Tu referencia</b> — de ahí salen la caja de cristal con cuadrantes, los
-    íconos de línea con su rótulo al lado y la regla fina al pie.</figcaption>
+    <figcaption><b>Tu referencia</b> — de acá salió el difuminado dentro del cuadro, que
+    es lo que la hace leerse como cristal.</figcaption>
   </figure>
 </div>
 
-<h2>Tus seis marcas, una por una</h2>
+<h2>Tus cuatro marcas de esta ronda</h2>
+<div class="envoltorio">
+<table class="tabla">
+  <tr><th>Lo que pediste</th><th>Qué se hizo</th></tr>
+  <tr><td><b>«Esos íconos se ven achatados, aplastados»</b></td>
+      <td>Tenías razón y la causa era de dibujo: los había hecho <b>llenando tu caja de
+      71 × 57</b>, que es ancha porque su contenido es una <b>cama</b> —un objeto que de
+      verdad es más ancho que alto—. Una etiqueta, un regalo y una pila de monedas no lo
+      son. Ahora cada uno se dibuja en un <b>cuadrado de 52 × 52</b> centrado, y tu cama
+      va a <b>su proporción real medida (1,2250)</b>, sin estirarla ni un punto.</td></tr>
+  <tr><td><b>«Al logo no le hagas eso del fondo o sombra azul»</b></td>
+      <td>Fuera. Logotipo blanco y limpio sobre la foto. <b>El costo, medido:</b> sobre el
+      cielorraso queda en <b>2,42:1</b>, bajo la vara de 4,5 — ver abajo.</td></tr>
+  <tr><td><b>«Te faltó el logo de Hilton Honors»</b></td>
+      <td>✅ <b>Puesto</b>, en la cajita que dibujaste: centrado en el aire entre la caja y
+      la regla del pie. Con el acceso que abriste bajó entero —13.967 bytes, los que
+      declara Drive— y va a su proporción real 2,3213.</td></tr>
+  <tr><td><b>«Faltó el detalle: difuminado dentro del cuadro»</b></td>
+      <td>✅ Ése era el detalle que hacía que se leyera como un rectángulo pintado y no
+      como cristal. <b>Medido sobre tu referencia</b>, no a ojo — ver abajo.</td></tr>
+</table>
+</div>
+
+<div class="aviso">
+  <h3>⭐ Cómo se midió el difuminado</h3>
+  <p>Comparé la energía de alta frecuencia <b>cruzando el borde de la caja</b>, donde el
+  material fotográfico es el mismo a los dos lados, y busqué qué radio de desenfoque
+  aplicado a la parte de afuera reproduce la nitidez de adentro:</p>
+  <p style="font-variant-numeric:tabular-nums">borde superior 1,3 · 1,3 · 3,8 · 4,3 —
+  borde inferior 6,9 · 2,9 · 3,5 — borde izquierdo 2,8 · 8,0 &nbsp;⇒&nbsp;
+  <b>mediana 3,5</b></p>
+  <p>Dentro de tu cuadro la nitidez cae al <b>4-29 %</b> de la de afuera, y se ve igual en
+  los cuatro bordes: no es impresión, es desenfoque de verdad.</p>
+  <p class="nota" style="margin:10px 0 0">⚠️ La primera medición comparó la caja contra
+  franjas de arriba y de abajo y dio «sin desenfoque». Estaba mal planteada: arriba hay
+  pasto y abajo grava, dos texturas con nitidez propia distinta. Para medir un desenfoque
+  hay que cruzar el borde.</p>
+</div>
+
+<h2>Y las seis marcas de la ronda 2, que siguen en pie</h2>
 <div class="envoltorio">
 <table class="tabla">
   <tr><th>Lo que pediste</th><th>Qué se hizo</th></tr>
   <tr><td><b>«Te falta el logo de Hilton Honors»</b></td>
-      <td class="mal">⚠️ <b>Es lo único que quedó pendiente</b>, y no por olvido — ver el
-      aviso de abajo. El hueco ya está reservado donde lo dibujaste.</td></tr>
+      <td class="ok">✅ Resuelto en la ronda 3.</td></tr>
   <tr><td><b>«Usa íconos ya utilizados en mis piezas»</b></td>
       <td><b>La cama es tuya, literal:</b> extraída de <code>C1 FT N2</code>
       («Habitación doble») a resolución completa. Los otros tres no existen en ningún
@@ -168,9 +206,10 @@ hoy a las 13:43 — que resulta ser el mismo pin que enlaza el brief en su celda
       <b>regla vertical</b> entre ícono y rótulo, que yo no tenía.</td></tr>
   <tr><td><b>«El título déjalo centrado»</b></td><td>Centrado. Medido: los tres centros
       caen en 538-539 sobre 540.</td></tr>
-  <tr><td><b>«Logo blanco»</b></td><td>Blanco. Era azul por la §B.4 del manual («va en
-      azul cuando el fondo es demasiado blanco»); tu criterio la levanta para esta pieza
-      y queda anotado como excepción de pieza, no como cambio de la marca.</td></tr>
+  <tr><td><b>«Logo blanco»</b></td><td>Blanco, y desde la ronda 3 también <b>sin sombra
+      ni halo</b>. Era azul por la §B.4 del manual («va en azul cuando el fondo es
+      demasiado blanco»); tu criterio la levanta para esta pieza y queda anotado como
+      excepción de pieza, no como cambio de la marca.</td></tr>
   <tr><td><b>«Conserva la imagen del fondo»</b></td><td>Intacta: mismo encuadre, mismo
       revelado.</td></tr>
   <tr><td><b>«La transparencia azul más abajo y sutil»</b></td>
@@ -197,21 +236,7 @@ hoy a las 13:43 — que resulta ser el mismo pin que enlaza el brief en su celda
 
 <h2>Lo que necesito que decidas</h2>
 
-<div class="aviso">
-  <h3>0 · El logo de Hilton Honors: necesito el archivo</h3>
-  <p>Lo ubiqué en tu Drive —<i>GRILLA IA DT › Logos › Hilton Honors Logo_White PNG.png</i>,
-  14 KB, ya es la versión blanca— pero <b>no logro bajarlo</b>: las tres rutas directas de
-  Drive devuelven la pantalla de login, el token del estudio sólo ve lo que subió él, y el
-  conector me entrega los archivos chicos de una forma que no queda en disco (lo intenté
-  dos veces y llegó cortado; preferí borrarlo antes que montar un logotipo roto).</p>
-  <p><b>Cópialo a mano a</b> <code>EDITOR VIDEOS/raw/hilton/dt/identidad/logos/</code>
-  y lo monto en una corrida. El hueco ya está reservado en y 1186, centrado, entre la caja
-  y la regla del pie — donde lo dibujaste.</p>
-  <p class="mal">⛔ <b>Y ojo con una trampa de esa misma carpeta:</b> el archivo
-  <code>hilton honors.png</code> (43 KB) <b>no es el logo de Hilton Honors</b> — es el
-  logotipo <b>Hilton «For The Stay»</b>. Está mal rotulado. Ése sí lo pude bajar, lo miré,
-  y por eso no lo usé.</p>
-</div>
+
 
 <div class="aviso">
   <h3>1 · El brief dice 6 cuadrantes y dejó 4 rótulos</h3>
@@ -287,20 +312,24 @@ paralela ya puesta, quedándose con el peor tercio. Son las cifras del archivo q
 entrega, no de una simulación.</p>
 <div class="envoltorio">
 <table class="tabla">
-  <tr><th>Elemento</th><th>Ronda 1</th><th>Ronda 2</th><th>Vara</th><th></th></tr>
-  <tr><td>Logotipo DT</td><td class="n">4,84:1 <span style="color:var(--tinta-2)">(azul)</span></td>
-      <td class="n ojo">3,61:1 <b>(blanco)</b></td><td class="n">4,5</td>
-      <td>⚠️ <b>La única cifra que queda bajo la vara, y es consecuencia de dos cosas que
-      pediste:</b> blanco + velo más suave, sobre el cielorraso, que es lo más claro de la
-      foto. La sombra lo subió de 2,83 a 3,61 y <b>a la vista se lee bien</b> (la medición
-      promedia toda la caja del logotipo y la sombra va pegada a la tinta). Si lo quieres
-      en regla, la salida medida es volver al azul: 4,84:1.</td></tr>
-  <tr><td>Titular</td><td class="n">6,13:1</td><td class="n ok">4,22 – 5,31:1</td>
+  <tr><th>Elemento</th><th>Ronda 2</th><th>Ronda 3</th><th>Vara</th><th></th></tr>
+  <tr><td>Logotipo DT</td><td class="n">3,61:1 <span style="color:var(--tinta-2)">(con sombra)</span></td>
+      <td class="n ojo">2,42:1 <b>(limpio)</b></td><td class="n">4,5</td>
+      <td>⚠️ <b>La única cifra bajo la vara, y es la consecuencia medida de lo que
+      pediste:</b> blanco, sin sombra ni halo, sobre el cielorraso —lo más claro de la
+      foto—. <b>Es tu decisión de dirección de arte</b> y la compuerta la lleva declarada:
+      no la imprime como «ok» sino como <b>desviación aceptada</b>, con su número a la
+      vista, para que en dos semanas nadie crea que es un descuido. Si alguna vez la
+      quieres en regla, la salida medida es el azul de la §B.4: <b>4,84:1</b>.</td></tr>
+  <tr><td>Titular</td><td class="n">4,22 – 5,31:1</td><td class="n ok">4,22 – 5,31:1</td>
       <td class="n">3,0</td><td>Vara de <b>texto grande</b>, que es la que fija tu propio
       manual desde el Día del Turismo.</td></tr>
-  <tr><td>Rótulos de la caja</td><td class="n">8,1 – 11,9:1</td><td class="n ok">7,0 – 10,1:1</td>
-      <td class="n">4,5</td><td></td></tr>
-  <tr><td>Llamado del pie</td><td class="n">9,38:1</td><td class="n ok">8,60:1</td>
+  <tr><td>Rótulos de la caja</td><td class="n">7,0 – 10,1:1</td><td class="n ok">7,1 – 10,3:1</td>
+      <td class="n">4,5</td><td>El difuminado casi no los mueve.</td></tr>
+  <tr><td>Logotipo Hilton Honors</td><td class="n">—</td><td class="n ok">8,18:1</td>
+      <td class="n">4,5</td><td>Ancho 121 sobre los 120,7 que da su proporción real: no
+      está deformado.</td></tr>
+  <tr><td>Llamado del pie</td><td class="n">8,60:1</td><td class="n ok">8,59:1</td>
       <td class="n">4,5</td><td></td></tr>
 </table>
 </div>
@@ -309,10 +338,10 @@ arriba —el codo que te molestó en el Día del Turismo no vuelve—, pero ahor
 convexa: casi no pesa hasta pasada la mitad. Y la caja va <b>de cristal (0,30)</b> y no
 maciza como el panel de Family Time —medido, ése está en 0,84-0,90— porque el brief la
 pide así con todas sus letras: «estilo cristal o translúcida».</p>
-<p class="nota"><b>Probé y descarté</b> un halo suave detrás del logotipo, que es el
-recurso que funcionó en el Día del Turismo para tapar el rótulo de la fachada: allá caía
-sobre un cielo con textura y acá cae sobre un cielorraso plano, donde se veía como una
-mancha gris. Se cambió por tres sombras paralelas apiladas sobre el propio logotipo.</p>
+<p class="nota"><b>Lo que se probó en el logotipo, en orden:</b> (1) un halo radial detrás
+—el recurso que funcionó en el Día del Turismo— y se veía como una mancha gris, porque acá
+el cielorraso es plano; (2) tres sombras paralelas apiladas, que sí lo subían a 3,61:1 pero
+son justamente «eso del fondo o sombra azul»; (3) <b>nada</b>, que es lo que va.</p>
 
 <h2>La compuerta de calidad</h2>
 <p class="nota"><code>python scripts/dt-qa.py "out/hilton/dt/ft-honors/*.png"</code></p>
@@ -358,7 +387,7 @@ diagramación—; las palabras no se tocaron.</p>
 
 
 def main() -> int:
-    faltan = [p for p in (PIEZA, GUIA, FOTO, RONDA1) if not p.exists()]
+    faltan = [p for p in (PIEZA, GUIA, FOTO, RONDA1, RONDA2) if not p.exists()]
     if faltan:
         for p in faltan:
             print(f"⛔ falta {p}")
@@ -373,6 +402,7 @@ def main() -> int:
     html = (HTML
             .replace("__REF__", uri(REFERENCIA))
             .replace("__RONDA1__", uri(RONDA1))
+            .replace("__RONDA2__", uri(RONDA2))
             .replace("__PIEZA__", uri(PIEZA))
             .replace("__GUIA__", uri(GUIA))
             .replace("__FOTO__", uri(FOTO))

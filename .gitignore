@@ -511,3 +511,6 @@ public/assets/fonts/piso18/ivypresto/
 # aprobado `C1 FT N2` a resolución completa. Pesa 3 KB y sin él la pieza no se
 # reproduce — el aprobado NO viaja en git (vive en raw/, que está excluido).
 !public/assets/hilton/dt/icono-*.png
+# DT · RONDA 3: el logotipo de HILTON HONORS en blanco (14 KB). Es del cliente y
+# sólo baja de su Drive con el acceso abierto — sin él la pieza no se reproduce.
+!public/assets/hilton/dt/hilton-honors-*.png

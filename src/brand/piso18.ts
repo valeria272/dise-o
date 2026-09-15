@@ -46,6 +46,18 @@ export const P18 = {
     tinta: '#1A1A1A',
     /** El papel de la tarjeta festoneada, medido en `C2 S1 n°2`. */
     tarjeta: '#F7F5F2',
+    /**
+     * ⭐ El BEIGE de fondo, pedido por Eli en la ronda 2 de la S4: *«al fondo
+     * beige añade textura de papel sutil beige»*.
+     *
+     * ⚠️ No es el mismo que `tarjeta`. El papel de la tarjeta festoneada es casi
+     * blanco (`#F7F5F2`, luminancia 242) y sobre él «beige» no se lee como beige
+     * —la ronda 2 salió así y había que corregirlo—. Este es un tostado real,
+     * cálido, que sigue dejando respirar: es el soporte de la pieza, no un color.
+     */
+    beige: '#EFE6D9',
+    /** El mismo beige un punto más profundo, para la banda que cruza el tercio alto. */
+    beigeHondo: '#E6DACA',
   },
 
   fuentes: {

@@ -22,89 +22,100 @@
  * — y los textos van **verbatim**.
  *
  * ══════════════════════════════════════════════════════════════════════════
- * LA REFERENCIA que dejó Eli — `ST 2 S4 REF.jpg` (736×1308)
+ * ⭐⭐ RONDA 2 — SON DOS FOTOS, NO FOTO Y COLOR
  * ══════════════════════════════════════════════════════════════════════════
- * Una historia partida por un **corte ondulado**: foto de ciudad arriba, zona
- * de color plano abajo, y la palabra clave en **script manuscrito** cabalgando
- * la línea del corte. La bajada va en sans ligera, alineada a la derecha.
+ * La ronda 1 partía la pieza en foto arriba y **fucsia sólido abajo**. Eli la
+ * corrigió sobre la propia referencia, marcando a mano un **1** en la mitad de
+ * arriba y un **2** en la de abajo:
  *
- * Lo que se toma de ella: **la estructura** —foto arriba / onda / color abajo,
- * con el titular montado sobre la curva—. Lo que NO se toma: su paleta (azul
- * turquesa) ni su tipografía script, que no son de esta marca.
+ * > *«la idea es hacer una transición del fondo del cielo y la ventana, la foto
+ * > está correcta, pero abajo, en vez de el color de piso18, otra foto; la idea
+ * > es que sea similar a la referencia.»*
  *
- * ⚠️ El script de la referencia sería `Edwardian Script ITC` —la cuarta voz del
- * sistema— pero **ese archivo no está en el repo**. Hasta que Eli lo mande, la
- * palabra destacada va en **IvyPresto itálica**, que es la voz principal de la
- * marca y sostiene el mismo gesto. Queda anotado, no disimulado.
+ * Y tenía razón contra la referencia: en `ST 2 S4 REF.jpg` la mitad de abajo no
+ * es un plano de color, es **otra fotografía** —cielo con nubes— y la onda es la
+ * costura entre las dos. La ronda 1 leyó esa mitad como color plano porque el
+ * cielo de la referencia es muy saturado.
+ *
+ * ⇒ Ahora son **dos fotos cosidas por la onda**: arriba la ventana, abajo el
+ * cielo abierto. Eso es literalmente «la transición del cielo y la ventana».
+ *
+ * ⚠️ Y trae una consecuencia de contraste: el fucsia sólido sostenía texto blanco
+ * sin pensarlo, y **un cielo de hora dorada no**. Se midió la luminancia de la
+ * banda donde cae la bajada (ver `VELO_ABAJO`) y por eso el cielo lleva un velo
+ * cálido de refuerzo en su parte baja: sin él la bajada se perdía sobre las nubes.
+ *
+ * ⭐ El fucsia no desaparece de la pieza: vuelve donde la marca lo quiere, en el
+ * **botón de cotización** — y en esquema A (fucsia lleno), que es el principal.
+ * En la ronda 1 iba invertido sólo porque el fondo ya era fucsia.
  *
  * ══════════════════════════════════════════════════════════════════════════
- * LA FOTO — se PRODUJO, no se recortó
+ * LAS DOS FOTOS — las dos se PRODUJERON, ninguna se recortó de un banco
  * ══════════════════════════════════════════════════════════════════════════
  * **En todo el material de Piso18 no hay una sola foto de atardecer**: la sesión
- * de agosto 2023 (121 fotos) es de noche o interior oscuro, y el reportaje de
- * matrimonio tampoco trae la vista. Eli resolvió el 15-09: **reiluminar una foto
- * real con ventanal**.
+ * de agosto 2023 (121 fotos) es de noche o interior oscuro. Eli resolvió el 15-09:
+ * **reiluminar una foto real con ventanal**.
  *
- * La base es `0198.jpg` —la referencia que el propio brief del feed enlaza—, que
- * es el ventanal real de Piso18 con la Torre Titanium y los cerros. Se le cambió
- * SÓLO la hora del día a hora dorada, conservando marcos, pasamanos, mesa,
- * botellas y la forma exacta de la torre. Es el mismo uso de IA que ya hacen los
- * editables de la marca («que se vea iluminado de día»): se retoca lo real, no se
- * inventa la escena.
+ * - **Arriba:** `0198.jpg` —la referencia que el propio brief del feed enlaza— que
+ *   es el ventanal real de Piso18 con la Torre Titanium y los cerros. Se le cambió
+ *   SÓLO la hora del día, conservando marcos, pasamanos, mesa y la forma exacta
+ *   de la torre.
+ * - **Abajo:** el cielo de esa misma escena, abierto en plano amplio, generado
+ *   **con la foto de arriba como referencia de color** para que las dos sean la
+ *   misma hora y la misma paleta. Si no, la costura de la onda se nota.
  *
  * ══════════════════════════════════════════════════════════════════════════
  * GEOMETRÍA — de `src/brand/piso18.ts`, medida sobre las piezas aprobadas
  * ══════════════════════════════════════════════════════════════════════════
  * Mesa 1080×1920; se entrega a 2250×4000 con `--scale=2.0833`.
  *
- * ⚠️ **El botón de cotización es obligatorio** en historias (dictado de Eli,
- * 15-09): la marca quiere redirigir a cotizar. Va en esquema A (fucsia lleno).
- * ⚠️ **La interacción NO se dibuja**: el sticker de link lo pone el CM. Lo que
- * hace la pieza es dejarle el aire.
+ * ⚠️ **El botón de cotización es obligatorio** en historias (dictado de Eli).
+ * ⚠️ **La interacción NO se dibuja**: el sticker de link lo pone el CM.
+ *
+ * ⚠️ Zonas seguras de Instagram, que Eli pidió respetar: el titular vive entre
+ * y=760 y y=1010, la bajada en y=1302 y el botón termina en y=1516 — 64 px por
+ * encima de los 340 que Instagram se come abajo.
  */
 import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
 import {P18, cargarFuentesP18} from '../../brand/piso18';
 
-/** Alto de la mesa. La historia es 9:16 exacta. */
 const H = 1920;
 const W = 1080;
 
 /**
- * Dónde cruza la onda. La referencia la pone a ~57 % del alto; acá baja a 60 %
- * porque el titular de esta marca es de dos líneas y necesita más aire arriba.
+ * Dónde cruza la onda. La referencia la pone a ~57 % del alto; acá va a 60 %
+ * porque el titular de esta marca es de tres líneas y necesita más aire arriba.
  */
 const CORTE = 0.6;
 
 /**
- * La onda. Es una curva suave de un solo valle, no un zigzag: sube por la
- * izquierda, cae al centro-derecha y remonta al borde. Se dibuja como `path`
- * sobre el ancho completo para que no se vea una costura en los bordes.
+ * La curva, como cadena de `path` reutilizable: la dibuja el borde blanco Y la
+ * usa el recorte de la foto de abajo, así que **tiene que ser la misma** o
+ * aparece una costura de un píxel entre el filo y la foto.
+ *
+ * ⛔ Y va armada con `join(' ')`, en UNA SOLA LÍNEA, no con un template literal
+ * multilínea. `clip-path: path()` con saltos de línea adentro **Chrome lo
+ * descarta EN SILENCIO**: la propiedad se ignora, el recorte no se aplica y la
+ * foto de abajo tapa la pieza entera. `<path d>` en SVG sí los tolera, así que
+ * el filo blanco seguía dibujándose y parecía que todo estaba bien. Pasó en la
+ * ronda 2 y costó un render.
  */
-const Onda: React.FC<{y: number; color: string}> = ({y, color}) => (
-  <svg
-    width={W}
-    height={H}
-    viewBox={`0 0 ${W} ${H}`}
-    style={{position: 'absolute', inset: 0}}
-  >
-    <path
-      d={`M0,${y - 46}
-          C ${W * 0.22},${y - 108} ${W * 0.34},${y + 74} ${W * 0.56},${y + 58}
-          C ${W * 0.74},${y + 45} ${W * 0.86},${y - 40} ${W},${y - 18}
-          L ${W},${H} L 0,${H} Z`}
-      fill={color}
-    />
-  </svg>
-);
+const curva = (y: number) =>
+  [
+    `M0,${y - 46}`,
+    `C ${W * 0.22},${y - 108} ${W * 0.34},${y + 74} ${W * 0.56},${y + 58}`,
+    `C ${W * 0.74},${y + 45} ${W * 0.86},${y - 40} ${W},${y - 18}`,
+  ].join(' ');
 
 export const P18StLuzVista: React.FC = () => {
   cargarFuentesP18();
   const yCorte = H * CORTE;
+  const recorte = `path('${curva(yCorte)} L ${W},${H} L 0,${H} Z')`;
 
   return (
-    <AbsoluteFill style={{backgroundColor: P18.colores.fucsia}}>
-      {/* ── La foto, a sangre en la mitad superior ─────────────────────── */}
+    <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
+      {/* ── FOTO 1 · la ventana, a sangre ──────────────────────────────── */}
       <AbsoluteFill>
         <Img
           src={staticFile('assets/hilton/piso18/atardecer.jpg')}
@@ -114,18 +125,40 @@ export const P18StLuzVista: React.FC = () => {
 
       {/*
         Velo superior. Es el mismo recurso que trae la plantilla de la marca
-        (`logo PISO18.png`, alfa 150 arriba → 0 hacia el medio) y existe para
-        que el logotipo blanco se lea sobre la foto. Acá va más suave porque el
-        cielo de hora dorada ya es claro.
+        (`logo PISO18.png`, alfa 150 arriba → 0 hacia el medio) y existe para que
+        el logotipo blanco se lea sobre la foto. Acá va suave porque el cielo de
+        hora dorada ya es claro.
       */}
       <AbsoluteFill
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.10) 26%, rgba(0,0,0,0) 44%)',
+          background:
+            'linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.10) 26%, rgba(0,0,0,0) 44%)',
         }}
       />
 
-      {/* ── La onda fucsia ────────────────────────────────────────────── */}
-      <Onda y={yCorte} color={P18.colores.fucsia} />
+      {/* ── FOTO 2 · el cielo, recortado por la onda ───────────────────── */}
+      <AbsoluteFill style={{clipPath: recorte, WebkitClipPath: recorte} as React.CSSProperties}>
+        <Img
+          src={staticFile('assets/hilton/piso18/cielo.jpg')}
+          style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 62%'}}
+        />
+        {/*
+          ⚠️ VELO_ABAJO — el que hace legible la bajada. Un cielo de hora dorada
+          es CLARO: sin esto el texto blanco se pierde sobre las nubes. Va cálido
+          y en degradado desde el pie para no ensuciar el cielo de la costura.
+        */}
+        <AbsoluteFill
+          style={{
+            background:
+              'linear-gradient(to bottom, rgba(26,16,10,0) 0%, rgba(26,16,10,0.20) 34%, rgba(26,16,10,0.52) 66%, rgba(26,16,10,0.66) 100%)',
+          }}
+        />
+      </AbsoluteFill>
+
+      {/* El filo blanco de la costura — el mismo gesto de la referencia. */}
+      <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{position: 'absolute', inset: 0}}>
+        <path d={curva(yCorte)} fill="none" stroke="#FFFFFF" strokeWidth={3} opacity={0.92} />
+      </svg>
 
       {/* ── Logotipo: arriba, centrado, a la geometría medida ──────────── */}
       <Img
@@ -140,9 +173,9 @@ export const P18StLuzVista: React.FC = () => {
       />
 
       {/*
-        ── EL TITULAR, montado sobre la curva ──────────────────────────
-        Va en dos líneas y con el mismo contraste de la marca: la palabra que
-        importa en ITÁLICA, el resto en roman. Verbatim del brief.
+        ── EL TITULAR, sobre la ventana y por encima de la curva ─────────
+        El contraste de la marca: la línea que importa en ITÁLICA, el resto en
+        roman. Verbatim del brief.
       */}
       <div
         style={{
@@ -165,11 +198,7 @@ export const P18StLuzVista: React.FC = () => {
         </div>
       </div>
 
-      {/*
-        ── La bajada, ya dentro del fucsia ──────────────────────────────
-        Raleway, que es la legible: es el caballo de batalla de la marca para
-        todo lo que no sea titular.
-      */}
+      {/* ── La bajada, ya sobre el cielo ────────────────────────────────── */}
       <div
         style={{
           position: 'absolute',
@@ -183,6 +212,7 @@ export const P18StLuzVista: React.FC = () => {
           fontSize: 35,
           lineHeight: 1.5,
           letterSpacing: 0.2,
+          textShadow: '0 2px 14px rgba(26,16,10,0.55)',
         }}
       >
         La vista panorámica de Santiago se viste de atardecer para tu celebración.
@@ -190,11 +220,10 @@ export const P18StLuzVista: React.FC = () => {
 
       {/*
         ── EL BOTÓN DE COTIZACIÓN ───────────────────────────────────────
-        Obligatorio en historias. Esquema B (invertido: blanco con texto fucsia),
-        porque el fondo de esta pieza ya es el fucsia lleno — el esquema A se
-        perdería sobre sí mismo.
-        ⚠️ Queda por encima de la zona segura inferior (340 px): su base cae en
-        y=1500, o sea 420 px de aire bajo el botón.
+        Obligatorio en historias. **Esquema A (fucsia lleno)**, que es el
+        principal: acá el fondo ya no es fucsia, así que el fucsia vuelve al
+        botón — y es lo único de ese color en la pieza, que es como la marca lo usa.
+        Su base cae en y=1516: 64 px por encima de la zona segura inferior.
       */}
       <div
         style={{
@@ -208,14 +237,15 @@ export const P18StLuzVista: React.FC = () => {
       >
         <div
           style={{
-            backgroundColor: P18.botones.invertido.fondo,
-            color: P18.botones.invertido.texto,
+            backgroundColor: P18.botones.lleno.fondo,
+            color: P18.botones.lleno.texto,
             fontFamily: P18.fuentes.texto,
             fontWeight: 700,
             fontSize: 33,
             letterSpacing: 0.6,
             padding: '26px 58px',
             borderRadius: 999,
+            boxShadow: '0 6px 26px rgba(26,16,10,0.34)',
           }}
         >
           Cotiza tu evento en piso18.cl
@@ -226,14 +256,14 @@ export const P18StLuzVista: React.FC = () => {
 };
 
 /**
- * Guía de QA: zonas seguras de historia y la línea del corte. No se entrega —
- * se mira al lado de la pieza para comprobar que nada cae bajo la interfaz de
- * Instagram ni donde el CM pega el sticker.
+ * Guía de QA: zonas seguras de historia. No se entrega — se mira al lado de la
+ * pieza para comprobar que nada cae bajo la interfaz de Instagram ni donde el CM
+ * pega el sticker.
  */
 export const P18StLuzVistaGuia: React.FC = () => (
   <AbsoluteFill>
     <P18StLuzVista />
-    <AbsoluteFill>
+    <AbsoluteFill style={{pointerEvents: 'none'}}>
       <div
         style={{
           position: 'absolute',

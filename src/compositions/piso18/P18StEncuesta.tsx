@@ -75,6 +75,53 @@ const OPCIONES = [
   {letra: 'C', src: 'assets/hilton/piso18/tira-lila.jpg', dy: 0},
 ] as const;
 
+/**
+ * ⭐ TEXTURA DE PAPEL — pedida por Eli en la ronda 2: *«al fondo beige añade
+ * textura de papel sutil beige»*.
+ *
+ * Va **generada, no como archivo**: `feTurbulence` de tipo `fractalNoise` da la
+ * fibra del papel sin sumar un asset de varios MB al repo, y se rinde idéntica
+ * en cualquier máquina.
+ *
+ * Son dos capas, porque una sola se lee como ruido de cámara y no como papel:
+ *   · fibra FINA (frecuencia alta) para el grano del gramaje;
+ *   · veta ANCHA (frecuencia baja, muy tenue) para la irregularidad del pliego.
+ *
+ * ⚠️ Los números están CALIBRADOS sobre la pieza rendida, no puestos a ojo: la
+ * entrega va a 2250 (×2,0833) y **el escalado suaviza el ruido**. Con la fibra a
+ * `baseFrequency 0.82` y 4,4 % de opacidad la desviación del fondo quedaba en
+ * 0,83 — invisible. Con grano más grueso y 13 % sube a un grano que se ve de
+ * cerca y sigue leyéndose liso de lejos, que es lo que hace un papel.
+ */
+const TexturaPapel: React.FC = () => (
+  <AbsoluteFill style={{pointerEvents: 'none'}}>
+    <svg width={W} height={1920} style={{position: 'absolute', inset: 0}}>
+      <filter id="p18-fibra">
+        <feTurbulence type="fractalNoise" baseFrequency="0.46" numOctaves={4} seed={7} />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <filter id="p18-veta">
+        <feTurbulence type="fractalNoise" baseFrequency="0.009 0.034" numOctaves={3} seed={19} />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect
+        width="100%"
+        height="100%"
+        filter="url(#p18-fibra)"
+        opacity={0.13}
+        style={{mixBlendMode: 'multiply'}}
+      />
+      <rect
+        width="100%"
+        height="100%"
+        filter="url(#p18-veta)"
+        opacity={0.06}
+        style={{mixBlendMode: 'multiply'}}
+      />
+    </svg>
+  </AbsoluteFill>
+);
+
 /** Geometría de las tiras. Escalonadas: la del medio baja `dy`. */
 const TIRA = {ancho: 268, alto: 700, hueco: 22, top: 380};
 
@@ -84,7 +131,7 @@ export const P18StEncuesta: React.FC = () => {
   const x0 = (W - anchoTotal) / 2;
 
   return (
-    <AbsoluteFill style={{backgroundColor: P18.colores.tarjeta}}>
+    <AbsoluteFill style={{backgroundColor: P18.colores.beige}}>
       {/*
         La banda de la referencia: una franja de tono distinto que cruza el
         tercio superior y contra la que se recortan las tiras. Acá va en el
@@ -97,9 +144,16 @@ export const P18StEncuesta: React.FC = () => {
           right: 0,
           top: 0,
           height: TIRA.top + 250,
-          backgroundColor: '#EDE9E4',
+          backgroundColor: P18.colores.beigeHondo,
         }}
       />
+
+      {/*
+        La textura va sobre los DOS beiges —el de base y el de la banda— y por
+        debajo de todo lo demás: el papel es el soporte, no un velo encima de las
+        fotos ni del texto.
+      */}
+      <TexturaPapel />
 
       {/* Logotipo arriba, centrado, a la geometría medida — en tinta sobre claro */}
       <Img

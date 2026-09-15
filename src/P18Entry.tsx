@@ -18,7 +18,12 @@ import {Composition, Folder, registerRoot} from 'remotion';
 
 import {P18StLuzVista, P18StLuzVistaGuia} from './compositions/piso18/P18StLuzVista';
 import {P18StEncuesta, P18StEncuestaGuia} from './compositions/piso18/P18StEncuesta';
-import {P18StMontaje, P18_MONTAJE_DUR, P18_MONTAJE_FPS} from './compositions/piso18/P18StMontaje';
+import {
+  P18StMontaje,
+  P18StMontajeGuia,
+  P18_MONTAJE_DUR,
+  P18_MONTAJE_FPS,
+} from './compositions/piso18/P18StMontaje';
 
 const story = {durationInFrames: 1, fps: 30, width: 1080, height: 1920} as const;
 
@@ -37,6 +42,14 @@ const Raiz: React.FC = () => (
       <Composition
         id="P18-ST-Montaje"
         component={P18StMontaje}
+        durationInFrames={P18_MONTAJE_DUR}
+        fps={P18_MONTAJE_FPS}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="P18-ST-Montaje-Guia"
+        component={P18StMontajeGuia}
         durationInFrames={P18_MONTAJE_DUR}
         fps={P18_MONTAJE_FPS}
         width={1080}

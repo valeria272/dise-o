@@ -1,3 +1,54 @@
+## 2026-09-15 (apertura) — DT · el `/al-dia` que destrabó el día, y DOS HILOS OPEN que sobraron
+
+**Marca: DT.** **No es sesión de diseño**: es la apertura (`/abrir doubletree`).
+El trabajo del día está en las entradas de más abajo —la ST del 18-09 y el
+estático de Honors, las dos aprobadas y subidas—. Esto anota **lo único que el
+día no dejó escrito**.
+
+**Qué se hizo.** Diff de la grilla viva (modificada hoy 12:24Z) contra la
+instantánea del 10-09. Encontró las dos tareas que después se produjeron, y de
+paso que **los dos bloqueantes que venían del 10-09 ya no existían**:
+
+- **La bandera de Panamá** (hilo `AAACGzJtEYc`, `FEED!I14`) quedó **RESUELTA**.
+- **La carpeta de referencias de la reseña** (`1Dlki995RRdwueFGlZOkF9rybf7maMJ5u`)
+  **ya no está vacía**: 5 PNG, entre ellos `imagen_2026-08-14_112424991.png`, el
+  que propuso Carlos. ⚠️ Se ve por `embeddedfolderview`, **no** por `parentId`
+  —que sigue devolviendo vacío—, o sea el bloqueo era del método de lectura y no
+  del material (memoria `agotar-material-antes-de-bloquear`).
+- **STORIES col H (18-09)** pasó a `OK PARA DISEÑO` y Scarlette dejó el material
+  ayer 21:18Z: `1_LUmZ26C9FtGl9zLgE_IxRoN7-0so91w`, **179 archivos** del evento
+  interno de Fiestas Patrias del lunes en Piso18. ⚠️ Buena parte son **`.HEIC`, que
+  Chrome no carga** — el mismo modo de falla silencioso del TIFF del lobby y de
+  Brushwell.
+- **FEED col K (23-09)** pasó a `APROBADO` con el comentario **sin tachar** «Les
+  dejé ajustes en el brief»: cambiaron los rótulos (caja baja, «Canje de noches
+  gratis», «Acumula puntos en cada estadía») y se agregó el titular «MÁS
+  BENEFICIOS EN CADA ESTADÍA CON HILTON HONORS».
+
+**Dónde quedó.** `clients/hilton/grillas/dt-septiembre-2026.md` (la instantánea
+nueva, base del próximo diff) y `clients/_estado-sync.json`. Los dos entraron
+dentro de los commits del día — `c87c29e`, `856753d` y `3fe2ac4` —, o sea **están
+respaldados**, sólo que no en un commit propio.
+
+**Qué sigue.** Nada de esta sesión: el día ya se cerró en las entradas de abajo.
+
+**Abierto — ⛔ dos hilos nativos que siguen `OPEN` y ya no corresponden.** Nadie
+los va a cerrar si no quedan anotados, y un hilo abierto se lee como ronda
+pendiente:
+
+- `AAACB_tY1w4` (`FEED!K10`, Scarlette, 13-08) — pedía **grabar el reel** de
+  Hilton Honors coordinando con Sebastián Serrano. **Obsoleto**: esa pieza pasó a
+  estático y hoy quedó aprobada.
+- `AAACFVjwFEY` (`STORIES!H15`, Scarlette, ayer 21:18Z) — es el que entregó el
+  material del 18-09. **Ya se usó y la pieza está aprobada y subida**, así que se
+  puede cerrar.
+
+⚠️ Y sigue sin respuesta, por si se pierde entre las entradas del día: **la
+Opinión Booking del 14-09 (`FEED` col I) quedó en `EN REVISIÓN` con la fecha ya
+pasada** — hay que preguntarle a Eli si se publicó.
+
+---
+
 # HILTON — bitácora
 
 > ⚠️ **Este archivo lo comparten las 4 marcas del complejo (DT · QB · Between ·

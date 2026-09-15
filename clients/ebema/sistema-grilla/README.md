@@ -57,12 +57,40 @@ La lámina de cierre se verificó midiendo el render contra `ebema_c_cedral5.png
 > El anillo del PNG no llena su lienzo: hay que escalar el `<img>` a **376,3** para
 > que el rojo mida 298,6. Está resuelto en el CSS; no lo toques a ojo.
 
+## Corregido el 15-09-2026 (prueba del carrusel de Masisa)
+
+Seis cosas que sólo aparecen cuando se arma un carrusel de punta a punta. Están
+en el CSS con su medición; el detalle, en `out/ebema/20260915_grilla_masisa_prueba/BRIEF.md`.
+
+1. La **caja roja se ajusta a su propio texto**, no al ancho del titular entero.
+2. Una caja de **dos renglones es un solo rectángulo**, no dos pegados.
+3. El logo se escala **por su anillo rojo, no por el archivo**: `width:118.6` dejaba
+   el rojo en 94,1 × 97,4, un 20 % corto. Ahora la firma va a 148,0 con padding 57,2.
+4. **Cápsula blanca de la bajada** de la portada, que no estaba medida.
+5. La **flecha se dibuja en CSS** — `img/flecha.png` nunca existió.
+6. El botón del cierre decía **«Cotiza porwhatsapp»**: `flex` se come el espacio suelto.
+
+El **anillo EBEMA** está ahora en dos versiones con alfa, reconstruidas desde
+`logo_ebema_circulo.png` (que viene RGB con fondo blanco):
+`logo_ebema_anillo_claro.png` (texto gris, para la cápsula) y
+`logo_ebema_anillo_oscuro.png` (texto blanco, para el cierre sobre foto).
+Conviene pedirle a Paulina el PNG oficial con transparencia: el contorno
+reconstruido queda con algo de ruido.
+
+`build_carrusel_EJEMPLO_masisa.py` es un carrusel real completo, con el brief
+citado lámina por lámina. Es la mejor plantilla para el mes siguiente.
+
 ## Lo que falta
 
-- **Logos de los proveedores** (Cedral, Cintac, Novoplast, Surpol, Toro, Polpaico,
-  CMPC, VH…). Sin ellos la cápsula de co-marca queda coja. Hay que pedírselos a
-  Paulina o sacarlos de los editables.
-- El **PNG de la flecha** del pie de portada (`img/flecha.png`).
+- **Logos de los proveedores.** Sin ellos la cápsula de co-marca queda coja.
+  Se dejan en `raw/ebema/3-logos-y-packshots/` y de ahí pasan a
+  `img/proveedores/`, que sí viaja en el repo. La lista de los 16 que usa la
+  cuenta y el estado de cada uno están en `img/proveedores/LEEME.md`.
+  **Masisa ya está**, recortado de una pieza publicada (falta el vectorial).
+- **`clients/ebema/reglas.yaml`**: sin él `qa/motor.py --marca ebema` se niega a
+  correr, y EBEMA es la marca de referencia del estudio. Las cifras de §4-bis ya
+  están verificadas por código en el `qa.py` del lote de Masisa: hay que llevarlas
+  al motor.
 - Generadores de las familias **B** y **C** — hoy sólo está el de carrusel. Sus
   medidas ya están en el CSS, falta el script.
 - Los **reels**: la gramática de motion está medida (§4-bis) pero el reel se arma en

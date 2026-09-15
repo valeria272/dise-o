@@ -3,6 +3,43 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-15 — Paulina Bustamante
+
+**Qué se hizo:** Se construyó la **portada de carrusel de GRILLA (familia A)** de punta
+a punta, con Paulina corrigiendo en vivo: **11 rondas** sobre Masisa (melamina y cantos)
+hasta dejarla aprobada, y después una **portada de Etersol** (pasto sintético) para
+probar el sistema con otro brief — quedó bien salvo un par de cosas por corregir.
+Ambas de la grilla de **octubre**, que todavía no llega a diseño: los briefs los pasó
+Paulina a mano para probar. Llegaron además **los 26 logos oficiales de proveedores** y
+el logo EBEMA con transparencia. De paso se corrió `/al-dia`.
+
+**Dónde quedó:** El sistema en `clients/ebema/sistema-grilla/` (CSS consolidado en un
+bloque limpio, un valor por cosa con su medición al lado) y los dos generadores con su
+criterio comentado en `sistema-grilla/ejemplos/`. Las reglas nuevas, en **§4-bis** del
+manual. Los lotes con fotos y PNG están en `out/ebema/20260915_grilla_masisa_prueba/`
+y `..._etersol_prueba/` — **no viajan en git**, pero los prompts de Magnific para
+rehacer las fotos están en `ejemplos/masisa_octubre_BRIEF.md`. QA de portada
+reutilizable en `sistema-grilla/qa_portada.py`. Página de revisión:
+claude.ai/artifact/JrLYrLTk3e3VDZiVEUzQDf (Masisa) y
+claude.ai/artifact/SFcWA99oEbpLH9XGDP7ccQ (las dos portadas).
+
+**Qué sigue:** Terminar de corregir la portada de **Etersol** — Paulina dijo que aún
+quedan cosas. Después, las láminas **2 a 5** de ambos carruseles, que no se han tocado:
+las reglas bajo `.portada` en el CSS valen SÓLO para la lámina 1 y hay que decidir, al
+revisarlas, cuáles se suben al resto del sistema.
+
+**Abierto:**
+- ⛔ **EBEMA no tiene `clients/ebema/reglas.yaml`**, así que `qa/motor.py --marca ebema`
+  se niega a correr sobre la marca de referencia del estudio. Las cifras de §4-bis ya
+  están verificadas por código en `qa_portada.py`: falta llevarlas al motor.
+- El logo de **CMPC** vino en SVG y es el único de los 26 que no se pudo convertir solo.
+- **Toro, Vinilit y PointFix** venían a 143–348 px de alto y se escalaron a 300: si
+  salen pixelados en una pieza, hay que pedirlos más grandes.
+- Las fotos se generaron a 1856 px y la entrega es a 2250 (se escalan un 21 %). Si el
+  look se aprueba, hay que regenerarlas en 4k.
+- La grilla de octubre **sigue sin llegar a diseño**: el documento del mes dice «temas y
+  estructura, sin desarrollar brief todavía».
+
 ## 2026-09-14 — Paulina Bustamante
 
 **Qué se hizo:** Se produjo la **story 19** de la grilla de septiembre (Ebema Click,

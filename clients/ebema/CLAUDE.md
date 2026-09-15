@@ -390,6 +390,87 @@ Los 5 carruseles medidos tienen **la misma estructura**, y no es casualidad:
 | «en el link de la bio!» | ancho 429,1, cx 538,3 |
 | Bajada `<Producto>, disponible en Ebema.` | sobre el anillo, centrada |
 
+### ⭐ Reglas de la cápsula y del titular — dictadas por Paulina (15-09-2026)
+
+Salieron de la ronda 1 sobre el carrusel de Masisa. **No son ajustes de una pieza:
+valen para todo carrusel de familia A.**
+
+| Regla | Por qué |
+|---|---|
+| ⛔ **Entre los dos logos NUNCA va una línea.** Va el aire y nada más | separador eliminado del sistema |
+| ⛔ **La cápsula de co-marca no cambia de alto ni de sitio.** Alto **155,5** y `y` **154,6**, siempre | para que el feed se lea ordenado cuando las piezas quedan una al lado de la otra |
+| El **ancho de la cápsula sí varía**: lo fija el logo del proveedor | por eso el logo se acota por alto (86 px) y nunca empuja la cápsula |
+| **La cápsula va SÓLO en la lámina 1** | ya se cumplía; queda escrito |
+| **El titular calza en ANCHO, no en cuerpo** | la línea larga va en un cuerpo menor y la corta en uno mayor, y todas miden lo mismo de ancho: el bloque queda simétrico y llamativo |
+| **La caja roja sube hasta la mitad de la línea de arriba** | es lo que hacen las 5 referencias; el texto blanco va por encima del rojo, no tapado |
+| En el pie, **manda el texto, no la flecha** | la píldora bajó de 331,2 a 236 y el texto subió de 24 a 31 px |
+| ⛔ **Las dos líneas del enunciado miden LO MISMO de ancho.** La de arriba se compone al ancho del TEXTO que va dentro de la caja roja, no a un ancho propio — por eso sube de cuerpo cuando es larga | comprobado en Surpol sept: caja **948,5**, línea blanca **904,3**, y 948,5 − 2 × 22 de padding = **904,5**. Calza al décimo de píxel. En el sistema: `ANCHO_LINEA = ANCHO_CAJA − 2 × PADDING_CAJA` |
+| ⛔ **La caja roja es el elemento MÁS ANCHO del bloque**: envuelve a las dos líneas con su padding | caja **942**, texto de las dos líneas **898** |
+| **El rojo llega hasta la MITAD de la primera línea** | `data-tapa="0.5"` — la mitad de las **mayúsculas**, medida con TextMetrics: la caja de línea incluye interlineado y acentos y daba entre 48 % y 68 % |
+
+> ⛔ **LA PORTADA TIENE TRES ZONAS Y LAS TRES VAN SIEMPRE** — Paulina, 15-09-2026.
+>
+> | Zona | Qué lleva | Ejemplo (Etersol, octubre) |
+> |---|---|---|
+> | Línea blanca arriba | el **contexto** | «Llega la primavera,» |
+> | Dentro de la caja roja | el **gancho** | «¿Tu patio aguanta la temporada?» |
+> | Cápsula blanca | la **bajada** | «Descubre el pasto sintético Etersol» |
+>
+> ⛔ **Y el contexto va LIBRE, fuera del rojo.** El rojo sólo muerde la primera
+> línea **del gancho**, nunca la frase de contexto. En la portada de Masisa de junio,
+> «UNA AMPLIACIÓN FIRME» queda entera sobre la foto y el rojo empieza a media altura
+> de «EMPIEZA POR EL». O sea el enunciado tiene **tres niveles**, no dos:
+>
+> | Nivel | Dónde | Etersol |
+> |---|---|---|
+> | contexto | libre sobre la foto | «Llega la primavera,» |
+> | gancho, 1.ª línea | mordida por el rojo a media altura | «¿Tu patio aguanta» |
+> | gancho, resto | dentro del rojo | «la temporada?» |
+>
+> **Las tres van al mismo ancho**; lo que cambia es el cuerpo. Medido en esa
+> referencia: contexto **851,0** y texto de la caja **889,4**, o sea 0,96. Se ve más
+> chico sólo porque tiene más letras, no porque sea más angosto.
+
+> **La cápsula blanca no es opcional.** Se quitó una vez razonando que el subtexto
+> del brief era del tipo «Descubre…» y por analogía con la portada de Cedral debía
+> ir al pie: mal. El pie se queda sólo con la flecha de «desliza».
+>
+> Cómo repartir el texto del brief entre las tres zonas **es criterio de diseño**, y
+> depende de cómo esté escrito el titular: si trae contexto + gancho, se parte en
+> las dos primeras y el subtexto va a la cápsula; si el titular es una sola frase
+> larga, su remate va a la cápsula (así quedó Masisa).
+
+> ⛔⛔ **«Que el cuadro llegue hasta la mitad de la línea» = CRECE EL ALTO DEL
+> BLOQUE ROJO. No se mueve el texto.** — Paulina, 15-09-2026.
+>
+> Subir la fila entera con un margen negativo arrastra el texto y **junta los
+> renglones del enunciado**, que es justo lo que no se pide. Lo que sube es el
+> **borde** de la caja, no su contenido. En el generador se hace con el par
+> `padding-top: X` + `margin-top: −X`: el margen sube la caja X px y el padding
+> devuelve el texto a su sitio. El interlineado del enunciado no cambia y sólo
+> crece el alto del bloque.
+>
+> **Y el alto del rojo se baja juntando las líneas, no recortando la caja.** El
+> interlineado del enunciado en la portada es **0,84** (no el 1,06 del sistema):
+> al acercar la línea de abajo, el rojo tiene menos que crecer para llegar a la
+> mitad de la de arriba y baja solo. En el carrusel de Masisa: 154,6 → 138,7 con
+> 0,92 → **129,1** con 0,84, tapando siempre el 48 % de la primera línea.
+> La separación entre las dos líneas queda en **0,50 del alto de la primera**,
+> que es lo que mide la referencia de Paulina (0,48).
+| La cápsula blanca de la bajada **monta sobre el rojo** | 14,4 px de sus ~50 de alto |
+| La cápsula **se dimensiona por ancho**, como el titular | **0,82 del ancho de la caja roja** (771,8 sobre 942), leído de la referencia de Paulina. El cuerpo del texto sale de ahí |
+
+> ⚠️ **El cuerpo del titular no se puede calcular contando caracteres.** «AISLACIÓN
+> TÉRMICA» y «LIVIANA Y FÁCIL» tienen largos parecidos y ocupan anchos muy distintos.
+> `build_carrusel.py` mide el texto ya compuesto en el navegador y ajusta —
+> **después de `document.fonts.ready`**: con `font-display:block` el layout mide con
+> la fuente de reemplazo y la caja salía un 15 % corta (770,9 en vez de 910).
+>
+> ⚠️ Y **«hasta la mitad de la línea» es la mitad de las LETRAS, no del alto de línea.**
+> El alto de la fila incluye el interlineado, los acentos y los descendentes: montar
+> la caja media fila tapaba el 68 % de las mayúsculas. El factor que deja justo la
+> mitad es **0,34** del alto de fila.
+
 ### Familia C1 · la story de Click — medida sobre `ebema_storie_click.png`
 
 Es la **misma pieza** que la story 19 del brief de septiembre, resuelta por la

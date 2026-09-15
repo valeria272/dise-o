@@ -102,8 +102,31 @@ de Piso18. Esa sesión tiene que cerrar lo suyo, o se pierde.
 
 ---
 
-## 2026-09-15 · Eli (Windows) — DOUBLETREE: el post de Hilton Honors, ENTREGADO
+## 2026-09-15 · Eli (Windows) — DOUBLETREE: el post de Hilton Honors, ✅ APROBADO
 
+> ## ✅ APROBADA POR ELI EN LA RONDA 4 — 15-09-2026
+>
+> **`Post n°1 S4 DT.png`** · 2250×2813 · `md5 82d5c7a4fc9cb050d2cb109a0e8639c0`
+> Subida a **S4 › DT** (`1sW3paRt7FotnGBe8IZLccTTSNz8rN9TF`) como
+> [`132pCMwB46c0nDz7DiyECSrLNFyShkFhv`](https://drive.google.com/file/d/132pCMwB46c0nDz7DiyECSrLNFyShkFhv/view).
+> **Verificado que el archivo del Drive es el mismo**: 10 216 607 bytes a los dos
+> lados. Cuatro rondas en el día. El enlace nunca cambió — se reemplazó en sitio.
+>
+> ⚠️ **Lo único que queda abierto NO es de diseño:** el brief dice «6 cuadrantes»
+> y la lista de rótulos trae 4, porque el cliente tachó «WiFi Premium» y
+> «Check-in Digital» y no actualizó esa línea. **Se armó con 4 y lo decide el
+> cliente** (§G). Si los quiere de vuelta, la caja pasa a 3×2.
+>
+> **Cómo se reproduce, de cero:**
+> ```bash
+> python scripts/dt-ft-honors-foto.py
+> python scripts/dt-rendir.py DT-F-HiltonHonors DT-F-HiltonHonors-Guia >        --salida out/hilton/dt/ft-honors
+> python scripts/dt-qa.py "out/hilton/dt/ft-honors/*.png"
+> python scripts/dt-ft-honors-revision.py
+> ```
+>
+> ---
+>
 > ✅ **CORRECCIÓN DE LA PROPIA SESIÓN QUE LA HIZO.** Esta entrada la reconstruyó
 > otra sesión desde los archivos, con la pieza a medio camino, y por eso decía
 > «rendido y SIN ENTREGAR / no se subió nada». **Ya no es así:** la pieza pasó el

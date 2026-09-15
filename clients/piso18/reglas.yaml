@@ -17,7 +17,7 @@
 
 marca: piso18
 nombre: PISO18 Centro de Eventos
-version: 1
+version: 2
 actualizado: 2026-09-15
 
 autoridad:
@@ -68,6 +68,28 @@ ajustes:
     args:
       minimo_px_1080: 26
       max_fraccion_tinta: 0.25
+
+  # ⛔⛔ NO SE CALIBRA `foto-estirada`. Léelo antes de tocarlo.
+  #
+  # El 15-09-2026, en la S5, las dos historias salieron BLOQUEADAS con «foto
+  # estirada para llenar el formato»: racha de filas idénticas del **18 %** del
+  # alto en la del 28-09 (desde y=82 %) y del **11 %** en la del 30-09 (desde
+  # y=89 %). **No había ninguna foto estirada: era el fondo oscuro liso.**
+  #
+  # La tentación evidente era subir el tope del 8 % al 19 % y seguir. ⛔ No se
+  # hizo, y no se hace: esa regla existe porque en una story de Revex una foto
+  # estirada de verdad ocupó el **34 %** de la pieza, y con el tope en 19 % la
+  # habría dejado pasar. Un check que no marca nada no es un check.
+  #
+  # ⇒ Se arregló **la pieza**, no la regla: entra `GranoFondo` a
+  # `src/brand/piso18.ts` —dos capas de `feTurbulence` en claro sobre oscuro, a
+  # 0,05 y 0,035 de opacidad— y con eso dos filas contiguas dejan de ser
+  # idénticas. Además se ve mejor: la referencia que dio Eli para esa historia
+  # no tiene un negro digital de fondo, tiene un cuero.
+  #
+  # **La regla de la marca, entonces: todo fondo oscuro plano de Piso18 lleva
+  # grano.** El mismo arreglo apaga el aviso de `desenfoque-parcial`, que sobre
+  # un color plano mide nitidez cero por definición.
 
   desenfoque-parcial:
     porque: >-

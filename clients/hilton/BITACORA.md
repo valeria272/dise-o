@@ -45,6 +45,15 @@ y lo que NO es de Piso18 es esto:
 - ⭐ **Una portada de carrusel se mide contra la portada anterior de la misma
   vertical**, no sola.
 
+**QUÉ SIGUE — la próxima tarea concreta, la que haría uno mismo mañana:**
+
+> **Abrir octubre de Piso18.** La grilla ya está bajada en
+> `clients/hilton/grillas/p18-octubre-2026.md`. El orden es: correr `/al-dia` para
+> ver si cambió, leer la primera columna con estado `OK PARA DISEÑAR`, y **antes de
+> producir nada, verificar si pide torta, brindis o fiesta** — si los pide, hay que
+> pedirle la sesión a Eli, porque el banco no los tiene (está medido sobre 386
+> fotos). El aparato está completo: kit, 3 composiciones, QA y script de subida.
+
 **Pendiente de la cuenta, no de la S5** (para quien retome PISO18 en octubre):
 
 - La **ST del 21-09** sigue sin brief de diseño; hay que pedírselo a contenido.

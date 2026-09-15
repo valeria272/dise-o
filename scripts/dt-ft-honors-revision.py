@@ -32,6 +32,7 @@ DESTINO = SALIDA / "Post n°1 S4 DT - revision.html"
 PIEZA = SALIDA / "Post n°1 S4 DT.png"
 RONDA1 = SALIDA / "_rondas/ronda1.png"
 RONDA2 = SALIDA / "_rondas/ronda2.png"
+RONDA3 = SALIDA / "_rondas/ronda3.png"
 GUIA = SALIDA / "GUIAS QA/Post n°1 S4 DT - GUIA.png"
 REFERENCIA = RAIZ / "raw/hilton/dt/ref-s4/ref-post-s4-1080.jpg"
 FOTO = RAIZ / "public/assets/hilton/dt/ft-honors-lobby.jpg"
@@ -129,67 +130,53 @@ HTML = """<!doctype html>
   <div class="sello">DoubleTree by Hilton Santiago–Vitacura · Semana 4</div>
   <h1>Estático Hilton Honors</h1>
   <p class="sub">FEED columna K · publica el <b>23-09 a las 18:00</b> · estado de la grilla
-  <b>OK PARA DISEÑO</b>. <b>Ronda 3.</b> Máster a 2250×2813.</p>
+  <b>OK PARA DISEÑO</b>. <b>Ronda 4.</b> Máster a 2250×2813.</p>
 </header>
 
 <h2>Antes, después y la referencia</h2>
-<p class="nota">En el medio la <b>ronda 3</b>, con tus cuatro marcas nuevas aplicadas. A
-la izquierda la ronda 2 para comparar. A la derecha tu referencia.</p>
+<p class="nota">En el medio la <b>ronda 4</b>. A la izquierda la ronda 3 para comparar.
+A la derecha tu referencia.</p>
 <div class="par" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">
   <figure>
-    <img src="__RONDA2__" alt="Ronda 2">
-    <figcaption><b>Ronda 2</b> — íconos achatados, logotipo con sombra azul, cuadro sin
-    difuminar y sin el logo de Hilton Honors.</figcaption>
+    <img src="__RONDA3__" alt="Ronda 3">
+    <figcaption><b>Ronda 3</b> — Hilton Honors chico y con sombra, bloque de arriba más
+    abajo, palabras apretadas en los rótulos.</figcaption>
   </figure>
   <figure style="outline:3px solid var(--verde)">
-    <img src="__PIEZA__" alt="Ronda 3">
-    <figcaption><b>Ronda 3 — la que va</b>. Íconos a su proporción, logotipo limpio,
-    Hilton Honors puesto y el cuadro con el fondo difuminado.</figcaption>
+    <img src="__PIEZA__" alt="Ronda 4">
+    <figcaption><b>Ronda 4 — la que va</b>. Honors más grande y limpio, el bloque de
+    arriba sube, y los textos respiran.</figcaption>
   </figure>
   <figure>
     <img src="__REF__" alt="Referencia">
-    <figcaption><b>Tu referencia</b> — de acá salió el difuminado dentro del cuadro, que
-    es lo que la hace leerse como cristal.</figcaption>
+    <figcaption><b>Tu referencia</b>.</figcaption>
   </figure>
 </div>
 
 <h2>Tus cuatro marcas de esta ronda</h2>
 <div class="envoltorio">
 <table class="tabla">
-  <tr><th>Lo que pediste</th><th>Qué se hizo</th></tr>
-  <tr><td><b>«Esos íconos se ven achatados, aplastados»</b></td>
-      <td>Tenías razón y la causa era de dibujo: los había hecho <b>llenando tu caja de
-      71 × 57</b>, que es ancha porque su contenido es una <b>cama</b> —un objeto que de
-      verdad es más ancho que alto—. Una etiqueta, un regalo y una pila de monedas no lo
-      son. Ahora cada uno se dibuja en un <b>cuadrado de 52 × 52</b> centrado, y tu cama
-      va a <b>su proporción real medida (1,2250)</b>, sin estirarla ni un punto.</td></tr>
-  <tr><td><b>«Al logo no le hagas eso del fondo o sombra azul»</b></td>
-      <td>Fuera. Logotipo blanco y limpio sobre la foto. <b>El costo, medido:</b> sobre el
-      cielorraso queda en <b>2,42:1</b>, bajo la vara de 4,5 — ver abajo.</td></tr>
-  <tr><td><b>«Te faltó el logo de Hilton Honors»</b></td>
-      <td>✅ <b>Puesto</b>, en la cajita que dibujaste: centrado en el aire entre la caja y
-      la regla del pie. Con el acceso que abriste bajó entero —13.967 bytes, los que
-      declara Drive— y va a su proporción real 2,3213.</td></tr>
-  <tr><td><b>«Faltó el detalle: difuminado dentro del cuadro»</b></td>
-      <td>✅ Ése era el detalle que hacía que se leyera como un rectángulo pintado y no
-      como cristal. <b>Medido sobre tu referencia</b>, no a ojo — ver abajo.</td></tr>
+  <tr><th>Lo que pediste</th><th>Qué se hizo</th><th>Medida</th></tr>
+  <tr><td><b>«Agranda un poco el logo de Hilton Honors»</b></td>
+      <td>De <b>52 a 64</b> de alto. Su ancho pasa de 121 a <b>149</b>, así que ahora pesa
+      casi como el logotipo DT (160) — que es lo que corresponde, porque Hilton Honors
+      <b>es</b> el asunto de la pieza.</td>
+      <td class="n">64 × 148,8</td></tr>
+  <tr><td><b>«Quítale esa sombra que tiene»</b></td>
+      <td>Fuera. Cae sobre el piso de madera, que es oscuro: no la necesitaba. Medido sin
+      sombra da <b>7,19:1</b>, muy por encima de la vara.</td>
+      <td class="n ok">7,19:1</td></tr>
+  <tr><td><b>«Sube un poco lo de arriba, cuida las jerarquías y orden»</b></td>
+      <td>El titular sube <b>35</b> y la caja <b>30</b>. Ese movimiento es justamente el
+      que abre el aire de abajo para que Honors pueda crecer. Los tres saltos del tercio
+      inferior quedan parejos.</td>
+      <td class="n">caja→Honors 38<br>Honors→regla 38</td></tr>
+  <tr><td><b>«En los textos (no del título) separa un poco»</b></td>
+      <td>Manda el espacio <b>entre palabras</b>, que es lo que nombraste: <code>0,14em</code>.
+      El tracking entra apenas (<code>0,012em</code>) sólo para que la Stag no se cierre
+      sobre sí misma en cuerpo 29 sobre foto. <b>El titular no se tocó</b>, lo excluiste.</td>
+      <td class="n">el llamado del pie<br>pasa de 444 a 474</td></tr>
 </table>
-</div>
-
-<div class="aviso">
-  <h3>⭐ Cómo se midió el difuminado</h3>
-  <p>Comparé la energía de alta frecuencia <b>cruzando el borde de la caja</b>, donde el
-  material fotográfico es el mismo a los dos lados, y busqué qué radio de desenfoque
-  aplicado a la parte de afuera reproduce la nitidez de adentro:</p>
-  <p style="font-variant-numeric:tabular-nums">borde superior 1,3 · 1,3 · 3,8 · 4,3 —
-  borde inferior 6,9 · 2,9 · 3,5 — borde izquierdo 2,8 · 8,0 &nbsp;⇒&nbsp;
-  <b>mediana 3,5</b></p>
-  <p>Dentro de tu cuadro la nitidez cae al <b>4-29 %</b> de la de afuera, y se ve igual en
-  los cuatro bordes: no es impresión, es desenfoque de verdad.</p>
-  <p class="nota" style="margin:10px 0 0">⚠️ La primera medición comparó la caja contra
-  franjas de arriba y de abajo y dio «sin desenfoque». Estaba mal planteada: arriba hay
-  pasto y abajo grava, dos texturas con nitidez propia distinta. Para medir un desenfoque
-  hay que cruzar el borde.</p>
 </div>
 
 <h2>Y las seis marcas de la ronda 2, que siguen en pie</h2>
@@ -312,8 +299,8 @@ paralela ya puesta, quedándose con el peor tercio. Son las cifras del archivo q
 entrega, no de una simulación.</p>
 <div class="envoltorio">
 <table class="tabla">
-  <tr><th>Elemento</th><th>Ronda 2</th><th>Ronda 3</th><th>Vara</th><th></th></tr>
-  <tr><td>Logotipo DT</td><td class="n">3,61:1 <span style="color:var(--tinta-2)">(con sombra)</span></td>
+  <tr><th>Elemento</th><th>Ronda 3</th><th>Ronda 4</th><th>Vara</th><th></th></tr>
+  <tr><td>Logotipo DT</td><td class="n ojo">2,42:1</td>
       <td class="n ojo">2,42:1 <b>(limpio)</b></td><td class="n">4,5</td>
       <td>⚠️ <b>La única cifra bajo la vara, y es la consecuencia medida de lo que
       pediste:</b> blanco, sin sombra ni halo, sobre el cielorraso —lo más claro de la
@@ -321,15 +308,16 @@ entrega, no de una simulación.</p>
       no la imprime como «ok» sino como <b>desviación aceptada</b>, con su número a la
       vista, para que en dos semanas nadie crea que es un descuido. Si alguna vez la
       quieres en regla, la salida medida es el azul de la §B.4: <b>4,84:1</b>.</td></tr>
-  <tr><td>Titular</td><td class="n">4,22 – 5,31:1</td><td class="n ok">4,22 – 5,31:1</td>
+  <tr><td>Titular</td><td class="n">4,22 – 5,31:1</td><td class="n ok">4,30 – 5,94:1</td>
       <td class="n">3,0</td><td>Vara de <b>texto grande</b>, que es la que fija tu propio
       manual desde el Día del Turismo.</td></tr>
-  <tr><td>Rótulos de la caja</td><td class="n">7,0 – 10,1:1</td><td class="n ok">7,1 – 10,3:1</td>
-      <td class="n">4,5</td><td>El difuminado casi no los mueve.</td></tr>
-  <tr><td>Logotipo Hilton Honors</td><td class="n">—</td><td class="n ok">8,18:1</td>
-      <td class="n">4,5</td><td>Ancho 121 sobre los 120,7 que da su proporción real: no
-      está deformado.</td></tr>
-  <tr><td>Llamado del pie</td><td class="n">8,60:1</td><td class="n ok">8,59:1</td>
+  <tr><td>Rótulos de la caja</td><td class="n">7,1 – 10,3:1</td><td class="n ok">7,0 – 10,2:1</td>
+      <td class="n">4,5</td><td></td></tr>
+  <tr><td>Logotipo Hilton Honors</td><td class="n">8,18:1 (con sombra)</td>
+      <td class="n ok">7,19:1 <b>(limpio)</b></td>
+      <td class="n">4,5</td><td>Ancho 149 sobre los 148,6 que da su proporción real
+      (2,3213): <b>no está deformado</b>.</td></tr>
+  <tr><td>Llamado del pie</td><td class="n">8,59:1</td><td class="n ok">8,63:1</td>
       <td class="n">4,5</td><td></td></tr>
 </table>
 </div>
@@ -387,7 +375,7 @@ diagramación—; las palabras no se tocaron.</p>
 
 
 def main() -> int:
-    faltan = [p for p in (PIEZA, GUIA, FOTO, RONDA1, RONDA2) if not p.exists()]
+    faltan = [p for p in (PIEZA, GUIA, FOTO, RONDA3) if not p.exists()]
     if faltan:
         for p in faltan:
             print(f"⛔ falta {p}")
@@ -403,6 +391,7 @@ def main() -> int:
             .replace("__REF__", uri(REFERENCIA))
             .replace("__RONDA1__", uri(RONDA1))
             .replace("__RONDA2__", uri(RONDA2))
+            .replace("__RONDA3__", uri(RONDA3))
             .replace("__PIEZA__", uri(PIEZA))
             .replace("__GUIA__", uri(GUIA))
             .replace("__FOTO__", uri(FOTO))

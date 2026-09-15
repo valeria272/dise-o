@@ -226,7 +226,7 @@ const SOMBRA_IMG =
 const CAJA = {
   x: 100,
   ancho: 880,
-  y: 842,
+  y: 812,
   alto: 306,
   radio: 26,
   /**
@@ -305,8 +305,8 @@ const HONORS = {
    * Va CENTRADO en el aire que queda entre el pie de la caja (1148) y la regla
    * del pie (1258): 110 px de hueco, bloque de 52 ⇒ arranca en 1177.
    */
-  y: 1177,
-  alto: 52,
+  y: 1156,
+  alto: 64,
   archivo: 'assets/hilton/dt/hilton-honors-blanco.png',
 } as const;
 
@@ -324,6 +324,19 @@ const CUERPO = {titulo: 68, rotulo: 29, pie: 29} as const;
 
 /** 66 px sobre una versal de 47,6 ⇒ 1,39, que es la proporción del pin (68/49). */
 const SALTO_TITULO = 66;
+
+/**
+ * ⭐ RONDA 4 · EL AIRE DE LOS TEXTOS QUE NO SON EL TITULAR.
+ *
+ * Eli: «en los textos (no del título) separa un poco, están muy juntos entre
+ * palabras y no se ve tan legible». Lo que ella nombra es el espacio ENTRE
+ * PALABRAS, así que ahí va el grueso del ajuste (`wordSpacing`); el tracking
+ * entra apenas, porque en cuerpo 29 y sobre foto la Stag se cierra sobre sí
+ * misma y un pelo de aire la abre sin desarmar la palabra.
+ *
+ * ⛔ El titular NO se toca: ella lo excluyó explícitamente.
+ */
+const AIRE_TEXTO = {palabra: '0.14em', letra: '0.012em'} as const;
 
 /**
  * ⭐ RONDA 2 · LA GRAMÁTICA DE CUADRANTE DE ELI, medida en `C1 FT N2`:
@@ -503,6 +516,12 @@ const Cuadrante: React.FC<{celda: Celda}> = ({celda}) => (
         fontWeight: DT.pesos.regular,
         fontSize: CUERPO.rotulo,
         lineHeight: 1.2,
+        // ⭐ RONDA 4 · «En los textos (no del título) separa un poco, están muy
+        // juntos entre palabras y no se ve tan legible.» Manda el espacio ENTRE
+        // PALABRAS, que es lo que ella nombró; el tracking va apenas, sólo para
+        // que la Stag no se cierre sobre sí misma en cuerpo chico y sobre foto.
+        wordSpacing: AIRE_TEXTO.palabra,
+        letterSpacing: AIRE_TEXTO.letra,
         color: DT.colores.blanco,
         textShadow: SOMBRA,
         whiteSpace: 'nowrap',
@@ -561,7 +580,7 @@ export const DtFtHonors: React.FC<{guia?: boolean; conHonors?: boolean}> = ({
       style={{
         position: 'absolute',
         left: CAJA.x,
-        bottom: MESA.alto - 777,
+        bottom: MESA.alto - 742,
         width: CAJA.ancho,
         textAlign: 'center',
         fontFamily: DT.fuentes.titular,
@@ -672,7 +691,9 @@ export const DtFtHonors: React.FC<{guia?: boolean; conHonors?: boolean}> = ({
           width: MESA.ancho,
           height: HONORS.alto,
           objectFit: 'contain',
-          filter: SOMBRA_IMG,
+          // ⭐ RONDA 4: SIN sombra. «Al logo de Hilton Honors quítale esa sombra
+          // que tiene.» Cae sobre el piso de madera, que es oscuro: no la
+          // necesita. Es la misma decisión que ya se tomó con el logotipo DT.
         }}
       />
     ) : null}
@@ -692,7 +713,8 @@ export const DtFtHonors: React.FC<{guia?: boolean; conHonors?: boolean}> = ({
         fontFamily: DT.fuentes.titular,
         fontWeight: DT.pesos.regular,
         fontSize: CUERPO.pie,
-        letterSpacing: '0.01em',
+        wordSpacing: AIRE_TEXTO.palabra,
+        letterSpacing: AIRE_TEXTO.letra,
         color: DT.colores.blanco,
         textShadow: SOMBRA,
       }}
@@ -708,7 +730,7 @@ export const DtFtHonors: React.FC<{guia?: boolean; conHonors?: boolean}> = ({
       <>
         {[
           {y: G.logoYFeed, alto: G.logoAncho / G.logoProporcion, c: 'rgba(255,0,110,0.75)'},
-          {y: 597, alto: 777 - 597, c: 'rgba(0,200,255,0.75)'},
+          {y: 562, alto: 742 - 562, c: 'rgba(0,200,255,0.75)'},
           {y: CAJA.y, alto: CAJA.alto, c: 'rgba(163,205,57,0.85)'},
           {y: HONORS.y, alto: HONORS.alto, c: 'rgba(255,120,255,0.9)'},
           {y: REGLA_PIE, alto: 1320 - REGLA_PIE, c: 'rgba(255,204,0,0.85)'},

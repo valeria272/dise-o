@@ -294,6 +294,27 @@ Turismo sigue pasando igual.
 **Sigue abierto:** la discrepancia de los **6 vs 4 cuadrantes** del brief, que es
 del cliente y no se resuelve acá (§G).
 
+### ⭐ RONDA 4 (15-09, tarde) — jerarquía y aire
+
+Eli: «agranda un poco el logo de Hilton Honors, cuida las jerarquías y orden,
+sube un poco lo de arriba, y al logo de Hilton Honors quítale esa sombra que
+tiene. En los textos (no del título) separa un poco, están muy juntos entre
+palabras y no se ve tan legible.»
+
+Las cuatro aplicadas, re-subida al mismo enlace, QA limpio.
+
+1. ⭐⭐ **El espacio ENTRE PALABRAS es un ajuste aparte del tracking.** Ella
+   nombró las palabras, así que ahí va el grueso: `wordSpacing: 0,14em` en los
+   rótulos y en el llamado; el tracking apenas 0,012em. El titular no se toca.
+   Se ve en la medición: el llamado pasa de 444 a **474 px** de ancho.
+2. ⭐ **«Sube un poco lo de arriba» es lo que abre el espacio de abajo.** Titular
+   +35, caja +30, y con eso el logotipo de Honors puede crecer. Los saltos del
+   tercio inferior quedan parejos: caja→Honors 38 · Honors→regla 38.
+3. ⭐ **La jerarquía de los dos logotipos.** Honors pasa de 52 a 64 de alto
+   (ancho 148,8, proporción real 2,3213) y queda pesando casi como el DT (160):
+   es el asunto de la pieza, no una firma secundaria. Y va **sin sombra**, como
+   el DT — sobre el piso de madera da 7,19:1.
+
 ---
 
 ## 2026-09-15 (RONDAS 1–6) · Eli (Windows) — DOUBLETREE: la ST del 18-09, aprobada y subida

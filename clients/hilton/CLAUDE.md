@@ -672,6 +672,37 @@ caja y la regla del pie.
 ⛔ Y queda en pie la trampa: `hilton honors.png` (43 KB) de la misma carpeta **NO
 es el Honors** — es el logotipo Hilton «For The Stay», mal rotulado en el Drive.
 
+### ⭐ RONDA 4 DEL ESTÁTICO DE HONORS (15-09) — jerarquía y aire
+
+#### ⭐⭐ 1. EL ESPACIO ENTRE PALABRAS ES UN AJUSTE APARTE DEL TRACKING
+
+Eli: «en los textos (no del título) separa un poco, están muy juntos **entre
+palabras** y no se ve tan legible». Lo que nombró es el espacio **entre
+palabras**, no el tracking, y el arreglo va ahí: `wordSpacing: 0,14em` en los
+rótulos de los cuadrantes y en el llamado del pie. El tracking entra apenas
+(`0,012em`) porque en cuerpo 29 y sobre foto la Stag se cierra sobre sí misma.
+
+⛔ **El titular no se toca** — ella lo excluyó explícitamente («no del título»).
+
+Se nota en la medición: el llamado del pie pasa de **444 a 474 px** de ancho.
+
+#### ⭐ 2. «SUBE UN POCO LO DE ARRIBA» ES LO QUE ABRE EL ESPACIO DE ABAJO
+
+El titular subió 35 y la caja 30, y ése es justamente el movimiento que deja
+crecer el logotipo de Hilton Honors. Los tres saltos del tercio inferior quedan
+parejos: **caja → Honors 38 · Honors → regla 38**, y el titular cierra 70 px
+antes de la caja (la referencia: 65).
+
+#### ⭐ 3. La jerarquía de los DOS logotipos
+
+El de Hilton Honors pasó de 52 a **64 de alto** (ancho 148,8, a su proporción
+real 2,3213). Queda pesando casi como el logotipo DT (160 de ancho), **que es lo
+que corresponde: Hilton Honors ES el asunto de la pieza**, no una firma
+secundaria.
+
+Y va **sin sombra**, igual que el logotipo DT. Cae sobre el piso de madera, que
+es oscuro: medido sin sombra da **7,19:1**.
+
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 
 Verificado glifo a glifo con `fontTools` sobre los archivos de esta máquina: los

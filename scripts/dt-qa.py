@@ -192,52 +192,55 @@ PIEZAS = [
         "logo_contraste_minimo": 2.35,
         "logo_motivo": "blanco y SIN sombra ni halo, pedido por Eli el 15-09 (ronda 3)",
         "elementos": [
-            # Bandas RE-MEDIDAS sobre el PNG de la ronda 2, @1080:
-            #   titular 1 «MÁS BENEFICIOS»     y 588,0-636,5
-            #   titular 2 «EN CADA ESTADÍA»    y 654,7-702,7   centro 539,0
-            #   titular 3 «CON HILTON HONORS»  y 721,0-769,0   centro 538,8
-            #   filete superior de la caja     y 841,4-844,8
-            #   fila 1 de cuadrantes           y 887,5-949,0
-            #   fila 2 de cuadrantes           y 1040,6-1103,5
-            #   filete inferior de la caja     y 1143,8-1148,6
-            #   llamado del pie                y 1289,8-1314,2 centro 539,5
+            # ⚠️ Bandas RE-MEDIDAS sobre el PNG de la RONDA 4, @1080. Se movieron
+            # todas: el titular subió 35 y la caja 30 («sube un poco lo de
+            # arriba»), y el logotipo de Honors creció de 52 a 64 de alto.
+            #   titular 1 «MÁS BENEFICIOS»     y 553,4-601,4   centro 538,3
+            #   titular 2 «EN CADA ESTADÍA»    y 619,7-667,7   centro 538,8
+            #   titular 3 «CON HILTON HONORS»  y 685,9-733,9   centro 538,8
+            #   filete superior de la caja     y 811,7-814,6
+            #   fila 1 de cuadrantes           y 857,8-916,3
+            #   fila 2 de cuadrantes           y 1010,9-1073,3
+            #   filete inferior de la caja     y 1115,0-1118,4
+            #   logotipo Hilton Honors         y 1156,3-1219,2 ancho 148,8
+            #   llamado del pie                y 1289,8-1314,2 ancho 474,2
             #
             # ⚠️ El umbral de tinta sube a 215 en el titular: a 200, el sillón
             # crema de la foto entra en la máscara y el «ancho del titular» pasa
             # a ser el ancho del sillón — el QA lo reportaba descentrado estando
             # centrado. Es el mismo modo de falla que el filete de la caja.
             {"nombre": "titular 1 «MÁS BENEFICIOS»", "texto": "MÁS BENEFICIOS",
-             "fuente": "Stag-Medium.ttf", "huella": "glifos", "banda": (578, 645),
+             "fuente": "Stag-Medium.ttf", "huella": "glifos", "banda": (540, 608),
              "xrango": (150, 930), "umbral": 215, "contraste_minimo": 3.0},
             {"nombre": "titular 2 «EN CADA ESTADÍA»", "texto": "EN CADA ESTADÍA",
-             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (646, 712),
+             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (612, 674),
              "xrango": (150, 930), "umbral": 215, "contraste_minimo": 3.0},
             {"nombre": "titular 3 «CON HILTON HONORS»", "texto": "CON HILTON HONORS",
-             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (713, 779),
+             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (678, 740),
              "xrango": (150, 930), "umbral": 215, "contraste_minimo": 3.0},
             # Los rótulos se miden DENTRO de su columna: con el rango ancho, el
             # filete lateral de la caja cae en las mismas filas.
             # ⭐ RONDA 2: van en Stag Regular, no en Trade Gothic. Se les mide la
             # huella para que una regresión a Trade no pase inadvertida.
             {"nombre": "rótulo Tarifas exclusivas", "texto": "Tarifas",
-             "fuente": "Stag-Regular.ttf", "huella": "glifos", "banda": (880, 925),
+             "fuente": "Stag-Regular.ttf", "huella": "glifos", "banda": (852, 900),
              "xrango": (230, 530), "umbral": 200, "centrado": False},
             {"nombre": "rótulo Upgrades", "texto": None, "fuente": None,
-             "banda": (880, 955), "xrango": (660, 970), "umbral": 200, "centrado": False},
+             "banda": (852, 922), "xrango": (660, 970), "umbral": 200, "centrado": False},
             {"nombre": "rótulo Canje de noches", "texto": None, "fuente": None,
-             "banda": (1035, 1110), "xrango": (230, 530), "umbral": 200, "centrado": False},
+             "banda": (1005, 1080), "xrango": (230, 530), "umbral": 200, "centrado": False},
             {"nombre": "rótulo Acumula puntos", "texto": None, "fuente": None,
-             "banda": (1035, 1110), "xrango": (660, 970), "umbral": 200, "centrado": False},
+             "banda": (1005, 1080), "xrango": (660, 970), "umbral": 200, "centrado": False},
             # ⭐ RONDA 3: el logotipo de Hilton Honors. Se comprueba como tinta —que
             # esté, centrado y con contraste— y aparte por su ANCHO, que es lo que
             # delata una deformación: 52 de alto por su proporción real 2,3213 da
             # 120,7. Medido sobre el PNG: 120,5.
             {"nombre": "logotipo Hilton Honors", "texto": None, "fuente": None,
-             "banda": (1180, 1235), "xrango": (400, 680), "umbral": 195},
+             "banda": (1150, 1225), "xrango": (420, 660), "umbral": 195},
             {"nombre": "llamado del pie", "texto": None, "fuente": None,
              "banda": (1285, 1318), "xrango": (60, 1020), "umbral": 200},
         ],
-        "caja": {"x": 100, "ancho": 880, "y": 842, "alto": 306},
+        "caja": {"x": 100, "ancho": 880, "y": 812, "alto": 306},
     },
 ]
 

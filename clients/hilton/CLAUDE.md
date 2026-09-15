@@ -1379,6 +1379,158 @@ sólo ve lo que creó la propia app.
 de la próxima ronda**: sin ella no se distingue el comentario nuevo del ya resuelto,
 porque se acumulan en la misma celda.
 
+### ⭐⭐ LA S4 PRODUCIDA (15-09-2026) — y siete cosas que cambian cómo se trabaja
+
+Se entregaron **8 piezas**: el carrusel del 22-09 (4 slides), el post de feed del
+25-09, y tres historias (22, 23 y 25). Subidas a `S4 HILTON SEP 2026 › PISO18`, en
+`C1 S4 PISO18` y `STS` — esos nombres de carpeta los pidió Eli textualmente.
+Revisión visual en `out/piso18/s4/revision/index.html`.
+
+> La ST del **21-09** (STORIES col K) **queda fuera**: figura en APROBADO pero su
+> celda no trae brief de diseño, sólo un comentario. Decisión de Eli el 15-09.
+
+#### 1. ⭐⭐ EL MÁSTER ES 2250, NO 1080 — corrige lo escrito más arriba
+
+Más arriba dice «Piso18 trabaja a 1080 px, no a 2250 como DT», leído de la mesa de
+trabajo de los `.ai`. **Es verdad del editable y falso de la entrega.** Medido sobre
+las piezas aprobadas que Eli subió el 15-09:
+
+| Pieza aprobada | Tamaño real |
+|---|---|
+| `C2 S1 n°1.png` · `C2 S1 n°2.png` (carrusel) | **2250 × 2813** (4:5) |
+| `ST N°1 S1.png` (historia) | **2250 × 4000** (9:16) |
+| `Post-*-1.1-2026-SEP.jpg` (promo) | 1080 × 1080 |
+
+⇒ Se compone a 1080 y se entrega con `--scale=2.0833`, igual que DT. El aparato ya
+lo hace: `src/P18Entry.tsx`.
+
+#### 2. ⭐ LA GRAMÁTICA DEL CARRUSEL, medida — y trae un recurso que nadie había anotado
+
+`CARRUSEL NOVIOS` son dos slides y definen el esqueleto:
+
+- **Portada:** foto a sangre + **logotipo completo blanco arriba, centrado**. Nada más.
+- **Cierre:** el fondo se desenfoca y encima va una **tarjeta blanca de borde
+  festoneado** —como una estampilla— con el texto en IvyPresto: roman e itálica en
+  tinta oscura, la frase clave **en fucsia**, y `piso18.cl` en itálica pequeña al pie.
+
+⭐ **La tarjeta festoneada no estaba descrita en ninguna parte** y es un recurso
+propio de la marca. Queda anotado antes de que alguien la reinvente.
+
+El logotipo mide **lo mismo en historia y en carrusel**: ancho 272 @1080 (la línea
+`CENTRO DE EVENTOS` da 225,6 en las dos piezas, medida idéntica). Cambia sólo el
+tope: y=207 @1080 en historia, y=105 en feed.
+
+#### 3. ⛔⛔ EL BANCO NO TIENE LO QUE LA GRILLA PIDE — medido, no supuesto
+
+Se revisó la sesión de agosto 2023 (`Piso 18 agosto`, de Ámbar Gallardo, 121 fotos;
+85 bajadas y mapeadas). El reparto real:
+
+| Fotos | Qué son |
+|---|---|
+| 1–39 | Buffet de sushi y bocados — **gastronomía de cóctel** |
+| 40–44, 70–71 | La barra con el logotipo PISO18 iluminado |
+| 45–69 | Coctelería Beefeater, el barman preparando tragos |
+| 72–77, 86 | **El salón montado**: mesas redondas, bajoplatos dorados, arañas, guirnaldas |
+| 79–80, 92–104 | Detalles de copas, centros con velas y tulipanes |
+| 110 | Los músicos |
+
+De ahí salen **tres ausencias que hay que dar por ciertas** hasta que llegue material nuevo:
+
+1. ⛔ **No hay arreglos florales variados.** Todo el material floral es del MISMO
+   montaje: blanco y verde. Un brief que pida «arreglos variados» no se cumple
+   recortando.
+2. ⛔ **No hay ninguna foto de atardecer.** La sesión entera es de noche o interior
+   oscuro. Tampoco la trae el reportaje de matrimonio.
+3. ⛔ **No hay ninguna foto del salón vacío.** Lo más desnudo es el espacio con la
+   barra sola.
+
+⚠️ Y `3-Finales 2026` (191 fotos) **no es banco de espacio**: es la cobertura de un
+matrimonio real y empieza con el *getting ready* de la novia en una habitación.
+
+#### 4. ⭐⭐ CÓMO SE RESUELVE UNA AUSENCIA — lo decidió Eli el 15-09
+
+> **Cambiar la superficie de la foto real, nunca inventar la escena.**
+
+Las tres ausencias se resolvieron con **Nano Banana Pro pasándole la foto real como
+referencia**, y el resultado conserva el espacio:
+
+| Falta | Qué se hizo |
+|---|---|
+| Arreglos variados | Se cambió **sólo el tipo de flor y su color** — florero, velas, cristalería, mantel, encuadre, luz y sombras quedan intactos |
+| El atardecer | Se cambió **sólo la hora del día** sobre el ventanal real, conservando marcos, pasamanos, mesa y la forma exacta de la Torre Titanium |
+| Los rostros | Los perfiles aprobados `PISO18-mujer-35` / `PISO18-hombre-35` pasados como referencia de imagen |
+
+⚠️ **El prompt decide si recrea o edita.** El primer intento del post de noche pedía
+la escena y Nano Banana **recompuso**: desapareció el pasamanos, la mesa montada se
+volvió una mesa vacía y la torre dejó de ser la real. El segundo intento empieza por
+*«EDITA la fotografía de la REFERENCIA 1 sin recomponerla»*, enumera lo que NO se
+toca —cada marco, el pasamanos, la mesa, «esa torre es un edificio real y debe
+conservar su forma exacta»— y declara **los tres cambios permitidos y ningún otro**.
+Con eso quedó a la primera. Los dos prompts están en los `.tsx` de las piezas.
+
+⭐ **Magnific funciona por API aunque el conector MCP esté sin autorizar.** La clave
+sale del llavero (`clave_freepik()`) y `scripts/magnific.py pro --refs` hace todo
+esto. No hace falta el conector.
+
+⚠️ Nano Banana Pro **no tiene aspecto 4:5**: sus opciones son 9:16, 1:1, 3:4 y 16:9.
+Se genera en `post` (3:4) a 4K y se recorta a 2250×2813 — sobra resolución.
+
+#### 5. ⛔ EL CONECTOR DE DRIVE CORTA EN 10 MB
+
+`download_file_content` devuelve *«File too large for download, over limit of 10 MB»*.
+Eso deja fuera **40 de las 191** fotos de `3-Finales 2026` y **toda** la sesión de
+julio 2026 (10–16 MB por archivo). Y `curl uc?export=download` devuelve los ~920 KB
+de la página de login, porque el token local tiene scope `drive.file` y sólo ve lo
+que creó la propia app.
+
+⚠️ Además el conector **se cae con llamadas en paralelo**: con 10 simultáneas devuelve
+`session expired`. **De a 4 aguanta.**
+
+⭐ El truco que sí funciona: el resultado de `download_file_content` excede el tope de
+contexto y el propio harness **lo guarda en un archivo**. De ahí se decodifica el
+base64 a disco sin que pase por el contexto. Es lo que hizo bajar las 85 fotos.
+
+> **Lo que destrabaría esto de raíz** y hoy no está hecho: que Eli comparta la carpeta
+> de fotos como «cualquiera con el enlace», y entonces `curl` baja todo en un minuto.
+> Es una decisión suya, no del estudio.
+
+#### 6. Lo que quedó montado — y dónde
+
+| Qué | Dónde |
+|---|---|
+| Kit de marca (capa 6) | `src/brand/piso18.ts` |
+| Las tres historias | `src/compositions/piso18/` + `src/P18Entry.tsx` |
+| Reglas de QA (capa 7) | `clients/piso18/reglas.yaml` |
+| Textos declarados para el QA de copy | `clients/piso18/entregas/textos-s4.json` |
+| Subida a Drive | `scripts/p18-s4-subir.py` |
+| Logotipo limpio, sin el velo | `public/assets/piso18/logo-piso18-completo.png` |
+
+⭐ **Las 7 capas de Piso18 pasan de 3½ a 7.** Lo que faltaba —pipeline y QA— existe.
+
+⚠️ Ojo con la ruta: el QA **infiere la marca desde la carpeta**, así que las entregas
+de Piso18 van en `out/piso18/` y NO en `out/hilton/piso18/`. Correrlo sobre una ruta
+de `hilton` lo rechaza — que es justo lo que el motor existe para impedir.
+
+#### 7. ⚠️ Tres topes de QA que hubo que calibrar, y por qué importa
+
+El modo control (`--control` sobre las piezas aprobadas) **marcó la propia pieza que
+el cliente firmó**, dos veces. Las dos son falsos positivos y están documentados con
+su medición en `clients/piso18/reglas.yaml`:
+
+- **Zona segura:** `ST N°1 S1.png` pone su legal al pie y llega al **2,64 %** de
+  tinta en la franja inferior, contra el 1 % de agencia.
+- **Desenfoque por bandas:** esa misma pieza da **0,0136** contra el tope 0,026 —
+  las fotos de esta marca tienen profundidad de campo real y velo en degradado.
+
+⛔ Y el fucsia: el check de color prohibido traía `delta_e: 22` por defecto, y como el
+fucsia de Piso18 y el de Selfie **distan sólo 17,9**, acusaba a Piso18 de usar el
+color de Selfie por usar el suyo. Calibrado a **12** con la medición de la pieza real.
+
+⛔ Una regla que **no se escribió a propósito**: «texto pegado al borde». En una pieza
+que es sólo fotografía el check mide la foto, no el texto — la portada aprobada
+`C2 S1 n°1` da 6,5 % y una portada de esta entrega 20,4 %, y la diferencia es cuánta
+luz toca el borde, no la diagramación. Hoy **eso se revisa mirando**.
+
 ---
 
 ## Brand kit BETWEEN (calibrado 24-08-2026 con el feedback escrito de Eli)

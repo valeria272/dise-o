@@ -6,6 +6,68 @@
 
 ---
 
+## 2026-09-15 — PISO18 · S4 DE SEPTIEMBRE, ENTREGADA
+
+**Marca: PISO18.** Sesión aparte de la de DT que corre el mismo día.
+
+**Qué se hizo:** las **8 piezas de la S4** de cero, y de paso el aparato de la
+marca, que no existía. Carrusel del 22-09 (4 slides de arreglos florales, sin
+texto, logo sólo en la primera), post de feed del 25-09 («Piso18 de noche») y tres
+historias: 22-09 (atardecer), 23-09 (animada de montaje, 17 s) y 25-09 (encuesta
+de arreglos A/B/C).
+
+**Dónde quedó:** en `S4 HILTON SEP 2026 › PISO18`
+([`1xHin8e7…`](https://drive.google.com/drive/folders/1xHin8e7Iw4gdGR5x-Z_akFCokOzy4wE3)),
+con las carpetas que pidió Eli textualmente:
+
+| Carpeta | Archivos |
+|---|---|
+| `C1 S4 PISO18` | `C1 S4 N°1..4.png` (2250×2813) |
+| `STS` | `ST N°2 S4.png` · `ST N°3 S4.mp4` · `ST N°4 S4.png` (2250×4000 / 1080×1920) |
+| raíz de `PISO18` | `Post S4 PISO18 25-09.png` — no es historia ni carrusel y no cabía en ninguna |
+
+Revisión visual para Eli: `out/piso18/s4/revision/index.html` (con el antes/después
+de cada foto intervenida y las dos referencias que ella dejó).
+
+**Lo que decidió Eli en la sesión** (cuatro preguntas + tres):
+1. La ST del **21-09 queda fuera** — está en APROBADO pero su celda no trae brief.
+2. El carrusel va **sin texto**, las 4 slides limpias, logo sólo en la primera.
+3. La animada es **montaje de fotos**, no timelapse — no hay metraje y su propia
+   referencia tampoco era un timelapse.
+4. La variedad floral se consigue **cambiando la paleta con Magnific** sobre la foto
+   real; el atardecer, **reiluminando** un ventanal real; y la progresión del montaje
+   arranca por lo más desnudo que existe, **sin inventar un salón vacío**.
+
+**Lo que quedó montado en el repo** (antes no existía nada de esto):
+`src/brand/piso18.ts` · `src/compositions/piso18/` · `src/P18Entry.tsx` ·
+`clients/piso18/reglas.yaml` · `scripts/p18-s4-subir.py` · el logotipo ya recortado
+sin el velo en `public/assets/piso18/logo-piso18-completo.png`.
+**Las 7 capas de la marca pasan de 3½ a 7.**
+
+**QA:** las 8 piezas pasan `python qa/motor.py --marca piso18`. Y el modo control
+sobre las 5 piezas aprobadas del cliente queda **en cero falsos positivos**, después
+de calibrar tres topes que marcaban la propia pieza que el cliente firmó (detalle y
+mediciones en `clients/hilton/CLAUDE.md` § LA S4 PRODUCIDA, punto 7).
+
+**⚠️ Qué sigue / qué está pendiente:**
+
+- **Eli todavía estaba subiendo fotos** cuando se produjo esto («aún no cargan todas
+  pero en un rato estarán»). En `SESIÓN PLATOS 23-5` sólo había un `.DS_Store`.
+  **Cuando termine de subir, vale la pena volver a mirar**: si aparecen las carpetas
+  de decoración (`DECO/SIN LOGO`, `Piso 18_28 ago decoración 2024`), el carrusel y la
+  encuesta se pueden rehacer con arreglos reales variados en vez de recoloreados.
+- **El conector de Drive corta en 10 MB** y se cae con más de 4 llamadas en paralelo.
+  Quedaron **36 de las 121** fotos de la sesión de agosto sin bajar, y la sesión de
+  julio 2026 entera es inaccesible por peso. **Destrabarlo es una decisión de Eli**:
+  compartir esas carpetas como «cualquiera con el enlace» y baja todo con `curl`.
+- **Falta `Edwardian Script ITC`**, la cuarta voz del sistema. La ST del 22-09 la
+  pedía (su referencia usa letra manuscrita) y va en IvyPresto itálica mientras tanto.
+- Sigue sin diagnosticar el **«quedó algo extraño detrás del logo»** del cliente: el
+  velo del PNG plantilla ya se descartó como causa el 15-09, y hay que pedirle a Eli
+  la pieza concreta.
+
+---
+
 ## 2026-09-15 — Elisabet Soto «Eli» (Windows) · CIERRE DEL DÍA
 
 **Qué se hizo:** el **estático de Hilton Honors** de DT (FEED col K, publica el

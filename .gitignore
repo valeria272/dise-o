@@ -103,6 +103,15 @@ public/assets/**
 # que documenta scripts/dt-ft-honors-foto.py.
 !public/assets/hilton/dt/ft-honors-*.jpg
 
+# PISO18 · S4 septiembre 2026. Los seis fotogramas de la sesión de agosto 2023 que
+# usan las piezas, las tres tiras de la encuesta, el atardecer reiluminado y el
+# logotipo ya recortado. Excepción deliberada, misma razón que DT: sin estos
+# archivos las composiciones de `src/compositions/piso18/` no rinden, y cada ronda
+# de correcciones vuelve a empezar de cero en otra máquina (15-09-2026).
+# Los originales se rebajan del Drive por el conector MCP — ojo, corta en 10 MB.
+!public/assets/hilton/piso18/*.jpg
+!public/assets/hilton/piso18/*.png
+
 # Landera: el logo. Los 10 bloqueos extraídos del PDF del cliente y el kit
 # completo (40 piezas × PDF/SVG/PNG) reconstruido con la paleta aprobada. Sin
 # esto no se compone ninguna lámina del manual ni ninguna plantilla.

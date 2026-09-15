@@ -30,6 +30,7 @@ SALIDA = RAIZ / "out/hilton/dt/ft-honors"
 DESTINO = SALIDA / "Post n°1 S4 DT - revision.html"
 
 PIEZA = SALIDA / "Post n°1 S4 DT.png"
+RONDA1 = SALIDA / "_rondas/ronda1.png"
 GUIA = SALIDA / "GUIAS QA/Post n°1 S4 DT - GUIA.png"
 REFERENCIA = RAIZ / "raw/hilton/dt/ref-s4/ref-post-s4-1080.jpg"
 FOTO = RAIZ / "public/assets/hilton/dt/ft-honors-lobby.jpg"
@@ -127,27 +128,90 @@ HTML = """<!doctype html>
   <div class="sello">DoubleTree by Hilton Santiago–Vitacura · Semana 4</div>
   <h1>Estático Hilton Honors</h1>
   <p class="sub">FEED columna K · publica el <b>23-09 a las 18:00</b> · estado de la grilla
-  <b>OK PARA DISEÑO</b>. Ronda 1. Máster entregado a 2250×2813.</p>
+  <b>OK PARA DISEÑO</b>. <b>Ronda 2.</b> Máster a 2250×2813.</p>
 </header>
 
-<h2>La referencia y la pieza</h2>
-<p class="nota">A la izquierda, <b>Ref post s4.jpg</b> — la que subiste hoy a
-<i>REFERENCIAS S4 DT</i> a las 13:43, y que resulta ser el mismo pin que enlaza el
-brief en su celda LINKS. A la derecha, la pieza.</p>
-<div class="par">
+<h2>Antes, después y la referencia</h2>
+<p class="nota">En el medio la <b>ronda 2</b>, con tus seis marcas aplicadas. A la
+izquierda la ronda 1 para comparar. A la derecha <b>Ref post s4.jpg</b>, la que subiste
+hoy a las 13:43 — que resulta ser el mismo pin que enlaza el brief en su celda LINKS.</p>
+<div class="par" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">
   <figure>
-    <img src="__REF__" alt="Referencia">
-    <figcaption><b>Referencia</b> — foto a sangre, titular en versales a la izquierda,
-    caja de cristal con cuadrantes e íconos de línea, regla fina al pie.</figcaption>
+    <img src="__RONDA1__" alt="Ronda 1">
+    <figcaption><b>Ronda 1</b> — titular a la izquierda, logotipo azul, rótulos en Trade
+    Gothic, velo fuerte desde arriba.</figcaption>
+  </figure>
+  <figure style="outline:3px solid var(--verde)">
+    <img src="__PIEZA__" alt="Ronda 2">
+    <figcaption><b>Ronda 2 — la que va</b>. Titular centrado, logotipo blanco con sombra,
+    tus íconos, velo más abajo y más suave.</figcaption>
   </figure>
   <figure>
-    <img src="__PIEZA__" alt="Pieza">
-    <figcaption><b>La pieza</b> — la misma gramática, con la tipografía, el color, el
-    velo y el logotipo de DoubleTree.</figcaption>
+    <img src="__REF__" alt="Referencia">
+    <figcaption><b>Tu referencia</b> — de ahí salen la caja de cristal con cuadrantes, los
+    íconos de línea con su rótulo al lado y la regla fina al pie.</figcaption>
   </figure>
 </div>
 
+<h2>Tus seis marcas, una por una</h2>
+<div class="envoltorio">
+<table class="tabla">
+  <tr><th>Lo que pediste</th><th>Qué se hizo</th></tr>
+  <tr><td><b>«Te falta el logo de Hilton Honors»</b></td>
+      <td class="mal">⚠️ <b>Es lo único que quedó pendiente</b>, y no por olvido — ver el
+      aviso de abajo. El hueco ya está reservado donde lo dibujaste.</td></tr>
+  <tr><td><b>«Usa íconos ya utilizados en mis piezas»</b></td>
+      <td><b>La cama es tuya, literal:</b> extraída de <code>C1 FT N2</code>
+      («Habitación doble») a resolución completa. Los otros tres no existen en ningún
+      editable al que pueda llegar, así que se dibujaron <b>calcando tu trazo</b> —medido
+      en esa cama: 2,4 px, esquinas redondeadas, caja de 71×57—. También entró tu
+      <b>regla vertical</b> entre ícono y rótulo, que yo no tenía.</td></tr>
+  <tr><td><b>«El título déjalo centrado»</b></td><td>Centrado. Medido: los tres centros
+      caen en 538-539 sobre 540.</td></tr>
+  <tr><td><b>«Logo blanco»</b></td><td>Blanco. Era azul por la §B.4 del manual («va en
+      azul cuando el fondo es demasiado blanco»); tu criterio la levanta para esta pieza
+      y queda anotado como excepción de pieza, no como cambio de la marca.</td></tr>
+  <tr><td><b>«Conserva la imagen del fondo»</b></td><td>Intacta: mismo encuadre, mismo
+      revelado.</td></tr>
+  <tr><td><b>«La transparencia azul más abajo y sutil»</b></td>
+      <td>El velo baja de <b>0,58 a 0,50</b> al pie y, sobre todo, <b>arranca mucho más
+      abajo</b>: en el 20 % de la altura iba en 0,22 y ahora va en <b>0,03</b>; en la
+      mitad, de 0,48 a <b>0,23</b>. Se curvó la rampa en vez de cortarla, para que no
+      aparezca el codo que te molestó en el Día del Turismo.</td></tr>
+  <tr><td><b>«Sombra paralela muy sutil»</b></td>
+      <td>En todas las tintas blancas, en azul DoubleTree (no negro, que ensucia sobre
+      foto cálida). Subió el titular de 3,76:1 a <b>4,2-5,3:1</b>.</td></tr>
+</table>
+</div>
+
+<div class="aviso">
+  <h3>⭐ Un hallazgo de paso: los rótulos del panel van en Stag, no en Trade Gothic</h3>
+  <p>Al medir tu cama aproveché de medir el texto que va al lado. Glifo a glifo sobre
+  «Desayuno buffet» de <code>DT FT S3</code> (14 letras, IoU 2D):</p>
+  <p style="font-variant-numeric:tabular-nums"><b>Stag Regular 0,701</b> · Stag Medium
+  0,608 · Stag Light 0,476 · Arial 0,389 · <b>Trade Gothic 0,285</b></p>
+  <p>Yo los tenía en Trade siguiendo la regla «Trade para el cuerpo». <b>Están
+  corregidos.</b> En tu panel el texto corrido va en Stag y Trade se queda con las
+  versales y las cifras — en esa misma pieza, «IVA INCLUIDO» y la dirección sí son Trade.</p>
+</div>
+
 <h2>Lo que necesito que decidas</h2>
+
+<div class="aviso">
+  <h3>0 · El logo de Hilton Honors: necesito el archivo</h3>
+  <p>Lo ubiqué en tu Drive —<i>GRILLA IA DT › Logos › Hilton Honors Logo_White PNG.png</i>,
+  14 KB, ya es la versión blanca— pero <b>no logro bajarlo</b>: las tres rutas directas de
+  Drive devuelven la pantalla de login, el token del estudio sólo ve lo que subió él, y el
+  conector me entrega los archivos chicos de una forma que no queda en disco (lo intenté
+  dos veces y llegó cortado; preferí borrarlo antes que montar un logotipo roto).</p>
+  <p><b>Cópialo a mano a</b> <code>EDITOR VIDEOS/raw/hilton/dt/identidad/logos/</code>
+  y lo monto en una corrida. El hueco ya está reservado en y 1186, centrado, entre la caja
+  y la regla del pie — donde lo dibujaste.</p>
+  <p class="mal">⛔ <b>Y ojo con una trampa de esa misma carpeta:</b> el archivo
+  <code>hilton honors.png</code> (43 KB) <b>no es el logo de Hilton Honors</b> — es el
+  logotipo <b>Hilton «For The Stay»</b>. Está mal rotulado. Ése sí lo pude bajar, lo miré,
+  y por eso no lo usé.</p>
+</div>
 
 <div class="aviso">
   <h3>1 · El brief dice 6 cuadrantes y dejó 4 rótulos</h3>
@@ -171,13 +235,7 @@ brief en su celda LINKS. A la derecha, la pieza.</p>
   habitación»— así que usé el <b>lobby</b>, con su fuga. Nada generado con IA.</p>
 </div>
 
-<div class="aviso">
-  <h3>3 · Dónde va el titular</h3>
-  <p>El brief dice «zona superior izquierda» y la referencia lo pone <b>a la izquierda, al
-  49 % de la altura, justo encima de la caja</b>. Seguí la referencia, que es lo que me
-  mandaste hoy para esta pieza. Queda a la izquierda como pide el brief. <b>Si lo quieres
-  más arriba</b>, sube sin tocar nada más.</p>
-</div>
+
 
 <h2>La guía de control</h2>
 <p class="nota">Las bandas medidas, dibujadas encima. <b>No se entrega</b> — es para
@@ -210,48 +268,64 @@ píxeles, no estimado.</p>
       se adopta la de la referencia, como en el Día del Turismo.</td></tr>
   <tr><td>Altura de versal del titular</td><td class="n">49</td><td class="n">48</td>
       <td>Stag da versal = 0,700 × cuerpo, medido. Cuerpo 68.</td></tr>
-  <tr><td>Canto izquierdo del titular</td><td class="n">116</td><td class="n">101</td>
-      <td>En la referencia el titular y la caja van desfasados 16 px; acá se alinean.</td></tr>
+  <tr><td>Eje del titular</td><td class="n">alineado a la izquierda</td>
+      <td class="n">centrado · 538-539</td>
+      <td><b>Ronda 2</b>: lo pediste centrado. La referencia lo lleva a la izquierda.</td></tr>
   <tr><td>Salto entre líneas</td><td class="n">68 (1,39 de versal)</td>
       <td class="n">66 (1,38 de versal)</td><td>Se calca la proporción, no el número.</td></tr>
   <tr><td>Regla del pie</td><td class="n">y 1258</td><td class="n">y 1258</td>
       <td>Calcada. Al ancho de la caja.</td></tr>
-  <tr><td>Logotipo</td><td>—</td><td class="n">ancho 160 · tope 111 · centrado</td>
+  <tr><td>Logotipo DT</td><td>—</td><td class="n">ancho 160 · tope 111 · centrado · <b>blanco</b></td>
       <td><b>No sale de la referencia</b>: sale de tu plantilla de márgenes
       <code>logo-post.png</code>. Escalado uniforme desde su proporción real 1,2254.</td></tr>
 </table>
 </div>
 
-<h2>Las tintas — por qué el logotipo va azul</h2>
-<p class="nota">Luminancia relativa <b>por tercios</b> de cada banda, sobre la foto ya
-recortada y con el velo azul encima, quedándose con el peor tercio.</p>
+<h2>Las tintas, medidas sobre el PNG final</h2>
+<p class="nota">Luminancia relativa <b>por tercios</b> de cada banda, con la sombra
+paralela ya puesta, quedándose con el peor tercio. Son las cifras del archivo que se
+entrega, no de una simulación.</p>
 <div class="envoltorio">
 <table class="tabla">
-  <tr><th>Banda</th><th>α del velo</th><th>Tinta blanca</th><th>Tinta azul DT</th><th>Qué se usó</th></tr>
-  <tr><td>Logotipo</td><td class="n">0,14</td><td class="n mal">3,29:1</td>
-      <td class="n ok">4,84:1</td><td><b>Azul</b> — §B.4 del manual: va en azul cuando el
-      fondo es demasiado blanco. El cielorraso del lobby es ese caso.</td></tr>
-  <tr><td>Titular</td><td class="n">0,48</td><td class="n ok">6,13:1</td><td class="n">2,60:1</td><td>Blanco</td></tr>
-  <tr><td>Caja</td><td class="n">0,55</td><td class="n ok">7,54:1</td><td class="n">2,12:1</td><td>Blanco</td></tr>
-  <tr><td>Pie</td><td class="n">0,58</td><td class="n ok">9,89:1</td><td class="n">1,61:1</td><td>Blanco</td></tr>
+  <tr><th>Elemento</th><th>Ronda 1</th><th>Ronda 2</th><th>Vara</th><th></th></tr>
+  <tr><td>Logotipo DT</td><td class="n">4,84:1 <span style="color:var(--tinta-2)">(azul)</span></td>
+      <td class="n ojo">3,61:1 <b>(blanco)</b></td><td class="n">4,5</td>
+      <td>⚠️ <b>La única cifra que queda bajo la vara, y es consecuencia de dos cosas que
+      pediste:</b> blanco + velo más suave, sobre el cielorraso, que es lo más claro de la
+      foto. La sombra lo subió de 2,83 a 3,61 y <b>a la vista se lee bien</b> (la medición
+      promedia toda la caja del logotipo y la sombra va pegada a la tinta). Si lo quieres
+      en regla, la salida medida es volver al azul: 4,84:1.</td></tr>
+  <tr><td>Titular</td><td class="n">6,13:1</td><td class="n ok">4,22 – 5,31:1</td>
+      <td class="n">3,0</td><td>Vara de <b>texto grande</b>, que es la que fija tu propio
+      manual desde el Día del Turismo.</td></tr>
+  <tr><td>Rótulos de la caja</td><td class="n">8,1 – 11,9:1</td><td class="n ok">7,0 – 10,1:1</td>
+      <td class="n">4,5</td><td></td></tr>
+  <tr><td>Llamado del pie</td><td class="n">9,38:1</td><td class="n ok">8,60:1</td>
+      <td class="n">4,5</td><td></td></tr>
 </table>
 </div>
-<p class="nota" style="margin-top:14px">El velo es <b>el mismo que aprobaste en el Día del
-Turismo</b>: nace en 0 en el borde de arriba y sube cóncavo hasta 0,58 al pie, sin ningún
-codo. Y la caja va <b>de cristal (0,30)</b> y no maciza como el panel de Family Time
-—medido, ése está en 0,84— porque el brief la pide así con todas sus letras: «estilo
-cristal o translúcida».</p>
+<p class="nota" style="margin-top:14px"><b>El velo.</b> Sigue naciendo en 0 en el borde de
+arriba —el codo que te molestó en el Día del Turismo no vuelve—, pero ahora la rampa es
+convexa: casi no pesa hasta pasada la mitad. Y la caja va <b>de cristal (0,30)</b> y no
+maciza como el panel de Family Time —medido, ése está en 0,84-0,90— porque el brief la
+pide así con todas sus letras: «estilo cristal o translúcida».</p>
+<p class="nota"><b>Probé y descarté</b> un halo suave detrás del logotipo, que es el
+recurso que funcionó en el Día del Turismo para tapar el rótulo de la fachada: allá caía
+sobre un cielo con textura y acá cae sobre un cielorraso plano, donde se veía como una
+mancha gris. Se cambió por tres sombras paralelas apiladas sobre el propio logotipo.</p>
 
 <h2>La compuerta de calidad</h2>
 <p class="nota"><code>python scripts/dt-qa.py "out/hilton/dt/ft-honors/*.png"</code></p>
 <pre><code>__QA__</code></pre>
-<p class="nota" style="margin-top:14px">Dos cosas que este QA <b>aprendió con esta pieza</b>,
-y que quedan para las que vengan: que <b>el máster depende del formato</b> (2250×4000 en
-historia, 2250×2813 en feed, y la zona segura de 340 px es sólo de historia), y que la
-huella de fuente por perfil de columnas <b>no sirve para un titular corto en versales</b> —
-acusaba a esta pieza de sustitución de fuente estando perfecta. Ahora se comparan
-<b>glifo a glifo en 2D</b>, que es la regla del estudio: Stag-Light dio 0,900 contra 0,630
-del mejor señuelo.</p>
+<p class="nota" style="margin-top:14px">Cuatro cosas que este QA <b>aprendió con esta
+pieza</b> y que quedan para las que vengan: que <b>el máster depende del formato</b>
+(2250×4000 en historia, 2250×2813 en feed, y la zona segura de 340 px es sólo de historia);
+que la huella de fuente por perfil de columnas <b>no sirve para un titular corto en
+versales</b> —acusaba a esta pieza de sustitución de fuente estando perfecta— y ahora se
+compara <b>glifo a glifo en 2D</b>; que <b>la vara de contraste depende del tamaño de la
+tinta</b> (3:1 en titulares, 4,5 en el resto), que es lo que tu manual ya decía y el QA no
+sabía; y que una <b>desviación que decidiste tú</b> —el logotipo blanco— se declara con su
+número a la vista en vez de arreglarse por detrás o de dejar la compuerta en rojo.</p>
 
 <h2>El texto, verbatim de la grilla</h2>
 <div class="envoltorio">
@@ -284,7 +358,7 @@ diagramación—; las palabras no se tocaron.</p>
 
 
 def main() -> int:
-    faltan = [p for p in (PIEZA, GUIA, FOTO) if not p.exists()]
+    faltan = [p for p in (PIEZA, GUIA, FOTO, RONDA1) if not p.exists()]
     if faltan:
         for p in faltan:
             print(f"⛔ falta {p}")
@@ -298,6 +372,7 @@ def main() -> int:
 
     html = (HTML
             .replace("__REF__", uri(REFERENCIA))
+            .replace("__RONDA1__", uri(RONDA1))
             .replace("__PIEZA__", uri(PIEZA))
             .replace("__GUIA__", uri(GUIA))
             .replace("__FOTO__", uri(FOTO))

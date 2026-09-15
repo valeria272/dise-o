@@ -503,3 +503,11 @@ raw/ebema/*
 !raw/ebema/ref-paulina-click-ago2026/
 !raw/ebema/ref-paulina-click-ago2026/*.png
 raw/ebema/ref-paulina-click-ago2026/originales-2250/
+
+# Piso18: IvyPresto es de Adobe Fonts (licencia de quien la activa) — NUNCA va al repo
+public/assets/fonts/piso18/ivypresto/
+
+# DT · RONDA 2 del estático de Honors: el ícono de la CAMA, extraído del PNG
+# aprobado `C1 FT N2` a resolución completa. Pesa 3 KB y sin él la pieza no se
+# reproduce — el aprobado NO viaja en git (vive en raw/, que está excluido).
+!public/assets/hilton/dt/icono-*.png

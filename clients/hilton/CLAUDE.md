@@ -479,6 +479,122 @@ LINKS, así que la versión grande se bajó de `i.pinimg.com/originals/` sin ped
 permiso a nadie. **Antes de trabarse con una referencia, mirar si la celda LINKS
 la trae.**
 
+### ⭐⭐ RONDA 2 DEL ESTÁTICO DE HONORS (15-09) — y una corrección de MARCA
+
+#### ⛔⛔ 1. LOS RÓTULOS DEL PANEL VAN EN **STAG**, NO EN TRADE GOTHIC
+
+La regla escrita más arriba dice «Trade Gothic → cifras, precios, versales,
+**cuerpo**, CTA y legal», y de ahí salió componer los rótulos de los cuadrantes
+en Trade. **Está mal, y se midió.** Glifo a glifo sobre «Desayuno buffet» del
+panel de `DT FT S3` (14 letras, IoU 2D):
+
+| fuente | IoU |
+|---|---|
+| **Stag Regular** | **0,701** |
+| Stag Medium | 0,608 |
+| Stag Light | 0,476 |
+| Arial | 0,389 |
+| Trade Gothic Regular | 0,285 |
+| Trade Gothic Bold Cn | 0,285 |
+
+No hay ambigüedad posible: 0,701 contra 0,285. **En el panel de DT el texto
+corrido va en Stag.** Trade se queda con lo que de verdad le toca —**versales y
+cifras**—, y en esa misma pieza se ve: «IVA INCLUIDO» y la dirección son Trade,
+y «Habitación para 2 adultos» y «Desayuno buffet» son Stag.
+
+⚠️ Corolario de método, que ya van tres veces: **una regla escrita no sustituye
+una medición sobre la pieza aprobada.** «Trade para cuerpo» venía del manual
+oficial de Hilton; lo que el cliente aprobó es otra cosa.
+
+#### ⭐⭐ 2. LA GRAMÁTICA DE CUADRANTE DE ELI — medida en `C1 FT N2`
+
+Apareció al ir a buscar sus íconos, y no estaba escrita en ninguna parte:
+
+| | @1080 |
+|---|---|
+| caja del ícono | **70,6 × 57,1** |
+| grosor del trazo | **2,4 px**, uniforme, esquinas redondeadas |
+| aire ícono → regla | 11,5 |
+| **regla vertical** entre ícono y rótulo | **1,9** de ancho |
+| aire regla → rótulo | 12,9 |
+| rótulo | **dos líneas**, Stag Regular |
+
+⭐ **Sus íconos son OBJETOS CON ESTRUCTURA INTERIOR, no siluetas.** La cama trae
+respaldo, almohadas, capas de colchón, patas y la alfombra; el buffet trae
+campana, vapor, platos apilados y bandeja con patas; el calendario trae anillos y
+la hoja curvada. Un ícono geométrico plano al lado de esos se lee como de otra
+familia — por eso, en esta pieza, la **luna se cambió por un regalo** (el brief
+daba a elegir «luna o regalo»): la luna es una sola curva y no pertenecía.
+
+**Íconos de Eli ya extraídos y disponibles:**
+
+| Ícono | Archivo | De dónde salió |
+|---|---|---|
+| cama | `public/assets/hilton/dt/icono-cama-eli.png` | `C1 FT N2`, «Habitación doble» |
+
+Los demás (buffet, calendario, familia) están en `C1 FT N2` y `DT FT S3` y se
+extraen igual. **Antes de dibujar un ícono para DT, mirar si ya existe ahí.**
+
+#### ⚠️ 3. El logotipo DT en BLANCO es EXCEPCIÓN DE PIEZA, no cambio de la regla
+
+La §B.4 dice que va en azul cuando el fondo es demasiado blanco, y acá lo era:
+sobre el cielorraso del lobby el blanco daba 3,30:1 y el azul 4,84:1. **Eli pidió
+blanco igual, y dio ella misma la salida: la sombra paralela.** Con la sombra
+sube a 3,61:1, que sigue bajo la vara de 4,5 pero **se lee** (la medición promedia
+toda la caja del logotipo y la sombra va pegada a la tinta).
+
+⛔ **Lo que se probó y NO sirve: el halo radial detrás del logo.** Es el recurso
+que funcionó en la ST del Día del Turismo para tapar el rótulo de la fachada.
+Allá caía sobre un cielo con textura; acá cae sobre un **cielorraso plano y
+parejo**, y se ve como una mancha gris. Se rindió, se miró y se botó. **Un
+recurso aprobado en otra pieza no se hereda sin volver a mirarlo.**
+
+La salida buena fueron **tres sombras paralelas apiladas** sobre el propio
+logotipo (densa y corta · media · muy abierta y tenue): la densidad se queda
+pegada a la tinta y no dibuja ningún borde.
+
+#### ⭐ 4. «El velo más abajo y sutil» se resuelve CURVANDO la rampa
+
+La rampa aprobada en el Día del Turismo es **cóncava**: en el 20 % de la altura
+ya va en 0,22. Para «más abajo» se pasa a una rampa **convexa** —0,03 en el 20 %,
+0,23 en la mitad, 0,50 al pie— que **sigue naciendo en 0 en el borde de arriba**.
+
+⛔ Lo que NO se hace es dejarla plana y arrancarla más abajo: ese codo es la banda
+visible que Eli marcó como «forzado» en la ronda 4 de esa historia.
+
+#### ⚠️ 5. `dt-qa.py`: la vara de contraste depende del TAMAÑO de la tinta
+
+Estaba quemada en 4,5 para todo, y reportó en rojo un titular a 4,22:1 que está
+bien. **El manual ya lo decía** desde el 10-09: «3:1 para el titular —a cuerpo
+80-130 px es texto grande— y 4,5:1 para el subtexto. Exigirle 4,5 al titular es
+aplicarle la vara del texto chico». Ahora cada elemento declara
+`contraste_minimo`.
+
+Y una desviación que **decidió la diseñadora** —el logotipo blanco— se declara en
+la ficha de la pieza con `logo_contraste_minimo` + `logo_motivo`, para que el QA
+la imprima con su número a la vista. No se arregla por detrás ni se deja la
+compuerta en rojo para siempre.
+
+#### ⛔⛔ 6. DOS TRAMPAS DEL DRIVE, LAS DOS CARAS
+
+1. **`hilton honors.png` (43 KB, en `GRILLA IA DT › Logos` y en
+   `Logos hilton honors`) NO es el logo de Hilton Honors: es el logotipo Hilton
+   «For The Stay».** Está mal rotulado en el Drive. Se bajó, se miró y se guardó
+   como `raw/hilton/dt/identidad/logos/hilton-FOR-THE-STAY (NO es Honors).png`
+   para que nadie lo use por error.
+
+2. ⭐ **Un archivo CHICO del Drive de Eli no se puede traer a disco.** El conector
+   MCP devuelve el contenido en base64 **inline** cuando pesa menos de ~40 KB, y
+   sólo lo **guarda en un archivo** cuando pasa ese tamaño. `curl` no sirve: las
+   tres rutas (`uc?export=download`, `drive.usercontent`, `lh3.googleusercontent`)
+   devuelven la pantalla de login, y el token del estudio es scope `drive.file`.
+   · ⛔ **Y no se transcribe el base64 a mano.** Se intentó dos veces y las dos
+     llegó cortado (5 885 B de 13 967, y 1 929 B de 13 994) — el archivo abría
+     como PNG y reventaba al cargarlo. Un binario que pasa por texto se corrompe
+     en silencio; si no se puede bajar, **se pide**.
+   · ✅ Lo que sí funciona: buscar una versión **más grande** del mismo archivo
+     (los de 40 KB para arriba sí quedan en disco), o pedírselo a la diseñadora.
+
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 
 Verificado glifo a glifo con `fontTools` sobre los archivos de esta máquina: los
@@ -676,36 +792,384 @@ es matrimonio»*. Una grilla que sólo habla de novios ya no representa a la cue
 El propio cliente ya empujó en esa dirección dentro de la grilla, en el post del
 09-09: *«que quede abierto en cuanto a tipo de evento, no cerrarnos en matrimonio»*.
 
-### ⛔ Lo que TODAVÍA no está medido — no se produce hasta que lo esté
+### ⭐⭐ LA IDENTIDAD, MEDIDA EL 15-09-2026 (cae el bloqueante n°1)
 
-Piso18 tiene **0 de las 7 capas** del sistema de marcas. Falta lo siguiente, y
-**ningún valor de DT ni de Between sirve de reemplazo provisorio**:
+Eli subió el **15-09-2026 entre las 14:03Z y las 14:22Z** la carpeta **`GRILLA IA
+PISO18`** (`1jNeMFcp02zsbk_cEH-wTYMRaMuLwrN1u`) con los editables empaquetados, el
+logo y las piezas aprobadas. Esto es lo que se midió de los `Informe.txt` de los
+tres `.ai` — **es dato del editable, no interpretación**.
+
+> ⛔ **Los `Informe.txt` NO bajan con `curl`**: `uc?export=download` devuelve ~920 KB
+> de página de login. Se leen con el **conector MCP de Drive** (`read_file_content`),
+> que los entrega en texto aunque `text/plain` no figure entre sus MIME soportados.
+> Detalle y fileIds en `raw/hilton/piso18/editables/LEEME-INFORMES.md`.
+
+#### El máster y el color
+
+**Mesa de trabajo 1080 × 1350 px** (4:5), **RGB, perfil sRGB IEC61966-2.1**, idéntica
+en los tres editables (S1 del 05-08, S2 del 17-08, S4 del 21-08). Sin tintas planas.
+
+⚠️ **Piso18 trabaja a 1080 px, no a 2250 como DT.** No se le traspasa el máster de DT.
+
+#### Las tipografías — son de Adobe Fonts y NO viajan
+
+| Familia | Cortes que usan los editables | Origen |
+|---|---|---|
+| **IvyPresto Headline** | Thin · Thin Italic · Light · Light Italic · Italic | Adobe Fonts — **protegida, no se empaqueta** |
+| **IvyPresto Display** | Thin · Thin Italic · Light | Adobe Fonts — **protegida, no se empaqueta** |
+| **Raleway** | Regular · Italic · Medium · Medium Italic · SemiBold · SemiBold Italic · Bold · Bold Italic | Adobe Fonts — protegida |
+| **Edwardian Script ITC** | — | **OTF: la única que SÍ viaja empaquetada** |
+
+⚠️ **Mismo modo de falla que IvyOra en Tierra Calma**: IvyPresto se activa en Creative
+Cloud y no se puede empaquetar. Para rendir en Remotion/Chrome hay que conseguir el
+archivo o fijar un sustituto — **y eso lo decide Eli**, no se elige por cuenta propia.
+Recordar además el antecedente Brushwell: un `.otf` CFF Chrome lo rechaza en silencio
+y rinde con una serif de reemplazo. **Verificar con `document.fonts.check`.**
+
+⚠️ `P18-S2.ai` declara menos cortes (sólo IvyPresto Display Light + Raleway Bold y
+Medium) y sus imágenes vienen de `C:\Users\dagui\Downloads\`: **ese editable lo
+armó Diego Aguilar**, no Eli. Los de S1 y S4 son de ella (disco `F:`).
+
+#### ⭐⭐ El logo: `logo PISO18.png` NO es el logo, es una PLANTILLA con velo
+
+`1Y5KSpX12wBUMOQ_jp5S7AUOJIDglVoOU` → copiado a `raw/hilton/piso18/logo/logo-PISO18.png`.
+Es un **PNG de 2250 × 4000 RGBA** (plantilla de historia 9:16), y el 99,4 % de sus
+píxeles con alfa son **semitransparentes**:
+
+| Qué | Medida |
+|---|---|
+| **El velo** | Negro puro `#000000` en **degradado lineal vertical**: alfa **150 en `y=0`** → **0 en `y≈1667`** (baja ~9 de alfa cada 100 px). Cubre el ancho completo |
+| **El logotipo** | Blanco `#FFFFFF`. Caja `x 844–1409` (**566 px**, el **25,16 %** del ancho) · `y 505–732` (**228 px**). **Proporción 2,4825** |
+| Centrado | Centro del logo en `x=1126,5` contra `1124,5` del lienzo → **2 px corrido a la derecha** |
+
+⭐⭐ **El velo es INTENCIONAL y es parte del sistema.** Verificado el 15-09 contra la
+historia aprobada `ST N°1 S1.png` (2250 × 4000, la promo de matrimonio): ahí el
+degradado oscuro está puesto y es lo que hace legibles el logotipo y el titular sobre
+la foto. **No es el defecto que reportó el cliente** — esa hipótesis queda descartada.
+
+⛔ **Pero el archivo sigue sin ser un logotipo suelto**, y ese es el riesgo real:
+quien lo monte creyendo que sí, le pega encima un velo que oscurece el tercio
+superior entero de una pieza que quizá no lo quería.
+
+> **Cómo se usa bien:** o se usa la plantilla COMPLETA tal cual, o se **recorta el
+> logotipo solo** por `alfa > 200` y se escala desde su proporción real **2,4825**.
+> ⛔ Nunca se deforma — regla del complejo.
+> ⚠️ Sigue faltando el **logo vectorial**, y sigue sin diagnosticar el «quedó algo
+> extraño detrás del logo» del cliente: hay que pedirle a Eli la pieza concreta.
+
+#### El banco fotográfico REAL — vive en un disco externo, no en Drive
+
+Los editables apuntan al disco **`F:`**, que no está en esta máquina:
+
+- `F:\SESIONES HILTON\SESIONES PISO18\3-Finales 2026\` — la selección final 2026
+- `F:\SESIONES HILTON\SESIONES PISO18\FOTOS P18 NANNEL\` — **la galería del
+  fotógrafo**, la que la grilla nombra: `Novios 3`, `DECO\SIN LOGO`,
+  `Piso 18_28 ago decoración 2024`, `Piso18 julio evento`, `Piso 18 agosto`,
+  `sesión mayo platos\SESIÓN PLATOS 23-5`, `2023-07-10 HILTON BANQUETERAS`
+- `F:\SESIONES HILTON\SESIONES PISO18\paulaanddiego-photo-download-1of1\` — un
+  matrimonio real entero
+- `F:\SESIONES HILTON\SESIONES PISO18\SESIÓN FALABELLA FOTOS PRO XIMENA\`
+- `F:\Carpeta de grillas Hilton 2026\<MES>\PISO18\` — los armados mes a mes
+
+⭐ **Generar con IA ya es gramática aprobada de esta marca.** Los editables de mayo,
+junio y agosto montan `magnific_*.png` («haz que se vea de noche», «que se vea
+iluminado de día», «necesito que los novios s…») y `freepik__*.png` («quita a las
+personas, mantén detalles y alta calidad»). No hay que pedir permiso para generar:
+hay que igualar ese uso, que es **retocar la foto real**, no inventar la escena.
+
+#### ⛔⛔⛔ LA PALABRA PROHIBIDA: «BODAS» — dictado por Eli el 15-09-2026
+
+> **Al cliente no le gusta que se escriba «bodas». Nunca se escribe.**
+
+| ❌ Nunca | ✅ Siempre |
+|---|---|
+| boda, bodas | **matrimonio, matrimonios** |
+| los novios de la boda | **los novios** |
+
+⚠️ **Y alcanza al material de entrada, no sólo a lo que uno redacta.** Si la grilla,
+un brief o una referencia trae «bodas» en un texto **que va a ir en la pieza**, se
+**reemplaza** por matrimonios o novios. Es la única excepción conocida a la regla de
+que los textos en pantalla van literales del brief
+(«los CTAs exactos del brief»): acá el cliente ya dijo que no quiere esa palabra.
+
+⛔ **Esta regla es SÓLO de Piso18 y NO se traspasa a las otras tres marcas.** En
+**DoubleTree**, `Noche de Bodas` es el **nombre propio de un programa del hotel** y el
+propio cliente lo exigió por escrito en la grilla de septiembre: *«tenemos este
+carrusel de agosto que tiene un error, debería ser ''Noche de Bodas''»*. Corregirlo
+allá sería romperle el nombre a un producto.
+
+✅ Verificado el 15-09: la palabra **no aparece** en ninguna grilla de Piso18
+(septiembre ni octubre). No hay nada que corregir hoy.
+
+#### ⭐⭐ LAS VERTICALES, PRECISADAS POR ELI (15-09-2026)
+
+Matrimonios es el foco de la marca, **pero la orden es mostrar más de lo demás**:
+**cumpleaños, eventos corporativos, bautizos y otros**.
+
+> El motivo es comercial y lo dijo ella: **son los que más se cotizan.** Un feed que
+> sólo habla de novios deja fuera la demanda que efectivamente llega.
+
+Esto **ratifica y da la razón de fondo** a la auditoría del 09-09 (matrimonio 8 ·
+cumpleaños 3 · corporativo 2 · bautizo 0 · genérico 10): el desbalance ya estaba
+medido, y ahora se sabe que corregirlo es criterio del cliente y no lectura nuestra.
+
+⚠️ Sigue en pie que **la grilla la escriben cliente y contenido**: desde diseño esto
+se aplica en **cómo** se muestra —qué foto, qué escena, qué vertical se hace visible—,
+no reescribiendo el calendario.
+
+#### ⭐⭐⭐ LOS BOTONES DE COTIZACIÓN — dictado por Eli (15-09-2026)
+
+> **Siempre hay que hacer botones en las historias, y en algunos reels.** La marca
+> quiere **redirigir a cotizar**: es el objetivo comercial de la cuenta.
+
+**Los dos esquemas, y no hay un tercero:**
+
+| Esquema | Fondo | Texto |
+|---|---|---|
+| **A · Lleno** | Fucsia `#D4145A` | Blanco |
+| **B · Invertido** | Blanco | Fucsia `#D4145A` |
+
+⛔ Nada de botones en otro color, ni con degradado, ni transparentes sobre la foto.
+
+⭐ La pieza aprobada ya trae la forma: **píldora de borde muy redondeado**, como el
+`Cotiza en piso18.cl` de la promo de matrimonio, donde `Cotiza en` va en blanco y
+`piso18.cl` en fucsia.
+
+⚠️ Recordar que el botón **es el elemento que más sufre la zona segura** de historias
+(250 px arriba / 340 px abajo en 9:16 — regla global de paid). Y si la historia es
+**animada**, su posición y contraste se miden en el **último fotograma**, no en el
+primero.
+
+#### ⭐ EL COLOR OFICIAL: `#D4145A`
+
+**Lo entregó Eli el 15-09 y es el que manda.**
+
+⚠️ Reemplaza la medición del mismo día: sobre las promas en **JPG** salía `#D6145B` y
+`#D5135A` — a 2 de distancia, que es exactamente el ruido de compresión. **El valor
+del sistema es `#D4145A`**; las mediciones sobre JPG sólo sirven para verificar, nunca
+para fijar.
+
+⛔ No es el fucsia de Selfie (`#FF007C`) ni se le parece. No se traspasa nada.
+
+#### ⭐⭐⭐ EL MATERIAL FOTOGRÁFICO — las 4 carpetas de Eli (15-09-2026)
+
+| # | Carpeta | Qué trae |
+|---|---|---|
+| 1 | `1H1NucdqOmmnrCSmjyr7w4sTiFprTC2QB` | **Sesión de julio 2026** de Sebastián Serrano: decenas de `.MOV` (iPhone, 40–460 MB) + fotos `.HEIC` |
+| 2 | `1Z07Vvx2UDx48PQOeh-UPuGlQpG4LctGq` | Contiene **`SESIÓN SEPTIEMBRE`** (de Ámbar Gallardo) |
+| 3 | `1kA_O2H_Kg2SKUgqQfnvkc-5l_IIEBePl` | Contiene **`SESIÓN 28/AGO`** (de Eli) |
+| 4 | `14jOWfpSm7Nm1lXAABZNThZAa5_5BulzC` | ⛔ **De acá NO se usan fotos de 2020 hacia abajo** |
+
+⛔ **La restricción de la carpeta 4 es dura**: 2020 y anterior queda fuera. Se filtra
+por la **fecha de captura (EXIF)**, no por la fecha del archivo en Drive, que es la de
+subida y miente.
+
+⚠️ **Los `.HEIC` no los carga Chrome** — mismo modo de falla del `.TIFF` del lobby de
+DT y del `.otf` de Brushwell. **Hay que convertirlos antes de rendir.** Y los `.MOV`
+de iPhone traen las trampas ya conocidas de metraje: rotación por metadato y 60 fps.
+
+##### ⭐⭐ Los dos tipos de espacio — hay que saber cuál se está mostrando
+
+| Espacio | Qué se ve |
+|---|---|
+| **Matrimonio (tradicional)** | Mesas **organizadas**, mantelería, banquetería. El montaje formal de matrimonio |
+| **Lounge** | Estilo **cóctel**: más suelto, de pie, sin la mesa larga |
+
+Son **dos productos distintos** que el centro de eventos arma, y Eli los va a separar
+en carpetas. **No se mezclan en una misma pieza** ni se usa uno para ilustrar al otro.
+
+#### ⛔⛔ LOS ROSTROS SE REEMPLAZAN — dictado por Eli (15-09-2026)
+
+> **No se muestran personas reales.** Los rostros se reemplazan para que se vean
+> personas nuevas y distintas.
+
+**El motivo es real y medible:** las mismas fotos vienen repitiéndose mes a mes y el
+feed se ve repetitivo. Reemplazar el rostro **renueva el banco sin sesión nueva**.
+
+**El perfil, que no se improvisa:**
+
+| Rasgo | Regla |
+|---|---|
+| **Edad** | **30–40 años.** Ni muy jóvenes ni mayores |
+| **Perfil** | **Chileno** |
+| **Pelo** | Moreno **o** rubio, según convenga a la escena |
+| **Vestuario** | **Formal o bien vestido.** ⛔ Nunca desaliñado |
+
+**Cómo se hace:** con **Magnific**, generando **un perfil de hombre y uno de mujer**
+que se reutilicen, para que el reemplazo sea **consistente entre piezas** y no una
+cara distinta cada vez.
+
+⚠️ **Se cambia el ROSTRO, no la escena.** La foto real del salón, su luz y su montaje
+se conservan: es el mismo criterio que ya está escrito para no regenerar lo que existe
+—«cambiar la superficie, no regenerar»— y vale igual acá. Y ojo con la separación de
+piel: **no se aísla por descarte**, se marca el núcleo de tono.
+
+⚠️ **Choca con una regla de DT que NO está extendida a Piso18**: allá rige «sin
+rostros de trabajadores». Acá el encargo es otro —reemplazarlos, no evitarlos— y sigue
+abierto si la §G de DT aplica en esta cuenta.
+
+#### ⭐⭐⭐ EL SISTEMA TIPOGRÁFICO Y DE LOGO, DICTADO POR ELI (15-09-2026)
+
+Esto **lo dictó ella**, no sale de medir. Manda sobre cualquier lectura de los
+editables.
+
+##### Los dos logotipos
+
+| Versión | Cuándo |
+|---|---|
+| **`PISO18` + `CENTRO DE EVENTOS`** | **Es el principal.** El default de toda pieza |
+| **`PISO18` solo** | Sólo «para ocasiones», cuando no se puede usar el completo |
+
+Palabras de Eli: *«el logotipo principal es el que dice PISO18 CENTRO DE EVENTOS,
+pero para ocasiones no siempre se puede usar el de PISO18 solo»*.
+
+⚠️ **No está dicho qué cuenta como «ocasión»** — si es falta de espacio, fondo o
+formato. Mientras no lo diga, **va el completo** y la excepción se consulta.
+
+⭐ **El archivo `logo PISO18.png` ES el completo.** Verificado: el logotipo que trae
+(566 px de ancho, proporción **2,4825**) calza con el de la historia aprobada
+`ST N°1 S1.png`, donde mide **572 px** de ancho y **230** de alto sobre 2250 × 4000:
+
+| | Medida en la pieza aprobada |
+|---|---|
+| Línea 1 · `PISO18` | y 431–584 (alto **154**) · x 839–1410 (ancho **572**) |
+| Línea 2 · `CENTRO DE EVENTOS` | y 631–660 (alto **30**) · x 881–1351 (ancho **471**) |
+| Conjunto | ancho **25,4 %** del lienzo · **centrado exacto** (centro x 1124,5) |
+| Hueco entre las dos líneas | **47 px** |
+
+La línea 2 va en **versales muy espaciadas** y mide el **82 %** del ancho de la 1.
+
+##### Las tres tipografías y su reparto
+
+| Familia | Para qué | Regla |
+|---|---|---|
+| **IvyPresto** («Ivy») | **La principal.** Títulos y destacados | ⚠️ **Poco.** Sólo para destacar o títulos importantes |
+| **Against** | Alterna de Ivy | Entra **cuando Ivy ya se usó mucho**. Mismo criterio: poco, sólo destacados |
+| **Raleway** | **Párrafos y todo el resto**: textos largos, muchos textos, iconos | Es la legible. Es el caballo de batalla |
+
+Literal de Eli: *«La tipografía principal es Ivy, pero puedes usar Against cuando se
+utilice mucho la otra. Lo ideal es que se usen poco solo para destacar o títulos
+importantes. Raleway se utiliza para párrafos y demás textos, cuando sean muchos o
+para iconos. Es más legible.»*
+
+⭐ **Against SÍ se puede empaquetar y SÍ la carga Chrome.** Es
+`against regular.ttf` (119.180 bytes, **TTF**, 177Studio, tabla `glyf`), y el editable
+S5 la declara entre las fuentes empaquetadas. Vive en `GRILLA IA PISO18 › GRILLAS ›
+Grilla S5 PISO18_editables › Fonts` (`1N45KEwoTc-SPJnK4BlwiYooQt7H_BqEa`) y está
+copiada en `public/assets/fonts/piso18/against-regular.ttf`.
+
+##### ⭐⭐⭐ IvyPresto: RESUELTA el 15-09-2026
+
+No viaja en ningún paquete —es Adobe Fonts protegida— **pero está activada en
+Creative Cloud en el Windows de Eli**, y Adobe deja los `.otf` en disco con nombre
+numérico y sin extensión, en `%APPDATA%\Adobe\CoreSync\plugins\livetype\`.
+
+`scripts/p18-ivypresto-link.py` los busca **por su nombre interno** (no por el número,
+que cambia cuando Adobe re-sincroniza) y los copia a
+`public/assets/fonts/piso18/ivypresto/` con su nombre real. Deja los **20 cortes**:
+Display y Headline, Thin → Bold, con sus itálicas. (`Text` se descarta: los editables
+no la usan.)
+
+✅ **Probado en Chrome headless, no supuesto.** Las 20 renderizan con su forma Didone
+correcta, distintas entre sí, con acentos y `¿`/`¡`. **Pese a que son CFF**, que es
+donde falló Brushwell: el antecedente no se repitió acá, y por eso la prueba se hace
+siempre en vez de darlo por perdido.
+
+⛔ **La carpeta está en `.gitignore` y NUNCA sale del equipo**: es la licencia de Adobe
+de quien la tenga activada, no del repo. En otra máquina se corre el script de nuevo.
+Es la misma solución que `scripts/tc-ivyora-link.sh` de Tierra Calma, pero por copia
+en vez de enlace duro (Windows) y buscando por nombre en vez de por ruta.
+
+##### ⛔ Las cifras y los signos van con TABULAR
+
+Dicho por Eli para Raleway: *«tienes que hacer los ajustes con los signos con
+tabular»*. Toda cifra, precio, porcentaje y horario lleva
+`font-variant-numeric: tabular-nums` **y** su caja calculada sobre el **máximo** de
+los dígitos de la fila, no sobre el promedio.
+
+⛔⛔ **Y hay una trampa: `font-variant-numeric: tabular-nums` NO FUNCIONA en Raleway.**
+Medido el 15-09 con `fontTools` sobre los tres Raleway que hay en el estudio —el
+`Raleway-Medium.ttf` del paquete de Piso18, el `Raleway-Variable.ttf` de EBEMA y el
+`Raleway-Black.ttf` de Between—: **ninguno declara la feature `tnum`**. Sólo traen
+`lnum`. Chrome ignora la propiedad **en silencio** y deja los dígitos proporcionales.
+
+Y son muy desparejos. En `Raleway-Medium`:
+
+| Dígito | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Ancho (em) | **0,614** | **0,450** | 0,535 | 0,540 | 0,558 | 0,548 | 0,606 | 0,535 | 0,598 | 0,589 |
+
+El `1` es un **36 % más angosto** que el `0`. En `$4.500.000` contra `$6.000.000` eso
+descuadra la columna a simple vista, y es justo la comparación que hacen las promos.
+
+> **Entonces se hace por código, no por CSS**: cada dígito en su caja, y esa caja al
+> **máximo** de la fila (0,614 em en Medium), nunca al promedio. Es el mismo arreglo
+> que se hizo en Between el 14-09, donde la caja estaba en el promedio (0,600 em)
+> mientras el `0` medía 0,707 y **los ceros se encaballaban en todo horario y precio**.
+> ⚠️ Y recordar que **el tracking no llega a un `inline-block`**: en una línea con
+> `letter-spacing` las letras se separan y los números quedan pegados.
+
+⚠️ **Against tampoco sirve para cifras alineadas** y además **le faltan `¿` y `¡`**
+(232 glifos, castellano completo salvo esos dos). Un titular como «¿Te casas en
+verano?» **no se puede componer en Against**: Chrome sustituye el signo con otra
+fuente y se nota. Ivy y Raleway sí los traen.
+
+##### ⭐ La paleta, medida sobre las dos promos aprobadas
+
+| Color | Valor | Dónde |
+|---|---|---|
+| **Fucsia Piso18** | **`#D4145A`** (oficial, dado por Eli) | La firma. Caja sólida del precio, filete del recuadro, el `piso18.cl` del CTA, **y los botones** |
+| Blanco | `#FFFFFF` | Logotipo, titulares, cifras |
+
+⚠️ La medición sobre JPG daba `#D6145B` y `#D5135A` — a 2 del oficial, que es el
+ruido de compresión. **Manda `#D4145A`.**
+⛔ **No es el fucsia de Selfie** (`#FF007C`) ni se le parece: no se traspasa nada.
+
+##### El esqueleto de las promos (1080 × 1080)
+
+Las dos aprobadas de septiembre comparten estructura, y es un tercer formato:
+**cuadrado**, aparte del 4:5 de feed y del 2250 × 4000 de story.
+
+1. Foto a sangre, de ambiente de evento.
+2. **Titular en IvyPresto**, mezclando itálica y roman en versales.
+3. **Bloque de oferta**: recuadro de filete fucsia con la cifra grande, y debajo una
+   **barra fucsia sólida** con el texto en Raleway bold.
+4. Dirección `Av. Vitacura 2727, Las Condes` en Raleway.
+5. **Legal en itálica**, abajo, centrado (`*Válido para…`).
+6. CTA en píldora de borde redondeado: `Cotiza en` en blanco + `piso18.cl` en fucsia.
+
+⚠️ **Las promos NO llevan logotipo** — las dos aprobadas no lo tienen. La story sí.
+
+#### Estado de las 7 capas — pasa de 0 a 3 y media
 
 | Capa | Estado |
 |---|---|
-| 1 · Identidad (paleta, tipografías, logo) | ⛔ **Sin medir.** Eli va a dejar sus editables y el universo completo de Piso18 |
-| 2 · Gramática (composición) | ⛔ Sin medir. Las 10 piezas aprobadas existen pero **no bajan** (ver abajo) |
-| 3 · Formatos (máster, zonas seguras) | ⛔ Sin confirmar el máster. Las zonas seguras Meta sí aplican: son regla global |
-| 4 · Imagen | 🟡 Parcial: la grilla nombra la **galería del fotógrafo** como fuente. Falta la carpeta |
-| 5 · Copy (tono, CTA, legales) | ✅ **Se puede leer de la grilla**: tono, CTA, hashtags por tema y el cierre de dirección |
+| 1 · Identidad | 🟢 **Cerrada.** Las 3 tipografías disponibles y probadas en Chrome, logo completo medido, fucsia `#D6145B`. Falta refinar la paleta desde el `.ai` (±1 por venir de JPG) |
+| 2 · Gramática (composición) | 🟡 **Destrabada**: las piezas aprobadas ya están en Drive (`Grillas aprobadas`). Falta medirlas |
+| 3 · Formatos | 🟢 **Máster 1080 × 1350 (4:5)** y plantilla de story 2250 × 4000. Zonas seguras Meta aplican: son regla global |
+| 4 · Imagen | ⛔ **EL BLOQUEANTE QUE QUEDA.** La galería del fotógrafo está ubicada pero vive en el disco `F:`, que no está en esta máquina ni en Drive. Sin fotos no hay pieza |
+| 5 · Copy | ✅ Se lee de la grilla: tono, CTA, hashtags por tema y el cierre de dirección |
 | 6 · Pipeline | ⛔ No existe `clients/piso18/`, ni `marca.json`, ni kit en `src/brand/` |
 | 7 · QA | ⛔ Sin reglas en `qa/motor.py` |
 
-### El material de referencia, y por qué hoy no baja
+#### Las piezas aprobadas — ya están, y por título
 
-Las **10 piezas aprobadas** de Eli están en la carpeta **P18** de la S1
-(`1TR-CiAE84ryQ1gTA2PvkEthsWhwSm5yA`), más 4 de julio (`C1 S5 P18 n°1–4`).
-**Ninguna de las 14 se puede bajar:** las 14 devuelven ~908 KB, que es la página de
-login guardada con extensión `.png` — la trampa de la compuerta de material.
+En `GRILLA IA PISO18 › Grillas aprobadas` (`1MDm5JLRBe_Ep99hhK7fHgZ2mg35y9MJ2`):
+`CARRUSEL NOVIOS` · `CARRUSEL CUMPLEAÑOS` · `CARRUSEL CUMPLE ACTUAL 2026` ·
+`CARRUSEL ESTACIÓN` · `BENEFICIOS CUMPLEAÑOS` · `PROMOS PISO18`.
 
-Se aplicó la regla de buscar **copias por título** (la que salvó el carrusel de
-Family Time el 09-09): hay copias públicas, **pero son de otras marcas** —
-`CARRUSEL NB 1` es Noche de Bodas de DT y `C1 S2 CUMPLEAÑOS` vive dentro de la
-carpeta `BW` de Between. De Piso18, cero. El token local es `drive.file` y tampoco
-las ve.
+⭐ **`CARRUSEL CUMPLE ACTUAL 2026` y `BENEFICIOS CUMPLEAÑOS` son la referencia directa**
+del carrusel que pide FEED col H de septiembre («beneficios de tu cumpleaños»), que el
+propio brief manda basar «en el que publicamos en agosto».
 
-**Se destraba de dos maneras:** compartir por enlace la carpeta `P18`, o copiar los
-PNG a `raw/hilton/piso18/ref-eli-sep2026/`.
+Y en `GRILLAS` (`1cgxg6XvlcfRcCwNZW-pRjOarftANDtuA`) están además los proyectos de
+motion — `Reel n°1 S1 JUL PISO18.aep_AME`, `ST n°1 S1 PISO18 JUL.aep_AME`,
+`ST n°3 PISO18 S5.aep_AME`, `Reel n°2 S5 JAZZ` — y **`Cierre logo Piso18 2026.mp4`**
+(109 KB), que es el cierre de marca para los reels.
+
+> ⚠️ Lo viejo que esto reemplaza: las 14 piezas de la carpeta `P18` de la S1
+> (`1TR-CiAE84ryQ1gTA2PvkEthsWhwSm5yA`) seguían devolviendo la página de login. **Ya no
+> hacen falta**: Eli dejó las aprobadas en la carpeta nueva.
 
 ### El banco fotográfico — lo poco medido, que ya manda una regla
 

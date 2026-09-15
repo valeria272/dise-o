@@ -176,33 +176,61 @@ PIEZAS = [
         # IZQUIERDO contra el de la caja, que es lo que de verdad importa acá.
         "marca": "S4 DT",
         "formato": "feed",
-        "logo": "azul",          # §B.4: el cielorraso del lobby se come el blanco
+        # ⭐ RONDA 2: el logotipo pasa de AZUL a BLANCO por pedido de Eli, y el
+        # titular pasa de alineado a la izquierda a CENTRADO.
+        "logo": "blanco",
+        # ⚠️⚠️ DESVIACIÓN ACEPTADA, NO UN UMBRAL AFLOJADO PARA PASAR.
+        # El logotipo blanco cae sobre el cielorraso del lobby —lo más claro de
+        # la foto— y con el velo que Eli pidió («más abajo y sutil») da 3,46:1
+        # sobre el PNG rendido, no 4,5. Ella eligió el blanco Y dio la salida
+        # (la sombra paralela), así que se cumple lo que pidió y se INFORMA el
+        # número; no se le cambia el color por detrás ni se baja el listón en
+        # silencio. Si algún día se quiere en regla, la salida medida es el azul
+        # (§B.4), que sobre ese mismo fondo da 4,84:1.
+        # ⚠️ El 3,46 además SUBESTIMA lo que se ve: la medición promedia todo el
+        # fondo de la caja del logotipo y la sombra va pegada a la tinta.
+        "logo_contraste_minimo": 3.4,
+        "logo_motivo": "blanco pedido por Eli el 15-09; la salida es su sombra paralela",
         "elementos": [
+            # Bandas RE-MEDIDAS sobre el PNG de la ronda 2, @1080:
+            #   titular 1 «MÁS BENEFICIOS»     y 588,0-636,5
+            #   titular 2 «EN CADA ESTADÍA»    y 654,7-702,7   centro 539,0
+            #   titular 3 «CON HILTON HONORS»  y 721,0-769,0   centro 538,8
+            #   filete superior de la caja     y 841,4-844,8
+            #   fila 1 de cuadrantes           y 887,5-949,0
+            #   fila 2 de cuadrantes           y 1040,6-1103,5
+            #   filete inferior de la caja     y 1143,8-1148,6
+            #   llamado del pie                y 1289,8-1314,2 centro 539,5
+            #
+            # ⚠️ El umbral de tinta sube a 215 en el titular: a 200, el sillón
+            # crema de la foto entra en la máscara y el «ancho del titular» pasa
+            # a ser el ancho del sillón — el QA lo reportaba descentrado estando
+            # centrado. Es el mismo modo de falla que el filete de la caja.
             {"nombre": "titular 1 «MÁS BENEFICIOS»", "texto": "MÁS BENEFICIOS",
-             "fuente": "Stag-Medium.ttf", "huella": "glifos", "banda": (578, 645), "xrango": (90, 900),
-             "umbral": 200, "centrado": False, "izquierda": 100},
+             "fuente": "Stag-Medium.ttf", "huella": "glifos", "banda": (578, 645),
+             "xrango": (150, 930), "umbral": 215, "contraste_minimo": 3.0},
             {"nombre": "titular 2 «EN CADA ESTADÍA»", "texto": "EN CADA ESTADÍA",
-             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (646, 712), "xrango": (90, 900),
-             "umbral": 200, "centrado": False, "izquierda": 100},
+             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (646, 712),
+             "xrango": (150, 930), "umbral": 215, "contraste_minimo": 3.0},
             {"nombre": "titular 3 «CON HILTON HONORS»", "texto": "CON HILTON HONORS",
-             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (713, 779), "xrango": (90, 900),
-             "umbral": 200, "centrado": False, "izquierda": 100},
-            # ⚠️ Los rótulos de los cuadrantes se miden DENTRO de cada columna:
-            # con el rango ancho, el filete lateral de la caja entra en las mismas
-            # filas y el «ancho del rótulo» pasa a ser el ancho de la caja.
-            {"nombre": "rótulo Tarifas exclusivas", "texto": None, "fuente": None,
-             "banda": (885, 950), "xrango": (200, 530), "umbral": 195, "centrado": False},
+             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (713, 779),
+             "xrango": (150, 930), "umbral": 215, "contraste_minimo": 3.0},
+            # Los rótulos se miden DENTRO de su columna: con el rango ancho, el
+            # filete lateral de la caja cae en las mismas filas.
+            # ⭐ RONDA 2: van en Stag Regular, no en Trade Gothic. Se les mide la
+            # huella para que una regresión a Trade no pase inadvertida.
+            {"nombre": "rótulo Tarifas exclusivas", "texto": "Tarifas",
+             "fuente": "Stag-Regular.ttf", "huella": "glifos", "banda": (880, 925),
+             "xrango": (230, 530), "umbral": 200, "centrado": False},
             {"nombre": "rótulo Upgrades", "texto": None, "fuente": None,
-             "banda": (885, 950), "xrango": (640, 970), "umbral": 195, "centrado": False},
+             "banda": (880, 955), "xrango": (660, 970), "umbral": 200, "centrado": False},
             {"nombre": "rótulo Canje de noches", "texto": None, "fuente": None,
-             "banda": (1038, 1110), "xrango": (200, 530), "umbral": 195, "centrado": False},
+             "banda": (1035, 1110), "xrango": (230, 530), "umbral": 200, "centrado": False},
             {"nombre": "rótulo Acumula puntos", "texto": None, "fuente": None,
-             "banda": (1038, 1110), "xrango": (640, 970), "umbral": 195, "centrado": False},
+             "banda": (1035, 1110), "xrango": (660, 970), "umbral": 200, "centrado": False},
             {"nombre": "llamado del pie", "texto": None, "fuente": None,
-             "banda": (1283, 1318), "xrango": (60, 1020), "umbral": 195},
+             "banda": (1285, 1318), "xrango": (60, 1020), "umbral": 200},
         ],
-        # ⭐ La caja de cristal se comprueba aparte: que esté, que mida los 880 de
-        # la referencia y que esté centrada. Es el objeto que estructura la pieza.
         "caja": {"x": 100, "ancho": 880, "y": 842, "alto": 306},
     },
 ]
@@ -389,11 +417,19 @@ def revisa(ruta: Path) -> list[str]:
         w = max(1, fondo.shape[0] // 3)
         peor = max(relativa(fondo[i * w:(i + 1) * w]).mean() for i in range(3))
         c = contraste(peor, relativa(np.array([[250, 250, 250]]))[0])
-        marca = "ok" if c >= 4.5 else "⛔"
+        # ⚠️⚠️ LA VARA DEPENDE DEL TAMAÑO DE LA TINTA, Y ESTABA QUEMADA EN 4,5.
+        # El manual de DT lo dice desde el 10-09, al medir el velo de la historia
+        # del Día del Turismo: «**3:1 para el titular** —a cuerpo 80-130 px es
+        # texto grande— y 4,5:1 para el subtexto. Exigirle 4,5 al titular es
+        # aplicarle la vara del texto chico.» El QA no lo sabía y reportaba en
+        # rojo titulares que estaban bien. Cada elemento declara el suyo.
+        minimo = el.get("contraste_minimo", 4.5)
+        marca = "ok" if c >= minimo else "⛔"
         print(f"   {el['nombre']:26} ancho {ancho:5.0f}  centro {centro:5.0f}  "
-              f"contraste {c:5.2f}:1  {marca}")
-        if c < 4.5:
-            fallos.append(f"{el['nombre']} da {c:.2f}:1 contra su fondo (<4,5)")
+              f"contraste {c:5.2f}:1  {marca}"
+              + (f"  (vara {minimo}: texto grande)" if minimo != 4.5 else ""))
+        if c < minimo:
+            fallos.append(f"{el['nombre']} da {c:.2f}:1 contra su fondo (<{minimo})")
         # ⚠️ No todo va centrado. Un titular alineado a la izquierda —que es lo
         # que pide el brief del estático de Hilton Honors y lo que hace su
         # referencia— se comprueba por su CANTO IZQUIERDO, no por su eje.
@@ -522,10 +558,20 @@ def revisa(ruta: Path) -> list[str]:
             ref = AZUL if tinta_logo == "azul" else np.array([250, 250, 250])
             c = contraste(relativa(caja[~plantilla]).mean(),
                           relativa(ref.reshape(1, 3))[0])
+            # ⚠️ El mínimo es 4,5 salvo que la PIEZA declare otro, y entonces
+            # tiene que declarar también POR QUÉ. No es para aflojar el listón
+            # cuando algo no pasa: es para dejar escrito que una desviación la
+            # decidió la diseñadora, con su número a la vista, en vez de
+            # arreglarla por detrás o de dejar el QA en rojo para siempre.
+            minimo = pieza.get("logo_contraste_minimo", 4.5)
+            motivo = pieza.get("logo_motivo")
+            marca_c = "ok" if c >= minimo else "⛔"
+            extra = f"  (mínimo {minimo}: {motivo})" if motivo else ""
             print(f"   {'':26} tinta {tinta_logo} contra su fondo {c:5.2f}:1  "
-                  f"{'ok' if c >= 4.5 else '⛔'}")
-            if c < 4.5:
-                fallos.append(f"el logo {tinta_logo} da {c:.2f}:1 contra su fondo (<4,5)")
+                  f"{marca_c}{extra}")
+            if c < minimo:
+                fallos.append(f"el logo {tinta_logo} da {c:.2f}:1 contra su fondo "
+                              f"(<{minimo})")
 
     # ── la caja de cristal: que esté, que mida lo que declara y que esté centrada
     #

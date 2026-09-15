@@ -96,6 +96,65 @@ nombre `Post n°1 S4 DT.png` — así lo levanta el portal. **No se subió nada.
 STORIES col H (18-09, el saludo de Fiestas Patrias que se subió hoy) pasó de
 `OK PARA DISEÑO` a **`EN EDICIÓN`**. Quien retome esa pieza que lo mire.
 
+### ⭐⭐ RONDA 2 (15-09, tarde) — y una corrección de MARCA que no era de esta pieza
+
+Eli: «Te falta añadir el logo de Hilton honors, ya que es de los beneficios.
+Trata de utilizar iconos ya utilizados en mis piezas gráficas, busca en los
+editables. El título déjalo centrado. Logo blanco y conserva la imagen del fondo,
+la transparencia azul más abajo y sutil. Si los textos no se leen usa una sombra
+paralela muy sutil en los textos.»
+
+Todo aplicado y re-subido al mismo enlace **menos el logo de Hilton Honors**
+(ver abajo). El QA quedó limpio y la ST del Día del Turismo sigue pasando igual.
+
+**⛔⛔ Lo grande: los rótulos del panel de DT van en STAG, no en Trade Gothic.**
+Salió por el pedido de los íconos: al ir a buscarlos a `C1 FT N2` se midió el
+texto de al lado, glifo a glifo. **Stag Regular 0,701 contra Trade Gothic 0,285**
+(14 letras, IoU 2D). La ronda 1 los había puesto en Trade siguiendo la regla
+escrita «Trade para el cuerpo», que viene del manual oficial de Hilton — pero lo
+que el cliente aprobó es otra cosa. Corregido en la pieza y en el manual.
+⚠️ **Y van tres veces que pasa lo mismo: una regla escrita no sustituye una
+medición sobre la pieza aprobada.**
+
+**Lo demás que dejó la ronda, todo en el manual:**
+
+1. **La gramática de cuadrante de Eli**, que no estaba escrita: caja de ícono
+   70,6×57,1 · trazo 2,4 px · **regla vertical de 1,9** entre ícono y rótulo ·
+   rótulo a dos líneas. Y sus íconos son **objetos con estructura interior**, no
+   siluetas — por eso la luna se cambió por un regalo (el brief daba a elegir).
+   La **cama** se extrajo de `C1 FT N2` y ya vive en
+   `public/assets/hilton/dt/icono-cama-eli.png`.
+2. **El logotipo blanco es excepción de PIEZA**, no cambio de la §B.4. Medido:
+   blanco 3,30:1 contra azul 4,84:1 sobre el cielorraso. Eli pidió blanco y dio
+   la salida (la sombra); con ella sube a 3,61:1 y se lee.
+   ⛔ **Se probó el halo radial detrás del logo —el recurso del Día del Turismo—
+   y NO sirve acá:** allá caía sobre cielo con textura, acá sobre un cielorraso
+   plano, y se veía como una mancha. Se botó y se cambió por tres sombras
+   apiladas sobre el propio logotipo. **Un recurso aprobado en otra pieza no se
+   hereda sin volver a mirarlo.**
+3. **«El velo más abajo y sutil» se resuelve CURVANDO la rampa** (cóncava →
+   convexa, pie 0,58 → 0,50), nunca dejándola plana y arrancándola más abajo:
+   ese codo es la banda que ella misma marcó como «forzado».
+4. **`dt-qa.py`: la vara de contraste depende del tamaño de la tinta.** Estaba
+   quemada en 4,5 y reportó en rojo un titular a 4,22:1 que está bien — el manual
+   ya fijaba **3:1 para titulares** desde el 10-09. Y una desviación decidida por
+   la diseñadora se declara en la ficha de la pieza, con su número a la vista.
+
+**⚠️ PENDIENTE, Y ES LO ÚNICO: EL LOGO DE HILTON HONORS.**
+Está ubicado (`GRILLA IA DT › Logos › Hilton Honors Logo_White PNG.png`, 14 KB,
+ya blanco) y **no se puede traer a disco**: `curl` devuelve login en las tres
+rutas, el token es scope `drive.file`, y el conector MCP entrega inline —sin
+dejar archivo— todo lo que pese menos de ~40 KB. Se intentó transcribir el base64
+dos veces y las dos llegó cortado; se borró en vez de montar un logotipo roto.
+**Se le pidió a Eli que lo copie a `raw/hilton/dt/identidad/logos/`.** El hueco ya
+está reservado (y 1186, centrado) y la composición lo dibuja con
+`conHonors={true}` — es cambiar una línea y volver a rendir.
+
+⛔ **Y la trampa:** `hilton honors.png` (43 KB) de esa misma carpeta **SÍ** baja y
+**NO es el Honors**: es el logotipo **Hilton «For The Stay»**, mal rotulado en el
+Drive. Guardado como `hilton-FOR-THE-STAY (NO es Honors).png` para que nadie lo
+use por error.
+
 ---
 
 ## 2026-09-15 (RONDAS 1–6) · Eli (Windows) — DOUBLETREE: la ST del 18-09, aprobada y subida

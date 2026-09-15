@@ -1,3 +1,46 @@
+## 2026-09-15 · Eli (Windows) — DOUBLETREE: el post de Hilton Honors quedó RENDIDO y SIN ENTREGAR
+
+⚠️ **Esta entrada NO la escribió la sesión que hizo la pieza.** Está reconstruida
+desde los archivos al cerrar el día, para que el trabajo no se pierda si mañana lo
+retoma otra persona. Si algo no calza, manda lo que diga la sesión original.
+
+**Qué se hizo.** El post estático de **Hilton Honors** (FEED col K, 23-09, 18:00),
+armado contra `Ref post s4.jpg` de REFERENCIAS S4 DT. Rendido a las 11:14 en
+`out/hilton/dt/ft-honors/Post n°1 S4 DT.png` (2250×2813, 10 MB) con su guía de QA.
+
+**Dónde quedó.**
+
+| | |
+|---|---|
+| Composición | `src/compositions/hilton/DtFtHonors.tsx` |
+| La foto del lobby | `scripts/dt-ft-honors-foto.py` → `public/assets/hilton/dt/ft-honors-lobby.jpg` |
+| Render | `out/hilton/dt/ft-honors/Post n°1 S4 DT.png` |
+
+⭐ **Y dejó una medición para la marca: el máster de FEED va a escala 2,0837, no
+2,0833.** El 4:5 de esta cuenta es 2250×**2813** —las tres piezas aprobadas y la
+plantilla `logo-post.png`— y 2813 no es 4:5 exacto: 4:5 de 2250 da 2812,5 y el
+equipo redondeó hacia arriba. Con la escala de historia la mesa sale 2250×2812 y
+queda 1 px corta. Ya está puesto en `dt-rendir.py`, que elige la escala por el
+prefijo del id (`DT-F-*` → feed).
+
+**Qué sigue.** Mostrárselo a Eli y, si lo aprueba, subirlo a **S4 › DT** con el
+nombre `Post n°1 S4 DT.png` — así lo levanta el portal. **No se subió nada.**
+
+**Abierto.**
+
+1. ⚠️⚠️ **Discrepancia del brief, informada y NO resuelta (§G):** el brief pide
+   «dividida en **6** cuadrantes» y la lista de rótulos trae **4**. No es un error
+   de lectura: el cliente **tachó** los otros dos («WiFi Premium» y «Check-in
+   Digital») junto con el titular viejo, y la línea del «6» quedó sin actualizar.
+   Se armó con 4 (2×2), que es lo único que el brief permite — poner 6 obligaría a
+   inventar dos beneficios. **Decide el cliente si vuelven los tachados.**
+2. **Dos cosas que el brief nombra y el banco no tiene**, resueltas con la
+   alternativa que el propio brief ofrece en la misma frase: no hay toma
+   **cenital** del hotel («o angular elegante») y el complejo no tiene la
+   **piscina** fotografiada («instalaciones, lobby o habitación» → se usó el lobby).
+
+---
+
 ## 2026-09-15 (RONDAS 1–6) · Eli (Windows) — DOUBLETREE: la ST del 18-09, aprobada y subida
 
 **Qué se hizo.** La historia estática de STORIES col H (18-09, 09:00), de cero a

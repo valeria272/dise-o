@@ -433,6 +433,79 @@ Al escribir estas reglas se pasó el mes entero buscando `$`. El resultado:
 Los `$21.000` y `$100.000` de `FEED C` no son el programa: son los agregados de
 sunset y masajes.
 
+### ⭐⭐ LO QUE DEJÓ LA ST DEL 18-09 (15-09-2026) — cuatro reglas de DT
+
+Seis rondas sobre el saludo de Fiestas Patrias. Lo que vale para la marca, no
+sólo para esa pieza:
+
+#### ⭐⭐ 1. Cuando un elemento de marca CAMBIA DE TAMAÑO, se vuelve a mirar qué hay DETRÁS
+
+Eli pidió agrandar el logotipo (167 → 225). Su caja pasó a ir de x=427 a x=652 y
+el corte en diagonal del mosaico la cruzaba entre 564 y 588: **una línea azul
+saliendo por detrás del lockup.** Es el mismo defecto —elementos del fondo que
+chocan con el texto— que obligó a re-encuadrar la foto del Día del Turismo.
+
+⚠️ **Ni el QA ni el ojo lo agarran.** El QA mide contraste, no colisiones; y al
+tamaño al que se revisa una historia, la línea no se ve — aparece recién al 100 %.
+Después de cambiar el tamaño de un logotipo o de un bloque, se recorta su caja al
+100 % y se mira.
+
+#### ⭐⭐ 2. El tamaño del logotipo es excepción de PIEZA, no de marca
+
+La plantilla `logo-ST.png` deja el logotipo en **167 @1080**, y eso sigue siendo
+el default de DT. En la ST del 18-09 Eli lo subió a **225** porque el titular
+ocupaba el 75 % del ancho y el logotipo al 15,5 % no sostenía el otro extremo de
+la jerarquía.
+
+⛔ **No se hereda.** Lo único que cambió es el tamaño: sigue centrado, sigue en su
+tope de 241 y sigue a su proporción real de 1,2254. La pieza siguiente vuelve a la
+plantilla salvo que Eli diga lo contrario.
+
+#### ⭐ 3. Las reglas de composición de DT las puede levantar la REFERENCIA de Eli
+
+En esta pieza pasaron dos cosas contra lo escrito, y las dos las manda ella:
+
+- **La línea larga quedó ARRIBA** («¡Felices Fiestas» / «Patrias!»). El repertorio
+  dice corta arriba, larga abajo — y sigue siendo el default.
+- **Las versales fueron en Stag itálica y no en Trade Gothic.** El manual oficial
+  le da a Trade las versales; su referencia las puso en serif.
+
+Es la jerarquía que ella misma fijó el 08-09: el manual manda en color y
+tipografía, **ella manda en composición**. Lo que sí corresponde es **anotarlo en
+la cabecera de la composición**, para que la próxima persona lo lea como decisión
+y no como descuido.
+
+#### ⭐ 4. La bandera de Chile: se copia la GEOMETRÍA, nunca se importa el archivo
+
+DT necesitó la banderita que ya estaba resuelta en Between. **No se importa** —un
+archivo de otra marca no entra en una pieza de DT (regla madre del complejo)—,
+pero **la geometría sí se reusa**: no es criterio de Between, es la bandera de
+Chile, y ya tenía dos defectos de zoom corregidos (el escalón del cantón y la
+espina de la división). Redibujarla de cero sería volver a cometerlos.
+
+⚠️ **Lo que SÍ cambia al cruzarla de marca es el REGISTRO.** En Between el trazo
+lleva textura de mano; DT es «elegante, minimalista y sencillo», así que acá va
+línea limpia. Y el par simétrico se hace con `espejo` **por fuera** de la
+rotación: mismo `giro` en las dos y espejo en una, y quedan apuntando hacia afuera
+sin tener que invertir nada a mano.
+
+#### ⚠️ Y una de proceso: `dt-qa.py` es POR PIEZA desde el 15-09
+
+Las bandas, los textos, la tinta del logotipo y su geometría viven en `PIEZAS` y
+se eligen por el nombre del archivo. Antes estaban al nivel del módulo y la
+primera historia nueva se midió contra la anterior: cuatro fallos que no existían.
+**Un QA que acusa a una pieza sana se deja de mirar, que es peor que no tenerlo.**
+
+Agregar una historia es agregar una entrada, con sus bandas MEDIDAS sobre el PNG.
+Y se re-miden **en cada ronda que mueva el texto**, corriendo el QA después.
+
+#### ⛔ Los rostros del 18-09 fueron autorización PUNTUAL
+
+§A sigue en pie. Eli la levantó sólo para esa historia y por el formato: «acá no
+pasa nada si se ven los rostros, por formato de storie». **No es precedente.**
+
+---
+
 ## ⭐⭐ PISO18 — MARCA PROPIA (dictado por Eli el 09-09-2026)
 
 > **La regla madre de esta cuenta: Piso18 es marca propia y TODO en ella es distinto

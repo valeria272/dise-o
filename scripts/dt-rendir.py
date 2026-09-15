@@ -30,6 +30,13 @@ except Exception:                                                  # noqa: BLE00
 RAIZ = Path(__file__).resolve().parent.parent
 ENTRADA = RAIZ / "src/DtEntry.tsx"
 ESCALA = "2.0833"
+# ⭐ El FEED va con OTRA escala, y no es un capricho: el máster 4:5 de esta
+# cuenta es **2250×2813** (las tres piezas aprobadas y la plantilla
+# `logo-post.png`), y 2813 no es 4:5 exacto — 4:5 de 2250 da 2812,5 y el equipo
+# redondeó hacia arriba. Con la escala de historia (2,0833) la mesa de 1080×1350
+# sale 2250×**2812** y queda 1 px corta respecto de lo que entrega Eli.
+# Con 2,0837 sale 2250×2813 clavado. Verificado rindiendo las dos.
+ESCALA_FEED = "2.0837"
 
 # id de composición → nombre del archivo de entrega
 NOMBRES = {
@@ -38,6 +45,12 @@ NOMBRES = {
     # STORIES col H · 18-09 · saludo Fiestas Patrias (collage, ronda 2).
     "DT-S-FiestasPatrias": "DT ST 18-09 Felices Fiestas Patrias.png",
     "DT-S-FiestasPatrias-Guia": "GUIAS QA/DT ST 18-09 Felices Fiestas Patrias - GUIA.png",
+    # FEED col K · 23-09 · estático Hilton Honors.
+    # ⚠️ El nombre lo fija cómo entrega Eli, no nosotros: su post de la S3 subió
+    # como «Post n°1 S3 DT.png» (14-09), así que éste es el n°1 de la S4 — es el
+    # único post de feed de esa semana. El portal levanta por nombre.
+    "DT-F-HiltonHonors": "Post n°1 S4 DT.png",
+    "DT-F-HiltonHonors-Guia": "GUIAS QA/Post n°1 S4 DT - GUIA.png",
 }
 
 
@@ -58,7 +71,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("ids", nargs="*")
     ap.add_argument("--salida", default=str(RAIZ / "out/hilton/dt/st-turismo"))
-    ap.add_argument("--escala", default=ESCALA)
+    ap.add_argument("--escala", default=None,
+                    help="por defecto 2,0833 en historia y 2,0837 en feed (DT-F-*)")
     ap.add_argument("--guias", action="store_true",
                     help="rinde también las composiciones -Guia (QA, no se entregan)")
     ap.add_argument("--listar", action="store_true")
@@ -79,9 +93,12 @@ def main() -> int:
         destino = salida / NOMBRES.get(cid, f"{cid}.png")
         destino.parent.mkdir(parents=True, exist_ok=True)
         print(f"[{i}/{len(ids)}] {cid} → {destino.name} ... ", end="", flush=True)
+        # La escala la decide el FORMATO de la pieza, no la línea de comandos:
+        # el feed 4:5 necesita 2,0837 para dar 2250×2813 (ver ESCALA_FEED).
+        escala = a.escala or (ESCALA_FEED if cid.startswith("DT-F-") else ESCALA)
         r = subprocess.run(
             [npx(), "remotion", "still", str(ENTRADA), cid, str(destino),
-             f"--scale={a.escala}"],
+             f"--scale={escala}"],
             cwd=RAIZ, capture_output=True, text=True,
             encoding="utf-8", errors="replace")
         if r.returncode == 0 and destino.exists():

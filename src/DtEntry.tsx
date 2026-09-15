@@ -10,6 +10,7 @@
 import React from 'react';
 import {Composition, Folder, registerRoot} from 'remotion';
 
+import {DtFtHonors, DtFtHonorsGuia} from './compositions/hilton/DtFtHonors';
 import {
   DtStFiestasPatrias,
   DtStFiestasPatriasGuia,
@@ -17,6 +18,12 @@ import {
 import {DtStTurismo, DtStTurismoGuia} from './compositions/hilton/DtStTurismo';
 
 const story = {durationInFrames: 1, fps: 30, width: 1080, height: 1920} as const;
+/**
+ * FEED 4:5. La mesa es 1080×1350 y se entrega a 2250 de ancho (×2,0833), que es
+ * el máster de las tres piezas aprobadas de la cuenta y el de la plantilla de
+ * márgenes `logo-post.png`.
+ */
+const feed = {durationInFrames: 1, fps: 30, width: 1080, height: 1350} as const;
 
 const Raiz: React.FC = () => (
   <>
@@ -42,6 +49,16 @@ const Raiz: React.FC = () => (
         component={DtStFiestasPatriasGuia}
         {...story}
       />
+    </Folder>
+
+    <Folder name="DT-Feed">
+      {/*
+        FEED col K · 23-09 18:00 · ESTÁTICO HILTON HONORS, estado OK PARA DISEÑO.
+        La referencia es `Ref post s4.jpg`, que Eli subió a REFERENCIAS S4 DT el
+        15-09 a las 13:43 — y que resulta ser el mismo pin que enlaza el brief.
+      */}
+      <Composition id="DT-F-HiltonHonors" component={DtFtHonors} {...feed} />
+      <Composition id="DT-F-HiltonHonors-Guia" component={DtFtHonorsGuia} {...feed} />
     </Folder>
   </>
 );

@@ -205,6 +205,30 @@ PIEZAS = [
             #   logotipo Hilton Honors         y 1156,3-1219,2 ancho 148,8
             #   llamado del pie                y 1289,8-1314,2 ancho 474,2
             #
+            # ⭐⭐ RONDA 5 (15-09, tarde) — EL TITULAR SE REHIZO EN ILLUSTRATOR y
+            # las bandas 2 y 3 se re-midieron. Eli abrió el editable y **justificó
+            # las tres líneas a una misma medida**, escalando cada una: los
+            # cuerpos pasaron de 68/68/68 a **92,3 / 87,5 / 73,6** y la versal de
+            # 47,6 a 65,3. Bandas de tinta medidas sobre la entrega nueva, @1080:
+            #   titular 1 «MÁS BENEFICIOS»     y 541,9-607,2  x 156,0-920,2
+            #   titular 2 «EN CADA ESTADÍA»    y 635,0-696,5  x 157,0-921,1
+            #   titular 3 «CON HILTON HONORS»  y 722,4-773,8  x 155,5-922,1
+            # (La banda 1 no se tocó: la vieja —540-608— ya calzaba.)
+            #
+            # ⚠️ Las bandas excluyen los acentos a propósito (la Á en 526,6-538,6
+            # y la Í en 621,1-631,7): la huella se compara contra versales.
+            #
+            # ⛔⛔ Y OJO CON ALGO NUEVO: esta pieza ya NO sale de Remotion, sale
+            # EXPORTADA DE ILLUSTRATOR, que no rasteriza igual que Chrome. En
+            # texto chico eso baja el IoU de la huella lo justo para disparar
+            # falsa alarma: el rótulo «Tarifas» da 0,586 contra un señuelo de
+            # 0,488 —o sea, **gana la fuente correcta**— pero el margen exigido
+            # es 0,10 y se queda a 0,002. **No se bajó el margen**: aflojar la
+            # compuerta para que pase es justo lo que no se hace. Queda anotado
+            # para que quien lo vea sepa que es el rasterizador y no una
+            # sustitución. Verificado por COM contra el documento abierto:
+            # Stag-Medium, Stag-Light y Stag-Regular, correctas.
+            #
             # ⚠️ El umbral de tinta sube a 215 en el titular: a 200, el sillón
             # crema de la foto entra en la máscara y el «ancho del titular» pasa
             # a ser el ancho del sillón — el QA lo reportaba descentrado estando
@@ -213,10 +237,10 @@ PIEZAS = [
              "fuente": "Stag-Medium.ttf", "huella": "glifos", "banda": (540, 608),
              "xrango": (150, 930), "umbral": 215, "contraste_minimo": 3.0},
             {"nombre": "titular 2 «EN CADA ESTADÍA»", "texto": "EN CADA ESTADÍA",
-             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (612, 674),
+             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (632, 700),
              "xrango": (150, 930), "umbral": 215, "contraste_minimo": 3.0},
             {"nombre": "titular 3 «CON HILTON HONORS»", "texto": "CON HILTON HONORS",
-             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (678, 740),
+             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (718, 778),
              "xrango": (150, 930), "umbral": 215, "contraste_minimo": 3.0},
             # Los rótulos se miden DENTRO de su columna: con el rango ancho, el
             # filete lateral de la caja cae en las mismas filas.

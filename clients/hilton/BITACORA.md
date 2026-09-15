@@ -6,6 +6,56 @@
 
 ---
 
+## 2026-09-15 (tarde) — DT · RONDA 5 DEL ESTÁTICO DE HONORS, HECHA EN ILLUSTRATOR
+
+**Marca: DT.** Continúa el cierre de DT que está más abajo; **reemplaza su entrega**.
+
+**Qué se hizo:** se sacó el **editable** de la pieza para que Eli la trabajara en
+su Illustrator, ella **rehizo el titular** y la dio por buena. El criterio nuevo
+—*el titular se justifica a una medida común escalando cada línea*— quedó escrito
+en `clients/hilton/CLAUDE.md` § **RONDA 5**, que es lo que hay que leer.
+
+Cuerpos 68/68/68 → **92,3 / 87,5 / 73,6**; anchos de tinta **764,2 / 764,1 /
+766,6** (2,4 px entre las tres); versal 47,6 → 65,3. El llamado del pie quedó
+centrado exacto en 540 con tracking 10 (los rótulos siguen en 12).
+
+**Dónde quedó:** `Post n°1 S4 DT.png` **reemplazado en el MISMO archivo de Drive**
+— [`132pCMwB…`](https://drive.google.com/file/d/132pCMwB46c0nDz7DiyECSrLNFyShkFhv/view),
+**el enlace no cambió**. Verificado por `fileSize`: 8 440 764 bytes a los dos
+lados. La ronda 4 quedó archivada en `out/hilton/dt/ft-honors/_rondas/`.
+
+**Cómo se rehace:**
+
+```bash
+python scripts/dt-editable-svg.py --verificar   # el editable, con los valores de la ronda 5
+python scripts/ai-puente.py --abrir "out/hilton/dt/ft-honors/editable/Post n°1 S4 DT - EDITABLE.ai"
+python scripts/dt-qa.py "out/hilton/dt/ft-honors/*.png"
+```
+
+⭐ **Hay puente con Illustrator**: `scripts/ai-puente.py` habla por COM con el
+Illustrator abierto y corre ExtendScript adentro (leer el documento vivo,
+medirlo, modificarlo, exportar). Así se midieron estos números — no se estimó
+ninguno.
+
+**Abierto / ojo con esto:**
+
+- ⚠️ **`src/compositions/hilton/DtFtHonors.tsx` reproduce la RONDA 4, no la 5.**
+  La pieza entregada sale ahora del `.ai`. Quien necesite rehacerla por código
+  tiene que trasladarle los cuerpos y las líneas base de la ronda 5 (están en el
+  `TITULO` de `dt-editable-svg.py`, leídos del documento de Eli).
+- ⛔⛔ **Illustrator cambia los ESPACIOS del nombre por GUIONES al exportar**
+  (`Post-n°1-S4-DT.png`). El portal levanta por nombre: hay que renombrar.
+- ⚠️ `dt-qa.py` deja **una falsa alarma declarada**: el rótulo «Tarifas» da
+  huella 0,586 contra un señuelo de 0,488 —gana la fuente correcta— pero se
+  queda a 0,002 del margen de 0,10, porque el rasterizador de Illustrator no es
+  el de Chrome. **No se aflojó el margen.** Las fuentes se verificaron por COM.
+- Las tres observaciones que se le hicieron a Eli y **ella no aplicó** (están
+  medidas, por si vuelven): el aire titular→caja bajó a 38,2 px; el titular queda
+  a 56 px de sangrado de la caja (dos márgenes casi iguales); y «CON HILTON
+  HONORS» quedó la línea más chica.
+
+---
+
 ## 2026-09-15 — PISO18 · S4 DE SEPTIEMBRE, ENTREGADA
 
 **Marca: PISO18.** Sesión aparte de la de DT que corre el mismo día.

@@ -703,6 +703,72 @@ secundaria.
 Y va **sin sombra**, igual que el logotipo DT. Cae sobre el piso de madera, que
 es oscuro: medido sin sombra da **7,19:1**.
 
+### ⭐⭐⭐ RONDA 5 (15-09, tarde) — EL TITULAR DE DT SE JUSTIFICA A UNA MEDIDA
+
+**Éste es un criterio de composición de Eli, no un arreglo de una pieza.** Lo
+hizo ella misma, con el editable abierto en su Illustrator, y lo dio por bueno.
+
+Hasta la ronda 4 el titular iba a **un solo cuerpo** (68) y centrado, y las tres
+líneas quedaban de anchos distintos (563 / 593 / 709) — un triángulo. Ahora cada
+línea se **escala hasta llegar a una misma medida**, y lo que varía es el cuerpo:
+
+| | Ronda 4 | **Ronda 5 — la buena** |
+|---|---|---|
+| Cuerpos | 68 · 68 · 68 | **92,3 · 87,5 · 73,6** |
+| Ancho de tinta | 563 / 593 / 709 | **764,2 / 764,1 / 766,6** |
+| Altura de versal | 47,6 | **65,3** |
+| Aire titular → caja | 78,1 | **38,2** |
+
+Medido sobre la entrega (`@1080`), las tres líneas caen a **2,4 px** una de otra,
+con los cantos izquierdos en 156,0 / 157,0 / 155,5 y los derechos en
+920,2 / 921,1 / 922,1. **Eso es un bloque justificado de verdad**, y la «C» de
+*CON* saliéndose 1,5 px es compensación óptica correcta, no descuido.
+
+**La regla que queda:** en DT, un titular de varias líneas se justifica a una
+medida común escalando cada línea; **el cuerpo es la consecuencia, no la
+decisión**. El peso sigue mandando la jerarquía (línea 1 en Stag Medium, las
+otras en Light), no el tamaño.
+
+⚠️ **El corolario que hay que vigilar, porque es el costo del método:** la línea
+más LARGA queda la más CHICA. Acá eso dejó «CON HILTON HONORS» —la marca y el
+gancho— como la línea menor (73,6 contra 92,3). Si en otra pieza la línea larga
+es la que tiene que pesar, se parte en dos líneas antes de justificar.
+
+⚠️ **Y el aire de abajo se paga:** pasó de 78,1 a 38,2 px, menos de tres cuartos
+de una altura de versal contra el filete de la caja. Eli lo aprobó así. Se dejó
+dicho y no se tocó; si en otra pieza queda más apretado que esto, es el límite.
+
+#### ⚠️ Esta pieza YA NO SALE DE REMOTION — y eso cambia dos cosas
+
+La entrega se **exporta de Illustrator**, del editable
+`out/hilton/dt/ft-honors/editable/Post n°1 S4 DT - EDITABLE.ai`.
+`src/compositions/hilton/DtFtHonors.tsx` sigue reproduciendo la **ronda 4**, no
+ésta: si hay que rehacerla por código, hay que trasladarle estos cuerpos.
+
+1. ⛔⛔ **Illustrator le cambia los ESPACIOS por GUIONES al exportar el PNG.**
+   Salió `Post-n°1-S4-DT.png` y el nombre de entrega es `Post n°1 S4 DT.png`.
+   **El portal levanta por nombre**, así que eso rompe la entrega sin avisar.
+   Hay que renombrar siempre después de exportar.
+2. ⚠️ **El rasterizador de Illustrator no es el de Chrome**, y en texto chico eso
+   baja la huella de glifos de `dt-qa.py` lo justo para dar falsa alarma — ver la
+   nota en el registro de la pieza. **No se aflojó el margen.**
+
+#### ⭐ Cómo se abre el editable sin que se vea mal
+
+Illustrator le pone a **todo SVG que abre** los Efectos de rasterizado en
+**72 ppi y con el suavizado apagado**, y cuando un grupo lleva un efecto
+rasteriza el **grupo entero, texto incluido**. Por eso el titular salía con las
+diagonales escalonadas: no era la sombra, eran las letras.
+
+> Efecto › Ajustes de efectos de rasterizado del documento → **Alta (300 ppi)** +
+> **Suavizado**. Medido: la diferencia contra la pieza de referencia baja de
+> 17,54 a 10,52 en la zona del titular.
+
+⭐ De paso, verificado por COM contra el Illustrator abierto: en la máquina de
+Eli están **los nueve cortes de Stag** y además `TradeGothicNextLTPro-Bd` y
+`-Hv`, que el brand kit daba por faltantes. **El Bold de ancho normal existe** —
+es el que pedía un bloque de precio y por el que se había colado Raleway.
+
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 
 Verificado glifo a glifo con `fontTools` sobre los archivos de esta máquina: los

@@ -78,18 +78,75 @@ SEÑUELOS = ["C:/Windows/Fonts/georgia.ttf", "C:/Windows/Fonts/times.ttf",
 # ⚠️ Y la lección, que ya van tres: un umbral o una banda FIJA en el QA acusa a
 # la pieza cuando lo que cambió es el diseño. Las bandas se re-miden en cada
 # ronda que mueva el texto, y se re-corre el QA DESPUÉS de eso, nunca antes.
-ELEMENTOS = [
-    {"nombre": "titular 1 «¡Feliz Día»", "texto": "!Feliz Día",
-     "fuente": "Stag-Medium.ttf", "banda": (683, 817), "xrango": (152, 928),
-     "umbral": 200},
-    {"nombre": "titular 2 «del Turismo!»", "texto": "del Turismo!",
-     "fuente": "Stag-Light.ttf", "banda": (818, 957), "xrango": (152, 928),
-     "umbral": 200},
-    {"nombre": "subtexto línea 1", "texto": None,
-     "fuente": None, "banda": (1030, 1100), "xrango": (152, 928), "umbral": 185},
-    {"nombre": "subtexto línea 2", "texto": None,
-     "fuente": None, "banda": (1101, 1165), "xrango": (152, 928), "umbral": 185},
+# ⛔⛔ Y LA LECCIÓN GRANDE, DEL 15-09: ESTAS BANDAS SON DE UNA PIEZA, NO DE LA MARCA.
+# Estaban al nivel del módulo, así que la primera historia nueva de DT —el saludo
+# de Fiestas Patrias del 18-09— se midió contra la geometría del Día del Turismo
+# y el QA cantó CUATRO fallos que no existían: buscaba «¡Feliz Día» donde decía
+# «¡Felices», el subtexto 100 px más abajo de donde estaba, y el logotipo por su
+# silueta AZUL cuando esta pieza lo lleva blanco. Un QA que acusa a una pieza sana
+# se deja de mirar, que es peor que no tenerlo.
+#
+# Ahora cada pieza declara lo suyo y se elige por el nombre del archivo. Agregar
+# una historia nueva es agregar una entrada acá, con sus bandas MEDIDAS sobre el
+# PNG rendido (no estimadas) y la tinta con la que va su logotipo.
+PIEZAS = [
+    {
+        "marca": "Dia del Turismo",
+        "logo": "azul",          # §B.4: el cielo pálido se come el blanco
+        "elementos": [
+            {"nombre": "titular 1 «¡Feliz Día»", "texto": "!Feliz Día",
+             "fuente": "Stag-Medium.ttf", "banda": (683, 817), "xrango": (152, 928),
+             "umbral": 200},
+            {"nombre": "titular 2 «del Turismo!»", "texto": "del Turismo!",
+             "fuente": "Stag-Light.ttf", "banda": (818, 957), "xrango": (152, 928),
+             "umbral": 200},
+            {"nombre": "subtexto línea 1", "texto": None,
+             "fuente": None, "banda": (1030, 1100), "xrango": (152, 928), "umbral": 185},
+            {"nombre": "subtexto línea 2", "texto": None,
+             "fuente": None, "banda": (1101, 1165), "xrango": (152, 928), "umbral": 185},
+        ],
+    },
+    {
+        # STORIES col H · 18-09 · RONDA 3, el collage. Bandas RE-MEDIDAS sobre el PNG
+        # después de apretar los interlineados y devolver el logotipo arriba:
+        #   logotipo          y 242-377, ancho 164   ← la plantilla `logo-ST.png`
+        #   ¡Felices Fiestas  y 551-644   Patrias!  y 676-766
+        #   bajada versales   L1 825-860 · L2 878-913 · L3 933-968
+        # ⚠️ Es la tercera vez que estas bandas se mueven. Se re-miden en CADA
+        # ronda que toque el texto, y el QA se corre después de eso, nunca antes.
+        "marca": "Felices Fiestas Patrias",
+        "logo": "blanco",        # §B.3, el color por defecto
+        # ⭐ RONDA 4: el logotipo crece de 167 a 225 (Eli: «agranda más el logo, para
+        # compensar un poco la jerarquía»). Sigue centrado y en su tope de 241.
+        "logo_geom": {"ancho": 225, "top": 241},
+        "elementos": [
+            {"nombre": "titular 1 «¡Felices Fiestas»", "texto": "!Felices Fiestas",
+             "fuente": "Stag-MediumItalic.ttf", "banda": (530, 660), "xrango": (60, 1020),
+             "umbral": 205},
+            # ⚠️ RONDA 5: `xrango` se cierra a 280-820 porque las DOS banderas caen en
+            # esta misma franja (tinta a x 52-211 y 882-1043). Con el rango ancho, el QA
+            # medía 991 px de «ancho del titular» —que es el vuelo de bandera a bandera,
+            # no el texto— y cantaba descentrado. El texto va de 343 a 739.
+            {"nombre": "titular 2 «Patrias!»", "texto": "Patrias!",
+             "fuente": "Stag-LightItalic.ttf", "banda": (661, 790), "xrango": (280, 820),
+             "umbral": 205},
+            {"nombre": "bajada versal 1", "texto": None,
+             "fuente": None, "banda": (805, 868), "xrango": (60, 1020), "umbral": 205},
+            {"nombre": "bajada versal 2", "texto": None,
+             "fuente": None, "banda": (869, 922), "xrango": (60, 1020), "umbral": 205},
+            {"nombre": "bajada versal 3", "texto": None,
+             "fuente": None, "banda": (923, 980), "xrango": (60, 1020), "umbral": 205},
+        ],
+    },
 ]
+
+
+def pieza_de(nombre: str) -> dict | None:
+    """Qué pieza es este PNG. Se decide por el nombre del archivo de entrega."""
+    for p in PIEZAS:
+        if p["marca"].lower() in nombre.lower():
+            return p
+    return None
 
 
 def relativa(c: np.ndarray) -> np.ndarray:
@@ -135,8 +192,16 @@ def revisa(ruta: Path) -> list[str]:
     if (W, H) != MASTER:
         fallos.append(f"máster {W}×{H}, se esperaba {MASTER[0]}×{MASTER[1]}")
 
+    pieza = pieza_de(ruta.name)
+    if pieza is None:
+        fallos.append("no sé qué pieza es este PNG: no calza con ninguna entrada de "
+                      "PIEZAS. Agrégala con sus bandas MEDIDAS antes de entregar.")
+        print("   ⛔ pieza desconocida — no puedo medirle las bandas")
+        return fallos
+    print(f"   pieza «{pieza['marca']}» · logotipo {pieza['logo']}")
+
     # ── elementos de texto: presencia, fuente y contraste
-    for el in ELEMENTOS:
+    for el in pieza["elementos"]:
         y0, y1 = (int(v / k) for v in el["banda"])
         x0r, x1r = (int(v / k) for v in el["xrango"])
         reg = a[y0:y1, x0r:x1r]
@@ -212,16 +277,28 @@ def revisa(ruta: Path) -> list[str]:
     # — así que 0,52 separa lo bueno de todo lo malo con margen por los dos
     # lados. No sube más porque el logotipo es tipografía fina y el
     # antialiasing se come parte del solapamiento aunque el calce sea exacto.
-    logo = Image.open(RAIZ / "public/assets/hilton/dt/logo-dt-azul.png")
+    #
+    # ⭐ 15-09: la máscara depende de la TINTA del logotipo, y por eso se pide en
+    # la ficha de la pieza. Con la máscara azul sobre el logo blanco del saludo
+    # de Fiestas Patrias el IoU caía a 0,228 y el QA lo daba por ausente.
+    tinta_logo = pieza["logo"]
+    geom = {**LOGO_PLANTILLA, **pieza.get("logo_geom", {})}
+    logo = Image.open(RAIZ / f"public/assets/hilton/dt/logo-dt-{tinta_logo}.png")
     escala = W / 1080.0
-    lw = int(round(LOGO_PLANTILLA["ancho"] * escala))
+    lw = int(round(geom["ancho"] * escala))
     lh = int(round(lw / 1.2254))
     plantilla = np.asarray(logo.resize((lw, lh), Image.LANCZOS).getchannel("A")) > 90
 
-    oscuro = (a[..., 0] < 90) & (a[..., 1] < 100) & (a[..., 2] < 150) & \
-             (a[..., 2] > a[..., 0] + 20)
-    x_esp = int(round((540 - LOGO_PLANTILLA["ancho"] / 2) * escala))
-    y_esp = int(round(LOGO_PLANTILLA["top"] * escala))
+    if tinta_logo == "azul":
+        oscuro = (a[..., 0] < 90) & (a[..., 1] < 100) & (a[..., 2] < 150) & \
+                 (a[..., 2] > a[..., 0] + 20)
+    else:
+        # blanco: tinta clara y NEUTRA, para no confundirla con una luz cálida
+        sp = (np.abs(a[..., 0] - a[..., 1]) + np.abs(a[..., 1] - a[..., 2])
+              + np.abs(a[..., 0] - a[..., 2]))
+        oscuro = (a[..., 0] > 205) & (a[..., 1] > 205) & (a[..., 2] > 205) & (sp <= 30)
+    x_esp = int(round((540 - geom["ancho"] / 2) * escala))
+    y_esp = int(round(geom["top"] * escala))
     paso = max(1, int(4 * escala))
     mejor = (-1.0, 0, 0)
     for dy in range(-int(30 * escala), int(30 * escala) + 1, paso):
@@ -238,23 +315,24 @@ def revisa(ruta: Path) -> list[str]:
     iou, dx, dy = mejor
     print(f"   logotipo                   silueta IoU {iou:.3f}  "
           f"desvío x {dx:+.0f} · y {dy:+.0f} px @1080  "
-          f"(plantilla: ancho {LOGO_PLANTILLA['ancho']}, tope {LOGO_PLANTILLA['top']}, "
+          f"(ancho {geom['ancho']}, tope {geom['top']}, "
           f"centrado)  {'ok' if iou >= UMBRAL_IOU and abs(dx) <= 6 and abs(dy) <= 6 else '⛔'}")
     if iou < UMBRAL_IOU:
         fallos.append(f"el logotipo no calza con su silueta (IoU {iou:.3f}): "
                       "falta, está a otro tamaño o está deformado")
     elif abs(dx) > 6 or abs(dy) > 6:
         fallos.append(f"el logotipo está corrido {dx:+.0f},{dy:+.0f} px "
-                      "respecto de la plantilla de Eli")
+                      "respecto de la geometría declarada")
     else:
         caja = a[y_esp:y_esp + lh, x_esp:x_esp + lw]
         if (~plantilla).sum() > 300:
+            ref = AZUL if tinta_logo == "azul" else np.array([250, 250, 250])
             c = contraste(relativa(caja[~plantilla]).mean(),
-                          relativa(AZUL.reshape(1, 3))[0])
-            print(f"   {'':26} tinta azul contra su fondo {c:5.2f}:1  "
+                          relativa(ref.reshape(1, 3))[0])
+            print(f"   {'':26} tinta {tinta_logo} contra su fondo {c:5.2f}:1  "
                   f"{'ok' if c >= 4.5 else '⛔'}")
             if c < 4.5:
-                fallos.append(f"el logo azul da {c:.2f}:1 contra su fondo (<4,5)")
+                fallos.append(f"el logo {tinta_logo} da {c:.2f}:1 contra su fondo (<4,5)")
 
     # ── zona segura inferior: sólo tinta tipográfica (blanco plano y neutro)
     spread = (np.abs(a[..., 0] - a[..., 1]) + np.abs(a[..., 1] - a[..., 2])

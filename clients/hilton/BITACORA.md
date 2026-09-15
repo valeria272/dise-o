@@ -1,3 +1,149 @@
+## 2026-09-15 (RONDAS 1–6) · Eli (Windows) — DOUBLETREE: la ST del 18-09, aprobada y subida
+
+**Qué se hizo.** La historia estática de STORIES col H (18-09, 09:00), de cero a
+aprobada en seis rondas. **Subida al Drive** (`16JBlbWB0AImxv_7sdS7Yj3btZh2pX2iT`),
+`md5` verificado contra el local: `eb0543ba8bf43ff8538a262209f5f35d`.
+
+### ⭐⭐⭐ 1. La ronda 1 estuvo BIEN HECHA y aun así era la pieza equivocada
+
+Se eligió una foto entre las 150 de la carpeta **midiendo**: se barrieron todos los
+encuadres 9:16 posibles puntuando la calma de la franja del texto y la presencia de
+sujeto abajo. Salió `IMG_1988`, y con el aparato de la ST del Día del Turismo la
+pieza pasó el QA a la primera.
+
+Eli mandó una referencia armada y **cambió la pieza entera**: collage, titular en
+itálica, bajada en versales, logotipo abajo. Nada de lo medido estaba mal; lo que
+faltaba era la dirección, y esa no se deduce del brief.
+
+⚠️ **Lo que SÍ se hizo bien y conviene repetir:** el brief dejaba el collage como
+«por confirmar, no resolver sin aprobación del cliente», así que la ronda 1 fue de
+una foto y el collage se INFORMÓ en vez de resolverlo (§G). Lo destrabó Eli.
+
+### ⭐⭐ 2. El QA tenía la geometría de UNA pieza al nivel del módulo
+
+`dt-qa.py` guardaba las bandas y los textos del Día del Turismo como constantes
+globales, así que la primera historia nueva de DT se midió contra la pieza anterior
+y cantó **cuatro fallos que no existían**. Un QA que acusa a una pieza sana se deja
+de mirar, que es peor que no tenerlo.
+
+Ahora hay `PIEZAS`: cada una declara sus bandas, sus textos, la tinta de su
+logotipo y su geometría, y se elige por el nombre del archivo. Verificado que la
+del Turismo sigue pasando.
+
+⚠️ Y la regla que ya va por cuarta vez: **las bandas se re-miden en cada ronda que
+mueva el texto, y el QA se corre DESPUÉS de eso, nunca antes.**
+
+### ⭐⭐ 3. Las cuatro correcciones de la ronda 3, y la que arrastraron
+
+«Deja el logo arriba, aprieta los interlineados, el fondo en azul DT.»
+
+| | Antes | Después |
+|---|---|---|
+| Logotipo | y 1345 · 180 px | y 241 · 167 px (plantilla) |
+| Hueco del titular | 47 px · 0,37 em | 32 px · 0,25 em |
+| Hueco de la bajada | 31 px · 0,62 em | 19 px · 0,38 em |
+| Hilo entre cuadros | `#FAFAFA` | `#09194E` |
+
+⭐ **Apretar los dos huecos internos obligó a mover el que los separa.** Quedaba en
+76 px contra 32 dentro del titular —más de 3×— y la regla es ~1,5×. La bajada subió
+35 px y quedó en 59 contra 32: 1,8×.
+
+⭐ **El hilo en azul de marca cohesiona el mosaico.** En blanco se leía como diez
+fotos sueltas; en azul, como una sola pieza.
+
+### ⭐⭐ 4. El logotipo creció y destapó un defecto de fondo
+
+Ronda 4: de 167 a **225** (15,5 % → 20,8 % del ancho). Con el titular al 75 %, el
+logotipo no sostenía el otro extremo de la jerarquía. ⚠️ Es excepción de TAMAÑO y
+no se hereda: sigue centrado, en su tope de 241 y a su proporción real.
+
+**Y al crecer, su caja pasó a ir de x=427 a x=652 — y el corte en diagonal del
+mosaico la cruzaba entre 564 y 588.** Una línea azul saliendo por detrás del
+lockup: el mismo defecto que obligó a re-encuadrar la foto del Día del Turismo. El
+corte se movió a (745,0)–(700,455), a 48 px del canto.
+
+> **Regla: cuando un elemento de marca cambia de tamaño, se vuelve a mirar QUÉ HAY
+> DETRÁS de su caja nueva.** El QA no lo agarra —mide contraste, no colisiones— y a
+> ojo tampoco, porque el defecto aparece recién al 100 %.
+
+### ⭐⭐ 5. «De una esquina» eran DOS banderas
+
+Ronda 4 puso una bandera asomando por la esquina superior izquierda, con la esquina
+elegida midiendo las cuatro (sup-izq 11,01:1 · sd 16,0, la más calma). Eli devolvió
+la pieza con **dos marcas rojas flanqueando el bloque de texto**.
+
+⭐ Y ya estaba resuelto: es el mismo pedido de la ronda 5 de la S3 de Between, y de
+ahí sale el truco del **`espejo` POR FUERA de la rotación** — con el mismo `giro` y
+espejo en una de las dos, el par queda simétrico solo.
+
+⭐ **La geometría de la bandera se COPIÓ, no se importó.** Un archivo de Between no
+tiene nada que hacer dentro de una pieza de DT, pero la geometría no es criterio de
+Between: es la bandera de Chile, con dos defectos de zoom ya corregidos (el escalón
+del cantón y la espina de la división). Lo que SÍ cambió: acá el trazo va limpio,
+sin la textura de mano de Between.
+
+### ⭐ 6. «Al límite el palito» se calcula, no se busca a ojo
+
+Ronda 6: las banderas suben de 205 a 235 y se corren hasta que la punta del mástil
+cae EXACTO en el canto. El mástil termina en (56, 224) del viewBox y todo gira 18°,
+así que su punta real cae en **(31,6 · 190,4)** ya rotada; a escala 235/300 son 24,7
+px ⇒ `x = −24,7` y `x = 869,7`.
+
+⚠️ **Y el ancho tiene techo, que lo pone el texto:** a 235 la tela llega a x=200 y
+la bajada más larga empieza en x=236 — 36 px de aire. A 245 quedarían 27; a 265 se
+tocan.
+
+⚠️ **Trampa del QA que dejó esta ronda:** las banderas caen en la misma franja que
+«Patrias!», así que el QA medía 991 px de «ancho del titular» —el vuelo de bandera a
+bandera— y cantaba descentrado. La ventana de esa línea se cerró a x 280-820.
+
+### ⭐ 7. Cómo se listó una carpeta que el conector no lista
+
+La carpeta que mandó Eli (`1_LUmZ26C9FtGl9zLgE_IxRoN7-0so91w`, 179 archivos) devuelve
+`{}` por `search_files`. El índice salió por **`embeddedfolderview`** y la hoja de
+contacto con las **miniaturas** (`thumbnail?id=…&sz=w400`, ~30 KB), no bajando 150
+archivos. Y cuatro de esos «.jpg» son **HEIC** por dentro: `pillow_heif` los abre.
+
+### ⚠️ Dos cosas que chocan con reglas escritas, y mandó la referencia
+
+- **La línea larga quedó arriba** — el repertorio de DT dice corta arriba, larga
+  abajo. Acá el corte lo fija el titular de Eli.
+- **Las versales van en Stag y no en Trade Gothic** — el manual oficial le da a
+  Trade las versales; la referencia las pone en serif itálica.
+
+Las dos anotadas en la composición para que se lean como decisión, no como descuido.
+
+### ⛔ Los rostros: autorización puntual, NO precedente
+
+§A de DT dice que en imagen no va el rostro de un trabajador. Eli la levantó **para
+esta pieza y por el formato**: «acá no pasa nada si se ven los rostros, por formato
+de storie». La próxima pieza de DT vuelve a §A salvo que ella diga lo contrario.
+
+### Entrega y dónde quedó todo
+
+| | |
+|---|---|
+| Drive | `16JBlbWB0AImxv_7sdS7Yj3btZh2pX2iT` · `DT ST 18-09 Felices Fiestas Patrias.png` |
+| Verificación | `md5 eb0543ba8bf43ff8538a262209f5f35d`, igual al local · 12 299 570 B |
+| Composición | `src/compositions/hilton/DtStFiestasPatrias.tsx` |
+| El mosaico | `scripts/dt-st-fiestas-collage.py` (+ los curl para re-bajar los 10 cuadros) |
+| La foto de la ronda 1 | `scripts/dt-st-fiestas-foto.py` |
+| QA | `scripts/dt-qa.py`, ahora por pieza |
+| Revisión | `out/hilton/dt/st-18sep-fiestas/revision.html` |
+
+`npm run typecheck` limpio. `dt-qa.py` 1/1 limpia, y la del Día del Turismo sigue
+pasando.
+
+### Abierto
+
+1. **El brief sigue diciendo que el collage es «por confirmar».** Lo destrabó Eli,
+   no el cliente. La conversación con el cliente es de ella.
+2. `scripts/dt-ft-honors-foto.py` apareció sin commitear (11:04 de hoy) y **no es de
+   esta sesión**. Se dejó fuera del commit a propósito.
+3. La ronda 1 quedó reproducible por si el cliente prefiere la de una foto.
+
+---
+
 ## 2026-09-14 (RONDAS 27–32) · Eli (Windows) — BETWEEN ST 28-09: el montaje se bota y la escena se GENERA
 
 **Qué se hizo.** La historia del 28-09 («HUMOR | CAFÉ TO GO») se rehizo entera y

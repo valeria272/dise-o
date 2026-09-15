@@ -96,6 +96,9 @@ public/assets/**
 # máquina reproduce la entrega byte a byte; sin esto, vuelve a empezar de cero.
 # El original se rebaja con el curl que documenta scripts/dt-st-turismo-foto.py.
 !public/assets/hilton/dt/st-turismo-*.jpg
+# ST 18-09 Fiestas Patrias: el MOSAICO ya armado y la foto de la ronda 1. Los diez
+# fotogramas originales se rebajan con los curl de scripts/dt-st-fiestas-collage.py.
+!public/assets/hilton/dt/st-fiestas-*.jpg
 
 # Landera: el logo. Los 10 bloqueos extraídos del PDF del cliente y el kit
 # completo (40 piezas × PDF/SVG/PNG) reconstruido con la paleta aprobada. Sin

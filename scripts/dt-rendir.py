@@ -35,6 +35,9 @@ ESCALA = "2.0833"
 NOMBRES = {
     "DT-S-DiaTurismo": "DT ST 27-09 Dia del Turismo.png",
     "DT-S-DiaTurismo-Guia": "GUIAS QA/DT ST 27-09 Dia del Turismo - GUIA.png",
+    # STORIES col H · 18-09 · saludo Fiestas Patrias (collage, ronda 2).
+    "DT-S-FiestasPatrias": "DT ST 18-09 Felices Fiestas Patrias.png",
+    "DT-S-FiestasPatrias-Guia": "GUIAS QA/DT ST 18-09 Felices Fiestas Patrias - GUIA.png",
 }
 
 

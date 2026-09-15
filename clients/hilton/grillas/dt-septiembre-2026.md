@@ -1,7 +1,7 @@
 # Grilla DOUBLETREE — instantánea
 
-> Instantánea del 10-09-2026 tomada con `/al-dia`.
-> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/ccb4b8cd-ad80-4f6e-9dd2-6dafa8305a4a/scratchpad/DT-sept-HOY.xlsx`.
+> Instantánea del 15-09-2026 tomada con `/al-dia`.
+> Origen: `C:/Users/Elisabet/AppData/Local/Temp/claude/c--Users-Elisabet-EDITOR-VIDEOS/26bad56a-d8e5-447a-8705-484a7bc1bcdf/scratchpad/DT-hoy.xlsx`.
 > **Sirve de base para el DIFF de la próxima ronda**: los comentarios se
 > prependen sobre los viejos en la misma celda, así que sin esta copia no se
 > distingue lo nuevo de lo ya resuelto.
@@ -242,7 +242,7 @@ G2: Cambiar a legal: *Válido de jueves a domingo y festivos. Sujeto a disponibi
 G2: Cambiar a legal: *Válido de jueves a domingo y festivos. Sujeto a disponibilidad~~
 
 
-### Columna G — **APROBADO**
+### Columna G — **YA POSTEADO**
 
 **FECHA:**
 
@@ -336,7 +336,7 @@ SEMANA 3
 **HORARIO:**
 
 ```
-12:00:00
+17:00:00
 ```
 
 **DISEÑOS:**
@@ -384,8 +384,17 @@ Gracias por destacar nuestro servicio y ubicación. Cada opinión nos impulsa a 
 **COMENTARIOS PARA DISEÑO:**
 
 ```
+Quitemos esa info de la estadía y queda ok!
+
+
 Ok el que sugiere Carlos
 ```
+
+*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Quitemos esa info de la estadía y queda ok!~~
+> ~~~~
+> ~~Ok el que sugiere Carlos~~
+> ~~~~
 
 
 ### Columna J — **sin estado**
@@ -397,7 +406,7 @@ SEMANA 4
 ```
 
 
-### Columna K — **CORREGIDA**
+### Columna K — **APROBADO**
 
 **FECHA:**
 
@@ -429,6 +438,7 @@ Visual: Fotografía real de alta calidad ocupando todo el fondo (idealmente una 
 Texto en pantalla (Zona superior izquierda):
 "BENEFICIOS
 HILTON HONORS"
+MÁS BENEFICIOS EN CADA ESTADÍA CON HILTON HONORS
 
 SECCIÓN 2 – CAJA CENTRAL (BENEFICIOS)
 
@@ -436,22 +446,29 @@ Visual: Caja superpuesta (estilo cristal o translúcida) dividida en 6 cuadrante
 
 Texto en pantalla (Por cuadrante, acompañando al ícono):
 
-(Ícono etiqueta de descuento) "Tarifas Exclusivas"
+(Ícono etiqueta de descuento) "Tarifas exclusivas"
 
-(Ícono cama o flecha arriba) "Upgrades de Habitación"
+(Ícono cama o flecha arriba) "Upgrades de habitación"
 
 (Ícono señal wifi) "WiFi Premium"
 
 (Ícono smartphone) "Check-in Digital"
 
-(Ícono luna o regalo) "Noches Gratis"
+(Ícono luna o regalo) "Canje de noches gratis"
 
-(Ícono moneda o puntos) "Acumula Puntos"
+(Ícono moneda o puntos) "Acumula puntos en cada estadía"
 
 Sección 3 - Footer
 
 Texto: Inscríbete gratis en el link de la bio
 ```
+
+*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~"BENEFICIOS
+HILTON HONORS"~~
+> ~~MÁS BENEFICIOS EN CADA ESTADÍA CON HILTON HONORS~~
+> ~~(Ícono señal wifi) "WiFi Premium"~~
+> ~~(Ícono smartphone) "Check-in Digital"~~
 
 **LINKS:** ([enlace](https://cl.pinterest.com/pin/1045820344739252999/))
 
@@ -475,8 +492,14 @@ Inscríbete gratis en Hilton Honors y haz que cada viaje valga más.
 **COMENTARIOS PARA DISEÑO:**
 
 ```
+Les dejé ajustes en el brief
+
+
 Este que mejor sea un estático, ya hicimos reel hace poco (guardemos la idea de todas formas)
 ```
+
+*Tachado en la grilla (ya resuelto, NO volver a aplicar):*
+> ~~Este que mejor sea un estático, ya hicimos reel hace poco (guardemos la idea de todas formas)~~
 
 
 ### Columna L — **sin estado**
@@ -689,7 +712,7 @@ Sticker de encuesta: Sí / No
 ```
 
 
-### Columna F — **APROBADO**
+### Columna F — **YA POSTEADO**
 
 **FECHA:**
 
@@ -700,7 +723,7 @@ Sticker de encuesta: Sí / No
 **HORARIO:**
 
 ```
-11:00:00
+18:00:00
 ```
 
 **DISEÑOS:**
@@ -744,7 +767,7 @@ SEMANA 3
 ```
 
 
-### Columna H — **PENDIENTE POR CLIENTE**
+### Columna H — **OK PARA DISEÑO**
 
 **FECHA:**
 
@@ -795,7 +818,7 @@ SEMANA 4
 ```
 
 
-### Columna J — **CORREGIDA**
+### Columna J — **EN REVISIÓN**
 
 **FECHA:**
 
@@ -850,7 +873,7 @@ Ojo que estamos con promo de ER, esto debe quedar para más adelante en el mes (
 ```
 
 
-### Columna K — **OK PARA DISEÑO**
+### Columna K — **EN REVISIÓN**
 
 **FECHA:**
 
@@ -908,7 +931,7 @@ SEMANA 2
 ```
 
 
-### Columna D — **CORREGIDA**
+### Columna D — **EN REVISIÓN**
 
 **FECHA:**
 
@@ -928,7 +951,7 @@ SEMANA 2
 REEL
 ```
 
-**DISEÑO:**
+**DISEÑO:** ([enlace](https://drive.google.com/drive/folders/1LwMbpXHYMiVsY82LllhENBydYFbQF-J7?usp=drive_link))
 
 ```
 REEL ORGÁNICO - "HABITACIÓN LISTA"
@@ -944,6 +967,12 @@ Vemos distintas tomas con paneos, zoom in y transiciones muy limpias de la habit
 
 ```
 REF
+```
+
+**VIDEO EDITADO:** ([enlace](https://drive.google.com/file/d/13zOp2I6tMICl0jagVW7fnbIfaqUwVu5v/view?usp=sharing&t=21.743))
+
+```
+VIDEO EDITADO
 ```
 
 **COPY:**

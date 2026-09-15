@@ -65,18 +65,143 @@ Los tres sujetos de la marca, dichos por Eli:
 2. **Los platos**
 3. **Los rostros** — hay gente en las piezas, no sólo producto
 
-## 4. Identidad — ⛔ SIN MEDIR
+## 4. Identidad — medido el 15-09-2026
 
-**Nada acá está medido todavía.** Lo único declarado:
+Fuente: el `Informe.txt` del paquete **FEED QB S1 agosto** (copia íntegra en
+[`adn/FEED-QB-S1-agosto-Informe.txt`](adn/FEED-QB-S1-agosto-Informe.txt)) y la
+medición de la historia `ST n°2 S3 QB.png`, en `raw/hilton/qb/piezas-ref/`.
 
-| Qué | Estado |
+### Tipografías — cuatro archivos, tres familias
+
+| Rol | Fuente | Origen | En el estudio |
+|---|---|---|---|
+| **Principal** | **Raleway** — 10 cortes en uso: Light, Regular, Medium, SemiBold, Bold, ExtraBold + Italic de varios | **Adobe Fonts** — *protegida, NO se empaqueta* | Hay Raleway de Google Fonts en `public/assets/hilton/between/fonts/`. ⚠️ No está verificado que sea el mismo corte que el de Adobe |
+| **Secundaria / editorial** | **Bell MT** + **Bell MT Italic** (OTF) | Empaquetada en el `.ai` | ✅ **`public/assets/hilton/qb/fonts/BELL.TTF` · `BELLI.TTF`** — versionadas el 15-09, viajan con el repo |
+| **Mano** | **Brushwell** (OTF) | Empaquetada | ✅ Ya estaba: `public/assets/hilton/between/fonts/Brushwell.*` — **byte a byte el mismo archivo** (537 296 B). Usar la versión `.ttf`/`.woff2`, porque Chrome rechaza la `.otf` CFF |
+
+> `MyriadPro-Regular.otf` también viaja en el paquete: es la fuente por defecto de
+> Illustrator, no es de la marca.
+
+> ⚠️ **Bell MT es de Monotype y Brushwell es comercial.** Están en el repo porque
+> vienen empaquetadas por la diseñadora para producir esta marca — mismo estatus que
+> Brushwell en Between. La licencia es del cliente: no se reusan en otra marca.
+
+### ⭐⭐ Las cifras de Raleway — el problema NO es el tabular
+
+Eli pidió el 15-09-2026: «Raleway, la cual en general necesitas agregar OpenType
+tabular, ya que los números suelen verse extraños. Tienen que verse siempre
+armónicos.»
+
+**Medido con `fontTools`, el diagnóstico es otro — y la buena noticia es que tiene
+arreglo en Illustrator.** Son dos defectos distintos que se confunden en uno:
+
+**① El que se ve: las cifras de Raleway son de ESTILO ANTIGUO por defecto.**
+No están a la altura de las versales — suben y bajan como minúsculas
+(unidades sobre una versal de 710):
+
+| Cifra | Va de | Contra la versal |
+|---|---|---|
+| `0` | −10 a 597 | **113 más baja** |
+| `1` | 0 a 571 | 139 más baja |
+| `3` `5` `9` | bajan a −147 / −149 / −154 | **descienden bajo la línea base** |
+| `6` `8` | suben a 715 / 710 | sobresalen |
+
+Por eso `16:00` al lado de un titular en versales se lee como `16:oo`. **Eso es lo
+que se ve «extraño», y no tiene nada que ver con el tabular.**
+
+✅ **Y se arregla: la fuente SÍ declara `lnum` (cifras de caja alta) en los diez
+cortes.** En Illustrator es el botón de **«Cifras de caja alta»** del panel
+OpenType — no el de «Cifras tabulares». En código: `font-feature-settings: "lnum"`,
+que Chrome aplica de verdad.
+
+**② El otro: `tnum` NO existe en ningún corte de Raleway.** Activar «Cifras
+tabulares» no hace nada y nadie avisa. Peor: las cifras de caja alta son **más**
+desparejas que las por defecto —
+
+| Corte | Por defecto | En caja alta |
+|---|---|---|
+| Bold | 24 % | **43 %** |
+| Medium | 36 % | **56 %** |
+| Light | 50 % | **72 %** |
+
+**Cuándo importa cada uno:** el desnivel (①) se ve **siempre**. El ancho disparejo
+(②) sólo se nota cuando hay **cifras apiladas en columna** —una lista de precios,
+una tabla de horarios—, porque ahí las columnas no calzan. En una línea suelta
+(`VIERNES DE 16:00 A 21:00 HRS`) no molesta, y forzar el ancho fijo por código deja
+un hueco feo después del `1`.
+
+### La receta, entonces
+
+| Caso | Qué se hace |
 |---|---|
-| **Color** | **Hoy es el verde.** Eli: «el color se puede ir variando, pero actualmente es el verde». El valor exacto sale de los editables — no se escribe de memoria |
-| Tipografías | Sin levantar. Salen del `Informe.txt` del paquete de Illustrator |
-| Logos | Sin recibir |
+| **Cualquier cifra en Raleway** | **Cifras de caja alta (`lnum`).** Siempre. Es el arreglo real |
+| **Cifras apiladas** (lista de precios, horarios en columna) | O **Bell MT**, o caja alta + alineación por código |
+| **Cifra que quiera verse editorial** | **Bell MT**: sus diez dígitos miden **0,500 em exactos — 0 % de diferencia**. Es tabular de fábrica aunque no declare la feature, y ya es fuente de QB |
 
-> El color de QB es **variable por decisión de marca**. Cuando cambie, se cambia
-> acá con fecha; no se asume que el verde es permanente.
+⚠️ La comparación renderizada de las cuatro opciones está en
+[`adn/cifras-comparacion.png`](adn/cifras-comparacion.png). **Falta que Eli elija.**
+
+### Color
+
+| Qué | Valor | Origen |
+|---|---|---|
+| **Verde de marca** | **PANTONE 361 C** | Declarado como tinta plana del documento en el `Informe.txt`. Es el nombre exacto; el hex se mide de las piezas, no se convierte de memoria |
+| **Verde de la franja al pie** | **#374C3C** medido | Banda sólida, a sangre, de la historia `ST n°2 S3 QB` |
+
+⚠️ **Los dos verdes no son el mismo y todavía no sé cómo se relacionan.** Falta
+medir piezas de feed —que es donde vive el Pantone— antes de declarar la paleta.
+El color de QB además es **variable por decisión de marca**: cuando cambie, se
+cambia acá con fecha.
+
+### Logo
+
+`Logo QB.png` del Drive: **es un lienzo de historia completo de 2250×4000 con el
+99,7 % transparente.** El logotipo real es **blanco**, mide 373×226 px dentro de
+ese lienzo (proporción 1,650:1) y viene **ya posicionado**: centrado horizontal
+exacto (centro x = 1124,5 sobre 2250) y arriba.
+
+⚠️ Es el mismo caso de Piso18: **medir el alfa antes de montar.** Si se usa el PNG
+tal cual creyendo que es «el logo», se está montando un lienzo entero.
+
+## 4b. La gramática — medida sobre `ST n°2 S3 QB.png` (una pieza, no un sistema)
+
+⚠️ **Esto sale de UNA historia.** Sirve para no inventar, no para dar por cerrada la
+gramática. Se confirma cuando estén medidas las piezas de feed.
+
+**Entrega:** historia a **2250 × 4000 px** (2× de 1080×1920). La mesa de trabajo del
+`.ai` de feed, en cambio, es **1080 × 1350 a escala 1:1** — QB no trabaja a 2× en
+feed, al revés que otras marcas del estudio.
+
+Geometría, con todo escalado a un lienzo de 1080 × 1920:
+
+| Elemento | Medida |
+|---|---|
+| **Foto** | A sangre, ocupa la pieza entera. Oscurecida arriba y abajo para que el blanco lea |
+| **Titular, línea 1** | y 219–275 · alto de versal ≈ 56 px · Raleway versales, peso liviano, tracking abierto |
+| **Titular, línea 2** | y 297–352 · mismo cuerpo, **peso bold** — lo que separa las líneas es el peso |
+| **El logotipo, dentro del titular** | y 376–545 · alto 169 px. ⭐ **El logo hace de palabra en la frase** («SE BUSCA LA / MEJOR PAYA DE / **QB**»), no es una firma en la esquina. Es el recurso más propio de la marca que apareció |
+| **Bajada** | dos líneas centradas, y 1566–1642 · alto de caja 34 px · interlínea 42 px · Raleway caja baja |
+| **Franja verde al pie** | y **1660–1765** · alto **105 px** · **#374C3C sólido, a sangre de borde a borde**, corte nítido |
+| **Texto de la franja** | dos líneas versales blancas centradas, y 1682–1746 · alto 25 px · interlínea 39 px |
+
+**Lo que se repite y hay que respetar:** todo va **centrado**, el titular es un
+bloque de dos pesos del mismo cuerpo, y el cierre es una franja de color a sangre.
+
+### Y en feed — `Post n°2 QB SUNSET.png` (2250 × 2813, ratio 4:5)
+
+La misma lógica, con tres cosas más que confirman el repertorio de la marca:
+
+1. **El nombre de la promo va en Brushwell, enlazado con el logotipo:** «*Sunset* QB».
+   Otra vez **el logo haciendo de palabra**, no de firma. Es el recurso más
+   característico de QB y aparece en las dos piezas medidas.
+2. **Pastilla verde con el horario** en versales blancas — es donde viven las cifras
+   de la marca, y por eso el asunto de las cifras no es cosmético.
+3. **El legal al pie va en Bell MT Italic**, en cuerpo chico y centrado
+   («*Sujeto a consumo de alimentos. Promoción no acumulable…*»). O sea que Bell MT
+   ya tiene un rol asignado: la letra chica.
+
+⚠️ **La entrega de feed es a 2250 px de ancho**, aunque la mesa de trabajo del `.ai`
+sea 1080 × 1350. El `.ai` está a 1:1 y la exportación sube a 2250.
 
 ## 5. De dónde salen las imágenes
 
@@ -84,7 +209,7 @@ Los tres sujetos de la marca, dichos por Eli:
 
 | Fuente | Cómo se usa |
 |---|---|
-| **Sesiones de fotografía** | Son varias y están disponibles |
+| **Sesiones de fotografía** | Son varias y están disponibles. Los `Enlaces no disponibles` del `Informe.txt` revelan el disco de Eli y el nombre de las sesiones: `D:\COPY\FOTOS 4 AGOSTO\SESIÓN COCTELERÍA 11-09\` (`_DSC0030`, `_DSC9930`, `_DSC9855 ATENEA`, `_DSC9987`, `_DSC0010`) y `D:\COPY\FOTOS 4 AGOSTO\QB sesión 13-10\` (`QB 13 oct-60`). **Esas carpetas son las que faltan en el estudio** |
 | **Material orgánico (videos)** | Doble uso, y esto es método de la marca, no un parche |
 
 **El método del video, dictado por Eli:**
@@ -118,6 +243,19 @@ Zonas seguras Meta, regla global de agencia
 
 ⚠️ En **pieza animada** la zona segura se mide en el **último fotograma**, no en
 el primero: con un acercamiento, el corredor libre se encoge mientras corre.
+
+### ⚠️ Medido: la historia de QB, tal como se compone hoy, NO pasa a paid
+
+En `ST n°2 S3 QB.png` (orgánica, y como orgánica está bien):
+
+| Dónde | Límite Meta | La pieza | Veredicto |
+|---|---|---|---|
+| Arriba | el texto empieza en y=250 | el titular arranca en **y=219** | se pasa **31 px** |
+| Abajo | el texto termina en y=1580 | la franja verde llega a **y=1765** y su texto a **1746** | entra **166 px** en la zona reservada |
+
+O sea: **si esa misma pieza se pauta, el remate se come.** Por eso la pregunta
+«¿esta va a paid?» tiene que ir antes de diagramar, no después — moverlo al final
+obliga a rehacer el cierre de la marca.
 
 ## 7. QA — provisorio, hasta medir la marca
 

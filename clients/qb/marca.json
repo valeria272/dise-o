@@ -5,65 +5,239 @@
   "pais": "CL",
   "moneda": "CLP",
   "manual": "clients/qb/CLAUDE.md",
-
-  "_ALCANCE": "⛔ FICHA PARCIAL — NO trae colores, tipografías, logos ni geometría A PROPÓSITO: no están medidos, y escribirlos de memoria sería inventarle un sistema a la marca. Se completa cuando lleguen los editables empaquetados de Eli. El manual manda: clients/qb/CLAUDE.md",
-
+  "_ALCANCE": "◐ FICHA PARCIAL — tipografías y formatos MEDIDOS el 15-09-2026 desde el paquete «FEED QB S1 agosto» y la historia «ST n°2 S3 QB». La PALETA sigue sin cerrar: el informe declara PANTONE 361 C y la franja medida da #374C3C, y todavía no se sabe cómo se relacionan. El manual manda: clients/qb/CLAUDE.md",
   "regla_madre": "QB es marca INDEPENDIENTE. Está dentro del complejo Hilton pero su línea gráfica no está ligada a DoubleTree, Between ni Piso18. Nada se traspasa en ninguna dirección. (Eli, 15-09-2026)",
-
   "criterio": {
     "feed": "minimalista y elegante",
-    "sujetos": ["cócteles", "platos", "rostros"]
+    "sujetos": [
+      "cócteles",
+      "platos",
+      "rostros"
+    ]
   },
-
   "colores": {
-    "_estado": "SIN MEDIR",
-    "_nota": "Hoy la marca es verde, pero el color es VARIABLE por decisión de marca — Eli: «se puede ir variando, actualmente es el verde». El valor exacto sale de los editables."
+    "_estado": "PARCIAL",
+    "pantone_declarado": {
+      "nombre": "PANTONE 361 C",
+      "origen": "tinta plana del documento, Informe.txt del paquete de feed",
+      "hex": null,
+      "_nota": "NO se convierte de memoria: el hex se mide sobre una pieza de feed exportada"
+    },
+    "verde_franja_pie": {
+      "hex": "#374C3C",
+      "origen": "medido en ST n°2 S3 QB.png, banda sólida a sangre de 105 px @1080"
+    },
+    "texto": {
+      "hex": "#FFFFFF",
+      "origen": "titular, bajada y texto de franja, medidos"
+    },
+    "_alerta": "Tres verdes distintos y ninguno es PANTONE 361 C (que es un verde brillante): franja de historia #374C3C, pastilla de feed ~#66886B, y el Pantone declarado en el .ai. PEDIR A ELI el valor del swatch en Illustrator.",
+    "_variable": "El color de QB cambia por decisión de marca (Eli). Se anota con fecha cada vez.",
+    "verde_pastilla_feed": {
+      "hex_aprox": "#66886B",
+      "origen": "pastilla del horario en Post n°2 QB SUNSET.png; el relleno tiene grano, no es plano perfecto"
+    }
   },
-  "fuentes": {"_estado": "SIN MEDIR — salen del Informe.txt del paquete de Illustrator"},
-  "logos": {"_estado": "SIN RECIBIR"},
-
+  "fuentes": {
+    "_ruta_paquete": "raw/hilton/qb/fuentes-paquete/",
+    "principal": {
+      "familia": "Raleway",
+      "origen": "Adobe Fonts — protegida, NO se empaqueta",
+      "cortes_en_uso": [
+        "Light",
+        "Regular",
+        "Medium",
+        "SemiBold",
+        "Bold",
+        "ExtraBold",
+        "Italic",
+        "Medium Italic",
+        "SemiBold Italic",
+        "Bold Italic"
+      ],
+      "⛔_tnum": "Raleway NO declara tnum en ninguno de los 10 cortes: el botón «cifras tabulares» no hace nada. Pero ese NO era el problema real.",
+      "_riesgo": "La Raleway de Adobe Fonts puede no ser idéntica a la de Google Fonts que hay en el repo. Verificar contra una pieza exportada antes de dar por buena una reproducción.",
+      "⭐_lnum": "Las cifras POR DEFECTO de Raleway son de ESTILO ANTIGUO: sobre una versal de 710 unidades el 0 llega a 597 y el 3/5/9 bajan de la línea base. Por eso «16:00» se lee «16:oo» junto a versales. Se arregla con CIFRAS DE CAJA ALTA (feature lnum, presente en los 10 cortes): botón «Cifras de caja alta» en Illustrator, font-feature-settings:\"lnum\" en código.",
+      "_ancho_disparejo": {
+        "por_defecto": {
+          "Bold": "24%",
+          "Medium": "36%",
+          "Light": "50%"
+        },
+        "en_caja_alta": {
+          "Bold": "43%",
+          "Medium": "56%",
+          "Light": "72%"
+        },
+        "_cuando_importa": "Sólo en cifras APILADAS en columna. En una línea corrida, forzar caja fija deja un hueco tras el 1."
+      }
+    },
+    "secundaria": {
+      "familia": "Bell MT",
+      "archivos": [
+        "BELL.TTF",
+        "BELLI.TTF"
+      ],
+      "origen": "empaquetada en el .ai",
+      "glifos": 241,
+      "⭐_cifras": "Los diez dígitos miden 0,500 em exactos — diferencia 0%. Es TABULAR DE FÁBRICA aunque no declare tnum. La itálica, 0,490 em. Trae $ % ¿ ¡ @ y tildes.",
+      "_propuesta": "Que toda cifra de QB vaya en Bell MT. PENDIENTE DE APROBACIÓN DE ELI.",
+      "_uso_observado": "El LEGAL al pie del post «Sunset» está en Bell MT Italic."
+    },
+    "mano": {
+      "familia": "Brushwell",
+      "origen": "empaquetada",
+      "ya_en_repo": "public/assets/hilton/between/fonts/Brushwell.ttf",
+      "_verificado": "mismo archivo byte a byte que el del paquete de QB (537296 B). Usar .ttf/.woff2: Chrome rechaza la .otf CFF.",
+      "_uso_observado": "La palabra «Sunset» del post de la promo está en Brushwell, enlazada con el logotipo."
+    },
+    "_descartada": "MyriadPro-Regular.otf viaja en el paquete pero es la fuente por defecto de Illustrator, no de la marca."
+  },
+  "logos": {
+    "_estado": "PARCIAL — 1 archivo medido",
+    "Logo QB.png": {
+      "color": "blanco",
+      "lienzo": "2250x4000 (historia completa)",
+      "alfa_transparente_pct": 99.7,
+      "logotipo_px": "373x226",
+      "proporcion": "1,650:1",
+      "posicion": "centrado horizontal exacto, arriba",
+      "⚠️": "NO es un logo suelto: es un lienzo de historia entero. Medir el alfa antes de montar (mismo caso que Piso18)."
+    },
+    "_faltan": "versión vectorial, versión sobre fondo claro, isotipo y monocromo"
+  },
   "contacto": {
     "correo": "reservas@qbrestaurant.cl",
     "telefono": "+56 9 3373 3247",
     "reservas": "CoverManager"
   },
-
   "promos": {
     "_nota": "Se actualizan de vez en cuando pero generalmente se mantienen en el tiempo. Eli avisa cuando cambian; una promo vigente no se da por vencida sola.",
-    "recurrentes": ["All You Can Drink", "Sunset QB", "promos de tragos mensuales", "sesiones de DJ", "convenios bancarios"]
+    "recurrentes": [
+      "All You Can Drink",
+      "Sunset QB",
+      "promos de tragos mensuales",
+      "sesiones de DJ",
+      "convenios bancarios"
+    ]
   },
-
   "imagen": {
-    "fuentes": ["sesiones de fotografía propias", "material orgánico en video"],
+    "fuentes": [
+      "sesiones de fotografía propias",
+      "material orgánico en video"
+    ],
     "metodo_video": "Del video se extraen fotogramas como foto fija, y el mismo video sirve para historia, reel y post en movimiento. Se puede mezclar carrusel con post en movimiento."
   },
-
   "zonas_seguras": {
     "_origen": "regla global de agencia — docs/SISTEMA-DE-MARCAS.md §4. QB no tiene zonas propias medidas.",
     "_alerta_eli": "Reels, videos, posts E HISTORIAS de QB a veces necesitan márgenes de paid: el texto NO puede salir del margen. Preguntar si va a paid ANTES de diagramar.",
-    "story": {"top": 250, "bottom": 340, "right": 115},
-    "feed": {"bottom_pct": 12},
+    "story": {
+      "top": 250,
+      "bottom": 340,
+      "right": 115
+    },
+    "feed": {
+      "bottom_pct": 12
+    },
     "respiro_minimo": 60,
-    "_animadas": "En pieza animada la zona segura se verifica en el ÚLTIMO fotograma."
+    "_animadas": "En pieza animada la zona segura se verifica en el ÚLTIMO fotograma.",
+    "_medido_15_09_2026": "La historia ST n°2 S3 QB NO pasaría a paid: el titular arranca en y=219 (31 px sobre el límite de 250) y la franja del pie llega a y=1765, entrando 166 px en los 340 px reservados. Como pieza orgánica está bien. Preguntar «¿va a paid?» ANTES de diagramar."
   },
-
   "madurez": {
-    "identidad": "falta",
-    "gramatica": "falta",
-    "formatos": "parcial",
+    "identidad": "parcial",
+    "gramatica": "parcial",
+    "formatos": "completa",
     "imagen": "parcial",
     "copy": "parcial",
     "pipeline": "falta",
     "qa": "parcial"
   },
-
   "pendientes": [
-    "Editables empaquetados de Eli (link en camino) → color verde exacto, tipografías, geometría",
-    "Logos vectoriales de QB",
-    "Bajar sesiones de fotografía y material orgánico a raw/hilton/qb/",
-    "Confirmar si la regla «en DT sólo diseño» aplica también a QB",
-    "Confirmar qué significa «no solamente a bancos» (se entendió: convenios con tarjetas bancarias)"
+    "⭐ DECISIÓN DE ELI sobre las cifras: (a) activar cifras de caja alta en Raleway —el arreglo real—, (b) pasar las cifras a Bell MT, o (c) ambas según el caso. Comparación renderizada en raw/hilton/qb/piezas-ref/_cifras-comparacion.png",
+    "Medir piezas de FEED para cerrar la paleta — ahí vive el PANTONE 361 C",
+    "Drive de fotos y sesiones (SESIÓN COCTELERÍA 11-09 y QB sesión 13-10) — lo dijo Eli, viene aparte",
+    "Logo vectorial y versiones sobre fondo claro",
+    "Falta el Informe.txt del paquete de STORIES, y ninguno de los dos paquetes trae carpeta Links/",
+    "Confirmar si la regla «en DT sólo diseño» aplica también a QB"
   ],
-
-  "actualizado": "2026-09-15"
+  "actualizado": "2026-09-15",
+  "formatos": {
+    "feed": {
+      "w": 1080,
+      "h": 1350,
+      "ratio": "4:5",
+      "_origen": "mesa de trabajo del .ai, escala 1:1 — QB NO trabaja a 2x en feed",
+      "entrega": "2250x2813 (ancho de entrega 2250 px, ratio 4:5) — medido en «Post n°2 QB SUNSET.png»"
+    },
+    "story": {
+      "w": 1080,
+      "h": 1920,
+      "ratio": "9:16",
+      "entrega": "2250x4000 (2x)",
+      "_origen": "medido en las piezas entregadas"
+    }
+  },
+  "gramatica_medida_sobre_1080x1920": {
+    "_alcance": "UNA historia (ST n°2 S3 QB.png). No es la gramática cerrada.",
+    "foto": "a sangre, oscurecida arriba y abajo para que el blanco lea",
+    "titular": {
+      "linea1_y": [
+        219,
+        275
+      ],
+      "linea2_y": [
+        297,
+        352
+      ],
+      "alto_versal": 56,
+      "regla": "dos pesos del MISMO cuerpo — lo que separa las líneas es el peso, no el tamaño",
+      "alineacion": "centrado"
+    },
+    "logotipo": {
+      "y": [
+        376,
+        545
+      ],
+      "alto": 169,
+      "⭐": "el logo hace de PALABRA dentro de la frase del titular, no es firma de esquina"
+    },
+    "bajada": {
+      "y": [
+        1566,
+        1642
+      ],
+      "alto_caja": 34,
+      "interlinea": 42,
+      "lineas": 2,
+      "alineacion": "centrado"
+    },
+    "franja_pie": {
+      "y": [
+        1660,
+        1765
+      ],
+      "alto": 105,
+      "color": "#374C3C",
+      "relleno": "sólido, a sangre, corte nítido"
+    },
+    "texto_franja": {
+      "y": [
+        1682,
+        1746
+      ],
+      "alto": 25,
+      "interlinea": 39,
+      "lineas": 2,
+      "color": "#FFFFFF",
+      "alineacion": "centrado"
+    },
+    "_feed_observado": "En «Post n°2 QB SUNSET.png»: foto a sangre; nombre de la promo en Brushwell ENLAZADO con el logotipo («Sunset QB»), otra vez el logo haciendo de palabra; titular Raleway versales blanco centrado en dos líneas; PASTILLA VERDE con el horario en versales; legal al pie en Bell MT Italic. Confirma que el recurso propio de QB es el logotipo integrado a la frase, no la firma de esquina."
+  },
+  "drive": {
+    "mundo_qb_editables": "1rvqXvWmmULTytfCkJPMp_9ShucG5jDdy",
+    "paquete_feed_s1_agosto": "1rFrB2BjZP3V288DGWuGx8Zy5-v0zku5E",
+    "paquete_stories_s1_agosto": "1pKzRHON_d8EgRSjMfIIZX1unkPrVREqn",
+    "entregas_S1_SEP_QB": "1qPk9I7S-FPEcyLZ1z4TyrRrqaDwzt8Tr",
+    "_nota": "No son públicos por enlace: bajar por el conector MCP de Drive, no con --publico."
+  }
 }

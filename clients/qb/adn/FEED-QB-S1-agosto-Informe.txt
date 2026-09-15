@@ -1,0 +1,71 @@
+Informe del paquete
+[Transcrito del paquete de Illustrator «FEED QB S1 agosto_Carpeta» en el Drive de
+Eli (1rFrB2BjZP3V288DGWuGx8Zy5-v0zku5E), bajado el 15-09-2026. Texto íntegro.]
+
+----------------------------------------------------------------------
+Documento:
+Nombre: FEED QB S1 agosto.ai
+Modo de color: Color RGB
+Perfil de color: sRGB IEC61966-2.1
+Unidades de regla: píxeles
+Dimensiones de la mesa de trabajo: 1080 px x 1350 px
+Mostrar imágenes en modo contorno: Desactivado
+Resaltar fuentes sustituidas: Desactivado
+Resaltar glifos sustituidos: Desactivado
+Conservar capacidad de edición de texto
+Simular papel de color: Desactivado
+
+----------------------------------------------------------------------
+Objetos de tintas planas:
+PANTONE 361 C (Lab)
+
+----------------------------------------------------------------------
+Fuentes no disponibles: Ninguno
+
+----------------------------------------------------------------------
+Fuentes protegidas no empaquetadas:
+Raleway Bold (Adobe Fonts)
+Raleway SemiBold (Adobe Fonts)
+Raleway ExtraBold (Adobe Fonts)
+Raleway Medium Italic (Adobe Fonts)
+Raleway Bold Italic (Adobe Fonts)
+Raleway Medium (Adobe Fonts)
+Raleway Light (Adobe Fonts)
+Raleway (Adobe Fonts)
+Raleway Italic (Adobe Fonts)
+Raleway SemiBold Italic (Adobe Fonts)
+
+----------------------------------------------------------------------
+Fuentes:
+Bell MT Italic (OTF)
+Bell MT (OTF)
+Brushwell (OTF)
+
+----------------------------------------------------------------------
+Fuentes incrustadas:
+Ninguno
+
+----------------------------------------------------------------------
+Enlaces no disponibles:
+
+D:\COPY\FOTOS 4 AGOSTO\SESIÓN COCTELERÍA 11-09\_DSC0030.jpg
+Tipo: Otro
+
+D:\COPY\FOTOS 4 AGOSTO\SESIÓN COCTELERÍA 11-09\_DSC9930.jpg
+Tipo: Otro
+
+D:\COPY\FOTOS 4 AGOSTO\SESIÓN COCTELERÍA 11-09\_DSC9855 ATENEA.jpg
+Tipo: Otro
+
+D:\COPY\FOTOS 4 AGOSTO\SESIÓN COCTELERÍA 11-09\_DSC9987.jpg
+Tipo: Otro
+
+D:\COPY\FOTOS 4 AGOSTO\SESIÓN COCTELERÍA 11-09\_DSC0010.jpg
+Tipo: Otro
+
+D:\COPY\FOTOS 4 AGOSTO\QB sesión 13-10\QB 13 oct-60.jpg
+Tipo: Otro
+
+----------------------------------------------------------------------
+Imágenes enlazadas:
+Ninguno

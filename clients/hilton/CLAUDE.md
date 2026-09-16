@@ -9439,3 +9439,108 @@ la grilla no cambiaron**. Los dos fondos se reproducen **byte a byte** (`cmp`).
 llegando al canto, no texto—. Franja del titular por tercios: **203,7 · 204,7 ·
 205,7** y **204,7 · 204,7 · 202,7**; la dispersión entre tercios bajó de 19 a 3
 niveles.
+
+---
+
+# ⭐⭐ S3 · CONCURSO · RONDA 5 (16-09-2026) — LA DEL CLIENTE, Y CUATRO REGLAS
+
+Los comentarios llegaron por Slack, de **Nicolás Ávila con Scarlette**, y son los
+dos sobre la **portada**: «darle más protagonismo a la palabra CONCURSO — que sea
+más grande y quizás usar otro tono de café, o algún recurso visual que haga que
+destaque más y se vea llamativo de inmediato», y cambiar la CTA por «¿Quieres el
+puesto? → Desliza para tu entrevista».
+
+## 1. ⭐⭐⭐ SI UN ELEMENTO «NO DESTACA», MIRA PRIMERO SI ESTÁ REPETIDO
+
+Antes de agrandar nada se midió por qué el sello se perdía, y no era el tamaño:
+**el sello y la caja «1 MES DE CAFÉ GRATIS» eran la MISMA caja taupe `#675B49`
+con tinta beige**. Dos cajas idénticas en una lámina no se jerarquizan entre sí —
+la de abajo es más larga, así que la de arriba queda automáticamente de segunda,
+esté donde esté. Agrandarla sin tocar eso habría dado dos cajas taupe grandes.
+
+> **La regla:** cuando el cliente dice que algo «no se ve», se revisa si ese
+> recurso ya está usado en otra parte de la misma pieza. Un recurso repetido no
+> enfatiza: reparte.
+
+La salida fue **invertir**: fondo beige `#FFF9EB`, tinta café `#675B49`. Es la
+caja de color plano de la `REF 1` con los dos colores al revés, y deja la lámina
+con **beige contra taupe**, que es la pareja que sí jerarquiza.
+
+## 2. ⛔ UN TERCER MARRÓN ES CAMBIARLE LA PALETA A LA MARCA
+
+El cliente proponía «otro tono de café». La paleta de Between son **dos** tintas
+—beige `#FFF9EB` y café `#675B49`; `sombra #241a12` está declarada sólo para el
+multiply—, así que un marrón intermedio no es corregir una pieza, es abrirle un
+color a la marca. **La inversión da el mismo salto de contraste sin inventar
+nada.** Medido contra el papel `#DFC9BB` de la hoja:
+
+| | fondo vs papel | tinta dentro |
+|---|---|---|
+| sello taupe (ronda 4) | 4,08:1 | 6,31:1 |
+| caja beige (ronda 5) | **1,50:1** | **6,31:1** |
+
+⚠️ **Ese 1,50:1 no es un defecto.** Es exactamente el contraste de la tarjeta
+crema de la `N2`, aprobada y publicada: una caja plana de este tipo **no se lee
+por su canto sino por la tinta que lleva dentro**, y ésa es la que crece. Si
+alguna vez se decide de verdad un café más oscuro, `#4C4133` da 6,13:1 — pero eso
+lo aprueba la marca, no la pieza.
+
+## 3. ⭐⭐ LA POSICIÓN QUE LIMITA EL TAMAÑO ES LA QUE SE CEDE, NO EL TAMAÑO
+
+Se le pusieron a Eli las dos opciones rendidas y al tamaño de publicación:
+
+| | dónde | cuerpo | por qué ese cuerpo |
+|---|---|---|---|
+| `tag` | línea del lockup, margen 84 | **36** | es el TECHO: la caja da 287 px y el lockup arranca en x=408; a 40 px se tocan |
+| `caja` | encabezando la pila del mensaje | **52** | ahí no la limita el logotipo |
+
+**Eligió la `caja`**, y tenía razón contra mi recomendación: el encargo era
+*tamaño*, y 28 → 36 no es un cambio que se vea «de inmediato». Yo defendía el
+`tag` porque el sello es el rótulo de la lámina y bajarlo lo pone a competir con
+el premio — argumento correcto y secundario frente a lo que el cliente pidió.
+
+> Cuando el pedido es de tamaño y la posición actual tiene techo, **se mueve el
+> elemento**. Defender la posición y entregar un 29 % de crecimiento es contestar
+> otra pregunta.
+
+La `caja` cabe sin apretar nada, y está medido sobre el render: el titular cierra
+su tinta en **y=450**, la figura entra en la columna izquierda en **y=869**, y la
+pila completa ocupa **492–825**. Los dos aires del sello son distintos a propósito
+—**42** contra el titular y **23** contra «¿El sueldo?»— porque la caja
+*encabeza* la pila: con 30 y 30 flotaba entre los dos y no se leía como cabecera
+de nada (§ jerarquía de un bloque de texto).
+
+La variante `tag` se queda en el archivo: es la correcta si hay que rotular una
+lámina de esta marca sin robarle sitio al mensaje.
+
+## 4. ⭐ LA CTA LARGA SE PARTE POR SU BISAGRA
+
+«¿Quieres el puesto? → Desliza para tu entrevista» mide **700 px** a 32 px en
+Raleway Bold y el canal limpio de esa franja termina en **x≈630**: no cabe. Se
+parte por la **flecha**, que es la bisagra de la frase —arriba la pregunta, abajo
+la acción— y la línea larga queda en 435 px, cerrando en 519 con 111 px de aire
+contra el recorte. El cuerpo **no se bajó**; lo que sube es el interlineado, de
+1,1 a **1,22**, porque ahora hay dos líneas y con 1,1 se leían como un párrafo
+pegado.
+
+⭐ De regalo, el remate enlaza con la `N2`, que se titula «TU ENTREVISTA EMPIEZA
+AHORA». Conviene no romper ese enganche si el texto se vuelve a tocar.
+
+## ⚠️ Y una de proceso: EL «ANTES» DE UNA PÁGINA DE REVISIÓN NO APUNTA A LA ENTREGA
+
+`between-concurso-s3-r5-revision.py` tomaba el «antes» de
+`out/hilton/between/entrega-c1-s3-concurso/`, que es **el archivo que la entrega
+sobrescribe**. Al re-rendir, la página pasó a comparar el después contra sí mismo
+sin avisar. La copia de la ronda anterior se guarda **antes** de re-rendir
+(`concurso-s3-r5/r4-N1-respaldo.png`) y el «antes» apunta ahí.
+
+## Estado
+
+Sólo la **N1** cambió y sólo ella se re-subió, **reemplazando el mismo archivo**
+(`1A9KfIwPp_XzEi4prUVHzXmDM5zX-27mB`, carpeta `C1 S3 CONCURSO`): **el enlace de la
+grilla no cambió**. Verificado con el conector MCP — 5.118.684 bytes, los mismos
+que el local, `createdTime` intacto de la ronda 4 y `modifiedTime` nuevo. La `N2`
+no se tocó. QA de carrusel: mediana 197 vs 201, calidez 37,7 vs 33,1 — mismo tono.
+`between-qa.py` deja su falso positivo de siempre en la N1 («texto a 74 px del
+borde derecho»): esa tinta está en las filas **1024–1047**, que es el hombro de la
+figura, y todo el texto de la lámina vive entre y=93 y y=825.

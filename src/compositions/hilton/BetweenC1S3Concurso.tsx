@@ -207,44 +207,101 @@ const LockupCafe: React.FC = () => {
 };
 
 /**
- * ⭐ EL SELLO «CONCURSO» — lo pide el brief con estas palabras: «agregar un
- * pequeño recurso tipo sello o etiqueta que diga CONCURSO».
+ * ⭐⭐ EL SELLO «CONCURSO» — RONDA 5 (16-09), pedido del cliente.
  *
- * No es un motivo nuevo: es la **caja taupe de la marca** —mismo fondo
- * `#675B49`, mismo radio 16, misma caja alta en Raleway ExtraBold beige—
- * puesta de etiqueta y girada 4°. Dibujar un sello de verdad (anillo, dientes,
- * tipografía en arco) sí habría sido inventarle un recurso a Between, que es
- * justo lo que el manual prohíbe.
+ * Nicolás y Scarlette, sobre la portada: «darle más protagonismo a la palabra
+ * CONCURSO. Que sea más grande y quizás usar otro tono de café, o algún recurso
+ * visual que haga que destaque más y se vea llamativo de inmediato.»
+ * Y Eli, en la misma vuelta: «haz una opción donde CONCURSO esté en una caja
+ * beige más grande estilo la ref.»
  *
- * Va arriba a la IZQUIERDA, en el margen de marca (x=84) y centrado sobre la
- * línea óptica del lockup, que es la posición del rótulo de la REF 1
- * («CUATRO CUATRO STUDIO» a la izquierda, con el año a la derecha).
+ * El origen del encargo sigue siendo el brief —«agregar un pequeño recurso tipo
+ * sello o etiqueta que diga CONCURSO»— y el recurso sigue siendo el de la marca:
+ * la caja de color plano de la REF 1. Lo que cambia es CUÁL de los dos colores
+ * de Between va de fondo y cuál de tinta.
+ *
+ * ⛔ Por qué NO se inventó un café nuevo, que es lo que el cliente sugería como
+ * primera vía: la paleta de Between son DOS tintas —beige `#FFF9EB` y café
+ * `#675B49`— y un tercer marrón es cambiarle la paleta a la marca, no corregir
+ * una pieza. La inversión da el mismo salto sin inventar nada, y encima resuelve
+ * un defecto que el cliente estaba viendo sin nombrarlo: hoy el sello y la caja
+ * del sueldo son **la misma caja taupe**, así que ninguna manda sobre la otra.
+ * Medido contra el papel `#DFC9BB` de la hoja:
+ *
+ *   | | fondo vs papel | tinta dentro |
+ *   |---|---|---|
+ *   | sello taupe de hoy | 4,08:1 | beige sobre taupe, 6,31:1 |
+ *   | caja beige nueva | 1,50:1 | **café sobre beige, 6,31:1** |
+ *
+ * El 1,50:1 de la caja no es un defecto: es exactamente el contraste de la
+ * tarjeta crema de la N2, que Eli aprobó y el cliente ya vio. Una caja plana de
+ * este tipo no se lee por su canto sino por la tinta que lleva dentro, y ésa es
+ * la que crece: de 28 px de caja alta a **36** (tag) o **52** (caja).
+ *
+ * ── LAS DOS OPCIONES QUE VAN A REVISIÓN ──────────────────────────────────
+ *
+ * `tag`   — la etiqueta se queda donde está, en la línea del lockup y en el
+ *           margen de marca, y sólo se invierte y crece. Cuerpo 36 (hoy 28),
+ *           alto 70 (hoy 54). Es el cambio mínimo sobre una lámina aprobada.
+ *           ⚠️ 36 es el TECHO de esta posición, y está medido: la caja da 287 px
+ *           y el lockup arranca en x=408, así que con el giro quedan 32 px de
+ *           aire. A 40 px el sello toca el logotipo.
+ *
+ * `caja`  — la caja plana grande de la REF 1, y por eso baja a la columna del
+ *           mensaje: ahí no la limita el logotipo y el cuerpo puede llegar a 52.
+ *           Encabeza la pila —CONCURSO · ¿El sueldo? · 1 MES DE CAFÉ GRATIS— y
+ *           queda beige contra taupe, que es la pareja que da la jerarquía.
+ *           Cabe sin apretar nada: el titular cierra en y=450, la figura entra
+ *           en la columna izquierda en y=869, y la pila completa ocupa 480–823.
+ *
+ * En las dos, el giro de −4° del sello original se conserva sólo en el `tag`:
+ * la caja plana de la REF 1 va derecha, y «plano» es la palabra que Eli usó para
+ * el fondo de esta misma pieza.
  */
-const SelloConcurso: React.FC<{y: number}> = ({y}) => {
+export type SelloVariante = 'taupe' | 'tag' | 'caja';
+
+const SELLO = {
+  /** El de la ronda 4, que es lo que el cliente está mirando. */
+  taupe: {alto: 54, cuerpo: 28, padX: 30, track: 0.16, giro: -4,
+          fondo: BETWEEN.cajas.fondo, tinta: BETWEEN.colores.beige},
+  /** Invertido y más grande, en el mismo sitio. */
+  tag: {alto: 70, cuerpo: 36, padX: 22, track: 0.12, giro: -4,
+        fondo: BETWEEN.colores.beige, tinta: BETWEEN.colores.cafe},
+  /** La caja plana de la REF 1, en la columna del mensaje. */
+  caja: {alto: 84, cuerpo: 52, padX: 28, track: 0.1, giro: 0,
+         fondo: BETWEEN.colores.beige, tinta: BETWEEN.colores.cafe},
+};
+
+const SelloConcurso: React.FC<{variante: SelloVariante; x?: number; y: number}> = ({
+  variante,
+  x = BETWEEN.bloque.margenX,
+  y,
+}) => {
   useFuentesListas();
+  const v = SELLO[variante];
   return (
     <div
       style={{
         position: 'absolute',
-        left: BETWEEN.bloque.margenX,
+        left: x,
         top: y,
-        height: 54,
-        padding: '0 30px',
+        height: v.alto,
+        padding: `0 ${v.padX}px`,
         display: 'flex',
         alignItems: 'center',
-        backgroundColor: BETWEEN.cajas.fondo,
+        backgroundColor: v.fondo,
         borderRadius: BETWEEN.cajas.radio,
-        transform: 'rotate(-4deg)',
+        transform: v.giro ? `rotate(${v.giro}deg)` : undefined,
         fontFamily: BETWEEN.fuentes.sans,
         fontWeight: BETWEEN.pesos.extrabold,
-        fontSize: 28,
+        fontSize: v.cuerpo,
         lineHeight: 1,
-        letterSpacing: '0.16em',
+        letterSpacing: `${v.track}em`,
         /* el tracking se aplica TAMBIÉN después de la última letra y corre la
            caja hacia la izquierda; se devuelve con text-indent (memoria
            `tracking-no-llega-a-inline-block`) */
-        textIndent: '0.16em',
-        color: BETWEEN.colores.beige,
+        textIndent: `${v.track}em`,
+        color: v.tinta,
       }}
     >
       CONCURSO
@@ -261,14 +318,60 @@ const SelloConcurso: React.FC<{y: number}> = ({y}) => {
    «1 MES DE CAFÉ GRATIS.» no entra a la caja taupe: los títulos de esta marca
    no llevan punto final (regla de Eli, `sinPuntoFinal`).
    ══════════════════════════════════════════════════════════════════════════ */
-export const C1S3Concurso1: React.FC = () => (
+/**
+ * ⭐⭐ LA PILA DE LA IZQUIERDA — RONDA 5 (16-09).
+ *
+ * Con el sello en variante `caja` la pila arranca con CONCURSO y todo lo demás
+ * baja 32 px. El presupuesto vertical está medido sobre la lámina rendida y no
+ * estimado: el titular cierra su tinta en **y=450** y el recorte de la figura
+ * entra en la columna izquierda (x 84–640) en **y=869**. En medio hay 419 px y
+ * la pila completa —caja 84 + aire + «¿El sueldo?» + caja taupe + la CTA de dos
+ * líneas— ocupa 480–823. Quedan 30 px de aire arriba y 46 abajo.
+ *
+ * El tope lateral tampoco se movió: el mapa de la foto deja limpio hasta x≈630
+ * entre y=750 y y=849, y la línea más larga de la CTA nueva mide 435 px, así que
+ * cierra en 519.
+ */
+const PILA = {taupe: 556, tag: 556, caja: 594} as const;
+
+/**
+ * ✅ ELI ELIGIÓ LA `caja` — RONDA 5, 16-09-2026. Es lo que se entrega.
+ *
+ * Se le pusieron las dos delante, rendidas y al tamaño de publicación
+ * (`out/hilton/between/concurso-s3-r5/revision-r5.html`), y eligió la caja
+ * grande: CONCURSO a **52 px**, +86 % contra los 28 de la ronda 4, en caja beige
+ * plana encabezando la pila del mensaje.
+ *
+ * ⚠️ Yo había recomendado la otra —`tag`, la etiqueta invertida en la línea del
+ * lockup— con el argumento de que el sello es el rótulo de la lámina y que
+ * bajarlo lo pone a competir con el premio. Mandó ella, y la razón por la que
+ * tenía razón queda escrita para la próxima: **el cliente pidió tamaño y `tag`
+ * no lo daba**. En esa posición el techo son 36 px, porque el lockup arranca en
+ * x=408 — y contra los 28 de hoy, 36 px no es un cambio que se vea «de
+ * inmediato», que era literalmente lo que pedían. La posición que limita el
+ * tamaño es la que se cede, no el tamaño.
+ *
+ * `tag` se queda en el archivo: es la variante correcta si alguna vez hay que
+ * rotular una lámina de esta marca sin robarle sitio al mensaje.
+ */
+export const C1S3Concurso1: React.FC<{sello?: SelloVariante}> = ({sello = 'caja'}) => (
   <AbsoluteFill style={{backgroundColor: FONDO_PAPEL}}>
     {/* `oscurecer` 0: el papel mide L≈205 y el titular va en café. Oscurecer una
         foto para que se lea un texto está prohibido en esta marca. */}
     <FotoFondo src={F + 'c1-portada-papel.jpg'} oscurecer={0} />
 
     <LockupCafe />
-    <SelloConcurso y={108} />
+
+    {/* El sello: en `taupe` y `tag` va en la línea óptica del lockup —centro 135
+        contra el 136,5 del logotipo—; en `caja` encabeza la pila de la izquierda.
+        En `tag` sube a 101 porque creció de 54 a 70 de alto y el centro manda.
+        ⚠️ El giro NO saca la caja del margen: medido sobre el render, su canto
+        izquierdo cae en x=84 exacto, igual que la caja taupe y la CTA. */}
+    {sello === 'caja' ? (
+      <SelloConcurso variante="caja" y={492} />
+    ) : (
+      <SelloConcurso variante={sello} y={sello === 'tag' ? 101 : 108} />
+    )}
 
     {/* EL TITULAR — centrado sobre el eje, en la columna 810.
         Arranca en y=257: el lockup cierra en 93 + 263/3,0298 = 180 y el aire
@@ -294,7 +397,7 @@ export const C1S3Concurso1: React.FC = () => (
     {/* EL BLOQUE SECUNDARIO — anclado a la IZQUIERDA (ver la cabecera).
         Ancho tope 540: a partir de y≈550 la pared limpia llega hasta x≈646, y
         84 + 540 = 624 deja 22 px de aire contra el recorte. */}
-    <div style={{position: 'absolute', left: BETWEEN.bloque.margenX, top: 556, width: 540}}>
+    <div style={{position: 'absolute', left: BETWEEN.bloque.margenX, top: PILA[sello], width: 540}}>
       <div
         style={{
           fontFamily: BETWEEN.fuentes.sans,
@@ -310,21 +413,34 @@ export const C1S3Concurso1: React.FC = () => (
       <div style={{display: 'flex'}}>
         <CajaDato anchoDisponible={540}>1 MES DE CAFÉ GRATIS</CajaDato>
       </div>
-      {/* La CTA del brief, literal. Va bajo la pila porque es el remate del
-          bloque: en y=730 la pared limpia todavía llega a x≈383 y la línea
-          mide ~330. */}
+      {/* ⭐ LA CTA — RONDA 5 (16-09), texto LITERAL del cliente:
+          «Cambiar el texto "POSTULA AQUÍ → DESLIZA" por: "¿Quieres el puesto? →
+          Desliza para tu entrevista"».
+
+          Va en DOS líneas y el corte cae en la flecha, que es la bisagra de la
+          frase: arriba la pregunta, abajo la acción. A 32 px en Raleway Bold la
+          frase entera mide 700 px y el canal limpio de esa franja termina en
+          x≈630; partida, la línea larga mide 435 y cierra en 519.
+
+          ⭐ El interlineado sube de 1,1 a 1,22 porque ahora hay DOS líneas: con
+          1,1 la pregunta y la acción se leían como un párrafo pegado, y el salto
+          dentro de un mismo nivel es lo que le da aire (manual § jerarquía).
+
+          ⚠️ El remate enlaza con la slide 2, que se titula «TU ENTREVISTA
+          EMPIEZA AHORA». No es casualidad y conviene no romperlo. */}
       <div
         style={{
           marginTop: 26,
           fontFamily: BETWEEN.fuentes.sans,
           fontWeight: BETWEEN.pesos.bold,
           fontSize: 32,
-          lineHeight: 1.1,
+          lineHeight: 1.22,
           letterSpacing: '0.01em',
           color: BETWEEN.colores.cafe,
         }}
       >
-        Postula aquí → Desliza
+        ¿Quieres el puesto?
+        <br />→ Desliza para tu entrevista
       </div>
     </div>
 
@@ -339,7 +455,10 @@ export const C1S3Concurso1: React.FC = () => (
         ⚠️ Las cuñas estuvieron primero en (318, 628) y caían ENCIMA de la caja
         taupe —que va de y=612 a 678 y de x=84 a ~620—, partiendo la palabra
         «CAFÉ». Van al canal de la derecha, en la franja libre que queda entre
-        el titular (cierra en ~450) y la figura (entra en y≈640). */}
+        el titular (cierra en ~450) y la figura (entra en y≈640).
+        ⚠️ RONDA 5: con el sello en `caja` la pila baja 32 px y la caja taupe
+        pasa a 653–719; las cuñas siguen en 516–589 y en el canal de la derecha,
+        así que no se movieron. */}
     <Trazo cual="chispa" x={892} y={286} ancho={62} />
     <Trazo cual="cunas" x={676} y={516} ancho={94} giro={-12} opacidad={0.92} />
   </AbsoluteFill>

@@ -1,3 +1,77 @@
+## 2026-09-16 (cierre 4) · Eli (Windows) — BETWEEN, RONDA 5: el sello del concurso y la CTA
+
+**La primera ronda del CLIENTE sobre este carrusel.** Llegó por Slack, de Nicolás
+Ávila con Scarlette, y son dos cambios, los dos de la **portada**:
+
+1. «Darle más protagonismo a la palabra **CONCURSO**. Que sea más grande y quizás
+   usar otro tono de café, o algún recurso visual que haga que destaque más y se
+   vea llamativo de inmediato.»
+2. «Cambiar **POSTULA AQUÍ → DESLIZA** por **¿Quieres el puesto? → Desliza para tu
+   entrevista**.»
+
+Eli agregó en la misma vuelta: «haz una opción donde CONCURSO esté en una **caja
+beige más grande estilo la ref**».
+
+### Lo que se hizo
+
+**El sello no se agrandó a secas, porque el defecto no era el tamaño.** Medido:
+el sello y la caja «1 MES DE CAFÉ GRATIS» eran **la misma caja taupe con tinta
+beige**, y dos cajas iguales en una lámina no se jerarquizan entre sí. Se invirtió
+—fondo beige `#FFF9EB`, tinta café `#675B49`, que es la caja de color plano de la
+`REF 1` al revés— y así la lámina queda beige contra taupe.
+
+⛔ **No se inventó un tercer marrón**, que era la primera vía que sugería el
+cliente: la paleta de Between son dos tintas y un marrón nuevo es abrirle un color
+a la marca. Queda anotado que `#4C4133` daría 6,13:1 si algún día se decide.
+
+**Se le pusieron a Eli las dos opciones rendidas y al tamaño de publicación**
+(`out/hilton/between/concurso-s3-r5/revision-r5.html`) y **eligió la B**:
+
+| | dónde | cuerpo | resultado |
+|---|---|---|---|
+| A · `tag` | línea del lockup | 36 (+29 %) | mejor compuesta, pero 36 es el TECHO: el lockup arranca en x=408 |
+| **B · `caja`** ✅ | encabeza la pila | **52 (+86 %)** | lo que el cliente pidió: se ve de inmediato |
+
+Yo había recomendado la A y me equivoqué de pregunta: el encargo era *tamaño*, y
+en esa posición no había tamaño que dar. **La posición que limita el tamaño es la
+que se cede, no el tamaño.** Las cuatro reglas de la ronda quedaron escritas en
+`clients/hilton/CLAUDE.md § S3 · CONCURSO · RONDA 5`.
+
+**La CTA** va literal y en dos líneas, partida por la flecha —arriba la pregunta,
+abajo la acción—: entera mide 700 px y el canal limpio de esa franja termina en
+x≈630. El cuerpo no se bajó (sigue en 32); lo que sube es el interlineado, de 1,1
+a 1,22. De regalo, el remate enlaza con la N2, que se titula «TU ENTREVISTA
+EMPIEZA AHORA».
+
+### ⚠️ Un tropiezo de proceso que conviene no repetir
+
+La página de revisión tomaba el «antes» de la carpeta de **entrega**, que es el
+archivo que la propia entrega sobrescribe: al re-rendir, la página pasó a comparar
+el después contra sí mismo sin avisar. Ahora la copia de la ronda anterior se
+guarda antes de re-rendir (`concurso-s3-r5/r4-N1-respaldo.png`) y el «antes»
+apunta ahí.
+
+### Dónde quedó
+
+- Sólo la **N1** cambió y sólo ella se re-subió, **reemplazando el mismo archivo**
+  (`1A9KfIwPp_XzEi4prUVHzXmDM5zX-27mB`, carpeta `C1 S3 CONCURSO` de
+  `S3 HILTON SEP 2026 / BW`): **el enlace de la grilla no cambió**. Verificado con
+  el conector MCP — 5.118.684 bytes, los mismos que el local, `createdTime` intacto
+  de la ronda 4 y `modifiedTime` nuevo. La **N2 no se tocó**.
+- Código: `src/compositions/hilton/BetweenC1S3Concurso.tsx` — el sello es ahora una
+  variante (`taupe` · `tag` · `caja`) y se rinde con
+  `--props='{"sello":"caja"}'`; el default del componente ya es `caja`.
+- Página de la ronda: `scripts/between-concurso-s3-r5-revision.py` →
+  `out/hilton/between/concurso-s3-r5/revision-r5.html`.
+- QA de carrusel: mediana 197 vs 201, calidez 37,7 vs 33,1 — mismo tono. El único
+  aviso de `between-qa.py` es el falso positivo conocido de la N1.
+
+**Abierto.** Sigue pendiente pedirle a contenido la **fecha** del concurso: la
+grilla dice `X DEFINIR` y el concurso corre del 21 al 30-09. Y siguen los
+pendientes de los cierres anteriores.
+
+---
+
 ## 2026-09-16 (cierre 3) · Eli (Windows) — BETWEEN, RONDA 4: el fondo es UNA hoja de papel
 
 > «El fondo debe ser el mismo beige papel para ambas slides, que sea plano y

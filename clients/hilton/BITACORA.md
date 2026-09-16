@@ -66,9 +66,23 @@ apunta ahí.
 - QA de carrusel: mediana 197 vs 201, calidez 37,7 vs 33,1 — mismo tono. El único
   aviso de `between-qa.py` es el falso positivo conocido de la N1.
 
+### Qué sigue
+
+1. **Esperar la respuesta del cliente a esta ronda.** El carrusel ya está en su
+   carpeta con el enlace de siempre, así que Nicolás y Scarlette ven la versión
+   nueva sin que nadie les mande nada.
+2. **Pedirle a contenido la fecha del concurso.** Es lo único que le falta a la
+   pieza para estar completa.
+3. Si piden más aún sobre el sello, la vía que queda **sin** tocar la paleta es el
+   giro y el contorno blanco del sticker; el marrón nuevo `#4C4133` está medido
+   pero lo aprueba la marca, no la pieza.
+
 **Abierto.** Sigue pendiente pedirle a contenido la **fecha** del concurso: la
 grilla dice `X DEFINIR` y el concurso corre del 21 al 30-09. Y siguen los
-pendientes de los cierres anteriores.
+pendientes de los cierres anteriores: Between **sin `clients/hilton/reglas.yaml`**,
+las **`GUIA CM`** en local sin decidir cómo llegan al CM, **`BETWEEN.logo.cafe`
+apuntando a un PNG negro**, y el legal VIEJO en `BetweenCumple.tsx:112` y
+`BetweenSeptiembre.tsx:794`.
 
 ---
 

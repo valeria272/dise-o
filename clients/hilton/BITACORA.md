@@ -1,13 +1,98 @@
+## 2026-09-16 (cierre 3) · Eli (Windows) — BETWEEN, RONDA 4: el fondo es UNA hoja de papel
+
+> «El fondo debe ser el mismo beige papel para ambas slides, que sea plano y
+> transicione.»
+
+Es sobre el mismo carrusel del concurso que la ronda 3 había dejado «continuo», y
+la corrección enseña algo que el manual no tenía escrito.
+
+### ⭐⭐⭐ Igualar la LUZ no iguala el MATERIAL
+
+La ronda 3 dejó el salto de luminancia en la costura en **0,95** —invisible— y aun
+así ella seguía viendo dos fondos. Lo que no coincidía no era el tono: la portada
+era una **pared lisa** y la slide 2 un **panel de veta vertical de madera**, más
+rosado. Un polinomio de grado 3 corrige el campo de luz; no convierte madera en
+yeso.
+
+Así que no se persiguió más la costura: **se cambió la superficie**. Se sintetiza
+UNA hoja de papel beige de 4500 × 2813 —las dos láminas juntas— y cada slide se
+queda con su mitad. La continuidad deja de corregirse y pasa a existir por
+construcción. Medido sobre la pieza rendida: **0,97** de salto, y ahora en las
+**2.812 filas**, no sólo en el 45 % de arriba donde había pared en las dos.
+
+⭐ **El retrato y el bodegón no se re-generaron**: están aprobados y regenerarlos
+era perderlos. Sólo cambió la superficie de atrás, con el recorte intacto.
+
+### ⛔⛔ La máscara del crecimiento no sirve para REEMPLAZAR
+
+`between-concurso-s3-fondo-continuo.py` crece desde el canto sobre la imagen
+reducida a ¼ con `binary_dilation(12)` — saltos de 48 px reales, que **saltan por
+encima del borde blanco del recorte**. Para corregir iluminación daba lo mismo;
+para reemplazar el fondo pintaba papel encima del escritorio. Medido, la fuga
+metía el escritorio entero en el «fondo»: 89,1 % del cuadro en vez de 84,2 %.
+
+Lo que sirve es `scipy.ndimage.label` a resolución completa, quedándose con las
+componentes que tocan el **canto SUPERIOR**: la pared lo toca en las dos láminas,
+el escritorio nunca. Sin fugas y sin lista de excepciones.
+
+### ⭐⭐ El tono del papel se MIDE
+
+`#DFC9BB`, la mediana de las dos paredes aprobadas: el papel entra en el sitio
+exacto que ocupaba la pared y ningún contraste ya aprobado se mueve.
+
+⛔ **No se usó el `papel-beige.png` crema (`#FFF9EB`) de la story del 18-09.** A
+sangre gana en el titular (6,31:1 contra 4,17:1) y **pierde en las dos cosas que
+sostienen el collage**: el contorno blanco del recorte cae a 1,05:1 —el sticker
+deja de existir— y la tarjeta crema de la N2, que no tiene contorno, se funde con
+el fondo. El fondo de una pieza no se elige por el contraste del titular solo.
+
+Y «plano» tiene amplitud: la receta de papel se reusa tal cual salvo el
+**manchado, que baja de 2,8 a 1,4** — a 2,8 funciona en un cartel de 1700 px, pero
+a sangre en 4500 px la hoja se lee como nubes.
+
+### ⭐⭐ Al cambiar el fondo se va también la sombra del sticker
+
+Y sin ella el recorte es un papel pegado. Se rehace desde la silueta y **no a
+ojo**: se midió la que traían las láminas aprobadas —cociente contra su propio
+campo de luz, por franjas de distancia al filo— y la síntesis se ajustó a ese
+perfil (0,948 · 0,977 · 0,998 contra 0,946 · 0,984 · 0,999). Es una sombra corta:
+a 25 px ya no existe.
+
+**Dónde quedó.** Las dos láminas **reemplazan el mismo archivo** en
+`S3 HILTON SEP 2026 / BW / C1 S3 CONCURSO` (`N1`
+`1A9KfIwPp_XzEi4prUVHzXmDM5zX-27mB` · `N2` `1IGWnaOypxzO3jnZVrQ8deZg1cgyWMkMr`),
+verificadas por `fileSize` y `modifiedTime` con el conector MCP: **los enlaces de
+la grilla no cambiaron**. Los dos fondos se reproducen **byte a byte** (`cmp`).
+Script nuevo: `scripts/between-concurso-s3-fondo-papel.py`. Assets nuevos:
+`c1-portada-papel.jpg` y `c1-escritorio-papel.jpg` — las escenas aprobadas quedan
+intactas como fuente. Revisión actualizada con el antes/después:
+`out/hilton/between/revision-16-09.html`.
+
+**La grilla, revisada hoy antes de tocar nada:** ninguna ronda nueva del cliente.
+Lo único que se movió en las cuatro pestañas son tres estados que pasaron de
+`EN CAMBIOS` a `CORREGIDO` (FEED col 13 y STORIES cols 17 y 18) — o sea, lo que se
+entregó hoy. La instantánea de `grillas/between-septiembre-2026-vivo/` sigue
+sirviendo de base para el próximo diff.
+
+**Abierto:** lo mismo de los cierres anteriores. Sigue pendiente pedirle a
+contenido la **fecha del concurso** (`X DEFINIR` en la grilla).
+
+---
+
 ## 2026-09-16 (CIERRE DEL DÍA) — Elisabet Soto · BETWEEN
 
-Resumen para el relevo. El detalle de cada ronda está en las tres entradas de
-abajo (ronda 1, ronda 2 y ronda 3 del mismo día).
+Resumen para el relevo. El detalle de cada ronda está en las entradas de abajo
+(rondas 1 a 4 del mismo día).
+
+> ⚠️ **Actualizado:** después de este cierre entró la **ronda 4** —el fondo del
+> carrusel del concurso pasó a ser UNA hoja de papel beige, plana y cortada en
+> dos—. Está en la entrada de más arriba, «cierre 3».
 
 **Qué se hizo:** se produjo el **carrusel del CONCURSO «Se busca: CEO del café»**
 (FEED col 10, pieza nueva, dos láminas) y se cerraron **tres ajustes de grilla**:
 la ST del 21-09 (fuera «Masa» + legal), la ST del 22-09 (legal, reubicado bajo la
 copa) y **la portada** del carrusel PROMOS TO GO del 22-09, que cambió de foto
-porque el cliente corrigió el enlace. Tres rondas de correcciones de Eli en el
+porque el cliente corrigió el enlace. Cuatro rondas de correcciones de Eli en el
 mismo día, todas aplicadas y medidas.
 
 **Dónde quedó:** todo entregado y verificado en Drive.

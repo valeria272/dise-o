@@ -48,6 +48,16 @@
  * la foto NO se oscurece (el manual lo prohíbe: si un texto no se lee, va en
  * caja taupe, no se apaga la foto).
  *
+ * ⭐ Con la hoja de papel de la ronda 4 (ver `FONDO_PAPEL`) la franja quedó
+ * PAREJA, y ésa es la medida que manda ahora:
+ *
+ *     portada     203,7 · 204,7 · 205,7
+ *     escritorio  204,7 · 204,7 · 202,7
+ *
+ * El peor tercio subió de 194,0 a 202,7 y la dispersión entre tercios bajó de
+ * 19 niveles a 3, así que el café se lee igual en toda la línea y en las dos
+ * láminas. La decisión de tinta no cambia.
+ *
  * ── SIN LOCKUP EN LA SLIDE 2 ─────────────────────────────────────────────
  * «En carrusel el logo va SOLO en la portada» (gramática §5). En la 2 firma la
  * tarjeta, con el avatar de marca y el handle — igual que en `C1 S2 CUMPLE N2`.
@@ -74,6 +84,31 @@ import {CajaDato, FotoFondo, TitularBetween, useFuentesListas} from './BetweenSi
 import {Trazo} from './BetweenTrazosConcurso';
 
 const F = 'assets/hilton/between/concurso-s3/';
+
+/**
+ * ⭐⭐ EL FONDO ES UNA HOJA DE PAPEL, Y ES UNA SOLA PARA LAS DOS — RONDA 4 (16-09).
+ *
+ * Eli: «El fondo debe ser el mismo beige papel para ambas slides, que sea plano
+ * y transicione.»
+ *
+ * Las dos escenas se generaron por separado y traían dos superficies distintas:
+ * la portada, una pared lisa; la slide 2, un panel de **veta vertical de madera**
+ * más rosado. La ronda 3 igualó la ILUMINACIÓN de las dos (salto en la costura
+ * 18,7 → 0,95) pero no el MATERIAL, y eso es lo que ella siguió viendo.
+ *
+ * `scripts/between-concurso-s3-fondo-papel.py` cambia sólo la superficie de
+ * atrás —el retrato y el bodegón no se re-generan, están aprobados— y lo hace
+ * con UNA hoja sintetizada de 4500 px de ancho, cortada en dos. La continuidad
+ * no se corrige: existe por construcción, porque la última columna de la portada
+ * y la primera de la slide 2 son vecinas de la misma hoja.
+ *
+ * `FONDO_PAPEL` es el color de relleno bajo la imagen, y es el **tono exacto de
+ * la hoja**: la mediana medida de las dos paredes aprobadas. Antes había un
+ * `#e8ded2` puesto a ojo que no era el de ninguna de las dos.
+ * Los contrastes, medidos: café del titular 4,17:1 · contorno blanco del recorte
+ * 1,59:1 · tarjeta crema de la slide 2, 1,51:1.
+ */
+const FONDO_PAPEL = '#dfc9bb';
 
 /**
  * ⭐⭐ UN CARRUSEL, UN CUERPO DE TITULAR.
@@ -227,10 +262,10 @@ const SelloConcurso: React.FC<{y: number}> = ({y}) => {
    no llevan punto final (regla de Eli, `sinPuntoFinal`).
    ══════════════════════════════════════════════════════════════════════════ */
 export const C1S3Concurso1: React.FC = () => (
-  <AbsoluteFill style={{backgroundColor: '#e8ded2'}}>
-    {/* `oscurecer` 0: la pared mide L≈207 y el titular va en café. Oscurecer una
+  <AbsoluteFill style={{backgroundColor: FONDO_PAPEL}}>
+    {/* `oscurecer` 0: el papel mide L≈205 y el titular va en café. Oscurecer una
         foto para que se lea un texto está prohibido en esta marca. */}
-    <FotoFondo src={F + 'c1-portada.jpg'} oscurecer={0} />
+    <FotoFondo src={F + 'c1-portada-papel.jpg'} oscurecer={0} />
 
     <LockupCafe />
     <SelloConcurso y={108} />
@@ -398,8 +433,8 @@ const Separador: React.FC = () => (
 export const C1S3Concurso2: React.FC = () => {
   useFuentesListas();
   return (
-    <AbsoluteFill style={{backgroundColor: '#e8ded2'}}>
-      <FotoFondo src={F + 'c1-escritorio.jpg'} oscurecer={0} />
+    <AbsoluteFill style={{backgroundColor: FONDO_PAPEL}}>
+      <FotoFondo src={F + 'c1-escritorio-papel.jpg'} oscurecer={0} />
 
       {/* EL TITULAR — sin script: la script es la marca de la PORTADA y las
           slides interiores bajan a un solo alfabeto (orden de Eli del 01-09

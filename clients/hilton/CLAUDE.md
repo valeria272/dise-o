@@ -9323,3 +9323,119 @@ para el texto.
 fueron las banderitas del 08-09). Sigue acotada a las cuatro condiciones: la pide
 la diseñadora para una pieza, el motivo no existe en su `.svg`, va en un solo
 color de marca y el trazo es de grosor constante con puntas redondeadas.
+
+---
+
+# ⭐⭐⭐ S3 · RONDA 4 DEL CONCURSO — IGUALAR LA LUZ NO IGUALA EL MATERIAL (16-09-2026)
+
+Eli, sobre el mismo carrusel que la ronda 3 ya había dejado «continuo»:
+
+> «El fondo debe ser el **mismo beige papel** para ambas slides, que sea **plano**
+> y **transicione**.»
+
+## 1. ⭐⭐⭐ LA REGLA: DOS ESCENAS GENERADAS APARTE SON DOS SUPERFICIES
+
+Y eso **no se arregla igualando la iluminación**. La ronda 3 dejó el salto de
+luminancia en la costura en 0,95 —invisible— y aun así ella siguió viendo dos
+fondos, porque lo que no coincidía era el **material**:
+
+| Lámina | Qué era |
+|---|---|
+| portada | pared lisa gris-beige |
+| slide 2 | panel de **veta vertical de madera**, más rosado |
+
+Un polinomio de grado 3 corrige el campo de luz; no convierte madera en yeso. La
+continuidad de ILUMINACIÓN es condición necesaria y **no suficiente**: si las dos
+láminas no comparten superficie, el carrusel sigue partido.
+
+> **La regla:** cuando un carrusel pide fondo continuo y las escenas ya están
+> generadas y aprobadas, no se persigue la costura — **se cambia la superficie**.
+> Se sintetiza UNA hoja del ancho de las dos láminas juntas y se corta en dos. La
+> continuidad deja de ser algo que se corrige y pasa a ser algo que existe por
+> construcción: la última columna de la N1 y la primera de la N2 son vecinas de la
+> misma hoja. Medido sobre la pieza rendida: **0,97** de salto, y ahora en las
+> **2.812 filas**, no sólo en el 45 % de arriba donde había pared en las dos.
+
+Script: `scripts/between-concurso-s3-fondo-papel.py`. Entra la escena aprobada,
+sale `*-papel.jpg`; **la escena no se toca** y queda de fuente para la ronda
+siguiente.
+
+## 2. ⛔⛔ PARA REEMPLAZAR EL FONDO, LA MÁSCARA DEL CRECIMIENTO NO SIRVE
+
+`between-concurso-s3-fondo-continuo.py` saca la máscara creciendo desde el canto
+sobre la imagen reducida a ¼, con `binary_dilation(iterations=12)` — o sea
+**saltos de 48 px reales**, que **saltan por encima del borde blanco del
+recorte**. Para corregir iluminación daba igual (la fuga se comía una corrección
+de baja frecuencia). Para **reemplazar** el fondo es fatal: pintaba papel encima
+del escritorio y del portacredencial.
+
+Medido, la fuga metía el escritorio entero en el «fondo»: **89,1 %** del cuadro en
+vez de **84,2 %**.
+
+**Lo que sí sirve:** etiquetar con `scipy.ndimage.label` a resolución completa y
+quedarse con las componentes que tocan el **canto SUPERIOR**. La pared toca el
+canto de arriba en las dos láminas; el escritorio, que se va por abajo y por la
+derecha, no lo toca nunca. Sin fugas y sin lista de excepciones.
+
+⚠️ Dos detalles que hay que copiar:
+- el predicado de pared va **generoso** (`lum 140–243`, `sat < 0,32`): con el
+  umbral estrecho de la ronda 3, la veta del canto superior derecho quedaba fuera
+  de la máscara y sobrevivía como **un parche de madera**;
+- la máscara se **dilata 1 px antes de difuminarla**. Su borde cae justo donde
+  empieza el contorno blanco (lum ≥ 243), así que sin dilatar queda un **anillo de
+  1 px de la pared vieja** alrededor de todo el recorte.
+
+## 3. ⭐⭐ EL TONO DEL PAPEL SE MIDE, NO SE ELIGE
+
+Va la **mediana de las dos paredes aprobadas**, `#DFC9BB`. Así el papel entra en
+el sitio exacto que ocupaba la pared y **ningún contraste ya aprobado se mueve**.
+
+⛔ **Y por eso NO se usa el `papel-beige.png` de la story del 18-09**, que está
+tintado en el beige de marca `#FFF9EB`. A sangre, ese crema rompe dos cosas:
+
+| Contra qué | con `#FFF9EB` | con `#DFC9BB` |
+|---|---|---|
+| titular café `#675B49` | 6,31 : 1 | 4,17 : 1 — las dos por encima del 3:1 que pide la marca |
+| contorno blanco del recorte | **1,05 : 1** ⛔ *el sticker deja de existir* | **1,59 : 1** |
+| tarjeta crema `#FFF9EB`, que no tiene contorno | **1,00 : 1** ⛔ *se funde con el fondo* | **1,51 : 1** |
+
+O sea que el crema **gana** en el texto y **pierde en las dos cosas que sostienen
+el collage**: el contorno del recorte y la tarjeta. El fondo de una pieza no se
+elige por el contraste del titular solo.
+
+> **La regla:** «papel beige» nombra el MATERIAL, no un hex. El hex sale de lo que
+> la pieza ya tiene aprobado.
+
+Y **«plano» tiene una amplitud**: la receta de papel de
+`between-st-s3-materiales.py` (grano + fibra horizontal + manchado, semilla fija)
+se reusa tal cual salvo el **manchado, que baja de 2,8 a 1,4**. A 2,8 funciona en
+un cartel de 1700 px; a sangre en 4500 px la hoja se lee como **nubes**.
+
+## 4. ⭐⭐ SI SE CAMBIA EL FONDO, SE VA TAMBIÉN LA SOMBRA DEL RECORTE
+
+Y sin ella el sticker es un papel pegado — la misma regla que el manual ya tiene
+para los montajes, ahora al revés. La sombra se rehace desde la silueta, y **no a
+ojo**: se mide la que traían las láminas aprobadas, como cociente contra su propio
+campo de luz y por franjas de distancia al recorte, y la síntesis se ajusta a ese
+perfil.
+
+| Distancia al filo | 1–6 px | 6–12 px | 12–25 px | > 25 px |
+|---|---|---|---|---|
+| aprobado (medido) | 0,948 | 0,977 | 0,998 | 1,000 |
+| síntesis (`A = 0,16`, `σ = 6,5`) | 0,946 | 0,984 | 0,999 | 1,000 |
+
+Es una sombra **corta y pegada al filo**, no un halo: a 25 px ya no existe. Ojo
+con la conversión — el desenfoque de una silueta vale **0,5 en el borde**, no 1,
+así que la amplitud es aproximadamente el doble de la caída que se quiere medir.
+
+## Estado
+
+Las dos láminas re-subidas **reemplazando el mismo archivo** (`N1`
+`1A9KfIwPp_XzEi4prUVHzXmDM5zX-27mB` · `N2` `1IGWnaOypxzO3jnZVrQ8deZg1cgyWMkMr`),
+verificadas por `fileSize` y `modifiedTime` con el conector MCP: **los enlaces de
+la grilla no cambiaron**. Los dos fondos se reproducen **byte a byte** (`cmp`).
+`between-qa.py`: mismo resultado que la ronda 3, con el único aviso de siempre
+—«texto a 74 px del borde derecho» en la N1, que es el recorte de la persona
+llegando al canto, no texto—. Franja del titular por tercios: **203,7 · 204,7 ·
+205,7** y **204,7 · 204,7 · 202,7**; la dispersión entre tercios bajó de 19 a 3
+niveles.

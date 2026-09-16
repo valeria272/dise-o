@@ -116,6 +116,61 @@ def main() -> int:
     {lam('out/hilton/between/entrega-c1-s3-concurso/C1 S3 CONCURSO N1.png', '<b>N1</b> — portada · 2250×2812')}
     {lam('out/hilton/between/entrega-c1-s3-concurso/C1 S3 CONCURSO N2.png', '<b>N2</b> — la dinámica · 2250×2812')}
   </div>
+
+  <div class="notas">
+    <h3>Ronda 4 — el fondo es UNA sola hoja de papel</h3>
+  </div>
+  <blockquote>«El fondo debe ser el <b>mismo beige papel</b> para ambas slides, que sea
+    <b>plano</b> y <b>transicione</b>.» <small>Eli, 16-09</small></blockquote>
+  <div class="fila">
+    {lam('out/hilton/between/concurso-s3-antes/BW-F-Concurso-1.png', '<b>ANTES</b> — pared lisa gris-beige', 430)}
+    {lam('out/hilton/between/concurso-s3-antes/BW-F-Concurso-2.png', '<b>ANTES</b> — panel de <b>veta de madera</b>, más rosado', 430)}
+  </div>
+  <div class="fila" style="margin-top:14px">
+    {lam('out/hilton/between/entrega-c1-s3-concurso/C1 S3 CONCURSO N1.png', '<b>AHORA</b> — papel beige plano', 430)}
+    {lam('out/hilton/between/entrega-c1-s3-concurso/C1 S3 CONCURSO N2.png', '<b>AHORA</b> — la MISMA hoja, su otra mitad', 430)}
+  </div>
+  <div class="notas">
+    <h3>Qué se hizo, y qué no</h3>
+    <ul>
+      <li><b>Eran dos superficies distintas, no dos tonos.</b> La ronda 3 igualó la
+          <i>iluminación</i> de las dos paredes (salto en la costura 18,7 → 0,95) pero no podía
+          igualar el <i>material</i>: la portada era una pared lisa y la slide 2 un panel de veta
+          vertical de madera. Eso es lo que se seguía viendo.</li>
+      <li><b>No se regeneró nada.</b> El retrato y el bodegón están aprobados; regenerarlos era
+          perderlos. Se cambió sólo la superficie de atrás, con el recorte intacto píxel a píxel.</li>
+      <li><b>«Que transicione»: es una sola hoja cortada en dos.</b> El papel se sintetiza de una
+          vez a 4500 px de ancho —las dos láminas juntas— y cada slide se queda con su mitad. La
+          continuidad no se corrige, existe por construcción: la última columna de la N1 y la
+          primera de la N2 son vecinas de la misma hoja.</li>
+      <li><b>«Que sea plano»:</b> grano fino + fibra horizontal, y el manchado bajó de 2,8 a 1,4
+          niveles — a sangre en 4500 px, con 2,8 la hoja se lee como nubes.</li>
+      <li><b>El tono no se eligió a ojo:</b> es la mediana medida de las dos paredes aprobadas,
+          <b>#DFC9BB</b>. Así el papel entra en el sitio exacto que ocupaba la pared y ningún
+          contraste ya aprobado de la pieza se mueve.
+          ⚠️ Por eso <b>no</b> se usó el papel crema <code>#FFF9EB</code> de la story del 18-09:
+          a sangre, con ese crema el borde blanco del recorte queda en 1,05:1 —el sticker deja de
+          existir— y la tarjeta crema de la N2, que no tiene contorno, se funde con el fondo.</li>
+      <li><b>La sombra del sticker se rehizo con el peso que ya tenía.</b> Al sacar la pared se iba
+          también su sombra, y sin ella el recorte es un papel pegado. Se midió el perfil de las
+          láminas aprobadas y la síntesis se ajustó a él: 0,948 · 0,977 · 0,998 contra
+          0,946 · 0,984 · 0,999 a 1–6, 6–12 y 12–25 px del filo.</li>
+    </ul>
+  </div>
+  <table>
+    <tr><th>Ronda 4 — qué se midió</th><th>Antes</th><th>Ahora</th></tr>
+    <tr><td>Salto en la costura entre las dos láminas</td><td class="n">0,95</td>
+        <td class="n">0,97 <span class="ok">✓ invisible</span> — y ahora en las <b>2.812</b> filas, no sólo en el 45 % de arriba</td></tr>
+    <tr><td>Franja del titular por tercios · N1</td><td class="n">215,9 · 208,9 · 196,9</td>
+        <td class="n">203,7 · 204,7 · 205,7</td></tr>
+    <tr><td>Franja del titular por tercios · N2</td><td class="n">209,9 · 204,1 · 194,0</td>
+        <td class="n">204,7 · 204,7 · 202,7</td></tr>
+    <tr><td>Dispersión entre tercios (peor caso)</td><td class="n">19,0 niveles</td>
+        <td class="n">3,0 niveles <span class="ok">✓</span></td></tr>
+    <tr><td>Contraste del titular café sobre el fondo</td><td class="n">—</td>
+        <td class="n">4,17:1 <span class="ok">✓</span> (la marca pide 3:1)</td></tr>
+  </table>
+
   <div class="notas">
     <h3>Las dos referencias del cliente, y qué se tomó de cada una</h3>
   </div>
@@ -141,13 +196,13 @@ def main() -> int:
   </div>
   <table>
     <tr><th>Qué se midió</th><th>Valor</th><th>Criterio</th></tr>
-    <tr><td>Franja del titular, por tercios (portada)</td><td class="n">212,9 · 204,5 · 192,6</td>
+    <tr><td>Franja del titular, por tercios (portada)</td><td class="n">203,7 · 204,7 · 205,7</td>
         <td>sobre L≈150 → <b>tinta café</b> <span class="ok">✓</span></td></tr>
-    <tr><td>Franja del titular, por tercios (slide 2)</td><td class="n">213,0 · 206,5 · 196,0</td>
+    <tr><td>Franja del titular, por tercios (slide 2)</td><td class="n">204,7 · 204,7 · 202,7</td>
         <td>sobre L≈150 → <b>tinta café</b> <span class="ok">✓</span></td></tr>
     <tr><td>Caja alta del titular, tinta</td><td class="n">74,4 · 74,4 · 73,9 px</td>
         <td>un carrusel, <b>un solo cuerpo</b> <span class="ok">✓</span></td></tr>
-    <tr><td>Tono entre slides</td><td class="n">mediana 195 · 202</td>
+    <tr><td>Tono entre slides</td><td class="n">mediana 197 · 201</td>
         <td>QA de carrusel <span class="ok">✓ mismo tono</span></td></tr>
     <tr><td>Logotipo del vaso, al 300 %</td><td>BƎTWEEN / COFFEE & BAR</td>
         <td>completo <span class="ok">✓</span> (las tiradas 1 y 2 salieron rotas y se re-tiraron)</td></tr>
@@ -260,7 +315,17 @@ def main() -> int:
   <p class="sub">Todo lo de esta página ya está subido al Drive. Las stories y la portada del To Go
      reemplazan el MISMO archivo, así que los enlaces de la grilla no cambiaron.</p>
   <div class="notas" style="margin-top:22px">
-    <h3>Ronda 3 — lo último que pediste</h3>
+    <h3>Ronda 4 — lo último que pediste</h3>
+    <ul>
+      <li>«el fondo debe ser el <b>mismo beige papel</b> para ambas slides, que sea <b>plano</b> y
+          <b>transicione</b>» → las dos paredes generadas (una lisa, la otra con veta de madera) se
+          reemplazaron por <b>una sola hoja de papel beige</b> sintetizada a 4500 px y cortada en dos.
+          El recorte no se tocó y la sombra del sticker se rehizo con el peso que ya tenía.
+          Está todo en el apartado 1, con el antes y el después.</li>
+    </ul>
+  </div>
+  <div class="notas" style="margin-top:14px">
+    <h3>Ronda 3 — lo anterior</h3>
     <ul>
       <li>«que la <b>textura beige del fondo haga transición</b> en ambas slides» → la pared es ahora
           un solo campo continuo a lo largo de las dos láminas. Salto en la costura: <b>0,95</b> de

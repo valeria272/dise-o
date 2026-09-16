@@ -233,38 +233,75 @@ PIEZAS = [
             # crema de la foto entra en la máscara y el «ancho del titular» pasa
             # a ser el ancho del sillón — el QA lo reportaba descentrado estando
             # centrado. Es el mismo modo de falla que el filete de la caja.
+            #
+            # ⭐⭐ RONDA 6 (16-09) — ELI AJUSTÓ LA PIEZA EN SU EDITABLE y TODAS las
+            # bandas de la caja hacia abajo se movieron. El pedido venía de una
+            # superior por la grilla: «donde dice canje podría ser así porfis —
+            # Canje de / noches gratis» y «el recuadro en cada item sin tanto
+            # aire, se ve como muy pelaitoo».
+            #
+            # Lo que cambió, medido sobre el PNG exportado del `.ai`, @1080:
+            #   caja            880 × 306 en y 812   →   **764,7 × 261,2 en y 841,4**
+            #   celda · tinta   153 · 40,1 %         →   **130,6 · 47,4 %**
+            #   logo Honors     64 de alto, y 1156   →   **81,6 de alto, y 1136,5**
+            #   titular         sin cambio de cuerpo, **bajó 12 px** en bloque
+            #
+            # ⭐ El ancho de la caja NO es un número redondo: **764,7 es la medida
+            # a la que ella justificó el titular** en la ronda 5. Apretó la caja
+            # hasta la columna del titular, y por eso las tres líneas y el cuadro
+            # cierran ahora en la misma vertical (x 157,4 y 922,1).
+            #
+            # ⛔ La foto, el logotipo DT, la regla del pie y el llamado quedaron
+            # IDÉNTICOS al PNG anterior (diferencia máxima 0). Se verificó pixel
+            # a pixel antes de reemplazar la entrega.
+            #
+            # Bandas de tinta re-medidas sobre la entrega del 16-09, @1080:
+            #   titular 1 «MÁS BENEFICIOS»     y 554,4-620,1  x 156,3-920,5
+            #   titular 2 «EN CADA ESTADÍA»    y 647,2-709,1  x 157,3-921,4
+            #   titular 3 «CON HILTON HONORS»  y 734,5-786,3  x 155,8-922,9
+            #   filete tope de la caja         y 841,4        filete pie  y 1102,6
+            #   rótulo Tarifas   L1 880,5-900,2  L2 915,6-935,2   x 297,4-432,3
+            #   rótulo Upgrades     880,5-935,2                   x 668,4-834,5
+            #   rótulo Canje       1007,6-1067,6                  x 296,9-472,6
+            #   rótulo Acumula     1008,1-1062,8                  x 668,4-889,2
+            #   logotipo Hilton Honors  y 1136,5-1218,1  x 444,6-635,2 (ancho 190,6)
+            #   llamado del pie         y 1292,7-1317,6  x 304,6-775,4 (ancho 470,8)
+            #
+            # ⚠️ Los acentos siguen fuera de las bandas del titular a propósito
+            # (la Á en 539,0-551,0 y la Í en 633,7-644,3): la huella se compara
+            # contra versales.
             {"nombre": "titular 1 «MÁS BENEFICIOS»", "texto": "MÁS BENEFICIOS",
-             "fuente": "Stag-Medium.ttf", "huella": "glifos", "banda": (540, 608),
+             "fuente": "Stag-Medium.ttf", "huella": "glifos", "banda": (553, 622),
              "xrango": (150, 930), "umbral": 215, "contraste_minimo": 3.0},
             {"nombre": "titular 2 «EN CADA ESTADÍA»", "texto": "EN CADA ESTADÍA",
-             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (632, 700),
+             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (645, 712),
              "xrango": (150, 930), "umbral": 215, "contraste_minimo": 3.0},
             {"nombre": "titular 3 «CON HILTON HONORS»", "texto": "CON HILTON HONORS",
-             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (718, 778),
+             "fuente": "Stag-Light.ttf", "huella": "glifos", "banda": (732, 789),
              "xrango": (150, 930), "umbral": 215, "contraste_minimo": 3.0},
             # Los rótulos se miden DENTRO de su columna: con el rango ancho, el
             # filete lateral de la caja cae en las mismas filas.
             # ⭐ RONDA 2: van en Stag Regular, no en Trade Gothic. Se les mide la
             # huella para que una regresión a Trade no pase inadvertida.
             {"nombre": "rótulo Tarifas exclusivas", "texto": "Tarifas",
-             "fuente": "Stag-Regular.ttf", "huella": "glifos", "banda": (852, 900),
-             "xrango": (230, 530), "umbral": 200, "centrado": False},
+             "fuente": "Stag-Regular.ttf", "huella": "glifos", "banda": (878, 902),
+             "xrango": (290, 440), "umbral": 200, "centrado": False},
             {"nombre": "rótulo Upgrades", "texto": None, "fuente": None,
-             "banda": (852, 922), "xrango": (660, 970), "umbral": 200, "centrado": False},
+             "banda": (878, 937), "xrango": (660, 840), "umbral": 200, "centrado": False},
             {"nombre": "rótulo Canje de noches", "texto": None, "fuente": None,
-             "banda": (1005, 1080), "xrango": (230, 530), "umbral": 200, "centrado": False},
+             "banda": (1005, 1070), "xrango": (290, 478), "umbral": 200, "centrado": False},
             {"nombre": "rótulo Acumula puntos", "texto": None, "fuente": None,
-             "banda": (1005, 1080), "xrango": (660, 970), "umbral": 200, "centrado": False},
+             "banda": (1005, 1065), "xrango": (660, 895), "umbral": 200, "centrado": False},
             # ⭐ RONDA 3: el logotipo de Hilton Honors. Se comprueba como tinta —que
             # esté, centrado y con contraste— y aparte por su ANCHO, que es lo que
             # delata una deformación: 52 de alto por su proporción real 2,3213 da
             # 120,7. Medido sobre el PNG: 120,5.
             {"nombre": "logotipo Hilton Honors", "texto": None, "fuente": None,
-             "banda": (1150, 1225), "xrango": (420, 660), "umbral": 195},
+             "banda": (1132, 1222), "xrango": (430, 650), "umbral": 195},
             {"nombre": "llamado del pie", "texto": None, "fuente": None,
-             "banda": (1285, 1318), "xrango": (60, 1020), "umbral": 200},
+             "banda": (1289, 1321), "xrango": (60, 1020), "umbral": 200},
         ],
-        "caja": {"x": 100, "ancho": 880, "y": 812, "alto": 306},
+        "caja": {"x": 157.4, "ancho": 764.7, "y": 841.4, "alto": 261.2},
     },
 ]
 

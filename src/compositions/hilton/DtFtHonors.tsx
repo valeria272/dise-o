@@ -110,6 +110,9 @@
  *   titular        altura de versal **49**, salto entre líneas **68**
  *   regla del pie  y ≈ 1258
  *
+ * ⚠️ Estas tres medidas valieron hasta la ronda 4. Las rondas 5 y 6 las
+ * reemplazaron: ver el bloque de abajo y la rejilla al final.
+ *
  * ⭐⭐ La caja de la referencia (880) es más ancha que el panel medido de DT
  * (730 en `DT FT S3`). Se adopta el 880, con el precedente del Día del Turismo:
  * cuando las dos medidas chocaron, Eli pidió parecerse a la referencia.
@@ -120,18 +123,62 @@
  * translúcida»— y la referencia hace eso.
  *
  * ══════════════════════════════════════════════════════════════════════════
+ * ⛔⛔ RONDAS 5 y 6 — LA PIEZA YA NO NACE ACÁ: NACE EN EL EDITABLE DE ELI
+ * ══════════════════════════════════════════════════════════════════════════
+ * Desde el 15-09 por la tarde la entrega **se exporta del `.ai`**, no de
+ * Remotion. Eli abrió `out/hilton/dt/ft-honors/editable/Post n°1 S4 DT -
+ * EDITABLE.ai` y trabaja ahí. Este archivo pasó a ser **la reproducción**: se
+ * mantiene al día MIDIENDO la entrega, para que la pieza siga siendo
+ * reproducible desde el repo y la próxima ronda no arranque de una versión
+ * vieja. La fuente de verdad es el `.ai`.
+ *
+ * **RONDA 5 (15-09).** El titular se justificó a una medida. Ver `TITULO`.
+ *
+ * **RONDA 6 (16-09).** Pedido de una superior por la grilla, literal:
+ *
+ *     «donde dice canje podría ser así porfis — Canje de / noches gratis»
+ *     «y el recuadro en cada item sin tanto aire, se ve como muy pelaitoo»
+ *     «solo eso baby, lo demás lo veo todo oki en grillass»
+ *
+ * Eli lo resolvió ella misma en el editable y acá se reprodujo midiendo su PNG:
+ *
+ *     caja          880 × 306 en y 812   →   **764 × 260 en y 842**
+ *     celda · tinta 153 · 40,1 %         →   **130 · 47,4 %**
+ *     logo Honors   64 de alto           →   **81,6**
+ *     titular       mismo cuerpo, **bajó 12 px** en bloque
+ *     regla del pie **se quedó en 880** — dejó de colgar de la caja
+ *     «Canje»       «Canje de noches / gratis» → **«Canje de / noches gratis»**
+ *
+ * ⭐ El ancho nuevo de la caja, 764, ES la medida a la que ella justificó el
+ * titular en la ronda 5: apretó el cuadro hasta la columna del titular.
+ *
+ * ⭐⭐ Y la densidad a la que llegó a ojo es **la de su propia pieza aprobada**.
+ * En `DT FT S3` —única con esta misma estructura de ícono · regla · rótulo de
+ * dos líneas en celda cerrada— la celda mide 110,4 y la tinta 54,7, o sea el
+ * **49,5 %**. La ronda 4 de ésta iba en 40,1 % y la suya quedó en 47,4 %. Ahí
+ * está el «pelaito»: no sobraba tipografía, sobraba caja.
+ *
+ * ⚠️ Lo único que este archivo NO reproduce como sistema es el empujón de 10,6 px
+ * de la columna izquierda — ver `EMPUJON_COL_IZQ`. Todo lo demás calza dentro de
+ * ±2 px @1080 contra su export, y pasa el mismo QA con los mismos números.
+ *
+ * ══════════════════════════════════════════════════════════════════════════
  * LA REJILLA (mesa 1080×1350; se entrega a 2250×2813, escala 2,0837)
  * ══════════════════════════════════════════════════════════════════════════
+ * ⚠️ Medida sobre la entrega del 16-09 (ronda 6). La rejilla vieja —caja 812 a
+ * 1148, titular 597 a 777, regla 1258— ya no corre.
+ *
  *    111 ─ tope del logotipo DT   ← plantilla `logo-post.png` de Eli
  *    242 ─ pie del logotipo
- *    597 ─ tope de la tinta del titular
- *    777 ─ pie de la tinta del titular
- *    842 ─ tope de la caja de cristal
- *    995 ─ divisor horizontal
- *   1148 ─ pie de la caja
- *   1186 ─ tope del logotipo de Hilton Honors   ← ronda 2
- *   1258 ─ regla del pie
- *   1283 ─ tinta del llamado
+ *    554 ─ tope de la versal de «MÁS BENEFICIOS»      (base 620,1)
+ *    647 ─ tope de la versal de «EN CADA ESTADÍA»     (base 709,1)
+ *    734 ─ tope de la versal de «CON HILTON HONORS»   (base 786,3)
+ *    842 ─ tope de la caja de cristal  ← ronda 6
+ *    972 ─ divisor horizontal
+ *   1102 ─ pie de la caja
+ *   1136 ─ tope del logotipo de Hilton Honors
+ *   1252 ─ regla del pie (880 de ancho, NO sigue a la caja)
+ *   1293 ─ tinta del llamado
  *
  * ⚠️ Esto es FEED ORGÁNICO: **no hay zona segura de Instagram** que reservar.
  */
@@ -145,12 +192,57 @@ cargarFuentesDT();
 const G = DT.geometria;
 const MESA = {ancho: 1080, alto: 1350} as const;
 
-/** Textos LITERALES del brief. No se editan (§G). */
+/**
+ * Textos LITERALES del brief. No se editan (§G).
+ *
+ * ⭐⭐ RONDA 5 · EL TITULAR SE JUSTIFICA A UNA MEDIDA, Y ESO CAMBIA CÓMO SE ARMA.
+ *
+ * Criterio de Eli del 15-09: **cada línea se escala hasta una medida común y el
+ * cuerpo es la CONSECUENCIA**, no al revés. Las tres líneas cierran en la misma
+ * columna (764,2 · 764,1 · 767,1 @1080) y por eso los cuerpos salen distintos —
+ * la línea más larga, «CON HILTON HONORS», queda la MÁS CHICA.
+ *
+ * ⚠️ Esto lo hizo ella a mano en Illustrator. Acá se reconstruye midiendo la
+ * entrega, no inventando: la versal se lee del PNG, el cuerpo sale de
+ * versal / 0,700 (Stag declara `sCapHeight` 700 sobre 1000, verificado en los
+ * tres cortes) y el tracking se resuelve para que la tinta dé la medida.
+ *
+ *     línea                  versal   cuerpo   tinta natural   tracking
+ *     MÁS BENEFICIOS          65,7     93,86       738,02      +0,02145 em
+ *     EN CADA ESTADÍA         61,9     88,43       747,41      +0,01348 em
+ *     CON HILTON HONORS       51,8     74,00       743,03      +0,02033 em
+ *
+ * `base` es la LÍNEA DE BASE medida (el pie de la versal), que es lo que ancla
+ * cada línea: con cuerpos distintos, anclar por el tope del bloque desalinea.
+ *
+ * ⛔ Y OJO CON EL TRACKING EN UNA LÍNEA CENTRADA: Chrome también lo aplica
+ * DESPUÉS de la última letra, así que la línea sale corrida a la izquierda media
+ * unidad de tracking. Se devuelve con `textIndent` (ver el render más abajo).
+ */
 const TITULO = [
-  {t: 'MÁS BENEFICIOS', peso: DT.pesos.medium},
-  {t: 'EN CADA ESTADÍA', peso: DT.pesos.light},
-  {t: 'CON HILTON HONORS', peso: DT.pesos.light},
+  {t: 'MÁS BENEFICIOS', peso: DT.pesos.medium, cuerpo: 93.86, tracking: 0.02383, base: 620.1},
+  {t: 'EN CADA ESTADÍA', peso: DT.pesos.light, cuerpo: 88.43, tracking: 0.02867, base: 709.1},
+  {t: 'CON HILTON HONORS', peso: DT.pesos.light, cuerpo: 74.0, tracking: 0.03122, base: 786.3},
 ] as const;
+
+/**
+ * De la línea de base al `top` del div, con `lineHeight: 1`.
+ *
+ * Chrome centra el área de contenido —(ascenso + descenso) / upm × cuerpo— dentro
+ * de la caja de línea, así que la base cae en `top + (asc − (asc + desc − 1) / 2)`.
+ * ⚠️ En Windows las métricas que manda DirectWrite son las **usWin**, no las
+ * `hhea` (memoria `editable-para-illustrator`), y en Stag NO coinciden:
+ * Medium 942/219 y Light 916/188 contra 838/162 de `hhea` en las dos.
+ */
+const USWIN = {
+  [DT.pesos.medium]: {asc: 0.942, desc: 0.219},
+  [DT.pesos.light]: {asc: 0.916, desc: 0.188},
+} as const;
+
+const topDeLinea = (base: number, cuerpo: number, peso: number): number => {
+  const m = USWIN[peso as keyof typeof USWIN];
+  return base - (m.asc - (m.asc + m.desc - 1) / 2) * cuerpo;
+};
 
 const PIE = 'Inscríbete gratis en el link de la bio';
 
@@ -224,10 +316,58 @@ const SOMBRA_IMG =
 
 /** La caja de cristal. Medidas del pin, que es 1080×1350 igual que la pieza. */
 const CAJA = {
-  x: 100,
-  ancho: 880,
-  y: 812,
-  alto: 306,
+  /**
+   * ⭐⭐ RONDA 6 · LA CAJA SE APRETÓ HASTA LA COLUMNA DEL TITULAR.
+   *
+   * Venía de 100 × 880 en y 812. Ahora **158 × 764 en y 842**, medido sobre el
+   * PNG que Eli exportó de su editable (filetes en y 841,4-842,4 y 1101,6-1103,0;
+   * divisor en 971,5-973,0, x 157,9 → 921,6).
+   *
+   * ⭐ El 764 no es un número redondo ni un capricho: **es la medida a la que
+   * ella justificó el titular** en la ronda 5. Apretó el cuadro hasta la columna
+   * del titular, así que las tres líneas y la caja cierran en la misma vertical.
+   * Centrada: (1080 − 764) / 2 = 158.
+   *
+   * ⛔ Y la regla del pie NO la siguió: se quedó en 880 (ver `REGLA`). Por eso
+   * dejó de dibujarse desde `CAJA.x`, que es de donde salía antes.
+   */
+  x: 158,
+  ancho: 764,
+  y: 842,
+  /**
+   * ⭐⭐ RONDA 5 · «EL RECUADRO EN CADA ITEM SIN TANTO AIRE, SE VE COMO MUY
+   * PELAITOO». El alto baja de 306 a 248, y el número NO se eligió a ojo: sale
+   * de medir la densidad de SU propia celda.
+   *
+   * En `DT FT S3` —pieza aprobada, y la única con esta misma estructura de
+   * ícono · regla · rótulo de dos líneas dentro de una celda cerrada por
+   * filetes— la banda inferior mide, @1080:
+   *
+   *     divisor 1040,2 · tinta 1063,7 → 1118,4 · pie del panel 1150,6
+   *     ⇒ celda **110,4** · tinta **54,7** · aire 23,5 arriba y 32,2 abajo
+   *     ⇒ la tinta ocupa el **49,5 %** de la celda
+   *
+   * La ronda 4 de esta pieza medía, en los cuatro cuadrantes:
+   *
+   *     celda 153 · tinta 61,4 · aire 45,8 arriba y 45,5 abajo
+   *     ⇒ la tinta ocupa el **40,1 %**
+   *
+   * O sea: casi la mitad del aire de más que ella señala está ahí. Con la misma
+   * proporción de Eli, la celda tiene que medir 61,4 / 0,495 = **124** y la caja
+   * 248. El aire por lado cae de 45,8 a **31,3** — que además es justo el punto
+   * medio entre su aire medido (27,9 de promedio) y ese mismo aire escalado al
+   * ancho de esta caja (33,6; su panel es de 730 y éste de 880).
+   *
+   * ⛔ Lo que NO se tocó, y a propósito: el cuerpo del rótulo (29), el tamaño de
+   * los íconos y los aires de `CELDA`. Son gramática de Eli ya medida, y el 29
+   * lo confirmó ella misma en la ronda 4 al pedir separación entre palabras
+   * sobre ese cuerpo. El aire sobraba en la CAJA, no en el contenido.
+   *
+   * ⚠️ Se aprieta la caja, no la pieza: los 58 px que se liberan se quedan como
+   * aire ENTRE bloques (ver `HONORS.y`). Aire dentro de un recuadro se lee como
+   * vacío; aire entre bloques se lee como respiro.
+   */
+  alto: 260,
   radio: 26,
   /**
    * Filete. Medido en el panel de `DT FT S3`: sus verticales ocupan 3 px y sus
@@ -268,7 +408,16 @@ const CAJA = {
 
 const CAJA_DER = CAJA.x + CAJA.ancho;
 const CAJA_PIE = CAJA.y + CAJA.alto;
-const REGLA_PIE = 1258;
+/**
+ * ⭐ RONDA 6 · LA REGLA DEL PIE ES INDEPENDIENTE DE LA CAJA.
+ *
+ * Hasta la ronda 5 se dibujaba de `CAJA.x` a `CAJA_DER` porque las dos medían
+ * 880. Al apretar la caja a 764, la regla **se quedó donde estaba**: medida sobre
+ * la entrega, va en y 1251,4-1252,8, de x 99,8 a 980,2 — o sea 880 centrada.
+ * Si siguiera colgando de la caja se habría encogido sola y nadie lo pidió.
+ */
+const REGLA = {x: 100, ancho: 880, y: 1252} as const;
+const REGLA_PIE = REGLA.y;
 
 /**
  * ⭐ RONDA 2 · EL LOGOTIPO DE HILTON HONORS, en la cajita que dibujó Eli:
@@ -296,17 +445,31 @@ const REGLA_PIE = 1258;
  * `public/assets/hilton/dt/hilton-honors-blanco.png`, se pone en `true` y se
  * vuelve a rendir — no hay que tocar nada más.
  */
+/**
+ * ⭐ RONDA 6 · Eli lo agrandó en el editable: de 64 a **81,6** de alto (190,6 de
+ * ancho, que sobre su proporción real 2,3213 da 189,4 — o sea, no lo deformó).
+ * La fórmula de abajo lo deja centrado solo en el hueco nuevo: 1136,2 contra
+ * 1136,5 medidos.
+ */
+const HONORS_ALTO = 81.6;
+
 const HONORS = {
   /**
    * Tope del bloque. El alto manda; el ancho lo da la proporción real del
    * archivo (**2,3213**, medida sobre el bbox opaco), así que se escala
    * uniforme y nunca se deforma.
    *
-   * Va CENTRADO en el aire que queda entre el pie de la caja (1148) y la regla
-   * del pie (1258): 110 px de hueco, bloque de 52 ⇒ arranca en 1177.
+   * ⭐ RONDA 5 · AHORA SE CALCULA, NO SE ESCRIBE. Va CENTRADO en el aire que
+   * queda entre el pie de la caja y la regla del pie — que es donde lo dibujó
+   * Eli en la ronda 2— y al apretarse la caja ese hueco cambió de 140 a 198.
+   * Con el 1156 escrito a mano el logotipo se habría quedado pegado abajo y la
+   * pieza tendría el vacío justo donde se le sacó: debajo del recuadro.
+   *
+   *     pie de la caja 1060 · regla del pie 1258 ⇒ hueco 198
+   *     bloque de 64 centrado ⇒ arranca en 1127
    */
-  y: 1156,
-  alto: 64,
+  y: CAJA_PIE + (REGLA_PIE - CAJA_PIE - HONORS_ALTO) / 2,
+  alto: HONORS_ALTO,
   archivo: 'assets/hilton/dt/hilton-honors-blanco.png',
 } as const;
 
@@ -320,10 +483,14 @@ const HONORS = {
  * · `pie: 29`, también Stag: en `DT FT S3` el llamado del pie va en Stag y las
  *   versales de la dirección en Trade.
  */
-const CUERPO = {titulo: 68, rotulo: 29, pie: 29} as const;
+const CUERPO = {rotulo: 29, pie: 29} as const;
 
-/** 66 px sobre una versal de 47,6 ⇒ 1,39, que es la proporción del pin (68/49). */
-const SALTO_TITULO = 66;
+/*
+ * ⛔ Acá vivía `SALTO_TITULO = 66` —la interlínea única del titular— y se retiró
+ * en la ronda 5: con las tres líneas justificadas a una medida cada una tiene su
+ * cuerpo, así que no hay una interlínea común que valga. Cada línea se ancla por
+ * su propia línea de base en `TITULO`.
+ */
 
 /**
  * ⭐ RONDA 4 · EL AIRE DE LOS TEXTOS QUE NO SON EL TITULAR.
@@ -468,7 +635,15 @@ const CELDAS: readonly Celda[] = [
         <path d="M35.5 20 c8.2 0 12.8-2 12.8-6.6 a5.1 5.1 0 0 0-9-3.4 c-2.4 2.8-3.8 6.7-3.8 10 Z" />
       </IconoSvg>
     ),
-    rotulo: ['Canje de noches', 'gratis'],
+    /**
+     * ⭐ RONDA 5 · EL SALTO LO DA ELI, LITERAL: «donde dice canje podría ser
+     * así porfis — Canje de / noches gratis». La ronda 4 partía en 'Canje de
+     * noches' + 'gratis' y dejaba *gratis* colgando sola: una viuda de una
+     * palabra bajo una línea del triple de largo. Partido por el sentido
+     * («Canje de» / «noches gratis») las dos líneas quedan parejas y la celda
+     * se llena. Es el texto del brief sin tocar — sólo cambia dónde corta.
+     */
+    rotulo: ['Canje de', 'noches gratis'],
   },
   {
     // Monedas apiladas: tres discos, que es lo que dice «acumula».
@@ -484,14 +659,31 @@ const CELDAS: readonly Celda[] = [
   },
 ];
 
-const Cuadrante: React.FC<{celda: Celda}> = ({celda}) => (
+/**
+ * ⚠️⚠️ RONDA 6 · EL EMPUJÓN DE LA COLUMNA IZQUIERDA — ES DE ELI, A MANO, Y NO ES
+ * UNA REGLA.
+ *
+ * Midiendo su editable contra este código, la columna DERECHA calza exacta
+ * (desvío 0,5 px: sus dos grupos arrancan en el `padIzquierda` de 30 de siempre)
+ * y la IZQUIERDA está **10,6 px más a la derecha** — el grupo entero, ícono,
+ * regla y rótulo, con los anchos idénticos a 0,5 px. O sea: arrastró ese grupo
+ * en Illustrator.
+ *
+ * Se reproduce porque la entrega es la suya, pero queda **con nombre propio y
+ * aparte de la gramática**: `CELDA.padIzquierda` sigue siendo 30 para las dos
+ * columnas y esto es un desplazamiento de UNA columna, no un padding nuevo. Si
+ * resulta que se le fue la mano, se borra esta constante y nada más.
+ */
+const EMPUJON_COL_IZQ = 10.6;
+
+const Cuadrante: React.FC<{celda: Celda; empujon: number}> = ({celda, empujon}) => (
   <div
     style={{
       width: CAJA.ancho / 2,
       height: CAJA.alto / 2,
       display: 'flex',
       alignItems: 'center',
-      paddingLeft: CELDA.padIzquierda,
+      paddingLeft: CELDA.padIzquierda + empujon,
       paddingRight: CELDA.padDerecha,
       boxSizing: 'border-box',
     }}
@@ -572,31 +764,37 @@ export const DtFtHonors: React.FC<{guia?: boolean; conHonors?: boolean}> = ({
     />
 
     {/*
-      4 · El titular, CENTRADO (ronda 2). El bloque se ancla por su PIE, así la
-      tinta cierra donde la cierra la referencia sin depender de cuántas líneas
-      tenga el titular.
+      4 · El titular, CENTRADO (ronda 2) y **JUSTIFICADO A UNA MEDIDA** (ronda 5).
+      Cada línea va suelta y anclada por su LÍNEA DE BASE: con tres cuerpos
+      distintos, un bloque con interlínea común desalinea. Ver `TITULO`.
     */}
-    <div
-      style={{
-        position: 'absolute',
-        left: CAJA.x,
-        bottom: MESA.alto - 742,
-        width: CAJA.ancho,
-        textAlign: 'center',
-        fontFamily: DT.fuentes.titular,
-        fontSize: CUERPO.titulo,
-        lineHeight: SALTO_TITULO / CUERPO.titulo,
-        letterSpacing: '0.035em',
-        color: DT.colores.blanco,
-        textShadow: SOMBRA,
-      }}
-    >
-      {TITULO.map(({t, peso}) => (
-        <div key={t} style={{fontWeight: peso, whiteSpace: 'nowrap'}}>
-          {t}
-        </div>
-      ))}
-    </div>
+    {TITULO.map(({t, peso, cuerpo, tracking, base}) => (
+      <div
+        key={t}
+        style={{
+          position: 'absolute',
+          left: 0,
+          top: topDeLinea(base, cuerpo, peso),
+          width: MESA.ancho,
+          textAlign: 'center',
+          fontFamily: DT.fuentes.titular,
+          fontWeight: peso,
+          fontSize: cuerpo,
+          lineHeight: 1,
+          letterSpacing: `${tracking}em`,
+          // ⛔ La corrección del tracking en una línea centrada: Chrome deja el
+          // hueco también DESPUÉS de la última letra, así que la tinta queda
+          // corrida media unidad a la izquierda. Con `textIndent` de una unidad
+          // entera el centrado se devuelve justo a la mitad.
+          textIndent: `${tracking}em`,
+          whiteSpace: 'nowrap',
+          color: DT.colores.blanco,
+          textShadow: SOMBRA,
+        }}
+      >
+        {t}
+      </div>
+    ))}
 
     {/* 5 · La caja de cristal: el relleno va aparte del filete. */}
     <div
@@ -627,8 +825,9 @@ export const DtFtHonors: React.FC<{guia?: boolean; conHonors?: boolean}> = ({
         flexWrap: 'wrap',
       }}
     >
-      {CELDAS.map((c) => (
-        <Cuadrante key={c.rotulo[0]} celda={c} />
+      {CELDAS.map((c, i) => (
+        // Las celdas 0 y 2 son la columna izquierda — ver `EMPUJON_COL_IZQ`.
+        <Cuadrante key={c.rotulo[0]} celda={c} empujon={i % 2 === 0 ? EMPUJON_COL_IZQ : 0} />
       ))}
     </div>
 
@@ -668,9 +867,9 @@ export const DtFtHonors: React.FC<{guia?: boolean; conHonors?: boolean}> = ({
         strokeWidth={CAJA.filete}
         strokeOpacity={0.45}
       />
-      {/* La regla del pie — de la referencia, al mismo ancho que la caja */}
+      {/* La regla del pie — ronda 6: ya NO cuelga de la caja, ver `REGLA`. */}
       <path
-        d={`M ${CAJA.x} ${REGLA_PIE} L ${CAJA_DER} ${REGLA_PIE}`}
+        d={`M ${REGLA.x} ${REGLA.y} L ${REGLA.x + REGLA.ancho} ${REGLA.y}`}
         stroke={DT.colores.blanco}
         strokeWidth={CAJA.filete}
         strokeOpacity={0.7}
@@ -707,7 +906,9 @@ export const DtFtHonors: React.FC<{guia?: boolean; conHonors?: boolean}> = ({
       style={{
         position: 'absolute',
         left: 0,
-        top: 1283,
+        // ⭐ RONDA 6: 1286, no 1283. Medido sobre la entrega, la tinta va en
+        // y 1292,7-1317,6; con 1283 quedaba 3 px arriba.
+        top: 1286,
         width: MESA.ancho,
         textAlign: 'center',
         fontFamily: DT.fuentes.titular,

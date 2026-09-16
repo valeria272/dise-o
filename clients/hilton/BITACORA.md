@@ -1,3 +1,81 @@
+## 2026-09-16 — DT · ronda 6 del estático Honors, y el editable pasó a mandar
+
+**Marca: DT.** Sesión de diseño. Pieza: `Post n°1 S4 DT` (FEED col K, 23-09).
+
+**Qué pidió la grilla**, literal, de una superior:
+
+> «donde dice canje podría ser así porfis — Canje de / noches gratis»
+> «y el recuadro en cada item sin tanto aire, se ve como muy pelaitoo»
+> «solo eso baby, lo demás lo veo todo oki en grillass»
+
+**Quién lo hizo.** Eli, en su editable, antes de pasar el encargo. El `.ai` del
+16-09 a las 09:32 ya traía los dos cambios. Acá se verificó, se exportó la
+entrega y se puso el repo al día.
+
+**⛔⛔ LO QUE HAY QUE APRENDER DE ESTE DÍA: la pieza ya no sale de Remotion.**
+Desde la ronda 5 (15-09, tarde) la entrega se exporta del
+`out/hilton/dt/ft-honors/editable/Post n°1 S4 DT - EDITABLE.ai`. Se rindió la
+composición sin mirar eso y **se sobrescribió el PNG entregado**. Se recuperó
+byte a byte desde `editable/_verificacion/estado-actual.png` (mismo md5) y no se
+perdió nada, pero la regla queda escrita: **antes de rendir una pieza de DT, mirar
+si hay editable y si es más nuevo que el último render**. El QA fue lo que lo
+delató —tres «SUSTITUCIÓN DE FUENTE» en textos que nadie había tocado—, así que
+la compuerta hizo su trabajo.
+
+**Lo que cambió**, medido sobre los dos PNG de entrega, @1080:
+
+| | Ronda 5 | Ronda 6 |
+|---|---|---|
+| «Canje» | «Canje de noches» / «gratis» | **«Canje de» / «noches gratis»** |
+| Caja | 880 × 306 en y 812 | **764 × 260 en y 842** |
+| Celda · tinta | 153 · 40,1 % | **130 · 47,4 %** |
+| Logo Hilton Honors | 64 de alto, y 1156 | **81,6 de alto, y 1136** |
+| Titular | — | mismo cuerpo, **bajó 12 px** en bloque |
+| Regla del pie, foto, logo DT, llamado | — | **sin cambio** (diferencia máxima 0) |
+
+**⭐ El hallazgo que vale para la cuenta: el ancho nuevo de la caja es la medida
+del titular.** 764 no es un número redondo — es la medida a la que Eli justificó
+las tres líneas en la ronda 5. Apretó el cuadro hasta la columna del titular, y
+por eso ahora titular y caja cierran en la misma vertical. **La regla del pie NO
+la siguió**: se quedó en 880, así que en el código dejó de colgar de la caja.
+
+**⭐⭐ Y «pelaitoo» tenía un número detrás.** Se midió `DT FT S3` —única pieza
+aprobada con la misma estructura de ícono · regla vertical · rótulo de dos líneas
+en celda cerrada—: su celda mide 110,4 y su tinta 54,7, o sea **49,5 %**. Esta
+pieza iba en **40,1 %** y quedó en **47,4 %**. El aire sobraba en la CAJA, no en
+el contenido: no se tocó el cuerpo del rótulo (29), ni los íconos, ni los aires de
+celda, que son gramática de Eli ya medida.
+
+**Qué quedó hecho.**
+
+1. **La entrega**, exportada del `.ai` con `scripts/ai-puente.py` (COM a
+   Illustrator, que estaba arriba y sin documentos). ⚠️ **La escala es 208,37 %,
+   no 208,33 %**: con 208,33 salen 2250×**2812** y el máster de la cuenta es 2813.
+   Fuentes resueltas (ninguna sustituida) y rasterizado en 300 ppi con suavizado.
+2. **QA limpio** — `python scripts/dt-qa.py "out/hilton/dt/ft-honors/Post n°1 S4 DT.png"`.
+   Las bandas de `scripts/dt-qa.py` se re-midieron enteras sobre esta entrega.
+3. **La composición sincronizada** con el editable: `DtFtHonors.tsx` rinde la
+   misma pieza dentro de **±2 px** en todos sus elementos y pasa el mismo QA con
+   los mismos números. Incluye el titular justificado de la ronda 5, reconstruido
+   con cuerpo y tracking por línea. ⚠️ El tracking que predice el cálculo sobre el
+   `.ttf` NO sirve: **Chrome compone esos glifos más angostos que PIL** y la medida
+   quedaba hasta 19 px corta. Los valores buenos salen de rendir y medir.
+4. **Página de la ronda** — `out/hilton/dt/ft-honors/Post n°1 S4 DT - ronda 6.html`,
+   con el antes, el después, el recuadro de cerca y los números. La de la ronda 4
+   (`- revision.html`) se dejó intacta.
+5. La ronda 5 quedó archivada en `_rondas/`.
+
+**⚠️ Lo único que el código no reproduce como sistema:** en el editable la
+**columna izquierda** de la caja va 10,6 px más a la derecha que la derecha —el
+grupo entero, con los anchos idénticos a 0,5 px—, o sea Eli lo arrastró a mano. Se
+reprodujo como `EMPUJON_COL_IZQ`, **aparte de la gramática**, para que nadie lo
+confunda con una regla. Si se le fue la mano, se borra esa constante y listo.
+
+**PENDIENTE — no lo hice y hay que hacerlo:** **subir el PNG nuevo al Drive
+reemplazando el archivo de `S4 › DT`**, para que el enlace no cambie. La entrega
+está lista en `out/hilton/dt/ft-honors/Post n°1 S4 DT.png` y no se tocó nada del
+Drive en esta sesión.
+
 ## 2026-09-15 (apertura) — DT · el `/al-dia` que destrabó el día, y DOS HILOS OPEN que sobraron
 
 **Marca: DT.** **No es sesión de diseño**: es la apertura (`/abrir doubletree`).

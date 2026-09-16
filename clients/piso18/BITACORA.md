@@ -142,3 +142,37 @@ https://claude.ai/artifact/7Fj6vDyRsdYYmWfMbAW4MG
 es `piso_18-100`, que es la G3 del carrusel de la **S4** —la que veníamos
 corrigiendo—, así que se aplicó ahí. Si se refería al carrusel `C1 S3` (el suyo,
 que subió a mano el 14-09), hay que preguntarle.
+
+### ✅ APROBADO por Eli — 16-09-2026
+
+La ronda 5 quedó **aprobada**. La S4 de PISO18 cierra así en
+`S4 HILTON SEP 2026 › PISO18`:
+
+| Archivo | Fecha de la pieza | Última versión |
+|---|---|---|
+| `C1 S4 N°1.png` | 21-09 | ronda 5 · portada con velo |
+| `C1 S4 N°2.png` | 21-09 | ronda 3 · sin cambios |
+| `C1 S4 N°3.png` | 21-09 | ronda 5 · el encuadre de Eli |
+| `C1 S4 N°4.png` | 21-09 | ronda 3 · sin cambios |
+| `ST N°2 S4.png` | 22-09 | ronda 3 · aprobada en la grilla |
+| `ST N°3 S4.mp4` | 23-09 | ronda 4 · titular nuevo |
+| `ST N°4 S4.png` | 25-09 | ronda 4 · opción B mesa puesta |
+| `Post n°2 S4 PISO18 25-09.png` | 25-09 | ronda 4 · pieza nueva |
+| `Post S4 PISO18 25-09.png` | **23-09** | ronda 3 · «Piso18 de noche» |
+
+**Queda abierto, y Eli lo aprobó sabiéndolo** (se le informó y no pidió cambiarlo):
+
+1. ⚠️ `Post S4 PISO18 25-09.png` **es la pieza del 23-09** — la grilla la movió de
+   fecha y el nombre quedó mintiendo. No se renombró para no romper el enlace que
+   el cliente ya pueda tener. **Ojo: el portal levanta por NOMBRE**
+   (`docs/PORTAL-VALIDACIONES.html`), así que si esa pieza pasa por el portal, el
+   nombre hay que arreglarlo antes.
+2. `piso_18-128` sale en el post del 25-09 y también como tercer plano de la
+   animada del 23-09. El cliente eligió esa foto por su nombre.
+3. La bajada «Dejando todo listo…» quedó fuera de la animada.
+4. *«Ese sería para el G3 de la S3»* — se aplicó a la G3 de la **S4**, que es
+   donde vive la foto que mandó. Si se refería al `C1 S3`, está sin hacer.
+
+**Lo de la S3 sigue siendo de Eli:** 16-09 «Quitemos Sujeto a disponibilidad y OK»,
+20-09 «Quitar ese CTA, que sea foco reacción», y el reel del 17-09 con el texto
+nuevo del brief.

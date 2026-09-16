@@ -852,6 +852,110 @@ cálculo sobre el `.ttf` **no sirve**: la medida quedaba hasta **19 px corta**. 
 valores buenos salen de **rendir y medir**, repartiendo la diferencia entre los
 huecos. Vale para cualquier texto que tenga que dar una medida exacta.
 
+### ⭐⭐⭐ RONDA 7 (16-09) — LA FOTO DE FONDO LA ELIGE LA DIAGRAMACIÓN
+
+Primera ronda de **el cliente** sobre esta pieza. Grilla FEED col K, comentario en
+rojo y **sin tachar**: **«Cambiemos foto por habitación de categoría superior y
+ok!»**. Los otros dos comentarios de la celda están tachados.
+
+Es un cambio de foto y de nada más: titular justificado (r5), panel apretado (r6),
+íconos, rótulos, regla del pie y logotipos quedan idénticos.
+
+#### ⭐⭐ 1. LA FOTO DE UNA PIEZA CON TINTA BLANCA SE ELIGE MIDIENDO, NO MIRANDO
+
+Se probaron **once habitaciones** del banco contra el velo REAL de esta pieza. El
+velo del feed es **convexo** (`VELO` en `DtFtHonors.tsx`, pie 0,50): casi no pesa
+hasta pasada la mitad. Y el titular blanco cae justo en el tercio medio, donde va
+en α ≈ 0,20. O sea: **una habitación clara se come el titular**.
+
+| Foto | Qué es | Titular blanco | Veredicto |
+|---|---|---|---|
+| `HDT_36` | el lobby de las rondas 1-6 | 6,5:1 | el cliente la mandó cambiar |
+| `HDT_66` | cama king con visillo | **2,1:1** | ⛔ ni con reencuadre |
+| `HDT_65` | cama con bienvenida | **2,8:1** | ⛔ y lee «Escapada Romántica» |
+| `HDT_67` | estar con sofá | 3,3:1 | ⛔ el logotipo DT cae a 2,1:1 |
+| `HDT_57` · `HDT_59` | pasan de sobra | 4,9-5,3:1 | ⛔ son **dos camas** = categoría estándar |
+| **`HDT_68`** | **la suite** | **3,4:1** | ✅ **la que va** |
+
+⛔ **La salida NO fue cargar el velo** —taparía la foto, que es el argumento de la
+pieza— **ni pasar el titular a azul**, que cambiaría un look ya aprobado por un
+pedido que sólo hablaba de la foto.
+
+#### ⭐ 2. «CATEGORÍA SUPERIOR» EN ESTE HOTEL ES EL **ESTAR**, NO LA CAMA
+
+Corner, Junior Suite y Suite se distinguen de la estándar porque tienen zona de
+estar. `HDT_68` es la única toma del banco donde se ven **los dos ambientes a la
+vez**: escritorio y ventanal a la izquierda, cama al otro lado del vano.
+
+⚠️ **Y el encuadre decide cuál de los dos se pierde.** La foto es 3:2 y el post
+4:5, así que la ventana de recorte se lleva sólo el **53 % del ancho**:
+
+| `fx` | Qué entra | |
+|---|---|---|
+| 0,30-0,45 | escritorio y ventanal | lee «oficina», no habitación |
+| 0,60 | el cuadro; la cama asoma por el canto | se pierde |
+| **0,80** | cuadro y escritorio a la izquierda, **cama entera a la derecha** | ✅ |
+| 1,00 | sólo la cama | se va el estar, que es lo que la hace superior |
+
+De paso, la foto nueva **sube todas las tintas**: el logotipo DT pasa de 2,42:1
+—desviación que había que declarar— a **4,32:1**, y el de Hilton Honors de 6,70 a
+**8,60:1**.
+
+#### ⛔⛔ 3. EL SCRIPT DE LA FOTO MEDÍA CON EL VELO EQUIVOCADO
+
+`dt-ft-honors-foto.py` traía la rampa **cóncava de historia** (pie 0,58) y esta
+pieza usa la **convexa de feed** (pie 0,50) desde la ronda 2. Con la foto oscura
+del lobby la diferencia no se notaba; con una habitación clara daba el titular en
+**6,3:1 cuando de verdad estaba en 2,8:1** — o sea aprobaba piezas que `dt-qa.py`
+rechaza. Corregido. **La compuerta sigue siendo `dt-qa.py`**; el script sólo sirve
+para elegir la foto sin tener que rendir.
+
+#### ⚠️ 4. EL EDITABLE QUEDÓ ATRÁS, Y HAY QUE DECIDIRLO
+
+Esta ronda **se rindió desde el repo** porque el cambio es la foto de fondo y la
+composición reproduce la pieza dentro de ±2 px con el mismo QA. O sea que
+`editable/Post n°1 S4 DT - EDITABLE.ai` **sigue con el lobby**. Si la próxima ronda
+se trabaja ahí, primero hay que cambiarle la foto: está lista y recortada a
+2250×2813 en `public/assets/hilton/dt/ft-honors-habitacion.jpg`.
+
+```bash
+python scripts/dt-ft-honors-foto.py            # la elegida (suite)
+python scripts/dt-ft-honors-foto.py estar68    # la alternativa medida
+python scripts/dt-rendir.py DT-F-HiltonHonors --salida out/hilton/dt/ft-honors
+python scripts/dt-qa.py "out/hilton/dt/ft-honors/Post n°1 S4 DT.png"
+python scripts/dt-ronda7-revision.py           # la página que mira Eli
+```
+
+### ⭐⭐ LA HISTORIA DEL 18-09 — RONDA 7, LA PRIMERA DEL CLIENTE
+
+Javier Meza por WhatsApp, 16-09 10:22: «2 ajustes · **Quitar punto final** ·
+**Hacerle más zoom a foto de animadores** para que se vean más grandes» · «el
+resto ok!».
+
+1. **Fuera el punto final** de «…DE NUESTRA FAMILIA DOUBLETREE.» — la bajada baja
+   de 340 a 335 px de tinta y el bloque se re-centra solo.
+   ⚠️ **Es la única licencia sobre el texto del brief, y la pidió el cliente.**
+   §G dice que en DT sólo se diseña y el texto va literal; acá no lo tocó el
+   estudio, lo tocó quien manda el brief. Que quede escrito para que nadie lo lea
+   como que el texto se puede editar.
+2. **Los animadores se acercan.** El zoom vive en el cuadro `escenario` de
+   `scripts/dt-st-fiestas-collage.py`, no en la composición: `recorta()` ahora
+   acepta `zoom`, que escala uniforme y recorta — **no deforma**.
+
+#### ⭐ Cuánto zoom, y por qué 1,45×
+
+El cuadro es apaisado (1415×636) y los animadores están de **cuerpo entero** —de
+0,33 a 0,99 del alto de la foto—, así que acercar obliga a cortarlos:
+
+| | Ancho de la pareja | % del cuadro | Corte |
+|---|---|---|---|
+| antes (`cover` justo) | 368 px | 26 % | ninguno, pero se lee el escenario y no ellos |
+| **zoom 1,45×** | **534 px** | **38 %** | a media caña de la bota — plano americano |
+| más zoom | — | — | los sube hasta la cintura y **se pierde el traje de huaso** |
+
+⚠️ Al subir el zoom hay que **recalcular el `foco`** o el motivo se sale del
+cuadro: 0,468 los deja centrados y 0,619 les deja ~60 px de aire sobre la cabeza.
+
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 
 Verificado glifo a glifo con `fontTools` sobre los archivos de esta máquina: los

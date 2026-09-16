@@ -135,7 +135,20 @@ CUADROS = [
     # banda 4 — el segundo corte en diagonal, en el pie derecho
     {"id": "parrilla",  "foto": "IMG_1636", "foco": (0.52, 0.52),
      "poly": [(0, 1133), (396, 1133), (396, 1438), (0, 1438)]},
-    {"id": "escenario", "foto": "IMG_1610", "foco": (0.50, 0.48),
+    # ⭐ RONDA 7 — LOS ANIMADORES. Javier Meza, 16-09: «hacerle más zoom a foto de
+    # animadores para que se vean más grandes». Son los dos del escenario, y en el
+    # `cover` justo ocupaban 368 px de los 1415 de ancho del cuadro (26 %).
+    #
+    # El cuadro es apaisado (1415×636, proporción 2,23) y ellos están de CUERPO
+    # ENTERO —de 0,33 a 0,99 del alto de la foto—, así que acercar obliga a
+    # cortarlos: a zoom 1,45 la pareja mide 534 px de ancho (38 %) y el corte cae
+    # a media caña de la bota, que es un plano americano de toda la vida.
+    # Más zoom los subiría de plano hasta la cintura y se perdería el traje de
+    # huaso, que es justo lo que hace la foto.
+    #
+    # El `foco` se recalculó con el zoom: 0,468 deja a la pareja centrada y 0,619
+    # les deja ~60 px de aire sobre la cabeza. Si se toca el zoom, se recalcula.
+    {"id": "escenario", "foto": "IMG_1610", "foco": (0.468, 0.619), "zoom": 1.45,
      "poly": [(401, 1133), (1080, 1133), (1080, 1400), (401, 1438)]},
 
     # banda 5
@@ -156,10 +169,21 @@ def abre(nombre: str) -> Image.Image:
     return Image.open(p).convert("RGB")
 
 
-def recorta(im: Image.Image, ancho: int, alto: int, foco: tuple[float, float]) -> Image.Image:
-    """Recorte `cover`: llena la caja sin deformar nunca la foto."""
+def recorta(im: Image.Image, ancho: int, alto: int, foco: tuple[float, float],
+            zoom: float = 1.0) -> Image.Image:
+    """Recorte `cover`: llena la caja sin deformar nunca la foto.
+
+    ⭐ RONDA 7 — `zoom` acerca DENTRO del cuadro. 1,0 es el `cover` justo (el que
+    usa todo el ancho o todo el alto de la foto); por encima de 1 se agranda el
+    motivo y se recorta más. Lo pidió el cliente para los animadores: «hacerle más
+    zoom a foto de animadores para que se vean más grandes».
+
+    ⚠️ El zoom no deforma: escala uniforme y recorta. Lo que sí hace es **comerse
+    los bordes**, así que al subirlo hay que volver a elegir el `foco` o el motivo
+    se sale del cuadro.
+    """
     W, H = im.size
-    escala = max(ancho / W, alto / H)
+    escala = max(ancho / W, alto / H) * zoom
     nw, nh = int(round(W * escala)), int(round(H * escala))
     im = im.resize((nw, nh), Image.LANCZOS)
     x = int(round((nw - ancho) * foco[0]))
@@ -186,7 +210,7 @@ def main() -> int:
         h = int(round(max(ys) - y0))
 
         foto = abre(c["foto"])
-        trozo = recorta(foto, w, h, c["foco"])
+        trozo = recorta(foto, w, h, c["foco"], c.get("zoom", 1.0))
 
         # máscara del polígono, para que los cortes en diagonal sean de verdad
         m = Image.new("L", (w, h), 0)

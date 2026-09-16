@@ -1,3 +1,120 @@
+## 2026-09-16 (tarde) — DT · ronda 7 del CLIENTE: los dos estáticos de S3 y S4
+
+**Marca: DT.** Sesión de diseño. Dos piezas, tres cambios, **todos pedidos por el
+cliente** —no por Eli ni por una superior—, que es la primera vez en esta cuenta.
+
+| Pieza | Dónde | Qué pidió |
+|---|---|---|
+| **ST 18-09 Fiestas Patrias** (S3) | STORIES col H · `EN CAMBIOS` | Javier Meza, WhatsApp 10:22: «2 ajustes · Quitar punto final · Hacerle más zoom a foto de animadores para que se vean más grandes» · «el resto ok!» |
+| **Post n°1 S4 DT · Hilton Honors** (S4) | FEED col K · `EN CAMBIOS` | Grilla, en rojo y **sin tachar**: «Cambiemos foto por habitación de categoría superior y ok!» |
+
+**Lo que NO entró, por decisión de Eli el mismo día:** la **ST animada del 21-09**
+(Escapada Romántica, STORIES col J, también `EN CAMBIOS`). Textual: «Para DT no
+cambies el video, ese lo hago yo, solo toma los estáticos». Sus cambios quedan
+anotados más abajo para cuando ella la tome.
+
+**Lo que se descartó y por qué, para no volver a mirarlo:** FEED col I (16-09,
+Opinión Booking) está `APROBADO` **con todos sus comentarios tachados**, y STORIES
+col K (27-09, Día del Turismo) sigue en `EN REVISIÓN` **sin un solo comentario**.
+Ninguna de las dos se tocó.
+
+### ⭐⭐ El hallazgo de la sesión: la foto de una pieza con tinta blanca se ELIGE MIDIENDO
+
+El pedido decía «habitación de categoría superior» y las habitaciones bonitas del
+banco **no aguantan la diagramación**. El velo del feed es convexo —casi no pesa
+hasta pasada la mitad— y el titular blanco cae justo ahí: `HDT_66` (la cama king,
+la más de catálogo) deja el titular en **2,1:1** contra una vara de 3:1, y `HDT_65`
+en 2,8:1. Se midieron **once** habitaciones contra el velo real y sólo una sirve.
+
+⭐ Y la que sirve es también la que mejor contesta el pedido: **`HDT_68`, la suite**,
+la única toma donde se ven los dos ambientes a la vez. Porque en este hotel lo que
+separa una categoría superior de una estándar es **el estar**, no la cama. Las otras
+dos que pasaban la medición —`HDT_57` y `HDT_59`— son de **dos camas**, o sea
+categoría estándar: justo lo contrario.
+
+⛔ **La salida no fue cargar el velo ni pasar el titular a azul.** Lo primero tapa la
+foto, que es el argumento de la pieza; lo segundo cambia un look ya aprobado por un
+pedido que sólo hablaba de la foto.
+
+### ⛔⛔ Y se encontró un defecto de medición que llevaba desde la ronda 1
+
+`scripts/dt-ft-honors-foto.py` medía con la rampa **cóncava de historia** (pie 0,58)
+y esta pieza usa la **convexa de feed** (pie 0,50) desde la ronda 2. Con la foto
+oscura del lobby la diferencia no se notaba; con una habitación clara daba el
+titular en **6,3:1 cuando de verdad estaba en 2,8:1** — o sea aprobaba piezas que
+`dt-qa.py` rechaza. Corregido.
+
+### Lo que cambió, medido
+
+| Pieza | Elemento | Antes | Después |
+|---|---|---|---|
+| ST 18-09 | bajada en versales | «DOUBLETREE.» · 340 px | **«DOUBLETREE» · 335 px** |
+| ST 18-09 | cuadro del escenario | pareja 368 px = 26 % del cuadro | **zoom 1,45× → 534 px = 38 %** |
+| Post 23-09 | foto de fondo | `HDT_36` lobby | **`HDT_68` suite, fx 0,80** |
+| Post 23-09 | logotipo DT | 2,42:1 *(desviación declarada)* | **4,32:1** |
+| Post 23-09 | logotipo Hilton Honors | 6,70:1 | **8,60:1** |
+| Post 23-09 | titular · panel · íconos · rótulos · regla · llamado | — | **sin tocar** |
+
+Las dos pasan `dt-qa.py` **limpias**. `npm run typecheck` limpio.
+
+### Qué quedó hecho
+
+1. **`recorta()` del collage acepta `zoom`** — escala uniforme y recorta, no
+   deforma. Al subirlo hay que recalcular el `foco`, y queda escrito cómo.
+2. **`dt-ft-honors-foto.py` es por variantes**: `suite` (la que va), `estar68` (la
+   alternativa medida), `king` · `bienvenida` · `estar` (descartadas, con su
+   número) y `lobby` (reconstruye la entrega vieja byte a byte).
+3. **La página de la ronda** — `out/hilton/dt/DT S3-S4 - ronda 7.html`, con el
+   antes, el después, los dos detalles de cerca y las alternativas de foto. Un
+   solo archivo, imágenes embebidas.
+4. Las rondas anteriores archivadas en `_rondas/` de cada pieza.
+
+### ⛔ La entrega quedó a MEDIAS en el Drive, y esto es lo que falta
+
+- ✅ **ST 18-09 SUBIDA y verificada**, reemplazada **en el mismo archivo**
+  (`1SCxxWbpvvUMULbBnDnOYiPOQ0WQx-cic`, en `S3 HILTON SEP 2026 › DT`): **el enlace
+  no cambió**, quien ya lo tenía ve la versión nueva. 12 271 632 B en disco y en
+  Drive, idénticos.
+- ⛔ **El post de la S4 NO se pudo subir.** `Post n°1 S4 DT.png`
+  (`1_6_iLhGL9pn5LAyMimM87NOzWBS0wrqS`) **lo subió Eli a mano** el 16-09 por la
+  mañana, y el token del estudio es scope `drive.file`: no ve ese archivo ni la
+  carpeta `S4 › DT` (404 en los dos). **Lo tiene que reemplazar ella**, arrastrando
+  `out/hilton/dt/ft-honors/Post n°1 S4 DT.png` sobre el archivo del Drive, para que
+  el enlace se conserve.
+
+> ⚠️ Es el mismo tope que frenó a Between el 14-09. **Sigue abierta la decisión:**
+> o las entregas se suben SIEMPRE con el script del estudio, o el token pasa a
+> scope `drive` completo. Mientras no se decida, cada pieza que Eli sube a mano
+> queda fuera del alcance del repo para siempre.
+
+### ⛔⛔ Y hay que decidir qué pasa con el editable
+
+Desde la ronda 5 la entrega del post salía del `.ai` de Eli. **Esta ronda se rindió
+desde el repo** —`DtFtHonors.tsx` reproduce la pieza dentro de ±2 px y pasa el mismo
+QA—, porque lo que cambia es la foto de fondo. O sea que
+`editable/Post n°1 S4 DT - EDITABLE.ai` **sigue con el lobby**. Si la próxima ronda
+se trabaja ahí, primero hay que cambiarle la foto: está lista y recortada a
+2250×2813 en `public/assets/hilton/dt/ft-honors-habitacion.jpg`.
+
+### Abierto
+
+- **La ST animada del 21-09 la hace Eli.** Lo que pidió el cliente, para que no se
+  pierda: sacar **dos fotos** (la del trago en la barra y la de la pareja en la mesa
+  del café) y dejar las otras; cambiar el texto de la pantalla 1 a **«Habitación
+  para dos / Botella de espumante»**; que la foto de la mujer con la taza caiga
+  **cuando se habla del desayuno buffet**; y «que las transiciones no sean con ese
+  rebote, busquemos algo más sutil y ahora que hay menos fotos, que no sean tan
+  rápidas». El video vive en `ST n°1 S4 DT.mp4` (9,64 s · 1080×1920 · 25 fps),
+  hecho en Adobe, **no en este repo**.
+  ⭐ Dato útil si alguna vez hay que bajarlo: la copia de `S4 › DT › STS` **no está
+  compartida** y devuelve la página de login; la copia **pública** es
+  `1xvTkYaRmUmdGX6nS-fm7jOl0C9VQAs0w`. Es otra vez la regla de buscar las copias
+  por título antes de dar algo por bloqueado.
+- **El post de la S4, sin subir** (arriba).
+- **El editable, con la foto vieja** (arriba).
+- Sigue sin respuesta lo del 15-09: **la Opinión Booking del 14-09 quedó en `EN
+  REVISIÓN` con la fecha pasada** — hay que preguntarle a Eli si se publicó.
+
 ## 2026-09-16 — Arranque de la máquina · hallazgo de MATERIAL (no es sesión de diseño)
 
 **Qué se hizo:** verificación completa del estudio en el Windows de Eli con

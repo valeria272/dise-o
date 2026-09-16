@@ -44,6 +44,17 @@
  * ⚠️ Se calcó de la CAPTURA que ella pegó en el chat, no de un archivo: las
  * proporciones son lectura de pantalla. Si manda el original, se re-mide.
  *
+ * ⭐⭐ RONDA 7 (16-09) — **LA PRIMERA RONDA DEL CLIENTE**, no de Eli. Javier Meza
+ * por WhatsApp: «2 ajustes · Quitar punto final · Hacerle más zoom a foto de
+ * animadores para que se vean más grandes» y «el resto ok!».
+ *
+ *   1. **Fuera el punto final** de la bajada — ver `SUBTEXTO`.
+ *   2. **Los animadores se acercan** — el zoom vive en el cuadro `escenario` de
+ *      `scripts/dt-st-fiestas-collage.py`, no acá.
+ *
+ * Las dos son del cliente, así que ninguna se discute. Todo lo demás queda igual:
+ * él dijo que el resto está ok y una ronda no es la oportunidad de re-diseñar.
+ *
  * ══════════════════════════════════════════════════════════════════════════
  * EL BRIEF, LITERAL — no se toca ni una palabra (§G: en DT sólo se DISEÑA)
  * ══════════════════════════════════════════════════════════════════════════
@@ -150,10 +161,16 @@ const TITULO_1 = '¡Felices Fiestas';
 const TITULO_2 = 'Patrias!';
 /**
  * La bajada, en versales y partida a mano en tres líneas como la referencia.
- * Dejada al navegador cae «…familia / DoubleTree.» con una palabra sola, que es
+ * Dejada al navegador cae «…familia / DoubleTree» con una palabra sola, que es
  * un defecto documentado.
+ *
+ * ⭐ RONDA 7 — **SIN PUNTO FINAL**. Javier Meza, 16-09: «quitar punto final».
+ * ⚠️ Es la ÚNICA licencia sobre el texto del brief, y la pidió el cliente por
+ * escrito: la bajada del brief termina en punto («Gracias por ser parte de
+ * nuestra familia DoubleTree.»). §G dice que en DT sólo se diseña y el texto no
+ * se toca — acá no lo tocó el estudio, lo tocó quien manda el brief.
  */
-const SUBTEXTO = ['GRACIAS POR SER PARTE', 'DE NUESTRA FAMILIA', 'DOUBLETREE.'];
+const SUBTEXTO = ['GRACIAS POR SER PARTE', 'DE NUESTRA FAMILIA', 'DOUBLETREE'];
 
 const CUERPO = {titulo: 128, subtexto: 50} as const;
 

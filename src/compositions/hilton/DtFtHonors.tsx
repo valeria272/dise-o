@@ -732,11 +732,28 @@ export const DtFtHonors: React.FC<{guia?: boolean; conHonors?: boolean}> = ({
 }) => (
   <AbsoluteFill style={{backgroundColor: DT.colores.azul}}>
     {/*
-      1 · La foto real del lobby, a sangre. Ronda 2: Eli pidió CONSERVARLA, así
-      que el encuadre y el revelado no se tocan. Nada generado con IA.
+      1 · La foto real, a sangre. Nada generado con IA.
+
+      ⭐⭐ RONDA 7 — DEJA DE SER EL LOBBY. El cliente lo pidió en la grilla, sin
+      tachar: «Cambiemos foto por habitación de categoría superior y ok!». Entra
+      la **suite** de la sesión profesional (`HDT_68`, recorte fx 0,80): cama
+      entera a la derecha, y a la izquierda el estar con escritorio y ventanal.
+      Lo que separa una categoría superior de una estándar en este hotel es ese
+      estar, y es la única candidata donde se ve junto con la cama.
+
+      ⛔ **Y es la única que aguanta la diagramación.** Se midieron once
+      habitaciones del banco contra el velo REAL de esta pieza: las bonitas
+      (`HDT_66` cama king, `HDT_65` con bienvenida) dejan el titular blanco en
+      2,0-2,8:1, bajo la vara de 3:1 de texto grande. Las que sí pasan y no son
+      ésta —`HDT_57`, `HDT_59`— son de **dos camas**, o sea categoría estándar:
+      justo lo contrario de lo que pidió el cliente.
+
+      ⚠️ Es un cambio de FOTO y de nada más: el titular justificado de la ronda 5
+      y el panel apretado de la ronda 6 no se tocan. El encuadre y el revelado
+      viven en `scripts/dt-ft-honors-foto.py`, con las alternativas medidas.
     */}
     <Img
-      src={staticFile('assets/hilton/dt/ft-honors-lobby.jpg')}
+      src={staticFile('assets/hilton/dt/ft-honors-habitacion.jpg')}
       style={{width: '100%', height: '100%', objectFit: 'cover'}}
     />
 

@@ -71,10 +71,9 @@ grupo entero, con los anchos idénticos a 0,5 px—, o sea Eli lo arrastró a ma
 reprodujo como `EMPUJON_COL_IZQ`, **aparte de la gramática**, para que nadie lo
 confunda con una regla. Si se le fue la mano, se borra esa constante y listo.
 
-**PENDIENTE — no lo hice y hay que hacerlo:** **subir el PNG nuevo al Drive
-reemplazando el archivo de `S4 › DT`**, para que el enlace no cambie. La entrega
-está lista en `out/hilton/dt/ft-honors/Post n°1 S4 DT.png` y no se tocó nada del
-Drive en esta sesión.
+**Entregado.** **Eli subió ella misma el PNG al Drive** el 16-09, reemplazando el
+archivo de `S4 › DT`, así que **el enlace no cambió**: quien ya lo tenía ve la
+versión nueva. Desde esta sesión no se tocó nada del Drive.
 
 ## 2026-09-15 (apertura) — DT · el `/al-dia` que destrabó el día, y DOS HILOS OPEN que sobraron
 

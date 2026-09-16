@@ -1,5 +1,32 @@
 # Piso18 — bitácora
 
+## 2026-09-16 — Elisabet Soto · la marca está operativa, pero le falta su manual
+
+**Qué se hizo:** verificación del estudio en el Windows de Eli (`/arranque`). Todo
+lo que Piso18 necesita para producir **está y funciona**: se probó
+`qa/motor.py --marca piso18` sobre `out/piso18/s4/base/75-durazno.png` y carga sus
+**7 reglas** (5 de agencia + 2 de la marca, incluida la de «bodas» con Eli citada
+como autoridad). Kit `src/brand/piso18.ts`, `reglas.yaml` v3, 3,8 GB de material
+y las entregas S4/S5 están en su lugar.
+
+**Dónde quedó:** nada se tocó de la marca. El hallazgo es que `scripts/doctor.sh`
+reporta **Piso18 sin MANUAL ni FICHA**, y es cierto al pie de la letra: no existen
+`clients/piso18/CLAUDE.md` ni `clients/piso18/marca.json`. El criterio de la marca
+sí existe, pero está **repartido** entre la bitácora, `reglas.yaml` y el kit.
+
+**Qué sigue:** consolidar el manual y la ficha **destilando lo ya medido y
+aprobado** — geometría del logotipo (tope y=207 @1080 en historia, y=105 en feed),
+el tope de tinta al 3 % con el porqué calibrado, la paleta del kit y la regla de
+«bodas». No se inventa nada nuevo: se ordena lo que ya está firmado.
+
+**Abierto:**
+1. El manual y la ficha **quedaron ofrecidos, no escritos** — Eli los quiere
+   revisar antes de que pasen a ser ley.
+2. ⚠️ Mientras no existan, **`/pieza piso18` no carga la gramática de entrada**:
+   quien tome la marca sin haberla trabajado tiene que reconstruirla leyendo esta
+   bitácora. Para Eli no se nota; para un relevo sí.
+
+
 ## 2026-09-16 — Elisabet Soto · la S4 completa, aprobada
 
 **Qué se hizo:** se tomaron los cambios que dejó el cliente en la grilla y se

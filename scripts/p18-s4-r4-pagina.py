@@ -33,47 +33,87 @@ def estilo() -> str:
     return s[i:j]
 
 
-CUERPO = """<title>Piso18 S4 ronda 4</title>
+CUERPO = """<title>Piso18 S4 ronda 5</title>
 {estilo}
 <div class="wrap">
 
 <header>
-  <p class="marca">Piso18 Centro de Eventos &middot; ronda 4 &middot; 16-09-2026</p>
-  <h1>Los cuatro cambios que <em>dej&oacute; el cliente</em> en la S4</h1>
-  <p class="entrada">Le&iacute; la grilla viva de hoy y la compar&eacute; con la copia del 15-09 para separar
-  lo nuevo de lo ya resuelto. Aparecieron <b>cuatro cambios de la S4</b>, y los cuatro est&aacute;n
-  aplicados y subidos a Drive. <b>La S3 no la toqu&eacute;</b>: la hiciste t&uacute;.</p>
+  <p class="marca">Piso18 Centro de Eventos &middot; ronda 5 &middot; 16-09-2026</p>
+  <h1>El carrusel, <em>con tu encuadre</em></h1>
+  <p class="entrada"><b>Ronda 5:</b> la G3 con el zoom de la captura que mandaste y la portada con
+  el velo para que el logotipo se lea. <b>Las dos ya est&aacute;n en Drive</b>, con su enlace de siempre.
+  M&aacute;s abajo sigue la ronda 4 &mdash; las historias y el post, que quedaron ok.</p>
 </header>
 
 <section class="pieza">
-  <div class="cuando"><span class="fecha">21&middot;09</span><span class="canal">Feed &middot; carrusel &middot; G3 corregida</span></div>
-  <h2>Menos mes&oacute;n, el arreglo entero</h2>
+  <div class="cuando"><span class="fecha">21&middot;09</span><span class="canal">Feed &middot; carrusel &middot; ronda 5</span></div>
+  <h2>La G3, con tu encuadre</h2>
 
-  <p class="pedido"><span>Lo que pidi&oacute;</span>
-  &laquo;Hag&aacute;mosle + zoom a la G3 para que no sea tan protagonista el mes&oacute;n, el resto OK!&raquo;</p>
+  <p class="pedido"><span>Lo que pediste</span>
+  &laquo;Necesito que la foto que te junt&eacute; la aumentes m&aacute;s el zoom. No tiene que verse en los
+  costados ni la mesa. La idea es que se vea la captura que te dej&eacute;.&raquo;</p>
 
-  <p class="nota">Ten&iacute;a raz&oacute;n y se med&iacute;a: el recorte anterior entraba a <b>ancho completo</b> de la
-  foto, y por eso cab&iacute;a el mes&oacute;n con patas y todo &mdash; el tablero ca&iacute;a al <b>63&nbsp;%</b> del alto.
-  El nuevo cierra sobre el arreglo y el tablero baja al <b>85&nbsp;%</b>: queda de base, no de
-  protagonista. <b>Y el arreglo no se toca</b>: en vez de bajar el corte de arriba, el recorte sube
-  a y=0, as&iacute; que las pampas siguen enteras.</p>
+  <p class="nota">El recorte sale <b>de tu captura, no a ojo</b>: med&iacute; tres puntos que aparecen en
+  los dos encuadres &mdash;la boca de la vasija, la base del farol de alambre y el canto del tablero&mdash;
+  y de ah&iacute; sali&oacute; la caja. Ahora entra s&oacute;lo la superficie de la mesa, y de los costados queda un filo.</p>
+
+  <div class="trio">
+    <figure><span class="marca-et et-antes">ronda 3</span>
+      <img src="img/r3-g3.jpg" alt="G3 de la ronda 3">
+      <figcaption>El mes&oacute;n entero, con patas.</figcaption></figure>
+    <figure><span class="marca-et et-antes">ronda 4</span>
+      <img src="img/a-g3.jpg" alt="G3 de la ronda 4">
+      <figcaption>Sin patas, pero todav&iacute;a con mesa y ventanal.</figcaption></figure>
+    <figure><span class="marca-et et-ahora">ahora</span>
+      <img src="img/g3.jpg" alt="G3 de la ronda 5">
+      <figcaption>Tu encuadre. El arreglo llena el cuadro.</figcaption></figure>
+  </div>
+
+  <p class="nota">⚠️ Este recorte <b>reduce a 0,978</b> &mdash; casi 1:1. <b>Es el &uacute;ltimo zoom
+  posible sobre esta foto sin ampliar.</b> Si hiciera falta m&aacute;s, habr&iacute;a que buscar un plano m&aacute;s
+  cerrado en el banco, no forzar &eacute;ste: ampliar lo dejar&iacute;a blando.</p>
+</section>
+
+<section class="pieza">
+  <div class="cuando"><span class="fecha">21&middot;09</span><span class="canal">Feed &middot; portada &middot; ronda 5</span></div>
+  <h2>El logotipo, ahora s&iacute; despega</h2>
+
+  <p class="pedido"><span>Lo que pediste</span>
+  &laquo;Para la portada necesito que oscurezcas un poco arriba con una transparencia muy sutil para
+  que el logo se pueda visualizar de mejor manera. Con opacidad.&raquo;</p>
+
+  <p class="nota">El problema se med&iacute;a: en la banda del logotipo la luminancia por tercios era
+  <b>60 / 64 / 70</b>, pero el percentil 90 llegaba a <b>253</b> &mdash; detr&aacute;s del logotipo blanco hay
+  globos de vidrio y follaje iluminado que tocan el blanco puro. No era que estuviera oscuro: era que
+  hab&iacute;a reflejos <i>del mismo valor que la tinta</i>.</p>
+
+  <p class="nota">Y el velo <b>no me lo invent&eacute;: es el que la marca ya tiene</b>. El archivo
+  <code>logo PISO18.png</code> no es un logotipo suelto, es una plantilla de historia con un velo negro
+  en degradado &mdash; alfa 0,588 arriba que llega a cero al 41,7&nbsp;% del alto. Apliqu&eacute; ese mismo velo,
+  con la misma proporci&oacute;n, sobre el 4:5. La banda del logotipo baja a <b>35 / 37 / 41</b> y el
+  degradado se desvanece antes del primer tercio, as&iacute; que las flores no se tocan.</p>
 
   <div class="duo">
-    <figure><span class="marca-et et-antes">antes &middot; ronda 3</span>
-      <img src="img/a-g3.jpg" alt="G3 anterior: el mes&oacute;n con patas ocupa el tercio inferior">
-      <figcaption>El mes&oacute;n entero. El tablero al 63&nbsp;% y las patas hasta el borde.</figcaption></figure>
+    <figure><span class="marca-et et-antes">antes</span>
+      <img src="img/a-g1.jpg" alt="Portada sin velo">
+      <figcaption>El logotipo peleando con los globos de vidrio.</figcaption></figure>
     <figure><span class="marca-et et-ahora">ahora</span>
-      <img src="img/g3.jpg" alt="G3 nueva: el arreglo domina y el mes&oacute;n queda de base">
-      <figcaption>El arreglo manda. El tablero al 85&nbsp;%, las pampas intactas arriba.</figcaption></figure>
+      <img src="img/g1.jpg" alt="Portada con el velo de marca">
+      <figcaption>Con el velo de marca. Peor tercio: de 70 a 41.</figcaption></figure>
   </div>
 
-  <p class="nota">Las otras tres no se tocaron &mdash; <b>&laquo;el resto OK!&raquo;</b>. As&iacute; queda el carrusel completo:</p>
+  <p class="nota">S&oacute;lo lleva velo la portada &mdash; las otras tres no tienen logotipo y el brief las
+  quiere limpias. As&iacute; queda el carrusel:</p>
   <div class="tira">
-    <figure><img src="img/g1.jpg" alt="G1"><figcaption><b>G1</b> portada con logotipo</figcaption></figure>
+    <figure><img src="img/g1.jpg" alt="G1"><figcaption><b>G1</b> portada, con velo</figcaption></figure>
     <figure><img src="img/g2.jpg" alt="G2"><figcaption><b>G2</b> sin cambios</figcaption></figure>
-    <figure><img src="img/g3.jpg" alt="G3"><figcaption><b>G3</b> corregida</figcaption></figure>
+    <figure><img src="img/g3.jpg" alt="G3"><figcaption><b>G3</b> tu encuadre</figcaption></figure>
     <figure><img src="img/g4.jpg" alt="G4"><figcaption><b>G4</b> sin cambios</figcaption></figure>
   </div>
+</section>
+
+<section class="pieza">
+  <div class="cuando"><span class="canal">&mdash;&mdash; lo de la ronda 4, que qued&oacute; ok &mdash;&mdash;</span></div>
 </section>
 
 <section class="pieza">

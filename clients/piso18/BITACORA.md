@@ -92,3 +92,53 @@ Y un detalle de la API que conviene tener escrito: **`permissions().create` sobr
 un permiso que ya venía HEREDADO de la carpeta no crea uno directo** — devuelve el
 heredado. Por eso, al sacar el archivo de la carpeta, los accesos «otorgados»
 desaparecieron junto con la herencia.
+
+## 2026-09-16 — S4 ronda 5: el carrusel, con el encuadre que mandó Eli
+
+Revisión de Eli sobre la ronda 4: *«Las historias quedaron ok»* y dos cambios al
+carrusel. **Las historias y el post quedan como están.**
+
+**1 · La G3, más cerrada todavía.** *«Aumenta más el zoom. No tiene que verse en
+los costados ni la mesa. La idea es que se vea la captura que te dejé.»* Mandó
+una captura con el encuadre, así que el recorte **se dedujo de ella, no a ojo**:
+se midieron tres puntos presentes en los dos encuadres —boca de la vasija, base
+del farol de alambre, canto del tablero— y de ahí salió la caja.
+
+| | Ronda 4 | Ronda 5 |
+|---|---|---|
+| Caja en `piso_18-100` | 3199×4000 desde (0,0) | **2300×2876 desde (600,704)** |
+| Reduce a | 0,703 | **0,978** |
+
+⚠️ **0,978 es el último zoom posible sobre esta foto sin ampliar.** Si pidiera
+más, hay que ir al banco a buscar un plano más cerrado — forzar éste lo deja
+blando. Está escrito en la página de revisión para que no se intente.
+
+**2 · La portada, con velo.** *«Oscurece un poco arriba con una transparencia muy
+sutil para que el logo se vea mejor. Con opacidad.»* El problema estaba medido:
+la banda del logotipo daba **60 / 64 / 70** de luminancia por tercios, pero el
+**percentil 90 llegaba a 253** — detrás del logotipo blanco hay globos de vidrio
+y follaje iluminado que tocan el blanco puro. No era falta de oscuridad: eran
+reflejos *del mismo valor que la tinta*.
+
+⭐ **El velo no se inventó: es el que la marca ya tiene.** `logo PISO18.png` es
+una plantilla de historia con un velo negro en degradado —alfa 150/255 = 0,588 en
+y=0, que llega a 0 al **41,7 %** del alto—. Se aplicó ese mismo velo, con la misma
+proporción, sobre el 4:5. La banda baja a **35 / 37 / 41** y el degradado se
+desvanece antes del primer tercio, así que las flores no se tocan. Sólo lleva
+velo la **portada**: las otras tres no tienen logotipo y el brief las quiere limpias.
+
+⛔ **El velo va DEBAJO del logotipo**, así que la portada se rehizo desde la foto
+limpia — velar sobre el `slide1.jpg` entregado habría apagado el logotipo blanco
+junto con el fondo. El recorte original se recuperó por correlación contra el
+origen: `piso_18-72`, ancho completo, **y=594** (residuo 2,0 sobre 255 = ruido de
+JPEG). Queda escrito porque es la segunda vez en el día que hace falta reconstruir
+un recorte que nadie había anotado.
+
+**Dónde quedó:** `C1 S4 N°1.png` y `C1 S4 N°3.png` reemplazadas en Drive con su
+enlace de siempre. Las 4 del carrusel pasan el QA. Revisión (versión 2):
+https://claude.ai/artifact/7Fj6vDyRsdYYmWfMbAW4MG
+
+⚠️ **Sin resolver:** Eli dijo *«Ese sería para el G3 de la S3»*. La foto que mandó
+es `piso_18-100`, que es la G3 del carrusel de la **S4** —la que veníamos
+corrigiendo—, así que se aplicó ahí. Si se refería al carrusel `C1 S3` (el suyo,
+que subió a mano el 14-09), hay que preguntarle.

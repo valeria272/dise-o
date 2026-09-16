@@ -526,3 +526,26 @@ public/assets/fonts/piso18/ivypresto/
 # DT · RONDA 3: el logotipo de HILTON HONORS en blanco (14 KB). Es del cliente y
 # sólo baja de su Drive con el acceso abierto — sin él la pieza no se reproduce.
 !public/assets/hilton/dt/hilton-honors-*.png
+
+# ── DT · RONDA 6: el EDITABLE del estático de Honors SÍ viaja ────────────────
+# Decisión de Eli, 16-09-2026. Desde la ronda 5 la entrega **se exporta de este
+# `.ai`**, no de Remotion: es la fuente de verdad de la pieza. Vivía sólo en un
+# disco, así que quien clonara el repo tenía la composición sincronizada pero no
+# el archivo con el que ella trabaja.
+#
+# ⚠️ Son ~34 MB de binario que git no puede diferenciar: **cada vez que ella lo
+# guarde, el historial suma otros 34 MB**. Si se vuelve pesado, la salida es
+# versionar sólo el `.svg` intermedio (5,4 MB y diferenciable) — pero ése NO
+# trae los ajustes hechos a mano dentro de Illustrator, que es justo lo que pasó
+# con la caja y el titular de esta pieza.
+#
+# `out/*` no deja descender, así que hay que negar carpeta por carpeta.
+!out/hilton/
+out/hilton/*
+!out/hilton/dt/
+out/hilton/dt/*
+!out/hilton/dt/ft-honors/
+out/hilton/dt/ft-honors/*
+!out/hilton/dt/ft-honors/editable/
+out/hilton/dt/ft-honors/editable/*
+!out/hilton/dt/ft-honors/editable/*.ai

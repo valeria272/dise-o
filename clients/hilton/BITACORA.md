@@ -75,6 +75,15 @@ confunda con una regla. Si se le fue la mano, se borra esa constante y listo.
 archivo de `S4 › DT`, así que **el enlace no cambió**: quien ya lo tenía ve la
 versión nueva. Desde esta sesión no se tocó nada del Drive.
 
+**⭐ Y el editable ahora VIAJA EN EL REPO.** Decisión de Eli del 16-09: se abrió
+excepción en `.gitignore` para `out/hilton/dt/ft-honors/editable/*.ai`. Como la
+entrega se exporta de ese archivo, sin él quien clonara tenía la composición
+sincronizada pero no la fuente de verdad. ⚠️ Son ~34 MB de binario que git no
+diferencia: **cada guardado suma otros 34 MB al historial**. Si se vuelve pesado,
+la salida es versionar sólo el `.svg` intermedio (5,4 MB y diferenciable) — pero
+ése NO trae los ajustes hechos a mano dentro de Illustrator, que es justo lo que
+cambió en esta ronda.
+
 ## 2026-09-15 (apertura) — DT · el `/al-dia` que destrabó el día, y DOS HILOS OPEN que sobraron
 
 **Marca: DT.** **No es sesión de diseño**: es la apertura (`/abrir doubletree`).

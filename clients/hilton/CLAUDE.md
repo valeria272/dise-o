@@ -742,9 +742,15 @@ dicho y no se tocó; si en otra pieza queda más apretado que esto, es el límit
 #### ⚠️ Esta pieza YA NO SALE DE REMOTION — y eso cambia dos cosas
 
 La entrega se **exporta de Illustrator**, del editable
-`out/hilton/dt/ft-honors/editable/Post n°1 S4 DT - EDITABLE.ai`.
-`src/compositions/hilton/DtFtHonors.tsx` sigue reproduciendo la **ronda 4**, no
-ésta: si hay que rehacerla por código, hay que trasladarle estos cuerpos.
+`out/hilton/dt/ft-honors/editable/Post n°1 S4 DT - EDITABLE.ai` — que **desde el
+16-09 viaja en el repo** (excepción en `.gitignore`), porque es la fuente de
+verdad de la pieza.
+
+✅ **Corregido el 16-09:** `src/compositions/hilton/DtFtHonors.tsx` ya **no** se
+quedó en la ronda 4. Está sincronizado contra el export del editable —titular
+justificado incluido— y rinde la misma pieza dentro de **±2 px**, pasando el mismo
+QA con los mismos números. Sirve de respaldo reproducible; la que se entrega sigue
+siendo la del `.ai`.
 
 1. ⛔⛔ **Illustrator le cambia los ESPACIOS por GUIONES al exportar el PNG.**
    Salió `Post-n°1-S4-DT.png` y el nombre de entrega es `Post n°1 S4 DT.png`.
@@ -769,6 +775,82 @@ diagonales escalonadas: no era la sombra, eran las letras.
 Eli están **los nueve cortes de Stag** y además `TradeGothicNextLTPro-Bd` y
 `-Hv`, que el brand kit daba por faltantes. **El Bold de ancho normal existe** —
 es el que pedía un bloque de precio y por el que se había colado Raleway.
+
+### ⭐⭐⭐ RONDA 6 (16-09) — LA DENSIDAD DEL PANEL DE DT, MEDIDA
+
+Pedido de una superior por la grilla: **«el recuadro en cada item sin tanto aire,
+se ve como muy pelaitoo»** (y el salto de «Canje de / noches gratis»). Lo resolvió
+**Eli en el editable**. Lo que queda como regla de marca:
+
+#### ⭐⭐ 1. LA TINTA OCUPA ~**47–50 %** DE LA CELDA. Bajo 40 % se ve «pelaito»
+
+No es opinión, es la densidad con la que ya trabaja la cuenta. Medido en
+`DT FT S3` —única pieza aprobada con esta misma estructura de **ícono · regla
+vertical · rótulo de dos líneas dentro de una celda cerrada por filetes**—, @1080:
+
+    divisor 1040,2 · tinta 1063,7 → 1118,4 · pie del panel 1150,6
+    ⇒ celda 110,4 · tinta 54,7 · aire 23,5 arriba y 32,2 abajo
+    ⇒ la tinta ocupa el 49,5 %
+
+El estático de Honors iba en **40,1 %** (celda 153, tinta 61,4, aire 45,8 por
+lado) y Eli lo dejó en **47,4 %** (celda 130). O sea: **el aire sobraba en la CAJA,
+no en el contenido**.
+
+⛔ **Y por eso el arreglo NO es agrandar la tipografía.** No se tocó el cuerpo del
+rótulo (29), ni el tamaño de los íconos, ni los aires de celda (11,5 · 1,9 · 13) —
+son gramática de Eli ya medida, de la ronda 2. **Se aprieta el contenedor.**
+
+#### ⭐⭐ 2. SI EL TITULAR VA JUSTIFICADO A UNA MEDIDA, EL PANEL TOMA ESA MEDIDA
+
+La caja pasó de 880 a **764** de ancho, y 764 **es exactamente la medida a la que
+ella justificó el titular** en la ronda 5. Titular y panel cierran ahora en la
+misma vertical (x 157,4 y 922,1). Es la consecuencia natural de
+[la regla del titular](#-ronda-5-15-09-tarde--el-titular-de-dt-se-justifica-a-una-medida):
+si las tres líneas definen una columna, el panel se alinea a ella.
+
+#### ⚠️ 3. LA REGLA DEL PIE **NO** SIGUE A LA CAJA
+
+Se quedó en **880 centrada, en y 1252** — o sea la pieza mantiene su margen de 100
+abajo aunque el panel se angoste. En el código dejó de dibujarse desde `CAJA.x`,
+que es de donde salía; ahora tiene su propia geometría (`REGLA`).
+
+#### ⛔⛔ 4. ANTES DE RENDIR UNA PIEZA DE DT: MIRAR SI HAY EDITABLE MÁS NUEVO
+
+El error del día. Se rindió `DtFtHonors` sin ver que la entrega ya venía del `.ai`
+y **se sobrescribió el PNG entregado**. Se recuperó byte a byte desde
+`editable/_verificacion/estado-actual.png` —esa carpeta guarda el estado previo—,
+pero la regla queda escrita:
+
+```bash
+ls -la out/hilton/dt/<pieza>/editable/     # ¿el .ai es más nuevo que el render?
+```
+
+⭐ **Lo delató `dt-qa.py`**, con tres «SUSTITUCIÓN DE FUENTE» en textos que nadie
+había tocado: sus bandas estaban medidas sobre el export del editable y el render
+de código ya no calzaba. Una compuerta bien calibrada avisa de cosas que no estaba
+buscando.
+
+#### ⭐ 5. Exportar el PNG del editable sin abrir la interfaz
+
+`scripts/ai-puente.py` se engancha por COM al Illustrator de la máquina y corre
+ExtendScript adentro. ⛔ **Las rutas van con barras normales** (`C:/...`): con
+barras invertidas ExtendScript se come los escapes y dice que el archivo no existe.
+
+> ⚠️⚠️ **La escala es 208,37 %, NO 208,33 %.** Con 208,33 salen 2250×**2812** y el
+> máster de esta cuenta es **2813**. Es la misma trampa que ya estaba anotada para
+> Remotion (2,0837 y no 2,0833) — ver más arriba «EL MÁSTER DE FEED NO SE RINDE
+> CON LA ESCALA DE HISTORIA».
+
+Y antes de reemplazar una entrega, **verificar píxel a píxel**: lo que no cambió
+tiene que dar diferencia **0**. Acá dio 0 en foto, logotipo DT, regla del pie y
+llamado, y las únicas zonas distintas fueron titular, caja y logo Honors.
+
+#### ⚠️ 6. Chrome compone Stag más angosto que PIL
+
+Al reconstruir el titular justificado por código, el tracking que predice el
+cálculo sobre el `.ttf` **no sirve**: la medida quedaba hasta **19 px corta**. Los
+valores buenos salen de **rendir y medir**, repartiendo la diferencia entre los
+huecos. Vale para cualquier texto que tenga que dar una medida exacta.
 
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 

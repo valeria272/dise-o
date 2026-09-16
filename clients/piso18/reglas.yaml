@@ -17,8 +17,8 @@
 
 marca: piso18
 nombre: PISO18 Centro de Eventos
-version: 2
-actualizado: 2026-09-15
+version: 3
+actualizado: 2026-09-16
 
 autoridad:
   - quien: Elisabet Soto
@@ -171,3 +171,53 @@ reglas:
   # ⚠️ Y lo que ninguna regla puede comprobar sola: en una historia ANIMADA la
   # posición y el contraste del botón se miden en el ÚLTIMO fotograma. Para eso hay
   # que extraer el frame final del MP4 y pasarlo por este mismo motor.
+
+  # ══════════════════════════════════════════════════════════════════════════
+  # ⭐ CRITERIO DE ELI · 16-09-2026 — dictado al aprobar la S4
+  # ══════════════════════════════════════════════════════════════════════════
+  #
+  # Tres cosas que no son comprobables por programa sobre una sola pieza, pero que
+  # mandan sobre cómo se arma. Van acá porque Piso18 todavía no tiene `CLAUDE.md`.
+  #
+  # ── 1 · EL VELO DEL LOGOTIPO EN LA PORTADA DE FEED ─────────────────────────
+  # *«Oscurece un poco arriba con una transparencia muy sutil para que el logo se
+  #  pueda visualizar de mejor manera. Con opacidad.»*
+  #
+  # La portada de un carrusel lleva **velo negro en degradado** debajo del
+  # logotipo. NO es un invento: es el velo que la marca ya tiene en
+  # `logo PISO18.png` —que no es un logotipo suelto sino una plantilla de historia
+  # 2250×4000—, aplicado con la misma proporción al 4:5:
+  #
+  #     alfa 150/255 = 0,588 en y=0  →  0 en y = 0,417 × alto
+  #
+  # ⛔ Va **DEBAJO** del logotipo. Velar sobre una pieza que ya lo tiene estampado
+  #    apaga el logotipo blanco junto con el fondo: la portada se rehace desde la
+  #    foto limpia. Por eso el recorte de cada pieza se ANOTA (ver punto 3).
+  #
+  # ⚠️ Sólo la PORTADA. Las otras slides no llevan logotipo y el brief las quiere
+  #    limpias — velarlas sería ensuciarlas sin motivo.
+  #
+  # Cómo se decide si hace falta: se mide la banda del logotipo (y 190–480 de 2813)
+  # **por TERCIOS**, y además su **percentil 90**. El promedio miente: en la G1 de
+  # la S4 los tercios daban 60/64/70 —parecía oscura— pero el p90 llegaba a **253**,
+  # porque detrás del logotipo hay globos de vidrio que tocan el blanco puro. El
+  # defecto no era falta de oscuridad: eran reflejos DEL MISMO VALOR QUE LA TINTA.
+  # Con el velo la banda queda en 35/37/41.
+  #
+  # ── 2 · EL ZOOM DE UNA FOTO TIENE TOPE, Y ES 1,0 ───────────────────────────
+  # *«No tiene que verse en los costados ni la mesa.»*
+  #
+  # Eli pide encuadres cerrados, y en la S4 el recorte llegó a **reducir 0,978** —
+  # casi 1:1. Ése es el límite: **un recorte que ampliaría se rechaza, no se
+  # fuerza**. Si hace falta más zoom, se vuelve al banco a buscar un plano más
+  # cerrado. `scripts/p18-s4-r5.py` lo corta por programa antes de escribir nada.
+  #
+  # Y cuando manda una captura con el encuadre que quiere, el recorte **se deduce
+  # de ella**: se miden tres puntos presentes en los dos encuadres y de ahí sale la
+  # caja. Copiarlo a ojo obliga a una ronda más.
+  #
+  # ── 3 · EL RECORTE SE ANOTA, SIEMPRE ───────────────────────────────────────
+  # Dos veces en un mismo día hubo que reconstruir por correlación un recorte que
+  # nadie había escrito (`piso_18-100` desde y=256 y `piso_18-72` desde y=594). Se
+  # recuperó porque los fondos estaban commiteados, pero es tiempo perdido: **el
+  # script que produce una pieza deja su caja de recorte escrita en el código**.

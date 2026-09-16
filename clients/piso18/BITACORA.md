@@ -1,5 +1,47 @@
 # Piso18 — bitácora
 
+## 2026-09-16 — Elisabet Soto · la S4 completa, aprobada
+
+**Qué se hizo:** se tomaron los cambios que dejó el cliente en la grilla y se
+cerró la S4 en dos rondas. **Ronda 4** (los 4 cambios del cliente): más zoom en la
+G3 del carrusel, la opción B de la encuesta pasa a mesa puesta, titular nuevo en
+la historia animada —ahí **no hubo comentario: cambió el brief**— y un post nuevo
+con la foto que el cliente eligió por enlace. **Ronda 5** (revisión de Eli): la G3
+con el encuadre de su captura y la portada con el velo de marca para que el
+logotipo se lea. Eli aprobó. **La S3 no se tocó: la hace ella.**
+
+**Dónde quedó:** las 9 piezas en `S4 HILTON SEP 2026 › PISO18`, las corregidas
+reemplazadas **conservando su enlace**. Las 8 estáticas pasan
+`qa/motor.py --marca piso18`. Aparato en `src/compositions/piso18/P18StMontaje.tsx`
+y `scripts/p18-s4-r4.py` · `p18-s4-r5.py` · `p18-rendir.py` · `p18-s4-subir.py`.
+Página de revisión (versión 2): <https://claude.ai/artifact/7Fj6vDyRsdYYmWfMbAW4MG>.
+Instantánea base del próximo diff: `clients/hilton/grillas/api/p18-sept-20260916.json`.
+
+**Qué sigue:** la **S5** —`ST-N1-S5` (28-09) y `ST-N2-S5` (30-09) están en
+`OK PARA DISEÑAR` y el carrusel del 29-09 en `PENDIENTE POR CLIENTE`—, y correr
+`/al-dia piso18` antes de producir: el 16-09 el cliente movió columnas de fecha y
+reescribió un brief sin dejar comentario.
+
+**Abierto:**
+1. ⚠️ `Post S4 PISO18 25-09.png` **es la pieza del 23-09** — la grilla la movió y
+   el nombre quedó mintiendo. No se renombró para no romper el enlace del cliente,
+   pero **el portal levanta por NOMBRE**: si esa pieza pasa por el portal, hay que
+   arreglarlo antes. Eli lo aprobó sabiéndolo.
+2. ⛔ **La carpeta de entrega de Hilton la ve el cliente** (`@hilton.com` y
+   `doubletreesantiagovitacura@gmail.com` entre sus 20 permisos de escritura). Las
+   piezas van ahí; **nada interno**.
+3. `piso_18-128` sale en el post del 25-09 y también como tercer plano de la
+   animada del 23-09. El cliente eligió esa foto con nombre y apellido.
+4. *«Ese sería para el G3 de la S3»* — se aplicó a la G3 de la **S4**, que es donde
+   vive la foto que mandó. Si se refería al `C1 S3`, está sin hacer.
+5. **Piso18 sigue sin manual** (`CLAUDE.md`) ni ficha (`marca.json`). Lo aprendido
+   hoy quedó en `reglas.yaml`.
+6. Documento de Google huérfano en la cuenta del estudio
+   (`1CfYeWQ8rbtrpCmNkh4hBIzCLNOx7i1EWSBI47FpM3yk`): se creó en la carpeta del
+   cliente por error y se sacó. Decidir si se borra.
+
+---
+
 ## 2026-09-16 — Arranque de la máquina · 11 referencias de cumpleaños ROTAS
 
 **Qué se hizo:** verificación completa del estudio con `/arranque`. No se diseñó

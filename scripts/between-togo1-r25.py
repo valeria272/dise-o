@@ -41,6 +41,7 @@ Salida: public/assets/hilton/between/fotos-gradadas/togo-portada-r25.jpg
 import sys
 from pathlib import Path
 
+import cv2
 import numpy as np
 from PIL import Image
 
@@ -53,6 +54,66 @@ except Exception:
 
 ORIGEN = Path("public/assets/hilton/between/togo-sep2026/togo-en-mano-mesa.jpg")
 DESTINO = Path("public/assets/hilton/between/fotos-gradadas/togo-portada-r25.jpg")
+
+#: ⭐ RONDA 3 (16-09) — DOS ARREGLOS LOCALES, Y SÓLO DOS.
+#: Eli: «el último carrusel se ve muy oscuro y con una raya, te adjunto un
+#: pantallazo. Mejora la foto un poco, se ve un poco extraña y oscura arriba,
+#: baja un poco la transparencia si necesitas.»
+#: Sigue en pie «no edites la foto original»: no vuelve el revelado global. Lo
+#: que entra son dos correcciones acotadas y localizadas:
+#:
+#:   1. LA RAYA. Es un pliegue claro en el cartón, arriba a la izquierda del
+#:      vaso — el que ella recortó. Medido sobre el asset de 2155×2694 cae en
+#:      x 530–590, y 460–595.
+#:      ⛔ `cv2.inpaint` NO sirve acá: deja un PARCHE LISO, sin grano, y sobre
+#:      cartón kraft eso se ve más que la raya. Es el mismo error que el manual
+#:      ya tiene escrito para los retoques («un recorte pegado se delata por la
+#:      luz, no por el alfa»), en versión textura.
+#:      Lo que se usa es un CLONADO POR SEPARACIÓN DE FRECUENCIAS: se toma el
+#:      mismo tramo del vaso 150 px a la derecha —misma altura, misma banda de
+#:      luz— y se le trasplanta sólo su ALTA frecuencia, conservando la baja del
+#:      destino. Así se va la raya, se mantiene el sombreado del cilindro y el
+#:      grano sigue siendo grano de verdad.
+#:   2. «OSCURA ARRIBA». Se levantan SÓLO las sombras, y sólo en la mitad de
+#:      arriba: el peso cae a cero en y=0,45, que es justo donde arranca el
+#:      bloque de texto. Así la franja de arriba deja de leerse apagada y el
+#:      contraste del titular no se mueve ni un punto.
+#: ⚠️ La exposición general, la calidez y la saturación NO se tocan.
+RAYA = (508, 424, 612, 622)     # x0, y0, x1, y1 en el asset de 2155×2694
+LEVANTE, HASTA = 26.0, 0.45     # fuerza del levante de sombras y dónde se apaga
+
+
+#: De dónde se clona el grano: mismo alto, 150 px a la derecha.
+DESPLAZA = 150
+
+
+def quita_raya(im):
+    a = np.asarray(im.convert("RGB")).astype(np.float32)
+    x0, y0, x1, y1 = RAYA
+    dst = a[y0:y1, x0:x1]
+    src = a[y0:y1, x0 + DESPLAZA:x1 + DESPLAZA]
+    baja = lambda z: cv2.GaussianBlur(z, (0, 0), 9)
+    mezcla = baja(dst) + (src - baja(src))
+    # máscara con bordes difuminados, para que el parche no tenga canto
+    m = np.zeros(dst.shape[:2], np.float32)
+    m[8:-8, 8:-8] = 1.0
+    m = cv2.GaussianBlur(m, (0, 0), 7)[..., None]
+    a[y0:y1, x0:x1] = dst * (1 - m) + mezcla * m
+    return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
+
+
+def levanta_sombras(im):
+    """Sube el pie de la curva en la mitad de arriba. Es una suma ponderada por
+    lo OSCURO que está el píxel y por la ALTURA: no toca las altas ni el tercio
+    donde cae el texto."""
+    a = np.asarray(im.convert("RGB")).astype(np.float32)
+    H = a.shape[0]
+    lum = (0.2126 * a[..., 0] + 0.7152 * a[..., 1] + 0.0722 * a[..., 2]) / 255.0
+    sombra = np.clip(1.0 - lum / 0.55, 0, 1) ** 1.6          # 1 en el negro, 0 sobre L=140
+    alto = np.clip(1.0 - (np.arange(H) / H) / HASTA, 0, 1) ** 1.2
+    w = sombra * alto[:, None]
+    return Image.fromarray(np.clip(a + LEVANTE * w[..., None], 0, 255).astype(np.uint8))
+
 
 #: ⛔⛔ RONDA 2 (16-09) — ESTA FOTO NO SE GRADA. NADA.
 #: Eli, sobre la primera pasada: «la última no se ve nada, el carrusel de la
@@ -110,7 +171,7 @@ def medir(im):
 def main():
     im = corta_4_5(Image.open(ORIGEN).convert("RGB"))
     antes = medir(im)
-    out = im                       # ← sin revelado, sin vibrancia, sin calor
+    out = levanta_sombras(quita_raya(im))   # los dos arreglos locales de la r3
     desp = medir(out)
     DESTINO.parent.mkdir(parents=True, exist_ok=True)
     out.save(DESTINO, "JPEG", quality=95, subsampling=0)
@@ -118,7 +179,7 @@ def main():
     print(f"mediana .............. {desp[0]:6.1f}   (set: 101 — no se iguala, ver cabecera)")
     print(f"calidez .............. {desp[1]:6.1f}   (set: 25,9)")
     print(f"croma ................ {desp[2]:6.1f}   (set: 21,5)")
-    print(f"sin gradar: antes == despues -> {antes == desp}")
+    print(f"mediana antes de los arreglos locales: {antes[0]:6.1f}")
     print(f"% blanco puro ........ {desp[3]:6.2f}")
     print(f"\n-> {DESTINO}")
 

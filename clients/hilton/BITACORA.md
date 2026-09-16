@@ -1,3 +1,89 @@
+## 2026-09-16 (cierre 2) · Eli (Windows) — BETWEEN, RONDA 3: el fondo continuo, la polaroid y la raya
+
+> «Quiero que la textura beige del fondo hagan transición en ambas slides del
+> carrusel del concurso. Además, para el slide 2 añade la polaroid de foto de la
+> misma chica de frente, feliz, que es igual a la referencia del slide 2. Muy
+> sutil, donde no tape textos. Las ST quedan okey. El último carrusel se ve muy
+> oscuro y con una raya, te adjunto un pantallazo: mejora la foto un poco, se ve
+> un poco extraña y oscura arriba, baja un poco la transparencia si necesitas.»
+
+### 1. ⭐⭐⭐ LA PARED CONTINUA SIN VOLVER A GENERAR
+
+`scripts/between-concurso-s3-fondo-continuo.py`. En el cumpleaños la continuidad
+se resolvió generando UN panorama y cortándolo en dos. **Acá no se podía**: las
+dos escenas ya estaban aprobadas —la persona la aprobó ella en esta misma
+sesión— y regenerar significaba perder el retrato. Así que la continuidad se
+construye sobre lo que ya hay, y sin mover un píxel del sujeto:
+
+1. máscara de fondo por crecimiento desde el canto sobre los píxeles de pared
+   (el borde blanco del recorte, que está en 243+, corta el crecimiento solo);
+2. el campo de cada lámina y el campo del PAR, los dos como polinomio de grado 3;
+3. se aplica `nuevo − actual` **sólo al fondo**: como es baja frecuencia, el
+   grano de la pared se conserva exacto;
+4. convergencia de costura, que es lo que hace un panorama de verdad.
+
+**Los tres intentos, medidos** (salto de luminancia en la costura; el umbral de
+la cuenta es 1,5):
+
+| Método | Salto |
+|---|---|
+| campo actual por desenfoque gaussiano ancho | **18,66** ⛔ |
+| campo actual por polinomio (sin convergencia) | **3,30** ⚠️ |
+| + convergencia de costura (500 px de caída) | **0,95** ✅ |
+
+⛔ **Por qué el gaussiano no sirve:** se sesga contra el canto del cuadro —la
+normalización por la máscara tira los valores hacia adentro— así que el campo
+sale mal justo donde hay que medir. Dos polinomios no tienen ese problema.
+
+⚠️ Y una trampa de scipy: `binary_erosion` erosiona también el BORDE del cuadro,
+así que la máscara quedaba vacía en la costura (0 filas comparables). Va
+`border_value=1`.
+
+**De regalo, el QA de carrusel pasó de 195/202 a 197/196 de mediana:** el fondo
+continuo igualó las dos láminas mejor que cualquier gradación.
+
+### 2. La polaroid — el personaje se fija con la pieza aprobada
+
+El retrato de frente se generó pasándole como referencia **la portada aprobada y
+un recorte de su cara**. Es la forma práctica de fijar el personaje (memoria
+`generar-personas-nombrar-el-tipo`: «el perfil aprobado se fija como referencia o
+cada generación da una cara distinta»), y salió la misma mujer.
+
+Va abajo a la izquierda, 188 px, girada 4°, con el pie del marco MÁS ANCHO que
+los lados —sin eso no se lee como polaroid—. Es el único hueco de la lámina sin
+texto ni producto: el beige limpio llega hasta x≈270 entre y=1000 y 1250, y el
+legal vive dentro de la tarjeta.
+
+### 3. ⭐⭐ LA RAYA DEL CARTÓN: `cv2.inpaint` NO SIRVE SOBRE TEXTURA
+
+La raya es un pliegue claro del cartón (x 508–612, y 424–622 del asset de
+2155×2694). El primer intento fue `cv2.inpaint` (Telea) y **dejó un parche
+LISO, sin grano**: sobre kraft eso se ve MÁS que la raya. Es la misma familia de
+error que el manual ya tiene escrita para los recortes, en versión textura.
+
+Lo que funciona es un **clonado por separación de frecuencias**: se toma el mismo
+tramo del vaso 150 px a la derecha —misma altura, misma banda de luz— y se le
+trasplanta sólo su ALTA frecuencia, conservando la BAJA del destino. Se va la
+raya, se mantiene el sombreado del cilindro y el grano sigue siendo real.
+
+### 4. «Oscura arriba» se arregla en la FOTO, no en la transparencia
+
+El degradado ya estaba en su piso: barrido contra el contraste de la tinta beige
+(la marca pide 3:1), **0,60 → 3,27 · 4,79 · 3,95** y **0,55 → 2,91**, o sea que
+bajo 0,60 el script se cae. Así que lo que se aclaró fue la foto: un levante de
+sombras ponderado por la ALTURA, que se apaga en y=0,45 —justo donde arranca el
+bloque de texto— así que la franja de arriba deja de leerse apagada y el
+contraste del titular no se mueve ni un punto. Verificado: los tres contrastes
+son idénticos antes y después del levante.
+
+**Dónde quedó:** las tres piezas re-subidas reemplazando el mismo archivo y
+verificadas por `fileSize`; las tres reproducen byte a byte; la página de
+revisión actualizada con esta ronda.
+
+**Abierto:** lo mismo de los cierres anteriores.
+
+---
+
 ## 2026-09-16 (cierre) · Eli (Windows) — BETWEEN, RONDA 2: cuatro correcciones suyas
 
 Sobre lo entregado esta misma tarde. Sus palabras, literales:

@@ -227,11 +227,16 @@ def main() -> int:
           calor. Lo único que se hace es el recorte 4:5, que no es opcional (la toma es 3:4).
           ⚠️ Queda anotado que el set del carrusel está en mediana 101 y esta toma en 116: la portada
           va a leer más clara que las otras tres. Es lo que pediste.</li>
-      <li><b>El degradado bajó de 0,72 a 0,60.</b> Se barrió midiendo el contraste de la tinta beige
-          —la marca pide 3:1— sobre script · titular · horario:<br>
+      <li><b>El degradado bajó de 0,72 a 0,60, y 0,60 es el piso.</b> Se barrió midiendo el contraste
+          de la tinta beige —la marca pide 3:1— sobre script · titular · horario:<br>
           0,72 → 5,41 · 5,54 · 4,77 &nbsp;·&nbsp; 0,65 → 3,92 · 4,98 · 4,05 &nbsp;·&nbsp;
-          <b>0,60 → 3,27 · 4,79 · 3,95</b> &nbsp;·&nbsp; 0,55 → 2,91 · 4,28 · 3,84 (el script se cae).
-          0,60 es lo más suave que deja las tres líneas sobre el mínimo.</li>
+          <b>0,60 → 3,27 · 4,79 · 3,95</b> &nbsp;·&nbsp; 0,55 → <b>2,91</b> · 4,28 · 3,84.
+          Bajo 0,60 el script se cae del mínimo, así que lo que se aclaró fue la FOTO y no la
+          transparencia: se levantaron las sombras de la mitad de arriba, que es donde dijiste que
+          se veía oscura, y eso no toca el contraste del bloque.</li>
+      <li><b>La raya del cartón.</b> `cv2.inpaint` dejaba un parche liso —sobre kraft se ve más que la
+          raya— así que se clonó el grano real del propio vaso 150 px a la derecha, trasplantando sólo
+          la alta frecuencia y conservando el sombreado del cilindro.</li>
       <li><b>El encuadre no es libre, y esta vez se midió contra el logotipo COMPLETO.</b> El lockup
           impreso son dos bandas: el wordmark en la fila 2239–2513 y «COFFEE & BAR» en 2617–2685.
           La primera pasada calculó contra el wordmark y el script terminaba rozando el «COFFEE &amp;
@@ -255,7 +260,21 @@ def main() -> int:
   <p class="sub">Todo lo de esta página ya está subido al Drive. Las stories y la portada del To Go
      reemplazan el MISMO archivo, así que los enlaces de la grilla no cambiaron.</p>
   <div class="notas" style="margin-top:22px">
-    <h3>Ronda 2 — tus cuatro correcciones, y qué se hizo con cada una</h3>
+    <h3>Ronda 3 — lo último que pediste</h3>
+    <ul>
+      <li>«que la <b>textura beige del fondo haga transición</b> en ambas slides» → la pared es ahora
+          un solo campo continuo a lo largo de las dos láminas. Salto en la costura: <b>0,95</b> de
+          luminancia (el umbral de la cuenta es 1,5). No se tocó ni un píxel de los sujetos.</li>
+      <li>«añade la <b>polaroid</b> de la misma chica de frente, feliz» → generada con la portada
+          aprobada como referencia de personaje, y puesta abajo a la izquierda, que es el único hueco
+          de la lámina sin texto ni producto.</li>
+      <li>«el último carrusel <b>muy oscuro y con una raya</b>» → la raya era un pliegue del cartón y
+          se quitó clonando el grano real del propio vaso; y se levantaron las sombras <b>sólo arriba</b>,
+          apagándose en y=0,45 para no tocar el contraste del texto.</li>
+    </ul>
+  </div>
+  <div class="notas" style="margin-top:14px">
+    <h3>Ronda 2 — las cuatro correcciones anteriores</h3>
     <ul>
       <li>«la chica debe verse <b>más blanca chilena, pelo ondulado y con gafas lifestyle</b>» →
           escena regenerada. ⚠️ «Más blanca» se pidió <b>nombrando el tipo</b> («chilena de piel clara,

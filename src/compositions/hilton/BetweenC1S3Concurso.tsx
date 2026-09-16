@@ -93,6 +93,58 @@ const F = 'assets/hilton/between/concurso-s3/';
 const CUERPO_TITULAR = 103;
 
 /**
+ * ⭐ LA POLAROID DE LA SLIDE 2 — RONDA 3 (16-09).
+ *
+ * Eli: «para el slide 2 añade la polaroid de foto de la misma chica de frente,
+ * feliz, que es igual a la referencia del slide 2. Muy sutil, donde no tape
+ * textos.»
+ *
+ * Es el último elemento que le faltaba a la REF 2 y el más literal de todos:
+ * ahí hay una polaroid pegada abajo a la izquierda, ladeada, con un retrato de
+ * la misma persona del recorte grande.
+ *
+ * ⚠️ El retrato es la MISMA mujer, no otra. Se generó pasándole como referencia
+ * la portada aprobada y un recorte de su cara —que es la forma práctica de fijar
+ * el personaje (memoria `generar-personas-nombrar-el-tipo`: «el perfil aprobado
+ * se fija como referencia de personaje o cada generación da una cara distinta»).
+ *
+ * DÓNDE VA, y por qué ahí: es el único hueco de la lámina que no tiene texto ni
+ * producto. Medido, el beige limpio de abajo a la izquierda llega hasta x≈270
+ * entre y=1000 y y=1250, y el legal vive DENTRO de la tarjeta, así que acá no
+ * hay nada que tapar. La esquina de la polaroid monta apenas sobre el canto del
+ * escritorio, que es lo que hace el referente: en un collage las piezas se
+ * solapan.
+ *
+ * La geometría es la de una polaroid de verdad: marco parejo arriba y a los
+ * lados, y el pie MÁS ANCHO. Sin eso se lee como un marco blanco cualquiera.
+ */
+const POLAROID = {ancho: 188, marco: 12, pie: 34, x: 96, y: 1012, giro: -7};
+
+const Polaroid: React.FC = () => {
+  const anchoFoto = POLAROID.ancho - POLAROID.marco * 2;
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: POLAROID.x,
+        top: POLAROID.y,
+        width: POLAROID.ancho,
+        padding: `${POLAROID.marco}px ${POLAROID.marco}px ${POLAROID.pie}px`,
+        boxSizing: 'border-box',
+        background: '#ffffff',
+        transform: `rotate(${POLAROID.giro}deg)`,
+        boxShadow: '0 10px 26px rgba(60,44,28,0.22)',
+      }}
+    >
+      <Img
+        src={staticFile(F + 'c1-polaroid-foto.jpg')}
+        style={{width: anchoFoto, height: anchoFoto * 1.16, objectFit: 'cover', display: 'block'}}
+      />
+    </div>
+  );
+};
+
+/**
  * ⛔ EL LOGO EN CAFÉ NO SALE DE `BETWEEN.logo.cafe`: ese token apunta a
  * `logo-negro.png`, que es negro puro `#000000` y está fuera de paleta. El
  * archivo correcto es el que dejó la S3. El token del kit no se toca porque lo
@@ -480,6 +532,7 @@ export const C1S3Concurso2: React.FC = () => {
       <Trazo cual="chispa" x={104} y={398} ancho={68} />
       <Trazo cual="estrella" x={916} y={608} ancho={58} opacidad={0.9} />
       <Trazo cual="flecha" x={96} y={700} ancho={100} giro={-8} opacidad={0.92} />
+      <Polaroid />
     </AbsoluteFill>
   );
 };

@@ -33,21 +33,39 @@ CARRUSEL = {
          "pie": "Línea melamina y cantos Masisa"},
 
         # L2 · el puente — brief: «Tableros MDP Masisa, listos para mueblería.»
-        {"foto": "fotos/02.png", "y": 258,
+        {"foto": "fotos/02_escena_v3.png", "y": 258,
          "sobre": "TABLEROS MDP MASISA,",
          "caja": "LISTOS PARA MUEBLERÍA",
          "bajada": "Superficie pareja para armar o revestir **muebles a medida**."},
 
         # L3 · la solución — brief: «Cantos a juego para una terminación prolija.»
-        {"foto": "fotos/03.png", "y": 214,
+        {"foto": "fotos/03_canto.png", "y": 214,
          "sobre": "CANTOS A JUEGO",
          "caja": "PARA UNA TERMINACIÓN PROLIJA",
          "bajada": "Los cantos Masisa sellan el borde y **evitan que se vea el corte**."},
 
         # L4 · tip pro — brief: «Elige el color de canto antes de cortar todas las piezas.»
-        {"foto": "fotos/04.png", "y": 196,
+        #
+        # ⛔ EL TIP PRO TIENE REGISTRO PROPIO, medido el 16-09-2026 sobre las 3
+        # referencias que lo traen (cintac, novoplast, surpol):
+        #   · LA ORDEN va en VERSALES blancas, en DOS líneas, y manda la lámina
+        #   · LA CONDICIÓN va en la caja roja y va en CAJA BAJA
+        #   · la jerarquía se INVIERTE respecto de L2-L3: acá la versal es la
+        #     protagonista (mayúscula ~60 contra las ~46 de las otras láminas) y la
+        #     caja roja pasa a ser el complemento
+        #
+        #   cintac     REVISA LA / MODULACIÓN        + «antes de cortar»
+        #   novoplast  REVISA Y PRUEBA / LA INSTAL.  + «antes de tapar el muro»
+        #   surpol     SELLA BIEN / LOS BORDES       + «de cada plancha»
+        #
+        # El tip de Masisa es casi el gemelo del de cintac, así que se compone igual.
+        # Paulina, 16-09-2026: «bájale al pt de la frase "elige el color de canto"
+        # para que quede en una línea». A los 83px del registro de tip pro la frase
+        # entera mide ~1082 y no cabe en el lienzo (1080). 59,5 la deja en el ancho
+        # de la caja. Es un ajuste DE ESTA LÁMINA: el registro sigue siendo 83.
+        {"foto": "fotos/04_cantos.png", "y": 196, "tip": True, "cuerpo": 59.5,
          "sobre": "ELIGE EL COLOR DE CANTO",
-         "caja": "ANTES DE CORTAR|TODAS LAS PIEZAS",
+         "caja": "antes de cortar todas las piezas",
          "bajada": "Evita **diferencias de tono** entre tablero y canto."},
 
         # L5 · cierre — brief: «Masisa, disponible en Ebema.»
@@ -91,6 +109,13 @@ PADDING_CAJA = 22         # el padding lateral de la caja, el mismo del CSS
 # Comprobado en la referencia: Surpol sept, caja 948,5 y línea blanca 904,3
 #   -> 948,5 − 2 × 22 = 904,5. Calza al décimo de píxel.
 ANCHO_LINEA = ANCHO_CAJA - 2 * PADDING_CAJA
+# ⭐ EL ANCHO DE CAJA DEL CARRUSEL — la cifra que cose las láminas de desarrollo.
+# Las 5 referencias caen entre 541,4 y 802,6, y 3 repiten el MISMO valor entre su L2
+# y su L3 (cedral 677,8 · cintac 541,4 · surpol 745,0/738,2). Es una decisión por
+# CARRUSEL, no por lámina. Masisa va en 778: donde aterrizó su L2 aprobada, y calza
+# con toro (783,4), la referencia de línea más larga.
+ANCHO_CAJA_DES = 778
+
 ANCHO_CAPSULA = 662
 # Ronda 11: +10 % sobre los 601,6 que se estaban viendo, no sobre los 772 de
 # sistema (0,82 de la caja roja). Entre la ronda 8 y la 10 el ajuste de ancho de
@@ -99,7 +124,12 @@ ANCHO_CAPSULA = 662
 
 
 def cuerpo(l):
-    bloques = "".join(f'<div class="fila"><span class="l">{fmt(x)}</span></div>'
+    # `cuerpo`: ajuste del cuerpo de la línea blanca PARA ESA LÁMINA. El registro del
+    # sistema no cambia — sólo esta lámina. Se usa cuando la frase entra en una sola
+    # línea y el cuerpo por defecto la deja más ancha que el lienzo.
+    cp = l.get("cuerpo")
+    est = f' style="font-size:{cp}px"' if cp else ""
+    bloques = "".join(f'<div class="fila"><span class="l"{est}>{fmt(x)}</span></div>'
                       for x in lineas(l.get("sobre", "")))
     caja = lineas(l.get("caja", ""))
     if caja:
@@ -120,8 +150,19 @@ def cuerpo(l):
                f'<path d="M0 10 H176 M166 3 L177 10 L166 17" fill="none" '
                f'stroke="#fff" stroke-width="3" stroke-linecap="round" '
                f'stroke-linejoin="round"/></svg></div></div>')
+    # ⛔ COMO SE COMPONE CADA LAMINA (medido el 16-09-2026 sobre las 10 referencias
+    # de L2 y L3, y corregido ESE MISMO DIA: la primera version daba cuerpo fijo a
+    # toda la lamina y la caja de la L3 se partia en dos lineas).
+    #
+    #   portada        -> TODO calza en ancho fijo (942), el cuerpo cae donde caiga
+    #   L2-L4 blanca   -> CUERPO fijo (65px en el CSS), el ancho cae donde caiga
+    #   L2-L4 caja     -> calza al ANCHO DE CAJA DEL CARRUSEL, el cuerpo cae solo
+    #
+    # La prueba de que la caja se compone al ancho: cedral repite 677,8 EXACTOS en
+    # su L2 y su L3, con textos de 15 y 11 caracteres — «SIN OBRA GRUESA» y «NO SE
+    # PUDRE». Si mandara el cuerpo, la de 11 letras seria mucho mas angosta.
     anchos = (f'data-ancho="{ANCHO_LINEA}" data-ancho-caja="{ANCHO_CAJA}" data-tapa="0.5" data-monta="14" data-ancho-capsula="{ANCHO_CAPSULA}"'
-              if l.get("portada") else f'data-ancho="{ANCHO_TITULAR}"')
+              if l.get("portada") else f'data-ancho-caja="{ANCHO_CAJA_DES}"')   # el ajuste mide la caja CON su padding
     return f"""  <div class="bloque" style="top:{l['y']}px;">
     <div class="titular" {anchos}>{bloques}</div>
     {extra}
@@ -154,10 +195,15 @@ document.fonts.ready.then(function(){
   // 1. Cada línea del titular se lleva a un mismo ancho. La larga queda en un
   //    cuerpo menor y la corta en uno mayor: así el bloque sale simétrico.
   document.querySelectorAll('.titular').forEach(function(t){
-    var objetivo = parseFloat(t.dataset.ancho) || 900;
-    var objetivoCaja = parseFloat(t.dataset.anchoCaja) || objetivo;
+    var objetivo = parseFloat(t.dataset.ancho);         // sólo la portada lo trae
+    var objetivoCaja = parseFloat(t.dataset.anchoCaja);
+    if (isNaN(objetivo) && isNaN(objetivoCaja)) return;
     t.querySelectorAll('.l').forEach(function(l){
-      var meta = l.classList.contains('caja') ? objetivoCaja : objetivo;
+      var esCaja = l.classList.contains('caja');
+      // En las de desarrollo la línea blanca NO se ajusta: su cuerpo lo fija el CSS
+      // y su ancho cae donde caiga. La que calza al ancho es la caja, y sólo ella.
+      if (!esCaja && isNaN(objetivo)) return;
+      var meta = esCaja ? (isNaN(objetivoCaja) ? objetivo : objetivoCaja) : objetivo;
       var lo = 24, hi = 200;
       for (var i = 0; i < 24; i++) {
         var m = (lo + hi) / 2;
@@ -189,6 +235,12 @@ document.fonts.ready.then(function(){
     //    enunciado no cambia y sólo crece el alto del bloque rojo.
     //    La mitad se mide sobre las MAYÚSCULAS con TextMetrics: la caja de línea
     //    incluye interlineado, acentos y descendentes, y daba entre 48 y 68 %.
+    // ⛔ ESTE PASO ES SOLO DE LA PORTADA. Se reconoce por `data-tapa`: si no está,
+    // la lámina no muerde nada y la caja no crece. Cuando a las de desarrollo se
+    // les empezó a pasar `data-ancho-caja` dejaron de salir por el `return` de
+    // arriba y entraron acá, donde `tapa` cae a 0,5 por defecto: la caja de la L2
+    // pasó de 70 a 84 de alto y la de la L3 a 95, fuera de la banda de 70-80.
+    if (isNaN(parseFloat(t.dataset.tapa))) return;
     var filas = Array.prototype.slice.call(t.querySelectorAll('.fila'));
     var cv = document.createElement('canvas').getContext('2d');
     filas.forEach(function(f, i){
@@ -245,6 +297,12 @@ def main():
         clase = "pieza feed cierre-carrusel" if es_cierre else "pieza feed"
         if i == 1:
             clase += " portada"   # la ronda 2 de Paulina va sólo acá, ver el CSS
+        if l.get("tip"):
+            clase += " tip"      # registro propio del consejo de oficio, ver el CSS
+        # El velo entra por el extremo MAS CERCANO al bloque de texto: si el bloque
+        # esta en la mitad de abajo, oscurecer desde arriba no lo ayuda y ademas
+        # apaga la parte de la foto que si se ve. 675 = la mitad de 1350.
+        velo_lado = " abajo" if l.get("y", 0) > 675 else ""
         interior = cierre(c) if es_cierre else cuerpo(l)
         # La cápsula de co-marca sólo va en la portada: así lo muestran las 5
         # referencias de septiembre y la de Masisa de junio.
@@ -252,7 +310,7 @@ def main():
         doc = f"""<!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="base-grilla.css"></head><body>
 <div class="{clase}">
-  <div class="bg"><img src="{l['foto']}"><div class="velo"></div></div>
+  <div class="bg"><img src="{l['foto']}"><div class="velo{velo_lado}"></div></div>
 {marca}
 {interior}
 </div>

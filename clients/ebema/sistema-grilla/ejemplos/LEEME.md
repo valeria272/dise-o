@@ -7,7 +7,7 @@ lámina y, en los comentarios, por qué el texto se repartió así y no de otra 
 | Archivo | Qué es |
 |---|---|
 | `masisa_octubre.py` | Carrusel completo de 5 láminas (melamina y cantos) |
-| `masisa_octubre_BRIEF.md` | Su brief verbatim, el QA y **los prompts de las 5 fotos** |
+| `masisa_octubre_BRIEF.md` | Su brief verbatim, el QA y **los prompts** (§ Los prompts — sólo el de la L2 hasta el 16-09-2026; las otras 4 se generaron sin anotarlo y no se pueden reproducir) |
 | `etersol_octubre.py` | Sólo la portada (pasto sintético) |
 
 ## Para rehacer una pieza

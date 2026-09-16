@@ -13,6 +13,15 @@ from PIL import Image
 
 SALIDA = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else "editables/salida")
 
+# El nombre del carrusel sale de la propia carpeta: de `<algo>1_feed.png` se toma
+# el `<algo>`. Antes estaba quemado al nombre de una pieza concreta y el QA se
+# caía con cualquier otra — justo lo que un control de calidad no puede hacer.
+_p1 = sorted(SALIDA.glob("*1_feed.png"))
+if not _p1:
+    sys.exit(f"No hay ninguna portada (*1_feed.png) en {SALIDA}")
+PREFIJO = _p1[0].name[:-len("1_feed.png")]
+print(f"carrusel: {PREFIJO}")
+
 # lo que dice §4-bis (todo a 1080 de ancho)
 ESPERADO = {
     "pastilla_x0": (71.0, 1.5), "pastilla_ancho": (118.4, 1.5), "pastilla_alto": (121.9, 1.5),
@@ -41,7 +50,7 @@ def canales(p):
 print(f"QA · §4-bis · {SALIDA}\n")
 
 # ---------------------------------------------------------------- portada ---
-p = SALIDA / "masisa1_feed.png"
+p = SALIDA / f"{PREFIJO}1_feed.png"
 a, r, g, b, esc = canales(p)
 print(f"L1 portada  {p.name}  ({a.shape[1]}x{a.shape[0]})")
 
@@ -63,29 +72,37 @@ cols = np.where(rojo[1200 + f.min():1200 + f.max() + 1].sum(axis=0) > 0)[0]
 ok("caja_cx", ((cols.min() + cols.max()) / 2) * esc)
 
 # ----------------------------------------------------------------- cierre ---
-p = SALIDA / "masisa5_feed.png"
-a, r, g, b, esc = canales(p)
-print(f"\nL5 cierre   {p.name}")
-rojo = (r > 200) & (g < 70) & (b < 75)
+# Un carrusel a medias NO es un fallo: mientras se trabaja la portada, las laminas
+# 2-5 todavia no existen y el QA tiene que poder correr igual sobre lo que hay.
+p = SALIDA / f"{PREFIJO}5_feed.png"
+if not p.exists():
+    avisos.append(f"L5 todavia no existe ({p.name}) - carrusel a medias")
+else:
+    a, r, g, b, esc = canales(p)
+    print(f"\nL5 cierre   {p.name}")
+    rojo = (r > 200) & (g < 70) & (b < 75)
 
-# el anillo: banda roja de la mitad superior
-arriba = rojo[:1900, :]
-ys, xs = np.where(arriba)
-ok("anillo_ancho", (xs.max() - xs.min() + 1) * esc)
-ok("anillo_alto", (ys.max() - ys.min() + 1) * esc)
+    # el anillo: banda roja de la mitad superior
+    arriba = rojo[:1900, :]
+    ys, xs = np.where(arriba)
+    ok("anillo_ancho", (xs.max() - xs.min() + 1) * esc)
+    ok("anillo_alto", (ys.max() - ys.min() + 1) * esc)
 
-# el boton: bloque rojo macizo de la mitad inferior
-abajo = rojo[1900:, :]
-filas = np.where(abajo.sum(axis=1) > a.shape[1] * 0.4)[0]
-cols = np.where(abajo[filas.min():filas.max() + 1].sum(axis=0) > 0)[0]
-ok("boton_ancho", (cols.max() - cols.min() + 1) * esc)
-ok("boton_alto", (filas.max() - filas.min() + 1) * esc)
-ok("boton_y", (filas.min() + 1900) * esc)
+    # el boton: bloque rojo macizo de la mitad inferior
+    abajo = rojo[1900:, :]
+    filas = np.where(abajo.sum(axis=1) > a.shape[1] * 0.4)[0]
+    cols = np.where(abajo[filas.min():filas.max() + 1].sum(axis=0) > 0)[0]
+    ok("boton_ancho", (cols.max() - cols.min() + 1) * esc)
+    ok("boton_alto", (filas.max() - filas.min() + 1) * esc)
+    ok("boton_y", (filas.min() + 1900) * esc)
 
 # ------------------------------------------------- reglas que no son medida ---
 print("\nReglas de §4-bis que no son geometria:")
 for n in range(1, 6):
-    a, r, g, b, esc = canales(SALIDA / f"masisa{n}_feed.png")
+    _pn = SALIDA / f"{PREFIJO}{n}_feed.png"
+    if not _pn.exists():
+        continue
+    a, r, g, b, esc = canales(_pn)
     rojo = (r > 200) & (g < 70) & (b < 75)
     if n == 1:
         rojo[:900, :700] = False        # la pastilla del logo no cuenta

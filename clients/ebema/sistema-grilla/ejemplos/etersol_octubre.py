@@ -41,11 +41,15 @@ CARRUSEL = {
         # línea DEL GANCHO, no la frase de contexto — así está en la portada de
         # Masisa de junio, donde «UNA AMPLIACIÓN FIRME» queda entera sobre la foto
         # y el rojo empieza a media altura de «EMPIEZA POR EL».
-        # Las tres líneas van al MISMO ancho: medido en esa referencia, el
-        # contexto da 851,0 y el texto de la caja 889,4 (0,96). Lo que cambia
-        # entre ellas es el cuerpo, no el ancho.
+        # ⛔ EL PRE-ENUNCIADO NO CALZA EN ANCHO CON EL GANCHO (Paulina, 16-09-2026).
+        # Va en un CUERPO MENOR — es un «pre-enunciado», no una línea más del
+        # titular. Sirve para que el bloque se vea llamativo y ordenado cuando el
+        # gancho solo no alcanza. Por eso viaja en su propio campo `pre` y NO
+        # dentro de `sobre`: todo lo que entra en `sobre` se compone al ancho de
+        # la caja, y así fue como salió tan grande como el gancho.
         {"foto": "fotos/01.png", "y": 620, "portada": True,
-         "sobre": "LLEGA LA PRIMAVERA,|¿TU PATIO AGUANTA",
+         "pre": "LLEGA LA PRIMAVERA,",
+         "sobre": "¿TU PATIO AGUANTA",
          "caja": "LA TEMPORADA?",
          "capsula": "Descubre el pasto sintético Etersol",
          "pie": ""},
@@ -83,10 +87,27 @@ PADDING_CAJA = 22         # el padding lateral de la caja, el mismo del CSS
 ANCHO_LINEA = ANCHO_CAJA - 2 * PADDING_CAJA
 ANCHO_CAPSULA = 662       # sólo se usa si el brief trae subtexto de cápsula
 
+# ⛔ EL PRE-ENUNCIADO — Paulina, 16-09-2026.
+# No se compone al ancho de la caja: se compone a una FRACCIÓN DEL CUERPO del
+# gancho, y su ancho cae donde caiga. Es lo que lo hace leerse como antesala del
+# titular y no como otra línea del titular.
+#   ⚠️ 0,47 está ESTIMADO sobre la referencia de Paulina (Masisa OLB, «UNA
+#   AMPLIACIÓN FIRME»), no medido: el archivo no está en el repo todavía.
+#   Cuando llegue, se mide y se fija acá.
+PRE_CUERPO = 0.47         # cuerpo del pre-enunciado ÷ cuerpo del gancho
+# Su interlineado (el aire que lo separa del gancho) vive en base-grilla.css,
+# junto al resto de la tipografía de portada: un valor por cosa, en un solo sitio.
+
 
 def cuerpo(l):
-    bloques = "".join(f'<div class="fila"><span class="l">{fmt(x)}</span></div>'
-                      for x in lineas(l.get("sobre", "")))
+    # El pre-enunciado va PRIMERO y en su propia fila. Que sea una fila aparte es
+    # lo que deja que la caja roja siga mordiendo la línea del GANCHO: el JS que
+    # la hace crecer mira la fila inmediatamente anterior al rojo, y esa tiene que
+    # seguir siendo el gancho, nunca el pre.
+    bloques = "".join(f'<div class="fila"><span class="l pre">{fmt(x)}</span></div>'
+                      for x in lineas(l.get("pre", "")))
+    bloques += "".join(f'<div class="fila"><span class="l">{fmt(x)}</span></div>'
+                       for x in lineas(l.get("sobre", "")))
     caja = lineas(l.get("caja", ""))
     if caja:
         # UNA sola caja por lámina (§4-bis): si el texto va en dos renglones, el
@@ -110,7 +131,8 @@ def cuerpo(l):
                f'stroke="#fff" stroke-width="3" stroke-linecap="round" '
                f'stroke-linejoin="round"/></svg></div></div>')
     anchos = (f'data-ancho="{ANCHO_LINEA}" data-ancho-caja="{ANCHO_CAJA}" '
-              f'data-tapa="0.5" data-monta="14" data-ancho-capsula="{ANCHO_CAPSULA}"'
+              f'data-tapa="0.5" data-monta="14" data-ancho-capsula="{ANCHO_CAPSULA}" '
+              f'data-pre-cuerpo="{PRE_CUERPO}"'
               if l.get("portada") else f'data-ancho="{ANCHO_CAJA - 2 * PADDING_CAJA}"')
     return f"""  <div class="bloque" style="top:{l['y']}px;">
     <div class="titular" {anchos}>{bloques}</div>
@@ -139,6 +161,7 @@ document.fonts.ready.then(function(){
     var objetivo = parseFloat(t.dataset.ancho) || 900;
     var objetivoCaja = parseFloat(t.dataset.anchoCaja) || objetivo;
     t.querySelectorAll('.l').forEach(function(l){
+      if (l.classList.contains('pre')) return;   // el pre NO calza en ancho
       var meta = l.classList.contains('caja') ? objetivoCaja : objetivo;
       var lo = 24, hi = 200;
       for (var i = 0; i < 24; i++) {
@@ -148,6 +171,21 @@ document.fonts.ready.then(function(){
       }
       l.style.fontSize = lo + 'px';
     });
+
+    // 1-pre. El PRE-ENUNCIADO se cuelga del cuerpo del gancho, no de un ancho.
+    //    Se hace DESPUÉS de ajustar el gancho porque necesita su cuerpo ya
+    //    resuelto. Si se compusiera al ancho de la caja, como el resto, saldría
+    //    tan grande como el titular y el bloque pierde la jerarquía.
+    var preF = parseFloat(t.dataset.preCuerpo);
+    if (!isNaN(preF)) {
+      var gancho = t.querySelector('.l:not(.pre):not(.caja)') || t.querySelector('.l.caja');
+      if (gancho) {
+        var base = parseFloat(getComputedStyle(gancho).fontSize);
+        t.querySelectorAll('.l.pre').forEach(function(pl){
+          pl.style.fontSize = (base * preF) + 'px';
+        });
+      }
+    }
 
     // 1-bis. La cápsula de la bajada se lleva a su propio ancho, igual que el
     //    titular: así crece con el bloque y no queda de un cuerpo suelto.

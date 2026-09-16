@@ -317,6 +317,14 @@ body { font-family:"Raleway", Arial, sans-serif; -webkit-font-smoothing:antialia
    arriba (que lo fija el JS al llegar a la mitad de la primera línea). */
 .portada .titular .l.caja { padding:14px 22px 36px; }
 
+/* ⛔ EL PRE-ENUNCIADO — Paulina, 16-09-2026.
+   Va en un cuerpo MENOR que el gancho (lo fija `PRE_CUERPO` en el generador, que
+   lo calcula sobre el cuerpo ya resuelto del gancho) y NO se compone al ancho de
+   la caja: es la antesala del titular, no otra línea del titular.
+   Acá sólo vive su AIRE: 1,34 de interlineado contra el 0,84 del enunciado, que
+   es lo que lo despega del gancho en vez de dejarlo pegado como un renglón más. */
+.portada .titular .l.pre { line-height:1.34; }
+
 /* Sombras parejas y suaves: la blanca tenía demasiada y la caja ninguna. */
 .portada .titular .l:not(.caja) { text-shadow:0 2px 9px rgba(0,0,0,.30); }
 .portada .titular .l.caja       { text-shadow:0 2px 8px rgba(0,0,0,.22); }
@@ -325,3 +333,102 @@ body { font-family:"Raleway", Arial, sans-serif; -webkit-font-smoothing:antialia
 /* El margen NO se toca al bajar la cápsula: el padding de abajo de la caja roja
    ya la empuja hacia abajo. Con los dos a la vez baja el doble y se despega. */
 .portada .fila-capsula { position:relative; z-index:3; margin-top:0; }
+
+/* ===========================================================================
+   LAS LÁMINAS DE DESARROLLO (L2-L4) · medidas el 16-09-2026 sobre las 5
+   referencias de `raw/ebema/1-referencias/grilla/carrusel/`.
+   ----------------------------------------------------------------------------
+   ⛔ SE COMPONEN AL REVÉS QUE LA PORTADA. En la portada el ancho es fijo y el
+   cuerpo cae donde caiga; acá el CUERPO es fijo y el ancho cae donde caiga. Por
+   eso no llevan `data-ancho` y el ajuste del navegador no las toca.
+
+   Lo medido (banda de píxeles blancos, normalizado a 1080):
+
+     línea blanca   cedral 47,0 · toro 47,0 · surpol 43,2   -> 47
+     texto de caja  cedral 51,4 · toro 51,4 · surpol 43,2   -> 51,4 (un 9 % sobre
+                    la blanca; cedral y toro dan el MISMO par, así que no es casual)
+     caja completa  alto 70,1-80,2 · ancho 541,4-802,6 · cx 539,8 en las 5
+     padding vert.  80,2 − 51,4 = 28,8 -> 14,4 por lado (el CSS madre decía 10)
+     bajada         36,0 · 37,0 · 37,4 · 37,9 · 37,9  -> la cifra más estable de
+                    todas; iban a 28 px y salían en 25,9 de banda, dos tercios
+   ========================================================================= */
+/* `.pieza:not(.portada)` y no `.titular` a secas: la portada trae sus propios
+   paddings y un selector más flojo se los pisaba por venir después en el archivo. */
+/* ⛔ CORREGIDO EL MISMO 16-09: acá decía que el cuerpo era fijo para toda la
+   lámina. Con eso la caja de la L3 («PARA UNA TERMINACIÓN PROLIJA», 28 letras) se
+   partió en dos renglones y se fue al ancho del lienzo. Midiendo las 10 referencias
+   de L2 y L3 aparece la estructura de verdad, y son DOS reglas distintas:
+
+     línea blanca  ->  CUERPO fijo, el ancho cae donde caiga
+                       mayúsculas 47,0 · 45,6 · 49,9 · 51,4 · 43,2 · 47,0 · 47,0
+                       en 8 de las 10 -> 65px da 46,8 de mayúscula
+     texto de caja ->  calza al ANCHO DE CAJA DEL CARRUSEL, el cuerpo cae solo
+                       cedral repite 677,8 EXACTOS en L2 y L3 con textos de 15 y
+                       11 letras; cintac repite 541,4. Si mandara el cuerpo, la de
+                       11 letras sería mucho más angosta — y no lo es.
+
+   Por eso el `font-size` de la caja ya no está acá: lo resuelve el ajuste del
+   navegador contra `ANCHO_CAJA_DES` del generador. Acá queda sólo su geometría. */
+.pieza:not(.portada) .titular .l      { font-size:65px; }
+.pieza:not(.portada) .titular .l.caja { padding:14.4px 22px; line-height:0.72; }
+/* line-height 0,72 = la altura de las mayúsculas. En las referencias la caja
+   abraza las versales: alto 80,2 con texto de 51,4 deja 14,4 de rojo por lado,
+   que es justo el padding. Con el 1,06 del sistema la caja salía en 104,2. */
+.pieza:not(.portada) .bajada          { font-size:40px; }
+
+/* ===========================================================================
+   EL VELO · corregido el 16-09-2026 — Paulina
+   ----------------------------------------------------------------------------
+   «La opacidad puede ser sólo en la zona del texto, saliendo desde alguno de los
+    extremos de la imagen, pero con degradado muy suave. No deben verse cortes.»
+
+   Antes: `inset:0` con `rgba(0,0,0,.30)` plano sobre TODA la foto. Eso apagaba la
+   imagen entera para resolver la legibilidad de un bloque que ocupa un tercio.
+
+   Ahora: un degradado que arranca en el borde y se apaga pasada la zona del texto.
+   Los 8 pasos no son decoración: un degradado de 2 paradas banda en sRGB y deja
+   una línea visible a media caída — que es exactamente el «corte» que no puede
+   verse. Los pasos siguen una curva suave (ease-out), así no hay borde en ninguna
+   parte y la foto llega limpia al resto del lienzo.
+
+   ⚠️ Va SÓLO en las láminas de desarrollo. La portada está aprobada con el velo
+   plano y no se toca sin que Paulina lo pida. */
+.pieza:not(.portada) .bg .velo {
+  background:linear-gradient(to bottom,
+    rgba(0,0,0,.52) 0%,
+    rgba(0,0,0,.50) 12%,
+    rgba(0,0,0,.45) 22%,
+    rgba(0,0,0,.37) 31%,
+    rgba(0,0,0,.27) 39%,
+    rgba(0,0,0,.17) 46%,
+    rgba(0,0,0,.08) 53%,
+    rgba(0,0,0,.03) 59%,
+    rgba(0,0,0,0)   66%);
+}
+/* Cuando el bloque de texto cae en la mitad de abajo, el velo entra por abajo. */
+.pieza:not(.portada) .bg .velo.abajo { transform:scaleY(-1); }
+
+/* ===========================================================================
+   LA LÁMINA DE TIP PRO · medida el 16-09-2026 sobre cintac, novoplast y surpol
+   ----------------------------------------------------------------------------
+   El consejo de oficio no se compone como las otras láminas de desarrollo: se le
+   INVIERTE LA JERARQUÍA. La orden manda y la caja roja pasa a ser el complemento.
+
+     · la ORDEN      -> versales blancas, dos líneas, mayúscula ~60
+                        (bandas medidas 60,0 · 60,5 · 65,8 · 65,8 · 71,0 · 77,3
+                         contra las ~46 de L2 y L3 — un 30 % más grande)
+     · la CONDICIÓN  -> dentro de la caja roja y en CAJA BAJA
+                        cintac «antes de cortar» · novoplast «antes de tapar el
+                        muro» · surpol «de cada plancha»
+     · la caja       -> alto 70,6 · 70,6 · 71,0, igual que el resto del carrusel
+
+   Ojo: cedral NO tiene tip pro en su L4 — lleva otro beneficio y va en el registro
+   normal. O sea el tip pro es una FAMILIA de lámina, no la posición número 4. */
+.pieza.tip .titular .l      { font-size:83px; }      /* 83 × 0,72 = 59,8 de mayúscula */
+.pieza.tip .titular .l.caja { text-transform:none;   /* ⛔ la condición va en caja baja */
+                              line-height:0.873; }
+/* El 0,72 del resto del carrusel es la altura de las MAYÚSCULAS, y para caja baja
+   se queda corto: la caja salía en 62,9 contra los 70,6 · 70,6 · 71,0 de las tres
+   referencias, y la tinta —que en caja baja va de ascendente a descendente— se
+   comía casi todo el padding. 0,873 devuelve la caja a ~70,7 con el mismo padding
+   de 14,4, y deja unos 11 de rojo alrededor del texto, como en las referencias. */

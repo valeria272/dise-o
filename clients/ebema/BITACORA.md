@@ -3,6 +3,65 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-16 — Paulina Bustamante
+
+**Qué se hizo:** Se cerró la **portada de Etersol** y se levantó la gramática de las
+**láminas de desarrollo** (L2, L3 y L4) sobre el carrusel de Masisa, con Paulina
+corrigiendo en vivo. **Se paró acá a propósito:** la grilla de octubre sigue en
+modificaciones antes de pasar a diseño, y seguir desarrollándola ahora es gastar
+recursos. La L5 no se tocó.
+
+**Estado de las piezas** (todas prueba, `out/ebema/20260915_grilla_*_prueba/`):
+
+| | Estado |
+|---|---|
+| Etersol L1 portada | ✅ **aprobada** |
+| Masisa L2 | ✅ texto aprobado · imagen resuelta en la 3.ª vuelta de escala |
+| Masisa L3 | ✅ **aprobada** — *«me gustó mucho el hacerle zoom, está perfecta»* |
+| Masisa L4 | ✅ visada tras dejar el titular en una línea |
+| Masisa L5 | ⛔ sin revisar — plantilla dura, sólo le faltaría la foto |
+
+**Las reglas que dictó Paulina hoy** (todas escritas, con su cita y su medición):
+
+1. **El pre-enunciado** va en cuerpo MENOR y no calza en ancho con el gancho — §4-bis.
+   Corrigió un error del manual que decía lo contrario.
+2. **El pie es la válvula de escape** del enunciado, no un elemento fijo — §4-bis.
+3. **Las 5 reglas de imagen** — §5: minimalista · velo sólo en la zona del texto y sin
+   cortes · el producto de proveedor **se genera** fiel al real · **el tipo de imagen
+   lo dicta lo que dice el texto** (especificación → zoom · uso → escena) · **la escala
+   real del producto entra al prompt**.
+4. **La gramática de desarrollo** — §4-bis: la línea blanca calza en CUERPO y la caja
+   calza en el ANCHO DE CAJA DEL CARRUSEL. Masisa va en **778**.
+5. **El tip pro tiene registro propio** — §4-bis: la orden en versales manda (~60 de
+   mayúscula contra ~46) y la condición va en la caja roja **en caja baja**.
+
+**Tres errores míos que quedaron documentados** porque explican cómo se contaminan
+las reglas entre láminas:
+
+- La caja de la L2 salía en **910,1** de ancho (máximo medido: 802,6): heredaba el
+  «calza en ancho» de la portada.
+- Al darles ancho de caja, las de desarrollo entraron al paso que hace **crecer la
+  caja hacia arriba**, que es de la portada, y se inflaron a 84 y 95 de alto. Ahora
+  ese paso exige `data-tapa`.
+- El interlineado **0,72 es de versales**; en caja baja dejaba la caja en 62,9. Va 0,873.
+
+**Dónde quedó:** sistema en `clients/ebema/sistema-grilla/`. Los **prompts de las 4
+imágenes generadas hoy están escritos** en `ejemplos/masisa_octubre_BRIEF.md` con su
+criterio y el historial de las 3 vueltas de escala. `qa_portada.py` ya no está
+amarrado al nombre de una pieza y aguanta carruseles a medias.
+
+**Abierto:**
+- 🔴 **Falta el ancho real del canto Masisa.** La L4 se compuso con **22 mm supuestos**
+  (el estándar para un tablero de 15 mm). Pedido a Paulina, sin respuesta todavía.
+- 🟡 **La portada de Masisa sigue con el velo plano** (`rgba(0,0,0,.30)`, `inset:0`).
+  Está aprobada de ayer y no se tocó. Falta decidir si se le aplica el velo nuevo.
+- 🟡 Las **4 fotos originales del 15-09** se generaron sin anotar sus prompts y **no se
+  pueden reproducir**. El `LEEME.md` decía que estaban escritos; ya se corrigió.
+- 🟡 Las imágenes generadas viven en `out/`, que está en `.gitignore`. Se pueden
+  rehacer desde los prompts, pero **no salen idénticas**.
+- ⛔ **EBEMA sigue sin `clients/ebema/reglas.yaml`** — viene de ayer.
+- La **grilla de octubre sigue en modificaciones** y no ha llegado a diseño.
+
 ## 2026-09-15 — Paulina Bustamante
 
 **Qué se hizo:** Se construyó la **portada de carrusel de GRILLA (familia A)** de punta

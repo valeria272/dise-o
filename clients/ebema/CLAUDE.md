@@ -370,6 +370,45 @@ Los 5 carruseles medidos tienen **la misma estructura**, y no es casualidad:
 | Caja roja del titular | centrada en **cx 539,8**, ancho 873–971 |
 | Pie con **flecha →** | ancho **331,2**, x 374,4–705,6, alto ~64,8 — en 4 de 5 |
 
+### ⭐ Cómo se compone una lámina de desarrollo — medido el 16-09-2026
+
+Salió de armar la L2 y la L3 de Masisa. **La portada y las de desarrollo se componen
+al revés, y dentro de la lámina de desarrollo conviven DOS reglas distintas:**
+
+| | Qué es fijo | Qué cae donde caiga |
+|---|---|---|
+| **Portada** — todo el bloque | el **ancho** (942) | el cuerpo |
+| **L2–L4 · línea blanca** | el **cuerpo** (65px → 46,8 de mayúscula) | el ancho |
+| **L2–L4 · texto de la caja** | el **ancho de caja del carrusel** | el cuerpo |
+
+**La prueba de que la caja se compone al ancho y no al cuerpo:** cedral repite
+**677,8 exactos** en su L2 y su L3, con textos de **15 y 11 letras** — «SIN OBRA
+GRUESA» y «NO SE PUDRE». Cintac repite **541,4**. Si mandara el cuerpo, la de 11
+letras sería mucho más angosta, y no lo es.
+
+**La prueba de que la línea blanca se compone al cuerpo:** su mayúscula da 47,0 ·
+45,6 · 49,9 · 51,4 · 43,2 · 47,0 · 47,0 en 8 de las 10 láminas medidas, mientras su
+ancho salta de 457,0 a 743,0. Al revés que la caja.
+
+> ⭐ **El ancho de caja es una decisión POR CARRUSEL, no por lámina.** Las 5
+> referencias caen entre **541,4 y 802,6**, y 3 repiten el mismo valor entre L2 y L3.
+> En el generador es `ANCHO_CAJA_DES`; Masisa va en **778**.
+>
+> Consecuencia: **el alto de la caja varía entre láminas** y eso está bien — una
+> lámina de texto largo compone más chico. Masisa da 72,0 en L2 y 61,0 en L3; las
+> referencias van de 52,3 (novoplast L3) a 109,4 (novoplast L2).
+
+> ⛔ **Dos cosas de la portada que NO bajan a las láminas de desarrollo**, y las dos
+> se colaron el 16-09:
+>
+> 1. **El estiramiento al ancho de la portada.** Se les pasaba `ANCHO_TITULAR`
+>    (910) y la caja de mi L2 salió en **910,1** cuando el máximo medido es 802,6.
+> 2. **El crecimiento de la caja hacia arriba.** Ese paso se reconoce por
+>    `data-tapa`; sin él la lámina no muerde nada. Al empezar a pasarles
+>    `data-ancho-caja` entraron al paso igual y `tapa` cayó a su 0,5 por defecto:
+>    la caja de la L2 pasó de 72 a **84** de alto y la de la L3 a **95**, las dos
+>    fuera de banda. **Una lámina de desarrollo no muerde su línea blanca.**
+
 **L2–L4 — desarrollo** (15 láminas medidas):
 
 - **Una sola caja roja por lámina.** Nunca dos.
@@ -379,6 +418,46 @@ Los 5 carruseles medidos tienen **la misma estructura**, y no es casualidad:
 - La **`y` es libre**: la caja cae donde la foto deja sitio. Ése es el único parámetro
   que cambia entre láminas, y es lo que hace que no parezca plantilla.
 - Debajo, bajada corta en blanco con **énfasis en ExtraBold** sobre la palabra clave.
+
+### ⭐ EL TIP PRO TIENE REGISTRO PROPIO — medido el 16-09-2026
+
+No es «la lámina 4»: es una **familia de lámina**. Cedral no tiene tip pro y su L4
+lleva otro beneficio en el registro normal. Las tres que sí lo traen componen igual:
+
+| Referencia | La orden, en VERSALES blancas | La condición, en la caja roja y en **CAJA BAJA** |
+|---|---|---|
+| **cintac** | REVISA LA / MODULACIÓN | «antes de cortar» |
+| **novoplast** | REVISA Y PRUEBA / LA INSTALACIÓN | «antes de tapar el muro» |
+| **surpol** | SELLA BIEN / LOS BORDES | «de cada plancha» |
+
+> ⛔ **La jerarquía se INVIERTE respecto de L2–L3.** Ahí manda la caja roja y la
+> línea blanca la acompaña. Acá manda **la orden**: sus mayúsculas miden ~**60**
+> contra las ~46 del resto del carrusel, un 30 % más grandes, y van siempre en
+> **dos líneas**. La caja roja baja a complemento — y por eso pasa a caja baja.
+>
+> Es coherente con lo que la lámina hace: un consejo de oficio es un imperativo, y
+> lo que se destaca es la orden, no el matiz.
+
+**Las cifras:**
+
+| Elemento | Medida |
+|---|---|
+| Versales de la orden | bandas **60,0 · 60,5 · 65,8 · 65,8 · 71,0 · 77,3** → 83px de cuerpo da 59,8 de mayúscula |
+| ⭐ Si la orden entra en **UNA** línea, se baja el cuerpo y se deja en una | Paulina, 16-09-2026: *«bájale al pt de la frase para que quede en una línea»*. En Masisa, «ELIGE EL COLOR DE CANTO» a 83px medía ~1082 y no cabía en el lienzo; a **59,5** cae en 776,6 — el ancho de su caja (777,6), y las dos quedan alineadas. Es un ajuste **de esa lámina** (`"cuerpo"` en el generador): el registro sigue siendo 83 y dos líneas |
+| Caja roja | alto **70,6 · 70,6 · 71,0** — el mismo del resto del carrusel |
+| Texto de la caja | **caja baja**, `text-transform:none` |
+| Interlineado de esa caja | **0,873**, no el 0,72 del resto |
+
+> ⚠️ **El 0,72 es la altura de las MAYÚSCULAS y para caja baja se queda corto.** La
+> tinta en caja baja va de ascendente a descendente y se come el padding: la caja
+> salía en **62,9** en vez de ~70,7. Con 0,873 y el mismo padding de 14,4 vuelve a
+> 70,1 y deja ~11 de rojo alrededor del texto, como en las referencias.
+
+> **La variante de toro:** cuadro rojo sólo para la entrada («Recuerda siempre», caja
+> baja) y el consejo completo en una **cápsula de borde blanco**, más un ícono
+> blanco arriba. Es el mismo principio —la orden manda, el resto acompaña— resuelto
+> con otro elemento. Existe y está medido, pero **la forma de las tres de arriba es
+> la mayoritaria** y es la que se usa por defecto.
 
 **L5 — cierre** (plantilla dura, idéntica en las 5):
 
@@ -427,9 +506,34 @@ valen para todo carrusel de familia A.**
 > | gancho, 1.ª línea | mordida por el rojo a media altura | «¿Tu patio aguanta» |
 > | gancho, resto | dentro del rojo | «la temporada?» |
 >
-> **Las tres van al mismo ancho**; lo que cambia es el cuerpo. Medido en esa
-> referencia: contexto **851,0** y texto de la caja **889,4**, o sea 0,96. Se ve más
-> chico sólo porque tiene más letras, no porque sea más angosto.
+> ⛔⛔ **CORREGIDO EL 16-09-2026 — el contexto es un PRE-ENUNCIADO y va en un
+> CUERPO MENOR.** Acá decía que las tres líneas van al mismo ancho y que el
+> contexto sólo «se ve más chico porque tiene más letras». **Estaba mal**, y es lo
+> que hizo salir la portada de Etersol con el pre-enunciado tan grande como el
+> gancho, leyéndose como un titular de tres renglones.
+>
+> Palabras de Paulina: *«debe ser en un pt más pequeño de letra, como un
+> pre-enunciado. Hay casos en los que se necesita para que el bloque de enunciado
+> se vea llamativo y ordenado.»*
+>
+> | | Gancho | Pre-enunciado |
+> |---|---|---|
+> | Cómo se compone | **calza en ANCHO** (`ANCHO_CAJA − 2 × padding`) | **calza en CUERPO**: una fracción del cuerpo del gancho |
+> | Su ancho | fijo, el de la caja | **cae donde caiga** — no se fuerza |
+>
+> En el generador es `PRE_CUERPO` y viaja en su **propio campo `pre`**, nunca
+> dentro de `sobre`: todo lo que entra en `sobre` se compone al ancho de la caja,
+> y ahí estaba el error. Su aire (interlineado 1,34 contra el 0,84 del enunciado)
+> vive en `base-grilla.css`.
+>
+> ⚠️ **`PRE_CUERPO = 0,47` está ESTIMADO**, no medido: la referencia de Paulina
+> (Masisa OLB, «UNA AMPLIACIÓN FIRME / EMPIEZA POR EL / TABLERO CORRECTO») **no
+> está en el repo**. Cuando llegue el archivo se mide y se fija. Medido sobre el
+> render de Etersol del 16-09: pre **454,6** de ancho y 30,2 de altura de
+> mayúsculas, contra **895,2** y ~64,4 del gancho.
+>
+> **Y el pre-enunciado no va siempre.** Va cuando el gancho solo no sostiene el
+> bloque. Masisa (melamina y cantos) no lo lleva: su titular es una sola frase.
 
 > **La cápsula blanca no es opcional.** Se quitó una vez razonando que el subtexto
 > del brief era del tipo «Descubre…» y por analogía con la portada de Cedral debía
@@ -439,6 +543,22 @@ valen para todo carrusel de familia A.**
 > depende de cómo esté escrito el titular: si trae contexto + gancho, se parte en
 > las dos primeras y el subtexto va a la cápsula; si el titular es una sola frase
 > larga, su remate va a la cápsula (así quedó Masisa).
+
+> ⭐ **EL PIE ES LA VÁLVULA DE ESCAPE DEL ENUNCIADO** — Paulina, 16-09-2026.
+>
+> *«Hay casos en los que toda la info que deja contenido en el brief cae sólo en el
+> enunciado principal. Cuando es demasiado texto, se usa el recurso de dejar ese
+> texto al pie de la imagen.»*
+>
+> O sea el texto del pie **no es un elemento fijo de la familia**: es un recurso de
+> descarga. Cuando el brief mete todo el contenido en el enunciado y ahí no cabe,
+> parte de ese texto baja al pie, sobre la flecha. Por eso Masisa lleva «LÍNEA
+> MELAMINA Y CANTOS MASISA» abajo y Etersol no lleva nada: no es inconsistencia,
+> es que Etersol no lo necesitó.
+>
+> ⚠️ **El pie necesita fondo que lo sostenga.** En Masisa cae sobre piso de madera
+> oscura y se lee; si la foto es clara en esa zona, el texto y la flecha se
+> pierden — hay que cambiar el plano o bajar la foto en esa banda.
 
 > ⛔⛔ **«Que el cuadro llegue hasta la mitad de la línea» = CRECE EL ALTO DEL
 > BLOQUE ROJO. No se mueve el texto.** — Paulina, 15-09-2026.
@@ -609,6 +729,148 @@ Ahora tiene respaldo medido:
 ## 5. De dónde salen las imágenes
 
 Jerarquía general en `docs/SISTEMA-DE-MARCAS.md` §2. Para EBEMA, concreto:
+
+### ⛔⛔ Las tres reglas de imagen — Paulina, 16-09-2026
+
+Salieron de la lámina 2 del carrusel de Masisa, pero **valen para toda imagen que
+genere el estudio**, en cualquier familia y cualquier formato.
+
+> **1. La imagen es MINIMALISTA y nunca destaca más que el texto.**
+> *«Las imágenes que generes siempre deben ser minimalistas, que no destaquen más
+> que el texto.»* Una foto de taller llena de herramientas, estantes y fondo
+> cargado compite con el titular aunque esté bien expuesta. Se busca plano limpio,
+> un solo sujeto, fondo tranquilo.
+
+> **2. El velo va SÓLO en la zona del texto, en degradado muy suave, y NO se pueden
+> ver cortes.**
+> *«La opacidad puede ser sólo en la zona del texto, saliendo desde alguno de los
+> extremos de la imagen, pero debe ser con degradado muy suave, no deben verse
+> cortes.»*
+> Lo que había era `rgba(0,0,0,.30)` plano con `inset:0` — apagaba la foto entera
+> para resolver la legibilidad de un bloque que ocupa un tercio. Ahora el velo
+> entra por el extremo más cercano al bloque de texto y se apaga pasada su zona.
+> En `base-grilla.css` son **8 paradas** siguiendo una curva suave: un degradado de
+> 2 paradas banda en sRGB y deja una línea visible a media caída, que es
+> exactamente el «corte» prohibido. El lado lo elige el generador según la `y` del
+> bloque.
+
+> **3. El producto de proveedor SE GENERA, fiel al real y con enfoque comercial.**
+> *«No tengo imágenes oficiales de Masisa, sólo tengo referencias del producto. Tú
+> debes generar imágenes que se mantengan fiel al producto, pero no es necesario
+> que te deje imágenes para usar. Tú debes generarlas con un enfoque muy comercial
+> y profesional.»* — Paulina, 16-09-2026
+>
+> Lo comprobado ese día: el repo **no tiene ninguna foto de producto de proveedor**,
+> sólo logos (`raw/ebema/3-logos-y-packshots/`), y el sitio oficial de Masisa
+> publica ambientes de proyectos terminados, no fotografía de producto. **No es un
+> caso excepcional: es el estado normal de los carruseles de proveedor.**
+>
+> ### ⛔ Cómo convive esto con «la IA nunca hace el producto»
+>
+> La regla del sistema (`docs/SISTEMA-DE-MARCAS.md` §2, y la skill de dirección de
+> arte) nació del desastre de CAVA: un relight sobre el KV compuesto destruyó las
+> botellas, el tinto se leyó ámbar y la etiqueta blanca se puso amarilla. **Esa
+> regla protege el packshot de marca, y sigue intacta.** Lo que Paulina autorizó es
+> otra cosa, y la frontera es nítida:
+>
+> | | ¿Se genera? |
+> |---|---|
+> | **Material genérico sin marca visible** — un tablero, un perfil, una plancha, un canto, un rollo de pasto | ✅ **Sí**, fiel al producto real y con acabado de catálogo |
+> | **Packshot de marca** — envase, etiqueta, logo, un dato, un precio, una ficha | ⛔ **No**, nunca. Sale del kit oficial o del e-commerce |
+>
+> Un tablero MDP no tiene etiqueta que falsificar: tiene una cara melamínica y un
+> canto de aglomerado, y o está bien representado o no lo está. Un envase de CAVA
+> sí la tiene. Por eso uno se genera y el otro no.
+>
+> ### Lo que «fiel al producto» obliga a hacer
+>
+> 1. **Mirar una referencia real del producto antes de escribir el prompt** — qué
+>    lo hace reconocible. En el MDP: la cara melamínica lisa y mate, y el **canto
+>    con el aglomerado a la vista**. Sin ese canto es un tablero cualquiera.
+> 2. **Describir el material, no la escena.** El prompt nombra la estructura de
+>    virutas comprimidas, el veteado pálido, el grosor de la lámina melamínica.
+> 3. **Acabado de catálogo de materiales de construcción**: fondo de estudio
+>    continuo, luz difusa direccional, sombra suave, foco corto.
+> 4. **Ni texto, ni logos, ni etiquetas, ni personas, ni herramientas** dentro de
+>    la imagen generada.
+> 5. **El prompt queda escrito** junto a la pieza. Si no está escrito, la imagen no
+>    se puede rehacer — y el 16-09 se descubrió que los prompts de las 5 fotos del
+>    carrusel de Masisa **nunca se anotaron**, aunque el LEEME decía que sí.
+>
+> El prompt que funcionó para el panel MDP está en
+> `sistema-grilla/ejemplos/masisa_octubre_BRIEF.md` § Los prompts.
+
+> **4. ⛔⛔ EL TIPO DE IMAGEN LO DICTA LO QUE DICE EL TEXTO DE LA LÁMINA.**
+> *«Necesito que ese tipo de imágenes así como zoom se usen cuando se habla de
+> especificaciones técnicas o similar información. En este caso habla de que el
+> tablero está listo para armar muebles: quiero que uses la ref del producto para
+> crear una escena de una persona profesional en mueblería usando el producto.»*
+> — Paulina, 16-09-2026
+>
+> Ésta es la regla que decide, y va **antes** de escribir cualquier prompt. No se
+> elige la imagen por lo que se ve bonito: se elige leyendo el texto de la lámina.
+>
+> | Si el texto habla de… | La imagen es | Ejemplo |
+> |---|---|---|
+> | **especificación técnica** — de qué está hecho, qué resiste, qué espesor, qué terminación | **zoom del producto**, acabado de catálogo | el canto del MDP con el aglomerado a la vista |
+> | **aplicación o uso** — para qué sirve, quién lo usa, qué resuelve | **escena de un profesional usando el producto** | el mueblista posicionando el tablero en el banco |
+>
+> El error del 16-09: la L2 dice «Tableros MDP Masisa, **listos para mueblería**» y
+> «superficie pareja para **armar o revestir muebles a medida**» — eso es **uso**, y
+> se había resuelto con un zoom de producto. El zoom estaba bien hecho; estaba en la
+> lámina equivocada. Se guardó para una de especificación.
+>
+> ### ⭐ La escena se genera CON la imagen de producto como referencia
+>
+> *«Usa la ref del producto para crear una escena.»* No es un detalle de método: es
+> lo que garantiza que **el producto no cambie entre láminas del mismo carrusel**.
+> Se genera primero el zoom del producto, y ese PNG entra como referencia de la
+> escena:
+>
+> ```bash
+> python3 scripts/magnific.py pro "<escena>" >     --refs out/<lote>/editables/fotos/02_mdp.png >     --aspecto feed --resolucion 4K --out .../02_escena.png
+> ```
+>
+> Nano Banana Pro admite hasta 14 referencias. Sin ese paso, cada lámina inventa su
+> propio tablero y el carrusel deja de ser del mismo producto.
+>
+> ### Lo que la escena tiene que cumplir igual
+>
+> La regla 1 **no se suspende porque haya una persona**: la escena sigue siendo
+> minimalista. Taller limpio y luminoso, fondo desenfocado, **sin paneles de
+> herramientas ni estantes cargados**, tercio superior tranquilo para el titular.
+> Una escena cargada compite con el texto igual que una foto de producto cargada.
+>
+> ⚠️ **Manos con zoom 3× antes de montar.** Es donde la IA falla. En la escena del
+> 16-09 se revisaron las dos: cinco dedos, agarre natural sobre el canto.
+
+> **5. ⛔ LA ESCALA DEL PRODUCTO SE RESPETA. Las medidas reales entran al prompt.**
+> *«Las medidas de cada tablero son las siguientes [espesor 15 mm · formato
+> 1830 × 2500 mm]. Adapta esas medidas a las proporciones de la persona.»*
+> — Paulina, 16-09-2026
+>
+> Un modelo de imagen no sabe cuánto mide el producto: lo dibuja del porte que le
+> parece. En la primera escena de la L2 el tablero salió como una pieza de mesa de
+> ~1 m con un canto que se leía de 40 o 50 mm. El real es **1830 × 2500 mm** — más
+> largo que la altura de una persona — y **15 mm de espesor**, o sea un canto
+> **120 veces más angosto que el ancho de la plancha**.
+>
+> No es un detalle: un ferretero o un mueblista reconocen al tiro una plancha mal
+> dimensionada, y la pieza pierde justo lo que Paulina pide, que se vea **real**.
+>
+> **Cómo se hace:**
+>
+> 1. Sacar las medidas del brief o de la ficha del proveedor. Si no están, **se
+>    piden** — no se estiman.
+> 2. Meterlas en el prompt **en milímetros y también traducidas a la escena**: no
+>    basta «1830 × 2500 mm», hay que decir «más largo que la altura del hombre»,
+>    «se sale del encuadre», «canto fino, nunca un bloque».
+> 3. Dar la **razón** de las proporciones difíciles: «unas 120 veces más ancho que
+>    grueso» funciona mejor que repetir «15 mm», que el modelo ignora.
+> 4. **Revisar la escala en el render**, igual que se revisan las manos.
+>
+> ⚠️ Esto también aplica al zoom: si una lámina habla del **espesor**, el zoom tiene
+> que mostrar 15 mm que se lean como 15 mm.
 
 ### 1º — Fotos aprobadas por Paulina ⭐ mandan sobre todo
 `EBEMA/inputs/banco_imagenes_ebema/aprobadas_paulina/` (espejo Drive

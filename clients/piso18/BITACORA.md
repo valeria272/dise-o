@@ -23,3 +23,50 @@ MCP de Drive. Después correr
 
 **Abierto:** Piso18 todavía no tiene manual (`CLAUDE.md`) ni ficha (`marca.json`)
 — solo `reglas.yaml` y `entregas/`. Está pendiente de abrir su sistema.
+
+## 2026-09-16 — S4 ronda 4: los cuatro cambios del cliente, aplicados y en Drive
+
+**Encargo de Eli:** tomar los cambios que dejó el cliente en la grilla de la S3 y
+la S4. A media tarea acotó: *«solo toma s4 ya que yo hice la s3 para que no
+pierdas tiempo en esa»*.
+
+**Cómo se detectó lo nuevo:** diff por CONJUNTO de cadenas de la grilla viva
+(`export?format=csv&gid=`) contra `clients/hilton/grillas/api/p18-sept-20260915.json`.
+⚠️ Fue indispensable: **el 16-09 se corrieron las columnas** —«PISO18 DE NOCHE»
+pasó del 25-09 al 23-09 y «SECCIÓN FOTOS NOVIOS» ocupó el 25-09—, así que un
+diff por fecha o por celda inventa cambios que no existen.
+
+**Los cuatro cambios de la S4, aplicados:**
+
+| Fecha | Pieza | Qué pidió | Qué se hizo |
+|---|---|---|---|
+| 21-09 | Carrusel G3 | «+ zoom a la G3 para que no sea tan protagonista el mesón, el resto OK!» | Recorte nuevo de `piso_18-100`: el tablero baja del 63 % al 85 % del alto. **Sube a y=0 en vez de bajar el corte**, así el arreglo queda entero |
+| 25-09 | Encuesta, opción B | «pongamos una opción más de mesa para cenar» | B nueva de `piso_18-28` (mantel negro, bajoplato dorado). ⭐ **NO se usó `piso_18-85`**, que también servía: es el mismo montaje de la G1 del carrusel y repetía el feed a 4 días |
+| 23-09 | Historia animada | *(sin comentario — **cambió el brief**)* | Titular nuevo literal; se quitó la bajada porque la grilla la borró; el botón del cierre sube a y=1100 |
+| 25-09 | Post de feed | «Que sea esta foto, con logo y estamos» | El enlace era `piso_18-128.jpg` y **ya estaba en disco** (`raw/hilton/piso18/deco-ago2024/`). Recorte 4:5 abierto a la izquierda —muestra el salón— y logotipo 568 px en y=218 |
+
+**Dónde quedó:** las tres primeras reemplazadas en Drive **conservando el enlace**
+(las subió este token, así que `files().update` funciona). El post subió nuevo como
+`Post n°2 S4 PISO18 25-09.png`. Las 8 piezas pasan `qa/motor.py --marca piso18`.
+Página de revisión en `out/piso18/s4/revision-r4/index.html`.
+
+**Abierto — tres decisiones de Eli:**
+1. `Post S4 PISO18 25-09.png` es en realidad el post de **23-09** («Piso18 de
+   noche»). No se renombró para no romper enlaces; si se renombra, el nuevo toma
+   el nombre limpio.
+2. `piso_18-128` es también el **tercer plano de la animada del 23-09**: el
+   cliente eligió esa foto por su nombre, pero queda la misma escena el 23 y el 25.
+3. La bajada «Dejando todo listo…» se quitó porque la grilla la borró, pero el
+   comentario que la pedía sigue vivo en la celda sin tachar.
+
+**Lo de la S3 que NO se tocó** (lo hace Eli): 16-09 «Quitemos Sujeto a
+disponibilidad y OK» · 20-09 «Quitar ese CTA, que sea foco reacción» · y el reel
+del 17-09 cambió de texto en el brief («La atmósfera indicada» en grande / «puede
+cambiar por completo tu celebración» en chico). Sus archivos en Drive los subió
+ella a mano y **el token del estudio no puede reemplazarlos** (scope `drive.file`).
+
+**⛔ Lección del día:** el script de recortes pisó `tira-b.jpg` **antes** de que se
+guardara el «antes» para la página. Se recuperó con `git show HEAD:…` porque los
+fondos de la ronda 3 estaban commiteados. Es exactamente para esto que sirve la
+regla de que el render vuelve al repo el mismo día: sin ese commit el antes/después
+habría sido una reconstrucción a ojo.

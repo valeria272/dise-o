@@ -4,15 +4,38 @@
  * ══════════════════════════════════════════════════════════════════════════
  * EL BRIEF, LITERAL
  * ══════════════════════════════════════════════════════════════════════════
- * Hoja STORIES, columna M, estado **OK PARA DISEÑAR**:
+ * ⭐ RONDA 4 (16-09-2026) — **el cliente reescribió el texto en la grilla.** La
+ * celda pasó a EN CAMBIOS y el brief quedó así (la columna además se corrió del
+ * 23-09 al 23-09 con otra letra, es la misma pieza):
  *
  *     ST ANIMADA - TIMELAPSE MONTAJE
  *     Visual: Timelapse del montaje de un evento en Piso18, desde el salón vacío
  *     hasta completamente ambientado.
- *     Texto principal: Así se monta un evento en Piso18, paso a paso.
- *     Bajada: Dejando todo listo, para que solo te preocupes de celebrar.
+ *     Texto principal: Arreglos florales que le dan vida al matrimonio de tus
+ *                      sueños en Piso18.
  *     CTA: Cotiza el tuyo en piso18.cl
  *     INTERACCIÓN: Sticker de link a cotización.
+ *
+ * Lo que cambió, medido por diff de conjunto contra la instantánea del 15-09
+ * (`clients/hilton/grillas/api/p18-sept-20260915.json`):
+ *
+ * | Antes (hasta el 15-09) | Ahora |
+ * |---|---|
+ * | Texto principal: Así se monta un evento en Piso18, paso a paso. | Arreglos florales que le dan vida al matrimonio de tus sueños en Piso18. |
+ * | Bajada: Dejando todo listo, para que solo te preocupes de celebrar. | **borrada** — el brief ya no trae bajada |
+ *
+ * ⚠️ El comentario *«Podría ser un texto orientado a ''Dejando todo listo, para
+ * que solo te preocupes de celebrar''»* SIGUE en la celda y sin tachar. Es el
+ * que había producido la bajada. Como la grilla la borró, la pieza la quita —
+ * pero queda anotado dónde se repone si Eli decide lo contrario.
+ *
+ * ⛔ «matrimonio», nunca «bodas»: el texto nuevo ya viene correcto.
+ *
+ * ── El brief anterior, para el historial ─────────────────────────────────
+ * Hoja STORIES, columna M, estado **OK PARA DISEÑAR**:
+ *
+ *     Texto principal: Así se monta un evento en Piso18, paso a paso.
+ *     Bajada: Dejando todo listo, para que solo te preocupes de celebrar.
  *
  * ══════════════════════════════════════════════════════════════════════════
  * ⭐⭐⭐ RONDA 3 — SEIS CORRECCIONES DE ELI, Y LA PIEZA CAMBIA ENTERA
@@ -258,8 +281,8 @@ export const P18StMontaje: React.FC = () => {
           textShadow: '0 2px 26px rgba(0,0,0,0.42)',
         }}
       >
-        Así se monta un evento en Piso18,{' '}
-        <span style={{fontStyle: 'italic', fontWeight: 400}}>paso a paso.</span>
+        <span style={{fontStyle: 'italic', fontWeight: 400}}>Arreglos florales</span>{' '}
+        que le dan vida al matrimonio de tus sueños en Piso18.
       </div>
 
       {/* ── CIERRE de marca, sobre el último montaje ───────────────────── */}
@@ -276,28 +299,20 @@ export const P18StMontaje: React.FC = () => {
               top: 812,
             }}
           />
-          <div
-            style={{
-              position: 'absolute',
-              left: 122,
-              right: 122,
-              top: 1064,
-              textAlign: 'center',
-              fontFamily: P18.fuentes.texto,
-              fontWeight: 500,
-              fontSize: 33,
-              lineHeight: 1.5,
-              color: P18.colores.blanco,
-            }}
-          >
-            Dejando todo listo, para que solo te preocupes de celebrar.
-          </div>
+          {/*
+            ⛔ Acá vivía la bajada «Dejando todo listo, para que solo te preocupes
+            de celebrar.» La RONDA 4 la quita porque **la grilla la borró**: el
+            16-09 el cliente reemplazó las dos líneas del brief (texto principal
+            + bajada) por una sola. El comentario que la propuso sigue en la
+            celda sin tachar, así que si Eli la quiere de vuelta se repone acá y
+            el botón baja otra vez a 1244.
+          */}
           <div
             style={{
               position: 'absolute',
               left: 0,
               right: 0,
-              top: 1244,
+              top: 1100,
               display: 'flex',
               justifyContent: 'center',
             }}

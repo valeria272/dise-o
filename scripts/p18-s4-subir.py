@@ -122,7 +122,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true",
                     help="dice qué haría, sin tocar Drive")
+    # ⭐ En una RONDA sólo cambian una o dos piezas. Subir las ocho igual funciona
+    # —el contenido es idéntico— pero le mueve el `modifiedTime` a todas y quien
+    # mire el Drive no distingue qué se corrigió. Con `--solo` se sube lo que
+    # cambió y el resto queda con su fecha real.
+    ap.add_argument("--solo", nargs="*", metavar="ARCHIVO",
+                    help="sube sólo estos archivos (por nombre, con extensión)")
     a = ap.parse_args()
+    filtro = set(a.solo) if a.solo else None
 
     if not ENTREGA.exists():
         sys.exit(f"✗ No está {ENTREGA}. Rinde la S4 antes de subir.")
@@ -139,12 +146,12 @@ def main():
             continue
         cid = carpeta(svc, sub, PISO18_S4, a.dry_run)
         for f in sorted(origen.iterdir()):
-            if f.is_file():
+            if f.is_file() and (filtro is None or f.name in filtro):
                 sube(svc, f, cid, a.dry_run)
 
     # Lo que no es historia ni carrusel queda en la raíz de PISO18.
     for f in sorted(ENTREGA.iterdir()):
-        if f.is_file():
+        if f.is_file() and (filtro is None or f.name in filtro):
             print("  · raíz de PISO18")
             sube(svc, f, PISO18_S4, a.dry_run)
 

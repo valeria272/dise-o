@@ -554,9 +554,14 @@ out/hilton/dt/ft-honors/editable/*
 # Las dos referencias que dejó el cliente en la grilla (Pinterest) y las dos
 # escenas GENERADAS que usan las láminas, más sus derivados 4:5 de entrega.
 # Sin esto la pieza no se reproduce: son la foto de las dos slides.
-# ⚠️ Las tiradas DESCARTADAS de la portada (`-ambiente`, `-sticker`, `-sticker-r2`)
-# y la alternativa `gen-fondo-2` NO viajan — 70 MB que no rinden nada. Sus
-# prompts sí quedan, en `scripts/between-concurso-s3-generar.py`.
+# ⚠️ Viajan SÓLO las tiradas que una lámina usa hoy. Las descartadas
+# (`-ambiente`, `-sticker`, `-sticker-r2`, `-sticker-r3` y la alternativa
+# `gen-fondo-2`) NO — son ~85 MB que no rinden nada, y sus prompts quedan en
+# `scripts/between-concurso-s3-generar.py`.
+# ⛔ OJO AL ACTUALIZAR: cuando una ronda cambia de tirada hay que cambiar ESTA
+# lista. El 16-09 la portada pasó de la r3 a la r4 y el `.gitignore` se quedó
+# apuntando a la r3: viajaba la descartada y la que rinde la pieza quedaba
+# fuera. Lo cazó el `/cierre`.
 # ⚠️ Git no entra en un directorio excluido, así que hay que negar la cadena
 # entera: `raw/hilton/*` (arriba) no deja descender a `between/`.
 !raw/hilton/between/
@@ -566,8 +571,9 @@ raw/hilton/between/refs-concurso-s3/*
 !raw/hilton/between/refs-concurso-s3/*.jpg
 !raw/hilton/between/concurso-s3/
 raw/hilton/between/concurso-s3/*
-!raw/hilton/between/concurso-s3/gen-portada-sticker-r3.png
+!raw/hilton/between/concurso-s3/gen-portada-sticker-r4.png
 !raw/hilton/between/concurso-s3/gen-escritorio-2.png
+!raw/hilton/between/concurso-s3/gen-retrato-polaroid.png
 !raw/hilton/between/concurso-s3/refs/
 raw/hilton/between/concurso-s3/refs/*
 !raw/hilton/between/concurso-s3/refs/*.jpg

@@ -9217,3 +9217,109 @@ con un trazo beige junto a tinta oscura. Los píxeles acusados están en **y
 984–1349** y todo el texto de esa lámina vive entre **y 96 y 760**. Se verifica
 imprimiendo las filas de la máscara antes de dar la advertencia por buena.
 
+
+
+---
+
+# ⭐⭐ S3 · RONDAS 2 Y 3 DEL CONCURSO — seis reglas de método (16-09-2026)
+
+Las tres rondas del concurso y de la S4 salieron el mismo día. Lo de la ronda 1
+está arriba; esto es lo que dejaron las dos siguientes, y todo es reusable.
+
+## 1. ⭐⭐ UN FONDO SE PUEDE VOLVER CONTINUO SIN REGENERAR LA ESCENA
+
+Eli: «quiero que la textura beige del fondo hagan transición en ambas slides».
+En el cumpleaños eso se resolvió generando UN panorama y cortándolo en dos — pero
+ahí las escenas todavía no estaban aprobadas. **Cuando ya lo están, regenerar es
+perder trabajo aprobado**, y la continuidad se construye sobre lo que hay:
+
+1. máscara de fondo por **crecimiento desde el canto** sobre los píxeles de pared
+   (el borde blanco del recorte, que está en 243+, corta el crecimiento solo);
+2. el campo de luz de cada lámina **y** el del PAR, los dos como **polinomio de
+   grado 3** ajustado por mínimos cuadrados sobre los píxeles de fondo;
+3. se aplica `campo_del_par − campo_propio` **sólo al fondo**. Como es baja
+   frecuencia, el grano de la pared queda intacto: no se sustituye el fondo, se
+   le corrige la iluminación;
+4. **convergencia de costura**: se mide la diferencia fila a fila entre los dos
+   cantos, se suaviza en vertical y se reparte mitad a cada lado con una caída de
+   500 px. Es lo que hace un panorama de verdad.
+
+Los tres intentos, medidos (salto de luminancia en la costura; umbral 1,5):
+
+| Cómo se estima el campo propio | Salto |
+|---|---|
+| desenfoque gaussiano ancho | **18,66** ⛔ |
+| polinomio de grado 3 | **3,30** ⚠️ |
+| polinomio + convergencia de costura | **0,95** ✅ |
+
+⛔ **El gaussiano no sirve** porque se sesga contra el canto del cuadro: la
+normalización por la máscara tira los valores hacia adentro, justo donde hay que
+medir. Dos polinomios no tienen ese problema.
+
+⚠️ Y una trampa de `scipy`: `binary_erosion` erosiona **también el borde del
+cuadro**, así que la máscara queda vacía en la costura y no hay nada que comparar.
+Va `border_value=1`.
+
+⭐ **De regalo:** el QA de carrusel pasó de 195/202 a **197/196** de mediana. El
+fondo continuo empareja dos láminas mejor que cualquier gradación.
+Script: `scripts/between-concurso-s3-fondo-continuo.py`.
+
+## 2. ⛔⛔ `cv2.inpaint` NO SIRVE SOBRE UNA TEXTURA
+
+La raya del vaso del To Go es un pliegue claro del cartón. `cv2.inpaint` (Telea)
+la borra y deja **un parche LISO, sin grano** — y sobre kraft eso se ve MÁS que la
+raya. Es la misma familia de error que «un recorte pegado se delata por la luz»,
+en versión textura.
+
+Lo que funciona es un **clonado por separación de frecuencias**: se toma el mismo
+tramo del objeto 150 px al lado —misma altura, misma banda de luz—, se le
+trasplanta sólo su **alta** frecuencia y se conserva la **baja** del destino, con
+la máscara difuminada. Se va el defecto, se mantiene el sombreado del cilindro y
+el grano sigue siendo grano de verdad.
+
+## 3. ⛔⛔ UN LOCKUP IMPRESO SE MIDE ENTERO, NO POR SU LÍNEA PRINCIPAL
+
+El encuadre de la portada To Go se calculó contra el **wordmark** (fila 2593) y el
+script terminaba rozando el **«COFFEE & BAR»**. El logotipo del vaso son **DOS
+bandas de tinta** —wordmark 2239–2513 y bajada 2617–2685— y manda la segunda.
+
+Con el logotipo completo cerrando en 2685 y la ventana obligada a terminar dentro
+de las 4032 filas de la toma, la condición «logotipo por encima del bloque de
+texto» deja `alto ≤ 2 × (4032 − 2685) = 2694`. **Si las dos condiciones no caben,
+el problema es la foto y se dice** — no se baja el texto encima del producto.
+
+## 4. ⭐ «MÁS BLANCA» SE PIDE NOMBRANDO EL TIPO
+
+Eli: «la chica debe verse más blanca chilena». **No se traduce restando color**:
+pedir «menos morena» empuja el fenotipo al nórdico. Va «una mujer CHILENA de piel
+clara, rasgos latinoamericanos» — el gentilicio y los rasgos son el ancla.
+
+Y para que la MISMA persona vuelva en otra pieza (acá, la polaroid de frente), se
+le pasan como referencia **la lámina aprobada y un recorte de su cara**. Es la
+forma práctica de fijar el personaje.
+
+## 5. ⭐ «SE VE OSCURA» PUEDE ARREGLARSE EN LA FOTO Y NO EN EL VELO
+
+El degradado al pie ya estaba en su piso: barrido contra el contraste de la tinta
+beige (la marca pide 3:1), `0,60 → 3,27 · 4,79 · 3,95` y `0,55 → **2,91**`. Bajo
+0,60 el script se cae.
+
+La salida fue aclarar **la foto**, con un levante de sombras **ponderado por la
+altura** que se apaga en `y = 0,45` — justo donde arranca el bloque de texto. La
+franja de arriba deja de leerse apagada y el contraste del titular no se mueve ni
+un punto (verificado: los tres valores son idénticos antes y después).
+
+## 6. ⭐ UN TRAZO SE COLOCA CONTRA EL MAPA DE LA PIEZA, NO A OJO
+
+Los cuatro motivos nuevos (`BetweenTrazosConcurso.tsx`) se colocaron dos veces mal
+en la primera pasada: las cuñas de la portada cayeron **sobre la caja taupe** y
+partieron la palabra «CAFÉ», y las de la slide 2 tocaron la **«A» de «AHORA»**. Las
+dos se arreglaron con las cifras que ya estaban medidas —la caja va de y=612 a 678
+y de x=84 a 620; el titular llega a x≈928 y cierra en y≈325—. **El mapa del hueco
+limpio se mide una vez y después se usa para TODO lo que se pone encima**, no sólo
+para el texto.
+
+⚠️ Y la excepción de la regla del trazo queda usada por segunda vez (la primera
+fueron las banderitas del 08-09). Sigue acotada a las cuatro condiciones: la pide
+la diseñadora para una pieza, el motivo no existe en su `.svg`, va en un solo
+color de marca y el trazo es de grosor constante con puntas redondeadas.

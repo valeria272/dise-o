@@ -1,3 +1,59 @@
+## 2026-09-16 (CIERRE DEL DÍA) — Elisabet Soto · BETWEEN
+
+Resumen para el relevo. El detalle de cada ronda está en las tres entradas de
+abajo (ronda 1, ronda 2 y ronda 3 del mismo día).
+
+**Qué se hizo:** se produjo el **carrusel del CONCURSO «Se busca: CEO del café»**
+(FEED col 10, pieza nueva, dos láminas) y se cerraron **tres ajustes de grilla**:
+la ST del 21-09 (fuera «Masa» + legal), la ST del 22-09 (legal, reubicado bajo la
+copa) y **la portada** del carrusel PROMOS TO GO del 22-09, que cambió de foto
+porque el cliente corrigió el enlace. Tres rondas de correcciones de Eli en el
+mismo día, todas aplicadas y medidas.
+
+**Dónde quedó:** todo entregado y verificado en Drive.
+· `C1 S3 CONCURSO N1/N2.png` → carpeta **nueva** `C1 S3 CONCURSO` dentro de
+  `S3 HILTON SEP 2026 / BW` (`1eXZnhj5-2j7o4AuwClf5dngcn6k9oQzC`).
+· Las dos ST y la portada To Go **reemplazan el MISMO archivo**, así que los
+  enlaces que el cliente tiene en la grilla no cambiaron.
+· Código: `BetweenC1S3Concurso.tsx`, `BetweenTrazosConcurso.tsx`, y los cambios en
+  `BetweenStS4.tsx` y `BetweenSeptiembre.tsx`.
+· Scripts: `between-concurso-s3-{generar,fotos,fondo-continuo,entrega}.py`,
+  `between-st-s4-entrega.py`, `between-togo1-r25.py`, `between-revision-16-09.py`.
+· **Las cinco piezas reproducen byte a byte** desde el repo (`cmp`).
+· Revisión para mirar: `out/hilton/between/revision-16-09.html` (imágenes
+  embebidas, se abre con doble clic y se puede reenviar tal cual).
+· Instantánea nueva de las 4 pestañas de la grilla en
+  `grillas/between-septiembre-2026-vivo/` — **ésa es la base del próximo diff**.
+
+**Qué sigue:**
+1. **Pedirle la fecha del concurso a contenido.** La grilla dice `X DEFINIR` y el
+   concurso corre del 21 al 30-09, con el ganador el 1 de octubre.
+2. Esperar la ronda del cliente sobre las cuatro piezas subidas hoy.
+3. FEED col 15 sigue `PENDIENTE POR CLIENTE`: pidió cambiar el espacio de «nuevas
+   promos de desayuno» por otro tema.
+4. El reel orgánico del 15-09 quedó **RECHAZADO** y sin contenido en la grilla.
+
+**Abierto:**
+· ⚠️ **El Strudel queda con una discrepancia informada:** el titular dice «CUATRO
+  INGREDIENTES» y el mosaico tiene cuatro cuadrantes, pero el listado quedó en
+  tres. Eli confirmó que el cambio es sólo eliminar la palabra; si el cliente lo
+  nota, bajar a «TRES» es decisión suya.
+· ⚠️ La tapa del vaso de la portada To Go **queda cortada por el canto de arriba**.
+  Es inevitable con esa foto y está demostrado en `between-togo1-r25.py`.
+· ⛔⛔ **El token del estudio ya no LEE el Drive de Hilton** (scope `drive.file`):
+  sube y reemplaza bien, pero para listar, verificar o crear carpetas hay que usar
+  el conector MCP de Drive. Las cuatro subidas de hoy se verificaron así.
+· ⚠️ **Dos sesiones escribieron en este mismo directorio hoy** (los commits
+  `fbdb431` de Between y `39dc674` de Piso18, los dos a las 15:46, mientras esta
+  sesión trabajaba). No se perdió nada, pero conviene no tener dos ventanas
+  abiertas sobre la misma carpeta.
+· Siguen de antes: Between **sin `clients/hilton/reglas.yaml`**, las **`GUIA CM`**
+  en local sin decidir cómo llegan al CM, **`BETWEEN.logo.cafe` apuntando a un PNG
+  negro**, el Strudel como producto GENERADO a la espera de foto real, y los
+  falsos positivos de `between-qa.py`.
+
+---
+
 ## 2026-09-16 (cierre 2) · Eli (Windows) — BETWEEN, RONDA 3: el fondo continuo, la polaroid y la raya
 
 > «Quiero que la textura beige del fondo hagan transición en ambas slides del

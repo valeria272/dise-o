@@ -1,3 +1,25 @@
+## 2026-09-16 — Arranque de la máquina · hallazgo de MATERIAL (no es sesión de diseño)
+
+**Qué se hizo:** verificación completa del estudio en el Windows de Eli con
+`/arranque`. No se diseñó ni se entregó nada. El verificador de material levantó
+36 archivos «rotos» en `raw/` y **la mayoría no lo están**.
+
+**Dónde quedó:** las 25 fotos de `raw/hilton/dt/fiestas-patrias-18/` y la
+`ref-eli-r27/foto-base.jpg` de Between son **HEIC de iPhone con extensión
+`.jpg`** — la foto está buena, miente el nombre. **No se rebajan del Drive: ya
+están en disco.** Chrome no lee HEIC, así que antes de usarlas hay que
+convertirlas (receta en la memoria `heic-no-es-archivo-roto`; `pillow-heif` ya
+está instalado en esta máquina).
+
+Sí están rotos de verdad: `raw/hilton/dt/identidad/DTbH-Brand-Identity-Guidelines-EN.pdf`
+y los cuatro `*.DESCARGA-FALLIDA.html` de `ref-s4/` y `sesion-real/banco-maestro/`
+— son la página de login de Google guardada con otra extensión.
+
+**Qué sigue:** nada bloqueante. Cuando toque Fiestas Patrias de DT, convertir las
+25 fotos primero. Si se necesita el manual de identidad de DoubleTree, rebajarlo.
+
+**Abierto:** nada.
+
 ## 2026-09-16 — DT · ronda 6 del estático Honors, y el editable pasó a mandar
 
 **Marca: DT.** Sesión de diseño. Pieza: `Post n°1 S4 DT` (FEED col K, 23-09).
@@ -83,6 +105,26 @@ diferencia: **cada guardado suma otros 34 MB al historial**. Si se vuelve pesado
 la salida es versionar sólo el `.svg` intermedio (5,4 MB y diferenciable) — pero
 ése NO trae los ajustes hechos a mano dentro de Illustrator, que es justo lo que
 cambió en esta ronda.
+
+**Qué sigue.** De esta pieza, **nada**: entregada, subida y con el enlace
+conservado. Lo siguiente de DT en el FEED es **columna M, 28-09, un CARRUSEL**
+(«Tu día en DoubleTree by Hilton Santiago-Vitacura», tipo timeline, sin modelos)
+— pero está en **`REVISAR CONTENIDO`**, o sea el cliente todavía lo está viendo y
+**no se diseña hasta que pase a `OK PARA DISEÑO`**. Antes de tocarlo: correr
+`/al-dia` y volver a leer la celda viva, no la instantánea (el 15-09 la celda
+cambió de estado entre dos lecturas del mismo día).
+
+**Abierto.**
+
+- **El empujón de 10,6 px de la columna izquierda** — hay que preguntarle a Eli si
+  fue a propósito o se le arrastró el grupo. Si fue sin querer, se borra
+  `EMPUJON_COL_IZQ` de `DtFtHonors.tsx` y la caja queda pareja.
+- **El peso del `.ai` en el historial.** Entró hoy por decisión de Eli. Hay que
+  mirarlo en unos meses: cada guardado suma ~34 MB y no se puede diferenciar.
+- **Hilton no tiene `reglas.yaml`.** Su compuerta ejecutable es `scripts/dt-qa.py`,
+  que sí está al día con esta geometría. Queda anotado porque el resto de las
+  marcas del estudio se revisan con `qa/motor.py --marca <marca>` y DT no entra
+  por ahí.
 
 ## 2026-09-15 (apertura) — DT · el `/al-dia` que destrabó el día, y DOS HILOS OPEN que sobraron
 

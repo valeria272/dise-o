@@ -79,8 +79,15 @@ SALIDA = RAIZ / "raw/hilton/between/concurso-s3"
 #: El retrato se pide por RASGOS, no por número ni por nacionalidad suelta:
 #: «menos moreno» empuja al fenotipo nórdico y hay que NOMBRAR el tipo local
 #: (memoria `generar-personas-nombrar-el-tipo`).
-PERSONA = ("una mujer chilena de rasgos latinoamericanos, piel trigueña clara, "
-           "pelo oscuro liso tomado, frente lisa y mandibula suave")
+#: ⭐ RONDA 2 (16-09) — Eli: «la chica del post de concurso debe verse más blanca
+#: chilena, pelo ondulado y con gafas lifestyle».
+#: ⚠️ «Más blanca» se pide NOMBRANDO el tipo local, no restando color: pedir
+#: «menos morena» empuja el fenotipo al nórdico (memoria
+#: `generar-personas-nombrar-el-tipo`). Va «chilena de piel clara» y se mantiene
+#: «rasgos latinoamericanos», que es el ancla.
+PERSONA = ("una mujer CHILENA de piel clara, rasgos latinoamericanos, pelo "
+           "castaño ONDULADO y suelto hasta los hombros, con anteojos de marco "
+           "fino y traslucido, frente lisa y mandibula suave")
 
 ESCENAS = {
     # ── PORTADA · variante A: la gramática de Between (ambiente a sangre) ────

@@ -71,6 +71,7 @@ import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
 import {BETWEEN} from '../../brand/hilton-between';
 import {CajaDato, FotoFondo, TitularBetween, useFuentesListas} from './BetweenSistema';
+import {Trazo} from './BetweenTrazosConcurso';
 
 const F = 'assets/hilton/between/concurso-s3/';
 
@@ -239,6 +240,21 @@ export const C1S3Concurso1: React.FC = () => (
         Postula aquí → Desliza
       </div>
     </div>
+
+    {/* ⭐ RONDA 2 (16-09) — Eli: «solo un poco ambas, añade esas ilustraciones
+        sencillas de la slide 2». En la PORTADA van sólo dos, y en el beige
+        limpio: el mapa de la foto deja libre todo el ancho hasta y≈640 y hasta
+        x≈650 entre 640 y 840.
+          · la chispa arriba a la derecha, en la esquina que el titular no usa;
+          · las cuñas junto al vaso, que es el gesto que tienen en la REF 2
+            (ahí van pegadas a la cabeza del sujeto).
+        Ninguna toca el producto ni cruza el margen de 84.
+        ⚠️ Las cuñas estuvieron primero en (318, 628) y caían ENCIMA de la caja
+        taupe —que va de y=612 a 678 y de x=84 a ~620—, partiendo la palabra
+        «CAFÉ». Van al canal de la derecha, en la franja libre que queda entre
+        el titular (cierra en ~450) y la figura (entra en y≈640). */}
+    <Trazo cual="chispa" x={892} y={286} ancho={62} />
+    <Trazo cual="cunas" x={676} y={516} ancho={94} giro={-12} opacidad={0.92} />
   </AbsoluteFill>
 );
 
@@ -450,6 +466,20 @@ export const C1S3Concurso2: React.FC = () => {
         </div>
       </div>
 
+      {/* ⭐ RONDA 2 (16-09) — «la segunda slide no se parece mucho a esta
+          referencia 2 […] añade esas ilustraciones sencillas».
+          La tarjeta mide 686 y deja 197 px de beige a cada lado; con el margen
+          de marca en 84, el canal útil es de 113 px por lado. Los cuatro
+          motivos van ahí y en la franja de arriba, rodeando la tarjeta como en
+          el referente — nunca encima de ella ni sobre el escritorio.
+          ⚠️ La flecha de abajo a la izquierda APUNTA a la tarjeta: en la REF 2
+          las flechas son lo que ata los pedazos del collage. */}
+      {/* ⚠️ Estuvieron en (900, 236) y tocaban la «A» final de «AHORA»: el titular
+          llega a x≈928 y cierra en y≈325. Bajan al canal derecho, ya libre. */}
+      <Trazo cual="cunas" x={898} y={372} ancho={90} giro={10} />
+      <Trazo cual="chispa" x={104} y={398} ancho={68} />
+      <Trazo cual="estrella" x={916} y={608} ancho={58} opacidad={0.9} />
+      <Trazo cual="flecha" x={96} y={700} ancho={100} giro={-8} opacidad={0.92} />
     </AbsoluteFill>
   );
 };

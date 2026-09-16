@@ -1,3 +1,71 @@
+## 2026-09-16 (cierre) · Eli (Windows) — BETWEEN, RONDA 2: cuatro correcciones suyas
+
+Sobre lo entregado esta misma tarde. Sus palabras, literales:
+
+> «La chica del post de concurso debe verse más blanca chilena, pelo ondulado y
+> con gafas lifestyle. Y la segunda slide no se parece mucho a esta referencia 2.
+> Solo un poco ambas, añade esas ilustraciones sencillas de la slide 2. Legal de
+> la st strudel en beige o con caja, que no se ve nada con el color que tiene. Y
+> la última no se ve nada, el carrusel de la portada muy oscura y quemada; no
+> edites la foto original, déjala así tal cual el link, pero con textos y diseños
+> de arriba y transparencia. Solo reemplaza la foto.»
+
+### 1. La persona de la portada — se pide NOMBRANDO el tipo
+
+Escena regenerada. ⚠️ «Más blanca» **no** se traduce restando color: pedir «menos
+morena» empuja el fenotipo al nórdico (memoria `generar-personas-nombrar-el-tipo`).
+Va «una mujer CHILENA de piel clara, rasgos latinoamericanos, pelo castaño
+ONDULADO y suelto, con anteojos de marco fino y traslúcido». El logotipo del vaso,
+revisado al 300 %: **BƎTWEEN / COFFEE & BAR** completo a la primera.
+
+### 2. Las ilustraciones sencillas — segunda excepción a la regla del trazo
+
+`src/compositions/hilton/BetweenTrazosConcurso.tsx`. Es la misma excepción que se
+abrió el 08-09 para las banderitas, con las cuatro condiciones del manual: lo pide
+la diseñadora para una pieza, el motivo no existe en su `.svg`, va en un solo color
+de marca (café `#675B49`) y el trazo es de grosor constante con puntas redondeadas.
+Cuatro motivos: las **tres cuñas** que ella recortó de la REF 2, una **chispa** de
+cuatro puntas, una **estrella** de contorno y una **flecha** curva.
+
+⚠️ Dos correcciones de posición, las dos por medición: las cuñas de la portada
+caían sobre la caja taupe (que va de y=612 a 678 y de x=84 a 620) y partían la
+palabra «CAFÉ»; y las de la slide 2 tocaban la «A» de «AHORA» (el titular llega a
+x≈928 y cierra en y≈325). **Un trazo se coloca contra el mapa de la pieza, no a ojo.**
+
+### 3. El legal del Strudel — beige DENTRO de caja
+
+Ninguna tinta suelta aguanta esa franja: son los dos cuadrantes claros y miden
+159 · 162 · 165 por tercios (beige 1,5:1, café 1,8:1). Con la caja taupe el
+contraste deja de depender de la foto: **6,3:1**. Es la salida que el propio
+cliente dejó escrita —«cuando no se logra visualizar los textos, puedes dejarlo en
+una caja del color café #675B49»— y es la tercera vez que esa frase resuelve algo.
+
+### 4. ⭐⭐ La portada del To Go: la foto NO se grada, y el logotipo se mide ENTERO
+
+- **Fuera toda la gradación.** La pasada anterior igualaba la mediana al set
+  (116→102) y enfriaba la calidez (50,9→33,1), y entre eso y el degradado la
+  lámina se leía apagada. Ahora entra tal cual el enlace; lo único que queda es
+  el recorte 4:5, que no es opcional.
+- **El degradado baja de 0,72 a 0,60**, barrido contra el contraste de la tinta
+  beige (la marca pide 3:1): 0,72 → 5,41 · 5,54 · 4,77 · 0,65 → 3,92 · 4,98 · 4,05
+  · **0,60 → 3,27 · 4,79 · 3,95** · 0,55 → 2,91 (el script se cae).
+- ⛔⛔ **Y el error de la pasada anterior, que vale como regla:** el encuadre se
+  calculó contra el WORDMARK (fila 2593) y el logotipo impreso son **DOS bandas**
+  —wordmark 2239–2513 y «COFFEE & BAR» 2617–2685—, así que el script terminaba
+  rozando la segunda. Con el logotipo completo, la ventana no puede pasar de
+  2 × (4032 − 2685) = **2694** de alto: queda 2155×2694 desde la fila 1338.
+  **Un lockup se mide entero, no por su línea principal.**
+
+**Dónde quedó:** las cuatro piezas re-subidas reemplazando el mismo archivo y
+verificadas por `fileSize` con el conector; las cuatro reproducen byte a byte;
+`out/hilton/between/revision-16-09.html` actualizada con esta ronda.
+
+**Abierto:** lo mismo del cierre anterior. Se suma que la tapa del vaso de la
+portada To Go **queda cortada por el canto de arriba** — es inevitable con esta
+foto y está explicado en `scripts/between-togo1-r25.py`.
+
+---
+
 ## 2026-09-16 (tarde) · Eli (Windows) — BETWEEN: el CONCURSO de la S3, y tres ajustes de grilla
 
 **Marca: BETWEEN.** Sesión de diseño. Encargo de Eli: «toma los cambios en grilla

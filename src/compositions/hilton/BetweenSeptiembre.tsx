@@ -1163,7 +1163,14 @@ export const ToGo1: React.FC = () => (
        GO»—. El problema que la caja resolvía es real y está medido (el tercio
        inferior son pantalones crema, 1,16-1,48:1 con tinta beige), así que lo
        resuelve el DEGRADADO, que es lo que ella autorizó. */
-    degradadoPie={0.72}  /* el borde inferior ya se aflojó en el propio degradado */
+    /* ⭐ RONDA 25 (16-09) — baja de 0,72 a 0,60. Eli: «no se ve nada, la
+       portada muy oscura y quemada». Con la foto ya sin gradar, 0,72 dejaba el
+       pie en L≈45 y la lámina se leía apagada. Barrido midiendo el contraste
+       de la tinta beige (la marca pide 3:1) sobre script · titular · horario:
+           0,72 → 5,41 · 5,54 · 4,77      0,60 → 3,27 · 4,79 · 3,95
+           0,65 → 3,92 · 4,98 · 4,05      0,55 → 2,91 · 4,28 · 3,84  ⛔ script bajo
+       0,60 es lo más suave que deja las tres líneas sobre el mínimo. */
+    degradadoPie={0.6}
     script="¿Vas con poco tiempo?"
     /* ⭐⭐ RONDA 19 (07-09) — Eli: «los textos se ven corridos en la portada».
        Y no era el centrado: medido sobre el render, las cinco líneas caen a ±2 px

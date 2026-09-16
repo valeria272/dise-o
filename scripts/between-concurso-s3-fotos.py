@@ -51,7 +51,7 @@ W, H = 2250, 2813          # 1080×1350 × 2,0833 — la entrega de Eli
 #: El costo es que la base del escritorio sangra por el canto inferior, que es
 #: lo que hacen las dos referencias del cliente.
 PIEZAS = {
-    "gen-portada-sticker-r3.png": ("c1-portada.jpg", 300),
+    "gen-portada-sticker-r4.png": ("c1-portada.jpg", 140),
     "gen-escritorio-2.png": ("c1-escritorio.jpg", 640),
 }
 

@@ -45,7 +45,6 @@ import numpy as np
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from between_retoque import revela, vivo  # noqa: E402
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -55,51 +54,42 @@ except Exception:
 ORIGEN = Path("public/assets/hilton/between/togo-sep2026/togo-en-mano-mesa.jpg")
 DESTINO = Path("public/assets/hilton/between/fotos-gradadas/togo-portada-r25.jpg")
 
-#: ⛔ NO SE COPIAN LOS PARÁMETROS DE LA R23, Y ESO SE MIDIÓ.
-#: La r23 usa `CALOR=0,08` y `calidez_max=99` porque aquella toma era de
-#: exterior, de luz fría, y venía en calidez 9,7: había que EMPUJARLA. Ésta es
-#: otra foto: mesa de madera al sol, y ya viene en **38,5** de calidez, por
-#: encima de los 25,9 del set. Aplicándole la receta de la r23 tal cual sube a
-#: **66,3** — o sea, justo el «filtro de color cálido» que el cliente mandó
-#: eliminar dos veces («Eliminar el filtro de color cálido que tiene el carrusel
-#: completo», 01-09).
-#: Acá el calor va en 0 y `calidez_max` en el valor del set, para que `revela`
-#: ENFRÍE hasta ahí. La densidad sí se iguala igual: mediana objetivo 104.
-#: La vibrancia también baja: esta toma ya tiene croma 21,7 (la de la entrada
-#: tenía 9,7), así que 0,30 la manda a 35,6 y el carrusel se despareja.
+#: ⛔⛔ RONDA 2 (16-09) — ESTA FOTO NO SE GRADA. NADA.
+#: Eli, sobre la primera pasada: «la última no se ve nada, el carrusel de la
+#: portada muy oscura y quemada. NO EDITES LA FOTO ORIGINAL, déjala así tal cual
+#: el link. Pero con textos y diseños de arriba y transparencia. Solo reemplaza
+#: la foto.»
 #:
-#: ⚠️ `calidez_max` NO es el objetivo: `revela` sólo quita el 55 % del exceso, y
-#: después el contraste y la vibrancia devuelven algo. Medido, la ventana nueva
-#: —casi todo madera al sol— entra en calidez 50,9, y el barrido da:
-#:      max 22 → 40,1 · max 16 → 36,6 · max 10 → 33,1 · max 4 → 29,5
-#: Se deja en 10 (→ 33,1). El set del carrusel está en 25,9 y la portada
-#: APROBADA de la r23 cerró en 34,2 sobre un set de 29,2, o sea que una portada
-#: ~5 puntos sobre su set ya es lo aceptado. Bajar a 4 la acerca más pero
-#: empieza a apagar la madera, y el manual es explícito: «la calidez sólo se
-#: corrige si SOBRA».
-CALOR, MEDIOS, VIBRANCIA, CALIDEZ_MAX = 0.0, 104, 0.12, 10.0
-
-
-def calienta(im, k):
-    a = np.asarray(im.convert("RGB")).astype(np.float32)
-    a[..., 0] = np.clip(a[..., 0] * (1 + k * 0.8), 0, 255)
-    a[..., 2] = np.clip(a[..., 2] * (1 - k * 0.9), 0, 255)
-    return Image.fromarray(a.astype(np.uint8))
-
-
+#: La primera pasada sí la gradaba —mediana 116→102 para igualar al set, y la
+#: calidez de 50,9 a 33,1— y entre eso y el degradado al pie la lámina se leía
+#: apagada. El encargo ahora es explícito y es el contrario: **la foto entra tal
+#: como viene del enlace**. Lo único que se hace es el recorte 4:5, que no es
+#: opcional (la toma es 3:4 y el feed es 4:5).
+#:
+#: ⚠️ Queda anotado que el set del carrusel está en mediana 101 y esta toma en
+#: 116: la portada va a leer más clara que las otras tres slides. Es decisión de
+#: ella y está pedida por escrito.
 #: ⭐ LA VENTANA 4:5, CALCULADA — no elegida a ojo.
-#: Restricciones medidas sobre la toma (3024×4032):
+#: Restricciones MEDIDAS sobre la toma (3024×4032):
 #:   · la tapa negra del vaso va de la fila 1244 a la 1649;
-#:   · la tinta del logotipo impreso cierra en la fila ≈2593;
-#:   · el bloque de texto de la pieza —ya aprobado por Eli en la r24— ocupa de
-#:     y=718 a y=1202 del lienzo de 1350, o sea desde el 53,2 % del alto.
-#: O sea que el logotipo tiene que cerrar por encima del 52 % de la ventana y la
-#: tapa tiene que entrar con algo de aire. Resolviendo las dos:
-#:      alto 2930 · arranque en la fila 1070  →  logotipo al 52 %, tapa al 6 %
-#: y la ventana cierra en la fila 4000, justo dentro de las 4032 de la toma.
-#: ⚠️ No hay holgura: con la ventana a ancho completo (3024×3780) el logotipo
-#: caía en el 60-66 % y el titular se le montaba encima.
-VENTANA = {"x_centro": 1300, "ancho": 2344, "y0": 1070, "alto": 2930}
+#:   · el logotipo impreso son DOS bandas de tinta: el wordmark en 2239–2513 y
+#:     «COFFEE & BAR» en 2617–2685. **Manda la segunda**, y ése fue el error de
+#:     la pasada anterior: se calculó contra el wordmark (2593) y el script
+#:     «¿Vas con poco tiempo?» terminaba rozando el «COFFEE & BAR».
+#:   · el bloque de texto —el que Eli cerró en la r24— arranca en y=718 de 1350,
+#:     o sea en el 53,2 % del alto.
+#: Con el logotipo completo cerrando en la fila 2685 y la ventana obligada a
+#: terminar dentro de las 4032 filas de la toma, la condición «logotipo por
+#: encima del 50 %» deja **alto ≤ 2 × (4032 − 2685) = 2694**:
+#:      alto 2694 · ancho 2155 · arranque en la fila 1338
+#: → el logotipo queda en 33–50 % y el texto entra en 53,2 %: 43 px de aire.
+#: ⚠️ EL PRECIO: la tapa se corta por el canto de arriba (la ventana entra en la
+#: fila 1338 y la tapa empieza en la 1244). Es inevitable — con la tapa entera el
+#: logotipo no puede quedar sobre el texto, y eso está demostrado: haría falta
+#: alto ≥ 2882 y el máximo que cabe es 2788.
+#: ⚠️ Y el otro precio: 2155 px de ancho contra los 2250 de la entrega, o sea un
+#: 4,4 % de ampliación. Es lo mínimo que permite la toma.
+VENTANA = {"x_centro": 1300, "ancho": 2155, "y0": 1338, "alto": 2694}
 
 
 def corta_4_5(im):
@@ -120,16 +110,15 @@ def medir(im):
 def main():
     im = corta_4_5(Image.open(ORIGEN).convert("RGB"))
     antes = medir(im)
-    base = calienta(im, CALOR) if CALOR else im
-    out = vivo(revela(base, medios=MEDIOS, calidez_max=CALIDEZ_MAX),
-               vibrancia=VIBRANCIA)
+    out = im                       # ← sin revelado, sin vibrancia, sin calor
     desp = medir(out)
     DESTINO.parent.mkdir(parents=True, exist_ok=True)
     out.save(DESTINO, "JPEG", quality=95, subsampling=0)
     print(f"recorte 4:5 .......... {im.size[0]}×{im.size[1]}  ({im.size[0]/im.size[1]:.3f})")
-    print(f"mediana .............. {antes[0]:6.1f} -> {desp[0]:6.1f}   (set: 101)")
-    print(f"calidez .............. {antes[1]:6.1f} -> {desp[1]:6.1f}   (set: 25,9)")
-    print(f"croma ................ {antes[2]:6.1f} -> {desp[2]:6.1f}   (set: 21,5)")
+    print(f"mediana .............. {desp[0]:6.1f}   (set: 101 — no se iguala, ver cabecera)")
+    print(f"calidez .............. {desp[1]:6.1f}   (set: 25,9)")
+    print(f"croma ................ {desp[2]:6.1f}   (set: 21,5)")
+    print(f"sin gradar: antes == despues -> {antes == desp}")
     print(f"% blanco puro ........ {desp[3]:6.2f}")
     print(f"\n-> {DESTINO}")
 

@@ -292,34 +292,52 @@ export const StS4Strudel: React.FC<{guia?: boolean}> = ({guia = false}) => (
         buscado en las 202 de la sesión de enero, en los desayunos de agosto, en
         `dulces-tortas` y en la carta— así que el legal no es una formalidad.
 
-        ⭐ VA EN CAFÉ Y NO EN BEIGE, y es medido. `LegalAlPie` pinta beige, que
-        es lo correcto sobre una foto oscura; acá la franja del pie son los dos
-        cuadrantes claros —hojaldre y manzana verde— y mide, por tercios:
+        ⭐ RONDA 3 (16-09) — Eli: «legal de la st strudel en beige o con caja,
+        que no se ve nada con el color que tiene». Va **beige DENTRO de caja
+        taupe**, que es la salida que el propio cliente dejó escrita para este
+        caso: «cuando no se logra visualizar los textos, puedes dejarlo en una
+        caja del color café #675B49».
 
-            y 1532 · 159,3 · 161,9 · 165,2      (el peor manda)
+        Las dos pasadas anteriores fallaron por el mismo motivo —la franja del
+        pie son los dos cuadrantes CLAROS, hojaldre y manzana verde— y ninguna
+        tinta suelta aguanta ahí:
+
+            y 1532 · 159,3 · 161,9 · 165,2      beige: 1,5:1  · café: 1,8:1
             y 1546 · 153,4 · 161,5 · 160,5
             y 1560 · 154,9 · 149,4 · 154,3
 
-        El criterio del manual es «bajo L≈120 va beige suelto; sobre L≈150 va
-        café suelto». Con el beige de `LegalAlPie` el legal salió lavado sobre
-        el hojaldre: se veía el asterisco y poco más. Misma posición, misma
-        cursiva y mismo cuerpo — lo único que cambia es la tinta. */}
+        Con la caja el contraste deja de depender de la foto: beige `#FFF9EB`
+        sobre taupe `#675B49` da 6,3:1 y se lee igual sobre cualquier cuadrante.
+        La caja es la misma del kit —radio 16— sólo que más baja (44) y con el
+        cuerpo del legal, porque no es un dato: es un legal. */}
     <div
       style={{
         position: 'absolute',
         left: 0,
         right: 0,
         bottom: 360,
-        textAlign: 'center',
-        fontFamily: BETWEEN.fuentes.sans,
-        fontStyle: 'italic',
-        fontWeight: BETWEEN.pesos.semibold,
-        fontSize: 28,
-        lineHeight: 1,
-        color: BETWEEN.colores.cafe,
+        display: 'flex',
+        justifyContent: 'center',
       }}
     >
-      *Imagen referencial.
+      <div
+        style={{
+          height: 44,
+          padding: '0 26px',
+          display: 'flex',
+          alignItems: 'center',
+          backgroundColor: BETWEEN.cajas.fondo,
+          borderRadius: BETWEEN.cajas.radio,
+          fontFamily: BETWEEN.fuentes.sans,
+          fontStyle: 'italic',
+          fontWeight: BETWEEN.pesos.semibold,
+          fontSize: 26,
+          lineHeight: 1,
+          color: BETWEEN.colores.beige,
+        }}
+      >
+        *Imagen referencial.
+      </div>
     </div>
   </AbsoluteFill>
 );

@@ -141,9 +141,9 @@ def main() -> int:
   </div>
   <table>
     <tr><th>Qué se midió</th><th>Valor</th><th>Criterio</th></tr>
-    <tr><td>Franja del titular, por tercios (portada)</td><td class="n">215,9 · 208,9 · 196,9</td>
+    <tr><td>Franja del titular, por tercios (portada)</td><td class="n">212,9 · 204,5 · 192,6</td>
         <td>sobre L≈150 → <b>tinta café</b> <span class="ok">✓</span></td></tr>
-    <tr><td>Franja del titular, por tercios (slide 2)</td><td class="n">209,9 · 204,1 · 194,0</td>
+    <tr><td>Franja del titular, por tercios (slide 2)</td><td class="n">213,0 · 206,5 · 196,0</td>
         <td>sobre L≈150 → <b>tinta café</b> <span class="ok">✓</span></td></tr>
     <tr><td>Caja alta del titular, tinta</td><td class="n">74,4 · 74,4 · 73,9 px</td>
         <td>un carrusel, <b>un solo cuerpo</b> <span class="ok">✓</span></td></tr>
@@ -169,9 +169,11 @@ def main() -> int:
     <ul>
       <li>El listado pasa de «Masa · Manzana · Canela · Nueces» a <b>«Manzana · Canela · Nueces»</b>,
           y la pila sube 35 px porque la línea es más corta.</li>
-      <li>El legal <b>va en café y no en beige</b>, y es medido: en esa franja los tercios dan
-          <b>159 · 162 · 165</b> y sobre L≈150 la tinta que se lee es la café. Con el beige del
-          sistema salía lavado sobre el hojaldre.</li>
+      <li>El legal va <b>beige dentro de caja taupe</b>. Esa franja son los dos cuadrantes claros
+          —hojaldre y manzana— y mide <b>159 · 162 · 165</b> por tercios: ninguna tinta suelta aguanta
+          ahí (beige 1,5:1 · café 1,8:1). Con la caja el contraste deja de depender de la foto y da
+          <b>6,3:1</b>. Es la salida que el propio cliente dejó escrita: «cuando no se logra visualizar
+          los textos, puedes dejarlo en una caja del color café #675B49».</li>
       <li>La zona del ícono 🍎 sube a 1345–1495 para que el sticker del CM no tape el legal.</li>
       <li>⚠️ <b>Queda una discrepancia y es del cliente, no de diseño:</b> el titular dice
           «CUATRO INGREDIENTES» y el mosaico tiene cuatro cuadrantes, pero el listado quedó en tres.
@@ -221,25 +223,25 @@ def main() -> int:
   <div class="notas">
     <h3>Las dos decisiones que hubo que tomar, y sus números</h3>
     <ul>
-      <li><b>El encuadre no es libre.</b> El bloque de texto —el que cerraste en la ronda 24— arranca
-          en y=718 de 1350, y el logotipo impreso del vaso tiene que cerrar por encima de eso. Con la
-          ventana a ancho completo el logotipo caía en el 60–66 % y <b>el titular se le montaba encima</b>.
-          La ventana 2344×2930 desde la fila 1070 lo deja al 52 % y la tapa al 6 %.</li>
-      <li><b>La gradación de la ronda 23 no se copió.</b> Aquella empuja calor porque la toma de la
-          entrada venía fría (calidez 9,7). Ésta es madera al sol y entra en <b>50,9</b>: con la receta
-          anterior subía a <b>66,3</b>, o sea el «filtro de color cálido» que mandaste eliminar.
-          Queda en <b>33,1</b> — el set está en 25,9 y la portada aprobada de la r23 cerró en 34,2.</li>
+      <li><b>La foto NO se grada.</b> Entra tal cual el enlace: sin revelado, sin vibrancia y sin
+          calor. Lo único que se hace es el recorte 4:5, que no es opcional (la toma es 3:4).
+          ⚠️ Queda anotado que el set del carrusel está en mediana 101 y esta toma en 116: la portada
+          va a leer más clara que las otras tres. Es lo que pediste.</li>
+      <li><b>El degradado bajó de 0,72 a 0,60.</b> Se barrió midiendo el contraste de la tinta beige
+          —la marca pide 3:1— sobre script · titular · horario:<br>
+          0,72 → 5,41 · 5,54 · 4,77 &nbsp;·&nbsp; 0,65 → 3,92 · 4,98 · 4,05 &nbsp;·&nbsp;
+          <b>0,60 → 3,27 · 4,79 · 3,95</b> &nbsp;·&nbsp; 0,55 → 2,91 · 4,28 · 3,84 (el script se cae).
+          0,60 es lo más suave que deja las tres líneas sobre el mínimo.</li>
+      <li><b>El encuadre no es libre, y esta vez se midió contra el logotipo COMPLETO.</b> El lockup
+          impreso son dos bandas: el wordmark en la fila 2239–2513 y «COFFEE & BAR» en 2617–2685.
+          La primera pasada calculó contra el wordmark y el script terminaba rozando el «COFFEE &amp;
+          BAR». Con el logotipo entero cerrando en 2685, la ventana no puede medir más de
+          2 × (4032 − 2685) = <b>2694</b> de alto: queda 2155×2694 desde la fila 1338, con el
+          logotipo en 33–50 % y el texto entrando en 53,2 %.</li>
+      <li>⚠️ <b>El precio:</b> la tapa del vaso se corta por el canto de arriba. Es inevitable —
+          con la tapa entera haría falta un alto de 2882 y el máximo que cabe en la toma es 2788.</li>
     </ul>
   </div>
-  <table>
-    <tr><th></th><th>Portada r23 (la que estaba)</th><th>Portada r25 (ahora)</th><th>Set del carrusel</th></tr>
-    <tr><td>mediana</td><td class="n">73</td><td class="n">71</td><td class="n">103</td></tr>
-    <tr><td>calidez</td><td class="n">18,6</td><td class="n">17,2</td><td class="n">24,6</td></tr>
-    <tr><td>saturación</td><td class="n">23,5</td><td class="n">30,3</td><td class="n">39,8</td></tr>
-  </table>
-  <p class="que" style="margin-top:14px">La diferencia de mediana contra el set viene del degradado al pie,
-     que es parte del diseño que aprobaste: la portada anterior daba lo mismo (73 contra 71).
-     En saturación la nueva se acerca más al set que la anterior.</p>
 </section>""")
 
     html = f"""<!doctype html>
@@ -252,6 +254,21 @@ def main() -> int:
   <h1>Concurso CEO del café, y los ajustes de la S3 y la S4</h1>
   <p class="sub">Todo lo de esta página ya está subido al Drive. Las stories y la portada del To Go
      reemplazan el MISMO archivo, así que los enlaces de la grilla no cambiaron.</p>
+  <div class="notas" style="margin-top:22px">
+    <h3>Ronda 2 — tus cuatro correcciones, y qué se hizo con cada una</h3>
+    <ul>
+      <li>«la chica debe verse <b>más blanca chilena, pelo ondulado y con gafas lifestyle</b>» →
+          escena regenerada. ⚠️ «Más blanca» se pidió <b>nombrando el tipo</b> («chilena de piel clara,
+          rasgos latinoamericanos»): pedir «menos morena» empuja el fenotipo al nórdico.</li>
+      <li>«la segunda slide no se parece a la referencia 2, <b>añade esas ilustraciones sencillas</b>» →
+          cuatro motivos dibujados en la tinta café de la marca: las tres cuñas que recortaste,
+          una chispa, una estrella de contorno y una flecha. Dos en la portada, cuatro en la 2.</li>
+      <li>«<b>legal del strudel en beige o con caja</b>, que no se ve nada» → beige dentro de caja taupe.
+          Es la salida que el propio cliente dejó escrita para este caso.</li>
+      <li>«la portada del To Go muy oscura y quemada, <b>no edites la foto original</b>» →
+          fuera toda la gradación: la foto entra tal cual el enlace. Y el degradado bajó de 0,72 a 0,60.</li>
+    </ul>
+  </div>
 </header>
 {''.join(partes)}
 <footer>

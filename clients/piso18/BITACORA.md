@@ -70,3 +70,25 @@ guardara el «antes» para la página. Se recuperó con `git show HEAD:…` porq
 fondos de la ronda 3 estaban commiteados. Es exactamente para esto que sirve la
 regla de que el render vuelve al repo el mismo día: sin ese commit el antes/después
 habría sido una reconstrucción a ojo.
+
+### La revisión se publica como página, y el Drive de Hilton NO es interno
+
+`out/piso18/s4/revision-r4/index.html` se publicó como página —el modo de siempre
+para las revisiones de esta cuenta, memoria `antes-y-despues-en-html`—:
+
+  https://claude.ai/artifact/7Fj6vDyRsdYYmWfMbAW4MG
+
+⛔⛔ **Y el hallazgo del día, que vale para las cuatro marcas del complejo:** al
+crear un documento de prueba dentro de `S4 HILTON SEP 2026 › PISO18` se vio que
+esa carpeta hereda **20 permisos de escritura, y dos son del CLIENTE**:
+`magdalena.cordero@hilton.com` y `doubletreesantiagovitacura@gmail.com`. O sea
+que **todo lo que se deja en esa carpeta lo ve Hilton**. Está bien para las piezas
+—para eso es— pero una página de revisión con notas internas **NO va ahí**. El
+documento se sacó de la carpeta a los pocos minutos; quedó huérfano en Mi unidad
+de valeria con el id `1CfYeWQ8rbtrpCmNkh4hBIzCLNOx7i1EWSBI47FpM3yk`, sin acceso
+para nadie más. Decidir si se borra.
+
+Y un detalle de la API que conviene tener escrito: **`permissions().create` sobre
+un permiso que ya venía HEREDADO de la carpeta no crea uno directo** — devuelve el
+heredado. Por eso, al sacar el archivo de la carpeta, los accesos «otorgados»
+desaparecieron junto con la herencia.

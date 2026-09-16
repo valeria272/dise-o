@@ -33,7 +33,7 @@ def estilo() -> str:
     return s[i:j]
 
 
-CUERPO = """<title>Piso18 Semana 4 &middot; ronda 4</title>
+CUERPO = """<title>Piso18 S4 ronda 4</title>
 {estilo}
 <div class="wrap">
 

@@ -1,3 +1,116 @@
+## 2026-09-16 (tarde) · Eli (Windows) — BETWEEN: el CONCURSO de la S3, y tres ajustes de grilla
+
+**Marca: BETWEEN.** Sesión de diseño. Encargo de Eli: «toma los cambios en grilla
+que dejó cliente y haz el concurso del carrusel que solicita ahí en la S3, que es
+urgente […] súbelo en la carpeta de Drive S3 BW con nombre de C1 S3 CONCURSO,
+además necesito los ajustes de grilla S4 y S3».
+
+### Lo que traía la grilla viva (diff contra la instantánea del 10-09)
+
+Se bajó por CSV —el `.xlsx` de Between sigue congelado, el método del 10-09 vale—
+y se diffeó por CONJUNTO de cadenas contra `between-septiembre-2026-vivo/`:
+
+| Hoja | Qué cambió |
+|---|---|
+| FEED col 10 | **PIEZA NUEVA**: «CARRUSEL CONCURSO – SE BUSCA: CEO DEL CAFÉ», `OK PARA DISEÑAR`, fecha `X DEFINIR`, con `REF 1` y `REF2` |
+| FEED col 9 | la fecha del «Ella habló» se movió de **16** a **17 de septiembre** |
+| FEED col 12 | To Go 22-09 sigue `EN CAMBIOS`; comentario NUEVO arriba: «Perdón, se puso mal el enlace: es esta en la G1 …1ZUClVyKcfy…» |
+| FEED col 15 | «Por el momento no tendremos esta info. Cambiar por otro tema por favor» → `PENDIENTE POR CLIENTE` |
+| STORIES col 16 | 21-09 Strudel → `EN CAMBIOS` · «Eliminar MASA y agregar legal Imagen referencial» |
+| STORIES col 17 | 22-09 Primavera → `EN CAMBIOS` · «Agregar legal Imagen referencial» |
+| ORGÁNICOS col 2 | el reel del 15-09 pasó a **RECHAZADO** y su contenido se borró |
+
+⭐ **Las referencias de la grilla SÍ se pueden leer, aunque el CSV no las traiga.**
+El CSV pierde los hipervínculos y la API de Sheets rebota el archivo («must not be
+an Office file»). La vía que funciona es **`export?format=zip`**, que devuelve el
+HTML de cada hoja con sus `<a href>` — y de paso todas las imágenes que el cliente
+pegó dentro. Ahí salieron `REF 1` y `REF2`, dos pines de Pinterest, que se bajaron
+con el Chrome del sistema en headless a `raw/hilton/between/refs-concurso-s3/`.
+
+### 1 · El carrusel del concurso (pieza nueva, 2 láminas)
+
+`src/compositions/hilton/BetweenC1S3Concurso.tsx` · `BW-F-Concurso-1` y `-2`.
+
+**Las dos referencias comparten UN recurso** y ése era el encargo real: el sujeto
+**recortado como sticker con borde blanco**. La REF 1 además pone el titular
+grande y el remate dentro de una caja de color plano; la REF 2, una hoja pegada
+con la LISTA de ítems. Traducido a Between sin inventarle nada:
+
+- el recorte **se generó ya recortado** (Nano Banana Pro, con la foto real del
+  2.º piso y las del vaso To Go vigente como referencia) — no se pegó por código;
+- la caja de color plano **es la caja taupe `#675B49`** que la marca ya tiene;
+- la hoja con la lista **es la tarjeta crema con filas taupe y casillas ✓** de
+  `C1 S2 CUMPLE N2`;
+- el sello «CONCURSO» que pide el brief es esa misma caja taupe girada 4°.
+- ⛔ NO entraron el papel arrugado, la cinta, las polaroids ni los garabatos de la
+  REF 2: el repertorio de línea de Between son los trazos del `.svg` de Eli.
+
+**Entrega:** `C1 S3 CONCURSO N1.png` y `N2.png`, 2250×2812 a 150 ppp, en una
+carpeta **`C1 S3 CONCURSO`** creada dentro de `S3 HILTON SEP 2026 / BW`
+(`1eXZnhj5-2j7o4AuwClf5dngcn6k9oQzC`). Verificadas por `fileSize` contra el local.
+
+### 2 · S4 · las dos stories (21 y 22-09)
+
+- **Strudel**: fuera «Masa» del listado y entra el legal. ⚠️ El legal va en **café
+  y no en beige**, medido: la franja del pie son los dos cuadrantes claros y da
+  159–165 por tercios, o sea «sobre L≈150 va café suelto». Con el beige del
+  sistema salía lavado. La zona del ícono 🍎 sube a 1345–1495 para no taparlo.
+- **Primavera**: entra el legal, y Eli lo corrigió en la misma sesión —«ajusta el
+  legal abajo donde indica la flecha porque no se lee bien»—. La posición estándar
+  de `LegalAlPie` (bottom 360) lo dejaba **sobre el vidrio de la copa**. Bajó al
+  margen de marca (bottom 84): la tinta cae en 1808–1836, 12 px bajo la base de la
+  copa (que cierra en 1796) y sobre madera oscura.
+- Las dos **reemplazan el MISMO archivo** en `S4 HILTON SEP 2026/BW/STS`, así que
+  los enlaces de la grilla no cambiaron.
+
+### 3 · S4 · la portada del carrusel PROMOS TO GO
+
+Eli: «haz el ajuste de la portada, las demás slides están okey según vi
+comentarios». El enlace corregido apunta a **IMG_4146** (el vaso sostenido sobre
+la mesa), no a IMG_4170 (la entrada) que había usado la r23. Verificado por md5:
+es el mismo archivo que `public/assets/hilton/between/togo-sep2026/togo-en-mano-mesa.jpg`,
+ya curado en el repo. Bajó como **HEIC con extensión `.jpg`** — no está roto.
+
+**Dónde quedó:**
+
+- `scripts/between-concurso-s3-generar.py` · `-fotos.py` · `-entrega.py`
+- `scripts/between-st-s4-entrega.py` (nuevo, reemplaza en el mismo archivo)
+- `scripts/between-togo1-r25.py`
+- `scripts/between-revision-16-09.py` → `out/hilton/between/revision-16-09.html`
+- instantánea nueva de las 4 pestañas en `grillas/between-septiembre-2026-vivo/`
+- las 5 piezas **reproducen byte a byte** desde el repo (`cmp`).
+
+**Qué sigue:**
+
+1. ⚠️ **El Strudel queda con una discrepancia INFORMADA:** el titular dice «CUATRO
+   INGREDIENTES» y el mosaico tiene cuatro cuadrantes, pero el listado quedó en
+   tres. Eli confirmó que el cambio es sólo eliminar la palabra. Si el cliente lo
+   nota, la decisión de bajar a «TRES» es suya.
+2. El carrusel del concurso no tiene **fecha**: la grilla dice `X DEFINIR` y el
+   concurso corre del 21 al 30-09. Hay que pedirle la fecha a contenido.
+3. Sigue `PENDIENTE POR CLIENTE` el espacio de «nuevas promos de desayuno»
+   (FEED col 15) — el cliente pidió cambiarlo por otro tema.
+4. El reel orgánico del 15-09 quedó **RECHAZADO** y sin contenido en la grilla.
+
+**Abierto:**
+
+- ⛔⛔ **El token del estudio ya no llega al Drive de Hilton por `files.get`.** Su
+  scope es `drive.file`, así que sólo ve lo que la propia app creó: `files.get`
+  sobre cualquier carpeta de Hilton devuelve 404. **Subir SÍ funciona** (crear con
+  `parents` y reemplazar por nombre lo que ella misma subió), pero para LISTAR o
+  verificar hay que usar el conector MCP de Drive. Las tres subidas de hoy se
+  verificaron así.
+- Siguen de los cierres anteriores: Between **sin `clients/hilton/reglas.yaml`**,
+  las **`GUIA CM`** en local sin decidir cómo llegan al CM, **`BETWEEN.logo.cafe`
+  apuntando a un PNG negro**, el Strudel como producto GENERADO a la espera de
+  foto real, y los falsos positivos de `between-qa.py` (hoy marcó el borde blanco
+  del recorte del concurso como si fuera texto: la tinta que acusa está en
+  y 984–1349 y todo el texto de esa lámina vive entre 96 y 760).
+- ⛔ Y sigue en pie: **`BetweenCumple.tsx:112` y `BetweenSeptiembre.tsx:794` con el
+  legal VIEJO** del cumpleaños.
+
+---
+
 ## 2026-09-16 (tarde) — DT · rondas 7 y 8: los dos estáticos de S3 y S4, ENTREGADOS
 
 **Marca: DT.** Sesión de diseño. Dos piezas, tres cambios, **todos pedidos por el

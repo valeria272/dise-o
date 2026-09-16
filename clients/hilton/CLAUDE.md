@@ -9100,3 +9100,120 @@ proporción de la marca, 3,0278, queda intacta.
 Parámetros finales:
 `--centro 1755 3870 --ancho 780 --angulo -5 --radio 948` — el logotipo abarca
 48,4° del cilindro y su ancho aparente baja de 800 a 776 px.
+
+
+---
+
+# ⭐⭐ S3 · EL CARRUSEL DEL CONCURSO, Y TRES COSAS DE MÉTODO (16-09-2026)
+
+## 1. ⭐⭐⭐ LAS REFERENCIAS DE LA GRILLA SE LEEN CON `export?format=zip`
+
+La grilla de Between es un `.xlsx` SUBIDO. Ya sabíamos que el blob está congelado
+y que la capa viva se lee por `export?format=csv&gid=` (§ S3 · RONDA 10). Faltaba
+una pieza: **el CSV pierde los hipervínculos**, y las columnas `REFES` de esta
+cuenta son justamente eso — un `REF` que enlaza a un pin de Pinterest o a una
+carpeta de Drive. Sin ellos el brief está a medias.
+
+Lo que NO sirve, probado hoy:
+
+| Vía | Resultado |
+|---|---|
+| `export?format=csv` | el texto, **sin** ningún enlace |
+| API de Sheets (`includeGridData`) | `400 — This operation is not supported for this document. The document must not be an Office file` |
+| `/htmlview` por `curl` | una cáscara de JS, ningún `<a href>` |
+
+Lo que SÍ:
+
+```bash
+curl -sL "https://docs.google.com/spreadsheets/d/<ID>/export?format=zip" -o hoja.zip
+```
+
+Devuelve un `.zip` con **un `.html` por pestaña** —con todos los `<a href>`— y,
+de regalo, `resources/image_<gid>_<n>.jpg`: **todas las imágenes que el cliente
+pegó dentro de la hoja**, a resolución completa. Hoy pesó 840 MB por eso mismo,
+así que conviene leer los `.html` desde el propio zip y no extraerlo entero.
+
+De ahí salieron `REF 1` y `REF2` del concurso. Los pines se bajan con el Chrome
+del sistema en headless (memoria `referencias-de-imagen-sin-conector`) pidiendo
+el segmento `1200x` de `i.pinimg.com`.
+
+## 2. ⛔⛔ EL TOKEN DEL ESTUDIO YA NO PUEDE *LEER* EL DRIVE DE HILTON
+
+Su scope es **`drive.file`**: la app sólo ve lo que ella misma creó. `files.get`
+sobre cualquier carpeta de Hilton devuelve **404**, y `files.list` no encuentra
+nada. Es el comportamiento normal del scope, no un permiso roto.
+
+- **Subir sigue funcionando**: crear con `parents` en una carpeta ajena sí se
+  puede, y reemplazar por nombre también, porque esos archivos los creó la propia
+  app en entregas anteriores.
+- **Para LISTAR, VERIFICAR o CREAR una carpeta** hay que usar el **conector MCP
+  de Drive**, que va con la cuenta del navegador. Así se creó hoy
+  `C1 S3 CONCURSO` y así se verificó el `fileSize` de las tres subidas.
+
+> **La regla operativa:** se sube con `scripts/drive-subir.py` y se verifica con
+> el conector. Dar por buena una subida sin mirar dónde cayó es cómo un archivo
+> termina en «Mi unidad».
+
+## 3. ⭐⭐ UN CARRUSEL, UN SOLO CUERPO DE TITULAR — y hay que FIJARLO
+
+`TitularBetween` achica cada pieza por su cuenta hasta que la línea más larga
+entra en la columna (810). En un carrusel eso produce **un cuerpo distinto por
+lámina**, que es el defecto que Eli marcó como «desproporcionado» el 01-09.
+
+Medido en la primera pasada de este carrusel: portada **117** (caja alta de 84,0
+px de tinta) y slide 2 **103** (74,2). Se fija a mano el cuerpo al que entra la
+línea MÁS LARGA de todo el carrusel —acá «EMPIEZA AHORA», 778 px— y se le pasa a
+las dos láminas. Después: 74,4 · 74,4 · 73,9. **Se mide, no se mira.**
+
+## 4. ⭐ LA TINTA DEL LEGAL TAMBIÉN SE MIDE
+
+`LegalAlPie` pinta beige, que es lo correcto sobre una foto oscura. En el Strudel
+del 21-09 la franja del pie son los dos cuadrantes claros —hojaldre y manzana— y
+mide **159 · 162 · 165** por tercios: el legal salió lavado, se veía el asterisco
+y poco más. El criterio del manual vale igual para el legal que para el titular:
+«bajo L≈120 va beige suelto; sobre L≈150 va café suelto». Va en café.
+
+Y en la Primavera del 22-09 el problema no era la tinta sino el SITIO: `bottom:
+360` deja la tinta en 1532–1560 y ahí está el **vidrio de la copa**. Eli lo marcó
+con una flecha. Bajó al margen de marca (`bottom: 84` → tinta en 1808–1836), 12 px
+bajo la base de la copa, sobre madera. **El texto se apoya en el fondo, nunca
+sobre el producto** — la misma regla del garabato, aplicada al legal.
+
+## 5. ⭐ UNA FOTO PUEDE NO TENER ENCUADRE POSIBLE, Y ESO SE RESUELVE ANTES
+
+La portada del To Go cambió de foto por pedido del cliente. El bloque de texto
+—cerrado por Eli en la r24— arranca en y=718 de 1350, y el logotipo impreso del
+vaso tiene que cerrar por encima. Con la ventana 4:5 a ancho completo el logotipo
+caía en el 60–66 % del cuadro: **el titular se le montaba encima**, que es el peor
+error posible en una pieza cuyo héroe es ese vaso.
+
+La ventana se calcula, no se elige: con la tapa en la fila 1244 y la tinta del
+logotipo cerrando en ≈2593, la única que cumple es **2344×2930 desde la fila
+1070** (logotipo al 52 %, tapa al 6 %, y cierra en la 4000 de las 4032 que tiene
+la toma). Si las dos condiciones no se pueden cumplir a la vez, el problema es la
+foto y hay que decirlo — no bajar el texto encima del producto.
+
+## 6. ⛔ LA GRADACIÓN NO SE COPIA ENTRE TOMAS
+
+La receta de la r23 (`CALOR=0,08`, `calidez_max=99`) existe porque **aquella toma
+venía fría** (calidez 9,7) y había que empujarla. La foto nueva es madera al sol y
+entra en **50,9**. Aplicándole la misma receta sube a **66,3** — exactamente el
+«filtro de color cálido» que el cliente mandó eliminar dos veces.
+
+Acá va `CALOR=0` y `calidez_max` bajo, para que `revela` ENFRÍE. Y ojo: el
+parámetro no es el objetivo, porque sólo quita el 55 % del exceso y después el
+contraste y la vibrancia devuelven algo. Se barre y se elige:
+
+    max 22 → 40,1 · max 16 → 36,6 · max 10 → 33,1 · max 4 → 29,5
+
+Quedó en 10 (→ 33,1). El set está en 25,9 y la portada APROBADA de la r23 cerró
+en 34,2 sobre un set de 29,2: una portada ~5 puntos sobre su set ya es lo aceptado.
+
+## 7. ⚠️ Tercer falso positivo conocido de `between-qa.py`
+
+La portada del concurso sale marcada con «texto a 75 px del borde izquierdo». No
+es texto: es el **borde blanco del recorte tipo sticker**, que la máscara confunde
+con un trazo beige junto a tinta oscura. Los píxeles acusados están en **y
+984–1349** y todo el texto de esa lámina vive entre **y 96 y 760**. Se verifica
+imprimiendo las filas de la máscara antes de dar la advertencia por buena.
+

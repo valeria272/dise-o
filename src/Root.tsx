@@ -145,6 +145,9 @@ import {
 import {
   StS3HoraCafe, StS3Cowork, StS3Dieciocho, StS3HoraCafeGuia, StS3CoworkGuia,
 } from "./compositions/hilton/BetweenStS3";
+import {
+  C1S3Concurso1, C1S3Concurso2,
+} from "./compositions/hilton/BetweenC1S3Concurso";
 import {PlanchaTrazos} from "./compositions/hilton/BetweenPlanchaTrazos";
 import {PruebaEmoji} from "./compositions/hilton/BetweenPruebaEmoji";
 import {
@@ -212,6 +215,11 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="BW-S3-Dieciocho" component={StS3Dieciocho} {...btStory} />
         <Composition id="BW-S3-HoraCafe-Guia" component={StS3HoraCafeGuia} {...btStory} />
         <Composition id="BW-S3-Cowork-Guia" component={StS3CoworkGuia} {...btStory} />
+        {/* S3 · CARRUSEL CONCURSO «SE BUSCA: CEO DEL CAFE» — feed 4:5.
+            Encargo de la grilla viva (FEED col 10, OK PARA DISENAR). Se entrega
+            como «C1 S3 CONCURSO N1/N2.png» en la carpeta S3 · BW del Drive. */}
+        <Composition id="BW-F-Concurso-1" component={C1S3Concurso1} {...btFeed} />
+        <Composition id="BW-F-Concurso-2" component={C1S3Concurso2} {...btFeed} />
         {/* S4 · las dos historias estaticas de la semana 4 (21 y 22-09).
             Encargo de Eli del 09-09: guiadas por las dos referencias que dejo
             contenido en Drive. Las `-Guia` llevan marcada la zona del sticker:

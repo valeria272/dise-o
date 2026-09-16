@@ -4,9 +4,10 @@
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,
-LINK MATERIAL STORIES,SEMANA 1,2 septiembre,X DEFINIR,SEMANA 2 ,,10 septiembre,11 septiembre,,SEMANA 3,14 septiembre,X DEFINIR,15 septiembre,16 septiembre,18 septiembre,SEMANA 4,21 septiembre,22 septiembre,SEMANA 5,28 septiembre,30 septiembre
+LINK MATERIAL STORIES,SEMANA 1,2 septiembre,X DEFINIR,SEMANA 2 ,,10 septiembre,11 septiembre,SEMANA 3,14 septiembre,,X DEFINIR,15 septiembre,17 septiembre,18 septiembre,SEMANA 4,21 septiembre,22 septiembre,SEMANA 5,28 septiembre,30 septiembre
 FECHA ,,,,,,,,,,,,,,,,,,,,
-TIPO,,ESTÁTICA,ESTÁTICA,,,ANIMADA,ESTÁTICA,ESTÁTICA,,ANIMADA,,ESTÁTICA,ESTÁTICA,ESTÁTICA,,ESTÁTICA,ESTÁTICA,,ESTÁTICA,ANIMADA
+HORARIO,,,,,,,,,11:00,16:00,,10:00,9:00,10:00,,,,,,
+TIPO,,ESTÁTICA,ESTÁTICA,,,ANIMADA,ESTÁTICA,,ESTÁTICA,ANIMADA,,ESTÁTICA,ESTÁTICA,ESTÁTICA,,ESTÁTICA,ESTÁTICA,,ESTÁTICA,ANIMADA
 DISEÑO,,"POST ESTÁTICO – HUMOR | SEGÚN MIS CÁLCULOS
 
 
@@ -87,7 +88,7 @@ Lunes a viernes
 TO GO
 
 CTA:
-Pasa por Between y llévalo contigo.","ST INTERACTIVA – EMERGENCIA BETWEEN
+Pasa por Between y llévalo contigo.",,"ST INTERACTIVA – EMERGENCIA BETWEEN
 
 Visual:
 Gráfica inspirada en una caja de emergencia con vidrio y el clásico mensaje “Romper en caso de…”. Dentro, en lugar de un objeto de emergencia, aparecen distintos favoritos de Between: un café, un croissant/pastelería y un sándwich. Todo fotografiado de forma atractiva y con estética Between, evitando que parezca una caja de emergencia real.
@@ -98,7 +99,7 @@ ROMPER EN CASO DE ANTOJO
 
 Si solo pudieras sacar uno primero…
 
-¿CUÁL TOMARÍAS?",,"ST ANIMADA – ASÍ SE HACE TU CAFÉ
+¿CUÁL TOMARÍAS?","ST ANIMADA – ASÍ SE HACE TU CAFÉ
 
 Visual general:
 Fondo limpio y cálido, inspirado en los tonos de Between. Sobre él van apareciendo, una a una, fotografías reales en formato Polaroid del proceso de preparación de un café. Las fotos pueden entrar ligeramente giradas y superponerse entre sí, construyendo al final una especie de collage.
@@ -241,19 +242,19 @@ Plateada al Carmenere
 
 Cierre / CTA:
 Haz tu pausa de almuerzo en Between."
-REFERENCIA,,REF,REF,,,,,REF,,REF,,REF,REF,REF,,REF,REF,,REF,REF
-INTERACCIÓN,,LINK CARTA,"Icono "" 🎁 """,,,LINK CARTA,UBICACIÓN,"[STICKER QUIZ / ENCUESTA]
+REFERENCIA,,REF,REF,,,,,,REF,REF,,REF,REF,REF,,REF,REF,,REF,REF
+INTERACCIÓN,,LINK CARTA,"Icono "" 🎁 """,,,LINK CARTA,UBICACIÓN,,"[STICKER QUIZ / ENCUESTA]
 
 ☕ Café
 🥐 Algo dulce
-🥪 Algo salado",,,,"[STICKER QUIZ]
+🥪 Algo salado",,,"[STICKER QUIZ]
 
 A. En la mañana
 B. En la tarde
 C. En la noche
 D. Todo el día ✨",LINK CARTA,,,"Ícono ""🍎""",LINK CARTA,,,LINK CARTA
 HORARIO,,,,,,,,,,,,,,,,,,,,
-COMENTARIOS CLIENTE,,,,,,,,Agregar opción todas las anteriores,,,,,,,,,,,,
+COMENTARIOS CLIENTE,,,,,,,,,Agregar opción todas las anteriores,,,,,,,,,,,
 COMENTARIOS DISEÑO,,"Ok, enlace a carta!","Mismo comentario del legal
 
 
@@ -273,19 +274,19 @@ Que diga Café + Dulce To Go - desde
 Con eso ok!
 
 
-Café con logo Between!","Si solo pudieras sacar uno.... con eso OK
+Café con logo Between!",,"Si solo pudieras sacar uno.... con eso OK
 
 
 Cambiaría que el salado sea un crosant jamon queso y que el dulce sea un muffin
 
 
 
-No se cacha bien al tapar la vitrina con el texto, veamos otra diagramación?",,"Podemos usar fotos en que no salga directamente Nico? que se vean sus manos solamente
+No se cacha bien al tapar la vitrina con el texto, veamos otra diagramación?","Podemos usar fotos en que no salga directamente Nico? que se vean sus manos solamente
 
 
 
 
 Ok, aprovechemos el viernes de sacar estas fotos para que se vea bonito",,,"Saquemos el ''Puedes venir'', reemplacemoslo por Cowork, para dar contexto
 
-Se puede entender que estuvimos cerrados, démosle una vuelta a ese texto","Para no redundar, pongamos ¡Feliz 18 de septiembre! con eso super ok",,,,,,
-ESTADO,,YA POSTEADO,APROBADO,,,YA POSTEADO,YA POSTEADO,APROBADO,,APROBADO,PENDIENTE POR CLIENTE,APROBADO,CORREGIDO,EN REVISIÓN,,OK PARA DISEÑAR,OK PARA DISEÑAR,,OK PARA DISEÑAR,OK PARA DISEÑAR
+Se puede entender que estuvimos cerrados, démosle una vuelta a ese texto","Para no redundar, pongamos ¡Feliz 18 de septiembre! con eso super ok",,Eliminar MASA y agregar legal Imagen referencial,Agregar legal Imagen referencial,,,
+ESTADO,,YA POSTEADO,APROBADO,,,YA POSTEADO,YA POSTEADO,,YA POSTEADO,YA POSTEADO,PENDIENTE POR CLIENTE,YA POSTEADO,APROBADO,APROBADO,,EN CAMBIOS,EN CAMBIOS,,OK PARA DISEÑAR,OK PARA DISEÑAR

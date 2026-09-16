@@ -1140,7 +1140,21 @@ export const ToGo1: React.FC = () => (
        ⚠️ La portada PIERDE dos cosas del brief, informadas a Eli: no se le ve la
           cara (las 18 tomas del bloque tienen la cabeza cortada) y no hay bolsa
           To Go. */
-    foto={F + 'togo-portada-r23.jpg'}
+    /* ⭐⭐ RONDA 25 (16-09) — LA PORTADA CAMBIA DE FOTO, NO DE DISEÑO.
+       `FEED!L15`, prepended arriba de todo (o sea, lo más nuevo):
+         «Perdón, se puso mal el enlace: es esta en la G1
+          https://drive.google.com/file/d/1ZUClVyKcfy_WNcXw8eKhSxe46H7Dpv3i/view»
+       El pedido de la r23 —«armar una foto en la G1 con las fotos sacadas por
+       Seba»— seguía en pie, pero la foto elegida era otra: el enlace corregido
+       apunta a IMG_4146, el vaso sostenido sobre la mesa de listones, y no a
+       IMG_4170, la persona en la entrada que usó la r23. Verificado por md5
+       contra `raw/hilton/between/vasos-togo-sep2026/IMG_4146.HEIC`.
+       Eli, 16-09: «Haz el ajuste de la portada, las demás slides están okey».
+       Los textos NO se tocan: los cerró ella en la r24.
+       Ver `scripts/between-togo1-r25.py` — y ahí está por qué la gradación de la
+       r23 NO se copia (esta toma ya viene cálida y la receta anterior le metía
+       el «filtro» que el cliente mandó eliminar). */
+    foto={F + 'togo-portada-r25.jpg'}
     /* ⭐⭐ RONDA 24 — LOS TEXTOS VUELVEN A COMO ESTABAN. Eli, sobre la r23:
        «Quiero los textos de la portada como estaban antes, se va a ver bien. Si
        necesitas algo puedes añadir una transparencia en opacidad o degradado».

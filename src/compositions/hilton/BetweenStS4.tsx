@@ -98,6 +98,7 @@ import {BETWEEN} from '../../brand/hilton-between';
 import {
   Bajada,
   FotoFondo,
+
   LogoBetween,
   PilaDatos,
   TitularBetween,
@@ -218,7 +219,17 @@ const Cierre: React.FC<{size?: number; style?: React.CSSProperties; children: Re
    no por fondo: la enumeración arriba y el nombre del producto abajo.
    ══════════════════════════════════════════════════════════════════════════ */
 
-const ZONA_ICONO: Zona = {ancho: 300, alto: 180, top: 1395};
+/**
+ * ⭐ RONDA 2 (16-09) — LA ZONA DEL ÍCONO SUBE, Y ES POR EL LEGAL.
+ *
+ * Estaba en `top: 1395, alto: 180`, o sea 1395–1575, y `LegalAlPie` en formato
+ * historia se apoya en `bottom: 360` → la tinta del legal cae en 1532–1560,
+ * DENTRO de esa zona. El sticker que el CM pega encima al publicar le habría
+ * tapado el legal, que es justo lo que el cliente acaba de pedir agregar.
+ * Sube a 1345–1495 y queda: pila de cajas hasta 1322 · zona 1345–1495 · legal
+ * 1532–1560 · zona segura de Meta desde 1580.
+ */
+const ZONA_ICONO: Zona = {ancho: 300, alto: 150, top: 1345};
 
 export const StS4Strudel: React.FC<{guia?: boolean}> = ({guia = false}) => (
   <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
@@ -259,13 +270,57 @@ export const StS4Strudel: React.FC<{guia?: boolean}> = ({guia = false}) => (
     </Columna>
 
     {/* Las dos líneas complementarias, bajo el plato (que cierra en y=1161). */}
-    <div style={{position: 'absolute', left: 0, right: 0, top: 1215, display: 'flex', justifyContent: 'center'}}>
-      <PilaDatos datos={['Masa · Manzana · Canela · Nueces', 'Strudel de manzana']} />
+    {/* ⚖️ RONDA 2 (16-09) — «Eliminar MASA». Sale del listado y la pila sube 35
+        px, porque con tres ítems la línea es más corta y el bloque respira
+        mejor bajo el plato (que cierra en y=1161).
+        ⚠️ QUEDA UNA DISCREPANCIA QUE NO ME TOCA RESOLVER, Y ESTÁ INFORMADA:
+        el titular dice «CUATRO INGREDIENTES» y el mosaico tiene cuatro
+        cuadrantes (masa · manzana · canela · nueces). Sacando MASA, el listado
+        queda en tres. El titular es texto LITERAL de la grilla y el cambio de
+        «CUATRO» a «TRES» es del cliente, no del diseño. Ver la bitácora del
+        16-09. */}
+    <div style={{position: 'absolute', left: 0, right: 0, top: 1180, display: 'flex', justifyContent: 'center'}}>
+      <PilaDatos datos={['Manzana · Canela · Nueces', 'Strudel de manzana']} />
     </div>
 
     {guia ? (
-      <ZonaReservada zona={ZONA_ICONO} etiqueta={'ÍCONO 🍎\n300 × 180'} />
+      <ZonaReservada zona={ZONA_ICONO} etiqueta={'ÍCONO 🍎\n300 × 150'} />
     ) : null}
+
+    {/* ⚖️ «…y agregar legal Imagen referencial». El strudel de esta pieza es
+        producto GENERADO —Between no tiene ninguna foto del Strudel de manzana:
+        buscado en las 202 de la sesión de enero, en los desayunos de agosto, en
+        `dulces-tortas` y en la carta— así que el legal no es una formalidad.
+
+        ⭐ VA EN CAFÉ Y NO EN BEIGE, y es medido. `LegalAlPie` pinta beige, que
+        es lo correcto sobre una foto oscura; acá la franja del pie son los dos
+        cuadrantes claros —hojaldre y manzana verde— y mide, por tercios:
+
+            y 1532 · 159,3 · 161,9 · 165,2      (el peor manda)
+            y 1546 · 153,4 · 161,5 · 160,5
+            y 1560 · 154,9 · 149,4 · 154,3
+
+        El criterio del manual es «bajo L≈120 va beige suelto; sobre L≈150 va
+        café suelto». Con el beige de `LegalAlPie` el legal salió lavado sobre
+        el hojaldre: se veía el asterisco y poco más. Misma posición, misma
+        cursiva y mismo cuerpo — lo único que cambia es la tinta. */}
+    <div
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 360,
+        textAlign: 'center',
+        fontFamily: BETWEEN.fuentes.sans,
+        fontStyle: 'italic',
+        fontWeight: BETWEEN.pesos.semibold,
+        fontSize: 28,
+        lineHeight: 1,
+        color: BETWEEN.colores.cafe,
+      }}
+    >
+      *Imagen referencial.
+    </div>
   </AbsoluteFill>
 );
 
@@ -465,6 +520,51 @@ export const StS4Primavera: React.FC<{guia?: boolean}> = ({guia = false}) => (
     {guia ? (
       <ZonaReservada zona={ZONA_ENLACE} etiqueta={'STICKER\nDE ENLACE\n(carta)\n300 × 140'} />
     ) : null}
+
+    {/* ⚖️ RONDA 2 (16-09) — «Agregar legal Imagen referencial», y RONDA 3 del
+        mismo día: Eli lo marcó en rojo con una flecha hacia abajo —«ajusta el
+        legal abajo donde indica la flecha porque no se lee bien».
+
+        ⛔ POR QUÉ NO VA EN `LegalAlPie`. La posición estándar de historia
+        (`bottom: 360`) deja la tinta en 1532–1560, y ahí cae sobre el CUERPO DE
+        VIDRIO de la copa: fondo claro, brillante y con estructura, o sea lo
+        peor para una cursiva beige de 28 px. Es además la regla de la marca —el
+        texto se apoya en el FONDO, nunca sobre el producto.
+
+        ⭐ LA POSICIÓN NUEVA SALE DE MEDIR, no de mover a ojo. La base de la copa
+        cierra en y=1796. Las bandas de abajo, por tercios (manda el peor):
+
+            1750–1780 · 87,5 · 115,4 · 112,3   ← todavía pisa la base
+            1810–1840 · 92,1 ·  91,7 · 119,9   ← mesa de madera oscura, limpia
+            1840–1870 · 83,4 ·  77,8 · 111,9
+
+        Con `bottom: 84` —el margen de marca— la tinta queda en 1808–1836: 12 px
+        bajo la base de la copa y sobre madera. El criterio del manual es «bajo
+        L≈120 va beige suelto» y acá el peor tercio da 119,9.
+
+        ⚠️ Entra 256 px en la franja inferior de 340 px de Meta, y es decisión de
+        ella. Tiene precedente en la cuenta (el legal del cumpleaños entra 122 px
+        y su propia plantilla de story con logo abajo entra 104). **Si esta pieza
+        pasara a pauta hay que rehacer el pie.** */}
+    <div
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: BETWEEN.bloque.margenX,
+        textAlign: 'center',
+        fontFamily: BETWEEN.fuentes.sans,
+        fontStyle: 'italic',
+        fontWeight: BETWEEN.pesos.regular,
+        fontSize: 28,
+        lineHeight: 1,
+        color: BETWEEN.colores.beige,
+        opacity: 0.9,
+        textShadow: '0 2px 16px rgba(36,26,18,0.75)',
+      }}
+    >
+      *Imagen referencial.
+    </div>
 
     {/* ⭐⭐ EL 🌸 DEL BRIEF, QUE AL FINAL SÍ SE PUEDE. Eli: «en el título te faltó
         añadir este emoji 🌸».

@@ -549,3 +549,30 @@ out/hilton/dt/ft-honors/*
 !out/hilton/dt/ft-honors/editable/
 out/hilton/dt/ft-honors/editable/*
 !out/hilton/dt/ft-honors/editable/*.ai
+
+# ── BETWEEN · S3 · CARRUSEL CONCURSO «CEO DEL CAFÉ» (16-09-2026) ─────────────
+# Las dos referencias que dejó el cliente en la grilla (Pinterest) y las dos
+# escenas GENERADAS que usan las láminas, más sus derivados 4:5 de entrega.
+# Sin esto la pieza no se reproduce: son la foto de las dos slides.
+# ⚠️ Las tiradas DESCARTADAS de la portada (`-ambiente`, `-sticker`, `-sticker-r2`)
+# y la alternativa `gen-fondo-2` NO viajan — 70 MB que no rinden nada. Sus
+# prompts sí quedan, en `scripts/between-concurso-s3-generar.py`.
+# ⚠️ Git no entra en un directorio excluido, así que hay que negar la cadena
+# entera: `raw/hilton/*` (arriba) no deja descender a `between/`.
+!raw/hilton/between/
+raw/hilton/between/*
+!raw/hilton/between/refs-concurso-s3/
+raw/hilton/between/refs-concurso-s3/*
+!raw/hilton/between/refs-concurso-s3/*.jpg
+!raw/hilton/between/concurso-s3/
+raw/hilton/between/concurso-s3/*
+!raw/hilton/between/concurso-s3/gen-portada-sticker-r3.png
+!raw/hilton/between/concurso-s3/gen-escritorio-2.png
+!raw/hilton/between/concurso-s3/refs/
+raw/hilton/between/concurso-s3/refs/*
+!raw/hilton/between/concurso-s3/refs/*.jpg
+!public/assets/hilton/between/concurso-s3/*.jpg
+
+# BETWEEN · PROMOS TO GO · ronda 25: la portada nueva, recortada y gradada de
+# IMG_4146 (la foto que el cliente enlazó). Ver scripts/between-togo1-r25.py.
+!public/assets/hilton/between/fotos-gradadas/togo-portada-r25.jpg

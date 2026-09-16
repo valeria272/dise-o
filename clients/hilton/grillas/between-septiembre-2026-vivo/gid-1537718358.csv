@@ -1,13 +1,13 @@
-  ds,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-LINK MATERIAL FEED,SEMANA 2 ,7 de septiembre,,10 septiembre,11 de septiembre,SEMANA 3,14 de septiembre,,16 septiembre,SEMANA 4,22 de septiembre,,SEMANA 4,X DEFINIR
-FECHA,,,,,,,,,,,,,,
-HORARIO,,13:00,,12:00,18:00,,15:00,,18:00,,10:00,,,X DEFINIR
-TIPO,,CARRUSEL,,ESTÁTICO,ESTÁTICO,,CARRUSEL,,ESTÁTICO,,CARRUSEL,,,
+  ds,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+LINK MATERIAL FEED,SEMANA 2 ,7 de septiembre,,10 septiembre,SEMANA 3,14 de septiembre,16 de septiembre,,17 septiembre,X DEFINIR,SEMANA 4,22 de septiembre,,SEMANA 4,X DEFINIR
+FECHA,,,,,,,,,,,,,,,
+HORARIO,,13:00,,12:00,,13:00,15:00,,12:00,POR DEFINIR,,10:00,,,X DEFINIR
+TIPO,,CARRUSEL,,ESTÁTICO,,ESTÁTICO,CARRUSEL,,ESTÁTICO,CARRUSEL,,CARRUSEL,,,
 DISEÑO,,"CARRUSEL DINÁMICO – COWORK EN BETWEEN
 
 PORTADA
@@ -71,7 +71,7 @@ ES PARA TI.
 Texto complementario:
 
 Si estás de cumpleaños,
-en Between te invitamos el café.","POST ESTÁTICO – HUMOR | CAFECITO BETWEEN
+en Between te invitamos el café.",,"POST ESTÁTICO – HUMOR | CAFECITO BETWEEN
 
 Visual:
 Fotografía lifestyle de una chica sentada en Between, disfrutando tranquilamente un café servido en taza. Debe estar en una actitud relajada, tomando un sorbo y mirando hacia otro lado, como si estuviera completamente ajena a cualquier preocupación.
@@ -79,7 +79,7 @@ Fotografía lifestyle de una chica sentada en Between, disfrutando tranquilament
 Texto en imagen:
 
 “Perdón, esa preocupación
-no cabe en mi cafecito de Between.” ",,"CARRUSEL – PRIMERO LA FOTO… ¿O NO?
+no cabe en mi cafecito de Between.” ","CARRUSEL – PRIMERO LA FOTO… ¿O NO?
 SLIDE 1
 
 Visual:
@@ -130,7 +130,43 @@ Taza casi llena:
 “Ella habló”
 
 Taza casi vacía:
-“Ella escuchó”",,"CARRUSEL – PROMOS TO GO
+“Ella escuchó”","CARRUSEL CONCURSO – SE BUSCA: CEO DEL CAFÉ 
+SLIDE 1 — CONCURSO + HOOK
+
+Visual:
+Persona en Between con café en mano, sentada con actitud de “CEO”: notebook, escritorio y una pose relajada. Estética de aviso laboral/editorial, pero divertida y muy Between.
+Agregar un pequeño recurso tipo sello o etiqueta que diga CONCURSO.
+
+Texto:
+SE BUSCA:
+CEO DEL CAFÉ
+
+¿El sueldo?
+1 MES DE CAFÉ GRATIS.
+
+CTA:
+Postula aquí → Desliza
+
+SLIDE 2 — DINÁMICA + PREMIO
+
+Visual:
+Foto de una taza de Between sobre una mesa, acompañada de elementos de oficina tipo libreta, lápiz, notebook o credencial. Mantener la lógica de “postulación”, pero con una diagramación muy limpia.
+
+Texto principal:
+TU ENTREVISTA EMPIEZA AHORA 
+
+Completa en los comentarios:
+
+“Si yo fuera CEO de Between,
+mi primera acción sería…”
+
+Para participar:
+ Sigue a @between.coffeebar
+ Déjanos tu respuesta
+Etiqueta a tu mano derecha
+
+Legal:
+Concurso válido desde el 21 hasta el 30 de septiembre de 2026. El ganador será anunciado el 1 de octubre de 2026.",,"CARRUSEL – PROMOS TO GO
 
 SLIDE 1 – PORTADA
 
@@ -187,7 +223,7 @@ Desde $5.290
 Llévalo contigo.",,,"ESPACIO NUEVAS PROMOS DE DESAYUNO
 
 (Pendiente info comercial por cliente) "
-REFES,,REF,,REF,REF,,REF,,REF,,,,,
+REFES,,REF,,REF,,REF,REF,,REF,REF 1  - REF2,,,,,
 COPY,,"Cambiar de espacio también puede cambiar tu día. 💻
 
 En Between encuentras WiFi, espacios para trabajar o reunirte y, por supuesto, buen café para acompañar la jornada. ☕
@@ -206,7 +242,7 @@ Te esperamos para celebrar contigo.
 📍 Vitacura 2727, Las Condes, Santiago.
 
 #BetweenCoffee #CafeSantiago #Cumpleaños #LasCondes
-","Hay cosas que pueden esperar cinco minutos. El cafecito no. ☕
+",,"Hay cosas que pueden esperar cinco minutos. El cafecito no. ☕
 
 Haz una pausa, pide tu favorito y deja que el resto del día espere un poquito. 🤎
 
@@ -215,7 +251,7 @@ Ven por tu momento Between.
 📍 Vitacura 2727, Las Condes, Santiago.
 
 #BetweenCoffee #CafeSantiago #CoffeeBreak #LasCondes
-",,"La foto va primero… hasta que algo se ve demasiado rico. 😂
+","La foto va primero… hasta que algo se ve demasiado rico. 😂
 
 Café, desayuno, algo dulce o ese antojo que no alcanzó a llegar a la foto. En Between hay más de uno que vas a querer guardar en favoritos. ☕
 
@@ -232,6 +268,19 @@ Etiqueta a esa amiga con la que un café nunca es solo un café.
 📍 Vitacura 2727, Las Condes, Santiago.
 
 #BetweenCoffee #CafeteriaSantiago #CoffeeTime #LasCondes
+","Abrimos una vacante muy importante para celebrar el Día del Café: CEO DEL CAFÉ. ☕👀
+
+Para postular, completa en los comentarios:
+
+“Si yo fuera CEO de Between, mi primera acción sería…”
+
+Puede ser seria, absurda o completamente necesaria para la sociedad 😂. La respuesta más creativa gana 1 mes de café gratis.
+
+Sigue nuestra cuenta, comenta y etiqueta a tu mano derecha para participar.
+
+Participa hasta el 30 de septiembre. Anunciaremos al ganador este 1 de octubre, en el Día del Café. ☕✨
+
+#BetweenCoffeeBar #CafeSantiago #CafeteriasSantiago #LasCondes
 ",,"Que salir apurado no signifique saltarse el desayuno. ☕️
 
 De lunes a viernes, pasa por Between entre 08:00 y 10:00 hrs. y encuentra nuestras Promos To Go desde $3.790. 🥐
@@ -239,7 +288,7 @@ De lunes a viernes, pasa por Between entre 08:00 y 10:00 hrs. y encuentra nuestr
 Elige tu combinación favorita y sigue tu mañana.
 
 #BetweenCoffee #DesayunoSantiago #CafeToGo #LasCondes",,,PENDIENTE INFO PARA REALIZAR COPY
-COMENTARIOS CLIENTE,,,,,,,,,,,,,,
+COMENTARIOS CLIENTE,,,,,,,,,,,,,,,
 COMENTARIOS DISEÑO ,,"OK! Agreguemos dirección en copy!
 
 
@@ -265,7 +314,7 @@ Luego complemento con ¡Ven por tu café de regalo!
 En la G2 considerar este listado e incluir emojis nuevamente
 
 
-Agregar elementos cumpleañeros como en el anterior","Tenemos que modificar el aspecto de estas modelos, ya no las podemos usar tal cual",,"Qué plato es el que ya está comido?
+Agregar elementos cumpleañeros como en el anterior",,"Tenemos que modificar el aspecto de estas modelos, ya no las podemos usar tal cual","Qué plato es el que ya está comido?
 
 
 Ese kimbo en la G1 hay que quitarlo, porque ya no servimos en esas tazas
@@ -281,7 +330,20 @@ Pondría un café que se vea más lindo, algo con arte late y el otro se tiene q
 En cuanto al diseño, me gustaría ver textos más limpios (sin el recuadro atrás) y qque el de Ella habló esté más cerca de su respectiva taza
 
 
-",,"Mismo comentario que antes sobre la G1, el fondo no tiene nada que ver con BT, tenemos algunos videos que hemos hecho en la entrada de BT, saquemos el fondo de ahí?
+",,,"
+
+Perdón, se puso mal el enlace: es esta en la G1 https://drive.google.com/file/d/1ZUClVyKcfy_WNcXw8eKhSxe46H7Dpv3i/view?usp=drive_link 
+
+
+
+Vamos con esta: https://drive.google.com/drive/folders/1hHcwg-Z-h9OuOhM0rkc-eotuzSMpUuq9
+
+
+
+Ver si podemos armar una foto en la G1 conlas fotos sacadas por Seba
+
+
+Mismo comentario que antes sobre la G1, el fondo no tiene nada que ver con BT, tenemos algunos videos que hemos hecho en la entrada de BT, saquemos el fondo de ahí?
 Pensando en los precios, mejor vámonos a la segura como hacemos siempre con los precios desde (que diga desde) y eliminar el texto y flecha que dice Café grande
 
 
@@ -291,5 +353,5 @@ En la G 4 debemos poner un dulce y un salado en la foto y que el vaso sea como e
 
 
 
-Intercambiemos fechas con el de cowork",,,
-ESTADO,,YA POSTEADO,,YA POSTEADO,APROBADO,,APROBADO,,APROBADO,,CORREGIDO,,,PENDIENTE POR CLIENTE
+Intercambiemos fechas con el de cowork",,,Por el momento no tendremos esta info. Cambiar por otro tema por favor
+ESTADO,,YA POSTEADO,,YA POSTEADO,,YA POSTEADO,APROBADO,,APROBADO,OK PARA DISEÑAR,,EN CAMBIOS,,,PENDIENTE POR CLIENTE

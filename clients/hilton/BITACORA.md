@@ -18,6 +18,37 @@ Opinión Booking) está `APROBADO` **con todos sus comentarios tachados**, y STO
 col K (27-09, Día del Turismo) sigue en `EN REVISIÓN` **sin un solo comentario**.
 Ninguna de las dos se tocó.
 
+### ⭐⭐ RONDA 8 — la historia volvió, y las dos correcciones eran la misma
+
+Eli sobre la ronda 7: **«aumenta más el zoom de los animadores porque no se ve
+mucho»** y **«puedes llegar un poco más abajo siguiendo la línea porque se ve un
+lado azul extraño. Que debería ser igual a los otros espacios azulitos que se ven.
+No tanto como ese.»** · «lo demás cambios okey».
+
+⛔ **La costura era un defecto de verdad y tenía un número.** La junta entre el
+cuadro de los animadores y el de la mesa iba en **43,5 px @1080** cuando todas las
+demás del mosaico van en **5**. Sale del `+ 38` del polígono de `mesa-azul`, que
+baja su borde superior sin que nadie bajara el del cuadro de arriba: 5 + 38 = 43.
+
+Se arregló **bajando el cuadro de arriba** —lo que ella pidió, y además deja
+intacto el encuadre ya aprobado de la mesa—, con el borde inferior **paralelo al
+techo de `mesa-azul` y 5 px por encima**. Lleva un escalón a propósito en x=425,
+donde quien manda pasa a ser `colaborador`; cae justo detrás de la junta vertical,
+o sea no se ve. Verificado: 4,8 · 4,8 · 4,8 · 5,3 px a lo largo de la diagonal.
+
+⭐ **Y las dos correcciones se resolvieron con el mismo movimiento:** al bajar la
+costura el cuadro **creció de 305 a 343 px de alto**, y eso es lo que permitió
+subir el zoom de 1,45× a **2,0×** sin cortar a los animadores más arriba. Quedan en
+**736 px, el 52 %** del ancho del cuadro (venían del 26 % en la ronda 6), vistos de
+la cabeza a medio muslo, con la manta y la faja enteras.
+
+> ⭐⭐ **Regla para cualquier mosaico:** las costuras se **miden**, no se miran. Un
+> filete que se sale del patrón se lee como error de montaje aunque nadie sepa
+> decir por qué, y un polígono con desplazamiento propio rompe la promesa de
+> `FILETE = 5` en silencio.
+
+**Entregada.** Re-subida al mismo archivo del Drive: el enlace sigue igual.
+
 ### ⭐⭐ El hallazgo de la sesión: la foto de una pieza con tinta blanca se ELIGE MIDIENDO
 
 El pedido decía «habitación de categoría superior» y las habitaciones bonitas del
@@ -49,7 +80,8 @@ titular en **6,3:1 cuando de verdad estaba en 2,8:1** — o sea aprobaba piezas 
 | Pieza | Elemento | Antes | Después |
 |---|---|---|---|
 | ST 18-09 | bajada en versales | «DOUBLETREE.» · 340 px | **«DOUBLETREE» · 335 px** |
-| ST 18-09 | cuadro del escenario | pareja 368 px = 26 % del cuadro | **zoom 1,45× → 534 px = 38 %** |
+| ST 18-09 | cuadro del escenario | pareja 368 px = 26 % del cuadro · cuadro 305 de alto | **zoom 2,0× → 736 px = 52 % · cuadro 343** |
+| ST 18-09 | costura con el cuadro de abajo | **43,5 px** | **5 px, como el resto del mosaico** |
 | Post 23-09 | foto de fondo | `HDT_36` lobby | **`HDT_68` suite, fx 0,80** |
 | Post 23-09 | logotipo DT | 2,42:1 *(desviación declarada)* | **4,32:1** |
 | Post 23-09 | logotipo Hilton Honors | 6,70:1 | **8,60:1** |
@@ -64,9 +96,12 @@ Las dos pasan `dt-qa.py` **limpias**. `npm run typecheck` limpio.
 2. **`dt-ft-honors-foto.py` es por variantes**: `suite` (la que va), `estar68` (la
    alternativa medida), `king` · `bienvenida` · `estar` (descartadas, con su
    número) y `lobby` (reconstruye la entrega vieja byte a byte).
-3. **La página de la ronda** — `out/hilton/dt/DT S3-S4 - ronda 7.html`, con el
-   antes, el después, los dos detalles de cerca y las alternativas de foto. Un
-   solo archivo, imágenes embebidas.
+3. **La página de la ronda** — `out/hilton/dt/DT S3-S4 - ronda 8.html`, con el
+   antes, el después, los animadores **ronda a ronda**, la costura de cerca y las
+   alternativas de foto. Un solo archivo, imágenes embebidas.
+   ⭐ Eli no podía abrirla desde la terminal, así que se **publicó como página web**:
+   https://claude.ai/artifact/4L1rHEMfybm5w6ehMpqsPN — se republica al mismo enlace
+   cada ronda. Ojo: **Drive no renderiza `.html`**, los ofrece para descargar.
 4. Las rondas anteriores archivadas en `_rondas/` de cada pieza.
 
 ### ⛔ La entrega quedó a MEDIAS en el Drive, y esto es lo que falta

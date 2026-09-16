@@ -926,7 +926,7 @@ python scripts/dt-qa.py "out/hilton/dt/ft-honors/Post n°1 S4 DT.png"
 python scripts/dt-ronda7-revision.py           # la página que mira Eli
 ```
 
-### ⭐⭐ LA HISTORIA DEL 18-09 — RONDA 7, LA PRIMERA DEL CLIENTE
+### ⭐⭐ LA HISTORIA DEL 18-09 — RONDAS 7 Y 8
 
 Javier Meza por WhatsApp, 16-09 10:22: «2 ajustes · **Quitar punto final** ·
 **Hacerle más zoom a foto de animadores** para que se vean más grandes» · «el
@@ -940,21 +940,53 @@ resto ok!».
    como que el texto se puede editar.
 2. **Los animadores se acercan.** El zoom vive en el cuadro `escenario` de
    `scripts/dt-st-fiestas-collage.py`, no en la composición: `recorta()` ahora
-   acepta `zoom`, que escala uniforme y recorta — **no deforma**.
+   acepta `zoom`, que escala uniforme y recorta — **no deforma**. La ronda 7 lo
+   dejó en 1,45× y **la ronda 8 lo subió a 2,0×** porque Eli dijo que seguía sin
+   verse.
 
-#### ⭐ Cuánto zoom, y por qué 1,45×
+#### ⭐ Cuánto zoom, y por qué 2,0×
 
-El cuadro es apaisado (1415×636) y los animadores están de **cuerpo entero** —de
-0,33 a 0,99 del alto de la foto—, así que acercar obliga a cortarlos:
+El cuadro es apaisado y los animadores están de **cuerpo entero** —de 0,33 a 0,99
+del alto de la foto—, así que acercar obliga a cortarlos:
 
 | | Ancho de la pareja | % del cuadro | Corte |
 |---|---|---|---|
-| antes (`cover` justo) | 368 px | 26 % | ninguno, pero se lee el escenario y no ellos |
-| **zoom 1,45×** | **534 px** | **38 %** | a media caña de la bota — plano americano |
+| ronda 6 (`cover` justo) | 368 px | 26 % | ninguno, pero se lee el escenario y no ellos |
+| ronda 7 · zoom 1,45× | 534 px | 38 % | a media caña de la bota. **Eli: «no se ve mucho»** |
+| **ronda 8 · zoom 2,0×** | **736 px** | **52 %** | a medio muslo — manta y faja enteras |
 | más zoom | — | — | los sube hasta la cintura y **se pierde el traje de huaso** |
 
 ⚠️ Al subir el zoom hay que **recalcular el `foco`** o el motivo se sale del
-cuadro: 0,468 los deja centrados y 0,619 les deja ~60 px de aire sobre la cabeza.
+cuadro: 0,480 los deja centrados y 0,542 les deja ~50 px de aire sobre la cabeza.
+
+#### ⛔⛔ RONDA 8 — LA COSTURA GORDA DEL MOSAICO, Y LO QUE ENSEÑA
+
+Eli, sobre la ronda 7: **«puedes llegar un poco más abajo siguiendo la línea
+porque se ve un lado azul extraño. Que debería ser igual a los otros espacios
+azulitos que se ven. No tanto como ese.»**
+
+Tenía un número detrás. Medida sobre el JPG, la junta entre `escenario` y
+`mesa-azul` iba en **43,5 px @1080** cuando **todas** las demás del mosaico van en
+**5**. El origen es el `+ 38` del polígono de `mesa-azul`, que baja su borde
+superior; nadie había bajado el del cuadro de arriba, y **5 + 38 = 43**.
+
+**Se arregló bajando el cuadro de arriba, no subiendo el de abajo** — que es lo
+que ella pidió, y además deja intacto un encuadre ya aprobado. El borde inferior
+de `escenario` pasa a ir **paralelo al techo de `mesa-azul` y 5 px por encima**.
+
+⚠️ **Y lleva un escalón a propósito.** De x=425 hacia la izquierda quien manda es
+`colaborador`, cuyo techo está en 1443, así que ahí el borde se queda en 1438. El
+escalón cae justo detrás de la junta vertical entre los dos cuadros de abajo, o
+sea **no se ve**.
+
+⭐ De paso el cuadro **crece de 305 a 343 px de alto**, y eso es lo que permitió
+subir el zoom sin cortar a los animadores más arriba. Las dos correcciones de la
+ronda se resolvieron con el mismo movimiento.
+
+> ⭐⭐ **La regla que queda para cualquier mosaico:** las costuras se **miden**, no
+> se miran. Un filete que se sale del patrón se lee como un error de montaje aunque
+> nadie sepa decir por qué. `FILETE = 5` es la promesa del mosaico, y cualquier
+> polígono con un desplazamiento propio (el `+ 38`) la rompe en silencio.
 
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 

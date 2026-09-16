@@ -135,25 +135,48 @@ CUADROS = [
     # banda 4 — el segundo corte en diagonal, en el pie derecho
     {"id": "parrilla",  "foto": "IMG_1636", "foco": (0.52, 0.52),
      "poly": [(0, 1133), (396, 1133), (396, 1438), (0, 1438)]},
-    # ⭐ RONDA 7 — LOS ANIMADORES. Javier Meza, 16-09: «hacerle más zoom a foto de
-    # animadores para que se vean más grandes». Son los dos del escenario, y en el
-    # `cover` justo ocupaban 368 px de los 1415 de ancho del cuadro (26 %).
+    # ⭐⭐ RONDA 8 — LOS ANIMADORES, Y LA COSTURA AZUL. Eli, 16-09: «aumenta más el
+    # zoom de los animadores porque no se ve mucho» y «puedes llegar un poco más
+    # abajo siguiendo la línea porque se ve un lado azul extraño; debería ser igual
+    # a los otros espacios azulitos».
     #
-    # El cuadro es apaisado (1415×636, proporción 2,23) y ellos están de CUERPO
-    # ENTERO —de 0,33 a 0,99 del alto de la foto—, así que acercar obliga a
-    # cortarlos: a zoom 1,45 la pareja mide 534 px de ancho (38 %) y el corte cae
-    # a media caña de la bota, que es un plano americano de toda la vida.
-    # Más zoom los subiría de plano hasta la cintura y se perdería el traje de
-    # huaso, que es justo lo que hace la foto.
+    # ⛔ LA COSTURA ERA UN DEFECTO, Y TENÍA UN NÚMERO. Medida sobre el JPG, la
+    # junta entre este cuadro y `mesa-azul` iba en **43,5 px** @1080 cuando todas
+    # las demás del mosaico van en **5**. Nace del `+ 38` de `mesa-azul`, que baja
+    # su borde superior sin que nadie bajara el de éste: 5 + 38 = 43.
     #
-    # El `foco` se recalculó con el zoom: 0,468 deja a la pareja centrada y 0,619
-    # les deja ~60 px de aire sobre la cabeza. Si se toca el zoom, se recalcula.
-    {"id": "escenario", "foto": "IMG_1610", "foco": (0.468, 0.619), "zoom": 1.45,
-     "poly": [(401, 1133), (1080, 1133), (1080, 1400), (401, 1438)]},
+    # Se arregla **bajando este cuadro**, que es lo que pidió ella, y no subiendo
+    # el otro: el borde inferior pasa a ir PARALELO al techo de `mesa-azul` y 5 px
+    # por encima. Por eso la esquina de abajo a la izquierda hace un escalón en
+    # x=425: de ahí a la izquierda quien manda es `colaborador`, cuyo techo está en
+    # 1443, y el escalón queda escondido justo detrás de la junta vertical.
+    #
+    # ⭐ Y de paso el cuadro CRECE de 305 a 343 px de alto @1080, que es lo que
+    # permite subir el zoom sin cortarlos más arriba.
+    #
+    # EL ZOOM. En el `cover` justo la pareja ocupaba 368 px de los 1415 de ancho
+    # (26 %). La ronda 7 la dejó en 1,45× = 534 px (38 %) y Eli dice que sigue sin
+    # verse. A **2,0×** quedan en **736 px, el 52 %** del cuadro.
+    #
+    # ⚠️ Ellos están de CUERPO ENTERO —de 0,33 a 0,99 del alto de la foto—, así que
+    # el zoom se paga cortando: a 2,0× se ve de la cabeza a 0,75 del alto, o sea
+    # hasta medio muslo. Entran enteros la manta del huaso y la faja de ella, que
+    # es lo que hace la foto. Más zoom empieza a comerse el traje.
+    #
+    # El `foco` se recalcula CON el zoom o se salen del cuadro: 0,480 los deja
+    # centrados y 0,542 les deja ~50 px de aire sobre la cabeza.
+    {"id": "escenario", "foto": "IMG_1610", "foco": (0.480, 0.542), "zoom": 2.0,
+     "poly": [(401, 1133), (1080, 1133), (1080, 1438), (425, 1476),
+              (425, 1438), (401, 1438)]},
 
     # banda 5
     {"id": "colaborador", "foto": "IMG_2141", "foco": (0.46, 0.42),
      "poly": [(0, 1443), (420, 1443), (420, 1920), (0, 1920)]},
+    # ⚠️ El `+ 38` baja el techo de este cuadro respecto de la junta normal (1443 /
+    # 1405). No se toca —es el encuadre que ya estaba aprobado— pero ES el origen
+    # de la costura gorda que marcó Eli en la ronda 8: el cuadro de arriba se bajó
+    # para acompañarlo. Si alguna vez se cambia este 38, hay que rehacer el borde
+    # inferior de `escenario`, que va calcado 5 px por encima de éste.
     {"id": "mesa-azul", "foto": "IMG_1690", "foco": (0.52, 0.52),
      "poly": [(425, 1443 + 38), (1080, 1405 + 38), (1080, 1920), (425, 1920)]},
 ]

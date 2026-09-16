@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Arma la página de la RONDA 7 de DOUBLETREE — los DOS estáticos de S3 y S4.
+"""Arma la página de revisión de DOUBLETREE — los DOS estáticos de S3 y S4.
+
+Va por **ronda 8** en la historia y por **ronda 7** en el post: la ronda 8 la
+pidió Eli sobre la historia y el post no se tocó.
 
 Regla del estudio (`antes-y-despues-en-html`): **se aprueba mirando y comparado.**
 El antes, el después y el detalle arriba; los números abajo.
@@ -9,7 +12,9 @@ El antes, el después y el detalle arriba; los números abajo.
 
   · ST 18-09 (S3) — Javier Meza por WhatsApp: «2 ajustes · Quitar punto final ·
     Hacerle más zoom a foto de animadores para que se vean más grandes» y
-    «el resto ok!».
+    «el resto ok!». **Ronda 8**, de Eli sobre la 7: «aumenta más el zoom de los
+    animadores porque no se ve mucho» y «puedes llegar un poco más abajo
+    siguiendo la línea porque se ve un lado azul extraño».
   · FEED 23-09 (S4) — grilla, comentario SIN TACHAR y en rojo: «Cambiemos foto
     por habitación de categoría superior y ok!».
 
@@ -35,13 +40,14 @@ except Exception:                                                  # noqa: BLE00
 from PIL import Image
 
 RAIZ = Path(__file__).resolve().parent.parent
-DESTINO = RAIZ / "out/hilton/dt/DT S3-S4 - ronda 7.html"
+DESTINO = RAIZ / "out/hilton/dt/DT S3-S4 - ronda 8.html"
 
 ST = RAIZ / "out/hilton/dt/st-18sep-fiestas"
 FT = RAIZ / "out/hilton/dt/ft-honors"
 
 ST_DESPUES = ST / "DT ST 18-09 Felices Fiestas Patrias.png"
 ST_ANTES = ST / "_rondas/DT ST 18-09 Felices Fiestas Patrias - ronda 6.png"
+ST_R7 = ST / "_rondas/DT ST 18-09 Felices Fiestas Patrias - ronda 7.png"
 FT_DESPUES = FT / "Post n°1 S4 DT.png"
 FT_ANTES = FT / "_rondas/Post n°1 S4 DT - r6 ENTREGADA 16-09 (Illustrator).png"
 
@@ -56,7 +62,8 @@ E_FT = 2813 / 1350      # feed     2250×2813  →  2,0837
 # Recortes, en coordenadas de la MESA (1080×1920 y 1080×1350). Se toman generosos
 # y los MISMOS para el antes y el después: recortar cada uno a su propia caja
 # haría que los dos salieran iguales y justamente no se vería lo que cambió.
-CAJA_ANIMADORES = (401, 1133, 1080, 1438)     # el cuadro del escenario, en el mosaico
+CAJA_ANIMADORES = (401, 1133, 1080, 1490)     # el cuadro del escenario, en el mosaico
+CAJA_COSTURA = (380, 1380, 1080, 1520)        # la junta con el cuadro de abajo
 CAJA_PUNTO = (280, 880, 800, 1000)            # la última línea de la bajada
 
 
@@ -84,7 +91,7 @@ HTML = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DT S3 y S4 — ronda 7</title>
+<title>DT S3 y S4 — ronda 8</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;700&family=Archivo:wght@400;500;600&display=swap">
@@ -108,9 +115,10 @@ __CSS__
 
 <header>
   <div class="sello">DoubleTree by Hilton Santiago–Vitacura · Septiembre 2026</div>
-  <h1>Los dos estáticos de S3 y S4 — ronda 7</h1>
-  <p class="sub">Ronda <b>del cliente</b>. Son dos piezas y tres cambios, todos pedidos
-  por escrito. Nada más se tocó: una ronda no es la oportunidad de re-diseñar.</p>
+  <h1>Los dos estáticos de S3 y S4</h1>
+  <p class="sub">La historia va por <b>ronda 8</b> y el post por <b>ronda 7</b>. Todos
+  los cambios están pedidos por escrito —el cliente y tú— y nada más se tocó: una ronda
+  no es la oportunidad de re-diseñar.</p>
 </header>
 
 <h2>1 · Historia 18-09 · Saludo Fiestas Patrias</h2>
@@ -121,33 +129,63 @@ __CSS__
   <p>«el resto ok!»</p>
   <div class="quien">Javier Meza · WhatsApp · 16-09 10:22</div>
 </div>
+<div class="cita">
+  <p>«aumenta más el zoom de los animadores porque <b>no se ve mucho</b>»</p>
+  <p>«puedes <b>llegar un poco más abajo siguiendo la línea</b> porque se ve un lado azul
+  extraño; debería ser igual a los otros espacios azulitos. No tanto como ese»</p>
+  <p>«lo demás cambios okey»</p>
+  <div class="quien">Eli · ronda 8 · 16-09</div>
+</div>
 
 <div class="par">
   <figure>
     <img src="__ST_ANTES__" alt="Historia, ronda 6">
-    <figcaption><b>Ronda 6</b> — la que está en el Drive.</figcaption>
+    <figcaption><b>Ronda 6</b> — la que estaba en el Drive.</figcaption>
   </figure>
   <figure class="elegida">
-    <img src="__ST_DESPUES__" alt="Historia, ronda 7">
-    <figcaption><b>Ronda 7 — la que va.</b></figcaption>
+    <img src="__ST_DESPUES__" alt="Historia, ronda 8">
+    <figcaption><b>Ronda 8 — la que va.</b></figcaption>
   </figure>
 </div>
 
-<h3>Los animadores, de cerca</h3>
-<p class="nota">El mismo recorte en las dos, para que se vea cuánto se acercaron. Es un
-zoom dentro del cuadro del mosaico: la foto no se deforma, se recorta.</p>
+<h3>Los animadores, ronda a ronda</h3>
+<p class="nota">El mismo recorte en las tres. Es un zoom <b>dentro</b> del cuadro del
+mosaico: escala uniforme y recorte — la foto no se deforma nunca.</p>
 <div class="par" style="grid-template-columns:1fr">
   <figure>
-    <img src="__ST_ANIM_ANTES__" alt="Los animadores antes">
-    <figcaption><b>Antes</b> — la pareja ocupaba <b>368 px de los 1415</b> de ancho del
+    <img src="__ST_ANIM_ANTES__" alt="Los animadores en la ronda 6">
+    <figcaption><b>Ronda 6</b> — la pareja ocupaba <b>368 px de los 1415</b> de ancho del
     cuadro: el <b>26 %</b>. Se leía el escenario, no ellos.</figcaption>
   </figure>
+  <figure>
+    <img src="__ST_ANIM_R7__" alt="Los animadores en la ronda 7">
+    <figcaption><b>Ronda 7</b> — zoom <b>1,45×</b> → <b>534 px</b>, el <b>38 %</b>.
+    Tu lectura: sigue sin verse.</figcaption>
+  </figure>
   <figure class="elegida">
-    <img src="__ST_ANIM_DESPUES__" alt="Los animadores después">
-    <figcaption><b>Después</b> — zoom <b>1,45×</b>: quedan en <b>534 px</b>, el
-    <b>38 %</b>. El corte cae a media caña de la bota, que es un plano americano.
-    Más zoom los subiría hasta la cintura y se perdería el traje de huaso, que es
-    justo lo que hace la foto.</figcaption>
+    <img src="__ST_ANIM_DESPUES__" alt="Los animadores en la ronda 8">
+    <figcaption><b>Ronda 8 — la que va</b> — zoom <b>2,0×</b> → <b>736 px</b>, el
+    <b>52 %</b> del cuadro. Y el cuadro creció de 305 a <b>343 px</b> de alto al bajar
+    la costura, así que caben más grandes sin cortarlos más arriba: se ven de la cabeza
+    a medio muslo, con la manta y la faja enteras.</figcaption>
+  </figure>
+</div>
+
+<h3>La costura azul</h3>
+<p class="nota">Tenías razón, y tenía un número detrás. Esa junta iba en <b>43,5 px</b>
+cuando todas las demás del mosaico van en <b>5</b>. Sale del encuadre del cuadro de
+abajo, que está bajado 38 px, y nadie había bajado el de arriba: 5 + 38 = 43.</p>
+<div class="par" style="grid-template-columns:1fr">
+  <figure>
+    <img src="__ST_COST_ANTES__" alt="La costura antes">
+    <figcaption><b>Antes</b> — <b>43,5 px</b> de azul. Es la que marcaste.</figcaption>
+  </figure>
+  <figure class="elegida">
+    <img src="__ST_COST_DESPUES__" alt="La costura después">
+    <figcaption><b>Después</b> — <b>5 px</b>, medidos a lo largo de toda la diagonal
+    (4,8 · 4,8 · 4,8 · 5,3 en x 430 · 500 · 700 · 900). Igual que el resto del mosaico.
+    Se arregló <b>bajando el cuadro de los animadores</b>, que es lo que pediste, y no
+    subiendo el de abajo: así el encuadre aprobado de la mesa no se movió.</figcaption>
   </figure>
 </div>
 
@@ -233,11 +271,14 @@ velo real de la pieza, no con el de historia:</p>
 <div class="envoltorio">
 <table class="tabla">
   <tr><th>Pieza</th><th>Qué cambió</th><th>Antes</th><th>Después</th></tr>
-  <tr><td rowspan="2"><b>ST 18-09</b></td>
+  <tr><td rowspan="3"><b>ST 18-09</b></td>
       <td>Bajada en versales</td><td class="n">«DOUBLETREE.» · 340</td>
       <td class="n ok">«DOUBLETREE» · 335</td></tr>
-  <tr><td>Cuadro del escenario</td><td class="n">pareja 368 px · 26 %</td>
-      <td class="n ok">zoom 1,45× → 534 px · 38 %</td></tr>
+  <tr><td>Cuadro del escenario</td>
+      <td class="n">pareja 368 px · 26 % · cuadro 305 de alto</td>
+      <td class="n ok">zoom 2,0× → 736 px · 52 % · cuadro 343</td></tr>
+  <tr><td>Costura con el cuadro de abajo</td><td class="n">43,5 px</td>
+      <td class="n ok">5 px, como el resto</td></tr>
   <tr><td rowspan="4"><b>Post 23-09</b></td>
       <td>Foto de fondo</td><td class="n">HDT_36 · lobby</td>
       <td class="n ok">HDT_68 · suite (fx 0,80)</td></tr>
@@ -292,7 +333,7 @@ embebidas: el archivo se puede mandar tal cual.</p>
 
 
 def main() -> int:
-    faltan = [r for r in (ST_ANTES, ST_DESPUES, FT_ANTES, FT_DESPUES) if not r.exists()]
+    faltan = [r for r in (ST_ANTES, ST_R7, ST_DESPUES, FT_ANTES, FT_DESPUES) if not r.exists()]
     if faltan:
         for r in faltan:
             print(f"⛔ falta {r}")
@@ -303,7 +344,10 @@ def main() -> int:
          .replace("__ST_ANTES__", entera(ST_ANTES))
          .replace("__ST_DESPUES__", entera(ST_DESPUES))
          .replace("__ST_ANIM_ANTES__", recorte(ST_ANTES, CAJA_ANIMADORES, E_ST))
+         .replace("__ST_ANIM_R7__", recorte(ST_R7, CAJA_ANIMADORES, E_ST))
          .replace("__ST_ANIM_DESPUES__", recorte(ST_DESPUES, CAJA_ANIMADORES, E_ST))
+         .replace("__ST_COST_ANTES__", recorte(ST_ANTES, CAJA_COSTURA, E_ST))
+         .replace("__ST_COST_DESPUES__", recorte(ST_DESPUES, CAJA_COSTURA, E_ST))
          .replace("__ST_PUNTO_ANTES__", recorte(ST_ANTES, CAJA_PUNTO, E_ST, 900))
          .replace("__ST_PUNTO_DESPUES__", recorte(ST_DESPUES, CAJA_PUNTO, E_ST, 900))
          .replace("__FT_ANTES__", entera(FT_ANTES))

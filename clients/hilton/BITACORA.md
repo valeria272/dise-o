@@ -1,4 +1,4 @@
-## 2026-09-16 (tarde) — DT · ronda 7 del CLIENTE: los dos estáticos de S3 y S4
+## 2026-09-16 (tarde) — DT · rondas 7 y 8: los dos estáticos de S3 y S4, ENTREGADOS
 
 **Marca: DT.** Sesión de diseño. Dos piezas, tres cambios, **todos pedidos por el
 cliente** —no por Eli ni por una superior—, que es la primera vez en esta cuenta.
@@ -104,23 +104,46 @@ Las dos pasan `dt-qa.py` **limpias**. `npm run typecheck` limpio.
    cada ronda. Ojo: **Drive no renderiza `.html`**, los ofrece para descargar.
 4. Las rondas anteriores archivadas en `_rondas/` de cada pieza.
 
-### ⛔ La entrega quedó a MEDIAS en el Drive, y esto es lo que falta
+### ✅ LAS DOS ENTREGADAS — y el tope del token, medido de verdad
 
-- ✅ **ST 18-09 SUBIDA y verificada**, reemplazada **en el mismo archivo**
-  (`1SCxxWbpvvUMULbBnDnOYiPOQ0WQx-cic`, en `S3 HILTON SEP 2026 › DT`): **el enlace
-  no cambió**, quien ya lo tenía ve la versión nueva. 12 271 632 B en disco y en
-  Drive, idénticos.
-- ⛔ **El post de la S4 NO se pudo subir.** `Post n°1 S4 DT.png`
-  (`1_6_iLhGL9pn5LAyMimM87NOzWBS0wrqS`) **lo subió Eli a mano** el 16-09 por la
-  mañana, y el token del estudio es scope `drive.file`: no ve ese archivo ni la
-  carpeta `S4 › DT` (404 en los dos). **Lo tiene que reemplazar ella**, arrastrando
-  `out/hilton/dt/ft-honors/Post n°1 S4 DT.png` sobre el archivo del Drive, para que
-  el enlace se conserve.
+- **ST 18-09** → `S3 HILTON SEP 2026 › DT`, reemplazada **en el mismo archivo**
+  (`1SCxxWbpvvUMULbBnDnOYiPOQ0WQx-cic`): **el enlace no cambió**, quien ya lo tenía
+  ve la ronda 8. 12 229 310 B en disco y en Drive, idénticos.
+- **Post n°1 S4 DT** → `S4 HILTON SEP 2026 › DT`, archivo **nuevo**
+  (`1tF4nWGEJTvCr3bwZIXow6kKI30zACYkW`, 10 083 019 B). El de Eli quedó renombrado a
+  **`Post n°1 S4 DT - r6 SUPERADA (lobby).png`** y sigue en la carpeta.
 
-> ⚠️ Es el mismo tope que frenó a Between el 14-09. **Sigue abierta la decisión:**
-> o las entregas se suben SIEMPRE con el script del estudio, o el token pasa a
-> scope `drive` completo. Mientras no se decida, cada pieza que Eli sube a mano
-> queda fuera del alcance del repo para siempre.
+#### ⭐⭐ EL TOPE DEL TOKEN NO ES «no puede escribir en la carpeta». ES OTRO, Y MÁS CHICO
+
+Esto corrige lo que se venía diciendo desde Between el 14-09. Sondeado hoy contra
+`S4 HILTON SEP 2026 › DT`, que creó Eli:
+
+| Operación | Resultado |
+|---|---|
+| `files.get` / `files.update` sobre un archivo de Eli | **404** — la app no lo ve |
+| **`files.create` con `parents` = su carpeta** | **✅ FUNCIONA** |
+
+O sea: con scope `drive.file` **sí se puede dejar una entrega dentro de la carpeta
+de otra persona**; lo único que no se puede es **pisar un archivo que subió ella**.
+Toda la ronda anterior se dio por bloqueada de más.
+
+**El procedimiento que queda**, y es el mismo de Between:
+
+1. Renombrar el archivo viejo a `… - rN SUPERADA (qué era).png` — eso **sí** lo
+   hace el conector MCP de Drive, que corre como Eli (`update_file`, sólo título y
+   carpeta, no contenido).
+2. Subir el nuevo con `scripts/drive-subir.py --carpeta <ID>`, con el nombre bueno.
+
+⚠️ **El costo, que hay que decir:** el `fileId` **cambia**, así que quien tuviera
+el enlace viejo cae en el archivo SUPERADA. Por eso el renombre no es opcional: sin
+él quedan dos archivos con el mismo nombre y se aprueba el corte equivocado. Cuando
+la pieza la subió el estudio —como la ST— se reemplaza en sitio y el enlace se
+conserva; ésa sigue siendo la vía buena.
+
+> ⚠️ **Y por eso sigue abierta la decisión de fondo:** o las entregas las sube
+> SIEMPRE el script del estudio, o el token pasa a scope `drive` completo. Mientras
+> no se decida, cada pieza que Eli suba a mano obliga a cambiar el enlace la próxima
+> vez que se corrija.
 
 ### ⛔⛔ Y hay que decidir qué pasa con el editable
 
@@ -130,6 +153,14 @@ QA—, porque lo que cambia es la foto de fondo. O sea que
 `editable/Post n°1 S4 DT - EDITABLE.ai` **sigue con el lobby**. Si la próxima ronda
 se trabaja ahí, primero hay que cambiarle la foto: está lista y recortada a
 2250×2813 en `public/assets/hilton/dt/ft-honors-habitacion.jpg`.
+
+### Qué sigue
+
+**De estas dos piezas, nada:** las dos están entregadas, con QA limpio y subidas.
+Lo siguiente de DT en el FEED es **columna M, 28-09, un CARRUSEL** («Tu día en
+DoubleTree by Hilton Santiago-Vitacura», tipo timeline, sin modelos) — pero sigue
+en **`REVISAR CONTENIDO`** y **no se diseña hasta que pase a `OK PARA DISEÑO`**.
+Antes de tocarlo: correr `/al-dia` y leer la celda viva, no la instantánea.
 
 ### Abierto
 
@@ -145,7 +176,6 @@ se trabaja ahí, primero hay que cambiarle la foto: está lista y recortada a
   compartida** y devuelve la página de login; la copia **pública** es
   `1xvTkYaRmUmdGX6nS-fm7jOl0C9VQAs0w`. Es otra vez la regla de buscar las copias
   por título antes de dar algo por bloqueado.
-- **El post de la S4, sin subir** (arriba).
 - **El editable, con la foto vieja** (arriba).
 - Sigue sin respuesta lo del 15-09: **la Opinión Booking del 14-09 quedó en `EN
   REVISIÓN` con la fecha pasada** — hay que preguntarle a Eli si se publicó.

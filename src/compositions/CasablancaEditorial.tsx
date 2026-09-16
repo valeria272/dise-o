@@ -82,9 +82,12 @@ export const PIEZAS: Record<Pieza, Ficha> = {
   c1d: {
     bg: amb("cumaru"),
     antetitulo: "Piso de ingeniería",
-    titular: ["CUMARÚ"],
-    bajada: ["Tabla larga y angosta,", "del formato clásico"],
-    pie: "12/2 · 120 × 2130 mm",
+    titular: ["CUMARU"],
+    // Largo variable, no 2130 (la ficha dice «2.130 LV»). Clienta, 16-09-2026.
+    // Y sólo «largo variable»: la clienta sacó «tabla corta» de la bajada el mismo
+    // día — «dejar solo largo variable en la primera línea».
+    bajada: ["Largo variable"],
+    pie: "12/2 · 120 mm",
   },
 
   // ── C2 · showroom Vitacura, con las fotos REALES ─────────────────────────

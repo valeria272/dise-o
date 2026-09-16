@@ -71,9 +71,11 @@ const C1_DATA: Record<string, {
     bg: "assets/casablanca/amb_cumaru.jpg",
     tabla: "assets/casablanca/tabla_cumaru.png",
     look: "Look Tradicional",
-    nombre: "Cumarú",
-    medida: "12/2 · 120 × 2130 mm",
-    frase: "Tabla larga y angosta, del formato\nclásico que no se pasa de moda.",
+    nombre: "Cumaru",
+    // Largo variable, no 2130 (la ficha dice «2.130 LV»). Clienta, 16-09-2026.
+    medida: "12/2 · 120 mm",
+    // Sin «tabla corta»: «dejar solo largo variable en la primera línea» (clienta, 16-09).
+    frase: "Largo variable:\nel entablado de toda la vida.",
   },
 };
 

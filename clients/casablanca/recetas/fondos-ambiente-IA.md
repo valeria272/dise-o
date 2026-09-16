@@ -56,7 +56,7 @@ camera angle and framing. Change ONLY the wood floor planks to:
 | 1 | Roble Natural UV 14/3 · 190 × 1900 | *(es la base)* |
 | 2 | Roble Natural UV 10/1.2 · 167 × 1200 | `the same honey oak tone and finish, but noticeably narrower and shorter planks, more visible seams across the floor.` |
 | 3 | Roble Aserrado 14/3 · 190 × 1900 | `rustic sawn-cut oak with pronounced saw marks, open grain, visible knots and strong texture, slightly cooler and more matte than before.` |
-| 4 | Cumarú 12/2 · 120 × 2130 | `narrow long cumaru planks in a warm reddish-brown tropical hardwood tone, tight straight grain, satin sheen.` |
+| 4 | Cumaru 12/2 · 120 mm · largo variable | `narrow cumaru planks of VARIABLE and short length, mostly under 1.3 m, with frequent staggered butt joints across the floor, in a warm reddish-brown tropical hardwood tone, tight straight grain, satin sheen.` |
 
 ---
 

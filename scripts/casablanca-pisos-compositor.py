@@ -17,7 +17,8 @@ construcción.
 
 Además resuelve la regla nº1 del brief al derecho: el ambiente es idéntico en
 las cuatro tarjetas y lo que cambia es la tabla — y cambia de verdad, porque
-190 × 1900 y 120 × 2130 dan densidades de junta distintas y se ven distintas.
+190 × 1900 y Cumaru (120 de ancho, largo variable y corto) dan densidades de
+junta distintas y se ven distintas.
 
 Salida:
   public/assets/casablanca/amb_<sku>.jpg    ambiente con el piso instalado
@@ -55,7 +56,10 @@ PRODUCTOS = {
     "natural_uv_grande": {"foto": "roble-natural-143x190x1900.jpg", "ancho": 190, "largo": 1900},
     "natural_uv_chico":  {"foto": "roble-natural-uv-formato-chico.jpg", "ancho": 167, "largo": 1200},
     "aserrado":          {"foto": "roble-aserrado.jpg", "ancho": 190, "largo": 1900},
-    "cumaru":            {"foto": "cumaru.jpg", "ancho": 120, "largo": 2130},
+    # `largo` como (min, max) = LARGO VARIABLE: la ficha del cliente dice «2.130 LV»
+    # y el LV es variable, con el 2130 de tope. La clienta precisó el 16-09-2026 que
+    # en la práctica va bajo 1,30 m. `plano_cenital` sortea el largo tabla por tabla.
+    "cumaru":            {"foto": "cumaru.jpg", "ancho": 120, "largo": (600, 1300)},
 }
 
 
@@ -101,14 +105,20 @@ def plano_cenital(sku):
     W = int(ANCHO_AMBIENTE_MM * PX_POR_MM)
     H = int(PROFUNDIDAD_MM * PX_POR_MM)
     tw = max(8, int(d["ancho"] * PX_POR_MM))
-    th = max(8, int(d["largo"] * PX_POR_MM))
+    # `largo` puede ser un número (tabla de largo fijo) o un par (min, max) = LARGO
+    # VARIABLE, que es como viene el Cumaru. En ese caso el largo NO se sortea una vez
+    # por piso sino una vez POR TABLA: un piso de largo variable se reconoce justamente
+    # porque las juntas de tope caen a distinta altura y no forman un patrón.
+    lv = isinstance(d["largo"], (tuple, list))
+    th_max = max(8, int((d["largo"][1] if lv else d["largo"]) * PX_POR_MM))
     piezas = franjas(d["foto"])
     plano = Image.new("RGB", (W, H))
     rnd = random.Random(hash(sku) & 0xFFFF)
     for cx in range(0, W, tw):
-        offset = rnd.randrange(0, th)  # traba entre columnas, como se instala de verdad
+        offset = rnd.randrange(0, th_max)  # traba entre columnas, como se instala de verdad
         y = -offset
         while y < H:
+            th = max(8, int(rnd.uniform(*d["largo"]) * PX_POR_MM)) if lv else th_max
             src = rnd.choice(piezas)
             tabla = src.resize((tw, th))
             if rnd.random() < 0.5:

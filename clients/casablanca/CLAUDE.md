@@ -331,9 +331,11 @@ la foto, está mala.
 
 - **Se respeta la dimensión física de la tabla.** 190 × 1900 mm es una tabla de
   casi dos metros y tiene que verse así: pocas juntas de tope, tablas que cruzan
-  el encuadre. 120 × 2130 (Cumarú) es angosta y muy larga — se ven diez o doce
-  tablas a lo ancho del cuadro. 167 × 1200 tiene juntas frecuentes.
-- **Prohibido:** tablas cortas, exceso de juntas, patrones repetidos, vetas
+  el encuadre. **Cumaru es 120 mm de ancho y de LARGO VARIABLE** — angosta, se ven
+  diez o doce tablas a lo ancho del cuadro, pero **corta y con juntas de tope
+  frecuentes y salteadas**, no larga. 167 × 1200 tiene juntas frecuentes.
+- **Prohibido:** tablas cortas *(excepto Cumaru, ver arriba)*, exceso de juntas,
+  patrones repetidos, vetas
   clonadas, saltos bruscos de color entre tablas, aspecto de parquet, brillo
   plástico, piso naranjo o amarillo, perspectiva deformada.
 - Los ambientes se generan con `scripts/casablanca-ambientes-editorial.py`
@@ -747,6 +749,15 @@ Andaban tres versiones dando vueltas y ninguna de las otras dos manda:
   (*Piso de Ingeniería Camarú UV 120 x 2130 AP*). **Es un error del sitio**, no la
   referencia. No copiarlo aunque venga de la ficha oficial.
 
+> ⚠️ **De esa misma ficha salió el otro error, el del LARGO.** La ficha del SKU
+> 8001021056 dice **«Largo (mm): 2.130 LV»**: el `LV` es **largo variable** y el
+> 2130 es el **tope**, no el largo de la tabla. Al transcribir el dato se copió el
+> número y se perdió el `LV`, y de ahí salieron la etiqueta «120 × 2130 mm» y la
+> bajada «TABLA LARGA Y ANGOSTA» que la clienta corrigió el 16-09-2026:
+> *«Cumaru viene en largo variable y tabla corta. No larga como dice el anuncio
+> (es más bien corto menos de 1.30 m)»*. **Cumaru no se describe nunca como tabla
+> larga, y su etiqueta no lleva cifra de largo.**
+
 En pieza y en copy va **Cumarú**.
 
 ---
@@ -780,8 +791,8 @@ una y otra cambia solo la tabla del piso. Así el carrusel se lee como una
 comparación de looks y no como cuatro avisos sueltos. Es la regla más importante de
 la pieza."* Repetir el ambiente **es lo correcto**. Lo que no puede repetirse es la
 tabla — y para eso el compositor usa el **ancho y el largo reales en mm**, así que
-190 × 1900, 167 × 1200 y 120 × 2130 dan densidades de junta distintas y se ven
-distintas de verdad.
+190 × 1900, 167 × 1200 y Cumaru (120 de ancho, largo variable y corto) dan
+densidades de junta distintas y se ven distintas de verdad.
 
 ### La muestra es un DETALLE, no una miniatura del piso
 

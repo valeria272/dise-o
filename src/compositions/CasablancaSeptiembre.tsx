@@ -105,9 +105,11 @@ const C1_CARDS: C1Card[] = [
   },
   {
     look: "Look Tradicional",
-    nombre: "Cumarú",
-    medida: "12/2 · 120 × 2130 mm",
-    frase: "TABLA LARGA Y ANGOSTA, DEL FORMATO CLÁSICO QUE NO SE PASA DE MODA",
+    nombre: "Cumaru",
+    // Largo variable, no 2130 (la ficha dice «2.130 LV»). Clienta, 16-09-2026.
+    medida: "12/2 · 120 mm",
+    // Sin «tabla corta»: «dejar solo largo variable en la primera línea» (clienta, 16-09).
+    frase: "LARGO VARIABLE: EL ENTABLADO DE TODA LA VIDA",
     bg: "assets/casablanca/escena_cumaru.jpg",
     tabla: "assets/casablanca/tabla_cumaru.png",
   },

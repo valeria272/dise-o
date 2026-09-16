@@ -714,6 +714,248 @@ def franja_legal(a, ctx, args):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
+# Checks agregados el 15-09-2026 para Sal Lobos. Sirven a cualquier marca cuyo
+# brief declare cuotas de área, prohíba rostros o mande un dispositivo de una
+# sola línea. Se agregaron porque su reglas.yaml los declaraba y NO EXISTÍAN: el
+# motor los informaba uno por uno como «check no existe» y las reglas no corrían.
+
+
+def cuota_de_color(a, ctx, args):
+    """Un color de marca no puede pasar de una fracción del área.
+
+    NACE DE, verbatim: "Rojo Lobos #D81800 — acento, MÁXIMO 5 % del área, JAMÁS de
+    fondo" — brief de licitación Sal Lobos v3, 15-09-2026.
+
+    El tope de área es distinto de `color_prohibido` (que veta el color) y de
+    `color_solo_en_bloques` (que veta su forma): acá el color es legítimo y lo que
+    se mide es cuánto ocupa. Un acento que crece deja de ser un acento.
+    """
+    x0, y0, x1, y1 = _region(a, args.get("region"))
+    sub = a[y0:y1, x0:x1].reshape(-1, 3).astype(np.float32)
+    objetivo = np.array([[int(c[i:i + 2], 16) for i in (1, 3, 5)]
+                         for c in args["colores"]], dtype=np.float32)
+    lab = _rgb_a_lab(sub)
+    d = np.linalg.norm(lab[:, None, :] - _rgb_a_lab(objetivo)[None, :, :],
+                       axis=2).min(axis=1)
+    frac = float((d < args.get("delta_e", 26.0)).mean())
+    tope = args.get("max_fraccion", 0.05)
+    if frac > tope:
+        return (f"el color ocupa {frac * 100:.2f}% del área "
+                f"(tope {tope * 100:.0f}%)")
+    return None
+
+
+def cuota_de_area(a, ctx, args):
+    """Informa el reparto de área entre los colores declarados de la marca.
+
+    NACE DE, verbatim: "Navy Lobos #001860 — base de marca, ~70 % del área /
+    Blanco sal #F4F2ED — la sal y el texto, ~20 %" — brief Sal Lobos v3.
+
+    Va como AVISO a propósito: una pieza fotográfica legítimamente se aleja de la
+    cuota (una cocina de noche no llega a 20 % de blanco sin dejar de ser una
+    cocina de noche). Lo que esta regla impide es que la desviación pase
+    inadvertida.
+    """
+    objetivos = args.get("objetivos") or {}
+    if not objetivos:
+        return None
+    ref = np.array([[int(c[i:i + 2], 16) for i in (1, 3, 5)]
+                    for c in objetivos], dtype=np.float32)
+    pix = a.reshape(-1, 3).astype(np.float32)
+    if pix.shape[0] > 900_000:
+        idx = np.random.default_rng(7).choice(pix.shape[0], 900_000, replace=False)
+        pix = pix[idx]
+    cerca = np.linalg.norm(_rgb_a_lab(pix)[:, None, :] - _rgb_a_lab(ref)[None, :, :],
+                           axis=2).argmin(axis=1)
+    tol = args.get("tolerancia", 0.20)
+    fuera = []
+    for i, (hexa, objetivo) in enumerate(objetivos.items()):
+        real = float((cerca == i).mean())
+        if abs(real - objetivo) > tol:
+            fuera.append(f"{hexa} {real * 100:.1f}% (declarado {objetivo * 100:.0f}%)")
+    return "reparto de área fuera de lo declarado: " + " · ".join(fuera) if fuera else None
+
+
+def sin_rostro(a, ctx, args):
+    """Ningún rostro visible en la pieza. Se verifica, no se confía.
+
+    NACE DE, verbatim: "NINGÚN ROSTRO VISIBLE. Solo manos. Por concepto y por
+    derechos de imagen." — brief Sal Lobos v3, 15-09-2026.
+
+    Es regla doble: de concepto y legal, así que no puede quedar en «lo revisé».
+    OpenCV 5 ya no trae los cascades Haar, así que usa el modelo ONNX de YuNet y
+    lo baja solo la primera vez.
+
+    Dos umbrales a propósito: YuNet da 0,601 de confianza en un ANTEBRAZO con
+    tendones (medido en el KV de Sal Lobos el 15-09, se revisó el recorte y no
+    había ninguna cara). Sobre `umbral_bloqueante` es error; entre los dos
+    umbrales es «míralo con tus ojos».
+    """
+    import pathlib
+    import urllib.request
+
+    import cv2
+    modelo = pathlib.Path(__file__).resolve().parents[1] / \
+        "assets/modelos/face_detection_yunet_2023mar.onnx"
+    if not modelo.is_file():
+        modelo.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            urllib.request.urlretrieve(
+                "https://github.com/opencv/opencv_zoo/raw/main/models/"
+                "face_detection_yunet/face_detection_yunet_2023mar.onnx", modelo)
+        except Exception as e:
+            return f"no pude bajar el detector de rostros y la regla es dura ({e})"
+
+    # cargar() del motor devuelve int64; cv2.resize no lo acepta y revienta con
+    # «func != 0 in resize». Hay que pasar a uint8 contiguo.
+    img = np.ascontiguousarray(np.clip(a, 0, 255).astype(np.uint8)[:, :, ::-1])
+    esc = 1024 / max(img.shape[:2])
+    if esc < 1:
+        img = cv2.resize(img, (int(img.shape[1] * esc), int(img.shape[0] * esc)))
+    else:
+        esc = 1.0
+    bloq = args.get("umbral_bloqueante", 0.80)
+    aviso = args.get("umbral_aviso", 0.55)
+    det = cv2.FaceDetectorYN.create(str(modelo), "", (img.shape[1], img.shape[0]),
+                                    aviso)
+    _, caras = det.detect(img)
+    if caras is None or len(caras) == 0:
+        return None
+    conf = sorted((float(c[-1]) for c in caras), reverse=True)
+    duros = [c for c in conf if c >= bloq]
+    if duros:
+        return (f"{len(duros)} rostro(s) detectado(s) con confianza "
+                f"{', '.join(f'{c:.2f}' for c in duros)}")
+    return (f"{len(conf)} detección(es) dudosa(s) de rostro "
+            f"({', '.join(f'{c:.2f}' for c in conf)}) — míralas antes de entregar")
+
+
+def _lineas_paso_qa(g, umbral, salto_min):
+    H, W = g.shape
+    k = max(3, H // 60)
+    if H < 3 * k:
+        return {}
+    acum = np.cumsum(np.vstack([np.zeros((1, W), np.float32), g]), axis=0)
+    fz = {}
+    for y in range(k, H - k):
+        dif = (acum[y + k] - acum[y]) / k - (acum[y] - acum[y - k]) / k
+        f = max(float((dif > salto_min).mean()), float((dif < -salto_min).mean()))
+        if f > umbral:
+            fz[y] = f
+    return fz
+
+
+def _lineas_filete_qa(g, umbral, contraste_min):
+    H, W = g.shape
+    t = max(2, H // 300)
+    fz = {}
+    for y in range(t, H - t):
+        d = g[y] - (g[y - t] + g[y + t]) / 2.0
+        f = max(float((d > contraste_min).mean()), float((d < -contraste_min).mean()))
+        if f > umbral:
+            fz[y] = f
+    return fz
+
+
+def linea_unica(a, ctx, args):
+    """Cuenta las líneas horizontales que dividen el campo. El brief manda UNA.
+
+    NACE DE, verbatim: "cada pieza lleva UNA SOLA línea horizontal que divide el
+    campo. Arriba cielo, abajo sal. Recta, curva o apenas insinuada, pero siempre
+    la misma." — brief Sal Lobos v3.
+
+    Medir esto tuvo cuatro trampas, todas pisadas el 15-09:
+      1. Umbral de salto duro → CERO donde el ojo ve una: el canto de una mesa en
+         penumbra es un degradado, no un escalón.
+      2. Energía de gradiente por fila → CUATRO, porque una fila de TEXTO tiene
+         muchísima energía. Un titular no es una línea del sistema.
+      3. Sólo paso de banda → CERO otra vez: no ve un filete fino dibujado.
+      4. Todo por filas enteras → CERO con un arco puesto, porque un arco es una
+         CURVA y ninguna fila lo contiene: con 50 px de flecha su tinta se
+         reparte en 50 filas.
+    Por eso mide en FRANJAS verticales y encadena: una línea real —recta, curva o
+    insinuada— aparece en casi todas las franjas a una altura que se mueve poco.
+    """
+    g = _luminancia(a).astype(np.float32)   # sin PIL: este módulo no la importa
+    H, W = g.shape
+    franjas = args.get("franjas", 8)
+    umbral = args.get("umbral", 0.55)
+    tol = max(6, int(0.045 * H))
+    detecciones = []
+    for i in range(franjas):
+        xa = i * W // franjas
+        xb = W if i == franjas - 1 else (i + 1) * W // franjas
+        sub = g[:, xa:xb]
+        cand = dict(_lineas_paso_qa(sub, umbral, args.get("salto_min", 9.0)))
+        for y, f in _lineas_filete_qa(sub, umbral,
+                                      args.get("contraste_min", 14.0)).items():
+            cand[y] = max(cand.get(y, 0.0), f)
+        ys, grupos, act = sorted(cand), [], []
+        for y in ys:
+            if act and y - act[-1] <= max(3, H // 150):
+                act.append(y)
+            else:
+                if act:
+                    grupos.append(act)
+                act = [y]
+        if act:
+            grupos.append(act)
+        detecciones.append([max(gr, key=lambda v: cand[v]) for gr in grupos])
+
+    cadenas = []
+    for i, dets in enumerate(detecciones):
+        for y in dets:
+            for c in cadenas:
+                if c[-1][0] < i and abs(c[-1][1] - y) <= tol:
+                    c.append((i, y))
+                    break
+            else:
+                cadenas.append([(i, y)])
+    reales = [c for c in cadenas
+              if len(c) / franjas >= args.get("presencia", 0.6)]
+
+    # Dos cadenas vecinas son LA MISMA línea: pasó en el KV de la ruta 1, donde
+    # y≈27% y y≈31% eran los dos bordes del mismo antebrazo y se contaban como
+    # dos. Se fusiona lo que queda a menos de la tolerancia de encadenado.
+    reales.sort(key=lambda c: np.mean([y for _, y in c]))
+    fusion: list[list] = []
+    for c in reales:
+        if fusion and abs(np.mean([y for _, y in c])
+                          - np.mean([y for _, y in fusion[-1]])) <= tol * 1.6:
+            fusion[-1] = fusion[-1] + c
+        else:
+            fusion.append(c)
+    reales = fusion
+
+    tope = args.get("max_lineas", 1)
+    exc = (args.get("excepciones_por_pieza") or {})
+    nombre = ctx.get("archivo") or ""
+    tope = exc.get(nombre, tope)
+    if len(reales) > tope:
+        alturas = ", ".join(f"y≈{int(np.mean([y for _, y in c])) / H:.0%}"
+                            for c in reales)
+        return (f"{len(reales)} líneas horizontales dividen el campo "
+                f"(tope {tope}): {alturas}")
+    return None
+
+
+def impuesto_por_construccion(a, ctx, args):
+    """La regla no se revisa sobre el píxel: se hace imposible en el código.
+
+    Existe para que una regla así APAREZCA en el reporte en vez de desaparecer.
+    Antes de tenerla, el motor informaba «check no existe» y la regla quedaba
+    como un comentario en un YAML que nadie ejecuta.
+
+    `donde` debe apuntar a la función que la impone, para poder auditarla.
+    """
+    donde = args.get("donde")
+    if not donde:
+        return ("la regla dice estar impuesta por construcción pero no declara "
+                "DÓNDE: agrega `donde` con la función que la impone")
+    return None
+
+
+# ──────────────────────────────────────────────────────────────────────────────
 
 REGISTRO = {
     "franja_legal": franja_legal,
@@ -734,4 +976,10 @@ REGISTRO = {
     "grafia_fijada": grafia_fijada,
     "palabra_huerfana": palabra_huerfana,
     "formato_clp": formato_clp,
+    # agregados 15-09-2026 (Sal Lobos)
+    "cuota_de_color": cuota_de_color,
+    "cuota_de_area": cuota_de_area,
+    "sin_rostro": sin_rostro,
+    "linea_unica": linea_unica,
+    "impuesto_por_construccion": impuesto_por_construccion,
 }

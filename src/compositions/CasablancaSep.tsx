@@ -79,9 +79,12 @@ export const PIEZAS: Record<Pieza, Ficha> = {
   c1d: {
     bg: amb("cumaru"),
     etiqueta: "Look Tradicional",
-    titulo: ["Cumarú"],
-    bajada: ["Tabla larga y angosta, del formato", "clásico que no se pasa de moda"],
-    medida: "12/2 · 120 × 2130 mm",
+    titulo: ["Cumaru"],
+    // Largo variable, no 2130 (la ficha dice «2.130 LV»). Clienta, 16-09-2026.
+    // Sin «tabla corta»: la clienta pidió «dejar solo largo variable en la primera
+    // línea» el mismo 16-09.
+    bajada: ["Largo variable:", "el entablado de toda la vida"],
+    medida: "12/2 · 120 mm",
     cta: "Cotiza por WhatsApp",
   },
 

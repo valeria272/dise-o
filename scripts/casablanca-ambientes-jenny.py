@@ -32,6 +32,23 @@ dominante de luz. La SATURACIÓN sí se transfiere entre fotos con luz distinta 
 independiente de la exposición— pero el TONO no. Por eso el tope de tono queda como
 aviso y manda el ojo; el de saturación sí es exigible.
 
+⛔ SEGUNDO INTENTO DESCARTADO (16-09-2026) — NO regenerar el ambiente del Cumaru.
+Cuando la clienta corrigió que el Cumaru es de largo variable y tabla corta, se
+corrigió el prompt (`TABLA["cumaru"]`) y se regeneró el 4:5 para que el piso mostrara
+juntas de tope salteadas. Salió peor en todo:
+
+    Δtono   1,0° -> 9,3°  (tope 8)        L* 41,8 -> 53,9, más pálido
+    Δsat   0,062 -> 0,149 (tope 0,06)     y la madera pasó a leerse como ROBLE,
+                                          con nudos y figura de catedral
+
+Dos lecciones. (1) El sesgo del modelo tampoco suelta el FORMATO de tabla: pidiéndole
+tablas cortas con juntas salteadas siguió haciendo tablas largas, igual que en su día
+no soltó el color del Aserrado con cuatro redacciones. (2) El ambiente aprobado YA
+estaba bien: mirado de cerca tiene juntas de tope frecuentes y salteadas. El error fue
+diagnosticarlo leyendo el prompt («very long planks») en vez de mirar el piso.
+El prompt corregido se conserva porque describe bien el producto para ambientes
+futuros — pero este ambiente no se rehace.
+
 ⚠️ Las referencias de Jenny (`raw/casablanca/ref-jenny-28ago/`) son REFERENCIA, no
 material: *«yo las tengo para mis post, por favor usar otras ustedes»*. No se
 publican ni se recortan; sirven para fijar tono, veta y formato de tabla.
@@ -102,8 +119,11 @@ TABLA = {
     # El Cumarú necesita decir lo que la referencia no logra imponer sola: es
     # madera TROPICAL, de veta lisa y pareja, no un roble teñido de rojo. Sin esto
     # sale un roble con figura de catedral y color terracota.
-    "cumaru":            "Narrow very long planks, 120 mm wide and 2130 mm long, "
-                         "laid lengthwise. It is a DARK tropical hardwood with a "
+    # Largo VARIABLE y corto, no 2,13 m: la ficha del cliente dice «2.130 LV» y el
+    # LV es el largo variable. Corregido por la clienta el 16-09-2026.
+    "cumaru":            "Narrow planks 120 mm wide, of VARIABLE and short length "
+                         "(mostly under 1.3 m), with frequent staggered butt joints "
+                         "across the floor, laid lengthwise. It is a DARK tropical hardwood with a "
                          "deep mahogany red-brown colour, smooth uniform fine "
                          "straight grain and no knots — no oak cathedral figure, "
                          "no light streaks, not terracotta and not orange.",
@@ -148,8 +168,9 @@ MADERA = {
         "cumaru Brazilian teak flooring in a deep RED-brown mahogany tone with a "
         "distinctly reddish undertone — clearly red-brown, not orange, not golden, "
         "not yellow-brown. Rich saturated tropical hardwood colour. Tight straight "
-        "fine grain with almost no knots, warm satin sheen. Narrow very long planks, "
-        "120 mm wide and 2130 mm long, laid lengthwise."
+        "fine grain with almost no knots, warm satin sheen. Narrow planks 120 mm wide, "
+        "of VARIABLE and short length (mostly under 1.3 m), with frequent staggered "
+        "butt joints across the floor, laid lengthwise."
     ),
 }
 

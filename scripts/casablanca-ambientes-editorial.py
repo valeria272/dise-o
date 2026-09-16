@@ -12,7 +12,7 @@ evidente ni una textura superpuesta"*.
 completa, con:
   1. **La escala física de la tabla escrita en el prompt** — 190 × 1900 mm es una
      tabla de casi dos metros, y tiene que verse así: pocas juntas de tope, tablas
-     que cruzan el encuadre. 120 × 2130 (Cumarú) es angosta y MUY larga.
+     que cruzan el encuadre. Cumaru es angosta (120) y de LARGO VARIABLE y corto.
   2. **Un ambiente distinto por producto** — living, comedor, dormitorio, estar.
      Nada de repetir la misma sala con otro color (regla vieja del brief, muerta
      tras el replanteo: el carrusel ya no compara looks en una misma pieza).
@@ -153,7 +153,9 @@ SKUS = {
     },
     "cumaru": {
         "producto": "cumaru.jpg",
-        "medida": "120 mm wide and 2130 mm long",
+        # «2.130 LV» en la ficha del cliente = largo VARIABLE con tope 2130, no
+        # tablas de 2,13 m. La clienta lo corrigió el 16-09-2026.
+        "medida": "120 mm wide, of VARIABLE and short length (mostly under 1.3 m)",
         "escala": (
             "Narrow and very long hardwood planks: only 12 cm across but 2.13 "
             "metres long. Because the boards are narrow, at least ten to twelve "

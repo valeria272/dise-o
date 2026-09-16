@@ -251,9 +251,9 @@
       "regla": "La tabla se ve con su dimensión física real.",
       "190x1900": "tabla larga y ancha, pocas juntas de tope",
       "167x1200": "juntas frecuentes en traba, ritmo regular",
-      "120x2130": "diez a doce tablas angostas a lo ancho del cuadro",
+      "120xLV": "CUMARU. Diez a doce tablas angostas a lo ancho del cuadro, de LARGO VARIABLE y corto: juntas de tope frecuentes y salteadas. El 2130 de la ficha oficial es el TOPE (dice «2.130 LV»), no el largo de la tabla; en la práctica va bajo 1,30 m. Corregido por la clienta el 16-09-2026.",
       "prohibido": [
-        "tablas cortas",
+        "tablas cortas — SALVO en Cumaru, que es de largo variable y corto por definición (16-09-2026)",
         "exceso de juntas",
         "patrones repetidos",
         "vetas clonadas",

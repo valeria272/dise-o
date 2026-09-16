@@ -423,8 +423,44 @@ C1 = [
          # planilla, no la grafía de marca». La clienta lo corrigió de primera fuente
          # el 31-08: «Es cumaru no cumarú». Manda ella.
          look="LOOK TRADICIONAL", titulo="Cumaru",
-         medida="12/2 · 120 × 2130 mm",
-         bajada=["TABLA LARGA Y ANGOSTA, DEL FORMATO", "CLÁSICO QUE NO SE PASA DE MODA"]),
+         # ⚠️ «largo variable», NO «2130 mm» — corregido el 16-09-2026 por la clienta.
+         # Jenny Campos, por WhatsApp: «Cumaru viene en largo variable y tabla corta.
+         # No larga como dice el anuncio (es más bien corto menos de 1.30 m)».
+         #
+         # La causa raíz NO fue una redacción nuestra: fue un dato copiado a medias.
+         # La ficha oficial del cliente (pisoscasablanca.cl, SKU 8001021056) dice
+         # «Largo (mm): 2.130 LV». El LV es LARGO VARIABLE, y el 2130 es el TOPE, no
+         # el largo de la tabla. Al transcribir el dato se perdió el LV, y de ese
+         # 2130 pelado salieron las dos cosas que la clienta corrigió: la etiqueta
+         # y la bajada «TABLA LARGA Y ANGOSTA».
+         #
+         # Por eso la etiqueta ya no lleva cifra de largo: no existe una sola. Y el
+         # «largo variable» tampoco va acá, por dos razones: la placa gris tiene ancho
+         # MEDIDO y fijo (252 @1080) y el texto largo la desborda un 129 % en los tres
+         # formatos —medido, la versión vieja iba al 90 %—, y además quedaría repetido
+         # con la bajada. El dato vive en la bajada, que sí tiene ancho para él.
+         #
+         # «Entablado» es la palabra del propio cliente («Tipo: Entablado de
+         # ingeniería» en su ficha), y es la que salva el LOOK TRADICIONAL ahora que
+         # el argumento ya no puede ser la tabla larga.
+         medida="12/2 · 120 mm",
+         # La bajada dice UNA cosa: «largo variable». Lo pidió la clienta el mismo
+         # 16-09, después de ver la corrección: «dejar solo largo variable en la
+         # primera línea por favor». Manda ella, aunque su primer mensaje nombrara
+         # también la tabla corta: eso explicaba el error, no era la copy.
+         #
+         # Antes de llegar acá la línea se escribió cuatro veces, y las tres primeras
+         # fallaron por lo mismo —no soltar la copy vieja—, así que conviene dejarlo:
+         #   1. «TABLA ANGOSTA DE LARGO VARIABLE» — se perdió «corta», que es
+         #      justo lo que la clienta vino a corregir.
+         #   2. «TABLA CORTA Y ANGOSTA, DE LARGO VARIABLE» — se agregó «corta»
+         #      pero se dejó «angosta» igual, arrastrada de la copy vieja.
+         #   3. «TABLA CORTA Y LARGO VARIABLE» — Serena: «saca eso de angosto».
+         #      El ancho ya va en la etiqueta `120 mm`.
+         #   4. La clienta saca también «tabla corta»: en un anuncio «corta» suena a
+         #      defecto, y el argumento de la tarjeta es el largo variable.
+         # Cuando se corrige un dato, la línea habla del dato corregido y de nada más.
+         bajada=["LARGO VARIABLE:", "EL ENTABLADO DE TODA LA VIDA"]),
 ]
 
 C2 = [

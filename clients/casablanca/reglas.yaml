@@ -116,21 +116,27 @@ reglas:
       patron: '(\$\s?\d|desde\s+\$|\d+\s*%\s*(off|dcto|descuento)?|oferta|descuento|liquidaci|remate|última\s+oportunidad|ultima\s+oportunidad)'
 
   - id: grafia-cumaru
-    titulo: Se escribe «Cumarú»
+    titulo: Se escribe «Cumaru», sin tilde
     check: grafia_fijada
     severidad: bloqueante
-    autor: Valeria Traverso
-    fecha: 2026-08-25
-    cita: >-
-      Valeria confirmó que va Cumarú, que es lo que ya dice la pieza. El "Camarú UV"
-      del sitio es un error del sitio, y el "CUMARU" del brief es sólo la mayúscula de
-      una planilla.
+    autor: Jenny Campos (clienta)
+    fecha: 2026-08-31
+    cita: Es cumaru no cumarú
     porque: >-
       Había tres grafías dando vueltas al mismo tiempo. Sin fijarla, la próxima
       persona vuelve a elegir y el nombre del producto baila entre piezas.
+
+      ⚠️ CORREGIDA EL 16-09-2026. Esta regla exigía «Cumarú» CON tilde, citando a
+      Valeria (25-08). La clienta lo derogó de primera fuente el 31-08 —«Es cumaru
+      no cumarú»— y desde entonces las piezas van sin tilde, así que la regla del QA
+      estaba pidiendo lo contrario de lo que manda. No saltaba sólo porque estas
+      piezas no declaran sus textos y quedaba «SIN VERIFICAR»: o sea que el control
+      llevaba dos semanas apuntando al revés sin que nadie lo notara.
+
+      «Camarú UV» del sitio del cliente sigue siendo un error del sitio y no se copia.
     args:
-      correcta: "Cumarú"
-      incorrectas: ["Camarú", "Camaru"]
+      correcta: "Cumaru"
+      incorrectas: ["Camarú", "Camaru", "Cumarú"]
 
   - id: sin-huerfanas
     titulo: Palabra sola en la última línea

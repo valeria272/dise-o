@@ -1,5 +1,81 @@
 # Piso18 — bitácora
 
+## 2026-09-17 — Elisabet Soto · S4 ronda 6: la animada del 23-09 abre con arreglos
+
+**Encargo de Eli:** tomar el cambio que dejó el cliente en la grilla para la
+historia animada del 23 de septiembre, aplicarlo, subirlo al Drive y mostrarlo.
+
+**Lo que pidió el cliente** (hoja STORIES, columna del 23-09, la celda volvió de
+`CORREGIDO` a **EN CAMBIOS**):
+
+> «Aquí, pedimos que cambiaran la primera imagen que sale, que no sea ese video,
+> sino que otra foto de arreglos»
+
+⚠️ **Cómo se detectó.** Diff por CONJUNTO de cadenas de la grilla viva contra
+`clients/hilton/grillas/api/p18-sept-20260916.json`. El comentario se **prepende**
+sobre el anterior, así que ni el diff por celda ni el `modifiedTime` lo delatan.
+Es la tercera vez que esta cuenta lo confirma.
+
+**Lo que se hizo.** El plano 1 era `salon-vacio.mp4` —el recorte del `IMG_4177.MOV`
+con el salón sin montar, que había entrado en la ronda 3 por pedido de Eli—. Sale,
+y entra **`piso_18-101`** de `Piso 18_28 ago decoración 2024`.
+
+⭐ **Por qué esa foto.** El cliente sólo pidió «otra foto de arreglos», así que la
+elección tenía que seguir cumpliendo lo que Eli había fijado, y lo cumple entera:
+
+| Criterio de Eli | Cómo lo cumple |
+|---|---|
+| Que abra por lo más vacío | El piso está desnudo, no hay ni una mesa puesta |
+| «Una transición de una foto y aparece la misma foto, u otra con más montaje» | Es **el mismo arreglo del plano 2** (`mt-90`) visto de lejos: el primer empuje hace literalmente eso |
+| Sin rostros ni el logotipo de la pared | No aparece ninguno |
+| Sin ampliar (tope 1,0) | Recorte **3240×5760 desde (300, 0)**, reduce ×0,333 |
+
+El recorte queda escrito y reproducible en `scripts/p18-s4-r6.py` — regla 3 del
+criterio de Eli, la que se saltó dos veces el 16-09.
+
+**Lo que se midió antes de subir.** El fondo bajo la tinta, por tercios y con el
+velo aplicado, contra el plano 2 que ya estaba aprobado:
+
+| Franja | Plano 1 nuevo (`mt-101`) | Control: plano 2 (`mt-90`) |
+|---|---|---|
+| Bajo el logotipo (y 207–316) | **30 / 35 / 52** | 110 / 141 / 121 |
+| Bajo el titular (y 1244–1432) | **48 / 65 / 89** | 49 / 138 / 132 |
+
+O sea que el plano nuevo es **más oscuro que uno ya aprobado** en las dos franjas:
+no hace falta velo extra. El primer y el último fotograma pasan las 7 reglas de
+`qa/motor.py --marca piso18`.
+
+**✅ Y una duda abierta que se cierra:** el comentario *«Podría ser un texto
+orientado a ''Dejando todo listo, para que solo te preocupes de celebrar''»*
+aparece ahora **TACHADO** en la grilla. En la ronda 4 la bajada se había quitado
+porque la grilla la borró, y quedó anotado como decisión pendiente de Eli. El
+tachado la confirma: la bajada no vuelve.
+
+**Dónde quedó.** `ST N°3 S4.mp4` **reemplazada en Drive conservando el enlace**
+(`1q8V7ibQtVGYijeAgKK0UPCkCyaYMAyTV`, 11,8 MB, versión 51). Duración, planos 2–5,
+titular, cierre y botón **sin tocar**. Antes/después publicado como página:
+
+  https://claude.ai/artifact/AjEeQKnLSiCYZGd7oXK1gh
+
+### ✅ APROBADO por Eli — 17-09-2026
+
+*«Aprobado»*, mirando la página de antes/después. La ronda 6 cierra acá: la
+pieza que está en Drive es la buena.
+
+**Abierto:**
+
+1. ⚠️ **Se informa, no se decide** — la apertura con el salón vacío era un pedido
+   explícito de Eli y es justo lo que el cliente sacó. La foto elegida conserva la
+   idea, pero **la pieza ya no tiene video**. `salon-vacio.mp4` sigue en
+   `public/assets/` y se repone en una pasada si Eli lo quiere de vuelta.
+2. **Rondas nuevas en el FEED que NO se tocaron** (no son de esta pieza): el
+   carrusel del 22-09 pasa a ser «enfocado en arreglos florales de matrimonio»,
+   aparece un «Este no va», y el copy se corrigió para sacar la palabra prohibida
+   del hashtag («aprobado» una vez cambiado).
+3. Sigue en pie todo lo del 16-09: el manual y la ficha de la marca, y el nombre
+   que miente de `Post S4 PISO18 25-09.png` (es la pieza del 23-09).
+
+
 ## 2026-09-16 — Elisabet Soto · la marca está operativa, pero le falta su manual
 
 **Qué se hizo:** verificación del estudio en el Windows de Eli (`/arranque`). Todo

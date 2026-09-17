@@ -2,6 +2,43 @@
  * PISO18 — HISTORIA ANIMADA · «TIMELAPSE MONTAJE» (STORIES col M · 23-09 · 18:00)
  *
  * ══════════════════════════════════════════════════════════════════════════
+ * ⭐ RONDA 6 (17-09-2026) — EL VIDEO SALE, Y ABRE UNA FOTO DE ARREGLOS
+ * ══════════════════════════════════════════════════════════════════════════
+ * La celda volvió de `CORREGIDO` a **EN CAMBIOS** con un comentario nuevo:
+ *
+ *     «Aquí, pedimos que cambiaran la primera imagen que sale, que no sea ese
+ *      video, sino que otra foto de arreglos»
+ *
+ * Se detectó por **diff de conjunto de cadenas** contra la instantánea del 16-09
+ * (`clients/hilton/grillas/api/p18-sept-20260916.json`): el comentario se
+ * **prepende** sobre el anterior, así que un diff por celda no lo ve.
+ *
+ * | Plano 1 | Antes (rondas 3–5) | Ahora |
+ * |---|---|---|
+ * | Fuente | `salon-vacio.mp4` — el salón SIN MONTAR | **`piso_18-101`** — el arreglo alto sobre el mesón, piso desnudo |
+ *
+ * ⭐ **Por qué esa foto y no otra.** El cliente sólo pidió «otra foto de
+ * arreglos», pero la pieza tenía que seguir cumpliendo lo que Eli fijó en la
+ * ronda 3 —progresión de vacío a montado, sin rostros, sin el logotipo de la
+ * pared, sin ampliar—. `piso_18-101` es **el mismo arreglo del plano 2**
+ * (`mt-90`) visto de lejos y con el salón todavía sin mesas: cumple el pedido
+ * del cliente y **el primer empuje hace literalmente lo que Eli describió** —
+ * *«hace como una transición de una foto y se mueve hacia el otro lado y aparece
+ * la misma foto, u otra con más montaje»*.
+ *
+ * ⚠️ **Se informa, no se decide:** la apertura con el salón vacío era un pedido
+ * explícito de Eli («trata de buscar una que se vea más vacía») y es justo lo que
+ * el cliente saca. La foto elegida conserva el espíritu —es el plano más vacío de
+ * los cinco— pero ya no hay video en la pieza. Si Eli lo quiere de vuelta, se
+ * repone acá.
+ *
+ * ⭐ **Y la duda de la ronda 4 queda cerrada:** el comentario *«Podría ser un
+ * texto orientado a ''Dejando todo listo, para que solo te preocupes de
+ * celebrar''»* aparece ahora **TACHADO** en la misma celda. La bajada NO vuelve.
+ *
+ * El recorte está anotado y es reproducible: `scripts/p18-s4-r6.py`.
+ *
+ * ══════════════════════════════════════════════════════════════════════════
  * EL BRIEF, LITERAL
  * ══════════════════════════════════════════════════════════════════════════
  * ⭐ RONDA 4 (16-09-2026) — **el cliente reescribió el texto en la grilla.** La
@@ -25,9 +62,10 @@
  * | Bajada: Dejando todo listo, para que solo te preocupes de celebrar. | **borrada** — el brief ya no trae bajada |
  *
  * ⚠️ El comentario *«Podría ser un texto orientado a ''Dejando todo listo, para
- * que solo te preocupes de celebrar''»* SIGUE en la celda y sin tachar. Es el
- * que había producido la bajada. Como la grilla la borró, la pieza la quita —
- * pero queda anotado dónde se repone si Eli decide lo contrario.
+ * que solo te preocupes de celebrar''»* seguía en la celda y sin tachar. Es el
+ * que había producido la bajada. Como la grilla la borró, la pieza la quitó —
+ * ✅ y en la RONDA 6 el comentario aparece **TACHADO**, así que la decisión
+ * queda confirmada por el cliente: la bajada no vuelve.
  *
  * ⛔ «matrimonio», nunca «bodas»: el texto nuevo ya viene correcto.
  *
@@ -56,15 +94,19 @@
  * | Sin pixelado / cuidar dimensiones | Las fotos son **3840×5760** y se muestran a 1080×1920: **reducen a 0,28**. Ninguna se amplía |
  * | Transición de empuje lateral | El plano nuevo **entra desde la derecha** y empuja al anterior fuera por la izquierda — ver `EMPUJE` |
  * | Más rápido | El empuje dura **14 frames** (0,47 s) y cada plano **2,2 s**. Antes eran 3,5 |
- * | Una que se vea más vacía | Abre con el **VIDEO del salón sin montar** |
+ * | Una que se vea más vacía | Abría con el **VIDEO del salón sin montar** — ⛔ la RONDA 6 lo cambió por una foto de arreglos, ver arriba |
  *
  * ⭐ **Y «no coloques antes/después, solamente todos los montajes»:** la pieza ya
  * no rotula nada. Es una sola progresión continua de montajes, del espacio vacío
  * al salón terminado, sin etiquetas.
  *
  * ══════════════════════════════════════════════════════════════════════════
- * ⛔ LA TRAMPA DEL VIDEO — rotación por metadato
+ * ⛔ LA TRAMPA DEL VIDEO — rotación por metadato  ·  🗄️ HISTORIAL
  * ══════════════════════════════════════════════════════════════════════════
+ * ⚠️ Desde la RONDA 6 la pieza **ya no usa video**. Esto queda escrito porque
+ * el modo de falla vale para todo `.MOV` de esta cuenta, y porque si Eli pide
+ * devolver el salón vacío, `salon-vacio.mp4` sigue en `public/assets/`.
+ *
  * `IMG_4177.MOV` **se declara 3840×2160 en el stream y es 2160×3840 al decodificar**:
  * trae rotación por metadato, como todo `.MOV` de iPhone. Por creerle al stream se
  * recortó tres veces una franja vertical que mostraba techo y cortinas y nada de
@@ -84,10 +126,10 @@
  * ══════════════════════════════════════════════════════════════════════════
  * LOS CINCO PLANOS — una sola progresión, de vacío a montado
  * ══════════════════════════════════════════════════════════════════════════
- * Las cuatro fotos salen de **`Piso 18_28 ago decoración 2024`**, la sesión que
+ * Las CINCO fotos salen de **`Piso 18_28 ago decoración 2024`**, la sesión que
  * Eli mandó usar para todo lo de flores. Nada de IA.
  *
- *   1. `salon-vacio.mp4`  el salón SIN MONTAR: piso desnudo, mesas altas sueltas
+ *   1. `piso_18-101`      el arreglo alto sobre el mesón, con el piso desnudo
  *   2. `piso_18-90`       entran las mesas de madera y los primeros arreglos
  *   3. `piso_18-128`      más arreglos, y al fondo las mesas ya vestidas
  *   4. `piso_18-72`       la mesa larga montada, con el follaje colgante
@@ -105,7 +147,6 @@ import {
   Easing,
   Img,
   interpolate,
-  OffthreadVideo,
   staticFile,
   useCurrentFrame,
 } from 'remotion';
@@ -224,11 +265,14 @@ export const P18StMontaje: React.FC = () => {
         <Foto src="assets/hilton/piso18/mt-90.jpg" pos="center 50%" />
       </Plano>
       <Plano indice={0}>
-        <OffthreadVideo
-          src={staticFile('assets/hilton/piso18/salon-vacio.mp4')}
-          style={{width: '100%', height: '100%', objectFit: 'cover'}}
-          muted
-        />
+        {/*
+          ⭐ RONDA 6 — acá vivía `salon-vacio.mp4`. El cliente lo sacó: «que no sea
+          ese video, sino otra foto de arreglos». Entra `piso_18-101`, el MISMO
+          arreglo del plano 2 visto de lejos y con el piso todavía desnudo, así
+          que la pieza sigue abriendo en lo más vacío. Recorte en
+          `scripts/p18-s4-r6.py`.
+        */}
+        <Foto src="assets/hilton/piso18/mt-101.jpg" pos="center 50%" />
       </Plano>
 
       {/*
@@ -303,9 +347,9 @@ export const P18StMontaje: React.FC = () => {
             ⛔ Acá vivía la bajada «Dejando todo listo, para que solo te preocupes
             de celebrar.» La RONDA 4 la quita porque **la grilla la borró**: el
             16-09 el cliente reemplazó las dos líneas del brief (texto principal
-            + bajada) por una sola. El comentario que la propuso sigue en la
-            celda sin tachar, así que si Eli la quiere de vuelta se repone acá y
-            el botón baja otra vez a 1244.
+            + bajada) por una sola. ✅ En la RONDA 6 el comentario que la proponía
+            aparece **tachado** en la grilla: queda fuera por decisión del cliente.
+            Si algún día se repone, va acá y el botón baja otra vez a 1244.
           */}
           <div
             style={{

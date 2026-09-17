@@ -22,6 +22,29 @@ fuentes reales (`QB-Pantalla-AYCD`). Por eso el «POR $13.990», el degradado y 
 logotipo salen exactos y no alucinados. Y el trago que se ve en la pantalla es un
 close-up de **la foto real y aprobada** de la promo.
 
+**Ronda 3 — los tres arreglos que pidió Eli mirando el video reproducido:**
+
+1. ⭐⭐ **«El recorte del texto en movimiento del celular está deficiente».** El mate
+   del teléfono estaba **dibujado más grande que el teléfono**: le puse un bisel
+   del 11,5 % del ancho de pantalla y el real es del 3,6 %. La tipografía se
+   cortaba en una recta que caía *afuera* del chasis y dejaba un hueco de fondo.
+   Se midió el bisel recorriendo la perpendicular de cada borde **en tres puntos**
+   —28–32 px a los lados, 36–51 arriba, en la escena de 3072— y después se afinó
+   el contorno con **GrabCut sembrado por esa geometría**. Ahora sigue el canto
+   real, esquinas redondeadas incluidas. ⚠️ La medición tiene trampa: el canto del
+   chasis tiene un **filo especular** que un detector de saltos lee como «fondo».
+2. **«El celular necesito que aumente».** El acercamiento subió de 1,12 a **1,5**,
+   y ampliando **desde el centro del celular**, no del lienzo. El teléfono pasó del
+   32 % al 48 % del alto y su pantalla de 367 a **550 px** de ancho sobre 1080.
+3. **«Se ve de mala calidad… baja mucho la calidad de los textos».** Entra un grano
+   fino contra el bandeo de los degradados oscuros y el video sube a 5 MB.
+   ⭐ **Y quedó medido dónde está el techo:** con crf 10 y con crf 8 el PSNR da
+   **idéntico** (40,3 dB total · 37,5 dB en la pantalla). Lo que se pierde no es
+   compresión sino el **submuestreo de color 4:2:0** del h264, que es obligatorio
+   para Instagram. Como el 4:2:0 castiga el color y no el brillo, y todo el texto
+   es blanco sobre oscuro, lo que de verdad mejora la lectura es el TAMAÑO — por
+   eso el arreglo real fue el punto 2.
+
 **⛔ El error de la ronda 1, y la regla que deja.** La grilla traía el comentario
 «Muy parecido al de BT, busquemos otra referencia» y la ronda 1 lo ejecutó: sacó
 el celular de la pieza. **Estaba tachado** —contenido ya lo había resuelto— y el
@@ -48,9 +71,30 @@ se pregunta. Quedó en la memoria `comentarios-nativos-de-excel`.
 - `src/QbEntry.tsx` — entry point de la marca
 - `scripts/qb-aycd-s5-escena.py` · `scripts/qb-aycd-s5-montar.py` ·
   `scripts/qb-aycd-limpiar-foto.py`
+- `clients/qb/reglas.yaml` — la compuerta de la marca, 8 reglas, con los topes
+  calibrados sobre las cinco aprobadas (`raw/hilton/qb/aprobadas/`). La pieza
+  entregada **pasa el QA completo**
 - `public/assets/hilton/qb/` — logo recortado, Raleway, y las capas de la pieza
 - `out/qb/rev/index.html` — el antes/después de las dos rondas
 - Drive: `QB / STS` → el mp4 y el fotograma a 2250×4000
+  · video https://drive.google.com/file/d/1mFmvjdaSSKPU9JTP3NRQfRl5AZJXNKAI/view
+  · fotograma https://drive.google.com/file/d/1smCh207NdGlxYICE_DeUfCv6u2pzKe5L/view
+
+**Qué sigue:** está **entregada y esperando la revisión de Eli**. Lo primero de
+mañana es mirar si respondió sobre las dos preguntas abiertas —si la historia va
+a paid y si quiere las bandas de UNLIMITED también en la mitad de abajo— porque
+las dos cambian la pieza, no el archivo. Si aprueba, la S5 de QB queda cerrada;
+la otra historia de la semana, la **TRIVIA DE BRINDIS del 30-09**, está
+`PENDIENTE POR CLIENTE` en la grilla y **no se diseña hasta que cambie de estado**.
+
+Para retomar sin leer nada más:
+
+```bash
+npx remotion render src/QbEntry.tsx QB-ST-AYCD-S5 "out/qb/ST S5 QB AYCD 28-09.mp4" --codec=h264 --crf=16
+```
+
+Las capas ya están en `public/assets/hilton/qb/fotos/`, así que la pieza rinde en
+cualquier máquina sin volver a generar la escena.
 
 **Abierto:**
 - ⭐ **¿La historia va a paid?** Se compuso como orgánica: el pie con el legal

@@ -235,6 +235,85 @@ La misma lógica, con tres cosas más que confirman el repertorio de la marca:
 ⚠️ **La entrega de feed es a 2250 px de ancho**, aunque la mesa de trabajo del `.ai`
 sea 1080 × 1350. El `.ai` está a 1:1 y la exportación sube a 2250.
 
+## 4c. ⭐⭐ LAS PROMOS RECURRENTES TIENEN KV, Y EL KV MANDA — 17-09-2026
+
+Dictado por Eli sobre la S5:
+
+> «Busca que el diseño y textos de AYCD sean igual al KV. **Puede variar la foto o
+> cosas así, pero botón verde con efecto de degradado y logo + el nombre no.**»
+
+Esto convierte a **ALL YOU CAN DRINK en un bloque cerrado**, no en una pieza que se
+rediseña cada mes. Se verificó midiendo las dos ST de AYCD que existen —junio y
+septiembre 2026— y **tienen el bloque en las mismas coordenadas al píxel**: lo
+único que cambia entre las dos es la fotografía.
+
+| Qué | Cambia |
+|---|---|
+| La fotografía, el encuadre, la escena | ✅ sí |
+| El logotipo | ⛔ no |
+| «ALL *YOU* / *CAN* DRINK» y sus cortes | ⛔ no |
+| El botón verde con su degradado | ⛔ no |
+| TODOS LOS MARTES · POR $13.990 · 18:00 a 21:00 hrs | ⛔ no |
+
+**La geometría medida vive en `QB_AYCD`, en [`src/brand/qb.ts`](../../src/brand/qb.ts)**,
+y la reproduce `src/compositions/qb/QBPantallaAycd.tsx`. No se vuelve a medir a ojo.
+
+### ⭐ Y el corolario de copy: el KV gana a la redacción del brief
+
+El brief del 28-09 pedía «$13.990 · Martes · 18:00 a 21:00 hrs.» y el KV dice
+«TODOS LOS MARTES / POR $13.990 / 18:00 a 21:00 hrs». **Es la misma promo escrita
+distinto, y manda el KV.** Del brief se toma sólo lo que el KV **no** cubre — en
+esa pieza, «Tragos seleccionados ilimitados.», «Los números están claros.» y el
+CTA «Reserva tu mesa.», que van literales.
+
+### ⚠️ Si la pieza es animada, el bloque no se anima: se llega a él
+
+En la ST animada de la S5, Eli lo dejó dicho:
+
+> «Que lo que se vea en el celular sea estático, **sólo el texto de UNLIMITED en
+> movimiento, nada más**.»
+
+Y el legal:
+
+> «El legal que esté **fuera** del celular, que no se lee.»
+
+### ⭐ Cómo se pone el bloque dentro de un celular sin que lo escriba la IA
+
+El recurso que funcionó y que hay que repetir: **la escena se genera con la
+pantalla en VERDE plano**, se detectan sus cuatro vértices por color y encima se
+monta, con homografía, una gráfica rendida aparte con las fuentes reales.
+
+⛔ **Nunca pedirle a un modelo de imagen que escriba la promo.** Ninguno escribe
+«POR $13.990» sin romperlo, ni reproduce el degradado ni el logotipo — y eso es
+exactamente lo que Eli declaró intocable. Todo el aparato está en
+`scripts/qb-aycd-s5-escena.py` y `scripts/qb-aycd-s5-montar.py`.
+
+---
+
+## 4d. ⛔⛔ UN COMENTARIO TACHADO EN LA GRILLA NO SE EJECUTA — 17-09-2026
+
+> «No tomes en cuenta el comentario ya tachado, porque ya lo solucionó contenido.»
+> — Eli
+
+La celda `COMENTARIOS CLIENTE` del 28-09 decía «Muy parecido al de BT, busquemos
+otra referencia». **Estaba tachado**, y la ronda 1 lo ejecutó igual: sacó el
+celular de la pieza, que era el centro del brief. Se perdió una ronda entera.
+
+⚠️ **El CSV de la capa viva entrega el texto SIN el tachado**, así que leer la
+grilla por `export?format=csv` no basta para saber si un comentario sigue vigente.
+
+**La regla:**
+
+1. Un comentario que **ajusta** (copy, color, medida) se ejecuta sin más.
+2. Un comentario que **cambia el concepto** —saca un elemento, cambia el formato,
+   invalida la referencia— se **verifica antes**: `font.strike` sobre el `.xlsx`
+   con `openpyxl(..., rich_text=True)`, y si el blob está congelado, se pregunta.
+3. ⭐ Señal barata: **si el comentario contradice al brief, sospecha.** Acá el
+   brief describía el celular en cuatro párrafos y el comentario lo mataba en una
+   línea.
+
+---
+
 ## 5. De dónde salen las imágenes
 
 **Hay mucho material propio y es la fuente. No se genera lo que ya está fotografiado.**
@@ -289,11 +368,32 @@ O sea: **si esa misma pieza se pauta, el remate se come.** Por eso la pregunta
 «¿esta va a paid?» tiene que ir antes de diagramar, no después — moverlo al final
 obliga a rehacer el cierre de la marca.
 
-## 7. QA — provisorio, hasta medir la marca
+## 7. QA — ya hay compuerta ejecutable
+
+**QB tiene `reglas.yaml` desde el 17-09-2026.** Antes de entregar:
+
+```bash
+python3 qa/textos.py src/compositions/qb/<PIEZA>.tsx --piezas "out/qb/*.png" --out out/qb/_textos.json
+python3 qa/motor.py --marca qb --textos out/qb/_textos.json out/qb/*.png
+```
+
+Son 8 reglas: 5 de agencia con los topes **calibrados sobre las cinco piezas
+aprobadas** de la marca, y 3 propias (la grafía de «ALL YOU CAN DRINK», la de
+«Sunset QB» y el formato de precio chileno). El porqué de cada número está
+escrito en [`reglas.yaml`](reglas.yaml).
+
+⚠️ **El ajuste de zona segura NO salva una pieza de pauta.** Existe porque el
+sistema aprobado de QB remata al pie y con el tope de agencia las tres historias
+firmadas por el cliente salían rechazadas. Si la pieza va a paid, hay que subir
+el remate — ver §6.
+
+Y lo que la compuerta **no** puede ver, y se revisa mirando:
 
 ```
 [ ] ¿Se ve minimalista y elegante? Si está cargada, no es QB
 [ ] ¿Muestra cóctel, plato o rostro?
+[ ] ¿El bloque de AYCD calza con el KV? (§4c — el diff contra el KV, no a ojo)
+[ ] ¿El botón lleva el degradado y las esquinas vivas?
 [ ] ¿La pieza va a paid? Si sí (o si hay duda), texto dentro de zona segura
 [ ] Si es animada: zona segura verificada en el ÚLTIMO fotograma
 [ ] ¿La promo sigue vigente? Se mantienen en el tiempo, pero se confirma con Eli
@@ -304,17 +404,18 @@ obliga a rehacer el cierre de la marca.
 
 | Capa | Estado |
 |---|---|
-| Identidad | ⛔ falta — llega con los editables empaquetados |
-| Gramática | ⛔ falta |
-| Formatos | ◐ parcial — zonas seguras de agencia sí; medidas propias no |
-| Imagen | ◐ parcial — la fuente está clara, el material no está en disco |
-| Copy | ◐ parcial |
-| Pipeline | ⛔ falta |
-| QA | ◐ provisorio |
+| Identidad | ✅ **medida** — tipografías, logotipo y el degradado de marca, en `src/brand/qb.ts` |
+| Gramática | ◐ **parcial** — el bloque de AYCD está medido al píxel (§4c). Falta el resto del repertorio |
+| Formatos | ✅ historia 1080×1920 → 2250×4000; feed 1080×1350 → 2250×2813 |
+| Imagen | ◐ parcial — la fuente está clara, las sesiones no están en disco |
+| Copy | ◐ parcial — fijadas las dos grafías de promo y el formato de precio |
+| Pipeline | ✅ **existe** — `src/QbEntry.tsx` y las composiciones de `src/compositions/qb/` |
+| QA | ✅ **`reglas.yaml` calibrado** sobre las cinco aprobadas |
 
-**⛔ No se produce QB en código hasta medir la identidad desde los editables.**
+**Falta una sola pieza RECHAZADA en disco.** Sin ellas los topes del QA prueban
+que no marcan lo bueno, pero no que atrapen lo malo.
 
 ---
 
-*Creado el 15-09-2026 con lo dictado por Eli. Todo lo de acá es criterio suyo
-transcrito, no medición. Lo medido se irá agregando con su fecha y su origen.*
+*Creado el 15-09-2026 con lo dictado por Eli. Ampliado el 17-09-2026 con la
+medición del bloque de AYCD, el degradado de marca y las reglas ejecutables.*

@@ -190,16 +190,38 @@ def cmd_frente_geo():
 
     graf = Image.open(GRAFICA)
     gw, gh = graf.size
-    # El bisel del teléfono: ~9 % del ancho de pantalla a cada lado y ~4 % arriba
-    # y abajo, medido sobre la escena.
-    mx, my = gw * 0.115, gh * 0.038
+    # ⭐⭐ EL BISEL, MEDIDO — y no a ojo, que es lo que estaba mal.
+    #
+    # La primera versión puso 11,5 % del ancho de pantalla a cada lado y 3,8 %
+    # arriba y abajo. **Era el triple de lo real**, y el efecto se veía en la
+    # pieza: la tipografía en movimiento se cortaba en una línea recta que caía
+    # AFUERA del teléfono, dejando un hueco de fondo entre la letra y el chasis.
+    # Eli lo cazó mirando el video: «el recorte del texto en movimiento del
+    # celular está deficiente».
+    #
+    # Medido recorriendo la perpendicular de cada borde de la pantalla hacia
+    # afuera, en TRES puntos por borde y no sólo en el medio — que es donde está
+    # la muesca y da un número que no representa al borde:
+    #   lados  28–32 px  ·  arriba 36–51 px  ·  abajo 24 px   (escena de 3072)
+    #
+    # ⚠️ Y hay una trampa en la medición: el canto del chasis tiene un **filo
+    # especular** que el detector lee como «ya llegué al fondo». Por eso los
+    # números se leen del perfil completo (oscuro → filo brillante → oscuro →
+    # fondo), no del primer salto.
+    #
+    # El rectángulo es simétrico, así que manda el margen MAYOR: 31 px a los
+    # lados y 45 arriba. Pasarse por abajo no cuesta nada —ahí está la mano, que
+    # también va por delante—, quedarse corto sí: el texto se ve por debajo del
+    # chasis. Como 746 px de escena son 1200 de la gráfica, eso es 4,16 % del
+    # ancho y 2,64 % del alto.
+    mx, my = gw * 0.0416, gh * 0.0264
     cuerpo = np.zeros((gh, gw), np.uint8)
     cv2.rectangle(cuerpo, (0, 0), (gw, gh), 255, -1)
     cuerpo = cv2.copyMakeBorder(cuerpo, int(my), int(my), int(mx), int(mx),
                                 cv2.BORDER_CONSTANT, value=255)
     ch, cw = cuerpo.shape
     # Esquinas redondeadas del chasis.
-    r = int(cw * 0.16)
+    r = int(cw * 0.15)
     esquinas = np.zeros_like(cuerpo)
     cv2.rectangle(esquinas, (r, 0), (cw - r, ch), 255, -1)
     cv2.rectangle(esquinas, (0, r), (cw, ch - r), 255, -1)
@@ -222,7 +244,49 @@ def cmd_frente_geo():
     # huecos, y eso en el borde donde pasa la tipografía se ve como suciedad.
     # Mejor un mate exacto y chico que uno grande y sucio: las bandas se colocan
     # a la altura del teléfono, que es justo lo que el brief pide que las corte.
+    # ⭐⭐ Y ACÁ EL RECTÁNGULO NO ALCANZA — se afina con GrabCut.
+    #
+    # El chasis no es un rectángulo redondeado perfecto: tiene un canto abombado
+    # que en las esquinas se sale varios píxeles del rectángulo, y ahí la
+    # tipografía se veía POR ENCIMA del teléfono. Agrandar el margen no sirve,
+    # porque lo que sobra en una esquina falta en el lado opuesto.
+    #
+    # Lo que sí funciona es sembrar GrabCut con la geometría —que ya está bien
+    # ubicada— y dejar que él siga el borde real:
+    #   · seguro fondo   : fuera del rectángulo dilatado 70 px
+    #   · seguro objeto  : dentro del rectángulo erosionado 30 px
+    #   · lo del medio   : que lo decida él
+    # Es el caso fácil para GrabCut: chasis casi negro contra bokeh ámbar.
+    #
+    # Se corre a media resolución porque el resultado es una máscara y el borde
+    # se vuelve a suavizar igual; a 2250×4000 tarda minutos y no mejora nada.
     mate = celular
+    ph, pw = alto // 2, ancho // 2
+    chico = cv2.cvtColor(np.asarray(fondo.resize((pw, ph), Image.LANCZOS)),
+                         cv2.COLOR_RGB2BGR)
+    geo = cv2.resize(mate, (pw, ph), interpolation=cv2.INTER_NEAREST)
+    semilla = np.full((ph, pw), cv2.GC_BGD, np.uint8)
+    semilla[cv2.dilate(geo, np.ones((35, 35), np.uint8)) > 0] = cv2.GC_PR_BGD
+    semilla[geo > 0] = cv2.GC_PR_FGD
+    semilla[cv2.erode(geo, np.ones((15, 15), np.uint8)) > 0] = cv2.GC_FGD
+    try:
+        cv2.grabCut(chico, semilla, None, np.zeros((1, 65), np.float64),
+                    np.zeros((1, 65), np.float64), 4, cv2.GC_INIT_WITH_MASK)
+        afinado = np.where((semilla == cv2.GC_FGD) | (semilla == cv2.GC_PR_FGD),
+                           255, 0).astype(np.uint8)
+        # ⚠️ Red de seguridad: si GrabCut se desbocó —se comió el fondo o perdió
+        # el teléfono— se vuelve a la geometría. Un mate malo es peor que uno
+        # aproximado, y esto tiene que poder correr sin que nadie lo mire.
+        crecio = afinado.mean() / max(geo.mean(), 1e-6)
+        if 0.85 <= crecio <= 1.45:
+            mate = cv2.resize(afinado, (ancho, alto), interpolation=cv2.INTER_LINEAR)
+            mate = np.maximum(mate, celular)   # nunca menos que la geometría
+            print(f"  grabcut: borde afinado (x{crecio:.2f} de área)")
+        else:
+            print(f"  grabcut descartado (x{crecio:.2f} de área) — queda la geometría")
+    except cv2.error as e:
+        print(f"  grabcut no corrió ({e}) — queda la geometría")
+
     mate = cv2.morphologyEx(mate, cv2.MORPH_CLOSE, np.ones((31, 31), np.uint8))
     cnts, _ = cv2.findContours(mate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cv2.drawContours(mate, cnts, -1, 255, -1)

@@ -103,10 +103,12 @@ export const QB_ST_AYCD_S5_DURACION = 240;
  *
  * `top` está en px de mesa. Las tres se apilan en la mitad de arriba, con el
  * mismo ritmo de la referencia: la primera sale **cortada por el borde superior**
- * y la tercera queda **partida por el celular**, que arranca en y=655 (el mate
- * mide y 688–1327 y el acercamiento de 1,12 lo sube a 655–1371).
+ * y la tercera arranca entera y **se la va comiendo el celular**, que con el
+ * acercamiento de 1,5 ocupa **y 551–1464 · x 156–745** (el mate mide y 703–1312 ·
+ * x 254–647 sin acercamiento).
  *
- * ⛔⛔ Y NINGUNA BAJA DE y≈900. La probé a y=912 y la banda pasaba por encima del
+ * ⛔⛔ Y NINGUNA BAJA DE y≈904, que es donde empiezan las manos con este
+ * acercamiento. La probé a y=912 y la banda pasaba por encima del
  * pulgar y del índice: se ve como un error de montaje, no como un recurso. El
  * mate del frente es **sólo el teléfono**, porque la mano no se puede aislar —
  * la segmentación de sujeto se la come y sacarla por tono de piel no sirve: el
@@ -119,9 +121,9 @@ export const QB_ST_AYCD_S5_DURACION = 240;
  * `vueltas` es entero para que el bucle cierre.
  */
 const BANDAS = [
-  {top: -46, opacidad: 0.26, vueltas: 1, sentido: -1},
-  {top: 232, opacidad: 0.38, vueltas: 2, sentido: +1},
-  {top: 520, opacidad: 0.55, vueltas: 1, sentido: -1},
+  {top: -80, opacidad: 0.26, vueltas: 1, sentido: -1},
+  {top: 190, opacidad: 0.38, vueltas: 2, sentido: +1},
+  {top: 470, opacidad: 0.58, vueltas: 1, sentido: -1},
 ] as const;
 
 const CUERPO_BANDA = 236;
@@ -179,6 +181,35 @@ const Banda: React.FC<{
 };
 
 /**
+ * ⭐ LOS TEXTOS DE LA PIEZA, EN UN SOLO LUGAR.
+ *
+ * Están acá y no sueltos en el JSX para que `qa/textos.py` los pueda leer del
+ * propio TSX y la compuerta (`qa/motor.py --marca qb`) verifique de verdad las
+ * reglas de copy —la grafía de «ALL YOU CAN DRINK» y el formato del precio— en
+ * vez de dejarlas en SIN VERIFICAR. Una copia en un JSON aparte se desincroniza;
+ * el TSX es lo que se renderiza, así que es lo único que no puede mentir.
+ *
+ * `titular` y `antetitulo` describen lo que se ve DENTRO del celular; el resto
+ * es lo que va fuera. Los tres de abajo son literales del brief.
+ */
+const QB_ST_AYCD_S5_DATA: Record<string, Record<string, string>> = {
+  // ⚠️ La clave se llama «aycd» y no «pieza» a propósito: `qa/textos.py` empareja
+  // el bloque de datos con el archivo rendido **por el slug del nombre**, y el
+  // render se llama `ST S5 QB AYCD 28-09.mp4`. Con «pieza» no casaba con nada y
+  // las reglas de copy quedaban en SIN VERIFICAR.
+  aycd: {
+    titular: "ALL YOU CAN DRINK",
+    antetitulo: "TODOS LOS MARTES",
+    etiqueta: "POR $13.990",
+    medida: "18:00 a 21:00 hrs",
+    texto: "Tragos seleccionados ilimitados.",
+    bajada: "Los números están claros.",
+    cta: "RESERVA TU MESA",
+    pie: "*Sujeto a consumo de alimentos. * Promoción no acumulable con otras promociones y beneficios.",
+  },
+};
+
+/**
  * El pie. Va FUERA del celular porque adentro no se lee — dictado de Eli.
  * El degradado a negro es la misma idea del pie del KV de QB (una zona de
  * lectura al cierre), pero fundido en vez de cortado, para no partir la
@@ -190,9 +221,11 @@ const Pie: React.FC = () => (
       style={{
         position: "absolute",
         left: 0,
-        top: 1360,
+        // ⚠️ Arranca en 1470, no en 1360: con el acercamiento de 1,5 el celular
+        // termina en y=1464 y el degradado le oscurecía la parte de abajo.
+        top: 1470,
         width: "100%",
-        height: 560,
+        height: 450,
         background:
           "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.60) 34%," +
           " rgba(0,0,0,.90) 58%, rgba(0,0,0,.97) 100%)",
@@ -215,7 +248,7 @@ const Pie: React.FC = () => (
         opacity: 0.9,
       }}
     >
-      Los números están claros.
+      {QB_ST_AYCD_S5_DATA.aycd.bajada}
     </div>
 
     {/* CTA — literal del brief. La grilla no trae sticker de interacción para
@@ -234,7 +267,7 @@ const Pie: React.FC = () => (
         color: qbColores.blanco,
       }}
     >
-      RESERVA TU MESA
+      {QB_ST_AYCD_S5_DATA.aycd.cta}
     </div>
 
     {/* Legal — literal, y fuera del celular. */}
@@ -253,22 +286,70 @@ const Pie: React.FC = () => (
         opacity: 0.72,
       }}
     >
-      *Sujeto a consumo de alimentos. * Promoción no acumulable con otras
-      promociones y beneficios.
+      {QB_ST_AYCD_S5_DATA.aycd.pie}
     </div>
   </>
 );
 
 /**
- * Acercamiento fijo de la escena. El brief pide que el teléfono «ocupe gran
- * parte de la pieza»; en el encuadre generado se queda en un 33 % del alto y con
- * 1,12 sube a 37 % sin perder el trago, el plato para compartir ni la vela, que
- * son los «elementos que dan contexto al panorama» que el mismo brief pide.
+ * Acercamiento fijo de la escena.
+ *
+ * ⭐ Ronda 3: sube de 1,12 a **1,5**. Eli, mirando el video: «el celular necesito
+ * que aumente un poco más porque no se ve mucho lo que es ALL YOU CAN DRINK».
+ * Con 1,12 el teléfono ocupaba el 32 % del alto y su pantalla medía 367 px de
+ * ancho sobre 1080; con 1,5 pasa a **48 % del alto y 550 px de pantalla**, que
+ * es la mitad del ancho de la pieza. El titular de adentro se lee.
+ *
+ * ⭐ Y el origen no es el centro del lienzo sino **el centro del celular**
+ * (450,5 · 1007,5 en mesa, medido sobre el mate). Ampliar desde el centro del
+ * lienzo movía el teléfono hacia abajo y se comía la mano.
+ *
+ * Lo que se pierde a cambio: parte del mesón y de la barra del fondo. El trago,
+ * la vela y el plato para compartir —los «elementos que dan contexto al
+ * panorama» que pide el brief— siguen adentro.
  *
  * ⚠️ Va EXACTAMENTE igual en el fondo y en el frente, o las dos capas se
  * despegan y el recorte del celular aparece corrido.
  */
-const ACERCAMIENTO = "scale(1.12)";
+const ACERCAMIENTO = "scale(1.5)";
+const ORIGEN_ACERCAMIENTO = "41.71% 52.47%";
+
+/**
+ * ⭐ GRANO — contra el bandeo, no por estética.
+ *
+ * Eli, ronda 3: «se ve de mala calidad el video al reproducirse… baja mucho la
+ * calidad de los textos». Parte de eso es Instagram recomprimiendo, pero parte
+ * es nuestra: **esta pieza es casi toda negro y degradados oscuros**, que es
+ * justo donde el h264 hace escalones. Dos filas contiguas idénticas se
+ * cuantizan al mismo valor y el degradado se parte en franjas.
+ *
+ * Un grano muy fino rompe esa igualdad y el codificador vuelve a interpolar. Es
+ * el mismo arreglo que Piso18 le hizo a sus fondos planos.
+ *
+ * ⚠️ NO se anima: Eli pidió que lo único en movimiento fuera UNLIMITED. Un grano
+ * estático cumple y además comprime mejor que uno que titila.
+ */
+const GRANO =
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220">' +
+      '<filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.85"' +
+      ' numOctaves="3" stitchTiles="stitch"/></filter>' +
+      '<rect width="220" height="220" filter="url(#g)"/>' +
+      "</svg>",
+  );
+
+const Grano: React.FC = () => (
+  <AbsoluteFill
+    style={{
+      backgroundImage: `url("${GRANO}")`,
+      backgroundRepeat: "repeat",
+      opacity: 0.04,
+      mixBlendMode: "overlay",
+      pointerEvents: "none",
+    }}
+  />
+);
 
 export const QBStAycdS5: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: qbColores.negro}}>
@@ -280,6 +361,7 @@ export const QBStAycdS5: React.FC = () => (
         height: "100%",
         objectFit: "cover",
         transform: ACERCAMIENTO,
+        transformOrigin: ORIGEN_ACERCAMIENTO,
       }}
     />
 
@@ -300,10 +382,14 @@ export const QBStAycdS5: React.FC = () => (
         height: "100%",
         objectFit: "cover",
         transform: ACERCAMIENTO,
+        transformOrigin: ORIGEN_ACERCAMIENTO,
       }}
     />
 
     {/* 4 · El pie, fuera del teléfono. */}
     <Pie />
+
+    {/* 5 · Grano, arriba de todo. */}
+    <Grano />
   </AbsoluteFill>
 );

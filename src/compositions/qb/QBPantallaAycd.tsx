@@ -70,6 +70,22 @@ cargarFuentesQB();
 
 export const QB_PANTALLA = {w: 1200, h: 2557} as const;
 
+/**
+ * Los textos de la pantalla, en un solo lugar — igual que en `QBStAycdS5`, para
+ * que `qa/textos.py` los lea del TSX y la compuerta verifique la grafía y el
+ * formato del precio. Los cuatro primeros son literales del KV; el último es la
+ * única línea que agrega el brief.
+ */
+const QB_PANTALLA_AYCD_DATA: Record<string, Record<string, string>> = {
+  pantalla: {
+    titular: "ALL YOU CAN DRINK",
+    antetitulo: "TODOS LOS MARTES",
+    etiqueta: "POR $13.990",
+    medida: "18:00 a 21:00 hrs",
+    texto: "Tragos seleccionados ilimitados.",
+  },
+};
+
 /** La pantalla mide 1200 de ancho y el KV está medido a 1080. */
 const K = QB_PANTALLA.w / 1080; // 1,1111…
 
@@ -185,7 +201,7 @@ export const QBPantallaAycd: React.FC = () => {
           letterSpacing: "0.045em",
         }}
       >
-        TODOS LOS MARTES
+        {QB_PANTALLA_AYCD_DATA.pantalla.antetitulo}
       </Linea>
 
       {/* ⭐ El botón: degradado horizontal de marca y esquinas vivas. */}
@@ -218,7 +234,7 @@ export const QBPantallaAycd: React.FC = () => {
           ...QB_CIFRAS,
         }}
       >
-        POR $13.990
+        {QB_PANTALLA_AYCD_DATA.pantalla.etiqueta}
       </div>
 
       <Linea
@@ -231,7 +247,7 @@ export const QBPantallaAycd: React.FC = () => {
           ...QB_CIFRAS,
         }}
       >
-        18:00 a 21:00 hrs
+        {QB_PANTALLA_AYCD_DATA.pantalla.medida}
       </Linea>
 
       {/* La única línea que agrega el brief y el KV no tiene. */}
@@ -245,7 +261,7 @@ export const QBPantallaAycd: React.FC = () => {
           opacity: 0.92,
         }}
       >
-        Tragos seleccionados ilimitados.
+        {QB_PANTALLA_AYCD_DATA.pantalla.texto}
       </Linea>
     </AbsoluteFill>
   );

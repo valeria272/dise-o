@@ -1,0 +1,166 @@
+# Reglas ejecutables de QB RESTAURANT (Quotidien Bistró).
+#
+# ⛔ QB es MARCA INDEPENDIENTE. Está dentro del complejo Hilton pero su línea
+#    gráfica no está ligada a DoubleTree, Between ni Piso18 (Eli, 15-09-2026):
+#    «QB Restaurant es una marca independiente. Si bien está ubicada en el hotel,
+#    no está ligada su línea gráfica, porque es independiente.»
+#    Nada de las otras tres se le traspasa, y nada de acá va para allá.
+#
+# ⚠️ **Este archivo nace chico a propósito.** Sólo trae lo que hoy está MEDIDO
+#    sobre piezas reales. Una regla inventada a ojo hace una de dos cosas, las dos
+#    malas: marca piezas buenas —y la gente aprende a ignorar el QA— o deja pasar
+#    las malas. Lo que falta está anotado abajo como pendiente, no rellenado.
+#
+# Quien firma es Elisabet Soto, diseñadora de las cuatro cuentas del complejo Hilton.
+#
+# Fuente de los números: `qa/calibrar.py --marca qb` sobre las cinco piezas
+# aprobadas que hay en disco (`raw/hilton/qb/aprobadas/`) — las dos ST de AYCD de
+# junio y septiembre 2026, el post de AYCD, el post `Sunset QB` y la historia
+# `ST n°2 S3 QB`.
+
+marca: qb
+nombre: QB Restaurant (Quotidien Bistró)
+version: 1
+actualizado: 2026-09-17
+
+autoridad:
+  - quien: Elisabet Soto
+    rol: diseñadora del cliente
+    alcance: [qb]
+    canal: encargo directo y comentarios en la grilla de Drive
+
+ajustes:
+
+  zona-segura-meta:
+    porque: >-
+      ⭐ Esto NO es relajar la regla: es que el sistema de QB, tal como el cliente
+      lo tiene aprobado, **no pasa la zona segura de Meta**, y el QA tiene que
+      poder distinguir «pieza mal diagramada» de «así es la marca».
+      Medido con el propio check sobre las aprobadas, fracción de tinta en la
+      franja inferior de 340 px:
+        `ST n°2 S3 QB` 5,0 %  ·  `AYCD ST2` (jun) 1,6 %  ·  `AYCD ST` (sep) 1,6 %
+      contra el 1,0 % que tolera agencia. Las tres se pasan porque QB **remata al
+      pie**: franja verde a sangre en una, legal y lista de tragos en las otras
+      dos. Con el tope de agencia, las tres piezas que el cliente firmó salían
+      rechazadas.
+      ⚠️ Y el aviso que importa: estas piezas son ORGÁNICAS y están bien así.
+      **Si una pieza de QB va a PAUTA, este ajuste no la salva** — hay que subir
+      el remate, y eso lo decide Eli antes de diagramar, no después
+      (clients/qb/CLAUDE.md §6).
+    args:
+      max_fraccion: 0.058
+
+  respiro-borde:
+    porque: >-
+      Las piezas de QB son fotografía a sangre de barra de noche, con vidrio,
+      hielo y bokeh ámbar tocando los cuatro bordes por naturaleza: la máscara de
+      tinta toma esos brillos y no el texto. Medido sobre las cinco aprobadas la
+      fracción va de 0,001 a 0,059, con la mediana en 0,001 — o sea que el número
+      no separa diagramación de fotografía, separa fotos oscuras de fotos claras.
+      El tope se pone donde no marque ninguna aprobada.
+    args:
+      max_fraccion_tinta: 0.067
+
+  foto-estirada:
+    porque: >-
+      El fondo de QB se funde a NEGRO PURO arriba y abajo —medido en la ST de
+      AYCD: la foto llega a luminancia 0 en y=3350 de 4000— y una zona de negro
+      plano son filas idénticas por definición. Eso es el remate de la marca, no
+      una foto estirada. Aprobadas: de 0,000 a 0,034.
+    args:
+      max_fraccion_alto: 0.039
+
+  # ⚠️ `paleta-cerrada` y `costura` NO se ajustan acá, y no por olvido: el motor
+  # sólo deja ajustar reglas de agencia, y esas dos no lo son para esta marca.
+  # Igual quedan los números medidos, porque el día que QB tenga una regla propia
+  # de color van a hacer falta:
+  #   · paleta-cerrada — aprobadas de 0,460 a 0,819 de fracción fuera de sistema.
+  #     QB no tiene paleta cerrada: la pieza ES una fotografía de coctelería, con
+  #     todo el color del trago, la fruta y las luces de la barra.
+  #   · costura — aprobadas de 5,9 a 55,8. El número alto lo dan los cortes duros
+  #     propios de la marca (la franja verde a sangre, el borde del pie negro),
+  #     que son costuras deliberadas.
+
+  # ⛔ `desenfoque-parcial` NO se calibra, y conviene saber por qué.
+  #
+  # Sobre las cinco aprobadas la razón de nitidez va de 0,000 a 0,320, y el
+  # calibrador propone 0,000 con un 20 % de falsos positivos: o sea, **no hay
+  # corte posible**. Y tiene sentido: estas piezas mezclan un packshot de copa a
+  # foco con un fondo de barra reventado de bokeh, y encima se funden a negro
+  # plano, donde la nitidez es cero por definición.
+  #
+  # Un check que para no marcar nada hay que dejar en cero no es un check. Se
+  # deja el tope de agencia y se asume que en QB puede avisar de más: el aviso se
+  # mira, no se obedece. Para que sirviera habría que medir sólo la banda del
+  # bloque de texto, que es bastante más que una máscara de nitidez.
+
+reglas:
+
+  - id: aycd-grafia
+    titulo: La promo se llama ALL YOU CAN DRINK, en versales
+    check: grafia_fijada
+    severidad: bloqueante
+    autor: Elisabet Soto
+    fecha: 2026-09-17
+    cita: >-
+      Busca que el diseño y textos de AYCD sean igual al KV. Puede variar la foto
+      o cosas así, pero botón verde con efecto de degradado y logo + el nombre no.
+    fuente: clients/qb/CLAUDE.md §4c
+    porque: >-
+      Es el nombre de la promo más importante de la barra y está fijado en el KV:
+      «ALL» y «DRINK» en ExtraBold, «YOU» y «CAN» en itálica, las cuatro palabras
+      en versales. En la grilla y en los briefs convive escrito de todas las
+      formas —All you can drink, AYCD, All You Can Drink— y cualquiera de ellas
+      en la pieza rompe el bloque que el cliente tiene aprobado.
+    args:
+      correcta: "ALL YOU CAN DRINK"
+      incorrectas: ["All you can drink", "All You Can Drink", "all you can drink"]
+
+  - id: sunset-grafia
+    titulo: La promo de terraza se llama «Sunset QB»
+    check: grafia_fijada
+    severidad: bloqueante
+    autor: Elisabet Soto
+    fecha: 2026-09-17
+    cita: >-
+      Las dos [promos] que son el eje: All You Can Drink y Sunset QB.
+      (Eli, 15-09-2026, al abrir la marca.)
+    fuente: clients/qb/CLAUDE.md §4b
+    porque: >-
+      Medido en `Post n°2 QB SUNSET.png`: «Sunset» va en Brushwell y **enlazado
+      con el logotipo**, que hace de palabra en la frase. Escribirlo en versales
+      o separado del logo desarma el recurso más propio de la marca.
+    args:
+      correcta: "Sunset QB"
+      incorrectas: ["SUNSET QB", "sunset qb", "Sunset Q.B."]
+
+  - id: precio-clp
+    titulo: Los precios van en formato chileno
+    check: formato_clp
+    severidad: bloqueante
+    autor: Dirección de área Copylab
+    fecha: 2026-09-17
+    cita: >-
+      Precio en CLP chileno — $13.990, punto de miles, sin decimales.
+      (Regla de área, la misma que rige en CAVA.)
+    fuente: clients/qb/CLAUDE.md §4c
+    porque: >-
+      QB publica promociones con precio a la vista —$13.990 el AYCD, 2x$7.990 el
+      QB TIME— y un monto mal escrito en una promo de barra es un reclamo en la
+      mesa, no una errata. Punto de miles, sin decimales.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# PENDIENTE — lo que todavía NO se puede comprobar por programa
+# ──────────────────────────────────────────────────────────────────────────────
+# · El DEGRADADO DEL BOTÓN. Está medido (#354A3A en los bordes → #66886B al
+#   centro, horizontal) y vive en `QB_BOTON_FONDO`, pero no hay un check que
+#   verifique un degradado dentro de una caja. Hoy se revisa mirando.
+# · La GEOMETRÍA DEL BLOQUE DE AYCD. Está medida al píxel en `QB_AYCD`, y la
+#   forma de verificarla que sí funcionó es el diff contra el KV: se rinde el
+#   fotograma y se comparan los bbox de tinta elemento por elemento. Eso es un
+#   script de la pieza, no una regla de marca — por ahora.
+# · La PALETA. Sigue sin cerrarse de dónde sale PANTONE 361 C, que el `.ai`
+#   declara como tinta plana y es más brillante que los dos extremos del
+#   degradado. Hasta que se aclare no hay `color_fuera_de_sistema` que valga.
+# · Falta una sola pieza RECHAZADA en disco. Sin ellas los topes de arriba sólo
+#   prueban que no marcan lo bueno; no prueban que atrapen lo malo.

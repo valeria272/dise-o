@@ -124,16 +124,33 @@ DENTRO del nivel— y acá salió gratis al subir el par.
 en Drive ni nada de eso, es solamente para tenerlo ya guardado, en mente de cómo
 podemos volver a mejorar una edición ya hecha.» Queda en el repo y nada más.
 
-**Qué sigue:** que Eli mire la página y diga si la edición nueva le sirve. Si dice
-que sí, el paso siguiente es el que quedó pendiente de la conversación: **probar
-si Premiere Pro 2026 carga un panel CEP** (la máquina tiene CSXS.12 y ya corren
-paneles, incluido el de Magnific en Illustrator) o si exige UXP. Ese panel es lo
-que permitiría escribir en su línea de tiempo en vivo, en vez de entregarle
-piezas rendidas.
+### ✅ APROBADO — el método queda como referencia
 
-**Abierto:** las dos decisiones de arriba (velo del logotipo · el `+` en otras
-piezas). Y el `.prproj` de ella **no se tocó**: la versión nueva es un render
-aparte, no una modificación de su proyecto.
+Eli, después de la ronda 2: **«quedó bien»**. Y antes, sobre la primera versión:
+«lo demás lo veo sumamente bien, **como para a futuro hacer algo muy similar**»
+y «necesito que sepas más adelante trabajar así los siguientes archivos de videos
+de DT».
+
+⇒ **Esto no fue un encargo suelto: es cómo se van a trabajar sus videos de DT.**
+El aparato queda en la memoria `dt-video-de-premiere-a-codigo`.
+
+**Qué sigue:** el paso pendiente de la conversación — **probar si Premiere Pro
+2026 carga un panel CEP** (la máquina tiene CSXS.12 y ya corren paneles, incluido
+el de Magnific en Illustrator) o si exige UXP. Ese panel es lo que permitiría
+escribir en su línea de tiempo en vivo, en vez de entregarle piezas rendidas.
+
+**Abierto:**
+1. Las dos decisiones medidas que quedaron para ella: **el velo del logotipo**
+   (4,15–5,12:1 contra la vara 6,7–9,3 de §B.4) y **el `+` de Stag en otras
+   piezas** de DT ya entregadas.
+2. ⚠️ **`src/DtEntry.tsx` sigue sin commitear.** Importa `DtC1S5Dia.tsx`, que es
+   el carrusel S5 que quedó en vuelo en el mismo árbol sin subir; commitear el
+   entry sin ese archivo rompe el repo. Falta agregarle el
+   `<Folder name="DT-Prueba-ST">` cuando el árbol esté limpio — es un commit de
+   una línea y **la composición ya está subida**, sólo le falta el registro.
+3. El `.prproj` de ella **no se tocó**: la versión nueva es un render aparte, no
+   una modificación de su proyecto. Y **nada se subió a Drive** — es banco de
+   pruebas, queda en el repo y nada más.
 
 ---
 

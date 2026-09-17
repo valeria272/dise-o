@@ -103,12 +103,11 @@ export const QB_ST_AYCD_S5_DURACION = 240;
  *
  * `top` está en px de mesa. Las tres se apilan en la mitad de arriba, con el
  * mismo ritmo de la referencia: la primera sale **cortada por el borde superior**
- * y la tercera arranca entera y **se la va comiendo el celular**, que con el
- * acercamiento de 1,5 ocupa **y 551–1464 · x 156–745** (el mate mide y 703–1312 ·
- * x 254–647 sin acercamiento).
+ * y las otras dos **se las va comiendo el celular**, que con el encuadre de 1,75
+ * ocupa **y 300–1387 · x 193–887**.
  *
- * ⛔⛔ Y NINGUNA BAJA DE y≈904, que es donde empiezan las manos con este
- * acercamiento. La probé a y=912 y la banda pasaba por encima del
+ * ⛔⛔ Y NINGUNA BAJA DE y≈723, que es donde empiezan las manos con este
+ * encuadre. La probé a y=912 y la banda pasaba por encima del
  * pulgar y del índice: se ve como un error de montaje, no como un recurso. El
  * mate del frente es **sólo el teléfono**, porque la mano no se puede aislar —
  * la segmentación de sujeto se la come y sacarla por tono de piel no sirve: el
@@ -121,9 +120,9 @@ export const QB_ST_AYCD_S5_DURACION = 240;
  * `vueltas` es entero para que el bucle cierre.
  */
 const BANDAS = [
-  {top: -80, opacidad: 0.26, vueltas: 1, sentido: -1},
-  {top: 190, opacidad: 0.38, vueltas: 2, sentido: +1},
-  {top: 470, opacidad: 0.58, vueltas: 1, sentido: -1},
+  {top: -60, opacidad: 0.26, vueltas: 1, sentido: -1},
+  {top: 200, opacidad: 0.40, vueltas: 2, sentido: +1},
+  {top: 455, opacidad: 0.58, vueltas: 1, sentido: -1},
 ] as const;
 
 const CUERPO_BANDA = 236;
@@ -221,11 +220,11 @@ const Pie: React.FC = () => (
       style={{
         position: "absolute",
         left: 0,
-        // ⚠️ Arranca en 1470, no en 1360: con el acercamiento de 1,5 el celular
-        // termina en y=1464 y el degradado le oscurecía la parte de abajo.
-        top: 1470,
+        // ⚠️ Arranca justo bajo el celular, que con el encuadre de 1,75 termina
+        // en y=1387. Si sube más, le oscurece la parte de abajo al teléfono.
+        top: 1400,
         width: "100%",
-        height: 450,
+        height: 520,
         background:
           "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.60) 34%," +
           " rgba(0,0,0,.90) 58%, rgba(0,0,0,.97) 100%)",
@@ -236,16 +235,16 @@ const Pie: React.FC = () => (
     <div
       style={{
         position: "absolute",
-        top: 1596,
+        top: 1512,
         left: 0,
         width: "100%",
         textAlign: "center",
         fontFamily: "Raleway",
         fontWeight: 300,
         fontStyle: "italic",
-        fontSize: 31,
+        fontSize: 35,
         color: qbColores.blanco,
-        opacity: 0.9,
+        opacity: 0.95,
       }}
     >
       {QB_ST_AYCD_S5_DATA.aycd.bajada}
@@ -256,13 +255,13 @@ const Pie: React.FC = () => (
     <div
       style={{
         position: "absolute",
-        top: 1664,
+        top: 1586,
         left: 0,
         width: "100%",
         textAlign: "center",
         fontFamily: "Raleway",
         fontWeight: 600,
-        fontSize: 38,
+        fontSize: 46,
         letterSpacing: "0.13em",
         color: qbColores.blanco,
       }}
@@ -274,45 +273,67 @@ const Pie: React.FC = () => (
     <div
       style={{
         position: "absolute",
-        top: 1806,
+        top: 1798,
         left: 0,
         width: "100%",
         textAlign: "center",
         fontFamily: "Raleway",
         fontStyle: "italic",
         fontWeight: 400,
-        fontSize: 22,
+        // ⭐ Ronda 4: el legal va en DOS líneas y más grande, no en una y chico.
+        // En una sola línea, al cuerpo que hace falta para leerlo, mide 1054 px
+        // de 1080 y queda a 13 px del borde — por debajo de los 60 px de respiro
+        // que pide agencia, y pegado. Partido en sus dos frases se lee mejor y
+        // respira: la segunda, que es la larga, mide 756 px.
+        fontSize: 26,
+        lineHeight: "1.34",
         color: qbColores.blanco,
-        opacity: 0.72,
+        opacity: 0.92,
       }}
     >
-      {QB_ST_AYCD_S5_DATA.aycd.pie}
+      {QB_ST_AYCD_S5_DATA.aycd.pie.split(" * ").map((linea, i) => (
+        <div key={linea}>{i === 0 ? linea : `* ${linea}`}</div>
+      ))}
     </div>
   </>
 );
 
 /**
- * Acercamiento fijo de la escena.
+ * ⭐⭐ EL ENCUADRE — y por qué NO se hace con `transform: scale()`
  *
- * ⭐ Ronda 3: sube de 1,12 a **1,5**. Eli, mirando el video: «el celular necesito
- * que aumente un poco más porque no se ve mucho lo que es ALL YOU CAN DRINK».
- * Con 1,12 el teléfono ocupaba el 32 % del alto y su pantalla medía 367 px de
- * ancho sobre 1080; con 1,5 pasa a **48 % del alto y 550 px de pantalla**, que
- * es la mitad del ancho de la pieza. El titular de adentro se lee.
+ * Ronda 4. Eli: «se ve mal los textos pequeños en el video y en el estático, hay
+ * problemas de visibilidad… un poco de zoom que no se ve nada del celular bien».
  *
- * ⭐ Y el origen no es el centro del lienzo sino **el centro del celular**
- * (450,5 · 1007,5 en mesa, medido sobre el mate). Ampliar desde el centro del
- * lienzo movía el teléfono hacia abajo y se comía la mano.
+ * **La causa no era la compresión ni el tamaño: era el `transform: scale()`.**
+ * Chrome rasteriza la imagen al tamaño que ocupa en el layout —acá 1080×1920— y
+ * recién después estira ESE MAPA DE BITS por el factor del transform. O sea que
+ * las dos capas se dibujaban a 1080 de ancho y se ampliaban 1,5 veces: el
+ * resultado es un 1080 estirado a 1620, con todo lo fino reventado. Se comía
+ * los textos de la pantalla del celular **y** el filo del recorte, que es
+ * exactamente lo que ella marcó en rojo las dos veces.
  *
- * Lo que se pierde a cambio: parte del mesón y de la barra del fondo. El trago,
- * la vela y el plato para compartir —los «elementos que dan contexto al
- * panorama» que pide el brief— siguen adentro.
+ * ⇒ El encuadre se hace ahora **con el tamaño real del elemento**. La imagen se
+ * declara de 1890×3360 y se corre con `left`/`top`, así que Chrome la rasteriza
+ * a ese tamaño y baja los 2250 px del máster a 1890 — un DOWNSCALE, que es
+ * nítido, en vez de un upscale, que no lo es.
  *
- * ⚠️ Va EXACTAMENTE igual en el fondo y en el frente, o las dos capas se
- * despegan y el recorte del celular aparece corrido.
+ * La equivalencia con el encuadre anterior: un `scale(Z)` alrededor de un origen
+ * `o` lleva el punto `p` a `o + (p − o)·Z`. Con eso, la esquina superior
+ * izquierda cae en `o·(1 − Z)` y el tamaño es `1080Z × 1920Z`.
+ *
+ * ⭐ Y de paso sube de 1,5 a **1,75**, que es el «auméntalo más» de Eli: el
+ * teléfono pasa a ocupar **y 300–1387 · x 193–887**, o sea el **57 % del alto** y
+ * el 64 % del ancho, y su pantalla mide **641 px** sobre 1080.
+ *
+ * ⚠️ Los dos valores van EXACTAMENTE iguales en el fondo y en el frente, o las
+ * capas se despegan y el recorte del celular aparece corrido.
  */
-const ACERCAMIENTO = "scale(1.5)";
-const ORIGEN_ACERCAMIENTO = "41.71% 52.47%";
+const ENCUADRE = {
+  left: -248.4,
+  top: -919.8,
+  width: 1890,
+  height: 3360,
+} as const;
 
 /**
  * ⭐ GRANO — contra el bandeo, no por estética.
@@ -356,13 +377,7 @@ export const QBStAycdS5: React.FC = () => (
     {/* 1 · La escena, con la gráfica ya dentro del celular. Quieta. */}
     <Img
       src={staticFile("assets/hilton/qb/fotos/aycd-s5-fondo.jpg")}
-      style={{
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        transform: ACERCAMIENTO,
-        transformOrigin: ORIGEN_ACERCAMIENTO,
-      }}
+      style={{position: "absolute", ...ENCUADRE, objectFit: "cover"}}
     />
 
     {/* 2 · Lo único que se mueve. */}
@@ -375,15 +390,7 @@ export const QBStAycdS5: React.FC = () => (
     {/* 3 · El celular, por delante: parte la tipografía. */}
     <Img
       src={staticFile("assets/hilton/qb/fotos/aycd-s5-frente.png")}
-      style={{
-        position: "absolute",
-        inset: 0,
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        transform: ACERCAMIENTO,
-        transformOrigin: ORIGEN_ACERCAMIENTO,
-      }}
+      style={{position: "absolute", ...ENCUADRE, objectFit: "cover"}}
     />
 
     {/* 4 · El pie, fuera del teléfono. */}

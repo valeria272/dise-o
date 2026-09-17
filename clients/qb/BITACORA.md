@@ -45,6 +45,36 @@ close-up de **la foto real y aprobada** de la promo.
    es blanco sobre oscuro, lo que de verdad mejora la lectura es el TAMAÑO — por
    eso el arreglo real fue el punto 2.
 
+**⭐⭐ Ronda 4 — LA CAUSA REAL DE «SE VE MAL», Y NO ERA LA COMPRESIÓN.**
+
+Eli volvió con lo mismo después de la ronda 3: «problema de mal recorte en la
+palabra en la máscara, se ve mal los textos pequeños en el video y en el
+estático, hay problemas de visibilidad, no aumentaste el tamaño del celular».
+
+Los dos defectos que quedaban eran **el mismo**, y era mío:
+
+1. ⛔⛔ **`transform: scale()` sobre un `<Img>` no amplía la imagen: amplía su
+   mapa de bits.** Chrome rasteriza el elemento al tamaño que ocupa en el
+   layout —acá 1080×1920— y recién después estira esa textura por el factor del
+   transform. O sea que el fondo y el recorte del celular se dibujaban a 1080 de
+   ancho y se ampliaban 1,5 veces. Todo lo fino reventaba: los textos de la
+   pantalla del teléfono **y** el filo del recorte, que es exactamente lo que
+   ella marcó en rojo las dos veces.
+   ⇒ El encuadre se hace ahora **con el tamaño real del elemento** (`left`,
+   `top`, `width`, `height`), así que Chrome baja los 2250 px del máster a 1890 —
+   un downscale, que es nítido. Sin tocar nada más, los textos del celular
+   pasaron de 37,5 a **39,0 dB de PSNR** dentro del video.
+2. El mate de GrabCut se calculaba a media resolución y se subía con `resize`:
+   un borde a escalones que la pieza después magnificaba. Ahora se sube **el
+   contorno** y se vuelve a dibujar a tamaño completo — un polígono escalado da
+   segmentos rectos, no escalones.
+
+Además: el encuadre sube de 1,5 a **1,75** (el teléfono pasa al 57 % del alto y
+su pantalla a 641 px), el velo de la pantalla se oscurece abajo para que el
+bloque de la promo levante sobre el cuerpo de la copa, y el legal pasa a **dos
+líneas de 26 px**: en una sola, al cuerpo que hace falta para leerlo, medía
+1054 px de 1080 y quedaba a 13 px del borde.
+
 **⛔ El error de la ronda 1, y la regla que deja.** La grilla traía el comentario
 «Muy parecido al de BT, busquemos otra referencia» y la ronda 1 lo ejecutó: sacó
 el celular de la pieza. **Estaba tachado** —contenido ya lo había resuelto— y el

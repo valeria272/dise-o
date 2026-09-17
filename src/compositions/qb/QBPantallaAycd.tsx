@@ -152,9 +152,14 @@ export const QBPantallaAycd: React.FC = () => {
       <AbsoluteFill
         style={{
           background:
-            "linear-gradient(180deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.55) 22%," +
-            " rgba(0,0,0,.10) 42%, rgba(0,0,0,.18) 58%, rgba(0,0,0,.72) 80%," +
-            " rgba(0,0,0,.90) 100%)",
+            // ⭐ Ronda 4: el tramo de abajo se oscurece bastante más. El bloque
+            // de la promo cae sobre el cuerpo de la copa, que es rosado claro, y
+            // «18:00 a 21:00 hrs» en Raleway Light se perdía encima. Sigue
+            // siendo un degradado por los dos extremos —al centro la fotografía
+            // queda intacta—, sólo que el pie pesa más.
+            "linear-gradient(180deg, rgba(0,0,0,.84) 0%, rgba(0,0,0,.58) 20%," +
+            " rgba(0,0,0,.10) 40%, rgba(0,0,0,.22) 56%, rgba(0,0,0,.62) 70%," +
+            " rgba(0,0,0,.88) 84%, rgba(0,0,0,.95) 100%)",
         }}
       />
 
@@ -257,8 +262,8 @@ export const QBPantallaAycd: React.FC = () => {
           fontFamily: "Raleway",
           fontWeight: 300,
           fontStyle: "italic",
-          fontSize: 30 * K,
-          opacity: 0.92,
+          fontSize: 34 * K,
+          opacity: 0.95,
         }}
       >
         {QB_PANTALLA_AYCD_DATA.pantalla.texto}

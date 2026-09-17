@@ -279,9 +279,20 @@ def cmd_frente_geo():
         # aproximado, y esto tiene que poder correr sin que nadie lo mire.
         crecio = afinado.mean() / max(geo.mean(), 1e-6)
         if 0.85 <= crecio <= 1.45:
-            mate = cv2.resize(afinado, (ancho, alto), interpolation=cv2.INTER_LINEAR)
+            # ⚠️ NO se sube la máscara con `resize`. GrabCut trabaja a media
+            # resolución, y ampliar su mapa de bits deja un borde a escalones que
+            # después la pieza magnifica todavía más: es la mitad de «el recorte
+            # está deficiente» que cazó Eli en la ronda 3.
+            #
+            # Se sube el CONTORNO y se vuelve a dibujar a tamaño completo. Un
+            # polígono escalado da segmentos rectos, no escalones.
+            cs, _ = cv2.findContours(afinado, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            grande = max(cs, key=cv2.contourArea)
+            grande = cv2.approxPolyDP(grande, 1.2, True) * 2
+            mate = np.zeros((alto, ancho), np.uint8)
+            cv2.fillPoly(mate, [grande.astype(np.int32)], 255, lineType=cv2.LINE_AA)
             mate = np.maximum(mate, celular)   # nunca menos que la geometría
-            print(f"  grabcut: borde afinado (x{crecio:.2f} de área)")
+            print(f"  grabcut: borde afinado (x{crecio:.2f} de área), redibujado a tamaño completo")
         else:
             print(f"  grabcut descartado (x{crecio:.2f} de área) — queda la geometría")
     except cv2.error as e:
@@ -290,7 +301,8 @@ def cmd_frente_geo():
     mate = cv2.morphologyEx(mate, cv2.MORPH_CLOSE, np.ones((31, 31), np.uint8))
     cnts, _ = cv2.findContours(mate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cv2.drawContours(mate, cnts, -1, 255, -1)
-    mate = cv2.GaussianBlur(mate, (0, 0), 1.5)
+    # Un solo píxel de suavizado: lo justo para que el filo no serruche.
+    mate = cv2.GaussianBlur(mate, (0, 0), 0.9)
 
     salida = np.dstack([np.asarray(fondo), mate])
     Image.fromarray(salida, "RGBA").save(FRENTE)

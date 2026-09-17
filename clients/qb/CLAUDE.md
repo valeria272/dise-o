@@ -314,6 +314,39 @@ grilla por `export?format=csv` no basta para saber si un comentario sigue vigent
 
 ---
 
+## 4e. ⛔⛔ PIEZA ANIMADA: NUNCA ENCUADRAR CON `transform: scale()` — 17-09-2026
+
+Costó dos rondas de QB y es un error de plataforma, no de criterio.
+
+**Chrome rasteriza un `<Img>` al tamaño que ocupa en el layout y recién después
+le aplica el `transform`.** Si la imagen mide 1080×1920 en el layout y se le pone
+`scale(1.5)`, lo que se amplía es **el mapa de bits de 1080**, no el archivo de
+2250. Todo lo fino revienta: en la ST de AYCD se comía los textos dentro del
+celular y el filo del recorte del teléfono. Eli lo describió dos veces como
+«se ve mal los textos pequeños» y «mal recorte en la máscara»; las dos cosas
+tenían la misma causa.
+
+✅ **El encuadre se hace con el tamaño real del elemento:**
+
+```tsx
+// scale(Z) alrededor del origen o equivale a:
+const ENCUADRE = {
+  left: ox * (1 - Z), top: oy * (1 - Z),
+  width: 1080 * Z, height: 1920 * Z,
+};
+<Img style={{position: "absolute", ...ENCUADRE, objectFit: "cover"}} />
+```
+
+Así el navegador **baja** el máster al tamaño pedido en vez de subir un raster ya
+hecho. Medido en la pieza: los textos del celular pasaron de 37,5 a 39,0 dB de
+PSNR dentro del video, sin tocar la compresión.
+
+⚠️ Vale igual para las máscaras: una máscara calculada a media resolución y
+subida con `resize` deja un borde a escalones. Se sube **el contorno** y se
+vuelve a dibujar a tamaño completo.
+
+---
+
 ## 5. De dónde salen las imágenes
 
 **Hay mucho material propio y es la fuente. No se genera lo que ya está fotografiado.**

@@ -1,5 +1,38 @@
 # Piso18 — bitácora
 
+## 2026-09-17 — Elisabet Soto · arranque del estudio: 11 referencias del cumpleaños están rotas
+
+**Qué se hizo:** `/arranque` en el Windows de Eli — **no se produjo ninguna pieza**.
+Diagnóstico completo del estudio (todo verde: Node, dependencias, Chrome, llavero,
+Magnific y el conector de Drive responden; TypeScript compila limpio). Al correr la
+compuerta de material apareció un problema que sí es de Piso18.
+
+### ⛔ `raw/hilton/piso18/ref-cumple/` — 11 archivos no son imágenes
+
+Son **páginas HTML de ~900 KB** (`<!doctype html>`, el login de Google) guardadas con
+extensión de foto: una descarga de Drive que falló sin avisar. La trampa de
+`compuerta-de-material`, otra vez.
+
+| Rotos (HTML, hay que rebajarlos) | Buenos (PNG real) |
+|---|---|
+| `actual-2.jpg` · `actual-2.png` · `actual-3.jpg` · `actual-3.png` · `actual-4.jpg` · `actual-4.png` · `benef-1.jpg` · `benef-1.png` · `benef-2.png` · `benef-3.png` · `viejo-1.png` | `actual-1.png` · `viejo-2.png` |
+
+**Estaban tapados por una alarma falsa.** El doctor decía «36 rotos», pero 25 de esos
+eran fotos buenas de iPhone (HEIC con nombre `.jpg`) que el verificador no sabía leer.
+Se arregló `scripts/verificar-material.py` para que distinga las dos cosas — el HEIC
+ahora sale como aviso ▲ y sólo el HTML queda en rojo.
+
+**Dónde quedó:** nada de Piso18 tocado. Sólo el arreglo del verificador, y esta nota.
+
+**Qué sigue:** **rebajar esas 11 referencias del Drive antes de tocar la pieza de
+cumpleaños.** Hoy no son imágenes: diseñar con ellas es diseñar a ciegas. Usa
+`drive.usercontent.google.com/download?…&confirm=t` (ver `bajar-grilla-ajena-de-drive`),
+que es lo que evita que vuelva a bajar el HTML del login.
+
+**Abierto:** sigue pendiente lo de la entrada anterior — el «Este no va» del cliente
+sobre el post del 23-09. Esto de acá no lo toca.
+
+
 ## 2026-09-17 — Elisabet Soto · el barrido del día, y un «Este no va» que llegó tarde
 
 **Qué se hizo:** `/abrir piso18` — sincronizar, sembrar memoria y correr `/al-dia`

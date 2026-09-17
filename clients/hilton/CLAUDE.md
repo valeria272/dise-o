@@ -988,6 +988,199 @@ ronda se resolvieron con el mismo movimiento.
 > nadie sepa decir por qué. `FILETE = 5` es la promesa del mosaico, y cualquier
 > polígono con un desplazamiento propio (el `+ 38`) la rompe en silencio.
 
+### ⭐⭐⭐ Y AHORA HAY APARATO DE **VIDEO** — el carrusel de la S5 (17-09-2026)
+
+Cerrado al armar el **carrusel de videos «Tu día en DoubleTree»** (FEED col M,
+28-09). Es la primera pieza ANIMADA que el estudio produce para esta cuenta.
+
+```bash
+python scripts/dt-c1-s5-fotos.py --previo    # recorta las fotos (portada, gym)
+python scripts/dt-c1-s5-clips.py --previo    # prepara los clips de la sesión
+python scripts/dt-c1-s5-qa.py                # la compuerta
+python scripts/dt-c1-s5-rendir.py            # los MP4 con nombre de entrega
+python scripts/dt-c1-s5-revision.py          # la página que mira Eli
+```
+
+| Pieza del aparato | Dónde |
+|---|---|
+| La composición | `src/compositions/hilton/DtC1S5Dia.tsx` |
+| Entry de Remotion | `src/DtEntry.tsx`, carpeta `DT-Carrusel-S5` |
+| Sesión de video | ver `dt-banco-de-imagenes.md` § 0 |
+
+#### ⚠️ EL MÁSTER DE UN VIDEO **NO** ES 2250
+
+| Formato | Máster | Por qué |
+|---|---|---|
+| historia 9:16 | 2250×4000 | así entrega Eli, 66 piezas |
+| feed 4:5 estático | 2250×2813 | la plantilla `logo-post.png` |
+| **feed 4:5 VIDEO** | **1080×1350** | Instagram sirve video a 1080 y recomprime cualquier cosa más grande |
+
+O sea que `dt-c1-s5-rendir.py` **no lleva `--scale`**. Rendir un video a 2250 es
+triplicar el peso para que la plataforma lo tire igual.
+
+#### ⭐⭐ EN UNA PIEZA ANIMADA, EL CONTRASTE SE MIDE EN LOS DOS EXTREMOS
+
+Es la regla que ya había dejado Piso18 (`geometria-de-pieza-animada`) y acá se
+volvió ejecutable: `dt-c1-s5-qa.py` mide **f0 y el último fotograma** y **manda
+el peor**. La foto se mueve por debajo del texto durante cinco segundos, así que
+el fondo que le toca a cada tinta al final no es el del arranque — en esta pieza
+el titular del lobby pasó de **12,26:1 a 4,03:1** entre un extremo y el otro.
+
+#### ⛔⛔ Y UNA BANDA SÓLO SE MIDE DONDE SU TINTA YA EXISTE
+
+La píldora «DESLIZA» entra en el fotograma 62. Medida en el f0, el QA cantó
+**2,36:1** sobre un elemento que está macizo en azul y da **12,29:1** en cuanto
+aparece: estaba midiendo la FOTO, no la píldora. Cada banda declara ahora su
+`desde`. **Un QA que acusa a una pieza sana se deja de mirar.**
+
+#### ⭐⭐ LO QUE IMPORTA NO ES EL VELO EN EL BORDE, SINO EN LA BANDA DEL TEXTO
+
+El pie del velo se subió tres veces persiguiendo la versalita de la firma —0,16 →
+0,34 → 0,52 **al borde**— y seguía fallando (3,70:1). La firma no vive en el
+100 % de la altura: vive entre el **93,8 %** y el **95,7 %**. Despejando la
+fórmula de contraste sobre el fondo real hacía falta α ≈ **0,52 ahí**, así que lo
+que se corrigió fue **adelantar la rampa**, no subirle el tope. Pasó a la primera.
+
+> La misma idea que la regla de los tercios: el promedio de la franja miente. Acá
+> el que miente es el valor del borde.
+
+#### ⭐⭐⭐ LA PORTADA NO LLEVA VELO: LA TINTA VA EN AZUL
+
+El manual ya lo escribía —«si el titular queda sin margen sobre foto clara, la
+salida NO es cargar el velo: es ponerlo en azul DT»— y esta pieza lo midió:
+
+| banda | azul `#09194E` | blanco `#FAFAFA` |
+|---|---|---|
+| «Tu día» | **9,93:1** | 1,51:1 |
+| titular | **3,15:1** | 1,48:1 |
+| logotipo | **9,24:1** | 1,62:1 |
+
+Y las dos rampas de velo se probaron y ninguna sirve sobre el frontis: la
+**cóncava** del Día del Turismo deja la torre gris —el sujeto ocupa dos tercios
+de la lámina— y la **convexa** de Honors deja el titular blanco en 1,93:1.
+
+⭐ Corolario de composición: con la tinta en azul, **la píldora se invierte**.
+Una píldora blanca sobre fondo claro se lee como un hueco; va maciza en azul con
+tinta blanca y recién ahí funciona como botón.
+
+#### ⭐ LA PORTADA FIRMA CON EL LOGOTIPO Y LAS INTERIORES CON LA VERSALITA
+
+Nunca las dos en la misma lámina. Lo destrabó una medición: sobre el pie del
+frontis la versalita daba 3,05:1 en azul y 2,04:1 en blanco, las dos bajo la vara
+— y la salida no era cargarle un velo al pie para sostener un elemento que
+**sobraba**, porque arriba ya estaba el lockup.
+
+#### ⭐⭐ EL ACENTO MANUSCRITO DE UNA REFERENCIA VA EN **STAG ITÁLICA**
+
+Las dos referencias que dejó Eli para este carrusel resuelven su acento con una
+tipografía manuscrita. **El gesto entra; la fuente no.** El trazo que rodea la
+palabra se **dibuja** (SVG que se anima dibujándose) y la palabra va en Stag
+Itálica, con el precedente de la ST del 18-09. Meter una tercera familia es
+abrirle una fuente a la marca, y eso no lo decide una pieza.
+
+#### ⭐ CUANDO HAY MATERIAL FILMADO, EL «KEN BURNS» SE RETIRA
+
+La ronda 1 de este carrusel resolvía el movimiento con zoom sobre las fotos de la
+sesión profesional. Con los clips de la sesión de video esas láminas **no llevan
+ningún movimiento de código**: sumarle un zoom a una cámara real es mover dos
+veces la misma imagen, y se nota. Sólo la portada conserva su Ken Burns, porque
+**la sesión de video no tiene exterior del hotel**.
+
+---
+
+### ⭐⭐⭐ RONDA 2 DEL CARRUSEL S5 (17-09) — seis correcciones de Eli
+
+#### ⭐⭐⭐ 1. «ALINEA A LA IZQUIERDA BIEN» — EL MISMO `left` NO ALINEA NADA
+
+Es la corrección más valiosa de la ronda, y es medible. Poner el sello y las dos
+líneas del titular en el mismo `left: 88` **no los deja alineados**: cada letra
+trae su propio hueco a la izquierda —el *side bearing*— y depende del glifo.
+Medido sobre los PNG de la ronda 1:
+
+| lámina | sello | titular 1 | titular 2 |
+|---|---|---|---|
+| Desayuno · Salón | 90 | 89 | 91 |
+| **Lobby** | **92** | 89 | 90 |
+| Habitación | 89 | 89 | 91 |
+
+Hasta **3 px** dentro de una misma lámina, y el peor es el `12:00` del lobby: el
+`1` de Trade Gothic Bold Condensed es el glifo con más hueco del carrusel.
+
+**Cada elemento se corre hacia la izquierda su propio hueco**, y el valor sale de
+medir el render. `dt-c1-s5-qa.py` verifica las **15 franjas** contra el margen de
+DT con 1 px de tolerancia: si alguien cambia un texto, el hueco cambia y el QA lo
+canta.
+
+> ⚠️ No confundir con la compensación óptica de un canto redondo, que sí es
+> correcta y no se toca. Acá el desalineo no es óptico: es el hueco del archivo
+> de fuente, y se ve como un bloque sangrado.
+
+#### ⛔⛔ 2. EL `letter-spacing` NO LLEGA AL MARGEN DERECHO
+
+CSS agrega el espacio de tracking **también después de la última letra**. En un
+texto alineado a la derecha la tinta muere antes del margen: la firma del
+carrusel terminaba en **x=984** con el margen en **992**. Se corrige con un
+`margin-right` negativo, y **no basta con el tracking**: hay que sumarle el hueco
+propio del último glifo (`0,30em` dejaba la tinta en 990; con `0,33em` llega a
+991). Es la trampa que ya tiene nombre: `tracking-no-llega-a-inline-block`.
+
+#### ⭐⭐ 3. LA CALIDAD SE PIERDE EN LA CADENA, NO EN EL RENDER
+
+«¿Por qué se ve tan mal la calidad?» La pieza salía a 1080×1350 —el tamaño
+correcto para Instagram— y aun así se veía blanda. La causa eran **dos
+compresiones encadenadas**: el paso de ffmpeg reescalaba y comprimía el clip, y
+Remotion volvía a comprimir ESE archivo.
+
+La regla: **el intermedio no se reescala y casi no se comprime.** Los clips salen
+a su tamaño nativo de recorte (2160×2700, CRF 16) y el único reescalado de toda
+la cadena lo hace Chrome al rendir.
+
+⛔⛔ **Y `--scale` tiene que dar un entero PAR.** Dos intentos fallidos:
+`1.3333` da `1350 × 1,3333 = 1799,955` (y 4/3 exacto da 1800,0000000000002 en
+coma flotante); `1.5` da 2025, que es entero pero **impar**, y como H.264 exige
+dimensión par Remotion baja el alto a 1349 ANTES de escalar y pide 2023,5 — el
+mensaje de error habla del alto final y no explica nada de esto. **`--scale 2`**
+es exacta y da 2160×2700.
+
+⚠️ Y entregar por encima de lo que sirve Instagram **no se desperdicia**: la
+plataforma reduce a 1080 y ese remuestreo se ve mejor que entregarle 1080 ya
+comprimido. ⚠️ La **vista previa de Drive recomprime fuerte**: para juzgar
+calidad hay que descargar el archivo.
+
+#### ⛔ 4. EL VERDE DE DT NO ENTRA PORQUE ESTÉ EN EL MANUAL
+
+«No uses el verde de DT.» El trazo de la portada y el guion del sello iban en
+`#A3CD39`, que es el acento oficial del manual —el 20 % de la paleta— y aun así
+ella lo saca. **El manual decide qué colores TIENE la marca; qué color entra en
+una pieza es composición, y la composición es de la diseñadora.**
+
+#### ⛔⛔ 5. EL QA NO MIDE COLISIONES — Y ESTA VEZ FUE UN LOGOTIPO
+
+La portada de la ronda 2 se armó con el tramo del clip donde la cámara llega a la
+puerta, porque ahí el **logotipo DoubleTree está grabado en el cristal**, grande.
+Rendido, el titular «en DoubleTree» le caía ENCIMA y la palabra se leía **dos
+veces, superpuesta**. El contraste pasaba de sobra; el QA lo dio por bueno.
+
+Es el mismo modo de falla que la línea del mosaico detrás del lockup en la ST del
+18-09: **después de mover un bloque, hay que MIRAR qué quedó atrás.** Se resolvió
+tomando el primer tramo del clip, donde el canto izquierdo es follaje y sombra.
+
+#### ⭐ 6. CÓMO SE ACERCA UNA PIEZA A SU REFERENCIA
+
+«Quiero que sea más igual a la referencia» se resolvió listando en qué se
+apartaba, elemento por elemento, y corrigiendo los cinco: foto → **video**, tinta
+azul sin velo → **velo y tinta blanca**, palabra circulada pegada al titular →
+**circulada arriba, titular al medio y bajada debajo**, píldora maciza azul →
+**píldora clara**, y lockup centrado arriba → **versalita al pie**, que es como
+firman las otras cuatro. La tabla comparativa vive en la cabecera de
+`DtC1S5Dia.tsx`.
+
+⚠️ **De ahí sale que la portada ya no lleva lockup**, y no es descuido: §B dice
+que en feed el logotipo por defecto NO va y que sólo aparece en programas del
+hotel y piezas importantes. Un carrusel de experiencia no es ninguno de los dos.
+
+---
+
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 
 Verificado glifo a glifo con `fontTools` sobre los archivos de esta máquina: los

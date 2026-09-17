@@ -103,6 +103,17 @@ public/assets/**
 # que documenta scripts/dt-ft-honors-foto.py.
 !public/assets/hilton/dt/ft-honors-*.jpg
 
+# CARRUSEL S5 · 28-09 «Tu día en DoubleTree». Van los recortes de FOTO (la lámina
+# del gym, que todavía no es video) pero NO los clips.
+#
+# ⚠️ Y es una excepción a la regla de «el render vuelve al repo», con razón: en la
+# ronda 2 los clips dejaron de reescalarse para ganar calidad y pasaron de 26 MB a
+# **156 MB**. Eso no entra en git. Se rehacen en un comando —
+# `python scripts/dt-c1-s5-clips.py`— y ese script documenta el ID de Drive de
+# cada `.MOV` de origen, el tramo, el recorte, la gradación y la velocidad, así
+# que la reconstrucción es determinista (17-09-2026).
+!public/assets/hilton/dt/s5/*.jpg
+
 # PISO18 · S4 septiembre 2026. Los seis fotogramas de la sesión de agosto 2023 que
 # usan las piezas, las tres tiras de la encuesta, el atardecer reiluminado y el
 # logotipo ya recortado. Excepción deliberada, misma razón que DT: sin estos

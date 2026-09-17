@@ -1,0 +1,256 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""DOUBLETREE · CARRUSEL S5 — la página que mira Eli.
+
+    python scripts/dt-c1-s5-revision.py
+
+⭐ Por qué existe (memoria `antes-y-despues-en-html`): Eli aprueba MIRANDO y
+comparado. Cada ronda se entrega como una página con la pieza al lado de su
+referencia, al tamaño de publicación, y con las decisiones escritas para que
+pueda decir que sí o que no a cada una por separado.
+
+Ronda 1: todavía no hay «antes», así que la comparación es contra las dos
+referencias que ella misma dejó en el Drive.
+
+Ronda 2 (17-09): seis correcciones de Eli, cada una con lo que se midió para
+resolverla. Ver el bloque «Ronda 2» de la página.
+"""
+import shutil
+import sys
+from pathlib import Path
+
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:                                                  # noqa: BLE001
+    pass
+
+RAIZ = Path(__file__).resolve().parent.parent
+BASE = RAIZ / "out/hilton/dt/c1-s5"
+REFS = RAIZ / "raw/hilton/dt/s5-sept/refs"
+
+LAMINAS = [
+    ("C1 S5 DT n°1.mp4", "PORTADA", "—",
+     "«Tu día» en el trazo · «en DoubleTree» · «by Hilton Santiago–Vitacura» · DESLIZA",
+     "<code>CONTENIDO HOTEL 2026 / Exterior hotel / IMG_1640</code> · 11,7 s a 1,0×"),
+    ("C1 S5 DT n°2.mp4", "SLIDE 1", "8:30 · DESAYUNO ANTES DE LA REUNIÓN",
+     "Empieza el día / con la energía correcta.",
+     "<code>DESAYUNO BUFFET QB / IMG_5700</code> · 3,64 s a 0,72×"),
+    ("C1 S5 DT n°3.mp4", "SLIDE 2", "9:30 · REUNIÓN EN SALÓN",
+     "Un espacio a la altura / de tus reuniones.",
+     "<code>SALÓNES / IMG_5785</code> · 2,37 s a 0,47×"),
+    ("C1 S5 DT n°4.mp4", "SLIDE 3", "12:00 · TIEMPO PARA TI",
+     "Entre reunión y reunión, / un momento para respirar.",
+     "<code>COWORK / IMG_5736</code> · 5,97 s a 1,0×"),
+    ("C1 S5 DT n°5.mp4", "SLIDE 4", "sin hora · CIERRE EN LA HABITACIÓN",
+     "El día termina como debe: / con comodidad.",
+     "<code>HABITACIONES / IMG_5741</code> · 6,37 s a 1,0×"),
+]
+
+PENDIENTES = [
+    ("⏸ Falta el slide del <b>GYM</b>",
+     "El brief no lo trae; la fila COMENTARIOS PARA DISEÑO lo pide («Faltó GYM!») "
+     "y contenido todavía no escribió su texto. La lámina está armada y la hora "
+     "la da el propio comentario (16:00). <b>Y ojo: la sesión de video no tiene "
+     "gimnasio</b> — hoy quedaría con la foto <code>HDT_82</code> y movimiento de "
+     "código, o sea la única lámina que no sería video. Hay que decidirlo."),
+    ("⏸ Falta la <b>hora del cierre</b>",
+     "El comentario da tres horas (8:30 desayuno, 9:30 salones, 12 cowork) y la "
+     "cuarta es la del gym. Para «cierre en la habitación» no hay hora, y "
+     "ponerle una sería escribir contenido. La lámina va sin sello de hora; es "
+     "un dato y entra en un render."),
+    ("⚠️ Los cuatro textos <b>terminan en punto</b>",
+     "La regla de DT dice que los títulos no llevan punto, pero los textos salen "
+     "literales de la grilla y corregirlos sería editarle el copy al cliente. "
+     "Van con punto. Si el cliente los quiere sin punto, lo pide."),
+    ("⚠️ «12» se compuso <b>12:00</b>",
+     "Para que la columna de horas sea una sola serie junto a 8:30 y 9:30. Es "
+     "formateo de una cifra, no redacción — pero queda dicho."),
+    ("⚠️ Dos personas al fondo del <b>salón</b>",
+     "En <code>IMG_5785</code> hay dos personas de pie al fondo. A 1080 de ancho "
+     "miden unos 20 px y no se les distingue el rostro. Si prefieres el salón "
+     "vacío, <code>IMG_5783</code> y <code>IMG_5784</code> son de la misma sala."),
+]
+
+DECISIONES = [
+    ("La letra manuscrita de la referencia va en <b>Stag Itálica</b>",
+     "Las dos referencias resuelven su acento con una tipografía manuscrita. En "
+     "DT la tipografía la manda el manual —<b>Stag + Trade, y nada más</b>— y "
+     "meter una tercera familia es abrirle una fuente a la marca, que no lo "
+     "decide una pieza. El <b>gesto</b> de la referencia sí entra: el trazo que "
+     "rodea la palabra está dibujado y se dibuja solo en pantalla. Si la quieres "
+     "manuscrita de verdad, eso lo apruebas tú como marca."),
+    ("Las cinco láminas firman con la <b>versalita</b> al pie",
+     "Y ninguna lleva el logotipo sobrepuesto. §B del manual dice que en feed el "
+     "logotipo por defecto no va —«ensucia el feed»— y que sólo aparece en "
+     "programas del hotel y piezas importantes; un carrusel de experiencia no es "
+     "ninguno de los dos. Además el clip de la portada trae el logotipo grabado "
+     "en el cristal de la entrada, así que la marca ya está en la fotografía. "
+     "<b>Si prefieres el lockup en la portada, se pone y listo.</b>"),
+    ("El clip del salón se toma a <b>0,47×</b>, que es el tope",
+     "Dura 2,37 s y la lámina 5. Más lento que eso deja de leerse como movimiento "
+     "de cámara y se lee como cámara lenta."),
+    ("El <b>sello de hora</b> es el recurso que pidió el comentario de diseño",
+     "La cifra en Trade Gothic (en DT las cifras y las versales son de Trade, "
+     "Stag ni siquiera trae el <code>$</code>), el rótulo del propio brief en "
+     "versalitas, y entre los dos un guion blanco."),
+    ("Cada frase va a <b>dos pesos y un mismo cuerpo</b>",
+     "Arriba Stag Medium, abajo Stag Light. Es el recurso de DT y no cambia el "
+     "texto: sólo decide dónde parte la línea."),
+    ("<b>5,0 segundos</b> cada una, y sin sonido",
+     "Bajo el tope de 6 s que pusiste. Los clips cortos se bajan de velocidad en "
+     "vez de repetirse: el origen es de 60 fps y la salida de 30, así que cada "
+     "fotograma sigue siendo uno capturado — no hay cámara lenta falsa."),
+]
+
+QA = """CONTRASTE — cada tinta contra su fondo real, en el peor fotograma
+  Portada      «Tu día» 3,73:1 · titular 4,05:1 · bajada 9,15:1 · DESLIZA 9,48:1 · firma 4,69:1
+  Desayuno     sello 5,21:1 · titular 4,80:1 · firma 4,57:1
+  Salón        sello 5,72:1 · titular 3,75:1 · firma 6,99:1
+  Lobby        sello 6,50:1 · titular 3,98:1 · firma 6,76:1
+  Habitación   sello 5,08:1 · titular 4,32:1 · firma 4,74:1
+
+CANTO IZQUIERDO — las 15 franjas de texto, contra el margen de DT (88 px)
+  las 15 en x = 88 ✅"""
+
+
+def main() -> int:
+    BASE.mkdir(parents=True, exist_ok=True)
+    (BASE / "refs").mkdir(exist_ok=True)
+    for f in REFS.glob("*.jpg"):
+        shutil.copy2(f, BASE / "refs" / f.name)
+
+    laminas = "\n".join(
+        f"""  <figure class="lam">
+    <video src="entrega/{a}" autoplay loop muted playsinline></video>
+    <figcaption>
+      <b>{b}</b> <span class="n">{a}</span>
+      <div class="sello">{c}</div>
+      <div class="txt">{d}</div>
+      <div class="src">{e}</div>
+    </figcaption>
+  </figure>"""
+        for a, b, c, d, e in LAMINAS)
+
+    bloque = lambda items, clase: "\n".join(
+        f'    <li class="{clase}"><b>{t}</b><p>{c}</p></li>' for t, c in items)
+
+    html = f"""<!doctype html>
+<html lang="es"><meta charset="utf-8">
+<title>DT · Carrusel S5 · 28-09 — ronda 2</title>
+<style>
+  :root {{ --azul:#09194E; --verde:#A3CD39; --papel:#F4F5F7; }}
+  * {{ box-sizing:border-box; }}
+  body {{ margin:0; background:var(--papel); color:#16202F;
+    font:15px/1.55 -apple-system,"Segoe UI",Roboto,sans-serif; }}
+  header {{ background:var(--azul); color:#fff; padding:34px 40px 30px; }}
+  header h1 {{ margin:0 0 6px; font-size:27px; font-weight:650; letter-spacing:-.01em; }}
+  header p {{ margin:0; opacity:.78; font-size:14px; }}
+  main {{ padding:34px 40px 70px; max-width:1680px; margin:0 auto; }}
+  h2 {{ font-size:13px; letter-spacing:.16em; text-transform:uppercase;
+    color:#5A6675; margin:44px 0 16px; font-weight:650; }}
+  h2:first-of-type {{ margin-top:8px; }}
+  .fila {{ display:flex; gap:20px; overflow-x:auto; padding-bottom:10px; }}
+  .lam {{ margin:0; flex:0 0 306px; }}
+  .lam video, .lam img {{ width:306px; height:382px; object-fit:cover;
+    border-radius:9px; background:#0b1220; display:block;
+    box-shadow:0 5px 22px rgba(9,25,78,.16); }}
+  figcaption {{ padding:11px 2px 0; font-size:12.5px; }}
+  figcaption b {{ font-size:13px; }}
+  .n {{ color:#8A94A3; font-size:11px; }}
+  .sello {{ color:var(--azul); font-weight:600; margin-top:5px; }}
+  .txt {{ color:#38414F; margin-top:3px; }}
+  .src {{ color:#8A94A3; margin-top:5px; font-size:11.5px; }}
+  .src code, li code {{ background:#E3E7EC; padding:1px 5px; border-radius:4px;
+    font-size:11px; }}
+  ul {{ list-style:none; padding:0; margin:0; display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(400px,1fr)); gap:14px; }}
+  li {{ background:#fff; border-radius:9px; padding:15px 17px;
+    border-left:3px solid var(--verde); }}
+  li.pend {{ border-left-color:#E0A21A; }}
+  li.r2 {{ border-left-color:var(--azul); }}
+  li p {{ margin:5px 0 0; color:#4A5462; font-size:13.5px; }}
+  pre {{ background:#fff; border-radius:9px; padding:16px 18px; overflow-x:auto;
+    font-size:12.5px; color:#38414F; border-left:3px solid var(--verde); }}
+  .refs {{ display:flex; gap:20px; }}
+  .refs figure {{ margin:0; }}
+  .refs img {{ width:262px; height:auto; border-radius:9px;
+    box-shadow:0 5px 22px rgba(9,25,78,.16); }}
+  .refs figcaption {{ color:#5A6675; }}
+</style>
+<header>
+  <h1>DoubleTree · Carrusel de videos «Tu día en DoubleTree»</h1>
+  <p>FEED columna M · 28 de septiembre 12:00 · ronda 1 · 5 láminas de 5,0 s ·
+     <b>2160×2700</b> · <b>falta el slide del GYM</b></p>
+</header>
+<main>
+  <h2>Las láminas — se reproducen solas, en bucle</h2>
+  <div class="fila">
+{laminas}
+  </div>
+
+  <h2>Contra las referencias que dejaste</h2>
+  <div class="refs">
+    <figure><img src="refs/REF-PORTADA-CARRUSEL.jpg">
+      <figcaption>REF PORTADA CARRUSEL</figcaption></figure>
+    <figure><img src="refs/REF-SLIDE2-Y-SIGUIENTES.jpg">
+      <figcaption>SLIDE 2 Y SIGUIENTES</figcaption></figure>
+  </div>
+
+  <h2>Lo que falta y lo que hay que avisarle a contenido</h2>
+  <ul>
+{bloque(PENDIENTES, "pend")}
+  </ul>
+
+  <h2>Ronda 2 — lo que pediste, y qué se hizo con cada cosa</h2>
+  <ul>
+    <li class="r2"><b>«Usa los videos de los links»</b><p>Las cinco láminas son
+      video. La portada era la única que seguía siendo foto porque la sesión de
+      video no tiene exterior — pero el <b>segundo</b> enlace sí:
+      <code>CONTENIDO HOTEL 2026 / Exterior hotel</code>, que tiene un solo clip
+      y es la llegada al hotel.</p></li>
+    <li class="r2"><b>«No uses el verde de DT»</b><p>Fuera. El trazo de la
+      portada y el guion del sello pasaron a blanco. No quedó ningún acento de
+      color en el carrusel.</p></li>
+    <li class="r2"><b>«Espacio entre letras, muy sutil»</b><p>Los titulares iban
+      en <b>−0,014em</b>, o sea apretados a propósito. Pasaron a <b>+0,014em</b>:
+      a cuerpo 74-108 es cerca de 1 px por letra.</p></li>
+    <li class="r2"><b>«Alinea a la izquierda bien»</b><p>Tenías razón y era
+      medible: poner todo en el mismo margen no alinea, porque cada letra trae su
+      propio hueco. La tinta arrancaba entre <b>88 y 92</b> según el glifo — el
+      peor era el <code>12:00</code> del lobby, que empieza con el <code>1</code>
+      de Trade Gothic Condensed. Ahora las <b>quince</b> franjas caen en 88
+      exacto, y el QA lo verifica en cada ronda.<br>
+      Y la marca roja de la derecha era otra cosa real: el <code>letter-spacing</code>
+      agrega el espacio <b>también después de la última letra</b>, así que la
+      firma moría en <b>x=984</b> con el margen en 992. Ahora llega a 991.</p></li>
+    <li class="r2"><b>«¿Por qué se ve tan mal la calidad?»</b><p>Había <b>dos
+      compresiones encadenadas</b>: los clips se reescalaban y comprimían, y
+      Remotion volvía a comprimir ese archivo. Ahora los clips no se reescalan
+      —salen a su tamaño nativo de recorte— y la entrega sube de 1080×1350 a
+      <b>2160×2700</b>.<br>
+      ⚠️ Aun así, <b>la vista previa de Drive recomprime fuerte</b>: para juzgar
+      calidad hay que descargar el archivo, no verlo en el navegador.</p></li>
+    <li class="r2"><b>«La portada más igual a la referencia»</b><p>Cinco cambios:
+      video en vez de foto, velo y tinta blanca en vez de tinta azul, el trazo
+      arriba con el titular y una <b>bajada</b> debajo, píldora clara en vez de
+      azul, y <b>fuera el logotipo sobrepuesto</b> — firma con la versalita al
+      pie, como la referencia y como las otras cuatro.</p></li>
+  </ul>
+
+  <h2>Decisiones que siguen en pie — dime cuál cambio</h2>
+  <ul>
+{bloque(DECISIONES, "dec")}
+  </ul>
+
+  <h2>QA — contraste de cada tinta sobre su fondo real, medido en el peor fotograma</h2>
+  <pre>{QA}</pre>
+</main>
+</html>"""
+    salida = BASE / "revision-r2.html"
+    salida.write_text(html, encoding="utf-8")
+    print(f"  {salida.relative_to(RAIZ)}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

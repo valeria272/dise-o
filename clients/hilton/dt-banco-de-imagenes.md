@@ -10,6 +10,60 @@
 
 ---
 
+## 0 · ⭐⭐ `SESIÓN VIDEOS` — el material FILMADO (16-09-2026)
+
+`1pVl48ZV7kkoCjP2e1pD8kjvo2Aukl7Cw` · Scarlette Muñoz
+
+**Lo que le faltaba a esta cuenta.** Hasta el 16-09 todo lo audiovisual eran
+`.MOV` sueltos de iPhone dentro de `CONTENIDO HOTEL 2026`; esto es una sesión
+ordenada **por espacio** y es la primera parada para cualquier pieza animada.
+
+| Carpeta | ID | Qué hay |
+|---|---|---|
+| **DESAYUNO BUFFET QB** | `17pBYRVr2xmnzCjmGaddcP7DQSkIv6r2N` | 8 `.MOV` + 8 `.HEIC` — recorridos por el buffet, fruta, huevos, quesos, dispensadores de cereal, y un plato de waffles con almíbar |
+| **HABITACIONES** | `15NseMF7YXFZSqNwYztMZLgWdvISd1feN` | **24 `.MOV`** — camas tendidas, lámparas de muro encendidas, ventanas con la ciudad, bandejas de desayuno sobre la cama |
+| **COWORK** | `1w1lZPpbEJmMPXMKPpAIrJ8n64QxBSNsc` | 12 `.MOV` + `.HEIC`. ⚠️ **Mezcladas**: sólo `IMG_5736` y `IMG_5737` son el lounge del hotel; el resto es **BETWEEN** (silla de bistró, mesa de mármol, vaso con la marca) |
+| **SALÓNES** | `1-BU6y6c2856KTATfnlFs8cgm0dJn6Rg7` | 5 `.MOV` — el salón montado en teatro, travelling por el pasillo central |
+| PISO18 | `1YJ-KitWhHic_RJEQbazJb1NzXPzKKYzd` | otra marca |
+| BETWEEN | `1Jx4Z6hvIic0qyypIq6Ob2l3vZm4QiMBA` | otra marca |
+
+### ⛔⛔ Los clips traen las TRES trampas, y las traen todas juntas
+
+Medido con `ffprobe` sobre los ocho que se bajaron:
+
+1. **`rotation of -90°`** en la matriz de despliegue. El archivo declara
+   3840×2160 y el video es **2160×3840**.
+2. **59,97 fps** contra composiciones de 30.
+3. **HEVC Main 10 · `bt2020nc/arib-std-b67`**, o sea **HLG — es HDR**. Sin
+   tonemapear los colores salen lavados.
+
+Es exactamente la lista de `reel-video-gotchas` más el tonemapeo obligatorio del
+dron de Tierra Calma. **Nunca se le pasa el `.MOV` directo a Remotion.** El paso
+de preparación resuelto vive en `scripts/dt-c1-s5-clips.py`.
+
+### ⚠️ Y duran entre 2,2 y 6,4 segundos
+
+Ninguno llega cómodo a una lámina de 5 s. La salida es **bajarles la velocidad**,
+no repetirlos en bucle: como el origen es de 60 fps y la entrega de 30, a 0,5×
+cada fotograma de salida sigue siendo uno **capturado**. El tope práctico es
+**0,45×**; más lento se lee como cámara lenta y no como movimiento de cámara.
+
+### ⛔ Lo que NO está filmado — y la corrección que importa
+
+**El GYM.** Para ése hay que seguir yendo a la fotografía: `HDT_81/82/83`.
+
+⭐ **El EXTERIOR sí está filmado, pero en la OTRA carpeta.** No en `SESIÓN
+VIDEOS` sino en `CONTENIDO HOTEL 2026 › Exterior hotel`
+(`13vxFid9YuyAydt6vnTVDwhB6oUTq7yBW`): un solo `.MOV` de 11,7 s, `IMG_1640`
+(`1PrQdpGMSmzom5X9nEzLDFrHvYBx96zII`), que es **la llegada al hotel** —la
+marquesina, la copa del árbol y, en su segunda mitad, el logotipo DoubleTree
+grabado en el cristal de la entrada a tamaño grande.
+
+⚠️ Y ojo con esa segunda mitad: el logotipo grabado es tan grande que **choca con
+cualquier titular que se le ponga encima**. Para texto sirve el primer tramo.
+
+---
+
 ## 1 · `CONTENIDO HOTEL 2026` — el catálogo por espacio ⭐
 
 `1SYvsZbrzW0YTCQXah2KjbrLdNiJFI-pZ` · Scarlette Muñoz, feb 2026

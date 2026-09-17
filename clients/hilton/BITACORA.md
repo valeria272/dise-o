@@ -1,3 +1,77 @@
+## 2026-09-17 (cierre 2) · Eli (Windows) — DT, CARRUSEL DE VIDEOS DE LA S5: **APROBADO**
+
+**Qué se hizo.** Se diseñó y se entregó el **carrusel de videos «Tu día en
+DoubleTree»** (FEED col M · 28-09 · 12:00), la primera pieza ANIMADA que el
+estudio produce para esta cuenta. Cinco láminas de **5,0 s** a **2160×2700**,
+aprobadas por Eli en la ronda 2.
+
+Las cinco salen de material filmado del hotel: la **sesión de video del 16-09**
+de Scarlette (`SESIÓN VIDEOS`, que hasta hoy no estaba mapeada en ningún manual) y
+el único clip de exterior, que vive en la otra carpeta — `CONTENIDO HOTEL 2026 ›
+Exterior hotel`.
+
+| | lámina | clip |
+|---|---|---|
+| n°1 | Portada · «Tu día / en DoubleTree / by Hilton Santiago–Vitacura» + DESLIZA | `Exterior hotel / IMG_1640` |
+| n°2 | 8:30 · Desayuno antes de la reunión | `DESAYUNO BUFFET QB / IMG_5700` |
+| n°3 | 9:30 · Reunión en salón | `SALÓNES / IMG_5785` |
+| n°4 | 12:00 · Tiempo para ti | `COWORK / IMG_5736` |
+| n°5 | Cierre en la habitación | `HABITACIONES / IMG_5741` |
+
+**La ronda 2**, que es de donde salen casi todas las reglas nuevas, fueron seis
+correcciones de Eli: usar los videos de los dos enlaces · sacar el verde de DT ·
+abrir el tracking de los titulares · **alinear bien a la izquierda** · subir la
+calidad · y acercar la portada a la referencia. Cada una, con lo que se midió
+para resolverla, está en `CLAUDE.md § RONDA 2 DEL CARRUSEL S5`.
+
+**Dónde quedó.**
+- Entrega: `out/hilton/dt/c1-s5/entrega/C1 S5 DT n°1..5.mp4` (2160×2700, 5,0 s).
+- **Subidas a Drive** en `S5 HILTON SEP 2026 › DT`, sueltas en la carpeta (no se
+  creó subcarpeta a propósito: la crearía el token del estudio y no Eli, y en esta
+  cuenta eso ya dio problemas de permisos). La ronda 2 **reemplazó los mismos
+  archivos**, así que los enlaces de la ronda 1 siguen sirviendo.
+- Composición: `src/compositions/hilton/DtC1S5Dia.tsx`, carpeta `DT-Carrusel-S5`.
+- El aparato: `dt-c1-s5-fotos.py` · `dt-c1-s5-clips.py` · `dt-c1-s5-qa.py` ·
+  `dt-c1-s5-rendir.py` · `dt-c1-s5-revision.py`.
+- Página de revisión: `out/hilton/dt/c1-s5/revision-r2.html`.
+- QA: pasa entero — contraste de las 16 tintas contra su fondo real medido en el
+  primer y el último fotograma, y **las 15 franjas de texto alineadas en x=88**.
+
+⚠️ **Los clips intermedios NO viajan en git** (156 MB, porque en la ronda 2
+dejaron de reescalarse para ganar calidad). Es una excepción declarada a «el
+render vuelve al repo», y es segura: `dt-c1-s5-clips.py` documenta el ID de Drive
+de cada `.MOV`, el tramo, el recorte, la gradación y la velocidad, así que se
+reconstruyen con **un comando** y de forma determinista.
+
+**Qué sigue.**
+1. **Pedirle a contenido el slide del GYM.** El brief no lo trae y la fila
+   COMENTARIOS PARA DISEÑO lo pide («Faltó GYM!»). La lámina está armada y la hora
+   la da el propio comentario (16:00). ⚠️ **No hay video de gimnasio en ninguna
+   carpeta** —ni en la sesión del 16-09 ni en `CONTENIDO HOTEL 2026`, que sólo
+   tiene 7 `.MOV` de iPhone—: hoy quedaría con la foto `HDT_82` y sería la única
+   lámina que no es video. Eso hay que decidirlo con Eli.
+2. **Pedirle a contenido la hora del cierre.** El comentario da tres horas y la
+   cuarta es la del gym; para «cierre en la habitación» no hay. Va sin sello de
+   hora; es un prop y entra en un render.
+3. Al insertar el GYM hay que **RENUMERAR**: va entre la n°4 y la n°5, así que el
+   cierre pasa a ser la n°6. El portal levanta por nombre.
+
+**Abierto.**
+- ⚠️ **La portada quedó SIN el lockup** y firma con la versalita al pie, como las
+  otras cuatro y como la referencia. Se apoya en §B («en feed el logotipo por
+  defecto no va»), pero es una decisión de marca que conviene que Eli confirme por
+  escrito; volver a ponerlo es un minuto.
+- Los cuatro textos del brief **terminan en punto** y la regla F.1 de DT dice que
+  los títulos no llevan. Van literales (§G: el copy no se toca). Informado.
+- «12» del comentario se compuso **12:00**, para que la columna de horas sea una
+  sola serie. Informado.
+- En el clip del salón hay **dos personas al fondo** (~20 px, sin rostro) y en el
+  de la portada **gente de espaldas** entrando. Si molestan, `IMG_5783` y
+  `IMG_5784` son la misma sala vacía.
+- El estado de la celda en la grilla sigue siendo `REVISAR CONTENIDO`.
+
+---
+
 ## 2026-09-17 · Eli (Windows) — DT, BANCO DE PRUEBAS: mejorar una edición de Premiere desde código
 
 ⚠️ **No es pieza de grilla y no reemplaza nada entregado.** Eli preguntó si se

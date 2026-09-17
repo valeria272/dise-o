@@ -149,7 +149,8 @@
     },
     "respiro_minimo": 60,
     "_animadas": "En pieza animada la zona segura se verifica en el ÚLTIMO fotograma.",
-    "_medido_15_09_2026": "La historia ST n°2 S3 QB NO pasaría a paid: el titular arranca en y=219 (31 px sobre el límite de 250) y la franja del pie llega a y=1765, entrando 166 px en los 340 px reservados. Como pieza orgánica está bien. Preguntar «¿va a paid?» ANTES de diagramar."
+    "_medido_15_09_2026": "La historia ST n°2 S3 QB NO pasaría a paid: el titular arranca en y=219 (31 px sobre el límite de 250) y la franja del pie llega a y=1765, entrando 166 px en los 340 px reservados. Como pieza orgánica está bien. Preguntar «¿va a paid?» ANTES de diagramar.",
+    "_decidido_17_09_2026": "La ST de AYCD de la S5 va a GRILLA, no a paid (Eli). Se queda organica y el legal sigue al pie. ⚠️ No es una regla de la marca: la pregunta «esta va a paid?» se hace pieza por pieza, ANTES de diagramar."
   },
   "madurez": {
     "identidad": "parcial",

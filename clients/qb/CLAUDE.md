@@ -420,6 +420,11 @@ sistema aprobado de QB remata al pie y con el tope de agencia las tres historias
 firmadas por el cliente salían rechazadas. Si la pieza va a paid, hay que subir
 el remate — ver §6.
 
+⭐ **Y la pregunta se hace SIEMPRE, porque la respuesta no es fija.** La ST de
+AYCD de la S5 la contestó Eli el 17-09-2026 con dos palabras —«va a grilla»— y
+con eso se quedó orgánica y el legal pudo seguir al pie. Pero eso vale para esa
+pieza: la siguiente se vuelve a preguntar antes de diagramar, no después.
+
 Y lo que la compuerta **no** puede ver, y se revisa mirando:
 
 ```

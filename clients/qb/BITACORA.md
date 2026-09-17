@@ -110,12 +110,23 @@ se pregunta. Quedó en la memoria `comentarios-nativos-de-excel`.
   · video https://drive.google.com/file/d/1mFmvjdaSSKPU9JTP3NRQfRl5AZJXNKAI/view
   · fotograma https://drive.google.com/file/d/1smCh207NdGlxYICE_DeUfCv6u2pzKe5L/view
 
-**Qué sigue:** está **entregada y esperando la revisión de Eli**. Lo primero de
-mañana es mirar si respondió sobre las dos preguntas abiertas —si la historia va
-a paid y si quiere las bandas de UNLIMITED también en la mitad de abajo— porque
-las dos cambian la pieza, no el archivo. Si aprueba, la S5 de QB queda cerrada;
-la otra historia de la semana, la **TRIVIA DE BRINDIS del 30-09**, está
-`PENDIENTE POR CLIENTE` en la grilla y **no se diseña hasta que cambie de estado**.
+**Qué sigue — LUNES.** Eli cerró el día así: «va a grilla, pero no veo el cambio.
+Aún así cierra y tomaremos este cambio el lunes.»
+
+⚠️ **Lo que ella no vio NO es un problema del archivo.** Verificado contra Drive:
+el mp4 de la ronda 4 está subido (4.810.046 B, modificado 18:15) y el de la
+ronda 3 pesaba 5,0 MB. Lo que muestra es **la vista previa cacheada** de la
+versión anterior: Drive guarda su propia transcodificación y no la rehace al
+reemplazar un archivo por el mismo ID.
+
+⇒ Por eso quedó subida **una copia con nombre nuevo**, que no arrastra caché:
+`ST S5 QB AYCD 28-09 - v4 (celular grande).mp4` y su fotograma. **Esa es la que
+hay que abrir el lunes.** Si igual se ve la vieja, hay que descargar el archivo
+en vez de verlo en la vista previa.
+
+Después de eso: si aprueba, la S5 de QB queda cerrada. La otra historia de la
+semana, la **TRIVIA DE BRINDIS del 30-09**, está `PENDIENTE POR CLIENTE` en la
+grilla y **no se diseña hasta que cambie de estado**.
 
 Para retomar sin leer nada más:
 
@@ -127,9 +138,10 @@ Las capas ya están en `public/assets/hilton/qb/fotos/`, así que la pieza rinde
 cualquier máquina sin volver a generar la escena.
 
 **Abierto:**
-- ⭐ **¿La historia va a paid?** Se compuso como orgánica: el pie con el legal
-  entra en los 340 px que Instagram reserva abajo, igual que el KV aprobado, que
-  tampoco pasa. Si va a pauta hay que subir el pie
+- ✅ **RESUELTO — la historia va a GRILLA, no a paid.** Eli, 17-09-2026: «va a
+  grilla». O sea que se queda como ORGÁNICA y el pie con el legal puede entrar en
+  los 340 px que Instagram reserva abajo, igual que el KV aprobado. No hay que
+  subir el remate
 - Las bandas de UNLIMITED quedaron **sólo en la mitad de arriba**: el mate del
   frente es únicamente el teléfono, porque la mano no se aísla limpio. Si Eli
   quiere tipografía también abajo, hay que rehacer la escena con las manos más

@@ -54,6 +54,76 @@ El velo sí quedó resuelto: con la rampa **ya aprobada** del Día del Turismo e
 titular da 5,56–8,10:1 y los incluidos 5,05–8,30, sin cargarla más (se probaron
 rampas de 0,73 y 0,80 y se descartaron).
 
+### ⭐⭐ RONDA 2 — «SE SOLAPAN»: LO QUE ESTORBA LA TINTA ES EL OBJETO, NO OTRO TEXTO
+
+Eli sobre la primera versión: «se ve una leve deficiencia en los textos. Se
+solapan. **Habitación para dos** y **buffet**, ese texto como que queda
+interceptado con otros. Trata de ubicarlos de mejor manera. Lo demás lo veo
+sumamente bien, como para a futuro hacer algo muy similar.»
+
+**Ningún texto se solapaba con otro** — se revisó fotograma a fotograma. Lo que
+los interceptaba era **la FOTO**: la mano con el macarón caía justo en medio de
+«Habitación para dos», y el plato con el vaso de jugo cruzaba «Incluye desayuno
+buffet para dos.». Nombró esas dos y **no** la del bar, que es exactamente el
+orden del daño — o sea que estaba leyendo bien y el problema era real.
+
+#### ⭐⭐⭐ 1. EL CONTRASTE NO VE ESTO. HAY QUE MEDIR EL **DETALLE**
+
+Las tres bandas **pasaban** la vara de luminancia de `la-tinta-la-manda-el-fondo`
+(5,05–8,30:1) y aun así el texto se leía mal, **porque lo que estorba no es el
+brillo del fondo sino su TEXTURA**. Es un modo de falla que la regla del velo no
+cubre, y que no se ve en los números de contraste.
+
+La medición que sí lo ve: **energía de gradiente** (`|∂x| + |∂y|`) bajo la banda,
+y con dos detalles que son los que la hacen funcionar:
+
+1. **en el ancho REAL de esa línea**, no en toda la columna de texto;
+2. **mirando el peor tramo de 60 px, no el promedio** — un objeto chico en medio
+   de la línea la arruina y el promedio de la fila ni lo nota. Con el promedio,
+   la foto de la cama daba «bien»; con el peor tramo, saltó al tiro.
+
+#### ⛔⛔ 2. LO QUE SE PROBÓ Y NO SIRVE: REENCUADRAR LA FOTO
+
+Se barrió (escala, deriva) buscando fondo tranquilo bajo el texto. Mejoraba la
+medición un **23–46 %**… y **le cortaba la cara a la pareja en las tres fotos**.
+El optimizador se va al borde del recorte porque «fondo tranquilo» significa «sin
+gente», que es justo lo contrario del encargo. Se compuso, se miró y se descartó.
+
+**La regla que queda: la foto no se toca para acomodar el texto. Se mueve el
+texto.** Que además es lo que ella pidió, textual.
+
+#### ⭐ 3. EL AJUSTE: SUBIR EL PAR TITULAR + INCLUIDO
+
+Las tres fotos **coinciden** en que el carril limpio del incluido está en
+**y ≈ 1160** y no en 1235, así que no hizo falta moverlo plano por plano.
+
+| banda | antes | ahora | peor foto |
+|---|---|---|---|
+| incluido | 1235 | **1160** | 22,12 → **18,62** (−16 %) |
+| titular | 1084 | **1003** | 24,96 → 27,15 (**+9 %**) |
+
+**El titular PIERDE un 9 % y se aceptó a propósito:** son 106 px en Stag Medium
+Italic con sombra y aguanta un fondo movido; el incluido son 44 px en Regular y
+es el que ella marcó. Cuando hay que repartir el daño, se le carga a la tinta
+grande. El contraste en las posiciones nuevas sigue pasando (titular 5,12–7,92 ·
+incluido 5,18–8,10).
+
+#### ⭐ 4. Y EL BLOQUE QUEDÓ EN DOS GRUPOS, NO EN CUATRO LÍNEAS SUELTAS
+
+```
+titular ─66─ incluido      ← el mensaje
+             ─129─
+precio  ─62─ CTA           ← la oferta
+```
+
+Antes eran **62 · 54 · 62**: cuatro líneas a distancia pareja, sin grupos. Es la
+regla `jerarquia-de-bloque-de-texto` —el salto ENTRE niveles mayor que el salto
+DENTRO del nivel— y acá salió gratis al subir el par.
+
+⚠️ **Esto NO se sube a ninguna parte.** Eli: «no es para subirlo a ningún lado ni
+en Drive ni nada de eso, es solamente para tenerlo ya guardado, en mente de cómo
+podemos volver a mejorar una edición ya hecha.» Queda en el repo y nada más.
+
 **Qué sigue:** que Eli mire la página y diga si la edición nueva le sirve. Si dice
 que sí, el paso siguiente es el que quedó pendiente de la conversación: **probar
 si Premiere Pro 2026 carga un panel CEP** (la máquina tiene CSXS.12 y ya corren

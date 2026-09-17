@@ -44,6 +44,7 @@ def uri(ruta: Path, ancho: int = 1400, calidad: int = 84) -> str:
 
 
 TIRA = uri(SALIDA / "tira-comparacion.png", ancho=1800)
+AJUSTE = uri(SALIDA / "diag/ajuste.png", ancho=1340)
 
 # ───────────────────────────────────────────────────────────────────────────
 
@@ -176,6 +177,62 @@ fotograma: en el antes el espumante está sobre la cama y el bar se queda mudo.<
 <div class="envoltorio">
   <img class="tira" src="{TIRA}" alt="Tira comparativa de fotogramas">
 </div>
+
+<h2>Ronda 2 — «se solapan»</h2>
+<p class="nota">Tu nota: «<b>Habitación para dos</b> y <b>buffet</b>, ese texto como
+que queda interceptado con otros». Se revisó fotograma a fotograma y
+<b>ningún texto se solapaba con otro</b>: lo que los interceptaba era <b>la foto</b>
+— la mano con el macarón caía justo en medio de «Habitación para dos», y el plato
+con el vaso de jugo cruzaba «Incluye desayuno buffet para dos.». Nombraste esas dos
+y no la del bar, que es exactamente el orden del daño.</p>
+<div class="envoltorio">
+  <img class="tira" src="{AJUSTE}" alt="El bloque de texto antes y despues del ajuste">
+</div>
+
+<div class="aviso">
+  <h3>El contraste no ve esto — hay que medir el detalle</h3>
+  <p>Las tres bandas <b>pasaban</b> la vara de luminancia (5,05–8,30:1) y aun así
+  el texto se leía mal, porque lo que estorba no es el brillo del fondo sino su
+  <b>textura</b>. La medición que sí lo ve es la energía de gradiente bajo la
+  banda, <b>en el ancho real de esa línea</b> y mirando el <b>peor tramo de
+  60 px</b>, no el promedio: un objeto chico en medio de la línea la arruina y el
+  promedio de la fila no lo nota.</p>
+</div>
+
+<div class="aviso">
+  <h3>Lo que se probó y no sirve: reencuadrar la foto</h3>
+  <p>El barrido de escala y deriva mejoraba la medición un 23–46 %, pero
+  <b>le corta la cara a la pareja en las tres fotos</b> — el optimizador se va al
+  borde del recorte porque «fondo tranquilo» significa «sin gente», que es justo
+  lo contrario del encargo. Se miró renderizado y se descartó. <b>La foto no se
+  toca: se mueve el texto</b>, que es lo que pediste.</p>
+</div>
+
+<p class="nota">Lo que sí: subir el par <b>titular + incluido</b> 81 y 75 px. Las
+tres fotos coinciden en que el carril limpio del incluido está en <b>y ≈ 1160</b>
+y no en 1235, así que no hace falta moverlo plano por plano.</p>
+<div class="envoltorio">
+<table class="tabla">
+  <thead><tr><th>Banda</th><th>Antes</th><th>Ahora</th><th>Peor foto</th></tr></thead>
+  <tbody>
+    <tr><td>incluido</td><td class="n">1235</td><td class="n"><b>1160</b></td>
+        <td class="n ok">22,12 → 18,62 (−16 %)</td></tr>
+    <tr><td>titular</td><td class="n">1084</td><td class="n"><b>1003</b></td>
+        <td class="n ojo">24,96 → 27,15 (+9 %)</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="nota">El titular <b>pierde</b> un 9 % y se aceptó a propósito: son 106 px
+en Stag Medium Italic con sombra y aguanta un fondo movido; el incluido son 44 px
+en Regular y es el que marcaste. El contraste en las posiciones nuevas sigue
+pasando: titular 5,12–7,92 · incluido 5,18–8,10.</p>
+
+<h3>Y el bloque quedó en dos grupos, no en cuatro líneas sueltas</h3>
+<pre><code>titular ─66─ incluido      ← el mensaje
+             ─129─
+precio  ─62─ CTA           ← la oferta</code></pre>
+<p class="nota">Antes eran 62 · 54 · 62: cuatro líneas a distancia pareja, sin
+grupos. El salto entre niveles tiene que ser mayor que el salto dentro del nivel.</p>
 
 <h2>Lo que estaba pasando, y qué se hizo</h2>
 <div class="envoltorio">

@@ -118,6 +118,59 @@
  * decide una pieza de prueba. En azul es peor (3,13–3,86:1). Queda medido y
  * dicho.
  *
+ * ══════════════════════════════════════════════════════════════════════════
+ * RONDA 2 (17-09, tarde) — «SE SOLAPAN»: LA TINTA LA ESTORBA EL OBJETO, NO OTRO TEXTO
+ * ══════════════════════════════════════════════════════════════════════════
+ * Eli sobre la primera versión: «se ve una leve deficiencia en los textos. Se
+ * solapan. Habitación para dos y buffet, ese texto como que queda interceptado
+ * con otros. Trata de ubicarlos de mejor manera. Lo demás lo veo sumamente
+ * bien.»
+ *
+ * **Ningún texto se solapaba con otro** — se comprobó fotograma a fotograma. Lo
+ * que los interceptaba era la FOTO: la mano con el macarón caía justo en medio
+ * de «Habitación para dos», y el plato con el vaso de jugo cruzaba «Incluye
+ * desayuno buffet para dos.». Nombró esas dos y no la del bar, que es
+ * exactamente el orden del daño.
+ *
+ * ⭐⭐ **EL CONTRASTE NO LO VE. HAY QUE MEDIR EL DETALLE.** Las tres bandas
+ * pasaban la vara de luminancia de `la-tinta-la-manda-el-fondo` (5,05–8,30:1) y
+ * aun así el texto se leía mal, porque lo que estorba no es el brillo del fondo
+ * sino su TEXTURA. La métrica que sí lo ve: energía de gradiente (|∂x|+|∂y|)
+ * bajo la banda, **en el ancho real de esa línea** y con el **peor tramo de
+ * 60 px**, no el promedio — un objeto chico en medio de la línea la arruina y el
+ * promedio de la fila no lo nota.
+ *
+ * ⛔ **LO QUE SE PROBÓ Y NO SIRVE: reencuadrar la foto.** El barrido de (escala,
+ * deriva) mejoraba la métrica un 23-46 %, pero **le corta la cara a la pareja en
+ * las tres fotos** — el optimizador se va al borde del recorte porque «fondo
+ * tranquilo» significa «sin gente», que es justo lo contrario del encargo. Se
+ * miró renderizado y se descartó. La foto no se toca: se mueve el texto, que es
+ * lo que ella pidió.
+ *
+ * ⭐ **LO QUE SÍ: subir el par titular + incluido 81 y 75 px.** Las tres fotos
+ * coinciden en que el carril limpio del incluido está en **y ≈ 1160**, no en
+ * 1235 — así que no hace falta moverlo por plano.
+ *
+ * | banda | antes | ahora | peor foto |
+ * |---|---|---|---|
+ * | incluido | 1235 | **1160** | 22,12 → **18,62** (−16 %) |
+ * | titular  | 1084 | **1003** | 24,96 → 27,15 (+9 %) |
+ *
+ * El titular PIERDE un 9 % y se aceptó a propósito: son 106 px en Stag Medium
+ * Italic con sombra, aguanta un fondo movido; el incluido son 44 px en Regular y
+ * es el que ella marcó. El contraste en las posiciones nuevas sigue pasando
+ * (titular 5,12–7,92 · incluido 5,18–8,10).
+ *
+ * ⭐ **Y el bloque quedó en DOS GRUPOS en vez de cuatro líneas sueltas**, que es
+ * la regla `jerarquia-de-bloque-de-texto`: el salto ENTRE niveles tiene que ser
+ * mayor que el salto DENTRO del nivel.
+ *
+ *     titular ─66─ incluido      ← el mensaje
+ *                  ─129─
+ *     precio  ─62─ CTA           ← la oferta
+ *
+ * Antes eran 62 · 54 · 62: cuatro líneas a distancia pareja, sin grupos.
+ *
  * ⛔ **Y UN HALLAZGO DE TIPOGRAFÍA, verificado glifo a glifo con fontTools:
  * STAG NO TRAE EL SIGNO `+`.** Los nueve cortes comparten el mismo subconjunto
  * de 354 glifos y a todos les falta `U+002B` (además de `$ % @ € º ª # *`, que
@@ -195,7 +248,7 @@ const ENTRADA = Easing.bezier(0.22, 0.9, 0.3, 1);
  * uniforme, jamás por geometría. Y va SIN sombra (ronda 3 del estático).
  */
 const Y = {
-  incluido: 1223,
+  incluido: 1148,
   precio: 1308,
   cta: 1494,
 } as const;
@@ -212,8 +265,8 @@ const Y = {
  * corta.
  */
 const TITULARES = {
-  a: {fuerte: 'Escápate', suave: ' en pareja', cuerpo: 106, top: 1057},
-  b: {fuerte: 'Escapada', suave: ' Romántica', cuerpo: 94, top: 1070},
+  a: {fuerte: 'Escápate', suave: ' en pareja', cuerpo: 106, top: 976},
+  b: {fuerte: 'Escapada', suave: ' Romántica', cuerpo: 94, top: 989},
 } as const;
 
 const Titular: React.FC<{

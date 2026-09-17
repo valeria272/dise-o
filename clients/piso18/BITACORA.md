@@ -1,5 +1,142 @@
 # Piso18 — bitácora
 
+## 2026-09-17 — Elisabet Soto · el barrido del día, y un «Este no va» que llegó tarde
+
+**Qué se hizo:** `/abrir piso18` — sincronizar, sembrar memoria y correr `/al-dia`
+acotado a la marca. **No se produjo ninguna pieza en esta sesión**; la ronda 6 de la
+animada la hizo otra sesión en paralelo (ver la entrada de arriba). Lo de acá es el
+barrido del Drive y de las dos grillas, que encontró cosas que la ronda 6 no cubre.
+
+⚠️ **Dos sesiones trabajaron el mismo árbol hoy.** El commit de la ronda 6 (`35c8bf0`)
+se llevó dentro las instantáneas y el `_estado-sync.json` que había dejado este
+barrido, sin commitearlos aparte. No se perdió nada, pero conviene saberlo: si dos
+sesiones abren la misma marca a la vez, la que commitea primero arrastra lo de la otra.
+
+### ⛔ Lo urgente: el cliente rechazó el post del 23-09
+
+`FEED!M14` (23 de septiembre, **POST ESTÁTICO – PISO18 DE NOCHE**) tiene desde hoy un
+comentario nuevo de una línea:
+
+> «Este no va»
+
+**No estaba en la instantánea del 16-09 ni en la de esta mañana** (12:09Z): llegó
+después. El estado sigue en `EN REVISIÓN`.
+
+⚠️ **Es una pieza YA ENTREGADA**, y es justo la del nombre que miente: en Drive se
+llama `Post S4 PISO18 25-09.png` pero es la pieza del 23-09. La entrada de la ronda 6
+lo mencionó al pasar como «aparece un "Este no va"» sin decir sobre qué pieza caía.
+Cae sobre ésta.
+
+**No se resolvió, y a propósito:** «Este no va» no dice si se reemplaza el tema, la
+foto o el copy. Es una pregunta para Eli, no algo que se deduzca.
+
+### Una corrección de fecha a la entrada de la ronda 6
+
+Esa entrada dice «el carrusel del 22-09 pasa a ser enfocado en arreglos florales de
+matrimonio». **Es el del 21-09**: la instrucción vive en `FEED!I14`, y la columna I es
+el 21 de septiembre (`MATRIMONIO DE EQUINOCCIO DE PRIMAVERA`). La del 22-09 es la
+columna K, `BENEFICIOS DE TU CUMPLEAÑOS`, cuyo comentario habla de la foto de
+ambientación de 50 años. Se anota porque en esta cuenta las columnas se corren y la
+memoria `comentarios-nativos-de-excel` exige identificar la pieza por su TÍTULO.
+
+### ⭐ La palabra prohibida ahora la firma el cliente
+
+`FEED!I14` trae un comentario nuevo: *«OK, pero no usemos la palabra BODA, cambiando
+el hashtag, aprobado»*, y el copy de la celda pasó de `#BodaDePrimavera` a
+`#EventoDePrimavera`. La regla `sin-bodas` de `reglas.yaml` la había dictado Eli el
+15-09; **ahora está ratificada por escrito por el propio cliente**. Queda anotado en
+la regla: ya no depende del criterio de la diseñadora.
+
+### ⭐ Un cuarto formato de la marca: el banner web
+
+Eli entregó anoche (16-09, 20:39–21:10Z) **16 archivos** en
+`PISO18 › BANNERS SEP 2026 4.5M` (`10sST2d5K43vVYFgtn084AsAMNRwCYEoe`):
+
+| | |
+|---|---|
+| Opciones | `BANNER OP1` y `BANNER OP2 FOTO NOVIOS` |
+| Por opción | `PC` y `Mobile` |
+| Por dispositivo | 72 PPP y 150 PPP, en PNG y JPG |
+| Nomenclatura | `Banner web Piso18 <PC o MOBILE> <72 o 150>PPP [OP2].{png,jpg}` |
+
+El contenido es la promo aprobada **«¿Te casas en verano?» $6.000.000 → $4.500.000**,
+la misma que el estudio tiene medida como pieza **cuadrada de 1080×1080**. O sea que
+Piso18 tiene cuatro formatos, no tres: feed 4:5 · story 2250×4000 · promo 1080×1080 ·
+**banner web (PC y mobile, a dos resoluciones)**. Falta medir su geometría — no se
+bajó ninguno hoy.
+
+### Material nuevo sin procesar
+
+Scarlette subió el 16-09 (02:03–02:10Z) **24 archivos** a `MATERIAL DE SEPT 15 › PISO18`
+(`1YJ-KitWhHic_RJEQbazJb1NzXPzKKYzd`): **10 HEIC + 14 MOV** de iPhone, del evento del
+15-09. ⚠️ Los HEIC no los carga Chrome y los MOV traen rotación por metadato y 60 fps
+— las dos trampas ya conocidas de esta cuenta. Puede ser justo el material que
+necesita el reel orgánico.
+
+### El reel orgánico del 23-09 se movió
+
+`ORGÁNICO!C14` pasó de `PENDIENTE POR CLIENTE` a **`EN EDICIÓN`**, y en `FEED!G14`
+(17-09) apareció *«OK este! veamos que la música que le pongan alcance para todo el
+video»*. La respuesta a la duda de material ya estaba puesta en la grilla:
+*«R: SI HAY MATERIAL SUFICIENTE :)»*. **Hay que confirmar con Eli quién lo está
+editando** — los reels de esta cuenta los ha hecho ella a mano.
+
+### La S5 ya estaba entregada — corrección a la bitácora de ayer
+
+La entrada del 16-09 dejó la S5 escrita como «qué sigue». **No es un pendiente:** se
+entregó el 15-09 en el commit `872f2ac` (`C1 S5 PISO18` con 3 slides + `ST N°1 S5` y
+`ST N°2 S5`, subidas a Drive). En la grilla están como `OK PARA DISEÑAR` (28 y 30-09)
+y `PENDIENTE POR CLIENTE` (29-09): entregadas, sin visto del cliente.
+
+### Octubre: los briefs se reescribieron sin dejar comentario
+
+Diff contra `p18-oct-20260915.json`: **15 cadenas nuevas y 12 desaparecidas**, y ni un
+comentario que lo avise — el patrón de la memoria `comentarios-nativos-de-excel`.
+Cambió el carrusel del cierre de año, el post de wedding planner ahora lleva texto, la
+story de checklist se volvió **«PASOS ANTES DEL EVENTO»** (01 · 02 · 03 editorial,
+**explícitamente NO íconos de checklist**), la encuesta pasó de «servicio favorito» a
+«estación favorita» y el reel del chef quedó rotulado `REEL ORGÁNICO`.
+
+⛔ **Octubre sigue sin ser producible:** las 7 piezas de FEED están todas en
+`EN REVISIÓN` y STORIES y ORGÁNICO ni siquiera tienen poblada la fila de estado.
+
+### ⛔ Punto ciego: los hilos nativos no se leen desde esta máquina
+
+`comments().list` da **404 en las dos grillas** (septiembre y octubre). El token del
+estudio es scope `drive.file` y los dos Sheets son de Carlos Figueroa; el conector MCP
+de Drive **no expone comentarios**. Los 18 hilos abiertos de octubre que se leyeron el
+15-09, y cualquier hilo nuevo de septiembre, **quedan sin verificar**. Los comentarios
+en celda sí se leen, y son la vía por la que este cliente comenta — pero no es lo
+mismo que haber mirado los hilos.
+
+Cero comentarios de Drive, en cambio, sobre las 9 piezas de la S4 y las 5 de la S5.
+
+**Dónde quedó:** nada renderizado en esta sesión. Instantáneas del día en
+`clients/hilton/grillas/api/p18-sept-20260917.json` y `p18-oct-20260917.json` (base del
+diff de mañana), registro en `clients/_estado-sync.json`, y la autoridad del cliente
+anotada en la regla `sin-bodas` de `clients/piso18/reglas.yaml`.
+
+**Qué sigue:** preguntarle a Eli qué significa **«Este no va»** en el post del 23-09 —
+es lo único vivo de septiembre. Después, decidir si el banner web entra al manual como
+cuarto formato (hay que bajar uno y medirlo) y si el reel orgánico lo toma el estudio.
+
+**Abierto:**
+
+1. ⛔ **«Este no va»** sobre `FEED!M14` (23-09, PISO18 DE NOCHE), pieza ya entregada
+   como `Post S4 PISO18 25-09.png`. Sin instrucción de qué reemplazar.
+2. El **banner web** es un formato de la marca que no está medido ni escrito en ningún
+   lado. 16 archivos en Drive, ninguno bajado.
+3. Los **24 archivos nuevos** de Scarlette (HEIC + MOV) sin pasar por la compuerta de
+   material.
+4. **Quién edita el reel orgánico del 23-09**, que ya está `EN EDICIÓN`.
+5. Los **hilos nativos** de las dos grillas, ilegibles con el token actual. Sigue
+   abierta la decisión de ampliarlo a `drive.readonly` (viene desde Between).
+6. Sigue en pie todo lo del 16-09: **el manual (`CLAUDE.md`) y la ficha (`marca.json`)
+   de Piso18 no existen**, y el nombre que miente de `Post S4 PISO18 25-09.png`.
+7. En esta máquina **no hay venv**: los scripts corren con `py -3` y
+   `PYTHONIOENCODING=utf-8`. El README de `grillas/api/` todavía dice la ruta del Mac.
+
+
 ## 2026-09-17 — Elisabet Soto · S4 ronda 6: la animada del 23-09 abre con arreglos
 
 **Encargo de Eli:** tomar el cambio que dejó el cliente en la grilla para la

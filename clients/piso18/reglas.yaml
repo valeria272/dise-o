@@ -121,6 +121,12 @@ reglas:
     fecha: 2026-09-15
     cita: >-
       Al cliente no le gusta que se escriba bodas. Nunca se escribe.
+    ratificada_por_el_cliente: 2026-09-17
+    cita_del_cliente: >-
+      OK, pero no usemos la palabra BODA, cambiando el hashtag, aprobado.
+      (Grilla de septiembre, FEED!I14 — el copy pasó de #BodaDePrimavera a
+      #EventoDePrimavera. La regla ya no depende del criterio de la diseñadora:
+      la pidió el cliente por escrito.)
     porque: >-
       Es la regla más dura de la cuenta y la única excepción conocida a que los textos
       en pantalla vayan literales del brief: si la grilla, el brief o una referencia

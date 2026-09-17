@@ -1,3 +1,72 @@
+## 2026-09-17 · Eli (Windows) — DT, BANCO DE PRUEBAS: mejorar una edición de Premiere desde código
+
+⚠️ **No es pieza de grilla y no reemplaza nada entregado.** Eli preguntó si se
+puede editar en Premiere en conjunto y mejorar las transiciones de texto, y puso
+una historia de prueba: `F:/Carpeta de grillas Hilton 2026/SEPTIEMBRE/DT/S5/
+ST PRUEBA PARA CLOUDE CODE/ST PRUEBA CLOUDE.prproj` (copia de la ST n°2 de la S2).
+
+### Lo que se hizo
+
+**El `.prproj` se leyó entero desde código** — es XML comprimido con gzip. Salió
+la línea de tiempo exacta (mesa 1080×1920, 9,64 s, 8 pistas, **0 keyframes**) y
+hasta el TEXTO de los siete gráficos esenciales, decodificando el base64 del
+parámetro «Texto de origen». Método en la memoria `prproj-se-lee-desde-codigo`.
+
+**El hallazgo grande: los incluidos caen sobre la foto equivocada.** «+Botella de
+espumante.» corre de 0,52 a 3,00 —o sea sobre la CAMA— y la foto del BAR, que es
+justo la del espumante, se queda sin texto propio. El orden de fotos de Eli ya
+cuenta bien la historia; era la edición la que no lo seguía.
+
+Los otros seis: el corte de los 3,00 s no anuncia nada (el titular cruza dos
+fotos), las tres fotos están clavadas, tres de las cuatro transiciones son la
+misma máquina de escribir —lineal, misma cadencia para 19 y para 33 caracteres—,
+todo pasa en el primer segundo y medio y después nada hasta 5,24, ningún texto
+tiene salida, y «Escapada Romántica» aparece sin animación ninguna.
+
+Se armó el antes y el después **con las mismas fotos, textos, tipografía, velo y
+diagramación**, para que la comparación aísle sólo la edición.
+
+### Dónde quedó
+
+| Qué | Dónde |
+|---|---|
+| La composición (las dos versiones + guía) | `src/compositions/hilton/DtStPrueba.tsx` |
+| Registro en Remotion | `src/DtEntry.tsx`, carpeta `DT-Prueba-ST` |
+| La página que mira Eli | `scripts/dt-st-prueba-revision.py` |
+| Renders y página | `out/hilton/dt/prueba-st/` (gitignored) |
+
+### Dos cosas medidas que decide Eli
+
+1. ⚠️ **El logotipo cae en 4,15–5,12:1** sobre las tres fotos, bajo el 6,7–9,3 de
+   §B.4. La rampa de DT nace en 0 arriba y ahí no recibe ayuda; para llegar a 6,7
+   haría falta α ≈ 0,36–0,46 en esa banda, o sea un velo superior de verdad — que
+   es lo que ella marcó como «forzado» en la ronda 4 del Día del Turismo. En azul
+   es peor (3,13–3,86:1). Se dejó medido y sin tocar: cambiar la regla del velo
+   no lo decide una pieza de prueba.
+2. ⛔ **STAG NO TRAE EL SIGNO `+`.** Verificado con `fontTools` sobre los nueve
+   cortes: a todos les falta `U+002B`, y no estaba en la lista documentada. O sea
+   que «+Botella de espumante.» en Stag-Regular **no dibuja su primer carácter**.
+   En Premiere se ve porque el sistema mete una fuente de reemplazo — pero ese
+   `+` no es Stag. Se corrigió el guard `stagSirve()` de `src/brand/doubletree.ts`
+   para que lo atrape. **Hay que revisar si ese `+` aparece en otras piezas de DT.**
+
+El velo sí quedó resuelto: con la rampa **ya aprobada** del Día del Turismo el
+titular da 5,56–8,10:1 y los incluidos 5,05–8,30, sin cargarla más (se probaron
+rampas de 0,73 y 0,80 y se descartaron).
+
+**Qué sigue:** que Eli mire la página y diga si la edición nueva le sirve. Si dice
+que sí, el paso siguiente es el que quedó pendiente de la conversación: **probar
+si Premiere Pro 2026 carga un panel CEP** (la máquina tiene CSXS.12 y ya corren
+paneles, incluido el de Magnific en Illustrator) o si exige UXP. Ese panel es lo
+que permitiría escribir en su línea de tiempo en vivo, en vez de entregarle
+piezas rendidas.
+
+**Abierto:** las dos decisiones de arriba (velo del logotipo · el `+` en otras
+piezas). Y el `.prproj` de ella **no se tocó**: la versión nueva es un render
+aparte, no una modificación de su proyecto.
+
+---
+
 ## 2026-09-16 (cierre 4) · Eli (Windows) — BETWEEN, RONDA 5: el sello del concurso y la CTA
 
 **La primera ronda del CLIENTE sobre este carrusel.** Llegó por Slack, de Nicolás

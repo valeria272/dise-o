@@ -255,6 +255,15 @@ export const volteaApertura = (texto: string): {t: string; flip?: boolean}[] => 
   return out;
 };
 
-/** ¿Aguanta esta fuente este texto? Para no descubrir el tofu al renderizar. */
+/**
+ * ¿Aguanta esta fuente este texto? Para no descubrir el tofu al renderizar.
+ *
+ * ⛔ **`+` agregado el 17-09-2026.** Se verificó glifo a glifo con `fontTools`
+ * sobre los nueve cortes de esta máquina: a todos les falta también `U+002B`, y
+ * faltaba en esta lista. Se descubrió porque la ST de prueba trae «+Botella de
+ * espumante.» en Stag-Regular y **el `+` desaparece al componerlo**. En
+ * Premiere no se nota porque el sistema mete una fuente de reemplazo para ese
+ * carácter — o sea que ese `+` no es Stag. Va en Trade, como el `$`.
+ */
 export const stagSirve = (texto: string): boolean =>
-  ![...texto].some((c) => c === '¡' || c === '¿' || '$%@€ºª#*'.includes(c));
+  ![...texto].some((c) => c === '¡' || c === '¿' || '+$%@€ºª#*'.includes(c));

@@ -582,3 +582,16 @@ raw/hilton/between/concurso-s3/refs/*
 # BETWEEN · PROMOS TO GO · ronda 25: la portada nueva, recortada y gradada de
 # IMG_4146 (la foto que el cliente enlazó). Ver scripts/between-togo1-r25.py.
 !public/assets/hilton/between/fotos-gradadas/togo-portada-r25.jpg
+
+# QB · ST S5 «ALL YOU CAN DRINK» (17-09-2026). Misma excepción deliberada que DT y
+# PISO18: sin estas capas `src/compositions/qb/` no rinde la pieza entregada, y la
+# escena que las origina es una generación que NO se puede repetir igual — volver a
+# pedirla a Nano Banana devuelve otra mano, otra mesa y otro bokeh, así que el
+# original de 16 MB en `raw/` tampoco alcanza para reproducirla en otra máquina.
+# Son el fondo con la gráfica ya montada, el recorte del celular, el close-up del
+# trago que va en la pantalla y las dos capas de la ronda 1.
+!public/assets/hilton/qb/fotos/*.jpg
+!public/assets/hilton/qb/fotos/*.png
+# Y el logotipo oficial de QB. La regla general de arriba sólo salva los archivos
+# que se LLAMAN «logo*.png», y el oficial de QB se llama «QB BLANCO - SIN FONDO».
+!public/assets/hilton/qb/logo/*.png

@@ -141,17 +141,38 @@ un hueco feo después del `1`.
 ⚠️ La comparación renderizada de las cuatro opciones está en
 [`adn/cifras-comparacion.png`](adn/cifras-comparacion.png). **Falta que Eli elija.**
 
-### Color
+### ⭐⭐ Color — RESUELTO EL 17-09-2026: el verde de QB es un DEGRADADO
 
-| Qué | Valor | Origen |
-|---|---|---|
-| **Verde de marca** | **PANTONE 361 C** | Declarado como tinta plana del documento en el `Informe.txt`. Es el nombre exacto; el hex se mide de las piezas, no se convierte de memoria |
-| **Verde de la franja al pie** | **#374C3C** medido | Banda sólida, a sangre, de la historia `ST n°2 S3 QB` |
+Hasta el 16-09 acá decía que había «tres verdes y ninguno cuadra». **Estaba mal
+planteado: son dos extremos del mismo degradado.**
 
-⚠️ **Los dos verdes no son el mismo y todavía no sé cómo se relacionan.** Falta
-medir piezas de feed —que es donde vive el Pantone— antes de declarar la paleta.
-El color de QB además es **variable por decisión de marca**: cuando cambie, se
-cambia acá con fecha.
+Medido barriendo píxel a píxel el botón de `PROMOS QB 2026 AYCD 2026 ST.png`
+(2250×4000), en la fila y=2850:
+
+| x | Color |
+|---|---|
+| 630 (borde izq.) | `#354A3A` |
+| 1125 (centro) | `#66886B` |
+| 1590 (borde der.) | `#3A4F3F` |
+
+**Degradado lineal horizontal, simétrico, oscuro en los bordes y claro al centro,
+y constante en vertical.** Quien midió la franja de la historia (`#374C3C`) tomó
+un borde; quien midió la pastilla del feed (`~#66886B`) tomó el centro.
+
+```
+linear-gradient(90deg, #354A3A 0%, #66886B 50%, #354A3A 100%)
+```
+
+⭐ Es **el «efecto de degradado» que Eli nombró como intocable** el 17-09:
+«botón verde con efecto de degradado y logo + el nombre no [pueden variar]».
+Vive en `QB_BOTON_FONDO`, en `src/brand/qb.ts`.
+
+⚠️ El botón tiene **esquinas vivas**, sin radio (medido: la primera fila de píxel
+ya arranca en x=628).
+
+> Sigue abierto de dónde sale **PANTONE 361 C**, que el `.ai` declara como tinta
+> plana y es más brillante que los dos extremos. El color de QB es **variable por
+> decisión de marca**: cuando cambie, se cambia acá con fecha.
 
 ### Logo
 
@@ -199,6 +220,17 @@ La misma lógica, con tres cosas más que confirman el repertorio de la marca:
 3. **El legal al pie va en Bell MT Italic**, en cuerpo chico y centrado
    («*Sujeto a consumo de alimentos. Promoción no acumulable…*»). O sea que Bell MT
    ya tiene un rol asignado: la letra chica.
+
+> ⛔ **Corregido el 17-09-2026: eso vale para el post de *Sunset*, NO para toda la
+> marca.** En la historia de ALL YOU CAN DRINK el legal **y** la lista de tragos
+> están en **Raleway Itálica**, no en Bell MT. Se cazó comparando el antes y el
+> después del pie en un render: la Bell MT es una serif y la del KV es una
+> grotesca itálica. Los tres renglones del pie calzan con Raleway Itálica a
+> **24,4 px de mesa** (51 px a 2250), con un error menor al 1,4 % de ancho de
+> tinta en los tres.
+>
+> ⇒ **La letra chica de QB no tiene una sola fuente: depende de la pieza.** Antes
+> de dar por buena una tipografía de pie, se mira la pieza — no este manual.
 
 ⚠️ **La entrega de feed es a 2250 px de ancho**, aunque la mesa de trabajo del `.ai`
 sea 1080 × 1350. El `.ai` está a 1:1 y la exportación sube a 2250.

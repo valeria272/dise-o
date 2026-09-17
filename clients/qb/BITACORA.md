@@ -1,5 +1,70 @@
 # QB Restaurant — bitácora
 
+## 2026-09-17 — Elisabet Soto «Eli» (con Claude)
+
+**Qué se hizo:** la **ST ANIMADA de ALL YOU CAN DRINK de la S5 (28-09, 15:00)**,
+entregada en la carpeta `QB / STS` del Drive de Eli. Y de paso quedó abierto el
+sistema de QB en código: `src/brand/qb.ts` con la geometría del bloque de AYCD
+medida al píxel, y las fuentes de la marca versionadas.
+
+**La pieza.** Tres capas y sólo una se mueve: la escena de fondo (manos
+sosteniendo un celular en una mesa de QB) → las tres bandas de **UNLIMITED** en
+versales gigantes → el cuerpo del celular recortado. Con eso la tipografía queda
+*cortada por el borde y por el celular*, que es lo que pide el brief, y dentro
+del teléfono no se mueve nada. El legal, el CTA y la línea complementaria van
+fuera del celular.
+
+**Lo que se produjo y lo que no.** La escena del celular en la mano **se generó**
+(Nano Banana Pro, `scripts/qb-aycd-s5-escena.py`): esa foto no existe en el
+material de QB. Pero **la pantalla se pidió en verde** y encima se montó, con
+homografía sobre sus cuatro vértices, una gráfica hecha en Remotion con las
+fuentes reales (`QB-Pantalla-AYCD`). Por eso el «POR $13.990», el degradado y el
+logotipo salen exactos y no alucinados. Y el trago que se ve en la pantalla es un
+close-up de **la foto real y aprobada** de la promo.
+
+**⛔ El error de la ronda 1, y la regla que deja.** La grilla traía el comentario
+«Muy parecido al de BT, busquemos otra referencia» y la ronda 1 lo ejecutó: sacó
+el celular de la pieza. **Estaba tachado** —contenido ya lo había resuelto— y el
+CSV de la capa viva no muestra el tachado. Regla: un comentario que **cambia el
+concepto** de la pieza se verifica antes de ejecutarse; si contradice al brief,
+se pregunta. Quedó en la memoria `comentarios-nativos-de-excel`.
+
+**Dos hallazgos que corrigieron el manual:**
+
+1. ⭐⭐ **El verde de QB no eran tres verdes: es un degradado.** Barrido píxel a
+   píxel del botón de AYCD: `#354A3A` en los dos bordes y `#66886B` al centro,
+   horizontal y constante en vertical. La franja de la historia y la pastilla del
+   feed son **los dos extremos del mismo degradado**. El misterio estaba abierto
+   desde el 15-09.
+2. ⛔ **El pie de la ST de AYCD no es Bell MT, es Raleway Itálica.** Bell MT es el
+   pie del post de *Sunset*. O sea: la letra chica de QB **depende de la pieza**.
+   Se cazó comparando el antes y el después de un render, no leyendo el manual.
+
+**Dónde quedó:**
+- `src/brand/qb.ts` — el sistema medido: paleta, degradado del botón, geometría
+  del bloque de AYCD, cargador de fuentes y verificador
+- `src/compositions/qb/QBStAycdS5.tsx` — la historia
+- `src/compositions/qb/QBPantallaAycd.tsx` — la gráfica del celular
+- `src/QbEntry.tsx` — entry point de la marca
+- `scripts/qb-aycd-s5-escena.py` · `scripts/qb-aycd-s5-montar.py` ·
+  `scripts/qb-aycd-limpiar-foto.py`
+- `public/assets/hilton/qb/` — logo recortado, Raleway, y las capas de la pieza
+- `out/qb/rev/index.html` — el antes/después de las dos rondas
+- Drive: `QB / STS` → el mp4 y el fotograma a 2250×4000
+
+**Abierto:**
+- ⭐ **¿La historia va a paid?** Se compuso como orgánica: el pie con el legal
+  entra en los 340 px que Instagram reserva abajo, igual que el KV aprobado, que
+  tampoco pasa. Si va a pauta hay que subir el pie
+- Las bandas de UNLIMITED quedaron **sólo en la mitad de arriba**: el mate del
+  frente es únicamente el teléfono, porque la mano no se aísla limpio. Si Eli
+  quiere tipografía también abajo, hay que rehacer la escena con las manos más
+  abajo en el encuadre
+- Sigue sin resolverse de dónde sale **PANTONE 361 C**, que el `.ai` declara y es
+  más brillante que los dos extremos del degradado
+- Sigue pendiente la **decisión sobre las cifras** (caja alta en Raleway vs Bell MT)
+
+
 ## 2026-09-15 — Elisabet Soto «Eli» (con Claude)
 
 **Qué se hizo:** Se abrió QB como marca propia del estudio, separada de Hilton, y se

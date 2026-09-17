@@ -16,7 +16,7 @@
     ]
   },
   "colores": {
-    "_estado": "PARCIAL",
+    "_estado": "RESUELTO 17-09-2026 — el verde de QB es un DEGRADADO, no tres verdes",
     "pantone_declarado": {
       "nombre": "PANTONE 361 C",
       "origen": "tinta plana del documento, Informe.txt del paquete de feed",
@@ -31,11 +31,18 @@
       "hex": "#FFFFFF",
       "origen": "titular, bajada y texto de franja, medidos"
     },
-    "_alerta": "Tres verdes distintos y ninguno es PANTONE 361 C (que es un verde brillante): franja de historia #374C3C, pastilla de feed ~#66886B, y el Pantone declarado en el .ai. PEDIR A ELI el valor del swatch en Illustrator.",
+    "_alerta": "RESUELTO: la franja #374C3C y la pastilla ~#66886B son los DOS EXTREMOS del mismo degradado horizontal. Sigue abierto de donde sale PANTONE 361 C, que el .ai declara como tinta plana y es mas brillante que los dos extremos.",
     "_variable": "El color de QB cambia por decisión de marca (Eli). Se anota con fecha cada vez.",
     "verde_pastilla_feed": {
       "hex_aprox": "#66886B",
       "origen": "pastilla del horario en Post n°2 QB SUNSET.png; el relleno tiene grano, no es plano perfecto"
+    },
+    "degradado_marca": {
+      "css": "linear-gradient(90deg, #354A3A 0%, #66886B 50%, #354A3A 100%)",
+      "borde": "#354A3A",
+      "centro": "#66886B",
+      "origen": "barrido pixel a pixel del boton de PROMOS QB 2026 AYCD 2026 ST.png, fila y=2850",
+      "⭐": "Es el «efecto de degradado» del boton que Eli declaro INTOCABLE el 17-09-2026. Esquinas vivas, sin radio."
     }
   },
   "fuentes": {
@@ -82,7 +89,8 @@
       "glifos": 241,
       "⭐_cifras": "Los diez dígitos miden 0,500 em exactos — diferencia 0%. Es TABULAR DE FÁBRICA aunque no declare tnum. La itálica, 0,490 em. Trae $ % ¿ ¡ @ y tildes.",
       "_propuesta": "Que toda cifra de QB vaya en Bell MT. PENDIENTE DE APROBACIÓN DE ELI.",
-      "_uso_observado": "El LEGAL al pie del post «Sunset» está en Bell MT Italic."
+      "_uso_observado": "El LEGAL al pie del post «Sunset» está en Bell MT Italic.",
+      "⛔_no_es_la_letra_chica_de_toda_la_marca": "Corregido 17-09-2026: Bell MT Italica es el pie del POST de Sunset. En la HISTORIA de AYCD el legal y la lista de tragos van en RALEWAY ITALICA a 24,4 px de mesa (51 px a 2250). La letra chica de QB depende de la pieza: se mira la pieza, no el manual."
     },
     "mano": {
       "familia": "Brushwell",
@@ -160,7 +168,7 @@
     "Falta el Informe.txt del paquete de STORIES, y ninguno de los dos paquetes trae carpeta Links/",
     "Confirmar si la regla «en DT sólo diseño» aplica también a QB"
   ],
-  "actualizado": "2026-09-15",
+  "actualizado": "2026-09-17",
   "formatos": {
     "feed": {
       "w": 1080,
@@ -239,5 +247,53 @@
     "paquete_stories_s1_agosto": "1pKzRHON_d8EgRSjMfIIZX1unkPrVREqn",
     "entregas_S1_SEP_QB": "1qPk9I7S-FPEcyLZ1z4TyrRrqaDwzt8Tr",
     "_nota": "No son públicos por enlace: bajar por el conector MCP de Drive, no con --publico."
+  },
+  "gramatica_aycd_historia_medida_sobre_1080x1920": {
+    "_origen": "PROMOS QB 2026 AYCD 2026 ST.png y PROMOS QB 2026 AYCD ST2.png (junio). Las DOS tienen el bloque en las mismas coordenadas al pixel: lo unico que cambia entre ellas es la fotografia.",
+    "_regla": "Eli 17-09-2026: la foto puede variar; el boton verde con su degradado y el logo + el nombre, NO.",
+    "logo": {
+      "top": 207.4,
+      "alto": 108.5,
+      "ancho": 178.6
+    },
+    "titular": {
+      "cuerpo": 109.4,
+      "alto_versal": 77.8,
+      "interlinea": 102.7,
+      "linea1_top": 376.3,
+      "linea2_top": 479.0,
+      "cortes": "ALL ExtraBold · YOU Italica · CAN Italica · DRINK ExtraBold"
+    },
+    "antetitulo": {
+      "top": 1311.4,
+      "texto": "TODOS LOS MARTES",
+      "cuerpo": 45,
+      "tracking": "0.045em",
+      "peso": 600
+    },
+    "boton": {
+      "top": 1364.6,
+      "alto": 85.9,
+      "ancho": 477.1,
+      "esquinas": "vivas",
+      "texto": "POR $13.990",
+      "cuerpo": 58.8,
+      "peso": 800
+    },
+    "horario": {
+      "top": 1479.4,
+      "texto": "18:00 a 21:00 hrs",
+      "cuerpo": 44,
+      "tracking": "0.094em",
+      "peso": 300,
+      "⭐": "El KV no usa un cuerpo mayor: usa TRACKING. Con cuerpo 45 y sin tracking la linea sale 104 px corta a 2250."
+    },
+    "pie_negro": {
+      "top": 1608,
+      "legal_top": 1629.6,
+      "lista_l1": 1789.0,
+      "lista_l2": 1822.1,
+      "fuente": "Raleway Italica 24,4 px de mesa"
+    }
   }
 }

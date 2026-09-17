@@ -33,6 +33,36 @@ Estructura: `LOGO CLIENTES/<MARCA>/PNG/`
 Marcas de esta lista que **no** aparecían en mi mapa: SGS, EGLO, DHEMAX, REM,
 MERINO, TINYPAIHUEN, ETERSOL.
 
+## ⭐ QB — los editables de Eli (levantado 17-09-2026)
+
+`1p1lhX45R5hMCat3cSoLeZhYydm5oG9D9` — **la raíz de los editables de QB**, de
+`elisabet.soto@copywriters.cl`. Una carpeta por pieza; dentro, los PNG/JPG a
+72 y 150 ppp y el `.eps`.
+
+| Qué | ID |
+|---|---|
+| **KV de promos (AYCD + QBTIME), historia 1080×1920** | `1gcIlQwCJQWyZ4ol_BtKPCc7dXotsjxQR` |
+| AYCD junio 2026 (post + 2 ST) | `178pdd3gBzNu96TSv8TJ3i478-FPMLRYk` |
+| **Logotipos QB (PNG blanco/negro/verde, sin fondo)** | `14JOfcpGLEomQlQSp7gV2cweb9hiy0Kzo` |
+| KV FLYER QB GENERAL 2026 SEP | `1GvGAqELOkKQmnFYIe-N7hT63k5Oo8cXK` |
+| KV / PROMO SUNSET QB | `1jOLWs51spp5ZDGmaHhm4WIs5BCJYDJd2` · `1wegNpaYd-1_lOw8B8UZE7Cd4ANrb9trq` |
+
+⭐ **Estos archivos SÍ bajan con el endpoint de `usercontent`** (ver la memoria
+`bajar-grilla-ajena-de-drive`), sin token y sin tope de tamaño:
+
+```bash
+curl -sL "https://drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t" -o archivo
+```
+
+⚠️ **Pero el compartido es POR ARCHIVO, no por carpeta.** En la misma carpeta un
+PNG baja y el de al lado devuelve la página de login — pasó el 17-09 con
+`AllYouCanDrink9.16.png`. Y una carpeta **recién creada** por Eli no está
+compartida por enlace, así que no baja nada de adentro: hay que pedirle que la
+ponga en «cualquiera con el enlace».
+
+⚠️ **Verifica siempre con `file`**, nunca por tamaño: la página de login pesa
+~915 KB y parece un archivo bueno.
+
 ## 🔑 CON QUÉ CUENTA ENTRA EL CONECTOR (verificado 27-08-2026)
 
 **`constanza.olivares@copywriters.cl`.** No es la de Valeria ni la de Serena.

@@ -1,0 +1,202 @@
+{
+  "marca": "Rendic",
+  "nombre_completo": "Antonio Rendic College",
+  "sigla": "ARC",
+  "rubro": "Colegio bilingüe · Antofagasta",
+  "estado": "sistema medido y completo",
+  "medido_el": "2026-09-07",
+  "fuente_del_adn": "raw/rendic/ref-sept2026/ — 10 gráficas de septiembre 2026 (cambio de imagen). NO usar piezas anteriores a agosto 2026.",
+  "colores": {
+    "burdeo_fondo": {
+      "hex": "#661D33",
+      "uso": "fondo macizo de toda pieza. Es EL color de la marca."
+    },
+    "burdeo_patron": {
+      "hex": "#6E293D",
+      "uso": "sólo el patrón tono sobre tono del fondo. Nunca para texto ni cajas."
+    },
+    "blanco": {
+      "hex": "#FFFFFF",
+      "uso": "texto sobre burdeo, píldoras, banda inferior"
+    },
+    "burdeo_logo": {
+      "hex": "#651D32",
+      "uso": "Pantone 7421 C — el valor del SVG oficial del logo. Difiere en 1/canal del fondo; NO unificarlos sin preguntar."
+    }
+  },
+  "lienzos": {
+    "feed": {
+      "w": 1080,
+      "h": 1080
+    },
+    "story": {
+      "w": 1080,
+      "h": 1920
+    },
+    "nota": "Las piezas de septiembre salieron a 1081 px de ancho. Es un error de 1 px de la diseñadora: entregar a 1080."
+  },
+  "logo": {
+    "forma": "circular (viewBox 428,5 × 428,5 — cuadrado, no apaisado)",
+    "variantes": [
+      "burdeo ARC 7421C",
+      "negro positivo",
+      "negro negativo",
+      "blanco"
+    ],
+    "variante_en_pieza": "ARC 7421C — el de FONDO DE COLOR (anillo burdeo macizo + disco blanco). NUNCA el blanco calado.",
+    "feed": {
+      "lado_px": 256,
+      "x": 36,
+      "y": 31,
+      "proporcion_del_lienzo": 0.237
+    },
+    "story": {
+      "lado_px": 400,
+      "x": 338,
+      "y": 733,
+      "nota": "400 px, no 281. El metraje de septiembre trae el logo quemado a ese tamaño desde y=733; el logo nuevo se dibuja encima para taparlo exacto. En el sistema de Diego el logo de story varía de tamaño según la pieza (281 en el anuncio estático, 400 en carrusel y reel)."
+    },
+    "archivos": "raw/rendic/logos/",
+    "correccion_diego_08_09_2026": "Se entregó con ARC-blanco.png (calado) y Diego lo rechazó: «el logo está mal, es el que tiene fondo de color, eso para todos los post». Vale para feed, story y reels.",
+    "margen_del_png": {
+      "porcentaje_por_lado": 10.8,
+      "nota": "Los PNG oficiales son 2275x2274 con el círculo ocupando sólo 1785 px (245 px de margen transparente por lado). HAY QUE RECORTAR con getbbox() antes de escalar, o el círculo sale 21% más chico y descentrado."
+    }
+  },
+  "geometria": {
+    "foto_recortada_en_elipse": {
+      "feed": {
+        "centro_x": 540,
+        "centro_y": -80,
+        "radio_x": 700,
+        "radio_y": 645,
+        "base_y": 565,
+        "rms_ajuste_px": 4.5
+      },
+      "story": {
+        "centro_x": 540,
+        "centro_y": -660,
+        "radio_x": 980,
+        "radio_y": 1570,
+        "base_y": 910,
+        "rms_ajuste_px": 18.2
+      },
+      "nota": "La foto ocupa la zona superior y la corta una elipse convexa: alta en los bordes, baja al centro. NO es un arco ni una curva libre."
+    },
+    "banda_blanca_inferior": {
+      "feed": {
+        "desde_y": 885,
+        "alto": 195,
+        "porcentaje": 18.1
+      },
+      "story": {
+        "desde_y": 1460,
+        "alto": 460,
+        "porcentaje": 24.0
+      }
+    },
+    "pildora_pilares": {
+      "feed": {
+        "x0": 161,
+        "x1": 919,
+        "ancho": 759,
+        "y0": 823,
+        "y1": 940,
+        "radio": 58,
+        "centrada_en": 540
+      },
+      "story": {
+        "x0": 84,
+        "x1": 999,
+        "ancho": 915,
+        "y0": 1386,
+        "y1": 1518,
+        "radio": 66,
+        "centrada_en": 540
+      },
+      "nota": "Va a caballo sobre el borde de la banda blanca: nace sobre el burdeo y termina dentro del blanco."
+    },
+    "pildora_nombre": {
+      "x0": 323,
+      "x1": 757,
+      "ancho": 435,
+      "centrada_en": 540,
+      "contenido": "Antonio Rendic College",
+      "fondo": "#FFFFFF",
+      "texto": "#661D33"
+    },
+    "encuadre_de_la_foto": {
+      "problema": "En feed la elipse trepa en los bordes (y=330 contra y=565 al centro) y corta la cara de los niños de los costados.",
+      "correccion_diego_08_09_2026": "«en todos los post corta la cara de los niños, en las historias quedan perfe, pero acá no sé si pueden indicar que suba más las imágenes»",
+      "solucion": "Subir la foto dentro del marco (crop desde un offset). Calibrado por pieza: 120–165 px.",
+      "techo": "165 px — sobre eso el crop llega a y=733 y asoma el logo quemado del metraje.",
+      "story": "sin offset: Diego aprobó el encuadre de las stories tal cual."
+    }
+  },
+  "patron_de_fondo": {
+    "iconos": [
+      "antorcha",
+      "libro abierto",
+      "flor de tres pétalos"
+    ],
+    "origen": "los tres símbolos del escudo — los mismos de los tres pilares",
+    "color": "#6E293D",
+    "paso_horizontal_px": 296,
+    "cobertura": "~14% del lienzo"
+  },
+  "tres_pilares": [
+    {
+      "titulo": "PROPÓSITO",
+      "bajada": "que inspira",
+      "icono": "antorcha"
+    },
+    {
+      "titulo": "EXCELENCIA",
+      "bajada": "que transforma",
+      "icono": "libro abierto"
+    },
+    {
+      "titulo": "BIENESTAR",
+      "bajada": "que acompaña",
+      "icono": "flor de tres pétalos"
+    }
+  ],
+  "firma": {
+    "texto": "Somos Familia Rendicina",
+    "estilo": "manuscrita con subrayado a mano alzada",
+    "posicion": "abajo a la derecha, dentro de la banda blanca",
+    "color": "#661D33"
+  },
+  "tipografia": {
+    "estado": "IDENTIFICADA 07-09-2026 por superposición de glifos",
+    "familia": "Montserrat (variable)",
+    "titular": {
+      "peso": 850,
+      "caso": "versales",
+      "tracking_em": 0.003,
+      "verificacion": "IoU 0.934 sobre 'DECISIONES' aislada; el 0.648 de la línea completa era desalineación de tracking, no otra fuente",
+      "medido": "cap-height 38px → size 53px en pieza de 1080; línea de 875px",
+      "nota": "El original está ~4% más estirado en horizontal que Montserrat pura. Se puede ignorar."
+    },
+    "descartadas": [
+      "Anton",
+      "Bebas Neue",
+      "Poppins ExtraBold",
+      "Archivo Black",
+      "Montserrat 700 (IoU 0.78)"
+    ]
+  },
+  "zonas_seguras": {
+    "story": {
+      "arriba_px": 268,
+      "abajo_px": 268,
+      "regla": "14% arriba y abajo, del brief del cliente"
+    },
+    "reel": {
+      "arriba_px": 120,
+      "abajo_px": 420,
+      "columna_derecha": "íconos de me gusta/comentar/compartir"
+    },
+    "feed": "sin zona muerta, pero algunas ubicaciones recortan a 4:5"
+  }
+}

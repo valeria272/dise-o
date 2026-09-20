@@ -204,3 +204,8 @@ client_secret*.json
 # ...pero el instructivo SÍ viaja: si no, las instrucciones para montar el token
 # se quedan en la máquina de quien las escribió y el siguiente vuelve a empezar.
 !credentials/LEEME.md
+# Sal Lobos: los fondos de la licitación (7,4 MB, ya rebajados a JPEG 3200 px).
+# Excepción deliberada, misma razón que Revex sep y CAVA bottles: los tres
+# scripts de clients/sal-lobos/sistema/ no reproducen las 9 piezas sin estas
+# imágenes, y sin ellas cada ronda de correcciones vuelve a empezar (15-09-2026).
+!public/assets/sal-lobos/**

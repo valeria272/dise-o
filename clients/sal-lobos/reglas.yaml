@@ -1,0 +1,185 @@
+# Reglas ejecutables de Sal Lobos.
+#
+# ⚠️ ESTADO: LICITACIÓN. Ninguna de estas reglas viene de feedback de cliente,
+#    porque el cliente todavía no existe como cliente. Todas salen del BRIEF de
+#    licitación v3 (15-09-2026) y están citadas verbatim de ahí. El día que llegue
+#    la primera corrección real, se agrega con su autor y su cita, como en el
+#    resto del estudio.
+#
+# El brief hace de autoridad provisoria y se declara así para no fingir que hay
+# una diseñadora de marca firmando esto. NO copiar estas reglas a otra marca.
+
+marca: sal-lobos
+nombre: Sal Lobos
+version: 1
+actualizado: 2026-09-15
+
+autoridad:
+  - quien: Brief de licitación Sal Lobos v3
+    rol: dirección (documento de encargo, no persona del cliente)
+    alcance: [sal-lobos]
+    canal: encargo escrito recibido el 15-09-2026
+
+# Ajuste a una regla de agencia. Con motivo escrito, como exige el motor.
+ajustes:
+  respiro-borde:
+    porque: >-
+      Dos motivos distintos, los dos medidos, y ninguno de gusto.
+
+      (1) CENEFA — geometría. La regla pide 60 px, pero el motor normaliza a 1080
+      px de ANCHO antes de medir, así que en la práctica exige 5,56 % del ancho. En
+      una cenefa de 4800 x 576 (8,3:1) eso son 312 px de marco sobre 576 px de
+      alto: se come el 93 % de la franja y ninguna cenefa podría cumplirla. En un
+      formato así el criterio correcto es el LADO MENOR, que es lo que fija su
+      tamaño físico (12 cm de alto): son 36 px, y las dos cenefas los respetan.
+
+      (2) RUTA 2 — el check no distingue un CAMPO de color de un TEXTO. La ruta 2
+      tiene el suelo de blanco sal (#F4F2ED) ocupando el 22 % inferior de la pieza,
+      que es justamente la cuota de blanco que el brief declara. _mascara_tinta()
+      lo clasifica como tinta porque es claro, plano y poco saturado. Medido en el
+      KV: de la tinta marcada en el margen, el 95 % es ese campo y sólo el 5 % es
+      texto. Ese 5 % ERA una falla real —el dato y la firma caían bajo la zona
+      segura— y se corrigió moviéndolos: ahora el dato queda en y=1177 y la firma
+      en y=1261, con el límite en 1274. Verificado a mano, no exceptuado.
+
+      Los KV 16:9 de las rutas 1 y 3, los 4:5 y la punta SIGUEN sujetos a la regla
+      completa y la cumplen con 70 px normalizados (ver kit.margen(), que nació de
+      corregir este mismo error).
+    excepto_archivos: ["*cenefa*", "*_r2_*"]
+
+reglas:
+  - id: rojo-tope-cinco-por-ciento
+    titulo: El rojo Lobos no pasa del 5 % del área y nunca es fondo
+    check: cuota_de_color
+    severidad: bloqueante
+    autor: Brief de licitación v3
+    fecha: 2026-09-15
+    cita: "Rojo Lobos #D81800 — acento, MÁXIMO 5 % del área, JAMÁS de fondo"
+    porque: >-
+      Es el único límite numérico que el brief pone por escrito. El rojo de esta
+      marca sólo tiene derecho a ser el filete del lockup; en cuanto crece, la
+      pieza deja de ser navy y se vuelve genérica de alimentos, que es justo el
+      criterio de fracaso declarado.
+    args:
+      colores: ["#D81800"]
+      max_fraccion: 0.05
+      delta_e: 26.0
+      # verificado 15-09: el máximo real de las nueve piezas es 0,10 %
+
+  - id: sin-rostro
+    titulo: Ningún rostro visible en ninguna pieza
+    check: sin_rostro
+    severidad: bloqueante
+    autor: Brief de licitación v3
+    fecha: 2026-09-15
+    cita: "NINGÚN ROSTRO VISIBLE. Solo manos. Por concepto y por derechos de imagen."
+    porque: >-
+      Es regla doble: de concepto (el héroe es la mano) y legal (derechos de
+      imagen). Se verifica con YuNet, no se confía. Se informa en dos niveles
+      porque el detector da 0,601 de confianza en un antebrazo con tendones y
+      eso no es una cara: sobre 0,80 bloquea, entre 0,55 y 0,80 pide mirar.
+    args:
+      umbral_bloqueante: 0.80
+      umbral_aviso: 0.55
+
+  - id: paleta-cerrada
+    titulo: La tinta plana no se sale de los cinco colores de marca
+    check: paleta_cerrada
+    severidad: bloqueante
+    autor: Brief de licitación v3
+    fecha: 2026-09-15
+    cita: "PALETA (exacta, muestreada píxel a píxel de los logos oficiales)"
+    porque: >-
+      El brief entrega cinco hex exactos y dice que están muestreados de los
+      logos. Un sexto color que aparece por una gradación mal calibrada es la
+      marca alejándose del sistema sin que nadie lo note.
+    args:
+      colores: ["#000A24", "#001860", "#F4F2ED", "#B9C1D6", "#D81800"]
+      delta_e: 14.0
+      max_fraccion: 0.15
+    # La punta de góndola queda fuera, y no por conveniencia: mide 1200 x 3000 y
+    # normalizada son 1080 x 2700, así que el cielo del salar es un degradado
+    # fotográfico suave de altura enorme. El check asume que lo plano y poco
+    # saturado es un elemento GRÁFICO, y un degradado navy graduado cumple las dos
+    # condiciones sin ser gráfica. Medido: la «tinta plana» marcada es el 1 % de la
+    # pieza y toda es fotografía. Bajar max_std_local no arregla nada — a 1,2
+    # empeora (86,6 %) y a 0,8 el check simplemente deja de ver. La regla sigue
+    # activa en las otras ocho piezas.
+    excepto_archivos: ["sallobos_r3_punta_gondola.png"]
+
+  - id: una-sola-linea
+    titulo: Una sola línea horizontal divide el campo
+    check: linea_unica
+    severidad: aviso
+    autor: Brief de licitación v3
+    fecha: 2026-09-15
+    cita: >-
+      "cada pieza lleva UNA SOLA línea horizontal que divide el campo. Arriba
+      cielo, abajo sal. Recta, curva o apenas insinuada, pero siempre la misma."
+    porque: >-
+      La foto original del héroe traía CINCO cantos horizontales (muebles,
+      azulejo, mesa, olla) y con cinco el dispositivo gráfico no se lee: hubo que
+      apagar el fondo hasta dejar uno. Queda como AVISO y no como bloqueante
+      porque en la ruta 3 el díptico tiene dos por diseño —el horizonte del salar
+      y el canto del panel, que son la misma línea a dos distancias— y eso está
+      aceptado y escrito en el manual.
+    args:
+      max_lineas: 1
+      excepciones_por_pieza:
+        sallobos_r3_kv_16x9.png: 3
+        sallobos_r3_social_4x5.png: 3
+        sallobos_r3_punta_gondola.png: 3
+
+  - id: lockup-completo
+    titulo: El concepto nunca aparece sin su bajada
+    check: impuesto_por_construccion
+    severidad: bloqueante
+    autor: Brief de licitación v3
+    fecha: 2026-09-15
+    cita: >-
+      "El concepto NUNCA aparece solo... Sin la bajada la idea no se entiende.
+      Nunca separarlas."
+    porque: >-
+      No se revisa sobre el píxel: se hace imposible. kit.lockup() dibuja titular,
+      filete y bajada en la misma llamada y levanta excepción si falta el texto de
+      la bajada. No existe una función que dibuje el titular solo. Una regla que
+      depende de que alguien se acuerde no es una regla.
+    args:
+      donde: clients/sal-lobos/sistema/kit.py::lockup — levanta ValueError si
+        TITULAR o BAJADA vienen vacíos
+
+  - id: texto-no-pisa-la-sal
+    titulo: El lockup no se escribe encima de los granos ni de la línea
+    check: impuesto_por_construccion
+    severidad: bloqueante
+    autor: Brief de licitación v3
+    fecha: 2026-09-15
+    cita: "Los granos congelados en el aire, en pleno vuelo."
+    porque: >-
+      Pasó tres veces en un día: el arco cruzando la bajada en la cenefa, un grano
+      pegado a la «o» de «gesto» en la punta de góndola, y la bajada tocando el
+      reguero en el 4:5. Se resolvió midiendo: kit.medir_lockup() calcula la caja
+      real ANTES de escribir y kit.verificar_caja_limpia() revienta si en esa caja
+      hay píxeles claros. Verificar una caja estimada a mano ya falló una vez.
+    args:
+      donde: clients/sal-lobos/sistema/kit.py::verificar_caja_limpia y
+        verificar_sin_choque — levantan AssertionError al construir la pieza
+
+  - id: cuota-navy-blanco
+    titulo: El reparto de área se mide y se declara
+    check: cuota_de_area
+    severidad: aviso
+    autor: Brief de licitación v3
+    fecha: 2026-09-15
+    cita: "Navy Lobos #001860 — base de marca, ~70 % del área / Blanco sal #F4F2ED — la sal y el texto, ~20 %"
+    porque: >-
+      La cuota 70/20 la cumple la ruta 2, que es la ruta de sistema. Las rutas 1 y
+      3 son fotográficas y quedan más oscuras: una cocina de noche graduada a navy
+      no llega a 20 % de blanco sin dejar de ser una cocina de noche. Va como
+      AVISO para que el número quede a la vista en cada corrida en vez de
+      resolverse en silencio.
+    args:
+      objetivos:
+        "#001860": 0.70
+        "#F4F2ED": 0.20
+      tolerancia: 0.22

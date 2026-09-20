@@ -1,0 +1,136 @@
+{
+  "slug": "sal-lobos",
+  "nombre": "Sal Lobos",
+  "rubro": "Sal de consumo — sal de roca del Salar Grande de Tarapacá",
+  "compania": {
+    "nombre": "Sociedad Punta de Lobos S.A.",
+    "sigla": "SPL",
+    "fundada": 1905,
+    "anos_al_2026": 120
+  },
+  "pais": "CL",
+  "moneda": "CLP",
+  "estado": "LICITACIÓN — propuesta, no cliente adjudicado. Nada de esto está aprobado por el cliente.",
+  "manual": "clients/sal-lobos/CLAUDE.md",
+  "kit_codigo": "clients/sal-lobos/sistema/kit.py",
+  "reglas_qa": "clients/sal-lobos/reglas.yaml",
+
+  "concepto": {
+    "nombre": "EL ÚLTIMO GESTO",
+    "titular": "El último gesto",
+    "bajada": "La pizca que alguien echa justo antes de servir.",
+    "idea_de_apoyo": "La sal es la misma, la mano no. Ninguna mano echa la misma cantidad ni la echa igual. Por eso ningún plato sabe igual a otro.",
+    "heroe": "LA MANO. No la sal y no la marca.",
+    "problema_que_resuelve": "En Chile la compra de productos altos en sodio cayó 36,7 % desde la ley de etiquetado. No se discute eso: se cambia de qué se está hablando."
+  },
+
+  "lockup": {
+    "regla": "INNEGOCIABLE. El concepto NUNCA aparece solo. Va siempre como bloque de tres partes: titular, filete rojo corto, bajada. Sin la bajada la idea no se entiende.",
+    "partes": ["titular", "filete rojo #D81800", "bajada"],
+    "titular_fuente": "Instrument Serif",
+    "bajada_fuente": "Instrument Serif itálica",
+    "bajada_color": ["#F4F2ED", "#B9C1D6"],
+    "proporciones_relativas_al_cuerpo_del_titular": {
+      "gap_titular_filete": 0.42,
+      "filete_ancho": 2.0,
+      "filete_grosor": 0.045,
+      "gap_filete_bajada": 0.4,
+      "cuerpo_bajada": 0.4
+    },
+    "impuesto_por_programa": "kit.lockup() dibuja las tres partes en la misma llamada y levanta excepción si falta el texto de la bajada. No hay forma de dibujar el titular solo."
+  },
+
+  "colores": {
+    "_origen": "Hex entregados por el brief de licitación, muestreados píxel a píxel de los logos oficiales. NO medidos por el estudio: no hay corpus de piezas del cliente todavía.",
+    "navy_profundo": {"hex": "#000A24", "uso": "fondo de cocina en penumbra"},
+    "navy_lobos": {"hex": "#001860", "uso": "base de marca", "cuota_area": 0.70},
+    "blanco_sal": {"hex": "#F4F2ED", "uso": "la sal y el texto", "cuota_area": 0.20},
+    "gris_salmuera": {"hex": "#B9C1D6", "uso": "apoyo, mínimo"},
+    "rojo_lobos": {"hex": "#D81800", "uso": "acento", "cuota_area_max": 0.05,
+                   "prohibido": "JAMÁS de fondo"},
+    "firma_cromatica": "Piel tibia sobre navy frío, con la sal blanca en el medio."
+  },
+
+  "fuentes": {
+    "display": {
+      "familia": "Instrument Serif",
+      "archivos": ["public/assets/fonts/InstrumentSerif.ttf",
+                   "public/assets/fonts/InstrumentSerif-Italic.ttf"],
+      "uso": "concepto y titulares",
+      "minimo_px": 28,
+      "confirmado": true,
+      "licencia": "Google Fonts / OFL"
+    },
+    "texto": {
+      "familia": "Karla",
+      "archivo": "public/assets/fonts/Karla-var.ttf",
+      "pesos": [400, 600, 700],
+      "uso": "cuerpo y textos de apoyo FUERA del lockup",
+      "confirmado": true,
+      "licencia": "Google Fonts / OFL"
+    },
+    "dato": {
+      "familia": "IBM Plex Mono",
+      "archivos": ["public/assets/fonts/IBMPlexMono-Regular.ttf",
+                   "public/assets/fonts/IBMPlexMono-Medium.ttf"],
+      "uso": "toda cifra y especificación",
+      "confirmado": true,
+      "licencia": "Google Fonts / OFL"
+    },
+    "_conflicto_resuelto": "El brief dice «Texto: Karla — bajadas y cuerpo», y la regla del lockup dice que la bajada va en Instrument Serif itálica. Manda la regla del lockup, que es más específica y está marcada innegociable. Karla queda para el cuerpo y los apoyos que NO son la bajada del lockup."
+  },
+
+  "arco": {
+    "regla": "Cada pieza lleva UNA SOLA línea horizontal que divide el campo. Recta, curva o apenas insinuada, pero siempre la misma.",
+    "_origen": "MEDIDO el 15-09-2026 sobre out/spl/20260914_licitacion/logos/logo-spl-blanco.png",
+    "flecha_span_logo": 0.1965,
+    "radio_span_logo": 0.7344,
+    "flecha_visible_por_pieza": 0.035,
+    "flecha_unidad": "fracción de la ALTURA de la pieza",
+    "criterio": "El arco del logo no se copia a ancho de pieza (taparía el cuadro). Cada formato muestra una VENTANA de la misma circunferencia: 11,6 % del arco en 16:9, 25,5 % en 4:5, 2,5 % en cenefa.",
+    "donde_va_la_linea": {
+      "ruta1": "0,618 de la altura — divide imagen; dibujada y tenue",
+      "ruta2": "0,78 de la altura — divide dos campos de color, y esa altura es la que hace cumplir la cuota 70/20 medida",
+      "ruta3": "el horizonte del salar y el canto del díptico: la MISMA línea a dos distancias"
+    }
+  },
+
+  "formatos": {
+    "kv_16x9": [2560, 1440],
+    "social_4x5": [1600, 2000],
+    "cenefa": [4800, 576],
+    "punta": [1200, 3000],
+    "margen": 0.0625
+  },
+
+  "activos": {
+    "logo_spl_corporativo": "out/spl/20260914_licitacion/logos/logo-spl-blanco.png",
+    "salar_horizonte": "out/spl/20260914_licitacion/moodboard/mb1.png",
+    "salar_crepuscular": "out/spl/20260914_licitacion/moodboard/mb8.png",
+    "manos_generadas": "raw/sal-lobos/gen/",
+    "FALTA": {
+      "logo_sal_lobos_consumo": "NO EXISTE en el repo. Sólo está el corporativo SPL. out/spl/.../logos/logo-lobos.png es un fragmento del arco rojo, 180x130 px, sin marca. El logo se COLOCA, no se dibuja: cada pieza deja la zona reservada y medida (kit.zona_logo)."
+    }
+  },
+
+  "prohibiciones": [
+    "NINGÚN ROSTRO VISIBLE. Sólo manos. Por concepto y por derechos de imagen.",
+    "Nada de guantes, de látex ni de ningún tipo.",
+    "Nada de macro extremo de yemas de dedos.",
+    "Nada de heridas, cortes, costras, quemaduras ni moretones en las manos.",
+    "Nada de mesa familiar en cámara lenta, mantel bordado ni ambiente de postal.",
+    "Nada de food styling. Si el plato se ve rico de más, está mal.",
+    "Nada de salero ni molinillo. La sal se echa con la mano.",
+    "NUNCA un exceso de sal: siempre una pizca.",
+    "Nada de folclore chileno: ni bandera, ni cueca, ni tipografía artesanal.",
+    "El rojo jamás de fondo, máximo 5 % del área.",
+    "NO generar logos ni packaging con IA."
+  ],
+
+  "criterio_de_exito": [
+    "Si la pieza se puede recolorear y pasar por otra marca de alimentos, está mala.",
+    "Tapa el titular: si la imagen sola ya cuenta que alguien acaba de decidir algo con la mano, la ruta está."
+  ],
+
+  "regla_madre": "Mientras más documental sea la forma, más emociona el fondo. Si se ilumina bonito, se cae."
+}

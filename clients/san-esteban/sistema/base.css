@@ -1,0 +1,143 @@
+/* ============================================================
+   SISTEMA GRÁFICO · COLEGIO SAN ESTEBAN
+   Geometría MEDIDA sobre las 7 gráficas aprobadas de septiembre 2026
+   (raw/san-esteban/ref-sep2026/). No cambiar un valor sin medir antes.
+
+   El lienzo de referencia venía a 1081 px; acá todo está normalizado a 1080.
+   ============================================================ */
+
+@font-face{font-family:Poppins;src:url(fonts/Poppins-Regular.ttf);font-weight:400}
+@font-face{font-family:Poppins;src:url(fonts/Poppins-Medium.ttf);font-weight:500}
+@font-face{font-family:Poppins;src:url(fonts/Poppins-SemiBold.ttf);font-weight:600}
+@font-face{font-family:Poppins;src:url(fonts/Poppins-Bold.ttf);font-weight:700}
+@font-face{font-family:Poppins;src:url(fonts/Poppins-ExtraBold.ttf);font-weight:800}
+
+:root{
+  /* El abanico de 110 años — seis colores medidos */
+  --purpura:#6B489C; --celeste:#2899D5; --amarillo:#FED425;
+  --verde:#7CC57F;   --naranja:#F89D45; --verdeagua:#6CC0A6;
+  /* Institucionales */
+  --rojo:#C0191A;         /* caja del nombre y caja de bajada */
+  --azul-cta:#011689;     /* LA barra de accion */
+  --ambar-cta:#E5B352;    /* variante con texto azul - excepcion de sept-2026 */
+  --azul-escudo:#2A3E76;  /* solo dentro del logo */
+  --blanco:#fff;
+  --sombra-texto:0 4px 14px rgba(0,0,0,.38);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fff}
+
+.pieza{position:relative;overflow:hidden;font-family:Poppins;background:#fff}
+.pieza.feed {width:1080px;height:1080px}
+.pieza.story{width:1080px;height:1920px}
+
+/* ---------- capa 1 · la foto ----------
+   No lleva mascara: el abanico de la capa 2 es opaco en su zona y recorta la foto
+   exactamente por el arco medido. Un solo borde, sin dobles recortes.
+
+   La banda de foto es SOLO lo que se ve bajo/sobre el arco. Si el div ocupara el
+   lienzo completo, `cover` escalaria la foto al alto total y se comeria los costados
+   (en el story se perdian las caras). Acotarla deja el recorte al minimo. */
+.foto{position:absolute;left:0;right:0;background-size:cover;background-position:center}
+/* feed: el arco baja hasta y=685 en el eje -> banda 0..700 */
+.feed  .foto{top:0;height:700px}
+/* story: el arco sube hasta y=855 en el eje -> banda 830..1920 */
+.story .foto{top:830px;bottom:0}
+
+/* ---------- capa 2 · el abanico (solo su zona medida) ---------- */
+.abanico{position:absolute;inset:0;background-size:100% 100%;background-repeat:no-repeat}
+.feed  .abanico{background-image:url(img/abanico-abajo.png)}
+.story .abanico{background-image:url(img/abanico-arriba.png)}
+
+/* ---------- capa 3 · bloque de identidad: escudo + sello, SIEMPRE juntos ---------- */
+.identidad{position:absolute;display:flex;flex-direction:column;align-items:center}
+.identidad img{display:block}
+
+/* feed · post estatico - arriba a la izquierda */
+.feed .identidad{left:72px;top:160px;align-items:flex-start}
+.feed .identidad .escudo{width:120px}
+.feed .identidad .sello{width:174px;margin-top:26px;margin-left:-28px}
+
+/* feed · tarjeta de carrusel - escudo mas grande y mas arriba */
+.feed.carrusel .identidad{left:119px;top:71px}
+.feed.carrusel .identidad .escudo{width:153px}
+.feed.carrusel.cierre .identidad{left:auto;right:106px}
+
+/* story - centrado en el eje */
+.story .identidad{left:50%;transform:translateX(-50%);top:724px}
+.story .identidad .escudo{width:175px}
+.story .identidad .sello{width:255px;margin-top:38px}
+
+/* ---------- capa 4 · los textos, siempre al eje central ----------
+   Cada elemento va ANCLADO a la posicion que se midio en septiembre.
+   El titular cuelga hacia arriba desde la caja del nombre. */
+.bloque{position:absolute;left:0;right:0;text-align:center;padding:0 60px}
+
+.titular-wrap{position:absolute;left:0;right:0;text-align:center;padding:0 55px}
+.nombre-wrap {position:absolute;left:0;right:0;text-align:center}
+.bajada-wrap {position:absolute;left:0;right:0;text-align:center;padding:0 60px}
+
+/* feed · medido en feed-wsp / feed-trafico */
+.feed .titular-wrap{bottom:335px}   /* apoyado sobre la caja del nombre (y=757) */
+.feed .nombre-wrap {top:757px}
+.feed .bajada-wrap {top:814px}
+/* feed sin caja de nombre: el titular baja y la bajada sube */
+.feed.sin-nombre .titular-wrap{bottom:300px}
+.feed.sin-nombre .bajada-wrap {top:800px}
+
+/* story · medido en st-wsp / st-trafico */
+.story .titular-wrap{bottom:1455px}  /* apoyado sobre la caja del nombre (y=477) */
+.story .nombre-wrap {top:477px}
+.story .bajada-wrap {top:545px}
+.story.sin-nombre .titular-wrap{bottom:1420px}
+.story.sin-nombre .bajada-wrap {top:500px}
+
+.titular{font-weight:800;color:var(--blanco);letter-spacing:-.04em;line-height:.98;
+         text-shadow:var(--sombra-texto);text-transform:uppercase}
+.titular.frase{text-transform:none;letter-spacing:-.02em;line-height:1.06}
+
+.bajada{font-weight:400;color:var(--blanco);line-height:1.18;text-shadow:var(--sombra-texto)}
+
+.nombre{display:inline-block;background:var(--rojo);color:var(--blanco);
+        font-weight:700;border-radius:6px;padding:.14em .5em;line-height:1.18}
+
+.caja-bajada{position:absolute;left:93px;width:890px;background:var(--rojo);
+             color:var(--blanco);font-weight:400;text-align:center;
+             padding:22px 30px;line-height:1.2}
+
+/* ---------- capa 5 · la barra del llamado a la accion ---------- */
+.cta{position:absolute;left:50%;transform:translateX(-50%);
+     background:var(--azul-cta);color:var(--blanco);
+     font-weight:700;text-align:center;border-radius:4px;
+     padding:.30em 1.1em;line-height:1.22;white-space:nowrap}
+/* llamado de dos lineas: solo cuando el brief trae un texto largo */
+.cta.dos-lineas{white-space:normal;max-width:880px}
+.cta.ambar{background:var(--ambar-cta);color:var(--azul-cta)}
+
+.feed  .cta{top:946px}
+.story .cta{top:1739px}
+.story .cta.dos-lineas{top:1659px}
+
+/* ---------- escalas tipograficas medidas ---------- */
+.feed  .titular.xl{font-size:126px}   /* ADMISION 2027 - cap height 91 px */
+.feed  .titular.l {font-size:62px}
+.feed  .titular.m {font-size:54px}
+.feed  .bajada    {font-size:38px}
+.feed  .nombre    {font-size:42px}    /* cap height 30 px */
+.feed  .cta       {font-size:38px}
+
+.story .titular.xl{font-size:118px}
+.story .titular.l {font-size:64px}
+.story .titular.m {font-size:56px}
+.story .bajada    {font-size:40px}
+.story .nombre    {font-size:42px}
+.story .cta       {font-size:42px}
+
+/* ---------- overlay de control de zonas seguras (no se entrega) ---------- */
+.zonas{position:absolute;inset:0;display:none}
+.pieza.qa .zonas{display:block}
+.pieza.qa .zonas::before,.pieza.qa .zonas::after{
+  content:"";position:absolute;left:0;right:0;height:14%;background:rgba(255,0,0,.28)}
+.pieza.qa .zonas::before{top:0}
+.pieza.qa .zonas::after{bottom:0}

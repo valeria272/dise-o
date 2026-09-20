@@ -1,0 +1,333 @@
+{
+  "slug": "san-esteban",
+  "nombre": "Colegio Hrvatska Skola San Esteban",
+  "rubro": "Colegio particular subvencionado en Antofagasta — 110 años de trayectoria, raíz croata",
+  "pais": "CL",
+  "moneda": "CLP",
+  "web": "https://www.colegiosanesteban.cl",
+  "postulaciones": "http://sanestebanrem.postulaciones.colegium.com/",
+  "tagline": "San Esteban somos todos · Tradición • Excelencia",
+  "holding": {
+    "nombre": "REM (Red Educacional) — cuenta de agencia \"REM (Colegios)\"",
+    "colegios": [
+      "San Esteban",
+      "Antonio Rendic College (ARC)"
+    ],
+    "regla": "SON DOS COLEGIOS CON SISTEMAS DISTINTOS. San Esteban es azul marino + rojo + abanico multicolor de 110 años. Antonio Rendic es burdeo (fondo #661D33, logo #651D32 = Pantone 7421 C) con arco, barra de valores y firma manuscrita «Somos Familia Rendicina» — su sistema está en clients/rendic/. Si una pieza de San Esteban se puede recolorear a burdeo y pasa por Rendic, está mala.",
+    "manual_hermano": "clients/rendic/CLAUDE.md"
+  },
+  "manual": "clients/san-esteban/CLAUDE.md",
+  "kit_codigo": "src/brand/sanesteban.ts",
+  "sistema": "clients/san-esteban/sistema/ (base.css + build.py + render.sh)",
+  "regla_madre": "San Esteban compone CENTRADO sobre un abanico de color: foto real arriba, campo multicolor de 110 años abajo, y el bloque de identidad (escudo + sello 110) SIEMPRE junto — nunca el escudo solo.",
+  "colores": {
+    "_origen": "MEDIDO con PIL sobre las 7 piezas aprobadas de septiembre 2026 en raw/san-esteban/ref-sep2026/ (moda exacta de píxel). Ver §3 del manual.",
+    "abanico": {
+      "_nota": "El abanico de 110 años. SEIS colores, siempre los seis, en formas curvas superpuestas. No se agregan colores ni se cambian por tonos parecidos.",
+      "purpura": {
+        "hex": "#6B489C",
+        "presencia": "7,7-11,0% del lienzo — el dominante"
+      },
+      "celeste": {
+        "hex": "#2899D5",
+        "presencia": "4,3-7,3%"
+      },
+      "amarillo": {
+        "hex": "#FED425",
+        "presencia": "5,4-6,0%"
+      },
+      "verde": {
+        "hex": "#7CC57F",
+        "presencia": "3,4-5,9%"
+      },
+      "naranja": {
+        "hex": "#F89D45",
+        "presencia": "4,5-6,1%"
+      },
+      "verdeagua": {
+        "hex": "#6CC0A6",
+        "presencia": "2,0-3,1%"
+      }
+    },
+    "rojo": {
+      "hex": "#C0191A",
+      "uso": "Caja del nombre «Colegio San Esteban» y caja de bajada larga. Es EL rojo institucional."
+    },
+    "azulCTA": {
+      "hex": "#011689",
+      "uso": "Barra del llamado a la acción. Azul intenso, NO es el azul del escudo."
+    },
+    "azulEscudo": {
+      "hex": "#2A3E76",
+      "uso": "El azul marino del escudo y del sello. Sólo dentro del logo — no se usa para cajas."
+    },
+    "celesteEscudo": {
+      "hex": "#D2EDF3",
+      "uso": "El campo celeste interior del escudo. Sólo dentro del logo."
+    },
+    "ambarCTA": {
+      "hex": "#E5B352",
+      "uso": "Variante de barra de CTA con texto azul #011689 — vista sólo en la tarjeta 3 del carrusel de septiembre. Excepción, no norma."
+    },
+    "blanco": "#FFFFFF",
+    "_nota": "azulCTA #011689 y azulEscudo #2A3E76 NO son intercambiables. El primero es la barra de acción; el segundo vive dentro del escudo."
+  },
+  "fuentes": {
+    "display": {
+      "familia": "Poppins",
+      "peso": "ExtraBold (800)",
+      "archivo": "public/assets/fonts/Poppins-ExtraBold.ttf",
+      "tracking": "-0,04em en el titular grande (medido: 917 px de ancho contra 985 de Poppins sin tracking, a cap height 91)",
+      "confirmado": false,
+      "nota": "Poppins es SUSTITUTO MEDIDO. Coincide en grosor de trazo (26 px a cap 91) y en todos los glifos comparados; el archivo original del diseñador no está confirmado. Licencia OFL, empaquetable."
+    },
+    "titulos_secundarios": {
+      "familia": "Poppins",
+      "peso": "Bold (700)",
+      "archivo": "public/assets/fonts/Poppins-Bold.ttf",
+      "confirmado": false,
+      "nota": "Verificado con el matte EXACTO de «Colegio San Esteban» blanco sobre el rojo macizo #C0191A: cap height 30 px, trazo 7 px, frase 449 px contra 440 de Poppins-Bold (+0,012em de tracking). Es el mejor calce de las candidatas probadas."
+    },
+    "cuerpo": {
+      "familia": "Poppins",
+      "peso": "Regular / Medium",
+      "archivo": "public/assets/fonts/Poppins-Regular.ttf",
+      "confirmado": false
+    },
+    "_ruta": "public/assets/fonts/"
+  },
+  "logos": {
+    "escudo": {
+      "archivo": "raw/san-esteban/ref-sep2026/logo-escudo-355x425.png",
+      "medida": "355 × 425 px, alfa binaria limpia",
+      "ratio": 0.8353,
+      "origen": "Extraído de la grilla de performance de septiembre 2026 (xl/media/image3.png). NO es el archivo oficial del cliente — pedirlo.",
+      "regla": "Va sobre foto, en positivo (azul + rojo + celeste). No hay versión en negativo confirmada."
+    },
+    "sello110": {
+      "archivo": "PENDIENTE — no está en ninguna carpeta accesible",
+      "contenido": "«SAN ESTEBAN SOMOS TODOS» en arco · «110» con el segundo 1 y el 0 en rojo · «AÑOS» · filete rojo · «TRADICIÓN • EXCELENCIA»",
+      "medida_en_pieza": "174 × 152 px en feed 1:1 · 255 × 222 px en story 9:16",
+      "regla": "El sello va SIEMPRE bajo el escudo, con ~26 px de aire en feed y ~38 px en story. Escudo y sello son un solo bloque."
+    },
+    "regla": "El bloque de identidad = escudo + sello 110. Nunca el escudo suelto, nunca el sello suelto."
+  },
+  "formatos": {
+    "feed": {
+      "w": 1080,
+      "h": 1080,
+      "ratio": "1:1",
+      "uso": "Post estático e imagen de carrusel — lo pide el brief del cliente"
+    },
+    "story": {
+      "w": 1080,
+      "h": 1920,
+      "ratio": "9:16",
+      "uso": "Adaptación a historia — va SIEMPRE en el mismo envío"
+    },
+    "reel": {
+      "w": 1080,
+      "h": 1920,
+      "ratio": "9:16",
+      "uso": "Video vertical, máx. 15 s"
+    },
+    "display_google": {
+      "w": 1200,
+      "h": 628,
+      "peso_max_kb": 150
+    },
+    "_nota": "El brief de REM pide 1080×1080, NO 1080×1350. Las piezas de septiembre están exportadas a 1081×1081 y 1081×1921 (1 px de más, probable export de Canva). Se entrega a 1080 exacto."
+  },
+  "zonas_seguras": {
+    "story": {
+      "top_pct": 14,
+      "bottom_pct": 14,
+      "nota": "El brief del cliente manda 14% arriba y 14% abajo — más estricto que el 250/340 px de agencia. Gana el del cliente."
+    },
+    "reel": {
+      "top": 120,
+      "bottom": 420,
+      "right": 115
+    },
+    "feed": {
+      "bottom_pct": 0,
+      "nota": "El brief dice «SIN ZONA MUERTA», pero algunas ubicaciones recortan a 4:5: no pegar texto ni rostros arriba ni abajo."
+    },
+    "respiro_minimo": 60
+  },
+  "geometria_px_sobre_1080": {
+    "_origen": "Medido pieza por pieza sobre las 7 gráficas de septiembre 2026. El lienzo real es 1081 px; los valores están tal como se midieron.",
+    "feed_post": {
+      "escudo": {
+        "w": 120,
+        "h": 143,
+        "x": 72,
+        "y": "160 (WhatsApp) — 179 (tráfico)"
+      },
+      "sello110": {
+        "w": 174,
+        "h": 152,
+        "x": 44,
+        "y": 329
+      },
+      "caja_nombre_roja": {
+        "h": "42-51",
+        "y": "757 (WhatsApp) — 773 (tráfico)",
+        "centrada": true
+      },
+      "barra_cta": {
+        "h": "55-73",
+        "y": "945-947",
+        "centrada": true,
+        "borde_inferior_a": "64-80 px del pie"
+      }
+    },
+    "feed_carrusel": {
+      "escudo": {
+        "w": 153,
+        "h": 183,
+        "x": 119,
+        "y": 71,
+        "nota": "Más grande que en el post y pegado más arriba. En la tarjeta de cierre puede ir arriba a la DERECHA (x=826)."
+      },
+      "caja_nombre_roja": {
+        "h": 49,
+        "y": 904,
+        "centrada": true
+      },
+      "caja_bajada_roja": {
+        "h": 152,
+        "y": 841,
+        "x": 93,
+        "w": 890,
+        "nota": "Sólo cuando la bajada es larga (tarjeta 2)"
+      }
+    },
+    "story": {
+      "escudo": {
+        "w": 175,
+        "h": 209,
+        "y": 724,
+        "centrado": true
+      },
+      "sello110": {
+        "w": 255,
+        "h": 222,
+        "y": 971,
+        "centrado": true
+      },
+      "caja_nombre_roja": {
+        "h": "49-72",
+        "y": "477-484",
+        "centrada": true
+      },
+      "barra_cta": {
+        "h": "81-131",
+        "y": "1659 (dos líneas) — 1739 (una línea)",
+        "centrada": true
+      },
+      "orden": "El story INVIERTE el feed: campo de color arriba con todo el texto, bloque de identidad al centro, foto abajo entrando con arco convexo, barra de CTA sobre la foto."
+    },
+    "arco_foto_color": {
+      "feed": {
+        "centro": [
+          540.7,
+          100.5
+        ],
+        "radio": 584.9,
+        "error_medio_px": 2.6,
+        "nota": "la foto va DENTRO del circulo"
+      },
+      "story": {
+        "centro": [
+          515.5,
+          1654.0
+        ],
+        "radio": 799.5,
+        "error_medio_px": 0.2,
+        "nota": "la foto va FUERA del circulo"
+      }
+    }
+  },
+  "esquemas": {
+    "trafico_web": {
+      "cta": "Infórmate en nuestro sitio web",
+      "color_cta": "#011689",
+      "destino": "http://sanestebanrem.postulaciones.colegium.com/"
+    },
+    "whatsapp_admision": {
+      "cta": "Escríbenos por WhatsApp",
+      "color_cta": "#011689",
+      "destino": "WhatsApp"
+    }
+  },
+  "briefs": {
+    "formato": "Sheet mensual «San Esteban | Brief Performance | <Mes> <Año>»",
+    "responsable": "Sebastián Córdova (medios) — equipo de cuentas REM",
+    "nomenclatura_entrega": "CLIENTE_Pieza_Formato_Medida — ej. SANESTEBAN_P01_Story_1080x1920.jpg"
+  },
+  "drive": {
+    "raiz_performance_rem": "1m8EEQ0kbV-M9-HBG4Trk3jdK_z03KV-C",
+    "septiembre_2026": "1GPVw2wYh10nPhCcs4QgtzGMX7I0kg2m1",
+    "octubre_2026": "1JhZZacD3VGgmtEnl4ktRIfdw6CLJNQEN",
+    "material_octubre": {
+      "id": "16mznOKZjkKV7D53uKiKSOrc9T45wdwBh",
+      "estado": "VACÍA al 07-09-2026"
+    },
+    "brief_octubre_xlsx": "1SeFrpqAHvVqJOTvTYvka-njET3zc6fPg",
+    "grilla_septiembre_xlsx": "1HoGFUlz7myLWdl0g0uq4X9lIGRkFtP7H",
+    "piezas_entregadas_agosto": {
+      "raiz": "1Ix-3qv7UNxgWBV1AApkfCaIGK5drHZ2w",
+      "feed": "1GWCBevKQY7aWFyoydCaqnLmTnlp5gTZK",
+      "story": "19DnAG3J16lSLWUyAtMt8qLXthK-z2QYu",
+      "reels": "1i34lAbfZ4mYfKQa6soh9pZthj4M7E3Uw"
+    },
+    "carpeta_general_cliente": "1-6MzDGSrkygSkG2mEIRhjedBbbMTKrE3",
+    "logos_rendic": "1wKWAOW-9d60HFUBrA_zn_Hv03HpPGvBb",
+    "logos_rem_png": "1y9aK5Gt00ii8tMiOaEOo0VbPksGPDRpk",
+    "manual_organico_doc": "1BsgP2pKu9a1ZTeLF6yigDFFdiFgIORwaovGcCtaBi4U",
+    "fotos_matriculas_2027": {
+      "id": "1v66YYd51PFjrH6aVRj2GoaH92jLmfzce",
+      "estado": "sólo contiene 2 ACCESOS DIRECTOS a «FOTOGRAFÍAS PUBLICITARIAS 2026» que no se pueden abrir"
+    }
+  },
+  "equipo_cliente": {
+    "diseno_agencia": "Diego Aguilar — firma las gráficas de San Esteban y de Antonio Rendic. Su criterio manda en las dos, pero con sistemas separados.",
+    "medios": "Sebastián Córdova",
+    "organico": "Scarlette Muñoz"
+  },
+  "reglas_duras": [
+    "El bloque de identidad es escudo + sello 110 juntos. Nunca uno solo.",
+    "El abanico lleva los SEIS colores medidos. No se agregan ni se sustituyen.",
+    "azulCTA #011689 para la barra de acción; azulEscudo #2A3E76 sólo dentro del logo.",
+    "Foto real de los alumnos del colegio con su uniforme. Nunca stock, nunca IA para las personas.",
+    "No cruzar colegios: una foto de Antonio Rendic no entra en una pieza de San Esteban.",
+    "El uniforme (damero rojo y blanco croata, blazer azul marino) es identidad: no se recolorea ni se retoca.",
+    "Todo texto en pantalla sale VERBATIM de la columna «TEXTO SOBRE LA IMAGEN» del brief.",
+    "Cada pieza se entrega con su adaptación a story en el MISMO envío."
+  ],
+  "madurez": {
+    "identidad": "parcial",
+    "gramatica": "completa",
+    "formatos": "completa",
+    "imagen": "parcial",
+    "copy": "completa",
+    "pipeline": "completa",
+    "qa": "completa"
+  },
+  "actualizado": "2026-09-07",
+  "banco_imagenes": {
+    "sesion_sitio": {
+      "ruta": "raw/san-esteban/fotos-sitio/",
+      "origen": "Sesión publicitaria propia del colegio publicada en hssanesteban.cl (mayo 2024 + una de abril 2025)",
+      "como_se_encontro": "API de medios de WordPress: https://hssanesteban.cl/wp-json/wp/v2/media?per_page=100 (1.340 archivos; se filtró por el patrón San-Esteban-NN)",
+      "cuantas": 12,
+      "pendiente": "Confirmar derechos de imagen de los menores para pauta pagada"
+    }
+  },
+  "sistema_anterior": {
+    "descripcion": "Antes del abanico de 110 años hubo un sistema de azul marino degradado con caja roja y CTA ámbar (piezas de Admisión 2026).",
+    "donde_verlo": "incrustado en la grilla de septiembre, xl/media/image12/18/22 (2047 px)",
+    "regla": "Está DEROGADO. La línea vigente es el abanico de 110 años."
+  }
+}

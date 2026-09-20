@@ -1,0 +1,75 @@
+# Reglas ejecutables de <MARCA>.
+#
+# Copia de _PLANTILLA. Antes de usarla:
+#   1. Cambia `marca:` al slug de la carpeta (el motor rechaza el archivo si no calza).
+#   2. Declara en `autoridad` QUIÉN firma el criterio de esta marca.
+#   3. Borra las reglas de ejemplo y escribe sólo las que alguien pidió de verdad.
+#   4. Calibra los topes con qa/calibrar.py contra las piezas aprobadas del cliente.
+#   5. Corre `--control` hasta dejarlo en cero.
+#
+# ⚠️ NO copies reglas de otra marca. Cada cliente tiene su diseñadora y su criterio:
+#    Paulina Bustamante firma EBEMA/Revex/Casablanca, Elisabet Soto firma Hilton,
+#    Constanza Lizana firma Selfie. Mezclarlos es el error que este sistema impide.
+#
+# Toda regla necesita `autor` y `cita` verbatim o el motor la rechaza: si nadie la
+# pidió con esas palabras, no es una regla, es una opinión.
+
+marca: san-esteban
+nombre: Colegio Hrvatska Skola San Esteban
+version: 1
+actualizado: 2026-09-07
+
+autoridad:
+  - quien: Diego Aguilar
+    rol: diseñador de la cuenta REM — firma San Esteban y Antonio Rendic con sistemas separados
+    alcance: [san-esteban]
+    canal: comentarios en Drive y grilla mensual de performance
+
+# Ajustes a reglas de agencia (ver qa/agencia.yaml).
+# Topes sacados con `qa/calibrar.py --marca san-esteban --aprobadas "raw/san-esteban/ref-sep2026/*.png"`
+# sobre las 7 gráficas que el diseñador de la cuenta ya entregó. No son números a ojo.
+ajustes:
+
+  foto-estirada:
+    porque: >-
+      El sistema de San Esteban está construido sobre CAMPOS DE COLOR MACIZOS —el
+      abanico de 110 años ocupa cerca de la mitad del lienzo—. Una zona plana da
+      filas de píxeles idénticas y la comprobación la lee como foto estirada. Medido
+      sobre las 7 aprobadas: máximo 0,108 del alto. El tope de agencia (0,084) marca
+      las 7 piezas buenas, así que está mal calibrado PARA ESTA MARCA.
+    args:
+      max_fraccion_alto: 0.124
+
+  zona-segura-meta:
+    porque: >-
+      Las stories aprobadas de septiembre apoyan la barra del llamado en y=1739
+      (una línea) o y=1659 (dos líneas), y el titular arranca en y=210: las dos
+      cosas entran en la reserva de 250/340 px de agencia. Es lo que firmó el
+      diseñador de la cuenta, así que la regla no puede bloquear la entrega.
+      Medido sobre las 7 aprobadas: hasta 4,6 % de tinta en la reserva superior y
+      4,4 % en la inferior.
+      ⚠️ NO es que esté bien: la barra de CTA en y=1739 queda dentro del 14 %
+      inferior que el propio brief del cliente declara intocable. Está avisado al
+      equipo de cuentas el 07-09-2026. Si lo corrigen, este ajuste se borra.
+    args:
+      max_fraccion: 0.055
+
+  desenfoque-parcial:
+    porque: >-
+      La misma razón que foto-estirada: una banda que cae entera dentro del abanico
+      tiene nitidez cero y la comprobación la compara contra la banda de la foto.
+      Medido sobre las aprobadas: mínimo 0,030.
+    args:
+      razon_min: 0.025
+
+reglas: []
+  # - id: <id-en-kebab>
+  #   titulo: <qué se revisa, en una línea>
+  #   check: <nombre en checks.REGISTRO>
+  #   severidad: bloqueante   # o: aviso
+  #   autor: <quién lo pidió>
+  #   fecha: <AAAA-MM-DD>
+  #   cita: <sus palabras textuales>
+  #   porque: >-
+  #     <qué se rompió cuando no estaba, con la pieza concreta>
+  #   args: {}

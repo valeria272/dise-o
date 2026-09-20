@@ -2,6 +2,8 @@ import {Composition, Folder} from "remotion";
 
 // Compositions
 import {ShowcaseComposition} from "./compositions/Showcase";
+import {SanEstebanReel, SE_REEL_FPS, SE_REEL_DURACION} from "./compositions/SanEstebanReel";
+import {REEL_TRAFICO, REEL_WSP_ANTOFAGASTA, REEL_MUDANZA} from "./compositions/sanEstebanReelesOctubre";
 import {NuevaUrbeFacilidadesReel, NU_REEL_DURATION, NU_REEL_FPS} from "./compositions/NuevaUrbeFacilidadesReel";
 import {VideoSquare01} from "./compositions/VideoSquare01";
 import {BSaleProbe} from "./compositions/BSaleProbe";
@@ -32,6 +34,7 @@ import {AbakosReelGastos, ABAKOS_GASTOS_DURATION, ABAKOS_GASTOS_FPS} from "./com
 import {AbakosCarruselDieciocho} from "./compositions/AbakosCarruselDieciocho";
 import {EbemaShowroomReel, EBEMA_REEL_DURATION, EBEMA_REEL_FPS} from "./compositions/EbemaShowroomReel";
 import {EbemaClickReel, EBEMA_CLICK_DURATION, EBEMA_CLICK_FPS} from "./compositions/EbemaClickReel";
+import {EbemaClickReelOctubre, OCT_DURATION, OCT_FPS} from "./compositions/EbemaClickReelOctubre";
 import {RevexLaminadosSlide} from "./compositions/RevexLaminadosCarrusel";
 import {RevexSepPieza, REVEX_SEP_PIEZAS} from "./compositions/RevexSeptiembre";
 import {RevexSep2026, REVEX_SEP26} from "./compositions/RevexSep2026";
@@ -186,6 +189,35 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="ProbeOnboarding2" component={BSale2Probe} durationInFrames={162} fps={30} width={1080} height={1920} defaultProps={{file: "pivotconnect_raw/onboarding 2.MOV"}} />
       </Folder>
 
+      <Folder name="SanEsteban">
+        <Composition
+          id="SE-Reel-Trafico"
+          component={SanEstebanReel}
+          durationInFrames={SE_REEL_DURACION}
+          fps={SE_REEL_FPS}
+          width={1080}
+          height={1920}
+          defaultProps={{escenas: REEL_TRAFICO}}
+        />
+        <Composition
+          id="SE-Reel-WspAntofagasta"
+          component={SanEstebanReel}
+          durationInFrames={SE_REEL_DURACION}
+          fps={SE_REEL_FPS}
+          width={1080}
+          height={1920}
+          defaultProps={{escenas: REEL_WSP_ANTOFAGASTA}}
+        />
+        <Composition
+          id="SE-Reel-Mudanza"
+          component={SanEstebanReel}
+          durationInFrames={SE_REEL_DURACION}
+          fps={SE_REEL_FPS}
+          width={1080}
+          height={1920}
+          defaultProps={{escenas: REEL_MUDANZA}}
+        />
+      </Folder>
       <Folder name="Clients">
         <Composition
           id="NuevaUrbeFacilidadesReel"
@@ -577,6 +609,8 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="EbemaShowroomReel2Feed" component={EbemaShowroomReel} durationInFrames={EBEMA_REEL_DURATION} fps={EBEMA_REEL_FPS} width={1080} height={1350} defaultProps={{format: "feed" as const, variant: 2 as const}} />
         <Composition id="EbemaClickReelStory" component={EbemaClickReel} durationInFrames={EBEMA_CLICK_DURATION} fps={EBEMA_CLICK_FPS} width={1080} height={1920} defaultProps={{format: "story" as const}} />
         <Composition id="EbemaClickReelFeed" component={EbemaClickReel} durationInFrames={EBEMA_CLICK_DURATION} fps={EBEMA_CLICK_FPS} width={1080} height={1350} defaultProps={{format: "feed" as const}} />
+        {/* pieza 16 del brief de octubre 2026 — 14,8 s, cierre oficial de Paulina */}
+        <Composition id="EbemaClickReelOctubre" component={EbemaClickReelOctubre} durationInFrames={OCT_DURATION} fps={OCT_FPS} width={1080} height={1920} />
         <Composition
           id="EbemaShowroomReelFeed"
           component={EbemaShowroomReel}

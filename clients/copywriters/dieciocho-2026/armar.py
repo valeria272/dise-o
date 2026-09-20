@@ -31,7 +31,7 @@ ROJO_OSC = "#96271F"
 
 # --- Datos de la invitación (literales, no se inventan) -----------------------
 FECHA = "Viernes 11 de septiembre"
-HORARIO = "10:00 a 15:00 hrs"
+HORARIO = "11:00 a 15:00 hrs"
 DIRECCION = "James Joyce 1408, Vitacura"
 LUGAR = "en la casa de la Vale"
 # en dos líneas a propósito: de una sola, el sticker se cruza con el script

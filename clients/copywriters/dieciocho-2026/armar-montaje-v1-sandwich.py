@@ -36,7 +36,7 @@ LIMA = "#C8F135"
 ROJO = "#C4362C"
 
 FECHA = "Viernes 11 de septiembre"
-HORARIO = "10:00 a 15:00 hrs"
+HORARIO = "11:00 a 15:00 hrs"
 DIRECCION = "James Joyce 1408, Vitacura"
 LUGAR = "en la casa de la Vale"
 DRESS = "Ven con tu mejor<br>outfit dieciochero"

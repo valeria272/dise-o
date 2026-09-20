@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es-CL"><head><meta charset="utf-8"><title>Hero correo</title>
+<style>
+  @font-face { font-family:'Anton'; src:url('file:///Users/sere/copylab/estudio/public/assets/fonts/Anton.ttf') format('truetype'); }
+  @font-face { font-family:'JBMono'; src:url('file:///Users/sere/copylab/estudio/public/assets/fonts/JetBrainsMono-Bold.ttf') format('truetype'); font-weight:700; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1200px; height:620px; overflow:hidden; background:#080D18; }
+  .hero { position:relative; width:1200px; height:620px; overflow:hidden; }
+  .fondo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  /* velo sólo a la izquierda: es donde vive el texto */
+  .velo { position:absolute; inset:0;
+    background:linear-gradient(90deg, rgba(4,8,18,.88) 0%, rgba(4,8,18,.55) 42%, rgba(4,8,18,0) 62%); }
+
+  .rotulo { position:absolute; top:74px; left:64px;
+    font-family:'JBMono', monospace; font-weight:700; font-size:19px;
+    letter-spacing:.26em; text-transform:uppercase; color:#FFFFFF; }
+  .cartel { position:absolute; top:156px; left:64px; width:540px; }
+  .fit { display:block; line-height:.88; white-space:nowrap; }
+  .fit .txt { font-family:'Anton', sans-serif; text-transform:uppercase;
+    letter-spacing:-.01em; display:inline-block; color:#F7F1E4;
+    text-shadow:0 8px 36px rgba(0,0,0,.85); }
+  .banda { position:absolute; top:112px; left:64px; width:210px; height:10px; }
+  .banda i { display:block; height:5px; }
+</style></head>
+<body>
+  <div class="hero">
+    <img class="fondo" src="assets/hero-fondo.jpg" alt="">
+    <div class="velo"></div>
+    <div class="rotulo">Copywriters</div>
+    <div class="cartel">
+      <span class="fit" data-ancho="0.44"><span class="txt">Felices</span></span>
+      <span class="fit" data-ancho="0.84"><span class="txt">Fiestas</span></span>
+      <span class="fit" data-ancho="0.84"><span class="txt">Patrias</span></span>
+    </div>
+    <div class="banda">
+      <i style="background:#184BBE"></i><i style="background:#D52B1E"></i>
+    </div>
+  </div>
+<script>
+function ajustar() {
+  var base = document.querySelector('.cartel').clientWidth;
+  document.querySelectorAll('.fit').forEach(function (el) {
+    var txt = el.querySelector('.txt');
+    var medida = base * parseFloat(el.dataset.ancho || '1');
+    var lo = 20, hi = 400;
+    for (var i = 0; i < 40; i++) {
+      var mid = (lo + hi) / 2;
+      txt.style.fontSize = mid + 'px';
+      if (txt.getBoundingClientRect().width > medida) { hi = mid; } else { lo = mid; }
+    }
+    txt.style.fontSize = lo.toFixed(2) + 'px';
+    el.style.fontSize = lo.toFixed(2) + 'px';
+  });
+}
+document.fonts.ready.then(ajustar);
+</script>
+</body></html>

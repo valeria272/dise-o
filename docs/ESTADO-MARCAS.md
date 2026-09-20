@@ -12,9 +12,14 @@ revelan **~24 cuentas activas** — el sistema de diseño cubre hoy 7.
 
 | Con sistema de diseño (7) | Activos SIN sistema (17) |
 |---|---|
-| EBEMA/Click · Revex · Casablanca · Selfie · Between · Tierra Calma · Abakos* | **Weleda Chile** · **Weleda Argentina** · **CAVA** · **Más Center** · **RENDIC** · **San Esteban** · **Japi Jane** · **FORK** · **PETRA** · **Ecotecnos** · **PRT** · INU (Nueva Urbe) · Rentas Nueva Urbe · MyZoo · Traverso · Santa Gota · QB / DoubleTree / Piso18 |
+| EBEMA/Click · Revex · Casablanca · Selfie · Between · Tierra Calma · Abakos* · San Esteban** | **Weleda Chile** · **Weleda Argentina** · **CAVA** · **Más Center** · **RENDIC** · **Japi Jane** · **FORK** · **PETRA** · **Ecotecnos** · **PRT** · INU (Nueva Urbe) · Rentas Nueva Urbe · MyZoo · Traverso · Santa Gota · QB / DoubleTree / Piso18 |
 
 \* Abakos tiene manual pero sin gramática medida.
+
+\*\* San Esteban (07-09-2026) tiene manual y **gramática medida** sobre las 7 gráficas
+aprobadas de septiembre, pero le falta la capa de imagen: la carpeta de material de
+octubre está vacía y la sesión fotográfica no es accesible. Ver
+`clients/san-esteban/CHECKLIST-CLIENTE.md`.
 
 > ℹ️ **Weleda (Chile y Argentina) no lleva diseño de la agencia** — las piezas las
 > manda el cliente (confirmado 25-08-2026). Solo planificación de medios. Por lo mismo

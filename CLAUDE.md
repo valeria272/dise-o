@@ -84,6 +84,12 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | **Tierra Calma** | [`clients/tierra-calma/`](clients/tierra-calma/CLAUDE.md) | `src/brand/tierracalma.ts` | Parcelas. **QA visual frame a frame obligatorio** |
 | **Hilton / Between** | [`clients/hilton/`](clients/hilton/CLAUDE.md) | `src/brand/hilton-between.ts` | 4 marcas del complejo; sólo Between tiene sistema |
 | **Abakos** | [`clients/abakos/`](clients/abakos/CLAUDE.md) | `src/brand/abakos.ts` | Préstamos online. Gramática **sin medir todavía** |
+| **San Esteban** | [`clients/san-esteban/`](clients/san-esteban/CLAUDE.md) | — | Colegio de Antofagasta (cuenta REM). Gramática **medida**; falta material e imagen |
+| **Rendic / ARC** | [`clients/rendic/`](clients/rendic/CLAUDE.md) | — | El colegio hermano. Burdeo, arco y firma manuscrita. Sistema nuevo desde ago-2026 |
+
+> ⚠️ **San Esteban y Antonio Rendic son dos colegios del mismo holding (REM) y NO se
+> diseñan igual.** San Esteban es azul marino + rojo + abanico multicolor de 110 años;
+> Rendic es burdeo #661D33 con arco, barra de valores y firma manuscrita.
 
 > ⚠️ **Revex y Casablanca son marcas hermanas del mismo dueño y NO se diseñan igual.**
 > Si una pieza de Revex se puede recolorear a gris y pasa por Casablanca, está mala.

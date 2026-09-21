@@ -48,12 +48,12 @@ de Chrome), no de mirar el render. Memoria: `banda-de-qa-sale-del-glifo`.
 ser la n°6.
 
 **Abierto.**
-- ⚠️ **Falta llevar la regla al manual.** El aprendizaje —las bandas del QA se
-  calculan desde el glifo, no se estiman sobre el render— no se escribió en
-  `clients/hilton/CLAUDE.md` porque **otra sesión lo tenía abierto y modificado**
-  (Between/QB) y stagearlo habría arrastrado su trabajo a medias. Queda en la
-  cabecera de la composición, en `dt-c1-s5-qa.py` y en la memoria. **Hay que
-  subirlo al manual cuando esa sesión cierre.**
+- ✅ **La regla ya está en el manual** — `clients/hilton/CLAUDE.md` § «RONDA 3
+  DEL CARRUSEL S5 (21-09): LAS CAJAS DEL QA SE CALCULAN, NO SE MIRAN». Se
+  commiteó **sólo esa sección**, armando el índice con `hash-object` +
+  `update-index`, porque otra sesión tenía 156 líneas suyas sin commitear en el
+  mismo archivo (Between: «EL CUADRO DE VIDRIO» y la ronda del titular). **Su
+  trabajo quedó intacto en el árbol y lo tiene que subir ella.**
 - Siguen abiertos los puntos del 17-09: portada sin lockup (a confirmar por
   escrito), los textos con punto final, el `12:00`, y la gente al fondo de los
   clips del salón y la portada.

@@ -149,6 +149,34 @@ reglas:
       QB TIME— y un monto mal escrito en una promo de barra es un reclamo en la
       mesa, no una errata. Punto de miles, sin decimales.
 
+  - id: croma-en-el-mockup
+    titulo: No queda verde de croma en el canto del celular
+    check: croma_residual
+    severidad: aviso
+    autor: Elisabet Soto
+    fecha: 2026-09-21
+    cita: >-
+      La imagen estática del AYCD está mal en posición, no se ve realista de
+      acuerdo a la perspectiva del celular. (Eli, 21-09-2026, ronda 6 de la ST
+      de la S5 — y en la misma vuelta apareció el filo verde.)
+    fuente: clients/qb/CLAUDE.md §4c
+    porque: >-
+      QB monta la gráfica DENTRO de un celular fotografiado, cuya pantalla se
+      genera como croma verde. En la ronda 5 quedaba una línea fina de verde
+      rodeando toda la pantalla —13.000 px— porque el despill usaba el mismo
+      umbral que sirve para detectar la pantalla, y ése exige brillo alto: en el
+      canto el antialias deja verdes muy oscuros pero igual de saturados
+      (`1,24,11`, `0,22,5`). Eso se ve y delata el montaje.
+      ⭐ Lo que separa el croma del verde legítimo no es el tono —son casi el
+      mismo— sino la saturación y la temperatura: el botón de QB queda fuera por
+      saturación (0,25 contra 0,85) y la albahaca del trago por ser verde cálido
+      (rojo > azul). Medido, fracción del lienzo: las cuatro aprobadas de 0,000 a
+      0,009 % · la ST con filo 0,415 % · la ST corregida 0,042 %.
+      Va como AVISO: una pieza futura con mucha vegetación podría subir el número,
+      y entonces se mira en vez de rechazarse.
+    args:
+      max_fraccion: 0.0009
+
 # ──────────────────────────────────────────────────────────────────────────────
 # PENDIENTE — lo que todavía NO se puede comprobar por programa
 # ──────────────────────────────────────────────────────────────────────────────

@@ -43,6 +43,7 @@ FONDO = os.path.join(BASE, "escena-montada.png")
 FRENTE = os.path.join(BASE, "escena-frente.png")
 SEGMENTO = os.path.join(BASE, "_segmentacion.png")
 VERTICES = os.path.join(BASE, "_pantalla-vertices.txt")
+VERTICES_EXACTOS = os.path.join(BASE, "_pantalla-vertices-exactos.txt")
 
 PUBLICO = os.path.join(RAIZ, "public", "assets", "hilton", "qb", "fotos")
 
@@ -91,15 +92,80 @@ def cmd_cuadro():
 
 
 def cmd_pantalla():
+    """Pega la gráfica dentro de la pantalla, en perspectiva.
+
+    ⭐⭐ RONDA 6 (21-09-2026). Eli: «la imagen estática del AYCD está mal en
+    posición, no se ve realista de acuerdo a la perspectiva del celular».
+
+    Tenía razón, y la causa es que **el `minAreaRect` no tiene perspectiva**. Es
+    un rectángulo *rotado*, así que sus cuatro vértices forman un
+    PARALELOGRAMO — lados opuestos iguales por construcción:
+
+        minAreaRect : arriba 746  abajo 746  ·  izq 1590  der 1590
+        la pantalla : arriba 684  abajo 751  ·  izq 1515  der 1571
+
+    La pantalla real es un **trapecio**: el borde de arriba mide un 9 % menos
+    que el de abajo porque el teléfono se aleja hacia arriba. Al pegar la
+    gráfica sobre el paralelogramo, sus líneas quedaban paralelas en vez de
+    converger: el ojo lo lee como una calcomanía plana encima de la foto. Y
+    encima el vértice superior izquierdo del `minAreaRect` cae **106 px** fuera
+    de lugar, así que la gráfica iba además corrida.
+
+    Los vértices exactos salen de `_vertices_exactos()`: una recta ajustada a
+    cada lado de la pantalla (rms 0,3 px) y sus cuatro intersecciones. El
+    `minAreaRect` se conserva sólo como guía para asignar los puntos a su lado.
+    """
     rgb = np.asarray(Image.open(ESCENA).convert("RGB")).astype(np.uint8)
     alto, ancho = rgb.shape[:2]
-    v = np.float32(np.loadtxt(VERTICES))
+    _, lleno = _pantalla_llena()
+    v = _vertices_exactos(lleno)
+    np.savetxt(VERTICES_EXACTOS, v, fmt="%.2f")
+    lados = [np.linalg.norm(v[i] - v[(i + 1) % 4]) for i in range(4)]
+    print("  pantalla en perspectiva: arriba %.0f · der %.0f · abajo %.0f · izq %.0f px"
+          % tuple(lados))
     graf = np.asarray(Image.open(GRAFICA).convert("RGB"))
     gh, gw = graf.shape[:2]
 
     H = cv2.getPerspectiveTransform(
         np.float32([[0, 0], [gw, 0], [gw, gh], [0, gh]]), v)
-    avisada = cv2.warpPerspective(graf, H, (ancho, alto))
+
+    # ══════════════════════════════════════════════════════════════════════
+    # ⭐⭐ EL VIDRIO REFLEJA EL BAR (ronda 6)
+    # ══════════════════════════════════════════════════════════════════════
+    # La otra mitad de «no se ve realista». Una pantalla encendida en un bar
+    # **no es una superficie opaca**: el vidrio refleja el ambiente. La escena
+    # generada trae la pantalla como croma verde plano, sin un solo reflejo, así
+    # que al pegar la gráfica quedaba una calcomanía mate — nítida, uniforme y
+    # sin relación con la luz que la rodea.
+    #
+    # El reflejo NO se inventa: se saca del propio bar. Se desenfoca la escena
+    # hasta dejar sólo su campo de luz, se lleva al plano de la pantalla y se
+    # ESPEJA —un reflejo especular invierte los lados— y se suma como luz.
+    #
+    # ⚠️ El desenfoque es PONDERADO. Un `GaussianBlur` sobre la escena entera
+    # arrastra el verde del croma hacia afuera y el reflejo sale verdoso: la
+    # pantalla se reflejaría a sí misma. Se divide por el desenfoque de la
+    # máscara para que la zona de la pantalla no aporte nada.
+    #
+    # ⚠️ Y la rampa: el vidrio está casi vertical, así que su mitad de arriba
+    # refleja el techo y las lámparas —lo brillante— y la de abajo la mesa
+    # oscura. Sin la rampa el reflejo tapa el bloque del precio, que es lo que
+    # tiene que leerse.
+    verde = (mascara_verde(rgb) > 0).astype(np.float32)
+    fuera = 1.0 - cv2.GaussianBlur(verde, (0, 0), 9)
+    entorno = cv2.GaussianBlur(rgb.astype(np.float32) * fuera[..., None], (0, 0), 90)
+    entorno /= np.maximum(cv2.GaussianBlur(fuera, (0, 0), 90), 1e-3)[..., None]
+    reflejo = cv2.warpPerspective(entorno, np.linalg.inv(H), (gw, gh),
+                                  flags=cv2.INTER_LINEAR)[:, ::-1]
+    rampa = np.linspace(1.0, 0.22, gh, dtype=np.float32)[:, None, None]
+    graf = np.clip(graf.astype(np.float32) + reflejo * rampa * 0.34,
+                   0, 255).astype(np.uint8)
+    print("  reflejo del bar: +%.1f niveles arriba · +%.1f abajo"
+          % ((reflejo[:gh // 8] * 0.34).mean(), (reflejo[-gh // 8:] * 0.34 * 0.22).mean()))
+
+    # INTER_LANCZOS4: la gráfica se reduce de 1200 px de ancho a ~700 en la
+    # pantalla, y el remuestreo bilineal de fábrica ablanda la letra chica.
+    avisada = cv2.warpPerspective(graf, H, (ancho, alto), flags=cv2.INTER_LANCZOS4)
 
     # La máscara de pegado es el verde REAL, no el cuadrilátero: así respeta las
     # esquinas redondeadas, la muesca y los dedos que tapan un borde.
@@ -115,20 +181,40 @@ def cmd_pantalla():
 
     montado = (avisada * m3 + rgb * (1 - m3)).astype(np.uint8)
 
-    # Y además se DESPILLA lo que quede: todo píxel que siga siendo verde después
-    # de pegar se lleva al tono del bisel. El verde de croma no existe en la
-    # escena real (el bar es ámbar), así que no hay nada legítimo que romper.
-    resto = mascara_verde(montado) > 0
-    if resto.any():
-        v = montado.astype(np.float32)
-        # ⚠️ NO basta con bajarle el verde al mínimo de los otros dos canales: eso
-        # dejaba una orla AZUL-VIOLETA, porque en el bisel oscuro el azul es el
-        # canal alto. El bisel real es gris neutro casi negro, así que la orla se
-        # vuelve NEUTRA: el mínimo de los tres canales, en los tres.
-        neutro = v.min(axis=2, keepdims=True) * 0.9
-        v = np.where(resto[..., None], neutro, v)
-        montado = np.clip(v, 0, 255).astype(np.uint8)
-        print(f"  despill: {resto.sum()} px de orla verde neutralizados")
+    # ══════════════════════════════════════════════════════════════════════
+    # EL DESPILL — y por qué el de antes dejaba un filo verde
+    # ══════════════════════════════════════════════════════════════════════
+    # Todo píxel que siga siendo verde después de pegar se lleva al tono del
+    # bisel.
+    #
+    # ⛔ RONDA 6. El despill se hacía con `mascara_verde()`, **el mismo umbral
+    # que detecta la pantalla**, y ese umbral exige brillo ≥ 60. En el canto de
+    # la pantalla el antialias deja verdes MUY OSCUROS pero igual de saturados
+    # —medidos: `1,24,11` y `0,22,5`— que se le escapaban por debajo. Eran
+    # 39.000 px formando una línea fina de croma en todo el contorno, y eso se
+    # ve: es el filo que delata el montaje.
+    #
+    # ⚠️ Y no se puede arreglar con un umbral laxo aplicado a toda la escena,
+    # porque **hay dos verdes legítimos dentro de la gráfica**: el botón de
+    # `POR $13.990`, que es identidad de QB y no se toca, y la albahaca del
+    # trago. Por eso el despill se limita a LA ORLA: la parte del croma
+    # original que la gráfica no llegó a cubrir. Ahí no hay nada que respetar.
+    orla = (cv2.inRange(cv2.cvtColor(rgb, cv2.COLOR_RGB2HSV),
+                        np.array([35, 55, 8]), np.array([98, 255, 255])) > 0) & (m < 0.985)
+    v = montado.astype(np.float32)
+    # ⚠️ NO basta con bajarle el verde al mínimo de los otros dos canales: eso
+    # dejaba una orla AZUL-VIOLETA, porque en el bisel oscuro el azul es el
+    # canal alto. El bisel real es gris neutro casi negro, así que la orla se
+    # vuelve NEUTRA: el mínimo de los tres canales, en los tres.
+    #
+    # Y se neutraliza en PROPORCIÓN a lo verde que esté, no de golpe: un corte
+    # binario deja su propio escalón visible justo donde se quiso limpiar.
+    verdor = np.clip((v[..., 1] - np.maximum(v[..., 0], v[..., 2])) / 12.0, 0, 1)
+    peso = (verdor * orla)[..., None]
+    neutro = v.min(axis=2, keepdims=True) * 0.9
+    montado = np.clip(v * (1 - peso) + neutro * peso, 0, 255).astype(np.uint8)
+    print(f"  despill: {int((peso > 0.02).sum())} px de orla verde neutralizados"
+          f" (antes se le escapaban los verdes oscuros)")
 
     # ⭐ Que la pantalla PAREZCA encendida: una pantalla real tiñe de luz los dedos
     # y el bisel de al lado. Sin esto el montaje se delata (memoria
@@ -164,156 +250,281 @@ def cmd_frente():
     a = np.asarray(im)
     print(f"OK {os.path.relpath(SEGMENTO, RAIZ)}  {im.size}  opaco {(a[:,:,3]>8).mean()*100:.1f} %")
 
+# ══════════════════════════════════════════════════════════════════════════
+# EL MATE DEL FRENTE — la silueta del celular, medida sobre la foto
+# ══════════════════════════════════════════════════════════════════════════
+#
+# ⭐⭐ RONDA 5 (21-09-2026). Eli: «mejora la máscara de capa del texto apegando
+# al celular, ya que no se ve bien ese espacio en blanco».
+#
+# Tenía razón y el defecto era de fondo: **el mate se dibujaba a partir de una
+# forma ideal, no del teléfono de la foto**. Era un rectángulo redondeado con
+# margen simétrico y radio de esquina del 15 % del ancho, afinado después con
+# GrabCut — pero con un `maximum()` contra la geometría que le impedía
+# ENCOGER. Donde la forma ideal sobraba, sobraba para siempre. En la esquina
+# superior izquierda sobraba ~90 px de escena: la tipografía se cortaba en el
+# aire y entre la letra y el chasis quedaba un vacío. Es lo que ella marcó en
+# rojo.
+#
+# ⭐ Lo que sí se puede medir es el canto del chasis contra el fondo. Y el
+# discriminante que funciona **no es el brillo sino el color**. El perfil de un
+# borde, en valores reales de esta escena:
+#
+#     pantalla │ bisel negro │ FILO DE ACERO │ canto negro │ fondo
+#      verde   │   6, 6, 5   │  118,109,104  │  16, 10, 11 │ 176,109,85
+#
+# El chasis es NEUTRO (R≈G≈B) y el bar es CÁLIDO (R≫B), incluso en sombra. Por
+# eso el canto se detecta con la saturación y no con la luminancia: contra un
+# fondo oscuro la luminancia no da salto y el tono sí.
+#
+# ⛔ Y la trampa que costó dos intentos: **el filo de acero NO es el canto.**
+# Es un reflejo del bisel frontal y está a menos de la mitad del camino
+# (53 px de 128 en el flanco derecho). Tanto un detector de picos como GrabCut
+# se quedan ahí, porque más afuera el chasis es negro contra sombra negra y no
+# hay borde que ver. Medido con una reglilla sobre la foto rectificada: el
+# canto derecho está en 128 px, no en 59.
+#
+# ⭐⭐ Y por eso el contorno no se traza punto a punto, sino que se le AJUSTA UN
+# MODELO de cuatro parámetros — que es lo que impide que los dedos y las
+# sombras lo arrastren donde no hay señal:
+#
+#     canto(n) = bisel_x·|nx| + bisel_y·|ny| + max(0, paralaje · n)
+#
+# Un teléfono es una caja: su silueta es la cara de la pantalla engordada por
+# el bisel, UNIDA a esa misma cara corrida por el grosor visto en escorzo. El
+# primer término es el bisel; el segundo, el costado, que sólo aparece del lado
+# hacia el que está girado el aparato. Sale medido: bisel 95×77 px y paralaje
+# (44, 23) — o sea que el flanco derecho mide 139 px y el izquierdo 95, y esa
+# asimetría es real, no un error. Residuo mediano de ±4 px en los cuatro lados.
+#
+# Todo se mide en el plano del teléfono: la escena se rectifica con la
+# homografía de la pantalla, y los vértices de esa pantalla salen de ajustarle
+# una recta a cada uno de sus cuatro lados (el de arriba por RANSAC, porque la
+# muesca lo parte en dos). ⚠️ NO sirve el `minAreaRect` que usa el resto del
+# script: el rectángulo mínimo de un trapecio en perspectiva no es el trapecio,
+# y su vértice superior izquierdo cae 499 px fuera de lugar.
+
+
+def _recta(p):
+    """Ajuste total por mínimos cuadrados: (a, b, c) con a·x + b·y + c = 0."""
+    m = p.mean(0)
+    _, _, vt = np.linalg.svd(p - m)
+    n = vt[1]
+    return np.array([n[0], n[1], -n @ m])
+
+
+def _dist(r, p):
+    return np.abs(p @ r[:2] + r[2])
+
+
+def _pantalla_llena():
+    """La pantalla de la foto, con la muesca cerrada.
+
+    El casco convexo es exactamente lo que hace falta: la pantalla ES convexa
+    (un rectángulo redondeado) y la muesca es su única concavidad. Un cierre
+    morfológico dejaba el borde superior ondulado y el mate heredaba las ondas.
+    """
+    rgb = np.asarray(Image.open(ESCENA).convert("RGB"))
+    m = mascara_verde(rgb)
+    m = cv2.morphologyEx(m, cv2.MORPH_CLOSE, np.ones((25, 25), np.uint8))
+    cs, _ = cv2.findContours(m, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    c = max(cs, key=cv2.contourArea)
+    lleno = np.zeros(m.shape, np.uint8)
+    cv2.fillPoly(lleno, [cv2.convexHull(c)], 255)
+    return rgb, lleno
+
+
+def _vertices_exactos(lleno):
+    """Los cuatro vértices de la pantalla, por intersección de sus cuatro lados."""
+    cs, _ = cv2.findContours(lleno, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    c = max(cs, key=cv2.contourArea).reshape(-1, 2).astype(np.float64)
+    guia = np.float64(np.loadtxt(VERTICES))      # sup-izq, sup-der, inf-der, inf-izq
+    lados = {}
+    for A, B, nom in ((guia[1], guia[2], "der"), (guia[2], guia[3], "abajo"),
+                      (guia[3], guia[0], "izq")):
+        d = B - A
+        L = np.linalg.norm(d)
+        u = d / L
+        q = c - A
+        t = (q @ u) / L
+        perp = np.abs(q[:, 0] * u[1] - q[:, 1] * u[0])
+        p = c[(t > 0.18) & (t < 0.82) & (perp < 60)]
+        for _ in range(4):
+            r = _recta(p)
+            p = p[_dist(r, p) < max(2.0, 2.5 * np.median(_dist(r, p)))]
+        lados[nom] = _recta(p)
+        rms = np.sqrt((_dist(lados[nom], p) ** 2).mean())
+        print(f"  lado {nom:6s} n={len(p):5d}  rms {rms:.2f} px")
+
+    # El lado de arriba, por RANSAC: la muesca lo parte en dos tramos cortos y
+    # una selección por corredor se queda con los puntos equivocados.
+    lejos = np.ones(len(c), bool)
+    for r in lados.values():
+        lejos &= _dist(r, c) > 90
+    cen = c.mean(0)
+    uarr = (guia[0] + guia[1]) / 2 - cen
+    uarr /= np.linalg.norm(uarr)
+    cand = c[lejos & (((c - cen) @ uarr) > 0)]
+    rng = np.random.default_rng(7)
+    mejor = None
+    for _ in range(3000):
+        i, j = rng.integers(0, len(cand), 2)
+        if np.linalg.norm(cand[i] - cand[j]) < 150:
+            continue
+        n = cand[j] - cand[i]
+        n = np.array([-n[1], n[0]])
+        n /= np.linalg.norm(n)
+        r = np.array([n[0], n[1], -n @ cand[i]])
+        k = (_dist(r, cand) < 3).sum()
+        if mejor is None or k > mejor[0]:
+            mejor = (k, r)
+    inl = cand[_dist(mejor[1], cand) < 4]
+    for _ in range(4):
+        r = _recta(inl)
+        inl = cand[_dist(r, cand) < max(2.0, 2.5 * np.median(_dist(r, inl)))]
+    lados["arriba"] = _recta(inl)
+    rms = np.sqrt((_dist(lados["arriba"], inl) ** 2).mean())
+    print(f"  lado arriba n={len(inl):5d}  rms {rms:.2f} px  (RANSAC)")
+
+    def cruce(r1, r2):
+        return np.linalg.solve(np.array([r1[:2], r2[:2]]), -np.array([r1[2], r2[2]]))
+
+    return np.float32([cruce(lados["arriba"], lados["izq"]),
+                       cruce(lados["arriba"], lados["der"]),
+                       cruce(lados["abajo"], lados["der"]),
+                       cruce(lados["abajo"], lados["izq"])])
+
 
 def cmd_frente_geo():
-    """⭐ El mate del FRENTE, bien hecho.
+    """Traza la silueta del celular midiendo su canto, y deja el frente con alfa."""
+    from scipy.optimize import least_squares
 
-    La segmentación de sujeto (`remove-bg.ts`) recorta el celular y la mano
-    izquierda, pero se come la derecha; y un mate por NITIDEZ sale con forma de
-    mancha y se lleva el borde de la mesa. Ninguno de los dos sirve para un filo
-    que va a llevar tipografía por detrás.
+    if not os.path.exists(FONDO):
+        sys.exit("Falta el fondo montado: corre primero `pantalla`")
 
-    Lo que sí es exacto es **el celular**, porque su pantalla se conoce al
-    vértice: se dibuja un rectángulo redondeado en el espacio de la pantalla,
-    agrandado hasta el bisel, y se le aplica LA MISMA homografía. Sale el cuerpo
-    del teléfono al píxel, con sus esquinas redondeadas y su inclinación.
+    rgb, lleno = _pantalla_llena()
+    he, we = lleno.shape
+    V = _vertices_exactos(lleno)
 
-    El mate final es ese celular ∪ lo que sí acertó la segmentación (el teléfono
-    y la mano izquierda), con los huecos rellenos. Y el brief sólo pide que la
-    tipografía quede cortada **por los bordes y por el celular**, así que las
-    bandas se colocan a la altura del teléfono, por encima de las manos.
-    """
-    fondo = Image.open(FONDO).convert("RGB").resize((2250, 4000), Image.LANCZOS)
-    ancho, alto = fondo.size
-    escala = ancho / np.asarray(Image.open(ESCENA)).shape[1]
-    v = np.float32(np.loadtxt(VERTICES)) * escala
+    # 1 · El plano del teléfono. La pantalla rectificada mide GW×GH; el lienzo
+    #     lleva un margen holgado para que quepan el chasis y su fondo.
+    GW, GH, PAD = 1200, 2598, 260
+    W, H = GW + 2 * PAD, GH + 2 * PAD
+    Hm = cv2.getPerspectiveTransform(
+        V, np.float32([[PAD, PAD], [PAD + GW, PAD],
+                       [PAD + GW, PAD + GH], [PAD, PAD + GH]]))
+    rect = cv2.warpPerspective(rgb, Hm, (W, H), flags=cv2.INTER_LANCZOS4).astype(np.float32)
+    mrect = cv2.warpPerspective(lleno, Hm, (W, H), flags=cv2.INTER_NEAREST)
 
-    graf = Image.open(GRAFICA)
-    gw, gh = graf.size
-    # ⭐⭐ EL BISEL, MEDIDO — y no a ojo, que es lo que estaba mal.
-    #
-    # La primera versión puso 11,5 % del ancho de pantalla a cada lado y 3,8 %
-    # arriba y abajo. **Era el triple de lo real**, y el efecto se veía en la
-    # pieza: la tipografía en movimiento se cortaba en una línea recta que caía
-    # AFUERA del teléfono, dejando un hueco de fondo entre la letra y el chasis.
-    # Eli lo cazó mirando el video: «el recorte del texto en movimiento del
-    # celular está deficiente».
-    #
-    # Medido recorriendo la perpendicular de cada borde de la pantalla hacia
-    # afuera, en TRES puntos por borde y no sólo en el medio — que es donde está
-    # la muesca y da un número que no representa al borde:
-    #   lados  28–32 px  ·  arriba 36–51 px  ·  abajo 24 px   (escena de 3072)
-    #
-    # ⚠️ Y hay una trampa en la medición: el canto del chasis tiene un **filo
-    # especular** que el detector lee como «ya llegué al fondo». Por eso los
-    # números se leen del perfil completo (oscuro → filo brillante → oscuro →
-    # fondo), no del primer salto.
-    #
-    # El rectángulo es simétrico, así que manda el margen MAYOR: 31 px a los
-    # lados y 45 arriba. Pasarse por abajo no cuesta nada —ahí está la mano, que
-    # también va por delante—, quedarse corto sí: el texto se ve por debajo del
-    # chasis. Como 746 px de escena son 1200 de la gráfica, eso es 4,16 % del
-    # ancho y 2,64 % del alto.
-    mx, my = gw * 0.0416, gh * 0.0264
-    cuerpo = np.zeros((gh, gw), np.uint8)
-    cv2.rectangle(cuerpo, (0, 0), (gw, gh), 255, -1)
-    cuerpo = cv2.copyMakeBorder(cuerpo, int(my), int(my), int(mx), int(mx),
-                                cv2.BORDER_CONSTANT, value=255)
-    ch, cw = cuerpo.shape
-    # Esquinas redondeadas del chasis.
-    r = int(cw * 0.15)
-    esquinas = np.zeros_like(cuerpo)
-    cv2.rectangle(esquinas, (r, 0), (cw - r, ch), 255, -1)
-    cv2.rectangle(esquinas, (0, r), (cw, ch - r), 255, -1)
-    for cx, cy in ((r, r), (cw - r, r), (r, ch - r), (cw - r, ch - r)):
-        cv2.circle(esquinas, (cx, cy), r, 255, -1)
-    cuerpo = cv2.bitwise_and(cuerpo, esquinas)
+    # 2 · El contorno de la pantalla en ese plano, suavizado para que las
+    #     normales no tiemblen.
+    cs, _ = cv2.findContours(mrect, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    c = max(cs, key=cv2.contourArea).reshape(-1, 2).astype(np.float64)
+    N = len(c)
 
-    # Los vértices del CHASIS en espacio de escena: la homografía de la pantalla,
-    # con el origen corrido al borde exterior del bisel.
-    H = cv2.getPerspectiveTransform(
-        np.float32([[0, 0], [gw, 0], [gw, gh], [0, gh]]), v)
-    origen = np.float32([[-mx, -my], [gw + mx, -my], [gw + mx, gh + my], [-mx, gh + my]])
-    destino = cv2.perspectiveTransform(origen.reshape(-1, 1, 2), H).reshape(-1, 2)
-    H2 = cv2.getPerspectiveTransform(
-        np.float32([[0, 0], [cw, 0], [cw, ch], [0, ch]]), destino)
-    celular = cv2.warpPerspective(cuerpo, H2, (ancho, alto))
+    def circular(a, k):
+        return np.convolve(np.r_[a[-k:], a, a[:k]], np.ones(k) / k, "same")[k:k + N]
 
-    # ⛔ Y SÓLO el celular. Probé unirle el recorte de la segmentación para sumar
-    # las manos y quedaba peor: trae la mano izquierda rota en pedazos y con
-    # huecos, y eso en el borde donde pasa la tipografía se ve como suciedad.
-    # Mejor un mate exacto y chico que uno grande y sucio: las bandas se colocan
-    # a la altura del teléfono, que es justo lo que el brief pide que las corte.
-    # ⭐⭐ Y ACÁ EL RECTÁNGULO NO ALCANZA — se afina con GrabCut.
-    #
-    # El chasis no es un rectángulo redondeado perfecto: tiene un canto abombado
-    # que en las esquinas se sale varios píxeles del rectángulo, y ahí la
-    # tipografía se veía POR ENCIMA del teléfono. Agrandar el margen no sirve,
-    # porque lo que sobra en una esquina falta en el lado opuesto.
-    #
-    # Lo que sí funciona es sembrar GrabCut con la geometría —que ya está bien
-    # ubicada— y dejar que él siga el borde real:
-    #   · seguro fondo   : fuera del rectángulo dilatado 70 px
-    #   · seguro objeto  : dentro del rectángulo erosionado 30 px
-    #   · lo del medio   : que lo decida él
-    # Es el caso fácil para GrabCut: chasis casi negro contra bokeh ámbar.
-    #
-    # Se corre a media resolución porque el resultado es una máscara y el borde
-    # se vuelve a suavizar igual; a 2250×4000 tarda minutos y no mejora nada.
-    mate = celular
-    ph, pw = alto // 2, ancho // 2
-    chico = cv2.cvtColor(np.asarray(fondo.resize((pw, ph), Image.LANCZOS)),
-                         cv2.COLOR_RGB2BGR)
-    geo = cv2.resize(mate, (pw, ph), interpolation=cv2.INTER_NEAREST)
-    semilla = np.full((ph, pw), cv2.GC_BGD, np.uint8)
-    semilla[cv2.dilate(geo, np.ones((35, 35), np.uint8)) > 0] = cv2.GC_PR_BGD
-    semilla[geo > 0] = cv2.GC_PR_FGD
-    semilla[cv2.erode(geo, np.ones((15, 15), np.uint8)) > 0] = cv2.GC_FGD
-    try:
-        cv2.grabCut(chico, semilla, None, np.zeros((1, 65), np.float64),
-                    np.zeros((1, 65), np.float64), 4, cv2.GC_INIT_WITH_MASK)
-        afinado = np.where((semilla == cv2.GC_FGD) | (semilla == cv2.GC_PR_FGD),
-                           255, 0).astype(np.uint8)
-        # ⚠️ Red de seguridad: si GrabCut se desbocó —se comió el fondo o perdió
-        # el teléfono— se vuelve a la geometría. Un mate malo es peor que uno
-        # aproximado, y esto tiene que poder correr sin que nadie lo mire.
-        crecio = afinado.mean() / max(geo.mean(), 1e-6)
-        if 0.85 <= crecio <= 1.45:
-            # ⚠️ NO se sube la máscara con `resize`. GrabCut trabaja a media
-            # resolución, y ampliar su mapa de bits deja un borde a escalones que
-            # después la pieza magnifica todavía más: es la mitad de «el recorte
-            # está deficiente» que cazó Eli en la ronda 3.
-            #
-            # Se sube el CONTORNO y se vuelve a dibujar a tamaño completo. Un
-            # polígono escalado da segmentos rectos, no escalones.
-            cs, _ = cv2.findContours(afinado, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-            grande = max(cs, key=cv2.contourArea)
-            grande = cv2.approxPolyDP(grande, 1.2, True) * 2
-            mate = np.zeros((alto, ancho), np.uint8)
-            cv2.fillPoly(mate, [grande.astype(np.int32)], 255, lineType=cv2.LINE_AA)
-            mate = np.maximum(mate, celular)   # nunca menos que la geometría
-            print(f"  grabcut: borde afinado (x{crecio:.2f} de área), redibujado a tamaño completo")
-        else:
-            print(f"  grabcut descartado (x{crecio:.2f} de área) — queda la geometría")
-    except cv2.error as e:
-        print(f"  grabcut no corrió ({e}) — queda la geometría")
+    C = np.stack([circular(c[:, 0], 81), circular(c[:, 1], 81)], 1)
+    d = np.gradient(C, axis=0)
+    nv = np.stack([d[:, 1], -d[:, 0]], 1)
+    nv /= np.linalg.norm(nv, axis=1, keepdims=True) + 1e-9
+    nv *= np.sign(((C - C.mean(0)) * nv).sum(1))[:, None]
 
-    mate = cv2.morphologyEx(mate, cv2.MORPH_CLOSE, np.ones((31, 31), np.uint8))
-    cnts, _ = cv2.findContours(mate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    cv2.drawContours(mate, cnts, -1, 255, -1)
-    # Un solo píxel de suavizado: lo justo para que el filo no serruche.
+    # 3 · El canto, por saturación: el chasis es neutro y el bar es cálido.
+    mx = np.max(rect, 2)
+    mn = np.min(rect, 2)
+    sat = cv2.GaussianBlur((mx - mn) / (mx + 8.0), (0, 0), 2.0)
+    TM = 210
+    T = np.arange(0, TM, 1.0)
+    gx = (C[:, None, 0] + T[None, :] * nv[:, None, 0]).astype(np.float32)
+    gy = (C[:, None, 1] + T[None, :] * nv[:, None, 1]).astype(np.float32)
+    S = cv2.remap(sat, gx, gy, cv2.INTER_LINEAR)
+    off = np.full(N, np.nan)
+    for i in range(N):
+        s = S[i]
+        for t in range(40, TM - 12):
+            # Sostenido, no un destello: un brillo suelto del bokeh no cuenta.
+            if s[t] > 0.45 and np.median(s[t:t + 12]) > 0.42:
+                off[i] = t
+                break
+    val = ~np.isnan(off)
+    print(f"  canto detectado en {100 * val.mean():.0f} % del contorno")
+
+    # 4 · El modelo de la silueta. Pocos parámetros a propósito: así los dedos y
+    #     las sombras no pueden arrastrarlo donde no hay señal.
+    #
+    # ⭐⭐ RONDA 6. El paralaje NO es constante, y por eso la ronda 5 dejaba un
+    # hueco arriba a la derecha — que es justo lo que Eli volvió a marcar. El
+    # canto del flanco derecho, medido por tramos en el plano del teléfono:
+    #
+    #     y   300–500 → 116 px      y 1300–1500 → 125 px
+    #     y   500–700 → 132 px      y 1900–2100 → 139 px
+    #     y   900–1100 → 137 px     y 2300–2500 → 181 px
+    #
+    # Crece de arriba hacia abajo, y un paralaje fijo de 131 px se pasaba 18 px
+    # en la esquina de arriba. La razón es física: la cara trasera del teléfono
+    # está más lejos de la cámara que la pantalla, así que su proyección no es
+    # una traslación de la frontal — es una traslación MÁS una escala, y el
+    # corrimiento del costado depende de dónde estás en el plano.
+    #
+    # ⇒ El paralaje pasa a ser una función lineal de la posición dentro de la
+    # pantalla: seis parámetros en vez de cuatro. Es la aproximación de primer
+    # orden de la homología entre las dos caras de la caja, y con un giro
+    # moderado como éste alcanza de sobra.
+    nx, ny = nv[:, 0], nv[:, 1]
+    u = (C[:, 0] - PAD) / GW          # 0 a 1 de izquierda a derecha de la pantalla
+    w = (C[:, 1] - PAD) / GH          # 0 a 1 de arriba a abajo
+
+    def modelo(p):
+        bx, by, dx0, dx1, dy0, dy1 = p
+        return (bx * np.abs(nx) + by * np.abs(ny)
+                + np.maximum(0.0, (dx0 + dx1 * w) * nx + (dy0 + dy1 * u) * ny))
+
+    def residuo(p):
+        r = (modelo(p) - off)[val]
+        sc = 1.4826 * np.median(np.abs(r - np.median(r))) + 1e-6
+        return r / np.sqrt(1 + (r / (2.0 * sc)) ** 2)      # Huber suave
+
+    sol = least_squares(residuo, [95.0, 85.0, 17.0, 80.0, 10.0, 20.0],
+                        method="lm", max_nfev=20000)
+    bx, by, dx0, dx1, dy0, dy1 = sol.x
+    ajuste = modelo(sol.x)
+    ang = np.degrees(np.arctan2(ny, nx))
+    print(f"  bisel {bx:.0f} x {by:.0f} px"
+          f" · paralaje x {dx0:.0f} + {dx1:.0f}·w · paralaje y {dy0:.0f} + {dy1:.0f}·u")
+    for lab, sel in (("der", abs(ang) < 45), ("abajo", (ang > 45) & (ang < 135)),
+                     ("izq", abs(ang) > 135), ("arriba", (ang < -45) & (ang > -135))):
+        s = sel & val
+        print(f"    {lab:6s} modelo {np.median(ajuste[sel]):5.0f} px"
+              f"   medido {np.median(off[s]):5.0f} px"
+              f"   residuo {np.median((off - ajuste)[s]):+4.0f} px")
+
+    # ⚠️ 3 px HACIA ADENTRO. El modelo cae justo en el canto, y ahí el píxel del
+    # borde ya lleva fondo mezclado por el desenfoque: dejarlo deja una orla
+    # clara. Pisar 3 px de chasis negro no se ve (son 1,8 px en mesa de 1080);
+    # 3 px de bokeh sí.
+    D = C + (ajuste - 3.0)[:, None] * nv
+
+    # 5 · De vuelta al lienzo publicado. Se transforma el POLÍGONO y se rasteriza
+    #     una sola vez a tamaño final: escalar un mapa de bits deja escalones que
+    #     la pieza después magnifica.
+    Hinv = np.linalg.inv(Hm)
+    P = cv2.perspectiveTransform(D.reshape(-1, 1, 2).astype(np.float32),
+                                 Hinv.astype(np.float32)).reshape(-1, 2)
+    ancho, alto = 2250, 4000
+    P[:, 0] *= ancho / we
+    P[:, 1] *= alto / he
+    mate = np.zeros((alto, ancho), np.uint8)
+    cv2.fillPoly(mate, [np.round(P).astype(np.int32)], 255, lineType=cv2.LINE_AA)
     mate = cv2.GaussianBlur(mate, (0, 0), 0.9)
 
-    salida = np.dstack([np.asarray(fondo), mate])
-    Image.fromarray(salida, "RGBA").save(FRENTE)
-    print(f"OK {os.path.relpath(FRENTE, RAIZ)}  opaco {(mate>8).mean()*100:.1f} %")
-    # Dónde queda el celular, en mesa de 1080×1920 — para colocar las bandas.
-    ys, xs = np.nonzero(celular > 0)
-    print(f"  celular en mesa 1080x1920: y {ys.min()*1920//4000}-{ys.max()*1920//4000}"
-          f"  x {xs.min()*1080//2250}-{xs.max()*1080//2250}")
-    ys2, xs2 = np.nonzero(mate > 8)
-    print(f"  mate completo:             y {ys2.min()*1920//4000}-{ys2.max()*1920//4000}"
-          f"  x {xs2.min()*1080//2250}-{xs2.max()*1080//2250}")
+    fondo = Image.open(FONDO).convert("RGB").resize((ancho, alto), Image.LANCZOS)
+    Image.fromarray(np.dstack([np.asarray(fondo), mate]), "RGBA").save(FRENTE)
+    print(f"OK {os.path.relpath(FRENTE, RAIZ)}  opaco {(mate > 8).mean() * 100:.1f} %")
+    ys, xs = np.nonzero(mate > 8)
+    print(f"  celular en mesa 1080x1920: y {ys.min() * 1920 // alto}-{ys.max() * 1920 // alto}"
+          f"  x {xs.min() * 1080 // ancho}-{xs.max() * 1080 // ancho}")
 
 
 def cmd_publicar():

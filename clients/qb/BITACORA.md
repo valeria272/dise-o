@@ -1,5 +1,176 @@
 # QB Restaurant — bitácora
 
+## 2026-09-21 — ronda 6 · Elisabet Soto «Eli» (con Claude)
+
+**Qué se hizo:** Eli miró la ronda 5 y dijo: «mejoró mucho la máscara, le falta un
+poco más arriba a la derecha; **lo demás, la imagen estática del AYCD está mal en
+posición, no se ve realista de acuerdo a la perspectiva del celular**», con una cruz
+dibujada marcando los ejes. Se arreglaron **tres** defectos, todos medidos. Subido a
+`QB / STS` como `v6`.
+
+**⭐⭐⭐ 1. LA PANTALLA SE PEGABA SIN PERSPECTIVA — y eso es lo que ella vio.**
+`cmd_pantalla` montaba la gráfica sobre los vértices del `minAreaRect`, y un
+rectángulo *rotado* tiene los lados opuestos iguales **por construcción**:
+
+| | arriba | abajo | izq | der |
+|---|---|---|---|---|
+| `minAreaRect` (lo que se usaba) | 746 | 746 | 1590 | 1590 |
+| **la pantalla de la foto** | **684** | **751** | **1515** | **1571** |
+
+La pantalla real es un **trapecio**: el borde de arriba mide un 9 % menos que el de
+abajo porque el teléfono se aleja. Pegando sobre el paralelogramo, las líneas de la
+gráfica quedaban paralelas en vez de converger — el ojo lo lee como una calcomanía
+plana. Y encima el vértice superior izquierdo del `minAreaRect` cae **106 px** fuera
+de lugar, así que la gráfica iba además corrida y girada. ⇒ Ahora usa
+`_vertices_exactos()`, el mismo ajuste de rectas que ya usaba el mate.
+
+⛔ **La regla que deja:** `minAreaRect` sirve para *encontrar* la pantalla, **nunca
+para montar nada en ella**. No tiene perspectiva.
+
+**⭐⭐ 2. EL VIDRIO NO REFLEJABA EL BAR.** La otra mitad de «no se ve realista». Una
+pantalla encendida no es opaca: el vidrio refleja el ambiente, y la escena la trae
+como croma verde plano. El reflejo no se inventa — se saca del propio bar:
+desenfoque del entorno hasta dejar su campo de luz, al plano de la pantalla,
+**espejado** (un reflejo invierte los lados) y sumado como luz con una rampa
+—fuerte arriba, donde el vidrio mira al techo; débil abajo, para no tocar la lectura
+del precio.
+
+⚠️ El desenfoque es **ponderado**: un `GaussianBlur` sobre la escena entera arrastra
+el verde del croma y la pantalla se reflejaría a sí misma en verde. Se divide por el
+desenfoque de la máscara.
+
+⭐ **Y queda medido que esto NO aleja la pieza del KV, la acerca.** Brillo del tercio
+superior de la pantalla: KV aprobado **35,1** · la gráfica sola **20,8** · con
+reflejo **30,5**. Sin el reflejo la gráfica era *más oscura* que el KV. El diseño y
+los textos no se tocaron, que es la regla de Eli.
+
+**⛔ 3. EL FILO VERDE DEL CROMA, que llevaba ahí desde el principio.** El despill
+usaba `mascara_verde()` —**el mismo umbral que detecta la pantalla**— y ese umbral
+exige brillo ≥ 60. En el canto, el antialias deja verdes **muy oscuros pero igual de
+saturados** (`1,24,11`, `0,22,5`) que se le escapaban por debajo: ~13.000 px
+formando una línea de croma alrededor de toda la pantalla.
+
+⇒ El despill se limita ahora a **la orla** —el croma que la gráfica no llegó a
+cubrir— y neutraliza en proporción al verdor, no de golpe (un corte binario deja su
+propio escalón). ⚠️ **Se limita a la orla a propósito:** dentro de la pantalla hay
+dos verdes legítimos, el botón de `POR $13.990` y la albahaca del trago.
+
+**⭐ 4. EL MATE, arriba a la derecha.** El modelo de la ronda 5 daba **un solo ancho
+de costado** para todo el flanco derecho. Medido por tramos, ese ancho crece de
+arriba hacia abajo: 116 px en y 300–500 · 137 en y 900–1100 · 181 en y 2300–2500.
+Con 131 fijo, sobraban 18 px justo en la esquina que ella marcó. La razón es física:
+la cara trasera del teléfono está más lejos que la pantalla, así que el corrimiento
+de su costado **depende de dónde estás en el plano**. ⇒ El paralaje pasa a ser lineal
+en la posición (6 parámetros en vez de 4): `bisel 86×85 px · paralaje x 36 + 54·w ·
+paralaje y 5 + 35·u`, con residuo mediano de **+1 px** arriba, **+1** abajo y **+3**
+a la izquierda.
+
+**Dónde quedó:**
+- `scripts/qb-aycd-s5-montar.py` — `cmd_pantalla` con perspectiva exacta + reflejo +
+  despill por orla; `cmd_frente_geo` con el modelo de 6 parámetros
+- `raw/hilton/qb/aycd/escena/_pantalla-vertices-exactos.txt` — los vértices buenos
+- `src/compositions/qb/QBStAycdS5.tsx` — caja del celular **y 335–1399 · x 169–920**
+- `out/qb/rev/ronda6.html` + `r6-*.png` — el antes/después
+- ⭐ `qa/checks.py` + `clients/qb/reglas.yaml` → regla nueva **`croma-en-el-mockup`**.
+  Lo que separa el croma del verde legítimo no es el tono —son casi el mismo— sino
+  la **saturación** y la **temperatura**: el botón de QB queda fuera por saturación
+  (0,25 contra 0,85) y la albahaca por ser verde cálido (rojo > azul). Probada en
+  los dos sentidos: marca la ronda 5 (0,432 % contra un tope de 0,090 %) y deja
+  pasar la ronda 6 (0,042 %) y las cuatro aprobadas (0,000–0,009 %). Va como AVISO
+- `clients/qb/CLAUDE.md` §4c — los tres defectos del mockup y el criterio del mate
+- QA de QB: **pasa completo, sin avisos**
+- Drive `QB / STS`:
+  · video https://drive.google.com/file/d/1ignCLkC-lR6FMmv1FFrOpxMlOIGO1ywk/view
+  · fotograma https://drive.google.com/file/d/1DeF-JMREL0CWAJ1_8iOTeityu53n1r9Y/view
+  · compara 1 (pantalla) https://drive.google.com/file/d/1nDKW4mKnOrLmhU1e8_l50s48mAwJZ67J/view
+  · compara 2 (canto y filo) https://drive.google.com/file/d/1aCz0YCtWJzFbN9vL_Mu0ZuzFCUBljLfL/view
+  · compara 3 (completas) https://drive.google.com/file/d/1aVpRf_6wIPJi1ciqI5TBN-RMid38VHHp/view
+  · la página con las mediciones https://drive.google.com/file/d/1I9S8TgQIvqBQPkqskXA5dgYFMPKh5d1f/view
+
+**Qué sigue:** que Eli mire la `v6`. ⚠️ Nombre nuevo a propósito: la vista previa de
+Drive queda cacheada al reemplazar un archivo por el mismo ID.
+
+
+## 2026-09-21 — Elisabet Soto «Eli» (con Claude)
+
+**Qué se hizo:** la **ronda 5 de la ST de AYCD de la S5 (28-09)**. Eli marcó en rojo
+el flanco del celular: «mejora la máscara de capa del texto apegando al celular, ya
+que no se ve bien ese espacio en blanco». Se rehízo el mate del frente **midiendo el
+canto real del chasis** y quedó subido a `QB / STS` con nombre nuevo (`v5`).
+
+**⭐⭐ La causa, y venía de más atrás que la ronda 4.** El mate no se dibujaba a
+partir del teléfono de la foto: se dibujaba a partir de una **forma ideal** —un
+rectángulo redondeado con margen parejo (4,16 % del ancho y 2,64 % del alto) y radio
+de esquina del 15 %— que después GrabCut afinaba. Pero el afinado terminaba en
+`np.maximum(mate, geometria)`: **el mate nunca podía ENCOGER**. Donde la forma ideal
+sobraba, sobraba para siempre. En la esquina superior izquierda sobraba ~90 px de
+escena y la tipografía se cortaba en el aire. En el flanco derecho, al revés: faltaba,
+y la letra pisaba el chasis.
+
+**⭐⭐ El canto se mide por COLOR, no por brillo.** Contra el fondo del bar —que
+también es oscuro— la luminancia no da salto. Lo que sí separa es el tono: **el chasis
+es neutro (R≈G≈B) y el bar es cálido (R≫B), incluso en sombra.** Perfil real de un
+borde: bisel `6,6,5` → filo `118,109,104` → chasis `16,10,11` → fondo `176,109,85`.
+
+**⛔ La trampa que costó dos intentos: el filo brillante NO es el canto.** Es un
+reflejo del bisel frontal y está a menos de la mitad del camino —53 px de 128 en el
+flanco derecho. Un detector de picos se queda ahí, **y GrabCut también** (dio 59 px),
+porque más afuera el chasis es negro contra sombra negra. Se cazó dibujando una
+reglilla de candidatos sobre la foto rectificada y mirando cuál caía en el borde.
+
+**⭐⭐ Y el contorno no se traza punto a punto: se le ajusta el modelo de la silueta.**
+Un teléfono es una caja, así que su silueta es la cara de la pantalla engordada por el
+bisel, unida a esa misma cara corrida por el grosor visto en escorzo:
+
+    canto(n) = bisel_x·|nx| + bisel_y·|ny| + max(0, paralaje · n)
+
+Cuatro parámetros y nada más — por eso los dedos y las sombras no pueden arrastrarlo
+donde no hay señal. Medido: **bisel 94×82 px, paralaje (37, 9)**, con residuo mediano
+de ±4 px en los cuatro lados. El flanco derecho mide 131 px y el izquierdo 94: **esa
+asimetría es real** (el aparato está girado), y es justo lo que un margen simétrico no
+podía representar.
+
+Todo se mide en el plano del teléfono. ⚠️ Para rectificar **no sirve el
+`minAreaRect`** que usa el resto del script: el rectángulo mínimo de un trapecio en
+perspectiva no es el trapecio, y su vértice superior izquierdo caía **499 px** fuera
+de lugar. Los vértices salen de ajustarle una recta a cada lado de la pantalla —el de
+arriba por RANSAC, porque la muesca lo parte en dos— con rms de 0,3 px.
+
+**El resultado, en una línea:** antes se leía `UNI ˈIMITE` con la L decapitada y un
+vacío a cada lado del teléfono; ahora se lee `UNLIMITE` entero y la palabra muere en
+el canto del chasis.
+
+**Lo que NO se tocó:** la escena, la gráfica del celular, el encuadre, el pie y el
+movimiento. El video se rindió con **crf 10** para igualar el bitrate de lo entregado
+el jueves (4.484 kb/s); con crf 16 bajaba a 2.576 y no se entrega peor de lo aprobado.
+
+**Dónde quedó:**
+- `scripts/qb-aycd-s5-montar.py` → `mate` reescrito (`_pantalla_llena`,
+  `_vertices_exactos`, `cmd_frente_geo`)
+- `public/assets/hilton/qb/fotos/aycd-s5-frente.png` — el mate nuevo
+- `src/compositions/qb/QBStAycdS5.tsx` — la caja del celular actualizada
+  (**y 336–1379 · x 167–925**; la de antes era la de la forma ideal)
+- `out/qb/rev/ronda5.html` + `r5-*.png` — el antes/después
+- `qa/textos.py` — un `✓` tiraba el script en la consola cp1252 de Windows
+  **después** de escribir el JSON: ahora reconfigura la salida a UTF-8
+- QA: `python3 qa/motor.py --marca qb --textos … ` pasa **completo, sin avisos**
+- Drive `QB / STS`:
+  · video https://drive.google.com/file/d/15NWjr-M3QtMUBaLUyIYqt8h_clBefJSJ/view
+  · fotograma https://drive.google.com/file/d/1FFdL4z1lR1yjlr3q1O8IyUJPW4-lf2Sv/view
+  · compara 1 https://drive.google.com/file/d/1XZR6cqcbGqn0Fe9Zp3_nvK7sqqWQeUjz/view
+  · compara 2 https://drive.google.com/file/d/17gjIIXLCkNObyI76ju0JFXfBcO5GHmYA/view
+  · compara 3 https://drive.google.com/file/d/1TmupDC61-Dbs4n-c-ap8w-D9JHa4aQTc/view
+
+**Qué sigue:** que Eli mire el antes/después en Drive. ⚠️ Va con **nombre nuevo**
+(`v5`) a propósito: la vista previa de Drive quedó cacheada la vez pasada al
+reemplazar un archivo por el mismo ID.
+
+**Abierto:**
+- Sigue sin resolverse de dónde sale **PANTONE 361 C**
+- Sigue pendiente la **decisión sobre las cifras** (caja alta en Raleway vs Bell MT)
+- La **TRIVIA DE BRINDIS del 30-09** sigue `PENDIENTE POR CLIENTE`: no se diseña
+
+
 ## 2026-09-17 — Elisabet Soto «Eli» (con Claude)
 
 **Qué se hizo:** la **ST ANIMADA de ALL YOU CAN DRINK de la S5 (28-09, 15:00)**,

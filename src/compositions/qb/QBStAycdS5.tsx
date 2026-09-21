@@ -104,7 +104,7 @@ export const QB_ST_AYCD_S5_DURACION = 240;
  * `top` está en px de mesa. Las tres se apilan en la mitad de arriba, con el
  * mismo ritmo de la referencia: la primera sale **cortada por el borde superior**
  * y las otras dos **se las va comiendo el celular**, que con el encuadre de 1,75
- * ocupa **y 300–1387 · x 193–887**.
+ * ocupa **y 335–1399 · x 169–920** (medido sobre el mate de la ronda 6).
  *
  * ⛔⛔ Y NINGUNA BAJA DE y≈723, que es donde empiezan las manos con este
  * encuadre. La probé a y=912 y la banda pasaba por encima del
@@ -221,7 +221,9 @@ const Pie: React.FC = () => (
         position: "absolute",
         left: 0,
         // ⚠️ Arranca justo bajo el celular, que con el encuadre de 1,75 termina
-        // en y=1387. Si sube más, le oscurece la parte de abajo al teléfono.
+        // en y=1399. Si sube más, le oscurece la parte de abajo al teléfono.
+        // Con el mate de la ronda 6 queda justo al canto, y no molesta porque el
+        // degradado arranca en opacidad 0.
         top: 1400,
         width: "100%",
         height: 520,
@@ -322,8 +324,13 @@ const Pie: React.FC = () => (
  * izquierda cae en `o·(1 − Z)` y el tamaño es `1080Z × 1920Z`.
  *
  * ⭐ Y de paso sube de 1,5 a **1,75**, que es el «auméntalo más» de Eli: el
- * teléfono pasa a ocupar **y 300–1387 · x 193–887**, o sea el **57 % del alto** y
- * el 64 % del ancho, y su pantalla mide **641 px** sobre 1080.
+ * teléfono pasa a ocupar **y 335–1399 · x 169–920**, o sea el **55 % del alto** y
+ * el 70 % del ancho, y su pantalla mide **641 px** sobre 1080.
+ *
+ * ⚠️ Esa caja es la del mate de la ronda 6, que sigue el canto REAL del chasis —
+ * bisel medido más el costado, cuyo ancho CRECE de arriba hacia abajo. La de la
+ * ronda 4 decía «y 300–1387 · x 193–887» y era la de una forma ideal: sobraba
+ * arriba y a la izquierda, y faltaba en los flancos.
  *
  * ⚠️ Los dos valores van EXACTAMENTE iguales en el fondo y en el frente, o las
  * capas se despegan y el recorte del celular aparece corrido.

@@ -659,6 +659,54 @@ def texto_prohibido(a, ctx, args):
     return f"aparece {', '.join(repr(h) for h in hits)}" if hits else None
 
 
+def croma_residual(a, ctx, args):
+    """Queda verde de croma en el borde de un mockup montado sobre pantalla verde.
+
+    NACE DE: la ST de AYCD de QB, ronda 6 (Eli, 21-09-2026). La gráfica se pega
+    dentro del celular de la foto, cuya pantalla se generó como croma verde, y en
+    el canto quedaba **una línea fina de verde** rodeando toda la pantalla. Se ve,
+    y delata el montaje al instante.
+
+    El despill que lo dejaba pasar usaba el mismo umbral que sirve para DETECTAR
+    la pantalla, y ése exige brillo alto; en el canto el antialias deja verdes muy
+    oscuros pero igual de saturados (medidos: `1,24,11` y `0,22,5`).
+
+    ⭐ Lo que separa el croma del verde legítimo NO es el tono —son casi el mismo—
+    sino la SATURACIÓN y la temperatura:
+
+        croma          (30, 200,  60)   S = 0,85   azul > rojo
+        botón de QB    (102, 136, 107)  S = 0,25   azul > rojo
+        albahaca       (100, 160,  60)  S = 0,62   ROJO > azul  (verde cálido)
+
+    Por eso se pide verde dominante **y** saturación alta **y** azul ≥ rojo: el
+    botón de marca queda fuera por la saturación y la vegetación por el rojo.
+
+    Medido sobre las piezas de QB que hay en disco, fracción del lienzo:
+
+        KV AYCD sep      0,000 %      la ST con el filo (ronda 5)   0,415 %
+        AYCD POST jun    0,000 %      la ST corregida (ronda 6)     0,042 %
+        AYCD ST2 jun     0,000 %      la escena en croma crudo      6,423 %
+        Post Sunset      0,009 %
+
+    El tope se pone en el hueco que hay entre la pieza corregida y la que tenía
+    filo. Y va como AVISO, no como bloqueo: una pieza futura con mucha vegetación
+    podría subir, y el aviso se mira.
+    """
+    x0, y0, x1, y1 = _region(a, args.get("region"))
+    sub = a[y0:y1, x0:x1].astype(np.float32)
+    mx = sub.max(axis=2)
+    sat = (mx - sub.min(axis=2)) / np.maximum(mx, 1e-6)
+    verde = (sub[:, :, 1] >= mx - 0.5) & (sub[:, :, 2] >= sub[:, :, 0])
+    hay = verde & (sat > args.get("min_saturacion", 0.55)) & (mx > args.get("min_brillo", 15))
+
+    frac = float(hay.mean())
+    tope = args.get("max_fraccion", 0.0009)
+    if frac <= tope:
+        return None
+    return (f"queda verde de croma en {frac * 100:.3f} % del lienzo"
+            f" (tope {tope * 100:.3f} %) — revisa el canto del mockup")
+
+
 def grafia_fijada(a, ctx, args):
     """Una palabra que la marca escribe de una sola manera.
 
@@ -774,6 +822,7 @@ REGISTRO = {
     "texto_en_banda": texto_en_banda,
     "texto_prohibido": texto_prohibido,
     "grafia_fijada": grafia_fijada,
+    "croma_residual": croma_residual,
     "palabra_huerfana": palabra_huerfana,
     "formato_clp": formato_clp,
 }

@@ -288,6 +288,68 @@ monta, con homografía, una gráfica rendida aparte con las fuentes reales.
 exactamente lo que Eli declaró intocable. Todo el aparato está en
 `scripts/qb-aycd-s5-escena.py` y `scripts/qb-aycd-s5-montar.py`.
 
+#### ⛔⛔ Y LOS TRES DEFECTOS QUE HAY QUE MIRAR SIEMPRE — 21-09-2026
+
+> «Mejoró mucho la máscara de capa, le falta un poco más… arriba a la derecha.
+> Lo demás, la imagen estática del AYCD **está mal en posición, no se ve realista
+> de acuerdo a la perspectiva del celular**.» — Eli, con una cruz dibujada sobre
+> los ejes del teléfono.
+
+Un mockout de celular delata el montaje por **tres** vías distintas, y arreglar
+una sola no alcanza. Las tres se miden, no se miran a ojo:
+
+1. ⛔⛔ **`cv2.minAreaRect` sirve para ENCONTRAR la pantalla, jamás para montar
+   nada en ella.** Un rectángulo *rotado* tiene los lados opuestos iguales por
+   construcción, o sea **no tiene perspectiva**. Medido acá: daba arriba 746 =
+   abajo 746, y la pantalla real es arriba **684** / abajo **751** — el borde de
+   arriba mide un 9 % menos porque el aparato se aleja. Las líneas de la gráfica
+   quedaban paralelas en vez de converger, y su vértice superior izquierdo caía
+   **106 px** fuera de lugar. ⇒ Los vértices salen de ajustarle **una recta a
+   cada uno de los cuatro lados** (rms 0,3 px) y cruzarlas — el de arriba por
+   RANSAC, porque la muesca lo parte en dos. Está en `_vertices_exactos()`.
+2. ⭐⭐ **El vidrio tiene que reflejar el bar.** Una pantalla encendida no es
+   opaca. El reflejo no se inventa: se desenfoca la escena hasta dejar su campo
+   de luz, se lleva al plano de la pantalla, se **espeja** (un reflejo invierte
+   los lados) y se suma como luz, fuerte arriba y débil abajo para no tocar la
+   lectura del precio. ⚠️ El desenfoque va **ponderado por la máscara**, o
+   arrastra el croma y la pantalla se refleja a sí misma en verde.
+   ⭐ Y esto **acerca la pieza al KV, no la aleja** — brillo del tercio superior
+   de la pantalla: KV aprobado **35,1** · la gráfica sola **20,8** · con reflejo
+   **30,5**. Sin reflejo la gráfica era *más oscura* que el KV.
+3. ⛔ **El despill no puede usar el umbral de la detección.** `mascara_verde()`
+   exige brillo ≥ 60 y en el canto el antialias deja verdes muy oscuros pero
+   igual de saturados (`1,24,11`, `0,22,5`): ~13.000 px de línea de croma
+   alrededor de toda la pantalla. Se limita el despill a **la orla** —el croma
+   que la gráfica no cubrió— y ahí se neutraliza en proporción al verdor.
+   ⚠️ Se limita a la orla **a propósito**: dentro de la pantalla hay dos verdes
+   legítimos, el **botón de `POR $13.990`** y la **albahaca del trago**, y un
+   umbral laxo global se los come.
+   ⇒ Queda como regla ejecutable `croma-en-el-mockup` en `reglas.yaml`.
+
+⭐ **Nada de esto toca el diseño ni los textos de la pantalla**: cambia *cómo se
+proyecta*, no *qué dice*. Por eso es compatible con la regla de que el AYCD va
+igual al KV.
+
+#### ⭐⭐ Y el mate del celular: se MIDE, no se dibuja
+
+La tipografía de fondo tiene que quedar **cortada por el celular**, y ahí un
+recorte «parecido» deja un vacío entre la letra y el chasis que se ve al
+instante. Eli lo marcó en rojo tres rondas seguidas.
+
+- ⛔ **El brillo no sirve para hallar el canto.** Contra el fondo del bar, que
+  también es oscuro, no hay salto de luz. Lo que separa es el **tono**: el chasis
+  es neutro (R≈G≈B) y el bar es cálido (R≫B) hasta en sombra.
+- ⛔ **El filo de acero NO es el canto.** Es un reflejo del bisel y está a menos
+  de la mitad del camino (53 px de 128 en el flanco derecho). Ahí se quedan tanto
+  un detector de bordes como GrabCut.
+- ⭐ El contorno **no se traza punto a punto** —los dedos y las sombras lo
+  desviarían— sino que se le ajusta el modelo de la silueta de una caja en
+  perspectiva: el bisel, más el costado que asoma del lado hacia el que está
+  girado el aparato. Medido: **bisel 86×85 px**, y el costado **crece de arriba
+  hacia abajo** (116 px arriba, 181 abajo), porque la cara trasera está más lejos
+  de la cámara que la pantalla. Con un valor fijo sobraban 18 px justo en la
+  esquina de arriba a la derecha. Residuo final de ±1 px.
+
 ---
 
 ## 4d. ⛔⛔ UN COMENTARIO TACHADO EN LA GRILLA NO SE EJECUTA — 17-09-2026

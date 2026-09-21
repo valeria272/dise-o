@@ -1257,6 +1257,12 @@ export const ToGo2: React.FC = () => (
           `calidez_max=8` en `scripts/between-togo-slides-r23.py`: es la
           precompensación para aterrizar en la calidez de lo aprobado.
        Resultado: mediana 101 · calidez 25,9 · croma 21,5 · 0,00 % de blanco. */
+    /* ⭐ RONDA 26 (21-09) — Eli: «ajustes en todas, lo que es sándwich es más
+       grande solo un poco». El sándwich con su papel crece 1,10 desde el centro
+       de su apoyo (`between-togo2-r26.py`), así no despega de la mesa y al
+       crecer contiene su propia silueta anterior: no hay nada que rellenar.
+       ⛔ El VASO no se toca: es el patrón de escala contra el que se midieron
+       las otras dos slides. */
     foto={F + 'togo-s2-r24.jpg'}
     /* ⭐ RONDA 25 (14-09) — Eli: «para esos textos en todas slides de la 2 en
        adelante crecer un poco y subir manteniendo espacios».
@@ -1307,7 +1313,12 @@ export const ToGo2: React.FC = () => (
           se resuelve solo lo de «la caja se repite» que Eli marcó en la portada.
           `igualarAncho` se queda porque no estorba con una línea y evita tener
           que reponerlo si vuelve el rótulo. */
-      lineas={[{texto: 'Desde $4.290', fuerte: true}]}
+      /* ⭐ RONDA 26 (21-09) — CAMBIO DE CONTENIDO DEL CLIENTE, vía Scarlette
+         (21-09 10:08): «Slide 2: Desde $3.490». El precio de la promo baja y se
+         aplica literal: es cifra de cliente, no se redondea ni se maquilla.
+         ⛔ Y no se toca nada más de esta pastilla: ni el rótulo, ni `igualarAncho`,
+         ni la posición. La ronda anterior la dejó aprobada. */
+      lineas={[{texto: 'Desde $3.490', fuerte: true}]}
       igualarAncho
     />
   </PiezaFeedBodegon>
@@ -1358,7 +1369,34 @@ export const ToGo3: React.FC = () => (
           `calidez_max=8` en `scripts/between-togo-slides-r23.py`: es la
           precompensación para aterrizar en la calidez de lo aprobado.
        Resultado: mediana 101 · calidez 25,9 · croma 21,5 · 0,00 % de blanco. */
-    foto={F + 'togo-s3-r24.jpg'}
+    /* ⭐⭐⭐ RONDA 26 (21-09) — LA SLIDE DEJA DE SER UNA GENERACIÓN.
+       Scarlette (21-09 10:08), comentario de contenido del cliente:
+         «los productos no se ven proporcionales unos con otros, revisar los
+          tamaños de los cafés y sus agregados»
+         «Slide 3: … Cambiar medialuna por rollo de canela.»
+       Los dos pedidos los resuelve la MISMA foto, y la foto ya existía: la
+       sesión `25 jul 2025` tiene el rollo de canela con el vaso vigente sobre la
+       misma mesa de listones y el mismo muro vegetal — `25-281`, vertical. Es la
+       regla madre de la ronda 10 («antes de generar un producto, búscalo en la
+       sesión»), y por primera vez esta slide es FOTOGRAFÍA del cliente y no una
+       generación: no hay montaje, no hay logotipo estampado, no hay relight.
+       ⭐ Y por eso la proporción se arregla sola: el rollo y el vaso están en la
+       misma toma, así que su relación es la real y no una decisión de encuadre.
+       ⭐⭐ EL PATRÓN DE ESCALA ES EL WORDMARK DEL VASO, que mide lo mismo en los
+       tres tamaños de vaso (952 · 892 · 938 px en la sesión de vasos que mandó
+       Eli, `raw/hilton/between/cafes-sep2026/`). Contra ese patrón, lo entregado
+       medía 835 px en esta slide, 592 en la 2 y 420 en la 4: el MISMO vaso leía
+       2,0× más grande en la 3 que en la 4. La ventana de `between-togo3-r26.py`
+       está calculada —no elegida a ojo— para que acá aterrice en los 592 px de
+       la slide 2, que es la aprobada y hace de patrón.
+       ⛔ Adentro de la slide vieja la medialuna medía 0,69 del alto del vaso; en
+       la fotografía real el rollo mide 1,11. El agregado se veía un 38 % más
+       chico de lo que es. Eso es lo que el cliente estaba viendo.
+       ⚠️ La slide 4 NO se acerca, y es decisión tomada: es el plano ABIERTO del
+       carrusel y sus proporciones internas están bien (su vaso mide 1,64 de su
+       wordmark, igual que el de la 2). Medido: no cabe ampliarla más de 1,08×
+       sin cortar el sándwich o el vaso. */
+    foto={F + 'togo-s3-r26.jpg'}
     /* ⭐ RONDA 25 (14-09) — Eli: «para esos textos en todas slides de la 2 en
        adelante crecer un poco y subir manteniendo espacios».
        La bajada sube de 40 a 44 (+10 %) y el BLOQUE ENTERO sube de y=171 a
@@ -1410,7 +1448,12 @@ export const ToGo3: React.FC = () => (
           se resuelve solo lo de «la caja se repite» que Eli marcó en la portada.
           `igualarAncho` se queda porque no estorba con una línea y evita tener
           que reponerlo si vuelve el rótulo. */
-      lineas={[{texto: 'Desde $3.790', fuerte: true}]}
+      /* ⭐ RONDA 26 (21-09) — CAMBIO DE CONTENIDO DEL CLIENTE, vía Scarlette
+         (21-09 10:08): «Slide 3: Desde $2.990». El precio de la promo baja y se
+         aplica literal: es cifra de cliente, no se redondea ni se maquilla.
+         ⛔ Y no se toca nada más de esta pastilla: ni el rótulo, ni `igualarAncho`,
+         ni la posición. La ronda anterior la dejó aprobada. */
+      lineas={[{texto: 'Desde $2.990', fuerte: true}]}
       igualarAncho
     />
   </PiezaFeedBodegon>
@@ -1486,6 +1529,39 @@ export const ToGo4: React.FC = () => (
           `calidez_max=8` en `scripts/between-togo-slides-r23.py`: es la
           precompensación para aterrizar en la calidez de lo aprobado.
        Resultado: mediana 101 · calidez 25,9 · croma 21,5 · 0,00 % de blanco. */
+    /* ⭐⭐ RONDA 26 (21-09) — EL CAFÉ CRECE. Eli: «el ajuste de proporción de
+       tamaño es de café y productos, sobre todo de la última slide».
+       Medido con el logotipo del vaso de patrón —que mide lo mismo en los tres
+       tamaños de vaso—, media unidad de sándwich medía **2,64 anchos de
+       logotipo** acá contra **1,41** en la slide 2, que es la aprobada y sale de
+       una fotografía real. O sea que el sándwich leía 1,87× de lo que le toca al
+       lado de su café: la comida entre sí estaba bien (muffin contra sándwich
+       0,53, y lo real es 0,50) y **el vaso era el chico**.
+       `between-togo4-r26.py` lo escala 1,30× desde el CENTRO DE SU BASE, así no
+       despega de la mesa, y le devuelve el plato del muffin por delante porque
+       está más cerca de la cámara. El logotipo pasa de 341 a 443 px y el
+       carrusel entero cae en una banda de 1,25× (554 · 476 · 443) donde estaba
+       en 2,29×.
+       ⚠️ No llega a 1,87× y es por el cuadro: a esa escala la tapa se sale por
+       la derecha y la base se le monta al plato. Lo que falta para cerrar la
+       cuenta es achicar el sándwich, y eso queda propuesto, no hecho.
+       ⛔ No se movió nada más de esta slide: ni bolsa, ni mano, ni muffin, ni
+       sándwich, ni encuadre, ni revelado. */
+    /* ⛔ RONDA 29 (21-09) — LA FOTO APROBADA, SIN NINGÚN RETOQUE.
+       Eli, sobre la r28: «vuelve a la foto anterior a esta». Medido sobre su
+       pantallazo, el logotipo del vaso daba 365 px —o sea la versión con el
+       café a 1,10—, así que la anterior es la fotografía aprobada tal cual.
+       Esta slide vuelve a ser exactamente la que el cliente aprobó el 07-09 y
+       lo único que cambia respecto de lo entregado es el PRECIO.
+       ⭐ El registro de los tres intentos queda en el repo, porque es de donde
+       salió la regla: `between-togo4-r26.py` (escalar tres objetos → 888 k px
+       tocados, logotipo duplicado), `-r27-generar.py` (regenerar la escena →
+       limpia, pero el sándwich dejaba de ser el de la marca) y `-r28.py`
+       (escalar sólo el vaso, con compuerta → limpio, pero movía el pliegue de
+       la bolsa hasta que la parcha dejó de llevar fondo).
+       ⛔ La conclusión, y vale para toda la cuenta: **una fotografía aprobada
+       no se retoca para arreglar una proporción.** Si la proporción está mal,
+       se pide otra foto. */
     foto={F + 'togo-s4-r24.jpg'}
     /* ⭐ RONDA 25 (14-09) — Eli: «para esos textos en todas slides de la 2 en
        adelante crecer un poco y subir manteniendo espacios».
@@ -1544,7 +1620,12 @@ export const ToGo4: React.FC = () => (
           `igualarAncho` se queda porque no estorba con una línea y evita tener
           que reponerlo si vuelve el rótulo. */
       lineas={[
-        {texto: '¡Llévate los 3! desde $5.290', fuerte: true},
+      /* ⭐ RONDA 26 (21-09) — CAMBIO DE CONTENIDO DEL CLIENTE, vía Scarlette
+         (21-09 10:08): «Slide 4: Desde $4.490». El precio de la promo baja y se
+         aplica literal: es cifra de cliente, no se redondea ni se maquilla.
+         ⛔ Y no se toca nada más de esta pastilla: ni el rótulo, ni `igualarAncho`,
+         ni la posición. La ronda anterior la dejó aprobada. */
+        {texto: '¡Llévate los 3! desde $4.490', fuerte: true},
       ]}
       igualarAncho
     />

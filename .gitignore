@@ -195,6 +195,18 @@ out/mascenter-algarrobal/preview-artifact.html
 # real del local muy desenfocado detrás, transferido por referencia desde
 # raw/hilton/between/espacios/. Gradado con perfil `neutro`.
 !public/assets/hilton/between/ia-sept/humor-cafecito-4.png
+
+# CARRUSEL PROMOS TO GO · FEED 22-09, slide 3 «Café + Dulce». La foto del ROLLO
+# DE CANELA ya revelada (2,8 MB). Misma excepción que Revex, CAVA y DT: sin ella
+# `BetweenSeptiembre.tsx` no rinde la slide, y su original —la toma `25-281` de
+# la sesión 25 jul 2025, 16 MB— vive en `raw/`, que no viaja. El script
+# `scripts/between-togo3-r26.py` documenta el ID de Drive para rebajarla.
+# ⚠️ Las otras tres del carrusel (portada-r25, s2-r24, s4-r24) ya estaban
+# versionadas; ésta faltaba (21-09-2026).
+!public/assets/hilton/between/fotos-gradadas/togo-s3-r26.jpg
+# Y la toma curada sin revelar, que es de donde parte el script: con ella la
+# entrega se reproduce byte a byte sin bajar los 16 MB del original.
+!public/assets/hilton/between/togo-25jul2025-rol.jpg
 # el paso intermedio: el local real pero la sala vacía y fría. Se descartó por
 # criterio de Eli; se versiona porque documenta por qué la entregada es la otra.
 !public/assets/hilton/between/ia-sept/humor-cafecito-3.png

@@ -1,3 +1,70 @@
+## 2026-09-21 (cierre 2) · Eli (Windows) — BETWEEN, CARRUSEL PROMOS TO GO: los cambios de contenido de la S4
+
+**Qué se hizo.** Llegaron por Scarlette (21-09, 10:08) los comentarios de
+contenido del cliente sobre el carrusel **Promos To Go** (FEED col K · 22-09):
+los tres precios nuevos, cambiar la medialuna por **rollo de canela** y
+«los productos no se ven proporcionales unos con otros, revisar los tamaños de
+los cafés y sus agregados».
+
+| slide | qué quedó |
+|---|---|
+| 1 · portada | sin cambios |
+| 2 · Café + Sándwich | sólo el precio: **$3.490** |
+| 3 · Café + Dulce | **rollo de canela**, fotografía real, y **$2.990** |
+| 4 · Los tres | sólo el precio: **$4.490** |
+
+⭐ **La slide 3 dejó de ser una generación.** El rollo con el vaso vigente ya
+estaba fotografiado: sesión `25 jul 2025`, toma **`25-281`** (vertical, con muro
+vegetal). Es la regla madre de la ronda 10 —«antes de generar un producto,
+búscalo en la sesión»— y acá se cumplió entera: no hay montaje, ni logotipo
+estampado, ni relight. Su vaso pasó de leer 782 px de logotipo a **480**, contra
+los 554 de la slide 2.
+
+⛔⛔ **Y la slide 4 costó cuatro intentos y terminó SIN TOCAR.** Está todo en
+`clients/hilton/CLAUDE.md § UNA FOTOGRAFÍA APROBADA NO SE RETOCA`: escalar los
+tres productos dejó 888.000 px tocados, el logotipo del vaso duplicado y un
+trozo del pan borrado («se ve como si estuviera pegoteado»); regenerar la escena
+entera salió limpia pero con un sándwich que no es el de la marca; y escalar
+sólo el vaso, aun con compuerta, movía el pliegue de la bolsa. Eli: «vuelve a la
+foto anterior a esta». **La regla que queda: si la proporción está mal, se pide
+otra foto.**
+
+**Dónde quedó.**
+- Entrega con el nombre del portal: `out/hilton/between/entrega-togo-r26/` (4 piezas, 2250×2812).
+- **Subidas a `C1 S4`** (`1vZZGvxfiGOIrf73znO39V4aASreumkfZ`) **reemplazando el
+  contenido del mismo archivo**, así que los enlaces que ya circularon en la
+  grilla siguen sirviendo. Verificadas por md5 contra el local.
+- Composición: `src/compositions/hilton/BetweenSeptiembre.tsx` (`ToGo2/3/4`).
+- Aparato de la slide 3: `scripts/between-togo3-r26.py` — lleva anotado el ID de
+  Drive de la toma `25-281` por si hay que rebajarla.
+- Los tres intentos de la slide 4 quedan versionados a propósito, porque son de
+  donde sale la regla: `between-togo4-r26.py`, `-r27-generar.py` + `-r27-acabado.py`,
+  `-r28.py`. La escena generada, en `raw/hilton/between/s4/gen-r27/`.
+- Assets: `togo-s3-r26.jpg` y `togo-25jul2025-rol.jpg` entran a git con su
+  **excepción documentada en `.gitignore`** (las otras tres del carrusel ya
+  estaban versionadas).
+- Página de revisión que vio Eli: <https://claude.ai/artifact/XiQzzYWXXhkggEJgDFxtn6>
+- QA 3/3 limpias · typecheck limpio.
+
+**Qué sigue.**
+1. **Esperar el visto del cliente.** La columna K sigue en `EN CAMBIOS`; se lee
+   con `export?format=csv&gid=1537718358`. ⚠️ El comentario de Scarlette es
+   NATIVO: no aparece en el CSV, sólo la nota vieja del enlace de la G1.
+2. Si el cliente insiste con la proporción de la slide 4, **no se retoca la
+   foto**: se le pide al hotel una toma nueva del trío más cerca, o sin la bolsa
+   en cuadro.
+3. El brief de la grilla sigue con los precios viejos ($4.290 / $3.790 / $5.290).
+   No se toca —es de contenido— pero conviene saberlo al releerlo.
+
+**Abierto.**
+- ⚠️ **El sándwich de la slide 2 no creció.** Eli lo pidió («lo que es sándwich
+  es más grande solo un poco») y se hizo, pero el retoque le dejaba un filo doble
+  en el papel: se deshizo y la slide volvió a la foto aprobada. Queda ofrecido
+  regenerar esa escena con el método de ella si lo quiere.
+- ⚠️ La sesión de vasos que mandó Eli (`raw/hilton/between/cafes-sep2026/`, 15
+  fotos de los tres tamaños) quedó bajada y medida. **No está en ningún manual
+  todavía como banco**; de ahí salió el patrón del logotipo.
+
 ## 2026-09-21 · Eli (Windows) — BETWEEN, ST 30-09 «Plateada al Carmenere»: **ENTREGADA**
 
 **Qué se hizo.** Eli rechazó la pieza que estaba en el Drive: «no se parece a la

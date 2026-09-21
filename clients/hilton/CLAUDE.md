@@ -2439,6 +2439,69 @@ máster aprobado de esta cuenta es **2813**. La historia sí va a 2,0833 (4000 e
 
 ---
 
+## ⛔⛔⛔ BETWEEN — UNA FOTOGRAFÍA APROBADA NO SE RETOCA (21-09-2026)
+
+Lo dejó escrito el carrusel Promos To Go. El cliente pidió «los productos no se
+ven proporcionales unos con otros, revisar los tamaños de los cafés y sus
+agregados», y la slide de los tres es una **fotografía aprobada**. Se probaron
+tres caminos para arreglarle la proporción y **los tres se botaron**:
+
+| intento | qué pasó |
+|---|---|
+| 1 · escalar los tres productos sobre la foto | **888.000 px tocados de borde a borde**, el canto de la bolsa mordido, el **logotipo del vaso DUPLICADO** y un trozo del pan borrado. Eli: «se ve como si estuviera pegoteado» |
+| 2 · regenerar la escena entera (método de `PROMPTS-DE-ELI.md`) | limpia y realista a la primera, y el logotipo llegó bien porque iba el vaso real de referencia — **pero el generador cambió el sándwich por uno que no es el de la marca**. Eli: «el sándwich no se parece al real» |
+| 3 · escalar SÓLO el vaso, con compuerta | limpio (250 k px, 0 fuera de la zona), pero **movía el pliegue de la bolsa**. Aun corregido: «vuelve a la foto anterior» |
+
+⭐ **La regla: si la proporción está mal, se pide otra foto.** El retoque de
+proporción sobre una foto aprobada no vale la ronda — y en esta cuenta el
+cliente peleó cuatro rondas para dejar de ver producto generado.
+
+### Las dos cosas que sí sirven, para cuando haya que tocar algo
+
+1. ⭐⭐ **La compuerta.** Todo script que retoque una pieza tiene que **medir el
+   área que de verdad modificó y abortar si se sale de la zona del objeto**.
+   Un retoque que no se verifica contra la pieza **miente en silencio**: el paso
+   corre, no falla y no hace nada — o hace de más. Acá cazó dos defectos antes
+   de dejar guardar (el mate del plato que perdía el ala derecha, y 289 px del
+   vaso viejo asomando en el canto de la tapa).
+   Implementada en `scripts/between-togo4-r28.py`.
+2. ⭐⭐ **Lo que delata un fondo movido no es cuánto se movió, sino si tiene una
+   LÍNEA encima.** Se metieron 14 px de bolsa en la parcha dándolos por
+   invisibles; el **pliegue horizontal** de la bolsa cruzaba justo ahí y quedaron
+   dos escalones. Sobre madera desenfocada 14 px no se ven; sobre un pliegue
+   recto, 1 px sí. Y si hay que rellenar junto a una línea horizontal, **se clona
+   en horizontal**: es la única dirección que no la mueve.
+
+### ⭐ Y el patrón para discutir proporción: el logotipo del vaso
+
+El logotipo impreso **mide lo mismo en los tres tamaños de vaso** — 952 · 892 ·
+938 px medidos sobre la sesión `raw/hilton/between/cafes-sep2026/`, los tres
+juntos sobre la misma mesa. O sea que **no depende del tamaño del vaso**, y su
+ancho en píxeles ES la escala a la que está leyendo el vaso en la pieza. Con eso
+se comparan piezas distintas sin estimar centímetros.
+
+⛔ **Cómo NO se mide.** Segmentar la tinta por «más oscuro que su entorno» sobre
+un vaso no sirve: el canto cilíndrico en sombra entra en el mismo umbral y la
+caja se estira hasta el borde (daba 901 px donde hay 700 — 29 % de error, que se
+llevó un reencuadre entero). La correlación multi-escala tampoco: las tomas
+curvan el wordmark distinto y el máximo cae en un falso. Lo que sí: **regla
+dibujada sobre un zoom, glifo a glifo** — canto izquierdo de la «B» y derecho de
+la última «N».
+
+### ⭐ Igualar la mediana NO es igualar la densidad
+
+La slide del dulce empataba mediana, calidez y croma con sus hermanas y aun así
+Eli dijo **«se ve muy blanca»**. El histograma lo cantó: su percentil 5 estaba en
+**30,5** y el de las otras tres en 8,5 · 7,5 · 10,0 — **la pieza no tenía
+negros**. El punto negro de `iguala_tono` no lo agarra (mide el percentil 0,8, y
+en una toma plana ya está en 0): el levante venía del gamma, que sube todo.
+→ El punto negro va **al final y por separado**, en el percentil ~3,5, con un
+contraste suave pivotando en la mediana del set y cerrando con el hombro.
+→ Y para comparar de verdad, medir **percentiles** y una zona del MISMO material
+en las dos piezas (la mesa), no el promedio global: la mediana depende de qué
+hay en el cuadro, y esa slide tenía 28 % de muro vegetal contra el 48 % de su
+hermana.
+
 ## Brand kit BETWEEN (calibrado 24-08-2026 con el feedback escrito de Eli)
 
 > **Los valores exactos viven en el código, no acá:** `src/brand/hilton-between.ts`

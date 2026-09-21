@@ -3320,6 +3320,169 @@ foto»**, y todos salen de posts publicados de `between.coffeebar`:
 > **Antes de producir una grilla, mirar el FEED PUBLICADO de la marca**, no solo el
 > brief y las entregas del diseñador. Ver memoria `between-repertorio-composicion`.
 
+## ⭐⭐⭐ EL CUADRO DE VIDRIO — cuando la referencia trae uno, el texto va ADENTRO
+
+Eli, 21-09-2026, sobre la ST del 30-09 ya entregada: «no se parece a la ref […]
+ese recuadro que parece transparente de vidrio. El plato está bien y la mayoría,
+solo el ajuste del recuadro.»
+
+**El defecto era de método, no de gusto.** La referencia de esa columna
+(`raw/hilton/between/refs-s5/st2-ref-s5.jpg`) compone TODO el texto dentro de una
+tarjeta de vidrio, y la pieza lo dejó suelto sobre la foto. La tarjeta no es un
+adorno detrás del texto: **es el contenedor**, y era lo único que la referencia
+tenía y la pieza no.
+
+> ⚠️ **Una referencia con recuadro se mide antes de componer.** El recuadro
+> cambia la diagramación entera —dónde empieza el bloque, qué medida tiene el
+> titular, dónde cae la zona del sticker— así que no se puede «agregar después».
+
+### Los números, medidos sobre la referencia (no estimados)
+
+La tarjeta de la ref mide **360 × 253 sobre un lienzo de 736** y está centrada
+(su eje cae en 367,0 contra 368,0). Proporción **1,42:1**.
+
+| Qué | En la referencia | En la pieza (@1080) |
+|---|---|---|
+| relleno | **blanco α 0,21** | `rgba(255,255,255,0.21)` |
+| filete | 1 px más claro que el relleno (Δ L +10 a +29) | 1,5 px blanco α 0,55 |
+| radio de esquina | 33 px = **9,2 % del ancho** | 72 |
+| aire interior lateral y superior | 33 px = **9,2 % del ancho** | 72 |
+| aire interior inferior | 27 px = **7,5 % del ancho** | 50 |
+| desenfoque del fondo | nitidez interior **0,7–38 %** de la exterior | `backdrop-filter: blur(3.5px)` |
+| sombra | **ninguna** | ninguna |
+
+⭐ **El α se saca por canal, y si los tres coinciden el velo es BLANCO.** Fuera
+RGB (167, 150, 133) y dentro (186, 172, 158) ⇒ α = 0,216 · 0,210 · 0,205. Un velo
+de color de marca habría dado tres números distintos. **Es la prueba que
+distingue «vidrio» de «caja pintada con el color de la marca».**
+
+⭐ **Y lleva el fondo DIFUMINADO** — la misma regla que Eli ya había dictado en DT
+(«mira difuminado dentro del cuadro el fondo»). Es lo que hace que se lea como
+cristal. Se mide **cruzando el borde**, donde el material fotográfico es el mismo
+a los dos lados.
+
+⛔ **Los dos errores de método a no repetir al medir un desenfoque:**
+1. **No descontar el velo.** Un velo de α 0,21 atenúa la amplitud a 0,79 y la
+   energía del laplaciano a **0,62 sin desenfocar nada**. Sin descontarlo se lee
+   «hay blur» donde no lo hay, y el radio sale inflado.
+2. **Poner la ventana de «dentro» encima de la tinta.** La primera pasada cayó
+   sobre la fila de íconos de la ref: son blancos y nítidos, subían la energía de
+   adentro y daban MENOS desenfoque del real.
+3. Y la de siempre: **comparar zonas lejanas en vez de cruzar el borde** (arriba
+   pasto y abajo grava son dos texturas con nitidez propia distinta).
+
+### ⛔ Lo que NO se transpone: la generosidad
+
+La ref es 3:4 y su tarjeta ocupa el **48,9 % del ancho**. Una story es 9:16 y el
+titular de Between es grande: «SE QUEDÓ EN CASA?» mide **788 px de tinta**. Una
+tarjeta con el aire de la ref (texto = 69 % del cuadro) pediría **1142 px de
+ancho** y el lienzo tiene 1080. **No se puede copiar la proporción; se copia la
+RELACIÓN.**
+
+✅ Lo que sí se transpone es el padding como fracción del cuadro, y en 9:16 calza
+solo: 9,2 % de 912 = **84**, que es `BETWEEN.bloque.margenX`. O sea que la tarjeta
+toma la caja de márgenes del manual (912 = 1080 − 2×84) y su aire interior es el
+mismo margen. **No hubo que inventar ningún número.**
+
+### ⚠️ El cuadro se lleva sitio, y hay que pagarlo con algo
+
+En la ST del 30-09 el cuadro tuvo que apretarse de 84 a **72** de padding y la
+zona del sticker bajó de 340×140 en y=990 a **340×100 en y=1017**. El motivo es
+medible: entre la tinta del lockup (y=364) y el borde del plato **en el último
+fotograma** (y=1127) hay 763 px, y ahí dentro tienen que entrar el aire, el
+cuadro, otro aire y el sticker. Con 84 el cuadro cerraba en y=1044 y el sticker ya
+no cabía.
+
+⭐ **Y el aire de abajo se escribe más chico que el de arriba a propósito.** El
+último elemento del cuadro es el cierre en cursiva, cuyo propio interlineado ya
+deja ~20 px bajo la tinta; el titular, en cambio, arranca clavado en el borde de
+su caja. 50 + 20 = 70 ≈ los 72 de arriba. **El aire que se VE queda simétrico; el
+que se ESCRIBE, no.**
+
+### ⚠️ El velo sube el fondo, así que el contraste hay que volver a medirlo
+
+Sobre la foto oscura de Between el velo blanco lleva el fondo de L≈40 a L≈85. El
+beige `#FFF9EB` pasa de 12,3–15,8:1 a **7,4–9,4:1** — sigue muy por encima de la
+vara de 4,5, pero **no se asume: se mide después de poner el cuadro.**
+
+### ⛔ Y lo que no se copia de una ref así: los íconos
+
+La ref trae la fila de corazón · comentario · enviar · guardar y el `@usuario`.
+Eso convierte la story en **un post de Instagram dentro de otro post**, que es
+justo lo que se sacó de la G2 del cumpleaños. Eli señaló el **recuadro**, no los
+íconos: se hace lo que pidió y lo otro se ofrece.
+
+**Dónde está el código:** `src/compositions/hilton/BetweenStS5.tsx` — constante
+`VIDRIO` y componente `PanelVidrio`, con todas las mediciones escritas en la
+cabecera (`RONDA 33`). El panel se dimensiona **solo con su contenido** (lleva
+`padding`, no un alto quemado), para que si mañana cambia una línea del brief el
+cuadro la siga.
+
+## ⭐⭐ «HAY MUCHOS SIMILARES EN HISTORIAS» — el titular puede salirse de la fórmula
+
+Eli, 21-09-2026, sobre la ST del 30-09: «que este texto sea en solo la primera
+mayúscula, la demás no, y en raleway pero no tan gruesa. **ya que hay muchos
+similares en historias**».
+
+**El motivo no es estético, es de repertorio.** Script Brushwell + caja alta
+ExtraBold es la fórmula que llevan TODAS sus stories; una pieza que quiere
+distinguirse tiene que salirse de ella. Cuando aparece esa frase —«hay muchos
+similares», «se parece a todo lo demás»— lo que se pide no es un retoque: es
+cambiar de registro.
+
+| | La fórmula de siempre | El registro alterno |
+|---|---|---|
+| caja | ALTA | **baja** (`cajaAlta={false}`) |
+| peso | ExtraBold 800 | **SemiBold 600** (`pesoCaps`) |
+| tracking | −0,024em | **0** (lo pone solo `cajaAlta={false}`) |
+| script | Brushwell | **Raleway** (`scriptSans`) |
+
+⭐ **Eli eligió el registro completo, incluida la script** (21-09, sobre la ST del
+30-09: «B · sin Brushwell, todo Raleway»). O sea que cuando dice «en raleway»
+hablando de un titular que YA es Raleway, se está refiriendo también a la línea
+de acompañamiento. **Una sola familia y una sola oración en dos líneas.**
+El precedente ya existía: el 01-09, en el carrusel Cowork, «que sea de la familia
+de raleway, así se diferencia».
+
+⭐ **«Solo la primera mayúscula» se lee sobre la FRASE, no sobre la línea.** El
+titular «¿El almuerzo / se quedó en casa?» es una sola oración: la mayúscula es
+la E de «El» y la segunda línea entra en minúscula. Es lo correcto en castellano
+y es lo que hace la referencia.
+
+⛔ **El tracking de versales NO sirve en caja baja.** `BETWEEN.trackingCaps`
+(−0,024em) está calibrado sobre VERSALES, donde aprieta letras de ancho parejo;
+sobre caja baja, con astas y colas, junta las letras y se lee apretado. El
+componente lo pone en 0 solo cuando `cajaAlta` es `false`.
+
+### ⭐⭐⭐ Y lo que hay que aprender de la ronda: un cambio TIPOGRÁFICO suelta espacio de DIAGRAMACIÓN
+
+En la ronda 33 el cuadro de vidrio tuvo que apretar su aire interior de 84 a 72
+—rompiendo la proporción medida de la referencia— porque con el titular en caja
+alta ExtraBold el cuadro medía 637 de alto y el sticker del enlace ya no cabía.
+
+En la ronda 34, al pasar el titular a caja baja SemiBold, **el bloque se acortó y
+el aire de 84 volvió a caber**. O sea: la desviación de la 33 no era un problema
+de geometría, era una consecuencia del peso del titular.
+
+> **Cuando una medida de la referencia «no cabe», mirar primero qué la está
+> empujando.** Apretar el contenedor es la salida fácil; casi siempre lo que hay
+> que revisar es lo que hay dentro.
+
+### ⚠️ Y lo que se rompe al aligerar el titular: la pastilla taupe queda mandando
+
+Con el titular en SemiBold caja baja, la `CajaDato` —ExtraBold, caja alta, fondo
+macizo— pasa a ser **el elemento más pesado de la pieza**. No es necesariamente
+un error (es la ficha del producto), pero **es un cambio de jerarquía que hay que
+mirar y declarar**, no dejar pasar.
+
+### El obstáculo de una zona reservada es la COMIDA, no el borde del plato
+
+Midiendo el último fotograma de la ST del 30-09: el borde del plato está en
+y=1127, pero la comida empieza en **y=1230**. Entre medio hay 103 px de **ala de
+loza limpia y vacía** (0,00 de comida en todo el tramo, medido fracción a
+fracción). Una zona reservada puede apoyarse ahí; lo que no puede es tapar el
+producto. **Medir dónde empieza el producto, no dónde empieza su soporte.**
+
 ## Qué componentes usar
 
 ✅ **En piezas nuevas:** `TitularBetween`, `CajaDato`, `PilaDatos`, `PanelTaupe`,

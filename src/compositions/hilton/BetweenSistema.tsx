@@ -1147,6 +1147,26 @@ export const TitularBetween: React.FC<{
    * ocupa la columna igual— pero hay que MIRAR el render, no suponerlo.
    */
   pesoCaps?: number;
+  /**
+   * ⭐⭐ ¿El titular va en CAJA ALTA? Por defecto sí, que es la gramática de la
+   * marca y lo que tienen todas las piezas aprobadas — así que es OPT-IN, igual
+   * que `anchoDisponible`, `trackingCapsEm` y `pesoCaps`.
+   *
+   * Eli lo pidió por primera vez el 21-09-2026, sobre la ST del 30-09: «que este
+   * texto sea en solo la primera mayúscula, la demás no, y en raleway pero no
+   * tan gruesa, **ya que hay muchos similares en historias**». O sea que el
+   * motivo no es estético sino de repertorio: script + caja alta pesada es la
+   * fórmula que se repite en TODAS sus stories, y una pieza que quiere
+   * distinguirse tiene que salirse de ella.
+   *
+   * ⚠️ En `false` el texto se pinta TAL CUAL se escribe: la pieza manda la caja,
+   * no el componente. Si la frase sigue a la línea de arriba, va en minúscula.
+   *
+   * ⚠️ Y el tracking pasa a 0. El −0,024em de `BETWEEN.trackingCaps` está
+   * calibrado sobre VERSALES —donde aprieta letras de ancho parejo—; sobre caja
+   * baja, con astas y colas, ese mismo valor junta las letras y se lee apretado.
+   */
+  cajaAlta?: boolean;
   tono?: Tono;
   alinear?: 'centro' | 'izquierda';
   /**
@@ -1182,6 +1202,7 @@ export const TitularBetween: React.FC<{
   aireScriptATitulo,
   trackingCapsEm,
   pesoCaps,
+  cajaAlta = true,
   tono = 'beige',
   alinear = 'centro',
   anchoDisponible = 1080 - 2 * BETWEEN.bloque.margenX,
@@ -1199,8 +1220,12 @@ export const TitularBetween: React.FC<{
    * pintar «MUCHOS PENDIENTES» da ~20 % de diferencia y el titular se sale del
    * cuadro. Es el bug que partió 8 piezas de la ronda 4.
    */
+  /* ⚠️ `scriptSans` sube la línea a caja alta porque su registro es «caja alta
+     liviana». Con `cajaAlta={false}` el titular entero va en caja baja, así que
+     el acompañamiento la sigue: si no, quedaría «¿EL ALMUERZO / se quedó en
+     casa?», que es la contradicción que la pieza está tratando de evitar. */
   const textoScript = script
-    ? (scriptSans ? podar(script).toUpperCase() : podar(script))
+    ? (scriptSans && cajaAlta ? podar(script).toUpperCase() : podar(script))
     : '';
 
   if (!scriptSans && textoScript && textoScript.split(/\s+/).length > 4) {
@@ -1210,7 +1235,7 @@ export const TitularBetween: React.FC<{
   }
 
   const trScript = scriptSans ? 0.02 : BETWEEN.trackingScript;
-  const trCaps = trackingCapsEm ?? BETWEEN.trackingCaps;
+  const trCaps = trackingCapsEm ?? (cajaAlta ? BETWEEN.trackingCaps : 0);
   const wCaps = pesoCaps ?? BETWEEN.pesos.extrabold;
   // el acompañamiento en Raleway sigue al titular: si el titular baja de peso,
   // baja con él (Medium 500 cuando el titular está en el ExtraBold de siempre).
@@ -1241,7 +1266,9 @@ export const TitularBetween: React.FC<{
    * Ese fue el defecto de 8 piezas de la ronda anterior.
    */
   const lineasCaps = textoCaps
-    ? textoCaps.split('\n').map((l) => l.trim().toUpperCase()).filter(Boolean)
+    ? textoCaps.split('\n')
+        .map((l) => (cajaAlta ? l.trim().toUpperCase() : l.trim()))
+        .filter(Boolean)
     : [];
   const nCaps = lineasCaps.reduce(
     (menor, l) => Math.min(menor, encoger(l, sizeCaps, cssCaps, trCaps)),
@@ -1330,7 +1357,7 @@ export const TitularBetween: React.FC<{
               fontFamily: BETWEEN.fuentes.sans,
               fontWeight: wCaps,
               letterSpacing: `${trCaps}em`,
-              textTransform: 'uppercase',
+              textTransform: cajaAlta ? 'uppercase' : 'none',
             })}
           </React.Fragment>
         );

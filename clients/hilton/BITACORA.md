@@ -1,3 +1,63 @@
+## 2026-09-21 · Eli (Windows) — BETWEEN, ST 30-09 «Plateada al Carmenere»: **ENTREGADA**
+
+**Qué se hizo.** Eli rechazó la pieza que estaba en el Drive: «no se parece a la
+ref […] ese recuadro que parece transparente de vidrio». Tenía razón, y el
+defecto era de método: **la referencia de la columna U compone todo el texto
+dentro de una tarjeta de vidrio y la pieza lo dejaba suelto sobre la foto.** Dos
+rondas en el día y quedó aprobada.
+
+**Ronda 33 — el cuadro de vidrio.** Se midió la tarjeta sobre la referencia, no
+se estimó: velo **blanco α 0,21** (los tres canales dieron 0,216 · 0,210 · 0,205,
+que es lo que prueba que es blanco y no un color de marca), filete de 1,5 px,
+radio y aire interior al **9,2 % del ancho**, **sin sombra** (el perfil hacia
+afuera del borde es plano) y el fondo **difuminado** por dentro — la nitidez
+interior cae al 0,7–38 % de la exterior, el mismo rango del pin de DT, así que se
+adoptó su radio de 3,5 px.
+
+**Ronda 34 — el titular sale de la fórmula.** Eli: «que este texto sea en solo la
+primera mayúscula la demás no y en raleway pero no tan gruesa, **ya que hay
+muchos similares en historias**. más similar el recuadro a la ref». Se le
+ofrecieron tres versiones y eligió **«B · sin Brushwell, todo Raleway»**. La
+pieza quedó en caja baja, Raleway **SemiBold 600**, tracking 0, una sola familia
+y una sola oración en dos líneas.
+
+⭐ **Lo que hay que recordar de esta ronda:** en la 33 el aire del cuadro tuvo que
+bajar de 84 a 72 porque no cabía el sticker del enlace. Al sacar la Brushwell
+—que sola medía 113 px de tinta— **el cuadro bajó de 640 a 605 de alto y el aire
+de la referencia volvió a caber**. La desviación no era un problema de geometría:
+era el peso del titular. *Cuando una medida de la referencia «no cabe», mirar
+primero qué la está empujando.*
+
+⛔ **Y dos números del archivo estaban mal anotados:** el borde del plato en el
+último fotograma está en **y=1127** (no en 1140), y el obstáculo real **no es el
+borde del plato sino la comida, que empieza en y=1230**. Entre medio hay 103 px
+de ala de loza limpia. La zona del enlace quedó en **340 × 120 en y=1007**, que
+termina justo en 1127 y no pisa el plato en ningún fotograma.
+
+**Dónde quedó.**
+- Entrega: `out/hilton-between-s5-r34-final/`, con el nombre del portal, más la
+  guía del CM y la página de revisión (`revision-final.html`).
+- **Subida al Drive el mismo día, reemplazando el archivo**
+  (`1ismDXD-Nizxuy24g9YuwvgE8juhHKTea`): **el enlace de la grilla no cambió.**
+  Carpeta `STS` de la S5 — `1r_spPoBx-vR63J8GTRVCUkbZGGyNLnJg`.
+- Código: `src/compositions/hilton/BetweenStS5.tsx` (rondas 33 y 34, con todas
+  las mediciones escritas) y el nuevo prop **`cajaAlta`** de `TitularBetween`
+  en `BetweenSistema.tsx` — opt-in, así que ninguna pieza aprobada se movió.
+- Manual: dos secciones nuevas en `clients/hilton/CLAUDE.md` — «EL CUADRO DE
+  VIDRIO» y «HAY MUCHOS SIMILARES EN HISTORIAS».
+- Contraste del beige con el velo puesto: **7,9 a 9,7 : 1**.
+
+**Qué sigue.** Nada pendiente en esta pieza. La otra de la S5 —la del 28-09, el
+vaso To Go gigante— sigue como estaba, sin cambios.
+
+**Abierto.**
+- ⚠️ **La pastilla taupe quedó siendo lo más pesado de la pieza.** Es ExtraBold
+  en caja alta sobre fondo macizo y ahora el titular es más liviano que ella. Se
+  le avisó a Eli y no la pidió cambiar; si alguna vez lo dice, baja a SemiBold o
+  se le saca el fondo.
+- El `cajaAlta={false}` sólo se usó acá. Si Eli lo pide en otra story, el
+  registro alterno completo está en el manual.
+
 ## 2026-09-21 · Eli (Windows) — DT, CARRUSEL S5: ronda 3 de la portada, **APROBADA**
 
 **Qué se hizo.** Un solo ajuste, pedido por Eli sobre un pantallazo: «ajusta la

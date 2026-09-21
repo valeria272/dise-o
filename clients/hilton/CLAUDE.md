@@ -1181,6 +1181,64 @@ hotel y piezas importantes. Un carrusel de experiencia no es ninguno de los dos.
 
 ---
 
+### ⭐⭐⭐ RONDA 3 DEL CARRUSEL S5 (21-09) — **LAS CAJAS DEL QA SE CALCULAN, NO SE MIRAN**
+
+Eli pidió una sola cosa sobre la portada: «ajusta la línea del Tu día, porque se
+tapa la i; además baja un poco y junta con el título». Aprobada en la primera
+vuelta. Pero al resolverla apareció **una regla que vale para toda la cuenta**.
+
+**1. Cuando un adorno pisa una letra, la holgura se MIDE glifo a glifo — y casi
+siempre el número dice que el problema es de TAMAÑO, no de posición.**
+
+El trazo de «Tu día» no estaba mal dibujado: **la palabra no cabía**. La tinta
+llegaba a x=327,6 y el canto derecho del círculo estaba en x=319,1 — «día» se
+salía 8,5 px por la derecha y la curva pasaba justo por la tilde y por la «a».
+
+| glifo | ronda 2 | ronda 3 |
+|---|---|---|
+| «í» (la tilde) | **−1,9 px** — la pisa | **+20,8 px** |
+| «a» (la última) | **−2,0 px** — la pisa | **+16,3 px** |
+| «d» | +4,0 px | +27,1 px |
+
+Con eso el arreglo es obvio y NO es empujar el texto: **el círculo crece un 19 %**
+(258×130 → 306×154) y la palabra se queda donde estaba de lado —x 140,5 a 327,6,
+que es lo aprobado y lo que el QA mide contra el margen. Empujarla habría movido
+el canto izquierdo, que es la regla dura de la ronda 2.
+
+**2. Un bloque baja SIN mover lo que ya se aprobó.** El trazo bajó 30 px y el
+titular no se movió ni un píxel, porque `height` + `marginBottom` del hueco sigue
+sumando **162**, que es lo que clava «en DoubleTree» en y=492. Cuando el cliente
+pide mover UN elemento de un bloque aprobado, se mueve ese —el resto es una
+entrega nueva que nadie pidió.
+
+**3. ⛔⛔ Y LA REGLA GRANDE: una banda de QA dibujada a ojo sobre el render se
+salta letras y TAPA un fallo.**
+
+La banda de «Tu día» arrancaba en x=162 y la tinta arranca en **140,5**: se
+saltaba la «T», justo la letra que cae sobre la viga clara del cielo. El QA
+cantaba 3,27:1 y **la tinta real daba 2,71:1**, bajo la vara de 3. La pieza se
+entregó y se aprobó con el fallo adentro, y sólo apareció al recalcular la banda
+en la ronda siguiente. Una banda que mide de menos no falla — por eso no se nota.
+
+Desde hoy, en esta cuenta:
+
+- La caja de una tinta se saca del **contorno de los glifos** de la fuente real,
+  con su `letter-spacing` y la línea base que arma Chrome — `fontTools` más
+  `baseline = top + (lineHeight − (asc+desc))/2 + asc`, con `hhea`. Nunca a ojo
+  sobre el PNG.
+- Si una banda cambia, se **re-miden todas** las de esa pieza.
+- Lo mismo vale para el flanco que mide el canto izquierdo: el círculo creció y
+  su punto más ancho —el único que toca el margen— pasó de y≈395 a **y=413,5**,
+  así que la franja del QA también se movió.
+
+Con el bloque más abajo entra en la parte del velo que ya pesa y la tinta sube a
+**3,35:1**. El QA de la pieza pasa entero. Memoria: `banda-de-qa-sale-del-glifo`.
+
+⭐ Entrega: la n°1 se **reemplazó en su sitio** en Drive (mismo `fileId`), así que
+el enlace que ya había circulado sigue sirviendo. Las otras cuatro no se tocaron.
+
+---
+
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 
 Verificado glifo a glifo con `fontTools` sobre los archivos de esta máquina: los

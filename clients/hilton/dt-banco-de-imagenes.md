@@ -50,7 +50,15 @@ cada fotograma de salida sigue siendo uno **capturado**. El tope práctico es
 
 ### ⛔ Lo que NO está filmado — y la corrección que importa
 
-**El GYM.** Para ése hay que seguir yendo a la fotografía: `HDT_81/82/83`.
+⛔ **CORREGIDO EL 21-09: «El GYM. Para ése hay que seguir yendo a la fotografía»
+era FALSO.** El gimnasio **sí está filmado**, sólo que no en esta sesión sino en
+`CONTENIDO HOTEL 2026 › GYM` (`1Xl8ECYMSqtfJNlseP9zddRi9gI43Kz6i`): **7 clips**
+que traen la misma ficha técnica que ésta —HEVC Main 10, HLG, 3840×2160 rotado
+−90, 59,9 fps— y entran por `dt-c1-s5-clips.py` sin cambiar nada. Se habían
+descartado por ser «de iPhone», que es lo que también son los cinco clips que ya
+estaban en el carrusel. `IMG_1700` (4,99 s) es el que recorre la sala entera; ver
+`clients/hilton/CLAUDE.md` § RONDA 4 DEL CARRUSEL S5 para por qué ése y no los
+otros seis. Las fotos `HDT_81/82/83` siguen sirviendo para una estática.
 
 ⭐ **El EXTERIOR sí está filmado, pero en la OTRA carpeta.** No en `SESIÓN
 VIDEOS` sino en `CONTENIDO HOTEL 2026 › Exterior hotel`
@@ -84,11 +92,16 @@ La primera parada: está ordenado por lo que pide un brief de hotel.
 | Exterior hotel | `13vxFid9YuyAydt6vnTVDwhB6oUTq7yBW` |
 | **GYM** | `1Xl8ECYMSqtfJNlseP9zddRi9gI43Kz6i` |
 
-> ⚠️ **El GYM de acá son 7 videos `.MOV` de iPhone, no fotos.** Para la estática del
-> gimnasio que pide la grilla —«no usar material con modelos; buscar contenido propio
-> del gimnasio»— hay que **sacar un fotograma** de esos MOV, o mirar primero la
-> carpeta `Gym` del banco maestro. Un fotograma de un MOV de iPhone es una foto
-> legítima; verificar resolución antes de darlo por bueno.
+> ⭐ **El GYM de acá son 7 videos `.MOV`, y eso es una VENTAJA, no un problema.**
+> Son de iPhone —igual que toda la sesión de video del 16-09— y por eso sirven
+> tal cual para una pieza animada: `IMG_1700` es la lámina del gym del carrusel
+> de la S5. Para una **estática** del gimnasio, un fotograma de estos MOV es una
+> foto legítima (3840×2160, hay que rotarla −90 y tonemapear el HLG); las fotos
+> `HDT_81/82/83` de la sesión profesional son la otra vía.
+>
+> ⛔ **Lo que NO se puede decir de esta carpeta es «no hay video del gym».** Se
+> dijo cuatro días y costó dar por imposible una lámina que el cliente pidió.
+> Ver la memoria `agotar-material-antes-de-bloquear`.
 
 ---
 

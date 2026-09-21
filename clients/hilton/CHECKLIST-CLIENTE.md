@@ -24,7 +24,7 @@
 |---|---|---|---|
 | 3 | El **contenido de la reseña de Booking**: texto literal, iniciales del huésped y rating | Carlos Figueroa | El estático del 14-09 está `OK PARA DISEÑO` pero **no se puede componer sin el texto**. La carpeta de reseñas (`1Dlki995RRdwueFGlZOkF9rybf7maMJ5u`) no devuelve archivos por el conector |
 | 4 | El **`Informe.txt`** de `GRILLA FEED DT S1 SEP` | Eli | Es el único de los nueve paquetes que llegó sin informe. Son 15 KB de texto y evitan bajar un `.ai` de 373 MB para saber sus fuentes y mesas |
-| 5 | **Fotos del gimnasio**, no video | Cliente — DT | La grilla pide contenido propio del gimnasio sin modelos, y lo único que hay son 7 `.MOV` de iPhone. Se puede sacar un fotograma, pero una foto real es mejor |
+| 5 | ~~**Fotos del gimnasio**, no video~~ **RESUELTO 21-09** | — | Los 7 `.MOV` de `CONTENIDO HOTEL 2026 › GYM` **sí sirven**: traen la misma ficha técnica que la sesión de video del hotel y resolvieron la lámina del gym del carrusel S5 (`IMG_1700`). Para una estática, un fotograma de esos MOV o las fotos `HDT_81/82/83` |
 
 ## 🟢 Deseables
 

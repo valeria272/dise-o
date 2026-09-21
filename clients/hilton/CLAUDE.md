@@ -4446,6 +4446,29 @@ se verificó con `fontTools` sobre `fonts/Raleway.ttf` (la variable que ya está
 el repo) y **tampoco lo trae** — ninguno de los 12 archivos tiene `tnum`. Además
 su «1» mide 375/1000 contra 608 del «0», el peor caso de todos.
 
+### ⛔⛔ Y la mitad que faltaba: **en ITÁLICA tampoco hay `lnum`** (21-09-2026)
+
+Encontrado en el legal del carrusel del concurso, que va en Raleway SemiBold
+Italic y muestra las cifras bajando de la línea base —el «3» de «30», los «2»
+de «2026»—, que es justo lo que Eli nombró en el carrusel To Go. Se le aplicó
+`CIFRAS_ALTAS` y **el render salió idéntico píxel a píxel**. Leyendo la GSUB:
+
+| Archivo | ¿trae `lnum`? |
+|---|---|
+| `Raleway-SemiBoldItalic.ttf` | **NO** — sólo `ccmp dnom frac liga locl numr` |
+| `Raleway-SemiBold.ttf` | sí |
+| `Raleway-Bold.ttf` | sí (y 20 funciones más) |
+
+**La regla: en Between, cualquier texto en itálica con cifras las va a mostrar
+de estilo antiguo, y no hay CSS que lo arregle.** Si un texto lleva cifras y
+tienen que ir a caja alta, ese texto va en **redonda**. Poner
+`...CIFRAS_ALTAS` sobre una itálica es una línea muerta: no falla, no hace nada
+y hace creer que el tema está resuelto.
+
+⚠️ En el legal del concurso **se dejó la itálica**: es el tratamiento que Eli
+aprobó, el defecto ya venía en la lámina publicada y cambiarlo mueve una pieza
+cerrada. Está informado; la decisión es de ella.
+
 ## 10. La ST del cumpleaños es UNA, no dos
 
 > «la ST de cumpleaños es uno solo… que se vean las dos informaciones que dejaste

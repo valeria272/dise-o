@@ -53,6 +53,11 @@ TIPOS = {
     ".mp4": "video/mp4", ".mov": "video/quicktime", ".png": "image/png",
     ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".pdf": "application/pdf",
     ".wav": "audio/wav", ".mp3": "audio/mpeg", ".zip": "application/zip",
+    # ⚠️ Drive NO renderiza el .html: lo ofrece para descargar. Se declara el
+    # tipo igual para que el archivo baje con la extensión correcta y abra en
+    # el navegador con doble clic.
+    ".html": "text/html", ".csv": "text/csv", ".txt": "text/plain",
+    ".svg": "image/svg+xml", ".webp": "image/webp",
 }
 
 

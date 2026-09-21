@@ -1,3 +1,113 @@
+## 2026-09-21 (cierre 12) · Eli (Windows) — BETWEEN, CONCURSO RONDA 13: **el legal completo, y de dónde salieron los 56 px**
+
+**Qué pidió Nicolás** (Slack, con pantallazo de la slide 2). Dos cambios de
+texto, los dos en la lámina 2:
+
+1. **El legal completo del concurso**, escrito palabra por palabra:
+   «*Concurso válido del 21 al 30 de septiembre. El ganador será anunciado el 1
+   de octubre. Premio: un café diario, para disfrutar en local o en formato To
+   Go durante todo el mes de octubre de 2026. Premio personal e
+   intransferible.» Entra el **premio** y la **intransferibilidad**, que no
+   estaban en ninguna de las dos láminas.
+2. **La frase de los comentarios, por tercera vez**: «Si yo fuera CEO del café
+   **en Between**, mi primera acción sería…». Va de «CEO de Between» (r5) →
+   «CEO del café» (r6) → ésta.
+
+⭐⭐ **LA REGLA QUE DEJA LA RONDA: primero se mide cuánto texto cabe, después se
+mueve la lámina.** A cuerpo 21 el legal nuevo son **4 líneas, +56,3 px**, en la
+lámina que menos sitio tiene: abajo están la polaroid y el vaso con el logotipo
+impreso y el manual prohíbe taparlos. El primer intento pagó esas cuatro líneas
+**moviendo la pieza** —titular y tarjeta 28 px arriba, los cuatro separadores de
+18 a 15, medido y encajado al píxel—. Funcionaba, pero tocaba una lámina cerrada
+para acomodar un párrafo.
+
+Eli lo cortó de raíz: **«achica un poco más el texto del legal… al menos en 3
+líneas que quede, sin quitar texto»**. Y ahí el problema desaparece:
+
+    legal, 21 → 17 px · de 2 a 3 líneas      +12,1
+    la cita, 36 → 34 (obligada, ver abajo)    −5,0
+    ───────────────────────────────────────  +7,1
+
+**17 no es un número al azar: es el TECHO.** Es el cuerpo más grande al que el
+párrafo entero entra en tres líneas, medido con la propia `.ttf` sobre los 630
+px de ancho útil de la tarjeta — a 18 la primera línea mide 626,0 y se pasa por
+4 px, así que salta a cuatro; a 16 pierdes tamaño sin ganar ninguna línea.
+
+⭐ **Y porque cabe en tres, la lámina VUELVE a su geometría aprobada**: titular
+en `top: 150`, tarjeta en `top: 320`, separadores en 18/14. Lo único distinto de
+la pieza publicada son los dos textos. La tarjeta cerraba en **y=975,0** y
+cierra en **978,2** —3,2 px— con **25,8 px** de aire hasta el marco blanco del
+recorte.
+
+> Lo que no hace falta se devuelve. Mover una lámina cerrada para que quepa un
+> párrafo es la solución cara; medir a qué cuerpo el párrafo cabe es la barata.
+
+⚠️ **La cita baja de 36 a 34, y ésa sí es obligada, no estética.** Con «en Between»
+adentro la primera línea mide **645,1 px** a cuerpo 36 y el ancho útil de la
+tarjeta es **630**: Chrome la parte y la cita se va a TRES líneas, o sea sube de
+nivel por encima del titular de la lámina. El otro corte —«…del café / en
+Between, mi primera…»— deja la línea larga en 654,1, tampoco entra y encima
+separa la marca de su preposición. A 34 mide 608,5 y sigue en las dos líneas
+aprobadas.
+
+⛔⛔ **EL HALLAZGO DE LA RONDA, y vale para toda la cuenta: la ITÁLICA de
+Raleway no trae `lnum`.** El legal muestra las cifras bajando de la línea base
+—el «3» de «30», los «2» de «2026»—, que es exactamente lo que Eli nombró en el
+carrusel To Go («los números se ven desordenados… no se ven uno más arriba y
+abajo que los otros»). Se le aplicó `CIFRAS_ALTAS` y **el render salió idéntico
+píxel a píxel**. Leyendo la GSUB de los .ttf del repo: `Raleway-SemiBoldItalic`
+tiene `ccmp dnom frac liga locl numr` y **no** `lnum`; la redonda y la bold sí.
+
+> **La regla: en Between, un texto en itálica con cifras las va a mostrar de
+> estilo antiguo y no hay CSS que lo arregle.** Si tienen que ir a caja alta, el
+> texto va en redonda. Escrita en `clients/hilton/CLAUDE.md § 9`.
+
+Acá **se dejó la itálica**: es el tratamiento que Eli aprobó, el defecto ya
+venía en la lámina publicada y cambiarlo mueve una pieza cerrada. Informado en
+la página de revisión; la decisión es de ella.
+
+**✅ ENTREGADO.** Sólo cambió la N2, así que sólo se subió la N2, **reemplazando
+el mismo archivo** — el enlace no cambió.
+
+- `C1 S3 CONCURSO N2.png` → <https://drive.google.com/file/d/1l3KDqsLhRFxSx9AJzNVJhHuiFyIOtzTb/view>
+  (md5 `288f146c…`, 3 823 576 B, verificado contra el local y con el `parents`
+  consultado: sigue dentro de `1HEga0sjGH766I4EnpHKP2ED31prslo0L`).
+- `C1 S3 CONCURSO N1.png` **no se tocó**: su md5 sigue siendo `385d6162…`, el
+  mismo que subió la ronda 12. La portada no tiene ninguno de los dos cambios.
+- La página de antes/después también quedó en esa carpeta como
+  `C1 S3 CONCURSO - antes y despues r13.html`
+  (<https://drive.google.com/file/d/1kP4tcGOhjlmgeT_ulcjdUkrOkerZghoz/view>).
+  ⚠️ **Drive no renderiza `.html`, lo ofrece para descargar**, así que la que se
+  abre de una es la publicada: <https://claude.ai/artifact/AZ4JqRYMVY1AwjripK1idc>
+
+**QA.** `between-qa.py` da la slide 2 **limpia**, carrusel en el mismo tono
+(197 / 201), `npm run typecheck` limpio.
+
+⚠️ **La slide 1 arrastra un aviso del QA que NO se tocó**: «texto a 74 px del
+borde derecho (mínimo 84)». Ya estaba en la versión entregada y aprobada en la
+ronda 12; corregirlo mueve una lámina cerrada y no es lo que pidió el cliente.
+Queda anotado y está informado en la página de revisión.
+
+**Abierto.**
+1. **El asterisco del legal no tiene a quién referirse.** Nicolás lo escribió
+   abriendo el legal y se dejó literal (regla de textos de cliente), pero no hay
+   otro asterisco en el carrusel. Las dos salidas: ponérselo a «1 MES DE CAFÉ
+   GRATIS» en la portada —que es el dato que el legal matiza— o sacarlo.
+   **Preguntado a Eli.**
+2. Sigue sin resolverse si hay que reemplazar también en `C1 S3 CONCURSO`
+   (`1eXZnhj5-2j7o4AuwClf5dngcn6k9oQzC`, dentro de `S3 HILTON SEP 2026 / BW`),
+   donde todavía están las láminas de la **ronda 5**. Viene abierto de la r12.
+
+**Dónde está todo.**
+- Composición: `src/compositions/hilton/BetweenC1S3Concurso.tsx` (`C1S3Concurso2`).
+- Mediciones corribles: `scripts/between-concurso-s3-r13-medir.py`
+  (`frase` · `legal` · `encaje`).
+- Página de revisión: `scripts/between-concurso-s3-r13-revision.py` →
+  `out/hilton/between/concurso-s3-r13/revision-r13.html`.
+- Entrega empaquetada a 150 ppp: `scripts/between-concurso-s3-entrega.py`.
+
+---
+
 ## 2026-09-21 (cierre 11) · Eli (Windows) — DT, CARRUSEL S5: **ENTRÓ EL GYM**, el carrusel pasa a SEIS
 
 **Qué pidió Eli.** «Toma el diseño del gym que nos faltaba, ahora ya está para

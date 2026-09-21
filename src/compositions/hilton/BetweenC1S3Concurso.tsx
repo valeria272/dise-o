@@ -6,6 +6,40 @@
  * Concurso del 21 al 30-09-2026, ganador el 1 de octubre (Día del Café).
  * Entrega: `C1 S3 CONCURSO N1/N2.png`, 2250×2813, carpeta `S3 · BW` del Drive.
  *
+ * ── RONDA 13 (21-09-2026) · LOS DOS CAMBIOS DE TEXTO DE NICOLÁS ──────────
+ * Los dos caen en la slide 2 y los dos la hacen CRECER, que es lo caro: abajo
+ * están la polaroid y el vaso con el logotipo impreso, y el manual prohíbe
+ * taparlos.
+ *
+ *   1. El LEGAL completo del concurso —entra el premio («un café diario… en
+ *      local o en formato To Go durante todo el mes de octubre de 2026») y la
+ *      intransferibilidad—. Pasa de 2 a 4 líneas: **+56,3 px**.
+ *   2. La frase de los comentarios, por tercera vez: «Si yo fuera CEO del café
+ *      **en Between**, mi primera acción sería…».
+ *
+ * ⭐⭐ LA REGLA QUE DEJA LA RONDA: **primero se mide cuánto texto cabe, después
+ * se mueve la lámina.** El primer intento pagó las cuatro líneas moviendo la
+ * pieza —titular y tarjeta 28 px arriba, los cuatro separadores de 18 a 15— y
+ * funcionaba, pero tocaba una lámina cerrada para acomodar un párrafo.
+ * Eli lo cortó de raíz: «achica un poco más el texto del legal… al menos en 3
+ * líneas que quede, sin quitar texto». Y con el legal a **17 px** —el cuerpo
+ * más grande al que el párrafo entero entra en tres líneas— el problema
+ * desaparece: el crecimiento cae de +56,3 px a **+12**, y todo lo que se había
+ * movido se devuelve a su valor aprobado.
+ *
+ *     legal, 21 → 17 px · de 2 a 3 líneas     +12,0
+ *     la cita, 36 → 34 (obligada, ver abajo)   −5,0
+ *     ──────────────────────────────────────── +7,0
+ *
+ * La tarjeta cerraba en y=975,0 y cierra en **982**: 7 px, con 22 px de aire
+ * hasta el marco blanco del recorte. **Abajo no se movió nada** — ni la
+ * polaroid ni el vaso con el logotipo impreso.
+ * Todo verificable con `scripts/between-concurso-s3-r13-medir.py`.
+ *
+ * ⛔ Y un hallazgo que vale para toda la cuenta: **la itálica de Raleway no
+ * trae `lnum`**, así que `CIFRAS_ALTAS` no hace nada sobre ella. Ver el
+ * comentario del legal, más abajo.
+ *
  * ── LAS DOS REFERENCIAS DEL CLIENTE, Y QUÉ SE TOMÓ DE CADA UNA ───────────
  * La grilla trae `REF 1` y `REF2` (Pinterest; bajadas a
  * `raw/hilton/between/refs-concurso-s3/`). Las dos comparten UN recurso, y ése
@@ -1231,26 +1265,36 @@ export const C1S3Concurso2: React.FC<{jerarquia?: Jerarquia}> = ({jerarquia = 'A
 
         <Separador />
 
-        {/* ⭐ RONDA 6 (21-09-2026) — cambio de contenido, literal:
-            «En la Slide 2, cambiar: "SI YO FUERA CEO DE BETWEEN" →
-             "SI YO FUERA CEO DEL CAFÉ"».
-            Es la frase que la gente copia en los comentarios, así que va tal
-            cual la mandó contenido; lo único que se conserva es la caja baja de
-            la tarjeta y el corte de línea, que no se movió porque la frase
-            nueva es 2 caracteres más corta. */}
+        {/* ⭐⭐ RONDA 13 (21-09-2026) — LA FRASE CAMBIA POR TERCERA VEZ, literal:
+            «SI YO FUERA CEO DEL CAFÉ EN BETWEEN, MI PRIMERA ACCIÓN SERÍA…».
+            Viene de «CEO de Between» (ronda 5) → «CEO del café» (ronda 6) →
+            «CEO del café en Between» (ésta). Es la frase que la gente copia en
+            los comentarios: va tal cual la manda contenido y no se resume.
+
+            ⚠️ EL CUERPO BAJA DE 36 A 34, y está medido, no estimado
+            (`between-concurso-s3-r13-medir.py frase`). Con la marca de Between
+            adentro la primera línea mide **645,1 px** a cuerpo 36 y el ancho
+            útil de la tarjeta es 630 → Chrome la parte y la cita queda en TRES
+            líneas, que es un nivel más alto que el titular de la lámina. A 34
+            mide 608,5 y deja 21,5 px de aire, o sea sigue en las dos líneas que
+            Eli aprobó. La otra salida —partir «Si yo fuera CEO del café / en
+            Between, mi primera acción sería…»— deja la línea larga en 654,1:
+            tampoco entra, y encima corta la marca de su preposición.
+
+            El corte cae en la coma, que es donde la frase respira. */}
         <Rotulo>COMPLETA EN LOS COMENTARIOS</Rotulo>
         <div
           style={{
             marginTop: 14,
             fontFamily: BETWEEN.fuentes.sans,
             fontWeight: BETWEEN.pesos.bold,
-            fontSize: 36,
+            fontSize: 34,
             lineHeight: 1.24,
             letterSpacing: '-0.012em',
             color: BETWEEN.colores.cafe,
           }}
         >
-          «Si yo fuera CEO del café,<br />mi primera acción sería…»
+          «Si yo fuera CEO del café en Between,<br />mi primera acción sería…»
         </div>
 
         <Separador />
@@ -1268,20 +1312,84 @@ export const C1S3Concurso2: React.FC<{jerarquia?: Jerarquia}> = ({jerarquia = 'A
             impreso— va de 990 a 1341. Un legal al pie cruzaba el vaso y le
             partía el wordmark, que es el peor error posible en esta cuenta
             (manual § «el garabato no toca el producto»). Dentro de la tarjeta
-            cae sobre crema y se lee a la primera. */}
+            cae sobre crema y se lee a la primera.
+
+            ⭐⭐ RONDA 13 (21-09) — EL LEGAL COMPLETO, que es el cambio grande de
+            esta ronda. Nicolás lo mandó escrito y va **palabra por palabra**,
+            incluido el asterisco de apertura y el «de 2026» que sólo lleva
+            octubre (memoria `ctas-verbatim-del-brief`: el legal de un concurso
+            no se reescribe ni se resume, porque es la base de participación).
+            Entra el premio —«un café diario… en local o en formato To Go
+            durante todo el mes de octubre de 2026»— y la intransferibilidad,
+            que antes no estaban en ninguna de las dos láminas.
+
+            ⚠️⚠️ EL CUERPO BAJA DE 21 A **17**, y 17 no es un número redondo
+            sino el TECHO: es el cuerpo más grande al que el párrafo entero
+            todavía cabe en **tres líneas**, que es lo que pidió Eli («achica un
+            poco más el texto del legal… al menos en 3 líneas que quede, sin
+            quitar texto»). Medido con la propia .ttf, sobre los 630 px de ancho
+            útil de la tarjeta (`between-concurso-s3-r13-medir.py legal`):
+
+                21 px → 4 líneas   (la línea larga, 614,5)
+                18 px → 4 líneas   (626,0 — se pasa por 4 px y salta de línea)
+                17 px → 3 líneas   (616,1 · 577,8 · 573,9)   ← el que va
+                16 px → 3 líneas   (606,5, pero ya es 3 px más chico sin ganar
+                                    ninguna línea)
+
+            ⭐ Y porque cabe en tres, **la lámina vuelve a su geometría
+            aprobada**: el titular a `top: 150`, la tarjeta a `top: 320` y los
+            cuatro separadores a 18/14. Durante un rato estuvieron en 122, 292 y
+            15 para pagar las cuatro líneas; con tres no hace falta y lo que no
+            hace falta se devuelve. La tarjeta cierra en y≈982 contra los 975,0
+            de la lámina publicada —**7 px**— y quedan 22 px de aire hasta el
+            marco blanco del recorte. La polaroid y el vaso, intactos.
+
+            El legal es el texto más chico de la pieza y a 17 px sigue siendo el
+            cuerpo de un legal, que es lo que es: a 2250 px de entrega son 35 px
+            reales.
+
+            Se deja envolver solo y no con saltos a mano: un `<br />` fijo se
+            rompe al primer cambio de palabra.
+
+            ⛔⛔ ACÁ NO SE PUEDE APLICAR `CIFRAS_ALTAS`, y ése es el hallazgo
+            de la ronda. El legal tiene cuatro tiradas de dígitos —21, 30, 1 y
+            2026— y salen en **cifras de estilo antiguo**: el «3» de «30» y los
+            «2» de «2026» bajan de la línea base. Es exactamente lo que Eli
+            nombró en el carrusel To Go («los números se ven desordenados… no se
+            ven uno más arriba y abajo que los otros») y el sistema tiene el
+            token que lo arregla — `CIFRAS_ALTAS`, en `BetweenSistema.tsx`.
+
+            Sólo que **no sirve en itálica**. Verificado con fontTools sobre los
+            .ttf del repo:
+
+                Raleway-SemiBoldItalic   ccmp dnom frac liga locl numr
+                Raleway-SemiBold         ccmp dnom frac liga  LNUM  locl numr
+                Raleway-Bold             …    LNUM    … (y 20 funciones más)
+
+            La itálica de Raleway **no trae `lnum`**, así que el CSS se aplica y
+            el render no cambia: se probó y los dos PNG salieron idénticos píxel
+            a píxel. Se revirtió para que nadie vuelva a poner ese
+            `...CIFRAS_ALTAS` creyendo que hace algo.
+
+            Vale para TODA la cuenta: en Between, cualquier texto en itálica con
+            cifras las va a mostrar de estilo antiguo. La única salida es pasar
+            el texto a redonda — y acá no se hace, porque la itálica es el
+            tratamiento del legal que Eli aprobó y el defecto ya venía en la
+            lámina publicada. Queda dicho por si alguna vez molesta. */}
         <div style={{height: 1, background: 'rgba(103,91,73,0.22)', margin: '18px 0 14px'}} />
         <div
           style={{
             fontFamily: BETWEEN.fuentes.sans,
             fontStyle: 'italic',
             fontWeight: BETWEEN.pesos.semibold,
-            fontSize: 21,
+            fontSize: 17,
             lineHeight: 1.34,
             color: 'rgba(103,91,73,0.85)',
           }}
         >
-          <div>Concurso válido desde el 21 hasta el 30 de septiembre de 2026.</div>
-          <div>El ganador será anunciado el 1 de octubre de 2026.</div>
+          *Concurso válido del 21 al 30 de septiembre. El ganador será anunciado el 1
+          de octubre. Premio: un café diario, para disfrutar en local o en formato To
+          Go durante todo el mes de octubre de 2026. Premio personal e intransferible.
         </div>
       </div>
 

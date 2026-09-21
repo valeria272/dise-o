@@ -739,6 +739,27 @@ es la que tiene que pesar, se parte en dos líneas antes de justificar.
 de una altura de versal contra el filete de la caja. Eli lo aprobó así. Se dejó
 dicho y no se tocó; si en otra pieza queda más apretado que esto, es el límite.
 
+#### ⛔ RONDA 6 PENDIENTE (21-09) — el cliente pide OTRA FOTO
+
+Al releer la grilla el 21-09 apareció un comentario nuevo en la fila COMENTARIOS
+PARA DISEÑO de esa columna, **encima de los anteriores**:
+
+> **«Cambiemos foto por habitación de categoría superior y ok!»**
+
+Y el estado de la celda pasó de `OK PARA DISEÑO` a **`APROBADO`**. O sea: la
+pieza está aprobada **condicionada a ese cambio** — es lo único que falta.
+
+⚠️ **La pieza se entrega desde el editable `.ai`, no desde Remotion**, así que el
+cambio de foto se hace en Illustrator y después hay que **re-sincronizar
+`DtFtHonors.tsx`** contra el export, como se hizo el 16-09. Las dos vías tienen
+que seguir dando la misma pieza.
+
+⚠️ Y hay que elegir la categoría bien: «habitación de categoría superior» en este
+hotel son **Corner, Junior Suite y Suite**, no la Estándar. Están en
+`CONTENIDO HOTEL 2026` con carpeta propia cada una — ver
+[`dt-banco-de-imagenes.md`](dt-banco-de-imagenes.md). Hoy la pieza usa una foto
+de habitación estándar.
+
 #### ⚠️ Esta pieza YA NO SALE DE REMOTION — y eso cambia dos cosas
 
 La entrega se **exporta de Illustrator**, del editable

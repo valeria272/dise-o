@@ -11,8 +11,14 @@
  * ══════════════════════════════════════════════════════════════════════════
  * EL BRIEF, LITERAL — no se toca ni una palabra (§G: en DT sólo se DISEÑA)
  * ══════════════════════════════════════════════════════════════════════════
- * Hoja FEED, columna M. Leído de la grilla VIVA el 17-09 (export CSV + gid).
- * ESTADO: `REVISAR CONTENIDO`.
+ * Hoja FEED, columna N. Releído de la grilla VIVA el **21-09** (API de Sheets).
+ * ESTADO: `CORREGIDA` — el 17-09 decía `REVISAR CONTENIDO`.
+ *
+ * ⭐⭐ **EL 21-09 CONTENIDO ESCRIBIÓ EL SLIDE QUE FALTABA.** El brief pasó de
+ * cuatro slides a **cinco**: entra `SLIDE 4 – SIGUE CON TU RUTINA DIARIA (GYM)`
+ * y el cierre en la habitación, que era el 4, pasa a ser el **5**. Es el único
+ * cambio del brief; palabra por palabra, lo demás está idéntico (diff contra la
+ * instantánea `clients/hilton/grillas/api/dt-sept-20260915.json`).
  *
  *     CARRUSEL DE VIDEOS – TU DÍA EN DOUBLETREE BY HILTON SANTIAGO-VITACURA
  *
@@ -35,7 +41,11 @@
  *     Visual: Detalle de zona de lobby o cowork, luz natural, ambiente tranquilo.
  *     Texto: "Entre reunión y reunión, un momento para respirar."
  *
- *     SLIDE 4 – CIERRE EN LA HABITACIÓN
+ *     SLIDE 4 - SIGUE CON TU RUTINA DIARIA (GYM)
+ *     Visual: Mostrar espacio disponible del GYM (Sin personas)
+ *     Texto: "Un espacio para mantenerte en movimiento."
+ *
+ *     SLIDE 5 – CIERRE EN LA HABITACIÓN
  *     Visual: Toma de la habitación al atardecer o cama tendida con luz cálida,
  *     ambiente de descanso.
  *     Texto: "El día termina como debe: con comodidad."
@@ -50,18 +60,23 @@
  *     TIEMPO PARA COWORK, 16:00 UN RATO PARA ENTRENAR EN EL GYM. (Similar, no
  *     tiene que ser exactamente esto)
  *
- * ⚠️⚠️ LAS TRES COSAS QUE HAY QUE INFORMAR, NO RESOLVER (§G)
+ * ⚠️⚠️ LO QUE HAY QUE INFORMAR, NO RESOLVER (§G)
  *
- * 1 · **El slide del GYM no existe en el brief.** El comentario lo pide («Faltó
- *     GYM!») y contenido todavía no lo escribió. La pieza está armada y su foto
- *     elegida (`gym.jpg`, HDT_82); **no se entrega hasta que llegue el texto.**
- * 2 · **La habitación se queda sin HORA.** El comentario da tres —8:30 desayuno,
- *     9:30 salones, 12 cowork— y la cuarta que da es la del gym. Para el cierre
- *     en la habitación no hay hora, y ponerle una sería escribir contenido. Va
- *     SIN sello hasta que contenido la entregue: es un prop, entra en un render.
- * 3 · **Los cuatro textos del brief terminan en punto** y la regla F.1 de DT dice
- *     que los títulos no llevan punto. Van LITERALES: corregirlos es editar el
+ * 1 · ✅ **RESUELTO EL 21-09 — el GYM ya tiene brief.** Era el punto abierto
+ *     desde el 17-09. Entra como slide 4, con su visual y su texto escritos por
+ *     contenido, y el carrusel pasa de 5 a **6 láminas** (portada + 5).
+ * 2 · **La habitación SIGUE sin HORA.** El comentario da tres —8:30 desayuno,
+ *     9:30 salones, 12 cowork— y la cuarta que da es la del gym, que es la que
+ *     ahora se usa. Para el cierre en la habitación no hay hora, y ponerle una
+ *     sería escribir contenido. Va SIN sello: es un prop, entra en un render.
+ * 3 · **Los textos del brief terminan en punto** y la regla F.1 de DT dice que
+ *     los títulos no llevan punto. Van LITERALES: corregirlos es editar el
  *     copy. Si el cliente los quiere sin punto, lo pide y se cambia.
+ * 4 · **El rótulo del gym va «SIGUE CON TU RUTINA DIARIA», sin el «(GYM)».** Es
+ *     la misma regla que ya se aplicó en el slide 3: el brief dice «TIEMPO PARA
+ *     TI (COWORK / LOBBY)» y el sello dice «TIEMPO PARA TI». El paréntesis del
+ *     brief nombra el ESPACIO, que es lo que muestra la foto, no el rótulo. Los
+ *     otros tres rótulos van textuales porque no traen paréntesis.
  *
  * ⚠️ Y una de formato: «12» del comentario se compone **12:00**, para que la
  * columna de horas sea una sola serie junto a 8:30 y 9:30. Es formateo de una
@@ -766,10 +781,12 @@ type Lamina = {
   sangriaSello: number;
   sangriaGancho: number;
   sangriaRemate: number;
-  /** Sólo para la lámina que todavía sale de una foto: su movimiento. */
+  /**
+   * Sólo para una lámina que saliera de una foto: su movimiento. Desde el
+   * 21-09 **ninguna la usa** — las seis son video, incluida la del gym. Se deja
+   * porque `LaminaInterior` sabe caer a foto si alguna vez falta un clip.
+   */
   camara?: Movimiento;
-  /** ⏸ true = armada pero NO se entrega. */
-  pendiente?: boolean;
 };
 
 /**
@@ -827,6 +844,77 @@ const LAMINAS: Record<string, Lamina> = {
     sangriaGancho: 1,
     sangriaRemate: 2,
   },
+  /**
+   * ⭐⭐ GYM — LA LÁMINA QUE FALTABA, ESCRITA POR CONTENIDO EL 21-09.
+   *
+   * Va ENTRE el cowork y el cierre, que es donde la pone el brief (slide 4) y
+   * donde la pone el reloj: 16:00 después de las 12:00 y antes de dormir.
+   *
+   * ⭐ **Y es VIDEO, como sus cinco hermanas.** El 17-09 esta lámina estaba
+   * armada sobre la foto `HDT_82` con movimiento de código, y quedó anotado que
+   * «no hay video de gimnasio en ninguna carpeta». Era falso: `CONTENIDO HOTEL
+   * 2026 › GYM` tiene 7 `.MOV` con la MISMA ficha técnica que la sesión del
+   * 16-09, y se habían descartado por ser «de iPhone» — cuando los otros cinco
+   * clips del carrusel son exactamente eso. Se eligió `IMG_1700`; por qué ése y
+   * no los otros seis está en `scripts/dt-c1-s5-clips.py`.
+   *
+   * La hora la da el propio comentario de diseño: «16:00 UN RATO PARA ENTRENAR
+   * EN EL GYM». El rótulo, en cambio, sale del BRIEF, que manda sobre el
+   * comentario — ver la nota 4 de la cabecera.
+   */
+  gym: {
+    clip: 'gym',
+    hora: '16:00',
+    rotulo: 'SIGUE CON TU RUTINA DIARIA',
+    /**
+     * ⭐ LA PARTICIÓN. Se corta igual que `salon`, que empieza con las mismas
+     * dos palabras: el gancho se queda con «Un espacio» y su complemento, y el
+     * remate arranca con la PREPOSICIÓN que cierra la frase. Las cuatro frases
+     * del brief se parten así —el remate empieza en «con», «de», «un», «con»—
+     * y ésta empieza en «en». Partirla en «Un espacio para / mantenerte en
+     * movimiento.» deja el gancho colgando de una preposición y le da al remate
+     * un verbo de arranque: rompe el patrón de las otras cuatro.
+     */
+    gancho: 'Un espacio para mantenerte',
+    remate: 'en movimiento.',
+    /**
+     * ⭐⭐ **68 Y NO 74: EL CUERPO ES LA CONSECUENCIA DE LA MEDIDA.** Es el
+     * criterio de DT que dictó Eli el 15-09 sobre el estático de Honors —«cada
+     * línea se escala hasta una misma medida y el cuerpo es la consecuencia»— y
+     * es lo que este carrusel ya venía haciendo sin decirlo: el cuerpo cambia de
+     * lámina en lámina (78, 78, 74, 74) para que la línea más larga de cada una
+     * caiga en la misma medida.
+     *
+     * Medido con fontTools sobre Stag, con el `letter-spacing` de la ronda 2 y
+     * los 904 px de medida útil:
+     *
+     *   | lámina | línea más larga | ancho |
+     *   |---|---|---|
+     *   | desayuno   | «con la energía correcta.»   | 815,8 |
+     *   | salón      | «Un espacio a la altura»     | 766,7 |
+     *   | lobby      | «un momento para respirar.»  | 892,7 |
+     *   | habitación | «El día termina como debe:»  | 883,9 |
+     *   | **gym**    | «Un espacio para mantenerte» | **885,1** |
+     *
+     * Esta frase es la más larga del brief: a 74 el gancho mide 963 px, se pasa
+     * de los 904 y Chrome lo parte en dos — el bloque se iba a TRES líneas y sus
+     * cinco hermanas son de dos. A 68 entra en una y el BLOQUE queda del mismo
+     * ancho que el del lobby y el del cierre, que es lo que el ojo compara al
+     * deslizar. El cuerpo menor no se nota; un bloque de otro ancho sí.
+     */
+    cuerpo: 68,
+    /**
+     * ⚠️ 4 y no 2 porque el sello arranca en **«16:00»**, y el `1` de Trade
+     * Gothic Bold Condensed es el glifo con más hueco propio de todo el
+     * carrusel — el mismo caso del `12:00` del lobby, que también lleva 4.
+     * Los sellos que empiezan en `8:30` y `9:30` llevan 2.
+     */
+    sangriaSello: 4,
+    sangriaGancho: 1,
+    // La «e» de «en movimiento.» — medida sobre el render: con 2 la tinta caía
+    // en x=89 y con 3 cae en el margen exacto.
+    sangriaRemate: 3,
+  },
   habitacion: {
     clip: 'habitacion',
     // ⏸ SIN HORA — contenido no la entregó. Ver la nota 2 de la cabecera.
@@ -837,28 +925,6 @@ const LAMINAS: Record<string, Lamina> = {
     sangriaSello: 1,
     sangriaGancho: 1,
     sangriaRemate: 3,
-  },
-  /**
-   * ⏸ GYM — ARMADA PERO NO SE ENTREGA. El brief no la trae; el comentario la
-   * pide («Faltó GYM!») y contenido todavía no escribió su texto.
-   *
-   * ⚠️ Y ojo: **la sesión de video NO tiene gimnasio.** Queda con la foto de la
-   * sesión profesional (`HDT_82`) y su movimiento de código, así que cuando
-   * llegue el texto hay que decidir con Eli si se pide material filmado del gym
-   * o si esta lámina se acepta como la única que no es video.
-   */
-  gym: {
-    clip: '',
-    hora: '16:00',
-    rotulo: 'UN RATO PARA ENTRENAR EN EL GYM',
-    gancho: '—',
-    remate: '(falta el texto de contenido)',
-    cuerpo: 74,
-    sangriaSello: 2,
-    sangriaGancho: 1,
-    sangriaRemate: 3,
-    camara: {z: [1.04, 1.095], d: [[0, 6], [0, -8]]},
-    pendiente: true,
   },
 };
 
@@ -951,6 +1017,7 @@ const LaminaInterior: React.FC<{clave: keyof typeof LAMINAS}> = ({clave}) => {
 export const DtC1S5Desayuno: React.FC = () => <LaminaInterior clave="desayuno" />;
 export const DtC1S5Salon: React.FC = () => <LaminaInterior clave="salon" />;
 export const DtC1S5Lobby: React.FC = () => <LaminaInterior clave="lobby" />;
-export const DtC1S5Habitacion: React.FC = () => <LaminaInterior clave="habitacion" />;
-/** ⏸ No se entrega — ver la nota 1 de la cabecera. */
+/** SLIDE 4 · 16:00 · la lámina que contenido escribió el 21-09. */
 export const DtC1S5Gym: React.FC = () => <LaminaInterior clave="gym" />;
+/** SLIDE 5 · el cierre. Era la 4 hasta que entró el gym. */
+export const DtC1S5Habitacion: React.FC = () => <LaminaInterior clave="habitacion" />;

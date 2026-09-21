@@ -18,6 +18,11 @@ resolverla. Ver el bloque «Ronda 2» de la página.
 Ronda 3 (21-09): un solo ajuste, en la portada — el trazo tapaba la tilde de
 «día» y el bloque estaba despegado del titular. Va con ANTES / DESPUÉS al
 tamaño real y con el detalle a 2×, porque el arreglo es de píxeles.
+
+Ronda 4 (21-09, tarde): contenido escribió el slide del GYM y el carrusel pasa a
+SEIS láminas. Acá no hay antes/después que mostrar —la lámina es nueva— pero sí
+hay que enseñar la RENUMERACIÓN, porque el cierre cambia de n°5 a n°6 y el
+portal levanta por nombre.
 """
 import shutil
 import sys
@@ -45,24 +50,21 @@ LAMINAS = [
     ("C1 S5 DT n°4.mp4", "SLIDE 3", "12:00 · TIEMPO PARA TI",
      "Entre reunión y reunión, / un momento para respirar.",
      "<code>COWORK / IMG_5736</code> · 5,97 s a 1,0×"),
-    ("C1 S5 DT n°5.mp4", "SLIDE 4", "sin hora · CIERRE EN LA HABITACIÓN",
+    ("C1 S5 DT n°5.mp4", "SLIDE 4 · NUEVA", "16:00 · SIGUE CON TU RUTINA DIARIA",
+     "Un espacio para mantenerte / en movimiento.",
+     "<code>CONTENIDO HOTEL 2026 / GYM / IMG_1700</code> · 4,99 s a 1,0×"),
+    ("C1 S5 DT n°6.mp4", "SLIDE 5 · era la n°5", "sin hora · CIERRE EN LA HABITACIÓN",
      "El día termina como debe: / con comodidad.",
      "<code>HABITACIONES / IMG_5741</code> · 6,37 s a 1,0×"),
 ]
 
 PENDIENTES = [
-    ("⏸ Falta el slide del <b>GYM</b>",
-     "El brief no lo trae; la fila COMENTARIOS PARA DISEÑO lo pide («Faltó GYM!») "
-     "y contenido todavía no escribió su texto. La lámina está armada y la hora "
-     "la da el propio comentario (16:00). <b>Y ojo: la sesión de video no tiene "
-     "gimnasio</b> — hoy quedaría con la foto <code>HDT_82</code> y movimiento de "
-     "código, o sea la única lámina que no sería video. Hay que decidirlo."),
     ("⏸ Falta la <b>hora del cierre</b>",
      "El comentario da tres horas (8:30 desayuno, 9:30 salones, 12 cowork) y la "
      "cuarta es la del gym. Para «cierre en la habitación» no hay hora, y "
      "ponerle una sería escribir contenido. La lámina va sin sello de hora; es "
      "un dato y entra en un render."),
-    ("⚠️ Los cuatro textos <b>terminan en punto</b>",
+    ("⚠️ Los <b>cinco</b> textos <b>terminan en punto</b>",
      "La regla de DT dice que los títulos no llevan punto, pero los textos salen "
      "literales de la grilla y corregirlos sería editarle el copy al cliente. "
      "Van con punto. Si el cliente los quiere sin punto, lo pide."),
@@ -83,7 +85,7 @@ DECISIONES = [
      "decide una pieza. El <b>gesto</b> de la referencia sí entra: el trazo que "
      "rodea la palabra está dibujado y se dibuja solo en pantalla. Si la quieres "
      "manuscrita de verdad, eso lo apruebas tú como marca."),
-    ("Las cinco láminas firman con la <b>versalita</b> al pie",
+    ("Las seis láminas firman con la <b>versalita</b> al pie",
      "Y ninguna lleva el logotipo sobrepuesto. §B del manual dice que en feed el "
      "logotipo por defecto no va —«ensucia el feed»— y que sólo aparece en "
      "programas del hotel y piezas importantes; un carrusel de experiencia no es "
@@ -111,10 +113,19 @@ QA = """CONTRASTE — cada tinta contra su fondo real, en el peor fotograma
   Desayuno     sello 5,21:1 · titular 4,80:1 · firma 4,57:1
   Salón        sello 5,72:1 · titular 3,75:1 · firma 6,99:1
   Lobby        sello 6,50:1 · titular 3,98:1 · firma 6,76:1
+  GYM          sello 5,26:1 · titular 4,39:1 · firma 4,54:1   ← la nueva
   Habitación   sello 5,08:1 · titular 4,32:1 · firma 4,74:1
+  Las varas: 3:1 para el titular (es texto grande) y 4,5:1 para el texto chico.
 
-CANTO IZQUIERDO — las 15 franjas de texto, contra el margen de DT (88 px)
-  las 15 en x = 88 ✅
+  ⚠️ La firma del gym pasa por poco (4,54 contra 4,5). Midiendo el fondo de
+     verdad —enmascarando la letra— da 5,5:1, o sea que el margen real es mayor;
+     el número de arriba es el del chequeo, que mide a la baja. Ver más abajo.
+
+CANTO IZQUIERDO — las 18 franjas de texto, contra el margen de DT (88 px)
+  las 18 en x = 88 ✅
+
+DURACIÓN Y LIENZO — las 6 láminas
+  2160 × 2700 · 5,06 s cada una · bajo el tope de 6 s
 
 HOLGURA DEL TRAZO — cada glifo de «Tu día» contra el círculo (ronda 3)
   «T» +20,2  «u» +31,3  «d» +27,1  «í» +20,8  «a» +16,3 px
@@ -144,7 +155,7 @@ def main() -> int:
 
     html = f"""<!doctype html>
 <html lang="es"><meta charset="utf-8">
-<title>DT · Carrusel S5 · 28-09 — ronda 3</title>
+<title>DT · Carrusel S5 · 28-09 — ronda 4</title>
 <style>
   :root {{ --azul:#09194E; --verde:#A3CD39; --papel:#F4F5F7; }}
   * {{ box-sizing:border-box; }}
@@ -192,12 +203,12 @@ def main() -> int:
 </style>
 <header>
   <h1>DoubleTree · Carrusel de videos «Tu día en DoubleTree»</h1>
-  <p>FEED columna M · 28 de septiembre 12:00 · 5 láminas de 5,0 s ·
-     <b>2160×2700</b> · <b>ronda 3: ajustada la portada</b> ·
-     <b>falta el slide del GYM</b></p>
+  <p>FEED columna N · 28 de septiembre 12:00 · <b>6 láminas</b> de 5,0 s ·
+     <b>2160×2700</b> · <b>ronda 4: entró el slide del GYM</b> ·
+     el cierre pasa de n°5 a <b>n°6</b></p>
 </header>
 <main>
-  <h2>Las láminas — se reproducen solas, en bucle</h2>
+  <h2>Las seis láminas — se reproducen solas, en bucle</h2>
   <div class="fila">
 {laminas}
   </div>
@@ -288,6 +299,74 @@ def main() -> int:
       ahora sale del contorno de los glifos, no de mirar el render.</p></li>
   </ul>
 
+  <h2>Ronda 4 — el slide del GYM, que es lo único nuevo</h2>
+  <ul>
+    <li class="r2"><b>Contenido lo escribió, y va tal cual</b><p>El brief de la
+      grilla pasó de cuatro slides a cinco. El nuevo es
+      <b>«SLIDE 4 – SIGUE CON TU RUTINA DIARIA (GYM)»</b>, visual
+      «mostrar espacio disponible del GYM (sin personas)» y texto
+      <b>«Un espacio para mantenerte en movimiento.»</b> Comparado palabra por
+      palabra contra la versión del 15-09: <b>ése es el único cambio del brief</b>,
+      lo demás está idéntico.</p></li>
+    <li class="r2"><b>⭐ Y es VIDEO, no una foto — se encontró material filmado
+      del gimnasio</b><p>El 17-09 quedó anotado que no había video del gym en
+      ninguna carpeta y que esta lámina tendría que salir de la foto
+      <code>HDT_82</code>, siendo la única sin movimiento real. <b>Estaba mal</b>:
+      <code>CONTENIDO HOTEL 2026 › GYM</code> tiene <b>7 clips</b> y se habían
+      descartado por ser «de iPhone» — cuando los otros cinco clips de este mismo
+      carrusel son exactamente eso. Medidos, traen la misma ficha técnica que la
+      sesión del 16-09 y entran por la misma cadena. Las seis láminas son
+      video.</p></li>
+    <li class="r2"><b>De los 7 se eligió <code>IMG_1700</code></b><p>Y no por
+      contraste: los siete pasan las varas de sobra. Lo que decide es qué queda
+      <b>detrás del texto</b> y qué pide el brief («mostrar el espacio»).
+      En <code>1699</code> el brazo de la torre de poleas y el rack de balones
+      cruzan el titular; <code>1698</code> es un detalle precioso de mancuernas
+      pero no es «el espacio»; <code>1697</code> abre sobre una pared vacía;
+      <code>1694/95/96</code> son planos cortos de cintas y elípticas.
+      <b><code>1700</code> recorre la sala entera</b> —bicicleta, torre, espejo,
+      mancuernas— con el techo y la pared limpios justo donde vive el texto. Y
+      dura <b>4,99 s</b> para una lámina de 5: es el único clip del carrusel que
+      va a velocidad real, sin ralentizar.</p></li>
+    <li class="r2"><b>El rótulo va «SIGUE CON TU RUTINA DIARIA», sin el «(GYM)»</b>
+      <p>Misma regla que ya aplicamos en el slide 3: el brief dice «TIEMPO PARA TI
+      (COWORK / LOBBY)» y el sello dice «TIEMPO PARA TI». El paréntesis del brief
+      nombra el <b>espacio</b>, que es lo que muestra la imagen, no el rótulo. Los
+      otros cuatro rótulos van textuales porque no traen paréntesis.
+      <b>Si lo quieres con el «(GYM)» adentro, se pone.</b></p></li>
+    <li class="r2"><b>El titular va a cuerpo 68 y no 74 — a propósito</b><p>Esta
+      frase es la más larga del brief. A 74 no cabe en una línea y Chrome la
+      parte: el bloque se iba a <b>tres</b> líneas y sus cinco hermanas son de
+      dos. Bajando a 68 entra en una y el <b>bloque queda del mismo ancho</b> que
+      el del lobby (892 px) y el del cierre (884 px) — el suyo mide 885. Es tu
+      propio criterio de DT del 15-09: la medida manda y el cuerpo es la
+      consecuencia. Al deslizar, lo que el ojo compara es el ancho del bloque, no
+      el tamaño de la letra.</p></li>
+    <li class="r2"><b>El gimnasio se gradó un punto más abajo</b><p>Tiene <b>el
+      piso más claro del carrusel</b>, y la versalita de la firma caía a
+      <b>4,35:1</b> — bajo la vara de 4,5 que se le exige al texto chico. Se
+      bajaron brillo y gamma del clip, como ya hace la portada por la misma
+      razón, y sube a <b>4,9:1</b>. No se tocó el velo: esa rampa vale para las
+      seis láminas y cambiarla por una sería mover lo aprobado.</p></li>
+    <li class="pend"><b>⚠️ Encontré algo que revisar en el control de calidad —
+      y NO lo toqué</b><p>Al medir esta lámina apareció que el chequeo de
+      contraste promedia la franja <b>con la letra blanca adentro</b>, así que el
+      número que canta depende de lo apretada que esté la franja, no sólo del
+      fondo. El sesgo es hacia el lado seguro —da falsas alarmas, no esconde
+      problemas—, pero significa que <b>tres de las láminas ya entregadas tienen
+      la franja corrida y no se está midiendo el fondo de sus últimas
+      palabras</b>. Arreglarlo cambia los números de una pieza ya aprobada y
+      puede destapar algo en lo que ya está en el Drive, así que <b>eso merece
+      una pasada propia, con su antes y después. ¿La hacemos?</b></p></li>
+    <li class="pend"><b>⚠️ OJO AL SUBIR AL DRIVE: hay que renumerar</b><p>El gym
+      entra en el lugar 4 del brief, o sea entre el cowork y el cierre. Eso
+      significa que <b>el archivo <code>n°5</code> ya no es el cierre: es el
+      gym</b>, y el cierre pasa a ser <code>n°6</code>. El portal levanta por
+      nombre y ordena por número, así que hay que <b>reemplazar</b> el
+      <code>n°5</code> que ya está arriba y <b>subir</b> el <code>n°6</code>
+      nuevo. Las cuatro primeras no se tocan.</p></li>
+  </ul>
+
   <h2>Decisiones que siguen en pie — dime cuál cambio</h2>
   <ul>
 {bloque(DECISIONES, "dec")}
@@ -297,7 +376,7 @@ def main() -> int:
   <pre>{QA}</pre>
 </main>
 </html>"""
-    salida = BASE / "revision-r3.html"
+    salida = BASE / "revision-r4.html"
     salida.write_text(html, encoding="utf-8")
     print(f"  {salida.relative_to(RAIZ)}")
     return 0

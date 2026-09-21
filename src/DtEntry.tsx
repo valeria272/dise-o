@@ -117,22 +117,22 @@ const Raiz: React.FC = () => (
 
     <Folder name="DT-Carrusel-S5">
       {/*
-        FEED col M · 28-09 12:00 · CARRUSEL DE VIDEOS «TU DÍA EN DOUBLETREE».
-        Estado de la grilla: REVISAR CONTENIDO.
+        FEED col N · 28-09 12:00 · CARRUSEL DE VIDEOS «TU DÍA EN DOUBLETREE».
+        Estado de la grilla: CORREGIDA (el 17-09 era REVISAR CONTENIDO).
 
         Las referencias son las dos que subió Eli el 17-09 a
         `S5 HILTON SEP 2026 › DT › REFERENCIA CARRUSEL`.
 
-        ⏸ `DT-V-S5-Gym` está armada pero NO SE ENTREGA: es el slide que
-        contenido todavía no escribe. Queda registrada a propósito —su foto ya
-        está elegida— para que entre en un render cuando llegue el texto.
+        ⭐ 21-09: contenido escribió el slide del GYM y el carrusel pasó a SEIS
+        láminas. **El orden de este bloque ES el orden de entrega**: el gym entra
+        entre el cowork y el cierre, y el cierre pasa de n°5 a **n°6**.
       */}
       <Composition id="DT-V-S5-Portada" component={DtC1S5Portada} {...feedVideo} />
       <Composition id="DT-V-S5-Desayuno" component={DtC1S5Desayuno} {...feedVideo} />
       <Composition id="DT-V-S5-Salon" component={DtC1S5Salon} {...feedVideo} />
       <Composition id="DT-V-S5-Lobby" component={DtC1S5Lobby} {...feedVideo} />
-      <Composition id="DT-V-S5-Habitacion" component={DtC1S5Habitacion} {...feedVideo} />
       <Composition id="DT-V-S5-Gym" component={DtC1S5Gym} {...feedVideo} />
+      <Composition id="DT-V-S5-Habitacion" component={DtC1S5Habitacion} {...feedVideo} />
     </Folder>
   </>
 );

@@ -1239,6 +1239,94 @@ el enlace que ya había circulado sigue sirviendo. Las otras cuatro no se tocaro
 
 ---
 
+### ⭐⭐⭐ RONDA 4 DEL CARRUSEL S5 (21-09) — entró el GYM, y **el material no se descalifica por la cámara**
+
+Contenido escribió el slide que faltaba desde el 17-09. El brief pasó de cuatro
+slides a cinco —entra `SLIDE 4 – SIGUE CON TU RUTINA DIARIA (GYM)`, texto «Un
+espacio para mantenerte en movimiento.»— y el cierre en la habitación pasa de
+slide 4 a slide 5. Verificado por diff contra la instantánea del 15-09: **ése es
+el único cambio del brief**. El estado de la celda pasó de `REVISAR CONTENIDO` a
+`CORREGIDA`.
+
+**1. ⛔⛔ LA REGLA GRANDE: «es sólo video de iPhone» NO es un motivo para
+descartar material.**
+
+Este repo llevaba cuatro días diciendo que **no existía video del gimnasio** y
+que la lámina tendría que salir de la foto `HDT_82` —o sea ser la única del
+carrusel sin movimiento real—, con la decisión escalada a Eli. Era falso.
+`CONTENIDO HOTEL 2026 › GYM` (`1Xl8ECYMSqtfJNlseP9zddRi9gI43Kz6i`) tiene **7
+clips**, y se habían descartado por ser «sólo 7 `.MOV` de iPhone».
+
+⭐ **Los otros cinco clips de este mismo carrusel son exactamente eso.** Medidos,
+los 7 del gym traen la misma ficha técnica que la sesión de video del 16-09:
+HEVC Main 10, HLG `bt2020nc/arib-std-b67`, 3840×2160 con `rotation of -90` y
+59,9 fps. Entran por `dt-c1-s5-clips.py` sin tocar una línea.
+
+La regla: **un material se descarta por lo que se ve en el fotograma —gente,
+marca ajena, encuadre, luz—, nunca por con qué se grabó.** Si la pieza ya usa
+material de esa misma fuente, la comparación está hecha. Es la misma familia que
+`agotar-material-antes-de-bloquear`: antes de decir «falta», hay que mirar lo que
+ya está descartado y preguntarse con qué criterio se descartó.
+
+**2. De 7 candidatos, el que decide NO es el contraste: es la colisión.**
+
+Los siete pasan las varas de sobra —el peor titular de los siete da 4,24:1 sobre
+una vara de 3—, así que medir contraste no elegía nada. Lo que eligió fue qué
+queda **detrás del bloque de texto** durante los 5 s, más lo que pide el brief
+(«mostrar espacio disponible del GYM»):
+
+| clip | por qué no / por qué sí |
+|---|---|
+| `1699` | el brazo de la torre de poleas y el rack de balones **cruzan el titular** |
+| `1698` | detalle de mancuernas: precioso, pero no es «el espacio», y sube a la banda |
+| `1697` | abre sobre un rincón de pared vacía — dos segundos muertos |
+| `1694/95/96` | planos cortos de cintas y elípticas; `1694` abre sobre el espejo |
+| **`1700`** | paneo que recorre la sala entera con **techo y pared limpios** arriba |
+
+Y `1700` dura **4,99 s** para una lámina de 5,0: es el único clip del carrusel
+que va a velocidad real, sin ralentizar.
+
+**3. El cuerpo del titular es la CONSECUENCIA de la medida — también acá.**
+
+Es el criterio de DT que dictó Eli el 15-09 sobre el estático de Honors, y
+resulta que este carrusel ya lo aplicaba sin decirlo: el cuerpo cambia de lámina
+en lámina (78, 78, 74, 74) para que la línea más larga de cada una caiga en la
+misma medida. Medido con `fontTools` sobre Stag, con el `letter-spacing` de la
+ronda 2 y los 904 px de medida útil:
+
+| lámina | línea más larga | ancho |
+|---|---|---|
+| desayuno | «con la energía correcta.» | 815,8 |
+| salón | «Un espacio a la altura» | 766,7 |
+| lobby | «un momento para respirar.» | 892,7 |
+| habitación | «El día termina como debe:» | 883,9 |
+| **gym** | «Un espacio para mantenerte» | **885,1** (a cuerpo **68**) |
+
+La frase del gym es la más larga del brief: a 74 el gancho mide 963 px, se pasa
+de los 904 y **Chrome la parte en dos** — el bloque se iba a TRES líneas cuando
+sus cinco hermanas son de dos. ⚠️ Eso es lo que hay que mirar al agregar una
+lámina a un carrusel vivo: **no que el cuerpo empate, sino que el BLOQUE mida lo
+mismo**, que es lo que el ojo compara al deslizar.
+
+**4. El rótulo del sello sale del brief, pero sin el paréntesis.**
+
+`SLIDE 4 - SIGUE CON TU RUTINA DIARIA (GYM)` → sello «SIGUE CON TU RUTINA
+DIARIA». Es la regla que ya se había aplicado en la slide 3 sin escribirla:
+`TIEMPO PARA TI (COWORK / LOBBY)` → «TIEMPO PARA TI». **El paréntesis del brief
+nombra el ESPACIO —que es lo que muestra la imagen—, no el rótulo.** Los rótulos
+sin paréntesis van textuales. Informado a Eli para que lo confirme.
+
+**5. ⛔⛔ Y LA TRAMPA DE LA ENTREGA: insertar una lámina RENUMERA, y el Drive
+reemplaza por NOMBRE.**
+
+El gym entra en el lugar 4, así que `C1 S5 DT n°5.mp4` **ya no es el cierre: es
+el gym**, y el cierre pasa a `n°6`. Subir «reemplazando por nombre» sin mirar
+deja el cierre pisado por el gym y el carrusel con cinco láminas y un hueco. El
+orden correcto: **subir primero el `n°6` nuevo, después reemplazar el `n°5`.**
+Las cuatro primeras no se tocan y conservan su `fileId`.
+
+---
+
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 
 Verificado glifo a glifo con `fontTools` sobre los archivos de esta máquina: los

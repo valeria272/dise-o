@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 """DOUBLETREE · CARRUSEL S5 — rinde las láminas a MP4 con el nombre de entrega.
 
-    python scripts/dt-c1-s5-rendir.py            # las 5 que se entregan
-    python scripts/dt-c1-s5-rendir.py --gym      # incluye la lámina pendiente
+    python scripts/dt-c1-s5-rendir.py            # las 6 del carrusel
+    python scripts/dt-c1-s5-rendir.py --solo Gym Habitacion   # sólo esas dos
 
 ⭐⭐ **RONDA 2 — «¿por qué se ve tan mal la calidad? Ideal 1080px o 2k».**
 
@@ -55,26 +55,41 @@ ENTRADA = RAIZ / "src/DtEntry.tsx"
 SALIDA = RAIZ / "out/hilton/dt/c1-s5/entrega"
 
 # composición → nombre de entrega. El orden es el orden del carrusel.
+# ⭐⭐ 21-09 — **LA RENUMERACIÓN**. Contenido escribió el slide del GYM, que el
+# brief pone en el lugar 4, así que entra entre el cowork y el cierre y **el
+# cierre pasa de `n°5` a `n°6`**. El carrusel tiene ahora SEIS láminas.
+#
+# ⛔⛔ Y por eso hay que MIRAR EL DRIVE antes de subir: el archivo que hoy vive
+# allá como `C1 S5 DT n°5.mp4` es el CIERRE, y el que este script genera con ese
+# nombre es el GYM. Subir «reemplazando por nombre» deja el carrusel con el
+# cierre perdido y el gym en su sitio. El cierre se sube como `n°6` (archivo
+# nuevo) y `n°5` se REEMPLAZA con el gym — en ese orden.
 PIEZAS = [
     ("DT-V-S5-Portada",    "C1 S5 DT n°1.mp4"),
     ("DT-V-S5-Desayuno",   "C1 S5 DT n°2.mp4"),
     ("DT-V-S5-Salon",      "C1 S5 DT n°3.mp4"),
     ("DT-V-S5-Lobby",      "C1 S5 DT n°4.mp4"),
-    # ⏸ Entre la n°4 y la n°5 va el GYM cuando contenido escriba su texto. Al
-    # insertarlo hay que RENUMERAR: el cierre pasa a ser la n°6.
-    ("DT-V-S5-Habitacion", "C1 S5 DT n°5.mp4"),
+    ("DT-V-S5-Gym",        "C1 S5 DT n°5.mp4"),
+    ("DT-V-S5-Habitacion", "C1 S5 DT n°6.mp4"),
 ]
-PENDIENTE = ("DT-V-S5-Gym", "PENDIENTE - C1 S5 DT gym (falta texto).mp4")
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--gym", action="store_true",
-                    help="rinde también la lámina que NO se entrega")
+    ap.add_argument("--solo", nargs="*", default=None,
+                    help="rinde sólo esas láminas (Portada, Desayuno, Salon, "
+                         "Lobby, Gym, Habitacion)")
     a = ap.parse_args()
 
     SALIDA.mkdir(parents=True, exist_ok=True)
-    piezas = list(PIEZAS) + ([PENDIENTE] if a.gym else [])
+    piezas = PIEZAS
+    if a.solo:
+        quiere = {x.lower() for x in a.solo}
+        piezas = [p for p in PIEZAS
+                  if p[0].replace("DT-V-S5-", "").lower() in quiere]
+        if not piezas:
+            print(f"⛔ no reconocí {a.solo}")
+            return 1
     npx = "npx.cmd" if sys.platform == "win32" else "npx"
 
     for comp, nombre in piezas:

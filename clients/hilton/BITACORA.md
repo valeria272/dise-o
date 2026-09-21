@@ -1,3 +1,107 @@
+## 2026-09-21 (cierre 11) · Eli (Windows) — DT, CARRUSEL S5: **ENTRÓ EL GYM**, el carrusel pasa a SEIS
+
+**Qué pidió Eli.** «Toma el diseño del gym que nos faltaba, ahora ya está para
+que podamos diseñar esa slide, y sólo cambia el nombre a la otra. Verifica si
+cambió algo más.»
+
+**Qué cambió en la grilla, verificado por diff.** Se bajó la instantánea del día
+(`clients/hilton/grillas/api/dt-sept-20260921.json`) y se comparó por conjunto de
+cadenas contra la del 15-09, hoja por hoja:
+
+| Dónde | Qué cambió |
+|---|---|
+| **FEED 28-09 · el carrusel** | ⭐ El brief pasa de 4 a **5 slides**: entra `SLIDE 4 - SIGUE CON TU RUTINA DIARIA (GYM)`, visual «mostrar espacio disponible del GYM (Sin personas)», texto «Un espacio para mantenerte en movimiento.» El cierre pasa a ser el slide 5. **Es el único cambio del brief**, lo demás está palabra por palabra idéntico. Estado `REVISAR CONTENIDO` → **`CORREGIDA`** |
+| FEED 23-09 · estático Honors | Comentario nuevo: **«Cambiemos foto por habitación de categoría superior y ok!»** · estado `OK PARA DISEÑO` → **`APROBADO`** |
+| FEED · columna nueva 27-09 10:00 | **`CARRUSEL EFEMERIDE - DÍA DEL TURISMO`** — sólo el título, **el brief viene vacío** |
+| FEED 14-09 → 16-09 | La opinión de Booking se corrió de fecha; estado `YA POSTEADO` |
+| STORIES 18-09 | estado → `APROBADO` |
+| STORIES 21-09 animada | horario **11:00 → 16:00** · estado → `APROBADO` |
+| REELS 10-09 | comentario nuevo: «No tiene el ajuste el video editado verdad?» · estado → `CORREGIDA` |
+
+**Qué se hizo.** La lámina del gym, con su renumeración. El carrusel queda en
+**seis** láminas de 2160×2700 y 5,06 s, todas video.
+
+⭐⭐ **Y el hallazgo de la sesión: el gimnasio SÍ estaba filmado.** Este repo
+llevaba cuatro días diciendo que no había video del gym en ninguna carpeta y que
+la lámina tendría que salir de la foto `HDT_82` —o sea ser la única sin
+movimiento real, con la decisión escalada a Eli—. Era falso: `CONTENIDO HOTEL
+2026 › GYM` (`1Xl8ECYMSqtfJNlseP9zddRi9gI43Kz6i`) tiene **7 clips**, descartados
+en su momento por ser «sólo `.MOV` de iPhone» **cuando los otros cinco clips de
+este mismo carrusel son exactamente eso**. Medidos, traen la misma ficha técnica
+que la sesión del 16-09 (HEVC Main 10, HLG, 3840×2160 rotado −90, 59,9 fps) y
+entran por `dt-c1-s5-clips.py` sin tocar una línea. La regla quedó escrita:
+**un material se descarta por lo que se ve en el fotograma, nunca por con qué se
+grabó.**
+
+**De los 7 se eligió `IMG_1700`**, y no por contraste —los siete pasan las varas
+de sobra—: lo que decide es qué queda detrás del bloque de texto durante los 5 s
+y que el brief pide «el espacio». `1699` mete la torre de poleas en el titular,
+`1698` es detalle de mancuernas, `1697` abre sobre una pared vacía. `1700`
+recorre la sala entera con el techo limpio arriba, y dura **4,99 s**: es el único
+clip del carrusel que va a velocidad real, sin ralentizar. `fy=0.50` y no más
+abajo — con 0,44 el marco del espejo se mete en la caja del texto.
+
+**El titular va a cuerpo 68 y no 74.** Es la frase más larga del brief: a 74 el
+gancho mide 963 px contra 904 de medida útil y Chrome lo parte, dejando el bloque
+en TRES líneas cuando sus cinco hermanas son de dos. A 68 entra en una y el
+bloque mide **885 px**, que es lo mismo que el del lobby (892) y el del cierre
+(884). Es el criterio de DT del 15-09: la medida manda y el cuerpo es la
+consecuencia.
+
+**El rótulo va «SIGUE CON TU RUTINA DIARIA», sin el «(GYM)»** — misma regla que
+la slide 3 (`TIEMPO PARA TI (COWORK / LOBBY)` → «TIEMPO PARA TI»): el paréntesis
+del brief nombra el espacio, que es lo que muestra la imagen. Informado a Eli.
+
+⛔⛔ **LA TRAMPA DE LA ENTREGA: insertar una lámina RENUMERA y el Drive reemplaza
+por NOMBRE.** El gym entra en el lugar 4, así que **`C1 S5 DT n°5.mp4` ya no es
+el cierre: es el gym**, y el cierre pasa a `n°6`. Subir «reemplazando por nombre»
+sin mirar deja el cierre pisado. Orden correcto: **primero subir el `n°6` nuevo,
+después reemplazar el `n°5`.** Las cuatro primeras no se tocan.
+
+**Dónde quedó.**
+- Entrega: `out/hilton/dt/c1-s5/entrega/C1 S5 DT n°1..6.mp4` (2160×2700, 5,06 s).
+- **NO se subió a Drive** — la renumeración es delicada y la hace Eli mirando.
+- Composición: `src/compositions/hilton/DtC1S5Dia.tsx`, lámina `gym`.
+- Clip: `scripts/dt-c1-s5-clips.py`, entrada `"gym"`. El `.MOV` no viaja en git
+  (34 MB) pero el script documenta id, tramo, recorte y gradación.
+- Página de revisión: `out/hilton/dt/c1-s5/revision-r4.html`.
+- QA: **pasa entero**. Typecheck limpio.
+
+⚠️ **El gimnasio se gradó un punto más abajo** (brillo −0,04, gamma 0,95) porque
+tiene el piso más claro del carrusel y la versalita de la firma caía a 4,35:1,
+bajo la vara de 4,5. Sube a **4,54:1** — pasa, pero por poco. Midiendo el fondo
+real, enmascarando la tinta, da 5,5:1, así que el margen de verdad es mayor. No
+se tocó el velo: esa rampa vale para las seis.
+
+⚠️⚠️ **Y apareció algo del QA que NO se arregló acá, a propósito.**
+`peor_tercio` promedia la banda **con la tinta blanca adentro**, así que el
+número que canta depende de lo apretada que esté la caja y no sólo del fondo. El
+sesgo es conservador —da falsas alarmas, no tapa fallos—, pero significa que hoy
+conviven dos varas de medir en el mismo archivo (las bandas de la portada son el
+contorno del glifo, las de las interiores llevan 10 px de holgura) y que **tres
+bandas de láminas ya entregadas no cubren su tinta por la derecha**: `desayuno`
+se queda 35 px corto en el sello y 44 en el titular, `lobby` 58 en el titular,
+`habitación` 24. Es el mismo modo de falla que la ronda 3 encontró en la portada.
+Arreglarlo re-mide una pieza ya aprobada y puede destapar algo de lo que está en
+el Drive: **merece una pasada propia**. Está informado en la página de revisión y
+la nota completa está al pie de `scripts/dt-c1-s5-qa.py`.
+
+**Qué sigue.**
+1. **Subir las seis al Drive con la renumeración**, en el orden de arriba.
+2. La **hora del cierre** sigue sin entregarla contenido: la lámina n°6 va sin
+   sello de hora. Es lo único que queda abierto de esta pieza.
+3. ⭐ **El FEED del 27-09 es una pieza nueva sin brief**: la celda dice
+   `CARRUSEL EFEMERIDE - DÍA DEL TURISMO` y el resto está vacío. Hay que pedirlo.
+4. El estático de Honors del 23-09 quedó **APROBADO**, pero con un comentario
+   nuevo encima: «Cambiemos foto por habitación de categoría superior y ok!».
+   Esa pieza se entrega desde el editable `.ai`, no desde Remotion.
+
+**Abierto** (de la ronda 2, sin cambios): portada sin lockup a confirmar por
+escrito · los textos con punto final · el `12:00` · la gente al fondo de los
+clips del salón y la portada.
+
+---
+
 ## 2026-09-21 (cierre 10) · Eli (Windows) — BETWEEN, CONCURSO: **SUBIDO AL DRIVE**
 
 **Qué se hizo.** Eli mandó la carpeta de destino y se subieron las dos láminas

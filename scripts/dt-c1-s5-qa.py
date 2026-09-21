@@ -93,6 +93,29 @@ BANDAS = {
         ("titular", (88, 206, 900, 382), BLANCO, 3.0),
         ("firma",   (560, 1266, 992, 1292), BLANCO, 4.5, 70),
     ],
+    # ⭐ GYM — la lámina que entró el 21-09. La tinta se MIDIÓ sobre el render
+    # (umbral 228 en los tres canales): sello x 88→694 y 138→166 · titular
+    # x 88→963 y 222→345. Sobre eso, **la misma holgura que sus cuatro
+    # hermanas**: 10 px arriba y abajo, y el canto derecho por fuera del último
+    # glifo.
+    #
+    # ⛔⛔ Y ESTO COSTÓ UNA FALSA ALARMA, que es una regla nueva: `peor_tercio`
+    # promedia la banda **con la tinta blanca adentro**, así que una caja
+    # ajustada al glifo mide un fondo más claro y canta un contraste más bajo
+    # del real. Con 2 px de holgura la banda llevaba 8,9 % de tinta —contra el
+    # 5,5-6,8 % de las otras cuatro— y el sello daba 4,30:1; con la holgura de
+    # sus hermanas da 5,4:1, y el fondo REAL, enmascarando la tinta, da 6,96:1.
+    # El sesgo es CONSERVADOR —sólo puede dar falsa alarma, nunca tapar un
+    # fallo—, pero una banda sólo se compara contra otra medida con la misma
+    # vara. Ver la nota al pie de este archivo.
+    #
+    # ⚠️ Su titular va a cuerpo 68 y no 74, así que sus franjas NO coinciden con
+    # las de las otras: el bloque empieza más abajo y termina más arriba.
+    "DT-V-S5-Gym": [
+        ("sello",   (88, 128, 700, 176), BLANCO, 4.5),
+        ("titular", (88, 212, 971, 355), BLANCO, 3.0),
+        ("firma",   (560, 1266, 992, 1292), BLANCO, 4.5, 70),
+    ],
     "DT-V-S5-Habitacion": [
         ("sello",   (88, 128, 560, 168), BLANCO, 4.5),
         ("titular", (88, 196, 940, 372), BLANCO, 3.0),
@@ -155,6 +178,9 @@ IZQUIERDA = {
                            ("remate", 292, 378)],
     "DT-V-S5-Lobby":      [("sello", 128, 172), ("gancho", 200, 292),
                            ("remate", 292, 378)],
+    # ⚠️ El gym va a cuerpo 68: sus franjas están corridas respecto de las demás.
+    "DT-V-S5-Gym":        [("sello", 136, 168), ("gancho", 220, 285),
+                           ("remate", 298, 348)],
     "DT-V-S5-Habitacion": [("sello", 128, 172), ("gancho", 196, 288),
                            ("remate", 288, 374)],
 }
@@ -220,6 +246,45 @@ def main() -> int:
                   f"(margen {MARGEN} ±{TOLERANCIA})")
     print(f"\n{'✅ pasa' if not fallos else f'⛔ {fallos} fallo(s)'}")
     return 1 if fallos else 0
+
+
+# ───────────────────────────────────────────────────────────────────────────
+# ⚠️ LA NOTA AL PIE — LO QUE ESTE QA TODAVÍA MIDE MAL, Y QUE HAY QUE DECIDIR
+# ───────────────────────────────────────────────────────────────────────────
+#
+# Apareció el 21-09 al medir la lámina del gym, y vale para toda la cuenta.
+#
+# **1 · `peor_tercio` promedia la banda CON LA TINTA ADENTRO.** No mide el fondo:
+# mide fondo+tinta. Para tinta blanca eso sube el promedio y **baja** el
+# contraste que canta, así que el sesgo es conservador —da falsas alarmas, no
+# tapa fallos— pero hace que **el número dependa de lo apretada que esté la
+# caja**. Medido sobre el mismo fotograma del gym:
+#
+#   | banda del sello | % de tinta | canta | fondo real (tinta enmascarada) |
+#   |---|---|---|---|
+#   | ajustada al glifo (2 px) | 8,9 % | 4,30:1 | 6,96:1 |
+#   | con la holgura de sus hermanas (10 px) | ~6 % | 5,4:1 | 6,96:1 |
+#
+# **2 · Y por eso hoy conviven DOS varas de medir en este archivo.** Las bandas
+# de la portada salen de la ronda 3 y son el contorno exacto del glifo, sin
+# holgura. Las de las cinco interiores vienen de la ronda 2 y llevan ~10 px
+# arriba y abajo. Comparar un número de una con uno de otra no significa nada.
+#
+# **3 · Y hay bandas de interiores que NO cubren su tinta por la derecha** —el
+# `desayuno` se queda 35 px corto en el sello y 44 en el titular; el `lobby`, 58
+# en el titular; la `habitación`, 24—. Es el mismo modo de falla que la ronda 3
+# encontró en la portada: lo que queda fuera de la caja no se mide.
+#
+# ⛔ **No se arregló acá a propósito.** Rehacer `peor_tercio` y re-medir las
+# cinco bandas cambia los números de una pieza YA ENTREGADA Y APROBADA, y puede
+# destapar un fallo en lo que ya está en el Drive. Eso es una pasada propia, con
+# su antes/después, no un efecto colateral de agregar una lámina. Está informado
+# a Eli en la página de revisión de la ronda 4.
+#
+# El camino cuando se haga: medir el fondo **enmascarando los píxeles de tinta**,
+# y en la misma pasada verificar que ningún píxel de fondo se salga por arriba
+# (si no, un reflejo quemado detrás de una letra se enmascara junto con ella y
+# el fallo se esconde — que es justo lo que este QA hoy no puede hacer).
 
 
 if __name__ == "__main__":

@@ -40,6 +40,10 @@ se lee como cámara lenta y no como movimiento de cámara.
     quiere: es la toma más atmosférica de la carpeta.
   · `SALÓNES/IMG_5786` → hay alguien de pie al fondo del salón.
   · Las carpetas `PISO18` y `BETWEEN` de la sesión son de **otras marcas**.
+
+⭐ EL GYM NO SALE DE ESTA SESIÓN. La sesión del 16-09 no filmó el gimnasio; el
+material está en `CONTENIDO HOTEL 2026 › GYM` y tiene la misma ficha técnica.
+El detalle de por qué se eligió `IMG_1700` entre los 7 está en su entrada.
 """
 import argparse
 import subprocess
@@ -129,7 +133,49 @@ CLIPS = {
     # encuadre se abre y aparece la pared con los cuadros.
     "cowork": dict(src="cowork-5736.mov", dur=5.97, desde=0.95, fy=0.54,
                    contraste=1.05, satur=0.97, brillo=0.00, gamma=1.01),
-    # SLIDE 4 · Cierre: arranca cerrado en la almohada con la lámpara encendida
+    # ⭐⭐ SLIDE 4 · 16:00 · GYM — LA LÁMINA QUE FALTABA, Y **SÍ ES VIDEO**.
+    #
+    # ⛔ Lo que decía este repo hasta el 21-09 era que «no hay video de gimnasio
+    # en ninguna carpeta» y que la lámina tendría que salir de la foto `HDT_82`,
+    # siendo la única del carrusel sin movimiento real. **Era falso**, y el
+    # error está en cómo se leyó el banco: `CONTENIDO HOTEL 2026 › GYM`
+    # (`1Xl8ECYMSqtfJNlseP9zddRi9gI43Kz6i`) se había descartado por ser «sólo 7
+    # .MOV de iPhone» — cuando los otros cinco clips de este mismo carrusel son
+    # exactamente eso. Medidos, los 7 traen la MISMA ficha técnica que la sesión
+    # del 16-09: HEVC Main 10, HLG `bt2020nc/arib-std-b67`, 3840×2160 con
+    # `rotation of -90`, 59,9 fps. Entran por esta misma cadena sin tocar nada.
+    #
+    # ⭐ DE LOS 7 SE ELIGIÓ `IMG_1700`, y la razón NO es el contraste: los siete
+    # pasan las varas de sobra (el peor titular de todos da 4,24:1 sobre una
+    # vara de 3). Lo que decide es la COLISIÓN y lo que pide el brief —«mostrar
+    # espacio disponible del GYM»—:
+    #   · `1699` · el brazo de la torre de poleas y el rack de balones **cruzan
+    #     la caja del titular** durante todo el travelling.
+    #   · `1698` · rack de mancuernas: es un DETALLE precioso, pero no es «el
+    #     espacio», y las mancuernas suben a la banda del texto.
+    #   · `1697` · arranca sobre un rincón de pared vacía: dos segundos muertos.
+    #   · `1694`/`1695`/`1696` · cintas y elípticas en plano corto; `1694` abre
+    #     sobre el espejo, que devuelve la sala duplicada.
+    #   · **`1700`** · paneo continuo a la derecha que recorre la sala entera
+    #     —bicicleta, torre, espejo, mancuernas— con el techo y la pared limpios
+    #     justo donde vive el bloque de texto. Es el mismo registro de travel de
+    #     las otras cuatro.
+    #
+    # ⭐ Y dura **4,99 s** para una lámina de 5,0: sale a 0,998×, o sea a
+    # velocidad real. Es el único clip del carrusel que no hay que ralentizar.
+    #
+    # `fy=0.50` y no más abajo: con 0,65 la torre de poleas sube a la caja del
+    # titular. Con 0,50 el tercio de arriba queda en techo y pared.
+    #
+    # ⭐ LA GRADACIÓN VA UN PUNTO MÁS ABAJO QUE LAS OTRAS INTERIORES, y está
+    # medida: el gimnasio tiene **el piso más claro del carrusel** y la versalita
+    # de la firma caía a 4,35:1 en el fotograma 70, bajo la vara de 4,5 del texto
+    # chico. Con −0,04 de brillo y gamma 0,95 sube a 4,9:1. Es el mismo remedio
+    # —y el mismo rango— que ya usa la portada (−0,06 / 0,92) por la misma razón:
+    # cargarle más velo al pie sería tocar una rampa que vale para las seis.
+    "gym": dict(src="gym-1700.mov", dur=4.99, desde=0.00, fy=0.50,
+                contraste=1.06, satur=0.97, brillo=-0.04, gamma=0.95),
+    # SLIDE 5 · Cierre: arranca cerrado en la almohada con la lámpara encendida
     # y retrocede hasta abrir la habitación. 6,37 s → 1,0×, los primeros 5 s,
     # que son los que conservan el plano íntimo del arranque.
     "habitacion": dict(src="hab-5741.mov", dur=6.37, desde=0.10, fy=0.50,

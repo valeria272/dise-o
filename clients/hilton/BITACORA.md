@@ -58,9 +58,50 @@ el cierre: es el gym**, y el cierre pasa a `n°6`. Subir «reemplazando por nomb
 sin mirar deja el cierre pisado. Orden correcto: **primero subir el `n°6` nuevo,
 después reemplazar el `n°5`.** Las cuatro primeras no se tocan.
 
-**Dónde quedó.**
-- Entrega: `out/hilton/dt/c1-s5/entrega/C1 S5 DT n°1..6.mp4` (2160×2700, 5,06 s).
-- **NO se subió a Drive** — la renumeración es delicada y la hace Eli mirando.
+**Dónde quedó — ⭐ SUBIDO Y VERIFICADO.** Eli pidió subirlo y dejar además una
+copia en GIF en carpeta aparte.
+
+`S5 HILTON SEP 2026 › DT` — `1qqPFM2EDVvAzgZLLQIJpxYr6gkFmKNHk`
+
+| | qué es | `fileId` | |
+|---|---|---|---|
+| `C1 S5 DT n°1.mp4` | portada | `1XOgP7k-vucZaNgBEEB6Ct-i-UpPnHZgx` | sin tocar |
+| `C1 S5 DT n°2.mp4` | 8:30 desayuno | `16xH8LsdH_btwNDbaVswO_-1zPR6vN-On` | sin tocar |
+| `C1 S5 DT n°3.mp4` | 9:30 salón | `1E3jDFfn_ZN1GuWy-L3y2jXJaSHatLy6x` | sin tocar |
+| `C1 S5 DT n°4.mp4` | 12:00 cowork | `10Dn_CbKfyjuyNksckTjH-SdM_Kr2-4rF` | sin tocar |
+| `C1 S5 DT n°5.mp4` | **16:00 GYM** | `1rysBShpjQZrsNrxLaDFJoLuAdC9OqUE-` | **archivo NUEVO** |
+| `C1 S5 DT n°6.mp4` | cierre | `1KmdGW1R0Nx-23tkd07tNlPPV79xPZyK4` | **renombrado**, mismo id |
+
+⭐⭐ **LA RENUMERACIÓN SE RESOLVIÓ RENOMBRANDO, NO RE-SUBIENDO.** El cierre ya
+estaba arriba como `n°5`; se le cambió **sólo el nombre** a `n°6`, así que
+conserva su `fileId`, su enlace y su historial, y no volvieron a viajar 22 MB.
+El gym entró como archivo nuevo en el `n°5` que quedó libre. Quien tenga el
+enlace viejo del `n°5` **sigue viendo el cierre**, que es lo que ese enlace
+siempre mostró — lo que cambió es su número, no su contenido.
+
+⚠️ Antes de renombrar, el script **verifica por md5** que el `n°5` de Drive sea
+de verdad el cierre, y se planta si no lo es. Está en
+`scripts/dt-c1-s5-subir.py`, con `--ensayo` para ver qué haría sin tocar nada.
+
+**Los GIF** — `… › C1 S5 DT - GIF` (`13RPiyOpfNxgRJ_EJ1nndqTxgRk5dNnme`), las
+seis láminas a **720×900, 12 fps**, 15-24 MB cada una y 118 MB en total.
+`scripts/dt-c1-s5-gif.py`, con la tabla de por qué esos dos números: a 1080 px
+pesan el doble y no se ven más nítidas, y a 540 la versalita de la firma empieza
+a empastarse. ⚠️ **No entran por WhatsApp** (tope ~16 MB): para chat hay que
+correrlo con `--ancho 540`.
+
+✅ **Los 12 archivos verificados por md5 contra el local y con el `parents`
+consultado**: todos dentro de su carpeta, ninguno en «Mi unidad».
+
+⭐ **Y la carpeta nueva NO dio el problema de permisos que se temía.** El cierre
+del 17-09 dejó escrito que no se creaba subcarpeta porque «la crearía el token
+del estudio y no Eli, y en esta cuenta eso ya dio problemas». Medido ahora: la
+carpeta y el archivo nuevo heredan **exactamente** los mismos permisos que el
+`n°1` del 17-09 —dueña `valeria@copywriters.cl` y compartido con el equipo
+completo, incluido el cliente (`doubletreesantiagovitacura@gmail.com` y
+`magdalena.cordero@hilton.com`)—. En esta carpeta se pueden crear subcarpetas.
+
+- Entrega local: `out/hilton/dt/c1-s5/entrega/` y `entrega-gif/`.
 - Composición: `src/compositions/hilton/DtC1S5Dia.tsx`, lámina `gym`.
 - Clip: `scripts/dt-c1-s5-clips.py`, entrada `"gym"`. El `.MOV` no viaja en git
   (34 MB) pero el script documenta id, tramo, recorte y gradación.
@@ -87,7 +128,7 @@ el Drive: **merece una pasada propia**. Está informado en la página de revisi�
 la nota completa está al pie de `scripts/dt-c1-s5-qa.py`.
 
 **Qué sigue.**
-1. **Subir las seis al Drive con la renumeración**, en el orden de arriba.
+1. ✅ Subido y verificado — ver arriba.
 2. La **hora del cierre** sigue sin entregarla contenido: la lámina n°6 va sin
    sello de hora. Es lo único que queda abierto de esta pieza.
 3. ⭐ **El FEED del 27-09 es una pieza nueva sin brief**: la celda dice

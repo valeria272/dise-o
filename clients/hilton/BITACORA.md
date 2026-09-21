@@ -1,4 +1,8 @@
-## 2026-09-21 (cierre 12) · Eli (Windows) — BETWEEN, CONCURSO RONDA 13: **el legal completo, y de dónde salieron los 56 px**
+## 2026-09-21 (cierre 12) · Eli (Windows) — BETWEEN, CONCURSO RONDA 13: **el legal completo, y en 3 líneas** ✅ APROBADA
+
+> ✅ **Eli aprobó la ronda 13 el 21-09-2026, mirando la página de antes/después.**
+> El carrusel del concurso queda **CERRADO**: las dos láminas están en el Drive
+> en su versión final y el enlace no cambió.
 
 **Qué pidió Nicolás** (Slack, con pantallazo de la slide 2). Dos cambios de
 texto, los dos en la lámina 2:
@@ -86,14 +90,15 @@ el mismo archivo** — el enlace no cambió.
 ⚠️ **La slide 1 arrastra un aviso del QA que NO se tocó**: «texto a 74 px del
 borde derecho (mínimo 84)». Ya estaba en la versión entregada y aprobada en la
 ronda 12; corregirlo mueve una lámina cerrada y no es lo que pidió el cliente.
-Queda anotado y está informado en la página de revisión.
+Se informó en la página de revisión y **Eli aprobó igual**, así que la pieza
+queda con ese aviso. Si alguna vez se reabre la portada, ése es el primer sitio
+donde mirar.
 
 **Abierto.**
-1. **El asterisco del legal no tiene a quién referirse.** Nicolás lo escribió
-   abriendo el legal y se dejó literal (regla de textos de cliente), pero no hay
-   otro asterisco en el carrusel. Las dos salidas: ponérselo a «1 MES DE CAFÉ
-   GRATIS» en la portada —que es el dato que el legal matiza— o sacarlo.
-   **Preguntado a Eli.**
+1. ✅ **El asterisco del legal: resuelto, se queda como está.** Se le preguntó a
+   Eli —el asterisco abre el legal y no tiene a quién referirse, porque no hay
+   otro en el carrusel— y aprobó la lámina con él puesto. **No se le agrega uno
+   a «1 MES DE CAFÉ GRATIS» en la portada ni se saca.**
 2. Sigue sin resolverse si hay que reemplazar también en `C1 S3 CONCURSO`
    (`1eXZnhj5-2j7o4AuwClf5dngcn6k9oQzC`, dentro de `S3 HILTON SEP 2026 / BW`),
    donde todavía están las láminas de la **ronda 5**. Viene abierto de la r12.

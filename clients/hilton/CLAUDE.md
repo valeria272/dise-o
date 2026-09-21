@@ -4467,7 +4467,9 @@ y hace creer que el tema está resuelto.
 
 ⚠️ En el legal del concurso **se dejó la itálica**: es el tratamiento que Eli
 aprobó, el defecto ya venía en la lámina publicada y cambiarlo mueve una pieza
-cerrada. Está informado; la decisión es de ella.
+cerrada. Se le informó con el render a la vista y **aprobó así el 21-09-2026**,
+o sea que en Between el legal en cursiva con cifras de estilo antiguo es
+**aceptado**. No hace falta volver a levantarlo pieza por pieza.
 
 ## 10. La ST del cumpleaños es UNA, no dos
 

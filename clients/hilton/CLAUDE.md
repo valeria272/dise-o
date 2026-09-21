@@ -9696,6 +9696,24 @@ fechas 1/3/4/7/9/11 de septiembre mientras la viva trae 2/10/11/14/15/16/18.
 > ⚠️ Y el comentario nativo **tampoco sale en el CSV**. El camino que lo dio fue
 > `read_file_content` del conector MCP con `includeComments=true`.
 
+### ⛔⛔ El diff miente si no cuentas las columnas *(21-09-2026)*
+
+La ronda del 21-09 **insertó una columna** en FEED y otra en STORIES —el 24 de
+septiembre— y eso corre hacia la derecha todo el resto de cada fila. `diff` marca
+entonces como «cambiado» un montón de texto que **sólo se movió de sitio**: briefs
+enteros aparecen como borrados en una columna y añadidos en la siguiente.
+
+Leído de corrido, ese diff parecía decir que se habían rechazado piezas que en
+realidad **se aprobaron**.
+
+> **La regla: antes de concluir nada, mapea cada valor de la fila `ESTADO` contra su
+> fecha en la fila `LINK MATERIAL …`, contando las columnas de los dos lados.** El
+> estado no significa nada suelto: significa algo pegado a su fecha.
+
+⚠️ Y el export CSV público **sólo funciona en la grilla de septiembre**. En
+`BETWEEN _ GRILLA OCTUBRE 2026.xlsx` (`1EnZOwUptY6SftX-CF9ZFwXUuzPCGZ76L`) devuelve
+la página de login de Google: ésa se lee con `read_file_content` del conector MCP.
+
 ## 2. ⛔ LA FOTO ERA ENTERAMENTE GENERADA, Y EL CLIENTE TENÍA EL LOCAL FOTOGRAFIADO
 
 `gen-16-09-cowork.png` era una escena de prompt completa: mesa, taza, croissant,

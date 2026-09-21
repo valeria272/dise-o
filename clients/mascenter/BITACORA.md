@@ -26,6 +26,61 @@ corriendo, hay que refrescar el anuncio). El `ENTREGA.md` de Drive sigue habland
 Siguen pendientes los de antes: `DISEÑO GRILLAS` sin acceso, el rojo `#DC1914` versus `#E52521`
 por confirmar con Diego, el Localito original y la grilla IFB de octubre (movida el 23-09) sin leer.
 
+## 2026-09-21 · Coni (Mac) — **Brief nuevo y ejecutable: el reel de MÁS CENTER LINDEROS (Buin)**
+
+> ⚠️ **Esta entrada NO produjo ninguna pieza.** Registra un brief que llegó hoy y que
+> está listo para ejecutarse, para que no se pierda entre dos aperturas.
+
+**Qué se hizo:** barrido de Drive del `/abrir`. Apareció
+**`BRIEF_MasCenter_Linderos_v2.xlsx`** (`1GNt1YW0FtT1Rr5RXqNvbeNdRA4joz1Bk`, de
+Scarlette Muñoz, creado hoy 21-09 a las 16:08Z, en `13ZWG7IFkjoMRFgrbaf4MiBNSnam8QjNl`).
+Se leyó completo. Es un **reel horizontal** para el strip center nuevo de **Linderos,
+comuna de Buin**, en el nodo Hermanos Carrera con la Ruta 5.
+
+**No es un brief de feed: es una pieza de venta.** Va dirigida a **inversionistas y
+arrendatarios**, no al consumidor del strip center, y el eje narrativo que fija el
+propio brief es que *la demanda en Buin no es una proyección, es un hecho comprobado
+— IFB ya opera en la zona y éste es el punto exacto para capitalizarla*.
+
+Trae el **guión de voz en off completo, palabra por palabra**, y la dirección de
+cámara escena por escena:
+
+| Sección | Qué pide | Las cifras que van en pantalla |
+|---|---|---|
+| **Gancho** | Montaje o split-screen de **tres strip centers de IFB ya funcionando y con público**; corte a aéreo del nodo con flujo vehicular | contador que sube hasta **+1,8 millones de viajes / mes** |
+| **Escena 1** | Recorrido por Buin con vida comercial y rostros | **+84 %** población (2002–2024) · **116.969** habitantes · **+21 %** vs 2017 · **3 strip centers** de IFB ya operando |
+| **Escena 2** | Familias saliendo de condominios nuevos a comprar «lejos» | **+129 %** hogares · **3 veces más** hogares en 15 años · **3,11** personas/hogar · perfil **ABC1 · C2 · C3** |
+| **Escena 3** | El nodo con render del proyecto, intercalado con familias comprando | **7.488 m²** de terreno · **+900 m²** de locales · supermercado **1.424 m²** · anclas **Unimarc + Cruz Verde + Ahumada** |
+| **Cierre** | Cortina de marca sobre aéreo al atardecer | respaldo IFB · **+30 strip centers** en Chile · guiño «Próximamente Etapa II» |
+
+⛔ **Las dos reglas duras que pone el brief, y que son fáciles de romper:**
+1. **NO se muestra el terreno en construcción.** La pieza es sobre una demanda que ya
+   existe, no sobre una obra.
+2. **Escenas cotidianas con gente por sobre planos vacíos del edificio.** Lo dice dos
+   veces, en la escena 1 («evitar terrenos vacíos: mostrar gente y actividad») y en la
+   3 («priorizar escenas cotidianas por sobre planos vacíos»).
+
+⚠️ **Dos campos vienen POR CONFIRMAR** y aparecen en la gráfica de la escena 3:
+**número de estacionamientos** y **número de locales**. Hay que pedirlos antes de
+rendir esa escena — o resolver la gráfica sin ellos.
+
+⚠️ El brief pide explícitamente el aéreo como **«GENERAL CON IA / EFECTO DRON»** y un
+**render o animación IA** del proyecto. Antes de generar cualquiera de los dos va
+`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`, y vale la regla de no generar lo que ya existe:
+los tres strip centers de IFB en la zona **están construidos y operando**, así que
+esas tomas son material real, no generación.
+
+**Dónde quedó:** sólo el registro en `clients/_estado-sync.json`. Nada producido.
+
+**Qué sigue:** decidir con Valeria si esta pieza entra, y a cargo de quién. Más Center
+lo firma **Diego Aguilar**, que no subió ni un archivo en toda la ventana 17-09 → 21-09.
+
+**Abierto:**
+- El número de estacionamientos y el de locales.
+- De dónde sale el metraje: no hay carpeta de material asociada al brief, y el reel
+  pide aéreos del nodo, recorrido por Buin y los tres strip centers operando.
+- Quién ejecuta. Sigue además **sin acceso a DISEÑO GRILLAS** (el orgánico de la cuenta).
+
 ## 2026-09-09 → 2026-09-10 — Valeria Traverso (con Claude)
 
 **Qué se hizo:** Ronda 5 de la **landing de terrenos**, gatillada por un correo de Francesca

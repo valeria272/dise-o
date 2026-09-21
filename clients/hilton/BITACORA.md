@@ -721,6 +721,124 @@ Space en `raw/hilton/between/vasos-togo-v2/`, y dos scripts nuevos
 
 ---
 
+## 2026-09-21 (cierre 13g) · Coni (Mac) — BETWEEN: **el barrido de `/abrir` encontró una ronda posterior al cierre 12, y un carrusel que Eli subió a mano**
+
+> ⚠️ **Esta entrada NO produjo ninguna pieza**, y se subió con un día de retraso: el
+> `push` del 21-09 quedó bloqueado y entró recién en la apertura del 22-09, cuando
+> Eli ya había avanzado los vasos To Go.
+>
+> ⚠️ **Lo de las cinco láminas de Eli ya está resuelto más arriba**, en la entrada del
+> 22-09: son **anteriores a los vasos nuevos**, así que ninguna los usa. Lo que sigue
+> valiendo de esta entrada es **el diff de la grilla de septiembre** y **la trampa de
+> la columna insertada**.
+
+**Qué se hizo:** `/abrir` sin marca — `git pull --rebase` (trajo el cierre 12 de Eli),
+siembra de memoria (59 notas) y barrido completo del Drive sobre la ventana
+17-09 → 21-09. Se diffearon las cuatro pestañas de la grilla de septiembre de
+Between y se leyó entera la de octubre. **No se rindió ni se entregó nada.**
+
+### 1. ⭐⭐ ELI SUBIÓ UN CARRUSEL TO GO DE **CINCO** LÁMINAS, HACE UNA HORA
+
+Es el hallazgo que manda. El 21-09 a las **19:12Z** Eli creó la carpeta
+**`C1 PROMOS ACTUALIZADAS 2026 TOGO`** (`1kInCVaeVg53jh-vGxpc2TRkDqKobJEzi`),
+hermana de `C1 S4`, y a las **20:15–20:16Z** subió cinco láminas:
+`PROMOS C1 S4 TOGO N°_1..5.png`.
+
+El carrusel del estudio, el aprobado el 14-09 y que vive en `C1 S4`
+(`1vZZGvxfiGOIrf73znO39V4aASreumkfZ`), son **cuatro** láminas a nombre de
+`valeria@copywriters.cl` — portada, sándwich, dulce y «los tres». A esas cuatro se
+les tocó el `modifiedTime` hoy entre las 15:16 y las 15:53Z, o sea alguien las
+abrió o las bajó unas horas antes de que apareciera la carpeta nueva.
+
+> **La palabra «ACTUALIZADAS» en el nombre de la carpeta es toda la información que
+> dejó.** No hay comentario, no hay ronda escrita, no está en la bitácora del cierre
+> 12. Puede ser una promo que entró, puede ser un cambio de criterio, puede ser una
+> corrección de precios.
+
+⛔ **Hasta que alguien compare lámina a lámina, el carrusel To Go del estudio está en
+duda.** Cualquier pieza de To Go que se produzca antes de esa comparación se arriesga
+a salir contra una versión superada. **Ésta es la primera tarea de mañana.**
+
+### 2. La grilla de septiembre tiene ronda nueva, **6 minutos después** de la instantánea
+
+`BETWEEN _ GRILLA SEPTIEMBRE 2026.xlsx` (`1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY`) se
+modificó hoy **20:31Z**. La instantánea viva del repo es de las **17:25 hora local**
+(20:25Z). Por seis minutos, el cierre 12 no la alcanzó.
+
+**FEED** — se insertó una columna, el **24 de septiembre**:
+
+| Pieza | Antes | Ahora |
+|---|---|---|
+| CARRUSEL CONCURSO CEO DEL CAFÉ | «X DEFINIR» · OK PARA DISEÑAR | **24-09 12:00** · **CORREGIDO** |
+| CARRUSEL PROMOS TO GO (22-09) | EN CAMBIOS | **CORREGIDO** |
+| POST ESTÁTICO «ELLA HABLÓ / ELLA ESCUCHÓ» | 17-09 · APROBADO | **28-09 12:00 (S5)** · **APROBADO** |
+| Carrusel del 16-09 | APROBADO | YA POSTEADO |
+
+**STORIES** — entra el **24 de septiembre** como columna nueva, y la S4 queda
+21 (10:00) / 22 (12:00) / 24 (15:00) con **las tres APROBADAS**: las del 21 y el 22
+venían **EN CAMBIOS**. Comentarios de diseño nuevos: «Agregar legal Imagen
+referencial» y «Eliminar MASA y agregar legal Imagen referencial».
+
+**ORGÁNICOS** — el reel del 15-09 pasó de **RECHAZADO a APROBADO**, se corrió al
+**17-09**, el horario bajó de 14:00 a 12:00, tiene copy nuevo («Hay lugares a los
+que llegas y sientes que el día cambia un poquito») y quedó marcado MATERIAL EDITADO.
+
+### 3. ⭐ Camino nuevo y barato para diffear esta grilla
+
+El `.xlsx` pesa 100 MB: el token del estudio es scope `drive.file` y no lo ve, y el
+conector MCP falla sobre 10 MB. **El export CSV público por `gid` sí funciona**:
+
+```bash
+curl -sL "https://docs.google.com/spreadsheets/d/1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY/export?format=csv&gid=<gid>"
+```
+
+Los cuatro `gid` son **1367300884** (stories), **1537718358** (feed), **1543656935**
+(orgánicos) y **688659470**. Se diffea contra
+`clients/hilton/grillas/between-septiembre-2026-vivo/gid-<gid>.csv`, pasando ambos
+lados por `tr -d '\r'`.
+
+⚠️ **No funciona en la grilla de octubre** (devuelve la página de login); ésa se leyó
+con `read_file_content` del conector.
+
+⛔⛔ **Y el diff se lee mal si no se cuentan las columnas.** En FEED y en STORIES se
+**insertó** una columna, así que el resto de la fila se corre y `diff` marca como
+«cambiado» texto que sólo se movió de sitio. **Hay que mapear cada `ESTADO` contra su
+fecha antes de concluir nada** — leído de corrido, el diff de hoy parecía decir que
+se habían rechazado piezas que en realidad se aprobaron.
+
+### 4. Octubre está armada pero **no es producible**
+
+`BETWEEN _ GRILLA OCTUBRE 2026.xlsx` (`1EnZOwUptY6SftX-CF9ZFwXUuzPCGZ76L`, tocada
+hoy 20:34Z) trae feed, orgánicos y stories con briefs largos y bien escritos. Pero
+**las piezas están TODAS en EN REVISIÓN y no hay un solo comentario de cliente**.
+Es el mismo estado que DT y Piso18 de octubre.
+
+⚠️ Repite además el defecto de la grilla de octubre de QB: **la vista mensual dice
+«PLANIFICACIÓN MENSUAL AGOSTO 2026»** con fechas de agosto, aunque el cuerpo sí es
+octubre. No es un duplicado completo como el de QB — el cuerpo es real — pero el
+encabezado miente.
+
+⚠️ **Trampa de precios:** octubre trae un «CARRUSEL – CAFÉ TO GO» con tamaños
+**Mediano $1.990 · Grande $2.790 · Extra $2.990**. Ésos son el **café solo**, y NO
+son los de las Promos To Go ($3.790 / $3.990) que están en septiembre. No mezclarlos.
+
+**Dónde quedó:** sólo `clients/_estado-sync.json` (registro de la revisión, con los
+hallazgos por marca y el método del CSV). Ninguna composición tocada, ningún render.
+
+**Qué sigue:** bajar las cinco láminas de `C1 PROMOS ACTUALIZADAS 2026 TOGO` y las
+cuatro de `C1 S4`, y compararlas. Recién después se decide si el carrusel del estudio
+sigue vigente o si hay que rehacerlo. En segundo lugar: diffear DT, Piso18 y QB de
+septiembre, que se movieron hoy (20:25Z, 19:22Z y 16:19Z) y **no se revisaron** —
+son Sheets nativos y necesitan `sheet-instantanea.py` con el token del estudio.
+
+**Abierto:**
+- ⛔ **Qué son las cinco láminas de Eli.** Es pregunta para ella, no se deduce del archivo.
+- El concurso quedó fechado el **24-09** en la grilla: confirmar que la pieza entregada
+  en la ronda 13 es la que va ese día, porque su legal dice «del 21 al 30 de septiembre».
+- La carpeta se llama `C2 S4 CONCURSO` pero los archivos dentro se llaman
+  `C1 S3 CONCURSO N1/N2.png`. La nomenclatura no calza; nadie ha dicho cuál manda.
+- Los comentarios de Drive siguen sin poder leerse (punto ciego del scope `drive.file`).
+
 ## 2026-09-21 — Elisabet Soto «Eli» · CIERRE DEL DÍA (BETWEEN)
 
 **Qué se hizo:** los tres vasos To Go recortados sin fondo, a escala común, para

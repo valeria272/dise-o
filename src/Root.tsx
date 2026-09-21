@@ -218,8 +218,25 @@ export const RemotionRoot: React.FC = () => {
         {/* S3 · CARRUSEL CONCURSO «SE BUSCA: CEO DEL CAFE» — feed 4:5.
             Encargo de la grilla viva (FEED col 10, OK PARA DISENAR). Se entrega
             como «C1 S3 CONCURSO N1/N2.png» en la carpeta S3 · BW del Drive. */}
-        <Composition id="BW-F-Concurso-1" component={C1S3Concurso1} {...btFeed} />
-        <Composition id="BW-F-Concurso-2" component={C1S3Concurso2} {...btFeed} />
+        {/* ⚠️ `jerarquia` es el orden de lectura que pidió contenido el 21-09
+            («principal CONCURSO, después la bajada, y desde ahí SE BUSCA…»).
+            `A` es la salida recomendada; `B` protege el cuerpo del titular y
+            `ronda5` reproduce la lámina que el cliente está mirando hoy.
+            Las dos láminas comparten el valor: un carrusel, un cuerpo de
+            titular. Se cambia en la revisión con
+            `--props='{"jerarquia":"B"}'`. */}
+        <Composition
+          id="BW-F-Concurso-1"
+          component={C1S3Concurso1}
+          defaultProps={{jerarquia: 'A' as const}}
+          {...btFeed}
+        />
+        <Composition
+          id="BW-F-Concurso-2"
+          component={C1S3Concurso2}
+          defaultProps={{jerarquia: 'A' as const}}
+          {...btFeed}
+        />
         {/* S4 · las dos historias estaticas de la semana 4 (21 y 22-09).
             Encargo de Eli del 09-09: guiadas por las dos referencias que dejo
             contenido en Drive. Las `-Guia` llevan marcada la zona del sticker:

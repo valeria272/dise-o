@@ -1,3 +1,365 @@
+## 2026-09-21 (cierre 10) · Eli (Windows) — BETWEEN, CONCURSO: **SUBIDO AL DRIVE**
+
+**Qué se hizo.** Eli mandó la carpeta de destino y se subieron las dos láminas
+del carrusel del concurso, ya con todos los cambios de las rondas 6 a 12.
+
+**Dónde quedó.**
+- Carpeta: `1HEga0sjGH766I4EnpHKP2ED31prslo0L`
+  (<https://drive.google.com/drive/folders/1HEga0sjGH766I4EnpHKP2ED31prslo0L>)
+- `C1 S3 CONCURSO N1.png` → <https://drive.google.com/file/d/1Jq74oFUQsChTrYkpLiIanG3gKTKAKZ4g/view>
+- `C1 S3 CONCURSO N2.png` → <https://drive.google.com/file/d/1l3KDqsLhRFxSx9AJzNVJhHuiFyIOtzTb/view>
+- **Verificadas por md5 contra el local** (`385d6162…` y `b005c2f4…`) y con el
+  `parents` consultado: las dos están DENTRO de la carpeta pedida, no en «Mi
+  unidad» — que es el modo en que falla el token de scope `drive.file`.
+
+⚠️ **Son archivos NUEVOS en una carpeta nueva.** En `C1 S3 CONCURSO`
+(`1eXZnhj5-2j7o4AuwClf5dngcn6k9oQzC`, dentro de `S3 HILTON SEP 2026 / BW`)
+siguen las láminas de la **ronda 5**, que es lo que ve quien entre por el enlace
+viejo de la grilla. Si esa carpeta es la que mira el portal, hay que reemplazar
+ahí también — está preguntado.
+
+⭐ **El aparato de medición volvió al repo**: `scripts/between-concurso-s3-medir.py`
+junta las cinco mediciones que citan la pieza y el manual (hueco limpio, holgura
+contra el recorte, contrastes por tercios, ángulo de la caja de la REF 1 y
+ángulo de los garabatos rojos). Las citas de los comentarios ahora apuntan ahí.
+
+⛔ **Y una trampa del propio aparato, anotada donde corresponde:** el contraste
+se mide sobre la FOTO, nunca sobre la pieza rendida. En el render la franja ya
+contiene la tinta y el «fondo» sale contaminado — el rótulo daba 4,15:1 contra
+el papel y 2,26:1 medido sobre sí mismo.
+
+**Qué sigue.** El visto de Scarlette sobre el texto, y decidir si se reemplaza
+también en `C1 S3 CONCURSO`.
+
+## 2026-09-21 (cierre 9) · Eli (Windows) — BETWEEN, CONCURSO RONDA 12: la jerarquía de la cabecera
+
+**Qué pidió** (esta vez con el pantallazo rayado): bajar TODO el bloque porque
+«se está viendo muy muy junto el concurso al logo», **juntar «SE BUSCA:» con la
+cajita** —«así como está en la referencia, para que se entienda que es un texto
+junto»— y las cuñas «con esa curvatura, en ese ángulo».
+
+⭐⭐ **El segundo pedido pagó el primero, y eso es lo que hay que recordar.** No
+había de dónde sacar aire para despegar el rótulo del logo: la lámina está llena
+y todo lo demás ya estaba en su mínimo. Juntar las dos líneas lo resolvió, porque
+en la `REF 1` **la caja monta sobre el texto**: un solape de 8 px devuelve 12 px
+de alto al bloque, que son exactamente los que faltaban. **El aire lockup→rótulo
+pasó de 31 a 46 px sin mover la pila ni achicar ningún cuerpo.** Los cuatro aires
+quedaron 46 · 30 · 20 · 18.
+
+⭐⭐ **Y el giro de las cuñas se MIDIÓ sobre el garabato rojo.** En la ronda 11 se
+dedujo de la `REF 2` y salió **al revés**. Acá se aisló el rojo del pantallazo y
+se le sacó el eje principal a cada marca por PCA (`between-concurso-s3-medir.py rojo`): las tres dan
+**22°, 40° y 87°** contra los 67°, 88° y 120° del dibujo sin girar, o sea
+**−42°**. El abanico se abre hacia arriba-izquierda, como un destello que sale de
+la palabra — no hacia ella.
+
+> **La regla que deja:** cuando la diseñadora DIBUJA la corrección, el ángulo se
+> mide en su dibujo. Deducirlo de la referencia original es una segunda fuente y
+> puede dar el signo cambiado.
+
+⚠️ **Queda una duda anotada:** marcó con rojo una **estrella sobre la chispa** de
+la esquina derecha, pero no la mencionó al hablar. No se tocó, y quedó preguntado
+en la página de la ronda.
+
+**Dónde quedó.** `out/hilton/between/concurso-s3-r12/` · entrega reempaquetada ·
+página: <https://claude.ai/artifact/4yaocFvnH4kzMNKWgkw9mc> · QA y typecheck
+limpios · la CTA sigue cerrando en 827 con 20 px de holgura.
+
+**Qué sigue.** **Nada subido al Drive**; con el OK,
+`python scripts/between-concurso-s3-entrega.py --subir`.
+
+## 2026-09-21 (cierre 8) · Eli (Windows) — BETWEEN, CONCURSO RONDA 11: aire bajo el logo y las cuñas
+
+**Qué pidió.** «Baja los textos que dejo encerrado sólo un poco, sin solapar
+imágenes, ya que están muy cerca del logo. Y ajusta las 3 líneas de ilustración,
+gíralas como te dejo la ref.»
+
+⚠️ **El pantallazo NO llegó** —el mensaje entró sin imagen— y quedó avisado en la
+página de la ronda. Los dos cambios se hicieron con lo deducible.
+
+- **Aire lockup→CONCURSO: 21 → 31 px.** El rótulo baja 10 y la bajada 6. Nada se
+  solapa: la tinta más alta queda en y=210 y el lockup cierra en 179.
+- Los 16 px salieron de donde no cuestan jerarquía: **interlineado de la bajada
+  1,30 → 1,25** y 4 px del bloque del titular. El aire cajita→«¿El sueldo?»
+  queda en 17, el mismo que tiene la pila entre su primera línea y su caja.
+- **Las cuñas giran de −12° a +40°.** No es a ojo: en la `REF 2` las tres
+  **convergen abajo a la izquierda y se abren hacia arriba-derecha**, apuntando
+  al texto; el dibujo propio irradia hacia arriba, y la diferencia entre las dos
+  orientaciones es de 40°. Rotadas ocupan x 103–222: no cruzan el margen de 84
+  ni tocan la «C» de CONCURSO, que abre en x≈235.
+
+**Dónde quedó.** `out/hilton/between/concurso-s3-r11/` · entrega reempaquetada en
+`out/hilton/between/entrega-c1-s3-concurso/` · página:
+<https://claude.ai/artifact/SucVjGKadyzbxTFsfgFhWQ>
+
+**Qué sigue.** Que Eli mande el pantallazo si el giro o la bajada no son los que
+marcó. **Nada subido al Drive**; con el OK,
+`python scripts/between-concurso-s3-entrega.py --subir`.
+
+## 2026-09-21 (cierre 7) · Eli (Windows) — BETWEEN, CONCURSO RONDA 10: **portada terminada**
+
+**Qué pidió Eli.** «Este invierte el color, el texto café y el fondo beige.
+Agranda un poco el texto y caja del CEO. Más deja **puntas rectas** al de caja
+del CEO. Y listo.»
+
+| Qué | Antes | Ahora |
+|---|---|---|
+| Caja «1 MES DE CAFÉ GRATIS» | taupe con tinta beige | **beige con tinta café** |
+| Cuerpo del CEO | 54 | **60** |
+| Caja del CEO | 78 × 385 | **88 × 456**, y **sin radio** |
+
+⭐ **La inversión ordena la jerarquía, no sólo el color.** Con las dos cajas del
+mismo taupe ninguna mandaba sobre la otra —el defecto que la ronda 5 ya había
+diagnosticado en el sello— y ahora el bloque macizo es el del titular, que es el
+nivel de arriba. La del premio se lee por su tinta (6,31:1 por dentro) y no por
+su canto (1,50:1 contra el papel).
+
+⭐ **Y las puntas rectas salen de la REF 1:** su bloque de color no tiene radio.
+El radio de la marca (16) se queda en las cajas de dato, que sí lo llevan.
+`TitularEnCaja` tiene ahora prop `radio`.
+
+⚠️ **De dónde salieron los 16 px que necesitaba la caja para crecer:** se
+apretaron los aires que NO están atados a una proporción —el de arriba del
+rótulo (25→21), el de la bajada al bloque (25→20) y el interno del bloque
+(30→10, que además es lo que hace la referencia, donde la caja monta sobre el
+texto)—. **El aire rótulo→bajada se mantuvo en 32**, que es el único con una
+proporción medida detrás (1,5× el aire entre las líneas de la bajada).
+
+⚠️ La inversión de la caja del premio va por `style` sobre `CajaDato` y **no
+tocando el componente**: su caja es taupe y la usan piezas ya aprobadas.
+
+**Lo medido.** Caja del CEO 4,19:1 contra el papel · caja del premio 1,50:1 con
+6,31:1 por dentro · CONCURSO 4,14:1 · bajada 4,16:1 · CTA cierra en 827 contra
+un halo que entra en 847 · 23 px entre la caja del CEO y «¿El sueldo?» con la
+rotación descontada · carrusel en el mismo tono (197/201) · typecheck limpio.
+
+**Dónde quedó.**
+- **Entrega empaquetada y al día**: `out/hilton/between/entrega-c1-s3-concurso/`
+  — `C1 S3 CONCURSO N1.png` y `N2.png`, 2250×2812 a 150 ppp.
+- Renders: `out/hilton/between/concurso-s3-r10/`. Props: `jerarquia: 'A'` +
+  `titularEstilo: 'cajaSans'`.
+- Página: <https://claude.ai/artifact/6CKXTycEkp9i84K8qgoaym>
+
+**Qué sigue.** ⚠️ **NADA SUBIDO AL DRIVE.** Con el OK:
+`python scripts/between-concurso-s3-entrega.py --subir` reemplaza el contenido
+de los archivos de `C1 S3 CONCURSO` (`1eXZnhj5-2j7o4AuwClf5dngcn6k9oQzC`) y los
+enlaces de la grilla no cambian. Siguen abiertos el visto de Scarlette sobre el
+texto y el copy de la grilla («Si yo fuera CEO de Between»).
+
+## 2026-09-21 (cierre 6) · Eli (Windows) — BETWEEN, CONCURSO RONDA 9: **CERRADA la portada**
+
+**Qué eligió Eli.** «Quiero la opción 3, pero con lo del CEO ese texto **en
+cajita con un leve ángulo como la referencia**, y el se busca **aumenta un poco
+el grosor del beige**.» O sea el híbrido de las dos opciones de la ronda 8: la
+línea de arriba en Raleway con halo (una sola tipografía, como el referente) y
+«CEO DEL CAFÉ» en el bloque de color inclinado, que es el otro recurso de la
+`REF 1`.
+
+⭐⭐ **El ángulo se MIDIÓ sobre la referencia.** Aislando el azul de la caja y
+ajustando sus bordes por mínimos cuadrados (`between-concurso-s3-medir.py angulo-ref`): borde superior
+**−2,20°**, inferior **−3,34°**. Se tomó **−3°**, dentro del rango medido y
+coincidente con el registro que la marca ya usa (el sello de la ronda 4 gira −4°).
+
+⛔ **Y una trampa de la rotación:** `transform` no cambia la caja del layout, así
+que una caja rotada sobresale `ancho·sen(giro)/2` —10 px acá— por arriba y por
+abajo. Sin descontarlo, la cajita quedaba a 10 px de «¿El sueldo?».
+
+⛔ **Otra, del mismo tipo:** el primer cálculo de la caja usó la CAJA ALTA del
+texto (43 px a cuerpo 60) y la caja medía 116, no 101 — **un `div` con
+`lineHeight: 1` mide el CUERPO entero**. El cuerpo bajó a 54 y el relleno pasó a
+0,23 del cuerpo, que es el de `CajaDato`.
+
+⚠️ El halo de «SE BUSCA:» sube de 12 a **16 px**. Y el aire rótulo→bajada se
+abrió de 22 a **32**: bajo una palabra de 104 px, 22 se leían pegados. 32 es
+1,5× el aire entre las líneas de la propia bajada, que es la proporción del
+manual.
+
+**Lo medido.** CONCURSO 4,14:1 · cajita del titular 4,19:1 contra el papel y
+6,31:1 por dentro · bajada 4,16:1 · aire cajita→«¿El sueldo?» 26 px con la
+rotación descontada · CTA cierra en 827 contra un halo que entra en 847 ·
+carrusel en el mismo tono (196/201) · typecheck limpio.
+
+**Dónde quedó.**
+- **Entrega empaquetada**: `out/hilton/between/entrega-c1-s3-concurso/` —
+  `C1 S3 CONCURSO N1.png` y `N2.png`, 2250×2812 a 150 ppp.
+- Renders de la ronda: `out/hilton/between/concurso-s3-r9/`.
+- Props de la pieza: `jerarquia: 'A'` + `titularEstilo: 'cajaSans'`.
+- Página: `scripts/between-concurso-s3-r9-revision.py` →
+  <https://claude.ai/artifact/1gcHHtGYGKgujK75WctWBz>
+
+**Qué sigue.** ⚠️ **NADA SUBIDO AL DRIVE.** Con el OK de Eli se sube con
+`python scripts/between-concurso-s3-entrega.py --subir`, que reemplaza el
+contenido de los archivos de la carpeta `C1 S3 CONCURSO`
+(`1eXZnhj5-2j7o4AuwClf5dngcn6k9oQzC`) — los enlaces de la grilla no cambian.
+Siguen abiertos el visto de Scarlette sobre el texto y el desfase del copy de la
+grilla («Si yo fuera CEO de Between»).
+
+## 2026-09-21 (cierre 5) · Eli (Windows) — BETWEEN, CONCURSO RONDA 8: el rótulo pierde la caja
+
+**Qué pidió Eli.** «Borra el recuadro beige que tiene, para que destaque mucho
+más […] más grueso, más grande, incluso como la referencia», y para el titular
+**tres versiones**: como «menos organizar mis archivos» (caja plana rellena),
+como «estoy haciendo de todo…» (sticker con contorno) y —en un segundo mensaje—
+«otra donde el se busca no sea Brushwell».
+
+**Qué se hizo.**
+- **CONCURSO sin caja**: café suelto, **Raleway Black 900, cuerpo 104** (610 px
+  de tinta). Contra el papel pasa de **1,50:1 a 4,17:1**.
+- **Tres titulares**, los tres rendidos a 2250: `caja` (taupe con tinta beige,
+  cuerpo 64), `sticker` (halo de 12 px con Brushwell) y `stickerSans` (el mismo
+  halo con «SE BUSCA:» en Raleway ExtraBold, que es como resuelve la REF 1: una
+  sola tipografía y sólo cambia el tamaño).
+- Props: `titularEstilo: 'caja' | 'sticker' | 'stickerSans'`.
+
+⛔⛔ **El contorno NO se puede hacer con `-webkit-text-stroke`.** Se pintó así en
+la ronda 7 y el defecto apareció al ampliar el render: Chrome aplica
+`paint-order` **glifo a glifo**, así que el contorno de cada letra cruza por
+encima del relleno de la anterior. Ahora es un **halo de 24 copias con
+`text-shadow`**, que se pinta entero detrás del texto y queda continuo. Está en
+el manual (§ «en un marco» puede ser un contorno).
+
+⛔ **Y el halo se descuenta del aire:** los 9 px de la marca menos 12 de halo
+dejaban las dos líneas a −3 y los halos se tocaban. Se abrió a 27.
+
+**Lo medido.** CTA cierra en 827 contra un halo que entra en 847 (20 px) ·
+CONCURSO 4,17:1 · bajada 4,16:1 · gaps del titular a «¿El sueldo?» 19 · 24 · 38
+según la opción · carrusel en el mismo tono (197/201) · typecheck limpio.
+
+**Dónde quedó.** `out/hilton/between/concurso-s3-r8/` · página:
+`scripts/between-concurso-s3-r8-revision.py` →
+<https://claude.ai/artifact/74U2JsKP3kRwaisYbjt9o9>
+
+**Qué sigue.** Elegir entre las tres y subir reemplazando los archivos del Drive.
+Siguen abiertos el visto de Scarlette y el copy de la grilla («CEO de Between»).
+
+## 2026-09-21 (cierre 4) · Eli (Windows) — BETWEEN, CONCURSO RONDA 7: el titular pasa a sticker
+
+**Qué pasó.** Eli eligió la **opción A** («apilado todo, como centrado») y pidió
+tres ajustes sobre ella: CONCURSO «un poco más destacado», la bajada «un
+poquitito más grande, porque se lee muy poco», y **«que se busca CEO del café
+esté en un marco beige […] que sea como el sticker, igual que la referencia. Así
+se achica más»**. La slide 2, «quedó perfecta».
+
+| Qué | Antes | Ahora |
+|---|---|---|
+| CONCURSO | 52 | **68** (+31 %) · la caja pasa a 515 px de ancho |
+| Bajada | 30 | **36** (+20 %) · 654 y 625 px, dentro de la columna |
+| Titular | 88 | **64** (−27 %) · 419 px, con contorno |
+| Marco del titular | — | **contorno beige de 8 px** |
+
+⭐⭐ **«Marco beige» NO era una caja, y eso se resolvió mirando la referencia.**
+En la `REF 1` el titular no está dentro de un rectángulo: lleva un **contorno
+claro pegado a las letras** —una calcomanía— y la caja plana rellena está
+reservada para el rótulo. Traducido con el beige de la marca, el titular y el
+recorte de la figura pasan a leerse como piezas del mismo collage. Si se hubiera
+dibujado un rectángulo, la pieza habría tenido tres cajas apiladas.
+
+⭐ **El recurso entró al sistema, no a la pieza:** `TitularBetween` tiene ahora
+`contorno` y `contornoColor` (`src/compositions/hilton/BetweenSistema.tsx`),
+opt-in como `cajaAlta` y `pesoCaps` para que ninguna pieza aprobada se mueva. Se
+pinta con `-webkit-text-stroke` **más `paint-order: stroke fill`** — sin el
+`paint-order` el trazo se centra en el canto del glifo y se come la mitad de la
+tinta en vez de crecer hacia afuera. El grosor no es a ojo: 8 px a un cuerpo de
+64 es la misma proporción que el contorno blanco del recorte de la foto.
+
+⭐⭐ **Y la regla del carrusel no se aplicó a ciegas.** «Un carrusel, un cuerpo de
+titular» había bajado la slide 2 a 88 en la ronda 6. Acá la portada baja a 64,
+pero su titular dejó de ser *el titular suelto de la lámina* y pasó a ser un
+**rótulo enmarcado**: otro objeto, así que la regla no compara. La slide 2 se
+congeló en los 88 que Eli aprobó — verificado, **0 píxeles de diferencia** contra
+el render que ella miró.
+
+**Lo medido.** CTA cierra en y=827 contra un halo que entra en 847 → 20 px de
+holgura · bajada 4,16:1 (el mismo contraste del titular aprobado) · caja beige
+1,50:1 y caja taupe **4,15:1** contra el papel · tinta dentro de la caja 6,31:1 ·
+aires de cabecera 30 · 20 · 20 · 29 (interno 20, salto al mensaje 29) · carrusel
+en el mismo tono (mediana 198/201) · typecheck limpio.
+
+**Dónde quedó.**
+- `out/hilton/between/concurso-s3-r7/` — `beige-1.png`, `taupe-1.png`, `slide2.png`
+  (2250×2812) y `antes-r6-1.png`.
+- Página de la ronda: `scripts/between-concurso-s3-r7-revision.py` →
+  <https://claude.ai/artifact/EiDzyJaktckoCqTzxtcUNK>
+- Props: `jerarquia: 'A'` + `selloTono: 'beige' | 'taupe'`.
+
+**Qué sigue.** **Elegir el color del sello** (beige o taupe) y recién ahí subir,
+reemplazando el contenido de los archivos que ya están en Drive para que los
+enlaces de la grilla no cambien. Siguen abiertos el visto de Scarlette sobre el
+texto y el desfase del copy de la grilla («CEO de Between»).
+
+## 2026-09-21 (cierre 3) · Eli (Windows) — BETWEEN, CARRUSEL CONCURSO: contenido reordenó la portada
+
+**Qué llegó.** Nicolás Ávila, por Slack y a pedido del cliente, con Scarlette en
+copia: cambios de texto en el carrusel del concurso (FEED del **24-09**, S4, hoy
+`EN REVISIÓN`) «para darle mayor relevancia a la efeméride». Y en el segundo
+mensaje, lo que de verdad manda: **«dejaría como principal CONCURSO […] después,
+como segunda jerarquía, las bajadas […] y desde ahí seguiría con SE BUSCA: CEO
+DEL CAFÉ»**.
+
+O sea que no es un texto que se agrega: **es el orden de lectura de la portada el
+que cambia**, y eso mueve la decisión que tomó Eli en la ronda 5 (la caja beige
+grande encabezando la pila de la izquierda). El sello conserva su caja y su
+cuerpo —52, el que ella eligió— pero sube a rótulo de la lámina.
+
+| slide | qué cambia |
+|---|---|
+| 1 · portada | sube CONCURSO a rótulo · entra la bajada «Se acerca el Día Internacional del Café y se abrió la vacante más importante» · el titular pasa a tercer nivel |
+| 2 · tarjeta | una línea: «Si yo fuera CEO de **Between**» → «Si yo fuera CEO **del café**» |
+
+⭐ **La portada NO tenía sitio, y eso se midió antes de componer.** El lockup
+cierra en y=180; el halo blanco del recorte entra en la columna de la CTA en
+**y=847** (medido sobre la foto, x 492–495), así que la última línea no puede
+pasar de y≈827. Entre medio hay **662 px** para sello 84 + bajada 78 + titular +
+«¿El sueldo?» 44 + caja taupe 66 + CTA 78. Con el titular en los 103 de la ronda
+5 quedan **80 px para cuatro aires** — una portada apretada. Por eso van **dos
+salidas a revisión, y lo que discuten no es el texto sino qué cede**:
+
+- **A · apilado** — todo en el eje: sello centrado, bajada centrada de dos líneas
+  y el **titular baja de 103 a 88**. Obedece la jerarquía completa que pidió
+  contenido. Holgura contra el recorte: 20 px.
+- **B · banda** — el sello se queda a la izquierda y la bajada se le pone al
+  lado, en tres líneas, sobre el papel limpio de la derecha que estaba vacío
+  (x 507–996). Cuesta 117 px en vez de 188, y con eso **el titular se queda en
+  103**. Lo que cede es el eje. Holgura: 30 px.
+
+⛔ **La primera tirada de A estaba mala y la salvó la medición, no la vista.** Con
+la cabecera en 218/324/424/614 la CTA cerraba en y=844 contra un halo que empieza
+en 847: **tres píxeles**. Toda la cabecera subió 17 px.
+
+**Dos cosas de criterio que quedan escritas:**
+- La bajada va en **caja baja**, no en las versales en que llegó: en esta marca
+  las versales son del titular y de la caja taupe. Misma traducción que
+  «SE BUSCA:» → «Se busca:», y sin punto final.
+- En B el corte de línea **se compone a mano** (424 · 264 · 382 px): corrido
+  dejaba «importante» sola en la tercera línea.
+
+**Dónde quedó.**
+- Renders 2250×2812 de las dos salidas: `out/hilton/between/concurso-s3-r6/`
+  (`A-1/A-2/B-1/B-2`, más `antes-1/antes-2` que son la copia de la ronda 5).
+- Código: `src/compositions/hilton/BetweenC1S3Concurso.tsx` — prop `jerarquia`
+  (`'A' | 'B' | 'ronda5'`), con el presupuesto vertical escrito en la cabecera.
+  La lámina de la ronda 5 sigue viva y reproducible.
+- Página de revisión: `scripts/between-concurso-s3-r6-revision.py` →
+  `out/hilton/between/concurso-s3-r6/revision-r6.html` y
+  <https://claude.ai/artifact/2S7FmiqfVo4BMuGwY6CYkV>
+- QA: carrusel en el mismo tono (mediana 197/201) · contraste de la bajada
+  **4,17:1**, el mismo del titular aprobado · typecheck limpio.
+  ⚠️ `between-qa.py` marca «texto a 74 px del borde derecho» en la portada: es
+  **falso positivo conocido** —lo detecta también en la lámina ya aprobada— y es
+  el halo del recorte contra el pelo, no texto.
+
+**Qué sigue.**
+1. **Que Eli elija A o B.** Recién ahí se rinde la entrega y se reemplaza el
+   contenido de los archivos que ya están en Drive, para que los enlaces de la
+   grilla no cambien.
+2. ⚠️ **El texto no está confirmado por Scarlette**: en el mismo mensaje Nicolás
+   le pregunta «confírmame si te gusta ese texto o para ver otro».
+3. ⚠️ **El copy de la grilla sigue diciendo «Si yo fuera CEO de Between»**
+   (columna del 24-09). Es de contenido; si se publica así, la gráfica y el pie
+   no dicen lo mismo.
+
+**Abierto.** Nada subido al Drive todavía.
+
 ## 2026-09-21 (cierre 2) · Eli (Windows) — BETWEEN, CARRUSEL PROMOS TO GO: los cambios de contenido de la S4
 
 **Qué se hizo.** Llegaron por Scarlette (21-09, 10:08) los comentarios de

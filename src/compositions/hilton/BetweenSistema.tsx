@@ -396,6 +396,17 @@ const signosVolteados = (texto: string): React.ReactNode[] =>
 
 
 /**
+ * Halo continuo alrededor del texto: 24 copias del glifo en círculo. 24 pasos
+ * porque a radio 6 la separación entre copias vecinas queda en 1,6 px —menos
+ * que el grosor de cualquier asta—, así que el borde sale macizo y no dentado.
+ */
+const haloSticker = (radio: number, color: string): string =>
+  Array.from({length: 24}, (_, i) => {
+    const a = (i / 24) * Math.PI * 2;
+    return `${(Math.cos(a) * radio).toFixed(2)}px ${(Math.sin(a) * radio).toFixed(2)}px 0 ${color}`;
+  }).join(', ');
+
+/**
  * Titular. Regla de Eli:
  *  - Si debe DESTACAR: todo en MAYÚSCULA, ~100 (rango 40–122).
  *  - Si es sutil: 40–74 y **solo la primera letra en mayúscula** — más limpio.
@@ -1192,6 +1203,38 @@ export const TitularBetween: React.FC<{
    * brief trae la puntuación completa, así que ahí se respeta literal.
    */
   mantenerPunto?: boolean;
+  /**
+   * ⭐⭐ EL CONTORNO TIPO STICKER — grosor en px, 0 o sin pasar = apagado.
+   *
+   * Es el recurso de la `REF 1` del concurso: ahí el titular no va en una caja
+   * rectangular sino con un **contorno claro pegado a las letras**, que es lo
+   * que lo despega del fondo y lo hace leer como una calcomanía. Eli lo pidió
+   * para la portada del concurso el 21-09-2026: «que se busca CEO del café esté
+   * en un marco beige […] que sea como el sticker, igual que la referencia».
+   *
+   * No es una sombra de caída ni un borde: es un HALO, y se pinta con 24 copias
+   * del texto desplazadas en círculo a `grosor/2` de radio (`haloSticker`).
+   *
+   * ⛔ El camino obvio —`-webkit-text-stroke` con `paint-order: stroke fill`—
+   * se probó y se descartó MIRANDO el render ampliado: Chrome aplica el orden
+   * de pintado **glifo a glifo**, así que el contorno de cada letra pasa por
+   * encima del relleno de la anterior y la palabra queda cruzada por trazos
+   * claros. Con el tracking negativo del titular de Between (−0,024em) las
+   * letras están lo bastante juntas como para que se note en toda la línea.
+   * `text-shadow`, en cambio, se pinta ENTERO detrás del texto del elemento, así
+   * que el halo queda continuo alrededor de la palabra — que es exactamente lo
+   * que hace el sticker de la referencia.
+   *
+   * ⚠️ La tinta crece `grosor/2` por lado, y `medirTinta` mide SIN el halo: en
+   * la pieza hay que descontarlo al calcular colisiones, márgenes Y el aire
+   * entre la script y la caja alta (si no, los dos halos se tocan).
+   *
+   * Es OPT-IN, por la misma razón que `cajaAlta` y `pesoCaps`: ninguna pieza ya
+   * aprobada lo lleva y encenderlo por defecto las re-flujaría a todas.
+   */
+  contorno?: number;
+  /** Color del contorno. Por defecto el beige de la marca. */
+  contornoColor?: string;
   style?: React.CSSProperties;
 }> = ({
   script,
@@ -1203,6 +1246,8 @@ export const TitularBetween: React.FC<{
   trackingCapsEm,
   pesoCaps,
   cajaAlta = true,
+  contorno = 0,
+  contornoColor = BETWEEN.colores.beige,
   tono = 'beige',
   alinear = 'centro',
   anchoDisponible = 1080 - 2 * BETWEEN.bloque.margenX,
@@ -1327,6 +1372,7 @@ export const TitularBetween: React.FC<{
            vitrina— y ahí la sombra no aporta contraste: sólo ensucia el contorno
            y engorda la letra. Se apaga. */
         textShadow: tono === 'cafe' ? undefined : sombraSobreFoto,
+        ...(contorno ? {textShadow: haloSticker(contorno / 2, contornoColor)} : null),
         ...extra,
       }}
     >

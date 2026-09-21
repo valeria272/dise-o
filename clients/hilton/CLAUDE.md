@@ -2502,6 +2502,89 @@ en las dos piezas (la mesa), no el promedio global: la mediana depende de qué
 hay en el cuadro, y esa slide tenía 28 % de muro vegetal contra el 48 % de su
 hermana.
 
+## ⭐⭐ BETWEEN — «EN UN MARCO» PUEDE SER UN CONTORNO, NO UNA CAJA (21-09-2026)
+
+Eli, sobre la portada del concurso: «que **se busca CEO del café** sea el que esté
+en un **marco beige** […] que sea **como el sticker, igual que la referencia**».
+
+La lectura fácil era dibujar un rectángulo beige y meter el titular adentro. **La
+referencia decía otra cosa.** En la `REF 1` el titular lleva un **contorno claro
+pegado a las letras** —una calcomanía— y la caja plana rellena está reservada
+para el rótulo. Un rectángulo habría dejado tres cajas apiladas en la misma
+lámina; el contorno, en cambio, hace que el titular y el recorte de la figura
+—que ya trae su borde blanco de sticker— se lean como piezas del mismo collage.
+
+**La regla:** cuando la diseñadora nombra un recurso citando la referencia
+(«como el sticker», «como la ref»), **el recurso se mide en la referencia antes
+de componer**, igual que el cuadro de vidrio de la ST del 30-09. La palabra es
+una pista, no la especificación.
+
+**Cómo se pinta**, para que no se vuelva a descubrir: `TitularBetween` acepta
+`contorno` (px) y `contornoColor`, y pinta un **halo de 24 copias del texto en
+círculo** con `text-shadow`.
+
+⛔⛔ **NO se hace con `-webkit-text-stroke`, ni siquiera con `paint-order: stroke
+fill`.** Se probó y se vio ampliando el render: Chrome aplica el orden de pintado
+**glifo a glifo**, así que el contorno de cada letra pasa por encima del relleno
+de la anterior y la palabra queda cruzada por trazos claros. Con el tracking
+negativo del titular de Between (−0,024em) las letras están lo bastante juntas
+como para que se note en toda la línea. `text-shadow` se pinta entero DETRÁS del
+texto del elemento, así que el halo sale continuo alrededor de la palabra — que
+es lo que hace el sticker del referente.
+
+⛔ **Y el halo se descuenta del aire entre líneas.** El aire script→caja alta de
+la marca son 9 px de tinta a tinta; con un halo de 12 px —6 por lado— las dos
+líneas quedan a −3 y los halos se montan. Se abre a 9 + grosor + 6.
+
+⚠️ La tinta crece `grosor/2` por lado y `medirTinta` mide SIN el trazo: hay que
+descontarlo al calcular márgenes y colisiones.
+
+**El grosor se deriva, no se elige:** es la misma proporción que tiene el
+contorno blanco del recorte de la foto contra su propio ancho de trazo — 12 px a
+un cuerpo de 72.
+
+### ⭐⭐⭐ Y la lección de la ronda 8: una caja beige sobre papel beige no destaca
+
+Eli, sobre el rótulo: «borra el recuadro beige que tiene, **para que destaque
+mucho más**». Tenía razón y se puede medir: **la caja beige aporta 1,50:1 contra
+el papel**, o sea que lo que hacía destacar a la palabra era el canto de la caja,
+no la palabra. Sacada la caja, la que trabaja es la tipografía y ahí sí se puede
+crecer sin que el objeto se coma la lámina: CONCURSO pasó de 68 en caja a **104
+suelto en Raleway Black (900)**, con 4,17:1 contra el papel — casi tres veces el
+contraste.
+
+⛔ **El Black es del RÓTULO, no del titular.** El titular de Between es ExtraBold
+(800) y eso está medido; el 900 fue uno de los errores que hundió una grilla.
+
+### ⭐⭐ Si la diseñadora DIBUJA la corrección, el ángulo se mide en su dibujo
+
+Eli pidió girar las tres cuñas «como te dejo la ref». Se dedujo el ángulo de la
+`REF 2` —donde el abanico se abre hacia arriba-derecha— y salió **+40°**. Estaba
+al revés: cuando mandó el pantallazo rayado, aislar el rojo y sacarle el eje
+principal a cada marca (PCA) dio **22°, 40° y 87°** contra los 67°, 88° y 120°
+del dibujo sin girar, o sea **−42°**.
+
+**La regla:** el garabato de la diseñadora es la fuente primaria y se mide; la
+referencia original es una segunda fuente y puede dar hasta el signo cambiado.
+El aparato es cuatro líneas de `numpy` y es `scripts/between-concurso-s3-medir.py rojo`.
+
+### ⭐⭐ Cuando no hay aire, mirar qué pedido lo libera
+
+En la misma ronda Eli pidió dos cosas que parecían independientes: bajar el
+rótulo —que no tenía de dónde— y **juntar las dos líneas del titular**. La
+segunda paga la primera: en la `REF 1` la caja monta sobre el texto, y ese
+solape de 8 px devuelve 12 px de alto al bloque, justo los que faltaban arriba.
+Antes de achicar un cuerpo o comerse una holgura, **revisar si otro pedido de la
+misma lista libera el espacio**.
+
+### ⭐ Y una precisión sobre «un carrusel, un cuerpo de titular»
+
+La regla compara **objetos iguales**. Si en una lámina el titular deja de ser
+texto suelto y pasa a ser un **rótulo enmarcado** —otro objeto—, su cuerpo ya no
+tiene que empatar con el de las otras slides. Pasó acá: la portada bajó a 64 con
+contorno y la slide 2 se quedó en los 88 aprobados, con Eli confirmándolo por
+separado («en la segunda slide quedó perfecta»).
+
 ## Brand kit BETWEEN (calibrado 24-08-2026 con el feedback escrito de Eli)
 
 > **Los valores exactos viven en el código, no acá:** `src/brand/hilton-between.ts`

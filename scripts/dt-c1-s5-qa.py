@@ -63,7 +63,16 @@ BANDAS = {
     # lockup — ahora firma con la versalita, como las otras cuatro.
     "DT-V-S5-Portada": [
         # Bandas RE-MEDIDAS sobre el render de la ronda 2 (el bloque bajó 30 px).
-        ("Tu día",        (162, 372, 330, 442), BLANCO, 3.0),
+        # ⛔⛔ RONDA 3 — **LA BANDA DE «Tu día» ESTABA MAL MEDIDA Y TAPABA UN
+        # FALLO.** Arrancaba en x=162 y la tinta arranca en **140,5**: la «T»
+        # quedaba FUERA de la medición, y es justo la letra que cae sobre la viga
+        # clara del cielo. Con la banda vieja el QA cantaba 3,27:1 en el f149; la
+        # tinta real daba **2,71:1**, bajo la vara, y la pieza se entregó así.
+        #
+        # La banda ya no se estima a ojo sobre el render: sale del contorno de
+        # los glifos de Stag LightItalic con el `letter-spacing` y la línea base
+        # de Chrome — x 140,5→327,6 · y 393,7→444,8.
+        ("Tu día",        (140, 393, 328, 446), BLANCO, 3.0),
         ("en DoubleTree", (88, 505, 760, 592), BLANCO, 3.0),
         ("bajada",        (88, 625, 640, 672), BLANCO, 4.5),
         ("DESLIZA",       (130, 1098, 312, 1124), AZUL, 4.5, 92),
@@ -135,7 +144,10 @@ IZQUIERDA = {
     # ⚠️ En la portada el que alinea es el CÍRCULO, no la palabra: «Tu día» va
     # deliberadamente adentro del trazo, como en la referencia. Por eso la franja
     # 355-385 toma el flanco del círculo y no la letra.
-    "DT-V-S5-Portada":    [("círculo", 360, 420), ("titular", 505, 592),
+    # ⚠️ RONDA 3: el círculo creció y bajó, así que su punto más ancho —el
+    # único que toca el margen— pasó de y≈395 a **y=413,5**. Con la franja vieja
+    # (360-420) el QA medía casi puro flanco alto y el canto le daba corrido.
+    "DT-V-S5-Portada":    [("círculo", 400, 430), ("titular", 505, 592),
                            ("bajada", 625, 672)],
     "DT-V-S5-Desayuno":   [("sello", 128, 172), ("gancho", 200, 292),
                            ("remate", 292, 378)],

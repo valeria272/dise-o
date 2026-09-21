@@ -14,6 +14,10 @@ referencias que ella misma dejó en el Drive.
 
 Ronda 2 (17-09): seis correcciones de Eli, cada una con lo que se midió para
 resolverla. Ver el bloque «Ronda 2» de la página.
+
+Ronda 3 (21-09): un solo ajuste, en la portada — el trazo tapaba la tilde de
+«día» y el bloque estaba despegado del titular. Va con ANTES / DESPUÉS al
+tamaño real y con el detalle a 2×, porque el arreglo es de píxeles.
 """
 import shutil
 import sys
@@ -103,14 +107,18 @@ DECISIONES = [
 ]
 
 QA = """CONTRASTE — cada tinta contra su fondo real, en el peor fotograma
-  Portada      «Tu día» 3,73:1 · titular 4,05:1 · bajada 9,15:1 · DESLIZA 9,48:1 · firma 4,69:1
+  Portada      «Tu día» 3,35:1 · titular 4,05:1 · bajada 9,15:1 · DESLIZA 9,48:1 · firma 4,69:1
   Desayuno     sello 5,21:1 · titular 4,80:1 · firma 4,57:1
   Salón        sello 5,72:1 · titular 3,75:1 · firma 6,99:1
   Lobby        sello 6,50:1 · titular 3,98:1 · firma 6,76:1
   Habitación   sello 5,08:1 · titular 4,32:1 · firma 4,74:1
 
 CANTO IZQUIERDO — las 15 franjas de texto, contra el margen de DT (88 px)
-  las 15 en x = 88 ✅"""
+  las 15 en x = 88 ✅
+
+HOLGURA DEL TRAZO — cada glifo de «Tu día» contra el círculo (ronda 3)
+  «T» +20,2  «u» +31,3  «d» +27,1  «í» +20,8  «a» +16,3 px
+  en la ronda 2 la «í» iba en −1,9 y la «a» en −2,0 — o sea el trazo las pisaba"""
 
 
 def main() -> int:
@@ -136,7 +144,7 @@ def main() -> int:
 
     html = f"""<!doctype html>
 <html lang="es"><meta charset="utf-8">
-<title>DT · Carrusel S5 · 28-09 — ronda 2</title>
+<title>DT · Carrusel S5 · 28-09 — ronda 3</title>
 <style>
   :root {{ --azul:#09194E; --verde:#A3CD39; --papel:#F4F5F7; }}
   * {{ box-sizing:border-box; }}
@@ -176,11 +184,17 @@ def main() -> int:
   .refs img {{ width:262px; height:auto; border-radius:9px;
     box-shadow:0 5px 22px rgba(9,25,78,.16); }}
   .refs figcaption {{ color:#5A6675; }}
+  .par {{ display:flex; gap:20px; margin-bottom:18px; flex-wrap:wrap; }}
+  .par figure {{ margin:0; }}
+  .par img {{ width:430px; max-width:100%; height:auto; border-radius:9px;
+    box-shadow:0 5px 22px rgba(9,25,78,.16); display:block; }}
+  .par figcaption {{ color:#5A6675; padding-top:8px; font-size:12.5px; }}
 </style>
 <header>
   <h1>DoubleTree · Carrusel de videos «Tu día en DoubleTree»</h1>
-  <p>FEED columna M · 28 de septiembre 12:00 · ronda 1 · 5 láminas de 5,0 s ·
-     <b>2160×2700</b> · <b>falta el slide del GYM</b></p>
+  <p>FEED columna M · 28 de septiembre 12:00 · 5 láminas de 5,0 s ·
+     <b>2160×2700</b> · <b>ronda 3: ajustada la portada</b> ·
+     <b>falta el slide del GYM</b></p>
 </header>
 <main>
   <h2>Las láminas — se reproducen solas, en bucle</h2>
@@ -237,6 +251,43 @@ def main() -> int:
       pie, como la referencia y como las otras cuatro.</p></li>
   </ul>
 
+  <h2>Ronda 3 — la portada, lo único que se tocó</h2>
+  <div class="par">
+    <figure><img src="r3/antes.png">
+      <figcaption><b>ANTES</b> — lo entregado el 17-09</figcaption></figure>
+    <figure><img src="r3/despues.png">
+      <figcaption><b>DESPUÉS</b> — 21-09</figcaption></figure>
+  </div>
+  <div class="par">
+    <figure><img src="r3/antes-tilde.png">
+      <figcaption>Detalle a 2× — el trazo pisa la tilde de «día» y la «a»</figcaption></figure>
+    <figure><img src="r3/despues-tilde.png">
+      <figcaption>Detalle a 2× — la palabra entra entera en el trazo</figcaption></figure>
+  </div>
+  <ul>
+    <li class="r2"><b>«Se tapa la i»</b><p>No estaba mal dibujado el trazo:
+      <b>la palabra no cabía</b>. La tinta de «Tu día» llegaba a x=327,6 y el
+      canto derecho del círculo estaba en x=319,1, así que «día» se salía 8,5 px
+      por la derecha y la curva pasaba justo por la tilde y por la «a». Medido
+      glifo por glifo, la «í» iba en <b>−1,9 px</b> y la «a» en <b>−2,0 px</b> —
+      negativo es que se tocan.<br>
+      Por eso no se arregló corriendo la palabra: <b>el círculo creció un 19 %</b>
+      (258×130 → 306×154) y la palabra se quedó exactamente donde estaba de lado.
+      Ahora el peor glifo tiene <b>16,3 px</b> de aire.</p></li>
+    <li class="r2"><b>«Baja un poco y junta con el título»</b><p>El trazo baja
+      <b>34 px</b> y el titular <b>no se movió</b>: el hueco entre el círculo y la
+      tinta de «en DoubleTree» pasa de <b>57,6 px a 24 px</b>. Las dos líneas son
+      una sola frase —«Tu día en DoubleTree»— y venían con más aire adentro de
+      la frase que entre el titular y la bajada.</p></li>
+    <li class="r2"><b>Y de paso apareció un contraste mal medido</b><p>El QA leía
+      la banda de «Tu día» desde x=162 y la tinta arranca en <b>140,5</b>: se
+      saltaba la «T», que es justo la letra que caía sobre la viga clara del
+      cielo. Medida donde de verdad está, la ronda 2 daba <b>2,71:1</b> —bajo la
+      vara de 3— y se entregó así. Con el bloque más abajo entra en la parte del
+      velo que ya pesa y sube a <b>3,35:1</b>. La banda del QA queda corregida y
+      ahora sale del contorno de los glifos, no de mirar el render.</p></li>
+  </ul>
+
   <h2>Decisiones que siguen en pie — dime cuál cambio</h2>
   <ul>
 {bloque(DECISIONES, "dec")}
@@ -246,7 +297,7 @@ def main() -> int:
   <pre>{QA}</pre>
 </main>
 </html>"""
-    salida = BASE / "revision-r2.html"
+    salida = BASE / "revision-r3.html"
     salida.write_text(html, encoding="utf-8")
     print(f"  {salida.relative_to(RAIZ)}")
     return 0

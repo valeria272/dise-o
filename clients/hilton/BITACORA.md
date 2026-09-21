@@ -1,3 +1,66 @@
+## 2026-09-21 · Eli (Windows) — DT, CARRUSEL S5: ronda 3 de la portada, **APROBADA**
+
+**Qué se hizo.** Un solo ajuste, pedido por Eli sobre un pantallazo: «ajusta la
+línea del Tu día, porque se tapa la i; además baja un poco y junta con el título
+ya que se ve extraño. Lo demás está bien.» Aprobado en la primera vuelta.
+
+⛔ **El trazo no tapaba la tilde por estar mal dibujado: la palabra no cabía.**
+La tinta de «Tu día» llegaba a x=327,6 y el canto derecho del círculo estaba en
+x=319,1 — «día» se salía **8,5 px** por la derecha y la curva pasaba justo por
+la tilde y por la «a». Medido glifo a glifo contra el trazo: la «í» en
+**−1,9 px** y la «a» en **−2,0 px** (negativo = se tocan).
+
+| | ronda 2 | ronda 3 |
+|---|---|---|
+| círculo | 258×130 | **306×154** (+19 %) |
+| holgura de la «í» | −1,9 px | **+20,8 px** |
+| holgura de la «a» | −2,0 px | **+16,3 px** |
+| hueco contra «en DoubleTree» | 57,6 px | **24 px** |
+
+Por eso **la palabra no se movió de lado** —sigue de x=140,5 a 327,6, que es lo
+aprobado y lo que el QA mide contra el margen—: crece el trazo. Y el bloque baja
+30 px **sin mover el titular**: `height` + `marginBottom` sigue sumando **162**,
+que es lo que clava «en DoubleTree» en y=492.
+
+⚠⚠ **Y apareció un fallo que se entregó el 17-09 sin que nadie lo viera.** La
+banda del QA de «Tu día» arrancaba en x=162 y la tinta arranca en **140,5**: se
+saltaba la «T», justo la letra que cae sobre la viga clara del cielo. El QA
+cantaba 3,27:1 y la tinta real daba **2,71:1**, bajo la vara de 3. Al bajar el
+bloque entra en la parte del velo que ya pesa y sube a **3,35:1**. La banda queda
+corregida y ahora **sale del contorno de los glifos** (fontTools + la línea base
+de Chrome), no de mirar el render. Memoria: `banda-de-qa-sale-del-glifo`.
+
+**Dónde quedó.**
+- Drive: **reemplazada en su sitio** en `S5 HILTON SEP 2026 › DT`, mismo
+  `fileId` `1XOgP7k-vucZaNgBEEB6Ct-i-UpPnHZgx`, así que **el enlace que ya
+  circuló sigue sirviendo**. Las otras cuatro no se tocaron.
+- Entrega local: `out/hilton/dt/c1-s5/entrega/C1 S5 DT n°1.mp4` (2160×2700, 5,06 s).
+- Composición: `src/compositions/hilton/DtC1S5Dia.tsx` — cuatro números:
+  `height/marginBottom` 154/8, el `<svg>` en `left: -12.87, top: 13.69`,
+  `<Circulo ancho={306} alto={154}>` y el texto en `top: 54`.
+- QA: pasa entero. Typecheck limpio.
+- Página de revisión: `out/hilton/dt/c1-s5/revision-r3.html`, con el antes/después
+  al tamaño real y el detalle de la tilde a 2×.
+
+**Qué sigue.** Lo mismo que dejó el 17-09, sin cambios: pedirle a contenido el
+**slide del GYM** (y decidir con Eli que sería la única lámina sin video) y la
+**hora del cierre**. Al insertar el GYM hay que **RENUMERAR**: el cierre pasa a
+ser la n°6.
+
+**Abierto.**
+- ⚠️ **Falta llevar la regla al manual.** El aprendizaje —las bandas del QA se
+  calculan desde el glifo, no se estiman sobre el render— no se escribió en
+  `clients/hilton/CLAUDE.md` porque **otra sesión lo tenía abierto y modificado**
+  (Between/QB) y stagearlo habría arrastrado su trabajo a medias. Queda en la
+  cabecera de la composición, en `dt-c1-s5-qa.py` y en la memoria. **Hay que
+  subirlo al manual cuando esa sesión cierre.**
+- Siguen abiertos los puntos del 17-09: portada sin lockup (a confirmar por
+  escrito), los textos con punto final, el `12:00`, y la gente al fondo de los
+  clips del salón y la portada.
+- El estado de la celda en la grilla sigue siendo `REVISAR CONTENIDO`.
+
+---
+
 ## 2026-09-17 (cierre 2) · Eli (Windows) — DT, CARRUSEL DE VIDEOS DE LA S5: **APROBADO**
 
 **Qué se hizo.** Se diseñó y se entregó el **carrusel de videos «Tu día en

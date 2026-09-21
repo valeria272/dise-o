@@ -591,22 +591,67 @@ export const DtC1S5Portada: React.FC = () => {
       */}
       <div style={{position: 'absolute', left: MARGEN, top: 330, width: ANCHO_UTIL}}>
         {/* El gesto de la referencia: «Tu día» rodeado a mano, arriba del todo. */}
-        <div style={{position: 'relative', height: 116, marginBottom: 46}}>
+        {/*
+          ⭐⭐ RONDA 3 (Eli, 21-09): «ajusta la línea del Tu día, porque se tapa
+          la i; además baja un poco y junta con el título».
+
+          Las dos cosas se midieron con la geometría real —contorno de los
+          glifos de Stag LightItalic contra el trazo del `<svg>` muestreado—, no
+          a ojo, y las dos tenían número:
+
+          | glifo | ronda 2 | ronda 3 |
+          |---|---|---|
+          | «í» (la tilde) | **−1,9 px** — la pisa | **+20,8 px** |
+          | «a» (la última) | **−2,0 px** — la pisa | **+16,3 px** |
+          | «d» | +4,0 px | +27,1 px |
+
+          ⛔ **El trazo no tapaba la i por estar mal dibujado: la palabra no
+          cabía.** La tinta llegaba a x=327,6 y el canto derecho del círculo
+          estaba en x=319,1 — «día» se salía por la derecha 8,5 px y la curva le
+          pasaba por encima justo donde están la tilde y la «a». Por eso NO se
+          arregla moviendo la palabra a la izquierda: **el círculo crece un 19 %**
+          (258×130 → 306×154) y la palabra se queda EXACTAMENTE donde estaba de
+          lado —tinta de x=140,5 a x=327,6, la misma de la ronda 2—, que es lo
+          aprobado y lo que el QA mide contra el margen.
+
+          ⭐ **Y el bloque baja sin mover el titular.** El canto inferior del
+          trazo pasa de y=450 a **y=484**, así que el hueco contra la tinta del
+          titular (y=508) cae de **57,6 px a 24 px** y las dos líneas por fin se
+          leen como la frase que son —«Tu día en DoubleTree» es UNA frase
+          partida en dos renglones, y venía con más aire adentro del nivel que
+          entre el titular y la bajada (45,5 px).
+
+          ⭐⭐ **Y bajar arregló de paso un contraste que venía mal medido.** El
+          QA de la ronda 2 leía la banda desde x=162, o sea **se saltaba la «T»**:
+          la tinta arranca en 140,5. Medida donde de verdad está, la ronda 2 daba
+          **2,71:1** en el f149 —bajo la vara de 3— porque la «T» caía sobre la
+          viga clara del cielo. Con el bloque 30 px más abajo entra en la parte
+          del velo que ya pesa y sube a **3,35:1**. La banda del QA queda
+          corregida a la tinta real (`dt-c1-s5-qa.py`).
+
+          ⚠️ `height` + `marginBottom` sigue sumando **162**, que es lo que clava
+          el titular en y=492. Lo aprobado de la ronda 2 no se mueve ni un píxel.
+        */}
+        <div style={{position: 'relative', height: 154, marginBottom: 8}}>
           {/*
-            ⭐ El −11 es MEDIDO: el trazo no arranca en el canto del `<svg>`, así
+            ⭐ El −12,4 es MEDIDO: el trazo no arranca en el canto del `<svg>`, así
             que a `left: 4` la tinta caía en x=103 y el bloque se leía sangrado
             respecto del titular. Ahora el canto del círculo cae en el margen
             (88) y es el círculo —no la palabra— el que alinea. La palabra va
             deliberadamente adentro, como en la referencia.
+
+            ⚠️ El valor cambió de −11 a −12,87 con el círculo nuevo: el hueco del
+            trazo escala con el `viewBox`, así que **se recalcula cada vez que se
+            toca `ancho`**. No es un número que se copie.
           */}
-          <div style={{position: 'absolute', left: -11, top: 2}}>
-            <Circulo ancho={258} alto={130} desde={8} />
+          <div style={{position: 'absolute', left: -12.87, top: 13.69}}>
+            <Circulo ancho={306} alto={154} desde={8} />
           </div>
           <div
             style={{
               position: 'absolute',
               left: 46,
-              top: 24,
+              top: 54,
               fontFamily: DT.fuentes.titular,
               fontStyle: 'italic',
               fontWeight: DT.pesos.light,

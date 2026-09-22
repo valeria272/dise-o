@@ -130,7 +130,7 @@ import {TalkingHeadEdit} from "./templates/editing/TalkingHeadEdit";
 import {PodcastClip} from "./templates/editing/PodcastClip";
 
 import {
-  ToGo1, ToGo2, ToGo3, ToGo4,
+  ToGo1, ToGo1Direccion, ToGo2, ToGo3, ToGo4,
   HumorCafecito,
   Foto1, Foto2, Foto3, Foto4,
   EllaHablo,
@@ -180,6 +180,10 @@ export const RemotionRoot: React.FC = () => {
       </Folder>
       <Folder name="HiltonBetween">
         <Composition id="BW-F-ToGo-1" component={ToGo1} {...btFeed} />
+        {/* La misma portada con la dirección al pie — pedido de Scarlette del
+            22-09. Va sobre la foto del vaso sobre la mesa y se entrega como
+            archivo APARTE: ver `ToGo1Direccion`. */}
+        <Composition id="BW-F-ToGo-1-Direccion" component={ToGo1Direccion} {...btFeed} />
         <Composition id="BW-F-ToGo-2" component={ToGo2} {...btFeed} />
         <Composition id="BW-F-ToGo-3" component={ToGo3} {...btFeed} />
         <Composition id="BW-F-ToGo-4" component={ToGo4} {...btFeed} />

@@ -69,6 +69,10 @@ NOMBRES = {
     # cliente). Los nombres decían 14-09 y los archivos que ya están en Drive
     # dicen 22-09, así que mandan estos. Y la 4 es «los tres», no «trio».
     'BW-F-ToGo-1':        'BW FEED 22-09 Promos To Go 1 portada',
+    # ⭐ 22-09: la MISMA portada con la dirección al pie (pedido de Scarlette).
+    # Sube como archivo APARTE —«no borrar nada ni quitarlo», Eli— así que lleva
+    # nombre propio. Sin tildes, como todo Between.
+    'BW-F-ToGo-1-Direccion': 'BW FEED 22-09 Promos To Go 1 portada con direccion',
     'BW-F-ToGo-2':        'BW FEED 22-09 Promos To Go 2 sandwich',
     'BW-F-ToGo-3':        'BW FEED 22-09 Promos To Go 3 dulce',
     'BW-F-ToGo-4':        'BW FEED 22-09 Promos To Go 4 los tres',

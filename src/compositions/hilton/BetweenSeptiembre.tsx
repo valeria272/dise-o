@@ -1070,7 +1070,17 @@ export const EllaHablo: React.FC = () => (
  * El bloque baja al pie y el logo sube: la cara queda en el tercio alto y
  * ningún texto puede cruzarla (regla dura de la diseñadora).
  */
-export const ToGo1: React.FC = () => (
+/**
+ * ⚠️ LA PORTADA TIENE DOS VERSIONES VIVAS, y por eso esto es una base con props.
+ * Las dos exportaciones están al final del componente, con el motivo escrito.
+ * Todo lo demás —textos, columna, anclaje, logo— es idéntico y se toca acá una
+ * sola vez.
+ */
+const ToGo1Base: React.FC<{
+  foto: string;
+  degradadoPie: number;
+  direccion?: boolean;
+}> = ({foto, degradadoPie, direccion}) => (
   <PiezaFeedBodegon
     /* ⭐⭐ RONDA 10 (04-09). Dos pedidos que apuntan a lo mismo:
          Cliente (`FEED!L15`, sin tachar): «el fondo no tiene nada que ver con
@@ -1163,7 +1173,7 @@ export const ToGo1: React.FC = () => (
        ⭐ NO es «volver a la r23»: los textos de la r23 iban en caja taupe y
           Eli los sacó en la r24. Lo único que retrocede es la PLACA DE FONDO
           y el degradado que le corresponde. */
-    foto={F + 'togo-portada-r23.jpg'}
+    foto={foto}
     /* ⭐⭐ RONDA 24 — LOS TEXTOS VUELVEN A COMO ESTABAN. Eli, sobre la r23:
        «Quiero los textos de la portada como estaban antes, se va a ver bien. Si
        necesitas algo puedes añadir una transparencia en opacidad o degradado».
@@ -1189,7 +1199,7 @@ export const ToGo1: React.FC = () => (
            0,60 → 3,59 · 4,28 · 5,01   ⚠️ pasa, pero el script queda al filo
        Las dos opciones superan el 3:1 de la marca; se deja 0,72 porque es el
        valor con el que esta portada se entregó y se aprobó el 14-09. */
-    degradadoPie={0.72}
+    degradadoPie={degradadoPie}
     script="¿Vas con poco tiempo?"
     /* ⭐⭐ RONDA 19 (07-09) — Eli: «los textos se ven corridos en la portada».
        Y no era el centrado: medido sobre el render, las cinco líneas caen a ±2 px
@@ -1239,7 +1249,46 @@ export const ToGo1: React.FC = () => (
        ⚠️ Y no deja al carrusel sin marca: las slides 2, 3 y 4 llevan el vaso
        con el logotipo impreso. */
     oscurecer={0.06}
+    direccion={direccion}
   />
+);
+
+/**
+ * LA PORTADA ENTREGADA — la foto de la entrada, sin dirección.
+ * Es el archivo que está hoy en `C1 S4` (`17xDK7PM…`): la reversión del 22-09
+ * por la mañana. **No se toca**: mientras ese archivo siga en Drive, esta
+ * composición tiene que reproducirlo.
+ */
+export const ToGo1: React.FC = () => (
+  <ToGo1Base foto={F + 'togo-portada-r23.jpg'} degradadoPie={0.72} />
+);
+
+/**
+ * ⭐ RONDA 30 (22-09) — LA PORTADA CON LA DIRECCIÓN AL PIE.
+ *
+ * Scarlette, por Slack, sobre la portada que Eli le había pasado: «te pido un
+ * favor, le puedes sumar la dirección a esta portada porfiss ❤️ Con eso
+ * mandamos a VB @Nicolás Ávila y se subee».
+ *
+ * ⚠️ **Y va sobre la foto del VASO SOBRE LA MESA (`togo-portada-r25.jpg`), no
+ * sobre la de la entrada.** La lámina que Scarlette tiene a la vista en ese hilo
+ * —y que Eli me pasó para hacer el ajuste— es la del 16-09, verificada píxel a
+ * píxel contra `out/hilton/between/entrega-togo-r25/`. Esa es la portada del
+ * pedido, así que es la que lleva la dirección. Con su degradado de pie propio:
+ * el 0,60 se calibró contra ESTA placa (ver el comentario de la r25 arriba).
+ *
+ * ⛔ **Sube como archivo INDEPENDIENTE a `C1 S4`** — indicación de Eli el 22-09:
+ * «debes subirla como independiente, no borrar nada ni quitarlo». O sea que la
+ * portada de la entrada **se queda donde está** y ésta se suma al lado; ningún
+ * enlace que ya circule cambia de contenido.
+ *
+ * ⚠️ Sólo la PORTADA: el pedido es de esta lámina, y las slides 2, 3 y 4 están
+ * esperando el visto del cliente por otro motivo (precios y rollo de canela).
+ * Ponerles la dirección a las cuatro sería inventarle al cliente una corrección
+ * que no pidió.
+ */
+export const ToGo1Direccion: React.FC = () => (
+  <ToGo1Base foto={F + 'togo-portada-r25.jpg'} degradadoPie={0.6} direccion />
 );
 
 export const ToGo2: React.FC = () => (

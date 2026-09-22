@@ -1,3 +1,80 @@
+## 2026-09-22 · Eli (Windows) — BETWEEN: la portada To Go, ahora con la dirección al pie
+
+**Lo que pidió Scarlette** (Slack, sobre la portada que Eli le había pasado):
+«te pido un favor, le puedes sumar la dirección a esta portada porfiss ❤️ Con eso
+mandamos a VB @Nicolás Ávila y se subee».
+
+**⚠️ La portada del pedido NO es la que está publicada.** La lámina del hilo —y la
+que Eli me pasó para hacer el ajuste— es la del **16-09, el vaso sobre la mesa de
+listones**; verificado píxel a píxel contra `out/hilton/between/entrega-togo-r25/`
+(diferencia media 0,00). La que quedó en Drive esta mañana es la de la **entrada**
+(IMG_4170), por la reversión de la r29. Se preguntó antes de tocar nada y la
+indicación de Eli fue clara: **«debes subirla como independiente, no borrar nada ni
+quitarlo»**. Así que la de la entrada **sigue publicada y sin tocar**, y la nueva se
+suma al lado.
+
+**Entregado** — `C1 S4` (`1vZZGvxfiGOIrf73znO39V4aASreumkfZ`), archivo **nuevo**:
+
+| | |
+|---|---|
+| Archivo | `BW FEED 22-09 Promos To Go 1 portada con direccion.png` |
+| id | `1jin31p-Be4bW5SDQoHgjEBYl-lr5HWrI` |
+| md5 | `716289b7…` — el mismo del local |
+| La que ya estaba | `17xDK7PM…`, md5 `8bb07f15…`, `modifiedTime` **12:48 sin cambios** |
+
+⭐ **La dirección se CALCÓ, no se diseñó.** El único antecedente de dirección sobre
+una pieza de feed es la lámina `C1 S2 CUMPLE N1.png` que hizo Eli el 07-09, nacida
+del mismo pedido del cliente («aprovechemos de poner la dirección en G1 abajo»). Se
+midió sobre ese archivo y se reprodujo:
+
+| | Lámina de Eli | La portada nueva |
+|---|---|---|
+| altura de versal | 43 px | **43 px** |
+| ancho de la línea | 879 px | **877 px** |
+| línea de base | a 79 px del canto | **a 78 px** |
+| centro de la tinta | 1123 (el lienzo en 1125) | **1123** |
+| ancho de asta | 5 / 5,4 | **6 / 5,9** |
+
+⭐⭐ **Y ahí está la lección: el peso salió del TRAZO, no del ojo.** Con el cuerpo ya
+calzado (versal de 43 px = 29 px en la mesa), el semibold que usa todo el resto del
+sistema daba **7 px de asta y un 35 % más de tinta** que la línea de ella. El
+regular se quedaba corto (4 px, 14 % menos). Queda **Medium (500)**, y el tracking
+salió de la misma medición: 0,024 em deja la línea en 877 contra 879. Una línea de
+pie «parecida» se nota al lado de la de la diseñadora; medirla cuesta dos renders.
+
+**Lo medido antes de entregar:**
+
+- contraste de la línea sobre su fondo, **por el peor tramo de 60 px: 5,03:1**
+  (la vara del texto chico son 4,5:1); ni el píxel más claro baja de 4,57:1;
+- márgenes 685 px por lado, contra los 175 de mínimo;
+- **la pieza sólo cambia en la línea del pie**: contra la entregada del 16-09 no hay
+  un solo píxel distinto fuera de `y 2691–2743`;
+- `between-qa.py` limpia · typecheck limpio.
+
+⚠️ **El aviso de carrusel sigue, y es de la foto:** contra sus tres hermanas la
+portada queda 20 puntos más oscura de mediana y 16 más cálida. Ya estaba anotado el
+16-09; la dirección no lo mueve.
+
+**Cómo quedó el código.** `ToGo1` pasó a ser una base con props (`ToGo1Base`) y dos
+exportaciones, porque **hay dos portadas vivas en Drive**:
+
+- `BW-F-ToGo-1` → la de la entrada, sin dirección — reproduce el archivo publicado;
+- `BW-F-ToGo-1-Direccion` → la del vaso sobre la mesa, con la dirección.
+
+La línea es `DireccionAlPie` en `BetweenSistema.tsx`, con las medidas escritas
+encima, y la cadena vive en el kit como `BETWEEN.datos.direccionPieza` («AV.» en
+versales, que es como la escribió Eli; la otra forma es la del copy del posteo).
+
+**Dónde quedó:**
+- Entregado: `out/hilton-between-togo-r30/` (1 pieza + manifiesto con el id de Drive).
+- Página de revisión: `out/hilton/between/revision-direccion-22-09.html` —
+  `scripts/between-revision-direccion-22-09.py`.
+
+**Qué sigue:** que Scarlette mande a VB. Y las slides 2, 3 y 4 no se tocaron —
+siguen esperando el visto del cliente por los precios y el rollo de canela.
+
+---
+
 ## 2026-09-22 · Eli (Windows) — DT: el carrusel S5, ronda 5 (Constanza + Eli)
 
 **Qué pidieron.** Comentario de **Constanza Lizana** en la grilla (22-09, 11:49),

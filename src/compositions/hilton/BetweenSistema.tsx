@@ -1604,6 +1604,75 @@ export const LegalAlPie: React.FC<{
   </div>
 );
 
+/**
+ * ⭐⭐ LA DIRECCIÓN AL PIE — pedido de Scarlette el 22-09-2026 sobre la portada
+ * del carrusel PROMOS TO GO: «le puedes sumar la dirección a esta portada».
+ *
+ * ⛔ No se inventó: está **CALCADA de la lámina de Eli** `C1 S2 CUMPLE N1.png`
+ * (`raw/hilton/between/de-eli/cumple-s2-v2/`), que es el único antecedente de
+ * dirección puesta sobre una pieza de FEED y salió de la misma petición del
+ * cliente («aprovechemos de poner la dirección en G1 abajo», 08-09). Medido
+ * sobre ese archivo, a 2250 px de ancho:
+ *
+ *   · tinta de `AV. Vitacura 2727, Las Condes`  →  x 684–1562 (**ancho 879**)
+ *   · **altura de versal 43 px** → cuerpo 29 px en la mesa de 1080
+ *   · centrada sobre el eje (centro de tinta 1123, y el lienzo en 1125: la
+ *     diferencia es el espacio de tracking que cuelga tras la última letra)
+ *   · línea de base a **79 px** del canto inferior; el descendente de la coma
+ *     llega a 74
+ *   · tinta `#fff9eb` a plena opacidad (medido 253/247/233 sobre madera oscura)
+ *
+ * ⭐ **El peso salió del TRAZO, no del ojo.** Con el cuerpo ya calzado en 43 px
+ * de versal, se midió el ancho de asta en la fila media de la línea y el área
+ * de tinta de los dos renders contra el de ella:
+ *
+ *   | peso | asta (mediana / media) | tinta |
+ *   |---|---|---|
+ *   | Eli  | 5 / 5,42 | 8.727 |
+ *   | 400  | 4 / 4,3  | 7.476 ⛔ flaca |
+ *   | **500** | **6 / 5,94** | **9.484** ✅ |
+ *   | 600  | 7 / 7,45 | 11.075 ⛔ gorda (35 % más tinta que la de ella) |
+ *
+ * El semibold que usa el resto del sistema estaba **muy** lejos. Queda Medium,
+ * que es el más cercano de los pesos reales de la familia; el sobrante de 8 %
+ * es rasterización (Illustrator engorda menos las astas que Chrome).
+ * El tracking sale de la misma medición: **0,024 em** deja la línea en 877 px
+ * contra los 879 de ella.
+ *
+ * ⚠️ Va SUELTA al pie, no colgando del bloque: en la lámina de Eli la banda de
+ * texto anterior termina 744 px más arriba. Es un pie de página, no una línea
+ * más de la pila.
+ *
+ * ⚠️ La cadena lleva «AV.» en versales y el resto en caja alta y baja, tal como
+ * ella la escribió — no es `text-transform`, es el texto.
+ */
+export const DireccionAlPie: React.FC<{
+  formato: 'feed' | 'story';
+  children?: React.ReactNode;
+}> = ({formato, children}) => (
+  <div
+    style={{
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      /* `bottom` está ajustado CONTRA EL RENDER para que la base caiga a 38 px
+         del canto, que es donde la puso Eli. En story se respeta además la zona
+         segura de Meta (340 px), como hace `LegalAlPie`. */
+      bottom: formato === 'feed' ? 33 : 360,
+      textAlign: 'center',
+      fontFamily: BETWEEN.fuentes.sans,
+      fontWeight: BETWEEN.pesos.medium,
+      fontSize: formato === 'feed' ? 29 : 30,
+      lineHeight: 1,
+      letterSpacing: '0.024em',
+      color: BETWEEN.colores.beige,
+      textShadow: sombraSobreFoto,
+    }}
+  >
+    {children ?? BETWEEN.datos.direccionPieza}
+  </div>
+);
+
 export const PiezaFeedBodegon: React.FC<{
   foto: string;
   posicionFoto?: string;
@@ -1723,6 +1792,11 @@ export const PiezaFeedBodegon: React.FC<{
   pie?: {titulo?: string; detalle?: string};
   /** Legal en cursiva, al ras del borde inferior. */
   legal?: string;
+  /**
+   * La dirección del local al pie. `true` usa la cadena de marca; un string la
+   * reemplaza. Ver `DireccionAlPie` — está calcada de la lámina de Eli.
+   */
+  direccion?: boolean | string;
   conLogo?: boolean;
   logoTono?: Tono;
   logoPosicion?: 'arriba' | 'abajo';
@@ -1771,6 +1845,7 @@ export const PiezaFeedBodegon: React.FC<{
   arco,
   pie,
   legal,
+  direccion,
   // en el feed de bodegón la marca la pone el vaso, no un logo sobrepuesto
   conLogo = false,
   logoTono = 'beige',
@@ -1897,6 +1972,11 @@ export const PiezaFeedBodegon: React.FC<{
     {arco ? <TextoArco>{arco}</TextoArco> : null}
     {pie ? <PieDePieza formato="feed" {...pie} /> : null}
     {legal ? <LegalAlPie formato="feed">{legal}</LegalAlPie> : null}
+    {direccion ? (
+      <DireccionAlPie formato="feed">
+        {typeof direccion === 'string' ? direccion : BETWEEN.datos.direccionPieza}
+      </DireccionAlPie>
+    ) : null}
   </AbsoluteFill>
   );
 };

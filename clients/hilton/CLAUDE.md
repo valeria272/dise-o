@@ -7879,6 +7879,37 @@ del posteo):
 📍 Vitacura 2727, Las Condes, Santiago.
 ```
 
+### ⭐⭐ LA DIRECCIÓN AL PIE — cómo va escrita y cómo va compuesta (22-09-2026)
+
+Scarlette la volvió a pedir el 22-09, ahora sobre la portada del carrusel **PROMOS
+TO GO**: «le puedes sumar la dirección a esta portada». **No se diseña de nuevo: se
+calca de la lámina de Eli** `C1 S2 CUMPLE N1.png`
+(`raw/hilton/between/de-eli/cumple-s2-v2/`), que es el antecedente y salió de este
+mismo pedido del cliente. En la pieza va **`AV. Vitacura 2727, Las Condes`** —«AV.»
+en versales y el resto en caja alta y baja, tal como la escribió ella; los emoji y
+la coma final de arriba son del **copy del posteo**, no de la gráfica.
+
+Medido sobre su lámina, a 2250 px de ancho, y así quedó `DireccionAlPie`
+(`BetweenSistema.tsx`):
+
+| | Medida |
+|---|---|
+| altura de versal | **43 px** → cuerpo 29 px en la mesa de 1080 |
+| línea de base | a **79 px** del canto inferior |
+| ancho de la línea | **879 px**, centrada sobre el eje |
+| peso | **Raleway Medium (500)**, tracking 0,024 em |
+| tinta | `#fff9eb` a plena opacidad |
+
+⭐⭐ **La regla que dejó: el peso de una línea calcada sale del TRAZO, no del ojo.**
+Con el cuerpo ya calzado, el **semibold** que usa el resto del sistema daba **7 px
+de asta contra los 5 de ella y un 35 % más de tinta**; el regular se quedaba corto
+(4 px). Se mide el ancho de asta en la fila media de la línea y el área de tinta, y
+recién ahí se elige. Dos renders, y la línea deja de verse «parecida».
+
+⚠️ **Va SUELTA al pie, no colgando del bloque.** En la lámina de Eli la banda de
+texto anterior termina 744 px más arriba: es un pie de página, no una línea más de
+la pila de datos.
+
 ## ⚠️ Dos composiciones cargan todavía el legal VIEJO
 
 `BetweenStCumpleCarrusel.tsx` —el carrusel que Eli rehizo el 07-09 y del que

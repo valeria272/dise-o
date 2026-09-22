@@ -10,7 +10,7 @@ import {
   HumorCafecito,
   Foto1, Foto2, Foto3, Foto4,
   EllaHablo,
-  ToGo1, ToGo2, ToGo3, ToGo4,
+  ToGo1, ToGo1Direccion, ToGo2, ToGo3, ToGo4,
   StToGoDulce, StCumple, StCalculos, StEmergencia, StHoraCafe,
   StCowork, StDieciocho, StStrudel, StPrimavera, StHumorToGo, StPlateada,
 } from './compositions/hilton/BetweenSeptiembre';
@@ -26,6 +26,7 @@ const Raiz: React.FC = () => (
     </Folder>
     <Folder name="BW-Feed">
       <Composition id="BW-F-ToGo-1" component={ToGo1} {...feed} />
+      <Composition id="BW-F-ToGo-1-Direccion" component={ToGo1Direccion} {...feed} />
       <Composition id="BW-F-ToGo-2" component={ToGo2} {...feed} />
       <Composition id="BW-F-ToGo-3" component={ToGo3} {...feed} />
       <Composition id="BW-F-ToGo-4" component={ToGo4} {...feed} />

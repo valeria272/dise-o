@@ -497,25 +497,64 @@ const E4: React.FC = () => (
 
 const F: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
-    <Foto src={OCT("f-fondo")} foco="50% 48%" />
-    <Degradado arriba={0.5} abajo={0.5} />
+    <Foto src={OCT("f-fondo")} foco="50% 50%" />
+    <Degradado arriba={0.44} abajo={0.46} velo={0.16} />
     <Marco archivo="MARCO-ST" />
-    <Cuerpo top={STORY.texto} ancho={860}>
+    {/* Diego: "bloque de textos alineados al centro-medio". Todo el bloque
+        —titular, remate y globo— se centra vertical y horizontalmente en el
+        alto útil del marco, en vez de colgar del logo. */}
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 200,
+        height: 1380,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "0 110px",
+      }}
+    >
       <Modulado
-        base={44}
-        ancho={860}
+        base={42}
+        ancho={840}
         tramos={[{t: "¿Buscando una parcela"}, {t: "en Padre Hurtado?", salto: true}]}
       />
       <Aire h={24} />
       <Modulado
-        base={44}
+        base={42}
         ancho={880}
-        tramos={[{t: "La mejor forma de saberlo", ivy: true, cursiva: true, size: 58}, {t: "es venir a conocerla", ivy: true, cursiva: true, size: 58, salto: true}]}
+        tramos={[
+          {t: "La mejor forma de saberlo", ivy: true, cursiva: true, size: 56},
+          {t: "es venir a conocerla", ivy: true, cursiva: true, size: 56, salto: true},
+        ]}
       />
-    </Cuerpo>
-    <Globo y={1080} max={780} size={35} centrado={false}>
-      {"Recorre las parcelas disponibles\nConoce el entorno y accesos\nResuelve tus dudas sobre el proceso de compra"}
-    </Globo>
+      <Aire h={44} />
+      <div
+        style={{
+          display: "inline-block",
+          maxWidth: 760,
+          backgroundColor: "rgba(9,20,28,0.58)",
+          backdropFilter: "blur(18px)",
+          WebkitBackdropFilter: "blur(18px)",
+          border: "1px solid rgba(255,255,255,0.18)",
+          borderRadius: 34,
+          padding: "30px 38px",
+          fontFamily: SANS,
+          fontWeight: 300,
+          fontSize: 35,
+          lineHeight: 1.36,
+          color: "#fff",
+          textAlign: "center",
+          whiteSpace: "pre-line",
+          boxShadow: "0 22px 50px rgba(0,0,0,0.34)",
+        }}
+      >
+        {"Recorre las parcelas disponibles\nConoce el entorno y accesos\nResuelve tus dudas sobre el proceso de compra"}
+      </div>
+    </div>
     <Pildora caja={STORY.pill} icono={<IWsp s={28} />} size={31}>
       Agenda tu visita
     </Pildora>
@@ -576,13 +615,15 @@ const H: React.FC = () => (
     <AbsoluteFill style={{backgroundColor: TC.colors.navy}} />
     {/* MAPA-3 en transparencia */}
     <div style={{position: "absolute", left: 0, right: 0, top: 560, height: 620, overflow: "hidden"}}>
+      {/* Diego: "al mapa hay que cambiarle el color como las versiones de
+          mapa-1 y mapa-2" — va el duotono, no la captura cruda. */}
       <Img
-        src={OCT("mapa3")}
-        style={{width: "100%", height: "100%", objectFit: "cover", opacity: 0.32}}
+        src={OCT("mapa3-story")}
+        style={{width: "100%", height: "100%", objectFit: "cover", opacity: 0.62}}
       />
       <AbsoluteFill
         style={{
-          background: `linear-gradient(to bottom, ${TC.colors.navy} 0%, rgba(11,44,73,0) 26%, rgba(11,44,73,0) 74%, ${TC.colors.navy} 100%)`,
+          background: `linear-gradient(to bottom, ${TC.colors.navy} 0%, rgba(11,44,73,0.55) 14%, rgba(11,44,73,0) 34%, rgba(11,44,73,0) 66%, rgba(11,44,73,0.55) 86%, ${TC.colors.navy} 100%)`,
         }}
       />
     </div>
@@ -662,7 +703,7 @@ const H: React.FC = () => (
       <Img src={OCT("h-casa")} style={{width: "100%", height: "100%", objectFit: "cover"}} />
       <AbsoluteFill
         style={{
-          background: `linear-gradient(to bottom, ${TC.colors.navy} 0%, rgba(11,44,73,0) 24%, rgba(11,44,73,0.55) 72%, rgba(11,44,73,0.95) 100%)`,
+          background: `linear-gradient(to bottom, ${TC.colors.navy} 0%, rgba(11,44,73,0.6) 12%, rgba(11,44,73,0.08) 34%, rgba(11,44,73,0.5) 74%, rgba(11,44,73,0.95) 100%)`,
         }}
       />
     </div>
@@ -833,44 +874,175 @@ const K1: React.FC = () => (
 
 const K2: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
-    <Foto src={OCT("k-aerea")} foco="50% 50%" />
-    <Degradado arriba={0.62} abajo={0.44} />
+    {/* Diego: "en esta slide va el mapa con la ubicación del lugar, recuerda
+        ocupar el MAPA-3 con el cambio de color y estética de los otros".
+        MAPA-3 es la cartografía real, recoloreada al duotono crema→navy que
+        ya usan MAPA-1 y MAPA-2. */}
+    <AbsoluteFill style={{backgroundColor: TC.colors.cream}} />
+    <Img
+      src={OCT("mapa3-duo")}
+      style={{position: "absolute", left: 0, right: 0, top: 430, width: "100%", height: 660, objectFit: "cover"}}
+    />
+    <AbsoluteFill
+      style={{
+        background: `linear-gradient(to bottom, ${TC.colors.cream} 0%, rgba(243,238,227,0) 34%, rgba(243,238,227,0) 62%, ${TC.colors.cream} 86%)`,
+      }}
+    />
     <Marco archivo="MARCO-CARRUSEL-2" />
-    <Cuerpo top={CARR.sinLogo} ancho={880}>
-      <Numero n="01." />
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: CARR.sinLogo,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+        color: TC.colors.navy,
+      }}
+    >
+      <div style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: 58, textTransform: "uppercase", color: TC.colors.sand}}>
+        01.
+      </div>
       <Aire h={16} />
-      <Modulado
-        base={46}
-        ancho={880}
-        tramos={[{t: "¿Qué tan "}, {t: "conectado", ivy: true, size: 60}, {t: "estarás?", salto: true}]}
-      />
-    </Cuerpo>
-    <Globo y={880} max={780} size={35}>
-      {"Revisa accesos, vías principales y qué tan fácil será mantener tu rutina desde tu nueva ubicación.\n\nTierra Calma está en Padre Hurtado, RM."}
-    </Globo>
+      <div style={{width: 880, lineHeight: 1.16}}>
+        <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 46}}>¿Qué tan </span>
+        <span style={{fontFamily: SERIF, fontWeight: 500, fontSize: 60, textTransform: "uppercase"}}>conectado</span>
+        <br />
+        <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 46}}>estarás?</span>
+      </div>
+    </div>
+    {/* el pin sobre el mapa, con nuestro rótulo */}
+    <div style={{position: "absolute", left: 0, right: 0, top: 690, display: "flex", justifyContent: "center", alignItems: "center", gap: 12}}>
+      <IPin s={32} c={TC.colors.navy} />
+      <span style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 500, fontSize: 44, textTransform: "uppercase", color: TC.colors.navy}}>
+        Tierra Calma
+      </span>
+    </div>
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 1050,
+        padding: "0 140px",
+        textAlign: "center",
+        fontFamily: SANS,
+        fontWeight: 300,
+        fontSize: 34,
+        lineHeight: 1.32,
+        color: TC.colors.ink,
+      }}
+    >
+      Revisa accesos, vías principales y qué tan fácil será mantener tu rutina desde tu nueva
+      ubicación.
+      <div style={{marginTop: 18, fontSize: 28, letterSpacing: "0.14em", textTransform: "uppercase", color: TC.colors.brown}}>
+        Padre Hurtado · RM
+      </div>
+    </div>
   </Lienzo>
+);
+
+/** Recorte fotográfico del collage de servicios, con su rótulo debajo. */
+const Recorte: React.FC<{src: string; rot: number; x: number; y: number; w: number; label: string}> = ({
+  src,
+  rot,
+  x,
+  y,
+  w,
+  label,
+}) => (
+  <div style={{position: "absolute", left: x, top: y, width: w, transform: `rotate(${rot}deg)`}}>
+    <div style={{backgroundColor: "#FBF8F2", padding: 9, boxShadow: "0 14px 32px rgba(0,0,0,0.34)"}}>
+      <Img src={OCT(src)} style={{width: "100%", height: w - 18, objectFit: "cover", display: "block"}} />
+    </div>
+    <div
+      style={{
+        marginTop: 8,
+        textAlign: "center",
+        fontFamily: SANS,
+        fontWeight: 300,
+        fontSize: 22,
+        letterSpacing: "0.16em",
+        textTransform: "uppercase",
+        color: "#fff",
+        textShadow: "0 2px 12px rgba(0,0,0,0.8)",
+      }}
+    >
+      {label}
+    </div>
+  </div>
 );
 
 const K3: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
+    {/* Diego: "composición editorial con pequeños recortes fotográficos de
+        supermercado, salud, colegios y comercio alrededor de una imagen
+        central del sector". */}
     <Foto src={OCT("k-servicios")} foco="50% 50%" />
-    <Degradado arriba={0.62} abajo={0.46} />
+    <Degradado arriba={0.66} abajo={0.5} />
     <Marco archivo="MARCO-CARRUSEL-3" />
     <Cuerpo top={CARR.sinLogo} ancho={880}>
       <Numero n="02." />
       <Aire h={16} />
       <Modulado base={48} ancho={880} tramos={[{t: "¿Qué tienes "}, {t: "cerca", ivy: true, size: 62}, {t: "?"}]} />
     </Cuerpo>
-    <Globo y={870} max={790} size={35}>
-      {"Supermercados, salud, colegios y comercio pueden hacer una gran diferencia en tu día a día.\n\nTranquilidad no debería significar aislamiento."}
+    <Recorte src="sv-super" rot={-4} x={92} y={520} w={224} label="Supermercados" />
+    <Recorte src="sv-salud" rot={3.2} x={772} y={560} w={216} label="Salud" />
+    <Recorte src="sv-colegio" rot={2.6} x={118} y={860} w={216} label="Colegios" />
+    <Recorte src="sv-comercio" rot={-3} x={758} y={888} w={224} label="Comercio" />
+    <Globo y={690} max={430} size={31}>
+      {"Tranquilidad no debería\nsignificar aislamiento."}
     </Globo>
   </Lienzo>
 );
 
+/** Indicador gráfico: punto, línea guía y rótulo. Señala sobre la foto. */
+const Indicador: React.FC<{x: number; y: number; lado: "izq" | "der"; children: React.ReactNode}> = ({
+  x,
+  y,
+  lado,
+  children,
+}) => (
+  <div
+    style={{
+      position: "absolute",
+      // El que apunta desde la izquierda se ancla por la DERECHA: si no, el
+      // rótulo crece hacia afuera del lienzo y se corta ("ACCESO CONTROL...").
+      ...(lado === "izq" ? {right: 1080 - x} : {left: x}),
+      top: y,
+      display: "flex",
+      flexDirection: lado === "izq" ? "row-reverse" : "row",
+      alignItems: "center",
+      gap: 0,
+    }}
+  >
+    <div style={{width: 11, height: 11, borderRadius: 999, backgroundColor: "#fff", boxShadow: "0 0 0 5px rgba(255,255,255,0.28)"}} />
+    <div style={{width: 46, height: 1, backgroundColor: "rgba(255,255,255,0.85)"}} />
+    <span
+      style={{
+        fontFamily: SANS,
+        fontWeight: 300,
+        fontSize: 27,
+        letterSpacing: "0.1em",
+        textTransform: "uppercase",
+        color: "#fff",
+        whiteSpace: "nowrap",
+        textShadow: "0 2px 14px rgba(0,0,0,0.85)",
+      }}
+    >
+      {children}
+    </span>
+  </div>
+);
+
 const K4: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
-    <Foto src={OCT("k-incluye")} foco="50% 52%" />
-    <Degradado arriba={0.62} abajo={0.44} />
+    {/* Diego: "fotografía aérea de una parcela con pequeños indicadores
+        gráficos señalando sus características". */}
+    <Foto src={OCT("k-parcela")} foco="50% 52%" />
+    <Degradado arriba={0.6} abajo={0.46} />
     <Marco archivo="MARCO-CARRUSEL-2" />
     <Cuerpo top={CARR.sinLogo} ancho={880}>
       <Numero n="03." />
@@ -883,8 +1055,20 @@ const K4: React.FC = () => (
     </Cuerpo>
     {/* ⚠️ "Rol individual" y "Acceso controlado" van con el OK de Diego y
         siguen sin confirmación escrita de Fran o Blanca. */}
-    <Globo y={870} max={700} size={36}>
-      {"Rol individual · Parcelas cercadas\nElectricidad · Acceso controlado\nAprox. 5.000 m²"}
+    <Indicador x={252} y={640} lado="der">
+      Cierre perimetral
+    </Indicador>
+    <Indicador x={846} y={772} lado="izq">
+      Acceso controlado
+    </Indicador>
+    <Indicador x={214} y={900} lado="der">
+      Electricidad
+    </Indicador>
+    <Indicador x={868} y={1024} lado="izq">
+      Rol individual
+    </Indicador>
+    <Globo y={1140} max={520} size={34} destacado="Aprox. 5.000 m²">
+      por parcela
     </Globo>
   </Lienzo>
 );
@@ -916,7 +1100,10 @@ const K5: React.FC = () => (
 
 const K6: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
-    <Foto src={OCT("k-pareja")} foco="50% 54%" />
+    {/* Diego: "pareja caminando dentro de Tierra Calma, con una toma amplia
+        que permita dimensionar el espacio" — van pequeños en el cuadro a
+        propósito: lo que se mide es el terreno alrededor. */}
+    <Foto src={OCT("k-caminando")} foco="50% 52%" />
     <Degradado arriba={0.6} abajo={0.54} />
     <Marco archivo="MARCO-CARRUSEL-4" />
     <Cuerpo top={CARR.sinLogo} ancho={880}>

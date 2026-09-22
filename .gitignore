@@ -713,3 +713,13 @@ out/ebema/20260925_linkedin_octubre/*
 
 # SANTA GOTA: los MP4 del reel son copias de raw/ (52 MB) — no viajan en git
 public/assets/santagota/*.mp4
+# MyZoo — grilla octubre 2026 (22-09-2026). Misma excepción que Revex, CAVA y Between:
+# scripts/myzoo-oct-armar.py no rinde sin estas 4 escenas generadas (JPG 93, no los
+# PNG de 17 MB de raw/), los 3 packshots reales, el claim y el sello Te Protejo.
+# Sin ellas, Paulina no reproduce la entrega en su máquina. Las piezas entregadas
+# también viajan: son la base de la ronda del cliente.
+!public/assets/myzoo/**
+!out/myzoo/
+out/myzoo/*
+!out/myzoo/octubre-2026/
+!out/myzoo/octubre-2026/**

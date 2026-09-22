@@ -73,24 +73,27 @@ BANDAS = {
         # los glifos de Stag LightItalic con el `letter-spacing` y la línea base
         # de Chrome — x 140,5→327,6 · y 393,7→444,8.
         #
-        # ⭐⭐ RONDA 5 (Constanza, 22-09) — LAS TRES BANDAS SE RE-MIDIERON.
-        # El texto de la portada quedó QUIETO (sólo se anima el trazo), así que
-        # ya no hay `desde` en ninguna: toda la tinta está en pantalla desde el
-        # f0. Y el bloque cambió de jerarquía — «by Hilton» subió al titular—,
-        # así que el titular pasó a cuerpo 80,606 y la bajada a «Santiago–
-        # Vitacura». Tinta medida sobre el render (umbral 228):
-        #   titular            x  88→984 · y 511→581
-        #   Santiago–Vitacura  x  89→425 · y 623→658
-        # Sobre eso, la holgura de sus hermanas: ~6 px arriba y abajo.
+        # ⭐⭐ RONDA 6 — LAS BANDAS DEL TITULAR SON TRES.
+        # Eli pidió el titular en tres renglones («en DoubleTree / by Hilton /
+        # Santiago–Vitacura») y sacó la versalita al pie también de la portada,
+        # así que la banda `firma` desaparece. Los tres renglones van al MISMO
+        # cuerpo 108 con dos pesos, y su tinta se midió sobre el render
+        # (umbral 228), más ~6 px de holgura:
+        #   en DoubleTree      x  88→813 · y 511→586
+        #   by Hilton          x  89→526 · y 621→712   (la «y» baja hasta 712)
+        #   Santiago–Vitacura  x  89→942 · y 730→823   (la «g» baja hasta 823)
+        #
+        # ⚠️ Y desde la ronda 5 el contraste NO se mide sobre la lámina sino
+        # sobre un fotograma de control sin tinta. Ver la nota al pie.
         ("Tu día",            (140, 393, 328, 446), BLANCO, 3.0),
-        ("titular",           (88, 505, 990, 587), BLANCO, 3.0),
-        ("Santiago–Vitacura", (88, 617, 431, 664), BLANCO, 4.5),
+        ("en DoubleTree",     (88, 505, 821, 592), BLANCO, 3.0),
+        ("by Hilton",         (88, 615, 534, 718), BLANCO, 3.0),
+        ("Santiago–Vitacura", (88, 724, 975, 829), BLANCO, 3.0),
         # ⚠️ ÉSTA SE MIDE SOBRE LA LÁMINA, NO SOBRE EL CONTROL: el fondo de
         # «DESLIZA» es la PÍLDORA, que es pieza pintada y no foto. En el
         # fotograma de control la píldora no existe y la banda mide el clip que
         # hay detrás — 1,03:1, una falsa alarma sobre una tinta que da 9,48:1.
         ("DESLIZA",           (130, 1098, 312, 1124), AZUL, 4.5, "pieza"),
-        ("firma",             (560, 1262, 992, 1288), BLANCO, 4.5),
     ],
     "DT-V-S5-Desayuno": [
         ("sello",   (87, 130, 743, 174), BLANCO, 4.5),
@@ -181,8 +184,9 @@ IZQUIERDA = {
     # (360-420) el QA medía casi puro flanco alto y el canto le daba corrido.
     # ⚠️ RONDA 5: el bloque cambió de jerarquía y las dos franjas se re-midieron
     # sobre el render — titular y 511→581, tercer nivel y 623→658.
-    "DT-V-S5-Portada":    [("círculo", 400, 430), ("titular", 505, 587),
-                           ("Santiago–Vitacura", 617, 664)],
+    "DT-V-S5-Portada":    [("círculo", 400, 430), ("en DoubleTree", 511, 586),
+                           ("by Hilton", 621, 712),
+                           ("Santiago–Vitacura", 730, 823)],
     "DT-V-S5-Desayuno":   [("sello", 128, 172), ("gancho", 200, 292),
                            ("remate", 292, 378)],
     "DT-V-S5-Salon":      [("sello", 128, 172), ("gancho", 200, 292),

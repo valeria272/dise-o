@@ -1,3 +1,67 @@
+## 2026-09-22 · Eli (Windows) — DT: el carrusel S5, ronda 6 (sólo la portada)
+
+**Qué pidió Eli**, sobre el render de la ronda 5 del mismo día: (1) «te faltó
+borrar el texto chico de abajo de DoubleTree by Hilton… ese último de la
+portada»; (2) «quiero que el título se lea como En Doubletree (espacio abajo) by
+Hilton (abajo) Santiago - Vitacura en la portada, los demás okey».
+
+**1 · El carrusel se queda sin firma en las SEIS.** La ronda 5 había sacado la
+versalita de las cinco interiores y la dejó en la portada porque Constanza acotó
+su pedido a «el resto de las slides». Eli la sacó también de ahí, así que
+`Firma` se **borró del código** en vez de dejarlo apagado. La marca no queda
+huérfana: el nombre completo lo dicen los tres renglones del titular y el
+logotipo está grabado en el cristal del propio clip.
+
+⛔ Se dejó escrita en su lugar la trampa que enseñó ese componente, porque vale
+para cualquier texto con tracking alineado a la derecha: **CSS agrega el espacio
+de tracking también después de la última letra**, así que la tinta no llega al
+margen (la firma moría en x=984 con el margen en 992). Ficha:
+`tracking-no-llega-a-inline-block`.
+
+**2 · El titular en tres renglones, y de vuelta a cuerpo 108.** La ronda 5 había
+metido «en DoubleTree by Hilton» en UN renglón y para que cupiera el cuerpo tuvo
+que bajar de 108 a 80,6 — que además dejaba muy poca diferencia de tamaño contra
+«Tu día» (72). Partirlo arregla las dos cosas: **«en DoubleTree» Medium /
+«by Hilton» Light / «Santiago–Vitacura» Light, los tres a 108**, que es la receta
+escrita de DT («titular a dos pesos y un mismo cuerpo»). Medido, los tres entran:
+731,5 · 445,9 · **879,4** px de tinta, y el más largo muere en **967,4** contra
+un margen de 992.
+
+⛔⛔ **Y otra vez NO se justificaron a una medida común**, aunque con tres
+renglones parecía el caso de libro del criterio de Honors. Lo revienta el largo:
+a la medida del titular aprobado (731,5) los cuerpos saldrían **108 / 177,2 /
+89,8** — «by Hilton», nueve caracteres, quedaría un 64 % más grande que el nombre
+del hotel y sería lo más grande de la lámina. En Honors el rango entre cuerpos
+fue del 25 %; acá sería del **97 %**. **El criterio de justificar a una medida
+sólo funciona con líneas de largo parecido.**
+
+⚠️ **Cada renglón lleva su propia sangría**, porque el hueco del primer glifo es
+distinto: +1,404 la «e», **−1,404** la «b» (vuela hacia afuera: hay que empujarla
+a la DERECHA) y +3,348 la «S». Los tres nacen en x=88.
+
+⚠️ Medido sobre el render: el aire contra el canto del trazo vuelve a los **28
+px** de la ronda 3 (el `marginBottom` del círculo vuelve de 15 a 8). Entre
+renglones la separación de líneas base es pareja (110,2 px) aunque la tinta dé
+huecos de 35 y 18 px, porque «by» baja la «y» y «Santiago–Vitacura» sube la «S»
+y la «t». Sin colisión.
+
+**Entregado.** **Sólo la portada viajó.** Las cinco interiores se verificaron
+byte a byte contra la ronda 5 —el render da el mismo md5— y el script de subida
+las saltó solo. En Drive se reemplazaron en sitio `C1 S5 DT n°1.mp4` y
+`C1 S5 DT n°1.gif`; los 12 archivos quedaron verificados por md5 contra el local.
+
+**Dónde quedó:**
+- Página de revisión: `out/hilton/dt/c1-s5/revision-r6.html` —
+  `scripts/dt-c1-s5-revision-r6.py`.
+- QA **en verde** · el peor sigue siendo «Tu día» con 3,35:1 sobre vara 3,0; los
+  tres renglones del titular dan 6,12 · 11,17 · 11,06 · typecheck limpio.
+- `dt-c1-s5-gif.py` estrenó `--solo`, para no regenerar seis GIF cuando cambia una.
+
+**Qué sigue:** nada abierto en este carrusel. Si Eli quiere ver la versión
+justificada a una medida —la del «by Hilton» gigante— está calculada y se rinde.
+
+---
+
 ## 2026-09-22 · Eli (Windows) — BETWEEN: la portada To Go, ahora con la dirección al pie
 
 **Lo que pidió Scarlette** (Slack, sobre la portada que Eli le había pasado):

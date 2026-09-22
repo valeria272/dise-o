@@ -3,6 +3,7 @@
 """DOUBLETREE · CARRUSEL S5 — la copia en GIF de las seis láminas.
 
     python scripts/dt-c1-s5-gif.py            # las 6, a 720 px
+    python scripts/dt-c1-s5-gif.py --solo 1   # sólo la portada
     python scripts/dt-c1-s5-gif.py --ancho 540
 
 ⭐ Por qué existe. Eli pidió el 21-09 «formato gif de todas en una carpeta
@@ -77,9 +78,19 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--ancho", type=int, default=720,
                     help="ancho en px (720 por defecto; 540 para mandar por chat)")
+    # ⭐ Cuando una ronda toca UNA lámina, regenerar las seis son seis minutos y
+    # 118 MB para nada. `--solo 1` rehace sólo el n°1.
+    ap.add_argument("--solo", nargs="*", default=None, metavar="N",
+                    help="números de lámina a rehacer, p. ej. --solo 1 5")
     a = ap.parse_args()
 
     fuentes = sorted(ORIGEN.glob("C1 S5 DT n°*.mp4"))
+    if a.solo:
+        quiere = {n.strip() for n in a.solo}
+        fuentes = [f for f in fuentes if f.stem.split("°")[-1] in quiere]
+        if not fuentes:
+            print(f"⛔ no reconocí {a.solo}")
+            return 1
     if not fuentes:
         print(f"⛔ no hay mp4 en {ORIGEN.relative_to(RAIZ)}")
         return 1

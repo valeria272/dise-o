@@ -17,6 +17,38 @@
 > Dictada por Eli el 09-09-2026 **para DT**; si vale igual para QB, Between y Piso18,
 > lo dice Eli — acá no se da por extendida.
 
+## ⭐ LA COMPUERTA DE QA — desde el 22-09-2026 existe, y antes NO corría
+
+```bash
+python qa/motor.py --marca hilton out/hilton/between/entrega-*/*.png
+python qa/motor.py --marca hilton --textos datos/oct2026.json out/hilton/dt/entrega-*/*.png
+```
+
+Las reglas están en [`clients/hilton/reglas.yaml`](reglas.yaml) y cubren **DT y
+Between**, que son las dos marcas del complejo que todavía comparten esta carpeta.
+QB y Piso18 ya salieron con manual propio: van con `--marca qb` y `--marca piso18`.
+
+> ⛔ **Hasta el 22-09 ese archivo no existía, y `qa/motor.py` aborta sin él.** O sea
+> que **ninguna pieza de Between ni de DT pasó la compuerta en todo septiembre** —92
+> commits de Between y 41 de DT— ni por las cinco reglas de agencia. No era un QA
+> permisivo: no corría. Si vuelve a aparecer «no tiene reglas.yaml», es eso.
+
+⚠️ **Toda regla de marca acá se acota con `solo_archivos`**, porque DT y Between no
+se diseñan igual y el criterio de una no vale para la otra:
+`DT *` y `Post * DT*` · `BW *` y `C1 S* *`.
+
+⚠️ **El QA mecánico NO atrapa los rechazos de Eli, y está medido.** Calibradas 12
+piezas aprobadas de Between contra 10 rondas rechazadas, ninguna de las cinco
+métricas separa los dos grupos: sus rechazos son de CRITERIO —la caja que no destaca,
+la foto que no es el producto, la superficie que no coincide entre hermanas—, no
+defectos que vea un histograma. La compuerta sirve para lo mecánico (zona segura de
+Meta, respiro de borde, foto estirada, precio en CLP). Para lo otro, mirar la pieza
+montada junto a sus hermanas antes de mandarla.
+
+⚠️ `desenfoque-parcial` **avisa de más en estas dos marcas** y es esperado: ve el
+VELO con que las dos apagan el canto de la foto. El aviso se mira, no se obedece.
+El porqué, medido, está en el propio `reglas.yaml`.
+
 ## Las 4 cuentas (marcas del complejo)
 
 | Sigla | Marca | Qué es | Contacto/CTA típico |
@@ -1966,6 +1998,16 @@ Las dos aprobadas de septiembre comparten estructura, y es un tercer formato:
 | 5 · Copy | ✅ Se lee de la grilla: tono, CTA, hashtags por tema y el cierre de dirección |
 | 6 · Pipeline | ⛔ No existe `clients/piso18/`, ni `marca.json`, ni kit en `src/brand/` |
 | 7 · QA | ⛔ Sin reglas en `qa/motor.py` |
+
+> 🗄️ **Esta tabla quedó vieja — se deja como historial.** Piso 18 abrió como marca
+> aparte el 22-09-2026 y su estado real vive en
+> [`clients/piso18/CLAUDE.md`](../piso18/CLAUDE.md). Al cierre de ese día:
+> el pipeline **sí existe** (`clients/piso18/` + `src/brand/piso18.ts`, 425 líneas),
+> el QA tiene `clients/piso18/reglas.yaml` con 2 reglas —todavía sin calibrar contra
+> material propio—, y la **capa 2 se destrabó**: Eli compartió `Grillas aprobadas`
+> por enlace y bajaron **26 piezas fijas aprobadas** a
+> `raw/hilton/piso18/ref-aprobadas/`. La capa 4 (las fotos del disco `F:`) sigue
+> siendo el bloqueante.
 
 #### Las piezas aprobadas — ya están, y por título
 

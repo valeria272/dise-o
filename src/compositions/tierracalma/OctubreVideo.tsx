@@ -19,10 +19,13 @@ import {tierracalma as TC, ensureTierraCalmaFonts} from "../../brand/tierracalma
 // cierre con el wordmark en cursiva sobre el último plano más "AGENDA TU
 // VISITA." en versales espaciadas abajo.
 //
-// ⚠️ Discrepancia consciente: el manual dice que `tc_motion` es "el cierre
-// obligatorio de todo reel", pero el reel publicado de septiembre NO lo usa
-// y cierra con el wordmark. Manda la pieza publicada. `tc_motion.mp4` queda
-// convertido en el repo por si Valeria prefiere el logo animado.
+// ✅ RESUELTO el 22-09-2026: el cierre del reel SÍ es el logo animado. El
+// diseñador subió `TIERRA CALMA CIERRE.mov` a Drive, que es byte a byte el
+// mismo archivo que `TIERRA CALMA MOTION.mov` del KINGSTON (sha256 idéntico) —
+// o sea, el `tc_motion.mp4` que ya estaba convertido acá. Lo usa la v2 del reel
+// de dron (abajo). Los reels de la primera entrega cerraban con el wordmark
+// porque así lo hacía el reel publicado de septiembre; se corrigen al
+// re-entregarlos.
 //
 // PIPELINE DE LOS CLIPS (pedido por el diseñador, 14-09-2026):
 //   1. imagen clave con Magnific, siguiendo el brief de cada corte
@@ -473,6 +476,104 @@ export const StoryPov: React.FC = () => {
         <PildoraST icono={<IconoWsp s={28} />}>Escríbenos al WhatsApp</PildoraST>
       </AbsoluteFill>
       <Musica src={AUDIO("mus_instrumental")} vol={0.28} duracion={STORY_DURATION} />
+    </Lienzo>
+  );
+};
+
+// =============================================================================
+// I · 13/10 · REEL IA/DRON — **V2, ronda del cliente del 22-09-2026**
+//
+// ⛔ `ReelDronOct` (arriba) quedó SUPERADO. La grilla se modificó el 22-09 a las
+// 15:43Z y cambió el texto de tres de los cuatro cortes: los mensajes del corte
+// 1 y del corte 2 SE INTERCAMBIARON y el del 4 se alargó. Se deja la v1 en el
+// archivo porque es lo que se entregó el 14-09 y permite comparar; lo que se
+// publica es esta v2.
+//
+//   corte   14-09 (v1)                      22-09 (v2, vigente)
+//   1       A 15 min del peaje…             Así se ve el camino hasta Tierra Calma.
+//   2       Escríbenos y coordina tu visita. A 15 minutos del peaje Padre Hurtado.
+//   3       Tamaño real ~5.000 m²…          ~5.000 m² aprox., desde UF 2.500.
+//   4       Agenda tu visita.               Agenda tu visita y compruébalo en terreno.
+//
+// CADENA DE MODELOS PEDIDA POR EL DISEÑADOR (22-09):
+//   imagen  → **Seedream 5 Pro** (9:16, 2k → 1440×2560)
+//   video   → **Kling 3.0** (9:16, 1080p, fotograma de inicio)
+//   música  → **ElevenLabs Music v2**, instrumental, 26 s
+//
+// Y el CIERRE ahora sí es el logo animado: el diseñador subió a Drive
+// `TIERRA CALMA CIERRE.mov` el 22-09, que es byte a byte el mismo archivo que
+// `TIERRA CALMA MOTION.mov` del KINGSTON (sha256 verificado). Queda zanjada la
+// discrepancia que estaba anotada en la cabecera de este archivo.
+// =============================================================================
+
+const OUTRO = 150; // el logo animado dura 5 s a 30 fps
+const SOLAPE_OUTRO = 15;
+export const REEL_DRON_V2_DURATION = SLOT * 3 + CLIP_LEN - SOLAPE_OUTRO + OUTRO;
+
+export const ReelDronOctV2: React.FC = () => {
+  const frame = useCurrentFrame();
+  const pulso = 1 + Math.sin((frame - 435) / 7) * 0.05;
+  return (
+    <Lienzo>
+      <Sequence from={0} durationInFrames={CLIP_LEN}>
+        <Plano src={CLIP("k1")} indice={0} />
+      </Sequence>
+      <Sequence from={SLOT} durationInFrames={CLIP_LEN}>
+        <Plano src={CLIP("k2")} indice={1} />
+      </Sequence>
+      <Sequence from={SLOT * 2} durationInFrames={CLIP_LEN}>
+        <Plano src={CLIP("k3")} indice={2} />
+      </Sequence>
+      <Sequence from={SLOT * 3} durationInFrames={CLIP_LEN}>
+        <Plano src={CLIP("k4")} indice={3} />
+      </Sequence>
+
+      <Velo arriba={0.36} abajo={0.44} />
+
+      {/* Corte 1 · el camino */}
+      <Bloque desde={14} dura={118} pos="arriba">
+        <Suave size={46}>Así se ve el camino</Suave>
+        <Aire h={14} />
+        <Enfasis size={66}>hasta Tierra Calma.</Enfasis>
+      </Bloque>
+
+      {/* Corte 2 · la distancia */}
+      <Bloque desde={154} dura={118} pos="arriba">
+        <Enfasis size={64}>{"A 15 minutos del peaje\nPadre Hurtado."}</Enfasis>
+        <Aire h={18} />
+        <Pie>Ruta 78 · Autopista del Sol</Pie>
+      </Bloque>
+
+      {/* Corte 3 · el dato. La cifra es el elemento más grande de la pieza. */}
+      <Bloque desde={294} dura={118} pos="arriba">
+        <Enfasis size={80}>{"~5.000 m² aprox.,"}</Enfasis>
+        <Aire h={16} />
+        <Suave size={46}>desde UF 2.500</Suave>
+      </Bloque>
+
+      {/* Corte 4 · cierre con el ícono animado */}
+      <Bloque desde={434} dura={120} pos="centro">
+        <div style={{transform: `scale(${pulso})`}}>
+          <IconoWsp s={58} />
+        </div>
+        <Aire h={28} />
+        {/* 54 px: a 62 la segunda linea se partia y dejaba "TERRENO." solo. */}
+        <Enfasis size={54}>{"Agenda tu visita\ny compruébalo en terreno."}</Enfasis>
+      </Bloque>
+
+      {/* Cierre oficial: el logo animado del diseñador, sobre blanco. */}
+      <Sequence
+        from={SLOT * 3 + CLIP_LEN - SOLAPE_OUTRO}
+        durationInFrames={OUTRO + SOLAPE_OUTRO}
+      >
+        <Plano src={staticFile("assets/tierracalma/tc_motion.mp4")} indice={1} />
+      </Sequence>
+
+      <Musica
+        src={AUDIO("mus_dron_v2")}
+        vol={0.32}
+        duracion={REEL_DRON_V2_DURATION}
+      />
     </Lienzo>
   );
 };

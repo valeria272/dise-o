@@ -48,9 +48,11 @@ import {
 import {
   ReelPrimaveraOct,
   ReelDronOct,
+  ReelDronOctV2,
   StoryPetalos,
   StoryPov,
   REEL_DURATION as OCT_REEL_DUR,
+  REEL_DRON_V2_DURATION as OCT_DRON_V2_DUR,
   STORY_DURATION as OCT_STORY_DUR,
 } from "./compositions/tierracalma/OctubreVideo";
 import {HistoriaPrimavera, HistoriaPaso, HistoriaEpoca, HISTORIA_DURATION} from "./compositions/tierracalma/HistoriasAnimadas";
@@ -637,6 +639,16 @@ export const RemotionRoot: React.FC = () => {
           id="TCOct01ReelPrimavera"
           component={ReelPrimaveraOct}
           durationInFrames={OCT_REEL_DUR}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        {/* v2 — ronda del cliente del 22-09: textos nuevos, Seedream 5 Pro +
+            Kling 3.0 + ElevenLabs Music v2, y cierre con el logo animado. */}
+        <Composition
+          id="TCOct13ReelDronV2"
+          component={ReelDronOctV2}
+          durationInFrames={OCT_DRON_V2_DUR}
           fps={30}
           width={1080}
           height={1920}

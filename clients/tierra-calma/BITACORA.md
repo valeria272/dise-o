@@ -5,6 +5,56 @@
 
 ---
 
+## 2026-09-22 — Diego Aguilar
+
+**Qué se hizo:** Se re-hizo **solo el reel `r-13-10`** con otra cadena de
+modelos: imágenes con **Seedream 5 Pro** (9:16, 2k → 1440×2560), video con
+**Kling 3.0** (9:16, 1080p, fotograma de inicio) y música con **ElevenLabs
+Music v2** (instrumental, 26 s, tranquila pero con arco para que venda). Y el
+reel ahora **cierra con el logo animado**, no con el wordmark.
+
+**⚠️ Lo importante del día:** el `/al-dia` encontró que **la grilla se modificó
+hoy a las 15:43Z** y que el cliente cambió los textos. En el `r-13-10` los
+mensajes del corte 1 y del corte 2 **se intercambiaron** y el del corte 4 se
+alargó. La versión entregada el 14-09 tenía los textos viejos. Si se producía
+sin revisar, se entregaba obsoleto.
+
+| Corte | 14-09 (v1) | 22-09 (vigente) |
+|---|---|---|
+| 1 | A 15 min del peaje Padre Hurtado. | Así se ve el camino hasta Tierra Calma. |
+| 2 | Escríbenos y coordina tu visita. | A 15 minutos del peaje Padre Hurtado. |
+| 3 | Tamaño real ~5.000 m² aprox. Desde UF 2.500. | ~5.000 m² aprox., desde UF 2.500. |
+| 4 | Agenda tu visita. | Agenda tu visita y compruébalo en terreno. |
+
+**Dónde quedó:** `r-13-10.mp4` (23,5 s) **reemplazado en Drive sobre el mismo
+ID**, así que los enlaces ya compartidos siguen sirviendo. En el repo,
+`ReelDronOctV2` en `OctubreVideo.tsx` (la v1 se deja al lado, marcada como
+superada, para poder comparar). Clips `k1..k4` y `mus_dron_v2.mp3` versionados.
+
+**Qué sigue:** Las **otras tres piezas de video** (`r-01-10`, `st-08-10`,
+`st-15-10`) tienen dos cosas pendientes: cierran con el wordmark en vez del
+logo animado, y sus textos también cambiaron en esta ronda. Hay que rehacerlas
+igual que ésta.
+
+**Abierto:**
+
+1. **La ronda del 22-09 tocó más piezas y ninguna está corregida todavía:**
+   - **D (01/10):** la grilla ahora **dicta los subtítulos exactos** — «La
+     primavera ya llegó a Tierra Calma» / «Más verde, más luz, más espacio» /
+     «Así se siente el cambio de estación acá».
+   - **E (carrusel):** los textos pasaron a preguntas en primera persona
+     («¿Tengo que invertir en la electrificación del terreno? No, …») y cambió
+     el CTA del slide 4.
+   - **F (08/10):** ⚠️ **ya no es «sin texto ni CTA»** — ahora lleva «Este es el
+     momento del año en que Tierra Calma se ve así.» + CTA de WhatsApp.
+2. **Cero comentarios en Drive.** La ronda entró **por la grilla**, no por
+   comentarios — igual que pasa con Between. Revisar siempre la grilla.
+3. Siguen abiertos de la jornada anterior: el **mapa oficial** con Carlos, avisar
+   lo del **agua potable** publicado en `st-11-09`, y que la marca no tiene
+   `reglas.yaml`.
+
+---
+
 ## 2026-09-14 — Diego Aguilar
 
 **Qué se hizo:** Se abrió y se cerró octubre completo: **las 10 piezas de la

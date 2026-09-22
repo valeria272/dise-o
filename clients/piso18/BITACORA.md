@@ -1,5 +1,63 @@
 # Piso18 — bitácora
 
+## 2026-09-22 (4ª sesión) — ✅ CAE EL BLOQUEANTE: las 11 referencias ya están
+
+**Eli compartió la carpeta y se acabó el problema de cuatro días.** Cuatro
+`/arranque` seguidos (16, 17, 21 y 22-09) venían reportando los mismos «11 archivos
+rotos». La causa raíz estaba identificada esa misma mañana —un permiso, no una
+descarga fallida— y la salida era de ella, no técnica.
+
+**Qué se hizo:**
+
+1. Se le pasó **un solo enlace**: la carpeta madre `Grillas aprobadas`
+   (`1MDm5JLRBe_Ep99hhK7fHgZ2mg35y9MJ2`), no las tres subcarpetas. En Drive el
+   permiso baja a todo el árbol, así que con un click quedó resuelto.
+2. Eli la abrió como **Lector** — verificado: `permissions` devuelve
+   `{"role":"reader","type":"anyone"}`, y **no** `writer`, que es la alerta de
+   `drive-agencia-permiso-abierto`.
+3. Bajaron los **7 PNG** que faltaban, **byte a byte exactos** contra el peso que
+   Drive declara, y los 9 abren como PNG de 2250×2813 (el formato de carrusel de la
+   marca). Los **4 `.jpg` fantasma** —que eran la misma página de login bajada dos
+   veces— se borraron.
+
+### ⭐ Y la carpeta traía el doble de lo que sabíamos
+
+Cerrada sólo se podían nombrar las tres subcarpetas de las que colgaban las 11
+referencias. Abierta se pudo listar entera: **seis subcarpetas y 12 archivos
+sueltos**, con material aprobado que va de **junio a septiembre de 2026**. Todo
+bajado a `raw/hilton/piso18/ref-aprobadas/`:
+
+| Qué | Dónde | Nota |
+|---|---|---|
+| `CARRUSEL ESTACIÓN` (3) | `carrusel-estacion/` | **nuevo** — no existía local |
+| `CARRUSEL NOVIOS` (2) | `carrusel-novios/` | ya estaba, y estaba íntegro |
+| `PROMOS PISO18` (4) | raíz | `ST N°3 S1` era nuevo |
+| Sueltos de la S3 (4) | `sueltos-s3/` | 2 PNG, 1 MP4, 1 GIF |
+| Histórico jun–sep (7) | `historico/` | **guardados con la fecha por delante** |
+
+⚠️ El histórico **repite nombres entre meses** (`ST n°2 S1.png` existe en julio y en
+agosto; `ST n°4 S1.png` en julio y septiembre). Bajarlos por su nombre se habrían
+pisado unos a otros — por eso van fechados.
+
+⏳ **Queda sin bajar a propósito** `Reel n°1 Recap Novios F 2026.mp4`: **312 MB**. No
+se trajo sin preguntar.
+
+### Lo que esto habilita, y es lo que importa
+
+Piso 18 pasa a tener **26 piezas fijas aprobadas** en disco (9 en `ref-cumple/` +
+17 en `ref-aprobadas/`) y 3 de movimiento. Ése es exactamente el corpus que
+`qa/calibrar.py` necesita y que no había: hoy `clients/piso18/reglas.yaml` tiene
+**2 reglas**, ninguna medida contra material propio de la marca.
+
+**Qué sigue:** calibrar Piso 18 contra sus 26 aprobadas y escribirle topes propios.
+
+### ⏳ Lo que sigue pendiente y NO es de Eli
+
+Ampliar el token del estudio de `drive.file` a **`drive.readonly`**. Compartir la
+carpeta resolvió *este* caso; el scope evita *el próximo*, en todas las marcas y sin
+abrir ninguna carpeta. Es decisión de Valeria
+(memorias `token-drive-file-no-lee` y `a-eli-no-se-le-llevan-decisiones-tecnicas`).
+
 ## 2026-09-22 (3ª sesión) — Elisabet Soto · Piso 18 queda documentado como marca aparte
 
 **Qué se hizo:** Eli pidió abrir el sistema por separado — *«piso18 o p18 debo abrirlo

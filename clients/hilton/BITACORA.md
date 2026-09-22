@@ -1,3 +1,98 @@
+## 2026-09-22 · Eli (Windows) — DT: el carrusel S5, ronda 5 (Constanza + Eli)
+
+**Qué pidieron.** Comentario de **Constanza Lizana** en la grilla (22-09, 11:49),
+dos cosas: (1) «en la slide 1 (portada) el texto no me gusta animado, el video
+detrás al tener movimiento hace que el texto con más movimiento maree. Me
+gustaría el texto estático pero el globo que encierra "tu día" sea animado»; y
+(2) «en el resto de las slides […] en la parte inferior donde dice "DT by hilton
+stgo - vitacura" me gustaría que se eliminara, para que no tenga tanto elemento
+por slide». Encima, **Eli** el mismo día: «que en el texto de la portada diga
+DoubleTree by Hilton en la misma tipografía del título […] la idea es que se vea
+muy igual».
+
+**1 · La portada se quedó quieta.** Se fueron las **cuatro** entradas —itálica,
+titular, tercer renglón y también la píldora `DESLIZA`, que lleva texto y también
+entraba con un fade—. Queda **un solo gesto**: el trazo del globo, que se dibuja
+del f8 al f46. Las cinco interiores conservan sus entradas: Constanza dijo que
+las ve bien.
+
+**2 · La versalita al pie salió de las cinco interiores.** `<Firma>` quedó sólo
+en la portada.
+
+⚠️ **PENDIENTE DE ELI:** la portada es ahora la **única lámina donde el nombre
+sale dos veces** —el bloque dice «en DoubleTree by Hilton / Santiago–Vitacura» y
+el pie repite lo mismo en versalitas—. Constanza acotó su pedido a «el resto de
+las slides», así que **se dejó** y va como opción A. La opción B (sin firma) está
+rendida en la página de revisión. **Lo que subió al Drive es la A.**
+
+⚠️ **Lo que NO se tocó, a propósito:** el degradado azul del pie de las
+interiores existía para sostener esa versalita y ahora no sostiene nada. Se dejó
+porque ella dijo que el resto de las slides las ve bien; está ofrecido en la
+página.
+
+**3 · La jerarquía de la portada, en tres niveles.** El nombre venía partido
+entre dos voces —«DoubleTree» en el titular a 108 y «by Hilton» en el renglón
+Light de 42—, que es exactamente lo que Eli lee como «se ve diferente». Ahora:
+«Tu día» (intacta) · **«en DoubleTree by Hilton»** en Stag Medium · **«Santiago–
+Vitacura»** en el tercer nivel, con la misma tipografía que tenía la bajada.
+
+⭐⭐ **El cuerpo es la consecuencia de la medida.** «en DoubleTree by Hilton» a
+cuerpo 108 mide **1211,2 px** de tinta y la columna son **904**: no cabe.
+**80,606** es el cuerpo exacto al que la tinta mide 904,00 y el renglón nace en
+88 y muere en 992 — flush contra los dos márgenes, medido glifo a glifo sobre
+`Stag-Medium.ttf`.
+
+⛔ **Y NO se justificaron los tres renglones a una medida común**, que es lo que
+pide ese criterio: acá la línea larga es la que tiene que pesar. A una medida de
+904, «Santiago–Vitacura» saldría a cuerpo **109,3** contra 80,6 del nombre del
+hotel — la ciudad más grande que la marca. La propia memoria del criterio deja
+escrita la excepción («si la línea larga es la que tiene que pesar, se parte en
+dos ANTES de justificar») y acá se aplicó.
+
+⚠️ El costo, y va dicho en la página: el titular baja de 108 a 80,6, así que
+contra «Tu día» (72) la diferencia de **tamaño** es chica. Lo que sostiene la
+jerarquía es el **peso**. Si Eli lo ve flojo, la salida es partir el nivel 2 en
+dos renglones y devolverle el 108.
+
+⭐ El ritmo vertical se devolvió a lo aprobado midiendo sobre el render: el hueco
+trazo→titular vuelve a los **28 px** de la ronda 3 (se había cerrado solo a 21 al
+bajar el cuerpo) y el hueco contra el tercer nivel queda en **42 px**, 1,5× el de
+arriba.
+
+⭐⭐⭐ **Y EL QA CAMBIÓ DE MÉTODO — el fondo ya no se estima, se MIDE.** Al dejar
+la portada quieta, la tinta pasó a estar en pantalla desde el f0, y `peor_tercio`
+sacaba «el fondo» promediando la banda **con la tinta adentro**: cantó **2,69:1**
+sobre un fondo que da **3,52:1**. No se arregló enmascarando por color —en estas
+láminas el fondo TIENE blancos legítimos (el cielo entre las vigas, el cielo raso
+del salón) y un umbral «>200 es tinta» borra justo el fondo más claro, que es el
+que puede hundir el contraste—. Se arregló rindiendo un **fotograma de control
+sin ninguna tinta** (`--props='{"soloFondo":true}'`) y midiendo ÉSE. Excepción:
+una banda cuyo fondo es PIEZA y no foto —«DESLIZA», que va sobre la píldora— se
+mide sobre la lámina, y se marca con `"pieza"`.
+
+⭐ De paso se cerró el pendiente que el propio QA tenía anotado desde la ronda 4:
+**tres bandas de las interiores no cubrían su propia tinta por la derecha** (el
+desayuno se quedaba 44 px corto en el titular; el lobby, 58; la habitación, 24) y
+el salón sobraba 54. Las diez se re-midieron sobre el render.
+
+**Entregado.** Las 6 MP4 (2160×2700, 5,06 s) y las 6 GIF (720 px, 12 fps)
+**reemplazadas en sitio** en `S5 HILTON SEP 2026 › DT`
+(`1qqPFM2EDVvAzgZLLQIJpxYr6gkFmKNHk`) y su subcarpeta `C1 S5 DT - GIF`
+(`13RPiyOpfNxgRJ_EJ1nndqTxgRk5dNnme`): mismo `fileId`, así que **los enlaces que
+circulan siguen sirviendo**.
+
+**Dónde quedó:**
+- Piezas: `out/hilton/dt/c1-s5/entrega/` y `entrega-gif/`.
+- Página de revisión: `out/hilton/dt/c1-s5/revision-r5.html` —
+  `scripts/dt-c1-s5-revision-r5.py`.
+- QA **31/31 en verde** · el peor del carrusel es «Tu día» con 3,35:1 sobre vara
+  3,0 · typecheck limpio.
+
+**Qué sigue:** que Eli diga **A o B** en la firma de la portada, y si quiere que
+el degradado del pie de las interiores se vaya con la versalita.
+
+---
+
 ## 2026-09-22 · Eli (Windows) — BETWEEN: la portada del To Go vuelve a la foto de la entrada
 
 **Lo que pidió Eli:** «vuelve a la imagen en la portada que yo había puesto

@@ -83,6 +83,88 @@
  * cifra, no redacción — pero queda dicho.
  *
  * ══════════════════════════════════════════════════════════════════════════
+ * RONDA 5 — EL COMENTARIO DE CONSTANZA LIZANA (22-09, 11:49) SOBRE LA GRILLA
+ * ══════════════════════════════════════════════════════════════════════════
+ * Y la observación que Eli sumó encima, el mismo día, sobre la portada.
+ * Literal, las tres cosas:
+ *
+ *   1. «en la slide 1 (portada) el texto no me gusta animado, el video detrás
+ *      al tener movimiento hace que el texto con más movimiento maree. Me
+ *      gustaría el texto estático pero el globo que encierra "tu día" sea
+ *      animado.»
+ *   2. «en el resto de las slides todo lo veo ok, pero en la parte inferior
+ *      donde dice "DT by hilton stgo - vitacura" me gustaría que se eliminara,
+ *      para que no tenga tanto elemento por slide.»
+ *   3. (Eli) «que en el texto de la portada diga DoubleTree by Hilton en la
+ *      misma tipografía del título, ya que se ve como diferente y la idea es
+ *      que se vea muy igual. "en DoubleTree by Hilton" sería la segunda
+ *      tipografía y la tercera "Santiago Vitacura".»
+ *
+ * ── 1 · LA PORTADA SE QUEDA QUIETA, Y EL TRAZO ES LO ÚNICO QUE SE MUEVE ────
+ * Se van las CUATRO entradas de la portada —la itálica, el titular, la bajada
+ * y la píldora—. No sólo las tres de texto: la píldora también lleva texto y
+ * también entraba con un fade+subida, y el motivo que da Constanza —el clip de
+ * la llegada ya se mueve por debajo— vale igual para ella. Queda en pie
+ * `Circulo`, que se dibuja del f8 al f46 y ahora es el único gesto de la
+ * lámina. En el bucle de Instagram eso se lee mejor que antes: el trazo se
+ * redibuja en cada vuelta y ya no compite con nada.
+ *
+ * ⚠️ Las CINCO INTERIORES conservan sus entradas: Constanza dice «en el resto
+ * de las slides todo lo veo ok». No se tocan.
+ *
+ * ── 2 · LA VERSALITA AL PIE SALE DE LAS CINCO INTERIORES ───────────────────
+ * `<Firma>` se queda sólo en la portada, que es donde el carrusel firma. Y
+ * coincide con el manual: §B dice que en feed el logotipo por defecto no va, y
+ * la regla del estudio es que en un carrusel la marca firma en la portada.
+ *
+ * ⚠️ **PENDIENTE DE ELI:** en la portada la firma quedó diciendo
+ * «DOUBLETREE BY HILTON SANTIAGO–VITACURA» al pie mientras el bloque de arriba
+ * dice, ahora, exactamente lo mismo. Es la única lámina donde el nombre sale
+ * dos veces. Constanza acotó su pedido a «el resto de las slides», así que la
+ * firma se DEJÓ; va en la revisión como opción B para que ella decida.
+ *
+ * ── 3 · LA JERARQUÍA DE LA PORTADA, RE-ORDENADA EN TRES NIVELES ────────────
+ * El nombre de la marca venía partido entre dos voces tipográficas —«DoubleTree»
+ * en el titular a 108 y «by Hilton» en la bajada a 42 Light—, y eso es lo que
+ * Eli lee como «se ve diferente». Ahora:
+ *
+ *   | nivel | ronda 3 | ronda 5 |
+ *   |---|---|---|
+ *   | 1 | «Tu día» · Stag LightItalic 72, circulada | **igual, intacta** |
+ *   | 2 | «en DoubleTree» · Stag Medium 108 | **«en DoubleTree by Hilton»** · Stag Medium **80,606** |
+ *   | 3 | «by Hilton Santiago–Vitacura» · Stag Light 42 | **«Santiago–Vitacura»** · Stag Light 42, igual |
+ *
+ * ⭐⭐ **EL CUERPO ES LA CONSECUENCIA DE LA MEDIDA, NO LA DECISIÓN** — es el
+ * criterio que dictó Eli en DT el 15-09 sobre el estático de Honors. «en
+ * DoubleTree by Hilton» a cuerpo 108 mide **1211,2 px** de tinta y la columna
+ * son **904**: no cabe, y no es negociable. **80,606** es el cuerpo exacto al
+ * que la tinta mide 904,00 px y el renglón nace en 88 y muere en 992 — flush
+ * contra los dos márgenes. Medido glifo a glifo sobre `Stag-Medium.ttf` con el
+ * `letter-spacing` de +0,012em, no estimado.
+ *
+ * ⛔ **Y por qué NO se justificaron los tres renglones a una medida común**,
+ * que es lo que pide ese mismo criterio: porque acá la línea larga es la que
+ * tiene que pesar. A una medida común de 904, «Santiago–Vitacura» saldría a
+ * cuerpo **109,3** y el nombre de la marca a **80,6** — la ciudad más grande
+ * que el hotel. La propia memoria del criterio deja escrita la excepción: «si
+ * en otra pieza la línea larga es la que tiene que pesar, se parte en dos
+ * ANTES de justificar». Acá se partió: el nivel 2 es el nombre y el 3 la
+ * ciudad, cada uno con su cuerpo.
+ *
+ * ⚠️ Lo que costó, y hay que mirarlo: el titular baja de 108 a 80,6, así que
+ * contra «Tu día» (72) la diferencia de cuerpo es chica. Lo que sostiene la
+ * jerarquía es el PESO —Medium contra LightItalic— y el trazo, no el tamaño.
+ * Es lo mismo que dice el criterio de Honors: «el peso sigue mandando la
+ * jerarquía; el tamaño no».
+ *
+ * ⭐ El ritmo vertical se re-midió sobre el render, no a ojo: el hueco entre el
+ * canto del trazo y la tinta del titular vuelve a los **28 px** que aprobó la
+ * ronda 3 (`marginBottom` 8 → 15, porque a cuerpo 80,6 la tinta nace más
+ * arriba dentro de su caja de línea), y el hueco contra el tercer nivel queda
+ * en **42 px** ≈ 1,5× el de arriba, que es la proporción que pide
+ * `jerarquia-de-bloque-de-texto`.
+ *
+ * ══════════════════════════════════════════════════════════════════════════
  * LA DIRECCIÓN DE ARTE — sale de las DOS REFERENCIAS QUE DEJÓ ELI
  * ══════════════════════════════════════════════════════════════════════════
  * `S5 HILTON SEP 2026 › DT › REFERENCIA CARRUSEL` (subidas el 17-09 a las 14:30):
@@ -152,6 +234,7 @@ import React from 'react';
 import {
   AbsoluteFill,
   Easing,
+  getInputProps,
   Img,
   interpolate,
   OffthreadVideo,
@@ -166,6 +249,32 @@ cargarFuentesDT();
 // ───────────────────────────────────────────────────────────────────────────
 // Constantes de marca
 // ───────────────────────────────────────────────────────────────────────────
+
+/**
+ * ⭐⭐ EL FOTOGRAMA DE CONTROL — `--props='{"soloFondo":true}'`.
+ *
+ * Rinde la lámina **sin una sola tinta**: sólo el clip y el velo. No es un
+ * modo de entrega, es la regla de medición del QA, y nació de un fallo que el
+ * gate cantó en falso en la ronda 5.
+ *
+ * ⛔⛔ EL PROBLEMA QUE RESUELVE. `peor_tercio` promedia la banda del texto para
+ * sacar «el fondo» — y adentro de esa banda está la tinta. Mientras el texto
+ * ENTRABA animado, el f0 se medía con la tinta todavía invisible y el número
+ * salía limpio. Al dejar la portada quieta (pedido de Constanza) la tinta está
+ * en pantalla desde el f0, la banda de «Tu día» pasó a llevar 13–25 % de píxeles
+ * blancos y el QA cantó **2,69:1** sobre un fondo que de verdad da **3,52:1**.
+ *
+ * ⛔ Y no se arregla enmascarando por color: en estas láminas el fondo TIENE
+ * blancos legítimos —el cielo entre las vigas de la marquesina, el cielo raso
+ * del salón—, así que un umbral «>200 es tinta» borra justo el fondo más claro,
+ * que es el que puede hundir el contraste. Sería un gate que se miente a favor.
+ *
+ * ⭐ La salida es no estimar el fondo: **medirlo**. Con esta bandera la lámina
+ * se rinde sin tinta, el QA mide ese fotograma y el número que sale es el fondo
+ * real, sin contaminación y sin borrar nada.
+ */
+const esSoloFondo = (): boolean =>
+  Boolean((getInputProps() as {soloFondo?: boolean}).soloFondo);
 
 const MARGEN = DT.geometria.margenLateral;            // 88 @1080
 const ANCHO_UTIL = 1080 - MARGEN * 2;                 // 904
@@ -438,25 +547,29 @@ const COMPENSA_FIRMA = 0.33;
  * Se corrige con un `margin-right` negativo del mismo valor del tracking. Es la
  * misma trampa que ya tiene nombre en el estudio (`tracking-no-llega-a-inline-block`).
  */
-const Firma: React.FC<{desde: number}> = ({desde}) => (
-  <div
-    style={{
-      position: 'absolute',
-      right: MARGEN,
-      bottom: 62,
-      fontFamily: DT.fuentes.texto,
-      fontSize: 21,                 // caja ≈ 15 px
-      letterSpacing: `${TRACKING_FIRMA}em`,
-      marginRight: `${-COMPENSA_FIRMA}em`,   // ⛔ ver la nota de arriba
-      color: DT.colores.blanco,
-      textShadow: SOMBRA,
-      whiteSpace: 'nowrap',
-      ...usaEntrada(desde, 10),
-    }}
-  >
-    DOUBLETREE BY HILTON SANTIAGO–VITACURA
-  </div>
-);
+const Firma: React.FC = () => {
+  // ⚠️ RONDA 5: la firma ya no anima. Tenía una entrada con retardo (`desde`),
+  // y se fue con el resto del movimiento de la portada — que es la única lámina
+  // donde queda. El prop se borró en vez de dejarlo sin usar.
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        right: MARGEN,
+        bottom: 62,
+        fontFamily: DT.fuentes.texto,
+        fontSize: 21,                 // caja ≈ 15 px
+        letterSpacing: `${TRACKING_FIRMA}em`,
+        marginRight: `${-COMPENSA_FIRMA}em`,   // ⛔ ver la nota de arriba
+        color: DT.colores.blanco,
+        textShadow: SOMBRA,
+        whiteSpace: 'nowrap',
+      }}
+    >
+      DOUBLETREE BY HILTON SANTIAGO–VITACURA
+    </div>
+  );
+};
 
 /**
  * ⭐ EL SELLO DE HORA — el recurso que pide la fila COMENTARIOS PARA DISEÑO
@@ -576,11 +689,6 @@ const Sello: React.FC<{
  * necesidad de modelos» y hay tramo sin nadie si se prefiere.
  */
 export const DtC1S5Portada: React.FC = () => {
-  const italica = usaEntrada(20, 14);
-  const titulo = usaEntrada(32, 22);
-  const bajada = usaEntrada(44, 18);
-  const pildora = usaEntrada(66, 16);
-
   return (
     <AbsoluteFill style={{backgroundColor: DT.colores.azul, overflow: 'hidden'}}>
       <OffthreadVideo
@@ -597,6 +705,8 @@ export const DtC1S5Portada: React.FC = () => {
       */}
       <AbsoluteFill style={{background: rampa(VELO_PORTADA)}} />
 
+      {/* De acá abajo, TODA la tinta. El fotograma de control la salta. */}
+      {esSoloFondo() ? null : <>
       {/*
         ⭐ `top: 330` y no 300: a 300 la palabra circulada caía en la franja donde
         el velo todavía va en α ≈ 0,26 y el contraste quedaba en **3,00:1**,
@@ -647,7 +757,12 @@ export const DtC1S5Portada: React.FC = () => {
           ⚠️ `height` + `marginBottom` sigue sumando **162**, que es lo que clava
           el titular en y=492. Lo aprobado de la ronda 2 no se mueve ni un píxel.
         */}
-        <div style={{position: 'relative', height: 154, marginBottom: 8}}>
+        {/* ⭐ RONDA 5: el `marginBottom` sube de 8 a **15**. Con el titular a
+            cuerpo 80,6 la tinta nace más arriba dentro de su caja de línea y el
+            hueco contra el canto del trazo se había cerrado de 28 px a 21 sin
+            que nadie lo pidiera. Los 15 px devuelven EXACTAMENTE la separación
+            que Eli aprobó en la ronda 3. */}
+        <div style={{position: 'relative', height: 154, marginBottom: 15}}>
           {/*
             ⭐ El −12,4 es MEDIDO: el trazo no arranca en el canto del `<svg>`, así
             que a `left: 4` la tinta caía en x=103 y el bloque se leía sangrado
@@ -675,7 +790,6 @@ export const DtC1S5Portada: React.FC = () => {
               letterSpacing: '0.012em',
               color: DT.colores.blanco,
               textShadow: SOMBRA,
-              ...italica,
             }}
           >
             Tu día
@@ -686,23 +800,35 @@ export const DtC1S5Portada: React.FC = () => {
           style={{
             fontFamily: DT.fuentes.titular,
             fontWeight: DT.pesos.medium,
-            fontSize: 108,
+            // ⭐⭐ RONDA 5 — el cuerpo es la CONSECUENCIA de la medida.
+            // «en DoubleTree by Hilton» a 108 mide 1211,2 px de tinta y la
+            // columna son 904: no cabe. 80,606 es el cuerpo exacto al que la
+            // tinta mide **904,00** y el renglón nace en 88 y muere en 992,
+            // justo entre los dos márgenes. Ver la cabecera, § RONDA 5.
+            fontSize: 80.606,
             lineHeight: 1.02,
             // ⭐ RONDA 2: venía en −0,012em. «Están muy juntas.»
             letterSpacing: '0.012em',
             color: DT.colores.blanco,
             textShadow: SOMBRA,
-            ...sangria(1),
-            ...titulo,
+            // El hueco propio de la «e» a este cuerpo, medido: 1,048 px.
+            ...sangria(1.05),
           }}
         >
-          en DoubleTree
+          en DoubleTree by Hilton
         </div>
 
-        {/* La bajada que pide la referencia debajo del título. */}
+        {/* El tercer nivel: la ciudad. Conserva EXACTAMENTE la tipografía que
+            tenía la bajada aprobada en la ronda 2 —Stag Light 42, +0,02em—;
+            lo único que cambió es que «by Hilton» se le fue para arriba. */}
         <div
           style={{
-            marginTop: 20,
+            // ⭐ RONDA 5: de 20 a **33**. El salto ENTRE niveles tiene que ser
+            // mayor que el salto DENTRO del nivel (`jerarquia-de-bloque-de-texto`):
+            // con 20 el hueco caía a 29 px, el mismo que separa «Tu día» del
+            // titular, y los tres renglones se leían como una sola escalera.
+            // Con 33 el hueco queda en 42 px ≈ 1,5× el de arriba.
+            marginTop: 33,
             fontFamily: DT.fuentes.titular,
             fontWeight: DT.pesos.light,
             fontSize: 42,
@@ -710,11 +836,11 @@ export const DtC1S5Portada: React.FC = () => {
             letterSpacing: '0.02em',
             color: DT.colores.blanco,
             textShadow: SOMBRA,
-            ...sangria(0),           // la «b» de «by» ya nace en el margen
-            ...bajada,
+            // La «S» nace 1,30 px adentro; antes la «b» de «by» nacía en −0,55.
+            ...sangria(1.3),
           }}
         >
-          by Hilton Santiago–Vitacura
+          Santiago–Vitacura
         </div>
       </div>
 
@@ -733,7 +859,6 @@ export const DtC1S5Portada: React.FC = () => {
           borderRadius: 999,
           background: 'rgba(250,250,250,0.94)',
           boxShadow: '0 6px 22px rgba(9,25,78,0.22)',
-          ...pildora,
         }}
       >
         <span
@@ -750,7 +875,19 @@ export const DtC1S5Portada: React.FC = () => {
         <Flecha tam={40} color={DT.colores.azul} />
       </div>
 
-      <Firma desde={80} />
+      {/*
+        ⚠️ PENDIENTE DE ELI — LA ÚNICA LÁMINA DONDE EL NOMBRE SALE DOS VECES.
+        Constanza acotó su pedido a «el resto de las slides», así que en la
+        portada la versalita al pie se DEJÓ. Pero con la jerarquía nueva el
+        bloque de arriba ya dice «en DoubleTree by Hilton / Santiago–Vitacura»
+        y el pie repite exactamente lo mismo. La opción B —sin firma— se rinde
+        con `--props='{"sinFirmaPortada":true}'` y va en la página de revisión
+        para que ella elija. Si dice que sí, esto se borra y queda una línea.
+      */}
+      {Boolean((getInputProps() as {sinFirmaPortada?: boolean}).sinFirmaPortada)
+        ? null
+        : <Firma />}
+      </>}
     </AbsoluteFill>
   );
 };
@@ -957,6 +1094,8 @@ const LaminaInterior: React.FC<{clave: keyof typeof LAMINAS}> = ({clave}) => {
 
       <AbsoluteFill style={{background: rampa(VELO_INTERIOR)}} />
 
+      {/* La tinta de la lámina. El fotograma de control la salta. */}
+      {esSoloFondo() ? null : (
       <div
         style={{
           position: 'absolute',
@@ -1008,8 +1147,15 @@ const LaminaInterior: React.FC<{clave: keyof typeof LAMINAS}> = ({clave}) => {
           </div>
         </div>
       </div>
+      )}
 
-      <Firma desde={54} />
+      {/*
+        ⛔ RONDA 5 (Constanza, 22-09): «en la parte inferior donde dice "DT by
+        hilton stgo - vitacura" me gustaría que se eliminara, para que no tenga
+        tanto elemento por slide». La versalita al pie SALE de las cinco
+        interiores. La marca sigue firmando el carrusel en la portada, que es
+        además lo que pide el manual (§B: en feed el logotipo por defecto no va).
+      */}
     </AbsoluteFill>
   );
 };

@@ -72,26 +72,37 @@ BANDAS = {
         # La banda ya no se estima a ojo sobre el render: sale del contorno de
         # los glifos de Stag LightItalic con el `letter-spacing` y la línea base
         # de Chrome — x 140,5→327,6 · y 393,7→444,8.
-        ("Tu día",        (140, 393, 328, 446), BLANCO, 3.0),
-        ("en DoubleTree", (88, 505, 760, 592), BLANCO, 3.0),
-        ("bajada",        (88, 625, 640, 672), BLANCO, 4.5),
-        ("DESLIZA",       (130, 1098, 312, 1124), AZUL, 4.5, 92),
-        ("firma",         (560, 1262, 992, 1288), BLANCO, 4.5, 105),
+        #
+        # ⭐⭐ RONDA 5 (Constanza, 22-09) — LAS TRES BANDAS SE RE-MIDIERON.
+        # El texto de la portada quedó QUIETO (sólo se anima el trazo), así que
+        # ya no hay `desde` en ninguna: toda la tinta está en pantalla desde el
+        # f0. Y el bloque cambió de jerarquía — «by Hilton» subió al titular—,
+        # así que el titular pasó a cuerpo 80,606 y la bajada a «Santiago–
+        # Vitacura». Tinta medida sobre el render (umbral 228):
+        #   titular            x  88→984 · y 511→581
+        #   Santiago–Vitacura  x  89→425 · y 623→658
+        # Sobre eso, la holgura de sus hermanas: ~6 px arriba y abajo.
+        ("Tu día",            (140, 393, 328, 446), BLANCO, 3.0),
+        ("titular",           (88, 505, 990, 587), BLANCO, 3.0),
+        ("Santiago–Vitacura", (88, 617, 431, 664), BLANCO, 4.5),
+        # ⚠️ ÉSTA SE MIDE SOBRE LA LÁMINA, NO SOBRE EL CONTROL: el fondo de
+        # «DESLIZA» es la PÍLDORA, que es pieza pintada y no foto. En el
+        # fotograma de control la píldora no existe y la banda mide el clip que
+        # hay detrás — 1,03:1, una falsa alarma sobre una tinta que da 9,48:1.
+        ("DESLIZA",           (130, 1098, 312, 1124), AZUL, 4.5, "pieza"),
+        ("firma",             (560, 1262, 992, 1288), BLANCO, 4.5),
     ],
     "DT-V-S5-Desayuno": [
-        ("sello",   (88, 128, 700, 176), BLANCO, 4.5),
-        ("titular", (88, 206, 840, 390), BLANCO, 3.0),
-        ("firma",   (560, 1266, 992, 1292), BLANCO, 4.5, 70),
+        ("sello",   (87, 130, 743, 174), BLANCO, 4.5),
+        ("titular", (87, 216, 892, 386), BLANCO, 3.0),
     ],
     "DT-V-S5-Salon": [
-        ("sello",   (88, 128, 620, 176), BLANCO, 4.5),
-        ("titular", (88, 206, 900, 390), BLANCO, 3.0),
-        ("firma",   (560, 1266, 992, 1292), BLANCO, 4.5, 70),
+        ("sello",   (87, 130, 521, 174), BLANCO, 4.5),
+        ("titular", (87, 216, 854, 373), BLANCO, 3.0),
     ],
     "DT-V-S5-Lobby": [
-        ("sello",   (88, 128, 560, 176), BLANCO, 4.5),
-        ("titular", (88, 206, 900, 382), BLANCO, 3.0),
-        ("firma",   (560, 1266, 992, 1292), BLANCO, 4.5, 70),
+        ("sello",   (87, 130, 480, 174), BLANCO, 4.5),
+        ("titular", (87, 216, 966, 377), BLANCO, 3.0),
     ],
     # ⭐ GYM — la lámina que entró el 21-09. La tinta se MIDIÓ sobre el render
     # (umbral 228 en los tres canales): sello x 88→694 y 138→166 · titular
@@ -112,14 +123,12 @@ BANDAS = {
     # ⚠️ Su titular va a cuerpo 68 y no 74, así que sus franjas NO coinciden con
     # las de las otras: el bloque empieza más abajo y termina más arriba.
     "DT-V-S5-Gym": [
-        ("sello",   (88, 128, 700, 176), BLANCO, 4.5),
-        ("titular", (88, 212, 971, 355), BLANCO, 3.0),
-        ("firma",   (560, 1266, 992, 1292), BLANCO, 4.5, 70),
+        ("sello",   (86, 130, 703, 174), BLANCO, 4.5),
+        ("titular", (87, 214, 971, 353), BLANCO, 3.0),
     ],
     "DT-V-S5-Habitacion": [
-        ("sello",   (88, 128, 560, 168), BLANCO, 4.5),
-        ("titular", (88, 196, 940, 372), BLANCO, 3.0),
-        ("firma",   (560, 1266, 992, 1292), BLANCO, 4.5, 70),
+        ("sello",   (87, 121, 505, 157), BLANCO, 4.5),
+        ("titular", (87, 195, 972, 344), BLANCO, 3.0),
     ],
 }
 
@@ -170,8 +179,10 @@ IZQUIERDA = {
     # ⚠️ RONDA 3: el círculo creció y bajó, así que su punto más ancho —el
     # único que toca el margen— pasó de y≈395 a **y=413,5**. Con la franja vieja
     # (360-420) el QA medía casi puro flanco alto y el canto le daba corrido.
-    "DT-V-S5-Portada":    [("círculo", 400, 430), ("titular", 505, 592),
-                           ("bajada", 625, 672)],
+    # ⚠️ RONDA 5: el bloque cambió de jerarquía y las dos franjas se re-midieron
+    # sobre el render — titular y 511→581, tercer nivel y 623→658.
+    "DT-V-S5-Portada":    [("círculo", 400, 430), ("titular", 505, 587),
+                           ("Santiago–Vitacura", 617, 664)],
     "DT-V-S5-Desayuno":   [("sello", 128, 172), ("gancho", 200, 292),
                            ("remate", 292, 378)],
     "DT-V-S5-Salon":      [("sello", 128, 172), ("gancho", 200, 292),
@@ -199,16 +210,20 @@ def canto_izquierdo(im: Image.Image, y0: int, y1: int) -> int | None:
     return None
 
 
-def rinde(comp: str, frame: int) -> Path:
-    salida = PRUEBAS / f"{comp.replace('DT-V-S5-', '')}-f{frame:03d}.png"
+def rinde(comp: str, frame: int, solo_fondo: bool = False) -> Path:
+    sufijo = "-fondo" if solo_fondo else ""
+    salida = (PRUEBAS /
+              f"{comp.replace('DT-V-S5-', '')}-f{frame:03d}{sufijo}.png")
     if salida.exists():
         return salida
     salida.parent.mkdir(parents=True, exist_ok=True)
     npx = "npx.cmd" if sys.platform == "win32" else "npx"
-    subprocess.run([npx, "remotion", "still", str(ENTRADA), comp, str(salida),
-                    f"--frame={frame}"], cwd=RAIZ, check=True,
-                   capture_output=True, text=True, encoding="utf-8",
-                   errors="replace")
+    orden = [npx, "remotion", "still", str(ENTRADA), comp, str(salida),
+             f"--frame={frame}"]
+    if solo_fondo:
+        orden.append('--props={"soloFondo":true}')
+    subprocess.run(orden, cwd=RAIZ, check=True, capture_output=True,
+                   text=True, encoding="utf-8", errors="replace")
     return salida
 
 
@@ -217,18 +232,22 @@ def main() -> int:
     for comp, bandas in BANDAS.items():
         print(f"\n{comp}")
         imgs = {f: Image.open(rinde(comp, f)).convert("RGB") for f in (0, ULTIMO)}
+        # ⭐⭐ RONDA 5 — el fondo ya NO se estima promediando la banda con la
+        # tinta adentro: se MIDE sobre la lámina rendida sin tinta. Ver la
+        # bandera `soloFondo` en la composición y la nota al pie de este archivo.
+        fondos = {f: Image.open(rinde(comp, f, True)).convert("RGB")
+                  for f in (0, ULTIMO)}
         for im in imgs.values():
             if im.size != (1080, 1350):
                 print(f"  ⛔ lienzo {im.size}, se esperaba (1080, 1350)")
                 fallos += 1
         for banda in bandas:
             nombre, caja, tinta, vara = banda[:4]
-            desde = banda[4] if len(banda) > 4 else 0
-            cuadros = sorted({max(desde, 0), ULTIMO})
-            for f in cuadros:
-                if f not in imgs:
-                    imgs[f] = Image.open(rinde(comp, f)).convert("RGB")
-            medidos = {f: peor_tercio(imgs[f], caja, tinta) for f in cuadros}
+            # Una banda cuyo fondo es PIEZA (la píldora) se mide sobre la lámina.
+            sobre_pieza = len(banda) > 4 and banda[4] == "pieza"
+            origen = imgs if sobre_pieza else fondos
+            cuadros = [0, ULTIMO]
+            medidos = {f: peor_tercio(origen[f], caja, tinta) for f in cuadros}
             peor = min(medidos.values())
             cuando = min(medidos, key=medidos.get)
             ok = peor >= vara
@@ -254,37 +273,40 @@ def main() -> int:
 #
 # Apareció el 21-09 al medir la lámina del gym, y vale para toda la cuenta.
 #
-# **1 · `peor_tercio` promedia la banda CON LA TINTA ADENTRO.** No mide el fondo:
-# mide fondo+tinta. Para tinta blanca eso sube el promedio y **baja** el
-# contraste que canta, así que el sesgo es conservador —da falsas alarmas, no
-# tapa fallos— pero hace que **el número dependa de lo apretada que esté la
-# caja**. Medido sobre el mismo fotograma del gym:
+# **1 · RESUELTO EN LA RONDA 5 — el fondo ya no se estima, se MIDE.**
+# `peor_tercio` promediaba la banda **con la tinta adentro**, así que no medía el
+# fondo sino fondo+tinta: para tinta blanca eso subía el promedio y bajaba el
+# contraste que cantaba. El sesgo era conservador —falsa alarma, nunca fallo
+# escondido— pero hacía que el número dependiera de lo apretada que estuviera la
+# caja, y al dejar la portada QUIETA (la tinta ya está en pantalla en el f0)
+# empezó a cantar 2,69:1 sobre un fondo que da 3,52:1.
 #
-#   | banda del sello | % de tinta | canta | fondo real (tinta enmascarada) |
-#   |---|---|---|---|
-#   | ajustada al glifo (2 px) | 8,9 % | 4,30:1 | 6,96:1 |
-#   | con la holgura de sus hermanas (10 px) | ~6 % | 5,4:1 | 6,96:1 |
+# ⛔ **No se arregló enmascarando por color, y era la trampa.** Esta misma nota
+# lo advertía: en estas láminas el fondo tiene blancos legítimos —el cielo entre
+# las vigas de la marquesina, el cielo raso del salón—, así que un umbral
+# «>200 es tinta» borra justo el fondo más claro, que es el que puede hundir el
+# contraste. Sería un gate que se miente a favor.
 #
-# **2 · Y por eso hoy conviven DOS varas de medir en este archivo.** Las bandas
-# de la portada salen de la ronda 3 y son el contorno exacto del glifo, sin
-# holgura. Las de las cinco interiores vienen de la ronda 2 y llevan ~10 px
-# arriba y abajo. Comparar un número de una con uno de otra no significa nada.
+# ⭐ Se arregló rindiendo un **FOTOGRAMA DE CONTROL** sin ninguna tinta
+# (`--props='{"soloFondo":true}'`, ver la composición) y midiendo ESE. El número
+# que sale es el fondo real, sin contaminación y sin borrar un solo píxel.
 #
-# **3 · Y hay bandas de interiores que NO cubren su tinta por la derecha** —el
-# `desayuno` se queda 35 px corto en el sello y 44 en el titular; el `lobby`, 58
-# en el titular; la `habitación`, 24—. Es el mismo modo de falla que la ronda 3
-# encontró en la portada: lo que queda fuera de la caja no se mide.
+# ⚠️ La excepción: una banda cuyo fondo es PIEZA y no foto —«DESLIZA», que va
+# sobre la píldora— se mide sobre la lámina, porque en el control la píldora no
+# existe. Se marca con `"pieza"` como quinto elemento de la banda.
 #
-# ⛔ **No se arregló acá a propósito.** Rehacer `peor_tercio` y re-medir las
-# cinco bandas cambia los números de una pieza YA ENTREGADA Y APROBADA, y puede
-# destapar un fallo en lo que ya está en el Drive. Eso es una pasada propia, con
-# su antes/después, no un efecto colateral de agregar una lámina. Está informado
-# a Eli en la página de revisión de la ronda 4.
+# **2 · Y por eso desapareció la doble vara.** Ya no importa cuánta holgura
+# lleve la caja para el CONTRASTE —la tinta no entra en la cuenta—, sólo importa
+# que la caja cubra la región donde vive la tinta. Los números de esta ronda no
+# son comparables con los de las rondas 1-4: todos subieron, y no porque la
+# pieza mejorara sino porque antes se medían mal.
 #
-# El camino cuando se haga: medir el fondo **enmascarando los píxeles de tinta**,
-# y en la misma pasada verificar que ningún píxel de fondo se salga por arriba
-# (si no, un reflejo quemado detrás de una letra se enmascara junto con ella y
-# el fallo se esconde — que es justo lo que este QA hoy no puede hacer).
+# **3 · RESUELTO EN LA RONDA 5 — las bandas se re-midieron sobre el render.**
+# Tres no cubrían su propia tinta por la derecha (el `desayuno` se quedaba 44 px
+# corto en el titular; el `lobby`, 58; la `habitación`, 24) y el `salón` sobraba
+# 54. Ahora las diez bandas de las interiores salen del contorno real de tinta
+# medido con umbral 228, más 8 px de holgura. Lo que quedaba fuera de la caja ya
+# no se deja de medir.
 
 
 if __name__ == "__main__":

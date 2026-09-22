@@ -61,11 +61,10 @@ locución con Antonia Reyes (voz chilena). Ambos reels cierran con
    grilla se contradice a sí misma. Entraron con el OK verbal de Diego el 22-09.
    **Falta el OK de Fran o Blanca.** Es el mismo patrón que dejó «conexión a
    agua potable» publicada en septiembre.
-2. **Tres archivos obsoletos siguen en la carpeta de Drive** porque el cliente
-   cambió el formato de esos días y no se borran sin permiso:
-   `st-08-10.mp4` y `st-15-10.mp4` (esos días ahora son estáticos, ya está el
-   `.png`) y `p-20-10.png` (el 20/10 ahora es el carrusel `c-20-10-1..6`).
-   Si quedan, el CM puede publicar la versión vieja.
+2. ✅ **Resuelto el 22-09:** los tres archivos obsoletos (`st-08-10.mp4`,
+   `st-15-10.mp4` y `p-20-10.png`) se mandaron a la **papelera** de Drive con
+   autorización de Diego. Se recuperan 30 días. La carpeta queda con las 18
+   piezas vigentes más el brief, sin duplicados de formato.
 3. Sigue abierto el **mapa oficial** con Carlos: los PNG de `MAPAS` traen
    topónimos corruptos, por eso el mapa del 12/10 se dibujó en SVG desde cero.
 4. La marca sigue sin `reglas.yaml`: el QA de las 18 piezas fue a mano.

@@ -1,5 +1,41 @@
 # Piso18 — bitácora
 
+## 2026-09-22 (6ª sesión) — Elisabet Soto · el video se corrige horneando el clip, no moviendo deslizadores
+
+**Qué se hizo:** Continuación de la 5ª sesión sobre el mismo reel. Eli abrió
+`CAMBIO 2` en CapCut y **editó encima**: fusionó el tramo final en un *Clip
+combinado* (14,43→21,60) y corrió la entrada de `IMG_4178` de fuente 12,15 a
+11,73. Sobre eso pidió dos cosas: que la terraza siguiera viéndose quemada y que
+se verificara la toma que abre el montaje de flores. **La corrección del quemado
+de la 5ª sesión quedó superada**: los deslizadores de CapCut no alcanzan porque
+su contraste pivotea en el 50 % y la mediana de ese plano está en 144 — subir
+contraste la empuja *más arriba*. Medido, el defecto era **velo atmosférico**, no
+sobreexposición: punto de negro en 28,9 (debería estar cerca de 10), dominante
+azul pareja de −7,8 en sombras, medios y altas, y micro contraste muerto (762
+contra una mediana de 3.782 en el reel). Se horneó la corrección con ffmpeg y se
+conectó al proyecto. **La primera versión se rechazó** («se ve extraño y
+oscuro») y tenía razón: bajaba las sombras de 65 a 35,7 y su piel de 135,0 a
+122,6. La segunda toca sólo el velo y deja la exposición donde estaba.
+
+**Dónde quedó:** `out/piso18/reel-s4-jazz/IMG_4183-corregido.mp4` (12,8 MB),
+**ya conectado** en las tres copias del draft. Los tres generadores en el repo:
+`p18-reel-jazz-grade-terraza.py`, `p18-reel-jazz-conectar-terraza.py` y
+`p18-reel-jazz-grade-flores.py`. El MP4 no se commitea (va en `out/`) pero se
+reproduce corriendo el script contra `F:`. ⚠️ **El reel sigue SIN exportar y sin
+subir a Drive.** Los `.previo` que dejaron los scripts siguen en la carpeta del
+draft; son respaldos, se pueden borrar.
+
+**Qué sigue:** Que Eli cierre y reabra el proyecto en CapCut para que recargue el
+clip corregido, lo revise, y si va **exporte el MP4 y lo suba a Drive**.
+
+**Abierto:** (1) La toma que abre el montaje de flores (`IMG_0849`) quedó
+**verificada y sin tocar**: es de las mejores del material, nitidez 7.652 contra
+una mediana de 3.782. Lo único anotado es que entra con mediana 151 justo después
+de la entrada de Jaz, que está en 52 — el salto de luz más grande del reel.
+Decidir si se suaviza. (2) La música sigue siendo el instrumental de *Flowers* de
+Miley Cyrus: música comercial en la cuenta de un cliente, avisado a Valeria y sin
+resolver. (3) Los cuatro cambios siguen sin visar sobre un render final.
+
 ## 2026-09-22 (5ª sesión) — Elisabet Soto · el reel S4 Jazz: la ronda de cambios va sobre el draft de CapCut
 
 **Qué se hizo:** El cliente pidió tres cambios y Valeria un cuarto sobre el reel
@@ -10,8 +46,9 @@ fuente 12,15, el instante exacto en que Jaz abre la cortina. (2) El montaje de
 flores se rehizo con los tres planos más nítidos del material (`IMG_0849` n7826,
 `IMG_0870` n5081, `IMG_9337` n3191) y pasó de 2 a 3 planos — los cuatro clips del
 brief tenían entre 5 y 13,5 s sin usar. (3) El cierre sale del tramo sentado
-(fuente 8,48) y ya no la muestra pararse e irse. (4) **El quemado de la terraza no
-venía del material** (p99=239, 0,02 % de píxeles en 250): lo metía el grade. Se
+(fuente 8,48) y ya no la muestra pararse e irse. (4) ⚠️ **SUPERADO en la 6ª sesión — esta corrección se rechazó y se rehízo
+horneando el clip.** El quemado de la terraza no
+venía del material (p99=239, 0,02 % de píxeles en 250): lo metía el grade. Se
 apagó el ajuste inteligente (+0,171 → 0) y se corrigieron 9 parámetros por
 segmento. La música baja a 0,070 bajo la voz y sube sólo en los dos silencios
 largos, medidos sobre la locución real (umbral −25,5 dB); cierra con un arco a

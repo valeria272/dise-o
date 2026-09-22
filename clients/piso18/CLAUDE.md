@@ -176,6 +176,73 @@ junio y agosto traen `magnific_*.png` y `freepik__*.png` montados.
 ⚠️ **El banco real vive en el disco externo `F:`**, no en Drive. Lo que hay en el repo
 es una muestra. Las rutas están en `marca.json`.
 
+## Video — los reels se editan sobre el draft de CapCut
+
+Eli monta los reels de Piso 18 en **CapCut Desktop**, y sus proyectos se pueden
+reescribir desde código: `draft_content.json` es JSON plano. El método y las
+cuatro trampas están en la memoria `capcut-draft-se-edita-desde-codigo`.
+
+⛔⛔ **CapCut abierto pisa todo lo que escribas.** Carga el proyecto al abrirlo y
+guarda su copia en memoria al salir. El 22-09 se perdió así una corrección
+completa. Antes de tocar el draft: `tasklist | grep CapCut` tiene que dar **0**.
+Reemplazar un **archivo de video** sí es seguro con CapCut abierto — sólo hay que
+cerrar y reabrir el proyecto para que lo recargue.
+
+⛔ **Y Eli edita encima.** Fusiona tramos en *Clip combinado*, mueve puntos de
+entrada. Antes de escribir se relee el draft y se respalda el suyo; lo que no
+pidió, no se toca.
+
+### ⭐⭐ La corrección de color que se nota, está mal
+
+Criterio de Eli, 22-09-2026, sobre la terraza del reel S4: *«se ve muy mal, se ve
+extraño y oscuro… hazlo sutil como para que no se note».*
+
+**Una pieza «quemada» casi nunca está sobreexpuesta.** Acá el material tenía p99
+= 239 y **0,00 % de píxeles en 254**: nada recortado. Lo que había era **velo
+atmosférico** de rodar a contraluz. Se diagnostica midiendo cuatro cosas, no
+mirando:
+
+| Qué | Cómo se lee |
+|---|---|
+| **Punto de negro** (p0.5) | si está por sobre ~25, hay velo |
+| **Dominante** (R−B por zonas) | pareja en sombras, medios y altas = velo, no luz |
+| **Micro contraste** (varianza del laplaciano) | contra la **mediana del propio reel** |
+| **Recorte** (% ≥ 254) | si es ~0, no hay nada quemado que recuperar |
+
+**Y la vara de que la corrección es correcta es que la exposición NO se mueva.**
+Se mide antes y después:
+
+- **la piel** (máscara YCrCb) no baja más de ~2 puntos — es lo que delata el
+  exceso: la versión rechazada la llevaba de 135,0 a 122,6;
+- **las sombras** (el 25 % más oscuro) no se desploman — la rechazada, de 65 a 35,7;
+- la **mediana** y el **p99** quedan casi iguales (144,3→143,7 y 238,3→238,7);
+- el **recorte se mantiene en 0,00 %**.
+
+Lo único que sí cambia: el punto de negro baja (28,9→11,7), la dominante se parte
+por dos (−7,0→−3,1) y el micro contraste se duplica (762→1.549).
+
+⚠️ **Los deslizadores de CapCut no sirven para esto.** Su contraste pivotea en el
+50 % (127 de 255) y la mediana de un plano a contraluz está en 144: subir
+contraste lo empuja **más arriba**. Por eso la corrección se **hornea** con ffmpeg
+(`scripts/p18-reel-jazz-grade-terraza.py`), con **rodilla `tanh`** al final para
+comprimir las altas en vez de recortarlas, y los deslizadores del clip se dejan
+**en cero** para no corregir dos veces.
+
+⭐ **Antes de rescatar una toma, mídela contra las otras del reel.** La que abre
+el montaje de flores parecía candidata a arreglo y resultó ser de las mejores del
+material: nitidez 7.652 contra una mediana de 3.782. No necesitaba nada.
+
+### El audio de un reel
+
+El ducking **se mide, no se hace a ojo**: se extrae la locución con ffmpeg, se
+arma la envolvente RMS en ventanas de 50 ms sobre la línea de tiempo y el umbral
+sale del percentil 15 del piso de ruido + 9 dB. La música **sólo sube en los
+silencios largos (≥1,3 s)** — levantarla en cada pausa de 0,8 s suena a bombeo.
+Los keyframes de volumen de CapCut llevan `time_offset` en tiempo de **fuente**.
+
+⚠️ **La música comercial es exposición de marca.** El reel de la S4 va con el
+instrumental de *Flowers* de Miley Cyrus. Se avisó; la decisión es de Valeria.
+
 ## QA
 
 ```bash

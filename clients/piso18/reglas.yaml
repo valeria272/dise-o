@@ -17,8 +17,8 @@
 
 marca: piso18
 nombre: PISO18 Centro de Eventos
-version: 3
-actualizado: 2026-09-16
+version: 4
+actualizado: 2026-09-22
 
 autoridad:
   - quien: Elisabet Soto
@@ -110,6 +110,34 @@ ajustes:
       números distintos — por eso el número vive acá y no en el código.
     args:
       razon_min: 0.006
+
+# ── VIDEO · la corrección de color que se nota, está mal ────────────────────
+# ⚠️ NO EJECUTABLE: `qa/motor.py` sólo corre piezas estáticas. Estos son los
+#    números con los que se revisa a mano una corrección de color de un reel,
+#    hasta que exista compuerta de video. El porqué está en CLAUDE.md.
+#
+# Criterio de Eli, 22-09-2026, sobre la terraza del reel S4:
+#   «se ve muy mal, se ve extraño y oscuro… hazlo sutil como para que no se note»
+#
+# Se mide el MISMO plano antes y después del grade. Pasa si las cuatro se cumplen:
+#
+#   piel_delta      <= 2      puntos de luminancia, máscara YCrCb
+#                             (la versión rechazada la bajó de 135,0 a 122,6)
+#   sombras_delta   <= 8      media del 25 % más oscuro
+#                             (la rechazada, de 65,0 a 35,7)
+#   mediana_delta   <= 3      p50 global
+#   recorte         == 0.00 % píxeles >= 254, antes Y después
+#
+# Y tiene que MEJORAR al menos dos de estas tres, o la corrección no sirve:
+#   punto de negro (p0.5) baja · dominante |R-B| baja · micro contraste sube
+#
+# ⛔ «Quemada» casi nunca es sobreexposición. Si el recorte ya es 0,00 %, no hay
+#    nada que recuperar en las altas: lo que hay es VELO, y se ataca por el punto
+#    de negro y el micro contraste, no bajando el brillo.
+#
+# ⛔ Los deslizadores de CapCut no sirven acá: su contraste pivotea en el 50 %
+#    (127 de 255) y la mediana de un plano a contraluz está en 144, así que subir
+#    contraste lo aclara todavía más. La corrección se hornea con ffmpeg.
 
 reglas:
 

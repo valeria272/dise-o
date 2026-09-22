@@ -1,5 +1,53 @@
 # Piso18 — bitácora
 
+## 2026-09-22 (2ª sesión del día) — Elisabet Soto · las 11 referencias ya tienen origen
+
+**Qué se hizo:** `/arranque` en el Windows de Eli — **ninguna pieza**. Esta vez, en
+vez de volver a reportar los 11 archivos rotos, se buscó **de dónde salían**. Se
+encontró.
+
+### ⭐ El origen, identificado por peso exacto
+
+Los dos archivos que sí estaban buenos delataron la carpeta: `actual-1.png` pesa
+2.979.282 bytes, **exactamente** lo que `C1 S3 n°1.png` en Drive; y `viejo-2.png`
+pesa 2.552.923, exactamente `C1 S4 N°2.png`. Los 11 archivos salen de tres carpetas
+que Eli creó el 15-09-2026 bajo `1MDm5JLRBe_Ep99hhK7fHgZ2mg35y9MJ2`:
+`CARRUSEL CUMPLE ACTUAL 2026`, `BENEFICIOS CUMPLEAÑOS` y `CARRUSEL CUMPLEAÑOS`.
+
+El mapa completo, archivo por archivo y con su `fileId`, quedó en
+**`clients/piso18/REFERENCIAS-CUMPLE.md`** (y copiado en `raw/…/ref-cumple/`).
+
+⚠️ **Se escribió en `clients/`, no sólo en `raw/`, y esa es la lección:** `raw/hilton/*`
+está en `.gitignore`, así que una nota dejada ahí **no viaja**. Es la razón de que
+cuatro arranques seguidos tuvieran que redescubrir el problema desde cero.
+
+⚠️ **Los cuatro `.jpg` no existen en Drive.** En el origen todo es PNG: son un
+segundo intento de descarga que volvió a traer el mismo HTML. No hay nada que
+rebajar para ellos.
+
+### ⛔ Por qué sigue sin poder bajarse — las tres vías, probadas hoy
+
+| Vía | Resultado |
+|---|---|
+| `drive.usercontent…&confirm=t` | ⛔ 915.456 bytes de `<!doctype html>`. **Las carpetas de Eli no están compartidas por enlace** — la memoria `bajar-grilla-ajena-de-drive` supone que sí lo están |
+| Token del estudio | ⛔ `HttpError 404 File not found`. Scope `drive.file`: no ve lo que no creó él. Confirma `token-drive-file-no-lee` |
+| Conector MCP de Drive | ✅ lee y lista sin problema, pero `download_file_content` devuelve **base64 al contexto** y estos PNG pesan de 7 a 10 MB |
+
+**La causa raíz no es una descarga fallida: es un permiso.** Mientras las carpetas
+estén cerradas por enlace y el token siga en `drive.file`, no hay vía automática.
+
+**Dónde quedó:** los 11 archivos siguen siendo HTML — no se bajó ninguno. Lo que
+cambió es que ahora **se sabe exactamente qué bajar y por qué no se puede**.
+
+**Qué sigue:** es decisión de Eli, y son dos caminos:
+1. **Compartir por enlace** las tres carpetas → `curl` las baja sin tope y en paralelo.
+   Rápido, pero abre permisos (ojo `drive-agencia-permiso-abierto`).
+2. **Ampliar el token del estudio a `drive.readonly`** → arregla esto y todo lo que
+   venga, en todas las marcas. Es la misma decisión abierta desde el 14-09 en Between.
+
+**Abierto:** sigue sin resolverse si a Piso 18 se le abre sistema (`/marca-nueva`).
+Sin manual, sin ficha y sin referencias legibles, la marca no corre sola.
+
 ## 2026-09-22 — Elisabet Soto · tercer arranque seguido que reporta lo mismo
 
 **Qué se hizo:** `/arranque` de verificación en el Windows de Eli — **ninguna pieza**.

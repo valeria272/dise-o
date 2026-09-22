@@ -43,9 +43,26 @@ Space en `raw/hilton/between/vasos-togo-v2/`, y dos scripts nuevos
 `between-vasos-togo-v2*.py`. **La entrega de ayer no se borró:** está en
 `out/hilton/between/vasos-togo/_reemplazado-21-09/` y en el commit `cc0f0a2`.
 
+**El `/al-dia` de la misma jornada confirmó el renombre y trajo tres cosas más:**
+- ⭐ **La grilla de OCTUBRE le da la razón al Space.** El FEED del 5-oct (carrusel
+  Café To Go, slide 3 «TAMAÑOS Y PRECIOS») pide «que se entienda la diferencia entre
+  **mediano, grande y Extra**». ⚠️ Pero en la línea de precios el mayor es **«Café
+  XL»**: `Mediano $1.990 · Grande $2.790 · XL $2.990`. El rótulo en pantalla sale
+  literal del brief; el nombre del archivo es cosa nuestra. Y la ST animada del
+  25-oct los repite en combo — **al mediano le falta el precio**, dice «CAFÉ
+  MEDIANO $» y nada más: preguntar antes de armar.
+- ⛔ **Eli ya había subido 5 piezas de la promo To Go el 21-09 a las 20:00**
+  (`PROMOS C1 S4 TOGO N°_1..5.png`, carpeta «C1 PROMOS ACTUALIZADAS 2026 TOGO»).
+  **Son anteriores a los vasos** —los recortes se cerraron a las 21:28 y los
+  generados hoy—, o sea **ninguna de las cinco usa los vasos nuevos**. Si hay que
+  actualizarlas es trabajo aparte, y primero hay que mirar si existe un editable
+  más nuevo que el render.
+- **Octubre no es producible:** las 21 piezas en EN REVISIÓN y cero comentarios de
+  cliente. Instantánea nueva en `clients/hilton/grillas/between-octubre-2026.md`.
+  Septiembre dio **diff cero**: el movimiento de hoy en Drive es ruido.
+
 **Qué sigue / abierto:**
-1. **Que Eli confirme los nombres.** Si en la carta del local los tamaños se llaman
-   distinto, se renombran los archivos.
+1. ~~Que Eli confirme los nombres~~ — **confirmado por la grilla de octubre.**
 2. **El 8 oz generado no muestra la faja de kraft** del real (el kraft le llega hasta
    la tapa). Se pidió así en el prompt — es decisión, no error. Si hay que mostrarla,
    se regenera cambiando esa línea.

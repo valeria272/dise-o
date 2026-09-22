@@ -2611,6 +2611,33 @@ en las dos piezas (la mesa), no el promedio global: la mediana depende de qué
 hay en el cuadro, y esa slide tenía 28 % de muro vegetal contra el 48 % de su
 hermana.
 
+### ⭐⭐ El degradado del pie se calibra CONTRA SU FOTO — si vuelve la foto, vuelve su número
+
+La portada del carrusel **PROMOS TO GO** cambió de foto tres veces y el
+`degradadoPie` viajó con ella, **no con la pieza**:
+
+| Foto | Qué hay en el tercio inferior | `degradadoPie` |
+|---|---|---|
+| `togo-portada-r23.jpg` — IMG_4170, la entrada | pantalones **crema** (1,16-1,48:1 con tinta beige) | **0,72** |
+| `togo-portada-r25.jpg` — IMG_4146, el vaso sobre la mesa | listones, claros y parejos | **0,60** |
+
+El 22-09 el cliente pidió volver a la foto de la entrada y el 0,60 se fue con la
+otra: sobre los pantalones crema deja el script en 3,59:1, encima del mínimo pero
+al filo, mientras que con 0,72 sube a 4,49:1. **Un número calibrado contra una
+placa de fondo no sobrevive al cambio de placa** — y menos un velo, que es
+justamente lo que compensa lo que la foto tiene abajo.
+
+⚠️ Y «volver a la foto anterior» **no es volver a la ronda anterior**: la r23
+llevaba todo el bloque en caja taupe y Eli la sacó en la r24. Lo que retrocede es
+la placa de fondo y el parámetro que depende de ella, nada más.
+
+⚠️ Esa portada **no pasa el chequeo de carrusel** (mediana 73 · saturación 23
+contra 102–104 · 37–47 de sus hermanas, tope 14) y no se puede arreglar con
+revelado: es una toma de calle con croma 9,7 contra 21,5 del set, e igualarla
+obliga a subir la calidez a 38 — o sea a devolver el «filtro cálido» que el
+cliente mandó eliminar el 31-08. **Se entrega igual porque la foto la eligió el
+cliente, y queda anotado.**
+
 ## ⭐⭐ BETWEEN — «EN UN MARCO» PUEDE SER UN CONTORNO, NO UNA CAJA (21-09-2026)
 
 Eli, sobre la portada del concurso: «que **se busca CEO del café** sea el que esté
@@ -3398,6 +3425,13 @@ distinto el ancho: eso deforma el logotipo impreso.
 > los tres por onzas, y con eso los nombres del estudio cambiaron: lo que acá abajo
 > se llama «chico / mediano / grande» es **MEDIANO 8 oz / GRANDE 12 oz / EXTRA
 > 16 oz**. La estimación de la tapa (80 mm contra 90 mm) era correcta.
+>
+> ⭐ **Y lo confirma el cliente, no sólo nosotros.** La grilla de **octubre**
+> (FEED 5-oct, carrusel Café To Go, slide 3 «TAMAÑOS Y PRECIOS») pide «que se
+> entienda la diferencia entre **mediano, grande y Extra**».
+> ⚠️ **Pero el rótulo de la pieza no es el del archivo:** en la línea de precios el
+> mayor se llama **«Café XL»**, no «Extra» — `Café Mediano · $1.990 · Café Grande ·
+> $2.790 · Café XL · $2.990`. **En pantalla va lo que dice el brief, literal.**
 
 ⛔ **Dos trampas al medir sobre `IMG_4153`, las dos costaron una ronda:**
 la caja del recorte **no puede tocar el vaso** (si el mate llega al borde, el alto

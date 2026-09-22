@@ -181,11 +181,11 @@ Cada cliente tiene su diseñadora y su criterio, y **no son intercambiables**:
 
 | Quién firma | Marcas |
 |---|---|
-| **Paulina Bustamante** | EBEMA · Revex · Casablanca (Grupo Revex) |
+| **Paulina Bustamante** | **Produce:** EBEMA (grilla · Click · paid) · MyZoo · Traverso.<br>**Su criterio cuenta además en:** Nueva Urbe · Revex · Casablanca |
 | **Elisabet Soto** «Eli» | Hilton — DT / QB / Between / Piso18 |
 | **Constanza Lizana** «Coni» | Selfie |
 
-Un comentario de Paulina vale para sus tres marcas y **para ninguna otra**. Aplicar
+Un comentario de Paulina vale para sus seis marcas y **para ninguna otra**. Aplicar
 su criterio a Hilton o a Selfie es inventarles un sistema que nadie aprobó — y es
 como se dio por global la regla del logo pegado arriba, que es de Revex y Casablanca
 mientras en Between va centrado.
@@ -193,8 +193,9 @@ mientras en Between va centrado.
 Esto está impuesto por programa: `qa/motor.py` exige `--marca`, carga sólo las reglas
 de esa marca y rechaza piezas de otra en la misma corrida.
 
-**Sin manual todavía** (ver `docs/ESTADO-MARCAS.md`): Nueva Urbe (`src/brand/nuevaurbe.ts`),
-Traverso, y DT del complejo Hilton.
+**Sin manual todavía** (ver `docs/ESTADO-MARCAS.md`): DT del complejo Hilton.
+Nueva Urbe y Traverso **ya tienen manual** (medido con `scripts/doctor.sh` el
+22-09-2026); a Traverso le falta la ficha `marca.json` y el kit de código.
 
 > **PENDIENTE (2026-07-19):** Hacer **UGC real con Higgsfield**. Higgsfield es conector de claude.ai que quedó APAGADO — la usuaria lo reconecta (`/mcp reconnect all` o claude.ai → Connectors) y abre **chat nuevo** para que cargue. Al iniciar, verificar con `ToolSearch "+higgsfield"`; si aparece, revisar el aparato de UGC y generar. Checklist y estado en la memoria `higgsfield-ugc-next.md`. El reel de bienvenida **Tierra Calma quedó terminado** (`~/Downloads/tierra-calma-bienvenida.mp4`, `src/compositions/TierraCalmaReel.tsx`).
 

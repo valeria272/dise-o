@@ -3,6 +3,29 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-22 — Paulina Bustamante
+
+**Qué se hizo:** No se produjeron piezas: se **respaldó la cuenta**. Todo el material
+de EBEMA vivía sólo en el PC de Paulina (`raw/`, que está en `.gitignore`), así que
+un traspaso o una máquina perdida se lo llevaba entero.
+
+**Dónde quedó:** Carpeta nueva en el Drive de Paulina —`MATERIAL DISEÑO PAULINA`,
+compartida con la cuenta del conector— con la estructura `1-marca` · `2-referencias`
+· `3-fotos` · `4-entregado` · `5-en-revision`, la misma para sus tres marcas.
+Subido y **verificado archivo por archivo: 97 de 97**.
+
+- `1-marca/proveedores/` — los **25 logos** ya recortados y con fondo transparente
+- `1-marca/originales/` — los **31 originales**, con los PDF vectoriales
+- `2-referencias/grilla/` (39) y `/paid/` (10) · `3-fotos/aprobadas/` (17 ferretero)
+
+**Qué sigue:** nada de EBEMA quedó a medias. Cuando se retome la grilla de octubre,
+el material ya no depende de este computador.
+
+**Abierto:** la cuenta del conector **no puede mover archivos que sube Paulina** —
+Drive responde «el usuario no tiene permiso» aunque sea Editor de la carpeta. Quedan
+17 ferreteros un nivel más abajo de lo debido, en
+`3-fotos/aprobadas/ferretero-aprobadas/`. Es prolijidad, no bloquea.
+
 ## 2026-09-16 — Paulina Bustamante
 
 **Qué se hizo:** Se cerró la **portada de Etersol** y se levantó la gramática de las

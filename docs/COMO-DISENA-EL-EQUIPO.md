@@ -23,7 +23,7 @@ Paulina como diseñadora *del cliente*. El barrido dice otra cosa:
 | Persona | Cuentas que toca de verdad (jun–sep 2026) | Cadencia |
 |---|---|---|
 | **Elisabet Soto «Eli»** | Hilton completo: **DoubleTree · QB · Between · Piso18**. Orgánico + **paid** + **imprenta** | Diaria, la más alta |
-| **Paulina Bustamante** | **EBEMA/Click · MyZoo · Nueva Urbe (INU + Rentas) · Revex · Casablanca** | Por lote mensual |
+| **Paulina Bustamante** | **Produce: EBEMA (grilla · Click · paid) · MyZoo · Traverso.** Su criterio cuenta además en **Nueva Urbe (INU + Rentas) · Revex · Casablanca** | Por lote mensual |
 | **Diego Aguilar** | **Más Center · Selfie · Redmagister** | Por lote mensual |
 | **Constanza Lizana «Coni»** | **Selfie · CAVA · QB · MyZoo (packaging) · Algarrobal · C&D** | Media; **cero desde el 28-08** |
 
@@ -97,7 +97,11 @@ pieza · medida · resolución · formato. Entrega la matriz completa: 1080×192
 
 ---
 
-## 3. Paulina Bustamante — EBEMA/Click · MyZoo · Nueva Urbe · Revex · Casablanca
+## 3. Paulina Bustamante — EBEMA/Click · MyZoo · Traverso
+
+> **Produce** EBEMA en sus tres destinos (grilla · Click · paid), MyZoo y Traverso.
+> **Su criterio también cuenta** en Nueva Urbe (INU + Rentas), Revex y Casablanca,
+> aunque las piezas de esas tres no las arme ella. Confirmado por ella el 22-09-2026.
 
 ### Cómo nombra
 **Todo en minúscula, con guion bajo, marca al principio.** Es la nomenclatura más

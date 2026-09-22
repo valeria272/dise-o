@@ -654,3 +654,14 @@ raw/hilton/between/reel-sea-la-razon/ia/*
 # El cierre oficial de los reels, que subió el diseñador el 22-09 ya montado
 # sobre blanco. Los dos reels de octubre lo usan: sin él no se re-rinden.
 !public/assets/tierracalma/tc_cierre.mp4
+
+# MYZOO · grilla de octubre 2026 (20 MB). Misma excepción deliberada que Revex,
+# Casablanca y CAVA: `scripts/myzoo-octubre.py` NO rinde las cuatro piezas sin
+# estos archivos, y sin ellos cada ronda de correcciones vuelve a empezar de cero
+# en otra máquina (22-09-2026).
+#   · fondos/  salieron de Magnific y NO son deterministas: volver a generarlos da
+#     otra foto y la pieza deja de ser la misma. Van como JPG (2,5 MB).
+#   · assets/  son el logo, los packshots y los sellos ya recortados y con el
+#     fondo blanco pasado a transparente. El original vive en Drive
+#     `MATERIAL DISEÑO PAULINA/MYZOO/1-marca`, pero el recorte es parte de la pieza.
+!public/assets/myzoo/**

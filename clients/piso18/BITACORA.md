@@ -1,5 +1,22 @@
 # Piso18 — bitácora
 
+## 2026-09-21 — Elisabet Soto · las 11 referencias rotas SIGUEN rotas
+
+**Qué se hizo:** `/arranque` de verificación en el Windows de Eli — **ninguna pieza**.
+El estudio entero salió verde (Node, Chrome, llavero, Magnific, conector de Drive y
+token, TypeScript limpio). Se volvió a correr la compuerta de material.
+
+**Dónde quedó:** `raw/hilton/piso18/ref-cumple/` sigue con **los mismos 11 archivos
+en HTML** que se detectaron el 17-09. Nadie los ha vuelto a bajar en estos 4 días.
+
+**Qué sigue:** bajarlos del Drive antes de tocar cualquier pieza de Piso 18. Mientras
+tanto la marca está **bloqueada para diseñar**: no tiene manual, no tiene ficha y sus
+referencias no se pueden abrir.
+
+**Abierto:** Piso 18 es la marca más atrasada del complejo Hilton. Falta decidir con
+Eli si se le abre sistema (`/marca-nueva`) o se sigue tratando caso a caso.
+
+
 ## 2026-09-17 — Elisabet Soto · arranque del estudio: 11 referencias del cumpleaños están rotas
 
 **Qué se hizo:** `/arranque` en el Windows de Eli — **no se produjo ninguna pieza**.

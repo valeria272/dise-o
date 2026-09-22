@@ -88,11 +88,25 @@ Leyenda: ● completa · ◐ parcial · ○ falta
 | **Abakos** | ◐ | ○ | ● | ○ | ● | ◐ | ● | ● | ◐ | **no** — gramática sin medir |
 | **Nueva Urbe** | ○ | ○ | ● | ○ | ◐ | ○ | ○ | ◐ | ○ | **no** |
 | **Traverso** | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | **no** |
-| DT / QB / Piso18 (Hilton) | ◐ | ○ | ○ | ○ | ◐ | ○ | ○ | ◐ | ○ | **no** |
+| **Piso 18** (Hilton) | ● | ● | ● | ○ | ● | ◐ | ◐ | ◐ | ● | casi — gramática medida sobre **7 piezas** (el método pide 20–60) |
+| DT / QB (Hilton) | ◐ | ○ | ○ | ○ | ◐ | ○ | ○ | ◐ | ○ | **no** |
 
 **Lectura:** EBEMA es la referencia. Revex, Casablanca, Selfie y Tierra Calma están
-a un paso (ficha `.json`, media hora cada una). Abakos, Nueva Urbe, Traverso y las 3
+a un paso (ficha `.json`, media hora cada una). Abakos, Nueva Urbe, Traverso y las 2
 marcas restantes de Hilton necesitan la vuelta completa de la §7 del sistema.
+
+> ⭐ **Piso 18 quedó documentado el 22-09-2026** por instrucción de Eli — igual que QB,
+> es marca **independiente** dentro del complejo.
+>
+> ⚠️ **Corrección del mismo día:** el primer diagnóstico dijo que a Piso 18 le faltaba
+> el sistema. **Era falso.** Ya tenía kit de código medido (`src/brand/piso18.ts`, 425
+> líneas), los 20 cortes de IvyPresto en el repo, el logotipo limpio recortado en
+> `public/assets/piso18/` y reglas de QA calibradas en modo control. Lo que faltaba era
+> el **manual legible** y la **ficha** — y eso es lo que se escribió.
+>
+> Lo que sigue abierto de verdad: la gramática está medida sobre **7 piezas** cuando el
+> método pide 20–60, y `ref-eli-sep2026/` sigue vacía. Ver
+> `clients/piso18/CHECKLIST-CLIENTE.md`.
 
 ---
 

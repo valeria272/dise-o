@@ -1,5 +1,57 @@
 # Piso18 — bitácora
 
+## 2026-09-22 (3ª sesión) — Elisabet Soto · Piso 18 queda documentado como marca aparte
+
+**Qué se hizo:** Eli pidió abrir el sistema por separado — *«piso18 o p18 debo abrirlo
+igual por separado que cada marca»*. Se escribió `CLAUDE.md`, `marca.json` y
+`CHECKLIST-CLIENTE.md`, y se registró la marca en `docs/ESTADO-MARCAS.md` y en el
+`CLAUDE.md` de la raíz.
+
+### ⚠️ La corrección grande: el sistema YA existía
+
+El primer diagnóstico de esta sesión dijo que a Piso 18 le faltaba el logotipo, que
+IvyPresto no se podía rendir y que la geometría estaba sin medir. **Las tres cosas
+eran falsas.** Ya estaban:
+
+- `src/brand/piso18.ts` — **425 líneas** medidas el 15-09: paleta de 6 colores dictada
+  por Eli, geometría del logo @1080, los anchos de dígito de Raleway em por em
+- Los **20 cortes de IvyPresto** en `public/assets/fonts/piso18/ivypresto/`
+- El **logotipo limpio** en `public/assets/piso18/logo-piso18-completo.png` (566×228)
+- `reglas.yaml` v3 con los checks **calibrados en modo control** contra las aprobadas
+- Seis composiciones en `src/P18Entry.tsx`
+
+**Lo que faltaba era la capa legible**, no el sistema. Eso es lo que se escribió.
+
+⛔ **Y casi se destruye el kit:** se escribió un `src/brand/piso18.ts` «nuevo» sin leer
+el que había. Lo pilló `npx tsc --noEmit` — cinco composiciones importaban `P18` y
+`cargarFuentesP18` — y se recuperó con `git checkout --`. Queda en memoria como
+`mirar-si-el-sistema-ya-existe`.
+
+### ✅ El examen de admisión, pasado en esta máquina
+
+`P18-C1-Cumple-S1` y `S2` rendidos en el Windows de Eli con el Chrome del sistema.
+En la S2 se ve **IvyPresto cargando de verdad** («Tu cumpleaños» roman fino +
+«con todo incluido:» itálica, el patrón de la marca), Raleway en los bullets y el
+fucsia sólo en las viñetas. **El pipeline de Piso 18 corre en Windows.**
+
+### Lo que sí se midió nuevo hoy
+
+La **gramática descrita mirando** las 7 piezas: dos registros que no se mezclan
+(promo con caja fucsia / editorial con tarjeta festoneada), el titular que alterna
+itálica fina y versales, y el cierre (CTA + dirección + legal al pie).
+
+**Dónde quedó:** marca con manual, ficha, checklist y kit, registrada en el mapa del
+estudio. Madurez: identidad, formatos, pipeline y QA **completos**; gramática, imagen
+y copy **parciales**.
+
+**Qué sigue:** las 10 piezas de la S1 (`ref-eli-sep2026/` sigue vacía) para pasar de
+7 a la muestra que pide el método. Y lo de Drive, que es de Valeria.
+
+**Corregido de la entrada anterior:** el «Este no va» del post del 23-09 **no es un
+pendiente de Eli**. Ella lo dijo hoy: *«no tomes eso de ese no va ya que es para
+contenido no yo»*. La regla `solo-diseno-el-brief-no-es-mio`, dictada para DT el
+09-09, queda **extendida a Piso 18**.
+
 ## 2026-09-22 (2ª sesión del día) — Elisabet Soto · las 11 referencias ya tienen origen
 
 **Qué se hizo:** `/arranque` en el Windows de Eli — **ninguna pieza**. Esta vez, en

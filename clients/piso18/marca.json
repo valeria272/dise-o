@@ -1,0 +1,242 @@
+{
+  "slug": "piso18",
+  "nombre": "PISO18 Centro de Eventos",
+  "rubro": "Centro de eventos - matrimonios, cumpleanos y celebraciones (complejo Hilton Santiago)",
+  "pais": "CL",
+  "moneda": "CLP",
+  "web": "https://piso18.cl",
+  "ecommerce": {
+    "url": "",
+    "tipo": "ninguno",
+    "api_publica": false,
+    "endpoints": {}
+  },
+  "manual": "clients/piso18/CLAUDE.md",
+  "kit_codigo": "src/brand/piso18.ts",
+  "reglas": "clients/piso18/reglas.yaml",
+  "sistema": null,
+  "_fuente_de_verdad": "src/brand/piso18.ts (15-09-2026) manda sobre esta ficha: ahi cada numero dice de donde sale. Esta ficha es el resumen legible por maquina.",
+  "colores": {
+    "_nota": "Dictados por Eli el 15-09-2026. La medicion pixel a pixel del 22-09 los VERIFICA, no los fija.",
+    "fucsia": {
+      "hex": "#D4145A",
+      "uso": "La firma: caja del precio, filete del recuadro, piso18.cl del CTA, destacado del titular, botones. NUNCA decora."
+    },
+    "blanco": {
+      "hex": "#FFFFFF",
+      "uso": "Tinta sobre foto: logotipo, titulares y cifras"
+    },
+    "tinta": {
+      "hex": "#1A1A1A",
+      "uso": "Sobre la tarjeta blanca del cierre de carrusel"
+    },
+    "tarjeta": {
+      "hex": "#F7F5F2",
+      "uso": "El papel de la tarjeta festoneada"
+    },
+    "beige": {
+      "hex": "#EFE6D9",
+      "uso": "Fondo de soporte (ronda 2 de la S4). NO es la tarjeta: sobre #F7F5F2 el beige no se lee como beige."
+    },
+    "beige_hondo": {
+      "hex": "#E6DACA",
+      "uso": "La banda que cruza el tercio alto"
+    },
+    "_ojo": "En los JPG aprobados el fucsia se lee #D6145B / #D5135A - ruido de compresion, es el mismo color.",
+    "_no_confundir": "El fucsia de Selfie es #FF007C y no entra en Piso 18."
+  },
+  "fuentes": {
+    "titular": {
+      "familia": "IvyPresto Headline",
+      "css": "'IvyPresto Headline', 'IvyPresto Display', Georgia, serif",
+      "uso": "La principal. Titulares y destacados, POCO.",
+      "estado": "resuelta - 20 cortes en public/assets/fonts/piso18/ivypresto/",
+      "ojo": "OTF CFF, el formato que Chrome rechazo con Brushwell. Aca SI carga (headless 15-09) pero se verifica en cada render con p18FuentesListas()."
+    },
+    "display": {
+      "familia": "IvyPresto Display",
+      "css": "'IvyPresto Display', Georgia, serif",
+      "uso": "Bajadas serif"
+    },
+    "cuerpo": {
+      "familia": "Raleway",
+      "css": "'Raleway', 'Helvetica Neue', Arial, sans-serif",
+      "uso": "El caballo de batalla: parrafos, cifras, CTA, legal"
+    },
+    "alterna": {
+      "familia": "Against",
+      "css": "'Against', 'IvyPresto Headline', serif",
+      "limite": "232 glifos: NO trae los signos de apertura de interrogacion ni de exclamacion. Un titular que empiece con uno de esos no se compone aca."
+    },
+    "_script_de_instalacion": "scripts/p18-ivypresto-link.py - copia los cortes desde Creative Cloud. Hay que correrlo en cada maquina nueva."
+  },
+  "cifras": {
+    "_regla": "Las cifras NO se alinean con CSS: ningun Raleway del estudio declara tnum y Chrome ignora tabular-nums en silencio.",
+    "ancho_digito_max": 0.614,
+    "anchos_em": [
+      0.614,
+      0.45,
+      0.535,
+      0.54,
+      0.558,
+      0.548,
+      0.606,
+      0.535,
+      0.598,
+      0.589
+    ],
+    "_como": "Cada digito en su caja, y esa caja al MAXIMO de la fila, nunca al promedio."
+  },
+  "logos": {
+    "archivo": "public/assets/piso18/logo-piso18-completo.png",
+    "px": {
+      "w": 566,
+      "h": 228
+    },
+    "proporcion": 2.4825,
+    "regla": "Arriba y centrado, blanco sobre la foto. Escala uniforme desde su proporcion real - NUNCA se deforma.",
+    "ancho_1080": {
+      "story": 272.2,
+      "feed": 275
+    },
+    "tope_y_1080": {
+      "story": 206.9,
+      "feed": 105.1
+    },
+    "_constante": "Mide lo mismo en historia y en carrusel: 225,6 @1080 la linea CENTRO DE EVENTOS en ambas.",
+    "_trampa": "El archivo 'logo PISO18.png' del material de origen NO es un logotipo: es una plantilla de historia 2250x4000 con velo negro en degradado (99,4 % de sus pixeles con alfa). El velo es intencional y parte del sistema."
+  },
+  "formatos": {
+    "feed": {
+      "w": 2250,
+      "h": 2813,
+      "ratio": "4:5"
+    },
+    "story": {
+      "w": 2250,
+      "h": 4000,
+      "ratio": "9:16"
+    },
+    "promo": {
+      "w": 1080,
+      "h": 1080,
+      "ratio": "1:1"
+    },
+    "mesa_ai": {
+      "w": 1080,
+      "h": 1350,
+      "ratio": "4:5",
+      "_nota": "La mesa de los editables. El MASTER de entrega es 2250."
+    }
+  },
+  "escala_master": 2.0833,
+  "zonas_seguras": {
+    "story": {
+      "top": 250,
+      "bottom": 340
+    },
+    "_nota": "Regla global de paid. En organico son orientacion: las piezas aprobadas las invaden y estan aprobadas asi. El motor de QA lo tiene calibrado en reglas.yaml."
+  },
+  "geometria_px_sobre_1080": {
+    "titulo_linea1_alto": 93,
+    "titulo_linea2_alto": 60,
+    "cta_alto": 27,
+    "cta_ancho": 378,
+    "legal_alto": 21,
+    "logo_hueco_lineas": 23,
+    "logo_ratio_linea2": 0.82,
+    "_titular_a_sangre": "La linea 2 de ST N1 S1 ocupa 1021,9 de 1080: deja 29 px de margen. Por eso el check de respiro esta en 26 px y no en los 60 de agencia."
+  },
+  "esquemas": {
+    "promo_precio": {
+      "_que_es": "Foto oscurecida + titular + caja fucsia maciza con la cifra + legal chico al pie.",
+      "visto_en": [
+        "ST N1 S1",
+        "Post Matrimonio 1.1",
+        "Post cumpleanos 1.1",
+        "C1 S4 N2"
+      ],
+      "bloque_precio": "ANTES chico sobre la cifra tachada, AHORA sobre la cifra nueva en caja fucsia. Cifras en serif.",
+      "variante_descuento": "Porcentaje gigante (50%, 30%) con DCTO. chico al costado."
+    },
+    "editorial_invitacion": {
+      "_que_es": "Tarjeta blanca festoneada centrada, serif italica, dominio chico abajo. Sin caja y sin cifra.",
+      "visto_en": [
+        "C2 S1 n2"
+      ]
+    }
+  },
+  "titular": {
+    "regla": "Alterna una linea en serif italica de peso fino con otra en VERSALES, en la misma familia.",
+    "ejemplos": [
+      "Te casas en verano? / ESTA ES TU OPORTUNIDAD",
+      "QUE INCLUYEN / LOS CUMPLEANOS / EN PISO18?"
+    ]
+  },
+  "botones": {
+    "_dictado": "Eli, 15-09-2026: siempre hay que hacer botones en las historias, y en algunos reels.",
+    "lleno": {
+      "fondo": "#D4145A",
+      "texto": "#FFFFFF"
+    },
+    "invertido": {
+      "fondo": "#FFFFFF",
+      "texto": "#D4145A"
+    },
+    "_limite": "Dos esquemas y no hay un tercero. La interaccion NO se dibuja: el sticker real lo pone el CM.",
+    "_animadas": "Posicion y contraste se miden en el ULTIMO fotograma."
+  },
+  "contacto": {
+    "sitio": "piso18.cl",
+    "correo": "eventos@piso18.cl",
+    "direccion": "Av. Vitacura 2727, Las Condes"
+  },
+  "briefs": {
+    "grilla": "raw/hilton/piso18/P18-grilla-septiembre-2026.xlsx"
+  },
+  "drive": {
+    "referencias_eli": "1MDm5JLRBe_Ep99hhK7fHgZ2mg35y9MJ2",
+    "grilla_ia_piso18": "1jNeMFcp02zsbk_cEH-wTYMRaMuLwrN1u",
+    "banners_sep2026": "10sST2d5K43vVYFgtn084AsAMNRwCYEoe",
+    "_referencias_cumple": "clients/piso18/REFERENCIAS-CUMPLE.md"
+  },
+  "banco_imagenes": {
+    "_ubicacion": "disco externo F: - NO esta en Drive",
+    "rutas": [
+      "F:/SESIONES HILTON/SESIONES PISO18/3-Finales 2026/",
+      "F:/SESIONES HILTON/SESIONES PISO18/FOTOS P18 NANNEL/",
+      "F:/Carpeta de grillas Hilton 2026/<MES>/PISO18/"
+    ]
+  },
+  "equipo_cliente": {
+    "diseno": "Elisabet Soto (Eli)",
+    "tambien_edita": "Diego Aguilar - el editable P18-S2.ai es suyo",
+    "contenido": "Carlos Figueroa, Scarlette Munoz"
+  },
+  "reglas_duras": [
+    "Sin bodas: nunca se escribe. Unica excepcion a que los textos vayan literales del brief. Ratificada por el cliente el 17-09.",
+    "Piso 18 es marca propia: nada de DT entra, y nada de aca va para alla.",
+    "El brief es de contenido, no de diseno: un 'Este no va' del cliente NO se le lleva a Eli (extendido a Piso 18 el 22-09-2026).",
+    "Todo fondo oscuro plano lleva grano (GranoFondo).",
+    "El fucsia nunca decora: es la oferta y nada mas.",
+    "La foto se PRODUCE, no se recorta.",
+    "El logotipo nunca se deforma.",
+    "De la carpeta 14jOWfpSm7Nm1lXAABZNThZAa5_5BulzC no se usan fotos de 2020 hacia abajo, filtrando por EXIF de captura."
+  ],
+  "madurez": {
+    "identidad": "completa",
+    "gramatica": "parcial",
+    "formatos": "completa",
+    "imagen": "parcial",
+    "copy": "parcial",
+    "pipeline": "completa",
+    "qa": "completa"
+  },
+  "_falta": [
+    "La muestra medida es de 7 piezas; el metodo pide 20-60.",
+    "raw/hilton/piso18/ref-eli-sep2026/ esta VACIA (las 10 piezas aprobadas de la S1).",
+    "Las 11 referencias de ref-cumple siguen siendo HTML de login - bloqueo de permisos de Drive, ver clients/piso18/REFERENCIAS-CUMPLE.md.",
+    "El banco real no esta accesible: vive en el disco externo F:."
+  ],
+  "actualizado": "2026-09-22"
+}

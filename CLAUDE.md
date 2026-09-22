@@ -161,7 +161,8 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | **Casablanca** | [`clients/casablanca/`](clients/casablanca/CLAUDE.md) | `src/brand/casablanca.ts` | Pisos premium, gris + serif itálica, **es aire** |
 | **Selfie** | [`clients/selfie/`](clients/selfie/CLAUDE.md) | `src/brand/selfie.ts` | Belleza, fucsia #FF007C, packshots del e-commerce |
 | **Tierra Calma** | [`clients/tierra-calma/`](clients/tierra-calma/CLAUDE.md) | `src/brand/tierracalma.ts` | Parcelas. **QA visual frame a frame obligatorio** |
-| **Hilton / Between** | [`clients/hilton/`](clients/hilton/CLAUDE.md) | `src/brand/hilton-between.ts` | 4 marcas del complejo; sólo Between tiene sistema |
+| **Hilton / Between** | [`clients/hilton/`](clients/hilton/CLAUDE.md) | `src/brand/hilton-between.ts` | 4 marcas del complejo; Between y Piso 18 tienen sistema propio, DT y QB no |
+| **Piso 18** | [`clients/piso18/`](clients/piso18/CLAUDE.md) | `src/brand/piso18.ts` | Centro de eventos del complejo Hilton. **Marca independiente**, como QB. IvyPresto + fucsia `#D4145A`, que **nunca decora**. ⛔ «bodas» está prohibido acá y es obligatorio en DT |
 | **Abakos** | [`clients/abakos/`](clients/abakos/CLAUDE.md) | `src/brand/abakos.ts` | Préstamos online. Gramática **sin medir todavía** |
 | **Más Center** | [`clients/mascenter/`](clients/mascenter/CLAUDE.md) | `clients/mascenter/sistema/` + `src/compositions/mascenter/` | Strip centers (Grupo IFB). Paid medido sobre sept 2026: foto con onda, pastilla roja, Localito. Diseñador: Diego Aguilar |
 
@@ -187,7 +188,7 @@ Esto está impuesto por programa: `qa/motor.py` exige `--marca`, carga sólo las
 de esa marca y rechaza piezas de otra en la misma corrida.
 
 **Sin manual todavía** (ver `docs/ESTADO-MARCAS.md`): Nueva Urbe (`src/brand/nuevaurbe.ts`),
-Traverso, y DT / QB / Piso18 del complejo Hilton.
+Traverso, y DT del complejo Hilton.
 
 > **PENDIENTE (2026-07-19):** Hacer **UGC real con Higgsfield**. Higgsfield es conector de claude.ai que quedó APAGADO — la usuaria lo reconecta (`/mcp reconnect all` o claude.ai → Connectors) y abre **chat nuevo** para que cargue. Al iniciar, verificar con `ToolSearch "+higgsfield"`; si aparece, revisar el aparato de UGC y generar. Checklist y estado en la memoria `higgsfield-ugc-next.md`. El reel de bienvenida **Tierra Calma quedó terminado** (`~/Downloads/tierra-calma-bienvenida.mp4`, `src/compositions/TierraCalmaReel.tsx`).
 

@@ -1154,7 +1154,16 @@ export const ToGo1: React.FC = () => (
        Ver `scripts/between-togo1-r25.py` — y ahí está por qué la gradación de la
        r23 NO se copia (esta toma ya viene cálida y la receta anterior le metía
        el «filtro» que el cliente mandó eliminar). */
-    foto={F + 'togo-portada-r25.jpg'}
+    /* ⭐⭐⭐ RONDA 29 (22-09) — LA PORTADA VUELVE A LA FOTO DE LA ENTRADA.
+       Eli: «vuelve a la imagen en la portada que yo había puesto primero […]
+       el cliente quiere volver a esa», con el pantallazo de `IMG_4170.HEIC`.
+       O sea: se deshace el cambio de foto de la r25 y vuelve la toma de la
+       r23 —la persona saliendo del local con el vaso, el vidrio con el
+       logotipo detrás—, que es la que ella había puesto primero.
+       ⭐ NO es «volver a la r23»: los textos de la r23 iban en caja taupe y
+          Eli los sacó en la r24. Lo único que retrocede es la PLACA DE FONDO
+          y el degradado que le corresponde. */
+    foto={F + 'togo-portada-r23.jpg'}
     /* ⭐⭐ RONDA 24 — LOS TEXTOS VUELVEN A COMO ESTABAN. Eli, sobre la r23:
        «Quiero los textos de la portada como estaban antes, se va a ver bien. Si
        necesitas algo puedes añadir una transparencia en opacidad o degradado».
@@ -1170,7 +1179,17 @@ export const ToGo1: React.FC = () => (
            0,72 → 5,41 · 5,54 · 4,77      0,60 → 3,27 · 4,79 · 3,95
            0,65 → 3,92 · 4,98 · 4,05      0,55 → 2,91 · 4,28 · 3,84  ⛔ script bajo
        0,60 es lo más suave que deja las tres líneas sobre el mínimo. */
-    degradadoPie={0.6}
+    /* ⭐ RONDA 29 (22-09) — y con la foto vuelve SU degradado: 0,72.
+       El 0,60 se calibró contra la toma del vaso sobre la mesa, que abajo es
+       clara y pareja. Acá el tercio inferior son los pantalones crema —el mismo
+       fondo que en la r23 obligó a la caja taupe—, así que el mismo número no
+       rinde lo mismo. Remedido sobre los dos renders, por el PEOR tramo del
+       fondo bajo cada línea (script · titular · horario):
+           0,72 → 4,49 · 5,48 · 6,51
+           0,60 → 3,59 · 4,28 · 5,01   ⚠️ pasa, pero el script queda al filo
+       Las dos opciones superan el 3:1 de la marca; se deja 0,72 porque es el
+       valor con el que esta portada se entregó y se aprobó el 14-09. */
+    degradadoPie={0.72}
     script="¿Vas con poco tiempo?"
     /* ⭐⭐ RONDA 19 (07-09) — Eli: «los textos se ven corridos en la portada».
        Y no era el centrado: medido sobre el render, las cinco líneas caen a ±2 px

@@ -1,3 +1,55 @@
+## 2026-09-22 · Eli (Windows) — BETWEEN: la portada del To Go vuelve a la foto de la entrada
+
+**Lo que pidió Eli:** «vuelve a la imagen en la portada que yo había puesto
+primero […] el cliente quiere volver a esa», con el pantallazo de
+`IMG_4170.HEIC`. O sea que se deshace el cambio de foto del 16-09 —que a su vez
+vino de que el cliente corrigió el enlace de la grilla— y la portada del carrusel
+**PROMOS TO GO** (FEED 22-09) vuelve a la toma de la persona saliendo del local
+con el vaso en la mano.
+
+**Ya estaba rendida y ella lo dijo a tiempo:** «para ya lo tenemos», señalando
+`out/hilton-between-togo-r25/`. En efecto, `BW-F-ToGo-1.png` de esa carpeta es
+byte a byte la portada del 14-09 con esa foto (md5 `8bb07f15…`), así que **la
+entrega es ese archivo**, no un render nuevo. Se había rendido uno para verificar
+y sólo se diferenciaba en el antialias de los glifos; se botó.
+
+**Entregado:** archivo `17xDK7PMvJyvvXMF3diTm-zswq--XUDpn` de **C1 S4**
+(`1vZZGvxfiGOIrf73znO39V4aASreumkfZ`) **reemplazado en su contenido**, así que el
+enlace que circula en la grilla sigue sirviendo. Verificado con el conector:
+`modifiedTime` 22-09 y `fileSize` 8.175.071, que es el del local.
+
+**El código quedó apuntando a esa foto**, que es la regla del estudio: si la
+pieza se re-rinde, sale la que está en Drive. Dos líneas en `ToGo1` —
+`togo-portada-r23.jpg` y `degradadoPie` de vuelta a **0,72**.
+
+⭐ **Y ahí está la lección del día, ya en el manual:** el 0,60 se había calibrado
+contra la foto del vaso sobre la mesa, que abajo es clara y pareja. Sobre los
+pantalones crema de esta otra deja el script en **3,59:1** —pasa, pero al filo— y
+con 0,72 sube a **4,49:1**. **Un velo calibrado contra una placa de fondo no
+sobrevive al cambio de placa.**
+
+⚠️ **Lo que NO se hizo, a propósito:** volver a la ronda 23 entera. Aquella
+llevaba todo el bloque en caja taupe y Eli la sacó en la r24. Retrocede la placa
+de fondo y el parámetro que depende de ella, nada más.
+
+⚠️ **La portada se sale del tono del carrusel y no tiene arreglo:** mediana 73 ·
+saturación 23 contra 102–104 · 37–47 de sus tres hermanas (el tope del QA son 14).
+Es una toma de calle, cromáticamente pobre, y emparejarla obliga a devolver el
+«filtro cálido» que el cliente mandó eliminar el 31-08. La portada anterior
+tampoco pasaba (mediana 84, calidez 37). Se entrega igual porque la foto la
+eligió el cliente.
+
+**Dónde quedó:**
+- Entregado: `out/hilton-between-togo-r29/` (1 pieza + manifiesto con el id de Drive).
+- Página de revisión: `out/hilton/between/revision-22-09.html` —
+  `scripts/between-revision-22-09.py`.
+- QA 1/1 limpia · `--carrusel` con las dos advertencias de arriba · typecheck limpio.
+
+**Qué sigue:** las slides 2, 3 y 4 no se tocaron y siguen esperando el visto del
+cliente sobre los precios nuevos y el rollo de canela (columna K, `EN CAMBIOS`).
+
+---
+
 ## 2026-09-22 — Elisabet Soto «Eli» · BETWEEN, LOS VASOS TO GO SE REHICIERON
 
 **Qué se hizo:** los vasos To Go del 21-09 quedaron **reemplazados**. Eli los

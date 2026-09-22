@@ -23,23 +23,56 @@ os.makedirs(OUT, exist_ok=True)
 US = 1000000
 
 
-def carga(draft):
-    d = json.load(io.open(os.path.join(draft, "draft_content.json"), encoding="utf-8"))
-    vid = {v["id"]: v for v in d["materials"]["videos"]}
-    capas = []
-    for t in d["tracks"]:
-        if t["type"] != "video" or not t["segments"]:
+def capas_de(d, capas, desfase=0.0, render_base=0):
+    """
+    Aplana una linea de tiempo a una lista de capas.
+
+    Si un segmento apunta a un "Clip combinado" (material de video sin `path`),
+    baja al draft anidado y lo aplana tambien, corriendo sus tiempos al lugar
+    que ocupa el combinado en la linea de arriba. Sin esto, todo el tramo que
+    Eli fusiono queda en blanco.
+    """
+    M = d.get("materials", {})
+    vid = {v["id"]: v for v in M.get("videos", []) or []}
+    anidados = {}
+    for dr in M.get("drafts", []) or []:
+        sub = dr.get("draft")
+        if isinstance(sub, str):
+            sub = json.loads(sub)
+        if isinstance(sub, dict):
+            anidados[dr.get("id")] = sub
+    for t in d.get("tracks", []):
+        if t.get("type") != "video" or not t.get("segments"):
             continue
         for s in t["segments"]:
-            mm = vid.get(s["material_id"], {})
-            capas.append({
-                "path": mm.get("path", ""),
-                "t0": s["target_timerange"]["start"] / US,
-                "t1": (s["target_timerange"]["start"] + s["target_timerange"]["duration"]) / US,
-                "s0": s["source_timerange"]["start"] / US,
-                "render": s.get("track_render_index", 0),   # apilado REAL: mayor = encima
-            })
-    return d, capas
+            mm = vid.get(s.get("material_id"), {})
+            t0 = desfase + s["target_timerange"]["start"] / US
+            dur = s["target_timerange"]["duration"] / US
+            s0 = s["source_timerange"]["start"] / US
+            ri = render_base + s.get("track_render_index", 0)
+            if mm.get("path"):
+                capas.append({"path": mm["path"], "t0": t0, "t1": t0 + dur,
+                              "s0": s0, "render": ri})
+                continue
+            # combinado: el contenido esta en materials.drafts, no en este nivel
+            sub = None
+            for k, v in anidados.items():
+                sub = v
+                break
+            for dr in M.get("drafts", []) or []:
+                cand = dr.get("draft")
+                if isinstance(cand, str):
+                    cand = json.loads(cand)
+                if isinstance(cand, dict):
+                    sub = cand
+            if sub:
+                capas_de(sub, capas, desfase=t0 - s0, render_base=ri)
+    return capas
+
+
+def carga(draft):
+    d = json.load(io.open(os.path.join(draft, "draft_content.json"), encoding="utf-8"))
+    return d, capas_de(d, [])
 
 
 def visible(capas, t):
@@ -117,10 +150,13 @@ for t in TIEMPOS:
         if f is None:
             celda[et] = None
             continue
-        es4183 = "IMG_4183" in v["path"]
-        if es4183:
-            f = grade(f, **(ANTES if et == "a" else DESPUES))
-        celda[et] = {"img": png64(f), "clip": os.path.basename(v["path"]), "grade": es4183}
+        # el lado "b" ya viene horneado en disco; solo el "a" se simula
+        sim = "IMG_4183.MOV" in v["path"] and et == "a"
+        if sim:
+            f = grade(f, **ANTES)
+        corregido = "corregido" in v["path"]
+        celda[et] = {"img": png64(f), "clip": os.path.basename(v["path"]),
+                     "grade": sim or corregido}
     filas.append(celda)
     print("  %5.2fs  A=%-16s B=%-16s" % (
         t,
@@ -141,8 +177,8 @@ for t, titulo, nota in DESTACADOS:
     for et, capas in (("a", capasA), ("b", capasB)):
         v = visible(capas, t)
         f = frame(v["path"], v["s0"] + (t - v["t0"])) if v else None
-        if f is not None and "IMG_4183" in v["path"]:
-            f = grade(f, **(ANTES if et == "a" else DESPUES))
+        if f is not None and "IMG_4183.MOV" in v["path"] and et == "a":
+            f = grade(f, **ANTES)
         par[et] = {"img": png64(f, 340), "clip": os.path.basename(v["path"])} if f is not None else None
     destacados.append({"t": t, "titulo": titulo, "nota": nota, **par})
 

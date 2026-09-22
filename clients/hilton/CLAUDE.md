@@ -1380,6 +1380,114 @@ Las cuatro primeras no se tocan y conservan su `fileId`.
 
 ---
 
+### ⭐⭐⭐ RONDAS 5, 6 y 7 DEL CARRUSEL S5 (22-09) — **cinco reglas de DT que salieron de un día**
+
+Un comentario de **Constanza Lizana** en la grilla y tres correcciones seguidas de
+Eli sobre la portada. El bloque terminó así, y **ésta es su forma aprobada**:
+
+| nivel | texto | tipografía |
+|---|---|---|
+| 1 | «Tu día» | Stag LightItalic 72, circulada a mano |
+| 2 | «en DoubleTree» | Stag **Medium 108** |
+| 2 | «by Hilton» | Stag **Medium 108** |
+| 3 | «Santiago–Vitacura» | Stag Light **42**, +0,02em |
+
+#### 1 · ⛔ En carrusel de video, **el texto no anima si el fondo ya se mueve**
+
+Constanza: «el video detrás al tener movimiento hace que el texto con más
+movimiento maree. Me gustaría el texto estático pero el globo que encierra "tu
+día" sea animado». Se fueron las CUATRO entradas de la portada —la itálica, el
+titular, el tercer nivel **y la píldora `DESLIZA`**, que también lleva texto— y
+quedó un solo gesto: el trazo del globo, que se dibuja del f8 al f46.
+
+⚠️ Las cinco interiores **sí** conservan sus entradas: ella acotó el pedido a la
+portada («en el resto de las slides todo lo veo ok»). No se extrapola.
+
+#### 2 · ⛔ El carrusel firma UNA vez, y desde el 22-09 ni eso
+
+«En la parte inferior donde dice "DT by hilton stgo - vitacura" me gustaría que se
+eliminara, para que no tenga tanto elemento por slide» (Constanza, para las
+interiores) + «te faltó borrar el texto chico de abajo… ese último de la portada»
+(Eli). **El carrusel S5 quedó sin versalita al pie en las seis láminas.** La marca
+entra por el titular y por el logotipo grabado en el cristal del propio clip.
+
+#### 3 · ⛔⛔ El criterio de «justificar a una medida» **sólo sirve con líneas de largo parecido**
+
+Es la regla que dictó Eli el 15-09 en el estático de Honors y que está más arriba
+en este manual. **Acá NO se aplicó, dos veces, y con números:**
+
+- Con «en DoubleTree by Hilton» en un renglón y «Santiago–Vitacura» abajo: a una
+  medida común de 904 px los cuerpos daban **80,6 / 109,3** — la ciudad más
+  grande que el nombre del hotel.
+- Con el titular en tres renglones: a la medida del titular aprobado (731,5 px)
+  daban **108 / 177,2 / 89,8** — «by Hilton», nueve caracteres, un 64 % más
+  grande que todo lo demás.
+
+En Honors el rango entre cuerpos fue del **25 %** y por eso se leía como un
+bloque. Cuando el rango se dispara, la salida es la que el propio criterio deja
+escrita: **partir en niveles ANTES de justificar**, y darle a cada nivel su
+cuerpo.
+
+#### 4 · ⭐ Cuando una línea no cabe, el cuerpo es la consecuencia — pero mira antes si se puede partir
+
+«en DoubleTree by Hilton» a cuerpo 108 mide **1211,2 px** de tinta y la columna
+son **904**. La ronda 5 bajó el cuerpo a **80,606** (el exacto para medir 904,00 y
+quedar flush entre márgenes) y funcionaba, pero contra «Tu día» (72) quedaba con
+muy poca diferencia de tamaño. La ronda 6 lo partió en dos renglones y **el
+cuerpo volvió a 108**. Partir antes que achicar.
+
+#### 5 · ⚠️⚠️ La sangría del primer glifo **no se hereda al cambiar de peso**
+
+Para que la tinta nazca en el margen 88 hay que restarle a la caja el hueco del
+primer glifo. Ese número es del glifo, **del peso y del cuerpo**:
+
+| renglón | peso | hueco @108 |
+|---|---|---|
+| «en DoubleTree» | Medium | +1,404 |
+| «by Hilton» | Light | **−1,404** (la «b» vuela hacia AFUERA) |
+| «by Hilton» | Medium | **−2,592** |
+
+Cuando Eli pidió «by Hilton en el mismo peso del En DoubleTree», heredar el valor
+de la Light dejaba el renglón 1,2 px corrido. **Y el signo puede ser negativo:**
+hay glifos que se salen de su caja por la izquierda y hay que empujarlos a la
+DERECHA.
+
+⚠️ Lo mismo con el aire entre renglones: **se mide contra la LÍNEA BASE, no
+contra la tinta.** «by Hilton» baja la «y» 17 px, así que el hueco de tinta
+miente; la ciudad quedó a 46 px de la base (29 de tinta a tinta).
+
+#### 6 · ⭐⭐⭐ El QA de una pieza animada: el fondo se MIDE, no se estima
+
+Al dejar la portada quieta, la tinta pasó a estar en pantalla desde el f0 y
+`peor_tercio` —que promediaba la banda **con la tinta adentro**— cantó **2,69:1**
+sobre un fondo que da **3,52:1**.
+
+⛔ **No se arregla enmascarando por color.** El fondo de estas láminas tiene
+blancos legítimos —el cielo entre las vigas de la marquesina, el cielo raso del
+salón— y un umbral «>200 es tinta» borra justo el fondo más claro, que es el que
+puede hundir el contraste.
+
+⭐ Se arregla rindiendo un **fotograma de control sin ninguna tinta**
+(`--props='{"soloFondo":true}'`, ver `DtC1S5Dia.tsx`) y midiendo ÉSE.
+**Excepción:** una banda cuyo fondo es PIEZA y no foto —«DESLIZA», que va sobre
+la píldora— se mide sobre la lámina y se marca con `"pieza"`.
+
+⚠️ Los números del QA de esta ronda **no son comparables** con los de las rondas
+1-4: todos subieron, y no porque la pieza mejorara sino porque antes se medían
+mal. De paso se cerró el pendiente que el propio QA tenía anotado: tres bandas de
+las interiores no cubrían su tinta por la derecha (el desayuno, 44 px corto).
+
+#### Cómo se re-entrega sin romper los enlaces
+
+Las seis viven en `S5 HILTON SEP 2026 › DT` (`1qqPFM2EDVvAzgZLLQIJpxYr6gkFmKNHk`)
+y sus GIF en `C1 S5 DT - GIF` (`13RPiyOpfNxgRJ_EJ1nndqTxgRk5dNnme`).
+`dt-c1-s5-subir.py` **reemplaza el contenido del mismo `fileId`**, así que el
+enlace que circula sigue sirviendo, y salta por md5 lo que no cambió. En las
+rondas 6 y 7 viajó **sólo la portada**: las interiores se verificaron byte a byte
+rindiendo un still y comparando md5 contra el de la ronda anterior.
+
+---
+
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 
 Verificado glifo a glifo con `fontTools` sobre los archivos de esta máquina: los

@@ -17,8 +17,23 @@ conectó al proyecto. **La primera versión se rechazó** («se ve extraño y
 oscuro») y tenía razón: bajaba las sombras de 65 a 35,7 y su piel de 135,0 a
 122,6. La segunda toca sólo el velo y deja la exposición donde estaba.
 
+**Y Eli siguió editando antes de cerrar** — el draft con el que hay que
+trabajar mañana NO es el que dejé yo:
+- **deshizo el clip combinado**: la terraza es ahora **un solo plano continuo**
+  de 14,43 a 21,60 (fuente 3,00→10,17, que sigue terminando antes de que se pare
+  en 10,4). El `subdraft/` quedó huérfano.
+- **cambió el orden del montaje de flores**: el arreglo grande `IMG_0849` salió
+  del primer lugar y quedó en 6,80; lo abre ahora `IMG_5364` (mesas montadas) en
+  3,33. Con eso resuelve por su cuenta lo que yo había levantado — el arreglo
+  grande es de paleta otoñal y el reel se llama «llegada de la primavera».
+- dejó un `white` de +0,036 en la terraza; es suyo y se respeta.
+
 **Dónde quedó:** `out/piso18/reel-s4-jazz/IMG_4183-corregido.mp4` (12,8 MB),
-**ya conectado** en las tres copias del draft. Los tres generadores en el repo:
+**conectado y verificado** en las tres copias del draft, con los deslizadores de
+color de ese clip en cero para no corregir dos veces.
+⛔ **Hubo que reconectarlo TRES veces**: cada vez que Eli cerró CapCut, el guardado
+pisó la ruta. La conexión de arriba es la buena y quedó verificada con CapCut ya
+cerrado (0 procesos). Los tres generadores en el repo:
 `p18-reel-jazz-grade-terraza.py`, `p18-reel-jazz-conectar-terraza.py` y
 `p18-reel-jazz-grade-flores.py`. El MP4 no se commitea (va en `out/`) pero se
 reproduce corriendo el script contra `F:`. ⚠️ **El reel sigue SIN exportar y sin

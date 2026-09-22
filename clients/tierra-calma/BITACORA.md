@@ -5,6 +5,78 @@
 
 ---
 
+## 2026-09-22 (jornada completa) — Diego Aguilar
+
+**Qué se hizo:** Octubre entero, de punta a punta y con **cuatro rondas de
+comentarios** del propio Diego sobre los PNG en Drive. Se entregaron las **10
+piezas (18 archivos)** y, más importante que las piezas, quedaron escritas en
+el manual **tres reglas de marca** que antes no existían y que explican por qué
+las primeras versiones estaban mal.
+
+**Las tres reglas que salieron de esta jornada** (todas en `CLAUDE.md`):
+
+1. **IvyOra Display SIEMPRE en versales — y es LA forma de destacar.** No el
+   bold de la sans. La frase que el brief manda destacar sale en IvyOra
+   versales a mayor cuerpo; el resto se queda en Inter Tight Light.
+2. **Orden tipográfico: dos roles y ninguno más.** Prohibido pasar de tres
+   tamaños por pieza y cambiar el cuerpo palabra por palabra "para que se vea
+   rico".
+3. **Un solo globo de texto para toda la marca:** translúcido, oscuro de
+   verdad, derecho, centrado y ajustado al texto con `inline-block`. Las cajas
+   de color macizo y las tarjetas inclinadas quedaron fuera.
+
+**Y el ADN de imagen quedó calibrado en su punto.** Se pasó por los dos
+extremos antes de acertar: la entrega del 14-09 eran praderas verdes con
+cordillera nevada (otro país); al medir las fotos reales se viró a árido y
+Diego corrigió con *"que se vean mucho mejor que las imágenes reales, más
+verdes, con vegetación natural nativa"*. El equilibrio quedó escrito: **la
+estructura del sitio es real —ladera, ripio ocre, cerco de madera, postes— y la
+vegetación es la mejor versión posible de sí misma, con especies nativas**
+(espino, quillay, litre, peumo).
+
+**Dónde quedó:** Las 18 piezas en la carpeta de entrega, reemplazando **sobre
+el mismo ID** — los enlaces compartidos siguen sirviendo. En el repo,
+`OctubreV3.tsx` (16 estáticas) y `OctubreVideoV3.tsx` (los 2 reels). Los tres
+archivos obsoletos se mandaron a la papelera con autorización.
+
+**Lo que no es obvio y conviene saber:**
+
+- El **reel del 13/10 no es IA**: sus 6 cortes son las aéreas REALES del rodaje
+  del 07-08 (21 MP), recortadas a 9:16, gradeadas y animadas con Kling 3.0.
+- La cadena de modelos del día: **Seedream 5 Pro → Kling 3.0 → ElevenLabs
+  Music v2**. La locución del 01/10 es **Benjamín Soto**, voz chilena
+  masculina (id 864), generada línea por línea para calzar los subtítulos.
+- El mapa de las piezas es **MAPA-3**, el único de los tres sin topónimos
+  corruptos, recoloreado al duotono crema→navy de MAPA-1 y MAPA-2.
+- En los dos slides de fondo crema del carrusel del 20/10 el filete BLANCO del
+  marco desaparecía. Se resolvió usando **el mismo PNG del diseñador como
+  máscara** sobre un div navy: la geometría bloqueada no se toca, sólo cambia
+  el color de la tinta. Si aparece otra pieza de fondo claro, ese es el camino.
+
+**Qué sigue:** Esperar la ronda del **cliente** — las 10 piezas siguen «En
+revisión» en la grilla y todo lo de hoy fue feedback interno. Cuando llegue,
+corregir sobre las composiciones, que ya están parametrizadas.
+
+**Abierto:**
+
+1. ⚠️ **«Rol individual» y «Acceso controlado» están publicados en tres piezas**
+   (corte 4 del reel del 13/10, slide 4 del carrusel del 20/10 como
+   indicadores, y el copy) **sin confirmación escrita de Fran o Blanca.**
+   No están en la lista blanca del manual y la propia nota de datos comerciales
+   de la grilla tampoco los incluye — la grilla se contradice a sí misma.
+   Entraron con el OK verbal de Diego el 22-09. Es el mismo patrón que dejó
+   «conexión a agua potable» publicada en septiembre.
+2. **Los cuatro videos quedaron con el ADN de imagen anterior** (más árido) y
+   con el sistema tipográfico viejo. Las 16 estáticas ya están alineadas; los
+   videos no. Hay que rehacerlos cuando se decida.
+3. **Varios comentarios siguen figurando abiertos en Drive aunque ya están
+   aplicados** (los de `c-06-10-2`, `st-15-10`, `st-22-10` y otros). Conviene
+   que Diego los cierre para distinguir los nuevos de los ya resueltos.
+4. La marca sigue **sin `reglas.yaml`**: `qa/motor.py --marca tierracalma` no
+   corre y todo el QA de la jornada fue a mano, frame a frame.
+
+---
+
 ## 2026-09-22 (tarde) — Diego Aguilar
 
 **Qué se hizo:** Se rehízo **la grilla de octubre completa, las 10 piezas (18

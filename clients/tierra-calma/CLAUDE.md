@@ -166,6 +166,49 @@ Las dos mitades de la regla:
    La **cursiva** sigue reservada para el remate emotivo del bloque
    (*AQUÍ LAS RESOLVEMOS*, *HASTA DOS POR PARCELA*) — también en versales.
 
+#### ⛔ ORDEN TIPOGRÁFICO — sólo DOS roles, nunca más
+
+Ronda de Diego del 22-09 sobre `p-20-10.png`: *"hay demasiadas tipografías, hay
+que tener un orden en la creación de los contenidos, identificar dentro del
+brief lo que hay que destacar"*.
+
+**El sistema completo son dos roles. No hay un tercero.**
+
+| Rol | Qué es | Cuándo |
+|---|---|---|
+| **Cuerpo** | Inter Tight **Light (300)**, caja baja | Todo: preguntas, bajadas, listas, textos de globo |
+| **Destacado** | **IvyOra Display VERSALES**, cuerpo mayor | La frase que el brief manda destacar. Cursiva sólo para el remate emotivo |
+
+**Lo que queda prohibido:**
+
+- ⛔ **Inter Tight Bold/SemiBold para destacar.** Destacar es trabajo de IvyOra.
+- ⛔ Más de **tres tamaños** de tipografía en una pieza.
+- ⛔ Cambiar el cuerpo palabra por palabra "para que se vea rico". Si una
+  palabra cambia de tamaño es porque el brief la manda destacar, no por gusto.
+
+**Cómo se decide qué destacar:** se lee el brief y se identifica **la frase que
+responde la promesa** — no la más larga ni la más bonita. En el carrusel del
+06-10 son `ELECTRIFICACIÓN`, `CERRAR` y `CASAS`: el sustantivo de la duda que
+la pieza resuelve.
+
+#### ⛔ Los recuadros son GLOBOS DE TEXTO translúcidos
+
+Misma ronda, sobre `c-06-10-2` y `st-22-10`: *"que sea un globo de texto"*,
+*"siempre el recuadro que tenga transparencia"*, *"globo de textos que estén
+derechos y centrados, quitar espacios libres de los globos"*, y sobre
+`st-08-10`: *"no genera contraste, oscurecer un poco más el globo"*.
+
+Un solo componente para toda la marca, con estas cinco condiciones:
+
+1. **Translúcido, nunca sólido.** Fondo oscuro a ~0,55 de alfa con desenfoque
+   detrás. Las cajas de color macizo quedan fuera.
+2. **Oscuro de verdad.** Si el texto blanco no despega del fondo, el globo está
+   claro. Sube la opacidad antes que bajar el texto.
+3. **Derecho.** Cero rotación. Las tarjetas inclinadas quedan fuera.
+4. **Centrado.**
+5. **Ajustado al texto.** `display: inline-block` + `maxWidth`, nunca `width`
+   fijo: con ancho fijo la última línea deja un hueco muerto adentro.
+
 #### Los cuadros de texto se ajustan al texto
 
 Misma ronda: *"cuadros de texto que queden sin espacios flotantes, lo mismo
@@ -269,6 +312,22 @@ eso**. Es el pendiente #7 de Carlos, ahora con evidencia.
 **⛔ Lo que NO hay que pedirle nunca más a la IA:** praderas verdes tipo Nueva
 Zelanda, campos de flores, cordillera nevada de postal, bosque denso, valle
 llano. Todo eso salió en la entrega del 14-09 y **no es el lugar**.
+
+##### ⚠️ Matiz de Diego (22-09, sobre `st-08-10`) — la IA idealiza, no documenta
+
+> *"la idea de la creación de las imágenes es que se vean mucho mejor que las
+> imágenes reales del lugar, más verdes los espacios, con vegetación natural
+> nativa"*
+
+La tabla de arriba describe **cómo es el sitio**, y sirve para no inventarse
+otro país. Pero la pieza **no documenta: idealiza**. El encargo es que la imagen
+se vea **mejor que la foto real** — laderas verdes y frondosas, pasto fresco—
+manteniendo **especies nativas chilenas**: espino, quillay, litre, peumo.
+
+El equilibrio, en una línea: **la estructura del lugar es real (ladera, ripio
+ocre, cerco de madera, postes), la vegetación es la mejor versión posible de sí
+misma.** Ni el desierto de la primera corrección ni la pradera europea de la
+entrega del 14-09.
 
 **Cómo se usa el material real:**
 

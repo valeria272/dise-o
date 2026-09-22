@@ -60,10 +60,15 @@ const Cierre: React.FC<{desde: number}> = ({desde}) => (
 // D · 01/10 · REEL "La primavera llegó a Tierra Calma" · Pilar 4
 // -----------------------------------------------------------------------------
 
+/**
+ * Locución: **Benjamín Soto** (id 864), voz CHILENA MASCULINA joven — el único
+ * hombre chileno del catálogo. Pedido de Diego el 22-09: antes iba Antonia
+ * Reyes (femenina). Duraciones medidas sobre los mp3, no estimadas.
+ */
 const VOZ: {a: string; desde: number; dura: number}[] = [
-  {a: "vp1", desde: 30, dura: 59},
-  {a: "vp2", desde: 170, dura: 88},
-  {a: "vp3", desde: 310, dura: 64},
+  {a: "vm1", desde: 30, dura: 66},
+  {a: "vm2", desde: 170, dura: 83},
+  {a: "vm3", desde: 310, dura: 86},
 ];
 
 export const V3ReelPrimavera: React.FC = () => (
@@ -87,10 +92,12 @@ export const V3ReelPrimavera: React.FC = () => (
       <Suave size={48}>La primavera ya llegó a Tierra Calma</Suave>
     </Bloque>
     <Bloque desde={165} dura={108} pos="abajo">
-      <Enfasis size={62}>Más verde, más luz, más espacio</Enfasis>
+      {/* Apilado en tres: a una sola línea "ESPACIO" quedaba huérfano, y el
+          reel publicado de septiembre apila así los "MÁS ...". */}
+      <Enfasis size={62}>{"Más verde,\nmás luz,\nmás espacio"}</Enfasis>
     </Bloque>
     <Bloque desde={305} dura={96} pos="arriba">
-      <Suave size={46}>Así se siente el cambio de estación acá</Suave>
+      <Suave size={42}>Así se siente el cambio de estación acá</Suave>
     </Bloque>
     <Bloque desde={445} dura={120} pos="centro" sinSalida>
       <Enfasis size={58}>{"Tierra Calma\nPadre Hurtado"}</Enfasis>

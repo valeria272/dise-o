@@ -382,7 +382,15 @@ const Globo: React.FC<{
 // =============================================================================
 
 /** Un tramo del titular modulado: hereda el tamaño salvo que se le dé otro. */
-type Tramo = {t: string; peso?: number; size?: number; cursiva?: boolean; salto?: boolean};
+type Tramo = {
+  t: string;
+  /** IvyOra Display. Es LA forma de destacar una frase — y va siempre en versales. */
+  ivy?: boolean;
+  cursiva?: boolean;
+  peso?: number;
+  size?: number;
+  salto?: boolean;
+};
 
 /**
  * Titular de pesos mezclados, a la manera de la referencia. Se compone en
@@ -408,11 +416,13 @@ const Modulado: React.FC<{tramos: Tramo[]; base?: number; ancho?: number}> = ({
         {tr.salto ? <br /> : null}
         <span
           style={{
-            fontFamily: tr.cursiva ? SERIF : SANS,
-            fontStyle: tr.cursiva ? "italic" : "normal",
-            fontWeight: tr.peso ?? (tr.cursiva ? 500 : 300),
+            fontFamily: tr.ivy ? SERIF : SANS,
+            fontStyle: tr.ivy && tr.cursiva ? "italic" : "normal",
+            fontWeight: tr.peso ?? (tr.ivy ? 500 : 300),
             fontSize: tr.size ?? base,
-            letterSpacing: tr.cursiva ? "0.004em" : "0.005em",
+            letterSpacing: tr.ivy ? "0.01em" : "0.005em",
+            // ⛔ REGLA DURA (Diego, 22-09): IvyOra Display SIEMPRE en versales.
+            textTransform: tr.ivy ? "uppercase" : "none",
           }}
         >
           {tr.t}
@@ -436,7 +446,11 @@ const Tarjeta: React.FC<{
       position: "absolute",
       top: y,
       [lado === "der" ? "right" : "left"]: 120,
-      width: w,
+      // Se ajusta al texto: nada de ancho fijo. Con ancho fijo la última línea
+      // dejaba un hueco muerto dentro de la caja — "espacios flotantes"
+      // (Diego, 22-09). El maxWidth sólo pone el techo.
+      display: "inline-block",
+      maxWidth: w,
       backgroundColor: color,
       borderRadius: 30,
       padding: "34px 40px",
@@ -463,15 +477,13 @@ const E1: React.FC = () => (
         base={54}
         ancho={880}
         tramos={[
-          {t: "¿Dudas antes de "},
-          {t: "comprar", peso: 600},
-          // salto deliberado: sin él "parcela?" quedaba sola en la segunda línea
+          {t: "¿Dudas antes de comprar"},
           {t: "tu parcela?", salto: true},
         ]}
       />
       <Aire h={26} />
       {/* El remate a gran escala: es lo que hace la referencia con "resultado". */}
-      <Modulado base={54} ancho={900} tramos={[{t: "Aquí las resolvemos", cursiva: true, size: 104}]} />
+      <Modulado base={54} ancho={900} tramos={[{t: "Aquí las resolvemos", ivy: true, cursiva: true, size: 100}]} />
     </Cuerpo>
   </Lienzo>
 );
@@ -487,7 +499,7 @@ const E2: React.FC = () => (
         ancho={880}
         tramos={[
           {t: "¿Tengo que invertir en la "},
-          {t: "electrificación", peso: 600, size: 62},
+          {t: "electrificación", ivy: true, size: 64},
           {t: " del terreno?"},
         ]}
       />
@@ -509,8 +521,8 @@ const E3: React.FC = () => (
         ancho={880}
         tramos={[
           {t: "¿Tengo que "},
-          {t: "cerrar", peso: 600, size: 66},
-          {t: " yo el terreno?"},
+          {t: "cerrar", ivy: true, size: 68},
+          {t: "yo el terreno?", salto: true},
         ]}
       />
     </Cuerpo>
@@ -531,12 +543,12 @@ const E4: React.FC = () => (
         ancho={880}
         tramos={[
           {t: "¿Cuántas "},
-          {t: "casas", peso: 600, size: 64},
+          {t: "casas", ivy: true, size: 66},
           {t: " puedo construir?"},
         ]}
       />
       <Aire h={24} />
-      <Modulado base={50} ancho={900} tramos={[{t: "Hasta dos por parcela", cursiva: true, size: 84}]} />
+      <Modulado base={50} ancho={900} tramos={[{t: "Hasta dos por parcela", ivy: true, cursiva: true, size: 82}]} />
     </Cuerpo>
     <Tarjeta color={TC.colors.slate} y={900} w={500} size={36}>
       {"La tuya y la de\ntus visitas."}
@@ -555,7 +567,8 @@ const E4: React.FC = () => (
         padding: "16px 36px",
       }}
     >
-      <IPin s={25} />
+      {/* Diego 22-09: "agrandar un poco el icono" */}
+      <IPin s={34} />
       <span
         style={{
           fontFamily: SANS,
@@ -708,7 +721,7 @@ const MapaAzul: React.FC = () => (
       fill="#fff"
       style={{fontFamily: SERIF, fontSize: 46, fontStyle: "italic", fontWeight: 500}}
     >
-      Tierra Calma
+      TIERRA CALMA
     </text>
     <text
       x="442"
@@ -850,7 +863,16 @@ const J: React.FC = () => (
           style={{width: 150, height: 150, objectFit: "cover", borderRadius: 22, flexShrink: 0}}
         />
         <div>
-          <div style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 500, fontSize: 52, color: "#fff"}}>
+          <div
+            style={{
+              fontFamily: SERIF,
+              fontStyle: "italic",
+              fontWeight: 500,
+              fontSize: 48,
+              color: "#fff",
+              textTransform: "uppercase",
+            }}
+          >
             Tierra Calma
           </div>
           <div style={{fontFamily: SANS, fontWeight: 300, fontSize: 28, color: "rgba(255,255,255,0.88)"}}>
@@ -882,6 +904,7 @@ const Numero: React.FC<{n: string}> = ({n}) => (
       fontStyle: "italic",
       fontWeight: 400,
       fontSize: 64,
+      textTransform: "uppercase",
       color: TC.colors.sand,
       lineHeight: 1,
       textShadow: "0 2px 18px rgba(0,0,0,0.5)",
@@ -1203,8 +1226,9 @@ const M: React.FC = () => (
           fontFamily: SERIF,
           fontStyle: "italic",
           fontWeight: 500,
-          fontSize: 44,
-          lineHeight: 1.14,
+          fontSize: 40,
+          lineHeight: 1.16,
+          textTransform: "uppercase",
           color: TC.colors.navy,
           marginBottom: 26,
         }}

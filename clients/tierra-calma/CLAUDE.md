@@ -143,6 +143,37 @@ La pareja oficial de la marca. Confirmada por Valeria el 19-08-2026.
 - **Sans — `Inter Tight`**: bajadas, listas, datos. En mayúsculas con tracking
   `0.15–0.26em` para etiquetas, imitando el "PADRE HURTADO" del logo.
 
+#### ⛔ IvyOra Display SIEMPRE en versales — y es LA forma de destacar
+
+Regla de Diego, 22-09-2026, dejada como comentario sobre `c-06-10-4.png`:
+*"IvyOra Display siempre en mayúscula"*. **Vale para todo el contenido de la
+marca, no sólo para esa pieza.**
+
+Las dos mitades de la regla:
+
+1. **Nunca IvyOra en caja baja.** Si una pieza tiene IvyOra en minúsculas está
+   mala. En código: todo tramo que use `SERIF` lleva
+   `textTransform: "uppercase"`, sin excepción.
+2. **IvyOra en versales ES el recurso para destacar la frase clave de una
+   oración** — no el bold de la sans. La frase que importa sale de la línea en
+   IvyOra Display versales y a mayor cuerpo; el resto de la oración se queda en
+   Inter Tight Light. Ejemplos del carrusel del 06-10:
+
+   > ¿Tengo que invertir en la **ELECTRIFICACIÓN** del terreno?
+   > ¿Tengo que **CERRAR** yo el terreno?
+   > ¿Cuántas **CASAS** puedo construir?
+
+   La **cursiva** sigue reservada para el remate emotivo del bloque
+   (*AQUÍ LAS RESOLVEMOS*, *HASTA DOS POR PARCELA*) — también en versales.
+
+#### Los cuadros de texto se ajustan al texto
+
+Misma ronda: *"cuadros de texto que queden sin espacios flotantes, lo mismo
+para los demás"*. Una tarjeta con **ancho fijo** deja un hueco muerto a la
+derecha de la última línea. Se resuelve con `display: inline-block` + `maxWidth`
+en vez de `width`: la caja se encoge hasta el texto. Vale para toda caja,
+píldora o tarjeta de la marca.
+
 #### Cómo se usa IvyOra (resuelto el 19-08-2026)
 
 IvyOra está activada en este Mac vía Adobe Fonts: 20 variantes, Display y Text,

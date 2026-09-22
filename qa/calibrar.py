@@ -28,6 +28,17 @@ from PIL import Image
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import checks  # noqa: E402
 
+# ⚠️ El mismo arreglo que ya llevan `motor.py` y `scripts/_entorno.py`: PowerShell
+# escribe la consola en cp1252 y las flechas del informe («→») no existen ahí. El
+# calibrador reventaba al IMPRIMIR la primera métrica, así que en el Windows de Eli
+# no se había podido calibrar NUNCA una marca — que es justo por lo que Between y
+# DT seguían sin topes medidos. Encontrado el 22-09-2026.
+for _flujo in (sys.stdout, sys.stderr):
+    try:
+        _flujo.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 Image.MAX_IMAGE_PIXELS = None
 VERDE, ROJO, AMARILLO, GRIS, NEGRITA, FIN = (
     "\033[32m", "\033[31m", "\033[33m", "\033[90m", "\033[1m", "\033[0m")

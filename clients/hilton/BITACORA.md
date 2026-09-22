@@ -1,3 +1,78 @@
+## 2026-09-22 · Eli (Windows) — ⭐ LA COMPUERTA DE QA SE ENCIENDE POR PRIMERA VEZ
+
+**Qué se hizo.** Sesión de eficiencia, no de producción: Eli preguntó cuánto toma
+una corrección y cómo bajarlo. Se midió sobre el propio historial (336 commits de
+septiembre) y salieron dos cosas, una esperada y una grave.
+
+**1. El hallazgo grave: `clients/hilton/reglas.yaml` no existía.** `qa/motor.py`
+aborta si a la marca le falta ese archivo, así que **ninguna pieza de Between ni de
+DT pasó la compuerta en todo septiembre** — 92 commits de Between y 41 de DT, las
+dos cuentas más pesadas del estudio, entregadas sin pasar ni siquiera por las cinco
+reglas de agencia que sí corren en Casablanca, Revex, CAVA, QB y Piso18. No es que
+el QA fuera permisivo con estas dos marcas: no corría.
+
+**2. Se escribió el archivo, calibrado contra material real.** 12 piezas aprobadas
+de Between y 3 de DT. Topes medidos: `respiro-borde` 0,050 (Between llega a 0,032,
+DT a 0,044 — la máscara toma la fotografía a sangre, no sólo el texto) y
+`foto-estirada` 0,012. Más una regla de marca: **«Café XL»**, con la cita literal de
+la grilla de octubre, acotada a Between con `solo_archivos`.
+✅ Verificado en modo control: **10 de 14 aprobadas pasan limpias**.
+
+### ⛔ El resultado que importa: el QA mecánico NO atrapa los rechazos de Eli
+
+Se calibraron las **12 aprobadas contra 10 rondas rechazadas** de Between. Ninguna
+de las cinco métricas separa un grupo del otro:
+
+| métrica | aprobadas | rechazadas |
+|---|---|---|
+| costura | 9,4 – 76,7 | 9,4 – 25,2 |
+| desenfoque-parcial | 0,005 – 0,423 | 0,369 – 0,548 ← al revés |
+| foto-estirada | 0,000 – 0,011 | 0,000 – 0,000 |
+| paleta-cerrada | 0,355 – 1,000 | 0,800 – 1,000 |
+| respiro-borde | 0,000 – 0,032 | 0,024 – 0,043 |
+
+**Between no se rechaza por defectos, se rechaza por criterio** — la caja beige que
+no destaca sobre papel beige, el milkshake que no era el producto, la torta sobre
+mármol cuando sus hermanas van sobre madera. Eso no lo ve un histograma. Queda
+escrito para no volver a intentar el atajo.
+
+Los 4 avisos del modo control son todos `desenfoque-parcial` sobre **la banda del
+borde**. Se midió si eran gráfica lisa —en cuyo caso bastaba subir el umbral del
+guardia— y **no lo son**: desviación 7,9 · 14,4 · 21,0 · 26,3, contra 16,0 · 27,1 ·
+40,0 · 40,2 en las que pasaron limpias. Lo que ve es **el velo** con que las dos
+marcas apagan el canto de la foto, que es recurso aprobado. Se deja como aviso.
+
+**Dónde quedó.**
+- `clients/hilton/reglas.yaml` — nuevo, con PENDIENTE detallado
+- `scripts/_revision.py` — nuevo. El molde de la página de revisión: hasta hoy cada
+  ronda era un script de ~300 líneas copiado del anterior (21 scripts, 6.356 líneas,
+  y entre rondas seguidas sólo cambiaban 160). Con el molde son ~40. Probado
+  rehaciendo la ronda 9 del concurso: **65 líneas contra 237**, y rendido en Chrome
+  para confirmar que se ve igual. Los 21 viejos NO se migran: ya se entregaron
+- `qa/calibrar.py` — arreglado. Reventaba con `UnicodeEncodeError` (cp1252 y la
+  flecha «→»), o sea que **en el Windows de Eli nunca se pudo calibrar una marca**.
+  Es parte de por qué Between y DT seguían sin topes
+
+**Qué sigue.** Convertir en `qa/checks.py` las lecciones ya medidas —la foto de
+carrusel se aprueba montada, el contraste no ve la textura, igualar la luz no iguala
+el material—. Eso es lo que atacaría los rechazos de criterio, que es donde está el
+tiempo. Calculado: ~1 día, y hace falta corpus de rechazadas para validar que cada
+check separe de verdad.
+
+**Abierto — dos preguntas de criterio para Eli, cada una enciende una regla:**
+1. **¿En Between el bloque de texto va centrado?** Hoy no se activó: `bloque_centrado`
+   es la regla de Paulina para Revex y su propio docstring avisa de no generalizarla.
+   En el repo consta «en Between va centrado», pero se dijo del LOGOTIPO y dentro de
+   una advertencia sobre haber dado por global una regla ajena.
+2. **Las dos reglas de títulos de DT** —sin punto, y sin mezclar cajas— **¿valen
+   también para Between y Piso 18, o son sólo de DT?** Además, para automatizarlas
+   falta que el JSON de textos diga cuál línea es el TÍTULO; hoy ni `texto_prohibido`
+   ni `grafia_fijada` lo saben y aplicarlas a todos marcaría cada párrafo legítimo.
+
+**Abierto — corpus.** DT tiene sólo **3 aprobadas** en disco contra 12 de Between, y
+**ninguna rechazada**: los topes están dominados por Between. Falta que Eli diga
+dónde están las piezas de DT aprobadas de meses anteriores.
+
 ## 2026-09-22 · Eli (Windows) — DT: el carrusel S5, ronda 6 (sólo la portada)
 
 **Qué pidió Eli**, sobre el render de la ronda 5 del mismo día: (1) «te faltó

@@ -1,0 +1,211 @@
+# Reglas ejecutables de las marcas del complejo Hilton que todavía comparten
+# esta carpeta: **DoubleTree (DT)** y **Between**.
+#
+# ⛔ Por qué nace este archivo, el 22-09-2026: **no existía**, y sin él
+#    `qa/motor.py` aborta. O sea que en todo septiembre —92 commits de Between y
+#    41 de DT, las dos cuentas más pesadas del estudio— **ninguna pieza pasó la
+#    compuerta**, ni siquiera por las cinco reglas de agencia que sí corren en
+#    Casablanca, Revex, CAVA, QB o Piso18. No es que el QA fuera permisivo con
+#    estas dos marcas: es que no corría.
+#
+# ⚠️ **Dos marcas en un archivo, y eso pide cuidado.** `marca_de_la_ruta()` mira
+#    la carpeta que sigue a `out/`, así que `out/hilton/dt/…` y
+#    `out/hilton/between/…` resuelven las dos a `hilton`. QB y Piso18 ya salieron
+#    a `out/qb/` y `out/piso18/` con manual propio; DT y Between no. Mientras
+#    sigan acá, **toda regla de marca se acota con `solo_archivos`**, porque DT y
+#    Between no se diseñan igual y el criterio de una no vale para la otra. La
+#    convención de nombres lo permite y es firme:
+#
+#        DT       →  `DT ST 27-09 …`, `Post n°1 S4 DT.png`   →  "DT *", "Post * DT*"
+#        Between  →  `BW ST 14-09 …`, `BW FEED 22-09 …`, `C1 S3 CONCURSO N1.png`
+#
+#    Los `ajustes` de abajo NO se pueden acotar así —son de agencia y valen para
+#    la corrida entera—, por eso cada tope se puso donde cubre a las DOS.
+#
+# Quien firma las dos cuentas es Elisabet Soto, diseñadora del complejo Hilton.
+#
+# ──────────────────────────────────────────────────────────────────────────────
+# ⭐ LO QUE LA CALIBRACIÓN DEL 22-09 DEJÓ CLARO, Y CONVIENE NO OLVIDAR
+# ──────────────────────────────────────────────────────────────────────────────
+# Se calibró con `qa/calibrar.py` sobre **12 piezas de Between que Eli firmó**
+# contra **10 rondas que rechazó**, y el resultado fue que ninguna de las cinco
+# métricas mecánicas separa un grupo del otro:
+#
+#     costura              aprobadas 9,4–76,7   rechazadas 9,4–25,2
+#     desenfoque-parcial   aprobadas 0,005–0,423  rechazadas 0,369–0,548
+#     foto-estirada        aprobadas 0,000–0,011  rechazadas 0,000–0,000
+#     paleta-cerrada       aprobadas 0,355–1,000  rechazadas 0,800–1,000
+#     respiro-borde        aprobadas 0,000–0,032  rechazadas 0,024–0,043
+#
+# **Y tiene sentido: Between no se rechaza por defectos, se rechaza por criterio.**
+# Las diez que volvieron lo hicieron porque la caja beige no destacaba sobre papel
+# beige, porque el milkshake no era el producto, porque la torta iba sobre mármol
+# y sus hermanas sobre madera. Nada de eso lo ve un histograma.
+#
+# Así que este archivo **no promete atrapar los rechazos de Eli**. Hace algo más
+# modesto y que hoy no se hace: enciende la compuerta para que ninguna pieza de DT
+# o Between salga con texto bajo la interfaz de Meta, pegado al borde, con una foto
+# estirada o con un precio mal escrito. Lo otro —lo que de verdad decide— está
+# abajo, en PENDIENTE, y la mayoría necesita una palabra de Eli, no un umbral.
+
+marca: hilton
+nombre: Hilton — DoubleTree y Between
+version: 1
+actualizado: 2026-09-22
+
+autoridad:
+  - quien: Elisabet Soto
+    rol: diseñadora del cliente
+    alcance: [dt, between]
+    canal: encargo directo, comentarios en la grilla de Drive y revisión en página HTML
+
+  # ⚠️ El COPY no lo firma Eli. En estas cuentas el estudio sólo diseña: la grilla
+  # la arma el cliente con el área de contenido y se respeta como viene (dictado
+  # por Eli el 09-09-2026, CLAUDE.md §G; memoria `solo-diseno-el-brief-no-es-mio`).
+  # Por eso una regla de texto se firma con la grilla, no con la diseñadora —
+  # ponerle su nombre a una línea que ella no escribió es inventarle un criterio.
+  - quien: Grilla mensual de Between (cliente + contenido)
+    rol: fuente del copy
+    alcance: [between]
+    canal: Google Sheets de la cuenta, leída con /al-dia
+
+ajustes:
+
+  respiro-borde:
+    porque: >-
+      El tope de agencia marca las piezas aprobadas de las dos marcas, y no por
+      estar mal diagramadas: la máscara de tinta toma la FOTOGRAFÍA a sangre que
+      las dos usan de fondo —el bokeh cálido de la barra en Between, el cielo y las
+      luces del hotel en DT— además del texto.
+      Medido el 22-09-2026 con `qa/calibrar.py`, fracción de tinta en el marco:
+        · Between, 12 aprobadas: 0,000 a 0,032 (mediana 0,000)
+        · DT, 3 aprobadas: 0,000 a 0,044 (mediana 0,000)
+      El tope se pone en 0,050, que es el máximo de las dos marcas (0,044, la ST
+      del Día del Turismo) con holgura. No separa aprobadas de rechazadas —las
+      rechazadas de Between dan 0,024 a 0,043, o sea el mismo rango—, así que
+      sirve para no marcar lo bueno, no para atrapar lo malo.
+    args:
+      max_fraccion_tinta: 0.050
+
+  foto-estirada:
+    porque: >-
+      Medido sobre las mismas piezas: Between va de 0,000 a 0,011 y DT da 0,000 en
+      las tres. El 0,011 lo aporta el carrusel del concurso, cuyo fondo es un papel
+      de textura casi plana en el tercio superior —filas muy parecidas entre sí,
+      que es lo que el check cuenta— y no una foto estirada.
+      El tope queda en 0,012, justo por encima del máximo real. Es angosto a
+      propósito: acá sí hay margen para que el check haga su trabajo, porque una
+      foto de verdad estirada salta muy por encima de estos números.
+    args:
+      max_fraccion_alto: 0.012
+
+  # ⛔ `desenfoque-parcial` NO se calibra, por la misma razón que en QB, y esta vez
+  # con la causa medida. Conviene leerlo antes de volver a intentarlo.
+  #
+  # 1. El calibrador no encuentra corte: aprobadas 0,005–0,423 contra rechazadas
+  #    0,369–0,548. Los rangos se solapan y, peor, las rechazadas quedan ARRIBA,
+  #    que es el lado que el check considera bueno. Propone cortar en 0,004, o sea
+  #    un tope que no marcaría absolutamente nada.
+  #
+  # 2. En modo control marca 4 de las 14 aprobadas, y **siempre la banda del
+  #    borde**: `BW ST 18-09` banda 9, `BW ST 21-09` banda 1, `BW FEED 22-09
+  #    portada` banda 10, `DT ST 27-09` banda 1.
+  #
+  # 3. Se midió si eran gráfica lisa —en cuyo caso el guardia `_bandas_planas`
+  #    tendría el umbral mal y bastaba subirlo—. **No lo son.** Desviación de esa
+  #    banda: 7,9 · 14,4 · 21,0 · 26,3. Y las piezas que pasaron limpias tienen en
+  #    su banda de borde 16,0 · 27,1 · 40,0 · 40,2. Los dos grupos se solapan, así
+  #    que tampoco por ahí hay corte.
+  #
+  # Lo que el check está viendo es el VELO: el degradado con que las dos marcas
+  # apagan el canto de la foto —el velo del feed de DT, el fundido del pie de
+  # Between—. Es un recurso deliberado y aprobado, no un cuadro desenfocado.
+  #
+  # Un check que para no molestar hay que dejar en cero no es un check. Se queda
+  # con el tope de agencia y como AVISO: acá avisa de más y el aviso se mira, no se
+  # obedece. Para que sirviera habría que medir la nitidez SIN el velo, que es
+  # bastante más que una máscara de bandas.
+
+  # ⚠️ `costura` y `paleta-cerrada` no aparecen acá y no es olvido: el motor sólo
+  # deja ajustar reglas de agencia, y esas dos no lo son. Igual quedan medidas,
+  # porque el día que haga falta una regla propia de color o de montaje van a
+  # servir de punto de partida:
+  #   · costura — Between 9,4 a 76,7 · DT 14,2 a 36,6. El número alto de Between
+  #     lo dan los cortes duros que la marca usa a propósito (la franja del pie,
+  #     el canto del cartón, el borde del papel).
+  #   · paleta-cerrada — Between 0,355 a 1,000 · DT 0,582 a 0,781. Ninguna de las
+  #     dos tiene paleta cerrada: la pieza ES una fotografía, con todo el color
+  #     del café, la madera, la comida y las luces del local.
+
+reglas:
+
+  - id: vaso-xl
+    titulo: El vaso mayor se llama «Café XL» en la pieza
+    check: grafia_fijada
+    severidad: bloqueante
+    autor: Grilla mensual de Between (cliente + contenido)
+    fecha: 2026-09-22
+    solo_archivos: ["BW *", "C1 S* *"]
+    cita: >-
+      TAMAÑOS TO GO · Café Mediano · $1.990 · Café Grande · $2.790 ·
+      **Café XL · $2.990**
+      (Texto del FEED del 5 de octubre, slide 3 «TAMAÑOS Y PRECIOS», en la grilla
+      de Between de octubre 2026.)
+    fuente: clients/hilton/grillas/between-octubre-2026.md
+    porque: >-
+      El renombre de los vasos se apoyaba sólo en el Space hasta que la grilla de
+      octubre se leyó por primera vez el 22-09-2026 y lo confirmó. El brief pide
+      «que se entienda la diferencia entre mediano, grande y Extra», pero **el
+      rótulo de la pieza no es el del archivo**: en la línea de precios el mayor se
+      llama «Café XL», y en pantalla va lo que dice el brief, literal
+      (memoria `ctas-verbatim-del-brief`).
+      Se acota a Between con `solo_archivos` porque es su carta, no la de DT.
+    args:
+      correcta: "Café XL"
+      incorrectas: ["Café Extra", "Cafe Extra", "Extra Grande", "Café XXL"]
+
+# ──────────────────────────────────────────────────────────────────────────────
+# PENDIENTE — lo que decide de verdad y todavía NO se puede comprobar por programa
+# ──────────────────────────────────────────────────────────────────────────────
+# Este archivo nace chico a propósito. Una regla inventada a ojo hace una de dos
+# cosas, las dos malas: marca piezas buenas —y la gente aprende a ignorar el QA— o
+# deja pasar las malas. Lo que falta se anota, no se rellena.
+#
+# ── DT, dictado por Eli el 09-09-2026 (CLAUDE.md §F), y no hay check que lo diga:
+#
+# · **«Los títulos no llevan punto.»** Ni final ni intermedio; el punto es de los
+#   párrafos largos o del texto que viene después. Es una regla de TEXTO y los
+#   textos ya se declaran (`--textos`), pero ni `texto_prohibido` ni
+#   `grafia_fijada` saben cuál de los textos declarados es el TÍTULO, y aplicarla
+#   a todos marcaría cada párrafo legítimo. Necesita que el JSON de textos diga el
+#   rol de cada línea, o un check nuevo. Hasta entonces se revisa mirando.
+#
+# · **«No se mezclan cajas dentro de un mismo título.»** O todo en caja baja o todo
+#   en versales — y ojo, que los DOS PESOS sí se permiten (Stag Bold + Stag Light):
+#   lo prohibido es la mezcla de cajas, no la de pesos. Mismo problema que la
+#   anterior: sin saber qué línea es el título, no se puede comprobar.
+#
+# ── Between, y acá el pendiente es de CRITERIO, no de programa:
+#
+# · **El bloque de texto centrado.** `bloque_centrado` existe y funciona, pero es
+#   la regla de Paulina para Revex y su propio docstring avisa de no generalizarla.
+#   En el repo consta que «en Between va centrado», pero eso se dijo del LOGOTIPO y
+#   dentro de una advertencia sobre haber dado por global una regla ajena. Meterla
+#   acá sería exactamente el error contra el que el estudio tiene programa: darle a
+#   Eli un criterio que ella no dictó. **Falta que Eli lo diga.**
+#
+# · **Lo que de verdad hace volver una pieza** —la caja que no destaca sobre el
+#   papel, la foto que no es el producto, la superficie que no coincide entre
+#   hermanas del mismo carrusel— no es un umbral sobre un histograma. Varias de
+#   esas ya tienen método escrito y medido en las memorias del estudio
+#   (`el-contraste-no-ve-la-textura`, `foto-de-carrusel-se-aprueba-montada`,
+#   `igualar-la-luz-no-iguala-el-material`). Convertirlas en checks es trabajo de
+#   `qa/checks.py`, no de este archivo.
+#
+# ── Y falta corpus:
+#
+# · DT sólo tiene **3 piezas aprobadas** en disco contra las 12 de Between, y
+#   **ninguna rechazada**. Los topes de arriba están dominados por Between. Cuando
+#   DT acumule rondas rechazadas hay que recalibrar.
+# · `out/` está en `.gitignore`, así que ese corpus vive sólo en la máquina donde
+#   se calibró. Por eso los números quedan escritos acá: es lo único que viaja.

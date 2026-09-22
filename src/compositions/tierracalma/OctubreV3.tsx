@@ -363,17 +363,115 @@ const Globo: React.FC<{
 
 // =============================================================================
 // E · 06/10 · CARRUSEL 4 SLIDES · dudas resueltas · Pilar 1
+//
+// ⭐ REFERENCIA (Pinterest, la pasó Diego el 22-09): pieza de SPACIO HOME,
+// 1080×1350. Lo que se toma de ella —y sólo eso, el marco y la paleta no se
+// tocan—:
+//
+//   1. TITULAR MODULADO: la frase cambia de peso y de estilo dentro de sí
+//      misma. Sans ligera → una palabra en BOLD → el remate en cursiva serif
+//      a una escala mucho mayor (en la referencia, ~2× el resto).
+//   2. LA RESPUESTA EN TARJETA: caja de esquinas muy redondeadas, color de
+//      marca sólido, anclada a un costado abajo — no centrada. Texto sans
+//      regular en caja baja, tres líneas cortas.
+//   3. Jerarquía por CONTRASTE DE TAMAÑO, no por color: el ojo cae primero en
+//      la palabra cursiva enorme y después baja a la tarjeta.
+//
+// El brief manda el QUÉ (los textos van verbatim de la grilla) y la
+// referencia el CÓMO. Memoria `leer-el-brief-y-su-carpeta-de-referencias`.
 // =============================================================================
+
+/** Un tramo del titular modulado: hereda el tamaño salvo que se le dé otro. */
+type Tramo = {t: string; peso?: number; size?: number; cursiva?: boolean; salto?: boolean};
+
+/**
+ * Titular de pesos mezclados, a la manera de la referencia. Se compone en
+ * línea (inline) para que "¿Tengo que invertir en la ELECTRIFICACIÓN del
+ * terreno?" fluya como una sola frase y no como bloques apilados.
+ */
+const Modulado: React.FC<{tramos: Tramo[]; base?: number; ancho?: number}> = ({
+  tramos,
+  base = 52,
+  ancho = 860,
+}) => (
+  <div
+    style={{
+      width: ancho,
+      textAlign: "center",
+      color: "#fff",
+      lineHeight: 1.1,
+      textShadow: "0 2px 24px rgba(0,0,0,0.5)",
+    }}
+  >
+    {tramos.map((tr, i) => (
+      <React.Fragment key={i}>
+        {tr.salto ? <br /> : null}
+        <span
+          style={{
+            fontFamily: tr.cursiva ? SERIF : SANS,
+            fontStyle: tr.cursiva ? "italic" : "normal",
+            fontWeight: tr.peso ?? (tr.cursiva ? 500 : 300),
+            fontSize: tr.size ?? base,
+            letterSpacing: tr.cursiva ? "0.004em" : "0.005em",
+          }}
+        >
+          {tr.t}
+        </span>
+      </React.Fragment>
+    ))}
+  </div>
+);
+
+/** La tarjeta de la referencia: esquinas muy redondeadas, anclada a un costado. */
+const Tarjeta: React.FC<{
+  color: string;
+  y: number;
+  lado?: "der" | "izq";
+  w?: number;
+  size?: number;
+  children: React.ReactNode;
+}> = ({color, y, lado = "der", w = 520, size = 38, children}) => (
+  <div
+    style={{
+      position: "absolute",
+      top: y,
+      [lado === "der" ? "right" : "left"]: 120,
+      width: w,
+      backgroundColor: color,
+      borderRadius: 30,
+      padding: "34px 40px",
+      fontFamily: SANS,
+      fontWeight: 400,
+      fontSize: size,
+      lineHeight: 1.26,
+      color: "#fff",
+      boxShadow: "0 20px 46px rgba(0,0,0,0.3)",
+      whiteSpace: "pre-line",
+    } as React.CSSProperties}
+  >
+    {children}
+  </div>
+);
 
 const E1: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
     <Foto src={OCT("e-portada")} foco="50% 55%" />
-    <Degradado arriba={0.66} abajo={0.34} />
+    <Degradado arriba={0.6} abajo={0.4} />
     <Marco archivo="MARCO-CARRUSEL-1" />
-    <Cuerpo top={CARR.conLogo} ancho={870}>
-      <Ligera size={62}>{"¿Dudas antes de\ncomprar tu parcela?"}</Ligera>
-      <Aire h={22} />
-      <Remate size={92}>{"Aquí las\nresolvemos."}</Remate>
+    <Cuerpo top={CARR.conLogo} ancho={880}>
+      <Modulado
+        base={54}
+        ancho={880}
+        tramos={[
+          {t: "¿Dudas antes de "},
+          {t: "comprar", peso: 600},
+          // salto deliberado: sin él "parcela?" quedaba sola en la segunda línea
+          {t: "tu parcela?", salto: true},
+        ]}
+      />
+      <Aire h={26} />
+      {/* El remate a gran escala: es lo que hace la referencia con "resultado". */}
+      <Modulado base={54} ancho={900} tramos={[{t: "Aquí las resolvemos", cursiva: true, size: 104}]} />
     </Cuerpo>
   </Lienzo>
 );
@@ -381,52 +479,73 @@ const E1: React.FC = () => (
 const E2: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
     <Foto src={OCT("e-luz")} foco="50% 52%" />
-    <Degradado arriba={0.6} abajo={0.34} />
+    <Degradado arriba={0.58} abajo={0.42} />
     <Marco archivo="MARCO-CARRUSEL-2" />
     <Cuerpo top={CARR.sinLogo} ancho={880}>
-      <Ligera size={54}>{"¿Tengo que invertir en la\nelectrificación del terreno?"}</Ligera>
-      <Aire h={26} />
-      <Caja color={TC.colors.olive} size={46}>
-        {"No, la electricidad\nsubterránea ya está instalada."}
-      </Caja>
+      <Modulado
+        base={48}
+        ancho={880}
+        tramos={[
+          {t: "¿Tengo que invertir en la "},
+          {t: "electrificación", peso: 600, size: 62},
+          {t: " del terreno?"},
+        ]}
+      />
     </Cuerpo>
+    <Tarjeta color={TC.colors.olive} y={880}>
+      {"No, la electricidad\nsubterránea ya está\ninstalada."}
+    </Tarjeta>
   </Lienzo>
 );
 
 const E3: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
     <Foto src={OCT("e-cierre")} foco="50% 50%" />
-    <Degradado arriba={0.6} abajo={0.34} />
+    <Degradado arriba={0.58} abajo={0.42} />
     <Marco archivo="MARCO-CARRUSEL-3" />
     <Cuerpo top={CARR.sinLogo} ancho={880}>
-      <Ligera size={58}>{"¿Tengo que cerrar\nyo el terreno?"}</Ligera>
-      <Aire h={26} />
-      <Caja color={TC.colors.brown} size={46}>
-        {"No, el cierre perimetral\nya está hecho."}
-      </Caja>
+      <Modulado
+        base={52}
+        ancho={880}
+        tramos={[
+          {t: "¿Tengo que "},
+          {t: "cerrar", peso: 600, size: 66},
+          {t: " yo el terreno?"},
+        ]}
+      />
     </Cuerpo>
+    <Tarjeta color={TC.colors.brown} y={880} lado="izq">
+      {"No, el cierre\nperimetral ya\nestá hecho."}
+    </Tarjeta>
   </Lienzo>
 );
 
 const E4: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
     <Foto src={OCT("e-casas")} foco="50% 54%" />
-    <Degradado arriba={0.62} abajo={0.54} />
+    <Degradado arriba={0.6} abajo={0.56} />
     <Marco archivo="MARCO-CARRUSEL-4" />
     <Cuerpo top={CARR.sinLogo} ancho={880}>
-      <Ligera size={58}>{"¿Cuántas casas\npuedo construir?"}</Ligera>
-      <Aire h={22} />
-      <Remate size={74}>{"Hasta dos por parcela:"}</Remate>
-      <Aire h={18} />
-      <Bajada size={36} ancho={720}>
-        la tuya y la de tus visitas.
-      </Bajada>
+      <Modulado
+        base={50}
+        ancho={880}
+        tramos={[
+          {t: "¿Cuántas "},
+          {t: "casas", peso: 600, size: 64},
+          {t: " puedo construir?"},
+        ]}
+      />
+      <Aire h={24} />
+      <Modulado base={50} ancho={900} tramos={[{t: "Hasta dos por parcela", cursiva: true, size: 84}]} />
     </Cuerpo>
+    <Tarjeta color={TC.colors.slate} y={900} w={500} size={36}>
+      {"La tuya y la de\ntus visitas."}
+    </Tarjeta>
     <div
       style={{
         position: "absolute",
         left: "50%",
-        top: 1120,
+        top: 1150,
         transform: "translateX(-50%)",
         display: "flex",
         alignItems: "center",
@@ -441,7 +560,7 @@ const E4: React.FC = () => (
         style={{
           fontFamily: SANS,
           fontWeight: 500,
-          fontSize: 28,
+          fontSize: 27,
           letterSpacing: "0.07em",
           color: "#fff",
           textTransform: "uppercase",

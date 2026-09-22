@@ -104,6 +104,17 @@ convertido a mp4 sobre blanco a 30fps) es el **cierre obligatorio de todo
 reel**. Nunca re-animar el logo a mano, nunca deformarlo, nunca recomponer el
 wordmark en texto.
 
+> ✅ **Confirmado el 22-09-2026.** El diseñador subió a Drive
+> `TIERRA CALMA CIERRE.mov` (en la carpeta de entrega, junto a los marcos) y es
+> **byte a byte el mismo archivo** que `TIERRA CALMA MOTION.mov` del KINGSTON
+> — sha256 idéntico. O sea: la regla vale y el archivo es el que ya está
+> convertido en `public/assets/tierracalma/tc_motion.mp4`.
+>
+> ⚠️ Los cuatro videos entregados el 14-09 **no lo llevan**: se siguió el reel
+> publicado de septiembre (`r-17-09.mp4`), que cierra con el wordmark en
+> cursiva. El `r-13-10` ya se re-entregó con el logo animado; **los otros tres
+> quedan por corregir** cuando se retomen.
+
 El logo es **gaviota en vuelo + wordmark serif espaciado "TIERRA CALMA" +
 "PADRE HURTADO"** en sans liviana con tracking amplio.
 

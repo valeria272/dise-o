@@ -5,6 +5,73 @@
 
 ---
 
+## 2026-09-22 (tarde) — Diego Aguilar
+
+**Qué se hizo:** Se rehízo **la grilla de octubre completa, las 10 piezas (18
+archivos)**, porque el cliente la reescribió casi entera ese mismo día a las
+16:12Z. Y se corrigió el error de fondo que arrastraban las entregas
+anteriores: **las imágenes no se parecían al lugar**.
+
+**⭐ El hallazgo del día: el ADN de imagen estaba mal.** Diego subió a
+`APRENDIZAJE IA — NO PUBLICAR/IMAGENES/` el material real —40 fotos de terreno
+del 27-04 y las 44 aéreas del dron del 07-08 en 21 MP— y al medirlas quedó
+claro que Tierra Calma es **ladera de cerro árida**: cerros ocre pelados,
+matorral espinoso ralo, **caminos de ripio anaranjado en curva**, postes de luz,
+cercos de madera oscura, palmeras y el valle abajo. Lo entregado el 14-09 eran
+praderas verdes con cordillera nevada: otro país. El ADN corregido quedó escrito
+en `CLAUDE.md` § 4 bis con la tabla de lo que sí y lo que nunca más.
+
+**Consecuencia práctica:** el **reel del 13/10 ya no es IA**. Sus 6 cortes salen
+de las **aéreas REALES** recortadas a 9:16, gradeadas y animadas con Kling 3.0.
+El sitio que se ve es el sitio.
+
+**Lo que cambió la grilla del 22-09 16:12Z:**
+
+| Pieza | Antes | Ahora |
+|---|---|---|
+| 13/10 reel | 4 cortes | **6 cortes** con estructura nueva |
+| 20/10 | post estático | **carrusel de 6 slides** |
+| 01/10 reel | subtítulos libres | la grilla **dicta** los 3 subtítulos |
+| 06/10 carrusel | afirmaciones | preguntas en primera persona |
+| 08/10 story | pétalos, sin copy | pieza comercial con bloque de valor |
+| 09/10 | post de paisaje | pareja de espaldas + **globos de conversación** |
+| 12/10 story | WhatsApp | **mapa azul** Santiago → Padre Hurtado |
+| 15/10 story | POV en auto | **interfaz de buscador** glassmorphism |
+| 29/10 post | hora azul | **cocina con polaroid y post-it** |
+
+**Dónde quedó:** 18 archivos subidos a la carpeta de entrega, con la
+nomenclatura del equipo. Los que ya existían se reemplazaron **sobre el mismo
+ID**, así que los enlaces compartidos siguen sirviendo. En el repo,
+`OctubreV3.tsx` (12 estáticas) y `OctubreVideoV3.tsx` (los 2 reels); las
+primitivas de video se exportaron desde `OctubreVideo.tsx` para no duplicarlas.
+Clips, audio y fondos versionados.
+
+Cadena de modelos: **Seedream 5 Pro → Kling 3.0 → ElevenLabs Music v2**,
+locución con Antonia Reyes (voz chilena). Ambos reels cierran con
+`tc_cierre.mp4`, el cierre oficial que subió Diego ese día.
+
+**Qué sigue:** Esperar la ronda del cliente. Las 10 piezas siguen «En revisión».
+
+**Abierto:**
+
+1. ⚠️ **«Rol individual» y «Acceso controlado» salieron publicados sin
+   confirmación escrita.** Están en el corte 4 del reel del 13/10 y en el slide
+   4 del carrusel del 20/10. No están en la lista blanca del manual y **la
+   propia nota de datos comerciales de la grilla tampoco los incluye** — la
+   grilla se contradice a sí misma. Entraron con el OK verbal de Diego el 22-09.
+   **Falta el OK de Fran o Blanca.** Es el mismo patrón que dejó «conexión a
+   agua potable» publicada en septiembre.
+2. **Tres archivos obsoletos siguen en la carpeta de Drive** porque el cliente
+   cambió el formato de esos días y no se borran sin permiso:
+   `st-08-10.mp4` y `st-15-10.mp4` (esos días ahora son estáticos, ya está el
+   `.png`) y `p-20-10.png` (el 20/10 ahora es el carrusel `c-20-10-1..6`).
+   Si quedan, el CM puede publicar la versión vieja.
+3. Sigue abierto el **mapa oficial** con Carlos: los PNG de `MAPAS` traen
+   topónimos corruptos, por eso el mapa del 12/10 se dibujó en SVG desde cero.
+4. La marca sigue sin `reglas.yaml`: el QA de las 18 piezas fue a mano.
+
+---
+
 ## 2026-09-22 — Diego Aguilar
 
 **Qué se hizo:** Se re-hizo **solo el reel `r-13-10`** con otra cadena de

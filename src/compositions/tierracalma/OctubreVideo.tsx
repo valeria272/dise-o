@@ -38,16 +38,16 @@ import {tierracalma as TC, ensureTierraCalmaFonts} from "../../brand/tierracalma
 
 export const FPS = 30;
 
-const CLIP = (n: string) => staticFile(`assets/tierracalma/oct/clips/${n}.mp4`);
-const AUDIO = (n: string) => staticFile(`assets/tierracalma/audio/${n}.mp3`);
+export const CLIP = (n: string) => staticFile(`assets/tierracalma/oct/clips/${n}.mp4`);
+export const AUDIO = (n: string) => staticFile(`assets/tierracalma/audio/${n}.mp3`);
 
-const SANS = TC.fonts.body;
+export const SANS = TC.fonts.body;
 const SERIF = TC.fonts.display;
 
 // Los clips de 5 s vienen con 151 fotogramas útiles. El hueco de 140 deja 11
 // de solape para la disolvencia sin pasarse del final del archivo.
-const SLOT = 140;
-const CLIP_LEN = 151;
+export const SLOT = 140;
+export const CLIP_LEN = 151;
 const FADE = 11;
 export const REEL_DURATION = SLOT * 3 + CLIP_LEN; // 571 = 19,03 s
 export const STORY_DURATION = 300; // 10 s
@@ -60,13 +60,13 @@ const SEGURO_INF = 1920 - 270;
 // Primitivas
 // -----------------------------------------------------------------------------
 
-const Lienzo: React.FC<{children: React.ReactNode}> = ({children}) => {
+export const Lienzo: React.FC<{children: React.ReactNode}> = ({children}) => {
   ensureTierraCalmaFonts();
   return <AbsoluteFill style={{backgroundColor: "#0A0F12"}}>{children}</AbsoluteFill>;
 };
 
 /** Un plano con su disolvencia de entrada hecha a mano. */
-const Plano: React.FC<{src: string; indice: number; foco?: string}> = ({
+export const Plano: React.FC<{src: string; indice: number; foco?: string}> = ({
   src,
   indice,
   foco = "50% 50%",
@@ -88,7 +88,7 @@ const Plano: React.FC<{src: string; indice: number; foco?: string}> = ({
 };
 
 /** Velo de gradación: sin él el texto blanco se pierde en el cielo claro. */
-const Velo: React.FC<{arriba?: number; abajo?: number}> = ({arriba = 0.34, abajo = 0.42}) => (
+export const Velo: React.FC<{arriba?: number; abajo?: number}> = ({arriba = 0.34, abajo = 0.42}) => (
   <AbsoluteFill
     style={{
       background: `linear-gradient(to bottom, rgba(6,14,20,${arriba}) 0%, rgba(6,14,20,0) 34%, rgba(6,14,20,0) 58%, rgba(6,14,20,${abajo}) 100%)`,
@@ -99,7 +99,7 @@ const Velo: React.FC<{arriba?: number; abajo?: number}> = ({arriba = 0.34, abajo
 type Pos = "arriba" | "centro" | "abajo";
 
 /** Bloque de texto con entrada y salida por opacidad + un desplazamiento mínimo. */
-const Bloque: React.FC<{
+export const Bloque: React.FC<{
   desde: number;
   dura: number;
   pos?: Pos;
@@ -140,10 +140,10 @@ const Bloque: React.FC<{
   );
 };
 
-const HALO = "0 2px 26px rgba(0,0,0,0.52), 0 0 70px rgba(0,0,0,0.28)";
+export const HALO = "0 2px 26px rgba(0,0,0,0.52), 0 0 70px rgba(0,0,0,0.28)";
 
 /** Línea narrativa: sans ligera en caja baja, como en el reel de septiembre. */
-const Suave: React.FC<{size?: number; children: React.ReactNode}> = ({size = 46, children}) => (
+export const Suave: React.FC<{size?: number; children: React.ReactNode}> = ({size = 46, children}) => (
   <div
     style={{
       fontFamily: SANS,
@@ -160,7 +160,7 @@ const Suave: React.FC<{size?: number; children: React.ReactNode}> = ({size = 46,
 );
 
 /** Línea enfática: IvyOra cursiva en versales. */
-const Enfasis: React.FC<{size?: number; children: React.ReactNode}> = ({size = 62, children}) => (
+export const Enfasis: React.FC<{size?: number; children: React.ReactNode}> = ({size = 62, children}) => (
   <div
     style={{
       fontFamily: SERIF,
@@ -179,7 +179,7 @@ const Enfasis: React.FC<{size?: number; children: React.ReactNode}> = ({size = 6
 );
 
 /** Versales espaciadas de pie, el remate del reel de septiembre. */
-const Pie: React.FC<{children: React.ReactNode}> = ({children}) => (
+export const Pie: React.FC<{children: React.ReactNode}> = ({children}) => (
   <div
     style={{
       fontFamily: SANS,
@@ -195,9 +195,9 @@ const Pie: React.FC<{children: React.ReactNode}> = ({children}) => (
   </div>
 );
 
-const Aire: React.FC<{h: number}> = ({h}) => <div style={{height: h, flexShrink: 0}} />;
+export const Aire: React.FC<{h: number}> = ({h}) => <div style={{height: h, flexShrink: 0}} />;
 
-const IconoWsp: React.FC<{s?: number}> = ({s = 54}) => (
+export const IconoWsp: React.FC<{s?: number}> = ({s = 54}) => (
   <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
     <path
       d="M3.6 20.4l1.2-4a8.2 8.2 0 1 1 3.1 3l-4.3 1Z"
@@ -217,7 +217,7 @@ const IconoWsp: React.FC<{s?: number}> = ({s = 54}) => (
  * locución. Los tramos se declaran a mano: nada de ducking por envolvente
  * (memoria `audio-y-post-de-reels`).
  */
-const Musica: React.FC<{
+export const Musica: React.FC<{
   src: string;
   vol?: number;
   duracion: number;

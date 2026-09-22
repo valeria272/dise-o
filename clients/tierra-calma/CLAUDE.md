@@ -212,6 +212,46 @@ El ADN del prompt —hay que respetarlo o el mes se ve de dos marcas distintas�
 
 Aspectos: `social_post_4_5` · `square_1_1` · `social_story_9_16`. Resolución `2k`.
 
+### 🔴 ADN CORREGIDO (22-09-2026) — el prompt de arriba NO se parece al lugar
+
+Hasta acá los prompts describían **praderas verdes exuberantes, flores
+silvestres y cordillera nevada**. El 22-09 el diseñador subió a
+`APRENDIZAJE IA — NO PUBLICAR/IMAGENES/` el material fotográfico real —
+**40 fotos de terreno (27-04, tarde soleada) + las 44 aéreas del dron del
+07-08 en 21 MP** — y al medirlas quedó claro que el sitio **no se parece a
+eso**. Es el pendiente #7 de Carlos, ahora con evidencia.
+
+**Cómo es Tierra Calma de verdad:**
+
+| | |
+|---|---|
+| **Topografía** | **Ladera de cerro**, no valle plano. El loteo sube por el cerro y mira hacia el llano |
+| **La marca visual del lugar** | **Caminos de ripio ocre-anaranjado que serpentean en curva** por la ladera. Es lo más reconocible de las aéreas |
+| **Vegetación** | **Matorral bajo y espinoso** (espino, litre), ralo. NO pradera, NO bosque, NO flores silvestres masivas |
+| **Color según estación** | Abril: **ocre dorado y seco**, cerros pelados café. Agosto: **verde apagado** con tierra asomando |
+| **Fondo** | Cerros áridos color café-ocre. **La cordillera nevada NO domina** la vista |
+| **Urbanización visible** | Postes de luz y luminarias a lo largo de los caminos, portería **techada** en el acceso, muros de piedra/hormigón, **cercos de madera oscura horizontal**, palmeras y árboles jóvenes plantados |
+| **Movimiento de tierra** | **Taludes de tierra naranja** recién cortados, visibles en las aéreas |
+| **Vista** | Desde arriba se ve **el llano de Padre Hurtado** con parcelas y casas dispersas |
+| **Cielo** | Abril: azul intenso y limpio, sin nubes. Agosto: blanco plano con **neblina baja** sobre los cerros |
+
+**⛔ Lo que NO hay que pedirle nunca más a la IA:** praderas verdes tipo Nueva
+Zelanda, campos de flores, cordillera nevada de postal, bosque denso, valle
+llano. Todo eso salió en la entrega del 14-09 y **no es el lugar**.
+
+**Cómo se usa el material real:**
+
+- **Para los reels, el dron real manda.** Las 44 aéreas de 21 MP se pueden usar
+  como **fotograma inicial de Kling**: el video resultante ES el sitio, animado.
+  Resuelve la credibilidad de una. Exigen grade (la jornada fue nublada) — ver
+  §8 `tc-regrade.sh`.
+- **Para los estáticos, IA pero con referencia.** `images_generate` de Magnific
+  acepta `references` con `type: "image"` o `"style"`: pasarle una foto real del
+  sitio como referencia en vez de describirlo de memoria.
+- El material está en `raw/tierracalma/fotos-reales/` (`marca/` las 40 de
+  terreno, `dron/` las 44 aéreas). **En `.gitignore`** por peso; la fuente es la
+  carpeta de Drive de arriba y el disco KINGSTON.
+
 ### Los seis elementos del lenguaje
 
 | Elemento | Cómo es |

@@ -55,6 +55,22 @@ import {
   REEL_DRON_V2_DURATION as OCT_DRON_V2_DUR,
   STORY_DURATION as OCT_STORY_DUR,
 } from "./compositions/tierracalma/OctubreVideo";
+import {
+  V3ReelPrimavera,
+  V3ReelDron,
+  V3_REEL_D_DURATION,
+  V3_REEL_I_DURATION,
+} from "./compositions/tierracalma/OctubreVideoV3";
+import {
+  V3CarrE,
+  V3CarrK,
+  V3Posts,
+  V3Stories,
+  V3_CARR_E,
+  V3_CARR_K,
+  V3_POSTS,
+  V3_STORIES,
+} from "./compositions/tierracalma/OctubreV3";
 import {HistoriaPrimavera, HistoriaPaso, HistoriaEpoca, HISTORIA_DURATION} from "./compositions/tierracalma/HistoriasAnimadas";
 import {PruebaPosts4x5, PruebaHistoria, PruebaReel, PRUEBA_POSTS, PRUEBA_HISTORIA_ANIM_DURATION, PRUEBA_REEL_DURATION} from "./compositions/tierracalma/PruebaCarlos";
 
@@ -634,6 +650,14 @@ export const RemotionRoot: React.FC = () => {
           width={1800}
           height={1450}
         />
+        {/* OCTUBRE 2026 · V3 — la grilla rehecha del 22-09 (16:12Z). Manda ésta. */}
+        <Composition id="TCV3ReelPrimavera" component={V3ReelPrimavera} durationInFrames={V3_REEL_D_DURATION} fps={30} width={1080} height={1920} />
+        <Composition id="TCV3ReelDron" component={V3ReelDron} durationInFrames={V3_REEL_I_DURATION} fps={30} width={1080} height={1920} />
+        <Composition id="TCV3CarrE" component={V3CarrE} durationInFrames={V3_CARR_E.length} fps={30} width={1080} height={1350} />
+        <Composition id="TCV3CarrK" component={V3CarrK} durationInFrames={V3_CARR_K.length} fps={30} width={1080} height={1350} />
+        <Composition id="TCV3Posts" component={V3Posts} durationInFrames={V3_POSTS.length} fps={30} width={1080} height={1350} />
+        <Composition id="TCV3Stories" component={V3Stories} durationInFrames={V3_STORIES.length} fps={30} width={1080} height={1920} />
+
         {/* OCTUBRE 2026 — video. Imagen clave con Magnific → Kling 2.5 → 30 fps */}
         <Composition
           id="TCOct01ReelPrimavera"

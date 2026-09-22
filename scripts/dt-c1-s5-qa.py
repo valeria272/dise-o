@@ -80,15 +80,19 @@ BANDAS = {
         # cuerpo 108 con dos pesos, y su tinta se midió sobre el render
         # (umbral 228), más ~6 px de holgura:
         #   en DoubleTree      x  88→813 · y 511→586
-        #   by Hilton          x  89→526 · y 621→712   (la «y» baja hasta 712)
-        #   Santiago–Vitacura  x  89→942 · y 730→823   (la «g» baja hasta 823)
+        #   by Hilton          x  88→543 · y 618→712   (Medium desde la r7;
+        #                      la «y» baja hasta 712)
+        #   Santiago–Vitacura  x  89→425 · y 741→776   (cuerpo 42, ronda 7)
         #
         # ⚠️ Y desde la ronda 5 el contraste NO se mide sobre la lámina sino
         # sobre un fotograma de control sin tinta. Ver la nota al pie.
         ("Tu día",            (140, 393, 328, 446), BLANCO, 3.0),
         ("en DoubleTree",     (88, 505, 821, 592), BLANCO, 3.0),
-        ("by Hilton",         (88, 615, 534, 718), BLANCO, 3.0),
-        ("Santiago–Vitacura", (88, 724, 975, 829), BLANCO, 3.0),
+        ("by Hilton",         (88, 612, 551, 718), BLANCO, 3.0),
+        # ⭐ RONDA 7: la ciudad vuelve a cuerpo 42, así que vuelve a ser TEXTO
+        # CHICO y se le exige **4,5:1**, no los 3,0 del titular. Tinta re-medida
+        # sobre el render: x 89→425 · y 741→776.
+        ("Santiago–Vitacura", (88, 735, 433, 782), BLANCO, 4.5),
         # ⚠️ ÉSTA SE MIDE SOBRE LA LÁMINA, NO SOBRE EL CONTROL: el fondo de
         # «DESLIZA» es la PÍLDORA, que es pieza pintada y no foto. En el
         # fotograma de control la píldora no existe y la banda mide el clip que
@@ -185,8 +189,8 @@ IZQUIERDA = {
     # ⚠️ RONDA 5: el bloque cambió de jerarquía y las dos franjas se re-midieron
     # sobre el render — titular y 511→581, tercer nivel y 623→658.
     "DT-V-S5-Portada":    [("círculo", 400, 430), ("en DoubleTree", 511, 586),
-                           ("by Hilton", 621, 712),
-                           ("Santiago–Vitacura", 730, 823)],
+                           ("by Hilton", 618, 712),
+                           ("Santiago–Vitacura", 741, 776)],
     "DT-V-S5-Desayuno":   [("sello", 128, 172), ("gancho", 200, 292),
                            ("remate", 292, 378)],
     "DT-V-S5-Salon":      [("sello", 128, 172), ("gancho", 200, 292),

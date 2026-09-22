@@ -1,3 +1,54 @@
+## 2026-09-22 · Eli (Windows) — DT: el carrusel S5, ronda 7 (el bloque de la portada, final)
+
+**Qué pidió Eli**, seguido sobre el render de la ronda 6: (1) «quiero que el
+Santiago - Vitacura esté más pequeño como antes, y listo»; (2) «y el texto de:
+by Hilton en el mismo peso del "En DoubleTree"».
+
+**Cómo quedó el bloque, y es la forma final:**
+
+| nivel | texto | tipografía | tinta |
+|---|---|---|---|
+| 1 | «Tu día» | Stag LightItalic 72, circulada | 187,1 |
+| 2 | «en DoubleTree» | Stag **Medium 108** | 731,5 |
+| 2 | «by Hilton» | Stag **Medium 108** | 460,2 |
+| 3 | «Santiago–Vitacura» | Stag Light **42**, +0,02em | 347,4 |
+
+⭐ **El titular quedó a UN peso y UN cuerpo.** La ronda 6 lo tenía a dos pesos
+—Medium + Light—, que es la receta escrita de DT; Eli pidió el segundo renglón
+también en Medium. El nombre del hotel se lee entero con la misma voz y quien
+marca el cambio de nivel es la ciudad. No contradice el manual: la receta da el
+recurso, y cuál de sus formas entra en una pieza es composición, que es de ella
+(la misma regla con la que sacó el verde en la ronda 2).
+
+⚠️⚠️ **LA SANGRÍA NO SE HEREDA AL CAMBIAR DE PESO** — y es la lección de la
+ronda. La «b» de Stag Light vuela hacia afuera 1,404 px y la de la Medium
+**2,592**: dejar el valor viejo deja el renglón 1,2 px corrido. Se re-midió, la
+tinta nace en x=88 y el QA del canto izquierdo lo confirma.
+
+⚠️ **El aire de la ciudad se mide contra la LÍNEA BASE, no contra la tinta.**
+Arriba está «by Hilton», cuya «y» baja 17 px bajo la base; medir el hueco contra
+ese descendente engaña. Quedó en **46 px bajo la base** (29 de tinta a tinta),
+que es el mismo aire óptico que tenía la bajada de la ronda 5 contra un renglón
+sin descendentes.
+
+⭐ Y la ciudad, al volver a cuerpo 42, **vuelve a ser texto chico**: el QA le
+devolvió la vara de **4,5:1** (en la ronda 6, como renglón de titular a 108, se
+medía contra 3,0). Da 7,30.
+
+**Entregado.** Sólo la portada viajó otra vez: `C1 S5 DT n°1.mp4` y `.gif`
+reemplazados en sitio, mismo `fileId` y mismo enlace. Los 12 archivos del Drive
+verificados por md5 contra el local.
+
+**Dónde quedó:**
+- Página de revisión: `out/hilton/dt/c1-s5/revision-r7.html` —
+  `scripts/dt-c1-s5-revision-r7.py`.
+- QA **en verde** · el peor sigue siendo «Tu día» con 3,35:1 sobre vara 3,0 ·
+  typecheck limpio.
+
+**Qué sigue:** nada abierto. Eli cerró con «y listo».
+
+---
+
 ## 2026-09-22 · Eli (Windows) — ⭐ LA COMPUERTA DE QA SE ENCIENDE POR PRIMERA VEZ
 
 **Qué se hizo.** Sesión de eficiencia, no de producción: Eli preguntó cuánto toma

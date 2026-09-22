@@ -83,6 +83,40 @@
  * cifra, no redacción — pero queda dicho.
  *
  * ══════════════════════════════════════════════════════════════════════════
+ * RONDA 7 — LOS DOS AJUSTES DE ELI SOBRE LA RONDA 6 (22-09, seguido)
+ * ══════════════════════════════════════════════════════════════════════════
+ *   1. «quiero que el Santiago - Vitacura esté más pequeño como antes, y listo».
+ *   2. «y el texto de: by Hilton en el mismo peso del "En DoubleTree"».
+ *
+ * Con esto el bloque queda en su forma final:
+ *
+ *   | nivel | texto | tipografía | tinta |
+ *   |---|---|---|---|
+ *   | 1 | «Tu día» | Stag LightItalic 72, circulada | 187,1 |
+ *   | 2 | «en DoubleTree» | Stag **Medium 108** | 731,5 |
+ *   | 2 | «by Hilton» | Stag **Medium 108** | 460,2 |
+ *   | 3 | «Santiago–Vitacura» | Stag Light **42**, +0,02em | 347,4 |
+ *
+ * ⭐ **El titular quedó a UN PESO y UN CUERPO.** La ronda 6 lo tenía a dos pesos
+ * (Medium + Light), que es la receta escrita de DT; acá Eli pide el segundo
+ * renglón también en Medium, así que el nombre del hotel se lee entero con la
+ * misma voz y quien marca el cambio de nivel es la ciudad. No contradice la
+ * receta: la receta da el recurso, y cuál de sus dos formas entra en una pieza
+ * es composición, y la composición es de ella (la misma regla que sacó el verde
+ * en la ronda 2).
+ *
+ * ⚠️⚠️ **LA SANGRÍA NO SE HEREDA AL CAMBIAR DE PESO.** La «b» de Stag Light
+ * vuela hacia afuera 1,404 px y la de la Medium **2,592**. Si se deja el valor
+ * viejo, el renglón nace 1,2 px corrido y el QA del canto izquierdo lo canta.
+ * El renglón además engorda de 445,9 a 460,2 px de tinta.
+ *
+ * ⚠️ **El aire de la ciudad se mide contra la LÍNEA BASE, no contra la tinta.**
+ * Arriba de ella está «by Hilton», cuya «y» baja 17 px por debajo de la base, y
+ * medir el hueco contra ese descendente da un número que engaña. Queda en 46 px
+ * bajo la base (29 px de tinta a tinta), que es el mismo aire óptico que tenía
+ * la bajada aprobada en la ronda 5 contra un renglón sin descendentes.
+ *
+ * ══════════════════════════════════════════════════════════════════════════
  * RONDA 6 — LO QUE ELI CORRIGIÓ SOBRE LA RONDA 5 (22-09, misma tarde)
  * ══════════════════════════════════════════════════════════════════════════
  * Dos cosas, y las dos sobre la portada:
@@ -595,6 +629,9 @@ const Flecha: React.FC<{tam: number; color: string}> = ({tam, color}) => (
  */
 const INTERLINEA_TITULAR = 1.02;
 
+/** El aire entre «by Hilton» y la ciudad. Se calibra contra el render. */
+const MARGEN_CIUDAD = 20;
+
 /*
  * ⛔ ACÁ VIVÍA `Firma` — la versalita «DOUBLETREE BY HILTON SANTIAGO–VITACURA»
  * al pie, en Trade Gothic caja 15 px. La ronda 5 la sacó de las cinco
@@ -854,10 +891,11 @@ export const DtC1S5Portada: React.FC = () => {
           líneas de largo parecido (allá el rango fue 92,3–73,6, un 25 %); acá el
           rango sería del 97 %.
 
-          ⭐ **La salida es la otra receta de DT, y está escrita en la cabecera:
-          «titular a DOS PESOS y UN MISMO CUERPO».** Los tres renglones van a
-          108, el primero en Stag Medium y los otros dos en Light. Medido, los
-          tres caben en la columna sin tocar nada:
+          ⭐ **La salida fue partirlo y dejar los dos renglones a cuerpo 108.**
+          La ronda 6 los puso a dos pesos (Medium + Light), que es la receta
+          escrita de DT; en la ronda 7 Eli pidió el segundo **también en Medium**,
+          así que el titular quedó a UN peso y UN cuerpo. Medido, los renglones
+          caben en la columna sin tocar nada:
 
           | renglón | peso | tinta | termina en x |
           |---|---|---|---|
@@ -887,12 +925,53 @@ export const DtC1S5Portada: React.FC = () => {
           <div style={{fontWeight: DT.pesos.medium, ...sangria(1.404)}}>
             en DoubleTree
           </div>
-          <div style={{fontWeight: DT.pesos.light, ...sangria(-1.404)}}>
+          {/*
+            ⭐ RONDA 7 (Eli, 22-09): «el texto de by Hilton en el mismo peso del
+            "En DoubleTree"». Pasa de Light a **Medium**, así que el titular
+            queda a UN peso y UN cuerpo en sus dos renglones — el nombre del
+            hotel se lee entero, con la misma voz, y la jerarquía la marca el
+            tercer nivel.
+
+            ⚠️ La sangría cambió con el peso: la «b» de Stag Medium vuela hacia
+            afuera **2,592 px** contra los 1,404 de la Light, así que el valor NO
+            se hereda. Y el renglón engorda de 445,9 a 460,2 px de tinta.
+          */}
+          <div style={{fontWeight: DT.pesos.medium, ...sangria(-2.592)}}>
             by Hilton
           </div>
-          <div style={{fontWeight: DT.pesos.light, ...sangria(3.348)}}>
-            Santiago–Vitacura
-          </div>
+        </div>
+
+        {/*
+          ⭐ RONDA 7 (Eli, 22-09): «quiero que el Santiago - Vitacura esté más
+          pequeño como antes, y listo». Vuelve a ser el TERCER NIVEL y no el
+          tercer renglón del titular: Stag Light **42** con +0,02em, que es
+          exactamente la tipografía que tenía la bajada aprobada en la ronda 2.
+
+          Así el titular queda en dos renglones —«en DoubleTree» Medium y
+          «by Hilton» Light, los dos a 108— que es la receta de DT en su forma
+          canónica (dos pesos, un cuerpo, dos líneas), y la ciudad vuelve a
+          leerse como lo que es: el pie del nombre, no parte del título.
+
+          ⚠️ El `marginTop` se CALIBRÓ contra el render y no se copió el 33 de la
+          ronda 5: allá el renglón de arriba era «en DoubleTree», que no tiene
+          descendentes, y acá es «by Hilton», cuya «y» baja 26 px por debajo de
+          la línea base. Medir el hueco contra la tinta da un número que engaña.
+        */}
+        <div
+          style={{
+            marginTop: MARGEN_CIUDAD,
+            fontFamily: DT.fuentes.titular,
+            fontWeight: DT.pesos.light,
+            fontSize: 42,
+            lineHeight: 1.1,
+            letterSpacing: '0.02em',
+            color: DT.colores.blanco,
+            textShadow: SOMBRA,
+            // La «S» nace 1,30 px adentro a este cuerpo.
+            ...sangria(1.3),
+          }}
+        >
+          Santiago–Vitacura
         </div>
       </div>
 

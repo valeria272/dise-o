@@ -1,5 +1,59 @@
 /**
- * PISO18 — HISTORIA ANIMADA · «TIMELAPSE MONTAJE» (STORIES col M · 23-09 · 18:00)
+ * PISO18 — HISTORIA ANIMADA · «TIMELAPSE MONTAJE» (STORIES col N · 24-09 · 18:00)
+ *
+ * ⚠️ La grilla **corrió la columna**: la pieza estaba en el 23-09 (col M) y ahora
+ * vive en el 24-09 (col N). Es la misma pieza y el mismo archivo, `ST N°3 S4.mp4`.
+ *
+ * ══════════════════════════════════════════════════════════════════════════
+ * ⭐⭐⭐ RONDA 7 (22-09-2026) — LA TRANSICIÓN SE QUEDABA PEGADA. Y ERA CIERTO.
+ * ══════════════════════════════════════════════════════════════════════════
+ * La celda volvió a **EN CAMBIOS** con un comentario nuevo:
+ *
+ *     «Está ok la selección de fotos, pero se había pedido que la transición de
+ *      slides sea más fluida, porque como que se queda pegada a la mitad, con
+ *      eso ok»
+ *
+ * Detectado por diff de CONJUNTO de cadenas contra
+ * `clients/hilton/grillas/api/p18-sept-20260917.json` — el comentario se prepende
+ * sobre el anterior, así que ni el diff por celda ni el `modifiedTime` lo delatan.
+ * Es la cuarta vez que esta cuenta lo confirma.
+ *
+ * ⭐ **El defecto NO era de gusto: se midió sobre el render entregado.** Se rindió
+ * la secuencia 80–104 (el primer empuje) y se comparó fotograma contra fotograma:
+ *
+ * | Fotogramas | Diferencia media | Columnas que cambian |
+ * |---|---|---|
+ * | 84 → 97 | 46 → 8 (el empuje, frenando) | 100 % → 21 % |
+ * | **98 → 99** | **0,00** | **0 %** ← la imagen queda CONGELADA |
+ * | **99 → 100** | **57,11** | **70 %** ← y salta de golpe |
+ *
+ * O sea: el empuje terminaba con la foto vieja todavía tapando el **70 %** de la
+ * pantalla, se quedaba ahí un fotograma quieta, y entonces la foto vieja
+ * desaparecía de un corte. Eso es, literal, «se queda pegada a la mitad».
+ *
+ * ⛔ **LA CAUSA: el apilado estaba al revés del movimiento.** En `AbsoluteFill` el
+ * último hijo queda ARRIBA, y los planos se escribían del 4 al 0 — así que el
+ * plano que SALE quedaba encima del que ENTRA. Como el que sale sólo recorre
+ * `-W × 0,3` (el efecto de profundidad que pidió Eli), nunca terminaba de irse:
+ * se detenía tapando 756 px de los 1080 y lo que lo hacía desaparecer no era el
+ * movimiento sino el `vivo`, que lo desmonta 2 fotogramas después. El comentario
+ * del código decía «en orden inverso para que el nuevo quede encima» y hacía
+ * exactamente lo contrario.
+ *
+ * ✅ **El arreglo:** los planos se escriben ahora del **0 al 4**, así el que entra
+ * va ARRIBA. Al llegar a x=0 cubre la pantalla entera y el que sale queda oculto
+ * detrás — el desmontaje ya no se ve, y el empuje sí termina.
+ *
+ * ⛔ **Y LA SEGUNDA CAUSA: la curva del empuje agotaba el recorrido al principio.**
+ * `Easing.bezier(0.3, 0.72, 0.28, 1)` hacía el **68 % del camino en 4 fotogramas**
+ * y el 32 % restante en los 10 siguientes: la velocidad caía de 199 px/fotograma a
+ * 1 px. El ojo sigue el arranque rápido y después ve la imagen arrastrarse. Se
+ * cambió por una curva simétrica —ver `suave`— que reparte el recorrido: el pico
+ * baja a 138 px y ningún tramo se arrastra.
+ *
+ * ⚠️ **No se tocó nada más.** Los 14 fotogramas del empuje, los 2,2 s de cada
+ * plano, las cinco fotos, el titular, el cierre y el botón quedan idénticos: el
+ * cliente dijo «está ok la selección de fotos» y Eli ya había aprobado el ritmo.
  *
  * ══════════════════════════════════════════════════════════════════════════
  * ⭐ RONDA 6 (17-09-2026) — EL VIDEO SALE, Y ABRE UNA FOTO DE ARREGLOS
@@ -168,7 +222,16 @@ const ENTRADA = [0, 84, 150, 216, 282] as const;
 /** Cuándo arranca el bloque de cierre (sobre el último plano). */
 const CIERRE = 282;
 
-const suave = Easing.bezier(0.3, 0.72, 0.28, 1);
+/**
+ * ⭐ RONDA 7 — la curva del empuje. Era `bezier(0.3, 0.72, 0.28, 1)`, que gastaba
+ * el 68 % del recorrido en 4 fotogramas y después se arrastraba a 1 px por
+ * fotograma. Ésta es simétrica: acelera, cruza y frena, sin tramo muerto.
+ *
+ *   curva                     pico   frames bajo 20 px   fotograma al 90 %
+ *   antes (0.3,0.72,0.28,1)   199 px         5                   7 / 14
+ *   ahora (0.45,0,0.55,1)     138 px         2                  11 / 14
+ */
+const suave = Easing.bezier(0.45, 0, 0.55, 1);
 
 /**
  * El desplazamiento horizontal de un plano, en px, para el frame dado.
@@ -178,6 +241,10 @@ const suave = Easing.bezier(0.3, 0.72, 0.28, 1);
  * desde la derecha y, cuando entra el siguiente, sale hacia la izquierda — pero
  * **más lento que el que entra** (sale 0,3 del ancho, no 1,0), que es lo que le
  * da profundidad en vez de parecer un pase de diapositivas.
+ *
+ * ⚠️ Ese 0,3 sólo funciona si el que ENTRA va arriba: es el que tiene que tapar
+ * al que sale. Con el apilado al revés —como estaba hasta la ronda 7— el 0,3 deja
+ * la foto vieja clavada sobre el 70 % de la pantalla. Ver el bloque de los planos.
  */
 const desplazamiento = (f: number, indice: number) => {
   const entra = ENTRADA[indice];
@@ -251,19 +318,18 @@ export const P18StMontaje: React.FC = () => {
 
   return (
     <AbsoluteFill style={{backgroundColor: '#0B0B0D'}}>
-      {/* ── LOS CINCO PLANOS, en orden inverso para que el nuevo quede encima ── */}
-      <Plano indice={4}>
-        <Foto src="assets/hilton/piso18/mt-153.jpg" pos="center 52%" />
-      </Plano>
-      <Plano indice={3}>
-        <Foto src="assets/hilton/piso18/mt-72.jpg" pos="center 55%" />
-      </Plano>
-      <Plano indice={2}>
-        <Foto src="assets/hilton/piso18/mt-128.jpg" pos="center 50%" />
-      </Plano>
-      <Plano indice={1}>
-        <Foto src="assets/hilton/piso18/mt-90.jpg" pos="center 50%" />
-      </Plano>
+      {/*
+        ── LOS CINCO PLANOS, del 0 al 4 ──────────────────────────────────
+        ⭐⭐ RONDA 7 — **el orden se dio vuelta, y es EL arreglo de la pieza.**
+        En `AbsoluteFill` el último hijo queda arriba, así que escribiéndolos del
+        4 al 0 el plano que SALE tapaba al que ENTRA. Como el que sale sólo
+        recorre −0,3 del ancho, se detenía cubriendo 756 px de los 1080 y la
+        transición parecía quedarse pegada hasta que el `vivo` lo desmontaba de
+        un corte. Escritos del 0 al 4, el que entra va arriba, llega a x=0
+        tapando la pantalla entera y el que sale se esconde detrás.
+        ⛔ No los reordenes «para que se lea en orden de aparición»: este orden
+        ES la transición.
+      */}
       <Plano indice={0}>
         {/*
           ⭐ RONDA 6 — acá vivía `salon-vacio.mp4`. El cliente lo sacó: «que no sea
@@ -273,6 +339,18 @@ export const P18StMontaje: React.FC = () => {
           `scripts/p18-s4-r6.py`.
         */}
         <Foto src="assets/hilton/piso18/mt-101.jpg" pos="center 50%" />
+      </Plano>
+      <Plano indice={1}>
+        <Foto src="assets/hilton/piso18/mt-90.jpg" pos="center 50%" />
+      </Plano>
+      <Plano indice={2}>
+        <Foto src="assets/hilton/piso18/mt-128.jpg" pos="center 50%" />
+      </Plano>
+      <Plano indice={3}>
+        <Foto src="assets/hilton/piso18/mt-72.jpg" pos="center 55%" />
+      </Plano>
+      <Plano indice={4}>
+        <Foto src="assets/hilton/piso18/mt-153.jpg" pos="center 52%" />
       </Plano>
 
       {/*

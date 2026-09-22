@@ -1,5 +1,93 @@
 # Piso18 — bitácora
 
+## 2026-09-22 (7ª sesión) — Elisabet Soto · S4 ronda 7: la transición se quedaba pegada, y era cierto
+
+**Encargo de Eli:** *«corrige la st de la grilla s4 de piso18, la animada genera la
+transición como pide cliente y súbelo arriba en Drive»*.
+
+**Lo que pidió el cliente** (hoja STORIES, la historia animada, la celda volvió de
+aprobada a **EN CAMBIOS**):
+
+> «Está ok la selección de fotos, pero se había pedido que la transición de slides
+> sea más fluida, porque como que se queda pegada a la mitad, con eso ok»
+
+⚠️ **Cómo se detectó.** Diff por CONJUNTO de cadenas de la grilla viva contra
+`clients/hilton/grillas/api/p18-sept-20260917.json`. Es la **cuarta** vez que esta
+cuenta confirma que el comentario se prepende y no lo ve ni el diff por celda ni
+el `modifiedTime`. Instantánea nueva: `p18-sept-20260922.json`.
+
+⚠️ **Y la grilla corrió la columna otra vez:** la animada pasó del **23-09 (col M)
+al 24-09 (col N)**. Misma pieza, mismo archivo `ST N°3 S4.mp4`. También cambió el
+horario de la ST del 21-09 (13:00 → 16:00) y se movieron las columnas de la S5.
+
+### ⭐⭐⭐ El defecto NO era de gusto, y se midió sobre el render entregado
+
+Se rindió la secuencia 80–104 (el primer empuje) y se comparó fotograma contra
+fotograma en gris:
+
+| Fotogramas | Dif. media | Columnas que cambian | Qué pasa |
+|---|---|---|---|
+| 84 → 97 | 46 → 8 | 100 % → 21 % | el empuje, frenando |
+| **98 → 99** | **0,00** | **0 %** | **la imagen queda CONGELADA** |
+| **99 → 100** | **57,11** | **70 %** | **salta de golpe** |
+
+O sea que el empuje terminaba con la foto vieja tapando el **70 % de la pantalla**
+(756 px de 1080), se quedaba ahí quieta un fotograma, y desaparecía de un corte.
+Eso es, literal, «se queda pegada a la mitad».
+
+### ⛔⛔ La causa 1: el apilado estaba al revés del movimiento
+
+En `AbsoluteFill` el **último hijo queda arriba**, y los cinco planos se escribían
+del 4 al 0 — así que **el plano que SALE quedaba encima del que ENTRA**. Como el
+que sale sólo recorre `-W × 0,3` (el efecto de profundidad que pidió Eli en la
+ronda 3), nunca terminaba de irse: se detenía tapando 756 px, y lo que lo hacía
+desaparecer no era el movimiento sino el `vivo`, que lo desmonta 2 fotogramas
+después.
+
+⚠️ **El comentario del código decía «en orden inverso para que el nuevo quede
+encima» y hacía exactamente lo contrario.** El comentario estaba mintiendo desde
+la ronda 3 y por eso nadie lo miró.
+
+**El arreglo:** los planos se escriben ahora **del 0 al 4**. El que entra va
+arriba, llega a x=0 cubriendo la pantalla entera y el que sale queda oculto
+detrás — el desmontaje ya no se ve.
+
+### ⛔ La causa 2: la curva gastaba el recorrido al principio
+
+`Easing.bezier(0.3, 0.72, 0.28, 1)` hacía el **68 % del camino en 4 fotogramas** y
+el 32 % restante en los 10 siguientes: la velocidad caía de **199 px/fotograma a
+1 px**. Se cambió por `Easing.bezier(0.45, 0, 0.55, 1)`, simétrica:
+
+| | pico | fotogramas bajo 20 px | fotograma al 90 % |
+|---|---|---|---|
+| antes | 199 px | 5 | 7 / 14 |
+| ahora | 138 px | 2 | 11 / 14 |
+
+**Verificado sobre el MP4 final**, no sólo sobre la primera transición: las
+**cuatro** (f84, f150, f216, f282) son ahora campanas que salen de 0 y vuelven a
+0, y no hay ningún salto >25 en los 390 fotogramas.
+
+**Lo que NO se tocó** — el cliente dijo «está ok la selección de fotos» y Eli ya
+había aprobado el ritmo: las cinco fotos y su orden, los 14 fotogramas del empuje,
+los 2,2 s por plano, los 13 s totales, el titular, el logotipo, el cierre y el
+botón. Pasa las 7 reglas de `qa/motor.py --marca piso18` en el primer y el último
+fotograma, sin avisos.
+
+**Dónde quedó.** `ST N°3 S4.mp4` **reemplazada en Drive conservando el enlace**
+(`1q8V7ibQtVGYijeAgKK0UPCkCyaYMAyTV`, 12,6 MB, **versión 67** — era la 51). Peso
+verificado byte a byte contra el local. Antes/después publicado como página:
+
+  https://claude.ai/artifact/JJtfPhJW27K9ctVZtbZNdL
+
+**Abierto:**
+
+1. ⚠️ **El apilado invertido puede estar en otras piezas animadas de la cuenta.**
+   Es un error que se copia solo de una pieza a la siguiente. Si hay otra historia
+   con empuje lateral, conviene medirla igual — se propuso a Eli y está sin
+   respuesta.
+2. Sigue en pie todo lo de la ronda 6: la pieza ya no tiene video, y el nombre de
+   `Post S4 PISO18 25-09.png` sigue mintiendo (es la pieza del 23-09).
+
 ## 2026-09-22 (6ª sesión) — Elisabet Soto · el video se corrige horneando el clip, no moviendo deslizadores
 
 **Qué se hizo:** Continuación de la 5ª sesión sobre el mismo reel. Eli abrió

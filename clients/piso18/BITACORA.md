@@ -1,5 +1,44 @@
 # Piso18 — bitácora
 
+## 2026-09-22 (5ª sesión) — Elisabet Soto · el reel S4 Jazz: la ronda de cambios va sobre el draft de CapCut
+
+**Qué se hizo:** El cliente pidió tres cambios y Valeria un cuarto sobre el reel
+n°1 de la S4. Los cuatro se resolvieron **reescribiendo `draft_content.json` del
+proyecto de CapCut**, sin tocar los 27 textos ni la locución — el copy aprobado
+quedó intacto. (1) Fuera `IMG_4177` (cortinas/salón): el reel abre en `IMG_4178`
+fuente 12,15, el instante exacto en que Jaz abre la cortina. (2) El montaje de
+flores se rehizo con los tres planos más nítidos del material (`IMG_0849` n7826,
+`IMG_0870` n5081, `IMG_9337` n3191) y pasó de 2 a 3 planos — los cuatro clips del
+brief tenían entre 5 y 13,5 s sin usar. (3) El cierre sale del tramo sentado
+(fuente 8,48) y ya no la muestra pararse e irse. (4) **El quemado de la terraza no
+venía del material** (p99=239, 0,02 % de píxeles en 250): lo metía el grade. Se
+apagó el ajuste inteligente (+0,171 → 0) y se corrigieron 9 parámetros por
+segmento. La música baja a 0,070 bajo la voz y sube sólo en los dos silencios
+largos, medidos sobre la locución real (umbral −25,5 dB); cierra con un arco a
+0,270 cuando entra el logo y cero en 23,93.
+
+**Dónde quedó:** El draft **`REEL n1 S4 SEP PISO18 JAZZ CAMBIO 2`** está escrito y
+abre en CapCut. Comparativa en `out/piso18/reel-s4-jazz/antes-y-despues.html`
+(1,6 MB) — la regla de que Eli aprueba mirando. Los generadores volvieron al repo:
+`scripts/p18-reel-jazz-cambio2.py` y `scripts/p18-reel-jazz-antesydespues.py`.
+⚠️ **El reel NO está exportado todavía** y no se ha subido nada a Drive.
+
+**Qué sigue:** Que Eli abra `CAMBIO 2` en CapCut, revise el antes/después y, si va,
+**exporte el MP4 y lo suba a Drive**. Recién ahí se avisa al cliente.
+
+**Abierto:** La aprobación de los cuatro cambios — tres son del cliente y el del
+quemado es de Valeria, y ninguno está visado sobre el render final.
+
+### Tres cosas que hay que saber para volver a editar un CapCut desde código
+
+1. El draft vive **duplicado** en `Timelines/<id>/draft_content.json`: hay que
+   escribir **las dos copias** o CapCut abre la versión vieja.
+2. El apilado de capas lo manda **`track_render_index`**, no `render_index`.
+3. Los keyframes de audio llevan `time_offset` en **tiempo de FUENTE**, no de
+   línea de tiempo.
+
+---
+
 ## 2026-09-22 (4ª sesión) — ✅ CAE EL BLOQUEANTE: las 11 referencias ya están
 
 **Eli compartió la carpeta y se acabó el problema de cuatro días.** Cuatro

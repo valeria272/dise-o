@@ -76,6 +76,28 @@ const Degradado: React.FC<{arriba?: number; abajo?: number; velo?: number}> = ({
   </>
 );
 
+/**
+ * El marco teñido. El PNG del diseñador es BLANCO; sobre un fondo crema
+ * desaparece y el carrusel deja de leerse como un objeto continuo. Se usa el
+ * mismo archivo como MÁSCARA sobre un div del color que haga falta: la
+ * geometría bloqueada no se toca, sólo cambia el color de la tinta.
+ */
+const MarcoTenido: React.FC<{archivo: string; color: string}> = ({archivo, color}) => (
+  <div
+    style={{
+      position: "absolute",
+      inset: 0,
+      backgroundColor: color,
+      WebkitMaskImage: `url(${MARCO(archivo)})`,
+      maskImage: `url(${MARCO(archivo)})`,
+      WebkitMaskSize: "100% 100%",
+      maskSize: "100% 100%",
+      WebkitMaskRepeat: "no-repeat",
+      maskRepeat: "no-repeat",
+    }}
+  />
+);
+
 const Marco: React.FC<{archivo: string}> = ({archivo}) => (
   <Img
     src={MARCO(archivo)}
@@ -874,21 +896,19 @@ const K1: React.FC = () => (
 
 const K2: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
-    {/* Diego: "en esta slide va el mapa con la ubicación del lugar, recuerda
-        ocupar el MAPA-3 con el cambio de color y estética de los otros".
-        MAPA-3 es la cartografía real, recoloreada al duotono crema→navy que
-        ya usan MAPA-1 y MAPA-2. */}
-    <AbsoluteFill style={{backgroundColor: TC.colors.cream}} />
-    <Img
-      src={OCT("mapa3-duo")}
-      style={{position: "absolute", left: 0, right: 0, top: 430, width: "100%", height: 660, objectFit: "cover"}}
-    />
+    {/* Diego, 2ª vuelta: "el mapa que cubra toda la composición". Va a sangre,
+        no en banda. MAPA-3 es la cartografía real, recoloreada al duotono
+        crema→navy de MAPA-1 y MAPA-2. */}
+    {/* 13%: deja el pin que ya trae el mapa justo bajo nuestro rótulo. A 46%
+        quedaba al borde y se leían DOS pines, el del mapa y el nuestro. */}
+    <Foto src={OCT("mapa3-duo")} foco="13% 50%" />
+    {/* velos de lectura, arriba y abajo, sobre el propio mapa */}
     <AbsoluteFill
       style={{
-        background: `linear-gradient(to bottom, ${TC.colors.cream} 0%, rgba(243,238,227,0) 34%, rgba(243,238,227,0) 62%, ${TC.colors.cream} 86%)`,
+        background: `linear-gradient(to bottom, rgba(243,238,227,0.96) 0%, rgba(243,238,227,0.9) 22%, rgba(243,238,227,0.1) 42%, rgba(243,238,227,0.12) 58%, rgba(243,238,227,0.92) 78%, rgba(243,238,227,0.97) 100%)`,
       }}
     />
-    <Marco archivo="MARCO-CARRUSEL-2" />
+    <MarcoTenido archivo="MARCO-CARRUSEL-2" color={TC.colors.navy} />
     <div
       style={{
         position: "absolute",
@@ -902,7 +922,7 @@ const K2: React.FC = () => (
         color: TC.colors.navy,
       }}
     >
-      <div style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: 58, textTransform: "uppercase", color: TC.colors.sand}}>
+      <div style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: 58, textTransform: "uppercase", color: TC.colors.brown}}>
         01.
       </div>
       <Aire h={16} />
@@ -914,9 +934,25 @@ const K2: React.FC = () => (
       </div>
     </div>
     {/* el pin sobre el mapa, con nuestro rótulo */}
-    <div style={{position: "absolute", left: 0, right: 0, top: 690, display: "flex", justifyContent: "center", alignItems: "center", gap: 12}}>
-      <IPin s={32} c={TC.colors.navy} />
-      <span style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 500, fontSize: 44, textTransform: "uppercase", color: TC.colors.navy}}>
+    {/* El pin propio va EXACTAMENTE sobre el que ya trae el mapa (medido: canvas
+        382,590 con el encuadre al 13 %), así se lee uno solo y no dos. */}
+    <div
+      style={{
+        position: "absolute",
+        left: 352,
+        top: 566,
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        // base crema: sin ella el rótulo gris que ya trae el mapa se
+        // transparentaba por detrás del nuestro y se leían los dos.
+        backgroundColor: TC.colors.cream,
+        padding: "8px 20px 8px 12px",
+        borderRadius: 999,
+      }}
+    >
+      <IPin s={34} c={TC.colors.navy} />
+      <span style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 500, fontSize: 46, textTransform: "uppercase", color: TC.colors.navy}}>
         Tierra Calma
       </span>
     </div>
@@ -925,7 +961,7 @@ const K2: React.FC = () => (
         position: "absolute",
         left: 0,
         right: 0,
-        top: 1050,
+        top: 1040,
         padding: "0 140px",
         textAlign: "center",
         fontFamily: SANS,
@@ -944,30 +980,28 @@ const K2: React.FC = () => (
   </Lienzo>
 );
 
-/** Recorte fotográfico del collage de servicios, con su rótulo debajo. */
-const Recorte: React.FC<{src: string; rot: number; x: number; y: number; w: number; label: string}> = ({
+/** Recorte fotográfico del collage de servicios. Derecho, sin rotación. */
+const Recorte: React.FC<{src: string; x: number; y: number; w: number; label: string}> = ({
   src,
-  rot,
   x,
   y,
   w,
   label,
 }) => (
-  <div style={{position: "absolute", left: x, top: y, width: w, transform: `rotate(${rot}deg)`}}>
-    <div style={{backgroundColor: "#FBF8F2", padding: 9, boxShadow: "0 14px 32px rgba(0,0,0,0.34)"}}>
+  <div style={{position: "absolute", left: x, top: y, width: w}}>
+    <div style={{backgroundColor: "#FBF8F2", padding: 9, boxShadow: "0 12px 26px rgba(0,0,0,0.22)"}}>
       <Img src={OCT(src)} style={{width: "100%", height: w - 18, objectFit: "cover", display: "block"}} />
     </div>
     <div
       style={{
-        marginTop: 8,
+        marginTop: 10,
         textAlign: "center",
         fontFamily: SANS,
         fontWeight: 300,
-        fontSize: 22,
+        fontSize: 23,
         letterSpacing: "0.16em",
         textTransform: "uppercase",
-        color: "#fff",
-        textShadow: "0 2px 12px rgba(0,0,0,0.8)",
+        color: TC.colors.navy,
       }}
     >
       {label}
@@ -977,24 +1011,55 @@ const Recorte: React.FC<{src: string; rot: number; x: number; y: number; w: numb
 
 const K3: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
-    {/* Diego: "composición editorial con pequeños recortes fotográficos de
-        supermercado, salud, colegios y comercio alrededor de una imagen
-        central del sector". */}
-    <Foto src={OCT("k-servicios")} foco="50% 50%" />
-    <Degradado arriba={0.66} abajo={0.5} />
-    <Marco archivo="MARCO-CARRUSEL-3" />
-    <Cuerpo top={CARR.sinLogo} ancho={880}>
-      <Numero n="02." />
+    {/* Diego, 2ª vuelta: "eliminar la imagen de fondo y dejar fondo de color de
+        la paleta, imágenes derechas y texto fuera del globo". Fondo crema, los
+        cuatro recortes sin rotación y el cierre en texto plano, sin globo. */}
+    <AbsoluteFill style={{backgroundColor: TC.colors.cream}} />
+    <MarcoTenido archivo="MARCO-CARRUSEL-3" color={TC.colors.navy} />
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: CARR.sinLogo,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+        color: TC.colors.navy,
+      }}
+    >
+      <div style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: 58, textTransform: "uppercase", color: TC.colors.brown}}>
+        02.
+      </div>
       <Aire h={16} />
-      <Modulado base={48} ancho={880} tramos={[{t: "¿Qué tienes "}, {t: "cerca", ivy: true, size: 62}, {t: "?"}]} />
-    </Cuerpo>
-    <Recorte src="sv-super" rot={-4} x={92} y={520} w={224} label="Supermercados" />
-    <Recorte src="sv-salud" rot={3.2} x={772} y={560} w={216} label="Salud" />
-    <Recorte src="sv-colegio" rot={2.6} x={118} y={860} w={216} label="Colegios" />
-    <Recorte src="sv-comercio" rot={-3} x={758} y={888} w={224} label="Comercio" />
-    <Globo y={690} max={430} size={31}>
-      {"Tranquilidad no debería\nsignificar aislamiento."}
-    </Globo>
+      <div style={{width: 880, lineHeight: 1.16}}>
+        <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 48}}>¿Qué tienes </span>
+        <span style={{fontFamily: SERIF, fontWeight: 500, fontSize: 62, textTransform: "uppercase"}}>cerca</span>
+        <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 48}}>?</span>
+      </div>
+    </div>
+    {/* los cuatro recortes, derechos y en retícula */}
+    <Recorte src="sv-super" x={178} y={470} w={312} label="Supermercados" />
+    <Recorte src="sv-salud" x={590} y={470} w={312} label="Salud" />
+    <Recorte src="sv-colegio" x={178} y={845} w={312} label="Colegios" />
+    <Recorte src="sv-comercio" x={590} y={845} w={312} label="Comercio" />
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 1212,
+        textAlign: "center",
+        fontFamily: SANS,
+        fontWeight: 300,
+        fontSize: 31,
+        lineHeight: 1.3,
+        color: TC.colors.ink,
+      }}
+    >
+      Tranquilidad no debería significar aislamiento.
+    </div>
   </Lienzo>
 );
 
@@ -1041,7 +1106,9 @@ const K4: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
     {/* Diego: "fotografía aérea de una parcela con pequeños indicadores
         gráficos señalando sus características". */}
-    <Foto src={OCT("k-parcela")} foco="50% 52%" />
+    {/* Diego, 2ª vuelta: "mucho más lejana del lugar, imagen tipo dron, que
+        sea un terreno limpio sin vegetación, listo para construir". */}
+    <Foto src={OCT("k-parcela-limpia")} foco="50% 50%" />
     <Degradado arriba={0.6} abajo={0.46} />
     <Marco archivo="MARCO-CARRUSEL-2" />
     <Cuerpo top={CARR.sinLogo} ancho={880}>

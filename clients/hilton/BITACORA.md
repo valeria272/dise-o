@@ -1,3 +1,62 @@
+## 2026-09-22 — Elisabet Soto «Eli» · BETWEEN, LOS VASOS TO GO SE REHICIERON
+
+**Qué se hizo:** los vasos To Go del 21-09 quedaron **reemplazados**. Eli los
+rehizo ella misma en Magnific desde claude.ai y el resultado está mejor logrado
+que el recorte fotográfico. Space **«BETWEEN_VASOS TOGO»**
+(https://www.magnific.com/app/spaces/a2ce7bd4-9df0-47db-b7b2-d96f5c81079c).
+
+**⚠️ Lo que hay que saber antes de tocar estos archivos:** no son la foto del vaso
+recortada — son **generados** con Google Nano Banana 2, y **el logotipo lo redibujó
+el modelo**. Contradice la regla dura del estudio («la IA hace ambiente y fondo,
+nunca el producto ni el logotipo») y entra porque lo decidió la diseñadora de la
+cuenta. No es permiso general: está escrito en el manual como excepción declarada.
+
+**Por qué es mejor, medido:** el logotipo se lee **entero en los tres** —el grande
+real salía «ƎTWEEN» en las nueve tomas de las dos sesiones, que era el problema
+abierto de ayer—, el canto de la tapa no tiene muescas, los tres vienen a plomo, el
+mediano no trae el pliegue del cartón, y el recorte no dejó orla (el canto está a
+166–184 del beige del fondo). Lo único que se pierde es resolución: 1221 px de
+silueta contra 1947 de ayer.
+
+**Dos cosas había que arreglarles, y se arreglaron:**
+1. **No venían a escala común.** Cada vaso se generó en su propio encuadre — en la
+   v1 el MEDIANO salía más alto que el GRANDE. Se reescalaron a la proporción real
+   del envase (0,712 / 0,861 / 1,000, la medida ayer con dos reglas independientes),
+   atando el factor al EXTRA para que todo baje y nada se interpole hacia arriba.
+   El trío del Space, generado de una sola vez, la confirma: 0,705 / 0,832 / 1,000.
+2. **El kraft no era el mismo** entre los tres (11/255). Una ganancia multiplicativa
+   por canal, medida en el cuerpo limpio. Queda en 0,0/255.
+
+**Se eligió la v2 del Space, por medida y no a ojo:** el molde de la tapa entre los
+tres dispersa 0,014 en v2 contra 0,077 en v1 (en v1 el del medio trae una tapa
+notoriamente más alta, y eso es justo lo que rompe la lectura de familia).
+
+**⭐ Y se cerró el pendiente de las onzas.** El Space los rotula, así que los nombres
+cambiaron: ayer «chico / mediano / grande» → hoy **MEDIANO 8 oz / GRANDE 12 oz /
+EXTRA 16 oz**. Los archivos se renombraron en consecuencia. Nada de código los
+referenciaba todavía, así que no se rompió nada.
+
+**Dónde quedó:** `out/hilton/between/vasos-togo/` (6 PNG + `revision.html` con el
+antes, el después y la foto real), banco de marca en
+`public/assets/hilton/between/togo-sep2026/togo-vaso-*-nobg.png`, originales del
+Space en `raw/hilton/between/vasos-togo-v2/`, y dos scripts nuevos
+`between-vasos-togo-v2*.py`. **La entrega de ayer no se borró:** está en
+`out/hilton/between/vasos-togo/_reemplazado-21-09/` y en el commit `cc0f0a2`.
+
+**Qué sigue / abierto:**
+1. **Que Eli confirme los nombres.** Si en la carta del local los tamaños se llaman
+   distinto, se renombran los archivos.
+2. **El 8 oz generado no muestra la faja de kraft** del real (el kraft le llega hasta
+   la tapa). Se pidió así en el prompt — es decisión, no error. Si hay que mostrarla,
+   se regenera cambiando esa línea.
+3. **Resolución**, sólo si hace falta: si un vaso tiene que ocupar una pieza entera,
+   pasarlo por el escalador de **precisión** (⛔ el creativo redibuja el logotipo).
+   Ayer costó 630 créditos por tres.
+4. **Subirlos al Drive de Between** si el CM los va a usar este mes — hoy están en el
+   repo y en el Space.
+
+---
+
 ## 2026-09-21 — Elisabet Soto «Eli» · CIERRE DEL DÍA (BETWEEN)
 
 **Qué se hizo:** los tres vasos To Go recortados sin fondo, a escala común, para

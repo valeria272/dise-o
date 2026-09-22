@@ -3394,10 +3394,10 @@ vaso quedó fotografiado desde un ángulo distinto, así que ninguna escala pare
 deja bien el alto **y** el diámetro a la vez. ⛔ Y no se arregla escalando
 distinto el ancho: eso deforma el logotipo impreso.
 
-> 📏 **Pendiente de cerrar con el cliente:** si Between dice de cuántas onzas son
-> los tres vasos (o se mide uno con regla), esto queda clavado sin estimar. La
-> tapa del chico se está tomando como 80 mm contra 90 mm de las otras dos, que es
-> la familia estándar 8 / 12 / 16 oz.
+> ✅ **CERRADO el 22-09-2026 — son 8 / 12 / 16 oz.** El Space que armó Eli rotula
+> los tres por onzas, y con eso los nombres del estudio cambiaron: lo que acá abajo
+> se llama «chico / mediano / grande» es **MEDIANO 8 oz / GRANDE 12 oz / EXTRA
+> 16 oz**. La estimación de la tapa (80 mm contra 90 mm) era correcta.
 
 ⛔ **Dos trampas al medir sobre `IMG_4153`, las dos costaron una ronda:**
 la caja del recorte **no puede tocar el vaso** (si el mate llega al borde, el alto
@@ -3408,8 +3408,14 @@ central** que es de ese vaso y de nadie más.
 
 Contra el estándar de la industria (8 / 12 / 16 oz → 0,68 / 0,82 / 1,00) la
 familia calza. **Los recortes sueltos ya están a escala común** en
-`public/assets/hilton/between/togo-sep2026/togo-vaso-{chico,mediano,grande}-nobg.png`:
-puestos los tres al 100 % quedan proporcionados sin tocarles nada.
+`public/assets/hilton/between/togo-sep2026/togo-vaso-*-nobg.png`: puestos los tres
+al 100 % quedan proporcionados sin tocarles nada.
+
+> ⚠️ **Los archivos de esta sesión se reemplazaron el 22-09** por los generados
+> en Magnific, y de paso cambiaron de nombre —
+> `togo-vaso-{mediano-8oz,grande-12oz,extra-16oz}-nobg.png`. Esta proporción
+> **sigue siendo la que manda**: es la del envase real y es la que se les aplicó.
+> Ver «LOS VASOS TO GO PASARON A SER GENERADOS» más abajo.
 
 ### ⛔ EL LOGOTIPO DEL GRANDE SALE CORTADO EN TODAS LAS TOMAS
 
@@ -3422,6 +3428,98 @@ entero y legible»: **tampoco lo tiene entero**.
 **Se arregla de una sola forma: una foto nueva del grande con el logotipo al
 frente.** Estampárselo no — el manual lo prohíbe para tomas frontales (§El cartón
 generado se delata). El chico y el mediano sí lo traen completo.
+
+> ✅ **Resuelto el 22-09, por otro camino: se dejó de usar la foto.** Ver la
+> sección siguiente. La foto nueva del grande **ya no bloquea la entrega**, pero
+> sigue siendo lo que haría falta para volver a un packshot fotográfico.
+
+### ⛔⛔ 22-09-2026 — LOS VASOS TO GO PASARON A SER GENERADOS
+
+**Decisión de Eli**, tomada sobre el resultado que armó ella misma en claude.ai y
+guardó en el Space **«BETWEEN_VASOS TOGO»** —
+https://www.magnific.com/app/spaces/a2ce7bd4-9df0-47db-b7b2-d96f5c81079c —:
+*«estos son el resultado que logré, reemplaza por este el trabajo de ayer ya que
+este está mejor logrado»*.
+
+**Qué son, dicho sin adorno.** No son la foto del vaso recortada: son **texto→
+imagen con Google Nano Banana 2** (2k), pidiéndole replicar el envase de la foto de
+referencia. **El logotipo lo redibujó el modelo**, no es el vector de la marca.
+Contradice la regla dura del estudio —«la IA hace ambiente y fondo, nunca el
+producto, nunca el logotipo» (`docs/SISTEMA-DE-MARCAS.md` §2)— y entra igual
+porque lo decidió la diseñadora de la cuenta. **Queda escrito acá para que no se
+redescubra en seis meses, y para que no se tome como permiso general.**
+
+**Por qué es mejor que el recorte del 21-09, medido:**
+
+| | Recorte fotográfico (21-09) | **Generado (22-09)** |
+|---|---|---|
+| Logotipo del grande | **«ƎTWEEN»** — la `B` se va por detrás en las 9 tomas | **entero y legible en los tres** |
+| Canto de la tapa | muescas de 15 px contra el follaje; hubo que reconstruirlo por tono | limpio de fábrica |
+| Eje | +4,49° / +3,86° / +3,00°, cada uno distinto | a plomo |
+| Mediano | pliegue físico del cartón, no sale con ningún filtro | sin defecto |
+| Orla del recorte | — | canto a 166–184 del beige del fondo: **no quedó nada** |
+| Alto de silueta del mayor | **1947 px** | 1221 px |
+
+Lo único que se perdió es **resolución**: los generados salen a 2k. Para el máster
+de 2250 alcanza —el trío compuesto entra a ancho completo (2324 px)— pero si un día
+un vaso tiene que ocupar la pieza entera, hay que pasarlo por el escalador de
+**precisión** (⛔ el creativo no: redibuja el logotipo).
+
+#### Se eligió la v2 del Space, y por medida
+
+El Space trae dos versiones de cada vaso. Manda **v2**:
+
+| Qué se midió | v1 | **v2** |
+|---|---|---|
+| Molde de la tapa (alto/ancho) entre los tres — lo que los hace familia | 0,077 | **0,014** |
+| Tono del kraft dentro del trío | 13,7/255 | **8,3/255** |
+| Ancho del lockup / ancho del vaso en el chico (el real da 0,702) | 0,606 | **0,635** |
+
+#### ⛔⛔ Lo generado NO viene a escala común — hay que ponérsela
+
+Cada vaso se generó **en su propio encuadre**, así que el alto en píxeles no dice
+nada del producto: en v1 el MEDIANO salía **más alto** que el GRANDE. Quien tome un
+vaso nuevo del Space y lo use tal cual, le está inventando el tamaño a la marca.
+
+`scripts/between-vasos-togo-v2.py` los reescala a la proporción **real** del envase
+—**0,712 / 0,861 / 1,000**, la del 21-09 medida con dos reglas independientes—, y el
+factor se ata al EXTRA, que es el de menor alto nativo: **todo baja y nada se
+interpola hacia arriba**. El trío del Space, que sí se generó de una sola vez, la
+confirma: 0,705 / 0,832 / 1,000.
+
+#### Y tres generaciones son tres superficies
+
+Entre los tres sueltos había **11/255** de diferencia de kraft — se ve apenas los
+pones uno al lado del otro. Se iguala con **UNA** ganancia multiplicativa por canal,
+medida en el cuerpo limpio (26–40 % del alto, encima del logotipo) y aplicada al
+vaso entero; multiplicativa para que la tapa negra y la tinta conserven su relación
+con el kraft. Queda en 0,0/255. **Un retoque, no cinco** — la lección de ayer fue
+«está sobreprocesado».
+
+#### ⚠️ La faja del 8 oz NO es la «faja de papel» del vaso descontinuado
+
+Trampa fácil, porque el manual dice más abajo «si tiene faja de papel, es el viejo:
+no va». **No aplica al 8 oz.** El descontinuado es cuerpo **gris oscuro** + faja de
+papel **crema** + tapa **café**. El 8 oz vigente es un vaso blanco con **faja de
+kraft** con el logotipo impreso y **tapa negra**: es de la familia actual.
+
+Y hay una diferencia real entre el 8 oz generado y el de la foto: **el generado
+lleva el kraft hasta la tapa** y no muestra el papel blanco asomando arriba. Se le
+pidió así en el prompt, o sea **es una decisión, no un error del modelo**. Si algún
+día hay que mostrar la faja como es, se regenera cambiando esa línea.
+
+#### Qué archivo es cuál
+
+| Archivo | Qué es |
+|---|---|
+| `BW-ToGo-mediano-8oz.png` · `-grande-12oz` · `-extra-16oz` | los tres sueltos, **ya a escala común entre sí** |
+| `BW-ToGo-tres-tamanos.png` · `-invertido.png` | los tres juntos, compuestos por código en los dos órdenes |
+| `BW-ToGo-trio-original.png` | el trío **tal como lo generó el modelo, de una sola vez**: una luz, una superficie, una toma. Cuando la pieza muestre los tres juntos y el orden sirva, **este es el más honesto** |
+
+⛔ **El invertido se recompone, no se espeja:** espejar deja el logotipo al revés.
+
+La entrega del 21-09 no se borró — quedó en
+`out/hilton/between/vasos-togo/_reemplazado-21-09/`, y en el commit `cc0f0a2`.
 
 ### ⭐⭐ EL RECORTE DE PRODUCTO SE ENTREGA A PLOMO Y SIN BRILLOS
 
@@ -3737,6 +3835,10 @@ entero y cortar el plato, que es lo que hace la referencia aprobada «El Match»
 
 > **Regla:** antes de usar una foto con vaso To Go, comparar el vaso contra
 > `togo-vaso-nobg.png`. Si tiene faja de papel, es el viejo: no va.
+>
+> ⚠️ **Salvo el 8 oz.** El chico de la familia vigente es un vaso blanco con faja
+> de **kraft** y tapa **negra** — no es el descontinuado, que era cuerpo gris con
+> faja **crema** y tapa **café**. La faja sola no decide: decide el conjunto.
 
 ## ⛔⛔ LA CAJA TABULAR DE LAS CIFRAS ERA EL PROMEDIO — y por eso se solapaban
 

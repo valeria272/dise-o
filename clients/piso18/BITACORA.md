@@ -1,5 +1,25 @@
 # Piso18 — bitácora
 
+## 2026-09-22 — Elisabet Soto · tercer arranque seguido que reporta lo mismo
+
+**Qué se hizo:** `/arranque` de verificación en el Windows de Eli — **ninguna pieza**.
+Todo verde otra vez (Node, Chrome, llavero, Magnific, Drive por token y por conector,
+TypeScript limpio). Lo nuevo no es el hallazgo: es que **es el tercer `/arranque`
+consecutivo** (17-09, 21-09, 22-09) que reporta los **mismos 11 archivos rotos**.
+
+**Dónde quedó:** `raw/hilton/piso18/ref-cumple/` intacto — los 11 HTML siguen ahí,
+cinco días después. Nada cambió en el repo hoy.
+
+**Qué sigue:** ⛔ **el doctor no arregla nada por reportarlo.** Bajar esos 11 archivos
+tiene que ser la tarea de alguien con nombre, no un renglón rojo del diagnóstico. Si
+el enlace del Drive pide sesión, el que los compartió tiene que dejarlos abiertos.
+Hasta entonces Piso 18 sigue **bloqueado para diseñar**.
+
+**Abierto:** lo mismo del 21-09 — decidir con Eli si a Piso 18 se le abre sistema
+(`/marca-nueva`) o se sigue caso a caso. Sin manual, sin ficha y sin referencias
+legibles, la marca no puede correr sola.
+
+
 ## 2026-09-21 — Elisabet Soto · las 11 referencias rotas SIGUEN rotas
 
 **Qué se hizo:** `/arranque` de verificación en el Windows de Eli — **ninguna pieza**.

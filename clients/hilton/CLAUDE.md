@@ -3347,6 +3347,289 @@ IMG_4151, que traen los tres juntos sobre la misma mesa.
 > los seis detalles de realismo del cartón. Para un vaso grande eso es **falso**:
 > le estábamos pidiendo que se pareciera al chico.
 
+### ⭐⭐⭐ CUÁNTO MIDE CADA UNO — la proporción, medida (21-09-2026)
+
+**Chico 0,719 · Mediano 0,864 · Grande 1,000**, con una banda de ±2,4 %.
+
+> 🔁 **Corregido el 21-09-2026, 2.ª ronda.** La primera entrega dio 0,716 / 0,838
+> y Eli lo cazó: «deben verse mejor proporcionados». No era percepción — el
+> mediano y el grande **comparten tapa** y en la entrega sus tapas medían
+> **4,8 % distinto**. Ahora 2,4 %.
+
+Es la cuenta que zanja «los productos no se ven proporcionales unos con otros».
+⛔ **No sale de comparar altos en píxeles**: en toda foto del trío los vasos están
+a distinta distancia de la cámara y el que quedó adelante mide de más. En
+`IMG_5715` el chico está 8 % más cerca que el grande.
+
+Sale del **horizonte**, sobre `IMG_4153` (mesa de listones). Para un objeto
+parado en un plano vale, exacto:
+
+```
+alto_real / altura_cámara = (y_base − y_tope) / (y_base − y_horizonte)
+```
+
+⛔ **El horizonte NO se saca cruzando las juntas de los listones de a pares:**
+son casi paralelas, cada cruce se va lejísimos y el punto de fuga sale con
+1.205 px de dispersión. ⭐ **Sí se saca de que están igualmente espaciadas:** sus
+alturas sobre una columna siguen `y(k) = (A·k + B)/(C·k + 1)` y el horizonte es
+`A/C`. Ajuste conjunto sobre 5 columnas y 29 juntas → `y = 1440 px`, residuo
+6,3 px. Implementado en `scripts/between-vasos-togo-proporcion.py`.
+
+> ✅ **El control obligatorio: el mediano y el grande COMPARTEN TAPA**, así que
+> en la ENTREGA ya escalada sus tapas tienen que medir lo mismo. ⚠️ El control se
+> hace sobre la entrega, **no** sobre la foto de medición: ahí los vasos se tocan,
+> el mate de uno se lleva parte del otro y el control da un falso visto bueno —
+> pasó, y dio 0,36 % sobre una medición contaminada.
+
+### La proporción se mide con DOS reglas, y se entrega el compromiso
+
+| Regla | Chico | Mediano | Dónde |
+|---|---|---|---|
+| **1 · El horizonte** | 0,705 | 0,843 | `IMG_4153`, listones igualmente espaciados |
+| **2 · La tapa compartida** | 0,733 | 0,885 | `IMG_5715`, mediano y grande llevan la misma tapa |
+| **Entregado** (media geométrica) | **0,719** | **0,864** | reparte el error en ±2,4 % |
+
+Las dos discrepan ~5 % en el mediano y **eso no es un error de medición**: cada
+vaso quedó fotografiado desde un ángulo distinto, así que ninguna escala pareja
+deja bien el alto **y** el diámetro a la vez. ⛔ Y no se arregla escalando
+distinto el ancho: eso deforma el logotipo impreso.
+
+> 📏 **Pendiente de cerrar con el cliente:** si Between dice de cuántas onzas son
+> los tres vasos (o se mide uno con regla), esto queda clavado sin estimar. La
+> tapa del chico se está tomando como 80 mm contra 90 mm de las otras dos, que es
+> la familia estándar 8 / 12 / 16 oz.
+
+⛔ **Dos trampas al medir sobre `IMG_4153`, las dos costaron una ronda:**
+la caja del recorte **no puede tocar el vaso** (si el mate llega al borde, el alto
+sale cortado y la proporción sale chica sin avisar — se comprueba con un
+`assert`); y como los tres **se tocan en la silueta**, el mate los une, así que
+los ANCHOS medidos ahí no sirven y el tope y la base se miden en una **ventana
+central** que es de ese vaso y de nadie más.
+
+Contra el estándar de la industria (8 / 12 / 16 oz → 0,68 / 0,82 / 1,00) la
+familia calza. **Los recortes sueltos ya están a escala común** en
+`public/assets/hilton/between/togo-sep2026/togo-vaso-{chico,mediano,grande}-nobg.png`:
+puestos los tres al 100 % quedan proporcionados sin tocarles nada.
+
+### ⛔ EL LOGOTIPO DEL GRANDE SALE CORTADO EN TODAS LAS TOMAS
+
+En el vaso **grande** se lee **«ƎTWEEN»**: la `B` se va por detrás del canto.
+No es defecto del recorte ni de una toma — **el vaso quedó girado así en las dos
+sesiones**. Revisado en `IMG_5714`, `5715`, `5716`, `5717` y en `IMG_4149`–`4157`,
+incluido `togo-grande-frontal-b.jpg` (IMG_4150), que el manual daba como «logotipo
+entero y legible»: **tampoco lo tiene entero**.
+
+**Se arregla de una sola forma: una foto nueva del grande con el logotipo al
+frente.** Estampárselo no — el manual lo prohíbe para tomas frontales (§El cartón
+generado se delata). El chico y el mediano sí lo traen completo.
+
+### ⭐⭐ EL RECORTE DE PRODUCTO SE ENTREGA A PLOMO Y SIN BRILLOS
+
+Criterio de Eli, 21-09-2026, sobre la 1.ª entrega de estos vasos: **«necesito que
+se vean más derechos y sin flash de cámaras o rayas de luz, deben verse mejor
+proporcionados y mejor imagen»**. Los recortes estaban limpios y medidos y aun así
+no pasaban: les faltaba oficio de packshot.
+
+**A plomo.** Los tres venían inclinados **+4,49° · +3,86° · +3,00°**, cada uno
+distinto — y eso no se lee como «inclinados», se lee como «no son una familia».
+El ángulo se mide: el eje de un cuerpo de revolución es la **bisectriz de sus dos
+flancos**, que son rectas con error de 0,4 a 1,4 px. Se gira con `INTER_LANCZOS4`
+sobre un lienzo con borde replicado y **el mate se vuelve a sacar sobre el vaso ya
+derecho** — si no, aplanar la luz y medir la base trabajan sobre un eje chueco.
+Verificado con `assert` de residuo < 0,45°.
+
+**Sin brillos.** «Flash de cámaras» son los especulares de la tapa de plástico y
+sus rayones; «rayas de luz» es el reflejo del cielo sobre el papel. ⛔ Un umbral
+duro los borra dejando canto. Lo que funciona es **comprimir el detalle con una
+tangente hiperbólica** contra una base muy desenfocada: lo suave queda igual y
+sólo lo que se dispara se satura. En la tapa, tope 6,5 y una mediana chica
+(0,4 % del ancho) para los rayones — con una mediana más grande se posteriza.
+**En el papel impreso, sólo los residuos POSITIVOS**, porque comprimir también
+los negativos aclara el logotipo. Y la raya más molesta es la de **la junta entre
+la tapa y el vaso**, así que esa compresión va sobre todo lo que no es tapa.
+
+### ⛔⛔⛔ «ESTÁ SOBREPROCESADO» — hasta dónde se limpia un packshot
+
+Veredicto de Eli el 21-09-2026, después de cinco rondas de limpieza: **«no
+aceptado… está sobreprocesado»**. Se le habían ido encima aplanado de baja
+frecuencia, igualado del contraste del grano, compresión de brillos, suavizado
+bilateral y un upscaler. **Cada paso arreglaba algo real** —una sombra, un
+pliegue, un reflejo, un flash— y entre todos le sacaron el aspecto de fotografía.
+
+> **La regla: el cuerpo del envase admite UN retoque, no cinco.** Quitarle la
+> sombra que la tapa proyecta sobre el papel — porque esa se lee como arruga y no
+> es del producto. Todo lo demás —veta del cartón, grano, textura— es de la foto
+> y se queda.
+
+**Lo que sí queda, y es todo:** balance de blancos medido; croma de la tapa a la
+mitad (el plástico negro espeja la muralla de plantas y sale verdosa); lo mismo
+con el aro blanco del chico; los tres igualados en tono entre sí; enfoque suave.
+
+⭐ **Y la sombra se quita por COCIENTE, no restando.** Una sombra multiplica la
+luz que llega, así que el factor `perfil_iluminado / campo_bajo` sigue la
+penumbra exacta —incluso un canto duro, donde una resta deja un hilo— y de paso
+devuelve el contraste del grano, que dentro de la sombra viene apagado.
+
+⚠️ **El perfil objetivo es un PERCENTIL ALTO (82), no la mediana.** En un vaso
+donde la sombra cubre medio cuerpo, la mediana ya viene con sombra y el cociente
+termina **oscureciendo la zona iluminada** en vez de levantar la sombra. Pasó, y
+el vaso salió más manchado que antes.
+
+### ⛔⛔⛔ EL LOGOTIPO IMPRESO SE PROTEGE DEL SUAVIZADO, Y LA MÁSCARA VA ANCHA
+
+Eli, 21-09-2026: **«los logos se ven mal y borrosos»**. Tenía razón, y eran dos
+fallas mías sumadas — las dos sobre el mismo trazo:
+
+1. ⛔ **La ventana de la mediana que DETECTA el logotipo era comparable al grosor
+   de la letra** (2 % del ancho). Una mediana de ese tamaño **se hunde dentro del
+   propio trazo**: el centro de la letra deja de parecer más oscuro que su
+   entorno y la máscara sale mordida. Tiene que ser **mucho más ancha que el
+   trazo** — 5,5 % del ancho.
+2. ⛔ **La máscara que lo PROTEGE no estaba dilatada.** Llegaba al centro del
+   trazo pero no a su canto, así que el canto se quedaba con la versión filtrada:
+   letras huecas, con orla clara y borrosas. Va dilatada ~1 % del ancho y con el
+   peso saturado a 1 sobre todo el trazo.
+3. ⛔ **Y el suavizado del grano pasaba por encima del logotipo.** Un bilateral
+   sobre un trazo impreso es la otra mitad de la borrosidad: la mezcla del
+   suavizado se pondera por esa misma máscara, y sobre la letra no entra.
+
+> **La regla, corta: todo filtro que toque el cuerpo del envase —aplanar,
+> suavizar, igualar grano— se pondera por una máscara del logotipo que sea MÁS
+> ANCHA que el trazo. El logotipo sale de la foto tal cual.**
+
+Verificado contra la foto cruda a la misma escala: el trazo vuelve a ser tinta
+maciza con canto definido, sin hueco ni orla.
+
+### ⭐⭐ MAGNIFIC SOBRE EL VASO: SÓLO PRECISION, Y CON EL ENTORNO PLANO
+
+Pedido de Eli el 21-09-2026: subir los vasos por Magnific y dejarlos guardados en
+un Space para reusarlos. Space: **«BETWEEN · vasos To Go (producto)»**, con los
+tres recortes, los tres mejorados y el prompt de referencia en la descripción.
+
+⛔ **El upscaler CREATIVO no entra acá.** Alucina detalle y sobre una marca
+impresa **te cambia el dibujo del logotipo** — `docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`
+lo dice y es la misma razón por la que este manual prohíbe generar el vaso en
+tomas frontales.
+
+⭐ **Lo que se usa: `ultra-photo` (Magnific Precision photo), 2x**, sharpness 8,
+grain 5, ultraDetail 10. Verificado: en la zona del logotipo la diferencia media
+contra la foto subida a 2x por Lanczos es de **2,87 niveles sobre 255** (p99 = 11).
+O sea afila el trazo y **no redibuja nada**. Costó 630 créditos los tres.
+
+⚠️ **Dos cuidados que hacen la diferencia:**
+
+1. **El entorno se deja PLANO antes de subir.** Un upscaler mira el contraste
+   local: si le llega el recorte sobre transparencia (que se aplana a negro) o
+   sobre cualquier fondo, dibuja un halo en todo el canto. Se rellena el exterior
+   con el color del píxel interior más cercano y no queda borde que realzar.
+2. **El alfa NO se escala: se RASTERIZA de nuevo.** El contorno se guarda como
+   polígono y se dibuja al tamaño nuevo. ⚠️ Y se guarda **ya trasladado al
+   recorte ajustado** — la primera vez quedó en coordenadas del lienzo grande y
+   al rearmar cayó corrido y más chico, con el control de la tapa compartida
+   saltando de 0,971 a 1,047. Ese control es justo lo que lo delata.
+
+En `scripts/between-vasos-togo-magnific.py` (`preparar` / `rearmar`).
+
+### ⛔⛔ UN DEFECTO FÍSICO DEL ENVASE NO SE ARREGLA FILTRANDO: SE CAMBIA DE TOMA
+
+El vaso **mediano** de `IMG_5715` tiene un **pliegue en el cartón**, y quedó
+girado justo hacia la cámara. Eli lo marcó tres veces como «una raya extraña».
+Se intentaron, en este orden, y ninguna lo saca:
+
+1. Reemplazar la baja frecuencia por el perfil del cilindro → le quita el tono,
+   pero el canto del pliegue sobrevive.
+2. Separar la banda fina con **mediana** en vez de gaussiano → quita el repique
+   del propio filtro (un pasaaltos gaussiano **dibuja** una línea en un escalón,
+   y parte de lo que se veía era eso), pero no el pliegue.
+3. **Igualar el contraste local del grano** → empareja la textura, no el relieve.
+4. **Clonar** superficie limpia del mismo vaso → estampó un fantasma del
+   logotipo, porque la fuente caía sobre las letras.
+
+⭐ **La solución era mirar la sesión completa:** en `IMG_5719` el MISMO vaso está
+solo, de frente, con el logotipo **completo** y **el lado bueno hacia la cámara**.
+El mediano se entrega desde ahí. La luz de esa toma es más dura, y da igual: el
+revelado reemplaza la baja frecuencia por el perfil del cilindro, así que la
+iluminación del origen no sobrevive — por eso mezclar tomas no rompe el set.
+
+⚠️ **Consecuencia para la medición:** la regla de la tapa compara los tres vasos
+**dentro de una misma foto**, así que se sigue midiendo sobre `IMG_5715` con
+recortes propios, aunque el mediano se entregue desde `IMG_5719`.
+
+⚠️ **Y dos umbrales que hubo que volver adaptativos:** el croma que separa la
+tapa del kraft (fijo en 35 perdía la tapa del chico, fijo en 48 se tragaba la
+sombra dura de la tapa del mediano y la dejaba como un roto gris — ahora sale de
+una semilla en el 12 % de arriba del propio vaso), y el balance de blancos, que
+con un parche fijo de mármol cayó en sombra en `IMG_5719` y corrió el color del
+kraft entero: ahora se estima con el 2 % más claro y neutro de la foto.
+
+### ⭐⭐⭐ EL CANTO CONTRA FONDO OSCURO SE RECONSTRUYE, NO SE SUAVIZA
+
+Eli, 21-09-2026, 3.ª ronda: «hay bordes que parecen mal recortados… sobre todo en
+las tapas». Tenía razón: la tapa es plástico negro contra una muralla de plantas
+oscura, ahí **no hay borde que ver** y el modelo devuelve una orilla dentada de
+±15 px que a ratos se trae una franja del fondo.
+
+⛔ **Lo que NO lo arregla:** suavizar el contorno (las muescas son más anchas que
+el filtro), una apertura morfológica (deja el borde ondulado), desenfocar el alfa
+(sólo difumina la muesca) ni ajustarle una elipse al borde medido — el borde
+medido **es** el problema, y el arco se fue 270 px de más tragándose medio fondo.
+
+⭐ **Lo que sí, y es la misma regla de siempre: el TONO.** La tapa es plástico
+neutro y todo lo de atrás —hoja verde o macetero terracota— tiene croma.
+
+1. Núcleo = lo que cumple el tono del **interior** de la tapa (umbrales sacados
+   del percentil 98 de L y de croma dentro del mate erosionado, no fijos).
+2. **Casco convexo** de ese núcleo: la silueta de una tapa vista de tres cuartos
+   es convexa, así que el casco no puede tener muescas ni por casualidad.
+3. **Dilatación CONDICIONADA al tono**, de a un píxel: crece sólo donde el color
+   sigue siendo el de la tapa, así se para exactamente en el canto y no se vuelve
+   a tragar la franja de fondo.
+
+### ⭐⭐ Y el alfa se RASTERIZA, no se desenfoca
+
+El contorno final se remuestrea a paso constante, se le pasa un pasabajos
+circular a lo largo del arco y **el polígono se rasteriza a 4× y se baja por
+promedio**. Así el canto queda con antialias de verdad. Remate de 3 px hacia
+adentro **por la normal** del contorno, no por erosión.
+
+### ⭐⭐⭐ «LÍNEAS EXTRAÑAS» EN EL PRODUCTO: LA CUENTA DE TRES BANDAS
+
+Mismo feedback: «se ven unas líneas extrañas… que quede muy liso con un poco de
+textura de kraft». Eran una **sombra proyectada** y, en el vaso mediano, un
+**pliegue del papel**. El canal se parte en tres y cada banda recibe lo suyo:
+
+| Banda | Qué trae | Qué se hace |
+|---|---|---|
+| **Baja** (mediana de ~1,4 % del ancho) | la sombra, la veta, el reflejo del cielo | se **reemplaza** entera por el perfil del cilindro |
+| **Media** (hasta ~0,9 % del ancho) | pliegues, arrugas, restos de sombra | se **bota** |
+| **Fina** | el grano del cartón | se **conserva** |
+
+Dos cuidados: el **logotipo** se excluye del cálculo de la banda baja (si no,
+arrastra el campo y después queda aureolado) y se protege con una máscara blanda
+para que no lo afecte el corte de la banda media. Y ⛔ **el clarity se apaga**:
+su radio es justo el del resto que deja la sombra al quitarla, y lo vuelve a
+dibujar como una línea.
+
+⚠️ La baja frecuencia se estima con **mediana**, no con gaussiano: la sombra
+tiene BORDE y el gaussiano no lo sigue. Antes de filtrar, el logotipo y todo lo
+que esté fuera del vaso se rellenan con el píxel válido más cercano, para que la
+mediana no se traiga el fondo de la foto.
+
+### ⛔ EL ARO BLANCO DEL CHICO NO SE RECORTA: SE MIDE
+
+Contra el mármol blanco de la terraza, el modelo de recorte (@imgly) **no ve el
+aro de la base del vaso chico** y se lo come. Probado en recorte suelto, en
+recorte cerrado, con contraste local (CLAHE) y en tres tomas distintas
+(`IMG_5715`, `5714`, `5720`): en todas lo pierde.
+
+Lo que sí: **la silueta de abajo se mide**. Una recta a cada flanco del cono
+(error 0,8 a 1,4 px) y una elipse al fondo amarrada a esas rectas. Verificado
+contra el perfil de saturación de la foto — el kraft termina en `y=4970`, el aro
+llega hasta `y=5100` y ahí empieza el mármol; la elipse ajustada cayó en **5103**.
+El mismo recorte sirve de **compuerta**: todo lo que quede por debajo o por fuera
+de esa elipse se bota, que es por donde se coló una cuña de mármol en el grande.
+En `scripts/between-vasos-togo-recorte.py`.
+
 ### Lo que trae la sesión, por bloque
 
 | Fotos | Qué es | Para qué sirve |

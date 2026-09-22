@@ -120,6 +120,12 @@ public/assets/**
 # archivos las composiciones de `src/compositions/piso18/` no rinden, y cada ronda
 # de correcciones vuelve a empezar de cero en otra máquina (15-09-2026).
 # Los originales se rebajan del Drive por el conector MCP — ojo, corta en 10 MB.
+# BETWEEN · los tres vasos To Go recortados sin fondo (21-09-2026). Excepción
+# deliberada, mismo criterio que los bottle shots de CAVA: son la base de toda
+# pieza de promo To Go y de los KV, están a escala común entre sí y reproducirlos
+# cuesta una sesión entera de medición. Sin ellos otro diseñador no rehace la
+# entrega — se cae al recorte viejo, que era el vaso CHICO para los tres tamaños.
+!public/assets/hilton/between/togo-sep2026/togo-vaso-*-nobg.png
 !public/assets/hilton/piso18/*.jpg
 !public/assets/hilton/piso18/*.png
 # Y el clip del salon vacio (8 MB): sale de IMG_4177.MOV, que pesa 115 MB y vive

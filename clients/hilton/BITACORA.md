@@ -1,3 +1,277 @@
+## 2026-09-21 — Elisabet Soto «Eli» · CIERRE DEL DÍA (BETWEEN)
+
+**Qué se hizo:** los tres vasos To Go recortados sin fondo, a escala común, para
+actualizar la promo — cinco PNG con transparencia real (los tres sueltos + el
+trío en los dos órdenes). Seis rondas con Eli: se enderezaron (venían inclinados
++4,5° / +3,9° / +3,0°, cada uno distinto), se rehizo el canto de la tapa por tono
+porque el modelo de recorte lo dejaba dentado contra el follaje, se reconstruyó
+el aro blanco del chico (contra el mármol el modelo no lo ve), se midió la
+proporción real con dos reglas independientes y **se terminó sacándole proceso,
+no poniéndole**: el veredicto fue «está sobreprocesado».
+
+**Dónde quedó:** `out/hilton/between/vasos-togo/` (5 PNG + `revision.html`),
+copia en el banco de marca `public/assets/hilton/between/togo-sep2026/`, y cuatro
+scripts `between-vasos-togo-*.py`. Space de Magnific **«BETWEEN · vasos To Go
+(producto)»** con los vasos y el prompt de referencia del envase. Todo rendido y
+entregado; nada a medias.
+
+**Qué sigue:** subir los cinco PNG al Drive de Between si el CM los va a usar
+este mes — hoy sólo están en el repo y en el Space.
+
+**Abierto — dos cosas, y las dos necesitan foto nueva, no retoque:**
+1. **El logotipo del vaso GRANDE se lee «ƎTWEEN».** Ese vaso quedó girado así en
+   las nueve tomas de las dos sesiones, incluida la que el manual daba como
+   «logotipo entero y legible». Pedir una foto del grande con el logotipo al
+   frente.
+2. **Al MEDIANO le queda una traza del canto de su sombra.** Ese vaso no tiene
+   toma buena: en IMG_5715 el cartón está **doblado** (relieve, no sale con
+   ningún filtro) y en 5716–5719 tiene sombra dura de la tapa sobre el cuerpo.
+   Pedir el mediano solo, con el lado sin dobleces al frente y sin la tapa
+   proyectando sombra.
+
+También pendiente de Eli: **de cuántas onzas son los tres vasos**. Con ese dato la
+proporción queda clavada sin estimar (hoy la tapa del chico se toma como 80 mm
+contra 90 mm, la familia estándar 8/12/16 oz).
+
+---
+
+## 2026-09-21 (cierre 13f) · Eli (Windows) — BETWEEN, VASOS TO GO: EL LOGOTIPO
+
+**Lo que devolvió Eli:** «los logos se ven mal y borrosos». Correcto, y era mío.
+
+Comparando contra la foto cruda a la misma escala se veía claro: el trazo salía
+lavado, hueco y con orla clara. Tres causas, todas sobre el mismo punto:
+
+1. La ventana de la mediana que **detecta** el logotipo era del 2 % del ancho —
+   comparable al grosor de la letra—, así que se hundía dentro del propio trazo y
+   la máscara salía mordida. Ahora va al 5,5 %.
+2. La máscara que lo **protege** no estaba dilatada: cubría el centro del trazo
+   pero no su canto, y el canto se quedaba con la versión filtrada.
+3. El **suavizado del grano** (bilateral) pasaba por encima del logotipo.
+
+Corregido: todo filtro que toque el cuerpo se pondera ahora por una máscara del
+logotipo **más ancha que el trazo**.
+
+**Se rehízo el paso de Magnific** sobre la versión corregida (sharpness 10,
+ultraDetail 12), otros **630 créditos**. Entrega al mismo tamaño: chico 2399×3162
+· mediano 2643×3742 · grande 2712×4285 · trío 7940×4285. Los nuevos quedaron
+también en el Space «BETWEEN · vasos To Go (producto)».
+
+---
+
+## 2026-09-21 (cierre 13e) · Eli (Windows) — BETWEEN, VASOS TO GO POR MAGNIFIC
+
+**Lo que pidió Eli:** «utiliza esas referencias pero hazlo en Magnific para que
+guardes los vasos como prompt en un space. La idea es mejorarlos, que se vean
+producto profesional y usarlos en distintas aplicaciones».
+
+**Space creado: «BETWEEN · vasos To Go (producto)»** —
+https://www.magnific.com/app/spaces/a2cd75a6-1446-45e6-9481-3bc94391494a
+Tiene los tres recortes, los tres mejorados, y en la descripción el **prompt de
+referencia** con las reglas duras del envase (kraft mate, tapa negra mate,
+logotipo serigrafiado y no etiqueta, aro blanco sólo en el chico, mediano y
+grande comparten tapa, nada de relight sobre el producto).
+
+**Modelo: `ultra-photo` (Precision photo) a 2x**, sharpness 8 · grain 5 ·
+ultraDetail 10. ⛔ El creativo no se usó: alucina detalle y sobre el logotipo
+cambia el dibujo. Verificado que no redibujó nada — la diferencia media en la
+zona del logotipo contra un 2x por Lanczos es **2,87 de 255**. **630 créditos**
+los tres (el ilimitado no aplicaba en esta sesión).
+
+**Los dos cuidados del método**, ya en el manual: el entorno se deja plano antes
+de subir (si no, el upscaler dibuja un halo en el canto) y el alfa se **rasteriza
+de nuevo desde el polígono**, no se escala.
+
+⛔ **Un error propio que el QA cazó:** el polígono se guardaba en coordenadas del
+lienzo sin recortar, así que al rearmar cayó corrido. Lo delató el control de la
+tapa compartida, que saltó de 0,971 a 1,047. Corregido: vuelve a 0,971.
+
+**Entrega, ahora al doble de resolución:** chico 2399×3162 · mediano 2643×3742 ·
+grande 2712×4285 · trío 7940×4285. Mismos nombres, misma carpeta, más la copia
+en el banco de marca.
+
+---
+
+## 2026-09-21 (cierre 13d) · Eli (Windows) — BETWEEN, VASOS TO GO · RONDA 4
+
+**Lo que devolvió Eli:** «la del centro se ve una raya extraña, debe verse como
+los vasos de al lado pero en su tamaño».
+
+**Era un defecto del envase, no del revelado.** El vaso mediano de `IMG_5715`
+tiene un **pliegue en el cartón** y quedó girado hacia la cámara. Probé cuatro
+caminos —aplanar la baja frecuencia, separar la banda fina con mediana en vez de
+gaussiano, igualar el contraste local del grano, y clonar superficie limpia— y el
+último estampó un fantasma del logotipo. Ninguno lo saca, porque no es luz: es
+relieve.
+
+⭐ **Se resolvió mirando la sesión entera:** en `IMG_5719` el MISMO vaso está
+solo, de frente, con el logotipo completo y el lado bueno hacia la cámara. El
+mediano ahora se entrega desde ahí. Mezclar tomas no rompe el set porque el
+revelado reemplaza la baja frecuencia por el perfil del cilindro y la iluminación
+del origen no sobrevive.
+
+**De paso quedó una mejora que sí vale para los tres:** la banda fina se separa
+con mediana, no con gaussiano. Un pasaaltos gaussiano **repica en un escalón** y
+dibuja justo la línea que se quería borrar — parte de lo que se veía era
+artefacto mío.
+
+**Dos umbrales pasaron a ser adaptativos:** el croma que separa tapa de kraft
+(sale de una semilla en el 12 % de arriba del propio vaso) y el balance de
+blancos (el 2 % más claro y neutro de cada foto, porque el parche fijo de mármol
+cayó en sombra en 5719 y corrió el color).
+
+**Proporción, remedida con la tapa sobre 5715 para los tres:** chico 0,712 ·
+mediano 0,861 · grande 1,000, con las dos reglas a ±0,9 % y ±2,1 %. Control de
+tapa compartida en la entrega: 0,970.
+
+**Entrega:** los mismos cinco PNG. Revisión en `revision.html`.
+
+---
+
+## 2026-09-21 (cierre 13c) · Eli (Windows) — BETWEEN, VASOS TO GO · RONDA 3
+
+**Lo que devolvió Eli:** «necesito principalmente que mejores el recorte, hay
+bordes que parecen mal recortados… sobre todo en las tapas. Y hay unas partes que
+se ven unas líneas extrañas: que se vea muy o bastante liso con un poco de
+textura de lo que es el kraft. Lo demás perfecto, la perspectiva está súper bien».
+
+**1 · El canto.** La tapa es plástico negro contra follaje oscuro: ahí el modelo
+de recorte inventa muescas de ±15 px y a ratos se trae una franja del fondo.
+Probé suavizar el contorno, abrir morfológicamente y ajustarle una elipse al
+borde medido — los tres fallan, y la elipse se fue 270 px de más. Lo resolvió el
+**tono**: núcleo neutro → casco convexo → dilatación condicionada al tono. Y el
+alfa ahora se **rasteriza a 4×** desde el polígono suavizado, con el remate de
+3 px por la normal.
+
+**2 · Las líneas extrañas.** Eran una sombra proyectada y, en el mediano, un
+**pliegue del papel**. Se arregló partiendo el canal en tres bandas: la baja se
+reemplaza por el perfil del cilindro, la media se bota y la fina —el grano del
+cartón— se conserva. El logotipo va protegido con máscara blanda y el clarity
+apagado, porque su radio volvía a dibujar el resto de la sombra.
+
+**3 · Tres errores propios que costaron la ronda**, los tres en el manual: la
+tapa no se elige por el componente que empieza más arriba; el casco convexo queda
+por dentro del canto real; y la baja frecuencia no se estima con gaussiano porque
+la sombra tiene borde.
+
+**Control:** la tapa del mediano contra la del grande —la misma tapa— queda en
+0,974 (ideal 1,000) y la del chico en 0,873 (ideal 0,889).
+
+**Entrega:** los mismos cinco PNG en `out/hilton/between/vasos-togo/` + copia en
+el banco de marca. Revisión en `revision.html`.
+
+---
+
+## 2026-09-21 (cierre 13b) · Eli (Windows) — BETWEEN, VASOS TO GO · RONDA 2
+
+**Lo que devolvió Eli sobre la ronda 1:** «necesito que se vean más derechos y
+sin flash de cámaras o rayas de luz, deben verse mejor proporcionados y mejor
+imagen. Está bien que sea sin fondo».
+
+**1 · A plomo.** Venían inclinados +4,49° el grande, +3,86° el mediano y +3,00°
+el chico —cada uno distinto, que es lo que hacía que no se leyeran como familia—.
+Ahora quedan en ±0,11°. El eje se mide por la bisectriz de los dos flancos y el
+mate se vuelve a sacar sobre el vaso ya derecho.
+
+**2 · Sin flashes ni rayas de luz.** Brillos comprimidos con tanh contra una base
+desenfocada, en la tapa completo y en el papel sólo los excesos (si no, se aclara
+el logotipo). Fuera también la raya blanca de la junta tapa/vaso.
+
+**3 · La proporción estaba mal de verdad, no era percepción.** El mediano y el
+grande **comparten tapa** y en la entrega sus tapas medían **4,8 % distinto**.
+Ahora se mide con dos reglas —el horizonte sobre IMG_4153 y la tapa compartida
+sobre IMG_5715— y se entrega la media geométrica: **chico 0,719 · mediano 0,864 ·
+grande 1,000**, con el desacuerdo repartido en ±2,4 % en vez de cargado a una.
+
+⛔ **Dos errores propios que costaron esta ronda, y quedaron en el manual:** las
+cajas de medición de IMG_4153 **cortaban** el vaso (el mate tocaba el borde), y
+como los tres se **tocan en la silueta** el mate los une, así que los anchos
+medidos ahí no servían — el control de «tapa compartida» de la ronda 1 dio un
+falso 0,36 % sobre una medición contaminada.
+
+⛔ **Y tres trampas de máscara**, todas en el manual: la tapa no se elige por el
+componente que empieza más arriba (una mota de 690 px se la robó al chico y el
+vaso salió con **la tapa café**); el casco convexo queda por dentro del canto real
+y hay que dilatarlo o deja orla; y el umbral de croma para separar plástico de
+papel se pasa con el balance de blancos aplicado.
+
+📏 **Pendiente con el cliente:** de cuántas onzas son los tres vasos. Con ese dato
+la proporción queda clavada sin estimar (hoy la tapa del chico se toma como 80 mm
+contra 90 mm, la familia estándar 8/12/16 oz).
+
+**Entrega:** los mismos cinco PNG en `out/hilton/between/vasos-togo/`, revisión en
+`revision.html`. Scripts: los cuatro `between-vasos-togo-*.py`.
+
+---
+
+## 2026-09-21 (cierre 13) · Eli (Windows) — BETWEEN, LOS TRES VASOS TO GO SIN FONDO
+
+**Qué pidió Eli.** Los tres tamaños de vaso To Go en tres fotos independientes,
+cada uno solo, más una imagen con los tres pero **«no tan apegados»**, todo **sin
+fondo** («se utilizará sólo el vaso de to go»), para actualizar la promo. Mandó
+dos carpetas de Drive como referentes: `1Jx4Z6hvIic0qyypIq6Ob2l3vZm4QiMBA`
+(= la sesión `cafes-sep2026`, IMG_5714–5729) y
+`1hHcwg-Z-h9OuOhM0rkc-eotuzSMpUuq9` (= `vasos-togo-sep2026`, IMG_4137–4175).
+Las dos ya estaban bajadas en el repo. Encargo extra: **«mejora un poco, que se
+vea profesional de fotógrafo pro»**.
+
+**La toma elegida: `IMG_5715`.** Es la única con los tres vasos **completos,
+separados y con los tres logotipos de frente**, y además en sombra abierta — luz
+suave, sin el sol duro de la mesa de listones. Descartadas: `5716`/`5717` (se
+tapan entre sí), `5718`–`5720` (falta el grande y hay medio vaso en sombra dura),
+`4151`–`4157` (sol duro y se solapan).
+
+**Lo que se entrega** — `out/hilton/between/vasos-togo/`, PNG con transparencia
+real y sin sombra:
+
+| Archivo | |
+|---|---|
+| `BW-ToGo-vaso-chico.png` | 1211 × 1592 |
+| `BW-ToGo-vaso-mediano.png` | 1303 × 1830 |
+| `BW-ToGo-vaso-grande.png` | 1355 × 2146 |
+| `BW-ToGo-tres-tamanos.png` | 3959 × 2146, de chico a grande |
+| `BW-ToGo-tres-tamanos-invertido.png` | el mismo, de grande a chico |
+
+Los tres sueltos van **a escala común**: puestos al 100 % quedan proporcionados
+entre sí. Copia en el banco de marca,
+`public/assets/hilton/between/togo-sep2026/togo-vaso-*-nobg.png`.
+Página de revisión: `out/hilton/between/vasos-togo/revision.html`.
+
+⭐⭐⭐ **La proporción se midió, no se estimó: chico 0,716 · mediano 0,838 ·
+grande 1,000 (±2 %).** En la foto los tres están a distinta distancia, así que
+los altos en píxeles mienten. Sale del horizonte, y el horizonte sale de que los
+listones de la mesa están **igualmente espaciados**. El control que la valida:
+mediano y grande **comparten tapa** y sus bocas corregidas dan el mismo diámetro
+con **0,36 %** de diferencia. Todo el detalle quedó en el manual.
+
+⛔ **Lo que hay que mirar, y no tiene arreglo por acá: el logotipo del vaso
+grande se lee «ƎTWEEN».** El vaso quedó girado así en las dos sesiones — se
+revisaron las nueve tomas donde aparece, incluida `togo-grande-frontal-b.jpg`,
+que el manual daba como «logotipo entero y legible» y tampoco lo tiene. **Pide
+una foto nueva del grande con el logotipo al frente.**
+
+⛔ **El aro blanco del chico no se recorta: se mide.** Contra el mármol blanco el
+modelo de recorte lo pierde en las tres tomas y con contraste local también. Se
+reconstruyó con recta en cada flanco + elipse al fondo, verificado contra el
+perfil de saturación de la foto (el aro termina en y=5100, la elipse cayó en 5103).
+
+**El revelado.** Balance de blancos medido sobre el mármol; sombra proyectada
+aplanada en luz **y en croma** dejando vivo el degradé del cilindro (ahí se fue
+la mancha verde que la muralla de plantas dejaba en el mediano); tapa al 16 % de
+croma; los tres igualados al mismo kraft; canto rematado 3 px hacia adentro y
+descontaminado; ruido suavizado antes de enfocar.
+
+**Scripts:** `between-vasos-togo-proporcion.py` (la medición),
+`between-vasos-togo-recorte.py` (mate, base reparada y revelado),
+`between-vasos-togo-entrega.py` (escala común y montaje),
+`between-vasos-togo-revision.py` (la página).
+
+⚠️ **QA:** `qa/motor.py --marca hilton` no corre — Hilton todavía no tiene
+`clients/hilton/reglas.yaml`. Son recursos sin texto ni zonas seguras, así que
+no aplica; la revisión fue a la vista, sobre fondo claro y oscuro.
+
+---
+
 ## 2026-09-21 (cierre 12) · Eli (Windows) — BETWEEN, CONCURSO RONDA 13: **el legal completo, y en 3 líneas** ✅ APROBADA
 
 > ✅ **Eli aprobó la ronda 13 el 21-09-2026, mirando la página de antes/después.**

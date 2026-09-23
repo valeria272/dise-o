@@ -187,10 +187,20 @@ aprobado.
 > estaba en la cuenta. Hoy sólo produce un aviso de «servidor sin autenticar» en
 > cada arranque. Hay que decidir si se autoriza o se quita.
 
-> ⚠️ **Dos sesiones sobre el mismo árbol.** Hoy hubo otra trabajando en el PAID
-> de Tierra Calma y en DT/Rentas. Un `/cierre` ajeno con `git add -A` y limpieza
-> **se llevó un archivo mío que no estaba commiteado**. Regla endurecida: **un
-> archivo nuevo se commitea apenas funciona**, no al cerrar el día.
+> ⚠️ **Dos sesiones sobre el mismo árbol, y mordió dos veces.** Hoy hubo otra
+> trabajando en el PAID de Tierra Calma y en DT/Rentas.
+>
+> 1. Un `/cierre` ajeno con `git add -A` y limpieza **borró un archivo mío que
+>    todavía no estaba commiteado** (`qa/textos-tierracalma.py`); hubo que
+>    reescribirlo entero.
+> 2. Al cerrar, ese mismo `git add -A` **absorbió toda esta documentación dentro
+>    de su commit** `554e21c`, que habla del PAID. No se perdió nada, pero el
+>    mensaje del commit no describe lo que lleva dentro: quien busque mañana «el
+>    carrusel» o «la referencia de Sonatta» en `git log` no lo encuentra.
+>
+> Regla endurecida: **un archivo nuevo se commitea apenas funciona**, no al
+> cerrar el día. Y si hay otra sesión viva, conviene commitear en tramos cortos
+> en vez de acumular para el cierre.
 
 ---
 

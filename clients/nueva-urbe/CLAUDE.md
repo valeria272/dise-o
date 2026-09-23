@@ -373,6 +373,21 @@ en pantalla. Es material de la marca de venta.
 > `PROYECTOS INMOBILIARIOS / VALLE ALTIPLÁNICO` — las 17 fotos y la carpeta `videos-dron`.
 > Todo lo demás hay que cotejarlo antes de usarlo.
 
+## ⭐ Dónde llega realmente el feedback del cliente
+
+**No siempre es un comentario anclado en Drive.** El 23-09-2026 el cliente pidió cambiar la
+slide 2 del carrusel PAID del 20-10 y **no había ningún comentario en la pieza**: el pedido
+estaba escrito en la **celda `COMENTARIOS CLIENTE`** de la fila correspondiente, dentro de
+la grilla del mes — «Quitar info sala de ventas». Carlos Figueroa movió la grilla ese día a
+las 13:55Z y ahí quedó.
+
+> **Antes de dar un mes por cerrado hay que leer las dos fuentes:** los comentarios anclados
+> de las piezas **y** la grilla, mirando su `modifiedTime`. Una sola de las dos deja pedidos
+> sin atender.
+
+La grilla también es donde el cliente escribe el copy del post y, en los reels, **la
+locución** (ver abajo).
+
 ## Reglas duras de copy
 
 Heredadas del Sheet `INFORMACIÓN PROYECTOS` del cliente y vigentes para las dos marcas:
@@ -383,6 +398,26 @@ Heredadas del Sheet `INFORMACIÓN PROYECTOS` del cliente y vigentes para las dos
 - **NO HAY SUBSIDIO.**
 - El **aeropuerto** nunca como primer atributo.
 - Los **CTA y los textos en pieza van verbatim del brief**. No se inventan botones ni claims.
+
+### Verbatim incluye la puntuación, y también la locución
+
+Dos precisiones que costaron el 23-09-2026:
+
+1. **La puntuación es parte del texto.** El reemplazo de la slide 2 del PAID lo mandó Diego
+   así: «Visita presencial antes de decidir. Deptos que puedes recorrer luego de agendar tu
+   visita por WhatsApp» — **sin punto final**, y así va. No se le «completa» la ortografía a
+   un texto que el cliente escribió.
+2. **⚠️ El brief del reel trae la LOCUCIÓN verbatim.** La grilla de octubre la escribe en
+   bloques `VOZ: […]`, uno por escena. El 23-09 se generaron 9 tomas **parafraseando** ese
+   texto —«Arrienda hoy desde setecientos quince mil pesos mensuales» donde el brief dice
+   «Desde $715.000 al mes»— y el reel se subió así. **Es un error y está pendiente de
+   corregir.** Antes de escribir una sola línea de locución hay que buscar los bloques `VOZ:`
+   en la grilla del mes.
+
+   El choque conocido: el brief cierra con «Agenda tu visita en rentas.inu.cl o escríbenos
+   por WhatsApp», y decir la URL hablada se come **5,3 s** contra los 3,8 s que dura la
+   escena de cierre. Eso se resuelve con la CM —acortar la escena, acelerar la toma o
+   aprobar que la URL solo se lea en pantalla—, no parafraseando por cuenta propia.
 
 ## Los datos del proyecto (octubre 2026)
 

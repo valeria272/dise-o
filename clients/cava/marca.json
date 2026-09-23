@@ -23,7 +23,7 @@
       "brillo": "#FFF7C1",
       "_nota": "es un DEGRADADO metálico en diagonal, nunca un color plano"
     },
-    "naranjoLogo": "#DD660E",
+    "naranjoLogo": "#E1670E",
     "blanco": "#FFFFFF",
     "bandera": {
       "azul": "#0063AF",
@@ -32,8 +32,9 @@
     },
     "tinta_plana": {
       "pantone": "PANTONE 159 U",
-      "_nota": "naranjo terracota declarado en el editable del banner; coincide con el #DD660E del isotipo"
-    }
+      "_nota": "naranjo terracota declarado en el editable del banner; el isotipo mide #E1670E"
+    },
+    "_naranjoLogo_nota": "Leído del VECTOR del logo en CAVA_SEPT.ai el 23-09-2026 (scripts/cava-logo-desde-editable.py) y comprobado sobre dos piezas publicadas: CAVA_SEPT_BRIEF3.png y CYBER_CAVA_ST.png dan las dos #E1670E. Antes decía #DD660E, que se había anotado a ojo de una pieza. El logo tiene DOS tintas: texto #FFFFFF y el racimo de la V y la tilde de MORANDÉ en este naranja — un logo todo blanco está mal."
   },
   "legal_obligatorio": {
     "texto": [

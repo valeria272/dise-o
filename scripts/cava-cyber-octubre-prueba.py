@@ -46,7 +46,11 @@ F_MIDDLE = SP + "/fonts/BebasNeuePro-Middle.otf"
 F_MANO   = "/Users/coni/Library/Fonts/Authentic Signature.otf"
 F_BUTLER = "/Users/coni/Library/Fonts/Butler_Bold.otf"
 
-LOGO_CAJA  = (257, 367, 906, 819)
+# El logo se saca VECTORIAL del .ai con scripts/cava-logo-desde-editable.py.
+# Antes se extraía del PNG con una máscara de luminancia y salía TODO BLANCO:
+# el racimo de la V y la tilde de MORANDÉ son naranja #E1670E y se perdían.
+LOGO_PNG   = "public/assets/cava/logo-cava-morande.png"
+LOGO_X, LOGO_Y, LOGO_W = 257, 367, 650        # medido sobre la pieza real
 LEGAL_CAJA = (1442, 0, 2250, 470)
 CAPSULA    = (535, 1922, 1015, 2289)
 SELLO_X, SELLO_BASE, PCT_BASE, OFF_BASE = 585, 2184, 2104, 2174
@@ -206,10 +210,9 @@ def main():
     d = ImageDraw.Draw(capa)
     sept = Image.open(SEPT).convert("RGB")
 
-    logo = extrae_blanco(sept, LOGO_CAJA, 120)
-    bb = logo.getbbox()
-    if bb: logo = logo.crop(bb)
-    capa.alpha_composite(logo, (LOGO_CAJA[0], LOGO_CAJA[1]))
+    logo = Image.open(os.path.join(RAIZ, LOGO_PNG)).convert("RGBA")
+    logo = logo.resize((LOGO_W, round(LOGO_W * logo.height / logo.width)), Image.LANCZOS)
+    capa.alpha_composite(logo, (LOGO_X, LOGO_Y))
 
     legal = Image.open(CYBER).convert("RGB").crop(LEGAL_CAJA).convert("RGBA")
     capa.alpha_composite(legal, (W - legal.width, 0))

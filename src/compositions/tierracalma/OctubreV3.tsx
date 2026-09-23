@@ -763,8 +763,11 @@ const H: React.FC = () => (
     </div>
     <Marco archivo="MARCO-ST" />
     {/* Banda alta: acá el medio lo ocupa el mapa. Centrado a 1520 el titular
-        caía justo encima de los rótulos SANTIAGO y TIERRA CALMA. */}
-    <Cuerpo desde={230} hasta={545}>
+        caía justo encima de los rótulos SANTIAGO y TIERRA CALMA.
+        ⛔ Y no puede empezar antes de la fila 250: ahí Meta pone su interfaz.
+        Con `desde={230}` el titular arrancaba en la 228 y la compuerta lo marcó
+        como bloqueante — la única pieza de octubre que pisaba la zona segura. */}
+    <Cuerpo desde={275} hasta={560}>
       <Modulado
         ancho={880}
         tramos={[

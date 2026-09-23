@@ -229,7 +229,7 @@ libre**, no en el alto completo.
 
 | Pieza | Banda | Qué ocupa el medio |
 |---|---|---|
-| `st-12-10` (H) | `[230, 545]` | los rótulos del mapa |
+| `st-12-10` (H) | `[275, 560]` | los rótulos del mapa **y**, arriba, la zona segura de Meta |
 | `c-20-10-4` (K4) | `[205, 570]` | los indicadores sobre la parcela |
 | `c-06-10-4` (E4) | `[205, 700]` | las dos casas (techumbre en la fila 574, chimenea en la 554) |
 | `c-20-10-1` (K1) | `[250, 670]` | la pareja (desde la fila 780) y el potrero |
@@ -632,6 +632,143 @@ encabezado de `Octubre.tsx`. **Pedirle a Carlos el mapa oficial** sigue abierto
 (es su pendiente #4).
 
 ---
+
+## 4 sexies. ⭐ CÓMO SE APLICA UN COMENTARIO — el método que dejó octubre 2026
+
+La grilla de octubre se corrigió en **cinco rondas y 24 comentarios**, todos de
+Diego sobre los PNG en Drive. Las reglas que salieron de ahí están repartidas por
+el manual (§4 en tipografía, §4 quinquies en el marco). Lo que va acá es el
+**método**: lo que hay que hacer *antes* de tocar una pieza. Es lo que más tiempo
+ahorró y lo que más caro salió aprender.
+
+### 1. Medir, y medir sobre el ORIGEN
+
+Ningún número de este manual está estimado a ojo. Las fotos de `oct/` son
+1080×1350 —el mismo tamaño del lienzo—, así que con `objectFit: cover` la fila
+del JPG **es** la fila del lienzo: se abre el JPG, se busca dónde empieza el
+sujeto, y esa fila manda.
+
+> ⛔ **No medir sobre el PNG rendido.** Se intentó y dio un perfil sin sentido:
+> el texto blanco y el degradado contaminan la luminancia. El perfil sale del
+> JPG limpio, siempre.
+
+Lo mismo con el marco: sus hairlines horizontales están en las filas **131 y
+1284**, idénticas en los seis archivos. Verificado leyendo el canal alfa, no
+mirando la imagen.
+
+### 2. Comprobar que el defecto existe antes de arreglarlo
+
+`c-20-10-5` traía *"centrar toda la información"*. Antes de mover nada se
+midieron las siete líneas de la pieza: estaban centradas con un desvío máximo de
+**1,5 px**. El problema era otro —el conjunto colgaba abajo, con 450 px de vacío
+arriba— y el arreglo correcto era estructural, no un empujón horizontal.
+
+Si se hubiera «corregido» lo que decía el comentario al pie de la letra, se
+habría roto algo que estaba bien y el problema real seguiría ahí.
+
+### 3. Corregir en el sistema, no en la pieza
+
+Cada vez que se pudo, la corrección pasó a ser una regla que se aplica sola:
+
+| Comentario | Podría haber sido | Quedó como |
+|---|---|---|
+| *"que varíe el tamaño según el largo"* | tres `fontSize` a mano | `cuerpoSans()`, que mide la frase |
+| *"centrar toda la información"* | mover el globo a ojo | `Globo` sin `y` entra en flujo |
+| *"interlineado más juntos"* | tocar esa pieza | `marginBottom` del componente |
+| *"IvyOra siempre en mayúscula"* | escribir el texto en caja alta | `textTransform` en `Modulado` |
+
+Un `size` puesto a mano en una llamada es deuda: la siguiente ronda de escala lo
+deja desalineado y nadie se entera.
+
+### 4. Después de un cambio global, revisar TODAS las piezas
+
+Centrar todo al medio fue correcto **y** destapó tres piezas donde el centro del
+cuadro es justo donde está el sujeto (`c-06-10-4`, `c-20-10-1`, `c-20-10-6`).
+Diego las marcó una hora después. Un cambio de sistema no termina en el commit:
+termina cuando se miraron las 16 piezas.
+
+### 5. Medir el alcance antes de decir qué cambió
+
+Cuando el arreglo toca un componente compartido, el alcance se **comprueba**
+comparando píxel a píxel contra la entrega anterior. Bajar el `marginBottom` del
+globo cambió cinco piezas y dejó once idénticas — eso se dice porque se midió.
+
+> ⚠️ Ojo con el ruido del codificador PNG: `c-20-10-4` apareció «distinta» y era
+> **un píxel con diferencia de 1**. Comparar por bytes no sirve; hay que comparar
+> por píxeles y poner un umbral.
+
+### 6. Un comentario abierto en Drive no significa «sin aplicar»
+
+Tres comentarios del 22-09 (`c-20-10-2`, `c-20-10-3`, `c-20-10-4`) seguían
+marcados abiertos al día siguiente **y estaban aplicados**: nadie los resolvió.
+Antes de rehacer algo por un comentario abierto, hay que verificar contra el
+render entregado.
+
+### 7. Las excepciones se declaran, no se esconden
+
+Siete piezas se salen del centrado al medio, y cada una tiene su fila en la tabla
+de §4 con la razón medida. Una excepción escrita es una decisión; una excepción
+silenciosa es un error que el siguiente va a «arreglar».
+
+### 8. Corregir la banda, no la gráfica
+
+Cuando el titular choca con algo, se acota la banda de texto. **Nunca** se mueve
+el marco, el plano ni el mapa: son assets medidos o bloqueados.
+
+
+## 4 septies. ⭐ LA COMPUERTA — `reglas.yaml`, desde el 23-09-2026
+
+Tierra Calma pasó meses sin reglas ejecutables: todo el QA era a mano, pieza por
+pieza. Ya existe. **Antes de entregar, se corre.**
+
+```bash
+python qa/textos-tierracalma.py src/compositions/tierracalma/OctubreV3.tsx \
+    --out out/tierracalma/oct2026/textos.json
+python qa/motor.py --marca tierra-calma \
+    --textos out/tierracalma/oct2026/textos.json \
+    out/tierracalma/oct2026/entrega/*.png
+```
+
+**Los textos se extraen del TSX, no se escriben a mano.** Una copia se
+desincroniza; el TSX es lo que se renderiza. El extractor es propio de esta marca
+porque acá **una pieza es un componente escrito a mano** —no hay array de datos
+como en Casablanca o EBEMA— y el emparejamiento sale de los arrays que la
+composición exporta más el mapa `GRUPOS`, que es lo único que se toca cada mes.
+
+> ⚠️ El extractor **falla a propósito** si alguna pieza queda sin textos. Un QA que
+> no lee una pieza y la da por limpia es peor que no tener QA. Pasó de verdad:
+> `c-20-10-2` y `c-20-10-3` están escritas con `<div>`/`<span>` propios y devolvían
+> cero bloques hasta que se le agregó la pasada de respaldo.
+
+### Las cinco reglas de la marca (todas de copy)
+
+| Regla | Qué atrapa |
+|---|---|
+| `sin-agua-potable` | **bloqueante** · «agua potable», «red de agua» |
+| `ruta-78` | **bloqueante** · «Ruta 68», «G-68» |
+| `grafia-padre-hurtado` | **bloqueante** · Peñaflor, Talagante |
+| `grafia-tierra-calma` | **bloqueante** · TierraCalma, Tierra-Calma |
+| `sin-huerfanas` | aviso · línea final de una sola palabra |
+
+`sin-agua-potable` es la razón de ser de todo esto: ese dato falso **se publicó**
+en `st-11-09`. Ahora no sale.
+
+### Lo que la compuerta encontró el primer día
+
+`st-12-10` era **bloqueante**: su titular arrancaba en la fila 228 y Meta tapa
+hasta la 250. Ninguna de las cinco rondas de revisión a ojo lo había visto. Se
+corrigió bajando la banda a `[275, 560]`.
+
+Los tres avisos de «desenfoque parcial» sí eran falsos positivos —cielo despejado
+de amanecer, que es liso por naturaleza— y se ajustó el tope con la medición
+escrita en `reglas.yaml`, no a ojo.
+
+### Lo que todavía NO cubre
+
+No hay reglas de imagen **propias de la marca**. Un tope de marca se calibra
+contra piezas **aprobadas por el cliente** y Tierra Calma no las tiene: las 10 de
+octubre siguen «En revisión». Cuando se aprueben: `python qa/calibrar.py`.
+
 
 ## 5. Reglas de diseño (del brief, innegociables)
 

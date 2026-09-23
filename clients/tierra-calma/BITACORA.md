@@ -5,6 +5,63 @@
 
 ---
 
+## 2026-09-23 (cierre) — Diego Aguilar
+
+**Qué se hizo:** Se cerró el día documentando el aprendizaje de las cinco rondas
+de octubre y, sobre todo, **Tierra Calma dejó de ser la marca sin compuerta**.
+
+**Lo nuevo, y es lo importante:**
+
+1. **`clients/tierra-calma/reglas.yaml`** — cinco reglas propias, todas de copy,
+   cada una con autor y cita verbatim. La que justifica todo el trabajo es
+   `sin-agua-potable`: ese dato falso **se publicó** en `st-11-09` de septiembre y
+   nadie lo detuvo. Ahora es bloqueante.
+2. **`qa/textos-tierracalma.py`** — extrae los textos del TSX. Propio de esta
+   marca porque acá una pieza es un componente escrito a mano, no una fila de un
+   array como en Casablanca o EBEMA.
+3. **`clients/tierra-calma/CLAUDE.md` §4 sexies y §4 septies** — el método de
+   cómo se aplica un comentario, y cómo se corre la compuerta.
+
+**La compuerta encontró algo el primer día.** `st-12-10` era **bloqueante**: su
+titular arrancaba en la fila 228 y Meta tapa hasta la 250. **Cinco rondas de
+revisión a ojo no lo habían visto.** Se corrigió bajando la banda a `[275, 560]`,
+se re-rindió y se subió sobre el mismo ID. Las 16 piezas pasan.
+
+Los tres avisos de «desenfoque parcial» sí eran falsos positivos —cielo de
+amanecer, liso por naturaleza— y el tope se ajustó con la medición escrita en el
+`porque` del propio `reglas.yaml`: bandas de cielo con desviación 3,4–10,8 contra
+13,7 o más en cualquier banda con textura. El corte quedó en 12.
+
+**Dónde quedó:** todo commiteado y subido. La entrega vigente es
+`out/tierracalma/oct2026/entrega/` (18 archivos) y la carpeta de Drive
+`1lJG3Xzwh77zSCSDQ4DiPsAJK0fAqcNwF`, siempre sobre los mismos IDs.
+
+**Qué sigue:** esperar la ronda del **cliente**. Las 10 piezas siguen «En
+revisión» y los 24 comentarios de octubre fueron todos internos de Diego.
+
+**Abierto:**
+
+1. ⚠️ **Falta la confirmación escrita de Fran o Blanca** para «Rol individual» y
+   «Acceso controlado». Van publicados en tres piezas con el OK verbal de Diego
+   del 22-09 y **no están en la lista blanca**. Es lo primero que hay que cerrar.
+2. **No hay reglas de imagen propias de la marca**, y no es olvido: un tope se
+   calibra contra piezas aprobadas por el cliente y no las hay. Cuando octubre se
+   apruebe, `python qa/calibrar.py`.
+3. Dos comentarios de Drive siguen abiertos aunque están aplicados
+   (`c-06-10-4`, `c-20-10-1`). Los cierra Diego.
+4. El conector MCP de Drive sigue caído; todo va por `scripts/drive-subir.py`.
+5. Sigue pendiente **el mapa oficial con Carlos** (`MAPA-1`/`MAPA-2` traen
+   topónimos corruptos y escudos G-68) y **avisar lo del agua potable publicada**
+   en septiembre.
+
+> ⚠️ **Lección de hoy que NO es de diseño:** dos sesiones trabajando sobre el mismo
+> árbol de git. La otra (Rentas) corrió su `/cierre` con `git add -A` y su limpieza
+> **se llevó un archivo mío que todavía no estaba commiteado**. Hubo que
+> reescribirlo. La regla «el render vuelve al repo el mismo día» se queda corta:
+> **un archivo nuevo se commitea apenas funciona**, no al final del día.
+
+---
+
 ## 2026-09-23 (tarde, 2ª vuelta) — Diego Aguilar
 
 **Qué se hizo:** Tres comentarios más, de las 15:00–15:02. Uno era de pieza y

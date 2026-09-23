@@ -74,7 +74,14 @@ que el enlace no cambia. Las láminas 2 a 6 no se tocaron.
 **Regla nueva:** recordatorio del cliente para las grillas de octubre: **ni títulos ni
 bajadas llevan punto**, en las cuatro cuentas. Queda en `CLAUDE.md` §F (se corrigió la
 redacción que dejaba pasar la bajada) y en los manuales de QB y Piso18.
-**Qué sigue:** nada. El carrusel queda entregado.
+**Dónde quedó:** `src/compositions/hilton/DtC1Turismo.tsx` (bajada sin punto), render en
+`out/hilton/dt/c1-turismo/entrega/C1 S5 DT n°1.mp4` y `entrega-gif/C1 S5 DT n°1.gif`,
+los dos subidos y reemplazados en `C1 N°1 S5 TURISMO` (el MP4) y en `C1 S5 DT - GIF` (el GIF).
+**Qué sigue:** nada. El carrusel queda entregado. Para octubre: antes de rendir cualquier
+pieza del complejo, revisar a ojo que ni títulos ni bajadas lleven punto
+(`qa/motor.py` todavía no lo comprueba).
+**Abierto:** logo solo en la portada (así se entregó) o en todas las láminas: el cliente
+aprobó sin pedirlo, así que queda como está salvo que Eli diga otra cosa.
 
 ## 2026-09-23 — Eli (Windows) · DT: carrusel video DÍA DEL TURISMO (FEED col M, 27-09), ronda 1
 

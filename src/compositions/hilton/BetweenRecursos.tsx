@@ -12,6 +12,10 @@
 import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
 import {BETWEEN} from '../../brand/hilton-between';
+/* `conCifras` construye la caja tabular a mano (Raleway no trae `tnum`). Se
+   importa desde el sistema y NO al revés: `BetweenSistema.tsx` no conoce este
+   archivo, así que no hay ciclo — verificado antes de agregar el import. */
+import {conCifras} from './BetweenSistema';
 
 /* ---------- ilustraciones de Eli ---------- */
 
@@ -32,6 +36,49 @@ export const ILUSTRACIONES = {
   flechaBucle: 'assets/hilton/between/recursos/flecha-bucle.png',
   flechaGrande: 'assets/hilton/between/recursos/flecha-grande.png',
   flechaCirculo: 'assets/hilton/between/recursos/flecha-circulo.png',
+
+  /**
+   * ⭐ SOL y NUBES — 09-09-2026, pedido de Eli para la ST del 22-09: «la
+   * referencia de la ST tenía líneas de dibujo como BW, debes añadir sol y nubes
+   * como ilustración, guíate de mis editables para dibujarlo correctamente».
+   *
+   * ⚠️ Estos tres NO salen de su `.svg`: se comprobó rindiendo su plancha
+   * completa (composición `BW-Plancha-Trazos`) y ahí sólo hay confeti, corazón,
+   * tres flechas, una flecha abajo y tres globos. O sea que «guíate de mis
+   * editables» es **dibújalos con MI mano**, no «cópialos».
+   *
+   * Se dibujan en `scripts/between-trazos-sol-nubes.py` con su mano MEDIDA sobre
+   * su propio archivo: tinta `#fffaee` (su clase `.st2`, que no es el beige
+   * `#fff9eb` del texto), contorno RELLENO y no trazo —su pincel está expandido
+   * a contornos—, su sombra `drop-shadow-2` (4/4/3, negro 25 %) y el grosor del
+   * trazo al 2 % del ancho del dibujo, que es lo que miden los doodles de la
+   * referencia de contenido.
+   */
+  sol: 'assets/hilton/between/recursos/sol.png',
+  nube: 'assets/hilton/between/recursos/nube.png',
+  nubeChica: 'assets/hilton/between/recursos/nube-chica.png',
+
+  /**
+   * ⭐⭐ SEGUNDA TANDA — el boceto que mandó Eli el mismo 09-09 sobre la pieza
+   * ya corregida: «necesito una ilustración como la que te dejo en esta
+   * captura». Su dibujo pide tres cosas que la primera tanda no tenía:
+   *
+   *   1. **tamaño**: dibujos grandes que **sangran por los bordes** del cuadro,
+   *      no viñetas contenidas dentro del margen;
+   *   2. **doble contorno**: la línea va REPASADA, como cuando la mano vuelve
+   *      sobre el trazo. Se consigue dibujando la misma línea dos veces — el
+   *      temblor se sortea en cada pasada, así que salen parecidas y no iguales;
+   *   3. **rayitas de acento**: grupos de dos o tres trazos cortos y curvos,
+   *      sueltos, que llenan el aire sin dibujar nada concreto. Son el primo
+   *      discreto del `confeti` que ya está en su plancha.
+   *
+   * `solGrande` está pensado para poner el centro FUERA del cuadro: lo que se ve
+   * es un arco enorme en la esquina con sus rayos, que es lo que hace su boceto.
+   */
+  solGrande: 'assets/hilton/between/recursos/sol-grande.png',
+  nubeDoble: 'assets/hilton/between/recursos/nube-doble.png',
+  nubeDobleChica: 'assets/hilton/between/recursos/nube-doble-chica.png',
+  rayitas: 'assets/hilton/between/recursos/rayitas.png',
 } as const;
 
 export type Ilustracion = keyof typeof ILUSTRACIONES;
@@ -147,7 +194,21 @@ export const LockupToGo: React.FC<{horario?: string; style?: React.CSSProperties
 
 /* ---------- mockup post IG con burbujas ---------- */
 
-export const BurbujaChat: React.FC<{children: React.ReactNode}> = ({children}) => (
+export const BurbujaChat: React.FC<{
+  children: React.ReactNode;
+  /**
+   * ⭐ RONDA 11 — ancho FIJO, y es una corrección medida sobre el editable de
+   * Eli. Ahí las cinco burbujas se dimensionan al contenido y quedan con cinco
+   * cantos derechos distintos, y las tres más largas **se salen del marco
+   * blanco del mock**: el marco termina en x=882 y la burbuja llega a 943, o
+   * sea 61 px afuera. Es el mismo defecto que la memoria
+   * `ui-mock-anti-desborde` dejó escrito con la píldora del reel de EBEMA.
+   * Con `ancho` las cinco comparten canto —la regla del manual, «una pila de
+   * cajas va toda del MISMO ANCHO» (§1 bis)— y no hay forma de que sangren.
+   */
+  ancho?: number;
+  size?: number;
+}> = ({children, ancho, size = 31}) => (
   <div
     style={{
       background: 'rgba(103,91,73,0.93)',
@@ -158,16 +219,19 @@ export const BurbujaChat: React.FC<{children: React.ReactNode}> = ({children}) =
          grises. Se añade al final de la pila para que solo actúe de reserva. */
       fontFamily: `${BETWEEN.fuentes.sans}, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji'`,
       fontWeight: 600,
-      fontSize: 31,
+      fontSize: size,
       lineHeight: 1.3,
-      padding: '18px 26px',
+      padding: `${Math.round(size * 0.55)}px ${Math.round(size * 0.8)}px`,
       borderRadius: 16,
-      marginBottom: 18,
-      maxWidth: 560,
+      marginBottom: Math.round(size * 0.5),
+      ...(ancho ? {width: ancho, boxSizing: 'border-box' as const} : {maxWidth: 560}),
       alignSelf: 'flex-end',
+      display: 'flex',
+      gap: Math.round(size * 0.42),
     }}
   >
-    • {children}
+    <span style={{flexShrink: 0}}>•</span>
+    <span>{children}</span>
   </div>
 );
 
@@ -273,86 +337,158 @@ export const Checklist: React.FC<{
   </div>
 );
 
+/**
+ * Mock de un post de Instagram: el marco blanco con cabecera, la foto adentro,
+ * las burbujas del listado encima y la barra de acciones abajo.
+ *
+ * ⭐⭐ RONDA 11 (04-09-2026) — vuelve al sistema, y con geometría MEDIDA.
+ * Eli entregó su editable de la slide 2 del cumpleaños («para que lo mejores»)
+ * y este mock es su diseño. La ronda 5 lo había sacado por criterio propio
+ * («un post dentro de un post»); manda la diseñadora, así que vuelve — pero
+ * arreglado.
+ *
+ * Las medidas salen de rasterizar su `.eps` a 1080×1350 y medirlo:
+ *   · marco  x 197-882 (685 de ancho) · y 203-1101 (898 de alto)
+ *   · ventana de la foto  x 227-855 (628) · y 300-940 (640)
+ *   · cabecera 97 px · barra de acciones + usuario 161 px
+ * O sea: relleno de 30 px, y la ventana es casi cuadrada (0,98), como un post.
+ *
+ * Los tres arreglos sobre su archivo:
+ *   1. las burbujas ya no se salen del marco ni quedan con cantos desparejos
+ *      (ver `BurbujaChat.ancho`);
+ *   2. el avatar es el LOGOTIPO real, no las letras «B∃TW» dibujadas a mano;
+ *   3. el marco es BLANCO, como el de Instagram. En beige de marca el mock
+ *      dejaba de leerse como una captura y se leía como una tarjeta.
+ */
 export const MarcoIGPost: React.FC<{
   usuario?: string;
   foto: React.ReactNode;
-  burbujas?: string[];
+  burbujas?: React.ReactNode[];
   notaLegal?: string;
+  /** Ancho del marco. 685 es el del editable de Eli sobre lienzo 1080. */
   ancho?: number;
-}> = ({usuario = 'between.coffeebar', foto, burbujas = [], notaLegal, ancho = 860}) => (
-  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-    <div
-      style={{
-        width: ancho,
-        background: BETWEEN.colores.beige,
-        borderRadius: 8,
-        padding: '22px 26px',
-        boxShadow: '0 24px 60px rgba(0,0,0,0.35)',
-      }}
-    >
-      {/* header */}
-      <div style={{display: 'flex', alignItems: 'center', gap: 18, marginBottom: 20}}>
-        <div
-          style={{
-            width: 62, height: 62, borderRadius: '50%',
-            border: '2px solid #7a6a58',
-            background: '#fff',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontFamily: BETWEEN.fuentes.sans, fontSize: 10, fontWeight: 800,
-            color: '#3b2f24', letterSpacing: 1,
-          }}
-        >
-          B∃TW
-        </div>
-        <div style={{fontFamily: BETWEEN.fuentes.sans, fontWeight: 800, fontSize: 34, color: '#3b2f24'}}>
-          {usuario}
-        </div>
-        <div style={{marginLeft: 'auto', fontSize: 34, color: '#3b2f24', letterSpacing: 2}}>•••</div>
-      </div>
-      {/* foto con burbujas encima */}
-      <div style={{position: 'relative', borderRadius: 4, overflow: 'hidden'}}>
-        {foto}
-        <div
-          style={{
-            position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column',
-            justifyContent: 'center', alignItems: 'flex-end', padding: '20px 22px',
-          }}
-        >
-          {burbujas.map((b) => (
-            <BurbujaChat key={b}>{b}</BurbujaChat>
-          ))}
-        </div>
-      </div>
-      {/* footer */}
-      <div style={{display: 'flex', alignItems: 'center', gap: 24, marginTop: 20, color: '#3b2f24'}}>
-        <span style={{fontSize: 40, color: '#e0443a'}}>♥</span>
-        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3b2f24" strokeWidth="1.8">
-          <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.6 8.6 0 0 1-3.9-.95L3 21l1.95-5.6A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z" />
-        </svg>
-        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3b2f24" strokeWidth="1.8">
-          <path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" />
-        </svg>
-        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3b2f24" strokeWidth="1.8" style={{marginLeft: 'auto'}}>
-          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-        </svg>
-      </div>
-      <div style={{fontFamily: BETWEEN.fuentes.sans, fontWeight: 800, fontSize: 30, color: '#3b2f24', marginTop: 14}}>
-        {usuario}
-      </div>
-    </div>
-    {notaLegal ? (
+  /** Alto de la ventana de la foto. 640 en el editable. */
+  altoFoto?: number;
+  /** Cuerpo de las burbujas. */
+  sizeBurbuja?: number;
+}> = ({
+  usuario = 'between.coffeebar',
+  foto,
+  burbujas = [],
+  notaLegal,
+  ancho = 685,
+  altoFoto = 640,
+  sizeBurbuja = 26,
+}) => {
+  const relleno = Math.round(ancho * 0.0438);          // 30 sobre 685
+  const anchoVentana = ancho - relleno * 2;
+  /* Las burbujas se apoyan en el canto derecho de la ventana con un aire de
+     `margen`, así que su ancho máximo es la ventana menos los dos aires. */
+  const margen = Math.round(anchoVentana * 0.035);
+  const anchoBurbuja = anchoVentana - margen * 2;
+  return (
+    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <div
         style={{
-          fontFamily: BETWEEN.fuentes.sans, fontStyle: 'italic', fontWeight: 500,
-          fontSize: 27, color: '#fff', textAlign: 'center', marginTop: 30,
-          maxWidth: 820, lineHeight: 1.45, textShadow: '0 2px 14px rgba(0,0,0,0.6)',
+          width: ancho,
+          background: '#ffffff',
+          borderRadius: 10,
+          padding: `${relleno}px ${relleno}px ${Math.round(relleno * 0.9)}px`,
+          boxShadow: '0 26px 64px rgba(0,0,0,0.38)',
         }}
       >
-        {notaLegal}
+        {/* cabecera */}
+        <div style={{display: 'flex', alignItems: 'center', gap: 16, marginBottom: relleno * 0.6}}>
+          {/* ⛔ RONDA 12 — Eli: «el logo del icono de la segunda slide no es los
+              colores que se utiliza. Es fondo café between + logo en beige».
+              Estaba al revés: círculo blanco con el logotipo en café. El ícono
+              de perfil de la marca es el disco en el CAFÉ `#675B49` con el
+              lockup en el beige `#FFF9EB` — los dos colores de marca, en su
+              orden. Se le quita también el aro claro, que sobre el disco café
+              no aporta y ensuciaba el canto. */}
+          <div
+            style={{
+              width: 66, height: 66, borderRadius: '50%',
+              background: BETWEEN.colores.cafe,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              overflow: 'hidden', flexShrink: 0,
+            }}
+          >
+            <Img
+              src={staticFile(BETWEEN.logo.beige)}
+              style={{width: 44, height: 44 / BETWEEN.logo.ratio, objectFit: 'contain'}}
+            />
+          </div>
+          <div
+            style={{
+              fontFamily: BETWEEN.fuentes.sans, fontWeight: 700, fontSize: 34,
+              color: '#3b2f24', letterSpacing: '-0.005em',
+            }}
+          >
+            {usuario}
+          </div>
+          <div style={{marginLeft: 'auto', fontSize: 32, color: '#7a6a58', letterSpacing: 3}}>•••</div>
+        </div>
+
+        {/* la ventana de la foto, con las burbujas encima */}
+        <div
+          style={{
+            position: 'relative', width: anchoVentana, height: altoFoto,
+            borderRadius: 3, overflow: 'hidden',
+          }}
+        >
+          {foto}
+          <div
+            style={{
+              position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column',
+              justifyContent: 'center', alignItems: 'flex-end',
+              padding: `${margen}px ${margen}px 0`,
+            }}
+          >
+            {burbujas.map((b, i) => (
+              <BurbujaChat key={i} ancho={anchoBurbuja} size={sizeBurbuja}>
+                {b}
+              </BurbujaChat>
+            ))}
+          </div>
+        </div>
+
+        {/* barra de acciones */}
+        <div style={{display: 'flex', alignItems: 'center', gap: 26, marginTop: relleno * 0.75, color: '#3b2f24'}}>
+          <span style={{fontSize: 42, color: '#e0443a', lineHeight: 1}}>♥</span>
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3b2f24" strokeWidth="1.8">
+            <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.6 8.6 0 0 1-3.9-.95L3 21l1.95-5.6A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z" />
+          </svg>
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3b2f24" strokeWidth="1.8">
+            <path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" />
+          </svg>
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3b2f24" strokeWidth="1.8" style={{marginLeft: 'auto'}}>
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+          </svg>
+        </div>
+        <div
+          style={{
+            fontFamily: BETWEEN.fuentes.sans, fontWeight: 700, fontSize: 30,
+            color: '#7a6a58', marginTop: 12,
+          }}
+        >
+          {usuario}
+        </div>
       </div>
-    ) : null}
-  </div>
-);
+      {notaLegal ? (
+        <div
+          style={{
+            fontFamily: BETWEEN.fuentes.sans, fontStyle: 'italic', fontWeight: 500,
+            fontSize: 26, color: BETWEEN.colores.beige, textAlign: 'center', marginTop: 34,
+            maxWidth: 820, lineHeight: 1.45, textShadow: '0 2px 14px rgba(0,0,0,0.65)',
+          }}
+        >
+          {notaLegal}
+        </div>
+      ) : null}
+    </div>
+  );
+};
 
 /* ---------- selector de texto iOS ---------- */
 
@@ -480,7 +616,18 @@ export const StickerQuiz: React.FC<{
   /** Versión baja, para cuando la foto deja poco alto libre sobre la zona
       segura inferior de las historias (340 px). */
   compacto?: boolean;
-}> = ({pregunta, opciones, correcta, ancho = 660, compacto = false}) => (
+  /**
+   * Opciones en DOS columnas (2×2), como muestra Instagram una encuesta de
+   * cuatro alternativas.
+   *
+   * ⭐ 02-09-2026: hizo falta al poner las cuatro opciones que pide el brief de
+   * «Emergencia Between» (las tres del brief más la que agregó el cliente). En
+   * una sola columna el sticker mide ~326 px y arrancando en y=1318 terminaba
+   * en 1644, o sea DENTRO de la zona segura inferior de Meta (que empieza en
+   * 1580). En 2×2 baja a ~199 px y entra sin pelear con la caja.
+   */
+  dosColumnas?: boolean;
+}> = ({pregunta, opciones, correcta, ancho = 660, compacto = false, dosColumnas = false}) => (
   <div
     style={{
       width: ancho,
@@ -505,23 +652,44 @@ export const StickerQuiz: React.FC<{
     >
       {pregunta}
     </div>
-    {opciones.map((o, i) => (
-      <div
-        key={o}
-        style={{
-          fontFamily: BETWEEN.fuentes.sans,
-          fontWeight: i === correcta ? 700 : 500,
-          fontSize: compacto ? 26 : 29,
-          color: i === correcta ? BETWEEN.colores.beige : '#2b2b2b',
-          background: i === correcta ? BETWEEN.colores.cafe : '#f1ede5',
-          borderRadius: 14,
-          padding: compacto ? '11px 20px' : '15px 22px',
-          textAlign: 'center',
-        }}
-      >
-        {o}
-      </div>
-    ))}
+    <div
+      style={{
+        display: dosColumnas ? 'grid' : 'flex',
+        ...(dosColumnas
+          ? {gridTemplateColumns: '1fr 1fr'}
+          : {flexDirection: 'column' as const}),
+        gap: compacto ? 10 : 14,
+      }}
+    >
+      {opciones.map((o, i) => (
+        <div
+          key={o}
+          style={{
+            /* ⭐ RONDA 4 §3 del manual: Raleway está auto-hospedada y NO trae
+               emojis. Sin nombrar la familia de color al final de la pila,
+               Chrome cae en un glifo monocromo y los ☕ 🥐 🥪 salen como
+               manchas grises. La encuesta de «Emergencia Between» los lleva
+               por brief. */
+            fontFamily: `${BETWEEN.fuentes.sans}, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji'`,
+            fontWeight: i === correcta ? 700 : 500,
+            fontSize: compacto ? 26 : 29,
+            color: i === correcta ? BETWEEN.colores.beige : '#2b2b2b',
+            background: i === correcta ? BETWEEN.colores.cafe : '#f1ede5',
+            borderRadius: 14,
+            padding: compacto ? '11px 20px' : '15px 22px',
+            textAlign: 'center',
+            /* en 2×2 las cuatro celdas tienen que verse del mismo alto aunque
+               «Todas las anteriores» sea más largo que «☕ Café» */
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            lineHeight: 1.15,
+          }}
+        >
+          {o}
+        </div>
+      ))}
+    </div>
   </div>
 );
 
@@ -806,15 +974,43 @@ export const PilaEsquina: React.FC<{
   lineas: {texto: string; fuerte?: boolean}[];
   lado?: 'izquierda' | 'derecha';
   abajo?: number;
-}> = ({lineas, lado = 'izquierda', abajo = 96}) => (
+  /**
+   * Todas las cajas al ancho de la MÁS ANCHA, en vez de que cada una se ajuste
+   * a su texto.
+   *
+   * ⭐ 02-09-2026, pedido de Eli: «se ve todo desordenado en los textos y no se
+   * ve pulcro». Con cada caja a su medida la pila queda en ESCALERA —tres
+   * anchos distintos y tres bordes derechos distintos—, y eso es lo que se lee
+   * como desorden, más que los números. Igualadas, el bloque tiene un solo
+   * borde derecho y se lee como una etiqueta de promo, no como tres apuntes.
+   *
+   * Se consigue con `alignItems: 'stretch'`: el contenedor está posicionado en
+   * absoluto y sólo lleva `left`, así que se encoge al contenido (lo ancho de
+   * la línea más larga) y las cajas lo llenan. No hace falta medir en JS.
+   */
+  igualarAncho?: boolean;
+}> = ({lineas, lado = 'izquierda', abajo = 96, igualarAncho = false}) => (
   <div
     style={{
       position: 'absolute',
-      [lado]: BETWEEN.bloque.margenX,
+      /**
+       * ⛔ BUG CORREGIDO EL 02-09-2026. Acá decía `[lado]: ...`, y `lado` vale
+       * «izquierda» o «derecha» — que NO son propiedades CSS. La clave
+       * calculada salía `izquierda: 84`, React la ignoraba y la caja se quedaba
+       * SIN desplazamiento: pegada al borde del lienzo en x=0, cortada.
+       *
+       * Lo cazó el QA en `BW ST 01-09 Promo To Go`, que ya estaba ENTREGADA: sus
+       * dos cajas de promo sangraban por el borde izquierdo y la tinta arrancaba
+       * a 22 px del canto, contra los 84 de margen. Afecta a toda pieza con
+       * `PilaEsquina` — también a las slides 2, 3 y 4 del carrusel To Go.
+       */
+      [lado === 'derecha' ? 'right' : 'left']: BETWEEN.bloque.margenX,
       bottom: abajo,
       display: 'flex',
       flexDirection: 'column',
-      alignItems: lado === 'izquierda' ? 'flex-start' : 'flex-end',
+      alignItems: igualarAncho
+        ? 'stretch'
+        : lado === 'izquierda' ? 'flex-start' : 'flex-end',
       gap: 6,
     }}
   >
@@ -831,16 +1027,44 @@ export const PilaEsquina: React.FC<{
           lineHeight: 1.1,
           color: BETWEEN.colores.beige,
           whiteSpace: 'nowrap',
-          /* ⭐ 01-09-2026, Eli: «los precios debes hacer que se vean opentype
-             tabular, como en adobe illustrator, así los números no se ven
-             desordenados». Con cifras proporcionales el «1» ocupa menos que el
-             «3» y una columna de precios queda dispareja. `tnum` les da a todas
-             el mismo avance y `lnum` las lleva a caja alta. */
-          fontVariantNumeric: 'tabular-nums lining-nums',
-          fontFeatureSettings: '"tnum" 1, "lnum" 1',
         }}
       >
-        {l.texto}
+        {/* ⭐ 01-09-2026, Eli: «los precios debes hacer que se vean opentype
+            tabular, como en adobe illustrator, así los números no se ven
+            desordenados». Acá caen los tres precios del carrusel To Go
+            ($4.290 · $3.790 · $5.290). El CSS `tnum` que había antes NO servía
+            —Raleway no trae la función—; ver `cifrasTabulares` en
+            BetweenSistema.tsx, que construye la caja tabular a mano.
+
+            ⭐⭐ 02-09-2026 — VUELVE, pedido de nuevo por Eli: «para los precios y
+            textos usa Opentype tabular como en Adobe Illustrator, ya que los
+            números se ven extraños y desordenados. Esto para las grillas».
+
+            Se había retirado el 01-09 porque Eli lo rechazó al verlo rendido, y
+            el motivo estaba medido: el «1» de Raleway es 18,5 % más angosto que
+            el «0», así que centrado en la caja tabular quedaba flotando con un
+            hueco a cada lado y «10:00» se leía como palabra partida.
+
+            ⭐⭐⭐ 5.ª pasada, y acá quedó BIEN — en las DOS líneas.
+
+            En la 4.ª se había sacado la tabular de la línea liviana, porque el
+            hueco de la caja del «1» se sumaba al espacio anterior y en «a 10:00»
+            se veía un espacio doble. Eli lo devolvió igual, señalando esta misma
+            story: «esta de acá no está con el texto tabular y los números se ven
+            extraños». Tenía razón: sacarla era esquivar el problema, no
+            resolverlo — y en el brief de la pieza los números van APILADOS
+            («Café + dulce / desde $3.790» y «Lunes a viernes / 08:00 a 10:00
+            hrs.»), o sea justo el caso en que la tabular tiene que estar.
+
+            El defecto se arregló de raíz en `cifrasTabulares`: ahora agrupa los
+            dígitos consecutivos y **descuenta el hueco en los dos bordes del
+            grupo** con un margen negativo, así que el grupo queda a ras del
+            texto que lo rodea y el hueco se reparte sólo por DENTRO, entre
+            cifras, donde se lee como espaciado normal (~1 px a cuerpo 40).
+            Por eso hay que pasarle el PESO: el descuento se calcula con el
+            ancho real de cada dígito, y el «1» va de 450/1000 en Medium a
+            518 en ExtraBold. */}
+        {conCifras(l.texto, l.fuerte ? BETWEEN.pesos.extrabold : 500)}
       </div>
     ))}
   </div>

@@ -4,6 +4,22 @@ import {Composition, Folder} from "remotion";
 import {ShowcaseComposition} from "./compositions/Showcase";
 import {SanEstebanReel, SE_REEL_FPS, SE_REEL_DURACION} from "./compositions/SanEstebanReel";
 import {REEL_TRAFICO, REEL_WSP_ANTOFAGASTA, REEL_MUDANZA} from "./compositions/sanEstebanReelesOctubre";
+import {MasCenterReel, REEL_02, REEL_03, duracionReel} from "./compositions/mascenter/MasCenterReel";
+
+
+// COPYWRITERS — Creative Operating System v1.0. Una pieza = un archivo = una
+// dirección de arte. No hay una composición "CopylabPost" con un prop `plantilla`,
+// y esa ausencia es el sistema: ver creative-system/COPYWRITERS_CREATIVE_OS.md §1.
+import {Signal} from "./compositions/copylab/Signal";
+import {Metafora} from "./compositions/copylab/Metafora";
+import {Work} from "./compositions/copylab/Work";
+import {Proof} from "./compositions/copylab/Proof";
+import {People} from "./compositions/copylab/People";
+import {Gcl} from "./compositions/copylab/Gcl";
+import {TypeLab} from "./compositions/copylab/TypeLab";
+import {ReelCover} from "./compositions/copylab/ReelCover";
+import {Carrusel} from "./compositions/copylab/Carrusel";
+import {RentasReelOctubre} from "./compositions/rentas/RentasReelOctubre";
 import {NuevaUrbeFacilidadesReel, NU_REEL_DURATION, NU_REEL_FPS} from "./compositions/NuevaUrbeFacilidadesReel";
 import {VideoSquare01} from "./compositions/VideoSquare01";
 import {BSaleProbe} from "./compositions/BSaleProbe";
@@ -23,6 +39,40 @@ import {ReelCelebracion, REEL_CELEBRACION_DURATION} from "./compositions/tierrac
 import {ReelPrimavera, REEL_PRIMAVERA_DURATION} from "./compositions/tierracalma/ReelPrimavera";
 import {Piezas4x5, Piezas9x16, Piezas1x1, PIEZAS_4x5, PIEZAS_9x16, PIEZAS_1x1} from "./compositions/tierracalma/Piezas";
 import {Specimen} from "./compositions/tierracalma/Specimen";
+import {
+  OctCarrusel,
+  OctPosts,
+  OctStories,
+  OCT_CARRUSEL,
+  OCT_POSTS,
+  OCT_STORIES,
+} from "./compositions/tierracalma/Octubre";
+import {
+  ReelPrimaveraOct,
+  ReelDronOct,
+  ReelDronOctV2,
+  StoryPetalos,
+  StoryPov,
+  REEL_DURATION as OCT_REEL_DUR,
+  REEL_DRON_V2_DURATION as OCT_DRON_V2_DUR,
+  STORY_DURATION as OCT_STORY_DUR,
+} from "./compositions/tierracalma/OctubreVideo";
+import {
+  V3ReelPrimavera,
+  V3ReelDron,
+  V3_REEL_D_DURATION,
+  V3_REEL_I_DURATION,
+} from "./compositions/tierracalma/OctubreVideoV3";
+import {
+  V3CarrE,
+  V3CarrK,
+  V3Posts,
+  V3Stories,
+  V3_CARR_E,
+  V3_CARR_K,
+  V3_POSTS,
+  V3_STORIES,
+} from "./compositions/tierracalma/OctubreV3";
 import {HistoriaPrimavera, HistoriaPaso, HistoriaEpoca, HISTORIA_DURATION} from "./compositions/tierracalma/HistoriasAnimadas";
 import {PruebaPosts4x5, PruebaHistoria, PruebaReel, PRUEBA_POSTS, PRUEBA_HISTORIA_ANIM_DURATION, PRUEBA_REEL_DURATION} from "./compositions/tierracalma/PruebaCarlos";
 
@@ -52,11 +102,36 @@ import {
   TRAVERSO_REEL_DURATION,
   TRAVERSO_REEL_FPS,
 } from "./compositions/TraversoPasamelaReel";
+import {LosDeSiempre, LDS_FPS, LDS_W, LDS_H, LDS_DURATION} from "./compositions/traverso/LosDeSiempre";
+import {LosDeSiempreEntrance, ENT_FPS, ENT_W, ENT_H, ENT_DURATION} from "./compositions/traverso/LosDeSiempreEntrance";
+import {LosDeSiempreEntranceV2, ENT2_FPS, ENT2_W, ENT2_H, ENT2_DURATION} from "./compositions/traverso/LosDeSiempreEntranceV2";
+import {LosDeSiempreEntranceV3, ENT3_FPS, ENT3_W, ENT3_H, ENT3_DURATION} from "./compositions/traverso/LosDeSiempreEntranceV3";
+import {LosDeSiempreEntranceV4, ENT4_FPS, ENT4_W, ENT4_H, ENT4_DURATION} from "./compositions/traverso/LosDeSiempreEntranceV4";
+import {LosDeSiempreV10, V10_FPS, V10_W, V10_H, V10_DURATION} from "./compositions/traverso/LosDeSiempreV10";
+import {LosDeSiempreV9, V9_FPS, V9_W, V9_H, V9_DURATION} from "./compositions/traverso/LosDeSiempreV9";
+import {LosDeSiempreV8, V8_FPS, V8_W, V8_H, V8_DURATION} from "./compositions/traverso/LosDeSiempreV8";
+import {LosDeSiempreV7, V7_FPS, V7_W, V7_H, V7_DURATION} from "./compositions/traverso/LosDeSiempreV7";
+import {LosDeSiempreV6, V6_FPS, V6_W, V6_H, V6_DURATION} from "./compositions/traverso/LosDeSiempreV6";
+import {LosDeSiempreV5, V5_FPS, V5_W, V5_H, V5_DURATION} from "./compositions/traverso/LosDeSiempreV5";
+import {TraversoRutaA, TraversoRutaB, RUTA_FPS, RUTA_W, RUTA_H, RUTA_DURATION} from "./compositions/traverso/LosDeSiempreTestRutas";
+import {GclPost, GCL_POST_DEMO} from "./compositions/gcl/GclPost";
 import {
   GclOrigenReel,
   GCL_ORIGEN_DURATION,
   GCL_ORIGEN_FPS,
 } from "./compositions/GclOrigenReel";
+import {
+  GclTurnoNocheReel,
+  GCL_R02_DURATION,
+  GCL_R02_FPS,
+} from "./compositions/GclTurnoNocheReel";
+import {Cap02Revision7} from "./compositions/gcl/Cap02Revision7";
+import {Cap02Bloque1, Cap02VozComparacion, VOZ_COMPARACION_FRAMES} from "./compositions/gcl/Cap02Bloque1";
+import {Cap02Bloque2} from "./compositions/gcl/Cap02Bloque2";
+import {Cap02FullRough, Cap02FullRoughClean, FULL_FRAMES} from "./compositions/gcl/Cap02FullRough";
+import {Cap02ClarityCut, V2_FRAMES} from "./compositions/gcl/Cap02ClarityCut";
+import {Cap02ClarityCutV3, V3_FRAMES} from "./compositions/gcl/Cap02ClarityCutV3";
+import {Cap02V4, Cap02PremasterReview, V4_FRAMES} from "./compositions/gcl/Cap02V4";
 
 // Social templates
 import {TikTokVideo} from "./templates/social/TikTokVideo";
@@ -76,7 +151,7 @@ import {TalkingHeadEdit} from "./templates/editing/TalkingHeadEdit";
 import {PodcastClip} from "./templates/editing/PodcastClip";
 
 import {
-  ToGo1, ToGo2, ToGo3, ToGo4,
+  ToGo1, ToGo1Direccion, ToGo2, ToGo3, ToGo4,
   HumorCafecito,
   Foto1, Foto2, Foto3, Foto4,
   EllaHablo,
@@ -85,6 +160,24 @@ import {
   StCowork, StDieciocho, StStrudel, StPrimavera, StHumorToGo, StPlateada,
   Cumple1, Cumple2,
 } from "./compositions/hilton/BetweenSeptiembre";
+import {
+  StCumpleC1, StCumpleC2, StCumpleC1Guia, StCumpleC2Guia,
+} from "./compositions/hilton/BetweenStCumpleCarrusel";
+import {
+  StS3HoraCafe, StS3Cowork, StS3Dieciocho, StS3HoraCafeGuia, StS3CoworkGuia,
+} from "./compositions/hilton/BetweenStS3";
+import {
+  C1S3Concurso1, C1S3Concurso2,
+} from "./compositions/hilton/BetweenC1S3Concurso";
+import {PlanchaTrazos} from "./compositions/hilton/BetweenPlanchaTrazos";
+import {PruebaEmoji} from "./compositions/hilton/BetweenPruebaEmoji";
+import {
+  StS4Strudel, StS4Primavera, StS4StrudelGuia, StS4PrimaveraGuia,
+} from "./compositions/hilton/BetweenStS4";
+import {
+  StS5HumorToGo, StS5Plateada, StS5HumorToGoGuia, StS5PlateadaGuia,
+  DURACION_PLATEADA,
+} from "./compositions/hilton/BetweenStS5";
 
 import {SelfieBannerSemanaPeluquero} from "./compositions/SelfieBannerSemanaPeluquero";
 import {SelfieCarruselFrizz} from "./compositions/SelfieCarruselFrizz";
@@ -92,13 +185,26 @@ import {SelfieCarruselEmoji} from "./compositions/SelfieCarruselEmoji";
 import {SelfieCarruselFiestas} from "./compositions/SelfieCarruselFiestas";
 import {SelfieCarruselClass} from "./compositions/SelfieCarruselClass";
 
+const clFeed = {durationInFrames: 1, fps: 30, width: 1080, height: 1350} as const;
+const clStory = {durationInFrames: 1, fps: 30, width: 1080, height: 1920} as const;
+
 export const RemotionRoot: React.FC = () => {
   const btFeed = {durationInFrames: 1, fps: 30, width: 1080, height: 1350} as const;
   const btStory = {durationInFrames: 1, fps: 30, width: 1080, height: 1920} as const;
   return (
     <>
+      <Folder name="MasCenter">
+        <Composition id="MC-Reel-02" component={MasCenterReel} durationInFrames={duracionReel(REEL_02, 30)} fps={30} width={1080} height={1920} defaultProps={REEL_02} />
+        <Composition id="MC-Reel-03" component={MasCenterReel} durationInFrames={duracionReel(REEL_03, 30)} fps={30} width={1080} height={1920} defaultProps={REEL_03} />
+        <Composition id="MC-Reel-02-Feed" component={MasCenterReel} durationInFrames={duracionReel(REEL_02, 30)} fps={30} width={1080} height={1080} defaultProps={REEL_02} />
+        <Composition id="MC-Reel-03-Feed" component={MasCenterReel} durationInFrames={duracionReel(REEL_03, 30)} fps={30} width={1080} height={1080} defaultProps={REEL_03} />
+      </Folder>
       <Folder name="HiltonBetween">
         <Composition id="BW-F-ToGo-1" component={ToGo1} {...btFeed} />
+        {/* La misma portada con la dirección al pie — pedido de Scarlette del
+            22-09. Va sobre la foto del vaso sobre la mesa y se entrega como
+            archivo APARTE: ver `ToGo1Direccion`. */}
+        <Composition id="BW-F-ToGo-1-Direccion" component={ToGo1Direccion} {...btFeed} />
         <Composition id="BW-F-ToGo-2" component={ToGo2} {...btFeed} />
         <Composition id="BW-F-ToGo-3" component={ToGo3} {...btFeed} />
         <Composition id="BW-F-ToGo-4" component={ToGo4} {...btFeed} />
@@ -116,6 +222,70 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="BW-F-Cowork-4" component={Cowork4} {...btFeed} />
         <Composition id="BW-S-ToGoDulce" component={StToGoDulce} {...btStory} />
         <Composition id="BW-S-Cumple" component={StCumple} {...btStory} />
+        {/* S2 · cumpleanos — las dos stories de secuencia del 07-09.
+            Las `-Guia` llevan marcada la zona del sticker: son para el CM y NO
+            se entregan al cliente. */}
+        <Composition id="BW-S-Cumple-C1" component={StCumpleC1} {...btStory} />
+        <Composition id="BW-S-Cumple-C2" component={StCumpleC2} {...btStory} />
+        <Composition id="BW-S-Cumple-C1-Guia" component={StCumpleC1Guia} {...btStory} />
+        <Composition id="BW-S-Cumple-C2-Guia" component={StCumpleC2Guia} {...btStory} />
+        {/* S3 · las tres historias de la semana 3, rehechas el 08-09.
+            Reemplazan a BW-S-HoraCafe / BW-S-Cowork / BW-S-Dieciocho, que no
+            rinden porque sus fotos de origen ya no existen — ver el manual
+            § «8 historias de septiembre YA NO SE PUEDEN REHACER».
+            Las `-Guia` llevan marcada la zona del sticker: son para el CM y NO
+            se entregan al cliente. La del 18-09 no lleva interacción. */}
+        <Composition id="BW-S3-HoraCafe" component={StS3HoraCafe} {...btStory} />
+        <Composition id="BW-S3-Cowork" component={StS3Cowork} {...btStory} />
+        <Composition id="BW-S3-Dieciocho" component={StS3Dieciocho} {...btStory} />
+        <Composition id="BW-S3-HoraCafe-Guia" component={StS3HoraCafeGuia} {...btStory} />
+        <Composition id="BW-S3-Cowork-Guia" component={StS3CoworkGuia} {...btStory} />
+        {/* S3 · CARRUSEL CONCURSO «SE BUSCA: CEO DEL CAFE» — feed 4:5.
+            Encargo de la grilla viva (FEED col 10, OK PARA DISENAR). Se entrega
+            como «C1 S3 CONCURSO N1/N2.png» en la carpeta S3 · BW del Drive. */}
+        {/* ⚠️ `jerarquia` es el orden de lectura que pidió contenido el 21-09
+            («principal CONCURSO, después la bajada, y desde ahí SE BUSCA…»).
+            `A` es la salida recomendada; `B` protege el cuerpo del titular y
+            `ronda5` reproduce la lámina que el cliente está mirando hoy.
+            Las dos láminas comparten el valor: un carrusel, un cuerpo de
+            titular. Se cambia en la revisión con
+            `--props='{"jerarquia":"B"}'`. */}
+        <Composition
+          id="BW-F-Concurso-1"
+          component={C1S3Concurso1}
+          defaultProps={{jerarquia: 'A' as const}}
+          {...btFeed}
+        />
+        <Composition
+          id="BW-F-Concurso-2"
+          component={C1S3Concurso2}
+          defaultProps={{jerarquia: 'A' as const}}
+          {...btFeed}
+        />
+        {/* S4 · las dos historias estaticas de la semana 4 (21 y 22-09).
+            Encargo de Eli del 09-09: guiadas por las dos referencias que dejo
+            contenido en Drive. Las `-Guia` llevan marcada la zona del sticker:
+            son para el CM y NO se entregan al cliente. */}
+        <Composition id="BW-S4-Strudel" component={StS4Strudel} {...btStory} />
+        <Composition id="BW-S4-Primavera" component={StS4Primavera} {...btStory} />
+        <Composition id="BW-S4-Strudel-Guia" component={StS4StrudelGuia} {...btStory} />
+        <Composition id="BW-S4-Primavera-Guia" component={StS4PrimaveraGuia} {...btStory} />
+        {/* ── S5 · 28 y 30 de septiembre ──
+            La del 28 es ESTATICA y va sin lockup: el vaso gigante ya trae el
+            logotipo impreso. La del 30 es ANIMADA — 9 s, que es lo que pidio
+            Eli el 11-09 ("minimo de 8 a 9 segundos", tope 15). Las `-Guia`
+            llevan marcada la zona del sticker y NO se entregan al cliente. */}
+        <Composition id="BW-S5-HumorToGo" component={StS5HumorToGo} {...btStory} />
+        <Composition id="BW-S5-HumorToGo-Guia" component={StS5HumorToGoGuia} {...btStory} />
+        <Composition id="BW-S5-Plateada" component={StS5Plateada}
+          durationInFrames={DURACION_PLATEADA} fps={30} width={1080} height={1920} />
+        <Composition id="BW-S5-Plateada-Guia" component={StS5PlateadaGuia}
+          durationInFrames={DURACION_PLATEADA} fps={30} width={1080} height={1920} />
+        {/* utilidad de extraccion, no una pieza: ver BetweenPlanchaTrazos.tsx */}
+        <Composition id="BW-Plancha-Trazos" component={PlanchaTrazos}
+          durationInFrames={1} fps={30} width={2660} height={828} />
+        <Composition id="BW-Prueba-Emoji" component={PruebaEmoji}
+          durationInFrames={1} fps={30} width={640} height={640} />
         <Composition id="BW-S-Calculos" component={StCalculos} {...btStory} />
         <Composition id="BW-S-Emergencia" component={StEmergencia} {...btStory} />
         <Composition id="BW-S-HoraCafe" component={StHoraCafe} {...btStory} />
@@ -336,6 +506,47 @@ export const RemotionRoot: React.FC = () => {
             />
           )),
         )}
+        <Composition id="TraversoV10" component={LosDeSiempreV10} durationInFrames={V10_DURATION} fps={V10_FPS} width={V10_W} height={V10_H} />
+        <Composition id="TraversoV9" component={LosDeSiempreV9} durationInFrames={V9_DURATION} fps={V9_FPS} width={V9_W} height={V9_H} />
+        <Composition id="TraversoV8" component={LosDeSiempreV8} durationInFrames={V8_DURATION} fps={V8_FPS} width={V8_W} height={V8_H} />
+        <Composition id="TraversoV7" component={LosDeSiempreV7} durationInFrames={V7_DURATION} fps={V7_FPS} width={V7_W} height={V7_H} />
+        <Composition id="TraversoV6" component={LosDeSiempreV6} durationInFrames={V6_DURATION} fps={V6_FPS} width={V6_W} height={V6_H} />
+        <Composition id="TraversoV5" component={LosDeSiempreV5} durationInFrames={V5_DURATION} fps={V5_FPS} width={V5_W} height={V5_H} />
+        <Composition id="TraversoEntranceV4" component={LosDeSiempreEntranceV4} durationInFrames={ENT4_DURATION} fps={ENT4_FPS} width={ENT4_W} height={ENT4_H} />
+        <Composition id="TraversoRutaA" component={TraversoRutaA} durationInFrames={RUTA_DURATION} fps={RUTA_FPS} width={RUTA_W} height={RUTA_H} />
+        <Composition id="TraversoRutaB" component={TraversoRutaB} durationInFrames={RUTA_DURATION} fps={RUTA_FPS} width={RUTA_W} height={RUTA_H} />
+        <Composition
+          id="TraversoEntranceV3"
+          component={LosDeSiempreEntranceV3}
+          durationInFrames={ENT3_DURATION}
+          fps={ENT3_FPS}
+          width={ENT3_W}
+          height={ENT3_H}
+        />
+        <Composition
+          id="TraversoEntranceV2"
+          component={LosDeSiempreEntranceV2}
+          durationInFrames={ENT2_DURATION}
+          fps={ENT2_FPS}
+          width={ENT2_W}
+          height={ENT2_H}
+        />
+        <Composition
+          id="TraversoEntrance"
+          component={LosDeSiempreEntrance}
+          durationInFrames={ENT_DURATION}
+          fps={ENT_FPS}
+          width={ENT_W}
+          height={ENT_H}
+        />
+        <Composition
+          id="TraversoLosDeSiempre"
+          component={LosDeSiempre}
+          durationInFrames={LDS_DURATION}
+          fps={LDS_FPS}
+          width={LDS_W}
+          height={LDS_H}
+        />
         <Composition
           id="TraversoPasamelaReel"
           component={TraversoPasamelaReel}
@@ -349,6 +560,32 @@ export const RemotionRoot: React.FC = () => {
           component={GclOrigenReel}
           durationInFrames={GCL_ORIGEN_DURATION}
           fps={GCL_ORIGEN_FPS}
+          width={1080}
+          height={1920}
+        />
+        {/* G.CL · Cap. 02 «Revisión 7» — ROUGH CUT v3. 776f · 25,87 s · 112,5 BPM */}
+        <Composition id="GclCap02Bloque1" component={Cap02Bloque1} durationInFrames={138} fps={30} width={1080} height={1920} />
+        <Composition id="GclCap02FullRough" component={Cap02FullRough} durationInFrames={FULL_FRAMES} fps={30} width={1080} height={1920} />
+        <Composition id="GclCap02PremasterReview" component={Cap02PremasterReview} durationInFrames={V4_FRAMES} fps={30} width={1080} height={1920} />
+        <Composition id="GclCap02V4" component={Cap02V4} durationInFrames={V4_FRAMES} fps={30} width={1080} height={1920} />
+        <Composition id="GclCap02ClarityCutV3" component={Cap02ClarityCutV3} durationInFrames={V3_FRAMES} fps={30} width={1080} height={1920} />
+        <Composition id="GclCap02ClarityCut" component={Cap02ClarityCut} durationInFrames={V2_FRAMES} fps={30} width={1080} height={1920} />
+        <Composition id="GclCap02FullRoughClean" component={Cap02FullRoughClean} durationInFrames={FULL_FRAMES} fps={30} width={1080} height={1920} />
+        <Composition id="GclCap02Bloque2" component={Cap02Bloque2} durationInFrames={294} fps={30} width={1080} height={1920} />
+        <Composition id="GclCap02VozComparacion" component={Cap02VozComparacion} durationInFrames={VOZ_COMPARACION_FRAMES} fps={30} width={1080} height={1920} />
+        <Composition
+          id="GclCap02Revision7"
+          component={Cap02Revision7}
+          durationInFrames={776}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="GclTurnoNocheReel"
+          component={GclTurnoNocheReel}
+          durationInFrames={GCL_R02_DURATION}
+          fps={GCL_R02_FPS}
           width={1080}
           height={1920}
         />
@@ -444,6 +681,83 @@ export const RemotionRoot: React.FC = () => {
           fps={30}
           width={1800}
           height={1450}
+        />
+        {/* OCTUBRE 2026 · V3 — la grilla rehecha del 22-09 (16:12Z). Manda ésta. */}
+        <Composition id="TCV3ReelPrimavera" component={V3ReelPrimavera} durationInFrames={V3_REEL_D_DURATION} fps={30} width={1080} height={1920} />
+        <Composition id="TCV3ReelDron" component={V3ReelDron} durationInFrames={V3_REEL_I_DURATION} fps={30} width={1080} height={1920} />
+        <Composition id="TCV3CarrE" component={V3CarrE} durationInFrames={V3_CARR_E.length} fps={30} width={1080} height={1350} />
+        <Composition id="TCV3CarrK" component={V3CarrK} durationInFrames={V3_CARR_K.length} fps={30} width={1080} height={1350} />
+        <Composition id="TCV3Posts" component={V3Posts} durationInFrames={V3_POSTS.length} fps={30} width={1080} height={1350} />
+        <Composition id="TCV3Stories" component={V3Stories} durationInFrames={V3_STORIES.length} fps={30} width={1080} height={1920} />
+
+        {/* OCTUBRE 2026 — video. Imagen clave con Magnific → Kling 2.5 → 30 fps */}
+        <Composition
+          id="TCOct01ReelPrimavera"
+          component={ReelPrimaveraOct}
+          durationInFrames={OCT_REEL_DUR}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        {/* v2 — ronda del cliente del 22-09: textos nuevos, Seedream 5 Pro +
+            Kling 3.0 + ElevenLabs Music v2, y cierre con el logo animado. */}
+        <Composition
+          id="TCOct13ReelDronV2"
+          component={ReelDronOctV2}
+          durationInFrames={OCT_DRON_V2_DUR}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="TCOct13ReelDron"
+          component={ReelDronOct}
+          durationInFrames={OCT_REEL_DUR}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="TCOct08StoryPetalos"
+          component={StoryPetalos}
+          durationInFrames={OCT_STORY_DUR}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="TCOct15StoryPov"
+          component={StoryPov}
+          durationInFrames={OCT_STORY_DUR}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+
+        {/* OCTUBRE 2026 — sobre los marcos bloqueados del diseñador (MARCOS.ai) */}
+        <Composition
+          id="TCOctCarrusel"
+          component={OctCarrusel}
+          durationInFrames={OCT_CARRUSEL.length}
+          fps={30}
+          width={1080}
+          height={1350}
+        />
+        <Composition
+          id="TCOctPosts"
+          component={OctPosts}
+          durationInFrames={OCT_POSTS.length}
+          fps={30}
+          width={1080}
+          height={1350}
+        />
+        <Composition
+          id="TCOctStories"
+          component={OctStories}
+          durationInFrames={OCT_STORIES.length}
+          fps={30}
+          width={1080}
+          height={1920}
         />
         <Composition
           id="TCPiezas4x5"
@@ -780,6 +1094,65 @@ export const RemotionRoot: React.FC = () => {
             captionPreset: "bold" as const,
           }}
         />
+      </Folder>
+
+      {/* ------------------------------------------------------------------
+          GCL — piezas estáticas del feed de Grupo Copylab (@copywriters.cl).
+          Sistema visual: negro + rosado eléctrico (src/brand/gcl.tokens.json).
+          No se renderizan a mano: las pide el agente social con
+          AGENTE SOCIAL MEDIA/tools/remotion_render.py
+      ------------------------------------------------------------------- */}
+      <Folder name="GCL">
+        <Composition
+          id="GclPost"
+          component={GclPost}
+          durationInFrames={1}
+          fps={30}
+          width={1080}
+          height={1350}
+          defaultProps={GCL_POST_DEMO}
+        />
+        <Composition
+          id="GclHistoria"
+          component={GclPost}
+          durationInFrames={1}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={GCL_POST_DEMO}
+        />
+        <Composition
+          id="GclCuadrado"
+          component={GclPost}
+          durationInFrames={1}
+          fps={30}
+          width={1080}
+          height={1080}
+          defaultProps={GCL_POST_DEMO}
+        />
+      </Folder>
+      <Folder name="Rentas">
+        <Composition
+          id="RentasReelOctubre"
+          component={RentasReelOctubre}
+          durationInFrames={900}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+      </Folder>
+      <Folder name="Copywriters">
+        {/* Feed 4:5 — el formato principal del sistema. */}
+        <Composition id="CL-Signal"   component={Signal}   {...clFeed} />
+        <Composition id="CL-Metafora" component={Metafora} {...clFeed} />
+        <Composition id="CL-Work"     component={Work}     {...clFeed} />
+        <Composition id="CL-Proof"    component={Proof}    {...clFeed} />
+        <Composition id="CL-People"   component={People}   {...clFeed} />
+        <Composition id="CL-Gcl"      component={Gcl}      {...clFeed} />
+        <Composition id="CL-TypeLab"  component={TypeLab}  {...clFeed} />
+        <Composition id="CL-Carrusel" component={Carrusel} {...clFeed} defaultProps={{slide: 1}} />
+        {/* 9:16 — respeta las zonas seguras de Meta. */}
+        <Composition id="CL-ReelCover" component={ReelCover} {...clStory} />
       </Folder>
     </>
   );

@@ -1,0 +1,289 @@
+# Reglas ejecutables de PISO18 Centro de Eventos.
+#
+# ⛔ Estas reglas son DE ESTA MARCA. **Piso18 comparte edificio con DoubleTree, no
+#    sistema gráfico.** Nada de DT se le traspasa —ni tipografía, ni paleta, ni logo,
+#    ni «LA LEY DE ELI» de DT— y nada de acá va para allá. Palabras de Eli el
+#    09-09-2026: «Todo es propio y diferente a DT, recuerda no mezclar las marcas.»
+#
+# ⛔ Y el caso que estas reglas tienen que impedir en las DOS direcciones:
+#    «bodas» está PROHIBIDO en Piso18 y es OBLIGATORIO en DoubleTree, donde
+#    `Noche de Bodas` es el nombre propio de un programa del hotel que el cliente
+#    exigió por escrito. La misma palabra, veredicto opuesto según la marca.
+#
+# Quien firma es Elisabet Soto, diseñadora de las cuatro cuentas del complejo Hilton.
+#
+# Fuente: lo que dictó el 15-09-2026 al abrir la S4, más la medición de las piezas
+# aprobadas en `raw/hilton/piso18/ref-aprobadas/`.
+
+marca: piso18
+nombre: PISO18 Centro de Eventos
+version: 5
+actualizado: 2026-09-22
+
+autoridad:
+  - quien: Elisabet Soto
+    rol: diseñadora del cliente
+    alcance: [piso18]
+    canal: comentarios en la grilla de Drive y encargo directo
+
+ajustes:
+  zona-segura-meta:
+    porque: >-
+      El logotipo va arriba y centrado por sistema de marca —medido en las dos piezas
+      aprobadas: tope y=207 @1080 en historia, y=105 en feed—, o sea dentro de los
+      250 px que la regla de agencia protege. La zona segura existe para el TEXTO,
+      no para el logotipo, y este es orgánico, no paid.
+    args:
+      excepciones:
+        - {x0: 0.28, y0: 0.0, x1: 0.72, y1: 0.18}
+      # ⚠️ CALIBRADO en modo control: la historia aprobada `ST N°1 S1.png` pone su
+      # LEGAL y su dirección al pie y llega al **2,64 %** de tinta en la franja
+      # inferior (y 0,67 % en la derecha), contra el 1,0 % que tolera agencia. O sea
+      # que con el tope de agencia la pieza que el cliente firmó salía rechazada.
+      # El legal al pie es decisión de la marca y está aprobado; el tope sube a 3 %.
+      max_fraccion: 0.03
+
+  respiro-borde:
+    porque: >-
+      Dos motivos, y el segundo es una limitación del check que conviene tener escrita.
+      (1) El titular de esta marca va prácticamente a sangre: medido en la historia
+      aprobada `ST N°1 S1.png`, la línea «ESTA ES TU OPORTUNIDAD» ocupa 1021,9 px de
+      1080 y deja 29 px de margen, así que con el margen de agencia (60 px @1080) la
+      propia pieza aprobada del cliente saldría marcada.
+      (2) ⚠️ **En una pieza que es SÓLO fotografía, este check no mide texto: mide la
+      foto.** La máscara de tinta toma las zonas claras, y en un salón con guirnaldas
+      de luces arriba y mantel blanco abajo eso toca los cuatro bordes por naturaleza.
+      Medido, fracción de tinta en el margen de 26 px:
+        aprobadas — `C2 S1 n°2` 0,0 % · `ST N°1 S1` 0,0 % · `Post-Matrimonio` 0,4 % ·
+                    `Post-cumpleaños` 1,6 % · **`C2 S1 n°1` 6,5 %**
+        S4        — slide2 0,3 % · slide4 1,7 % · post-noche 5,4 % · slide3 9,0 % ·
+                    **slide1 20,4 %**
+      Las dos que más puntúan —la aprobada `C2 S1 n°1` y mi `slide1`— son la MISMA
+      clase de pieza: portada de carrusel, foto a sangre y sólo el logotipo. El número
+      no separa diagramación de fotografía, separa fotos claras de fotos oscuras.
+      ⇒ El tope se pone donde no marque piezas de sólo foto, y queda anotado que
+      **el texto pegado al borde en Piso18 hoy se revisa mirando**, no con esta regla.
+      Para que sirva habría que aislar el bloque de texto de la foto, que es bastante
+      más que una máscara de tinta.
+    args:
+      minimo_px_1080: 26
+      max_fraccion_tinta: 0.25
+
+  # ⛔⛔ NO SE CALIBRA `foto-estirada`. Léelo antes de tocarlo.
+  #
+  # El 15-09-2026, en la S5, las dos historias salieron BLOQUEADAS con «foto
+  # estirada para llenar el formato»: racha de filas idénticas del **18 %** del
+  # alto en la del 28-09 (desde y=82 %) y del **11 %** en la del 30-09 (desde
+  # y=89 %). **No había ninguna foto estirada: era el fondo oscuro liso.**
+  #
+  # La tentación evidente era subir el tope del 8 % al 19 % y seguir. ⛔ No se
+  # hizo, y no se hace: esa regla existe porque en una story de Revex una foto
+  # estirada de verdad ocupó el **34 %** de la pieza, y con el tope en 19 % la
+  # habría dejado pasar. Un check que no marca nada no es un check.
+  #
+  # ⇒ Se arregló **la pieza**, no la regla: entra `GranoFondo` a
+  # `src/brand/piso18.ts` —dos capas de `feTurbulence` en claro sobre oscuro, a
+  # 0,05 y 0,035 de opacidad— y con eso dos filas contiguas dejan de ser
+  # idénticas. Además se ve mejor: la referencia que dio Eli para esa historia
+  # no tiene un negro digital de fondo, tiene un cuero.
+  #
+  # **La regla de la marca, entonces: todo fondo oscuro plano de Piso18 lleva
+  # grano.** El mismo arreglo apaga el aviso de `desenfoque-parcial`, que sobre
+  # un color plano mide nitidez cero por definición.
+
+  desenfoque-parcial:
+    porque: >-
+      Falso positivo comprobado en MODO CONTROL sobre la pieza aprobada del cliente.
+      Razón de nitidez mínima por bandas (tope de agencia 0,026):
+        aprobadas — `C2 S1 n°1` 0,531 · `Post-cumpleaños` 0,327 · `C2 S1 n°2` 0,149 ·
+                    `Post-Matrimonio` 0,091 · **`ST N°1 S1` 0,0136**
+        S4        — post-noche 0,615 · slide4 0,171 · slide1 0,099 · slide3 0,089 ·
+                    último frame de la animada 0,025 · **slide2 0,0081**
+      Las fotos de esta marca son de salón con **profundidad de campo real fuerte**
+      —teleobjetivo y bokeh de guirnaldas— y las piezas llevan además un velo en
+      degradado arriba. Las dos cosas producen bandas con nitidez muy distinta que
+      NO son un desenfoque aplicado a un pedazo. El corte en 0,006 no marca ninguna
+      aprobada ni ninguna de la S4, y sigue atrapando una banda realmente desenfocada,
+      que cae órdenes de magnitud más abajo.
+      ⚠️ Es el mismo ajuste que hizo Revex por la misma razón (fondos de local con
+      profundidad real), pero con un tope MÁS bajo: mismo check, marcas distintas,
+      números distintos — por eso el número vive acá y no en el código.
+    args:
+      razon_min: 0.006
+
+# ── VIDEO · la corrección de color que se nota, está mal ────────────────────
+# ⚠️ NO EJECUTABLE: `qa/motor.py` sólo corre piezas estáticas. Estos son los
+#    números con los que se revisa a mano una corrección de color de un reel,
+#    hasta que exista compuerta de video. El porqué está en CLAUDE.md.
+#
+# Criterio de Eli, 22-09-2026, sobre la terraza del reel S4:
+#   «se ve muy mal, se ve extraño y oscuro… hazlo sutil como para que no se note»
+#
+# Se mide el MISMO plano antes y después del grade. Pasa si las cuatro se cumplen:
+#
+#   piel_delta      <= 2      puntos de luminancia, máscara YCrCb
+#                             (la versión rechazada la bajó de 135,0 a 122,6)
+#   sombras_delta   <= 8      media del 25 % más oscuro
+#                             (la rechazada, de 65,0 a 35,7)
+#   mediana_delta   <= 3      p50 global
+#   recorte         == 0.00 % píxeles >= 254, antes Y después
+#
+# Y tiene que MEJORAR al menos dos de estas tres, o la corrección no sirve:
+#   punto de negro (p0.5) baja · dominante |R-B| baja · micro contraste sube
+#
+# ⛔ «Quemada» casi nunca es sobreexposición. Si el recorte ya es 0,00 %, no hay
+#    nada que recuperar en las altas: lo que hay es VELO, y se ataca por el punto
+#    de negro y el micro contraste, no bajando el brillo.
+#
+# ⛔ Los deslizadores de CapCut no sirven acá: su contraste pivotea en el 50 %
+#    (127 de 255) y la mediana de un plano a contraluz está en 144, así que subir
+#    contraste lo aclara todavía más. La corrección se hornea con ffmpeg.
+
+# ── VIDEO · la transición de una historia animada tiene que TERMINAR ────────
+# ⚠️ NO EJECUTABLE: `qa/motor.py` sólo corre piezas estáticas. Es la compuerta
+#    manual para una historia animada, hasta que exista compuerta de video.
+#    El porqué está en CLAUDE.md, sección «Las historias animadas son Remotion».
+#
+# Reclamo del cliente, 22-09-2026, sobre la ST animada de la S4:
+#   «se había pedido que la transición de slides sea más fluida, porque como que
+#    se queda pegada a la mitad»
+#
+# Se rinde la secuencia del empuje —PNG, no el MP4, que mete ruido de compresión—
+# y se compara cada fotograma con el anterior (diferencia media en gris, y qué
+# porcentaje de columnas cambia). Pasa si, en CADA transición de la pieza:
+#
+#   fotogramas_congelados == 0     ningún par con diferencia < 1,0 dentro del empuje
+#   salto_fuera_del_empuje == 0    ningún par con diferencia > 25 fuera de él
+#
+# El defecto se delata solo: diferencia 0,00 —congelado— seguida de un salto grande
+# sobre muchas columnas es un CORTE, no un movimiento. Medido en la versión
+# rechazada: f98→99 daba 0,00 y f99→100 daba 57,11 sobre el 70 % de las columnas.
+#
+# ⛔ La causa a revisar PRIMERO no es el easing sino el ORDEN de los planos: en
+#    `AbsoluteFill` el último hijo queda arriba, así que escribirlos al revés deja
+#    al que sale tapando al que entra, y con un desfase del 30 % nunca termina de
+#    irse. Se escriben del primero al último.
+#
+# ⚠️ Y esto se verifica en TODAS las transiciones, no sólo en la primera.
+#
+# ── VIDEO · el GIF de una pieza animada ────────────────────────────────────
+# `scripts/p18-s4-gif.py`. 25 fps —el GIF cuenta el tiempo en centésimas y 30 fps
+# no es representable, así que la pieza se desfasa—, sin difuminado, 540×960.
+# El script verifica que el remuestreo no haya reintroducido el defecto de arriba.
+
+reglas:
+
+  - id: sin-bodas
+    titulo: La palabra «bodas» no se escribe nunca
+    check: texto_prohibido
+    severidad: bloqueante
+    autor: Elisabet Soto
+    fecha: 2026-09-15
+    cita: >-
+      Al cliente no le gusta que se escriba bodas. Nunca se escribe.
+    ratificada_por_el_cliente: 2026-09-17
+    cita_del_cliente: >-
+      OK, pero no usemos la palabra BODA, cambiando el hashtag, aprobado.
+      (Grilla de septiembre, FEED!I14 — el copy pasó de #BodaDePrimavera a
+      #EventoDePrimavera. La regla ya no depende del criterio de la diseñadora:
+      la pidió el cliente por escrito.)
+    porque: >-
+      Es la regla más dura de la cuenta y la única excepción conocida a que los textos
+      en pantalla vayan literales del brief: si la grilla, el brief o una referencia
+      trae «bodas» en un texto que va a la pieza, se reemplaza por matrimonio(s) o
+      novios. ⛔ NO se traspasa a DoubleTree, donde `Noche de Bodas` es nombre propio
+      de un programa y corregirlo sería romperle el nombre a un producto.
+    args:
+      patron: "\\bbodas?\\b"
+
+  - id: fucsia-de-selfie
+    titulo: El fucsia de Selfie no entra en Piso18
+    check: color_prohibido
+    severidad: bloqueante
+    autor: Elisabet Soto
+    fecha: 2026-09-15
+    cita: >-
+      Todo es propio y diferente a DT, recuerda no mezclar las marcas.
+    porque: >-
+      Piso18 tiene UN fucsia y lo entregó Eli: `#D4145A`. El de Selfie es `#FF007C` y
+      no se le parece —son dos marcas del estudio con dos rosados distintos, y la
+      diseñadora de Selfie es otra persona (Constanza Lizana). Si aparece el de
+      Selfie en una pieza de Piso18, hubo contaminación cruzada.
+      ⚠️ Medir el fucsia sobre un JPG da `#D6145B` / `#D5135A` —a 2 del oficial, que
+      es el ruido de compresión—; por eso el valor del sistema se fija, no se mide.
+    args:
+      colores: ["#FF007C"]
+      # ⚠️ CALIBRADO, no por defecto. Los dos fucsias distan **17,9 de ΔE**, y el
+      # `delta_e: 22` que trae el check por defecto marcaba el 35,6 % de la ST2 —
+      # o sea, acusaba a Piso18 de usar el color de Selfie por usar el suyo.
+      # Medido sobre la pieza rendida: los píxeles del fucsia propio caen a ΔE
+      # 17,5–18 de #FF007C y **por debajo de 16 no hay ni un píxel**. El corte en
+      # 12 deja 5,5 de holgura con el color propio y cubre un radio razonable
+      # alrededor del de Selfie.
+      delta_e: 12
+
+  # ⛔ REGLA NO ESCRITA — «en historia el texto vive sobre la zona del sticker».
+  #
+  # Es una regla real de la cuenta —el botón de cotización es lo último de la pieza
+  # y cae justo donde el CM pega el sticker de link— pero **ya la cubre la regla de
+  # agencia `zona-segura-meta`** (250 arriba / 340 abajo / 115 derecha), que corre
+  # en toda historia. Repetirla acá sería revisar dos veces lo mismo y dar por
+  # ganado un criterio propio que en realidad es el de agencia.
+  #
+  # Lo que SÍ es propio de Piso18 está arriba, en el ajuste `zona-segura-meta`: la
+  # excepción de la franja del logotipo, que va dentro de los 250 px por sistema de
+  # marca (tope y=207 @1080, medido en `ST N°1 S1.png`).
+  #
+  # ⚠️ Y lo que ninguna regla puede comprobar sola: en una historia ANIMADA la
+  # posición y el contraste del botón se miden en el ÚLTIMO fotograma. Para eso hay
+  # que extraer el frame final del MP4 y pasarlo por este mismo motor.
+
+  # ══════════════════════════════════════════════════════════════════════════
+  # ⭐ CRITERIO DE ELI · 16-09-2026 — dictado al aprobar la S4
+  # ══════════════════════════════════════════════════════════════════════════
+  #
+  # Tres cosas que no son comprobables por programa sobre una sola pieza, pero que
+  # mandan sobre cómo se arma. Van acá porque Piso18 todavía no tiene `CLAUDE.md`.
+  #
+  # ── 1 · EL VELO DEL LOGOTIPO EN LA PORTADA DE FEED ─────────────────────────
+  # *«Oscurece un poco arriba con una transparencia muy sutil para que el logo se
+  #  pueda visualizar de mejor manera. Con opacidad.»*
+  #
+  # La portada de un carrusel lleva **velo negro en degradado** debajo del
+  # logotipo. NO es un invento: es el velo que la marca ya tiene en
+  # `logo PISO18.png` —que no es un logotipo suelto sino una plantilla de historia
+  # 2250×4000—, aplicado con la misma proporción al 4:5:
+  #
+  #     alfa 150/255 = 0,588 en y=0  →  0 en y = 0,417 × alto
+  #
+  # ⛔ Va **DEBAJO** del logotipo. Velar sobre una pieza que ya lo tiene estampado
+  #    apaga el logotipo blanco junto con el fondo: la portada se rehace desde la
+  #    foto limpia. Por eso el recorte de cada pieza se ANOTA (ver punto 3).
+  #
+  # ⚠️ Sólo la PORTADA. Las otras slides no llevan logotipo y el brief las quiere
+  #    limpias — velarlas sería ensuciarlas sin motivo.
+  #
+  # Cómo se decide si hace falta: se mide la banda del logotipo (y 190–480 de 2813)
+  # **por TERCIOS**, y además su **percentil 90**. El promedio miente: en la G1 de
+  # la S4 los tercios daban 60/64/70 —parecía oscura— pero el p90 llegaba a **253**,
+  # porque detrás del logotipo hay globos de vidrio que tocan el blanco puro. El
+  # defecto no era falta de oscuridad: eran reflejos DEL MISMO VALOR QUE LA TINTA.
+  # Con el velo la banda queda en 35/37/41.
+  #
+  # ── 2 · EL ZOOM DE UNA FOTO TIENE TOPE, Y ES 1,0 ───────────────────────────
+  # *«No tiene que verse en los costados ni la mesa.»*
+  #
+  # Eli pide encuadres cerrados, y en la S4 el recorte llegó a **reducir 0,978** —
+  # casi 1:1. Ése es el límite: **un recorte que ampliaría se rechaza, no se
+  # fuerza**. Si hace falta más zoom, se vuelve al banco a buscar un plano más
+  # cerrado. `scripts/p18-s4-r5.py` lo corta por programa antes de escribir nada.
+  #
+  # Y cuando manda una captura con el encuadre que quiere, el recorte **se deduce
+  # de ella**: se miden tres puntos presentes en los dos encuadres y de ahí sale la
+  # caja. Copiarlo a ojo obliga a una ronda más.
+  #
+  # ── 3 · EL RECORTE SE ANOTA, SIEMPRE ───────────────────────────────────────
+  # Dos veces en un mismo día hubo que reconstruir por correlación un recorte que
+  # nadie había escrito (`piso_18-100` desde y=256 y `piso_18-72` desde y=594). Se
+  # recuperó porque los fondos estaban commiteados, pero es tiempo perdido: **el
+  # script que produce una pieza deja su caja de recorte escrita en el código**.

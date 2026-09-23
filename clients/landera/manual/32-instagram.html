@@ -1,0 +1,119 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="_comun.css"><link rel="stylesheet" href="_v2.css">
+<!-- 32 · Instagram — sistema editorial flexible. Ronda 3 (05-09, dirección):
+     «no construir una grilla de templates rotativos; 55–60 % fotografía, 25–30 %
+     dato/gestión, 10–15 % insight; no poner el logo en cada publicación; algunas
+     fotos viven completamente limpias; el dato muy editorial». La lámina es una
+     página hero: el teléfono grande y las piezas al tamaño. -->
+<style>
+  .tel { position:absolute; background:#1D1F24; border-radius:16pt; padding:5pt; }
+  .tel .pant { position:relative; width:100%; height:100%; background:#fff; border-radius:12pt; overflow:hidden; }
+  .tel .muesca { position:absolute; left:50%; top:4pt; width:36pt; height:5pt; margin-left:-18pt; background:#1D1F24; border-radius:3pt; z-index:3; }
+  .perfil { position:absolute; left:0; right:0; top:0; font-size:5.4pt; color:#262626; }
+  .perfil .usr { position:absolute; left:12pt; top:15pt; font-size:7pt; font-weight:600; }
+  .perfil .av  { position:absolute; left:12pt; top:28pt; width:34pt; height:34pt; border-radius:50%; background:#FAF1E8; overflow:hidden; }
+  .perfil .av img { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); height:20pt; }
+  .perfil .st  { position:absolute; top:36pt; width:30pt; text-align:center; line-height:6.5pt; }
+  .perfil .st b { display:block; font-size:7pt; font-weight:600; }
+  .perfil .bio { position:absolute; left:12pt; top:66pt; width:170pt; line-height:7.4pt; }
+  .perfil .bio b { font-weight:600; }
+  .grid { position:absolute; left:0; right:0; top:96pt; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.8pt; }
+  .grid > div { aspect-ratio:1; background:#F3F0EA; overflow:hidden; position:relative; }
+  .grid img { width:100%; height:100%; object-fit:cover; display:block; }
+  .p { position:absolute; inset:0; }
+  .p .r { position:absolute; left:6pt; top:6pt; font-size:2.4pt; color:var(--verde); letter-spacing:0.1em; text-transform:uppercase; }
+  .p .k { position:absolute; left:6pt; top:12pt; font-size:15pt; font-weight:600; color:var(--tinta); letter-spacing:-0.04em; line-height:15pt; }
+  .p .u { position:absolute; left:6pt; top:30pt; font-size:3.4pt; color:var(--tinta); font-weight:300; }
+  .p .f { position:absolute; left:6pt; bottom:5pt; font-size:2.2pt; color:var(--gris); letter-spacing:0.12em; text-transform:uppercase; }
+  .cap { position:absolute; margin:0; font-size:7.2pt; line-height:9.4pt; color:var(--gris); font-weight:300; }
+  .cap b { display:block; font-weight:600; color:var(--tinta); }
+  .mix { position:absolute; display:flex; height:9pt; overflow:hidden; }
+  .mix i { display:block; height:100%; }
+</style>
+
+<h1 class="titulo">Ecosistema digital</h1>
+<p class="bajada">Instagram: un sistema editorial, no una grilla de plantillas</p>
+<div class="filete-cab"></div>
+<div class="divisoria" style="left:360pt"></div>
+
+<div class="columna" style="left:60.2pt; top:134.8pt; width:270pt">
+  <p class="rotulo">La proporción del mes</p>
+  <p class="entrada"><b>55–60 % territorio</b>, 25–30 % dato y gestión, 10–15 %
+  insight institucional. No es un orden: es una mezcla.</p>
+  <div class="mix" style="position:relative; width:270pt; margin-top:8pt"><i style="width:58%; background:#8A9A7C"></i><i style="width:27%; background:#FAF1E8; border:0.3pt solid #E0DEDA; box-sizing:border-box"></i><i style="width:15%; background:#33353E"></i></div>
+  <p class="rotulo">Territorio</p>
+  <p class="cuerpo">Aéreas, cultivos, riego, maquinaria, detalle del suelo,
+  gente trabajando. <b>Muchas fotos viven completamente limpias</b>: sin logotipo,
+  sin texto. El perfil ya firma.</p>
+  <p class="rotulo">Dato y gestión</p>
+  <p class="cuerpo">Cifras grandes con aire, un caso de predio, un gráfico de la
+  lámina 23. Muy editorial: jerarquía y poco ornamento.</p>
+  <p class="rotulo">Insight</p>
+  <p class="cuerpo">Una idea sobre tinta, en Bold, corta. Una al mes basta.</p>
+  <p class="rotulo">Lo que no</p>
+  <p class="cuerpo">Tres piezas seguidas del mismo comportamiento. El logotipo en
+  cada publicación. La misma estructura con otro fondo.</p>
+</div>
+
+<!-- el teléfono, grande -->
+<div class="tel" style="left:400pt; top:134pt; width:226pt; height:376pt">
+  <div class="pant"><div class="muesca"></div>
+    <div class="perfil">
+      <div class="usr">landera.cl</div>
+      <div class="av"><img src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_ISO.svg"></div>
+      <div class="st" style="left:60pt"><b>48</b>publicaciones</div>
+      <div class="st" style="left:100pt"><b>1.240</b>seguidores</div>
+      <div class="st" style="left:140pt"><b>36</b>seguidos</div>
+      <div class="bio"><b>Landera · Farmland Management</b><br>Administración de campos e inversión agrícola en Chile.</div>
+    </div>
+    <div class="grid">
+      <div><img src="../../../public/assets/landera/fotos/v2/foto-si-aerea.jpg"></div>
+      <div style="background:#FAF1E8"><div class="p"><div class="r">Superficie en gestión</div><div class="k">776</div><div class="u">hectáreas · cuatro predios</div><div class="f">Landera</div></div></div>
+      <div><img src="../../../public/assets/landera/fotos/v2/esc-riego.jpg"></div>
+      <div><img src="../../../public/assets/landera/fotos/v2/esc-suelo.jpg"></div>
+      <div><img src="../../../public/assets/landera/fotos/v2/foto-si-maquinaria.jpg"></div>
+      <div style="background:#33353E"><div class="p"><div style="position:absolute; left:6pt; top:8pt; right:6pt; font-size:5.2pt; font-weight:700; color:#FAF1E8; line-height:6.4pt">La tierra se administra con datos, no con intuición.</div><div style="position:absolute; left:6pt; bottom:6pt; width:8pt; height:0.5pt; background:#E4361F"></div></div></div>
+      <div><img src="../../../public/assets/landera/fotos/v2/esc-vinedo.jpg"></div>
+      <div style="background:#fff"><img style="height:58%" src="../../../public/assets/landera/fotos/v2/esc-surcos.jpg"><div style="position:absolute; left:6pt; top:60%; font-size:2.4pt; color:var(--verde); letter-spacing:0.1em; text-transform:uppercase">Fundo El Peral</div><div style="position:absolute; left:6pt; top:70%; font-size:9pt; font-weight:600; color:var(--tinta); letter-spacing:-0.03em">312 ha</div><div style="position:absolute; left:6pt; top:86%; font-size:2.6pt; color:var(--gris)">Tercera temporada · riego 100 %</div></div>
+      <div><img src="../../../public/assets/landera/fotos/v2/foto-si-personas.jpg"></div>
+    </div>
+  </div>
+</div>
+<p class="cap" style="left:400pt; top:524pt; width:226pt; font-size:6.8pt"><span style="color:#8A9A7C">■</span> territorio 6 &nbsp;<span style="color:#C9B99F">■</span> dato y gestión 2 &nbsp;<span style="color:#33353E">■</span> insight 1</p>
+
+<!-- las piezas al tamaño -->
+<p class="rotulo" style="left:650pt; top:134.8pt">Las piezas, de cerca</p>
+<div style="position:absolute; left:650pt; top:154pt; width:156pt; height:156pt; overflow:hidden">
+  <img style="width:100%; height:100%; object-fit:cover; display:block" src="../../../public/assets/landera/fotos/v2/esc-riego.jpg">
+</div>
+<p class="cap" style="left:650pt; top:314pt; width:156pt"><b>Territorio, limpio</b>Sin logotipo, sin texto. El pie va en el texto del post.</p>
+
+<div style="position:absolute; left:820pt; top:154pt; width:156pt; height:156pt; background:#FAF1E8">
+  <div class="mr" style="position:absolute; left:16pt; top:18pt; font-size:4.6pt">Rendimiento promedio · 2026</div>
+  <div class="mk" style="position:absolute; left:14pt; top:38pt; font-size:44pt; line-height:44pt; letter-spacing:-0.04em">8,7</div>
+  <div style="position:absolute; left:16pt; top:90pt; font-size:8pt; font-weight:300; color:var(--tinta)">t/ha</div>
+  <div style="position:absolute; left:16pt; top:106pt; width:20pt; height:0.5pt; background:var(--verde)"></div>
+  <div class="mc" style="position:absolute; left:16pt; top:113pt; right:14pt; font-size:5pt; line-height:7pt">+1,2 % sobre la temporada anterior.</div>
+  <div class="mr" style="position:absolute; left:16pt; bottom:10pt; font-size:4pt; color:var(--gris)">Landera</div>
+</div>
+<p class="cap" style="left:820pt; top:314pt; width:156pt"><b>Dato, editorial</b>Una cifra, aire, un rótulo y una línea. Firma chica.</p>
+
+<div style="position:absolute; left:650pt; top:352pt; width:156pt; height:156pt; background:#fff; border:0.4pt solid #E0DEDA; overflow:hidden">
+  <img style="width:100%; height:56%; object-fit:cover; display:block" src="../../../public/assets/landera/fotos/v2/esc-surcos.jpg">
+  <div class="mr" style="position:absolute; left:12pt; top:60%; font-size:4.4pt">Caso · Fundo El Peral</div>
+  <div class="mk" style="position:absolute; left:12pt; top:68%; font-size:17pt; line-height:17pt">312 ha</div>
+  <div class="mc" style="position:absolute; left:12pt; top:84%; right:10pt; font-size:4.6pt; line-height:6.4pt">Tercera temporada en producción · riego tecnificado en el 100 %.</div>
+</div>
+<p class="cap" style="left:650pt; top:512pt; width:156pt"><b>Gestión</b>Foto y cifra: el caso del predio.</p>
+
+<div style="position:absolute; left:820pt; top:352pt; width:156pt; height:156pt; background:#33353E">
+  <div style="position:absolute; left:16pt; top:26pt; right:14pt; font-size:11pt; font-weight:700; color:#FAF1E8; line-height:13.5pt">Cinco criterios para evaluar un campo antes de invertir.</div>
+  <div style="position:absolute; left:16pt; bottom:22pt; width:14pt; height:0.7pt; background:#E4361F"></div>
+  <div class="mr" style="position:absolute; left:16pt; bottom:10pt; font-size:4pt; color:#9FA6A0">Farmland Management</div>
+</div>
+<p class="cap" style="left:820pt; top:512pt; width:156pt"><b>Insight</b>Tinta, una idea en Bold, filete terracota. Una al mes.</p>
+
+<p class="lupa" style="left:650pt; top:544pt; width:326pt">⚠ Fotografía de referencia generada — el archivo real la reemplaza · cifras de ejemplo</p>
+
+<p class="folio"><b>32</b> · Ecosistema digital</p>
+<p class="folio-marca">Landera · Manual de marca</p>

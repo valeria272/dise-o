@@ -1,0 +1,64 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 10 — PIE DE PÁGINA
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/10-*.jpg
+     Archivos que usa:
+       · recursos/logos/logo-mascenter-blanco.svg
+       · recursos/logos/logo-ifb.png
+     Nota: Incluye la barra de copyright, con el año que se pone solo.
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── PIE ──────────────────────────────────────────────────────── */
+.pie{background:var(--negro);color:#fff;padding:clamp(56px,6vw,86px) 0 0}
+.pie .contenedor{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:clamp(30px,4vw,60px);
+  padding-bottom:clamp(40px,4vw,60px)}
+.pie img.logo{height:66px;width:auto;margin-bottom:22px}
+.pie .lema{font-size:.92rem;color:rgba(255,255,255,.62);line-height:1.75;max-width:34ch;font-weight:300}
+.pie h4{font-size:.79rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px;
+  color:rgba(255,255,255,.5)}
+.pie ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.pie ul a{font-size:.92rem;color:rgba(255,255,255,.82);transition:color .3s var(--exp)}
+.pie ul a:hover{color:var(--rojo)}
+.pie .ifb{margin-top:26px}
+.pie .ifb img{height:34px;width:auto;opacity:.72}
+.copy{border-top:1px solid rgba(255,255,255,.1);padding:22px 0;font-size:.8rem;
+  color:rgba(255,255,255,.42);text-align:center}
+</style>
+
+<!-- ════════════ PIE ════════════ -->
+<footer class="pie">
+  <div class="contenedor">
+    <div>
+      <img class="logo" src="../recursos/logos/logo-mascenter-blanco.svg" alt="Más Center">
+      <p class="lema">
+        Encontramos ubicaciones, creamos espacios y acercamos comercios y servicios
+        a los barrios de Chile.
+      </p>
+      <div class="ifb"><img src="../recursos/logos/logo-ifb.png" alt="Grupo IFB"></div>
+    </div>
+    <div>
+      <h4>Esta página</h4>
+      <ul>
+        <li><a href="#buscamos">Qué buscamos</a></li>
+        <li><a href="#valor">Nuestro respaldo</a></li>
+        <li><a href="#centros">Centros en operación</a></li>
+        <li><a href="#proceso">Cómo postular</a></li>
+        <li><a href="#contacto">Postula tu terreno</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Más Center</h4>
+      <ul>
+        <li><a href="https://www.mascenter.cl" target="_blank" rel="noopener">Sitio web</a></li>
+        <li><a href="https://www.mascenter.cl/strip-centers/" target="_blank" rel="noopener">Strip centers</a></li>
+        <li><a href="https://www.mascenter.cl/nosotros/" target="_blank" rel="noopener">Nosotros</a></li>
+        <li><a href="https://www.instagram.com/mascenter/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/company/grupoifb/" target="_blank" rel="noopener">LinkedIn Grupo IFB</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copy">© <span id="anio"></span> Más Center · Grupo IFB. Todos los derechos reservados.</div>
+</footer>

@@ -1,0 +1,1004 @@
+/**
+ * BETWEEN — S3 · LAS TRES STORIES DE LA SEMANA 3 (14, 16 y 18 de septiembre)
+ *
+ * Las tres columnas de la hoja STORIES de la grilla
+ * (`1wNF6qLil9qMFCGgXPlVqHBQcabfmCWWY`, instantánea del 08-09 en
+ * `clients/hilton/grillas/between-septiembre-2026.md`):
+ *
+ *   col M · 14-09 · OK PARA DISEÑAR · «ST INTERACTIVA – ¿CUÁNDO ES HORA DE CAFÉ?»
+ *   col N · 16-09 · CORREGIDO       · «ST ESTÁTICA – COWORK | YA ABRIMOS»
+ *   col O · 18-09 · OK PARA DISEÑAR · «ST ESTÁTICA - SALUDO 18 SEPT»
+ *
+ * ══════════════════════════════════════════════════════════════════════════
+ * RONDA 2 (08-09-2026) — Eli devolvió las tres y esto se rehizo entero
+ * ══════════════════════════════════════════════════════════════════════════
+ *
+ * «Hazlos de nuevo las 3 stories ya que no cumplen, debes dejar mejores
+ * fotografías, mejor imagenes hazlo en conjunto a magnific», con tres referentes
+ * adjuntos en Drive (`12S5bEGzPtZmE82U_ZxrboyZwsvOOQoZ0` →
+ * `raw/hilton/between/ref-s3-eli/`) y una condición: «deben ser colores y fondos
+ * de Between, pero puedes guiarte de elementos de la referencia para hacerlos
+ * similar. Con la identidad visual de BW».
+ *
+ * ⭐ EL DIAGNÓSTICO, Y ES UNO SOLO. La ronda 1 usaba FOTO DE BANCO recortada, y
+ * el banco de Between está pensado en 4:5: al llevarlo a 9:16 no queda hueco
+ * donde la diagramación lo necesita, así que el texto terminó apoyado en cajas
+ * taupe y las tres piezas se parecieron entre sí. **Los tres referentes de Eli
+ * hacen lo contrario: la foto está PRODUCIDA con el hueco adentro** —un torso de
+ * color liso que llena el cuadro, una pared plana en el tercio de arriba, un
+ * plano del local muy desenfocado— y por eso el titular va grande y suelto.
+ *
+ * O sea que el problema no era la diagramación: era que la foto no se había
+ * producido. Ahora las tres escenas se GENERAN con el método que Eli ya tiene
+ * escrito en `clients/hilton/PROMPTS-DE-ELI.md` («no se compone: se GENERA»),
+ * con las fotos reales como referencia — `scripts/between-st-s3-generar.py` —
+ * y el laboratorio va en `scripts/between-st-s3-fotos.py`.
+ *
+ * ── QUÉ ELEMENTO SE TOMÓ DE CADA REFERENTE ───────────────────────────────
+ *
+ * `REF 1` (14-09) · torso con camisa azul llenando el cuadro + taza sostenida
+ * abajo + tarjeta con la pregunta arriba + línea de cierre al pie.
+ *   → El fondo es un CAMPO DE COLOR DE MARCA: sweater **café `#675B49`** que
+ *     llena el cuadro, con la taza blanca sostenida en el tercio inferior. La
+ *     tarjeta de la pregunta NO se dibuja: es la zona reservada del quiz.
+ *
+ * `REF 2` (16-09) · pared plana gris en el tercio superior + titular enorme +
+ * mesa de madera oscura con notebook y café + horario al pie.
+ *   → **Pared beige** limpia en el tercio de arriba (es el vocabulario de Eli:
+ *     «debe ser en una pared beige»), y por eso ésta es la única de las tres con
+ *     el titular en **tinta café** — el kit lo define así: el café es «texto
+ *     sobre fondos muy claros». El titular va grande y SIN caja, que es lo que
+ *     el referente hace y lo que la ronda 1 no pudo hacer.
+ *
+ * `REF 3` (18-09) · panel crema sobre la foto del local + dos manos brindando.
+ *   → **Panel beige `#FFF9EB`** con tinta café y el lockup café adentro, sobre
+ *     la escena. Y el brindis va con **dos tazas de Between de verdad, en la
+ *     fotografía**: el repertorio de línea de la marca son los trazos del `.svg`
+ *     de Eli y ahí no hay un brindis, y el manual prohíbe dibujar o generar
+ *     trazos nuevos. Pedírselo al generador respeta las dos cosas.
+ *
+ * ── LO INTERACTIVO: ZONA RESERVADA, NUNCA DIBUJADA ───────────────────────
+ * Orden de Eli del 07-09, repetida el 08-09: «eso no va diseñado, solo se deja
+ * aire de espacio libre». El sticker real lo pone el CM. Se entrega además una
+ * copia `GUIA CM` con la zona marcada, que NO se sube al Drive.
+ *
+ *   14-09 → QUIZ de 4 alternativas   · 660 × 360   (ahora sí del porte real:
+ *           el campo de color liso da 880 px de aire y no hay que apretarlo)
+ *   16-09 → sticker de ENLACE (carta) · 660 × 140
+ *   18-09 → la grilla no pide interacción → no lleva zona reservada
+ *
+ * ── LA REJILLA (1080×1920, se entrega a 2250×4000) ───────────────────────
+ * Zona segura de Meta: nada de contenido sobre y=250 ni bajo y=1580.
+ *    250 ─ zona segura superior
+ *    271 ─ wordmark del lockup (plantilla `storyLogoArriba` de Eli)
+ *    441 ─ primera línea de tinta (`BETWEEN.bloque.yStory`; deja los 77 px de
+ *          aire logo→texto que miden sus plantillas)
+ *   1580 ─ empieza la zona segura inferior
+ *
+ * Los anclajes de abajo no son de gusto: salen del perfil de cada foto por
+ * franjas de 80 px (luminancia media y desvío estándar sobre la columna
+ * central). Las cifras están en la bitácora del 08-09.
+ */
+import React from 'react';
+import {AbsoluteFill, Img, staticFile} from 'remotion';
+import {BETWEEN} from '../../brand/hilton-between';
+import {
+  CajaDato,
+  FotoFondo,
+  LogoBetween,
+  TitularBetween,
+  conCifras,
+} from './BetweenSistema';
+import {BanderaChile, BrindisTazas, GuirnaldaBanderitas} from './BetweenIlustraS3';
+
+const F = 'assets/hilton/between/st-s3/';
+
+/**
+ * ⛔ EL LOGO EN CAFÉ NO SALE DE `BETWEEN.logo.cafe`.
+ *
+ * Eli, ronda 4: «el color del logo debe ser el café de between ese color». Y el
+ * token `BETWEEN.logo.cafe` apunta a `logo-negro.png`, que medido sobre sus
+ * píxeles opacos es **negro puro `#000000`** — no el café `#675B49`. O sea que
+ * las dos piezas de la S3 venían con el logo NEGRO, fuera de paleta.
+ *
+ * El archivo correcto lo genera `scripts/between-st-s3-materiales.py` a partir
+ * del CANAL ALFA del logo oficial. El token del kit NO se toca: lo usan piezas
+ * ya aprobadas y cambiarlo las re-flujaría (misma razón que `columnaTitular`).
+ */
+const LOGO_CAFE = 'assets/hilton/between/logo-cafe-marca.png';
+const LOGO_BEIGE = 'assets/hilton/between/logo-blanco.png';
+
+/** Lockup en BEIGE (`logo-blanco.png`, que es el que el sistema mapea a
+ *  `tono='beige'`), en la MISMA geometría `storyLogoArriba` de Eli.
+ *
+ *  ⭐ Existe desde la ronda 10 del Cowork: sobre la foto REAL del segundo piso
+ *  el lockup café se cae a 1,80–2,09:1 —es un cielo gris de luminancia media,
+ *  la peor superficie para una tinta oscura— mientras el beige da 3,16–3,51:1
+ *  parejo en los tres tercios. No es un cambio de criterio: `logoTono` del
+ *  sistema ya viene en `'beige'` por defecto y el café de esta pieza era la
+ *  EXCEPCIÓN que pedía la pared clara de la foto generada. Al volver la foto a
+ *  ser real, se cae la excepción. */
+const LogoBeigeMarca: React.FC = () => {
+  const g = BETWEEN.margenes.storyLogoArriba;
+  return (
+    <Img
+      src={staticFile(LOGO_BEIGE)}
+      style={{
+        position: 'absolute',
+        left: (1080 - g.ancho) / 2,
+        top: g.wordmarkY,
+        width: g.ancho,
+        height: g.ancho / BETWEEN.logo.ratio,
+        objectFit: 'contain',
+      }}
+    />
+  );
+};
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LA ZONA RESERVADA — mismo aparato que `BetweenStCumpleCarrusel.tsx`, con el
+   alto por pieza: un quiz de cuatro alternativas no ocupa lo mismo que una
+   pastilla de enlace. Las medidas salen de `StickerQuiz` y `StickerEnlace`.
+   ══════════════════════════════════════════════════════════════════════════ */
+type Zona = {ancho: number; alto: number; top: number};
+
+const ZonaReservada: React.FC<{zona: Zona; etiqueta: string}> = ({zona, etiqueta}) => (
+  <div
+    style={{
+      position: 'absolute',
+      left: (1080 - zona.ancho) / 2,
+      top: zona.top,
+      width: zona.ancho,
+      height: zona.alto,
+      border: '3px dashed rgba(255,45,141,0.95)',
+      borderRadius: 22,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      whiteSpace: 'pre-line',
+      textAlign: 'center',
+      fontFamily: BETWEEN.fuentes.sans,
+      fontWeight: 700,
+      fontSize: 26,
+      lineHeight: 1.35,
+      color: '#ff2d8d',
+      background: 'rgba(255,255,255,0.10)',
+    }}
+  >
+    {etiqueta}
+  </div>
+);
+
+/** Bloque de texto centrado en la COLUMNA de composición (810), no en el margen. */
+const Columna: React.FC<{top: number; children: React.ReactNode}> = ({top, children}) => (
+  <div
+    style={{
+      position: 'absolute',
+      left: (1080 - BETWEEN.bloque.columna) / 2,
+      width: BETWEEN.bloque.columna,
+      top,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    }}
+  >
+    {children}
+  </div>
+);
+
+/**
+ * ⭐⭐ EL HORARIO CON LOS DOS PUNTOS KERNEADOS (ronda 8).
+ *
+ * Eli: «recuerda el uso de kerning y tracking de separación optima ya que se
+ * pierde y esta muy junto». El tracking se resolvió abriendo la línea a 0,10em
+ * —el valor del chip de horarios de la propia marca—, pero al abrirla apareció
+ * lo que el tracking parejo siempre destapa en una hora: **los dos puntos quedan
+ * flotando**. Medido sobre el render, en «08:00» los huecos daban
+ * **12,0 y 13,0 px** alrededor del «:» contra **5,3 px** entre dígitos, porque el
+ * «:» de Raleway trae sus propios laterales y encima recibe el tracking por los
+ * dos lados.
+ *
+ * Eso es kerning, no tracking: se corrige por PAR, no en toda la línea. Cada «:»
+ * va en un span que anula el tracking y se mete 4 px por lado.
+ *
+ * ⚠️ Se conserva `conCifras` en los trozos numéricos: las cifras tabulares son
+ * pedido de Eli para toda la grilla. El corte por «:» no lo rompe — cada trozo
+ * («08», «00 a 22», «00 hrs.») sigue entrando entero a la caja tabular, que
+ * agrupa los dígitos consecutivos por su cuenta.
+ */
+/** El tracking de la línea del horario, en `em`. Se usa en el CSS y dentro de la
+ *  caja tabular, que no lo recibe por `letter-spacing`. */
+const TRACK_HORARIO = 0.1;
+
+const horarioKerneado = (texto: string): React.ReactNode[] => {
+  const partes = texto.split(':');
+  const out: React.ReactNode[] = [];
+  partes.forEach((parte, i) => {
+    out.push(
+      <span key={`h${i}`}>{conCifras(parte, BETWEEN.pesos.extrabold, TRACK_HORARIO)}</span>,
+    );
+    if (i < partes.length - 1) {
+      out.push(
+        <span
+          key={`c${i}`}
+          style={{letterSpacing: 'normal', marginLeft: -2, marginRight: -2}}
+        >
+          :
+        </span>,
+      );
+    }
+  });
+  return out;
+};
+
+/** Cierre en cursiva, suelto sobre la foto. */
+const Cierre: React.FC<{top: number; size?: number; children: React.ReactNode}> = ({
+  top,
+  size = 34,
+  children,
+}) => (
+  <div
+    style={{
+      position: 'absolute',
+      left: (1080 - BETWEEN.bloque.columna) / 2,
+      width: BETWEEN.bloque.columna,
+      top,
+      textAlign: 'center',
+      fontFamily: BETWEEN.fuentes.sans,
+      fontStyle: 'italic',
+      fontWeight: BETWEEN.pesos.semibold,
+      fontSize: size,
+      lineHeight: 1.3,
+      color: BETWEEN.colores.beige,
+      opacity: 0.95,
+      textShadow: '0 2px 16px rgba(36,26,18,0.75)',
+      whiteSpace: 'pre-line',
+    }}
+  >
+    {children}
+  </div>
+);
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ST 14-09 · ¿CUÁNDO ES HORA DE CAFÉ?  (col M · OK PARA DISEÑAR)
+
+   Textos LITERALES de la grilla. El brief separa tres cosas y sólo dos van
+   diseñadas:
+     · «Texto» → el titular.
+     · «Cierre» → la línea en cursiva al pie, como en el referente.
+     · «Respuesta correcta: Obviamente, D. Todo el día.» → NO va en la pieza: es
+       la respuesta que el CM marca DENTRO del sticker de quiz. Dibujarla
+       reventaría el juego.
+
+   MEDIDO sobre la foto: el campo de sweater café va de y=240 a y=1120 con un
+   desvío estándar de 6–16 (o sea liso), la taza en la mano ocupa 1120–1600, y de
+   1600 abajo vuelve a oscurecer (L=40). Con 880 px de campo limpio el quiz cabe
+   del porte real —660×360— sin apretarlo, que era el problema de la ronda 1.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const ZONA_QUIZ: Zona = {ancho: 660, alto: 360, top: 700};
+
+export const StS3HoraCafe: React.FC<{guia?: boolean}> = ({guia = false}) => (
+  <AbsoluteFill style={{backgroundColor: '#241a12'}}>
+    {/* `oscurecer` 0: el sweater YA es el café de marca, corregido a #675B49 en
+        `between-st-s3-fotos.py`. Un multiply encima lo alejaría del hex exacto,
+        que es justo lo que Eli pidió cuidar («deben ser colores de Between»). */}
+    <FotoFondo src={F + 'st-14-09-hora-cafe.jpg'} oscurecer={0} />
+
+    <LogoBetween formato="story" posicion="arriba" tono="beige" />
+
+    <Columna top={BETWEEN.bloque.yStory}>
+      {/* «es…» lleva el carácter … (U+2026) y no tres puntos: así `sinPuntoFinal`
+          —que borra /\.+$/— no se lo come, y la elipsis es parte de la pregunta,
+          no un punto de titular. */}
+      <TitularBetween
+        script="El mejor momento"
+        caps="Para un café es…"
+        alinear="centro"
+        tono="beige"
+        anchoDisponible={BETWEEN.bloque.columna}
+        mantenerPunto
+      />
+    </Columna>
+
+    {guia ? (
+      <ZonaReservada zona={ZONA_QUIZ} etiqueta={'QUIZ · 4 alternativas\n660 × 360'} />
+    ) : null}
+
+    {/* El cierre del brief, literal, al pie como en el referente. En y=1620 cae
+        sobre la zona oscura y calma de abajo (L=40, sd=23) — el único sitio del
+        cuadro donde se lee sin ayuda una vez que la taza ocupa el medio.
+        ⚠️ Entra 40 px en la franja inferior de 340 px de Meta y `between-qa.py`
+        lo marca. Tiene el mismo precedente que el legal de la ST 2 del
+        cumpleaños, que Eli aprobó en y=1640: vale en ORGÁNICO. Si esta pieza
+        pasa a pauta, hay que subirlo. */}
+    {/* Una sola línea a 30 px, no dos a 34. Medido: la frase completa mide ~665 px
+        y entra en la columna de 810 sin partirse, así que además desaparece el
+        problema de la viuda («Between.» sola en la segunda línea).
+        ⚠️ Y sobre todo: en dos líneas el bloque entraba 125 px en la franja
+        inferior de 340 px de Meta, y `between-qa.py` lo marcaba. Así entra ~60,
+        que es el orden del legal de la ST 2 del cumpleaños (90 px) que Eli
+        aprobó. Vale en ORGÁNICO; si esta pieza pasa a pauta, hay que subirlo.
+        No se puede subir más: medido, la taza y la mano ocupan hasta y=1600 y de
+        ahí para arriba el texto caería sobre la loza. */}
+    <Cierre top={1600} size={30}>
+      Para cada hora, hay un café esperándote en Between.
+    </Cierre>
+  </AbsoluteFill>
+);
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ST 16-09 · COWORK  (col N · EN CAMBIOS tras la ronda del cliente del 09-09)
+
+   ⭐⭐ RONDA 9 · LA PRIMERA DEL CLIENTE (09-09) — en rojo sobre `STORIES!N`: «Saquemos el
+   "Puedes venir", reemplacémoslo por Cowork, para dar contexto».
+
+   El script pasa a «Cowork» y el titular queda «Cowork / ¡TE ESPERAMOS!». Lo
+   que pide es CONTEXTO: «Puedes venir» no dice de qué se trata la pieza, y el
+   servicio se nombraba sólo dentro del cartel («Ven a trabajar desde Between»).
+   Ojo que hasta esta ronda «COWORK | YA ABRIMOS» era el nombre INTERNO de la
+   fila y tenía prohibido salir en pantalla — ese candado se levanta acá, pero
+   sólo para la palabra «Cowork»: «YA ABRIMOS» sigue fuera, porque es
+   exactamente lo que el cliente mandó a sacar en la ronda anterior.
+
+   ⚠️ NO se tocaron `sizeScript`, `anchoDisponible` ni `aireScriptATitulo`, y la
+   razón es medida, no pereza. `TitularBetween` posiciona por TINTA, así que al
+   acortarse la script el bloque se recalcula solo:
+     · aire tinta a tinta 69 → 64 px (33,1 → 30,7 a escala 1080). La diferencia
+       es de 2,4 px a 1080: imperceptible, y el token sigue haciendo lo que Eli
+       aprobó en la ronda 6;
+     · la caja alta sube 13 px (su tinta cierra en y=1215 y no en 1228), o sea
+       que quedan **149 px** libres hasta el cartel de y=1364 en vez de 136. El
+       solape de la ronda 6 se aleja, no se acerca;
+     · la tinta de la script pasa de 945 a 562 px de ancho, muy lejos de los 745
+       de `anchoDisponible` — el que manda ese ancho es «¡TE ESPERAMOS!», que no
+       cambió.
+
+   ⚠️ EL COMENTARIO ANTERIOR, YA TACHADO EN LA GRILLA (resuelto, no rehacer).
+   `STORIES!N` traía: «Se puede entender que estuvimos cerrados,
+   démosle una vuelta a ese texto». El copy de la grilla YA está corregido —dice
+   «PUEDES VENIR, ¡TE ESPERAMOS!» y no «ya abrimos»; «COWORK | YA ABRIMOS» es
+   sólo el NOMBRE INTERNO de la fila y no va en pantalla—. Lo que seguía sin
+   corregir era la FOTO: la versión del 31-08 mostraba mesas altas vacías,
+   enfocadas y sin nadie. Acá la mesa está SERVIDA y en uso: notebook abierto y
+   encendido, taza con su platillo, libreta con lápiz y un croissant.
+
+   ⭐⭐ RONDA 3 (08-09) — Eli: «el logo es el color café de between, y los
+   titulos en BEIGE por favor para que se lea y sea visible».
+
+   Las dos cosas juntas obligan a resolverlo así, y la razón es medida. El
+   lockup se queda en café porque cae sobre la pared clara (L=177), que es
+   justamente para lo que el kit define ese color: «texto sobre fondos muy
+   claros». Pero un texto BEIGE sobre esa misma pared no existe — medido, el
+   contraste del beige `#FFF9EB` contra la pared da **1,43:1**, y no pasa de
+   1,9:1 hasta y≈880, que ya es donde empieza la mesa y a 240 px de la taza.
+
+   O sea que para que los títulos sean beige Y se lean, el beige necesita un
+   fondo café. Y ése es un elemento que la marca ya tiene y que el propio cliente
+   autorizó por escrito: «cuando no se logra visualizar los textos, puedes
+   dejarlo en una caja del color café #675B49».
+
+   Así que el titular, el horario y la bajada entran a UN SOLO CARTEL taupe con
+   todo el texto en beige. Un cartel y no tres cajas apiladas: es la regla §1 bis
+   («una pila = un borde derecho») llevada al límite, y deja la pared beige de
+   arriba como aire con el lockup café, que es lo que hace el referente.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ⭐ RONDA 5 — la zona del enlace vuelve a la MESA. En la ronda 4 se había ido
+   a la pared porque el pie estaba ocupado; ahora todo el texto subió (ver abajo)
+   y el pie es puro fotografía otra vez. La taza con su platillo termina en
+   y=1320, así que la pastilla arranca en 1350 y cierra en 1490. */
+const ZONA_ENLACE: Zona = {ancho: 660, alto: 140, top: 1350};
+
+export const StS3Cowork: React.FC<{guia?: boolean}> = ({guia = false}) => (
+  <AbsoluteFill style={{backgroundColor: '#241a12'}}>
+    {/* ⭐⭐ RONDA 10 (10-09-2026) — LA FOTO PASA A SER REAL, y es pedido del
+        cliente por comentario nativo en la grilla. Scarlette Muñoz, hoy 12:55,
+        sobre `STORIES!N`:
+
+            «@elisabet.soto podemos cambiar la imagen a una real de cowork?»
+
+        Los dos comentarios de celda de esa columna quedaron TACHADOS en la
+        grilla viva —o sea resueltos—, así que éste es el único pedido en pie.
+
+        ⛔ La foto que salió era `gen-16-09-cowork.png`: una escena ENTERAMENTE
+        GENERADA (mesa, taza, croissant, notebook y planta), y no era Between.
+        Es exactamente lo que la memoria `no-generar-producto-que-existe`
+        prohíbe, porque el cliente TIENE el espacio fotografiado: 22 videos y 20
+        HEIC del segundo piso en `raw/hilton/between/cowork-2do-piso/`, de los
+        que salen 91 fotogramas, TODOS verticales 9:16 nativos. Pasaron la
+        compuerta: 91 válidos, 0 rotos.
+
+        ⭐ POR QUÉ IMG_8539 Y NO OTRO. Se midió la zona del texto (40 % de
+        arriba) en los 91 y se ordenaron por cuán plana la tienen. Los más
+        limpios —8551, 8554, 8555, 8558— son pared beige lisa con una mesa
+        delante, y son los que MENOS sirven: se leen como sala de espera vacía,
+        que es justo lo que el cliente rechazó el 31-08 («mesas altas vacías»).
+        8539 es el encuadre que pide el brief —«fotografía vertical tomada desde
+        una de las mesas de Between. En primer plano, una mesa de madera. Al
+        fondo, parte de la cafetería»— con la lámpara de mimbre, las fotos de
+        NY y el muro de listones reconocibles.
+
+        ⭐⭐ Y LA FOTO REAL MEJORA EL TITULAR, que era la duda. Medido con las
+        dos tintas de marca sobre las filas donde va el texto:
+
+        | y   | tercio | beige ANTES | beige AHORA |
+        |-----|--------|-------------|-------------|
+        | 400 | izq    | 2,08        | **3,18** |
+        | 400 | centro | 2,12        | **3,30** |
+        | 400 | der    | 2,69        | **4,09** |
+        | 470 | izq    | 2,10        | **3,38** |
+        | 540 | centro | 2,30        | **3,60** |
+
+        O sea que la geometría calibrada en las rondas 5, 6 y 7 —tope 400, ancho
+        745, `sizeScript` 104, el tracking— NO se toca: sube el contraste sin
+        mover una medida. Y se cae el techo de y=590 de la ronda 5, porque ya no
+        hay follaje entrando por la derecha; se deja igual de todas formas, que
+        es la posición que Eli aprobó.
+
+        ⚠️ LO QUE SÍ CAMBIA ES EL LOCKUP: ver `LogoBeigeMarca`. El café se cae a
+        1,80–2,09:1 sobre el cielo gris y el beige da 3,16–3,51:1.
+
+        ⚠️ LA MESA VA SERVIDA, y no es decoración: es la regla de la ronda 2
+        («la mesa servida se queda con toda la mitad de abajo») y la del manual
+        §4 («una pieza que invita a venir se ilustra con una mesa servida y en
+        uso, no con el local vacío»). El material real llega con las mesas
+        VACÍAS, así que se sirve con el vaso To Go REAL del cliente —el mismo
+        recorte `togo-vaso-real-nobg.png` de la sesión del 25-07— montado con
+        `scripts/between-montar-vaso.py`, que iguala nitidez, nivel y
+        temperatura y le dibuja la sombra de contacto. Luz de la escena medida
+        en la mesa: viene de la DERECHA (brillo 174–192 a x≈1500–1890 contra
+        80–138 en el borde izquierdo), así que la sombra cae a la izquierda.
+
+        ⚠️ EL NOTEBOOK DEL BRIEF NO ESTÁ, y es un hueco de MATERIAL, no una
+        omisión: el brief pide «notebook abierto + café Between + libreta» y el
+        cliente no tiene ningún notebook fotografiado en su material. Los únicos
+        fotogramas con notebook son del LOUNGE DEL HOTEL, con caras
+        reconocibles, y no son el cowork. No se genera uno: se pide la foto.
+
+        El fondo sin el vaso queda versionado como `st-16-09-cowork-real.jpg`
+        por si Eli prefiere la foto limpia — Scarlette ya rechazó una vez un
+        montaje («se ve un montaje muy raro el vaso pegado en la foto»), así que
+        las dos van al HTML de antes y después. */}
+    {/* ⭐⭐ RONDA 11 (10-09-2026) — LA ESCENA SE PRODUCE ENTERA, Y SE ACABA EL
+        MONTAJE A MANO. Eli, sobre la entrega de la ronda 10:
+
+            «Me parece que el montaje esta mal logrado, la foto de fondo original
+            debes añadir un vaso togo, un notebook con logo apple, da lo mismo si
+            aparece que sea sutil. Un desayuno de sándwich. como se ven en las
+            fotos. Hazlo nuevamente y recuerda hacer un buen prompt, en magnific.»
+
+        Tres correcciones, y ninguna es de gusto:
+
+        1. ⛔ **EL VASO YA NO SE PEGA DESPUÉS.** La ronda 10 montaba el recorte
+           real con `between-montar-vaso.py` encima del fondo. Se veía pegado. Ahora
+           el vaso lo pinta el modelo DENTRO de la escena, con su luz y su
+           profundidad de campo. `between-montar-vaso.py` sigue siendo la
+           herramienta correcta para meter un packshot en un fondo liso — pero no
+           para poner un objeto sobre una mesa fotografiada.
+        2. ✅ **EL LOGO DE APPLE SE QUEDA.** En la ronda 10 se lo quité por prudencia
+           («una marca ajena no va en una pieza de cliente») y Eli lo devolvió: «da
+           lo mismo si aparece que sea sutil». Es criterio de la diseñadora y manda.
+        3. ➕ Entra el **desayuno de sándwich**, «como se ven en las fotos»: el de la
+           sesión real del cliente, no uno inventado.
+
+        ⭐⭐⭐ **LO QUE HIZO QUE EL LOGOTIPO SALIERA BIEN: pasarle el vaso REAL como
+        referencia.** Es la diferencia entre esta ronda y la 4, donde el cliente
+        rechazó un logotipo estampado sobre un vaso generado. Con
+        `togo-vaso-real-nobg.png` entre las referencias, dos de las tres variantes
+        escribieron la **Ǝ invertida** y la W angular de la marca. La que no la
+        recibió bien (v1) escribió un «BETWEEN» con E normal: se descartó.
+
+        Las CUATRO referencias, y para qué va cada una — está en
+        `scripts/between-cowork-escena-ia.py`:
+
+        | # | Referencia | Para qué |
+        |---|---|---|
+        | 1 | `st-16-09-cowork-real.jpg` | la escena que hay que conservar |
+        | 2 | `magnific_agrega-una-laptop-en-la-m_…` | el tratamiento de Eli |
+        | 3 | `togo-vaso-real-nobg.png` | **el logotipo, para que no lo invente** |
+        | 4 | `desayunos-ago2026/DSC_0823.jpg` | el plato y el pan reales |
+
+        ⚠️ **El prompt topa en 3000 caracteres** y la API devuelve HTTP 400 sin
+        avisar de otra cosa. El primero medía 4087 y hubo que condensarlo. Va
+        estructurado: qué es cada referencia → lo que NO se toca → lo que se agrega
+        objeto por objeto → la luz medida → la composición → las negaciones. Lo que
+        no se toca va ANTES de lo que se agrega: si va al final, el modelo ya
+        reescribió la escena.
+
+        ⭐ Y la composición se le pide por la restricción real: «todos los objetos en
+        la MITAD DE ABAJO del cuadro», porque el cartel taupe cierra en y≈1906 y
+        todo lo que quede más arriba se pierde detrás.
+
+        Se generaron **tres variantes** y se eligió la **v3**: el sándwich se lee
+        como desayuno de verdad (los cuatro triángulos de la v2 salen secos y
+        repetidos), el vaso queda más legible y la composición gana profundidad.
+
+        Los fondos anteriores quedan versionados para el histórico:
+        `st-16-09-cowork.jpg` (generado, ronda 9) · `-real.jpg` (foto sola) ·
+        `-real-vaso.jpg` y `-real-laptop.jpg` (los montajes de la ronda 10). */}
+    {/* ⭐ RONDA 12 (10-09-2026) — la ronda 11 quedó APROBADA y esto es un ajuste
+        de dirección de arte: «reemplaces el vaso TOGO por un café de taza blanca de
+        capuccino se va a ver más real. Y que esté más cerca del plato».
+
+        ⭐ **El recipiente dice si el cliente se queda o se va.** La pieza invita a
+        quedarse a trabajar de 08:00 a 22:00 y un vaso PARA LLEVAR la contradecía.
+        To Go para las piezas de llevar; taza y platillo para las de quedarse.
+
+        En el prompt sólo cambiaron la REF3 (`taza-cappuccino-nobg.png`, el otro
+        recorte real del kit) y la posición —«pegada al plato, casi tocando, para
+        que se lean como un solo desayuno servido»—. ⛔ Y hubo que QUITAR de las
+        negaciones el «no second cup» de la ronda 11: prohíbía justo lo que se
+        pedía. Al cambiar el objeto principal hay que releer las negaciones.
+
+        ⭐ Y se cae la nota de la ronda 10 que decía que esta taza «no servía por
+        estar fotografiada desde arriba»: eso valía para MONTARLA. Como REFERENCIA
+        el ángulo da igual, porque el modelo la redibuja en la perspectiva de la
+        escena. */}
+    {/* ⭐⭐⭐ RONDA 13 (10-09-2026) — «me cambiaste el sándwich y ese estaba
+        correcto» + «la taza está demasiado cerca, aléjalo un poco muy sutil».
+
+        ⭐ LA REFERENCIA DEL DESAYUNO PASA A SER **LA PROPIA VERSIÓN APROBADA**. En
+        la ronda 12 seguía apuntando a `DSC_0823.jpg`, la foto de la sesión con sus
+        triángulos de tostada, y el modelo la obedeció: cambió el sándwich de jamón
+        y queso que Eli ya había aprobado. La referencia apuntaba al MATERIAL DE
+        ORIGEN cuando lo que había que conservar era la INTERPRETACIÓN APROBADA de
+        ese material.
+
+        La regla: una vez que el cliente aprueba una escena generada, esa imagen
+        entra al set de referencias y desplaza al material que la originó. Es lo
+        que hace que una serie no se desarme ronda a ronda.
+
+        Y simplifica: la aprobada trae también la laptop y el tratamiento, así que
+        la edición de Magnific de Eli dejó de hacer falta. De 4 referencias a 3, y
+        el prompt de 3231 a 2768 caracteres sin perder instrucciones.
+
+        ⭐ Y EL HUECO SE MIDE: «un poco muy sutil» es cantidad, así que se contó la
+        madera entre plato y platillo en las tres variantes — 481 px (15,7 %),
+        754 (24,5 %) y 941 (30,6 %)— y se eligió la más chica. Cuando el pedido
+        trae un adverbio de cantidad hay una medida detrás. */}
+    <FotoFondo src={F + 'st-16-09-cowork-escena.jpg'} oscurecer={0.04} />
+
+    {/* El lockup en BEIGE: sobre el cielo gris de la foto real el café no se
+        lee (1,80–2,09:1). Ver `LogoBeigeMarca`. */}
+    <LogoBeigeMarca />
+
+    {/* ⭐⭐ RONDA 5 — TODO EL TEXTO SUBE, y por eso el titular vuelve a CAFÉ.
+        Eli marcó sobre la pieza una llave que envuelve el titular, el cartel y
+        el cierre, con una flecha hacia arriba: «solo subir el texto según lo que
+        te pido en el ejemplo».
+
+        Subirlo obliga a cambiarle la tinta, y no es una opinión — es el mismo
+        cálculo de contraste de la ronda 4, ahora en las alturas de arriba:
+
+        | y   | tercio | beige | café |
+        |-----|--------|-------|------|
+        | 470 | izq    | 1,33  | **1,93** |
+        | 470 | cen    | 1,36  | **1,90** |
+        | 470 | der    | 1,47  | **1,75** |
+        | 890 | izq    | **2,38** | 1,08 |
+        | 890 | der    | **2,80** | 1,09 |
+
+        Arriba la pared es clara y ahí el beige NO existe (1,33:1); el café da
+        1,90:1, que es lo mejor que ofrece esa superficie y es exactamente lo que
+        hace el referente —tipografía oscura sobre pared plana—. Abajo es al
+        revés. O sea que **el titular beige y el titular arriba son
+        incompatibles en esta foto**: se puede tener uno o el otro. Manda el
+        pedido nuevo, así que sube y va en café.
+
+        ⚠️ Y ojo con la franja del medio (y 610–820): ahí la foto se PARTE —el
+        tercio izquierdo sigue siendo pared clara y el derecho ya es follaje
+        oscuro—, así que ninguna de las dos tintas se lee en todo el ancho. El
+        titular no puede quedar ahí.
+
+        ⚠️ Y HAY UN TECHO: el titular tiene que CERRAR ANTES DE y=590. Medido
+        buscando el borde de la planta fila por fila, la pared se mantiene clara
+        (L≥150) en todo el ancho de la columna hasta y≈590 y a y=620 se derrumba
+        a x=642 — o sea que el follaje entra por la derecha. Con el bloque en
+        y=460 la caja alta caía justo ahí y las últimas letras de «¡TE
+        ESPERAMOS!» quedaban sobre la planta, en café sobre verde oscuro: se
+        veían sucias. El bloque mide ~180 px, así que arranca en 405 y cierra en
+        585.
+        Eso deja 41 px de aire bajo el lockup en vez de los 77 medidos en las
+        plantillas de Eli. Es una concesión consciente: entre respetar el token
+        de aire y que el titular se lea, gana que se lea.
+        El ancho baja a 770 (de 810) por lo mismo: a esa altura la pared clara
+        llega hasta x≈912 y con la columna completa el «!» final se salía al
+        follaje. */}
+    {/* ⭐⭐ RONDA 6 — Eli: «cuides como están los textos, se están solapando y no
+        tienen kernig optimo».
+
+        MEDIDO sobre el render, no a ojo:
+          · el aire de tinta a tinta entre la script y la caja alta daba **12,5 px**
+            — el token `aire.scriptATitulo` es 9 y está medido sobre una script SIN
+            descendentes. «Puedes venir» tiene la «P» de Brushwell con una cola
+            larguísima, así que 9 se los come la cola y las dos líneas se leen
+            pegadas. Es exactamente el caso que `aireScriptATitulo` documenta como
+            opt-in, y acá va en **30**;
+          · la caja alta iba al tope del tracking de marca (−0,024em). Sobre 8
+            letras eso no se nota, pero «¡TE ESPERAMOS!» son 14 y acumulan ~36 px
+            de cierre: las letras salían comprimidas. Va en **−0,004em** con
+            `trackingCapsEm`, que es el opt-in nuevo del sistema.
+
+        Y las dos cosas juntas hacen crecer el bloque, así que hay que devolver
+        alto por otro lado o el titular se cae al follaje:
+          · la script baja a **104** (de 123). Es la que ACOMPAÑA —el manual lo
+            dice— y con la caja alta en su cuerpo pleno la jerarquía queda mejor
+            que con las dos casi iguales;
+          · el ancho queda en **745**. Medido fila por fila, la pared se mantiene
+            clara hasta x≈909–912 hasta y=610 y con 770 el «!» final llegaba a
+            x=941: se salía al follaje. Con 745 la tinta cierra en x≈913;
+          · y el bloque arranca en **400**, para que la base de la caja alta no
+            pase de y≈612, que es donde la pared empieza a derrumbarse (a y=640
+            ya sólo llega a x=639). */}
+    <Columna top={400}>
+      <TitularBetween
+        script="Cowork"
+        caps="¡Te esperamos!"
+        alinear="centro"
+        tono="beige"
+        anchoDisponible={745}
+        sizeScript={104}
+        aireScriptATitulo={30}
+        trackingCapsEm={-0.006}
+      />
+    </Columna>
+
+    {/* EL CARTEL, en y=655 y con las TRES líneas de dato adentro.
+
+        ⛔ 655 y no 625, y ACÁ ESTABA EL SOLAPE QUE MARCÓ ELI. Medido fila por
+        fila sobre el render: la caja alta no termina en su línea de base, porque
+        el «¡» de «¡TE ESPERAMOS!» **desciende 34 px por debajo**. Con el cartel
+        en 625 esa cola llegaba a 652 y el cartel —que se pinta después— la
+        TAPABA: el signo salía cortado. En 655 quedan 32 px limpios entre la cola
+        y el canto del cartel.
+        La regla que deja: al medir un titular en caja alta hay que contar sus
+        DESCENDENTES. «¡» y «¿» descienden, y en una línea que empieza con signo
+        de apertura la caja de tinta es ~40 % más alta que la altura de
+        mayúscula.
+
+        El cierre entra al cartel porque la llave que dibujó Eli lo envuelve
+        junto al horario y la bajada — y porque afuera, a esa altura, tendría que
+        ser beige mientras el titular es café, y dos tintas sueltas en la misma
+        pieza se leen como un descuido. Dentro del cartel las tres van en beige.
+
+        Y el cartel cierra en ~y=915, o sea que la mesa servida —taza con arte
+        latte, notebook, libreta y croissant— se queda con TODA la mitad de
+        abajo. Es la corrección de la ronda 2 y ahora con más aire que nunca. */}
+    <div
+      style={{
+        position: 'absolute',
+        left: (1080 - BETWEEN.bloque.columna) / 2,
+        top: 655,
+        width: BETWEEN.bloque.columna,
+        boxSizing: 'border-box',
+        background: BETWEEN.cajas.fondo,
+        borderRadius: BETWEEN.cajas.radio,
+        padding: '26px 44px 24px',
+        boxShadow: '0 22px 60px rgba(36,26,18,0.34)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      {/* EL HORARIO, literal de la grilla, en DOS LÍNEAS.
+
+          ⭐⭐ RONDA 7 — Eli, recortando justo esta línea: «este texto está muy
+          pegado». La causa es de medida, no de tracking: en UNA sola línea son
+          **36 caracteres**, y a cuerpo 45 miden 826 px contra los 722 útiles del
+          cartel. `CajaDato` la achicaba entonces hasta **~31 px** para que
+          cupiera —altura de mayúscula 23 contra las 33 de la pieza aprobada— y a
+          ese cuerpo, con tracking cero, las letras se apelmazan.
+
+          Partida en dos entra al CUERPO PLENO de la marca: medido con la fuente
+          real, «LUNES A VIERNES» da 402 px y «08:00 A 22:00 HRS.» da 421 px a
+          cuerpo 45 con +0,02em — las dos con holgura dentro de 722. Y es la misma
+          estructura que el referente, que también parte el horario en dos.
+
+          Va suelto y no en `CajaDato`: dentro de un cartel que ya es taupe otra
+          caja taupe no agrega jerarquía (regla «una sola línea fuerte por pila»),
+          y `CajaDato` además impone `nowrap` y 66 px de alto por línea.
+          ⚠️ El `<span>` alrededor de `conCifras` NO es decorativo: la función
+          devuelve un ARRAY y sin envolver, los trozos que son sólo espacio no se
+          pintan — el horario salía «·08:00A22:00HRS.». Está documentado en
+          `CajaDato`. */}
+      <div
+        style={{
+          textAlign: 'center',
+          fontFamily: BETWEEN.fuentes.sans,
+          fontWeight: BETWEEN.pesos.extrabold,
+          fontSize: BETWEEN.tipos.cajaDato,
+          lineHeight: 1.18,
+          /* ⭐⭐ RONDA 8 — Eli: «recuerda el uso de kerning y tracking de
+             separación optima ya que se pierde y esta muy junto […] Separalos un
+             poco en los lados espacio entre letras no parrafos».
+             0,02em era casi nada. La marca YA tiene el valor: el token
+             `BETWEEN.trackingHorario` es 7 px y `Dato` lo aplica a cuerpo 29–30,
+             o sea ~0,24em; y `CajaTexto` —el chip de horarios de Eli— usa 3 px a
+             cuerpo 30, o sea 0,10em. Acá la línea va en ExtraBold, que necesita
+             MÁS aire que un semibold, así que se toma el valor del chip como
+             piso: **0,10em** = 4,5 px a cuerpo 45.
+             Y hay sitio de sobra: con ese tracking las dos líneas miden 452 y
+             483 px dentro de los 722 útiles del cartel. */
+          letterSpacing: `${TRACK_HORARIO}em`,
+          textTransform: 'uppercase',
+          color: BETWEEN.colores.beige,
+        }}
+      >
+        <div>Lunes a viernes</div>
+        <div>{horarioKerneado('08:00 a 22:00 hrs.')}</div>
+      </div>
+      {/* La bajada, literal. Los saltos a mano: partida por el navegador dejaba
+          «para ti.» sola en la última línea.
+
+          ⭐ RONDA 6 — el margen sube de 2 a 22, y es la OTRA mitad del «cuides
+          como están los textos» de Eli. `CajaDato` mide 66 px de alto con el
+          texto centrado, así que sólo aportaba ~16 px de aire por debajo: con 2
+          de margen el salto horario→bajada quedaba en ~18 px, MENOS que los
+          ~40 px de interlínea de la propia bajada. O sea el salto ENTRE niveles
+          más chico que el salto DENTRO del nivel: la jerarquía al revés, que es
+          justo lo que el manual tiene escrito como defecto. */}
+      <div
+        style={{
+          marginTop: 22,
+          textAlign: 'center',
+          fontFamily: BETWEEN.fuentes.sans,
+          fontWeight: BETWEEN.pesos.semibold,
+          fontSize: 32,
+          lineHeight: 1.24,
+          color: BETWEEN.colores.beige,
+        }}
+      >
+        Ven a trabajar desde Between.<br />Tenemos una mesa para ti.
+      </div>
+      {/* El «cierre pequeño» del brief, literal. Eli, ronda 4: «Agrandar un poco
+          el texto de abajo […] que sea italic pero un poco más grande».
+          `LegalAlPie` lo pintaba a 28 px, que es la medida del LEGAL de una
+          story; acá va a 38 px en cursiva. */}
+      <div
+        style={{
+          /* 26 por lo mismo: el cierre es otro nivel, así que su salto tiene que
+             ser mayor que la interlínea de la bajada (~40 px). Con 16 se leía
+             como una tercera línea del mismo párrafo. */
+          marginTop: 26,
+          textAlign: 'center',
+          fontFamily: BETWEEN.fuentes.sans,
+          fontStyle: 'italic',
+          fontWeight: BETWEEN.pesos.semibold,
+          fontSize: 38,
+          lineHeight: 1.2,
+          color: BETWEEN.colores.beige,
+          opacity: 0.95,
+        }}
+      >
+        WiFi · Café · Espacios para trabajar
+      </div>
+    </div>
+
+    {guia ? (
+      <ZonaReservada
+        zona={ZONA_ENLACE}
+        etiqueta={'ENLACE · «VER LA CARTA»\n660 × 140'}
+      />
+    ) : null}
+  </AbsoluteFill>
+);
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ST 18-09 · SALUDO FIESTAS PATRIAS  (col O · EN CAMBIOS tras la ronda del 09-09)
+
+   La grilla NO pide interacción, así que no lleva zona reservada.
+
+   ⭐⭐ RONDA 9 · LA PRIMERA DEL CLIENTE (09-09) — en rojo sobre `STORIES!O`: «Para no
+   redundar, pongamos ¡Feliz 18 de septiembre! con eso super ok».
+
+   La redundancia era real y estaba MEDIDA en el propio copy: «Fiestas Patrias»
+   aparecía dos veces en el mismo cartel —en el párrafo del brief y otra vez en
+   la caja de cierre—. Cambia SÓLO la caja: «¡Felices Fiestas Patrias!» →
+   «¡Feliz 18 de septiembre!». El párrafo es literal del brief y no se toca.
+
+   ⛔ Y acá entra la trampa de `tracking-no-llega-a-inline-block`: el texto nuevo
+   trae un NÚMERO. `CajaDato` ya lo resuelve con `conCifras`, pero hay que
+   verificarlo en el render y no darlo por hecho. MEDIDO sobre el PNG:
+     · el hueco entre el «1» y el «8» es de **9 px**, dentro del rango de 7–15 px
+       que dan los huecos entre letras — o sea que los dígitos NO quedaron
+       pegados mientras las letras se abrían;
+     · los tres espacios de palabra dan 29 / 31 / 27 px, parejos;
+     · la caja mide 1453 px dentro de un cartel de 1692 y queda centrada con
+       143 px a cada lado. `ajustarACaber` calcula el cuerpo sobre el texto plano
+       y la caja tabular ENSANCHA, así que este margen es el que hay que volver a
+       mirar si alguna vez cambia el texto.
+
+   ⭐⭐ RONDA 3 (08-09) — Eli: «el contexto es 18 de septiembre de fiestas patrias
+   de Chile, necesito que sea detalles ILUSTRADOS y haz más similar a la
+   referencia con los colores de between».
+
+   Las tres cosas que cambian respecto de la ronda 2, y todas vienen de ahí:
+
+   1. **El cartel manda.** En el `REF 3` el cartel ocupa ~80 % del alto y la foto
+      es el marco. La ronda 2 lo tenía al revés —un panel chico en la mitad de
+      abajo—, así que el cartel crece a 812 × 1260 y la foto queda alrededor.
+   2. **Los detalles son ILUSTRADOS.** El referente resuelve su motivo con un
+      dibujo de línea de un solo color, y ahora eso es lo que se pidió: entran
+      una **guirnalda de banderitas** y un **brindis de dos tazas de café**,
+      dibujados en `BetweenIlustraS3.tsx` y en la tinta café `#675B49` de la
+      marca. ⛔ Nada de rojo, azul ni blanco de bandera: Eli pidió los colores de
+      Between, y la bandera chilena no es su paleta. El 18 se lee por las
+      banderitas, no por el tricolor.
+   3. **La foto pasa a ser AMBIENTE.** Como el brindis ya es dibujo, la escena
+      fotográfica del brindis sobraba: el fondo es ahora el local muy
+      desenfocado, con las ampolletas encendidas convertidas en manchas de luz
+      dorada — que es exactamente el papel que cumple el loft del referente.
+
+   El lockup va DENTRO del cartel y en café, como el referente pone su identidad
+   dentro del papel. No hay lockup flotante arriba: leerla dos veces es el mismo
+   defecto que repetir el logo sobre una foto con el vaso impreso (regla 8).
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ⛔ El cartel NO lleva alto fijo. Se probó con `minHeight: 1260` —para que
+   ocupara la misma proporción que el de la referencia— y dejó 160 px de beige
+   muerto al pie, con todo el contenido apretado arriba: se lee como un error de
+   diagramación, no como el aire de un cartel. Ahora se ajusta a su contenido
+   (≈1130 px) y arranca en y=330, lo que deja 80 px de foto arriba y 119 abajo. */
+const CARTEL = {ancho: 812, padX: 52, top: 330};
+
+/**
+ * ⭐ RONDA 4 — el cartel es PAPEL, no un plano de color.
+ *
+ * Eli: «el cuadro beige de texto debe ser una textura de papel beige, similar a
+ * la referencia». El cartel del referente es papel crema con grano.
+ *
+ * La textura la sintetiza `scripts/between-st-s3-materiales.py` con semilla
+ * fija —grano fino + fibra horizontal + un manchado muy leve sobre el beige de
+ * marca `#FFF9EB`— en vez de generarla con IA, por dos razones: el tinte tiene
+ * que caer exacto en el hex de la marca, y con semilla fija esto se reproduce.
+ * Desvío medido: 2,86 niveles sobre 255. Se tiene que notar en el canto y a
+ * tamaño real, no convertirse en un fondo con dibujo: sobre el texto café un
+ * grano fuerte se lee como suciedad.
+ *
+ * `backgroundColor` va ADEMÁS de la imagen, no en su lugar: si el PNG no cargara
+ * el cartel seguiría siendo beige y no un agujero transparente.
+ */
+const PAPEL = 'assets/hilton/between/papel-beige.png';
+
+export const StS3Dieciocho: React.FC = () => (
+  <AbsoluteFill style={{backgroundColor: '#241a12'}}>
+    {/* 0,18: el ambiente viene claro y con mucho bokeh dorado, y el cartel beige
+        necesita despegarse del fondo. Es velo sobre AMBIENTE, no sobre un texto,
+        así que no choca con la regla de no apagar la foto para leer un texto. */}
+    <FotoFondo src={F + 'st-18-09-dieciocho.jpg'} oscurecer={0.18} />
+
+    <div
+      style={{
+        position: 'absolute',
+        left: (1080 - CARTEL.ancho) / 2,
+        top: CARTEL.top,
+        width: CARTEL.ancho,
+        boxSizing: 'border-box',
+        backgroundColor: BETWEEN.colores.beige,
+        backgroundImage: `url(${staticFile(PAPEL)})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        borderRadius: BETWEEN.cajas.radio,
+        padding: `40px ${CARTEL.padX}px 34px`,
+        boxShadow: '0 30px 80px rgba(36,26,18,0.45)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      {/* El lockup en el CAFÉ DE MARCA, no en el negro de `BETWEEN.logo.cafe`
+          — ver `LOGO_CAFE` arriba. 196 px es el mínimo de la plantilla de story
+          de Eli y dentro de un cartel no necesita más; el alto sale del ratio
+          3,0298 para que nunca se vea achatado. */}
+      <Img
+        src={staticFile(LOGO_CAFE)}
+        style={{width: 196, height: 196 / BETWEEN.logo.ratio, objectFit: 'contain'}}
+      />
+
+      {/* LOS DETALLES ILUSTRADOS. La guirnalda primero, colgada bajo el lockup
+          como si el cartel estuviera adornado; el brindis después, que es el
+          motivo central del referente. */}
+      <div style={{marginTop: 18}}>
+        <GuirnaldaBanderitas
+          ancho={CARTEL.ancho - 2 * CARTEL.padX}
+          tinta={BETWEEN.colores.cafe}
+        />
+      </div>
+      {/* ⭐⭐ RONDA 5 — DOS banderitas, flanqueando el brindis y apuntando hacia
+          AFUERA. Eli marcó sobre la pieza dos flechas en «V» saliendo de donde
+          estaba la única bandera: «pon dos banderas en la dirección que te dejo
+          el ejemplo 2».
+
+          Van dentro del MISMO bloque que el brindis, en posición absoluta sobre
+          sus flancos vacíos, y no en una fila aparte. La razón es de espacio: el
+          `viewBox` del brindis mide 760 y las tazas ocupan de 248 a 512, o sea
+          que a los costados sobran ~230 px de nada. Puestas ahí, las dos
+          banderas no le quitan ni un píxel de ancho al brindis —que es el motivo
+          principal— y el cartel no crece de alto, que es lo que dejó sitio para
+          acomodar mejor los textos.
+
+          La de la izquierda va con `espejo`, así que con el MISMO `giro` las dos
+          apuntan hacia afuera y el par queda simétrico. */}
+      <div
+        style={{
+          marginTop: 6,
+          position: 'relative',
+          width: CARTEL.ancho - 2 * CARTEL.padX,
+        }}
+      >
+        <BrindisTazas
+          ancho={CARTEL.ancho - 2 * CARTEL.padX}
+          tinta={BETWEEN.colores.cafe}
+        />
+        <div style={{position: 'absolute', left: 4, top: 118}}>
+          <BanderaChile
+            ancho={158}
+            tinta={BETWEEN.colores.cafe}
+            fondo={BETWEEN.colores.beige}
+            giro={-22}
+            espejo
+          />
+        </div>
+        <div style={{position: 'absolute', right: 4, top: 118}}>
+          <BanderaChile
+            ancho={158}
+            tinta={BETWEEN.colores.cafe}
+            fondo={BETWEEN.colores.beige}
+            giro={-22}
+          />
+        </div>
+      </div>
+
+      {/* ⭐ RONDA 5 — «que puedas acomodar más los textos». Con las banderitas
+          metidas en los flancos del brindis, el cartel no creció de alto y ese
+          aire se reparte acá: 30 px del dibujo al titular (antes 8), y más abajo
+          34 al párrafo y 34 a la caja del saludo. El bloque de texto respira y
+          deja de leerse pegado al dibujo. */}
+      <div style={{marginTop: 30}}>
+        <TitularBetween
+          script="Por los sabores"
+          caps="Que nos reúnen"
+          alinear="centro"
+          tono="cafe"
+          anchoDisponible={CARTEL.ancho - 2 * CARTEL.padX}
+        />
+      </div>
+
+      {/* El párrafo del brief, literal y completo, en tinta café sobre el beige.
+          Los saltos van a mano para repartir las tres líneas parejas: partido
+          por el navegador quedaba «compartir.» solo en la última, y la regla de
+          la ronda 5 es que la bajada no deja palabras viudas. */}
+      <div
+        style={{
+          marginTop: 34,
+          textAlign: 'center',
+          fontFamily: BETWEEN.fuentes.sans,
+          fontWeight: BETWEEN.pesos.semibold,
+          fontSize: 33,
+          lineHeight: 1.38,
+          color: BETWEEN.colores.cafe,
+        }}
+      >
+        Que estas Fiestas Patrias estén llenas de<br />
+        buenos momentos, sobremesas y mucho<br />
+        para compartir.
+      </div>
+
+      {/* El saludo de cierre, literal. Es la línea fuerte del cartel, así que va
+          en caja taupe: dentro del beige, el café macizo es el énfasis. Una sola
+          línea fuerte por pila (manual §1 bis). */}
+      <div style={{marginTop: 34}}>
+        <CajaDato anchoDisponible={CARTEL.ancho - 2 * CARTEL.padX}>
+          ¡Feliz 18 de septiembre!
+        </CajaDato>
+      </div>
+    </div>
+  </AbsoluteFill>
+);
+
+/* Variantes «guía» — llevan dibujada la zona del sticker. NO se entregan al
+   cliente ni se suben al Drive: son para el CM.
+   La 18-09 no tiene guía porque no lleva interacción. */
+export const StS3HoraCafeGuia: React.FC = () => <StS3HoraCafe guia />;
+export const StS3CoworkGuia: React.FC = () => <StS3Cowork guia />;

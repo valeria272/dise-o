@@ -1,0 +1,94 @@
+{
+ "foto": "public/assets/landera/fotos/v2/esc-totem.jpg",
+ "salida": "out/landera/montajes/totem.jpg",
+ "capas": [
+  {
+   "tipo": "logo",
+   "archivo": "public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_VER-FARM_MONO-TINTA.svg",
+   "quad": [
+    [
+     1085,
+     240
+    ],
+    [
+     1830,
+     232
+    ],
+    [
+     1830,
+     1450
+    ],
+    [
+     1108,
+     1450
+    ]
+   ],
+   "encaje": 0.5,
+   "alinear": [
+    0.25,
+    0.16
+   ],
+   "material": "pintura"
+  },
+  {
+   "tipo": "texto",
+   "texto": "Fundo El Peral",
+   "quad": [
+    [
+     1085,
+     240
+    ],
+    [
+     1830,
+     232
+    ],
+    [
+     1830,
+     1450
+    ],
+    [
+     1108,
+     1450
+    ]
+   ],
+   "encaje": 0.62,
+   "alinear": [
+    0.19,
+    0.66
+   ],
+   "material": "pintura",
+   "peso": "Bold",
+   "color": "#33353E"
+  },
+  {
+   "tipo": "texto",
+   "texto": "ADMINISTRADO POR LANDERA",
+   "quad": [
+    [
+     1085,
+     240
+    ],
+    [
+     1830,
+     232
+    ],
+    [
+     1830,
+     1450
+    ],
+    [
+     1108,
+     1450
+    ]
+   ],
+   "encaje": 0.52,
+   "alinear": [
+    0.25,
+    0.76
+   ],
+   "material": "pintura",
+   "peso": "Regular",
+   "color": "#33353E"
+  }
+ ]
+}

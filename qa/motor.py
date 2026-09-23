@@ -114,6 +114,21 @@ def cargar_reglas(marca: str) -> tuple[list[dict], dict]:
     return reglas, propio
 
 
+# El nombre de la carpeta de trabajo no siempre es el slug del cliente: las
+# entregas de Rentas van a `out/rentas/`, su material bruto a `raw/nuevaurbe/` y
+# el manual vive en `clients/nueva-urbe/`. Sin esta tabla el aislamiento por
+# marca no protege nada: rechaza sus propias piezas como «de otra marca».
+# Sólo se declara lo que existe en el repo — un alias inventado es un agujero.
+ALIAS_DE_CARPETA = {
+    "rentas": "nueva-urbe",       # out/rentas/  (entregas de Rentas Nueva Urbe)
+    "nuevaurbe": "nueva-urbe",    # raw/nuevaurbe/
+    "tierracalma": "tierra-calma",        # raw/tierracalma/ y out/tierracalma/
+    "tierracalma-drone": "tierra-calma",  # raw/tierracalma-drone/ (rodaje DD Studio)
+    "hilton-between": "hilton",   # out/hilton-between*/ (Between es marca de Hilton)
+    "copylab": "copywriters",     # out/copylab/ y assets/copylab/ (la cuenta propia)
+}
+
+
 def marca_de_la_ruta(p: pathlib.Path) -> str | None:
     """Deduce a qué marca pertenece un archivo por su ubicación en el repo."""
     partes = p.resolve().parts
@@ -121,7 +136,8 @@ def marca_de_la_ruta(p: pathlib.Path) -> str | None:
         if ancla in partes:
             i = partes.index(ancla)
             if i + 1 < len(partes):
-                return partes[i + 1]
+                carpeta = partes[i + 1]
+                return ALIAS_DE_CARPETA.get(carpeta, carpeta)
     return None
 
 
@@ -203,6 +219,12 @@ def main() -> int:
     ap.add_argument("--json", help="escribe el informe a un archivo")
     args = ap.parse_args()
 
+    # El slug que teclea la persona no siempre es el de `clients/`: las entregas de
+    # Rentas viven en `out/rentas/`, así que `--marca rentas` es lo natural. Se
+    # normaliza con la MISMA tabla que usan las rutas; sin esto el motor aborta con
+    # «rentas no tiene reglas.yaml», que es falso — las tiene en `nueva-urbe`.
+    args.marca = ALIAS_DE_CARPETA.get(args.marca, args.marca)
+
     try:
         reglas, ficha = cargar_reglas(args.marca)
     except ErrorDeMarca as e:
@@ -211,6 +233,24 @@ def main() -> int:
 
     rutas = [pathlib.Path(p) for p in args.piezas]
     rutas = [p for p in rutas if p.suffix.lower() in (".png", ".jpg", ".jpeg")]
+
+    # ── material de revisión, no piezas ───────────────────────────────────────
+    # Todo archivo cuyo nombre empieza con «_» es una hoja de contacto, una grilla
+    # de perfil, un montaje comparativo o un descarte guardado como evidencia. No
+    # son entregas y evaluarlos da falsos positivos garantizados: una hoja de
+    # contacto SIEMPRE tiene texto pegado al borde (las etiquetas) y SIEMPRE tiene
+    # filas clonadas (los separadores entre viñetas).
+    #
+    # Nace de esto: el 03-09-2026 el lote de Copywriters pasó el QA en verde y
+    # después volvió con 3 bloqueantes. Los tres eran las hojas de contacto que se
+    # habían dejado en la misma carpeta. Un QA que marca su propio material de
+    # revisión es un QA que la gente aprende a ignorar.
+    revision = [p for p in rutas if p.name.startswith("_")]
+    rutas = [p for p in rutas if not p.name.startswith("_")]
+    if revision:
+        print(f"{GRIS}  ({len(revision)} archivo(s) de revisión omitidos: "
+              f"{', '.join(sorted(r.name for r in revision))}){FIN}")
+
     if not rutas:
         print(f"{ROJO}✖ no hay imágenes en lo que pasaste{FIN}")
         return 2

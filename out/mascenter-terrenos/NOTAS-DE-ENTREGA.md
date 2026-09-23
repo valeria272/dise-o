@@ -1,0 +1,243 @@
+# Más Center — Landing de captación de terrenos
+
+Landing para que dueños de terrenos postulen su propiedad a Más Center (Grupo IFB).
+Hermana de la landing de Algarrobal: mismo esqueleto, mismos movimientos, mismo sistema.
+
+- **En vivo (pública):** https://mascenter-terrenos.vercel.app
+- **Vista previa para aprobar:** https://claude.ai/code/artifact/958bf9c0-ea7c-4a45-b001-453e336e9180
+- **Código:** `out/mascenter-terrenos/index.html` (una sola página, CSS y JS embebidos)
+- **Material fuente:** `raw/mascenter-terrenos/`
+
+## De dónde salió cada decisión
+
+| Capa | Fuente |
+|---|---|
+| Paleta | **Manual de marca Grupo IFB 2023**, p33–34: Vivid red `#E52521`, Very dark red `#65140F`, Very light gray `#DADADA`, negro |
+| Tipografía | **Poppins**, corporativa de Más Center según el manual p26. Es la misma que usa mascenter.cl y la landing de Algarrobal |
+| Estructura y textos | El brief que mandó el cliente, literal |
+| Módulo «paso a paso» | El print de Arcos Dorados que mandó el cliente, traducido al rojo de la marca |
+| Fotos de centros | Bajadas de **mascenter.cl** (21 disponibles, se usaron 12) |
+| **Banner del hero** | **Terreno generado con IA** (Magnific/Mystic) — rotulado «Imagen referencial» |
+| Foto de «La oportunidad» | Render aéreo de Algarrobal, ya aprobado por el cliente |
+| Movimientos | Calcados de `pirquenogalesponiente.mascenter.cl`, igual que en Algarrobal |
+
+El chevron se usa como **borde entre el campo de color y la fotografía**, no como flecha
+encima — la regla del sistema. Los iconos son **rellenos**, como exige el manual (p37).
+
+## Secciones
+
+1. Hero — «Identificamos ubicaciones. Desarrollamos oportunidades.»
+2. La oportunidad — «¿Tienes un terreno con potencial comercial?»
+3. Qué buscamos — 5 criterios
+4. El valor de Más Center — cifras con contador (+69.000 m², +30, +400)
+5. Centros en operación — carrusel de 12 fotos reales
+6. Más que un terreno — las 7 variables de evaluación
+7. **Paso a paso** — el módulo que pidió el cliente, 2×2 con checks rojos
+8. Conversemos — formulario de postulación
+9. Pie con la firma «Encontramos ubicaciones · Creamos espacios · Acercamos comercios y servicios»
+
+## ⚠️ Decisiones que necesitan al cliente
+
+1. **La superficie mínima dice «XX m²».** Así venía en el brief. Está marcada con un
+   comentario HTML en la tarjeta «Superficie» — es un solo lugar que cambiar.
+2. ~~**El correo de contacto es `contacto@mascenter.cl`**~~ — **RESUELTO 08-09-2026:**
+   el cliente confirmó el buzón de captación de terrenos y la landing ya dice
+   **`terrenos@ifbinversiones.cl`** (enlace `mailto:` y texto visible, sección
+   «Conversemos»). Sigue sin teléfono: no tenemos uno confirmado para esto.
+3. **Los 4 pasos del proceso son propuesta de la agencia**, adaptados de la referencia
+   de Arcos Dorados. Falta que Más Center confirme los plazos reales y **cómo se llama
+   el área que evalúa** — quedó como «equipo de desarrollo» (en McDonald's es «Real Estate»).
+4. **El formulario abre el correo del visitante, no envía por su cuenta.** Al
+   validar OK arma la postulación —con los 8 campos ya escritos— y la abre dirigida a
+   `terrenos@ifbinversiones.cl`. El visitante tiene que darle enviar. Es el puente
+   hasta que se monte en WordPress con Contact Form 7, donde el envío pasa a ser
+   silencioso y al mismo destinatario. Campos: nombre, email, teléfono, región,
+   comuna, superficie, dirección/rol, mensaje.
+   ⚠️ Hasta el 09-09-2026 el formulario le decía al visitante «Recibimos tu
+   postulación» sin mandar nada a ninguna parte. Corregido.
+5. **Dominio.** Hoy vive en `mascenter-terrenos.vercel.app`. Sugerencia:
+   `terrenos.mascenter.cl` con CNAME a Vercel, o como página dentro del WordPress actual.
+
+## Verificado
+
+- Sin scroll horizontal en 1440 / 768 / 390 px · sin errores de consola
+- Las 17 imágenes cargan · carrusel y validación del formulario funcionando
+- `prefers-reduced-motion` respetado — apaga apariciones y parallax
+- Español de Chile con tuteo, sin voseo
+
+## Reconstruir la vista previa
+
+```bash
+cd out/mascenter-terrenos
+python3 -m http.server 8899      # y abrir http://localhost:8899
+```
+
+El `preview-artifact.html` (2,1 MB, con los assets incrustados en base64) **no se versiona**:
+se regenera desde `index.html` cuando haga falta.
+
+## El banner del hero: por qué es un terreno y no un proyecto
+
+Al principio el hero llevaba el render aéreo de Algarrobal. Tenía dos problemas:
+es un **render** —y la página se apoya en que los +30 centros ya están operando—, y
+es un **proyecto identificable**, no una imagen genérica de la marca.
+
+Se cambió por un **terreno vacío en la esquina de una avenida**: le habla directo a
+quien tiene un paño y ve ahí su propia situación. Va rotulado **«Imagen referencial»**
+abajo a la derecha porque es generada con IA y no corresponde a una propiedad real de
+Más Center.
+
+> 💡 **Lo ideal sigue siendo una foto real con dron** de un centro en operación: resuelve
+> las dos cosas de una (es real y es de ellos). Vale la pena pedírsela a Más Center.
+
+## Sobre el rediseño que se descartó
+
+El 02-09-2026 se probó una segunda versión con otro enfoque —expediente institucional
+sobre fondo grafito, filetes en vez de tarjetas, comparador arrastrable terreno→proyecto
+y un registro de centros en lugar del carrusel— y **el cliente interno la descartó**:
+se vuelve a esta versión. Queda en el historial de git (commit `7a507e4`) por si alguna
+vez se quiere rescatar alguna pieza suelta.
+
+De ese intento sobrevivieron **3 imágenes de terrenos generadas con IA**. Una de ellas
+—`terreno-hero.jpg`— **terminó siendo el banner de esta versión**. Las otras dos
+(`terreno-esquina`, `terreno-avenida`) siguen disponibles en `raw/mascenter-terrenos/ia/`.
+Ver `PROMPTS-IMAGENES.md`.
+
+## Volver a desplegar
+
+```bash
+cd out/mascenter-terrenos
+npx vercel deploy --prod --yes     # cuenta valeria-1724, proyecto mascenter-terrenos
+python3 -m http.server 8899        # para verlo local
+```
+
+---
+
+## Ronda 2 — 02-09-2026 (feedback del KAM)
+
+| # | Comentario | Qué se hizo |
+|---|---|---|
+| 1 | Los botones redirigen bien | Nada. Verificado. |
+| 2 | El logo se siente chico frente a «Postula tu terreno» | Cabecera **46 → 64 px** (50 px al hacer scroll, antes 36). Pie **52 → 66 px**. |
+| 3 | El rojo oscuro puede no convencer a Fran | **No se tocó**, tal como se pidió. Queda a la espera de su revisión para definir el Pantone. |
+| 4 | Faltan centros: son 23 activos | Carrusel rehecho con **los 23**. Fotos bajadas una a una del sitio oficial (`mascenter.cl/<centro>/`, banners 1920×810), verificadas con hoja de contacto: las 23 son distintas y reales. Recortadas a 3:2 · 1200×800. |
+| 5 | Usar la nomenclatura oficial, no la comuna | Rótulo ahora es **nombre oficial** (Más Center Larraín) + **comuna** debajo (La Reina). |
+| 6 | Sumar el LinkedIn de Grupo IFB | Agregado en el pie. URL sacada del sitio de IFB: `linkedin.com/company/grupoifb/`. |
+
+### Cambio de proporción de las tarjetas
+Las fotos oficiales son panorámicas (2,37:1) y la tarjeta era 4:3. Meterlas ahí
+recortaba casi la mitad del ancho, justo lo que define a un strip center.
+La tarjeta pasó a **3:2**.
+
+### ⚠️ Tres cosas que quedan pendientes de confirmación
+
+1. **«Más de XX m² de terreno»** sigue publicado en la sección «¿Qué buscamos?».
+   El `XX` viene del brief original y nunca llegó el dato. Es la primera condición
+   que lee un dueño de terreno — conviene cerrarlo antes de que lo vea Fran.
+2. ~~La cifra pasó de «+30» a «23»~~ **RESUELTO (02-09):** el KPI se queda en
+   **«+30»**, porque es como la marca lo comunica en todos lados. Se revirtió en
+   los tres lugares (sello del hero, contador de trayectoria y meta description).
+   Para que no choque, la bajada del carrusel **ya no declara un número**: dice
+   «Una cartera en operación de Copiapó a Osorno». Así conviven el KPI de marca
+   (+30, que incluye proyectos en desarrollo) y las 23 fichas con foto real.
+3. **«Las Flores» y «San Carlos»** son los dos de Las Condes. Se asignó
+   `las-condes-san-carlos-de-apoquindo` → Las Flores y `san-carlos-de-apoquindo` →
+   San Carlos. **Confirmar que las fotos no quedaron cruzadas.**
+
+Typos de la tabla corregidos al escribir: «Cuidad Empresarial» → Ciudad Empresarial ·
+«Sana Maria» → Santa María · «Peñalolen» → Peñalolén · «Los angeles» → Los Ángeles ·
+«Con Con» → Concón.
+
+---
+
+## Ronda 3 — 02-09-2026 (comentarios del cliente)
+
+| # | Comentario | Qué se hizo |
+|---|---|---|
+| 1 | El texto inicial más directo | Hero rehecho con el texto literal del cliente: titular **«Buscamos terrenos»** + bajada **«Con potencial para nuevos proyectos comerciales»**, y el párrafo **«¿Tienes un terreno en una ubicación estratégica? Estamos buscando nuevas ubicaciones y oportunidades para desarrollar proyectos.»** Los dos botones ya eran POSTULA TU TERRENO / QUÉ BUSCAMOS. |
+| 2 | La superficie es entre 3.000 y 15.000 m² | **Cerrado el «XX» que arrastrábamos desde el brief.** La tarjeta «Superficie» dice ahora «Entre **3.000 y 15.000 m²** de terreno». |
+| 3 | Cambiar la bajada de «Trayectoria consolidada…» | Reemplazada por el texto del cliente. El titular de la sección no se tocó. |
+| 4 | El bullet de +30 va de Copiapó a **Coyhaique** | Cambiado en el contador de trayectoria. |
+| 5 | Centros en operación, hasta Coyhaique (no Osorno) | Cambiado en la bajada del carrusel. |
+| 6 | Cuatro fotos del carrusel | Las cuatro reemplazadas — ver abajo. |
+
+También se actualizaron el `<title>`, la meta description y el `og:description`,
+que todavía repetían el titular viejo y decían «hasta Osorno».
+
+### Las cuatro fotos: de dónde salieron
+
+El cliente tenía razón — las fotos con la marca **Aramco vigente** ya existían.
+No estaban en `mascenter.cl` (el sitio sigue publicando los banners de enero 2024,
+con Petrobras) sino en el **banco de imágenes de Más Center en el Drive de la agencia**,
+carpeta de marzo 2026 que armó Diego Aguilar. Copiadas a
+`raw/mascenter-terrenos/fotos-drive-2026-03/` y recortadas a 3:2 · 1200×800 con
+[`scripts/gcl-mascenter-terrenos-fotos-r3.py`](../../scripts/gcl-mascenter-terrenos-fotos-r3.py).
+
+| Foto | Problema | Qué se hizo |
+|---|---|---|
+| **Padre Hurtado** | «Se ve fea» — era un recorte cerrado sobre el muro gris, con el logo de Express cortado | Foto profesional nueva: se ve la tira completa, Express de Líder + Cruz Verde + los locales |
+| **Osorno** | Ya no es Petrobras | Foto con **Aramco**. El recorte deja fuera el tótem de precios y sube el encuadre para que se vea la tira (a stop, Cruz Verde) |
+| **Copiapó** | También es Aramco y se veía poco strip | Foto con **Aramco**, recortada hacia el edificio de dos pisos para que el strip pese más que la bomba |
+| **Chamisero I** | Faltaba el logo del Jumbo | Foto donde el tótem del **Jumbo** entra completo, con la tira y el cerro detrás |
+
+Las cuatro llevan `?v=3` en el `src`: los assets se sirven con
+`Cache-Control: immutable` a un año, así que sin eso quien ya entró seguiría viendo
+las fotos viejas.
+
+### Verificado
+
+- Sin scroll horizontal en 1440 / 768 / 390 px · sin errores de consola · sin peticiones fallidas
+- Las 23 fichas del carrusel cargan (van con `loading="lazy"`, entran a medida que avanza)
+- Recorrido con Chrome real, no a ojo
+
+### Lo que queda abierto
+
+1. **Coyhaique no tiene ficha en el carrusel.** El texto ya dice «de Copiapó a Coyhaique»,
+   pero ahí Más Center tiene un **local comercial** (Fashion Park), no un strip center, y
+   el carrusel se llama «Centros en operación». La foto está bajada y guardada en
+   `raw/mascenter-terrenos/fotos-drive-2026-03/LC-Coyhaique.png` por si el cliente
+   prefiere que aparezca; hoy **no está publicada**.
+2. Sigue pendiente de la ronda 2: el rojo oscuro a la espera de la revisión de Fran,
+   el formulario sin backend y el dominio definitivo. **El correo ya no está pendiente:
+   es `terrenos@ifbinversiones.cl` desde el 08-09-2026.**
+3. Confirmar que las fotos de **Las Flores** y **San Carlos** (los dos de Las Condes)
+   no quedaron cruzadas.
+
+---
+
+## Ronda 4 — 08-09-2026 · un solo cambio
+
+| # | Qué pidió el cliente | Qué se hizo |
+|---|---|---|
+| 1 | Cambiar el correo de contacto | `contacto@mascenter.cl` → **`terrenos@ifbinversiones.cl`**, en el `mailto:` y en el texto visible de la sección «Conversemos». Nada más se tocó. |
+
+### Paquete para WordPress
+
+Se armó `ENTREGA-WORDPRESS/` y su ZIP en `out/ENTREGA-TERRENOS-MASCENTER-WORDPRESS.zip`,
+con el mismo formato que ya funcionó en Algarrobal:
+
+- `sitio-completo.html` — la landing entera, autocontenida, para abrir con doble clic
+- `secciones/` — la página cortada en 13 bloques (`00-estilos-base`, `01`–`11`, `99-scripts`)
+  con instrucciones adentro de cada archivo y una vista previa `.jpg` por sección
+- `recursos/` — imágenes (incluidas las 23 de centros), logos y Poppins en 5 pesos
+- `INSTRUCTIVO.html` — 11 pasos, de subir los archivos a conectar Contact Form 7
+- `TEXTOS-PARA-COPIAR.txt` y `LEEME.txt`
+
+**Verificado:** la página reconstruida pegando las 13 secciones en orden es
+**idéntica píxel a píxel** a `sitio-completo.html` (8.002 px de alto, diferencia media 0,0)
+y ninguna de las dos tira errores de consola.
+
+El destinatario del formulario en Contact Form 7 tiene que ser
+`terrenos@ifbinversiones.cl` — está escrito en el paso 7 del instructivo.
+
+
+---
+
+## Ronda 5 — 09-09-2026 · lo que Fran vio y lo que había debajo
+
+| # | Qué pasó | Qué se hizo |
+|---|---|---|
+| 1 | Fran reporta que la landing **sigue mostrando `contacto@mascenter.cl`** | El cambio del 08-09 estaba en el repo pero **nunca se desplegó**: Vercel seguía sirviendo el build anterior. Se redesplegó. |
+| 2 | Fran pregunta si el formulario deriva a `terrenos@ifbinversiones.cl` | **No lo hacía, y encima decía que sí.** Respondía «¡Gracias! Recibimos tu postulación» sin enviar nada. Ahora abre el correo del visitante con la postulación completa dirigida a ese buzón. |
+
+**La lección:** commitear no es publicar. Un cambio de cara al cliente no está hecho
+hasta que se verifica **contra la URL en vivo**, no contra el archivo local.

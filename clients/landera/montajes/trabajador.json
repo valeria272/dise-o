@@ -1,0 +1,30 @@
+{
+ "foto": "public/assets/landera/fotos/v2/esc-trabajador.jpg",
+ "salida": "out/landera/montajes/trabajador.jpg",
+ "capas": [
+  {
+   "tipo": "logo",
+   "archivo": "public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_HOR-GESA_MONO-CREMA.svg",
+   "quad": [
+    [
+     640,
+     1440
+    ],
+    [
+     1150,
+     1440
+    ],
+    [
+     1150,
+     1600
+    ],
+    [
+     640,
+     1600
+    ]
+   ],
+   "encaje": 0.8,
+   "material": "bordado"
+  }
+ ]
+}

@@ -30,6 +30,260 @@ const tinta = (tono: Tono) => (tono === 'cafe' ? BETWEEN.colores.cafe : BETWEEN.
 /** Sombra sutil solo cuando el texto va sobre foto (legibilidad en reels/stories). */
 const sombraSobreFoto = '0 2px 14px rgba(36,26,18,0.45)';
 
+/* ══════════════════ CIFRAS TABULARES ══════════════════
+   ⭐ 01-09-2026, Eli: «los precios debes hacer que se vean opentype tabular,
+   como en adobe illustrator, así los números no se ven desordenados».
+
+   ⛔ El camino obvio NO funciona y estuvo puesto sin efecto varios días:
+   `fontVariantNumeric: 'tabular-nums'` y `fontFeatureSettings: '"tnum" 1'`
+   le piden la función a la FUENTE, y **ningún Raleway del repo trae `tnum`**.
+   Verificado leyendo la tabla GSUB/GPOS de los cinco pesos instalados y de la
+   variable: la única función numérica que traen es `lnum`. O sea que el CSS
+   estaba ahí decorando, igual que el @font-face de Brushwell que fallaba en
+   silencio. En Illustrator pasa lo mismo: el «Tabular Lining» del panel
+   OpenType no tiene efecto con Raleway.
+
+   Los dígitos de Raleway son PROPORCIONALES. Medido en ExtraBold sobre un em
+   de 1000 unidades:
+     0=614 · 1=518 · 2=580 · 3=569 · 4=578 · 5=558 · 6=608 · 7=576 · 8=607 · 9=589
+   El «1» es 18,5 % más angosto que el «0»: por eso una columna de precios queda
+   dispareja y las horas bailan.
+
+   La solución es construir la cifra tabular a mano: cada dígito centrado en una
+   caja del ancho del dígito MÁS ANCHO. Es exactamente lo que hace una fuente con
+   cifras tabulares, y acá además es verificable midiendo el render. */
+
+/* ⛔ EL INTENTO QUE SE RECHAZÓ DOS VECES — y por qué, exactamente.
+   El 01-09 y otra vez el 02-09, Eli vio la story To Go rendida con esto puesto y
+   lo devolvió: «los textos y números vuelven a verse extraños, en la anterior
+   estaba mejor» y después «el error persiste en los números».
+
+   Las dos veces la caja tabular tenía el ancho del «0», el dígito MÁS GORDO. Con
+   eso el «1» —que en Raleway es entre 16 % y 38 % más angosto según el peso—
+   queda centrado en una caja que le sobra por los dos lados, y «10:00» se lee
+   «1 0:00». O sea que el defecto que la tabular venía a arreglar quedaba peor.
+
+   ⚠️ Durante un día la conclusión escrita acá fue «en texto corrido van
+   PROPORCIONALES, no lo toques». Era la conclusión equivocada del experimento
+   correcto: el problema no era usar tabular en una frase, era el ancho.
+
+   ⭐⭐⭐ 02-09-2026 — RESUELTO, Y NO ERA «tabular sí o no»
+
+   Eli lo pidió por TERCERA vez: «el error persiste en los números, debe verse
+   armonioso y parejo». Las dos veces anteriores se probó la caja tabular con el
+   ancho del «0» y se rechazó. El error estuvo en el ANCHO de la caja, no en la
+   idea.
+
+   Se midió con la fuente real (`fontTools`, no de oído) y se rindió una prueba
+   de cuatro tratamientos sobre «$3.790» y «08:00 a 10:00 hrs»:
+
+     1. proporcional          → «10» queda apretado contra el «0»; las dos horas
+                                no parecen hermanas. Es el defecto original.
+     2. tabular al ancho del  → el «1» queda AISLADO con hueco a los dos lados.
+        «0» (lo que había)      «10:00» se lee «1 0:00». Es lo que Eli rechazó.
+     3. tabular al ancho      → ⭐ el bueno. Alinea los dígitos —las horas sí
+        MEDIO del peso           quedan hermanas— y el «1» no flota, porque la
+                                 caja ya no se estira hasta el dígito más gordo.
+     4. proporcional + track  → mejora algo, pero el «1» sigue apretado.
+
+   El ancho medio depende del PESO, y mucho: el «1» de Raleway va de 518/1000 en
+   ExtraBold a 450 en Medium y 375 en la variable. Por eso el ancho no puede ser
+   una constante única — se pasa el del peso que se está usando. */
+
+/**
+ * Ancho de la caja tabular, en em, POR PESO. Es el promedio de los diez dígitos
+ * de ese archivo, medido con fontTools sobre los .ttf del repo.
+ *
+ * ⛔ NO usar el ancho del «0» (0,614): es el máximo y deja al «1» flotando.
+ * Con el promedio, los dígitos anchos (0, 6, 8) sobresalen unas 30 milésimas de
+ * em a cada lado de su caja — invisible, porque los glifos ya traen su propio
+ * espacio lateral— y los angostos dejan de abrir hueco.
+ */
+
+/**
+ * ⭐⭐⭐ CIFRAS DE CAJA ALTA — la mitad que faltaba, 03-09-2026.
+ *
+ * Eli, sobre el carrusel To Go: «los números se ven desordenados… aplica
+ * OpenType tabular tal cual como se hace en Adobe Illustrator, los números no se
+ * ven uno más arriba y abajo que los otros».
+ *
+ * «Uno más arriba y abajo que los otros» NO es avance horizontal: son **cifras
+ * de estilo antiguo**. Y estaban puestas porque **Raleway las trae por
+ * DEFECTO**: verificado con fontTools sobre los .ttf del repo, la fuente NO
+ * tiene `onum` —no hace falta, es su default— y `lnum` es la función que las
+ * sube a caja alta. En «$4.290» el 4 y el 9 bajaban de la línea base y el 2 y
+ * el 0 quedaban a altura de x.
+ *
+ * ⛔ Y esto se había perdido: el manual §9 dice que `lnum` se activó junto con
+ * `tnum`, pero cuando se comprobó que `tnum` no existe en la fuente se borró la
+ * declaración ENTERA — y con ella se fue el `lnum`, que sí funcionaba.
+ *
+ * ⚠️ Activarlo CAMBIA los avances, así que no es sólo una línea de CSS: los
+ * glifos `.lf` son más anchos (el «0» de ExtraBold pasa de 614 a **707**, un
+ * 15 %). Por eso las dos tablas de arriba están re-medidas sobre los glifos de
+ * caja alta; si alguien quita el `lnum`, hay que volver a las viejas.
+ */
+export const CIFRAS_ALTAS: React.CSSProperties = {
+  fontVariantNumeric: 'lining-nums',
+  fontFeatureSettings: '"lnum" 1',
+};
+
+/**
+ * Avance REAL de cada dígito, en em, por peso. Medido con `fontTools` sobre los
+ * .ttf del repo (em de 1000 → se divide por 1000).
+ *
+ * Hace falta para COMPENSAR LOS BORDES de cada grupo de dígitos: sin eso, el
+ * hueco de la caja tabular del primer dígito se suma al espacio de la palabra
+ * anterior. Es el defecto que Eli marcó en la story del 3-sep — entre la «a» y
+ * el «10» se veía un espacio doble.
+ */
+export const ANCHOS_DIGITO_POR_PESO: Record<number, number[]> = {
+  //     0     1     2     3     4     5     6     7     8     9
+  500: [.690, .441, .590, .585, .577, .558, .606, .534, .598, .606],
+  600: [.695, .465, .599, .585, .581, .563, .607, .548, .601, .606],
+  800: [.707, .518, .619, .586, .591, .575, .608, .579, .607, .607],
+};
+
+/**
+ * ⛔⛔ LA CAJA TABULAR ES EL DÍGITO MÁS ANCHO, NO EL PROMEDIO. Corregido el
+ * 14-09-2026 con un defecto que Eli cazó mirando: «los numeros y letras se están
+ * acercando mucho se solapan».
+ *
+ * Estaba puesta en el PROMEDIO de los diez dígitos (ExtraBold: 599,7 → 0,600) y
+ * el «0» de ExtraBold mide **707**. O sea que la caja era un 18 % más angosta
+ * que el glifo más ancho, y `sobra = (caja − real) / 2` salía NEGATIVA: el cero
+ * se desbordaba 53 milésimas de em por cada lado. En «08:00 A 10:00 HRS.», que
+ * son puros ceros, cada uno se comía el aire del siguiente y se tocaban.
+ *
+ * El promedio no puede funcionar por definición: una caja tabular sólo alinea si
+ * cabe el dígito más ancho. Ahora se calcula como el MÁXIMO de la fila medida,
+ * así que no puede volver a desajustarse si alguien re-mide la fuente.
+ *
+ * ⚠️ Ensancha las tiradas de cifras (~0,107 em por dígito en ExtraBold). En una
+ * línea larga puede sangrar el ancho disponible: `between-qa.py` lo marca y se
+ * baja el cuerpo. Verificado sobre las cuatro piezas del carrusel To Go.
+ */
+const _maxFila = (peso: number) => Math.max(...ANCHOS_DIGITO_POR_PESO[peso]);
+
+export const ANCHO_CIFRA_EM_POR_PESO: Record<number, number> = {
+  /** Raleway-Medium (500): el más ancho es el «0» con 690. */
+  500: _maxFila(500),
+  /** Raleway-SemiBold (600): el más ancho es el «0» con 695. */
+  600: _maxFila(600),
+  /** Raleway-ExtraBold (800): el más ancho es el «0» con 707. */
+  800: _maxFila(800),
+};
+
+/** Por defecto, el peso de los datos y precios de la marca (ExtraBold). */
+export const ANCHO_CIFRA_EM = ANCHO_CIFRA_EM_POR_PESO[800];
+
+/**
+ * Envuelve cada dígito de `texto` en una caja de ancho fijo para que todas las
+ * cifras avancen igual. Los signos ($ . : , espacios) quedan intactos: en una
+ * fuente tabular tampoco se ensanchan.
+ *
+ * ⚠️ Dentro de la caja el tracking se anula (`letterSpacing: 'normal'`), porque
+ * si no el letter-spacing heredado se suma DENTRO del cuadro y descentra el
+ * dígito. Úsalo en textos de dato y precio, que van sin tracking; no en el
+ * titular, que compone con −0,024em.
+ */
+export const cifrasTabulares = (
+  texto: string,
+  /** Peso con el que se está pintando: decide el ancho de la caja. */
+  peso: number = 800,
+  /**
+   * ⭐⭐ Tracking en `em` que la línea lleva por CSS, para replicarlo dentro de
+   * la caja tabular. Añadido el 08-09-2026, y arregla un defecto real:
+   *
+   * cada cifra va en un `inline-block`, y **Chrome no le aplica `letter-spacing`
+   * a una caja atómica** — sí a los caracteres de texto. O sea que en una línea
+   * con tracking abierto las LETRAS se separan y las CIFRAS no: medido en
+   * «08:00 A 22:00 HRS.» a 0,10em, las letras quedaban con 5,8–10,6 px de hueco
+   * y los dígitos de cada grupo **pegados** (0,5 y 2,9 px). Se veía como si la
+   * hora estuviera en otra tipografía.
+   *
+   * Se replica como `marginRight` en cada dígito, que es lo que hace
+   * `letter-spacing` con un carácter normal. Por defecto 0, así que ninguna
+   * pieza ya aprobada cambia.
+   */
+  trackingEm: number = 0,
+): React.ReactNode => {
+  const caja = ANCHO_CIFRA_EM_POR_PESO[peso] ?? ANCHO_CIFRA_EM;
+  const reales = ANCHOS_DIGITO_POR_PESO[peso] ?? ANCHOS_DIGITO_POR_PESO[800];
+
+  /* Se recorre agrupando los dígitos CONSECUTIVOS en «grupos». El grupo es la
+     unidad que importa: dentro de él los dígitos avanzan todos igual (que es lo
+     que alinea las cifras), y en sus DOS BORDES se descuenta el hueco con un
+     margen negativo, para que el grupo quede a ras del texto que lo rodea.
+
+     Sin esa compensación, el hueco izquierdo de la caja del primer dígito se
+     SUMA al espacio anterior: en «a 10:00» se veía un espacio doble, porque el
+     «1» de Raleway Medium mide 450/1000 contra una caja de 557. Con el
+     descuento, ese borde queda pegado y el hueco se reparte sólo por DENTRO del
+     grupo, donde cae entre dos cifras y se lee como espaciado normal —en «10»
+     quedan 25 milésimas de em, ~1 px a cuerpo 40. */
+  const trozos: React.ReactNode[] = [];
+  let i = 0;
+  let k = 0;
+  while (i < texto.length) {
+    if (!/\d/.test(texto[i])) {
+      // texto normal: se acumula hasta el próximo dígito
+      let j = i;
+      while (j < texto.length && !/\d/.test(texto[j])) j++;
+      trozos.push(texto.slice(i, j));
+      i = j;
+      continue;
+    }
+    let j = i;
+    while (j < texto.length && /\d/.test(texto[j])) j++;
+    const grupo = texto.slice(i, j);
+    grupo.split('').forEach((d, n) => {
+      const sobra = (caja - reales[Number(d)]) / 2;
+      trozos.push(
+        <span
+          key={`d${k++}`}
+          style={{
+            display: 'inline-block',
+            width: `${caja}em`,
+            textAlign: 'center',
+            letterSpacing: 'normal',
+            // la función viaja PEGADA a la caja: si un día se hereda otra cosa,
+            // el glifo y el ancho medido siguen siendo el mismo par.
+            ...CIFRAS_ALTAS,
+            // los bordes del grupo van a ras; el interior reparte el hueco.
+            // Y al margen derecho se le SUMA el tracking de la línea, porque la
+            // caja es atómica y `letter-spacing` no la alcanza (ver arriba).
+            marginLeft: n === 0 ? `${-sobra}em` : undefined,
+            marginRight: `${(n === grupo.length - 1 ? -sobra : 0) + trackingEm}em`,
+          }}
+        >
+          {d}
+        </span>,
+      );
+    });
+    i = j;
+  }
+  return trozos;
+};
+
+/** ¿Vale la pena pasar por `cifrasTabulares`? Evita envolver texto sin dígitos. */
+export const tieneCifras = (texto: string) => /\d/.test(texto);
+
+/**
+ * Versión tolerante para componentes que reciben `children: React.ReactNode`:
+ * si lo que llega es texto plano con dígitos lo pasa por la caja tabular, y si
+ * es cualquier otra cosa (un nodo ya armado) lo deja intacto.
+ */
+export const conCifras = (
+  hijos: React.ReactNode,
+  peso: number = 800,
+  /** Tracking de la línea, en `em`. Ver `cifrasTabulares`. */
+  trackingEm: number = 0,
+): React.ReactNode =>
+  typeof hijos === 'string' && tieneCifras(hijos)
+    ? cifrasTabulares(hijos, peso, trackingEm)
+    : hijos;
+
 /* ---------- foto de fondo + multiply ---------- */
 
 export const FotoFondo: React.FC<{
@@ -63,25 +317,62 @@ export const LogoBetween: React.FC<{
   /** Ancho en px. Se escala por ancho y el alto sale del ratio — nunca achatado. */
   ancho?: number;
   y?: number;
-}> = ({formato = 'feed', posicion = 'arriba', tono = 'beige', ancho, y}) => {
+  /**
+   * ⭐ Halo bajo el logo — pedido de Eli el 02-09-2026: «agrega debajo del logo
+   * una sombra con opacidad para que se vea el logo bien, muy sutil».
+   *
+   * Es una elipse difuminada del color sombra de la marca, DEBAJO del logotipo,
+   * que asienta el lockup cuando la foto trae hojas y cielo detrás. No es un
+   * `textShadow` —el logo es un PNG, no texto— ni oscurecer la foto, que el
+   * manual prohíbe.
+   *
+   * Se pasa la opacidad del centro (0 = sin halo). **0,22 es «muy sutil»**: el
+   * degradado se apaga a transparente al 70 % del radio, así que el promedio
+   * sobre la caja del logo queda muy por debajo de ese número y no se ve un
+   * parche. Por encima de ~0,35 empieza a notarse el óvalo.
+   */
+  sombra?: number;
+}> = ({formato = 'feed', posicion = 'arriba', tono = 'beige', ancho, y, sombra}) => {
   const clave = (formato === 'story' ? 'story' : 'post') + (posicion === 'abajo' ? 'LogoAbajo' : 'LogoArriba');
   const g = BETWEEN.margenes[clave as keyof typeof BETWEEN.margenes] as {
     wordmarkY: number;
     ancho: number;
   };
   const anchoFinal = ancho ?? g.ancho;
+  const altoFinal = anchoFinal / BETWEEN.logo.ratio;
+  const arriba = y ?? g.wordmarkY;
+  // El lockup es el wordmark MÁS el «COFFEE & BAR» de abajo, que cae fuera del
+  // alto del PNG: el halo se centra un poco más abajo del centro del archivo y
+  // se estira en vertical para cubrir las dos líneas.
   return (
-    <Img
-      src={staticFile(tono === 'cafe' ? BETWEEN.logo.cafe : BETWEEN.logo.beige)}
-      style={{
-        position: 'absolute',
-        top: y ?? g.wordmarkY,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: anchoFinal,
-        height: anchoFinal / BETWEEN.logo.ratio,
-      }}
-    />
+    <>
+      {sombra ? (
+        <div
+          style={{
+            position: 'absolute',
+            top: arriba + altoFinal * 0.9,
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: anchoFinal * 2.2,
+            height: altoFinal * 5.2,
+            background: `radial-gradient(ellipse at center, rgba(36,26,18,${sombra}) 0%, `
+              + `rgba(36,26,18,${(sombra * 0.45).toFixed(3)}) 42%, rgba(36,26,18,0) 72%)`,
+            pointerEvents: 'none',
+          }}
+        />
+      ) : null}
+      <Img
+        src={staticFile(tono === 'cafe' ? BETWEEN.logo.cafe : BETWEEN.logo.beige)}
+        style={{
+          position: 'absolute',
+          top: arriba,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: anchoFinal,
+          height: altoFinal,
+        }}
+      />
+    </>
   );
 };
 
@@ -103,6 +394,17 @@ const signosVolteados = (texto: string): React.ReactNode[] =>
     ),
   );
 
+
+/**
+ * Halo continuo alrededor del texto: 24 copias del glifo en círculo. 24 pasos
+ * porque a radio 6 la separación entre copias vecinas queda en 1,6 px —menos
+ * que el grosor de cualquier asta—, así que el borde sale macizo y no dentado.
+ */
+const haloSticker = (radio: number, color: string): string =>
+  Array.from({length: 24}, (_, i) => {
+    const a = (i / 24) * Math.PI * 2;
+    return `${(Math.cos(a) * radio).toFixed(2)}px ${(Math.sin(a) * radio).toFixed(2)}px 0 ${color}`;
+  }).join(', ');
 
 /**
  * Titular. Regla de Eli:
@@ -137,7 +439,6 @@ export const Titulo: React.FC<{
         fontSize: size,
         letterSpacing: enMayuscula ? 1 : 0,
         textTransform: enMayuscula ? 'uppercase' : 'none',
-        fontVariantNumeric: 'tabular-nums',
         color: tinta(tono),
         lineHeight: enMayuscula ? 1.05 : 1.15,
         textWrap: 'balance',
@@ -243,7 +544,6 @@ export const Dato: React.FC<{
       fontSize: size,
       letterSpacing: espaciado ? BETWEEN.trackingHorario : 0,
       textTransform: espaciado ? 'uppercase' : 'none',
-      fontVariantNumeric: 'tabular-nums',
       color: tinta(tono),
       textShadow: sombraSobreFoto,
       ...style,
@@ -538,8 +838,20 @@ export const CajaDato: React.FC<{
   size?: number;
   /** Ancho útil del bloque; la caja nunca lo pasa. */
   anchoDisponible?: number;
+  /**
+   * ⭐ RONDA 9 (03-09-2026) — pedido de Eli sobre la portada del To Go:
+   * «borra el fondo de este texto "Lunes a viernes · 08:00 a 10:00 hrs." ya que
+   * se ocupó en el texto de promo».
+   * En una pila, la caja taupe es el ÉNFASIS: si las dos líneas la llevan, no
+   * hay jerarquía — es la misma lógica que «una sola línea fuerte por pila»
+   * (manual §1 bis). La línea sin fondo conserva la tipografía, la caja alta y
+   * la altura de la fila, para que el ritmo de la pila no se mueva; lo único
+   * que cambia es que el fondo se va y entra la sombra que ya usa `Etiqueta`
+   * cuando va sin caja.
+   */
+  sinFondo?: boolean;
   style?: React.CSSProperties;
-}> = ({children, size = BETWEEN.tipos.cajaDato, anchoDisponible = 1080 - 2 * BETWEEN.bloque.margenX, style}) => {
+}> = ({children, size = BETWEEN.tipos.cajaDato, anchoDisponible = 1080 - 2 * BETWEEN.bloque.margenX, sinFondo = false, style}) => {
   useFuentesListas();
   // la caja va en nowrap, así que si el dato es largo hay que bajar el cuerpo:
   // «SEGUNDO NIVEL · TRABAJAR O REUNIRTE» se salía 46 px por la derecha
@@ -555,9 +867,12 @@ export const CajaDato: React.FC<{
       alignItems: 'center',
       justifyContent: 'center',
       height: BETWEEN.cajas.alto,
-      padding: `0 ${BETWEEN.cajas.padX}px`,
-      backgroundColor: BETWEEN.cajas.fondo,
-      borderRadius: BETWEEN.cajas.radio,
+      padding: `0 ${sinFondo ? 0 : BETWEEN.cajas.padX}px`,
+      backgroundColor: sinFondo ? 'transparent' : BETWEEN.cajas.fondo,
+      borderRadius: sinFondo ? 0 : BETWEEN.cajas.radio,
+      // sin caja el texto queda sobre la foto: se apoya en la misma sombra que
+      // usa `Etiqueta` cuando va suelta.
+      textShadow: sinFondo ? '0 2px 16px rgba(36,26,18,0.75)' : 'none',
       fontFamily: BETWEEN.fuentes.sans,
       // MEDIDO en la pieza aprobada: «PARA EMPEZAR EL DÍA» da 488×33 px, que solo
       // calza con ExtraBold. Antes estaba en Light (300) y la caja se veía floja.
@@ -567,12 +882,25 @@ export const CajaDato: React.FC<{
       color: BETWEEN.colores.beige,
       textTransform: 'uppercase',
       whiteSpace: 'nowrap',
-      fontVariantNumeric: 'tabular-nums lining-nums',
-      fontFeatureSettings: '"tnum" 1, "lnum" 1',
       ...style,
     }}
   >
-    {children}
+    {/* ⭐ Cifras tabulares también acá: es el pedido de Eli para toda la grilla,
+        y lo que pasa por esta caja son los horarios («LUNES A VIERNES · 08:00 A
+        10:00 HRS»). Con la compensación de bordes de `cifrasTabulares` ya no
+        abren el espacio doble que tenían antes de la palabra anterior.
+
+        ⛔ EL `<span>` NO ES DECORATIVO — no lo saques. Esta caja es `display:
+        flex`, y `conCifras` devuelve un ARRAY (trozos de texto + un span por
+        dígito). Sin envolver, cada trozo se vuelve un flex item y **los nodos
+        que son sólo espacio no se pintan**: el horario salió
+        «·08:00A10:00HRS.», sin los espacios alrededor de la «a» ni antes de
+        «hrs». Lo cazó el render de `BW-F-ToGo-1`, no el typecheck.
+
+        ⚠️ Y la caja tabular ENSANCHA la línea, mientras `ajustarACaber` calcula
+        el cuerpo antes sobre el texto plano: si alguna vez sangra el margen,
+        `between-qa.py` lo marca y hay que bajar el cuerpo a mano. */}
+    <span>{conCifras(children, BETWEEN.pesos.extrabold)}</span>
   </div>
   );
 };
@@ -584,8 +912,10 @@ export const CajaDato: React.FC<{
  */
 export const PilaDatos: React.FC<{
   datos: React.ReactNode[];
+  /** Índices de `datos` que van SIN la caja taupe. Ver `CajaDato.sinFondo`. */
+  sinFondo?: number[];
   style?: React.CSSProperties;
-}> = ({datos, style}) => (
+}> = ({datos, sinFondo = [], style}) => (
   <div
     style={{
       display: 'flex',
@@ -596,7 +926,7 @@ export const PilaDatos: React.FC<{
     }}
   >
     {datos.map((d, i) => (
-      <CajaDato key={i}>{d}</CajaDato>
+      <CajaDato key={i} sinFondo={sinFondo.includes(i)}>{d}</CajaDato>
     ))}
   </div>
 );
@@ -780,6 +1110,74 @@ export const TitularBetween: React.FC<{
   caps?: string;
   sizeCaps?: number;
   sizeScript?: number;
+  /**
+   * ⭐ Aire de TINTA entre la script y la primera línea de caja alta.
+   *
+   * Por defecto `BETWEEN.aire.scriptATitulo` (9), que es el valor MEDIDO — pero
+   * medido sobre una script SIN DESCENDENTES. Cuando la frase trae «p», «y» o
+   * «j», sus colas bajan dentro de esos 9 px y el titular queda pegado: en la
+   * portada del Cowork, «Tu oficina por hoy» dejaba **12 px** contra las
+   * **29,8 px** que separan las dos líneas del propio titular. O sea que el
+   * salto ENTRE niveles era menor que el salto DENTRO de un nivel, que es la
+   * jerarquía al revés.
+   *
+   * Es opt-in por la misma razón que `anchoDisponible`: subir el token movería
+   * las piezas ya aprobadas. Se pasa a mano en la pieza que lo necesita.
+   */
+  aireScriptATitulo?: number;
+  /**
+   * ⭐ Tracking de la caja alta, en `em`. Por defecto `BETWEEN.trackingCaps`
+   * (−0,024), que es el valor MEDIDO sobre la pieza de referencia: con él
+   * «PERFECTO» da 568 px a 117.
+   *
+   * Es opt-in por la misma razón que `anchoDisponible` y `aireScriptATitulo`:
+   * el token está calibrado y moverlo re-flujaría toda pieza ya aprobada. Se
+   * pasa a mano cuando la LÍNEA CONCRETA lo pide, y eso pasa cuando es larga:
+   * un −0,024em sobre 8 letras casi no se nota, pero sobre 14 —«¡TE
+   * ESPERAMOS!»— acumula ~36 px de cierre y las letras se leen apretadas.
+   * Eli lo marcó en la ST 2 de la S3: «no tienen kernig optimo».
+   *
+   * ⚠️ Aflojar el tracking ENSANCHA la línea, así que `encoger` va a bajar el
+   * cuerpo para que siga cabiendo en `anchoDisponible`. Es el intercambio
+   * correcto —una letra menos grande pero bien espaciada se lee mejor que una
+   * grande y comprimida— pero hay que mirar el resultado, no suponerlo.
+   */
+  trackingCapsEm?: number;
+  /**
+   * ⭐ PESO de la caja alta del titular, y del acompañamiento cuando va en
+   * Raleway (`scriptSans`). Por defecto ExtraBold (800), que es el valor MEDIDO
+   * en la pieza de referencia y con el que están calibrados el tracking y los
+   * anchos de cifra — así que es OPT-IN por la misma razón que `anchoDisponible`
+   * y `trackingCapsEm`: cambiar el defecto re-flujaría toda pieza ya aprobada.
+   *
+   * Se pasa a mano cuando la diseñadora lo pide para una pieza. Eli, 09-09-2026,
+   * sobre la ST del 22-09: «los títulos que sean en raleway semi bold».
+   *
+   * ⚠️ Un peso más liviano es más ANGOSTO, así que `ajustarACaber` va a permitir
+   * un cuerpo mayor dentro del mismo `anchoDisponible`. Es lo correcto —la línea
+   * ocupa la columna igual— pero hay que MIRAR el render, no suponerlo.
+   */
+  pesoCaps?: number;
+  /**
+   * ⭐⭐ ¿El titular va en CAJA ALTA? Por defecto sí, que es la gramática de la
+   * marca y lo que tienen todas las piezas aprobadas — así que es OPT-IN, igual
+   * que `anchoDisponible`, `trackingCapsEm` y `pesoCaps`.
+   *
+   * Eli lo pidió por primera vez el 21-09-2026, sobre la ST del 30-09: «que este
+   * texto sea en solo la primera mayúscula, la demás no, y en raleway pero no
+   * tan gruesa, **ya que hay muchos similares en historias**». O sea que el
+   * motivo no es estético sino de repertorio: script + caja alta pesada es la
+   * fórmula que se repite en TODAS sus stories, y una pieza que quiere
+   * distinguirse tiene que salirse de ella.
+   *
+   * ⚠️ En `false` el texto se pinta TAL CUAL se escribe: la pieza manda la caja,
+   * no el componente. Si la frase sigue a la línea de arriba, va en minúscula.
+   *
+   * ⚠️ Y el tracking pasa a 0. El −0,024em de `BETWEEN.trackingCaps` está
+   * calibrado sobre VERSALES —donde aprieta letras de ancho parejo—; sobre caja
+   * baja, con astas y colas, ese mismo valor junta las letras y se lee apretado.
+   */
+  cajaAlta?: boolean;
   tono?: Tono;
   alinear?: 'centro' | 'izquierda';
   /**
@@ -794,6 +1192,49 @@ export const TitularBetween: React.FC<{
    * que se está cortando. Ver `clients/hilton/CLAUDE.md § LA COLUMNA`.
    */
   anchoDisponible?: number;
+  /**
+   * Conserva la puntuación final del texto tal como la escribe el brief.
+   *
+   * Por defecto la pieza pasa por `sinPuntoFinal`, porque la regla de Eli es que
+   * «los títulos NUNCA llevan punto final». Pero cuando el texto es una CITA
+   * —el carrusel «Primero la foto… ¿o no?» o el chiste del cafecito— el punto
+   * va DENTRO de las comillas y es parte de lo que se dice, no un punto de
+   * titular. Scarlette pidió expresamente las comillas el 31-08-2026, y el
+   * brief trae la puntuación completa, así que ahí se respeta literal.
+   */
+  mantenerPunto?: boolean;
+  /**
+   * ⭐⭐ EL CONTORNO TIPO STICKER — grosor en px, 0 o sin pasar = apagado.
+   *
+   * Es el recurso de la `REF 1` del concurso: ahí el titular no va en una caja
+   * rectangular sino con un **contorno claro pegado a las letras**, que es lo
+   * que lo despega del fondo y lo hace leer como una calcomanía. Eli lo pidió
+   * para la portada del concurso el 21-09-2026: «que se busca CEO del café esté
+   * en un marco beige […] que sea como el sticker, igual que la referencia».
+   *
+   * No es una sombra de caída ni un borde: es un HALO, y se pinta con 24 copias
+   * del texto desplazadas en círculo a `grosor/2` de radio (`haloSticker`).
+   *
+   * ⛔ El camino obvio —`-webkit-text-stroke` con `paint-order: stroke fill`—
+   * se probó y se descartó MIRANDO el render ampliado: Chrome aplica el orden
+   * de pintado **glifo a glifo**, así que el contorno de cada letra pasa por
+   * encima del relleno de la anterior y la palabra queda cruzada por trazos
+   * claros. Con el tracking negativo del titular de Between (−0,024em) las
+   * letras están lo bastante juntas como para que se note en toda la línea.
+   * `text-shadow`, en cambio, se pinta ENTERO detrás del texto del elemento, así
+   * que el halo queda continuo alrededor de la palabra — que es exactamente lo
+   * que hace el sticker de la referencia.
+   *
+   * ⚠️ La tinta crece `grosor/2` por lado, y `medirTinta` mide SIN el halo: en
+   * la pieza hay que descontarlo al calcular colisiones, márgenes Y el aire
+   * entre la script y la caja alta (si no, los dos halos se tocan).
+   *
+   * Es OPT-IN, por la misma razón que `cajaAlta` y `pesoCaps`: ninguna pieza ya
+   * aprobada lo lleva y encenderlo por defecto las re-flujaría a todas.
+   */
+  contorno?: number;
+  /** Color del contorno. Por defecto el beige de la marca. */
+  contornoColor?: string;
   style?: React.CSSProperties;
 }> = ({
   script,
@@ -801,14 +1242,22 @@ export const TitularBetween: React.FC<{
   caps,
   sizeCaps = BETWEEN.tipos.tituloCaps,
   sizeScript,
+  aireScriptATitulo,
+  trackingCapsEm,
+  pesoCaps,
+  cajaAlta = true,
+  contorno = 0,
+  contornoColor = BETWEEN.colores.beige,
   tono = 'beige',
   alinear = 'centro',
   anchoDisponible = 1080 - 2 * BETWEEN.bloque.margenX,
+  mantenerPunto = false,
   style,
 }) => {
   // sin esto se mide con la fuente de reemplazo y el titular no se achica
   useFuentesListas();
-  const textoCaps = caps ? sinPuntoFinal(caps) : '';
+  const podar = (t: string) => (mantenerPunto ? t : sinPuntoFinal(t));
+  const textoCaps = caps ? podar(caps) : '';
   /**
    * ⚠️ En modo Raleway la línea se pinta en CAJA ALTA, así que se pasa a
    * mayúscula ACÁ y no con `textTransform`. El cuerpo se calcula midiendo con
@@ -816,8 +1265,12 @@ export const TitularBetween: React.FC<{
    * pintar «MUCHOS PENDIENTES» da ~20 % de diferencia y el titular se sale del
    * cuadro. Es el bug que partió 8 piezas de la ronda 4.
    */
+  /* ⚠️ `scriptSans` sube la línea a caja alta porque su registro es «caja alta
+     liviana». Con `cajaAlta={false}` el titular entero va en caja baja, así que
+     el acompañamiento la sigue: si no, quedaría «¿EL ALMUERZO / se quedó en
+     casa?», que es la contradicción que la pieza está tratando de evitar. */
   const textoScript = script
-    ? (scriptSans ? sinPuntoFinal(script).toUpperCase() : sinPuntoFinal(script))
+    ? (scriptSans && cajaAlta ? podar(script).toUpperCase() : podar(script))
     : '';
 
   if (!scriptSans && textoScript && textoScript.split(/\s+/).length > 4) {
@@ -827,9 +1280,14 @@ export const TitularBetween: React.FC<{
   }
 
   const trScript = scriptSans ? 0.02 : BETWEEN.trackingScript;
-  const cssCaps = (n: number) => `${BETWEEN.pesos.extrabold} ${n}px ${BETWEEN.fuentes.sans}`;
+  const trCaps = trackingCapsEm ?? (cajaAlta ? BETWEEN.trackingCaps : 0);
+  const wCaps = pesoCaps ?? BETWEEN.pesos.extrabold;
+  // el acompañamiento en Raleway sigue al titular: si el titular baja de peso,
+  // baja con él (Medium 500 cuando el titular está en el ExtraBold de siempre).
+  const wScript = pesoCaps ?? 500;
+  const cssCaps = (n: number) => `${wCaps} ${n}px ${BETWEEN.fuentes.sans}`;
   const cssScript = (n: number) => scriptSans
-    ? `500 ${n}px ${BETWEEN.fuentes.sans}`
+    ? `${wScript} ${n}px ${BETWEEN.fuentes.sans}`
     : `${n}px ${BETWEEN.fuentes.script}`;
 
   const encoger = (texto: string, base: number, css: (n: number) => string, tr: number) => {
@@ -853,10 +1311,12 @@ export const TitularBetween: React.FC<{
    * Ese fue el defecto de 8 piezas de la ronda anterior.
    */
   const lineasCaps = textoCaps
-    ? textoCaps.split('\n').map((l) => l.trim().toUpperCase()).filter(Boolean)
+    ? textoCaps.split('\n')
+        .map((l) => (cajaAlta ? l.trim().toUpperCase() : l.trim()))
+        .filter(Boolean)
     : [];
   const nCaps = lineasCaps.reduce(
-    (menor, l) => Math.min(menor, encoger(l, sizeCaps, cssCaps, BETWEEN.trackingCaps)),
+    (menor, l) => Math.min(menor, encoger(l, sizeCaps, cssCaps, trCaps)),
     sizeCaps,
   );
   const nScript = encoger(
@@ -866,8 +1326,8 @@ export const TitularBetween: React.FC<{
     trScript,
   );
 
-  const tCapsPorLinea = lineasCaps.map((l) => medirTinta(l, cssCaps(nCaps), BETWEEN.trackingCaps, nCaps));
-  const tCaps = tCapsPorLinea[0] ?? medirTinta('', cssCaps(nCaps), BETWEEN.trackingCaps, nCaps);
+  const tCapsPorLinea = lineasCaps.map((l) => medirTinta(l, cssCaps(nCaps), trCaps, nCaps));
+  const tCaps = tCapsPorLinea[0] ?? medirTinta('', cssCaps(nCaps), trCaps, nCaps);
   /**
    * Aire entre dos líneas de caja alta. MEDIDO en «¿YA TOMASTE TU / CAFECITO DEL
    * DÍA?» (post n°2 s4): 21 px de tinta a tinta sobre una altura de caja de 59,
@@ -881,7 +1341,7 @@ export const TitularBetween: React.FC<{
   const centrarTinta = (t: Tinta) =>
     alinear === 'centro' ? t.avance / 2 - (t.der - t.izq) / 2 : t.izq;
 
-  const aire = BETWEEN.aire.scriptATitulo;
+  const aire = aireScriptATitulo ?? BETWEEN.aire.scriptATitulo;
   const altoScript = textoScript ? tScript.alto + tScript.bajo : 0;
   const altoCaps = tCapsPorLinea.reduce(
     (acc, t, i) => acc + t.alto + t.bajo + (i ? aireEntreCaps : 0), 0,
@@ -907,7 +1367,12 @@ export const TitularBetween: React.FC<{
         lineHeight: 1,
         whiteSpace: 'nowrap',
         color: tinta(tono),
-        textShadow: sombraSobreFoto,
+        /* ⭐ RONDA 8: la sombra existe para que el BEIGE se lea sobre una foto.
+           En `cafe` el titular es tinta oscura sobre fondo claro —la ST de la
+           vitrina— y ahí la sombra no aporta contraste: sólo ensucia el contorno
+           y engorda la letra. Se apaga. */
+        textShadow: tono === 'cafe' ? undefined : sombraSobreFoto,
+        ...(contorno ? {textShadow: haloSticker(contorno / 2, contornoColor)} : null),
         ...extra,
       }}
     >
@@ -924,7 +1389,7 @@ export const TitularBetween: React.FC<{
             scriptSans ? textoScript : signosVolteados(textoScript),
             tScript, nScript, 0,
             scriptSans
-              ? {fontFamily: BETWEEN.fuentes.sans, fontWeight: 500, letterSpacing: '0.02em'}
+              ? {fontFamily: BETWEEN.fuentes.sans, fontWeight: wScript, letterSpacing: '0.02em'}
               : {fontFamily: BETWEEN.fuentes.script, letterSpacing: `${BETWEEN.trackingScript}em`},
           )
         : null}
@@ -936,9 +1401,9 @@ export const TitularBetween: React.FC<{
           <React.Fragment key={i}>
             {linea(l, tCapsPorLinea[i], nCaps, arriba, {
               fontFamily: BETWEEN.fuentes.sans,
-              fontWeight: BETWEEN.pesos.extrabold,
-              letterSpacing: `${BETWEEN.trackingCaps}em`,
-              textTransform: 'uppercase',
+              fontWeight: wCaps,
+              letterSpacing: `${trCaps}em`,
+              textTransform: cajaAlta ? 'uppercase' : 'none',
             })}
           </React.Fragment>
         );
@@ -1044,10 +1509,6 @@ export const PanelTaupe: React.FC<{
       lineHeight: interlinea ?? 1.3,
       color: BETWEEN.colores.beige,
       textAlign: 'center',
-      /* cifras tabulares y de caja alta: así los precios y las horas quedan en
-         columnas parejas, como el «Tabular Lining» de Illustrator. */
-      fontVariantNumeric: 'tabular-nums lining-nums',
-      fontFeatureSettings: '"tnum" 1, "lnum" 1',
       ...style,
     }}
   >
@@ -1105,6 +1566,8 @@ export const PieDePieza: React.FC<{
             textAlign: 'center',
           }}
         >
+          {/* acá cae el horario de la portada To Go («Lunes a viernes · 08:00 a
+              10:00 hrs.»): dos «1» y cuatro «0» que sin caja tabular bailan */}
           {detalle}
         </div>
       ) : null}
@@ -1141,6 +1604,75 @@ export const LegalAlPie: React.FC<{
   </div>
 );
 
+/**
+ * ⭐⭐ LA DIRECCIÓN AL PIE — pedido de Scarlette el 22-09-2026 sobre la portada
+ * del carrusel PROMOS TO GO: «le puedes sumar la dirección a esta portada».
+ *
+ * ⛔ No se inventó: está **CALCADA de la lámina de Eli** `C1 S2 CUMPLE N1.png`
+ * (`raw/hilton/between/de-eli/cumple-s2-v2/`), que es el único antecedente de
+ * dirección puesta sobre una pieza de FEED y salió de la misma petición del
+ * cliente («aprovechemos de poner la dirección en G1 abajo», 08-09). Medido
+ * sobre ese archivo, a 2250 px de ancho:
+ *
+ *   · tinta de `AV. Vitacura 2727, Las Condes`  →  x 684–1562 (**ancho 879**)
+ *   · **altura de versal 43 px** → cuerpo 29 px en la mesa de 1080
+ *   · centrada sobre el eje (centro de tinta 1123, y el lienzo en 1125: la
+ *     diferencia es el espacio de tracking que cuelga tras la última letra)
+ *   · línea de base a **79 px** del canto inferior; el descendente de la coma
+ *     llega a 74
+ *   · tinta `#fff9eb` a plena opacidad (medido 253/247/233 sobre madera oscura)
+ *
+ * ⭐ **El peso salió del TRAZO, no del ojo.** Con el cuerpo ya calzado en 43 px
+ * de versal, se midió el ancho de asta en la fila media de la línea y el área
+ * de tinta de los dos renders contra el de ella:
+ *
+ *   | peso | asta (mediana / media) | tinta |
+ *   |---|---|---|
+ *   | Eli  | 5 / 5,42 | 8.727 |
+ *   | 400  | 4 / 4,3  | 7.476 ⛔ flaca |
+ *   | **500** | **6 / 5,94** | **9.484** ✅ |
+ *   | 600  | 7 / 7,45 | 11.075 ⛔ gorda (35 % más tinta que la de ella) |
+ *
+ * El semibold que usa el resto del sistema estaba **muy** lejos. Queda Medium,
+ * que es el más cercano de los pesos reales de la familia; el sobrante de 8 %
+ * es rasterización (Illustrator engorda menos las astas que Chrome).
+ * El tracking sale de la misma medición: **0,024 em** deja la línea en 877 px
+ * contra los 879 de ella.
+ *
+ * ⚠️ Va SUELTA al pie, no colgando del bloque: en la lámina de Eli la banda de
+ * texto anterior termina 744 px más arriba. Es un pie de página, no una línea
+ * más de la pila.
+ *
+ * ⚠️ La cadena lleva «AV.» en versales y el resto en caja alta y baja, tal como
+ * ella la escribió — no es `text-transform`, es el texto.
+ */
+export const DireccionAlPie: React.FC<{
+  formato: 'feed' | 'story';
+  children?: React.ReactNode;
+}> = ({formato, children}) => (
+  <div
+    style={{
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      /* `bottom` está ajustado CONTRA EL RENDER para que la base caiga a 38 px
+         del canto, que es donde la puso Eli. En story se respeta además la zona
+         segura de Meta (340 px), como hace `LegalAlPie`. */
+      bottom: formato === 'feed' ? 33 : 360,
+      textAlign: 'center',
+      fontFamily: BETWEEN.fuentes.sans,
+      fontWeight: BETWEEN.pesos.medium,
+      fontSize: formato === 'feed' ? 29 : 30,
+      lineHeight: 1,
+      letterSpacing: '0.024em',
+      color: BETWEEN.colores.beige,
+      textShadow: sombraSobreFoto,
+    }}
+  >
+    {children ?? BETWEEN.datos.direccionPieza}
+  </div>
+);
+
 export const PiezaFeedBodegon: React.FC<{
   foto: string;
   posicionFoto?: string;
@@ -1149,11 +1681,28 @@ export const PiezaFeedBodegon: React.FC<{
   script?: string;
   /** La línea de acompañamiento en Raleway en vez de Brushwell. */
   scriptSans?: boolean;
+  /** Conserva la puntuación del brief; para textos que son una CITA. */
+  mantenerPunto?: boolean;
   sizeCaps?: number;
+  /**
+   * Cuerpo de la script, cuando la proporción por defecto (1,05 × el titular)
+   * la deja MÁS ANCHA que el titular al que acompaña. Ver `TitularBetween`.
+   */
+  sizeScript?: number;
+  /** Aire de tinta script → titular. Ver `TitularBetween.aireScriptATitulo`. */
+  aireScriptATitulo?: number;
   /** Bajada bajo el titular. Va antes de las cajas taupe. */
   bajada?: React.ReactNode;
   /** Interlínea de la caja de bajada, para apretar un texto de dos líneas. */
   interlineaBajada?: number;
+  /** Cuerpo de la bajada, cuando la jerarquía de la pieza pide otro. */
+  sizeBajada?: number;
+  /**
+   * Ancho máximo de la bajada. El defecto de `Bajada` son 820 px, y al subir el
+   * cuerpo un texto que antes entraba en una línea se parte en dos. Se abre sólo
+   * lo necesario — nunca más allá del margen (912).
+   */
+  anchoBajada?: number;
   /**
    * Ancho de la columna del TITULAR. Por defecto el margen (912), para no
    * mover lo ya aprobado; las piezas que se cortan hoy pasan
@@ -1185,17 +1734,74 @@ export const PiezaFeedBodegon: React.FC<{
    * Si hace falta subirlo por encima de ~0,18 el problema es el encuadre.
    */
   velo?: number;
+  /**
+   * ⭐⭐ DEGRADADO AL PIE — autorizado por Eli el 14-09-2026, sobre la portada
+   * del carrusel To Go: «Quiero los textos de la portada como estaban antes, se
+   * va a ver bien. Si necesitas algo puedes añadir una transparencia en opacidad
+   * o degradado».
+   *
+   * Es una rampa del color sombra de la marca, opaca abajo y transparente hacia
+   * arriba. NO es `oscurecer` —que apaga la foto entera y el manual prohíbe para
+   * ganar legibilidad— ni `velo` —que es plano y va a pantalla completa—: acá el
+   * cielo de la foto queda intacto y sólo se asienta el pie, que es donde cae el
+   * bloque de texto.
+   *
+   * El número es la opacidad en el BORDE INFERIOR. La rampa arranca a media
+   * altura y sube con una parada intermedia, para que no se vea el canto del
+   * degradado. Se elige MIDIENDO el contraste de la tinta beige sobre la franja
+   * del bloque, no a ojo.
+   */
+  degradadoPie?: number;
   /** La bajada va DENTRO de una caja taupe, para cuando la foto no la deja leer. */
   bajadaEnCaja?: boolean;
+  /**
+   * ⭐⭐ EL TITULAR va dentro de la caja taupe. Añadido el 14-09-2026 para la
+   * portada del carrusel To Go (FEED col L, 22-sep).
+   *
+   * Es la regla del manual —«cuando un texto no se lee, la solución es la caja
+   * taupe, no oscurecer la foto»— aplicada al TITULAR y no sólo a la bajada.
+   * La ocasión: la portada pasó a una FOTOGRAFÍA REAL de la entrada del local
+   * (sesión de Sebastián, 09-09) y ahí el tercio inferior son pantalones color
+   * crema. MEDIDO sobre las 18 tomas del bloque y en tres posiciones distintas
+   * del bloque: la tinta beige da entre 1,16 y 1,48:1 y la marca pide 3:1 para
+   * el titular. No hay encuadre que lo arregle —ninguna de las 18 llega— y el
+   * velo tendría que subir a ~0,56, muy por encima del tope de 0,18 que fija el
+   * propio manual («si hace falta subirlo por encima de ~0,18 el problema es el
+   * encuadre»). La caja resuelve con 6,31:1 y NO depende de la foto.
+   *
+   * ⚠️ El texto de adentro se compone sobre `columna − 2 × cajas.padX`: así la
+   * CAJA mide la columna y el titular no se come el margen.
+   *
+   * ⛔ Y va TODO el bloque adentro, no sólo el titular. Primer intento: la caja
+   *    envolvía sólo al titular y «PROMOS TO GO» + el horario quedaban fuera,
+   *    en beige sobre los mismos pantalones crema — o sea el problema se mudaba
+   *    dos líneas más abajo. Meter cada línea en su propia caja tampoco: tres
+   *    bandas taupe apiladas son el «muro» que el manual prohíbe. Una sola caja
+   *    para el bloque resuelve el contraste de todo y se lee como un bloque.
+   *    Por eso `PilaDatos` va aquí SIEMPRE sin fondo: la caja ya es el énfasis.
+   */
+  bloqueEnCaja?: boolean;
   datos?: React.ReactNode[];
+  /**
+   * Índices de `datos` que van SIN la caja taupe. Ver `CajaDato.sinFondo`:
+   * en una pila, la caja es el énfasis y repetirla en las dos líneas lo mata.
+   */
+  datosSinFondo?: number[];
   arco?: string;
   /** Bloque al pie: nombre de la promo + horario, como en la pieza aprobada. */
   pie?: {titulo?: string; detalle?: string};
   /** Legal en cursiva, al ras del borde inferior. */
   legal?: string;
+  /**
+   * La dirección del local al pie. `true` usa la cadena de marca; un string la
+   * reemplaza. Ver `DireccionAlPie` — está calcada de la lámina de Eli.
+   */
+  direccion?: boolean | string;
   conLogo?: boolean;
   logoTono?: Tono;
   logoPosicion?: 'arriba' | 'abajo';
+  /** Halo bajo el logo. Ver `LogoBetween.sombra`. */
+  logoSombra?: number;
   alinear?: 'izquierda' | 'centro';
   /**
    * Dónde va el bloque. Por defecto ARRIBA (es lo que hace Eli en los bodegones),
@@ -1219,22 +1825,32 @@ export const PiezaFeedBodegon: React.FC<{
   caps,
   script,
   scriptSans,
+  mantenerPunto,
   sizeCaps,
+  sizeScript,
+  aireScriptATitulo,
   bajada,
   bajadaEnCaja,
   interlineaBajada,
+  sizeBajada,
+  anchoBajada,
   columna = 1080 - 2 * BETWEEN.bloque.margenX,
   columnaCaja,
   aireTituloACaja = BETWEEN.aire.tituloACaja,
   velo,
   datos,
+  datosSinFondo,
+  bloqueEnCaja,
+  degradadoPie,
   arco,
   pie,
   legal,
+  direccion,
   // en el feed de bodegón la marca la pone el vaso, no un logo sobrepuesto
   conLogo = false,
   logoTono = 'beige',
   logoPosicion = 'abajo',
+  logoSombra,
   // MEDIDO: las dos piezas aprobadas están centradas sobre el eje. Between
   // compone centrado; el bloque a la izquierda no es su gramática.
   alinear = 'centro',
@@ -1247,7 +1863,10 @@ export const PiezaFeedBodegon: React.FC<{
   // piezas de la ronda 4.
   const posLogo = anclaje === 'abajo' ? 'arriba' : logoPosicion;
   return (
-  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
+  /* ⭐ `CIFRAS_ALTAS` va en la RAÍZ y se hereda: así también le llega a los
+     dígitos que NO pasan por una caja de dato — el «3» de «¡LLÉVATE LOS 3!» del
+     titular es uno. `font-variant-numeric` es heredable, y sólo toca cifras. */
+  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra, ...CIFRAS_ALTAS}}>
     <FotoFondo src={foto} posicion={posicionFoto} oscurecer={oscurecer} />
     {/* el velo va sobre la foto y DEBAJO del logo y del texto */}
     {velo ? (
@@ -1257,7 +1876,29 @@ export const PiezaFeedBodegon: React.FC<{
         mixBlendMode: 'multiply',
       }} />
     ) : null}
-    {conLogo ? <LogoBetween formato="feed" posicion={posLogo} tono={logoTono} /> : null}
+    {degradadoPie ? (
+      <AbsoluteFill style={{
+        /* ⭐ La rampa NO es lineal, y por eso son cuatro paradas. Con un
+           degradado lineal la opacidad sube demasiado lento justo donde arranca
+           el bloque: medido sobre la portada To Go, la script quedaba en 2,19:1
+           con la tinta beige (la marca pide 3:1) porque a esa altura el lineal
+           sólo había llegado al 24 % de su opacidad. Estas paradas la llevan al
+           59 % a media altura del bloque y dejan el tercio superior de la foto
+           SIN TOCAR, que es la diferencia con `oscurecer`. */
+        background:
+          `linear-gradient(to top,` +
+          /* ⭐ RONDA 25 — Eli: «bájale solo un poco al degradado abajo… muy
+             sutil». Se afloja SÓLO el borde inferior (de opaco a 0,88) y las
+             paradas de en medio quedan igual: así el pie deja de leerse como
+             una banda maciza y el contraste donde cae el bloque no se mueve. */
+          ` ${BETWEEN.colores.sombra}e0 0%,` +
+          ` ${BETWEEN.colores.sombra}d1 35%,` +
+          ` ${BETWEEN.colores.sombra}59 60%,` +
+          ` ${BETWEEN.colores.sombra}00 82%)`,
+        opacity: degradadoPie,
+      }} />
+    ) : null}
+    {conLogo ? <LogoBetween formato="feed" posicion={posLogo} tono={logoTono} sombra={logoSombra} /> : null}
     <AbsoluteFill>
       <div
         style={{
@@ -1276,22 +1917,66 @@ export const PiezaFeedBodegon: React.FC<{
           alignItems: alinear === 'centro' ? 'center' : 'flex-start',
         }}
       >
-        <TitularBetween
-          caps={caps} script={script} scriptSans={scriptSans}
-          sizeCaps={sizeCaps} alinear={alinear} anchoDisponible={columna}
-        />
-        {bajada && bajadaEnCaja ? (
-          <PanelTaupe ancho={columnaCaja ?? columna} interlinea={interlineaBajada} style={{marginTop: aireTituloACaja}}>{bajada}</PanelTaupe>
-        ) : bajada ? (
-          <Bajada style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: alinear === 'centro' ? 'center' : 'left'}}>{bajada}</Bajada>
-        ) : null}
-        {datos?.length ? <PilaDatos datos={datos} style={{marginTop: BETWEEN.aire.tituloACaja}} /> : null}
+        {(() => {
+          const anchoCaja = columna ?? 1080 - 2 * BETWEEN.bloque.margenX;
+          const contenido = (
+            <>
+              <TitularBetween
+                caps={caps} script={script} scriptSans={scriptSans}
+                sizeCaps={sizeCaps} sizeScript={sizeScript}
+                aireScriptATitulo={aireScriptATitulo}
+                alinear={alinear}
+                anchoDisponible={bloqueEnCaja ? anchoCaja - 2 * BETWEEN.cajas.padX : columna}
+                mantenerPunto={mantenerPunto}
+              />
+              {bajada && bajadaEnCaja && !bloqueEnCaja ? (
+                <PanelTaupe ancho={columnaCaja ?? columna} interlinea={interlineaBajada} style={{marginTop: aireTituloACaja}}>{bajada}</PanelTaupe>
+              ) : bajada ? (
+                <Bajada size={sizeBajada} style={{marginTop: BETWEEN.aire.tituloABajada, maxWidth: anchoBajada, textAlign: alinear === 'centro' ? 'center' : 'left'}}>{bajada}</Bajada>
+              ) : null}
+              {datos?.length ? (
+                <PilaDatos
+                  datos={datos}
+                  /* dentro de la caja, la caja YA es el énfasis: ningún dato repite banda */
+                  sinFondo={bloqueEnCaja ? datos.map((_, i) => i) : datosSinFondo}
+                  style={{marginTop: BETWEEN.aire.tituloACaja}}
+                />
+              ) : null}
+            </>
+          );
+          return bloqueEnCaja ? (
+            <div
+              style={{
+                /* ⛔ `width` explícito, no `maxWidth`: `TitularBetween` se
+                   dimensiona con `width: '100%'`, así que dentro de una caja
+                   shrink-to-fit colapsa a una banda de ~80 px. Con `border-box`
+                   el contenido mide `anchoCaja − 2 × padX`, que es justo el
+                   `anchoDisponible` que recibe el titular. */
+                width: anchoCaja,
+                boxSizing: 'border-box',
+                padding: `${Math.round(BETWEEN.cajas.alto * 0.28)}px ${BETWEEN.cajas.padX}px`,
+                backgroundColor: BETWEEN.cajas.fondo,
+                borderRadius: BETWEEN.cajas.radio,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: alinear === 'centro' ? 'center' : 'flex-start',
+              }}
+            >
+              {contenido}
+            </div>
+          ) : contenido;
+        })()}
       </div>
     </AbsoluteFill>
     {children}
     {arco ? <TextoArco>{arco}</TextoArco> : null}
     {pie ? <PieDePieza formato="feed" {...pie} /> : null}
     {legal ? <LegalAlPie formato="feed">{legal}</LegalAlPie> : null}
+    {direccion ? (
+      <DireccionAlPie formato="feed">
+        {typeof direccion === 'string' ? direccion : BETWEEN.datos.direccionPieza}
+      </DireccionAlPie>
+    ) : null}
   </AbsoluteFill>
   );
 };
@@ -1391,6 +2076,11 @@ export const PiezaStoryBetween: React.FC<{
   script?: string;
   sizeCaps?: number;
   datos?: React.ReactNode[];
+  /**
+   * Índices de `datos` que van SIN la caja taupe. Ver `CajaDato.sinFondo`:
+   * en una pila, la caja es el énfasis y repetirla en las dos líneas lo mata.
+   */
+  datosSinFondo?: number[];
   bajada?: React.ReactNode;
   /** La bajada va DENTRO de una caja taupe, para cuando la foto no la deja leer. */
   bajadaEnCaja?: boolean;
@@ -1404,14 +2094,33 @@ export const PiezaStoryBetween: React.FC<{
   anclaje?: 'arriba' | 'abajo';
   /** Y exacta del bloque, cuando ni arriba ni abajo sirven. */
   topBloque?: number;
+  /**
+   * Ancho de composición del TITULAR, igual que `PiezaFeedBodegon.columna`.
+   *
+   * ⭐ AGREGADO EL 02-09-2026. La pieza llamaba a `TitularBetween` sin pasarle
+   * `anchoDisponible`, así que el titular se autoescalaba hasta el MARGEN (912)
+   * y no había forma de apretarlo desde la story sin tocar el sistema.
+   *
+   * Hizo falta porque `between-qa.py` marcó `BW-S-Cumple`: tinta a 74 px del
+   * canto izquierdo y 72 del derecho, contra los 84 de la marca. La causa es
+   * que **Brushwell sobresale de su ancho de avance** —la cola del «¿» inicial
+   * y la del «?» final quedan fuera de la caja que mide el autoescalado—, así
+   * que la caja cabía y la tinta no. Aparece en toda pieza cuya script empieza
+   * con «¿»: también lo dio en `Cumple1`, `ToGo1` y `ToGo4`.
+   *
+   * Se pasa `BETWEEN.bloque.columna` (810) en la pieza que se está cortando.
+   * Sigue siendo OPT-IN por la misma razón que en `TitularBetween`: cambiar el
+   * defecto re-flujaría piezas ya aprobadas.
+   */
+  columnaTitular?: number;
   children?: React.ReactNode;
 }> = ({
   foto, posicionFoto, oscurecer = 0.12,
-  caps, script, sizeCaps, datos, bajada, bajadaEnCaja, anchoBajada, legal,
+  caps, script, sizeCaps, datos, datosSinFondo, bajada, bajadaEnCaja, anchoBajada, legal,
   conLogo = true, logoTono = 'beige', alinear = 'centro', anclaje = 'arriba',
-  topBloque, children,
+  topBloque, columnaTitular, children,
 }) => (
-  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
+  <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra, ...CIFRAS_ALTAS}}>
     <FotoFondo src={foto} posicion={posicionFoto} oscurecer={oscurecer} />
     {conLogo ? <LogoBetween formato="story" posicion="arriba" tono={logoTono} /> : null}
     <div
@@ -1430,8 +2139,9 @@ export const PiezaStoryBetween: React.FC<{
         alignItems: alinear === 'centro' ? 'center' : 'flex-start',
       }}
     >
-      <TitularBetween caps={caps} script={script} sizeCaps={sizeCaps} alinear={alinear} />
-      {datos?.length ? <PilaDatos datos={datos} style={{marginTop: BETWEEN.aire.tituloACaja}} /> : null}
+      <TitularBetween caps={caps} script={script} sizeCaps={sizeCaps} alinear={alinear}
+        anchoDisponible={columnaTitular} />
+      {datos?.length ? <PilaDatos datos={datos} sinFondo={datosSinFondo} style={{marginTop: BETWEEN.aire.tituloACaja}} /> : null}
       {bajada && bajadaEnCaja ? (
         <PanelTaupe ancho={anchoBajada} style={{marginTop: BETWEEN.aire.tituloACaja}}>{bajada}</PanelTaupe>
       ) : bajada ? (

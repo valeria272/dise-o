@@ -1,0 +1,50 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 03 — INTRO — quiénes somos y qué buscamos
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/03-*.jpg
+     Archivos que usa:
+       · recursos/imagenes/aerea-2.jpg
+     Nota: Texto a la izquierda, foto aérea a la derecha.
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── INTRO ────────────────────────────────────────────────────── */
+.intro{padding:clamp(80px,10vw,140px) 0;background:#fff}
+.intro .contenedor{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(38px,6vw,90px);align-items:center}
+.intro p{color:var(--texto-med);font-size:clamp(1rem,1.25vw,1.1rem);margin-bottom:18px;max-width:54ch}
+.intro p strong{color:var(--texto);font-weight:600}
+.intro-foto{position:relative;border-radius:var(--radio);overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.16)}
+.intro-foto img{width:100%;aspect-ratio:16/11;object-fit:cover}
+.intro-foto .sello{position:absolute;left:22px;bottom:22px;background:var(--rojo);color:#fff;
+  padding:11px 24px;border-radius:999px;font-size:.88rem;font-weight:600}
+</style>
+
+<!-- ════════════ INTRO ════════════ -->
+<section class="intro">
+  <div class="contenedor">
+    <div>
+      <span class="eyebrow fade-up">La oportunidad</span>
+      <h2 class="titulo-seccion fade-up d1">¿Tienes un terreno<span class="fina">con potencial comercial?</span></h2>
+      <div class="regla fade-up d2"></div>
+      <p class="fade-up d2">
+        Más Center busca <strong>ampliar y fortalecer su cartera de terrenos comerciales</strong>
+        mediante la identificación de ubicaciones estratégicas con alto potencial de desarrollo.
+      </p>
+      <p class="fade-up d3">
+        No compramos metros cuadrados: desarrollamos proyectos. Cada terreno que evaluamos
+        se analiza como una oportunidad comercial completa, con su entorno, su flujo y su
+        demanda proyectada.
+      </p>
+      <a href="#contacto" class="btn btn-rojo fade-up d4" style="margin-top:16px">
+        Conversemos
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="intro-foto fade-right d2">
+      <img src="../recursos/imagenes/aerea-2.jpg" alt="Strip center Más Center visto desde el aire, con su estacionamiento y locales">
+      <span class="sello">Más de 30 centros en operación</span>
+    </div>
+  </div>
+</section>

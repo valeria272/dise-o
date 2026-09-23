@@ -80,10 +80,53 @@ Si no existe `~/copylab-venv`:
 ```bash
 python3 -m venv ~/copylab-venv
 ~/copylab-venv/bin/python3 -m pip install --upgrade pip
-~/copylab-venv/bin/python3 -m pip install pillow numpy requests certifi fonttools \
-    google-api-python-client google-auth google-auth-oauthlib openpyxl python-docx
+~/copylab-venv/bin/python3 -m pip install pillow numpy scipy requests certifi fonttools \
+    cryptography google-api-python-client google-auth google-auth-oauthlib \
+    openpyxl python-docx
 ```
 Usa siempre `python3 -m pip`, nunca el binario `pip`.
+
+### Las credenciales — salen del llavero del repo
+
+No le pidas ninguna clave a nadie: **ya vienen en el repositorio, cifradas**. Lo
+único que hace falta es **la contraseña del llavero del estudio**, que Valeria
+entrega una vez.
+
+⚠️ **No corras `llavero.py abrir` a secas.** Pide la contraseña por `getpass`, que es
+un prompt interactivo del terminal: tú no puedes escribir ahí y la herramienta se
+queda colgada. Haz esto en su lugar:
+
+**1.** Pídesela a la persona en el chat, tal cual:
+
+> «Necesito **la contraseña del llavero del estudio** — la que te pasó Valeria.
+> Pégamela acá en el chat y con eso te dejo listas todas las herramientas. Es lo
+> único que te voy a pedir en toda la instalación.»
+
+Si no la tiene: «Pídesela a Valeria. Es una sola, se entrega una vez y no se te
+vuelve a pedir nunca más en este computador.»
+
+**2.** Con la contraseña, escribe el archivo y abre el llavero. Usa **Python** para
+escribirlo, nunca `echo >` ni `Set-Content` — en Windows guardan en UTF-16 y el
+llavero no lo puede leer:
+
+```bash
+python3 -c "import pathlib,sys;pathlib.Path.home().joinpath('.copylab-llave').write_text(sys.argv[1]+chr(10),encoding='utf-8')" 'LA-CONTRASEÑA'
+python3 scripts/llavero.py abrir
+```
+
+**3.** Comprueba las dos cosas y muéstrale el resultado:
+
+```bash
+python3 scripts/llavero.py estado
+python3 scripts/magnific.py check      # valida la clave SIN gastar créditos
+```
+
+Si `abrir` dice que la contraseña no sirve, borró sola el archivo: vuelve al punto 1
+y pídesela de nuevo, sin dramatizar.
+
+⚠️ **Nunca escribas la contraseña en un archivo del repositorio**, ni la dejes en un
+comando que quede en el historial más allá de ese `python3 -c`. El detalle está en
+`credentials/LEEME.md`.
 
 ### Google Chrome
 No lo puedes instalar en silencio. Si falta, dile:

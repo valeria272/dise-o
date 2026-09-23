@@ -1,0 +1,124 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 09 — CONVERSEMOS — datos de contacto y formulario
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/09-*.jpg
+     Nota: ACÁ ESTÁ EL CORREO terrenos@ifbinversiones.cl. El formulario valida los campos pero todavía NO envía correo: hay que conectarlo a Contact Form 7 (paso 8 del instructivo).
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── FORMULARIO ───────────────────────────────────────────────── */
+.contacto{padding:clamp(80px,10vw,140px) 0;background:#fff}
+.contacto .contenedor{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(40px,6vw,84px);align-items:start}
+.contacto .lado p{color:var(--texto-med);margin-bottom:18px;max-width:44ch}
+.contacto .firma{margin-top:34px;padding-top:28px;border-top:1px solid rgba(0,0,0,.1);
+  font-size:.92rem;font-weight:500;color:var(--texto);line-height:1.9}
+.contacto .firma span{color:var(--rojo);margin:0 8px;font-weight:600}
+.datos-directos{margin-top:30px;display:flex;flex-direction:column;gap:14px}
+.dato-directo{display:flex;align-items:center;gap:13px;font-size:.94rem;color:var(--texto-med);
+  transition:color .3s var(--exp)}
+.dato-directo:hover{color:var(--rojo)}
+.dato-directo svg{width:18px;height:18px;fill:var(--rojo);flex-shrink:0}
+.formulario{background:var(--claro);border-radius:var(--radio);padding:clamp(28px,3.4vw,46px)}
+.campos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.campo{display:flex;flex-direction:column;gap:7px}
+.campo.ancho{grid-column:1/-1}
+.campo label{font-size:.79rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--texto-med)}
+.campo input,.campo select,.campo textarea{font-family:inherit;font-size:.95rem;color:var(--texto);
+  background:#fff;border:1.5px solid rgba(0,0,0,.10);border-radius:12px;padding:14px 16px;
+  transition:border-color .3s var(--exp),box-shadow .3s var(--exp)}
+.campo textarea{resize:vertical;min-height:112px}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:var(--rojo);
+  box-shadow:0 0 0 3px rgba(229,37,33,.12)}
+.campo input.error,.campo select.error,.campo textarea.error{border-color:var(--rojo);background:rgba(229,37,33,.03)}
+.campo .ayuda{font-size:.76rem;color:#8A8A8A;line-height:1.5}
+.formulario .btn{width:100%;justify-content:center;margin-top:24px}
+.aviso-form{margin-top:16px;font-size:.88rem;min-height:22px;font-weight:500}
+.aviso-form.ok{color:#1E7A3C}.aviso-form.mal{color:var(--rojo)}
+.legal{font-size:.74rem;color:#8A8A8A;margin-top:14px;line-height:1.55}
+</style>
+
+<!-- ════════════ FORMULARIO ════════════ -->
+<section class="contacto" id="contacto">
+  <div class="contenedor">
+    <div class="lado">
+      <span class="eyebrow fade-up">Conversemos</span>
+      <h2 class="titulo-seccion fade-up d1">¿Tienes un terreno<span class="fina">con potencial comercial?</span></h2>
+      <div class="regla fade-up d2"></div>
+      <p class="fade-up d2">
+        Queremos conocerlo. Déjanos los datos y nuestro equipo de desarrollo te contactará
+        para revisar la oportunidad.
+      </p>
+      <div class="datos-directos fade-up d3">
+        <!-- Correo de captación de terrenos confirmado por el cliente (08-09-2026) -->
+        <a class="dato-directo" href="mailto:terrenos@ifbinversiones.cl">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          terrenos@ifbinversiones.cl
+        </a>
+        <a class="dato-directo" href="https://www.mascenter.cl" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-2.95a15.6 15.6 0 0 0-1.4-3.62A8.03 8.03 0 0 1 18.9 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a7.9 7.9 0 0 1 0-4h3.38a16.5 16.5 0 0 0 0 4H4.26zm.84 2h2.95c.33 1.28.8 2.5 1.4 3.62A7.99 7.99 0 0 1 5.1 16zm2.95-8H5.1a7.99 7.99 0 0 1 4.35-3.62A15.6 15.6 0 0 0 8.05 8zM12 19.96A13.2 13.2 0 0 1 10.09 16h3.82A13.2 13.2 0 0 1 12 19.96zM14.34 14H9.66a14.7 14.7 0 0 1 0-4h4.68a14.7 14.7 0 0 1 0 4zm.2 5.62c.6-1.12 1.07-2.34 1.4-3.62h2.96a8.03 8.03 0 0 1-4.36 3.62zM16.36 14a16.5 16.5 0 0 0 0-4h3.38a7.9 7.9 0 0 1 0 4h-3.38z"/></svg>
+          www.mascenter.cl
+        </a>
+      </div>
+      <div class="firma fade-up d4">
+        Encontramos ubicaciones <span>·</span> Creamos espacios <span>·</span> Acercamos comercios y servicios
+      </div>
+    </div>
+
+    <form class="formulario fade-up d1" id="formulario" novalidate>
+      <div class="campos">
+        <div class="campo">
+          <label for="nombre">Nombre y apellido</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="campo">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="tucorreo@empresa.cl" required>
+        </div>
+        <div class="campo">
+          <label for="telefono">Teléfono</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="+56 9 ..." required>
+        </div>
+        <div class="campo">
+          <label for="region">Región</label>
+          <select id="region" name="region" required>
+            <option value="">Selecciona una región</option>
+            <option>Arica y Parinacota</option><option>Tarapacá</option><option>Antofagasta</option>
+            <option>Atacama</option><option>Coquimbo</option><option>Valparaíso</option>
+            <option>Metropolitana</option><option>O'Higgins</option><option>Maule</option>
+            <option>Ñuble</option><option>Biobío</option><option>La Araucanía</option>
+            <option>Los Ríos</option><option>Los Lagos</option><option>Aysén</option><option>Magallanes</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="comuna">Comuna</label>
+          <input type="text" id="comuna" name="comuna" placeholder="Comuna del terreno" required>
+        </div>
+        <div class="campo">
+          <label for="superficie">Superficie (m²)</label>
+          <input type="number" id="superficie" name="superficie" placeholder="Ej: 5000" min="0" required>
+        </div>
+        <div class="campo ancho">
+          <label for="direccion">Dirección o rol del terreno</label>
+          <input type="text" id="direccion" name="direccion" placeholder="Calle, número o rol de avalúo" required>
+          <span class="ayuda">Si no tienes la dirección exacta, indica el cruce de calles más cercano.</span>
+        </div>
+        <div class="campo ancho">
+          <label for="mensaje">Cuéntanos sobre el terreno</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Uso de suelo, situación normativa, accesos, entorno comercial cercano…" required></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-rojo">
+        Enviar postulación
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <div class="aviso-form" id="aviso" role="status"></div>
+      <p class="legal">
+        Al enviar este formulario autorizas a Más Center · Grupo IFB a contactarte para
+        evaluar la oportunidad. Tus datos se tratan conforme a la Ley 21.719 y no se
+        comparten con terceros ajenos a la evaluación.
+      </p>
+    </form>
+  </div>
+</section>

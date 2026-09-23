@@ -294,7 +294,16 @@ a los beats del corte nuevo. Las tonalidades (Am → F → C) son las de la casa
 ## PILAR 1 · AGENTES EN LA PEGA
 
 ### R02 · «Turno de noche»
-`TEMPORADA 1 · CAPÍTULO 02` — **35 s** — 9:16 — Universos: COPYLAB OFFICE → DATA ROOM → OFFICE
+
+> ⚠️ **Este guion quedó como archivo.** El capítulo se reescribió el 02-09-2026
+> con el feedback del capítulo 1 —*más dinámico, más rápido, más movido, y voz
+> en off documental*— y bajó de 35 a **32 s** con el triple de cortes. El guion
+> vigente, con storyboard plano por plano y la gramática de velocidad, está en
+> **[`R02_STORYBOARD.md`](R02_STORYBOARD.md)**. Lo que sigue es la versión
+> original: se conserva porque de acá salieron la estructura de tres actos, la
+> decisión de que el capítulo va casi sin gente y el plan de rodaje.
+
+`TEMPORADA 1 · CAPÍTULO 02` — ~~35 s~~ — 9:16 — Universos: COPYLAB OFFICE → DATA ROOM → OFFICE
 **Qué cuenta:** qué hace G.CL cuando no queda nadie en la agencia.
 **Voz en off:** la misma persona del equipo que narró el R01.
 

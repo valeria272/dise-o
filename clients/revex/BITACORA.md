@@ -1,3 +1,25 @@
+## 2026-09-09 — Valeria Traverso (con Claude)
+
+**Qué se hizo:** No se diseñó nada; se **reparó el material de referencia** durante el arranque
+del estudio. El verificador encontró 25 archivos que decían ser imágenes y eran la página de
+login de Google guardada con extensión `.jpg` — el mismo problema que costó las 3 rondas de
+septiembre. Se volvieron a bajar del Drive **13**, todos de Revex salvo 3 de Cava.
+
+**Dónde quedó:** `raw/revex/ref-sep2026/` **completa y sana**: las 6 numeradas más `LCD-POST.jpg`
+y `LCD-HISTORIA.jpg` — son las que señala el brief de septiembre. En `raw/revex/ref-anteriores/`
+se recuperaron `rvx_post-condes.png` (2250×2813, la medida real de entrega), `_op2`, `_wtsp`,
+`rvx_post-outlet.png` y `rvx_storie-condes_wtsp.png`. La receta de rescate quedó en la memoria
+`compuerta-de-material` (el token local no sirve: hay que sacar los IDs por el conector de Drive).
+
+**Qué sigue:** Antes de producir Revex, correr la compuerta —
+`verificar-material.py raw/revex` y mirar la hoja de contacto— y recién ahí diseñar.
+
+**Abierto:** Quedan **9 rotos** en `raw/revex/showroom-2024/` y los `temuco_showroom_*` de
+`ref-anteriores/`: se **renombraron al bajarlos** y en Drive se llaman `0 POST VISITA SHOWROOM
+TEMUCO 1.png` y parecidos, así que mapearlos sería adivinar. Si se necesitan, hay que
+identificarlos a mano en el Drive de Serena. Son referencias históricas de 2024, no del brief
+vigente.
+
 # Bitácora — Revex
 
 ## 2026-08-27 — Serena Abarca (con Claude)

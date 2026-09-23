@@ -46,6 +46,22 @@ Diseño Tierra Calma · Septiembre 2026*). Están espejados en
 - colegios, supermercado y bancos a minutos
 - Padre Hurtado, RM
 
+### Ampliación del 08-09-2026 (brief de octubre)
+
+El *Tierra Calma · Propuesta de Temas · Octubre 2026* (Carlos, Drive) suma tres
+datos a la lista blanca. Ya están publicados en el carrusel del 06-10:
+
+- **electricidad subterránea** (ya instalada)
+- **cierre perimetral** (ya hecho)
+- **máximo 2 casas por parcela** (principal + huéspedes)
+- **Ruta 78 / Autopista del Sol + Camino a Melipilla** como descripción de acceso
+
+Y **ratifica la prohibición del agua potable**, esta vez con la palabra "falso":
+*"NO usar «conexión a agua potable» (es noria/pozo que construye cada
+propietario, dato verificado como falso)"*. ⚠️ Ese dato **sí salió publicado** en
+la historia `st-11-09` de septiembre, dentro de la tarjeta "Tu parcela incluye:".
+Vale la pena avisarlo antes de que el cliente lo note.
+
 ### ⛔ Lo que NO se publica sin validar con Fran o Blanca
 
 - **m² exactos** por parcela (usar "~5.000 m²", nunca una cifra cerrada).
@@ -88,6 +104,17 @@ convertido a mp4 sobre blanco a 30fps) es el **cierre obligatorio de todo
 reel**. Nunca re-animar el logo a mano, nunca deformarlo, nunca recomponer el
 wordmark en texto.
 
+> ✅ **Confirmado el 22-09-2026.** El diseñador subió a Drive
+> `TIERRA CALMA CIERRE.mov` (en la carpeta de entrega, junto a los marcos) y es
+> **byte a byte el mismo archivo** que `TIERRA CALMA MOTION.mov` del KINGSTON
+> — sha256 idéntico. O sea: la regla vale y el archivo es el que ya está
+> convertido en `public/assets/tierracalma/tc_motion.mp4`.
+>
+> ⚠️ Los cuatro videos entregados el 14-09 **no lo llevan**: se siguió el reel
+> publicado de septiembre (`r-17-09.mp4`), que cierra con el wordmark en
+> cursiva. El `r-13-10` ya se re-entregó con el logo animado; **los otros tres
+> quedan por corregir** cuando se retomen.
+
 El logo es **gaviota en vuelo + wordmark serif espaciado "TIERRA CALMA" +
 "PADRE HURTADO"** en sans liviana con tracking amplio.
 
@@ -115,6 +142,163 @@ La pareja oficial de la marca. Confirmada por Valeria el 19-08-2026.
   reserva para una palabra emotiva por bloque.
 - **Sans — `Inter Tight`**: bajadas, listas, datos. En mayúsculas con tracking
   `0.15–0.26em` para etiquetas, imitando el "PADRE HURTADO" del logo.
+
+#### ⛔ IvyOra Display SIEMPRE en versales — y es LA forma de destacar
+
+Regla de Diego, 22-09-2026, dejada como comentario sobre `c-06-10-4.png`:
+*"IvyOra Display siempre en mayúscula"*. **Vale para todo el contenido de la
+marca, no sólo para esa pieza.**
+
+Las dos mitades de la regla:
+
+1. **Nunca IvyOra en caja baja.** Si una pieza tiene IvyOra en minúsculas está
+   mala. En código: todo tramo que use `SERIF` lleva
+   `textTransform: "uppercase"`, sin excepción.
+2. **IvyOra en versales ES el recurso para destacar la frase clave de una
+   oración** — no el bold de la sans. La frase que importa sale de la línea en
+   IvyOra Display versales y a mayor cuerpo; el resto de la oración se queda en
+   Inter Tight Light. Ejemplos del carrusel del 06-10:
+
+   > ¿Tengo que invertir en la **ELECTRIFICACIÓN** del terreno?
+   > ¿Tengo que **CERRAR** yo el terreno?
+   > ¿Cuántas **CASAS** puedo construir?
+
+   La **cursiva** sigue reservada para el remate emotivo del bloque
+   (*AQUÍ LAS RESOLVEMOS*, *HASTA DOS POR PARCELA*) — también en versales.
+
+#### ⛔ ORDEN TIPOGRÁFICO — sólo DOS roles, nunca más
+
+Ronda de Diego del 22-09 sobre `p-20-10.png`: *"hay demasiadas tipografías, hay
+que tener un orden en la creación de los contenidos, identificar dentro del
+brief lo que hay que destacar"*.
+
+**El sistema completo son dos roles. No hay un tercero.**
+
+| Rol | Qué es | Cuándo |
+|---|---|---|
+| **Cuerpo** | Inter Tight **Light (300)**, caja baja | Todo: preguntas, bajadas, listas, textos de globo |
+| **Destacado** | **IvyOra Display VERSALES**, cuerpo mayor | La frase que el brief manda destacar. Cursiva sólo para el remate emotivo |
+
+**Lo que queda prohibido:**
+
+- ⛔ **Inter Tight Bold/SemiBold para destacar.** Destacar es trabajo de IvyOra.
+- ⛔ Más de **tres tamaños** de tipografía en una pieza.
+- ⛔ Cambiar el cuerpo palabra por palabra "para que se vea rico". Si una
+  palabra cambia de tamaño es porque el brief la manda destacar, no por gusto.
+
+**Cómo se decide qué destacar:** se lee el brief y se identifica **la frase que
+responde la promesa** — no la más larga ni la más bonita. En el carrusel del
+06-10 son `ELECTRIFICACIÓN`, `CERRAR` y `CASAS`: el sustantivo de la duda que
+la pieza resuelve.
+
+#### ⛔ LA ESCALA — Inter Tight 50–70 pt por largo, IvyOra fija
+
+Regla de Diego del 23-09-2026. Cierra el sistema tipográfico: los dos roles ya
+estaban definidos, faltaba **a qué tamaño va cada uno**.
+
+| Rol | Tamaño |
+|---|---|
+| **Inter Tight** | **Varía entre 50 y 70 pt según el LARGO de la frase.** Frase corta → 70; frase larga → 50 |
+| **IvyOra Display** | **Fija en 68 pt.** No varía |
+
+**El tamaño de la sans NO se elige a ojo.** Lo calcula `cuerpoSans()` con el
+número de caracteres —está en `OctubreV3.tsx` y en `OctubreVideo.tsx`, idéntica
+en los dos— así que dos piezas con frases parecidas quedan al mismo cuerpo sin
+que nadie las compare a mano. Si una pieza necesita otro tamaño, el problema es
+el largo del copy.
+
+**Por qué importa:** antes la cursiva saltaba a 96–104 pt y aplastaba a la sans,
+que iba a 42–48. Con las dos en la misma banda, **portadas de carrusel y posts
+individuales se leen a una escala pareja**, que es lo que pidió Diego. Vale
+igual para los reels.
+
+**Fuera de la regla:** `Pie` (la etiqueta en versales espaciadas, 27 pt) y los
+rótulos de los indicadores y recortes. Son etiquetas, no texto de cuerpo.
+
+#### ⛔ TODO CENTRADO AL MEDIO
+
+Misma ronda. El bloque de texto **se centra vertical y horizontalmente en el
+alto útil** del marco —el que queda entre el logo y la píldora— en vez de colgar
+de un `top` fijo. Así una frase corta y una larga quedan igual de equilibradas
+sin recalcular nada.
+
+⚠️ **Centrar no es centrar sobre el sujeto.** Siete piezas acotan la banda, y
+cada una por una razón medible: si el medio del cuadro está ocupado —por una
+gráfica o por el sujeto de la foto— el titular se centra **en la banda que queda
+libre**, no en el alto completo.
+
+| Pieza | Banda | Qué ocupa el medio |
+|---|---|---|
+| `st-12-10` (H) | `[275, 560]` | los rótulos del mapa **y**, arriba, la zona segura de Meta |
+| `c-20-10-4` (K4) | `[205, 570]` | los indicadores sobre la parcela |
+| `c-06-10-4` (E4) | `[205, 700]` | las dos casas (techumbre en la fila 574, chimenea en la 554) |
+| `c-20-10-1` (K1) | `[250, 670]` | la pareja (desde la fila 780) y el potrero |
+| `c-20-10-6` (K6) | `[205, 790]` | la pareja caminando (cabezas en la fila ~672) |
+| `st-22-10` (L) | `[240, 1020]` | los dos globos apilados abajo |
+| `c-20-10-5` (K5) | `[205, 1210]` | nada: acá el globo entra **en flujo** y se centra con el titular |
+
+Las cinco últimas salieron de las dos rondas del 23-09: *"subir un poco, que no
+tape las casas"*, *"que no tape a las personas ni el terreno"*, *"subir un poco
+el bloque de texto, que no tape a las personas"*, *"subir bloque de texto"* y
+*"centrar toda la información"*.
+
+> **Cómo se calcula, y no se estima:** las fotos de `oct/` son 1080×1350, el
+> mismo tamaño del lienzo, así que con `objectFit: cover` la fila de la foto
+> **es** la fila del lienzo. Se mide sobre el JPG de origen dónde empieza el
+> sujeto, se le restan unos 40 px de aire, y esa es la base de la banda. Medir
+> sobre el PNG rendido no sirve: el texto blanco contamina el perfil.
+
+Si una pieza nueva tiene algo en el medio, ese es el camino: **acotar la banda,
+no abandonar el centrado** ni mover la gráfica, que está medida.
+
+#### ⛔ Los recuadros son GLOBOS DE TEXTO translúcidos
+
+Misma ronda, sobre `c-06-10-2` y `st-22-10`: *"que sea un globo de texto"*,
+*"siempre el recuadro que tenga transparencia"*, *"globo de textos que estén
+derechos y centrados, quitar espacios libres de los globos"*, y sobre
+`st-08-10`: *"no genera contraste, oscurecer un poco más el globo"*.
+
+Un solo componente para toda la marca, con estas **siete** condiciones:
+
+1. **Translúcido, nunca sólido.** Fondo oscuro a ~0,55 de alfa con desenfoque
+   detrás. Las cajas de color macizo quedan fuera.
+2. **Oscuro de verdad.** Si el texto blanco no despega del fondo, el globo está
+   claro. Sube la opacidad antes que bajar el texto.
+3. **Derecho.** Cero rotación. Las tarjetas inclinadas quedan fuera.
+4. **Centrado.**
+5. **Ajustado al texto.** `display: inline-block` + `maxWidth`, nunca `width`
+   fijo: con ancho fijo la última línea deja un hueco muerto adentro.
+6. **El destacado y el cuerpo van juntos.** `marginBottom: 8` entre la línea de
+   IvyOra y el texto de la sans — no 16. Diego, 23-09 sobre `c-20-10-4`:
+   *"interlineado más juntos"*. Son una unidad, no dos párrafos.
+7. ⛔ **No cruza las líneas del marco.** Las hairlines horizontales están en las
+   filas **131 y 1284** en los seis marcos de carrusel y post. Antes de anclar
+   un globo hay que sumarle su alto real —`30 + destacado + 8 + cuerpo + 30`—
+   y comprobar que cierra por dentro. `c-20-10-4` cerraba en 1312 y se salía.
+
+##### El globo puede ir EN FLUJO, y a veces debe
+
+`Globo` acepta `y` opcional. **Sin `y`** no se ancla: entra dentro de `Cuerpo` y
+se centra **junto con el titular, como un bloque más del mismo grupo**.
+
+Ese es el modo correcto cuando la pieza es *titular + globo y nada más*. Diego,
+23-09 sobre `c-20-10-5`: *"centrar toda la información"* — horizontalmente ya
+estaba (desvío máximo medido: 1,5 px), lo que no estaba centrado era el
+**conjunto**: titular a media altura y globo colgando abajo, con 450 px de vacío
+arriba y 90 abajo.
+
+Con `y` fijo se queda sólo cuando **algo más ocupa ese espacio** y el globo tiene
+que esquivarlo: los indicadores de `c-20-10-4`, o los dos globos apilados de
+`st-22-10`. Ahí el titular se centra en la banda que le queda libre —termina
+donde empieza el primer globo— y los globos conservan su ancla.
+
+#### Los cuadros de texto se ajustan al texto
+
+Misma ronda: *"cuadros de texto que queden sin espacios flotantes, lo mismo
+para los demás"*. Una tarjeta con **ancho fijo** deja un hueco muerto a la
+derecha de la última línea. Se resuelve con `display: inline-block` + `maxWidth`
+en vez de `width`: la caja se encoge hasta el texto. Vale para toda caja,
+píldora o tarjeta de la marca.
 
 #### Cómo se usa IvyOra (resuelto el 19-08-2026)
 
@@ -184,6 +368,62 @@ El ADN del prompt —hay que respetarlo o el mes se ve de dos marcas distintas�
 > text, no logos, no watermarks.***
 
 Aspectos: `social_post_4_5` · `square_1_1` · `social_story_9_16`. Resolución `2k`.
+
+### 🔴 ADN CORREGIDO (22-09-2026) — el prompt de arriba NO se parece al lugar
+
+Hasta acá los prompts describían **praderas verdes exuberantes, flores
+silvestres y cordillera nevada**. El 22-09 el diseñador subió a
+`APRENDIZAJE IA — NO PUBLICAR/IMAGENES/` el material fotográfico real —
+**40 fotos de terreno (27-04, tarde soleada) + las 44 aéreas del dron del
+07-08 en 21 MP** — y al medirlas quedó claro que el sitio **no se parece a
+eso**. Es el pendiente #7 de Carlos, ahora con evidencia.
+
+**Cómo es Tierra Calma de verdad:**
+
+| | |
+|---|---|
+| **Topografía** | **Ladera de cerro**, no valle plano. El loteo sube por el cerro y mira hacia el llano |
+| **La marca visual del lugar** | **Caminos de ripio ocre-anaranjado que serpentean en curva** por la ladera. Es lo más reconocible de las aéreas |
+| **Vegetación** | **Matorral bajo y espinoso** (espino, litre), ralo. NO pradera, NO bosque, NO flores silvestres masivas |
+| **Color según estación** | Abril: **ocre dorado y seco**, cerros pelados café. Agosto: **verde apagado** con tierra asomando |
+| **Fondo** | Cerros áridos color café-ocre. **La cordillera nevada NO domina** la vista |
+| **Urbanización visible** | Postes de luz y luminarias a lo largo de los caminos, portería **techada** en el acceso, muros de piedra/hormigón, **cercos de madera oscura horizontal**, palmeras y árboles jóvenes plantados |
+| **Movimiento de tierra** | **Taludes de tierra naranja** recién cortados, visibles en las aéreas |
+| **Vista** | Desde arriba se ve **el llano de Padre Hurtado** con parcelas y casas dispersas |
+| **Cielo** | Abril: azul intenso y limpio, sin nubes. Agosto: blanco plano con **neblina baja** sobre los cerros |
+
+**⛔ Lo que NO hay que pedirle nunca más a la IA:** praderas verdes tipo Nueva
+Zelanda, campos de flores, cordillera nevada de postal, bosque denso, valle
+llano. Todo eso salió en la entrega del 14-09 y **no es el lugar**.
+
+##### ⚠️ Matiz de Diego (22-09, sobre `st-08-10`) — la IA idealiza, no documenta
+
+> *"la idea de la creación de las imágenes es que se vean mucho mejor que las
+> imágenes reales del lugar, más verdes los espacios, con vegetación natural
+> nativa"*
+
+La tabla de arriba describe **cómo es el sitio**, y sirve para no inventarse
+otro país. Pero la pieza **no documenta: idealiza**. El encargo es que la imagen
+se vea **mejor que la foto real** — laderas verdes y frondosas, pasto fresco—
+manteniendo **especies nativas chilenas**: espino, quillay, litre, peumo.
+
+El equilibrio, en una línea: **la estructura del lugar es real (ladera, ripio
+ocre, cerco de madera, postes), la vegetación es la mejor versión posible de sí
+misma.** Ni el desierto de la primera corrección ni la pradera europea de la
+entrega del 14-09.
+
+**Cómo se usa el material real:**
+
+- **Para los reels, el dron real manda.** Las 44 aéreas de 21 MP se pueden usar
+  como **fotograma inicial de Kling**: el video resultante ES el sitio, animado.
+  Resuelve la credibilidad de una. Exigen grade (la jornada fue nublada) — ver
+  §8 `tc-regrade.sh`.
+- **Para los estáticos, IA pero con referencia.** `images_generate` de Magnific
+  acepta `references` con `type: "image"` o `"style"`: pasarle una foto real del
+  sitio como referencia en vez de describirlo de memoria.
+- El material está en `raw/tierracalma/fotos-reales/` (`marca/` las 40 de
+  terreno, `dron/` las 44 aéreas). **En `.gitignore`** por peso; la fuente es la
+  carpeta de Drive de arriba y el disco KINGSTON.
 
 ### Los seis elementos del lenguaje
 
@@ -331,6 +571,205 @@ Lo que hace distinto —y que nuestras piezas no hacían—:
 
 ---
 
+## 4 quinquies. ⭐ EL MARCO ES UN ASSET BLOQUEADO (desde octubre 2026)
+
+El 14-09-2026 el diseñador subió a Drive los marcos como **PNG con alfa** listos
+para sobreponer, y con eso el sistema dejó de dibujarse en código:
+
+| Dónde | Qué |
+|---|---|
+| Drive | `MARCOS PUBLICACIONES` y `MAPAS`, dentro de la carpeta de entrega |
+| Editable | `MARCOS.ai` — disco **KINGSTON** (`D:`), en `DIEGO 2023/COPYWRITERS/MAS CENTER/IA TIERRA CALMA/` |
+| Repo | `public/assets/tierracalma/marcos/` (versionado, excepción en `.gitignore`) |
+
+**El marco trae el logo y el contorno de la píldora adentro.** No se redibuja
+ninguno de los dos: se rellena. El `topMarco()` de `sistema.tsx` y el
+`LogoArriba` quedan fuera de juego para octubre en adelante.
+
+### La geometría, medida sobre los PNG — no estimada
+
+|  | Post 4:5 · 1080×1350 | Story · 1080×1920 | Carrusel 4:5 |
+|---|---|---|---|
+| Filete vertical | x 65 → 1016 | x 64 → 1016 | según slide |
+| Regla superior | y 130 (hueco del logo x 392–692) | y 129 | y 130 |
+| Regla inferior | y 1236 | y 1620 | y 1284 |
+| Píldora | x 264–803 · y 1212–1264 (540×53) | x 237–843 · y 1584–1657 (606×73) | **no lleva** |
+| Bloque del logo | y 46–174 | y 45–172 | sólo el slide 1 |
+
+El texto arranca **bajo el logo** (y ≈ 250 en post y story; y ≈ 205 en los slides
+2-4 del carrusel, que no llevan logo).
+
+### El carrusel es UN SOLO OBJETO
+
+Los cuatro PNG no son intercambiables — el filete se corre entre slides y por eso
+al deslizar se lee como una sola pieza:
+
+| Slide | Marco |
+|---|---|
+| 1 | cierra a la **izquierda** (vertical en x 50), lleva el **logo**, las reglas salen por la derecha |
+| 2 y 3 | **bandas** de borde a borde, sin verticales y sin logo (son el mismo dibujo) |
+| 4 | cierra a la **derecha** (vertical en x 1028) |
+
+### Píldoras cortas, y ahora por construcción
+
+La píldora del post mide **540 px**. "TIERRA CALMA · DESDE UF 2.500" entra justo a
+30 px con tracking 0.07em; cualquier cosa más larga se sale. Si el texto no cabe
+en una línea, **el que está mal es el copy, no la píldora**.
+
+### ⚠️ Los MAPAS vienen con los topónimos corruptos
+
+`MAPA-1.png` y `MAPA-2.png` (1856×2304) **no son cartografía real**: son mapas
+generados. Padre Hurtado, Peñaflor, Malloco y Maipú sí están bien, pero conviven
+con **"Pintnia Asdo", "Los Burihes", "San Jocé", "Lono a Pénhilla",
+"Av. Vicuiia Mackenna", "Cr. Maspehro"** y escudos de ruta que no corresponden
+(**G-68**, 76, 73, S-30, D-39 alrededor de Padre Hurtado). Publicar eso nítido
+contradice el propio titular "Sin letra chica" y repite el error de la §3.
+
+**Cómo se usa mientras no haya un mapa oficial:** como **textura**. En
+`p-20-10` va en duotono navy→crema, con desenfoque de 2,6 px y un velo de 0,72
+encima; lo que se lee son **nuestros** rótulos. Receta reproducible en el
+encabezado de `Octubre.tsx`. **Pedirle a Carlos el mapa oficial** sigue abierto
+(es su pendiente #4).
+
+---
+
+## 4 sexies. ⭐ CÓMO SE APLICA UN COMENTARIO — el método que dejó octubre 2026
+
+La grilla de octubre se corrigió en **cinco rondas y 24 comentarios**, todos de
+Diego sobre los PNG en Drive. Las reglas que salieron de ahí están repartidas por
+el manual (§4 en tipografía, §4 quinquies en el marco). Lo que va acá es el
+**método**: lo que hay que hacer *antes* de tocar una pieza. Es lo que más tiempo
+ahorró y lo que más caro salió aprender.
+
+### 1. Medir, y medir sobre el ORIGEN
+
+Ningún número de este manual está estimado a ojo. Las fotos de `oct/` son
+1080×1350 —el mismo tamaño del lienzo—, así que con `objectFit: cover` la fila
+del JPG **es** la fila del lienzo: se abre el JPG, se busca dónde empieza el
+sujeto, y esa fila manda.
+
+> ⛔ **No medir sobre el PNG rendido.** Se intentó y dio un perfil sin sentido:
+> el texto blanco y el degradado contaminan la luminancia. El perfil sale del
+> JPG limpio, siempre.
+
+Lo mismo con el marco: sus hairlines horizontales están en las filas **131 y
+1284**, idénticas en los seis archivos. Verificado leyendo el canal alfa, no
+mirando la imagen.
+
+### 2. Comprobar que el defecto existe antes de arreglarlo
+
+`c-20-10-5` traía *"centrar toda la información"*. Antes de mover nada se
+midieron las siete líneas de la pieza: estaban centradas con un desvío máximo de
+**1,5 px**. El problema era otro —el conjunto colgaba abajo, con 450 px de vacío
+arriba— y el arreglo correcto era estructural, no un empujón horizontal.
+
+Si se hubiera «corregido» lo que decía el comentario al pie de la letra, se
+habría roto algo que estaba bien y el problema real seguiría ahí.
+
+### 3. Corregir en el sistema, no en la pieza
+
+Cada vez que se pudo, la corrección pasó a ser una regla que se aplica sola:
+
+| Comentario | Podría haber sido | Quedó como |
+|---|---|---|
+| *"que varíe el tamaño según el largo"* | tres `fontSize` a mano | `cuerpoSans()`, que mide la frase |
+| *"centrar toda la información"* | mover el globo a ojo | `Globo` sin `y` entra en flujo |
+| *"interlineado más juntos"* | tocar esa pieza | `marginBottom` del componente |
+| *"IvyOra siempre en mayúscula"* | escribir el texto en caja alta | `textTransform` en `Modulado` |
+
+Un `size` puesto a mano en una llamada es deuda: la siguiente ronda de escala lo
+deja desalineado y nadie se entera.
+
+### 4. Después de un cambio global, revisar TODAS las piezas
+
+Centrar todo al medio fue correcto **y** destapó tres piezas donde el centro del
+cuadro es justo donde está el sujeto (`c-06-10-4`, `c-20-10-1`, `c-20-10-6`).
+Diego las marcó una hora después. Un cambio de sistema no termina en el commit:
+termina cuando se miraron las 16 piezas.
+
+### 5. Medir el alcance antes de decir qué cambió
+
+Cuando el arreglo toca un componente compartido, el alcance se **comprueba**
+comparando píxel a píxel contra la entrega anterior. Bajar el `marginBottom` del
+globo cambió cinco piezas y dejó once idénticas — eso se dice porque se midió.
+
+> ⚠️ Ojo con el ruido del codificador PNG: `c-20-10-4` apareció «distinta» y era
+> **un píxel con diferencia de 1**. Comparar por bytes no sirve; hay que comparar
+> por píxeles y poner un umbral.
+
+### 6. Un comentario abierto en Drive no significa «sin aplicar»
+
+Tres comentarios del 22-09 (`c-20-10-2`, `c-20-10-3`, `c-20-10-4`) seguían
+marcados abiertos al día siguiente **y estaban aplicados**: nadie los resolvió.
+Antes de rehacer algo por un comentario abierto, hay que verificar contra el
+render entregado.
+
+### 7. Las excepciones se declaran, no se esconden
+
+Siete piezas se salen del centrado al medio, y cada una tiene su fila en la tabla
+de §4 con la razón medida. Una excepción escrita es una decisión; una excepción
+silenciosa es un error que el siguiente va a «arreglar».
+
+### 8. Corregir la banda, no la gráfica
+
+Cuando el titular choca con algo, se acota la banda de texto. **Nunca** se mueve
+el marco, el plano ni el mapa: son assets medidos o bloqueados.
+
+
+## 4 septies. ⭐ LA COMPUERTA — `reglas.yaml`, desde el 23-09-2026
+
+Tierra Calma pasó meses sin reglas ejecutables: todo el QA era a mano, pieza por
+pieza. Ya existe. **Antes de entregar, se corre.**
+
+```bash
+python qa/textos-tierracalma.py src/compositions/tierracalma/OctubreV3.tsx \
+    --out out/tierracalma/oct2026/textos.json
+python qa/motor.py --marca tierra-calma \
+    --textos out/tierracalma/oct2026/textos.json \
+    out/tierracalma/oct2026/entrega/*.png
+```
+
+**Los textos se extraen del TSX, no se escriben a mano.** Una copia se
+desincroniza; el TSX es lo que se renderiza. El extractor es propio de esta marca
+porque acá **una pieza es un componente escrito a mano** —no hay array de datos
+como en Casablanca o EBEMA— y el emparejamiento sale de los arrays que la
+composición exporta más el mapa `GRUPOS`, que es lo único que se toca cada mes.
+
+> ⚠️ El extractor **falla a propósito** si alguna pieza queda sin textos. Un QA que
+> no lee una pieza y la da por limpia es peor que no tener QA. Pasó de verdad:
+> `c-20-10-2` y `c-20-10-3` están escritas con `<div>`/`<span>` propios y devolvían
+> cero bloques hasta que se le agregó la pasada de respaldo.
+
+### Las cinco reglas de la marca (todas de copy)
+
+| Regla | Qué atrapa |
+|---|---|
+| `sin-agua-potable` | **bloqueante** · «agua potable», «red de agua» |
+| `ruta-78` | **bloqueante** · «Ruta 68», «G-68» |
+| `grafia-padre-hurtado` | **bloqueante** · Peñaflor, Talagante |
+| `grafia-tierra-calma` | **bloqueante** · TierraCalma, Tierra-Calma |
+| `sin-huerfanas` | aviso · línea final de una sola palabra |
+
+`sin-agua-potable` es la razón de ser de todo esto: ese dato falso **se publicó**
+en `st-11-09`. Ahora no sale.
+
+### Lo que la compuerta encontró el primer día
+
+`st-12-10` era **bloqueante**: su titular arrancaba en la fila 228 y Meta tapa
+hasta la 250. Ninguna de las cinco rondas de revisión a ojo lo había visto. Se
+corrigió bajando la banda a `[275, 560]`.
+
+Los tres avisos de «desenfoque parcial» sí eran falsos positivos —cielo despejado
+de amanecer, que es liso por naturaleza— y se ajustó el tope con la medición
+escrita en `reglas.yaml`, no a ojo.
+
+### Lo que todavía NO cubre
+
+No hay reglas de imagen **propias de la marca**. Un tope de marca se calibra
+contra piezas **aprobadas por el cliente** y Tierra Calma no las tiene: las 10 de
+octubre siguen «En revisión». Cuando se aprueben: `python qa/calibrar.py`.
+
+
 ## 5. Reglas de diseño (del brief, innegociables)
 
 - **Zona segura 9:16:** 14% libre arriba y abajo. Nada de texto en el 10% inferior.
@@ -447,6 +886,153 @@ Piezas en `src/compositions/tierracalma/`:
   `TCPruebaHistoriaAnim` y `TCPruebaReel` (30 s, música *Sweet September*).
   Renders en `out/tierracalma/prueba-carlos/`. Si Valeria aprueba la mano, estas
   primitivas reemplazan el layout de `sistema.tsx` para octubre.
+
+### ⭐ LA VOZ Y LA MÚSICA DE LA MARCA (Diego, 23-09-2026)
+
+Las dos están **fijadas** y no se eligen de nuevo en cada reel.
+
+#### La voz en off — «VOZ DE TIERRA CALMA»
+
+| | |
+|---|---|
+| **Dónde vive** | Magnific, proyecto **Personal**, etiqueta **`VOZ TIERRA CALMA`** (ojo: **sin el «DE»**) |
+| **Modelo** | **Gemini 2.5 Pro** (`gemini_v2_5_pro`) |
+| **Interlocutor** | **Enceladus** — id **704** del catálogo, proveedor Google |
+| **Instrucción** | *voz y acento chileno, que sea tranquila, de un hombre de unos 40 años* |
+| **Cómo se le dirige** | Gemini usa `systemInstruction` para la interpretación y `text` para la línea. La nota va escrita **como una dirección a un actor**, en prosa simple: si parece un intento de saltarse el sistema, se descarta y el audio sale sin dirigir |
+
+La `systemInstruction` que se usó, para repetirla igual:
+
+> Habla en español de Chile, con acento chileno natural y neutro. Eres un hombre
+> de unos 40 años. El tono es tranquilo, cálido y pausado: cuentas algo, no
+> vendes. Nada de locución publicitaria, nada de énfasis forzado al final de la
+> frase.
+
+⚠️ **Esta voz es MÁS LENTA que la anterior.** Medido: `vm2` pasó de 83 a **115
+frames** (2,77 s → 3,84 s), un 39 % más. Cabe en su corte, pero cierra en el
+frame 285 y el siguiente entra en el 305. **Cualquier línea nueva hay que
+medirla antes de darla por buena**, y si el texto crece, no cabe.
+
+⛔ **Reemplaza a Benjamín Soto** (ElevenLabs id 864), que es lo que suena en
+`vm1`–`vm3` hasta que se regeneren. Antes de él estuvo Antonia Reyes. La voz de
+la marca es esta; las otras dos son historia.
+
+⛔ **Se graba línea por línea, nunca en una sola toma.** Ya se probó: en una toma
+la locución dura 11,2 s y sus pausas **no calzan con los cortes**, así que los
+subtítulos salen descuadrados.
+
+El guion del reel del 01/10, que es el que lleva voz, son sus tres primeros
+subtítulos, palabra por palabra:
+
+| Archivo | Entra en el frame | Texto |
+|---|---|---|
+| `vm1` | 30 | La primavera ya llegó a Tierra Calma |
+| `vm2` | 170 | Más verde, más luz, más espacio |
+| `vm3` | 310 | Así se siente el cambio de estación acá |
+
+Después de bajar los mp3, **hay que medirlos y reescribir el array `VOZ`** — el
+manual no acepta duraciones estimadas y un cambio de voz las cambia todas:
+
+```bash
+python scripts/tc-audio-instalar.py voz1.mp3 voz2.mp3 voz3.mp3 --como vm1 vm2 vm3
+```
+
+El script instala, mide, imprime el array listo para pegar y **avisa si la voz
+nueva ya no cabe en su corte**, que es justo lo que suele pasar al cambiar de
+locutor.
+
+#### La música de fondo — el prompt, textual
+
+Se usa **este prompt y no otro**. Es el sonido de la marca, no el de un reel:
+
+```
+Create a modern, polished corporate instrumental track with a professional,
+confident, and optimistic mood, suitable for a real estate or commercial
+development video. The music should convey forward momentum and a
+business-oriented feel, with precise, clean, and punchy production, a tight low
+end, a wide stereo image, and controlled dynamics.
+
+The track should open with a clean, muted electric guitar pluck and a tight kick
+drum, immediately joined by a driving eighth-note bassline and crisp programmed
+percussion. A bright piano motif and short, staccato string accents will carry
+the main melody, establishing a sense of forward motion. Introduce layered synth
+arpeggios, rim shots, and a rising filter sweep to build the arrangement.
+Transition into a confident, expansive section featuring wide, sustained strings,
+warm brass accents, and full drums, maintaining a constant drive without becoming
+aggressive. The piece should resolve on a clean, decisive sustained chord with a
+short tail. Incorporate subtle jazz chords throughout the composition.
+
+The instrumentation should be entirely instrumental, with no vocals, lyrics, or
+spoken words. Ensure there is ample space in the midrange for a potential
+voiceover.
+
+Avoid: vocals, choir, lyrics, distorted or aggressive guitars, trap hi-hats, EDM
+drops, dark or tense harmony, sentimental piano ballads, cheesy elevator music,
+and abrupt endings.
+```
+
+Dos cosas del prompt que son decisiones de producción y conviene no perder:
+**«ample space in the midrange for a potential voiceover»** —la pista está hecha
+para que la voz se monte encima, no para sonar sola— y **«no abrupt endings»**,
+que es lo que permite que el cierre con `tc_cierre.mp4` no corte la música en seco.
+
+#### ⛔ Dos pistas del mismo prompt pueden salir CLONADAS — hay que medirlo
+
+Pasó el 23-09-2026. Las dos pistas del mes se generaron con el mismo prompt y,
+aunque son archivos distintos y de distinto largo, **musicalmente eran la misma
+pieza**: mismo tempo, mismo arreglo, la melodía entrando en los mismos tiempos.
+Al oído habría sonado como una sola pista en los dos reels — justo lo que la
+regla del mes prohíbe.
+
+**No se detecta escuchando por encima ni comparando `md5`.** Dos generaciones
+distintas siempre dan `md5` distinto. Se mide comparando la **evolución del
+arreglo**: energía por banda de frecuencia a lo largo del tiempo, normalizada, y
+la correlación media entre las dos pistas.
+
+La escala, calibrada sobre pistas reales de esta cuenta:
+
+| Par | Parecido |
+|---|---|
+| Una pista contra **sí misma desfasada 4 s** | **+0,53** ← el techo de «es la misma» |
+| Las dos del 23-09, primera tirada | **+0,53** ⛔ |
+| Las dos de septiembre entre sí | +0,35 |
+| Dos pistas **realmente distintas** | **+0,02 a +0,17** ✅ |
+| Los dos reels ya rendidos, corregidos | +0,14 ✅ |
+
+> El número que delata el problema no es «alto»: es **igual al control**. Que dos
+> pistas se parezcan entre sí tanto como una se parece a sí misma corrida cuatro
+> segundos significa que son la misma música.
+
+**El arreglo no fue tocar el prompt.** Se volvió a tirar la segunda con el prompt
+**idéntico** y salió una pieza sin relación con la primera (+0,02). Era mala
+suerte en el sorteo, no un defecto del prompt: **antes de cambiar el texto que la
+marca aprobó, se re-tira**.
+
+
+#### ⛔ Ni la voz ni la música salen de la API — verificado el 23-09-2026
+
+| Ruta | Respuesta |
+|---|---|
+| `text-to-speech` y todas sus variantes | **404** · no existe |
+| `music-generation` | **410** · *«This endpoint is no longer available»* |
+| `sound-effects` · `audio-isolation` | 400 (vivas, faltan argumentos) |
+
+O sea: las dos se generan **por el conector MCP de Magnific**, no por script. La
+API sólo sirve para efectos de sonido y para aislar audio.
+
+✅ **Hecho el 23-09-2026 por el conector:** las tres líneas con Enceladus
+(`audio_tts`, 8 créditos cada una) y las dos pistas con el prompt de arriba
+(`audio_music_generate`, ElevenLabs Music v2, `instrumental: true`, 26 s y 35 s —
+520 y 700 créditos). Instaladas como `vm1`–`vm3`, `mus_corporativa_a.mp3` y
+`mus_corporativa_b.mp3`, todas versionadas.
+
+> ⚠️ **El modo ilimitado de Magnific NO aplica en la sesión del conector.** El
+> plan dice «unlimited» y aun así cada generación descuenta créditos. La corrida
+> completa costó **1.244**.
+
+> ⚠️ `docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md` daba `music-generation` por viva. Ya no
+> lo está: Magnific la retiró entre el 08-09 y el 23-09.
+
 
 ### Assets propios en el repo
 

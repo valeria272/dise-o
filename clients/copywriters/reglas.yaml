@@ -1,0 +1,120 @@
+# Reglas ejecutables de COPYWRITERS / Grupo Copylab — la cuenta propia.
+#
+# ⚠️ Estas reglas son DE ESTA MARCA y de ninguna otra. Que sea la cuenta de la
+#    agencia no la hace un caso especial: si el criterio de Paulina no cruza a
+#    Hilton, el criterio del feed propio tampoco cruza a un cliente.
+#
+# Quien firma es Valeria Traverso: el sistema entero (paleta, cuatro voces,
+# prohibiciones) viene de su brief del 03-09-2026, y las citas de abajo son
+# textuales de ese documento.
+#
+# Lo que este archivo NO puede comprobar: si la idea es buena. Eso lo decide el
+# CREATIVE SCORE de COPYWRITERS_CREATIVE_OS.md §13, que es humano. El motor sólo
+# atrapa lo medible — y aun así atrapó tres defectos reales en el primer lote:
+# un remate rosado ilegible, una cifra desbordada y una hora metida bajo la
+# interfaz de Meta.
+
+marca: copywriters
+nombre: Copywriters · Grupo Copylab (@copywriters.cl)
+version: 1
+actualizado: 2026-09-03
+
+autoridad:
+  - quien: Valeria Traverso
+    rol: dirección creativa y dueña del sistema
+    alcance: [copywriters]
+    canal: brief COPYWRITERS — CREATIVE OPERATING SYSTEM v1.0, 03-09-2026
+
+reglas:
+
+  - id: color-fuera-de-sistema
+    titulo: Un color que no está en la paleta del sistema
+    check: color_fuera_de_sistema
+    severidad: bloqueante
+    autor: Valeria Traverso
+    cita: >-
+      «PALETA PRINCIPAL: NEGRO TINTA #080F14 · OFF WHITE #F2F4F6 · BLANCO
+      #FFFFFF · COPY PINK #FF2D8D. PALETA SECUNDARIA — usar con moderación:
+      CORAL #FF683D · PURPLE #9D4EDD.»
+    fuente: brief v1.0 §3 · creative-system/colors/
+    porque: >-
+      El sistema renuncia a la plantilla, así que la paleta queda cargando casi
+      sola con la consistencia. Los topes NO se pusieron a ojo: se midieron
+      contra un control. Inyectando un azul SaaS (#5B6CFF) sobre una pieza real
+      la comprobación devuelve 100% fuera, mientras las trece piezas del lote
+      quedan entre 0% y 12,8% — el 12,8% es G.CL, cuyo visor tiene un degradado
+      real de rosado a coral. Con el tope en 18% separa limpio.
+
+      Se descartó antes `paleta_cerrada`, que es la que usan las otras marcas:
+      mira sólo píxeles de BAJA saturación (nació de una deriva entre grises en
+      Casablanca) y frente al mismo control devolvió «ok». Una regla que no
+      atrapa su propio caso de prueba es peor que no tener regla.
+
+      ⚠️ El ΔE estuvo un rato en 26 y ESO ROMPÍA LA REGLA. Se había subido para
+      absorber el degradado rosa→coral del visor de G.CL, sin notar que el azul
+      SaaS del control está a ΔE 24,6 del PÚRPURA de la paleta: aflojar el tope
+      abrió un hueco justo del tamaño del color que la regla existe para atrapar.
+      A 22 pasan las trece piezas (G.CL, la más cargada, marca 12,8 %) y el
+      control salta. Es la lección de siempre: un falso positivo no se arregla
+      aflojando el tope, porque el falso negativo que se crea no lo ve nadie.
+    args:
+      colores: ["#080F14", "#F2F4F6", "#FFFFFF", "#FF2D8D", "#FF683D", "#9D4EDD"]
+      sat_min: 0.30
+      max_std_local: 1.6
+      delta_e: 22.0
+      max_fraccion: 0.18
+      min_pixeles: 1500
+
+  # ── REGLA RETIRADA: «el remate rosado se lee» ────────────────────────────────
+  # Se intentó y NO se pudo automatizar. Queda escrito para que nadie lo
+  # reintente creyendo que es fácil:
+  #
+  #   · `contraste_texto` (el que usan las otras marcas) miente con tipografía
+  #     display. Su halo de dilatación cae entero dentro del antialias y de los
+  #     huecos entre letras. Medido sobre este lote: 01-signal, que es blanco
+  #     puro sobre negro puro (≈15:1 real), devolvió 1,83:1.
+  #   · Se escribió una comprobación nueva midiendo sólo el acento contra su
+  #     fondo, primero por luminancia y después por ΔE en Lab. Ninguna de las dos
+  #     separa: contra el render que a ojo NO se leía (86,2 de ΔE) las piezas
+  #     buenas dan entre 79,7 y 96,8. El control malo cae en medio del rango
+  #     bueno.
+  #   · La razón de fondo es cromática: COPY PINK sobre off-white tiene una razón
+  #     de luminancia bajísima y se lee perfecto, porque la diferencia es de
+  #     tono, no de brillo. Ninguna métrica global de contraste captura eso.
+  #
+  # Conclusión: la legibilidad del remate es un punto de QA HUMANO y está en la
+  # checklist de COPYWRITERS_CREATIVE_OS.md §13. Dejar un check que marca piezas
+  # buenas es peor que no tenerlo: la gente aprende a ignorar el QA entero.
+
+  - id: rosa-es-firma
+    titulo: El rosado dejó de ser acento y pasó a ser relleno
+    check: color_prohibido
+    severidad: aviso
+    excepto_archivos: ["*typelab*", "*rosa-total*"]
+    autor: Valeria Traverso
+    cita: >-
+      «También puede existir una pieza completamente rosa cuando
+      conceptualmente lo justifique.»
+    fuente: brief v1.0 §3
+    porque: >-
+      Es la única regla del set que es un AVISO y no un bloqueo, y la excepción
+      está escrita en el propio brief: la pieza 100% rosa es legítima cuando el
+      concepto la pide (TYPE LAB la usa porque habla justamente de la falta de
+      firma). Por eso el archivo se llama fuera POR NOMBRE en vez de bajarle el
+      tope a todos: bajar el tope habría permitido, sin que nadie lo note, que
+      cualquier pieza se pintara media de rosa.
+    args:
+      colores: ["#FF2D8D"]
+      delta_e: 16.0
+      max_fraccion: 0.30
+      solo_plano: true
+
+ajustes:
+
+  zona-segura-meta:
+    porque: >-
+      Sin cambios en los topes: se acata tal cual. Se deja escrito acá porque en
+      el primer render del cover de reel la hora «0:14» iba alineada al margen
+      de marca (80 px) y quedó 30 px DENTRO de los 115 px que Meta ocupa por la
+      derecha. En 9:16 el margen derecho de esta marca es 155 px, no 80 — y eso
+      no es criterio, es dónde la plataforma dibuja sus botones.

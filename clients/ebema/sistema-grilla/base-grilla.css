@@ -1,0 +1,434 @@
+/* ============================================================================
+   EBEMA · SISTEMA DE GRILLA (orgánico)  —  v1, 14-09-2026
+   ----------------------------------------------------------------------------
+   OJO: esto NO es el sistema de paid. Para paid está clients/ebema/sistema/base.css.
+   La diferencia está en §0 del manual: grilla se organiza por FAMILIA DE CONTENIDO
+   (producto · servicio · plataformas); paid, por submarca.
+
+   Toda medida sale de MEDIR las referencias de septiembre 2026 que dejó Paulina
+   (5 carruseles, 3 stories, 6 posts, 5 reels), normalizadas a 1080 de ancho.
+   Ningún número es estimado. Trazabilidad completa en §4-bis del manual.
+
+   LIENZO: se diseña a 1080 y se entrega a 2250 (escala 2,0833 — ver render.sh).
+     feed / carrusel  1080×1350  ->  2250×2813
+     story / reel     1080×1920  ->  2250×4000
+   ========================================================================= */
+
+@font-face { font-family:"Raleway"; src:url("fonts/Raleway-Regular.ttf");   font-weight:400; font-display:block; }
+@font-face { font-family:"Raleway"; src:url("fonts/Raleway-SemiBold.ttf");  font-weight:600; font-display:block; }
+@font-face { font-family:"Raleway"; src:url("fonts/Raleway-Bold.ttf");      font-weight:700; font-display:block; }
+@font-face { font-family:"Raleway"; src:url("fonts/Raleway-ExtraBold.ttf"); font-weight:800; font-display:block; }
+@font-face { font-family:"Raleway"; src:url("fonts/Raleway-Black.ttf");     font-weight:900; font-display:block; }
+@font-face { font-family:"HelvKit"; src:url("fonts/Helvetica-Bold.ttf");    font-weight:700; font-display:block; }
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Raleway", Arial, sans-serif; -webkit-font-smoothing:antialiased; }
+
+/* TODA cifra va en Helvetica Bold — regla de Paulina, §3 del manual */
+.num { font-family:"HelvKit", Helvetica, Arial, sans-serif; font-weight:700; }
+
+:root { --rojo:#EC1C23; --gris:#6D6F72; }
+
+.pieza { position:relative; overflow:hidden; background:#ddd; }
+.pieza.feed  { width:1080px; height:1350px; }
+.pieza.story { width:1080px; height:1920px; }
+
+.bg { position:absolute; inset:0; z-index:0; }
+.bg img { width:100%; height:100%; object-fit:cover; object-position:center; }
+.bg .velo { position:absolute; inset:0; background:rgba(0,0,0,.30); }
+
+/* ===========================================================================
+   EL ANCLA DE MARCA — cápsula blanca pegada al borde izquierdo
+   Medida idéntica en las 5 portadas de carrusel Y en los 2 posts de catálogo:
+   cápsula alto 155,5 · y 154,6 · arranca en x = 0
+   círculo rojo del logo EBEMA: x 71,0–189,6 (ancho 118,6) · alto 121,9
+   El ancho de la cápsula lo fija el logo del proveedor cuando lo hay.
+   ======================================================================== */
+.firma { position:absolute; z-index:5; left:0; top:154.6px; height:155.5px;
+         background:#fff; border-radius:0 14px 14px 0; padding:0 30px 0 71px;
+         display:flex; align-items:center; gap:26px; }
+.firma .ebema { width:118.6px; }
+.firma .prov  { height:86px; width:auto; }
+.firma .sep   { width:2px; height:74px; background:#d9d9d9; }
+
+/* ===========================================================================
+   FAMILIA A · PRODUCTO EN STOCK — el carrusel de 5 láminas
+   Arco fijo: L1 problema · L2 causa · L3 solución · L4 tip pro · L5 cierre
+   ======================================================================== */
+
+/* Caja roja del titular: SIEMPRE una sola por lámina y SIEMPRE centrada en
+   cx 539,8. Alto 70–80 en 13 de 15 láminas medidas. La `y` es LIBRE: cae donde
+   la foto deja sitio, y eso es lo que evita que el sistema parezca plantilla. */
+.bloque  { position:absolute; z-index:4; left:0; right:0; text-align:center; padding:0 60px; }
+.titular { display:inline-block; position:relative; line-height:1.06; }
+.titular .l { display:block; color:#fff; font-weight:900; text-transform:uppercase; }
+.titular .l.caja { background:var(--rojo); padding:10px 22px; }
+
+.bajada { color:#fff; font-weight:600; font-size:28px; line-height:1.25; margin:20px auto 0;
+          text-wrap:balance; max-width:740px; text-shadow:0 1px 6px rgba(0,0,0,.35); }
+.bajada b { font-weight:800; }
+
+/* Pie con flecha de la portada: ancho 331,2 · x 374,4–705,6 (en 4 de 5) */
+.pie-flecha { position:absolute; z-index:4; left:0; right:0; bottom:101px; text-align:center; }
+.pie-flecha .txt { color:#fff; font-weight:700; font-size:24px; text-transform:uppercase;
+                   letter-spacing:.4px; margin-bottom:18px; }
+.pie-flecha img  { width:331.2px; }
+
+/* L5 cierre del carrusel — plantilla dura, idéntica en los 5:
+   anillo 298,6 × 307,2 · botón 653,8 × 79,7 (x 213,1–866,9) · bio ancho 429,1 */
+.cierre-carrusel .sobre  { position:absolute; z-index:4; left:0; right:0; top:362.9px;
+                           color:#fff; font-weight:600; font-size:34px; line-height:1.3;
+                           text-align:center; }
+.cierre-carrusel .sobre b { font-weight:800; }
+.cierre-carrusel .anillo { position:absolute; z-index:4; left:359.8px; top:472.3px;
+                           width:376.3px; height:auto; }
+/* el ANILLO ROJO tiene que medir 298,6 × 307,2 (medido en los 5 cierres). Dentro del
+   PNG el rojo no llena el lienzo, así que el <img> va a 376.3 y el rojo cae en su sitio.
+   El ratio del archivo calza con el de la referencia al 0,4 %: es el mismo anillo. */
+.cierre-carrusel .cta    { position:absolute; z-index:4; left:50%; transform:translateX(-50%);
+                           top:916.3px; width:653.8px; height:79.7px; background:var(--rojo);
+                           border-radius:8px; color:#fff; font-weight:700; font-size:34px;
+                           display:flex; align-items:center; justify-content:center; }
+.cierre-carrusel .bio    { position:absolute; z-index:4; left:0; right:0; top:1013.8px;
+                           color:#fff; font-weight:600; font-size:28px; text-align:center; }
+
+/* ===========================================================================
+   FAMILIA B · INFORMACIÓN DE SERVICIO — horarios y direcciones
+   Acá el logo va CENTRADO arriba, no a la izquierda. Es la excepción del sistema.
+   Medido idéntico en las stories de La Calera y de Talca.
+   ======================================================================== */
+.firma-centro { position:absolute; z-index:5; left:462.7px; top:138.2px;
+                width:157.4px; height:161.8px; }
+
+.serv-titular   { position:absolute; z-index:4; left:0; right:0; top:480px; text-align:center; }
+.serv-titular .l { display:inline-block; background:var(--rojo); color:#fff; font-weight:900;
+                   text-transform:uppercase; font-size:46px; line-height:1; padding:8px 20px; }
+.serv-dir   { position:absolute; z-index:4; left:0; right:0; top:574.6px; text-align:center; }
+.serv-dir .l { display:inline-block; background:var(--rojo); color:#fff; font-weight:700;
+               font-size:26px; line-height:1; padding:6px 16px; }
+
+/* Las dos barras de horario: alto 93,6 cada una, ancho ~805, centradas.
+   y 1405,4 y y 1535,0 -> el aire entre ellas es 1535,0 − 1405,4 − 93,6 = 36,0 */
+.horarios { position:absolute; z-index:4; left:50%; transform:translateX(-50%);
+            top:1405.4px; width:805px; }
+.horarios .barra { height:93.6px; background:var(--rojo); border-radius:8px; color:#fff;
+                   display:flex; align-items:center; justify-content:center; gap:14px;
+                   font-weight:700; font-size:30px; }
+.horarios .barra + .barra { margin-top:36px; }
+
+/* ===========================================================================
+   FAMILIA C · INVITACIÓN A PLATAFORMAS — Click, catálogo, ebema.cl
+   C1 = con lockup Click   ·   C2 = con la firma EBEMA
+   ======================================================================== */
+.lockup-click { position:absolute; z-index:5; left:50%; transform:translateX(-50%); }
+/* En GRILLA el lockup es ~50 % más grande que en paid y va más arriba */
+.story .lockup-click     { top:74px; }
+.story .lockup-click img { width:600px; }
+.feed  .lockup-click     { top:70px; }
+.feed  .lockup-click img { width:300px; }
+
+/* CTA de C2: la caja roja más ancha de todo el sistema de grilla.
+   y 949,4–1179,4 · ancho 963,8 · cx 539,8 — idéntica en cat (2) y cat (3) */
+.cta-plataforma { position:absolute; z-index:4; left:50%; transform:translateX(-50%);
+                  top:949.4px; width:963.8px; min-height:230px; background:var(--rojo);
+                  border-radius:10px; color:#fff; text-align:center; padding:22px 40px;
+                  display:flex; flex-direction:column; align-items:center;
+                  justify-content:center; gap:10px; }
+.cta-plataforma .grande { font-weight:900; font-size:54px; line-height:1; text-transform:uppercase; }
+.cta-plataforma .chico  { font-weight:600; font-size:26px; line-height:1.25; }
+
+/* Cápsula de borde blanco para la bajada — propia de la story de Click (C1).
+   Medida: ancho 884,2 · y 1199–1334 */
+.capsula { position:absolute; z-index:4; left:50%; transform:translateX(-50%);
+           width:884.2px; border:3px solid #fff; border-radius:22px; padding:22px 34px;
+           color:#fff; font-weight:600; font-size:30px; line-height:1.28; text-align:center; }
+.capsula b { font-weight:800; }
+
+/* El mensaje secundario va DENTRO de un botón rojo: 710,4 × 115,2 */
+.boton-mensaje { position:absolute; z-index:4; left:50%; transform:translateX(-50%);
+                 width:710.4px; min-height:115.2px; background:var(--rojo); border-radius:12px;
+                 color:#fff; font-weight:700; font-size:30px; line-height:1.25; text-align:center;
+                 display:flex; align-items:center; justify-content:center; padding:14px 26px; }
+
+/* Hueco del sticker de enlace: en grilla se DIBUJA, no se deja en blanco */
+.hueco-sticker { position:absolute; z-index:4; left:50%; transform:translateX(-50%);
+                 width:710px; height:104px; border:2px solid rgba(255,255,255,.55);
+                 border-radius:10px; }
+
+/* Cierre con flecha manuscrita — lo único trazado a mano de todo el sistema */
+.cierre-mano { position:absolute; z-index:4; left:0; right:0; text-align:center; color:#fff; }
+.cierre-mano .l1 { font-weight:800; font-size:40px; line-height:1.1; }
+.cierre-mano .l2 { font-weight:600; font-size:24px; margin-top:6px; }
+
+/* ===========================================================================
+   EL REEL DE GRILLA — marco permanente, en diagonal
+   banda sup  y 0–226, x 0–899   ·   banda inf  y 1693–1920, x 530–1080
+   cápsula del logo dentro de la banda superior: x 716–938 (ancho 222)
+   En el CIERRE la banda superior se acorta a x 0–528 y el fondo es BLANCO puro.
+   Las piezas de Ebema Click NO llevan bandas: llevan el lockup Click.
+   ======================================================================== */
+.reel-banda-sup { position:absolute; z-index:5; left:0;     top:0;      width:899px; height:226px;
+                  background:var(--rojo); border-radius:0 0 18px 0; }
+.reel-banda-inf { position:absolute; z-index:5; left:530px; top:1693px; width:550px; height:227px;
+                  background:var(--rojo); border-radius:18px 0 0 0; }
+.reel-logo      { position:absolute; z-index:6; left:716px; top:0; width:222px; height:226px;
+                  background:#fff; border-radius:0 0 14px 14px;
+                  display:flex; align-items:center; justify-content:center; }
+.reel-logo img  { width:150px; }
+
+.reel-cierre                 { background:#fff; }
+.reel-cierre .reel-banda-sup { width:528px; }
+.reel-cierre .anillo { position:absolute; z-index:4; left:50%; transform:translateX(-50%);
+                       top:935.4px; width:417.1px; height:auto; }
+.reel-cierre .cta    { position:absolute; z-index:4; left:50%; transform:translateX(-50%);
+                       top:709px; width:736px; height:66px; background:var(--rojo);
+                       border-radius:8px; color:#fff; font-weight:700; font-size:30px;
+                       display:flex; align-items:center; justify-content:center; }
+
+/* ===========================================================================
+   AÑADIDO 15-09-2026 · dos elementos de la PORTADA de familia A que no estaban
+   en el CSS madre. Medidos sobre ebema_c_surpol1.png y sobre la portada de
+   Masisa de junio 2026 (carrusel_masisa de Paulina, Drive), normalizados a 1080.
+
+   · Cápsula blanca de la bajada, pegada al borde inferior de la caja roja:
+       Masisa jun  ancho 840,5 · alto 43,2 · cx 540,5
+       Surpol sep  ancho 823,2 · alto 46,1 · cx 539,5
+     Aparece en 2 de las 4 portadas medidas (las que traen subtexto en el brief).
+
+   · Píldora de la flecha: ancho 331,2 · x 374,4–705,6 · alto ~64,8 (§4-bis).
+     Se dibuja, no se importa: así no depende de un PNG que no existe.
+   ======================================================================== */
+.capsula-bajada { display:inline-block; background:#fff; color:var(--gris);
+                  font-weight:700; font-size:25px; line-height:1; letter-spacing:.3px;
+                  text-transform:uppercase; padding:9px 26px; }
+
+.pie-flecha .pildora { width:331.2px; height:64.8px; margin:0 auto;
+                       border:3px solid #fff; border-radius:34px;
+                       display:flex; align-items:center; justify-content:center; }
+.pie-flecha .pildora svg { width:190px; height:20px; }
+
+/* CORRECCIÓN 15-09-2026 — la caja roja se ajusta A SU PROPIO TEXTO.
+   En las referencias el ancho de la caja lo da el texto que va DENTRO de ella
+   (Surpol 948,5 con «FRIA POR DENTRO»; Masisa jun 936,5 con «TABLERO CORRECTO»),
+   no la línea blanca de arriba. Con `display:block` heredaba el ancho del titular
+   entero y la palabra quedaba nadando en rojo.
+   Y el titular blanco lleva sombra: sin ella se pierde sobre foto clara. */
+.titular .fila { text-align:center; }
+.titular .l    { display:inline-block; }
+.titular .l:not(.caja) { text-shadow:0 3px 14px rgba(0,0,0,.45); }
+
+/* CORRECCIÓN 15-09-2026 · el logo se escala por su ANILLO ROJO, no por el archivo.
+   El PNG del kit tiene margen alrededor: pedirle `width:118.6` al <img> deja el rojo
+   en 94,1 × 97,4, un 20 % por debajo de lo que mide en las 5 referencias. Es el mismo
+   defecto que el CSS madre ya corregía en el cierre, pero que en la firma no estaba.
+   Medido sobre img/logo_ebema_anillo_oscuro.png (lienzo 310×285, rojo 248×255):
+     rojo 118,4 -> img 148,0 · el rojo arranca a 13,8 del borde izq  ->  padding 57,2
+     rojo 298,6 -> img 373,2 · el rojo arranca a 34,9  ->  left 355,8 para centrarlo */
+.firma            { padding-left:57.2px; }
+.firma .ebema     { width:148.0px; }
+.cierre-carrusel .anillo { width:373.2px; left:355.8px; }
+
+/* 15-09-2026 (tarde) · llegaron los logos OFICIALES de Paulina.
+   `Ebema a color.png` viene RGBA 1080×1080 y su anillo rojo ocupa casi todo el
+   recorte (936 de 952 de ancho, 962 de 962 de alto), así que los números cambian
+   respecto de la version reconstruida — y se acaba el ruido del contorno.
+     firma:  rojo 118,4 -> img 120,4 · el rojo arranca a 2,0  -> padding-left 69,0
+     cierre: rojo 298,6 -> img 303,7 · el rojo arranca a 5,1  -> left 385,6
+   El `top` del cierre sube de 472,3 a 502,4: el PNG viejo metía 30,1 px de margen
+   sobre el anillo y el nuevo no, así que sin compensar la pieza se corría hacia arriba. */
+.firma            { padding-left:69.0px; }
+.firma .ebema     { width:120.4px; }
+.cierre-carrusel .anillo { width:303.7px; left:385.6px; top:502.4px; }
+
+/* ===========================================================================
+   LAS RONDAS DE PAULINA · 15-09-2026 · carrusel de Masisa
+   ----------------------------------------------------------------------------
+   Consolidado: cinco rondas de correcciones dejaron el archivo con reglas
+   encima de reglas para lo mismo. Acá queda un valor por cosa, con su origen.
+   Todo lo que está bajo `.portada` vale SÓLO para la lámina 1 — las de
+   desarrollo no se han revisado todavía y no se tocan.
+   ========================================================================= */
+
+/* --- REGLAS DE MARCA (valen para todo carrusel de familia A) -------------- */
+
+/* ⛔ Entre los dos logos NUNCA va una línea. Va el aire y nada más. */
+.firma .sep { display:none !important; }
+
+/* ⛔ La cápsula de co-marca no cambia ni de alto ni de sitio: el feed se lee
+   ordenado cuando las piezas quedan una al lado de la otra. El ancho sí lo fija
+   el logo del proveedor, por eso el logo se acota por alto y nunca la empuja. */
+.firma       { height:155.5px !important; top:154.6px !important;
+               align-items:center; padding-left:69.0px; }
+.firma .ebema{ width:120.4px; }
+.firma .prov { height:86px; width:auto; max-height:86px; max-width:420px;
+               object-fit:contain; }
+
+/* El logo se escala por su ANILLO ROJO, no por el archivo. Medido sobre el PNG
+   oficial `Ebema a color.png` (1080×1080, el rojo ocupa 936 de 952 de ancho):
+     firma  rojo 118,4 -> img 120,4 · el rojo arranca a 2,0  -> padding 69,0
+     cierre rojo 298,6 -> img 303,7 · el rojo arranca a 5,1  -> left 385,6
+   El `top` del cierre sube a 502,4: el PNG viejo metía 30,1 px de margen. */
+.cierre-carrusel .anillo { width:303.7px; left:385.6px; top:502.4px; }
+
+/* El titular calza en ANCHO, no en cuerpo: cada línea lleva su propio tamaño
+   para que todas midan lo mismo. Los cuerpos los calcula el script del
+   generador midiendo el texto real — contar caracteres no sirve. */
+.titular .fila         { text-align:center; }
+.titular .l            { display:inline-block; }
+.titular .l:not(.caja) { position:relative; z-index:2; }   /* el blanco, sobre el rojo */
+.titular .fila.rojo    { position:relative; z-index:1; }
+
+/* En el pie manda el texto, no la flecha: la píldora de 331,2 se comía al texto
+   de 24 px. Se dibuja, además: `img/flecha.png` nunca existió. */
+.pie-flecha .txt         { font-size:31px; letter-spacing:.6px; margin-bottom:20px; }
+.pie-flecha .pildora     { width:236px; height:48px; margin:0 auto;
+                           border:2.5px solid #fff; border-radius:34px;
+                           display:flex; align-items:center; justify-content:center; }
+.pie-flecha .pildora svg { width:132px; height:15px; }
+
+/* Cápsula blanca de la bajada. Medida en Masisa junio (840,5 × 43,2) y en
+   Surpol septiembre (823,2 × 46,1). */
+.capsula-bajada { display:inline-block; background:#fff; color:var(--gris);
+                  font-weight:700; line-height:1; letter-spacing:.3px;
+                  text-transform:uppercase; padding:9px 26px; }
+
+
+/* --- SÓLO LA PORTADA · recreado de la referencia que mandó Paulina --------- */
+
+/* Sin huecos de línea base. Cada inline-block se asienta sobre la base y deja
+   ~25-30 px de aire debajo: eso se comía todos los márgenes negativos. */
+.portada .titular       { display:block; }
+.portada .titular .fila { line-height:0; }
+.portada .titular .l    { line-height:0.84; vertical-align:top; }
+/* Interlineado del enunciado: 0,84 y no el 1,06 del sistema. Al juntar las dos
+   líneas, la caja roja tiene que crecer menos para llegar a la mitad de la de
+   arriba, así que el bloque rojo baja de alto solo. Son la misma corrección. */
+/* La fila de la cápsula va en FLEX: así su hijo no se asienta sobre la línea base
+   y deja de arrastrar el hueco de ~30 px que descuadraba todos los márgenes. */
+.portada .fila-capsula  { display:flex; justify-content:center; line-height:0; }
+/* La cápsula de la portada va un 10 % más grande que la del sistema. El padding
+   escala con ella: si se dejara fijo, el texto crecería más que la caja. */
+.portada .fila-capsula .capsula-bajada { vertical-align:top; padding:9.9px 28.6px; }
+
+/* La caja aprieta al texto: padding vertical parejo de 14 px. Con más abajo, la
+   cápsula quedaba DENTRO de la banda roja en vez de montarse en su borde. */
+/* El padding de ABAJO es independiente del de arriba: crece para acompañar a la
+   cápsula cuando ésta baja, sin mover el texto del enunciado ni el borde de
+   arriba (que lo fija el JS al llegar a la mitad de la primera línea). */
+.portada .titular .l.caja { padding:14px 22px 36px; }
+
+/* ⛔ EL PRE-ENUNCIADO — Paulina, 16-09-2026.
+   Va en un cuerpo MENOR que el gancho (lo fija `PRE_CUERPO` en el generador, que
+   lo calcula sobre el cuerpo ya resuelto del gancho) y NO se compone al ancho de
+   la caja: es la antesala del titular, no otra línea del titular.
+   Acá sólo vive su AIRE: 1,34 de interlineado contra el 0,84 del enunciado, que
+   es lo que lo despega del gancho en vez de dejarlo pegado como un renglón más. */
+.portada .titular .l.pre { line-height:1.34; }
+
+/* Sombras parejas y suaves: la blanca tenía demasiada y la caja ninguna. */
+.portada .titular .l:not(.caja) { text-shadow:0 2px 9px rgba(0,0,0,.30); }
+.portada .titular .l.caja       { text-shadow:0 2px 8px rgba(0,0,0,.22); }
+
+/* La cápsula MONTA sobre el rojo: 14,4 px de sus ~50 de alto, medido. */
+/* El margen NO se toca al bajar la cápsula: el padding de abajo de la caja roja
+   ya la empuja hacia abajo. Con los dos a la vez baja el doble y se despega. */
+.portada .fila-capsula { position:relative; z-index:3; margin-top:0; }
+
+/* ===========================================================================
+   LAS LÁMINAS DE DESARROLLO (L2-L4) · medidas el 16-09-2026 sobre las 5
+   referencias de `raw/ebema/1-referencias/grilla/carrusel/`.
+   ----------------------------------------------------------------------------
+   ⛔ SE COMPONEN AL REVÉS QUE LA PORTADA. En la portada el ancho es fijo y el
+   cuerpo cae donde caiga; acá el CUERPO es fijo y el ancho cae donde caiga. Por
+   eso no llevan `data-ancho` y el ajuste del navegador no las toca.
+
+   Lo medido (banda de píxeles blancos, normalizado a 1080):
+
+     línea blanca   cedral 47,0 · toro 47,0 · surpol 43,2   -> 47
+     texto de caja  cedral 51,4 · toro 51,4 · surpol 43,2   -> 51,4 (un 9 % sobre
+                    la blanca; cedral y toro dan el MISMO par, así que no es casual)
+     caja completa  alto 70,1-80,2 · ancho 541,4-802,6 · cx 539,8 en las 5
+     padding vert.  80,2 − 51,4 = 28,8 -> 14,4 por lado (el CSS madre decía 10)
+     bajada         36,0 · 37,0 · 37,4 · 37,9 · 37,9  -> la cifra más estable de
+                    todas; iban a 28 px y salían en 25,9 de banda, dos tercios
+   ========================================================================= */
+/* `.pieza:not(.portada)` y no `.titular` a secas: la portada trae sus propios
+   paddings y un selector más flojo se los pisaba por venir después en el archivo. */
+/* ⛔ CORREGIDO EL MISMO 16-09: acá decía que el cuerpo era fijo para toda la
+   lámina. Con eso la caja de la L3 («PARA UNA TERMINACIÓN PROLIJA», 28 letras) se
+   partió en dos renglones y se fue al ancho del lienzo. Midiendo las 10 referencias
+   de L2 y L3 aparece la estructura de verdad, y son DOS reglas distintas:
+
+     línea blanca  ->  CUERPO fijo, el ancho cae donde caiga
+                       mayúsculas 47,0 · 45,6 · 49,9 · 51,4 · 43,2 · 47,0 · 47,0
+                       en 8 de las 10 -> 65px da 46,8 de mayúscula
+     texto de caja ->  calza al ANCHO DE CAJA DEL CARRUSEL, el cuerpo cae solo
+                       cedral repite 677,8 EXACTOS en L2 y L3 con textos de 15 y
+                       11 letras; cintac repite 541,4. Si mandara el cuerpo, la de
+                       11 letras sería mucho más angosta — y no lo es.
+
+   Por eso el `font-size` de la caja ya no está acá: lo resuelve el ajuste del
+   navegador contra `ANCHO_CAJA_DES` del generador. Acá queda sólo su geometría. */
+.pieza:not(.portada) .titular .l      { font-size:65px; }
+.pieza:not(.portada) .titular .l.caja { padding:14.4px 22px; line-height:0.72; }
+/* line-height 0,72 = la altura de las mayúsculas. En las referencias la caja
+   abraza las versales: alto 80,2 con texto de 51,4 deja 14,4 de rojo por lado,
+   que es justo el padding. Con el 1,06 del sistema la caja salía en 104,2. */
+.pieza:not(.portada) .bajada          { font-size:40px; }
+
+/* ===========================================================================
+   EL VELO · corregido el 16-09-2026 — Paulina
+   ----------------------------------------------------------------------------
+   «La opacidad puede ser sólo en la zona del texto, saliendo desde alguno de los
+    extremos de la imagen, pero con degradado muy suave. No deben verse cortes.»
+
+   Antes: `inset:0` con `rgba(0,0,0,.30)` plano sobre TODA la foto. Eso apagaba la
+   imagen entera para resolver la legibilidad de un bloque que ocupa un tercio.
+
+   Ahora: un degradado que arranca en el borde y se apaga pasada la zona del texto.
+   Los 8 pasos no son decoración: un degradado de 2 paradas banda en sRGB y deja
+   una línea visible a media caída — que es exactamente el «corte» que no puede
+   verse. Los pasos siguen una curva suave (ease-out), así no hay borde en ninguna
+   parte y la foto llega limpia al resto del lienzo.
+
+   ⚠️ Va SÓLO en las láminas de desarrollo. La portada está aprobada con el velo
+   plano y no se toca sin que Paulina lo pida. */
+.pieza:not(.portada) .bg .velo {
+  background:linear-gradient(to bottom,
+    rgba(0,0,0,.52) 0%,
+    rgba(0,0,0,.50) 12%,
+    rgba(0,0,0,.45) 22%,
+    rgba(0,0,0,.37) 31%,
+    rgba(0,0,0,.27) 39%,
+    rgba(0,0,0,.17) 46%,
+    rgba(0,0,0,.08) 53%,
+    rgba(0,0,0,.03) 59%,
+    rgba(0,0,0,0)   66%);
+}
+/* Cuando el bloque de texto cae en la mitad de abajo, el velo entra por abajo. */
+.pieza:not(.portada) .bg .velo.abajo { transform:scaleY(-1); }
+
+/* ===========================================================================
+   LA LÁMINA DE TIP PRO · medida el 16-09-2026 sobre cintac, novoplast y surpol
+   ----------------------------------------------------------------------------
+   El consejo de oficio no se compone como las otras láminas de desarrollo: se le
+   INVIERTE LA JERARQUÍA. La orden manda y la caja roja pasa a ser el complemento.
+
+     · la ORDEN      -> versales blancas, dos líneas, mayúscula ~60
+                        (bandas medidas 60,0 · 60,5 · 65,8 · 65,8 · 71,0 · 77,3
+                         contra las ~46 de L2 y L3 — un 30 % más grande)
+     · la CONDICIÓN  -> dentro de la caja roja y en CAJA BAJA
+                        cintac «antes de cortar» · novoplast «antes de tapar el
+                        muro» · surpol «de cada plancha»
+     · la caja       -> alto 70,6 · 70,6 · 71,0, igual que el resto del carrusel
+
+   Ojo: cedral NO tiene tip pro en su L4 — lleva otro beneficio y va en el registro
+   normal. O sea el tip pro es una FAMILIA de lámina, no la posición número 4. */
+.pieza.tip .titular .l      { font-size:83px; }      /* 83 × 0,72 = 59,8 de mayúscula */
+.pieza.tip .titular .l.caja { text-transform:none;   /* ⛔ la condición va en caja baja */
+                              line-height:0.873; }
+/* El 0,72 del resto del carrusel es la altura de las MAYÚSCULAS, y para caja baja
+   se queda corto: la caja salía en 62,9 contra los 70,6 · 70,6 · 71,0 de las tres
+   referencias, y la tinta —que en caja baja va de ascendente a descendente— se
+   comía casi todo el padding. 0,873 devuelve la caja a ~70,7 con el mismo padding
+   de 14,4, y deja unos 11 de rojo alrededor del texto, como en las referencias. */

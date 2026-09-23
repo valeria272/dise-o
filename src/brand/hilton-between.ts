@@ -52,6 +52,8 @@ export const BETWEEN = {
   /** Pesos de Raleway que usa Eli. ExtraBold es el titular por defecto. */
   pesos: {
     regular: 400,
+    /** Medido en la dirección al pie de la lámina de Eli. Ver `DireccionAlPie`. */
+    medium: 500,
     semibold: 600,
     bold: 700,
     extrabold: 800,
@@ -320,6 +322,13 @@ export const BETWEEN = {
 
   datos: {
     direccion: 'Av. Vitacura 2727, Las Condes',
+    /**
+     * ⭐ La dirección TAL COMO VA IMPRESA EN UNA PIEZA, con «AV.» en versales.
+     * No es capricho ni `text-transform`: así la escribió Eli en la lámina
+     * `C1 S2 CUMPLE N1.png`, que es el antecedente del que se calcó
+     * `DireccionAlPie`. La de arriba es la forma del COPY del posteo.
+     */
+    direccionPieza: 'AV. Vitacura 2727, Las Condes',
     web: 'cafeteriabetween.cl',
   },
 } as const;

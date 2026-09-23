@@ -1,0 +1,25 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 11 — BOTÓN FLOTANTE «Postula tu terreno»
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/11-*.jpg
+     Nota: Aparece al bajar y acompaña al visitante hasta el formulario. Va al final del cuerpo de la página, después del pie.
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── BOTÓN FLOTANTE ───────────────────────────────────────────── */
+.flotante{position:fixed;right:22px;bottom:22px;z-index:800;background:var(--rojo);color:#fff;
+  border-radius:999px;padding:15px 26px;font-size:.84rem;font-weight:600;letter-spacing:.05em;
+  display:inline-flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(229,37,33,.4);
+  opacity:0;transform:translateY(20px);pointer-events:none;
+  transition:opacity .5s var(--exp),transform .5s var(--exp),background .3s}
+.flotante.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.flotante:hover{background:var(--rojo-osc)}
+.flotante svg{width:16px;height:16px;fill:#fff}
+</style>
+
+<a href="#contacto" class="flotante" id="flotante">
+  <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+  Postula tu terreno
+</a>

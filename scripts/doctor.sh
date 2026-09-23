@@ -45,6 +45,19 @@ else
     && ok "Sin venv, pero hay Python del sistema con PIL+numpy ($PY_VENV)" \
     || warn "Sin ~/copylab-venv ni Python con PIL+numpy — ver docs/ONBOARDING-DISENADORES.md paso 3"
 fi
+
+# El intérprete se resuelve UNA vez y se reusa de aquí en adelante: en Windows
+# el venv NO crea `python3.exe`, así que un `python3` a pelo cae en el atajo de
+# la Microsoft Store — que no es Python — y la comprobación de las fichas daba
+# las 12 por «JSON inválido» estando perfectas. Comprobado el 08-09-2026.
+PYQA="${PY_VENV:-}"; [ -n "$PYQA" ] || PYQA=$(command -v python3 || command -v python)
+
+# ⭐ scipy es lo que usan las comprobaciones del motor de QA. Si falta, el motor
+# NO se cae: convierte cada regla en un aviso «la comprobación reventó» y la
+# compuerta pasa a ser decorativa. Un fallo silencioso, como el de Brushwell.
+if [ -n "$PY_VENV" ]; then
+  "$PY_VENV" -c "import scipy" >/dev/null 2>&1     && ok "scipy — el motor de QA puede evaluar de verdad"     || warn "Falta scipy: qa/motor.py daría avisos en vez de revisar. Instálalo con: $PY_VENV -m pip install scipy"
+fi
 case "$ROOT" in
   */Desktop/*|*/Documents/*|*/Downloads/*|*/Escritorio/*|*/Documentos/*|*/Descargas/*|*OneDrive*)
     warn "El repo está dentro de una carpeta que iCloud u OneDrive sincroniza."
@@ -105,21 +118,36 @@ for j in clients/*/marca.json; do
   # que no tiene definidos los bytes 0x81/0x8D/0x90. Las fichas que llevan Á, Í,
   # ⭐ o ← reventaban y el doctor las daba por «JSON inválido» estando perfectas
   # — 4 falsas alarmas sobre 8 fichas, comprobado el 01-09-2026.
-  python3 -c "import json,sys;json.load(open(sys.argv[1],encoding='utf-8'))" "$j" 2>/dev/null \
+  "$PYQA" -c "import json,sys;json.load(open(sys.argv[1],encoding='utf-8'))" "$j" 2>/dev/null \
     && ok "$j" || bad "$j — JSON inválido"
 done
 
+echo; echo "══ Llavero (las credenciales del estudio) ══"
+if [ -f credentials/llavero.copylab ]; then
+  ok "credentials/llavero.copylab está en el repo"
+else
+  bad "falta credentials/llavero.copylab — haz 'git pull'"
+fi
+"$PYQA" -c "import cryptography" 2>/dev/null \
+  && ok "librería de cifrado instalada" \
+  || bad "falta 'cryptography' — instálala: $PYQA -m pip install cryptography certifi requests"
+if [ -f credentials/.env ]; then
+  ok "llavero abierto en esta máquina"
+else
+  bad "llavero SIN abrir. Ábrelo: $PYQA scripts/llavero.py abrir"
+  bad "  (te pide la contraseña del estudio — Valeria la entrega una sola vez)"
+fi
+
 echo; echo "══ Magnific/Freepik (el generador de imágenes de la casa) ══"
-PYQA="${PY_VENV:-}"; [ -n "$PYQA" ] || PYQA=$(command -v python3 || command -v python)
-if [ -f "$HOME/.magnific_key" ] || grep -q "^FREEPIK_API_KEY=" "../ASISTENTE PERSONAL/.env" 2>/dev/null; then
+if "$PYQA" -c "import sys;sys.path.insert(0,'scripts');from _entorno import clave_freepik;sys.exit(0 if clave_freepik() else 1)" 2>/dev/null; then
   if "$PYQA" scripts/magnific.py check >/dev/null 2>&1; then
     ok "clave de Magnific válida — imágenes IA operativas"
   else
-    bad "hay clave pero NO autentica — revisa ~/.magnific_key (sin espacios ni comillas)"
+    bad "hay clave pero NO autentica — vuelve a abrir el llavero, o la clave de la cuenta cambió"
   fi
 else
   bad "SIN clave de Magnific. Sin esto no hay fondos ni ambientes IA."
-  bad "  Instalarla: echo \"LA-CLAVE\" > ~/.magnific_key   (la clave está en la guía de instalación)"
+  bad "  Sale del llavero: $PYQA scripts/llavero.py abrir"
 fi
 
 echo; echo "══ TypeScript ══"

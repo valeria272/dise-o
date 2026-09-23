@@ -1,0 +1,95 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css">
+<style>
+  .caption { position:absolute; font-size:9pt; font-weight:300; color:var(--gris);
+             text-transform:uppercase; letter-spacing:0.06em; margin:0; }
+  .cifra   { font-weight:400; color:var(--terracota); }
+
+  /* Cada panel es la foto + el logotipo compuesto ENCIMA por código.
+     A la IA se le pide ambiente y fondo; la marca nunca se le pide dibujada. */
+  .panel   { position:absolute; width:280pt; height:156pt; overflow:hidden; }
+  .panel img.foto { width:100%; height:100%; object-fit:cover; display:block; }
+  .panel img.logo { position:absolute; width:90pt; }
+  .velo    { position:absolute; left:0; right:0; bottom:0; height:60%;
+             background:var(--tinta); }
+
+  /* La razón medida va como pastilla, para que el dato viaje con la muestra */
+  .ratio   { position:absolute; font-size:8pt; font-weight:400; padding:2pt 5pt;
+             letter-spacing:0.04em; }
+  .ok      { background:var(--verde); color:#fff; }
+  .mal     { background:var(--terracota); color:#fff; }
+</style>
+
+<h1 class="titulo">Logotipo</h1>
+<p class="bajada">El logotipo sobre fotografía</p>
+
+<div class="filete-cab"></div>
+<div class="divisoria" style="left:360pt"></div>
+
+<!-- ═══════════ izquierda · el criterio ═══════════ -->
+<div class="columna" style="left:60.2pt; top:134.8pt; width:270pt">
+  <p class="rotulo">Por qué no se puede prohibir</p>
+  <p class="entrada">Landera vive sobre campo, cielo y cultivo: justo el fondo donde un logotipo se pierde. Acá se norma cómo va.</p>
+  <p class="rotulo">La regla</p>
+  <p class="cuerpo">No se mira la foto: se mide <b>la zona</b> donde
+  cae el logotipo. La misma fotografía puede pedir
+  tinta arriba y crema abajo.</p>
+  <p class="cuerpo">Zona clara → <span class="cifra">tinta</span>.
+  Zona oscura → <span class="cifra">crema</span>.
+  En el medio, velo de tinta hasta llegar a
+  <span class="cifra">4,5:1</span>.</p>
+  <p class="rotulo">El mínimo</p>
+  <p class="cuerpo">Bajo <span class="cifra">4,5:1</span> el logotipo no se
+  entrega. Medido sobre estas fotos, el velo mínimo que
+  cumple es de <span class="cifra">20 %</span>.</p>
+</div>
+
+<!-- ═══════════ derecha · los cuatro casos ═══════════ -->
+<p class="rotulo" style="left:400pt; top:134.8pt">Cuatro casos, medidos</p>
+
+<!-- 1 · zona clara → tinta -->
+<div class="panel" style="left:400pt; top:170pt">
+  <img class="foto" src="../../../public/assets/landera/fotos/01-clara.jpg">
+  <img class="logo" style="left:20pt; top:16pt"
+       src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_HOR-FARM_MONO-TINTA.svg">
+  <span class="ratio ok" style="right:0; bottom:0">9,14 : 1</span>
+</div>
+<p class="caption" style="left:400pt; top:332pt; width:280pt">
+  Zona clara — tinta sobre el cielo</p>
+
+<!-- 2 · zona oscura → crema -->
+<div class="panel" style="left:696pt; top:170pt">
+  <img class="foto" src="../../../public/assets/landera/fotos/02-oscura.jpg">
+  <img class="logo" style="left:20pt; bottom:18pt"
+       src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_HOR-FARM_MONO-CREMA.svg">
+  <span class="ratio ok" style="right:0; bottom:0">18,05 : 1</span>
+</div>
+<p class="caption" style="left:696pt; top:332pt; width:280pt">
+  Zona oscura — crema sobre el cultivo</p>
+
+<!-- 3 · el error -->
+<div class="panel" style="left:400pt; top:372pt">
+  <img class="foto" src="../../../public/assets/landera/fotos/01-clara.jpg">
+  <img class="logo" style="left:20pt; top:16pt"
+       src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_HOR-FARM_MONO-CREMA.svg">
+  <span class="ratio mal" style="right:0; bottom:0">1,20 : 1</span>
+</div>
+<p class="caption" style="left:400pt; top:534pt; width:280pt">
+  <span style="color:var(--terracota)">Incorrecto</span> — crema sobre zona clara</p>
+
+<!-- 4 · el velo -->
+<div class="panel" style="left:696pt; top:372pt">
+  <img class="foto" src="../../../public/assets/landera/fotos/03-conflictiva.jpg">
+  <div class="velo" style="opacity:0.20"></div>
+  <img class="logo" style="left:20pt; bottom:18pt"
+       src="../../../public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_HOR-FARM_MONO-CREMA.svg">
+  <span class="ratio ok" style="right:0; bottom:0">4,55 : 1</span>
+</div>
+<p class="caption" style="left:696pt; top:534pt; width:280pt">
+  Sin contraste — velo de tinta al 20 %</p>
+
+<p class="caption" style="left:400pt; top:558pt; width:576pt; color:#A5A29E">
+  ⚠ Fotografía de referencia generada — reemplazar por campos reales de Landera</p>
+
+<p class="folio"><b>12</b> · Logotipo</p>
+<p class="folio-marca">Landera · Manual de marca</p>

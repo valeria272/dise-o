@@ -406,6 +406,47 @@ def contraste_texto(a, ctx, args):
     return None
 
 
+def color_fuera_de_sistema(a, ctx, args):
+    """Un color SATURADO y PLANO que no pertenece a la paleta de la marca.
+
+    NACE DE: el sistema de Copywriters renuncia deliberadamente a la plantilla,
+    así que la paleta queda cargando casi sola con la consistencia del feed. Un
+    séptimo color no se nota en una pieza; en veinte convierte la grilla en un
+    muestrario.
+
+    POR QUÉ NO ALCANZABA `paleta_cerrada`: esa comprobación mira sólo píxeles de
+    BAJA saturación (s < 0,18), porque nació del caso Casablanca, donde el
+    problema era una deriva entre grises. Un azul SaaS o un verde lime metidos
+    en una pieza son colores SATURADOS y le pasan por el lado sin tocarla —
+    comprobado el 03-09-2026: inyectando #5B6CFF sobre una pieza real,
+    `paleta_cerrada` devolvió «ok» y esta devolvió 100% fuera.
+
+    Sigue mirando sólo tinta PLANA, por la misma razón de siempre: una
+    fotografía contiene legítimamente cualquier color, y el packshot de un
+    cliente todavía más.
+    """
+    x0, y0, x1, y1 = _region(a, args.get("region"))
+    sub = a[y0:y1, x0:x1]
+    _, s_, v = _hsv(sub)
+
+    cand = ((s_ > args.get("sat_min", 0.30)) & (v > 0.15)
+            & _mascara_plana(sub, max_std=args.get("max_std_local", 1.6)))
+    if cand.sum() < args.get("min_pixeles", 1500):
+        return None
+
+    permitidos = _rgb_a_lab(np.array(
+        [[int(c[i:i + 2], 16) for i in (1, 3, 5)] for c in args["colores"]], dtype=float))
+    lab = _rgb_a_lab(sub)[cand]
+    d = np.linalg.norm(lab[:, None, :] - permitidos[None, :, :], axis=2).min(axis=1)
+
+    fuera = float((d > args.get("delta_e", 22.0)).mean())
+    tope = args.get("max_fraccion", 0.18)
+    if fuera > tope:
+        return (f"{fuera * 100:.1f}% del color plano y saturado no pertenece al "
+                f"sistema (tope {tope * 100:.0f}%, ΔE>{args.get('delta_e', 22.0)})")
+    return None
+
+
 def firma_luminancia(a, ctx, args):
     """El velo sobre la foto se comporta como en las piezas aprobadas.
 
@@ -616,6 +657,54 @@ def texto_prohibido(a, ctx, args):
     pat = re.compile(args["patron"], re.I)
     hits = sorted({m.group(0) for t in textos for m in pat.finditer(t)})
     return f"aparece {', '.join(repr(h) for h in hits)}" if hits else None
+
+
+def croma_residual(a, ctx, args):
+    """Queda verde de croma en el borde de un mockup montado sobre pantalla verde.
+
+    NACE DE: la ST de AYCD de QB, ronda 6 (Eli, 21-09-2026). La gráfica se pega
+    dentro del celular de la foto, cuya pantalla se generó como croma verde, y en
+    el canto quedaba **una línea fina de verde** rodeando toda la pantalla. Se ve,
+    y delata el montaje al instante.
+
+    El despill que lo dejaba pasar usaba el mismo umbral que sirve para DETECTAR
+    la pantalla, y ése exige brillo alto; en el canto el antialias deja verdes muy
+    oscuros pero igual de saturados (medidos: `1,24,11` y `0,22,5`).
+
+    ⭐ Lo que separa el croma del verde legítimo NO es el tono —son casi el mismo—
+    sino la SATURACIÓN y la temperatura:
+
+        croma          (30, 200,  60)   S = 0,85   azul > rojo
+        botón de QB    (102, 136, 107)  S = 0,25   azul > rojo
+        albahaca       (100, 160,  60)  S = 0,62   ROJO > azul  (verde cálido)
+
+    Por eso se pide verde dominante **y** saturación alta **y** azul ≥ rojo: el
+    botón de marca queda fuera por la saturación y la vegetación por el rojo.
+
+    Medido sobre las piezas de QB que hay en disco, fracción del lienzo:
+
+        KV AYCD sep      0,000 %      la ST con el filo (ronda 5)   0,415 %
+        AYCD POST jun    0,000 %      la ST corregida (ronda 6)     0,042 %
+        AYCD ST2 jun     0,000 %      la escena en croma crudo      6,423 %
+        Post Sunset      0,009 %
+
+    El tope se pone en el hueco que hay entre la pieza corregida y la que tenía
+    filo. Y va como AVISO, no como bloqueo: una pieza futura con mucha vegetación
+    podría subir, y el aviso se mira.
+    """
+    x0, y0, x1, y1 = _region(a, args.get("region"))
+    sub = a[y0:y1, x0:x1].astype(np.float32)
+    mx = sub.max(axis=2)
+    sat = (mx - sub.min(axis=2)) / np.maximum(mx, 1e-6)
+    verde = (sub[:, :, 1] >= mx - 0.5) & (sub[:, :, 2] >= sub[:, :, 0])
+    hay = verde & (sat > args.get("min_saturacion", 0.55)) & (mx > args.get("min_brillo", 15))
+
+    frac = float(hay.mean())
+    tope = args.get("max_fraccion", 0.0009)
+    if frac <= tope:
+        return None
+    return (f"queda verde de croma en {frac * 100:.3f} % del lienzo"
+            f" (tope {tope * 100:.3f} %) — revisa el canto del mockup")
 
 
 def grafia_fijada(a, ctx, args):
@@ -961,6 +1050,7 @@ REGISTRO = {
     "franja_legal": franja_legal,
     "color_prohibido": color_prohibido,
     "paleta_cerrada": paleta_cerrada,
+    "color_fuera_de_sistema": color_fuera_de_sistema,
     "zona_segura": zona_segura,
     "desenfoque_parcial": desenfoque_parcial,
     "franja_estirada": franja_estirada,
@@ -974,6 +1064,7 @@ REGISTRO = {
     "texto_en_banda": texto_en_banda,
     "texto_prohibido": texto_prohibido,
     "grafia_fijada": grafia_fijada,
+    "croma_residual": croma_residual,
     "palabra_huerfana": palabra_huerfana,
     "formato_clp": formato_clp,
     # agregados 15-09-2026 (Sal Lobos)

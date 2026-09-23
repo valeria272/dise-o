@@ -1,0 +1,74 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="base.css">
+<style>
+/* ── Story 19 · EBEMA CLICK · grilla septiembre 2026 ────────────────────────
+   Referencia que manda: ebema_click_st1..st4.png de Paulina (agosto 2026,
+   2250×4000), medidas normalizadas a 1080×1920. Ningún número es estimado.
+   La foto es de la MISMA sesión que la que ella usó en st1.
+
+   DESVÍO DECLARADO respecto de st1: allá la bajada va abajo, sobre el torso.
+   Su foto es PLANO MEDIO y el torso da masa uniforme. Ésta es PLANO GENERAL:
+   medido encuadre por encuadre, no hay ningún recorte donde el rectángulo del
+   texto caiga sobre zona uniforme y oscura (es cielo σ2/L225 o la obra σ63).
+   Poner la bajada abajo la dejaba encima del contratista y del casco blanco,
+   que el manual §5.8 prohíbe. Por eso el mensaje sube al cielo — que es la
+   zona libre real de esta foto — y el pie queda para el cierre.            */
+
+/* velo: viñeta superior para que el cielo sostenga el texto, y se abre en la
+   mitad inferior para no matar la foto ni el espacio del sticker */
+.bg .velo.degradado{ background:linear-gradient(180deg,
+   rgba(0,0,0,.10) 0px,  rgba(0,0,0,.16) 300px, rgba(0,0,0,.24) 560px,
+   rgba(0,0,0,.28) 820px, rgba(0,0,0,.24) 980px, rgba(0,0,0,.12) 1200px,
+   rgba(0,0,0,.10) 1600px, rgba(0,0,0,.18) 1920px); }
+
+/* lockup: tinta medida en st1 en x355,2–724,8 · y158,9–243,4.
+   El PNG calza al 0,8 % con escala 0,16196 → 404,9 de ancho */
+.story.click .lockup{ top:131.0px; }
+.story.click .lockup img{ height:auto; width:404.9px; }
+
+/* titular: L1 tinta en y337,4 (st1: 337,4) · caja roja w 808 (st1: 814,1).
+   En CLICK la caja roja envuelve SÓLO la 2ª línea — no la mitad de la 1ª como
+   en el esquema sucursal. Medido en st1, st2, st3 y st4.
+   Cuerpo 52 px: es lo que da fsize() del sistema para 25 caracteres en 814. */
+.story.click .col.arriba{ top:330px; }
+.click .titular{ padding:0 13.65px; }          /* (814,1 − 787,2) / 2 = 13,65 */
+.titular .l + .l{ margin-top:6px; }
+.click .titular .rojo{ bottom:-3px; }
+
+/* mensaje (T2 + T3) sobre el cielo. Cuerpo 28 px y ancho 740: medido en la
+   bajada de st1 (3 líneas, alto 101,8 → 33,9 por línea; ancho 734,4). */
+.msg-st19{ position:absolute; z-index:4; left:0; right:0; top:520px; padding:0 80px; text-align:center; }
+.msg-st19 .bajada{ font-size:28px; max-width:740px; margin:0 auto;
+   /* el cielo queda a ~170: se compensa con sombra, como .titular.sin-caja del sistema */
+   text-shadow:0 2px 10px rgba(0,0,0,.65), 0 0 22px rgba(0,0,0,.45); }
+.msg-st19 .gift{ margin-top:26px; }
+
+/* cierre (T5): remata el bloque de mensaje, todavía sobre el cielo limpio
+   (medido: en este recorte el cielo se mantiene quieto hasta y930, σ<16).
+   Toda la mitad inferior queda libre — ahí va el sticker de enlace (T4). */
+.cierre-st19{ margin-top:44px; color:#fff; font-weight:800; font-size:34px;
+   line-height:1.1; text-shadow:0 2px 10px rgba(0,0,0,.65), 0 0 22px rgba(0,0,0,.45); }
+</style></head><body>
+
+<div class="pieza story click">
+  <div class="bg">
+    <img src="foto_contratista_celular_story.png">
+    <div class="velo degradado"></div>
+  </div>
+
+  <div class="lockup"><img src="img/logo_click_2_blanco_acento.png"></div>
+
+  <div class="col arriba">
+    <div class="titular" style="font-size:52px;">
+      <div class="rojo" style="top:55px;"></div>
+      <span class="l" style="text-shadow:0 2px 12px rgba(0,0,0,.55)">HECHO PARA</span><span class="l">FERRETEROS Y CONTRATISTAS</span>
+    </div>
+  </div>
+
+  <div class="msg-st19">
+    <div class="bajada">Ya disponible en <b>Santiago, Rancagua, Chill&aacute;n, Concepci&oacute;n, Temuco y Puerto&nbsp;Montt</b>.</div>
+    <div class="bajada gift">Compra y participa por la <b>gift&nbsp;card</b> que sorteamos cada mes.</div>
+    <div class="cierre-st19">Abast&eacute;cete en un click.</div>
+  </div>
+</div>
+</body></html>

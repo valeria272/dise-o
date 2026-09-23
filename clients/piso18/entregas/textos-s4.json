@@ -1,0 +1,38 @@
+{
+ "_que_es": "Los textos que van EN la pieza, por nombre de archivo de entrega. Los lee qa/motor.py con --textos para la regla de la palabra prohibida. Actualizado en la ronda 4 (16-09-2026).",
+ "C1 S4 N°1.png": [
+  "(sin texto — el brief pide slides limpias; sólo el logotipo en la portada)"
+ ],
+ "C1 S4 N°2.png": [
+  "(sin texto — el brief pide slides limpias)"
+ ],
+ "C1 S4 N°3.png": [
+  "(sin texto — el brief pide slides limpias)"
+ ],
+ "C1 S4 N°4.png": [
+  "(sin texto — el brief pide slides limpias)"
+ ],
+ "ST N°2 S4.png": [
+  "Hay luces\nque solo se ven\ndesde Piso18",
+  "La vista panorámica de Santiago se viste de atardecer para tu celebración.",
+  "Cotiza tu evento en piso18.cl"
+ ],
+ "ST N°3 S4.mp4": [
+  "Arreglos florales que le dan vida al matrimonio de tus sueños en Piso18.",
+  "Cotiza el tuyo en piso18.cl"
+ ],
+ "ST N°4 S4.png": [
+  "¿Cuál arreglo floral\nte gustaría en tu mesa?",
+  "ELIGE TU FAVORITO",
+  "Cotiza tu evento en piso18.cl",
+  "A",
+  "B",
+  "C"
+ ],
+ "Post S4 PISO18 25-09.png": [
+  "(sin texto — post «Piso18 de noche», ahora agendado el 23-09)"
+ ],
+ "Post n°2 S4 PISO18 25-09.png": [
+  "(sin texto — sólo el logotipo; el cliente pidió «esta foto, con logo y estamos»)"
+ ]
+}

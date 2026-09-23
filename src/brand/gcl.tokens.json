@@ -1,0 +1,47 @@
+{
+  "nombre": "Grupo Copylab",
+  "cuenta": "@copywriters.cl",
+  "web": "copylab.cl",
+  "sistema": "GCL 2026 — fashion tech + advertising + editorial",
+  "colores": {
+    "fondo": "#080F14",
+    "superficie": "#1A1F28",
+    "rosado": "#FF2D8B",
+    "coral": "#FF6B3D",
+    "purpura": "#9D4EDD",
+    "claro": "#F2F4F6",
+    "blanco": "#FFFFFF",
+    "texto": "#FFFFFF",
+    "textoSuave": "rgba(255,255,255,0.72)",
+    "textoOscuro": "#080F14"
+  },
+  "gradientes": {
+    "calor": ["#FF2D8B", "#FF6B3D"],
+    "profundo": ["#9D4EDD", "#FF2D8B"],
+    "velo": ["rgba(8,15,20,0)", "rgba(8,15,20,0.92)"]
+  },
+  "tipografia": {
+    "titular": "'Space Grotesk', 'Helvetica Neue', Arial, sans-serif",
+    "cuerpo": "'Inter', -apple-system, system-ui, sans-serif",
+    "nota": "Monument Grotesk es de pago (Dinamo). Space Grotesk es el sustituto libre más cercano: misma familia grotesk geométrica de contadores abiertos. Si se compra la licencia, se cambia acá y todas las piezas la toman."
+  },
+  "formatos": {
+    "feed": { "ancho": 1080, "alto": 1350 },
+    "cuadrado": { "ancho": 1080, "alto": 1080 },
+    "historia": { "ancho": 1080, "alto": 1920 }
+  },
+  "pilares": {
+    "resultados": "Casos, métricas y logros que generan confianza.",
+    "estrategia": "Tips, frameworks y metodologías que educan.",
+    "agencia": "Cultura, equipo y procesos que humanizan.",
+    "tendencias": "Innovación, herramientas y futuro (IA y publicidad).",
+    "clientes": "Historias reales y testimonios que inspiran."
+  },
+  "prohibido": [
+    "Verde neón o lime como color dominante (es el sistema viejo y la biblia del Agente G lo prohíbe).",
+    "Azul genérico de IA.",
+    "Emojis dentro de la pieza gráfica (en el caption sí, con moderación).",
+    "Más de un acento por pieza: el rosado manda y el coral acompaña, nunca al revés.",
+    "Texto sobre foto sin velo oscuro: si no se lee al primer vistazo, la pieza está mala."
+  ]
+}

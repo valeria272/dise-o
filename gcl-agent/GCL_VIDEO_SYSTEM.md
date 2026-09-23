@@ -1,6 +1,14 @@
 # G.CL — VIDEO SYSTEM
 
-Pipeline: **MASTER FRAME → MAGNIFIC → HIGGSFIELD IMAGE-TO-VIDEO → edición final**
+Pipeline: **MASTER FRAME → MAGNIFIC → IMAGE-TO-VIDEO → edición final**
+
+> ⚠️ **Corregido el 03-09-2026.** Este documento decía «HIGGSFIELD IMAGE-TO-VIDEO»
+> y esa palabra costó una sesión entera de producción bloqueada por créditos.
+> **Freepik/Magnific —el plan que la agencia ya paga— tiene siete modelos de
+> video**, incluido `pixverse-v5-transition`, que acepta **primer y último
+> fotograma** y es el único que garantiza que dos planos encadenen.
+> Catálogo completo: [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](../docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md).
+> Higgsfield sigue sirviendo, pero **se comprueba el plan pagado primero**.
 
 ## Etapa 1 — Master frames
 

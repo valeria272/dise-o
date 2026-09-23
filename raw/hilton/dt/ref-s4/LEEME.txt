@@ -1,0 +1,29 @@
+REFERENCIAS DE LA S4 DE DT
+
+`Ref post s4 (Drive, 736px).jpg`
+    Tal cual lo subio Eli a REFERENCIAS S4 DT (13h9GWkz1cjGRFUfViUf1dMZTxJD55Fls)
+    el 15-09-2026 a las 13:43. Es la referencia del ESTATICO HILTON HONORS
+    (FEED col K, 23-09).
+
+`ref-post-s4-1080.jpg`
+    EL MISMO folleto a 1080x1350, que es la resolucion sobre la que se midio la
+    geometria. No es otra imagen: el archivo de Eli resulto ser un pin de
+    Pinterest y el brief enlaza ESE MISMO pin en su celda LINKS, asi que la
+    version grande se bajo de i.pinimg.com/originals/. Dos fuentes
+    independientes apuntando a la misma referencia.
+
+    Medido sobre este archivo (lienzo 1080x1350):
+      caja           x 100->980 (ancho 880, centrada)  y 842->1148 (alto 306)
+      divisor horiz. y ~989
+      titular        L1 y 662-710 - L2 y 730-777 - x desde 116
+                     altura de versal 49, salto entre lineas 68
+      regla del pie  y ~1258
+      pie            y 1296-1313
+
+`ref-dia-turismo.png` + `try.jpg`
+    Son de OTRA pieza: la historia del Dia del Turismo (STORIES col K, 27-09),
+    resuelta el 09/10-09. El pin de esa es KAPCHER, no este.
+
+`ref-dia-turismo.DESCARGA-FALLIDA.html`
+    Una descarga que trajo la pantalla de login de Google guardada con nombre de
+    foto. NO es material. Se deja marcada para que no se confunda.

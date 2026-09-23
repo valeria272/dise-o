@@ -28,6 +28,14 @@ import re
 import sys
 import unicodedata
 
+# En Windows la consola sale en cp1252 y un `✓` bastaba para tirar el script con
+# UnicodeEncodeError DESPUÉS de haber escrito el JSON — o sea que el paso fallaba
+# sin razón. Es el mismo arreglo que ya tienen `qa/motor.py` y los scripts de marca.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 VERDE, ROJO, AMARILLO, GRIS, FIN = (
     "\033[32m", "\033[31m", "\033[33m", "\033[90m", "\033[0m")
 

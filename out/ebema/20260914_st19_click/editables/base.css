@@ -1,0 +1,81 @@
+/* EBEMA PAID — Septiembre 2026 · v8 (21-08): réplica 1:1 del esquema de agosto de Paulina (medido sobre ebema_Antofagasta_post.png 2250×2813 → 1080×1350)
+   Raleway Black (enunciados) · Raleway SemiBold (píldora, bajadas, botón) · Raleway ExtraBold (énfasis) · Helvetica Bold (NÚMEROS) · #EC1C23 */
+@font-face { font-family: "Raleway"; src: url("fonts/Raleway-Regular.ttf"); font-weight: 400; font-display: block; }
+@font-face { font-family: "Raleway"; src: url("fonts/Raleway-SemiBold.ttf"); font-weight: 600; font-display: block; }
+@font-face { font-family: "Raleway"; src: url("fonts/Raleway-Bold.ttf"); font-weight: 700; font-display: block; }
+@font-face { font-family: "Raleway"; src: url("fonts/Raleway-ExtraBold.ttf"); font-weight: 800; font-display: block; }
+@font-face { font-family: "Raleway"; src: url("fonts/Raleway-Black.ttf"); font-weight: 900; font-display: block; }
+@font-face { font-family: "HelvKit"; src: url("fonts/Helvetica-Bold.ttf"); font-weight: 700; font-display: block; }
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Raleway", Arial, sans-serif; -webkit-font-smoothing:antialiased; }
+.num { font-family:"HelvKit", Helvetica, Arial, sans-serif; font-weight:700; }
+
+.pieza { position:relative; overflow:hidden; background:#ddd; }
+.pieza.feed  { width:1080px; height:1350px; }
+.pieza.story { width:1080px; height:1920px; }
+
+.bg { position:absolute; inset:0; z-index:0; }
+.bg img { width:100%; height:100%; object-fit:cover; object-position:center; }
+.bg .velo { position:absolute; inset:0; background:rgba(0,0,0,.30); }
+.velo-fuerte { background:rgba(0,0,0,.36) !important; }
+.velo-extra  { background:rgba(0,0,0,.46) !important; }
+
+/* marco blanco: inset 62 / 77 arriba / 71 abajo, línea 3 px, radio 20 (medido) */
+.marco { position:absolute; z-index:2; border:3px solid #fff; border-radius:20px; left:62px; right:62px; top:77px; bottom:71px; }
+
+/* caja del logo EBEMA: sale del borde superior, a la izquierda (x 139, 152×186, esquinas inferiores 14) */
+.logobox { position:absolute; z-index:3; background:#fff; left:139px; top:0; width:152px; height:186px; border-radius:0 0 14px 14px;
+  display:flex; align-items:center; justify-content:center; padding-top:10px; }
+.logobox img { width:103px; }
+
+/* bloque superior (píldora + enunciado) */
+.sup { position:absolute; z-index:4; left:0; right:0; top:255px; text-align:center; padding:0 70px; }
+.pill { display:table; margin:0 auto 26px; border:2.5px solid #fff; border-radius:999px; color:#fff; font-weight:600;
+  text-transform:uppercase; letter-spacing:.6px; font-size:34px; line-height:1; padding:13px 44px; }
+.titular { position:relative; display:inline-block; padding:0 54px; line-height:1.0; }
+.titular .rojo { position:absolute; left:0; right:0; bottom:-9px; background:#EC1C23; z-index:0; }
+.titular .l { position:relative; z-index:1; display:block; color:#fff; font-weight:900; text-transform:uppercase; white-space:nowrap; letter-spacing:.2px; }
+.titular .l + .l { margin-top:1px; }
+.titular.sin-caja .rojo { display:none; }
+.titular.sin-caja .l { text-shadow:3px 4px 6px rgba(0,0,0,.55); }
+
+/* bloque inferior (bajada + botón): botón termina a 147 px del borde (feed) */
+.inf { position:absolute; z-index:4; left:0; right:0; bottom:147px; text-align:center; padding:0 80px; }
+.story .inf { bottom:330px; }
+.bajada { color:#fff; font-weight:600; font-size:28px; line-height:1.22; text-wrap:balance; margin:0 auto 30px; max-width:640px; text-shadow:0 1px 6px rgba(0,0,0,.35); }
+.bajada b { font-weight:800; }
+.boton { display:inline-block; background:#EC1C23; color:#fff; font-weight:600; font-size:24px; line-height:1; padding:8px 44px; border-radius:6px; }
+
+/* puntitos: 3 círculos de 24 + barra de 108, anillo blanco 2 px, centrados sobre la línea inferior del marco, a 95 px del borde derecho */
+.dots { position:absolute; z-index:5; right:95px; bottom:57px; display:flex; align-items:center; gap:14px; }
+.dots i { width:24px; height:24px; border-radius:50%; background:#EC1C23; border:2px solid #fff; box-sizing:content-box; }
+.dots i.bar { width:108px; border-radius:999px; }
+
+/* ============ EBEMA CLICK (sin marco; lockup arriba centrado; columna de texto al lado de la persona, como agosto) ============ */
+.click .lockup { position:absolute; z-index:4; left:50%; transform:translateX(-50%); top:58px; }
+.story.click .lockup { top:110px; }
+.lockup img { height:132px; }
+.click .col { position:absolute; z-index:4; left:0; right:0; padding:0 80px; text-align:center; top:52%; transform:translateY(-50%); }
+.click .col.arriba { top:240px; transform:none; }
+.story.click .col.arriba { top:300px; }
+.click .col.abajo { top:auto; bottom:110px; transform:none; }
+.story.click .col.abajo { bottom:330px; }
+.kicker-med { display:block; color:#fff; font-weight:600; font-size:32px; line-height:1.2; margin-bottom:10px; text-shadow:0 1px 6px rgba(0,0,0,.35); }
+.click .titular { padding:0 28px; margin-bottom:22px; }
+.click .bajada { font-size:26px; max-width:720px; margin-bottom:26px; }
+
+/* ============ SPC / cerámicas (logo caja arriba-izq, sin marco; columna izquierda cuando la foto trae persona a la derecha) ============ */
+.spc .contenido { position:absolute; z-index:4; left:0; right:0; text-align:center; padding:0 60px; top:54%; transform:translateY(-50%); }
+.story.spc .contenido { top:52%; }
+.spc.izq .contenido { left:52px; right:auto; width:640px; padding:0; }
+.spc h1 { color:#fff; font-weight:900; text-transform:uppercase; letter-spacing:1px; line-height:1; text-shadow:0 2px 5px rgba(0,0,0,.22); }
+.spc .precio { display:inline-block; background:#EC1C23; color:#fff; line-height:1; }
+.spc .precio .num { -webkit-text-stroke:2.5px #fff; }
+.spc .kicker { color:#fff; font-weight:800; text-transform:uppercase; text-shadow:0 1px 5px rgba(0,0,0,.3); }
+.spc .redblock { display:inline-block; background:#EC1C23; color:#fff; font-weight:800; text-transform:uppercase; padding:10px 24px; border-radius:4px; }
+.spc .chips { display:flex; gap:20px; justify-content:center; }
+.spc .chip { text-align:center; }
+.spc .chip img { width:132px; height:132px; object-fit:cover; border-radius:12px; border:5px solid #fff; }
+.spc .chip .n { display:block; color:#fff; font-weight:800; font-size:19px; margin-top:10px; text-transform:uppercase; }
+.spc .chip .c { display:block; color:#fff; font-size:17px; margin-top:2px; font-weight:700; }

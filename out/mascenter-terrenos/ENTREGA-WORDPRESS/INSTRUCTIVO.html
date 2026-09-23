@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo armar la landing «Postula tu terreno» en WordPress</title>
+<style>
+@font-face{font-family:'Poppins';src:url('recursos/tipografias/poppins-light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Poppins';src:url('recursos/tipografias/poppins-regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Poppins';src:url('recursos/tipografias/poppins-medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Poppins';src:url('recursos/tipografias/poppins-semibold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Poppins';src:url('recursos/tipografias/poppins-bold.woff2') format('woff2');font-weight:700;font-display:swap}
+:root{
+  --rojo:#E52521; --vino:#8B1623; --vino-osc:#631513;
+  --tinta:#191919; --gris:#5C5C5C; --linea:#E3E1DE; --papel:#FBFAF8; --caja:#FFFFFF;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  background:var(--papel);color:var(--tinta);line-height:1.68;font-size:16px;
+  -webkit-font-smoothing:antialiased}
+.env{max-width:940px;margin:0 auto;padding:0 26px 100px}
+
+/* ── portada ───────────────────────────────────────────── */
+.portada{background:var(--rojo);color:#fff;padding:64px 0 56px;margin-bottom:56px}
+.portada .env{padding-bottom:0}
+.portada .kicker{font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;font-weight:500;opacity:.9}
+.portada h1{font-size:clamp(2rem,5vw,3.1rem);font-weight:700;line-height:1.06;letter-spacing:-.02em;margin:14px 0 16px}
+.portada h1 span{display:block;font-weight:300}
+.portada p{max-width:60ch;font-size:1.02rem;color:rgba(255,255,255,.94)}
+.portada .meta{margin-top:26px;padding-top:20px;border-top:1px solid rgba(255,255,255,.34);
+  display:flex;flex-wrap:wrap;gap:8px 40px;font-size:.83rem;color:rgba(255,255,255,.9)}
+
+/* ── estructura ────────────────────────────────────────── */
+h2{font-size:1.62rem;font-weight:700;letter-spacing:-.015em;line-height:1.2;margin:60px 0 6px;
+  padding-top:26px;border-top:2px solid var(--tinta)}
+h2 .n{color:var(--rojo);font-weight:700;margin-right:12px}
+h2+.bajada{color:var(--gris);font-size:.98rem;margin-bottom:26px;max-width:66ch}
+h3{font-size:1.06rem;font-weight:600;margin:30px 0 8px}
+p{margin-bottom:14px;max-width:76ch}
+ul,ol{margin:0 0 16px 22px}
+li{margin-bottom:8px;max-width:74ch}
+strong{font-weight:600}
+a{color:var(--rojo)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;
+  background:#F0EEEB;border:1px solid var(--linea);border-radius:5px;padding:1px 6px;white-space:nowrap}
+.bloque-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;line-height:1.7;
+  background:#1D1D1D;color:#EDEBE8;border-radius:12px;padding:20px 24px;overflow-x:auto;
+  margin:0 0 18px;white-space:pre}
+.bloque-code b{color:#FF8A85;font-weight:600}
+
+/* ── piezas ────────────────────────────────────────────── */
+.tabla{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:.9rem;
+  background:var(--caja);border:1px solid var(--linea);border-radius:12px;overflow:hidden}
+.tabla th{background:#F2F0ED;text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.05em;
+  text-transform:uppercase;padding:12px 16px;border-bottom:1px solid var(--linea)}
+.tabla td{padding:12px 16px;border-bottom:1px solid var(--linea);vertical-align:top}
+.tabla tr:last-child td{border-bottom:0}
+.tabla td code{white-space:nowrap}
+
+.aviso{border-left:4px solid var(--rojo);background:#FDF3F2;border-radius:0 12px 12px 0;
+  padding:18px 22px;margin:0 0 22px}
+.aviso.ok{border-left-color:#1E8449;background:#F1F8F3}
+.aviso.info{border-left-color:var(--vino);background:#F8F2F3}
+.aviso p:last-child{margin-bottom:0}
+.aviso .rot{display:block;font-weight:600;font-size:.8rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--rojo);margin-bottom:6px}
+.aviso.ok .rot{color:#1E8449}
+.aviso.info .rot{color:var(--vino)}
+
+.arbol{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.83rem;line-height:1.85;
+  background:var(--caja);border:1px solid var(--linea);border-radius:12px;padding:22px 24px;
+  overflow-x:auto;white-space:pre;margin-bottom:22px}
+.arbol b{color:var(--rojo);font-weight:600}
+.arbol i{color:var(--gris);font-style:normal}
+
+/* ── caminos ───────────────────────────────────────────── */
+.caminos{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px;margin-bottom:24px}
+.camino{background:var(--caja);border:1px solid var(--linea);border-radius:14px;padding:22px}
+.camino.reco{border:2px solid var(--rojo);box-shadow:0 10px 30px rgba(229,37,33,.10)}
+.camino .tag{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gris)}
+.camino.reco .tag{color:var(--rojo)}
+.camino h3{margin:6px 0 8px;font-size:1.02rem}
+.camino p{font-size:.86rem;color:var(--gris);margin-bottom:10px}
+.camino .dato{font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+
+/* ── secciones de la landing ───────────────────────────── */
+.sec{background:var(--caja);border:1px solid var(--linea);border-radius:14px;overflow:hidden;
+  margin-bottom:18px;display:grid;grid-template-columns:320px 1fr}
+.sec .vista{background:#EFEDEA;border-right:1px solid var(--linea);display:flex;align-items:center;
+  justify-content:center;padding:14px}
+.sec .vista img{width:100%;height:auto;max-height:210px;object-fit:contain;display:block;
+  border:1px solid rgba(0,0,0,.10);background:#fff}
+.sec .info{padding:20px 24px}
+.sec .num{display:inline-block;background:var(--rojo);color:#fff;font-size:.72rem;font-weight:700;
+  letter-spacing:.08em;padding:3px 10px;border-radius:999px}
+.sec h3{margin:10px 0 6px;font-size:1.08rem}
+.sec .archivo{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;color:var(--vino);
+  margin-bottom:10px;display:block}
+.sec p{font-size:.87rem;color:var(--gris);margin-bottom:0}
+.sec .ojo{margin-top:10px;font-size:.83rem;color:var(--tinta);
+  border-top:1px dashed var(--linea);padding-top:10px}
+.sec .ojo b{color:var(--rojo)}
+
+/* ── paleta ────────────────────────────────────────────── */
+.paleta{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-bottom:22px}
+.tono{border:1px solid var(--linea);border-radius:12px;overflow:hidden;background:var(--caja)}
+.tono .muestra{height:64px}
+.tono .txt{padding:10px 14px;font-size:.78rem}
+.tono .txt b{display:block;font-size:.86rem;font-weight:600}
+.tono .txt code{background:none;border:0;padding:0;color:var(--gris)}
+
+/* ── checklist ─────────────────────────────────────────── */
+.check{list-style:none;margin-left:0}
+.check li{position:relative;padding-left:32px;margin-bottom:10px}
+.check li::before{content:'';position:absolute;left:0;top:4px;width:17px;height:17px;
+  border:2px solid var(--rojo);border-radius:4px}
+
+.pie-doc{margin-top:70px;padding-top:24px;border-top:2px solid var(--tinta);font-size:.85rem;color:var(--gris)}
+
+@media (max-width:760px){
+  .sec{grid-template-columns:1fr}
+  .sec .vista{border-right:0;border-bottom:1px solid var(--linea)}
+  .sec .vista img{max-height:220px}
+}
+</style>
+</head>
+<body>
+
+<div class="portada">
+  <div class="env">
+    <div class="kicker">Más Center · Grupo IFB</div>
+    <h1>Postula tu terreno<span>Cómo armar la landing en WordPress</span></h1>
+    <p>La página ya está diseñada, aprobada y funcionando. Esto no es un diseño para interpretar:
+      es la página terminada, cortada en 13 bloques para que la montes en WordPress uno por uno,
+      con sus fotos y sus tipografías ya en el formato correcto.</p>
+    <div class="meta">
+      <span><strong>Entrega:</strong> 08-09-2026</span>
+      <span><strong>Correo de contacto:</strong> terrenos@ifbinversiones.cl</span>
+      <span><strong>Versión en línea:</strong> mascenter-terrenos.vercel.app</span>
+    </div>
+  </div>
+</div>
+
+<div class="env">
+
+<div class="aviso ok">
+  <span class="rot">Antes de leer nada más</span>
+  <p>Abre <code>sitio-completo.html</code> con doble clic. Eso es exactamente lo que tiene que quedar
+    publicado: mismo orden, mismos textos, mismos colores, mismas animaciones. Si en algún momento
+    dudas de cómo va algo, la respuesta está ahí.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2><span class="n">1</span>Qué trae el paquete</h2>
+<p class="bajada">Cuatro cosas y nada más. No hay archivos de trabajo, ni versiones viejas, ni
+  material que no se use en la página.</p>
+
+<div class="arbol"><b>INSTRUCTIVO.html</b>          este documento
+<b>sitio-completo.html</b>       la landing entera funcionando — ábrela con doble clic
+<b>TEXTOS-PARA-COPIAR.txt</b>    todos los textos en plano, sección por sección
+
+<b>recursos/</b>                 <i>todo lo que hay que subir a WordPress</i>
+   imagenes/       la foto de portada, la aérea y los 23 centros (.jpg)
+   logos/          Más Center blanco (.svg), Grupo IFB (.png) y el favicon
+   tipografias/    Poppins en 5 pesos (.woff2)
+
+<b>secciones/</b>                <i>la página cortada en bloques, en orden</i>
+   00-estilos-base.html    va PRIMERO, una sola vez
+   01-cabecera.html
+   02-hero.html
+   … 11 secciones en total …
+   99-scripts.html         va ÚLTIMO, una sola vez
+   vista-previa/           cómo se ve cada sección (.jpg)</div>
+
+<div class="aviso info">
+  <span class="rot">Cómo leer los archivos de sección</span>
+  <p>Cada archivo de <code>secciones/</code> empieza con un comentario que dice qué sección es, qué
+    fotos usa y qué hay que tener en cuenta. Ese comentario <strong>puedes pegarlo igual</strong>:
+    no se ve en la web. Después viene el <code>&lt;style&gt;</code> de esa sección y su HTML.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2><span class="n">2</span>Elige el camino</h2>
+<p class="bajada">Hay tres formas de publicarla. Las tres dan el mismo resultado visual; cambia
+  cuánto trabajo es y cuánto se puede editar después desde el panel.</p>
+
+<div class="caminos">
+  <div class="camino reco">
+    <span class="tag">Recomendado</span>
+    <h3>A · Por secciones</h3>
+    <p>Una página nueva a ancho completo y 13 bloques de <em>HTML personalizado</em>, en orden:
+      estilos base, las 11 secciones y los scripts.</p>
+    <span class="dato">≈ 45 minutos · se edita por bloques</span>
+  </div>
+  <div class="camino">
+    <span class="tag">El atajo</span>
+    <h3>B · Todo de una</h3>
+    <p>Un solo bloque de <em>HTML personalizado</em> con el contenido completo de
+      <code>sitio-completo.html</code>.</p>
+    <span class="dato">≈ 15 minutos · un solo bloque</span>
+  </div>
+  <div class="camino">
+    <span class="tag">Sin WordPress</span>
+    <h3>C · HTML plano</h3>
+    <p>Subir la carpeta por FTP a un subdominio (<code>terrenos.mascenter.cl</code>). No hay que
+      tocar ninguna ruta.</p>
+    <span class="dato">≈ 10 minutos · no se edita desde el panel</span>
+  </div>
+</div>
+
+<p><strong>Si el cliente va a querer cambiar textos o fotos desde el panel, ve por el camino A.</strong>
+  Cada sección queda en su propio bloque, se reordena arrastrando y se edita sin tocar el resto.
+  Los pasos 3 a 6 de este instructivo son ese camino. Para el B y el C, haz los pasos 3 y 4 y salta
+  al 7.</p>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2><span class="n">3</span>Subir los recursos</h2>
+<p class="bajada">Todo lo que la página necesita está en <code>recursos/</code>. Nada se descarga
+  desde un servidor externo: ni Google Fonts, ni librerías, ni CDN.</p>
+
+<table class="tabla">
+  <tr><th>Carpeta</th><th>Qué es</th><th>Cuánto pesa</th><th>Cómo subirlo</th></tr>
+  <tr>
+    <td><code>imagenes/</code></td>
+    <td>La foto de portada, la aérea de la intro y las 23 fotos de los centros en operación
+      (dentro de <code>imagenes/centros/</code>).</td>
+    <td>4,6 MB</td>
+    <td>Biblioteca de Medios</td>
+  </tr>
+  <tr>
+    <td><code>logos/</code></td>
+    <td>Más Center blanco (SVG), Grupo IFB (PNG) y el favicon.</td>
+    <td>32 KB</td>
+    <td>Biblioteca de Medios</td>
+  </tr>
+  <tr>
+    <td><code>tipografias/</code></td>
+    <td>Poppins en 5 pesos, formato WOFF2.</td>
+    <td>40 KB</td>
+    <td><strong>Por FTP</strong>, ver abajo</td>
+  </tr>
+</table>
+
+<h3>Las dos cosas que WordPress puede pelear</h3>
+<ul>
+  <li><strong>El SVG.</strong> WordPress bloquea la subida de <code>.svg</code> por defecto. O
+    instalas <em>Safe SVG</em>, o subes el logo blanco por FTP igual que las tipografías. Es un solo
+    archivo: <code>logo-mascenter-blanco.svg</code>.</li>
+  <li><strong>Las tipografías <code>.woff2</code>.</strong> Tampoco están permitidas en la Biblioteca
+    de Medios. Súbelas por FTP a <code>/wp-content/uploads/terrenos/tipografias/</code> y deja las
+    cinco juntas ahí.</li>
+</ul>
+
+<div class="aviso">
+  <span class="rot">Lo más simple</span>
+  <p>Sube <strong>la carpeta <code>recursos/</code> completa por FTP</strong> a
+    <code>/wp-content/uploads/terrenos/</code> y te ahorras los dos problemas de arriba de una vez.
+    Queda todo junto, con los mismos nombres, y las rutas del paso 4 quedan predecibles. Además te
+    evita que la Biblioteca de Medios te renombre alguna de las 23 fotos de centros.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2><span class="n">4</span>Cambiar las rutas</h2>
+<p class="bajada">Los archivos vienen con rutas relativas para que se puedan abrir en el computador.
+  En WordPress hay que apuntarlas a donde quedaron los recursos.</p>
+
+<p>Abre los archivos de <code>secciones/</code> en un editor de texto y haz un
+  <strong>buscar y reemplazar</strong> antes de pegar:</p>
+
+<div class="bloque-code">buscar:     <b>../recursos/</b>
+reemplazar: <b>https://www.mascenter.cl/wp-content/uploads/terrenos/</b></div>
+
+<p>Si vas por el camino B (todo de una), el prefijo es <code>recursos/</code> sin los dos puntos,
+  porque <code>sitio-completo.html</code> está un nivel más arriba:</p>
+
+<div class="bloque-code">buscar:     <b>recursos/</b>
+reemplazar: <b>https://www.mascenter.cl/wp-content/uploads/terrenos/</b></div>
+
+<p>Después del reemplazo, una ruta cualquiera tiene que verse así:</p>
+<div class="bloque-code">&lt;img src="https://www.mascenter.cl/wp-content/uploads/terrenos/imagenes/centros/talca.jpg"&gt;</div>
+
+<div class="aviso">
+  <span class="rot">Ojo</span>
+  <p>Las tipografías se llaman desde el CSS con <code>url('../recursos/tipografias/…')</code>, dentro
+    de <code>00-estilos-base.html</code>. El buscar y reemplazar también las arregla — pero si el CSS
+    lo pegas en <em>Apariencia → Personalizar → CSS adicional</em>, revisa que esas cinco rutas
+    quedaron absolutas: desde ahí una ruta relativa apunta a la carpeta del tema y las tipografías
+    no cargan.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2><span class="n">5</span>Crear la página</h2>
+<p class="bajada">La landing trae su propia cabecera y su propio pie. Si además se muestran los del
+  tema, quedan dos menús y dos footers.</p>
+
+<ol>
+  <li><strong>Páginas → Añadir nueva.</strong> Título: <em>Postula tu terreno</em>.
+    Enlace permanente sugerido: <code>/postula-tu-terreno/</code>.</li>
+  <li>Plantilla <strong>a ancho completo, sin barra lateral</strong>. En Salient:
+    <em>Page Settings → Fullwidth</em>.</li>
+  <li><strong>Oculta la cabecera y el pie del tema</strong> para esta página. En Salient:
+    <em>Page Settings → Header → Transparent</em> y desactivar el footer; en otros temas suele ser
+    una plantilla llamada <em>Blank</em>, <em>Canvas</em> o <em>Elementor Full Width</em>.</li>
+  <li>Quita el padding y el margen del contenedor de contenido: las secciones van de borde a borde.</li>
+  <li>Si el tema no permite esconder su cabecera, entonces <strong>no pegues la sección 01</strong>
+    y usa el menú del tema. Es la única sección que se puede saltar sin romper nada.</li>
+</ol>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2><span class="n">6</span>Pegar sección por sección</h2>
+<p class="bajada">Este es el trabajo. Un bloque de <em>HTML personalizado</em> por archivo, en este
+  orden exacto. Cada archivo se pega completo, tal como está, sin sacarle nada.</p>
+
+<div class="aviso">
+  <span class="rot">Las dos reglas que no se saltan</span>
+  <p><strong>1.</strong> <code>00-estilos-base.html</code> va primero, una sola vez. Sin él ninguna
+    sección se ve bien.<br>
+    <strong>2.</strong> <code>99-scripts.html</code> va último, una sola vez. Sin él no hay
+    animaciones, ni contadores, ni carrusel, ni menú de celular.</p>
+</div>
+
+<div class="sec">
+  <div class="vista"><img src="secciones/vista-previa/01-cabecera.jpg" alt="Cabecera"></div>
+  <div class="info">
+    <span class="num">01</span>
+    <h3>Cabecera fija</h3>
+    <span class="archivo">secciones/01-cabecera.html</span>
+    <p>Logo blanco a la izquierda y menú a la derecha. Transparente sobre la portada, se oscurece al
+      bajar. En celular se convierte en menú hamburguesa.</p>
+    <div class="ojo"><b>Ojo:</b> si el tema ya tiene un header que sirve, sáltate esta sección.</div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="vista"><img src="secciones/vista-previa/02-hero.jpg" alt="Portada"></div>
+  <div class="info">
+    <span class="num">02</span>
+    <h3>Portada — «Buscamos terrenos»</h3>
+    <span class="archivo">secciones/02-hero.html</span>
+    <p>Foto aérea de un terreno con un velo oscuro encima y el titular. Los dos botones bajan al
+      formulario y a «Qué buscamos».</p>
+    <div class="ojo"><b>Ojo:</b> la foto es <b>referencial</b> y así está rotulada en la esquina.
+      No le saques ese rótulo: no es un terreno de Más Center.</div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="vista"><img src="secciones/vista-previa/03-intro.jpg" alt="Intro"></div>
+  <div class="info">
+    <span class="num">03</span>
+    <h3>Intro — la oportunidad</h3>
+    <span class="archivo">secciones/03-intro.html</span>
+    <p>Texto a la izquierda, foto aérea de un centro en operación a la derecha.</p>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="vista"><img src="secciones/vista-previa/04-buscamos.jpg" alt="Qué buscamos"></div>
+  <div class="info">
+    <span class="num">04</span>
+    <h3>Qué buscamos</h3>
+    <span class="archivo">secciones/04-buscamos.html</span>
+    <p>Las condiciones del terreno: superficie, ubicación, accesos y uso de suelo. Sin imágenes: son
+      tarjetas de texto sobre fondo claro.</p>
+    <div class="ojo"><b>Ojo:</b> el rango de superficie está confirmado por el cliente. Si lo cambian,
+      es un solo lugar en este archivo y otro en el texto de la portada.</div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="vista"><img src="secciones/vista-previa/05-valor.jpg" alt="Nuestro respaldo"></div>
+  <div class="info">
+    <span class="num">05</span>
+    <h3>Nuestro respaldo — las cifras</h3>
+    <span class="archivo">secciones/05-valor.html</span>
+    <p>Los números suben solos cuando la sección aparece en pantalla.</p>
+    <div class="ojo"><b>Ojo:</b> las cifras están escritas en el atributo <code>data-a</code> de cada
+      número. Si cambia una, hay que cambiarla ahí y no en el texto visible.</div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="vista"><img src="secciones/vista-previa/06-centros.jpg" alt="Centros en operación"></div>
+  <div class="info">
+    <span class="num">06</span>
+    <h3>Centros en operación</h3>
+    <span class="archivo">secciones/06-centros.html</span>
+    <p>Carrusel con los 23 centros. Se arrastra con el mouse y con el dedo; las flechas y los puntos
+      también funcionan.</p>
+    <div class="ojo"><b>Ojo:</b> son <b>23 fotos</b> y es la sección que más recursos usa. Después de
+      subirlas, revisa una por una que ninguna quedó rota o cruzada.</div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="vista"><img src="secciones/vista-previa/07-variables.jpg" alt="Más que un terreno"></div>
+  <div class="info">
+    <span class="num">07</span>
+    <h3>Más que un terreno</h3>
+    <span class="archivo">secciones/07-variables.html</span>
+    <p>Las variables que el equipo evalúa antes de decidir. Solo texto.</p>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="vista"><img src="secciones/vista-previa/08-proceso.jpg" alt="Cómo postular"></div>
+  <div class="info">
+    <span class="num">08</span>
+    <h3>Cómo postular — el paso a paso</h3>
+    <span class="archivo">secciones/08-proceso.html</span>
+    <p>Los cuatro pasos del proceso, sobre fondo oscuro.</p>
+    <div class="ojo"><b>Ojo:</b> los plazos son <b>propuesta de la agencia</b>. Si Más Center define
+      otros, se cambian acá.</div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="vista"><img src="secciones/vista-previa/09-formulario.jpg" alt="Formulario"></div>
+  <div class="info">
+    <span class="num">09</span>
+    <h3>Conversemos — contacto y formulario</h3>
+    <span class="archivo">secciones/09-formulario.html</span>
+    <p>Los datos de contacto a la izquierda y el formulario de postulación a la derecha.</p>
+    <div class="ojo"><b>Acá está el correo:</b> <code>terrenos@ifbinversiones.cl</code>, en el enlace
+      <code>mailto:</code> y en el texto visible. Y acá va el trabajo del paso 8: el formulario
+      <b>todavía no envía</b>.</div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="vista"><img src="secciones/vista-previa/10-pie.jpg" alt="Pie de página"></div>
+  <div class="info">
+    <span class="num">10</span>
+    <h3>Pie de página</h3>
+    <span class="archivo">secciones/10-pie.html</span>
+    <p>Logos, enlaces internos, enlaces al sitio y a las redes de Más Center, y la barra de copyright
+      con el año que se pone solo.</p>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="vista"><img src="secciones/vista-previa/11-flotante.jpg" alt="Botón flotante"></div>
+  <div class="info">
+    <span class="num">11</span>
+    <h3>Botón flotante «Postula tu terreno»</h3>
+    <span class="archivo">secciones/11-flotante.html</span>
+    <p>Aparece al bajar y acompaña al visitante hasta el formulario.</p>
+    <div class="ojo"><b>Ojo:</b> va <b>después</b> del pie, en su propio bloque. Es lo último antes de
+      los scripts.</div>
+  </div>
+</div>
+
+<div class="aviso info">
+  <span class="rot">Y por último</span>
+  <p><code>99-scripts.html</code> en su propio bloque de <em>HTML personalizado</em>, al final de
+    todo. No usa jQuery ni ninguna librería externa.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2><span class="n">7</span>Conectar el formulario</h2>
+<p class="bajada">Es lo único del paquete que queda a medio camino, y es a propósito: el envío
+  depende del correo y de los plugins del WordPress de ustedes. Hoy el formulario valida los campos
+  y <strong>abre el correo del visitante</strong> con la postulación completa dirigida a
+  <code>terrenos@ifbinversiones.cl</code> — o sea, la postulación llega, pero el visitante tiene que
+  darle enviar. Al conectarlo a Contact Form 7 el envío pasa a ser silencioso, al mismo buzón.</p>
+
+<table class="tabla">
+  <tr><th>Campo en pantalla</th><th><code>name</code></th><th>Tipo</th><th>Obligatorio</th></tr>
+  <tr><td>Nombre y apellido</td><td><code>nombre</code></td><td>texto</td><td>Sí</td></tr>
+  <tr><td>Correo electrónico</td><td><code>email</code></td><td>correo (valida formato)</td><td>Sí</td></tr>
+  <tr><td>Teléfono</td><td><code>telefono</code></td><td>teléfono</td><td>Sí</td></tr>
+  <tr><td>Región</td><td><code>region</code></td><td>lista con las 16 regiones</td><td>Sí</td></tr>
+  <tr><td>Comuna</td><td><code>comuna</code></td><td>texto</td><td>Sí</td></tr>
+  <tr><td>Superficie (m²)</td><td><code>superficie</code></td><td>número</td><td>Sí</td></tr>
+  <tr><td>Dirección o rol del terreno</td><td><code>direccion</code></td><td>texto</td><td>Sí</td></tr>
+  <tr><td>Cuéntanos sobre el terreno</td><td><code>mensaje</code></td><td>área de texto</td><td>Sí</td></tr>
+</table>
+
+<ol>
+  <li>Crea un formulario nuevo en <strong>Contact Form 7</strong> con esos ocho campos y esos mismos
+    <code>name</code>. Si duplicas uno existente, ajusta los nombres: el CSS y el aviso de error
+    dependen de ellos.</li>
+  <li><strong>El destinatario es <code>terrenos@ifbinversiones.cl</code></strong> — el buzón de
+    captación de terrenos. No es el correo general de Más Center.</li>
+  <li>En el asunto del correo conviene dejar algo reconocible, por ejemplo
+    <em>Postulación de terreno — [region] / [comuna]</em>.</li>
+  <li>En <code>09-formulario.html</code>, reemplaza todo el bloque
+    <code>&lt;form class="formulario"&gt;…&lt;/form&gt;</code> por el shortcode
+    <code>[contact-form-7 id="XXX"]</code>.</li>
+  <li>Deja la clase <code>formulario</code> en el <code>&lt;form&gt;</code> que genera CF7 —se
+    configura en <em>Additional Settings</em>, o envolviéndolo en un
+    <code>&lt;div class="formulario"&gt;</code>—. El CSS ya está escrito apuntando a
+    <code>form.formulario input, textarea, select</code>, así que los campos de CF7 se van a ver
+    exactamente igual sin tocar nada más.</li>
+  <li>Manda una prueba y confirma que llega a <code>terrenos@ifbinversiones.cl</code>.
+    <strong>No se publica sin esa prueba.</strong></li>
+</ol>
+
+<div class="aviso">
+  <span class="rot">Ley 21.719</span>
+  <p>El texto legal bajo el formulario («Al enviar este formulario autorizas a Más Center · Grupo IFB
+    a contactarte…») tiene que quedar visible. No lo saques por espacio.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2><span class="n">8</span>Título, descripción y favicon</h2>
+<p class="bajada">Esto no va en el HTML de las secciones: lo maneja el plugin de SEO y el
+  personalizador del tema. Los textos exactos están al final de
+  <code>TEXTOS-PARA-COPIAR.txt</code>.</p>
+
+<table class="tabla">
+  <tr><th>Dónde</th><th>Qué poner</th></tr>
+  <tr><td>Título SEO<br><em>(Yoast / Rank Math)</em></td>
+      <td>Postula tu terreno — Más Center | Buscamos terrenos con potencial para nuevos proyectos
+        comerciales</td></tr>
+  <tr><td>Meta descripción</td>
+      <td>Más Center busca terrenos entre 3.000 y 15.000 m² con potencial para nuevos proyectos
+        comerciales. Más de 30 centros, 69.000 m² de locales y 400 contratos de arriendo, de Copiapó
+        a Coyhaique.</td></tr>
+  <tr><td>Imagen para compartir<br><em>(Open Graph)</em></td>
+      <td><code>imagenes/terreno-hero.jpg</code></td></tr>
+  <tr><td>Favicon<br><em>(Personalizar → Identidad del sitio)</em></td>
+      <td><code>logos/favicon.png</code></td></tr>
+  <tr><td>Idioma de la página</td><td><code>es-CL</code></td></tr>
+</table>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2><span class="n">9</span>La marca</h2>
+<p class="bajada">Por si hay que crear algo nuevo después. Los colores salen del manual de marca de
+  Grupo IFB 2023 y están cruzados con el CSS del sitio de Más Center en vivo.</p>
+
+<div class="paleta">
+  <div class="tono"><div class="muestra" style="background:#E52521"></div>
+    <div class="txt"><b>Rojo Más Center</b><code>#E52521</code></div></div>
+  <div class="tono"><div class="muestra" style="background:#C81E1A"></div>
+    <div class="txt"><b>Rojo hover</b><code>#C81E1A</code></div></div>
+  <div class="tono"><div class="muestra" style="background:#65140F"></div>
+    <div class="txt"><b>Vino</b><code>#65140F</code></div></div>
+  <div class="tono"><div class="muestra" style="background:#26282C"></div>
+    <div class="txt"><b>Grafito</b><code>#26282C</code></div></div>
+  <div class="tono"><div class="muestra" style="background:#DADADA"></div>
+    <div class="txt"><b>Gris claro</b><code>#DADADA</code></div></div>
+  <div class="tono"><div class="muestra" style="background:#F3F1F1"></div>
+    <div class="txt"><b>Claro</b><code>#F3F1F1</code></div></div>
+  <div class="tono"><div class="muestra" style="background:#1A1A1A"></div>
+    <div class="txt"><b>Texto</b><code>#1A1A1A</code></div></div>
+  <div class="tono"><div class="muestra" style="background:#000000"></div>
+    <div class="txt"><b>Negro</b><code>#000000</code></div></div>
+</div>
+
+<p><strong>Tipografía: Poppins</strong>, en cinco pesos — 300 Light, 400 Regular, 500 Medium,
+  600 SemiBold y 700 Bold. Es la del manual y la misma que carga el sitio de Más Center. Va
+  auto-hospedada para no depender de Google Fonts.</p>
+<p>Si el tema ya carga Poppins en esos cinco pesos, puedes borrar el bloque <code>@font-face</code>
+  del principio de <code>00-estilos-base.html</code> y la página se ve igual. Si carga solo tres
+  pesos, <strong>no lo borres</strong>: los títulos Light y los botones SemiBold cambian de forma.</p>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2><span class="n">10</span>Antes de publicar</h2>
+<p class="bajada">La página se revisó en 1440, 768 y 390 px de ancho, sin desborde horizontal y sin
+  errores de consola. Lo que hay que volver a mirar es lo que cambia al montarla en WordPress.</p>
+
+<ul class="check">
+  <li>Las cinco variantes de Poppins cargan — mira que los títulos no se vean en Arial, y que las
+    tildes, las eñes y el <strong>²</strong> de «m²» salgan bien.</li>
+  <li>Ninguna imagen rota. Son 28 archivos entre fotos y logos, y 23 de ellos son el carrusel.</li>
+  <li>El carrusel de centros avanza con las flechas, con los puntos y con el dedo.</li>
+  <li>Los contadores de «Nuestro respaldo» suben al llegar a la sección.</li>
+  <li>Los enlaces del menú bajan a su sección (Qué buscamos · Nuestro respaldo · Centros · Cómo postular).</li>
+  <li>El menú hamburguesa abre y cierra en celular.</li>
+  <li>El botón flotante aparece al bajar y lleva al formulario.</li>
+  <li><strong>El correo dice terrenos@ifbinversiones.cl</strong> y al hacer clic abre el cliente de
+    correo con esa dirección.</li>
+  <li><strong>El formulario envía y llega a terrenos@ifbinversiones.cl.</strong></li>
+  <li>Las animaciones de entrada aparecen al bajar y ninguna sección queda invisible.</li>
+  <li>No hay dos cabeceras ni dos pies de página.</li>
+</ul>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2><span class="n">11</span>Lo que todavía hay que decidir</h2>
+<p class="bajada">Tres cosas que no dependen de quien maquetea, pero que conviene resolver antes de
+  mandarle el enlace al cliente.</p>
+
+<ol>
+  <li><strong>El formulario.</strong> Es el pendiente real. Sin Contact Form 7 conectado, la landing
+    capta cero terrenos.</li>
+  <li><strong>El teléfono.</strong> La página no muestra ninguno porque no hay un número confirmado
+    para captación. Si existe, va junto al correo en la sección 09.</li>
+  <li><strong>El dominio.</strong> Hoy vive en <code>mascenter-terrenos.vercel.app</code>. Lo natural
+    es <code>terrenos.mascenter.cl</code>, o una página dentro del WordPress actual en
+    <code>/postula-tu-terreno/</code>.</li>
+</ol>
+
+<div class="pie-doc">
+  <p><strong>Datos que quedaron escritos en la página:</strong> terrenos@ifbinversiones.cl ·
+    www.mascenter.cl · Instagram @mascenter · LinkedIn Grupo IFB. Están en las secciones 09 y 10.</p>
+  <p>Landing de captación de terrenos · Más Center — Grupo IFB · entregada el 08-09-2026. Cualquier
+    duda de maquetación, la respuesta está en <code>sitio-completo.html</code>.</p>
+</div>
+
+</div>
+</body>
+</html>

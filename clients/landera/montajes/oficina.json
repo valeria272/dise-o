@@ -1,0 +1,116 @@
+{
+ "foto": "public/assets/landera/fotos/v2/esc-oficina.jpg",
+ "salida": "out/landera/montajes/oficina.jpg",
+ "capas": [
+  {
+   "tipo": "panel",
+   "quad": [
+    [
+     560,
+     930
+    ],
+    [
+     1045,
+     930
+    ],
+    [
+     1045,
+     1140
+    ],
+    [
+     560,
+     1140
+    ]
+   ],
+   "color": "#33353E",
+   "opacidad": 0.98
+  },
+  {
+   "tipo": "logo",
+   "archivo": "public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_ISO_MONO-CREMA.svg",
+   "quad": [
+    [
+     560,
+     930
+    ],
+    [
+     1045,
+     930
+    ],
+    [
+     1045,
+     1140
+    ],
+    [
+     560,
+     1140
+    ]
+   ],
+   "encaje": 0.56,
+   "alinear": [
+    0.06,
+    0.18
+   ],
+   "material": "pintura"
+  },
+  {
+   "tipo": "texto",
+   "texto": "Oficina",
+   "quad": [
+    [
+     560,
+     930
+    ],
+    [
+     1045,
+     930
+    ],
+    [
+     1045,
+     1140
+    ],
+    [
+     560,
+     1140
+    ]
+   ],
+   "encaje": 0.55,
+   "alinear": [
+    0.3,
+    0.26
+   ],
+   "material": "pintura",
+   "peso": "Bold"
+  },
+  {
+   "tipo": "texto",
+   "texto": "ADMINISTRACIÓN",
+   "quad": [
+    [
+     560,
+     930
+    ],
+    [
+     1045,
+     930
+    ],
+    [
+     1045,
+     1140
+    ],
+    [
+     560,
+     1140
+    ]
+   ],
+   "encaje": 0.45,
+   "alinear": [
+    0.3,
+    0.6
+   ],
+   "material": "pintura",
+   "peso": "Regular",
+   "color": "#9FA6A0"
+  }
+ ]
+}

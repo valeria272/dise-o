@@ -1,0 +1,668 @@
+[
+  {
+    "titulo": "FRONTIS · LA ALTURA   —  POST (horizontal)",
+    "regla": "El hotel es una torre: se fotografía desde abajo y con la ciudad alrededor. Sin personas. El espacio limpio",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\14-frontis\\14-frontis-12.jpg",
+      "raw/hilton/dt/moodboard-pin\\14-frontis\\14-frontis-08.jpg",
+      "raw/hilton/dt/moodboard-pin\\14-frontis\\14-frontis-11.jpg"
+    ]
+  },
+  {
+    "titulo": "FRONTIS · LA ALTURA Y LA UBICACIÓN   —  HISTORIA (vertical)",
+    "regla": "Vertical: la torre completa y la ciudad que la rodea. Sin personas ni autos en primer plano",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\14-frontis\\14-frontis-04.jpg",
+      "raw/hilton/dt/moodboard-pin\\14-frontis\\14-frontis-09.jpg",
+      "raw/hilton/dt/moodboard-pin\\14-frontis\\14-frontis-13.jpg"
+    ]
+  },
+  {
+    "titulo": "FRONTIS · EL VOLUMEN   —  hora azul",
+    "regla": "El vidrio devuelve la ciudad: hora azul y luz encendida. Sin personas. El espacio limpio",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\14-frontis\\14-frontis-03.jpg",
+      "raw/hilton/dt/moodboard-pin\\14-frontis\\14-frontis-07.jpg",
+      "raw/hilton/dt/moodboard-pin\\14-frontis\\14-frontis-14.jpg"
+    ]
+  },
+  {
+    "titulo": "ENTRADA / ACCESO   (1/2)",
+    "regla": "Sin personas. Si aparece un huésped, de espaldas o desenfocado",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\01-entrada\\01-entrada-01.jpg",
+      "raw/hilton/dt/moodboard-pin\\01-entrada\\01-entrada-02.jpg",
+      "raw/hilton/dt/moodboard-pin\\01-entrada\\01-entrada-03.jpg"
+    ]
+  },
+  {
+    "titulo": "ENTRADA / ACCESO   (2/2)",
+    "regla": "Sin personas. Si aparece un huésped, de espaldas o desenfocado",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\01-entrada\\01-entrada-08.jpg",
+      "raw/hilton/dt/moodboard-pin\\01-entrada\\01-entrada-09.jpg",
+      "raw/hilton/dt/moodboard-pin\\01-entrada\\01-entrada-11.jpg"
+    ]
+  },
+  {
+    "titulo": "RECEPCIÓN   (1/2)",
+    "regla": "Recepcionista SÍ puede aparecer. El huésped, de espaldas o del torso hacia abajo",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\02-recepcion\\02-recepcion-02.jpg",
+      "raw/hilton/dt/moodboard-pin\\02-recepcion\\02-recepcion-05.jpg",
+      "raw/hilton/dt/moodboard-pin\\02-recepcion\\02-recepcion-08.jpg"
+    ]
+  },
+  {
+    "titulo": "RECEPCIÓN   (2/2)",
+    "regla": "Recepcionista SÍ puede aparecer. El huésped, de espaldas o del torso hacia abajo",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\02-recepcion\\02-recepcion-10.jpg",
+      "raw/hilton/dt/moodboard-pin\\02-recepcion\\02-recepcion-11.jpg",
+      "raw/hilton/dt/moodboard-pin\\02-recepcion\\02-recepcion-12.jpg"
+    ]
+  },
+  {
+    "titulo": "LA LLEGADA · RECEPCIÓN Y CHECK-IN",
+    "regla": "Recepcionista SÍ puede aparecer. El huésped, de espaldas. La mano que entrega la tarjeta",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\21-llegada-cookie\\21-llegada-cookie-11.jpg",
+      "raw/hilton/dt/moodboard-pin\\21-llegada-cookie\\21-llegada-cookie-14.jpg",
+      "raw/hilton/dt/moodboard-pin\\21-llegada-cookie\\21-llegada-cookie-13.jpg"
+    ]
+  },
+  {
+    "titulo": "LA LLEGADA · EL DETALLE   —  la llave y la puerta",
+    "regla": "Solo manos y objeto. Es el plano corto que hoy no existe y que sirve para historia",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\23-llegada-hotel\\23-llegada-hotel-07.jpg",
+      "raw/hilton/dt/moodboard-pin\\23-llegada-hotel\\23-llegada-hotel-09.jpg",
+      "raw/hilton/dt/moodboard-pin\\23-llegada-hotel\\23-llegada-hotel-11.jpg"
+    ]
+  },
+  {
+    "titulo": "LA COOKIE DE BIENVENIDA · EL PRODUCTO",
+    "regla": "El ícono de la marca, en plano cerrado y sin manos. Fondo neutro, luz cálida",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\21-llegada-cookie\\21-llegada-cookie-02.jpg",
+      "raw/hilton/dt/moodboard-pin\\21-llegada-cookie\\21-llegada-cookie-04.jpg",
+      "raw/hilton/dt/moodboard-pin\\21-llegada-cookie\\21-llegada-cookie-05.jpg"
+    ]
+  },
+  {
+    "titulo": "LA COOKIE DE BIENVENIDA · LA ENTREGA",
+    "regla": "Manos entregando la cookie. Nunca el rostro. Es el gesto que identifica a DoubleTree",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\21-llegada-cookie\\21-llegada-cookie-07.jpg",
+      "raw/hilton/dt/moodboard-pin\\21-llegada-cookie\\21-llegada-cookie-09.jpg",
+      "raw/hilton/dt/moodboard-pin\\21-llegada-cookie\\21-llegada-cookie-06.jpg"
+    ]
+  },
+  {
+    "titulo": "LA BIENVENIDA · LA BANDEJA Y EL MESÓN",
+    "regla": "Bandeja de bienvenida y mesón de conserjería montados. Sin personas. El espacio limpio",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\21-llegada-cookie\\21-llegada-cookie-01.jpg",
+      "raw/hilton/dt/moodboard-pin\\23-llegada-hotel\\23-llegada-hotel-14.jpg",
+      "raw/hilton/dt/moodboard-pin\\23-llegada-hotel\\23-llegada-hotel-15.jpg"
+    ]
+  },
+  {
+    "titulo": "LOBBY   (1/2)",
+    "regla": "Sin personas. Se permite silueta desenfocada de paso",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\03-lobby\\03-lobby-04.jpg",
+      "raw/hilton/dt/moodboard-pin\\03-lobby\\03-lobby-05.jpg",
+      "raw/hilton/dt/moodboard-pin\\03-lobby\\03-lobby-06.jpg"
+    ]
+  },
+  {
+    "titulo": "LOBBY   (2/2)",
+    "regla": "Sin personas. Se permite silueta desenfocada de paso",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\03-lobby\\03-lobby-08.jpg",
+      "raw/hilton/dt/moodboard-pin\\03-lobby\\03-lobby-09.jpg",
+      "raw/hilton/dt/moodboard-pin\\03-lobby\\03-lobby-11.jpg"
+    ]
+  },
+  {
+    "titulo": "ESPACIOS GENERALES · PASILLOS",
+    "regla": "El pasillo en fuga, vacío. Es lo que mide la escala del hotel",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\16-espacios-generales\\16-espacios-generales-02.jpg",
+      "raw/hilton/dt/moodboard-pin\\16-espacios-generales\\16-espacios-generales-04.jpg",
+      "raw/hilton/dt/moodboard-pin\\16-espacios-generales\\16-espacios-generales-06.jpg"
+    ]
+  },
+  {
+    "titulo": "ESPACIOS GENERALES · ASCENSORES Y ESCALERAS",
+    "regla": "Sin personas. El espacio limpio. Material, luz y simetría",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\16-espacios-generales\\16-espacios-generales-09.jpg",
+      "raw/hilton/dt/moodboard-pin\\16-espacios-generales\\16-espacios-generales-10.jpg",
+      "raw/hilton/dt/moodboard-pin\\16-espacios-generales\\16-espacios-generales-13.jpg"
+    ]
+  },
+  {
+    "titulo": "HABITACIÓN ESTÁNDAR",
+    "regla": "Sin personas, nunca. Cama montada y la vista desde la ventana",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\04a-hab-estandar\\04a-hab-estandar-02.jpg",
+      "raw/hilton/dt/moodboard-pin\\04a-hab-estandar\\04a-hab-estandar-03.jpg",
+      "raw/hilton/dt/moodboard-pin\\04a-hab-estandar\\04a-hab-estandar-08.jpg"
+    ]
+  },
+  {
+    "titulo": "HABITACIÓN ESTÁNDAR · 2 CAMAS",
+    "regla": "Sin personas, nunca. Las dos camas en el mismo cuadro",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\04b-hab-dos-camas\\04b-hab-dos-camas-03.jpg",
+      "raw/hilton/dt/moodboard-pin\\04b-hab-dos-camas\\04b-hab-dos-camas-09.jpg",
+      "raw/hilton/dt/moodboard-pin\\04b-hab-dos-camas\\04b-hab-dos-camas-10.jpg"
+    ]
+  },
+  {
+    "titulo": "HABITACIÓN CORNER   —  la esquina con dos ventanales",
+    "regla": "Es la que justifica la altura: el ventanal de esquina y la ciudad. Sin personas",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\04c-hab-corner\\04c-hab-corner-01.jpg",
+      "raw/hilton/dt/moodboard-pin\\04c-hab-corner\\04c-hab-corner-04.jpg",
+      "raw/hilton/dt/moodboard-pin\\04c-hab-corner\\04c-hab-corner-05.jpg"
+    ]
+  },
+  {
+    "titulo": "JUNIOR SUITE   —  la sala dentro de la habitación",
+    "regla": "Sin personas. Se muestra la separación entre el estar y el dormitorio",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\04d-junior-suite\\04d-junior-suite-02.jpg",
+      "raw/hilton/dt/moodboard-pin\\04d-junior-suite\\04d-junior-suite-07.jpg",
+      "raw/hilton/dt/moodboard-pin\\04d-junior-suite\\04d-junior-suite-12.jpg"
+    ]
+  },
+  {
+    "titulo": "SUITE",
+    "regla": "Sin personas. El estar completo y la vista panorámica",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\04e-suite\\04e-suite-01.jpg",
+      "raw/hilton/dt/moodboard-pin\\04e-suite\\04e-suite-04.jpg",
+      "raw/hilton/dt/moodboard-pin\\04e-suite\\04e-suite-07.jpg"
+    ]
+  },
+  {
+    "titulo": "HABITACIONES · LO QUE YA TENEMOS",
+    "regla": "De la sesión del hotel: correcto y limpio, pero SIEMPRE el mismo plano y en horizontal",
+    "fotos": [
+      "raw/hilton/dt/sesion-real/muestra2\\_MG_0286.jpg",
+      "raw/hilton/dt/sesion-real/muestra2\\_MG_9578.jpg",
+      "raw/hilton/dt/sesion-real/muestra2\\_MG_0472.jpg"
+    ]
+  },
+  {
+    "titulo": "COWORK · EL ESPACIO   —  1er y 2do piso   (1/2)",
+    "regla": "El espacio manda. Sin personas. Mostrar la relación entre los dos niveles",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-b04.jpg",
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-b06.jpg",
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-b01.jpg"
+    ]
+  },
+  {
+    "titulo": "COWORK · EL ESPACIO   —  1er y 2do piso   (2/2)",
+    "regla": "Doble altura, escalera y mezzanine en el mismo cuadro. Sin personas. El espacio limpio",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-b08.jpg",
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-b07.jpg",
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-b09.jpg"
+    ]
+  },
+  {
+    "titulo": "COWORK · SILLONES Y MESAS   (1/2)",
+    "regla": "El estar de trabajo: sillón, mesa baja y luz de ventanal. Sin personas. El espacio limpio",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\05d-cowork-sillones\\05d-cowork-sillones-01.jpg",
+      "raw/hilton/dt/moodboard-pin\\05d-cowork-sillones\\05d-cowork-sillones-05.jpg",
+      "raw/hilton/dt/moodboard-pin\\05d-cowork-sillones\\05d-cowork-sillones-10.jpg"
+    ]
+  },
+  {
+    "titulo": "COWORK · SILLONES Y MESAS   (2/2)",
+    "regla": "La mesa con el PC y el café encima, y nadie sentado. Es la foto que vende el espacio",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\05d-cowork-sillones\\05d-cowork-sillones-04.jpg",
+      "raw/hilton/dt/moodboard-pin\\05d-cowork-sillones\\05d-cowork-sillones-03.jpg",
+      "raw/hilton/dt/moodboard-pin\\05d-cowork-sillones\\05d-cowork-sillones-14.jpg"
+    ]
+  },
+  {
+    "titulo": "COWORK · TRABAJAR AQUÍ   —  POST (horizontal)",
+    "regla": "La persona VA DESENFOCADA y el espacio en foco. Nunca un rostro reconocible",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-c04.jpg",
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-c03.jpg",
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-c13.jpg"
+    ]
+  },
+  {
+    "titulo": "COWORK · TRABAJAR AQUÍ   —  HISTORIA (vertical)",
+    "regla": "De espaldas o fuera de foco. El PC y el café en foco; el espacio, protagonista",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-c01.jpg",
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-c06.jpg",
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-c02.jpg"
+    ]
+  },
+  {
+    "titulo": "COWORK · EL DETALLE   —  el PC y el café en foco",
+    "regla": "Primer plano de PC y taza; el salón detrás, desenfocado. Sirve para historia y para carrusel",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-c15.jpg",
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-c07.jpg",
+      "raw/hilton/dt/moodboard-pin\\05-cowork\\05-cowork-c12.jpg"
+    ]
+  },
+  {
+    "titulo": "COWORK · LO QUE YA TENEMOS   —  y qué le falta",
+    "regla": "De la sesión del hotel. Mesa de trabajo y café REALES: falta el PC abierto, la taza servida y la persona desenfocada",
+    "fotos": [
+      "raw/hilton/dt/sesion-real/muestra2\\_MG_9627.jpg",
+      "raw/hilton/dt/sesion-real/muestra2\\_MG_0321.jpg",
+      "raw/hilton/dt/sesion-real/muestra2\\_MG_0633.jpg"
+    ]
+  },
+  {
+    "titulo": "CAFETERÍA · EL ESPACIO   (1/2)",
+    "regla": "Sin rostros. El salón vacío y montado",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-04.jpg",
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-06.jpg",
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-12.jpg"
+    ]
+  },
+  {
+    "titulo": "CAFETERÍA · EL ESPACIO   (2/2)",
+    "regla": "Sin rostros. Luz natural y el ventanal como protagonista",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-c14.jpg",
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-c13.jpg",
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-c01.jpg"
+    ]
+  },
+  {
+    "titulo": "CAFETERÍA · LA BARRA",
+    "regla": "El mesón, la máquina y la estantería. Sin personas",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-c02.jpg",
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-c03.jpg",
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-c04.jpg"
+    ]
+  },
+  {
+    "titulo": "CAFETERÍA · LA VITRINA   —  bollería",
+    "regla": "Producto en foco, sin manos. Es el plano que hoy no existe en la sesión",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-c09.jpg",
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-c10.jpg",
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-c11.jpg"
+    ]
+  },
+  {
+    "titulo": "CAFETERÍA · LAS MANOS   —  el barista",
+    "regla": "Barista SÍ puede aparecer: manos preparando, delantal, nunca el rostro",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-07.jpg",
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-08.jpg",
+      "raw/hilton/dt/moodboard-pin\\06-cafeteria\\06-cafeteria-10.jpg"
+    ]
+  },
+  {
+    "titulo": "TERRAZA DE LA CAFETERÍA   —  POST (horizontal)",
+    "regla": "Espacio del hotel, no la marca. Día, vegetación y mesas montadas. Sin personas",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\11-terraza-cafeteria\\11-terraza-cafeteria-c04.jpg",
+      "raw/hilton/dt/moodboard-pin\\11-terraza-cafeteria\\11-terraza-cafeteria-c07.jpg",
+      "raw/hilton/dt/moodboard-pin\\11-terraza-cafeteria\\11-terraza-cafeteria-c09.jpg"
+    ]
+  },
+  {
+    "titulo": "TERRAZA DE LA CAFETERÍA   —  HISTORIA (vertical)",
+    "regla": "Espacio del hotel, no la marca. Vertical: el jardín y la mesa servida",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\11-terraza-cafeteria\\11-terraza-cafeteria-c13.jpg",
+      "raw/hilton/dt/moodboard-pin\\11-terraza-cafeteria\\11-terraza-cafeteria-c10.jpg",
+      "raw/hilton/dt/moodboard-pin\\11-terraza-cafeteria\\11-terraza-cafeteria-c06.jpg"
+    ]
+  },
+  {
+    "titulo": "TERRAZA DE LA CAFETERÍA · LO QUE YA TENEMOS",
+    "regla": "De la sesión del hotel: el jardín vertical y la terraza cubierta. Falta la hora dorada y la mesa montada",
+    "fotos": [
+      "raw/hilton/dt/sesion-real/muestra2\\_MG_9380.jpg",
+      "raw/hilton/dt/sesion-real/muestra2\\_MG_9398.jpg",
+      "raw/hilton/dt/sesion-real/muestra2\\_MG_9463.jpg"
+    ]
+  },
+  {
+    "titulo": "TERRAZA DEL RESTAURANTE   —  POST (horizontal)",
+    "regla": "Espacio del hotel, no la marca. Atardecer y noche: velas, guirnaldas y la ciudad de fondo",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\12-terraza-restaurant\\12-terraza-restaurant-c09.jpg",
+      "raw/hilton/dt/moodboard-pin\\12-terraza-restaurant\\12-terraza-restaurant-c16.jpg",
+      "raw/hilton/dt/moodboard-pin\\12-terraza-restaurant\\12-terraza-restaurant-c06.jpg"
+    ]
+  },
+  {
+    "titulo": "TERRAZA DEL RESTAURANTE   —  HISTORIA (vertical)",
+    "regla": "Vertical: la guirnalda arriba y la vista de la ciudad. Sin rostros",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\12-terraza-restaurant\\12-terraza-restaurant-c07.jpg",
+      "raw/hilton/dt/moodboard-pin\\12-terraza-restaurant\\12-terraza-restaurant-c08.jpg",
+      "raw/hilton/dt/moodboard-pin\\12-terraza-restaurant\\12-terraza-restaurant-c02.jpg"
+    ]
+  },
+  {
+    "titulo": "TERRAZA DEL RESTAURANTE · LA BARRA   —  POST (horizontal)",
+    "regla": "La barra de la terraza encendida, con la ciudad detrás. Sin personas. El espacio limpio",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\12b-terraza-qb\\12b-terraza-qb-05.jpg",
+      "raw/hilton/dt/moodboard-pin\\12b-terraza-qb\\12b-terraza-qb-07.jpg",
+      "raw/hilton/dt/moodboard-pin\\12b-terraza-qb\\12b-terraza-qb-14.jpg"
+    ]
+  },
+  {
+    "titulo": "TERRAZA DEL RESTAURANTE · LA HORA   —  HISTORIA (vertical)",
+    "regla": "El atardecer y la hora azul son la firma de esta terraza. Vertical, sin rostros",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\12b-terraza-qb\\12b-terraza-qb-01.jpg",
+      "raw/hilton/dt/moodboard-pin\\12b-terraza-qb\\12b-terraza-qb-04.jpg",
+      "raw/hilton/dt/moodboard-pin\\12b-terraza-qb\\12b-terraza-qb-09.jpg"
+    ]
+  },
+  {
+    "titulo": "TERRAZA DEL RESTAURANTE · PÉRGOLA Y LOUNGE",
+    "regla": "Guirnaldas, vegetación y lounge montado. El plano que muestra el espacio completo",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\12b-terraza-qb\\12b-terraza-qb-08.jpg",
+      "raw/hilton/dt/moodboard-pin\\12b-terraza-qb\\12b-terraza-qb-11.jpg",
+      "raw/hilton/dt/moodboard-pin\\12b-terraza-qb\\12b-terraza-qb-16.jpg"
+    ]
+  },
+  {
+    "titulo": "RESTAURANTE · EL SALÓN   (1/2)",
+    "regla": "Sin comensales. Mesas montadas y la luz del local",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\07b-restaurant\\07b-restaurant-02.jpg",
+      "raw/hilton/dt/moodboard-pin\\07b-restaurant\\07b-restaurant-03.jpg",
+      "raw/hilton/dt/moodboard-pin\\07b-restaurant\\07b-restaurant-04.jpg"
+    ]
+  },
+  {
+    "titulo": "RESTAURANTE · EL SALÓN   (2/2)",
+    "regla": "Sin comensales. La banqueta corrida y la lámpara como firma",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\07b-restaurant\\07b-restaurant-06.jpg",
+      "raw/hilton/dt/moodboard-pin\\07b-restaurant\\07b-restaurant-07.jpg",
+      "raw/hilton/dt/moodboard-pin\\07b-restaurant\\07b-restaurant-12.jpg"
+    ]
+  },
+  {
+    "titulo": "RESTAURANTE · MONTAJE Y DESAYUNO   (1/2)",
+    "regla": "Sin rostros. Manos sirviendo o montaje de mesa sin comensales",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\07-restaurant\\07-restaurant-03.jpg",
+      "raw/hilton/dt/moodboard-pin\\07-restaurant\\07-restaurant-04.jpg",
+      "raw/hilton/dt/moodboard-pin\\07-restaurant\\07-restaurant-05.jpg"
+    ]
+  },
+  {
+    "titulo": "RESTAURANTE · MONTAJE Y DESAYUNO   (2/2)",
+    "regla": "Sin rostros. El buffet en primer plano",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\07-restaurant\\07-restaurant-08.jpg",
+      "raw/hilton/dt/moodboard-pin\\07-restaurant\\07-restaurant-11.jpg",
+      "raw/hilton/dt/moodboard-pin\\07-restaurant\\07-restaurant-07.jpg"
+    ]
+  },
+  {
+    "titulo": "RESTAURANTE · LO QUE YA TENEMOS",
+    "regla": "De la sesión del hotel: el comedor real. Falta plano cerrado y luz más limpia",
+    "fotos": [
+      "raw/hilton/dt/sesion-real/muestra2\\_MG_0733.jpg",
+      "raw/hilton/dt/sesion-real/muestra2\\_MG_0763.jpg",
+      "raw/hilton/dt/sesion-real/muestra2\\_MG_0852.jpg"
+    ]
+  },
+  {
+    "titulo": "DESAYUNO BUFFET · LAS ESTACIONES   —  POST (horizontal)",
+    "regla": "El buffet del RESTAURANTE, no la bandeja en la habitación. Estaciones montadas y sin gente",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\22-desayuno-buffet\\22-desayuno-buffet-01.jpg",
+      "raw/hilton/dt/moodboard-pin\\22-desayuno-buffet\\22-desayuno-buffet-04.jpg",
+      "raw/hilton/dt/moodboard-pin\\22-desayuno-buffet\\22-desayuno-buffet-05.jpg"
+    ]
+  },
+  {
+    "titulo": "DESAYUNO BUFFET · EL PRODUCTO   —  HISTORIA (vertical)",
+    "regla": "Plano cerrado del producto: la torre de bollería, la fruta, el plato servido. Sin manos",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\22-desayuno-buffet\\22-desayuno-buffet-09.jpg",
+      "raw/hilton/dt/moodboard-pin\\22-desayuno-buffet\\22-desayuno-buffet-10.jpg",
+      "raw/hilton/dt/moodboard-pin\\22-desayuno-buffet\\22-desayuno-buffet-11.jpg"
+    ]
+  },
+  {
+    "titulo": "DESAYUNO BUFFET · LA FRUTA Y EL PAN",
+    "regla": "El color lo pone la fruta. Bandejas alineadas y llenas, en plano medio. Sin personas. El espacio limpio",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\22-desayuno-buffet\\22-desayuno-buffet-13.jpg",
+      "raw/hilton/dt/moodboard-pin\\22-desayuno-buffet\\22-desayuno-buffet-15.jpg",
+      "raw/hilton/dt/moodboard-pin\\22-desayuno-buffet\\22-desayuno-buffet-16.jpg"
+    ]
+  },
+  {
+    "titulo": "DESAYUNO BUFFET · EL SALÓN A LA HORA DEL DESAYUNO",
+    "regla": "El comedor con luz de mañana y el buffet al fondo. Sin comensales",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\22-desayuno-buffet\\22-desayuno-buffet-02.jpg",
+      "raw/hilton/dt/moodboard-pin\\22-desayuno-buffet\\22-desayuno-buffet-03.jpg",
+      "raw/hilton/dt/moodboard-pin\\22-desayuno-buffet\\22-desayuno-buffet-07.jpg"
+    ]
+  },
+  {
+    "titulo": "GIMNASIO   (1/2)",
+    "regla": "Sin personas. Equipos y sala vacía",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\08-gimnasio\\08-gimnasio-01.jpg",
+      "raw/hilton/dt/moodboard-pin\\08-gimnasio\\08-gimnasio-02.jpg",
+      "raw/hilton/dt/moodboard-pin\\08-gimnasio\\08-gimnasio-03.jpg"
+    ]
+  },
+  {
+    "titulo": "GIMNASIO   (2/2)",
+    "regla": "Sin personas. Equipos y sala vacía",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\08-gimnasio\\08-gimnasio-07.jpg",
+      "raw/hilton/dt/moodboard-pin\\08-gimnasio\\08-gimnasio-09.jpg",
+      "raw/hilton/dt/moodboard-pin\\08-gimnasio\\08-gimnasio-10.jpg"
+    ]
+  },
+  {
+    "titulo": "WELLNESS LOUNGE / SPA   (1/2)",
+    "regla": "Sin rostros. Manos, detalle y sala vacía",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\09-wellness-spa\\09-wellness-spa-01.jpg",
+      "raw/hilton/dt/moodboard-pin\\09-wellness-spa\\09-wellness-spa-03.jpg",
+      "raw/hilton/dt/moodboard-pin\\09-wellness-spa\\09-wellness-spa-04.jpg"
+    ]
+  },
+  {
+    "titulo": "WELLNESS LOUNGE / SPA   (2/2)",
+    "regla": "Sin rostros. Manos, detalle y sala vacía",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\09-wellness-spa\\09-wellness-spa-07.jpg",
+      "raw/hilton/dt/moodboard-pin\\09-wellness-spa\\09-wellness-spa-08.jpg",
+      "raw/hilton/dt/moodboard-pin\\09-wellness-spa\\09-wellness-spa-10.jpg"
+    ]
+  },
+  {
+    "titulo": "EVENTOS CORPORATIVOS · LO QUE YA TENEMOS   —  Astoria y Conrat",
+    "regla": "Sesión real del hotel. Buen espacio, pero SIEMPRE el mismo plano general y en horizontal",
+    "fotos": [
+      "raw/hilton/dt/sesion-real/muestra\\_MG_7166.jpg",
+      "raw/hilton/dt/sesion-real/muestra\\_MG_7702.jpg",
+      "raw/hilton/dt/sesion-real/muestra\\_MG_8114.jpg"
+    ]
+  },
+  {
+    "titulo": "EVENTOS CORPORATIVOS · LO QUE FALTA   —  el detalle",
+    "regla": "Lo que la sesión casi no tiene: el puesto, la carpeta, el vaso. Y una persona DESENFOCADA al fondo",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\13-eventos-corporativos\\13-eventos-corporativos-03.jpg",
+      "raw/hilton/dt/moodboard-pin\\13-eventos-corporativos\\13-eventos-corporativos-01.jpg",
+      "raw/hilton/dt/moodboard-pin\\13-eventos-corporativos\\13-eventos-corporativos-12.jpg"
+    ]
+  },
+  {
+    "titulo": "EVENTOS CORPORATIVOS · BOARD ROOM   —  la reunión chica",
+    "regla": "Directorio montado, sin personas. Es el formato que busca la empresa que viene al hotel",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\13-eventos-corporativos\\13-eventos-corporativos-09.jpg",
+      "raw/hilton/dt/moodboard-pin\\13-eventos-corporativos\\13-eventos-corporativos-10.jpg",
+      "raw/hilton/dt/moodboard-pin\\13-eventos-corporativos\\13-eventos-corporativos-11.jpg"
+    ]
+  },
+  {
+    "titulo": "EVENTOS CORPORATIVOS · MONTAJE   —  HISTORIA (vertical)",
+    "regla": "Vertical para historia: la mesa en fuga, el material sobre la mesa, la sala en U",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\13-eventos-corporativos\\13-eventos-corporativos-04.jpg",
+      "raw/hilton/dt/moodboard-pin\\13-eventos-corporativos\\13-eventos-corporativos-06.jpg",
+      "raw/hilton/dt/moodboard-pin\\13-eventos-corporativos\\13-eventos-corporativos-18.jpg"
+    ]
+  },
+  {
+    "titulo": "EVENTOS CORPORATIVOS · EL COFFEE BREAK",
+    "regla": "De la sesión real: el buffet de salón y el detalle de mesa. Falta luz más limpia y plano cerrado",
+    "fotos": [
+      "raw/hilton/dt/sesion-real/muestra\\_MG_8042.jpg",
+      "raw/hilton/dt/sesion-real/muestra\\_MG_7285.jpg",
+      "raw/hilton/dt/sesion-real/muestra\\_MG_7570.jpg"
+    ]
+  },
+  {
+    "titulo": "SALÓN · LA ENTRADA   —  cómo se llega",
+    "regla": "La puerta del salón en clave corporativa: madera, vidrio y el interior asomando. Sin personas",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\17-salon-entrada\\17-salon-entrada-01.jpg",
+      "raw/hilton/dt/moodboard-pin\\17-salon-entrada\\17-salon-entrada-02.jpg",
+      "raw/hilton/dt/moodboard-pin\\17-salon-entrada\\17-salon-entrada-05.jpg"
+    ]
+  },
+  {
+    "titulo": "SALÓN · LA SEÑALÉTICA   —  el detalle que ordena",
+    "regla": "El nombre del salón sobre el muro o la puerta. Plano cerrado, sirve para historia y carrusel",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\17-salon-entrada\\17-salon-entrada-07.jpg",
+      "raw/hilton/dt/moodboard-pin\\17-salon-entrada\\17-salon-entrada-08.jpg",
+      "raw/hilton/dt/moodboard-pin\\17-salon-entrada\\17-salon-entrada-09.jpg"
+    ]
+  },
+  {
+    "titulo": "SALÓN · EL FOYER   —  la antesala",
+    "regla": "El espacio previo: alfombra, mesas altas y luz. Es donde espera la empresa antes de entrar. Sin personas. El espacio limpio",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\17-salon-entrada\\17-salon-entrada-13.jpg",
+      "raw/hilton/dt/moodboard-pin\\17-salon-entrada\\17-salon-entrada-14.jpg",
+      "raw/hilton/dt/moodboard-pin\\17-salon-entrada\\17-salon-entrada-15.jpg"
+    ]
+  },
+  {
+    "titulo": "SALÓN · PANTALLA + MESAS   —  POST (horizontal)",
+    "regla": "La pantalla encendida y las mesas montadas en el mismo cuadro. Sin personas",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\18-salon-pantalla-mesas\\18-salon-pantalla-mesas-03.jpg",
+      "raw/hilton/dt/moodboard-pin\\18-salon-pantalla-mesas\\18-salon-pantalla-mesas-12.jpg",
+      "raw/hilton/dt/moodboard-pin\\18-salon-pantalla-mesas\\18-salon-pantalla-mesas-15.jpg"
+    ]
+  },
+  {
+    "titulo": "SALÓN · PANTALLA + MESAS   —  HISTORIA (vertical)",
+    "regla": "Vertical: la pantalla al fondo y la mesa entrando en cuadro. Sin personas",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\18-salon-pantalla-mesas\\18-salon-pantalla-mesas-02.jpg",
+      "raw/hilton/dt/moodboard-pin\\18-salon-pantalla-mesas\\18-salon-pantalla-mesas-16.jpg",
+      "raw/hilton/dt/moodboard-pin\\18-salon-pantalla-mesas\\18-salon-pantalla-mesas-11.jpg"
+    ]
+  },
+  {
+    "titulo": "SALÓN · PANTALLA + MESAS · LO QUE YA TENEMOS",
+    "regla": "Sesión real: la pantalla con el logo DT y el montaje. Falta variar el plano y apagar el logo repetido",
+    "fotos": [
+      "raw/hilton/dt/sesion-real/muestra\\_MG_8244.jpg",
+      "raw/hilton/dt/sesion-real/muestra\\_MG_7417.jpg",
+      "raw/hilton/dt/sesion-real/muestra\\_MG_7166.jpg"
+    ]
+  },
+  {
+    "titulo": "SALÓN SENCILLO · ESTILO COWORK   (1/2)",
+    "regla": "Sala chica y clara, tabique de vidrio y mesa simple. Sin mantel largo ni faldón. Sin personas. El espacio limpio",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\19-salon-sencillo-cowork\\19-salon-sencillo-cowork-07.jpg",
+      "raw/hilton/dt/moodboard-pin\\19-salon-sencillo-cowork\\19-salon-sencillo-cowork-08.jpg",
+      "raw/hilton/dt/moodboard-pin\\19-salon-sencillo-cowork\\19-salon-sencillo-cowork-10.jpg"
+    ]
+  },
+  {
+    "titulo": "SALÓN SENCILLO · ESTILO COWORK   (2/2)",
+    "regla": "Luz natural, madera clara y silla de oficina. El registro de reunión de trabajo, no de banquete",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\19-salon-sencillo-cowork\\19-salon-sencillo-cowork-03.jpg",
+      "raw/hilton/dt/moodboard-pin\\19-salon-sencillo-cowork\\19-salon-sencillo-cowork-05.jpg",
+      "raw/hilton/dt/moodboard-pin\\19-salon-sencillo-cowork\\19-salon-sencillo-cowork-13.jpg"
+    ]
+  },
+  {
+    "titulo": "SALÓN · EL CAFÉ DEL FOYER",
+    "regla": "La estación de café del coffee break, montada y sin personas. Plano cerrado para historia",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\20-salon-foyer-cafe\\20-salon-foyer-cafe-01.jpg",
+      "raw/hilton/dt/moodboard-pin\\20-salon-foyer-cafe\\20-salon-foyer-cafe-08.jpg",
+      "raw/hilton/dt/moodboard-pin\\20-salon-foyer-cafe\\20-salon-foyer-cafe-11.jpg"
+    ]
+  },
+  {
+    "titulo": "SALONES · MESAS REDONDAS   —  POST (horizontal)",
+    "regla": "El montaje que no tenemos fotografiado: redondas vestidas, salón completo y vacío",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\15-salones-redondas\\15-salones-redondas-03.jpg",
+      "raw/hilton/dt/moodboard-pin\\15-salones-redondas\\15-salones-redondas-05.jpg",
+      "raw/hilton/dt/moodboard-pin\\15-salones-redondas\\15-salones-redondas-13.jpg"
+    ]
+  },
+  {
+    "titulo": "SALONES · MESAS REDONDAS   —  HISTORIA (vertical)",
+    "regla": "Vertical: la redonda montada, el centro de mesa y la vajilla. Sin comensales",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\15-salones-redondas\\15-salones-redondas-11.jpg",
+      "raw/hilton/dt/moodboard-pin\\15-salones-redondas\\15-salones-redondas-10.jpg",
+      "raw/hilton/dt/moodboard-pin\\15-salones-redondas\\15-salones-redondas-09.jpg"
+    ]
+  },
+  {
+    "titulo": "SALONES · MESAS REDONDAS   —  EL DETALLE",
+    "regla": "Cenital del puesto y del centro de mesa. Es el plano de carrusel que hoy no existe",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\15-salones-redondas\\15-salones-redondas-08.jpg",
+      "raw/hilton/dt/moodboard-pin\\15-salones-redondas\\15-salones-redondas-12.jpg",
+      "raw/hilton/dt/moodboard-pin\\15-salones-redondas\\15-salones-redondas-02.jpg"
+    ]
+  },
+  {
+    "titulo": "SALONES · MONTAJE SOCIAL",
+    "regla": "Sin personas. Salón montado, vacío",
+    "fotos": [
+      "raw/hilton/dt/moodboard-pin\\10-salones\\10-salones-01.jpg",
+      "raw/hilton/dt/moodboard-pin\\10-salones\\10-salones-07.jpg",
+      "raw/hilton/dt/moodboard-pin\\10-salones\\10-salones-08.jpg"
+    ]
+  }
+]

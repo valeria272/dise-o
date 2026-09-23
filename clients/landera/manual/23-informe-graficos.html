@@ -1,0 +1,141 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="_comun.css"><link rel="stylesheet" href="_v2.css">
+<!-- 20 · Informe de gestión III — gráficos, mapas y KPI. Tres gráficos bastan
+     (barras, comparativo, línea), un KPI que siempre se arma igual y el mapa de
+     predios como paño, no como mapa decorativo. Los gráficos se dibujan con
+     la paleta y nada más: sin 3D, sin gradientes, sin más de tres colores. -->
+<style>
+  .ch { position:absolute; }
+  .ch .t { font-size:7pt; color:var(--verde); text-transform:uppercase; letter-spacing:0.09em; margin:0 0 4pt; font-weight:400; }
+  .ch svg text { font-family:"Aptos"; }
+  .ch .lab { font-size:6pt; fill:#666461; }
+  .ch .val { font-size:6.2pt; fill:#33353E; font-weight:600; }
+</style>
+
+<h1 class="titulo">Aplicaciones</h1>
+<p class="bajada">Informe de gestión III: gráficos, mapas y KPI</p>
+<div class="filete-cab"></div>
+<div class="divisoria" style="left:360pt"></div>
+
+<div class="columna" style="left:60.2pt; top:134.8pt; width:270pt">
+  <p class="rotulo">Tres gráficos, no más</p>
+  <p class="entrada"><b>Barras</b> para comparar predios, <b>barras dobles</b>
+  para presupuesto contra real y <b>línea</b> para el tiempo. Con eso se cuenta
+  todo el informe.</p>
+  <p class="rotulo">Cómo se pintan</p>
+  <p class="cuerpo">Una serie: verde. Dos series: gris piedra para la referencia
+  (presupuesto, temporada anterior) y verde para el dato actual. La desviación,
+  y sólo ella, en terracota. <b>Nunca un cuarto color.</b></p>
+  <p class="cuerpo">Sin 3D, sin gradientes, sin sombras, sin grilla de fondo:
+  un eje base de 0,5 pt y el valor escrito sobre cada barra en SemiBold 8.</p>
+  <p class="rotulo">El KPI</p>
+  <p class="cuerpo">Cifra en SemiBold <span class="cifra">36</span>, rótulo en
+  versales <span class="cifra">8</span> debajo, variación en <span class="cifra">9</span>
+  verde o terracota. Máximo tres por página, siempre alineados por la base de
+  la cifra.</p>
+  <p class="rotulo">El mapa</p>
+  <p class="cuerpo">Los predios son un <b>paño</b>: polígonos planos en verde y
+  gris, el que está en desviación en terracota. Sin relieve, sin satélite.</p>
+</div>
+
+<!-- barras -->
+<div class="ch" style="left:400pt; top:134.8pt; width:180pt">
+  <p class="t">Rendimiento por predio (t/ha)</p>
+  <svg width="180" height="110" viewBox="0 0 180 110">
+    <line x1="0" y1="92" x2="180" y2="92" stroke="#666461" stroke-width="0.5"/>
+    <rect x="10" y="18" width="30" height="74" fill="#687B5D"/><text class="val" x="25" y="13" text-anchor="middle">9,0</text><text class="lab" x="25" y="103" text-anchor="middle">El Peral</text>
+    <rect x="54" y="26" width="30" height="66" fill="#687B5D"/><text class="val" x="69" y="21" text-anchor="middle">8,1</text><text class="lab" x="69" y="103" text-anchor="middle">Sta. Rosa</text>
+    <rect x="98" y="15" width="30" height="77" fill="#687B5D"/><text class="val" x="113" y="10" text-anchor="middle">9,4</text><text class="lab" x="113" y="103" text-anchor="middle">Nogales</text>
+    <rect x="142" y="41" width="30" height="51" fill="#E4361F"/><text class="val" x="157" y="36" text-anchor="middle" fill="#E4361F">6,2</text><text class="lab" x="157" y="103" text-anchor="middle">La Vega</text>
+  </svg>
+</div>
+<p class="caption" style="left:400pt; top:262pt; width:180pt">Una serie · la desviación en terracota</p>
+
+<!-- comparativo -->
+<div class="ch" style="left:598pt; top:134.8pt; width:180pt">
+  <p class="t">Presupuesto contra real (MM$)</p>
+  <svg width="180" height="110" viewBox="0 0 180 110">
+    <line x1="0" y1="92" x2="180" y2="92" stroke="#666461" stroke-width="0.5"/>
+    <g><rect x="8" y="30" width="14" height="62" fill="#B5B2AC"/><rect x="24" y="28" width="14" height="64" fill="#687B5D"/><text class="lab" x="23" y="103" text-anchor="middle">El Peral</text></g>
+    <g><rect x="52" y="44" width="14" height="48" fill="#B5B2AC"/><rect x="68" y="45" width="14" height="47" fill="#687B5D"/><text class="lab" x="67" y="103" text-anchor="middle">Sta. Rosa</text></g>
+    <g><rect x="96" y="59" width="14" height="33" fill="#B5B2AC"/><rect x="112" y="59" width="14" height="33" fill="#687B5D"/><text class="lab" x="111" y="103" text-anchor="middle">Nogales</text></g>
+    <g><rect x="140" y="71" width="14" height="21" fill="#B5B2AC"/><rect x="156" y="68" width="14" height="24" fill="#E4361F"/><text class="lab" x="155" y="103" text-anchor="middle">La Vega</text></g>
+    <rect x="120" y="4" width="8" height="5" fill="#B5B2AC"/><text class="lab" x="131" y="9">Ppto.</text>
+    <rect x="150" y="4" width="8" height="5" fill="#687B5D"/><text class="lab" x="161" y="9">Real</text>
+  </svg>
+</div>
+<p class="caption" style="left:598pt; top:262pt; width:180pt">Gris la referencia · verde el dato</p>
+
+<!-- línea -->
+<div class="ch" style="left:796pt; top:134.8pt; width:180pt">
+  <p class="t">Rendimiento promedio por temporada (t/ha)</p>
+  <svg width="180" height="110" viewBox="0 0 180 110">
+    <line x1="0" y1="92" x2="180" y2="92" stroke="#666461" stroke-width="0.5"/>
+    <polyline points="20,60 66,48 112,40 158,34" fill="none" stroke="#687B5D" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="20" cy="60" r="2.2" fill="#687B5D"/><circle cx="66" cy="48" r="2.2" fill="#687B5D"/><circle cx="112" cy="40" r="2.2" fill="#687B5D"/><circle cx="158" cy="34" r="2.6" fill="#33353E"/>
+    <text class="val" x="20" y="54" text-anchor="middle">7,6</text><text class="val" x="66" y="42" text-anchor="middle">8,0</text><text class="val" x="112" y="34" text-anchor="middle">8,4</text><text class="val" x="158" y="27" text-anchor="middle">8,7</text>
+    <text class="lab" x="20" y="103" text-anchor="middle">2023</text><text class="lab" x="66" y="103" text-anchor="middle">2024</text><text class="lab" x="112" y="103" text-anchor="middle">2025</text><text class="lab" x="158" y="103" text-anchor="middle">2026</text>
+  </svg>
+</div>
+<p class="caption" style="left:796pt; top:262pt; width:180pt">El último punto en tinta: es el dato</p>
+
+<!-- KPI -->
+<p class="rotulo" style="left:400pt; top:292pt">El KPI</p>
+<div class="kpi" style="left:400pt; top:312pt; width:110pt"><div class="v" style="font-size:36pt">776</div><div class="l" style="font-size:8pt; margin-top:6pt">Hectáreas en gestión</div><div class="d" style="font-size:9pt; margin-top:2pt">+3 % vs. Q4</div></div>
+<div class="kpi" style="left:526pt; top:312pt; width:110pt"><div class="v" style="font-size:36pt">8,7</div><div class="l" style="font-size:8pt; margin-top:6pt">t/ha rendimiento</div><div class="d" style="font-size:9pt; margin-top:2pt">+1,2 %</div></div>
+<div class="kpi" style="left:652pt; top:312pt; width:126pt"><div class="v" style="font-size:36pt">−4 %</div><div class="l" style="font-size:8pt; margin-top:6pt">OPEX vs. presupuesto</div><div class="d neg" style="font-size:9pt; margin-top:2pt">sobre la tolerancia</div></div>
+<div class="cota v" style="left:786pt; top:312pt; height:36pt"><span>SemiBold 36</span></div>
+<div class="cota v" style="left:786pt; top:354pt; height:9pt"><span>Versales 8</span></div>
+<div class="cota v" style="left:786pt; top:365pt; height:10pt"><span>Variación 9</span></div>
+
+<!-- mapa -->
+<p class="rotulo" style="left:850pt; top:292pt">El mapa de predios</p>
+<svg style="position:absolute; left:850pt; top:312pt" width="126" height="96" viewBox="0 0 126 96">
+  <rect x="0" y="0" width="58" height="46" fill="#687B5D" opacity="0.85"/>
+  <rect x="62" y="0" width="64" height="28" fill="#666461" opacity="0.45"/>
+  <rect x="62" y="32" width="64" height="14" fill="#687B5D" opacity="0.55"/>
+  <rect x="0" y="50" width="126" height="20" fill="#666461" opacity="0.28"/>
+  <rect x="0" y="74" width="80" height="22" fill="#E4361F" opacity="0.8"/>
+  <rect x="84" y="74" width="42" height="22" fill="#687B5D" opacity="0.4"/>
+  <text x="4" y="10" font-size="5.5" fill="#fff" font-family="Aptos">El Peral · 312</text>
+  <text x="4" y="84" font-size="5.5" fill="#fff" font-family="Aptos">La Vega · 96</text>
+</svg>
+<p class="caption" style="left:850pt; top:412pt; width:126pt; font-size:7.5pt">Paño plano, nombre y ha</p>
+
+<!-- incorrectos -->
+<p class="rotulo" style="left:400pt; top:394pt">Lo que no se hace</p>
+<div class="mal cruz" style="left:400pt; top:412pt; width:100pt; height:54pt">
+  <svg width="100" height="54" viewBox="0 0 100 54">
+    <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#9BC53D"/><stop offset="1" stop-color="#1E6B3A"/></linearGradient></defs>
+    <ellipse cx="50" cy="30" rx="30" ry="15" fill="#1E6B3A" opacity=".6"/>
+    <path d="M50 27 L50 12 A30 15 0 0 1 78 22 Z" fill="url(#g1)"/><path d="M50 27 L78 22 A30 15 0 0 1 40 41 Z" fill="#E4A11B"/><path d="M50 27 L40 41 A30 15 0 0 1 20 22 Z" fill="#2E86DE"/><path d="M50 27 L20 22 A30 15 0 0 1 50 12 Z" fill="#E4361F"/>
+  </svg>
+</div>
+<p class="caption" style="left:400pt; top:469pt; width:100pt; font-size:7pt">Torta 3D, cinco colores</p>
+<div class="mal cruz" style="left:512pt; top:412pt; width:100pt; height:54pt">
+  <svg width="100" height="54" viewBox="0 0 100 54">
+    <defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A5C48C"/><stop offset="1" stop-color="#687B5D"/></linearGradient></defs>
+    <g stroke="#E6E3DE" stroke-width="0.4"><line x1="0" y1="10" x2="100" y2="10"/><line x1="0" y1="20" x2="100" y2="20"/><line x1="0" y1="30" x2="100" y2="30"/><line x1="0" y1="40" x2="100" y2="40"/></g>
+    <rect x="8" y="14" width="16" height="36" fill="url(#g2)" rx="3"/><rect x="32" y="22" width="16" height="28" fill="url(#g2)" rx="3"/><rect x="56" y="8" width="16" height="42" fill="url(#g2)" rx="3"/><rect x="80" y="30" width="16" height="20" fill="url(#g2)" rx="3"/>
+    <g fill="#000" opacity=".12"><rect x="10" y="16" width="16" height="36" rx="3"/><rect x="34" y="24" width="16" height="28" rx="3"/><rect x="58" y="10" width="16" height="42" rx="3"/><rect x="82" y="32" width="16" height="20" rx="3"/></g>
+  </svg>
+</div>
+<p class="caption" style="left:512pt; top:469pt; width:100pt; font-size:7pt">Gradiente, sombra, grilla, esquinas</p>
+<div class="mal cruz" style="left:624pt; top:412pt; width:100pt; height:54pt">
+  <svg width="100" height="54" viewBox="0 0 100 54">
+    <line x1="0" y1="50" x2="100" y2="50" stroke="#666461" stroke-width="0.5"/>
+    <rect x="8" y="14" width="16" height="36" fill="#E4361F"/><rect x="32" y="22" width="16" height="28" fill="#E4361F"/><rect x="56" y="8" width="16" height="42" fill="#E4361F"/><rect x="80" y="30" width="16" height="20" fill="#E4361F"/>
+  </svg>
+</div>
+<p class="caption" style="left:624pt; top:469pt; width:100pt; font-size:7pt">Todo en terracota</p>
+<p class="caption" style="left:740pt; top:418pt; width:236pt; text-transform:none; font-size:8.5pt; line-height:12pt">La paleta de gráficos es de tres: verde, gris piedra y terracota. Si un gráfico necesita más, son dos gráficos.</p>
+
+<div class="iv">
+  <div><p class="h">Invariables</p>
+    <ul><li>Tres tipos: barras, barras dobles, línea</li><li>verde la serie, gris la referencia, terracota la desviación</li><li>eje base 0,5 pt, sin grilla, sin 3D, sin gradientes</li><li>valor escrito sobre cada barra en SemiBold 8</li><li>KPI = cifra SemiBold 36 + rótulo versales 8 + variación 9</li><li><b>máximo tres KPI por página</b></li><li>mapa de predios como paño plano.</li></ul></div>
+  <div class="var"><p class="h">Variables</p>
+    <ul><li>Qué variable se grafica y su unidad</li><li>el número de barras o puntos</li><li>horizontal o vertical según el espacio</li><li>con o sin leyenda (sólo si hay dos series)</li><li>el mapa puede llevar la forma real de los predios o cuadrados proporcionales a la superficie.</li></ul></div>
+</div>
+
+<p class="folio"><b>23</b> · Aplicaciones</p>
+<p class="folio-marca">Landera · Manual de marca</p>

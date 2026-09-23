@@ -1,0 +1,90 @@
+<!-- ════════════════════════════════════════════════════════════════════════
+     SECCIÓN 06 — CENTROS EN OPERACIÓN — el carrusel
+     ────────────────────────────────────────────────────────────────────
+     Vista previa:  vista-previa/06-*.jpg
+     Archivos que usa:
+       · recursos/imagenes/centros/ (23 fotos)
+     Nota: Carrusel con los 23 centros. Se arrastra con el mouse y con el dedo; las flechas y los puntos también funcionan.
+     ════════════════════════════════════════════════════════════════════
+     Pega TODO este archivo dentro de un bloque «HTML personalizado».
+     Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
+     ════════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── CENTROS EN OPERACIÓN ─────────────────────────────────────── */
+.centros{padding:clamp(80px,10vw,140px) 0;background:#fff;overflow:hidden}
+.centros .cabeza{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;
+  margin-bottom:clamp(38px,4vw,58px);flex-wrap:wrap}
+.centros .cabeza p{color:var(--texto-med);max-width:44ch;margin-top:12px}
+.flechas{display:flex;gap:12px;flex-shrink:0}
+.flecha{width:52px;height:52px;border-radius:50%;border:1.6px solid rgba(0,0,0,.16);
+  display:grid;place-items:center;transition:background .35s var(--exp),border-color .35s var(--exp),transform .35s var(--exp)}
+.flecha svg{width:17px;height:17px;stroke:var(--texto);stroke-width:2;fill:none;transition:stroke .35s}
+.flecha:hover{background:var(--rojo);border-color:var(--rojo);transform:scale(1.06)}
+.flecha:hover svg{stroke:#fff}
+.pista-envoltorio{overflow:hidden;margin:0 calc(-1 * clamp(20px,5vw,40px));padding:0 clamp(20px,5vw,40px)}
+.pista{display:flex;gap:clamp(16px,2vw,24px);transition:transform .75s var(--exp)}
+.centro{flex:0 0 clamp(260px,30vw,392px);border-radius:var(--radio);overflow:hidden;position:relative;
+  transition:transform .5s var(--exp)}
+.centro img{width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform 1.1s var(--exp)}
+.centro:hover img{transform:scale(1.06)}
+.centro::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 46%,rgba(0,0,0,.72) 100%)}
+.centro .rotulo{position:absolute;left:22px;bottom:20px;z-index:2;color:#fff}
+.centro .rotulo .n{font-size:1.05rem;font-weight:600;line-height:1.25}
+.centro .rotulo .c{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;opacity:.78;margin-top:2px}
+.puntos{display:flex;gap:8px;justify-content:center;margin-top:36px}
+.punto{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,.18);transition:all .4s var(--exp)}
+.punto.activo{background:var(--rojo);width:26px;border-radius:999px}
+</style>
+
+<!-- ════════════ CENTROS EN OPERACIÓN ════════════ -->
+<section class="centros" id="centros">
+  <div class="contenedor">
+    <div class="cabeza">
+      <div>
+        <span class="eyebrow fade-up">Nuestra cartera</span>
+        <h2 class="titulo-seccion fade-up d1">Centros en operación</h2>
+        <p class="fade-up d2">
+          Una cartera en operación de Copiapó a Coyhaique. Cada uno de estos centros
+          partió como un terreno que alguien nos mostró. Así se ven hoy.
+        </p>
+      </div>
+      <div class="flechas fade-up d2">
+        <button class="flecha" id="ant" aria-label="Centro anterior">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="flecha" id="sig" aria-label="Centro siguiente">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="pista-envoltorio fade-up d3">
+      <div class="pista" id="pista">
+        <figure class="centro"><img src="../recursos/imagenes/centros/padre-hurtado.jpg" alt="Más Center Padre Hurtado, Padre Hurtado" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Padre Hurtado</div><div class="c">Padre Hurtado</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/ciudad-empresarial.jpg" alt="Más Center Ciudad Empresarial, Huechuraba" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Ciudad Empresarial</div><div class="c">Huechuraba</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/chamisero-1.jpg" alt="Más Center Chamisero I, Colina" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Chamisero I</div><div class="c">Colina</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/chamisero-2.jpg" alt="Más Center Chamisero II, Colina" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Chamisero II</div><div class="c">Colina</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/larrain.jpg" alt="Más Center Larraín, La Reina" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Larraín</div><div class="c">La Reina</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/las-flores.jpg" alt="Más Center Las Flores, Las Condes" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Las Flores</div><div class="c">Las Condes</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/san-carlos.jpg" alt="Más Center San Carlos, Las Condes" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center San Carlos</div><div class="c">Las Condes</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/penalolen.jpg" alt="Más Center Peñalolén, Peñalolén" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Peñalolén</div><div class="c">Peñalolén</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/los-nogales-1.jpg" alt="Más Center Los Nogales Etapa 1, Pirque" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Los Nogales Etapa 1</div><div class="c">Pirque</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/los-nogales-2.jpg" alt="Más Center Los Nogales Etapa 2, Pirque" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Los Nogales Etapa 2</div><div class="c">Pirque</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/pie-andino.jpg" alt="Más Center Pie Andino, Lo Barnechea" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Pie Andino</div><div class="c">Lo Barnechea</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/salvador.jpg" alt="Más Center Salvador, Ñuñoa" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Salvador</div><div class="c">Ñuñoa</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/placa-alameda.jpg" alt="Más Center Placa Alameda, Estación Central" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Placa Alameda</div><div class="c">Estación Central</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/santa-maria.jpg" alt="Más Center Santa María, Vitacura" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Santa María</div><div class="c">Vitacura</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/copiapo.jpg" alt="Más Center Copiapó, Copiapó" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Copiapó</div><div class="c">Copiapó</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/concon.jpg" alt="Más Center Concón, Concón" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Concón</div><div class="c">Concón</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/osorno.jpg" alt="Más Center Osorno, Osorno" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Osorno</div><div class="c">Osorno</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/talca.jpg" alt="Más Center Talca, Talca" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Talca</div><div class="c">Talca</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/torreones.jpg" alt="Más Center Torreones, Concepción" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Torreones</div><div class="c">Concepción</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/los-angeles.jpg" alt="Más Center Los Ángeles, Los Ángeles" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Los Ángeles</div><div class="c">Los Ángeles</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/san-vicente.jpg" alt="Más Center San Vicente, San Vicente de Tagua Tagua" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center San Vicente</div><div class="c">San Vicente de Tagua Tagua</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/la-serena.jpg" alt="Más Center La Serena, La Serena" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center La Serena</div><div class="c">La Serena</div></figcaption></figure>
+        <figure class="centro"><img src="../recursos/imagenes/centros/calera-de-tango.jpg" alt="Más Center Calera de Tango, Calera de Tango" loading="lazy" decoding="async"><figcaption class="rotulo"><div class="n">Más Center Calera de Tango</div><div class="c">Calera de Tango</div></figcaption></figure>
+      </div>
+    </div>
+    <div class="puntos" id="puntos"></div>
+  </div>
+</section>

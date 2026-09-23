@@ -1,0 +1,218 @@
+{
+  "slug": "mascenter",
+  "nombre": "Más Center — Grupo IFB",
+  "rubro": "Strip centers de barrio (desarrollo y administración)",
+  "pais": "CL",
+  "moneda": "CLP",
+  "web": "https://mascenter.cl",
+  "ecommerce": {
+    "url": "",
+    "tipo": "ninguno",
+    "api_publica": false,
+    "endpoints": {}
+  },
+  "manual": "clients/mascenter/CLAUDE.md",
+  "manual_oficial": "raw/mascenter-terrenos/manual-marca.pdf",
+  "kit_codigo": "src/compositions/mascenter/MasCenterReel.tsx",
+  "sistema": "clients/mascenter/sistema/",
+  "colores": {
+    "_nota": "Muestreados píxel a píxel en las 6 piezas de paid de septiembre 2026 (aprobadas)",
+    "rojo": "#DC1914",
+    "rojo_cta": "#D80000",
+    "rojo_mascota": "#DE2824",
+    "blanco": "#FFFFFF",
+    "rojo_manual_2023": "#E52521",
+    "rojo_oscuro_manual": "#65140F",
+    "gris_manual": "#DADADA"
+  },
+  "fuentes": {
+    "_nota": "Montserrat, medida glifo a glifo sobre las piezas aprobadas (04-09-2026). El manual 2023 dice Poppins y NO es lo que usa el cliente.",
+    "titular": {
+      "familia": "Montserrat",
+      "peso": 700,
+      "versales": true,
+      "px_feed": 43,
+      "px_story": 50
+    },
+    "cuerpo": {
+      "familia": "Montserrat",
+      "peso": 600,
+      "px_feed": 30.5,
+      "px_story": 50
+    },
+    "cta": {
+      "familia": "Montserrat",
+      "peso": 500,
+      "versales": true,
+      "px_feed": 29,
+      "px_story": 33.5
+    },
+    "reel_titular": {
+      "familia": "Montserrat",
+      "peso": 700,
+      "px": 90
+    },
+    "reel_pastilla": {
+      "familia": "Montserrat",
+      "peso": 500,
+      "px": 46
+    },
+    "numeros": {
+      "familia": "Montserrat",
+      "peso": 700
+    },
+    "_ruta": "clients/mascenter/sistema/assets/fonts/Montserrat.ttf",
+    "manual_dice": "Poppins"
+  },
+  "logos": {
+    "regla": "Blanco sobre foto y sobre rojo; color sólo sobre blanco. Tinta = 85,6 % del ancho del SVG, centro de tinta +1,9 %.",
+    "blanco": "clients/mascenter/sistema/assets/logo-mascenter-blanco.svg",
+    "color": "out/mascenter-algarrobal/assets/img/logo-mascenter-color.svg"
+  },
+  "mascota": {
+    "nombre": "Localito",
+    "archivo": "clients/mascenter/sistema/assets/localito.png",
+    "solo_en": "campaña comunidad / tráfico a IG"
+  },
+  "formatos": {
+    "feed": {
+      "w": 1080,
+      "h": 1080,
+      "ratio": "1:1"
+    },
+    "story": {
+      "w": 1080,
+      "h": 1920,
+      "ratio": "9:16"
+    },
+    "reel": {
+      "w": 1080,
+      "h": 1920,
+      "fps": 30
+    },
+    "reel_feed": {
+      "w": 1080,
+      "h": 1080,
+      "fps": 30
+    }
+  },
+  "zonas_seguras": {
+    "story": {
+      "top": 269,
+      "bottom": 269,
+      "right": 115
+    },
+    "feed": {
+      "bottom_pct": 12
+    },
+    "respiro_minimo": 60,
+    "excepcion": "El logo va en y=117 en story por sistema aprobado del cliente (sept 2026); la zona segura protege el texto y el CTA."
+  },
+  "esquemas": {
+    "trafico_ig": "foto con onda + pastilla + bajada + burbuja CTA + Localito",
+    "arriendo": "foto con velo azul + lista de íconos + CTA oscuro (agosto 2026, sin medir)"
+  },
+  "geometria_px_sobre_1080": {
+    "_fuente": "clients/mascenter/sistema/build.py (dict GEO)",
+    "logo_tinta_w": 205,
+    "logo_top_feed": 64,
+    "logo_top_story": 117,
+    "pastilla_feed": [
+      181,
+      570,
+      894,
+      688
+    ],
+    "pastilla_story": [
+      168,
+      999,
+      910,
+      1201
+    ],
+    "cta_feed": [
+      170,
+      841,
+      649,
+      970
+    ],
+    "cta_story": [
+      80,
+      1491,
+      620,
+      1636
+    ],
+    "mascota_feed": [
+      648,
+      809,
+      884,
+      1080
+    ],
+    "mascota_story": [
+      620,
+      1469,
+      950,
+      1920
+    ],
+    "onda": "clients/mascenter/sistema/assets/onda.json"
+  },
+  "briefs": {
+    "formato": "Sheet 'CLIENTE - Brief Performance - <Mes> <Año>.xlsx' en PERFORMANCE/2026/<MES>/",
+    "octubre_2026": "1aK-bREojTG4AlfAPhZdLccSjoSKSiz_j"
+  },
+  "drive": {
+    "performance_2026": "1af3vwsFrJIbYGXY-cZG-wskRPasny4-T",
+    "editables_paid": "1mL8XjY3HqjMZJ9ABNDj-_yRYSIk0v3hr",
+    "ads_octubre": "12rXhFTlWlBEof1ugHmSM52gmOxIktwgN",
+    "ads_septiembre": "1KwMaRk0uRUxoICNbb5w96d6fg1QvtvG7",
+    "grillas_organico_2026": "1t7G1KDuQaR9TpcVK7OZrsWfQ2NhpXQFL",
+    "metraje_serrano_sept": "1oBYKRx3YDBaqLurWmctm32hm0kyqWc4O (no público)",
+    "fuentes_estudio_reels_oct": "1iI1nycAYOIvDIdEY-ww1tvIYEJI7WO8G"
+  },
+  "equipo_cliente": {
+    "diseno": "Diego Aguilar",
+    "performance": "Sebastián Córdova",
+    "organico": [
+      "Scarlette Muñoz",
+      "Sebastián Serrano"
+    ]
+  },
+  "reglas_duras": [
+    "El esqueleto de paid es el de septiembre 2026: no se rediseña, se rellena",
+    "Textos verbatim del brief; el sistema los pone en versales donde corresponde",
+    "Localito sólo en la campaña de comunidad; nunca en la de arriendo",
+    "Rótulos de locatarios reales: si la IA los reescribe, se parchan con la foto original",
+    "1080 exactos, no 1081"
+  ],
+  "madurez": {
+    "identidad": "completa",
+    "gramatica": "completa",
+    "formatos": "completa",
+    "imagen": "parcial",
+    "copy": "parcial",
+    "pipeline": "completa",
+    "qa": "parcial"
+  },
+  "actualizado": "2026-09-04",
+  "reel": {
+    "referencia_cliente": {
+      "tipeo_s": 0.32,
+      "borrado_s": 0.32,
+      "barrido": {
+        "entra_s": 0.05,
+        "rojo_pleno_s": 0.3,
+        "sale_s": 0.05
+      },
+      "cierre_s": 3.1,
+      "duracion_total_s": "15–20"
+    },
+    "montaje_estudio_v3": {
+      "fundido_cruzado_frames": 20,
+      "zoom_por_plano": "1.00→1.07",
+      "texto": "palabra a palabra, fundido + 26 px ease-out, salida con fundido",
+      "pastilla": "resorte sin rebote (damping 200)",
+      "cierre": "funde a rojo, logo escala 0.92→1",
+      "porque": "Valeria rechazó el tipeo letra a letra y el golpe de rojo del reel de agosto (04-09-2026)"
+    },
+    "musica": "public/assets/mascenter/pista-mascenter.m4a (la de julio/agosto del cliente, ~81 BPM)"
+  }
+}

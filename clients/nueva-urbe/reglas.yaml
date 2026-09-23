@@ -1,0 +1,140 @@
+# Reglas ejecutables de RENTAS NUEVA URBE (proyecto Valle Altiplánico, Calama).
+#
+# ⚠️ Estas reglas son DE ESTA MARCA. Rentas e INU son dos marcas de la misma
+#    empresa con paletas distintas, y ni siquiera entre ellas se comparten.
+#
+# Quien firma acá es Diego Aguilar, que es quien revisa la cuenta y quien dejó el
+# feedback del 03-09-2026 sobre la entrega de octubre. Valeria Traverso firma las
+# decisiones de dirección. El criterio de composición vigente es el de Paulina
+# Bustamante (mailings de septiembre), pero Paulina NO revisa esta cuenta: su
+# criterio entra como referencia medida, no como autoridad.
+#
+# Fuente: los 4 comentarios de Diego en la carpeta DISEÑOS de `10. OCTUBRE`
+# (Drive 1xIsCSzPdHwm9gihZVlOQllMVZQp5IZdd), 03-09-2026 11:39-11:41.
+
+marca: nueva-urbe
+nombre: Rentas Nueva Urbe · Valle Altiplánico
+version: 1
+actualizado: 2026-09-03
+
+autoridad:
+  - quien: Diego Aguilar
+    rol: revisión de la cuenta en la agencia
+    alcance: [nueva-urbe]
+    canal: comentarios en los archivos del Drive
+  - quien: Valeria Traverso
+    rol: dirección
+    alcance: [nueva-urbe]
+    canal: revisión directa
+
+ajustes:
+
+  desenfoque-parcial:
+    porque: >-
+      Valeria rechazó la técnica completa el 02-09-2026, con la panorámica del
+      dormitorio puesta como banda sobre una versión desenfocada de sí misma:
+      «no pueden existir esas franjas arriba y abajo, se ve muy amateur». En esta
+      marca no es un aviso, es bloqueante: si una foto no llena el formato, no
+      entra a la pieza.
+
+      Y se calibró, pero NO bajando el tope. Con el 0,026 de agencia se marcaban
+      dos láminas APROBADAS —`c-26-08-4` y `c-09-08-1`, ambas de agosto— siempre
+      en la **banda 1/10, y≈0 %**: el cielo de Calama es liso y sin textura, así
+      que su nitidez da 0,01-0,02× la mediana. No es un montaje, es el cielo.
+      Bajar el tope hasta que pasaran lo dejaba en 0,008 y sin capacidad de
+      marcar nada. Se resuelve por REGIÓN: el foco se juzga desde el 10 % del
+      alto hacia abajo, donde la foto tiene contenido. Una banda pegada sobre un
+      fondo desenfocado —lo que Valeria rechazó— cae dentro de esa zona y se
+      sigue marcando.
+
+      Se probó además subirlo a BLOQUEANTE para esta marca y se dejó como está
+      —aviso— porque la comprobación no distingue los dos casos: la historia de
+      Halloween del 29-10 lleva el fondo desenfocado COMPLETO, que es justo lo
+      que la regla pide, y aun así marca la banda 5/10 (una zona oscura y
+      uniforme del bokeh). Bloquear ahí sería bloquear la versión correcta.
+    args:
+      region: {x0: 0.0, y0: 0.10, x1: 1.0, y1: 1.0}
+
+  respiro-borde:
+    porque: >-
+      Los bloques del mailing NO son piezas de red social: el de «atención 100%
+      online» mide 1201×240 y el de cierre 1201×551. El tope de agencia son 60 px
+      sobre un lienzo de 1080 de ancho — en una tira de 240 px de alto eso es más
+      de un cuarto del alto, así que cualquier texto centrado queda «pegado al
+      borde» por geometría, no por descuido. Medido en modo control sobre los
+      mailings aprobados de septiembre: `rentas-mail_1.2` daba 17 % de tinta en el
+      margen siendo una pieza correcta, firmada por Paulina y ya publicada.
+      La excepción se acota a las tiras del correo; en feed y story el tope de
+      agencia sigue intacto.
+      Y no es sólo la tira de atención: **los mailings aprobados del cliente
+      componen más pegados al borde que el tope de agencia en TODAS sus piezas**.
+      Medido sobre `rentas-mail_2.1` de septiembre, normalizada a 1080: su tinta
+      más a la izquierda queda a 33 px del borde y la de la derecha a 28 px. La
+      excepción cubre entonces todos los bloques del correo. Lo que sí se corrigió
+      en las piezas es el margen INFERIOR, que era el único donde nos habíamos
+      ido más pegados que ella (43-48 px contra sus 58-59): el bloque bajo del
+      banner subió de 5,5 % a 8,7 % en base.css.
+    excepto_archivos: ["*mail*"]
+
+  zona-segura-meta:
+    porque: >-
+      En historia 9:16 la caja blanca del logo cuelga del BORDE INFERIOR
+      (`.story .caja-logo { bottom:0 }`): 17,5 % del ancho, centrada, 700 px de
+      alto sobre 8000. Es la geometría medida de la marca en las piezas
+      publicadas, no un descuido, y por eso entra como excepción declarada igual
+      que en Revex. La zona segura protege el TEXTO: si lo que cae en los 340 px
+      de abajo es texto y no la caja del logo, la regla tiene que marcarlo.
+    args:
+      excepciones:
+        - {x0: 0.38, y0: 0.88, x1: 0.62, y1: 1.0}
+
+reglas: []
+
+  # ⛔ REGLA RETIRADA — «el logo Valle no queda suelto sobre la foto».
+  #
+  # El criterio es real y lo pidió Diego Aguilar el 03-09-2026, con estas palabras
+  # sobre tres piezas de la entrega de octubre:
+  #
+  #   · «logo en un lugar que no debería jasja quizás siempre decirle que deje el
+  #      logo en la esquina superior izquierda»   (MAIL 06-10 bloque 3 ficha)
+  #   · «también logo en cualquier lado ajsjasa en este caso siempre dejar junto a
+  #      los bloques de texto»                    (20-10 PAID Arrienda fácil 1)
+  #   · «lo mismo acá!»                           (13-10 ESTATICO Sin comisión)
+  #
+  # Lo que no se puede es COMPROBARLO con las comprobaciones que existen hoy. Se
+  # intentó con `contraste_texto` sobre la franja alta de la foto (región
+  # y 0,10–0,42), apostando a que un logo blanco suelto cae sobre lo más claro de
+  # la imagen y deja de leerse — que es exactamente lo que pasó en el bloque 3 del
+  # mailing del 06-10: 1,56:1 contra los 3,46:1 de la referencia de septiembre.
+  #
+  # El modo control lo tumbó: la regla marcó 7 de 8 piezas YA APROBADAS del
+  # cliente, incluidas las de Paulina. El motivo es que `contraste_texto` mide
+  # TODA la tinta de la región, no el logo: los titulares blancos sobre foto clara
+  # —que son la firma de esta marca— dan 1,3:1 a 2,1:1 y son correctos, porque el
+  # ojo los lee por tamaño y por el velo, no por contraste local.
+  #
+  # Bajar el tope hasta que pasen las aprobadas lo dejaría en 1,2:1, y con eso ya
+  # no atrapa nada. Así que la regla NO entra al motor: el anclaje del logo se
+  # revisa a ojo, con la tabla del manual (clients/nueva-urbe/CLAUDE.md §La caja
+  # blanca del logo → «Feedback de Diego Aguilar»).
+  #
+  # Para volver a intentarlo hace falta una comprobación nueva que aísle el logo
+  # —por plantilla, no por color— y mida SU contraste y SU distancia al bloque de
+  # texto más cercano. Anotado como deuda del motor, no de la marca.
+
+  # ── 23-09-2026 · DEUDA ANOTADA — «el respiro interno desproporcionado»
+  #
+  # Diego y Carlos anclaron el mismo defecto en las dos fichas del correo
+  # («quitar espacio», «me ayudas quitando este espacio?»). Es medible y se midió:
+  # dentro de la tarjeta azul había una banda de azul liso de 15,5 % del alto,
+  # contra 1,1–2,7 % del resto de los respiros internos de la MISMA caja.
+  #
+  # O sea el criterio es «ningún respiro interno mide más de ~3× la mediana de sus
+  # hermanos». No entra al motor todavía porque la comprobación necesita saber
+  # DÓNDE está la caja (acá se aprovechó que la tarjeta es de un color plano de
+  # marca y se escanearon las filas 100 % azules entre x 69,3 % y 95,25 %). Para
+  # una regla general hace falta detectar la caja sola, por color de marca y por
+  # rectangularidad, y recién ahí medir la distribución de sus huecos.
+  #
+  # Mientras tanto se revisa a ojo, con la tabla del manual
+  # (clients/nueva-urbe/CLAUDE.md §«quitar espacio»).

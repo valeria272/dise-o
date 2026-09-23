@@ -1,0 +1,155 @@
+# Reglas ejecutables de TIERRA CALMA.
+#
+# ⚠️ Estas reglas son DE ESTA MARCA. Tierra Calma es una parcelación de agrado en
+#    Padre Hurtado y su criterio no vale para ninguna otra cuenta del estudio.
+#
+# ⚠️ ALCANCE DECLARADO: las reglas PROPIAS de esta marca son todas de COPY — miran
+#    los textos declarados (`--textos`), ninguna mide píxeles. Las cinco de agencia
+#    (zona segura, respiro, desenfoque, foto estirada, formato CLP) corren igual y
+#    ya atraparon algo real: `st-12-10` pisaba los 250 px que Meta tapa.
+#
+#    Lo que NO hay todavía son reglas de imagen PROPIAS, y no es un olvido: un tope
+#    de marca hay que calibrarlo contra piezas APROBADAS POR EL CLIENTE, y Tierra
+#    Calma no las tiene — las 10 de octubre siguen «En revisión» y las 13 de
+#    septiembre son muestra corta. Un tope inventado marca las piezas buenas y
+#    termina desactivado al segundo día, que es lo que el README de `qa/` pide no
+#    hacer. Cuando el cliente apruebe octubre: `python qa/calibrar.py`.
+#
+# Las reglas de copy, en cambio, no necesitan calibración: son exactas. Y son las
+# que de verdad hacían falta — el dato falso del agua potable SE PUBLICÓ en
+# septiembre (`st-11-09`) y nadie lo detuvo.
+#
+# Cómo se corre (los textos se extraen del TSX, no se escriben a mano):
+#
+#   python qa/textos-tierracalma.py src/compositions/tierracalma/OctubreV3.tsx \
+#       --out out/tierracalma/oct2026/textos.json
+#   python qa/motor.py --marca tierra-calma \
+#       --textos out/tierracalma/oct2026/textos.json \
+#       out/tierracalma/oct2026/entrega/*.png
+
+marca: tierra-calma
+nombre: Tierra Calma
+version: 1
+actualizado: 2026-09-23
+
+autoridad:
+  - quien: Diego Aguilar
+    rol: diseñador del estudio a cargo de la cuenta
+    alcance: [tierra-calma]
+    canal: comentarios sobre los PNG en la carpeta de entrega de Drive
+  - quien: Carlos Figueroa
+    rol: diseñador del cliente
+    alcance: [tierra-calma]
+    canal: comentarios en las entregas de Drive
+  - quien: Fran / Blanca
+    rol: cliente — los únicos que validan dato comercial
+    alcance: [tierra-calma]
+    canal: correo y WhatsApp vía KAM
+
+# Ajustes a reglas de agencia (ver qa/agencia.yaml). Cada uno exige `porque`.
+ajustes:
+
+  desenfoque-parcial:
+    porque: >-
+      El cielo de estas fotos es liso por naturaleza y la comprobación lo leía como
+      un desenfoque aplicado a una banda. Marcaba `c-06-10-2`, `c-06-10-3` y
+      `c-20-10-4`, que están perfectas: la banda señalada es cielo despejado de
+      amanecer, sin textura que enfocar.
+
+      Medido sobre las 16 piezas de octubre, desviación típica de la banda:
+
+        bandas marcadas (cielo liso)     3,4 · 4,5 · 6,5 · 10,8
+        bandas con textura real          13,7 y arriba
+
+      El corte en 12 deja fuera del juicio las cuatro lisas y no toca ninguna otra.
+      ⚠️ Lo que se pierde: un desenfoque aplicado sobre una zona igual de lisa sería
+      invisible para el check — pero es que también lo es a simple vista.
+
+      ⚠️ Calibrado sobre piezas NO aprobadas todavía por el cliente. Cuando octubre
+      se apruebe hay que rehacer la cuenta con `qa/calibrar.py`.
+    args:
+      min_std_banda: 12.0
+
+reglas:
+
+  - id: sin-agua-potable
+    titulo: La parcela NO tiene conexión a agua potable
+    check: texto_prohibido
+    severidad: bloqueante
+    autor: Fran (cliente), recogido en el brief de octubre
+    fecha: 2026-09-22
+    cita: >-
+      no hay conexión a agua potable: el agua es por noria o pozo que construye
+      cada propietario.
+    porque: >-
+      Es el error más caro que tiene esta cuenta y YA SE PUBLICÓ: la story
+      `st-11-09` de septiembre salió con «conexión a agua potable» en la tarjeta
+      «Tu parcela incluye:». El brief de octubre lo ratifica como FALSO. Es una
+      promesa de servicio que el proyecto no entrega, así que bloqueante.
+      El patrón atrapa «agua potable» y «red de agua», no la palabra «agua» sola:
+      «pozo», «noria» y «derechos de agua» son correctos y tienen que pasar.
+    args:
+      patron: "agua\\s+potable|red\\s+de\\s+agua|conexi[oó]n\\s+de\\s+agua"
+
+  - id: ruta-78
+    titulo: Se llega por la Ruta 78, nunca por la 68
+    check: texto_prohibido
+    severidad: bloqueante
+    autor: Carlos Figueroa (diseñador del cliente)
+    fecha: 2026-08-21
+    cita: >-
+      la ruta es la Autopista del Sol, Ruta 78. La 68 es la de Valparaíso y no pasa
+      por Padre Hurtado.
+    porque: >-
+      Error persistente: lo trajeron los mapas generados con IA —`MAPA-1` y `MAPA-2`
+      traen escudos G-68 alrededor de Padre Hurtado— y aparece solo cuando alguien
+      redacta de memoria. Un cliente que toma la 68 no llega al proyecto.
+    args:
+      patron: "ruta\\s*68|\\bG-68\\b|autopista\\s+del\\s+pacifico"
+
+  - id: sin-huerfanas
+    titulo: Ninguna línea final de una sola palabra
+    check: palabra_huerfana
+    severidad: aviso
+    autor: Diego Aguilar
+    fecha: 2026-09-22
+    cita: >-
+      tambien corregir los textos que no queden lineas huerfanas
+    porque: >-
+      Lo pidió sobre los subtítulos del reel del 01/10 y vale para todo. Con la
+      escala automática (`cuerpoSans`) una frase puede cambiar de cuerpo y partir
+      distinto sin que nadie lo note, así que conviene revisarlo en cada render.
+      Va como AVISO y no bloqueante: la última línea de un solo término a veces es
+      la correcta —«conócela en persona» remata en una palabra a propósito— y el
+      juicio es del diseñador.
+    args: {}
+
+  - id: grafia-padre-hurtado
+    titulo: Padre Hurtado se escribe así
+    check: grafia_fijada
+    severidad: bloqueante
+    autor: Carlos Figueroa (diseñador del cliente)
+    fecha: 2026-08-21
+    cita: >-
+      el proyecto está en Padre Hurtado, Región Metropolitana.
+    porque: >-
+      Los mapas de IA escupieron «Peñaflor», «Penaflor» y «Talagante» alrededor del
+      predio, y de ahí se coló más de una vez al copy. La comuna es Padre Hurtado.
+    args:
+      correcta: Padre Hurtado
+      incorrectas: [Peñaflor, Penaflor, Talagante, "Padre hurtado"]
+
+  - id: grafia-tierra-calma
+    titulo: La marca es Tierra Calma, en dos palabras
+    check: grafia_fijada
+    severidad: bloqueante
+    autor: Diego Aguilar
+    fecha: 2026-09-23
+    cita: >-
+      la marca es Tierra Calma
+    porque: >-
+      Preventiva y barata: fija el nombre antes de que aparezca la tercera forma,
+      que es como empezó el lío de «Cumarú/CUMARU/Camarú UV» en otra cuenta.
+    args:
+      correcta: Tierra Calma
+      incorrectas: [TierraCalma, "Tierra-Calma", "tierra calma"]

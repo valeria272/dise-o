@@ -1,0 +1,137 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* La franja se dibuja con el ritmo MEDIDO sobre el isotipo:
+     hueco constante de 4,00 pt, franja variable entre 6,5 y 8,25 pt.
+     Ese contraste —hueco fijo, franja viva— es el sistema. */
+  .muestra { position:absolute; }
+  .caption { position:absolute; font-size:9pt; font-weight:300; color:var(--gris);
+             text-transform:uppercase; letter-spacing:0.06em; margin:0; }
+  .cifra   { font-weight:400; color:var(--terracota); }
+</style>
+
+<h1 class="titulo">Elementos gráficos</h1>
+<p class="bajada">Las franjas: construcción, escala y uso</p>
+
+<div class="filete-cab"></div>
+<div class="divisoria" style="left:360pt"></div>
+
+<!-- ═══════════ columna izquierda · el criterio ═══════════ -->
+<div class="columna" style="left:60.2pt; top:134.8pt; width:270pt">
+  <p class="rotulo">El activo gráfico</p>
+  <p class="entrada">Las franjas no son un adorno: son el isotipo abierto.
+  Evocan el surco y la curva de nivel, y son lo que hace
+  reconocible a Landera cuando el logotipo no cabe.</p>
+  <p class="rotulo">La regla</p>
+  <p class="cuerpo">El hueco es constante y la franja es viva.
+  Medido sobre el isotipo, el hueco es siempre de
+  <span class="cifra">4 pt</span> y la franja va entre
+  <span class="cifra">6,5</span> y <span class="cifra">8,25 pt</span>.
+  Nunca al revés: franjas iguales con huecos distintos
+  rompen el sistema.</p>
+  <p class="rotulo">Al escalar</p>
+  <p class="cuerpo">El hueco vale <span class="cifra">1/25</span> del ancho del
+  isotipo y esa fracción manda. Bajo <span class="cifra">2 pt</span>
+  de hueco la franja se cierra en la impresión: ahí se usa
+  el isotipo, no la textura.</p>
+</div>
+
+<!-- ═══════════ derecha · la demostración ═══════════ -->
+
+<!-- fila 1 — construcción y escala -->
+<p class="rotulo" style="left:400pt; top:134.8pt">De dónde salen</p>
+
+<img class="muestra" style="left:400pt; top:170pt; height:160pt"
+     src="../../../public/assets/landera/kit-logo/policromo/LOGO_LANDERA_ISO.svg">
+
+<!-- el ritmo, ampliado 3× -->
+<svg class="muestra" style="left:512pt; top:152pt" width="150" height="212">
+  <!-- la franja se acota ARRIBA y el hueco ABAJO: juntas al mismo lado se pisan -->
+  <g stroke="#666461" stroke-width="0.8" fill="none">
+    <line x1="36" y1="20" x2="60.5" y2="20"/>
+    <line x1="36" y1="16" x2="36"   y2="24"/>
+    <line x1="60.5" y1="16" x2="60.5" y2="24"/>
+  </g>
+  <text x="48" y="11" font-family="Aptos" font-size="8" fill="#666461"
+        text-anchor="middle">8 pt</text>
+  <g fill="#687B5D" transform="translate(0,28)">
+    <rect x="0"    y="0" width="24"   height="160"/>
+    <rect x="36"   y="0" width="24.5" height="160"/>
+    <rect x="72.5" y="0" width="24"   height="160"/>
+    <rect x="108.5" y="0" width="22"  height="160"/>
+  </g>
+  <g stroke="#E4361F" stroke-width="0.8" fill="none">
+    <line x1="24" y1="198" x2="36" y2="198"/>
+    <line x1="24" y1="194" x2="24" y2="202"/>
+    <line x1="36" y1="194" x2="36" y2="202"/>
+  </g>
+  <text x="30" y="212" font-family="Aptos" font-size="8" fill="#E4361F"
+        text-anchor="middle">4 pt</text>
+</svg>
+<p class="caption" style="left:512pt; top:365pt; width:150pt">
+  Hueco fijo · franja viva</p>
+
+<!-- las tres escalas -->
+<svg class="muestra" style="left:700pt; top:170pt" width="276" height="185">
+  <!-- grande -->
+  <g fill="#687B5D">
+    <rect x="0"  y="0" width="16" height="160"/><rect x="24" y="0" width="16" height="160"/>
+    <rect x="48" y="0" width="16" height="160"/><rect x="72" y="0" width="16" height="160"/>
+  </g>
+  <!-- media -->
+  <g fill="#687B5D">
+    <rect x="112" y="0" width="8" height="160"/><rect x="124" y="0" width="8" height="160"/>
+    <rect x="136" y="0" width="8" height="160"/><rect x="148" y="0" width="8" height="160"/>
+    <rect x="160" y="0" width="8" height="160"/><rect x="172" y="0" width="8" height="160"/>
+  </g>
+  <!-- chica -->
+  <g fill="#687B5D">
+    <rect x="204" y="0" width="4" height="160"/><rect x="210" y="0" width="4" height="160"/>
+    <rect x="216" y="0" width="4" height="160"/><rect x="222" y="0" width="4" height="160"/>
+    <rect x="228" y="0" width="4" height="160"/><rect x="234" y="0" width="4" height="160"/>
+    <rect x="240" y="0" width="4" height="160"/><rect x="246" y="0" width="4" height="160"/>
+    <rect x="252" y="0" width="4" height="160"/><rect x="258" y="0" width="4" height="160"/>
+    <rect x="264" y="0" width="4" height="160"/><rect x="270" y="0" width="4" height="160"/>
+  </g>
+  <text x="44"  y="180" font-family="Aptos" font-size="8" fill="#666461" text-anchor="middle">SEÑALÉTICA</text>
+  <text x="146" y="180" font-family="Aptos" font-size="8" fill="#666461" text-anchor="middle">PAPELERÍA</text>
+  <text x="240" y="180" font-family="Aptos" font-size="8" fill="#666461" text-anchor="middle">DIGITAL</text>
+</svg>
+<p class="caption" style="left:700pt; top:365pt; width:276pt">
+  La proporción no cambia — cambia el módulo</p>
+
+<!-- fila 2 — las dos funciones -->
+<p class="rotulo" style="left:400pt; top:410pt">Sus dos funciones</p>
+
+<svg class="muestra" style="left:400pt; top:446pt" width="262" height="105">
+  <rect x="0" y="0" width="262" height="105" fill="#FAF1E8"/>
+  <g fill="#687B5D">
+    <rect x="0"  y="0" width="8" height="105"/><rect x="12" y="0" width="8" height="105"/>
+    <rect x="24" y="0" width="8" height="105"/><rect x="36" y="0" width="8" height="105"/>
+  </g>
+</svg>
+<p class="caption" style="left:400pt; top:557pt; width:262pt">
+  Remate — anclado al canto, nunca flotando</p>
+
+<svg class="muestra" style="left:700pt; top:446pt" width="276" height="105">
+  <rect x="0" y="0" width="276" height="105" fill="#33353E"/>
+  <g fill="#687B5D" opacity="0.35">
+    <rect x="0"  y="0" width="8" height="105"/><rect x="12" y="0" width="8" height="105"/>
+    <rect x="24" y="0" width="8" height="105"/><rect x="36" y="0" width="8" height="105"/>
+    <rect x="48" y="0" width="8" height="105"/><rect x="60" y="0" width="8" height="105"/>
+    <rect x="72" y="0" width="8" height="105"/><rect x="84" y="0" width="8" height="105"/>
+    <rect x="96" y="0" width="8" height="105"/><rect x="108" y="0" width="8" height="105"/>
+    <rect x="120" y="0" width="8" height="105"/><rect x="132" y="0" width="8" height="105"/>
+    <rect x="144" y="0" width="8" height="105"/><rect x="156" y="0" width="8" height="105"/>
+    <rect x="168" y="0" width="8" height="105"/><rect x="180" y="0" width="8" height="105"/>
+    <rect x="192" y="0" width="8" height="105"/><rect x="204" y="0" width="8" height="105"/>
+    <rect x="216" y="0" width="8" height="105"/><rect x="228" y="0" width="8" height="105"/>
+    <rect x="240" y="0" width="8" height="105"/><rect x="252" y="0" width="8" height="105"/>
+    <rect x="264" y="0" width="8" height="105"/>
+  </g>
+</svg>
+<p class="caption" style="left:700pt; top:557pt; width:276pt">
+  Textura — al 35 %, nunca compitiendo con el texto</p>
+
+<p class="folio"><b>16</b> · Sistema</p>
+<p class="folio-marca">Landera · Manual de marca</p>

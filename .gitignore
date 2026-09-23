@@ -63,7 +63,7 @@ __pycache__/
 *.pyc
 
 # ── public/assets: viaja el NÚCLEO (18 MB), no el material (1,3 GB) ──────────
-# Decisión 26-08-2026 (opción 1 de docs/ONBOARDING-DISENADORES.md paso 5).
+# Decisión 26-08-2026 (opción 1 de docs/ONBOARDING-DISENADORES.md paso 6).
 # Con esto, `git clone` + `npm install` deja el estudio listo para renderizar.
 # Las fotos, packshots y video se bajan del Drive por marca, cuando hagan falta.
 public/assets/**
@@ -90,6 +90,60 @@ public/assets/**
 !public/assets/cava/bottles/**
 !public/assets/cava/kv/**
 
+# DOUBLETREE: el fondo de la historia del Día del Turismo (4 MB). Misma
+# excepción que Revex y CAVA: `scripts/dt-rendir.py` no rinde la pieza sin esta
+# foto, y el original de 20 MB vive en `raw/` (que no viaja). Con esto otra
+# máquina reproduce la entrega byte a byte; sin esto, vuelve a empezar de cero.
+# El original se rebaja con el curl que documenta scripts/dt-st-turismo-foto.py.
+!public/assets/hilton/dt/st-turismo-*.jpg
+# ST 18-09 Fiestas Patrias: el MOSAICO ya armado y la foto de la ronda 1. Los diez
+# fotogramas originales se rebajan con los curl de scripts/dt-st-fiestas-collage.py.
+!public/assets/hilton/dt/st-fiestas-*.jpg
+# FEED 23-09 Hilton Honors: el lobby ya revelado. El original se rebaja con el curl
+# que documenta scripts/dt-ft-honors-foto.py.
+!public/assets/hilton/dt/ft-honors-*.jpg
+
+# CARRUSEL S5 · 28-09 «Tu día en DoubleTree». Van los recortes de FOTO (la lámina
+# del gym, que todavía no es video) pero NO los clips.
+#
+# ⚠️ Y es una excepción a la regla de «el render vuelve al repo», con razón: en la
+# ronda 2 los clips dejaron de reescalarse para ganar calidad y pasaron de 26 MB a
+# **156 MB**. Eso no entra en git. Se rehacen en un comando —
+# `python scripts/dt-c1-s5-clips.py`— y ese script documenta el ID de Drive de
+# cada `.MOV` de origen, el tramo, el recorte, la gradación y la velocidad, así
+# que la reconstrucción es determinista (17-09-2026).
+!public/assets/hilton/dt/s5/*.jpg
+
+# DT · CARRUSEL DÍA DEL TURISMO (S5, 27-09). Misma regla: la foto de portada entra;
+# los clips (117 MB) se rehacen con `python scripts/dt-c1-turismo-clips.py`, que
+# anota el ID de Drive o de stock Magnific de cada origen (23-09-2026).
+!public/assets/hilton/dt/turismo/*.jpg
+
+# PISO18 · S4 septiembre 2026. Los seis fotogramas de la sesión de agosto 2023 que
+# usan las piezas, las tres tiras de la encuesta, el atardecer reiluminado y el
+# logotipo ya recortado. Excepción deliberada, misma razón que DT: sin estos
+# archivos las composiciones de `src/compositions/piso18/` no rinden, y cada ronda
+# de correcciones vuelve a empezar de cero en otra máquina (15-09-2026).
+# Los originales se rebajan del Drive por el conector MCP — ojo, corta en 10 MB.
+# BETWEEN · los tres vasos To Go recortados sin fondo (21-09-2026). Excepción
+# deliberada, mismo criterio que los bottle shots de CAVA: son la base de toda
+# pieza de promo To Go y de los KV, están a escala común entre sí y reproducirlos
+# cuesta una sesión entera de medición. Sin ellos otro diseñador no rehace la
+# entrega — se cae al recorte viejo, que era el vaso CHICO para los tres tamaños.
+!public/assets/hilton/between/togo-sep2026/togo-vaso-*-nobg.png
+!public/assets/hilton/piso18/*.jpg
+!public/assets/hilton/piso18/*.png
+# Y el clip del salon vacio (8 MB): sale de IMG_4177.MOV, que pesa 115 MB y vive
+# en el Drive de videos organicos. Sin el, la ST animada no rinde.
+!public/assets/hilton/piso18/*.mp4
+
+# Landera: el logo. Los 10 bloqueos extraídos del PDF del cliente y el kit
+# completo (40 piezas × PDF/SVG/PNG) reconstruido con la paleta aprobada. Sin
+# esto no se compone ninguna lámina del manual ni ninguna plantilla.
+!public/assets/landera/**
+# Las fotos generadas viajan como JPG (≈200 KB); los PNG de 6 MB de la IA no.
+public/assets/landera/fotos/*.png
+
 # Material de la grilla Casablanca septiembre 2026 (39 MB). Misma excepción
 # deliberada que Revex: scripts/casablanca-septiembre.py no corre sin estas 14
 # imágenes. Se listan por patrón exacto —lo que el script abre— y no la carpeta
@@ -98,6 +152,17 @@ public/assets/**
 !public/assets/casablanca/sep/amb_*_feed.jpg
 !public/assets/casablanca/sep/sr2_*.jpg
 !public/assets/casablanca/sep/amb_*_feed45.jpg
+
+# G.CL capítulo 02 «Turno de noche» (7,9 MB). Misma excepción deliberada que
+# Revex y Casablanca: sin estos 13 planos y su banda sonora, otro diseñador no
+# reproduce el reel — tendría que volver a generarlos en Magnific y saldrían
+# distintos, y el par p05/p17 (el mismo encuadre de noche y de día) no volvería
+# a calzar. Van en JPEG 93 justamente para poder viajar: en PNG pesaban 49 MB.
+!public/assets/gcl/r02/**
+# Los clips animados SÍ viajan (≈9 MB recortados a 2,5 s y recomprimidos):
+# Kling no es determinista, así que volver a generarlos da otro movimiento y el
+# reel no se reproduce igual. La excepción tiene que ir DESPUÉS de `*.mp4`.
+!public/assets/gcl/r02/clips/*.mp4
 
 # ⛔ Estas NO se versionan aunque sean fuentes — la licencia lo impide:
 #    IvyOra = Adobe Fonts (cada persona la activa en su Creative Cloud)
@@ -136,6 +201,26 @@ out/mascenter-algarrobal/preview-artifact.html
 !public/assets/hilton/between/ia-sept/togo-trio-45-logo.png
 !public/assets/hilton/between/ia-sept/emergencia-caja-2-logo.png
 !public/assets/hilton/between/ia-sept/humor-cafecito-2.png
+# RONDA 6 (02-09-2026) — el fondo de la G ENTREGADA. Conserva el plano corto y la
+# calidez de la ronda 4 (que es lo que Eli marcó como más Between) con el espacio
+# real del local muy desenfocado detrás, transferido por referencia desde
+# raw/hilton/between/espacios/. Gradado con perfil `neutro`.
+!public/assets/hilton/between/ia-sept/humor-cafecito-4.png
+
+# CARRUSEL PROMOS TO GO · FEED 22-09, slide 3 «Café + Dulce». La foto del ROLLO
+# DE CANELA ya revelada (2,8 MB). Misma excepción que Revex, CAVA y DT: sin ella
+# `BetweenSeptiembre.tsx` no rinde la slide, y su original —la toma `25-281` de
+# la sesión 25 jul 2025, 16 MB— vive en `raw/`, que no viaja. El script
+# `scripts/between-togo3-r26.py` documenta el ID de Drive para rebajarla.
+# ⚠️ Las otras tres del carrusel (portada-r25, s2-r24, s4-r24) ya estaban
+# versionadas; ésta faltaba (21-09-2026).
+!public/assets/hilton/between/fotos-gradadas/togo-s3-r26.jpg
+# Y la toma curada sin revelar, que es de donde parte el script: con ella la
+# entrega se reproduce byte a byte sin bajar los 16 MB del original.
+!public/assets/hilton/between/togo-25jul2025-rol.jpg
+# el paso intermedio: el local real pero la sala vacía y fría. Se descartó por
+# criterio de Eli; se versiona porque documenta por qué la entregada es la otra.
+!public/assets/hilton/between/ia-sept/humor-cafecito-3.png
 # y las dos fotos REALES que reemplazaron a las modelos en el carrusel del 9-sep
 !public/assets/hilton/between/fotos-gradadas/desayuno-completo-2.jpg
 !public/assets/hilton/between/fotos-gradadas/croissant-latte-cenital.jpg
@@ -172,6 +257,15 @@ out/mascenter-algarrobal/preview-artifact.html
 # (carpeta «Ediciones con IA fotos»). Sin logo KIMBO, así que cumple la regla.
 !public/assets/hilton/between/taza-cappuccino-nobg.png
 
+# RONDA 8 — la PORTADA del Cowork: la terraza real de Between.
+# `cowork-terraza.png` es la generacion de Nano Banana Pro sobre HDT_52 (la
+# terraza, identificada por el pizarron «BETWEEN COFFEE & BAR» que se ve dentro
+# de la propia foto) y el .jpg es esa misma imagen gradada con el perfil neutro
+# y recortada 4:5. Se versionan las dos: la pieza esta ENTREGADA y rehacer la
+# generacion costo 6 intentos. Ver `scripts/between-portada-terraza.py`.
+!public/assets/hilton/between/ia-sept/cowork-terraza.png
+!public/assets/hilton/between/fotos-gradadas/cowork-terraza.jpg
+
 # Escenas con el VASO REAL recortado (ronda 5). El recorte y las escenas que lo
 # usan se versionan: salieron de la sesión del cliente y rehacerlos cuesta una
 # tarde entera de segmentación.
@@ -188,6 +282,44 @@ out/mascenter-algarrobal/preview-artifact.html
 # Presentación Más Center: el generador y los datos SÍ se versionan
 !raw/mascenter-presentacion/centros.json
 !raw/mascenter-presentacion/extraer_assets.py
+
+# Landing de terrenos Más Center: las fotos de origen de las fichas del carrusel.
+# Salen del banco de imágenes de Más Center en el Drive de la agencia (marzo 2026)
+# y `scripts/gcl-mascenter-terrenos-fotos-r3.py` las recorta a 3:2. Sin ellas la
+# ronda 3 no se reproduce y hay que volver a cazarlas en el Drive. Van en JPG q95
+# (2 MB en total; los PNG originales pesaban 11 MB).
+# OJO: `raw/` excluye el directorio entero y git no entra en un directorio
+# excluido, así que hay que re-abrir la cadena carpeta por carpeta antes de que
+# la excepción del archivo pueda aplicarse.
+!raw/
+raw/*
+!raw/mascenter-terrenos/
+raw/mascenter-terrenos/*
+!raw/mascenter-terrenos/fotos-drive-2026-03/
+!raw/mascenter-terrenos/fotos-drive-2026-03/*.jpg
+
+# DT · REFERENCIAS S4: la referencia sobre la que se MIDIÓ la geometría del
+# estático de Hilton Honors (caja 880, versal 49, salto 68…). Pesa 350 KB y es
+# justo lo más difícil de recuperar: la carpeta de Drive de Eli pide sesión de
+# Google y ni el token del estudio ni `uc?export=download` la abren. Sin esto,
+# la próxima ronda no puede verificar contra qué se midió.
+!raw/hilton/
+raw/hilton/*
+!raw/hilton/dt/
+raw/hilton/dt/*
+!raw/hilton/dt/ref-s4/
+raw/hilton/dt/ref-s4/*
+!raw/hilton/dt/ref-s4/*.jpg
+!raw/hilton/dt/ref-s4/LEEME.txt
+
+# LANDERA: el PDF que mandó el cliente es el insumo de scripts/landera_*.py.
+# Sin él los scripts no reproducen nada, y pesa 400 KB. Los PDF de salida NO
+# se versionan: se regeneran corriendo los dos scripts sobre este archivo.
+!raw/landera/
+!raw/landera/*.pdf
+# …salvo el brandbook de Pivot: son 37 MB y es material de OTRO cliente.
+# Se usa como referencia de estructura, no se versiona acá.
+raw/landera/REFERENCIA-brandbook-pivot.pdf
 
 # ── CREDENCIALES: nunca, jamás, al repositorio ──────────────────────────────
 # Este repo lo comparten varios diseñadores. Un token de Google acá dentro se
@@ -209,3 +341,299 @@ client_secret*.json
 # scripts de clients/sal-lobos/sistema/ no reproducen las 9 piezas sin estas
 # imágenes, y sin ellas cada ronda de correcciones vuelve a empezar (15-09-2026).
 !public/assets/sal-lobos/**
+
+# ── EXCEPCIÓN: el llavero CIFRADO sí se versiona (02-09-2026) ────────────────
+# Es el único archivo con credenciales que viaja en el repo, y viaja como ruido:
+# AES-256 (Fernet) con la contraseña derivada por scrypt. Sin la contraseña del
+# estudio no vale nada. Es lo que le permite a un diseñador nuevo clonar y
+# producir sin pedirle la clave de Magnific a nadie.
+#   abrir:    python3 scripts/llavero.py abrir
+#   rehacer:  python3 scripts/llavero.py guardar     (solo Valeria)
+# ⚠️ Lo que llavero.py ESCRIBE al abrirlo (credentials/.env, token.json) queda
+#    ignorado por la regla `credentials/*` de arriba. Eso es a propósito.
+!credentials/llavero.copylab
+
+# Landing de captación de terrenos Más Center — la pieza entregada vuelve al repo
+!out/mascenter-terrenos/
+!out/mascenter-terrenos/**
+out/mascenter-terrenos/preview-artifact.html
+
+# Config de Vercel del deploy — no es parte de la pieza
+out/mascenter-terrenos/.vercel/
+out/mascenter-terrenos/preview-hero-B.html
+
+# Carrusel Cedral de EBEMA — grilla septiembre 2026, slide 6 (02-09-2026).
+# Misma excepción deliberada que Revex, Casablanca y G.CL: los 6 fondos salieron de
+# Nano Banana Pro y NO son deterministas — volver a generarlos da otra casa, y el par
+# antes/después de la portada (la MISMA casa en el mismo encuadre) no volvería a calzar
+# nunca. Van en JPEG 93 para poder viajar: en PNG pesaban 45 MB, así pesan 7.
+!public/assets/ebema/cedral/
+!public/assets/ebema/cedral/**
+# Los editables de la propuesta: sin build.py y carrusel.css la entrega no se reproduce.
+# Los PNG rendidos (17 MB) NO viajan: salen de correr build.py + render.sh.
+# Ojo: git no entra a una carpeta excluida, así que hay que reabrir cada nivel y
+# volver a cerrarlo con `/*` — misma gimnasia que out/mascenter-algarrobal.
+!out/ebema/
+out/ebema/*
+!out/ebema/20260902_carrusel_cedral/
+out/ebema/20260902_carrusel_cedral/*
+!out/ebema/20260902_carrusel_cedral/ENTREGA.md
+!out/ebema/20260902_carrusel_cedral/editables/
+out/ebema/20260902_carrusel_cedral/editables/*
+!out/ebema/20260902_carrusel_cedral/editables/build.py
+!out/ebema/20260902_carrusel_cedral/editables/carrusel.css
+# ══════════ RONDA 7 de Between septiembre 2026 (02-09-2026) ══════════
+# Las 8 piezas de la S1 se ENTREGARON hoy, así que sus fondos vuelven al repo:
+# sin esto la ronda hay que rehacerla de cero en otra máquina, que es lo que ya
+# pasó tres veces con esta cuenta.
+#
+# Portada del Cowork. El cliente rechazó la anterior «por temas de calidad y
+# porque mostramos a esas personas»: ésta es el MISMO rincón del muro vegetal en
+# el fotograma donde las dos personas ya salieron de cuadro (IMG_1148-3, elegido
+# midiendo dominancia de verde sobre los 91 fotogramas). `raw/` no viaja, así que
+# sin este archivo no se puede rendir.
+!public/assets/hilton/between/fotos-gradadas/cowork-winter-garden.jpg
+# Slide 2 del Cowork, rehecha: era «la del medio que hace ruido» —un bodegón de
+# estudio sobre un muro verde INVENTADO—. Ahora el muro es el real, entrando por
+# referencia y muy desenfocado. Se versionan las dos: la generación de Magnific
+# (que no es determinista y no se reproduce con el mismo prompt) y la gradada.
+!public/assets/hilton/between/ia-sept/cowork-mesa-trabajo.png
+!public/assets/hilton/between/fotos-gradadas/cowork-mesa-trabajo.jpg
+# Slide 3 del Cowork: la MISMA foto regradada con `neutro` para unificar el tono
+# del carrusel (venía 8 puntos de calidez más fría que las slides 1 y 2, y el
+# reclamo de esta ronda es la cohesión). Se guarda aparte de `segundo-nivel.jpg`
+# porque ésa es la versión ya entregada en la ronda 6 y tiene que seguir
+# reproducible.
+!public/assets/hilton/between/fotos-gradadas/segundo-nivel-neutro.jpg
+# Fondo de la G2 del cumpleaños: «proponer otra foto de fondo, distinta a G1».
+# Las dos gráficas usaban el mismo archivo con otro recorte.
+!public/assets/hilton/between/ia-sept/cumple-fondo-local.png
+!public/assets/hilton/between/fotos-gradadas/cumple-fondo-local.jpg
+# Slide 2 del carrusel To Go, RECUPERADA el 02-09-2026. `togo-sandwich-45.jpg`
+# nunca se había versionado y sólo existía en el Mac de Valeria, así que la slide
+# no se podía rendir en Windows. Se rescató de raíz: la sesión completa del
+# 25-jul-2025 está en el Drive del cliente (1YQ_28BQpnBhTPNKnWXZmmaC6Bvr0BodD).
+# Sale del fotograma -248, el único con el relleno de palta a la vista —«rico y
+# contundente», que es el copy— y el logotipo del vaso entero.
+!public/assets/hilton/between/fotos-gradadas/togo-sandwich-45.jpg
+
+# ── RENTAS octubre 2026: el render vuelve al repo el mismo día ───────────────
+# Se versionan el generador, el CSS del sistema y los fondos IA ya recortados a
+# 4:5. Con eso `build.py` + `render.sh` reproducen las 5 piezas byte a byte.
+!out/rentas/
+!out/rentas/**/
+!out/rentas/**/ENTREGA.md
+!out/rentas/**/editables/**
+!out/rentas/**/fondos/halloween/*_45.jpg
+# Los PNG finales NO viajan: se comprobó con `cmp` que build.py + render.sh los
+# regeneran byte a byte desde lo de arriba. Son redundantes.
+# El MP4 del reel SÍ viaja: se comprobó que NO es determinista —dos renders del
+# mismo código dieron 36.907.259 y 36.935.046 bytes—, así que el máster entregado
+# es el único que existe.
+out/rentas/**/feed/
+out/rentas/**/story/
+out/rentas/**/mail/
+!public/assets/hilton/between/ia-sept/cumple-ref-capuccino.png
+!public/assets/hilton/between/fotos-gradadas/cumple-mano-vaso.jpg
+
+# RONDA 8 — ST Emergencia (S2): la vitrina generada, el logotipo estampado y el
+# fondo ya montado a escala. Se versionan los tres porque la pieza esta
+# ENTREGADA y la generacion costo 4 intentos. Ver between-emergencia-magnific.py
+# y between-emergencia-montar.py.
+!public/assets/hilton/between/ia-sept/emergencia-caja-4.png
+!public/assets/hilton/between/ia-sept/emergencia-caja-4-logo.png
+!public/assets/hilton/between/ia-sept/emergencia-fondo.png
+# El reel de Rentas y sus fuentes verificadas vuelven al repo: sin ellas no se
+# reproduce. Los .MOV del rodaje NO viajan (son de Travesía, ver el manual).
+!public/assets/rentas/**
+!out/rentas/**/reel/*.mp4
+
+# ── RONDA 9 (03-09-2026) · las piezas que la grilla puso EN CAMBIOS ──
+# Regla del estudio: si una pieza se entregó, su script Y sus fondos se
+# commitean el mismo día. Ver `clients/hilton/CLAUDE.md § RONDA 9`.
+
+# FEED C · portada del carrusel Cowork, ahora el LOUNGE. Base real HDT_37 con el
+# puesto de trabajo generado encima (scripts/between-portada-lounge.py). Tres
+# generaciones: las dos primeras traian la mesa al primer plano.
+!public/assets/hilton/between/ia-sept/cowork-lounge.png
+!public/assets/hilton/between/fotos-gradadas/cowork-lounge.jpg
+
+# FEED H · las cuatro del carrusel «Primero la foto». Las tres primeras son
+# RECORTES de fotos reales del cliente (sesion `3 ENERO PLATOS-DESAYUNOS`), la
+# cuarta es el creme brulee editado para verse empezado.
+!public/assets/hilton/between/fotos-gradadas/h1-desayuno-cenital.jpg
+!public/assets/hilton/between/fotos-gradadas/h2-latte-cenital.jpg
+!public/assets/hilton/between/fotos-gradadas/h3-croissant-jamon.jpg
+!public/assets/hilton/between/ia-sept/h4-postre-empezado.png
+!public/assets/hilton/between/fotos-gradadas/h4-postre-empezado.jpg
+
+# FEED J · las dos tazas de «Ella hablo / Ella escucho», escena rehecha entera.
+!public/assets/hilton/between/ia-sept/j-dos-tazas.png
+!public/assets/hilton/between/fotos-gradadas/j-dos-tazas.jpg
+
+# FEED L · slide 1 con el fondo del local real y la bolsita, y slide 4 con el
+# brownie. Las dos con el logotipo REAL estampado encima.
+!public/assets/hilton/between/ia-sept/togo-salida-3-logo.png
+!public/assets/hilton/between/fotos-gradadas/togo-salida-3.jpg
+!public/assets/hilton/between/ia-sept/togo-trio-brownie.png
+!public/assets/hilton/between/fotos-gradadas/togo-trio-brownie.jpg
+# ── COPYWRITERS · Creative OS v1.0 (03-09-2026) ──────────────────────────────
+# Regla del estudio: si una pieza se entregó, su script Y sus fondos se
+# commitean el mismo día (memoria `el-render-vuelve-al-repo`). Revex rehízo tres
+# rondas de cero por no hacerlo.
+#
+# Acá el material es además el sistema mismo: las texturas de grano y papel se
+# generan con semilla fija y los montajes de WORK dependen del recorte alfa del
+# packshot. Sin estos archivos, `remotion still CL-Work` no reproduce la pieza.
+!public/assets/copylab/
+!public/assets/copylab/**
+!out/copylab/
+!out/copylab/**
+
+# ── G.CL · CAP.02 «Revisión 7» — los keyframes master (03-09-2026) ───────────
+# Los 12 keyframes aprobados NO son material bruto: son el insumo de las 8
+# generaciones de video y **no se regeneran idénticos nunca más** (generación con
+# IA). Si se pierden, el capítulo se rehace de cero — que es exactamente lo que
+# le pasó a Revex por no commitear los fondos el mismo día
+# (memoria `el-render-vuelve-al-repo`).
+# Los descartes y la hoja de contacto van en JPEG: son evidencia, no producción.
+!gcl-agent/cap02/
+!gcl-agent/cap02/**
+
+# El universo G.C.L.: las biblias Y sus imágenes canon. Arriba `gcl-agent/**/*.png`
+# deja fuera los renders, pero acá los PNG SON el canon — el board del elenco, la
+# oficina maestra y las referencias de identidad. Sin ellos nadie puede generar un
+# plano consistente, y el pack llegó por ZIP a Descargas, que no lo respalda nadie.
+!gcl-agent/universo/
+!gcl-agent/universo/**
+
+# ── TRAVERSO «Los de siempre» (09-09-2026): viaja el núcleo, no el material pesado ──
+# Casting LOCKED, keyframes y sets como JPEG 93; packshots recortados; música y SFX.
+# Los PNG de Nano Banana (5 MB c/u) y los 15 clips de Kling (~80 MB) quedan locales
+# (copia en el Escritorio de Valeria + out/traverso/lds2). El render va aparte.
+!public/assets/traverso/lds2/**/*.jpg
+!public/assets/traverso/lds2/packshots/*.png
+!public/assets/traverso/lds2/audio/musica-entrance.mp3
+!public/assets/traverso/lds2/audio/sfx-*.mp3
+!public/assets/traverso/lds/audio/*.mp3
+# TIERRA CALMA · OCTUBRE 2026 — la entrega tiene que ser reproducible byte a byte.
+# Los marcos son el asset BLOQUEADO del diseñador (salen de MARCOS.ai, KINGSTON)
+# y los fondos son las generaciones de Magnific ya elegidas y encuadradas: sin
+# ellos el render de octubre no se puede repetir. Regla: si una pieza se entregó,
+# su script Y sus fondos se commitean el mismo día.
+!public/assets/tierracalma/marcos/**
+!public/assets/tierracalma/oct/**
+# La locución, la música y el logo animado son parte de la entrega de octubre:
+# sin ellos el reel no se vuelve a armar. tc_motion.mp4 sale de convertir
+# `TIERRA CALMA MOTION.mov` del KINGSTON, que NO viaja en el repo.
+!public/assets/tierracalma/audio/**
+!public/assets/tierracalma/tc_motion.mp4
+
+# Story 19 · EBEMA CLICK (sept 2026) — la pieza entregada vuelve al repo con su
+# script Y sus fondos, para que se reproduzca byte a byte. Ver la memoria
+# «el render vuelve al repo el mismo día».
+!out/ebema/20260914_st19_click/
+out/ebema/20260914_st19_click/*
+!out/ebema/20260914_st19_click/BRIEF.md
+!out/ebema/20260914_st19_click/ENTREGA.md
+!out/ebema/20260914_st19_click/editables/
+out/ebema/20260914_st19_click/editables/*
+!out/ebema/20260914_st19_click/editables/st19_click_story.html
+!out/ebema/20260914_st19_click/editables/base.css
+!out/ebema/20260914_st19_click/editables/render.sh
+!out/ebema/20260914_st19_click/editables/foto_contratista_celular.png
+!out/ebema/20260914_st19_click/editables/foto_contratista_celular_story.png
+!out/ebema/20260914_st19_click/story/
+!out/ebema/20260914_st19_click/story/*.png
+!out/ebema/20260914_st19_click/qa/
+!out/ebema/20260914_st19_click/qa/*.png
+
+# Referencia aprobada de Paulina: es la que manda para el esquema CLICK
+!raw/ebema/
+raw/ebema/*
+!raw/ebema/ref-paulina-click-ago2026/
+!raw/ebema/ref-paulina-click-ago2026/*.png
+raw/ebema/ref-paulina-click-ago2026/originales-2250/
+
+# Piso18: IvyPresto es de Adobe Fonts (licencia de quien la activa) — NUNCA va al repo
+public/assets/fonts/piso18/ivypresto/
+
+# DT · RONDA 2 del estático de Honors: el ícono de la CAMA, extraído del PNG
+# aprobado `C1 FT N2` a resolución completa. Pesa 3 KB y sin él la pieza no se
+# reproduce — el aprobado NO viaja en git (vive en raw/, que está excluido).
+!public/assets/hilton/dt/icono-*.png
+# DT · RONDA 3: el logotipo de HILTON HONORS en blanco (14 KB). Es del cliente y
+# sólo baja de su Drive con el acceso abierto — sin él la pieza no se reproduce.
+!public/assets/hilton/dt/hilton-honors-*.png
+
+# ── DT · RONDA 6: el EDITABLE del estático de Honors SÍ viaja ────────────────
+# Decisión de Eli, 16-09-2026. Desde la ronda 5 la entrega **se exporta de este
+# `.ai`**, no de Remotion: es la fuente de verdad de la pieza. Vivía sólo en un
+# disco, así que quien clonara el repo tenía la composición sincronizada pero no
+# el archivo con el que ella trabaja.
+#
+# ⚠️ Son ~34 MB de binario que git no puede diferenciar: **cada vez que ella lo
+# guarde, el historial suma otros 34 MB**. Si se vuelve pesado, la salida es
+# versionar sólo el `.svg` intermedio (5,4 MB y diferenciable) — pero ése NO
+# trae los ajustes hechos a mano dentro de Illustrator, que es justo lo que pasó
+# con la caja y el titular de esta pieza.
+#
+# `out/*` no deja descender, así que hay que negar carpeta por carpeta.
+!out/hilton/
+out/hilton/*
+!out/hilton/dt/
+out/hilton/dt/*
+!out/hilton/dt/ft-honors/
+out/hilton/dt/ft-honors/*
+!out/hilton/dt/ft-honors/editable/
+out/hilton/dt/ft-honors/editable/*
+!out/hilton/dt/ft-honors/editable/*.ai
+
+# ── BETWEEN · S3 · CARRUSEL CONCURSO «CEO DEL CAFÉ» (16-09-2026) ─────────────
+# Las dos referencias que dejó el cliente en la grilla (Pinterest) y las dos
+# escenas GENERADAS que usan las láminas, más sus derivados 4:5 de entrega.
+# Sin esto la pieza no se reproduce: son la foto de las dos slides.
+# ⚠️ Viajan SÓLO las tiradas que una lámina usa hoy. Las descartadas
+# (`-ambiente`, `-sticker`, `-sticker-r2`, `-sticker-r3` y la alternativa
+# `gen-fondo-2`) NO — son ~85 MB que no rinden nada, y sus prompts quedan en
+# `scripts/between-concurso-s3-generar.py`.
+# ⛔ OJO AL ACTUALIZAR: cuando una ronda cambia de tirada hay que cambiar ESTA
+# lista. El 16-09 la portada pasó de la r3 a la r4 y el `.gitignore` se quedó
+# apuntando a la r3: viajaba la descartada y la que rinde la pieza quedaba
+# fuera. Lo cazó el `/cierre`.
+# ⚠️ Git no entra en un directorio excluido, así que hay que negar la cadena
+# entera: `raw/hilton/*` (arriba) no deja descender a `between/`.
+!raw/hilton/between/
+raw/hilton/between/*
+!raw/hilton/between/refs-concurso-s3/
+raw/hilton/between/refs-concurso-s3/*
+!raw/hilton/between/refs-concurso-s3/*.jpg
+!raw/hilton/between/concurso-s3/
+raw/hilton/between/concurso-s3/*
+!raw/hilton/between/concurso-s3/gen-portada-sticker-r4.png
+!raw/hilton/between/concurso-s3/gen-escritorio-2.png
+!raw/hilton/between/concurso-s3/gen-retrato-polaroid.png
+!raw/hilton/between/concurso-s3/refs/
+raw/hilton/between/concurso-s3/refs/*
+!raw/hilton/between/concurso-s3/refs/*.jpg
+!public/assets/hilton/between/concurso-s3/*.jpg
+
+# BETWEEN · PROMOS TO GO · ronda 25: la portada nueva, recortada y gradada de
+# IMG_4146 (la foto que el cliente enlazó). Ver scripts/between-togo1-r25.py.
+!public/assets/hilton/between/fotos-gradadas/togo-portada-r25.jpg
+
+# QB · ST S5 «ALL YOU CAN DRINK» (17-09-2026). Misma excepción deliberada que DT y
+# PISO18: sin estas capas `src/compositions/qb/` no rinde la pieza entregada, y la
+# escena que las origina es una generación que NO se puede repetir igual — volver a
+# pedirla a Nano Banana devuelve otra mano, otra mesa y otro bokeh, así que el
+# original de 16 MB en `raw/` tampoco alcanza para reproducirla en otra máquina.
+# Son el fondo con la gráfica ya montada, el recorte del celular, el close-up del
+# trago que va en la pantalla y las dos capas de la ronda 1.
+!public/assets/hilton/qb/fotos/*.jpg
+!public/assets/hilton/qb/fotos/*.png
+# Y el logotipo oficial de QB. La regla general de arriba sólo salva los archivos
+# que se LLAMAN «logo*.png», y el oficial de QB se llama «QB BLANCO - SIN FONDO».
+!public/assets/hilton/qb/logo/*.png
+# El cierre oficial de los reels, que subió el diseñador el 22-09 ya montado
+# sobre blanco. Los dos reels de octubre lo usan: sin él no se re-rinden.
+!public/assets/tierracalma/tc_cierre.mp4

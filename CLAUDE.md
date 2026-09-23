@@ -7,11 +7,84 @@
 
 You are a professional video editor. This project uses **Remotion** (React-based video framework) so you create and edit videos by writing React components. Users describe videos in natural language; you write the code.
 
+
+## COPYWRITERS — Creative Operating System v1.0 (desde 03-09-2026)
+
+El feed de `@copywriters.cl` **se reconstruyó desde cero**. Este proyecto ya no
+hace sólo video: produce las piezas gráficas de la cuenta propia con un sistema
+de dirección de arte, no con plantillas.
+
+> **La regla madre: Copywriters no tiene una plantilla. Tiene criterio.**
+> La consistencia sale de tipografía, dirección de arte, tratamiento fotográfico,
+> paleta, tono, composición, intervención y jerarquía — **no** de repetir el mismo
+> layout. Si el feed empieza a parecer un template de Instagram, el sistema falló.
+
+| Qué | Dónde |
+|---|---|
+| **La ley** | [`creative-system/COPYWRITERS_CREATIVE_OS.md`](creative-system/COPYWRITERS_CREATIVE_OS.md) |
+| Tokens (los lee TypeScript **y** Python) | `src/brand/copylab/tokens.json` |
+| Motor: fuentes · tipografía · mano · lienzo | `src/brand/copylab/` |
+| Las piezas — **una pieza = un archivo** | `src/compositions/copylab/` |
+| Reglas ejecutables de QA | `clients/copywriters/reglas.yaml` |
+| Manual operativo de la cuenta | [`clients/copywriters/CLAUDE.md`](clients/copywriters/CLAUDE.md) |
+| Playbooks de imagen, motion, formatos, anti-patrones | `creative-system/*.md` |
+| Lote v1 renderizado (13 stills) | `out/copylab/v1/` |
+
+```bash
+./node_modules/.bin/remotion still CL-Signal out/copylab/v2/01-signal.png \
+  --browser-executable="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+python3 qa/motor.py --marca copywriters out/copylab/v2/*.png
+```
+
+**Las cuatro voces** (en `public/assets/fonts/copywriters/`):
+Archivo variable (impacto) · DM Serif Display Italic (editorial) ·
+IBM Plex Mono (data) · Caveat (mano).
+
+**La paleta:** `#080F14` tinta · `#F2F4F6` off-white · `#FFFFFF` blanco ·
+`#FF2D8D` **Copy Pink** (la firma) · `#FF683D` coral · `#9D4EDD` púrpura.
+
+⚠️ **No existe una composición genérica con un prop `plantilla`, y esa ausencia
+ES el sistema.** Si vas a agregar una pieza, agrégala como archivo propio con su
+dirección de arte escrita en la cabecera.
+
+⚠️ El crema/navy/**lime** de `src/brand/copywriters.ts` es el de la **web** y no
+entra al feed.
+
+> 🗄️ **Deprecado el 03-09-2026:** el sistema anterior del feed
+> (`src/compositions/gcl/GclPost.tsx`, 6 plantillas con halos, anillos de LEDs,
+> pastillas redondeadas y firma obligatoria). Sigue vivo porque lo invoca
+> `AGENTE SOCIAL MEDIA/tools/remotion_render.py`; migrarlo es una decisión
+> pendiente de Valeria. Veredicto completo en
+> [`creative-system/AUDITORIA.md`](creative-system/AUDITORIA.md).
+>
+> **El personaje G no se deprecó:** es la familia 06 del sistema.
+>
+> ⛔ **El universo G.C.L. tiene canon propio y con candados:**
+> [`gcl-agent/universo/CANON_LOCK.md`](gcl-agent/universo/CANON_LOCK.md) manda
+> sobre el pack V4 completo y sobre `GCL_CHARACTER_BIBLE.md`. Desde el 05-09-2026:
+> **el protagonista se llama G** («Gigi» no existe), **`G.C.L.` es el universo y
+> nunca el personaje**, y las cifras del V4 (60–70 %, 1 de cada 6) son orientación
+> editorial, **no reglas de producción**. El CAP.02 está **congelado**: el número
+> 02 lo reclaman tres capítulos distintos.
+
+---
+
 ## 🚀 Si es la primera vez que se abre este proyecto en esta máquina
 
 Corre `bash scripts/doctor.sh`. Si falta `node_modules/`, el venv de Python o el
 conector de Drive, ejecuta **`/arranque`** — instala lo que falte y reporta lo que
 la persona tiene que hacer. Guía para humanos: [`LEEME-PRIMERO.md`](LEEME-PRIMERO.md).
+
+**Las claves NO se piden por WhatsApp.** Viajan en el repo, cifradas, y se montan
+con un comando:
+
+```bash
+python3 scripts/llavero.py abrir     # pide la contraseña del estudio, una sola vez
+python3 scripts/llavero.py estado    # qué quedó montado
+```
+
+Ahí están Magnific/Freepik, Higgsfield y el token de Google. Manual completo:
+[`credentials/LEEME.md`](credentials/LEEME.md).
 
 Si llegó por ZIP: [`docs/TRASPASO-ZIP.md`](docs/TRASPASO-ZIP.md) dice qué viaja y qué no.
 **Los conectores MCP no viajan** — cada persona los activa en su cuenta de claude.ai.
@@ -50,11 +123,15 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | [`docs/FLUJO-MENSUAL.md`](docs/FLUJO-MENSUAL.md) | **Cómo se corre un mes con un cliente**, de punta a punta. Los 3 modos: grilla mensual, KV + derivados, a pedido |
 | [`docs/QUIEN-HACE-QUE.md`](docs/QUIEN-HACE-QUE.md) | Qué tiene pendiente cada persona del equipo para poder arrancar |
 | [`docs/ESTADO-MARCAS.md`](docs/ESTADO-MARCAS.md) | Qué marca tiene sistema, qué falta pedirle a cada cliente, quién es quién en el equipo |
+| [`docs/COMO-DISENA-EL-EQUIPO.md`](docs/COMO-DISENA-EL-EQUIPO.md) | **Cómo entrega cada diseñadora** — nomenclatura, estructura de carpetas y formatos por persona y por marca, medidos sobre el Drive. Léelo antes de nombrar un archivo de entrega: el portal levanta por nombre |
+| [`docs/QUE-AUTOMATIZAR.md`](docs/QUE-AUTOMATIZAR.md) | **Qué cuenta se automatiza y cuál se deja a mano** — veredicto por cliente con la medición que lo respalda. Léelo antes de proponer automatizar una grilla |
 | [`docs/MAPA-DRIVE.md`](docs/MAPA-DRIVE.md) | Dónde está cada cosa en Drive, con IDs. Incluye cómo llegar a las carpetas de las diseñadoras |
 | [`docs/BRIEF-DE-DISENO.md`](docs/BRIEF-DE-DISENO.md) | El contrato de entrada: qué campos tiene que traer un brief para ejecutarse sin preguntas |
 | [`docs/QUE-PUEDO-Y-QUE-NO.md`](docs/QUE-PUEDO-Y-QUE-NO.md) | Los límites reales, el estado de los conectores MCP y cuándo sí conviene `/design` |
 | [`docs/PORTAL-VALIDACIONES.html`](docs/PORTAL-VALIDACIONES.html) | **El cliente aprueba en el portal, no por WhatsApp.** Guía completa para KAM y CM: cómo entrar, el mes paso a paso, y **cómo se tienen que llamar los archivos que entrega diseño** para que el portal los levante solo |
-| [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md) | **Qué modelos de imagen tenemos realmente** y cuáles no usamos. Incluye Nano Banana Pro (texto legible + 4K, ya incluido en el plan) y la regla de que el relight NO va sobre el producto |
+| [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md) | ⭐ **El catálogo completo de Magnific y cuál usar para qué** — imagen, edición, video, texto→video y **audio** (música y efectos de sonido), con la tabla de decisión «si necesitas X, usa Y». Trae también la trampa de las rutas renombradas y la regla de que el relight NO va sobre el producto. **Léelo antes de generar cualquier imagen o video** |
+| [`credentials/LEEME.md`](credentials/LEEME.md) | **Las credenciales del estudio** — el llavero cifrado que viaja en el repo: cómo abrirlo, qué trae y cómo rota Valeria una clave |
+| [`docs/HEYGEN-GEMELA-DIGITAL.md`](docs/HEYGEN-GEMELA-DIGITAL.md) | **Clonar a Valeria en HeyGen** — Digital Twin de video con Avatar V (nunca desde foto), qué grabar, texto del consentimiento, conector y pipeline. Skills en `~/.claude/skills/heygen-skills` |
 | [`docs/ONBOARDING-DISENADORES.md`](docs/ONBOARDING-DISENADORES.md) | Diseñador nuevo en el equipo |
 | [`docs/GUIA-INSTALACION.html`](docs/GUIA-INSTALACION.html) | **Instalar el estudio en un Mac** — guía de 8 pasos para diseñadores, sin saber terminal |
 | [`docs/GUIA-INSTALACION-WINDOWS.html`](docs/GUIA-INSTALACION-WINDOWS.html) | **Instalar el estudio en Windows** — la misma guía con Git/Python aparte, PowerShell y las trampas de OneDrive |
@@ -70,8 +147,10 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 
 > 🔌 **Rutas y credenciales:** ningún script quema `/Users/...`. Todos resuelven con
 > [`scripts/_entorno.py`](scripts/_entorno.py) — la raíz del repo sale del propio
-> archivo, y las credenciales de `COPYLAB_TOKEN`/`COPYLAB_ENV`, del repo, o del
-> monorepo. Corre `python3 scripts/_entorno.py` para ver qué encuentra acá.
+> archivo, y las credenciales del llavero (`credentials/.env`), de
+> `COPYLAB_TOKEN`/`COPYLAB_ENV`, o del monorepo. Corre `python3 scripts/_entorno.py`
+> para ver qué encuentra acá. La clave de Magnific se pide con `clave_freepik()` de
+> ese mismo módulo — **nunca leyendo `~/.magnific_key` a mano** en un script nuevo.
 
 ### Marcas con sistema
 
@@ -82,10 +161,12 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | **Casablanca** | [`clients/casablanca/`](clients/casablanca/CLAUDE.md) | `src/brand/casablanca.ts` | Pisos premium, gris + serif itálica, **es aire** |
 | **Selfie** | [`clients/selfie/`](clients/selfie/CLAUDE.md) | `src/brand/selfie.ts` | Belleza, fucsia #FF007C, packshots del e-commerce |
 | **Tierra Calma** | [`clients/tierra-calma/`](clients/tierra-calma/CLAUDE.md) | `src/brand/tierracalma.ts` | Parcelas. **QA visual frame a frame obligatorio** |
-| **Hilton / Between** | [`clients/hilton/`](clients/hilton/CLAUDE.md) | `src/brand/hilton-between.ts` | 4 marcas del complejo; sólo Between tiene sistema |
+| **Hilton / Between** | [`clients/hilton/`](clients/hilton/CLAUDE.md) | `src/brand/hilton-between.ts` | 4 marcas del complejo; Between y Piso 18 tienen sistema propio, DT y QB no |
+| **Piso 18** | [`clients/piso18/`](clients/piso18/CLAUDE.md) | `src/brand/piso18.ts` | Centro de eventos del complejo Hilton. **Marca independiente**, como QB. IvyPresto + fucsia `#D4145A`, que **nunca decora**. ⛔ «bodas» está prohibido acá y es obligatorio en DT |
 | **Abakos** | [`clients/abakos/`](clients/abakos/CLAUDE.md) | `src/brand/abakos.ts` | Préstamos online. Gramática **sin medir todavía** |
 | **San Esteban** | [`clients/san-esteban/`](clients/san-esteban/CLAUDE.md) | — | Colegio de Antofagasta (cuenta REM). Gramática **medida**; falta material e imagen |
 | **Rendic / ARC** | [`clients/rendic/`](clients/rendic/CLAUDE.md) | — | El colegio hermano. Burdeo, arco y firma manuscrita. Sistema nuevo desde ago-2026 |
+| **Más Center** | [`clients/mascenter/`](clients/mascenter/CLAUDE.md) | `clients/mascenter/sistema/` + `src/compositions/mascenter/` | Strip centers (Grupo IFB). Paid medido sobre sept 2026: foto con onda, pastilla roja, Localito. Diseñador: Diego Aguilar |
 
 > ⚠️ **San Esteban y Antonio Rendic son dos colegios del mismo holding (REM) y NO se
 > diseñan igual.** San Esteban es azul marino + rojo + abanico multicolor de 110 años;
@@ -113,7 +194,7 @@ Esto está impuesto por programa: `qa/motor.py` exige `--marca`, carga sólo las
 de esa marca y rechaza piezas de otra en la misma corrida.
 
 **Sin manual todavía** (ver `docs/ESTADO-MARCAS.md`): Nueva Urbe (`src/brand/nuevaurbe.ts`),
-Traverso, y DT / QB / Piso18 del complejo Hilton.
+Traverso, y DT del complejo Hilton.
 
 > **PENDIENTE (2026-07-19):** Hacer **UGC real con Higgsfield**. Higgsfield es conector de claude.ai que quedó APAGADO — la usuaria lo reconecta (`/mcp reconnect all` o claude.ai → Connectors) y abre **chat nuevo** para que cargue. Al iniciar, verificar con `ToolSearch "+higgsfield"`; si aparece, revisar el aparato de UGC y generar. Checklist y estado en la memoria `higgsfield-ugc-next.md`. El reel de bienvenida **Tierra Calma quedó terminado** (`~/Downloads/tierra-calma-bienvenida.mp4`, `src/compositions/TierraCalmaReel.tsx`).
 

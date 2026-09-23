@@ -1,0 +1,70 @@
+# Reglas ejecutables de MÁS CENTER (Grupo IFB).
+#
+# ⚠️ Estas reglas son DE ESTA MARCA. Quien firma el criterio es Diego Aguilar,
+#    diseñador del cliente. Su criterio no vale para ninguna otra marca.
+#    Toda regla lleva `autor` y `cita` verbatim; sin eso es una opinión.
+
+marca: mascenter
+nombre: Más Center — Grupo IFB
+version: 1
+actualizado: 2026-09-04
+
+autoridad:
+  - quien: Diego Aguilar
+    rol: diseñador del cliente
+    alcance: [mascenter]
+    canal: entregas en PERFORMANCE/2026/<MES>/ADS <MES> y comentarios en Drive
+  - quien: Sebastián Córdova
+    rol: performance (brief mensual, medidas y zonas seguras)
+    alcance: [mascenter]
+    canal: Sheet "Más Center - Brief Performance - <Mes>"
+  - quien: Valeria Traverso
+    rol: decisión final de marca
+    alcance: [mascenter]
+
+ajustes:
+  zona-segura-meta:
+    porque: >-
+      Dos excepciones medidas sobre las 6 piezas de paid de septiembre 2026 (aprobadas).
+      (1) El logo blanco va centrado con la tinta desde y=117 en story: es el esqueleto
+      del cliente en 4 meses seguidos; la zona segura protege el texto y el CTA, no el
+      logo. (2) El tercio superior es fotografía a sangre sin texto por construcción y el
+      detector de tinta confunde cielo, nubes y fachadas blancas con letras. (3) Abajo a
+      la derecha va Localito sangrado por el borde: es ilustración, no texto. El brief
+      del cliente fija sus propias zonas (14 % arriba y abajo = 269 px) y el CTA termina
+      en 1636, dentro de ellas.
+    args:
+      bottom: 269
+      excepciones:
+        - {x0: 0.35, y0: 0.0, x1: 0.65, y1: 0.14}
+        - {x0: 0.0, y0: 0.0, x1: 1.0, y1: 0.62}
+        - {x0: 0.55, y0: 0.70, x1: 1.0, y1: 1.0}
+  respiro-borde:
+    porque: >-
+      Mismas excepciones: la foto va a sangre por arriba y Localito sale por el borde
+      inferior en todas las piezas aprobadas de septiembre 2026.
+    args:
+      excepciones:
+        - {x0: 0.0, y0: 0.0, x1: 1.0, y1: 0.62}
+        - {x0: 0.55, y0: 0.70, x1: 1.0, y1: 1.0}
+
+reglas:
+  - id: rojo-de-sistema
+    titulo: Los rojos son los dos medidos, no el del manual ni otro
+    check: color_fuera_de_sistema
+    severidad: aviso
+    autor: Diego Aguilar (piezas aprobadas sept 2026) / docs/QUE-AUTOMATIZAR.md
+    fecha: 2026-09-04
+    cita: >-
+      «El rojo está fuera de manual: #DC1914 en las pastillas». Se extiende lo aprobado
+      hasta que el cliente decida volver al #E52521 del manual.
+    porque: >-
+      En junio/julio/septiembre las pastillas midieron #DC1914 y el CTA #D80000; una pieza
+      con #E52521 o con el #E42026 del brochure se nota al lado de las del mes anterior.
+    args:
+      # Sólo la columna del texto (pastilla, bajada y CTA): la foto y la mascota traen
+      # legítimamente cualquier color. Calibrado con --control sobre las 6 de septiembre.
+      region: {x0: 0.15, y0: 0.60, x1: 0.55, y1: 0.98}
+      colores: ["#DC1914", "#D80000", "#FFFFFF"]
+      delta_e: 14
+      max_fraccion: 0.20

@@ -1,0 +1,30 @@
+{
+ "foto": "public/assets/landera/fotos/v2/esc-seguridad.jpg",
+ "salida": "out/landera/montajes/seguridad.jpg",
+ "capas": [
+  {
+   "tipo": "logo",
+   "archivo": "public/assets/landera/kit-logo/monocromo/LOGO_LANDERA_ISO_MONO-VERDE.svg",
+   "quad": [
+    [
+     840,
+     700
+    ],
+    [
+     1000,
+     700
+    ],
+    [
+     1000,
+     880
+    ],
+    [
+     840,
+     880
+    ]
+   ],
+   "encaje": 0.5,
+   "material": "vinilo"
+  }
+ ]
+}

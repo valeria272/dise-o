@@ -1,0 +1,41 @@
+POSTULA TU TERRENO — LANDING PARA WORDPRESS
+Más Center · Grupo IFB — entrega del 09-09-2026
+
+EMPIEZA POR ACÁ (2 pasos):
+
+  1) Abre  sitio-completo.html  con doble clic.
+     Eso es lo que tiene que quedar publicado. Ya está aprobado.
+
+  2) Abre  INSTRUCTIVO.html  con doble clic.
+     Ahí está todo: cómo subir los archivos, cómo crear la página y
+     cómo pegar la landing sección por sección.
+
+QUÉ HAY EN CADA CARPETA:
+
+  recursos/     Todo lo que se sube a WordPress, ya en el formato correcto.
+                imagenes (incluye las 23 fotos de centros) · logos · tipografias
+
+  secciones/    La página cortada en 13 bloques, en orden, para pegar
+                uno por uno. Cada archivo trae adentro sus instrucciones.
+                En vista-previa/ está cómo se ve cada uno.
+
+  TEXTOS-PARA-COPIAR.txt   Todos los textos en plano, por si prefieres
+                           armar las secciones con el constructor del tema.
+
+QUÉ CAMBIÓ EN ESTA ENTREGA:
+  1) El correo de contacto. Ahora es  terrenos@ifbinversiones.cl
+     (antes decía contacto@mascenter.cl). Está en la sección 09, dos veces:
+     en el enlace mailto: y en el texto que se ve.
+
+  2) El formulario ya no miente. Antes decía "Recibimos tu postulación"
+     sin mandar nada a ninguna parte. Ahora arma la postulación con los
+     8 campos y abre el correo del visitante, dirigida a
+     terrenos@ifbinversiones.cl.
+
+LO ÚNICO QUE FALTA:
+  Que el envío sea silencioso, sin abrir el correo del visitante.
+  Hay que conectar el formulario a Contact Form 7 y apuntarlo a
+  terrenos@ifbinversiones.cl — está explicado en el paso 7 del
+  instructivo, con los nombres de cada campo.
+
+Dudas de maquetación: la respuesta siempre está en sitio-completo.html.

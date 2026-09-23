@@ -64,10 +64,18 @@ NOMBRES = {
     'BW-F-Foto-3':        'BW FEED 09-09 Primero la foto 3',
     'BW-F-Foto-4':        'BW FEED 09-09 Primero la foto 4',
     'BW-F-EllaHablo':     'BW FEED 11-09 Ella hablo ella escucho',
-    'BW-F-ToGo-1':        'BW FEED 14-09 Promos To Go 1 portada',
-    'BW-F-ToGo-2':        'BW FEED 14-09 Promos To Go 2 sandwich',
-    'BW-F-ToGo-3':        'BW FEED 14-09 Promos To Go 3 dulce',
-    'BW-F-ToGo-4':        'BW FEED 14-09 Promos To Go 4 trio',
+    # ⚠️ El carrusel To Go SE MOVIÓ de fecha: la grilla lo tiene en la columna L,
+    # «22 de septiembre» (la nota «Intercambiemos fechas con el de cowork» del
+    # cliente). Los nombres decían 14-09 y los archivos que ya están en Drive
+    # dicen 22-09, así que mandan estos. Y la 4 es «los tres», no «trio».
+    'BW-F-ToGo-1':        'BW FEED 22-09 Promos To Go 1 portada',
+    # ⭐ 22-09: la MISMA portada con la dirección al pie (pedido de Scarlette).
+    # Sube como archivo APARTE —«no borrar nada ni quitarlo», Eli— así que lleva
+    # nombre propio. Sin tildes, como todo Between.
+    'BW-F-ToGo-1-Direccion': 'BW FEED 22-09 Promos To Go 1 portada con direccion',
+    'BW-F-ToGo-2':        'BW FEED 22-09 Promos To Go 2 sandwich',
+    'BW-F-ToGo-3':        'BW FEED 22-09 Promos To Go 3 dulce',
+    'BW-F-ToGo-4':        'BW FEED 22-09 Promos To Go 4 los tres',
     'BW-S-ToGoDulce':     'BW ST 01-09 Promo To Go cafe y dulce',
     'BW-S-Cumple':        'BW ST 03-09 Cafe de regalo cumpleanos',
     'BW-S-Calculos':      'BW ST 04-09 Segun mis calculos',

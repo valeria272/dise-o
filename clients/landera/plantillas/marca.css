@@ -1,0 +1,31 @@
+/* Landera — base de las plantillas digitales.
+   Los colores y las medidas salen del manual v1.0; no se inventa nada acá. */
+@font-face { font-family:"Aptos"; font-weight:300;
+  src:url("file:///Applications/Microsoft%20Word.app/Contents/Resources/DFonts/Aptos-Light.ttf"); }
+@font-face { font-family:"Aptos"; font-weight:400;
+  src:url("file:///Applications/Microsoft%20Word.app/Contents/Resources/DFonts/Aptos.ttf"); }
+@font-face { font-family:"Aptos"; font-weight:700;
+  src:url("file:///Applications/Microsoft%20Word.app/Contents/Resources/DFonts/Aptos-Bold.ttf"); }
+
+:root{ --verde:#687B5D; --terracota:#E4361F; --tinta:#33353E;
+       --gris:#666461; --crema:#FAF1E8; }
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{ font-family:"Aptos",sans-serif; -webkit-font-smoothing:antialiased;
+      overflow:hidden; }
+
+/* La franja de remate: hueco fijo, franja viva (lámina 14).
+   El módulo se pasa por --m para que escale con la pieza. */
+.franja{ position:absolute; left:0; top:0; bottom:0;
+         width:calc(var(--m) * 7); }
+.franja i{ position:absolute; top:0; bottom:0; width:var(--m);
+           background:var(--verde); }
+.franja i:nth-child(1){ left:0; }
+.franja i:nth-child(2){ left:calc(var(--m) * 1.5); }
+.franja i:nth-child(3){ left:calc(var(--m) * 3);   }
+.franja i:nth-child(4){ left:calc(var(--m) * 4.5); }
+
+.rot { text-transform:uppercase; letter-spacing:0.09em; font-weight:400;
+       color:var(--verde); }
+.pie { text-transform:uppercase; letter-spacing:0.09em; font-weight:300;
+       color:var(--gris); }

@@ -1,0 +1,428 @@
+/* ============================================================
+   RENTAS NUEVA URBE · VALLE ALTIPLÁNICO — sistema de producción
+   Toda la geometría de acá está MEDIDA sobre las piezas de
+   septiembre 2026 de Paulina. Ver clients/nueva-urbe/CLAUDE.md.
+   Nada de style="" suelto en el HTML: si falta algo, se agrega acá.
+   ============================================================ */
+
+@font-face { font-family: 'Montserrat'; src: url('fonts/Montserrat.ttf') format('truetype');
+             font-weight: 100 900; font-style: normal; font-display: block; }
+
+:root {
+  --azul:  #1372F1;   /* medido — 540.227 px del corpus */
+  --lima:  #CCDC00;   /* medido — 135.814 px */
+  --blanco:#FFFFFF;
+
+  /* La caja del logo, en fracción del ANCHO del lienzo */
+  --caja-w-feed: 24.2%;
+  --caja-w-story: 17.51%;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { background:#000; }
+
+.pieza {
+  position: relative; overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--blanco);
+  -webkit-font-smoothing: antialiased;
+}
+.pieza.feed  { width: 4500px; height: 5625px; }
+.pieza.story { width: 4500px; height: 8000px; }
+
+/* --- la foto, siempre a sangre --- */
+.foto { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+
+/* Velo. En feed sólo se usa en los cierres (foto oscurecida entera). */
+.velo      { position:absolute; inset:0; background:rgba(0,0,0,.38); }
+.velo-abajo{ position:absolute; inset:0;
+             background:linear-gradient(to bottom, transparent 45%, rgba(0,0,0,.55) 100%); }
+.velo-arriba{position:absolute; inset:0;
+             background:linear-gradient(to bottom, rgba(0,0,0,.45) 0%, transparent 38%); }
+
+/* ============ LA CAJA DEL LOGO ============
+   MEDIDA sobre las piezas reales, en dos meses y dos diseñadores:
+     feed  4500×5625 → 1089×821 px (24,2 % del ancho, alto 0,754× su ancho),
+           cuelga ARRIBA, radio inferior 195 px (17,9 % de su ancho), centrada.
+     story 4500×8000 →  788×700 px (17,51 %), cuelga ABAJO, radio superior 112 px.
+   El logotipo ocupa el 54,2 % del ancho de la caja y deja 17,8 % de aire arriba.
+   Va en píxeles y no en %: el `aspect-ratio` con padding porcentual estiraba la
+   caja a 1351 px de alto y hundía el logotipo contra el borde inferior. */
+.caja-logo { position:absolute; left:50%; transform:translateX(-50%);
+             background:var(--blanco); }
+.caja-logo img { position:absolute; left:50%; transform:translateX(-50%); }
+
+.feed  .caja-logo { top:0; width:1089px; height:821px; border-radius:0 0 195px 195px; }
+.feed  .caja-logo img { width:590px; top:140px; }   /* 140 y no 146: el PNG del logotipo trae 6 px de transparencia arriba */
+
+.story .caja-logo { bottom:0; width:788px; height:700px; border-radius:112px 112px 0 0; }
+.story .caja-logo img { width:489px; top:105px; }
+
+/* Logo Valle Altiplánico en blanco. Va sólo en piezas de ficha/producto, no en
+   las de contenido. MEDIDO en el estático de julio: 28,2 % del ancho del lienzo
+   y el MISMO margen derecho que la caja lima del titular (16,3 %). Ahí el bloque
+   de texto estaba ARRIBA, así que ese logo quedaba pegado a él.
+
+   ⚠️ 03-09-2026 — feedback de Diego Aguilar sobre la entrega de octubre: el logo
+   NO es una esquina suelta, se ANCLA al bloque de texto. Si el bloque baja, el
+   logo baja con él. Poner el logo a 13,5 % con el bloque abajo lo deja flotando
+   en medio de la foto («logo en cualquier lado»). Por eso la variante que manda
+   ahora es la ANCLADA: el logo es el primer hijo del .bloque. La absoluta se
+   reserva para piezas cuyo bloque de texto está arriba. */
+.logo-valle { position:absolute; right:16.3%; width:28.2%; }
+.feed .logo-valle { top:13.5%; }
+
+/* variante anclada — el logo entra en el flujo del bloque, sobre el titular */
+.bloque > .logo-valle { position:static; right:auto; top:auto; display:block;
+          width:23%; margin:0 auto 2.6%; }
+
+/* ============ TIPOGRAFÍA ============ */
+.bloque { position:absolute; left:50%; transform:translateX(-50%);
+          width:86%; text-align:center; }
+.bloque.abajo  { bottom:6.4%; }
+.bloque.centro { top:50%; transform:translate(-50%,-50%); }
+
+.titular { line-height:1.06; letter-spacing:-0.005em;
+           text-shadow: 0 6px 40px rgba(0,0,0,.28); }
+.titular .l1 { display:block; font-weight:300; }
+.titular .l2 { display:block; font-weight:700; }
+.italica .titular, .italica .bajada, .italica .marca-caja { font-style: italic; }
+
+/* la caja de color abraza al texto: alto ≈ 2,05× la altura de mayúsculas */
+.marca-caja { display:inline-block; padding:.30em .46em .34em; line-height:1;
+              margin-top:.16em; font-weight:700; }
+.marca-caja.lima { background:var(--lima); color:var(--azul); }
+.marca-caja.azul { background:var(--azul); color:var(--blanco); }
+
+.bajada { margin-top:1.1em; font-weight:400; line-height:1.24;
+          text-shadow: 0 4px 26px rgba(0,0,0,.42); }
+.bajada b { font-weight:700; }
+
+/* ============ CIERRE DE CARRUSEL ============ */
+.boton-url { display:inline-flex; align-items:center; justify-content:center;
+             background:var(--blanco); color:var(--azul); font-weight:700; font-style:italic;
+             letter-spacing:.02em; border-radius:9999px;
+             padding:.42em 1.5em; margin-top:.5em; }
+.cursor { position:absolute; width:5.6%; }
+
+/* ============ FICHA DE PROYECTO ============ */
+.tarjeta-azul { background:var(--azul); border-radius:64px; padding:56px 64px; }
+.pildora-lima { display:inline-block; background:var(--lima); color:var(--azul);
+                font-weight:700; border-radius:9999px; padding:.16em .8em; }
+.tarjeta-precio { background:var(--blanco); color:var(--azul); font-style:italic;
+                  border-radius: 40px 200px 40px 200px; padding:56px 96px; text-align:center; }
+.tarjeta-precio .desde { font-weight:300; }
+.tarjeta-precio .cifra { font-weight:900; line-height:1; }
+.tarjeta-precio .mens  { font-weight:300; }
+
+/* ============ ESCALAS (en px sobre lienzo de 4500 de ancho) ============ */
+.t-xxl { font-size: 300px; }   /* titular de portada de feed */
+.t-xl  { font-size: 250px; }
+.t-l   { font-size: 205px; }
+.t-m   { font-size: 165px; }
+.t-s   { font-size: 132px; }   /* bajada de feed */
+.t-xs  { font-size: 108px; }
+
+/* dos bloques de titular apilados (etiqueta de tip + frase) */
+.titular + .titular { margin-top:.34em; }
+
+/* Cursor lima que apunta al botón del cierre — elemento del sistema, medido en
+   el cierre del carrusel de septiembre y en la placa de marca del reel. */
+.cursor-lima {
+  display:inline-block; width:150px; height:150px; margin-left:-40px;
+  vertical-align:-58px;
+  background: var(--lima);
+  clip-path: polygon(0 0, 0 76%, 22% 58%, 37% 94%, 56% 85%, 41% 51%, 69% 49%);
+  filter: drop-shadow(0 8px 22px rgba(0,0,0,.35));
+}
+
+/* bloque angosto: evita que una frase corta reparta mal las líneas */
+.bloque.angosto { width: 74%; }
+.velo-abajo-firme { position:absolute; inset:0;
+  background:linear-gradient(to bottom, transparent 38%, rgba(0,0,0,.20) 55%, rgba(0,0,0,.68) 100%); }
+/* la caja de color puede ir a un tamaño distinto del titular que la precede */
+.caja-sola { display:block; }
+
+/* ══════════ FILA DE ATRIBUTOS ══════════
+   MEDIDA en el estático de julio: tres discos de 10,6 % del ancho del lienzo,
+   BLANCOS TRASLÚCIDOS con borde AZUL y el ícono AZUL adentro —no al revés—,
+   unidos por una línea azul. El tercero puede llevar TEXTO en vez de ícono.
+   Centros en 0,334 / 0,497 / 0,661 del ancho; el grupo va centrado.
+   El rótulo va debajo, en blanco bold. */
+.atributos { display:flex; justify-content:center; align-items:flex-start; margin-top:1.0em; }
+.atributo { width:16.4%; display:flex; flex-direction:column; align-items:center;
+            gap:.5em; position:relative; }
+.atributo .disco { width:477px; height:477px; border-radius:50%;
+            background:rgba(255,255,255,.80); border:11px solid var(--azul);
+            display:flex; align-items:center; justify-content:center; text-align:center; }
+.atributo .disco svg { width:54%; height:54%; }
+.atributo .disco .dentro { color:var(--azul); font-weight:700; line-height:1.12; padding:0 .4em; }
+.atributo .rotulo { font-weight:700; text-align:center; line-height:1.16;
+            text-shadow:0 4px 22px rgba(0,0,0,.5); }
+/* la línea azul que une un disco con el siguiente */
+.atributo + .atributo::before { content:""; position:absolute;
+            top:238px; right:calc(50% + 238px); width:calc(100% - 477px);
+            height:11px; background:var(--azul); }
+
+/* ══════════ BOTÓN DE WHATSAPP ══════════
+   Medido en el estático de julio: 57,5 % del ancho, alto 10,3 % del ancho,
+   a 6,6 % del borde inferior. Azul macizo, esquinas completamente redondeadas,
+   ícono en disco blanco a la izquierda. */
+.boton-wsp { position:absolute; left:50%; transform:translateX(-50%); bottom:6.6%;
+             width:57.5%; height:10.3%; background:var(--azul); border-radius:9999px;
+             display:flex; align-items:center; gap:3%; padding-left:2.2%; }
+.boton-wsp .disco-wsp { width:auto; aspect-ratio:1; height:74%; border-radius:50%;
+             background:var(--blanco); display:flex; align-items:center; justify-content:center; flex:none; }
+.boton-wsp .disco-wsp svg { width:62%; height:62%; fill:var(--azul); }
+.boton-wsp .lineas { display:flex; flex-direction:column; align-items:center;
+             flex:1; line-height:1.16; }
+.boton-wsp .lineas .arriba { font-weight:400; }
+.boton-wsp .lineas .numero { font-weight:700; }
+
+/* ══════════ HISTORIA ══════════
+   El titular va ARRIBA en versales: línea blanca sobre línea en caja azul.
+   La bajada, en itálica. Medido en rentas_st_1 de septiembre: la caja del
+   titular ocupa 72,3 % del ancho y la del precio 52,4 %, las dos centradas. */
+.story .bloque.alto { top:13.6%; }   /* 13,6 y no 12,5: a 12,5 la tinta entraba a 246 px de 1920 y la zona segura de Instagram son 250 */
+.story .bloque.precio { bottom:24%; }
+.st-titular { font-weight:700; line-height:1.1; letter-spacing:-.005em;
+              text-shadow:0 8px 40px rgba(0,0,0,.42); }
+.st-titular .l1 { display:block; }
+.st-titular .caja { display:inline-block; margin-top:.16em; }
+.st-bajada { font-style:italic; font-weight:400; margin-top:.9em; line-height:1.24;
+             text-shadow:0 6px 30px rgba(0,0,0,.5); }
+.st-bajada b { font-weight:700; }
+/* el bloque de precio: «Arrienda desde» / cifra en caja lima / «mensuales» */
+.precio-desde { font-weight:300; }
+.precio-cifra { display:inline-block; font-weight:900; font-style:italic; margin:.1em 0; }
+.precio-mens  { font-weight:300; }
+.condiciones  { font-weight:400; margin-top:.75em; line-height:1.3; }
+.condiciones b { font-weight:700; }
+/* zona libre para el sticker de Instagram, sobre la caja del logo */
+.zona-sticker { position:absolute; left:0; right:0; bottom:11.5%; height:9%; }
+
+.t-st-xl { font-size: 330px; }
+.t-st-l  { font-size: 250px; }
+.t-st-m  { font-size: 190px; }
+.t-st-s  { font-size: 150px; }
+
+/* Cuando la pieza lleva botón de WhatsApp, el bloque de texto sube para no
+   chocar con él: el botón ocupa 10,3 % del ancho de alto y arranca a 6,6 %
+   del borde inferior, así que el bloque termina por sobre el 22 %. */
+.bloque.con-boton { bottom:22%; }
+
+/* Texto DENTRO del disco de atributo. Va mucho más chico que el rótulo de
+   abajo: el disco deja 455 px útiles y a t-xs (108 px) la palabra «GARANTÍA»
+   pedía 518 px y se desbordaba. */
+.t-disco { font-size: 68px; letter-spacing:.01em; }
+
+/* Historia con texto ARRIBA y ABAJO: hace falta velo en los dos extremos, no
+   sólo en uno. Sin esto el bloque de precio cae sobre la fachada clara y el
+   contraste se va bajo 4,5:1. */
+.velo-doble { position:absolute; inset:0; background:
+   linear-gradient(to bottom, rgba(0,0,0,.50) 0%, rgba(0,0,0,.06) 32%,
+                              rgba(0,0,0,.06) 52%, rgba(0,0,0,.62) 88%, rgba(0,0,0,.62) 100%); }
+
+/* ══════════ GUIÑOS DE HALLOWEEN ══════════
+   Telaraña de esquina en blanco, dibujada en SVG. Va tenue y sólo en las
+   esquinas: es un guiño, no un disfraz de la pieza. La marca sigue siendo
+   azul y lima; el Halloween se nota, no se apodera. */
+.telarana { position:absolute; width:28%; opacity:.62; pointer-events:none;
+            filter: drop-shadow(0 4px 18px rgba(0,0,0,.35)); }
+.telarana.si  { top:0; left:0; }
+.telarana.sd  { top:0; right:0; transform:scaleX(-1); }
+.telarana.ii  { bottom:0; left:0; transform:scaleY(-1); }
+.telarana.id  { bottom:0; right:0; transform:scale(-1,-1); }
+.telarana.chica { width:21%; opacity:.55; }
+/* araña colgando de un hilo */
+.arana { position:absolute; top:0; width:7.5%; opacity:.72;
+         filter: drop-shadow(0 6px 16px rgba(0,0,0,.4)); }
+
+/* Murciélagos dibujados, para las láminas donde la foto no da contexto de
+   Halloween por sí sola. Van blancos y tenues, como la telaraña. */
+.murcielagos { position:absolute; pointer-events:none; opacity:.6;
+               filter: drop-shadow(0 5px 16px rgba(0,0,0,.4)); }
+
+/* Piezas de PAID: Meta pide el 10-15 % inferior libre para su interfaz, así que
+   el bloque de texto sube. Las orgánicas de Paulina bajan hasta el 6 %, pero
+   eso en pauta queda tapado. Ver la regla global de zonas seguras del estudio. */
+.bloque.paid { bottom:16%; }
+
+/* ══════════════════════════════════════════════════════════
+   MAILING — maqueta medida sobre el correo de agosto de Paulina.
+   Cuatro bloques apilados de 1201 px de ancho:
+     1 · banner        1201×750  foto exterior + titular en caja lima + bajada azul
+     2 · atención      1201×240  FONDO BLANCO, texto azul y píldora de horario
+     3 · ficha         1201×813  foto interior + tarjeta azul de datos + precio
+     4 · cierre        1201×551  foto de gente + titular + caja lima
+   Van a 1201 px reales, no a 4500: es un correo, tiene que pesar poco.
+   ══════════════════════════════════════════════════════════ */
+.pieza.mail { width:1201px; }
+.pieza.mail.banner  { height:750px; }
+.pieza.mail.atencion{ height:240px; background:var(--blanco); }
+.pieza.mail.ficha   { height:813px; }
+.pieza.mail.cierre  { height:551px; }
+
+.mail .caja-logo { top:0; width:118px; height:89px; border-radius:0 0 21px 21px; }
+.mail .caja-logo img { width:64px; top:15px; }
+
+/* bloque de atención: todo en blanco, sin foto */
+.atencion-txt { position:absolute; inset:0; display:flex; flex-direction:column;
+                align-items:center; justify-content:center; gap:14px; text-align:center; }
+.atencion-txt .l { font-size:26px; line-height:1.28; color:#4A5568; font-weight:400; }
+.atencion-txt .l b { color:var(--azul); font-weight:700; }
+.atencion-txt .horario { background:var(--azul); color:var(--blanco); font-weight:400;
+                font-size:20px; border-radius:9999px; padding:8px 22px; }
+
+/* ══════════ FICHA DEL CORREO — v2 ══════════
+   ⚠️ 03-09-2026 (tarde) — Diego Aguilar mandó LA GRÁFICA, no sólo el comentario:
+   `mail1-3.png` de agosto. «lo único que me hace ruido es como queda esa» → «así».
+   Su referencia manda sobre la lectura que hice de su comentario de la mañana:
+   él escribió «esquina superior izquierda» pero en su pieza el logo va CENTRADO
+   sobre la foto. Cuando el texto y la gráfica del diseñador no coinciden, manda
+   la gráfica.
+
+   Lo que su pieza tiene y la v1 no:
+     · la columna azul es UNA caja continua. La v1 la partía en dos tarjetas con
+       la nube en medio y la foto asomando por el hueco: 14 % del alto de aire
+       entre los dos trozos de azul. Eso es lo que «hacía ruido».
+     · el logo Valle va GRANDE Y SOBRE LA FOTO, no dentro de la tarjeta
+     · la nube del precio va abajo a la izquierda, separada de la columna, y las
+       dos comparten línea de base al pie (93,97 % vs 94,34 %)
+     · las amenidades van en un recuadro de borde blanco DENTRO del azul, no en
+       una segunda tarjeta
+
+   MEDIDO sobre mail1-3.png, que es el mismo lienzo que el nuestro (1201×813):
+     tarjeta    x 69,30→95,25 %   y 31,73→94,34 %   ancho 25,98 %  alto 62,61 %
+     recuadro   x 71,50→93,50 %   y 70,80→90,70 %
+     logo       ancho 25,73 % del lienzo · centro x 52,46 % · centro y 61,13 %
+     nube       x 38,72→66,19 %   y 77,37→93,97 %   ancho 27,56 % alto 16,73 %
+     aire entre la nube y la tarjeta: 3,11 % del ancho
+
+   La píldora lima «Calama» NO está en la referencia de agosto: sale. La ciudad
+   ya la dice el logotipo, que ahora va grande sobre la foto. (En septiembre
+   Paulina sí la lleva — si el cliente la pide de vuelta, se repone y basta.) */
+.mail .ficha-col { position:absolute; right:4.75%; top:31.73%; bottom:5.66%;
+                width:25.98%; }
+.mail.col-izq .ficha-col { right:auto; left:4.75%; }
+
+/* la tarjeta: una sola caja, de arriba abajo */
+.mail .ficha-datos { background:var(--azul); border-radius:26px;
+                padding:22px 18px 26px; text-align:center; color:var(--blanco);
+                height:100%; box-sizing:border-box;
+                /* 23-09-2026 — ronda de Diego y Carlos: «quitar espacio».
+                   Con `flex-start` + `margin-top:auto` en las amenidades quedaba
+                   UNA banda muerta de 15,5 % del alto entre la fila de iconos y
+                   el recuadro, cuando el resto de los respiros internos miden
+                   1,1-2,7 %. `space-between` reparte ese aire entre los bloques
+                   y NO mueve ninguno de los tres anclajes medidos sobre la
+                   referencia de agosto: tarjeta 31,73-94,34 %, recuadro al pie,
+                   nube compartiendo linea de base. */
+                display:flex; flex-direction:column; justify-content:space-between; }
+.mail .ficha-datos .dir { font-weight:700; font-size:19px; line-height:1.25; }
+.mail .ficha-datos .mod { font-weight:700; font-size:19px; line-height:1.25; margin-top:14px; }
+.mail .pildora-lima { font-size:18px; padding:.18em .8em; margin-top:8px; }
+.mail .fila-iconos { display:flex; justify-content:center; gap:10px; margin-top:18px;
+                align-items:flex-end; }
+.mail .fila-iconos .it { display:flex; flex-direction:column; align-items:center; gap:4px;
+                font-size:14px; font-weight:700; }
+.mail .fila-iconos svg { width:34px; height:34px; }
+.mail .sep-v { width:1px; align-self:stretch; background:rgba(255,255,255,.45); margin:0 4px; }
+
+/* las amenidades: recuadro de borde blanco DENTRO de la misma tarjeta */
+.mail .amenidades { display:grid; grid-template-columns:repeat(3,1fr); gap:10px 6px; }
+.mail .ficha-datos .amenidades { margin-top:0; padding:23px 8px; border-radius:14px;
+                border:2px solid rgba(255,255,255,.55); }
+.mail .amenidades .am { display:flex; flex-direction:column; align-items:center; gap:4px;
+                font-size:11px; font-weight:700; line-height:1.15; text-align:center; }
+.mail .amenidades svg { width:30px; height:30px; }
+
+/* el logo Valle, sobre la foto. Centro medido en la referencia: x 52,46 % y 61,13 %.
+   El archivo trae 8 px de padding alfa por lado, así que el <img> va a 26,21 %
+   para que el LOGOTIPO mida los 25,73 % medidos. */
+.mail.ficha > .logo-valle { position:absolute; right:auto; left:39.36%; top:50.98%;
+                width:26.21%;
+                /* La sombra NO está en la referencia de Diego: la agrego porque su
+                   pieza cae sobre un sofá y la nuestra del 06-10 cae sobre el muro
+                   beige del living, que mide L=0,649 — el logo blanco daba 1,50:1,
+                   por debajo del 2,15:1 de su propia pieza. No es un recurso nuevo:
+                   es la misma sombra que la marca ya usa en `.mail .titular` sobre
+                   foto. Si el cliente la quiere plana, se borra esta línea. */
+                filter:drop-shadow(0 4px 22px rgba(0,0,0,.55)); }
+.mail.ficha.col-izq > .logo-valle { left:auto; right:39.36%; }
+
+/* la NUBE del precio — abajo a la izquierda, alineada al pie con la tarjeta.
+   El escalonado del texto es de la referencia: la bajada arranca a la izquierda,
+   la cifra manda al centro y «mensuales» cierra a la derecha. */
+.mail .ficha-precio { position:absolute; z-index:3; left:38.72%; width:27.56%;
+                bottom:6.03%; height:16.73%; box-sizing:border-box;
+                background:var(--blanco); color:var(--azul);
+                border-radius:20px 78px 20px 78px; padding:10px 30px;
+                display:flex; flex-direction:column; justify-content:center;
+                text-align:center; font-style:italic; }
+.mail.col-izq .ficha-precio { left:auto; right:38.72%;
+                border-radius:78px 20px 78px 20px; }
+.mail .ficha-precio .d { font-weight:300; font-size:19px; text-align:left; }
+.mail .ficha-precio .c { font-weight:900; font-size:46px; line-height:1.05; }
+.mail .ficha-precio .m { font-weight:300; font-size:18px; text-align:right; }
+.mail.col-izq .ficha-precio .d { text-align:right; }
+.mail.col-izq .ficha-precio .m { text-align:left; }
+
+/* escalas propias del correo */
+.mail .titular { text-shadow:0 3px 16px rgba(0,0,0,.35); }
+.t-m-xl { font-size:44px; }
+.t-m-l  { font-size:34px; }
+.t-m-m  { font-size:26px; }
+.t-m-s  { font-size:21px; }
+.mail .marca-caja { padding:.22em .5em .26em; }
+.mail .bloque { width:92%; }
+/* 8,7 % y no 5,5 %: medido sobre los banners aprobados de septiembre, la tinta
+   más baja de Paulina queda a 58-59 px del borde (normalizado a 1080 de ancho).
+   Con 5,5 % la nuestra caía a 43-48 px — más pegada que la referencia. */
+.mail .bloque.abajo { bottom:8.7%; }
+
+/* ══════════ HISTORIA CENTRADA — excepción declarada ══════════
+   23-09-2026 · ronda de Diego Aguilar sobre la ST de Halloween: «centrar al
+   medio». La gramática de historia de la marca pone el titular ARRIBA (13,6 %)
+   y el precio abajo (bottom 24 %), y esa sigue mandando: por eso esto va en su
+   propia clase y NO toca `.story .bloque.alto`.
+
+   MEDIDO sobre la pieza rendida: el titular ocupa 14,45-32,98 % y el precio
+   62,20-75,48 %, o sea 29,2 % de vacío entre los dos. Juntando los dos grupos
+   con 6 % de separación el conjunto mide 37,8 %, que centrado en el eje deja
+   la tinta entre 31,1 % y 68,9 % — dentro de las zonas seguras de Instagram
+   (250 px arriba = 13,0 % · 340 px abajo = 17,7 %). */
+.story.centrada .bloque.alto   { top:30.2%; }
+.story.centrada .bloque.precio { bottom:30.6%; }
+
+/* ══════════ LÁMINA NUMERADA ══════════
+   Calcada del carrusel PAID que Rentas publicó en Instagram (captura del
+   02-09). La gramática es distinta de la de una portada:
+     · el bloque va ARRIBA, no abajo
+     · alineado a la IZQUIERDA, no centrado
+     · el número va en BLANCO y FUERA de la caja: «01:»
+     · el título va DENTRO de una caja AZUL, en una sola línea
+     · la bajada va suelta en blanco, con la parte clave en negrita
+   Yo lo tenía al revés —número en caja lima, título fuera, todo abajo y
+   centrado—; ésta es la corrección. */
+.bloque.numerada { top:7.5%; bottom:auto; left:6.5%; transform:none;
+                   width:87%; text-align:left; }
+.numerada .paso { display:inline-block; color:var(--blanco); font-weight:700;
+                  margin-right:.32em; vertical-align:baseline; }
+.numerada .caja-titulo { display:inline-block; background:var(--azul);
+                  color:var(--blanco); font-weight:700; padding:.10em .34em .16em;
+                  line-height:1.16; }
+.numerada .sub { display:block; margin-top:.34em; color:var(--blanco);
+                  font-weight:400; line-height:1.22;
+                  text-shadow:0 4px 22px rgba(0,0,0,.55); }
+.numerada .sub b { font-weight:700; }
+/* velo suave ARRIBA: el texto de estas láminas vive en el tercio superior */
+.velo-arriba-firme { position:absolute; inset:0;
+   background:linear-gradient(to bottom, rgba(0,0,0,.52) 0%, rgba(0,0,0,.18) 34%, transparent 52%); }
+
+/* Banner de correo con gente en la foto: el texto sube. En agosto iba abajo
+   porque la foto era una fachada vacía; si hay figuras en el tercio inferior,
+   el bloque las tapa y se pierde justo lo que da la escena. */
+.mail .bloque.alto-mail { top:14.5%; bottom:auto; }   /* bajo la caja del logo, que llega al 11,9 % */
+.velo-arriba-mail { position:absolute; inset:0;
+   background:linear-gradient(to bottom, rgba(0,0,0,.55) 0%, rgba(0,0,0,.20) 42%, transparent 62%); }

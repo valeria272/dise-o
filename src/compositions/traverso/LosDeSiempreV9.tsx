@@ -1,0 +1,194 @@
+/**
+ * TRAVERSO × GRUPO COPYLAB — «LOS DE SIEMPRE» V9 · FINAL CUT — sacar redundancias (19,6 s · 24 fps)
+ * ------------------------------------------------------------------------------
+ * Dirección, composición, montaje y sonido. Personajes y clips intactos (salvo c17: la entrada con
+ * la franja horizontal ARRIBA de las boquillas — arquitectura, no personajes).
+ *
+ * LA PRESENTACIÓN ESCÉNICA (en post, sobre el hero shot c08):
+ *   3,58 se detienen en semioscuridad (silueta con brillos)
+ *   4,04 CLACK foco IZQUIERDO · 4,26 CLACK CENTRO · 4,74 CLACK DERECHO — tres golpes reales de la canción;
+ *        cada foco «destapa» la iluminación real del plano con una máscara elíptica
+ *   4,74 aparece LOS DE SIEMPRE. (reveal 1: quiénes son) — sin fade
+ *   5,2–6,15 manos a las solapas · 6,15–6,6 microvacío · 6,60 DROP: abren → etiquetas (reveal 2: qué marca)
+ * ENTRADA: un solo plano hero (c17) → Ketchup pasa frente a lente (cola de c14) → reunión (c16).
+ * CIERRE: dos cards. Último golpe 19,08 → negro seco 19,6.
+ * Música: audio/banda-v6.mp3 (una pieza continua, offset 4,42). Eventos: 1,04 · 1,94 · 2,42 · 3,14 · 3,58 ·
+ * 4,04 · 4,26 · 4,74 · 5,2 · 5,66 · 6,1 · vacío 6,15–6,6 · 6,60 · 9,36 · parada 11,58–12,08 · 12,58 · 14,58 · 17,08 · 19,08.
+ */
+import React from "react";
+import {AbsoluteFill, Audio, Img, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig} from "remotion";
+import {Video} from "@remotion/media";
+
+export const V9_FPS = 24;
+export const V9_W = 1080;
+export const V9_H = 1920;
+export const V9_DURATION = Math.round(19.6 * V9_FPS); // 470
+const A = "assets/traverso/lds2";
+const F = (s: number) => Math.round(s * V9_FPS);
+const INK = "#050505", BONE = "#F2EEE7", MOSTAZA = "#E8B325", ARCHIVO = "LDS Archivo";
+const fontPromise = typeof FontFace !== "undefined" ? new FontFace(ARCHIVO, `url(${staticFile("assets/fonts/copywriters/Archivo-Variable.ttf")})`).load().then((f) => (document as any).fonts.add(f)).catch(() => undefined) : Promise.resolve();
+
+// CAMINAN → MACRO → YA DETENIDOS (semisilueta, expectativa) → CLACK izq 3,58 · centro 4,04 · der 4,74 (onsets reales)
+// → LOS DE SIEMPRE. → solapas → vacío 6,15–6,6 → DROP 6,6 (Traverso) → 9,36 GRUPO COPYLAB → 11,58 luz → YA SENTADOS
+const T = {walk: 0.0, macro: 1.62, stop: 2.42, foco1: 3.58, foco2: 4.04, foco3: 4.74, vacio: 6.15, reveal: 6.6,
+  destino: 9.36, mesa: 11.58, end: 16.5, card2: 17.6, fin: 19.6};
+
+type Plano = {id: string; from: number; to: number; src: string; trim?: number; rate?: number; punch?: number; zoom?: number; origin?: string; push?: [number, number];
+  whipOut?: boolean; whipIn?: boolean; burn?: boolean; fromWhite?: boolean; wipeOut?: boolean; shake?: boolean; stage?: boolean};
+const PLANOS: Plano[] = [
+  {id: "walk",  from: T.walk, to: T.macro, src: "c04.mp4", trim: 0.20, rate: 1.0, punch: 1.06},
+  {id: "macro", from: T.macro, to: T.stop, src: "c02.mp4", trim: 0.30, rate: 1.0, punch: 1.12},
+  // ya detenidos: semisilueta; el escenario los presenta foco a foco
+  {id: "stage", from: T.stop, to: T.reveal, src: "c08.mp4", trim: 0.2, rate: 1.0, push: [1.0, 1.05], origin: "50% 32%", stage: true},
+  {id: "reveal", from: T.reveal, to: T.destino, src: "c09.mp4", trim: 0.5, rate: 1.6, push: [1.2, 1.0], origin: "50% 45%", shake: true},
+  // entrada APROBADA: un plano hero; la luz de la puerta quema y se convierte en la sala
+  {id: "destino", from: T.destino, to: T.mesa, src: "c17.mp4", trim: 0.4, rate: 1.9, burn: true},
+  // YA están sentados. Nada entre medio.
+  {id: "mesa", from: T.mesa, to: T.end, src: "c16.mp4", trim: 0.2, rate: 1.0, push: [1.0, 1.05], origin: "50% 45%", fromWhite: true},
+];
+
+/** Los tres focos: máscaras elípticas centradas en cada personaje que destapan la versión iluminada. */
+const FOCOS = [
+  {cx: "24%", cy: "36%", at: 3.58},
+  {cx: "50%", cy: "32%", at: 4.04},
+  {cx: "76%", cy: "36%", at: 4.74},
+];
+
+const Shot: React.FC<{p: Plano}> = ({p}) => {
+  const frame = useCurrentFrame(); const dur = F(p.to - p.from);
+  const push = p.push ? interpolate(frame, [0, dur], p.push, {easing: (x) => 1 - Math.pow(1 - x, 3)}) : 1;
+  const punch = p.punch ? interpolate(frame, [0, 3, dur], [p.punch, 1 + (p.punch - 1) * 0.3, 1.0], {extrapolateRight: "clamp"}) : 1;
+  const shake = p.shake ? (frame === 1 ? 1.035 : frame === 2 ? 0.985 : frame === 3 ? 1.012 : 1) : 1;
+  const outX = p.whipOut ? interpolate(frame, [dur - 5, dur], [0, -22], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}) : 0;
+  const inX = p.whipIn ? interpolate(frame, [0, 5], [22, 0], {extrapolateRight: "clamp"}) : 0;
+  const whipScale = 1 + Math.abs(outX + inX) / 22 * 0.55;
+  const blur = Math.max(p.whipOut ? interpolate(frame, [dur - 5, dur], [0, 26], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}) : 0, p.whipIn ? interpolate(frame, [0, 5], [26, 0], {extrapolateRight: "clamp"}) : 0);
+  const burn = p.burn ? interpolate(frame, [dur - 8, dur], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}) : 0;
+  const white = p.fromWhite ? interpolate(frame, [0, 6], [1, 0], {extrapolateRight: "clamp"}) : 0;
+  const wipe = p.wipeOut ? interpolate(frame, [dur - 4, dur], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}) : 0;
+  const transform = `translateX(${outX + inX}%) scale(${push * punch * shake * whipScale * (p.zoom ?? 1)})`;
+  const video = <Video src={staticFile(`${A}/clips/${p.src}`)} trimBefore={F(p.trim ?? 0)} playbackRate={p.rate ?? 1} volume={0} style={{width: "100%", height: "100%", objectFit: "cover"}} />;
+  if (p.stage) {
+    // tiempo absoluto del plano dentro del reel
+    const t = p.from + frame / V9_FPS;
+    return (
+      <AbsoluteFill style={{background: INK}}>
+        {/* base: silueta en penumbra, conserva brillos (contraste alto) */}
+        <AbsoluteFill style={{transform, transformOrigin: p.origin, filter: "brightness(0.26) contrast(1.4) saturate(0.7)"}}>{video}</AbsoluteFill>
+        {/* cada foco destapa la iluminación real del plano; se enciende en 2 f con un pequeño sobreimpulso */}
+        {FOCOS.map((f, i) => {
+          const on = interpolate(t, [f.at, f.at + 0.06, f.at + 0.2], [0, 1.25, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+          if (on <= 0) return null;
+          const mask = `radial-gradient(ellipse 30% 46% at ${f.cx} ${f.cy}, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 45%, rgba(0,0,0,0.35) 72%, rgba(0,0,0,0) 100%)`;
+          return (
+            <AbsoluteFill key={i} style={{WebkitMaskImage: mask, maskImage: mask, opacity: Math.min(1, on)}}>
+              <AbsoluteFill style={{transform, transformOrigin: p.origin, filter: `brightness(${on})`}}>{video}</AbsoluteFill>
+            </AbsoluteFill>
+          );
+        })}
+        {/* con los tres encendidos, el piso y el aire vuelven a su luz normal (el conjunto se abre) */}
+        <AbsoluteFill style={{transform, transformOrigin: p.origin, opacity: interpolate(t, [T.foco3, T.foco3 + 0.12], [0, 0.9], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})}}>{video}</AbsoluteFill>
+      </AbsoluteFill>
+    );
+  }
+  return (
+    <AbsoluteFill style={{background: INK}}>
+      <AbsoluteFill style={{transform, transformOrigin: p.origin ?? "50% 50%", filter: blur ? `blur(${blur}px)` : undefined}}>{video}</AbsoluteFill>
+      {burn > 0 ? <AbsoluteFill style={{background: "#FFE9C4", opacity: burn}} /> : null}
+      {white > 0 ? <AbsoluteFill style={{background: "#FFF3DC", opacity: white}} /> : null}
+      {wipe > 0 ? <AbsoluteFill style={{background: INK, opacity: wipe}} /> : null}
+    </AbsoluteFill>
+  );
+};
+
+const Titular: React.FC<{lineas: string[]; size?: number; color?: string; bottom?: number; wdth?: number; wght?: number; tracking?: number; delay?: number}> =
+  ({lineas, size = 96, color = BONE, bottom = 230, wdth = 62, wght = 850, tracking, delay = 0}) => {
+  const frame = useCurrentFrame() - delay; const {fps} = useVideoConfig();
+  const enter = spring({fps, frame, config: {damping: 16, stiffness: 260, mass: 0.7}});
+  const tr = tracking ?? interpolate(enter, [0, 1], [0.12, 0.0]);
+  return (
+    <AbsoluteFill style={{justifyContent: "flex-end", alignItems: "center", paddingBottom: bottom}}>
+      <div style={{opacity: frame < 0 ? 0 : 1, transform: `scale(${interpolate(enter, [0, 1], [1.32, 1])})`, filter: `blur(${interpolate(frame, [0, 3], [10, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})}px)`, fontFamily: ARCHIVO, fontVariationSettings: `"wdth" ${wdth}, "wght" ${wght}`, fontSize: size, lineHeight: 0.94, letterSpacing: `${tr}em`, color, textAlign: "center", textTransform: "uppercase", textShadow: "0 8px 50px rgba(0,0,0,0.75)", padding: "0 50px"}}>
+        {lineas.map((l, i) => <div key={i}>{l}</div>)}
+      </div>
+    </AbsoluteFill>
+  );
+};
+/** LOS DE SIEMPRE. cae en el tercer CLACK, sin fade: 3 f de golpe y se queda detrás de los personajes. */
+const HeroText: React.FC = () => {
+  const frame = useCurrentFrame(); const {fps} = useVideoConfig();
+  const enter = spring({fps, frame, config: {damping: 12, stiffness: 300, mass: 0.6}});
+  return (
+    <AbsoluteFill style={{justifyContent: "center", alignItems: "center"}}>
+      <div style={{transform: `scale(${interpolate(enter, [0, 1], [1.6, 1])}) translateY(-620px)`, fontFamily: ARCHIVO, fontVariationSettings: '"wdth" 62, "wght" 900', fontSize: 212, lineHeight: 0.9, color: MOSTAZA, textAlign: "center", letterSpacing: "-0.01em", textShadow: "0 14px 40px rgba(0,0,0,0.85), 0 0 120px rgba(232,179,37,0.25)"}}>LOS DE<br />SIEMPRE.</div>
+    </AbsoluteFill>
+  );
+};
+
+/** TRAVERSO × GRUPO COPYLAB con peso visual parejo (ancho similar), 1,7× que en V8, y el último frame
+ *  aguanta como gráfica de campaña: la animación termina en 0,4 s y quedan ≥ 1,5 s limpios. */
+const Marcas: React.FC = () => {
+  const frame = useCurrentFrame(); const {fps} = useVideoConfig();
+  const enter = spring({fps, frame: frame - 3, config: {damping: 18, stiffness: 200, mass: 0.8}});
+  const op = interpolate(enter, [0, 1], [0, 1]); const y = interpolate(enter, [0, 1], [24, 0]);
+  return (
+    <AbsoluteFill style={{justifyContent: "flex-end", alignItems: "center", paddingBottom: 620, opacity: op, transform: `translateY(${y}px)`}}>
+      <div style={{display: "flex", alignItems: "center", gap: 64}}>
+        <Img src={staticFile("assets/traverso/logo-blanco.png")} style={{width: 430, objectFit: "contain"}} />
+        <div style={{fontFamily: ARCHIVO, fontVariationSettings: '"wdth" 80, "wght" 300', fontSize: 84, color: BONE, opacity: 0.85}}>×</div>
+        <Img src={staticFile("brand/copylab/copylab-white.png")} style={{width: 340, objectFit: "contain"}} />
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// Pocos SFX, de calidad: 3 CLACKs · acento · DROP (sub + tela) · puerta/aire · oficina · golpe final
+const SFX: {src: string; at: number; vol: number; dur?: number; base?: string}[] = [
+  {src: "sfx-pasos.mp3", at: 0.0, vol: 0.45, dur: 1.6, base: "lds"},
+  {src: "sfx-tela.mp3", at: T.macro, vol: 0.5, base: "lds"},
+  {src: "sfx-pasos.mp3", at: T.stop, vol: 0.35, dur: 0.4, base: "lds"},
+  {src: "sfx-clack.mp3", at: T.foco1, vol: 0.9}, {src: "sfx-clack.mp3", at: T.foco2, vol: 0.9}, {src: "sfx-clack.mp3", at: T.foco3, vol: 1.0}, {src: "sfx-impacto.mp3", at: T.foco3, vol: 0.5},
+  {src: "sfx-tela.mp3", at: 5.4, vol: 0.4, base: "lds"},
+  {src: "sfx-bass.mp3", at: T.reveal, vol: 1.0}, {src: "sfx-solapas.mp3", at: T.reveal + 0.15, vol: 0.85, base: "lds"},
+  {src: "sfx-pasos.mp3", at: T.destino, vol: 0.35, dur: 1.4, base: "lds"}, {src: "sfx-riser.mp3", at: T.mesa - 1.1, vol: 0.55}, {src: "sfx-puerta.mp3", at: T.mesa - 0.45, vol: 0.6, base: "lds"},
+  {src: "sfx-camara.mp3", at: T.mesa - 0.06, vol: 0.5}, {src: "sfx-oficina.mp3", at: T.mesa, vol: 0.28, dur: 4.9, base: "lds"}, {src: "sfx-carpeta.mp3", at: T.mesa + 0.8, vol: 0.45},
+  {src: "sfx-bass.mp3", at: 19.08, vol: 0.9},
+];
+
+export const LosDeSiempreV9: React.FC = () => {
+  void fontPromise;
+  return (
+    <AbsoluteFill style={{background: INK}}>
+      {/* reveal 1: LOS DE SIEMPRE. en el tercer CLACK, detrás de los personajes hasta que termina el reveal 2 */}
+      <Sequence from={F(T.foco3)} durationInFrames={F(T.destino - T.foco3)} layout="none"><HeroText /></Sequence>
+      {PLANOS.map((p) => (
+        <Sequence key={p.id} from={F(p.from)} durationInFrames={Math.max(1, F(p.to - p.from))} layout="none">
+          {p.id === "stage" || p.id === "reveal"
+            ? <AbsoluteFill style={{WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.3) 15%, #000 27%, #000 100%)", maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.3) 15%, #000 27%, #000 100%)"}}><Shot p={p} /></AbsoluteFill>
+            : <Shot p={p} />}
+        </Sequence>
+      ))}
+      {/* reunión: dos textos con un beat de comedia entre medio */}
+      <Sequence from={F(12.6)} durationInFrames={F(T.end - 12.6)} layout="none"><Titular lineas={["Primera reunión."]} size={84} bottom={320} /></Sequence>
+      <Sequence from={F(14.58)} durationInFrames={F(T.end - 14.58)} layout="none"><Titular lineas={["Nadie necesita", "presentarlos."]} size={60} color={MOSTAZA} bottom={190} wght={650} /></Sequence>
+      {/* cierre: DOS cards, golpe final y negro seco */}
+      <Sequence from={F(T.end)} durationInFrames={F(T.fin - T.end)} layout="none">
+        <AbsoluteFill style={{background: INK}} />
+        <Sequence from={0} durationInFrames={F(T.card2 - T.end)} layout="none">
+          <Titular lineas={["Los de siempre."]} size={118} bottom={1020} />
+          <Titular lineas={["Ahora también", "en nuestra mesa."]} size={72} color={MOSTAZA} bottom={820} wght={700} delay={4} />
+        </Sequence>
+        <Sequence from={F(T.card2 - T.end)} layout="none">
+          <Titular lineas={["Bienvenidos, Traverso."]} size={72} wdth={70} wght={750} bottom={1080} />
+          <Marcas />
+        </Sequence>
+      </Sequence>
+      <Audio src={staticFile(`${A}/audio/banda-v6.mp3`)} volume={0.95} />
+      {SFX.map((s, i) => (
+        <Sequence key={i} from={F(s.at)} durationInFrames={s.dur ? F(s.dur) : undefined} layout="none">
+          <Audio src={staticFile(`${s.base === "lds" ? "assets/traverso/lds" : A}/audio/${s.src}`)} volume={s.vol} />
+        </Sequence>
+      ))}
+    </AbsoluteFill>
+  );
+};

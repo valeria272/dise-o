@@ -50,6 +50,12 @@ BLOQUES = {
     'togo-trio-45-logo':     ((1156, 1320, 1414, 1420), 'abajo'),
     'cumple-manos-logo':     ((680, 1068, 996, 1182), 'lados'),
     'cumple-vela-logo':      ((596, 1702, 926, 1818), 'abajo'),
+    # ⭐ RONDA 9 (03-09): la slide 4 del To Go se re-generó con el brownie que
+    # pidió el cliente (`between-togo4-brownie.py`). La edición devolvió el
+    # logotipo REDIBUJADO —legible, pero con proporción 2,976 en vez de 3,0278—
+    # así que se vuelve a estampar el archivo real. Caja medida sobre la imagen
+    # nueva, que es de 3584×4800 y no de 1856×2304 como las de la ronda 5.
+    'togo-trio-brownie':     ((2231, 2732, 2737, 2902), 'abajo'),
 }
 
 # El logo ocupaba menos ancho del que manda el manual (≈55 % del vaso). No se

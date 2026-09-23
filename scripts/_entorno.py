@@ -18,6 +18,19 @@ import os
 import pathlib
 import sys
 
+# ── Consola de Windows ────────────────────────────────────────────────────────
+# PowerShell escribe en cp1252 y revienta con UnicodeEncodeError al imprimir un
+# «✓» o un «✗». Lo peor no es el error: es que salta DESPUÉS de que el script ya
+# hizo el trabajo, así que parece que falló algo cuando no falló nada. Se arregló
+# a mano en siete scripts entre agosto y septiembre de 2026, y volvió a aparecer
+# en el octavo y el noveno. Va acá porque todos los scripts del estudio importan
+# este módulo: el décimo ya nace arreglado.
+for _flujo in (sys.stdout, sys.stderr):
+    try:
+        _flujo.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 # ── Raíz del repo: derivada de la ubicación de este archivo, nunca quemada ──
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 PUBLIC = RAIZ / "public"
@@ -45,13 +58,51 @@ def token_google():
 
 
 def env_compartido():
-    """Ruta al .env compartido, o None."""
+    """Ruta al .env compartido, o None.
+
+    `credentials/.env` es lo que deja `scripts/llavero.py abrir` — es la vía
+    normal en la máquina de un diseñador, que no tiene el monorepo entero.
+    """
     return _primera_que_exista([
         os.environ.get("COPYLAB_ENV"),
+        RAIZ / "credentials" / ".env",
         RAIZ / ".env",
         RAIZ.parent / "ASISTENTE PERSONAL" / ".env",
         pathlib.Path.home() / "copylab-work" / "respaldo-credenciales" / ".env",
     ])
+
+
+def clave_freepik():
+    """La clave de Magnific/Freepik, o None. Un único lugar para todos los scripts.
+
+    Orden: variable de entorno · el llavero abierto · el archivo suelto del HOME.
+    Si devuelve None, casi siempre es que falta correr `llavero.py abrir`.
+    """
+    v = os.environ.get("FREEPIK_API_KEY") or os.environ.get("MAGNIFIC_API_KEY")
+    if v:
+        return v.strip()
+    ruta = env_compartido()
+    if ruta:
+        for linea in ruta.read_text(encoding="utf-8", errors="ignore").splitlines():
+            linea = linea.strip()
+            if linea.startswith(("FREEPIK_API_KEY=", "MAGNIFIC_API_KEY=")):
+                v = linea.split("=", 1)[1].strip().strip('"').strip("'")
+                if v:
+                    return v
+    suelto = pathlib.Path.home() / ".magnific_key"
+    if suelto.is_file():
+        v = suelto.read_text(encoding="utf-8").strip()
+        if v:
+            return v
+    return None
+
+
+FALTA_CLAVE = (
+    "✗ No encuentro la clave de Magnific / Freepik.\n"
+    "  Ábrela desde el llavero del repo:\n"
+    "      python3 scripts/llavero.py abrir\n"
+    "  (la contraseña del estudio se entrega una vez, en el onboarding)\n"
+)
 
 
 def cargar_env():
@@ -111,4 +162,6 @@ if __name__ == "__main__":
     print(f"out/            {OUT}")
     print(f"token Google    {token_google() or '✗ no está en esta máquina'}")
     print(f".env compartido {env_compartido() or '✗ no está en esta máquina'}")
+    _k = clave_freepik()
+    print(f"Magnific/Freepik {(_k[:4] + '…' + _k[-3:]) if _k else '✗ corre: python3 scripts/llavero.py abrir'}")
     print(f"python          {python_venv()}")

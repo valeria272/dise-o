@@ -112,14 +112,25 @@ WhatsApp. Los comentarios de Drive se leen automáticamente y quedan trazables.
 
 ---
 
-## 🔴 Lo único que falta probar de verdad
+## 🟡 La instalación en otra máquina ya se probó — falta la prueba de fuego
 
-**Correr `/arranque` en un Mac que no sea el de Valeria.** Todo está verificado en
-simulación —descomprimí el ZIP en una carpeta limpia y el sistema de EBEMA rindió
-idéntico— pero **nadie lo ha hecho todavía en otra máquina**. Hasta que eso pase, el
-traspaso está probado en teoría.
+**02-09-2026 — primer arranque fuera del Mac de Valeria, en el PC con Windows 11 de Paulina Bustamante**
+(clon en `C:\Users\<usuario>\copylab`, fuera de OneDrive). Resultado:
 
-Es la primera tarea del primer diseñador que entre.
+- Chrome, Node 24, Git, VSCode y los conectores Drive/Canva/Gmail estaban bien;
+  faltaban **la siembra de memoria** (la carpeta estaba vacía: Claude arrancaba
+  amnésico), el **venv de Python** y el **llavero**. Los tres se resolvieron en la
+  sesión y el doctor quedó sin ✗ ni ▲.
+- Traba encontrada: el Python del sistema no traía `cryptography` ni `certifi`.
+  El llavero abre con `cryptography`, pero `magnific.py check` necesita además
+  `certifi` y `requests`. Quedó corregido en la guía de Windows, en
+  `credentials/LEEME.md` y en el mensaje del doctor.
+- El venv en Windows queda en `C:\Users\<usuario>\copylab-venv\Scripts\python.exe`;
+  el doctor ya lo detecta y apunta a esa ruta.
+
+**Lo que falta:** la prueba de fuego de `TRASPASO-CHECKLIST.md` §B5 — una pieza de
+EBEMA rendida en esa máquina y pasada por `qa/motor.py`. Hasta eso, el traspaso está
+probado hasta el arranque, no hasta la entrega.
 
 ---
 

@@ -222,7 +222,7 @@ alto útil** del marco —el que queda entre el logo y la píldora— en vez de 
 de un `top` fijo. Así una frase corta y una larga quedan igual de equilibradas
 sin recalcular nada.
 
-⚠️ **Centrar no es centrar sobre el sujeto.** Siete piezas acotan la banda, y
+⚠️ **Centrar no es centrar sobre el sujeto.** Cuatro piezas acotan la banda, y
 cada una por una razón medible: si el medio del cuadro está ocupado —por una
 gráfica o por el sujeto de la foto— el titular se centra **en la banda que queda
 libre**, no en el alto completo.
@@ -230,17 +230,12 @@ libre**, no en el alto completo.
 | Pieza | Banda | Qué ocupa el medio |
 |---|---|---|
 | `st-12-10` (H) | `[275, 560]` | los rótulos del mapa **y**, arriba, la zona segura de Meta |
-| `c-20-10-4` (K4) | `[205, 570]` | los indicadores sobre la parcela |
 | `c-06-10-4` (E4) | `[205, 700]` | las dos casas (techumbre en la fila 574, chimenea en la 554) |
 | `c-20-10-1` (K1) | `[250, 670]` | la pareja (desde la fila 780) y el potrero |
-| `c-20-10-6` (K6) | `[205, 790]` | la pareja caminando (cabezas en la fila ~672) |
 | `st-22-10` (L) | `[240, 1020]` | los dos globos apilados abajo |
-| `c-20-10-5` (K5) | `[205, 1210]` | nada: acá el globo entra **en flujo** y se centra con el titular |
 
-Las cinco últimas salieron de las dos rondas del 23-09: *"subir un poco, que no
-tape las casas"*, *"que no tape a las personas ni el terreno"*, *"subir un poco
-el bloque de texto, que no tape a las personas"*, *"subir bloque de texto"* y
-*"centrar toda la información"*.
+Salieron de las rondas del 23-09: *"subir un poco, que no tape las casas"*, *"que
+no tape a las personas ni el terreno"* y *"subir bloque de texto"*.
 
 > **Cómo se calcula, y no se estima:** las fotos de `oct/` son 1080×1350, el
 > mismo tamaño del lienzo, así que con `objectFit: cover` la fila de la foto
@@ -250,6 +245,38 @@ el bloque de texto, que no tape a las personas"*, *"subir bloque de texto"* y
 
 Si una pieza nueva tiene algo en el medio, ese es el camino: **acotar la banda,
 no abandonar el centrado** ni mover la gráfica, que está medida.
+
+#### ⛔ EL CARRUSEL NO SE CENTRA: SE ALINEA (Diego, 23-09-2026)
+
+La excepción más grande, y manda sobre la regla de arriba en toda slide numerada.
+
+> *"Veo cada slide desarticulada; lo ideal sería que la ubicación de cada número
+> con el título estén en el mismo lugar que la slide 2, que sería la principal
+> del resto de los puntos. Ajustar eso para que no queden espacios extraños."*
+
+**El número y el titular de las slides 2 a 6 se anclan en la fila `205`**
+(`CARR.sinLogo`), la de la slide 2. No se centran vertical: al deslizar, el
+número tiene que caer siempre en el mismo sitio. Lo resuelve un solo componente,
+`Cabecera`, que todas comparten — antes cada slide se maquetaba por su lado, dos
+a mano sobre crema y tres con `Cuerpo` centrado, y por eso el número aparecía a
+tres alturas distintas.
+
+`Cabecera` toma `sobre="crema"` (tinta navy, sin halo) o `sobre="foto"` (arena,
+con halo). Es lo único que cambia entre una slide de fondo de color y una sobre
+fotografía.
+
+De paso, las slides 2 y 3 entraron a la escala 50–70: estaban en sans 46/48 y
+serif 60/62, fuera de la regla, y eso también las separaba del resto.
+
+**Lo que va debajo de la cabecera sigue el ritmo de la familia**, no el centro
+geométrico: los globos de las slides 5 y 6 anclan en `880`, el de la 4 en `1085`
+y los cierres de texto plano alrededor de `1212`.
+
+> ⚠️ Esta regla **revirtió** un pedido anterior del mismo día. A las 15:01 Diego
+> pidió *"centrar toda la información"* sobre `c-20-10-5` y el globo se metió en
+> flujo bajo el titular; esa tarde, mirando el carrusel entero, pidió la
+> alineación. Manda lo segundo: **un comentario sobre una pieza suelta cede ante
+> uno sobre el carrusel completo**, porque el carrusel es un solo objeto.
 
 #### ⛔ Los recuadros son GLOBOS DE TEXTO translúcidos
 
@@ -291,6 +318,58 @@ Con `y` fijo se queda sólo cuando **algo más ocupa ese espacio** y el globo ti
 que esquivarlo: los indicadores de `c-20-10-4`, o los dos globos apilados de
 `st-22-10`. Ahí el titular se centra en la banda que le queda libre —termina
 donde empieza el primer globo— y los globos conservan su ancla.
+
+#### ⛔ La píldora del CTA: el contorno es del marco, el que cede es el texto
+
+Diego, 23-09 sobre `p-09-10`: *"el botón de «agenda tu visita…» está muy
+apretado, debe ser más ancho"*. **No se puede ensanchar**: el contorno viene
+dibujado dentro de `MARCO-POST.png`, con el filete entrando por los dos lados.
+Es asset bloqueado.
+
+Medido: el contenido ocupaba **559 px de los 574** de la píldora — **9 px de
+aire a la izquierda y 6 a la derecha**. Se bajó a `size 26`, icono `23` y
+`gap 11`: queda en 501 px, con **37 y 36 px** de aire.
+
+⛔ **El texto del CTA no se acorta** para que quepa: va verbatim del brief. Lo
+que se ajusta es el cuerpo.
+
+Va en **las dos** piezas de post (`p-09-10` y `p-29-10`): comparten marco y
+comparten texto, así que comparten el aprieto. Diego comentó una; corregir sólo
+esa habría dejado la otra mal y las dos distintas.
+
+#### ⛔ La conversación tiene que parecer WhatsApp
+
+Diego, 23-09 sobre `p-09-10`: *"la conversación no parece ser como de WhatsApp,
+debería llevar el color, los check de enviado y visto"*.
+
+| Burbuja | Cómo va |
+|---|---|
+| **Entrante** (izquierda) | blanca, sin checks |
+| **Saliente** (derecha) | verde `#D9FDD3` + **doble check azul** `#53BDEB` abajo a la derecha |
+
+Sólo la saliente lleva checks: en la aplicación real, los mensajes que recibes no
+los tienen. No se inventa una hora: Diego pidió color y checks, nada más.
+
+#### ⛔ El degradado no se puede comer el mapa
+
+Diego, 23-09 sobre `st-12-10`: *"acá se abusa mucho del degradé azul, creo que se
+termina perdiendo el mapa del fondo"*.
+
+El mapa subió de `0,62` a `0,86` de opacidad y el velo se replegó: la ventana
+limpia pasó de 34–66 % a **24–76 %** y los extremos de `0,55` a `0,38`.
+
+⚠️ **Y eso obliga a lo segundo:** con el mapa visible, un rótulo blanco suelto
+sobre cartografía clara deja de leerse. Los tres rótulos —SANTIAGO, TIERRA CALMA
+y PADRE HURTADO— llevan ahora la misma base navy que ya tenía RUTA 78. La base
+**abraza el texto**: a todo el ancho partía la pieza con una franja.
+
+> ⚠️ **Pendiente de decisión.** Con el mapa legible se ve que `MAPA-3` trae **su
+> propio pin «Tierra Calma»** (medido en la fila 819, columna 326) además de
+> nuestro rótulo. En el carrusel esto se resolvió montando nuestro pin sobre el
+> del mapa; **acá no se puede**: el mapa calza exacto en la ventana (1170 × 0,923
+> = 1080) y no hay margen para desplazarlo. Moverlo a él rompería la secuencia
+> vertical Santiago → Ruta 78 → Tierra Calma, así que es decisión de diseño.
+
 
 #### Los cuadros de texto se ajustan al texto
 

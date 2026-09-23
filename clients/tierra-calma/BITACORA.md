@@ -59,6 +59,90 @@ Código: `src/compositions/tierracalma/PaidOctubre.tsx` (composiciones
 
 ---
 
+## 2026-09-23 (noche, ronda de ajustes) — Diego Aguilar
+
+**Qué se hizo:** La ronda del carrusel del 20/10 más tres comentarios sueltos.
+**Los reels no se tocaron**, por instrucción expresa.
+
+### El carrusel: de cinco maquetas a una
+
+> *"Veo cada slide desarticulada; lo ideal sería que la ubicación de cada número
+> con el título estén en el mismo lugar que la slide 2."*
+
+Montada la tira de las seis con una guía en la fila 205, se vio de inmediato: las
+slides 2 y 3 apoyaban el número ahí, y las 4, 5 y 6 caían **cada una a una altura
+distinta**. La causa no era un descuido de posición sino que **cada slide estaba
+maquetada por su lado**: dos a mano sobre crema y tres con `Cuerpo` centrado.
+
+Se corrigió en el sistema, no pieza por pieza: un componente **`Cabecera`** que
+las cinco comparten, anclado en `CARR.sinLogo` (205), con `sobre="crema"` o
+`sobre="foto"` como única diferencia. `Numero` desapareció, absorbido por él.
+
+De paso, las slides 2 y 3 **estaban fuera de la escala 50–70** (sans 46/48, serif
+60/62) y eso también las separaba del resto. Ahora usan `Modulado` como todas, con
+una `tinta` nueva para el navy sobre fondo crema.
+
+**El hueco de la slide 3.** *"En el punto 2 donde dice «¿Qué tienes cerca?» hay
+mucho espacio entre ese título y las fotos."* Medido: el titular cerraba en ~363 y
+los recortes bajaban de 470 — **107 px de hueco arriba contra 31 abajo**. A 430 y
+805 el reparto queda ~67 / ~57.
+
+### Las tres correcciones sueltas
+
+| Pieza | Comentario | Qué se hizo |
+|---|---|---|
+| `p-09-10` | «la conversación no parece de WhatsApp, debería llevar el color, los check de enviado y visto» | burbuja saliente en verde `#D9FDD3` + doble check azul `#53BDEB`; la entrante queda blanca |
+| `p-09-10` | «el botón está muy apretado, debe ser más ancho» | **no se puede ensanchar** — ver abajo |
+| `st-12-10` | «se abusa mucho del degradé azul, se pierde el mapa» | mapa de 0,62 → 0,86; ventana limpia de 34-66 % → 24-76 % |
+
+**La píldora no se podía ensanchar, y eso importa.** Su contorno viene **dibujado
+dentro de `MARCO-POST.png`**, con el filete entrando por los dos lados: es asset
+bloqueado. Medido, el contenido ocupaba 559 px de los 574 de la píldora — 9 px de
+aire a la izquierda y 6 a la derecha. Lo que cedió fue el texto (26 pt, icono 23,
+gap 11): ahora 501 px con 37 y 36 de aire. **El CTA no se acortó**: va verbatim
+del brief.
+
+Se aplicó a **las dos** piezas de post. Diego comentó `p-09-10`, pero `p-29-10`
+comparte marco y texto, o sea el mismo aprieto exacto; corregir sólo una las
+habría dejado distintas.
+
+**Al subir el mapa hubo que subir también los rótulos.** Con la cartografía
+visible, un rótulo blanco suelto sobre mapa claro deja de leerse. SANTIAGO,
+TIERRA CALMA y PADRE HURTADO llevan ahora la misma base navy que ya tenía RUTA
+78. Primer intento: la base iba a todo el ancho y **partía la pieza con una
+franja**; se corrigió para que abrace el texto.
+
+### Una decisión que queda abierta
+
+Con el mapa legible se ve que **`MAPA-3` trae su propio pin «Tierra Calma»**
+(fila 819, columna 326) además de nuestro rótulo centrado: se leen dos marcas. En
+el carrusel esto se resolvió montando nuestro pin sobre el del mapa, pero **acá
+no se puede**: el mapa calza exacto en la ventana (1170 × 0,923 = 1080) y no hay
+margen para desplazarlo. Mover nuestro rótulo rompería la secuencia vertical
+Santiago → Ruta 78 → Tierra Calma. Es decisión de diseño, de Diego.
+
+### Verificación
+
+De las 16 estáticas cambiaron **ocho** —`c-20-10-2` a `c-20-10-6`, `p-09-10`,
+`p-29-10` y `st-12-10`— y las otras ocho quedaron **idénticas al píxel**. Todas
+re-subidas sobre el mismo fileId.
+
+**Qué sigue:** sigue esperando la ronda del **cliente**.
+
+**Abierto:** el pin duplicado del mapa, y sigue faltando la **confirmación
+escrita de Fran o Blanca** para «Rol individual» y «Acceso controlado».
+
+> ⚠️ **Los comentarios de la grilla no se pueden leer desde acá.** La grilla de
+> octubre es un **.xlsx subido**, no una hoja nativa de Google: el conector
+> devuelve los 21 hilos **con el texto vacío** (sólo extrae comentarios de Docs,
+> Sheets y Slides nativos), el token del estudio da 404 porque su permiso es
+> `drive.file`, y los comentarios no viajan dentro del archivo. Para leerlos
+> habría que tener la grilla como hoja nativa — decisión de Carlos, que es el
+> dueño. Mientras tanto, el feedback llega por los comentarios sobre los PNG de
+> la carpeta de entrega, que sí se leen.
+
+---
+
 ## 2026-09-23 (noche) — audio nuevo de los reels, HECHO
 
 **Qué se hizo:** Diego reconectó el conector de Magnific y se ejecutó el relevo

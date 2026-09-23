@@ -171,10 +171,11 @@ const cuerpoSans = (texto: string) => {
   return Math.round(SANS_MAX - t * (SANS_MAX - SANS_MIN));
 };
 
-const Modulado: React.FC<{tramos: Tramo[]; base?: number; ancho?: number}> = ({
+const Modulado: React.FC<{tramos: Tramo[]; base?: number; ancho?: number; tinta?: string}> = ({
   tramos,
   base,
   ancho = 860,
+  tinta,
 }) => {
   // El cuerpo sale del largo de TODA la frase, contando los dos roles: lo que
   // manda es cuánto texto hay que leer, no de qué tipografía es cada tramo.
@@ -184,9 +185,11 @@ const Modulado: React.FC<{tramos: Tramo[]; base?: number; ancho?: number}> = ({
     style={{
       width: ancho,
       textAlign: "center",
-      color: "#fff",
+      // `tinta` es para las slides de fondo crema: ahí el titular va en navy y
+      // el halo —que existe para despegar el blanco de una foto— sobra.
+      color: tinta ?? "#fff",
       lineHeight: 1.16,
-      textShadow: "0 2px 24px rgba(0,0,0,0.5)",
+      textShadow: tinta ? "none" : "0 2px 24px rgba(0,0,0,0.5)",
     }}
   >
     {tramos.map((tr, i) => (
@@ -268,8 +271,10 @@ const Pildora: React.FC<{
   caja: {x: number; y: number; w: number; h: number};
   icono?: React.ReactNode;
   size?: number;
+  /** Separación icono-texto. Se baja cuando el texto no cabe holgado. */
+  gap?: number;
   children: React.ReactNode;
-}> = ({caja, icono, size = 30, children}) => (
+}> = ({caja, icono, size = 30, gap = 13, children}) => (
   <div
     style={{
       position: "absolute",
@@ -280,7 +285,7 @@ const Pildora: React.FC<{
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      gap: 13,
+      gap,
     }}
   >
     {icono}
@@ -411,10 +416,27 @@ const Pastilla: React.FC<{y: number; icono?: React.ReactNode; children: React.Re
   </div>
 );
 
+/** Doble check de WhatsApp: azul = visto. */
+const ICheckWsp: React.FC = () => (
+  <svg width={34} height={20} viewBox="0 0 34 20" fill="none" style={{flexShrink: 0}}>
+    <path d="M2 11.2l4.6 4.6L17.6 4.8" stroke="#53BDEB" strokeWidth="2.2"
+      strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M14.4 11.2l4.6 4.6L30 4.8" stroke="#53BDEB" strokeWidth="2.2"
+      strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+/** El verde de la burbuja saliente de WhatsApp. */
+const VERDE_WSP = "#D9FDD3";
+
 /**
- * Burbuja de conversación blanca con colita. Excepción declarada al globo
- * translúcido de la marca: el brief del 09/10 pide "dos grandes globos de
- * conversación blancos".
+ * Burbuja de conversación con colita. Excepción declarada al globo translúcido
+ * de la marca: el brief del 09/10 pide "dos grandes globos de conversación".
+ *
+ * Diego (23-09): *"la conversación no parece ser como de WhatsApp, debería
+ * llevar el color, los check de enviado y visto"*. La burbuja SALIENTE —la de
+ * la derecha, la que escribe quien publica— va en verde y cierra con el doble
+ * check azul; la entrante se queda blanca, que es como se ven de verdad.
  */
 const Burbuja: React.FC<{
   x: number;
@@ -422,36 +444,45 @@ const Burbuja: React.FC<{
   w: number;
   cola: "izq" | "der";
   children: React.ReactNode;
-}> = ({x, y, w, cola, children}) => (
-  <div style={{position: "absolute", left: x, top: y, width: w}}>
-    <div
-      style={{
-        backgroundColor: "#fff",
-        borderRadius: 34,
-        padding: "26px 32px",
-        fontFamily: SANS,
-        fontWeight: 400,
-        fontSize: 38,
-        lineHeight: 1.3,
-        color: TC.colors.ink,
-        boxShadow: "0 18px 44px rgba(0,0,0,0.26)",
-      }}
-    >
-      {children}
+}> = ({x, y, w, cola, children}) => {
+  const mia = cola === "der";
+  const fondo = mia ? VERDE_WSP : "#fff";
+  return (
+    <div style={{position: "absolute", left: x, top: y, width: w}}>
+      <div
+        style={{
+          backgroundColor: fondo,
+          borderRadius: 34,
+          padding: mia ? "26px 32px 18px" : "26px 32px",
+          fontFamily: SANS,
+          fontWeight: 400,
+          fontSize: 38,
+          lineHeight: 1.3,
+          color: TC.colors.ink,
+          boxShadow: "0 18px 44px rgba(0,0,0,0.26)",
+        }}
+      >
+        {children}
+        {mia ? (
+          <div style={{display: "flex", justifyContent: "flex-end", marginTop: 6}}>
+            <ICheckWsp />
+          </div>
+        ) : null}
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          bottom: -14,
+          [cola === "izq" ? "left" : "right"]: 44,
+          width: 30,
+          height: 22,
+          backgroundColor: fondo,
+          clipPath: cola === "izq" ? "polygon(0 0, 100% 0, 30% 100%)" : "polygon(0 0, 100% 0, 70% 100%)",
+        } as React.CSSProperties}
+      />
     </div>
-    <div
-      style={{
-        position: "absolute",
-        bottom: -14,
-        [cola === "izq" ? "left" : "right"]: 44,
-        width: 30,
-        height: 22,
-        backgroundColor: "#fff",
-        clipPath: cola === "izq" ? "polygon(0 0, 100% 0, 30% 100%)" : "polygon(0 0, 100% 0, 70% 100%)",
-      } as React.CSSProperties}
-    />
-  </div>
-);
+  );
+};
 
 // =============================================================================
 // LAS PIEZAS · ronda de Diego del 22-09
@@ -650,7 +681,14 @@ const G: React.FC = () => (
     >
       Tierra Calma · Padre Hurtado
     </div>
-    <Pildora caja={POST.pill} icono={<IWsp s={25} />} size={29}>
+    {/* Diego (23-09, sobre p-09-10): "el boton esta muy apretado, debe ser mas
+        ancho". El contorno de la pildora viene DIBUJADO dentro de
+        MARCO-POST.png —asset bloqueado, no se puede ensanchar—, asi que lo que
+        cede es el texto: medido, ocupaba 559 px de los 574 de la pildora, o sea
+        9 px de aire a la izquierda y 6 a la derecha. Con estos valores baja a
+        ~505 y deja ~34 px por lado. El CTA no se acorta: va verbatim del brief.
+        Va en las DOS piezas de post, que comparten marco y texto. */}
+    <Pildora caja={POST.pill} icono={<IWsp s={23} />} size={26} gap={11}>
       Agenda tu visita por WhatsApp
     </Pildora>
   </Lienzo>
@@ -671,13 +709,18 @@ const H: React.FC = () => (
     <div style={{position: "absolute", left: 0, right: 0, top: 560, height: 620, overflow: "hidden"}}>
       {/* Diego: "al mapa hay que cambiarle el color como las versiones de
           mapa-1 y mapa-2" — va el duotono, no la captura cruda. */}
+      {/* Diego (23-09): "aqui se abusa mucho del degrade azul, creo que se
+          termina perdiendo el mapa del fondo". El mapa sube de 0,62 a 0,86 y el
+          velo se repliega: la ventana limpia pasa de 34-66 % a 24-76 % y los
+          extremos bajan de 0,55 a 0,38. El azul sigue existiendo para fundir el
+          mapa con el fondo, pero deja de comerselo. */}
       <Img
         src={OCT("mapa3-story")}
-        style={{width: "100%", height: "100%", objectFit: "cover", opacity: 0.62}}
+        style={{width: "100%", height: "100%", objectFit: "cover", opacity: 0.86}}
       />
       <AbsoluteFill
         style={{
-          background: `linear-gradient(to bottom, ${TC.colors.navy} 0%, rgba(11,44,73,0.55) 14%, rgba(11,44,73,0) 34%, rgba(11,44,73,0) 66%, rgba(11,44,73,0.55) 86%, ${TC.colors.navy} 100%)`,
+          background: `linear-gradient(to bottom, ${TC.colors.navy} 0%, rgba(11,44,73,0.38) 12%, rgba(11,44,73,0) 24%, rgba(11,44,73,0) 76%, rgba(11,44,73,0.38) 88%, ${TC.colors.navy} 100%)`,
         }}
       />
     </div>
@@ -694,10 +737,10 @@ const H: React.FC = () => (
         fontSize: 32,
         letterSpacing: "0.3em",
         textTransform: "uppercase",
-        color: "rgba(255,255,255,0.85)",
+        color: "rgba(255,255,255,0.92)",
       }}
     >
-      Santiago
+      <span style={{backgroundColor: TC.colors.navy, padding: "4px 18px"}}>Santiago</span>
     </div>
     <div style={{position: "absolute", left: 0, right: 0, top: 812, display: "flex", justifyContent: "center"}}>
       <div style={{width: 1, height: 116, backgroundColor: TC.colors.sand}} />
@@ -719,20 +762,24 @@ const H: React.FC = () => (
     >
       <span style={{backgroundColor: TC.colors.navy, padding: "0 16px"}}>Ruta 78</span>
     </div>
-    <div style={{position: "absolute", left: 0, right: 0, top: 946, display: "flex", justifyContent: "center", alignItems: "center", gap: 14}}>
-      <IPin s={36} />
-      <span
-        style={{
-          fontFamily: SERIF,
-          fontStyle: "italic",
-          fontWeight: 500,
-          fontSize: 54,
-          textTransform: "uppercase",
-          color: "#fff",
-        }}
-      >
-        Tierra Calma
-      </span>
+    {/* La base navy ABRAZA el rótulo, no cruza la pieza: a todo el ancho partía
+        el mapa en dos con una franja. */}
+    <div style={{position: "absolute", left: 0, right: 0, top: 946, display: "flex", justifyContent: "center"}}>
+      <div style={{display: "inline-flex", alignItems: "center", gap: 14, backgroundColor: TC.colors.navy, padding: "6px 28px 10px"}}>
+        <IPin s={36} />
+        <span
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontWeight: 500,
+            fontSize: 54,
+            textTransform: "uppercase",
+            color: "#fff",
+          }}
+        >
+          Tierra Calma
+        </span>
+      </div>
     </div>
     <div
       style={{
@@ -746,10 +793,10 @@ const H: React.FC = () => (
         fontSize: 26,
         letterSpacing: "0.22em",
         textTransform: "uppercase",
-        color: "rgba(255,255,255,0.8)",
+        color: "rgba(255,255,255,0.92)",
       }}
     >
-      Padre Hurtado
+      <span style={{backgroundColor: TC.colors.navy, padding: "4px 16px"}}>Padre Hurtado</span>
     </div>
 
     {/* la foto editorial, abajo */}
@@ -893,20 +940,55 @@ const J: React.FC = () => (
 // K · 20/10 · CARRUSEL 6 SLIDES · qué revisar antes de elegir · Pilar 2
 // =============================================================================
 
-const Numero: React.FC<{n: string}> = ({n}) => (
+/**
+ * ⛔ LA CABECERA DEL CARRUSEL — número + titular, SIEMPRE en la misma fila.
+ *
+ * Diego, 23-09-2026: *"veo cada slide desarticulada; lo ideal sería que la
+ * ubicación de cada número con el título estén en el mismo lugar que la slide 2,
+ * que sería la principal del resto de los puntos"*.
+ *
+ * La slide 2 ancla en `CARR.sinLogo` (fila **205**) y esa es la referencia de
+ * todo el carrusel. Por eso esta cabecera **NO se centra vertical**: un carrusel
+ * es un solo objeto y, al deslizar, el número tiene que caer en la misma fila.
+ * Es la excepción declarada a «todo centrado al medio» para las slides 2 a 6.
+ *
+ * Antes cada slide se maquetaba por su lado —dos a mano sobre crema y tres con
+ * `Cuerpo` centrado— y por eso el número aparecía a tres alturas distintas.
+ */
+const Cabecera: React.FC<{
+  n: string;
+  /** `crema` = fondo de color, tinta navy y sin halo. `foto` = sobre fotografía. */
+  sobre?: "foto" | "crema";
+  children: React.ReactNode;
+}> = ({n, sobre = "foto", children}) => (
   <div
     style={{
-      fontFamily: SERIF,
-      fontStyle: "italic",
-      fontWeight: 400,
-      fontSize: 58,
-      textTransform: "uppercase",
-      color: TC.colors.sand,
-      lineHeight: 1,
-      textShadow: "0 2px 18px rgba(0,0,0,0.5)",
+      position: "absolute",
+      left: 0,
+      right: 0,
+      top: CARR.sinLogo,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      textAlign: "center",
     }}
   >
-    {n}
+    <div
+      style={{
+        fontFamily: SERIF,
+        fontStyle: "italic",
+        fontWeight: 400,
+        fontSize: 58,
+        textTransform: "uppercase",
+        color: sobre === "crema" ? TC.colors.brown : TC.colors.sand,
+        lineHeight: 1,
+        textShadow: sobre === "crema" ? "none" : "0 2px 18px rgba(0,0,0,0.5)",
+      }}
+    >
+      {n}
+    </div>
+    <Aire h={16} />
+    {children}
   </div>
 );
 
@@ -947,30 +1029,13 @@ const K2: React.FC = () => (
       }}
     />
     <MarcoTenido archivo="MARCO-CARRUSEL-2" color={TC.colors.navy} />
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: CARR.sinLogo,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-        color: TC.colors.navy,
-      }}
-    >
-      <div style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: 58, textTransform: "uppercase", color: TC.colors.brown}}>
-        01.
-      </div>
-      <Aire h={16} />
-      <div style={{width: 880, lineHeight: 1.16}}>
-        <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 46}}>¿Qué tan </span>
-        <span style={{fontFamily: SERIF, fontWeight: 500, fontSize: 60, textTransform: "uppercase"}}>conectado</span>
-        <br />
-        <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 46}}>estarás?</span>
-      </div>
-    </div>
+    <Cabecera n="01." sobre="crema">
+      <Modulado
+        ancho={880}
+        tinta={TC.colors.navy}
+        tramos={[{t: "¿Qué tan "}, {t: "conectado", ivy: true}, {t: "estarás?", salto: true}]}
+      />
+    </Cabecera>
     {/* el pin sobre el mapa, con nuestro rótulo */}
     {/* El pin propio va EXACTAMENTE sobre el que ya trae el mapa (medido: canvas
         382,590 con el encuadre al 13 %), así se lee uno solo y no dos. */}
@@ -1054,34 +1119,21 @@ const K3: React.FC = () => (
         cuatro recortes sin rotación y el cierre en texto plano, sin globo. */}
     <AbsoluteFill style={{backgroundColor: TC.colors.cream}} />
     <MarcoTenido archivo="MARCO-CARRUSEL-3" color={TC.colors.navy} />
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: CARR.sinLogo,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-        color: TC.colors.navy,
-      }}
-    >
-      <div style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: 58, textTransform: "uppercase", color: TC.colors.brown}}>
-        02.
-      </div>
-      <Aire h={16} />
-      <div style={{width: 880, lineHeight: 1.16}}>
-        <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 48}}>¿Qué tienes </span>
-        <span style={{fontFamily: SERIF, fontWeight: 500, fontSize: 62, textTransform: "uppercase"}}>cerca</span>
-        <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 48}}>?</span>
-      </div>
-    </div>
+    <Cabecera n="02." sobre="crema">
+      <Modulado
+        ancho={880}
+        tinta={TC.colors.navy}
+        tramos={[{t: "¿Qué tienes "}, {t: "cerca", ivy: true}, {t: "?"}]}
+      />
+    </Cabecera>
     {/* los cuatro recortes, derechos y en retícula */}
-    <Recorte src="sv-super" x={178} y={470} w={312} label="Supermercados" />
-    <Recorte src="sv-salud" x={590} y={470} w={312} label="Salud" />
-    <Recorte src="sv-colegio" x={178} y={845} w={312} label="Colegios" />
-    <Recorte src="sv-comercio" x={590} y={845} w={312} label="Comercio" />
+    {/* Diego (23-09): "hay mucho espacio entre ese titulo y las fotos". Bajaban
+        de 470 y el titular cierra en ~363, o sea 107 px de hueco contra 31 que
+        quedaban abajo. A 430 el reparto queda parejo: ~67 arriba, ~57 abajo. */}
+    <Recorte src="sv-super" x={178} y={430} w={312} label="Supermercados" />
+    <Recorte src="sv-salud" x={590} y={430} w={312} label="Salud" />
+    <Recorte src="sv-colegio" x={178} y={805} w={312} label="Colegios" />
+    <Recorte src="sv-comercio" x={590} y={805} w={312} label="Comercio" />
     <div
       style={{
         position: "absolute",
@@ -1149,17 +1201,12 @@ const K4: React.FC = () => (
     <Foto src={OCT("k-parcela-limpia")} foco="50% 50%" />
     <Degradado arriba={0.6} abajo={0.46} />
     <Marco archivo="MARCO-CARRUSEL-2" />
-    {/* Banda alta: en esta slide el medio lo ocupan los indicadores sobre la
-        parcela, así que el titular se centra en el espacio que queda libre.
-        Centrado a 1150 caía justo encima de "CIERRE PERIMETRAL". */}
-    <Cuerpo desde={205} hasta={570}>
-      <Numero n="03." />
-      <Aire h={16} />
+    <Cabecera n="03.">
       <Modulado
         ancho={880}
         tramos={[{t: "¿Qué "}, {t: "incluye", ivy: true}, {t: "realmente tu parcela?", salto: true}]}
       />
-    </Cuerpo>
+    </Cabecera>
     {/* ⚠️ "Rol individual" y "Acceso controlado" van con el OK de Diego y
         siguen sin confirmación escrita de Fran o Blanca. */}
     <Indicador x={252} y={640} lado="der">
@@ -1189,16 +1236,7 @@ const K5: React.FC = () => (
     <Foto src={OCT("k-planos")} foco="50% 50%" />
     <Degradado arriba={0.64} abajo={0.44} />
     <Marco archivo="MARCO-CARRUSEL-3" />
-    {/* Diego (23-09): "centrar toda la informacion". Horizontalmente ya estaba
-        (desvio maximo medido: 1,5 px); lo que no estaba centrado era el
-        CONJUNTO: el titular quedaba a media altura y el globo colgaba abajo,
-        con 450 px de vacio arriba y 90 abajo. Aca el globo entra EN FLUJO
-        dentro de `Cuerpo`, asi que numero + titular + globo se centran como un
-        solo grupo. La banda es simetrica respecto de las lineas del marco
-        (filas 131 y 1284): 74 px de aire arriba y abajo. */}
-    <Cuerpo desde={205} hasta={1210}>
-      <Numero n="04." />
-      <Aire h={16} />
+    <Cabecera n="04.">
       <Modulado
         ancho={880}
         tramos={[
@@ -1208,11 +1246,15 @@ const K5: React.FC = () => (
           {t: "?"},
         ]}
       />
-      <Aire h={46} />
-      <Globo max={790} size={35} destacado="En Tierra Calma te acompañamos">
-        {"Antes de avanzar, pregunta por documentación, reserva, formas de pago y escrituración."}
-      </Globo>
-    </Cuerpo>
+    </Cabecera>
+    {/* El globo vuelve a su ancla. El 23-09 a las 15:01 Diego pidió "centrar toda
+        la información" y se metió EN FLUJO bajo el titular; esa misma tarde, al
+        mirar el carrusel entero, pidió que el número y el título quedaran donde
+        la slide 2. Manda lo segundo: el carrusel es un solo objeto. A 880 el
+        globo cae donde el de la slide 6, que es el ritmo de la familia. */}
+    <Globo y={880} max={790} size={35} destacado="En Tierra Calma te acompañamos">
+      {"Antes de avanzar, pregunta por documentación, reserva, formas de pago y escrituración."}
+    </Globo>
   </Lienzo>
 );
 
@@ -1224,16 +1266,14 @@ const K6: React.FC = () => (
     <Foto src={OCT("k-caminando")} foco="50% 52%" />
     <Degradado arriba={0.6} abajo={0.54} />
     <Marco archivo="MARCO-CARRUSEL-4" />
-    {/* Diego (23-09): "subir un poco el bloque de texto, que no tape a las
-        personas". Las cabezas de la pareja estan en la fila ~672 de
-        k-caminando.jpg; el bloque cierra en 617. */}
-    <Cuerpo desde={205} hasta={790}>
-      <Numero n="05." />
-      <Aire h={16} />
+    {/* Diego (23-09): "que no tape a las personas". Con la cabecera anclada en
+        205 el bloque cierra en ~440 y las cabezas de la pareja estan en la fila
+        ~672 de k-caminando.jpg. */}
+    <Cabecera n="05.">
       <Modulado ancho={880} tramos={[{t: "Y lo más importante:"}]} />
       <Aire h={18} />
       <Modulado ancho={900} tramos={[{t: "conócela en persona", ivy: true, cursiva: true}]} />
-    </Cuerpo>
+    </Cabecera>
     <Globo y={880} max={770} size={34} destacado="Parcelas desde UF 2.500">
       {"El entorno, los accesos y las dimensiones del terreno se entienden mucho mejor cuando estás ahí."}
     </Globo>
@@ -1355,7 +1395,14 @@ const M: React.FC = () => (
     <Globo y={1058} max={760} size={29} op={0.6}>
       Aprox. 5.000 m² desde UF 2.500 · Padre Hurtado
     </Globo>
-    <Pildora caja={POST.pill} icono={<IWsp s={25} />} size={29}>
+    {/* Diego (23-09, sobre p-09-10): "el boton esta muy apretado, debe ser mas
+        ancho". El contorno de la pildora viene DIBUJADO dentro de
+        MARCO-POST.png —asset bloqueado, no se puede ensanchar—, asi que lo que
+        cede es el texto: medido, ocupaba 559 px de los 574 de la pildora, o sea
+        9 px de aire a la izquierda y 6 a la derecha. Con estos valores baja a
+        ~505 y deja ~34 px por lado. El CTA no se acorta: va verbatim del brief.
+        Va en las DOS piezas de post, que comparten marco y texto. */}
+    <Pildora caja={POST.pill} icono={<IWsp s={23} />} size={26} gap={11}>
       Agenda tu visita por WhatsApp
     </Pildora>
   </Lienzo>

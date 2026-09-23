@@ -887,6 +887,97 @@ Piezas en `src/compositions/tierracalma/`:
   Renders en `out/tierracalma/prueba-carlos/`. Si Valeria aprueba la mano, estas
   primitivas reemplazan el layout de `sistema.tsx` para octubre.
 
+### ⭐ LA VOZ Y LA MÚSICA DE LA MARCA (Diego, 23-09-2026)
+
+Las dos están **fijadas** y no se eligen de nuevo en cada reel.
+
+#### La voz en off — «VOZ DE TIERRA CALMA»
+
+| | |
+|---|---|
+| **Dónde vive** | app web de Magnific, guardada con la etiqueta **`VOZ DE TIERRA CALMA`** |
+| **Modelo** | **Gemini 2.5 Pro** |
+| **Interlocutor** | **Enceladus** |
+| **Instrucción** | *voz y acento chileno, que sea tranquila, de un hombre de unos 40 años* |
+
+⛔ **Reemplaza a Benjamín Soto** (ElevenLabs id 864), que es lo que suena en
+`vm1`–`vm3` hasta que se regeneren. Antes de él estuvo Antonia Reyes. La voz de
+la marca es esta; las otras dos son historia.
+
+⛔ **Se graba línea por línea, nunca en una sola toma.** Ya se probó: en una toma
+la locución dura 11,2 s y sus pausas **no calzan con los cortes**, así que los
+subtítulos salen descuadrados.
+
+El guion del reel del 01/10, que es el que lleva voz, son sus tres primeros
+subtítulos, palabra por palabra:
+
+| Archivo | Entra en el frame | Texto |
+|---|---|---|
+| `vm1` | 30 | La primavera ya llegó a Tierra Calma |
+| `vm2` | 170 | Más verde, más luz, más espacio |
+| `vm3` | 310 | Así se siente el cambio de estación acá |
+
+Después de bajar los mp3, **hay que medirlos y reescribir el array `VOZ`** — el
+manual no acepta duraciones estimadas y un cambio de voz las cambia todas:
+
+```bash
+python scripts/tc-audio-instalar.py voz1.mp3 voz2.mp3 voz3.mp3 --como vm1 vm2 vm3
+```
+
+El script instala, mide, imprime el array listo para pegar y **avisa si la voz
+nueva ya no cabe en su corte**, que es justo lo que suele pasar al cambiar de
+locutor.
+
+#### La música de fondo — el prompt, textual
+
+Se usa **este prompt y no otro**. Es el sonido de la marca, no el de un reel:
+
+```
+Create a modern, polished corporate instrumental track with a professional,
+confident, and optimistic mood, suitable for a real estate or commercial
+development video. The music should convey forward momentum and a
+business-oriented feel, with precise, clean, and punchy production, a tight low
+end, a wide stereo image, and controlled dynamics.
+
+The track should open with a clean, muted electric guitar pluck and a tight kick
+drum, immediately joined by a driving eighth-note bassline and crisp programmed
+percussion. A bright piano motif and short, staccato string accents will carry
+the main melody, establishing a sense of forward motion. Introduce layered synth
+arpeggios, rim shots, and a rising filter sweep to build the arrangement.
+Transition into a confident, expansive section featuring wide, sustained strings,
+warm brass accents, and full drums, maintaining a constant drive without becoming
+aggressive. The piece should resolve on a clean, decisive sustained chord with a
+short tail. Incorporate subtle jazz chords throughout the composition.
+
+The instrumentation should be entirely instrumental, with no vocals, lyrics, or
+spoken words. Ensure there is ample space in the midrange for a potential
+voiceover.
+
+Avoid: vocals, choir, lyrics, distorted or aggressive guitars, trap hi-hats, EDM
+drops, dark or tense harmony, sentimental piano ballads, cheesy elevator music,
+and abrupt endings.
+```
+
+Dos cosas del prompt que son decisiones de producción y conviene no perder:
+**«ample space in the midrange for a potential voiceover»** —la pista está hecha
+para que la voz se monte encima, no para sonar sola— y **«no abrupt endings»**,
+que es lo que permite que el cierre con `tc_cierre.mp4` no corte la música en seco.
+
+#### ⛔ Ni la voz ni la música salen de la API — verificado el 23-09-2026
+
+| Ruta | Respuesta |
+|---|---|
+| `text-to-speech` y todas sus variantes | **404** · no existe |
+| `music-generation` | **410** · *«This endpoint is no longer available»* |
+| `sound-effects` · `audio-isolation` | 400 (vivas, faltan argumentos) |
+
+O sea: las dos se generan **a mano en la app web de Magnific** y se bajan. La API
+sólo sirve para efectos de sonido y para aislar audio.
+
+> ⚠️ `docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md` daba `music-generation` por viva. Ya no
+> lo está: Magnific la retiró entre el 08-09 y el 23-09.
+
+
 ### Assets propios en el repo
 
 | Carpeta | Qué |

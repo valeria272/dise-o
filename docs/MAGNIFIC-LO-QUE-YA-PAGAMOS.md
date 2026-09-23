@@ -88,11 +88,23 @@ nuevos dan `404` y los viejos responden.** Medido, par por par:
 
 | Modelo | Ruta | Para qué acá |
 |---|---|---|
-| **Música** ⭐ | `music-generation` | **Pista original por reel.** Hoy se reusa la de julio/agosto en Más Center porque conseguir música es lento |
+| ~~**Música**~~ | ~~`music-generation`~~ | ⛔ **RETIRADA.** Devuelve **410 «This endpoint is no longer available»** — verificado el 23-09-2026. Magnific la quitó entre el 08-09 y el 23-09. La música se genera a mano en la app web |
 | **Efectos de sonido** ⭐ | `sound-effects` | El BIP de R.01, el CLAC de Marta, el tintineo de una taza. En el Cap. 02 se armaron a mano |
 | **Aislar audio** | `audio-isolation` | Sacar la voz de un video con ruido de fondo |
 
-Los tres tienen `GET` para listar tareas y `GET /{task-id}` para el estado.
+Los que siguen vivos tienen `GET` para listar tareas y `GET /{task-id}` para el estado.
+
+> ⛔ **Audio: lo que la API NO hace, medido el 23-09-2026.** Se sondearon 22 rutas.
+> **Ninguna forma de `text-to-speech` existe** (404 en `text-to-speech`, `tts`,
+> `audio/tts`, `voice-generation`, `text-to-speech/gemini`, `…/elevenlabs` y las
+> demás) y **`music-generation` responde 410**. Sólo quedan `sound-effects` y
+> `audio-isolation`.
+>
+> Consecuencia práctica: **voz y música se generan a mano en la app web de
+> Magnific y se bajan**. No se puede automatizar desde un script. Si un plan de
+> trabajo asume música por API, está mal.
+
+Repetir el sondeo: `python scripts/magnific-sondear.py`.
 
 ---
 
@@ -130,7 +142,7 @@ Para voz seguimos con **ElevenLabs**, que es lo que usa el Cap. 02.
 | Animar una ilustración o un doodle | **`minimax-video-01-live`** | Kling: está entrenado en fotografía |
 | El mejor video imagen→video | **`kling-v2-5-pro`** | |
 | Una persona hablando a cámara | **`video/omni-human-1-5`** | Higgsfield: sin créditos |
-| Música para un reel | **`music-generation`** | Reusar la pista del mes pasado |
+| Música para un reel | ⛔ ya no hay API — **a mano en la app web** | Reusar la pista del mes pasado |
 | Un efecto de sonido puntual | **`sound-effects`** | Armarlo a mano |
 | Que se mueva como un reel de referencia | *no lo tenemos* — se calca a mano midiendo la referencia | |
 
@@ -210,5 +222,5 @@ proveedor de atrás está ocupado.
 | 🟡 1 | Consultar `loras` | Capacidad pagada que nunca miramos: los estilos entrenados de la cuenta |
 | 🟡 2 | Extender `scripts/magnific-video.py` a **primer y último fotograma** | Hoy manda una sola imagen. ⚠️ Pide URLs, no base64: los keyframes tienen que estar accesibles por HTTP |
 | 🟡 3 | Probar **OmniHuman 1.5** | Desbloquea el UGC y la gemela digital, parados desde julio por Higgsfield sin créditos |
-| 🟢 4 | Probar **music-generation** en un reel | Deja de reusarse la pista del mes anterior |
+| ⛔ 4 | ~~Probar **music-generation** en un reel~~ | **Ya no se puede: 410.** Queda sin efecto |
 | 🟢 5 | Probar **Video-01-Live** con un doodle de Between | Es el modelo correcto para ilustración y nunca se usó |

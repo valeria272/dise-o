@@ -14,7 +14,8 @@ C1 N°1 S5 TURISMO` (`1hRg3QUZ3KWAEhBFr4ZcYYR6MYDbWdds5`) como `C1 S5 DT n°1…
 verificados por peso contra el local. Revisión para Eli:
 https://claude.ai/artifact/Fi2LkYypYQCQ1uY41ZJaZ2. Aparato: `scripts/dt-c1-turismo-{clips,qa,rendir,revision}.py`
 + `src/compositions/hilton/DtC1Turismo.tsx` (carpeta `DT-Carrusel-Turismo` en `DtEntry`).
-**Qué sigue:** esperar el OK de Eli. Si aprueba → GIF (receta `gif-de-una-pieza-animada`:
+**GIF (mismo día, pedido de Eli «dejes en gif ahora»):** 6 GIF 720×900, 12,5 fps, sin difuminado (`scripts/dt-c1-turismo-gif.py`) en `C1 N°1 S5 TURISMO › C1 S5 DT - GIF` (`1cr-rQfv2RFsv5yeBi66JWGZyAcgJs7Fg`), verificados por peso. 14–29 MB: para WhatsApp hay que rehacerlos con `--ancho 540`.
+**Qué sigue:** esperar el OK de Eli. (El GIF ya se hizo) → (receta `gif-de-una-pieza-animada`:
 25 fps, sin difuminado, 540×1080·5/4) a una subcarpeta GIF y subir. Si pide logo en las
 interiores → `python scripts/dt-c1-turismo-rendir.py --con-logo` (ojo: en Sky el logo
 cae sobre la punta de la torre y habría que correr el encuadre).

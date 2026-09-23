@@ -271,7 +271,10 @@
     "Los datos técnicos van literales del catálogo.",
     "El dorado es degradado metálico, no color plano.",
     "El fondo es satén texturado, no negro plano.",
-    "Precios en CLP chileno sin decimales."
+    "Precios en CLP chileno sin decimales.",
+    "Los sellos de premio van superpuestos como gráfica plana, sin resplandor y sin seguir la perspectiva de la botella.",
+    "La titular Bebas Neue Pro no está en las máquinas del estudio: se reconstruye del .ai con scripts/cava-fuentes-desde-editable.py.",
+    "El logo tiene DOS tintas: texto #FFFFFF y el racimo de la V y la tilde de MORANDÉ en #E1670E. Un logo todo blanco está mal."
   ],
   "madurez": {
     "identidad": "completa",
@@ -335,5 +338,11 @@
       "stock": "nombres descriptivos largos de banco de imágenes"
     },
     "_nota": "El editable del KV del Cyber enlaza 23 fondos distintos. No es siempre Magnific: conviven IA y stock."
+  },
+  "sellos_de_premio": {
+    "regla": "Van SUPERPUESTOS como gráfica plana, encima de la foto. No se integran en la perspectiva de la botella y NO llevan resplandor — sólo una sombra corta.",
+    "autor": "Constanza Lizana «Coni», 23-09-2026, por comentario en las 3 propuestas del Cyber",
+    "archivo_92": "public/assets/cava/sello-descorchados-92.png (el mismo 92-DESCORCHADOS.webp que enlaza CAVA_SEPT.ai)",
+    "ojo": "Si la botella se genera con IA, el sello que venga en la imagen TAMPOCO es el oficial: hay que taparlo con el archivo real."
   }
 }

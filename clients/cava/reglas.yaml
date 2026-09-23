@@ -141,3 +141,23 @@ reglas:
       lo escribe la ejecutiva y pasa directo a la pieza, sin revisión intermedia.
     args:
       patron: "\\b(ten[eé]s|pod[eé]s|quer[eé]s|sab[eé]s|hac[eé]s|sos|vos|eleg[ií]|aprovech[aá]|llevate|descubr[ií]|mir[aá]|compr[aá]|and[aá])\\b"
+
+  - id: sello-premio-superpuesto
+    titulo: El sello de premio va integrado en la botella o con resplandor
+    check: texto_prohibido
+    severidad: informativa
+    autor: Constanza Lizana «Coni»
+    fecha: 2026-09-23
+    cita: >-
+      Este tipo de sellos como de premios tienen que ir superpuestos encima. No
+      es necesario que sea realista, como que estuviera sobre la botella y haya
+      que respetar la perspectiva. Quítale el resplandor al sello.
+    fuente: comentarios de Drive en las 3 propuestas del Cyber de octubre
+    porque: >-
+      Los sellos —Descorchados, James Suckling, Tim Atkin, Vinous— son un
+      RÓTULO, no parte de la fotografía del producto. Van planos, superpuestos,
+      sin seguir la inclinación de la botella y SIN halo: sólo una sombra corta
+      que los despegue del fondo. Esta regla no se puede comprobar sobre el PNG,
+      así que queda escrita para que la lea quien diseñe, no para el motor.
+    args:
+      patron: "(?!x)x"

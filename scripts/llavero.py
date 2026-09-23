@@ -94,9 +94,17 @@ def _fernet(contrasena_texto, sal):
     except ImportError:
         sys.exit("✗ Falta la librería de cifrado. Instálala con:\n"
                  "    python3 -m pip install cryptography\n")
-    semilla = hashlib.scrypt(contrasena_texto.encode("utf-8"), salt=sal,
-                             n=2 ** 15, r=8, p=1, dklen=32,
-                             maxmem=64 * 1024 * 1024)
+    # ⚠️ El Python de macOS (3.9 con LibreSSL) no trae hashlib.scrypt y el
+    # llavero reventaba con AttributeError en el Mac de Serena (23-09-2026).
+    # El Scrypt de `cryptography` con los mismos parámetros da la misma llave.
+    if hasattr(hashlib, "scrypt"):
+        semilla = hashlib.scrypt(contrasena_texto.encode("utf-8"), salt=sal,
+                                 n=2 ** 15, r=8, p=1, dklen=32,
+                                 maxmem=64 * 1024 * 1024)
+    else:
+        from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
+        semilla = Scrypt(salt=sal, length=32, n=2 ** 15, r=8, p=1).derive(
+            contrasena_texto.encode("utf-8"))
     return Fernet(base64.urlsafe_b64encode(semilla))
 
 

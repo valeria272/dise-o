@@ -5,6 +5,82 @@
 
 ---
 
+## 2026-09-23 (relevo) — audio nuevo de los reels, PENDIENTE
+
+**Decidido por Diego, falta ejecutarlo.** Esta sesión no pudo: el conector MCP de
+Magnific no estaba cargado y **la API no sirve para audio** (`text-to-speech` 404
+en todas sus formas, `music-generation` **410, retirado**). Diego va a reconectar
+el conector y abrir **chat nuevo**. Esto es lo que ese chat tiene que hacer.
+
+### 1. Generar en Magnific
+
+**La voz** — buscarla por su etiqueta guardada **`VOZ DE TIERRA CALMA`**:
+Gemini 2.5 Pro · interlocutor **Enceladus** · instrucción *«voz y acento chileno,
+que sea tranquila, de un hombre de unos 40 años»*.
+
+**Tres archivos, uno por línea** (nunca en una sola toma — ya se probó y las
+pausas no calzan con los cortes):
+
+| Archivo | Texto, palabra por palabra |
+|---|---|
+| `vm1` | La primavera ya llegó a Tierra Calma |
+| `vm2` | Más verde, más luz, más espacio |
+| `vm3` | Así se siente el cambio de estación acá |
+
+**La música** — el prompt corporativo completo está en este manual, § 8, y se usa
+**textual**. Se generan **DOS pistas distintas con el mismo prompt**, una por
+reel: el mes no puede sonar repetido.
+
+| Archivo nuevo | Reemplaza a | Reel |
+|---|---|---|
+| `mus_corporativa_a.mp3` | `mus_primavera_v3.mp3` | `r-01-10` primavera |
+| `mus_corporativa_b.mp3` | `mus_dron_v2.mp3` | `r-13-10` dron |
+
+Nombres nuevos a propósito: la pista ya no es «la de primavera», es **el sonido
+de la marca**. Los archivos viejos se quedan en el repo para comparar.
+
+### 2. Instalar y RECALCULAR los tiempos
+
+```bash
+python scripts/tc-audio-instalar.py voz1.mp3 voz2.mp3 voz3.mp3 --como vm1 vm2 vm3
+```
+
+⛔ **Este paso no es opcional.** El array `VOZ` de `OctubreVideoV3.tsx` lleva
+duraciones **medidas**, y cambiar de locutor las cambia todas. El script mide,
+imprime el array listo para pegar y **avisa si alguna línea ya no cabe en su
+corte de 140 frames**. Si avisa: se acorta el texto de esa línea, no se estira el
+corte a ojo.
+
+La música se copia a mano a `public/assets/tierracalma/audio/` y se cambia el
+`AUDIO("…")` de cada reel.
+
+### 3. Rendir, revisar y subir
+
+```bash
+npx remotion render TCV3ReelPrimavera out/tierracalma/oct2026/entrega/r-01-10.mp4
+npx remotion render TCV3ReelDron      out/tierracalma/oct2026/entrega/r-13-10.mp4
+python scripts/drive-subir.py out/tierracalma/oct2026/entrega/r-01-10.mp4 \
+    --carpeta 1lJG3Xzwh77zSCSDQ4DiPsAJK0fAqcNwF
+```
+
+Subir **sobre el mismo fileId** (el script lo resuelve por nombre) para no romper
+los enlaces del cliente.
+
+### ⛔ Alcance, decidido por Diego
+
+**Sólo cambia lo que ya tiene voz.** El reel del **13/10 NO lleva locución**:
+mantiene sus seis cortes con texto en pantalla y sólo cambia su música. No
+agregarle voz.
+
+### Lo que ya está hecho y no hay que rehacer
+
+- Las dos especificaciones y el guion, escritos en el manual § 8.
+- `scripts/tc-audio-instalar.py`, probado contra la locución actual.
+- El catálogo `docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`, corregido: música por API ya
+  no existe.
+
+---
+
 ## 2026-09-23 (cierre) — Diego Aguilar
 
 **Qué se hizo:** Se cerró el día documentando el aprendizaje de las cinco rondas

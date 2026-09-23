@@ -6,7 +6,15 @@ Los archivos tienen que haberlos subido este mismo token: el token compartido s√
 tiene `drive.file`, as√≠ que comments.list responde para lo que subimos nosotros.
 
 Uso:
-    ~/copylab-venv/bin/python3 scripts/drive-comentarios.py <folderId> [--json salida.json]
+    python3 scripts/drive-comentarios.py <folderId> [--json salida.json]
+    python3 scripts/drive-comentarios.py --nombre ebema_c_ [--json salida.json]
+
+CUANDO USAR --nombre. Recorrer por carpeta falla si las SUBCARPETAS las creo otra
+cuenta (el conector MCP, por ejemplo) y los archivos los subio este token: con
+scope `drive.file` cada app ve solo lo que ella creo, asi que la carpeta raiz
+lista los sueltos pero no entra a las subcarpetas ajenas. Buscar por NOMBRE si
+encuentra los archivos propios, esten donde esten. Paso el 23-09-2026 con la
+entrega de la grilla de octubre de EBEMA (`ebema_c_`).
 """
 import json, os, pathlib, sys
 
@@ -59,18 +67,39 @@ def recorrer(d, fid, ruta=""):
     return salida
 
 
+def por_nombre(d, prefijo):
+    """Los archivos propios cuyo nombre contiene `prefijo`, esten donde esten.
+    Es la salida cuando las subcarpetas son de otra cuenta -- ver la cabecera."""
+    salida, tok = [], None
+    while True:
+        r = d.files().list(q=f"name contains '{prefijo}' and trashed=false",
+                           fields="nextPageToken,files(id,name,mimeType,modifiedTime)",
+                           pageSize=200, pageToken=tok, supportsAllDrives=True).execute()
+        salida += [("", f) for f in r.get("files", [])
+                   if f["mimeType"] != "application/vnd.google-apps.folder"]
+        tok = r.get("nextPageToken")
+        if not tok:
+            break
+    return salida
+
+
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    if not args:
-        sys.exit(__doc__)
-    fid = args[0]
     destino = None
     if "--json" in sys.argv:
         destino = sys.argv[sys.argv.index("--json") + 1]
 
     d = build("drive", "v3", credentials=creds())
-    archivos = sorted(recorrer(d, fid), key=lambda x: (x[0], x[1]["name"]))
-    print(f"{len(archivos)} archivos bajo {fid}\n")
+    if "--nombre" in sys.argv:
+        prefijo = sys.argv[sys.argv.index("--nombre") + 1]
+        archivos = sorted(por_nombre(d, prefijo), key=lambda x: x[1]["name"])
+        print(f"{len(archivos)} archivos que contienen '{prefijo}'")
+    else:
+        if not args:
+            sys.exit(__doc__)
+        fid = args[0]
+        archivos = sorted(recorrer(d, fid), key=lambda x: (x[0], x[1]["name"]))
+        print(f"{len(archivos)} archivos bajo {fid}")
 
     todo, total = {}, 0
     for ruta, f in archivos:

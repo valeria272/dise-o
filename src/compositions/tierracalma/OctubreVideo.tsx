@@ -142,14 +142,33 @@ export const Bloque: React.FC<{
 
 export const HALO = "0 2px 26px rgba(0,0,0,0.52), 0 0 70px rgba(0,0,0,0.28)";
 
+/**
+ * ⛔ LA ESCALA (Diego, 23-09), la misma que las estáticas:
+ *   · Inter Tight varía entre 50 y 70 pt según el LARGO de la frase.
+ *   · IvyOra Display va a un tamaño FIJO.
+ * `Pie` queda fuera: es la etiqueta en versales espaciadas, otro rol.
+ */
+export const SANS_MIN = 50;
+export const SANS_MAX = 70;
+export const IVY = 68;
+
+export const cuerpoSans = (texto: string) => {
+  const n = texto.replace(/\s+/g, " ").trim().length;
+  const t = Math.min(Math.max((n - 24) / 72, 0), 1);
+  return Math.round(SANS_MAX - t * (SANS_MAX - SANS_MIN));
+};
+
+const largoDe = (c: React.ReactNode): string =>
+  typeof c === "string" ? c : Array.isArray(c) ? c.map(largoDe).join(" ") : "";
+
 /** Línea narrativa: sans ligera en caja baja, como en el reel de septiembre. */
-export const Suave: React.FC<{size?: number; children: React.ReactNode}> = ({size = 46, children}) => (
+export const Suave: React.FC<{size?: number; children: React.ReactNode}> = ({size, children}) => (
   <div
     style={{
       fontFamily: SANS,
       fontWeight: 300,
-      fontSize: size,
-      lineHeight: 1.33,
+      fontSize: size ?? cuerpoSans(largoDe(children)),
+      lineHeight: 1.3,
       color: "#fff",
       textShadow: HALO,
       whiteSpace: "pre-line",
@@ -160,7 +179,7 @@ export const Suave: React.FC<{size?: number; children: React.ReactNode}> = ({siz
 );
 
 /** Línea enfática: IvyOra cursiva en versales. */
-export const Enfasis: React.FC<{size?: number; children: React.ReactNode}> = ({size = 62, children}) => (
+export const Enfasis: React.FC<{size?: number; children: React.ReactNode}> = ({size = IVY, children}) => (
   <div
     style={{
       fontFamily: SERIF,

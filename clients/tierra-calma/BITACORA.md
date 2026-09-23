@@ -5,6 +5,81 @@
 
 ---
 
+## 2026-09-23 — Diego Aguilar
+
+**Qué se hizo:** La ronda tipográfica. Diego cerró la escala del sistema y se
+aplicó a las 10 piezas de octubre (18 archivos) — estáticas y reels — más las
+dos reglas nuevas en el manual.
+
+**La regla, textual:** «para los textos con Inter Tight que varíe el tamaño
+entre 50 pt a 70 pt dependiendo del largo de la oración y la IvyOra Display
+mantener ese tamaño, la idea es que ambas tengan tamaños similares para las
+portadas de carrusel y post individuales, los videos reels también lo mismo,
+sólo cambio en los tamaños de los textos mencionados y que todo vaya centrado
+al medio».
+
+**Cómo quedó implementada** (`OctubreV3.tsx` y `OctubreVideo.tsx`, el mismo
+código en los dos, para que estáticas y reels no se separen nunca):
+
+```ts
+const SANS_MIN = 50;  const SANS_MAX = 70;  const IVY = 68;
+
+const cuerpoSans = (texto: string) => {
+  const n = texto.replace(/\s+/g, " ").trim().length;
+  const t = Math.min(Math.max((n - 24) / 72, 0), 1); // 24 car. → 70 · 96 → 50
+  return Math.round(SANS_MAX - t * (SANS_MAX - SANS_MIN));
+};
+```
+
+- **La sans se calcula sola** del largo de la frase completa, no tramo a tramo:
+  `Modulado` mide la unión de sus tramos y `Suave` mide su propio texto. Se
+  quitaron **todos** los `base={}` por llamada y todos los `size:` por tramo
+  (verificado: quedan 0).
+- **IvyOra queda fija en 68**, dentro del mismo rango. Por eso las dos voces se
+  ven del mismo porte en portadas y posts, que es lo que Diego pidió.
+- **Los bullets del reel de dron van a `SANS_MIN`**: son cuatro líneas apiladas,
+  así que la lista se va al piso de la escala.
+
+**El centrado.** `Cuerpo` dejó de anclarse arriba (`top=`) y pasó a ser una
+**banda con centro vertical** (`desde` / `hasta`), y todos los `Bloque` de los
+reels quedaron en `pos="centro"` (verificado: 0 no centrados). Las bandas:
+carruseles `[250,1150]` con logo y `[205,1150]` sin él, stories `[240,1520]`.
+
+**Las dos excepciones declaradas** — no son olvidos, están escritas en el manual:
+
+| Pieza | Banda | Por qué |
+|---|---|---|
+| K4 (`c-20-10-4`) | `[205,570]` | el medio lo ocupan los indicadores del plano |
+| H (`st-08-10`) | `[230,545]` | el medio lo ocupan los rótulos del mapa |
+
+Al centrar, estas dos se chocaron con su propia gráfica en el primer render. Se
+acotó la banda en vez de mover la gráfica: el marco es asset bloqueado y el
+plano está medido.
+
+**Huérfanas corregidas de paso:** E2 pasó a tres líneas equilibradas y K5 a
+«¿Tienes claridad sobre / el proceso de COMPRA?».
+
+**Entregado:** las 18 en `out/tierracalma/oct2026/entrega/` y subidas a la
+carpeta `1lJG3Xzwh77zSCSDQ4DiPsAJK0fAqcNwF` **sobre el mismo ID de archivo**, así
+que los enlaces que ya tiene el cliente siguen sirviendo.
+
+**Qué sigue:** sigue esperando la ronda del **cliente** — las 10 piezas figuran
+«En revisión» y todo el feedback hasta acá ha sido interno de Diego.
+
+**Abierto (se arrastra):**
+
+1. ⚠️ **Falta la confirmación escrita de Fran o Blanca** para «Rol individual» y
+   «Acceso controlado». Van publicados en tres piezas con el OK verbal de Diego
+   del 22-09 y **no están en la lista blanca del manual**.
+2. Tres comentarios de Drive siguen marcados abiertos aunque ya se aplicaron
+   (`c-06-10-2`, `st-15-10`, `st-22-10`): los cierra Diego, no el que renderiza.
+3. Sigue sin `clients/tierra-calma/reglas.yaml`, así que el QA de esta ronda
+   también fue a mano, pieza por pieza.
+4. El conector de Drive (MCP) sigue caído; las subidas van por
+   `scripts/drive-subir.py` con el token del estudio.
+
+---
+
 ## 2026-09-22 (jornada completa) — Diego Aguilar
 
 **Qué se hizo:** Octubre entero, de punta a punta y con **cuatro rondas de

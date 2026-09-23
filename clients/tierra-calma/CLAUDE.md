@@ -191,6 +191,44 @@ responde la promesa** — no la más larga ni la más bonita. En el carrusel del
 06-10 son `ELECTRIFICACIÓN`, `CERRAR` y `CASAS`: el sustantivo de la duda que
 la pieza resuelve.
 
+#### ⛔ LA ESCALA — Inter Tight 50–70 pt por largo, IvyOra fija
+
+Regla de Diego del 23-09-2026. Cierra el sistema tipográfico: los dos roles ya
+estaban definidos, faltaba **a qué tamaño va cada uno**.
+
+| Rol | Tamaño |
+|---|---|
+| **Inter Tight** | **Varía entre 50 y 70 pt según el LARGO de la frase.** Frase corta → 70; frase larga → 50 |
+| **IvyOra Display** | **Fija en 68 pt.** No varía |
+
+**El tamaño de la sans NO se elige a ojo.** Lo calcula `cuerpoSans()` con el
+número de caracteres —está en `OctubreV3.tsx` y en `OctubreVideo.tsx`, idéntica
+en los dos— así que dos piezas con frases parecidas quedan al mismo cuerpo sin
+que nadie las compare a mano. Si una pieza necesita otro tamaño, el problema es
+el largo del copy.
+
+**Por qué importa:** antes la cursiva saltaba a 96–104 pt y aplastaba a la sans,
+que iba a 42–48. Con las dos en la misma banda, **portadas de carrusel y posts
+individuales se leen a una escala pareja**, que es lo que pidió Diego. Vale
+igual para los reels.
+
+**Fuera de la regla:** `Pie` (la etiqueta en versales espaciadas, 27 pt) y los
+rótulos de los indicadores y recortes. Son etiquetas, no texto de cuerpo.
+
+#### ⛔ TODO CENTRADO AL MEDIO
+
+Misma ronda. El bloque de texto **se centra vertical y horizontalmente en el
+alto útil** del marco —el que queda entre el logo y la píldora— en vez de colgar
+de un `top` fijo. Así una frase corta y una larga quedan igual de equilibradas
+sin recalcular nada.
+
+⚠️ **Dos piezas son la excepción, y por una razón concreta:** en la story del
+12/10 el medio lo ocupa el mapa y en el slide 4 del carrusel del 20/10 lo ocupan
+los indicadores sobre la parcela. Ahí el titular se centra **en la banda que
+queda libre arriba**; centrado al alto completo caía justo encima de los
+rótulos. Si una pieza nueva tiene un elemento gráfico en el medio, ese es el
+camino: acotar la banda, no abandonar el centrado.
+
 #### ⛔ Los recuadros son GLOBOS DE TEXTO translúcidos
 
 Misma ronda, sobre `c-06-10-2` y `st-22-10`: *"que sea un globo de texto"*,

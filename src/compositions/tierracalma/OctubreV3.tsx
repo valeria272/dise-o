@@ -105,22 +105,31 @@ const Marco: React.FC<{archivo: string}> = ({archivo}) => (
   />
 );
 
+/**
+ * ⛔ TODO CENTRADO AL MEDIO (Diego, 23-09). El bloque de texto se centra
+ * vertical y horizontalmente en el alto ÚTIL del marco — el que queda entre el
+ * logo y la píldora — en vez de colgar de un `top` fijo. Así una frase corta y
+ * una larga quedan igual de equilibradas sin recalcular nada a mano.
+ */
 const Cuerpo: React.FC<{
-  top: number;
+  desde?: number;
+  hasta?: number;
   ancho?: number;
   alinea?: "center" | "flex-start";
   children: React.ReactNode;
-}> = ({top, ancho = 820, alinea = "center", children}) => (
+}> = ({desde = 230, hasta = 1140, ancho = 880, alinea = "center", children}) => (
   <div
     style={{
       position: "absolute",
-      top,
       left: "50%",
       transform: "translateX(-50%)",
+      top: desde,
+      height: hasta - desde,
       width: ancho,
       display: "flex",
       flexDirection: "column",
       alignItems: alinea,
+      justifyContent: "center",
       textAlign: alinea === "center" ? "center" : "left",
     }}
   >
@@ -139,15 +148,38 @@ type Tramo = {
 };
 
 /**
- * Titular de la marca. El cuerpo va en Inter Tight Light y la frase que el
- * brief manda destacar sale en IvyOra Display VERSALES a mayor cuerpo.
- * ⛔ No hay un tercer rol: nada de bold de la sans para destacar.
+ * ⛔ LA ESCALA (Diego, 23-09). Dos reglas y ninguna excepción:
+ *
+ *   · **Inter Tight varía entre 50 y 70 pt según el LARGO de la frase.** Frase
+ *     corta = 70; frase larga = 50. No se elige a ojo: lo calcula `cuerpoSans`
+ *     con el número de caracteres, así dos piezas con frases parecidas quedan
+ *     al mismo cuerpo sin que nadie las compare a mano.
+ *   · **IvyOra Display va a un tamaño FIJO** (`IVY`), no varía.
+ *
+ * El objetivo es que las dos tipografías se lean a una escala SIMILAR en las
+ * portadas de carrusel y en los posts individuales — antes la cursiva saltaba
+ * a 96-104 pt y aplastaba a la sans.
  */
+const SANS_MIN = 50;
+const SANS_MAX = 70;
+/** IvyOra Display: tamaño fijo, dentro del mismo rango que la sans. */
+const IVY = 68;
+
+const cuerpoSans = (texto: string) => {
+  const n = texto.replace(/\s+/g, " ").trim().length;
+  const t = Math.min(Math.max((n - 24) / 72, 0), 1); // 24 car. → 70 · 96 → 50
+  return Math.round(SANS_MAX - t * (SANS_MAX - SANS_MIN));
+};
+
 const Modulado: React.FC<{tramos: Tramo[]; base?: number; ancho?: number}> = ({
   tramos,
-  base = 48,
+  base,
   ancho = 860,
-}) => (
+}) => {
+  // El cuerpo sale del largo de TODA la frase, contando los dos roles: lo que
+  // manda es cuánto texto hay que leer, no de qué tipografía es cada tramo.
+  const cuerpo = base ?? cuerpoSans(tramos.map((t) => t.t).join(" "));
+  return (
   <div
     style={{
       width: ancho,
@@ -165,7 +197,7 @@ const Modulado: React.FC<{tramos: Tramo[]; base?: number; ancho?: number}> = ({
             fontFamily: tr.ivy ? SERIF : SANS,
             fontStyle: tr.ivy && tr.cursiva ? "italic" : "normal",
             fontWeight: tr.ivy ? 500 : 300,
-            fontSize: tr.size ?? base,
+            fontSize: tr.ivy ? tr.size ?? IVY : tr.size ?? cuerpo,
             letterSpacing: tr.ivy ? "0.01em" : "0.005em",
             // ⛔ REGLA DURA (Diego, 22-09): IvyOra Display SIEMPRE en versales.
             textTransform: tr.ivy ? "uppercase" : "none",
@@ -175,8 +207,9 @@ const Modulado: React.FC<{tramos: Tramo[]; base?: number; ancho?: number}> = ({
         </span>
       </React.Fragment>
     ))}
-  </div>
-);
+    </div>
+  );
+};
 
 const Aire: React.FC<{h: number}> = ({h}) => <div style={{height: h, flexShrink: 0}} />;
 
@@ -437,14 +470,13 @@ const E1: React.FC = () => (
     <Foto src={OCT("e-portada")} foco="50% 55%" />
     <Degradado arriba={0.6} abajo={0.38} />
     <Marco archivo="MARCO-CARRUSEL-1" />
-    <Cuerpo top={CARR.conLogo} ancho={880}>
+    <Cuerpo desde={250} hasta={1150}>
       <Modulado
-        base={50}
         ancho={880}
         tramos={[{t: "¿Dudas antes de comprar"}, {t: "tu parcela?", salto: true}]}
       />
       <Aire h={26} />
-      <Modulado base={50} ancho={900} tramos={[{t: "Aquí las resolvemos", ivy: true, cursiva: true, size: 96}]} />
+      <Modulado ancho={900} tramos={[{t: "Aquí las resolvemos", ivy: true, cursiva: true}]} />
     </Cuerpo>
   </Lienzo>
 );
@@ -454,14 +486,13 @@ const E2: React.FC = () => (
     <Foto src={OCT("e-luz")} foco="50% 52%" />
     <Degradado arriba={0.56} abajo={0.4} />
     <Marco archivo="MARCO-CARRUSEL-2" />
-    <Cuerpo top={CARR.sinLogo} ancho={880}>
+    <Cuerpo desde={205} hasta={1150}>
       <Modulado
-        base={46}
         ancho={880}
         tramos={[
           {t: "¿Tengo que invertir en la"},
-          {t: "electrificación", ivy: true, size: 62, salto: true},
-          {t: " del terreno?"},
+          {t: "electrificación", ivy: true, salto: true},
+          {t: "del terreno?", salto: true},
         ]}
       />
     </Cuerpo>
@@ -476,11 +507,10 @@ const E3: React.FC = () => (
     <Foto src={OCT("e-cierre")} foco="50% 50%" />
     <Degradado arriba={0.56} abajo={0.4} />
     <Marco archivo="MARCO-CARRUSEL-3" />
-    <Cuerpo top={CARR.sinLogo} ancho={880}>
+    <Cuerpo desde={205} hasta={1150}>
       <Modulado
-        base={50}
         ancho={880}
-        tramos={[{t: "¿Tengo que "}, {t: "cerrar", ivy: true, size: 66}, {t: "yo el terreno?", salto: true}]}
+        tramos={[{t: "¿Tengo que "}, {t: "cerrar", ivy: true}, {t: "yo el terreno?", salto: true}]}
       />
     </Cuerpo>
     <Globo y={900} max={700} size={40}>
@@ -494,11 +524,10 @@ const E4: React.FC = () => (
     <Foto src={OCT("e-casas")} foco="50% 54%" />
     <Degradado arriba={0.58} abajo={0.52} />
     <Marco archivo="MARCO-CARRUSEL-4" />
-    <Cuerpo top={CARR.sinLogo} ancho={880}>
+    <Cuerpo desde={205} hasta={1150}>
       <Modulado
-        base={48}
         ancho={880}
-        tramos={[{t: "¿Cuántas "}, {t: "casas", ivy: true, size: 64}, {t: "puedo construir?", salto: true}]}
+        tramos={[{t: "¿Cuántas "}, {t: "casas", ivy: true}, {t: "puedo construir?", salto: true}]}
       />
     </Cuerpo>
     {/* Diego: "van juntos ambos textos". En el brief es UNA sola oración
@@ -540,17 +569,15 @@ const F: React.FC = () => (
       }}
     >
       <Modulado
-        base={42}
         ancho={840}
         tramos={[{t: "¿Buscando una parcela"}, {t: "en Padre Hurtado?", salto: true}]}
       />
       <Aire h={24} />
       <Modulado
-        base={42}
         ancho={880}
         tramos={[
-          {t: "La mejor forma de saberlo", ivy: true, cursiva: true, size: 56},
-          {t: "es venir a conocerla", ivy: true, cursiva: true, size: 56, salto: true},
+          {t: "La mejor forma de saberlo", ivy: true, cursiva: true},
+          {t: "es venir a conocerla", ivy: true, cursiva: true, salto: true},
         ]}
       />
       <Aire h={44} />
@@ -730,13 +757,14 @@ const H: React.FC = () => (
       />
     </div>
     <Marco archivo="MARCO-ST" />
-    <Cuerpo top={STORY.texto} ancho={880}>
+    {/* Banda alta: acá el medio lo ocupa el mapa. Centrado a 1520 el titular
+        caía justo encima de los rótulos SANTIAGO y TIERRA CALMA. */}
+    <Cuerpo desde={230} hasta={545}>
       <Modulado
-        base={48}
         ancho={880}
         tramos={[
-          {t: "Cerca de Santiago.", ivy: true, cursiva: true, size: 58},
-          {t: "Más cerca de la tranquilidad.", ivy: true, cursiva: true, size: 58, salto: true},
+          {t: "Cerca de Santiago.", ivy: true, cursiva: true},
+          {t: "Más cerca de la tranquilidad.", ivy: true, cursiva: true, salto: true},
         ]}
       />
       <Aire h={22} />
@@ -879,14 +907,13 @@ const K1: React.FC = () => (
     <Foto src={OCT("k-persona")} foco="50% 52%" />
     <Degradado arriba={0.6} abajo={0.4} />
     <Marco archivo="MARCO-CARRUSEL-1" />
-    <Cuerpo top={CARR.conLogo} ancho={880}>
+    <Cuerpo desde={250} hasta={1150}>
       <Modulado
-        base={46}
         ancho={880}
         tramos={[{t: "¿Estás pensando en"}, {t: "comprar una parcela?", salto: true}]}
       />
       <Aire h={24} />
-      <Modulado base={46} ancho={900} tramos={[{t: "No mires solo los m²", ivy: true, cursiva: true, size: 78}]} />
+      <Modulado ancho={900} tramos={[{t: "No mires solo los m²", ivy: true, cursiva: true}]} />
     </Cuerpo>
     <Globo y={920} max={760} size={35}>
       Hay otros aspectos que deberías considerar antes de decidir.
@@ -1111,13 +1138,15 @@ const K4: React.FC = () => (
     <Foto src={OCT("k-parcela-limpia")} foco="50% 50%" />
     <Degradado arriba={0.6} abajo={0.46} />
     <Marco archivo="MARCO-CARRUSEL-2" />
-    <Cuerpo top={CARR.sinLogo} ancho={880}>
+    {/* Banda alta: en esta slide el medio lo ocupan los indicadores sobre la
+        parcela, así que el titular se centra en el espacio que queda libre.
+        Centrado a 1150 caía justo encima de "CIERRE PERIMETRAL". */}
+    <Cuerpo desde={205} hasta={570}>
       <Numero n="03." />
       <Aire h={16} />
       <Modulado
-        base={44}
         ancho={880}
-        tramos={[{t: "¿Qué "}, {t: "incluye", ivy: true, size: 58}, {t: "realmente tu parcela?", salto: true}]}
+        tramos={[{t: "¿Qué "}, {t: "incluye", ivy: true}, {t: "realmente tu parcela?", salto: true}]}
       />
     </Cuerpo>
     {/* ⚠️ "Rol individual" y "Acceso controlado" van con el OK de Diego y
@@ -1145,16 +1174,15 @@ const K5: React.FC = () => (
     <Foto src={OCT("k-planos")} foco="50% 50%" />
     <Degradado arriba={0.64} abajo={0.44} />
     <Marco archivo="MARCO-CARRUSEL-3" />
-    <Cuerpo top={CARR.sinLogo} ancho={880}>
+    <Cuerpo desde={205} hasta={1150}>
       <Numero n="04." />
       <Aire h={16} />
       <Modulado
-        base={42}
         ancho={880}
         tramos={[
-          {t: "¿Tienes claridad sobre el proceso"},
-          {t: "de ", salto: true},
-          {t: "compra", ivy: true, size: 56},
+          {t: "¿Tienes claridad sobre"},
+          {t: "el proceso de ", salto: true},
+          {t: "compra", ivy: true},
           {t: "?"},
         ]}
       />
@@ -1173,12 +1201,12 @@ const K6: React.FC = () => (
     <Foto src={OCT("k-caminando")} foco="50% 52%" />
     <Degradado arriba={0.6} abajo={0.54} />
     <Marco archivo="MARCO-CARRUSEL-4" />
-    <Cuerpo top={CARR.sinLogo} ancho={880}>
+    <Cuerpo desde={205} hasta={1150}>
       <Numero n="05." />
       <Aire h={16} />
-      <Modulado base={44} ancho={880} tramos={[{t: "Y lo más importante:"}]} />
+      <Modulado ancho={880} tramos={[{t: "Y lo más importante:"}]} />
       <Aire h={18} />
-      <Modulado base={44} ancho={900} tramos={[{t: "conócela en persona", ivy: true, cursiva: true, size: 74}]} />
+      <Modulado ancho={900} tramos={[{t: "conócela en persona", ivy: true, cursiva: true}]} />
     </Cuerpo>
     <Globo y={880} max={770} size={34} destacado="Parcelas desde UF 2.500">
       {"El entorno, los accesos y las dimensiones del terreno se entienden mucho mejor cuando estás ahí."}
@@ -1200,11 +1228,10 @@ const L: React.FC = () => (
     <Foto src={OCT("l-fondo")} foco="50% 50%" />
     <Degradado arriba={0.54} abajo={0.5} />
     <Marco archivo="MARCO-ST" />
-    <Cuerpo top={STORY.texto} ancho={880}>
+    <Cuerpo desde={240} hasta={1520}>
       <Modulado
-        base={46}
         ancho={880}
-        tramos={[{t: "¿Ya tienes tu"}, {t: "crédito preaprobado", ivy: true, size: 60, salto: true}, {t: "?"}]}
+        tramos={[{t: "¿Ya tienes tu"}, {t: "crédito preaprobado", ivy: true, salto: true}, {t: "?"}]}
       />
     </Cuerpo>
     <Globo y={1020} max={780} size={36}>

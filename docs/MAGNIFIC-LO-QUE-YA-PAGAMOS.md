@@ -108,6 +108,57 @@ Repetir el sondeo: `python scripts/magnific-sondear.py`.
 
 ---
 
+## 🔌 El conector de Magnific ahora viaja en el repo (`.mcp.json`, 23-09-2026)
+
+Hasta hoy Magnific se usaba como **conector de la cuenta de claude.ai** —cada
+persona lo activaba en su cuenta y no viajaba—. Desde hoy el servidor está
+**declarado en el repo**:
+
+```json
+{"mcpServers": {"magnific": {"type": "http", "url": "https://mcp.magnific.com"}}}
+```
+
+`.mcp.json` **no lleva secretos**: sólo dice dónde está el servidor. La sesión de
+cada persona se autoriza con su propia cuenta por OAuth, así que sigue valiendo la
+regla de siempre — lo que no viaja es la autorización, no la dirección.
+
+### Cómo se enciende (tres pasos, una sola vez por máquina)
+
+1. **Reinicia la sesión de Claude Code.** Los servidores MCP se cargan al
+   arrancar: un `.mcp.json` nuevo **no aparece en la sesión que lo creó**.
+2. Claude Code pregunta si confías en el servidor del proyecto. Acepta.
+3. Corre **`/mcp`** y autoriza `magnific`. Se abre el navegador, entras con la
+   cuenta del estudio (`LOGIN_HERRAMIENTAS_CORREO` / `_PASS` del llavero) y listo.
+
+Comprobar que quedó: `ToolSearch "+magnific"` tiene que devolver herramientas.
+
+### Qué resuelve, y qué no
+
+**Resuelve lo único que la API no puede hacer: audio.** Medido el 23-09 sobre 22
+rutas de `api.freepik.com`, **ninguna forma de `text-to-speech` existe** (404) y
+**`music-generation` responde 410, retirado**. Voz y música sólo salen por la app
+—o sea, por el conector—. Ver `docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`.
+
+⚠️ **Para imágenes sigue siendo mejor la API.** `scripts/magnific.py` genera,
+escala y reilumina con `FREEPIK_API_KEY`, no gasta pasos manuales y **lo que sale
+queda en el repo desde el principio**. El conector es para lo que la API no
+alcanza.
+
+### Verificado hoy, por si algún día deja de funcionar
+
+| Qué | Resultado |
+|---|---|
+| `POST https://mcp.magnific.com` | **401** con `WWW-Authenticate: Bearer` — es un MCP con OAuth, no una URL muerta |
+| `/.well-known/oauth-protected-resource` | 200 · autoriza contra `https://auth.magnific.com/realms/mcp` |
+| `/.well-known/oauth-authorization-server` | 200 · trae `registration_endpoint`, así que el alta del cliente es automática |
+| `https://mcp.magnific.com/sse` | 404 — **no** es transporte SSE. Va como `http` |
+
+⚠️ La clave de `~/.magnific_key` **no sirve** para el conector: el MCP va por
+OAuth con la cuenta, no con la clave de API. Son dos accesos distintos.
+
+
+---
+
 ## ❌ Lo que NO está en el plan (404 verificado)
 
 `kling-2-6-pro` · `kling-motion` (control de movimiento) · `seedance-pro-1080p` ·

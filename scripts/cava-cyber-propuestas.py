@@ -49,6 +49,17 @@ F_BOOK   = SP + "/fonts/BebasNeuePro-Book.otf"
 F_BUTLER = "/Users/coni/Library/Fonts/Butler_Bold.otf"
 F_BUTLER_M = "/Users/coni/Library/Fonts/Butler_Medium.otf"
 LOGO = RAIZ + "/public/assets/cava/logo-cava-morande.png"
+SELLO = RAIZ + "/public/assets/cava/sello-descorchados-92.png"
+
+# Dónde quedó el sello que Magnific dibujó sobre la botella, en fracción del
+# lienzo (detectado por su blob dorado: redondez 0,79 ≈ un círculo lleno).
+# Encima va el sello OFICIAL, un 20 % mayor, para taparlo por completo.
+# x, y, diámetro y cuánto se agranda para tapar el generado. En B el sello de
+# la IA salió más grande porque la botella está más cerca, así que necesita
+# menos aumento.
+SELLO_POS = {"A": (0.734, 0.487, 0.1430, 1.20),
+             "B": (0.873, 0.343, 0.1944, 1.06),
+             "C": (0.794, 0.530, 0.1259, 1.22)}
 LEGAL_CAJA = (1442, 0, 2250, 470)
 
 ESCENAS = {"A": "cyber-oct2026-esc-rayo.png",
@@ -60,6 +71,33 @@ BAJADA = {"A": "Tu Carmenere, a mitad de precio.",
 
 
 def ft(r, px): return ImageFont.truetype(r, int(round(px)))
+
+
+def pon_sello(capa, cual):
+    """El sello de premio va SUPERPUESTO como gráfica plana, no integrado en la
+    perspectiva de la botella: así los usa la marca y así lo pidió Coni. Lleva
+    un halo cálido detrás, como el de la propuesta del fondo oscuro.
+
+    Además tapa el sello que la IA dibujó — que, como la etiqueta, estaba
+    redibujado y no es el oficial."""
+    fx, fy, fd, k = SELLO_POS[cual]
+    cx, cy = fx * W, fy * H
+    diam = int(fd * W * k)
+
+    halo = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(halo).ellipse([cx - diam * 0.92, cy - diam * 0.92,
+                                  cx + diam * 0.92, cy + diam * 0.92],
+                                 fill=(255, 214, 140, 78))
+    capa.alpha_composite(halo.filter(ImageFilter.GaussianBlur(diam * 0.30)))
+
+    sombra = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(sombra).ellipse([cx - diam / 2, cy - diam / 2 + diam * 0.06,
+                                    cx + diam / 2, cy + diam / 2 + diam * 0.06],
+                                   fill=(0, 0, 0, 120))
+    capa.alpha_composite(sombra.filter(ImageFilter.GaussianBlur(diam * 0.055)))
+
+    se = Image.open(SELLO).convert("RGBA").resize((diam, diam), Image.LANCZOS)
+    capa.alpha_composite(se, (int(cx - diam / 2), int(cy - diam / 2)))
 
 def ancho(d, t, f, tr=TRACK):
     return sum(d.textlength(c, font=f) for c in t) + tr * f.size * max(0, len(t) - 1)
@@ -113,6 +151,8 @@ def componer(cual, precio, antes, velo=True):
     capa.alpha_composite(logo, (COL_X, 150))
     legal = Image.open(CYBER_ST).convert("RGB").crop(LEGAL_CAJA).convert("RGBA")
     capa.alpha_composite(legal, (W - legal.width, 0))
+
+    pon_sello(capa, cual)
 
     # 1 · el titular manda
     escribe(d, (COL_X, 1130), "Llegó el Cyber.", ft(F_BUTLER, 178), BLANCO, 0.004)

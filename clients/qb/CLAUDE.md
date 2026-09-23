@@ -409,6 +409,81 @@ vuelve a dibujar a tamaño completo.
 
 ---
 
+## 4f. ⛔⛔ EN UNA PIEZA EN BUCLE, EL FOTOGRAMA DE LA ESTÁTICA SE IDENTIFICA — 23-09-2026
+
+Una historia animada se entrega con **dos archivos que tienen que contar el mismo
+momento**: el MP4 y la estática. En la ST de AYCD lo único que se mueve son las
+tres bandas de UNLIMITED, y **la de arriba repite cada 60 fotogramas** (recorre
+−100 % en 240 y la tira lleva 8 repeticiones).
+
+⇒ **Los fotogramas 0, 60, 120 y 180 se ven idénticos, y ninguno se parece al 239.**
+
+La cabecera de `src/QbEntry.tsx` documentaba `--frame=239` y **era falso para la
+entrega**: la estática de la v6 —la que vio el cliente— estaba en un múltiplo de
+60. Rindiendo candidatos y comparando sólo la franja de las bandas contra la
+entrega anterior, el error se parte en grupos limpios:
+
+| fotogramas | error contra la estática entregada |
+|---|---|
+| **0 · 60 · 120 · 180** | **4,42** — sólo el residuo del remuestreo |
+| 30 · 90 · 150 · 210 | 20,78 |
+| 239 | 26,59 |
+
+**La regla:** el fotograma de la estática **no se elige de memoria ni se lee de un
+comentario — se identifica por diff contra la entrega anterior**. Si no, la
+estática y el video muestran las bandas en sitios distintos y nadie lo ve hasta
+que el cliente los abre uno al lado del otro.
+
+⭐ **Y el mismo diff es la compuerta del cambio.** Cuando se toca un solo texto de
+una pieza ya aprobada, lo que se entrega no es «cambié la línea»: es **cuántos
+píxeles se movieron y dónde**. En la v7 fueron 23.386 px, todos en la franja del
+texto (y 3100–3299); fuera de ahí la diferencia máxima fue 19 sobre 765 — el
+antialias de las bandas al re-rendir, no un cambio.
+
+### El GIF de esta pieza
+
+`scripts/qb-aycd-s5-gif.py`. La receta —25 fps, sin difuminado, 540×960— está
+medida en `scripts/p18-s4-gif.py` y no se vuelve a discutir. Lo que **sí** cambia
+es qué se verifica: Piso 18 vigila sus cuatro transiciones; acá la pieza está
+quieta, así que se comprueba que el desplazamiento de las bandas sea **parejo**,
+que no haya fotogramas **congelados** y que **el bucle cierre** — un GIF se
+reproduce en bucle y un empalme malo se ve en cada vuelta aunque el MP4 esté bien.
+
+⚠️ Instagram no recibe historias en GIF: lo que se publica es el MP4.
+
+---
+
+## 4g. LOS TEXTOS DE LA ST DE AYCD DEL 28-09 — al 23-09-2026
+
+⭐ **El texto complementario cambió y el de la grilla ya no es el que va.** El
+23-09-2026 Nicolás Ávila (contenido) pidió cambiar **sólo esa línea**:
+
+| | |
+|---|---|
+| ❌ Lo que dice el brief de la grilla | «Los números están claros.» |
+| ✅ **Lo que va desde la v7** | **«Los martes saben diferente en QB.»** |
+
+El resto del brief se mantiene literal. Los textos que se renderizan viven en
+`QB_ST_AYCD_S5_DATA` dentro de `src/compositions/qb/QBStAycdS5.tsx` — **ese bloque
+es la fuente**, no el comentario del brief, que se deja tal cual como registro de
+lo que se pidió en su momento.
+
+### ⛔ El QA de QB se corre CON `--textos`, o el copy no se revisa
+
+`qa/motor.py --marca qb` a secas deja las dos reglas de copy —la grafía de ALL YOU
+CAN DRINK y el nombre de Sunset QB— en **«SIN VERIFICAR»**. Es honesto, pero
+significa que el copy **no pasó por la compuerta**, y así se entregaron las rondas
+1 a 6. El motor necesita el JSON de textos, que se extrae del propio TSX:
+
+```bash
+python qa/textos.py src/compositions/qb/QBStAycdS5.tsx     --piezas "out/qb/ST S5 QB AYCD 28-09 - v7*.png" --out /tmp/qb-textos.json
+python qa/motor.py --marca qb --textos /tmp/qb-textos.json "out/qb/…(frame 2250x4000).png"
+```
+
+Con eso la pieza pasa **las 9 reglas, sin avisos y sin nada sin verificar**.
+
+---
+
 ## 5. De dónde salen las imágenes
 
 **Hay mucho material propio y es la fuente. No se genera lo que ya está fotografiado.**

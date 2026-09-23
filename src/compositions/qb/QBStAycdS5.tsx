@@ -25,6 +25,12 @@
  *       ALL YOU CAN DRINK · $13.990 · Martes · 18:00 a 21:00 hrs.
  *       Tragos seleccionados ilimitados.
  *     Texto complementario pequeño: Los números están claros.
+ *
+ * ⚠️ **ESA LÍNEA YA NO ES LA QUE VA.** El 23-09-2026 Nicolás Ávila (contenido)
+ * pidió por Slack cambiar SÓLO ese texto, dejando el resto del brief igual:
+ *     «Los números están claros.» → «Los martes saben diferente en QB.»
+ * El brief de arriba se deja literal a propósito —es el registro de lo que se
+ * pidió— y el texto que se renderiza vive en `QB_ST_AYCD_S5_DATA.aycd.bajada`.
  *     CTA: Reserva tu mesa.
  *     Legal: Sujeto a consumo de alimentos. Promoción no acumulable con otras
  *     promociones y beneficios.
@@ -202,7 +208,7 @@ const QB_ST_AYCD_S5_DATA: Record<string, Record<string, string>> = {
     etiqueta: "POR $13.990",
     medida: "18:00 a 21:00 hrs",
     texto: "Tragos seleccionados ilimitados.",
-    bajada: "Los números están claros.",
+    bajada: "Los martes saben diferente en QB.",
     cta: "RESERVA TU MESA",
     pie: "*Sujeto a consumo de alimentos. * Promoción no acumulable con otras promociones y beneficios.",
   },

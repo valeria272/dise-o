@@ -58,6 +58,9 @@ TIPOS = {
     # el navegador con doble clic.
     ".html": "text/html", ".csv": "text/csv", ".txt": "text/plain",
     ".svg": "image/svg+xml", ".webp": "image/webp",
+    # ⚠️ Sin esta línea el GIF sube como `application/octet-stream` y Drive no
+    # lo previsualiza — el mismo tropiezo que tuvo `p18-s4-subir.py`.
+    ".gif": "image/gif",
 }
 
 

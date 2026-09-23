@@ -1,5 +1,131 @@
 # QB Restaurant — bitácora
 
+## 2026-09-23 — v7 · cambio de texto de contenido · Elisabet Soto «Eli» (con Claude)
+
+**Qué se hizo:** Nicolás Ávila (contenido) pidió por Slack cambiar **un solo texto**
+de la ST del 28-09, dejando el resto del brief igual:
+
+> «Los números están claros.» → **«Los martes saben diferente en QB.»**
+
+Se cambió esa línea y nada más. La carpeta de entrega quedó con **tres archivos
+v7** —video, estática y GIF— y la v6 se mandó a la papelera.
+
+**⭐ 1. QUE NO SE MOVIÓ NADA MÁS ESTÁ MEDIDO, NO DICHO.** Diff de la estática v7
+contra la v6 aprobada: **23.386 px distintos, y todos en la franja del texto**
+(y 3100–3299, diferencia máxima 699). Fuera de esa franja la diferencia máxima es
+**19 sobre 765** —el antialias de las bandas de UNLIMITED al re-rendir—, o sea
+ruido, no cambio. El QA de QB da exactamente lo mismo que daba la v6: **0 avisos**,
+los mismos 2 «sin verificar» de siempre.
+
+**⛔⛔ 2. LA ESTÁTICA VA EN EL FOTOGRAMA 0, NO EN EL 239 QUE DICE LA CABECERA.**
+La cabecera de `src/QbEntry.tsx` documenta `--frame=239` y **está equivocada para
+la entrega**. Se rindió el 239 primero y el diff contra la v6 salió con 915.575 px
+distintos repartidos por toda la mitad de arriba: no era el texto, eran **las
+bandas de UNLIMITED en otra posición**.
+
+Rindiendo el mismo fotograma a 0/30/60/90/120/150/180/210/239 y comparando sólo la
+franja de las bandas, el error se parte en dos grupos limpios:
+
+| fotogramas | error contra la v6 |
+|---|---|
+| **0 · 60 · 120 · 180** | **4,42** (el residuo del remuestreo) |
+| 30 · 90 · 150 · 210 | 20,78 |
+| 239 | 26,59 |
+
+⇒ La banda de arriba repite **cada 60 fotogramas**, así que la estática entregada
+de la v6 era un múltiplo de 60. Se rindió en **frame 0**.
+
+⭐ **La regla que deja:** en una pieza en bucle, el fotograma de la estática **no
+se elige, se identifica** — se rinden candidatos y se compara contra la entrega
+anterior. Si no, la estática y el video cuentan momentos distintos de la misma
+historia y nadie lo nota hasta que el cliente los ve juntos.
+
+**⭐ 3. EL GIF, con la receta ya medida en Piso 18.** `scripts/qb-aycd-s5-gif.py`,
+hermano de `p18-s4-gif.py`: **25 fps** porque el GIF guarda los tiempos en
+centésimas y a 30 no cierra (200 fotogramas × 40 ms = **8,00 s** clavados),
+**sin difuminado**, y **540×960** (9,1 MB).
+
+⚠️ **Lo que se verifica acá NO es lo de Piso 18.** Allá el riesgo eran las cuatro
+transiciones; acá la pieza está quieta y lo único que se mueve son las bandas, a
+velocidad constante y en bucle. Entonces el script comprueba lo contrario: que el
+desplazamiento sea **parejo** (mediana 8,52 · máximo 9,74), que no haya ningún
+fotograma **congelado**, y que **el bucle cierre** — el empalme del último al
+primero da 8,94 contra una mediana de 8,52. Un GIF sí se reproduce en bucle, así
+que un empalme malo se ve en cada vuelta aunque el MP4 esté perfecto.
+
+**⛔ 4. `drive-subir.py` no conocía el `.gif`** y lo habría subido como
+`application/octet-stream`, sin previsualización en Drive — el mismo tropiezo que
+ya había tenido `p18-s4-subir.py`. Se le agregó `image/gif` al mapa de tipos.
+
+**⭐ 5. Y DE PASO SE CERRÓ UN HUECO DEL QA.** Las rondas anteriores corrían
+`qa/motor.py --marca qb` **a secas**, y las dos reglas de copy —la grafía de ALL YOU
+CAN DRINK y el nombre de Sunset QB— quedaban en «SIN VERIFICAR», o sea que el copy
+nunca pasó por la compuerta. El motor necesita que se le pase el JSON de textos, que
+sale del propio TSX:
+
+```bash
+python qa/textos.py src/compositions/qb/QBStAycdS5.tsx     --piezas "out/qb/ST S5 QB AYCD 28-09 - v7*.png" --out /tmp/qb-textos.json
+python qa/motor.py --marca qb --textos /tmp/qb-textos.json "out/qb/…v7 (frame 2250x4000).png"
+```
+
+Con eso la v7 pasa **las 9 reglas, sin avisos y sin nada sin verificar** — la v6 se
+entregó con 2 sin verificar.
+
+**Dónde quedó:**
+- `src/compositions/qb/QBStAycdS5.tsx` — `bajada` con el texto nuevo. El brief de
+  la cabecera se deja **literal** a propósito (es el registro de lo que se pidió) y
+  el cambio queda anotado al lado
+- `scripts/qb-aycd-s5-gif.py` — el GIF, con las tres decisiones y su verificación
+- `scripts/drive-subir.py` — `.gif` → `image/gif`
+- `out/qb/ST S5 QB AYCD 28-09 - v7 (texto nuevo).mp4` · `… (frame 2250x4000).png`
+  · `… (texto nuevo).gif`, y los recortes del antes/después en `out/qb/_v6-bajada.png`
+  y `_v7-bajada.png`
+- `raw/hilton/qb/grillas/` — las 4 pestañas de septiembre y las 4 de octubre en CSV,
+  para que mañana la grilla **sí** sea diffeable
+- Drive `QB / STS` (`1Ve22wlyaFlOMe4FGgyPw4J-nXKYiP4UU`), **sólo estos tres**:
+  · video https://drive.google.com/file/d/1DZPvPc5pUd3xZoHUSCAYr89xrzN2_dEy/view
+  · estática https://drive.google.com/file/d/1aIZIoUuMUJnAok90tvaHe8O1_cL6BsaK/view
+  · GIF https://drive.google.com/file/d/1golXwQAZwyr-uNjjbmbIGiW69OlXT31k/view
+  La v6 quedó en la **papelera** (se recupera 30 días) y la subcarpeta «Info QB STS»
+  de Eli, con las 12 comparaciones, **no se tocó**
+
+**⭐ Lo que dijo el Drive al abrir el día (`/al-dia qb`):**
+- La **v6 del 21-09 nunca tuvo respuesta escrita**: 0 comentarios y ninguna versión
+  nueva. Eli sí entró el 21-09 13:30Z —creó «Info QB STS» y movió ahí las
+  comparaciones—, o sea la vio y la ordenó, pero sin veredicto
+- ⭐ **La grilla de QB es Sheet NATIVA**, así que la capa viva se lee por
+  `export?format=csv&gid=` sin el problema del blob congelado de Between. Los gid:
+  `351027330` FEED · `49019995` STORIES · `1890610027` ORGÁNICOS · `1948416445`
+  VISTA MENSUAL. Se tocó hoy 12:18Z y **no había instantánea local**, así que lo de
+  hoy no fue diffeable; la base para mañana ya está guardada
+- ⚠️ **La ST del 25-09 «CONOCE NUESTRA CARTA» está `CAMBIADO`** con el pedido del
+  cliente escrito —rehacerla con la lógica de la story del Afrodita: producto,
+  nombre y enunciado que invite a la carta, eligiendo un **postre**— y **no hay
+  nada suyo entregado** en `S5/QB`. Es la única de QB con plazo encima
+- El REEL DJ del 28-09 y la TRIVIA DE BRINDIS del 30-09 están `PENDIENTE POR
+  CLIENTE` (los tres DJ dicen «(CONFIRMAR)») → no se diseñan
+- «LINE UP QB» perdió su fecha: la celda dice **CORRER A OCT**
+- ⛔ **Octubre no es producible**: 33 piezas (9 feed · 20 stories · 4 orgánicos),
+  **todas `EN REVISIÓN` y cero comentarios de cliente**, igual que DT, Between y
+  Piso18. Su VISTA MENSUAL dice AGOSTO 2026 y varias celdas traen texto de
+  septiembre sin actualizar (el REEL DJ del 1-oct nombra «JUEVES 3 SEPTIEMBRE»).
+  El 22-10 dice sólo «3 PROPUESTAS DE ACCIONES PARA HALLOWEN»
+
+**Qué sigue:** la **ST del 25-09 «CONOCE NUESTRA CARTA»**, que es la única de QB
+con fecha encima y con el pedido del cliente ya escrito. Hay que elegir el postre
+de la carta y seguir la línea de la story del Afrodita.
+
+**Abierto:**
+- Que Eli mire la **v7**. Ojo: el nombre es nuevo a propósito, porque la vista
+  previa de Drive se queda cacheada al reemplazar un archivo por el mismo ID
+- El antes/después del texto está recortado en `out/qb/_v6-bajada.png` y
+  `_v7-bajada.png` pero **no se subió**, para dejar la carpeta con los tres
+  archivos que se pidieron. Si Eli lo quiere arriba, va a «Info QB STS»
+- Sigue sin resolverse de dónde sale **PANTONE 361 C**, que el `.ai` declara y es
+  más brillante que los dos extremos del degradado
+- Sigue pendiente la **decisión sobre las cifras** (caja alta en Raleway vs Bell MT)
+
+
 ## 2026-09-21 — ronda 6 · Elisabet Soto «Eli» (con Claude)
 
 **Qué se hizo:** Eli miró la ronda 5 y dijo: «mejoró mucho la máscara, le falta un

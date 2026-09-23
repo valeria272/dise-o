@@ -57,6 +57,60 @@ con `cmp`.
    recorta un 20 % del ancho. Se agregó **`--aspecto carrusel` (4:5)**, probado contra
    la API. Úsalo en toda pieza de feed.
 
+---
+
+### Misma jornada, más tarde: RONDA 1 — entregada
+
+Paulina revisó las 29 y dejó **37 comentarios anclados sobre las piezas en Drive**.
+Se leen con `python3 scripts/drive-comentarios.py --nombre ebema_c_`. Reglas que dio
+explícitas: **sin comentario = está bien y no se toca**, y «te dejé un mismo
+lineamiento para corregir todas las slides finales».
+
+**Cuatro comentarios DEROGAN medidas que §4-bis daba por fijas** — están en el manual
+como sección fechada dentro de §4-bis, no sólo en las piezas:
+
+| | Antes | Ahora |
+|---|---|---|
+| Botón «¡Cotiza por whatsapp» | 653,8 fijo | **430,1** — abraza su texto |
+| `<Producto>, disponible en Ebema` | 34 px, una línea | **46 px, dos líneas** |
+| «en el link de la bio!» | 28 px / 600 | **34 px / 700**, pegado al botón |
+| Pre-enunciado | 0,47 (estimado) | **0,62** + interlineado 1,72 |
+
+**La lámina de cierre es otra:** bodega de materiales al fondo, **producto original
+al centro**, todo desenfocado. En CBB y San Juan el saco va **componiendo el packshot
+oficial** sobre una bodega generada (`cierre_compuesto.py`): la IA hace sólo el fondo
+y la etiqueta del proveedor nunca pasa por el modelo. En las otras cuatro el producto
+sí se genera — un tablero o un rollo no tienen etiqueta que falsificar.
+
+**Los packshots.** ⚠️ El token del monorepo (`drive.file`) **no puede bajar lo que
+sube Paulina**: al pedirlo por URL vuelve el HTML de permisos. San Juan se resolvió
+desde cementossanjuan.cl (los nombres de sus archivos calzaban exactos). CBB salió
+de la ficha técnica en PDF, extraído con `pymupdf`, escalado con Magnific y recortado
+a mano. **Paulina confirmó que el envase que EBEMA distribuye es el INACESA kraft**,
+no el verde que muestra cbb.cl — yo lo había descartado por «antiguo» y estaba mal.
+Los dos PNG quedaron versionados en `public/assets/ebema/grilla-oct26/_packshots/`.
+
+**Correcciones de texto:** masisa1 (cápsula y pie se intercambian), masisa2 (dos
+líneas), cbb4 y sanjuan2 (orden invertido: manda el beneficio, la enumeración baja a
+bajada), sanjuan1 (cápsula a 880), pointfix4. **Imágenes rehechas:** etersol1,
+etersol4, cbb2, cbb4, sanjuan2, pointfix3, más las seis finales.
+
+**🔴 Error de método, anotado en el manual.** El «cuadro» del tercio superior lo
+había visto yo el mismo día, medí luz y detalle contra las 5 referencias, dio dentro
+de banda y lo dejé pasar diciendo que mi impresión estaba equivocada. **Medí la
+variable equivocada:** las referencias tienen foto real arriba y las nuestras fondo
+vacío — mismo brillo, lectura opuesta. Se arregló en las dos mitades: el velo ya no
+arranca plano (entra en rampa) y el prompt pide contexto real con textura.
+
+**QA:** los 6 pasan sin fallos con la medida nueva del botón. Se corrigió además el
+umbral de detección, que con el botón angosto **hacía caer el script**.
+
+⚠️ **Susto:** escribiendo el manual, un `io.open(p,"w")` reventó al codificar y dejó
+`clients/ebema/CLAUDE.md` en **0 bytes**. Se recuperó con `git checkout HEAD --`
+porque estaba commiteado esa mañana. Desde ahora se escribe a temporal + `os.replace`.
+
+**Entrega:** las 29 actualizadas en la misma carpeta de Drive, mismos nombres.
+
 **Qué sigue:** los 3 carruseles de LinkedIn cuando lleguen las referencias.
 
 **Abierto:**

@@ -122,6 +122,19 @@ tipos; verificado que quedó como `image/gif` y con miniatura.
 ⚠️ Es para mirar y mandar: **Instagram no recibe historias en GIF**, la que se
 publica sigue siendo el MP4.
 
+**Al manual y a las reglas.** El aprendizaje no se quedó en el chat:
+`clients/piso18/CLAUDE.md` estrena la sección **«Las historias animadas son
+Remotion, y la transición tiene que TERMINAR»** —con el orden de los planos, cómo
+se mide una transición y la receta del GIF—, y `reglas.yaml` sube a **v5** con la
+compuerta manual de video (fotogramas congelados = 0, saltos fuera del empuje = 0,
+en TODAS las transiciones). No es ejecutable todavía: `qa/motor.py` sólo corre
+piezas estáticas.
+
+**Qué sigue:** que Eli mire la página de antes/después y apruebe o rechace la
+ronda 7. Si aprueba, la S4 de PISO18 queda cerrada entera. Si no, el siguiente
+paso natural sería alargar el empuje de 14 a 16 fotogramas —pero eso toca el ritmo
+que ella ya tenía aprobado, así que no se hace sin que lo pida.
+
 **Abierto:**
 
 1. ⚠️ **El apilado invertido puede estar en otras piezas animadas de la cuenta.**

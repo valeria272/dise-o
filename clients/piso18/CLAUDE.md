@@ -232,6 +232,52 @@ comprimir las altas en vez de recortarlas, y los deslizadores del clip se dejan
 el montaje de flores parecía candidata a arreglo y resultó ser de las mejores del
 material: nitidez 7.652 contra una mediana de 3.782. No necesitaba nada.
 
+### ⭐⭐⭐ Las historias animadas son Remotion, y la transición tiene que TERMINAR
+
+Ojo con la confusión: **los reels se montan en CapCut, pero las historias animadas
+se escriben en código** (`src/compositions/piso18/P18StMontaje.tsx`). Ahí la
+transición es un **empuje lateral con profundidad**, que es lo que pidió Eli:
+*«hace como una transición de una foto y se mueve hacia el otro lado y aparece la
+misma foto, u otra con más montaje»*. El plano nuevo entra desde la derecha
+recorriendo el ancho completo; el que sale se va hacia la izquierda **más lento**,
+sólo un 30 %, y ese desfase es lo que da la sensación de profundidad.
+
+⛔⛔ **Ese 30 % sólo funciona si el plano que ENTRA va arriba.** En `AbsoluteFill`
+el último hijo queda encima, así que si los planos se escriben del último al
+primero, **el que sale tapa al que entra** y —como sólo recorre un 30 %— se
+detiene cubriendo el 70 % de la pantalla y ahí se queda hasta que el componente se
+desmonta. La transición no termina: se congela y después salta de un corte. Es
+exactamente lo que el cliente reclamó el 22-09:
+
+> «Está ok la selección de fotos, pero se había pedido que la transición de slides
+> sea más fluida, porque como que se queda pegada a la mitad, con eso ok»
+
+**Los planos se escriben del primero al último.** Y si alguna vez hay que tocar
+una transición de esta cuenta, se revisa el ORDEN de los hijos antes que el easing.
+
+⭐ **Una transición se mide, no se mira.** Se rinde la secuencia del empuje
+(`--sequence --frames=a-b --image-format=png`; PNG, no el MP4, que mete ruido de
+compresión) y se compara cada fotograma con el anterior. El defecto se delata
+solo: **un fotograma con diferencia 0,00 —está congelado— seguido de un salto
+grande sobre muchas columnas** es un corte, no un movimiento. Se verifica en
+**todas** las transiciones de la pieza, no sólo en la primera.
+
+⚠️ Y la curva: una que gaste el recorrido al principio se lee como «pegada» aunque
+la transición sí termine. La de esta pieza hacía el 68 % del camino en 4 fotogramas
+y se arrastraba los 10 restantes. **Curva simétrica** — acelera, cruza y frena.
+
+### La pieza animada también se entrega en GIF
+
+Cuando lo pidan: `python scripts/p18-s4-gif.py`. Las tres decisiones están medidas
+y escritas en la cabecera del script, pero la que más sorprende conviene tenerla
+acá: **25 fps, no 30**, porque el GIF guarda el tiempo en **centésimas de segundo**
+— a 30 fps cada fotograma dura 3,33 centésimas, que el formato no representa, y la
+pieza se desfasa. Y **sin difuminado**, que resulta a la vez lo más fiel y casi lo
+más liviano: con la paleta sacada del propio video, el dither sólo mete ruido en
+los velos oscuros.
+
+⚠️ **Instagram no recibe historias en GIF.** Lo que se publica es el MP4.
+
 ### El audio de un reel
 
 El ducking **se mide, no se hace a ojo**: se extrae la locución con ffmpeg, se

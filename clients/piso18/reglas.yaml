@@ -17,7 +17,7 @@
 
 marca: piso18
 nombre: PISO18 Centro de Eventos
-version: 4
+version: 5
 actualizado: 2026-09-22
 
 autoridad:
@@ -138,6 +138,38 @@ ajustes:
 # ⛔ Los deslizadores de CapCut no sirven acá: su contraste pivotea en el 50 %
 #    (127 de 255) y la mediana de un plano a contraluz está en 144, así que subir
 #    contraste lo aclara todavía más. La corrección se hornea con ffmpeg.
+
+# ── VIDEO · la transición de una historia animada tiene que TERMINAR ────────
+# ⚠️ NO EJECUTABLE: `qa/motor.py` sólo corre piezas estáticas. Es la compuerta
+#    manual para una historia animada, hasta que exista compuerta de video.
+#    El porqué está en CLAUDE.md, sección «Las historias animadas son Remotion».
+#
+# Reclamo del cliente, 22-09-2026, sobre la ST animada de la S4:
+#   «se había pedido que la transición de slides sea más fluida, porque como que
+#    se queda pegada a la mitad»
+#
+# Se rinde la secuencia del empuje —PNG, no el MP4, que mete ruido de compresión—
+# y se compara cada fotograma con el anterior (diferencia media en gris, y qué
+# porcentaje de columnas cambia). Pasa si, en CADA transición de la pieza:
+#
+#   fotogramas_congelados == 0     ningún par con diferencia < 1,0 dentro del empuje
+#   salto_fuera_del_empuje == 0    ningún par con diferencia > 25 fuera de él
+#
+# El defecto se delata solo: diferencia 0,00 —congelado— seguida de un salto grande
+# sobre muchas columnas es un CORTE, no un movimiento. Medido en la versión
+# rechazada: f98→99 daba 0,00 y f99→100 daba 57,11 sobre el 70 % de las columnas.
+#
+# ⛔ La causa a revisar PRIMERO no es el easing sino el ORDEN de los planos: en
+#    `AbsoluteFill` el último hijo queda arriba, así que escribirlos al revés deja
+#    al que sale tapando al que entra, y con un desfase del 30 % nunca termina de
+#    irse. Se escriben del primero al último.
+#
+# ⚠️ Y esto se verifica en TODAS las transiciones, no sólo en la primera.
+#
+# ── VIDEO · el GIF de una pieza animada ────────────────────────────────────
+# `scripts/p18-s4-gif.py`. 25 fps —el GIF cuenta el tiempo en centésimas y 30 fps
+# no es representable, así que la pieza se desfasa—, sin difuminado, 540×960.
+# El script verifica que el remuestreo no haya reintroducido el defecto de arriba.
 
 reglas:
 

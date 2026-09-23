@@ -4,6 +4,30 @@
 
 ---
 
+## 2026-09-23 (cierre del día) — Diego Aguilar (con Claude)
+
+**Qué se hizo:** se corrigió la **slide 2 del carrusel PAID del 20-10**. El pedido NO
+estaba en un comentario anclado sino **en la grilla de octubre**, que Carlos Figueroa
+modificó hoy 13:55Z: en la fila del carrusel PAID, bajo `COMENTARIOS CLIENTE`, dice
+**«Quitar info sala de ventas»**. El T2 del brief decía «Deptos que puedes recorrer en
+**nuestra sala de ventas**». Se sacó solo la parte vetada y quedó «Deptos que puedes
+recorrer **antes de arrendar**». La foto no se tocó: muestra un departamento, no una sala
+de ventas. QA en verde, subida por fileId.
+
+> ⚠️ **Lección: el feedback del cliente no siempre llega como comentario en Drive.**
+> Esta marca lo escribe en la celda `COMENTARIOS CLIENTE` de la grilla. Hay que leer la
+> grilla **además** de los comentarios anclados, y mirar su `modifiedTime`.
+
+**Abierto — y es importante:** al leer la grilla apareció que **el brief trae la locución
+del reel escrita verbatim** (5 bloques `VOZ: […]`) y las 9 tomas que se generaron hoy son
+**paráfrasis**, no el texto del brief. Ejemplos: el brief dice «Desde $715.000 al mes» y la
+toma dice «Arrienda hoy desde setecientos quince mil pesos mensuales»; el brief cierra con
+«Agenda tu visita en rentas.inu.cl o escríbenos por WhatsApp» y la toma omite la URL. La
+regla del estudio es que los textos van verbatim del brief. **Falta decidir si se
+regeneran las tomas con el texto literal** — el reel ya está subido con las paráfrasis.
+
+---
+
 ## 2026-09-23 — Diego Aguilar (con Claude)
 
 **Qué se hizo:** se aplicó la **ronda del 23-09** sobre la entrega de octubre —sus 5

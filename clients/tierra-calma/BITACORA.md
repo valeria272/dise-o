@@ -5,6 +5,18 @@
 
 ---
 
+## 2026-09-23 (tarde, ronda 4) — PAID: 02-B también con Seedream 5 Pro
+
+Diego: *«rehace las demás imágenes»*. 02-B (mapa 30 min, 1:1 y 4:5) deja la foto
+real DJI_0324 y pasa a Seedream 5 Pro edit con **DJI_0331** de referencia, la única
+toma con horizonte: el agua del llano anegado se cambia por parcelas verdes y
+aparece **Santiago tenue al fondo**, que es lo que pedía el brief
+(`ia/sd5-mapa-1.png`). Las cápsulas bajaron bajo el horizonte para que se vea la
+ciudad. Reemplazadas sobre los mismos fileId. **Las 6 piezas del PAID son IA de
+Seedream 5 Pro; ninguna reusa una imagen ya publicada.**
+
+---
+
 ## 2026-09-23 (tarde, ronda 3) — PAID: casacabe y D1 rehechas con Seedream 5 Pro
 
 Diego: *«para la generación de imágenes utiliza seedream 5 pro»*. Es el generador

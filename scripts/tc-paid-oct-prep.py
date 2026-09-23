@@ -136,14 +136,22 @@ for nombre, w, h, y0 in (("1x1", 1080, 1080, 590), ("4x5", 1080, 1350, 147)):
     }
 
 # ---------------------------------------------------------------- 02-B oblicuo
-obl = Image.open(OBLICUO)
-# Mañana con neblina: autocontraste suave (corta el 0,6 % de cada punta) antes
-# del balance tibio, para que los cerros no queden como una mancha gris.
-obl = calido(ImageOps.autocontrast(obl.convert("RGB"), cutoff=0.6), 1.1)
-for nombre, w, h in (("1x1", 1080, 1080), ("4x5", 1080, 1350)):
-    escala = h / obl.height  # todo el alto: cielo arriba, el lote abajo
-    im, _ = recorte(obl, obl.width * 0.5, obl.height / 2, escala, w, h)
+# RONDA 4 (23-09, Diego: «rehace las demás imágenes»): 02-B deja la foto real
+# DJI_0324 y pasa a Seedream 5 Pro edit con DJI_0331 de referencia —la única toma
+# con horizonte abierto—, que era la que el brief pedía («la parcela en primer
+# plano y Santiago al fondo») y se había descartado por el llano ANEGADO. La
+# idealización cambia el agua por parcelas verdes y pone Santiago tenue en el
+# horizonte (sd5-mapa-1). La franja de la ciudad cae en las filas 650–800 del
+# PNG: las cápsulas van DEBAJO, para que Santiago se vea entre el logo y los
+# tiempos (1:1: ciudad en 305–397 del lienzo; 4:5: 397–488).
+OBLICUO_IA = RAIZ / "raw/tierracalma/paid-oct2026/ia/sd5-mapa-1.png"  # 1770×2360
+obl = Image.open(OBLICUO_IA).convert("RGB")
+esc_b = 1080 / obl.width
+for nombre, h, y0 in (("1x1", 1080, 150), ("4x5", 1350, 0)):
+    ch = h / esc_b
+    im, _ = recorte(obl, obl.width / 2, y0 + ch / 2, esc_b, 1080, h)
     im.save(SALIDA / f"b-oblicuo-{nombre}.jpg", quality=92)
+datos["fuente"]["02B"] = OBLICUO_IA.name
 
 # ------------------------------------------------------- marco 1:1 (derivado)
 # El diseñador no entregó marco cuadrado. NO se redibuja (manual § 4 quinquies):

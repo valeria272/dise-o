@@ -469,6 +469,83 @@ lleva otro beneficio en el registro normal. Las tres que sí lo traen componen i
 | «en el link de la bio!» | ancho 429,1, cx 538,3 |
 | Bajada `<Producto>, disponible en Ebema.` | sobre el anillo, centrada |
 
+### ⛔⛔ RONDA 1 DE OCTUBRE — lo que Paulina corrigió el 23-09-2026
+
+Comentarios dejados sobre las piezas en Drive, en la entrega de los 6 carruseles de
+octubre. **Cuatro de estas reglas cambian medidas que este manual daba por fijas.**
+Las cifras de arriba salieron de las referencias de septiembre; éstas las dictó ella
+mirando el resultado, así que **mandan éstas**.
+
+#### La lámina de cierre se rehace — y vale para TODOS los carruseles
+
+> «La imagen final de un carrusel debe ser **una bodega de materiales en el fondo y
+> el producto original en el centro**, siempre la imagen total con desenfoque para
+> que el texto destaque.»
+
+| Qué | Antes (medido en septiembre) | Ahora |
+|---|---|---|
+| Fondo | el producto desenfocado | **bodega de materiales al fondo + el producto original al centro**, todo desenfocado |
+| El producto | generado | ⛔ **packshot original del proveedor**, nunca IA |
+| Botón «¡Cotiza por whatsapp» | **653,8 × 79,7** fijo | **se ajusta a su texto** — «no debe sobresalir tanto hacia los lados». Medido en los 6 cierres del lote: **430,1 × 79,7**, misma `y` 916,3 y mismo `cx` 539,8 |
+| `<Producto>, disponible en Ebema` | 34 px, una línea, sobre el anillo | **46 px y DOS líneas**: el producto arriba, «disponible en Ebema» abajo |
+| «en el link de la bio!» | 28 px, peso 600, y 1013,8 | **34 px y peso 700** — el mismo cuerpo y grosor del botón — y más pegado (y 1002) |
+| Anillo EBEMA | 298,6 × 307,2 | **no se toca** — «el logo está correcto» |
+
+> ⭐ **La regla de fondo, y es general:** *«no deben haber textos tan pequeños.
+> Siempre jerarquía de texto que llame la atención, sin pasar a ser grotesco de
+> enorme.»* Vale para toda pieza de grilla, no sólo para el cierre.
+
+#### El velo no puede arrancar plano
+
+> «Este cuadro no debe ir. En esta parte debe ir un velo difuminado detrás del texto
+> para que se lea correctamente, **mas no un bloque sólido**.»
+
+La curva del 16-09 empezaba en `.52` y bajaba a `.50` recién en el 12 %: esos primeros
+160 px son una **meseta**, y sobre una foto de fondo vacío se lee como un rectángulo
+gris con borde duro. Medido en `cbb2` y `sanjuan2`: luminancia 55-60 hasta el 18 % y
+salto a 115-128 de golpe. Ahora el velo **entra en rampa** desde el borde, llega a su
+máximo sobre el texto y se apaga.
+
+> ⚠️ **Y la mitad del problema estaba en la FOTO, no en el velo.** Pedir que el
+> tercio superior «sólo tenga fondo de tono parejo» devuelve un vacío. La zona
+> tranquila tiene que seguir siendo **foto**, con textura, profundidad y gradación,
+> sólo que sin nada que compita. Ver [[prompt-nunca-nombra-el-texto]].
+>
+> 🔴 **Error de método, 23-09-2026.** Esto se había detectado a ojo el mismo día,
+> se midió luz y detalle del tercio superior contra las 5 referencias, dio dentro de
+> banda y se dejó pasar. **Se midió la variable equivocada:** las referencias tienen
+> foto real arriba y las nuestras fondo vacío — mismo brillo, lectura opuesta.
+
+#### El pre-enunciado era muy chico
+
+> «Este texto debe tener un pt más alto, se ve muy pequeño. Y no debe estar tan pegado
+> a la primera línea del enunciado.»
+
+`PRE_CUERPO` de **0,47 a 0,62**, e interlineado de **1,34 a 1,72**. El 0,47 estaba
+**estimado y nunca medido** — esto lo fija con su criterio.
+
+#### Cuando el brief mete todo en un titular, se INVIERTE el orden
+
+En `cbb4` y `sanjuan2` el titular era una enumeración («Ideal para fundaciones,
+radieres y estructuras...») y el beneficio quedaba de bajada. Paulina lo dio vuelta:
+
+> «Cambiemos el orden. Dejaremos como texto principal "mayor durabilidad frente a
+> suelos con sulfatos"; **la segunda línea es la que debe llevar cuadro rojo**. Ya
+> luego más abajo, con letra no mayúscula, ponemos el texto "ideal para...".»
+
+O sea: **manda el beneficio, no la enumeración**, y la enumeración baja a la bajada
+en caja baja. Es criterio de reparto, no cambio de texto: las palabras siguen siendo
+las del brief.
+
+#### Dos perillas nuevas, para usar con cuidado
+
+`ancho_caja` por lámina y `bajada_cuerpo` por lámina. **No son la regla**: el ancho de
+caja sigue siendo una decisión por carrusel y el cuerpo de la bajada lo fija el CSS.
+Existen para lo que ella pidió explícitamente — «disminuir o aumentar pt para que se
+vea estético» en una lámina concreta — y cada uso va comentado con su porqué.
+
+---
+
 ### ⭐ Reglas de la cápsula y del titular — dictadas por Paulina (15-09-2026)
 
 Salieron de la ronda 1 sobre el carrusel de Masisa. **No son ajustes de una pieza:

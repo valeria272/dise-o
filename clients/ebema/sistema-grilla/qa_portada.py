@@ -28,7 +28,11 @@ ESPERADO = {
     "capsula_y0": (154.6, 2.0),
     "caja_cx": (539.8, 3.0),
     "anillo_ancho": (298.6, 3.0), "anillo_alto": (307.2, 3.0),
-    "boton_ancho": (653.8, 3.0), "boton_alto": (79.7, 2.0), "boton_y": (916.3, 3.0),
+    # ⭐ EL BOTÓN CAMBIÓ EN LA RONDA 1 DE OCTUBRE (23-09-2026). Paulina: «el cuadro
+    # rojo debe ser más pequeño, no debe sobresalir tanto hacia los lados del texto».
+    # Pasó de un ancho fijo de 653,8 a abrazar su propio texto. Medido sobre los 6
+    # cierres del lote: 430,1 en los seis, con el mismo alto y la misma y de antes.
+    "boton_ancho": (430.1, 3.0), "boton_alto": (79.7, 2.0), "boton_y": (916.3, 3.0),
 }
 fallos, avisos = [], []
 
@@ -101,7 +105,10 @@ else:
 
     # el boton: bloque rojo macizo de la mitad inferior
     abajo = rojo[1900:, :]
-    filas = np.where(abajo.sum(axis=1) > a.shape[1] * 0.4)[0]
+    # El umbral bajó de 0,4 a 0,10 del ancho: con el botón ajustado a su texto (430,1
+    # sobre 1080, o sea el 40 %) ninguna fila llegaba al 40 % del lienzo y el QA se
+    # caía con «zero-size array» en vez de medir.
+    filas = np.where(abajo.sum(axis=1) > a.shape[1] * 0.10)[0]
     cols = np.where(abajo[filas.min():filas.max() + 1].sum(axis=0) > 0)[0]
     ok("boton_ancho", (cols.max() - cols.min() + 1) * esc)
     ok("boton_alto", (filas.max() - filas.min() + 1) * esc)

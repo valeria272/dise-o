@@ -432,3 +432,64 @@ body { font-family:"Raleway", Arial, sans-serif; -webkit-font-smoothing:antialia
    referencias, y la tinta —que en caja baja va de ascendente a descendente— se
    comía casi todo el padding. 0,873 devuelve la caja a ~70,7 con el mismo padding
    de 14,4, y deja unos 11 de rojo alrededor del texto, como en las referencias. */
+
+/* ===========================================================================
+   RONDA 1 DE OCTUBRE · 23-09-2026 · Paulina
+   ----------------------------------------------------------------------------
+   Comentarios dejados sobre las piezas en Drive. Las tres primeras reglas
+   CAMBIAN medidas que §4-bis daba por fijas: salieron de las referencias de
+   septiembre y Paulina las corrigió acá, así que mandan éstas.
+   ========================================================================= */
+
+/* 1 · EL VELO NO PUEDE ARRANCAR PLANO.
+   «Este cuadro no debe ir. En esta parte debe ir un velo difuminado detrás del
+    texto para que se lea correctamente, mas no un bloque sólido.» (cbb2)
+
+   La curva del 16-09 empezaba en .52 y bajaba a .50 recién en el 12 %: esos
+   primeros 160 px son una MESETA. Sobre una foto de fondo vacío la meseta se lee
+   como un rectángulo gris con borde duro justo donde aparece el sujeto — medido
+   en cbb2 y sanjuan2: luminancia 55-60 hasta el 18 % y salto a 115-128 de golpe.
+   Ahora el velo ENTRA desde el borde (rampa), llega a su máximo sobre el texto y
+   se apaga. Sin meseta no hay rectángulo, y el degradado sigue siendo suave. */
+.pieza:not(.portada) .bg .velo {
+  background:linear-gradient(to bottom,
+    rgba(0,0,0,.30) 0%,
+    rgba(0,0,0,.38) 5%,
+    rgba(0,0,0,.45) 11%,
+    rgba(0,0,0,.49) 18%,
+    rgba(0,0,0,.47) 26%,
+    rgba(0,0,0,.40) 33%,
+    rgba(0,0,0,.30) 40%,
+    rgba(0,0,0,.19) 47%,
+    rgba(0,0,0,.10) 54%,
+    rgba(0,0,0,.04) 60%,
+    rgba(0,0,0,0)   67%);
+}
+
+/* 2 · LA BAJADA DEL CIERRE, MÁS GRANDE Y EN DOS LÍNEAS.
+   «Agrandemos el tamaño de la letra y dejémoslo en 2 líneas: primero "Cemento
+    Especial CBB" y abajo "disponible en Ebema". Eso es para TODOS los carruseles.
+    No deben haber textos tan pequeños. Siempre jerarquía de texto que llame la
+    atención, sin pasar a ser grotesco de enorme.» (cbb5)
+   De 34 px en una línea a 46 px en dos. El `top` sube de 362,9 a 330 porque dos
+   líneas de 46 miden ~120 y el anillo empieza en 502,4: sin subirlo se tocan. */
+.cierre-carrusel .sobre { top:330px; font-size:46px; line-height:1.18; font-weight:700; }
+
+/* 3 · EL BOTÓN SE AJUSTA A SU TEXTO, y «en el link de la bio!» es su continuación.
+   «El cuadro rojo debe ser más pequeño, no debe sobresalir tanto hacia los lados
+    del texto.» · «Este texto es una continuación del que está en el cuadro rojo,
+    por lo que debe tener el mismo tamaño y grosor, además de no estar tan
+    separado.» (cbb5)
+   El ancho fijo de 653,8 se reemplaza por un ancho que abraza al texto. La bio
+   pasa de 28/600 a 34/700 —el mismo cuerpo y peso del botón— y sube de 1013,8 a
+   1002 para que las dos frases se lean como una sola. */
+.cierre-carrusel .cta { width:auto; padding:0 40px; }
+.cierre-carrusel .bio { top:1002px; font-size:34px; font-weight:700; }
+
+/* 4 · EL PRE-ENUNCIADO, MÁS GRANDE Y CON MÁS AIRE.
+   «Este texto debe tener un pt más alto, se ve muy pequeño. Y no debe estar tan
+    pegado a la primera línea del enunciado.» (cbb1)
+   El factor de cuerpo vive en el motor (PRE_CUERPO: 0,47 -> 0,62). Acá sólo el
+   aire: el interlineado sube de 1,34 a 1,72. Ojo que el 0,47 estaba ESTIMADO y
+   nunca medido — esto lo fija con el criterio de Paulina. */
+.portada .titular .l.pre { line-height:1.72; }

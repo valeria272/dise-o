@@ -73,7 +73,11 @@ ANCHO_CAPSULA = 662
 # titular y no como otra línea del titular.
 #   ⚠️ 0,47 está ESTIMADO sobre la referencia de Paulina (Masisa OLB, «UNA
 #   AMPLIACIÓN FIRME»), no medido: el archivo no está en el repo todavía.
-PRE_CUERPO = 0.47         # cuerpo del pre-enunciado ÷ cuerpo del gancho
+# ⭐ CORREGIDO EL 23-09-2026 por Paulina sobre la portada de CBB: «este texto debe
+# tener un pt más alto, se ve muy pequeño». El 0,47 estaba ESTIMADO y nunca medido
+# — esto lo fija con su criterio. El aire respecto del gancho vive en el CSS
+# (`.portada .titular .l.pre`, interlineado 1,34 -> 1,72).
+PRE_CUERPO = 0.62         # cuerpo del pre-enunciado ÷ cuerpo del gancho
 # Su interlineado (el aire que lo separa del gancho) vive en base-grilla.css.
 
 
@@ -102,7 +106,12 @@ def cuerpo(l):
         extra = (f'<div class="fila-capsula">'
                  f'<span class="capsula-bajada">{fmt(l["capsula"])}</span></div>')
     elif l.get("bajada"):
-        extra = f'<div class="bajada">{fmt(l["bajada"])}</div>'
+        # `bajada_cuerpo`: baja el cuerpo SÓLO en esta lámina, para que una frase
+        # larga entre en una línea. Paulina, 23-09-2026 sobre pointfix4: «dejar en
+        # una sola línea, disminuir pt si es necesario para que se vea estético».
+        bc = l.get("bajada_cuerpo")
+        eb = f' style="font-size:{bc}px"' if bc else ""
+        extra = f'<div class="bajada"{eb}>{fmt(l["bajada"])}</div>'
     pie = ""
     if l.get("pie") is not None:
         # Con el subtexto ya en la cápsula, el pie se queda sólo con la flecha
@@ -125,7 +134,7 @@ def cuerpo(l):
     # su L2 y su L3, con textos de 15 y 11 caracteres — «SIN OBRA GRUESA» y «NO SE
     # PUDRE». Si mandara el cuerpo, la de 11 letras seria mucho mas angosta.
     anchos = (f'data-ancho="{ANCHO_LINEA}" data-ancho-caja="{ANCHO_CAJA}" data-tapa="0.5" data-monta="14" data-ancho-capsula="{ANCHO_CAPSULA}" data-pre-cuerpo="{PRE_CUERPO}"'
-              if l.get("portada") else f'data-ancho-caja="{ANCHO_CAJA_DES}"')   # el ajuste mide la caja CON su padding
+              if l.get("portada") else f'data-ancho-caja="{l.get("ancho_caja", ANCHO_CAJA_DES)}"')   # el ajuste mide la caja CON su padding
     return f"""  <div class="bloque" style="top:{l['y']}px;">
     <div class="titular" {anchos}>{bloques}</div>
     {extra}
@@ -134,7 +143,10 @@ def cuerpo(l):
 
 
 def cierre(c):
-    return f"""  <div class="sobre">{fmt(c["producto"])} <b>disponible en Ebema</b></div>
+    # ⭐ DOS LÍNEAS, no una — Paulina, 23-09-2026 sobre cbb5: «primero "Cemento
+    # Especial CBB" y abajo "disponible en Ebema". Eso es para TODOS los
+    # carruseles.» El cuerpo sube de 34 a 46 px en `base-grilla.css`.
+    return f"""  <div class="sobre">{fmt(c["producto"])}<br><b>disponible en Ebema</b></div>
   <img class="anillo" src="img/logo_ebema_anillo_oscuro.png">
   <div class="cta">&iexcl;Cotiza por&nbsp;<b>whatsapp</b></div>
   <div class="bio">en el link de la bio!</div>"""
@@ -274,8 +286,13 @@ def construir(c):
     """Escribe las N láminas de un carrusel como <slug><i>_feed.html."""
     # ⭐ EL ANCHO DE CAJA ES UNA DECISIÓN POR CARRUSEL, NO POR LÁMINA (§4-bis).
     # Las 5 referencias caen entre 541,4 y 802,6. Cada carrusel declara el suyo.
-    global ANCHO_CAJA_DES
+    global ANCHO_CAJA_DES, ANCHO_CAPSULA
     ANCHO_CAJA_DES = c.get("ancho_caja_des", 778)
+    # ⭐ La cápsula también se declara por carrusel desde el 23-09-2026: en la
+    # portada de San Juan Paulina pidió «aumentar el tamaño de esto en general, no
+    # sólo la letra o sólo el cuadro, pero que no sobresalga a lo largo del cuadro
+    # rojo» — o sea el tope es ANCHO_CAJA (942), no un valor libre.
+    ANCHO_CAPSULA = min(c.get("ancho_capsula", 662), ANCHO_CAJA)
     for i, l in enumerate(c["laminas"], 1):
         es_cierre = l.get("cierre")
         clase = "pieza feed cierre-carrusel" if es_cierre else "pieza feed"

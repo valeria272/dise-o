@@ -33,24 +33,32 @@ CARRUSEL = {
         #                clóset. Debe verse claramente que es un espacio empotrado y que el
         #                mueble se está fabricando a medida.»
         #
-        # Las tres zonas (§4-bis). El titular del brief es UNA frase larga que trae
-        # el nombre del producto adelante, así que el producto pasa a PRE-ENUNCIADO
-        # —cuerpo menor, ancho libre— y el rojo muerde sólo el gancho. La bajada del
-        # brief va a la cápsula blanca, que no es opcional.
+        # ⭐ RONDA 1 — Paulina, 23-09-2026, dos comentarios sobre esta portada:
+        #   «dejemos este texto en el cuadro blanco»  -> señalando el pre-enunciado
+        #   «este texto dejémoslo con el formato que queda sobre la flecha»
+        #                                             -> señalando la cápsula
+        # O sea se INTERCAMBIAN: el nombre del producto pasa a la cápsula blanca y
+        # la bajada del brief baja al pie, sobre la flecha. Ya no hay pre-enunciado
+        # acá — el titular queda en dos niveles y el rojo muerde el gancho igual.
         {"foto": "fotos/masisa/01.jpg", "y": 660, "portada": True,
-         "pre": "TABLERO ESTRUCTURAL MASISA",
          "sobre": "PARA UN CLÓSET EMPOTRADO",
          "caja": "BIEN RESUELTO",
-         "capsula": "Precisión, firmeza y una base adecuada para trabajar muebles a medida",
-         "pie": ""},
+         "capsula": "Tablero Estructural Masisa",
+         "pie": "Precisión, firmeza y una base adecuada para trabajar muebles a medida"},
 
         # L2 · precisión en el trabajo
         # brief texto:  «Cuando el espacio es exacto, el corte también tiene que serlo.»
         # brief visual: «Detalle del tablero siendo medido y cortado, mostrando canto,
         #                superficie y precisión de la pieza.»  → ESPECIFICACIÓN → zoom
-        {"foto": "fotos/masisa/02.jpg", "y": 250,
-         "sobre": "CUANDO EL ESPACIO|ES EXACTO, EL CORTE",
-         "caja": "TAMBIÉN TIENE QUE SERLO",
+        # ⭐ RONDA 1 — Paulina: «que sean 2 líneas. Primero "cuando el espacio es
+        # exacto,", segundo "el corte también tiene que serlo". Disminuir o aumentar
+        # pt para que se vea estético.» El corte del brief cambia de sitio: la coma
+        # cierra la línea blanca y el rojo se lleva la frase entera. Con 32 letras
+        # dentro del rojo, 778 lo dejaba muy chico: esta lámina declara su propio
+        # ancho de caja, 860, y el `cuerpo` baja para que la blanca no se desborde.
+        {"foto": "fotos/masisa/02.jpg", "y": 250, "ancho_caja": 860,
+         "sobre": "CUANDO EL ESPACIO ES EXACTO,", "cuerpo": 46,
+         "caja": "EL CORTE TAMBIÉN TIENE QUE SERLO",
          "bajada": "Superficie pareja para trabajar piezas a medida, con **cortes limpios** y buen ajuste en obra."},
 
         # L3 · estructura y espesor

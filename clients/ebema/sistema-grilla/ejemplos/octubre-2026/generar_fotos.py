@@ -50,12 +50,30 @@ COMUN = ("Fotografía publicitaria profesional de materiales de construcción, "
 LLENA = ("La fotografía llena TODO el encuadre de borde a borde, sin franjas lisas, "
          "sin bandas de color plano, sin bordes ni marcos y sin zonas vacías.")
 
-ZONA_ARRIBA = ("Encuadre con aire arriba: en el tercio superior sólo hay fondo "
-               "fotográfico desenfocado y de tono parejo — muro, cielo o profundidad "
-               "de campo —, sin objetos que llamen la atención. " + LLENA)
+# ⛔ CORREGIDO EL 23-09-2026 — Paulina, sobre cbb2: «este cuadro no debe ir; en esta
+# parte debe ir un velo difuminado detrás del texto, mas no un bloque sólido».
+# La versión anterior pedía que arriba «sólo hubiera fondo de tono parejo» y eso
+# devolvía un VACÍO: con el velo encima se leía como un rectángulo gris con borde
+# duro justo donde empieza el sujeto (medido: luminancia 55-60 hasta el 18 % y
+# salto a 115-128 de golpe). La zona tranquila tiene que seguir siendo FOTO — con
+# textura, profundidad y gradación—, sólo que sin nada que compita.
+ZONA_ARRIBA = ("Encuadre con aire arriba: el tercio superior muestra el CONTEXTO REAL "
+               "de la escena con profundidad y textura — la continuación del muro, el "
+               "cielo, el fondo del taller o del terreno —, suavemente desenfocado y "
+               "sin nada que compita con el sujeto. Nunca un fondo liso, ni un color "
+               "plano, ni una superficie uniforme sin detalle. " + LLENA)
 ZONA_ABAJO  = ("Encuadre con aire abajo: en la mitad inferior sólo hay superficie "
                "continua y de tono parejo — suelo, pasto, terreno o piso —, sin "
                "objetos que llamen la atención. " + LLENA)
+
+# ⭐ LA LÁMINA FINAL, ronda 1 de octubre. Tres piezas de prompt que comparten las
+# cinco: bodega desenfocada atrás, producto al centro, y el conjunto suave.
+BODEGA = ("Interior de una bodega de materiales de construcción, luminosa y ordenada, "
+          "con estanterías y pallets a ambos lados perdiéndose en profundidad, MUY "
+          "DESENFOCADA. ")
+CIERRE = "Al centro del encuadre, en primer plano y algo más nítido que el fondo: "
+TODO   = ("La imagen entera va suave y con poco contraste, para que un texto puesto "
+          "encima destaque. ")
 
 # ---------------------------------------------------------------------------
 # Cada entrada: (archivo, tipo, prompt, [refs])
@@ -100,11 +118,14 @@ LOTE = {
    "Un mueblista al costado, de espaldas "
    "parciales, ajustando una repisa. Dormitorio limpio y luminoso, luz natural lateral. "
    + ZONA_ARRIBA + " " + COMUN, ["02"]),
+  # RONDA 1 — lineamiento de Paulina para TODA lámina final: «bodega de materiales
+  # en el fondo y el producto en el centro, siempre la imagen total con desenfoque
+  # para que el texto destaque». Acá el producto SÍ se genera: un tablero no es un
+  # packshot de marca, no tiene etiqueta que falsificar (§5).
   ("04", "cierre",
-   "Clóset empotrado terminado, integrado de muro a muro en un dormitorio luminoso y "
-   "ordenado, puertas de tablero melamínico de tono madera claro. Imagen suavemente "
-   "DESENFOCADA en conjunto, como fondo: sin ningún detalle que compita con el centro "
-   "de la composición, que queda libre. " + COMUN, ["02"]),
+   BODEGA + CIERRE +
+   "dos tableros estructurales de madera reconstituida apoyados de canto, con la "
+   "cara lisa y el canto de virutas comprimidas a la vista. " + TODO + COMUN, ["02"]),
  ],
 
  # --------------------------------------------------------------- ETERSOL ---
@@ -116,63 +137,89 @@ LOTE = {
    "paja seca del pasto natural. Se ve la densidad del pelo y que las fibras son "
    "flexibles. Luz natural difusa, sin brillos plásticos. " + ZONA_ARRIBA + " " + COMUN, []),
   ("01", "ambiente",
-   "Patio trasero de una casa chilena a comienzos de primavera, con el pasto natural "
-   "descuidado: manchones amarillos, tierra pelada a la vista y bordes irregulares. "
-   "Un muro de cierre simple al fondo y algo de vegetación. Día nublado suave, sin "
-   "personas. Plano general tranquilo. " + ZONA_ABAJO + " " + COMUN, []),
+   # RONDA 1: «cambiar imagen por un ambiente estético; sólo el pasto debe verse
+   # desgastado, con huecos con tierra sin pasto. Eliminar los ladrillos o algún
+   # otro material.» Lo feo es el pasto, no el patio.
+   "Patio trasero de una casa bonita y bien cuidada, a comienzos de primavera: "
+   "terraza limpia, arbustos y un muro de cierre prolijo al fondo. Lo ÚNICO "
+   "descuidado es el pasto, que está gastado y con huecos de tierra pelada a la "
+   "vista. NO hay ladrillos, sacos, escombros ni material de construcción en "
+   "ninguna parte. Día luminoso y suave, sin personas. Plano general ordenado. " + ZONA_ABAJO + " " + COMUN, []),
   ("03", "escena",
    "Instalador desenrollando un rollo de pasto sintético sobre una base de tierra "
    "compactada y nivelada en un patio. Se ve el rollo a medio extender, el borde de "
    "la lámina y el respaldo por el reverso. El hombre está agachado, de perfil, con "
    "guantes de trabajo. Patio despejado, día luminoso. " + ZONA_ARRIBA + " " + COMUN, ["02"]),
   ("04", "ambiente",
-   "Patio residencial terminado con pasto sintético verde parejo, integrado con una "
-   "terraza de madera y una zona de juegos simple. Ordenado, luminoso, primavera, "
-   "sin personas. Plano general amplio. " + ZONA_ARRIBA + " " + COMUN, ["02"]),
+   # RONDA 1: «la imagen se ve muy falsa; el fondo plano hace que se vea incómodo.
+   # Por favor aplicar en contexto de la vida real.»
+   "Fotografía real de un patio de casa con pasto sintético verde parejo, vivido y "
+   "en uso: terraza de madera con muebles de exterior, macetas con plantas, un "
+   "juguete en el pasto, la fachada de la casa con sus ventanas a un costado y "
+   "árboles del vecindario asomándose por sobre el cierre. Luz natural de tarde con "
+   "sombras largas y reales. Sin personas. Plano general amplio y con profundidad. " + ZONA_ARRIBA + " " + COMUN, ["02"]),
+  # RONDA 1 — lineamiento de lámina final (ver masisa 04).
   ("05", "cierre",
-   "Un rollo de pasto sintético apoyado de pie sobre un piso de patio, mostrando el "
-   "canto enrollado y el verde de las fibras. Imagen suavemente DESENFOCADA en "
-   "conjunto, como fondo, con el centro de la composición libre. " + COMUN, ["02"]),
+   BODEGA + CIERRE +
+   "un rollo de pasto sintético apoyado de pie, con el canto enrollado y el verde de "
+   "las fibras a la vista. " + TODO + COMUN, ["02"]),
  ],
 
  # ------------------------------------------------------------------- CBB ---
  "cbb": [
-  ("05", "cierre",
-   "Pila ordenada de sacos de cemento de papel kraft gris claro, apilados sobre un "
-   "pallet de madera en una bodega luminosa. Los sacos están LISOS, sin ninguna "
-   "impresión, sin texto y sin logotipo. Imagen suavemente DESENFOCADA en conjunto, "
-   "como fondo, con el centro de la composición libre. " + COMUN, []),
+  # RONDA 1 — igual que San Juan: se genera SÓLO la bodega y el saco real se compone
+  # encima con `cierre_compuesto.py`. El packshot de marca no lo toca la IA (§5).
+  ("05_bodega", "cierre",
+   "Interior de una bodega de materiales de construcción, luminosa y ordenada: "
+   "estanterías metálicas a ambos lados con pallets de sacos, tablas y perfiles "
+   "apilados, y un pasillo central despejado que se pierde en profundidad. Vista "
+   "frontal del pasillo. El CENTRO del encuadre queda libre, sin nada apilado. "
+   "Imagen entera suavemente DESENFOCADA, como fondo. " + COMUN, []),
   ("01", "ambiente",
    "Fundación de hormigón recién hormigonada en un terreno agrícola chileno: zanjas "
    "corridas y sobrecimiento a la vista sobre tierra de cultivo oscura, con un cerco "
    "de campo y un potrero verde al fondo. Día despejado, luz de la tarde, sin personas. "
    "Plano general tranquilo. " + ZONA_ABAJO + " " + COMUN, []),
   ("02", "producto",
-   "Macro de catálogo de una superficie de hormigón deteriorado por ataque químico: "
-   "la pasta de cemento disgregada y pulverulenta, los áridos quedando expuestos, "
-   "microfisuras y una eflorescencia blanquecina. Textura muy nítida, luz rasante que "
-   "marca el relieve del daño. " + ZONA_ARRIBA + " " + COMUN, []),
+   # RONDA 1: «la imagen está bien pero el plano debe ser más amplio; mucho zoom no
+   # se ve estético.» Se abre a un plano de situación, sin perder el daño.
+   "Plano ABIERTO de una fundación de hormigón deteriorada por ataque químico en un "
+   "terreno agrícola: se ve el tramo de sobrecimiento completo y, sobre él, la pasta "
+   "de cemento disgregada, los áridos expuestos, microfisuras y eflorescencias "
+   "blanquecinas. Al fondo, el campo y el cielo dando profundidad. Luz rasante de "
+   "la mañana que marca el relieve del daño. Sin macro ni acercamiento extremo. " + ZONA_ARRIBA + " " + COMUN, []),
+  # RONDA 1 — «el saco debe ser el saco original de CBB». Paulina confirmó que el
+  # envase que EBEMA distribuye es el INACESA kraft, no el verde del sitio de cbb.cl.
+  # El packshot oficial entra como REFERENCIA para que el modelo reproduzca ese saco.
+  # ⚠️ La etiqueta se revisa con zoom 3×: si sale deformada, se compone como el cierre.
   ("03", "escena",
-   "Maestro hormigonero chileno vaciando cemento gris desde un saco de papel kraft "
-   "liso y sin impresión dentro de una carretilla con árido, junto a una fundación en "
-   "construcción en un terreno de campo. El hombre de perfil, con guantes y camisa de "
-   "trabajo. Escena limpia, luz natural. " + ZONA_ARRIBA + " " + COMUN, ["05"]),
+   "Maestro hormigonero chileno vaciando cemento gris desde un SACO DE PAPEL KRAFT "
+   "CAFÉ idéntico al de la imagen de referencia — con su franja verde y su banda azul "
+   "oscura en la cara — dentro de una carretilla con árido, junto a una fundación en "
+   "construcción en un terreno de campo. El saco se ve de frente, con su gráfica "
+   "nítida y sin deformar. El hombre de perfil, con guantes y camisa de trabajo. "
+   "Escena limpia, luz natural. " + ZONA_ARRIBA + " " + COMUN, ["packshots/cbb_saco.png"]),
+  # RONDA 1 — la primera versión salió 90 % losa gris plana y la lámina quedaba vacía.
+  # Se abre el encuadre: la losa ocupa el primer plano en diagonal y detrás entra el
+  # campo, que es lo que da profundidad y contexto.
   ("04", "ambiente",
-   "Radier y fundación de hormigón ya terminados y curados en una parcela agrícola, "
-   "superficie gris pareja y bien platachada, con el campo abierto al fondo. Ordenado, "
-   "sin personas, luz natural suave. " + ZONA_ARRIBA + " " + COMUN, []),
+   "Radier y fundación de hormigón ya terminados y curados en una parcela agrícola "
+   "chilena, vistos en DIAGONAL desde una esquina: la losa gris pareja y bien "
+   "platachada ocupa el primer plano y detrás se ve el campo abierto — pasto, unos "
+   "árboles y el cerco de la parcela— con el cielo de la tarde. Ordenado, sin "
+   "personas, luz natural cálida y rasante. " + ZONA_ARRIBA + " " + COMUN, []),
  ],
 
  # ------------------------------------------------------------- VOLCANITA ---
  # La cara VERDE es lo que hace reconocible a una placa de yeso-cartón resistente a
  # la humedad. Sin ese verde es una placa cualquiera, así que va en todos los prompts.
  "volcanita": [
+  # RONDA 1 — lineamiento de lámina final (ver masisa 04).
   ("05", "cierre",
-   "Varias planchas de yeso-cartón resistente a la humedad, de CARA VERDE clara, "
-   "apoyadas de canto contra el muro de una bodega luminosa. Se ve el canto rebajado "
-   "y el papel verde. Las planchas están LISAS, sin ninguna impresión, sin texto y sin "
-   "logotipo. Imagen suavemente DESENFOCADA en conjunto, como fondo, con el centro de "
-   "la composición libre. " + COMUN, []),
+   BODEGA + CIERRE +
+   "varias planchas de yeso-cartón de CARA VERDE clara apoyadas de canto, con el "
+   "canto rebajado y el papel verde a la vista. Están LISAS, sin impresión, sin texto "
+   "y sin logotipo. " + TODO + COMUN, []),
   ("01", "ambiente",
    "Baño residencial en plena remodelación, desnudo: la estructura metálica de "
    "tabiquería a la vista, el muro abierto, la cerámica vieja retirada y el piso "
@@ -197,26 +244,42 @@ LOTE = {
 
  # -------------------------------------------------------------- SAN JUAN ---
  "sanjuan": [
-  ("05", "cierre",
-   "Pila ordenada de sacos de cemento de papel kraft gris claro sobre un pallet de "
-   "madera en una bodega luminosa. Los sacos están LISOS, sin ninguna impresión, sin "
-   "texto y sin logotipo. Imagen suavemente DESENFOCADA en conjunto, como fondo, con "
-   "el centro de la composición libre. " + COMUN, []),
+  # RONDA 1 — nuevo lineamiento de Paulina para TODA lámina final: «bodega de
+  # materiales en el fondo y el producto original en el centro, siempre la imagen
+  # total con desenfoque para que el texto destaque». Acá se genera SÓLO la bodega:
+  # el saco real se compone encima con `cierre_compuesto.py`, porque el packshot de
+  # marca no lo toca la IA (§5). Por eso el centro va deliberadamente despejado.
+  ("05_bodega", "cierre",
+   "Interior de una bodega de materiales de construcción, luminosa y ordenada: "
+   "estanterías metálicas a ambos lados con pallets de sacos, tablas y perfiles "
+   "apilados, y un pasillo central despejado que se pierde en profundidad. Vista "
+   "frontal del pasillo. El CENTRO del encuadre queda libre, sin nada apilado. "
+   "Imagen entera suavemente DESENFOCADA, como fondo. " + COMUN, []),
   ("01", "ambiente",
    "Estanque de acumulación de agua de hormigón en construcción en un predio rural: "
    "muros circulares de hormigón a la vista, todavía sin agua, con el moldaje recién "
    "retirado. Campo abierto al fondo, día despejado, sin personas. Plano general "
    "tranquilo. " + ZONA_ABAJO + " " + COMUN, []),
   ("02", "producto",
-   "Macro de catálogo de un muro de hormigón deteriorado por contacto permanente con "
-   "agua: manchas de humedad oscuras, eflorescencias blancas de sales, una fisura "
-   "vertical y la superficie descascarada dejando el árido a la vista. Textura muy "
-   "nítida, luz rasante. " + ZONA_ARRIBA + " " + COMUN, []),
+   # RONDA 1: «arreglar imagen para que no se vea como un cuadro en la zona de
+   # arriba, mismo comentario del carrusel de CBB.»
+   "Plano ABIERTO del muro de un estanque de hormigón deteriorado por el contacto "
+   "permanente con agua: manchas de humedad oscuras, eflorescencias blancas de "
+   "sales, una fisura vertical y la superficie descascarada con el árido a la "
+   "vista. Se ve el muro completo y, detrás, el predio rural y el cielo dando "
+   "profundidad. Luz natural lateral. Sin macro ni acercamiento extremo. " + ZONA_ARRIBA + " " + COMUN, []),
+  # RONDA 1 — «debe ser el saco original de cemento San Juan». El packshot oficial
+  # entra como REFERENCIA para que el modelo reproduzca ese saco y no invente otro.
+  # ⚠️ La etiqueta se revisa con zoom 3× en el render: si sale deformada, la lámina
+  # se resuelve componiendo el packshot, como el cierre.
   ("03", "escena",
-   "Maestro hormigonero mezclando cemento gris en una betonera junto a un pozo en "
-   "construcción en el campo, vaciando el contenido de un saco de papel kraft liso y "
-   "sin impresión. De perfil, guantes y camisa de trabajo. Escena limpia, luz natural. "
-   + ZONA_ARRIBA + " " + COMUN, ["05"]),
+   "Maestro hormigonero chileno junto a una betonera, al lado de un pozo en "
+   "construcción en el campo, vaciando el contenido de un SACO DE CEMENTO AMARILLO Y "
+   "NEGRO idéntico al de la imagen de referencia: cuerpo amarillo con un gran logotipo "
+   "oscuro y franja negra en la base. El saco se ve completo y de frente, con su "
+   "gráfica nítida y sin deformar. El hombre de perfil, con guantes y camisa de "
+   "trabajo. Escena limpia, luz natural. "
+   + ZONA_ARRIBA + " " + COMUN, ["packshots/sanjuan_saco.png"]),
   ("04", "ambiente",
    "Estanque de agua de hormigón terminado en un predio rural, con el muro gris parejo "
    "y bien terminado y el agua adentro reflejando el cielo. Ordenado, sin personas, luz "
@@ -230,9 +293,12 @@ LOTE = {
   ("03", "producto",
    "Macro de catálogo de un alambre de púas galvanizado tensado en horizontal: dos "
    "hebras de alambre torcidas entre sí y, cada cierto tramo, una púa de CUATRO PUNTAS "
-   "afiladas abiertas en cruz. El metal galvanizado gris mate, sin óxido. Fondo de "
-   "campo completamente desenfocado. Luz natural lateral que marca el brillo del "
-   "alambre. " + ZONA_ARRIBA + " " + COMUN, []),
+   # RONDA 1: «muy bien; el fondo cambiarlo por un campo abierto rural estético
+   # desenfocado.»
+   "afiladas abiertas en cruz. El metal galvanizado gris mate, sin óxido. Detrás, "
+   "un campo abierto chileno bonito y suavemente desenfocado: potrero verde, unos "
+   "árboles a lo lejos y el cielo de la tarde. Luz natural lateral que marca el "
+   "brillo del alambre. " + ZONA_ARRIBA + " " + COMUN, []),
   ("01", "ambiente",
    "Perímetro de una parcela agrícola chilena SIN CERCAR: el límite del terreno abierto, "
    "pastizal seco, unos árboles al fondo y cerros a lo lejos. Ningún poste ni alambre. "
@@ -247,10 +313,11 @@ LOTE = {
    "Cerco de campo terminado: postes de madera alineados y varias corridas de alambre "
    "de púas de cuatro puntas tensadas parejo, recorriendo el límite de un potrero verde "
    "hacia el horizonte. Sin personas, día despejado. " + ZONA_ARRIBA + " " + COMUN, ["03"]),
+  # RONDA 1 — lineamiento de lámina final (ver masisa 04).
   ("05", "cierre",
-   "Un rollo de alambre de púas galvanizado apoyado sobre el pasto de un potrero, con "
-   "las espiras del rollo y las púas a la vista. Imagen suavemente DESENFOCADA en "
-   "conjunto, como fondo, con el centro de la composición libre. " + COMUN, ["03"]),
+   BODEGA + CIERRE +
+   "un rollo de alambre de púas galvanizado, con las espiras y las púas de cuatro "
+   "puntas a la vista. " + TODO + COMUN, ["03"]),
  ],
 }
 
@@ -262,6 +329,11 @@ LOTE = {
 # «el render vuelve al repo el mismo día»: sin el fondo versionado la pieza no se
 # puede volver a sacar igual, porque una imagen de IA no se regenera dos veces igual.
 def ruta(slug, nombre):
+    # Una referencia con "/" es una ruta del lote — se usa para meter el PACKSHOT
+    # OFICIAL del proveedor como referencia de la escena, que es lo que pidió
+    # Paulina para sanjuan3: «debe ser el saco original de cemento San Juan».
+    if "/" in nombre:
+        return os.path.join(AQUI, nombre)
     return os.path.join(AQUI, "fotos", slug, nombre + ".jpg")
 
 

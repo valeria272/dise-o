@@ -50,10 +50,17 @@ CARRUSEL = {
         # L4 · rotulado «(Tip pro)» pero es descriptivo, no una orden de oficio:
         #      registro normal. «Se instala con postes y grapas» /
         #      «tensado parejo a lo largo de todo el cerco.»
+        # ⭐ RONDA 1 — Paulina, 23-09-2026, dos comentarios:
+        #   sobre el titular: «dejar en dos líneas "se instala con" / "postes y grapas"»
+        #   sobre la bajada:  «dejar en una sola línea, disminuir pt si es necesario
+        #                      para que se vea estético»
+        # El corte del titular se mueve una palabra a la derecha. La bajada tiene 43
+        # letras y a 40 px pasaba de los 740 de `max-width`, así que se partía en dos:
+        # con 34 entra en una.
         {"foto": "fotos/pointfix/04.jpg", "y": 226,
-         "sobre": "SE INSTALA",
-         "caja": "CON POSTES Y GRAPAS",
-         "bajada": "Tensado **parejo** a lo largo de todo el cerco."},
+         "sobre": "SE INSTALA CON",
+         "caja": "POSTES Y GRAPAS",
+         "bajada": "Tensado **parejo** a lo largo de todo el cerco.", "bajada_cuerpo": 34},
 
         # L5 · CIERRE — brief: «Alambre de púas Pointfix, disponible en Ebema.»
         #      Visual: rollo de alambre + logo Ebema.

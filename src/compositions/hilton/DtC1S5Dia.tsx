@@ -1083,7 +1083,9 @@ const LAMINAS: Record<string, Lamina> = {
   lobby: {clip: 'cowork', hora: '12:00', rotulo: 'TIEMPO PARA TI', sangriaSello: 7},
   gym: {clip: 'gym', hora: '16:00', rotulo: 'SIGUE CON TU RUTINA DIARIA', sangriaSello: 7},
   qb: {clip: 'qb', hora: '19:00', rotulo: 'CENA EN QB RESTAURANT', sangriaSello: 7},
-  habitacion: {clip: 'habitacion', hora: '20:00', rotulo: 'CIERRE EN LA HABITACIÓN', sangriaSello: 4},
+  // Ronda 10 (23-09, Javier Mesa por chat): «CIERRE EN LA HABITACIÓN» → «CERRANDO
+  // EL DÍA». Empieza con la misma «C», así que la sangría del sello no cambia.
+  habitacion: {clip: 'habitacion', hora: '20:00', rotulo: 'CERRANDO EL DÍA', sangriaSello: 4},
 };
 
 

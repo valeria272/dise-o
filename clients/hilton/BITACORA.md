@@ -1,3 +1,14 @@
+## 2026-09-23 (noche) — Eli (Windows) · DT «Tu día»: ronda 10, rótulo del cierre — SUBIDO
+
+**Qué se hizo:** Javier Mesa (chat): «cambiemos este último texto por "CERRANDO EL
+DÍA"». La lámina n°7 pasa de «20:00 — CIERRE EN LA HABITACIÓN» a «20:00 — CERRANDO
+EL DÍA»; la hora se mantiene. Misma «C» inicial, así que la sangría del sello no
+cambia. QA en verde (sello 11,39:1, tinta en x=89).
+**Dónde quedó:** `C1 S5 DT n°7.mp4` y `n°7.gif` **reemplazados en Drive** (mismo
+enlace) en `C2-28SEP` y `C1 S5 DT - GIF`; los 14 verificados por md5. La versión
+anterior quedó respaldada en `out/hilton/dt/c1-s5/entrega-r9/`.
+**Qué sigue:** nada: con eso el cliente da el OK.
+
 ## 2026-09-23 (tarde) — Eli (Windows) · BW: reel orgánico «Sea la razón que sea» (ORGÁNICOS, S4 24-09), rondas 1–4 — SUBIDO
 
 **Qué se hizo:** reel de repetición calcado de la referencia de IG (la misma entrega

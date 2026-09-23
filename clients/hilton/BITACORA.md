@@ -1,3 +1,29 @@
+## 2026-09-23 (tarde) — Eli (Windows) · BW: reel orgánico «Sea la razón que sea» (ORGÁNICOS, S4 24-09), rondas 1–4 — SUBIDO
+
+**Qué se hizo:** reel de repetición calcado de la referencia de IG (la misma entrega
+×8, 1 texto literal del brief por repetición, Raleway ExtraBold blanca), armado como
+**proyecto EDITABLE de After Effects** por script (`scripts/bw-reel-razon-ae.jsx`).
+R1–R2 con la toma real IMG_4389 → Eli: «muy quemado», «que la toma sea bonita» →
+**no aprobado**. R3: toma hecha con IA en Magnific (Space «BW Reel S4 · Sea la razón
+que sea»): IMG_4406 extendida a 9:16 → mesa vacía con Nano Banana → Seedance 2.5 con
+primer fotograma = mesa vacía y último = foto real. Eli: «el resultado del Space muy
+excelente», pero el color gradado «se ve mal» → R4: color de Magnific + 8 % de
+saturación, sin contraste ni viñeta; el texto lleva halo difuso (sombra 80 %,
+suavidad 34) para leerse sobre el fondo claro.
+**Dónde quedó:** `S4 HILTON SEP 2026 › BW › REEL S4 SEA LA RAZÓN QUE SEA`
+(`1kMjU0i2pZZ4hQN8s44cifW3ZxZqad2AA`): `BW REEL 24-09 Sea la razon que sea.mp4`
+(12,5 s), `- PORTADA.jpg` y `- EDITABLE AE.zip` (.aep + toma en ProRes). Local en
+`out/hilton-between/reel-sea-la-razon/` con `_ronda1..3` aparte. Material crudo e IA
+en `raw/hilton/between/reel-sea-la-razon/` (+ `ia/`).
+**Qué sigue:** esperar la revisión de Eli de la R4. Si pide otro ajuste de texto o
+ritmo: editar variables al inicio del `.jsx` y relanzarlo (con AE YA abierto y desde
+una ruta sin espacios — ver memoria `after-effects-desde-script`).
+**Abierto:** (1) en la grilla, COMENTARIOS CLIENTE de esta pieza dice «Cambiémos este
+para QB para variarr» — se siguió en BW porque Eli lo pidió así; no se verificó si
+está tachado. (2) La carpeta del material (`14jkKd…`) tiene dos copias de clips de
+Ámbar (IMG_2084/2079) a nombre de constanza.olivares@ que ya no se usan: borrar si
+Eli dice. (3) Sin música: la pone CM con el audio en tendencia.
+
 ## 2026-09-23 (tarde) — Eli (Windows) · DT «Tu día»: la portada pasa al LOBBY (provisoria) — SUBIDA
 
 **Qué se hizo:** Eli pasó dos enlaces nuevos para la portada («utilízalas por ahora,

@@ -312,6 +312,7 @@ raw/hilton/dt/ref-s4/*
 !raw/hilton/dt/ref-s4/*.jpg
 !raw/hilton/dt/ref-s4/LEEME.txt
 
+
 # LANDERA: el PDF que mandó el cliente es el insumo de scripts/landera_*.py.
 # Sin él los scripts no reproducen nada, y pesa 400 KB. Los PDF de salida NO
 # se versionan: se regeneran corriendo los dos scripts sobre este archivo.
@@ -620,6 +621,19 @@ raw/hilton/between/concurso-s3/*
 raw/hilton/between/concurso-s3/refs/*
 !raw/hilton/between/concurso-s3/refs/*.jpg
 !public/assets/hilton/between/concurso-s3/*.jpg
+
+# BETWEEN · REEL «SEA LA RAZÓN QUE SEA» (S4 sept 2026): la toma aprobada es IA de
+# Magnific y NO se reproduce — Seedance da otro resultado cada vez. Van los dos
+# keyframes (cuadro final con la foto real y mesa vacía) y el original de Seedance
+# que usa scripts/bw-reel-razon-ia-clip.py. ~7 MB. El crudo del iPhone (500 MB) no.
+# Va DESPUÉS del bloque del concurso S3 porque ése re-excluye `raw/hilton/between/*`.
+!raw/hilton/between/reel-sea-la-razon/
+raw/hilton/between/reel-sea-la-razon/*
+!raw/hilton/between/reel-sea-la-razon/ia/
+raw/hilton/between/reel-sea-la-razon/ia/*
+!raw/hilton/between/reel-sea-la-razon/ia/fin-916.jpg
+!raw/hilton/between/reel-sea-la-razon/ia/vacia-916.png
+!raw/hilton/between/reel-sea-la-razon/ia/seedance-A-orig.mp4
 
 # BETWEEN · PROMOS TO GO · ronda 25: la portada nueva, recortada y gradada de
 # IMG_4146 (la foto que el cliente enlazó). Ver scripts/between-togo1-r25.py.

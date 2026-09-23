@@ -2750,6 +2750,30 @@ máster aprobado de esta cuenta es **2813**. La historia sí va a 2,0833 (4000 e
 
 ---
 
+## ⭐⭐ BETWEEN — REEL ORGÁNICO DE REPETICIÓN: el que se aprobó a la 4ª (23-09-2026)
+
+«Sea la razón que sea» (ORGÁNICOS S4). Lo que Eli dijo, ronda por ronda, y que vale
+para el próximo reel de Between:
+
+1. **Editable = After Effects**, con cada texto en su capa viva. Se arma por script
+   (`scripts/bw-reel-razon-ae.jsx`; trampas en la memoria `after-effects-desde-script`).
+2. **La toma real del iPhone perdió contra la IA.** Con la toma de la sesión (luz
+   plana de día, HLG) dos rondas no alcanzaron: «muy quemado», «que la toma sea
+   bonita». Lo aprobado fue **Seedance 2.5 con keyframes**: primer fotograma = la
+   mesa vacía (Nano Banana sobre la foto real), último = la **foto real** → las manos
+   son IA, el producto en reposo es el verdadero. Eli: «el resultado del Space de
+   Magnific muy excelente».
+3. ⛔ **Al resultado de Magnific no se le graba encima.** Curva + 4 800 K + viñeta
+   «se ve mal el color». Sólo **+8 % de saturación**, sin tocar contraste ni oscurecer.
+4. Si con eso el texto blanco no da contraste (quedó en ~1,6:1), se arregla **en el
+   texto**: sombra difusa café oscuro al 80 %, suavidad 34. Nunca oscureciendo la foto.
+5. Ritmo de la referencia: ciclo de ~1,3–1,5 s (el servicio de Seedance se acelera
+   1,4×), corte seco al vaso ya en el aire, 8 repeticiones, la última se queda en los
+   vasos solos. Sin logo: el vaso To Go ya lo trae.
+6. «Quemado» en HLG del iPhone NO es píxel en 255: es `tonemap=hable:desat=0`, que
+   deja verdes fosforescentes. Si se vuelve a usar toma real: `hable` con desat por
+   defecto y `npl=203` (`scripts/bw-reel-razon-clip.py`).
+
 ## ⛔⛔⛔ BETWEEN — UNA FOTOGRAFÍA APROBADA NO SE RETOCA (21-09-2026)
 
 Lo dejó escrito el carrusel Promos To Go. El cliente pidió «los productos no se

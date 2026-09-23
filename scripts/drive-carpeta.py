@@ -27,6 +27,7 @@ import html
 import re
 import ssl
 import sys
+sys.stdout.reconfigure(encoding="utf-8")
 import urllib.request
 from pathlib import Path
 

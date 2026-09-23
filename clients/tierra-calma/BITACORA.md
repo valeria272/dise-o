@@ -5,6 +5,51 @@
 
 ---
 
+## 2026-09-23 (tarde) — Diego Aguilar
+
+**Qué se hizo:** La ronda de la mañana centró los bloques… y en tres fotos el
+centro es justo donde está el sujeto. Diego lo marcó en Drive a las 14:47–14:48
+y se corrigió.
+
+| Pieza | Comentario | Banda |
+|---|---|---|
+| `c-06-10-4` (E4) | «subir un poco, que no tape las casas» | `[205, 1150]` → `[205, 700]` |
+| `c-20-10-1` (K1) | «subir un poco, que no tape a las personas ni el terreno» | `[250, 1150]` → `[250, 670]` |
+| `c-20-10-6` (K6) | «subir un poco el bloque de texto, que no tape a las personas» | `[205, 1150]` → `[205, 790]` |
+
+**Se midió, no se calculó a ojo.** Las fotos de `oct/` son 1080×1350 —el mismo
+tamaño del lienzo—, así que con `objectFit: cover` la fila del JPG **es** la fila
+del lienzo. Sobre el origen limpio: en `e-casas.jpg` la techumbre arranca en la
+fila 574 y la chimenea en la 554; en `k-persona.jpg` el cielo limpio llega hasta
+la ~620 y la pareja empieza en la 780; en `k-caminando.jpg` las cabezas están en
+la ~672. La banda se fija para que el bloque cierre unos 40 px antes.
+
+> ⚠️ **No medir sobre el PNG rendido.** El primer intento dio un perfil sin
+> sentido porque el texto blanco y el degradado contaminan la luminancia. El
+> perfil se saca del JPG de origen.
+
+**Lo que NO cambió, y por qué:** los otros tres comentarios abiertos en Drive
+(`c-20-10-2` «el mapa que cubra toda la composición», `c-20-10-3` «fondo de
+color, imágenes derechas, texto fuera del globo», `c-20-10-4` «más lejana, tipo
+dron, terreno limpio») **ya estaban aplicados** desde ayer. Siguen marcados
+abiertos porque nadie los resolvió en Drive, no porque falten. Verificado pieza
+por pieza contra el render entregado.
+
+**Verificación byte a byte:** de las 10 estáticas sólo cambiaron las tres. `K4`
+aparecía como distinta y resultó ser **un píxel con diferencia de 1** — ruido del
+codificador PNG, no un cambio.
+
+**Entregado:** las tres re-subidas **sobre el mismo ID de Drive**
+(`1Zv3IKcA…`, `1R8DhzIJk…`, `1dlHKK_9…`), así que los enlaces siguen sirviendo.
+
+**Al manual:** la lista de excepciones al centrado pasó de dos a cinco y ahora es
+una tabla con la razón medida de cada una, más la nota de cómo se calcula.
+
+**Qué sigue:** sigue esperando la ronda del **cliente**. Todo el feedback de
+octubre —24 comentarios— ha sido interno de Diego.
+
+---
+
 ## 2026-09-23 — Diego Aguilar
 
 **Qué se hizo:** La ronda tipográfica. Diego cerró la escala del sistema y se

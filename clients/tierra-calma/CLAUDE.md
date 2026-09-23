@@ -222,12 +222,31 @@ alto útil** del marco —el que queda entre el logo y la píldora— en vez de 
 de un `top` fijo. Así una frase corta y una larga quedan igual de equilibradas
 sin recalcular nada.
 
-⚠️ **Dos piezas son la excepción, y por una razón concreta:** en la story del
-12/10 el medio lo ocupa el mapa y en el slide 4 del carrusel del 20/10 lo ocupan
-los indicadores sobre la parcela. Ahí el titular se centra **en la banda que
-queda libre arriba**; centrado al alto completo caía justo encima de los
-rótulos. Si una pieza nueva tiene un elemento gráfico en el medio, ese es el
-camino: acotar la banda, no abandonar el centrado.
+⚠️ **Centrar no es centrar sobre el sujeto.** Cinco piezas acotan la banda, y
+cada una por una razón medible: si el medio del cuadro está ocupado —por una
+gráfica o por el sujeto de la foto— el titular se centra **en la banda que queda
+libre**, no en el alto completo.
+
+| Pieza | Banda | Qué ocupa el medio |
+|---|---|---|
+| `st-12-10` (H) | `[230, 545]` | los rótulos del mapa |
+| `c-20-10-4` (K4) | `[205, 570]` | los indicadores sobre la parcela |
+| `c-06-10-4` (E4) | `[205, 700]` | las dos casas (techumbre en la fila 574, chimenea en la 554) |
+| `c-20-10-1` (K1) | `[250, 670]` | la pareja (desde la fila 780) y el potrero |
+| `c-20-10-6` (K6) | `[205, 790]` | la pareja caminando (cabezas en la fila ~672) |
+
+Las tres últimas salieron de la ronda del 23-09: *"subir un poco, que no tape
+las casas"*, *"que no tape a las personas ni el terreno"*, *"subir un poco el
+bloque de texto, que no tape a las personas"*.
+
+> **Cómo se calcula, y no se estima:** las fotos de `oct/` son 1080×1350, el
+> mismo tamaño del lienzo, así que con `objectFit: cover` la fila de la foto
+> **es** la fila del lienzo. Se mide sobre el JPG de origen dónde empieza el
+> sujeto, se le restan unos 40 px de aire, y esa es la base de la banda. Medir
+> sobre el PNG rendido no sirve: el texto blanco contamina el perfil.
+
+Si una pieza nueva tiene algo en el medio, ese es el camino: **acotar la banda,
+no abandonar el centrado** ni mover la gráfica, que está medida.
 
 #### ⛔ Los recuadros son GLOBOS DE TEXTO translúcidos
 

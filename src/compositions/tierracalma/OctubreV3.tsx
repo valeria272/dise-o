@@ -524,7 +524,11 @@ const E4: React.FC = () => (
     <Foto src={OCT("e-casas")} foco="50% 54%" />
     <Degradado arriba={0.58} abajo={0.52} />
     <Marco archivo="MARCO-CARRUSEL-4" />
-    <Cuerpo desde={205} hasta={1150}>
+    {/* Diego (23-09): "subir un poco, que no tape las casas". Centrado, pero
+        dentro del cielo: la techumbre de la casa grande arranca en la fila 574
+        y la chimenea en la 554 (medido sobre e-casas.jpg, que va 1:1 con el
+        lienzo). El bloque cierra en 532. */}
+    <Cuerpo desde={205} hasta={700}>
       <Modulado
         ancho={880}
         tramos={[{t: "¿Cuántas "}, {t: "casas", ivy: true}, {t: "puedo construir?", salto: true}]}
@@ -907,7 +911,10 @@ const K1: React.FC = () => (
     <Foto src={OCT("k-persona")} foco="50% 52%" />
     <Degradado arriba={0.6} abajo={0.4} />
     <Marco archivo="MARCO-CARRUSEL-1" />
-    <Cuerpo desde={250} hasta={1150}>
+    {/* Diego (23-09): "subir un poco, que no tape a las personas ni el terreno".
+        El cielo limpio de k-persona.jpg llega hasta la fila ~620 y la pareja
+        empieza en la 780; el bloque cierra en 589, sobre cielo. */}
+    <Cuerpo desde={250} hasta={670}>
       <Modulado
         ancho={880}
         tramos={[{t: "¿Estás pensando en"}, {t: "comprar una parcela?", salto: true}]}
@@ -1201,7 +1208,10 @@ const K6: React.FC = () => (
     <Foto src={OCT("k-caminando")} foco="50% 52%" />
     <Degradado arriba={0.6} abajo={0.54} />
     <Marco archivo="MARCO-CARRUSEL-4" />
-    <Cuerpo desde={205} hasta={1150}>
+    {/* Diego (23-09): "subir un poco el bloque de texto, que no tape a las
+        personas". Las cabezas de la pareja estan en la fila ~672 de
+        k-caminando.jpg; el bloque cierra en 617. */}
+    <Cuerpo desde={205} hasta={790}>
       <Numero n="05." />
       <Aire h={16} />
       <Modulado ancho={880} tramos={[{t: "Y lo más importante:"}]} />

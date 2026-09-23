@@ -976,6 +976,39 @@ Dos cosas del prompt que son decisiones de producción y conviene no perder:
 para que la voz se monte encima, no para sonar sola— y **«no abrupt endings»**,
 que es lo que permite que el cierre con `tc_cierre.mp4` no corte la música en seco.
 
+#### ⛔ Dos pistas del mismo prompt pueden salir CLONADAS — hay que medirlo
+
+Pasó el 23-09-2026. Las dos pistas del mes se generaron con el mismo prompt y,
+aunque son archivos distintos y de distinto largo, **musicalmente eran la misma
+pieza**: mismo tempo, mismo arreglo, la melodía entrando en los mismos tiempos.
+Al oído habría sonado como una sola pista en los dos reels — justo lo que la
+regla del mes prohíbe.
+
+**No se detecta escuchando por encima ni comparando `md5`.** Dos generaciones
+distintas siempre dan `md5` distinto. Se mide comparando la **evolución del
+arreglo**: energía por banda de frecuencia a lo largo del tiempo, normalizada, y
+la correlación media entre las dos pistas.
+
+La escala, calibrada sobre pistas reales de esta cuenta:
+
+| Par | Parecido |
+|---|---|
+| Una pista contra **sí misma desfasada 4 s** | **+0,53** ← el techo de «es la misma» |
+| Las dos del 23-09, primera tirada | **+0,53** ⛔ |
+| Las dos de septiembre entre sí | +0,35 |
+| Dos pistas **realmente distintas** | **+0,02 a +0,17** ✅ |
+| Los dos reels ya rendidos, corregidos | +0,14 ✅ |
+
+> El número que delata el problema no es «alto»: es **igual al control**. Que dos
+> pistas se parezcan entre sí tanto como una se parece a sí misma corrida cuatro
+> segundos significa que son la misma música.
+
+**El arreglo no fue tocar el prompt.** Se volvió a tirar la segunda con el prompt
+**idéntico** y salió una pieza sin relación con la primera (+0,02). Era mala
+suerte en el sorteo, no un defecto del prompt: **antes de cambiar el texto que la
+marca aprobó, se re-tira**.
+
+
 #### ⛔ Ni la voz ni la música salen de la API — verificado el 23-09-2026
 
 | Ruta | Respuesta |

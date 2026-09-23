@@ -5,6 +5,60 @@
 
 ---
 
+## 2026-09-23 (tarde) — PAID de octubre: 6 archivos entregados
+
+**Brief:** «Brief Diseño Tierra Calma - Octubre 2026.xlsx» de Ignacio Retamal
+(`1PguPpqzNIkxWKOv4BInI8ep7_R-EI57l`, en PERFORMANCE/Octubre 2026). Copia local
+y mockups extraídos en `raw/tierracalma/paid-oct2026/`. 3 piezas × 2 formatos
+para la campaña de WhatsApp del **01-oct**; 02-A y 02-B son un test A/B.
+
+**Entregado** en la carpeta del brief (`1mJSqrR7aK7V96DQosCA1hArH7Oxr-Uqg`),
+todos sueltos en la raíz (ver ⚠️ abajo):
+
+| Archivo | fileId |
+|---|---|
+| TC_B2_casacabe_1x1.jpg | 1fVdLw8SDS1blh8Z-KaA4g1qzNx2wGuHg |
+| TC_B2_casacabe_4x5.jpg | 1zcKUsh28cBcbKo_WjI1j5wfPkN4rj5zK |
+| TC_A2_mapa30min_1x1.jpg | 1NE_OP4gb2NNdKOfHn6UIFK3EQIrQUWu1 |
+| TC_A2_mapa30min_4x5.jpg | 1DRIW62wz4GG6h2kdAn4_d9zWroRxBNni |
+| TC_D1_findesemana_9x16.jpg | 1HuKnDCq5v-5TLATd-0WoEu-OIZojibxO |
+| TC_D1_findesemana_4x5.jpg | 172nxI_QAvLnr5AahMeO0w7wfbE0VpLHt |
+
+Código: `src/compositions/tierracalma/PaidOctubre.tsx` (composiciones
+`TCPaidOct1x1`, `TCPaidOct4x5`, `TCPaidOctD1x9x16`, `TCPaidOctD1x4x5`) +
+`scripts/tc-paid-oct-prep.py`, que arma todos los fondos. Las 6 pasan
+`qa/motor.py --marca tierra-calma` (textos declarados a mano en
+`out/tierracalma/paid-oct2026/textos.json`: el extractor sólo conoce OctubreV3).
+
+**Decisiones:**
+- **B4 «La primavera» → D1 «El fin de semana largo».** No hay toma con árboles
+  brotados ni atardecer: las 44 fotos son de una mañana nublada de invierno. El
+  brief manda D1 en ese caso; Diego lo aprobó. D1 se hizo sobre la pieza
+  «alcance» de septiembre: se borraron las líneas 1-2 (inpainting) y se
+  recompusieron en Inter Tight 300. **D1 sólo sirve hasta el 12-oct.**
+- **«PASALO» → «PÁSALO»** (voseo en el brief, igual que en septiembre).
+- **02-A:** cenital real DJI_0335 (el lote de la caseta verde). La casa está a
+  escala: 150 m² = **3,00 %** del deslinde, calculado, no a ojo.
+- **02-B:** oblicuo real DJI_0324. ⛔ Se descartó 0331: el llano del fondo está
+  **anegado**. Santiago no se ve en ninguna toma (neblina).
+- Titular de 02-A en IvyOra cursiva dentro de chips translúcidos: lo que hacían
+  la pieza «5.000 m²» de septiembre y el boceto de Ignacio, aunque la regla
+  escrita del brief pide sans. Si Ignacio lo objeta, es acá.
+- Marco 1:1: se deriva del MARCO-POST quitando 270 filas idénticas, sin redibujar.
+
+**⚠️ Pendiente / avisar a Ignacio:**
+1. No van en carpetas por bloque como pide el brief. El conector de Drive entra
+   como Constanza Olivares y los archivos son de la cuenta del estudio, así que
+   no se pueden mover (y el token `drive.file` no ve subcarpetas ajenas). El
+   nombre ya trae el bloque.
+2. Las fotos son de invierno, no golden hour: se les sacó el gris sin fingir
+   atardecer.
+3. La píldora de D1 9:16 queda en las filas 1770-1840, dentro del 10 % inferior
+   que el brief pide libre. Viene así de la pieza de septiembre que ya corre.
+4. Fechas del brief: revisión la semana del 22-09, aprobación de la clienta 29-09.
+
+---
+
 ## 2026-09-23 (noche) — audio nuevo de los reels, HECHO
 
 **Qué se hizo:** Diego reconectó el conector de Magnific y se ejecutó el relevo

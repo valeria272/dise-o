@@ -5,7 +5,7 @@
  *
  *   G1 · Foto del hotel —fachada o lobby—, distinta a la de la story del 27/sept.
  *        Logo del hotel en la imagen, no muy grande.
- *        Texto: Feliz Día del Turismo / Hoy celebramos las ganas de descubrir.
+ *        Texto: Feliz Día del Turismo / Hoy celebramos las ganas de descubrir
  *   G2 · Video MUT                    · Texto: MUT
  *   G3 · Video Parque Bicentenario    · Texto: Parque Bicentenario
  *   G4 · Video Sky Costanera          · Texto: Sky Costanera (sacar videos de otros lados)
@@ -199,7 +199,7 @@ export const DtC1TurismoPortada: React.FC = () => (
               letterSpacing: '0.02em',
             }}
           >
-            Hoy celebramos las ganas de descubrir.
+            Hoy celebramos las ganas de descubrir
           </div>
         </div>
       </>

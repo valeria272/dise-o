@@ -173,8 +173,9 @@ reglas:
 #
 # ── DT, dictado por Eli el 09-09-2026 (CLAUDE.md §F), y no hay check que lo diga:
 #
-# · **«Los títulos no llevan punto.»** Ni final ni intermedio; el punto es de los
-#   párrafos largos o del texto que viene después. Es una regla de TEXTO y los
+# · **«Ni títulos ni bajadas llevan punto.»** Ni final ni intermedio; el punto es
+#   sólo de los párrafos largos. (Ampliada a las BAJADAS el 23-09 por el cliente:
+#   se entregó «…las ganas de descubrir.» y volvió.) Es una regla de TEXTO y los
 #   textos ya se declaran (`--textos`), pero ni `texto_prohibido` ni
 #   `grafia_fijada` saben cuál de los textos declarados es el TÍTULO, y aplicarla
 #   a todos marcaría cada párrafo legítimo. Necesita que el JSON de textos diga el

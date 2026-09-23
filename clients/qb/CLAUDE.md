@@ -27,6 +27,8 @@ para DT y acá NO se da por extendida.** Si vale igual para QB, lo dice Eli.
 
 ---
 
+> ⛔ **Regla del CLIENTE Hilton (23-09-2026), vale para las cuatro cuentas del complejo:** **ni los títulos ni las bajadas llevan punto** — ni final ni intermedio, aunque el brief los traiga. El punto es sólo de párrafos largos y legales. Detalle en `clients/hilton/CLAUDE.md` §F.
+
 ## 1. Qué es la marca
 
 Restaurante **y bar**. El bar no es un anexo: manda tanto como la cocina, y eso

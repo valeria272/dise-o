@@ -23,6 +23,8 @@ programa del hotel. La misma palabra, veredicto opuesto según la marca.
 
 ⛔ Y el fucsia de acá **no** es el de Selfie (`#FF007C`).
 
+> ⛔ **Regla del CLIENTE Hilton (23-09-2026), vale para las cuatro cuentas del complejo:** **ni los títulos ni las bajadas llevan punto** — ni final ni intermedio, aunque el brief los traiga. El punto es sólo de párrafos largos y legales. Detalle en `clients/hilton/CLAUDE.md` §F.
+
 ## La regla madre
 
 > **La foto del evento manda y ocupa todo; el texto vive sobre un velo oscuro; y el

@@ -233,8 +233,19 @@ cargada.
 
 ### F. Los títulos — dos reglas duras de redacción
 
-1. ⛔ **Los títulos no llevan punto.** Ni final ni intermedio. El punto es sólo de los
-   **párrafos largos** o del texto que **viene después** del título.
+1. ⛔ **Ni los títulos ni las bajadas llevan punto.** Ni final ni intermedio. El punto
+   es sólo de los **párrafos largos** (cuerpo de texto, legales). La bajada —la
+   línea corta bajo el título— **tampoco** lleva, aunque el brief la traiga con punto:
+   el brief manda el texto, la puntuación de la gráfica la manda esta regla.
+
+   > ⚠️ **Corregido el 23-09-2026.** Esta regla decía «el punto es del texto que
+   > viene después del título», y así se colaron bajadas con punto: la portada del
+   > carrusel Día del Turismo salió con «…las ganas de descubrir.» y el cliente la
+   > devolvió («ojo con los puntos en títulos y subtítulos», Javier Mesa, Hilton).
+   > El mismo día llegó como **recordatorio del cliente para las grillas de octubre**:
+   > «recordar no usar puntos en títulos y bajadas de texto gráfica». Vale para
+   > las **cuatro cuentas del complejo** (DT, Between, QB, Piso18), porque la pide
+   > el cliente y no una diseñadora.
 2. ⛔ **No se mezclan cajas dentro de un mismo título.** No puede ir una línea en caja
    baja y la de abajo en versales: **o todo el título en caja baja, o todo en versales.**
 

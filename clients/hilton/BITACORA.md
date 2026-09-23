@@ -64,6 +64,18 @@ dominio: hay que pedir que las bajen y las pasen por enlace abierto.
 **Abierto:** que el cliente apruebe la portada de la entrada (en la toma entra una
 huésped de espaldas y el vidrio refleja la calle).
 
+## 2026-09-23 — Eli (Windows) · DT: carrusel DÍA DEL TURISMO, ronda 2 (sin punto)
+
+**Qué se hizo:** el cliente aprobó el carrusel con un solo ajuste: «ojo con los puntos en
+títulos y subtítulos». El único punto del carrusel era la bajada de la portada («Hoy
+celebramos las ganas de descubrir.»), y se quitó. Se volvieron a rendir **solo** la
+portada `C1 S5 DT n°1.mp4` y su GIF, y se subieron a Drive reemplazando los archivos, así
+que el enlace no cambia. Las láminas 2 a 6 no se tocaron.
+**Regla nueva:** recordatorio del cliente para las grillas de octubre: **ni títulos ni
+bajadas llevan punto**, en las cuatro cuentas. Queda en `CLAUDE.md` §F (se corrigió la
+redacción que dejaba pasar la bajada) y en los manuales de QB y Piso18.
+**Qué sigue:** nada. El carrusel queda entregado.
+
 ## 2026-09-23 — Eli (Windows) · DT: carrusel video DÍA DEL TURISMO (FEED col M, 27-09), ronda 1
 
 **Qué se hizo:** se diseñó el carrusel de 6 láminas del brief (G1 portada foto + MUT,

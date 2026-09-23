@@ -38,6 +38,7 @@ nuevos dan `404` y los viejos responden.** Medido, par por par:
 
 | Modelo | Ruta | Cuándo es el correcto |
 |---|---|---|
+| **Seedream 5 Pro** ⭐⭐ | `text-to-image/seedream-v5-pro` | **EL GENERADOR POR DEFECTO desde el 23-09-2026** (Diego: «para la generación de imágenes utiliza seedream 5 pro»). Fotográfico, 1.5k/2k. `python scripts/magnific.py seedream "<prompt>" --aspecto post`. ⚠️ La ruta lleva «v5»: `seedream-5-pro` da 404 |
 | **Nano Banana Pro** ⭐ | `text-to-image/nano-banana-pro` | **Texto legible dentro de la imagen**, 4K nativo, composición controlada, hasta 14 referencias. Hizo la portada To Go de Between y los fondos de Cedral |
 | **Mystic** | `mystic` | Fondos y ambientes sin texto. Más barato. 18 scripts |
 | **Nano Banana** | `gemini-2-5-flash-image-preview` | Imagen → imagen. 8 scripts |
@@ -55,6 +56,7 @@ nuevos dan `404` y los viejos responden.** Medido, par por par:
 |---|---|---|
 | **Upscaler Precision** ⭐ | `image-upscaler-precision` | **Cualquier cosa con marca encima.** El creativo *inventa* detalle: sobre una etiqueta o un logo te cambia el dibujo |
 | **Upscaler creativo** | `image-upscaler` | Sólo fondos |
+| **Seedream 5 Pro Edit** ⭐⭐ | `text-to-image/seedream-v5-pro-edit` | **Idealizar una foto real sin perder su traza** (`--refs foto.jpg`). `reference_images` = lista de strings en **data URI**: base64 pelado pasa la validación y la tarea falla después. Hizo la cenital de Tierra Calma del 23-09 respetando caminos y cercos del dron |
 | **Seedream 4 Edit** | `text-to-image/seedream-v4-edit` | Edición por instrucción, sin regenerar |
 | **Relight** | `image-relight` | Cambiar la luz de un fondo sin perder la composición. **Nunca sobre el producto** — regla dura abajo |
 | **Style Transfer** | `image-style-transfer` | Que lo nuevo calce con el look del mes pasado. La vía barata de la continuidad |

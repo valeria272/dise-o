@@ -5,6 +5,22 @@
 
 ---
 
+## 2026-09-23 (tarde, ronda 3) — PAID: casacabe y D1 rehechas con Seedream 5 Pro
+
+Diego: *«para la generación de imágenes utiliza seedream 5 pro»*. Es el generador
+por defecto del estudio desde hoy (`magnific.py seedream`, documentado en
+`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`). Reemplazadas sobre los mismos fileId:
+
+- **02-A casacabe:** Seedream 5 Pro edit con DJI_0281 de referencia
+  (`ia/sd5-cenital-1.png`). Respeta la traza mejor que Nano Banana (deja grises los
+  caminos pavimentados). El lote está abajo en la imagen, así que el titular subió
+  bajo el logo. Casa = 2,94 % del deslinde.
+- **D1 fin de semana:** Seedream 5 Pro (`ia/sd5-finde-3.png`), pedido con la
+  composición en el prompt (40 % de cielo, escena al centro, 25 % de pasto). Las
+  primeras dos tenían la familia abajo y la píldora del 9:16 le caía encima.
+
+---
+
 ## 2026-09-23 (tarde, ronda 2) — PAID: casacabe y D1 con imagen nueva
 
 Diego pidió cambiar las imágenes que ya se habían usado. **Reemplazadas sobre los

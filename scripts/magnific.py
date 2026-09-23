@@ -4,6 +4,8 @@
     python3 scripts/magnific.py generar   "<prompt>" --out ruta.png [--aspecto reel|feed|story|wide]
     python3 scripts/magnific.py pro       "<prompt>" --out ruta.png [--resolucion 4K] [--refs a.png b.png]
                                           ↑ Nano Banana Pro: el único que escribe TEXTO legible
+    python3 scripts/magnific.py seedream  "<prompt>" --out ruta.png [--aspecto post] [--refs a.png]
+                                          ↑ Seedream 5 Pro: el generador de la casa desde el 23-09
     python3 scripts/magnific.py escalar   entrada.png --out salida.png [--precision] [--escala 2x|4x]
     python3 scripts/magnific.py reiluminar entrada.png --out salida.png --prompt "<luz que quieres>"
     python3 scripts/magnific.py estilo    entrada.png --ref referencia.png --out salida.png
@@ -137,7 +139,7 @@ def guarda(urls, destino):
 
 def main():
     ap = argparse.ArgumentParser(add_help=True)
-    ap.add_argument("accion", choices=["generar", "pro", "escalar", "reiluminar",
+    ap.add_argument("accion", choices=["generar", "pro", "seedream", "escalar", "reiluminar",
                                        "estilo", "loras", "tareas", "check"])
     ap.add_argument("entrada", nargs="?", help="prompt (generar) o archivo (el resto)")
     ap.add_argument("--out")
@@ -149,7 +151,7 @@ def main():
     ap.add_argument("--resolucion", default="2K", choices=["1K", "2K", "4K"],
                     help="solo para 'pro'")
     ap.add_argument("--refs", nargs="*", default=[],
-                    help="hasta 14 imágenes de referencia para 'pro'")
+                    help="imágenes de referencia: hasta 14 para 'pro', 10 para 'seedream'")
     ap.add_argument("--lora", help="id de un LoRA de la cuenta")
     a = ap.parse_args()
 
@@ -184,6 +186,31 @@ def main():
 
     if not a.out:
         sys.exit("✗ Falta --out (dónde guardar el resultado)")
+
+    if a.accion == "seedream":
+        # Seedream 5 Pro (ByteDance). Diego, 23-09-2026: «para la generación de
+        # imágenes utiliza seedream 5 pro». Es el generador por defecto del estudio.
+        # Dos rutas, sondeadas el 23-09 (NO están en docs.freepik ni en
+        # magnific-sondear.py todavía):
+        #   · texto → imagen: /v1/ai/text-to-image/seedream-v5-pro
+        #   · con referencias: /v1/ai/text-to-image/seedream-v5-pro-edit
+        #     (`reference_images` es una lista de STRINGS en data URI — no objetos
+        #     {image, mime_type} como en Nano Banana Pro: eso da 400).
+        # Resolución «1.5k» o «2k»; los aspectos son los largos de Mystic.
+        # ⚠️ `seedream-5-pro` (sin la v) da 404: la ruta lleva «v5».
+        if not a.entrada:
+            sys.exit("✗ Falta el prompt")
+        ruta = "/v1/ai/text-to-image/seedream-v5-pro" + ("-edit" if a.refs else "")
+        cuerpo = {"prompt": a.entrada, "aspect_ratio": ASPECTOS[a.aspecto], "resolution": "2k"}
+        if a.refs:
+            # Base64 pelado pasa la validación pero la tarea FALLA en el servicio
+            # («The parameter `image` … are not valid», 23-09): va como data URI.
+            cuerpo["reference_images"] = [f"data:{mime_de(r)};base64,{b64_de(r)}" for r in a.refs[:10]]
+        print(f"→ Seedream 5 Pro · {a.aspecto} ({ASPECTOS[a.aspecto]}) · 2k"
+              + (f" · {len(a.refs[:10])} referencias" if a.refs else ""))
+        r = pedir(ruta, cuerpo)
+        guarda(espera(ruta, r["data"]["task_id"]), a.out)
+        return 0
 
     if a.accion == "pro":
         # Nano Banana Pro (Gemini 3 Pro Image). Es el que hay que usar cuando la

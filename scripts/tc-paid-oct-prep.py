@@ -105,18 +105,23 @@ datos = {"fuente": {"02A": CENITAL.name, "02B": OBLICUO.name}}
 # limpia del rodaje— IDEALIZADA con Nano Banana Pro usándola como referencia:
 # conserva la traza real (caminos, cercos, senderos, la casa con piscina) vista a
 # 90° y le pone pasto verde, nativos y luz de golden hour. Prompt y variantes en
-# raw/tierracalma/paid-oct2026/ia/ (se eligió cenital-nb-1).
+# raw/tierracalma/paid-oct2026/ia/.
+# RONDA 3 (23-09, Diego): «para la generación de imágenes utiliza seedream 5
+# pro». Se rehízo con Seedream 5 Pro edit y la misma referencia (sd5-cenital-1):
+# es la que más respeta la traza real — deja grises los caminos pavimentados.
 #
 # El deslinde sigue los cercos que se ven EN la imagen: el superior, el
 # izquierdo, el inferior y el borde del sendero a la derecha. La casa sigue
 # siendo el 3 % del área del deslinde.
-CENITAL_IA = RAIZ / "raw/tierracalma/paid-oct2026/ia/cenital-nb-1.png"  # 1792×2400
-LOTE_IA = [(508, 758), (1010, 810), (1100, 1395), (410, 1275)]
+CENITAL_IA = RAIZ / "raw/tierracalma/paid-oct2026/ia/sd5-cenital-1.png"  # 1770×2360
+# El lote de abajo a la izquierda: cerco del medio, borde del sendero, cerco
+# inferior (junto al camino) y cerco izquierdo. Medido con zoom sobre el PNG.
+LOTE_IA = [(455, 1447), (1048, 1447), (1112, 1890), (365, 1892)]
 cen = Image.open(CENITAL_IA).convert("RGB")
 escala = 1080 / cen.width
-# y0 = 160 en 4:5 y 266 en 1:1: el lote queda en el tercio de arriba y el titular
-# cae abajo, sobre otro lote, sin que ninguna línea del deslinde le pase por encima.
-for nombre, w, h, y0 in (("1x1", 1080, 1080, 266), ("4x5", 1080, 1350, 160)):
+# El lote está en la mitad baja de la imagen: el titular sube bajo el logo y el
+# lote queda al medio (1:1: filas 523–795; 4:5: 793–1063), sin cruzar el texto.
+for nombre, w, h, y0 in (("1x1", 1080, 1080, 590), ("4x5", 1080, 1350, 147)):
     ch = h / escala
     im, a_lienzo = recorte(cen, cen.width / 2, y0 + ch / 2, escala, w, h)
     im.save(SALIDA / f"a-cenital-{nombre}.jpg", quality=92)
@@ -161,11 +166,14 @@ print(json.dumps(datos, indent=2, ensure_ascii=False))
 # es una generación nueva de Mystic (finde-1: gente de lejos y de espaldas, casa
 # de madera, el tercio de arriba despejado para el titular). Se recorta a 9:16 y
 # a 4:5 desde la MISMA imagen para que la pieza sea una sola.
-FINDE = RAIZ / "raw/tierracalma/paid-oct2026/ia/finde-1.png"  # 1536×2752
+# Ronda 3: Seedream 5 Pro, texto a imagen. sd5-finde-1/2 tenían la familia
+# grande y abajo: la píldora del 9:16 le caía encima y el titular del 4:5
+# pisaba el techo. sd5-finde-3 se pidió con la composición escrita en el prompt
+# (40 % de cielo arriba, escena en la franja central, 25 % de pasto abajo).
+FINDE = RAIZ / "raw/tierracalma/paid-oct2026/ia/sd5-finde-3.png"  # 1520×2736
 fin_ = Image.open(FINDE).convert("RGB")
 esc = 1080 / fin_.width
-# 4:5 con y0 = 170: el techo de la casa queda BAJO el titular (con 500 lo pisaba).
-for nombre, h, y0 in (("9x16", 1920, 0), ("4x5", 1350, 170)):
+for nombre, h, y0 in (("9x16", 1920, 17), ("4x5", 1350, 400)):
     ch = h / esc
     im, _ = recorte(fin_, fin_.width / 2, y0 + ch / 2, esc, 1080, h)
     im.save(SALIDA / f"d1-{nombre}.jpg", quality=92)

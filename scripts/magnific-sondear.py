@@ -47,6 +47,9 @@ MODELOS = [
     # ── TEXTO → IMAGEN ────────────────────────────────────────────────────────
     ("text-to-image/nano-banana-pro",        "IMAGEN · Gemini 3 Pro · texto legible + 4K ⭐"),
     ("gemini-2-5-flash-image-preview",       "IMAGEN · Nano Banana · imagen→imagen"),
+    ("text-to-image/seedream-v5-pro",        "IMAGEN · Seedream 5 Pro ⭐ (generador por defecto)"),
+    ("text-to-image/seedream-v5-pro-edit",   "EDICIÓN · Seedream 5 Pro edit (con referencias) ⭐"),
+    ("text-to-image/seedream-v5-lite",       "IMAGEN · Seedream 5 Lite"),
     ("text-to-image/seedream-4",             "IMAGEN · Seedream 4"),
     ("text-to-image/seedream-4-5",           "IMAGEN · Seedream 4.5"),
     ("text-to-image/seedream-v4",            "IMAGEN · Seedream 4 (ruta vieja)"),

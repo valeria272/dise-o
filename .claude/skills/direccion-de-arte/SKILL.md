@@ -98,10 +98,12 @@ Estas son las que de verdad pasaron. Cada una es una compuerta.
   el tercio inferior, la composición está mal resuelta.
 
 **Cuando falta la foto y hay que generarla**, el generador de la casa es
-**Magnific/Freepik**, no Higgsfield (que suele estar sin créditos):
+**Seedream 5 Pro vía Magnific/Freepik** (decisión de Diego, 23-09-2026), no
+Higgsfield (que suele estar sin créditos):
 
 ```bash
-python3 scripts/magnific.py generar "<ambiente>" --aspecto reel --out raw/<marca>/fondo.png
+python3 scripts/magnific.py seedream "<ambiente>" --aspecto story --out raw/<marca>/fondo.png
+python3 scripts/magnific.py seedream "<qué cambiar>" --refs foto-real.jpg --out raw/<marca>/foto_ok.png
 python3 scripts/magnific.py escalar raw/<marca>/fondo.png --out .../fondo_4k.png
 python3 scripts/magnific.py reiluminar foto.png --prompt "luz de día suave" --out .../foto_ok.png
 ```
@@ -138,7 +140,9 @@ están en [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](../../../docs/MAGNIFIC-LO-QUE-Y
 
 | Si la pieza necesita… | Modelo |
 |---|---|
-| fondo o ambiente, sin texto | **Mystic** |
+| **cualquier imagen, por defecto** | **Seedream 5 Pro** (`magnific.py seedream`) — decisión de Diego, 23-09-2026 |
+| idealizar una foto real sin perder su traza | **Seedream 5 Pro edit** (`magnific.py seedream --refs foto.jpg`) |
+| fondo o ambiente, sin texto, si Seedream no sirve | **Mystic** |
 | texto legible dentro de la imagen | **Nano Banana Pro** — Mystic rompe letras y se come la ñ |
 | parecerse a una foto real del cliente | **Nano Banana Pro** con esa foto como referencia, pidiendo no tocar arquitectura, vegetación ni encuadre |
 | una serie coherente entre piezas | **Flux Kontext Pro** |

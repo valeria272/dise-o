@@ -1515,6 +1515,26 @@ compartidas **sólo al dominio** (miniatura y descarga devuelven HTML); no es bl
 se va al stock. Y Eli crea la carpeta de entrega antes (`C1 N°1 S5 TURISMO`): esa
 carpeta fija la numeración del carrusel — mírala antes de nombrar archivos.
 
+### ⭐⭐ CARRUSEL «TU DÍA» — rondas 8 y 9 (23-09): lo que pidió el cliente y lo que corrigió Eli
+
+1. **En un carrusel de video, los videos son los que el cliente deja ENLAZADOS en el
+   brief** («usa solo los videos aprobados que dejé en el brief»). Los enlaces viven
+   dentro de la celda y el CSV los pierde: se leen del export `format=zip` (HTML).
+   ⚠️ La numeración del brief y la del comentario pueden venir **desfasadas en uno**
+   (el brief llamó SLIDE 1 al desayuno; el cliente, G1 a la portada).
+2. **El sello «hora — rótulo» (Eli, r9):** los dos al **mismo cuerpo** (50 px @1080);
+   la hora **delgada** (Trade Gothic Regular) y el rótulo **grueso** (Trade Gothic
+   Bold Condensed). El rótulo destaca «solo un poco», sólo por grosor. ⛔ No la
+   cifra gigante con rótulo chico (fue la r8 y se rechazó).
+3. **Si una carpeta trae varios clips de un espacio, la lámina es un MONTAJE de
+   cortes**, no una toma larga: el gym salió con 4 × 1,4 s y fundido de 0,2 s
+   (`MONTAJE_GYM` en `dt-c1-s5-clips.py`), cada corte con otra máquina.
+4. **Portada «de la entrada, que no sea del logo»:** recorte cerrado (`zoom`) de las
+   puertas de vidrio que deja fuera el logotipo grabado en el cristal.
+5. **La renumeración se resuelve renombrando** (mp4 Y gif): el cierre pasó de n°6 a
+   n°7 conservando su `fileId`, y QB entró como archivo nuevo. `dt-c1-s5-subir.py`
+   verifica por md5 contra `entrega-r7/` antes de renombrar.
+
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 
 Verificado glifo a glifo con `fontTools` sobre los archivos de esta máquina: los

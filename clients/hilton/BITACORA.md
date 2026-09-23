@@ -1,3 +1,28 @@
+## 2026-09-23 — Eli (Windows) · DT: carrusel «Tu día en DoubleTree» (FEED 28-09), rondas 8 y 9 — SUBIDO
+
+**Qué se hizo:** ronda del cliente (grilla FEED celda O14) + dos correcciones de Eli.
+Videos cambiados por los que el cliente enlazó en el brief: desayuno «Syrup», salón
+vacío, Winter Garden con notebook, plato de QB. Gym = **montaje de 4 cortes** de la
+carpeta «VIDEOS DADOS POR CLIENTE» (IMG_2662–2665). Habitación = IMG_4122, la de la
+tarjetita del reel «Habitación lista» (pedido de Javier Mesa por chat). Portada =
+**la entrada** (puertas de vidrio de IMG_1640, recorte que deja fuera el logo), sin
+«Desliza». Las interiores quedan sólo con el sello: hora Trade Gothic Regular +
+rótulo Trade Gothic Bold Cn, **mismo cuerpo 50**. **Entra QB 19:00** y la habitación
+pasa a 20:00: el carrusel tiene **7 láminas**. QA en verde (lo más justo:
+«Santiago–Vitacura» 4,52:1 sobre 4,5).
+**Dónde quedó:** 7 MP4 (2160×2700, 5 s) + 7 GIF (720 px, 12,5 fps, sin dither)
+**subidos y verificados por md5** en `S5 HILTON SEP 2026 › DT › C2-28SEP`
+(`1WXTx7b62fI5-heMZ0PDu85zCJWBxq1y3`) y su subcarpeta `C1 S5 DT - GIF`. El cierre se
+**renombró** n°6 → n°7 (mismo enlace, contenido nuevo) y QB entró como n°6 nuevo.
+Revisión: `out/hilton/dt/c1-s5/revision-r9.html`. Rondas anteriores respaldadas en
+`out/hilton/dt/c1-s5/entrega-r7/` y `entrega-r8/`. Clips fuente en
+`raw/hilton/dt/s5-sept/clips-r8/` (no viajan; ids en `dt-c1-s5-clips.py`).
+**Qué sigue:** esperar la validación del cliente; si objeta la portada, las 6 tomas de
+`EXTERIOR HOTEL` 2024 (ambar, `1wT-h-O08xoaNIkCG7s2uQuwMUtpbpZ1N`) están sólo al
+dominio: hay que pedir que las bajen y las pasen por enlace abierto.
+**Abierto:** que el cliente apruebe la portada de la entrada (en la toma entra una
+huésped de espaldas y el vidrio refleja la calle).
+
 ## 2026-09-23 — Eli (Windows) · DT: carrusel video DÍA DEL TURISMO (FEED col M, 27-09), ronda 1
 
 **Qué se hizo:** se diseñó el carrusel de 6 láminas del brief (G1 portada foto + MUT,

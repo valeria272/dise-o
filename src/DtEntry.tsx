@@ -17,6 +17,7 @@ import {
   DtC1S5Habitacion,
   DtC1S5Lobby,
   DtC1S5Portada,
+  DtC1S5Qb,
   DtC1S5Salon,
 } from './compositions/hilton/DtC1S5Dia';
 import {
@@ -140,6 +141,7 @@ const Raiz: React.FC = () => (
       <Composition id="DT-V-S5-Salon" component={DtC1S5Salon} {...feedVideo} />
       <Composition id="DT-V-S5-Lobby" component={DtC1S5Lobby} {...feedVideo} />
       <Composition id="DT-V-S5-Gym" component={DtC1S5Gym} {...feedVideo} />
+      <Composition id="DT-V-S5-Qb" component={DtC1S5Qb} {...feedVideo} />
       <Composition id="DT-V-S5-Habitacion" component={DtC1S5Habitacion} {...feedVideo} />
     </Folder>
     <Folder name="DT-Carrusel-Turismo">

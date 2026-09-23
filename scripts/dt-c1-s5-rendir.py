@@ -70,7 +70,9 @@ PIEZAS = [
     ("DT-V-S5-Salon",      "C1 S5 DT n°3.mp4"),
     ("DT-V-S5-Lobby",      "C1 S5 DT n°4.mp4"),
     ("DT-V-S5-Gym",        "C1 S5 DT n°5.mp4"),
-    ("DT-V-S5-Habitacion", "C1 S5 DT n°6.mp4"),
+    # ⭐ RONDA 8 (23-09): entra QB a las 19:00 y el cierre pasa de n°6 a n°7.
+    ("DT-V-S5-Qb",         "C1 S5 DT n°6.mp4"),
+    ("DT-V-S5-Habitacion", "C1 S5 DT n°7.mp4"),
 ]
 
 
@@ -78,7 +80,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--solo", nargs="*", default=None,
                     help="rinde sólo esas láminas (Portada, Desayuno, Salon, "
-                         "Lobby, Gym, Habitacion)")
+                         "Lobby, Gym, Qb, Habitacion)")
     a = ap.parse_args()
 
     SALIDA.mkdir(parents=True, exist_ok=True)

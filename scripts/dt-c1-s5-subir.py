@@ -48,13 +48,18 @@ RAIZ = Path(__file__).resolve().parent.parent
 ENTREGA = RAIZ / "out/hilton/dt/c1-s5/entrega"
 ENTREGA_GIF = RAIZ / "out/hilton/dt/c1-s5/entrega-gif"
 
-# `S5 HILTON SEP 2026 › DT`. Salió del `parents` del n°1, que subió este token.
-CARPETA = "1qqPFM2EDVvAzgZLLQIJpxYr6gkFmKNHk"
+# ⭐ RONDA 9 (23-09): Eli movió el carrusel a `S5 HILTON SEP 2026 › DT › C2-28SEP`
+# (el Turismo pasó a ser el C1 de la semana). Los archivos conservan el nombre
+# `C1 S5 DT n°…` que ella dejó.
+CARPETA = "1WXTx7b62fI5-heMZ0PDu85zCJWBxq1y3"
 CARPETA_GIF = "C1 S5 DT - GIF"
 
 # El archivo que hay que RENOMBRAR, y con qué md5 se reconoce.
-CIERRE_EN_DRIVE = "C1 S5 DT n°5.mp4"
-CIERRE_NUEVO = "C1 S5 DT n°6.mp4"
+# ⭐ RONDA 8-9: entra QB en el lugar 6 y el cierre pasa de n°6 a n°7. El md5 se
+# compara contra la entrega de la ronda 7, que es lo que hay arriba.
+CIERRE_EN_DRIVE = "C1 S5 DT n°6.mp4"
+CIERRE_NUEVO = "C1 S5 DT n°7.mp4"
+CIERRE_ARRIBA = RAIZ / "out/hilton/dt/c1-s5/entrega-r7/C1 S5 DT n°6.mp4"
 
 
 def md5(p: Path) -> str:
@@ -109,7 +114,7 @@ def main() -> int:
     arriba = listar(sv, CARPETA)
 
     # ── 1 · la renumeración, y su verificación ────────────────────────────
-    cierre_local = ENTREGA / CIERRE_NUEVO
+    cierre_local = CIERRE_ARRIBA
     en_drive = arriba.get(CIERRE_EN_DRIVE)
     if arriba.get(CIERRE_NUEVO):
         print(f"✅ {CIERRE_NUEVO} ya existe en Drive — la renumeración ya se hizo")
@@ -157,6 +162,17 @@ def main() -> int:
                 fields="id").execute()["id"]
             print(f"  ✅ carpeta creada — {cid}")
         gifs = listar(sv, cid) if cid else {}
+        # La misma renumeración en los GIF: el del cierre se RENOMBRA.
+        g_viejo, g_nuevo = (CIERRE_EN_DRIVE.replace(".mp4", ".gif"),
+                            CIERRE_NUEVO.replace(".mp4", ".gif"))
+        if cid and g_viejo in gifs and g_nuevo not in gifs:
+            if a.ensayo:
+                print(f"  → renombraría {g_viejo} a {g_nuevo}")
+            else:
+                sv.files().update(fileId=gifs[g_viejo]["id"],
+                                  body={"name": g_nuevo}).execute()
+                print(f"  ✅ {g_viejo} renombrado a {g_nuevo}")
+                gifs = listar(sv, cid)
         for src in sorted(ENTREGA_GIF.glob("C1 S5 DT n°*.gif")):
             sube(sv, src, cid, gifs, a.ensayo or not cid)
 

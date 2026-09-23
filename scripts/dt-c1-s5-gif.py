@@ -56,7 +56,9 @@ FF = imageio_ffmpeg.get_ffmpeg_exe()
 RAIZ = Path(__file__).resolve().parent.parent
 ORIGEN = RAIZ / "out/hilton/dt/c1-s5/entrega"
 DESTINO = RAIZ / "out/hilton/dt/c1-s5/entrega-gif"
-FPS = 12
+# ⭐ RONDA 9 (23-09): receta corregida de DT (ver `dt-c1-turismo-gif.py`):
+# 12,5 fps —el GIF cuenta en centésimas— y SIN difuminado.
+FPS = 12.5
 
 
 def gif(src: Path, destino: Path, ancho: int) -> None:
@@ -67,8 +69,7 @@ def gif(src: Path, destino: Path, ancho: int) -> None:
          "-vf", vf + ",palettegen=stats_mode=diff", str(paleta)], check=True)
     subprocess.run(
         [FF, "-y", "-v", "error", "-i", str(src), "-i", str(paleta),
-         "-lavfi", vf + "[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=3:"
-                        "diff_mode=rectangle",
+         "-lavfi", vf + "[x];[x][1:v]paletteuse=dither=none:diff_mode=rectangle",
          # 0 = bucle infinito, que es lo que hace el carrusel en Instagram
          "-loop", "0", str(destino)], check=True)
     paleta.unlink()

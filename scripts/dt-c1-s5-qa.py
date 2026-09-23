@@ -97,46 +97,18 @@ BANDAS = {
         # «DESLIZA» es la PÍLDORA, que es pieza pintada y no foto. En el
         # fotograma de control la píldora no existe y la banda mide el clip que
         # hay detrás — 1,03:1, una falsa alarma sobre una tinta que da 9,48:1.
-        ("DESLIZA",           (130, 1098, 312, 1124), AZUL, 4.5, "pieza"),
+        # ⛔ RONDA 8: «quitemos el desliza ->» — la banda de la píldora sale.
     ],
-    "DT-V-S5-Desayuno": [
-        ("sello",   (87, 130, 743, 174), BLANCO, 4.5),
-        ("titular", (87, 216, 892, 386), BLANCO, 3.0),
-    ],
-    "DT-V-S5-Salon": [
-        ("sello",   (87, 130, 521, 174), BLANCO, 4.5),
-        ("titular", (87, 216, 854, 373), BLANCO, 3.0),
-    ],
-    "DT-V-S5-Lobby": [
-        ("sello",   (87, 130, 480, 174), BLANCO, 4.5),
-        ("titular", (87, 216, 966, 377), BLANCO, 3.0),
-    ],
-    # ⭐ GYM — la lámina que entró el 21-09. La tinta se MIDIÓ sobre el render
-    # (umbral 228 en los tres canales): sello x 88→694 y 138→166 · titular
-    # x 88→963 y 222→345. Sobre eso, **la misma holgura que sus cuatro
-    # hermanas**: 10 px arriba y abajo, y el canto derecho por fuera del último
-    # glifo.
-    #
-    # ⛔⛔ Y ESTO COSTÓ UNA FALSA ALARMA, que es una regla nueva: `peor_tercio`
-    # promedia la banda **con la tinta blanca adentro**, así que una caja
-    # ajustada al glifo mide un fondo más claro y canta un contraste más bajo
-    # del real. Con 2 px de holgura la banda llevaba 8,9 % de tinta —contra el
-    # 5,5-6,8 % de las otras cuatro— y el sello daba 4,30:1; con la holgura de
-    # sus hermanas da 5,4:1, y el fondo REAL, enmascarando la tinta, da 6,96:1.
-    # El sesgo es CONSERVADOR —sólo puede dar falsa alarma, nunca tapar un
-    # fallo—, pero una banda sólo se compara contra otra medida con la misma
-    # vara. Ver la nota al pie de este archivo.
-    #
-    # ⚠️ Su titular va a cuerpo 68 y no 74, así que sus franjas NO coinciden con
-    # las de las otras: el bloque empieza más abajo y termina más arriba.
-    "DT-V-S5-Gym": [
-        ("sello",   (86, 130, 703, 174), BLANCO, 4.5),
-        ("titular", (87, 214, 971, 353), BLANCO, 3.0),
-    ],
-    "DT-V-S5-Habitacion": [
-        ("sello",   (87, 121, 505, 157), BLANCO, 4.5),
-        ("titular", (87, 195, 972, 344), BLANCO, 3.0),
-    ],
+    # ⭐⭐ RONDA 8 (23-09): las interiores quedan SÓLO con el sello, agrandado
+    # (cifra 80, rótulo 34). Tinta medida sobre el render (umbral 245):
+    # y 146→205 en las seis; el canto derecho es el de cada rótulo. Se le exige
+    # 4,5:1 a toda la banda porque el rótulo, a 34 px, es texto chico.
+    "DT-V-S5-Desayuno":   [("sello", (86, 123, 1000, 179), BLANCO, 4.5)],
+    "DT-V-S5-Salon":      [("sello", (86, 123, 1000, 179), BLANCO, 4.5)],
+    "DT-V-S5-Lobby":      [("sello", (86, 123, 1000, 179), BLANCO, 4.5)],
+    "DT-V-S5-Gym":        [("sello", (86, 123, 1000, 179), BLANCO, 4.5)],
+    "DT-V-S5-Qb":         [("sello", (86, 123, 1000, 179), BLANCO, 4.5)],
+    "DT-V-S5-Habitacion": [("sello", (86, 123, 1000, 179), BLANCO, 4.5)],
 }
 
 
@@ -191,17 +163,10 @@ IZQUIERDA = {
     "DT-V-S5-Portada":    [("círculo", 400, 430), ("en DoubleTree", 511, 586),
                            ("by Hilton", 618, 712),
                            ("Santiago–Vitacura", 741, 776)],
-    "DT-V-S5-Desayuno":   [("sello", 128, 172), ("gancho", 200, 292),
-                           ("remate", 292, 378)],
-    "DT-V-S5-Salon":      [("sello", 128, 172), ("gancho", 200, 292),
-                           ("remate", 292, 378)],
-    "DT-V-S5-Lobby":      [("sello", 128, 172), ("gancho", 200, 292),
-                           ("remate", 292, 378)],
-    # ⚠️ El gym va a cuerpo 68: sus franjas están corridas respecto de las demás.
-    "DT-V-S5-Gym":        [("sello", 136, 168), ("gancho", 220, 285),
-                           ("remate", 298, 348)],
-    "DT-V-S5-Habitacion": [("sello", 128, 172), ("gancho", 196, 288),
-                           ("remate", 288, 374)],
+    # RONDA 8: sólo el sello.
+    **{c: [("sello", 131, 171)] for c in (
+        "DT-V-S5-Desayuno", "DT-V-S5-Salon", "DT-V-S5-Lobby",
+        "DT-V-S5-Gym", "DT-V-S5-Qb", "DT-V-S5-Habitacion")},
 }
 MARGEN = 88
 TOLERANCIA = 1

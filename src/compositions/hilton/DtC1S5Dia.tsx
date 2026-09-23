@@ -332,7 +332,6 @@ import {
   AbsoluteFill,
   Easing,
   getInputProps,
-  Img,
   interpolate,
   OffthreadVideo,
   staticFile,
@@ -515,7 +514,7 @@ type Movimiento = {
   d: [[number, number], [number, number]];
 };
 
-const usaCamara = (m: Movimiento) => {
+export const usaCamara = (m: Movimiento) => {
   const frame = useCurrentFrame();
   const t = interpolate(frame, [0, DURACION - 1], [0, 1], {
     extrapolateRight: 'clamp',
@@ -602,7 +601,7 @@ const Circulo: React.FC<{
 };
 
 /** La flecha de la píldora. Línea limpia — DT no lleva textura de mano. */
-const Flecha: React.FC<{tam: number; color: string}> = ({tam, color}) => (
+export const Flecha: React.FC<{tam: number; color: string}> = ({tam, color}) => (
   <svg width={tam} height={tam * 0.5} viewBox="0 0 40 20" fill="none">
     <path
       d="M2 10 H34"
@@ -664,18 +663,58 @@ const MARGEN_CIUDAD = 20;
  * de la lámina vaya en caja baja. La regla F.2 —no mezclar cajas— habla de las
  * líneas de un mismo título.
  */
+/**
+ * ⭐⭐ RONDA 8 (cliente, 23-09): «dejemos solo hora y texto que lo acompaña a la
+ * derecha (podemos agrandar este texto para compensar)». El titular de dos
+ * pesos SALE de las interiores y el sello pasa a ser TODO el texto de la
+ * lámina, así que crece: cifra 40 → `SELLO_R8.hora`, rótulo 23 → `SELLO_R8.rotulo`.
+ * Un solo tamaño para las seis láminas —el que deja entrar en una línea el
+ * rótulo más largo, «DESAYUNO ANTES DE LA REUNIÓN»—, porque al deslizar lo que
+ * el ojo compara es el tamaño del sello, no el largo de la frase.
+ */
+type TamSello = {
+  hora: number;
+  rotulo: number;
+  tracking: string;
+  gap: number;
+  linea: number;
+  /** RONDA 9: la cifra puede ir DELGADA (Trade Gothic Regular). */
+  horaFina?: boolean;
+  /** RONDA 9: el rótulo puede ir GRUESO (Trade Gothic Bold Condensed). */
+  rotuloGrueso?: boolean;
+};
+
+/**
+ * ⭐⭐ RONDA 9 (Eli, 23-09): «la idea es que sea como la hora, pero que no
+ * destaque tanto, y que sea el texto de acompañamiento el que sí destaque… la
+ * hora delgada y el texto más en grosor, pero que tenga el mismo peso en cuanto
+ * a tamaño, y que se destaque solo un poco, similar a la referencia».
+ *
+ * O sea: la jerarquía de la r8 (cifra 80 / rótulo 34) se INVIERTE y se aplana.
+ * Los dos van al MISMO cuerpo y lo único que los separa es el grosor —la cifra
+ * en Trade Gothic **Regular**, el rótulo en Trade Gothic **Bold Condensed**—, que
+ * es un contraste leve, como la versalita «GOLDEN NEST EXPERIENCES» de la
+ * referencia. El cuerpo es el que deja «8:30 — DESAYUNO ANTES DE LA REUNIÓN»,
+ * la línea más larga, dentro de la medida útil.
+ */
+const SELLO_R9: TamSello = {
+  hora: 50, rotulo: 50, tracking: '0.08em', gap: 20, linea: 36,
+  horaFina: true, rotuloGrueso: true,
+};
+
 const Sello: React.FC<{
   hora?: string;
   rotulo: string;
   desde: number;
   /** El hueco del primer glifo, medido. Ver `sangria`. */
   sangriaPx: number;
-}> = ({hora, rotulo, desde, sangriaPx}) => (
+  tam?: TamSello;
+}> = ({hora, rotulo, desde, sangriaPx, tam = {hora: 40, rotulo: 23, tracking: '0.24em', gap: 16, linea: 30}}) => (
   <div
     style={{
       display: 'flex',
       alignItems: 'center',
-      gap: 16,
+      gap: tam.gap,
       ...sangria(sangriaPx),
       ...usaEntrada(desde, 12),
     }}
@@ -684,9 +723,11 @@ const Sello: React.FC<{
       <>
         <span
           style={{
-            fontFamily: "'Trade Gothic Cn', 'Trade Gothic', Arial, sans-serif",
-            fontWeight: 700,
-            fontSize: 40,
+            fontFamily: tam.horaFina
+              ? DT.fuentes.texto
+              : "'Trade Gothic Cn', 'Trade Gothic', Arial, sans-serif",
+            fontWeight: tam.horaFina ? 400 : 700,
+            fontSize: tam.hora,
             letterSpacing: '0.02em',
             color: DT.colores.blanco,
             textShadow: SOMBRA,
@@ -697,7 +738,7 @@ const Sello: React.FC<{
         </span>
         <span
           style={{
-            width: 30,
+            width: tam.linea,
             height: 2,
             background: DT.colores.blanco,
             boxShadow: '0 2px 6px rgba(9,25,78,0.45)',
@@ -707,9 +748,13 @@ const Sello: React.FC<{
     ) : null}
     <span
       style={{
-        fontFamily: DT.fuentes.texto,
-        fontSize: 23,
-        letterSpacing: '0.24em',
+        fontFamily: tam.rotuloGrueso
+          ? "'Trade Gothic Cn', 'Trade Gothic', Arial, sans-serif"
+          : DT.fuentes.texto,
+        fontWeight: tam.rotuloGrueso ? 700 : 400,
+        fontSize: tam.rotulo,
+        letterSpacing: tam.tracking,
+        whiteSpace: 'nowrap',
         color: DT.colores.blanco,
         textShadow: SOMBRA,
       }}
@@ -772,7 +817,10 @@ export const DtC1S5Portada: React.FC = () => {
   return (
     <AbsoluteFill style={{backgroundColor: DT.colores.azul, overflow: 'hidden'}}>
       <OffthreadVideo
-        src={staticFile('assets/hilton/dt/s5/clips/portada.mp4')}
+        // RONDA 9: `--props='{"clipPortada":"portada_entrada"}'` prueba otra toma.
+        src={staticFile(`assets/hilton/dt/s5/clips/${
+          (getInputProps() as {clipPortada?: string}).clipPortada ?? 'portada_entrada'
+        }.mp4`)}
         style={{width: '100%', height: '100%', objectFit: 'cover'}}
         muted
       />
@@ -975,36 +1023,10 @@ export const DtC1S5Portada: React.FC = () => {
         </div>
       </div>
 
-      {/* La píldora — clara, como la referencia. */}
-      <div
-        style={{
-          position: 'absolute',
-          left: MARGEN,
-          bottom: 200,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 26,
-          height: 78,
-          padding: '0 42px',
-          borderRadius: 999,
-          background: 'rgba(250,250,250,0.94)',
-          boxShadow: '0 6px 22px rgba(9,25,78,0.22)',
-        }}
-      >
-        <span
-          style={{
-            fontFamily: DT.fuentes.texto,
-            fontSize: 27,
-            letterSpacing: '0.22em',
-            marginRight: '-0.22em',       // misma trampa del tracking que la firma
-            color: DT.colores.azul,
-          }}
-        >
-          DESLIZA
-        </span>
-        <Flecha tam={40} color={DT.colores.azul} />
-      </div>
+      {/*
+        ⛔ RONDA 8 (cliente, 23-09): «quitemos el desliza ->». La píldora sale.
+        El componente `Flecha` se queda por si vuelve en otra pieza.
+      */}
 
       {/*
         ⛔ RONDA 6 (Eli, 22-09): «te faltó borrar el texto chico de abajo de
@@ -1027,263 +1049,76 @@ export const DtC1S5Portada: React.FC = () => {
 type Lamina = {
   /** El clip ya preparado por `scripts/dt-c1-s5-clips.py`. */
   clip: string;
-  /** Del comentario de diseño. Sin hora, el sello queda sólo con el rótulo. */
-  hora?: string;
-  /** El rótulo del propio brief («SLIDE 3 – TIEMPO PARA TI»). */
+  hora: string;
+  /** El rótulo del propio brief, literal («SLIDE 3 – 12:00 TIEMPO PARA TI»). */
   rotulo: string;
   /**
-   * El texto del brief, partido en gancho + remate para el recurso de DT: DOS
-   * PESOS, UN MISMO CUERPO. Arriba Stag Medium, abajo Stag Light. La partición
-   * es de diagramación; las palabras no se tocan.
-   */
-  gancho: string;
-  remate: string;
-  cuerpo: number;
-  /**
-   * El hueco del primer glifo de cada elemento, en px @1080, MEDIDO sobre el
-   * render. Ver la nota de `sangria`. `dt-c1-s5-qa.py` los verifica.
+   * El hueco del primer glifo del sello, en px @1080, MEDIDO sobre el render.
+   * Ver la nota de `sangria`. Depende de la PRIMERA CIFRA y del cuerpo: el `1`
+   * de Trade Gothic Bold Condensed tiene más hueco propio que el `8` o el `9`.
    */
   sangriaSello: number;
-  sangriaGancho: number;
-  sangriaRemate: number;
-  /**
-   * Sólo para una lámina que saliera de una foto: su movimiento. Desde el
-   * 21-09 **ninguna la usa** — las seis son video, incluida la del gym. Se deja
-   * porque `LaminaInterior` sabe caer a foto si alguna vez falta un clip.
-   */
-  camara?: Movimiento;
 };
 
 /**
- * ⭐⭐ LAS LÁMINAS INTERIORES SON VIDEO DE VERDAD, NO UNA FOTO CON ZOOM.
+ * ⭐⭐⭐ RONDA 8 (cliente, 23-09) — LAS INTERIORES SE QUEDAN CON EL SELLO SOLO.
  *
- * El brief dice «CARRUSEL DE VIDEOS» y el 17-09 Eli pasó la sesión de video que
- * grabó Scarlette el 16-09 (`SESIÓN VIDEOS › SALÓNES · DESAYUNO BUFFET QB ·
- * COWORK · HABITACIONES`). La primera versión de esta pieza resolvía el
- * movimiento con un `Ken Burns` sobre las fotos de la sesión profesional; con
- * material filmado eso ya no se justifica — **una cámara real se nota**, y un
- * zoom digital sobre una foto fija se nota más todavía.
+ * Se van el gancho y el remate («Empieza el día / con la energía correcta.»)
+ * que salían de la ronda 1: el cliente pidió «dejemos solo hora y texto que lo
+ * acompaña», y agrandarlo. Los rótulos y las horas son los del BRIEF de la
+ * celda O10, literales.
  *
- * ⛔ Y por eso estas láminas **no llevan `camara`**: el movimiento ya está en el
- * clip. Sumarle un zoom encima es mover dos veces la misma imagen.
+ * Entra la lámina de **QB (19:00)** —«agreguemos una slide de QB (full
+ * orientada a gastronomía)»— y la habitación toma la hora que el brief ya trae,
+ * **20:00**. El carrusel pasa de seis a SIETE láminas: el cierre deja de ser el
+ * `n°6` y pasa a `n°7` (ver `dt-c1-s5-rendir.py`).
  *
- * Cada clip viene recortado a 4:5, tonemapeado de HLG a bt709, gradado y puesto
- * a 30 fps y a la velocidad que lo hace durar 5,0 s. Todo eso vive en
- * `scripts/dt-c1-s5-clips.py`, con la razón de cada número.
- *
- * ⚠️ La PORTADA sigue saliendo de una foto: la sesión de video **no tiene
- * exterior del hotel**, y el frontis es lo que dice de qué hotel se habla. Ahí
- * el movimiento sí es de código.
+ * Los videos son TODOS los que el cliente dejó enlazados en el brief (más el de
+ * la tarjeta en la habitación, que pidió Javier Mesa por chat). La razón de cada
+ * tramo y recorte está en `scripts/dt-c1-s5-clips.py`.
  */
 const LAMINAS: Record<string, Lamina> = {
-  desayuno: {
-    clip: 'desayuno',
-    hora: '8:30',
-    rotulo: 'DESAYUNO ANTES DE LA REUNIÓN',
-    gancho: 'Empieza el día',
-    remate: 'con la energía correcta.',
-    cuerpo: 78,
-    sangriaSello: 2,
-    sangriaGancho: 1,
-    sangriaRemate: 3,
-  },
-  salon: {
-    clip: 'salon',
-    hora: '9:30',
-    rotulo: 'REUNIÓN EN SALÓN',
-    gancho: 'Un espacio a la altura',
-    remate: 'de tus reuniones.',
-    cuerpo: 78,
-    sangriaSello: 2,
-    sangriaGancho: 1,
-    sangriaRemate: 3,
-  },
-  lobby: {
-    clip: 'cowork',
-    hora: '12:00',
-    rotulo: 'TIEMPO PARA TI',
-    gancho: 'Entre reunión y reunión,',
-    remate: 'un momento para respirar.',
-    cuerpo: 74,
-    sangriaSello: 4,
-    sangriaGancho: 1,
-    sangriaRemate: 2,
-  },
-  /**
-   * ⭐⭐ GYM — LA LÁMINA QUE FALTABA, ESCRITA POR CONTENIDO EL 21-09.
-   *
-   * Va ENTRE el cowork y el cierre, que es donde la pone el brief (slide 4) y
-   * donde la pone el reloj: 16:00 después de las 12:00 y antes de dormir.
-   *
-   * ⭐ **Y es VIDEO, como sus cinco hermanas.** El 17-09 esta lámina estaba
-   * armada sobre la foto `HDT_82` con movimiento de código, y quedó anotado que
-   * «no hay video de gimnasio en ninguna carpeta». Era falso: `CONTENIDO HOTEL
-   * 2026 › GYM` tiene 7 `.MOV` con la MISMA ficha técnica que la sesión del
-   * 16-09, y se habían descartado por ser «de iPhone» — cuando los otros cinco
-   * clips del carrusel son exactamente eso. Se eligió `IMG_1700`; por qué ése y
-   * no los otros seis está en `scripts/dt-c1-s5-clips.py`.
-   *
-   * La hora la da el propio comentario de diseño: «16:00 UN RATO PARA ENTRENAR
-   * EN EL GYM». El rótulo, en cambio, sale del BRIEF, que manda sobre el
-   * comentario — ver la nota 4 de la cabecera.
-   */
-  gym: {
-    clip: 'gym',
-    hora: '16:00',
-    rotulo: 'SIGUE CON TU RUTINA DIARIA',
-    /**
-     * ⭐ LA PARTICIÓN. Se corta igual que `salon`, que empieza con las mismas
-     * dos palabras: el gancho se queda con «Un espacio» y su complemento, y el
-     * remate arranca con la PREPOSICIÓN que cierra la frase. Las cuatro frases
-     * del brief se parten así —el remate empieza en «con», «de», «un», «con»—
-     * y ésta empieza en «en». Partirla en «Un espacio para / mantenerte en
-     * movimiento.» deja el gancho colgando de una preposición y le da al remate
-     * un verbo de arranque: rompe el patrón de las otras cuatro.
-     */
-    gancho: 'Un espacio para mantenerte',
-    remate: 'en movimiento.',
-    /**
-     * ⭐⭐ **68 Y NO 74: EL CUERPO ES LA CONSECUENCIA DE LA MEDIDA.** Es el
-     * criterio de DT que dictó Eli el 15-09 sobre el estático de Honors —«cada
-     * línea se escala hasta una misma medida y el cuerpo es la consecuencia»— y
-     * es lo que este carrusel ya venía haciendo sin decirlo: el cuerpo cambia de
-     * lámina en lámina (78, 78, 74, 74) para que la línea más larga de cada una
-     * caiga en la misma medida.
-     *
-     * Medido con fontTools sobre Stag, con el `letter-spacing` de la ronda 2 y
-     * los 904 px de medida útil:
-     *
-     *   | lámina | línea más larga | ancho |
-     *   |---|---|---|
-     *   | desayuno   | «con la energía correcta.»   | 815,8 |
-     *   | salón      | «Un espacio a la altura»     | 766,7 |
-     *   | lobby      | «un momento para respirar.»  | 892,7 |
-     *   | habitación | «El día termina como debe:»  | 883,9 |
-     *   | **gym**    | «Un espacio para mantenerte» | **885,1** |
-     *
-     * Esta frase es la más larga del brief: a 74 el gancho mide 963 px, se pasa
-     * de los 904 y Chrome lo parte en dos — el bloque se iba a TRES líneas y sus
-     * cinco hermanas son de dos. A 68 entra en una y el BLOQUE queda del mismo
-     * ancho que el del lobby y el del cierre, que es lo que el ojo compara al
-     * deslizar. El cuerpo menor no se nota; un bloque de otro ancho sí.
-     */
-    cuerpo: 68,
-    /**
-     * ⚠️ 4 y no 2 porque el sello arranca en **«16:00»**, y el `1` de Trade
-     * Gothic Bold Condensed es el glifo con más hueco propio de todo el
-     * carrusel — el mismo caso del `12:00` del lobby, que también lleva 4.
-     * Los sellos que empiezan en `8:30` y `9:30` llevan 2.
-     */
-    sangriaSello: 4,
-    sangriaGancho: 1,
-    // La «e» de «en movimiento.» — medida sobre el render: con 2 la tinta caía
-    // en x=89 y con 3 cae en el margen exacto.
-    sangriaRemate: 3,
-  },
-  habitacion: {
-    clip: 'habitacion',
-    // ⏸ SIN HORA — contenido no la entregó. Ver la nota 2 de la cabecera.
-    rotulo: 'CIERRE EN LA HABITACIÓN',
-    gancho: 'El día termina como debe:',
-    remate: 'con comodidad.',
-    cuerpo: 74,
-    sangriaSello: 1,
-    sangriaGancho: 1,
-    sangriaRemate: 3,
-  },
+  desayuno: {clip: 'desayuno', hora: '8:30', rotulo: 'DESAYUNO ANTES DE LA REUNIÓN', sangriaSello: 4},
+  salon: {clip: 'salon', hora: '9:30', rotulo: 'REUNIÓN EN SALÓN', sangriaSello: 4},
+  lobby: {clip: 'cowork', hora: '12:00', rotulo: 'TIEMPO PARA TI', sangriaSello: 7},
+  gym: {clip: 'gym', hora: '16:00', rotulo: 'SIGUE CON TU RUTINA DIARIA', sangriaSello: 7},
+  qb: {clip: 'qb', hora: '19:00', rotulo: 'CENA EN QB RESTAURANT', sangriaSello: 7},
+  habitacion: {clip: 'habitacion', hora: '20:00', rotulo: 'CIERRE EN LA HABITACIÓN', sangriaSello: 4},
 };
 
 
 const LaminaInterior: React.FC<{clave: keyof typeof LAMINAS}> = ({clave}) => {
   const l = LAMINAS[clave];
-  // ⚠️ El hook se llama SIEMPRE, aunque la lámina sea de video: las reglas de
-  // los hooks no admiten llamarlo dentro de un `if`. El resultado se usa sólo
-  // cuando la lámina no tiene clip.
-  const camara = usaCamara(l.camara ?? {z: [1, 1], d: [[0, 0], [0, 0]]});
-  const gancho = usaEntrada(26, 20);
-  const remate = usaEntrada(36, 20);
 
   return (
     <AbsoluteFill style={{backgroundColor: DT.colores.azul, overflow: 'hidden'}}>
-      {l.clip ? (
-        <OffthreadVideo
-          src={staticFile(`assets/hilton/dt/s5/clips/${l.clip}.mp4`)}
-          style={{width: '100%', height: '100%', objectFit: 'cover'}}
-          muted
-        />
-      ) : (
-        <AbsoluteFill style={{transform: camara}}>
-          <Img
-            src={staticFile('assets/hilton/dt/s5/gym.jpg')}
-            style={{width: '100%', height: '100%', objectFit: 'cover'}}
-          />
-        </AbsoluteFill>
-      )}
+      <OffthreadVideo
+        src={staticFile(`assets/hilton/dt/s5/clips/${l.clip}.mp4`)}
+        style={{width: '100%', height: '100%', objectFit: 'cover'}}
+        muted
+      />
 
       <AbsoluteFill style={{background: rampa(VELO_INTERIOR)}} />
 
       {/* La tinta de la lámina. El fotograma de control la salta. */}
       {esSoloFondo() ? null : (
-      <div
-        style={{
-          position: 'absolute',
-          left: MARGEN,
-          top: 128,
-          width: ANCHO_UTIL,
-        }}
-      >
-        <Sello
-          hora={l.hora}
-          rotulo={l.rotulo}
-          desde={10}
-          sangriaPx={l.sangriaSello}
-        />
-
         <div
           style={{
-            marginTop: 34,
-            fontFamily: DT.fuentes.titular,
-            fontSize: l.cuerpo,
-            lineHeight: 1.1,
-            // ⭐ RONDA 2: «añade a los textos un poco de espacio entre letras,
-            // muy sutil, ya que están muy juntas». Venía en **−0,008em**, o sea
-            // apretado a propósito para ganar medida. Pasa a **+0,014em**: a
-            // cuerpo 74-78 son ~1 px por letra, que es lo que ella pidió — se
-            // nota como aire y no como tracking.
-            letterSpacing: '0.014em',
-            color: DT.colores.blanco,
-            textShadow: SOMBRA,
+            position: 'absolute',
+            left: MARGEN,
+            top: 128,
+            width: ANCHO_UTIL,
           }}
         >
-          <div
-            style={{
-              fontWeight: DT.pesos.medium,
-              ...sangria(l.sangriaGancho),
-              ...gancho,
-            }}
-          >
-            {l.gancho}
-          </div>
-          <div
-            style={{
-              fontWeight: DT.pesos.light,
-              ...sangria(l.sangriaRemate),
-              ...remate,
-            }}
-          >
-            {l.remate}
-          </div>
+          <Sello
+            hora={l.hora}
+            rotulo={l.rotulo}
+            desde={10}
+            sangriaPx={l.sangriaSello}
+            tam={SELLO_R9}
+          />
         </div>
-      </div>
       )}
-
-      {/*
-        ⛔ RONDA 5 (Constanza, 22-09): «en la parte inferior donde dice "DT by
-        hilton stgo - vitacura" me gustaría que se eliminara, para que no tenga
-        tanto elemento por slide». La versalita al pie SALE de las cinco
-        interiores. La marca sigue firmando el carrusel en la portada, que es
-        además lo que pide el manual (§B: en feed el logotipo por defecto no va).
-      */}
     </AbsoluteFill>
   );
 };
@@ -1291,7 +1126,8 @@ const LaminaInterior: React.FC<{clave: keyof typeof LAMINAS}> = ({clave}) => {
 export const DtC1S5Desayuno: React.FC = () => <LaminaInterior clave="desayuno" />;
 export const DtC1S5Salon: React.FC = () => <LaminaInterior clave="salon" />;
 export const DtC1S5Lobby: React.FC = () => <LaminaInterior clave="lobby" />;
-/** SLIDE 4 · 16:00 · la lámina que contenido escribió el 21-09. */
 export const DtC1S5Gym: React.FC = () => <LaminaInterior clave="gym" />;
-/** SLIDE 5 · el cierre. Era la 4 hasta que entró el gym. */
+/** SLIDE 5 · 19:00 · QB — entra en la ronda 8. */
+export const DtC1S5Qb: React.FC = () => <LaminaInterior clave="qb" />;
+/** SLIDE 6 · 20:00 · el cierre. Era la 5 hasta la ronda 8. */
 export const DtC1S5Habitacion: React.FC = () => <LaminaInterior clave="habitacion" />;

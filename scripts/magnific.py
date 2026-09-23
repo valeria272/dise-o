@@ -58,12 +58,17 @@ CTX = ssl.create_default_context(cafile=certifi.where())
 # intercambiables: pasarle "square_1_1" a `pro` devuelve 400.
 ASPECTOS_PRO = {
     "reel": "9:16", "story": "9:16", "feed": "1:1", "post": "3:4", "wide": "16:9",
+    # 4:5 es el formato del carrusel y del post de feed de Instagram (1080x1350).
+    # "feed" quedo mapeado a 1:1 y recorta un 20 % del ancho al montarlo en 4:5,
+    # que es como se corta a una persona que va a un costado del encuadre.
+    "carrusel": "4:5",
 }
 
 ASPECTOS = {
     "reel":   "social_story_9_16",
     "story":  "social_story_9_16",
     "feed":   "square_1_1",
+    "carrusel": "social_post_4_5",
     "post":   "traditional_3_4",
     "wide":   "widescreen_16_9",
 }

@@ -87,6 +87,12 @@ public/assets/**
 # CAVA: los bottle shots y sus versiones 2x (upscaler de precisión) son el
 # material con el que se montan los KV. Sin ellos otro diseñador no reproduce la
 # entrega — se cae al packshot chico y el bodegón sale distinto.
+# EBEMA grilla octubre 2026: los fondos del lote. Son JPEG de 2400/q92 y son los
+# que LEE el build (no los PNG de 4K, que pesan 18 MB cada uno). Viajan porque una
+# imagen de IA no se regenera dos veces igual: sin el fondo versionado la pieza no
+# se puede volver a sacar, y es lo que hizo a Revex rehacer 3 rondas de cero.
+!public/assets/ebema/grilla-oct26/**
+
 !public/assets/cava/bottles/**
 !public/assets/cava/kv/**
 

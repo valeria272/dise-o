@@ -3,6 +3,71 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-23 — Paulina Bustamante
+
+**Qué se hizo:** los **6 carruseles de feed de la grilla de octubre** — Masisa (4
+láminas), Etersol, CBB, Volcanita RH, San Juan y Pointfix (5 cada uno), **29 láminas
+a 2250×2813**. Familia A, gramática de §4-bis. Los 3 carruseles de **LinkedIn quedaron
+fuera a propósito**: el manual sólo tiene medida la gramática del carrusel de feed con
+proveedor y el repo no tiene ninguna referencia de LinkedIn contra la cual medir;
+armarlos igual era inventar un sistema. Paulina lo decidió así y va a dejar
+referencias.
+
+⚠️ **El brief de Masisa cambió después de estar aprobado.** El 15-09 Paulina aprobó
+«línea melamina y cantos», 5 láminas con tip pro; la grilla del 22-09 lo reemplazó por
+**«Tablero Estructural Masisa»**, 4 láminas y sin tip pro. Manda la grilla (§0-bis).
+Se rehicieron textos y fotos; las reglas de composición aprobadas se conservaron
+enteras. Paulina entregó las medidas reales del tablero —**122 × 244 cm, 8 mm**— y
+entraron al prompt con la razón de la proporción, no sólo la cifra.
+
+**Dónde quedó:** entrega en Drive, `MATERIAL DISEÑO PAULINA / EBEMA / 4-entregado /
+2026-10 grilla octubre — carruseles`, una carpeta `c_<tema>/` por carrusel con la
+nomenclatura de Paulina (`ebema_c_<tema><n>.png`). Lote en
+`out/ebema/20260923_grilla_octubre/` (`BRIEF.md`, `ENTREGA.md`, `PROMPTS.md`,
+`editables/`, `entrega/`). **Versionado:** los 29 fondos en
+`public/assets/ebema/grilla-oct26/` (JPEG 2400/q92, 39 MB, excepción en `.gitignore`),
+el motor en `clients/ebema/sistema-grilla/_motor.py` y los 6 generadores en
+`sistema-grilla/ejemplos/octubre-2026/`.
+
+**El sistema quedó mejor de como estaba.** Los dos generadores aprobados el 15-09
+tenían cada uno la mitad: Masisa el arco de 5 láminas, el tip pro y la guarda de
+`data-tapa`; Etersol el pre-enunciado. Ahora hay **un motor que no se toca** y un
+archivo por carrusel con su brief citado. El ancho de caja de las láminas de
+desarrollo pasó a ser campo del carrusel (`ancho_caja_des`), que es lo que §4-bis dice
+que es: una decisión por carrusel.
+
+**QA hecho:** los 6 pasan `qa_portada.py` sin fallos, con desvíos de 0,02 a 0,52 px
+contra §4-bis, y 29 de 29 con una sola caja roja. **Dos fallos que marcó el QA eran
+del QA y quedaron corregidos en el sistema:** (1) medía el recuadro de *todo* el rojo
+de la cápsula y **el logo de Volcán también lleva rojo**, así que juntaba el anillo
+EBEMA con el del proveedor — ahora toma el primer bloque contiguo; (2) contaba 3 cajas
+en la portada de Masisa, donde hay una sola caja alta cuyas letras blancas desmarcan
+filas — ahora funde los grupos con el mismo tramo horizontal.
+
+**Reproducibilidad probada, no afirmada:** se reconstruyó Etersol desde cero con el
+sistema y los fondos versionados, y las 5 láminas salieron **idénticas byte a byte**
+con `cmp`.
+
+**Dos trampas nuevas, ya guardadas en memoria:**
+1. **Un prompt de imagen jamás nombra el titular.** Decía «el tercio superior queda
+   tranquilo: ahí va el titular» y Nano Banana devolvió las fotos con **el 17 % de
+   arriba en blanco puro**, reservando el hueco. Se detectó midiendo la desviación
+   estándar por fila, no mirando.
+2. **`--aspecto feed` de `scripts/magnific.py` era 1:1**, y montado en 1080×1350
+   recorta un 20 % del ancho. Se agregó **`--aspecto carrusel` (4:5)**, probado contra
+   la API. Úsalo en toda pieza de feed.
+
+**Qué sigue:** los 3 carruseles de LinkedIn cuando lleguen las referencias.
+
+**Abierto:**
+1. **El logo de Masisa** sigue siendo el recortado de una pieza publicada, no el
+   vectorial del kit.
+2. **EBEMA no tiene `clients/ebema/reglas.yaml`**, así que `qa/motor.py --marca ebema`
+   se niega a correr. El control se hizo con `qa_portada.py` más el checklist de §8.
+3. Los briefs rotulan cuatro L4 como **«(Tip pro)»** pero ninguno es una orden de
+   oficio. Paulina confirmó dejarlas en registro normal por ahora. Si contenido quiere
+   el registro de consejo, el texto tiene que venir escrito como imperativo.
+
 ## 2026-09-22 — Paulina Bustamante
 
 **Qué se hizo:** No se produjeron piezas: se **respaldó la cuenta**. Todo el material

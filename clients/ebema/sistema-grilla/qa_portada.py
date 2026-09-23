@@ -56,9 +56,20 @@ print(f"L1 portada  {p.name}  ({a.shape[1]}x{a.shape[0]})")
 
 rojo = (r > 200) & (g < 70) & (b < 75)
 zona = rojo[:900, :700]                       # la pastilla del logo, en la capsula
-ys, xs = np.where(zona)
-ok("pastilla_x0", xs.min() * esc)
-ok("pastilla_ancho", (xs.max() - xs.min() + 1) * esc)
+
+# ⛔ EL ANILLO EBEMA ES EL PRIMER BLOQUE CONTIGUO DE ROJO, no todo el rojo de la
+# ventana. Corregido el 23-09-2026: el logo de VOLCÁN también lleva rojo, y medir
+# el recuadro de todo el rojo juntaba el anillo con el logo del proveedor — daba
+# pastilla_ancho 264,5 en vez de 118,4 y el QA reprobaba una portada correcta.
+# Entre el anillo y el logo del proveedor siempre hay aire blanco: ahí se corta.
+_cols = np.where(zona.sum(axis=0) > 0)[0]
+_hueco = np.where(np.diff(_cols) > 8)[0]      # 8 px del render (~4 sobre 1080)
+if len(_hueco):
+    _cols = _cols[:_hueco[0] + 1]
+x0, x1 = int(_cols.min()), int(_cols.max())
+ys = np.where(zona[:, x0:x1 + 1].sum(axis=1) > 0)[0]
+ok("pastilla_x0", x0 * esc)
+ok("pastilla_ancho", (x1 - x0 + 1) * esc)
 ok("pastilla_alto", (ys.max() - ys.min() + 1) * esc)
 
 blanco = (r > 245) & (g > 245) & (b > 245)
@@ -117,7 +128,26 @@ for n in range(1, 6):
         if tramo >= ancho_min and len(xs_) >= tramo * 0.35:
             marca[y] = True
     idx = np.where(marca)[0]
-    n_cajas = 1 + (np.diff(idx) > 25).sum() if len(idx) else 0
+    # ⛔ UNA CAJA ALTA CON DOS RENGLONES SE PARTE EN VARIOS GRUPOS y se contaba
+    # como varias cajas. Corregido el 23-09-2026 sobre la portada de Masisa: ahí el
+    # rojo muerde la línea de arriba y encierra dos renglones, y las filas que caen
+    # sobre las letras BLANCAS dejan de ser «mayoritariamente rojas» y desmarcan —
+    # daban 3 cajas donde hay 1. Dos grupos con el MISMO tramo horizontal son el
+    # mismo rectángulo, así que se funden; uno de verdad distinto arranca en otra x.
+    if len(idx):
+        grupos = np.split(idx, np.where(np.diff(idx) > 25)[0] + 1)
+        tramos = []
+        for gr in grupos:
+            xs_ = np.where(rojo[gr.min():gr.max() + 1].sum(axis=0) > 0)[0]
+            tramos.append((xs_.min(), xs_.max()))
+        tol = a.shape[1] * 0.02
+        n_cajas = 1
+        for i in range(1, len(tramos)):
+            if not (abs(tramos[i][0] - tramos[i - 1][0]) <= tol
+                    and abs(tramos[i][1] - tramos[i - 1][1]) <= tol):
+                n_cajas += 1
+    else:
+        n_cajas = 0
     estado = "OK " if n_cajas <= 1 else "FALLA"
     if n_cajas > 1:
         fallos.append(f"L{n}: {n_cajas} cajas rojas (§4-bis: una sola por lamina)")

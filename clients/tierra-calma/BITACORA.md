@@ -5,6 +5,33 @@
 
 ---
 
+## 2026-09-23 — Diego Aguilar (cierre del día · PAID de octubre)
+
+**Qué se hizo:** Se leyó el brief de PAID de octubre de Ignacio y se entregaron las
+6 piezas (02-A casa cabe y 02-B mapa 30 min en 1:1 y 4:5; D1 fin de semana largo en
+9:16 y 4:5, que reemplaza a B4 porque no hay foto de primavera). Hubo 4 rondas de
+Diego: no reusar imágenes ya publicadas, terreno más limpio y visto desde más
+arriba, generar todo con **Seedream 5 Pro** y rehacer también 02-B. Las 6 quedaron
+con imagen nueva de Seedream 5 Pro y pasan `qa/motor.py`.
+**Dónde quedó:** Todo entregado en la carpeta del brief (`1mJSqrR7aK7V96DQosCA1hArH7Oxr-Uqg`),
+siempre sobre los mismos fileId. Código: `src/compositions/tierracalma/PaidOctubre.tsx`
++ `scripts/tc-paid-oct-prep.py`; fondos versionados en `public/assets/tierracalma/paid-oct/`;
+las generaciones y sus variantes en `raw/tierracalma/paid-oct2026/ia/` (fuera de git).
+Nuevo comando del estudio `magnific.py seedream`. El feedback quedó en el manual
+(§ 7 bis «La pauta») y en `reglas.yaml` (regla nueva `sin-voseo`).
+**Qué sigue:** Esperar la revisión de Ignacio y la aprobación de la clienta (29-09);
+aplicar comentarios sobre los mismos fileId. Si aprueban, correr `qa/calibrar.py`.
+**Abierto:**
+- Avisarle a Ignacio: B4 se reemplazó por D1 (**D1 caduca el 12-10**); «PASALO» →
+  «PÁSALO»; los archivos van sueltos en la carpeta, no en subcarpetas por bloque;
+  el titular de 02-A va en serif cursiva (como el boceto), no en sans como dice la regla escrita.
+- En 02-B el horizonte de Santiago es IA y el paisaje es el llano, no la ladera real:
+  confirmar con Valeria/Ignacio que se acepta así.
+- Sigue lo del orgánico: OK escrito de Fran/Blanca sobre «Rol individual» y «Acceso
+  controlado», y avisar el «agua potable» publicado en septiembre.
+
+---
+
 ## 2026-09-23 (tarde, ronda 4) — PAID: 02-B también con Seedream 5 Pro
 
 Diego: *«rehace las demás imágenes»*. 02-B (mapa 30 min, 1:1 y 4:5) deja la foto
@@ -101,6 +128,69 @@ Código: `src/compositions/tierracalma/PaidOctubre.tsx` (composiciones
 3. La píldora de D1 9:16 queda en las filas 1770-1840, dentro del 10 % inferior
    que el brief pide libre. Viene así de la pieza de septiembre que ya corre.
 4. Fechas del brief: revisión la semana del 22-09, aprobación de la clienta 29-09.
+
+---
+
+## 2026-09-23 · CIERRE DE JORNADA — Diego Aguilar
+
+Día largo: **seis rondas** sobre octubre. Esta entrada es el índice; el detalle
+está en las entradas de abajo, en orden inverso.
+
+**Qué se hizo, en orden:**
+
+| Ronda | Qué |
+|---|---|
+| mañana | escala tipográfica automática (Inter Tight 50–70, IvyOra fija) y todo centrado |
+| tarde | tres bandas suben: centrar no es centrar sobre el sujeto |
+| tarde 2ª | el globo aprieta interlineado, no cruza el marco y puede ir en flujo |
+| cierre | **la marca por fin tiene compuerta** — `reglas.yaml` + extractor de textos |
+| noche | **audio nuevo de los reels**: voz de la marca y música corporativa |
+| noche 2ª | el carrusel pasa a una sola cabecera; WhatsApp, píldora y mapa |
+| noche 3ª | **`st-12-10` rehecha** sobre la referencia de Sonatta |
+
+**Dónde quedó:** las 10 piezas (18 archivos) en
+`out/tierracalma/oct2026/entrega/` y en la carpeta de Drive
+`1lJG3Xzwh77zSCSDQ4DiPsAJK0fAqcNwF`, **siempre sobre el mismo fileId**. Las 16
+estáticas pasan `qa/motor.py --marca tierra-calma`.
+
+**Lo que hoy dejó de ser un pendiente:**
+
+- ✅ Tierra Calma **ya tiene `reglas.yaml`**. Llevaba meses sin compuerta y el
+  primer día atrapó un bloqueante que cinco rondas a ojo no vieron.
+- ✅ La **voz y la música de la marca** quedaron fijadas, generadas y escritas.
+- ✅ El **pin duplicado del mapa** lo resolvió el rediseño de `st-12-10`.
+- ✅ El **conector de Magnific** quedó declarado en el repo.
+
+**Qué sigue:** esperar la ronda del **cliente**. Las 10 piezas siguen «En
+revisión» y los 29 comentarios de octubre fueron todos internos de Diego.
+Cuando el cliente apruebe: `python qa/calibrar.py` para poder escribir por fin
+reglas de IMAGEN propias de la marca, que hoy no existen por falta de corpus
+aprobado.
+
+**Abierto — lo primero de mañana:**
+
+1. ⚠️ **Falta la confirmación escrita de Fran o Blanca** para «Rol individual» y
+   «Acceso controlado». Van **publicados en tres piezas** con el OK verbal de
+   Diego del 22-09 y **no están en la lista blanca**. Es lo más urgente.
+2. **Avisar lo del agua potable** publicado en septiembre (`st-11-09`) antes de
+   que lo note el cliente. Ya no puede repetirse: es regla bloqueante.
+3. **El mapa oficial, con Carlos** — sigue pendiente desde agosto.
+4. **Los comentarios de la grilla no se pueden leer.** Es un `.xlsx` subido, no
+   una hoja nativa: el conector devuelve los hilos con el texto vacío y el token
+   del estudio da 404. Mientras siga así, el feedback tiene que llegar por
+   comentarios sobre los PNG de la carpeta de entrega, que sí se leen.
+5. Comentarios de Drive aplicados pero sin cerrar (`c-06-10-4`, `c-20-10-1`,
+   `c-20-10-5` entre otros). Los cierra Diego.
+
+> 🔌 **Ojo con el `.mcp.json`.** El servidor `magnific` local quedó **sin
+> autorizar** y es redundante: el que funciona es el conector de claude.ai que ya
+> estaba en la cuenta. Hoy sólo produce un aviso de «servidor sin autenticar» en
+> cada arranque. Hay que decidir si se autoriza o se quita.
+
+> ⚠️ **Dos sesiones sobre el mismo árbol.** Hoy hubo otra trabajando en el PAID
+> de Tierra Calma y en DT/Rentas. Un `/cierre` ajeno con `git add -A` y limpieza
+> **se llevó un archivo mío que no estaba commiteado**. Regla endurecida: **un
+> archivo nuevo se commitea apenas funciona**, no al cerrar el día.
 
 ---
 

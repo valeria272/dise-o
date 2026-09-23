@@ -153,3 +153,23 @@ reglas:
     args:
       correcta: Tierra Calma
       incorrectas: [TierraCalma, "Tierra-Calma", "tierra calma"]
+
+  - id: sin-voseo
+    titulo: Tuteo chileno, nunca voseo («pásalo», no «pasalo»)
+    check: texto_prohibido
+    severidad: bloqueante
+    autor: Diego Aguilar (regla de idioma del estudio)
+    fecha: 2026-09-23
+    cita: >-
+      Todo lo que este proyecto escriba va en español de Chile con tuteo.
+      Prohibido el voseo rioplatense.
+    porque: >-
+      Los briefs de pauta de Ignacio lo traen escrito: septiembre decía «El próximo
+      18, pasalo acá» y SE PUBLICÓ así (pieza «alcance»); octubre repitió «pasala
+      acá» (B4) y «pasalo acá» (D1). Se corrige siempre a «pásalo / pásala».
+      El patrón sólo atrapa formas que existen únicamente en voseo: «pasalo» SIN
+      tilde (con tilde, «PÁSALO», pasa) y los imperativos agudos de CTA que más
+      aparecen en inmobiliario (agendá, conocé, vení, visitanos, escribinos…).
+      «Agenda», «ven», «mira», «visítanos» son tuteo y no se tocan.
+    args:
+      patron: '\b(pasal[oa]s?|conocel[oa]s?|visitanos|escribinos|contactanos|agendá|conocé|vení|mirá|aprovechá|escribí)\b'

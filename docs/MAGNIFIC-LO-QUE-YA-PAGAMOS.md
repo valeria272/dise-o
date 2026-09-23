@@ -161,6 +161,72 @@ OAuth con la cuenta, no con la clave de API. Son dos accesos distintos.
 
 ---
 
+## 🔊 Audio generado — lo que se aprendió el 23-09-2026
+
+Vale para **cualquier marca del estudio**, no sólo para Tierra Calma.
+
+### La API no hace audio. El conector sí.
+
+Sondeadas 22 rutas de `api.freepik.com`: **ninguna forma de `text-to-speech`
+existe** (404 en `text-to-speech`, `tts`, `audio/tts`, `voice-generation`,
+`…/gemini`, `…/elevenlabs`) y **`music-generation` responde 410**, retirada entre
+el 08-09 y el 23-09. Sólo quedan `sound-effects` y `audio-isolation`.
+
+> Consecuencia: **voz y música salen por el conector MCP de Magnific**, no por
+> script. Si un plan de trabajo asume música por API, está mal.
+
+### Tres trampas del conector, verificadas
+
+1. **El modo ilimitado NO aplica en su sesión.** El plan dice «unlimited» y cada
+   generación descuenta igual. La corrida de Tierra Calma costó **1.244 créditos**
+   (8 por línea de voz, 520 y 700 por pista). Hay que avisarlo antes de generar.
+2. **El buscador de creaciones no busca por etiqueta.** Con texto libre devuelve
+   el historial. La etiqueta se encuentra con `tags_list` sobre el proyecto y
+   después se filtra por `tags`.
+3. **Un conector listado no es un conector autorizado.** Puede aparecer en la
+   lista de herramientas y aun así estar sin autenticar.
+
+### ⛔ Cambiar de voz cambia TODOS los tiempos
+
+La voz de Tierra Calma (Gemini 2.5 Pro · Enceladus) resultó **un 39 % más lenta**
+que la anterior: una línea pasó de 83 a 115 frames. Si el reel tiene subtítulos
+sincronizados, **hay que medir cada mp3 y reescribir el array de tiempos**, nunca
+estimarlo. `scripts/tc-audio-instalar.py` lo hace y además avisa si una línea
+dejó de caber en su corte.
+
+### ⛔ Verificar que el audio nuevo está DENTRO del render
+
+El mp4 re-rendido salió **del mismo tamaño exacto** que el anterior (33.154.597
+bytes) porque el audio va a bitrate constante y el video no había cambiado. El
+tamaño no prueba nada.
+
+Lo que sí prueba: **medir la envolvente del audio del propio mp4** y comprobar
+que los tramos de voz caen donde deben. Con la voz nueva el segundo tramo llegaba
+a 9,25 s; con la vieja habría terminado en 8,43.
+
+### ⛔ Dos pistas del mismo prompt pueden salir CLONADAS
+
+Pasó: las dos pistas del mes eran archivos distintos, de distinto largo y
+distinto `md5`… y **musicalmente la misma pieza**. No se detecta escuchando por
+encima ni comparando `md5` —dos generaciones siempre dan `md5` distinto—.
+
+Se mide comparando la **evolución del arreglo** (energía por banda de frecuencia
+a lo largo del tiempo, normalizada) **contra un control**:
+
+| Par | Parecido |
+|---|---|
+| Una pista contra **sí misma desfasada 4 s** | **+0,53** ← el techo de «es la misma» |
+| Las dos del 23-09, primera tirada | **+0,53** ⛔ |
+| Dos pistas **realmente distintas** | **+0,02 a +0,17** ✅ |
+
+El número que delata no es «alto»: es **igual al control**.
+
+**El arreglo no fue tocar el prompt.** Se re-tiró la segunda con el prompt
+idéntico y salió una pieza sin relación (+0,02). Era mala suerte en el sorteo:
+**antes de cambiar un texto que la marca aprobó, se re-tira**.
+
+---
+
 ## ❌ Lo que NO está en el plan (404 verificado)
 
 `kling-2-6-pro` · `kling-motion` (control de movimiento) · `seedance-pro-1080p` ·

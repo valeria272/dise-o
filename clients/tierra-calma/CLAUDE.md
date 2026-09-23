@@ -852,6 +852,61 @@ Cuando el titular choca con algo, se acota la banda de texto. **Nunca** se mueve
 el marco, el plano ni el mapa: son assets medidos o bloqueados.
 
 
+### 9. Una referencia se lee por su GRAMÁTICA, no por su contenido
+
+Cuando llega una referencia de otra marca —el 23-09 llegó una pieza de Sonatta,
+Curitiba, para `st-12-10`— lo que se copia es **cómo está armada**, no lo que
+dice ni lo que muestra:
+
+| Se copia | No se copia |
+|---|---|
+| dónde va el titular y con qué jerarquía | el color de la otra marca |
+| que el mapa sea **dibujado** y no fotografiado | sus barrios, sus nombres, su ciudad |
+| que el remate **cruce** el borde de la foto | su tipografía |
+| que los datos vayan en placas | su lista de datos |
+
+⛔ **Y la referencia no autoriza a inventar.** La de Sonatta muestra barrios de
+Curitiba en celdas; la versión de Tierra Calma muestra **comunas reales y
+vecinas, verificadas contra `MAPA-3`**. Las formas son esquemáticas; quién limita
+con quién, no. El primer pase puso «SANTIAGO» de vecina de «MAIPÚ» —y Maipú *es*
+Santiago—: ese error entró **por seguir la referencia sin comprobar la
+geografía**, que es exactamente cómo entraron la Ruta 68 y los topónimos
+corruptos.
+
+> 💡 **Una referencia suele devolver la pieza al brief.** La de Sonatta pedía lo
+> mismo que el brief de octubre ya decía —«un mapa estilizado y minimalista»—, y
+> al aplicarla desaparecieron de una vez **dos problemas que se venían
+> arrastrando**: el degradado que se comía el mapa y el pin duplicado. Antes de
+> parchar un síntoma, conviene releer el brief: a veces el parche está tapando
+> que la pieza se desvió.
+
+### 10. Un comentario sobre una pieza cede ante uno sobre el conjunto
+
+El 23-09 a las 15:01 Diego pidió *"centrar toda la información"* mirando
+`c-20-10-5` sola. Esa tarde, mirando el carrusel completo, pidió que el número y
+el título quedaran donde la slide 2. **Las dos no conviven.** Manda la segunda:
+el carrusel es un solo objeto y se juzga deslizando, no pieza por pieza.
+
+Cuando esto pase, hay que **decirlo** —el comentario viejo queda sin resolver en
+Drive y el que retome va a creer que falta aplicarlo— y dejarlo escrito en el
+manual.
+
+> 💡 **Para juzgar un carrusel, móntalo en tira** y ponle una guía horizontal en
+> la fila de referencia. Lo que pieza por pieza se ve bien, en tira delata que el
+> número cae a tres alturas distintas.
+
+### 11. Lo que está bloqueado bloquea de verdad
+
+*"El botón está muy apretado, debe ser más ancho."* No se podía: el contorno
+viene **dibujado dentro del PNG del marco**. Lo que cede entonces es el texto,
+nunca el asset — y **tampoco el copy**, que va verbatim del brief; lo que baja es
+el cuerpo.
+
+Antes de responder «no se puede», hay que **medir el síntoma**: el contenido
+ocupaba 559 px de los 574 de la píldora, o sea 9 px de aire a un lado y 6 al
+otro. El diagnóstico era correcto aunque la solución pedida no fuera posible.
+
+
 ## 4 septies. ⭐ LA COMPUERTA — `reglas.yaml`, desde el 23-09-2026
 
 Tierra Calma pasó meses sin reglas ejecutables: todo el QA era a mano, pieza por
@@ -992,6 +1047,80 @@ nombres de archivo dentro.
 - `Contenidos/Grillas/<MES>/` — grilla del mes + carpetas `FEED` y `ST`.
 - `INFORMES/<MES>/` — informe de redes. `PERFORMANCE/<Mes> 2026/` — plan de
   medios y brief de diseño de pauta.
+
+---
+
+## 7 bis. ⭐ LA PAUTA (PAID) — cómo se hace, aprendido en octubre 2026
+
+La pauta **no sale de la grilla orgánica**: tiene brief propio, sistema propio y
+cuatro rondas de feedback de Diego del 23-09 que valen para todos los meses.
+
+### De dónde sale el pedido
+
+- **Brief de Ignacio Retamal** en `TIERRA CALMA/PERFORMANCE/<Mes> 2026/`
+  (`Brief Diseño Tierra Calma - <Mes> 2026.xlsx`). Trae los **mockups
+  incrustados** —se extraen con openpyxl (`ws._images`)— y una hoja **«Anexo —
+  no producir» OCULTA** con las piezas de reemplazo. Los copys del anuncio van en
+  un xlsx aparte; en diseño sólo va el texto que se imprime sobre la imagen.
+- Los mockups son **proporción y jerarquía, no arte final** (lo dice el brief).
+- Octubre: `src/compositions/tierracalma/PaidOctubre.tsx` +
+  `scripts/tc-paid-oct-prep.py` (arma todos los fondos, el marco 1:1 y la
+  geometría en `paid-oct.json`). Es la plantilla para el mes siguiente.
+
+### El sistema (el de las piezas de septiembre wsp / perfil / alcance)
+
+- **Marco bloqueado** del diseñador (§ 4 quinquies). No hay marco 1:1: se deriva
+  del MARCO-POST quitando las filas 600–870, que son idénticas.
+- Titulares-cifra en **IvyOra cursiva versales dentro de chips oscuros
+  translúcidos** (nunca caja opaca); datos y cápsulas en Inter Tight versales.
+- Pie: «📍 TIERRA CALMA · PADRE HURTADO» dentro de la píldora del marco, con
+  icono de línea (nunca emoji).
+- **Ninguna línea del dibujo cruza el texto.** Si el lote queda abajo en la
+  imagen, el titular sube bajo el logo.
+
+### ⛔ Feedback de Diego (23-09) — lo que NO se repite
+
+1. **Una imagen que ya salió en pauta NO se reusa**, aunque el brief diga «la
+   misma toma» o «el mismo archivo». Se genera otra.
+2. **Todas las imágenes se generan con Seedream 5 Pro**
+   (`python scripts/magnific.py seedream …`). Es el generador del estudio desde
+   el 23-09. Excepción: texto legible dentro de la imagen → Nano Banana Pro.
+3. **El terreno se muestra limpio y desde más arriba.** El camino es Seedream 5
+   Pro edit con una cenital REAL de referencia (`--refs`): conserva caminos,
+   cercos y senderos a 90° y los idealiza. La mejor cenital del rodaje es
+   **DJI_0281** (~32 px/m, medido con los autos del camino).
+4. **La composición se escribe en el prompt**: «40 % de cielo arriba, la escena en
+   la franja central, 25 % de pasto abajo». Sin eso Seedream pone a la gente
+   grande y abajo, y la píldora o el titular le caen encima.
+5. **Gente de espaldas o de lejos**, nunca mirando a cámara (regla del brief).
+   De dos variantes, la que tiene caras hacia cámara se descarta.
+
+### Medir, no estimar
+
+- **La casa va a escala:** 150 m² = 3 % del deslinde de 5.000 m². Lo calcula el
+  script, no el ojo (el boceto de Ignacio la dibujaba ~4 veces más grande).
+- **El deslinde va sobre cercos que se vean en la imagen**, medidos con zoom.
+
+### Material real — lo que hay y lo que no
+
+- El dron del 07-08 es **invierno nublado a las 9 AM**: no hay atardecer, ni
+  árboles brotados, ni Santiago visible. Si el brief pide eso, avisar ANTES.
+- **DJI_0331 muestra el llano ANEGADO** (manchas blancas de agua). En bruto
+  nunca; idealizado con Seedream sirve, porque es la única toma con horizonte.
+- En 02-B de octubre, **Santiago en el horizonte es IA**. Decirlo al entregar.
+
+### Trampas que costaron tiempo
+
+- **Voseo en el brief**: «pasalo / pasala» → «pásalo / pásala». Regla
+  `sin-voseo` en `reglas.yaml` (bloqueante). Septiembre se publicó con voseo.
+- **Drive**: el conector MCP entra como Constanza Olivares y lo que sube
+  `drive-subir.py` queda a nombre de valeria@ → el conector no puede moverlo a
+  subcarpetas. Se sube directo a la carpeta del brief; el nombre del archivo ya
+  dice el bloque. Las rondas se re-suben sobre el mismo fileId.
+- **QA**: `qa/textos-tierracalma.py` sólo conoce OctubreV3; los textos de la
+  pauta se declaran a mano en `out/tierracalma/paid-<mes>/textos.json`.
+- **IvyOra da 404 en los pesos que no están** (Bold, Italic…): no importa si la
+  pieza usa Medium Italic, que sí está. Verificar en el render, no en el log.
 
 ---
 

@@ -10,7 +10,12 @@ tipografía que no es la de la marca.
 Pero el propio `.ai` lleva **incrustados los subconjuntos CFF** de los pesos que
 usó esa pieza. Este script los extrae y arma una OTF utilizable por PIL.
 
-    python3 scripts/cava-fuentes-desde-editable.py "<ruta al .ai>" <carpeta de salida>
+    python3 scripts/cava-fuentes-desde-editable.py <carpeta de salida> "<ai 1>" ["<ai 2>" ...]
+
+Se pueden pasar VARIOS .ai y los subconjuntos se FUSIONAN. Hace falta: el de
+septiembre no trae la «L» mayúscula y el del Cyber no trae la «r» minúscula —
+juntos cubren el alfabeto. Son el mismo diseño y las mismas métricas, así que
+unirlos es seguro.
 
 ⚠️ DOS LÍMITES QUE HAY QUE TENER PRESENTES:
   1. Es un SUBCONJUNTO: trae sólo los glifos que esa pieza usó. Si el copy nuevo
@@ -57,18 +62,17 @@ def subconjuntos(ai_path):
     return out
 
 
-def a_otf(cff_bytes, destino, psname):
+def _glifos(cff_bytes):
+    """Lee un subconjunto CFF y devuelve {nombre: (charstring nuevo, ancho, lsb)}."""
     cff = CFFFontSet()
     cff.decompile(io.BytesIO(cff_bytes), None)
     td = cff[cff.fontNames[0]]
     cs = td.CharStrings
     dwx = td.Private.defaultWidthX
-    orden, visto = [], set()
+    out = {}
     for g in [".notdef"] + list(td.charset):
-        if g in cs and g not in visto:
-            visto.add(g); orden.append(g)
-    progs, met = {}, {}
-    for g in orden:
+        if g not in cs or g in out:
+            continue
         c = cs[g]
         c.decompile()
         bp = BoundsPen(None)
@@ -76,8 +80,20 @@ def a_otf(cff_bytes, destino, psname):
         w = getattr(c, "width", None) or dwx
         pen = T2CharStringPen(w, None)
         c.draw(pen)
-        progs[g] = pen.getCharString()
-        met[g] = (int(round(w)), int(bp.bounds[0]) if bp.bounds else 0)
+        out[g] = (pen.getCharString(), int(round(w)), int(bp.bounds[0]) if bp.bounds else 0)
+    return out
+
+
+def a_otf(lista_cff, destino, psname):
+    """Funde varios subconjuntos del MISMO peso en una sola OTF."""
+    fundido = {}
+    for data in lista_cff:
+        for g, v in _glifos(data).items():
+            fundido.setdefault(g, v)     # gana el primero: el editable más reciente
+    orden = [".notdef"] + sorted(g for g in fundido if g != ".notdef")
+    orden = [g for g in orden if g in fundido]
+    progs = {g: fundido[g][0] for g in orden}
+    met = {g: (fundido[g][1], fundido[g][2]) for g in orden}
     cmap = {}
     for g in orden:
         uv = AGL2UV.get(g)
@@ -100,15 +116,18 @@ def a_otf(cff_bytes, destino, psname):
 def main():
     if len(sys.argv) < 3:
         print(__doc__); sys.exit(1)
-    ai, dest = sys.argv[1], sys.argv[2]
+    dest, ais = sys.argv[1], sys.argv[2:]
     os.makedirs(dest, exist_ok=True)
-    for nombre, data in sorted(subconjuntos(ai).items()):
-        if "Bebas" not in nombre:
-            continue
+    por_peso = {}
+    for ai in ais:
+        for nombre, data in subconjuntos(ai).items():
+            if "Bebas" in nombre:
+                por_peso.setdefault(nombre, []).append(data)
+    for nombre, lista in sorted(por_peso.items()):
         salida = os.path.join(dest, nombre + ".otf")
-        glifos = a_otf(data, salida, nombre)
-        print("%-26s %3d glifos" % (nombre, len(glifos)))
-        print("   cubre:", " ".join(sorted(g for g in glifos if g != ".notdef")))
+        glifos = a_otf(lista, salida, nombre)
+        print("%-26s %3d glifos  (de %d editable/s)" % (nombre, len(glifos), len(lista)))
+        print("   cubre:", " ".join(g for g in glifos if g != ".notdef"))
 
 
 if __name__ == "__main__":

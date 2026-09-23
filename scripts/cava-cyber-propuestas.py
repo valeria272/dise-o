@@ -57,9 +57,12 @@ SELLO = RAIZ + "/public/assets/cava/sello-descorchados-92.png"
 # x, y, diámetro y cuánto se agranda para tapar el generado. En B el sello de
 # la IA salió más grande porque la botella está más cerca, así que necesita
 # menos aumento.
-SELLO_POS = {"A": (0.734, 0.487, 0.1430, 1.20),
-             "B": (0.873, 0.343, 0.1944, 1.06),
-             "C": (0.794, 0.530, 0.1259, 1.22)}
+# A y C: coordenadas de la ESCENA, porque ahí hay que tapar el sello que dibujó
+# la IA. B: la escena nueva no trae sello, así que van en coordenadas de la PIEZA
+# ya encuadrada y se colocan libres sobre el hombro de la botella.
+SELLO_POS = {"A": (0.734, 0.487, 0.1430, 1.20, False),
+             "B": (0.760, 0.352, 0.1620, 1.00, True),
+             "C": (0.794, 0.530, 0.1259, 1.22, False)}
 LEGAL_CAJA = (1442, 0, 2250, 470)
 
 ESCENAS = {"A": "cyber-oct2026-esc-rayo.png",
@@ -80,21 +83,25 @@ def pon_sello(capa, cual):
 
     Además tapa el sello que la IA dibujó — que, como la etiqueta, estaba
     redibujado y no es el oficial."""
-    fx, fy, fd, k = SELLO_POS[cual]
-    cx, cy = fx * W, fy * H
-    diam = int(fd * W * k)
+    fx, fy, fd, k, absoluto = SELLO_POS[cual]
+    z, ex, ey = ENCUADRE[cual]
+    if absoluto:
+        cx, cy, diam = fx * W, fy * H, int(fd * W * k)
+    else:
+        # se midieron sobre la escena SIN agrandar: hay que llevarlas al encuadre
+        # o el sello oficial deja de tapar al generado.
+        fw, fh = W * z, H * z
+        cx = fx * fw - (fw - W) * ex
+        cy = fy * fh - (fh - H) * ey
+        diam = int(fd * fw * k)
 
-    halo = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    ImageDraw.Draw(halo).ellipse([cx - diam * 0.92, cy - diam * 0.92,
-                                  cx + diam * 0.92, cy + diam * 0.92],
-                                 fill=(255, 214, 140, 78))
-    capa.alpha_composite(halo.filter(ImageFilter.GaussianBlur(diam * 0.30)))
-
+    # ⛔ SIN RESPLANDOR. Lo pidió Coni en las tres piezas el 23-09: el sello va
+    # limpio, sólo con una sombra corta que lo despegue del fondo.
     sombra = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    ImageDraw.Draw(sombra).ellipse([cx - diam / 2, cy - diam / 2 + diam * 0.06,
-                                    cx + diam / 2, cy + diam / 2 + diam * 0.06],
-                                   fill=(0, 0, 0, 120))
-    capa.alpha_composite(sombra.filter(ImageFilter.GaussianBlur(diam * 0.055)))
+    ImageDraw.Draw(sombra).ellipse([cx - diam / 2, cy - diam / 2 + diam * 0.035,
+                                    cx + diam / 2, cy + diam / 2 + diam * 0.035],
+                                   fill=(0, 0, 0, 96))
+    capa.alpha_composite(sombra.filter(ImageFilter.GaussianBlur(diam * 0.030)))
 
     se = Image.open(SELLO).convert("RGBA").resize((diam, diam), Image.LANCZOS)
     capa.alpha_composite(se, (int(cx - diam / 2), int(cy - diam / 2)))
@@ -109,12 +116,20 @@ def escribe(d, xy, t, f, fill, tr=TRACK):
         x += d.textlength(c, font=f) + tr * f.size
     return x
 
-def encuadra(ruta):
+# Cuánto se agranda cada escena y hacia dónde se recorta. Coni pidió el producto
+# y sus acompañamientos más grandes en A, y el fondo más grande en C — pero sin
+# que invadan la columna del texto, así que el recorte se corre a la DERECHA:
+# lo que crece, crece hacia el lado donde no hay texto.
+ENCUADRE = {"A": (1.34, 0.86, 0.30), "B": (1.12, 0.80, 0.02), "C": (1.26, 0.94, 0.16)}
+
+
+def encuadra(ruta, zoom=1.0, ex=0.5, ey=0.0):
     f = Image.open(ruta).convert("RGB")
-    e = max(W / f.width, H / f.height)
+    e = max(W / f.width, H / f.height) * zoom
     f = f.resize((round(f.width * e), round(f.height * e)), Image.LANCZOS)
-    ox = (f.width - W) // 2
-    return f.crop((ox, 0, ox + W, H))
+    ox = int((f.width - W) * ex)
+    oy = int((f.height - H) * ey)
+    return f.crop((ox, oy, ox + W, oy + H))
 
 def realza_primer_plano(f, desde=0.80):
     """El primer plano de A y C es superficie lisa en penumbra y el check
@@ -138,7 +153,8 @@ def velo_columna(base, hasta=0.50, fuerza=0.62):
 
 
 def componer(cual, precio, antes, velo=True):
-    base = encuadra(os.path.join(RAIZ, "public/assets/cava/kv", ESCENAS[cual]))
+    z, ex, ey = ENCUADRE[cual]
+    base = encuadra(os.path.join(RAIZ, "public/assets/cava/kv", ESCENAS[cual]), z, ex, ey)
     if cual in ("A", "C"):
         base = realza_primer_plano(base)
     if velo:

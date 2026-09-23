@@ -43,6 +43,7 @@ ORO = [(0.00, (148, 101, 33)), (0.30, (201, 162, 78)),
 
 F_BOLD   = SP + "/fonts/BebasNeuePro-Bold.otf"
 F_MIDDLE = SP + "/fonts/BebasNeuePro-Middle.otf"
+F_BOOK   = SP + "/fonts/BebasNeuePro-Book.otf"
 F_MANO   = "/Users/coni/Library/Fonts/Authentic Signature.otf"
 F_BUTLER = "/Users/coni/Library/Fonts/Butler_Bold.otf"
 
@@ -52,13 +53,20 @@ F_BUTLER = "/Users/coni/Library/Fonts/Butler_Bold.otf"
 LOGO_PNG   = "public/assets/cava/logo-cava-morande.png"
 LOGO_X, LOGO_Y, LOGO_W = 257, 367, 650        # medido sobre la pieza real
 LEGAL_CAJA = (1442, 0, 2250, 470)
-CAPSULA    = (535, 1922, 1015, 2289)
-SELLO_X, SELLO_BASE, PCT_BASE, OFF_BASE = 585, 2184, 2104, 2174
+# ── El bloque de oferta ─────────────────────────────────────────────────────
+# Todo cuelga de UN solo margen izquierdo. Antes la cápsula del descuento
+# arrancaba en x=535 y el nombre del vino en x=336: dos márgenes distintos, y se
+# notaba. Ahora la etiqueta, el nombre y los precios comparten BLOQUE_X.
+BLOQUE_X   = 336
+ETIQ_Y     = 1755      # arriba de la etiqueta del descuento
+NOMBRE_Y   = 2330      # base de la ÚLTIMA línea del nombre
+PRECIO_Y   = 2760      # base del precio con descuento
+ANTES_Y    = 2925      # base del precio anterior, tachado
 
 # --- el bodegón ---
 ALTO_BOTELLA = 0.52      # manual §11
 BASE_BOTELLA = 0.885     # dónde apoya, sobre el mármol del primer plano
-CENTRO_BOT   = 0.705
+CENTRO_BOT   = 0.760
 LADO_LUZ     = "der"     # el fondo va espejado: el haz entra por la derecha
 
 
@@ -104,16 +112,63 @@ def extrae_blanco(img, caja, umbral=120, margen=8):
     alpha = np.clip((sub.max(axis=2) - umbral) * (255.0 / (255 - umbral)), 0, 255).astype(np.uint8)
     return Image.fromarray(np.dstack([np.full(sub.shape, 255, np.uint8), alpha]))
 
-def reflejo(b, alto, largo=0.30, opacidad=0.30):
-    """Espejo vertical de la botella, desvanecido y desenfocado: lo que devuelve
-    una superficie pulida. Va DEBAJO del producto y nunca compite con él."""
+def reflejo(b, alto, largo=0.42, opacidad=0.42, aplasta=0.52):
+    """Espejo de la botella en el mármol.
+
+    ⚠️ NO es el espejo tal cual: la mesa se ve en escorzo, no de frente. Un
+    reflejo sin aplastar es lo que delataba el montaje — se leía como una
+    segunda botella colgando. Se comprime en vertical `aplasta`, se desenfoca
+    progresivamente (lo lejano del reflejo se difumina más) y se desvanece."""
     r = b.transpose(Image.FLIP_TOP_BOTTOM).crop((0, 0, b.width, int(alto * largo)))
-    r = r.filter(ImageFilter.GaussianBlur(7))
-    a = np.array(r.split()[-1]).astype(np.float32)
-    h = a.shape[0]
-    caida = (1.0 - np.linspace(0, 1, h) ** 0.65)[:, None]
-    r.putalpha(Image.fromarray(np.clip(a * caida * opacidad, 0, 255).astype(np.uint8)))
-    return r
+    r = r.resize((r.width, max(1, int(r.height * aplasta))), Image.LANCZOS)
+    h = r.height
+    # desenfoque creciente hacia abajo = hacia el fondo del reflejo
+    capas = [r.filter(ImageFilter.GaussianBlur(3 + 9 * (i / 3.0))) for i in range(4)]
+    out = capas[0]
+    for i in range(1, 4):
+        lo, hi = (i - 1) / 3.0, i / 3.0
+        m = np.clip((np.linspace(0, 1, h) - lo) / (hi - lo), 0, 1) * 255
+        out = Image.composite(capas[i], out,
+                              Image.fromarray(np.tile(m.astype(np.uint8)[:, None], (1, r.width))))
+    a = np.array(out.split()[-1]).astype(np.float32)
+    caida = (1.0 - np.linspace(0, 1, h) ** 0.55)[:, None]
+    out.putalpha(Image.fromarray(np.clip(a * caida * opacidad, 0, 255).astype(np.uint8)))
+    return out
+
+
+def sombra_direccional(lienzo, silueta, cx, ybase, anc, lado="der"):
+    """La sombra que proyecta la botella, tirada al lado CONTRARIO de la luz.
+
+    La elipse centrada de `cava-kv-realista.py` sirve para un grupo de botellas
+    de frente; acá la luz entra clara y alta por un lado, así que la sombra tiene
+    que salir disparada hacia el otro y aplastada contra la mesa. Sin esto la
+    botella se leía apoyada en el aire."""
+    signo = -1 if lado == "der" else 1
+    capa = Image.new("RGBA", lienzo.size, (0, 0, 0, 0))
+    d = ImageDraw.Draw(capa)
+    largo = anc * 2.35
+    d.polygon([(cx - anc * 0.40, ybase),
+               (cx + anc * 0.40, ybase),
+               (cx + signo * largo * 0.62 + anc * 0.16, ybase + anc * 0.30),
+               (cx + signo * largo * 0.62 - anc * 0.16, ybase + anc * 0.30)],
+              fill=(10, 5, 2, 120))
+    d.ellipse([cx + signo * largo * 0.62 - anc * 0.30, ybase + anc * 0.30 - anc * 0.11,
+               cx + signo * largo * 0.62 + anc * 0.30, ybase + anc * 0.30 + anc * 0.11],
+              fill=(10, 5, 2, 105))
+    lienzo.alpha_composite(capa.filter(ImageFilter.GaussianBlur(anc * 0.115)))
+
+    # OCLUSIÓN DE CONTACTO, en tres radios. Es lo que más vende el apoyo y es lo
+    # que siempre falta: la botella tapa la luz rasante del mármol, así que
+    # alrededor de su base la piedra tiene que apagarse. Sin esto quedaba un halo
+    # claro justo bajo el vidrio y la botella se leía flotando sobre la mesa.
+    for rx, ry, al, bl in ((0.92, 0.26, 150, 0.16),    # penumbra amplia
+                           (0.58, 0.155, 205, 0.065),  # sombra pegada
+                           (0.415, 0.075, 255, 0.016)):  # el contacto mismo
+        oc = Image.new("RGBA", lienzo.size, (0, 0, 0, 0))
+        ImageDraw.Draw(oc).ellipse([cx - anc * rx, ybase - anc * ry * 0.55,
+                                    cx + anc * rx, ybase + anc * ry],
+                                   fill=(0, 0, 0, al))
+        lienzo.alpha_composite(oc.filter(ImageFilter.GaussianBlur(anc * bl)))
 
 
 def contiene_fondo(f):
@@ -142,8 +197,8 @@ def contiene_fondo(f):
     # el check `desenfoque_parcial` mide VARIANZA del Laplaciano: una banda con
     # textura suave le parece lisa. Un realce local la revela — no inventa nada,
     # sube el micro-contraste de lo que la foto ya tiene.
-    realce = out.filter(ImageFilter.UnsharpMask(radius=9, percent=145, threshold=2))
-    mezcla = (np.clip((t - 0.78) / 0.10, 0, 1) * 255).astype(np.uint8)
+    realce = out.filter(ImageFilter.UnsharpMask(radius=7, percent=215, threshold=1))
+    mezcla = (np.clip((t - 0.72) / 0.10, 0, 1) * 255).astype(np.uint8)
     if mezcla.ndim > 1:
         mezcla = mezcla[:, 0]
     mask = Image.fromarray(np.tile(mezcla[:, None], (1, w)))
@@ -163,6 +218,11 @@ def main():
     ap.add_argument("--salida", required=True)
     ap.add_argument("--zoom", type=float, default=1.32)
     ap.add_argument("--encuadre-y", dest="encuadre_y", type=float, default=0.0)
+    ap.add_argument("--encuadre-x", dest="encuadre_x", type=float, default=0.0)
+    # ⚠️ DE MUESTRA. No hay precio del 7Colores Limited Edition Carmenere ni en
+    # los editables ni en los briefs de CAVA: hay que pedírselo a la ejecutiva.
+    ap.add_argument("--precio", default="$9.245")
+    ap.add_argument("--precio-antes", dest="precio_antes", default="$18.490")
     a = ap.parse_args()
 
     kvr = carga("cava-kv-realista.py")
@@ -176,7 +236,9 @@ def main():
     f = Image.open(os.path.join(RAIZ, a.fondo)).convert("RGB")
     esc = max(W / f.width, H / f.height) * a.zoom
     f = f.resize((round(f.width * esc), round(f.height * esc)), Image.LANCZOS)
-    ox = int((f.width - W) * 0.5)
+    # el óvalo de luz del mármol tiene que caer BAJO la botella, no al lado:
+    # si no, la botella queda en penumbra sobre una mesa iluminada aparte.
+    ox = int((f.width - W) * a.encuadre_x)
     oy = int((f.height - H) * a.encuadre_y)
     f = f.crop((ox, oy, ox + W, oy + H))
     f = kvr.desenfoque_por_profundidad(f, BASE_BOTELLA, radio_lejos=11.0, radio_cerca=1.6)
@@ -194,9 +256,20 @@ def main():
     assert abs(anc / float(alto) - r_nat) < 0.004, "la botella se deformó"
     cx, ybase = W * CENTRO_BOT, H * BASE_BOTELLA
 
-    kvr.sombra(lienzo, cx, ybase, anc)
     b = bot.resize((anc, alto), Image.LANCZOS)
     b = il.integra_luz(b, lado=LADO_LUZ, fuerza=0.75)
+
+    # POZO DE LUZ propio: el óvalo iluminado del fondo no llega hasta donde
+    # terminó la botella, y sin luz alrededor el producto queda flotando en
+    # penumbra. Es el foco que pondría un fotógrafo, y va ANTES de la sombra
+    # para que la oclusión lo recorte y ancle la base.
+    pozo = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(pozo).ellipse([cx - anc * 1.55, ybase - anc * 0.50,
+                                  cx + anc * 1.55, ybase + anc * 0.42],
+                                 fill=(255, 226, 178, 54))
+    lienzo.alpha_composite(pozo.filter(ImageFilter.GaussianBlur(anc * 0.28)))
+
+    sombra_direccional(lienzo, b, cx, ybase, anc, lado=LADO_LUZ)
 
     # reflejo en el mármol: la superficie es pulida, así que DEBE devolver algo.
     # Sin él, la franja de abajo quedaba en negro plano (el QA de agencia lo
@@ -228,25 +301,38 @@ def main():
     x = escribe(d, (x, yb), p1, f_mid, BLANCO)
     escribe(d, (x, yb), p2, f_bold, BLANCO)
 
-    cx0, cy0, cx1, cy1 = CAPSULA
-    cw, ch = cx1 - cx0, cy1 - cy0
-    caps = degradado_oro(cw, ch).convert("RGBA")
-    ImageDraw.Draw(caps).rectangle([15, 15, cw - 16, ch - 16], outline=(255, 255, 255, 210), width=3)
-    capa.alpha_composite(caps, (cx0, cy0))
+    # ── etiqueta del descuento, al modo de la barra de Itaú ────────────────
+    # El sello dorado con filete era calcado del KV de septiembre. Acá el
+    # descuento tiene que MANDAR, así que pasa a etiqueta sólida en el naranja
+    # de la marca con el texto en blanco: contrasta contra el fondo oscuro y no
+    # compite con el dorado del bokeh.
+    f_pc = ft(F_BOLD, 118.0)
+    txt_pc = "50% OFF"
+    pad_x, pad_y = 46, 26
+    anchura = ancho(d, txt_pc, f_pc)
+    asc = f_pc.getbbox("50%OFF")
+    alto_txt = asc[3] - asc[1]
+    ex1, ey1 = BLOQUE_X + anchura + pad_x * 2, ETIQ_Y + alto_txt + pad_y * 2
+    d.rectangle([BLOQUE_X, ETIQ_Y, ex1, ey1], fill=(225, 103, 14, 255))
+    escribe(d, (BLOQUE_X + pad_x, ey1 - pad_y - 2), txt_pc, f_pc, BLANCO)
 
-    f_num, f_pct, f_off = ft(F_BUTLER, 114.37), ft(F_BUTLER, 58.0), ft(F_BUTLER, 25.95)
-    xn = escribe(d, (SELLO_X, SELLO_BASE), "50", f_num, BLANCO, 0.0)
-    escribe(d, (xn + 6, PCT_BASE), "%", f_pct, BLANCO, 0.0)
-    escribe(d, (xn + 10, OFF_BASE), "OFF", f_off, BLANCO, 0.02)
-
-    # tres líneas cortas, como el nombre del mismo vino en el Cyber de junio
-    # («7COLORES / LIMITED / CARMENERE 2023»): en dos, «Limited Edition» se
-    # metía debajo de la botella.
+    # ── nombre del vino, tres líneas ───────────────────────────────────────
     f_nom = ft(F_BOLD, 51.28)
-    inter = y_arriba(796.1) - y_arriba(847.4)          # la interlínea del sistema
-    y3 = y_arriba(796.1) + 284
+    inter = y_arriba(796.1) - y_arriba(847.4)
     for i, linea in enumerate(["7Colores", "Limited Edition", "Carmenere"]):
-        escribe(d, (161.3 * K, y3 - inter * (2 - i)), linea, f_nom, BLANCO)
+        escribe(d, (BLOQUE_X, NOMBRE_Y - inter * (2 - i)), linea, f_nom, BLANCO)
+
+    # ── precios: el de ahora manda, el de antes va SIEMPRE tachado ─────────
+    # el sistema los tiene en 163,74 y 105,95 sobre la mesa de 1080, pero ahí el
+    # bloque no llevaba etiqueta de descuento encima. Se bajan para que el
+    # precio no invada la botella — comprobado por el test de choque de abajo.
+    f_pre = ft(F_BOLD, 124.0)
+    f_ant = ft(F_BOOK, 80.0)
+    escribe(d, (BLOQUE_X, PRECIO_Y), a.precio, f_pre, BLANCO)
+    xf = escribe(d, (BLOQUE_X, ANTES_Y), a.precio_antes, f_ant, (176, 172, 166))
+    caja = f_ant.getbbox(a.precio_antes)
+    medio = ANTES_Y - (caja[3] - caja[1]) * 0.36
+    d.line([(BLOQUE_X - 8, medio), (xf + 2, medio)], fill=(176, 172, 166), width=9)
 
     # ¿el bloque de texto de la izquierda pisa la botella? (skill: cero choques)
     silueta = np.zeros((H, W), bool)

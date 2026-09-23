@@ -5,6 +5,216 @@
 
 ---
 
+## 2026-09-23 (tarde, ronda 2) — PAID: casacabe y D1 con imagen nueva
+
+Diego pidió cambiar las imágenes que ya se habían usado. **Reemplazadas sobre los
+mismos fileId** (los enlaces de la entrada de abajo siguen valiendo):
+
+- **02-A casacabe (1:1 y 4:5):** fondo nuevo = DJI_0281 idealizada con Nano Banana
+  Pro (`raw/tierracalma/paid-oct2026/ia/cenital-nb-1.png`): terreno verde y limpio,
+  vista más alta. El deslinde sigue los cercos que se ven en la imagen; la casa es
+  el 2,99 % del lote. Se descartaron 2 aéreos de Mystic (oblicuos, lotes redondos).
+- **D1 fin de semana (9:16 y 4:5):** imagen nueva de Mystic (`ia/finde-1.png`),
+  gente de lejos, casa de madera. Ahora va sobre los marcos bloqueados: **la
+  píldora del 9:16 ya no pisa el 10 % inferior** (pendiente 3 de abajo, resuelto).
+- 02-B no cambia (DJI_0324, no se había usado antes).
+- Regla nueva en el manual (§ 4 bis): en pauta tampoco se repiten imágenes.
+
+---
+
+## 2026-09-23 (tarde) — PAID de octubre: 6 archivos entregados
+
+**Brief:** «Brief Diseño Tierra Calma - Octubre 2026.xlsx» de Ignacio Retamal
+(`1PguPpqzNIkxWKOv4BInI8ep7_R-EI57l`, en PERFORMANCE/Octubre 2026). Copia local
+y mockups extraídos en `raw/tierracalma/paid-oct2026/`. 3 piezas × 2 formatos
+para la campaña de WhatsApp del **01-oct**; 02-A y 02-B son un test A/B.
+
+**Entregado** en la carpeta del brief (`1mJSqrR7aK7V96DQosCA1hArH7Oxr-Uqg`),
+todos sueltos en la raíz (ver ⚠️ abajo):
+
+| Archivo | fileId |
+|---|---|
+| TC_B2_casacabe_1x1.jpg | 1fVdLw8SDS1blh8Z-KaA4g1qzNx2wGuHg |
+| TC_B2_casacabe_4x5.jpg | 1zcKUsh28cBcbKo_WjI1j5wfPkN4rj5zK |
+| TC_A2_mapa30min_1x1.jpg | 1NE_OP4gb2NNdKOfHn6UIFK3EQIrQUWu1 |
+| TC_A2_mapa30min_4x5.jpg | 1DRIW62wz4GG6h2kdAn4_d9zWroRxBNni |
+| TC_D1_findesemana_9x16.jpg | 1HuKnDCq5v-5TLATd-0WoEu-OIZojibxO |
+| TC_D1_findesemana_4x5.jpg | 172nxI_QAvLnr5AahMeO0w7wfbE0VpLHt |
+
+Código: `src/compositions/tierracalma/PaidOctubre.tsx` (composiciones
+`TCPaidOct1x1`, `TCPaidOct4x5`, `TCPaidOctD1x9x16`, `TCPaidOctD1x4x5`) +
+`scripts/tc-paid-oct-prep.py`, que arma todos los fondos. Las 6 pasan
+`qa/motor.py --marca tierra-calma` (textos declarados a mano en
+`out/tierracalma/paid-oct2026/textos.json`: el extractor sólo conoce OctubreV3).
+
+**Decisiones:**
+- **B4 «La primavera» → D1 «El fin de semana largo».** No hay toma con árboles
+  brotados ni atardecer: las 44 fotos son de una mañana nublada de invierno. El
+  brief manda D1 en ese caso; Diego lo aprobó. D1 se hizo sobre la pieza
+  «alcance» de septiembre: se borraron las líneas 1-2 (inpainting) y se
+  recompusieron en Inter Tight 300. **D1 sólo sirve hasta el 12-oct.**
+- **«PASALO» → «PÁSALO»** (voseo en el brief, igual que en septiembre).
+- **02-A:** cenital real DJI_0335 (el lote de la caseta verde). La casa está a
+  escala: 150 m² = **3,00 %** del deslinde, calculado, no a ojo.
+- **02-B:** oblicuo real DJI_0324. ⛔ Se descartó 0331: el llano del fondo está
+  **anegado**. Santiago no se ve en ninguna toma (neblina).
+- Titular de 02-A en IvyOra cursiva dentro de chips translúcidos: lo que hacían
+  la pieza «5.000 m²» de septiembre y el boceto de Ignacio, aunque la regla
+  escrita del brief pide sans. Si Ignacio lo objeta, es acá.
+- Marco 1:1: se deriva del MARCO-POST quitando 270 filas idénticas, sin redibujar.
+
+**⚠️ Pendiente / avisar a Ignacio:**
+1. No van en carpetas por bloque como pide el brief. El conector de Drive entra
+   como Constanza Olivares y los archivos son de la cuenta del estudio, así que
+   no se pueden mover (y el token `drive.file` no ve subcarpetas ajenas). El
+   nombre ya trae el bloque.
+2. Las fotos son de invierno, no golden hour: se les sacó el gris sin fingir
+   atardecer.
+3. La píldora de D1 9:16 queda en las filas 1770-1840, dentro del 10 % inferior
+   que el brief pide libre. Viene así de la pieza de septiembre que ya corre.
+4. Fechas del brief: revisión la semana del 22-09, aprobación de la clienta 29-09.
+
+---
+
+## 2026-09-23 (noche, 2ª vuelta de ajustes) — Diego Aguilar
+
+**Qué se hizo:** `st-12-10` rehecha entera sobre una referencia que pasó Diego
+(pieza de Sonatta, Curitiba). Sólo esa pieza; los reels siguen sin tocarse.
+
+**La referencia devolvió la pieza al brief.** El brief de octubre pedía *"un mapa
+estilizado y minimalista"* y lo que había era una **captura de Google Maps**
+velada en azul. Eso explicaba los dos problemas que se venían arrastrando: el
+degradado que se comía el mapa —comentario de las 19:24— y el pin duplicado que
+quedó anotado como pendiente hace un par de horas. **Los dos desaparecen** al
+dibujar el mapa en vez de fotografiarlo.
+
+**Lo que se aplicó de la referencia:** fondo sólido sin foto, mapa de celdas a
+línea fina con los nombres en versales, pin fantasma detrás del titular, titular
+a la izquierda montado sobre el mapa, placa de ubicación pegada al borde de la
+foto, foto con dos esquinas redondeadas en diagonal, remate cruzando el borde
+inferior y placas de datos abajo.
+
+### El error que casi se cuela
+
+El primer pase ponía **«SANTIAGO» como celda vecina de «MAIPÚ»**. Maipú *es*
+Santiago, así que habrían quedado de hermanas de sí mismas. Se cambió por
+**CERRILLOS** —comuna real y vecina, verificada en `MAPA-3`— y la relación con
+Santiago, que es lo que pide el brief, entró como **dirección**: una flecha sobre
+el esquema, no una comuna más.
+
+Es exactamente la familia de error de la Ruta 68 y de los topónimos corruptos de
+MAPA-1/2. **Las formas de las celdas son esquemáticas; las vecindades no**: se
+verificaron una por una contra `MAPA-3`, que sí es cartografía real.
+
+### Detalles que costaron una vuelta
+
+- El titular en IvyOra se partía en tres líneas («MÁS CERCA DE / LA /
+  TRANQUILIDAD»). Se resolvió con `nowrap` y saltos explícitos, no agrandando la
+  caja: el ancho está limitado por el mapa que tiene al lado.
+- El remate quedaba **dentro** de la foto en vez de cruzar su borde, que es lo
+  que hace la referencia. Bajó de 1232 a 1268.
+- El rótulo PEÑAFLOR caía sobre el borde de su celda; se corrió hacia dentro.
+
+### QA
+
+La compuerta pasa las 16 piezas. Queda **un aviso**: `c-20-10-2` cierra con
+«estarás?», una línea de una sola palabra. **Se deja a propósito** — es la slide
+que Diego puso como referencia de todo el carrusel esta misma tarde, y cambiarla
+contradiría esa instrucción. La regla es aviso y no bloqueante justo para esto.
+
+**Dónde quedó:** `st-12-10` re-subida sobre el mismo fileId. `Bajada` quedó sin
+uso y se eliminó.
+
+**Abierto:** sigue faltando la **confirmación escrita de Fran o Blanca** para
+«Rol individual» y «Acceso controlado». El pin duplicado del mapa **ya no es un
+pendiente**: lo resolvió el rediseño.
+
+---
+
+## 2026-09-23 (noche, ronda de ajustes) — Diego Aguilar
+
+**Qué se hizo:** La ronda del carrusel del 20/10 más tres comentarios sueltos.
+**Los reels no se tocaron**, por instrucción expresa.
+
+### El carrusel: de cinco maquetas a una
+
+> *"Veo cada slide desarticulada; lo ideal sería que la ubicación de cada número
+> con el título estén en el mismo lugar que la slide 2."*
+
+Montada la tira de las seis con una guía en la fila 205, se vio de inmediato: las
+slides 2 y 3 apoyaban el número ahí, y las 4, 5 y 6 caían **cada una a una altura
+distinta**. La causa no era un descuido de posición sino que **cada slide estaba
+maquetada por su lado**: dos a mano sobre crema y tres con `Cuerpo` centrado.
+
+Se corrigió en el sistema, no pieza por pieza: un componente **`Cabecera`** que
+las cinco comparten, anclado en `CARR.sinLogo` (205), con `sobre="crema"` o
+`sobre="foto"` como única diferencia. `Numero` desapareció, absorbido por él.
+
+De paso, las slides 2 y 3 **estaban fuera de la escala 50–70** (sans 46/48, serif
+60/62) y eso también las separaba del resto. Ahora usan `Modulado` como todas, con
+una `tinta` nueva para el navy sobre fondo crema.
+
+**El hueco de la slide 3.** *"En el punto 2 donde dice «¿Qué tienes cerca?» hay
+mucho espacio entre ese título y las fotos."* Medido: el titular cerraba en ~363 y
+los recortes bajaban de 470 — **107 px de hueco arriba contra 31 abajo**. A 430 y
+805 el reparto queda ~67 / ~57.
+
+### Las tres correcciones sueltas
+
+| Pieza | Comentario | Qué se hizo |
+|---|---|---|
+| `p-09-10` | «la conversación no parece de WhatsApp, debería llevar el color, los check de enviado y visto» | burbuja saliente en verde `#D9FDD3` + doble check azul `#53BDEB`; la entrante queda blanca |
+| `p-09-10` | «el botón está muy apretado, debe ser más ancho» | **no se puede ensanchar** — ver abajo |
+| `st-12-10` | «se abusa mucho del degradé azul, se pierde el mapa» | mapa de 0,62 → 0,86; ventana limpia de 34-66 % → 24-76 % |
+
+**La píldora no se podía ensanchar, y eso importa.** Su contorno viene **dibujado
+dentro de `MARCO-POST.png`**, con el filete entrando por los dos lados: es asset
+bloqueado. Medido, el contenido ocupaba 559 px de los 574 de la píldora — 9 px de
+aire a la izquierda y 6 a la derecha. Lo que cedió fue el texto (26 pt, icono 23,
+gap 11): ahora 501 px con 37 y 36 de aire. **El CTA no se acortó**: va verbatim
+del brief.
+
+Se aplicó a **las dos** piezas de post. Diego comentó `p-09-10`, pero `p-29-10`
+comparte marco y texto, o sea el mismo aprieto exacto; corregir sólo una las
+habría dejado distintas.
+
+**Al subir el mapa hubo que subir también los rótulos.** Con la cartografía
+visible, un rótulo blanco suelto sobre mapa claro deja de leerse. SANTIAGO,
+TIERRA CALMA y PADRE HURTADO llevan ahora la misma base navy que ya tenía RUTA
+78. Primer intento: la base iba a todo el ancho y **partía la pieza con una
+franja**; se corrigió para que abrace el texto.
+
+### Una decisión que queda abierta
+
+Con el mapa legible se ve que **`MAPA-3` trae su propio pin «Tierra Calma»**
+(fila 819, columna 326) además de nuestro rótulo centrado: se leen dos marcas. En
+el carrusel esto se resolvió montando nuestro pin sobre el del mapa, pero **acá
+no se puede**: el mapa calza exacto en la ventana (1170 × 0,923 = 1080) y no hay
+margen para desplazarlo. Mover nuestro rótulo rompería la secuencia vertical
+Santiago → Ruta 78 → Tierra Calma. Es decisión de diseño, de Diego.
+
+### Verificación
+
+De las 16 estáticas cambiaron **ocho** —`c-20-10-2` a `c-20-10-6`, `p-09-10`,
+`p-29-10` y `st-12-10`— y las otras ocho quedaron **idénticas al píxel**. Todas
+re-subidas sobre el mismo fileId.
+
+**Qué sigue:** sigue esperando la ronda del **cliente**.
+
+**Abierto:** el pin duplicado del mapa, y sigue faltando la **confirmación
+escrita de Fran o Blanca** para «Rol individual» y «Acceso controlado».
+
+> ⚠️ **Los comentarios de la grilla no se pueden leer desde acá.** La grilla de
+> octubre es un **.xlsx subido**, no una hoja nativa de Google: el conector
+> devuelve los 21 hilos **con el texto vacío** (sólo extrae comentarios de Docs,
+> Sheets y Slides nativos), el token del estudio da 404 porque su permiso es
+> `drive.file`, y los comentarios no viajan dentro del archivo. Para leerlos
+> habría que tener la grilla como hoja nativa — decisión de Carlos, que es el
+> dueño. Mientras tanto, el feedback llega por los comentarios sobre los PNG de
+> la carpeta de entrega, que sí se leen.
+
+---
+
 ## 2026-09-23 (noche) — audio nuevo de los reels, HECHO
 
 **Qué se hizo:** Diego reconectó el conector de Magnific y se ejecutó el relevo

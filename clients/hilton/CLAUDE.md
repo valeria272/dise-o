@@ -1534,6 +1534,11 @@ carpeta fija la numeración del carrusel — mírala antes de nombrar archivos.
 5. **La renumeración se resuelve renombrando** (mp4 Y gif): el cierre pasó de n°6 a
    n°7 conservando su `fileId`, y QB entró como archivo nuevo. `dt-c1-s5-subir.py`
    verifica por md5 contra `entrega-r7/` antes de renombrar.
+6. **Portada provisoria = montaje del lobby** (jarrón + lámparas doradas, enlaces de
+   Eli `14L5gK…` y `1IU97W…`), «después la reemplazamos». ⛔ Esos clips son SDR
+   bt709 (no HLG, no se tonemapean) y en `-filter_complex` el mp4 **heredaba la
+   matriz −90° del iPhone** y salía acostado: `-display_rotation 0` en la entrada +
+   `transpose=1`. Revisa siempre con `ffmpeg -i` que la salida no diga `rotation`.
 
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 

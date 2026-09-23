@@ -228,6 +228,55 @@ def montaje_gym() -> Path:
     return salida
 
 
+# ⭐⭐ RONDA 10 (Eli, 23-09) — LA PORTADA SALE DEL LOBBY, EN MONTAJE.
+# Eli pasó dos enlaces nuevos «después la reemplazamos»: provisorios hasta que
+# llegue material definitivo. Son SDR bt709 a 30 fps —no HLG—, así que NO pasan
+# por el tonemapeo (aplicárselo los lava).
+#   1 · `portada-b` (`14L5gK…`) · el jarrón con ramas frente al espejo, que sube
+#       hacia el techo — termina mirando arriba…
+#   2 · `portada-a` (`1IU97W…`) · …y funde con el paneo de las lámparas doradas,
+#       que arranca ahí. El movimiento sigue de un corte al otro.
+# 2,65 + 2,65 − 0,30 = 5,0 s.
+MONTAJE_PORTADA = [
+    dict(src="portada-b.mov", desde=0.00, dur=2.65, fy=0.55),
+    dict(src="portada-a.mov", desde=0.30, dur=2.65, fy=0.50),
+]
+FUNDIDO_PORTADA = 0.30
+GRADO_PORTADA = dict(contraste=1.04, satur=0.98, brillo=-0.08, gamma=0.88)
+
+
+def montaje_portada() -> Path:
+    salida = DESTINO / "portada_lobby.mp4"
+    entradas, cadenas = [], []
+    g = GRADO_PORTADA
+    for i, t in enumerate(MONTAJE_PORTADA):
+        alto = r"min(ih\,iw*5/4)"
+        # ⛔ Con `-filter_complex` estos dos NO se auto-rotaron y el lobby salió
+        # acostado (y el mp4 HEREDA la matriz −90° y el reproductor lo vuelve a
+        # girar). `-display_rotation 0` anula la matriz de entrada y se gira a
+        # mano: la matriz
+        # dice −90°, o sea 90° en sentido horario = `transpose=1`.
+        entradas += ["-display_rotation", "0", "-ss", f"{t['desde']:.2f}",
+                     "-t", f"{t['dur']}", "-i", str(ORIGEN_R8 / t["src"])]
+        cadenas.append(
+            f"[{i}:v]transpose=1,crop=iw:{alto}:0:(ih-{alto})*{t['fy']:.4f},"
+            f"eq=contrast={g['contraste']}:saturation={g['satur']}:"
+            f"brightness={g['brillo']}:gamma={g['gamma']},"
+            f"setpts=PTS-STARTPTS,fps={FPS},format=yuv420p[v{i}]")
+    off = MONTAJE_PORTADA[0]["dur"] - FUNDIDO_PORTADA
+    cadenas.append(f"[v0][v1]xfade=transition=fade:duration={FUNDIDO_PORTADA}:"
+                   f"offset={off:.2f}[x]")
+    subprocess.run(
+        [FF, "-y", "-v", "error", *entradas,
+         "-filter_complex", ";".join(cadenas), "-map", "[x]",
+         "-t", f"{SALIDA_S}", "-an",
+         "-c:v", "libx264", "-profile:v", "high", "-pix_fmt", "yuv420p",
+         "-crf", CRF, "-preset", "slow", "-movflags", "+faststart",
+         str(salida)], check=True)
+    print(f"  {salida.relative_to(RAIZ)}  montaje de 2 cortes (lobby)")
+    return salida
+
+
 # La cadena de tonemapeo HLG → SDR. `hable` conserva los altos sin aplastar el
 # medio, que es lo que pasa con `reinhard`; `desat=0` evita que los altos se
 # vayan a gris — el reclamo transversal del cliente en otra marca fue justo
@@ -327,6 +376,8 @@ def main() -> int:
     if a.previo:
         previo()
         return 0
+    if a.solo and "portada_lobby" in a.solo:
+        montaje_portada()                 # ronda 10
     for nombre, p in CLIPS.items():
         if a.solo and nombre not in a.solo:
             continue

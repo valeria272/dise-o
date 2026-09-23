@@ -171,10 +171,11 @@ const cuerpoSans = (texto: string) => {
   return Math.round(SANS_MAX - t * (SANS_MAX - SANS_MIN));
 };
 
-const Modulado: React.FC<{tramos: Tramo[]; base?: number; ancho?: number}> = ({
+const Modulado: React.FC<{tramos: Tramo[]; base?: number; ancho?: number; tinta?: string}> = ({
   tramos,
   base,
   ancho = 860,
+  tinta,
 }) => {
   // El cuerpo sale del largo de TODA la frase, contando los dos roles: lo que
   // manda es cuánto texto hay que leer, no de qué tipografía es cada tramo.
@@ -184,9 +185,11 @@ const Modulado: React.FC<{tramos: Tramo[]; base?: number; ancho?: number}> = ({
     style={{
       width: ancho,
       textAlign: "center",
-      color: "#fff",
+      // `tinta` es para las slides de fondo crema: ahí el titular va en navy y
+      // el halo —que existe para despegar el blanco de una foto— sobra.
+      color: tinta ?? "#fff",
       lineHeight: 1.16,
-      textShadow: "0 2px 24px rgba(0,0,0,0.5)",
+      textShadow: tinta ? "none" : "0 2px 24px rgba(0,0,0,0.5)",
     }}
   >
     {tramos.map((tr, i) => (
@@ -242,34 +245,16 @@ const ICheck: React.FC<Ico> = ({s = 26, c = "#fff"}) => (
   </Svg>
 );
 
-const Bajada: React.FC<{size?: number; ancho?: number; children: React.ReactNode}> = ({
-  size = 36,
-  ancho,
-  children,
-}) => (
-  <div
-    style={{
-      fontFamily: SANS,
-      fontWeight: 300,
-      fontSize: size,
-      lineHeight: 1.36,
-      color: "rgba(255,255,255,0.9)",
-      textShadow: "0 2px 16px rgba(0,0,0,0.5)",
-      maxWidth: ancho,
-      whiteSpace: "pre-line",
-    }}
-  >
-    {children}
-  </div>
-);
 
 /** Texto DENTRO del contorno de píldora que ya trae el marco. */
 const Pildora: React.FC<{
   caja: {x: number; y: number; w: number; h: number};
   icono?: React.ReactNode;
   size?: number;
+  /** Separación icono-texto. Se baja cuando el texto no cabe holgado. */
+  gap?: number;
   children: React.ReactNode;
-}> = ({caja, icono, size = 30, children}) => (
+}> = ({caja, icono, size = 30, gap = 13, children}) => (
   <div
     style={{
       position: "absolute",
@@ -280,7 +265,7 @@ const Pildora: React.FC<{
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      gap: 13,
+      gap,
     }}
   >
     {icono}
@@ -411,10 +396,27 @@ const Pastilla: React.FC<{y: number; icono?: React.ReactNode; children: React.Re
   </div>
 );
 
+/** Doble check de WhatsApp: azul = visto. */
+const ICheckWsp: React.FC = () => (
+  <svg width={34} height={20} viewBox="0 0 34 20" fill="none" style={{flexShrink: 0}}>
+    <path d="M2 11.2l4.6 4.6L17.6 4.8" stroke="#53BDEB" strokeWidth="2.2"
+      strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M14.4 11.2l4.6 4.6L30 4.8" stroke="#53BDEB" strokeWidth="2.2"
+      strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+/** El verde de la burbuja saliente de WhatsApp. */
+const VERDE_WSP = "#D9FDD3";
+
 /**
- * Burbuja de conversación blanca con colita. Excepción declarada al globo
- * translúcido de la marca: el brief del 09/10 pide "dos grandes globos de
- * conversación blancos".
+ * Burbuja de conversación con colita. Excepción declarada al globo translúcido
+ * de la marca: el brief del 09/10 pide "dos grandes globos de conversación".
+ *
+ * Diego (23-09): *"la conversación no parece ser como de WhatsApp, debería
+ * llevar el color, los check de enviado y visto"*. La burbuja SALIENTE —la de
+ * la derecha, la que escribe quien publica— va en verde y cierra con el doble
+ * check azul; la entrante se queda blanca, que es como se ven de verdad.
  */
 const Burbuja: React.FC<{
   x: number;
@@ -422,36 +424,45 @@ const Burbuja: React.FC<{
   w: number;
   cola: "izq" | "der";
   children: React.ReactNode;
-}> = ({x, y, w, cola, children}) => (
-  <div style={{position: "absolute", left: x, top: y, width: w}}>
-    <div
-      style={{
-        backgroundColor: "#fff",
-        borderRadius: 34,
-        padding: "26px 32px",
-        fontFamily: SANS,
-        fontWeight: 400,
-        fontSize: 38,
-        lineHeight: 1.3,
-        color: TC.colors.ink,
-        boxShadow: "0 18px 44px rgba(0,0,0,0.26)",
-      }}
-    >
-      {children}
+}> = ({x, y, w, cola, children}) => {
+  const mia = cola === "der";
+  const fondo = mia ? VERDE_WSP : "#fff";
+  return (
+    <div style={{position: "absolute", left: x, top: y, width: w}}>
+      <div
+        style={{
+          backgroundColor: fondo,
+          borderRadius: 34,
+          padding: mia ? "26px 32px 18px" : "26px 32px",
+          fontFamily: SANS,
+          fontWeight: 400,
+          fontSize: 38,
+          lineHeight: 1.3,
+          color: TC.colors.ink,
+          boxShadow: "0 18px 44px rgba(0,0,0,0.26)",
+        }}
+      >
+        {children}
+        {mia ? (
+          <div style={{display: "flex", justifyContent: "flex-end", marginTop: 6}}>
+            <ICheckWsp />
+          </div>
+        ) : null}
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          bottom: -14,
+          [cola === "izq" ? "left" : "right"]: 44,
+          width: 30,
+          height: 22,
+          backgroundColor: fondo,
+          clipPath: cola === "izq" ? "polygon(0 0, 100% 0, 30% 100%)" : "polygon(0 0, 100% 0, 70% 100%)",
+        } as React.CSSProperties}
+      />
     </div>
-    <div
-      style={{
-        position: "absolute",
-        bottom: -14,
-        [cola === "izq" ? "left" : "right"]: 44,
-        width: 30,
-        height: 22,
-        backgroundColor: "#fff",
-        clipPath: cola === "izq" ? "polygon(0 0, 100% 0, 30% 100%)" : "polygon(0 0, 100% 0, 70% 100%)",
-      } as React.CSSProperties}
-    />
-  </div>
-);
+  );
+};
 
 // =============================================================================
 // LAS PIEZAS · ronda de Diego del 22-09
@@ -650,7 +661,14 @@ const G: React.FC = () => (
     >
       Tierra Calma · Padre Hurtado
     </div>
-    <Pildora caja={POST.pill} icono={<IWsp s={25} />} size={29}>
+    {/* Diego (23-09, sobre p-09-10): "el boton esta muy apretado, debe ser mas
+        ancho". El contorno de la pildora viene DIBUJADO dentro de
+        MARCO-POST.png —asset bloqueado, no se puede ensanchar—, asi que lo que
+        cede es el texto: medido, ocupaba 559 px de los 574 de la pildora, o sea
+        9 px de aire a la izquierda y 6 a la derecha. Con estos valores baja a
+        ~505 y deja ~34 px por lado. El CTA no se acorta: va verbatim del brief.
+        Va en las DOS piezas de post, que comparten marco y texto. */}
+    <Pildora caja={POST.pill} icono={<IWsp s={23} />} size={26} gap={11}>
       Agenda tu visita por WhatsApp
     </Pildora>
   </Lienzo>
@@ -664,127 +682,320 @@ const G: React.FC = () => (
 // sólo nuestros rótulos.
 // =============================================================================
 
+/**
+ * ⭐ H · 12/10 · HISTORIA — mapa de comunas. REHECHA el 23-09 sobre la
+ * referencia que pasó Diego (una pieza de Sonatta, Curitiba).
+ *
+ * La referencia devuelve la pieza a lo que el brief pedía desde el principio:
+ * *"un fondo en azul Tierra Calma con un mapa ESTILIZADO Y MINIMALISTA que
+ * muestre la relación Santiago → Padre Hurtado"*. Lo que había era una captura
+ * de Google Maps velada en azul, que además traía su propio pin y obligaba a
+ * pelear con el degradado para que se leyera.
+ *
+ * Su gramática, tal como se aplicó:
+ *   · fondo sólido, sin fotografía detrás
+ *   · mapa de CELDAS dibujadas a línea fina, con los nombres en versales
+ *   · un pin fantasma, grande, detrás del titular
+ *   · titular a la IZQUIERDA, montado sobre el mapa
+ *   · placa oscura con la ubicación, pegada al borde superior de la foto
+ *   · foto con una esquina redondeada
+ *   · remate "A 15 minutos del peaje · Padre Hurtado" cruzando el borde
+ *   · placas de datos y el llamado abajo
+ *
+ * ⛔ LA CARTOGRAFÍA NO SE INVENTA. Las celdas son un esquema —como el
+ * `Mapa.tsx` de septiembre, que ya declara "NO es un mapa real"— pero las
+ * VECINDADES se verificaron contra `MAPA-3`, que sí es cartografía real: Maipú
+ * y Santiago al nororiente, San Bernardo al oriente, Calera de Tango al
+ * suroriente, Talagante al sur y Peñaflor al poniente. Las formas son
+ * esquemáticas; quién limita con quién, no.
+ */
+
+/** Las celdas del esquema. viewBox 620×560. */
+const COMUNAS: {d: string; label: string[]; lx: number; ly: number; foco?: boolean}[] = [
+  {d: "M230 30 L410 15 L392 150 L240 170 Z", label: ["MAIPÚ"], lx: 318, ly: 100},
+  {d: "M410 15 L560 60 L612 185 L462 252 L392 150 Z", label: ["CERRILLOS"], lx: 497, ly: 140},
+  {d: "M612 185 L595 320 L402 352 L462 252 Z", label: ["SAN", "BERNARDO"], lx: 523, ly: 258},
+  {
+    d: "M595 320 L548 440 L452 528 L272 402 L402 352 Z",
+    label: ["CALERA", "DE TANGO"],
+    lx: 452,
+    ly: 412,
+  },
+  {d: "M452 528 L300 552 L152 505 L178 300 L272 402 Z", label: ["TALAGANTE"], lx: 292, ly: 478},
+  {
+    d: "M230 30 L72 140 L22 258 L58 392 L152 505 L178 300 L240 170 Z",
+    label: ["PEÑAFLOR"],
+    lx: 168,
+    ly: 300,
+  },
+  {
+    d: "M240 170 L392 150 L462 252 L402 352 L272 402 L178 300 Z",
+    label: ["PADRE", "HURTADO"],
+    lx: 318,
+    ly: 330,
+    foco: true,
+  },
+];
+
+const PIN_D =
+  "M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0zm0 17a5 5 0 110-10 5 5 0 010 10z";
+
+const MapaComunas: React.FC = () => (
+  <svg viewBox="0 0 620 560" style={{width: "100%", height: "100%", overflow: "visible"}}>
+    {COMUNAS.map((c, i) => (
+      <path
+        key={i}
+        d={c.d}
+        fill={c.foco ? "rgba(201,185,154,0.14)" : "none"}
+        stroke={TC.colors.sand}
+        strokeWidth={c.foco ? 2.4 : 1.6}
+        strokeLinejoin="round"
+        opacity={c.foco ? 0.95 : 0.55}
+      />
+    ))}
+    {COMUNAS.map((c, i) => (
+      <text
+        key={`t${i}`}
+        x={c.lx}
+        y={c.ly}
+        textAnchor="middle"
+        style={{
+          fontFamily: SANS,
+          fontWeight: c.foco ? 500 : 300,
+          fontSize: c.foco ? 23 : 21,
+          letterSpacing: "0.12em",
+          fill: c.foco ? "#fff" : TC.colors.sand,
+        }}
+      >
+        {c.label.map((ln, k) => (
+          <tspan key={k} x={c.lx} dy={k === 0 ? 0 : 27}>
+            {ln}
+          </tspan>
+        ))}
+      </text>
+    ))}
+    {/* La relación con Santiago —lo que pide el brief— va como DIRECCIÓN sobre
+        el esquema, no como una celda más: Maipú y Cerrillos ya SON Santiago, y
+        ponerlas de hermanas suyas sería geografía falsa. */}
+    <g opacity={0.72}>
+      <path
+        d="M430 -6 L492 -30"
+        stroke={TC.colors.sand}
+        strokeWidth={1.6}
+        strokeLinecap="round"
+      />
+      <path
+        d="M492 -30 L476 -32 M492 -30 L484 -18"
+        stroke={TC.colors.sand}
+        strokeWidth={1.6}
+        strokeLinecap="round"
+        fill="none"
+      />
+      <text
+        x={500}
+        y={-38}
+        textAnchor="start"
+        style={{
+          fontFamily: SANS,
+          fontWeight: 400,
+          fontSize: 20,
+          letterSpacing: "0.14em",
+          fill: TC.colors.sand,
+        }}
+      >
+        SANTIAGO
+      </text>
+    </g>
+    {/* el pin del proyecto, dentro de la celda de Padre Hurtado */}
+    <g transform="translate(300 232)">
+      <circle cx="16" cy="17" r="21" fill={TC.colors.brown} />
+      <path d={PIN_D} fill="#fff" transform="translate(7 4) scale(0.76)" />
+    </g>
+  </svg>
+);
+
+/** Placa de dato, como las del pie de la referencia. */
+const Placa: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <div
+    style={{
+      display: "inline-block",
+      backgroundColor: "rgba(201,185,154,0.16)",
+      padding: "11px 26px",
+      fontFamily: SANS,
+      fontWeight: 300,
+      fontSize: 27,
+      letterSpacing: "0.04em",
+      color: TC.colors.cream,
+      textTransform: "uppercase",
+      whiteSpace: "nowrap",
+    }}
+  >
+    {children}
+  </div>
+);
+
+const Fuerte: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <span style={{fontWeight: 600, color: "#fff"}}>{children}</span>
+);
+
 const H: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
     <AbsoluteFill style={{backgroundColor: TC.colors.navy}} />
-    {/* MAPA-3 en transparencia */}
-    <div style={{position: "absolute", left: 0, right: 0, top: 560, height: 620, overflow: "hidden"}}>
-      {/* Diego: "al mapa hay que cambiarle el color como las versiones de
-          mapa-1 y mapa-2" — va el duotono, no la captura cruda. */}
-      <Img
-        src={OCT("mapa3-story")}
-        style={{width: "100%", height: "100%", objectFit: "cover", opacity: 0.62}}
-      />
-      <AbsoluteFill
+
+    {/* el pin fantasma, detrás del titular */}
+    <svg
+      viewBox="0 0 24 36"
+      style={{position: "absolute", left: 96, top: 332, width: 230, height: 345, opacity: 0.07}}
+    >
+      <path d={PIN_D} fill="#fff" />
+    </svg>
+
+    {/* el mapa de comunas */}
+    <div style={{position: "absolute", left: 498, top: 300, width: 502, height: 454}}>
+      <MapaComunas />
+    </div>
+
+    {/* titular a la izquierda, montado sobre el mapa */}
+    <div style={{position: "absolute", left: 112, top: 400, width: 530, textAlign: "left"}}>
+      <div
         style={{
-          background: `linear-gradient(to bottom, ${TC.colors.navy} 0%, rgba(11,44,73,0.55) 14%, rgba(11,44,73,0) 34%, rgba(11,44,73,0) 66%, rgba(11,44,73,0.55) 86%, ${TC.colors.navy} 100%)`,
+          fontFamily: SANS,
+          fontWeight: 300,
+          fontSize: 56,
+          lineHeight: 1.1,
+          letterSpacing: "0.005em",
+          color: "#fff",
         }}
-      />
-    </div>
-    {/* nuestros rótulos, los únicos legibles */}
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 740,
-        textAlign: "center",
-        fontFamily: SANS,
-        fontWeight: 300,
-        fontSize: 32,
-        letterSpacing: "0.3em",
-        textTransform: "uppercase",
-        color: "rgba(255,255,255,0.85)",
-      }}
-    >
-      Santiago
-    </div>
-    <div style={{position: "absolute", left: 0, right: 0, top: 812, display: "flex", justifyContent: "center"}}>
-      <div style={{width: 1, height: 116, backgroundColor: TC.colors.sand}} />
-    </div>
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 852,
-        textAlign: "center",
-        fontFamily: SANS,
-        fontWeight: 300,
-        fontSize: 24,
-        letterSpacing: "0.26em",
-        textTransform: "uppercase",
-        color: TC.colors.sand,
-      }}
-    >
-      <span style={{backgroundColor: TC.colors.navy, padding: "0 16px"}}>Ruta 78</span>
-    </div>
-    <div style={{position: "absolute", left: 0, right: 0, top: 946, display: "flex", justifyContent: "center", alignItems: "center", gap: 14}}>
-      <IPin s={36} />
-      <span
+      >
+        CERCA DE
+        <br />
+        SANTIAGO.
+      </div>
+      <div
         style={{
           fontFamily: SERIF,
           fontStyle: "italic",
           fontWeight: 500,
-          fontSize: 54,
+          fontSize: IVY,
+          lineHeight: 1.06,
           textTransform: "uppercase",
           color: "#fff",
+          marginTop: 12,
+          whiteSpace: "nowrap",
         }}
       >
-        Tierra Calma
-      </span>
+        MÁS CERCA DE
+        <br />
+        LA TRANQUILIDAD
+      </div>
     </div>
+
+    {/* la placa de ubicación, pegada al borde superior de la foto */}
+    <div style={{position: "absolute", left: 96, top: 852}}>
+      <div
+        style={{
+          display: "inline-block",
+          backgroundColor: "#07203A",
+          padding: "13px 30px",
+          fontFamily: SANS,
+          fontWeight: 400,
+          fontSize: 30,
+          letterSpacing: "0.1em",
+          textTransform: "uppercase",
+          color: TC.colors.cream,
+        }}
+      >
+        Padre Hurtado · Región Metropolitana
+      </div>
+    </div>
+
+    {/* la foto, con una esquina redondeada */}
+    <div
+      style={{
+        position: "absolute",
+        left: 96,
+        top: 918,
+        width: 888,
+        height: 416,
+        overflow: "hidden",
+        borderRadius: "56px 0 56px 0",
+      }}
+    >
+      <Img
+        src={OCT("h-casa")}
+        style={{width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 58%"}}
+      />
+      <AbsoluteFill
+        style={{
+          background: "linear-gradient(to bottom, rgba(11,44,73,0) 45%, rgba(11,44,73,0.8) 100%)",
+        }}
+      />
+    </div>
+
+    {/* el remate, cruzando el borde inferior de la foto */}
     <div
       style={{
         position: "absolute",
         left: 0,
         right: 0,
-        top: 1016,
-        textAlign: "center",
-        fontFamily: SANS,
-        fontWeight: 300,
-        fontSize: 26,
-        letterSpacing: "0.22em",
-        textTransform: "uppercase",
-        color: "rgba(255,255,255,0.8)",
+        top: 1268,
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "center",
+        gap: 22,
       }}
     >
-      Padre Hurtado
+      <div
+        style={{
+          fontFamily: SANS,
+          fontWeight: 300,
+          fontSize: 38,
+          lineHeight: 1.12,
+          color: TC.colors.cream,
+          textAlign: "right",
+          paddingBottom: 18,
+        }}
+      >
+        A 15 minutos
+        <br />
+        del peaje
+      </div>
+      <div
+        style={{
+          fontFamily: SERIF,
+          fontStyle: "italic",
+          fontWeight: 500,
+          fontSize: 92,
+          lineHeight: 1,
+          color: TC.colors.cream,
+        }}
+      >
+        Padre Hurtado
+      </div>
     </div>
 
-    {/* la foto editorial, abajo */}
-    <div style={{position: "absolute", left: 0, right: 0, top: 1210, height: 710, overflow: "hidden"}}>
-      <Img src={OCT("h-casa")} style={{width: "100%", height: "100%", objectFit: "cover"}} />
-      <AbsoluteFill
-        style={{
-          background: `linear-gradient(to bottom, ${TC.colors.navy} 0%, rgba(11,44,73,0.6) 12%, rgba(11,44,73,0.08) 34%, rgba(11,44,73,0.5) 74%, rgba(11,44,73,0.95) 100%)`,
-        }}
-      />
+    {/* las placas de datos */}
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 1412,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 10,
+      }}
+    >
+      <Placa>
+        Parcelas de <Fuerte>aprox. 5.000 m²</Fuerte> · desde <Fuerte>UF 2.500</Fuerte>
+      </Placa>
+      <Placa>
+        Electricidad y cierre perimetral <Fuerte>ya instalados</Fuerte>
+      </Placa>
     </div>
+
     <Marco archivo="MARCO-ST" />
-    {/* Banda alta: acá el medio lo ocupa el mapa. Centrado a 1520 el titular
-        caía justo encima de los rótulos SANTIAGO y TIERRA CALMA.
-        ⛔ Y no puede empezar antes de la fila 250: ahí Meta pone su interfaz.
-        Con `desde={230}` el titular arrancaba en la 228 y la compuerta lo marcó
-        como bloqueante — la única pieza de octubre que pisaba la zona segura. */}
-    <Cuerpo desde={275} hasta={560}>
-      <Modulado
-        ancho={880}
-        tramos={[
-          {t: "Cerca de Santiago.", ivy: true, cursiva: true},
-          {t: "Más cerca de la tranquilidad.", ivy: true, cursiva: true, salto: true},
-        ]}
-      />
-      <Aire h={22} />
-      <Bajada size={32} ancho={780}>
-        Padre Hurtado te permite seguir conectado con la ciudad, con el espacio y la calma que
-        buscas para vivir.
-      </Bajada>
-    </Cuerpo>
-    {/* En globo: suelta sobre la foto no generaba contraste. */}
-    <Globo y={1420} max={720} size={30} op={0.62}>
-      Parcelas de aprox. 5.000 m² desde UF 2.500
-    </Globo>
     <Pildora caja={STORY.pill} icono={<IPin s={28} />} size={31}>
       Conoce el proyecto
     </Pildora>
@@ -893,20 +1104,55 @@ const J: React.FC = () => (
 // K · 20/10 · CARRUSEL 6 SLIDES · qué revisar antes de elegir · Pilar 2
 // =============================================================================
 
-const Numero: React.FC<{n: string}> = ({n}) => (
+/**
+ * ⛔ LA CABECERA DEL CARRUSEL — número + titular, SIEMPRE en la misma fila.
+ *
+ * Diego, 23-09-2026: *"veo cada slide desarticulada; lo ideal sería que la
+ * ubicación de cada número con el título estén en el mismo lugar que la slide 2,
+ * que sería la principal del resto de los puntos"*.
+ *
+ * La slide 2 ancla en `CARR.sinLogo` (fila **205**) y esa es la referencia de
+ * todo el carrusel. Por eso esta cabecera **NO se centra vertical**: un carrusel
+ * es un solo objeto y, al deslizar, el número tiene que caer en la misma fila.
+ * Es la excepción declarada a «todo centrado al medio» para las slides 2 a 6.
+ *
+ * Antes cada slide se maquetaba por su lado —dos a mano sobre crema y tres con
+ * `Cuerpo` centrado— y por eso el número aparecía a tres alturas distintas.
+ */
+const Cabecera: React.FC<{
+  n: string;
+  /** `crema` = fondo de color, tinta navy y sin halo. `foto` = sobre fotografía. */
+  sobre?: "foto" | "crema";
+  children: React.ReactNode;
+}> = ({n, sobre = "foto", children}) => (
   <div
     style={{
-      fontFamily: SERIF,
-      fontStyle: "italic",
-      fontWeight: 400,
-      fontSize: 58,
-      textTransform: "uppercase",
-      color: TC.colors.sand,
-      lineHeight: 1,
-      textShadow: "0 2px 18px rgba(0,0,0,0.5)",
+      position: "absolute",
+      left: 0,
+      right: 0,
+      top: CARR.sinLogo,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      textAlign: "center",
     }}
   >
-    {n}
+    <div
+      style={{
+        fontFamily: SERIF,
+        fontStyle: "italic",
+        fontWeight: 400,
+        fontSize: 58,
+        textTransform: "uppercase",
+        color: sobre === "crema" ? TC.colors.brown : TC.colors.sand,
+        lineHeight: 1,
+        textShadow: sobre === "crema" ? "none" : "0 2px 18px rgba(0,0,0,0.5)",
+      }}
+    >
+      {n}
+    </div>
+    <Aire h={16} />
+    {children}
   </div>
 );
 
@@ -947,30 +1193,13 @@ const K2: React.FC = () => (
       }}
     />
     <MarcoTenido archivo="MARCO-CARRUSEL-2" color={TC.colors.navy} />
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: CARR.sinLogo,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-        color: TC.colors.navy,
-      }}
-    >
-      <div style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: 58, textTransform: "uppercase", color: TC.colors.brown}}>
-        01.
-      </div>
-      <Aire h={16} />
-      <div style={{width: 880, lineHeight: 1.16}}>
-        <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 46}}>¿Qué tan </span>
-        <span style={{fontFamily: SERIF, fontWeight: 500, fontSize: 60, textTransform: "uppercase"}}>conectado</span>
-        <br />
-        <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 46}}>estarás?</span>
-      </div>
-    </div>
+    <Cabecera n="01." sobre="crema">
+      <Modulado
+        ancho={880}
+        tinta={TC.colors.navy}
+        tramos={[{t: "¿Qué tan "}, {t: "conectado", ivy: true}, {t: "estarás?", salto: true}]}
+      />
+    </Cabecera>
     {/* el pin sobre el mapa, con nuestro rótulo */}
     {/* El pin propio va EXACTAMENTE sobre el que ya trae el mapa (medido: canvas
         382,590 con el encuadre al 13 %), así se lee uno solo y no dos. */}
@@ -1054,34 +1283,21 @@ const K3: React.FC = () => (
         cuatro recortes sin rotación y el cierre en texto plano, sin globo. */}
     <AbsoluteFill style={{backgroundColor: TC.colors.cream}} />
     <MarcoTenido archivo="MARCO-CARRUSEL-3" color={TC.colors.navy} />
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: CARR.sinLogo,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-        color: TC.colors.navy,
-      }}
-    >
-      <div style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: 58, textTransform: "uppercase", color: TC.colors.brown}}>
-        02.
-      </div>
-      <Aire h={16} />
-      <div style={{width: 880, lineHeight: 1.16}}>
-        <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 48}}>¿Qué tienes </span>
-        <span style={{fontFamily: SERIF, fontWeight: 500, fontSize: 62, textTransform: "uppercase"}}>cerca</span>
-        <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 48}}>?</span>
-      </div>
-    </div>
+    <Cabecera n="02." sobre="crema">
+      <Modulado
+        ancho={880}
+        tinta={TC.colors.navy}
+        tramos={[{t: "¿Qué tienes "}, {t: "cerca", ivy: true}, {t: "?"}]}
+      />
+    </Cabecera>
     {/* los cuatro recortes, derechos y en retícula */}
-    <Recorte src="sv-super" x={178} y={470} w={312} label="Supermercados" />
-    <Recorte src="sv-salud" x={590} y={470} w={312} label="Salud" />
-    <Recorte src="sv-colegio" x={178} y={845} w={312} label="Colegios" />
-    <Recorte src="sv-comercio" x={590} y={845} w={312} label="Comercio" />
+    {/* Diego (23-09): "hay mucho espacio entre ese titulo y las fotos". Bajaban
+        de 470 y el titular cierra en ~363, o sea 107 px de hueco contra 31 que
+        quedaban abajo. A 430 el reparto queda parejo: ~67 arriba, ~57 abajo. */}
+    <Recorte src="sv-super" x={178} y={430} w={312} label="Supermercados" />
+    <Recorte src="sv-salud" x={590} y={430} w={312} label="Salud" />
+    <Recorte src="sv-colegio" x={178} y={805} w={312} label="Colegios" />
+    <Recorte src="sv-comercio" x={590} y={805} w={312} label="Comercio" />
     <div
       style={{
         position: "absolute",
@@ -1149,17 +1365,12 @@ const K4: React.FC = () => (
     <Foto src={OCT("k-parcela-limpia")} foco="50% 50%" />
     <Degradado arriba={0.6} abajo={0.46} />
     <Marco archivo="MARCO-CARRUSEL-2" />
-    {/* Banda alta: en esta slide el medio lo ocupan los indicadores sobre la
-        parcela, así que el titular se centra en el espacio que queda libre.
-        Centrado a 1150 caía justo encima de "CIERRE PERIMETRAL". */}
-    <Cuerpo desde={205} hasta={570}>
-      <Numero n="03." />
-      <Aire h={16} />
+    <Cabecera n="03.">
       <Modulado
         ancho={880}
         tramos={[{t: "¿Qué "}, {t: "incluye", ivy: true}, {t: "realmente tu parcela?", salto: true}]}
       />
-    </Cuerpo>
+    </Cabecera>
     {/* ⚠️ "Rol individual" y "Acceso controlado" van con el OK de Diego y
         siguen sin confirmación escrita de Fran o Blanca. */}
     <Indicador x={252} y={640} lado="der">
@@ -1189,16 +1400,7 @@ const K5: React.FC = () => (
     <Foto src={OCT("k-planos")} foco="50% 50%" />
     <Degradado arriba={0.64} abajo={0.44} />
     <Marco archivo="MARCO-CARRUSEL-3" />
-    {/* Diego (23-09): "centrar toda la informacion". Horizontalmente ya estaba
-        (desvio maximo medido: 1,5 px); lo que no estaba centrado era el
-        CONJUNTO: el titular quedaba a media altura y el globo colgaba abajo,
-        con 450 px de vacio arriba y 90 abajo. Aca el globo entra EN FLUJO
-        dentro de `Cuerpo`, asi que numero + titular + globo se centran como un
-        solo grupo. La banda es simetrica respecto de las lineas del marco
-        (filas 131 y 1284): 74 px de aire arriba y abajo. */}
-    <Cuerpo desde={205} hasta={1210}>
-      <Numero n="04." />
-      <Aire h={16} />
+    <Cabecera n="04.">
       <Modulado
         ancho={880}
         tramos={[
@@ -1208,11 +1410,15 @@ const K5: React.FC = () => (
           {t: "?"},
         ]}
       />
-      <Aire h={46} />
-      <Globo max={790} size={35} destacado="En Tierra Calma te acompañamos">
-        {"Antes de avanzar, pregunta por documentación, reserva, formas de pago y escrituración."}
-      </Globo>
-    </Cuerpo>
+    </Cabecera>
+    {/* El globo vuelve a su ancla. El 23-09 a las 15:01 Diego pidió "centrar toda
+        la información" y se metió EN FLUJO bajo el titular; esa misma tarde, al
+        mirar el carrusel entero, pidió que el número y el título quedaran donde
+        la slide 2. Manda lo segundo: el carrusel es un solo objeto. A 880 el
+        globo cae donde el de la slide 6, que es el ritmo de la familia. */}
+    <Globo y={880} max={790} size={35} destacado="En Tierra Calma te acompañamos">
+      {"Antes de avanzar, pregunta por documentación, reserva, formas de pago y escrituración."}
+    </Globo>
   </Lienzo>
 );
 
@@ -1224,16 +1430,14 @@ const K6: React.FC = () => (
     <Foto src={OCT("k-caminando")} foco="50% 52%" />
     <Degradado arriba={0.6} abajo={0.54} />
     <Marco archivo="MARCO-CARRUSEL-4" />
-    {/* Diego (23-09): "subir un poco el bloque de texto, que no tape a las
-        personas". Las cabezas de la pareja estan en la fila ~672 de
-        k-caminando.jpg; el bloque cierra en 617. */}
-    <Cuerpo desde={205} hasta={790}>
-      <Numero n="05." />
-      <Aire h={16} />
+    {/* Diego (23-09): "que no tape a las personas". Con la cabecera anclada en
+        205 el bloque cierra en ~440 y las cabezas de la pareja estan en la fila
+        ~672 de k-caminando.jpg. */}
+    <Cabecera n="05.">
       <Modulado ancho={880} tramos={[{t: "Y lo más importante:"}]} />
       <Aire h={18} />
       <Modulado ancho={900} tramos={[{t: "conócela en persona", ivy: true, cursiva: true}]} />
-    </Cuerpo>
+    </Cabecera>
     <Globo y={880} max={770} size={34} destacado="Parcelas desde UF 2.500">
       {"El entorno, los accesos y las dimensiones del terreno se entienden mucho mejor cuando estás ahí."}
     </Globo>
@@ -1355,7 +1559,14 @@ const M: React.FC = () => (
     <Globo y={1058} max={760} size={29} op={0.6}>
       Aprox. 5.000 m² desde UF 2.500 · Padre Hurtado
     </Globo>
-    <Pildora caja={POST.pill} icono={<IWsp s={25} />} size={29}>
+    {/* Diego (23-09, sobre p-09-10): "el boton esta muy apretado, debe ser mas
+        ancho". El contorno de la pildora viene DIBUJADO dentro de
+        MARCO-POST.png —asset bloqueado, no se puede ensanchar—, asi que lo que
+        cede es el texto: medido, ocupaba 559 px de los 574 de la pildora, o sea
+        9 px de aire a la izquierda y 6 a la derecha. Con estos valores baja a
+        ~505 y deja ~34 px por lado. El CTA no se acorta: va verbatim del brief.
+        Va en las DOS piezas de post, que comparten marco y texto. */}
+    <Pildora caja={POST.pill} icono={<IWsp s={23} />} size={26} gap={11}>
       Agenda tu visita por WhatsApp
     </Pildora>
   </Lienzo>

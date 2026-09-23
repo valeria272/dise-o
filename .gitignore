@@ -523,6 +523,9 @@ out/rentas/**/mail/
 # su script Y sus fondos se commitean el mismo día.
 !public/assets/tierracalma/marcos/**
 !public/assets/tierracalma/oct/**
+# PAID octubre (23-09): recortes del dron, marco 1:1 derivado, fondos de D1 y la
+# geometría medida (paid-oct.json). Los genera scripts/tc-paid-oct-prep.py.
+!public/assets/tierracalma/paid-oct/**
 # La locución, la música y el logo animado son parte de la entrega de octubre:
 # sin ellos el reel no se vuelve a armar. tc_motion.mp4 sale de convertir
 # `TIERRA CALMA MOTION.mov` del KINGSTON, que NO viaja en el repo.

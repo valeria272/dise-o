@@ -10,9 +10,15 @@
 estaba en un comentario anclado sino **en la grilla de octubre**, que Carlos Figueroa
 modificó hoy 13:55Z: en la fila del carrusel PAID, bajo `COMENTARIOS CLIENTE`, dice
 **«Quitar info sala de ventas»**. El T2 del brief decía «Deptos que puedes recorrer en
-**nuestra sala de ventas**». Se sacó solo la parte vetada y quedó «Deptos que puedes
-recorrer **antes de arrendar**». La foto no se tocó: muestra un departamento, no una sala
-de ventas. QA en verde, subida por fileId.
+**nuestra sala de ventas**». El texto de reemplazo lo dio **Diego literal** y va verbatim,
+sin punto final porque así lo escribió:
+
+> «Visita presencial antes de decidir. Deptos que puedes recorrer **luego de agendar tu
+> visita por WhatsApp**»
+
+El bold cae sobre la acción, que es la gramática de bajada de esta marca. La foto no se
+tocó: muestra un departamento, no una sala de ventas. Corte de línea a mano (dos líneas,
+sin huérfanas), márgenes 6,5 % / 10,5 %, QA en verde, subida por fileId.
 
 > ⚠️ **Lección: el feedback del cliente no siempre llega como comentario en Drive.**
 > Esta marca lo escribe en la celda `COMENTARIOS CLIENTE` de la grilla. Hay que leer la

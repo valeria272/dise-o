@@ -237,12 +237,14 @@ pieza("rentas_c-paid1", "paid/paid_1_45.jpg",
 # izquierda. Ver clients/nueva-urbe/CLAUDE.md §Lámina numerada.
 for n, num, titulo, sub in [
     (2, "01", "Visita presencial antes de decidir.",
-     # 23-09-2026 · la grilla de octubre trae, en COMENTARIOS CLIENTE del carrusel
-     # PAID: «Quitar info sala de ventas». El T2 del brief decía «Deptos que
-     # puedes recorrer en nuestra sala de ventas». Se saca SOLO la parte vetada y
-     # se conserva el resto de la frase del brief; el remate es propuesta nuestra
-     # y necesita el OK de la CM.
-     "Deptos que puedes recorrer<br><b>antes de arrendar.</b>"),
+     # 23-09-2026 · la grilla trae «Quitar info sala de ventas» en COMENTARIOS
+     # CLIENTE del carrusel PAID. El texto de reemplazo lo dio Diego Aguilar
+     # LITERAL y va verbatim, sin punto final (así lo escribió):
+     #   «Visita presencial antes de decidir. Deptos que puedes recorrer luego
+     #    de agendar tu visita por WhatsApp»
+     # El bold cae sobre la acción, que es la gramática de la bajada en esta
+     # marca: regular y bold en la misma frase para destacar el dato.
+     "Deptos que puedes recorrer luego de<br><b>agendar tu visita por WhatsApp</b>"),
     (3, "02", "Contrato claro",
      "<b>Sin letra chica,</b> ni comisión."),
     (4, "03", "Un ejecutivo te acompaña",

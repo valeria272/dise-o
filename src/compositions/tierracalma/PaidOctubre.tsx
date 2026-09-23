@@ -18,8 +18,9 @@ import geo from "../../../public/assets/tierracalma/paid-oct/paid-oct.json";
 //   en ninguna toma (neblina): los tiempos los cuentan las cápsulas.
 // · 02-A y D1 van con IA desde la ronda 2 (Diego, 23-09: «cambia las imágenes
 //   que ya se usaron»), como manda el manual para los estáticos (§ 4 bis).
-//   02-A es la cenital real DJI_0281 IDEALIZADA con Nano Banana Pro (misma traza
-//   de caminos y cercos, más verde, golden hour); D1, una escena nueva de Mystic.
+//   Ronda 3: el generador de la casa es SEEDREAM 5 PRO. 02-A es la cenital real
+//   DJI_0281 idealizada con Seedream 5 Pro edit (misma traza de caminos y cercos,
+//   más verde, golden hour); D1, una escena nueva de Seedream 5 Pro.
 // · La casa de 02-A está A ESCALA: 150 m² = 3,00 % del deslinde, calculado en
 //   scripts/tc-paid-oct-prep.py. Sólo contorno, sin relleno ni sombra: plano,
 //   no render (brief).
@@ -172,7 +173,9 @@ const CasaCabe: React.FC<{f: Formato}> = ({f}) => {
   // Etiqueta del plano: a la derecha de la casa, a la altura de su ala larga.
   const der = Math.max(...g.casa.map((p) => p[0]));
   const arr = Math.min(...g.casa.map((p) => p[1]));
-  const titularY = f === "1x1" ? 662 : 900; // 1:1: 662 deja 22 px bajo la esquina del deslinde
+  // Ronda 3: el lote de la cenital de Seedream está abajo, así que el titular
+// sube bajo el logo y ninguna línea del deslinde lo cruza.
+  const titularY = f === "1x1" ? 250 : 262;
   return (
     <Lienzo f={f} foto={`a-cenital-${f}.jpg`}>
       <Degradado arriba={0.55} abajo={0.72} corte={f === "1x1" ? 50 : 58} />

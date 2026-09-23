@@ -245,26 +245,6 @@ const ICheck: React.FC<Ico> = ({s = 26, c = "#fff"}) => (
   </Svg>
 );
 
-const Bajada: React.FC<{size?: number; ancho?: number; children: React.ReactNode}> = ({
-  size = 36,
-  ancho,
-  children,
-}) => (
-  <div
-    style={{
-      fontFamily: SANS,
-      fontWeight: 300,
-      fontSize: size,
-      lineHeight: 1.36,
-      color: "rgba(255,255,255,0.9)",
-      textShadow: "0 2px 16px rgba(0,0,0,0.5)",
-      maxWidth: ancho,
-      whiteSpace: "pre-line",
-    }}
-  >
-    {children}
-  </div>
-);
 
 /** Texto DENTRO del contorno de píldora que ya trae el marco. */
 const Pildora: React.FC<{
@@ -702,136 +682,320 @@ const G: React.FC = () => (
 // sólo nuestros rótulos.
 // =============================================================================
 
+/**
+ * ⭐ H · 12/10 · HISTORIA — mapa de comunas. REHECHA el 23-09 sobre la
+ * referencia que pasó Diego (una pieza de Sonatta, Curitiba).
+ *
+ * La referencia devuelve la pieza a lo que el brief pedía desde el principio:
+ * *"un fondo en azul Tierra Calma con un mapa ESTILIZADO Y MINIMALISTA que
+ * muestre la relación Santiago → Padre Hurtado"*. Lo que había era una captura
+ * de Google Maps velada en azul, que además traía su propio pin y obligaba a
+ * pelear con el degradado para que se leyera.
+ *
+ * Su gramática, tal como se aplicó:
+ *   · fondo sólido, sin fotografía detrás
+ *   · mapa de CELDAS dibujadas a línea fina, con los nombres en versales
+ *   · un pin fantasma, grande, detrás del titular
+ *   · titular a la IZQUIERDA, montado sobre el mapa
+ *   · placa oscura con la ubicación, pegada al borde superior de la foto
+ *   · foto con una esquina redondeada
+ *   · remate "A 15 minutos del peaje · Padre Hurtado" cruzando el borde
+ *   · placas de datos y el llamado abajo
+ *
+ * ⛔ LA CARTOGRAFÍA NO SE INVENTA. Las celdas son un esquema —como el
+ * `Mapa.tsx` de septiembre, que ya declara "NO es un mapa real"— pero las
+ * VECINDADES se verificaron contra `MAPA-3`, que sí es cartografía real: Maipú
+ * y Santiago al nororiente, San Bernardo al oriente, Calera de Tango al
+ * suroriente, Talagante al sur y Peñaflor al poniente. Las formas son
+ * esquemáticas; quién limita con quién, no.
+ */
+
+/** Las celdas del esquema. viewBox 620×560. */
+const COMUNAS: {d: string; label: string[]; lx: number; ly: number; foco?: boolean}[] = [
+  {d: "M230 30 L410 15 L392 150 L240 170 Z", label: ["MAIPÚ"], lx: 318, ly: 100},
+  {d: "M410 15 L560 60 L612 185 L462 252 L392 150 Z", label: ["CERRILLOS"], lx: 497, ly: 140},
+  {d: "M612 185 L595 320 L402 352 L462 252 Z", label: ["SAN", "BERNARDO"], lx: 523, ly: 258},
+  {
+    d: "M595 320 L548 440 L452 528 L272 402 L402 352 Z",
+    label: ["CALERA", "DE TANGO"],
+    lx: 452,
+    ly: 412,
+  },
+  {d: "M452 528 L300 552 L152 505 L178 300 L272 402 Z", label: ["TALAGANTE"], lx: 292, ly: 478},
+  {
+    d: "M230 30 L72 140 L22 258 L58 392 L152 505 L178 300 L240 170 Z",
+    label: ["PEÑAFLOR"],
+    lx: 168,
+    ly: 300,
+  },
+  {
+    d: "M240 170 L392 150 L462 252 L402 352 L272 402 L178 300 Z",
+    label: ["PADRE", "HURTADO"],
+    lx: 318,
+    ly: 330,
+    foco: true,
+  },
+];
+
+const PIN_D =
+  "M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0zm0 17a5 5 0 110-10 5 5 0 010 10z";
+
+const MapaComunas: React.FC = () => (
+  <svg viewBox="0 0 620 560" style={{width: "100%", height: "100%", overflow: "visible"}}>
+    {COMUNAS.map((c, i) => (
+      <path
+        key={i}
+        d={c.d}
+        fill={c.foco ? "rgba(201,185,154,0.14)" : "none"}
+        stroke={TC.colors.sand}
+        strokeWidth={c.foco ? 2.4 : 1.6}
+        strokeLinejoin="round"
+        opacity={c.foco ? 0.95 : 0.55}
+      />
+    ))}
+    {COMUNAS.map((c, i) => (
+      <text
+        key={`t${i}`}
+        x={c.lx}
+        y={c.ly}
+        textAnchor="middle"
+        style={{
+          fontFamily: SANS,
+          fontWeight: c.foco ? 500 : 300,
+          fontSize: c.foco ? 23 : 21,
+          letterSpacing: "0.12em",
+          fill: c.foco ? "#fff" : TC.colors.sand,
+        }}
+      >
+        {c.label.map((ln, k) => (
+          <tspan key={k} x={c.lx} dy={k === 0 ? 0 : 27}>
+            {ln}
+          </tspan>
+        ))}
+      </text>
+    ))}
+    {/* La relación con Santiago —lo que pide el brief— va como DIRECCIÓN sobre
+        el esquema, no como una celda más: Maipú y Cerrillos ya SON Santiago, y
+        ponerlas de hermanas suyas sería geografía falsa. */}
+    <g opacity={0.72}>
+      <path
+        d="M430 -6 L492 -30"
+        stroke={TC.colors.sand}
+        strokeWidth={1.6}
+        strokeLinecap="round"
+      />
+      <path
+        d="M492 -30 L476 -32 M492 -30 L484 -18"
+        stroke={TC.colors.sand}
+        strokeWidth={1.6}
+        strokeLinecap="round"
+        fill="none"
+      />
+      <text
+        x={500}
+        y={-38}
+        textAnchor="start"
+        style={{
+          fontFamily: SANS,
+          fontWeight: 400,
+          fontSize: 20,
+          letterSpacing: "0.14em",
+          fill: TC.colors.sand,
+        }}
+      >
+        SANTIAGO
+      </text>
+    </g>
+    {/* el pin del proyecto, dentro de la celda de Padre Hurtado */}
+    <g transform="translate(300 232)">
+      <circle cx="16" cy="17" r="21" fill={TC.colors.brown} />
+      <path d={PIN_D} fill="#fff" transform="translate(7 4) scale(0.76)" />
+    </g>
+  </svg>
+);
+
+/** Placa de dato, como las del pie de la referencia. */
+const Placa: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <div
+    style={{
+      display: "inline-block",
+      backgroundColor: "rgba(201,185,154,0.16)",
+      padding: "11px 26px",
+      fontFamily: SANS,
+      fontWeight: 300,
+      fontSize: 27,
+      letterSpacing: "0.04em",
+      color: TC.colors.cream,
+      textTransform: "uppercase",
+      whiteSpace: "nowrap",
+    }}
+  >
+    {children}
+  </div>
+);
+
+const Fuerte: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <span style={{fontWeight: 600, color: "#fff"}}>{children}</span>
+);
+
 const H: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
     <AbsoluteFill style={{backgroundColor: TC.colors.navy}} />
-    {/* MAPA-3 en transparencia */}
-    <div style={{position: "absolute", left: 0, right: 0, top: 560, height: 620, overflow: "hidden"}}>
-      {/* Diego: "al mapa hay que cambiarle el color como las versiones de
-          mapa-1 y mapa-2" — va el duotono, no la captura cruda. */}
-      {/* Diego (23-09): "aqui se abusa mucho del degrade azul, creo que se
-          termina perdiendo el mapa del fondo". El mapa sube de 0,62 a 0,86 y el
-          velo se repliega: la ventana limpia pasa de 34-66 % a 24-76 % y los
-          extremos bajan de 0,55 a 0,38. El azul sigue existiendo para fundir el
-          mapa con el fondo, pero deja de comerselo. */}
-      <Img
-        src={OCT("mapa3-story")}
-        style={{width: "100%", height: "100%", objectFit: "cover", opacity: 0.86}}
-      />
-      <AbsoluteFill
-        style={{
-          background: `linear-gradient(to bottom, ${TC.colors.navy} 0%, rgba(11,44,73,0.38) 12%, rgba(11,44,73,0) 24%, rgba(11,44,73,0) 76%, rgba(11,44,73,0.38) 88%, ${TC.colors.navy} 100%)`,
-        }}
-      />
-    </div>
-    {/* nuestros rótulos, los únicos legibles */}
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 740,
-        textAlign: "center",
-        fontFamily: SANS,
-        fontWeight: 300,
-        fontSize: 32,
-        letterSpacing: "0.3em",
-        textTransform: "uppercase",
-        color: "rgba(255,255,255,0.92)",
-      }}
+
+    {/* el pin fantasma, detrás del titular */}
+    <svg
+      viewBox="0 0 24 36"
+      style={{position: "absolute", left: 96, top: 332, width: 230, height: 345, opacity: 0.07}}
     >
-      <span style={{backgroundColor: TC.colors.navy, padding: "4px 18px"}}>Santiago</span>
-    </div>
-    <div style={{position: "absolute", left: 0, right: 0, top: 812, display: "flex", justifyContent: "center"}}>
-      <div style={{width: 1, height: 116, backgroundColor: TC.colors.sand}} />
-    </div>
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 852,
-        textAlign: "center",
-        fontFamily: SANS,
-        fontWeight: 300,
-        fontSize: 24,
-        letterSpacing: "0.26em",
-        textTransform: "uppercase",
-        color: TC.colors.sand,
-      }}
-    >
-      <span style={{backgroundColor: TC.colors.navy, padding: "0 16px"}}>Ruta 78</span>
-    </div>
-    {/* La base navy ABRAZA el rótulo, no cruza la pieza: a todo el ancho partía
-        el mapa en dos con una franja. */}
-    <div style={{position: "absolute", left: 0, right: 0, top: 946, display: "flex", justifyContent: "center"}}>
-      <div style={{display: "inline-flex", alignItems: "center", gap: 14, backgroundColor: TC.colors.navy, padding: "6px 28px 10px"}}>
-        <IPin s={36} />
-        <span
-          style={{
-            fontFamily: SERIF,
-            fontStyle: "italic",
-            fontWeight: 500,
-            fontSize: 54,
-            textTransform: "uppercase",
-            color: "#fff",
-          }}
-        >
-          Tierra Calma
-        </span>
-      </div>
-    </div>
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 1016,
-        textAlign: "center",
-        fontFamily: SANS,
-        fontWeight: 300,
-        fontSize: 26,
-        letterSpacing: "0.22em",
-        textTransform: "uppercase",
-        color: "rgba(255,255,255,0.92)",
-      }}
-    >
-      <span style={{backgroundColor: TC.colors.navy, padding: "4px 16px"}}>Padre Hurtado</span>
+      <path d={PIN_D} fill="#fff" />
+    </svg>
+
+    {/* el mapa de comunas */}
+    <div style={{position: "absolute", left: 498, top: 300, width: 502, height: 454}}>
+      <MapaComunas />
     </div>
 
-    {/* la foto editorial, abajo */}
-    <div style={{position: "absolute", left: 0, right: 0, top: 1210, height: 710, overflow: "hidden"}}>
-      <Img src={OCT("h-casa")} style={{width: "100%", height: "100%", objectFit: "cover"}} />
+    {/* titular a la izquierda, montado sobre el mapa */}
+    <div style={{position: "absolute", left: 112, top: 400, width: 530, textAlign: "left"}}>
+      <div
+        style={{
+          fontFamily: SANS,
+          fontWeight: 300,
+          fontSize: 56,
+          lineHeight: 1.1,
+          letterSpacing: "0.005em",
+          color: "#fff",
+        }}
+      >
+        CERCA DE
+        <br />
+        SANTIAGO.
+      </div>
+      <div
+        style={{
+          fontFamily: SERIF,
+          fontStyle: "italic",
+          fontWeight: 500,
+          fontSize: IVY,
+          lineHeight: 1.06,
+          textTransform: "uppercase",
+          color: "#fff",
+          marginTop: 12,
+          whiteSpace: "nowrap",
+        }}
+      >
+        MÁS CERCA DE
+        <br />
+        LA TRANQUILIDAD
+      </div>
+    </div>
+
+    {/* la placa de ubicación, pegada al borde superior de la foto */}
+    <div style={{position: "absolute", left: 96, top: 852}}>
+      <div
+        style={{
+          display: "inline-block",
+          backgroundColor: "#07203A",
+          padding: "13px 30px",
+          fontFamily: SANS,
+          fontWeight: 400,
+          fontSize: 30,
+          letterSpacing: "0.1em",
+          textTransform: "uppercase",
+          color: TC.colors.cream,
+        }}
+      >
+        Padre Hurtado · Región Metropolitana
+      </div>
+    </div>
+
+    {/* la foto, con una esquina redondeada */}
+    <div
+      style={{
+        position: "absolute",
+        left: 96,
+        top: 918,
+        width: 888,
+        height: 416,
+        overflow: "hidden",
+        borderRadius: "56px 0 56px 0",
+      }}
+    >
+      <Img
+        src={OCT("h-casa")}
+        style={{width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 58%"}}
+      />
       <AbsoluteFill
         style={{
-          background: `linear-gradient(to bottom, ${TC.colors.navy} 0%, rgba(11,44,73,0.6) 12%, rgba(11,44,73,0.08) 34%, rgba(11,44,73,0.5) 74%, rgba(11,44,73,0.95) 100%)`,
+          background: "linear-gradient(to bottom, rgba(11,44,73,0) 45%, rgba(11,44,73,0.8) 100%)",
         }}
       />
     </div>
+
+    {/* el remate, cruzando el borde inferior de la foto */}
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 1268,
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "center",
+        gap: 22,
+      }}
+    >
+      <div
+        style={{
+          fontFamily: SANS,
+          fontWeight: 300,
+          fontSize: 38,
+          lineHeight: 1.12,
+          color: TC.colors.cream,
+          textAlign: "right",
+          paddingBottom: 18,
+        }}
+      >
+        A 15 minutos
+        <br />
+        del peaje
+      </div>
+      <div
+        style={{
+          fontFamily: SERIF,
+          fontStyle: "italic",
+          fontWeight: 500,
+          fontSize: 92,
+          lineHeight: 1,
+          color: TC.colors.cream,
+        }}
+      >
+        Padre Hurtado
+      </div>
+    </div>
+
+    {/* las placas de datos */}
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 1412,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 10,
+      }}
+    >
+      <Placa>
+        Parcelas de <Fuerte>aprox. 5.000 m²</Fuerte> · desde <Fuerte>UF 2.500</Fuerte>
+      </Placa>
+      <Placa>
+        Electricidad y cierre perimetral <Fuerte>ya instalados</Fuerte>
+      </Placa>
+    </div>
+
     <Marco archivo="MARCO-ST" />
-    {/* Banda alta: acá el medio lo ocupa el mapa. Centrado a 1520 el titular
-        caía justo encima de los rótulos SANTIAGO y TIERRA CALMA.
-        ⛔ Y no puede empezar antes de la fila 250: ahí Meta pone su interfaz.
-        Con `desde={230}` el titular arrancaba en la 228 y la compuerta lo marcó
-        como bloqueante — la única pieza de octubre que pisaba la zona segura. */}
-    <Cuerpo desde={275} hasta={560}>
-      <Modulado
-        ancho={880}
-        tramos={[
-          {t: "Cerca de Santiago.", ivy: true, cursiva: true},
-          {t: "Más cerca de la tranquilidad.", ivy: true, cursiva: true, salto: true},
-        ]}
-      />
-      <Aire h={22} />
-      <Bajada size={32} ancho={780}>
-        Padre Hurtado te permite seguir conectado con la ciudad, con el espacio y la calma que
-        buscas para vivir.
-      </Bajada>
-    </Cuerpo>
-    {/* En globo: suelta sobre la foto no generaba contraste. */}
-    <Globo y={1420} max={720} size={30} op={0.62}>
-      Parcelas de aprox. 5.000 m² desde UF 2.500
-    </Globo>
     <Pildora caja={STORY.pill} icono={<IPin s={28} />} size={31}>
       Conoce el proyecto
     </Pildora>

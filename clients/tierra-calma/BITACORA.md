@@ -76,6 +76,61 @@ Código: `src/compositions/tierracalma/PaidOctubre.tsx` (composiciones
 
 ---
 
+## 2026-09-23 (noche, 2ª vuelta de ajustes) — Diego Aguilar
+
+**Qué se hizo:** `st-12-10` rehecha entera sobre una referencia que pasó Diego
+(pieza de Sonatta, Curitiba). Sólo esa pieza; los reels siguen sin tocarse.
+
+**La referencia devolvió la pieza al brief.** El brief de octubre pedía *"un mapa
+estilizado y minimalista"* y lo que había era una **captura de Google Maps**
+velada en azul. Eso explicaba los dos problemas que se venían arrastrando: el
+degradado que se comía el mapa —comentario de las 19:24— y el pin duplicado que
+quedó anotado como pendiente hace un par de horas. **Los dos desaparecen** al
+dibujar el mapa en vez de fotografiarlo.
+
+**Lo que se aplicó de la referencia:** fondo sólido sin foto, mapa de celdas a
+línea fina con los nombres en versales, pin fantasma detrás del titular, titular
+a la izquierda montado sobre el mapa, placa de ubicación pegada al borde de la
+foto, foto con dos esquinas redondeadas en diagonal, remate cruzando el borde
+inferior y placas de datos abajo.
+
+### El error que casi se cuela
+
+El primer pase ponía **«SANTIAGO» como celda vecina de «MAIPÚ»**. Maipú *es*
+Santiago, así que habrían quedado de hermanas de sí mismas. Se cambió por
+**CERRILLOS** —comuna real y vecina, verificada en `MAPA-3`— y la relación con
+Santiago, que es lo que pide el brief, entró como **dirección**: una flecha sobre
+el esquema, no una comuna más.
+
+Es exactamente la familia de error de la Ruta 68 y de los topónimos corruptos de
+MAPA-1/2. **Las formas de las celdas son esquemáticas; las vecindades no**: se
+verificaron una por una contra `MAPA-3`, que sí es cartografía real.
+
+### Detalles que costaron una vuelta
+
+- El titular en IvyOra se partía en tres líneas («MÁS CERCA DE / LA /
+  TRANQUILIDAD»). Se resolvió con `nowrap` y saltos explícitos, no agrandando la
+  caja: el ancho está limitado por el mapa que tiene al lado.
+- El remate quedaba **dentro** de la foto en vez de cruzar su borde, que es lo
+  que hace la referencia. Bajó de 1232 a 1268.
+- El rótulo PEÑAFLOR caía sobre el borde de su celda; se corrió hacia dentro.
+
+### QA
+
+La compuerta pasa las 16 piezas. Queda **un aviso**: `c-20-10-2` cierra con
+«estarás?», una línea de una sola palabra. **Se deja a propósito** — es la slide
+que Diego puso como referencia de todo el carrusel esta misma tarde, y cambiarla
+contradiría esa instrucción. La regla es aviso y no bloqueante justo para esto.
+
+**Dónde quedó:** `st-12-10` re-subida sobre el mismo fileId. `Bajada` quedó sin
+uso y se eliminó.
+
+**Abierto:** sigue faltando la **confirmación escrita de Fran o Blanca** para
+«Rol individual» y «Acceso controlado». El pin duplicado del mapa **ya no es un
+pendiente**: lo resolvió el rediseño.
+
+---
+
 ## 2026-09-23 (noche, ronda de ajustes) — Diego Aguilar
 
 **Qué se hizo:** La ronda del carrusel del 20/10 más tres comentarios sueltos.

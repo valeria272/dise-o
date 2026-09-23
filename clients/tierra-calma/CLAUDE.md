@@ -350,6 +350,46 @@ debería llevar el color, los check de enviado y visto"*.
 Sólo la saliente lleva checks: en la aplicación real, los mensajes que recibes no
 los tienen. No se inventa una hora: Diego pidió color y checks, nada más.
 
+#### ⭐ `st-12-10` — la pieza de mapa se rehízo sobre una referencia (23-09-2026)
+
+Diego pasó una pieza de **Sonatta (Curitiba)** y pidió aplicarla sólo a esta
+historia. Devolvió la pieza a lo que el brief pedía desde el principio: *"un
+fondo en azul Tierra Calma con un mapa **estilizado y minimalista** que muestre
+la relación Santiago → Padre Hurtado"*. Lo que había era una **captura de Google
+Maps** velada en azul — que además traía su propio pin y obligaba a pelear con
+el degradado para que se leyera.
+
+La gramática de la referencia, tal como quedó aplicada:
+
+| Elemento | Cómo |
+|---|---|
+| Fondo | sólido, **sin fotografía detrás** |
+| Mapa | celdas dibujadas a **línea fina** en arena, nombres en versales espaciadas |
+| Pin fantasma | grande, al 7 % de opacidad, **detrás del titular** |
+| Titular | a la **izquierda**, montado sobre el mapa, en los dos roles de la marca |
+| Ubicación | placa oscura pegada al borde superior de la foto |
+| Foto | dos esquinas redondeadas **en diagonal** (`56px 0 56px 0`) |
+| Remate | sans pequeña + IvyOra grande, **cruzando el borde inferior** de la foto |
+| Datos | placas en arena al 16 %, con la cifra en peso fuerte |
+
+##### ⛔ La cartografía sigue sin inventarse
+
+Las celdas son un **esquema** —igual que el `Mapa.tsx` de septiembre, que ya
+declara «NO es un mapa real»— pero **las vecindades se verificaron contra
+`MAPA-3`**, que sí es cartografía real: Maipú y Cerrillos al nororiente, San
+Bernardo al oriente, Calera de Tango al suroriente, Talagante al sur y Peñaflor
+al poniente. **Las formas son esquemáticas; quién limita con quién, no.**
+
+> ⚠️ **El error que casi se cuela:** el primer pase ponía «SANTIAGO» como una
+> celda vecina de «MAIPÚ». Maipú **es** Santiago, así que serían hermanas de sí
+> mismas. La relación con Santiago —que es lo que pide el brief— entra como
+> **dirección**: una flecha sobre el esquema, no una comuna más. Es la misma
+> familia de error que la Ruta 68 y los topónimos corruptos de MAPA-1/2.
+
+De paso, esto **resolvió el pin duplicado**: al dejar de usar la captura de
+Google Maps desaparece el pin que traía el propio mapa, y queda uno solo.
+
+
 #### ⛔ El degradado no se puede comer el mapa
 
 Diego, 23-09 sobre `st-12-10`: *"acá se abusa mucho del degradé azul, creo que se

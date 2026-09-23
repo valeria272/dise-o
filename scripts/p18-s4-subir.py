@@ -66,7 +66,10 @@ SCOPES = [
 PISO18_S4 = "1xHin8e7Iw4gdGR5x-Z_akFCokOzy4wE3"
 ENTREGA = pathlib.Path(str(_RAIZ / "out/piso18/s4/entrega"))
 
-MIME = {".png": "image/png", ".jpg": "image/jpeg", ".mp4": "video/mp4"}
+MIME = {".png": "image/png", ".jpg": "image/jpeg", ".mp4": "video/mp4",
+        # ⚠️ Sin esto el GIF sube como `application/octet-stream` y Drive no
+        # lo previsualiza: se ve como un archivo suelto para descargar.
+        ".gif": "image/gif"}
 
 
 def credenciales():

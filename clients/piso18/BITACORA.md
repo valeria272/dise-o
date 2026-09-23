@@ -79,6 +79,49 @@ verificado byte a byte contra el local. Antes/después publicado como página:
 
   https://claude.ai/artifact/JJtfPhJW27K9ctVZtbZNdL
 
+### Y la pieza queda también en GIF — «guárdalo igual en gif»
+
+Receta reproducible en `scripts/p18-s4-gif.py`. Las tres decisiones se midieron,
+no se eligieron a ojo:
+
+1. ⭐⭐ **25 fps, no 30** — y no es por peso: **el GIF mide los tiempos en
+   centésimas de segundo**. A 30 fps cada fotograma dura 3,33 centésimas, que el
+   formato no representa, así que redondea y la pieza se desfasa. A 25 son 4
+   centésimas exactas: 325 fotogramas × 40 ms = **13,00 s clavados**. Las otras
+   cadencias exactas son 20, 16,67, 12,5 y 10.
+2. ⭐⭐ **SIN difuminado**, que resultó ser a la vez lo más fiel *y* casi lo más
+   liviano. Medido contra el fotograma 300 del MP4, a 540×960:
+
+   | dither | error medio | error en el velo | peso |
+   |---|---|---|---|
+   | sierra2_4a | 5,00 | 3,83 | 41,6 MB |
+   | bayer (escala 3) | 5,14 | 4,35 | 13,1 MB |
+   | **ninguno** | **3,91** | **3,32** | **14,3 MB** |
+
+   El difuminado sirve con paletas pobres; acá la paleta sale del propio video
+   (`stats_mode=diff`, 255 colores) y el material es fotografía de interior de
+   gama estrecha. Lo único que hacen los dos difuminados es **meter ruido en el
+   cielo oscuro del velo**, que es la zona más lisa de la pieza — el bayer deja
+   una trama cruzada visible sobre todo el fondo. Verificado mirando el recorte
+   ampliado, no sólo por el número.
+3. **540×960**, la mitad exacta del nativo. A tamaño completo el GIF no se puede
+   mandar: 720×1280 pesa 30,8 MB y 1080×1920 llega a **64,2 MB** (y a 30 fps con
+   sierra, **240 MB**). `--grande` lo genera igual si alguna vez hace falta.
+
+⚠️ **Se verifica que el remuestreo no haya roto lo que arregló esta ronda:** bajar
+de 30 a 25 fps descarta uno de cada seis fotogramas, así que el script mide sobre
+el GIF ya escrito que no haya fotogramas congelados dentro de los cuatro empujes
+ni saltos fuera de ellos. Pasa.
+
+⚠️ `p18-s4-subir.py` no conocía `.gif` y lo habría subido como
+`application/octet-stream` — Drive no lo previsualiza así. Se agregó al mapa de
+tipos; verificado que quedó como `image/gif` y con miniatura.
+
+**Dónde quedó:** `ST N°3 S4.gif` **nuevo** en la misma carpeta STS (18,2 MB,
+`1oRVzzCbVGQ0XAHyRaV4TPANIdxFVFc36`), peso verificado byte a byte.
+⚠️ Es para mirar y mandar: **Instagram no recibe historias en GIF**, la que se
+publica sigue siendo el MP4.
+
 **Abierto:**
 
 1. ⚠️ **El apilado invertido puede estar en otras piezas animadas de la cuenta.**

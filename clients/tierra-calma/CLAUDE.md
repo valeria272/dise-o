@@ -191,6 +191,66 @@ responde la promesa** — no la más larga ni la más bonita. En el carrusel del
 06-10 son `ELECTRIFICACIÓN`, `CERRAR` y `CASAS`: el sustantivo de la duda que
 la pieza resuelve.
 
+#### ⛔ LA ESCALA — Inter Tight 50–70 pt por largo, IvyOra fija
+
+Regla de Diego del 23-09-2026. Cierra el sistema tipográfico: los dos roles ya
+estaban definidos, faltaba **a qué tamaño va cada uno**.
+
+| Rol | Tamaño |
+|---|---|
+| **Inter Tight** | **Varía entre 50 y 70 pt según el LARGO de la frase.** Frase corta → 70; frase larga → 50 |
+| **IvyOra Display** | **Fija en 68 pt.** No varía |
+
+**El tamaño de la sans NO se elige a ojo.** Lo calcula `cuerpoSans()` con el
+número de caracteres —está en `OctubreV3.tsx` y en `OctubreVideo.tsx`, idéntica
+en los dos— así que dos piezas con frases parecidas quedan al mismo cuerpo sin
+que nadie las compare a mano. Si una pieza necesita otro tamaño, el problema es
+el largo del copy.
+
+**Por qué importa:** antes la cursiva saltaba a 96–104 pt y aplastaba a la sans,
+que iba a 42–48. Con las dos en la misma banda, **portadas de carrusel y posts
+individuales se leen a una escala pareja**, que es lo que pidió Diego. Vale
+igual para los reels.
+
+**Fuera de la regla:** `Pie` (la etiqueta en versales espaciadas, 27 pt) y los
+rótulos de los indicadores y recortes. Son etiquetas, no texto de cuerpo.
+
+#### ⛔ TODO CENTRADO AL MEDIO
+
+Misma ronda. El bloque de texto **se centra vertical y horizontalmente en el
+alto útil** del marco —el que queda entre el logo y la píldora— en vez de colgar
+de un `top` fijo. Así una frase corta y una larga quedan igual de equilibradas
+sin recalcular nada.
+
+⚠️ **Centrar no es centrar sobre el sujeto.** Siete piezas acotan la banda, y
+cada una por una razón medible: si el medio del cuadro está ocupado —por una
+gráfica o por el sujeto de la foto— el titular se centra **en la banda que queda
+libre**, no en el alto completo.
+
+| Pieza | Banda | Qué ocupa el medio |
+|---|---|---|
+| `st-12-10` (H) | `[230, 545]` | los rótulos del mapa |
+| `c-20-10-4` (K4) | `[205, 570]` | los indicadores sobre la parcela |
+| `c-06-10-4` (E4) | `[205, 700]` | las dos casas (techumbre en la fila 574, chimenea en la 554) |
+| `c-20-10-1` (K1) | `[250, 670]` | la pareja (desde la fila 780) y el potrero |
+| `c-20-10-6` (K6) | `[205, 790]` | la pareja caminando (cabezas en la fila ~672) |
+| `st-22-10` (L) | `[240, 1020]` | los dos globos apilados abajo |
+| `c-20-10-5` (K5) | `[205, 1210]` | nada: acá el globo entra **en flujo** y se centra con el titular |
+
+Las cinco últimas salieron de las dos rondas del 23-09: *"subir un poco, que no
+tape las casas"*, *"que no tape a las personas ni el terreno"*, *"subir un poco
+el bloque de texto, que no tape a las personas"*, *"subir bloque de texto"* y
+*"centrar toda la información"*.
+
+> **Cómo se calcula, y no se estima:** las fotos de `oct/` son 1080×1350, el
+> mismo tamaño del lienzo, así que con `objectFit: cover` la fila de la foto
+> **es** la fila del lienzo. Se mide sobre el JPG de origen dónde empieza el
+> sujeto, se le restan unos 40 px de aire, y esa es la base de la banda. Medir
+> sobre el PNG rendido no sirve: el texto blanco contamina el perfil.
+
+Si una pieza nueva tiene algo en el medio, ese es el camino: **acotar la banda,
+no abandonar el centrado** ni mover la gráfica, que está medida.
+
 #### ⛔ Los recuadros son GLOBOS DE TEXTO translúcidos
 
 Misma ronda, sobre `c-06-10-2` y `st-22-10`: *"que sea un globo de texto"*,
@@ -198,7 +258,7 @@ Misma ronda, sobre `c-06-10-2` y `st-22-10`: *"que sea un globo de texto"*,
 derechos y centrados, quitar espacios libres de los globos"*, y sobre
 `st-08-10`: *"no genera contraste, oscurecer un poco más el globo"*.
 
-Un solo componente para toda la marca, con estas cinco condiciones:
+Un solo componente para toda la marca, con estas **siete** condiciones:
 
 1. **Translúcido, nunca sólido.** Fondo oscuro a ~0,55 de alfa con desenfoque
    detrás. Las cajas de color macizo quedan fuera.
@@ -208,6 +268,29 @@ Un solo componente para toda la marca, con estas cinco condiciones:
 4. **Centrado.**
 5. **Ajustado al texto.** `display: inline-block` + `maxWidth`, nunca `width`
    fijo: con ancho fijo la última línea deja un hueco muerto adentro.
+6. **El destacado y el cuerpo van juntos.** `marginBottom: 8` entre la línea de
+   IvyOra y el texto de la sans — no 16. Diego, 23-09 sobre `c-20-10-4`:
+   *"interlineado más juntos"*. Son una unidad, no dos párrafos.
+7. ⛔ **No cruza las líneas del marco.** Las hairlines horizontales están en las
+   filas **131 y 1284** en los seis marcos de carrusel y post. Antes de anclar
+   un globo hay que sumarle su alto real —`30 + destacado + 8 + cuerpo + 30`—
+   y comprobar que cierra por dentro. `c-20-10-4` cerraba en 1312 y se salía.
+
+##### El globo puede ir EN FLUJO, y a veces debe
+
+`Globo` acepta `y` opcional. **Sin `y`** no se ancla: entra dentro de `Cuerpo` y
+se centra **junto con el titular, como un bloque más del mismo grupo**.
+
+Ese es el modo correcto cuando la pieza es *titular + globo y nada más*. Diego,
+23-09 sobre `c-20-10-5`: *"centrar toda la información"* — horizontalmente ya
+estaba (desvío máximo medido: 1,5 px), lo que no estaba centrado era el
+**conjunto**: titular a media altura y globo colgando abajo, con 450 px de vacío
+arriba y 90 abajo.
+
+Con `y` fijo se queda sólo cuando **algo más ocupa ese espacio** y el globo tiene
+que esquivarlo: los indicadores de `c-20-10-4`, o los dos globos apilados de
+`st-22-10`. Ahí el titular se centra en la banda que le queda libre —termina
+donde empieza el primer globo— y los globos conservan su ancla.
 
 #### Los cuadros de texto se ajustan al texto
 

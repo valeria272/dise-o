@@ -18,6 +18,7 @@ import {
   Aire,
   IconoWsp,
   Musica,
+  SANS_MIN,
 } from "./OctubreVideo";
 
 // =============================================================================
@@ -88,19 +89,19 @@ export const V3ReelPrimavera: React.FC = () => (
     <Velo arriba={0.32} abajo={0.46} />
 
     {/* Los subtítulos los DICTA la grilla: no se reescriben. */}
-    <Bloque desde={25} dura={92} pos="abajo">
-      <Suave size={48}>La primavera ya llegó a Tierra Calma</Suave>
+    <Bloque desde={25} dura={92} pos="centro">
+      <Suave>La primavera ya llegó a Tierra Calma</Suave>
     </Bloque>
-    <Bloque desde={165} dura={108} pos="abajo">
+    <Bloque desde={165} dura={108} pos="centro">
       {/* Apilado en tres: a una sola línea "ESPACIO" quedaba huérfano, y el
           reel publicado de septiembre apila así los "MÁS ...". */}
-      <Enfasis size={62}>{"Más verde,\nmás luz,\nmás espacio"}</Enfasis>
+      <Enfasis>{"Más verde,\nmás luz,\nmás espacio"}</Enfasis>
     </Bloque>
-    <Bloque desde={305} dura={96} pos="arriba">
-      <Suave size={42}>Así se siente el cambio de estación acá</Suave>
+    <Bloque desde={305} dura={96} pos="centro">
+      <Suave>Así se siente el cambio de estación acá</Suave>
     </Bloque>
     <Bloque desde={445} dura={120} pos="centro" sinSalida>
-      <Enfasis size={58}>{"Tierra Calma\nPadre Hurtado"}</Enfasis>
+      <Enfasis>{"Tierra Calma\nPadre Hurtado"}</Enfasis>
       <Aire h={40} />
       <Pie>Déjanos tus dudas por WhatsApp</Pie>
     </Bloque>
@@ -133,10 +134,12 @@ const Bullet: React.FC<{children: React.ReactNode}> = ({children}) => (
       gap: 14,
       fontFamily: SANS,
       fontWeight: 300,
-      fontSize: 40,
+      // 50 = el mínimo de la escala. La lista es texto de cuerpo, así que entra
+      // en el rango 50-70; va al piso porque son cuatro líneas apiladas.
+      fontSize: SANS_MIN,
       color: "#fff",
       textShadow: HALO,
-      marginBottom: 12,
+      marginBottom: 14,
     }}
   >
     <svg width={26} height={26} viewBox="0 0 24 24" fill="none" style={{flexShrink: 0}}>
@@ -166,33 +169,33 @@ export const V3ReelDron: React.FC = () => {
       <Velo arriba={0.4} abajo={0.46} />
 
       {/* CORTE 1 · hook */}
-      <Bloque desde={14} dura={118} pos="arriba">
-        <Suave size={44}>{"¿Buscando una parcela\nen Padre Hurtado?"}</Suave>
+      <Bloque desde={14} dura={118} pos="centro">
+        <Suave>{"¿Buscando una parcela\nen Padre Hurtado?"}</Suave>
         <Aire h={18} />
-        <Enfasis size={56}>{"Esto es lo que encontrarás\nen Tierra Calma."}</Enfasis>
+        <Enfasis>{"Esto es lo que encontrarás\nen Tierra Calma."}</Enfasis>
       </Bloque>
 
       {/* CORTE 2 · ubicación y acceso */}
-      <Bloque desde={154} dura={118} pos="arriba">
+      <Bloque desde={154} dura={118} pos="centro">
         <Pie>Padre Hurtado · RM</Pie>
         <Aire h={22} />
-        <Enfasis size={58}>{"A 15 min del Peaje\nPadre Hurtado"}</Enfasis>
+        <Enfasis>{"A 15 min del Peaje\nPadre Hurtado"}</Enfasis>
         <Aire h={20} />
-        <Suave size={36}>{"y conectado con las principales\nvías del sector."}</Suave>
+        <Suave>{"y conectado con las principales\nvías del sector."}</Suave>
       </Bloque>
 
       {/* CORTE 3 · el espacio. La cifra es el elemento más grande de la pieza. */}
-      <Bloque desde={294} dura={118} pos="arriba">
-        <Enfasis size={74}>{"Cerca de 5.000 m²"}</Enfasis>
+      <Bloque desde={294} dura={118} pos="centro">
+        <Enfasis>{"Cerca de 5.000 m²"}</Enfasis>
         <Aire h={18} />
-        <Suave size={38}>
+        <Suave>
           {"para hacer realidad tu proyecto.\nMás espacio para construir,\ndisfrutar y proyectar."}
         </Suave>
       </Bloque>
 
       {/* CORTE 4 · lo que estás comprando */}
-      <Bloque desde={434} dura={118} pos="arriba">
-        <Suave size={42}>Tu parcela cuenta con:</Suave>
+      <Bloque desde={434} dura={118} pos="centro">
+        <Suave>Tu parcela cuenta con:</Suave>
         <Aire h={26} />
         <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
           <Bullet>Electricidad hasta cada parcela</Bullet>
@@ -203,17 +206,17 @@ export const V3ReelDron: React.FC = () => {
       </Bloque>
 
       {/* CORTE 5 · información comercial */}
-      <Bloque desde={574} dura={118} pos="arriba">
-        <Enfasis size={70}>{"Parcelas desde\nUF 2.500"}</Enfasis>
+      <Bloque desde={574} dura={118} pos="centro">
+        <Enfasis>{"Parcelas desde\nUF 2.500"}</Enfasis>
         <Aire h={26} />
         <Pie>Tierra Calma · Padre Hurtado</Pie>
       </Bloque>
 
       {/* CORTE 6 · cierre */}
       <Bloque desde={714} dura={125} pos="centro" sinSalida>
-        <Suave size={40}>{"Hay cosas que una foto\nno puede mostrarte."}</Suave>
+        <Suave>{"Hay cosas que una foto\nno puede mostrarte."}</Suave>
         <Aire h={22} />
-        <Enfasis size={54}>{"Ven a conocer tu próxima\nparcela en persona."}</Enfasis>
+        <Enfasis>{"Ven a conocer tu próxima\nparcela en persona."}</Enfasis>
         <Aire h={34} />
         <div style={{transform: `scale(${pulso})`}}>
           <IconoWsp s={50} />

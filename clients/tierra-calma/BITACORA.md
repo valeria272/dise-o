@@ -5,6 +5,170 @@
 
 ---
 
+## 2026-09-23 (tarde, 2ª vuelta) — Diego Aguilar
+
+**Qué se hizo:** Tres comentarios más, de las 15:00–15:02. Uno era de pieza y
+dos cambiaron el componente `Globo` para toda la marca.
+
+| Pieza | Comentario | Qué se hizo |
+|---|---|---|
+| `st-22-10` | «subir bloque de texto» | la banda del titular pasa de `[240,1520]` a `[240,1020]` |
+| `c-20-10-5` | «centrar toda la información» | el globo entra **en flujo** dentro de `Cuerpo` |
+| `c-20-10-4` | «interlineado más juntos, no sobrepasar el límite de la línea» | `marginBottom` del destacado 16 → 8, y el globo sube de 1140 a 1085 |
+
+**`c-20-10-5` no era un problema de centrado horizontal.** Lo medí antes de
+tocar nada: las siete líneas de la pieza estaban centradas con un desvío máximo
+de **1,5 px**. Lo que no estaba centrado era el **conjunto** — titular a media
+altura y globo colgando abajo, con 450 px de vacío arriba y 90 abajo. Por eso el
+arreglo no fue mover el globo a mano sino hacer que `Globo` pueda ir **sin
+ancla**: sin `y` entra dentro de `Cuerpo` y número + titular + globo se centran
+como un solo grupo. La banda quedó simétrica respecto de las líneas del marco
+(74 px de aire arriba y abajo).
+
+**`c-20-10-4` se salía de verdad, y es medible.** Las hairlines horizontales del
+marco están en las filas **131 y 1284** —idénticas en los seis marcos, ya
+verificado—. El globo anclado en 1140 medía 172 px de alto y cerraba en 1312:
+cruzaba por 28 px. Con el interlineado nuevo mide 164 y desde 1085 cierra en
+1249. Esa cuenta quedó escrita en el manual como condición 7 del globo.
+
+**Alcance del cambio del componente:** el `marginBottom` toca a todos los globos
+con línea destacada. Cambiaron cinco piezas —`c-06-10-4`, `c-20-10-4`,
+`c-20-10-5`, `c-20-10-6`, `st-22-10`— y las otras once quedaron **idénticas al
+píxel** (`st-15-10` movió 3 px de antialias). Verificado pieza por pieza, no
+supuesto: los globos sin `destacado` no se tocan.
+
+**Entregado:** las cinco re-subidas sobre el mismo ID de Drive.
+
+**Al manual:** el globo pasó de cinco a **siete** condiciones (interlineado y
+«no cruza la línea del marco») más el apartado del modo en flujo; y la tabla de
+bandas acotadas pasó de cinco a siete piezas.
+
+**Señal buena:** el comentario de `c-20-10-6` de las 14:48 ya no aparece abierto
+— Diego lo resolvió. Los de `c-06-10-4` y `c-20-10-1` siguen marcados abiertos
+aunque están aplicados.
+
+---
+
+## 2026-09-23 (tarde) — Diego Aguilar
+
+**Qué se hizo:** La ronda de la mañana centró los bloques… y en tres fotos el
+centro es justo donde está el sujeto. Diego lo marcó en Drive a las 14:47–14:48
+y se corrigió.
+
+| Pieza | Comentario | Banda |
+|---|---|---|
+| `c-06-10-4` (E4) | «subir un poco, que no tape las casas» | `[205, 1150]` → `[205, 700]` |
+| `c-20-10-1` (K1) | «subir un poco, que no tape a las personas ni el terreno» | `[250, 1150]` → `[250, 670]` |
+| `c-20-10-6` (K6) | «subir un poco el bloque de texto, que no tape a las personas» | `[205, 1150]` → `[205, 790]` |
+
+**Se midió, no se calculó a ojo.** Las fotos de `oct/` son 1080×1350 —el mismo
+tamaño del lienzo—, así que con `objectFit: cover` la fila del JPG **es** la fila
+del lienzo. Sobre el origen limpio: en `e-casas.jpg` la techumbre arranca en la
+fila 574 y la chimenea en la 554; en `k-persona.jpg` el cielo limpio llega hasta
+la ~620 y la pareja empieza en la 780; en `k-caminando.jpg` las cabezas están en
+la ~672. La banda se fija para que el bloque cierre unos 40 px antes.
+
+> ⚠️ **No medir sobre el PNG rendido.** El primer intento dio un perfil sin
+> sentido porque el texto blanco y el degradado contaminan la luminancia. El
+> perfil se saca del JPG de origen.
+
+**Lo que NO cambió, y por qué:** los otros tres comentarios abiertos en Drive
+(`c-20-10-2` «el mapa que cubra toda la composición», `c-20-10-3` «fondo de
+color, imágenes derechas, texto fuera del globo», `c-20-10-4` «más lejana, tipo
+dron, terreno limpio») **ya estaban aplicados** desde ayer. Siguen marcados
+abiertos porque nadie los resolvió en Drive, no porque falten. Verificado pieza
+por pieza contra el render entregado.
+
+**Verificación byte a byte:** de las 10 estáticas sólo cambiaron las tres. `K4`
+aparecía como distinta y resultó ser **un píxel con diferencia de 1** — ruido del
+codificador PNG, no un cambio.
+
+**Entregado:** las tres re-subidas **sobre el mismo ID de Drive**
+(`1Zv3IKcA…`, `1R8DhzIJk…`, `1dlHKK_9…`), así que los enlaces siguen sirviendo.
+
+**Al manual:** la lista de excepciones al centrado pasó de dos a cinco y ahora es
+una tabla con la razón medida de cada una, más la nota de cómo se calcula.
+
+**Qué sigue:** sigue esperando la ronda del **cliente**. Todo el feedback de
+octubre —24 comentarios— ha sido interno de Diego.
+
+---
+
+## 2026-09-23 — Diego Aguilar
+
+**Qué se hizo:** La ronda tipográfica. Diego cerró la escala del sistema y se
+aplicó a las 10 piezas de octubre (18 archivos) — estáticas y reels — más las
+dos reglas nuevas en el manual.
+
+**La regla, textual:** «para los textos con Inter Tight que varíe el tamaño
+entre 50 pt a 70 pt dependiendo del largo de la oración y la IvyOra Display
+mantener ese tamaño, la idea es que ambas tengan tamaños similares para las
+portadas de carrusel y post individuales, los videos reels también lo mismo,
+sólo cambio en los tamaños de los textos mencionados y que todo vaya centrado
+al medio».
+
+**Cómo quedó implementada** (`OctubreV3.tsx` y `OctubreVideo.tsx`, el mismo
+código en los dos, para que estáticas y reels no se separen nunca):
+
+```ts
+const SANS_MIN = 50;  const SANS_MAX = 70;  const IVY = 68;
+
+const cuerpoSans = (texto: string) => {
+  const n = texto.replace(/\s+/g, " ").trim().length;
+  const t = Math.min(Math.max((n - 24) / 72, 0), 1); // 24 car. → 70 · 96 → 50
+  return Math.round(SANS_MAX - t * (SANS_MAX - SANS_MIN));
+};
+```
+
+- **La sans se calcula sola** del largo de la frase completa, no tramo a tramo:
+  `Modulado` mide la unión de sus tramos y `Suave` mide su propio texto. Se
+  quitaron **todos** los `base={}` por llamada y todos los `size:` por tramo
+  (verificado: quedan 0).
+- **IvyOra queda fija en 68**, dentro del mismo rango. Por eso las dos voces se
+  ven del mismo porte en portadas y posts, que es lo que Diego pidió.
+- **Los bullets del reel de dron van a `SANS_MIN`**: son cuatro líneas apiladas,
+  así que la lista se va al piso de la escala.
+
+**El centrado.** `Cuerpo` dejó de anclarse arriba (`top=`) y pasó a ser una
+**banda con centro vertical** (`desde` / `hasta`), y todos los `Bloque` de los
+reels quedaron en `pos="centro"` (verificado: 0 no centrados). Las bandas:
+carruseles `[250,1150]` con logo y `[205,1150]` sin él, stories `[240,1520]`.
+
+**Las dos excepciones declaradas** — no son olvidos, están escritas en el manual:
+
+| Pieza | Banda | Por qué |
+|---|---|---|
+| K4 (`c-20-10-4`) | `[205,570]` | el medio lo ocupan los indicadores del plano |
+| H (`st-08-10`) | `[230,545]` | el medio lo ocupan los rótulos del mapa |
+
+Al centrar, estas dos se chocaron con su propia gráfica en el primer render. Se
+acotó la banda en vez de mover la gráfica: el marco es asset bloqueado y el
+plano está medido.
+
+**Huérfanas corregidas de paso:** E2 pasó a tres líneas equilibradas y K5 a
+«¿Tienes claridad sobre / el proceso de COMPRA?».
+
+**Entregado:** las 18 en `out/tierracalma/oct2026/entrega/` y subidas a la
+carpeta `1lJG3Xzwh77zSCSDQ4DiPsAJK0fAqcNwF` **sobre el mismo ID de archivo**, así
+que los enlaces que ya tiene el cliente siguen sirviendo.
+
+**Qué sigue:** sigue esperando la ronda del **cliente** — las 10 piezas figuran
+«En revisión» y todo el feedback hasta acá ha sido interno de Diego.
+
+**Abierto (se arrastra):**
+
+1. ⚠️ **Falta la confirmación escrita de Fran o Blanca** para «Rol individual» y
+   «Acceso controlado». Van publicados en tres piezas con el OK verbal de Diego
+   del 22-09 y **no están en la lista blanca del manual**.
+2. Tres comentarios de Drive siguen marcados abiertos aunque ya se aplicaron
+   (`c-06-10-2`, `st-15-10`, `st-22-10`): los cierra Diego, no el que renderiza.
+3. Sigue sin `clients/tierra-calma/reglas.yaml`, así que el QA de esta ronda
+   también fue a mano, pieza por pieza.
+4. El conector de Drive (MCP) sigue caído; las subidas van por
+   `scripts/drive-subir.py` con el token del estudio.
+
+---
+
 ## 2026-09-22 (jornada completa) — Diego Aguilar
 
 **Qué se hizo:** Octubre entero, de punta a punta y con **cuatro rondas de

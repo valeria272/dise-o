@@ -127,7 +127,7 @@ print("listo")
 # ══════════════════════════════════════════════════════════════
 print("HISTORIA HALLOWEEN 29-10:")
 
-pieza("rentas_st-halloween-29-10", "st_halloween_blur.jpg",
+pieza("rentas_st-halloween-29-10", "st_halloween_blur_v2.jpg",
       '<div class="bloque alto">'
       '<div class="st-titular t-st-xl">'
       '<span class="l1">¡FELIZ</span>'
@@ -140,7 +140,7 @@ pieza("rentas_st-halloween-29-10", "st_halloween_blur.jpg",
       '<div class="condiciones t-st-s"><b>Garantía de 1,5 meses</b> en 6 cuotas</div>'
       '</div>'
       '<div class="zona-sticker"></div>',
-      formato="story", velo="velo-arriba")
+      formato="story centrada", velo="velo-arriba")
 
 
 # ══════════════════════════════════════════════════════════════

@@ -194,6 +194,25 @@ Diego no la lleva; se borra en una línea de `base.css` si el cliente la quiere 
 (`IMG_7934` 3,26:1 · `IMG_7911-Pano` 3,04:1 · `IMG_8040-Pano` 2,84:1), pero cambiar la foto
 del mailing 1 es una decisión de contenido, no de composición — la toma la KAM.
 
+#### ⭐ 23-09-2026 — «quitar espacio»: un respiro que mide 6× los otros es un hueco
+
+Diego y Carlos Figueroa anclaron **el mismo defecto** en las dos fichas del correo. No es
+una impresión: medido sobre la pieza rendida, dentro de la tarjeta azul había **una banda
+de azul liso de 15,5 % del alto** entre la fila de dormitorios/baños y el recuadro de
+amenidades, mientras el resto de los respiros internos medían **1,1 a 2,7 %**.
+
+La causa era `justify-content:flex-start` con `margin-top:auto` en las amenidades: el
+sobrante se acumulaba todo en un solo lugar. Ahora la tarjeta va en **`space-between`**,
+que reparte ese aire y deja el respiro mayor en 6,4 %.
+
+> **La regla que queda, y vale para cualquier caja de esta marca:** los respiros internos
+> de un bloque se **miden**, no se miran. Si uno mide varias veces lo que miden sus
+> hermanos, no es respiro: es un hueco, y el cliente lo va a ver antes que tú.
+
+**Lo que NO se movió, y es lo importante:** los tres anclajes medidos sobre la referencia
+de agosto de Diego siguen intactos — tarjeta 31,73→94,34 %, recuadro de amenidades pegado
+al pie, nube compartiendo línea de base. Se arregló el reparto interno, no la geometría.
+
 #### El margen inferior del correo: 8,7 %, no 5,5 %
 
 Medido sobre los banners aprobados de septiembre, normalizando a 1080 de ancho: la tinta más
@@ -225,6 +244,32 @@ El criterio vigente es el de **Paulina**, decidido por Valeria el 02-09-2026.
 6. **Bajada abajo**, blanca, mezclando Regular y Bold dentro de la misma frase para destacar el dato.
 7. **Cierre de carrusel**: foto oscurecida entera + titular itálico + **botón blanco redondeado con
    `RENTAS.INU.CL` en azul bold itálica** + un **cursor lima** apuntándolo + bajada itálica light.
+
+### ⭐ Las efemérides entran por la FOTO, nunca por encima
+
+Esta marca tiene dos feedbacks que parecen contradecirse y no lo son:
+
+| Quién | Cuándo | Qué dijo |
+|---|---|---|
+| Valeria | 02-09-2026 | Las telarañas y murciélagos **dibujados** sobre la pieza «están muy forzadas» → se sacaron todos |
+| Diego | 23-09-2026 | «**faltan detalles de halloween**, no sobrecargar escena pero que tenga indicios de la efeméride» |
+
+**Se resuelven juntos por un solo camino: la decoración vive en la fotografía.** La ST del
+29-10 se rehizo cambiándole el fondo por la escena real del carrusel del mismo mes —que ya
+trae guirnalda de murciélagos, luces naranjas y calabazas de utilería—, recortada a 9:16 y
+desenfocada. Cero elementos dibujados encima, y la efeméride se lee de inmediato.
+
+> **Regla:** si a una pieza le falta una efeméride, se cambia la foto. No se le pega nada.
+
+#### Cuidado al desenfocar un fondo: la compuerta lo marca como foto estirada
+
+El primer intento quedó **plano**: el desenfoque sobre un muro liso produjo **225 filas de
+píxeles idénticas seguidas** y `qa/motor.py` lo bloqueó como «foto estirada para llenar el
+formato» — la regla que existe por la story de Revex Las Condes. No era un falso positivo:
+un plato sin ninguna textura se comporta igual que uno estirado.
+
+**La solución es grano fino** (σ≈2,6 sobre 255), invisible a tamaño de lectura, más un
+encuadre con materia en vez de muro liso. Con eso: 0 filas idénticas y 0 bloqueantes.
 
 ### La lámina numerada — calcada del feed publicado
 
@@ -262,6 +307,44 @@ Medida fotograma a fotograma sobre `reel_valle_sept.mp4` (septiembre, Paulina):
 
 > El paso 7 es **el cierre que hay que usar**: aparece igual en mayo, julio, agosto y septiembre.
 > La única variante es la línea de gancho encima (`¡ÚLTIMAS UNIDADES DISPONIBLES!` en caja lima, en mayo).
+
+### ⭐ 23-09-2026 — la locución del reel: qué voz sí y cuál NO
+
+Diego pidió **voz masculina chilena de unos 30 años**. Quedó montada en el reel de octubre.
+
+| | |
+|---|---|
+| **Voz** | **`Benjamín Soto`** — ElevenLabs, catálogo del estudio (id 864). Español de Chile conversacional, perfilada para publicidad y contenido de marca |
+| Modelo | `eleven_v3`, estabilidad 0,45 |
+| Tomas | 9, una por escena, en `public/assets/rentas/vo/01..09.mp3` |
+| Mezcla | La música baja de 1,5 a 0,5 mientras hay voz (≈9,5 dB), con rampas de 0,25 s |
+
+> ⛔ **NO volver a usar `scripts/rentas-voz.py`** (edge-tts, `es-CL-LorenzoNeural`). Esa es
+> la locución que **Valeria rechazó en septiembre**: «es muy robótica, es falsa». Sus tomas
+> se borraron del repo para que nadie las confunda. El script se deja solo como registro.
+
+**Tres cosas aprendidas armando esta locución:**
+
+1. **El ducking va por tabla de tiempos, no por envolvente de la señal** — la atenuación por
+   envolvente está prohibida en el estudio (memoria `audio-y-post-de-reels`).
+2. **Una locución puede cruzar el corte y está bien.** Tres tomas se pasan 0,2-0,4 s de su
+   escena y se dejaron así: la voz ligando dos planos es montaje normal, y recortarlas
+   obligaba a mutilar el texto del brief. Lo que **no** puede pasarse es el final del reel.
+3. **Deletrear la URL no cabe.** «rentas punto i ene u punto ce ele» se come **5,3 s** y la
+   escena de cierre dura 3,8. El cierre dice «Agenda tu visita, o escríbenos por WhatsApp» y
+   la URL se lee en pantalla, que es donde ya estaba.
+
+### Historia centrada — excepción declarada, no regla nueva
+
+Diego pidió «centrar al medio» en la ST de Halloween. Se hizo, y el grupo de texto quedó con
+su centro en **49,96 %** (titular + precio juntos, tinta entre 31,1 % y 68,9 %, dentro de las
+zonas seguras de Instagram: 250 px arriba = 13,0 % · 340 px abajo = 17,7 %).
+
+**Pero se hizo con una clase propia, `.story.centrada`, y `.story .bloque.alto` sigue en
+13,6 %.** La gramática de historia de esta marca —titular arriba— está medida sobre las
+piezas publicadas de Paulina, y **un comentario sobre una pieza no deroga una medición sobre
+el corpus**. Si el centrado tiene que pasar a ser la regla general, se decide aparte y se
+vuelve a medir.
 
 ### En qué se diferencia de agosto (Diego)
 Diego usaba **bandas de ancho completo** y el titular en **versales** sobre banda lima. Paulina usa
@@ -351,6 +434,51 @@ piezas ya aprobadas del cliente hasta dejarlo en **cero falsos positivos**:
 > intentó con `contraste_texto` y marcó 7 de 8 piezas aprobadas, porque mide toda la tinta
 > de la región y los titulares blancos sobre foto clara son la firma de la marca. El anclaje
 > del logo se revisa **a ojo**, con la tabla de arriba.
+
+## ⛔ INU es VENTAS y RINU es RENTAS — y las entregas se mueven
+
+En el mapa de logos del estudio hay **dos carpetas distintas**: `INU` (la marca de venta,
+`1DeQMiM7oCZcL52JGCAZvfUwjV8qdFXqJ`) y **`RINU`** (esta marca, arriendo,
+`1OyI4Uj3SnbAFAfFUFX_cQeWzBQfNRNDM`). Si alguien dice «RINU ventas» hay que preguntar:
+el sistema medido del estudio es **solo el de Rentas**.
+
+**Y hay DOS carpetas llamadas `10. OCTUBRE`** colgando de padres distintos:
+
+| Carpeta | ID | Padre | Qué tiene |
+|---|---|---|---|
+| `10. OCTUBRE` de **grillas** | `1uqBQPK06qH-_5AOuR9aey05aT7zNPuE6` | `1BkZDL03…` grillas | solo el PPT del brief |
+| `10. OCTUBRE` de **briefs de mailing** | `1FkNER4v6uWxJkxBTSv2WDhM01Rx6MMRW` | `1sH-38q…` mailing | el brief **y los 8 bloques de los dos mailings** |
+
+### ⚠️ La carpeta `DISEÑOS` donde se entregó ya no tiene nada
+
+Verificado el 23-09-2026: `DISEÑOS` (`1xIsCSzPdHwm9gihZVlOQllMVZQp5IZdd`) **existe, no está
+en la papelera, y está vacía** — colgando de la raíz del Drive de Valeria. Carlos Figueroa
+repartió las 22 piezas el mismo 23-09: las **14** de feed, historias y reel a una carpeta
+nueva **`Artes/2026/OCTUBRE 2026`** (`12ybjU16B9mtfsVBFnTE3NaI7xkSKvQNz`) y los **8**
+mailings al `10. OCTUBRE` de briefs.
+
+**Corolario operativo: la ruta de entrega que dice la bitácora puede estar caducada.** Antes
+de subir una ronda hay que buscar dónde está la pieza **hoy**, no dónde se dejó.
+
+### Cómo encontrar una pieza entregada, y cómo re-subirla sin romper nada
+
+El conector MCP de Drive **no ve** carpetas que no indexó. El token del estudio sí alcanza
+todo lo que subió la propia app (scope `drive.file`), así que el camino fiable es listar por
+el token y mirar el campo `parents` de cada archivo:
+
+```python
+d.files().list(q="trashed=false and name contains '-10'",
+               fields="files(id,name,parents)")     # y luego agrupar por parents
+```
+
+**Para actualizar, se manda `files().update(fileId=…)`, nunca un archivo nuevo.** Eso
+conserva el ID, el enlace y —lo que importa— **los comentarios anclados**. Verificado
+después de subir las 4 piezas del 23-09: `size` calza con el archivo local y los
+comentarios siguen ahí (4, 1 y 2 por pieza).
+
+> ⛔ **Nunca dejar una copia en otra carpeta.** El portal de validaciones levanta las piezas
+> **por nombre**, y una copia nueva nace **sin comentarios**. Si alguien pide «déjame los
+> diseños acá», lo que corresponde es un acceso directo o el índice de enlaces.
 
 ## Dónde está todo
 

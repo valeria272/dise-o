@@ -121,3 +121,20 @@ reglas: []
   # Para volver a intentarlo hace falta una comprobación nueva que aísle el logo
   # —por plantilla, no por color— y mida SU contraste y SU distancia al bloque de
   # texto más cercano. Anotado como deuda del motor, no de la marca.
+
+  # ── 23-09-2026 · DEUDA ANOTADA — «el respiro interno desproporcionado»
+  #
+  # Diego y Carlos anclaron el mismo defecto en las dos fichas del correo
+  # («quitar espacio», «me ayudas quitando este espacio?»). Es medible y se midió:
+  # dentro de la tarjeta azul había una banda de azul liso de 15,5 % del alto,
+  # contra 1,1–2,7 % del resto de los respiros internos de la MISMA caja.
+  #
+  # O sea el criterio es «ningún respiro interno mide más de ~3× la mediana de sus
+  # hermanos». No entra al motor todavía porque la comprobación necesita saber
+  # DÓNDE está la caja (acá se aprovechó que la tarjeta es de un color plano de
+  # marca y se escanearon las filas 100 % azules entre x 69,3 % y 95,25 %). Para
+  # una regla general hace falta detectar la caja sola, por color de marca y por
+  # rectangularidad, y recién ahí medir la distribución de sus huecos.
+  #
+  # Mientras tanto se revisa a ojo, con la tabla del manual
+  # (clients/nueva-urbe/CLAUDE.md §«quitar espacio»).

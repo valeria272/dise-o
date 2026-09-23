@@ -134,15 +134,59 @@ export const RentasReelOctubre: React.FC = () => {
   );
 
   /**
-   * SIN LOCUCIÓN. La versión con TTS (`scripts/rentas-voz.py`) se descartó:
-   * «es muy robótica, es falsa». Sus cinco reels llevan locución humana real
-   * —medido: modulación silábica 35-41 % en los de mayo a septiembre— y
-   * clonarla no se pudo (Higgsfield quedó en 0,43 créditos y no hay clave de
-   * ElevenLabs). El guion del brief queda en los subtítulos.
+   * LOCUCIÓN — 23-09-2026, pedida por Diego Aguilar: «voz masculina de 30 años
+   * chilena». Voz `Benjamín Soto` de ElevenLabs (catálogo del estudio), descrita
+   * como español de Chile conversacional para publicidad y contenido de marca.
+   *
+   * ⛔ NO se volvió a usar `scripts/rentas-voz.py` (edge-tts, es-CL-LorenzoNeural):
+   * esa es la locución que Valeria rechazó en septiembre —«es muy robótica, es
+   * falsa»— y sus tomas se borraron de `public/assets/rentas/vo/` para que nadie
+   * las confunda con éstas.
+   *
+   * Cada línea entra en el arranque de su escena. Tres cruzan levemente el corte
+   * (0,2-0,4 s) y se dejó así a propósito: la voz ligando dos planos es montaje
+   * normal, y recortarla obligaba a mutilar el texto del brief. El cierre sí se
+   * reescribió: deletrear la URL se comía 5,3 s y el reel dura 3,8 s ahí.
    */
+  const LOCUCION = [
+    {t: 0.0,  archivo: "01_gancho",       dur: 2.12},
+    {t: 3.6,  archivo: "02_condiciones",  dur: 2.93},
+    {t: 7.0,  archivo: "03_areas",        dur: 3.00},
+    {t: 10.0, archivo: "04_amenidades",   dur: 3.08},
+    {t: 13.2, archivo: "05_precio",       dur: 3.71},
+    {t: 16.6, archivo: "06_dormitorios",  dur: 3.00},
+    {t: 19.4, archivo: "07_entrega",      dur: 2.35},
+    {t: 22.2, archivo: "08_sin_comision", dur: 4.44},
+    {t: 26.2, archivo: "09_cierre",       dur: 2.59},
+  ];
+
+  /**
+   * DUCKING. La música iba a 1,5 porque llevaba sola el peso del reel. Con voz
+   * encima baja a 0,5 mientras alguien habla —unos 9,5 dB, el margen habitual
+   * para que la locución mande sin que la pista desaparezca— con rampas de
+   * 0,25 s para que el movimiento no se oiga. Es atenuación por tabla de tiempos,
+   * NO por envolvente de la señal: eso último está prohibido en el estudio.
+   */
+  const RAMPA = 0.25;
+  const hablando = LOCUCION.reduce((m, l) => {
+    const dentro = interpolate(
+      frame,
+      [P(l.t - RAMPA, fps), P(l.t, fps), P(l.t + l.dur, fps), P(l.t + l.dur + RAMPA, fps)],
+      [0, 1, 1, 0],
+      {extrapolateLeft: "clamp", extrapolateRight: "clamp"},
+    );
+    return Math.max(m, dentro);
+  }, 0);
+  const musicaConVoz = musica * (1 - 0.667 * hablando);
+
   return (
     <AbsoluteFill style={{backgroundColor: "#000", fontFamily: FUENTE}}>
-      <Audio src={staticFile("assets/rentas/musica_reel.mp3")} volume={musica} />
+      <Audio src={staticFile("assets/rentas/musica_reel.mp3")} volume={musicaConVoz} />
+      {LOCUCION.map((l) => (
+        <Sequence key={l.archivo} from={P(l.t, fps)} durationInFrames={P(l.dur + 0.1, fps)}>
+          <Audio src={staticFile(`assets/rentas/vo/${l.archivo}.mp3`)} />
+        </Sequence>
+      ))}
 
       {/* 1 · Dron + gancho ─────────────────────────────────────────── */}
       <Sequence durationInFrames={P(3.6, fps)}>

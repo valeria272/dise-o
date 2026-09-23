@@ -4,6 +4,48 @@
 
 ---
 
+## 2026-09-23 — Diego Aguilar (con Claude)
+
+**Qué se hizo:** se aplicó la **ronda del 23-09** sobre la entrega de octubre —sus 5
+comentarios, de Diego y de Carlos Figueroa— y se le puso **locución al reel**, que iba
+mudo desde el 02-09. Las dos fichas del correo cerraron la banda muerta de la tarjeta
+azul; la ST de Halloween cambió de fondo y de composición. Las 4 piezas se actualizaron
+en Drive **por fileId**, así que conservan enlace y comentarios anclados.
+
+| Pieza | Comentario | Qué se hizo |
+|---|---|---|
+| `MAIL 06-10 bloque 3 ficha` | Carlos: «me ayudas quitando este espacio?» · Diego: «quitar espacio» | La banda muerta medía **15,5 % del alto**; el resto de los respiros internos, 1,1-2,7 %. `space-between` la reparte: el mayor queda en 6,4 % |
+| `MAIL 27-10 bloque 3 ficha` | «quitar espacio» | Idéntico — nadie lo pidió aparte, pero tenía el mismo defecto |
+| `29-10 ST Halloween` | «faltan detalles de halloween, no sobrecargar escena» | Fondo nuevo: la escena real del carrusel (guirnalda de murciélagos, luces, calabazas) **dentro de la foto**. Cero overlays |
+| `29-10 ST Halloween` | «centrar al medio» | Grupo de texto centrado en **49,96 %**, como **excepción declarada** (`.story.centrada`) |
+| `06-10 REEL` | Diego: «faltó la voz en off, masculina, chilena, 30 años» | 9 tomas con **Benjamín Soto** (ElevenLabs) + música atenuada bajo la voz |
+
+**Dónde quedó:**
+- `out/rentas/20261000_grilla_octubre/editables/{base.css,build.py,rentas_st-halloween-29-10.html}`
+- Fondo nuevo `fondos/st_halloween_blur_v2.jpg` (recorte 9:16 de `halloween/hw_5_45.jpg` + grano)
+- Locución en `public/assets/rentas/vo/01..09.mp3` · reel en `src/compositions/rentas/RentasReelOctubre.tsx`
+- **En Drive, actualizados por ID:** las 2 fichas (en el `10. OCTUBRE` de briefs de mailing),
+  la ST y el reel (en `Artes/2026/OCTUBRE 2026`). Comentarios verificados después de subir: 4, 1 y 2.
+
+**Qué sigue:**
+1. **Escuchar el reel.** Se validó por medición (voz presente, 0 clipping, pico −0,26 dBFS),
+   pero nadie lo ha oído. La modulación silábica dio 0,56 contra el 0,35-0,41 que el estudio
+   midió en los reels con voz humana del cliente: puede ser la ventana de medición o puede
+   sonar entrecortada.
+2. Responder los 5 comentarios en Drive diciendo qué se hizo, y marcarlos resueltos.
+3. **Sincronizar `clients/nueva-urbe/sistema/base.css`**, que se quedó en la **v1 de la ficha**
+   (logo dentro de la tarjeta) y nunca recibió la v2 del 03-09. Hoy el archivo que manda es el
+   de la entrega, y esa divergencia va a morder a quien retome la marca.
+
+**Abierto:**
+- Si el centrado de la ST pasa a ser la gramática general de historia de la marca o se queda
+  como excepción de esta pieza. **Hoy es excepción** — `.story .bloque.alto` sigue en 13,6 %.
+- Siguen los 5 puntos del 02-09: qué no cuadra en el cierre del reel · WhatsApp 9951 vs 9955 ·
+  precio y superficie entre canales · las dos piscinas que el brief no nombra · las 5 fotos con
+  permiso propio.
+
+---
+
 ## 2026-09-03 (tarde) — Valeria Traverso (con Claude)
 
 **Qué se hizo:** se rehízo **la ficha del correo** con la composición de Diego Aguilar.

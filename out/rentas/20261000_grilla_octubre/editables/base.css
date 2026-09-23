@@ -310,7 +310,15 @@ html, body { background:#000; }
 .mail .ficha-datos { background:var(--azul); border-radius:26px;
                 padding:22px 18px 26px; text-align:center; color:var(--blanco);
                 height:100%; box-sizing:border-box;
-                display:flex; flex-direction:column; justify-content:flex-start; }
+                /* 23-09-2026 — ronda de Diego y Carlos: «quitar espacio».
+                   Con `flex-start` + `margin-top:auto` en las amenidades quedaba
+                   UNA banda muerta de 15,5 % del alto entre la fila de iconos y
+                   el recuadro, cuando el resto de los respiros internos miden
+                   1,1-2,7 %. `space-between` reparte ese aire entre los bloques
+                   y NO mueve ninguno de los tres anclajes medidos sobre la
+                   referencia de agosto: tarjeta 31,73-94,34 %, recuadro al pie,
+                   nube compartiendo linea de base. */
+                display:flex; flex-direction:column; justify-content:space-between; }
 .mail .ficha-datos .dir { font-weight:700; font-size:19px; line-height:1.25; }
 .mail .ficha-datos .mod { font-weight:700; font-size:19px; line-height:1.25; margin-top:14px; }
 .mail .pildora-lima { font-size:18px; padding:.18em .8em; margin-top:8px; }
@@ -323,7 +331,7 @@ html, body { background:#000; }
 
 /* las amenidades: recuadro de borde blanco DENTRO de la misma tarjeta */
 .mail .amenidades { display:grid; grid-template-columns:repeat(3,1fr); gap:10px 6px; }
-.mail .ficha-datos .amenidades { margin-top:auto; padding:23px 8px; border-radius:14px;
+.mail .ficha-datos .amenidades { margin-top:0; padding:23px 8px; border-radius:14px;
                 border:2px solid rgba(255,255,255,.55); }
 .mail .amenidades .am { display:flex; flex-direction:column; align-items:center; gap:4px;
                 font-size:11px; font-weight:700; line-height:1.15; text-align:center; }
@@ -372,6 +380,20 @@ html, body { background:#000; }
    más baja de Paulina queda a 58-59 px del borde (normalizado a 1080 de ancho).
    Con 5,5 % la nuestra caía a 43-48 px — más pegada que la referencia. */
 .mail .bloque.abajo { bottom:8.7%; }
+
+/* ══════════ HISTORIA CENTRADA — excepción declarada ══════════
+   23-09-2026 · ronda de Diego Aguilar sobre la ST de Halloween: «centrar al
+   medio». La gramática de historia de la marca pone el titular ARRIBA (13,6 %)
+   y el precio abajo (bottom 24 %), y esa sigue mandando: por eso esto va en su
+   propia clase y NO toca `.story .bloque.alto`.
+
+   MEDIDO sobre la pieza rendida: el titular ocupa 14,45-32,98 % y el precio
+   62,20-75,48 %, o sea 29,2 % de vacío entre los dos. Juntando los dos grupos
+   con 6 % de separación el conjunto mide 37,8 %, que centrado en el eje deja
+   la tinta entre 31,1 % y 68,9 % — dentro de las zonas seguras de Instagram
+   (250 px arriba = 13,0 % · 340 px abajo = 17,7 %). */
+.story.centrada .bloque.alto   { top:30.2%; }
+.story.centrada .bloque.precio { bottom:30.6%; }
 
 /* ══════════ LÁMINA NUMERADA ══════════
    Calcada del carrusel PAID que Rentas publicó en Instagram (captura del

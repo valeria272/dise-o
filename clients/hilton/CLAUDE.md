@@ -1503,7 +1503,12 @@ Instrucciones de Eli para este carrusel, que valen para los próximos:
 3. **«Hazlo según la referencia»** — la ref manda la COMPOSICIÓN (acá todo centrado,
    a diferencia del S5 que alinea a la izquierda); tipografía y color siguen siendo DT.
    Lo que la ref trae y el brief no (un párrafo de cuerpo) no se inventa.
-4. **MP4 a Drive apenas estén; GIF SÓLO con la pieza aprobada.**
+4. **MP4 a Drive apenas estén; GIF cuando la pieza esté aprobada O cuando Eli lo
+   pida** (el 23-09 lo pidió el mismo día: «necesito que dejes en gif ahora»). El GIF
+   va a una subcarpeta `C<n> S<n> DT - GIF` dentro de la carpeta del carrusel.
+   ⭐ Receta de GIF de DT desde el 23-09: **720 px, 12,5 fps, sin difuminado**
+   (`scripts/dt-c1-turismo-gif.py`). Reemplaza la del S5 (12 fps + bayer): a 12 fps
+   el cuadro dura 8,33 centésimas y el GIF se desfasa; a 12,5 son 8 exactas.
 
 Trampas de material: las carpetas de clips de ambar/Scarlette/Carlos suelen estar
 compartidas **sólo al dominio** (miniatura y descarga devuelven HTML); no es bloqueo,

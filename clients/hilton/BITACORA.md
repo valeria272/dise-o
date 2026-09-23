@@ -1,3 +1,27 @@
+## 2026-09-23 — Eli (Windows) · DT: carrusel video DÍA DEL TURISMO (FEED col M, 27-09), ronda 1
+
+**Qué se hizo:** se diseñó el carrusel de 6 láminas del brief (G1 portada foto + MUT,
+Parque Bicentenario, Sky Costanera, Cerro San Cristóbal y Barrio El Golf en video),
+según la referencia de Eli (`REF C1 S5 TURISMO`, dos láminas Bronnuti: todo centrado,
+logo arriba, filete + nombre al tercio inferior). Portada = `HDT_42` (frontis con plaza,
+distinta a la `HDT_43` de la story). MUT y El Golf salen del Drive; **Bicentenario, Sky y
+San Cristóbal salen del stock de Magnific** (290160, 6133095, 5625808) porque las
+carpetas de Bicentenario y Sky son sólo-dominio y la de San Cristóbal traía un clip
+inservible. Se sacaron del cuadro tres marcas ajenas: Bci (El Golf), Mastercard (Sky) y
+el pendón «MUT» que duplicaba el titular. QA de contraste limpio en f0 y f149.
+**Dónde quedó:** 6 MP4 (2160×2700, 5 s) **subidos** a `S5 HILTON SEP 2026 › DT ›
+C1 N°1 S5 TURISMO` (`1hRg3QUZ3KWAEhBFr4ZcYYR6MYDbWdds5`) como `C1 S5 DT n°1…6.mp4`,
+verificados por peso contra el local. Revisión para Eli:
+https://claude.ai/artifact/Fi2LkYypYQCQ1uY41ZJaZ2. Aparato: `scripts/dt-c1-turismo-{clips,qa,rendir,revision}.py`
++ `src/compositions/hilton/DtC1Turismo.tsx` (carpeta `DT-Carrusel-Turismo` en `DtEntry`).
+**Qué sigue:** esperar el OK de Eli. Si aprueba → GIF (receta `gif-de-una-pieza-animada`:
+25 fps, sin difuminado, 540×1080·5/4) a una subcarpeta GIF y subir. Si pide logo en las
+interiores → `python scripts/dt-c1-turismo-rendir.py --con-logo` (ojo: en Sky el logo
+cae sobre la punta de la torre y habría que correr el encuadre).
+**Abierto:** decisión de Eli: ¿logo sólo en portada (entregado) o en todas (como la ref)?
+El brief numera dos «G4» (informado, no se tocó). La carpeta `C2-28SEP` recibe el carrusel
+«Tu día», cuyos archivos siguen llamándose `C1 S5 DT n°…` — que Eli diga si se renombran.
+
 ## 2026-09-22 · Eli (Windows) — DT: el carrusel S5, ronda 7 (el bloque de la portada, final)
 
 **Qué pidió Eli**, seguido sobre el render de la ronda 6: (1) «quiero que el

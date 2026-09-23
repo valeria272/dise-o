@@ -114,6 +114,11 @@ public/assets/**
 # que la reconstrucción es determinista (17-09-2026).
 !public/assets/hilton/dt/s5/*.jpg
 
+# DT · CARRUSEL DÍA DEL TURISMO (S5, 27-09). Misma regla: la foto de portada entra;
+# los clips (117 MB) se rehacen con `python scripts/dt-c1-turismo-clips.py`, que
+# anota el ID de Drive o de stock Magnific de cada origen (23-09-2026).
+!public/assets/hilton/dt/turismo/*.jpg
+
 # PISO18 · S4 septiembre 2026. Los seis fotogramas de la sesión de agosto 2023 que
 # usan las piezas, las tres tiras de la encuesta, el atardecer reiluminado y el
 # logotipo ya recortado. Excepción deliberada, misma razón que DT: sin estos

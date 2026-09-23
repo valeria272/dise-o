@@ -19,6 +19,14 @@ import {
   DtC1S5Portada,
   DtC1S5Salon,
 } from './compositions/hilton/DtC1S5Dia';
+import {
+  DtC1TurismoBicentenario,
+  DtC1TurismoGolf,
+  DtC1TurismoMut,
+  DtC1TurismoPortada,
+  DtC1TurismoSanCristobal,
+  DtC1TurismoSky,
+} from './compositions/hilton/DtC1Turismo';
 import {DtFtHonors, DtFtHonorsGuia} from './compositions/hilton/DtFtHonors';
 import {
   DtStFiestasPatrias,
@@ -133,6 +141,19 @@ const Raiz: React.FC = () => (
       <Composition id="DT-V-S5-Lobby" component={DtC1S5Lobby} {...feedVideo} />
       <Composition id="DT-V-S5-Gym" component={DtC1S5Gym} {...feedVideo} />
       <Composition id="DT-V-S5-Habitacion" component={DtC1S5Habitacion} {...feedVideo} />
+    </Folder>
+    <Folder name="DT-Carrusel-Turismo">
+      {/*
+        FEED col M · 27-09 10:00 · CARRUSEL VIDEO — DÍA DEL TURISMO.
+        El orden de este bloque ES el orden de entrega (n°1 a n°6), el mismo en
+        que el brief escribe las láminas.
+      */}
+      <Composition id="DT-V-Tur-Portada" component={DtC1TurismoPortada} {...feedVideo} />
+      <Composition id="DT-V-Tur-Mut" component={DtC1TurismoMut} {...feedVideo} />
+      <Composition id="DT-V-Tur-Bicentenario" component={DtC1TurismoBicentenario} {...feedVideo} />
+      <Composition id="DT-V-Tur-Sky" component={DtC1TurismoSky} {...feedVideo} />
+      <Composition id="DT-V-Tur-SanCristobal" component={DtC1TurismoSanCristobal} {...feedVideo} />
+      <Composition id="DT-V-Tur-Golf" component={DtC1TurismoGolf} {...feedVideo} />
     </Folder>
   </>
 );

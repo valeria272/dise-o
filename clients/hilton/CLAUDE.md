@@ -1488,6 +1488,28 @@ rindiendo un still y comparando md5 contra el de la ronda anterior.
 
 ---
 
+### ⭐⭐ CARRUSEL VIDEO DÍA DEL TURISMO (23-09) — cómo encarga Eli un carrusel de video
+
+Instrucciones de Eli para este carrusel, que valen para los próximos:
+
+1. **«Selecciona el video más bonito y legible»** — la selección es mía. Legible =
+   que el tercio del texto quede tranquilo los 5 s. Se descarta por lo que se VE:
+   marca ajena que entra en el paneo (Bci, Mastercard), un rótulo que repite la
+   palabra del titular (pendón «MUT», fachada del Teatro Municipal), un pilar que
+   parte el cuadro, cabezas de visitantes.
+2. **Lo que no está, se busca: «en Magnific u otra app, incluso créalo».** Orden:
+   Drive → **stock de video de Magnific por API** (tiene tomas reales de Santiago) →
+   generar sólo si no hay nada real. Los IDs usados viven en `dt-c1-turismo-clips.py`.
+3. **«Hazlo según la referencia»** — la ref manda la COMPOSICIÓN (acá todo centrado,
+   a diferencia del S5 que alinea a la izquierda); tipografía y color siguen siendo DT.
+   Lo que la ref trae y el brief no (un párrafo de cuerpo) no se inventa.
+4. **MP4 a Drive apenas estén; GIF SÓLO con la pieza aprobada.**
+
+Trampas de material: las carpetas de clips de ambar/Scarlette/Carlos suelen estar
+compartidas **sólo al dominio** (miniatura y descarga devuelven HTML); no es bloqueo,
+se va al stock. Y Eli crea la carpeta de entrega antes (`C1 N°1 S5 TURISMO`): esa
+carpeta fija la numeración del carrusel — mírala antes de nombrar archivos.
+
 ### ⛔ El `¡` en DT: Stag no lo tiene, y se resuelve con el truco de Eli
 
 Verificado glifo a glifo con `fontTools` sobre los archivos de esta máquina: los

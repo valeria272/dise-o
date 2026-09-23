@@ -5,6 +5,75 @@
 
 ---
 
+## 2026-09-23 (noche) — audio nuevo de los reels, HECHO
+
+**Qué se hizo:** Diego reconectó el conector de Magnific y se ejecutó el relevo
+de la entrada anterior. Los dos reels llevan **voz y música nuevas**.
+
+**La voz.** Estaba guardada en Magnific con la etiqueta **`VOZ TIERRA CALMA`**
+—**sin el «DE»**, que es como se buscó primero y no aparecía— en el proyecto
+**Personal**, no en uno de marca. Es Gemini 2.5 Pro con el interlocutor
+**Enceladus** (id 704 del catálogo, Google). Se regeneraron las tres líneas del
+reel del 01/10, una por una.
+
+**La música.** Dos pistas distintas del **mismo prompt corporativo**, ElevenLabs
+Music v2 con `instrumental: true`, de 26 s y 35 s — una por reel, para que el mes
+no suene repetido. Quedaron como `mus_corporativa_a` (primavera) y
+`mus_corporativa_b` (dron).
+
+### ⚠️ La voz nueva es un 39 % más lenta, y eso movió los tiempos
+
+| Línea | Antes (Benjamín Soto) | Ahora (Enceladus) |
+|---|---|---|
+| `vm1` | 66 frames · 2,19 s | **83** · 2,76 s |
+| `vm2` | 83 frames · 2,77 s | **115** · 3,84 s |
+| `vm3` | 85 frames · 2,85 s | **88** · 2,93 s |
+
+`scripts/tc-audio-instalar.py` midió y reescribió el array `VOZ`. Las tres caben,
+pero **`vm2` cierra en el frame 285 y el corte siguiente entra en el 305**: 20
+frames de aire. Si a esa línea le crecen dos palabras, deja de caber.
+
+### Se verificó que la voz nueva está DENTRO del render
+
+No basta con que el render termine sin error: el mp4 salió **del mismo tamaño
+exacto** que el anterior (33.154.597 bytes), porque el audio va a bitrate
+constante y el video no cambió. Así que se midió la envolvente del audio del mp4
+y se ubicaron los tres tramos de voz:
+
+```
+  1,25 → 3,75 s     6,00 → 9,25 s     10,50 → 13,25 s
+```
+
+El segundo tramo llega a **9,25 s**; con la voz vieja habría terminado en 8,43 s.
+Eso es la prueba. El reel de dron: 32,92 s de música sin un solo segundo mudo.
+
+### Lo que se aprendió del conector
+
+- **El buscador de creaciones no busca por etiqueta**: `creations_search` con
+  texto libre devolvió el historial. La etiqueta se encuentra con `tags_list`
+  sobre el proyecto, y después `creations_search` filtrando por `tags`.
+- **El modo ilimitado NO aplica en la sesión del conector.** El plan dice
+  «unlimited» y cada generación descuenta igual. La corrida costó **1.244
+  créditos** (8 por línea de voz, 520 y 700 por pista). Quedan ~1,41 M.
+- Gemini se dirige con `systemInstruction` en prosa, como a un actor.
+
+**Dónde quedó:** los dos mp4 re-subidos **sobre el mismo fileId**, así que los
+enlaces del cliente siguen sirviendo. Los cinco audios versionados.
+
+**Qué sigue:** ahora sí, esperar la ronda del **cliente**. Nada más pendiente de
+producción en octubre.
+
+**Abierto:** sigue faltando la **confirmación escrita de Fran o Blanca** para
+«Rol individual» y «Acceso controlado».
+
+> 🔌 **Ojo con el `.mcp.json`.** Se agregó un servidor `magnific` local apuntando
+> a `https://mcp.magnific.com`, pero **el que funciona es el conector de
+> claude.ai**, que ya estaba en la cuenta. El local quedó **sin autorizar** y es
+> redundante: hay que decidir si se autoriza o se quita, porque hoy sólo genera
+> un aviso de «servidor sin autenticar» en cada arranque.
+
+---
+
 ## 2026-09-23 (relevo) — audio nuevo de los reels, PENDIENTE
 
 **Decidido por Diego, falta ejecutarlo.** Esta sesión no pudo: el conector MCP de

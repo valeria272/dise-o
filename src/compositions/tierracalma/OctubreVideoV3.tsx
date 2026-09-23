@@ -41,8 +41,10 @@ import {
 // están en la lista blanca del manual. Entran con el OK de Diego del 22-09 y
 // siguen SIN confirmación escrita de Fran o Blanca.
 //
-// Cadena de modelos: Seedream 5 Pro → Kling 3.0 → ElevenLabs Music v2.
-// Locución: Antonia Reyes (voz chilena), una línea por subtítulo.
+// Cadena de modelos: Seedream 5 Pro → Kling 3.0 para la imagen.
+// AUDIO (23-09): locución con la VOZ DE TIERRA CALMA (Gemini 2.5 Pro ·
+// Enceladus), una línea por subtítulo, y las dos pistas con el prompt
+// corporativo de la marca — ElevenLabs Music v2, instrumentales.
 // =============================================================================
 
 const CIERRE = 150; // el logo animado dura 5 s a 30 fps
@@ -62,14 +64,21 @@ const Cierre: React.FC<{desde: number}> = ({desde}) => (
 // -----------------------------------------------------------------------------
 
 /**
- * Locución: **Benjamín Soto** (id 864), voz CHILENA MASCULINA joven — el único
- * hombre chileno del catálogo. Pedido de Diego el 22-09: antes iba Antonia
- * Reyes (femenina). Duraciones medidas sobre los mp3, no estimadas.
+ * Locución: **VOZ DE TIERRA CALMA** — la voz de la marca, fijada por Diego el
+ * 23-09-2026. **Gemini 2.5 Pro**, interlocutor **Enceladus**, dirigida con
+ * *"voz y acento chileno, que sea tranquila, de un hombre de unos 40 años"*.
+ * Reemplaza a Benjamín Soto (ElevenLabs), que a su vez reemplazó a Antonia
+ * Reyes. Ver `clients/tierra-calma/CLAUDE.md` § 8.
+ *
+ * ⚠️ Duraciones MEDIDAS sobre los mp3 con `scripts/tc-audio-instalar.py`, nunca
+ * estimadas. La voz nueva es bastante más lenta: `vm2` pasó de 83 a 115 frames
+ * (2,77 s → 3,84 s). Cabe, pero por poco — cierra en el frame 285 y el corte
+ * siguiente entra en el 305.
  */
 const VOZ: {a: string; desde: number; dura: number}[] = [
-  {a: "vm1", desde: 30, dura: 66},
-  {a: "vm2", desde: 170, dura: 83},
-  {a: "vm3", desde: 310, dura: 86},
+  {a: "vm1", desde: 30, dura: 83},
+  {a: "vm2", desde: 170, dura: 115},
+  {a: "vm3", desde: 310, dura: 88},
 ];
 
 export const V3ReelPrimavera: React.FC = () => (
@@ -112,7 +121,7 @@ export const V3ReelPrimavera: React.FC = () => (
       </Sequence>
     ))}
     <Musica
-      src={AUDIO("mus_primavera_v3")}
+      src={AUDIO("mus_corporativa_a")}
       vol={0.26}
       duracion={V3_REEL_D_DURATION}
       baja={VOZ.map((v) => [v.desde, v.desde + v.dura] as [number, number])}
@@ -225,7 +234,7 @@ export const V3ReelDron: React.FC = () => {
         <Pie>Agenda tu visita por WhatsApp</Pie>
       </Bloque>
 
-      <Musica src={AUDIO("mus_dron_v2")} vol={0.3} duracion={V3_REEL_I_DURATION} />
+      <Musica src={AUDIO("mus_corporativa_b")} vol={0.3} duracion={V3_REEL_I_DURATION} />
       <Cierre desde={SLOT * 5 + CLIP_LEN - SOL} />
     </Lienzo>
   );

@@ -895,10 +895,23 @@ Las dos están **fijadas** y no se eligen de nuevo en cada reel.
 
 | | |
 |---|---|
-| **Dónde vive** | app web de Magnific, guardada con la etiqueta **`VOZ DE TIERRA CALMA`** |
-| **Modelo** | **Gemini 2.5 Pro** |
-| **Interlocutor** | **Enceladus** |
+| **Dónde vive** | Magnific, proyecto **Personal**, etiqueta **`VOZ TIERRA CALMA`** (ojo: **sin el «DE»**) |
+| **Modelo** | **Gemini 2.5 Pro** (`gemini_v2_5_pro`) |
+| **Interlocutor** | **Enceladus** — id **704** del catálogo, proveedor Google |
 | **Instrucción** | *voz y acento chileno, que sea tranquila, de un hombre de unos 40 años* |
+| **Cómo se le dirige** | Gemini usa `systemInstruction` para la interpretación y `text` para la línea. La nota va escrita **como una dirección a un actor**, en prosa simple: si parece un intento de saltarse el sistema, se descarta y el audio sale sin dirigir |
+
+La `systemInstruction` que se usó, para repetirla igual:
+
+> Habla en español de Chile, con acento chileno natural y neutro. Eres un hombre
+> de unos 40 años. El tono es tranquilo, cálido y pausado: cuentas algo, no
+> vendes. Nada de locución publicitaria, nada de énfasis forzado al final de la
+> frase.
+
+⚠️ **Esta voz es MÁS LENTA que la anterior.** Medido: `vm2` pasó de 83 a **115
+frames** (2,77 s → 3,84 s), un 39 % más. Cabe en su corte, pero cierra en el
+frame 285 y el siguiente entra en el 305. **Cualquier línea nueva hay que
+medirla antes de darla por buena**, y si el texto crece, no cabe.
 
 ⛔ **Reemplaza a Benjamín Soto** (ElevenLabs id 864), que es lo que suena en
 `vm1`–`vm3` hasta que se regeneren. Antes de él estuvo Antonia Reyes. La voz de
@@ -971,8 +984,18 @@ que es lo que permite que el cierre con `tc_cierre.mp4` no corte la música en s
 | `music-generation` | **410** · *«This endpoint is no longer available»* |
 | `sound-effects` · `audio-isolation` | 400 (vivas, faltan argumentos) |
 
-O sea: las dos se generan **a mano en la app web de Magnific** y se bajan. La API
-sólo sirve para efectos de sonido y para aislar audio.
+O sea: las dos se generan **por el conector MCP de Magnific**, no por script. La
+API sólo sirve para efectos de sonido y para aislar audio.
+
+✅ **Hecho el 23-09-2026 por el conector:** las tres líneas con Enceladus
+(`audio_tts`, 8 créditos cada una) y las dos pistas con el prompt de arriba
+(`audio_music_generate`, ElevenLabs Music v2, `instrumental: true`, 26 s y 35 s —
+520 y 700 créditos). Instaladas como `vm1`–`vm3`, `mus_corporativa_a.mp3` y
+`mus_corporativa_b.mp3`, todas versionadas.
+
+> ⚠️ **El modo ilimitado de Magnific NO aplica en la sesión del conector.** El
+> plan dice «unlimited» y aun así cada generación descuenta créditos. La corrida
+> completa costó **1.244**.
 
 > ⚠️ `docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md` daba `music-generation` por viva. Ya no
 > lo está: Magnific la retiró entre el 08-09 y el 23-09.

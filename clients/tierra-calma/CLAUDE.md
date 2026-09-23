@@ -486,6 +486,23 @@ otro país. Pero la pieza **no documenta: idealiza**. El encargo es que la image
 se vea **mejor que la foto real** — laderas verdes y frondosas, pasto fresco—
 manteniendo **especies nativas chilenas**: espino, quillay, litre, peumo.
 
+##### ⭐ La regla vale también para la PAUTA, y la imagen no se repite (Diego, 23-09)
+
+En el PAID de octubre se usó al principio la cenital real DJI_0335 —la misma de
+la pieza «5.000 m²» de septiembre— y la foto del asado de la pieza del 18.
+Diego: *«ocupaste las mismas imágenes creadas anteriormente, quiero que cambies
+esas… más limpio el terreno, quizás una vista dron más arriba… y la del fin de
+semana generar una imagen nueva»*. Dos reglas:
+
+1. **Una imagen que ya salió en pauta no se reusa en una pieza nueva**, aunque el
+   brief diga «la misma toma». Se genera otra.
+2. **Cuando la pieza tiene que mostrar el terreno** (deslindes, planos), el camino
+   es **Nano Banana Pro con la cenital real como referencia**: conserva la traza de
+   caminos y cercos a 90° y la idealiza. Mystic, sin referencia, entrega aéreos
+   oblicuos con lotes redondos que parecen pista de carreras (probado el 23-09).
+   La cenital más alta y limpia del rodaje es **DJI_0281** (~32 px/m, medido con
+   los autos del camino). Receta en `scripts/tc-paid-oct-prep.py`.
+
 El equilibrio, en una línea: **la estructura del lugar es real (ladera, ripio
 ocre, cerco de madera, postes), la vegetación es la mejor versión posible de sí
 misma.** Ni el desierto de la primera corrección ni la pradera europea de la

@@ -5,6 +5,23 @@
 
 ---
 
+## 2026-09-23 (tarde, ronda 2) — PAID: casacabe y D1 con imagen nueva
+
+Diego pidió cambiar las imágenes que ya se habían usado. **Reemplazadas sobre los
+mismos fileId** (los enlaces de la entrada de abajo siguen valiendo):
+
+- **02-A casacabe (1:1 y 4:5):** fondo nuevo = DJI_0281 idealizada con Nano Banana
+  Pro (`raw/tierracalma/paid-oct2026/ia/cenital-nb-1.png`): terreno verde y limpio,
+  vista más alta. El deslinde sigue los cercos que se ven en la imagen; la casa es
+  el 2,99 % del lote. Se descartaron 2 aéreos de Mystic (oblicuos, lotes redondos).
+- **D1 fin de semana (9:16 y 4:5):** imagen nueva de Mystic (`ia/finde-1.png`),
+  gente de lejos, casa de madera. Ahora va sobre los marcos bloqueados: **la
+  píldora del 9:16 ya no pisa el 10 % inferior** (pendiente 3 de abajo, resuelto).
+- 02-B no cambia (DJI_0324, no se había usado antes).
+- Regla nueva en el manual (§ 4 bis): en pauta tampoco se repiten imágenes.
+
+---
+
 ## 2026-09-23 (tarde) — PAID de octubre: 6 archivos entregados
 
 **Brief:** «Brief Diseño Tierra Calma - Octubre 2026.xlsx» de Ignacio Retamal

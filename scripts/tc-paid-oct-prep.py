@@ -97,19 +97,31 @@ def casa(lote, u0: float, v0: float):
 datos = {"fuente": {"02A": CENITAL.name, "02B": OBLICUO.name}}
 
 # ---------------------------------------------------------------- 02-A cenital
-cen = Image.open(CENITAL)
-cen = calido(cen)
-cx = sum(p[0] for p in LOTE) / 4
-# El recorte se pega al borde INFERIOR de la foto: es lo que sube el lote en el
-# lienzo y deja libre la esquina de abajo a la izquierda para el titular (la
-# misma disposición de la pieza «5.000 m²» de septiembre). La escala mínima la
-# fija el alto de la foto: 1080/3024 y 1350/3024.
-# El desplazamiento en x deja el lote a ~70 px de los filetes verticales (x 65 y 1016).
-for nombre, w, h, escala, dx in (("1x1", 1080, 1080, 0.40, 120), ("4x5", 1080, 1350, 0.45, 42)):
-    im, a_lienzo = recorte(cen, cx + dx, cen.height, escala, w, h)
+# RONDA 2 (23-09, Diego): «que se vea distinto, más limpio el terreno, quizás una
+# vista dron más arriba». La v1 usaba DJI_0335, la misma toma de la pieza
+# «5.000 m²» de septiembre. Ninguna foto real del rodaje es más alta ni más
+# limpia, y el manual (§ 4 bis, Valeria 19-08) dice que el dron es para video y
+# los estáticos van con IA. Así que el fondo es DJI_0281 —la cenital más alta y
+# limpia del rodaje— IDEALIZADA con Nano Banana Pro usándola como referencia:
+# conserva la traza real (caminos, cercos, senderos, la casa con piscina) vista a
+# 90° y le pone pasto verde, nativos y luz de golden hour. Prompt y variantes en
+# raw/tierracalma/paid-oct2026/ia/ (se eligió cenital-nb-1).
+#
+# El deslinde sigue los cercos que se ven EN la imagen: el superior, el
+# izquierdo, el inferior y el borde del sendero a la derecha. La casa sigue
+# siendo el 3 % del área del deslinde.
+CENITAL_IA = RAIZ / "raw/tierracalma/paid-oct2026/ia/cenital-nb-1.png"  # 1792×2400
+LOTE_IA = [(508, 758), (1010, 810), (1100, 1395), (410, 1275)]
+cen = Image.open(CENITAL_IA).convert("RGB")
+escala = 1080 / cen.width
+# y0 = 160 en 4:5 y 266 en 1:1: el lote queda en el tercio de arriba y el titular
+# cae abajo, sobre otro lote, sin que ninguna línea del deslinde le pase por encima.
+for nombre, w, h, y0 in (("1x1", 1080, 1080, 266), ("4x5", 1080, 1350, 160)):
+    ch = h / escala
+    im, a_lienzo = recorte(cen, cen.width / 2, y0 + ch / 2, escala, w, h)
     im.save(SALIDA / f"a-cenital-{nombre}.jpg", quality=92)
-    lote = [a_lienzo(p) for p in LOTE]
-    planta, ppm = casa(lote, 0.12, 0.13)
+    lote = [a_lienzo(p) for p in LOTE_IA]
+    planta, ppm = casa(lote, 0.14, 0.16)
     datos[f"02A_{nombre}"] = {
         "lote": lote,
         "casa": planta,
@@ -144,24 +156,16 @@ cuadrado.save(SALIDA / "MARCO-POST-1x1.png")
 print(json.dumps(datos, indent=2, ensure_ascii=False))
 
 # ------------------------------------------------ D1 (reemplazo de B4, 23-09)
-# B4 «La primavera» no tiene foto: el rodaje es de invierno. El brief manda
-# reemplazarla por D1, que es «un cambio de tipografía sobre el archivo
-# existente»: la pieza «alcance» de septiembre (el asado). No hay foto limpia en
-# el repo ni en Drive, así que se parte del PNG entregado y se BORRAN sólo las
-# líneas 1 y 2 del titular (filas 275–329 y 354–395, medidas: iguales en 9:16 y
-# 4:5). La línea 3 —«TIERRA CALMA.» en serif— es la misma en D1 y no se toca.
-# Se borran los píxeles blancos de esas dos líneas, dilatados 4 px, con
-# inpainting de Telea; el texto nuevo va encima y tapa el resto.
-import cv2  # noqa: E402
-import numpy as np  # noqa: E402
-
-REF = RAIZ / "raw/tierracalma/paid-oct2026/ref-sep"
-for nombre in ("9x16", "4x5"):
-    src = cv2.imread(str(REF / f"alcance-{nombre}.png"))
-    src = src[:, :1080]  # la pieza de sept mide 1081 de ancho
-    banda = np.zeros(src.shape[:2], np.uint8)
-    banda[268:402, 300:790] = 255  # 268: la tilde de la «Ó» sube hasta la fila 275
-    blanco = (src.min(axis=2) > 170).astype(np.uint8) * 255
-    mascara = cv2.dilate(cv2.bitwise_and(blanco, banda), np.ones((9, 9), np.uint8))
-    limpio = cv2.inpaint(src, mascara, 9, cv2.INPAINT_TELEA)
-    cv2.imwrite(str(SALIDA / f"d1-{nombre}.png"), limpio)
+# RONDA 2 (23-09, Diego): «la del fin de semana, generar una imagen nueva». La v1
+# recomponía el titular sobre la pieza del asado de septiembre; ahora el fondo
+# es una generación nueva de Mystic (finde-1: gente de lejos y de espaldas, casa
+# de madera, el tercio de arriba despejado para el titular). Se recorta a 9:16 y
+# a 4:5 desde la MISMA imagen para que la pieza sea una sola.
+FINDE = RAIZ / "raw/tierracalma/paid-oct2026/ia/finde-1.png"  # 1536×2752
+fin_ = Image.open(FINDE).convert("RGB")
+esc = 1080 / fin_.width
+# 4:5 con y0 = 170: el techo de la casa queda BAJO el titular (con 500 lo pisaba).
+for nombre, h, y0 in (("9x16", 1920, 0), ("4x5", 1350, 170)):
+    ch = h / esc
+    im, _ = recorte(fin_, fin_.width / 2, y0 + ch / 2, esc, 1080, h)
+    im.save(SALIDA / f"d1-{nombre}.jpg", quality=92)

@@ -14,11 +14,12 @@ import geo from "../../../public/assets/tierracalma/paid-oct/paid-oct.json";
 //   02-B «El mapa de los 30 minutos»  → la DISTANCIA a Santiago
 //
 // DIRECCIÓN DE ARTE
-// · Las dos salen de FOTO REAL del rodaje del 07-08. Nada de IA: en pauta se
-//   muestra el terreno que se vende. 02-A es la cenital del lote de la caseta
-//   verde (el de la pieza «5.000 m²» de septiembre); 02-B, un oblicuo de
-//   parcelas verdes con casas y los cerros atrás. Santiago NO se ve en ninguna
-//   toma del rodaje (neblina): los tiempos los cuentan las cápsulas, no la foto.
+// · 02-B sale de FOTO REAL del rodaje del 07-08 (DJI_0324). Santiago NO se ve
+//   en ninguna toma (neblina): los tiempos los cuentan las cápsulas.
+// · 02-A y D1 van con IA desde la ronda 2 (Diego, 23-09: «cambia las imágenes
+//   que ya se usaron»), como manda el manual para los estáticos (§ 4 bis).
+//   02-A es la cenital real DJI_0281 IDEALIZADA con Nano Banana Pro (misma traza
+//   de caminos y cercos, más verde, golden hour); D1, una escena nueva de Mystic.
 // · La casa de 02-A está A ESCALA: 150 m² = 3,00 % del deslinde, calculado en
 //   scripts/tc-paid-oct-prep.py. Sólo contorno, sin relleno ni sombra: plano,
 //   no render (brief).
@@ -171,7 +172,7 @@ const CasaCabe: React.FC<{f: Formato}> = ({f}) => {
   // Etiqueta del plano: a la derecha de la casa, a la altura de su ala larga.
   const der = Math.max(...g.casa.map((p) => p[0]));
   const arr = Math.min(...g.casa.map((p) => p[1]));
-  const titularY = f === "1x1" ? 640 : 900;
+  const titularY = f === "1x1" ? 662 : 900; // 1:1: 662 deja 22 px bajo la esquina del deslinde
   return (
     <Lienzo f={f} foto={`a-cenital-${f}.jpg`}>
       <Degradado arriba={0.55} abajo={0.72} corte={f === "1x1" ? 50 : 58} />
@@ -269,52 +270,86 @@ const Mapa30: React.FC<{f: Formato}> = ({f}) => (
 // -----------------------------------------------------------------------------
 // D1 · El fin de semana largo — reemplaza a B4 (decisión del 23-09)
 //
-// B4 «La primavera» pedía un aéreo con los árboles brotados al atardecer y el
-// rodaje es de una mañana nublada de invierno: no existe esa toma. El brief
-// manda en ese caso D1, «un cambio de tipografía sobre el archivo existente».
-// El fondo es la pieza «alcance» de septiembre con las líneas 1 y 2 borradas
-// (ver scripts/tc-paid-oct-prep.py); la línea 3, «TIERRA CALMA.» en serif, es
-// la original. Marco, logo y píldora también son los de esa pieza.
+// B4 «La primavera» pedía un aéreo con árboles brotados al atardecer y el rodaje
+// es de invierno: no existe esa toma. El brief manda D1 en ese caso.
+// Ronda 2: imagen NUEVA (Mystic, finde-1), ya no la del asado de septiembre.
+// La composición es la de «la pieza del 18» (dos líneas de sans liviana y
+// «TIERRA CALMA.» grande en serif cursiva), pero sobre los marcos BLOQUEADOS
+// del diseñador — así la píldora del 9:16 queda en 1584–1657 y sale del 10 %
+// inferior que el brief pide libre (la pieza de septiembre la tenía en 1770).
 //
-// ⚠️ El brief escribe «PASALO» (voseo). Va «PÁSALO», igual que en septiembre
-// se corrigió «pasalo» → «pásalo» (grilla-septiembre-2026.md § 2.6).
-// ⏳ Sólo sirve hasta el 12-oct (fin de semana largo del 12 de octubre).
+// ⚠️ El brief escribe «PASALO» (voseo). Va «PÁSALO», igual que en septiembre.
+// ⏳ Sólo sirve hasta el 12-oct.
 // -----------------------------------------------------------------------------
 
-/** Línea base de las dos líneas nuevas, medida sobre la pieza de septiembre:
-    la línea 2 original apoya en la fila 395 y el paso entre líneas es 66 px. */
-const D1_BASE_2 = 395;
-const D1_PASO = 66;
-const D1_CUERPO = 47; // altura de mayúscula 34 px, la de la pieza original
+const D1_FMT = {
+  "9x16": {h: 1920, marco: staticFile("assets/tierracalma/marcos/MARCO-ST.png"), pill: {x: 237, y: 1584, w: 606, h: 73}, pie: 27, arriba: 292},
+  "4x5": {h: 1350, marco: MARCO_4x5, pill: {x: 264, y: 1212, w: 540, h: 53}, pie: 23, arriba: 262},
+} as const;
 
 const FinDeSemana: React.FC<{f: "9x16" | "4x5"}> = ({f}) => {
   ensureTierraCalmaFonts();
-  // En una caja de line-height = paso, la línea base cae a medio interlineado
-  // + ascendente de Inter Tight (0,969 em) desde el borde superior.
-  const desdeArriba = (D1_PASO - D1_CUERPO * 1.211) / 2 + D1_CUERPO * 0.969;
+  const c = D1_FMT[f];
   return (
-    <AbsoluteFill style={{width: 1080, height: f === "9x16" ? 1920 : 1350, overflow: "hidden"}}>
-      <Img src={A(`d1-${f}.png`)} style={{position: "absolute", inset: 0, width: "100%", height: "100%"}} />
+    <AbsoluteFill style={{width: 1080, height: c.h, backgroundColor: TC.colors.ink, overflow: "hidden"}}>
+      <Img src={A(`d1-${f}.jpg`)} style={{position: "absolute", inset: 0, width: "100%", height: "100%"}} />
+      {/* Contraste por degradado arriba, donde va el titular; abajo, para la píldora. */}
+      <AbsoluteFill
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(6,14,20,0.62) 0%, rgba(6,14,20,0.4) 22%, rgba(6,14,20,0) 42%, rgba(6,14,20,0) 70%, rgba(6,14,20,0.5) 100%)",
+        }}
+      />
       <div
         style={{
           position: "absolute",
           left: 0,
           right: 0,
-          top: D1_BASE_2 - D1_PASO - desdeArriba,
+          top: c.arriba,
           textAlign: "center",
-          fontFamily: SANS,
-          fontWeight: 300, // el de la pieza de septiembre, comparado lado a lado
-          fontSize: D1_CUERPO,
-          lineHeight: `${D1_PASO}px`,
-          letterSpacing: "0.01em",
           color: "#fff",
-          whiteSpace: "nowrap",
-          textShadow: "0 2px 18px rgba(0,0,0,0.35)",
+          textShadow: "0 2px 22px rgba(0,0,0,0.45)",
         }}
       >
-        EL FIN DE SEMANA LARGO,
-        <br />
-        PÁSALO ACÁ EN
+        {/* Medidas de la pieza del 18: mayúscula de 34 px, paso de 66 px. */}
+        <div style={{fontFamily: SANS, fontWeight: 300, fontSize: 47, lineHeight: "66px", letterSpacing: "0.01em", whiteSpace: "nowrap"}}>
+          EL FIN DE SEMANA LARGO,
+          <br />
+          PÁSALO ACÁ EN
+        </div>
+        <div
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontWeight: 500,
+            fontSize: 104,
+            lineHeight: 1.02,
+            marginTop: 6,
+            letterSpacing: "-0.01em",
+            whiteSpace: "nowrap",
+          }}
+        >
+          TIERRA CALMA.
+        </div>
+      </div>
+      <Img src={c.marco} style={{position: "absolute", inset: 0, width: "100%", height: "100%"}} />
+      <div
+        style={{
+          position: "absolute",
+          left: c.pill.x,
+          top: c.pill.y,
+          width: c.pill.w,
+          height: c.pill.h,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 11,
+        }}
+      >
+        <IPin s={c.pie} />
+        <span style={{fontFamily: SANS, fontWeight: 500, fontSize: c.pie, letterSpacing: "0.08em", color: "#fff", whiteSpace: "nowrap"}}>
+          TIERRA CALMA · PADRE HURTADO
+        </span>
       </div>
     </AbsoluteFill>
   );

@@ -313,7 +313,10 @@ const Pildora: React.FC<{
  *   5. ajustado al texto: inline-block + maxWidth, nunca width fijo
  */
 const Globo: React.FC<{
-  y: number;
+  /** Fila del lienzo donde se ancla. Si se omite, el globo va EN FLUJO: entra
+      dentro de `Cuerpo` y se centra junto con el titular, como un bloque más.
+      Diego, 23-09 sobre `c-20-10-5`: "centrar toda la información". */
+  y?: number;
   max?: number;
   size?: number;
   centrado?: boolean;
@@ -323,14 +326,11 @@ const Globo: React.FC<{
   children: React.ReactNode;
 }> = ({y, max = 760, size = 38, centrado = true, op = 0.58, destacado, children}) => (
   <div
-    style={{
-      position: "absolute",
-      top: y,
-      left: 0,
-      right: 0,
-      display: "flex",
-      justifyContent: "center",
-    }}
+    style={
+      y === undefined
+        ? {display: "flex", justifyContent: "center"}
+        : {position: "absolute", top: y, left: 0, right: 0, display: "flex", justifyContent: "center"}
+    }
   >
     <div
       style={{
@@ -362,7 +362,8 @@ const Globo: React.FC<{
             lineHeight: 1.06,
             textTransform: "uppercase",
             color: "#fff",
-            marginBottom: 16,
+            // Diego (23-09): "interlineado mas juntos". Era 16.
+            marginBottom: 8,
           }}
         >
           {destacado}
@@ -1170,7 +1171,11 @@ const K4: React.FC = () => (
     <Indicador x={868} y={1024} lado="izq">
       Rol individual
     </Indicador>
-    <Globo y={1140} max={520} size={34} destacado="Aprox. 5.000 m²">
+    {/* Diego (23-09): "no sobrepasar el limite de la linea". Anclado en 1140 el
+        globo cerraba en la fila 1312 y la linea inferior del marco esta en la
+        1284: la cruzaba por 28 px. Con el interlineado nuevo mide 164 px de
+        alto, asi que 1085 lo deja cerrando en 1249 — 35 px por dentro. */}
+    <Globo y={1085} max={520} size={34} destacado="Aprox. 5.000 m²">
       por parcela
     </Globo>
   </Lienzo>
@@ -1181,7 +1186,14 @@ const K5: React.FC = () => (
     <Foto src={OCT("k-planos")} foco="50% 50%" />
     <Degradado arriba={0.64} abajo={0.44} />
     <Marco archivo="MARCO-CARRUSEL-3" />
-    <Cuerpo desde={205} hasta={1150}>
+    {/* Diego (23-09): "centrar toda la informacion". Horizontalmente ya estaba
+        (desvio maximo medido: 1,5 px); lo que no estaba centrado era el
+        CONJUNTO: el titular quedaba a media altura y el globo colgaba abajo,
+        con 450 px de vacio arriba y 90 abajo. Aca el globo entra EN FLUJO
+        dentro de `Cuerpo`, asi que numero + titular + globo se centran como un
+        solo grupo. La banda es simetrica respecto de las lineas del marco
+        (filas 131 y 1284): 74 px de aire arriba y abajo. */}
+    <Cuerpo desde={205} hasta={1210}>
       <Numero n="04." />
       <Aire h={16} />
       <Modulado
@@ -1193,10 +1205,11 @@ const K5: React.FC = () => (
           {t: "?"},
         ]}
       />
+      <Aire h={46} />
+      <Globo max={790} size={35} destacado="En Tierra Calma te acompañamos">
+        {"Antes de avanzar, pregunta por documentación, reserva, formas de pago y escrituración."}
+      </Globo>
     </Cuerpo>
-    <Globo y={880} max={790} size={35} destacado="En Tierra Calma te acompañamos">
-      {"Antes de avanzar, pregunta por documentación, reserva, formas de pago y escrituración."}
-    </Globo>
   </Lienzo>
 );
 
@@ -1238,7 +1251,11 @@ const L: React.FC = () => (
     <Foto src={OCT("l-fondo")} foco="50% 50%" />
     <Degradado arriba={0.54} abajo={0.5} />
     <Marco archivo="MARCO-ST" />
-    <Cuerpo desde={240} hasta={1520}>
+    {/* Diego (23-09): "subir bloque de texto". Centrado a 1520 el titular caia
+        a 70 px del primer globo y dejaba 640 px de cielo vacio arriba. La banda
+        del titular termina donde EMPIEZA el globo (1020), que es el espacio que
+        de verdad le queda libre. */}
+    <Cuerpo desde={240} hasta={1020}>
       <Modulado
         ancho={880}
         tramos={[{t: "¿Ya tienes tu"}, {t: "crédito preaprobado", ivy: true, salto: true}, {t: "?"}]}

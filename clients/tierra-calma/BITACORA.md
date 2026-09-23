@@ -5,6 +5,50 @@
 
 ---
 
+## 2026-09-23 (tarde, 2ª vuelta) — Diego Aguilar
+
+**Qué se hizo:** Tres comentarios más, de las 15:00–15:02. Uno era de pieza y
+dos cambiaron el componente `Globo` para toda la marca.
+
+| Pieza | Comentario | Qué se hizo |
+|---|---|---|
+| `st-22-10` | «subir bloque de texto» | la banda del titular pasa de `[240,1520]` a `[240,1020]` |
+| `c-20-10-5` | «centrar toda la información» | el globo entra **en flujo** dentro de `Cuerpo` |
+| `c-20-10-4` | «interlineado más juntos, no sobrepasar el límite de la línea» | `marginBottom` del destacado 16 → 8, y el globo sube de 1140 a 1085 |
+
+**`c-20-10-5` no era un problema de centrado horizontal.** Lo medí antes de
+tocar nada: las siete líneas de la pieza estaban centradas con un desvío máximo
+de **1,5 px**. Lo que no estaba centrado era el **conjunto** — titular a media
+altura y globo colgando abajo, con 450 px de vacío arriba y 90 abajo. Por eso el
+arreglo no fue mover el globo a mano sino hacer que `Globo` pueda ir **sin
+ancla**: sin `y` entra dentro de `Cuerpo` y número + titular + globo se centran
+como un solo grupo. La banda quedó simétrica respecto de las líneas del marco
+(74 px de aire arriba y abajo).
+
+**`c-20-10-4` se salía de verdad, y es medible.** Las hairlines horizontales del
+marco están en las filas **131 y 1284** —idénticas en los seis marcos, ya
+verificado—. El globo anclado en 1140 medía 172 px de alto y cerraba en 1312:
+cruzaba por 28 px. Con el interlineado nuevo mide 164 y desde 1085 cierra en
+1249. Esa cuenta quedó escrita en el manual como condición 7 del globo.
+
+**Alcance del cambio del componente:** el `marginBottom` toca a todos los globos
+con línea destacada. Cambiaron cinco piezas —`c-06-10-4`, `c-20-10-4`,
+`c-20-10-5`, `c-20-10-6`, `st-22-10`— y las otras once quedaron **idénticas al
+píxel** (`st-15-10` movió 3 px de antialias). Verificado pieza por pieza, no
+supuesto: los globos sin `destacado` no se tocan.
+
+**Entregado:** las cinco re-subidas sobre el mismo ID de Drive.
+
+**Al manual:** el globo pasó de cinco a **siete** condiciones (interlineado y
+«no cruza la línea del marco») más el apartado del modo en flujo; y la tabla de
+bandas acotadas pasó de cinco a siete piezas.
+
+**Señal buena:** el comentario de `c-20-10-6` de las 14:48 ya no aparece abierto
+— Diego lo resolvió. Los de `c-06-10-4` y `c-20-10-1` siguen marcados abiertos
+aunque están aplicados.
+
+---
+
 ## 2026-09-23 (tarde) — Diego Aguilar
 
 **Qué se hizo:** La ronda de la mañana centró los bloques… y en tres fotos el

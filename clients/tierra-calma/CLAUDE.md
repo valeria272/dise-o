@@ -222,7 +222,7 @@ alto útil** del marco —el que queda entre el logo y la píldora— en vez de 
 de un `top` fijo. Así una frase corta y una larga quedan igual de equilibradas
 sin recalcular nada.
 
-⚠️ **Centrar no es centrar sobre el sujeto.** Cinco piezas acotan la banda, y
+⚠️ **Centrar no es centrar sobre el sujeto.** Siete piezas acotan la banda, y
 cada una por una razón medible: si el medio del cuadro está ocupado —por una
 gráfica o por el sujeto de la foto— el titular se centra **en la banda que queda
 libre**, no en el alto completo.
@@ -234,10 +234,13 @@ libre**, no en el alto completo.
 | `c-06-10-4` (E4) | `[205, 700]` | las dos casas (techumbre en la fila 574, chimenea en la 554) |
 | `c-20-10-1` (K1) | `[250, 670]` | la pareja (desde la fila 780) y el potrero |
 | `c-20-10-6` (K6) | `[205, 790]` | la pareja caminando (cabezas en la fila ~672) |
+| `st-22-10` (L) | `[240, 1020]` | los dos globos apilados abajo |
+| `c-20-10-5` (K5) | `[205, 1210]` | nada: acá el globo entra **en flujo** y se centra con el titular |
 
-Las tres últimas salieron de la ronda del 23-09: *"subir un poco, que no tape
-las casas"*, *"que no tape a las personas ni el terreno"*, *"subir un poco el
-bloque de texto, que no tape a las personas"*.
+Las cinco últimas salieron de las dos rondas del 23-09: *"subir un poco, que no
+tape las casas"*, *"que no tape a las personas ni el terreno"*, *"subir un poco
+el bloque de texto, que no tape a las personas"*, *"subir bloque de texto"* y
+*"centrar toda la información"*.
 
 > **Cómo se calcula, y no se estima:** las fotos de `oct/` son 1080×1350, el
 > mismo tamaño del lienzo, así que con `objectFit: cover` la fila de la foto
@@ -255,7 +258,7 @@ Misma ronda, sobre `c-06-10-2` y `st-22-10`: *"que sea un globo de texto"*,
 derechos y centrados, quitar espacios libres de los globos"*, y sobre
 `st-08-10`: *"no genera contraste, oscurecer un poco más el globo"*.
 
-Un solo componente para toda la marca, con estas cinco condiciones:
+Un solo componente para toda la marca, con estas **siete** condiciones:
 
 1. **Translúcido, nunca sólido.** Fondo oscuro a ~0,55 de alfa con desenfoque
    detrás. Las cajas de color macizo quedan fuera.
@@ -265,6 +268,29 @@ Un solo componente para toda la marca, con estas cinco condiciones:
 4. **Centrado.**
 5. **Ajustado al texto.** `display: inline-block` + `maxWidth`, nunca `width`
    fijo: con ancho fijo la última línea deja un hueco muerto adentro.
+6. **El destacado y el cuerpo van juntos.** `marginBottom: 8` entre la línea de
+   IvyOra y el texto de la sans — no 16. Diego, 23-09 sobre `c-20-10-4`:
+   *"interlineado más juntos"*. Son una unidad, no dos párrafos.
+7. ⛔ **No cruza las líneas del marco.** Las hairlines horizontales están en las
+   filas **131 y 1284** en los seis marcos de carrusel y post. Antes de anclar
+   un globo hay que sumarle su alto real —`30 + destacado + 8 + cuerpo + 30`—
+   y comprobar que cierra por dentro. `c-20-10-4` cerraba en 1312 y se salía.
+
+##### El globo puede ir EN FLUJO, y a veces debe
+
+`Globo` acepta `y` opcional. **Sin `y`** no se ancla: entra dentro de `Cuerpo` y
+se centra **junto con el titular, como un bloque más del mismo grupo**.
+
+Ese es el modo correcto cuando la pieza es *titular + globo y nada más*. Diego,
+23-09 sobre `c-20-10-5`: *"centrar toda la información"* — horizontalmente ya
+estaba (desvío máximo medido: 1,5 px), lo que no estaba centrado era el
+**conjunto**: titular a media altura y globo colgando abajo, con 450 px de vacío
+arriba y 90 abajo.
+
+Con `y` fijo se queda sólo cuando **algo más ocupa ese espacio** y el globo tiene
+que esquivarlo: los indicadores de `c-20-10-4`, o los dos globos apilados de
+`st-22-10`. Ahí el titular se centra en la banda que le queda libre —termina
+donde empieza el primer globo— y los globos conservan su ancla.
 
 #### Los cuadros de texto se ajustan al texto
 

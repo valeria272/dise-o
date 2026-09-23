@@ -1,3 +1,18 @@
+## 2026-09-23 (tarde) — Eli (Windows) · DT «Tu día»: la portada pasa al LOBBY (provisoria) — SUBIDA
+
+**Qué se hizo:** Eli pasó dos enlaces nuevos para la portada («utilízalas por ahora,
+después la reemplazamos»): `14L5gK…` (jarrón con ramas frente al espejo) y `1IU97W…`
+(paneo por las lámparas doradas del lobby). Montaje de 2 cortes con fundido de 0,3 s
+(`MONTAJE_PORTADA` en `dt-c1-s5-clips.py`). Son SDR bt709, no HLG: no se tonemapean.
+⛔ Con `-filter_complex` el mp4 HEREDABA la matriz −90° del iPhone y salía acostado;
+se arregla con `-display_rotation 0` en la entrada + `transpose=1`. QA en verde
+(peor: «Tu día» 5,84:1 sobre 3,0).
+**Dónde quedó:** `C1 S5 DT n°1.mp4` y `n°1.gif` **reemplazados en Drive** (mismo
+enlace), los 14 verificados por md5. La portada de la entrada quedó respaldada en
+`out/hilton/dt/c1-s5/entrega-r8/C1 S5 DT n°1-entrada-r9.mp4`.
+**Qué sigue:** reemplazar la portada cuando llegue el material definitivo.
+**Abierto:** la toma definitiva de la portada.
+
 ## 2026-09-23 — Eli (Windows) · DT: carrusel «Tu día en DoubleTree» (FEED 28-09), rondas 8 y 9 — SUBIDO
 
 **Qué se hizo:** ronda del cliente (grilla FEED celda O14) + dos correcciones de Eli.

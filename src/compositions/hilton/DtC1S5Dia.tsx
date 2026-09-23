@@ -819,7 +819,7 @@ export const DtC1S5Portada: React.FC = () => {
       <OffthreadVideo
         // RONDA 9: `--props='{"clipPortada":"portada_entrada"}'` prueba otra toma.
         src={staticFile(`assets/hilton/dt/s5/clips/${
-          (getInputProps() as {clipPortada?: string}).clipPortada ?? 'portada_entrada'
+          (getInputProps() as {clipPortada?: string}).clipPortada ?? 'portada_lobby'
         }.mp4`)}
         style={{width: '100%', height: '100%', objectFit: 'cover'}}
         muted

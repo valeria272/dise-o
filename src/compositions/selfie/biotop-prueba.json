@@ -1,0 +1,133 @@
+{
+  "_nota": "Lo leen SelfiePruebaBiotop.tsx y scripts/selfie-biotop-productos.py. Unidades de mesa. Productos: centro, alto y giro. Flechas: la PUNTA (tip) de la flecha de la historia, que es el trazo aprobado; la forma se calca y sólo escala con t.",
+  "post": {
+    "mesaW": 1080,
+    "alto": 1350,
+    "outW": 2250,
+    "t": 1,
+    "p700": {
+      "cx": 245,
+      "cy": 292,
+      "h": 560,
+      "rot": -18
+    },
+    "p911": {
+      "cx": 872,
+      "cy": 1090,
+      "h": 530,
+      "rot": 15
+    },
+    "tip700": {
+      "x": 400,
+      "y": 186
+    },
+    "tip911": {
+      "x": 700,
+      "y": 1240
+    }
+  },
+  "story": {
+    "mesaW": 1080,
+    "alto": 1920,
+    "outW": 2250,
+    "t": 1,
+    "p700": {
+      "cx": 262,
+      "cy": 470,
+      "h": 600,
+      "rot": -18
+    },
+    "p911": {
+      "cx": 858,
+      "cy": 1478,
+      "h": 600,
+      "rot": 15
+    },
+    "tip700": {
+      "x": 400,
+      "y": 416
+    },
+    "tip911": {
+      "x": 690,
+      "y": 1566
+    }
+  },
+  "mail": {
+    "mesaW": 600,
+    "alto": 860,
+    "outW": 1200,
+    "t": 0.56,
+    "p700": {
+      "cx": 150,
+      "cy": 408,
+      "h": 320,
+      "rot": -18
+    },
+    "p911": {
+      "cx": 470,
+      "cy": 660,
+      "h": 310,
+      "rot": 15
+    },
+    "tip700": {
+      "x": 232,
+      "y": 398
+    },
+    "tip911": {
+      "x": 358,
+      "y": 744
+    }
+  },
+  "bannerDesk": {
+    "mesaW": 2001,
+    "alto": 686,
+    "outW": 2001,
+    "t": 0.82,
+    "p700": {
+      "cx": 915,
+      "cy": 336,
+      "h": 560,
+      "rot": -18
+    },
+    "p911": {
+      "cx": 1745,
+      "cy": 352,
+      "h": 540,
+      "rot": 15
+    },
+    "tip700": {
+      "x": 1005,
+      "y": 336
+    },
+    "tip911": {
+      "x": 1565,
+      "y": 584
+    }
+  },
+  "bannerMobile": {
+    "mesaW": 1081,
+    "alto": 1081,
+    "outW": 1081,
+    "t": 0.9,
+    "p700": {
+      "cx": 222,
+      "cy": 240,
+      "h": 440,
+      "rot": -18
+    },
+    "p911": {
+      "cx": 872,
+      "cy": 858,
+      "h": 410,
+      "rot": 15
+    },
+    "tip700": {
+      "x": 345,
+      "y": 365
+    },
+    "tip911": {
+      "x": 738,
+      "y": 964
+    }
+  }
+}

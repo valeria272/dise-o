@@ -60,6 +60,7 @@ DORADO = (201, 162, 78)           # #C9A24E, el dorado medio de la ficha
 # dorado lo amarra al sello sin competir con él.
 # El «OFF» va dorado SÓLO sobre el negro: sobre el naranja el dorado se apaga
 # y pierde justamente el contraste que se buscaba.
+DISCO_D = 620        # diámetro del disco del descuento
 CAJA_DESCUENTO = {"A": (NARANJA, (255, 255, 255), (255, 255, 255)),
                   "B": (NEGRO_CYBER, (255, 255, 255), DORADO),
                   "C": (NARANJA, (255, 255, 255), (255, 255, 255))}
@@ -68,6 +69,14 @@ COL_X = 150                       # el único margen del que cuelga TODO el text
 F_BOLD   = SP + "/fonts/BebasNeuePro-Bold.otf"
 F_BOOK   = SP + "/fonts/BebasNeuePro-Book.otf"
 F_BUTLER = "/Users/coni/Library/Fonts/Butler_Bold.otf"
+# Raleway se saca del editable del Cyber, que la lleva incrustada como TrueType:
+# es la que la propia marca usa para sus porcentajes de descuento.
+F_RAL_BLACK = SP + "/fonts/Raleway-Black.ttf"
+# ⚠️ SÓLO SIRVE LA BLACK. Las otras ocho Raleway del editable son subconjuntos
+# con el mapa de caracteres completo pero los CONTORNOS vacíos: piden la «F» y
+# devuelven un hueco. La Black es la que el Cyber usó para «50% OFF», así que es
+# la única con todos los glifos dibujados. Comprobado carácter a carácter.
+F_RAL_OFF   = SP + "/fonts/Raleway-Black.ttf"
 F_BUTLER_M = "/Users/coni/Library/Fonts/Butler_Medium.otf"
 LOGO = RAIZ + "/public/assets/cava/logo-cava-morande.png"
 SELLO = RAIZ + "/public/assets/cava/sello-descorchados-92.png"
@@ -232,28 +241,37 @@ def componer(cual, precio, antes, velo=True):
     # el descuento va ANTES que el precio en el orden de lectura, así que pesa
     # más: cuerpo mayor y caja de color. Con 150 contra un precio de 258 el
     # ojo se iba primero al precio y el orden se rompía.
-    # ── el bullet del descuento ────────────────────────────────────────────
-    # No es un rótulo plano: el «50%» manda y el «OFF» entra en dorado, más
-    # chico, colgado de la misma línea base. Así el porcentaje se lee de lejos,
-    # que es lo que tiene que vender.
+    # ── el disco del descuento ─────────────────────────────────────────────
+    # Coni, 24-09: «no sé si me convence un recuadro detrás del descuento,
+    # probemos en un círculo». Sale el rectángulo y entra un DISCO, con el
+    # porcentaje grande y el OFF debajo — el sello de rebaja de toda la vida.
+    # La tipografía es RALEWAY, que no es ajena: es la que el propio editable
+    # del Cyber usa para sus porcentajes, y se saca de ahí.
     fondo_caja, tinta_num, tinta_off = CAJA_DESCUENTO[cual]
-    f_num = ft(F_BOLD, 232)
-    f_off = ft(F_BOLD, 116)
-    a_num = ancho(d, "50%", f_num)
-    a_off = ancho(d, "OFF", f_off)
-    px, py, hueco = 58, 30, 26
-    bb = f_num.getbbox("50%")
-    y0 = 1372
-    y1 = y0 + (bb[3] - bb[1]) + py * 2
-    d.rectangle([COL_X, y0, COL_X + px * 2 + a_num + hueco + a_off, y1],
-                fill=fondo_caja + (255,))
-    y_txt = y1 - py - 2          # ojo: `base` ya es el lienzo de fondo
-    xn = escribe(d, (COL_X + px, y_txt), "50%", f_num, tinta_num)
-    escribe(d, (xn + hueco, y_txt), "OFF", f_off, tinta_off)
+    cxd = COL_X + DISCO_D // 2
+    cyd = 1372 + DISCO_D // 2
+    disco = Image.new("RGBA", (DISCO_D * 3, DISCO_D * 3), (0, 0, 0, 0))
+    ImageDraw.Draw(disco).ellipse([0, 0, DISCO_D * 3 - 1, DISCO_D * 3 - 1],
+                                  fill=fondo_caja + (255,))
+    disco = disco.resize((DISCO_D, DISCO_D), Image.LANCZOS)      # borde limpio
+    capa.alpha_composite(disco, (cxd - DISCO_D // 2, cyd - DISCO_D // 2))
+
+    f_num = ImageFont.truetype(F_RAL_BLACK, 226)
+    f_off = ImageFont.truetype(F_RAL_OFF, 96)
+    num, off = "50%", "OFF"
+    an = d.textlength(num, font=f_num)
+    tr_off = 0.22 * f_off.size
+    ao = sum(d.textlength(c, font=f_off) for c in off) + tr_off * (len(off) - 1)
+    d.text((cxd - an / 2, cyd - 18), num, font=f_num, fill=tinta_num, anchor="ls")
+    x = cxd - ao / 2
+    for c in off:
+        d.text((x, cyd + 130), c, font=f_off, fill=tinta_off, anchor="ls")
+        x += d.textlength(c, font=f_off) + tr_off
+
 
     # 3 · el vino
     f_nom = ft(F_BOLD, 108)
-    yn = y1 + 160
+    yn = cyd + DISCO_D // 2 + 140
     for i, l in enumerate(["7Colores", "Limited Edition", "Carmenere"]):
         escribe(d, (COL_X, yn + 112 * i), l, f_nom, BLANCO)
 

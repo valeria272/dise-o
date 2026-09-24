@@ -83,6 +83,25 @@ láminas de concepto y acento de copy · `#F7D4C0` nude — frase clave, franjas
   Italic, 66 px) dentro de un óvalo de filete, centrado arriba.
 - Cierre de carrusel: «Desliza y descúbrelos ⟶» en Krub Regular 34 con flecha fina.
 
+### Reglas de Coni para las piezas del estilo nuevo (prueba Biotop, 24-09-2026)
+
+Prueba aprobada («me encantó») en post, historia, mail y banner desk/mobile:
+`src/compositions/selfie/SelfiePruebaBiotop.tsx` + `biotop-prueba.json`.
+- **Mismo estilo en TODOS los formatos.** Las flechas son UNA: el trazo de la historia
+  (curva con rulo), calcado y sólo escalado. Nunca una flecha distinta por formato.
+- **Nada tapa una flecha**: ni el producto, ni su sombra, ni un texto. Se comprueba
+  por programa con `scripts/selfie-biotop-qa.py` (0 px de choque o no sale).
+- **El producto tiene que leerse.** El cliente reclama siempre el pixelado. El frasco
+  se prepara al alto exacto de cada formato y ya girado
+  (`scripts/selfie-biotop-productos.py`), con el color de la foto original: el recorte
+  de remove-bg sale en PNG de paleta y NO se usa su color.
+- ⛔ **No escalar packshots con Magnific**, ni en modo Precision: reescribió la etiqueta
+  («65 ml» → «66 ml», «HYDRATING» → «RYDRATING»). Si falta resolución, se pide el
+  packshot grande a la marca.
+- **Mail y banners pesan ≤ 1 MB.** Post e historia pueden pesar más si ganan calidad.
+- Medidas: banner desk **2001×686** y mobile **1081×1081** (se exportan a esa medida);
+  mail en módulos de **600 de ancho**.
+
 Scotch Display es de Adobe Fonts (no se empaqueta): para producir con código hay que
 activarla o reconstruirla desde el `.ai`, igual que se hizo con CAVA
 (`scripts/cava-fuentes-desde-editable.py`).

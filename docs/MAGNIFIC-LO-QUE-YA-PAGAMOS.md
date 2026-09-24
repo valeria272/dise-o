@@ -54,7 +54,7 @@ nuevos dan `404` y los viejos responden.** Medido, par por par:
 
 | Modelo | Ruta | Cuándo |
 |---|---|---|
-| **Upscaler Precision** ⭐ | `image-upscaler-precision` | **Cualquier cosa con marca encima.** El creativo *inventa* detalle: sobre una etiqueta o un logo te cambia el dibujo |
+| **Upscaler Precision** ⭐ | `image-upscaler-precision` | Piezas y fondos. El creativo *inventa* detalle: sobre una etiqueta o un logo te cambia el dibujo. ⛔ **Tampoco el Precision sirve para letra chica de packshot**: el 24-09-2026 escaló dos serums Biotop a 2× y escribió «66 ml» por «65 ml» y «RYDRATING» por «HYDRATING». Para un producto con etiqueta legible: Lanczos al tamaño exacto (`scripts/selfie-biotop-productos.py`) o pedir el packshot grande |
 | **Upscaler creativo** | `image-upscaler` | Sólo fondos |
 | **Seedream 5 Pro Edit** ⭐⭐ | `text-to-image/seedream-v5-pro-edit` | **Idealizar una foto real sin perder su traza** (`--refs foto.jpg`). `reference_images` = lista de strings en **data URI**: base64 pelado pasa la validación y la tarea falla después. Hizo la cenital de Tierra Calma del 23-09 respetando caminos y cercos del dron |
 | **Seedream 4 Edit** | `text-to-image/seedream-v4-edit` | Edición por instrucción, sin regenerar |

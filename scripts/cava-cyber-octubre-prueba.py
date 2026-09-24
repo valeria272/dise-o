@@ -47,6 +47,11 @@ F_MIDDLE = SP + "/fonts/BebasNeuePro-Middle.otf"
 F_BOOK   = SP + "/fonts/BebasNeuePro-Book.otf"
 F_MANO   = "/Users/coni/Library/Fonts/Authentic Signature.otf"
 F_BUTLER = "/Users/coni/Library/Fonts/Butler_Bold.otf"
+# Raleway Black sale del editable del Cyber: es la que la marca usa para sus
+# porcentajes. ⚠️ Sólo sirve la Black — las otras ocho son subconjuntos con el
+# mapa completo pero los contornos vacíos (piden la «F» y devuelven un hueco).
+F_RAL = SP + "/fonts/Raleway-Black.ttf"
+DISCO_D = 560
 
 # El logo se saca VECTORIAL del .ai con scripts/cava-logo-desde-editable.py.
 # Antes se extraía del PNG con una máscara de luminancia y salía TODO BLANCO:
@@ -70,9 +75,10 @@ LEGAL_PNG = "public/assets/cava/advertencia-conducir.png"
 # notaba. Ahora la etiqueta, el nombre y los precios comparten BLOQUE_X.
 BLOQUE_X   = 336
 ETIQ_Y     = 1755      # arriba de la etiqueta del descuento
-NOMBRE_Y   = 2330      # base de la ÚLTIMA línea del nombre
-PRECIO_Y   = 2760      # base del precio con descuento
-ANTES_Y    = 2925      # base del precio anterior, tachado
+# el bloque cuelga del disco del descuento, que va de 1755 a 2315
+NOMBRE_Y   = 2664      # base de la ÚLTIMA línea del nombre
+PRECIO_Y   = 2975      # base del precio con descuento
+ANTES_Y    = 3140      # base del precio anterior, tachado
 
 # --- el bodegón ---
 ALTO_BOTELLA = 0.52      # manual §11
@@ -355,20 +361,27 @@ def main():
     x = escribe(d, (x, yb), p1, f_mid, BLANCO)
     escribe(d, (x, yb), p2, f_bold, BLANCO)
 
-    # ── etiqueta del descuento, al modo de la barra de Itaú ────────────────
-    # El sello dorado con filete era calcado del KV de septiembre. Acá el
-    # descuento tiene que MANDAR, así que pasa a etiqueta sólida en el naranja
-    # de la marca con el texto en blanco: contrasta contra el fondo oscuro y no
-    # compite con el dorado del bokeh.
-    f_pc = ft(F_BOLD, 118.0)
-    txt_pc = "50% OFF"
-    pad_x, pad_y = 46, 26
-    anchura = ancho(d, txt_pc, f_pc)
-    asc = f_pc.getbbox("50%OFF")
-    alto_txt = asc[3] - asc[1]
-    ex1, ey1 = BLOQUE_X + anchura + pad_x * 2, ETIQ_Y + alto_txt + pad_y * 2
-    d.rectangle([BLOQUE_X, ETIQ_Y, ex1, ey1], fill=(225, 103, 14, 255))
-    escribe(d, (BLOQUE_X + pad_x, ey1 - pad_y - 2), txt_pc, f_pc, BLANCO)
+    # ── el disco del descuento ─────────────────────────────────────────────
+    # Coni, 24-09: el recuadro no la convencía y pidió probarlo en círculo, como
+    # un sello de rebaja. En Raleway Black, la del propio editable del Cyber.
+    cxd, cyd = BLOQUE_X + DISCO_D // 2, ETIQ_Y + DISCO_D // 2
+    disco = Image.new("RGBA", (DISCO_D * 3, DISCO_D * 3), (0, 0, 0, 0))
+    ImageDraw.Draw(disco).ellipse([0, 0, DISCO_D * 3 - 1, DISCO_D * 3 - 1],
+                                  fill=(225, 103, 14, 255))
+    disco = disco.resize((DISCO_D, DISCO_D), Image.LANCZOS)
+    capa.alpha_composite(disco, (cxd - DISCO_D // 2, cyd - DISCO_D // 2))
+
+    f_num = ImageFont.truetype(F_RAL, 204)
+    f_off = ImageFont.truetype(F_RAL, 86)
+    an = d.textlength("50%", font=f_num)
+    tr = 0.22 * f_off.size
+    ao = sum(d.textlength(c, font=f_off) for c in "OFF") + tr * 2
+    d.text((cxd - an / 2, cyd - 16), "50%", font=f_num, fill=BLANCO, anchor="ls")
+    x = cxd - ao / 2
+    for c in "OFF":
+        d.text((x, cyd + 116), c, font=f_off, fill=BLANCO, anchor="ls")
+        x += d.textlength(c, font=f_off) + tr
+
 
     # ── nombre del vino, tres líneas ───────────────────────────────────────
     f_nom = ft(F_BOLD, 51.28)

@@ -22,6 +22,7 @@
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
+import MEDIDAS from "./biotop-prueba.json";
 
 export type FormatoSelfie = "post" | "story" | "mail" | "bannerDesk" | "bannerMobile";
 
@@ -63,119 +64,88 @@ const cargaFuentes = () => {
 };
 
 // Geometría por formato, en unidades de mesa (ancho 1080).
-type Punto = {x: number; y: number; ang: number};
-type Layout = {
-  mesaW: number; alto: number; outW: number; t: number; curva: string;
-  p700: {cx: number; cy: number; h: number; rot: number};
-  p911: {cx: number; cy: number; h: number; rot: number};
+type Diseno = {
+  curva: string;
   ficha700: {x: number; y: number; w: number};
   ficha911: {x: number; y: number; w: number};
   titulo: {y: number; x?: number; w?: number};
   logo: {x: number; y: number};
-  flecha700: string; punta700: Punto; flecha911: string; punta911: Punto;
+};
+type Medidas = {
+  mesaW: number; alto: number; outW: number; t: number;
+  p700: {cx: number; cy: number; h: number; rot: number};
+  p911: {cx: number; cy: number; h: number; rot: number};
+  tip700: {x: number; y: number};
+  tip911: {x: number; y: number};
 };
 
-/** Flecha de filete con un rulo al medio, de A a B (formatos nuevos). */
-const rulo = (ax: number, ay: number, bx: number, by: number, r: number, lado = 1): [string, Punto] => {
-  const mx = (ax + bx) / 2, my = (ay + by) / 2;
-  const nx = -(by - ay), ny = bx - ax, n = Math.hypot(nx, ny) || 1;
-  const k = 0.18 * lado;
-  const c1x = (ax + mx) / 2 + (nx / n) * k * n, c1y = (ay + my) / 2 + (ny / n) * k * n;
-  const c2x = (mx + bx) / 2 - (nx / n) * k * n * 0.6, c2y = (my + by) / 2 - (ny / n) * k * n * 0.6;
-  const d = `M ${ax} ${ay} Q ${c1x} ${c1y} ${mx} ${my} a ${r} ${r} 0 1 ${lado > 0 ? 1 : 0} 0.1 0 Q ${c2x} ${c2y} ${bx} ${by}`;
-  return [d, {x: bx, y: by, ang: (Math.atan2(by - c2y, bx - c2x) * 180) / Math.PI}];
-};
-const [m7d, m7p] = rulo(360, 400, 225, 372, 16, -1);
-const [m9d, m9p] = rulo(250, 790, 385, 742, 16, 1);
-const [bd7d, bd7p] = rulo(1215, 300, 1030, 262, 20, -1);
-const [bd9d, bd9p] = rulo(1440, 640, 1668, 572, 14, 1);
-const [bm7d, bm7p] = rulo(575, 118, 368, 128, 20, -1);
-const [bm9d, bm9p] = rulo(470, 1020, 735, 960, 20, 1);
+/** LA flecha: el trazo de la HISTORIA, aprobado por Coni el 24-09. En los demás
+ *  formatos se calca tal cual —misma curva, mismo rulo— y sólo escala con t. */
+const TRAZO = {
+  "700": {
+    d: "M 600 436 C 560 380, 490 380, 500 422 C 510 460, 560 444, 540 414 C 520 386, 460 380, 400 416",
+    tip: {x: 400, y: 416},
+    ang: (Math.atan2(416 - 380, 400 - 460) * 180) / Math.PI,
+  },
+  "911": {
+    d: "M 470 1596 C 520 1652, 600 1644, 590 1604 C 580 1566, 525 1580, 552 1614 C 578 1644, 650 1624, 722 1560",
+    tip: {x: 722, y: 1560},
+    ang: (Math.atan2(1560 - 1624, 722 - 650) * 180) / Math.PI,
+  },
+} as const;
 
-const LAYOUT: Record<FormatoSelfie, Layout> = {
+const LAYOUT: Record<FormatoSelfie, Diseno> = {
   post: {
-    mesaW: 1080, alto: 1350, outW: 2250, t: 1,
     logo: {x: 953, y: 173},
     // curva en S: entra arriba a la derecha del centro, sale abajo a la izquierda
     curva: "M 600 0 C 830 260, 820 470, 560 690 C 330 890, 300 1110, 380 1350",
-    p700: {cx: 245, cy: 292, h: 560, rot: -18},
-    p911: {cx: 872, cy: 1090, h: 530, rot: 15},
     ficha700: {x: 400, y: 238, w: 515},
     ficha911: {x: 66, y: 1060, w: 440},
     titulo: {y: 606},
-    flecha700: "M 600 205 C 560 150, 490 150, 500 192 C 510 230, 560 214, 540 184 C 520 156, 460 150, 400 186",
-    punta700: {x: 400, y: 186, ang: 150},
-    flecha911: "M 470 1262 C 520 1318, 600 1310, 590 1270 C 580 1232, 525 1246, 552 1280 C 578 1310, 660 1290, 735 1236",
-    punta911: {x: 735, y: 1236, ang: -40},
   },
   story: {
-    mesaW: 1080, alto: 1920, outW: 2250, t: 1,
     logo: {x: 953, y: 230},
     curva: "M 610 0 C 860 380, 840 700, 560 960 C 300 1210, 280 1560, 390 1920",
-    p700: {cx: 262, cy: 470, h: 640, rot: -18},
-    p911: {cx: 858, cy: 1478, h: 640, rot: 15},
     ficha700: {x: 400, y: 470, w: 515},
     ficha911: {x: 66, y: 1392, w: 440},
     titulo: {y: 862},
-    flecha700: "M 600 436 C 560 380, 490 380, 500 422 C 510 460, 560 444, 540 414 C 520 386, 460 380, 400 416",
-    punta700: {x: 400, y: 416, ang: 150},
-    flecha911: "M 470 1596 C 520 1652, 600 1644, 590 1604 C 580 1566, 525 1580, 552 1614 C 578 1644, 650 1624, 722 1560",
-    punta911: {x: 722, y: 1560, ang: -40},
   },
   // MAIL — módulo de 600 de ancho, como MAILSEPT_S2-S3.ai; titular y CTA arriba
   mail: {
-    mesaW: 600, alto: 860, outW: 1200, t: 0.56,
     curva: "M 330 0 C 470 200, 460 330, 320 440 C 180 550, 170 700, 220 860",
-    p700: {cx: 150, cy: 408, h: 320, rot: -18},
-    p911: {cx: 470, cy: 660, h: 310, rot: 15},
     ficha700: {x: 258, y: 262, w: 300},
     ficha911: {x: 26, y: 612, w: 268},
     titulo: {y: 40, x: 0, w: 530},
     logo: {x: 548, y: 44},
-    flecha700: m7d, punta700: m7p, flecha911: m9d, punta911: m9p,
   },
   // BANNER DESK — 2001×686, como la mesa 1 de BANNER SEPT_S3-S3.ai; titular a la izquierda
   bannerDesk: {
-    mesaW: 2001, alto: 686, outW: 2001, t: 0.82,
     curva: "M 1060 0 C 1190 170, 1150 320, 1000 390 C 860 450, 840 590, 930 686",
-    p700: {cx: 915, cy: 336, h: 560, rot: -18},
-    p911: {cx: 1745, cy: 352, h: 540, rot: 15},
     ficha700: {x: 1110, y: 70, w: 440},
-    ficha911: {x: 1100, y: 420, w: 370},
+    ficha911: {x: 1070, y: 404, w: 385},
     titulo: {y: 150, x: 60, w: 760},
     logo: {x: 1880, y: 60},
-    flecha700: bd7d, punta700: bd7p, flecha911: bd9d, punta911: bd9p,
   },
   // BANNER MOBILE — 1081×1081, como la mesa 2 del mismo .ai
   bannerMobile: {
-    mesaW: 1081, alto: 1081, outW: 1081, t: 0.9,
     curva: "M 600 0 C 830 210, 820 380, 560 550 C 330 710, 300 890, 380 1081",
-    p700: {cx: 222, cy: 240, h: 440, rot: -18},
-    p911: {cx: 872, cy: 858, h: 410, rot: 15},
     ficha700: {x: 410, y: 160, w: 470},
     ficha911: {x: 60, y: 800, w: 410},
     titulo: {y: 478},
     logo: {x: 958, y: 110},
-    flecha700: bm7d, punta700: bm7p, flecha911: bm9d, punta911: bm9p,
   },
 };
 
-const Producto: React.FC<{src: string; cx: number; cy: number; h: number; rot: number; u: number}> = ({
-  src,
-  cx,
-  cy,
-  h,
-  rot,
-  u,
-}) => (
+/** El frasco llega YA girado y al alto exacto en píxeles de este formato
+ *  (scripts/selfie-biotop-productos.py): se pone 1:1, Chrome no lo remuestrea. */
+const Producto: React.FC<{src: string; cx: number; cy: number; u: number}> = ({src, cx, cy, u}) => (
   <Img
-    src={staticFile(`assets/selfie/2026-nuevo-estilo/${src}`)}
+    src={staticFile(`assets/selfie/2026-nuevo-estilo/biotop/${src}`)}
     style={{
       position: "absolute",
-      height: h * u,
       left: cx * u,
       top: cy * u,
-      transform: `translate(-50%, -50%) rotate(${rot}deg)`,
+      transform: "translate(-50%, -50%)",
       filter: `drop-shadow(${-14 * u}px ${22 * u}px ${26 * u}px rgba(0,30,29,0.28))`,
     }}
   />
@@ -192,16 +162,18 @@ const Ficha: React.FC<{
   w: number;
   u: number;
   k: number;
-}> = ({nombre, serif, resto, x, y, w, u: g, k}) => {
+  fondo: string;
+  tinta: string;
+}> = ({nombre, serif, resto, x, y, w, u: g, k, fondo, tinta}) => {
   const u = g * k; // tipografía y cajas escalan con el formato; la posición, no
   return (
   <div style={{position: "absolute", left: x * g, top: y * g, width: w * g, textAlign: "center"}}>
     <div
       style={{
-        background: C.coral,
+        background: fondo,
         borderRadius: 14 * u,
         padding: `${20 * u}px ${24 * u}px ${42 * u}px`,
-        color: C.blanco,
+        color: tinta,
         fontFamily: "Krub",
         fontWeight: 700,
         fontSize: 37 * u,
@@ -233,23 +205,54 @@ const Ficha: React.FC<{
   );
 };
 
-const Flecha: React.FC<{d: string; punta: Punto; k: number}> = ({d, punta, k}) => {
-  const L = 22 * Math.max(k, 0.7);
-  const a1 = ((punta.ang + 28) * Math.PI) / 180;
-  const a2 = ((punta.ang - 28) * Math.PI) / 180;
+/** Calca el TRAZO de la historia con la punta en `tip`, escalado por k. */
+const Flecha: React.FC<{forma: "700" | "911"; tip: {x: number; y: number}; k: number; color?: string}> = ({
+  forma,
+  tip,
+  k,
+  color = C.blanco,
+}) => {
+  const T = TRAZO[forma];
+  const L = 22;
+  const a1 = ((T.ang + 28) * Math.PI) / 180;
+  const a2 = ((T.ang - 28) * Math.PI) / 180;
   // las alas van HACIA ATRÁS del trazo (ang = dirección de avance en la punta)
-  const p = (a: number) => `${punta.x - L * Math.cos(a)} ${punta.y - L * Math.sin(a)}`;
+  const p = (a: number) => `${T.tip.x - L * Math.cos(a)} ${T.tip.y - L * Math.sin(a)}`;
   return (
-    <g fill="none" stroke={C.blanco} strokeWidth={2.4 * Math.max(k, 0.7)} strokeLinecap="round" strokeLinejoin="round">
-      <path d={d} />
-      <path d={`M ${p(a1)} L ${punta.x} ${punta.y} L ${p(a2)}`} />
+    <g
+      transform={`translate(${tip.x} ${tip.y}) scale(${k}) translate(${-T.tip.x} ${-T.tip.y})`}
+      fill="none"
+      stroke={color}
+      strokeWidth={2.4}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d={T.d} />
+      <path d={`M ${p(a1)} L ${T.tip.x} ${T.tip.y} L ${p(a2)}`} />
     </g>
   );
 };
 
-export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie}> = ({formato}) => {
+/** Máscara de las flechas para el QA: fondo negro, flechas en blanco. */
+const MascaraFlechas: React.FC<{L: Diseno & Medidas; u: number}> = ({L, u}) => (
+  <AbsoluteFill style={{background: "#000"}}>
+    <svg width={L.outW} height={L.alto * u} viewBox={`0 0 ${L.mesaW} ${L.alto}`} style={{position: "absolute", inset: 0}}>
+      <Flecha forma="700" tip={L.tip700} k={L.t} color="#fff" />
+      <Flecha forma="911" tip={L.tip911} k={L.t} color="#fff" />
+    </svg>
+  </AbsoluteFill>
+);
+
+/** capa: "todo" (la pieza) · "sinFlechas" / "flechas" (para el QA de choques: qa/selfie-flechas.py). */
+export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie; capa?: "todo" | "sinFlechas" | "flechas"; ficha?: "nude" | "tinta"}> = ({
+  formato,
+  capa = "todo",
+  ficha = "nude",
+}) => {
+  const FICHA = ficha === "tinta" ? {fondo: C.tinta, tinta: C.blanco} : {fondo: C.nude, tinta: C.tinta};
   cargaFuentes();
-  const L = LAYOUT[formato];
+  const M = (MEDIDAS as unknown as Record<FormatoSelfie, Medidas>)[formato];
+  const L = {...LAYOUT[formato], ...M};
   const W = L.outW;
   const u = W / L.mesaW;
   const t = L.t;
@@ -263,12 +266,10 @@ export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie}> = ({formato}
         style={{position: "absolute", inset: 0}}
       >
         <path d={`${L.curva} L 0 ${L.alto} L 0 0 Z`} fill={C.coral} />
-        <Flecha d={L.flecha700} punta={L.punta700} k={t} />
-        <Flecha d={L.flecha911} punta={L.punta911} k={t} />
       </svg>
 
-      <Producto src="biotop-700-keratin-kale.png" {...L.p700} u={u} />
-      <Producto src="biotop-911-quinoa.png" {...L.p911} u={u} />
+      <Producto src={`${formato}-700.png`} {...L.p700} u={u} />
+      <Producto src={`${formato}-911.png`} {...L.p911} u={u} />
 
       <Ficha
         nombre="700 Keratin & Kale Serum"
@@ -277,6 +278,7 @@ export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie}> = ({formato}
         {...L.ficha700}
         u={u}
         k={t}
+        {...FICHA}
       />
       <Ficha
         nombre="911 Quinoa Serum"
@@ -285,6 +287,7 @@ export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie}> = ({formato}
         {...L.ficha911}
         u={u}
         k={t}
+        {...FICHA}
       />
 
       {/* titular: Scotch Condensed Roman + Medium Italic en nude */}
@@ -333,6 +336,16 @@ export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie}> = ({formato}
         src={staticFile("assets/selfie/2026-nuevo-estilo/selfie-logo-vertical.svg")}
         style={{position: "absolute", left: L.logo.x * u, top: L.logo.y * u, width: 37 * t * u}}
       />
+
+      {/* flechas ENCIMA de todo: nada puede taparlas */}
+      {capa !== "sinFlechas" && (
+        <svg width={W} height={L.alto * u} viewBox={`0 0 ${L.mesaW} ${L.alto}`} style={{position: "absolute", inset: 0}}>
+          <Flecha forma="700" tip={L.tip700} k={t} />
+          <Flecha forma="911" tip={L.tip911} k={t} />
+        </svg>
+      )}
+
+      {capa === "flechas" && <MascaraFlechas L={L} u={u} />}
     </AbsoluteFill>
   );
 };

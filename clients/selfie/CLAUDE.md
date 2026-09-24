@@ -33,10 +33,69 @@ siendo lo que está publicado, pero el rumbo cambia. Lo que toca a diseño:
 - **Método:** la grilla parte de un brief estratégico mensual (Base 1) y luego el
   calendario (Base 2). Los inputs del cliente llegan 10–15 días antes del mes.
 
-**Pendiente:** medir cómo lo bajó Coni en sus piezas de sept S2-S3 (editables
-empaquetados el 23-09: `GRILLA SEPT_S2-S3_Carpeta` `1Jk6qwNnRJS2cTihvcF5lTGwaQXkaI9U4`
-y `BANNER SEPT_S3-S3_Carpeta` `12zJWAYZJ83rLSYzYk51RbNcxQxcyXo3V`) con `/adn selfie`,
-y recién ahí reescribir los modos.
+### ⭐ EL ESTILO NUEVO — medido sobre `GRILLA SEPT_S2-S3.ai` (24-09-2026)
+
+**Esta es la plantilla viva de Selfie en Instagram.** Coni: «la grilla sept S2-S3 es la
+que mejor tiene el nuevo estilo gráfico; el cliente fue bien reiterativo en unificar
+titulares y bajadas». Las referencias de `SELFIE SEPT/NUEVO ESTILO/` (Paleta-1..3) son
+lo que le gustó al cliente y **NO se copian**: Coni creó algo propio a partir de ellas.
+**Reemplaza** lo de Agrandir + Open Sans y la «Lección dura» de fucsia pleno de más
+abajo, que quedan como histórico de agosto. Extraído con PyMuPDF (el `.ai` es PDF, 21
+mesas de 1080×1350); copia local en `raw/selfie/editables-sep2026/`.
+
+**Tipografía — dos voces y nada más:**
+
+| Rol | Fuente | Tamaño (mesa 1080) | Color |
+|---|---|---|---|
+| **Titular** (1.ª línea) | Scotch Display **Condensed Roman** | 110 px | blanco |
+| **Titular — palabra clave** (2.ª línea) | Scotch Display **Condensed Medium Italic** | 118 px | `#FF8C93` sobre foto oscura · blanco sobre rosa |
+| Titular en MAYÚSCULAS (pregunta) | Scotch Display Condensed Roman / **Bold** | 110–127 px | blanco |
+| Titular de promo (nombre marca/pack) | Scotch Display Condensed **Bold Italic** | 134–171 px | blanco o `#F7D4C0` |
+| **Bajada** | **Krub ExtraLight** + la frase clave en **Krub Medium/SemiBold** | 36 px | blanco + clave en `#F7D4C0` |
+| Datos, listas, etiquetas | Krub SemiBold | 36 px | blanco |
+| CTA / acento de copy | Krub **Bold Italic** («Selfie te acompaña», «precio especial») | 36–48 px | — |
+| Nombre de producto en ficha | Krub Bold 37 + beneficio en Scotch Display Medium Italic 38 + Krub Medium 34 | | `#FF4374` |
+| Precio | Krub Bold 116 `#FF8C93` · «Antes $…» Krub Medium 34 en píldora | | |
+| URL | «Selfie.cl» en Krub SemiBold Italic | 42 px | |
+
+La regla que se repite en todas las portadas: **titular serif condensada en dos
+líneas —la segunda en itálica y en otro color— y bajada en Krub ExtraLight con UNA
+frase clave en peso Medium/SemiBold.** Mezclar pesos dentro de la misma línea es el
+recurso, no un error. Chapaza Italic viene empaquetada pero no aparece en el texto
+vivo de la grilla.
+
+**Paleta medida** (ojo: **no es el #FF007C** de agosto):
+`#FF8C93` rosa salmón — fondo principal · `#FF4374` fucsia coral — fondo de las
+láminas de concepto y acento de copy · `#F7D4C0` nude — frase clave, franjas de promo ·
+`#001E1D` verde casi negro — texto sobre nude/blanco · blanco.
+
+**Composición y recursos:**
+- **Logotipo «SELFIE» vertical** con asterisco, pegado al borde derecho arriba, en
+  TODAS las piezas. Es la firma; no va logo abajo.
+- Texto **centrado**. Aire generoso: el titular vive en el tercio medio.
+- **Recuadros de filete blanco fino sin relleno** para bajadas y CTA («Guarda este
+  post…»); cajas **blancas macizas** solo para datos de producto, precio y URL.
+- **Viñetas con asterisco** (✱) para listas; checks en píldora para beneficios.
+- Tres fondos que rotan: **foto beauty en penumbra** (portadas educativas, estudiante),
+  **rosa plano** (láminas de concepto) y **textura de crema blanca** (producto).
+- Productos flotando con sombra, a buen tamaño; **packshots siempre reales**.
+- Serie **SELFIE Class**: sello «SELFIE / Class» (Scotch Condensed Light + Light
+  Italic, 66 px) dentro de un óvalo de filete, centrado arriba.
+- Cierre de carrusel: «Desliza y descúbrelos ⟶» en Krub Regular 34 con flecha fina.
+
+Scotch Display es de Adobe Fonts (no se empaqueta): para producir con código hay que
+activarla o reconstruirla desde el `.ai`, igual que se hizo con CAVA
+(`scripts/cava-fuentes-desde-editable.py`).
+
+| Editable | Carpeta Drive | Mesa | Fuentes |
+|---|---|---|---|
+| Grilla IG `GRILLA SEPT_S2-S3.ai` (191 MB) | `1Jk6qwNnRJS2cTihvcF5lTGwaQXkaI9U4` | 1080×1350 | Scotch Display · Krub · Chapaza |
+| Banner web `BANNER SEPT_S3-S3.ai` (70 MB) | `12zJWAYZJ83rLSYzYk51RbNcxQxcyXo3V` | 1081×1081 (1.ª mesa) | Scotch Display Condensed · Krub |
+| Mail `MAILSEPT_S2-S3.ai` (76 MB) | `1SxpDMG3yNhfgLtatpYdcEpMnsbhF_f5z` | 600 px de ancho | Scotch Display · Krub · Chapaza · Open Sans · Pantone Neutral Black C |
+
+**Pendiente:** la grilla ya está medida (arriba). Faltan medir el **banner** y el
+**mail** con el mismo método, y actualizar `marca.json` y `src/brand/selfie.ts` a la
+paleta y las fuentes nuevas.
 
 ## Identidad visual — los 3 modos
 

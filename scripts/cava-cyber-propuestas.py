@@ -90,6 +90,19 @@ SELLO_POS = {"A": (0.734, 0.487, 0.1430, 1.20, False),
              "B": (0.760, 0.352, 0.1620, 1.00, True),
              "C": (0.794, 0.530, 0.1259, 1.22, False)}
 LEGAL_CAJA = (1442, 0, 2250, 470)
+# Segunda advertencia, la de conducir. Sale TAL CUAL de la PÁGINA 18 de
+# ADVERTENCIAS_BEBIDAS-ALCOHOLICAS.pdf (el del Gobierno), exportada a 808 px, el
+# mismo ancho que la que ya estaba. ⛔ NO SE EDITA: es un bloque legal y va como
+# viene diseñado — ni se recompone, ni se le cambia el cuerpo, ni se recorta.
+#
+# ⚠️ POR QUÉ LA 18 Y NO OTRA. El PDF trae la misma advertencia en 11 páginas:
+#   · las 27 y 43 dicen «LIMITA LA CAPACIDA DE CONDUCIR» — les falta la D.
+#     Es una errata del documento oficial, comprobada leyendo su texto.
+#   · las 34 y 43 llevan el Ministerio y la banda ARRIBA, al revés que la
+#     advertencia que ya está puesta.
+# La 18 es la única apaisada que está bien escrita Y en el mismo orden.
+LEGAL2_PNG = "public/assets/cava/advertencia-conducir.png"
+LEGAL2_Y = 470
 
 ESCENAS = {"A": "cyber-oct2026-esc-rayo.png",
            "B": "cyber-oct2026-esc-mano.png",
@@ -196,6 +209,8 @@ def componer(cual, precio, antes, velo=True):
     capa.alpha_composite(logo, (COL_X, 150))
     legal = Image.open(CYBER_ST).convert("RGB").crop(LEGAL_CAJA).convert("RGBA")
     capa.alpha_composite(legal, (W - legal.width, 0))
+    legal2 = Image.open(os.path.join(RAIZ, LEGAL2_PNG)).convert("RGBA")
+    capa.alpha_composite(legal2, (W - legal2.width, LEGAL2_Y))
 
     pon_sello(capa, cual)
 

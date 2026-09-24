@@ -59,6 +59,9 @@ SELLO_DIAM = 435
 SELLO_EN_PACKSHOT = (0.7217, 0.3289)      # su centro, en fracción del packshot
 LOGO_X, LOGO_Y, LOGO_W = 257, 367, 650        # medido sobre la pieza real
 LEGAL_CAJA = (1442, 0, 2250, 470)
+# la segunda advertencia, la de conducir, tal cual sale de la pág. 18 del PDF
+LEGAL2_PNG = "public/assets/cava/advertencia-conducir.png"
+LEGAL2_Y = 470
 # ── El bloque de oferta ─────────────────────────────────────────────────────
 # Todo cuelga de UN solo margen izquierdo. Antes la cápsula del descuento
 # arrancaba en x=535 y el nombre del vino en x=336: dos márgenes distintos, y se
@@ -306,6 +309,8 @@ def main():
 
     legal = Image.open(CYBER).convert("RGB").crop(LEGAL_CAJA).convert("RGBA")
     capa.alpha_composite(legal, (W - legal.width, 0))
+    legal2 = Image.open(os.path.join(RAIZ, LEGAL2_PNG)).convert("RGBA")
+    capa.alpha_composite(legal2, (W - legal2.width, LEGAL2_Y))
 
     f_mano = ft(F_MANO, 148.46)
     t1 = "Llegó el Cyber"

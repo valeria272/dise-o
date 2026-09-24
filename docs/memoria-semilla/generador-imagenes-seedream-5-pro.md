@@ -31,6 +31,11 @@ Nano Banana Pro.
 - **Escribe la composición en el prompt** (qué % de cielo arriba, dónde va la
   escena, qué queda libre abajo): sin eso pone a la gente grande y abajo, y la
   píldora o el titular le caen encima.
+- ⭐ **Tiene que verse creíble** (Diego, 24-09: «se ve demasiado falsa, básate
+  en las reales»). Con foto real disponible: `--refs` + prompt de CAMBIO MÍNIMO
+  («keep this real photo almost unchanged… only remove fog, warm light… do not add
+  or remove anything»). Nunca inventar paisaje (skylines, cerros, llanos): lo que
+  la foto no muestra lo cuenta el texto. Las transformaciones fuertes se ven IA.
 - Excepción que sigue vigente: si la imagen necesita **texto legible adentro**,
   eso sigue siendo Nano Banana Pro ([[freepik-api-generacion-imagenes]]).
 

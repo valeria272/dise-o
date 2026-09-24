@@ -5,6 +5,21 @@
 
 ---
 
+## 2026-09-24 — Diego Aguilar (PAID · 02-B ronda 5)
+
+**Qué se hizo:** Diego rechazó el 02-B de la ronda 4 por «demasiado falso» (llano de
+cultivos con Santiago inventado en el horizonte). Se rehízo desde la foto real
+DJI_0324 con Seedream 5 Pro edit y un prompt de cambio mínimo: mismo terreno, mismas
+casas, sin neblina y con luz de tarde (`ia/sd5-real-0324-2.png`). Sin Santiago: la
+imagen muestra la parcela y los 30 min los cuenta el texto.
+**Dónde quedó:** `TC_A2_mapa30min_1x1` y `_4x5` reemplazados sobre los mismos fileId.
+Las 6 piezas pasan la compuerta. Regla nueva en el manual § 7 bis, punto 6.
+**Qué sigue:** Esperar revisión de Ignacio y aprobación de la clienta (29-09).
+**Abierto:** Lo mismo de ayer (avisar a Ignacio D1/voseo/carpetas), salvo lo de
+Santiago con IA, que ya no aplica.
+
+---
+
 ## 2026-09-23 — Diego Aguilar (cierre del día · PAID de octubre)
 
 **Qué se hizo:** Se leyó el brief de PAID de octubre de Ignacio y se entregaron las

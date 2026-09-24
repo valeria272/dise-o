@@ -136,20 +136,18 @@ for nombre, w, h, y0 in (("1x1", 1080, 1080, 590), ("4x5", 1080, 1350, 147)):
     }
 
 # ---------------------------------------------------------------- 02-B oblicuo
-# RONDA 4 (23-09, Diego: «rehace las demás imágenes»): 02-B deja la foto real
-# DJI_0324 y pasa a Seedream 5 Pro edit con DJI_0331 de referencia —la única toma
-# con horizonte abierto—, que era la que el brief pedía («la parcela en primer
-# plano y Santiago al fondo») y se había descartado por el llano ANEGADO. La
-# idealización cambia el agua por parcelas verdes y pone Santiago tenue en el
-# horizonte (sd5-mapa-1). La franja de la ciudad cae en las filas 650–800 del
-# PNG: las cápsulas van DEBAJO, para que Santiago se vea entre el logo y los
-# tiempos (1:1: ciudad en 305–397 del lienzo; 4:5: 397–488).
-OBLICUO_IA = RAIZ / "raw/tierracalma/paid-oct2026/ia/sd5-mapa-1.png"  # 1770×2360
+# RONDA 5 (24-09, Diego): «la imagen se ve demasiado falsa, básate en las reales,
+# sólo toma la idea de la parcela, no de Santiago de fondo». Se descarta la
+# ronda 4 (sd5-mapa-1: llano de cultivos con skyline inventado). Ahora es la
+# foto real DJI_0324 pasada por Seedream 5 Pro edit con un prompt de CAMBIO
+# MÍNIMO: mismo encuadre, mismo terreno, mismas casas; sólo sin neblina, luz de
+# tarde y el pasto un poco más fresco (sd5-real-0324-2). Nada agregado.
+OBLICUO_IA = RAIZ / "raw/tierracalma/paid-oct2026/ia/sd5-real-0324-2.png"
 obl = Image.open(OBLICUO_IA).convert("RGB")
 esc_b = 1080 / obl.width
-for nombre, h, y0 in (("1x1", 1080, 150), ("4x5", 1350, 0)):
+for nombre, h in (("1x1", 1080), ("4x5", 1350)):
     ch = h / esc_b
-    im, _ = recorte(obl, obl.width / 2, y0 + ch / 2, esc_b, 1080, h)
+    im, _ = recorte(obl, obl.width / 2, obl.height / 2, esc_b, 1080, h)
     im.save(SALIDA / f"b-oblicuo-{nombre}.jpg", quality=92)
 datos["fuente"]["02B"] = OBLICUO_IA.name
 

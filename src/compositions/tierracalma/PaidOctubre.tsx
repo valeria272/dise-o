@@ -14,10 +14,9 @@ import geo from "../../../public/assets/tierracalma/paid-oct/paid-oct.json";
 //   02-B «El mapa de los 30 minutos»  → la DISTANCIA a Santiago
 //
 // DIRECCIÓN DE ARTE
-// · Desde la ronda 4 las tres piezas van con IA (Seedream 5 Pro). 02-B es la
-//   toma real DJI_0331 idealizada: parcelas en primer plano y Santiago tenue en
-//   el horizonte, como pide el brief. Las cápsulas van BAJO el horizonte para
-//   que la ciudad se vea.
+// · 02-B (ronda 5, 24-09): la foto real DJI_0324 con cambio MÍNIMO en Seedream
+//   5 Pro (sin neblina, luz de tarde). Diego descartó la versión con Santiago
+//   inventado por «demasiado falsa»: la idea es la parcela, no la ciudad.
 // · 02-A y D1 van con IA desde la ronda 2 (Diego, 23-09: «cambia las imágenes
 //   que ya se usaron»), como manda el manual para los estáticos (§ 4 bis).
 //   Ronda 3: el generador de la casa es SEEDREAM 5 PRO. 02-A es la cenital real
@@ -258,7 +257,7 @@ const Mapa30: React.FC<{f: Formato}> = ({f}) => (
         position: "absolute",
         left: 0,
         right: 0,
-        top: f === "1x1" ? 450 : 540, // bajo la franja de Santiago (1:1: 305–397; 4:5: 397–488)
+        top: f === "1x1" ? 300 : 360, // sobre los cerros; la parcela queda libre abajo
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

@@ -1094,6 +1094,16 @@ cuatro rondas de feedback de Diego del 23-09 que valen para todos los meses.
    grande y abajo, y la píldora o el titular le caen encima.
 5. **Gente de espaldas o de lejos**, nunca mirando a cámara (regla del brief).
    De dos variantes, la que tiene caras hacia cámara se descarta.
+6. **La imagen tiene que verse CREÍBLE, no «de IA»** (Diego, 24-09, sobre 02-B:
+   *«se ve demasiado falsa, básate en las reales, sólo toma la idea de la
+   parcela, no de Santiago de fondo»*). Si existe una foto real que sirve, se
+   hace **cambio mínimo** sobre ella con Seedream 5 Pro edit: mismo encuadre,
+   mismo terreno y mismas casas; sólo sacar neblina, dar luz de tarde y
+   refrescar el verde, con «do not add, do not remove» explícito en el prompt.
+   ⛔ **No se inventa paisaje** que el lugar no tiene: nada de skyline de
+   Santiago, llanos de cultivo ni cerros nuevos, aunque el brief los mencione.
+   Lo que el brief pide y la foto no muestra (los 30 min a Santiago) lo cuenta
+   el TEXTO, no la imagen. Receta: `sd5-real-0324-2` en `tc-paid-oct-prep.py`.
 
 ### Medir, no estimar
 
@@ -1107,7 +1117,8 @@ cuatro rondas de feedback de Diego del 23-09 que valen para todos los meses.
   árboles brotados, ni Santiago visible. Si el brief pide eso, avisar ANTES.
 - **DJI_0331 muestra el llano ANEGADO** (manchas blancas de agua). En bruto
   nunca; idealizado con Seedream sirve, porque es la única toma con horizonte.
-- En 02-B de octubre, **Santiago en el horizonte es IA**. Decirlo al entregar.
+- Se probó poner **Santiago en el horizonte con IA** (ronda 4) y Diego lo rechazó
+  por falso. 02-B quedó con la foto real 0324 retocada al mínimo.
 
 ### Trampas que costaron tiempo
 

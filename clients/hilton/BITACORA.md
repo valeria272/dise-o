@@ -13,8 +13,11 @@ el 26-10 «WTF…» (dice GRABAR ORGÁNICO) ni lo que está en revisión/pendien
 + `src/BetweenOctEntry.tsx`; escenas `scripts/between-oct-generar.py` (Nano Banana Pro);
 el video salió de Seedance 2.5 en el Space de Magnific «Between octubre». Fondos usados,
 versionados en `public/assets/hilton/between/oct/`.
-**Qué sigue:** Eli pasa la carpeta OFICIAL de Drive → subir `entrega-oct/` en orden (sin
-las guías; ésas van al CM). Mientras, la temporal es `1x9NeC__6ODemjfIeg-DDLXw2O41tvHSJ`.
+**✅ SUBIDO (24-09, 14:05):** con `scripts/between-oct-subir-drive.py` a
+`10. OCTUBRE / S<n> HILTON OCT 2026 / BW / {STS, FEED}`, en orden y con la semana de la
+grilla (feed 05-10 → S1, feed 14-10 → S4). 12 archivos verificados por el conector en su
+carpeta. Las GUIAS CM NO se subieron (quedan en `entrega-oct/GUIAS CM/`).
+**Qué sigue:** entregarle las GUIAS CM al CM si las pide; el 26-10 «WTF…» cuando esté grabado.
 **Abierto:** (1) 20-10 «Lo dicen ustedes» lleva los EJEMPLOS del brief: faltan reseñas reales.
 (2) 02-10 va «$2.990» (el brief dice «$2,990»). (3) 05-10 dice «UNA BUENA CONVERSA» (brief:
 «CONVERSACIÓN»). (4) 01-10: falta el @ del ganador (sticker de mención). (5) 19-10 lleva

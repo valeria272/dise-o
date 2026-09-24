@@ -5,6 +5,84 @@
 
 ---
 
+## 2026-09-24 (noche, 2ª vuelta del mapa) — Diego Aguilar
+
+**Qué se hizo:** `st-12-10` y `c-20-10-2`. El mismo pedido en dos piezas:
+
+> *"Mejoremos la forma en que mostramos el mapa, que se vea integrado de buena
+> forma y que se lea bien, quita el pin de Tierra Calma, solo deja el del mapa
+> original."* — story
+>
+> *"Quitar pin de Tierra Calma, que sea fondo sólido con el color verde de la
+> marca más un recuadro con el mapa del lugar."* — comentario en Drive, 19:37
+
+**El diagnóstico.** Tres intentos habían fallado por lo mismo: el mapa estaba
+tratado como **ambiente**. Velado en azul, después dibujado a celdas, después
+difuminado con máscara radial — en los tres casos leía como mancha y los
+topónimos no se leían. Un mapa que no se puede leer no es un mapa, es textura, y
+la pieza pierde lo único que un mapa aporta: la prueba.
+
+**Lo que cambió** (§ 4 sexies · 12 del manual):
+
+- El mapa es un **recuadro declarado**: sin máscara, sin velo, sin sangre.
+- El duotono se dio vuelta: va a la **luz del crema**, no a la sombra del navy.
+  El recuadro es ahora lo más claro de la pieza y por eso se lee.
+- Cada pieza recibe **su propio recorte con la proporción de su ventana**
+  (800×311 la story, 800×423 el carrusel) y se muestra 1:1. Se eliminó el
+  `objectPosition` que buscaba el pin a ojo.
+- Se montó con el recurso que cada pieza ya tenía: en la story, el mismo radio
+  asimétrico de la foto del dron —dos tarjetas hermanas, *dónde queda* y *cómo se
+  ve*—; en el carrusel, el **paspartú crema de los recortes de la slide 3**. Eso
+  último cerró de paso el reclamo del mediodía (*"la 2da y la 3ra quedan muy
+  cortadas de las demás"*): ahora las dos son papel montado sobre verde.
+- La placa de ubicación de la story dejó de flotar y pasó a ser el **pie del
+  recuadro**. Y se fue el pin fantasma de marca de agua: era otro pin.
+
+⭐ **El aprendizaje que vale más allá del mapa: la marca del cliente puede estar
+ya en el material.** Tierra Calma **está registrada en Google Maps** — MAPA-3
+trae su pin rojo y su etiqueta, puestos por Google. Nuestra píldora crema encima
+era una segunda marca tapando la primera, y la primera vale más: es la prueba de
+que el lugar existe y se puede buscar. Antes de rotular algo sobre una imagen,
+mirar si la imagen ya lo rotula.
+
+⚠️ **Y la trampa técnica:** un duotono por luminancia **mata el pin** — el rojo
+se vuelve un gris cualquiera y el pedido se pierde sin que nadie lo note.
+`scripts/tc-mapas-duotono.py` ahora **aísla el pin y lo repone en su color
+original**, y sólo el de la zona del pin: el mapa trae otro rojo —el POI del
+CESFAM Presidenta Michelle Bachelet— que no es nuestro y se apaga con el resto.
+El pin quedó como la única nota cromática de las dos piezas.
+
+**Qué entra en cada recorte, y por qué** (medido sobre `mapa3.jpg`, 1170×711):
+el pin (287,315) con aire; **Maipú** (855,120), el ancla de Santiago sin la cual
+«CERCA DE SANTIAGO» es una afirmación que el mapa no respalda; **Padre Hurtado**
+(690,365); y el escudo de la **Ruta 78** (687,263) — la vía correcta, la que el
+manual persigue desde que una pieza publicó «Ruta 68». El recorte del carrusel
+es más alto porque la slide pregunta por la conexión: entran los dos escudos de
+la 78 y el Trapiche de Peñaflor.
+
+**Geometría nueva de la story** (el mapa entró full-width y obligó a recorrer
+todo hacia abajo): titular 96/250 · recuadro 96/578 de 888×345 + pie de 54 ·
+foto 96/1018 de 888×340 (era 416) · remate 1292 · placas 1424 · píldora 1584.
+El titular se alineó a la columna 96 con las dos tarjetas: antes iba en 112 y el
+desfase se notaba ahora que quedaron apilados.
+
+**Archivos retirados** (siguen en disco, ya no los genera nadie):
+`mapa3-verde.jpg`, `mapa3-cuadro.jpg`, `mapa3-story.jpg`. Los reemplazan
+`mapa3-recuadro-st.jpg` y `mapa3-recuadro-k2.jpg`.
+
+**QA:** la compuerta vuelve a dar **1 aviso**, el deliberado («estarás?» en la
+slide 2, que Diego designó como la de referencia del carrusel). Las dos piezas
+se re-subieron **sobre el mismo `fileId`**: `st-12-10` en
+`1LXliMk-w5Or_iANbLYRfxF0Yrztfx-bx` y `c-20-10-2` en
+`1CWTuWQpIXC4_0pCMh-PRRpHRG-KhSAYx`.
+
+**Sin resolver en Drive:** los dos comentarios quedan abiertos para que Diego los
+cierre después de mirar. Sigue abierto también el del 23-09 sobre `c-20-10-5`
+(*"centrar toda la información"*), superado por la instrucción de alinear el
+carrusel completo — ver § 4 sexies · 10.
+
+---
+
 ## 2026-09-24 (noche) — Diego Aguilar
 
 **Qué se hizo:** `p-29-10`, tercera vuelta. *"El texto de Aprox. 5.000 m²

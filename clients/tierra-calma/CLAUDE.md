@@ -320,6 +320,17 @@ incluye el marco (`MarcoTenido` en crema), los rótulos de los recortes y el pie
 > 💡 Los recortes fotográficos conservan su paspartú crema: sobre verde profundo
 > funcionan como polaroids, y es lo que le da el aire editorial a la slide.
 
+⭐ **Y «fondo plano» significa plano de verdad.** La slide 2 quedó ese día con el
+verde **pero con el mapa a sangre por detrás**, así que seguía sin ser un fondo:
+era una fotografía verde. Diego, horas después: *"quitar pin de Tierra Calma,
+que sea fondo sólido con el color verde de la marca **más un recuadro** con el
+mapa del lugar"*.
+
+El mapa pasó a un recuadro **montado en paspartú crema, igual que los recortes
+de la slide 3** — y ahí se cerró el reclamo original: lo que hermana a las dos
+slides no es sólo el color de fondo, es que las dos muestran **papel montado
+sobre verde**. Ver § 4 sexies · 12.
+
 #### ⛔ UNA FOTO NO SE REPITE ENTRE DOS PIEZAS DEL MISMO MES
 
 Diego, 24-09 sobre `c-20-10-1`: *"cambiemos la foto de portada, es la misma que
@@ -526,17 +537,17 @@ Hurtado y las comunas que lo rodean; ocupa la imagen del mapa-3 y adapta el
 color al fondo"*. Tenía razón: un esquema con vecindades correctas **sigue
 siendo un dibujo**, y acá lo que se pide es cartografía.
 
-Lo prepara `scripts/tc-mapas-duotono.py`, que recorta MAPA-3 centrado en su
-propio pin, lo pasa a duotono navy y **deja dicho en qué fracción quedó el pin**.
-La composición pone nuestro rótulo justo ahí — Diego, mismo día: *"tapa el pin
-del mapa con nuestro rótulo"*. Puesto a ojo es como se terminan leyendo dos
-marcas.
+Lo prepara `scripts/tc-mapas-duotono.py`.
 
-> 💡 El recorte se funde con **máscara**, no con un velo encima: con un degradado
-> superpuesto el borde del rectángulo seguía viéndose y la pieza parecía un mapa
-> pegado con scotch. Y la elipse de la máscara tiene que **cerrar dentro de la
-> caja** (radio 50 % centrado en 50 %); desplazada hacia el pin se salía por la
-> izquierda y dejaba un canto duro.
+> 🗄️ **Superado ese mismo día, 2ª vuelta.** Ese pase dejaba el recorte difuminado
+> con una máscara radial y ponía **nuestro rótulo crema encima del pin del
+> mapa** (*"tapa el pin del mapa con nuestro rótulo"*). Diego, horas después:
+> *"mejoremos la forma en que mostramos el mapa, que se vea integrado de buena
+> forma y que se lea bien, **quita el pin de Tierra Calma, solo deja el del mapa
+> original**"*. Desde acá manda **§ 4 sexies · 12 — EL MAPA ES UN OBJETO, NO UN
+> FONDO**: recuadro declarado, duotono a la luz del crema, recorte con la
+> proporción de la caja y el pin rojo del propio mapa como única nota de color.
+> Vale igual para `c-20-10-2`.
 
 ##### La fotografía de esta pieza es REAL
 
@@ -560,12 +571,14 @@ sobre cartografía clara deja de leerse. Los tres rótulos —SANTIAGO, TIERRA C
 y PADRE HURTADO— llevan ahora la misma base navy que ya tenía RUTA 78. La base
 **abraza el texto**: a todo el ancho partía la pieza con una franja.
 
-> ⚠️ **Pendiente de decisión.** Con el mapa legible se ve que `MAPA-3` trae **su
-> propio pin «Tierra Calma»** (medido en la fila 819, columna 326) además de
-> nuestro rótulo. En el carrusel esto se resolvió montando nuestro pin sobre el
-> del mapa; **acá no se puede**: el mapa calza exacto en la ventana (1170 × 0,923
-> = 1080) y no hay margen para desplazarlo. Moverlo a él rompería la secuencia
-> vertical Santiago → Ruta 78 → Tierra Calma, así que es decisión de diseño.
+> ✅ **Decidido el 24-09 (2ª vuelta), y la decisión fue al revés de lo que se
+> venía haciendo.** Se había anotado como pendiente que `MAPA-3` trae **su propio
+> pin «Tierra Calma»** además de nuestro rótulo, y se venía resolviendo poniendo
+> el nuestro encima del suyo. Diego: *"quita el pin de Tierra Calma, solo deja el
+> del mapa original"*. **El que sale es el nuestro.** Ver § 4 sexies · 12.
+>
+> 🗄️ Todo este apartado es historia: en `st-12-10` ya no hay velo azul sobre el
+> mapa ni rótulos sueltos sobre cartografía, porque el mapa dejó de ser fondo.
 
 
 #### Los cuadros de texto se ajustan al texto
@@ -1063,6 +1076,67 @@ Antes de responder «no se puede», hay que **medir el síntoma**: el contenido
 ocupaba 559 px de los 574 de la píldora, o sea 9 px de aire a un lado y 6 al
 otro. El diagnóstico era correcto aunque la solución pedida no fuera posible.
 
+
+### 12. ⭐ EL MAPA ES UN OBJETO, NO UN FONDO
+
+Diego, 24-09-2026, en dos comentarios del mismo día sobre dos piezas distintas:
+
+> *"Mejoremos la forma en que mostramos el mapa, que se vea integrado de buena
+> forma y que se lea bien. Quita el pin de Tierra Calma, solo deja el del mapa
+> original."* — `st-12-10`
+>
+> *"Quitar pin de Tierra Calma, que sea fondo sólido con el color verde de la
+> marca más un **recuadro** con el mapa del lugar."* — `c-20-10-2`
+
+Es el mismo pedido dicho dos veces, y llegó después de **tres intentos fallidos**
+que empeoraban lo mismo:
+
+| Intento | Qué se hizo | Por qué falló |
+|---|---|---|
+| 1 | captura de Google Maps velada en azul | leía como mancha |
+| 2 | mapa de celdas **dibujado** (referencia Sonatta) | *"el mapa no es así realmente"* — la cartografía no se inventa |
+| 3 | MAPA-3 difuminado con máscara radial / a sangre | seguía siendo mancha, con los topónimos ilegibles |
+
+El error de fondo no era el encuadre ni el color: era **tratar el mapa como
+ambiente**. Un mapa que no se puede leer no es un mapa, es una textura — y
+entonces la pieza pierde lo único que un mapa aporta, que es la prueba.
+
+**Las cuatro reglas que quedaron:**
+
+1. **Recuadro declarado.** Sin máscara, sin degradado, sin sangre. El mapa tiene
+   borde y se sabe dónde empieza.
+2. **El mapa es PAPEL.** El duotono va a la LUZ del crema, no a la sombra del
+   navy. El recuadro tiene que ser lo más claro de la pieza; si el mapa es más
+   oscuro que el fondo, no se lee.
+3. **La proporción del recorte es la de la caja.** `tc-mapas-duotono.py` entrega
+   un archivo por pieza con la proporción exacta de su ventana, y la composición
+   lo muestra 1:1. **Nadie reencuadra con `objectPosition`**: buscar el pin a ojo
+   es lo que hacía que quedara pegado a un borde. Si cambia la caja, cambia el
+   recorte en el script.
+4. **El recuadro se monta con el recurso que la pieza ya tiene.** En la story,
+   el mismo radio asimétrico de la foto: dos tarjetas hermanas, *dónde queda* y
+   *cómo se ve*. En el carrusel, el paspartú crema de los recortes de la slide 3
+   — que es, además, lo que hace que las slides 2 y 3 se lean de la misma
+   familia, el reclamo que Diego había dejado el mismo día.
+
+#### ⭐ Y la que vale más allá del mapa: **la marca del cliente puede estar ya en el material**
+
+**Tierra Calma está registrada en Google Maps.** MAPA-3 trae su pin rojo y su
+etiqueta, puestos por Google. Nuestra píldora crema encima era **una segunda
+marca tapando la primera**, y la primera vale más: es la prueba de que el lugar
+existe y se puede buscar. Un rótulo propio sobre un rótulo ajeno que dice lo
+mismo no agrega marca — agrega ruido.
+
+⚠️ Ojo con el efecto secundario: **un duotono por luminancia mata el pin.** El
+rojo se convierte en un gris cualquiera y el pedido se pierde sin que nadie lo
+note. Por eso el script **aísla el pin y lo repone en su color original**, y
+sólo el de la zona del pin: el mapa trae otro rojo —el POI del CESFAM— que no es
+nuestro y tiene que apagarse con el resto. El pin queda como lo único cromático
+de la pieza, así que es lo primero que se mira.
+
+> 💡 Regla general: antes de rotular algo sobre una imagen, **mirar si la imagen
+> ya lo rotula**. Pasó con el mapa; puede pasar con una fachada, un letrero o un
+> packshot.
 
 ## 4 septies. ⭐ LA COMPUERTA — `reglas.yaml`, desde el 23-09-2026
 

@@ -699,60 +699,71 @@ const G: React.FC = () => (
 // =============================================================================
 // H · 12/10 · HISTORIA · Santiago → Padre Hurtado · Pilar 2
 // Diego: "colocar en transparencia el MAPA-3 para la ubicación del lugar".
-// MAPA-3 es cartografía REAL (a diferencia de MAPA-1 y 2, que traen los
-// topónimos corruptos): va en transparencia sobre el azul de marca y encima
-// sólo nuestros rótulos.
+// MAPA-3 es la ÚNICA cartografía real que tiene la cuenta: MAPA-1 y MAPA-2
+// salieron de IA y traen topónimos corruptos y escudos G-68.
 // =============================================================================
 
 /**
- * ⭐ H · 12/10 · HISTORIA — mapa de comunas. REHECHA el 23-09 sobre la
- * referencia que pasó Diego (una pieza de Sonatta, Curitiba).
+ * ⭐ H · 12/10 · HISTORIA — el mapa del lugar.
  *
- * La referencia devuelve la pieza a lo que el brief pedía desde el principio:
- * *"un fondo en azul Tierra Calma con un mapa ESTILIZADO Y MINIMALISTA que
- * muestre la relación Santiago → Padre Hurtado"*. Lo que había era una captura
- * de Google Maps velada en azul, que además traía su propio pin y obligaba a
- * pelear con el degradado para que se leyera.
+ * ⛔ EL MAPA ES UN OBJETO, NO UN FONDO (Diego, 24-09-2026, 2ª vuelta)
+ * ─────────────────────────────────────────────────────────────────────
+ * *"Mejoremos la forma en que mostramos el mapa, que se vea integrado de buena
+ * forma y que se lea bien. Quita el pin de Tierra Calma, solo deja el del mapa
+ * original."*
  *
- * Su gramática, tal como se aplicó:
- *   · fondo sólido, sin fotografía detrás
- *   · mapa de CELDAS dibujadas a línea fina, con los nombres en versales
- *   · un pin fantasma, grande, detrás del titular
- *   · titular a la IZQUIERDA, montado sobre el mapa
- *   · placa oscura con la ubicación, pegada al borde superior de la foto
- *   · foto con una esquina redondeada
- *   · remate "A 15 minutos del peaje · Padre Hurtado" cruzando el borde
- *   · placas de datos y el llamado abajo
+ * Las tres versiones anteriores fallaron por la misma razón, agravándola:
  *
- * ⛔ LA CARTOGRAFÍA NO SE INVENTA. Las celdas son un esquema —como el
- * `Mapa.tsx` de septiembre, que ya declara "NO es un mapa real"— pero las
- * VECINDADES se verificaron contra `MAPA-3`, que sí es cartografía real: Maipú
- * y Santiago al nororiente, San Bernardo al oriente, Calera de Tango al
- * suroriente, Talagante al sur y Peñaflor al poniente. Las formas son
- * esquemáticas; quién limita con quién, no.
+ *   1. captura de Google Maps velada en azul → leía como una mancha
+ *   2. mapa de celdas DIBUJADO (referencia Sonatta) → *"el mapa no es así
+ *      realmente"*; la cartografía no se inventa
+ *   3. MAPA-3 difuminado con una máscara radial → seguía leyendo como mancha,
+ *      con los topónimos ilegibles, y encima nuestro rótulo crema
+ *
+ * El error de fondo no era el encuadre ni el color: era **tratar el mapa como
+ * ambiente**. Un mapa que no se puede leer no es un mapa, es una textura. Lo
+ * que cambia acá:
+ *
+ *   · **Recuadro declarado.** Sin máscara, sin degradado, con borde propio y el
+ *     mismo radio asimétrico de la foto de abajo. Son dos tarjetas del mismo
+ *     sistema apiladas: **dónde queda** y **cómo se ve**.
+ *   · **El mapa es papel.** El duotono va a la luz del crema, no a la sombra
+ *     del navy: el recuadro es lo más claro de la pieza y por eso se lee.
+ *   · **El pin es el del mapa.** Ver abajo.
+ *   · La placa de ubicación deja de flotar y se convierte en el **pie del
+ *     recuadro**: el rótulo nombra lo que el mapa muestra.
+ *   · Se fue el pin fantasma de marca de agua. Era otro pin, y sobraba.
+ *
+ * ⭐ POR QUÉ SALE NUESTRO RÓTULO Y QUEDA EL DEL MAPA
+ * ─────────────────────────────────────────────────
+ * **Tierra Calma ya está en Google Maps.** MAPA-3 trae su pin rojo y su
+ * etiqueta, puestos por Google, no por nosotros. Nuestra píldora crema encima
+ * era una segunda marca tapando la primera — y la primera vale más, porque es
+ * la prueba de que el lugar existe y se puede buscar.
+ *
+ * El pin sobrevive al duotono porque `scripts/tc-mapas-duotono.py` lo aísla y
+ * lo repone en su rojo original: es lo único cromático de la pieza, así que es
+ * lo primero que se mira. El resto del mapa —incluido el POI rojo del CESFAM,
+ * que no es nuestro— se apaga con el duotono.
+ *
+ * ⚠️ GEOMETRÍA. `mapa3-recuadro-st.jpg` es un recorte de 800×311 y la caja es
+ * de 888×345: **misma proporción**, así que el archivo se muestra 1:1 y nadie
+ * reencuadra con `objectPosition`. Si se cambia la caja, se cambia el recorte
+ * en el script — no el `objectFit` acá.
+ *
+ * Qué entra en el recorte, y por qué (medido sobre `mapa3.jpg`):
+ *   · el pin (287,315), con aire alrededor
+ *   · «Maipú» (855,120) — el ancla de Santiago que sostiene el titular. Sin
+ *     ella, «CERCA DE SANTIAGO» es una afirmación sin mapa que la respalde
+ *   · «Padre Hurtado» (690,365) — el topónimo que la pieza nombra dos veces
+ *   · el escudo de la **Ruta 78** (687,263) — la vía correcta, la que el manual
+ *     persigue desde que una pieza publicó «Ruta 68»
  */
 
-const PIN_D =
-  "M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0zm0 17a5 5 0 110-10 5 5 0 010 10z";
-
-/**
- * ⛔ EL MAPA VUELVE A SER MAPA-3 (Diego, 24-09-2026).
- *
- * El 23-09 esta story llevaba un mapa de celdas DIBUJADO, siguiendo una
- * referencia. Diego: *"creo que el mapa no es así realmente de Padre Hurtado y
- * las comunas que lo rodean; ocupa la imagen del mapa-3 y adapta el color al
- * fondo para que se vea bien"*. Tenía razón: un esquema con vecindades
- * verificadas sigue siendo un dibujo, y acá lo que se pide es cartografía.
- *
- * `mapa3-cuadro.jpg` lo prepara `scripts/tc-mapas-duotono.py`: recorta MAPA-3
- * centrado en su propio pin y lo pasa a duotono navy para que despegue del
- * fondo. **El recorte deja el pin en la fracción (0,3588 · 0,4415)** de la
- * caja — por eso nuestro rótulo va exactamente ahí y no en un lugar elegido a
- * ojo. Diego, mismo día: *"tapa el pin del mapa con nuestro rótulo"*.
- */
-const CAJA_MAPA = {left: 470, top: 286, w: 530, h: 470};
-/** Dónde cae el pin rojo de MAPA-3 dentro de la caja, en fracción del recorte. */
-const PIN_MAPA = {fx: 0.3588, fy: 0.4415};
+/** El recuadro del mapa: imagen + pie, en la misma columna que la foto. */
+const MAPA = {left: 96, top: 578, w: 888, h: 345};
+/** El pie del recuadro — la placa de ubicación, ahora pegada al mapa. */
+const MAPA_PIE = 54;
 
 /** Placa de dato, como las del pie de la referencia. */
 const Placa: React.FC<{children: React.ReactNode}> = ({children}) => (
@@ -782,72 +793,9 @@ const H: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
     <AbsoluteFill style={{backgroundColor: TC.colors.navy}} />
 
-    {/* el pin fantasma, detrás del titular */}
-    <svg
-      viewBox="0 0 24 36"
-      style={{position: "absolute", left: 96, top: 332, width: 230, height: 345, opacity: 0.07}}
-    >
-      <path d={PIN_D} fill="#fff" />
-    </svg>
-
-    {/* el mapa real, recortado y teñido */}
-    <div
-      style={{
-        position: "absolute",
-        left: CAJA_MAPA.left,
-        top: CAJA_MAPA.top,
-        width: CAJA_MAPA.w,
-        height: CAJA_MAPA.h,
-        // ⚠️ El recorte se funde con MÁSCARA, no con un velo encima. Con un
-        // degradado superpuesto el borde del rectángulo seguía viéndose y la
-        // pieza parecía un mapa pegado con scotch; la máscara hace que el mapa
-        // MISMO se desvanezca hacia el fondo.
-        WebkitMaskImage:
-          "radial-gradient(ellipse 50% 50% at 50% 46%, #000 40%, rgba(0,0,0,0.72) 70%, transparent 100%)",
-        maskImage:
-          "radial-gradient(ellipse 50% 50% at 50% 46%, #000 40%, rgba(0,0,0,0.72) 70%, transparent 100%)",
-      }}
-    >
-      <Img
-        src={OCT("mapa3-cuadro")}
-        style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}
-      />
-    </div>
-    {/* ⭐ NUESTRO rótulo, encima del pin que trae el propio mapa. La posición
-        sale de `PIN_MAPA`, que la calcula el script del recorte: puesta a ojo es
-        como se terminan leyendo DOS marcas. */}
-    <div
-      style={{
-        position: "absolute",
-        left: CAJA_MAPA.left + CAJA_MAPA.w * PIN_MAPA.fx,
-        top: CAJA_MAPA.top + CAJA_MAPA.h * PIN_MAPA.fy,
-        transform: "translate(-50%, -50%)",
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 10,
-        backgroundColor: TC.colors.cream,
-        padding: "7px 18px 7px 11px",
-        borderRadius: 999,
-        whiteSpace: "nowrap",
-      }}
-    >
-      <IPin s={26} c={TC.colors.navy} />
-      <span
-        style={{
-          fontFamily: SERIF,
-          fontStyle: "italic",
-          fontWeight: 500,
-          fontSize: 32,
-          textTransform: "uppercase",
-          color: TC.colors.navy,
-        }}
-      >
-        Tierra Calma
-      </span>
-    </div>
-
-    {/* titular a la izquierda, montado sobre el mapa */}
-    <div style={{position: "absolute", left: 112, top: 400, width: 530, textAlign: "left"}}>
+    {/* titular, a la izquierda y arriba del mapa: primero la frase, después la
+        prueba. Antes iban lado a lado y los dos perdían. */}
+    <div style={{position: "absolute", left: 96, top: 250, width: 880, textAlign: "left"}}>
       <div
         style={{
           fontFamily: SANS,
@@ -881,16 +829,37 @@ const H: React.FC = () => (
       </div>
     </div>
 
-    {/* la placa de ubicación, pegada al borde superior de la foto */}
-    <div style={{position: "absolute", left: 96, top: 852}}>
+    {/* ⭐ EL RECUADRO DEL MAPA — imagen + pie, un solo objeto recortado por el
+        mismo radio. El `overflow: hidden` es lo que hace que el pie herede la
+        esquina redondeada de abajo a la izquierda. */}
+    <div
+      style={{
+        position: "absolute",
+        left: MAPA.left,
+        top: MAPA.top,
+        width: MAPA.w,
+        height: MAPA.h + MAPA_PIE,
+        overflow: "hidden",
+        // el mismo radio asimétrico de la foto: son tarjetas hermanas
+        borderRadius: "56px 0 56px 0",
+        // filete de arena, el mismo recurso que los del marco
+        boxShadow: "inset 0 0 0 1px rgba(201,185,154,0.45)",
+      }}
+    >
+      <Img
+        src={OCT("mapa3-recuadro-st")}
+        style={{width: "100%", height: MAPA.h, objectFit: "cover", display: "block"}}
+      />
       <div
         style={{
-          display: "inline-block",
+          height: MAPA_PIE,
           backgroundColor: "#07203A",
-          padding: "13px 30px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           fontFamily: SANS,
           fontWeight: 400,
-          fontSize: 30,
+          fontSize: 28,
           letterSpacing: "0.1em",
           textTransform: "uppercase",
           color: TC.colors.cream,
@@ -900,14 +869,14 @@ const H: React.FC = () => (
       </div>
     </div>
 
-    {/* la foto, con una esquina redondeada */}
+    {/* la foto, con la misma esquina redondeada que el recuadro del mapa */}
     <div
       style={{
         position: "absolute",
         left: 96,
-        top: 918,
+        top: 1018,
         width: 888,
-        height: 416,
+        height: 340,
         overflow: "hidden",
         borderRadius: "56px 0 56px 0",
       }}
@@ -934,7 +903,7 @@ const H: React.FC = () => (
         position: "absolute",
         left: 0,
         right: 0,
-        top: 1268,
+        top: 1292,
         display: "flex",
         alignItems: "flex-end",
         justifyContent: "center",
@@ -976,7 +945,7 @@ const H: React.FC = () => (
         position: "absolute",
         left: 0,
         right: 0,
-        top: 1412,
+        top: 1424,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -1182,26 +1151,49 @@ const K1: React.FC = () => (
   </Lienzo>
 );
 
+/**
+ * ⭐ K2 · 20/10 · CARRUSEL 2/6 — «¿Qué tan conectado estarás?»
+ *
+ * ⛔ EL MAPA ES UN OBJETO, NO UN FONDO (Diego, 24-09-2026, 2ª vuelta)
+ * ─────────────────────────────────────────────────────────────────────
+ * *"Quitar pin de Tierra Calma, que sea fondo sólido con el color verde de la
+ * marca más un **recuadro** con el mapa del lugar."*
+ *
+ * Es el mismo pedido que dejó en `st-12-10` el mismo día, y las dos piezas se
+ * arreglan igual — ver el bloque de `H`, que lo explica largo:
+ *
+ *   · el mapa deja de ir a sangre y pasa a un recuadro con su recorte propio
+ *   · el duotono va a la LUZ del crema: el mapa es papel y se lee
+ *   · sale nuestra píldora y queda el pin rojo que el mapa ya trae, porque
+ *     **Tierra Calma ya está en Google Maps** y esa etiqueta vale más que la
+ *     nuestra: prueba que el lugar existe y se puede buscar
+ *
+ * ⚠️ El recuadro va MONTADO EN PASPARTÚ CREMA, no con filete. No es un capricho:
+ * es el mismo recurso de los recortes fotográficos de la slide 3
+ * (`Recorte`, paspartú de 9 px + sombra de contacto). Diego, el 24-09, había
+ * pedido las slides 2 y 3 en verde justamente porque *"quedan muy cortadas
+ * visualmente de las demás"*; repetir el montaje las hace la misma familia.
+ *
+ * ⚠️ GEOMETRÍA. `mapa3-recuadro-k2.jpg` es un recorte de 800×423 y la ventana
+ * mide 862×456 — **misma proporción**, así que el archivo se muestra 1:1 y
+ * nadie lo reencuadra acá. Si cambia la ventana, cambia el recorte en
+ * `scripts/tc-mapas-duotono.py`.
+ *
+ * Este recorte es más alto que el de la story porque la slide pregunta por la
+ * CONEXIÓN: además del pin y de Maipú entran los dos escudos de la **Ruta 78**
+ * y el Trapiche de Peñaflor, que son las vías reales del sector.
+ */
+
+/** Ventana del mapa + paspartú. Mismo ancho y margen que el resto del carrusel. */
+const MAPA_K2 = {left: 96, top: 480, w: 862, h: 456, marco: 13};
+
 const K2: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
-    {/* Diego, 2ª vuelta: "el mapa que cubra toda la composición". Va a sangre,
-        no en banda. MAPA-3 es la cartografía real, recoloreada al duotono
-        crema→navy de MAPA-1 y MAPA-2. */}
-    {/* 13%: deja el pin que ya trae el mapa justo bajo nuestro rótulo. A 46%
-        quedaba al borde y se leían DOS pines, el del mapa y el nuestro. */}
     {/* ⭐ Diego (24-09): "siento que quedan muy cortadas visualmente la 2da y la
         3ra de las demás, cambiar por el color VERDE del manual". Las dos slides
-        de fondo plano pasan del crema al verde profundo `TC.colors.green`, que
-        es el del logo estático. El mapa se recolorea al mismo duotono
-        (`scripts/tc-mapas-duotono.py`) y la tinta se invierte: crema sobre
-        verde, no navy sobre crema. */}
-    <Foto src={OCT("mapa3-verde")} foco="13% 50%" />
-    {/* velos de lectura, arriba y abajo, sobre el propio mapa */}
-    <AbsoluteFill
-      style={{
-        background: `linear-gradient(to bottom, rgba(0,41,30,0.96) 0%, rgba(0,41,30,0.9) 22%, rgba(0,41,30,0.12) 42%, rgba(0,41,30,0.14) 58%, rgba(0,41,30,0.92) 78%, rgba(0,41,30,0.97) 100%)`,
-      }}
-    />
+        de fondo plano van al verde profundo del logo estático. Acá el fondo es
+        SÓLIDO: el mapa que antes iba a sangre se retiró al recuadro. */}
+    <AbsoluteFill style={{backgroundColor: TC.colors.green}} />
     <MarcoTenido archivo="MARCO-CARRUSEL-2" color={TC.colors.cream} />
     <Cabecera n="01.">
       <Modulado
@@ -1210,29 +1202,30 @@ const K2: React.FC = () => (
         tramos={[{t: "¿Qué tan "}, {t: "conectado", ivy: true}, {t: "estarás?", salto: true}]}
       />
     </Cabecera>
-    {/* el pin sobre el mapa, con nuestro rótulo */}
-    {/* El pin propio va EXACTAMENTE sobre el que ya trae el mapa (medido: canvas
-        382,590 con el encuadre al 13 %), así se lee uno solo y no dos. */}
+
+    {/* ⭐ EL RECUADRO: el mapa montado en paspartú, como los recortes de la
+        slide 3. La sombra de contacto es lo que lo despega del verde. */}
     <div
       style={{
         position: "absolute",
-        left: 352,
-        top: 566,
-        display: "flex",
-        alignItems: "center",
-        gap: 12,
-        // base crema: sin ella el rótulo gris que ya trae el mapa se
-        // transparentaba por detrás del nuestro y se leían los dos.
-        backgroundColor: TC.colors.cream,
-        padding: "8px 20px 8px 12px",
-        borderRadius: 999,
+        left: MAPA_K2.left,
+        top: MAPA_K2.top,
+        backgroundColor: "#FBF8F2",
+        padding: MAPA_K2.marco,
+        boxShadow: "0 14px 30px rgba(0,0,0,0.26)",
       }}
     >
-      <IPin s={34} c={TC.colors.green} />
-      <span style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 500, fontSize: 46, textTransform: "uppercase", color: TC.colors.green, whiteSpace: "nowrap"}}>
-        Tierra Calma
-      </span>
+      <Img
+        src={OCT("mapa3-recuadro-k2")}
+        style={{
+          width: MAPA_K2.w,
+          height: MAPA_K2.h,
+          objectFit: "cover",
+          display: "block",
+        }}
+      />
     </div>
+
     <div
       style={{
         position: "absolute",

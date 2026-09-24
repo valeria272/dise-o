@@ -5,6 +5,30 @@
 
 ---
 
+## 2026-09-24 — Diego Aguilar (cierre del día · PAID de octubre)
+
+**Qué se hizo:** Dos rondas sobre la pauta. (1) 02-B «demasiado falso» → foto real
+DJI_0324 con retoque mínimo de Seedream, sin el Santiago inventado. (2) Tres
+comentarios de Diego en Drive: casacabe con fondo real (DJI_0281 + retoque mínimo) y
+titular centrado; cápsulas del mapa más chicas y a ~70 px del marco. Todo aplicado
+también a los 1:1, re-subido sobre los mismos fileId, y los 3 comentarios
+respondidos y resueltos en Drive.
+**Dónde quedó:** Las 6 piezas en la carpeta del brief (`1mJSqrR7aK7V96DQosCA1hArH7Oxr-Uqg`),
+todas pasan `qa/motor.py`. Código en `PaidOctubre.tsx` + `scripts/tc-paid-oct-prep.py`;
+fondos en `public/assets/tierracalma/paid-oct/`. Aprendizaje en el manual § 7 bis
+(reglas 6 creíble, 7 centrado, 8 márgenes ≥ 70 px), en la skill de dirección de arte
+(«la imagen tiene que verse creíble») y en la memoria sembrada (flujo de comentarios
+de Drive).
+**Qué sigue:** Revisar si Diego deja más comentarios en Drive y aplicarlos con el
+mismo ciclo; después, revisión de Ignacio y aprobación de la clienta (29-09).
+**Abierto:**
+- Avisar a Ignacio: B4 → D1 (**D1 caduca el 12-10**), «PASALO» → «PÁSALO», archivos
+  sueltos en la carpeta (no en subcarpetas por bloque).
+- Casacabe con fondo real quedó menos verde (el terreno es matorral seco). Si Diego
+  lo quiere más verde, subir el verde en el retoque sin que se vea falso.
+
+---
+
 ## 2026-09-24 — Diego Aguilar (PAID · comentarios en Drive, ronda 6)
 
 **Qué se hizo:** Se aplicaron los 3 comentarios de Diego en Drive y se respondieron y

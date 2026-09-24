@@ -141,7 +141,7 @@ están en [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](../../../docs/MAGNIFIC-LO-QUE-Y
 | Si la pieza necesita… | Modelo |
 |---|---|
 | **cualquier imagen, por defecto** | **Seedream 5 Pro** (`magnific.py seedream`) — decisión de Diego, 23-09-2026 |
-| idealizar una foto real sin perder su traza | **Seedream 5 Pro edit** (`magnific.py seedream --refs foto.jpg`) |
+| idealizar una foto real sin perder su traza | **Seedream 5 Pro edit** (`magnific.py seedream --refs foto.jpg`) con prompt de **cambio mínimo** («keep this real photo almost unchanged… only remove haze, warm light… do not add or remove anything»). Si el formato es vertical, recorta la foto en vertical ANTES de mandarla |
 | fondo o ambiente, sin texto, si Seedream no sirve | **Mystic** |
 | texto legible dentro de la imagen | **Nano Banana Pro** — Mystic rompe letras y se come la ñ |
 | parecerse a una foto real del cliente | **Nano Banana Pro** con esa foto como referencia, pidiendo no tocar arquitectura, vegetación ni encuadre |
@@ -159,6 +159,11 @@ están en [`docs/MAGNIFIC-LO-QUE-YA-PAGAMOS.md`](../../../docs/MAGNIFIC-LO-QUE-Y
 | que se mueva como un reel de referencia | **no lo tenemos** (`kling-motion` está fuera del plan): se calca a mano midiendo la referencia |
 
 ### Las tres que no se negocian
+
+> **Y una cuarta, de Diego (24-09-2026): la imagen tiene que verse CREÍBLE.** Una
+> transformación fuerte «se ve demasiado falsa». Si hay foto real que sirve, se
+> retoca al mínimo sobre ella; nunca se inventa paisaje que el lugar no tiene
+> (skylines, cerros, llanos). Lo que la foto no muestra lo cuenta el texto.
 
 1. **La IA hace ambiente y fondo. Nunca el producto, nunca el logo, nunca un dato.**
    El relight sobre el KV compuesto de CAVA destruyó las botellas (Δ ≈ 60): el tinto

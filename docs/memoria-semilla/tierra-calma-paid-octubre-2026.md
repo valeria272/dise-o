@@ -37,9 +37,13 @@ PAID; comparte el marco bloqueado del orgánico pero NO su escala tipográfica.
   puede entregar en subcarpetas creadas por el conector. Subir directo a la
   carpeta de destino.
 - Los briefs de Ignacio escriben en voseo («pasalo»): siempre se corrige.
+- ⭐ Rondas 5 y 6 (Diego, 24-09): **tiene que verse creíble** — 02-B y casacabe
+  pasaron a la foto REAL (0324 y 0281 recortada en vertical) con retoque mínimo de
+  Seedream, sin inventar paisaje; **titulares centrados**; **nada a menos de 70 px
+  del filete** del marco (se achica el elemento, no el margen). Manual § 7 bis.6–8.
 - ⭐ Ronda 2 (Diego, 23-09): **no reusar una imagen que ya salió en pauta**, aunque
-  el brief diga «la misma toma». Para mostrar terreno: Nano Banana Pro con la
-  cenital real DJI_0281 de referencia (Mystic solo da oblicuos con lotes redondos).
+  el brief diga «la misma toma». Para mostrar terreno: Seedream 5 Pro edit con la
+  foto real de referencia y cambio mínimo (Mystic solo da oblicuos con lotes redondos).
   Regla escrita en el manual § 4 bis.
 
 Relacionado: [[tierra-calma-octubre-2026]], [[leer-el-brief-y-su-carpeta-de-referencias]],

@@ -161,6 +161,88 @@ Código: `src/compositions/tierracalma/PaidOctubre.tsx` (composiciones
 
 ---
 
+## 2026-09-24 — Diego Aguilar
+
+**Qué se hizo:** La ronda del 24-09: cinco comentarios de Drive más dos
+instrucciones por chat, con **dos referencias** que Diego pasó adjuntas.
+Cambiaron 7 estáticas y el reel del 01/10.
+
+| Pieza | Comentario | Qué se hizo |
+|---|---|---|
+| `c-20-10-1` | «la foto de portada es la misma que el post del 09/10» | portada nueva con Seedream 5 Pro |
+| `c-20-10-2` y `-3` | «quedan muy cortadas de las demás, al verde del manual» | fondo `#003326`, tinta crema, mapa recoloreado |
+| `st-12-10` | «el mapa no es así realmente… ocupa MAPA-3» | vuelve la cartografía real, recortada y teñida |
+| `st-12-10` | «cambiemos la imagen a una del dron» | aérea real del 07-08, gradada |
+| `p-29-10` | «guiarse por la referencia» | rehecha sobre la pieza de Coldwell Banker |
+| `r-01-10` | *(chat)* «Tierra Calma juntos en la misma línea **siempre**» | regla de marca + `sinPartir()` en los dos motores |
+
+### La foto repetida era repetida de verdad
+
+`k-persona` y `g-pareja` son archivos distintos, con `md5` distinto… y **+0,933
+de parecido visual**: dos generaciones del mismo prompt. Es el mismo patrón que
+las dos pistas de música clonadas de ayer, y se detecta igual — comparando la
+firma de la imagen, no el archivo.
+
+La portada nueva da **+0,754** como máximo contra cualquiera de las otras del
+mes, dentro del rango normal. Va **una sola persona**: la pareja ya sale en la
+slide 6 y en el post del 09/10.
+
+### La regla del nombre se aplica en el componente
+
+«Tierra Calma» salía partido en el primer subtítulo del reel. La regla vale
+**siempre**, así que no se arregló esa línea: se agregó `sinPartir()` a los dos
+motores —estáticas y reels— para que el nombre y «Padre Hurtado» viajen con
+`nowrap`. Con la escala automática, una línea que hoy cabe puede partirse mañana
+al editarle una palabra.
+
+Eso reflotó dos piezas más (`c-20-10-5` y `st-08-10`), que cambiaron de corte de
+línea. Revisadas: las dos quedaron bien.
+
+### Un tercer rol tipográfico, y hay que confirmarlo
+
+El post del 29/10 necesita **escritura a mano** — lo pide el brief y lo confirma
+la referencia. Tierra Calma no tiene manuscrita, así que se usó **Caveat**, que
+ya estaba en el repo, declarada en `TC.fonts.mano` como **rol restringido a esa
+pieza**.
+
+⚠️ Caveat es **la mano de Copywriters**, la cuenta propia. Funciona, pero si el
+cliente la adopta como parte de su identidad hay que elegirle una propia. **Es
+decisión de Diego.**
+
+### Lo que NO se copió de la referencia
+
+La pieza de Coldwell trae una segunda nota con «Sueña · Planifica · Hazlo ·
+Realidad». Ese copy **no está en el brief**, y el texto de una pieza de cliente
+sale literal del brief. En su lugar va la imagen de inspiración de una casa
+contemporánea, que el brief sí pide.
+
+### QA
+
+La compuerta pasa las 16 con **un aviso**: `c-20-10-2` cerraba con «estarás?».
+Se deja: es la slide que Diego fijó como referencia del carrusel.
+
+Se acotó la regla de agencia `desenfoque-parcial` para que **no corra sobre las
+dos slides gráficas**. No es que tengan una banda blanda: la comprobación mide
+la nitidez de toda la pieza y, en una slide que es mapa velado + tipografía, la
+mediana la mandan los bordes del texto. Medido en `c-20-10-2`: las bandas con
+texto dan 2,3–3,1 y la de mapa limpio 0,04. Comparar una con otra no dice nada
+sobre el foco.
+
+**Dónde quedó:** las 8 re-subidas sobre el mismo fileId. Dos scripts nuevos
+(`tc-mapas-duotono.py`, `tc-foto-dron-story.py`) y las dos referencias
+versionadas en `clients/tierra-calma/referencias/`.
+
+**Qué sigue:** esperar la ronda del **cliente**.
+
+**Abierto:**
+
+1. ⚠️ Sigue faltando la **confirmación escrita de Fran o Blanca** para «Rol
+   individual» y «Acceso controlado».
+2. **La manuscrita**: confirmar si Caveat se queda o se le busca una propia.
+3. Los comentarios de la grilla siguen sin poder leerse (es `.xlsx` subido).
+
+---
+
 ## 2026-09-23 · CIERRE DE JORNADA — Diego Aguilar
 
 Día largo: **seis rondas** sobre octubre. Esta entrada es el índice; el detalle

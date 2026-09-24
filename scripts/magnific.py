@@ -201,17 +201,28 @@ def main():
         #   · con referencias: /v1/ai/text-to-image/seedream-v5-pro-edit
         #     (`reference_images` es una lista de STRINGS en data URI — no objetos
         #     {image, mime_type} como en Nano Banana Pro: eso da 400).
-        # Resolución «1.5k» o «2k»; los aspectos son los largos de Mystic.
+        # Resolución «1.5k» o «2k».
         # ⚠️ `seedream-5-pro` (sin la v) da 404: la ruta lleva «v5».
+        #
+        # ⚠️ LOS ASPECTOS DE SEEDREAM NO SON LOS DE MYSTIC. Seedream rechaza
+        # `social_post_4_5` con un 400 (verificado el 24-09-2026) y sólo acepta
+        # square_1_1 · widescreen_16_9 · social_story_9_16 · portrait_2_3 ·
+        # traditional_3_4 · standard_3_2 · classic_4_3 · cinematic_21_9.
+        # O sea: **no tiene 4:5**, que es el formato de feed de casi todas las
+        # marcas del estudio. Se pide en 3:4 —el más cercano— y la composición
+        # recorta a 4:5 con `objectFit: cover`. Por eso el prompt tiene que dejar
+        # aire en los bordes: lo que quede al filo se pierde en el recorte.
         if not a.entrada:
             sys.exit("✗ Falta el prompt")
+        ASPECTOS_SEEDREAM = {**ASPECTOS, "carrusel": "traditional_3_4"}
         ruta = "/v1/ai/text-to-image/seedream-v5-pro" + ("-edit" if a.refs else "")
-        cuerpo = {"prompt": a.entrada, "aspect_ratio": ASPECTOS[a.aspecto], "resolution": "2k"}
+        cuerpo = {"prompt": a.entrada, "aspect_ratio": ASPECTOS_SEEDREAM[a.aspecto],
+                  "resolution": "2k"}
         if a.refs:
             # Base64 pelado pasa la validación pero la tarea FALLA en el servicio
             # («The parameter `image` … are not valid», 23-09): va como data URI.
             cuerpo["reference_images"] = [f"data:{mime_de(r)};base64,{b64_de(r)}" for r in a.refs[:10]]
-        print(f"→ Seedream 5 Pro · {a.aspecto} ({ASPECTOS[a.aspecto]}) · 2k"
+        print(f"→ Seedream 5 Pro · {a.aspecto} ({ASPECTOS_SEEDREAM[a.aspecto]}) · 2k"
               + (f" · {len(a.refs[:10])} referencias" if a.refs else ""))
         r = pedir(ruta, cuerpo)
         guarda(espera(ruta, r["data"]["task_id"]), a.out)

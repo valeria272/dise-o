@@ -171,6 +171,28 @@ const cuerpoSans = (texto: string) => {
   return Math.round(SANS_MAX - t * (SANS_MAX - SANS_MIN));
 };
 
+/**
+ * ⛔ «TIERRA CALMA» NUNCA SE PARTE ENTRE DOS LÍNEAS (Diego, 24-09-2026).
+ * Vale para toda pieza, no sólo para el reel donde se detectó. Ver el gemelo en
+ * `OctubreVideo.tsx` y la regla en el manual § Tipografía.
+ */
+const INDIVISIBLE = /(Tierra Calma|Padre Hurtado)/gi;
+
+const sinPartir = (hijos: React.ReactNode): React.ReactNode => {
+  if (typeof hijos !== "string") return hijos;
+  return hijos
+    .split(INDIVISIBLE)
+    .map((parte, i) =>
+      /^(tierra calma|padre hurtado)$/i.test(parte) ? (
+        <span key={i} style={{whiteSpace: "nowrap"}}>
+          {parte}
+        </span>
+      ) : (
+        parte
+      ),
+    );
+};
+
 const Modulado: React.FC<{tramos: Tramo[]; base?: number; ancho?: number; tinta?: string}> = ({
   tramos,
   base,
@@ -206,7 +228,7 @@ const Modulado: React.FC<{tramos: Tramo[]; base?: number; ancho?: number; tinta?
             textTransform: tr.ivy ? "uppercase" : "none",
           }}
         >
-          {tr.t}
+          {sinPartir(tr.t)}
         </span>
       </React.Fragment>
     ))}
@@ -351,10 +373,10 @@ const Globo: React.FC<{
             marginBottom: 8,
           }}
         >
-          {destacado}
+          {sinPartir(destacado)}
         </div>
       ) : null}
-      {children}
+      {sinPartir(children)}
     </div>
   </div>
 );
@@ -710,109 +732,27 @@ const G: React.FC = () => (
  * esquemáticas; quién limita con quién, no.
  */
 
-/** Las celdas del esquema. viewBox 620×560. */
-const COMUNAS: {d: string; label: string[]; lx: number; ly: number; foco?: boolean}[] = [
-  {d: "M230 30 L410 15 L392 150 L240 170 Z", label: ["MAIPÚ"], lx: 318, ly: 100},
-  {d: "M410 15 L560 60 L612 185 L462 252 L392 150 Z", label: ["CERRILLOS"], lx: 497, ly: 140},
-  {d: "M612 185 L595 320 L402 352 L462 252 Z", label: ["SAN", "BERNARDO"], lx: 523, ly: 258},
-  {
-    d: "M595 320 L548 440 L452 528 L272 402 L402 352 Z",
-    label: ["CALERA", "DE TANGO"],
-    lx: 452,
-    ly: 412,
-  },
-  {d: "M452 528 L300 552 L152 505 L178 300 L272 402 Z", label: ["TALAGANTE"], lx: 292, ly: 478},
-  {
-    d: "M230 30 L72 140 L22 258 L58 392 L152 505 L178 300 L240 170 Z",
-    label: ["PEÑAFLOR"],
-    lx: 168,
-    ly: 300,
-  },
-  {
-    d: "M240 170 L392 150 L462 252 L402 352 L272 402 L178 300 Z",
-    label: ["PADRE", "HURTADO"],
-    lx: 318,
-    ly: 330,
-    foco: true,
-  },
-];
-
 const PIN_D =
   "M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0zm0 17a5 5 0 110-10 5 5 0 010 10z";
 
-const MapaComunas: React.FC = () => (
-  <svg viewBox="0 0 620 560" style={{width: "100%", height: "100%", overflow: "visible"}}>
-    {COMUNAS.map((c, i) => (
-      <path
-        key={i}
-        d={c.d}
-        fill={c.foco ? "rgba(201,185,154,0.14)" : "none"}
-        stroke={TC.colors.sand}
-        strokeWidth={c.foco ? 2.4 : 1.6}
-        strokeLinejoin="round"
-        opacity={c.foco ? 0.95 : 0.55}
-      />
-    ))}
-    {COMUNAS.map((c, i) => (
-      <text
-        key={`t${i}`}
-        x={c.lx}
-        y={c.ly}
-        textAnchor="middle"
-        style={{
-          fontFamily: SANS,
-          fontWeight: c.foco ? 500 : 300,
-          fontSize: c.foco ? 23 : 21,
-          letterSpacing: "0.12em",
-          fill: c.foco ? "#fff" : TC.colors.sand,
-        }}
-      >
-        {c.label.map((ln, k) => (
-          <tspan key={k} x={c.lx} dy={k === 0 ? 0 : 27}>
-            {ln}
-          </tspan>
-        ))}
-      </text>
-    ))}
-    {/* La relación con Santiago —lo que pide el brief— va como DIRECCIÓN sobre
-        el esquema, no como una celda más: Maipú y Cerrillos ya SON Santiago, y
-        ponerlas de hermanas suyas sería geografía falsa. */}
-    <g opacity={0.72}>
-      <path
-        d="M430 -6 L492 -30"
-        stroke={TC.colors.sand}
-        strokeWidth={1.6}
-        strokeLinecap="round"
-      />
-      <path
-        d="M492 -30 L476 -32 M492 -30 L484 -18"
-        stroke={TC.colors.sand}
-        strokeWidth={1.6}
-        strokeLinecap="round"
-        fill="none"
-      />
-      <text
-        x={500}
-        y={-38}
-        textAnchor="start"
-        style={{
-          fontFamily: SANS,
-          fontWeight: 400,
-          fontSize: 20,
-          letterSpacing: "0.14em",
-          fill: TC.colors.sand,
-        }}
-      >
-        SANTIAGO
-      </text>
-    </g>
-    {/* el pin del proyecto, dentro de la celda de Padre Hurtado */}
-    <g transform="translate(300 232)">
-      <circle cx="16" cy="17" r="21" fill={TC.colors.brown} />
-      <path d={PIN_D} fill="#fff" transform="translate(7 4) scale(0.76)" />
-    </g>
-  </svg>
-);
+/**
+ * ⛔ EL MAPA VUELVE A SER MAPA-3 (Diego, 24-09-2026).
+ *
+ * El 23-09 esta story llevaba un mapa de celdas DIBUJADO, siguiendo una
+ * referencia. Diego: *"creo que el mapa no es así realmente de Padre Hurtado y
+ * las comunas que lo rodean; ocupa la imagen del mapa-3 y adapta el color al
+ * fondo para que se vea bien"*. Tenía razón: un esquema con vecindades
+ * verificadas sigue siendo un dibujo, y acá lo que se pide es cartografía.
+ *
+ * `mapa3-cuadro.jpg` lo prepara `scripts/tc-mapas-duotono.py`: recorta MAPA-3
+ * centrado en su propio pin y lo pasa a duotono navy para que despegue del
+ * fondo. **El recorte deja el pin en la fracción (0,3588 · 0,4415)** de la
+ * caja — por eso nuestro rótulo va exactamente ahí y no en un lugar elegido a
+ * ojo. Diego, mismo día: *"tapa el pin del mapa con nuestro rótulo"*.
+ */
+const CAJA_MAPA = {left: 470, top: 286, w: 530, h: 470};
+/** Dónde cae el pin rojo de MAPA-3 dentro de la caja, en fracción del recorte. */
+const PIN_MAPA = {fx: 0.3588, fy: 0.4415};
 
 /** Placa de dato, como las del pie de la referencia. */
 const Placa: React.FC<{children: React.ReactNode}> = ({children}) => (
@@ -850,9 +790,60 @@ const H: React.FC = () => (
       <path d={PIN_D} fill="#fff" />
     </svg>
 
-    {/* el mapa de comunas */}
-    <div style={{position: "absolute", left: 498, top: 300, width: 502, height: 454}}>
-      <MapaComunas />
+    {/* el mapa real, recortado y teñido */}
+    <div
+      style={{
+        position: "absolute",
+        left: CAJA_MAPA.left,
+        top: CAJA_MAPA.top,
+        width: CAJA_MAPA.w,
+        height: CAJA_MAPA.h,
+        // ⚠️ El recorte se funde con MÁSCARA, no con un velo encima. Con un
+        // degradado superpuesto el borde del rectángulo seguía viéndose y la
+        // pieza parecía un mapa pegado con scotch; la máscara hace que el mapa
+        // MISMO se desvanezca hacia el fondo.
+        WebkitMaskImage:
+          "radial-gradient(ellipse 50% 50% at 50% 46%, #000 40%, rgba(0,0,0,0.72) 70%, transparent 100%)",
+        maskImage:
+          "radial-gradient(ellipse 50% 50% at 50% 46%, #000 40%, rgba(0,0,0,0.72) 70%, transparent 100%)",
+      }}
+    >
+      <Img
+        src={OCT("mapa3-cuadro")}
+        style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}
+      />
+    </div>
+    {/* ⭐ NUESTRO rótulo, encima del pin que trae el propio mapa. La posición
+        sale de `PIN_MAPA`, que la calcula el script del recorte: puesta a ojo es
+        como se terminan leyendo DOS marcas. */}
+    <div
+      style={{
+        position: "absolute",
+        left: CAJA_MAPA.left + CAJA_MAPA.w * PIN_MAPA.fx,
+        top: CAJA_MAPA.top + CAJA_MAPA.h * PIN_MAPA.fy,
+        transform: "translate(-50%, -50%)",
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 10,
+        backgroundColor: TC.colors.cream,
+        padding: "7px 18px 7px 11px",
+        borderRadius: 999,
+        whiteSpace: "nowrap",
+      }}
+    >
+      <IPin s={26} c={TC.colors.navy} />
+      <span
+        style={{
+          fontFamily: SERIF,
+          fontStyle: "italic",
+          fontWeight: 500,
+          fontSize: 32,
+          textTransform: "uppercase",
+          color: TC.colors.navy,
+        }}
+      >
+        Tierra Calma
+      </span>
     </div>
 
     {/* titular a la izquierda, montado sobre el mapa */}
@@ -921,9 +912,14 @@ const H: React.FC = () => (
         borderRadius: "56px 0 56px 0",
       }}
     >
+      {/* Diego (24-09): "cambiemos la imagen a una de las que se tomó con el
+          dron". Sale el render IA de las dos casas y entra el sitio REAL: la
+          aérea del 07-08, recortada y gradada por
+          `scripts/tc-foto-dron-story.py`. A la izquierda el llano con sus
+          parcelas, a la derecha la ladera con el camino de ripio. */}
       <Img
-        src={OCT("h-casa")}
-        style={{width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 58%"}}
+        src={OCT("h-dron")}
+        style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}
       />
       <AbsoluteFill
         style={{
@@ -1158,7 +1154,15 @@ const Cabecera: React.FC<{
 
 const K1: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
-    <Foto src={OCT("k-persona")} foco="50% 52%" />
+    {/* Diego (24-09): "cambiemos la foto de portada, es la misma que el post del
+        09/10". Y lo era: medido, `k-persona` y `g-pareja` daban +0,933 de
+        parecido visual — dos generaciones del mismo prompt. `k-portada` se
+        generó con Seedream 5 Pro siguiendo el ADN del manual y da como máximo
+        +0,754 contra cualquiera de las otras. Una persona sola, no pareja: la
+        pareja ya sale en la slide 6 y en el post del 09/10.
+        El cielo limpio llega hasta la fila 638 del lienzo; el titular cierra en
+        la 589. */}
+    <Foto src={OCT("k-portada")} foco="50% 50%" />
     <Degradado arriba={0.6} abajo={0.4} />
     <Marco archivo="MARCO-CARRUSEL-1" />
     {/* Diego (23-09): "subir un poco, que no tape a las personas ni el terreno".
@@ -1185,18 +1189,24 @@ const K2: React.FC = () => (
         crema→navy de MAPA-1 y MAPA-2. */}
     {/* 13%: deja el pin que ya trae el mapa justo bajo nuestro rótulo. A 46%
         quedaba al borde y se leían DOS pines, el del mapa y el nuestro. */}
-    <Foto src={OCT("mapa3-duo")} foco="13% 50%" />
+    {/* ⭐ Diego (24-09): "siento que quedan muy cortadas visualmente la 2da y la
+        3ra de las demás, cambiar por el color VERDE del manual". Las dos slides
+        de fondo plano pasan del crema al verde profundo `TC.colors.green`, que
+        es el del logo estático. El mapa se recolorea al mismo duotono
+        (`scripts/tc-mapas-duotono.py`) y la tinta se invierte: crema sobre
+        verde, no navy sobre crema. */}
+    <Foto src={OCT("mapa3-verde")} foco="13% 50%" />
     {/* velos de lectura, arriba y abajo, sobre el propio mapa */}
     <AbsoluteFill
       style={{
-        background: `linear-gradient(to bottom, rgba(243,238,227,0.96) 0%, rgba(243,238,227,0.9) 22%, rgba(243,238,227,0.1) 42%, rgba(243,238,227,0.12) 58%, rgba(243,238,227,0.92) 78%, rgba(243,238,227,0.97) 100%)`,
+        background: `linear-gradient(to bottom, rgba(0,41,30,0.96) 0%, rgba(0,41,30,0.9) 22%, rgba(0,41,30,0.12) 42%, rgba(0,41,30,0.14) 58%, rgba(0,41,30,0.92) 78%, rgba(0,41,30,0.97) 100%)`,
       }}
     />
-    <MarcoTenido archivo="MARCO-CARRUSEL-2" color={TC.colors.navy} />
-    <Cabecera n="01." sobre="crema">
+    <MarcoTenido archivo="MARCO-CARRUSEL-2" color={TC.colors.cream} />
+    <Cabecera n="01.">
       <Modulado
         ancho={880}
-        tinta={TC.colors.navy}
+        tinta={TC.colors.cream}
         tramos={[{t: "¿Qué tan "}, {t: "conectado", ivy: true}, {t: "estarás?", salto: true}]}
       />
     </Cabecera>
@@ -1218,8 +1228,8 @@ const K2: React.FC = () => (
         borderRadius: 999,
       }}
     >
-      <IPin s={34} c={TC.colors.navy} />
-      <span style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 500, fontSize: 46, textTransform: "uppercase", color: TC.colors.navy}}>
+      <IPin s={34} c={TC.colors.green} />
+      <span style={{fontFamily: SERIF, fontStyle: "italic", fontWeight: 500, fontSize: 46, textTransform: "uppercase", color: TC.colors.green, whiteSpace: "nowrap"}}>
         Tierra Calma
       </span>
     </div>
@@ -1235,12 +1245,12 @@ const K2: React.FC = () => (
         fontWeight: 300,
         fontSize: 34,
         lineHeight: 1.32,
-        color: TC.colors.ink,
+        color: TC.colors.cream,
       }}
     >
       Revisa accesos, vías principales y qué tan fácil será mantener tu rutina desde tu nueva
       ubicación.
-      <div style={{marginTop: 18, fontSize: 28, letterSpacing: "0.14em", textTransform: "uppercase", color: TC.colors.brown}}>
+      <div style={{marginTop: 18, fontSize: 28, letterSpacing: "0.14em", textTransform: "uppercase", color: TC.colors.sand}}>
         Padre Hurtado · RM
       </div>
     </div>
@@ -1268,7 +1278,8 @@ const Recorte: React.FC<{src: string; x: number; y: number; w: number; label: st
         fontSize: 23,
         letterSpacing: "0.16em",
         textTransform: "uppercase",
-        color: TC.colors.navy,
+        // Sobre el verde de la slide, no sobre crema (Diego, 24-09).
+        color: TC.colors.cream,
       }}
     >
       {label}
@@ -1281,12 +1292,16 @@ const K3: React.FC = () => (
     {/* Diego, 2ª vuelta: "eliminar la imagen de fondo y dejar fondo de color de
         la paleta, imágenes derechas y texto fuera del globo". Fondo crema, los
         cuatro recortes sin rotación y el cierre en texto plano, sin globo. */}
-    <AbsoluteFill style={{backgroundColor: TC.colors.cream}} />
-    <MarcoTenido archivo="MARCO-CARRUSEL-3" color={TC.colors.navy} />
-    <Cabecera n="02." sobre="crema">
+    {/* ⭐ Diego (24-09): al verde del manual, igual que la slide 2 — ver el
+        comentario de `K2`. Los recortes fotográficos conservan su paspartú
+        crema: sobre verde profundo funcionan como polaroids y son lo que le da
+        el aire editorial a la slide. */}
+    <AbsoluteFill style={{backgroundColor: TC.colors.green}} />
+    <MarcoTenido archivo="MARCO-CARRUSEL-3" color={TC.colors.cream} />
+    <Cabecera n="02.">
       <Modulado
         ancho={880}
-        tinta={TC.colors.navy}
+        tinta={TC.colors.cream}
         tramos={[{t: "¿Qué tienes "}, {t: "cerca", ivy: true}, {t: "?"}]}
       />
     </Cabecera>
@@ -1309,7 +1324,7 @@ const K3: React.FC = () => (
         fontWeight: 300,
         fontSize: 31,
         lineHeight: 1.3,
-        color: TC.colors.ink,
+        color: TC.colors.cream,
       }}
     >
       Tranquilidad no debería significar aislamiento.
@@ -1485,87 +1500,193 @@ const L: React.FC = () => (
 // El post-it y la polaroid son objetos físicos, no globos: van tal cual.
 // =============================================================================
 
+/** Imán redondo, el que sujeta las fotos en la puerta. */
+const Iman: React.FC<{x: number; y: number; s?: number; c?: string}> = ({x, y, s = 40, c = "#C9B99A"}) => (
+  <div
+    style={{
+      position: "absolute",
+      left: x,
+      top: y,
+      width: s,
+      height: s,
+      borderRadius: "50%",
+      background: `radial-gradient(circle at 34% 30%, #ffffff 0%, ${c} 46%, rgba(0,0,0,0.28) 130%)`,
+      boxShadow: "0 6px 14px rgba(0,0,0,0.32)",
+    }}
+  />
+);
+
+/** Imán con forma de casita: el que sujeta el post-it, como en la referencia. */
+const ImanCasa: React.FC<{x: number; y: number}> = ({x, y}) => (
+  <svg
+    width={88}
+    height={84}
+    viewBox="0 0 88 84"
+    style={{position: "absolute", left: x, top: y, filter: "drop-shadow(0 7px 14px rgba(0,0,0,0.34))"}}
+  >
+    <path d="M44 4 L84 36 L74 36 L74 78 L14 78 L14 36 L4 36 Z" fill="#F6F1E6" />
+    <path d="M44 4 L84 36 L74 36 L74 44 L14 44 L14 36 L4 36 Z" fill={TC.colors.brown} />
+    <rect x="30" y="52" width="14" height="14" fill={TC.colors.navy} opacity="0.75" />
+    <rect x="52" y="52" width="12" height="26" fill={TC.colors.navy} opacity="0.55" />
+    <rect x="58" y="10" width="9" height="16" fill={TC.colors.brown} />
+  </svg>
+);
+
+/**
+ * ⭐ M · 29/10 · POST — la puerta del refrigerador. REHECHA el 24-09 sobre la
+ * referencia que pasó Diego (pieza de Coldwell Banker Reforma).
+ *
+ * Igual que con `st-12-10`, la referencia **devuelve la pieza al brief**, que ya
+ * pedía exactamente esto: *"en el refrigerador hay una fotografía tipo Polaroid
+ * de un terreno amplio de Tierra Calma y, al lado, una imagen pequeña de
+ * inspiración de una casa contemporánea. Al centro, un post-it grande… escrito a
+ * mano, acompañado de pequeños imanes minimalistas"*.
+ *
+ * Lo que había era la cocina entera en penumbra con una tarjeta rectangular
+ * tipografiada: leía como aviso, no como la nota que alguien dejó pegada.
+ *
+ * Su gramática, tal como se aplicó:
+ *   · la PUERTA llena el cuadro y es el fondo — no la cocina
+ *   · polaroid del terreno + imagen de inspiración, cada una con su imán
+ *   · post-it grande, sujeto con un imán de casita, con la esquina doblada
+ *   · **la lista va manuscrita**, que es lo que la hace personal
+ *   · los datos comerciales NO van en el post-it: van abajo, en la gráfica
+ *
+ * ⚠️ LO QUE NO SE COPIÓ: la referencia trae una segunda nota con «Sueña ·
+ * Planifica · Hazlo · Realidad». Ese copy no está en el brief, y el texto de una
+ * pieza de cliente sale **literal del brief**. En su lugar va la imagen de
+ * inspiración, que el brief sí pide.
+ */
 const M: React.FC = () => (
   <Lienzo w={POST.w} h={POST.h}>
-    <Foto src={OCT("m-cocina")} foco="50% 45%" />
-    <Degradado arriba={0.38} abajo={0.42} velo={0.06} />
+    <Foto src={OCT("m-refri")} foco="50% 50%" />
+    {/* Velo muy suave: la puerta es clara y el marco es blanco, así que sin esto
+        el filete del marco se pierde sobre el acero. */}
+    <AbsoluteFill style={{backgroundColor: "rgba(20,26,30,0.07)"}} />
 
+    {/* la polaroid del terreno */}
     <div
       style={{
         position: "absolute",
-        left: 118,
-        top: 300,
-        width: 232,
-        transform: "rotate(-4.5deg)",
-        backgroundColor: "#FBF8F2",
-        padding: "13px 13px 42px",
-        boxShadow: "0 16px 38px rgba(0,0,0,0.34)",
+        left: 128,
+        top: 222,
+        width: 268,
+        transform: "rotate(-5deg)",
+        backgroundColor: "#FCFAF5",
+        padding: "14px 14px 46px",
+        boxShadow: "0 18px 40px rgba(0,0,0,0.3)",
       }}
     >
-      <Img src={OCT("f-fondo")} style={{width: "100%", height: 190, objectFit: "cover", display: "block"}} />
+      <Img
+        src={OCT("f-fondo")}
+        style={{width: "100%", height: 212, objectFit: "cover", display: "block"}}
+      />
     </div>
+    <Iman x={242} y={196} s={44} />
 
+    {/* la imagen de inspiración: una casa contemporánea */}
     <div
       style={{
         position: "absolute",
-        left: 372,
-        top: 356,
-        width: 560,
-        transform: "rotate(1.6deg)",
-        backgroundColor: TC.colors.cream,
-        padding: "38px 42px",
-        boxShadow: "0 22px 50px rgba(0,0,0,0.32)",
+        left: 636,
+        top: 254,
+        width: 244,
+        transform: "rotate(3.5deg)",
+        backgroundColor: "#FCFAF5",
+        padding: "12px 12px 40px",
+        boxShadow: "0 16px 36px rgba(0,0,0,0.28)",
+      }}
+    >
+      <Img
+        src={OCT("h-casa")}
+        style={{width: "100%", height: 186, objectFit: "cover", display: "block"}}
+      />
+    </div>
+    <Iman x={742} y={228} s={40} c="#9FB3A6" />
+
+    {/* ⭐ EL POST-IT. La esquina doblada se hace con un triángulo en la esquina
+        inferior derecha, del color de la sombra: sin ella el papel parece una
+        cartulina pegada y no una nota. */}
+    <div
+      style={{
+        position: "absolute",
+        left: 158,
+        // ⚠️ Medido: con el post-it en 596 y este cuerpo, la línea «Próximo
+        // paso: hacerlo realidad» cerraba en la fila 1160 y el globo de datos
+        // entra en la 1058 — o sea, el remate de la nota quedaba TAPADO. Acá
+        // arranca en 500 y cierra en ~1030, con 28 px de aire bajo el globo.
+        top: 500,
+        width: 764,
+        transform: "rotate(-1.2deg)",
+        backgroundColor: "#DCE9F2",
+        padding: "48px 54px 52px",
+        boxShadow: "0 24px 54px rgba(0,0,0,0.3)",
       }}
     >
       <div
         style={{
-          fontFamily: SERIF,
-          fontStyle: "italic",
-          fontWeight: 500,
-          fontSize: 40,
-          lineHeight: 1.16,
-          textTransform: "uppercase",
+          fontFamily: TC.fonts.mano,
+          fontWeight: 600,
+          fontSize: 56,
+          lineHeight: 1.1,
           color: TC.colors.navy,
           marginBottom: 26,
         }}
       >
         Ese proyecto que tienes en mente…
       </div>
-      {["Conocer Tierra Calma", "Elegir mi parcela", "Empezar a proyectar mi casa"].map((t) => (
-        <div key={t} style={{display: "flex", alignItems: "center", gap: 14, marginBottom: 14}}>
-          <ICheck s={28} c={TC.colors.navy} />
-          <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 32, color: TC.colors.ink}}>{t}</span>
+      {[
+        "Conocer Tierra Calma",
+        "Elegir mi parcela",
+        "Empezar a proyectar mi casa",
+      ].map((linea) => (
+        <div key={linea} style={{display: "flex", alignItems: "center", gap: 18, marginBottom: 16}}>
+          <ICheck s={32} c={TC.colors.navy} />
+          <span
+            style={{
+              fontFamily: TC.fonts.mano,
+              fontWeight: 500,
+              fontSize: 44,
+              lineHeight: 1.15,
+              color: TC.colors.ink,
+            }}
+          >
+            {sinPartir(linea)}
+          </span>
         </div>
       ))}
       <div
         style={{
           marginTop: 22,
-          paddingTop: 18,
-          borderTop: `1px solid ${TC.colors.sand}`,
-          fontFamily: SANS,
-          fontWeight: 300,
-          fontSize: 27,
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
+          fontFamily: TC.fonts.mano,
+          fontWeight: 600,
+          fontSize: 46,
+          lineHeight: 1.12,
           color: TC.colors.brown,
         }}
       >
-        Próximo paso: hacerlo realidad
+        Próximo paso: hacerlo realidad.
       </div>
+      {/* la esquina doblada */}
+      <div
+        style={{
+          position: "absolute",
+          right: 0,
+          bottom: 0,
+          width: 62,
+          height: 62,
+          background: "linear-gradient(135deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.18) 50%, #C6D7E3 50%)",
+        }}
+      />
     </div>
+    <ImanCasa x={496} y={460} />
 
     <Marco archivo="MARCO-POST" />
-    {/* En globo: sobre la cocina clara la línea suelta se perdía. */}
+    {/* Los datos comerciales NO van en el post-it: una nota manuscrita con el
+        precio deja de parecer una nota. Van en la gráfica, como en la referencia. */}
     <Globo y={1058} max={760} size={29} op={0.6}>
       Aprox. 5.000 m² desde UF 2.500 · Padre Hurtado
     </Globo>
-    {/* Diego (23-09, sobre p-09-10): "el boton esta muy apretado, debe ser mas
-        ancho". El contorno de la pildora viene DIBUJADO dentro de
-        MARCO-POST.png —asset bloqueado, no se puede ensanchar—, asi que lo que
-        cede es el texto: medido, ocupaba 559 px de los 574 de la pildora, o sea
-        9 px de aire a la izquierda y 6 a la derecha. Con estos valores baja a
-        ~505 y deja ~34 px por lado. El CTA no se acorta: va verbatim del brief.
-        Va en las DOS piezas de post, que comparten marco y texto. */}
     <Pildora caja={POST.pill} icono={<IWsp s={23} />} size={26} gap={11}>
       Agenda tu visita por WhatsApp
     </Pildora>

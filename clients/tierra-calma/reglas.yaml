@@ -67,8 +67,17 @@ ajustes:
 
       ⚠️ Calibrado sobre piezas NO aprobadas todavía por el cliente. Cuando octubre
       se apruebe hay que rehacer la cuenta con `qa/calibrar.py`.
+
+      ⛔ Y las dos slides GRÁFICAS del carrusel del 20/10 quedan fuera del todo.
+      No es que tengan una banda blanda: es que la comprobación mide la nitidez
+      de TODA la pieza, y en una slide que es mapa velado + tipografía lo que
+      manda la mediana son los bordes del texto, no la imagen. Medido sobre
+      `c-20-10-2`: las bandas con texto dan razón 2,3 a 3,1 y la banda de mapa
+      limpio 0,04. Comparar una contra otra no dice nada sobre el foco.
+      Son composiciones gráficas con velo de lectura deliberado, no fotografías.
     args:
       min_std_banda: 12.0
+    excepto_archivos: ["c-20-10-2.png", "c-20-10-3.png"]
 
 reglas:
 

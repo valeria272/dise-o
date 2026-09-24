@@ -162,6 +162,36 @@ const largoDe = (c: React.ReactNode): string =>
   typeof c === "string" ? c : Array.isArray(c) ? c.map(largoDe).join(" ") : "";
 
 /** Línea narrativa: sans ligera en caja baja, como en el reel de septiembre. */
+/**
+ * ⛔ «TIERRA CALMA» NUNCA SE PARTE ENTRE DOS LÍNEAS (Diego, 24-09-2026).
+ *
+ * *"Para el reel del 01-10 hay que dejar en el primer frame la frase Tierra
+ * Calma juntos en la misma línea **(siempre)**"*. El primer subtítulo salía
+ * «La primavera ya llegó a Tierra / Calma».
+ *
+ * Se resuelve en el COMPONENTE y no llamada por llamada: con la escala
+ * automática (`cuerpoSans`) el cuerpo cambia según el largo de la frase, así que
+ * una línea que hoy cabe puede partirse mañana al editarle una palabra. Vale
+ * igual para «Padre Hurtado», la otra unidad de dos palabras que aparece en casi
+ * todas las piezas.
+ */
+const INDIVISIBLE = /(Tierra Calma|Padre Hurtado)/gi;
+
+export const sinPartir = (hijos: React.ReactNode): React.ReactNode => {
+  if (typeof hijos !== "string") return hijos;
+  return hijos
+    .split(INDIVISIBLE)
+    .map((parte, i) =>
+      /^(tierra calma|padre hurtado)$/i.test(parte) ? (
+        <span key={i} style={{whiteSpace: "nowrap"}}>
+          {parte}
+        </span>
+      ) : (
+        parte
+      ),
+    );
+};
+
 export const Suave: React.FC<{size?: number; children: React.ReactNode}> = ({size, children}) => (
   <div
     style={{
@@ -174,7 +204,7 @@ export const Suave: React.FC<{size?: number; children: React.ReactNode}> = ({siz
       whiteSpace: "pre-line",
     }}
   >
-    {children}
+    {sinPartir(children)}
   </div>
 );
 
@@ -193,7 +223,7 @@ export const Enfasis: React.FC<{size?: number; children: React.ReactNode}> = ({s
       whiteSpace: "pre-line",
     }}
   >
-    {children}
+    {sinPartir(children)}
   </div>
 );
 

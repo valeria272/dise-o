@@ -49,6 +49,22 @@ export const tierracalma = {
     display: `${IVY}, 'Instrument Serif', Georgia, serif`,
     // Bajadas, listas, etiquetas en mayúsculas con tracking.
     body: "'Inter Tight', 'Inter', 'Helvetica Neue', sans-serif",
+    /**
+     * ⚠️ LA MANO — un tercer rol RESTRINGIDO, agregado el 24-09-2026.
+     *
+     * El manual dice «sólo DOS roles tipográficos». Esta es la excepción y tiene
+     * un solo uso declarado: el **post-it manuscrito** de `p-29-10`, que el
+     * brief pide con esas palabras (*"un post-it grande… escrito a mano"*) y que
+     * la referencia que pasó Diego el 24-09 confirma.
+     *
+     * ⛔ NO se usa en titulares, ni en cifras, ni en CTA, ni en ninguna otra
+     * pieza. Si aparece en una segunda pieza sin que nadie lo pida, está mal.
+     *
+     * Ojo: `Caveat` es además **la mano de Copywriters** (la cuenta propia).
+     * Compartir el archivo no es compartir el sistema, pero conviene saberlo
+     * antes de darle más espacio acá.
+     */
+    mano: "'Caveat', 'Segoe Script', cursive",
     mono: "ui-monospace, monospace",
   },
   name: "Tierra Calma",
@@ -132,6 +148,8 @@ export const ensureTierraCalmaFonts = () => {
       src:url(${f("InstrumentSerif")}) format('truetype'); }
     @font-face { font-family:'Instrument Serif'; font-style:italic; font-weight:400; font-display:block;
       src:url(${f("InstrumentSerif-Italic")}) format('truetype'); }
+    @font-face { font-family:'Caveat'; font-style:normal; font-weight:400 700; font-display:block;
+      src:url(${staticFile("assets/fonts/copywriters/Caveat-Variable.ttf")}) format('truetype'); }
   `;
   document.head.appendChild(style);
   // Los .catch NO son decorativos: IvyOra viene de Adobe Fonts y sólo existe en

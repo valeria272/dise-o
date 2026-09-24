@@ -304,6 +304,65 @@ y los cierres de texto plano alrededor de `1212`.
 > alineación. Manda lo segundo: **un comentario sobre una pieza suelta cede ante
 > uno sobre el carrusel completo**, porque el carrusel es un solo objeto.
 
+#### ⛔ LAS SLIDES DE FONDO PLANO VAN EN VERDE, NO EN CREMA
+
+Diego, 24-09-2026 sobre `c-20-10-2` y `c-20-10-3`: *"siento que quedan muy
+cortadas visualmente la 2da y la 3ra de las demás; podemos cambiar los colores
+para que tengan más relación visual, cambiar por el color verde del manual"*.
+
+El verde es **`TC.colors.green` `#003326`**, el del logo estático. Cuando una
+slide del carrusel no lleva fotografía, ese es su fondo — **no el crema**, que
+la desconectaba de las cuatro slides fotográficas.
+
+Y la tinta se invierte con él: **crema sobre verde**, no navy sobre crema. Eso
+incluye el marco (`MarcoTenido` en crema), los rótulos de los recortes y el pie.
+
+> 💡 Los recortes fotográficos conservan su paspartú crema: sobre verde profundo
+> funcionan como polaroids, y es lo que le da el aire editorial a la slide.
+
+#### ⛔ UNA FOTO NO SE REPITE ENTRE DOS PIEZAS DEL MISMO MES
+
+Diego, 24-09 sobre `c-20-10-1`: *"cambiemos la foto de portada, es la misma que
+el post del 09/10"*.
+
+Y lo era, aunque fueran **dos archivos distintos con `md5` distinto**: medido,
+`k-persona` y `g-pareja` daban **+0,933** de parecido visual. Son dos
+generaciones del mismo prompt.
+
+**Cómo se comprueba** — la misma idea que con la música clonada del 23-09:
+
+```python
+def firma(p, k=64):
+    a = np.asarray(Image.open(p).convert("L").resize((k, k))).astype(float)
+    return (a - a.mean()) / (a.std() + 1e-9)
+parecido = float((firma(x) * firma(y)).mean())
+```
+
+| Parecido | Qué significa |
+|---|---|
+| **> 0,85** | ⛔ es la misma imagen, aunque el archivo diga otra cosa |
+| 0,10 – 0,75 | normal entre fotos de la misma marca y el mismo look |
+
+La portada nueva (`k-portada`, Seedream 5 Pro) da **+0,754** como máximo contra
+cualquiera de las otras del mes. Y va **una sola persona**, no una pareja: la
+pareja ya sale en la slide 6 y en el post del 09/10.
+
+#### ⛔ LA MANO — un tercer rol tipográfico, y está restringido
+
+El manual dice «sólo DOS roles». `p-29-10` es la excepción, y tiene un solo uso
+declarado: **el post-it manuscrito**, que el brief pide con esas palabras
+(*"un post-it grande… escrito a mano"*) y que la referencia del 24-09 confirma.
+
+`TC.fonts.mano` = **Caveat**. ⛔ No se usa en titulares, ni en cifras, ni en CTA,
+ni en ninguna otra pieza. Si aparece en una segunda pieza sin que nadie lo pida,
+está mal.
+
+> ⚠️ Caveat es además **la mano de Copywriters**, la cuenta propia. Compartir el
+> archivo no es compartir el sistema, pero conviene saberlo antes de darle más
+> espacio acá. Si el cliente adopta la mano como parte de su identidad, hay que
+> elegirle una propia.
+
+
 #### ⛔ Los recuadros son GLOBOS DE TEXTO translúcidos
 
 Misma ronda, sobre `c-06-10-2` y `st-22-10`: *"que sea un globo de texto"*,
@@ -398,22 +457,33 @@ La gramática de la referencia, tal como quedó aplicada:
 | Remate | sans pequeña + IvyOra grande, **cruzando el borde inferior** de la foto |
 | Datos | placas en arena al 16 %, con la cifra en peso fuerte |
 
-##### ⛔ La cartografía sigue sin inventarse
+##### ⛔ Y el mapa volvió a ser MAPA-3 (Diego, 24-09)
 
-Las celdas son un **esquema** —igual que el `Mapa.tsx` de septiembre, que ya
-declara «NO es un mapa real»— pero **las vecindades se verificaron contra
-`MAPA-3`**, que sí es cartografía real: Maipú y Cerrillos al nororiente, San
-Bernardo al oriente, Calera de Tango al suroriente, Talagante al sur y Peñaflor
-al poniente. **Las formas son esquemáticas; quién limita con quién, no.**
+El primer pase de esta pieza llevaba un mapa de celdas **dibujado**, con las
+vecindades verificadas. Diego: *"creo que el mapa no es así realmente de Padre
+Hurtado y las comunas que lo rodean; ocupa la imagen del mapa-3 y adapta el
+color al fondo"*. Tenía razón: un esquema con vecindades correctas **sigue
+siendo un dibujo**, y acá lo que se pide es cartografía.
 
-> ⚠️ **El error que casi se cuela:** el primer pase ponía «SANTIAGO» como una
-> celda vecina de «MAIPÚ». Maipú **es** Santiago, así que serían hermanas de sí
-> mismas. La relación con Santiago —que es lo que pide el brief— entra como
-> **dirección**: una flecha sobre el esquema, no una comuna más. Es la misma
-> familia de error que la Ruta 68 y los topónimos corruptos de MAPA-1/2.
+Lo prepara `scripts/tc-mapas-duotono.py`, que recorta MAPA-3 centrado en su
+propio pin, lo pasa a duotono navy y **deja dicho en qué fracción quedó el pin**.
+La composición pone nuestro rótulo justo ahí — Diego, mismo día: *"tapa el pin
+del mapa con nuestro rótulo"*. Puesto a ojo es como se terminan leyendo dos
+marcas.
 
-De paso, esto **resolvió el pin duplicado**: al dejar de usar la captura de
-Google Maps desaparece el pin que traía el propio mapa, y queda uno solo.
+> 💡 El recorte se funde con **máscara**, no con un velo encima: con un degradado
+> superpuesto el borde del rectángulo seguía viéndose y la pieza parecía un mapa
+> pegado con scotch. Y la elipse de la máscara tiene que **cerrar dentro de la
+> caja** (radio 50 % centrado en 50 %); desplazada hacia el pin se salía por la
+> izquierda y dejaba un canto duro.
+
+##### La fotografía de esta pieza es REAL
+
+*"Cambiemos la imagen a una de las que se tomó con el dron"* (24-09). Sale el
+render IA de las dos casas y entra la aérea del 07-08, recortada y gradada por
+`scripts/tc-foto-dron-story.py`: a la izquierda el llano con sus parcelas, a la
+derecha la ladera con el camino de ripio. Es la relación que el titular enuncia,
+en una sola toma.
 
 
 #### ⛔ El degradado no se puede comer el mapa

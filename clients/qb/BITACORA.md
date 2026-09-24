@@ -1,5 +1,16 @@
 # QB Restaurant — bitácora
 
+## 2026-09-24 — Elisabet Soto «Eli» (con Claude) · octubre listo para partir — SIN PIEZAS
+
+**Qué se hizo:** relectura en vivo de la grilla de octubre (`14bhpFxFDRidCiuCT0gSOKgQ8r06gHGLxZlYkzFNHxZc`).
+Hay **11 stories en OK PARA DISEÑAR**: 1 Banco de Chile · 6 AYCD · 8 CMR Falabella · 9 Sunset · 14 Adivina
+el trago (Aperol) · 15 Mejores amigos · 20 AYCD · 21 Estacionamiento · 22 animada del chef · 23 Close
+friends · 26 animada de la terraza. El feed no tiene nada en OK.
+**Dónde quedó:** nada diseñado. Instantánea `clients/hilton/grillas/api/qb-oct-20260924b.json`.
+**Qué sigue:** ST 01-10 Banco de Chile, que es la que vence primero.
+**Abierto:** 14-10: el cliente pide alternativas en el sticker de encuesta. 22-10: anclarla a la
+recomendación del chef y poner «Imagen referencial» en todo material que no sea real (§5 del manual).
+
 ## 2026-09-23 — v7 · cambio de texto de contenido · Elisabet Soto «Eli» (con Claude)
 
 **Qué se hizo:** Nicolás Ávila (contenido) pidió por Slack cambiar **un solo texto**

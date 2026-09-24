@@ -1,3 +1,17 @@
+## 2026-09-24 (cierre) — Eli (Windows) · /arranque de nuevo + relectura en vivo de las 4 grillas de octubre — SIN PIEZAS
+
+**Qué se hizo:** `/arranque` en la máquina Windows: todo en verde otra vez (no se instaló nada, memoria ya
+sembrada, Drive responde). Relectura en vivo de DT, QB y P18 por API de Sheets. Lo único que cambió
+desde la mañana: en QB FEED, el REEL DJ de la semana 1 ahora dice «MARTES 6 – Felipe» (antes «MARTES 1 – XXX»).
+**Estado de octubre:** DT 4 de 5 hechas (falta el REEL Honors POV 14-10, sin material) · Between hecho ·
+Piso18 0 OK (feed EN REVISIÓN, stories sin estado) · **QB: 11 stories OK PARA DISEÑAR y NINGUNA empezada**
+(1, 6, 8, 9, 14, 15, 20, 21, 22, 23 y 26-oct).
+**Dónde quedó:** instantánea nueva `clients/hilton/grillas/api/qb-oct-20260924b.json` (base del diff de mañana).
+DT y P18 salieron iguales a las de la mañana y no se duplicaron.
+**Qué sigue:** QB ST 01-10 «Descuentos Banco de Chile» (`/pieza qb story 1-oct descuentos Banco de Chile`).
+**Abierto:** no se sabe si Eli tiene alguna de las 11 de QB empezada en Illustrator. QB 14-10 lleva el
+comentario «con alternativas» y QB 22-10, la leyenda «Imagen referencial».
+
 ## 2026-09-24 (noche) — Eli (Windows) · DT: grilla de OCTUBRE, 4 piezas OK PARA DISEÑO — APROBADAS y SUBIDAS
 
 **Qué se hizo:** tres rondas con Eli en el día. ST 01-10 Family Time animada (15 s, MP4 + GIF),

@@ -1048,6 +1048,14 @@ corruptos.
 > parchar un síntoma, conviene releer el brief: a veces el parche está tapando
 > que la pieza se desvió.
 
+⛔ **Y esto vale también cuando la referencia es de la PROPIA marca.** El 24-09
+Diego mandó una pieza de Tierra Calma —*"que se vea así pero con el color
+verde"*— y **su mapa era uno de los corruptos**: decía «Los Maitenss», «Av. El
+Goneuiualdde», «Cmc o a Mäigilio» y traía escudos **G-68** alrededor de Padre
+Hurtado. Venir de la marca no convierte al contenido en material aprobado. Se
+copió su gramática —mapa a sangre, en papel, disolviéndose en el color— y la
+cartografía siguió saliendo de `MAPA-3`, que es real.
+
 ### 10. Un comentario sobre una pieza cede ante uno sobre el conjunto
 
 El 23-09 a las 15:01 Diego pidió *"centrar toda la información"* mirando
@@ -1161,6 +1169,59 @@ de la pieza, así que es lo primero que se mira.
 > 💡 Regla general: antes de rotular algo sobre una imagen, **mirar si la imagen
 > ya lo rotula**. Pasó con el mapa; puede pasar con una fachada, un letrero o un
 > packshot.
+
+### 13. ⭐ SI EL DEFECTO VUELVE, EL EJE DE LA CORRECCIÓN ESTÁ MAL
+
+El mapa de `st-12-10` se rehizo **cuatro veces** por el mismo comentario —«no se
+lee», «se pierde», «que se vea integrado»— y las cuatro correcciones fueron sobre
+la **geometría**: primero el velo, después dibujarlo, después el encuadre y la
+máscara, después meterlo en un recuadro con borde.
+
+La versión que funcionó tiene **exactamente la misma estructura que el intento 3**
+—a sangre, disuelto en el color de marca con degradado— y cambia **una sola cosa:
+el tono del duotono**, que pasó de la sombra del navy a la luz del crema.
+
+Cuatro rondas moviendo el encuadre para descubrir que lo que había que invertir
+era el tono.
+
+> 💡 **La compuerta:** cuando un comentario se repite después de una corrección,
+> no se corrige más fuerte en el mismo eje — **se cambia de eje**. Los ejes son
+> pocos y conviene recorrerlos en voz alta: posición · tamaño · **tono/contraste**
+> · color · tipografía · el propio insumo.
+>
+> Es la misma lección que la regla de dirección de arte *«a la segunda vez que el
+> cliente repite un comentario, se prohíbe tocar el parámetro»*, que en agosto
+> costó tres rondas de Between puliendo el montaje de un vaso con el canto
+> mordido. Acá costó cuatro.
+
+### 14. ⭐ UN QA QUE SE TOCA SE VUELVE A CORRER — Y SOBRE TODAS LAS PIEZAS
+
+El 24-09 el extractor `qa/textos-tierracalma.py` **no estaba leyendo las cifras**:
+el dato viaja como `{sinPartir("Aprox. 5.000 m²")}` y la pasada de respaldo borra
+lo que va entre llaves antes de mirar. O sea que la compuerta no veía los números,
+que es justo lo que la lista blanca existe para vigilar.
+
+El arreglo —rescatar el literal de las llaves que traen una sola cadena— **abrió
+un agujero nuevo**: empezó a sacar texto de los **comentarios del código**. Como
+los comentarios de estas composiciones citan a Diego entre comillas, la regla de
+huérfanas marcó `p-09-10` por la palabra «ancho», que está en un comentario y no
+en la gráfica.
+
+El falso positivo duró una corrida porque la compuerta se volvió a mirar
+**después** de tocarla.
+
+> ⛔ **Las dos reglas:**
+>
+> 1. **Tocar el QA obliga a correrlo entero otra vez**, sobre las 16 piezas. Un
+>    QA que se cambia y no se vuelve a correr deja de medir la pieza y empieza a
+>    medirse a sí mismo.
+> 2. **El extractor tiene que fallar cuando no encuentra nada.** Ya lo hace: si
+>    una pieza devuelve cero textos, se cae. Un QA que pasa en silencio porque no
+>    leyó nada es peor que no tener QA — da permiso para entregar.
+
+> 💡 Y el corolario para escribir composiciones: **un comentario del código no es
+> copy**. Si el extractor tiene que distinguirlos, la marca de agua es el `/*`
+> — por eso se descartan las llaves que empiezan con comentario.
 
 ## 4 septies. ⭐ LA COMPUERTA — `reglas.yaml`, desde el 23-09-2026
 

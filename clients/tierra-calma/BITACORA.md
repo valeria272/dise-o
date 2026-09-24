@@ -5,6 +5,78 @@
 
 ---
 
+## 2026-09-24 — CIERRE DE JORNADA — Diego Aguilar
+
+**Qué se hizo:** tres rondas sobre la grilla de octubre, todas sobre comentarios
+de Diego en Drive.
+
+1. **`p-29-10`** — el dato comercial pasó a ser un tercer papel del refrigerador
+   (*"el texto de Aprox. 5.000 m² también que sea un post-it"*). Escena
+   regenerada con los **tres papeles en blanco** y el texto puesto por código.
+2. **`st-12-10` y `c-20-10-2`** — el mapa dejó de ser fondo: recuadro declarado,
+   duotono a la luz del crema, y **fuera nuestro rótulo** (*"quita el pin de
+   Tierra Calma, solo deja el del mapa original"*).
+3. **`st-12-10` y `c-20-10-2`, otra vez** — con una referencia adjunta, el mapa
+   volvió **a sangre, en papel**, disolviéndose en el color de marca.
+
+**Dónde quedó:** todo rendido, entregado y commiteado.
+
+- `src/compositions/tierracalma/OctubreV3.tsx` — `M`, `H`, `K2` reescritos;
+  primitiva nueva **`MarcoTramos`** (el filete del marco teñido por tramos).
+- `scripts/tc-mapas-duotono.py` — reescrito: un recorte por pieza con la
+  proporción de su banda, el **pin rojo aislado y repuesto** sobre el duotono, y
+  el informe de dónde cae cada topónimo en el lienzo.
+- `qa/textos-tierracalma.py` — dos agujeros tapados (no leía las cifras; después
+  filtraba mal los comentarios del código).
+- Assets nuevos versionados: `mapa3-banda-st.jpg`, `mapa3-banda-k2.jpg`,
+  `m-refri.jpg`, y la referencia en
+  `clients/tierra-calma/referencias/2026-09-24_tc-mapa-a-sangre.png`.
+- Las tres piezas re-subidas a Drive **sobre el mismo `fileId`** (enlaces y
+  comentarios anclados intactos).
+- **QA: 1 aviso**, el deliberado («estarás?» en la slide 2, que Diego designó
+  como la de referencia del carrusel).
+
+**Qué sigue:** esperar la vuelta de Diego sobre el mapa a sangre. Si lo aprueba,
+el carrusel del 20-10 queda cerrado y la grilla completa vuelve a quedar a la
+espera del **cliente**: las 10 piezas siguen «En revisión» y **ningún comentario
+de los 27 de octubre vino de Fran o Blanca** — todos son internos.
+
+**Abierto:**
+
+1. ⚠️ **LO MÁS URGENTE — falta el OK ESCRITO de Fran o Blanca** para «Rol
+   individual» y «Acceso controlado». Están **publicados en tres piezas** con el
+   OK verbal de Diego y **no están en la lista blanca**.
+2. ⚠️ **Avisar lo del agua potable** publicado en `st-11-09` de septiembre: el
+   dato es falso (el agua es por noria del propietario) y salió al feed.
+3. **Decidir la tipografía manuscrita.** `p-29-10` usa **Caveat**, que es la mano
+   de Copywriters. Funciona, pero si el cliente adopta la manuscrita como
+   identidad, Tierra Calma necesita una propia.
+4. **El mapa oficial, con Carlos.** MAPA-3 es una captura de Google Maps y ya
+   está exprimida: la legibilidad tope que da son ~15 px de topónimo. Un mapa
+   vectorial del cliente resolvería las dos piezas de una.
+5. **Tres comentarios abiertos en Drive**, dejados así a propósito para que Diego
+   los cierre después de mirar: los dos del mapa y el del 23-09 sobre
+   `c-20-10-5` (*"centrar toda la información"*), superado por la instrucción de
+   alinear el carrusel completo (§ 4 sexies · 10).
+6. **Sin reglas de imagen propias en `reglas.yaml`** — se calibran contra piezas
+   aprobadas por el cliente, y no hay ninguna todavía.
+
+**Lo que se escribió en el manual hoy** (§ 4 sexies, que es el método):
+
+| # | Regla |
+|---|---|
+| 9 (ampliada) | Una referencia se lee por su gramática **aunque sea de la propia marca**: la que mandó Diego traía un mapa corrupto |
+| 12 | **El mapa es papel y va a sangre** — cinco reglas, incluida que ningún texto se apoya sobre la cartografía |
+| 12 bis | **La marca del cliente puede estar ya en el material**: Tierra Calma está en Google Maps y le montábamos encima nuestro rótulo |
+| 13 | **Si el defecto vuelve, el eje de la corrección está mal** — cuatro rondas de geometría para un problema de tono |
+| 14 | **Un QA que se toca se vuelve a correr**, y sobre todas las piezas |
+
+Y en el manual del método de la marca, ya de antes pero confirmado hoy dos veces:
+**la IA hace el objeto, el código pone el texto.** Los tres papeles del
+refrigerador se generaron en blanco; el dato nunca lo escribe la IA.
+
+---
+
 ## 2026-09-24 (noche, 3ª vuelta del mapa — con referencia) — Diego Aguilar
 
 **Qué se hizo:** `st-12-10` y `c-20-10-2`, otra vez, ahora contra una referencia

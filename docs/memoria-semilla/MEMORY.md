@@ -72,3 +72,4 @@
 - [⛔⛔ Between: sin rostros de modelos](between-sin-rostros-de-modelos.md) — Eli 24-09: sólo del cuello hacia abajo; gente = manos/torsos o ilustración de línea sobre espacio real
 - [⭐⭐ Between octubre — feedback de Eli, 4 rondas](between-feedback-octubre-2026.md) — calcar la ref (utilería, tipografía, flecha, ilustración), gente natural sin caras en espacio real, ilustración sobre el velo, logo ilegible se borra; revisa en HTML y se sube sólo a su carpeta
 - [Between octubre — técnica de generación](between-oct-tecnica-generacion.md) — «extiende hacia arriba» sí, pedir altura no; Seedance por MCP; aislar ilustración; Noto emoji; captcha Drive; heredoc rompe TSX
+- [⭐⭐ BETWEEN octubre 2026 — estado](between-octubre-2026-estado.md) — 11 piezas APROBADAS y SUBIDAS 24-09 a S1–S5/BW/{STS,FEED}; lo no diseñado y por qué; dudas abiertas; cómo retomar

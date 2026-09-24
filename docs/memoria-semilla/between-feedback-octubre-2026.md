@@ -60,4 +60,4 @@ molde de la pieza, traducido a colores y espacios de Between.
   (`1x9NeC__6ODemjfIeg-DDLXw2O41tvHSJ`).
 - Si una imagen necesita más calidad, puede usarse el Space de Magnific «Between octubre».
 
-Técnica de producción de esta tanda: [[between-oct-tecnica-generacion]].
+Técnica de producción: [[between-oct-tecnica-generacion]] · Estado de la grilla y dónde quedó cada pieza: [[between-octubre-2026-estado]].

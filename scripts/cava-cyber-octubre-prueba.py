@@ -51,6 +51,12 @@ F_BUTLER = "/Users/coni/Library/Fonts/Butler_Bold.otf"
 # Antes se extraía del PNG con una máscara de luminancia y salía TODO BLANCO:
 # el racimo de la V y la tilde de MORANDÉ son naranja #E1670E y se perdían.
 LOGO_PNG   = "public/assets/cava/logo-cava-morande.png"
+SELLO_PNG  = "public/assets/cava/sello-descorchados-92.png"
+# El sello del packshot sale a 473 px con la botella al 52 %. Coni pidió que las
+# cuatro piezas lo lleven IGUAL, y el bueno es el de la propuesta C: 435 px.
+# Se tapa el incrustado con el oficial, que además es el archivo de la marca.
+SELLO_DIAM = 435
+SELLO_EN_PACKSHOT = (0.7217, 0.3289)      # su centro, en fracción del packshot
 LOGO_X, LOGO_Y, LOGO_W = 257, 367, 650        # medido sobre la pieza real
 LEGAL_CAJA = (1442, 0, 2250, 470)
 # ── El bloque de oferta ─────────────────────────────────────────────────────
@@ -152,9 +158,7 @@ def sombra_direccional(lienzo, silueta, cx, ybase, anc, lado="der"):
                (cx + signo * largo * 0.62 + anc * 0.16, ybase + anc * 0.30),
                (cx + signo * largo * 0.62 - anc * 0.16, ybase + anc * 0.30)],
               fill=(10, 5, 2, 120))
-    d.ellipse([cx + signo * largo * 0.62 - anc * 0.30, ybase + anc * 0.30 - anc * 0.11,
-               cx + signo * largo * 0.62 + anc * 0.30, ybase + anc * 0.30 + anc * 0.11],
-              fill=(10, 5, 2, 105))
+
     lienzo.alpha_composite(capa.filter(ImageFilter.GaussianBlur(anc * 0.115)))
 
     # OCLUSIÓN DE CONTACTO, en tres radios. Es lo que más vende el apoyo y es lo
@@ -277,6 +281,19 @@ def main():
     lienzo.alpha_composite(reflejo(b, alto), (int(cx - anc / 2), int(ybase)))
 
     lienzo.alpha_composite(b, (int(cx - anc / 2), int(ybase - alto)))
+
+    # sello oficial, plano y superpuesto, tapando el que trae el packshot
+    fx, fy = SELLO_EN_PACKSHOT
+    sx = cx - anc / 2 + fx * anc
+    sy = ybase - alto + fy * alto
+    som = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(som).ellipse([sx - SELLO_DIAM / 2, sy - SELLO_DIAM / 2 + SELLO_DIAM * 0.035,
+                                 sx + SELLO_DIAM / 2, sy + SELLO_DIAM / 2 + SELLO_DIAM * 0.035],
+                                fill=(0, 0, 0, 96))
+    lienzo.alpha_composite(som.filter(ImageFilter.GaussianBlur(SELLO_DIAM * 0.030)))
+    se = Image.open(os.path.join(RAIZ, SELLO_PNG)).convert("RGBA").resize(
+        (SELLO_DIAM, SELLO_DIAM), Image.LANCZOS)
+    lienzo.alpha_composite(se, (int(sx - SELLO_DIAM / 2), int(sy - SELLO_DIAM / 2)))
 
     # ---------- textos y fijos ----------
     capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))

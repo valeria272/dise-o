@@ -42,6 +42,27 @@ W, H = 2250, 4000
 TRACK = 0.052
 BLANCO = (255, 255, 255)
 NARANJA = (225, 103, 14)
+NEGRO_CYBER = (29, 29, 27)        # #1D1D1B, el negro del editable del Cyber
+
+# Color del recuadro del descuento, POR PROPUESTA. Coni, 23-09: «me gustaría que
+# el 50%off destacara más con otro color de recuadro». En B el recuadro naranja
+# caía sobre un fondo naranja y se perdía justo donde tiene que gritar; ahí pasa
+# a blanco con el texto en el naranja de marca, como la barra de Itaú. En A y C
+# el fondo es oscuro y el naranja sí resalta, así que se queda.
+DORADO = (201, 162, 78)           # #C9A24E, el dorado medio de la ficha
+
+# El bloque del descuento: (fondo, color del «50%», color del «OFF»).
+# Coni, 23 y 24-09: «me gustaría que el 50%off destacara más con otro color de
+# recuadro» y «debe ser máximamente llamativo para poder generar ventas».
+# En B el recuadro naranja caía sobre fondo naranja y desaparecía justo donde
+# tiene que gritar, así que ahí pasa al NEGRO DEL CYBER. Los tres colores son de
+# la paleta de CAVA — negro #1D1D1B, blanco y dorado #C9A24E — y el «OFF» en
+# dorado lo amarra al sello sin competir con él.
+# El «OFF» va dorado SÓLO sobre el negro: sobre el naranja el dorado se apaga
+# y pierde justamente el contraste que se buscaba.
+CAJA_DESCUENTO = {"A": (NARANJA, (255, 255, 255), (255, 255, 255)),
+                  "B": (NEGRO_CYBER, (255, 255, 255), DORADO),
+                  "C": (NARANJA, (255, 255, 255), (255, 255, 255))}
 COL_X = 150                       # el único margen del que cuelga TODO el texto
 
 F_BOLD   = SP + "/fonts/BebasNeuePro-Bold.otf"
@@ -51,9 +72,14 @@ F_BUTLER_M = "/Users/coni/Library/Fonts/Butler_Medium.otf"
 LOGO = RAIZ + "/public/assets/cava/logo-cava-morande.png"
 SELLO = RAIZ + "/public/assets/cava/sello-descorchados-92.png"
 
+# EL SELLO MIDE LO MISMO EN LAS TRES. Coni, 24-09: A lo tenía muy grande (517 px),
+# B muy pequeño (364) y C era «el mejor tamaño» (435). Se unifica en el de C.
+# El diámetro ya NO depende del encuadre: si la escena se agranda o se achica, el
+# sello se queda igual — que es justo lo que pidió para C.
+SELLO_DIAM = 435
+
 # Dónde quedó el sello que Magnific dibujó sobre la botella, en fracción del
 # lienzo (detectado por su blob dorado: redondez 0,79 ≈ un círculo lleno).
-# Encima va el sello OFICIAL, un 20 % mayor, para taparlo por completo.
 # x, y, diámetro y cuánto se agranda para tapar el generado. En B el sello de
 # la IA salió más grande porque la botella está más cerca, así que necesita
 # menos aumento.
@@ -85,15 +111,16 @@ def pon_sello(capa, cual):
     redibujado y no es el oficial."""
     fx, fy, fd, k, absoluto = SELLO_POS[cual]
     z, ex, ey = ENCUADRE[cual]
+    diam = SELLO_DIAM
     if absoluto:
-        cx, cy, diam = fx * W, fy * H, int(fd * W * k)
+        cx, cy = fx * W, fy * H
     else:
-        # se midieron sobre la escena SIN agrandar: hay que llevarlas al encuadre
-        # o el sello oficial deja de tapar al generado.
+        # las posiciones se midieron sobre la escena SIN agrandar: hay que
+        # llevarlas al encuadre de esta pieza o el sello oficial deja de tapar
+        # al generado.
         fw, fh = W * z, H * z
         cx = fx * fw - (fw - W) * ex
         cy = fy * fh - (fh - H) * ey
-        diam = int(fd * fw * k)
 
     # ⛔ SIN RESPLANDOR. Lo pidió Coni en las tres piezas el 23-09: el sello va
     # limpio, sólo con una sombra corta que lo despegue del fondo.
@@ -120,7 +147,9 @@ def escribe(d, xy, t, f, fill, tr=TRACK):
 # y sus acompañamientos más grandes en A, y el fondo más grande en C — pero sin
 # que invadan la columna del texto, así que el recorte se corre a la DERECHA:
 # lo que crece, crece hacia el lado donde no hay texto.
-ENCUADRE = {"A": (1.34, 0.86, 0.30), "B": (1.12, 0.80, 0.02), "C": (1.26, 0.94, 0.16)}
+# C baja de 1,26 a 1,08: Coni, 24-09 — «la imagen la exageraste mucho en cuanto
+# a tamaño, se pierden los acompañamientos de la botella».
+ENCUADRE = {"A": (1.34, 0.86, 0.30), "B": (1.12, 0.80, 0.02), "C": (1.08, 0.94, 0.16)}
 
 
 def encuadra(ruta, zoom=1.0, ex=0.5, ey=0.0):
@@ -178,15 +207,24 @@ def componer(cual, precio, antes, velo=True):
     # el descuento va ANTES que el precio en el orden de lectura, así que pesa
     # más: cuerpo mayor y caja de color. Con 150 contra un precio de 258 el
     # ojo se iba primero al precio y el orden se rompía.
-    f_pc = ft(F_BOLD, 196)
-    txt = "50% OFF"
-    px, py = 60, 34
-    a = ancho(d, txt, f_pc)
-    bb = f_pc.getbbox("50%OFF")
-    y0 = 1390
+    # ── el bullet del descuento ────────────────────────────────────────────
+    # No es un rótulo plano: el «50%» manda y el «OFF» entra en dorado, más
+    # chico, colgado de la misma línea base. Así el porcentaje se lee de lejos,
+    # que es lo que tiene que vender.
+    fondo_caja, tinta_num, tinta_off = CAJA_DESCUENTO[cual]
+    f_num = ft(F_BOLD, 232)
+    f_off = ft(F_BOLD, 116)
+    a_num = ancho(d, "50%", f_num)
+    a_off = ancho(d, "OFF", f_off)
+    px, py, hueco = 58, 30, 26
+    bb = f_num.getbbox("50%")
+    y0 = 1372
     y1 = y0 + (bb[3] - bb[1]) + py * 2
-    d.rectangle([COL_X, y0, COL_X + a + px * 2, y1], fill=NARANJA + (255,))
-    escribe(d, (COL_X + px, y1 - py - 2), txt, f_pc, BLANCO)
+    d.rectangle([COL_X, y0, COL_X + px * 2 + a_num + hueco + a_off, y1],
+                fill=fondo_caja + (255,))
+    y_txt = y1 - py - 2          # ojo: `base` ya es el lienzo de fondo
+    xn = escribe(d, (COL_X + px, y_txt), "50%", f_num, tinta_num)
+    escribe(d, (xn + hueco, y_txt), "OFF", f_off, tinta_off)
 
     # 3 · el vino
     f_nom = ft(F_BOLD, 108)

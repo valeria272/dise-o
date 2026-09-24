@@ -10,6 +10,34 @@
 
 Tienda online (selfie.cl) de coloración y cuidado capilar profesional: Schwarzkopf (Igora, BlondMe, Osis), L'Oréal (Majirel, Serie Expert), Matrix (SoColor), Keyra, Cloe, BBCOS, Tigi Bed Head, Wella, Revlon, Olix, Ouidad, Living Proof. Venden a consumidora final **y** a peluqueros profesionales (programa **Selfie Pro** con niveles Bronce/Plata/Oro, 15% dcto extra, Puntos Selfie). Despacho same-day en Santiago comprando antes de las 11 AM; envíos a todo Chile y retiro en Chilexpress.
 
+## ⚠️ Nueva dirección estratégica del cliente (15-09-2026) — leer ANTES de los 3 modos
+
+Documento de Selfie **«Selfie x Agencia - Nueva dirección estratégica Selfie.docx»**
+(Drive `1MUeP4KtKzoWui5PGIY5z86SlyUuCIQqQ`, subido por Serena el 15-09). Es un
+**lineamiento del cliente, no una gramática medida**: los 3 modos de abajo siguen
+siendo lo que está publicado, pero el rumbo cambia. Lo que toca a diseño:
+
+- **Visual:** más limpia y editorial, más aire, mejor jerarquía, **más protagonismo
+  del producto**, fotografía beauty más cuidada, **menos elementos compitiendo** y
+  coherencia entre RRSS, web, banners y mail.
+- ⭐ **El fucsia sigue siendo código de marca, pero «no necesariamente debe funcionar
+  como fondo dominante en todas las comunicaciones».** Ojo con el Modo 1 fucsia a
+  pantalla completa por defecto.
+- **Tono:** experta · cercana · confiable · educativa · útil · entretenida. Menos
+  juguetón y menos dependiente de trends («cercana, pero no infantil»).
+- **Del producto a la solución:** menos catálogo y más recomendación; para quién es,
+  qué resuelve, cómo usarlo, con qué complementarlo.
+- **3 segmentos:** Clienta final (cuidar/lograr) · Estudiante (aprender/empezar) ·
+  Profesional (trabajar/crecer). Una sola marca, sin tres sub-marcas.
+- **4 focos por mes** bajo un concepto paraguas: Marca · Comunidad · Educación · Comercial.
+- **Método:** la grilla parte de un brief estratégico mensual (Base 1) y luego el
+  calendario (Base 2). Los inputs del cliente llegan 10–15 días antes del mes.
+
+**Pendiente:** medir cómo lo bajó Coni en sus piezas de sept S2-S3 (editables
+empaquetados el 23-09: `GRILLA SEPT_S2-S3_Carpeta` `1Jk6qwNnRJS2cTihvcF5lTGwaQXkaI9U4`
+y `BANNER SEPT_S3-S3_Carpeta` `12zJWAYZJ83rLSYzYk51RbNcxQxcyXo3V`) con `/adn selfie`,
+y recién ahí reescribir los modos.
+
 ## Identidad visual — los 3 modos
 
 El sistema tiene **tres modos** claramente diferenciados. Antes de diseñar, identificar cuál aplica:

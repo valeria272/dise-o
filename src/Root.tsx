@@ -301,6 +301,9 @@ export const RemotionRoot: React.FC = () => {
       </Folder>
       <Folder name="Selfie">
         <Composition id="SelfiePruebaBiotop-Post" component={SelfiePruebaBiotop} durationInFrames={1} fps={30} width={2250} height={2813} defaultProps={{formato: "post" as const}} />
+        <Composition id="SelfiePruebaBiotop-Mail" component={SelfiePruebaBiotop} durationInFrames={1} fps={30} width={1200} height={1720} defaultProps={{formato: "mail" as const}} />
+        <Composition id="SelfiePruebaBiotop-BannerDesk" component={SelfiePruebaBiotop} durationInFrames={1} fps={30} width={2001} height={686} defaultProps={{formato: "bannerDesk" as const}} />
+        <Composition id="SelfiePruebaBiotop-BannerMobile" component={SelfiePruebaBiotop} durationInFrames={1} fps={30} width={1081} height={1081} defaultProps={{formato: "bannerMobile" as const}} />
         <Composition id="SelfiePruebaBiotop-Story" component={SelfiePruebaBiotop} durationInFrames={1} fps={30} width={2250} height={4000} defaultProps={{formato: "story" as const}} />
         <Composition
           id="SelfieCarruselFiestas"

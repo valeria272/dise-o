@@ -148,39 +148,44 @@ def reflejo(b, alto, largo=0.42, opacidad=0.42, aplasta=0.52):
 
 
 def sombra_direccional(lienzo, silueta, cx, ybase, anc, lado="der"):
-    """La sombra que proyecta la botella, tirada al lado CONTRARIO de la luz.
+    """La sombra sale de la SILUETA de la botella, no de elipses.
 
-    La elipse centrada de `cava-kv-realista.py` sirve para un grupo de botellas
-    de frente; acá la luz entra clara y alta por un lado, así que la sombra tiene
-    que salir disparada hacia el otro y aplastada contra la mesa. Sin esto la
-    botella se leía apoyada en el aire."""
-    # ⛔ NADA DE SOMBRA LARGA. La primera versión tiraba un trapecio de más de dos
-    # anchos de botella y se leía como una mancha suelta «volando» al costado —
-    # Coni lo marcó dos veces. Con una luz CENITAL y dura la sombra es CORTA y va
-    # pegada a la base; apenas se desplaza al lado contrario del haz.
+    ⛔ POR QUÉ SE REHIZO (Coni la marcó tres veces). Estaba armada con elipses
+    superpuestas y, por muy chicas que se hicieran, la suma de sus bordes
+    difuminados dejaba una mancha que no correspondía a ninguna forma real y se
+    leía como un borrón al costado. Se comprobó apagándolas: sin ellas la mancha
+    desaparecía, así que era mía y no del fondo.
+
+    Lo que hace una botella de verdad: proyecta SU PROPIA FORMA, aplastada
+    contra la mesa por el escorzo, corta si la luz es alta, y desplazada al lado
+    contrario del haz. Eso es lo que se dibuja ahora.
+    """
     signo = -1 if lado == "der" else 1
-    c = Image.new("RGBA", lienzo.size, (0, 0, 0, 0))
-    d = ImageDraw.Draw(c)
-    dx = signo * anc * 0.30
-    d.ellipse([cx + dx - anc * 0.78, ybase - anc * 0.115,
-               cx + dx + anc * 0.78, ybase + anc * 0.175], fill=(6, 3, 1, 170))
-    lienzo.alpha_composite(c.filter(ImageFilter.GaussianBlur(anc * 0.095)))
+    alfa = silueta.split()[-1]
+    w, h = alfa.size
 
-    # OCLUSIÓN DE CONTACTO, en tres radios. Es lo que más vende el apoyo y es lo
-    # que siempre falta: la botella tapa la luz rasante del mármol, así que
-    # alrededor de su base la piedra tiene que apagarse. Sin esto quedaba un halo
-    # claro justo bajo el vidrio y la botella se leía flotando sobre la mesa.
-    for rx, ry, al, bl in ((0.92, 0.26, 150, 0.16),    # penumbra amplia
-                           (0.58, 0.155, 205, 0.065),  # sombra pegada
-                           (0.415, 0.075, 255, 0.016)):  # el contacto mismo
-        oc = Image.new("RGBA", lienzo.size, (0, 0, 0, 0))
-        ImageDraw.Draw(oc).ellipse([cx - anc * rx, ybase - anc * ry * 0.55,
-                                    cx + anc * rx, ybase + anc * ry],
-                                   fill=(0, 0, 0, al))
-        lienzo.alpha_composite(oc.filter(ImageFilter.GaussianBlur(anc * bl)))
+    # sólo el tercio inferior: es lo que apoya y proyecta
+    base = alfa.crop((0, int(h * 0.68), w, h))
+    # aplastada contra la mesa
+    prj = base.resize((w, max(6, int(h * 0.075))), Image.LANCZOS)
 
+    capa = Image.new("RGBA", lienzo.size, (0, 0, 0, 0))
+    tinta = Image.new("RGBA", prj.size, (5, 3, 1, 255))
+    tinta.putalpha(prj.point(lambda v: int(v * 0.62)))
+    x = int(cx - w / 2 + signo * anc * 0.10)
+    y = int(ybase - prj.height * 0.42)
+    capa.alpha_composite(tinta, (x, y))
+    lienzo.alpha_composite(capa.filter(ImageFilter.GaussianBlur(anc * 0.055)))
 
-def aplana_mesa(f, desde=0.70, fuerza=0.80):
+    # contacto: la línea oscura justo donde el vidrio toca la piedra
+    oc = Image.new("RGBA", lienzo.size, (0, 0, 0, 0))
+    tinta2 = Image.new("RGBA", prj.size, (0, 0, 0, 255))
+    tinta2.putalpha(prj.point(lambda v: int(v * 0.80)))
+    oc.alpha_composite(tinta2.resize((int(w * 0.94), max(4, int(prj.height * 0.42))), Image.LANCZOS),
+                       (int(cx - w * 0.47), int(ybase - prj.height * 0.16)))
+    lienzo.alpha_composite(oc.filter(ImageFilter.GaussianBlur(anc * 0.013)))
+
+def aplana_mesa(f, desde=0.66, fuerza=0.95):
     """Iguala la luz de la mesa de lado a lado.
 
     ⛔ EL BUG QUE COSTÓ DOS RONDAS. La escena generada trae el mármol más oscuro
@@ -197,7 +202,7 @@ def aplana_mesa(f, desde=0.70, fuerza=0.80):
     zona = a[y0:]
     lum = zona.mean(axis=2)
     perfil = ndimage.gaussian_filter1d(lum.mean(axis=0), w * 0.055)
-    corr = np.clip(perfil.mean() / np.maximum(perfil, 1.0), 0.55, 1.75)
+    corr = np.clip(perfil.mean() / np.maximum(perfil, 1.0), 0.30, 4.50)
     corr = 1.0 + (corr - 1.0) * fuerza
     rampa = np.clip((np.arange(h - y0) / float(max(1, (h - y0) * 0.25))), 0, 1)[:, None]
     a[y0:] = np.clip(zona * (1.0 + (corr[None, :] - 1.0) * rampa)[:, :, None], 0, 255)
@@ -298,9 +303,9 @@ def main():
     # penumbra. Es el foco que pondría un fotógrafo, y va ANTES de la sombra
     # para que la oclusión lo recorte y ancle la base.
     pozo = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    ImageDraw.Draw(pozo).ellipse([cx - anc * 1.55, ybase - anc * 0.50,
-                                  cx + anc * 1.55, ybase + anc * 0.42],
-                                 fill=(255, 226, 178, 54))
+    ImageDraw.Draw(pozo).ellipse([cx - anc * 1.05, ybase - anc * 0.34,
+                                  cx + anc * 1.05, ybase + anc * 0.28],
+                                 fill=(255, 226, 178, 44))
     lienzo.alpha_composite(pozo.filter(ImageFilter.GaussianBlur(anc * 0.28)))
 
     sombra_direccional(lienzo, b, cx, ybase, anc, lado=LADO_LUZ)

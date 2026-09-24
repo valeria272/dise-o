@@ -66,8 +66,6 @@ const cargaFuentes = () => {
 // Geometría por formato, en unidades de mesa (ancho 1080).
 type Diseno = {
   curva: string;
-  ficha700: {x: number; y: number; w: number};
-  ficha911: {x: number; y: number; w: number};
   titulo: {y: number; x?: number; w?: number};
   logo: {x: number; y: number};
   cta: {donde: "titulo" | "abajo" | "no"; y?: number};
@@ -78,22 +76,39 @@ type Medidas = {
   p911: {cx: number; cy: number; h: number; rot: number};
   tip700: {x: number; y: number};
   tip911: {x: number; y: number};
+  start700: {x: number; y: number};
+  start911: {x: number; y: number};
+  ficha700: {x: number; y: number; w: number};
+  ficha911: {x: number; y: number; w: number};
 };
 
-/** LA flecha: el trazo de la HISTORIA, aprobado por Coni el 24-09. En los demás
- *  formatos se calca tal cual —misma curva, mismo rulo— y sólo escala con t. */
-const TRAZO = {
-  "700": {
-    d: "M 600 436 C 560 380, 490 380, 500 422 C 510 460, 560 444, 540 414 C 520 386, 460 380, 400 416",
-    tip: {x: 400, y: 416},
-    ang: (Math.atan2(416 - 380, 400 - 460) * 180) / Math.PI,
-  },
-  "911": {
-    d: "M 470 1596 C 520 1652, 600 1644, 590 1604 C 580 1566, 525 1580, 552 1614 C 578 1644, 650 1624, 722 1560",
-    tip: {x: 722, y: 1560},
-    ang: (Math.atan2(1560 - 1624, 722 - 650) * 180) / Math.PI,
-  },
-} as const;
+/** LA flecha: el trazo de la HISTORIA, aprobado por Coni el 24-09. En cada formato se
+ *  calca GIRADO y ESCALADO para que salga del borde de su ficha (start) y termine
+ *  justo antes de su producto (tip): la flecha lleva la lectura de la ficha al frasco. */
+const TRAZO = (MEDIDAS as unknown as {_trazo: Record<"700" | "911", {d: string}>})._trazo;
+
+/** Aplica al trazo la semejanza que lleva su inicio a `start` y su punta a `tip`. */
+const calca = (d: string, start: {x: number; y: number}, tip: {x: number; y: number}) => {
+  const n = (d.match(/-?\d+(\.\d+)?/g) ?? []).map(Number);
+  const pts: [number, number][] = [];
+  for (let i = 0; i < n.length; i += 2) pts.push([n[i], n[i + 1]]);
+  const [s0, t0] = [pts[0], pts[pts.length - 1]];
+  const v0 = [t0[0] - s0[0], t0[1] - s0[1]];
+  const v1 = [tip.x - start.x, tip.y - start.y];
+  const k = Math.hypot(v1[0], v1[1]) / Math.hypot(v0[0], v0[1]);
+  const giro = Math.atan2(v1[1], v1[0]) - Math.atan2(v0[1], v0[0]);
+  const [c, sn] = [Math.cos(giro) * k, Math.sin(giro) * k];
+  const q = pts.map(([x, y]) => {
+    const dx = x - s0[0], dy = y - s0[1];
+    return [start.x + c * dx - sn * dy, start.y + sn * dx + c * dy];
+  });
+  const f = (p: number[]) => `${p[0].toFixed(2)} ${p[1].toFixed(2)}`;
+  let out = `M ${f(q[0])}`;
+  for (let i = 1; i < q.length; i += 3) out += ` C ${f(q[i])}, ${f(q[i + 1])}, ${f(q[i + 2])}`;
+  const penult = q[q.length - 2];
+  const ang = (Math.atan2(tip.y - penult[1], tip.x - penult[0]) * 180) / Math.PI;
+  return {d: out, ang};
+};
 
 const LAYOUT: Record<FormatoSelfie, Diseno> = {
   post: {
@@ -101,23 +116,17 @@ const LAYOUT: Record<FormatoSelfie, Diseno> = {
     cta: {donde: "titulo"},
     // curva en S: entra arriba a la derecha del centro, sale abajo a la izquierda
     curva: "M 600 0 C 830 260, 820 470, 560 690 C 330 890, 300 1110, 380 1350",
-    ficha700: {x: 400, y: 238, w: 515},
-    ficha911: {x: 66, y: 1060, w: 440},
     titulo: {y: 606},
   },
   story: {
     logo: {x: 953, y: 230},
     cta: {donde: "titulo"},
     curva: "M 610 0 C 860 380, 840 700, 560 960 C 300 1210, 280 1560, 390 1920",
-    ficha700: {x: 400, y: 470, w: 515},
-    ficha911: {x: 66, y: 1392, w: 440},
     titulo: {y: 862},
   },
   // MAIL — módulo de 600 de ancho, como MAILSEPT_S2-S3.ai; titular y CTA arriba
   mail: {
     curva: "M 330 0 C 470 200, 460 330, 320 440 C 180 550, 170 700, 220 860",
-    ficha700: {x: 258, y: 214, w: 300},
-    ficha911: {x: 26, y: 564, w: 268},
     titulo: {y: 40, x: 0, w: 530},
     logo: {x: 548, y: 44},
     cta: {donde: "abajo", y: 772},
@@ -125,8 +134,6 @@ const LAYOUT: Record<FormatoSelfie, Diseno> = {
   // BANNER DESK — 2001×686, como la mesa 1 de BANNER SEPT_S3-S3.ai; titular a la izquierda
   bannerDesk: {
     curva: "M 1060 0 C 1190 170, 1150 320, 1000 390 C 860 450, 840 590, 930 686",
-    ficha700: {x: 1110, y: 70, w: 440},
-    ficha911: {x: 1070, y: 404, w: 385},
     titulo: {y: 240, x: 60, w: 760},
     logo: {x: 1880, y: 60},
     cta: {donde: "no"},
@@ -134,8 +141,6 @@ const LAYOUT: Record<FormatoSelfie, Diseno> = {
   // BANNER MOBILE — 1081×1081, como la mesa 2 del mismo .ai
   bannerMobile: {
     curva: "M 600 0 C 830 210, 820 380, 560 550 C 330 710, 300 890, 380 1081",
-    ficha700: {x: 410, y: 160, w: 470},
-    ficha911: {x: 60, y: 800, w: 410},
     titulo: {y: 462},
     logo: {x: 958, y: 110},
     cta: {donde: "no"},
@@ -175,19 +180,34 @@ const Ficha: React.FC<{
   const u = g * k; // tipografía y cajas escalan con el formato; la posición, no
   return (
   <div style={{position: "absolute", left: x * g, top: y * g, width: w * g, textAlign: "center"}}>
-    <div
-      style={{
-        background: fondo,
-        borderRadius: 14 * u,
-        padding: `${20 * u}px ${24 * u}px ${42 * u}px`,
-        color: tinta,
-        fontFamily: "Krub",
-        fontWeight: 700,
-        fontSize: 37 * u,
-        lineHeight: 1.08,
-      }}
-    >
-      {nombre}
+    {/* Resplandor negro al 30 % en MULTIPLICAR alrededor de la caja del nombre, para
+        que no se pierda sobre el campo coral (Coni, 24-09). Es una capa propia detrás
+        de la caja: así sólo el resplandor multiplica, la caja queda coral puro. */}
+    <div style={{position: "relative"}}>
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          borderRadius: 14 * u,
+          boxShadow: `0 0 ${20 * u}px ${7 * u}px rgba(0,0,0,0.30)`,
+          mixBlendMode: "multiply",
+        }}
+      />
+      <div
+        style={{
+          position: "relative",
+          background: fondo,
+          borderRadius: 14 * u,
+          padding: `${20 * u}px ${24 * u}px ${42 * u}px`,
+          color: tinta,
+          fontFamily: "Krub",
+          fontWeight: 700,
+          fontSize: 37 * u,
+          lineHeight: 1.08,
+        }}
+      >
+        {nombre}
+      </div>
     </div>
     <div
       style={{
@@ -241,30 +261,23 @@ const Cta: React.FC<{t: number; u: number; color: string}> = ({t, u, color}) => 
   </div>
 );
 
-/** Calca el TRAZO de la historia con la punta en `tip`, escalado por k. */
-const Flecha: React.FC<{forma: "700" | "911"; tip: {x: number; y: number}; k: number; color?: string}> = ({
-  forma,
-  tip,
-  k,
-  color = C.blanco,
-}) => {
-  const T = TRAZO[forma];
-  const L = 22;
-  const a1 = ((T.ang + 28) * Math.PI) / 180;
-  const a2 = ((T.ang - 28) * Math.PI) / 180;
+const Flecha: React.FC<{
+  forma: "700" | "911";
+  start: {x: number; y: number};
+  tip: {x: number; y: number};
+  k: number;
+  color?: string;
+}> = ({forma, start, tip, k, color = C.blanco}) => {
+  const {d, ang} = calca(TRAZO[forma].d, start, tip);
+  const L = 22 * k;
+  const a1 = ((ang + 28) * Math.PI) / 180;
+  const a2 = ((ang - 28) * Math.PI) / 180;
   // las alas van HACIA ATRÁS del trazo (ang = dirección de avance en la punta)
-  const p = (a: number) => `${T.tip.x - L * Math.cos(a)} ${T.tip.y - L * Math.sin(a)}`;
+  const p = (a: number) => `${tip.x - L * Math.cos(a)} ${tip.y - L * Math.sin(a)}`;
   return (
-    <g
-      transform={`translate(${tip.x} ${tip.y}) scale(${k}) translate(${-T.tip.x} ${-T.tip.y})`}
-      fill="none"
-      stroke={color}
-      strokeWidth={2.4}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d={T.d} />
-      <path d={`M ${p(a1)} L ${T.tip.x} ${T.tip.y} L ${p(a2)}`} />
+    <g fill="none" stroke={color} strokeWidth={2.4 * k} strokeLinecap="round" strokeLinejoin="round">
+      <path d={d} />
+      <path d={`M ${p(a1)} L ${tip.x} ${tip.y} L ${p(a2)}`} />
     </g>
   );
 };
@@ -273,18 +286,19 @@ const Flecha: React.FC<{forma: "700" | "911"; tip: {x: number; y: number}; k: nu
 const MascaraFlechas: React.FC<{L: Diseno & Medidas; u: number}> = ({L, u}) => (
   <AbsoluteFill style={{background: "#000"}}>
     <svg width={L.outW} height={L.alto * u} viewBox={`0 0 ${L.mesaW} ${L.alto}`} style={{position: "absolute", inset: 0}}>
-      <Flecha forma="700" tip={L.tip700} k={L.t} color="#fff" />
-      <Flecha forma="911" tip={L.tip911} k={L.t} color="#fff" />
+      <Flecha forma="700" start={L.start700} tip={L.tip700} k={L.t} color="#fff" />
+      <Flecha forma="911" start={L.start911} tip={L.tip911} k={L.t} color="#fff" />
     </svg>
   </AbsoluteFill>
 );
 
 /** capa: "todo" (la pieza) · "sinFlechas" / "flechas" (para el QA de choques: qa/selfie-flechas.py). */
-export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie; capa?: "todo" | "sinFlechas" | "flechas"; campo?: Campo; cajaDamasco?: boolean}> = ({
+export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie; capa?: "todo" | "sinFlechas" | "flechas"; campo?: Campo; cajaDamasco?: boolean; intervenido?: boolean}> = ({
   formato,
   capa = "todo",
+  intervenido = false, // PRUEBA aparte: tapa transparente y líquido a nivel (scripts/selfie-biotop-intervenir.py)
   cajaDamasco = false,
-  campo = "damasco", // Coni 24-09: el campo coral igualaba a la caja del nombre
+  campo = "coral", // Coni 24-09: se probaron damasco y tinta; se vuelve a la 1.ª combinación
 }) => {
   const FICHA = cajaDamasco ? {fondo: C.nude, tinta: C.coral} : {fondo: C.coral, tinta: C.blanco};
   const E = ESQUEMA[campo];
@@ -306,8 +320,8 @@ export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie; capa?: "todo"
         <path d={`${L.curva} L 0 ${L.alto} L 0 0 Z`} fill={E.campo} />
       </svg>
 
-      <Producto src={`${formato}-700.png`} {...L.p700} u={u} />
-      <Producto src={`${formato}-911.png`} {...L.p911} u={u} />
+      <Producto src={`${formato}-700${intervenido ? "-intervenido" : ""}.png`} {...L.p700} u={u} />
+      <Producto src={`${formato}-911${intervenido ? "-intervenido" : ""}.png`} {...L.p911} u={u} />
 
       <Ficha
         nombre="700 Keratin & Kale Serum"
@@ -373,8 +387,8 @@ export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie; capa?: "todo"
       {/* flechas ENCIMA de todo: nada puede taparlas */}
       {capa !== "sinFlechas" && (
         <svg width={W} height={L.alto * u} viewBox={`0 0 ${L.mesaW} ${L.alto}`} style={{position: "absolute", inset: 0}}>
-          <Flecha forma="700" tip={L.tip700} k={t} color={E.flecha} />
-          <Flecha forma="911" tip={L.tip911} k={t} color={E.flecha} />
+          <Flecha forma="700" start={L.start700} tip={L.tip700} k={t} color={E.flecha} />
+          <Flecha forma="911" start={L.start911} tip={L.tip911} k={t} color={E.flecha} />
         </svg>
       )}
 

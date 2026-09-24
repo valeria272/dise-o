@@ -51,6 +51,9 @@ F_BUTLER = "/Users/coni/Library/Fonts/Butler_Bold.otf"
 # porcentajes. ⚠️ Sólo sirve la Black — las otras ocho son subconjuntos con el
 # mapa completo pero los contornos vacíos (piden la «F» y devuelven un hueco).
 F_RAL = SP + "/fonts/Raleway-Black.ttf"
+# el «OFF» va en un peso fino: Avenir Next, que marca.json declara como
+# tipografía de apoyo de CAVA (fuentes.apoyo)
+F_FINA = "/System/Library/Fonts/Avenir Next.ttc"
 DISCO_D = 640
 
 # El logo se saca VECTORIAL del .ai con scripts/cava-logo-desde-editable.py.
@@ -374,27 +377,20 @@ def main():
     # Dentro del disco: el «50» manda, y a su derecha una columna con el «%»
     # arriba y el «OFF» debajo. Coni, 24-09: «el 50 debe ser más grande, el OFF
     # al costado en pequeño y sobre el OFF el símbolo de descuento».
-    f_num = ImageFont.truetype(F_RAL, 318)
-    f_pct = ImageFont.truetype(F_RAL, 102)
-    f_off = ImageFont.truetype(F_RAL, 68)
-    a_num = d.textlength("50", font=f_num)
-    tr = 0.16 * f_off.size
+    # Interior del disco, calcado de la maqueta que hizo Coni en Illustrator:
+    # «50%» en UNA línea, grande, y «OFF» debajo, centrado, en un peso fino y
+    # con las letras separadas. Nada de columnas al costado.
+    f_num = ImageFont.truetype(F_RAL, 272)
+    f_off = ImageFont.truetype(F_FINA, 98, index=10)   # Avenir Next Ultra Light
+    a_num = d.textlength("50%", font=f_num)
+    tr = 0.30 * f_off.size
     a_off = sum(d.textlength(c, font=f_off) for c in "OFF") + tr * 2
-    a_pct = d.textlength("%", font=f_pct)
-    col = max(a_off, a_pct)
-    hueco = 318 * 0.085
-    total = a_num + hueco + col
-    x0 = cxd - total / 2
-    # el «50», centrado en vertical
-    d.text((x0, cyd + 318 * 0.34), "50", font=f_num, fill=BLANCO, anchor="ls")
-    # el «%» arriba de la columna, alineado con el tope del «50»
-    d.text((x0 + a_num + hueco + (col - a_pct) / 2, cyd - 318 * 0.13),
-           "%", font=f_pct, fill=BLANCO, anchor="ls")
-    # y el «OFF» debajo del «%»
-    x = x0 + a_num + hueco + (col - a_off) / 2
+    d.text((cxd - a_num / 2, cyd + 272 * 0.10), "50%", font=f_num, fill=BLANCO, anchor="ls")
+    x = cxd - a_off / 2
     for c in "OFF":
-        d.text((x, cyd + 318 * 0.34), c, font=f_off, fill=BLANCO, anchor="ls")
+        d.text((x, cyd + 272 * 0.10 + 98 * 1.20), c, font=f_off, fill=BLANCO, anchor="ls")
         x += d.textlength(c, font=f_off) + tr
+
 
 
 

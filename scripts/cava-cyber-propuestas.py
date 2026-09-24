@@ -72,6 +72,9 @@ F_BUTLER = "/Users/coni/Library/Fonts/Butler_Bold.otf"
 # Raleway se saca del editable del Cyber, que la lleva incrustada como TrueType:
 # es la que la propia marca usa para sus porcentajes de descuento.
 F_RAL_BLACK = SP + "/fonts/Raleway-Black.ttf"
+# el «OFF» va en un peso fino: Avenir Next, que marca.json declara como
+# tipografía de apoyo de CAVA (fuentes.apoyo)
+F_FINA = "/System/Library/Fonts/Avenir Next.ttc"
 # ⚠️ SÓLO SIRVE LA BLACK. Las otras ocho Raleway del editable son subconjuntos
 # con el mapa de caracteres completo pero los CONTORNOS vacíos: piden la «F» y
 # devuelven un hueco. La Black es la que el Cyber usó para «50% OFF», así que es
@@ -259,27 +262,20 @@ def componer(cual, precio, antes, velo=True):
     # Dentro del disco: el «50» manda, y a su derecha una columna con el «%»
     # arriba y el «OFF» debajo. Coni, 24-09: «el 50 debe ser más grande, el OFF
     # al costado en pequeño y sobre el OFF el símbolo de descuento».
-    f_num = ImageFont.truetype(F_RAL_BLACK, 348)
-    f_pct = ImageFont.truetype(F_RAL_BLACK, 112)
-    f_off = ImageFont.truetype(F_RAL_BLACK, 74)
-    a_num = d.textlength("50", font=f_num)
-    tr = 0.16 * f_off.size
+    # Interior del disco, calcado de la maqueta que hizo Coni en Illustrator:
+    # «50%» en UNA línea, grande, y «OFF» debajo, centrado, en un peso fino y
+    # con las letras separadas. Nada de columnas al costado.
+    f_num = ImageFont.truetype(F_RAL_BLACK, 300)
+    f_off = ImageFont.truetype(F_FINA, 108, index=10)   # Avenir Next Ultra Light
+    a_num = d.textlength("50%", font=f_num)
+    tr = 0.30 * f_off.size
     a_off = sum(d.textlength(c, font=f_off) for c in "OFF") + tr * 2
-    a_pct = d.textlength("%", font=f_pct)
-    col = max(a_off, a_pct)
-    hueco = 348 * 0.085
-    total = a_num + hueco + col
-    x0 = cxd - total / 2
-    # el «50», centrado en vertical
-    d.text((x0, cyd + 348 * 0.34), "50", font=f_num, fill=tinta_num, anchor="ls")
-    # el «%» arriba de la columna, alineado con el tope del «50»
-    d.text((x0 + a_num + hueco + (col - a_pct) / 2, cyd - 348 * 0.13),
-           "%", font=f_pct, fill=tinta_num, anchor="ls")
-    # y el «OFF» debajo del «%»
-    x = x0 + a_num + hueco + (col - a_off) / 2
+    d.text((cxd - a_num / 2, cyd + 300 * 0.10), "50%", font=f_num, fill=tinta_num, anchor="ls")
+    x = cxd - a_off / 2
     for c in "OFF":
-        d.text((x, cyd + 348 * 0.34), c, font=f_off, fill=tinta_off, anchor="ls")
+        d.text((x, cyd + 300 * 0.10 + 108 * 1.20), c, font=f_off, fill=tinta_off, anchor="ls")
         x += d.textlength(c, font=f_off) + tr
+
 
 
 
@@ -298,6 +294,15 @@ def componer(cual, precio, antes, velo=True):
     cj = f_ant.getbbox(antes)
     medio = yp + 182 - (cj[3] - cj[1]) * 0.36
     d.line([(COL_X - 10, medio), (xf + 4, medio)], fill=apag, width=11)
+
+    # ⚠️ EL DISCO NO PUEDE TOCAR NINGÚN TEXTO. Coni lo pidió expresamente. Se
+    # comprueba contra las bandas verticales que ocupan los bloques.
+    r = DISCO_D / 2.0
+    for nom, y0, y1 in (("el titular", 960, 1290),
+                        ("el nombre del vino", yn - 90, yn + 112 * 2 + 20),
+                        ("los precios", yp - 200, yp + 200)):
+        if y1 > cyd - r and y0 < cyd + r:
+            print("  ⚠️  %s: el disco se cruza con %s" % (cual, nom))
 
     return Image.alpha_composite(base.convert("RGBA"), capa).convert("RGB")
 

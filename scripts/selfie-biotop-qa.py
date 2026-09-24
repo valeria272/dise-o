@@ -7,8 +7,10 @@
 Por formato hace tres renders —la pieza, la pieza SIN flechas y la máscara de las
 flechas— y comprueba lo que pidió Coni el 24-09:
   1. NINGUNA flecha toca nada: bajo cada trazo (con margen) sólo puede haber fondo
-     plano damasco #F7D4C0 o salmón #FF8C93. Ni frasco, ni su sombra, ni texto, ni caja.
-  2. Mail y banners pesan ≤ 1 MB. Si la PNG se pasa, sale JPG de alta calidad.
+     plano coral #FF4374 o salmón #FF8C93. Ni frasco, ni su sombra, ni texto, ni caja.
+  2. NINGÚN producto se corta: cada frasco queda entero y con ≥ 40 px de mesa a
+     cualquier borde (Coni 24-09: «el producto no se puede cortar, se deben ver enteros»).
+  3. Mail y banners pesan ≤ 1 MB. Si la PNG se pasa, sale JPG de alta calidad.
 Sale a out/selfie/prueba/ con el nombre de entrega.
 """
 import subprocess
@@ -17,6 +19,10 @@ from pathlib import Path
 
 import numpy as np
 from PIL import Image, ImageFilter
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _selfie_biotop import obstaculos  # noqa: E402
+import json  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parent.parent
 OUT = RAIZ / "out/selfie/prueba"
@@ -29,8 +35,8 @@ FORMATOS = {
     "BannerDesk": ("bannerDesk", "BANNER_DESK", 1_000_000),
     "BannerMobile": ("bannerMobile", "BANNER_MOBILE", 1_000_000),
 }
-# campo izquierdo damasco #F7D4C0 (desde el 24-09) y derecho salmón #FF8C93
-FONDOS = np.array([[0xF7, 0xD4, 0xC0], [0xFF, 0x8C, 0x93]], dtype=float)
+# campo izquierdo coral #FF4374 y derecho salmón #FF8C93
+FONDOS = np.array([[0xFF, 0x43, 0x74], [0xFF, 0x8C, 0x93]], dtype=float)
 MARGEN_PX = 10  # holgura alrededor del trazo, en px de salida
 
 
@@ -44,16 +50,29 @@ def still(comp, destino, formato, capa):
         sys.exit(r.stderr[-2000:])
 
 
-def choques(sin, masc):
+def choques(sin, masc, formato):
+    """Píxeles bajo el trazo (con margen) que no son fondo libre. El resplandor de
+    las fichas cuenta como fondo; la sombra de los frascos, no (ver _selfie_biotop)."""
+    L = json.loads((RAIZ / "src/compositions/selfie/biotop-prueba.json").read_text())[formato]
     m = np.array(Image.open(masc).convert("L").filter(ImageFilter.MaxFilter(2 * MARGEN_PX + 1))) > 40
-    px = np.array(Image.open(sin).convert("RGB")).astype(float)[m]
-    # distancia al SEGMENTO damasco–salmón: el borde antialiasado de la curva es mezcla
-    # de los dos fondos y no es un choque
-    a, b = FONDOS
-    t = np.clip(((px - a) @ (b - a)) / ((b - a) @ (b - a)), 0, 1)
-    dist = np.linalg.norm(px - (a + t[:, None] * (b - a)), axis=1)
-    malos = int((dist > 14).sum())
-    return malos, int(m.sum())
+    obst = obstaculos(np.array(Image.open(sin).convert("RGB")).astype(float), formato, L)
+    return int((m & obst).sum()), int(m.sum())
+
+
+def cortes(formato):
+    """Margen mínimo (en px de mesa) de cada frasco a los cuatro bordes."""
+    L = json.loads((RAIZ / "src/compositions/selfie/biotop-prueba.json").read_text())[formato]
+    u = L["outW"] / L["mesaW"]
+    H, W = round(L["alto"] * u), L["outW"]
+    peor = []
+    for k in ("700", "911"):
+        p = L[f"p{k}"]
+        im = Image.open(RAIZ / f"public/assets/selfie/2026-nuevo-estilo/biotop/{formato}-{k}.png")
+        bb = im.getchannel("A").point(lambda v: 255 if v > 20 else 0).getbbox()
+        x0, y0 = p["cx"] * u - im.width / 2, p["cy"] * u - im.height / 2
+        m = min(x0 + bb[0], y0 + bb[1], W - (x0 + bb[2]), H - (y0 + bb[3])) / u
+        peor.append((m, k))
+    return min(peor)
 
 
 def exporta(png, nombre, tope):
@@ -80,13 +99,15 @@ def main():
         still(comp, base, formato, "todo")
         still(comp, TMP / f"{comp}-sin.png", formato, "sinFlechas")
         still(comp, TMP / f"{comp}-masc.png", formato, "flechas")
-        malos, total = choques(TMP / f"{comp}-sin.png", TMP / f"{comp}-masc.png")
+        malos, total = choques(TMP / f"{comp}-sin.png", TMP / f"{comp}-masc.png", formato)
         dest = exporta(base, nombre, tope)
         peso = dest.stat().st_size / 1e6
         ok_peso = tope is None or dest.stat().st_size <= tope
-        estado = "✓" if malos == 0 and ok_peso else "✗"
+        margen, cual = cortes(formato)
+        ok_corte = margen >= 40
+        estado = "✓" if malos == 0 and ok_peso and ok_corte else "✗"
         fallas += estado == "✗"
-        print(f"{estado} {comp:13} flechas: {malos:5d} px chocan de {total}  ·  {dest.name}  {peso:.2f} MB")
+        print(f"{estado} {comp:13} flechas: {malos:5d} px chocan  ·  frasco más al borde: {cual} a {margen:4.0f}  ·  {dest.name}  {peso:.2f} MB")
     sys.exit(1 if fallas else 0)
 
 

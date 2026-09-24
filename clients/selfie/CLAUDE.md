@@ -89,23 +89,35 @@ Prueba aprobada («me encantó») en post, historia, mail y banner desk/mobile:
 `src/compositions/selfie/SelfiePruebaBiotop.tsx` + `biotop-prueba.json`.
 - **Mismo estilo en TODOS los formatos.** Las flechas son UNA: el trazo de la historia
   (curva con rulo), calcado y sólo escalado. Nunca una flecha distinta por formato.
+- **La flecha SALE de la ficha y LLEGA al producto** (700 → su frasco, 911 → el suyo).
+  Calcar la forma no basta: se ancla. `scripts/selfie-biotop-flechas.py` busca, por
+  formato, la salida en el borde de la ficha y la punta justo antes del frasco, y
+  calca el trazo de la historia (girado y escalado) entre los dos.
 - **Nada tapa una flecha**: ni el producto, ni su sombra, ni un texto. Se comprueba
   por programa con `scripts/selfie-biotop-qa.py` (0 px de choque o no sale).
+- ⛔ **El producto NUNCA se corta: se ve entero**, con ≥ 40 px de mesa a cualquier
+  borde. En la 1.ª versión del post el 911 salía 25 px por abajo y nadie lo vio hasta
+  que Coni lo marcó. Ahora `scripts/selfie-biotop-qa.py` lo mide y no deja salir la pieza.
 - **El producto tiene que leerse.** El cliente reclama siempre el pixelado. El frasco
   se prepara al alto exacto de cada formato y ya girado
   (`scripts/selfie-biotop-productos.py`), con el color de la foto original: el recorte
   de remove-bg sale en PNG de paleta y NO se usa su color.
+- **No intervenir el packshot.** Se probó (24-09) volver transparente la tapa y dejar
+  el líquido a nivel con el frasco inclinado (`scripts/selfie-biotop-intervenir.py`):
+  **no gustó**. El packshot del e-commerce va tal cual.
 - ⛔ **No escalar packshots con Magnific**, ni en modo Precision: reescribió la etiqueta
   («65 ml» → «66 ml», «HYDRATING» → «RYDRATING»). Si falta resolución, se pide el
   packshot grande a la marca.
 - **El CTA «Encuéntralos en Selfie.cl»:** en post e historia bajo el titular · en
   el **mail, siempre al final**, cerrando el recorrido de lectura · en **banners desk y
   mobile NO va** (sí o sí).
-- **La caja del nombre de producto va en coral `#FF4374`**, y por eso el fondo NUNCA
-  es coral donde va una ficha (se pierde). Se probó la caja en tinta y **no gustó**.
-  La solución aprobada: la S va en **damasco `#F7D4C0` + salmón `#FF8C93`**. Sobre el
-  damasco lo blanco pasa a tinta `#001E1D` (titular, flechas, CTA) y la 2.ª línea
-  itálica va en coral, como en la mesa 11 de la grilla.
+- **Colores aprobados (1.ª combinación):** S en coral `#FF4374` (izq.) + salmón
+  `#FF8C93` (der.); ficha con caja coral y nombre blanco; titular blanco con la 2.ª
+  línea en nude; flechas y CTA blancos. Se probaron el campo damasco, el campo tinta
+  y la caja del nombre en tinta: **ninguno gustó**. No volver a proponerlos.
+- **La caja coral del nombre lleva un resplandor negro al 30 % en MULTIPLICAR**
+  (`0 0 20px 7px` en mesa de 1080), en una capa propia detrás de la caja, para que se
+  despegue del campo coral. Sólo la caja del nombre, no la del beneficio.
 - **Mail y banners pesan ≤ 1 MB.** Post e historia pueden pesar más si ganan calidad.
 - Medidas: banner desk **2001×686** y mobile **1081×1081** (se exportan a esa medida);
   mail en módulos de **600 de ancho**.

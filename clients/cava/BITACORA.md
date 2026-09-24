@@ -1,3 +1,81 @@
+## 2026-09-24 — Coni (con Claude) · CYBER: ocho rondas sobre las cuatro piezas
+
+**Qué se hizo:** día entero de correcciones sobre las tres propuestas y la pieza
+PRUEBA del Cyber de octubre. Ninguna pieza nueva: las cuatro que ya existían,
+afinadas ronda por ronda con el feedback de Coni —parte por chat y parte por
+**comentario de Drive**, que se lee con `scripts/drive-comentarios.py`.
+
+**Lo que cambió, en orden:**
+
+1. **El sello Descorchados, igual en las cuatro.** Estaba en 517 px en A, 364 en
+   B y 435 en C. Coni: «el Prop C es el mejor tamaño». Se unifica en 435 y —lo
+   importante— **el diámetro deja de depender del encuadre**: antes, al agrandar
+   una escena, el sello crecía con ella.
+2. **La escena de C, menos agrandada** (×1,26 → ×1,08): se perdían los
+   acompañamientos.
+3. **El descuento**, tres rondas: del recuadro naranja al negro del Cyber, y de
+   ahí a un **DISCO**. Ver abajo.
+4. **UNA SOLA ADVERTENCIA por pieza.** Se había entendido mal «agregar otro
+   recuadro» y se pusieron dos. Va una, la de conducir.
+5. **La sombra de la botella en PRUEBA**, tres rondas hasta quedar bien.
+
+**⛔ LA ADVERTENCIA DE CONDUCIR: NO SIRVE CUALQUIER PÁGINA DEL PDF.**
+`ADVERTENCIAS_BEBIDAS-ALCOHOLICAS.pdf` la trae en 11 páginas y casi ninguna vale:
+
+| Páginas | Problema |
+|---|---|
+| 27 y 43 | dicen «LIMITA LA CAPACIDA DE CONDUCIR» — **les falta la D**. Errata del documento oficial |
+| 6, 10, 30, 34, 38 | llevan el Ministerio y la banda tricolor **arriba**, al revés que en CAVA |
+| 22 | correcta, pero cuadrada: al ancho que deja la banda legible su alto se va a 620 px y la banda **cae fuera** de los primeros 520, que es donde `franja_legal` la busca |
+
+**Se usa la 18**, exportada a **940 px** de ancho y no a los 808 de la anterior:
+el check exige 60 px de azul y de rojo en la misma fila **sobre la pieza
+reducida**, y a 808 daban 56 → rechazaba la pieza. A 940 dan 65.
+
+**⛔ LA SOMBRA: EL DIAGNÓSTICO BUENO ERA EL TERCERO.** Coni la marcó tres veces.
+Las dos primeras se diagnosticó mal —se culpó a la orientación y luego al
+fondo—. Lo que pasaba, apagando las capas una por una:
+
+- estaba armada con **elipses superpuestas** y la suma de sus bordes difuminados
+  dejaba un borrón que no correspondía a ninguna forma real;
+- era **enorme**: la capa mayor daba 1632 px contra 887 que mide la botella;
+- e iba **corrida 266 px** al costado.
+
+Ahora **se deriva del alfa de la propia botella**: su tercio inferior, aplastado
+contra la mesa, desplazado apenas y difuminado. Medido: ocupa de −454 a +236 px
+respecto al centro, con la botella en ±443. Queda **debajo**.
+
+**El disco del descuento** terminó calcado de una maqueta que Coni hizo en
+Illustrator: «50%» en una línea y «OFF» debajo, centrado y fino. En **Raleway
+Black** —la que el propio `CYBER_CAVA.ai` usa para sus porcentajes— y **Avenir
+Next Ultra Light** para el OFF, que `marca.json` ya declara como apoyo.
+
+⚠️ **De las nueve Raleway del editable sólo sirve la Black.** Las demás traen el
+mapa de caracteres completo pero **los contornos vacíos**: se les pide la «F» y
+devuelven un hueco. El primer render salió con «50%» y una sola «o» debajo.
+
+**Dónde quedó:** las cuatro en `out/cava/prueba/` y subidas a `CAVA > DISEÑO ia >
+PRUEBA`, con los mismos enlaces de siempre. Se rinden con
+`scripts/cava-cyber-propuestas.py --todas` y
+`scripts/cava-cyber-octubre-prueba.py`. Las 4 pasan las 11 reglas de
+`qa/motor.py --marca cava`.
+
+**Qué sigue:** entra el **precio real** y se elige propuesta. Nada más bloquea.
+
+**Abierto:**
+- ⛔ **EL PRECIO.** Las cuatro van con **$9.245 / $18.490, DE MUESTRA**. No está
+  en ningún editable ni en los briefs de junio a septiembre. **Nada es
+  publicable hasta que llegue.**
+- ⛔ **La etiqueta de la botella de A, B y C la redibujó Magnific.** Hay que
+  reponerla con el packshot antes de publicar.
+- Faltan las **fechas del Cyber de octubre**.
+- Los **5 PDFs del kit digital** que subió Coni (7Colores, Morandé, Adventure,
+  Vistamar, Mancura) están **sin usar**: pueden traer el packshot en mejor
+  resolución.
+- La **revisión automática de comentarios** sigue sin montar. El agente en la
+  nube NO sirve: el conector de Drive sólo lee comentarios en Docs y Sheets, y
+  los de Coni están en PNG.
+
 ## 2026-09-23 — Coni (con Claude) · CYBER DE OCTUBRE: tres propuestas en prueba
 
 **Qué se hizo:** Se abrió el Cyber de octubre para el **7Colores Limited Edition

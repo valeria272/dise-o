@@ -47,7 +47,10 @@
     "posicion": "arriba a la derecha, pegado al borde superior",
     "caja": "negra, texto blanco en versales centrado",
     "banda_tricolor": "bajo la caja: azul #0063AF · blanco #FFFFFF · rojo #E73439",
-    "regla": "EXIGENCIA LEGAL para publicidad de alcohol en Chile. Va en KV, mailings, stories y banners. Una pieza sin esto NO se entrega."
+    "regla": "EXIGENCIA LEGAL para publicidad de alcohol en Chile. Va en KV, mailings, stories y banners. Una pieza sin esto NO se entrega.",
+    "cuantas": "UNA SOLA por pieza. Las cuatro advertencias de la Ley 19.925 son ALTERNATIVAS y rotan; no se suman dos en la misma gráfica.",
+    "de_donde_sale": "ADVERTENCIAS_BEBIDAS-ALCOHOLICAS.pdf, el PDF del Gobierno. Se exporta la página tal cual: NO se recompone, no se le cambia el cuerpo ni se recorta.",
+    "ojo_con_el_pdf": "⛔ NO SIRVE CUALQUIER PÁGINA. Para la advertencia de conducir: las págs. 27 y 43 dicen «LIMITA LA CAPACIDA DE CONDUCIR» — LES FALTA LA D, es una errata del documento oficial. Las 6, 10, 30, 34 y 38 llevan el Ministerio y la banda ARRIBA, al revés que en CAVA. La 22 está bien pero es cuadrada y su banda cae fuera de la zona donde el QA la busca. Sirve la 18, exportada a 940 px de ancho: a 808 la banda tricolor queda en 56 px sobre la pieza reducida y el check `franja_legal` —que exige 60— RECHAZA la entrega. Medido el 24-09-2026."
   },
   "botellas": {
     "origen": "kit digital de la viña (SharePoint de Morandé) — nunca de internet ni de IA",
@@ -274,7 +277,10 @@
     "Precios en CLP chileno sin decimales.",
     "Los sellos de premio van superpuestos como gráfica plana, sin resplandor y sin seguir la perspectiva de la botella.",
     "La titular Bebas Neue Pro no está en las máquinas del estudio: se reconstruye del .ai con scripts/cava-fuentes-desde-editable.py.",
-    "El logo tiene DOS tintas: texto #FFFFFF y el racimo de la V y la tilde de MORANDÉ en #E1670E. Un logo todo blanco está mal."
+    "El logo tiene DOS tintas: texto #FFFFFF y el racimo de la V y la tilde de MORANDÉ en #E1670E. Un logo todo blanco está mal.",
+    "Una sola advertencia del Ministerio por pieza: son alternativas, no se suman.",
+    "El descuento va en DISCO, nunca en recuadro, y no puede tocar ningún texto.",
+    "Una fuente sacada de un .ai puede tener glifos vacíos: hay que renderizarla y mirarla antes de usarla."
   ],
   "madurez": {
     "identidad": "completa",
@@ -344,5 +350,13 @@
     "autor": "Constanza Lizana «Coni», 23-09-2026, por comentario en las 3 propuestas del Cyber",
     "archivo_92": "public/assets/cava/sello-descorchados-92.png (el mismo 92-DESCORCHADOS.webp que enlaza CAVA_SEPT.ai)",
     "ojo": "Si la botella se genera con IA, el sello que venga en la imagen TAMPOCO es el oficial: hay que taparlo con el archivo real."
-  }
+  },
+  "descuento": {
+    "forma": "DISCO, no recuadro. Coni, 24-09-2026.",
+    "interior": "«50%» en UNA línea, grande y centrado; «OFF» debajo, centrado, en peso fino y con las letras separadas.",
+    "tipografias": "Raleway Black para el porcentaje —la que el propio CYBER_CAVA.ai usa para sus porcentajes— y Avenir Next Ultra Light para el OFF.",
+    "color": "El naranja de marca sobre fondos oscuros; el negro del Cyber #1D1D1B cuando el fondo es naranja, porque ahí el naranja desaparece.",
+    "regla": "⚠️ El disco NO puede tocar ningún texto. Se comprueba por programa en cada render contra el titular, el nombre del vino y los precios."
+  },
+  "tipografia_ojo": "⛔ LAS FUENTES QUE SE SACAN DE UN .ai SON SUBCONJUNTOS. Traen el mapa de caracteres COMPLETO pero muchos glifos con los CONTORNOS VACÍOS: se les pide una letra y devuelven un hueco, sin error. De las nueve Raleway del editable del Cyber sólo la Black está entera, porque es la que esa pieza usó. Con Bebas pasa igual y por eso hay que fundir dos editables. SIEMPRE renderizar el texto y mirarlo antes de dar una fuente por buena."
 }

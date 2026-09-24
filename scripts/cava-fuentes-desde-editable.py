@@ -121,7 +121,8 @@ def main():
     por_peso = {}
     for ai in ais:
         for nombre, data in subconjuntos(ai).items():
-            if "Bebas" in nombre:
+            # FILTRO=Scotch para Selfie (24-09-2026); por defecto, la Bebas de CAVA.
+            if os.environ.get("FILTRO", "Bebas") in nombre:
                 por_peso.setdefault(nombre, []).append(data)
     for nombre, lista in sorted(por_peso.items()):
         salida = os.path.join(dest, nombre + ".otf")

@@ -90,19 +90,29 @@ SELLO_POS = {"A": (0.734, 0.487, 0.1430, 1.20, False),
              "B": (0.760, 0.352, 0.1620, 1.00, True),
              "C": (0.794, 0.530, 0.1259, 1.22, False)}
 LEGAL_CAJA = (1442, 0, 2250, 470)
-# Segunda advertencia, la de conducir. Sale TAL CUAL de la PÁGINA 18 de
+# LA advertencia. Va UNA SOLA por pieza — la de conducir REEMPLAZA a la de
+# menores de 18, no se suma a ella. Sale TAL CUAL de la PÁGINA 18 de
 # ADVERTENCIAS_BEBIDAS-ALCOHOLICAS.pdf (el del Gobierno), exportada a 808 px, el
 # mismo ancho que la que ya estaba. ⛔ NO SE EDITA: es un bloque legal y va como
 # viene diseñado — ni se recompone, ni se le cambia el cuerpo, ni se recorta.
 #
-# ⚠️ POR QUÉ LA 18 Y NO OTRA. El PDF trae la misma advertencia en 11 páginas:
-#   · las 27 y 43 dicen «LIMITA LA CAPACIDA DE CONDUCIR» — les falta la D.
-#     Es una errata del documento oficial, comprobada leyendo su texto.
-#   · las 34 y 43 llevan el Ministerio y la banda ARRIBA, al revés que la
-#     advertencia que ya está puesta.
-# La 18 es la única apaisada que está bien escrita Y en el mismo orden.
-LEGAL2_PNG = "public/assets/cava/advertencia-conducir.png"
-LEGAL2_Y = 470
+# ⚠️ POR QUÉ LA 22 Y NO OTRA. El PDF trae esta advertencia en 11 páginas y casi
+# ninguna sirve:
+#   · las 27 y 43 dicen «LIMITA LA CAPACIDA DE CONDUCIR» — LES FALTA LA D. Es
+#     una errata del documento oficial, comprobada leyendo su texto.
+#   · las 6, 10, 30, 34 y 38 llevan el Ministerio y la banda ARRIBA, al revés
+#     que como va en las piezas de CAVA.
+#   · la 22 es cuadrada y está bien, pero a un ancho que deje la banda legible
+#     su alto se va a 620 px y la banda cae MÁS ABAJO de los primeros 520 px,
+#     que es donde el check la busca.
+# Queda la 18: apaisada, bien escrita y con la banda abajo. Se exporta a 940 px
+# de ancho — algo más que los 808 de la que había — porque el check
+# `franja_legal` exige 60 px de azul y de rojo en la misma fila sobre la pieza
+# REDUCIDA: a 808 daban 56 y la rechazaba. A 940 dan 65 y la banda queda en
+# y=293, dentro de la zona. Es la regla bloqueante de la marca: sin banda no
+# se entrega.
+LEGAL_PNG = "public/assets/cava/advertencia-conducir.png"
+
 
 ESCENAS = {"A": "cyber-oct2026-esc-rayo.png",
            "B": "cyber-oct2026-esc-mano.png",
@@ -207,10 +217,10 @@ def componer(cual, precio, antes, velo=True):
     logo = Image.open(LOGO).convert("RGBA")
     logo = logo.resize((560, round(560 * logo.height / logo.width)), Image.LANCZOS)
     capa.alpha_composite(logo, (COL_X, 150))
-    legal = Image.open(CYBER_ST).convert("RGB").crop(LEGAL_CAJA).convert("RGBA")
+    # UNA SOLA advertencia por pieza. La de conducir REEMPLAZA a la de menores
+    # de 18 — no se suma. Sale tal cual de la pág. 18 del PDF del Gobierno.
+    legal = Image.open(os.path.join(RAIZ, LEGAL_PNG)).convert("RGBA")
     capa.alpha_composite(legal, (W - legal.width, 0))
-    legal2 = Image.open(os.path.join(RAIZ, LEGAL2_PNG)).convert("RGBA")
-    capa.alpha_composite(legal2, (W - legal2.width, LEGAL2_Y))
 
     pon_sello(capa, cual)
 

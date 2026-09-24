@@ -186,6 +186,7 @@ import {SelfieCarruselFrizz} from "./compositions/SelfieCarruselFrizz";
 import {SelfieCarruselEmoji} from "./compositions/SelfieCarruselEmoji";
 import {SelfieCarruselFiestas} from "./compositions/SelfieCarruselFiestas";
 import {SelfieCarruselClass} from "./compositions/SelfieCarruselClass";
+import {SelfiePruebaBiotop} from "./compositions/selfie/SelfiePruebaBiotop";
 
 const clFeed = {durationInFrames: 1, fps: 30, width: 1080, height: 1350} as const;
 const clStory = {durationInFrames: 1, fps: 30, width: 1080, height: 1920} as const;
@@ -299,6 +300,8 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="BW-S-Plateada" component={StPlateada} {...btStory} />
       </Folder>
       <Folder name="Selfie">
+        <Composition id="SelfiePruebaBiotop-Post" component={SelfiePruebaBiotop} durationInFrames={1} fps={30} width={2250} height={2813} defaultProps={{formato: "post" as const}} />
+        <Composition id="SelfiePruebaBiotop-Story" component={SelfiePruebaBiotop} durationInFrames={1} fps={30} width={2250} height={4000} defaultProps={{formato: "story" as const}} />
         <Composition
           id="SelfieCarruselFiestas"
           component={SelfieCarruselFiestas}

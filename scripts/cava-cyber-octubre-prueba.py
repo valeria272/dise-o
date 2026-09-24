@@ -24,6 +24,7 @@ CAVA_SEPT.ai mesa 13, escalado x2,0833. Ver cava-fuentes-desde-editable.py.
 """
 import argparse, importlib.util, os, sys
 import numpy as np
+from scipy import ndimage
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -59,9 +60,10 @@ SELLO_DIAM = 435
 SELLO_EN_PACKSHOT = (0.7217, 0.3289)      # su centro, en fracción del packshot
 LOGO_X, LOGO_Y, LOGO_W = 257, 367, 650        # medido sobre la pieza real
 LEGAL_CAJA = (1442, 0, 2250, 470)
-# la segunda advertencia, la de conducir, tal cual sale de la pág. 18 del PDF
-LEGAL2_PNG = "public/assets/cava/advertencia-conducir.png"
-LEGAL2_Y = 470
+# LA advertencia — una sola por pieza. La de conducir, tal cual sale de la
+# pág. 18 del PDF del Gobierno, y REEMPLAZA a la de menores de 18.
+LEGAL_PNG = "public/assets/cava/advertencia-conducir.png"
+
 # ── El bloque de oferta ─────────────────────────────────────────────────────
 # Todo cuelga de UN solo margen izquierdo. Antes la cápsula del descuento
 # arrancaba en x=535 y el nombre del vino en x=336: dos márgenes distintos, y se
@@ -152,17 +154,17 @@ def sombra_direccional(lienzo, silueta, cx, ybase, anc, lado="der"):
     de frente; acá la luz entra clara y alta por un lado, así que la sombra tiene
     que salir disparada hacia el otro y aplastada contra la mesa. Sin esto la
     botella se leía apoyada en el aire."""
+    # ⛔ NADA DE SOMBRA LARGA. La primera versión tiraba un trapecio de más de dos
+    # anchos de botella y se leía como una mancha suelta «volando» al costado —
+    # Coni lo marcó dos veces. Con una luz CENITAL y dura la sombra es CORTA y va
+    # pegada a la base; apenas se desplaza al lado contrario del haz.
     signo = -1 if lado == "der" else 1
-    capa = Image.new("RGBA", lienzo.size, (0, 0, 0, 0))
-    d = ImageDraw.Draw(capa)
-    largo = anc * 2.35
-    d.polygon([(cx - anc * 0.40, ybase),
-               (cx + anc * 0.40, ybase),
-               (cx + signo * largo * 0.62 + anc * 0.16, ybase + anc * 0.30),
-               (cx + signo * largo * 0.62 - anc * 0.16, ybase + anc * 0.30)],
-              fill=(10, 5, 2, 120))
-
-    lienzo.alpha_composite(capa.filter(ImageFilter.GaussianBlur(anc * 0.115)))
+    c = Image.new("RGBA", lienzo.size, (0, 0, 0, 0))
+    d = ImageDraw.Draw(c)
+    dx = signo * anc * 0.30
+    d.ellipse([cx + dx - anc * 0.78, ybase - anc * 0.115,
+               cx + dx + anc * 0.78, ybase + anc * 0.175], fill=(6, 3, 1, 170))
+    lienzo.alpha_composite(c.filter(ImageFilter.GaussianBlur(anc * 0.095)))
 
     # OCLUSIÓN DE CONTACTO, en tres radios. Es lo que más vende el apoyo y es lo
     # que siempre falta: la botella tapa la luz rasante del mármol, así que
@@ -176,6 +178,30 @@ def sombra_direccional(lienzo, silueta, cx, ybase, anc, lado="der"):
                                     cx + anc * rx, ybase + anc * ry],
                                    fill=(0, 0, 0, al))
         lienzo.alpha_composite(oc.filter(ImageFilter.GaussianBlur(anc * bl)))
+
+
+def aplana_mesa(f, desde=0.70, fuerza=0.80):
+    """Iguala la luz de la mesa de lado a lado.
+
+    ⛔ EL BUG QUE COSTÓ DOS RONDAS. La escena generada trae el mármol más oscuro
+    de un lado, y esa penumbra se lee como una sombra suelta «volando» al costado
+    de la botella — Coni la marcó dos veces creyendo que era la sombra que yo
+    dibujaba. No lo era: la sombra estaba bien puesta y era el FONDO.
+
+    Se corrige aplanando el perfil horizontal de esa franja: se divide por su
+    propia media por columna, muy suavizada, así que desaparecen las manchas
+    grandes y la veta fina del mármol se queda."""
+    a = np.asarray(f).astype(np.float32)
+    h, w, _ = a.shape
+    y0 = int(h * desde)
+    zona = a[y0:]
+    lum = zona.mean(axis=2)
+    perfil = ndimage.gaussian_filter1d(lum.mean(axis=0), w * 0.055)
+    corr = np.clip(perfil.mean() / np.maximum(perfil, 1.0), 0.55, 1.75)
+    corr = 1.0 + (corr - 1.0) * fuerza
+    rampa = np.clip((np.arange(h - y0) / float(max(1, (h - y0) * 0.25))), 0, 1)[:, None]
+    a[y0:] = np.clip(zona * (1.0 + (corr[None, :] - 1.0) * rampa)[:, :, None], 0, 255)
+    return Image.fromarray(a.astype(np.uint8))
 
 
 def contiene_fondo(f):
@@ -199,6 +225,7 @@ def contiene_fondo(f):
     vin = np.maximum(vin, np.clip((t - 0.80) / 0.14, 0, 1) * 0.55 + vin * (1 - np.clip((t - 0.80) / 0.14, 0, 1)) + np.clip((t - 0.80) / 0.14, 0, 1) * 0.45)
     m = (base * vin)[:, :, None]
     out = Image.fromarray(np.clip(a * m, 0, 255).astype(np.uint8))
+    out = aplana_mesa(out)
 
     # La veta del mármol de primer plano existe pero es de contraste bajísimo, y
     # el check `desenfoque_parcial` mide VARIANZA del Laplaciano: una banda con
@@ -307,10 +334,10 @@ def main():
     logo = logo.resize((LOGO_W, round(LOGO_W * logo.height / logo.width)), Image.LANCZOS)
     capa.alpha_composite(logo, (LOGO_X, LOGO_Y))
 
-    legal = Image.open(CYBER).convert("RGB").crop(LEGAL_CAJA).convert("RGBA")
+    # UNA SOLA advertencia por pieza. La de conducir REEMPLAZA a la de menores
+    # de 18 — no se suma. Sale tal cual de la pág. 18 del PDF del Gobierno.
+    legal = Image.open(os.path.join(RAIZ, LEGAL_PNG)).convert("RGBA")
     capa.alpha_composite(legal, (W - legal.width, 0))
-    legal2 = Image.open(os.path.join(RAIZ, LEGAL2_PNG)).convert("RGBA")
-    capa.alpha_composite(legal2, (W - legal2.width, LEGAL2_Y))
 
     f_mano = ft(F_MANO, 148.46)
     t1 = "Llegó el Cyber"

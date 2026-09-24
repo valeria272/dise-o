@@ -218,7 +218,8 @@ const Ficha: React.FC<{
 export type Campo = "coral" | "damasco" | "tinta";
 export const ESQUEMA: Record<Campo, {campo: string; texto: string; linea2: string; flecha: string}> = {
   coral: {campo: C.coral, texto: C.blanco, linea2: C.nude, flecha: C.blanco},
-  damasco: {campo: C.nude, texto: C.tinta, linea2: C.coral, flecha: C.tinta},
+  // Coni 24-09: sobre el damasco NO va tinta; texto y flechas vuelven a los del inicio
+  damasco: {campo: C.nude, texto: C.blanco, linea2: C.nude, flecha: C.blanco},
   tinta: {campo: C.tinta, texto: C.blanco, linea2: C.nude, flecha: C.blanco},
 };
 
@@ -279,12 +280,13 @@ const MascaraFlechas: React.FC<{L: Diseno & Medidas; u: number}> = ({L, u}) => (
 );
 
 /** capa: "todo" (la pieza) · "sinFlechas" / "flechas" (para el QA de choques: qa/selfie-flechas.py). */
-export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie; capa?: "todo" | "sinFlechas" | "flechas"; campo?: Campo}> = ({
+export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie; capa?: "todo" | "sinFlechas" | "flechas"; campo?: Campo; cajaDamasco?: boolean}> = ({
   formato,
   capa = "todo",
+  cajaDamasco = false,
   campo = "damasco", // Coni 24-09: el campo coral igualaba a la caja del nombre
 }) => {
-  const FICHA = {fondo: C.coral, tinta: C.blanco};
+  const FICHA = cajaDamasco ? {fondo: C.nude, tinta: C.coral} : {fondo: C.coral, tinta: C.blanco};
   const E = ESQUEMA[campo];
   cargaFuentes();
   const M = (MEDIDAS as unknown as Record<FormatoSelfie, Medidas>)[formato];

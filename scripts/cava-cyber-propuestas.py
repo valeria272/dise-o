@@ -60,7 +60,7 @@ DORADO = (201, 162, 78)           # #C9A24E, el dorado medio de la ficha
 # dorado lo amarra al sello sin competir con él.
 # El «OFF» va dorado SÓLO sobre el negro: sobre el naranja el dorado se apaga
 # y pierde justamente el contraste que se buscaba.
-DISCO_D = 650        # diámetro del disco del descuento
+DISCO_D = 700        # diámetro del disco del descuento
 CAJA_DESCUENTO = {"A": (NARANJA, (255, 255, 255), (255, 255, 255)),
                   "B": (NEGRO_CYBER, (255, 255, 255), DORADO),
                   "C": (NARANJA, (255, 255, 255), (255, 255, 255))}
@@ -259,26 +259,26 @@ def componer(cual, precio, antes, velo=True):
     # Dentro del disco: el «50» manda, y a su derecha una columna con el «%»
     # arriba y el «OFF» debajo. Coni, 24-09: «el 50 debe ser más grande, el OFF
     # al costado en pequeño y sobre el OFF el símbolo de descuento».
-    f_num = ImageFont.truetype(F_RAL_BLACK, 240)
-    f_pct = ImageFont.truetype(F_RAL_BLACK, 92)
-    f_off = ImageFont.truetype(F_RAL_BLACK, 64)
+    f_num = ImageFont.truetype(F_RAL_BLACK, 348)
+    f_pct = ImageFont.truetype(F_RAL_BLACK, 112)
+    f_off = ImageFont.truetype(F_RAL_BLACK, 74)
     a_num = d.textlength("50", font=f_num)
     tr = 0.16 * f_off.size
     a_off = sum(d.textlength(c, font=f_off) for c in "OFF") + tr * 2
     a_pct = d.textlength("%", font=f_pct)
     col = max(a_off, a_pct)
-    hueco = 240 * 0.12
+    hueco = 348 * 0.085
     total = a_num + hueco + col
     x0 = cxd - total / 2
     # el «50», centrado en vertical
-    d.text((x0, cyd + 240 * 0.32), "50", font=f_num, fill=tinta_num, anchor="ls")
+    d.text((x0, cyd + 348 * 0.34), "50", font=f_num, fill=tinta_num, anchor="ls")
     # el «%» arriba de la columna, alineado con el tope del «50»
-    d.text((x0 + a_num + hueco + (col - a_pct) / 2, cyd - 240 * 0.12),
+    d.text((x0 + a_num + hueco + (col - a_pct) / 2, cyd - 348 * 0.13),
            "%", font=f_pct, fill=tinta_num, anchor="ls")
     # y el «OFF» debajo del «%»
     x = x0 + a_num + hueco + (col - a_off) / 2
     for c in "OFF":
-        d.text((x, cyd + 240 * 0.32), c, font=f_off, fill=tinta_off, anchor="ls")
+        d.text((x, cyd + 348 * 0.34), c, font=f_off, fill=tinta_off, anchor="ls")
         x += d.textlength(c, font=f_off) + tr
 
 

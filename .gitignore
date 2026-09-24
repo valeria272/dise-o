@@ -178,6 +178,9 @@ public/assets/landera/fotos/*.png
 #    Agrandir = de pago, licencia del cliente Selfie (se pide a Coni)
 public/assets/fonts/ivyora/
 public/assets/fonts/selfie/
+#    Scotch Display = Adobe Fonts. Se RECONSTRUYE en cada máquina desde los .ai de
+#    Coni con `scripts/selfie-fuentes-scotch.py`. Krub (OFL) sí viaja.
+public/assets/fonts/selfie-2026/ScotchDisplay*
 out/*/_subidas.json
 
 # Landing Strip Center Algarrobal — Más Center (28-08-2026). Excepción deliberada,
@@ -686,3 +689,9 @@ out/ebema/20260907_paid_octubre/*
 out/ebema/20260907_paid_octubre/editables/*.html
 !out/ebema/20260907_paid_octubre/fondos/
 !out/ebema/20260907_paid_octubre/fondos/**
+
+# SELFIE · estilo nuevo (24-09-2026): el logotipo vertical sacado en vector de la grilla
+# de Coni y los frascos Biotop YA preparados por formato (4,4 MB). La prueba aprobada
+# (SelfiePruebaBiotop) no rinde sin ellos, y los recortes de remove-bg no salen dos
+# veces iguales. Se rehacen con scripts/selfie-biotop-productos.py si hace falta.
+!public/assets/selfie/2026-nuevo-estilo/**

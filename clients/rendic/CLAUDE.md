@@ -89,10 +89,24 @@ No es decoración genérica: son los mismos tres símbolos de los pilares.
 
 Van juntos, en ese orden, separados por filetes verticales.
 
-## La firma
+## El slogan — reemplaza a la firma desde el 23-09-2026
 
-**«Somos Familia Rendicina»**, manuscrita con subrayado a mano alzada, en burdeo,
-abajo a la derecha dentro de la banda blanca. Cierra la pieza.
+**«Educating for purpose, excellence & wellbeing»**, en dos líneas («Educating for
+purpose,» / «excellence & wellbeing»), Montserrat 500, burdeo, abajo a la derecha
+dentro de la banda blanca. Cierra la pieza.
+
+Lo pidió **Sebastián Córdova** en las 13 piezas de octubre: «Eliminar "Somos familia
+rendicina" y colocar el slogan nuevo». La firma manuscrita queda **retirada** —no se
+vuelve a usar `raw/rendic/activos/firma.png`—.
+
+- No hay versión manuscrita del slogan. Va compuesto en la letra del sistema; imitar
+  la mano de Diego sería inventar un activo. **Si Diego entrega un lettering, reemplaza
+  a éste.**
+- Va **más angosto que la firma** (330 px en feed, 360 en story): al mismo ancho
+  competía con el CTA de la izquierda.
+- **En reel va sólo en la tarjeta de cierre**, centrado y en blanco, terminando en
+  y=1480. En las escenas no cabe: la zona de 420 px del brief empieza en y=1500 y el
+  titular de 3 líneas llega a y≈1425. La firma de la ronda 2 violaba esa zona.
 
 ---
 
@@ -128,7 +142,7 @@ diseñadora. Entregar a 1080.
 - [ ] Story: **268 px arriba y abajo** libres de texto y logo (14%)
 - [ ] Reel: 120 px arriba, 420 px abajo, columna derecha libre
 - [ ] Los tres pilares en orden y con su ícono correcto
-- [ ] La firma «Somos Familia Rendicina» presente
+- [ ] El slogan «Educating for purpose, excellence & wellbeing» presente (la firma manuscrita está retirada)
 - [ ] Textos **literales del brief** — no reescribir copys
 
 ---
@@ -158,6 +172,12 @@ Los reels de septiembre son **la única fuente de foto** y sólo tienen **tres e
 
 > 📐 **Regla práctica:** medir la luminancia bajo el logo (x 36–292, y 31–287) antes de
 > elegir la foto. Sobre 140 el logo blanco se pierde y hay que cambiar de plano.
+
+> ✅ **La escena de la profesora ya se puede usar (23-09-2026).** Se había descartado
+> por el logo blanco; con el ARC 7421C opaco se lee. Es la foto de la **P04** de
+> octubre (`rem-wsp-02.jpg`), puesta porque Sebastián marcó que se repetía con la P06.
+> Quedan repetidas biblioteca (P01 = P07): con cuatro escenas y cinco gráficas, alguna
+> se repite sí o sí.
 
 No hay material para: certificación Cambridge, intercambios, academias de K-pop /
 teatro / deportes, ni mudanza (cajas, camión, familia). Si el brief los vuelve a

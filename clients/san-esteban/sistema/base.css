@@ -116,8 +116,11 @@ body{background:#fff}
 .cta.ambar{background:var(--ambar-cta);color:var(--azul-cta)}
 
 .feed  .cta{top:946px}
-.story .cta{top:1739px}
-.story .cta.dos-lineas{top:1659px}
+/* story: la barra se apoya por ABAJO en y=1540 — 340 px del botón del anuncio de
+   Meta + 40 px de respiro. En septiembre iba en top:1739 y el botón la tapaba
+   (comentario de Sebastián Córdova en P03/P04/P06/P07, 23-09-2026). Anclada por
+   abajo, la de dos líneas crece hacia arriba y tampoco entra en la zona. */
+.story .cta{top:auto;bottom:380px}
 
 /* ---------- escalas tipograficas medidas ---------- */
 .feed  .titular.xl{font-size:126px}   /* ADMISION 2027 - cap height 91 px */

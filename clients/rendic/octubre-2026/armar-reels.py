@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw
 import os, sys, glob, subprocess
 sys.path.insert(0, os.path.dirname(__file__))
 from armar import (G, fuente, fondo, texto_centrado, quebrar, pildora,
-                   logo_recortado, BURDEO, BLANCO, ACT, LOGO, RAIZ)
+                   logo_recortado, slogan, BURDEO, BLANCO, ACT, LOGO, RAIZ)
 
 FPS, W, H = 30, 1080, 1920
 SP  = "/private/tmp/claude-501/-Users-sere-copylab-estudio/dc5238cb-7ef0-497a-87b8-aec4887784b9/scratchpad"
@@ -43,6 +43,7 @@ REELS = [
 g = G["story"]
 BASE_Y = g["elipse"]["cy"] + g["elipse"]["ry"]      # 910
 PISO_UTIL = H - int(H * 0.14)                        # zona segura: 1652
+PISO_REEL = H - 420                                  # reel: 420 px abajo (brief) → 1500
 
 def mascara_elipse():
     m = Image.new("L", (W, H), 0)
@@ -66,14 +67,10 @@ def capa_escena(txt):
     f = fuente(850, st)
     for l in ln:
         texto_centrado(d, y, l, f, BLANCO, W); y += int(st*1.16)
-    # firma en blanco, dentro de la zona segura — cierra la pieza como en el sistema
-    firma = Image.open(os.path.join(ACT, "firma.png")).convert("RGBA")
-    fw = 430; firma = firma.resize((fw, int(firma.height*fw/firma.width)), Image.LANCZOS)
-    px = firma.load()
-    for j in range(firma.height):
-        for i in range(firma.width):
-            px[i,j] = (255,255,255, px[i,j][3])
-    c.paste(firma, ((W-fw)//2, PISO_UTIL - firma.height - 46), firma)
+    # Sin firma ni slogan en las escenas (23-09-2026): el pie de reel tiene 420 px
+    # libres por el brief (y≥1500) y el titular de 3 líneas llega a y≈1425, así que
+    # no cabe sin pegarse. La firma de la ronda 2 caía en y 1542–1606, dentro de la
+    # zona. El slogan cierra la pieza en la tarjeta final.
     return c
 
 def capa_cierre(cta):
@@ -89,15 +86,10 @@ def capa_cierre(cta):
     fb = fuente(500, 40)
     for l in quebrar(cta, lambda s_: fuente(500, s_), int(W*0.78), 40):
         texto_centrado(d, y, l, fb, BLANCO, W); y += int(40*1.35)
-    firma = Image.open(os.path.join(ACT, "firma.png")).convert("RGBA")
-    fw = 520; firma = firma.resize((fw, int(firma.height*fw/firma.width)), Image.LANCZOS)
-    # firma en blanco para que lea sobre burdeo
-    px = firma.load()
-    for j in range(firma.height):
-        for i in range(firma.width):
-            r,gg,b,al = px[i,j]
-            px[i,j] = (255,255,255,al)
-    c.paste(firma, ((W-fw)//2, PISO_UTIL - firma.height - 40), firma)
+    # slogan nuevo en vez de «Somos Familia Rendicina» — Sebastián, 23-09-2026.
+    # Termina 20 px antes de PISO_REEL: la zona de 420 px del brief queda limpia.
+    fw = 460; firma = slogan(fw, BLANCO, centrado=True)
+    c.paste(firma, ((W-fw)//2, PISO_REEL - firma.height - 20), firma)
     return c
 
 def frame_fuente(clip, idx):

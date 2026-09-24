@@ -148,8 +148,11 @@ Igual, con tres diferencias medidas:
    - Escudo **175 × 209 px**, `y = 724`
    - Sello 110 **255 × 222 px**, `y = 971` — **~38 px de aire** bajo el escudo
 3. **Foto abajo**, entrando con un **arco convexo** que la abraza.
-4. **Barra de CTA azul** sobre la foto: alto **81 px** (una línea, `y = 1739`) o
-   **131 px** (dos líneas, `y = 1659`).
+4. **Barra de CTA azul** sobre la foto: alto **81 px** (una línea) o **131 px** (dos
+   líneas). **Desde el 23-09-2026 se apoya por abajo en `y = 1540`** (340 px del botón
+   de Meta + 40 de respiro). En septiembre iba en `y = 1739` / `1659` y el botón del
+   anuncio la tapaba: lo marcó Sebastián Córdova en las stories P03, P04, P06 y P07 de
+   octubre. Se corrigió en las cinco.
 
 ### Formatos
 

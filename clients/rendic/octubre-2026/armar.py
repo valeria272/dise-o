@@ -38,6 +38,33 @@ def fuente(peso, size):
     f.set_variation_by_axes([peso])
     return f
 
+# Slogan nuevo del colegio — pedido de Sebastián Córdova en las 13 piezas de octubre
+# (comentarios de Drive, 23-09-2026): reemplaza la firma «Somos Familia Rendicina».
+# No hay versión manuscrita del slogan, así que va compuesto en Montserrat —la letra
+# del sistema— en el mismo lugar, color y ancho que ocupaba la firma. Una firma
+# manuscrita imitada sería inventar un activo que Diego no dibujó.
+SLOGAN = ("Educating for purpose,", "excellence & wellbeing")
+
+def slogan(ancho, color, peso=500, centrado=False):
+    """El slogan en dos líneas, ajustado a `ancho` px. A la derecha en la banda
+    de las gráficas; centrado en los reels, donde la firma también iba al centro."""
+    size = 60
+    while size > 12:
+        f = fuente(peso, size)
+        if max(f.getbbox(l)[2] - f.getbbox(l)[0] for l in SLOGAN) <= ancho:
+            break
+        size -= 1
+    paso = int(size * 1.22)
+    asc = f.getbbox(SLOGAN[0])[1]
+    alto = paso + (f.getbbox(SLOGAN[1])[3] - asc)
+    im = Image.new("RGBA", (ancho, alto), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    for i, l in enumerate(SLOGAN):
+        b = f.getbbox(l)
+        x = (ancho - (b[2] - b[0])) // 2 - b[0] if centrado else ancho - b[2]
+        d.text((x, i * paso - asc), l, font=f, fill=color)
+    return im
+
 def fondo(W, H):
     """Burdeo + patrón: franja de 1080x355 repetida en vertical (validada al 99,8%)."""
     fr = Image.open(os.path.join(ACT, "patron-franja.png")).convert("RGB")
@@ -134,11 +161,14 @@ PIEZAS = [
       bajada="Educación bilingüe con foco en el bienestar de tu hijo, en Antofagasta",
       apoyo="Conversemos por WhatsApp",
       foto="rem-trafico-07.jpg"),
- dict(n="04", subir_feed=165, camp="wsp-antofagasta",
+ # P04: foto cambiada el 23-09-2026 — «Elegir otra foto, ya que se repite» (Sebastián):
+ # la de juegos de patio era la misma de la P06. Va la escena de la profesora, que en
+ # septiembre se descartó porque el logo BLANCO no se leía; el 7421C opaco sí se lee.
+ dict(n="04", subir_feed=0, camp="wsp-antofagasta",
       titulo="Bienestar y excelencia, desde Playgroup hasta IV Medio",
       bajada="Conoce el proceso de admisión 2027 de Antonio Rendic College",
       apoyo="Escríbenos por WhatsApp",
-      foto="rem-trafico-01.jpg"),
+      foto="rem-wsp-02.jpg"),
  dict(n="06", subir_feed=150, camp="wsp-mudanza",
       titulo="¿Te mudas a Antofagasta en 2027?",
       bajada="Asegura el cupo de tu hijo en Antonio Rendic College",
@@ -212,9 +242,9 @@ def componer(p, fmt):
     for ln in la:
         d.text((62, ay), ln, font=fuente(800, sa), fill=BURDEO); ay += int(sa*1.30)
 
-    firma = Image.open(os.path.join(ACT, "firma.png")).convert("RGBA")
-    fw = 390 if fmt == "feed" else 430
-    firma = firma.resize((fw, int(firma.height * fw / firma.width)), Image.LANCZOS)
+    # más angosto que la firma (390/430): en el mismo ancho competía con el CTA
+    fw = 330 if fmt == "feed" else 360
+    firma = slogan(fw, BURDEO)
     c.paste(firma, (W - fw - 54, g["banda_y"] + (banda_h - firma.height)//2), firma)
     return c
 

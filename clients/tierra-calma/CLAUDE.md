@@ -166,6 +166,32 @@ Las dos mitades de la regla:
    La **cursiva** sigue reservada para el remate emotivo del bloque
    (*AQUÍ LAS RESOLVEMOS*, *HASTA DOS POR PARCELA*) — también en versales.
 
+#### ⛔ «TIERRA CALMA» NUNCA SE PARTE ENTRE DOS LÍNEAS
+
+Diego, 24-09-2026: *"para el reel del 01-10 hay que dejar en el primer frame la
+frase Tierra Calma juntos en la misma línea **(siempre)**"*.
+
+El primer subtítulo del reel salía **«La primavera ya llegó a Tierra / Calma»**.
+El nombre de la marca partido es el mismo tipo de error que escribirlo mal.
+
+**Vale para todo**: subtítulos de reel, titulares, bajadas, globos y píldoras. Si
+no cabe, **se reescribe la frase o se baja el cuerpo** — nunca se deja partir.
+
+La forma de asegurarlo en código es envolver el nombre, no confiar en el ancho:
+
+```tsx
+<span style={{whiteSpace: "nowrap"}}>Tierra Calma</span>
+```
+
+Lo mismo vale para **«Padre Hurtado»**, que es la otra unidad de dos palabras que
+aparece en casi todas las piezas.
+
+> ⚠️ Con la escala automática (`cuerpoSans`) el cuerpo cambia según el largo de
+> la frase, así que **una frase que hoy cabe puede partirse mañana** al editarle
+> una palabra. Por eso la regla se aplica en el componente, no a ojo sobre el
+> render.
+
+
 #### ⛔ ORDEN TIPOGRÁFICO — sólo DOS roles, nunca más
 
 Ronda de Diego del 22-09 sobre `p-20-10.png`: *"hay demasiadas tipografías, hay

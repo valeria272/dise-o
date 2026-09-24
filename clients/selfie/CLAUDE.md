@@ -98,6 +98,14 @@ Prueba aprobada («me encantó») en post, historia, mail y banner desk/mobile:
 - ⛔ **No escalar packshots con Magnific**, ni en modo Precision: reescribió la etiqueta
   («65 ml» → «66 ml», «HYDRATING» → «RYDRATING»). Si falta resolución, se pide el
   packshot grande a la marca.
+- **El CTA «Encuéntralos en Selfie.cl»:** en post e historia bajo el titular · en
+  el **mail, siempre al final**, cerrando el recorrido de lectura · en **banners desk y
+  mobile NO va** (sí o sí).
+- **La caja del nombre de producto va en coral `#FF4374`**, y por eso el fondo NUNCA
+  es coral donde va una ficha (se pierde). Se probó la caja en tinta y **no gustó**.
+  La solución aprobada: la S va en **damasco `#F7D4C0` + salmón `#FF8C93`**. Sobre el
+  damasco lo blanco pasa a tinta `#001E1D` (titular, flechas, CTA) y la 2.ª línea
+  itálica va en coral, como en la mesa 11 de la grilla.
 - **Mail y banners pesan ≤ 1 MB.** Post e historia pueden pesar más si ganan calidad.
 - Medidas: banner desk **2001×686** y mobile **1081×1081** (se exportan a esa medida);
   mail en módulos de **600 de ancho**.

@@ -70,6 +70,7 @@ type Diseno = {
   ficha911: {x: number; y: number; w: number};
   titulo: {y: number; x?: number; w?: number};
   logo: {x: number; y: number};
+  cta: {donde: "titulo" | "abajo" | "no"; y?: number};
 };
 type Medidas = {
   mesaW: number; alto: number; outW: number; t: number;
@@ -97,6 +98,7 @@ const TRAZO = {
 const LAYOUT: Record<FormatoSelfie, Diseno> = {
   post: {
     logo: {x: 953, y: 173},
+    cta: {donde: "titulo"},
     // curva en S: entra arriba a la derecha del centro, sale abajo a la izquierda
     curva: "M 600 0 C 830 260, 820 470, 560 690 C 330 890, 300 1110, 380 1350",
     ficha700: {x: 400, y: 238, w: 515},
@@ -105,6 +107,7 @@ const LAYOUT: Record<FormatoSelfie, Diseno> = {
   },
   story: {
     logo: {x: 953, y: 230},
+    cta: {donde: "titulo"},
     curva: "M 610 0 C 860 380, 840 700, 560 960 C 300 1210, 280 1560, 390 1920",
     ficha700: {x: 400, y: 470, w: 515},
     ficha911: {x: 66, y: 1392, w: 440},
@@ -113,26 +116,29 @@ const LAYOUT: Record<FormatoSelfie, Diseno> = {
   // MAIL — módulo de 600 de ancho, como MAILSEPT_S2-S3.ai; titular y CTA arriba
   mail: {
     curva: "M 330 0 C 470 200, 460 330, 320 440 C 180 550, 170 700, 220 860",
-    ficha700: {x: 258, y: 262, w: 300},
-    ficha911: {x: 26, y: 612, w: 268},
+    ficha700: {x: 258, y: 214, w: 300},
+    ficha911: {x: 26, y: 564, w: 268},
     titulo: {y: 40, x: 0, w: 530},
     logo: {x: 548, y: 44},
+    cta: {donde: "abajo", y: 772},
   },
   // BANNER DESK — 2001×686, como la mesa 1 de BANNER SEPT_S3-S3.ai; titular a la izquierda
   bannerDesk: {
     curva: "M 1060 0 C 1190 170, 1150 320, 1000 390 C 860 450, 840 590, 930 686",
     ficha700: {x: 1110, y: 70, w: 440},
     ficha911: {x: 1070, y: 404, w: 385},
-    titulo: {y: 150, x: 60, w: 760},
+    titulo: {y: 240, x: 60, w: 760},
     logo: {x: 1880, y: 60},
+    cta: {donde: "no"},
   },
   // BANNER MOBILE — 1081×1081, como la mesa 2 del mismo .ai
   bannerMobile: {
     curva: "M 600 0 C 830 210, 820 380, 560 550 C 330 710, 300 890, 380 1081",
     ficha700: {x: 410, y: 160, w: 470},
     ficha911: {x: 60, y: 800, w: 410},
-    titulo: {y: 478},
+    titulo: {y: 462},
     logo: {x: 958, y: 110},
+    cta: {donde: "no"},
   },
 };
 
@@ -151,7 +157,8 @@ const Producto: React.FC<{src: string; cx: number; cy: number; u: number}> = ({s
   />
 );
 
-/** Ficha de producto calcada de la mesa 8 de la grilla: caja coral con el nombre y,
+/** Ficha de producto de la mesa 8 de la grilla: caja con el nombre (en tinta, no en coral,
+ *  para que no se pierda sobre el campo coral) y,
  *  montada encima, caja blanca con el beneficio (Scotch Medium Italic + Krub Medium). */
 const Ficha: React.FC<{
   nombre: string;
@@ -205,6 +212,34 @@ const Ficha: React.FC<{
   );
 };
 
+/** El campo IZQUIERDO de la S. El derecho es siempre salmón #FF8C93.
+ *  Sobre un campo claro (damasco) todo lo blanco pasa a tinta, como en la mesa 11
+ *  de la grilla (texto #001E1D sobre fondo claro). */
+export type Campo = "coral" | "damasco" | "tinta";
+export const ESQUEMA: Record<Campo, {campo: string; texto: string; linea2: string; flecha: string}> = {
+  coral: {campo: C.coral, texto: C.blanco, linea2: C.nude, flecha: C.blanco},
+  damasco: {campo: C.nude, texto: C.tinta, linea2: C.coral, flecha: C.tinta},
+  tinta: {campo: C.tinta, texto: C.blanco, linea2: C.nude, flecha: C.blanco},
+};
+
+/** «Encuéntralos en Selfie.cl» — recuadro de filete blanco fino, como en la grilla.
+ *  Post/historia: bajo el titular · mail: al final de la lectura · banners: NO va. */
+const Cta: React.FC<{t: number; u: number; color: string}> = ({t, u, color}) => (
+  <div
+    style={{
+      display: "inline-block",
+      marginTop: 34 * t * u,
+      padding: `${10 * t * u}px ${26 * t * u}px ${12 * t * u}px`,
+      border: `${Math.max(1.6 * t * u, 1.4)}px solid ${color}`,
+      fontFamily: "Krub",
+      fontSize: 36 * t * u,
+      fontWeight: 200,
+    }}
+  >
+    Encuéntralos en <span style={{fontWeight: 600, fontStyle: "italic"}}>Selfie.cl</span>
+  </div>
+);
+
 /** Calca el TRAZO de la historia con la punta en `tip`, escalado por k. */
 const Flecha: React.FC<{forma: "700" | "911"; tip: {x: number; y: number}; k: number; color?: string}> = ({
   forma,
@@ -244,12 +279,13 @@ const MascaraFlechas: React.FC<{L: Diseno & Medidas; u: number}> = ({L, u}) => (
 );
 
 /** capa: "todo" (la pieza) · "sinFlechas" / "flechas" (para el QA de choques: qa/selfie-flechas.py). */
-export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie; capa?: "todo" | "sinFlechas" | "flechas"; ficha?: "nude" | "tinta"}> = ({
+export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie; capa?: "todo" | "sinFlechas" | "flechas"; campo?: Campo}> = ({
   formato,
   capa = "todo",
-  ficha = "nude",
+  campo = "damasco", // Coni 24-09: el campo coral igualaba a la caja del nombre
 }) => {
-  const FICHA = ficha === "tinta" ? {fondo: C.tinta, tinta: C.blanco} : {fondo: C.nude, tinta: C.tinta};
+  const FICHA = {fondo: C.coral, tinta: C.blanco};
+  const E = ESQUEMA[campo];
   cargaFuentes();
   const M = (MEDIDAS as unknown as Record<FormatoSelfie, Medidas>)[formato];
   const L = {...LAYOUT[formato], ...M};
@@ -265,7 +301,7 @@ export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie; capa?: "todo"
         viewBox={`0 0 ${L.mesaW} ${L.alto}`}
         style={{position: "absolute", inset: 0}}
       >
-        <path d={`${L.curva} L 0 ${L.alto} L 0 0 Z`} fill={C.coral} />
+        <path d={`${L.curva} L 0 ${L.alto} L 0 0 Z`} fill={E.campo} />
       </svg>
 
       <Producto src={`${formato}-700.png`} {...L.p700} u={u} />
@@ -298,7 +334,7 @@ export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie; capa?: "todo"
           left: (L.titulo.x ?? 0) * u,
           width: (L.titulo.w ?? L.mesaW) * u,
           textAlign: "center",
-          color: C.blanco,
+          color: E.texto,
         }}
       >
         <div style={{fontFamily: "Scotch Display Condensed", fontWeight: 400, fontSize: 110 * t * u, lineHeight: 0.86}}>
@@ -311,25 +347,20 @@ export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie; capa?: "todo"
             fontStyle: "italic",
             fontSize: 118 * t * u,
             lineHeight: 0.86,
-            color: C.nude,
+            color: E.linea2,
           }}
         >
           un pelo en orden.
         </div>
-        <div
-          style={{
-            display: "inline-block",
-            marginTop: 34 * t * u,
-            padding: `${10 * t * u}px ${26 * t * u}px ${12 * t * u}px`,
-            border: `${Math.max(1.6 * t * u, 1.4)}px solid ${C.blanco}`,
-            fontFamily: "Krub",
-            fontSize: 36 * t * u,
-            fontWeight: 200,
-          }}
-        >
-          Encuéntralos en <span style={{fontWeight: 600, fontStyle: "italic"}}>Selfie.cl</span>
-        </div>
+        {L.cta.donde === "titulo" && <Cta t={t} u={u} color={E.texto} />}
       </div>
+
+      {/* CTA al FINAL de la lectura (mail): centrado, bajo todo lo demás */}
+      {L.cta.donde === "abajo" && (
+        <div style={{position: "absolute", top: (L.cta.y ?? 0) * u, left: 0, width: W, textAlign: "center", color: E.texto}}>
+          <Cta t={t} u={u} color={E.texto} />
+        </div>
+      )}
 
       {/* logotipo SELFIE vertical — en la grilla va en x 953, y 173 de la mesa de 1080 */}
       <Img
@@ -340,8 +371,8 @@ export const SelfiePruebaBiotop: React.FC<{formato: FormatoSelfie; capa?: "todo"
       {/* flechas ENCIMA de todo: nada puede taparlas */}
       {capa !== "sinFlechas" && (
         <svg width={W} height={L.alto * u} viewBox={`0 0 ${L.mesaW} ${L.alto}`} style={{position: "absolute", inset: 0}}>
-          <Flecha forma="700" tip={L.tip700} k={t} />
-          <Flecha forma="911" tip={L.tip911} k={t} />
+          <Flecha forma="700" tip={L.tip700} k={t} color={E.flecha} />
+          <Flecha forma="911" tip={L.tip911} k={t} color={E.flecha} />
         </svg>
       )}
 

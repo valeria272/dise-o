@@ -7,7 +7,7 @@
 Por formato hace tres renders —la pieza, la pieza SIN flechas y la máscara de las
 flechas— y comprueba lo que pidió Coni el 24-09:
   1. NINGUNA flecha toca nada: bajo cada trazo (con margen) sólo puede haber fondo
-     plano coral #FF4374 o salmón #FF8C93. Ni frasco, ni su sombra, ni texto, ni caja.
+     plano damasco #F7D4C0 o salmón #FF8C93. Ni frasco, ni su sombra, ni texto, ni caja.
   2. Mail y banners pesan ≤ 1 MB. Si la PNG se pasa, sale JPG de alta calidad.
 Sale a out/selfie/prueba/ con el nombre de entrega.
 """
@@ -29,7 +29,8 @@ FORMATOS = {
     "BannerDesk": ("bannerDesk", "BANNER_DESK", 1_000_000),
     "BannerMobile": ("bannerMobile", "BANNER_MOBILE", 1_000_000),
 }
-FONDOS = np.array([[0xFF, 0x43, 0x74], [0xFF, 0x8C, 0x93]], dtype=float)
+# campo izquierdo damasco #F7D4C0 (desde el 24-09) y derecho salmón #FF8C93
+FONDOS = np.array([[0xF7, 0xD4, 0xC0], [0xFF, 0x8C, 0x93]], dtype=float)
 MARGEN_PX = 10  # holgura alrededor del trazo, en px de salida
 
 
@@ -46,7 +47,7 @@ def still(comp, destino, formato, capa):
 def choques(sin, masc):
     m = np.array(Image.open(masc).convert("L").filter(ImageFilter.MaxFilter(2 * MARGEN_PX + 1))) > 40
     px = np.array(Image.open(sin).convert("RGB")).astype(float)[m]
-    # distancia al SEGMENTO coral–salmón: el borde antialiasado de la curva es mezcla
+    # distancia al SEGMENTO damasco–salmón: el borde antialiasado de la curva es mezcla
     # de los dos fondos y no es un choque
     a, b = FONDOS
     t = np.clip(((px - a) @ (b - a)) / ((b - a) @ (b - a)), 0, 1)

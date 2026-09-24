@@ -671,3 +671,15 @@ raw/hilton/between/reel-sea-la-razon/ia/*
 #     fondo blanco pasado a transparente. El original vive en Drive
 #     `MATERIAL DISEÑO PAULINA/MYZOO/1-marca`, pero el recorte es parte de la pieza.
 !public/assets/myzoo/**
+
+# EBEMA PAID octubre 2026 (07-09 + ronda 2 del 24-09): el render vuelve al repo.
+# Va lo necesario para reproducir las 31 piezas byte a byte: generador, CSS, fuentes,
+# logos, fondos aprobados y la foto nueva de Temuco. Los PNG/JPG de salida se regeneran.
+!out/ebema/20260907_paid_octubre/
+out/ebema/20260907_paid_octubre/*
+!out/ebema/20260907_paid_octubre/BRIEF.md
+!out/ebema/20260907_paid_octubre/ENTREGA.md
+!out/ebema/20260907_paid_octubre/editables/
+out/ebema/20260907_paid_octubre/editables/*.html
+!out/ebema/20260907_paid_octubre/fondos/
+!out/ebema/20260907_paid_octubre/fondos/**

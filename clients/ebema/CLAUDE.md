@@ -290,6 +290,30 @@ Tres correcciones que este manual tenía mal:
 3. **El botón de Click no usa el radio 6 del botón de sucursal** — es una cápsula
    de radio amplio y lleva **filete blanco**.
 
+### ⭐ La story NO hereda las medidas del feed (PAID octubre, ronda 2 — 24-09-2026)
+
+El PAID de octubre salió con la bajada y el botón de story en **las mismas medidas
+del feed** (28 / 24 px) sobre un lienzo de 1920 de alto. Sebastián Córdova (cuentas)
+lo marcó en las 15 stories: *«Agrandar más esta sección completa, ya que se ve muy
+pequeña»* (sucursales, ancla = bajada + botón) y *«El CTA está muy pequeño»* (Click).
+
+| Story | Bajada | Botón | Base del bloque |
+|---|---|---|---|
+| **Sucursal** | **38 px**, ancho máx. 820 | **34 px**, padding 13/62, radio 8 | `bottom: 340` |
+| **Click** | **28 px**, ancho máx. 740 (st1) | **494,4 × 73**, cápsula `999px`, filete blanco, 34 px | `bottom: 340` |
+
+- **La base del bloque va a 340 px del borde, no a 330.** 340 es la zona segura
+  inferior de Meta en 9:16. El sistema de septiembre traía 330 y nadie lo había medido.
+- En story Click, **la caja roja envuelve sólo la última línea** y el titular se
+  dimensiona para que la caja no pase de **814** de ancho. Lockup: `top 131`, ancho 404,9.
+- ⚠️ **El grosor del filete del botón Click no está medido.** Va 2,5 px (el de la
+  píldora del sistema) hasta tener la story original de Paulina a mano.
+- Código: `out/ebema/20260907_paid_octubre/editables/` (`base.css` § STORY ronda 2 +
+  `titular(..., solo_ultima=True)` en `build.py`).
+- ⚠️ **Los comentarios de Drive sobre imágenes sí traen el ancla** si se leen por la API
+  REST (`comments(anchor)`), en fracciones `[x0,y0,x1,y1]`. Dibujarla sobre la pieza
+  antes de preguntar «¿qué sección?».
+
 > 🔗 El lockup calza al **0,8 %** escalando `logo_click_2_blanco_acento.png` a
 > 404,9 px de ancho (escala 0,16196; la tinta arranca 27,9 px dentro del PNG).
 > Pieza de referencia ya calcada: `out/ebema/20260914_st19_click/`.
@@ -1103,6 +1127,13 @@ consumidor final. Español de Chile, tuteo.
    terminados, no material fuente.
 9. **Título SPC con caja roja cuando el precio ya la tiene** → doble caja. Sin caja,
    con sombra.
+10. **Story con las medidas del feed.** Bajada y botón de 28/24 px en 1920 de alto se
+    ven diminutos: los 15 stories de octubre volvieron con comentario. Ver §4, «La story
+    NO hereda las medidas del feed».
+11. **Texto encima de señalética de la foto.** En la story de Temuco la bajada cae sobre
+    el letrero «BIENVENIDOS / SHOWROOM GRUPOREVEX» (su flecha roja cruza «Cotiza»). La
+    foto es 9:16 exacta y no tiene holgura para reencuadrar: **se pide otra foto**, no se
+    tapa. Revisar la hoja de contacto buscando letreros en la banda y 1150–1600.
 
 ---
 

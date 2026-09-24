@@ -3,6 +3,42 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-24 — Serena Abarca
+
+**Qué se hizo:** El **PAID de octubre** (brief de Sebastián Córdova, 16 piezas, producido
+el 07-09 y nunca subido) se subió a Drive el 23-09. Sebastián dejó **15 comentarios en las
+stories**; se aplicaron: la bajada y el botón de las sucursales pasan de 28/24 a **38/34 px**,
+y las stories de Click se llevaron a la medición de Paulina (`ebema_click_st1..st4`):
+botón de **494×73 en cápsula con filete blanco** y caja roja solo en la última línea. El
+`/qa` encontró además el bloque a 330 px del borde, **dentro de la zona segura** (va a 340),
+y el texto de la story de Temuco **encima del letrero BIENVENIDOS/SHOWROOM**. Temuco se
+rehízo con una foto nueva que mandó Paulina (`IMG_8542`, recorte elegido midiendo 65
+opciones). P15 story lleva velo `.46`.
+
+**Dónde quedó:** `out/ebema/20260907_paid_octubre/` ya **está en git**: generador, CSS,
+fuentes, logos y fondos. Las 31 piezas están en Drive (`PERFORMANCE/2026/10.Octubre/graficas
+octubre 26`) y las 15 stories se reemplazaron sobre el mismo ID, con md5 verificado y los
+comentarios conservados. Los fondos pasaron a **JPEG** (92 → 20 MB) para poder versionarlos; las 30 piezas se re-rindieron desde ellos y se volvieron a subir, así que el repo reproduce byte a byte lo publicado. `ENTREGA.md` trae la ronda 2 y el QA; la ronda 1 quedó respaldada
+en `_ronda1/` (sin versionar). Las reglas nuevas de story están en el manual §4 y los
+errores 10 y 11 en §9. Feed y reel no cambiaron.
+
+**Qué sigue:** responder o resolver los 15 comentarios de Sebastián en Drive, que siguen
+**abiertos y sin respuesta**, y avisarle que el feed va en 4:5 y no en el 1:1 de su planilla.
+
+**Abierto:**
+- **Paulina tiene que confirmar que la fachada nueva es Temuco:** no se parece a la foto
+  anterior. Si la confirma, pasar también el **feed** de Temuco a esa foto, que hoy sigue
+  con la del letrero.
+- El **grosor del filete** del botón Click no está medido (va 2,5 px). Medirlo en la story
+  original de Paulina.
+- A Paulina: recorte 4:5 de Coquimbo y Concepción, fachada de Chillán, los 3 packshots del
+  carrito y la música del reel.
+- La grilla **orgánica** de octubre es de Paulina (ver su entrada del 23-09 abajo): los 6
+  carruseles están versionados y en su ronda 1. Este cierre no los tocó.
+- ⛔ Sigue sin existir `clients/ebema/reglas.yaml`.
+- Esta bitácora no tenía la entrada del 07-09 (producción del PAID de octubre): lo que se
+  sabe de ese día está en `ENTREGA.md`.
+
 ## 2026-09-23 — Paulina Bustamante
 
 **Qué se hizo:** los **6 carruseles de feed de la grilla de octubre** — Masisa (4

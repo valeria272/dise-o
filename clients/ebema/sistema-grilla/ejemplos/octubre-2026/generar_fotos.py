@@ -39,7 +39,24 @@ COMUN = ("Fotografía publicitaria profesional de materiales de construcción, "
          "composición minimalista y limpia, un solo sujeto claro, fondo tranquilo "
          "y desenfocado, luz natural difusa, color realista y neutro. "
          "SIN texto, SIN letreros, SIN logos, SIN marcas, SIN etiquetas legibles, "
-         "SIN marcas de agua, SIN franjas ni bordes vacíos: la foto cubre todo el cuadro.")
+         "SIN marcas de agua, SIN franjas ni bordes vacíos: la foto cubre todo el cuadro. "
+         "UNA SOLA fotografía continua, tomada de una vez con una sola cámara: SIN collage, "
+         "SIN paneles, SIN dípticos ni trípticos, SIN cortes ni costuras horizontales.")
+
+# ⛔ RONDA 2 · 24-09-2026 — Paulina, sobre pointfix3: «hiciste un montaje de la imagen
+# sobre otra imagen. La imagen de fondo debe ser sólo una.» No fue un montaje nuestro:
+# Nano Banana Pro devolvió un COLLAGE de tres franjas horizontales (pointfix3 y
+# sanjuan2, costuras a ~25 % y ~75 % del alto). Pasa cuando el prompt describe dos
+# planos distintos — un detalle y un paisaje — y el modelo los resuelve en paneles.
+# La frase «una sola fotografía continua» va ahora en TODO prompt.
+
+# Para las escenas donde el saco REAL entra como referencia: COMUN prohíbe logos y
+# etiquetas, y eso le pide al modelo que borre la gráfica del saco.
+FONDO_SIN_TEXTO = ("Fotografía publicitaria profesional, color realista, luz natural "
+                   "difusa. La gráfica de los sacos es la de la referencia, sin "
+                   "inventar otra. SIN carteles, SIN letreros ni texto agregado, SIN "
+                   "marcas de agua. UNA SOLA fotografía continua: SIN collage, SIN "
+                   "paneles, SIN cortes ni costuras.")
 
 # ⛔ NUNCA NOMBRAR EL TITULAR NI EL TEXTO EN EL PROMPT — aprendido el 23-09-2026.
 # La primera versión decía «el tercio superior queda tranquilo: AHÍ VA EL TITULAR» y
@@ -62,18 +79,34 @@ ZONA_ARRIBA = ("Encuadre con aire arriba: el tercio superior muestra el CONTEXTO
                "cielo, el fondo del taller o del terreno —, suavemente desenfocado y "
                "sin nada que compita con el sujeto. Nunca un fondo liso, ni un color "
                "plano, ni una superficie uniforme sin detalle. " + LLENA)
-ZONA_ABAJO  = ("Encuadre con aire abajo: en la mitad inferior sólo hay superficie "
-               "continua y de tono parejo — suelo, pasto, terreno o piso —, sin "
-               "objetos que llamen la atención. " + LLENA)
+# ⛔ RONDA 2 · 24-09-2026 — Paulina, sobre cbb1: «en esta zona se ve raro, no tiene
+# textura, sólo se ve como una mancha oscura». Es el mismo error que ZONA_ARRIBA en la
+# ronda 1, ahora abajo: «superficie de tono parejo» devolvió tierra negra LISA, y con
+# el velo de portada encima quedó un parche plano. La zona tranquila es FOTO con
+# textura, nunca un tono parejo.
+ZONA_ABAJO  = ("Encuadre con aire abajo: la mitad inferior es el mismo terreno de la "
+               "escena en primer plano — tierra con terrones y surcos, pasto, piso — con "
+               "su TEXTURA NATURAL bien visible y buena luz, sin objetos que llamen la "
+               "atención. Nunca una superficie lisa, oscura o de un solo tono. " + LLENA)
 
-# ⭐ LA LÁMINA FINAL, ronda 1 de octubre. Tres piezas de prompt que comparten las
-# cinco: bodega desenfocada atrás, producto al centro, y el conjunto suave.
-BODEGA = ("Interior de una bodega de materiales de construcción, luminosa y ordenada, "
-          "con estanterías y pallets a ambos lados perdiéndose en profundidad, MUY "
-          "DESENFOCADA. ")
-CIERRE = "Al centro del encuadre, en primer plano y algo más nítido que el fondo: "
-TODO   = ("La imagen entera va suave y con poco contraste, para que un texto puesto "
-          "encima destaque. ")
+# ⭐ LA LÁMINA FINAL — RONDA 2 · 24-09-2026. Deroga la de la ronda 1.
+# Paulina: «el saco de cemento debe ir incluido en la escena del fondo, como que los
+# sacos están disponibles en la bodega. Nunca poner el png del producto así: hace que
+# el logo se pierda. Esto debe ser así para TODAS las slides finales de carrusel de
+# productos.» La ronda 1 ponía el producto AL CENTRO, justo debajo del anillo EBEMA,
+# y le competía al logo. Ahora el producto es STOCK: pallets y racks a los costados y
+# al fondo, y el centro del encuadre —donde van el anillo y el botón— es pasillo
+# despejado. El packshot ya no se pega encima (`cierre_compuesto.py` queda retirado):
+# entra como REFERENCIA de la escena, y el desenfoque del conjunto hace el resto.
+def stock(producto):
+    return ("Interior de la bodega de una distribuidora de materiales de construcción, "
+            "amplia, luminosa y ordenada, vista de frente desde el pasillo central. A "
+            "AMBOS COSTADOS y al fondo, racks metálicos y pallets cargados de " + producto +
+            ", apilados como existencias: muchas unidades iguales, ordenadas, que llenan "
+            "los costados del encuadre y se pierden en profundidad. El CENTRO del encuadre "
+            "es el pasillo despejado, con piso de hormigón pulido, sin nada apilado ni "
+            "ningún objeto al medio. Profundidad de campo baja: todo suavemente "
+            "DESENFOCADO, con poco contraste, sin que nada se vea nítido. ")
 
 # ---------------------------------------------------------------------------
 # Cada entrada: (archivo, tipo, prompt, [refs])
@@ -123,9 +156,8 @@ LOTE = {
   # para que el texto destaque». Acá el producto SÍ se genera: un tablero no es un
   # packshot de marca, no tiene etiqueta que falsificar (§5).
   ("04", "cierre",
-   BODEGA + CIERRE +
-   "dos tableros estructurales de madera reconstituida apoyados de canto, con la "
-   "cara lisa y el canto de virutas comprimidas a la vista. " + TODO + COMUN, ["02"]),
+   stock("tableros estructurales de madera reconstituida de 1220 × 2440 mm y 8 mm de "
+         "espesor, en rumas horizontales con los cantos de viruta a la vista") + COMUN, ["02"]),
  ],
 
  # --------------------------------------------------------------- ETERSOL ---
@@ -160,26 +192,27 @@ LOTE = {
    "sombras largas y reales. Sin personas. Plano general amplio y con profundidad. " + ZONA_ARRIBA + " " + COMUN, ["02"]),
   # RONDA 1 — lineamiento de lámina final (ver masisa 04).
   ("05", "cierre",
-   BODEGA + CIERRE +
-   "un rollo de pasto sintético apoyado de pie, con el canto enrollado y el verde de "
-   "las fibras a la vista. " + TODO + COMUN, ["02"]),
+   stock("rollos de pasto sintético verde, acostados y apilados, con el canto "
+         "enrollado a la vista") + COMUN, ["02"]),
  ],
 
  # ------------------------------------------------------------------- CBB ---
  "cbb": [
   # RONDA 1 — igual que San Juan: se genera SÓLO la bodega y el saco real se compone
   # encima con `cierre_compuesto.py`. El packshot de marca no lo toca la IA (§5).
-  ("05_bodega", "cierre",
-   "Interior de una bodega de materiales de construcción, luminosa y ordenada: "
-   "estanterías metálicas a ambos lados con pallets de sacos, tablas y perfiles "
-   "apilados, y un pasillo central despejado que se pierde en profundidad. Vista "
-   "frontal del pasillo. El CENTRO del encuadre queda libre, sin nada apilado. "
-   "Imagen entera suavemente DESENFOCADA, como fondo. " + COMUN, []),
+  ("05", "cierre",
+   stock("sacos de cemento de papel KRAFT con los costados verdes, IDÉNTICOS al de la imagen de referencia, apilados en pallets") + FONDO_SIN_TEXTO,
+   ["packshots/cbb_saco.png"]),
   ("01", "ambiente",
+   # RONDA 2: «en esta zona se ve raro, no tiene textura, sólo se ve como una mancha
+   # oscura» — la tierra salió negra y lisa. Ahora es tierra de cultivo café con
+   # surcos y terrones iluminados por el sol bajo, que se lee como terreno.
    "Fundación de hormigón recién hormigonada en un terreno agrícola chileno: zanjas "
-   "corridas y sobrecimiento a la vista sobre tierra de cultivo oscura, con un cerco "
-   "de campo y un potrero verde al fondo. Día despejado, luz de la tarde, sin personas. "
-   "Plano general tranquilo. " + ZONA_ABAJO + " " + COMUN, []),
+   "corridas y sobrecimiento a la vista, con un cerco de campo y un potrero verde al "
+   "fondo. En primer plano, tierra de cultivo CAFÉ recién trabajada, con surcos, "
+   "terrones y algo de pasto, iluminada por el sol bajo de la tarde que marca su "
+   "relieve. Día despejado, sin personas. Plano general tranquilo, cámara a la altura "
+   "de una persona. " + ZONA_ABAJO + " " + COMUN, []),
   ("02", "producto",
    # RONDA 1: «la imagen está bien pero el plano debe ser más amplio; mucho zoom no
    # se ve estético.» Se abre a un plano de situación, sin perder el daño.
@@ -193,12 +226,19 @@ LOTE = {
   # El packshot oficial entra como REFERENCIA para que el modelo reproduzca ese saco.
   # ⚠️ La etiqueta se revisa con zoom 3×: si sale deformada, se compone como el cierre.
   ("03", "escena",
-   "Maestro hormigonero chileno vaciando cemento gris desde un SACO DE PAPEL KRAFT "
-   "CAFÉ idéntico al de la imagen de referencia — con su franja verde y su banda azul "
-   "oscura en la cara — dentro de una carretilla con árido, junto a una fundación en "
-   "construcción en un terreno de campo. El saco se ve de frente, con su gráfica "
-   "nítida y sin deformar. El hombre de perfil, con guantes y camisa de trabajo. "
-   "Escena limpia, luz natural. " + ZONA_ARRIBA + " " + COMUN, ["packshots/cbb_saco.png"]),
+   # RONDA 2: «este saco debe ser el que te dejé en drive, este no es el correcto».
+   # El de la ronda 1 era el INACESA; el que EBEMA vende es el CBB Especial de
+   # 25 kg: kraft con los costados verdes, «es Cbb Cementos» y la gran curva verde y
+   # azul marino en la cara. Referencia: el packshot del producto en Sodimac
+   # (3316939), que mandó Paulina «para que no cometas el error nuevamente».
+   "Maestro hormigonero chileno vaciando cemento gris desde un saco de cemento "
+   "IDÉNTICO al de la imagen de referencia — papel kraft con los costados y la parte "
+   "de arriba VERDES, y en la cara una gran curva verde y otra azul marino — dentro "
+   "de una carretilla con árido, junto a una fundación en construcción en un terreno "
+   "de campo. El saco se ve de frente, completo, con su gráfica nítida, sin deformar "
+   "y sin inventar otra. El hombre de perfil, con guantes y camisa de trabajo. "
+   "Escena limpia, luz natural. " + ZONA_ARRIBA + " " + FONDO_SIN_TEXTO,
+   ["packshots/cbb_saco.png"]),
   # RONDA 1 — la primera versión salió 90 % losa gris plana y la lámina quedaba vacía.
   # Se abre el encuadre: la losa ocupa el primer plano en diagonal y detrás entra el
   # campo, que es lo que da profundidad y contexto.
@@ -216,10 +256,8 @@ LOTE = {
  "volcanita": [
   # RONDA 1 — lineamiento de lámina final (ver masisa 04).
   ("05", "cierre",
-   BODEGA + CIERRE +
-   "varias planchas de yeso-cartón de CARA VERDE clara apoyadas de canto, con el "
-   "canto rebajado y el papel verde a la vista. Están LISAS, sin impresión, sin texto "
-   "y sin logotipo. " + TODO + COMUN, []),
+   stock("planchas de yeso-cartón de CARA VERDE clara, en rumas horizontales, lisas, "
+         "sin impresión ni logotipo") + COMUN, ["03"]),
   ("01", "ambiente",
    "Baño residencial en plena remodelación, desnudo: la estructura metálica de "
    "tabiquería a la vista, el muro abierto, la cerámica vieja retirada y el piso "
@@ -249,25 +287,34 @@ LOTE = {
   # total con desenfoque para que el texto destaque». Acá se genera SÓLO la bodega:
   # el saco real se compone encima con `cierre_compuesto.py`, porque el packshot de
   # marca no lo toca la IA (§5). Por eso el centro va deliberadamente despejado.
-  ("05_bodega", "cierre",
-   "Interior de una bodega de materiales de construcción, luminosa y ordenada: "
-   "estanterías metálicas a ambos lados con pallets de sacos, tablas y perfiles "
-   "apilados, y un pasillo central despejado que se pierde en profundidad. Vista "
-   "frontal del pasillo. El CENTRO del encuadre queda libre, sin nada apilado. "
-   "Imagen entera suavemente DESENFOCADA, como fondo. " + COMUN, []),
+  ("05", "cierre",
+   stock("sacos de cemento AMARILLOS Y NEGROS, IDÉNTICOS al de la imagen de referencia, apilados en pallets") + FONDO_SIN_TEXTO,
+   ["packshots/sanjuan_saco.png"]),
   ("01", "ambiente",
-   "Estanque de acumulación de agua de hormigón en construcción en un predio rural: "
-   "muros circulares de hormigón a la vista, todavía sin agua, con el moldaje recién "
-   "retirado. Campo abierto al fondo, día despejado, sin personas. Plano general "
-   "tranquilo. " + ZONA_ABAJO + " " + COMUN, []),
+   # RONDA 2: «no me gusta la imagen de fondo. Hazla más comercial, sin productos,
+   # pero que sea más llamativa». La de ronda 1 era un llano pardo y plano. Ahora es
+   # foto publicitaria: hora dorada, campo productivo verde, cielo con volumen.
+   "Fotografía publicitaria de campo chileno a la hora dorada: un estanque circular "
+   "de acumulación de agua de hormigón, nuevo y bien terminado, en medio de un predio "
+   "agrícola productivo — hileras de cultivo verdes y ordenadas, cerros azulados al "
+   "fondo y un cielo amplio con nubes iluminadas por el sol bajo. Luz cálida y "
+   "rasante, colores ricos y saturados sin exagerar, sensación de prosperidad. "
+   "El estanque en el tercio superior del encuadre, sin personas ni productos. "
+   + ZONA_ABAJO + " " + COMUN, []),
   ("02", "producto",
    # RONDA 1: «arreglar imagen para que no se vea como un cuadro en la zona de
    # arriba, mismo comentario del carrusel de CBB.»
-   "Plano ABIERTO del muro de un estanque de hormigón deteriorado por el contacto "
-   "permanente con agua: manchas de humedad oscuras, eflorescencias blancas de "
-   "sales, una fisura vertical y la superficie descascarada con el árido a la "
-   "vista. Se ve el muro completo y, detrás, el predio rural y el cielo dando "
-   "profundidad. Luz natural lateral. Sin macro ni acercamiento extremo. " + ZONA_ARRIBA + " " + COMUN, []),
+   # RONDA 2: «la imagen no se entiende, genérala nuevamente con un contexto
+   # realista» — salió un collage (muro arriba, galpón al medio, muro abajo). Ahora
+   # se ve de una: un estanque viejo CON agua, en su predio, y el daño en su muro.
+   "Un estanque circular de hormigón antiguo en un predio rural chileno, visto en "
+   "tres cuartos desde afuera y a poca distancia, lleno de agua hasta cerca del "
+   "borde. Su muro está deteriorado por el contacto permanente con el agua: manchas "
+   "de humedad oscuras bajo la línea del agua, eflorescencias blancas de sales, una "
+   "fisura vertical y el hormigón descascarado con el árido a la vista. Detrás, el "
+   "campo y unos árboles, fuera de foco. Luz natural de la mañana. Se entiende de "
+   "inmediato que es un estanque de agua y que su muro se está degradando. "
+   + ZONA_ARRIBA + " " + COMUN, []),
   # RONDA 1 — «debe ser el saco original de cemento San Juan». El packshot oficial
   # entra como REFERENCIA para que el modelo reproduzca ese saco y no invente otro.
   # ⚠️ La etiqueta se revisa con zoom 3× en el render: si sale deformada, la lámina
@@ -291,13 +338,16 @@ LOTE = {
  # descritas en todos los prompts donde el alambre se ve de cerca.
  "pointfix": [
   ("03", "producto",
-   "Macro de catálogo de un alambre de púas galvanizado tensado en horizontal: dos "
-   "hebras de alambre torcidas entre sí y, cada cierto tramo, una púa de CUATRO PUNTAS "
    # RONDA 1: «muy bien; el fondo cambiarlo por un campo abierto rural estético
-   # desenfocado.»
-   "afiladas abiertas en cruz. El metal galvanizado gris mate, sin óxido. Detrás, "
-   "un campo abierto chileno bonito y suavemente desenfocado: potrero verde, unos "
-   "árboles a lo lejos y el cielo de la tarde. Luz natural lateral que marca el "
+   # desenfocado.» · RONDA 2: «hiciste un montaje de la imagen sobre otra imagen, la
+   # imagen de fondo debe ser sólo una» — salió un collage de 3 franjas. Se describe
+   # como UNA toma de teleobjetivo: el alambre nítido y el campo como bokeh detrás.
+   "Una sola fotografía tomada con teleobjetivo y diafragma abierto: en primer plano, "
+   "nítido, un tramo de alambre de púas galvanizado tensado en horizontal, dos hebras "
+   "torcidas entre sí con una púa de CUATRO PUNTAS afiladas abiertas en cruz, metal "
+   "gris mate sin óxido. Detrás, fuera de foco en la MISMA toma, un campo abierto "
+   "chileno: potrero verde, árboles lejanos y el cielo de la tarde, que se funden "
+   "en un desenfoque continuo de arriba abajo. Luz natural lateral que marca el "
    "brillo del alambre. " + ZONA_ARRIBA + " " + COMUN, []),
   ("01", "ambiente",
    "Perímetro de una parcela agrícola chilena SIN CERCAR: el límite del terreno abierto, "
@@ -315,9 +365,8 @@ LOTE = {
    "hacia el horizonte. Sin personas, día despejado. " + ZONA_ARRIBA + " " + COMUN, ["03"]),
   # RONDA 1 — lineamiento de lámina final (ver masisa 04).
   ("05", "cierre",
-   BODEGA + CIERRE +
-   "un rollo de alambre de púas galvanizado, con las espiras y las púas de cuatro "
-   "puntas a la vista. " + TODO + COMUN, ["03"]),
+   stock("rollos de alambre de púas galvanizado, apilados en pallets, con las espiras "
+         "metálicas a la vista") + COMUN, ["03"]),
  ],
 }
 
@@ -393,8 +442,32 @@ def escribir_prompts_md():
     print(f"\n✓ prompts escritos en {os.path.normpath(p)}")
 
 
+# RONDA 2 · 24-09-2026 — las 11 fotos que se rehacen por los comentarios de Paulina.
+# Las anteriores se respaldan en fotos/<tema>/_r1/ antes de pisarlas.
+RONDA2 = [("cbb", "01"), ("cbb", "03"), ("cbb", "05"), ("pointfix", "03"),
+          ("pointfix", "05"), ("sanjuan", "01"), ("sanjuan", "02"), ("sanjuan", "05"),
+          ("masisa", "04"), ("etersol", "05"), ("volcanita", "05")]
+
+
+# El modelo no desenfoca lo que se le pide: la bodega de stock sale NÍTIDA aunque el
+# prompt diga «todo desenfocado». El desenfoque del cierre se hace acá, con una
+# cifra fija, y la toma nítida queda al lado (`05_nitida.jpg`) para poder rehacerlo.
+DESENFOQUE_CIERRE = 9.0      # radio gaussiano sobre la foto de 2400 px de ancho
+
+
+def suavizar_cierre(destino):
+    import shutil
+    from PIL import Image, ImageFilter
+    nitida = destino[:-4] + "_nitida.jpg"
+    shutil.copy2(destino, nitida)
+    im = Image.open(nitida).convert("RGB").filter(ImageFilter.GaussianBlur(DESENFOQUE_CIERRE))
+    im.save(destino, quality=92, subsampling=0, optimize=True)
+    print(f"    ~ {os.path.relpath(destino, AQUI)} desenfocada (radio {DESENFOQUE_CIERRE})")
+
+
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--ronda2", action="store_true", help="rehace sólo las fotos de RONDA2")
     ap.add_argument("--solo", help="un solo carrusel")
     ap.add_argument("--listar", action="store_true")
     ap.add_argument("--rehacer", action="store_true")
@@ -404,6 +477,29 @@ def main():
     if a.listar:
         for slug, items in LOTE.items():
             print(f"{slug}: " + ", ".join(f"{n}({t})" for n, t, _, _ in items))
+        return
+
+    if a.ronda2:
+        import shutil
+        ok = faltan = 0
+        for slug, nombre in RONDA2:
+            if a.solo and slug != a.solo:
+                continue
+            _, _t, prompt, refs = next(e for e in LOTE[slug] if e[0] == nombre)
+            d = ruta(slug, nombre)
+            if os.path.exists(d):
+                os.makedirs(os.path.join(os.path.dirname(d), "_r1"), exist_ok=True)
+                resp = os.path.join(os.path.dirname(d), "_r1", nombre + ".jpg")
+                if not os.path.exists(resp):
+                    shutil.copy2(d, resp)
+                os.remove(d)
+            if generar(slug, nombre, prompt, refs, True):
+                if _t == "cierre":
+                    suavizar_cierre(d)
+                ok += 1
+            else:
+                faltan += 1
+        print(f"\n{ok} listas · {faltan} fallaron")
         return
 
     slugs = [a.solo] if a.solo else list(LOTE)

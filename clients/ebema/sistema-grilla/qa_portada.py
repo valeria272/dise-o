@@ -32,7 +32,7 @@ ESPERADO = {
     # rojo debe ser más pequeño, no debe sobresalir tanto hacia los lados del texto».
     # Pasó de un ancho fijo de 653,8 a abrazar su propio texto. Medido sobre los 6
     # cierres del lote: 430,1 en los seis, con el mismo alto y la misma y de antes.
-    "boton_ancho": (430.1, 3.0), "boton_alto": (79.7, 2.0), "boton_y": (916.3, 3.0),
+    "boton_ancho": (430.1, 3.0), "boton_alto": (79.7, 2.0), "boton_y": (929.3, 3.0),  # ronda 2 (24-09): mismo aire que la bajada, 120
 }
 fallos, avisos = [], []
 

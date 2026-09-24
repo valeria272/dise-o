@@ -1,0 +1,130 @@
+/* ============================================================================
+   EBEMA · GRILLA · STORIES  —  v1, 24-09-2026
+   ----------------------------------------------------------------------------
+   Se enlaza DESPUÉS de base-grilla.css. Clases propias (`st-b`, `st-c1`) para no
+   chocar con la cápsula ni la caja de los carruseles.
+
+   Medido sobre las 3 stories de grilla de septiembre (raw/ebema/1-referencias/
+   grilla/story/): ebema_st-1 (La Calera) y ebema_st-2 (Talca) para la familia B,
+   ebema_storie_click para la C1. Todo en px de diseño sobre 1080 × 1920.
+
+   ⚠️ Corrige a base-grilla.css: ahí `.serv-titular` y `.serv-dir` ponían caja roja
+   a la 1ª línea y a la dirección. En las referencias la 1ª línea va BLANCA y SIN
+   caja, y la dirección es TEXTO ROJO CON BORDE BLANCO, no una caja. Esas clases
+   nunca se usaron en una pieza; las de acá las reemplazan.
+
+   Métrica de Raleway usada para posicionar por la mayúscula (line-height:1):
+     la mayúscula arranca a 0,1425 em del borde de la caja y mide 0,71 em.
+   ========================================================================= */
+
+.pieza.story .bg img { object-position:center top; }
+
+/* ---------------------------------------------------------------------------
+   FAMILIA B · story de sucursal
+   ------------------------------------------------------------------------- */
+
+/* Logo: disco blanco de 175,2 (x 452,2 · y 131,5) con el anillo rojo adentro
+   (157,4 × 161,8 · x 462,7 · y 138,2). logo_ebema_circulo.png trae el rojo en
+   x 30–275 / y 25–278 de 310 × 285 → escala 0,6424. */
+.st-b .disco { position:absolute; z-index:5; left:452.2px; top:131.5px; width:175.2px;
+               height:175.2px; border-radius:50%; background:#fff; overflow:hidden; }
+.st-b .disco img { position:absolute; left:-8.8px; top:-9.4px; width:199.2px; }
+
+/* 1ª línea: versales BLANCAS, sin caja. Mayúscula 51,4 → cuerpo 72,4; y 416,2 */
+.st-b .t1 { position:absolute; z-index:4; left:0; right:0; top:405.9px; text-align:center;
+            color:#fff; font-weight:800; font-size:72.4px; line-height:1;
+            text-transform:uppercase; white-space:nowrap; }
+/* 2ª línea: la caja roja. Caja y 480,0–542,4 (alto 62,4) · mayúscula 49,4 → 69,6 ·
+   aire lateral 23 (La Calera: caja 92,2 / texto 115,2) */
+.st-b .t2 { position:absolute; z-index:4; left:0; right:0; top:480px; text-align:center; }
+.st-b .t2 span { display:inline-block; height:62.4px; padding:0 23px; background:var(--rojo);
+                 color:#fff; font-weight:800; font-size:69.6px; line-height:63.4px;
+                 text-transform:uppercase; white-space:nowrap; }
+/* Dirección: texto ROJO con borde BLANCO. Rojo y 575,5–605,8 (30,2) · borde hasta
+   570,7–611,0 → trazo ≈ 4,8 por lado */
+/* ⛔ RONDA 1 · 24-09-2026 — Paulina, sobre st-21.10: «el borde blanco del texto
+   tiene unos picos, bájale el pt al contorno, deja toda la dirección en Helvetica
+   Bold; lo mismo para todas las stories con este formato». Los picos eran del
+   -webkit-text-stroke, que une en INGLETE. Ahora el contorno son 16 sombras en
+   círculo (radio 3,6): un anillo redondo y más fino. Helvetica Bold en toda la
+   dirección, no sólo en las cifras. */
+.st-b .dir { position:absolute; z-index:4; left:0; right:0; top:568.6px; text-align:center;
+             color:var(--rojo); font-family:"HelvKit", Helvetica, Arial, sans-serif;
+             font-weight:700; font-size:42px; line-height:1; text-transform:uppercase;
+             white-space:nowrap; text-shadow:3.60px 0.00px 0 #fff, 3.33px 1.38px 0 #fff, 2.55px 2.55px 0 #fff, 1.38px 3.33px 0 #fff, 0.00px 3.60px 0 #fff, -1.38px 3.33px 0 #fff, -2.55px 2.55px 0 #fff, -3.33px 1.38px 0 #fff, -3.60px 0.00px 0 #fff, -3.33px -1.38px 0 #fff, -2.55px -2.55px 0 #fff, -1.38px -3.33px 0 #fff, -0.00px -3.60px 0 #fff, 1.38px -3.33px 0 #fff, 2.55px -2.55px 0 #fff, 3.33px -1.38px 0 #fff; }
+
+/* Barras de horario: 93,6 de alto, 36 de aire, ancho ≈ 805, radio 12 */
+.st-b .horarios { position:absolute; z-index:4; left:50%; transform:translateX(-50%);
+                  width:805px; }
+.st-b .horarios .barra { height:93.6px; background:var(--rojo); border-radius:12px;
+                         color:#fff; font-weight:700; font-size:39px; white-space:nowrap;
+                         display:flex; align-items:center; justify-content:center; }
+.st-b .horarios .barra + .barra { margin-top:36px; }
+
+/* Caja de borde blanco «STOCK COMPLETO EN / MATERIALES PARA TU OBRA»:
+   823,2 × 150,2 · 26 bajo la 2ª barra · mayúscula 29,3 → 41,3 · interlínea 44,7 */
+.st-b .stock { position:absolute; z-index:4; left:50%; transform:translateX(-50%);
+               width:823.2px; height:150.2px; border:3.4px solid #fff; border-radius:16px;
+               color:#fff; text-align:center; text-transform:uppercase;
+               display:flex; flex-direction:column; align-items:center; justify-content:center;
+               font-size:41.3px; line-height:1.082; }
+.st-b .stock .a { font-weight:400; }
+.st-b .stock .b { font-weight:800; }
+
+/* ⭐ NUEVO en octubre 2026 — «TEST INTERACCIÓN: BOTÓN DE WHATSAPP». La grilla suma
+   una T5 («Toca el botón y escríbenos por WhatsApp.») y el botón lo pone Instagram
+   como sticker. No hay referencia de grilla con esto: se resuelve con el hueco
+   DIBUJADO de la C1 (grilla no deja el hueco en blanco) y el bloque de horarios
+   sube 182,6 para que todo termine donde terminaba la referencia (≈ 1790). */
+.st-b .t5 { position:absolute; z-index:4; left:0; right:0; text-align:center; color:#fff;
+            font-weight:800; font-size:36px; line-height:1; white-space:nowrap; }
+
+/* ---------------------------------------------------------------------------
+   Compartido B y C1 · el hueco del sticker, dibujado
+   ebema_storie_click: 525 × 84 · x 277–802 · borde fino blanco al 55 %
+   ------------------------------------------------------------------------- */
+/* ⛔ RONDA 1 · 24-09-2026 — «eliminemos esta caja indicadora de todas las
+   stories». El espacio del sticker se sigue RESERVANDO (no se pone nada ahí), pero
+   ya no se dibuja el recuadro. */
+.st .hueco { display:none; }
+
+/* ---------------------------------------------------------------------------
+   FAMILIA C1 · story de Ebema Click
+   ------------------------------------------------------------------------- */
+
+/* Lockup logo_click_2_blanco_acento.png (tinta x 109–2391 · y 172 de 2500 × 871).
+   En la referencia la tinta va de x 258,7 a 821,3 (562,6) desde y 102,7
+   → escala 0,2465 · img 616,4 de ancho en (231,8 · 60,3) */
+.st-c1 .lockup { position:absolute; z-index:5; left:231.8px; top:60.3px; width:616.4px; }
+
+/* Caja roja «HECHO PARA»: y 866,4–948,5 (82,1) · x 170,9–908,2 (737,3) ·
+   mayúscula 52,8 → 74,4. La caja calza en ancho con las dos líneas de abajo. */
+.st-c1 .caja { position:absolute; z-index:4; left:170.9px; top:866.4px; width:737.3px;
+               height:82.1px; background:var(--rojo); color:#fff; text-align:center;
+               font-weight:900; font-size:74.4px; line-height:84.1px; text-transform:uppercase;
+               white-space:nowrap; }
+/* «FERRETEROS Y» / «CONTRATISTAS»: mayúscula 73,4 y 71,5, ancho ≈ 736–741,
+   renglones cada 100,8 → cuerpo 103, interlínea 0,979 */
+.st-c1 .grande { position:absolute; z-index:4; left:0; right:0; top:945.3px; text-align:center;
+                 color:#fff; font-weight:900; font-size:103px; line-height:0.979;
+                 text-transform:uppercase; white-space:nowrap; }
+
+/* Cápsula de borde blanco con la T2: 863,5 × 135 · x 108 · y 1199 · radio 22 */
+.st-c1 .capsula { position:absolute; z-index:4; left:108px; top:1199px; width:863.5px; transform:none;
+                  height:135.4px; border:3px solid #fff; border-radius:22px; color:#fff;
+                  display:flex; align-items:center; justify-content:center; text-align:center;
+                  font-weight:500; font-size:32px; line-height:1.44; padding:0 26px; }
+.st-c1 .capsula b { font-weight:800; }
+
+/* Botón rojo con la T3: 709,9 × 115,2 · x 184,8 · y 1398,7 · filete blanco */
+.st-c1 .boton { position:absolute; z-index:4; left:184.8px; top:1398.7px; width:709.9px;
+                height:115.2px; background:var(--rojo); border:2px solid #fff; border-radius:14px;
+                color:#fff; display:flex; flex-direction:column; align-items:center;
+                justify-content:center; text-align:center; font-size:33px; line-height:1.3; }
+.st-c1 .boton .a { font-weight:700; }
+.st-c1 .boton .b { font-weight:500; }
+
+/* Cierre: «Abastécete en un click» y 1770,7 · flecha manuscrita hacia el hueco */
+.st-c1 .cierre { position:absolute; z-index:4; left:0; right:0; top:1761px; text-align:center;
+                 color:#fff; font-weight:800; font-size:42px; line-height:1; white-space:nowrap; }
+.st-c1 .flecha { position:absolute; z-index:4; left:0; top:0; width:1080px; height:1920px; }

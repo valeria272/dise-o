@@ -38,6 +38,58 @@ errores 10 y 11 en §9. Feed y reel no cambiaron.
 - ⛔ Sigue sin existir `clients/ebema/reglas.yaml`.
 - Esta bitácora no tenía la entrada del 07-09 (producción del PAID de octubre): lo que se
   sabe de ese día está en `ENTREGA.md`.
+## 2026-09-24 — Paulina Bustamante
+
+**Qué se hizo:** Tres frentes de la grilla de octubre.
+1. **Carruseles, ronda 2** (9 comentarios nuevos): las **6 láminas finales** con el
+   producto como **stock en la bodega**, a los costados, y el centro libre para el
+   logo («nunca poner el png del producto así, hace que el logo se pierda»). El saco
+   de **CBB corregido al CBB Especial verde** (el INACESA estaba mal, salía de una
+   ficha vieja). Fotos rehechas: cbb1, pointfix3, sanjuan1 y sanjuan2. Cierre con
+   aire parejo (120) arriba y abajo del anillo. Después, **masisa2** con la bajada en
+   2 líneas. Paulina: «lo demás está todo perfecto, no lo modifiques de ninguna manera».
+2. **Las 4 stories**: Click estática (14/10), Quilicura (21/10), Concepción (28/10)
+   y la **animada de Click (07/10)**, 18,6 s a 2160×3840, calcada de la de julio.
+   Ronda 1 de las estáticas aplicada (sin caja del sticker, velo abajo, dirección
+   en Helvetica sin picos, flecha rehecha).
+3. Paulina pega ella misma las imágenes en la grilla de Slides (el token del estudio
+   no puede editar la presentación de Carlos).
+
+**Dónde quedó:**
+- Carruseles: misma carpeta de Drive y mismos fileId (los comentarios siguen anclados).
+  Lote en `out/ebema/20260923_grilla_octubre/`.
+- Stories: Drive `4-entregado / 2026-10 grilla octubre — stories`
+  (`ebema_st-07.10.mp4`, `ebema_st-14.10.png`, `-21.10`, `-28.10`). Lote en
+  `out/ebema/20260924_grilla_octubre_stories/`.
+- **Versionado**: fondos nuevos en `public/assets/ebema/grilla-oct26/` (carruseles,
+  `stories/`, `story-animada/` con los 4 clips de Kling, los keyframes y los
+  prompts), `stories-grilla.css`, `stories_octubre.py`, `story_animada_fotos.py`
+  y la composición `EbemaGrillaStoryClickOct`.
+
+**Cambios al sistema:** lámina final = stock (`stock()` en `generar_fotos.py`;
+`cierre_compuesto.py` queda retirado), desenfoque del cierre en post (radio 9, la
+toma nítida al lado como `_nitida.jpg`), «una sola fotografía continua» en todo
+prompt (Nano Banana devolvía collages), `ZONA_ABAJO` con textura, `bajada_ancho`
+por lámina en el motor, QA con el botón en 929,3. `magnific-video.py` ya no se
+cae en Windows por la codificación de la consola.
+
+**Hallazgo que destraba:** la vista previa de Drive
+(`drive.google.com/thumbnail?id=<id>&sz=w4000`) baja **a resolución completa** los
+archivos que sube Paulina, y `drive.usercontent.google.com/download?id=<id>&confirm=t`
+baja sus videos. Ya no hace falta pedir los packshots por link.
+
+**Qué sigue:** leer la ronda de comentarios de las 4 stories
+(`python scripts/drive-comentarios.py --nombre ebema_st-`). Después, los 3
+carruseles de LinkedIn cuando lleguen las referencias.
+
+**Abierto:**
+1. **Story animada, escena del gift card (s4):** Kling inventó un logo chico en el
+   chaleco del ferretero. Casi no se ve, pero hay que decidir si se rehace el clip.
+2. La animada va **sin música**. La de julio tenía pista; la grilla no la pide.
+3. **Grilla de noviembre** (Carlos, 23-09): «sin desarrollar brief todavía», con
+   5 pendientes de Ariel (líneas Codelpa, VH negros o Galvatec, Black Friday, horarios).
+4. Siguen abiertos de ayer: el logo de Masisa no es el vectorial y EBEMA no tiene
+   `reglas.yaml`.
 
 ## 2026-09-23 — Paulina Bustamante
 

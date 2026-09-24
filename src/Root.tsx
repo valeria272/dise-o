@@ -86,6 +86,7 @@ import {AbakosCarruselDieciocho} from "./compositions/AbakosCarruselDieciocho";
 import {EbemaShowroomReel, EBEMA_REEL_DURATION, EBEMA_REEL_FPS} from "./compositions/EbemaShowroomReel";
 import {EbemaClickReel, EBEMA_CLICK_DURATION, EBEMA_CLICK_FPS} from "./compositions/EbemaClickReel";
 import {EbemaClickReelOctubre, OCT_DURATION, OCT_FPS} from "./compositions/EbemaClickReelOctubre";
+import {EbemaGrillaStoryClickOct, STORY_OCT_DURATION, STORY_OCT_FPS} from "./compositions/ebema/EbemaGrillaStoryClickOct";
 import {RevexLaminadosSlide} from "./compositions/RevexLaminadosCarrusel";
 import {RevexSepPieza, REVEX_SEP_PIEZAS} from "./compositions/RevexSeptiembre";
 import {RevexSep2026, REVEX_SEP26} from "./compositions/RevexSep2026";
@@ -931,6 +932,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="EbemaClickReelFeed" component={EbemaClickReel} durationInFrames={EBEMA_CLICK_DURATION} fps={EBEMA_CLICK_FPS} width={1080} height={1350} defaultProps={{format: "feed" as const}} />
         {/* pieza 16 del brief de octubre 2026 — 14,8 s, cierre oficial de Paulina */}
         <Composition id="EbemaClickReelOctubre" component={EbemaClickReelOctubre} durationInFrames={OCT_DURATION} fps={OCT_FPS} width={1080} height={1920} />
+        <Composition id="EbemaGrillaStoryClickOct" component={EbemaGrillaStoryClickOct} durationInFrames={STORY_OCT_DURATION} fps={STORY_OCT_FPS} width={1080} height={1920} />
         <Composition
           id="EbemaShowroomReelFeed"
           component={EbemaShowroomReel}

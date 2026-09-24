@@ -59,6 +59,9 @@ CARRUSEL = {
         {"foto": "fotos/masisa/02.jpg", "y": 250, "ancho_caja": 860,
          "sobre": "CUANDO EL ESPACIO ES EXACTO,", "cuerpo": 46,
          "caja": "EL CORTE TAMBIÉN TIENE QUE SERLO",
+         # RONDA 2 · 24-09: «este texto déjalo en 2 líneas solamente». Se abre al
+         # ancho de caja de la lámina (860) y el cuerpo baja de 40 a 36.
+         "bajada_ancho": 860, "bajada_cuerpo": 36,
          "bajada": "Superficie pareja para trabajar piezas a medida, con **cortes limpios** y buen ajuste en obra."},
 
         # L3 · estructura y espesor

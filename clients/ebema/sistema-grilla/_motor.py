@@ -110,7 +110,12 @@ def cuerpo(l):
         # larga entre en una línea. Paulina, 23-09-2026 sobre pointfix4: «dejar en
         # una sola línea, disminuir pt si es necesario para que se vea estético».
         bc = l.get("bajada_cuerpo")
-        eb = f' style="font-size:{bc}px"' if bc else ""
+        # `bajada_ancho`: abre el max-width (740) SÓLO en esta lámina. Paulina,
+        # 24-09-2026 sobre masisa2: «este texto déjalo en 2 líneas solamente». Con
+        # 740 la frase caía en 3; se alinea al ancho de caja de la lámina.
+        ba = l.get("bajada_ancho")
+        estilo = (f"font-size:{bc}px;" if bc else "") + (f"max-width:{ba}px;" if ba else "")
+        eb = f' style="{estilo}"' if estilo else ""
         extra = f'<div class="bajada"{eb}>{fmt(l["bajada"])}</div>'
     pie = ""
     if l.get("pie") is not None:

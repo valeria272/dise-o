@@ -493,6 +493,72 @@ lleva otro beneficio en el registro normal. Las tres que sí lo traen componen i
 | «en el link de la bio!» | ancho 429,1, cx 538,3 |
 | Bajada `<Producto>, disponible en Ebema.` | sobre el anillo, centrada |
 
+### ⛔⛔ RONDA 2 DE OCTUBRE — lo que Paulina corrigió el 24-09-2026
+
+Comentarios sobre la ronda 1 en Drive (se leen con
+`python scripts/drive-comentarios.py --nombre ebema_c_`). **Deroga la lámina de cierre
+de la ronda 1**, que viene justo abajo.
+
+#### ⛔ En el cierre, el producto es STOCK EN LA BODEGA, nunca un PNG al centro
+
+> «El saco de cemento debe ir **incluido en la escena del fondo**, como que los sacos
+> de cemento están disponibles en la bodega. **Nunca poner el png del producto así:
+> hace que el logo se pierda.** Esto debe ser así para **todas las slides finales de
+> carrusel de productos**.»
+
+| Qué | Ronda 1 (23-09) | Ahora |
+|---|---|---|
+| El producto | al centro, bajo el anillo EBEMA (el saco, como packshot pegado encima) | **como existencias**: pallets y racks cargados del producto a **los costados y al fondo** |
+| El centro | ocupado por el producto | **pasillo despejado**: ahí van el anillo y el botón, sin nada que les compita |
+| Cómo se hace | `cierre_compuesto.py` pegaba el packshot | ⛔ **retirado.** El packshot entra como **referencia** de la escena (`--refs`) y el desenfoque del conjunto hace el resto |
+
+El prompt vive en `stock()` de `generar_fotos.py`. Con el conjunto desenfocado,
+el saco se reconoce por su color y su forma, y la etiqueta no se lee. Por eso ya no
+hace falta el control de falsificación del packshot (§5).
+
+#### El cierre respira igual arriba y abajo del anillo
+
+> «Este bloque de texto hay que dejarlo más arriba para que tenga más aire y no se vea
+> pegado al logo.» · «[El botón] ponlo más abajo: debe tener la misma separación del
+> logo que el texto de arriba.»
+
+Medido sobre el render de la ronda 1: el aire de arriba era **74,8** y el de abajo,
+**107,0**. Ahora los dos miden **120**: la bajada va a `top:284.8`, el botón a `929.3`
+y la bio a `1015`. Vale para los seis cierres, porque es la plantilla.
+
+#### El saco de CBB es el CBB ESPECIAL verde, no el INACESA
+
+> «Este saco debe ser el que te dejé en drive, este no es el correcto.»
+
+El que EBEMA vende es el **Cemento Especial CBB de 25 kg**: kraft con los costados
+verdes, «es Cbb Cementos» y la gran curva verde y azul marino. Referencia oficial:
+[el packshot de Sodimac (3316939)](https://media.falabella.com/sodimacCL/3316939_001/w=1200,h=1200,fit=pad),
+que Paulina mandó *«para que no cometas el error nuevamente»*. El INACESA que se usó
+en la ronda 1 salió de la ficha técnica PDF de cbb.cl, y **esa ficha está vieja**.
+Versionado en `public/assets/ebema/grilla-oct26/_packshots/cbb_saco.png`.
+
+> ⚠️ Lo que ella sube al Drive **no se puede bajar con el token del estudio**
+> (`drive.file`). Si el archivo del Drive no baja, pídele el link del producto en la
+> web, como hizo ella acá. **No lo reemplaces con otro envase «parecido».**
+
+#### La foto es UNA toma, y la zona tranquila siempre tiene textura
+
+- **pointfix3 y sanjuan2 salieron como collage** de tres franjas horizontales («hiciste
+  un montaje de la imagen sobre otra imagen, la imagen de fondo debe ser sólo una»).
+  No fue un montaje nuestro: Nano Banana Pro arma paneles cuando el prompt describe un
+  detalle Y un paisaje. `COMUN` pide ahora **«una sola fotografía continua, sin
+  collage»**, y el detalle con fondo se describe como una toma de teleobjetivo.
+- **cbb1** tenía abajo **una mancha oscura sin textura**. Es el mismo error que el
+  cuadro de arriba de la ronda 1: pedir «superficie de tono parejo» devuelve un
+  vacío. `ZONA_ABAJO` pide ahora terreno con **textura visible y buena luz**.
+- **sanjuan1:** «hazla más comercial, sin productos, pero más llamativa». Una portada
+  de campo va con **luz de hora dorada, cultivo verde y cielo con volumen**, no con
+  un llano pardo.
+- **sanjuan2:** «la imagen no se entiende». La lámina de causa tiene que **leerse de
+  una**: un estanque con agua, en su predio, y el daño en su muro.
+
+---
+
 ### ⛔⛔ RONDA 1 DE OCTUBRE — lo que Paulina corrigió el 23-09-2026
 
 Comentarios dejados sobre las piezas en Drive, en la entrega de los 6 carruseles de
@@ -709,6 +775,35 @@ diseñadora. Comparada con la story de paid, **casi nada coincide**:
 
 > ⛔ **El lockup de Click NO mide lo mismo en grilla que en paid.** Es un 50 % más
 > grande y va más arriba. Si se calca el de paid, la pieza se ve de otra marca.
+
+### ⭐ Las STORIES de grilla ya tienen sistema — 24-09-2026
+
+Plantillas en `clients/ebema/sistema-grilla/stories-grilla.css` (familias B y C1,
+medidas sobre `ebema_st-1/st-2` y `ebema_storie_click`) y generador en
+`ejemplos/octubre-2026/stories_octubre.py`. La animada es Remotion:
+`src/compositions/ebema/EbemaGrillaStoryClickOct.tsx`.
+
+**Referencia de story ANIMADA:** `storie_click.mp4` de la grilla de **julio 2026**
+(`raw/ebema/1-referencias/grilla/video/stories/`). Arcos rojos en dos esquinas,
+lockup Click, un clip por texto, textos en Raleway **regular** con una línea en caja
+roja, ciudades de a una, cierre en **blanco** con bloques rojos en las esquinas.
+
+⛔ **No confundir con paid:** las stories de sucursal con **marco blanco y puntitos**
+(«post+stories sucursales» dentro de `graficas <mes> 26/`) son de **PAID**. Las de
+Serena de octubre (EBEMA_P01…P15) también.
+
+**Ronda 1 de Paulina (24-09), para TODAS las stories de este formato:**
+
+| Regla | Detalle |
+|---|---|
+| ⛔ **Sin caja indicadora del sticker** | «eliminemos esta caja indicadora de todas las stories». El espacio se reserva, pero no se dibuja |
+| **Velo negro difuminado abajo** en la de sucursal | «como en los carruseles, para que el texto destaque más» — entra en rampa desde el 50 % y llega a .60 |
+| **Dirección entera en Helvetica Bold**, contorno blanco fino y redondo | «el borde blanco tiene unos picos, bájale el pt al contorno». Los picos eran del `-webkit-text-stroke` (une en inglete): ahora son 16 sombras en círculo, radio 3,6 |
+| **La flecha manuscrita** se calca de la referencia | trazo que se afina hacia la cola y punta rellena. La primera versión, de línea pareja, «quedó chueca» |
+
+**Octubre trajo algo nuevo:** «TEST INTERACCIÓN: BOTÓN DE WHATSAPP» — una T5
+(«Toca el botón y escríbenos por WhatsApp.») y el botón lo pone Instagram. El bloque
+de horarios sube 182,6 para dejarle sitio. No hay referencia previa con esto.
 
 ### Familia B · INFORMACIÓN DE SERVICIO — horarios y direcciones
 

@@ -51,6 +51,15 @@ from pathlib import Path
 
 import certifi
 
+# ⚠️ Windows: la consola escribe en cp1252 y el «→» del primer print reventaba con
+# UnicodeEncodeError ANTES de llamar a la API (24-09-2026, story animada de EBEMA).
+# Mismo arreglo que magnific.py.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 BASE = "https://api.freepik.com/v1/ai"
 CTX = ssl.create_default_context(cafile=certifi.where())
 

@@ -175,14 +175,14 @@ const largoDe = (c: React.ReactNode): string =>
  * igual para «Padre Hurtado», la otra unidad de dos palabras que aparece en casi
  * todas las piezas.
  */
-const INDIVISIBLE = /(Tierra Calma|Padre Hurtado)/gi;
+const INDIVISIBLE = /(Tierra Calma|Padre Hurtado|UF\s[\d.]+|[\d.]+\sm²)/gi;
 
 export const sinPartir = (hijos: React.ReactNode): React.ReactNode => {
   if (typeof hijos !== "string") return hijos;
   return hijos
     .split(INDIVISIBLE)
     .map((parte, i) =>
-      /^(tierra calma|padre hurtado)$/i.test(parte) ? (
+      /^(tierra calma|padre hurtado|uf\s[\d.]+|[\d.]+\sm²)$/i.test(parte) ? (
         <span key={i} style={{whiteSpace: "nowrap"}}>
           {parte}
         </span>

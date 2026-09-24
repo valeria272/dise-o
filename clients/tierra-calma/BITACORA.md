@@ -5,6 +5,65 @@
 
 ---
 
+## 2026-09-24 (tarde) — Diego Aguilar
+
+**Qué se hizo:** `p-29-10` rehecha otra vez. La versión de la mañana ya seguía la
+referencia en composición, pero Diego: *"tiene que ser post-it pegados en el
+refrigerador como la referencia, **que se vea real**"*. Y tenía razón: el
+post-it estaba **dibujado con CSS**, con una esquina doblada falsa, y leía como
+tarjeta digital.
+
+### Lo que cambió no es el diseño, es quién hace qué
+
+| Lo hace | Qué |
+|---|---|
+| **La IA** | la puerta, la polaroid, el post-it con su esquina enrollada, los imanes, la textura del papel y la sombra de contacto |
+| **El código** | la foto dentro de la ventana de la polaroid y la letra encima del papel |
+
+El fondo se generó con **todos los papeles en blanco** —el prompt lo repite tres
+veces— porque el texto es **dato** y el dato no lo escribe la IA. `mixBlendMode:
+multiply` sobre el bloque de letra hace que la tinta siga las arrugas del papel
+en vez de flotar encima; es una línea y es la diferencia entre una nota escrita
+y un texto sobrepuesto.
+
+Se fueron los componentes `Iman` e `ImanCasa`: los imanes ahora son parte del
+objeto fotografiado, no dibujos.
+
+### Dos vueltas que costó afinar, y por qué
+
+1. **La foto no calzaba en la polaroid.** El papel está inclinado y la foto no;
+   se desbordaba por abajo a la izquierda. Se midió con una rejilla sobre el
+   render y quedó en `244,190 · 266×238` con −2,6° de giro.
+2. **El dato comercial tapaba el imán de casita**, que es justo lo que sostiene
+   la nota — la pieza perdía su lógica física. Y `Globo` va siempre centrado,
+   que es donde está el imán. Medido, la puerta tiene **un solo hueco libre**:
+   arriba a la derecha (`x 596-1000 · y 236-400`). Ahí quedó, con un recuadro
+   propio en vez de `Globo`.
+
+### Las cifras tampoco se parten
+
+Al llevar el dato a ese hueco, «UF / 2.500» quedó cortado entre dos líneas. Es el
+mismo error que el nombre partido, así que `INDIVISIBLE` —la regla de esta
+mañana— cubre ahora también **`UF 2.500` y `5.000 m²`**, en las dos
+composiciones.
+
+### Un agujero del QA, encontrado de paso
+
+El extractor de textos **no estaba leyendo el checklist del post-it**: las tres
+líneas vienen de un `.map()` sobre una lista literal, y la pasada de respaldo
+borra todo lo que está entre llaves antes de mirar. O sea que la compuerta daba
+la pieza por limpia habiendo leído sólo el titular — exactamente lo que el propio
+script dice que no debe pasar. Se le agregó una pasada para listas literales;
+ahora `p-29-10` declara 5 bloques en vez de 2.
+
+**Dónde quedó:** `p-29-10` re-subida sobre el mismo fileId. Fondo nuevo en
+`m-refri.jpg`. La compuerta pasa las 16 con el aviso de siempre.
+
+**Abierto:** lo de la tipografía manuscrita sigue esperando tu decisión — hoy es
+Caveat, que es la mano de Copywriters.
+
+---
+
 ## 2026-09-24 — Diego Aguilar (cierre del día · PAID de octubre)
 
 **Qué se hizo:** Dos rondas sobre la pauta. (1) 02-B «demasiado falso» → foto real

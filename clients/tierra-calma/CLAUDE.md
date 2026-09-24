@@ -363,6 +363,67 @@ está mal.
 > elegirle una propia.
 
 
+#### ⭐ `p-29-10` — LA IA HACE EL OBJETO, EL CÓDIGO PONE EL TEXTO
+
+Diego, 24-09-2026: *"el post del 29-10 tiene que ser post-it pegados en el
+refrigerador como la referencia, **que se vea real**"*.
+
+El intento anterior dibujaba el post-it con CSS —un rectángulo azul con una
+esquina falsa— y leía como **tarjeta digital**, no como papel. La diferencia no
+estaba en la tipografía ni en el color: estaba en que **el objeto no era un
+objeto**.
+
+##### El reparto del trabajo, que es la regla y no un detalle
+
+| Lo hace | Qué |
+|---|---|
+| **La IA** | la puerta, la polaroid, el post-it con su esquina enrollada, los imanes, la textura del papel y la **sombra de contacto** |
+| **El código** | la fotografía dentro de la ventana de la polaroid y **la letra encima del papel** |
+
+⛔ **El texto nunca lo escribe la IA**, ni siquiera cuando es «sólo una nota»: es
+dato. Por eso el fondo se generó con **todos los papeles en blanco** y el prompt
+lo repite tres veces — basta que el modelo escriba una palabra para que la pieza
+salga con texto que nadie aprobó.
+
+> 💡 `mixBlendMode: "multiply"` sobre el bloque de texto hace que la tinta siga
+> las arrugas y la sombra del papel en vez de flotar encima. Es lo que separa una
+> nota escrita de un texto sobrepuesto, y cuesta una línea.
+
+##### La geometría se mide sobre el fondo, y queda escrita
+
+`m-refri.jpg` es 1770×2360 y entra al lienzo de 1080×1350 con `cover` — escala
+**0,610**, recorte de **45 px** arriba. De ahí salen las tres cajas que usa la
+composición, y están en el código:
+
+```
+ventana de la polaroid   origen 389-847 · 368-788    → lienzo 237-517 · 180-436
+post-it                  origen 431-1430 · 1215-1975 → lienzo 263-872 · 696-1160
+esquina enrollada        origen x 1150+ · y 1750+    → lienzo x 701+ · y 1023+
+```
+
+⚠️ **La última línea no puede pasar de x ≈ 690 si cae bajo la fila 1023**: ahí
+empieza el enrollado y el texto se iría con el papel. Por eso «Próximo paso:
+hacerlo realidad» va cortado en dos líneas cortas y no en una larga.
+
+##### Dónde va el dato comercial
+
+**No en el post-it** —una nota manuscrita con el precio deja de parecer una
+nota— y **no al centro**, que es donde `Globo` lo pondría: ahí está el imán de
+casita, y taparlo rompe la lógica física de la pieza, porque es lo que sostiene
+la nota.
+
+Medido sobre el render, la puerta tiene **un solo hueco libre**: arriba a la
+derecha, `x 596-1000 · y 236-400`. La izquierda la toma la polaroid, la franja
+`430-590` el corazón y todo lo de abajo el post-it.
+
+#### ⛔ Y las CIFRAS tampoco se parten
+
+Al llevar el dato a ese hueco, «UF / 2.500» quedó partido entre dos líneas. Una
+cifra partida es el mismo error que el nombre partido, así que `INDIVISIBLE`
+—la regla de «Tierra Calma» nunca se parte— cubre ahora también **`UF 2.500` y
+`5.000 m²`**.
+
+
 #### ⛔ Los recuadros son GLOBOS DE TEXTO translúcidos
 
 Misma ronda, sobre `c-06-10-2` y `st-22-10`: *"que sea un globo de texto"*,

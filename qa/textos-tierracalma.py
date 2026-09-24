@@ -159,7 +159,18 @@ def textos_de(cuerpo: str) -> list[str]:
             if t:
                 textos.append(t)
 
-    # 4. RESPALDO sobre lo que quedó sin leer. `c-20-10-2` y `c-20-10-3` son las dos
+    # 4. Listas literales que se recorren con .map() — el checklist del post-it
+    #    de `p-29-10` vive así. La pasada de respaldo NO las ve, porque lo
+    #    primero que hace es borrar todo lo que está entre llaves; sin esto la
+    #    compuerta daba la pieza por limpia habiendo leído sólo el titular.
+    for m in re.finditer(r"\[\s*((?:\"(?:[^\"\\]|\\.)*\"\s*,?\s*)+)\]\s*\.map\(", cuerpo, re.S):
+        comidos.append(m.span())
+        for lit in re.findall(r"\"((?:[^\"\\]|\\.)*)\"", m.group(1)):
+            t2 = _limpia(lit)
+            if t2 and LETRA.search(t2):
+                textos.append(t2)
+
+    # 5. RESPALDO sobre lo que quedó sin leer. `c-20-10-2` y `c-20-10-3` son las dos
     #    slides con dirección de arte propia y su copy vive en <span> sueltos.
     #
     #    ⚠️ Devuelve UN bloque con el resto de la pieza, `<br/>` como salto. Sirve de

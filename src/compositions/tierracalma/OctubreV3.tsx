@@ -176,14 +176,14 @@ const cuerpoSans = (texto: string) => {
  * Vale para toda pieza, no sólo para el reel donde se detectó. Ver el gemelo en
  * `OctubreVideo.tsx` y la regla en el manual § Tipografía.
  */
-const INDIVISIBLE = /(Tierra Calma|Padre Hurtado)/gi;
+const INDIVISIBLE = /(Tierra Calma|Padre Hurtado|UF\s[\d.]+|[\d.]+\sm²)/gi;
 
 const sinPartir = (hijos: React.ReactNode): React.ReactNode => {
   if (typeof hijos !== "string") return hijos;
   return hijos
     .split(INDIVISIBLE)
     .map((parte, i) =>
-      /^(tierra calma|padre hurtado)$/i.test(parte) ? (
+      /^(tierra calma|padre hurtado|uf\s[\d.]+|[\d.]+\sm²)$/i.test(parte) ? (
         <span key={i} style={{whiteSpace: "nowrap"}}>
           {parte}
         </span>
@@ -1500,193 +1500,147 @@ const L: React.FC = () => (
 // El post-it y la polaroid son objetos físicos, no globos: van tal cual.
 // =============================================================================
 
-/** Imán redondo, el que sujeta las fotos en la puerta. */
-const Iman: React.FC<{x: number; y: number; s?: number; c?: string}> = ({x, y, s = 40, c = "#C9B99A"}) => (
-  <div
-    style={{
-      position: "absolute",
-      left: x,
-      top: y,
-      width: s,
-      height: s,
-      borderRadius: "50%",
-      background: `radial-gradient(circle at 34% 30%, #ffffff 0%, ${c} 46%, rgba(0,0,0,0.28) 130%)`,
-      boxShadow: "0 6px 14px rgba(0,0,0,0.32)",
-    }}
-  />
-);
-
-/** Imán con forma de casita: el que sujeta el post-it, como en la referencia. */
-const ImanCasa: React.FC<{x: number; y: number}> = ({x, y}) => (
-  <svg
-    width={88}
-    height={84}
-    viewBox="0 0 88 84"
-    style={{position: "absolute", left: x, top: y, filter: "drop-shadow(0 7px 14px rgba(0,0,0,0.34))"}}
-  >
-    <path d="M44 4 L84 36 L74 36 L74 78 L14 78 L14 36 L4 36 Z" fill="#F6F1E6" />
-    <path d="M44 4 L84 36 L74 36 L74 44 L14 44 L14 36 L4 36 Z" fill={TC.colors.brown} />
-    <rect x="30" y="52" width="14" height="14" fill={TC.colors.navy} opacity="0.75" />
-    <rect x="52" y="52" width="12" height="26" fill={TC.colors.navy} opacity="0.55" />
-    <rect x="58" y="10" width="9" height="16" fill={TC.colors.brown} />
-  </svg>
-);
-
 /**
- * ⭐ M · 29/10 · POST — la puerta del refrigerador. REHECHA el 24-09 sobre la
- * referencia que pasó Diego (pieza de Coldwell Banker Reforma).
+ * ⭐ M · 29/10 · POST — post-its REALES pegados al refrigerador.
  *
- * Igual que con `st-12-10`, la referencia **devuelve la pieza al brief**, que ya
- * pedía exactamente esto: *"en el refrigerador hay una fotografía tipo Polaroid
- * de un terreno amplio de Tierra Calma y, al lado, una imagen pequeña de
- * inspiración de una casa contemporánea. Al centro, un post-it grande… escrito a
- * mano, acompañado de pequeños imanes minimalistas"*.
+ * Diego, 24-09-2026: *"el post del 29-10 tiene que ser post-it pegados en el
+ * refrigerador como la referencia, **que se vea real**"*.
  *
- * Lo que había era la cocina entera en penumbra con una tarjeta rectangular
- * tipografiada: leía como aviso, no como la nota que alguien dejó pegada.
+ * ⛔ EL REPARTO DEL TRABAJO ES LA REGLA, NO UN DETALLE:
  *
- * Su gramática, tal como se aplicó:
- *   · la PUERTA llena el cuadro y es el fondo — no la cocina
- *   · polaroid del terreno + imagen de inspiración, cada una con su imán
- *   · post-it grande, sujeto con un imán de casita, con la esquina doblada
- *   · **la lista va manuscrita**, que es lo que la hace personal
- *   · los datos comerciales NO van en el post-it: van abajo, en la gráfica
+ *   · **La IA hace el OBJETO** — la puerta, la polaroid, el post-it con su
+ *     esquina enrollada, los imanes, la sombra de contacto y la textura del
+ *     papel. Eso es ambiente y utilería.
+ *   · **El código pone el CONTENIDO** — la fotografía dentro de la ventana de
+ *     la polaroid y la letra encima del papel. Eso es dato, y el dato **nunca**
+ *     lo escribe la IA (manual de sistema § jerarquía de imagen).
  *
- * ⚠️ LO QUE NO SE COPIÓ: la referencia trae una segunda nota con «Sueña ·
+ * Por eso el fondo se generó con **todos los papeles en blanco**, y por eso el
+ * prompt lo dice tres veces: basta que el modelo escriba una palabra para que la
+ * pieza quede con texto que nadie aprobó.
+ *
+ * El intento anterior dibujaba el post-it con CSS —un rectángulo con una esquina
+ * falsa— y leía como tarjeta digital, no como papel. La diferencia no estaba en
+ * la tipografía: estaba en que **el objeto no era un objeto**.
+ *
+ * ⛔ LO QUE NO SE COPIÓ de la referencia: su segunda nota dice «Sueña ·
  * Planifica · Hazlo · Realidad». Ese copy no está en el brief, y el texto de una
- * pieza de cliente sale **literal del brief**. En su lugar va la imagen de
- * inspiración, que el brief sí pide.
+ * pieza de cliente sale literal del brief.
+ *
+ * ⚠️ GEOMETRÍA MEDIDA sobre `m-refri.jpg` (1770×2360) y pasada al lienzo con el
+ * `cover` de 1080×1350 — escala 0,610, recorte de 45 px arriba:
+ *
+ *   ventana de la polaroid   origen x 389-847  y 368-788   → lienzo 237-517 · 180-436
+ *   post-it                  origen x 431-1430 y 1215-1975 → lienzo 263-872 · 696-1160
+ *   esquina enrollada        origen x 1150+    y 1750+     → lienzo x 701+ · y 1023+
+ *
+ * La última línea **no puede pasar de x ≈ 690** si cae bajo la fila 1023: ahí
+ * empieza el enrollado y el texto se iría con el papel.
  */
+const POLAROID = {x: 244, y: 190, w: 266, h: 238, giro: -2.6};
+const POSTIT = {x: 263, y: 696, w: 609, h: 464, giro: -1.1};
+
 const M: React.FC = () => (
   <Lienzo w={POST.w} h={POST.h}>
     <Foto src={OCT("m-refri")} foco="50% 50%" />
-    {/* Velo muy suave: la puerta es clara y el marco es blanco, así que sin esto
-        el filete del marco se pierde sobre el acero. */}
-    <AbsoluteFill style={{backgroundColor: "rgba(20,26,30,0.07)"}} />
 
-    {/* la polaroid del terreno */}
+    {/* la fotografía DENTRO de la ventana de la polaroid, con su misma
+        inclinación. `multiply` la integra al papel: sin eso se ve pegada. */}
     <div
       style={{
         position: "absolute",
-        left: 128,
-        top: 222,
-        width: 268,
-        transform: "rotate(-5deg)",
-        backgroundColor: "#FCFAF5",
-        padding: "14px 14px 46px",
-        boxShadow: "0 18px 40px rgba(0,0,0,0.3)",
+        left: POLAROID.x,
+        top: POLAROID.y,
+        width: POLAROID.w,
+        height: POLAROID.h,
+        transform: `rotate(${POLAROID.giro}deg)`,
+        overflow: "hidden",
       }}
     >
       <Img
         src={OCT("f-fondo")}
-        style={{width: "100%", height: 212, objectFit: "cover", display: "block"}}
+        style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}
       />
+      {/* el mismo velo cálido que tiene la escena, para que la foto no salte */}
+      <AbsoluteFill style={{backgroundColor: "rgba(120,96,64,0.12)"}} />
     </div>
-    <Iman x={242} y={196} s={44} />
 
-    {/* la imagen de inspiración: una casa contemporánea */}
+    {/* ⭐ LA LETRA, encima del papel. `mixBlendMode: multiply` hace que la tinta
+        siga las arrugas y la sombra del post-it en vez de flotar sobre él: es
+        lo que separa una nota escrita de un texto sobrepuesto. */}
     <div
       style={{
         position: "absolute",
-        left: 636,
-        top: 254,
-        width: 244,
-        transform: "rotate(3.5deg)",
-        backgroundColor: "#FCFAF5",
-        padding: "12px 12px 40px",
-        boxShadow: "0 16px 36px rgba(0,0,0,0.28)",
+        left: POSTIT.x,
+        top: POSTIT.y,
+        width: POSTIT.w,
+        height: POSTIT.h,
+        transform: `rotate(${POSTIT.giro}deg)`,
+        padding: "46px 52px 40px",
+        mixBlendMode: "multiply",
+        fontFamily: TC.fonts.mano,
+        color: "#16314C",
       }}
     >
-      <Img
-        src={OCT("h-casa")}
-        style={{width: "100%", height: 186, objectFit: "cover", display: "block"}}
-      />
-    </div>
-    <Iman x={742} y={228} s={40} c="#9FB3A6" />
-
-    {/* ⭐ EL POST-IT. La esquina doblada se hace con un triángulo en la esquina
-        inferior derecha, del color de la sombra: sin ella el papel parece una
-        cartulina pegada y no una nota. */}
-    <div
-      style={{
-        position: "absolute",
-        left: 158,
-        // ⚠️ Medido: con el post-it en 596 y este cuerpo, la línea «Próximo
-        // paso: hacerlo realidad» cerraba en la fila 1160 y el globo de datos
-        // entra en la 1058 — o sea, el remate de la nota quedaba TAPADO. Acá
-        // arranca en 500 y cierra en ~1030, con 28 px de aire bajo el globo.
-        top: 500,
-        width: 764,
-        transform: "rotate(-1.2deg)",
-        backgroundColor: "#DCE9F2",
-        padding: "48px 54px 52px",
-        boxShadow: "0 24px 54px rgba(0,0,0,0.3)",
-      }}
-    >
-      <div
-        style={{
-          fontFamily: TC.fonts.mano,
-          fontWeight: 600,
-          fontSize: 56,
-          lineHeight: 1.1,
-          color: TC.colors.navy,
-          marginBottom: 26,
-        }}
-      >
-        Ese proyecto que tienes en mente…
+      <div style={{fontWeight: 600, fontSize: 52, lineHeight: 1.08, marginBottom: 20}}>
+        Ese proyecto que
+        <br />
+        tienes en mente…
       </div>
-      {[
-        "Conocer Tierra Calma",
-        "Elegir mi parcela",
-        "Empezar a proyectar mi casa",
-      ].map((linea) => (
-        <div key={linea} style={{display: "flex", alignItems: "center", gap: 18, marginBottom: 16}}>
-          <ICheck s={32} c={TC.colors.navy} />
-          <span
-            style={{
-              fontFamily: TC.fonts.mano,
-              fontWeight: 500,
-              fontSize: 44,
-              lineHeight: 1.15,
-              color: TC.colors.ink,
-            }}
-          >
-            {sinPartir(linea)}
-          </span>
+      {["Conocer Tierra Calma", "Elegir mi parcela", "Empezar a proyectar mi casa"].map((l) => (
+        <div key={l} style={{display: "flex", alignItems: "center", gap: 14, marginBottom: 9}}>
+          <ICheck s={26} c="#16314C" />
+          <span style={{fontWeight: 500, fontSize: 40, lineHeight: 1.1}}>{sinPartir(l)}</span>
         </div>
       ))}
-      <div
-        style={{
-          marginTop: 22,
-          fontFamily: TC.fonts.mano,
-          fontWeight: 600,
-          fontSize: 46,
-          lineHeight: 1.12,
-          color: TC.colors.brown,
-        }}
-      >
-        Próximo paso: hacerlo realidad.
+      {/* Se corta en dos líneas a propósito: la esquina del papel se enrolla a
+          partir de x ≈ 690, y una línea larga se iría con el enrollado. */}
+      <div style={{marginTop: 16, fontWeight: 600, fontSize: 42, lineHeight: 1.1, width: 400}}>
+        Próximo paso:
+        <br />
+        hacerlo realidad.
       </div>
-      {/* la esquina doblada */}
-      <div
-        style={{
-          position: "absolute",
-          right: 0,
-          bottom: 0,
-          width: 62,
-          height: 62,
-          background: "linear-gradient(135deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.18) 50%, #C6D7E3 50%)",
-        }}
-      />
     </div>
-    <ImanCasa x={496} y={460} />
 
     <Marco archivo="MARCO-POST" />
-    {/* Los datos comerciales NO van en el post-it: una nota manuscrita con el
-        precio deja de parecer una nota. Van en la gráfica, como en la referencia. */}
-    <Globo y={1058} max={760} size={29} op={0.6}>
-      Aprox. 5.000 m² desde UF 2.500 · Padre Hurtado
-    </Globo>
+    {/* El dato comercial va en el HUECO entre la polaroid y el post-it: sobre el
+        acero desnudo, que es lo único que queda libre. En el post-it no puede
+        ir — una nota manuscrita con el precio deja de parecer una nota. */}
+    {/* ⚠️ El dato comercial NO usa `Globo`, que va siempre centrado: acá el
+        centro está ocupado. Medido sobre el render, la puerta tiene un solo
+        hueco libre de verdad —arriba a la derecha, x 596-1000 · y 236-400—
+        porque la polaroid toma la izquierda, el corazón la franja 430-590 y el
+        post-it todo lo de abajo. Puesto al centro tapaba el imán de casita, que
+        es justo lo que sostiene la nota: la pieza dejaba de tener lógica física.
+        Y en el post-it tampoco puede ir — una nota manuscrita con el precio deja
+        de parecer una nota. */}
+    <div
+      style={{
+        position: "absolute",
+        left: 596,
+        top: 240,
+        width: 404,
+        backgroundColor: "rgba(9,20,28,0.6)",
+        backdropFilter: "blur(18px)",
+        WebkitBackdropFilter: "blur(18px)",
+        border: "1px solid rgba(255,255,255,0.18)",
+        borderRadius: 26,
+        padding: "22px 26px",
+        fontFamily: SANS,
+        fontWeight: 300,
+        fontSize: 27,
+        lineHeight: 1.3,
+        color: "#fff",
+        textAlign: "center",
+        boxShadow: "0 18px 40px rgba(0,0,0,0.3)",
+      }}
+    >
+      {sinPartir("Aprox. 5.000 m²")}
+      <br />
+      {sinPartir("desde UF 2.500")}
+      <br />
+      {sinPartir("Padre Hurtado")}
+    </div>
     <Pildora caja={POST.pill} icono={<IWsp s={23} />} size={26} gap={11}>
       Agenda tu visita por WhatsApp
     </Pildora>

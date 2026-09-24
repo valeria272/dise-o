@@ -1,3 +1,24 @@
+## 2026-09-24 — Eli (Windows) · Arranque de máquina + qué está OK PARA DISEÑAR en octubre — SIN PIEZAS
+
+**Qué se hizo:** `/arranque` en la máquina Windows: todo en verde (Node, Chrome,
+Python, llavero abierto, Magnific válido, token de Drive responde, TS compila). Después
+se leyeron las 4 grillas de octubre **en vivo** (DT/QB/P18 por API de Sheets; Between
+por export CSV con gid, porque la de octubre sí lo acepta) y se listó sólo lo marcado
+`OK PARA DISEÑAR`/`OK PARA DISEÑO`: **28 piezas** — DT 5 (Family Time animada 1-oct,
+Opinión Expedia 10-oct, Servicios 13-oct, Reel Hilton Honors POV 14-oct, Honors
+beneficios 30-oct) · QB 11 stories (1 al 26-oct) · Between 10 stories + 2 feed
+(1 al 28-oct) · **Piso18 0**.
+**Dónde quedó:** instantáneas nuevas `clients/hilton/grillas/api/{dt,qb,p18}-oct-20260924.json`
+(base del diff de mañana). Between quedó sólo en el scratchpad (CSV); no se versionó.
+**Qué sigue:** Eli elige por dónde partir; lo más próximo es 1-oct (DT Family Time
+animada, QB Banco de Chile, BW Anuncio ganador concurso) y 2-oct (BW Promos To Go).
+**Abierto:** QB 14-oct «Adivina el trago» trae comentario del cliente («Ok, pero con
+alternativas, siento que cuadro de respuesta no responden»). QB 22-oct: anclar a la
+recomendación del chef + leyenda «Imagen referencial» en todo material no real (ya
+anotado en `clients/qb/CLAUDE.md` §5). La vista mensual de QB sigue diciendo «AGOSTO»
+(pestaña vieja), pero las STORIES sí son de octubre. BW 26-oct «WTF…» es orgánico **por
+grabar**. No se sabe cuáles de las 28 ya tiene empezadas Eli.
+
 ## 2026-09-23 (noche) — Eli (Windows) · DT «Tu día»: ronda 10, rótulo del cierre — SUBIDO
 
 **Qué se hizo:** Javier Mesa (chat): «cambiemos este último texto por "CERRANDO EL

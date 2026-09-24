@@ -490,6 +490,12 @@ Con eso la pieza pasa **las 9 reglas, sin avisos y sin nada sin verificar**.
 
 **Hay mucho material propio y es la fuente. No se genera lo que ya está fotografiado.**
 
+> ⛔ **«Imagen referencial» en todo material que no sea real — pedido del cliente,
+> grilla de octubre (STORIES, 22-10, leído el 24-09-2026):** «añadir Imagen referencial
+> abajo, contemplar esto para todo material que no sea real». Cualquier pieza de QB con
+> imagen generada o montada con IA lleva la leyenda «Imagen referencial» abajo. En esa
+> misma story pide además anclarla «a la recomendación del chef (misma línea gráfica)».
+
 | Fuente | Cómo se usa |
 |---|---|
 | **Sesiones de fotografía** | Son varias y están disponibles. Los `Enlaces no disponibles` del `Informe.txt` revelan el disco de Eli y el nombre de las sesiones: `D:\COPY\FOTOS 4 AGOSTO\SESIÓN COCTELERÍA 11-09\` (`_DSC0030`, `_DSC9930`, `_DSC9855 ATENEA`, `_DSC9987`, `_DSC0010`) y `D:\COPY\FOTOS 4 AGOSTO\QB sesión 13-10\` (`QB 13 oct-60`). **Esas carpetas son las que faltan en el estudio** |

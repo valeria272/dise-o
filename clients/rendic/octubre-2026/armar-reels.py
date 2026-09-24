@@ -9,7 +9,7 @@ Metraje: reutiliza los reels de septiembre. Se conserva la zona de la foto
 from PIL import Image, ImageDraw
 import os, sys, glob, subprocess
 sys.path.insert(0, os.path.dirname(__file__))
-from armar import (G, fuente, fondo, texto_centrado, quebrar, pildora,
+from armar import (G, fuente, fondo, texto_centrado, quebrar, corte_feo, pildora, ajustar,
                    logo_recortado, slogan, BURDEO, BLANCO, ACT, LOGO, RAIZ)
 
 FPS, W, H = 30, 1080, 1920
@@ -34,13 +34,17 @@ REELS = [
    ("juegos",     "Admisiones 2027 ya están abiertas", 90),
    ("aula",       "Educación bilingüe, clases con máximo 25 alumnos", 120),
    ("grupo",      "Formación integral, para la vida", 120)]),
- dict(n="08", cta="Asegura el cupo de tu hijo antes de mudarte", escenas=[
+ dict(n="08", cta="Asegura el cupo de tu hijo antes de mudarte. Escríbenos por WhatsApp", escenas=[
    ("biblioteca", "¿Te mudas a Antofagasta el 2027?", 90),
    ("aula",       "Antonio Rendic College te espera", 120),
    ("juegos",     "Educación bilingüe, bienestar y excelencia", 120)]),
 ]
 
 g = G["story"]
+# Ancho útil del texto en reel: la columna derecha de 180 px lleva los íconos (hoja
+# «Zonas seguras» del brief). Centrado en 540, el texto no pasa de x=900. QA 24-09-2026:
+# con 0,80·W «PROGRAMAS» y «BILINGÜE,» entraban en la columna.
+ANCHO_REEL = 2 * (W - 180 - W // 2)                  # 720
 BASE_Y = g["elipse"]["cy"] + g["elipse"]["ry"]      # 910
 PISO_UTIL = H - int(H * 0.14)                        # zona segura: 1652
 PISO_REEL = H - 420                                  # reel: 420 px abajo (brief) → 1500
@@ -58,8 +62,11 @@ def capa_escena(txt):
     # texto grande, máximo 7 palabras por pantalla (regla del brief)
     st = 78
     while st > 40:
-        ln = quebrar(txt.upper(), lambda s_: fuente(850, s_), int(W*0.80), st)
-        if len(ln) <= 3: break
+        ln = quebrar(txt.upper(), lambda s_: fuente(850, s_), ANCHO_REEL, st)
+        f_ = fuente(850, st)
+        if (len(ln) <= 3 and not corte_feo(ln)
+                and max(f_.getbbox(l)[2] - f_.getbbox(l)[0] for l in ln) <= ANCHO_REEL):
+            break   # también por ancho: una palabra sola («EXTRACURRICULARES») puede no caber
         st -= 3
     # el texto arranca bajo el logo (que baja hasta y=1133), no bajo la elipse
     lg = G["story"]["logo"]
@@ -74,22 +81,29 @@ def capa_escena(txt):
     return c
 
 def capa_cierre(cta):
-    """Cierre: burdeo pleno, logo grande, CTA y firma."""
+    """Cierre: burdeo pleno, logo grande, nombre, CTA y slogan.
+
+    QA 24-09-2026: todo dentro de x 180–900 (columna de íconos) y sobre y=1500 (los
+    420 px del brief). El nombre va en UNA línea —partido quedaba «ANTONIO / RENDIC
+    COLLEGE»— y el CTA baja de cuerpo hasta que no toca el slogan: el del P08, literal
+    del brief, ocupa tres líneas.
+    """
     c = fondo(W, H); d = ImageDraw.Draw(c)
     lg = logo_recortado(520)   # el de fondo de color — feedback Diego 08-09
     c.paste(lg, ((W-520)//2, 430), lg)
-    y = 1060
-    f = fuente(850, 74)
-    for l in quebrar("Antonio Rendic College".upper(), lambda s_: fuente(850, s_), int(W*0.80), 74):
-        texto_centrado(d, y, l, f, BLANCO, W); y += int(74*1.16)
-    y += 26
-    fb = fuente(500, 40)
-    for l in quebrar(cta, lambda s_: fuente(500, s_), int(W*0.78), 40):
-        texto_centrado(d, y, l, fb, BLANCO, W); y += int(40*1.35)
-    # slogan nuevo en vez de «Somos Familia Rendicina» — Sebastián, 23-09-2026.
-    # Termina 20 px antes de PISO_REEL: la zona de 420 px del brief queda limpia.
     fw = 460; firma = slogan(fw, BLANCO, centrado=True)
-    c.paste(firma, ((W-fw)//2, PISO_REEL - firma.height - 20), firma)
+    y_slogan = PISO_REEL - firma.height - 20
+    y = 1030
+    f, st = ajustar("Antonio Rendic College".upper(), lambda s_: fuente(850, s_), ANCHO_REEL, 74)
+    texto_centrado(d, y, "Antonio Rendic College".upper(), f, BLANCO, W); y += int(st * 1.16) + 26
+    for sc in range(40, 26, -2):
+        lns = quebrar(cta, lambda s_: fuente(500, s_), ANCHO_REEL, sc)
+        if y + len(lns) * int(sc * 1.35) <= y_slogan - 34:
+            break
+    fb = fuente(500, sc)
+    for l in lns:
+        texto_centrado(d, y, l, fb, BLANCO, W); y += int(sc * 1.35)
+    c.paste(firma, ((W-fw)//2, y_slogan), firma)
     return c
 
 def frame_fuente(clip, idx):

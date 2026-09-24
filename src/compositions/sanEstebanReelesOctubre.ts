@@ -18,7 +18,9 @@ export const REEL_TRAFICO: Escena[] = [
   {foto: "SE-58", encuadre: 60, encuadreY: 5, texto: "Entre los mejores puntajes PAES de la región"},
   {foto: "SE-93", encuadre: 40, texto: "Una comunidad que trasciende el aula"},
   {foto: "SE-abril55", encuadre: 46, encuadreY: 12, cierre: true,
-   texto: "Conoce más en nuestro sitio web", cta: "Infórmate en nuestro sitio web"},
+   // Sin barra (QA 24-09-2026): «Infórmate en nuestro sitio web» no está en el brief.
+   // El botón «Más información» lo pone Meta.
+   texto: "Conoce más en nuestro sitio web"},
 ];
 
 /** Pieza 05 · Reel 15 s · WhatsApp Antofagasta — Admisión 2027 */
@@ -31,8 +33,9 @@ export const REEL_WSP_ANTOFAGASTA: Escena[] = [
     encuadre: 40,
     encuadreY: 18,
     cierre: true,
-    texto: "Conversemos por WhatsApp",
-    cta: "Escríbenos por WhatsApp",
+    // Literal del brief completo, sin barra (QA 24-09-2026): antes iba recortado a
+    // «Conversemos por WhatsApp» con una barra «Escríbenos por WhatsApp» inventada.
+    texto: "Conversemos por WhatsApp sobre tu proceso de admisión",
   },
 ];
 

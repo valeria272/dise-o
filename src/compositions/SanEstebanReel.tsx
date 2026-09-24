@@ -176,9 +176,11 @@ const Titular: React.FC<{texto: string; retraso?: number; sinEntrada?: boolean}>
           letterSpacing: FUENTES.trackingTitular,
           color: COLORES.blanco,
           textShadow: "0 4px 16px rgba(0,0,0,.34)",
-        }}
+          // líneas parejas y «San Esteban» nunca partido (QA 24-09-2026)
+          textWrap: "balance",
+        } as React.CSSProperties}
       >
-        {texto}
+        {texto.replace("San Esteban", "San\u00a0Esteban")}
       </div>
     </div>
   );

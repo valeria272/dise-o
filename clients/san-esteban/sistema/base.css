@@ -98,6 +98,9 @@ body{background:#fff}
 .titular.frase{text-transform:none;letter-spacing:-.02em;line-height:1.06}
 
 .bajada{font-weight:400;color:var(--blanco);line-height:1.18;text-shadow:var(--sombra-texto)}
+/* líneas parejas: sin esto quedaba «¿Te mudas a Antofagasta en / 2027?» con una
+   palabra sola abajo (QA 24-09-2026). Chrome lo soporta desde la 114. */
+.titular,.bajada{text-wrap:balance}
 
 .nombre{display:inline-block;background:var(--rojo);color:var(--blanco);
         font-weight:700;border-radius:6px;padding:.14em .5em;line-height:1.18}

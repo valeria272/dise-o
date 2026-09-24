@@ -89,9 +89,19 @@ def foto(p, formato):
                 f'background-position:{pos}"></div>')
     return f'<div class="foto" style="{MARCA_POSICION}">FALTA LA FOTO</div>'
 
+# Nombres que no se parten entre dos líneas (QA 24-09-2026): quedaba «…de San /
+# Esteban» y «Hrvatska Skola San / Esteban». Van con espacio duro; entre las dos
+# mitades del nombre largo sí se puede cortar, o «Conoce» queda sola arriba.
+SIN_CORTE = ("Hrvatska Skola", "San Esteban")
+
+def e(txt):
+    t = html.escape(txt)
+    for nombre in SIN_CORTE:
+        t = t.replace(nombre, nombre.replace(" ", "\u00a0"))
+    return t
+
 def bloque_texto(p):
     """Cada bloque anclado a su posicion medida — ver base.css."""
-    e = html.escape
     partes = [f'<div class="titular-wrap"><div class="titular {p["clase_titular"]}">'
               f'{e(p["titular"])}</div></div>']
     if p["nombre_caja"]:

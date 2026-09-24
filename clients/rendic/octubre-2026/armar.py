@@ -114,7 +114,10 @@ def texto_centrado(d, y, txt, f, fill, W, tracking=0.0):
     bb = d.textbbox((0, 0), txt, font=f)
     w = bb[2] - bb[0]
     x = (W - w) // 2 - bb[0]
-    d.text((x, y - bb[1]), txt, font=f, fill=fill)
+    # Se alinea por la altura de la mayúscula, no por el tope de la línea: si no, una
+    # tilde («ESTÁN») baja esa línea y el interlineado queda disparejo. QA 24-09-2026.
+    tope = d.textbbox((0, 0), "H", font=f)[1]
+    d.text((x, y - tope), txt, font=f, fill=fill)
     return bb[3] - bb[1]
 
 def ajustar(txt, f_gen, ancho_max, size_ini, size_min=24):
@@ -137,7 +140,39 @@ def quebrar(txt, f_gen, ancho_max, size):
         else:
             lineas.append(cur); cur = p
     if cur: lineas.append(cur)
-    return lineas
+    # Mismo número de líneas, pero bien cortadas (QA 24-09-2026). El llenado codicioso
+    # dejaba palabras solas («¿TE MUDAS A ANTOFAGASTA EN / 2027?»). Entre todos los
+    # cortes que caben se elige el más parejo, castigando: una línea de una sola
+    # palabra corta («MÁS», «2027?») y partir el nombre del colegio.
+    n = len(lineas)
+    if n < 2:
+        return lineas
+    ancho = lambda t: f.getbbox(t)[2] - f.getbbox(t)[0]
+    tope = max(ancho_max, max(ancho(l) for l in lineas))
+    NOMBRE = [("ANTONIO", "RENDIC")]   # «RENDIC / COLLEGE» se admite: así corta el logo
+    mejor = None
+    from itertools import combinations
+    for cortes in combinations(range(1, len(pal)), n - 1):
+        ls = [" ".join(pal[a:b]) for a, b in zip((0,) + cortes, cortes + (len(pal),))]
+        an = [ancho(l) for l in ls]
+        if max(an) > tope:
+            continue
+        costo = max(an) - min(an)
+        costo += sum(10000 for l in ls if " " not in l and len(l) < 8)
+        costo += sum(10000 for c in cortes
+                     if (pal[c-1].upper().strip(".,"), pal[c].upper().strip(".,")) in NOMBRE)
+        if mejor is None or costo < mejor[0]:
+            mejor = (costo, ls)
+    return mejor[1] if mejor else lineas
+
+def corte_feo(lineas):
+    """True si el mejor corte posible igual deja una palabra corta sola o parte el
+    nombre del colegio: la salida es bajar el cuerpo, no aceptar el corte."""
+    NOMBRE = [("ANTONIO", "RENDIC")]   # «RENDIC / COLLEGE» se admite: así corta el logo
+    if len(lineas) > 1 and any(" " not in l and len(l) < 8 for l in lineas):
+        return True
+    return any((a.split()[-1].upper().strip(".,"), b.split()[0].upper().strip(".,")) in NOMBRE
+               for a, b in zip(lineas, lineas[1:]))
 
 def pildora(d, cx, cy, txt, f, pad_x=26, pad_y=12):
     bb = d.textbbox((0, 0), txt, font=f)

@@ -138,14 +138,25 @@ diseñadora. Entregar a 1080.
 - [ ] Fondo exactamente **#661D33** — no el del logo
 - [ ] Lienzo a **1080**, no 1081
 - [ ] La foto recortada con la elipse medida, no con un arco a ojo
-- [ ] Logo **blanco**, 256 px en feed
+- [ ] Logo **ARC 7421C** (anillo burdeo + disco blanco, opaco), 256 px en feed — el blanco calado quedó retirado por Diego el 08-09
 - [ ] Story: **268 px arriba y abajo** libres de texto y logo (14%)
-- [ ] Reel: 120 px arriba, 420 px abajo, columna derecha libre
+- [ ] Reel: 120 px arriba, 420 px abajo y **columna derecha de 180 px** libre (hoja «Zonas seguras» del brief): el texto centrado no pasa de x=900 → ancho útil 720 px
+- [ ] Ninguna palabra corta sola en una línea («2027?», «MÁS») y nunca «ANTONIO / RENDIC» partido — `quebrar()` y `corte_feo()` en `armar.py`
+- [ ] El CTA del cierre del reel, **completo** como lo escribe el brief (el del P08 trae dos frases)
 - [ ] Los tres pilares en orden y con su ícono correcto
 - [ ] El slogan «Educating for purpose, excellence & wellbeing» presente (la firma manuscrita está retirada)
 - [ ] Textos **literales del brief** — no reescribir copys
 
 ---
+
+## Errores encontrados en el QA del 24-09-2026
+
+1. **El titular del reel entraba en la columna de íconos.** Se componía a 0,80·W y
+   «PROGRAMAS» y «BILINGÜE,» llegaban a x≈1004. El brief reserva 180 px a la derecha.
+2. **El CTA del cierre del P08 estaba recortado**: faltaba «Escríbenos por WhatsApp».
+3. **Palabras solas**: el llenado codicioso dejaba «¿TE MUDAS A ANTOFAGASTA EN / 2027?».
+4. **Interlineado disparejo con tildes**: cada línea se alineaba por su tope y «ESTÁN»
+   bajaba. Ahora se alinea por la altura de la H.
 
 ## ⚠️ Las piezas de septiembre violan la zona segura de story
 

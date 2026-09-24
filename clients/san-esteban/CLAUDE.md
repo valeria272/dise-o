@@ -253,6 +253,8 @@ No hay pista musical ni voz oficial definidas todavía.
 [ ] Rostros con autorización vigente de apoderados
 [ ] Story: 14% superior y 14% inferior sin texto ni logo
 [ ] Reel: primer frame legible solo, columna derecha libre, ≤7 palabras por pantalla
+[ ] Reel: el cierre dice LITERAL lo que pide el brief — sin barra inventada («Infórmate…», «Escríbenos…» sólo si están en el brief)
+[ ] Sin «San / Esteban» partido ni palabra sola en la última línea (`SIN_CORTE` en build.py + `text-wrap: balance`)
 [ ] Cada pieza con su adaptación a story en el mismo envío
 [ ] Exportado a 1080 exacto (no 1081) · JPG o PNG RGB ≤30 MB
 [ ] Nombre de archivo: SANESTEBAN_P01_Story_1080x1920.jpg
@@ -293,6 +295,12 @@ No hay pista musical ni voz oficial definidas todavía.
    **vacía**. **Regla:** verificar que el material exista *antes* de planificar la
    pieza — ver [`compuerta-de-material`](../../docs/SISTEMA-DE-MARCAS.md). Y antes de
    bloquear, **agotar el material**: el sitio del cliente tenía la sesión completa.
+
+7. **Cierres de reel con texto inventado (QA 24-09-2026).** El P02 llevaba una barra
+   «Infórmate en nuestro sitio web» y el P05 recortaba «Conversemos por WhatsApp sobre
+   tu proceso de admisión» a tres palabras con una barra «Escríbenos por WhatsApp» que
+   el brief no trae. El botón lo pone Meta; en la pieza va el texto literal.
+8. **Nombre partido (QA 24-09-2026).** «…de San / Esteban» en P01, P04, P06 y P07.
 
 ## 10. Dónde está el material
 

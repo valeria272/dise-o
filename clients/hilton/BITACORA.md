@@ -16,7 +16,13 @@ subcarpeta BW: todavía no hay carpeta DT.
 después Opinión Expedia (FEED 10-oct), Servicios (ST 13-oct), Reel Honors POV (FEED
 14-oct) y Honors beneficios (ST 30-oct). Confirmar con Eli cuál toma y avisar el tiempo
 estimado antes de partir.
-**Abierto:** si Eli ya empezó alguna de las 5 piezas OK. El Reel Honors POV necesita
+**⚠️ Corrección al cierre:** mientras se escribía esta entrada, **otra sesión en el mismo
+árbol ya estaba produciendo octubre de DT**: `DtStFamilyTimeOct.tsx`, `DtStServiciosOct.tsx`,
+`DtStHonorsOct.tsx`, `dtIconosOct.tsx`, `src/DtOctEntry.tsx`, `scripts/dt-oct-fotos.py` y
+`dt-oct-20260924b.json`. El `git add -A` de este cierre los subió **a medio hacer** dentro
+del commit 1d0b5d4, que no es de esa sesión. No son piezas terminadas ni aprobadas: la
+bitácora de ese trabajo la escribe su propio `/cierre`.
+**Abierto:** el estado real de las 3 stories de octubre que ya están en código. El Reel Honors POV necesita
 **grabar** entrada y recepción (producción). Cinco piezas siguen en REVISAR CONTENIDO y
 dos reels orgánicos POR GRABAR. El carrusel del 21-oct tiene comentario del cliente
 («que sean 5…») pero no tiene estado. La portada definitiva de «Tu día» ya no urge:

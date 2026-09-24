@@ -1,3 +1,27 @@
+## 2026-09-24 (noche) — Eli (Windows) · DT: /abrir + /al-dia — SIN PIEZAS
+
+**Qué se hizo:** sólo apertura de DT. Pull (trajo EBEMA y Tierra Calma, nada de Hilton),
+siembra de memoria y diff por conjunto de cadenas de las dos grillas de DT contra sus
+instantáneas. **Septiembre:** «Tu día en DoubleTree» (FEED!O15) pasó a **APROBADO**
+(cierra la ronda 10); Día del Turismo (M15) sigue CORREGIDA sin comentario nuevo; el
+reel orgánico del 25-09 (F16) pasó de POR GRABAR a EN REVISIÓN con «VIDEO EDITADO»
+(no lo editó este estudio); Honors 23-09 PROGRAMADO. Cero hilos de comentario nuevos
+después del 23-09 19:33Z. **Octubre:** sin cambios desde la mañana (última edición 23-09
+18:51Z).
+**Dónde quedó:** instantánea nueva `clients/hilton/grillas/api/dt-sept-20260924.json`
+(base del próximo diff) y `clients/_estado-sync.json` → `dt`. En Drive, Eli creó hoy
+`S1…S5 HILTON OCT 2026` (`1KDBVTVib5O-sm__EfNadZibN9gnB2lcE`), pero sólo tienen
+subcarpeta BW: todavía no hay carpeta DT.
+**Qué sigue:** partir octubre por la ST animada Family Time del 1-oct (la más próxima);
+después Opinión Expedia (FEED 10-oct), Servicios (ST 13-oct), Reel Honors POV (FEED
+14-oct) y Honors beneficios (ST 30-oct). Confirmar con Eli cuál toma y avisar el tiempo
+estimado antes de partir.
+**Abierto:** si Eli ya empezó alguna de las 5 piezas OK. El Reel Honors POV necesita
+**grabar** entrada y recepción (producción). Cinco piezas siguen en REVISAR CONTENIDO y
+dos reels orgánicos POR GRABAR. El carrusel del 21-oct tiene comentario del cliente
+(«que sean 5…») pero no tiene estado. La portada definitiva de «Tu día» ya no urge:
+el carrusel quedó aprobado con la del lobby.
+
 ## 2026-09-24 (tarde) — Eli (Windows) · BETWEEN: grilla de OCTUBRE, las 11 piezas OK PARA DISEÑAR — APROBADAS, sin subir
 
 **Qué se hizo:** se diseñó todo lo OK PARA DISEÑAR de la S1 a la S5 de la grilla de octubre

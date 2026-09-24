@@ -1,3 +1,26 @@
+## 2026-09-24 (tarde) — Eli (Windows) · BETWEEN: grilla de OCTUBRE, las 11 piezas OK PARA DISEÑAR — APROBADAS, sin subir
+
+**Qué se hizo:** se diseñó todo lo OK PARA DISEÑAR de la S1 a la S5 de la grilla de octubre
+(leída en vivo): 9 historias (01-10 ganador concurso · 02-10 To Go POV animada 8 s ·
+05-10 collage «Paso por un café y…» · 07-10 cumpleaños · 08-10 trivia · 19-10 cowork ·
+20-10 lo dicen ustedes · 27-10 espacio para tu evento · 28-10 Bonjour) y 2 feed (05-10
+reunión · 14-10 espacios). Cuatro rondas con Eli en el día; **todas aprobadas**. No se hizo
+el 26-10 «WTF…» (dice GRABAR ORGÁNICO) ni lo que está en revisión/pendiente.
+**Regla nueva de Eli:** ⛔ sin rostros de modelos, sólo del cuello hacia abajo → manual § OCTUBRE 2026.
+**Dónde quedó:** entrega final en `out/hilton/between/entrega-oct/` (10 PNG a 2250 + MP4
+1080×1920 + portada, y 6 guías en `GUIAS CM/`). Página de revisión en
+`out/hilton/between/oct-revision/index.html`. Código `src/compositions/hilton/BetweenOctubre.tsx`
++ `src/BetweenOctEntry.tsx`; escenas `scripts/between-oct-generar.py` (Nano Banana Pro);
+el video salió de Seedance 2.5 en el Space de Magnific «Between octubre». Fondos usados,
+versionados en `public/assets/hilton/between/oct/`.
+**Qué sigue:** Eli pasa la carpeta OFICIAL de Drive → subir `entrega-oct/` en orden (sin
+las guías; ésas van al CM). Mientras, la temporal es `1x9NeC__6ODemjfIeg-DDLXw2O41tvHSJ`.
+**Abierto:** (1) 20-10 «Lo dicen ustedes» lleva los EJEMPLOS del brief: faltan reseñas reales.
+(2) 02-10 va «$2.990» (el brief dice «$2,990»). (3) 05-10 dice «UNA BUENA CONVERSA» (brief:
+«CONVERSACIÓN»). (4) 01-10: falta el @ del ganador (sticker de mención). (5) 19-10 lleva
+«Between Coffee & Bar» con pin, calcado del «Semusin Cafe» de la ref — no está en el brief.
+Eli lo vio todo bien, pero no se le preguntó explícito por (1)–(3) y (5).
+
 ## 2026-09-24 — Eli (Windows) · Arranque de máquina + qué está OK PARA DISEÑAR en octubre — SIN PIEZAS
 
 **Qué se hizo:** `/arranque` en la máquina Windows: todo en verde (Node, Chrome,

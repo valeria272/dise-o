@@ -69,3 +69,6 @@
 - [Agotar el material antes de bloquear](agotar-material-antes-de-bloquear.md) — ⭐ Feedback 25-08: buscar en los videos oficiales (un frame 4K es una foto), en Drive con embeddedfolderview y en el sitio del cliente ANTES de decir «falta la foto»
 - [⭐ Generador de imágenes = Seedream 5 Pro](generador-imagenes-seedream-5-pro.md) — decisión de Diego 23-09: `magnific.py seedream` (con --refs para idealizar fotos reales); referencias en data URI; escribir la composición en el prompt
 - [⭐ Tierra Calma — PAID octubre 2026](tierra-calma-paid-octubre-2026.md) — brief de Ignacio en PERFORMANCE; no reusar imágenes publicadas; aprendizaje completo en el manual § 7 bis
+- [⛔⛔ Between: sin rostros de modelos](between-sin-rostros-de-modelos.md) — Eli 24-09: sólo del cuello hacia abajo; gente = manos/torsos o ilustración de línea sobre espacio real
+- [⭐⭐ Between octubre — feedback de Eli, 4 rondas](between-feedback-octubre-2026.md) — calcar la ref (utilería, tipografía, flecha, ilustración), gente natural sin caras en espacio real, ilustración sobre el velo, logo ilegible se borra; revisa en HTML y se sube sólo a su carpeta
+- [Between octubre — técnica de generación](between-oct-tecnica-generacion.md) — «extiende hacia arriba» sí, pedir altura no; Seedance por MCP; aislar ilustración; Noto emoji; captcha Drive; heredoc rompe TSX

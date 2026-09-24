@@ -2761,6 +2761,64 @@ máster aprobado de esta cuenta es **2813**. La historia sí va a 2,0833 (4000 e
 
 ---
 
+## ⭐⭐⭐ BETWEEN — OCTUBRE 2026: LO QUE DEJARON LAS 4 RONDAS DE ELI (24-09-2026)
+
+Grilla de octubre (`1EnZOwUptY6SftX-CF9ZFwXUuzPCGZ76L`): las 11 piezas OK PARA DISEÑAR
+de la S1 a la S5 (9 historias + 2 feed) **aprobadas el 24-09** tras cuatro rondas en el
+día. Código `src/compositions/hilton/BetweenOctubre.tsx` (entry propio
+`src/BetweenOctEntry.tsx`), escenas `scripts/between-oct-generar.py`, fotos reales
+`scripts/between-oct-fotos.py`, refs `scripts/between-oct-refs.py`. Entrega en
+`out/hilton/between/entrega-oct/` (nombres `BW ST|FEED DD-MM tema`, sin tildes).
+
+### ⛔⛔ 1. SIN ROSTROS DE MODELOS — regla nueva de la marca
+
+> Eli: «recuerda que no podemos utilizar rostros de los modelos. Trata que solamente se
+> vea del cuello hacia abajo».
+
+Vale para la sesión del 25-jul-2025 (que hasta ayer era «la primera opción con
+personas») y para cualquier otra. Si una pieza pide gente: **recorte del cuello hacia
+abajo**, escena generada con el **encuadre dejando las cabezas fuera** (manos, torsos), o
+**personas dibujadas en línea** sobre el espacio real. Revisar los BORDES: una escena
+generada con gente dejó media boca y una nariz en los costados (se recortó 6 % por lado).
+
+### ⭐⭐ 2. LA REFERENCIA ES EL MOLDE — utilería, tipografía, flecha, ilustración
+
+Casi todas las correcciones fueron «igual a la ref»:
+- **Cowork («Coffee Break»)**: pantalla en blanco y libreta vacía «se ve extraño» → planilla
+  tipo Excel desenfocada y nota a mano con fecha. Y la **tipografía de la ref**: bloque a la
+  izquierda, pin + lugar, titular muy pesado en caja normal con interlínea cerrada, línea
+  chica con barra.
+- **Bonjour**: la flecha como la de «07:50» — un trazo fluido con rulo, más grueso, sin
+  tocar textos (componente `Flecha` de `BetweenOctubre.tsx`, SVG con punta calculada).
+- **Feed Reunión**: como la ref, sólo brazos brindando con dos tazas sobre dos laptops; y
+  **variar lo repetido** (un notebook azul y otro gris, «para que no parezca todo igual»).
+- **Feed Espacios**: el espacio real con personas **dibujadas en línea** como la ref.
+
+### ⭐ 3. Las demás reglas que salieron
+
+- **Nada de texto sobre el producto** («me quedo por la atención» tapaba la taza).
+- **Una frase que enumera se conecta con flechas** a cada ítem (collage «Paso por un café y…»).
+- **Fuera las rayitas sueltas** (ya lo había dicho en la S4 de septiembre; ahora en la trivia).
+- **Trivia**: título en Raleway beige, caja normal, sin Brushwell; trazo fino como la ref.
+- **Gente natural**: gestos distintos (no todos brindando), platos reales de Between, espacio
+  REAL; y si el tema es trabajo, «casi cowork»: celulares, notas, post-it, notebook.
+- **Ilustración encima del velo**: si se oscurece la foto para que el dibujo se lea, el
+  dibujo va como capa propia ARRIBA de la transparencia (se aisló de la foto por contraste
+  local; `f14-lineas.png`).
+- **Logo que no se lee, se borra** (cowork) — no se fuerza con halos.
+
+### 4. Cómo revisa Eli y cuándo se sube
+
+Revisa en **HTML abierto en Chrome** (`out/hilton/between/oct-revision/index.html`): pieza,
+referencia, guía CM, qué es real y qué es IA, y dudas. **No se sube a Drive hasta que
+ella da la carpeta oficial** (temporal mientras: `1x9NeC__6ODemjfIeg-DDLXw2O41tvHSJ`).
+Space de Magnific «Between octubre» para escenas que necesiten más calidad.
+
+Técnica (Nano Banana «extiende hacia arriba», Seedance por MCP, captcha de Drive): memoria
+`between-oct-tecnica-generacion`.
+
+---
+
 ## ⭐⭐ BETWEEN — REEL ORGÁNICO DE REPETICIÓN: el que se aprobó a la 4ª (23-09-2026)
 
 «Sea la razón que sea» (ORGÁNICOS S4). Lo que Eli dijo, ronda por ronda, y que vale
@@ -3351,7 +3409,7 @@ La taza actual de Between es **blanca completa**. Es la corrección más frecuen
 
 | Sesión | Estado | Cómo se usa |
 |---|---|---|
-| **25 jul 2025 — modelos** | ⭐ **la más actualizada**, con personas y desayunos | **es la primera opción** |
+| **25 jul 2025 — modelos** | ⭐ **la más actualizada**, con personas y desayunos | primera opción para producto y espacio — ⛔ **desde el 24-09-2026 SIN ROSTROS**: sólo del cuello hacia abajo (ver § OCTUBRE 2026) |
 | **Desayunos agosto 2026** | cámara, **sin editar** | hay que trabajarla (ver abajo) |
 | **Julio 2023** | antigua | ⛔ **solo de referencia** |
 | **Terraza y espacios** | ambientes reales | referencia para que el montaje sea fiel |

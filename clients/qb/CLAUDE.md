@@ -486,6 +486,27 @@ Con eso la pieza pasa **las 9 reglas, sin avisos y sin nada sin verificar**.
 
 ---
 
+## 4h. Tres trampas de la grilla de octubre — 24-09-2026
+
+1. ⛔ **El VIDEO no se rinde con `--scale=2.0833`.** 1920×2,0833 = 3999,94 y
+   Remotion exige alto entero al unir el video (la estática lo redondea sola).
+   Tampoco sirve 2250/1080 exacto: en flotante da 4000,0000000000005. Se rinde a
+   **2,5×** y se baja a 2250×4000 con lanczos — `scripts/qb-oct-render.sh`.
+2. ⚠️ **El QA marca «foto estirada» donde el velo satura a negro.** 130 filas de
+   negro idéntico son, para la regla de agencia, filas clonadas. No es un
+   estiramiento, pero el arreglo es legítimo: un **grano de película** muy sutil
+   (`Grano` en `src/compositions/qb/oct/QbOctKit.tsx`, ±2 niveles) que además le
+   quita lo plano al negro. Y no bajar la foto dejando una franja negra lisa.
+3. ⚠️ **`qa/textos.py` sólo lee datos anidados** — `const X_DATA: Record<string,
+   Record<string, string>> = {pieza: {…}}` — y empareja por nombre de archivo;
+   con nombres tipo `ST n°1 S1 QB OCT 26` hay que pasarle `--mapa` con un ARCHIVO
+   JSON (`{"pieza": "QB OCT"}`), no el JSON en línea.
+
+⭐ Y el botón verde de una interfaz (el «aceptar» de una llamada) dispara la regla
+`croma-en-el-mockup`: se pinta con el verde de QB (`#66886B`), que además es de marca.
+
+---
+
 ## 5. De dónde salen las imágenes
 
 **Hay mucho material propio y es la fuente. No se genera lo que ya está fotografiado.**
@@ -495,6 +516,24 @@ Con eso la pieza pasa **las 9 reglas, sin avisos y sin nada sin verificar**.
 > abajo, contemplar esto para todo material que no sea real». Cualquier pieza de QB con
 > imagen generada o montada con IA lleva la leyenda «Imagen referencial» abajo. En esa
 > misma story pide además anclarla «a la recomendación del chef (misma línea gráfica)».
+
+### ⭐⭐ Las sesiones SÍ están en Drive — y son VIDEO (24-09-2026)
+
+Encontradas armando la grilla de octubre. Bajan sin token con
+`python scripts/drive-carpeta.py <ID> <destino> [--miniaturas]`:
+
+| Sesión | ID de carpeta | Qué es |
+|---|---|---|
+| **2026 \| Shooting QB orgánico** | `1lt6lvhZ9uXLYh4wKWA5mveGowOVKzACj` | ⭐ **90 videos de iPhone 4K HDR HLG** (no fotos: la miniatura de Drive es el primer fotograma). Platos y tragos en la mesa negra y en la terraza de madera, manos, brindis. **Hay que tonemapear** HLG→709: `scripts/qb-oct-fotogramas.py` |
+| **SESIÓN VICTOR QB 13/10** | `1KjWOB4yhmlYnpVHIlxLkz2_A7EHMxuOu` | 81 videos Sony 4K Rec.709 de NOCHE: terraza con guirnaldas, gente riendo y brindando, DJ, fachada, barra, platos |
+| **SESIÓN COCTELERÍA 11-09** | `1dvLSTbhUPSecVUPl5klzRAig35tfm840` | 15 fotos de estudio de los tragos de autor (Medusa, Atenea, Perséfone, Afrodita, Hipnos…) |
+| SESIÓN QB 10/11/25 | `19Flgye3vvZ5rUn1kzAQOmmDU3SX4kifc` | evento nocturno con público (fotos de celular) |
+| VIDEO QB TERRAZA 2025 | `15C1ikuQEhnFXCfXUW7WjnXQ5hdSlvA--` | 1 archivo, **no baja por enlace** — hay que pedirle a Eli que lo comparta |
+| Padre de todas | `14xvnxGsfv3pzlaXgGBxZc5rW-IUu2fwO` | «material de marca» del complejo Hilton — ahí también hay Between, P18, DT |
+
+⚠️ Del video **se saca la foto** (método de Eli, §5): fotograma con
+`qb-oct-fotogramas.py <clip> --hoja` para elegir, `--t <s>` para el tamaño completo.
+Para animar, `scripts/qb-oct-proxies.py` deja H.264 1080×1920.
 
 | Fuente | Cómo se usa |
 |---|---|

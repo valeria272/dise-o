@@ -405,16 +405,16 @@ esquina enrollada        origen x 1150+ · y 1750+    → lienzo x 701+ · y 102
 empieza el enrollado y el texto se iría con el papel. Por eso «Próximo paso:
 hacerlo realidad» va cortado en dos líneas cortas y no en una larga.
 
-##### Dónde va el dato comercial
+##### El dato comercial va en su PROPIO papel
 
-**No en el post-it** —una nota manuscrita con el precio deja de parecer una
-nota— y **no al centro**, que es donde `Globo` lo pondría: ahí está el imán de
-casita, y taparlo rompe la lógica física de la pieza, porque es lo que sostiene
-la nota.
+Diego, 24-09: *"el texto de Aprox. 5.000 m² también que sea un post-it"*.
 
-Medido sobre el render, la puerta tiene **un solo hueco libre**: arriba a la
-derecha, `x 596-1000 · y 236-400`. La izquierda la toma la polaroid, la franja
-`430-590` el corazón y todo lo de abajo el post-it.
+Antes estaba en un recuadro de marca flotando sobre el acero, y eso mezclaba dos
+lenguajes —papel y gráfica— sobre el mismo objeto. Ahora la escena trae **tres
+papeles** y el dato va escrito en la nota crema, igual que la referencia.
+
+⛔ **No va en el post-it grande**: una nota manuscrita con el precio metido entre
+los pasos del proyecto deja de parecer una nota.
 
 #### ⛔ Y las CIFRAS tampoco se parten
 

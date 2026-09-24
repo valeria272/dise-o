@@ -1501,51 +1501,55 @@ const L: React.FC = () => (
 // =============================================================================
 
 /**
- * ⭐ M · 29/10 · POST — post-its REALES pegados al refrigerador.
+ * ⭐ M · 29/10 · POST — los tres papeles del refrigerador.
  *
- * Diego, 24-09-2026: *"el post del 29-10 tiene que ser post-it pegados en el
- * refrigerador como la referencia, **que se vea real**"*.
+ * Diego, 24-09-2026: *"tiene que ser post-it pegados en el refrigerador como la
+ * referencia, **que se vea real**"* y, después, *"el texto de Aprox. 5.000 m²
+ * también que sea un post-it"*.
  *
  * ⛔ EL REPARTO DEL TRABAJO ES LA REGLA, NO UN DETALLE:
  *
- *   · **La IA hace el OBJETO** — la puerta, la polaroid, el post-it con su
- *     esquina enrollada, los imanes, la sombra de contacto y la textura del
- *     papel. Eso es ambiente y utilería.
- *   · **El código pone el CONTENIDO** — la fotografía dentro de la ventana de
- *     la polaroid y la letra encima del papel. Eso es dato, y el dato **nunca**
- *     lo escribe la IA (manual de sistema § jerarquía de imagen).
+ *   · **La IA hace el OBJETO** — la puerta, los tres papeles con su textura,
+ *     arrugas, esquina enrollada y sombra de contacto, y los imanes.
+ *   · **El código pone el CONTENIDO** — la fotografía dentro de la ventana de la
+ *     polaroid y la letra encima de cada papel. Eso es dato, y el dato **nunca**
+ *     lo escribe la IA.
  *
- * Por eso el fondo se generó con **todos los papeles en blanco**, y por eso el
- * prompt lo dice tres veces: basta que el modelo escriba una palabra para que la
- * pieza quede con texto que nadie aprobó.
+ * Por eso el fondo se generó con **los tres papeles en blanco**, y el prompt lo
+ * dice tres veces: basta que el modelo escriba una palabra para que la pieza
+ * quede con texto que nadie aprobó.
  *
- * El intento anterior dibujaba el post-it con CSS —un rectángulo con una esquina
- * falsa— y leía como tarjeta digital, no como papel. La diferencia no estaba en
- * la tipografía: estaba en que **el objeto no era un objeto**.
+ * El dato comercial ya no va en un recuadro de marca flotando sobre el acero:
+ * **va escrito en la nota crema**, que es lo que Diego pidió. Es la única forma
+ * de que la pieza no mezcle dos lenguajes —papel y gráfica— sobre el mismo
+ * objeto.
  *
- * ⛔ LO QUE NO SE COPIÓ de la referencia: su segunda nota dice «Sueña ·
- * Planifica · Hazlo · Realidad». Ese copy no está en el brief, y el texto de una
- * pieza de cliente sale literal del brief.
+ * ⛔ LO QUE NO SE COPIÓ de la referencia: su nota chica dice «Sueña · Planifica ·
+ * Hazlo · Realidad». Ese copy no está en el brief.
  *
- * ⚠️ GEOMETRÍA MEDIDA sobre `m-refri.jpg` (1770×2360) y pasada al lienzo con el
- * `cover` de 1080×1350 — escala 0,610, recorte de 45 px arriba:
+ * ⚠️ GEOMETRÍA MEDIDA sobre `m-refri.jpg` (1770×2360), pasada al lienzo con
+ * `cover` de 1080×1350 — escala **0,610** y `foco="50% 92%"`, que recorta **83
+ * px** arriba. Ese 92 % no es estético: con el 50 % de siempre el post-it
+ * cerraba en la fila 1243 y **se metía bajo la píldora del marco** (1212).
  *
- *   ventana de la polaroid   origen x 389-847  y 368-788   → lienzo 237-517 · 180-436
- *   post-it                  origen x 431-1430 y 1215-1975 → lienzo 263-872 · 696-1160
- *   esquina enrollada        origen x 1150+    y 1750+     → lienzo x 701+ · y 1023+
+ *   ventana polaroid  origen 366-818 · 578-985    → lienzo 223-499 · 270-518
+ *   nota crema        origen 1028-1405 · 632-1098 → lienzo 627-857 · 303-587
+ *   post-it           origen 401-1251 · 1304-2112 → lienzo 245-763 · 712-1205
+ *   esquina enrollada origen x 1050+ · y 1850+    → lienzo x 558+ · y 1046+
  *
- * La última línea **no puede pasar de x ≈ 690** si cae bajo la fila 1023: ahí
- * empieza el enrollado y el texto se iría con el papel.
+ * Cada papel lleva **su propia inclinación**, medida sobre el borde superior:
+ * una foto derecha sobre un papel torcido se desborda por una esquina y delata
+ * el montaje.
  */
-const POLAROID = {x: 244, y: 190, w: 266, h: 238, giro: -2.6};
-const POSTIT = {x: 263, y: 696, w: 609, h: 464, giro: -1.1};
+const POLAROID = {x: 223, y: 270, w: 276, h: 248, giro: -8};
+const NOTA = {x: 627, y: 303, w: 230, h: 284, giro: -5};
+const POSTIT = {x: 245, y: 712, w: 518, h: 493, giro: -1.5};
 
 const M: React.FC = () => (
   <Lienzo w={POST.w} h={POST.h}>
-    <Foto src={OCT("m-refri")} foco="50% 50%" />
+    <Foto src={OCT("m-refri")} foco="50% 92%" />
 
-    {/* la fotografía DENTRO de la ventana de la polaroid, con su misma
-        inclinación. `multiply` la integra al papel: sin eso se ve pegada. */}
+    {/* la fotografía DENTRO de la ventana de la polaroid, con su inclinación */}
     <div
       style={{
         position: "absolute",
@@ -1561,13 +1565,41 @@ const M: React.FC = () => (
         src={OCT("f-fondo")}
         style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}
       />
-      {/* el mismo velo cálido que tiene la escena, para que la foto no salte */}
       <AbsoluteFill style={{backgroundColor: "rgba(120,96,64,0.12)"}} />
     </div>
 
-    {/* ⭐ LA LETRA, encima del papel. `mixBlendMode: multiply` hace que la tinta
-        siga las arrugas y la sombra del post-it en vez de flotar sobre él: es
-        lo que separa una nota escrita de un texto sobrepuesto. */}
+    {/* ⭐ EL DATO COMERCIAL, escrito en la nota crema. `multiply` hace que la
+        tinta siga las arrugas del papel en vez de flotar encima. */}
+    <div
+      style={{
+        position: "absolute",
+        left: NOTA.x,
+        top: NOTA.y,
+        width: NOTA.w,
+        height: NOTA.h,
+        transform: `rotate(${NOTA.giro}deg)`,
+        // El texto tocaba el borde derecho del papel: más aire a los lados y un
+        // punto menos de cuerpo. En una nota chica el respiro es lo que la hace
+        // leerse como papel escrito y no como etiqueta.
+        padding: "50px 28px 18px",
+        mixBlendMode: "multiply",
+        fontFamily: TC.fonts.mano,
+        fontWeight: 600,
+        fontSize: 31,
+        lineHeight: 1.22,
+        color: "#16314C",
+        textAlign: "center",
+      }}
+    >
+      {sinPartir("Aprox. 5.000 m²")}
+      <br />
+      {sinPartir("desde UF 2.500")}
+      <div style={{marginTop: 12, fontWeight: 500, fontSize: 27, color: "#4A5C4E"}}>
+        {sinPartir("Padre Hurtado")}
+      </div>
+    </div>
+
+    {/* ⭐ EL POST-IT: la lista, escrita a mano sobre el papel */}
     <div
       style={{
         position: "absolute",
@@ -1576,26 +1608,27 @@ const M: React.FC = () => (
         width: POSTIT.w,
         height: POSTIT.h,
         transform: `rotate(${POSTIT.giro}deg)`,
-        padding: "46px 52px 40px",
+        padding: "52px 44px 40px",
         mixBlendMode: "multiply",
         fontFamily: TC.fonts.mano,
         color: "#16314C",
       }}
     >
-      <div style={{fontWeight: 600, fontSize: 52, lineHeight: 1.08, marginBottom: 20}}>
+      <div style={{fontWeight: 600, fontSize: 46, lineHeight: 1.08, marginBottom: 20}}>
         Ese proyecto que
         <br />
         tienes en mente…
       </div>
       {["Conocer Tierra Calma", "Elegir mi parcela", "Empezar a proyectar mi casa"].map((l) => (
-        <div key={l} style={{display: "flex", alignItems: "center", gap: 14, marginBottom: 9}}>
-          <ICheck s={26} c="#16314C" />
-          <span style={{fontWeight: 500, fontSize: 40, lineHeight: 1.1}}>{sinPartir(l)}</span>
+        <div key={l} style={{display: "flex", alignItems: "center", gap: 12, marginBottom: 8}}>
+          <ICheck s={24} c="#16314C" />
+          <span style={{fontWeight: 500, fontSize: 35, lineHeight: 1.1}}>{sinPartir(l)}</span>
         </div>
       ))}
-      {/* Se corta en dos líneas a propósito: la esquina del papel se enrolla a
-          partir de x ≈ 690, y una línea larga se iría con el enrollado. */}
-      <div style={{marginTop: 16, fontWeight: 600, fontSize: 42, lineHeight: 1.1, width: 400}}>
+      {/* Cortado en dos líneas cortas a propósito: la esquina del papel se
+          enrolla desde x ≈ 558 bajo la fila 1046, y una línea larga se iría con
+          el enrollado. */}
+      <div style={{marginTop: 14, fontWeight: 600, fontSize: 37, lineHeight: 1.1, width: 300}}>
         Próximo paso:
         <br />
         hacerlo realidad.
@@ -1603,44 +1636,6 @@ const M: React.FC = () => (
     </div>
 
     <Marco archivo="MARCO-POST" />
-    {/* El dato comercial va en el HUECO entre la polaroid y el post-it: sobre el
-        acero desnudo, que es lo único que queda libre. En el post-it no puede
-        ir — una nota manuscrita con el precio deja de parecer una nota. */}
-    {/* ⚠️ El dato comercial NO usa `Globo`, que va siempre centrado: acá el
-        centro está ocupado. Medido sobre el render, la puerta tiene un solo
-        hueco libre de verdad —arriba a la derecha, x 596-1000 · y 236-400—
-        porque la polaroid toma la izquierda, el corazón la franja 430-590 y el
-        post-it todo lo de abajo. Puesto al centro tapaba el imán de casita, que
-        es justo lo que sostiene la nota: la pieza dejaba de tener lógica física.
-        Y en el post-it tampoco puede ir — una nota manuscrita con el precio deja
-        de parecer una nota. */}
-    <div
-      style={{
-        position: "absolute",
-        left: 596,
-        top: 240,
-        width: 404,
-        backgroundColor: "rgba(9,20,28,0.6)",
-        backdropFilter: "blur(18px)",
-        WebkitBackdropFilter: "blur(18px)",
-        border: "1px solid rgba(255,255,255,0.18)",
-        borderRadius: 26,
-        padding: "22px 26px",
-        fontFamily: SANS,
-        fontWeight: 300,
-        fontSize: 27,
-        lineHeight: 1.3,
-        color: "#fff",
-        textAlign: "center",
-        boxShadow: "0 18px 40px rgba(0,0,0,0.3)",
-      }}
-    >
-      {sinPartir("Aprox. 5.000 m²")}
-      <br />
-      {sinPartir("desde UF 2.500")}
-      <br />
-      {sinPartir("Padre Hurtado")}
-    </div>
     <Pildora caja={POST.pill} icono={<IWsp s={23} />} size={26} gap={11}>
       Agenda tu visita por WhatsApp
     </Pildora>

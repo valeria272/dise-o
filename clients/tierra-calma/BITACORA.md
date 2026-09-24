@@ -5,6 +5,53 @@
 
 ---
 
+## 2026-09-24 (noche) — Diego Aguilar
+
+**Qué se hizo:** `p-29-10`, tercera vuelta. *"El texto de Aprox. 5.000 m²
+también que sea un post-it."*
+
+El dato estaba en un recuadro de marca flotando sobre el acero, y eso mezclaba
+**dos lenguajes sobre el mismo objeto**: papel y gráfica. Se regeneró la escena
+con **tres papeles** —polaroid, nota crema y post-it grande, más el imán de
+casita y el corazón—, igual que la referencia, y el dato quedó **escrito a mano
+en la nota crema**.
+
+Sigue valiendo el reparto: **la IA hace el objeto, el código pone el texto**.
+Los tres papeles se generaron en blanco.
+
+### Lo que hubo que medir
+
+El post-it nuevo es más alto y con el encuadre de siempre (`50% 50%`) cerraba en
+la fila 1243, **metiéndose bajo la píldora del marco** (1212). Con
+`foco="50% 92%"` —83 px de recorte arriba en vez de 45— el papel cierra en 1205
+y la polaroid arranca justo en 180, que es donde termina el logo. Las tres cajas
+y las tres inclinaciones están escritas en el código.
+
+### Dos agujeros del QA, y el segundo lo abrí yo
+
+1. **El extractor no leía las cifras.** El dato viaja como
+   `{sinPartir("Aprox. 5.000 m²")}` y la pasada de respaldo borra todo lo que
+   está entre llaves antes de mirar. O sea que la compuerta no veía **los
+   números**, que es justo lo que la lista blanca existe para vigilar. Ahora la
+   pasada **rescata** el literal de cualquier llave que traiga una sola cadena y
+   nada de JSX: cubre el caso general sin perseguir el nombre del ayudante.
+2. ⚠️ **Y eso metió los comentarios del código al QA.** Los comentarios de estas
+   composiciones citan a Diego entre comillas, así que la regla de huérfanas
+   marcó `p-09-10` por la palabra «ancho» —que está en un comentario, no en la
+   gráfica—. Se descartan las llaves que empiezan con `/*`.
+
+> 💡 El aviso falso duró una corrida porque **la compuerta se miró después de
+> tocarla**. Un QA que se cambia y no se vuelve a correr es peor que no tenerlo:
+> deja de medir la pieza y empieza a medirse a sí mismo.
+
+**Dónde quedó:** `p-29-10` re-subida sobre el mismo fileId. Las 16 pasan con el
+aviso deliberado de siempre.
+
+**Abierto:** la tipografía manuscrita sigue esperando tu decisión — hoy es
+Caveat, que es la mano de Copywriters.
+
+---
+
 ## 2026-09-24 (tarde) — Diego Aguilar
 
 **Qué se hizo:** `p-29-10` rehecha otra vez. La versión de la mañana ya seguía la

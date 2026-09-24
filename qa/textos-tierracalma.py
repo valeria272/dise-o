@@ -180,7 +180,26 @@ def textos_de(cuerpo: str) -> list[str]:
     for ini, fin in comidos:
         for k in range(max(ini, 0), min(fin, len(resto))):
             resto[k] = " "
-    plano = re.sub(r"\{(?:[^{}]|\{[^{}]*\})*\}", " ", "".join(resto))  # props y estilos
+    plano = "".join(resto)
+    # ⚠️ ANTES de borrar las llaves, se RESCATA lo que traen dentro cuando es
+    # sólo una cadena — `{"texto"}` o `{sinPartir("Aprox. 5.000 m²")}`. Así
+    # viaja el dato comercial de `p-29-10`, escrito en la nota del
+    # refrigerador: son justo las CIFRAS, y si el QA no las lee la lista blanca
+    # no sirve de nada. Se rescata cualquier llave con UNA cadena y sin JSX
+    # adentro, que cubre el caso general sin perseguir el nombre del ayudante.
+    def _rescata(m: "re.Match[str]") -> str:
+        dentro = m.group(1).strip()
+        # ⛔ Un comentario JSX NO es copy. Los comentarios de estas composiciones
+        # citan al diseñador entre comillas —«"el botón está muy apretado"»— y
+        # sin este corte entraban al QA como si fueran texto de la pieza: la
+        # regla de huérfanas marcó `p-09-10` por la palabra «ancho», que está en
+        # un comentario y no en la gráfica.
+        if dentro.startswith("/*") or "<" in dentro:
+            return " "
+        lits = re.findall(r'"((?:[^"\\]|\\.)*)"', dentro)
+        return f" {lits[0]} " if len(lits) == 1 else " "
+
+    plano = re.sub(r"\{((?:[^{}]|\{[^{}]*\})*)\}", _rescata, plano)  # props y estilos
     plano = re.sub(r"<br\s*/?>", "\n", plano)
     plano = re.sub(r"<[^>]*>", " ", plano)
     plano = re.sub(r"\{[^{}]*\}", " ", plano)      # llaves que quedaron abiertas

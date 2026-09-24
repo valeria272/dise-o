@@ -97,7 +97,7 @@ Nomenclatura del brief: `CLIENTE_Pieza_Formato_Medida`. Entrega en Drive:
 ### Reels (familia «r-performance»)
 **Lo que se conserva del reel de agosto del cliente (medido a 60 fps):** logo blanco
 arriba (tinta 211 px, y=118), titular en versales Montserrat Bold 90 px alineado a x=110
-en el tercio inferior, pastilla roja (627 px, radio 48) con **ícono en círculo blanco
+en el tercio inferior (⚠️ **la caja termina en y=1480 y no pasa de x=900**: ver §9, 24-09), pastilla roja (627 px, radio 48) con **ícono en círculo blanco
 montado en el borde superior** y texto Medium 46 px, cierre en rojo pleno (~3 s) con el
 logo grande (tinta 405 px, centrado) y una línea Medium ~50 px, pista de ~81 BPM.
 Los reels del cliente duran 15–20 s aunque el brief diga 10 s.
@@ -164,6 +164,9 @@ historia. Música: la misma pista de los reels de julio y agosto del cliente (ve
 - [ ] Localito completo, sin restos de la pieza de origen, sangrado sólo por abajo
 - [ ] Lado a lado con `raw/mascenter/ref-paid/sept/LinkAd Tráfico a Ig 1 - post.png`
 - [ ] Reel: primer frame legible solo, ≤ 7 palabras por pantalla salvo texto verbatim del brief
+- [ ] Reel 9:16: ningún texto bajo y=1500 ni a la derecha de x=900 (el brief marca 420 px abajo y
+      180 px a la derecha como tapados). «Más Center» nunca partido en dos líneas ni palabra sola
+      en una línea: si el corte automático falla, la escena lleva `lineas`
 - [ ] `python3 qa/motor.py --marca mascenter out/mascenter/<mes>/*.png`
 
 ## 9. Errores ya cometidos (no repetir)
@@ -191,3 +194,11 @@ historia. Música: la misma pista de los reels de julio y agosto del cliente (ve
 - **09-09-2026** — el formulario de la landing decía «Recibimos tu postulación» y **no enviaba
   nada**. Un pendiente técnico deja de ser un pendiente cuando la página ya está publicada: si no
   se puede enviar de verdad, el mensaje no puede prometer que sí.
+- **24-09-2026** — los reels de octubre (v4) salieron con la **última línea del titular dentro de la
+  franja que tapa Reels**: la caja terminaba en y=1606 (`titBottom` 314) y llegaba a x≈1020 (`right`
+  60), cuando el propio brief marca 420 px abajo y 180 px a la derecha. Afectaba al gancho del primer
+  frame, que es la miniatura. El QA no lo vio porque `qa/motor.py` sólo mira PNG, y la zona segura de
+  `marca.json` estaba escrita sólo para story. Se corrigió en `MasCenterReel.tsx` (`titBottom` 440,
+  `titRight` 180) y, al angostar la caja, dos titulares dejaban «EN» y «LA» solos y partían «MÁS /
+  CENTER»: ahora llevan cortes editoriales en `lineas`, que el render verifica contra el texto
+  del brief. Regla: **un video también se pasa por la plantilla de zonas seguras, fotograma a fotograma.**

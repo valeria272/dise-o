@@ -106,7 +106,13 @@
       "bottom_pct": 12
     },
     "respiro_minimo": 60,
-    "excepcion": "El logo va en y=117 en story por sistema aprobado del cliente (sept 2026); la zona segura protege el texto y el CTA."
+    "excepcion": "El logo va en y=117 en story por sistema aprobado del cliente (sept 2026); la zona segura protege el texto y el CTA.",
+    "reel": {
+      "top": 120,
+      "bottom": 420,
+      "right": 180,
+      "_fuente": "brief de octubre 2026, hoja Zonas seguras (24-09-2026)"
+    }
   },
   "esquemas": {
     "trafico_ig": "foto con onda + pastilla + bajada + burbuja CTA + Localito",

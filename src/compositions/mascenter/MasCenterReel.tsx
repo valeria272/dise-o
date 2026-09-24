@@ -34,7 +34,8 @@ const ensureMontserrat = () => {
 };
 ensureMontserrat();
 
-export type Escena = {clip: string; texto: string; tipo: "titular" | "pastilla"; icono?: "oferta" | "evento" | "comunidad"; desde?: number; dur: number; posCuadrado?: string};
+// `lineas`: cortes editoriales del titular en 9:16 (las palabras tienen que ser EXACTAMENTE las de `texto`).
+export type Escena = {clip: string; texto: string; lineas?: string[]; tipo: "titular" | "pastilla"; icono?: "oferta" | "evento" | "comunidad"; desde?: number; dur: number; posCuadrado?: string};
 export type ReelProps = {escenas: Escena[]; cierre: string};
 
 // ── ritmo del montaje (frames a 30 fps) ──────────────────────────────────────
@@ -44,10 +45,17 @@ const SALE_TEXTO = 14;          // frames que dura la salida del texto
 const suave = Easing.out(Easing.cubic);
 
 // ── métricas por formato (px) ─────────────────────────────────────────────────
+// 24-09-2026 (QA de Serena): en 9:16 el titular iba con titBottom 314 y right 60 → su caja
+// terminaba en y=1606 y llegaba a x≈1020, dentro de lo que el brief de octubre marca como tapado
+// en Reels (420 px abajo por copy/audio/botón y 180 px a la derecha por los íconos). La última
+// línea del gancho —que además es la miniatura— quedaba bajo el copy de Meta. Ahora la caja
+// termina en y=1480 (titBottom 440) y deja libre la columna derecha (titRight 180). Con 790 px
+// útiles dos titulares dejaban «EN» o «LA» solos: esos llevan `lineas` (cortes medidos en
+// Montserrat Bold 90).
 const metricas = (w: number, h: number) =>
   h > w
-    ? {logoW: 245, logoTop: 107, titSize: 90, titLh: 98, titLeft: 110, titBottom: 314, pillW: 627, pillTop: 470, pillSize: 46, pillLh: 60, pillPadTop: 74, pillPadBottom: 44, pillRadio: 48, icono: 130, cierreLogoW: 405, cierreLogoTop: 840, cierreSize: 57, cierreLh: 59, cierreTop: 1310, cierreMaxW: 690}
-    : {logoW: 200, logoTop: 46, titSize: 60, titLh: 66, titLeft: 80, titBottom: 150, pillW: 560, pillTop: 250, pillSize: 38, pillLh: 48, pillPadTop: 60, pillPadBottom: 34, pillRadio: 40, icono: 104, cierreLogoW: 300, cierreLogoTop: 430, cierreSize: 40, cierreLh: 44, cierreTop: 700, cierreMaxW: 640};
+    ? {logoW: 245, logoTop: 107, titSize: 90, titLh: 98, titLeft: 110, titRight: 180, titBottom: 440, pillW: 627, pillTop: 470, pillSize: 46, pillLh: 60, pillPadTop: 74, pillPadBottom: 44, pillRadio: 48, icono: 130, cierreLogoW: 405, cierreLogoTop: 840, cierreSize: 57, cierreLh: 59, cierreTop: 1310, cierreMaxW: 690}
+    : {logoW: 200, logoTop: 46, titSize: 60, titLh: 66, titLeft: 80, titRight: 60, titBottom: 150, pillW: 560, pillTop: 250, pillSize: 38, pillLh: 48, pillPadTop: 60, pillPadBottom: 34, pillRadio: 40, icono: 104, cierreLogoW: 300, cierreLogoTop: 430, cierreSize: 40, cierreLh: 44, cierreTop: 700, cierreMaxW: 640};
 
 const Logo: React.FC<{w: number; top: number; style?: React.CSSProperties}> = ({w, top, style}) => {
   const css = w / LOGO_TINTA;
@@ -55,20 +63,25 @@ const Logo: React.FC<{w: number; top: number; style?: React.CSSProperties}> = ({
 };
 
 /** Texto que entra palabra a palabra (fundido + desplazamiento suave) y sale con un fundido. */
-const Palabras: React.FC<{texto: string; frame: number; dur: number; paso?: number; salida?: boolean}> = ({texto, frame, dur, paso = 3, salida = true}) => {
-  const palabras = texto.split(" ");
+const Palabras: React.FC<{texto: string; lineas?: string[]; frame: number; dur: number; paso?: number; salida?: boolean}> = ({texto, lineas, frame, dur, paso = 3, salida = true}) => {
+  if (lineas && lineas.join(" ") !== texto) throw new Error(`lineas no calza con el texto del brief: «${texto}»`);
+  // «Más Center» es el nombre de la marca: nunca se parte en dos líneas (QA 24-09-2026)
+  const palabras = texto.replace(/Más Center/g, "Más Center").split(" ");
   const out = salida ? interpolate(frame, [dur - SALE_TEXTO, dur], [1, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.in(Easing.quad)}) : 1;
   const outY = salida ? interpolate(frame, [dur - SALE_TEXTO, dur], [0, -18], {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.in(Easing.quad)}) : 0;
+  const pal = (p: string, i: number, ultima: boolean) => {
+    const f = frame - i * paso;
+    const o = interpolate(f, [0, 14], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: suave});
+    const y = interpolate(f, [0, 16], [26, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: suave});
+    return <span key={i} style={{display: "inline-block", opacity: o, transform: `translateY(${y}px)`, marginRight: ultima ? 0 : "0.28em"}}>{p}</span>;
+  };
   return (
-    <span style={{display: "inline", opacity: out, transform: `translateY(${outY}px)`, willChange: "opacity, transform"}}>
-      {palabras.map((p, i) => {
-        const f = frame - i * paso;
-        const o = interpolate(f, [0, 14], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: suave});
-        const y = interpolate(f, [0, 16], [26, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: suave});
-        return (
-          <span key={i} style={{display: "inline-block", opacity: o, transform: `translateY(${y}px)`, marginRight: "0.28em"}}>{p}</span>
-        );
-      })}
+    <span style={{display: lineas ? "block" : "inline", opacity: out, transform: `translateY(${outY}px)`, willChange: "opacity, transform"}}>
+      {lineas ? lineas.map((l, li) => {
+        const antes = lineas.slice(0, li).join(" ").split(" ").filter(Boolean).length;
+        const ps = l.split(" ");
+        return <div key={li} style={{whiteSpace: "nowrap"}}>{ps.map((p, j) => pal(p, antes + j, j === ps.length - 1))}</div>;
+      }) : palabras.map((p, i) => pal(p, i, false))}
     </span>
   );
 };
@@ -103,8 +116,8 @@ const Plano: React.FC<{e: Escena; w: number; h: number; dur: number; fundeEntrad
       {/* velo suave abajo para que el titular blanco lea sobre cualquier plano */}
       {e.tipo === "titular" && <AbsoluteFill style={{background: "linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.28) 100%)"}} />}
       {ft >= 0 && (e.tipo === "titular" ? (
-        <div style={{position: "absolute", left: m.titLeft, right: 60, bottom: m.titBottom, color: "#fff", fontFamily: "Montserrat", fontWeight: 700, textTransform: "uppercase", fontSize: m.titSize, lineHeight: `${m.titLh}px`, textShadow: "0 2px 16px rgba(0,0,0,.35)"}}>
-          <Palabras texto={e.texto} frame={ft} dur={durTexto} paso={3} />
+        <div style={{position: "absolute", left: m.titLeft, right: m.titRight, bottom: m.titBottom, color: "#fff", fontFamily: "Montserrat", fontWeight: 700, textTransform: "uppercase", fontSize: m.titSize, lineHeight: `${m.titLh}px`, textShadow: "0 2px 16px rgba(0,0,0,.35)"}}>
+          <Palabras texto={e.texto} lineas={h > w ? e.lineas : undefined} frame={ft} dur={durTexto} paso={3} />
         </div>
       ) : (
         <div style={{position: "absolute", left: (w - m.pillW) / 2, top: m.pillTop, width: m.pillW, opacity: interpolate(ft, [0, 10], [0, 1], {extrapolateRight: "clamp"}) * interpolate(ft, [durTexto - SALE_TEXTO, durTexto], [1, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}), transform: `translateY(${(1 - pop) * 40}px) scale(${0.94 + pop * 0.06})`, transformOrigin: "50% 0%"}}>
@@ -181,7 +194,7 @@ export const MasCenterReel: React.FC<ReelProps> = ({escenas, cierre}) => {
 // ── contenido de octubre 2026 — VERBATIM del brief ────────────────────────────
 export const REEL_02: ReelProps = {
   escenas: [
-    {clip: "chamisero.mp4", texto: "¿Sabías que en Más Center siempre hay algo nuevo?", tipo: "titular", dur: 4.2},
+    {clip: "chamisero.mp4", texto: "¿Sabías que en Más Center siempre hay algo nuevo?", lineas: ["¿Sabías que", "en Más Center", "siempre hay", "algo nuevo?"], tipo: "titular", dur: 4.2},
     {clip: "padrehurtado.mp4", texto: "Ofertas, estrenos y eventos de tus locales favoritos", tipo: "pastilla", icono: "oferta", dur: 4.8},
     {clip: "copiapo.mp4", texto: "Todo cerca, todo en comunidad", tipo: "titular", dur: 4.2},
   ],
@@ -192,7 +205,7 @@ export const REEL_03: ReelProps = {
     // coyhaique.mp4 se descartó: la IA hace vibrar las letras del local (2º orden 8,4 en la franja quieta de arriba; los demás clips ≤ 2). Valeria lo vio: «tintinea».
     {clip: "padrehurtado.mp4", texto: "Aquí pasan cosas todos los días", tipo: "titular", desde: 0.4, dur: 4.2},
     {clip: "osorno.mp4", texto: "Desde promociones hasta eventos únicos de nuestros locatarios", tipo: "pastilla", icono: "evento", dur: 4.8},
-    {clip: "chamisero.mp4", texto: "La comunidad que se arma en tu Más Center", tipo: "titular", desde: 0.8, dur: 4.2},
+    {clip: "chamisero.mp4", texto: "La comunidad que se arma en tu Más Center", lineas: ["La comunidad", "que se arma", "en tu", "Más Center"], tipo: "titular", desde: 0.8, dur: 4.2},
   ],
   cierre: "Sé parte, síguenos en Instagram",
 };

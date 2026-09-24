@@ -1104,6 +1104,16 @@ cuatro rondas de feedback de Diego del 23-09 que valen para todos los meses.
    Santiago, llanos de cultivo ni cerros nuevos, aunque el brief los mencione.
    Lo que el brief pide y la foto no muestra (los 30 min a Santiago) lo cuenta
    el TEXTO, no la imagen. Receta: `sd5-real-0324-2` en `tc-paid-oct-prep.py`.
+   Vale también para la cenital: el 24-09 Diego pidió «imagen de fondo más
+   realista» en casacabe y se pasó a la foto real DJI_0281 recortada en vertical
+   ANTES de mandarla (así Seedream no inventa terreno para llenar el 3:4) +
+   cambio mínimo (`sd5-real-0281-1`). Queda menos verde: es el terreno real.
+7. **Titulares centrados al medio** (Diego, 24-09, en Drive). Igual que el
+   orgánico: nada alineado a la izquierda.
+8. **Nada pegado a los márgenes** (Diego, 24-09: «achicar un poco, que ningún
+   elemento quede tan al borde»). Cápsulas, chips y deslindes a **≥ 70 px del
+   filete** del marco (x 65 / 1016). Si un elemento no cabe con ese aire, se
+   achica el elemento (la cápsula del peaje bajó de 46 a 40 pt), no el margen.
 
 ### Medir, no estimar
 

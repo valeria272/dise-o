@@ -113,14 +113,20 @@ datos = {"fuente": {"02A": CENITAL.name, "02B": OBLICUO.name}}
 # El deslinde sigue los cercos que se ven EN la imagen: el superior, el
 # izquierdo, el inferior y el borde del sendero a la derecha. La casa sigue
 # siendo el 3 % del área del deslinde.
-CENITAL_IA = RAIZ / "raw/tierracalma/paid-oct2026/ia/sd5-cenital-1.png"  # 1770×2360
-# El lote de abajo a la izquierda: cerco del medio, borde del sendero, cerco
-# inferior (junto al camino) y cerco izquierdo. Medido con zoom sobre el PNG.
-LOTE_IA = [(455, 1447), (1048, 1447), (1112, 1890), (365, 1892)]
+# RONDA 5 (24-09, comentario de Diego en Drive sobre casacabe_4x5): «imagen de
+# fondo más realista». Se deja la idealización fuerte (sd5-cenital-1) y se usa
+# la foto real DJI_0281 recortada en vertical (x 1500–4467, alto completo) con
+# Seedream 5 Pro edit de CAMBIO MÍNIMO: sin bruma, luz de tarde, sin los autos
+# (sd5-real-0281-1). Queda menos verde, porque ése es el terreno real.
+CENITAL_IA = RAIZ / "raw/tierracalma/paid-oct2026/ia/sd5-real-0281-1.png"  # 1770×2360
+# Lote: cerco del medio arriba, cerco inferior junto al camino, borde del
+# sendero a la derecha. El lado izquierdo no tiene cerco visible: va en x 300
+# para quedar lejos del filete del marco (Diego: nada «tan al borde»).
+LOTE_IA = [(300, 1286), (1378, 1258), (1182, 1972), (300, 1994)]
 cen = Image.open(CENITAL_IA).convert("RGB")
 escala = 1080 / cen.width
 # El lote está en la mitad baja de la imagen: el titular sube bajo el logo y el
-# lote queda al medio (1:1: filas 523–795; 4:5: 793–1063), sin cruzar el texto.
+# lote queda abajo (1:1: filas 408–857; 4:5: 678–1127), sin cruzar el texto.
 for nombre, w, h, y0 in (("1x1", 1080, 1080, 590), ("4x5", 1080, 1350, 147)):
     ch = h / escala
     im, a_lienzo = recorte(cen, cen.width / 2, y0 + ch / 2, escala, w, h)

@@ -5,6 +5,21 @@
 
 ---
 
+## 2026-09-24 — Diego Aguilar (PAID · comentarios en Drive, ronda 6)
+
+**Qué se hizo:** Se aplicaron los 3 comentarios de Diego en Drive y se respondieron y
+resolvieron en el mismo archivo: (1) mapa30min 4:5 «achicar, que nada quede tan al
+borde» → cápsulas de 46 a 40 pt, ~70 px del filete; (2) casacabe 4:5 «imagen de fondo
+más realista» → foto real DJI_0281 con retoque mínimo de Seedream (`ia/sd5-real-0281-1`),
+deslinde sobre los cercos, casa al 3,0 %; (3) casacabe 4:5 «centrado al medio» →
+titular centrado y a 58 pt. Todo aplicado también al 1:1.
+**Dónde quedó:** 4 archivos reemplazados sobre los mismos fileId; las 6 piezas pasan
+la compuerta. Reglas 7 y 8 nuevas en el manual § 7 bis.
+**Qué sigue:** Revisión de Ignacio y aprobación de la clienta (29-09).
+**Abierto:** Avisar a Ignacio lo de D1 (caduca 12-10), el «PÁSALO» y las carpetas.
+
+---
+
 ## 2026-09-24 — Diego Aguilar (PAID · 02-B ronda 5)
 
 **Qué se hizo:** Diego rechazó el 02-B de la ronda 4 por «demasiado falso» (llano de

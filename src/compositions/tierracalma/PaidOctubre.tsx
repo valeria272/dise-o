@@ -147,17 +147,16 @@ const Apoyo: React.FC<{y: number}> = ({y}) => (
 const Chip: React.FC<{children: React.ReactNode}> = ({children}) => (
   <div
     style={{
-      alignSelf: "flex-start",
       backgroundColor: "rgba(9,20,28,0.64)",
       backdropFilter: "blur(14px)",
       WebkitBackdropFilter: "blur(14px)",
       border: "1.5px solid rgba(255,255,255,0.55)",
       borderRadius: 16,
-      padding: "6px 30px 10px",
+      padding: "5px 28px 9px",
       fontFamily: SERIF,
       fontStyle: "italic",
       fontWeight: 500,
-      fontSize: 66,
+      fontSize: 58, // era 66: en 1:1 el titular tocaba el lote
       lineHeight: 1.12,
       color: "#fff",
       textTransform: "uppercase",
@@ -176,7 +175,7 @@ const CasaCabe: React.FC<{f: Formato}> = ({f}) => {
   const arr = Math.min(...g.casa.map((p) => p[1]));
   // Ronda 3: el lote de la cenital de Seedream está abajo, así que el titular
 // sube bajo el logo y ninguna línea del deslinde lo cruza.
-  const titularY = f === "1x1" ? 250 : 262;
+  const titularY = f === "1x1" ? 212 : 262;
   return (
     <Lienzo f={f} foto={`a-cenital-${f}.jpg`}>
       <Degradado arriba={0.55} abajo={0.72} corte={f === "1x1" ? 50 : 58} />
@@ -203,7 +202,8 @@ const CasaCabe: React.FC<{f: Formato}> = ({f}) => {
       >
         150 M²
       </div>
-      <div style={{position: "absolute", left: 128, top: titularY, display: "flex", flexDirection: "column", gap: 14}}>
+      {/* Diego (24-09): «centrado al medio». */}
+      <div style={{position: "absolute", left: 0, right: 0, top: titularY, display: "flex", flexDirection: "column", alignItems: "center", gap: 12}}>
         <Chip>Una casa de 150 m².</Chip>
         <Chip>Y 4.850 m² más.</Chip>
       </div>
@@ -231,13 +231,13 @@ const Capsula: React.FC<{lugar: string; tiempo: string}> = ({lugar, tiempo}) => 
       alignItems: "center",
       border: "2px solid rgba(255,255,255,0.92)",
       borderRadius: 999,
-      padding: "20px 46px",
+      padding: "16px 38px", // Diego (24-09): «achicar, que nada quede tan al borde»
       backgroundColor: "rgba(9,20,28,0.42)",
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
       fontFamily: SANS,
       fontWeight: 500,
-      fontSize: 46,
+      fontSize: 40,
       letterSpacing: "0.1em",
       color: "#fff",
       whiteSpace: "nowrap",

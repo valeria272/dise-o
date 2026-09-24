@@ -1,3 +1,23 @@
+## 2026-09-24 (noche) — Eli (Windows) · DT: grilla de OCTUBRE, 4 piezas OK PARA DISEÑO — APROBADAS y SUBIDAS
+
+**Qué se hizo:** tres rondas con Eli en el día. ST 01-10 Family Time animada (15 s, MP4 + GIF),
+FEED 10-10 Opinión de Google (`Post n°1 S2 DT`), ST 13-10 Servicios del hotel y ST 30-10 Hilton Honors.
+**Lo que dejó Eli:** (1) la opinión tiene PLANTILLA: la de Expedia aprobada
+(`raw/hilton/dt/ref-oct/opinion-expedia-aprobada.png`), calcada medida; para Google, estrellas en vez
+de círculos y logo de Google a color. (2) Family Time: «se trata de ver una familia» — foto de sept
+con 4 rostros nuevos (Seedream); NADA de paso de gris a color; máx 15 s y el precio más tiempo en
+pantalla. (3) Honors: todo centrado + la cruz de líneas guía de septiembre. (4) «Guíate bien de las
+referencias»: la ref de FT era cristal ALTO, esmerilado claro, texto arriba y barridos entre tomas.
+(5) Videos: se entrega MP4 + GIF juntos, Eli sube el GIF a la grilla.
+**Dónde quedó:** `out/hilton/dt/entrega-oct/` · código `src/compositions/hilton/Dt{StFamilyTime,StServicios,StHonors,FtOpinion}Oct.tsx`
++ `dtIconosOct.tsx` + `src/DtOctEntry.tsx` · fotos `scripts/dt-oct-fotos.py` → `public/assets/hilton/dt/oct/`
+· revisión `scripts/dt-oct-revision.py` · subida `scripts/dt-oct-subir-drive.py`.
+**✅ SUBIDO:** `10. OCTUBRE / S<n> HILTON OCT 2026 / DT / {STS, FEED}` — S1 (MP4+GIF), S2 FEED, S3, S5.
+Verificado por el conector (tamaños iguales).
+**Abierto:** REEL Hilton Honors POV (14-10): sin material grabado. Honors 30-10 lleva los 4
+beneficios del estático de sept (el brief no los lista). Opinión: sin bandera (la reseña no dice el
+país) y con «Silvana» como firma. `&` no existe en Stag → Trade (agregado a `stagSirve`).
+
 ## 2026-09-24 (noche) — Eli (Windows) · DT: /abrir + /al-dia — SIN PIEZAS
 
 **Qué se hizo:** sólo apertura de DT. Pull (trajo EBEMA y Tierra Calma, nada de Hilton),

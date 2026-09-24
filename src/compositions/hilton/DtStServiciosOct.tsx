@@ -142,10 +142,10 @@ export const DtStServiciosOct: React.FC<{guia?: boolean}> = ({guia = false}) => 
               width: '50%',
               height: '50%',
               boxSizing: 'border-box',
-              padding: '0 20px 0 30px',
+              padding: '0 18px 0 24px',
               display: 'flex',
               alignItems: 'center',
-              gap: 22,
+              gap: 18,
               borderRight: i % 2 === 0 ? '1.5px solid rgba(250,250,250,0.4)' : undefined,
               borderBottom: i < 2 ? '1.5px solid rgba(250,250,250,0.4)' : undefined,
             }}
@@ -158,7 +158,7 @@ export const DtStServiciosOct: React.FC<{guia?: boolean}> = ({guia = false}) => 
                 style={{
                   fontFamily: DT.fuentes.titular,
                   fontWeight: DT.pesos.medium,
-                  fontSize: s.nombre.length > 22 ? 25 : 28,
+                  fontSize: 26,
                   lineHeight: 1.15,
                   marginBottom: 8,
                 }}

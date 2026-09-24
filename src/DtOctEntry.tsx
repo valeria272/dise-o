@@ -14,10 +14,12 @@ import {
   DtStFamilyTimeOct,
   DtStFamilyTimeOctGuia,
 } from './compositions/hilton/DtStFamilyTimeOct';
+import {DtFtOpinionOct, DtFtOpinionOctGuia} from './compositions/hilton/DtFtOpinionOct';
 import {DtStHonorsOct, DtStHonorsOctGuia} from './compositions/hilton/DtStHonorsOct';
 import {DtStServiciosOct, DtStServiciosOctGuia} from './compositions/hilton/DtStServiciosOct';
 
 const story = {durationInFrames: 1, fps: 30, width: 1080, height: 1920} as const;
+const feed = {durationInFrames: 1, fps: 30, width: 1080, height: 1350} as const;
 const animada = {durationInFrames: DUR_FT, fps: 30, width: 1080, height: 1920} as const;
 
 const Raiz: React.FC = () => (
@@ -32,6 +34,11 @@ const Raiz: React.FC = () => (
       {/* STORIES col L · 30-10 · ESTÁTICA Hilton Honors, recordatorio de beneficios */}
       <Composition id="DT-S-Oct-Honors" component={DtStHonorsOct} {...story} />
       <Composition id="DT-S-Oct-Honors-Guia" component={DtStHonorsOctGuia} {...story} />
+    </Folder>
+    <Folder name="DT-Oct-Feed">
+      {/* FEED col D · 10-10 · ESTÁTICO Opinión (reseña de Google) */}
+      <Composition id="DT-F-Oct-Opinion" component={DtFtOpinionOct} {...feed} />
+      <Composition id="DT-F-Oct-Opinion-Guia" component={DtFtOpinionOctGuia} {...feed} />
     </Folder>
   </>
 );

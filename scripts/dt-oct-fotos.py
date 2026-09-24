@@ -39,6 +39,9 @@ FOTOS = {
     "sv-bar": ("HDT_39.jpg", 700, 1000, 0.52, 0.55, 1.15),
     "sv-cowork": ("HDT_53.jpg", 700, 1000, 0.50, 0.55, 1.1),
     "sv-gym": ("HDT_82.jpg", 700, 1000, 0.45, 0.55, 1.1),
+    # FEED 10-10 Opinión — «fondo institucional DoubleTree, colores cálidos»:
+    # el lobby lounge (`HDT_37`), la más cálida del banco.
+    "op-fondo": ("HDT_37.jpg", 2250, 2813, 0.50, 0.55, 1.0),
     # ST 30-10 Hilton Honors — la habitación con Santiago por la ventana.
     "hh-hab": ("HDT_67-hab-vista.jpg", 2250, 4000, 0.58, 0.55, 1.0),
 }

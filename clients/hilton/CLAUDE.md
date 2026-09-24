@@ -1614,6 +1614,39 @@ Al escribir estas reglas se pasó el mes entero buscando `$`. El resultado:
 Los `$21.000` y `$100.000` de `FEED C` no son el programa: son los agregados de
 sunset y masajes.
 
+### ⭐⭐ DT — OCTUBRE 2026: lo que dejaron las 3 rondas de Eli (24-09-2026)
+
+Grilla `13yYW5QacnSRaV422SeBTgFVGwLN5mhTg0anDJzkvaK0`. Cuatro piezas aprobadas y subidas a
+`10. OCTUBRE / S<n> HILTON OCT 2026 / DT / {STS, FEED}`. Código en
+`src/compositions/hilton/Dt*Oct.tsx` (entry `src/DtOctEntry.tsx`).
+
+1. ⭐⭐⭐ **LAS OPINIONES TIENEN PLANTILLA.** Eli: «si es Expedia es así el diseño», con la pieza
+   aprobada (`raw/hilton/dt/ref-oct/opinion-expedia-aprobada.png`). Medida @1080×1350: tarjeta
+   clara `#E7E4E3` x 153→926 · y 276→896 · radio ≈30, **partida en y≈422** (se ve la foto por la
+   ranura) · pestaña azul con el logotipo blanco montada en el canto (y 232→329) · «Nombre:
+   “cita”» (Stag Regular espaciada + Semibold, azul) · la valoración **montada en el corte**,
+   verde DT con contorno azul y la línea que la une · cuerpo en **Stag itálica Regular azul**,
+   ~10 líneas cada 33 px · logo de la plataforma **a color** al pie · foto a sangre SIN velo.
+   Para otra plataforma cambia sólo el logo y el signo de la valoración (Google → estrellas).
+   La bandera de Expedia marcaba el país del huésped: si la reseña no lo dice, no va.
+2. ⭐⭐ **Family Time tiene que mostrar una FAMILIA.** Sin personas «no me gusta mucho». Se
+   resolvió con §D: la foto de sept (`C1 FT N1`) regenerada en Seedream con 4 rostros nuevos,
+   misma habitación (`raw/hilton/dt/oct-familia/`).
+3. ⛔ **Nada de paso de blanco y negro a color**, aunque la referencia lo haga.
+4. ⭐ **Una historia animada: máximo 15 s, y el bloque del precio con tiempo de lectura**
+   (~6-7 s). «Los de precios se ve muy corto».
+5. ⭐⭐ **«¿Revisaste bien la referencia?»** La ronda 1 tomó la idea general y se cayó. Una ref
+   animada se mira **cuadro a cuadro** (tira a 4 fps) antes de diseñar: acá el cristal era
+   ALTO, esmerilado claro, texto arriba y barridos con desenfoque entre tomas cortas.
+6. ⭐ **Honors: todo centrado** (titular, rejilla y logo) con las líneas guía de septiembre —la
+   cruz de divisores sin caja y la regla sobre el logo—, aunque la referencia fuera a la izquierda.
+7. ⭐ **Video = MP4 + GIF juntos** en la carpeta de la semana: Eli sube el GIF a la grilla.
+8. ⛔ **`&` tampoco existe en Stag** (verificado con `fontTools`): va en Trade, como `+ $ @`.
+   Agregado a `stagSirve` y al componente `ConTrade` de `dtIconosOct.tsx`.
+9. ⚠️ `qa/motor.py` · `respiro-borde` mide **tinta BLANCA**: en una pieza de texto azul sobre
+   tarjeta clara (la opinión) cuenta los brillos de la foto en el canto y da falsa alarma. La
+   opinión de Expedia aprobada la pasa; la de Google la dispara con el lounge `HDT_37`.
+
 ### ⭐⭐ LO QUE DEJÓ LA ST DEL 18-09 (15-09-2026) — cuatro reglas de DT
 
 Seis rondas sobre el saludo de Fiestas Patrias. Lo que vale para la marca, no

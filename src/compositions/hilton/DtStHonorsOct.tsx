@@ -10,7 +10,9 @@
  * Tipografía y color DT: Stag a dos pesos y un mismo cuerpo, tinta blanca,
  * velo azul que nace en 0 arriba.
  *
- * ⭐ El alineado a la izquierda es de la REFERENCIA (§ «las reglas de
+ * ⭐ RONDA 2 (Eli, 24-09): todo CENTRADO —titular, rejilla y logo de Honors— con
+ * las líneas guía de septiembre. La ronda 1 iba alineada a la izquierda como la ref.
+ * (Historia:) el alineado a la izquierda era de la REFERENCIA (§ «las reglas de
  * composición de DT las puede levantar la referencia de Eli»): el default de DT
  * es centrado. El logotipo sí queda centrado, en su plantilla.
  *
@@ -37,7 +39,6 @@ cargarFuentesDT();
 
 const G = DT.geometria;
 const MESA = {ancho: 1080, alto: 1920} as const;
-const M = G.margenLateral;
 
 /** «Hilton Honors: súmate y disfruta beneficios exclusivos en tu próxima estadía» */
 const TITULO: readonly {t: string; peso: number}[] = [
@@ -54,6 +55,9 @@ const BENEFICIOS: readonly {icono: NombreIcono; l: readonly [string, string]}[] 
   {icono: 'regalo', l: ['Canje de', 'noches gratis']},
   {icono: 'monedas', l: ['Acumula puntos', 'en cada estadía']},
 ];
+
+const REJILLA = {x: 140, y: 980, ancho: 800, alto: 400} as const;
+const REGLA_Y = 1432;
 
 const SOMBRA = '0 2px 7px rgba(9,25,78,0.6), 0 0 2px rgba(9,25,78,0.45)';
 
@@ -87,8 +91,8 @@ export const DtStHonorsOct: React.FC<{guia?: boolean}> = ({guia = false}) => (
       }}
     />
 
-    {/* titular, a la izquierda como la referencia */}
-    <div style={{position: 'absolute', top: 500, left: M}}>
+    {/* titular — ronda 2: CENTRADO (Eli, 24-09: «me gustaría que todo fuera como centrado») */}
+    <div style={{position: 'absolute', top: 500, left: 0, width: MESA.ancho, textAlign: 'center'}}>
       {TITULO.map(({t, peso}) => (
         <div
           key={t}
@@ -107,26 +111,34 @@ export const DtStHonorsOct: React.FC<{guia?: boolean}> = ({guia = false}) => (
       ))}
     </div>
 
-    {/* la rejilla abierta de beneficios: 2 × 2, ícono arriba y rótulo abajo */}
+    {/*
+      la rejilla de beneficios, CENTRADA, con las líneas guía del estático de
+      Honors de septiembre: la cruz de divisores (0,45) sin la caja. Ronda 2.
+    */}
     <div
       style={{
         position: 'absolute',
-        top: 1000,
-        left: M,
-        width: MESA.ancho - 2 * M,
+        top: REJILLA.y,
+        left: REJILLA.x,
+        width: REJILLA.ancho,
+        height: REJILLA.alto,
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
-        rowGap: 50,
+        gridTemplateRows: '1fr 1fr',
       }}
     >
       {BENEFICIOS.map((b) => (
-        <div key={b.l[0]}>
+        <div
+          key={b.l[0]}
+          style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}
+        >
           <div style={{height: 60, display: 'flex', alignItems: 'flex-end'}}>
             <Icono n={b.icono} alto={b.icono === 'cama' ? 52 : 60} />
           </div>
           <div
             style={{
               marginTop: 18,
+              textAlign: 'center',
               fontFamily: DT.fuentes.titular,
               fontWeight: DT.pesos.regular,
               fontSize: 34,
@@ -144,18 +156,30 @@ export const DtStHonorsOct: React.FC<{guia?: boolean}> = ({guia = false}) => (
         </div>
       ))}
     </div>
+    <svg
+      width={MESA.ancho}
+      height={MESA.alto}
+      style={{position: 'absolute', top: 0, left: 0, filter: 'drop-shadow(0 1px 4px rgba(9,25,78,0.5))'}}
+    >
+      <g stroke={DT.colores.blanco} strokeWidth={1.5}>
+        <path d={`M ${MESA.ancho / 2} ${REJILLA.y + 12} V ${REJILLA.y + REJILLA.alto - 12}`} strokeOpacity={0.45} />
+        <path d={`M ${REJILLA.x + 30} ${REJILLA.y + REJILLA.alto / 2} H ${REJILLA.x + REJILLA.ancho - 30}`} strokeOpacity={0.45} />
+        {/* la regla sobre el logotipo de Honors */}
+        <path d={`M ${MESA.ancho / 2 - 220} ${REGLA_Y} H ${MESA.ancho / 2 + 220}`} strokeOpacity={0.7} />
+      </g>
+    </svg>
 
-    {/* Hilton Honors, blanco y sin sombra (ronda 4 del estático de septiembre) */}
+    {/* Hilton Honors, blanco, sin sombra y CENTRADO (ronda 2) */}
     <Img
       src={staticFile('assets/hilton/dt/hilton-honors-blanco.png')}
-      style={{position: 'absolute', top: 1454, left: M, height: 82, width: 82 * 2.3213}}
+      style={{position: 'absolute', top: REGLA_Y + 44, left: (MESA.ancho - 82 * 2.3213) / 2, height: 82, width: 82 * 2.3213}}
     />
 
     {guia ? (
       <>
         <div style={{position: 'absolute', top: 0, left: 0, width: MESA.ancho, height: DT.seguras.story.arriba, background: 'rgba(255,0,110,0.3)'}} />
         <div style={{position: 'absolute', bottom: 0, left: 0, width: MESA.ancho, height: DT.seguras.story.abajo, background: 'rgba(255,0,110,0.3)'}} />
-        <div style={{position: 'absolute', top: 0, left: M, width: 1, height: MESA.alto, background: 'rgba(255,0,110,0.6)'}} />
+        <div style={{position: 'absolute', top: 0, left: MESA.ancho / 2, width: 1, height: MESA.alto, background: 'rgba(255,0,110,0.6)'}} />
       </>
     ) : null}
   </AbsoluteFill>

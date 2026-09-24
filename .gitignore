@@ -108,6 +108,9 @@ public/assets/**
 # FEED 23-09 Hilton Honors: el lobby ya revelado. El original se rebaja con el curl
 # que documenta scripts/dt-ft-honors-foto.py.
 !public/assets/hilton/dt/ft-honors-*.jpg
+# DT octubre 2026 (24-09): fondos revelados, familia regenerada, íconos de Eli, logo Google.
+# Las piezas se entregaron: sus fondos vuelven al repo el mismo día (el-render-vuelve-al-repo).
+!public/assets/hilton/dt/oct/**
 
 # CARRUSEL S5 · 28-09 «Tu día en DoubleTree». Van los recortes de FOTO (la lámina
 # del gym, que todavía no es video) pero NO los clips.

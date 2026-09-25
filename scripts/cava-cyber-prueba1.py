@@ -171,6 +171,15 @@ F_SANS_BOLD = SP + "/fonts/BebasNeuePro-Bold.otf"
 # Bebas Neue libre (OFL), para el precio tachado: la Pro Book está vacía.
 F_SANS_REG  = RAIZ + "/public/assets/cava/fonts/BebasNeue-Regular.ttf"
 
+# ── el registro de geometría ───────────────────────────────────────────────
+# Cada elemento que se pinta se anota acá con su posición final. Lo consume
+# `scripts/cava-cyber-prueba1-editable.py` para escribir el SVG que abre
+# Illustrator, y existe para que el editable salga de LOS MISMOS NÚMEROS que el
+# PNG aprobado, no de una segunda cuenta que puede diferir.
+REG = []
+def _reg(**k):
+    REG.append(k)
+
 LOGO  = RAIZ + "/public/assets/cava/logo-cava-morande.png"
 SELLO = RAIZ + "/public/assets/cava/sello-descorchados-92.png"
 LEGAL_PNG = RAIZ + "/public/assets/cava/advertencia-conducir.png"
@@ -312,6 +321,9 @@ def pon_sello(capa):
     capa.alpha_composite(sombra.filter(ImageFilter.GaussianBlur(d * 0.030)))
     se = Image.open(SELLO).convert("RGBA").resize((d, d), Image.LANCZOS)
     capa.alpha_composite(se, (int(cx - d / 2), int(cy - d / 2)))
+    _reg(tipo="imagen", nombre="sello", ruta=SELLO,
+         x=int(cx - d / 2), y=int(cy - d / 2), w=d, h=d,
+         sombra=dict(cx=cx, cy=cy + d * 0.035, r=d / 2, desenfoque=d * 0.030, alfa=96))
 
 
 def bloque_editorial(d, capa, ancho_col, y_arriba, pinta, boton=None, url=None):
@@ -346,6 +358,8 @@ def bloque_editorial(d, capa, ancho_col, y_arriba, pinta, boton=None, url=None):
     y = y_arriba + hv
     a = ancho(d, DESCUENTO, f_desc, 0.045)
     txt((EJE - a / 2, y), DESCUENTO, f_desc, BLANCO, 0.045)
+    if pinta: _reg(tipo="texto", txt=DESCUENTO, familia="Butler", estilo="Light",
+                   cuerpo=f_desc.size, tr=0.045, x=EJE, y=y, ancla="middle", tinta=BLANCO)
 
     # el script crece, y se le pone tope para que no se salga de la columna
     cuerpo_scr = min(int(hv * 1.30),
@@ -355,6 +369,8 @@ def bloque_editorial(d, capa, ancho_col, y_arriba, pinta, boton=None, url=None):
     a = ancho(d, TITULAR, f_scr)
     if pinta:
         escribe(d_oro, (EJE - a / 2, y), TITULAR, f_scr, 255)
+        _reg(tipo="texto", txt=TITULAR, familia="Authentic Signature", estilo="Regular",
+             cuerpo=f_scr.size, tr=0.0, x=EJE, y=y, ancla="middle", tinta="oro")
 
     y += AIRE
     ornr = hv * 0.095
@@ -363,6 +379,9 @@ def bloque_editorial(d, capa, ancho_col, y_arriba, pinta, boton=None, url=None):
     linea([(EJE + hueco, y), (x1, y)], fill=255, width=4)
     if pinta:
         estrella(oro, EJE, y, ornr, 255, plano=True)
+        _reg(tipo="linea", x1=x0, y1=y, x2=EJE - hueco, y2=y, grosor=4, tinta="oro")
+        _reg(tipo="linea", x1=EJE + hueco, y1=y, x2=x1, y2=y, grosor=4, tinta="oro")
+        _reg(tipo="estrella", cx=EJE, cy=y, r=ornr, tinta="oro")
 
     f_baj = ft(F_BUT_REG, hv * 0.265)
     tr_baj = 0.26
@@ -370,6 +389,9 @@ def bloque_editorial(d, capa, ancho_col, y_arriba, pinta, boton=None, url=None):
     for i, l in enumerate(BAJADA):
         a = ancho(d, l, f_baj, tr_baj)
         txt((EJE - a / 2, y + i * f_baj.size * 1.62), l, f_baj, CREMA, tr_baj)
+        if pinta: _reg(tipo="texto", txt=l, familia="Butler", estilo="Regular",
+                       cuerpo=f_baj.size, tr=tr_baj, x=EJE,
+                       y=y + i * f_baj.size * 1.62, ancla="middle", tinta=CREMA)
     y += f_baj.size * 1.62
 
     if boton:
@@ -400,10 +422,14 @@ def bloque_producto(d, capa, precio, antes):
     for i, l in enumerate(VINO):
         a = ancho(d, l, f_nom, 0.052)
         escribe(d, (COL_R - a, Y_NOMBRE + PASO_NOMBRE * i), l, f_nom, BLANCO, 0.052)
+        _reg(tipo="texto", txt=l, familia="Bebas Neue Pro", estilo="Bold", cuerpo=f_nom.size,
+             tr=0.052, x=COL_R, y=Y_NOMBRE + PASO_NOMBRE * i, ancla="end", tinta=BLANCO)
 
     f_pre = ft(F_SANS_BOLD, 228)
     a = ancho(d, precio, f_pre, 0.052)
     escribe(d, (COL_R - a, Y_PRECIO), precio, f_pre, BLANCO, 0.052)
+    _reg(tipo="texto", txt=precio, familia="Bebas Neue Pro", estilo="Bold", cuerpo=f_pre.size,
+         tr=0.052, x=COL_R, y=Y_PRECIO, ancla="end", tinta=BLANCO)
 
     f_ant = ft(F_SANS_REG, 150)
     a = ancho(d, antes, f_ant, 0.052)
@@ -412,6 +438,9 @@ def bloque_producto(d, capa, precio, antes):
     cj = f_ant.getbbox(antes)
     medio = Y_TACHADO - (cj[3] - cj[1]) * 0.36
     d.line([(xi - 10, medio), (xf + 10, medio)], fill=APAGADO, width=9)
+    _reg(tipo="texto", txt=antes, familia="Bebas Neue", estilo="Regular", cuerpo=f_ant.size,
+         tr=0.052, x=COL_R, y=Y_TACHADO, ancla="end", tinta=APAGADO)
+    _reg(tipo="linea", x1=xi - 10, y1=medio, x2=xf + 10, y2=medio, grosor=9, tinta=APAGADO)
 
 
 def componer(precio, antes, boton=None, url=None):
@@ -424,9 +453,13 @@ def componer(precio, antes, boton=None, url=None):
     logo = Image.open(LOGO).convert("RGBA")
     logo = logo.resize((560, round(560 * logo.height / logo.width)), Image.LANCZOS)
     capa.alpha_composite(logo, (COL_X, 150))
+    _reg(tipo="imagen", nombre="logo", ruta=LOGO, x=COL_X, y=150, w=560, h=logo.height)
     legal = Image.open(LEGAL_PNG).convert("RGBA")
     capa.alpha_composite(legal, (W - legal.width, 0))
+    _reg(tipo="imagen", nombre="advertencia", ruta=LEGAL_PNG,
+         x=W - legal.width, y=0, w=legal.width, h=legal.height)
     pon_sello(capa)
+    _reg(tipo="fondo", img=base)
 
     # ⭐ El cuerpo es CONSECUENCIA de la franja: se busca por bisección el ancho
     # de columna cuyo bloque la llena sin pasarse. El «50% OFF» queda todo lo

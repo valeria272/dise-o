@@ -779,13 +779,14 @@ const G: React.FC = () => (
 /**
  * ⭐ LA BANDA DEL MAPA — en TRAZOS desde el 25-09.
  *
- * `escala 0,932` y `desdeFila 105` no son a ojo: el contorno de la comuna ocupa
- * las filas **143-572** del archivo (429 px). Para que entre COMPLETO en los
- * 470 px de banda con aire arriba y abajo hay que reducirlo a 400 px —de ahí el
- * 0,932— y empezar a mostrar el archivo 35 px de banda antes del contorno.
- * Un contorno cortado por el borde parece un error de encuadre, no un mapa.
+ * `escala 1,0` y `desdeFila 110` no son a ojo: el contorno de la comuna ocupa las
+ * filas **143-572** del archivo (429 px), y la banda mide 515. A escala 1:1 el
+ * contorno entra completo con 33 px de aire arriba y 53 abajo — y el archivo se
+ * muestra a su resolución nativa, sin remuestrear. `desdeFila 110` es lo que
+ * pone ese aire arriba. Un contorno cortado por el borde parece un error de
+ * encuadre, no un mapa.
  */
-const MAPA = {top: 543, h: 470, escala: 0.9, desdeFila: 105};
+const MAPA = {top: 495, h: 515, escala: 1.0, desdeFila: 110};
 
 /** Placa de dato, como las del pie de la referencia. */
 const Placa: React.FC<{children: React.ReactNode}> = ({children}) => (
@@ -851,8 +852,14 @@ const H: React.FC = () => (
       />
     </div>
 
-    {/* titular sobre navy macizo, encima de la banda */}
-    <div style={{position: "absolute", left: 96, top: 250, width: 880, textAlign: "left"}}>
+    {/* ⭐ Titular sobre navy macizo, CENTRADO y con «CERCA DE SANTIAGO.» en una
+        sola línea (Diego, 25-09). Vuelve a la regla de la cuenta —todo centrado
+        al medio— de la que esta pieza se había salido al armarse sobre la
+        referencia de Sonatta, que alineaba a la izquierda.
+        ⚠️ La línea única no es sólo estética: ahorra 62 px de alto, y esos 62 px
+        son los que dejan subir la banda del mapa de la fila 543 a la 495 y
+        mostrarlo a escala 1:1 en vez de reducido al 90 %. */}
+    <div style={{position: "absolute", left: 0, right: 0, top: 250, textAlign: "center"}}>
       <div
         style={{
           fontFamily: SANS,
@@ -863,9 +870,7 @@ const H: React.FC = () => (
           color: "#fff",
         }}
       >
-        CERCA DE
-        <br />
-        SANTIAGO.
+        CERCA DE SANTIAGO.
       </div>
       <div
         style={{
@@ -892,14 +897,14 @@ const H: React.FC = () => (
           debajo, una píldora calada deja pasar los caminos por detrás del texto
           — que es exactamente lo que estas vueltas vinieron a prohibir.
         · Va en la fila 966 y no antes: el vértice sur del contorno comunal
-          cierra en la 963 (543 + (572-105)×0,90). Trece píxeles más arriba y la
+          cierra en la 957 (495 + (572-110)×1,0). Trece píxeles más arriba y la
           píldora le corta la punta a la comuna. */}
     <div
       style={{
         position: "absolute",
         left: 0,
         right: 0,
-        top: 976,
+        top: 970,
         display: "flex",
         justifyContent: "center",
       }}

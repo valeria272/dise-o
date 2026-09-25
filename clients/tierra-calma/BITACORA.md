@@ -5,6 +5,59 @@
 
 ---
 
+## 2026-09-25 (2ª vuelta) — Diego Aguilar (st-12-10: sólo el plano, y el titular al centro)
+
+**Qué se hizo:** *"Elimina los textos del mapa y los iconos, sólo dejar el plano
+del mapa. El texto superior que quede así: «cerca de santiago» en una línea y
+abajo como está pero todo centrado al medio."*
+
+**El titular.** «CERCA DE SANTIAGO.» en una línea y el bloque centrado. La pieza
+se había armado en septiembre sobre la referencia de Sonatta, que alinea a la
+izquierda; vuelve a la regla de la cuenta. ⚠️ **La línea única paga el mapa:**
+ahorra 62 px de alto, y con esos 62 px la banda sube de la fila 543 a la 495 y el
+archivo se muestra a **escala 1:1** en vez de reducido al 90 %.
+
+**Quitar los rótulos se pudo medir.** En este estilo de Google Maps los caminos
+**nunca bajan de luminancia 187**; la letra de un topónimo llega a 48 y el núcleo
+de un icono a 118. Un umbral en 180 corta por el medio y no toca un camino.
+
+⭐ **Pero borrar el glifo no alcanzó, y ahí está el aprendizaje de hoy.** El mismo
+síntoma —etiquetas fantasma— volvió **cinco veces**, y cada vez tenía una causa
+distinta:
+
+| # | Qué quedaba | La causa real |
+|---|---|---|
+| 1 | los POI pintados en arena | la máscara del límite atrapaba todo lo rojo, y los POI son **magenta** (los separa el canal azul) |
+| 2 | los POI seguían ahí pese al filtro | el **antialias** magenta contra blanco da píxeles casi blancos con rojez 4 → alfa 0,06 → **se protegían solos**. Umbral de protección 0,05 → 0,35 |
+| 3 | un anillo con forma de palabra | Google pone un **halo casi blanco** alrededor de cada etiqueta, más ancho que cualquier dilatación. Se persigue desde el glifo, sólo por píxeles >236 y con tope de 8 pasos |
+| 4 | el contorno de las etiquetas grandes | la **franja de antialias** entre glifo (136) y halo (>236) no cumple ninguna condición. Se ensancha 5 px |
+| 5 | un rectángulo tenue con forma de etiqueta | **no era el rótulo: era el canto del parche.** El relleno no calza exacto con lo que lo rodea. La zona de «no dibujar» va 2 px más ancha |
+
+⛔ **Lo que NO funcionó ninguna de las cinco veces: ensanchar la máscara.** Fue el
+reflejo en los dos primeros intentos —dilatación de 2 a 3, de 5 a 7— y no movió
+el síntoma ni un pixel, porque el problema nunca estuvo en la distancia. Lo que
+funcionó las cinco veces fue **ir a mirar el píxel que sobrevivía** y preguntarse
+por qué ese en particular.
+
+Es el reverso de § 4 sexies · 13 («si el defecto vuelve, cambia de eje»): acá
+cambiar de eje funcionó cinco veces seguidas, pero sólo porque cada cambio salió
+de una medición y no de una corazonada.
+
+**Dónde quedó:** `scripts/tc-mapa-trazos.py` (funciones `alfa_limite` y
+`sin_rotulos`, con los cinco umbrales documentados en el código), `OctubreV3.tsx`
+(bloque `H`: titular centrado, `MAPA` a escala 1,0 desde la fila 495, píldora en
+la 970). **QA: 1 aviso**, el deliberado de la slide 2. Re-subida sobre el mismo
+`fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego sobre la story. El carrusel `c-20-10-2`
+sigue sin tocar, con MAPA-3 a sangre en papel verde.
+
+**Abierto:** sin cambios — el OK escrito de Fran o Blanca, el aviso del agua
+potable, la mano manuscrita propia, y **la captura de mapa que traiga el pin del
+proyecto y el contorno de la comuna a la vez** (hoy ningún archivo tiene los dos).
+
+---
+
 ## 2026-09-25 — Diego Aguilar (st-12-10: el mapa pasa a TRAZOS)
 
 **Qué se hizo:** *"Necesito que el mapa [sea] en trazos, ocupa el MAPA-PADRE

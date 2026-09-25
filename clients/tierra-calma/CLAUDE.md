@@ -1226,6 +1226,52 @@ lectura y el marco teñido por tramos.
 macizo. Y va en la fila 976 y no antes porque el vértice sur del contorno cierra
 en la 963: trece píxeles más arriba y la píldora le corta la punta a la comuna.
 
+#### ⛔ SÓLO EL PLANO: ni topónimos ni iconos (Diego, 25-09, 2ª vuelta)
+
+> *"Elimina los textos del mapa y los iconos, sólo dejar el plano del mapa."*
+
+Separarlos **se puede medir**: en este estilo de Google Maps los caminos **nunca
+bajan de luminancia 187** (Ruta 78 mín. 187, camino rural mín. 187, percentil 5
+en 205), mientras que la letra de un topónimo llega a **48** y el núcleo de un
+icono a **118**. Un umbral en **180** corta por el medio y no toca un camino.
+
+Pero borrar el glifo no alcanzó. Costó **cuatro causas distintas**, y cada una
+dejaba el mismo síntoma —etiquetas fantasma— por una razón diferente:
+
+| # | Qué quedaba | Por qué | Cómo se arregló |
+|---|---|---|---|
+| 1 | los POI pintados **en arena**, como si fueran el límite | la máscara del límite atrapaba todo lo rojo, y los POI son **magenta** | el canal azul los separa: el límite es rojo anaranjado (azul 105, **por debajo** del verde 121), el POI es magenta (azul 187, muy por encima del verde 78) |
+| 2 | un anillo claro con forma de palabra | Google rodea cada etiqueta con un **halo casi blanco** más ancho que cualquier dilatación a ciegas | se **persigue** el halo desde el glifo hacia afuera, avanzando sólo por píxeles >236 y con tope de 8 pasos (sin tope se escapa por los caminos, que son igual de claros) |
+| 3 | el contorno de la palabra en las etiquetas grandes | entre el glifo (136) y el halo (>236) hay una **franja de antialias** que no cumple ninguna condición | se ensancha 5 px, el ancho medido de esa franja |
+| 4 | un rectángulo tenue con la forma de la etiqueta | **no era el rótulo: era el canto del parche.** El relleno no calza exacto con el color que lo rodea y el gradiente dibujaba ese escalón | la zona de «no dibujar» va 2 px más ancha que el parche |
+
+⚠️ Y la que más costó, la 1, tenía un segundo piso: el antialias de una etiqueta
+magenta contra el blanco deja píxeles casi blancos con un resto de rojo
+—(252,240,248), rojez 4— que daban alfa 0,06 y **se protegían solos del
+borrado**. El umbral de protección subió de 0,05 a **0,35**; el punteado del
+límite satura en 1,0, así que lo deja entero.
+
+> 💡 Los caminos quedan **cortados** donde iba la etiqueta. No es un defecto: es
+> lo que hace un mapa de verdad cuando pone un topónimo encima.
+
+> ⭐ **La lección de método:** el mismo síntoma se repitió cinco veces y las cinco
+> tenía una causa distinta. Es el reverso de § 4 sexies · 13 —«si el defecto
+> vuelve, cambia de eje»—: acá cambiar de eje funcionó cinco veces seguidas
+> porque cada vez se **midió** el píxel que sobrevivía en vez de subir un umbral
+> a ojo. Ensanchar la máscara, que fue el reflejo, no arregló ninguna de las
+> cinco.
+
+#### El titular pasa a una línea y vuelve al centro
+
+*"El texto superior que quede así: «cerca de santiago» en una línea, y abajo como
+está pero todo centrado al medio."* La pieza se había armado sobre la referencia
+de Sonatta, que alinea a la izquierda; vuelve a la regla de la cuenta —todo
+centrado al medio (§ 4)—.
+
+⚠️ **Y la línea única no es sólo estética: paga la banda del mapa.** Ahorra 62 px
+de alto, y esos 62 px son los que dejan subir la banda de la fila 543 a la 495 y
+mostrar el archivo a **escala 1:1** en vez de reducido al 90 %.
+
 ⛔ **LO QUE ESTE MAPA NO TIENE: LA UBICACIÓN DE TIERRA CALMA.**
 Medido contra `mapa3.jpg` con dos anclas independientes —«Casas de La Esperanza»
 y «Casas de los Bajos»—, la escala entre los dos archivos es **1,70** y el pin

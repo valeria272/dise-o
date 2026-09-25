@@ -16,7 +16,7 @@ Cada cuenta tiene su cerebro en `clients/<marca>/APRENDIZAJES.md`, alimentado en
 - [ebema](cliente-ebema.md) — 54 reglas · última cosecha 2026-09-25
 - [hilton](cliente-hilton.md) — 67 reglas · última cosecha 2026-09-25
 - [landera](cliente-landera.md) — 28 reglas · última cosecha 2026-09-25
-- [mascenter](cliente-mascenter.md) — 29 reglas · última cosecha 2026-09-25
+- [mascenter](cliente-mascenter.md) — 44 reglas · última cosecha 2026-09-25
 - [myzoo](cliente-myzoo.md) — 17 reglas · última cosecha 2026-09-25
 - [nueva-urbe](cliente-nueva-urbe.md) — 30 reglas · última cosecha 2026-09-25
 - [petra](cliente-petra.md) — 12 reglas · última cosecha 2026-09-25

@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de marca: Valeria Traverso)** · Aprueba: **Sebastián Córdova (paid) · Francesca Pavissich (landings y presentación comercial)**
-> Última cosecha: **2026-09-25** · Cosechas: **1**
+> Última cosecha: **2026-09-25** · Cosechas: **2**
 
 ## 1. Quién es el cliente
 
@@ -31,12 +31,16 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 | Por dónde llega el feedback | Revisión de Valeria antes de entregar · correo de Francesca (landings) · comentarios en Drive |
 | Dónde se entrega | `PERFORMANCE/2026/<MES>/ADS <MES>/` (octubre `12rXhFTlWlBEof1ugHmSM52gmOxIktwgN`); landings por CLI a Vercel |
 | Ritmo | Paid mensual (P01 post + story, P02/P03 reels) · landings y presentación a pedido |
+| Fuente de verdad del diseño | **Editables de Diego** en `D:\DIEGO 2023\COPYWRITERS\MAS CENTER\` (disco KINGSTON: `.ai` por mes, `1x/` exportaciones, `MAPAS`, `LOGO MAS CENTER`, fuentes en `MAS CENTER TRASPASO/FEB 2026…/Fonts`) · entregas y grillas en Drive `GRUPO IFB - MÁS CENTER / 2026` (`1ODBfU0HUbvdwlKuwllcQ39QbR4V_qbSj`) |
+| Quién diseñó 2026 | Ene–feb: Coni (`IFB_<MES>_IG 01-07.png`) · mar–sept: Diego (`c-/p-/st-/r-/lk-dd-mm`) · reels orgánicos: Sebastián Serrano · Scarlette Muñoz corrige las grillas (KAM orgánico) |
 | Rondas típicas | Paid octubre: 4 rondas de Valeria (04-09 → 05-09) + 1 de QA (24-09). Landing de terrenos: 6 rondas. Vuelve por tipografía, montaje del reel y zonas seguras |
 
 ## 3. Identidad en corto
 
-- **Paid social (familia «LinkAd Tráfico a IG»):** Montserrat (Bold 700 titular en versales,
-  SemiBold 600 bajada, Medium 500 CTA) · pastilla y bajada `#DC1914` · burbuja CTA `#D80000` ·
+- ⚠️ **revisada 2026-09-25 — la tipografía es Gotham** (leída en los `.ai` de Diego): titular **Gotham Black**,
+  bajada y CTA **Gotham Rounded Medium**; orgánico, arriendo, LinkedIn, mapas y reels en Gotham Rounded
+  Bold/Medium/Book/Light. Detalle en `ADN-EDITABLES.md`.
+- **Paid social (familia «LinkAd Tráfico a IG»):** ~~Montserrat~~ Gotham (ver arriba) · pastilla y bajada `#DC1914` · burbuja CTA `#D80000` ·
   fondo blanco · foto a sangre que termina en onda en S · logo blanco centrado · Localito abajo
   a la derecha. Feed 1080×1080, story y reel 1080×1920.
 - **Manual oficial Grupo IFB 2023 (sección 6):** Poppins, rojo `#E52521`, `#65140F`, `#DADADA`,
@@ -47,8 +51,8 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 ## 4. Reglas firmes
 
 - **R-01** · La pieza del mes es la del mes anterior con otro contenido: el esqueleto de paid no se rediseña, se rellena, y tiene que confundirse con `LinkAd Tráfico a Ig 1 - post.png` — _medido en 4 meses de piezas aprobadas; manual §2, 04-09-2026_ · ✔×4
-- **R-02** · En paid la tipografía es Montserrat, aunque el manual 2023 diga Poppins; la letra se identifica por glifos sobre la pieza aprobada — _Valeria lo vio a ojo y rechazó la ronda 1 («esa tipografía tampoco es»); medido glifo a glifo, 04/05-09-2026_ · ✔×2
-- **R-03** · Rojos de paid: pastilla y bajada `#DC1914`, burbuja CTA `#D80000`, ningún otro en la columna de texto — _6 piezas de septiembre + agosto; `reglas.yaml › rojo-de-sistema`, 04-09-2026_ · ✔×3
+- **R-02** · ⚠️ revisada 2026-09-25 → ver **R-30**. ~~En paid la tipografía es Montserrat, aunque el manual 2023 diga Poppins; la letra se identifica por glifos sobre la pieza aprobada — _Valeria lo vio a ojo y rechazó la ronda 1 («esa tipografía tampoco es»); medido glifo a glifo, 04/05-09-2026_ · ✔×2~~ La medición sólo comparó contra Poppins.
+- **R-03** · (⚠️ precisada 2026-09-25: abr–ago el paid usó `#E52521`; `#DC1914` rige desde septiembre y en todo el orgánico) Rojos de paid: pastilla y bajada `#DC1914`, burbuja CTA `#D80000`, ningún otro en la columna de texto — _6 piezas de septiembre + agosto; `reglas.yaml › rojo-de-sistema`, 04-09-2026_ · ✔×3
 - **R-04** · Medida exacta 1080×1080 / 1080×1920, nunca 1081 como entrega el cliente — _medición 02-09-2026; `marca.json › reglas_duras`_ · ✔×2
 - **R-05** · Logo blanco centrado, tinta 205–211 px, borde superior en y=64 (feed) / y=117 (story) — _`build.py › GEO`, medido sobre sept 2026_ · ✔×1
 - **R-06** · Localito sólo en la campaña de comunidad; nunca en la de arriendo — _manual §1, 04-09-2026_ · ✔×1
@@ -76,6 +80,22 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **R-28** · Una ronda se re-sube en sitio (mismo fileId y enlace, md5 verificado) — _paid octubre, 05-09 y 24-09-2026_ · ✔×2
 - **R-29** · Si un reel entregado cambia, se avisa a Sebastián Córdova (la pauta puede estar corriendo) — _bitácora 24-09-2026_ · ✔×1
 
+- **R-30** · **La tipografía de Más Center es Gotham**: Gotham Black para titular en pastilla y display de impacto; Gotham Rounded Bold (nombre de locatario, titular de arriendo), Medium (bajada, CTA, dirección), Book (descripción) y Light (pastillas de beneficios). La fuente se lee en el `.ai` (PyMuPDF `get_text('dict')`) antes de medir glifos — _editables de Diego abr–sept 2026 + `.aep` de jun–ago, leído 25-09-2026; Diego pidió usar su carpeta como referencia_ · ✔×1
+- **R-31** · La fuente de verdad del diseño son los editables de Diego (disco KINGSTON) y lo publicado en el Drive 2026, no el manual de 2023 ni el sistema del repo — _Diego, 25-09-2026_ · ✔×1
+- **R-32** · Tres sistemas que no se mezclan: orgánico IG (rojo + banda de color por tema + Localito), paid (tráfico / arriendo) y LinkedIn Grupo IFB (azul `#235D80`, celeste `#BAEAEE`, navy `#112C3A`). Algarrobal (Poppins) va aparte — _medido 25-09-2026_ · ✔×1
+- **R-33** · Carrusel de locatarios: foto real a sangre, banda de color con borde curvo, logo del locatario en círculo blanco sobre la banda, nombre Bold 45 + descripción Book 42 + 📍 «Más Center + lugar» Medium 35, flecha en círculo. La banda es roja por defecto; verde `#299A80` servicios/súper, cian `#01B8C1` clases, mostaza `#CFAF30` mascotas, rosa `#D64E74` madre/San Valentín — _editables mar-2025 → sept-2026_ · ✔×3
+- **R-34** · Logo de Más Center en toda pieza, también en LinkedIn aunque la línea sea IFB — _cliente, grilla feb: «cambie el enfoque a Más Center y no IFB. Cambiemos el logo por el de Más Center»; mar: «poner en la imagen el logo de Más Center»_ · ✔×2
+- **R-35** · No tapar el activo: poco azul y poco difuminado sobre renders y fotos de proyectos — _Scarlette, grilla feb: «bajarle un poco al color azul de los proyecto»; may: «podemos no ponerle el color azul y difuminado, la idea es darle más visibilidad al activo»_ · ✔×2
+- **R-36** · No publicar fechas de entrega de proyectos — _cliente, grilla mar: «no hablemos de fecha de entrega, ya que se ha atrasado»_ · ✔×2 (⚠️ julio y octubre las publican: ver §8)
+- **R-37** · Toda cifra lleva su fuente en letra chica (Memoria 2025, DF, CBRE); en LinkedIn las cifras de mercado van en el copy del post, no en las láminas — _grilla feb: «agregar en parte inferior y más pequeño: Fuente: Diario Financiero»; brief LinkedIn sept_ · ✔×3
+- **R-38** · Imagen que se lea «Más Center»: gente comprando en los centros reales, con pin y dirección, sin banco de imágenes. La IA sirve para mejorar una foto real o generar centros de región; un render IA va rotulado «imagen referencial» — _grilla ene: «le falta imágenes más "Más Center"… alguien en una tienda, o con bolsas de compra»; jul: «Indicar de forma sutil que es una imagen referencial»; ago: «foto casual, auténtica, no de banco de imágenes»_ · ✔×3
+- **R-39** · Arriendo siempre con CTA a WhatsApp o al contacto de la bio, y copy corto — _Scarlette, grilla may: «esta super largo y debe tener foco a comunicarse por whatsapp»; «Estás dejando copy demasiado largos, nadie se detiene a leer todo»_ · ✔×2
+- **R-40** · Etiquetar a cada locatario y partner — _Scarlette, grilla may, cinco veces: «Revisa que los tags correspondan. Básico.»_ · ✔×2
+- **R-41** · Público de Instagram: mujer +35 — _Scarlette, grilla may_ · ✔×1
+- **R-42** · LinkedIn Grupo IFB desde sept: fondo azul pleno sin chevron de marca de agua, lockup arriba al centro, caja azul al centro, mapas redibujados con la paleta, 1080×1080; voceros en video en las oficinas de Manquehue con cierre de logo IFB — _brief LinkedIn sept 2026_ · ✔×1
+- **R-43** · Localito: comunidad, concursos, efemérides, paid de tráfico y avisos; nunca arriendo ni LinkedIn. Desde agosto existe el corpóreo real y en sept–oct protagoniza reels de humor — _grillas ago–oct 2026_ · ✔×2 (refuerza R-06)
+- **R-44** · Display de temporada (Eds Market, Royal Brand, Gloria Hallelujah, Garamond) sólo puntual, nunca como voz de la marca — _editables mar–sept 2026_ · ✔×1
+
 ## 5. Excepciones
 
 - **E-01** · El logo de la story va en y=117, dentro de la zona segura del brief (269 px): excepción declarada por sistema aprobado — _`reglas.yaml › zona-segura-meta`, 04-09-2026_
@@ -83,6 +103,7 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **E-03** · Los reels duran 15–20 s aunque el brief diga 10 s (el del cliente también); el porqué va escrito en `ENTREGA.md` — _paid octubre, 05-09-2026_
 - **E-04** · Landings y presentación van en Poppins y rojo del brochure (`#E52521`/`#E42026`), no en Montserrat ni `#DC1914`: la regla de paid no se traspasa a web ni a deck — _landings 28-08 y 02-09; presentación 28-08-2026_
 - **E-05** · Presentación en Poppins aunque el manual pida Raleway + Chivo para Google Slides: manda el brochure aprobado — _decisión 28-08-2026, contradicción avisada_
+- **E-07** · Las exportaciones del cliente salen a 1081 px (1081×1351, 1081×1921) por Illustrator; no es medida del sistema (refuerza R-04) — _25-09-2026_
 - **E-06** · «cencoəu» en la foto es el logotipo real de Cencosud, no un error de la IA — _QA 24-09-2026_
 
 ## 6. Lo que se aprueba a la primera
@@ -103,14 +124,22 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **X-07** · Render de un proyecto identificable como hero de marca — _landing de terrenos, 02-09-2026_
 - **X-08** · Correo genérico `contacto@mascenter.cl` en la captación de terrenos — _Francesca, 09-09-2026_
 - **X-09** · Formulario que dice «Recibimos tu postulación» sin enviar nada — _landing de terrenos, 09-09-2026_
+- **X-11** · Montserrat en paid: salió de medir glifos sin tener a Gotham entre las candidatas; el editable decía Gotham desde el principio — _hallado 25-09-2026; afecta el paid de octubre ya entregado_
+- **X-12** · Efemérides «de reciclaje» sin respaldo: «Más Center no tiene puntos de reciclaje» — _Scarlette, grilla may_
+- **X-13** · Stories de interacción sin gancho: «Malísimo, esto no va a hacer que nadie interactúe» — _Scarlette, grilla may_
 - **X-10** · Chevron como flecha flotando sobre la foto: «se veía barato» — _presentación comercial, 28-08-2026_
 
 ## 8. Preguntas abiertas
 
 - **El rojo:** ¿sigue `#DC1914` (piezas aprobadas) o vuelve a `#E52521` (manual)? La memoria del 02-09 lo trató como «defecto»; el 04-09 se decidió extender lo aprobado → **Diego Aguilar**.
-- **La tipografía:** el manual y el 02-09 decían Poppins; las piezas y reels miden Montserrat. ¿Montserrat es oficial para paid? → **Diego Aguilar**.
-- **El orgánico no está medido.** La memoria del 02-09 describe otro esqueleto (feed 4:5 1080×1350, logo en y 148–188, pastilla de bajada, flecha circular negra); el sistema actual es sólo paid. `DISEÑO GRILLAS` (de Ámbar) no se puede bajar → **Ámbar Gallardo**.
-- Gramática de la campaña de **arriendo** («linkad» de agosto) sin medir → **Diego**.
+- ~~**La tipografía:** ¿Montserrat es oficial para paid?~~ Resuelto 25-09: es Gotham (R-30). **Queda abierto: ¿se migra ya el sistema de producción y se rehace el paid de octubre?** Falta el archivo de Gotham Black → **Diego Aguilar**.
+- ~~**El orgánico no está medido.**~~ Medido el 25-09 desde los editables (R-33, `ADN-EDITABLES.md`). Lo que sigue queda como historia: La memoria del 02-09 describe otro esqueleto (feed 4:5 1080×1350, logo en y 148–188, pastilla de bajada, flecha circular negra); el sistema actual es sólo paid. `DISEÑO GRILLAS` (de Ámbar) no se puede bajar → **Ámbar Gallardo**.
+- ~~Gramática de arriendo sin medir~~ Medida el 25-09: Gotham Rounded Bold titular 60/76, Medium 48, Light 35/43, CTA Bold 31/37 (`ADN-EDITABLES.md` §3).
+- Hashtag: ¿#MásCenter (hasta abril) o #MasCenter (desde mayo)? Cuenta: ¿@mascenter o @mascentercl? → **Scarlette / Diego**.
+- Fechas de entrega de proyectos: el cliente pidió no publicarlas (mar), pero julio (Santa Cruz) y octubre (Linderos) las publican → **Scarlette**.
+- Cifras que no calzan («+30 centros», «+400 / +50 locales») y direcciones duplicadas (Pie Andino 1855/5855, Chamisero 10290/15135) → **Francesca / Scarlette**.
+- La estrategia IG de sept (pptx de Copywriters) tiene voseo («¿Andás pato después del 18?») → **Scarlette**.
+- Las xlsx de jun–oct no dejan leer sus comentarios con el conector → **quien retome**: pedir que se conviertan a Sheets.
 - Metraje real de Sebastián Serrano (20 MOV, `ORGÁNICOS/TODO EN UN MISMO LUGAR`), fotos de fachada ≥2000 px, Localito original, íconos del reel en vectorial → **Sebastián Serrano / Diego**.
 - Grilla IFB de octubre (movida el 23-09) sin leer; `ENTREGA.md` de Drive sigue hablando de la v4 → **quien retome**.
 - Zonas seguras: la story declara 115 px a la derecha y el reel 180 px. ¿Unificar? → **Sebastián Córdova**.
@@ -119,6 +148,14 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-25 — Diego Aguilar (con Claude) · editables del disco KINGSTON + Drive 2026 + grillas ene–oct
+- ⚠️ **R-02 revisada**: no es Montserrat, es Gotham → nuevo **R-30**. **R-03 precisada**: el paid de abr–ago usó `#E52521`.
+- nuevo **R-31…R-44**: fuente de verdad, los tres sistemas, carrusel de locatarios, logo en toda pieza, no tapar el activo, sin fechas de entrega, fuente de las cifras, imagen «Más Center», arriendo con WhatsApp, tags, público +35, LinkedIn sept, Localito y display de temporada.
+- ✔ subieron **R-06** (Localito sólo en comunidad, confirmado en ago–oct → R-43) y **R-04** (1081 px, nueva E-07).
+- nuevo **X-11…X-13** y **E-07**. En §8 quedaron resueltas la tipografía, el orgánico sin medir y el arriendo sin medir.
+- Las citas de las grillas las leyó un agente con la API de Sheets y el conector de Drive; no se revisó cada una contra la celda.
+- Candidata a regla del estudio (para Valeria): **«la tipografía se lee en el editable antes de medir glifos»**. Ya pasó en Revex (glifos contra anchos) y ahora en Más Center (faltaba la candidata correcta).
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico
 - nuevo **R-01…R-29**, **E-01…E-06**, **A-01…A-04**, **X-01…X-10** desde `CLAUDE.md`, `BITACORA.md` (04-09 → 24-09), `reglas.yaml`, `marca.json`, `CHECKLIST-CLIENTE.md` y las memorias `mascenter-sistema-medido`, `mascenter-paid-octubre-2026`, `mascenter-landing-terrenos`, `algarrobal-landing` y `mascenter-presentacion-comercial`.

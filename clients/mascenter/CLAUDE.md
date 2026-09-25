@@ -38,7 +38,18 @@ con la misma campaña, está mal.
 | Fondo | `#FFFFFF` | blanco puro, sin crema |
 | ⚠️ Rojo del manual oficial | `#E52521` | el manual 2023 dice «Vivid red»; las piezas aprobadas usan `#DC1914`. **Se extiende lo aprobado**; si Diego o el cliente quieren volver al manual, cambiar `--rojo` en `sistema/base.css` |
 
-### Tipografía — Montserrat (medida), aunque el manual diga Poppins
+> ⛔ **REVISADO 25-09-2026: la tipografía de Más Center es GOTHAM, no Montserrat.** Diego Aguilar
+> pidió leer sus editables. Los `.ai` de abril a septiembre (incluido `PAID SEPT IFB.ai`, la pieza de
+> referencia de esta tabla) dicen: titular **Gotham Black** (43,3 feed / 50,3 story), bajada
+> **Gotham Rounded Medium** (32 / 56) y CTA **Gotham Rounded Medium** (29,5 / 33,3). Orgánico,
+> arriendo, LinkedIn, mapas y reels también van en Gotham Rounded. La medición de abajo sólo comparó
+> Montserrat contra Poppins. Detalle, colores por mes y gramática del orgánico:
+> [`ADN-EDITABLES.md`](ADN-EDITABLES.md). **El sistema (`base.css`, `build.py`, `MasCenterReel.tsx`)
+> sigue en Montserrat hasta que Diego confirme la migración**; falta el archivo de Gotham Black.
+> Fuente de verdad del diseño: `D:\DIEGO 2023\COPYWRITERS\MAS CENTER\` (disco de Diego) y el Drive
+> `GRUPO IFB - MÁS CENTER / 2026` (`1ODBfU0HUbvdwlKuwllcQ39QbR4V_qbSj`).
+
+### Tipografía — ~~Montserrat (medida)~~ (histórico: ver el aviso de arriba)
 
 ⚠️ **El manual 2023 (p. 26) dice Poppins; las piezas aprobadas y los reels del cliente están en
 Montserrat.** Se midió glifo a glifo el 04-09-2026 a igual altura de capital: el CTA de septiembre

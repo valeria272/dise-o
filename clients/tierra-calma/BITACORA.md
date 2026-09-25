@@ -5,6 +5,51 @@
 
 ---
 
+## 2026-09-25 (3ª vuelta) — Diego Aguilar (st-12-10: el mapa, lineal tipo plano)
+
+**Qué se hizo:** *"Mapa que sea lineal, tipo plano."*
+
+La versión anterior entintaba **proporcionalmente** a la fuerza del borde, y eso
+es un **grabado**: cada línea sale con el peso que tenía el contraste en la
+captura y el relieve del cerro queda como veladura. En un plano **la línea está o
+no está, y todas pesan igual**. Ahora el gradiente se corta con un umbral y sube
+a tinta llena en una rampa corta; el suavizado es el antialias del canto, no una
+gradación.
+
+⚠️ **La trampa, que costó una vuelta entera.** El primer intento cortó en **95**,
+justo encima del borde verde/gris, y el mapa salió **roto**: la red se deshizo en
+fragmentos sueltos. Un camino **no tiene fuerza de borde constante** —varía según
+el relleno que atraviesa— y un corte alto se queda sólo con los picos. El umbral
+bueno resultó ser **45**, muy por debajo del p99 de todo lo que queremos
+conservar: lo que hace que se vea «plano» no es cortar alto, es **subir a tinta
+llena rápido** después de cortar. Con 45 y rampa de 50 el relieve (p90 en 40) se
+cae solo y la red queda continua.
+
+⭐ **Y apareció la sexta causa de las etiquetas fantasma** —van seis, cada una
+distinta—. Esta vez las etiquetas se veían **más oscuras** que el navy, lo que
+parecía ruido de compresión. No lo era: **era el acento**. La misma alfa del
+límite comunal se usaba para dos cosas —proteger del borrado y **pintar**— y los
+restos de magenta con alfa 0,1 no llegaban a protegerse pero sí se pintaban en
+arena tenue. Medido: el pico en la zona del fantasma era [40,69,93] contra un
+navy de [11,44,73]. Cortando la alfa en 0,35 **dentro de `alfa_limite`**, para
+que las dos usos compartan el mismo umbral, bajó a [19,53,83] — ruido de JPEG.
+
+> 💡 La lección no es el número: es que **una máscara usada para dos cosas tiene
+> que limpiarse en un solo lugar**. Tenía el corte en el punto de uso (la
+> protección) y no en el origen, así que el otro uso se lo saltaba.
+
+**Dónde quedó:** `scripts/tc-mapa-trazos.py` — `trazos()` pasó a `bordes()` (devuelve
+la magnitud cruda) y se sumó `lineas()`, con los umbrales medidos en el docstring.
+`mapa-ph-trazos-navy.jpg` y `-papel.jpg` regenerados. **QA: 1 aviso**, el
+deliberado de la slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego. `c-20-10-2` sigue sin tocar.
+
+**Abierto:** sin cambios, más la captura de mapa que traiga el pin del proyecto y
+el contorno de la comuna a la vez.
+
+---
+
 ## 2026-09-25 (2ª vuelta) — Diego Aguilar (st-12-10: sólo el plano, y el titular al centro)
 
 **Qué se hizo:** *"Elimina los textos del mapa y los iconos, sólo dejar el plano

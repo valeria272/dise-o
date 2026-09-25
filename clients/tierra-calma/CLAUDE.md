@@ -1244,6 +1244,7 @@ dejaba el mismo síntoma —etiquetas fantasma— por una razón diferente:
 | 2 | un anillo claro con forma de palabra | Google rodea cada etiqueta con un **halo casi blanco** más ancho que cualquier dilatación a ciegas | se **persigue** el halo desde el glifo hacia afuera, avanzando sólo por píxeles >236 y con tope de 8 pasos (sin tope se escapa por los caminos, que son igual de claros) |
 | 3 | el contorno de la palabra en las etiquetas grandes | entre el glifo (136) y el halo (>236) hay una **franja de antialias** que no cumple ninguna condición | se ensancha 5 px, el ancho medido de esa franja |
 | 4 | un rectángulo tenue con la forma de la etiqueta | **no era el rótulo: era el canto del parche.** El relleno no calza exacto con el color que lo rodea y el gradiente dibujaba ese escalón | la zona de «no dibujar» va 2 px más ancha que el parche |
+| 5 | las etiquetas otra vez, en arena tenue, *más oscuras* que el fondo | **no era tinta de línea: era el acento.** La misma alfa del límite se usaba para dos cosas —proteger del borrado **y pintar**— y los restos con alfa 0,1 no llegaban a protegerse pero sí se pintaban | la alfa se corta en 0,35 **dentro de `alfa_limite`**, antes de devolverla, para que las dos cosas usen lo mismo |
 
 ⚠️ Y la que más costó, la 1, tenía un segundo piso: el antialias de una etiqueta
 magenta contra el blanco deja píxeles casi blancos con un resto de rojo
@@ -1260,6 +1261,38 @@ límite satura en 1,0, así que lo deja entero.
 > porque cada vez se **midió** el píxel que sobrevivía en vez de subir un umbral
 > a ojo. Ensanchar la máscara, que fue el reflejo, no arregló ninguna de las
 > cinco.
+
+#### ⭐ LINEAL, TIPO PLANO: la línea está o no está (Diego, 25-09, 3ª vuelta)
+
+> *"Mapa que sea lineal, tipo plano."*
+
+La primera versión entintaba **proporcionalmente** a la fuerza del borde. Eso da
+un **grabado**: cada línea sale con el peso que tenía el contraste en la captura,
+y el relieve del cerro aparece como una veladura. Un plano no es eso — en un
+plano **la línea está o no está, y todas pesan igual**.
+
+Así que el gradiente se corta con un umbral y sube a tinta llena en una rampa muy
+corta: el suavizado es sólo el antialias del canto, no una gradación.
+
+⚠️ **El umbral selecciona qué se dibuja, y está medido:**
+
+| | p90 | p99 | máx |
+|---|---|---|---|
+| Ruta 78 | 33 | 227 | 325 |
+| camino rural | 72 | 146 | 189 |
+| trama urbana de Maipú | 84 | 117 | 183 |
+| borde verde/gris | 81 | 110 | 123 |
+| relieve del cerro | **40** | 159 | 209 |
+
+> ⛔ **Y acá hay una trampa que costó una vuelta entera.** El primer intento cortó
+> en **95** —justo encima del borde verde/gris— y el resultado fue un mapa
+> **roto**: la red se deshizo en fragmentos sueltos. La razón es que un camino no
+> tiene una fuerza de borde constante; varía a lo largo de su recorrido según el
+> relleno que atraviesa, y un corte alto se queda sólo con los picos. El umbral
+> bueno es **45**, muy por debajo del p99 de todo lo que queremos: lo que lo hace
+> «plano» no es cortar alto, es **subir a tinta llena rápido** después de cortar.
+
+Con 45 y rampa de 50, el relieve —p90 en 40— se cae solo y la red queda continua.
 
 #### El titular pasa a una línea y vuelve al centro
 

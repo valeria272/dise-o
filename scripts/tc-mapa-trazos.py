@@ -69,7 +69,7 @@ RAW = pathlib.Path(RAIZ) / "public/assets/tierracalma/oct/MAPA-PADRE-HURTADO.png
 OCT = pathlib.Path(RAIZ) / "public/assets/tierracalma/oct"
 
 # El punteado rojo del límite comunal, medido sobre el archivo.
-LIMITE = {"min_rojo": 150, "margen": 65, "azul_sobre_verde": 25}
+LIMITE = {"min_rojo": 150, "margen": 65, "azul_sobre_verde": 25, "minimo": 0.35}
 # Debajo de esta luminancia hay letra e iconos; encima, sólo plano. Medido: el
 # camino más oscuro del archivo está en 187 y la letra más clara de un topónimo
 # en 120. Tocar este número sin volver a medir es cómo se borra media Ruta 78.
@@ -84,11 +84,11 @@ def _rgb(hex_: str) -> np.ndarray:
     return np.array([int(hex_[i : i + 2], 16) for i in (1, 3, 5)], dtype=float)
 
 
-def trazos(a: np.ndarray, ganancia: float) -> np.ndarray:
-    """Cuánto de cada píxel es LÍNEA, de 0 a 1.
+def bordes(a: np.ndarray) -> np.ndarray:
+    """Fuerza de borde de cada píxel, sin normalizar.
 
-    Sobel sobre los tres canales y se queda con el canal que más responde. El
-    relleno plano da 0; un camino, una orilla o una letra dan 1.
+    Sobel sobre los tres canales, quedándose con el que más responde. El relleno
+    plano da 0; un camino, una orilla o una letra dan un pico.
     """
     k = np.array([1.0, 0.0, -1.0])
     s = np.array([1.0, 2.0, 1.0])
@@ -99,7 +99,37 @@ def trazos(a: np.ndarray, ganancia: float) -> np.ndarray:
         gx = np.abs(_conv1(_conv1(canal, s, eje=0), k, eje=1))
         gy = np.abs(_conv1(_conv1(canal, k, eje=0), s, eje=1))
         fuerza = np.maximum(fuerza, np.hypot(gx, gy))
-    return np.clip(fuerza / ganancia, 0, 1)
+    return fuerza
+
+
+def lineas(a: np.ndarray, umbral: float, suavizado: float) -> np.ndarray:
+    """El mapa como PLANO: línea de tinta uniforme, no trazo con gradación.
+
+    Diego, 25-09: *"mapa que sea lineal, tipo plano"*.
+
+    La versión anterior entintaba **proporcionalmente** a la fuerza del borde, y
+    eso da un grabado: cada línea sale con el peso que tenía el contraste en la
+    captura, y el relieve del cerro aparece como una veladura. Un plano no es
+    eso — en un plano **la línea está o no está**, y todas pesan igual.
+
+    Así que el gradiente se corta con un umbral y se sube a tinta llena en una
+    rampa muy corta: `suavizado` es sólo el antialias del canto, no una
+    gradación. Con 35 sobre un umbral de 95, todo lo que supere 130 va a tinta
+    completa.
+
+    ⚠️ El umbral es lo que **selecciona qué se dibuja**, y está medido:
+
+        camino rural        p99 146 · máx 189
+        trama urbana Maipú  p99 117 · máx 183
+        Ruta 78             p99 227 · máx 325
+        borde verde/gris    máx 123, pero p90 en 80
+        relieve del cerro   p90 en 40
+
+    En 95 entran los caminos y la trama urbana, y **se cae el relieve**, que es
+    lo que ensuciaba el plano. Subirlo a 120 empieza a comerse la trama urbana
+    de Maipú, que es justamente el ancla de «cerca de Santiago».
+    """
+    return np.clip((bordes(a) - umbral) / suavizado, 0, 1)
 
 
 def _dilatar(m: np.ndarray, veces: int) -> np.ndarray:
@@ -131,13 +161,8 @@ def sin_rotulos(a: np.ndarray, limite: np.ndarray) -> np.ndarray:
     que la rodeaba y no genera ningún borde al calcular el gradiente.
     """
     lum = 0.299 * a[:, :, 0] + 0.587 * a[:, :, 1] + 0.114 * a[:, :, 2]
-    # ⚠️ 0,35 y no 0,05. El antialias de una etiqueta magenta contra el blanco
-    # deja píxeles casi blancos con un resto de rojo —(252,240,248): rojez 4—
-    # que daban alfa 0,06 y **se protegían solos del borrado**. El punteado del
-    # límite satura el alfa en 1,0, así que 0,35 lo deja entero y suelta el
-    # fantasma. Fue lo que mantuvo vivas «Motel Amapola», «Chena Mágica» y
-    # «Hotel & Spa Lo Aguirre» a través de tres intentos de ensanchar máscaras.
-    protegido = _dilatar(limite > 0.35, 2)
+    # El corte por abajo ya viene hecho en `alfa_limite`; acá sólo se ensancha.
+    protegido = _dilatar(limite > 0.05, 2)
     glifo = (lum < UMBRAL_ROTULO) & ~protegido
 
     # ⚠️ EL HALO ES MÁS ANCHO QUE CUALQUIER DILATACIÓN A CIEGAS. Google rodea
@@ -145,11 +170,11 @@ def sin_rotulos(a: np.ndarray, limite: np.ndarray) -> np.ndarray:
     # fondo, y en la tipografía grande ese reborde pasa de los 5 px. Dilatar
     # hasta cubrirlo se comía caminos enteros; así que en vez de dilatar se
     # **persigue**: desde el glifo se avanza a los vecinos que sigan siendo casi
-    # blancos, y se para a los 8 pasos. El relleno del mapa (#E7E8E9 → 232) corta
+    # blancos, y se para a los 14 pasos. El relleno del mapa (#E7E8E9 → 232) corta
     # el avance solo; el tope de 8 evita que se escape por un camino (#F5F4F4 →
     # 244), que es igual de claro y llegaría hasta el borde del cuadro.
     halo = glifo.copy()
-    for _ in range(8):
+    for _ in range(14):
         halo |= _dilatar(halo, 1) & (lum > UMBRAL_HALO)
     # ⚠️ Y todavía falta el ANTIALIAS. Entre el glifo (lum 136 en el magenta) y
     # el halo (>236) hay una franja de píxeles intermedios que no cumple ninguna
@@ -216,6 +241,13 @@ def alfa_limite(a: np.ndarray, engrosar: int = 1) -> np.ndarray:
     # DEBAJO del verde 121); el POI es magenta (#E74EBC, rojez 44, azul 187 muy
     # por ENCIMA del verde 78). El canal azul los separa sin ambigüedad.
     alfa[b > g + LIMITE["azul_sobre_verde"]] = 0
+    # ⚠️ Y se corta por abajo en 0,35 **antes de devolverla**, porque esta misma
+    # alfa se usa para dos cosas: proteger del borrado Y pintar el acento. El
+    # antialias de una etiqueta magenta deja restos con alfa 0,1 que no llegaban
+    # a protegerse pero sí se PINTABAN, y eso dejaba las etiquetas legibles en
+    # arena tenue sobre el navy. Se veían como manchas más oscuras y parecían
+    # ruido de compresión; eran el acento. El punteado del límite satura en 1,0.
+    alfa[alfa < LIMITE["minimo"]] = 0
     for _ in range(engrosar):
         alfa = np.maximum.reduce(
             [
@@ -229,21 +261,21 @@ def alfa_limite(a: np.ndarray, engrosar: int = 1) -> np.ndarray:
     return alfa
 
 
-# ⚠️ `fuerza` NO es un capricho de gusto: es la JERARQUÍA. Con la red de caminos
-# a tinta llena, el contorno de la comuna se pierde dentro de ella y el mapa se
-# lee como una textura. Bajando la red al 70 % y dejando el contorno al 100 %,
-# el mapa dice primero PADRE HURTADO y después cómo se llega.
+# ⚠️ `fuerza` es la JERARQUÍA: la red de caminos al 88 % y el contorno de la
+# comuna al 100 %, para que el mapa diga primero PADRE HURTADO y después cómo se
+# llega. Con la línea uniforme el contorno ya se distingue por color, así que la
+# red puede ir más firme que en la versión con gradación (iba al 70 %).
 VERSIONES = {
     # El que va en la pieza: trazo crema sobre el navy de marca. Es un mapa
     # grabado, no una fotografía de mapa: pesa lo justo sobre el fondo oscuro.
     "mapa-ph-trazos-navy": {
         "fondo": "#0B2C49", "tinta": "#F3EEE3", "acento": "#C9B99A",
-        "ganancia": 150.0, "fuerza": 0.70,
+        "umbral": 45.0, "suavizado": 50.0, "fuerza": 0.88,
     },
     # La alternativa en papel, por si el titular necesita fondo claro.
     "mapa-ph-trazos-papel": {
         "fondo": "#F3EEE3", "tinta": "#0B2C49", "acento": "#6C473D",
-        "ganancia": 150.0, "fuerza": 0.70,
+        "umbral": 45.0, "suavizado": 50.0, "fuerza": 0.88,
     },
 }
 
@@ -251,7 +283,7 @@ VERSIONES = {
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--probar", action="store_true", help="escribe en el scratchpad, no en public/")
-    ap.add_argument("--ganancia", type=float, default=None)
+    ap.add_argument("--umbral", type=float, default=None, help="dónde empieza a haber línea")
     a_ = ap.parse_args()
 
     if not RAW.exists():
@@ -268,8 +300,8 @@ def main() -> int:
 
     destino = pathlib.Path(a_.probar and "." or OCT)
     for nombre, cfg in VERSIONES.items():
-        g = a_.ganancia or cfg["ganancia"]
-        t = trazos(plano, g) * cfg["fuerza"]
+        u = a_.umbral or cfg["umbral"]
+        t = lineas(plano, u, cfg["suavizado"]) * cfg["fuerza"]
         t[halo] = 0.0
         fondo, tinta, acento = _rgb(cfg["fondo"]), _rgb(cfg["tinta"]), _rgb(cfg["acento"])
         out = fondo[None, None, :] * (1 - t[:, :, None]) + tinta[None, None, :] * t[:, :, None]
@@ -278,7 +310,7 @@ def main() -> int:
         ruta = (destino / f"{nombre}.jpg") if not a_.probar else pathlib.Path(f"{nombre}.jpg")
         Image.fromarray(out.clip(0, 255).astype(np.uint8)).save(ruta, quality=93)
         print(f"· {ruta}  fondo {cfg['fondo']} · trazo {cfg['tinta']} · límite {cfg['acento']}")
-        print(f"    ganancia {g:.0f} · cobertura de trazo {100 * t.mean():.1f}% del cuadro")
+        print(f"    umbral {u:.0f} · línea en {100 * (t > 0.5).mean():.1f}% del cuadro")
     return 0
 
 

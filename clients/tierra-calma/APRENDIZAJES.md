@@ -166,12 +166,13 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 
 ## 9. Registro de cosechas
 
-### 2026-09-25 (tarde) — Claude · **nueve rondas de Diego por chat, todas con referencia adjunta**
+### 2026-09-25 (tarde/noche) — Claude · **quince rondas de Diego por chat, casi todas con referencia adjunta**
 - nuevo **R-43…R-51** · el mapa no se amplía · a una captura se le cambia el color, no la forma · un mapa diseñado rotula lo que la pieza dice · PNG para los derivados · campo claro ⇒ marco teñido · el vidrio se diseña con lo que queda detrás · calcar no es copiar el color · manda el brief sobre la referencia · cada palabra del visual es una instrucción.
 - ✔ suben: **R-20** (×3, medido antes de instalar la foto nueva), **R-29** (×4, dos referencias seguidas con el mapa regenerado), **R-03** (×3, se dejó fuera el Metrotren), **R-34** (×3), **R-41** (×4), **R-42** (×3, atajó dos bloqueantes).
 - nuevos rechazos **X-17…X-19**; excepciones **E-10** y **E-11**.
 - ⭐ **El patrón del día:** cuatro vueltas persiguiendo el pixelado del mapa por el eje equivocado (encuadre, borde, umbral) cuando el problema era **la resolución del archivo**. Y seis métodos de borrado de letra en `mapa3` antes de aceptar que ese archivo no se limpia. Las dos veces, lo que destrabó fue **medir el material** en vez de calibrar otra vez.
-- **R-52** y **R-53** (polaroid) · la causa de que una foto se vea sobrepuesta suele ser el **ángulo mal supuesto**, no el acabado.
+- nuevo **R-52…R-55** (polaroid del 29-10) · un objeto de la escena generada **se mide, no se supone** (la ventana estaba a −14,4° y se le había puesto −8°) · lo que integra una foto dentro de un objeto, por orden de impacto · lo que está delante se recorta de la máscara y lo que proyecta sombra **no**: la copia **hereda el sombreado del propio papel** · la copia sale de una **aérea real del 07-08**, gradada con la receta ya aprobada.
+- ⚠️ **Tres fotos duplicadas aparecieron esta semana revisando otra cosa** (`l-fondo`, `f-fondo` y la de la polaroid). La compuerta debería medir el parecido **entre las piezas del mes**, no sólo dentro de cada una: hoy salen de a una y por casualidad.
 - ⚠️ Operativo: el hook de respaldo automático se llevó archivos en curso dentro de su propio commit (`8fc98f8`), dejando la traza de una ronda repartida en dos commits con nombres que no la describen.
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico

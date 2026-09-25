@@ -1,6 +1,6 @@
 ---
 name: cliente-tierra-calma
-description: "TIERRA-CALMA — cerebro del cliente: 51 reglas firmes, última cosecha 2026-09-25. Generado desde clients/tierra-calma/APRENDIZAJES.md; leerlo antes de diseñar para tierra-calma"
+description: "TIERRA-CALMA — cerebro del cliente: 55 reglas firmes, última cosecha 2026-09-25. Generado desde clients/tierra-calma/APRENDIZAJES.md; leerlo antes de diseñar para tierra-calma"
 metadata:
   type: project
 ---
@@ -12,12 +12,12 @@ sólo lo más confirmado). ⛔ Vale sólo para tierra-calma: no se traspasa a ot
 Criterio: **Diego Aguilar** · Aprueba: **Fran (proyecto) · Blanca (comercial)**
 
 ## Reglas más confirmadas
+- **R-20** · Una foto no se repite entre dos piezas del mismo mes (parecido > 0,85 = la misma, aunque el md5 difiera) — _Diego, 24-09, `c-20-10-1`; 25-09 medido antes de instalar `g-pareja2` (máx. +0,654) y detectadas **tres** duplicadas revisando otra cosa: `l-fondo`, `f-fondo` y la del polaroid_ · ✔×4
 - **R-29** · MAPA-1, MAPA-2 y cualquier referencia con topónimos corruptos no se publican nítidos; de una referencia se copia la gramática, nunca el contenido — _manual 14-09; referencias de Diego 24-09 y **25-09 (dos seguidas)**, todas con el mapa regenerado_ · ✔×4
 - **R-41** · Cada ronda se re-sube **sobre el mismo fileId** de Drive — _bitácora 14-09 a 25-09_ · ✔×4
 - **R-01** · Se llega por **Autopista del Sol · Ruta 78**; nunca «Ruta 68» ni escudos G-68 — _Carlos Figueroa, 21-08, brief reel ubicación; mapas corruptos 14-09; referencia de Diego 24-09_ · ✔×3
 - **R-02** · Nunca «agua potable» ni «red de agua»: el agua es por noria o pozo que construye cada propietario — _Fran, brief de octubre 08-09 («dato verificado como falso»); alerta de sept 21-08; `reglas.yaml` 22-09_ · ✔×3
 - **R-07** · Tuteo: «pásalo / pásala», nunca «pasalo»; los briefs de Ignacio traen voseo y se corrige siempre — _Diego, 23-09 (`sin-voseo`); se publicó «alcance» en sept; B4/D1 oct_ · ✔×3
-- **R-20** · Una foto no se repite entre dos piezas del mismo mes (parecido > 0,85 = la misma, aunque el md5 difiera) — _Diego, 24-09, `c-20-10-1`; 25-09 medido antes de instalar `g-pareja2` (máx. +0,654) y detectado que `l-fondo` estaba en dos piezas_ · ✔×3
 - **R-34** · Zonas seguras: story 250 arriba / 340 abajo; en PAID nada a menos de **70 px del filete** (se achica el elemento, no el margen) — _compuerta 23-09 `st-12-10`; Diego 24-09 PAID; 25-09 la compuerta atajó el titular subido a la fila 225_ · ✔×3
 - **R-42** · Antes de entregar se corre la compuerta (`textos-tierracalma.py` + `qa/motor.py --marca tierra-calma`); si se toca el QA, se corre de nuevo sobre todas las piezas — _manual §4 septies, 23-09; bitácora 24-09; 25-09 atajó DOS bloqueantes (zona segura y foto estirada)_ · ✔×3
 - **R-03** ⭐ · Sólo se publican datos de la lista blanca (~5.000 m², desde UF 2.500, 30 min de Santiago, 15 min del peaje, canchas, colegios/súper/bancos, electricidad subterránea, cierre perimetral, máx. 2 casas, Ruta 78 + Camino a Melipilla); lo demás, OK escrito de Fran o Blanca — _brief sept; propuesta de temas oct de Carlos, 08-09_ · ✔×2

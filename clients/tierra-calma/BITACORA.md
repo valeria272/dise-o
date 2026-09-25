@@ -5,6 +5,47 @@
 
 ---
 
+## 2026-09-25 — CIERRE DEFINITIVO DE LA JORNADA — Diego Aguilar
+
+> ⚠️ Hubo un primer cierre tras la ronda 13; después llegaron dos rondas más
+> (`p-29-10`). Ésta es la entrada que vale para el día completo.
+
+**Qué se hizo:** **quince rondas por chat**, casi todas con referencia adjunta,
+sobre **cinco piezas** de la grilla de octubre. Ninguna llegó por Drive.
+
+| Pieza | Dónde terminó |
+|---|---|
+| `st-12-10` | tras cuatro vueltas de trazos, **de vuelta al archivo real en duotono**, sin iconos; titular en una línea y centrado |
+| `c-20-10-2` | mapa en tarjeta a 1:1 y **rotulado encima en Inter Tight**; vuelve la bajada original |
+| `p-09-10` | **pareja nueva** (`g-pareja2`), caminando de espaldas |
+| `st-22-10` | **calco completo del mockup de app** con la paleta de la marca |
+| `p-29-10` | **la polaroid impresa de verdad** con la aérea real del dron, y el imán encima |
+
+**Dónde quedó:** todo rendido, entregado y en la rama. `OctubreV3.tsx` (bloques
+`H`, `K2`, `G`, `L`, `M`), `scripts/tc-mapa-ph.py` y `scripts/tc-polaroid.py`
+(nuevos), `qa/checks.py` (regla endurecida), cinco referencias versionadas y los
+assets. **Las cinco piezas re-subidas sobre su mismo `fileId`.** QA: **1 aviso**,
+el deliberado de la slide 2.
+
+**Qué sigue:** esperar la vuelta de Diego sobre las cinco. Aprobación del cliente
+prevista para el **29-09**; el creativo D1 del PAID caduca el **12-10**.
+
+**Abierto:**
+
+1. ⚠️ **OK escrito de Fran o Blanca** para «Rol individual» y «Acceso controlado».
+2. ⭐ **Captura de mapa a más resolución**, con el pin del proyecto **y** el
+   contorno de la comuna. Es el techo de las nueve vueltas de mapa de hoy.
+3. ¿Se nombran los tramos de la barra de avance? Falta el proceso comercial.
+4. ¿Está confirmado el **Metrotren Santiago–Melipilla**?
+5. ¿La aérea del 29-10 queda así de invernal, o se calienta la gradación?
+6. Avisar lo del agua potable de septiembre · la mano manuscrita propia.
+
+**El aprendizaje del día, en una línea:** *las cuatro vueltas del mapa y las dos
+de la polaroid tuvieron la misma causa — **dar por supuesto un número que estaba
+ahí para medirse***: la resolución del archivo y el ángulo de la ventana.
+
+---
+
 ## 2026-09-25 (15ª vuelta) — Diego Aguilar (p-29-10: el imán encima y la aérea real)
 
 **Qué se hizo:** *"El botón-imán tiene que quedar sobre la foto polaroid"* y *"que

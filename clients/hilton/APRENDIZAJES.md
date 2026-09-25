@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-25** · Cosechas: **2**
+> Última cosecha: **2026-09-25** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -117,6 +117,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-61** · [BW] Pieza animada = **MP4 + GIF**, y se suben los dos a la carpeta de la semana (GIF 25 fps, 540×960, sin difuminado, tipo `image/gif`) — _Eli, 25-09-2026, ST 30-09 Plateada («recuerda el video dejar el gif y subirlos a drive»); en DT ya era R-24_ · ✔×1
 - **R-62** · [BW] **Mientras llega la carta nueva, las piezas no nombran platos** (fuera la caja con el nombre; la foto se queda) — _cliente, grilla STORIES col U, 25-09-2026 («Por mientras no nombremos platos, ya que tendremos cambio de carta»)_ · ✔×1 · temporal: revisar cuando salga la carta
 - **R-63** · [BW] Plato en foto que el cliente pide marcar → legal **«*Imagen referencial.»** en cursiva beige al pie, al margen de marca, sobre el fondo y nunca sobre el producto (caja taupe si no se lee) — _cliente, ST Strudel S4 (16-09) y ST 30-09 Plateada (25-09-2026)_ · ✔×2
+- **R-64** · [BW] Una pieza puede **cambiar de HOJA** en la grilla, no sólo de fecha: se busca por su título en FEED **y** en STORIES antes de decir que no hay nada nuevo — _grilla BW oct, 25-09-2026: «Por qué vienes / por qué te quedas» quedó en STORIES como REVISAR CONTENIDO («DEJARLO EN FEED») y reapareció en FEED 09-10 como OK PARA DISEÑAR_ · ✔×1
+- **R-65** · [DT] La grilla corre la fecha de una pieza ya entregada sin avisar; se reconoce por el título — _grilla DT oct, 25-09-2026: Opinión Expedia pasó de FEED 10-10 a 09-10_ · ✔×1
 
 ### Las dos
 - **R-60** · [TODAS] **Ni títulos ni bajadas llevan punto** en la gráfica (el punto sólo en párrafos largos y legales) — _Eli 25-08 (BW) y 09-09 (DT); Javier Mesa 23-09-2026, recordatorio para las cuatro cuentas_ · ✔×3
@@ -189,7 +191,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Zona segura: la plantilla de Eli marca 209/369 px y el estudio mide 250/340; el logo a 241 px sólo sirve en orgánico. ¿Cuál manda si una historia se pauta? → Eli
 - [DT] Carrusel Turismo: ¿logo sólo en la portada (así se aprobó) o en todas? → Eli
 - [DT] Honors: el brief dice «6 cuadrantes» y lista 4 → cliente
-- [DT] REEL Hilton Honors POV (14-10) sin material grabado → contenido
+- [DT] REEL Hilton Honors POV (14-10) sin material grabado → contenido (sigue OK PARA DISEÑO y sin grabar al 25-09)
+- [BW] Reel FEED 09-10 «Por qué vienes / por qué te quedas» (pantalla dividida, clips reales sin rostros): OK PARA DISEÑAR desde el 25-09 y sin empezar; ST 26-10 «WTF» espera la grabación orgánica → Eli decide cuándo parte
 - [BW] ¿Qué script, además de Brushwell, va en qué caso? (el editable trae nueve) → Eli
 - [BW] ¿El límite «sólo diseño» de R-01 vale también para Between? Eli lo dictó para DT → Eli
 - [BW] Carta: Afogatto ($4.100 vs $3.900) y MilkShake ($5.300 vs $4.900) no coinciden entre PDF y planilla → cliente
@@ -200,6 +203,10 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [BW] ST 30-09: los archivos de Drive siguen llamándose «Plateada al Carmenere» (para no romper el enlace) aunque la pieza ya no nombra el plato → Eli
 
 ## 9. Registro de cosechas
+
+### 2026-09-25 (noche) — Claude con Eli · relectura en vivo de las grillas de octubre, sin piezas
+- **2 reglas nuevas, sacadas de la grilla (no son criterio de Eli):** R-64 [BW] una pieza puede cambiar de hoja (ST → FEED), R-65 [DT] la grilla corre la fecha de una pieza ya entregada.
+- Sin feedback de Eli ni del cliente: no se diseñó nada. Pendiente nuevo en §8: el reel de Between del 09-10.
 
 ### 2026-09-25 (tarde) — Claude con Eli · BETWEEN S5 septiembre
 - **3 reglas nuevas [BW]:** R-61 video = MP4 + GIF (Eli), R-62 no nombrar platos hasta la carta nueva (cliente, temporal), R-63 legal «*Imagen referencial.» al pie (cliente, ✔×2 con la S4).

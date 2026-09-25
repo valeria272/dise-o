@@ -1,5 +1,12 @@
 # QB Restaurant — bitácora
 
+## 2026-09-25 (noche) — Elisabet Soto «Eli» (con Claude) · relectura de la grilla de octubre — SIN PIEZAS
+
+**Qué se hizo:** grilla de octubre leída en vivo por API de Sheets. No hay nada nuevo en OK: las 11 historias OK PARA DISEÑAR son las ya entregadas hoy; el feed está entero en CAMBIADO o PENDIENTE POR CLIENTE y los orgánicos, EN REVISIÓN o pendientes.
+**Dónde quedó:** instantánea `clients/hilton/grillas/api/qb-oct-20260925.json` (base del diff de mañana).
+**Qué sigue:** esperar el visto del cliente a las 11 subidas y que el feed pase a OK.
+**Abierto:** nada nuevo.
+
 ## 2026-09-25 — Elisabet Soto «Eli» (con Claude) · `/arranque`: revisión de la máquina Windows
 
 **Qué se hizo:** sólo diagnóstico de la máquina (todo en verde: Node, Chrome, llavero,

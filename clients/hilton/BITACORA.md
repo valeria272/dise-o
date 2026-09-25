@@ -1,3 +1,12 @@
+## 2026-09-25 (noche) — Eli (Windows) · relectura en vivo de las grillas de octubre DT y Between — SIN PIEZAS
+
+**Qué se hizo:** Eli preguntó si había piezas nuevas en OK. DT leída por API de Sheets y Between por el `.xlsx` bajado.
+**DT:** las 5 en OK PARA DISEÑO son las mismas de siempre. 4 ya están entregadas (la Opinión Expedia ahora figura el **09-10**, antes 10-10) y el REEL Honors POV 14-10 sigue sin material. El resto está en CORREGIDA / EN REVISIÓN / POR GRABAR.
+**Between:** ⭐ **una pieza nueva en OK:** FEED 09-10 **reel «Por qué vienes / por qué te quedas»**, que venía de STORIES («DEJARLO EN FEED»). Es una pantalla dividida con dos rótulos fijos, clips cortos y reales, manos y movimiento. El resto en OK está entregado, salvo la ST 26-10 «WTF», que dice GRABAR ORGÁNICO.
+**Dónde quedó:** instantánea `clients/hilton/grillas/api/dt-oct-20260925.json` (base del diff).
+**Qué sigue:** si Eli dice que sí, juntar los clips para el reel BW 09-10 (sesión SEP 2026 + material de cafés, sin rostros) y mostrárselos antes de montar.
+**Abierto:** Eli no ha decidido si parte el reel de Between. DT Honors POV sigue sin grabación → contenido.
+
 ## 2026-09-25 (tarde) — Eli (Windows) · BETWEEN S5 septiembre: corrección de la ST 30-09 y feed nuevo «Necesito ir a Between» — SUBIDO
 
 **Qué se hizo:** Grilla leída EN VIVO (CSV + `export?format=zip` para los enlaces; las columnas

@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-09-25** · Cosechas: **3**
+> Última cosecha: **2026-09-25** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -133,6 +133,9 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - No hay ninguna pieza **rechazada** en disco: los topes del QA no prueban que atrapen lo malo → estudio.
 
 ## 9. Registro de cosechas
+
+### 2026-09-25 (noche) — Claude con Eli · relectura de la grilla de octubre, sin piezas
+- **Sin aprendizajes nuevos:** no se diseñó nada. Las 11 historias OK PARA DISEÑAR siguen siendo las mismas ya entregadas; feed entero CAMBIADO o PENDIENTE POR CLIENTE, orgánicos EN REVISIÓN o pendientes.
 
 ### 2026-09-25 — Claude con Eli · `/arranque` de la máquina
 - sin aprendizajes nuevos: la sesión fue sólo diagnóstico, sin piezas ni feedback. Anotado en la bitácora el `09-sunset-canva.jpg` roto (no se usa).

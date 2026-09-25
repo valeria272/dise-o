@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
-> Última cosecha: **2026-09-25** · Cosechas: **2**
+> Última cosecha: **2026-09-25** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -134,6 +134,9 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - `P18C1Cumple.tsx` no declara sus textos al QA, así que la regla «sin bodas» queda «sin verificar» en cada corrida → estudio.
 
 ## 9. Registro de cosechas
+
+### 2026-09-25 (noche) — Claude con Eli · lectura de la grilla de octubre, sin piezas
+- **Sin aprendizajes nuevos:** no se diseñó nada. Grilla oct leída en vivo: FEED 7/7 EN REVISIÓN, STORIES 12 sin estado, reel orgánico sin estado; ningún comentario del cliente. Los 18 hilos son internos (Scarlette → Carlos, contenido), 4 abiertos: reel Día del Chef, ST 30-10, ST 19-10 y ST 08-10.
 
 ### 2026-09-25 — Elisabet Soto · C1 S5 cumpleaños, ronda 4 (4 vueltas, aprobada)
 - nuevo **R-37** foto = reemplazar el fondo · **R-38** íconos Phosphor en cuadro transparente con borde blanco · **R-39** números en cuadro fucsia + fila de íconos · **R-40** cierre de feed en línea, sin botón · **R-41** personas generadas con look de fotógrafo de eventos · **R-42** foto DoubleTree de la sesión SEP 2026, con ventana, cama y desayuno.

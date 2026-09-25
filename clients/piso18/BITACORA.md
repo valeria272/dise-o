@@ -1,5 +1,12 @@
 # Piso18 — bitácora
 
+## 2026-09-25 (noche) — Eli (Windows) · grilla de OCTUBRE leída en vivo — SIN PIEZAS
+
+**Qué se hizo:** lectura de `PISO18 GRILLA OCTUBRE 2026` (`1bzTQWrTYPoSFwy2iIYCxTKuO-1XNbqT7Nk_vQz39JQA`, de Carlos, modificada el 22-09). FEED 7/7 **EN REVISIÓN**, STORIES 12 **sin estado** y el reel orgánico del Día del Chef sin estado. Sin comentarios del cliente.
+**Dónde quedó:** 18 hilos internos de Scarlette a Carlos (contenido). 14 están resueltos y 4 abiertos: el reel del Día del Chef (grabar con un evento montado), la ST 30-10 (ref más creativa), la ST 19-10 (ref romántica vs. texto comercial) y la ST 08-10 (contenido repetido).
+**Qué sigue:** esperar que la grilla pase a OK. Si Eli quiere adelantar, lo más seguro es el FEED 06-10 Arreglos florales y el 09-10 Fechas 2027, que no tienen hilos abiertos.
+**Abierto:** se le preguntó a Eli si adelanta esas dos. Sin respuesta.
+
 ## 2026-09-25 — Elisabet Soto · C1 S5 cumpleaños, ronda 4: fotos nuevas, números y fila de íconos — APROBADO
 
 **Qué se hizo:** ronda 4 del carrusel «Cumpleaños en Piso18» (FEED 29-09), sólo las

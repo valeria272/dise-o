@@ -52,12 +52,12 @@ export const QbSt15MejoresAmigos: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
     <FotoQB src="assets/hilton/qb/oct/15-mejoresamigos.jpg" ratio={2250 / 4000} zoom={1.0} />
     <Velo arriba={[820, 0.9]} abajo={[760, 0.92]} />
-    <LogoQB top={196} ancho={140} />
-    <Linea top={384} cuerpo={56} peso={300} tracking="0.06em">HAY COSAS QUE SOLO</Linea>
-    <Linea top={450} cuerpo={56} peso={800} tracking="0.02em">PASAN EN</Linea>
-    <Linea top={514} cuerpo={112} familia="BellMT" italica>Mejores amigos</Linea>
-    <Estrella top={298} d={58} />
-    <Linea top={1500} cuerpo={34} peso={500} ancho={940}>{QB_ST15_DATA.pieza.texto}</Linea>
-    <BotonVerde top={1620} ancho={720} alto={84} cuerpo={32} peso={800}>{QB_ST15_DATA.pieza.cta}</BotonVerde>
+    <LogoQB top={250} ancho={140} />
+    <Linea top={438} cuerpo={56} peso={300} tracking="0.06em">HAY COSAS QUE SOLO</Linea>
+    <Linea top={504} cuerpo={56} peso={800} tracking="0.02em">PASAN EN</Linea>
+    <Linea top={568} cuerpo={112} familia="BellMT" italica>Mejores amigos</Linea>
+    <Estrella top={352} d={58} />
+    <Linea top={1414} cuerpo={34} peso={500} ancho={940}>{QB_ST15_DATA.pieza.texto}</Linea>
+    <BotonVerde top={1500} ancho={720} alto={76} cuerpo={31} peso={800}>{QB_ST15_DATA.pieza.cta}</BotonVerde>
   </AbsoluteFill>
 );

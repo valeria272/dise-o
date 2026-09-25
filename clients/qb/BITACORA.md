@@ -1,5 +1,94 @@
 # QB Restaurant — bitácora
 
+## 2026-09-25 — Elisabet Soto «Eli» (con Claude) · octubre: ronda del cliente en la 14, material real en la 09/23/26, y a Drive
+
+**Qué se hizo:**
+- **`/al-dia`:** la grilla de octubre se tocó a las 03:17Z (Scarlette). Las 11 OK
+  siguen OK, pero **en la 14-10 el cliente cambió el copy**: se sacó «Responde y
+  participa por xxxx» y fijó las alternativas «Aperol ✅ · Ramazzotti Rosato ·
+  St. Germain · Sangría». Pasaron a CAMBIADO (no se diseñan): ST 7, 12, 16 y 17 y
+  feed 5, 7, 12 y 16
+- **Eli pasó 8 carpetas de sesiones** → inventario en el manual §5 («Las sesiones
+  que pasó Eli el 25-09-2026»), con miniaturas y hojas de contacto en
+  `raw/hilton/qb/sesiones-25-09/`
+- **ST 14-10:** cuatro alternativas literales, sin pie. El ✅ no se marca en la pieza
+- **ST 09-10 Sunset:** foto real «QB 13 oct» n°60 (luz de tarde de verdad)
+- **ST 23-10 Close friends:** foto real IMG_4797 (manos brindando, 4 tragos, de
+  noche). Nota más chica y apoyada en la madera
+- **ST 26-10 Terraza:** rehecha con 5 clips de la carpeta CAM, grabada de TARDE
+- Render de las 11, QA y subida a `S<n> HILTON OCT 2026 / QB / STS`
+
+**⭐ Los videos de «CAM» vienen en S-Log3.** Sony XAVC 4K 60p 10 bits, y el
+metadato del archivo dice literal «S-Log3/S-Gamut3.Cine». Sin convertir se ven
+grises. `scripts/slog3-a-709.py` arma una LUT `.cube` con la fórmula de Sony
+(S-Log3 → lineal, matriz S-Gamut3.Cine → 709, curva fílmica, OETF 709). **Con
+exposición 1,6 se queman los amarillos; 1,0 es la buena.**
+
+**⛔ El grano en `overlay` no hacía nada sobre el negro** (overlay de negro = negro),
+así que el arreglo del 24-09 contra la «foto estirada» no funcionaba justo donde el
+QA mira: la 08 y la 14 seguían bloqueadas. `Grano` ahora va en mezcla normal al
+2,5 %. Se volvieron a rendir las 11.
+
+**⭐ GIF de pieza en movimiento continuo:** a 540×960 y 25 fps salían de 58 y 75
+MB. Ahora 360×640 y 20 fps → 23 y 30 MB, en el rango de los de DT ya aprobados
+(12–33 MB). MP4 a crf 19 (el S-Log3 lo inflaba a 161 MB). Receta en
+`qb-oct-render.sh`.
+
+**Dónde quedó:**
+- QA de QB con textos (`--mapa`): **0 bloqueantes, 0 sin verificar en las 11**.
+  Quedan 6 avisos de «banda con otro foco»: la franja de arriba o de abajo, donde
+  el velo lleva a negro, y en la 14 el desenfoque que pide el brief
+- **Drive — subidas las 15** (11 historias + MP4, estática y GIF de las 2 animadas) a
+  `S1–S4 HILTON OCT 2026 / QB / STS`, carpetas `QB` nuevas (una por semana, sin
+  duplicar); **md5 15/15 iguales**. S5 no tiene historias en OK
+- Página de la grilla con antes/después: https://claude.ai/artifact/1sDwKudS7UatYArHkUyjsR
+  (`out/qb/oct/grilla-octubre-qb.html`; los «antes» en `out/qb/oct/_antes/`)
+
+**⭐⭐ RONDA DE ELI (mismo día, sobre lo subido):**
+- **26 Terraza:** «salen trabajadores del hotel» → fuera 8519 (brindis con dos
+  ejecutivos), y por precaución 8566 y 8503 (garzón). Ahora 8526 · 8586 · 8516 ·
+  8574 · 8536: sólo invitados
+- **01 Banco de Chile:** «se ve quemado, muy saturado… usa del shooting nuevo» y
+  «los bancos ya tienen diseños aprobados» → rehecha sobre la plantilla «ST n°1 S1
+  QB JUL» (carpeta BANCOS de Eli), con foto de la carta de enero 2026 («Ostiones
+  parmesanos 20», brindis con blanco) SIN gradación
+- **08 CMR:** «ya hay aprobado, sólo cambiar fotografía» → plantilla «BCO CMR
+  1080×1920» con foto «Cerveza Atenea 26»
+- **09 Sunset:** «no se parece nada a la aprobada, usa tal cual la pieza, cambia
+  sólo textos, el logo déjalo tal cual» → foto y logo SACADOS DEL PDF de «Promo
+  Sunset QB digital» (la foto sin texto y el logo vectorial), encuadre de la ST
+  aprobada, textos del brief
+- **14 Adivina:** «se ve feo, muchas tipografías» → sólo Raleway, Bell MT sólo en
+  «Adivina»; pistas en círculos, alternativas en grilla 2×2
+- **23:** estrellas verdes · **todas:** texto dentro de 250/340 («cuidado con las
+  medidas de Instagram»): logos a 250, botones y legales arriba de 1580
+- Reemplazadas las 15 en Drive (mismo nombre, md5 15/15). QA 0 bloqueantes
+
+**⭐ Lo que deja:**
+1. **Una pieza de banco se hace SOBRE la aprobada.** Los elementos están en los
+   `Links` de los editables: `ou-logo.png`, `TARJETAS VISA.png` (Banco de Chile),
+   `dummies.png` (chips CMR/Débito, pero chico: recortarlos de la aprobada a 2250),
+   y `LOGOS FALABELLA.zip` (club de restaurantes / Banco Falabella en .ai → PyMuPDF).
+   La pastilla «Banco de Chile» se recorta exacta de la aprobada (es opaca)
+2. **El PDF de una promo trae la foto limpia y el logo vectorial.** `pymupdf`:
+   `extract_image` saca el fondo sin texto; `delete_image` + render con alfa saca
+   el logo. ⚠️ Arrastra una capa semitransparente: el alfa se rehace desde el
+   brillo (el logo es blanco)
+3. **⛔ No se borra texto de una foto con inpainting de OpenCV:** sobre bokeh deja
+   manchas, y la sombra del texto deja las letras fantasma. Buscar el fondo limpio
+4. **En el complejo, gente de traje o uniforme en cuadro = trabajadores.** Sólo
+   invitados
+
+**Abierto:**
+- Que Eli revise la grilla (página) y lo subido. ⚠️ Se reemplazó por el mismo
+  nombre: si la vista previa de Drive muestra la versión vieja, es caché
+- 09 Sunset: la foto nueva tiene bokeh de luces detrás, no «personas
+  desenfocadas». 26 Terraza: en la E3 asoma el neón de Heineken (del local)
+- 22 Ensalada: la mano con tenedor sigue esperando créditos de Magnific
+- «QB 6 sep» y «Cartas anteriores» no son públicas (401): sin hojas de contacto
+- Las 8 piezas en CAMBIADO esperan al cliente. Para la 12-10 (pulpo) hay foto en
+  «Cartas anteriores» (Quotidien-153, 2024 — confirmar que el plato sigue igual)
+
 ## 2026-09-24 (tarde) — Elisabet Soto «Eli» (con Claude) · grilla de octubre: las 11 historias diseñadas
 
 > ⚠️ La entrada de abajo («SIN PIEZAS») la escribió otra sesión al mismo tiempo y

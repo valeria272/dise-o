@@ -4,9 +4,35 @@
 > con IA lo que ya está fotografiado**: hay sesión profesional del hotel, sesión de
 > modelos, sesión del SPA y un catálogo por espacio.
 >
-> Orden de búsqueda antes de generar nada: **1** `CONTENIDO HOTEL 2026` (por espacio) →
+> Orden de búsqueda antes de generar nada: **0** `Hotel general sesión SEP 2026`
+> (§ 00, desde el 25-09) → **1** `CONTENIDO HOTEL 2026` (por espacio) →
 > **2** `Hotel sesión general` (alta resolución) → **3** `Imágenes` (banco maestro) →
 > **4** `HILTON` (por evento y fecha) → y recién ahí banco pagado o IA.
+
+---
+
+## 00 · ⭐⭐⭐ `Hotel general sesión SEP 2026` — la sesión NUEVA de fotos (25-09-2026)
+
+`117N-uJjrMSwWj_4Y2cSIH4IwsmMkapQM` · Eli · dentro de `2026` (`1cdehqRqMMZiZQMxsgrfRJ9jcajlYSsOL`,
+la misma carpeta que `Shooting QB - 22 enero`)
+
+**Eli la pasó el 25-09 como la sesión nueva para Hilton — BW · DT · QB · P18.** Es
+la sesión profesional que salió del MoodBoard del 09-09 (§ «Qué tiene y qué le falta»):
+lo que antes eran sólo `.MOV`/`.HEIC` de iPhone ahora debería estar **fotografiado**.
+
+- Son **JPG editados en alta** (`sep_26-NNN.jpg`, 7–30 MB cada uno); la numeración
+  pasa de 520. **Se estaba subiendo** cuando se guardó (subidas de 13:48 a 14:29).
+  Hay que volver a contarla antes de darla por completa.
+- ⚠️ **Todavía no se sabe qué espacio o marca aparece en cada foto.** Antes de usarla
+  en una pieza, hay que clasificarla por espacio y por marca (hotel / Between / QB /
+  Piso 18) y pasar las otras marcas a su propio manual.
+- ⛔ **Las reglas de cada marca siguen valiendo:** en Between, **sin rostros**
+  (sólo del cuello para abajo), y el criterio de una marca no pasa a otra.
+- Para bajarla completa, usa `drive.usercontent.google.com/download?…&confirm=t`
+  (memoria `bajar-grilla-ajena-de-drive`) y guárdala en `raw/hilton/sesion-sep2026/`.
+
+**Orden de búsqueda desde el 25-09:** esta sesión va **primero**, antes de
+`CONTENIDO HOTEL 2026`.
 
 ---
 

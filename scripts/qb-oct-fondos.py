@@ -29,6 +29,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FOT = os.path.join(RAIZ, "raw", "hilton", "qb", "oct-fotogramas")
 IA = os.path.join(RAIZ, "raw", "hilton", "qb", "oct-ia")
+SES = os.path.join(RAIZ, "raw", "hilton", "qb", "sesiones-25-09", "orig")  # las que pasó Eli el 25-09
 SAL = os.path.join(RAIZ, "public", "assets", "hilton", "qb", "oct")
 
 
@@ -93,13 +94,14 @@ def main():
     f = lambda n: Image.open(os.path.join(FOT, n))
     g = lambda n: Image.open(os.path.join(IA, n))
 
-    # 01 · BANCO DE CHILE — brindis real con vino blanco sobre los dos platos.
-    # El brief pide «iluminación tenue, más exclusiva»: se baja la exposición,
-    # se calienta y se cierra la viñeta para que la mesa negra se funda al negro.
-    x = a_float(f("IMG_3088_t3.61.png"))
-    x = grado(x, expo=0.78, temp=(1.06, 1.0, 0.86), contraste=0.35, gamma=1.12, sat=1.05)
-    x = vineta(x, 0.7, 0.55)
-    guardar(a_img(x), "01-bancochile")
+    # 01 · BANCO DE CHILE — ⭐ Eli 25-09: «se ve como quemado, muy saturado, no me
+    # gusta… usa del shooting nuevo, una foto mucho más bonita, más elegante».
+    # ⇒ foto de estudio de la carta de enero 2026 («Ostiones parmesanos a la
+    # batayaki 20»): brindis con vino blanco sobre el risotto y la trucha. Ya
+    # viene bien expuesta: SIN gradación, sólo +4 % de luz. Nada de saturar.
+    from PIL import ImageEnhance
+    im = Image.open(os.path.join(SES, "carta__Ostiones parmesanos a la batayaki 20.jpg")).convert("RGB")
+    guardar(ImageEnhance.Brightness(im).enhance(1.04), "01-bancochile")
 
     # 06 · ALL YOU CAN DRINK — escena generada (Seedream) con los tragos del KV.
     x = a_float(g("06-aycd-A.png"))
@@ -114,12 +116,14 @@ def main():
     x = vineta(x, 0.55, 0.6)
     guardar(a_img(x), "08-cmr")
 
-    # 09 · SUNSET — el spritz real de la terraza (IMG_3077) llevado a atardecer:
-    # sol bajo arriba a la derecha que se SUMA como luz, tonos cálidos.
-    x = a_float(f("IMG_3077_t0.67.png"))
-    x = grado(x, expo=0.95, temp=(1.1, 0.98, 0.78), contraste=0.22, gamma=1.05, sat=1.08)
-    x = resplandor(x, 0.92, 0.05, 0.55, fuerza=0.6)
-    x = vineta(x, 0.5, 0.6)
+    # 09 · SUNSET — ⭐ 25-09: foto REAL de la sesión de Víctor «QB 13 oct» (n°60):
+    # el trago con rodaja de naranja deshidratada al sol de la tarde en la terraza,
+    # bokeh de las guirnaldas detrás. Reemplaza al spritz de IMG_3077 que había
+    # que llevar a atardecer en código. Sólo se calienta un punto: la luz ya es
+    # de tarde. (La foto es 1500×2250: se sube a 2250 con lanczos.)
+    x = a_float(Image.open(os.path.join(SES, "13oct__QB 13 oct-60.jpg")))
+    x = grado(x, expo=0.97, temp=(1.04, 1.0, 0.92), contraste=0.12, sat=1.04)
+    x = vineta(x, 0.45, 0.62)
     guardar(a_img(x), "09-sunset")
 
     # 14 · ADIVINA EL TRAGO — el mismo spritz, desenfocado: «que se intuya su
@@ -150,12 +154,15 @@ def main():
     guardar(g("22-ensalada-A.png").convert("RGB"), "22-ensalada")
     guardar(g("22-ensalada-detalle.png").convert("RGB"), "22-ensalada-detalle")
 
-    # 23 · CLOSE FRIENDS — mesa real de la terraza vista desde arriba (IMG_3049).
-    x = a_float(f("IMG_3049_t0.72.png"))
-    x = grado(x, expo=0.8, temp=(1.05, 1.0, 0.88), contraste=0.28, gamma=1.1)
-    x = vineta(x, 0.6, 0.55)
+    # 23 · CLOSE FRIENDS — ⭐ 25-09: foto REAL «Fotos 4 agosto / Editadas»
+    # IMG_4797: manos brindando con cuatro tragos sobre la mesa de listones de
+    # QB, semicenital, de noche y con flash cálido. Es lo que pedía el brief
+    # («2 o 3 tragos, manos, momento real entre amigos») y la foto anterior no
+    # tenía. La madera libre de abajo recibe la nota.
+    x = a_float(Image.open(os.path.join(SES, "fotos-4ago-editadas__IMG_4797.jpg")))
+    x = grado(x, expo=0.9, temp=(1.02, 1.0, 0.94), contraste=0.18, gamma=1.05)
+    x = vineta(x, 0.5, 0.6)
     guardar(a_img(x), "23-closefriends")
-
 
 if __name__ == "__main__":
     main()

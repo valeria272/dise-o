@@ -13,22 +13,31 @@
  * REFERENCIA: Pinterest 926474954604695142 (Lobster) — mesa oscura, dos copas de
  * blanco y platos abajo, el titular arriba sobre el ambiente oscuro.
  *
+ * ⭐⭐ RONDA DE ELI 25-09: «se ve como quemado, muy saturado… usa del shooting
+ * nuevo, una foto mucho más bonita, más elegante» · «Banco de Chile y todos los
+ * bancos ya tenemos los diseños aprobados, los logos que hay que utilizar».
+ *
  * DIRECCIÓN DE ARTE
- *   · Foto REAL: brindis con vino blanco sobre el pescado y el risotto de camarón
- *     (sesión «2026 | Shooting QB orgánico», IMG_3088, t=3,61 s, HLG tonemapeado),
- *     gradada tenue y cálida en `scripts/qb-oct-fondos.py`. Sin IA → sin
- *     «Imagen referencial».
- *   · La foto se achica y baja (lienzo negro arriba) para dejar el aire del
- *     titular, como en la referencia; la mesa negra se funde con el negro.
- *   · ⭐ El logotipo hace de PALABRA en la frase («…EN [QB]») — el recurso más
- *     propio de la marca (manual §4b).
- *   · PROMO → puede ir a paid (Eli, 24-09): todo el texto dentro de 250/340/115.
- *   · Regla Hilton §F: títulos y bajadas sin punto; el legal sí.
+ *   · PLANTILLA APROBADA: «ST n°1 S1 QB JUL» (carpeta BANCOS que pasó Eli): logo
+ *     QB arriba, marco de vidrio con filete verde, pastilla «Banco de Chile»
+ *     montada sobre el filete, titular Raleway ExtraBold + Regular, dos cajas
+ *     verdes 20%OFF / 30%OFF con el día en una franja oscura debajo, legal en
+ *     Raleway itálica y las tarjetas del banco abajo. Medidas tomadas del PNG
+ *     aprobado; todo el bloque baja 30 px para que el logo entre en la zona
+ *     segura (en la aprobada estaba a 221).
+ *   · Pastilla del banco = recorte exacto de la aprobada; tarjetas = «TARJETAS
+ *     VISA.png» de los Links del editable de bancos. Nada redibujado.
+ *   · FOTO del shooting de la carta de enero 2026 («Ostiones parmesanos a la
+ *     batayaki 20»): brindis con vino blanco sobre el risotto y la trucha, mesa
+ *     negra. Sin gradación (sólo +4 % de luz).
+ *   · Textos literales del brief. «Lunes a viernes» (la aprobada decía «Lunes y
+ *     viernes»: errata de esa pieza; manda el brief).
+ *   · PROMO → texto dentro de la zona segura de paid (250 · 340).
  */
 import React from "react";
-import {AbsoluteFill} from "remotion";
+import {AbsoluteFill, Img, staticFile} from "remotion";
 
-import {BotonVerde, cargarFuentesQbOct, FotoQB, Legal, Linea, LogoQB, Velo} from "./QbOctKit";
+import {cargarFuentesQbOct, FotoQB, Legal, Linea, LogoQB, MESA, Velo} from "./QbOctKit";
 
 cargarFuentesQbOct();
 
@@ -36,28 +45,51 @@ const QB_ST01_DATA: Record<string, Record<string, string>> = {
   pieza: {
   titular: "TU SEMANA TIENE MÁS DE UN BUEN MOMENTO EN QB",
   etiqueta: "Banco de Chile",
-  texto: "20% OFF · LUNES A VIERNES",
-  pie: "30% OFF · SÁBADOS Y DOMINGOS",
+  texto: "20%OFF · Lunes a viernes",
+  pie: "30%OFF · Sábados y domingos",
   legal: "Sujeto a consumo de alimentos. Promoción no acumulable con otras ofertas y beneficios.",
   },
 };
 
-export const QbSt01BancoChile: React.FC = () => (
-  <AbsoluteFill style={{background: "#000"}}>
-    <FotoQB src="assets/hilton/qb/oct/01-bancochile.jpg" ratio={2250 / 4000} zoom={1.18} libre
-      cx={0.5} cy={0.42} bajar={215} />
-    {/* la costura de arriba de la foto se funde a negro */}
-    <div style={{position: "absolute", top: 0, left: 0, right: 0, height: 215 + 260,
-      background: "linear-gradient(180deg, #000 0%, #000 45%, rgba(0,0,0,0) 100%)"}} />
-    <div style={{position: "absolute", top: 0, bottom: 0, left: 0, width: 220,
-      background: "linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,0))"}} />
-    <Velo arriba={[760, 1]} abajo={[1000, 1]} />
-    <Linea top={262} cuerpo={50} peso={300} tracking="0.06em">TU SEMANA TIENE</Linea>
-    <Linea top={322} cuerpo={50} peso={800} tracking="0.03em">MÁS DE UN BUEN MOMENTO EN</Linea>
-    <LogoQB top={398} ancho={190} />
-    <Linea top={1300} cuerpo={60} familia="BellMT" italica>{QB_ST01_DATA.pieza.etiqueta}</Linea>
-    <BotonVerde top={1386} ancho={640} alto={72} cuerpo={36} peso={800}>{QB_ST01_DATA.pieza.texto}</BotonVerde>
-    <BotonVerde top={1466} ancho={640} alto={72} cuerpo={36} peso={800}>{QB_ST01_DATA.pieza.pie}</BotonVerde>
-    <Legal top={1552} cuerpo={17}>{QB_ST01_DATA.pieza.legal}</Legal>
-  </AbsoluteFill>
+/** Medidas de la plantilla aprobada (mesa 1080×1920), bajadas 30 px. */
+const B = 30;
+const MARCO = {x: 87, y: 398 + B, w: 899, h: 322};
+const CAJA = {w: 383, h: 92, g: 26, y: 676 + B};
+const VERDE_CAJA = "#2F4635";
+const VERDE_FILETE = "#35493A";
+
+const Caja: React.FC<{x: number; cifra: string; dia: string}> = ({x, cifra, dia}) => (
+  <>
+    <div style={{position: "absolute", left: x, top: CAJA.y, width: CAJA.w, height: CAJA.h,
+      background: VERDE_CAJA, display: "flex", alignItems: "center", justifyContent: "center",
+      color: "#fff", fontFamily: "Raleway", fontWeight: 800, fontSize: 60, letterSpacing: "-0.01em"}}>{cifra}</div>
+    <div style={{position: "absolute", left: x, top: CAJA.y + CAJA.h, width: CAJA.w, height: 86,
+      background: "rgba(0,0,0,.62)", display: "flex", alignItems: "center", justifyContent: "center",
+      color: "#fff", fontFamily: "Raleway", fontWeight: 400, fontSize: 30}}>{dia}</div>
+  </>
 );
+
+const TARJ_W = 540;
+
+export const QbSt01BancoChile: React.FC = () => {
+  const x1 = (MESA.w - (CAJA.w * 2 + CAJA.g)) / 2;
+  return (
+    <AbsoluteFill style={{background: "#000"}}>
+      <FotoQB src="assets/hilton/qb/oct/01-bancochile.jpg" ratio={2250 / 3375} zoom={1.0} cx={0.5} cy={0.5} />
+      <Velo arriba={[420, 0.55]} abajo={[620, 0.9]} />
+      <LogoQB top={221 + B} ancho={168} />
+      {/* marco de vidrio con filete verde */}
+      <div style={{position: "absolute", left: MARCO.x, top: MARCO.y, width: MARCO.w, height: MARCO.h,
+        border: `5px solid ${VERDE_FILETE}`, borderRadius: 14, background: "rgba(0,0,0,.55)"}} />
+      <Img src={staticFile("assets/hilton/qb/oct/logo-banco-chile.png")}
+        style={{position: "absolute", left: (MESA.w - 244) / 2, top: 366 + B, width: 244, height: 85}} />
+      <Linea top={492 + B} cuerpo={50} peso={800} tracking="0.01em">TU SEMANA TIENE MÁS</Linea>
+      <Linea top={552 + B} cuerpo={50} peso={400} tracking="0.01em">DE UN BUEN MOMENTO EN QB</Linea>
+      <Caja x={x1} cifra="20%OFF" dia="Lunes a viernes" />
+      <Caja x={x1 + CAJA.w + CAJA.g} cifra="30%OFF" dia="Sábados y domingos" />
+      <Legal top={1530} cuerpo={22}>{QB_ST01_DATA.pieza.legal}</Legal>
+      <Img src={staticFile("assets/hilton/qb/oct/tarjetas-banco-chile.png")}
+        style={{position: "absolute", left: (MESA.w - TARJ_W) / 2, top: 1620, width: TARJ_W, height: TARJ_W / 2}} />
+    </AbsoluteFill>
+  );
+};

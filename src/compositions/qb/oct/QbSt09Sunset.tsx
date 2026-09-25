@@ -9,61 +9,58 @@
  *   seleccionados al mejor precio. · Bajada: Tu after office, a otro nivel.
  *
  * REFERENCIA: Pinterest 1025976358870898225 (Moksi) — trago sobre mesa de
- * madera con luz de tarde, titular grande arriba.
+ * madera con luz de tarde.
  *
- * DIRECCIÓN DE ARTE
- *   · ⭐ «Sunset QB» es un bloque de marca: «Sunset» en Brushwell ENLAZADO con el
- *     logotipo — el logo hace de palabra (manual §4b, post de Sunset aprobado).
- *   · Foto REAL: el spritz de la terraza de QB (IMG_3077, sesión orgánica 2026)
- *     llevado a atardecer en código (`qb-oct-fondos.py`: temperatura + sol bajo
- *     sumado como luz). Encuadre cerrado arriba para dejar fuera las costillas.
- *   · ⚠️ LO QUE FALTA DEL BRIEF: las personas desenfocadas detrás. La sesión no
- *     las tiene en esta toma y generarlas quedó bloqueado: la API de Magnific se
- *     quedó sin créditos el 24-09. Cuando haya, se regenera el fondo.
- *   · El horario va en la pastilla verde, que es donde viven las cifras de QB.
+ * ⭐⭐ RONDA DE ELI 25-09: «usa tal cual la pieza gráfica seleccionada, sólo
+ * cambia los textos que agrega el brief, pero el logo de Sunset QB déjalo tal
+ * cual» · «no se parece a nada a la ya aprobada».
+ * ⇒ La base es la ST aprobada de agosto (Drive «POST + ST SUNSET PROMO QB /
+ *   St n° 1 QB SUNSET.png»):
+ *   · FOTO: la del KV, sin texto, sacada del PDF de «Promo Sunset QB digital»
+ *     (imagen 1728×2304) con el MISMO encuadre de la ST aprobada.
+ *   · LOGO «Sunset QB»: el vectorial de ese PDF, exportado tal cual
+ *     (`sunset-qb-logo.png`), en el lugar y tamaño de la ST aprobada.
+ *   · TEXTOS: donde la aprobada decía «TUS FAVORITOS / AL MEJOR PRECIO» va el
+ *     titular del brief, en la misma Raleway Regular y el mismo cuerpo; la
+ *     pastilla verde en el mismo lugar con el horario; debajo, las dos líneas
+ *     que el brief agrega. Sólo Raleway.
+ *   · El legal sube a la zona segura de Instagram (en la aprobada estaba a 74 px
+ *     del borde).
  *   · PROMO → zona segura de paid. Títulos sin punto (regla Hilton §F).
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
 
-import {QB_ASSETS, QB_LOGO} from "../../../brand/qb";
-import {BotonVerde, cargarFuentesQbOct, FotoQB, Linea, MESA, Velo} from "./QbOctKit";
+import {BotonVerde, cargarFuentesQbOct, FotoQB, Legal, Linea, MESA, Velo} from "./QbOctKit";
 
 cargarFuentesQbOct();
 
 const QB_ST09_DATA: Record<string, Record<string, string>> = {
   pieza: {
   titular: "EL VIERNES CAMBIA DE MOOD",
-  etiqueta: "Sunset QB",
   medida: "DE 16:00 A 21:00 HRS",
   texto: "Cocktails seleccionados al mejor precio",
   bajada: "Tu after office, a otro nivel",
+  legal: "*Sujeto a consumo de alimentos. *Promoción no acumulable con otras ofertas y beneficios.",
   },
 };
 
-/** «Sunset» en Brushwell + el logotipo, en una sola línea centrada. */
-const SunsetQB: React.FC<{top: number}> = ({top}) => {
-  const logoW = 190;
-  const logoH = logoW / QB_LOGO.proporcion;
-  return (
-    <div style={{position: "absolute", top, left: 0, width: MESA.w, display: "flex",
-      justifyContent: "center", alignItems: "center", gap: 14}}>
-      <span style={{fontFamily: "Brushwell", fontSize: 150, color: "#fff", lineHeight: 1,
-        textShadow: "0 3px 22px rgba(0,0,0,.45)", marginTop: 18}}>Sunset</span>
-      <Img src={staticFile(QB_ASSETS.logoBlanco)} style={{width: logoW, height: logoH}} />
-    </div>
-  );
-};
+/** Logo «Sunset QB» de la pieza aprobada: 767 px de ancho y tope en 346 (mesa). */
+const LOGO_W = 767;
+const LOGO_H = LOGO_W * 576 / 2556;
 
 export const QbSt09Sunset: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
-    <FotoQB src="assets/hilton/qb/oct/09-sunset.jpg" ratio={2250 / 4000} zoom={1.5} cx={0.6} cy={0.22} />
-    <Velo arriba={[720, 0.8]} abajo={[1050, 0.98]} />
-    <Linea top={262} cuerpo={50} peso={300} tracking="0.07em">EL VIERNES</Linea>
-    <Linea top={322} cuerpo={50} peso={800} tracking="0.03em">CAMBIA DE MOOD</Linea>
-    <SunsetQB top={392} />
-    <Linea top={1320} cuerpo={36} peso={500}>{QB_ST09_DATA.pieza.texto}</Linea>
-    <BotonVerde top={1384} ancho={560} alto={80} cuerpo={38} peso={800}>{QB_ST09_DATA.pieza.medida}</BotonVerde>
-    <Linea top={1500} cuerpo={40} familia="BellMT" italica>{QB_ST09_DATA.pieza.bajada}</Linea>
+    <FotoQB src="assets/hilton/qb/oct/09-sunset-kv.jpg" ratio={2250 / 4000} />
+    {/* el oscurecido suave de la aprobada detrás del bloque de texto */}
+    <Velo arriba={[560, 0.35]} abajo={[980, 0.72]} />
+    <Img src={staticFile("assets/hilton/qb/oct/sunset-qb-logo.png")}
+      style={{position: "absolute", top: 346, left: (MESA.w - LOGO_W) / 2, width: LOGO_W, height: LOGO_H}} />
+    <Linea top={1150} cuerpo={84} peso={400} interlinea={1.02} tracking="0.01em">EL VIERNES</Linea>
+    <Linea top={1236} cuerpo={84} peso={400} interlinea={1.02} tracking="0.01em">CAMBIA DE MOOD</Linea>
+    <BotonVerde top={1338} ancho={560} alto={58} cuerpo={29} peso={700}>{QB_ST09_DATA.pieza.medida}</BotonVerde>
+    <Linea top={1420} cuerpo={32} peso={500}>{QB_ST09_DATA.pieza.texto}</Linea>
+    <Linea top={1466} cuerpo={32} peso={400} italica>{QB_ST09_DATA.pieza.bajada}</Linea>
+    <Legal top={1536} cuerpo={16}>{QB_ST09_DATA.pieza.legal}</Legal>
   </AbsoluteFill>
 );

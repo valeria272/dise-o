@@ -50,8 +50,9 @@ export const QbSt06Aycd: React.FC = () => (
     <LogoQB top={207.4 + BAJA} ancho={178.6} />
     <NombreAycd top={376.3 + BAJA} />
     <Linea top={610} cuerpo={34} italica peso={400}>{QB_ST06_DATA.pieza.antetitulo}</Linea>
-    <BloqueAycd />
-    <Linea top={1526} cuerpo={27} italica peso={300}>{QB_ST06_DATA.pieza.texto}</Linea>
-    <Legal top={1562} cuerpo={14}>{QB_ST06_DATA.pieza.legal}</Legal>
+    {/* 25-09: el bloque sube 30 px para que texto y legal entren en la zona segura */}
+    <BloqueAycd antetitulo={1281.4} boton={1334.6} horario={1449.4} />
+    <Linea top={1508} cuerpo={27} italica peso={300}>{QB_ST06_DATA.pieza.texto}</Linea>
+    <Legal top={1546} cuerpo={14}>{QB_ST06_DATA.pieza.legal}</Legal>
   </AbsoluteFill>
 );

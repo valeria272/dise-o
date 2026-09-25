@@ -528,8 +528,46 @@ Encontradas armando la grilla de octubre. Bajan sin token con
 | **SESIÓN VICTOR QB 13/10** | `1KjWOB4yhmlYnpVHIlxLkz2_A7EHMxuOu` | 81 videos Sony 4K Rec.709 de NOCHE: terraza con guirnaldas, gente riendo y brindando, DJ, fachada, barra, platos |
 | **SESIÓN COCTELERÍA 11-09** | `1dvLSTbhUPSecVUPl5klzRAig35tfm840` | 15 fotos de estudio de los tragos de autor (Medusa, Atenea, Perséfone, Afrodita, Hipnos…) |
 | SESIÓN QB 10/11/25 | `19Flgye3vvZ5rUn1kzAQOmmDU3SX4kifc` | evento nocturno con público (fotos de celular) |
-| VIDEO QB TERRAZA 2025 | `15C1ikuQEhnFXCfXUW7WjnXQ5hdSlvA--` | 1 archivo, **no baja por enlace** — hay que pedirle a Eli que lo comparta |
+| VIDEO QB TERRAZA 2025 | `15C1ikuQEhnFXCfXUW7WjnXQ5hdSlvA--` | ✅ **resuelto 25-09**: no era 1 archivo, es la subcarpeta **CAM** — ver la tabla de abajo |
 | Padre de todas | `14xvnxGsfv3pzlaXgGBxZc5rW-IUu2fwO` | «material de marca» del complejo Hilton — ahí también hay Between, P18, DT |
+
+### ⭐⭐ Piezas de banco y promos: sobre la APROBADA (Eli, 25-09-2026)
+
+> «Banco de Chile y todos los bancos ya tenemos los diseños aprobados, los logos
+> que hay que utilizar» · «Sunset: usa tal cual la pieza gráfica, sólo cambia los
+> textos… el logo déjalo tal cual».
+
+- **Plantillas:** Banco de Chile = «ST n°1 S1 QB JUL» · CMR 20 % = «BCO CMR
+  1080×1920» (PANTALLAS BANCOS QB) · CMR 40 % = «ST n°4 S2 QB». Carpeta BANCOS de
+  Eli: `1VC2Qq2gEbLgtXmjKd79JbmRMv9vSFOCZ` (dentro de GRILLA APROBADAS
+  `1LldRqgNRr_7sBHHuJ0Y4Lizl_Px0dKcs`, que también trae las ST aprobadas de 2026)
+- **Elementos** (copias en `public/assets/hilton/qb/oct/`): `ou-logo.png`,
+  `tarjetas-banco-chile.png`, `logo-banco-chile.png` (recorte de la aprobada),
+  `chips-cmr-debito.png`, `logo-club-restaurantes-bf.png`, `sunset-qb-logo.png`
+- **Sunset:** foto sin texto y logo vectorial salen del PDF «Promo Sunset QB
+  digital / SUNSET QB PROMO 2026.pdf» (`1ElMqNMUNqDB9OYNY0S-inPLBm0YROyIB`)
+- Se cambia la FOTO (del shooting de la carta enero 2026, sin gradación) y los
+  TEXTOS del brief; lo demás no se toca. El texto sube a la zona segura aunque la
+  aprobada no lo respetara
+
+### ⭐⭐ Las sesiones que pasó Eli el 25-09-2026
+
+Eli entregó 8 carpetas. Las miniaturas y las hojas de contacto quedaron en
+`raw/hilton/qb/sesiones-25-09/` (con `_indice.tsv`: carpeta · nombre · ID de cada
+archivo, para bajar el original con `drive-bajar.py` o con el enlace
+`drive.usercontent…&confirm=t`). **Mira primero `_hojas/`** antes de bajar nada.
+
+| Sesión | ID | Qué hay | Sirve para |
+|---|---|---|---|
+| **QB 13 oct** (2025, Víctor, foto) | `1PXFmgzHB0czDHBARq59yB-XLkCRHYEjW` | 70 JPG. Salón y terraza vacíos de día, fachada con el neón, **tragos de autor sobre la mesa de listones** (52–68: 4–6 copas de colores, vasos altos), DJ con el fondo púrpura, platos, **gente brindando de noche** (92–108) | ⭐ Sunset (09-10), Mejores amigos, Close friends (**66 y 67 = 2 y 3 tragos**), terraza |
+| **Cartas anteriores** (jul-2024, «Quotidien») | `11NdyzrcuaVvlFfDMavIk7hZzR0AgbUL4` | ~90 platos con el nombre en el archivo: **pulpo** (153), ceviche QB, tártaros, cheesecakes, crème brûlée, coulant, tiramisú, papas… | ⭐ ST 12-10 pulpo, postres de «Conoce nuestra carta». ⚠️ **No es pública**: el visor da 401, se baja con el conector de Drive |
+| QB 6 sep (2024) | `1VjL-4CkBxE5k6q2Vv2g7iPR-mPDr9GBp` | ~137 JPG de Eli. ⚠️ **No es pública** (401) — sin hoja de contacto todavía | pendiente |
+| **Reapertura terraza 10/10** (2025) | `1L-WNxxnmbbB4e210oJx7peouvHpclPyj` | 100 JPG de evento: lámparas de mimbre, muro verde con neón de hojas, jenga gigante, violinista, mesas llenas, platos | ambiente nocturno, grupos |
+| Sesión 20/08 «Sabores y Colores» | `1EzA3DQkM3j7_lerMXTQWBfvv5wMfd-oX` | 73 JPG de una expo de arte con público. **Spritz servido con luz azul** (_D0A9309–9320) y pasteles | Adivina el trago (spritz desenfocado) |
+| **Platos de la carta** (enero 2026) | `1A465gePMSLnRp_p7IIhby32peE3Cz_a_` | ⭐ 229 JPG de estudio con el nombre del plato: palta rellena, trucha, camembert, ostiones, entraña, ribs, croquetas, muhammara, pollo coreano, tiraditos, risotto de camarones. **Manos con tenedor y brindis** en muchas. **Spritz naranjo** junto a la cerveza (Cerveza Atenea 21–30) | carta, recomendación del chef, la mano del 22-10 |
+| **Mixto — ⛔ trae Between** | `1tApaXLNiB-cT7_JRyWP6wRX6XdisTd-W` | 15 HEIC + 9 MOV de iPhone. **De QB sólo IMG_4371–4377** (plato de atún sellado en la mesa negra). 4378–4388 = lobby y salones del hotel, 4400–4408 = vasos y muffin de **Between** → **no se usan en QB** (lo pidió Eli) | — |
+| **Fotos 4 agosto** + Editadas | `1ycjYQnLjpDqps35JL-7YRKJT-8LPlRMz` · `1NDJc8fA_oZPIXmdE3ER8EffxjhXHwCMF` | 161 JPG + **49 editadas** (usar las editadas): DJ con chaqueta fucsia, **brindis de 4 tragos** (4796–4797), gente con tragos, **Ramazzotti Rosato en copa** (4856, 4889), tarjetas de la ruleta | ⭐ Adivina el trago (Ramazzotti), brindis |
+| **Videos — CAM** (2025) | `1kYcaDiBsbSQJpvL0oqtDJavwfHO_IROE` | **245 MP4 Sony XAVC 4K 60p 10 bits en S-Log3/S-Gamut3.Cine** (lo dice el metadato; grabados el 10-10-2025) → pasar a 709 con `scripts/slog3-a-709.py` (LUT `.cube`, **expo 1,0**; con 1,6 se queman los amarillos) — los 490 del listado incluyen 245 `._` basura de Mac. Evento en la terraza **de tarde a noche**: neón `@QB`, «Donde no hay gin no hay amor», fachada, DJ, jenga, mesas, brindis | ⭐ Terraza (26-10) con luz de tarde, reels |
 
 ⚠️ Del video **se saca la foto** (método de Eli, §5): fotograma con
 `qb-oct-fotogramas.py <clip> --hoja` para elegir, `--t <s>` para el tamaño completo.
@@ -537,7 +575,7 @@ Para animar, `scripts/qb-oct-proxies.py` deja H.264 1080×1920.
 
 | Fuente | Cómo se usa |
 |---|---|
-| **Sesiones de fotografía** | Son varias y están disponibles. Los `Enlaces no disponibles` del `Informe.txt` revelan el disco de Eli y el nombre de las sesiones: `D:\COPY\FOTOS 4 AGOSTO\SESIÓN COCTELERÍA 11-09\` (`_DSC0030`, `_DSC9930`, `_DSC9855 ATENEA`, `_DSC9987`, `_DSC0010`) y `D:\COPY\FOTOS 4 AGOSTO\QB sesión 13-10\` (`QB 13 oct-60`). **Esas carpetas son las que faltan en el estudio** |
+| **Sesiones de fotografía** | Son varias y están disponibles. Los `Enlaces no disponibles` del `Informe.txt` revelan el disco de Eli y el nombre de las sesiones: `D:\COPY\FOTOS 4 AGOSTO\SESIÓN COCTELERÍA 11-09\` (`_DSC0030`, `_DSC9930`, `_DSC9855 ATENEA`, `_DSC9987`, `_DSC0010`) y `D:\COPY\FOTOS 4 AGOSTO\QB sesión 13-10\` (`QB 13 oct-60`). ✅ **Aparecieron el 25-09**: «FOTOS 4 AGOSTO» y «QB 13 oct», ver la tabla de arriba |
 | **Material orgánico (videos)** | Doble uso, y esto es método de la marca, no un parche |
 
 **El método del video, dictado por Eli:**

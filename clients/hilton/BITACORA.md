@@ -1,3 +1,24 @@
+## 2026-09-25 (cierre) — Eli (Windows) · /arranque + la sesión de fotos SEP 2026 guardada — SIN PIEZAS
+
+**Qué se hizo:** `/arranque` en la máquina de Eli: todo estaba instalado (Node, Chrome,
+llavero abierto, Magnific válida, Drive conectado, TypeScript compila limpio, las fuentes
+de Hilton completas). Después, Eli pasó la **sesión nueva de fotos para las 4 marcas**,
+«Hotel general sesión SEP 2026» (`117N-uJjrMSwWj_4Y2cSIH4IwsmMkapQM`). Se guardó en el
+mapa de Drive del manual, en `dt-banco-de-imagenes.md` § 00 como **primera parada**
+antes de `CONTENIDO HOTEL 2026` y de la IA, y en la memoria (local + semilla del repo).
+Además se subieron los cambios de QB octubre de la mañana, que ya estaban anotados en
+`clients/qb/BITACORA.md` pero no se habían commiteado.
+**Dónde quedó:** son JPG editados en alta (`sep_26-NNN.jpg`, 7–30 MB, la numeración pasa
+de 520) y **se estaban subiendo** cuando se revisó (subidas de 13:48 a 14:29). No se bajó
+nada ni se miró ninguna imagen: sólo se leyeron los nombres de los archivos.
+**Qué sigue:** cuando termine de subirse, contar la sesión, bajarla a
+`raw/hilton/sesion-sep2026/` (versión liviana primero) y **clasificarla por espacio y por
+marca** (hotel / Between / QB / Piso 18), cruzándola con los huecos del MoodBoard del
+09-09 (§ «Qué tiene y qué le falta»).
+**Abierto:** `raw/hilton/qb/oct-ia/09-sunset-canva.jpg` es una descarga fallida (17 bytes,
+«Signature invalid»). La 09 ya usa la foto real «QB 13 oct» n°60, así que no bloquea nada,
+pero conviene borrarla o volver a bajarla.
+
 ## 2026-09-25 — Eli (Windows) · BETWEEN: rediseño de la CARTA, ejercicio de 4 rondas — SUBIDO (sólo a la carpeta de refs)
 
 **Qué se hizo:** `/abrir bw` sin novedades en Drive. Después, a pedido de Eli, un **ejercicio** de

@@ -75,3 +75,4 @@
 - [Between octubre — técnica de generación](between-oct-tecnica-generacion.md) — «extiende hacia arriba» sí, pedir altura no; Seedance por MCP; aislar ilustración; Noto emoji; captcha Drive; heredoc rompe TSX
 - [⭐⭐ BETWEEN octubre 2026 — estado](between-octubre-2026-estado.md) — 11 piezas APROBADAS y SUBIDAS 24-09 a S1–S5/BW/{STS,FEED}; lo no diseñado y por qué; dudas abiertas; cómo retomar
 - [⭐ Comentarios en Drive: leer, aplicar, resolver](comentarios-drive-leer-aplicar-resolver.md) — ante «dejé comentarios»: drive-comentarios.py (JSON en cp1252), el anchor dice a qué elemento apunta, aplicar a TODOS los formatos, re-subir por fileId y responder+resolver en Drive
+- [⭐ Hilton — sesión de fotos SEP 2026](hilton-sesion-fotos-sep-2026.md) — Eli 25-09: Drive 117N-uJjrMSwWj_4Y2cSIH4IwsmMkapQM, JPG en alta para BW/DT/QB/P18; primera parada antes de generar; clasificar por espacio y marca

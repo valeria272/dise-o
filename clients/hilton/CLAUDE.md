@@ -3221,6 +3221,7 @@ Eli dio ancho × alto por formato, y coinciden con lo medido en sus plantillas d
 | SOLICITUDES-VICENTE/2026 (pedidos puntuales) | `1zUwZ-UEtmRo7VWg8BM3lOi5AK3aMqt1q` |
 | MATERIAL DE MARCA (bancos de fotos) | `14xvnxGsfv3pzlaXgGBxZc5rW-IUu2fwO` |
 | Índice material de marca (sheet) | `1MpXAR6nb986LesbFyzFI6FKRonrhMq2dKvBI-d1FZY8` |
+| ⭐ **Hotel general sesión SEP 2026** (fotos profesionales, las 4 marcas) | `117N-uJjrMSwWj_4Y2cSIH4IwsmMkapQM` — ver `dt-banco-de-imagenes.md` § 00 |
 | WEB (banners) | `10Ps0eJVyIyRGa42G-NQEeGQiyAz5gGz3` |
 | MAILINGS | `1hy5nrCcW879DY3T64M9XXfKLdPlvH6Sy` |
 

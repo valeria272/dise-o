@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
-> Última cosecha: **2026-09-25** · Cosechas: **1**
+> Última cosecha: **2026-09-25** · Cosechas: **2**
 
 ## 1. Quién es el cliente
 
@@ -43,21 +43,21 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 
 - **R-01** · «bodas» no se escribe nunca: va matrimonio(s) o novios, aunque el brief o el hashtag lo traigan — _Eli, 15-09-2026; ratificada por el cliente en `FEED!I14` el 17-09 («no usemos la palabra BODA»)_ · ✔×2
 - **R-02** · Nada de DoubleTree entra en Piso 18 (ni tipografía, ni paleta, ni logo, ni «LA LEY DE ELI»), y nada de acá va para allá — _Eli: «Todo es propio y diferente a DT, recuerda no mezclar las marcas»; reglas.yaml_ · ✔×1
-- **R-03** · El fucsia nunca decora: sólo caja del precio, filete, `piso18.cl` del CTA, destacado del titular y botones — _medido en las 7 aprobadas; manual 22-09_ · ✔×1
+- **R-03** · El fucsia nunca decora: sólo caja del precio, filete, `piso18.cl` del CTA, destacado del titular y botones — _medido en las 7 aprobadas; manual 22-09_ · ✔×1 · ⚠️ revisada 2026-09-25: Eli pidió «cuadros de color fucsia» como toque de color en el carrusel S5 → ver R-39
 - **R-04** · El fucsia de Selfie (`#FF007C`) no entra: el QA lo corta a ΔE 12 — _Eli, 15-09; reglas.yaml `fucsia-de-selfie`_ · ✔×1
 - **R-05** · El beige `#EFE6D9` no se pone sobre la tarjeta `#F7F5F2`: ahí no se lee como beige — _Eli, ronda 2 S4_ · ✔×1
 - **R-06** · El titular alterna una línea en itálica fina y otra en VERSALES, en la misma familia — _medido en las 7 aprobadas, 22-09_ · ✔×1
 - **R-07** · Dos registros que no se mezclan: promo (foto oscurecida + caja fucsia con la cifra) y editorial (tarjeta blanca festoneada, sin caja ni cifra) — _manual 22-09, sobre `ST N°1 S1` y `C2 S1 n°2`_ · ✔×1
 - **R-08** · Bloque de precio: `ANTES` chico sobre la cifra tachada, `AHORA` sobre la cifra nueva en caja fucsia, cifras en serif; en descuento, el % gigante con `DCTO.` al costado — _manual 22-09_ · ✔×1
-- **R-09** · Cierre: `Cotiza en` blanco + `piso18.cl` en caja fucsia · `Av. Vitacura 2727, Las Condes` centrada · legal al pie con asterisco — _manual 22-09_ · ✔×1
+- **R-09** · Cierre: `Cotiza en` blanco + `piso18.cl` en caja fucsia · `Av. Vitacura 2727, Las Condes` centrada · legal al pie con asterisco — _manual 22-09_ · ✔×2
 - **R-10** · Siempre hay botón en las historias (y en algunos reels), sólo en dos esquemas: fucsia/blanco o blanco/fucsia — _Eli, 15-09: «Siempre hay que hacer botones en las historias»_ · ✔×1
 - **R-11** · La interacción no se dibuja: se deja el aire y el sticker real lo pone el CM — _manual; marca.json `botones`_ · ✔×1
 - **R-12** · El logotipo va arriba y centrado, tope y≈207 @1080 en historia y ≈105 en feed, y nunca se deforma — _kit 15-09; manual_ · ✔×1
 - **R-13** · `logo PISO18.png` no es un logo: es una plantilla de historia con velo negro en degradado. Mide el alfa antes de montar — _manual 22-09_ · ✔×1
 - **R-14** · La portada de carrusel lleva el velo de marca (alfa 0,588 arriba → 0 al 41,7 % del alto) **debajo** del logotipo; se rehace desde la foto limpia — _Eli, 16-09, S4 ronda 5: «Oscurece un poco arriba con una transparencia muy sutil»_ · ✔×1
-- **R-15** · El zoom de una foto tiene tope 1,0: un recorte que ampliaría se rechaza y se busca otro plano en el banco — _Eli, 16-09, G3 S4: «No tiene que verse en los costados ni la mesa»_ · ✔×1
+- **R-15** · El zoom de una foto tiene tope 1,0: un recorte que ampliaría se rechaza y se busca otro plano en el banco — _Eli, 16-09, G3 S4: «No tiene que verse en los costados ni la mesa»_ · ✔×2
 - **R-16** · Si Eli manda una captura con el encuadre, el recorte se deduce midiendo tres puntos comunes, no a ojo — _S4 ronda 5, 16-09_ · ✔×1
-- **R-17** · La caja de recorte de cada pieza queda escrita en el script que la produce — _S4, 16-09: dos recortes hubo que reconstruirlos por correlación_ · ✔×1
+- **R-17** · La caja de recorte de cada pieza queda escrita en el script que la produce — _S4, 16-09: dos recortes hubo que reconstruirlos por correlación_ · ✔×2
 - **R-18** · Todo fondo oscuro plano lleva grano (`GranoFondo`); `foto-estirada` no se calibra, se arregla la pieza — _S5, 15-09; referencia de Eli «tiene un cuero», no negro digital_ · ✔×1
 - **R-19** · Las cifras no se alinean con CSS (Raleway no trae `tnum`): cada dígito en una caja al **máximo** de la fila — _kit 15-09; `$4.500.000` vs `$6.000.000`_ · ✔×1
 - **R-20** · Un titular que empieza con `¿` o `¡` no se compone en Against — _manual; «¿Te casas en verano?»_ · ✔×1
@@ -71,12 +71,18 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - **R-28** · En la historia animada (Remotion) los planos se escriben del primero al último para que el que entra quede arriba, con curva simétrica — _reclamo del cliente 22-09: «se queda pegada a la mitad»_ · ✔×1
 - **R-29** · Una transición se mide en secuencia PNG en **todas** las transiciones: cero fotogramas congelados dentro del empuje y cero saltos >25 fuera — _S4 ronda 7, 22-09; reglas.yaml v5_ · ✔×1
 - **R-30** · En una historia animada, posición y contraste del botón se miden en el último fotograma — _manual; reglas.yaml_ · ✔×1
-- **R-31** · Una pieza corregida se reemplaza en Drive **conservando su enlace** — _S4 rondas 4, 5, 6 y 7 (16 al 22-09)_ · ✔×4
-- **R-32** · La revisión se publica como página de antes/después; nada interno va a la carpeta de entrega, que ve el cliente (`@hilton.com` con permiso de escritura) — _hallazgo 16-09; rondas 4–7 aprobadas así_ · ✔×3
+- **R-31** · Una pieza corregida se reemplaza en Drive **conservando su enlace** — _S4 rondas 4, 5, 6 y 7 (16 al 22-09)_ · ✔×5
+- **R-32** · La revisión se publica como página de antes/después; nada interno va a la carpeta de entrega, que ve el cliente (`@hilton.com` con permiso de escritura) — _hallazgo 16-09; rondas 4–7 aprobadas así_ · ✔×4
 - **R-33** · Lo nuevo de la grilla se detecta por diff de **conjunto de cadenas** contra la instantánea anterior: el comentario se prepende y no lo delatan ni la celda ni el `modifiedTime` — _confirmado el 16, 17 (×2) y 22-09_ · ✔×4
 - **R-34** · Una pieza se identifica por su **título**, nunca por la columna: la grilla corre fechas sin avisar — _16-09 (NOCHE 25→23), 17-09, 22-09 (animada 23→24)_ · ✔×3
 - **R-35** · El GIF de una pieza animada va a 25 fps, sin difuminado y a 540×960; lo que se publica en Instagram es el MP4 — _Eli, 22-09: «guárdalo igual en gif»; `scripts/p18-s4-gif.py`_ · ✔×1
 - **R-36** · El titular va prácticamente a sangre (29 px de margen @1080): el respiro de borde de la marca es 26 px, no los 60 de agencia — _medido en `ST N°1 S1`; reglas.yaml_ · ✔×1
+- **R-37** · «Agrega una foto a la slide» es **reemplazar el fondo**, no montar un recuadro encima — _Eli, 25-09, C1 S5: «yo decía las fotos, reemplazando las actuales»_ · ✔×1
+- **R-38** · Los íconos salen de un set profesional (Phosphor duotone) y van en cuadro **transparente con borde blanco**; los dibujados a mano no — _Eli, 25-09, C1 S5: «iconos que se vean mejor y más desarrollados, se ven muy extraños»; aprobado_ · ✔×1
+- **R-39** · Lista de beneficios en carrusel: **número** blanco (IvyPresto) en cuadro fucsia `#D4145A`; los íconos, grandes y en fila sobre el titular, iguales en todas las slides de la lista — _Eli, 25-09, C1 S5: «que fueran solamente un número (…) en esos cuadraditos»; aprobado_ · ✔×1
+- **R-40** · En el feed el cierre es la **línea** «Cotiza … en piso18.cl» (piso18.cl en fucsia), no el botón píldora de las historias — _Eli, 25-09, C1 S5: «me gusta más como estaba en el anterior (…) sin ese botón»_ · ✔×1
+- **R-41** · Personas generadas: foto de **fotógrafo de eventos** (flash directo, grano, gesto no posado, escena oscura) y pocas personas; y nunca las mismas caras de una pieza publicada — _Eli, 25-09, C1 S5: «se ve bastante falsa (…) sacaría a los dos chicos»_ · ✔×1
+- **R-42** · La foto del beneficio DoubleTree sale de la sesión **Hotel general SEP 2026** y tiene que ser vistosa: ventana, cama y el desayuno real a la vista — _Eli, 25-09, C1 S5: eligió así contra `sep_26-318`; va `sep_26-313`_ · ✔×1
 
 ## 5. Excepciones
 
@@ -93,6 +99,7 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - **A-03** · Encuesta con la opción B cambiada a mesa puesta evitando repetir una foto del feed de 4 días antes (`piso_18-28` y no `piso_18-85`) — _ST N°4 S4, ronda 4, 16-09_
 - **A-04** · Post nuevo con la foto que el cliente eligió por nombre + logotipo: «Que sea esta foto, con logo y estamos» — _Post n°2 S4 25-09, ronda 4_
 - **A-05** · La selección y el orden de fotos de la animada, y su ritmo (2,2 s por plano, 13 s) — _cliente 22-09: «Está ok la selección de fotos»_
+- **A-06** · Carrusel de beneficios con fondo a sangre, números en cuadro fucsia, fila de íconos Phosphor con borde blanco y cierre en línea — _C1 S5 ronda 4 v4, Eli «aprobados me gusta» 25-09 (costó 4 vueltas en el día, ver X-10…X-14)_
 
 ## 7. Lo que se rechaza
 
@@ -105,6 +112,11 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - **X-07** · Fondo oscuro liso sin grano: el QA lo bloquea como foto estirada — _ST N°1 y N°2 S5, 15-09_
 - **X-08** · `#BodaDePrimavera` en el copy — _carrusel del 21-09 (`FEED!I14`), el cliente lo aprobó sólo al cambiarlo a `#EventoDePrimavera`_
 - **X-09** · (interno) Escribir un `src/brand/piso18.ts` «nuevo» sin leer el que existía: casi se destruye el kit — _22-09, lo pilló `tsc`_
+- **X-10** · La foto nueva montada como recuadro con bloque fucsia desplazado encima del fondo viejo — _C1 S5, Eli 25-09, 1 vuelta (se leyó mal el pedido)_
+- **X-11** · Íconos de línea dibujados a mano, chicos, dentro de los cuadros fucsia de la lista — _C1 S5, Eli 25-09: «no se visualizan nada», 2 vueltas hasta Phosphor con borde blanco_
+- **X-12** · Fiesta generada con cuatro personas a plena luz, sonrisas de banco de imágenes — _C1 S5, Eli 25-09: «se ve bastante falsa», 1 vuelta_
+- **X-13** · Botón píldora fucsia en la última slide del carrusel — _C1 S5, Eli 25-09, 1 vuelta_
+- **X-14** · `sep_26-318` (habitación en penumbra, sin ventana a la vista) como foto del regalo — _C1 S5, Eli 25-09: «me gustó, pero pondría otra más vistosa», 1 vuelta_
 
 ## 8. Preguntas abiertas
 
@@ -118,8 +130,17 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - `Post S4 PISO18 25-09.png` es la pieza del 23-09: el portal levanta por nombre, arréglalo antes de pasarla por ahí → Eli.
 - Ampliar el token del estudio a `drive.readonly` (hilos nativos de la grilla dan 404) → **Valeria**.
 - Falta calibrar el QA contra las **26 aprobadas** que ya están en `raw/hilton/piso18/` → estudio.
+- La ronda 4 del C1 S5 la aprobó Eli, pero el cambio no pasó por la grilla: ¿el cliente la vio? → Eli / KAM.
+- `P18C1Cumple.tsx` no declara sus textos al QA, así que la regla «sin bodas» queda «sin verificar» en cada corrida → estudio.
 
 ## 9. Registro de cosechas
+
+### 2026-09-25 — Elisabet Soto · C1 S5 cumpleaños, ronda 4 (4 vueltas, aprobada)
+- nuevo **R-37** foto = reemplazar el fondo · **R-38** íconos Phosphor en cuadro transparente con borde blanco · **R-39** números en cuadro fucsia + fila de íconos · **R-40** cierre de feed en línea, sin botón · **R-41** personas generadas con look de fotógrafo de eventos · **R-42** foto DoubleTree de la sesión SEP 2026, con ventana, cama y desayuno.
+- ✔ subieron: R-09 (×2), R-15 (×2, upscaler en vez de ampliar), R-17 (×2, cajas de recorte en la cabecera), R-31 (×5), R-32 (×4).
+- ⚠️ R-03 revisada: el fucsia entra como cuadro de los números por pedido de Eli.
+- nuevo **A-06**; rechazos **X-10…X-14**.
+- Fuera de alcance: nada de esto se copió a DT, QB ni Between. Candidata a regla del estudio (para Valeria): «los íconos salen de un set profesional, nunca dibujados a mano».
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico
 - nuevo **R-01…R-36** · destilados de `CLAUDE.md` (22-09), `reglas.yaml` v5, `marca.json` y 12 entradas de bitácora (16 al 22-09).

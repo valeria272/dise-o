@@ -1,5 +1,43 @@
 # Piso18 — bitácora
 
+## 2026-09-25 — Elisabet Soto · C1 S5 cumpleaños, ronda 4: fotos nuevas, números y fila de íconos — APROBADO
+
+**Qué se hizo:** ronda 4 del carrusel «Cumpleaños en Piso18» (FEED 29-09), sólo las
+slides 2 y 3; la portada no se tocó. Eli pidió «toques de color» y fotos nuevas, y
+costó **4 vueltas en el día** hasta el «aprobados me gusta»:
+1. La foto nueva se leyó como **recuadro** encima del fondo → *«yo decía las fotos,
+   reemplazando las actuales»*.
+2. Fondos reemplazados + íconos de línea dibujados a mano en cuadros fucsia + botón
+   píldora en la última.
+3. *«se ve bastante falsa»* (la fiesta) · íconos *«no se visualizan nada»* · botón
+   *«me gusta más como estaba en el anterior»* · otra habitación *«más vistosa, con
+   ventana, cama y el desayuno real»*. → fiesta rehecha con sólo las dos chicas y más
+   oscura; números 1–4 en los cuadros fucsia; íconos grandes en fila sobre el titular
+   (igual en la 3); cierre de vuelta a la línea; habitación `sep_26-313`.
+4. *«Ambos iconos déjalos en un cuadro con borde blanco en transparencia y iconos que
+   se vean mejor y más desarrollados»* → Phosphor Icons 2.1.1 duotone (MIT) en cuadro
+   transparente con borde blanco de 2 px.
+
+**Dónde quedó:** `C1 S5 N°2.png` y `C1 S5 N°3.png` **reemplazadas en Drive conservando
+el enlace** (`1WK0pMeczKBiAiBtEDNAumAeRPdVSDqcH`, `19h6FseEHgKbReN58vEywognkKkHM0jcy`,
+carpeta `1pM2kt_LZ0yYSHEjQRsFZXpEyGNyn1hbt`), verificadas al byte. Ronda 3 respaldada
+en `out/piso18/s5/r3-respaldo/`. Código en `src/compositions/piso18/P18C1Cumple.tsx`
+(cabecera «RONDA 4» con los recortes y prompts); fondos `public/assets/hilton/piso18/
+s5-fiesta.jpg` y `s5-habitacion.jpg`. Revisión: https://claude.ai/artifact/UDD5FcXzACMETg9gjNAZKa
+(v4). Fotos base en `raw/hilton/sesion-sep2026/` (sep_26-274, 276, 313, 316, 318, 328) y
+generaciones en `out/piso18/s5/r4/base/` (fiesta-v1…v3, ref-fiesta, ref-vestidos).
+- Fiesta: Seedream 5 Pro con `ref-cumple/actual-3.png` (luz) + recorte de la v2 (vestidos),
+  prompt de «foto real de fotógrafo de eventos»; upscaler de precisión ×2 → 3536×4720.
+- Habitación: `sep_26-313`, caja 3840×4800 desde (0,480). La 276 se descartó (sábana
+  blanca bajo el texto) y la 318 la cambió Eli por poco vistosa.
+- Sesión SEP 2026 medida: **500 JPG** (`sep_26-1` a `-523`); habitaciones en 1–17,
+  271–343 y 459–523; desayuno en cama 306–335; salones y terraza 344–458.
+
+**Qué sigue:** nada de esta pieza. Clasificar la sesión SEP 2026 por marca en
+`clients/hilton/dt-banco-de-imagenes.md` § 00 con el rango de arriba.
+
+**Abierto:** que el cliente vea la ronda 4 en la grilla (el cambio no pasó por él).
+
 ## 2026-09-22 (7ª sesión) — Elisabet Soto · S4 ronda 7: la transición se quedaba pegada, y era cierto
 
 **Encargo de Eli:** *«corrige la st de la grilla s4 de piso18, la animada genera la

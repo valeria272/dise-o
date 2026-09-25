@@ -1,0 +1,3 @@
+→ Seedream 5 Pro · carrusel (social_post_4_5) · 2k
+✗ HTTP 400 en /v1/ai/text-to-image/seedream-v5-pro
+  {"message":"Validation error","invalid_params":[{"field":"body.aspect_ratio","reason":"Input should be 'square_1_1', 'widescreen_16_9', 'social_story_9_16', 'portrait_2_3', 'traditional_3_4', 'standard_3_2', 'classic_4_3' or 'cinematic_21_9'"}]}

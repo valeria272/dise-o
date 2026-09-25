@@ -1,0 +1,9 @@
+→ Magnific Precision · 2x
+  … CREATED
+  … IN_PROGRESS
+  … IN_PROGRESS
+  … IN_PROGRESS
+  ✓ out/copylab/hero/h3/santagota-seg7-precision.png  (10940 KB)
+
+  MÍRALA antes de usarla:
+  python3 scripts/ver-pieza.py out/copylab/hero/h3/santagota-seg7-precision.png

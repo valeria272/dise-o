@@ -1,0 +1,48 @@
+PETRA — Formulario de Contact Form 7 para la landing de cotización
+==================================================================
+
+La landing NO muestra este formulario: tiene su propio diseño y le manda los datos a
+Contact Form 7 por su API. CF7 se usa para lo que ya hace bien: validar y mandar el
+correo al equipo de Petra. Por eso los valores de las opciones tienen que calzar
+LETRA POR LETRA con los de la landing (CF7 rechaza una opción que no reconoce).
+
+Cómo crearlo
+------------
+1. Contacto → Formularios de contacto → pasa el mouse sobre «Formulario de contacto 1»
+   (el de /contacto/, id 6) → «Duplicar». Así hereda el destinatario del correo.
+2. Renómbralo «Landing cotización (test A/B)».
+3. Pestaña «Formulario»: borra todo y pega el bloque de abajo.
+4. Pestaña «Correo»: deja el destinatario («Para») que venía del duplicado y reemplaza
+   el asunto y el cuerpo por los de abajo.
+5. Guarda y anota el ID (sale en el shortcode: [contact-form-7 id="XX" ...]).
+
+--- Pestaña «Formulario» -----------------------------------------------------------
+[text* nombre maxlength:400]
+[tel* fono maxlength:40]
+[email email maxlength:400]
+[select* asunto "Necesito un servicio ahora" "Cotizar un servicio funerario" "Quiero anticipar un funeral (previsión)"]
+[select plan "Aún no lo sé" "Ópalo (52 a 69 UF)" "Ónix (85 a 200 UF)"]
+[textarea mensaje maxlength:2000]
+[acceptance acepto] Autorizo a Petra Funeraria a usar mis datos para responder esta solicitud. [/acceptance]
+[submit "Enviar"]
+
+--- Pestaña «Correo» → Asunto ------------------------------------------------------
+Cotización web · [asunto] · [nombre]
+
+--- Pestaña «Correo» → Cuerpo del mensaje ------------------------------------------
+Llegó una solicitud de cotización desde la landing (variante B del test A/B).
+
+Qué necesita: [asunto]
+Nombre: [nombre]
+Teléfono: [fono]
+Correo: [email]
+Plan de interés: [plan]
+Comentario: [mensaje]
+
+Si dice «Necesito un servicio ahora», es un servicio inmediato: llamar de inmediato.
+
+--
+Enviado desde [_url]
+
+--- Pestaña «Correo» → Cabeceras adicionales --------------------------------------
+Reply-To: [email]

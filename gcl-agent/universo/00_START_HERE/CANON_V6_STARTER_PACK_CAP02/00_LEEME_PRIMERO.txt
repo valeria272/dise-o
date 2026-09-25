@@ -1,0 +1,28 @@
+G.CL / COPYLAB — STARTER PACK PARA CLAUDE
+
+Este paquete contiene SOLO el canon actual para desarrollar CAP.02.
+No usar ni mezclar versiones anteriores del proyecto, storyboards viejos o propuestas descartadas.
+
+ORDEN DE LECTURA RECOMENDADO:
+1. 01_CANON_VISUAL
+2. 02_PERSONAJES
+3. 03_ESCENARIOS
+4. 04_REFERENCIA_CAP01
+5. 05_REGLAS_Y_BRIEF
+
+REGLAS CLAVE:
+- G es el protagonista.
+- Arriba = Copywriters/Copylab, mundo humano real y cálido.
+- Abajo = G.CL / Nivel -1, mundo oculto creativo-operacional.
+- Reels de 20–30 segundos, ideal 24–28.
+- Una sola situación clara por capítulo.
+- Hook rápido, problema, escalada, giro/pico y payoff.
+- Humor observacional de agencia, no caos genérico.
+- G puede tener límites, cansarse, frustrarse, glitchear o quedarse sin tokens.
+- Los humanos son detonantes/cameos, no el foco principal.
+- Mantener continuidad visual estricta de G según los 4 frames CANON incluidos.
+- Mantener consistencia de los humanos definidos actualmente como Val, Gin y Pancho.
+
+G MASTER REFERENCE VFinal (24-09-2026): 01_CANON_VISUAL/G_MASTER_REFERENCE_VFINAL.png + .txt.
+«Este es G. Su diseño, proporciones, materiales, escala, visor y silueta son canon. No reinterpretar, estilizar, rediseñar ni variar anatomía entre planos.»
+Estación de G bloqueada: 03_ESCENARIOS/ESTACION_G_CANON.png.

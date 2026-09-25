@@ -1,0 +1,39 @@
+CAP.02 — TURNO DE NOCHE
+
+OBJETIVO
+Continuación directa de CAP.01. Cuando los humanos se van, comienza el verdadero turno nocturno abajo.
+
+PREMISA
+Al final del día, arriba alguien deja un pendiente claramente URGENTE y dice algo como: “Ya… lo veo mañana.” Debe sentirse relajado/casi irresponsable, no malvado.
+
+CONFLICTO
+Abajo, ese “mañana” cae como alarma. El equipo nocturno reacciona. Debe existir un pico narrativo claro; no basta con mostrar máquinas trabajando.
+
+PERSONALIDADES EN ACCIÓN
+- G: toma control, rápido, seco, resolutivo; puede mostrar mini frustración o llegar a límite.
+- R.01/runner ansioso: al escuchar/recibir URGENTE entra en nervio visible; temblor, aceleración, mini pánico o equivalente visual.
+- Marta: veterana, cero sorpresa, “otra vez estos humanos”, procesa sin dramatizar.
+
+BEATS SUGERIDOS
+0–5 s: humano arriba deja pendiente URGENTE y dice “lo veo mañana”.
+5–9 s: oficina se apaga; abajo se activa alarma/entrada del pendiente.
+9–18 s: reacciones distintas de personajes + preparación/resolución rápida.
+18–26 s: escalada real. Puede aparecer un cambio extra, “una cosita más”, “más wow” o una carga que lleve a G cerca del límite.
+26–30 s: payoff. Ejemplo posible: G llega a límite de tokens, glitchea o se apaga justo cuando aparece otro pendiente. No es obligación; buscar el remate más claro y divertido.
+
+CRITERIOS DE ÉXITO
+- Se entiende a la primera.
+- Tiene un problema claro.
+- Cada personaje se distingue por su reacción.
+- Hay un pico real, no solo actividad.
+- El cierre se recuerda.
+- Alguien de agencia podría mandárselo a un compañero.
+
+NO HACER
+- Más de 30 s.
+- Lore explicado.
+- Planos contemplativos.
+- Montajes largos de “trabajar”.
+- Props sin función.
+- Caos genérico.
+- Repetir el mismo sonido o música plana todo el reel.

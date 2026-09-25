@@ -723,3 +723,27 @@ public/assets/santagota/*.mp4
 out/myzoo/*
 !out/myzoo/octubre-2026/
 !out/myzoo/octubre-2026/**
+
+# ── CIERRE 25-09-2026 · lo que NO entra aunque las excepciones de arriba lo abran ──
+# `!out/santagota/` des-ignora la carpeta ENTERA (la intención era sólo kv-v4). Los
+# renders del spot y de TV se reconstruyen desde src/compositions/santagota/, y el
+# MXF de 114 MB supera el tope de 100 MB de GitHub: el push entero se cae con él.
+out/santagota/spot/
+out/santagota/tv-cliente/
+# El material del spot (505 MB: plates 4K upscaladas y clips) queda FUERA hasta que
+# Valeria decida qué de eso viaja; la fuente está en el Drive / carpeta local.
+public/assets/santagota/spot/
+# Feed Copywriters: las CANDIDATAS crudas de IA (8 MB c/u, 280 MB) no son la pieza.
+# Las piezas rendidas de out/copylab/<lote>/ sí viajan.
+out/copylab/**/gen/
+# ── G.CL · CAP.02 «TURNO DE NOCHE» (25-09-2026) ──────────────────────────────
+# Misma excepción deliberada que r02: los 30 clips de Hailuo (58 MB) NO son
+# deterministas; sin ellos el reel no se reproduce. Van sfx, voz y video.
+# La música NO viaja: son temp tracks (HeyGen y «Reptilia» bajada de YouTube, sin
+# licencia) y pesan 107 MB en WAV; la receta está en GUION_V3 § cortes 10 y 14.
+!public/assets/gcl/cap02-v3/
+!public/assets/gcl/cap02-v3/sfx/**
+!public/assets/gcl/cap02-v3/voz/**
+!public/assets/gcl/cap02-v3/video/**
+!public/assets/gcl/cap02-v3/video/*.mp4
+!public/assets/gcl/cap02-v3/video/_corte3/*.mp4

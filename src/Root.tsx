@@ -16,6 +16,15 @@ import {HuinchaTV as HuinchaTVAnim, DUR_HUINCHA} from "./compositions/santagota/
 import {VirtualTV as VirtualTVAnim, DUR_VIRTUAL} from "./compositions/santagota/tv/VirtualTV";
 import {FullTV, DUR_FULL} from "./compositions/santagota/tv/FullTV";
 import {HuinchaPreview, VirtualPreview} from "./compositions/santagota/tv/Previews";
+import {KF01, KF02, KF03, KF04, KF05, KF06, KF07, KF08, KF09, KF10, KF10Latas} from "./compositions/santagota/spot/Keyframes";
+import {V2_01, V2_02, V2_03, V2_04, V2_05, V2_06, V2_07, V2_08a, V2_08b, V2_09, V2_10, V2_11, V2_11Latas} from "./compositions/santagota/spot/KeyframesV2";
+import {V3_06, V3_07, V3_08, V3_09, V3_10} from "./compositions/santagota/spot/KeyframesV3";
+import {Animatic as SGAnimatic} from "./compositions/santagota/spot/Animatic";
+import {AnimaticV2 as SGAnimaticV2} from "./compositions/santagota/spot/AnimaticV2";
+import {AnimaticV3 as SGAnimaticV3} from "./compositions/santagota/spot/AnimaticV3";
+import {AnimaticV4 as SGAnimaticV4} from "./compositions/santagota/spot/AnimaticV4";
+import {AnimaticV5 as SGAnimaticV5} from "./compositions/santagota/spot/AnimaticV5";
+import {FullClienteIG, FullClienteIGCapa, DUR_FULL_CLIENTE} from "./compositions/santagota/tv-cliente/FullClienteIG";
 
 
 // COPYWRITERS — Creative Operating System v1.0. Una pieza = un archivo = una
@@ -30,6 +39,15 @@ import {Gcl} from "./compositions/copylab/Gcl";
 import {TypeLab} from "./compositions/copylab/TypeLab";
 import {ReelCover} from "./compositions/copylab/ReelCover";
 import {Carrusel} from "./compositions/copylab/Carrusel";
+import {ReelSenal, REEL_SENAL_FRAMES} from "./compositions/copylab/ReelSenal";
+import {Goma} from "./compositions/copylab/Goma";
+import {Feed12} from "./compositions/copylab/Feed12";
+import {HeroGoma, HeroNadie01, HeroSantaGota} from "./compositions/copylab/Heroes";
+import {Estudio, SistemaNadie} from "./compositions/copylab/Estudios";
+import {Post12, Post16} from "./compositions/copylab/Posts12";
+import {TipoPost} from "./compositions/copylab/Tipo";
+import {Recompuesta} from "./compositions/copylab/Recompuesta";
+import {Fuente} from "./compositions/copylab/Fuentes";
 import {RentasReelOctubre} from "./compositions/rentas/RentasReelOctubre";
 import {NuevaUrbeFacilidadesReel, NU_REEL_DURATION, NU_REEL_FPS} from "./compositions/NuevaUrbeFacilidadesReel";
 import {VideoSquare01} from "./compositions/VideoSquare01";
@@ -146,6 +164,22 @@ import {Cap02FullRough, Cap02FullRoughClean, FULL_FRAMES} from "./compositions/g
 import {Cap02ClarityCut, V2_FRAMES} from "./compositions/gcl/Cap02ClarityCut";
 import {Cap02ClarityCutV3, V3_FRAMES} from "./compositions/gcl/Cap02ClarityCutV3";
 import {Cap02V4, Cap02PremasterReview, V4_FRAMES} from "./compositions/gcl/Cap02V4";
+import {Cap02TurnoDeNoche, TURNO_FRAMES} from "./compositions/gcl/Cap02TurnoDeNoche";
+import {Cap02TurnoDeNocheV2, TURNO_V2_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV2";
+import {Cap02TurnoDeNocheV3, TURNO_V3_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV3";
+import {Cap02TurnoDeNocheV4, TURNO_V4_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV4";
+import {Cap02TurnoDeNocheV5, TURNO_V5_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV5";
+import {Cap02TurnoDeNocheV6, TURNO_V6_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV6";
+import {Cap02TurnoDeNocheV7, TURNO_V7_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV7";
+import {Cap02TurnoDeNocheV8, TURNO_V8_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV8";
+import {Cap02TurnoDeNocheV9, TURNO_V9_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV9";
+import {Cap02TurnoDeNocheV10, TURNO_V10_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV10";
+import {Cap02TurnoDeNocheV11, TURNO_V11_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV11";
+import {Cap02TurnoDeNocheV12, TURNO_V12_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV12";
+import {Cap02TurnoDeNocheV13, TURNO_V13_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV13";
+import {Cap02TurnoDeNocheV14, TURNO_V14_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV14";
+import {Cap02TurnoDeNocheV15, TURNO_V15_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV15";
+import {Cap02TurnoDeNocheV16, TURNO_V16_FRAMES} from "./compositions/gcl/Cap02TurnoDeNocheV16";
 
 // Social templates
 import {TikTokVideo} from "./templates/social/TikTokVideo";
@@ -581,6 +615,22 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="GclCap02Bloque1" component={Cap02Bloque1} durationInFrames={138} fps={30} width={1080} height={1920} />
         <Composition id="GclCap02FullRough" component={Cap02FullRough} durationInFrames={FULL_FRAMES} fps={30} width={1080} height={1920} />
         <Composition id="GclCap02PremasterReview" component={Cap02PremasterReview} durationInFrames={V4_FRAMES} fps={30} width={1080} height={1920} />
+        <Composition id="GclCap02TurnoDeNocheV2" component={Cap02TurnoDeNocheV2} durationInFrames={TURNO_V2_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV3" component={Cap02TurnoDeNocheV3} durationInFrames={TURNO_V3_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV4" component={Cap02TurnoDeNocheV4} durationInFrames={TURNO_V4_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV5" component={Cap02TurnoDeNocheV5} durationInFrames={TURNO_V5_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV6" component={Cap02TurnoDeNocheV6} durationInFrames={TURNO_V6_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV7" component={Cap02TurnoDeNocheV7} durationInFrames={TURNO_V7_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV8" component={Cap02TurnoDeNocheV8} durationInFrames={TURNO_V8_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV9" component={Cap02TurnoDeNocheV9} durationInFrames={TURNO_V9_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV10" component={Cap02TurnoDeNocheV10} durationInFrames={TURNO_V10_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV11" component={Cap02TurnoDeNocheV11} durationInFrames={TURNO_V11_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV12" component={Cap02TurnoDeNocheV12} durationInFrames={TURNO_V12_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV13" component={Cap02TurnoDeNocheV13} durationInFrames={TURNO_V13_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV14" component={Cap02TurnoDeNocheV14} durationInFrames={TURNO_V14_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV15" component={Cap02TurnoDeNocheV15} durationInFrames={TURNO_V15_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNocheV16" component={Cap02TurnoDeNocheV16} durationInFrames={TURNO_V16_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
+        <Composition id="GclCap02TurnoDeNoche" component={Cap02TurnoDeNoche} durationInFrames={TURNO_FRAMES} fps={30} width={1080} height={1920} defaultProps={{}} />
         <Composition id="GclCap02V4" component={Cap02V4} durationInFrames={V4_FRAMES} fps={30} width={1080} height={1920} />
         <Composition id="GclCap02ClarityCutV3" component={Cap02ClarityCutV3} durationInFrames={V3_FRAMES} fps={30} width={1080} height={1920} />
         <Composition id="GclCap02ClarityCut" component={Cap02ClarityCut} durationInFrames={V2_FRAMES} fps={30} width={1080} height={1920} />
@@ -1175,6 +1225,47 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="SG-FullTV"    component={FullTV}        durationInFrames={DUR_FULL}    fps={29.97} width={1920} height={1080} />
         <Composition id="SG-HuinchaTV-Preview" component={HuinchaPreview} durationInFrames={DUR_HUINCHA} fps={29.97} width={1920} height={1080} />
         <Composition id="SG-VirtualTV-Preview" component={VirtualPreview} durationInFrames={DUR_VIRTUAL} fps={29.97} width={1920} height={1080} />
+        {/* Spot «UNA GOTA. CAMBIA TODO.» — 10 keyframes (ruta sin monja, 15-09-2026) */}
+        <Composition id="SG-KF-01" component={KF01} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-KF-02" component={KF02} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-KF-03" component={KF03} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-KF-04" component={KF04} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-KF-05" component={KF05} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-KF-06" component={KF06} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-KF-07" component={KF07} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-KF-08" component={KF08} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-KF-09" component={KF09} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-KF-10" component={KF10} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-KF-10-latas" component={KF10Latas} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        {/* V2 — segunda dirección creativa (15-09-2026) */}
+        <Composition id="SG-V2-01" component={V2_01} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V2-02" component={V2_02} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V2-03" component={V2_03} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V2-04" component={V2_04} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V2-05" component={V2_05} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V2-06" component={V2_06} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V2-07" component={V2_07} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V2-08a" component={V2_08a} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V2-08b" component={V2_08b} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V2-09" component={V2_09} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V2-10" component={V2_10} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V2-11" component={V2_11} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V2-11-latas" component={V2_11Latas} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        {/* V3 — los 4 cuadros críticos (15-09-2026, noche) */}
+        <Composition id="SG-V3-06" component={V3_06} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V3-07" component={V3_07} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V3-08" component={V3_08} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V3-09" component={V3_09} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-V3-10" component={V3_10} durationInFrames={1} fps={29.97} width={1920} height={1080} />
+        {/* ANIMATIC — montaje completo, 599 cuadros (15-09-2026, noche) */}
+        <Composition id="SG-ANIMATIC" component={SGAnimatic} durationInFrames={599} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-ANIMATIC-V2" component={SGAnimaticV2} durationInFrames={599} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-ANIMATIC-V3" component={SGAnimaticV3} durationInFrames={599} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-ANIMATIC-V4" component={SGAnimaticV4} durationInFrames={599} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-ANIMATIC-V5" component={SGAnimaticV5} durationInFrames={599} fps={29.97} width={1920} height={1080} />
+        {/* el full que el cliente mandó a TVN + cierre de Instagram (21-09-2026) */}
+        <Composition id="SG-FULL-CLIENTE-IG" component={FullClienteIG} durationInFrames={DUR_FULL_CLIENTE} fps={29.97} width={1920} height={1080} />
+        <Composition id="SG-FULL-CLIENTE-IG-CAPA" component={FullClienteIGCapa} durationInFrames={DUR_FULL_CLIENTE} fps={29.97} width={1920} height={1080} />
       </Folder>
       <Folder name="Copywriters">
         {/* Feed 4:5 — el formato principal del sistema. */}
@@ -1185,9 +1276,22 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="CL-People"   component={People}   {...clFeed} />
         <Composition id="CL-Gcl"      component={Gcl}      {...clFeed} />
         <Composition id="CL-TypeLab"  component={TypeLab}  {...clFeed} />
+        <Composition id="CL-Goma"     component={Goma}     {...clFeed} />
+        <Composition id="CL-Hero1-Goma"      component={HeroGoma}      {...clFeed} />
+        <Composition id="CL-Hero2-Nadie01"   component={HeroNadie01}   {...clFeed} />
+        <Composition id="CL-Hero3-SantaGota" component={HeroSantaGota} {...clFeed} />
+        <Composition id="CL-Estudio"  component={Estudio}  {...clFeed} defaultProps={{k: 1}} />
+        <Composition id="CL-Nadie"    component={SistemaNadie} {...clFeed} defaultProps={{sis: 1, n: 1}} />
+        <Composition id="CL-Fuente"   component={Fuente}   {...clFeed} defaultProps={{familia: "Acumin Pro ExtraCondensed", peso: 900, nombre: "Acumin", frase: 1 as const}} />
+        <Composition id="CL-Recompuesta" component={Recompuesta} {...clFeed} defaultProps={{id: "01"}} />
+        <Composition id="CL-Tipo"     component={TipoPost} {...clFeed} defaultProps={{id: "01"}} />
+        <Composition id="CL-Post16"   component={Post16}   {...clFeed} defaultProps={{n: 1}} />
+        <Composition id="CL-Post12"   component={Post12}   {...clFeed} defaultProps={{n: 1}} />
+        <Composition id="CL-Feed12"   component={Feed12}   {...clFeed} defaultProps={{n: 1}} />
         <Composition id="CL-Carrusel" component={Carrusel} {...clFeed} defaultProps={{slide: 1}} />
         {/* 9:16 — respeta las zonas seguras de Meta. */}
         <Composition id="CL-ReelCover" component={ReelCover} {...clStory} />
+        <Composition id="CL-ReelSenal" component={ReelSenal} {...clStory} durationInFrames={REEL_SENAL_FRAMES} />
       </Folder>
     </>
   );

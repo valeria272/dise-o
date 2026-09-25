@@ -5,11 +5,19 @@
   "pais": "CL",
   "moneda": "CLP",
   "web": "https://santagota.cl",
-  "ecommerce": {"url": "https://santagota.cl", "tipo": "custom", "api_publica": false, "endpoints": {}},
+  "ecommerce": {
+    "url": "https://santagota.cl",
+    "tipo": "shopify",
+    "api_publica": true,
+    "endpoints": {
+      "catalogo": "https://santagota.cl/products.json?limit=250",
+      "producto": "https://santagota.cl/products/<handle>.json"
+    },
+    "_nota": "Verificado 15-09-2026. El catálogo, los precios y los packshots en alta se leen solos desde acá; no hay que pedírselos al cliente."
+  },
   "manual": "clients/santa-gota/CLAUDE.md",
   "kit_codigo": "src/brand/santagota.ts",
   "sistema": "src/compositions/santagota/",
-
   "colores": {
     "_nota": "Muestreados píxel a píxel el 11-09-2026 sobre el logo oficial, el feed de septiembre y el e-commerce",
     "lima": "#C3D600",
@@ -21,9 +29,26 @@
     "blanco": "#FFFFFF"
   },
   "fuentes": {
-    "titular": {"familia": "Montserrat", "pesos": [800, 900]},
-    "intro": {"familia": "Montserrat", "pesos": [300]},
-    "cuerpo": {"familia": "Montserrat", "pesos": [400, 700]},
+    "titular": {
+      "familia": "Montserrat",
+      "pesos": [
+        800,
+        900
+      ]
+    },
+    "intro": {
+      "familia": "Montserrat",
+      "pesos": [
+        300
+      ]
+    },
+    "cuerpo": {
+      "familia": "Montserrat",
+      "pesos": [
+        400,
+        700
+      ]
+    },
     "_ruta": "public/assets/fonts/Montserrat.ttf"
   },
   "logos": {
@@ -32,43 +57,224 @@
     "plano_blanco": "public/assets/santagota/logo-plano-blanco.png",
     "plano_botella": "public/assets/santagota/logo-plano-botella.png"
   },
-
   "formatos": {
-    "feed": {"w": 1080, "h": 1080, "ratio": "1:1"},
-    "story": {"w": 1080, "h": 1920, "ratio": "9:16"},
-    "tv_huincha": {"w": 1920, "h": 216, "alpha": true, "seg": 7, "salida": "targa+alfa"},
-    "tv_virtual": {"w": 775, "h": 1080, "alpha": true, "seg": 20, "salida": "targa+alfa", "plantilla_canal": "PENDIENTE"},
-    "tv_full": {"w": 1920, "h": 1080, "fps": 29.97, "seg": 20, "salida": "MXF NTSC"}
+    "feed": {
+      "w": 1080,
+      "h": 1080,
+      "ratio": "1:1",
+      "_nota": "formato del lote de septiembre"
+    },
+    "story": {
+      "w": 1080,
+      "h": 1920,
+      "ratio": "9:16",
+      "_nota": "el diseñador entrega a 941×1672; se acepta pero no es la medida nativa"
+    },
+    "tv_huincha": {
+      "w": 1920,
+      "h": 216,
+      "alpha": true,
+      "seg": 7,
+      "salida": "targa+alfa"
+    },
+    "tv_virtual": {
+      "w": 775,
+      "h": 1080,
+      "alpha": true,
+      "seg": 20,
+      "salida": "targa+alfa",
+      "plantilla_canal": "PENDIENTE"
+    },
+    "tv_full": {
+      "w": 1920,
+      "h": 1080,
+      "fps": 29.97,
+      "seg": 20,
+      "salida": "MXF NTSC"
+    },
+    "feed_4_5": {
+      "w": 1080,
+      "h": 1350,
+      "ratio": "4:5",
+      "_nota": "⭐ la cuenta se pasó a 4:5 en la semana del 14-09-2026. Es el formato vigente."
+    }
   },
-  "zonas_seguras": {"story": {"top": 250, "bottom": 340, "right": 115}, "tv": {"title_safe_pct": 5}, "respiro_minimo": 48},
-
+  "zonas_seguras": {
+    "story": {
+      "top": 250,
+      "bottom": 340,
+      "right": 115
+    },
+    "tv": {
+      "title_safe_pct": 5
+    },
+    "respiro_minimo": 48
+  },
   "esquemas": {
     "feed": "foto a sangre + UNA intervención (logo plano blanco | botella en línea | aureola | plumón lima)",
     "tv": "campo lima + tinta botella + naranja sólo en aureola y plumón + bloque botella con logo a color y URL lima"
   },
   "geometria_px_sobre_1080": {
-    "monja_recorte": {"archivo": "public/assets/santagota/monja-sarten-nobg.png", "cabeza_top": 641, "cabeza_cx": 596, "sarten_base": 1520, "pie_solido": 1766}
+    "monja_recorte": {
+      "archivo": "public/assets/santagota/monja-sarten-nobg.png",
+      "cabeza_top": 641,
+      "cabeza_cx": 596,
+      "sarten_base": 1520,
+      "pie_solido": 1766
+    }
   },
-
-  "briefs": {"tv_placements_2026-09-11": "3 placements TV — huincha, virtual, full screen. Concepto: EL ACEITE QUE LLEGÓ A REVOLUCIONAR TU COCINA. CTA: SANTAGOTA.CL"},
-  "drive": {"carpeta": "1VRQ_9ggb6n1DhQbOZiYoLP0iW-imswG9", "brand_soul": "1kQaip95iBTSx9uUvQLxk9zTrPbgxMveR", "logo": "1RZxAOzCHqqE18vYzdq8-pZbngBQop2Fv", "social_media_pdf": "1GC-pL_i4QPofb0xtzg5P30c4oTUsi5Um"},
-  "equipo_cliente": {"dueño": "patagoniadechile@gmail.com", "estrategia": "Diana Meinhardt", "diseño": "Luis Piano"},
+  "briefs": {
+    "tv_placements_2026-09-11": "3 placements TV — huincha, virtual, full screen. Concepto: EL ACEITE QUE LLEGÓ A REVOLUCIONAR TU COCINA. CTA: SANTAGOTA.CL"
+  },
+  "drive": {
+    "carpeta": "1VRQ_9ggb6n1DhQbOZiYoLP0iW-imswG9",
+    "brand_soul": "1kQaip95iBTSx9uUvQLxk9zTrPbgxMveR",
+    "logo": "1RZxAOzCHqqE18vYzdq8-pZbngBQop2Fv",
+    "social_media_pdf": "1GC-pL_i4QPofb0xtzg5P30c4oTUsi5Um"
+  },
+  "equipo_cliente": {
+    "dueño": "patagoniadechile@gmail.com",
+    "estrategia": "Diana Meinhardt",
+    "diseño": "Luis Piano"
+  },
   "reglas_duras": [
     "Nada de códigos de aceite tradicional: oliva, madera, beige, dorado, gourmet, degradados",
     "Logo a color nunca sobre lima",
     "La IA no toca producto, logo ni monja",
     "Concepto y CTA literales del brief",
-    "Dos aceites distintos (750 cocinar / 500 terminar), nunca 'dos tamaños'"
+    "Dos aceites distintos (750 cocinar / 500 terminar), nunca 'dos tamaños'",
+    "Personajes reconocibles: el feed de septiembre usa caras tipo celebridad generadas con IA (p. ej. la pieza «Santo munchies»). No producir más de esas sin autorización escrita: es riesgo de derechos de imagen.",
+    "Precio y formato salen de products.json, nunca de memoria. Son 10 SKU y cambian."
   ],
-
   "madurez": {
     "identidad": "completa",
-    "gramatica": "parcial",
-    "formatos": "parcial",
-    "imagen": "parcial",
+    "gramatica": "completa",
+    "formatos": "completa",
+    "imagen": "completa",
     "copy": "completa",
     "pipeline": "parcial",
     "qa": "parcial"
   },
-  "actualizado": "2026-09-11"
+  "actualizado": "2026-09-15",
+  "catalogo": {
+    "_nota": "Leído de products.json el 15-09-2026. 10 SKU: 2 squeeze + 2 latas + 6 packs. Precios CLP.",
+    "regla_dura": "Son DOS ACEITES DISTINTOS, nunca 'dos tamaños'. 750 = cocinar y saltear (Arbequina+Arbosana, acidez 0,27). 500 = aderezar y terminar (Picual+Arbequina, acidez 0,17).",
+    "productos": [
+      {
+        "sku": "SG-COCINAR-750",
+        "nombre": "Envase Squeeze 750 ml",
+        "linea": "Cocinar y saltear",
+        "ml": 750,
+        "precio": 11990,
+        "caja12": 124990,
+        "variedad": "Arbequina + Arbosana",
+        "acidez": 0.27,
+        "envase": "PET squeeze",
+        "etiqueta": "naranja",
+        "tapa": "amarilla",
+        "handle": "envase-squeeze-750-ml"
+      },
+      {
+        "sku": "SG-ALINAR-500",
+        "nombre": "Envase Squeeze 500 ml",
+        "linea": "Aderezar y terminar",
+        "ml": 500,
+        "precio": 9290,
+        "caja12": 99990,
+        "variedad": "Picual + Arbequina",
+        "acidez": 0.17,
+        "envase": "PET squeeze",
+        "etiqueta": "verde lima",
+        "tapa": "lima",
+        "handle": "envase-squeeze-500-ml"
+      },
+      {
+        "sku": "SG-LATA-COCINAR-475",
+        "nombre": "Lata de Relleno 473 ml (Cocinar)",
+        "linea": "Cocinar y saltear",
+        "ml": 473,
+        "precio": 7490,
+        "caja12": 78990,
+        "envase": "aluminio reciclable",
+        "etiqueta": "naranja",
+        "handle": "lata-de-relleno-473-ml-cocinar"
+      },
+      {
+        "sku": "SG-LATA-ALINAR-475",
+        "nombre": "Lata de Relleno 473 ml (Aderezar)",
+        "linea": "Aderezar y terminar",
+        "ml": 473,
+        "precio": 8790,
+        "caja12": 92790,
+        "envase": "aluminio reciclable",
+        "etiqueta": "verde lima",
+        "handle": "lata-de-relleno-473-ml-aderezar"
+      },
+      {
+        "sku": "SG-PK-VE",
+        "nombre": "Pack Aderezar y Terminar",
+        "precio": 16290,
+        "contiene": "squeeze 500 + lata aderezar",
+        "handle": "pack-aderezar-y-terminar"
+      },
+      {
+        "sku": "SG-PK-AM",
+        "nombre": "Pack Cocinar y Saltear",
+        "precio": 17490,
+        "contiene": "squeeze 750 + lata cocinar",
+        "handle": "pack-cocinar-y-saltear"
+      },
+      {
+        "sku": "SG-PK-SQ",
+        "nombre": "Pack Squeeze",
+        "precio": 18990,
+        "contiene": "los dos squeeze",
+        "handle": "pack-duo-squeeze"
+      },
+      {
+        "sku": "SG-PK-LA",
+        "nombre": "Pack Refill (2 latas)",
+        "precio": 14690,
+        "contiene": "lata aderezar + lata cocinar",
+        "handle": "pack-refill-duo"
+      },
+      {
+        "sku": "SG-PK-LA4",
+        "nombre": "Pack Mega Refill (4 latas)",
+        "precio": 29290,
+        "contiene": "2 aderezar + 2 cocinar",
+        "handle": "pack-mega-refill"
+      },
+      {
+        "sku": "SG-PK-FULL",
+        "nombre": "Pack Completo",
+        "precio": 33790,
+        "contiene": "2 squeeze + 2 latas",
+        "handle": "pack-completo"
+      }
+    ],
+    "origen": "Valle del Maipo, Región Metropolitana, Chile. Cosecha temprana, prensado en frío.",
+    "sistema_circular": "El squeeze PET se rellena con la lata de aluminio. «Usa, recarga, repite». Es un argumento de marca, no sólo logístico.",
+    "despacho": "Gratis sobre $50.000 en RM. Cobertura nacional.",
+    "contacto": "contacto@santagota.cl"
+  },
+  "packshots": {
+    "_nota": "⭐ SÍ EXISTEN y están en alta. Bajados de la CDN de Shopify el 15-09-2026 — antes se creía que no había (se estaban mirando las miniaturas del sitio).",
+    "crudo": "raw/santa-gota/packshots/ (30 archivos, hasta 2049×2049)",
+    "listos": "public/assets/santagota/producto/ (PNG con alfa REAL, ya recortados al bounding box)",
+    "archivos": {
+      "squeeze-750-frente.png": "434×1431 — el de cocinar",
+      "squeeze-500-frente.png": "511×1398 — el de aderezar",
+      "lata-cocinar-frente.png": "593×1396",
+      "lata-aderezar-frente.png": "592×1395",
+      "duo-squeeze.png": "944×1405 — los dos juntos",
+      "duo-latas.png": "482×447",
+      "pack-completo.png": "1795×1577",
+      "caja12-*.png": "las cajas de 12 (no son el producto individual: no confundir)"
+    }
+  },
+  "sesion_fotografica": {
+    "_nota": "⭐ Existe una sesión real de la marca (~80 fotos, 4000×5000 px) en el Drive: «Fotos Sesión Inicial» 1CTS0v8xqdHHJQxtJ7-FAfSyr_ThIpW_f. Modelo real, flash directo, fondos de color, macros del chorro, bodegones de las dos botellas. Muestra en raw/santa-gota/sesion-inicial/.",
+    "ojo": "La etiqueta que se ve en esa sesión es una versión ANTERIOR a la del packaging actual. Para producto quieto mandan los packshots del e-commerce; la sesión sirve para gente, gesto y ambiente."
+  }
 }

@@ -36,12 +36,16 @@ de dirección de arte, no con plantillas.
 python3 qa/motor.py --marca copywriters out/copylab/v2/*.png
 ```
 
-**Las cuatro voces** (en `public/assets/fonts/copywriters/`):
-Archivo variable (impacto) · DM Serif Display Italic (editorial) ·
-IBM Plex Mono (data) · Caveat (mano).
+> ⭐ **Desde el 24-09-2026 manda el MASTER:** [`creative-system/MASTER/`](creative-system/MASTER/LEEME.md)
+> (pack de marca de Valeria). Color, tipografía y criterio salen de ahí; si otro
+> archivo lo contradice, se corrige el otro archivo **sin consultar**.
+
+**Las voces** (en `public/assets/fonts/copywriters/`): **Archivo Narrow** (titulares) ·
+DM Serif Display Italic (editorial) · IBM Plex Mono (data) · Inter (funcional).
+La escritura manual **no es una voz**: sólo intervención excepcional sobre foto.
 
 **La paleta:** `#080F14` tinta · `#F2F4F6` off-white · `#FFFFFF` blanco ·
-`#FF2D8D` **Copy Pink** (la firma) · `#FF683D` coral · `#9D4EDD` púrpura.
+`#FF2D8B` **Copy Pink** (la firma) · `#FF6B3D` coral · `#9D4EDD` púrpura.
 
 ⚠️ **No existe una composición genérica con un prop `plantilla`, y esa ausencia
 ES el sistema.** Si vas a agregar una pieza, agrégala como archivo propio con su
@@ -64,8 +68,14 @@ entra al feed.
 > sobre el pack V4 completo y sobre `GCL_CHARACTER_BIBLE.md`. Desde el 05-09-2026:
 > **el protagonista se llama G** («Gigi» no existe), **`G.C.L.` es el universo y
 > nunca el personaje**, y las cifras del V4 (60–70 %, 1 de cada 6) son orientación
-> editorial, **no reglas de producción**. El CAP.02 está **congelado**: el número
-> 02 lo reclaman tres capítulos distintos.
+> editorial, **no reglas de producción**. Desde el **24-09-2026** el canon visual es el
+> **starter pack V6** (`gcl-agent/universo/00_START_HERE/CANON_V6_STARTER_PACK_CAP02/`):
+> el runner se llama **ROLO** (R.01 ya no existe), el halo de G sólo se enciende en el
+> turno de noche y los capítulos duran 20–30 s. El CAP.02 es **«TURNO DE NOCHE»**, con
+> guion vigente **V3 «MAÑANA LO VEO»** en `CAP_02_TURNO_DE_NOCHE/GUION_V3_MANANA_LO_VEO.md` (lock 21:
+> tubo neumático entre pisos, robot dios, explosión final); el storyboard V3 y los guiones V1/V2 son registro. **Antes de abrir un capítulo nuevo de G, leer
+> [`gcl-agent/universo/06_VIDEO_REELS/COMO_TRABAJAR_UN_CAPITULO.md`](gcl-agent/universo/06_VIDEO_REELS/COMO_TRABAJAR_UN_CAPITULO.md)**
+> (método destilado de los 16 cortes del CAP.02: lo que Valeria no pidió no se construye, lista de lo eliminado, un corte por ronda).
 
 ---
 

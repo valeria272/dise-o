@@ -1,0 +1,9 @@
+Las tipografías NO van en el repo: son fuentes de pago de Petra (PP Neue Montreal y Mandrel Cond).
+Se bajan del tema de su sitio antes de armar el paquete:
+
+  B=https://petrafuneraria.com/wp-content/themes/petra/fonts
+  for f in ppneuemontreal-regular ppneuemontreal-medium ppneuemontreal-book mandrel-cond-book mandrel-cond-light; do
+    curl -sL "$B/$f-webfont.woff2" -o "$f-webfont.woff2"
+  done
+
+Antes de publicar la página independiente fuera de petrafuneraria.com, confirmar que la licencia web lo permite.

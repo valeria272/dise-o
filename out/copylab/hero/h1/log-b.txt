@@ -1,0 +1,9 @@
+→ Mystic · carrusel (social_post_4_5)
+  … IN_PROGRESS
+  … IN_PROGRESS
+  … IN_PROGRESS
+  … IN_PROGRESS
+  ✓ out/copylab/hero/h1/mystic-b.png  (3112 KB)
+
+  MÍRALA antes de usarla:
+  python3 scripts/ver-pieza.py out/copylab/hero/h1/mystic-b.png

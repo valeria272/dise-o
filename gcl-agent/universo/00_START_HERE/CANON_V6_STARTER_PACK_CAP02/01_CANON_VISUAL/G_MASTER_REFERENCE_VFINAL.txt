@@ -1,0 +1,23 @@
+G MASTER REFERENCE VFinal — 24-09-2026 · aprobada por Valeria
+
+Imagen: G_MASTER_REFERENCE_VFINAL.png
+
+«Este es G. Su diseño, proporciones, materiales, escala, visor y silueta son canon.
+No reinterpretar, estilizar, rediseñar ni variar anatomía entre planos.»
+
+LO QUE SE MANTIENE SÍ O SÍ
+- Proporción compacta: cabeza grande, cuerpo corto, piernas cortas.
+- Negro glossy + magenta.
+- Visor limpio y expresivo: la G de puntos; expresiones mínimas, nunca cara de emoji.
+- Silueta muy reconocible.
+- Actitud de personaje, no de robot genérico.
+- Escala pequeña respecto al entorno (tamaño de escritorio).
+
+LO QUE SE VIGILA EN CADA PLANO (QC antes de aprobar)
+- Que no le alarguen piernas ni torso.
+- Que el visor no cambie de geometría.
+- Que el halo nocturno, cuando aparezca, sea siempre el mismo: fino y funcional.
+- Que manos, pies y articulaciones conserven exactamente esta lógica.
+- Que no le agreguen accesorios distintos según el plano.
+
+Toda generación de G usa esta imagen como primera referencia.

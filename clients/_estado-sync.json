@@ -61,11 +61,11 @@
     },
     "landera": {
       "revisado": "2026-09-23 (/abrir + /al-dia barrido completo desde el 15-09, conector activo como constanza.olivares)",
-      "ultimo_hallazgo": "MARCA NUEVA sin mapear: 'Landera_Textos_Manual_de_Marca' v1/v2 (constanza.olivares, 22-23-09, unidad compartida 0AICqolVwYE2OUk9PVA)."
+      "ultimo_hallazgo": "MARCA NUEVA sin mapear: 'Landera_Textos_Manual_de_Marca' v1/v2 (constanza.olivares, 22-23-09, unidad compartida 0AICqolVwYE2OUk9PVA). || Coni monto el 14-09 un arbol DISEÑO completo de aplicaciones Landera (1iszldo-EASujMZoNicLCJhc-tIvzu-xS): BANNERS (PRESS/LINKEDIN/PRINCIPAL WEB), FIRMA CORREO (FARMLAND y GESTION), REDES SOCIALES (FEED-01/02/03, STORIE, PORTADA), BRAND (GORRO/CAMISA/POLERA/LAPIZ/CUADERNO) y TEMPLATE ppt (Template Press - Landera, 4 laminas con Lorem ipsum, modificado el 21-09 -- sigue vivo). Pisa las laminas 25/26 presentacion, 30 linkedin, 32 instagram, 33 firmas y 38 vestuario del manual v3.0. DISCREPANCIA: el manual norma 4 firmas (gerencia/operaciones/inversiones/campo) y Coni hizo 2 (FARMLAND/GESTION) -- otra estructura de unidades de negocio. Sin comentarios en Drive sobre los 3 entregables del 07-09: la 4a ronda del cliente no ha llegado por ahi."
     },
     "copywriters": {
-      "revisado": "2026-09-15 (/al-dia -- barrido, sin hallazgo propio)",
-      "ultimo_hallazgo": "G.CL Cap.02: 'GCL_Cap02_Revision7_ROUGHCUT_v2.mp4' (00:38Z) y '_v3.mp4' (00:59Z, 15,3 MB) subidos por Valeria a la raiz de AGENCIA COPYWRITERS (16kNWE2mkbLh1uTb5Jc5TuDhYwM0OOw0A) la noche del 03-09 (20:38 y 20:59 hora de Santiago). Es el rough cut del commit eaf53b9 (25,87 s)."
+      "revisado": "2026-09-24 (/abrir copywriters — G.C.L.)",
+      "ultimo_hallazgo": "SIN NOVEDAD DE DISENO para G en Drive desde el 15-09: lo unico con 'GCL/Copylab' en el titulo son cotizaciones, CRM y facturacion. En AGENCIA COPYWRITERS solo se movio HILTON. En el repo: CAP.02 vigente = 'TURNO DE NOCHE' (lock 13, 06-09), STORY_V2 en papel sin aprobar; ultimo trabajo G = maestro del personaje en gcl-agent/character-master/ (Serena, 20-09). ⚠️ La cabecera de CANON_LOCK.md y el CLAUDE.md del proyecto siguen diciendo 'ES UN CAMBIO CHICO' / 'congelado' — desactualizados frente al lock 13."
     },
     "fork": {
       "revisado": "2026-09-15 (/al-dia -- barrido, sin hallazgo propio)",

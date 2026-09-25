@@ -165,7 +165,8 @@ def main():
                                   "termina exactamente ahí — sólo kling")
     ap.add_argument("--coda", default=NEGATIVO_EN_EL_PROMPT,
                     help="coda de control. 'fisica' para planos con movimiento real")
-    ap.add_argument("--dur", default="5", choices=["5", "10"])
+    # Hailuo 02 sólo acepta 6 s (400 «Input should be 6» con 5 o 10, 24-09-2026).
+    ap.add_argument("--dur", default="5", choices=["5", "6", "10"])
     ap.add_argument("--modelo", default="kling-v2-1-pro")
     ap.add_argument("--tarea", help="task_id de un trabajo ya lanzado: no manda nada "
                                     "nuevo, sólo espera y baja el video (24-09: Kling "
@@ -185,6 +186,11 @@ def main():
         "prompt": a.prompt + ". " + (CODA_FISICA if a.coda == "fisica" else a.coda),
         "duration": a.dur,
     }
+    if a.modelo.startswith("minimax"):
+        # ⚠️ Hailuo NO lee `image`: lo valida, lo ignora y genera cualquier cosa
+        # en 16:9 (24-09-2026: dos robots azules genéricos en vez de G). Su cuadro
+        # de entrada se llama `first_frame_image`, y va como data URI.
+        cuerpo["first_frame_image"] = "data:image/jpeg;base64," + cuerpo.pop("image")
     if a.fin:
         if not a.modelo.startswith("kling"):
             sys.exit(f"✗ --fin (image_tail) sólo lo aceptan los modelos kling; "

@@ -14,7 +14,7 @@ Cada cuenta tiene su cerebro en `clients/<marca>/APRENDIZAJES.md`, alimentado en
 - [cava](cliente-cava.md) — 22 reglas · última cosecha 2026-09-25
 - [copywriters](cliente-copywriters.md) — 23 reglas · última cosecha 2026-09-25
 - [ebema](cliente-ebema.md) — 54 reglas · última cosecha 2026-09-25
-- [hilton](cliente-hilton.md) — 66 reglas · última cosecha 2026-09-25
+- [hilton](cliente-hilton.md) — 67 reglas · última cosecha 2026-09-25
 - [landera](cliente-landera.md) — 28 reglas · última cosecha 2026-09-25
 - [mascenter](cliente-mascenter.md) — 29 reglas · última cosecha 2026-09-25
 - [myzoo](cliente-myzoo.md) — 17 reglas · última cosecha 2026-09-25
@@ -28,5 +28,5 @@ Cada cuenta tiene su cerebro en `clients/<marca>/APRENDIZAJES.md`, alimentado en
 - [san-esteban](cliente-san-esteban.md) — 18 reglas · última cosecha 2026-09-25
 - [santa-gota](cliente-santa-gota.md) — 20 reglas · última cosecha 2026-09-25
 - [selfie](cliente-selfie.md) — 16 reglas · última cosecha 2026-09-25
-- [tierra-calma](cliente-tierra-calma.md) — 51 reglas · última cosecha 2026-09-25
+- [tierra-calma](cliente-tierra-calma.md) — 53 reglas · última cosecha 2026-09-25
 - [traverso](cliente-traverso.md) — 22 reglas · última cosecha 2026-09-25

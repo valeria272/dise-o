@@ -5,6 +5,63 @@
 
 ---
 
+## 2026-09-25 (9ª vuelta) — Diego Aguilar (st-22-10 sobre referencia nueva)
+
+**Qué se hizo:** *"Para la st del 22-10 haz la historia según esta referencia"* —
+una pieza de otra marca (fintech verde), guardada en
+`referencias/2026-09-25_ventana-lista.png`.
+
+**Gramática aplicada:** campo claro en vez de fotografía a sangre; titular de dos
+pesos alineado a la izquierda; la imagen dentro de una **tarjeta tipo ventana**
+con esquinas redondeadas, panel de color y la fila de tres puntos del cromo de un
+navegador; una **insignia flotante** montada sobre la esquina de la tarjeta; el
+dato con **check en círculo**.
+
+⛔ **Lo que NO se copió: su bold para destacar.** La referencia destaca con la
+sans en negrita. En esta marca **destaca IvyOra en versales** y hay sólo dos
+roles tipográficos (R-10/R-11). Copiar ese recurso habría sido romper el sistema
+por imitar a otra marca — que es distinto de copiar su gramática.
+
+⛔ **Y no se inventó lista.** La referencia trae cuatro beneficios en checklist;
+el copy de esta pieza tiene un dato. Va **una** fila con check —el destacado que
+la pieza ya traía— y la firma debajo. Si la lista tiene que ser de cuatro, los
+cuatro puntos los tiene que dar el brief.
+
+⚠️ **El campo claro obliga a dos cosas que ninguna otra pieza del mes necesitaba:**
+
+1. El **marco va teñido en navy**. El PNG es crema y sobre campo crema
+   desaparece **entero**: logo, filete y contorno de la píldora.
+2. La píldora del CTA tuvo que recibir una prop `tinta`: su texto era blanco fijo.
+
+**De paso se resolvió una repetición que venía de antes:** la foto de la tarjeta
+es `h-telefono`, que en la entrega V3 estaba sin usar. `l-fondo` estaba en DOS
+piezas del mes —el fondo de esta y la miniatura del resultado de búsqueda de
+`st-15-10`—, lo que contradice R-20.
+
+⭐ **Y LA COMPUERTA ATAJÓ UN BLOQUEANTE QUE ERA SUYO, NO DE LA PIEZA.** La regla
+de «foto estirada» marcó 186 filas clonadas (10 % del alto) sobre un **fondo
+plano**. Ya tenía una guarda por textura —sólo cuenta filas con contenido— pero
+la guarda usaba la **desviación estándar**, y una fila de fondo liso que cruza
+los **dos filetes verticales del marco** ya supera el umbral.
+
+Se cambió por una medida robusta: **en cuántas columnas** varía la fila, no
+cuánto. Una foto estirada varía en casi todas; un fondo plano sólo donde cruza un
+filete (4 columnas de 1080 = 0,4 %).
+
+> ⚠️ Y se **verificó que la regla no quedara ciega**: se fabricó una pieza con 500
+> filas realmente clonadas y la compuerta la marca (26 % del alto). Aflojar un QA
+> sin comprobar que sigue atrapando lo suyo es cómo un QA deja de servir.
+
+**Dónde quedó:** `qa/checks.py` (regla `filas_clonadas` endurecida),
+`OctubreV3.tsx` (`L` reescrita, `Pildora` con `tinta`), referencia versionada.
+**QA: 1 aviso**, el deliberado de la slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios; sigue arriba la captura de mapa a más resolución.
+
+---
+
 ## 2026-09-25 (8ª vuelta) — Diego Aguilar (c-20-10-2: el mapa se rotula, no se amplía)
 
 **Qué se hizo:** *"No cambies el contenido, vuelve al texto de antes, mantén el

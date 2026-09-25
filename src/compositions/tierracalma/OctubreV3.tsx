@@ -319,8 +319,10 @@ const Pildora: React.FC<{
   size?: number;
   /** Separación icono-texto. Se baja cuando el texto no cabe holgado. */
   gap?: number;
+  /** ⚠️ Sobre campo CLARO hay que pasarla: el blanco por defecto desaparece. */
+  tinta?: string;
   children: React.ReactNode;
-}> = ({caja, icono, size = 30, gap = 13, children}) => (
+}> = ({caja, icono, size = 30, gap = 13, tinta = "#fff", children}) => (
   <div
     style={{
       position: "absolute",
@@ -341,7 +343,7 @@ const Pildora: React.FC<{
         fontWeight: 500,
         fontSize: size,
         letterSpacing: "0.07em",
-        color: "#fff",
+        color: tinta,
         textTransform: "uppercase",
         whiteSpace: "nowrap",
       }}
@@ -1619,37 +1621,229 @@ const K6: React.FC = () => (
 
 // =============================================================================
 // L · 22/10 · HISTORIA · crédito preaprobado · Pilar 3
-// Diego: "globo de textos que estén derechos y centrados, quitar espacios
-// libres de los globos". Cero rotación y ajustados al texto.
 // =============================================================================
+
+/**
+ * ⭐ L · 22/10 · HISTORIA — rehecha el 25-09 sobre la referencia que pasó Diego.
+ *
+ * *"Para la st del 22-10 haz la historia según esta referencia."* Guardada en
+ * [`referencias/2026-09-25_ventana-lista.png`](../../../clients/tierra-calma/referencias/2026-09-25_ventana-lista.png).
+ *
+ * Su gramática, tal como se aplicó:
+ *   · **campo claro**, no fotografía a sangre — acá el crema de marca
+ *   · titular de **dos pesos**, alineado a la izquierda
+ *   · la imagen dentro de una **tarjeta tipo ventana**: esquinas redondeadas,
+ *     panel de color y la fila de tres puntos del cromo de un navegador
+ *   · una **insignia flotante** con ícono, montada sobre la esquina de la tarjeta
+ *   · el dato con **check en círculo**
+ *
+ * ⛔ **Lo que NO se copió: su bold para destacar.** La referencia destaca con la
+ * sans en negrita; en esta marca **destaca IvyOra en versales** y sólo hay dos
+ * roles tipográficos (§ 4, R-10/R-11). Copiar el recurso habría sido romper el
+ * sistema por imitar a otra marca.
+ *
+ * ⛔ **Y no se inventó lista.** La referencia trae cuatro beneficios en checklist;
+ * el copy de esta pieza tiene un dato. Va **una** fila con check —el destacado
+ * que la pieza ya traía— y la firma debajo. Si la lista tiene que ser de cuatro,
+ * los cuatro puntos los tiene que dar el brief.
+ *
+ * ⚠️ **El campo claro obliga a dos cosas que el resto de las piezas no necesita:**
+ *   · el marco va **teñido en navy** (`MarcoTenido`): el PNG es crema y sobre
+ *     crema desaparece — logo, filete y contorno de la píldora incluidos;
+ *   · la píldora del CTA recibe `tinta`, porque su texto es blanco por defecto.
+ *
+ * ⚠️ La foto de la tarjeta es `h-telefono`, que en la entrega V3 estaba sin usar.
+ * De paso resuelve que `l-fondo` estaba en DOS piezas del mes: el fondo de esta
+ * y la miniatura del resultado de búsqueda de `st-15-10` (R-20).
+ */
+
+/** La tarjeta-ventana: panel de color con el cromo arriba y la foto dentro. */
+const VENTANA = {x: 96, y: 760, w: 888, h: 620, aire: 28, cromo: 78};
 
 const L: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
-    <Foto src={OCT("l-fondo")} foco="50% 50%" />
-    <Degradado arriba={0.54} abajo={0.5} />
-    <Marco archivo="MARCO-ST" />
-    {/* Diego (23-09): "subir bloque de texto". Centrado a 1520 el titular caia
-        a 70 px del primer globo y dejaba 640 px de cielo vacio arriba. La banda
-        del titular termina donde EMPIEZA el globo (1020), que es el espacio que
-        de verdad le queda libre. */}
-    <Cuerpo desde={240} hasta={1020}>
-      <Modulado
-        ancho={880}
-        tramos={[{t: "¿Ya tienes tu"}, {t: "crédito preaprobado", ivy: true, salto: true}, {t: "?"}]}
-      />
-    </Cuerpo>
-    <Globo y={1020} max={780} size={36}>
-      {"Conoce las parcelas disponibles y las alternativas para avanzar en tu compra."}
-    </Globo>
-    <Globo y={1270} max={700} size={34} destacado="Parcelas desde UF 2.500">
-      Tierra Calma · Padre Hurtado
-    </Globo>
-    <Pildora caja={STORY.pill} icono={<IWsp s={28} />} size={30}>
+    <AbsoluteFill style={{backgroundColor: TC.colors.cream}} />
+
+    {/* titular de dos pesos: la sans enuncia, IvyOra destaca */}
+    <div style={{position: "absolute", left: 96, top: 350, width: 880}}>
+      <div
+        style={{
+          fontFamily: SANS,
+          fontWeight: 300,
+          fontSize: 58,
+          lineHeight: 1.1,
+          color: TC.colors.navy,
+        }}
+      >
+        ¿Ya tienes tu
+      </div>
+      <div
+        style={{
+          marginTop: 10,
+          fontFamily: SERIF,
+          fontStyle: "italic",
+          fontWeight: 500,
+          fontSize: IVY,
+          lineHeight: 1.06,
+          textTransform: "uppercase",
+          color: TC.colors.navy,
+        }}
+      >
+        CRÉDITO
+        <br />
+        PREAPROBADO?
+      </div>
+    </div>
+
+    <div
+      style={{
+        position: "absolute",
+        left: 96,
+        top: 620,
+        width: 820,
+        fontFamily: SANS,
+        fontWeight: 300,
+        fontSize: 34,
+        lineHeight: 1.34,
+        color: "rgba(11,44,73,0.82)",
+      }}
+    >
+      Conoce las parcelas disponibles y las alternativas para avanzar en tu compra.
+    </div>
+
+    {/* ⭐ LA TARJETA-VENTANA */}
+    <div
+      style={{
+        position: "absolute",
+        left: VENTANA.x,
+        top: VENTANA.y,
+        width: VENTANA.w,
+        height: VENTANA.h,
+        borderRadius: 40,
+        backgroundColor: TC.colors.green,
+        boxShadow: "0 26px 50px rgba(11,44,73,0.18)",
+      }}
+    >
+      {/* los tres puntos del cromo, a la derecha como en la referencia */}
+      <div
+        style={{
+          position: "absolute",
+          right: 44,
+          top: VENTANA.cromo / 2 - 8,
+          display: "flex",
+          gap: 13,
+        }}
+      >
+        {[0, 1, 2].map((i) => (
+          <div
+            key={i}
+            style={{width: 16, height: 16, borderRadius: 999, backgroundColor: "rgba(243,238,227,0.75)"}}
+          />
+        ))}
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: VENTANA.aire,
+          top: VENTANA.cromo,
+          width: VENTANA.w - VENTANA.aire * 2,
+          height: VENTANA.h - VENTANA.cromo - VENTANA.aire,
+          borderRadius: 26,
+          overflow: "hidden",
+        }}
+      >
+        <Img
+          src={OCT("h-telefono")}
+          style={{width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 72%", display: "block"}}
+        />
+      </div>
+    </div>
+
+    {/* la insignia flotante, montada sobre la esquina de la tarjeta */}
+    <div
+      style={{
+        position: "absolute",
+        // ⚠️ Montada SOBRE la esquina de la tarjeta pero dentro del filete: a
+        // la izquierda de la columna 96 el marco la corta.
+        left: 128,
+        top: 702,
+        width: 118,
+        height: 118,
+        borderRadius: 32,
+        backgroundColor: TC.colors.green,
+        border: `10px solid ${TC.colors.cream}`,
+        boxSizing: "border-box",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <IWsp s={52} c={TC.colors.cream} />
+    </div>
+
+    {/* el dato, con el check en círculo de la referencia */}
+    <div
+      style={{
+        position: "absolute",
+        left: 96,
+        top: 1424,
+        display: "flex",
+        alignItems: "center",
+        gap: 22,
+      }}
+    >
+      <div
+        style={{
+          width: 58,
+          height: 58,
+          borderRadius: 999,
+          backgroundColor: TC.colors.green,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+        }}
+      >
+        <ICheck s={30} c={TC.colors.cream} />
+      </div>
+      <span
+        style={{
+          fontFamily: SERIF,
+          fontStyle: "italic",
+          fontWeight: 500,
+          fontSize: 44,
+          textTransform: "uppercase",
+          color: TC.colors.navy,
+          whiteSpace: "nowrap",
+        }}
+      >
+        {sinPartir("Parcelas desde UF 2.500")}
+      </span>
+    </div>
+
+    <div
+      style={{
+        position: "absolute",
+        left: 176,
+        top: 1494,
+        fontFamily: SANS,
+        fontWeight: 300,
+        fontSize: 30,
+        letterSpacing: "0.12em",
+        textTransform: "uppercase",
+        color: "rgba(11,44,73,0.6)",
+      }}
+    >
+      {sinPartir("Tierra Calma")} · {sinPartir("Padre Hurtado")}
+    </div>
+
+    {/* ⚠️ Marco TEÑIDO: el PNG es crema y sobre campo crema desaparece entero. */}
+    <MarcoTenido archivo="MARCO-ST" color={TC.colors.navy} />
+    <Pildora caja={STORY.pill} icono={<IWsp s={28} c={TC.colors.navy} />} size={30} tinta={TC.colors.navy}>
       Conversemos por WhatsApp
     </Pildora>
   </Lienzo>
 );
-
 // =============================================================================
 // M · 29/10 · POST 4:5 · "Ese proyecto que tienes en mente" · Pilar 1
 // El post-it y la polaroid son objetos físicos, no globos: van tal cual.

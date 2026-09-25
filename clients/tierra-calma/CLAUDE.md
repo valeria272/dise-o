@@ -1505,6 +1505,43 @@ de la pieza, así que es lo primero que se mira.
 > ya lo rotula**. Pasó con el mapa; puede pasar con una fachada, un letrero o un
 > packshot.
 
+### 12 quater. ⭐ EL CAMPO CLARO OBLIGA A TEÑIR EL MARCO
+
+`st-22-10` se rehízo el 25-09 sobre una referencia de otra marca
+([`referencias/2026-09-25_ventana-lista.png`](referencias/2026-09-25_ventana-lista.png)):
+campo claro, titular de dos pesos, la imagen en **tarjeta tipo ventana** con el
+cromo de tres puntos, insignia flotante en la esquina y el dato con check.
+
+⚠️ **Es la primera pieza del mes con fondo claro, y eso rompe dos supuestos:**
+
+1. **El marco desaparece.** El PNG es crema: sobre campo crema no se ve ni el
+   logo, ni el filete, ni el contorno de la píldora. Va con `MarcoTenido` en
+   navy. *(Es la misma familia de problema que el filete sobre el mapa claro:
+   el marco es un asset bloqueado, pero su TINTA es responsabilidad de la pieza.)*
+2. **La píldora del CTA tenía el texto en blanco fijo.** Ahora acepta `tinta`.
+
+⛔ **Lo que NO se copió de la referencia: su bold para destacar.** Destaca con la
+sans en negrita; acá **destaca IvyOra en versales**, y hay sólo dos roles
+tipográficos. Copiar ese recurso es romper el sistema por imitar a otra marca —
+distinto de copiar su gramática. Tampoco se inventó la lista de cuatro puntos: el
+copy de la pieza tiene un dato, así que va una fila con check.
+
+### 12 quinquies. ⚠️ UN QA PUEDE FALLAR POR SU PROPIA GUARDA
+
+La regla de **«foto estirada»** marcó como bloqueante 186 filas clonadas sobre un
+**fondo plano**. Ya tenía guarda —sólo cuenta filas con textura— pero la guarda
+medía **desviación estándar**, y una fila de fondo liso que cruza los **dos
+filetes verticales del marco** ya la supera.
+
+Se cambió por una medida robusta: **en cuántas columnas** varía la fila, no
+cuánto. Una foto estirada varía en casi todas; un fondo plano sólo donde cruza un
+filete (4 columnas de 1080 = 0,4 %).
+
+> ⚠️ **Y se verificó que la regla no quedara ciega:** se fabricó una pieza con 500
+> filas realmente clonadas y la compuerta la marca (26 % del alto). **Aflojar un
+> QA sin comprobar que sigue atrapando lo suyo es cómo un QA deja de servir** —
+> corolario directo de § 4 sexies · 14.
+
 ### 13. ⭐ SI EL DEFECTO VUELVE, EL EJE DE LA CORRECCIÓN ESTÁ MAL
 
 El mapa de `st-12-10` se rehizo **cuatro veces** por el mismo comentario —«no se

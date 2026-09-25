@@ -1624,222 +1624,173 @@ const K6: React.FC = () => (
 // =============================================================================
 
 /**
- * ⭐ L · 22/10 · HISTORIA — rehecha el 25-09 sobre la referencia que pasó Diego.
+ * ⭐ L · 22/10 · HISTORIA — la tarjeta de vidrio.
  *
- * *"Para la st del 22-10 haz la historia según esta referencia."* Guardada en
- * [`referencias/2026-09-25_ventana-lista.png`](../../../clients/tierra-calma/referencias/2026-09-25_ventana-lista.png).
+ * ⛔ ACÁ MANDA EL BRIEF, NO LA REFERENCIA (25-09)
+ * ───────────────────────────────────────────────
+ * Diego pasó primero una referencia de otra marca —campo blanco, tarjeta tipo
+ * ventana, checklist— y después el **visual del brief** para esta pieza:
  *
- * Su gramática, tal como se aplicó:
- *   · **campo claro**, no fotografía a sangre — acá el crema de marca
- *   · titular de **dos pesos**, alineado a la izquierda
- *   · la imagen dentro de una **tarjeta tipo ventana**: esquinas redondeadas,
- *     panel de color y la fila de tres puntos del cromo de un navegador
- *   · una **insignia flotante** con ícono, montada sobre la esquina de la tarjeta
- *   · el dato con **check en círculo**
+ * > *"Interfaz tipo **glassmorphism** sobre una imagen **sutil** de Tierra Calma.
+ * > En primer plano, una **tarjeta digital** con animación de «Crédito
+ * > preaprobado», acompañada de elementos gráficos que sugieran **avance en el
+ * > proceso de compra**, manteniendo una estética inmobiliaria premium."*
  *
- * ⛔ **Lo que NO se copió: su bold para destacar.** La referencia destaca con la
- * sans en negrita; en esta marca **destaca IvyOra en versales** y sólo hay dos
- * roles tipográficos (§ 4, R-10/R-11). Copiar el recurso habría sido romper el
- * sistema por imitar a otra marca.
+ * Los dos piden cosas distintas —campo claro y opaco contra vidrio sobre
+ * fotografía— y **el brief manda el QUÉ**: la pieza vuelve a tener fotografía
+ * detrás y la tarjeta pasa a ser de vidrio. De la referencia sobrevive lo que no
+ * se contradice: la tarjeta como objeto de interfaz y el dato con check.
  *
- * ⛔ **Y no se inventó lista.** La referencia trae cuatro beneficios en checklist;
- * el copy de esta pieza tiene un dato. Va **una** fila con check —el destacado
- * que la pieza ya traía— y la firma debajo. Si la lista tiene que ser de cuatro,
- * los cuatro puntos los tiene que dar el brief.
+ * Cómo se leyó cada palabra del visual:
+ *   · **glassmorphism** → `backdropFilter` de verdad sobre la foto, no un gris
+ *     translúcido. El vidrio tiene que **desenfocar lo que tiene detrás**, si no
+ *     es un globo más;
+ *   · **imagen sutil** → `l-terraza` con velo alto: se reconoce el lugar, no
+ *     compite. Es además la foto más «inmobiliaria premium» del mes —terraza de
+ *     madera, hora dorada, el valle detrás— y en la entrega V3 estaba sin usar;
+ *   · **tarjeta digital con «Crédito preaprobado»** → estado aprobado con su
+ *     check, como el mock de WhatsApp de `p-09-10` o el de buscador de
+ *     `st-15-10`: es una interfaz ilustrada, no un dato del proyecto;
+ *   · **avance en el proceso de compra** → barra de tres tramos con el primero
+ *     cumplido.
  *
- * ⚠️ **El campo claro obliga a dos cosas que el resto de las piezas no necesita:**
- *   · el marco va **teñido en navy** (`MarcoTenido`): el PNG es crema y sobre
- *     crema desaparece — logo, filete y contorno de la píldora incluidos;
- *   · la píldora del CTA recibe `tinta`, porque su texto es blanco por defecto.
+ * ⛔ **LOS TRAMOS NO LLEVAN NOMBRE, Y ES DELIBERADO.** Ponerles «Preaprobación ·
+ * Visita · Reserva» sería inventar un proceso comercial que **no está en el
+ * brief ni en la lista blanca** (§ 2). El avance se sugiere con gráfica; si los
+ * pasos tienen que nombrarse, los tiene que dar el brief.
  *
- * ⚠️ La foto de la tarjeta es `h-telefono`, que en la entrega V3 estaba sin usar.
- * De paso resuelve que `l-fondo` estaba en DOS piezas del mes: el fondo de esta
- * y la miniatura del resultado de búsqueda de `st-15-10` (R-20).
+ * Todo el texto de la tarjeta sale de lo que la pieza ya decía: «Crédito
+ * preaprobado» del titular, «Parcelas desde UF 2.500» y la firma.
  */
 
-/** La tarjeta-ventana: panel de color con el cromo arriba y la foto dentro. */
-const VENTANA = {x: 96, y: 760, w: 888, h: 620, aire: 28, cromo: 78};
+/** La tarjeta de vidrio. */
+const VIDRIO = {x: 96, y: 700, w: 888, h: 420};
 
 const L: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
-    <AbsoluteFill style={{backgroundColor: TC.colors.cream}} />
+    {/* «imagen sutil»: se reconoce el lugar y no compite con el vidrio */}
+    <Foto src={OCT("l-terraza")} foco="50% 55%" />
+    <Degradado arriba={0.58} abajo={0.60} velo={0.32} />
+    <Marco archivo="MARCO-ST" />
 
-    {/* titular de dos pesos: la sans enuncia, IvyOra destaca */}
-    <div style={{position: "absolute", left: 96, top: 350, width: 880}}>
+    <Cuerpo desde={260} hasta={660}>
+      <Modulado
+        ancho={880}
+        tramos={[{t: "¿Ya tienes tu"}, {t: "crédito preaprobado", ivy: true, salto: true}, {t: "?"}]}
+      />
+    </Cuerpo>
+
+    {/* ⭐ LA TARJETA DE VIDRIO. `backdropFilter` es lo que la hace vidrio: toma
+        la fotografía de atrás y la desenfoca. Sin eso sería un globo gris. */}
+    <div
+      style={{
+        position: "absolute",
+        left: VIDRIO.x,
+        top: VIDRIO.y,
+        width: VIDRIO.w,
+        height: VIDRIO.h,
+        boxSizing: "border-box",
+        padding: "44px 52px",
+        borderRadius: 36,
+        backgroundColor: "rgba(243,238,227,0.13)",
+        border: "1px solid rgba(243,238,227,0.34)",
+        backdropFilter: "blur(24px) saturate(125%)",
+        WebkitBackdropFilter: "blur(24px) saturate(125%)",
+        boxShadow: "0 30px 64px rgba(6,14,20,0.34)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
+      <div
+        style={{
+          fontFamily: SANS,
+          fontWeight: 400,
+          fontSize: 25,
+          letterSpacing: "0.18em",
+          textTransform: "uppercase",
+          color: "rgba(243,238,227,0.68)",
+        }}
+      >
+        {sinPartir("Tierra Calma")} · {sinPartir("Padre Hurtado")}
+      </div>
+
+      <div style={{display: "flex", alignItems: "center", gap: 24}}>
+        <div
+          style={{
+            width: 66,
+            height: 66,
+            borderRadius: 999,
+            backgroundColor: TC.colors.cream,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}
+        >
+          <ICheck s={34} c={TC.colors.navy} />
+        </div>
+        <span
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontWeight: 500,
+            fontSize: 56,
+            lineHeight: 1,
+            textTransform: "uppercase",
+            color: TC.colors.cream,
+          }}
+        >
+          Crédito preaprobado
+        </span>
+      </div>
+
+      {/* «avance en el proceso de compra»: el primer tramo, cumplido */}
+      <div style={{display: "flex", gap: 12}}>
+        {[1, 0.22, 0.22].map((op, i) => (
+          <div
+            key={i}
+            style={{
+              flex: 1,
+              height: 8,
+              borderRadius: 999,
+              backgroundColor: `rgba(243,238,227,${op})`,
+            }}
+          />
+        ))}
+      </div>
+
       <div
         style={{
           fontFamily: SANS,
           fontWeight: 300,
-          fontSize: 58,
-          lineHeight: 1.1,
-          color: TC.colors.navy,
+          fontSize: 34,
+          color: TC.colors.cream,
         }}
       >
-        ¿Ya tienes tu
-      </div>
-      <div
-        style={{
-          marginTop: 10,
-          fontFamily: SERIF,
-          fontStyle: "italic",
-          fontWeight: 500,
-          fontSize: IVY,
-          lineHeight: 1.06,
-          textTransform: "uppercase",
-          color: TC.colors.navy,
-        }}
-      >
-        CRÉDITO
-        <br />
-        PREAPROBADO?
+        {sinPartir("Parcelas desde UF 2.500")}
       </div>
     </div>
 
     <div
       style={{
         position: "absolute",
-        left: 96,
-        top: 620,
-        width: 820,
+        left: 0,
+        right: 0,
+        top: 1190,
+        padding: "0 150px",
+        textAlign: "center",
         fontFamily: SANS,
         fontWeight: 300,
         fontSize: 34,
         lineHeight: 1.34,
-        color: "rgba(11,44,73,0.82)",
+        color: TC.colors.cream,
       }}
     >
       Conoce las parcelas disponibles y las alternativas para avanzar en tu compra.
     </div>
 
-    {/* ⭐ LA TARJETA-VENTANA */}
-    <div
-      style={{
-        position: "absolute",
-        left: VENTANA.x,
-        top: VENTANA.y,
-        width: VENTANA.w,
-        height: VENTANA.h,
-        borderRadius: 40,
-        backgroundColor: TC.colors.green,
-        boxShadow: "0 26px 50px rgba(11,44,73,0.18)",
-      }}
-    >
-      {/* los tres puntos del cromo, a la derecha como en la referencia */}
-      <div
-        style={{
-          position: "absolute",
-          right: 44,
-          top: VENTANA.cromo / 2 - 8,
-          display: "flex",
-          gap: 13,
-        }}
-      >
-        {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            style={{width: 16, height: 16, borderRadius: 999, backgroundColor: "rgba(243,238,227,0.75)"}}
-          />
-        ))}
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          left: VENTANA.aire,
-          top: VENTANA.cromo,
-          width: VENTANA.w - VENTANA.aire * 2,
-          height: VENTANA.h - VENTANA.cromo - VENTANA.aire,
-          borderRadius: 26,
-          overflow: "hidden",
-        }}
-      >
-        <Img
-          src={OCT("h-telefono")}
-          style={{width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 72%", display: "block"}}
-        />
-      </div>
-    </div>
-
-    {/* la insignia flotante, montada sobre la esquina de la tarjeta */}
-    <div
-      style={{
-        position: "absolute",
-        // ⚠️ Montada SOBRE la esquina de la tarjeta pero dentro del filete: a
-        // la izquierda de la columna 96 el marco la corta.
-        left: 128,
-        top: 702,
-        width: 118,
-        height: 118,
-        borderRadius: 32,
-        backgroundColor: TC.colors.green,
-        border: `10px solid ${TC.colors.cream}`,
-        boxSizing: "border-box",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <IWsp s={52} c={TC.colors.cream} />
-    </div>
-
-    {/* el dato, con el check en círculo de la referencia */}
-    <div
-      style={{
-        position: "absolute",
-        left: 96,
-        top: 1424,
-        display: "flex",
-        alignItems: "center",
-        gap: 22,
-      }}
-    >
-      <div
-        style={{
-          width: 58,
-          height: 58,
-          borderRadius: 999,
-          backgroundColor: TC.colors.green,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexShrink: 0,
-        }}
-      >
-        <ICheck s={30} c={TC.colors.cream} />
-      </div>
-      <span
-        style={{
-          fontFamily: SERIF,
-          fontStyle: "italic",
-          fontWeight: 500,
-          fontSize: 44,
-          textTransform: "uppercase",
-          color: TC.colors.navy,
-          whiteSpace: "nowrap",
-        }}
-      >
-        {sinPartir("Parcelas desde UF 2.500")}
-      </span>
-    </div>
-
-    <div
-      style={{
-        position: "absolute",
-        left: 176,
-        top: 1494,
-        fontFamily: SANS,
-        fontWeight: 300,
-        fontSize: 30,
-        letterSpacing: "0.12em",
-        textTransform: "uppercase",
-        color: "rgba(11,44,73,0.6)",
-      }}
-    >
-      {sinPartir("Tierra Calma")} · {sinPartir("Padre Hurtado")}
-    </div>
-
-    {/* ⚠️ Marco TEÑIDO: el PNG es crema y sobre campo crema desaparece entero. */}
-    <MarcoTenido archivo="MARCO-ST" color={TC.colors.navy} />
-    <Pildora caja={STORY.pill} icono={<IWsp s={28} c={TC.colors.navy} />} size={30} tinta={TC.colors.navy}>
+    <Pildora caja={STORY.pill} icono={<IWsp s={28} />} size={30}>
       Conversemos por WhatsApp
     </Pildora>
   </Lienzo>

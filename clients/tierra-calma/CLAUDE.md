@@ -1505,7 +1505,44 @@ de la pieza, así que es lo primero que se mira.
 > ya lo rotula**. Pasó con el mapa; puede pasar con una fachada, un letrero o un
 > packshot.
 
-### 12 quater. ⭐ EL CAMPO CLARO OBLIGA A TEÑIR EL MARCO
+### 12 quater. ⭐ CUANDO LA REFERENCIA Y EL BRIEF SE CONTRADICEN, MANDA EL BRIEF
+
+El 25-09, para `st-22-10`, llegaron **dos indicaciones incompatibles**: primero
+una referencia de otra marca —campo blanco opaco, tarjeta tipo ventana,
+checklist— y después el **visual del brief** de la pieza:
+
+> *"Interfaz tipo **glassmorphism** sobre una imagen **sutil** de Tierra Calma.
+> En primer plano, una **tarjeta digital** con animación de «Crédito
+> preaprobado», acompañada de elementos gráficos que sugieran **avance en el
+> proceso de compra**, manteniendo una estética inmobiliaria premium."*
+
+Campo claro y opaco **contra** vidrio sobre fotografía: no conviven. **Manda el
+brief**, que es la regla madre del estudio —el brief dice el QUÉ—. De la
+referencia sobrevive lo que no se contradice: la tarjeta como objeto de interfaz
+y el dato con check.
+
+⚠️ **Y cada palabra del visual se leyó como una instrucción, no como un adjetivo:**
+
+| Palabra del brief | Cómo se ejecutó |
+|---|---|
+| **glassmorphism** | `backdropFilter` de verdad, que **desenfoca la foto de atrás**. Un gris translúcido no es vidrio: es un globo más |
+| **imagen sutil** | velo alto sobre `l-terraza`: se reconoce el lugar, no compite |
+| **estética inmobiliaria premium** | la foto más premium del mes —terraza de madera, hora dorada, el valle detrás— que además estaba sin usar en la V3 |
+| **tarjeta con «Crédito preaprobado»** | estado aprobado con su check, como el mock de WhatsApp de `p-09-10` o el del buscador de `st-15-10`: interfaz ilustrada, no un dato del proyecto |
+| **avance en el proceso de compra** | barra de tres tramos con el primero cumplido |
+
+⛔ **LOS TRAMOS NO LLEVAN NOMBRE, Y ES DELIBERADO.** Ponerles «Preaprobación ·
+Visita · Reserva» sería inventar un proceso comercial que no está en el brief ni
+en la lista blanca. **El avance se sugiere con gráfica.** Si los pasos tienen que
+nombrarse, los tiene que dar el brief.
+
+> 💡 Todo el texto de la tarjeta sale de lo que la pieza ya decía: «Crédito
+> preaprobado» del titular, «Parcelas desde UF 2.500» y la firma.
+
+🗄️ **La versión de campo claro vivió una hora** y dejó dos cosas aprovechables,
+anotadas abajo por si vuelve a hacer falta un fondo claro.
+
+### 12 quater bis. ⭐ EL CAMPO CLARO OBLIGA A TEÑIR EL MARCO
 
 `st-22-10` se rehízo el 25-09 sobre una referencia de otra marca
 ([`referencias/2026-09-25_ventana-lista.png`](referencias/2026-09-25_ventana-lista.png)):

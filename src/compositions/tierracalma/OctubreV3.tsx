@@ -1663,25 +1663,121 @@ const K6: React.FC = () => (
  * preaprobado» del titular, «Parcelas desde UF 2.500» y la firma.
  */
 
-/** La tarjeta de vidrio. */
-const VIDRIO = {x: 96, y: 700, w: 888, h: 420};
+/** El celular que trae el mensaje, y la tarjeta de vidrio que lo cruza delante. */
+const FONO = {x: 340, y: 600, w: 400, h: 620, borde: 13};
+const VIDRIO = {x: 96, y: 1000, w: 888, h: 300};
 
 const L: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
-    {/* «imagen sutil»: se reconoce el lugar y no compite con el vidrio */}
+    {/* «imagen sutil»: se reconoce el lugar y no compite con la interfaz */}
     <Foto src={OCT("l-terraza")} foco="50% 55%" />
     <Degradado arriba={0.58} abajo={0.60} velo={0.32} />
     <Marco archivo="MARCO-ST" />
 
-    <Cuerpo desde={260} hasta={660}>
+    <Cuerpo desde={250} hasta={580}>
       <Modulado
         ancho={880}
         tramos={[{t: "¿Ya tienes tu"}, {t: "crédito preaprobado", ivy: true, salto: true}, {t: "?"}]}
       />
     </Cuerpo>
 
-    {/* ⭐ LA TARJETA DE VIDRIO. `backdropFilter` es lo que la hace vidrio: toma
-        la fotografía de atrás y la desenfoca. Sin eso sería un globo gris. */}
+    {/* ⭐ EL CELULAR, DETRÁS. Diego, 25-09: *"agrégale ese mensaje de «crédito
+        preaprobado» [en] un celular atrás"*. El aparato se dibuja por código,
+        como el mock de WhatsApp de `p-09-10` y el del buscador de `st-15-10`:
+        es una interfaz ilustrada, y los mocks de esta marca se dibujan.
+        ⚠️ Va DERECHO, sin inclinar: las tarjetas inclinadas están rechazadas
+        (manual § lo que se rechaza, X-09). */}
+    <div
+      style={{
+        position: "absolute",
+        left: FONO.x,
+        top: FONO.y,
+        width: FONO.w,
+        height: FONO.h,
+        boxSizing: "border-box",
+        padding: FONO.borde,
+        borderRadius: 54,
+        backgroundColor: "#081B2E",
+        border: "1px solid rgba(243,238,227,0.30)",
+        boxShadow: "0 34px 70px rgba(6,14,20,0.46)",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          borderRadius: 42,
+          // ⚠️ Pantalla OSCURA, no crema. Con la pantalla clara, el
+          // `backdropFilter` de la tarjeta de vidrio tomaba ese blanco y lo
+          // extendía en un lavado que se comía la firma. El vidrio muestra lo
+          // que tiene detrás: si detrás hay un bloque claro, el vidrio se
+          // ensucia. Medido a ojo en el render y corregido ahí mismo.
+          backgroundColor: "#0C2033",
+          overflow: "hidden",
+          paddingTop: 34,
+        }}
+      >
+        {/* el auricular, que es lo que hace que se lea «celular» y no «tarjeta» */}
+        <div
+          style={{
+            width: 96,
+            height: 9,
+            borderRadius: 999,
+            backgroundColor: "rgba(243,238,227,0.28)",
+            margin: "0 auto 30px",
+          }}
+        />
+        {/* ⭐ EL MENSAJE, en la pantalla */}
+        <div style={{margin: "0 22px", padding: "26px 24px", borderRadius: 26, backgroundColor: "#FFFFFF", boxShadow: "0 10px 24px rgba(11,44,73,0.10)"}}>
+          <div
+            style={{
+              fontFamily: SANS,
+              fontWeight: 400,
+              fontSize: 21,
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "rgba(11,44,73,0.5)",
+              marginBottom: 16,
+            }}
+          >
+            Tu banco
+          </div>
+          <div style={{display: "flex", alignItems: "center", gap: 16}}>
+            <div
+              style={{
+                width: 52,
+                height: 52,
+                borderRadius: 999,
+                backgroundColor: TC.colors.green,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+              }}
+            >
+              <ICheck s={28} c={TC.colors.cream} />
+            </div>
+            <span
+              style={{
+                fontFamily: SANS,
+                fontWeight: 600,
+                fontSize: 31,
+                lineHeight: 1.12,
+                color: TC.colors.navy,
+              }}
+            >
+              Crédito
+              <br />
+              preaprobado
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* ⭐ LA TARJETA DE VIDRIO, CRUZANDO POR DELANTE. `backdropFilter` es lo que
+        la hace vidrio: desenfoca la mitad inferior del celular y la fotografía.
+        Sin eso sería un globo gris tapando un teléfono. */}
     <div
       style={{
         position: "absolute",
@@ -1690,8 +1786,8 @@ const L: React.FC = () => (
         width: VIDRIO.w,
         height: VIDRIO.h,
         boxSizing: "border-box",
-        padding: "44px 52px",
-        borderRadius: 36,
+        padding: "36px 48px",
+        borderRadius: 34,
         backgroundColor: "rgba(243,238,227,0.13)",
         border: "1px solid rgba(243,238,227,0.34)",
         backdropFilter: "blur(24px) saturate(125%)",
@@ -1715,59 +1811,17 @@ const L: React.FC = () => (
         {sinPartir("Tierra Calma")} · {sinPartir("Padre Hurtado")}
       </div>
 
-      <div style={{display: "flex", alignItems: "center", gap: 24}}>
-        <div
-          style={{
-            width: 66,
-            height: 66,
-            borderRadius: 999,
-            backgroundColor: TC.colors.cream,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-          }}
-        >
-          <ICheck s={34} c={TC.colors.navy} />
-        </div>
-        <span
-          style={{
-            fontFamily: SERIF,
-            fontStyle: "italic",
-            fontWeight: 500,
-            fontSize: 56,
-            lineHeight: 1,
-            textTransform: "uppercase",
-            color: TC.colors.cream,
-          }}
-        >
-          Crédito preaprobado
-        </span>
-      </div>
-
       {/* «avance en el proceso de compra»: el primer tramo, cumplido */}
       <div style={{display: "flex", gap: 12}}>
         {[1, 0.22, 0.22].map((op, i) => (
           <div
             key={i}
-            style={{
-              flex: 1,
-              height: 8,
-              borderRadius: 999,
-              backgroundColor: `rgba(243,238,227,${op})`,
-            }}
+            style={{flex: 1, height: 8, borderRadius: 999, backgroundColor: `rgba(243,238,227,${op})`}}
           />
         ))}
       </div>
 
-      <div
-        style={{
-          fontFamily: SANS,
-          fontWeight: 300,
-          fontSize: 34,
-          color: TC.colors.cream,
-        }}
-      >
+      <div style={{fontFamily: SANS, fontWeight: 300, fontSize: 34, color: TC.colors.cream}}>
         {sinPartir("Parcelas desde UF 2.500")}
       </div>
     </div>
@@ -1777,7 +1831,7 @@ const L: React.FC = () => (
         position: "absolute",
         left: 0,
         right: 0,
-        top: 1190,
+        top: 1350,
         padding: "0 150px",
         textAlign: "center",
         fontFamily: SANS,
@@ -1795,6 +1849,7 @@ const L: React.FC = () => (
     </Pildora>
   </Lienzo>
 );
+
 // =============================================================================
 // M · 29/10 · POST 4:5 · "Ese proyecto que tienes en mente" · Pilar 1
 // El post-it y la polaroid son objetos físicos, no globos: van tal cual.

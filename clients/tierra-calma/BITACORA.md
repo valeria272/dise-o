@@ -5,6 +5,43 @@
 
 ---
 
+## 2026-09-25 (11ª vuelta) — Diego Aguilar (st-22-10: el mensaje en un celular)
+
+**Qué se hizo:** *"Está casi listo, agrégale ese mensaje de «crédito preaprobado»
+[en] un celular atrás, con este mensaje de crédito."*
+
+El mensaje sale de la tarjeta de vidrio y pasa a la **pantalla de un celular**,
+que emerge por detrás de ella. La tarjeta de vidrio se queda con la firma, la
+barra de avance y el dato.
+
+**El celular se dibuja por código**, como el mock de WhatsApp de `p-09-10` y el
+del buscador de `st-15-10`: en esta marca las interfaces ilustradas se dibujan,
+no se fotografían. Y va **derecho**, sin inclinar (X-09 rechaza las tarjetas
+inclinadas).
+
+⚠️ **Y ahí apareció algo que sólo se ve en el render: el vidrio muestra lo que
+tiene detrás.** Con la pantalla del celular en crema, el `backdropFilter` de la
+tarjeta tomaba ese blanco y lo extendía en un **lavado** que se comía la firma
+«Tierra Calma · Padre Hurtado». La pantalla pasó a oscuro (`#0C2033`) y el vidrio
+volvió a leerse.
+
+> 💡 La regla que deja: **un panel de vidrio no se diseña solo, se diseña con lo
+> que va a quedar detrás.** Cambiar el fondo cambia el panel. Es el mismo tipo de
+> dependencia que el marco teñido: el elemento se ve distinto según lo que cruza.
+
+**Lo que dice la pantalla:** «Tu banco» y «Crédito preaprobado» — el escenario que
+el propio titular plantea. No nombra ningún banco ni promete nada del proyecto.
+
+**Dónde quedó:** `OctubreV3.tsx`, bloque `L` (`FONO` y `VIDRIO`). **QA: 1 aviso**,
+el deliberado de la slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios; sigue en pie si los tramos del avance tienen que
+nombrarse, y la captura de mapa a más resolución.
+
+---
+
 ## 2026-09-25 (10ª vuelta) — Diego Aguilar (st-22-10: el visual del brief manda)
 
 **Qué se hizo:** llegó el **visual del brief** para esta historia, y contradice la

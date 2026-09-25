@@ -1542,6 +1542,13 @@ nombrarse, los tiene que dar el brief.
 🗄️ **La versión de campo claro vivió una hora** y dejó dos cosas aprovechables,
 anotadas abajo por si vuelve a hacer falta un fondo claro.
 
+> ⚠️ **Y el vidrio se diseña CON lo que queda detrás.** Al poner el mensaje en un
+> celular (25-09, segunda vuelta del visual), la pantalla en crema hacía que el
+> `backdropFilter` extendiera ese blanco en un **lavado** que se comía la firma
+> de la tarjeta. La pantalla pasó a oscuro y se resolvió. **Un panel de vidrio no
+> se diseña solo:** cambiar el fondo cambia el panel — la misma dependencia que
+> tiene el marco teñido con el campo que cruza.
+
 ### 12 quater bis. ⭐ EL CAMPO CLARO OBLIGA A TEÑIR EL MARCO
 
 `st-22-10` se rehízo el 25-09 sobre una referencia de otra marca

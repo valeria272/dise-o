@@ -79,6 +79,11 @@ MB. Ahora 360×640 y 20 fps → 23 y 30 MB, en el rango de los de DT ya aprobado
 4. **En el complejo, gente de traje o uniforme en cuadro = trabajadores.** Sólo
    invitados
 
+**Qué sigue:** esperar el visto bueno de Eli sobre la ronda (página
+https://claude.ai/artifact/1sDwKudS7UatYArHkUyjsR) y releer la grilla viva: las 8
+piezas en CAMBIADO (ST 7, 12, 16, 17 · feed 5, 7, 12, 16) pueden pasar a OK. Para la
+12-10 (pulpo) hay foto en «Cartas anteriores» (Quotidien-153).
+
 **Abierto:**
 - Que Eli revise la grilla (página) y lo subido. ⚠️ Se reemplazó por el mismo
   nombre: si la vista previa de Drive muestra la versión vieja, es caché

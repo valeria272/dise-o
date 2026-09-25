@@ -140,6 +140,10 @@ public/assets/**
 # cuesta una sesión entera de medición. Sin ellos otro diseñador no rehace la
 # entrega — se cae al recorte viejo, que era el vaso CHICO para los tres tamaños.
 !public/assets/hilton/between/togo-sep2026/togo-vaso-*-nobg.png
+# BETWEEN · carta (ejercicio 25-09-2026, 10 MB): QR de la carta actual, ilustraciones y
+# texturas IA, y los stickers de croissant y latte. Los scripts between-carta-opciones*.py
+# no corren sin esto, y es la base desde la que se parte la carta oficial.
+!public/assets/hilton/between/carta/**
 !public/assets/hilton/piso18/*.jpg
 !public/assets/hilton/piso18/*.png
 # Y el clip del salon vacio (8 MB): sale de IMG_4177.MOV, que pesa 115 MB y vive

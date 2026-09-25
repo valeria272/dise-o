@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-09-25** · Cosechas: **2**
+> Última cosecha: **2026-09-25** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -133,6 +133,9 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - No hay ninguna pieza **rechazada** en disco: los topes del QA no prueban que atrapen lo malo → estudio.
 
 ## 9. Registro de cosechas
+
+### 2026-09-25 — Claude con Eli · `/arranque` de la máquina
+- sin aprendizajes nuevos: la sesión fue sólo diagnóstico, sin piezas ni feedback. Anotado en la bitácora el `09-sunset-canva.jpg` roto (no se usa).
 
 ### 2026-09-25 — Claude con Eli · octubre: ronda del cliente en la 14 y ronda de Eli sobre lo subido
 - nuevo **R-37** (promo con aprobada → se hace sobre la aprobada), **R-38** (sólo Raleway + Bell de acento), **R-39** (sin trabajadores del hotel), **R-40** (foto sin sobregradar; shooting de la carta enero 2026), **R-41** (alternativas del sticker literales, sin ✅).

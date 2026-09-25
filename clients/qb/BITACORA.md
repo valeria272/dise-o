@@ -1,5 +1,16 @@
 # QB Restaurant — bitácora
 
+## 2026-09-25 — Elisabet Soto «Eli» (con Claude) · `/arranque`: revisión de la máquina Windows
+
+**Qué se hizo:** sólo diagnóstico de la máquina (todo en verde: Node, Chrome, llavero,
+Magnific, Drive por conector, memoria sembrada, TypeScript limpio). No se tocó ninguna pieza.
+**Dónde quedó:** el doctor marca **un archivo roto**: `raw/hilton/qb/oct-ia/09-sunset-canva.jpg`
+pesa 17 bytes y adentro dice «Signature invalid» (enlace firmado de Canva vencido).
+Ningún script ni composición lo usa: la ST 09-10 Sunset ya va con la foto real «QB 13 oct» n°60.
+**Qué sigue:** nada por este lado. Si alguna vez se vuelve a la versión IA del Sunset,
+re-exportarla desde Canva; si no, se puede borrar ese archivo.
+**Abierto:** nada.
+
 ## 2026-09-25 — Elisabet Soto «Eli» (con Claude) · octubre: ronda del cliente en la 14, material real en la 09/23/26, y a Drive
 
 **Qué se hizo:**

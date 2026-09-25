@@ -298,7 +298,7 @@
     "Acceso a la biblioteca de bottle shots",
     "Confirmar si la ADVERTENCIA tiene tamaño mínimo legal exigido"
   ],
-  "actualizado": "2026-08-25",
+  "actualizado": "2026-09-25",
   "bottle_shots_biblioteca": {
     "estructura": [
       "MORANDE/Bottle Shot/NUEVA IMAGEN - NEW IMAGE/<LÍNEA>/<CEPA>/<archivo>.png",
@@ -352,11 +352,24 @@
     "ojo": "Si la botella se genera con IA, el sello que venga en la imagen TAMPOCO es el oficial: hay que taparlo con el archivo real."
   },
   "descuento": {
-    "forma": "DISCO, no recuadro. Coni, 24-09-2026.",
-    "interior": "«50%» en UNA línea, grande y centrado; «OFF» debajo, centrado, en peso fino y con las letras separadas.",
-    "tipografias": "Raleway Black para el porcentaje —la que el propio CYBER_CAVA.ai usa para sus porcentajes— y Avenir Next Ultra Light para el OFF.",
-    "color": "El naranja de marca sobre fondos oscuros; el negro del Cyber #1D1D1B cuando el fondo es naranja, porque ahí el naranja desaparece.",
-    "regla": "⚠️ El disco NO puede tocar ningún texto. Se comprueba por programa en cada render contra el titular, el nombre del vino y los precios."
+    "_vigente_desde": "2026-09-25",
+    "forma": "BLOQUE EDITORIAL centrado, NO un disco. Lineamiento que Coni ajusto a mano en Illustrator el 25-09-2026.",
+    "orden": [
+      "«50% OFF» Butler Light versales",
+      "«Llegó el Cyber.» Authentic Signature",
+      "filete — ✦ — filete en dorado",
+      "la bajada en Butler Regular versales muy espaciadas, DOS lineas"
+    ],
+    "cuerpos_y_tracking": {
+      "descuento": "Butler Light 310 · -0,006 em",
+      "script": "Authentic Signature 240 · +0,076 em",
+      "bajada": "Butler Regular 94 · +0,245 em"
+    },
+    "aires": "de TINTA a tinta, en unidades de la versal del descuento (223): descuento->script 0,229 · script->filete 0,135 · filete->bajada 0,368 · entre lineas 0,152. Radio de la estrella 0,074.",
+    "corte_de_la_bajada": "el que deja las dos lineas mas parejas — no se escribe a mano",
+    "regla": "⚠️ El cuerpo se resuelve contra el ANCHO Y EL ALTO de la caja de tinta, y la tinta se mide RENDERIZANDO, no con getbbox. Con el ancho solo, el script sale 58 puntos de mas y el bloque se come la capsula de la botella.",
+    "por_escena": "El estilo viaja entero; la escala y la tinta las manda cada escena. Sobre fondo naranja va el negro del Cyber #1D1D1B (5,8:1), nunca blanco (2,76:1) ni dorado (1,15:1).",
+    "_reemplaza": "El DISCO del 24-09-2026. Queda en el historial del manual §11 bis; no se vuelve a usar sin que Coni lo pida."
   },
   "tipografia_ojo": "⛔ LAS FUENTES QUE SE SACAN DE UN .ai SON SUBCONJUNTOS. Traen el mapa de caracteres COMPLETO pero muchos glifos con los CONTORNOS VACÍOS: se les pide una letra y devuelven un hueco, sin error. De las nueve Raleway del editable del Cyber sólo la Black está entera, porque es la que esa pieza usó. Con Bebas pasa igual y por eso hay que fundir dos editables. SIEMPRE renderizar el texto y mirarlo antes de dar una fuente por buena."
 }

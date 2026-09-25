@@ -1,3 +1,49 @@
+## 2026-09-25 — Constanza Lizana «Coni» (con Claude)
+
+**Qué se hizo:** Cuatro rondas sobre el Cyber de octubre del 7Colores Limited
+Edition Carmenere. Entró un **estilo editorial nuevo para el llamado de
+descuento**, traído por Coni desde una referencia: sale el disco del 24-09 y
+entra un bloque centrado —«50% OFF» en Butler Light · «Llegó el Cyber.» en
+Authentic Signature · filete con ✦ · la bajada en versales muy espaciadas—, con
+el nombre y los precios justificados a la derecha en Bebas Neue Pro Bold. Coni
+ajustó el bloque **a mano en Illustrator** y ese archivo se midió para extraer el
+lineamiento exacto (cuerpos, trackings y aires), que después se llevó a las tres
+propuestas. Se entregó además el **editable**: `.svg` y `.ai` con el texto vivo.
+
+**Dónde quedó:** `out/cava/prueba1/` — `CYBER_CAVA_CARMENERE_PROP-{A,B,C}.png`,
+`…PRUEBA1.png`, `…PRUEBA1.svg` y `…PRUEBA1.ai` (36 MB). Todo subido a
+`CAVA › DISEÑO ia › PRUEBA`, reemplazando los mismos fileId, así que los enlaces
+que ya circularon siguen sirviendo. Generadores: `scripts/cava-cyber-prueba1.py`
+(la pieza A suelta, con registro de geometría), `scripts/cava-cyber-lineamiento.py`
+(las tres) y `scripts/cava-cyber-prueba1-editable.py` (el editable). El
+lineamiento quedó escrito en el manual §11 bis y reemplazó el `descuento` de
+`marca.json`, que describía el disco. QA `--marca cava`: pasa.
+
+**Qué sigue:** **Las etiquetas.** Coni pidió expresamente que la etiqueta se vea
+legible, realista y en alta calidad, y hoy NO lo está en ninguna de las tres: el
+«7COLORES» sobrevive pero «LIMITED EDITION», «Carménère», «D.O. VALLE DEL MAULE»
+y «PRODUCTO DE CHILE» son garabatos — Magnific la redibujó al integrar la botella
+en la escena. El packshot oficial SÍ está en el repo
+(`public/assets/cava/bottles/2x/7colores-limited-carmenere.png`, 2000×2000 con
+alfa); falta componerlo sobre la botella de cada escena con su perspectiva y su
+luz. Se intentó dos veces por vías automáticas (`cava-encaja-packshot.py` y
+`cava-etiqueta-oficial.py`) y ninguna dio un resultado limpio: **hay que
+abordarlo de frente, no parcheando.**
+
+**Abierto:**
+1. ⛔ **El precio sigue inventado.** Las cuatro piezas llevan `$9.245 / $18.490`
+   y no existe brief de octubre de CAVA — el único es el de septiembre, sin tocar
+   desde el 14-09. Hay que pedirle el precio real a la ejecutiva; no va a
+   aparecer solo.
+2. ⛔ **La propuesta B no tiene solución en su posición fija**, y está medido: el
+   nombre y los precios caen sobre la sombra proyectada de la botella, cuya
+   luminancia intermedia no contrasta con nada (blanco 2,82:1 · negro 1,63:1).
+   Las salidas son subir el bloque de producto al naranja limpio (ahí el negro da
+   5,9:1) o dejar B fuera. **Decisión de Coni**, ya informada.
+3. Faltan las **fechas** del Cyber de octubre.
+4. Los 5 PDF del kit digital siguen sin usar.
+
+
 ## 2026-09-24 — Coni (con Claude) · CYBER: ocho rondas sobre las cuatro piezas
 
 **Qué se hizo:** día entero de correcciones sobre las tres propuestas y la pieza

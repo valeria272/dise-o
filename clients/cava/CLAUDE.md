@@ -511,6 +511,111 @@ pasa a primaveral: «REFERENCIA KV SEPTIEMBRE PERO SIN DETALLES PATRIOS».
 
 ---
 
+## 11 bis. ⭐⭐⭐ EL BLOQUE EDITORIAL DEL DESCUENTO — lineamiento de Coni (25-09-2026)
+
+> **Manda sobre `marca.json › descuento`, que describía un DISCO.** El disco fue
+> la forma del 24-09; el 25-09 Coni pidió otra cosa, la ajustó ella misma en
+> Illustrator y pidió llevarla a las tres propuestas. **Lo que sigue es lo
+> vigente para el llamado de campaña.**
+
+Salió de una referencia que trajo Coni (una pieza de e-commerce de decoración) y
+de ahí de su propio ajuste a mano. El bloque son **cinco elementos, en este
+orden**, centrados sobre un eje:
+
+    «50% OFF»            Butler Light, versales
+    «Llegó el Cyber.»    Authentic Signature
+    filete — ✦ — filete  en el dorado de marca
+    la bajada            Butler Regular, versales muy espaciadas, DOS líneas
+
+⭐ **Y NO ES CASUALIDAD QUE SEA BUTLER.** El §11 de este manual ya decía que el
+layout «Titular protagonista» del mailing de agosto (`CAVA_AGO_BRIEF3`) lleva
+**el `50%off` gigante en Butler**. O sea que la referencia que trajo Coni y lo
+que CAVA ya tenía aprobado son el mismo recurso.
+
+⛔ **El nombre del vino y los precios NO entran en el bloque**: siguen en SANS
+BOLD (Bebas Neue Pro) y justificados a la derecha, porque la regla del §11 sigue
+en pie — «la serif es sólo para el titular de campaña».
+
+### Los números, medidos sobre el .ai que ajustó Coni
+
+Su export viene a 2,0836× la pieza. Aislando la tinta —y el oro por COLOR,
+porque el script es dorado y sus trazos finos se caen de un umbral de luz— las
+cajas, en coordenadas de una pieza de 2250×4000:
+
+| elemento | y | caja de tinta |
+|---|---|---|
+| `50% OFF` | 566..789 | 1234 × 223 |
+| `Llegó el Cyber.` | 840..1070 | 1276 × 230 |
+| filete + ✦ | 1100..1133 | 1151 × 33 |
+| `TU CARMENERE, A` | 1215..1293 | 1160 × 78 |
+| `MITAD DE PRECIO.` | 1327..1394 | 1183 × 67 |
+
+De ahí se despeja, por bisección sobre la fuente real:
+
+| | cuerpo | tracking |
+|---|---|---|
+| **50% OFF** | **310** | **−0,006 em** |
+| **Llegó el Cyber.** | **240** | **+0,076 em** |
+| **bajada** | **94** | **+0,245 em** |
+
+Los aires van de TINTA a TINTA, en unidades de la versal del descuento (223):
+descuento→script **0,229** · script→filete **0,135** · filete→bajada **0,368** ·
+entre las dos líneas de la bajada **0,152**. Radio de la ✦: **0,074**.
+
+⚠️ **HAY QUE RESOLVER CONTRA EL ANCHO Y EL ALTO, NO SÓLO EL ANCHO.** Ajustando
+sólo el ancho, el script da cuerpo 298 — y a ese cuerpo su tinta mide 285 de
+alto contra los 230 de Coni: **ella lo trackeó**, más ancho sin más alto. Con
+298 el bloque cerraba en y=1479, o sea **a 4 px de la cápsula de la botella**;
+con 240/+0,076 cierra en 1395 contra su 1394.
+
+⚠️ **Y LA TINTA SE MIDE RENDERIZANDO, no con `getbbox`.** En una script los
+extremos son trazos finísimos: a cuerpo 298 `getbbox` dice 307 de alto donde la
+tinta pintada mide 285. Las medidas de una pieza salen de mirar píxeles, así que
+hay que compararlas contra píxeles.
+
+### ⭐ El corte de la bajada no se escribe a mano
+
+Se elige **el que deja las dos líneas más parejas**. Sobre «TU CARMENERE, A
+MITAD DE PRECIO.» eso da `TU CARMENERE, A` / `MITAD DE PRECIO.` (1160 y 1183 px,
+a 23 px una de otra) — exactamente donde cortó ella. Así el criterio viaja solo
+a una pieza con otro copy.
+
+### ⛔⛔ EL LINEAMIENTO NO CABE EN CUALQUIER ESCENA, Y ESO SE MIDE ANTES
+
+El bloque pide **una franja libre de borde a borde bajo el logo**, y eso depende
+de la escena. Medido el sujeto fila a fila y el contraste del blanco en las tres
+propuestas del Cyber de octubre:
+
+| escena | franja libre | blanco | veredicto |
+|---|---|---|---|
+| **A «rayo»** | y 400..1300 de borde a borde | **14:1** | entra tal cual, al 100 % |
+| **C «descorche»** | las manos bajan por la derecha; libre a la izquierda hasta x≈1100 | 9–20:1 | el bloque va a la izquierda, al **78 %** |
+| **B «mano»** | el sujeto cruza todo bajo y=620 | **2,76:1** ⛔ | ver abajo |
+
+**El estilo viaja entero; la ESCALA y la TINTA las manda cada escena**, porque
+la otra orden de Coni es que la imagen no se toca.
+
+⛔ **B: fondo naranja `#EB6E24`.** El blanco da 2,76:1 y el dorado **1,15:1** —
+ilegibles. La tinta es el **negro del Cyber `#1D1D1B`** (5,8:1), que no es un
+invento: `marca.json` ya lo declara para este caso exacto. El bloque queda al
+**59 %**.
+
+⛔⛔ **Y EN B EL BLOQUE DE PRODUCTO NO TIENE SOLUCIÓN EN SU POSICIÓN FIJA.** El
+nombre y los precios caen sobre la **sombra proyectada de la botella**, cuya
+luminancia intermedia (~90) no contrasta con nada: el blanco da **2,82:1** y el
+negro **1,63:1**. No es que haya que elegir mejor la tinta — es que no existe
+una que funcione ahí. Las salidas son subir el bloque de producto al naranja
+limpio (sobre y≈1900 el negro da 5,9:1) o dejar la escena fuera. **Decisión de
+Coni, informada el 25-09.**
+
+### Dónde vive
+
+| qué | dónde |
+|---|---|
+| las tres propuestas con el lineamiento | `scripts/cava-cyber-lineamiento.py` |
+| la pieza A suelta, con su registro de geometría | `scripts/cava-cyber-prueba1.py` |
+| el editable `.svg` → `.ai` | `scripts/cava-cyber-prueba1-editable.py` |
+
 ## 12. Cómo producirlas
 
 ```bash

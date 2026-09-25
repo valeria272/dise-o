@@ -2794,6 +2794,47 @@ máster aprobado de esta cuenta es **2813**. La historia sí va a 2,0833 (4000 e
 
 ---
 
+## ⭐⭐ BETWEEN — LA CARTA: EJERCICIO DE REDISEÑO, 4 RONDAS CON ELI (25-09-2026)
+
+⛔ **Fue un EJERCICIO, no una entrega.** Eli lo pidió para medir la calidad de diseño que
+logramos antes de la carta oficial (el cliente todavía no manda sus referencias). Se sube
+**sólo** en su carpeta «referencias carta BW DISEÑO» (`1QddD1LjdwE1rbp2AMACacNYXn8kT1bQo`)
+→ `PROPUESTA CARTA BW 3 OPCIONES 25-09`, y en ningún otro lado.
+
+- **Carta vigente:** 16 hojas de 17 × 30 cm (`CARTA-ES-DESAYUNO-ALMUERZO BW 2026.ai`/`.pdf`,
+  feb-2026) + planilla `CARTA BETWEEN 2026 (actualizada 03.02 pm).xlsx`. El texto va literal
+  del PDF impreso. ⚠️ Afogatto ($4.100 vs $3.900) y MilkShake ($5.300 vs $4.900) no
+  coinciden entre el PDF y la planilla: confirmar en la oficial.
+- **Refs que mandan** (de las 10 de la carpeta): Grainhaus, Honeycomb Bakery stories y
+  Café & Brunch MENU.
+- **Elegida: opción C · Taupe y sticker** — fondo taupe #5C5447 y texto beige; producto
+  REAL recortado con borde beige tipo sticker; horario en óvalo; filetes finos entre
+  platos; textura de fondo fina que cambia por hoja (desayuno · pastelería · café).
+
+**Criterio de Eli para cartas** (vale para la oficial):
+1. **Harta información por hoja, para achicar**: el bloque Desayuno (6 hojas) entra en 3, a
+   dos columnas. La portada ya parte con la carta; el título ocupa ~20 %.
+2. **Jerarquía en 4 niveles**: Brushwell «Menú» sobre DESAYUNO en caja alta enorme ·
+   sección en caja alta liviana muy espaciada + filete · plato Bold con precio a la
+   derecha, **sin línea punteada** · descripción chica al 75 %.
+3. **Un logo por hoja**: en la contraportada, sólo abajo.
+4. **Ilustración de fondo = textura fina que no destaca** (íconos chicos, línea delgada,
+   ~6 %). Dibujos grandes sueltos «se ven toscos».
+5. **«* Foto referencial» en toda foto**, porque los productos cambian.
+6. Nada que se parezca a la carta actual (tarjeta crema sobre taupe = «extraño»); una
+   sola tinta plana «no destaca».
+7. **Siempre con editable, en .ai.** Receta: `between-carta-editable.py` (SVG con texto
+   vivo por línea, línea base medida en Chrome) → `between-carta-ai-svg.jsx` vía
+   `ai-puente.py`. ⛔ El PDF de Chrome abierto en Illustrator deja el texto en ~1.500
+   pedazos por hoja.
+
+Código: `scripts/between-carta-opciones{,-r2,-r3,-r4}.py` (cada ronda importa la
+anterior) · subida `between-carta-subir-drive.py [r2|r3|r4]` · recursos en
+`public/assets/hilton/between/carta/` (ilustraciones y texturas son IA Seedream; los
+stickers son fotos reales del banco gradado; el QR es el de la carta actual y se lee).
+
+---
+
 ## ⭐⭐⭐ BETWEEN — OCTUBRE 2026: LO QUE DEJARON LAS 4 RONDAS DE ELI (24-09-2026)
 
 Grilla de octubre (`1EnZOwUptY6SftX-CF9ZFwXUuzPCGZ76L`): las 11 piezas OK PARA DISEÑAR

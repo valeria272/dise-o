@@ -1,3 +1,24 @@
+## 2026-09-25 — Eli (Windows) · BETWEEN: rediseño de la CARTA, ejercicio de 4 rondas — SUBIDO (sólo a la carpeta de refs)
+
+**Qué se hizo:** `/abrir bw` sin novedades en Drive. Después, a pedido de Eli, un **ejercicio** de
+rediseño de la carta (no es entrega: sirve para medir la calidad de diseño antes de la carta oficial).
+Tres opciones × portada/interior/contraportada a 17×30 cm, con el bloque Desayuno literal de la
+carta impresa de feb-2026. Cuatro rondas: (1) 3 direcciones; (2) harta info por hoja (6 hojas → 3),
+jerarquía en 4 niveles, sobre Grainhaus / Honeycomb / Café & Brunch; (3) un logo por hoja, B con
+fondo café, A con banda ilustrada; (4) **Eli eligió la C «Taupe y sticker»** y el fondo pasó de
+dibujos toscos a textura fina. Editables `.ai` con texto vivo por línea + `.svg`.
+**Dónde quedó:** Drive `referencias carta BW DISEÑO › PROPUESTA CARTA BW 3 OPCIONES 25-09`
+(`13OPblfC5Icv9R4Gb1fOR0dH5qGQBv8hv`), con RONDA 2/3/4 y `RONDA 4/EDITABLES`
+(`1tRWWcU_sgdG-fJIUHVWeZHcXTjFggbwS`). Local `out/hilton/between/carta-opciones/{,r2,r3,r4}/`
+con `index.html` de comparación por ronda. Código `scripts/between-carta-*`, recursos en
+`public/assets/hilton/between/carta/`. Criterio completo en el manual § BETWEEN — LA CARTA.
+**Qué sigue:** nada hasta que el cliente mande sus referencias de la carta oficial; ahí se parte
+desde la r4 opción C y se diseña el resto de la carta (almuerzo, bar, EN).
+**Abierto:** (1) Afogatto y MilkShake tienen precios distintos en el PDF impreso ($4.100 / $5.300)
+y en la planilla de feb ($3.900 / $4.900). (2) Ilustraciones y texturas son IA: en la oficial Eli
+decide si quedan o se reemplazan. (3) Se instaló Raleway Italic para el usuario (HKCU) para que
+Illustrator no la sustituyera.
+
 ## 2026-09-24 (cierre) — Eli (Windows) · /arranque de nuevo + relectura en vivo de las 4 grillas de octubre — SIN PIEZAS
 
 **Qué se hizo:** `/arranque` en la máquina Windows: todo en verde otra vez (no se instaló nada, memoria ya

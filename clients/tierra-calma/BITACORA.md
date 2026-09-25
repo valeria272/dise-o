@@ -5,6 +5,63 @@
 
 ---
 
+## 2026-09-25 (7ª vuelta) — Diego Aguilar (c-20-10-2: el mapa en tarjeta, a 1:1)
+
+**Qué se hizo:** *"Genera algo así mejor, que el mapa no quede pixelado y se vea
+bien"*, con una referencia adjunta —mapa en tarjeta redondeada sobre un campo de
+color, más un panel de datos con íconos—, guardada en
+`referencias/2026-09-25_tc-mapa-tarjeta.png`.
+
+⭐ **LA CAUSA DEL PIXELADO ERA ARITMÉTICA, NO DE TRATAMIENTO.** La banda tomaba un
+recorte de **873 px de ancho y lo estiraba a 1080**: un 24 % de aumento sobre una
+captura de pantalla, que no tiene detalle que dar. Ningún duotono, ninguna
+ganancia y ningún filtro iban a arreglar eso. Ahora el recorte mide **exactamente
+lo que mide la ventana** (940×500) y se muestra **1:1**.
+
+> ⚠️ La regla: **el recorte se define por el tamaño en píxeles de la ventana en la
+> pieza**, no por lo que se ve bien en el archivo. Y el `<Img>` va con
+> `width`/`height` exactos y sin `objectFit`, porque cualquier reescalado ahí lo
+> vuelve a ablandar.
+>
+> 💡 `st-12-10` ya cumplía sin que yo lo hubiera pensado: muestra el archivo a
+> escala 1,0. Fue suerte, no criterio — ahora está escrito.
+
+**La gramática que se copió:** tarjeta de esquinas redondeadas con sombra de
+contacto (el mapa como objeto, no como fondo) y panel de datos con una fila por
+dato y su ícono, sobre el verde macizo de la slide.
+
+⛔ **Segunda referencia seguida con el mapa regenerado.** Dice «Nelleno
+Sonitorio», «Casas de La Esperarisa», «LA PRIMAYESA», «Malpú», «CESTAM Presidenta
+Micriella Bachelet», «Acuspar's El Idillo», «Puente de Pelvin», «Sendere San
+Bernardo». La cartografía siguió saliendo de `MAPA-3`.
+
+⛔ **Y algo más delicado que los topónimos: la referencia trae un DATO que no
+podemos publicar.** Su tercera fila dice *«Futuro Metrotren Santiago–Melipilla»*,
+y eso **no está en la lista blanca** ni tiene OK escrito de Fran o Blanca. Las
+tres filas quedaron con datos aprobados: Ruta 78, 30 minutos de Santiago y 15
+minutos del peaje.
+
+> 💡 **Que un dato venga dibujado en una referencia de la propia marca no lo
+> aprueba.** Es el mismo principio que con los topónimos rotos, un escalón más
+> arriba: ahí el riesgo era estético, acá es un claim comercial.
+
+⚠️ **PENDIENTE DE DIEGO:** las tres filas **ocupan el lugar** de la bajada que
+traía la slide (*"Revisa accesos, vías principales y qué tan fácil será mantener
+tu rutina…"*). Dicen lo mismo con datos en vez de con una frase general, y no
+caben las dos entre la cabecera anclada en la fila 205 y el filete de la 1285. Si
+la bajada tiene que volver, lo que sale es el panel.
+
+**Dónde quedó:** `scripts/tc-mapa-ph.py` con un tercer mapa
+(`mapa3-tarjeta-k2.jpg`, recorte 940×500 a 1:1), `OctubreV3.tsx` con `K2`
+reescrita, y la referencia versionada. **QA: 1 aviso**, el deliberado de la
+slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego, y su decisión sobre la bajada.
+
+**Abierto:** sin cambios, más la captura de mapa con el pin y el contorno a la vez.
+
+---
+
 ## 2026-09-25 (6ª vuelta) — Diego Aguilar (el mapa del carrusel y la pareja del 09-10)
 
 **Qué se hizo:** *"Genera algo parecido con el mapa del 20-10-2, también cambia la

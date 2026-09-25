@@ -118,6 +118,23 @@ MAPAS = {
         "iconos": [(481, 150)],  # Relleno Sanitario Santiago Poniente
         "pieza": "c-20-10-2 · banda 1080×880 desde la fila 470",
     },
+    # ⭐ La tarjeta del 25-09. Diego, con una referencia: *"genera algo así mejor,
+    # **que el mapa no quede pixelado** y se vea bien"*. El recorte mide
+    # exactamente lo que mide la ventana en la pieza —940×500— así que se muestra
+    # **1:1 y no se remuestrea**. Era ahí el problema: la banda anterior recortaba
+    # 873 px y los estiraba a 1080, un 24 % de aumento, y eso es lo que se veía
+    # pixelado. Un mapa no se amplía; se recorta del tamaño en que se va a ver.
+    "mapa3-tarjeta-k2": {
+        "origen": "mapa3.jpg",
+        "recorte": (150, 90, 1090, 590),
+        "duo": ("#00291E", "#F6F2E8"),
+        "rango": (214.0, 250.0),
+        "acento": "#B8452F",
+        "zona_acento": (262, 286, 402, 346),
+        "por_saturacion": True,
+        "iconos": [(481, 150)],
+        "pieza": "c-20-10-2 · tarjeta 940×500, a escala 1:1",
+    },
 }
 
 # El punteado rojo del límite comunal, medido sobre el archivo: rojo anaranjado

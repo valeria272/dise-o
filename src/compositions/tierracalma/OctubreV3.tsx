@@ -1262,80 +1262,91 @@ const K1: React.FC = () => (
 /**
  * ⭐ K2 · 20/10 · CARRUSEL 2/6 — «¿Qué tan conectado estarás?»
  *
- * ⛔ EL MAPA ES PAPEL Y VA A SANGRE (Diego, 24-09-2026, con referencia adjunta)
- * ──────────────────────────────────────────────────────────────────────────────
- * *"Para el carrusel, exactamente la pieza del 20-10-2 sigue esta referencia,
- * que se vea así pero con el color verde."* La referencia está guardada en
- * `clients/tierra-calma/referencias/2026-09-24_tc-mapa-a-sangre.png` y su
- * gramática está explicada larga en el bloque de `H`, que la aplica igual.
+ * ⛔ EL MAPA EN TARJETA, A ESCALA 1:1 (Diego, 25-09, con referencia adjunta)
+ * ──────────────────────────────────────────────────────────────────────────
+ * *"Genera algo así mejor, **que el mapa no quede pixelado** y se vea bien."*
+ * La referencia está en
+ * [`referencias/2026-09-25_tc-mapa-tarjeta.png`](../../../clients/tierra-calma/referencias/2026-09-25_tc-mapa-tarjeta.png).
  *
- * En resumen: **el mapa a sangre, en papel, disolviéndose en el color de marca,
- * y ningún texto apoyado sobre la cartografía.**
+ * ⭐ **POR QUÉ SE VEÍA PIXELADO, QUE ES EL FONDO DEL ASUNTO.** La versión
+ * anterior tomaba un recorte de **873 px de ancho y lo estiraba a 1080**: un 24 %
+ * de aumento sobre una captura de pantalla, que no tiene detalle que dar. Ahora
+ * el recorte mide **exactamente lo que mide la ventana** —940×500— y se muestra
+ * **1:1**. Un mapa no se amplía: se recorta del tamaño en que se va a ver.
  *
- * ⛔ LO ÚNICO QUE NO SE PUDO COPIAR DE LA REFERENCIA, Y POR QUÉ
- * ─────────────────────────────────────────────────────────────
- * En la referencia el mapa **empieza en el borde superior** y arriba sólo va el
- * logo. Acá no se puede: el carrusel tiene una regla anterior del propio Diego
- * —*"que la ubicación de cada número con el título estén en el mismo lugar que
- * la slide 2"*— y **esta es la slide que define esa fila (205)**. Si el titular
- * se baja, se mueve en las seis.
+ * Su gramática, tal como se aplicó:
+ *   · el mapa en una **tarjeta de esquinas redondeadas** con sombra de contacto,
+ *     no a sangre — así el mapa es un objeto y no un fondo
+ *   · **panel de datos** con una fila por dato, cada una con su ícono
+ *   · todo sobre el campo de color macizo de la slide
  *
- * Así que el mapa entra **desde la fila 470**, debajo del titular, y sangra por
- * el borde inferior. Es el mismo movimiento de la referencia, corrido: color
- * macizo donde va el texto, papel donde va el mapa.
+ * ⛔ **LO QUE NO SE COPIÓ: su mapa.** Es otro de los regenerados — dice «Nelleno
+ * Sonitorio», «Casas de La Esperarisa», «LA PRIMAYESA», «Malpú», «CESTAM
+ * Presidenta Micriella Bachelet», «Acuspar's El Idillo», «Puente de Pelvin»,
+ * «Sendere San Bernardo». Es la segunda referencia seguida con los topónimos
+ * rotos. La cartografía sigue saliendo de `MAPA-3`.
  *
- * ⚠️ El titular NO se pone encima del mapa aunque haya espacio. Un titular de
- * dos líneas sobre cartografía es exactamente el problema que estas dos vueltas
- * vinieron a arreglar — y la referencia tampoco lo hace: lo único que pone
- * sobre el mapa es el logo.
+ * ⛔ **Y LO QUE NO SE COPIÓ POR DATO: «Futuro Metrotren Santiago–Melipilla».**
+ * No está en la lista blanca (§ 2) y no hay OK escrito de Fran ni de Blanca. Las
+ * tres filas usan **sólo datos aprobados**: Ruta 78, 30 minutos de Santiago y 15
+ * minutos del peaje.
  *
- * ⚠️ GEOMETRÍA. `mapa3-banda-k2.jpg` es un recorte de 873×711 y la banda mide
- * 1080×880: **misma proporción**, así que el archivo se muestra 1:1 y nadie lo
- * reencuadra acá. El script imprime dónde cae cada topónimo en el lienzo, y ese
- * es el control: el pin en (233, 860), Maipú en (935, 619) y Padre Hurtado en
- * (731, 922) quedan dentro de la banda limpia (525–990).
- *
- * Este recorte es más alto que el de la story porque la slide pregunta por la
- * CONEXIÓN: entran los dos escudos de la **Ruta 78**, el Trapiche de Peñaflor y
- * Calera de Tango.
+ * ⚠️ **Y una decisión que hay que revisar con Diego:** las tres filas **ocupan el
+ * lugar** de la bajada que traía la slide (*"Revisa accesos, vías principales y
+ * qué tan fácil será mantener tu rutina…"*). Dicen lo mismo pero con datos en vez
+ * de con una frase general, y no cabían las dos: entre la cabecera anclada en la
+ * fila 205 y el filete de la 1285 no hay alto para tarjeta + panel + bajada.
+ * Si la bajada tiene que volver, lo que sale es el panel.
  */
 
-/** La banda del mapa: a sangre, desde debajo del titular hasta el borde. */
-const MAPA_K2 = {top: 470, h: 880};
-/**
- * El degradado en cuatro filas del lienzo: `abre`→`desde` es la entrada,
- * `hasta`→`cierra` la salida. ⚠️ `cierra` tiene que quedar **por encima del
- * texto de cierre** (fila 1080): si el degradado sigue abierto donde va el
- * texto, el texto se lee sobre cartografía y vuelve el problema de siempre.
- */
-const K2_LIMPIO = {abre: 470, desde: 525, hasta: 990, cierra: 1062};
+/** La tarjeta del mapa. `w`×`h` son EXACTAMENTE las del recorte: no se escala. */
+const TARJETA_K2 = {x: 70, y: 470, w: 940, h: 500};
+/** Una fila del panel: ícono a la izquierda, dato a la derecha. */
+const FilaDato: React.FC<{icono: React.ReactNode; children: React.ReactNode}> = ({
+  icono,
+  children,
+}) => (
+  <div style={{display: "flex", alignItems: "center", gap: 20}}>
+    <div style={{width: 46, display: "flex", justifyContent: "center", flexShrink: 0}}>{icono}</div>
+    <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 36, color: TC.colors.cream}}>
+      {children}
+    </span>
+  </div>
+);
+
+/** El escudo de la Ruta 78, calcado del que trae el propio mapa. */
+const IRuta: React.FC = () => (
+  <div
+    style={{
+      width: 44,
+      height: 34,
+      borderRadius: 7,
+      border: `2px solid ${TC.colors.cream}`,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontFamily: SANS,
+      fontWeight: 600,
+      fontSize: 21,
+      color: TC.colors.cream,
+    }}
+  >
+    78
+  </div>
+);
+
+const IReloj: React.FC = () => (
+  <svg viewBox="0 0 24 24" width={38} height={38} fill="none" stroke={TC.colors.cream} strokeWidth={1.6}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5.2l3.4 2" strokeLinecap="round" />
+  </svg>
+);
 
 const K2: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
     {/* ⭐ Diego (24-09): "siento que quedan muy cortadas visualmente la 2da y la
-        3ra de las demás, cambiar por el color VERDE del manual". Las dos slides
-        de fondo plano van al verde profundo del logo estático. */}
+        3ra de las demás, cambiar por el color VERDE del manual". */}
     <AbsoluteFill style={{backgroundColor: TC.colors.green}} />
-
-    {/* ⭐ EL MAPA, A SANGRE. El degradado abre bajo el titular y cierra antes del
-        cierre de texto: la cartografía queda limpia en el medio y el texto
-        siempre apoya sobre verde macizo. */}
-    <div style={{position: "absolute", left: 0, top: MAPA_K2.top, width: CARR.w, height: MAPA_K2.h}}>
-      <Img
-        src={OCT("mapa3-banda-k2")}
-        style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}
-      />
-      <AbsoluteFill
-        style={{
-          background: `linear-gradient(to bottom,
-            ${TC.colors.green} 0%,
-            rgba(0,51,38,0) ${((K2_LIMPIO.desde - MAPA_K2.top) / MAPA_K2.h) * 100}%,
-            rgba(0,51,38,0) ${((K2_LIMPIO.hasta - MAPA_K2.top) / MAPA_K2.h) * 100}%,
-            ${TC.colors.green} ${((K2_LIMPIO.cierra - MAPA_K2.top) / MAPA_K2.h) * 100}%,
-            ${TC.colors.green} 100%)`,
-        }}
-      />
-    </div>
 
     <Cabecera n="01.">
       <Modulado
@@ -1345,32 +1356,70 @@ const K2: React.FC = () => (
       />
     </Cabecera>
 
+    {/* ⭐ LA TARJETA DEL MAPA. El `<Img>` va sin `objectFit` y con el tamaño
+        exacto del archivo: cualquier reescalado acá volvería a ablandar la
+        cartografía, que es justo lo que Diego marcó. */}
+    <div
+      style={{
+        position: "absolute",
+        left: TARJETA_K2.x,
+        top: TARJETA_K2.y,
+        width: TARJETA_K2.w,
+        height: TARJETA_K2.h,
+        borderRadius: 28,
+        overflow: "hidden",
+        boxShadow: "0 22px 44px rgba(0,0,0,0.34), inset 0 0 0 1px rgba(243,238,227,0.35)",
+      }}
+    >
+      <Img
+        src={OCT("mapa3-tarjeta-k2")}
+        style={{width: TARJETA_K2.w, height: TARJETA_K2.h, display: "block"}}
+      />
+    </div>
+
+    {/* El panel de datos — globo translúcido oscuro, como manda el sistema */}
+    <div
+      style={{
+        position: "absolute",
+        left: TARJETA_K2.x,
+        top: 1000,
+        width: TARJETA_K2.w,
+        boxSizing: "border-box",
+        padding: "30px 44px",
+        borderRadius: 24,
+        backgroundColor: "rgba(0,20,14,0.55)",
+        display: "flex",
+        flexDirection: "column",
+        gap: 18,
+      }}
+    >
+      <FilaDato icono={<IRuta />}>{sinPartir("Acceso directo por Ruta 78")}</FilaDato>
+      <FilaDato icono={<IReloj />}>A 30 minutos de Santiago</FilaDato>
+      <FilaDato icono={<IPin s={38} c={TC.colors.cream} />}>
+        {sinPartir("A 15 minutos del peaje")}
+      </FilaDato>
+    </div>
+
     <div
       style={{
         position: "absolute",
         left: 0,
         right: 0,
-        top: 1080,
-        padding: "0 140px",
+        top: 1228,
         textAlign: "center",
         fontFamily: SANS,
         fontWeight: 300,
-        fontSize: 34,
-        lineHeight: 1.32,
-        color: TC.colors.cream,
+        fontSize: 28,
+        letterSpacing: "0.14em",
+        textTransform: "uppercase",
+        color: TC.colors.sand,
       }}
     >
-      Revisa accesos, vías principales y qué tan fácil será mantener tu rutina desde tu nueva
-      ubicación.
-      <div style={{marginTop: 18, fontSize: 28, letterSpacing: "0.14em", textTransform: "uppercase", color: TC.colors.sand}}>
-        Padre Hurtado · RM
-      </div>
+      {sinPartir("Padre Hurtado")} · RM
     </div>
 
-    {/* El marco va crema entero y NO necesita teñido por tramos —al contrario
-        que la story—: medido sobre el PNG, `MARCO-CARRUSEL-2` sólo lleva tinta
-        en las filas **130 y 1285**, las dos hermanas horizontales, y no tiene
-        filete vertical. Las dos caen sobre verde macizo. */}
+    {/* El marco va crema entero: medido sobre el PNG, `MARCO-CARRUSEL-2` sólo
+        lleva tinta en las filas 130 y 1285, y las dos caen sobre verde macizo. */}
     <MarcoTenido archivo="MARCO-CARRUSEL-2" color={TC.colors.cream} />
   </Lienzo>
 );

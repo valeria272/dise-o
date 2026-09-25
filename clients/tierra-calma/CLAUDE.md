@@ -1394,6 +1394,44 @@ Tres diferencias que hubo que medir para MAPA-3:
    letra a los topónimos vecinos. Se toma el **centroide** y se borra la elipse
    declarada, que llega a 16 px de lado.
 
+##### ⭐ EL MAPA NO SE AMPLÍA: SE RECORTA DEL TAMAÑO EN QUE SE VA A VER
+
+Diego, 25-09, con una referencia adjunta
+([`referencias/2026-09-25_tc-mapa-tarjeta.png`](referencias/2026-09-25_tc-mapa-tarjeta.png)):
+*"Genera algo así mejor, **que el mapa no quede pixelado** y se vea bien."*
+
+**La causa era aritmética, no de tratamiento.** La banda del carrusel tomaba un
+recorte de **873 px de ancho y lo estiraba a 1080**: un 24 % de aumento sobre una
+captura de pantalla, que no tiene detalle que dar. Ahora el recorte mide
+**exactamente lo que mide la ventana** (940×500) y se muestra **1:1**.
+
+> ⚠️ **La regla, que vale para cualquier captura:** el recorte se define por el
+> tamaño en píxeles de la ventana en la pieza, no por lo que "se ve bien" en el
+> archivo. Y en la composición el `<Img>` va con `width`/`height` exactos y sin
+> `objectFit`, porque cualquier reescalado ahí vuelve a ablandarlo.
+>
+> 💡 `st-12-10` ya cumplía sin saberlo: muestra el archivo a escala 1,0.
+
+**La gramática que se copió de la referencia:** el mapa en una **tarjeta de
+esquinas redondeadas** con sombra de contacto —objeto, no fondo—, y un **panel de
+datos** con una fila por dato y su ícono, sobre el campo de color macizo.
+
+⛔ **Lo que NO se copió, por segunda referencia seguida: su mapa.** Otra vez uno
+regenerado — «Nelleno Sonitorio», «Casas de La Esperarisa», «LA PRIMAYESA»,
+«Malpú», «CESTAM Presidenta Micriella Bachelet», «Acuspar's El Idillo», «Puente
+de Pelvin», «Sendere San Bernardo».
+
+⛔ **Y lo que no se copió por DATO: «Futuro Metrotren Santiago–Melipilla».** No
+está en la lista blanca (§ 2) y no hay OK escrito de Fran ni de Blanca. Las tres
+filas usan sólo datos aprobados: **Ruta 78**, **30 minutos de Santiago** y **15
+minutos del peaje**. ⚠️ Que un dato venga dibujado en una referencia de la propia
+marca no lo aprueba — es el mismo principio que con los topónimos.
+
+⚠️ **Pendiente de Diego:** las tres filas **ocupan el lugar** de la bajada que
+traía la slide (*"Revisa accesos, vías principales…"*). Dicen lo mismo con datos
+en vez de con una frase general, y no caben las dos entre la cabecera de la fila
+205 y el filete de la 1285. Si la bajada vuelve, lo que sale es el panel.
+
 #### El titular pasa a una línea y vuelve al centro
 
 *"El texto superior que quede así: «cerca de santiago» en una línea, y abajo como

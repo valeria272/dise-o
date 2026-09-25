@@ -5,6 +5,62 @@
 
 ---
 
+## 2026-09-25 (8ª vuelta) — Diego Aguilar (c-20-10-2: el mapa se rotula, no se amplía)
+
+**Qué se hizo:** *"No cambies el contenido, vuelve al texto de antes, mantén el
+mapa, que se vea legible, los textos del mapa se siguen viendo pixelados, si
+tienes que rediseñarlo hazlo."*
+
+**Vuelve el texto de antes:** el panel de datos que había probado sale y regresa
+la bajada («Revisa accesos, vías principales…») con su línea de ubicación.
+
+⭐ **EL DIAGNÓSTICO: la letra del mapa mide 11 px EN EL ARCHIVO.** El recorte ya
+iba 1:1, así que no había escala que corregir. Once píxeles de una captura de
+pantalla no dan para más, y ninguna ganancia, umbral ni filtro cambia eso.
+
+⛔ **BORRARLA PARA RECOMPONERLA NO RESULTÓ, Y COSTÓ SEIS INTENTOS.** Sobre
+`mapa3` se probó:
+
+| Método | Por qué falla |
+|---|---|
+| umbral de brillo | la letra baja a 42, **pero la Ruta 78 también (45)** y un camino rural a 92 |
+| densidad de tinta (7 px) | letra 0,55-0,67 · **camino rural 0,51**: se tocan |
+| halo perseguido | funciona en `MAPA-PADRE-HURTADO`, pero acá **se escapa** por las manchas urbanas claras: 24 % del cuadro borrado, el dibujo hecho parches |
+| sembrar y crecer por lo oscuro | deja **media palabra** en pie: las letras no se tocan entre sí |
+| sembrar, saltar entre letras y crecer | completa las etiquetas oscuras y **deja intactas las grises** |
+| cambiar a `MAPA-PADRE-HURTADO`, que sí se limpia | su encuadre **no contiene el proyecto**, y borrar su 15 % de letra deja manchas donde el relleno cruza calles |
+
+⭐ **LA SALIDA NO NECESITA BORRAR NADA: se rotula encima.** El mapa queda intacto
+y la pieza repone **sólo los nombres que la slide necesita** —Tierra Calma, Padre
+Hurtado, Maipú, Peñaflor, Ruta 78— en Inter Tight, con un velo de papel detrás
+que tapa el original. Los demás topónimos quedan de textura, que es su papel de
+todos modos.
+
+> 💡 **Un mapa diseñado rotula lo que la pieza dice, no todo lo que hay.** Estuve
+> seis intentos tratando de salvar la rotulación de Google y la respuesta era no
+> usarla. De paso desaparece la tipografía ajena de dentro de una pieza de marca.
+
+**Dos detalles que hubo que medir:**
+
+1. El rótulo de Tierra Calma va **anclado a la izquierda**, no centrado: centrado
+   le tapaba el pin, que es justo el elemento que el material trae y que Diego
+   pidió conservar.
+2. La tarjeta se guarda en **PNG**. `mapa3.jpg` ya es JPEG, y un segundo pase de
+   compresión vuelve a ablandar los cantos — parte del «pixelado» era eso.
+
+**Dónde quedó:** `scripts/tc-mapa-ph.py` con la tarjeta en PNG y los seis métodos
+descartados documentados en el código; `OctubreV3.tsx` con `Toponimo`/`ROTULO` y
+la bajada restituida. **QA: 1 aviso**, el deliberado de la slide 2. Re-subida
+sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios. Y sube de prioridad lo mismo de siempre: **una captura
+de mapa a más resolución** —y que contenga el pin del proyecto y el contorno de
+la comuna a la vez— resolvería de una todas estas vueltas.
+
+---
+
 ## 2026-09-25 (7ª vuelta) — Diego Aguilar (c-20-10-2: el mapa en tarjeta, a 1:1)
 
 **Qué se hizo:** *"Genera algo así mejor, que el mapa no quede pixelado y se vea

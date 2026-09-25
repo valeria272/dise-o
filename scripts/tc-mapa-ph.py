@@ -124,6 +124,27 @@ MAPAS = {
     # **1:1 y no se remuestrea**. Era ahí el problema: la banda anterior recortaba
     # 873 px y los estiraba a 1080, un 24 % de aumento, y eso es lo que se veía
     # pixelado. Un mapa no se amplía; se recorta del tamaño en que se va a ver.
+    # ⭐ LA TARJETA DEL CARRUSEL. Diego, 25-09: *"los textos del mapa se siguen
+    # viendo pixelados, si tienes que rediseñarlo hazlo"*.
+    #
+    # ⛔ NO ERA ESCALA: el recorte ya iba 1:1. La letra sigue blanda porque **en
+    # el archivo mide 11 px** — es una captura de pantalla y once píxeles no dan
+    # para más. Ninguna ganancia, umbral ni filtro arregla eso.
+    #
+    # ⛔ Y BORRARLA PARA RECOMPONERLA **NO ES VIABLE EN ESTE ARCHIVO**. Se probó
+    # a fondo: por brillo (la letra baja a 42, pero la Ruta 78 también y un
+    # camino rural a 92), por densidad de tinta (letra 0,55-0,67 · camino rural
+    # 0,51: se tocan), por halo perseguido (se escapa por las manchas urbanas
+    # claras: 24 % del cuadro borrado) y sembrando y creciendo (deja media
+    # palabra en pie). Sobre `MAPA-PADRE-HURTADO` el borrado sí es limpio, pero
+    # ese encuadre **no contiene el proyecto**, y borrar sus 15 % de letra deja
+    # parches donde el relleno cruza calles oscuras.
+    #
+    # ⭐ LA SALIDA, QUE NO NECESITA BORRAR NADA: el mapa se deja intacto y la
+    # pieza **repone encima, en Inter Tight, sólo los nombres que la slide
+    # necesita**, con un velo de papel detrás que tapa el original. Los demás
+    # topónimos quedan como textura de fondo, que es su papel de todos modos.
+    # Un mapa diseñado rotula lo que la pieza dice, no todo lo que hay.
     "mapa3-tarjeta-k2": {
         "origen": "mapa3.jpg",
         "recorte": (150, 90, 1090, 590),
@@ -133,7 +154,9 @@ MAPAS = {
         "zona_acento": (262, 286, 402, 346),
         "por_saturacion": True,
         "iconos": [(481, 150)],
-        "pieza": "c-20-10-2 · tarjeta 940×500, a escala 1:1",
+        "formato": "png",   # ⚠️ PNG: mapa3.jpg ya es JPEG y un segundo pase de
+                            # compresión vuelve a ablandar los cantos
+        "pieza": "c-20-10-2 · tarjeta 940×500 a 1:1; los rótulos los pone la pieza",
     },
 }
 
@@ -159,6 +182,10 @@ ICONO_R, ICONO_ARRIBA, ICONO_ABAJO = 16.0, 19.0, 30.0
 # Por encima de esta saturación hay icono; por debajo, mapa. Medido en mapa3:
 # iconos 138-171 · escudos de ruta 82-89 · rellenos y río por debajo.
 SAT_ICONO = 110.0
+# Debajo de esta luminancia hay letra; los caminos no bajan de 187.
+UMBRAL_ROTULO = 180.0
+# El reborde claro con que Google rodea cada etiqueta. Ver `sin_texto()`.
+UMBRAL_HALO = 236.0
 
 
 
@@ -203,8 +230,8 @@ def _centros(m: np.ndarray, area_min: int = 30):
 
 
 def _caja(m: np.ndarray, r: int) -> np.ndarray:
-    """Fracción de píxeles encendidos en la ventana de (2r+1)², por integral."""
-    c = np.cumsum(np.cumsum(np.pad(m.astype(float), ((r + 1, r), (r + 1, r))), 0), 1)
+    """Media de la ventana de (2r+1)², por imagen integral."""
+    c = np.cumsum(np.cumsum(np.pad(np.asarray(m, dtype=float), ((r + 1, r), (r + 1, r))), 0), 1)
     k = 2 * r + 1
     return (c[k:, k:] - c[:-k, k:] - c[k:, :-k] + c[:-k, :-k]) / k**2
 
@@ -294,24 +321,74 @@ def sin_iconos(a: np.ndarray, iconos, por_saturacion: bool, acento: np.ndarray) 
         dy = (yy - y) / np.where(yy >= y, ICONO_ABAJO, ICONO_ARRIBA)
         marcas |= (dx * dx + dy * dy) <= 1.0
 
-    val = a.astype(float).copy()
-    valido = ~marcas
-    val[marcas] = 0.0
-    vecinos = ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1))
-    for _ in range(30):
-        if valido.all():
-            break
-        suma = np.zeros_like(val)
-        cuenta = np.zeros(val.shape[:2])
-        for dy_, dx_ in vecinos:
-            v = np.roll(np.roll(valido, dy_, 0), dx_, 1)
-            suma += np.roll(np.roll(val, dy_, 0), dx_, 1) * v[:, :, None]
-            cuenta += v
-        nuevos = (~valido) & (cuenta > 0)
-        val[nuevos] = suma[nuevos] / cuenta[nuevos][:, None]
-        valido |= nuevos
     print(f"· iconos borrados: {100 * marcas.mean():.2f}% del cuadro")
+    return _rellenar(a, marcas)
+
+
+def _rellenar(a: np.ndarray, tapar: np.ndarray, radio: int = 14) -> np.ndarray:
+    """Rellena lo tapado con la **media local de lo que quedó válido**.
+
+    ⛔ Antes esto crecía desde los bordes promediando los ocho vecinos, y sobre
+    la trama urbana **dejaba manchas negras**: cada etiqueta está rodeada de
+    calles oscuras, así que el promedio de vecinos seguía esas líneas hacia
+    adentro y el hueco se llenaba de tinta en vez de fondo.
+    
+    Una media normalizada sobre una ventana ancha no tiene ese problema: en
+    29×29 píxeles mandan los rellenos, no las líneas. El hueco se cierra con el
+    color que de verdad lo rodea.
+    """
+    valido = (~tapar).astype(float)
+    peso = _caja(valido, radio)
+    val = a.astype(float).copy()
+    fondo = np.stack(
+        [_caja(val[:, :, c] * valido, radio) / np.maximum(peso, 1e-6) for c in range(3)],
+        axis=2,
+    )
+    val[tapar] = fondo[tapar]
     return val
+
+
+def sin_texto(a: np.ndarray, acento: np.ndarray) -> np.ndarray:
+    """Borra **toda** la letra del mapa y la rellena desde los bordes.
+
+    Diego, 25-09: *"los textos del mapa se siguen viendo pixelados, si tienes que
+    rediseñarlo hazlo"*.
+
+    ⭐ **NO ERA UN PROBLEMA DE ESCALA, ERA EL TECHO DEL ARCHIVO.** Con el recorte
+    ya mostrándose 1:1, la letra seguía blanda porque **en `mapa3.jpg` mide 11 px
+    de alto**: es una captura de pantalla, y once píxeles no dan para más. La
+    única salida es no usar esa letra: se borra y **se vuelve a componer en la
+    tipografía de la marca**, como texto vivo, desde la composición.
+
+    De paso deja de haber tipografía ajena —la Roboto de Google— dentro de una
+    pieza de Tierra Calma.
+
+    Cómo se borra, que costó aprenderlo:
+      · el glifo es lo que baja de `UMBRAL_ROTULO`; los caminos no bajan de 187
+      · Google rodea cada etiqueta con un **halo casi blanco** más ancho que
+        cualquier dilatación, así que se **persigue** desde el glifo hacia afuera
+        avanzando sólo por píxeles claros, con tope para que no se escape por un
+        camino (que es igual de claro)
+      · entre glifo y halo hay una franja de **antialias** que no cumple ninguna
+        de las dos condiciones, y se cubre ensanchando
+      · el acento se protege, o se borra el pin
+    """
+    lum = 0.299 * a[:, :, 0] + 0.587 * a[:, :, 1] + 0.114 * a[:, :, 2]
+    protegido = _dilatar(acento > 0, 3)
+    # ⚠️ Esto funciona sobre `MAPA-PADRE-HURTADO`, donde la letra baja de 180 y
+    # **los caminos no bajan de 187**. ⛔ NO funciona sobre `mapa3`: ahí la letra
+    # llega a 42 pero la Ruta 78 también (45) y un camino rural a 92, así que no
+    # hay umbral de brillo que los separe. Se probaron además densidad de tinta
+    # (letra 0,55-0,67 · camino rural 0,51: se tocan), halo perseguido (se escapa
+    # por las manchas urbanas claras, 24 % del cuadro borrado) y sembrar-y-crecer
+    # (deja media palabra en pie). **Por eso la tarjeta usa el otro archivo.**
+    glifo = (lum < UMBRAL_ROTULO) & ~protegido
+    halo = glifo.copy()
+    for _ in range(14):
+        halo |= _dilatar(halo, 1) & (lum > UMBRAL_HALO)
+    tapar = _dilatar((glifo | halo) & ~protegido, 5) & ~protegido
+    print(f"· letra borrada: {100 * tapar.mean():.1f}% del cuadro")
+    return _rellenar(a, tapar)
 
 
 def duotono(a: np.ndarray, sombra: str, luz: str, rango) -> np.ndarray:
@@ -356,6 +433,8 @@ def main() -> int:
         print(f"· acento: {len(xs)} px · x {xs.min()}-{xs.max()} · y {ys.min()}-{ys.max()}")
 
         limpio = sin_iconos(a, cfg["iconos"], cfg["por_saturacion"], lim)
+        if cfg.get("sin_texto"):
+            limpio = sin_texto(limpio, lim)
         out = duotono(limpio, *cfg["duo"], cfg["rango"])
         acento = _rgb(cfg["acento"])
         out = out * (1 - lim[:, :, None]) + acento[None, None, :] * lim[:, :, None]
@@ -363,8 +442,9 @@ def main() -> int:
         im = Image.fromarray(out.clip(0, 255).astype(np.uint8))
         if cfg["recorte"]:
             im = im.crop(cfg["recorte"])
-        destino = OCT / f"{nombre}.jpg"
-        im.save(destino, quality=93)
+        ext = cfg.get("formato", "jpg")
+        destino = OCT / f"{nombre}.{ext}"
+        im.save(destino, **({"quality": 93} if ext == "jpg" else {}))
         print(f"· {destino.name}  {im.size[0]}×{im.size[1]} · duotono {cfg['duo'][0]} → {cfg['duo'][1]}"
               f" · acento {cfg['acento']}")
     return 0

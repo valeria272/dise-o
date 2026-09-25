@@ -1394,6 +1394,33 @@ Tres diferencias que hubo que medir para MAPA-3:
    letra a los topónimos vecinos. Se toma el **centroide** y se borra la elipse
    declarada, que llega a 16 px de lado.
 
+##### ⭐ UN MAPA DISEÑADO ROTULA LO QUE LA PIEZA DICE, NO TODO LO QUE HAY
+
+Diego, 25-09, después de ver la tarjeta ya a 1:1: *"los textos del mapa se siguen
+viendo pixelados, si tienes que rediseñarlo hazlo"*.
+
+**El techo es el archivo: la letra del mapa mide 11 px.** Es una captura de
+pantalla, y el recorte ya iba 1:1, así que no había escala que corregir.
+
+⛔ **Borrarla para recomponerla NO es viable en `mapa3`.** Se probaron seis
+caminos y todos fallan, cada uno por una razón distinta —umbral de brillo (la
+Ruta 78 es tan oscura como la letra), densidad de tinta (el camino rural la
+alcanza), halo perseguido (se escapa por las manchas urbanas), sembrar y crecer
+(deja media palabra), sembrar saltando entre letras (deja las etiquetas grises) y
+cambiar al otro archivo (no contiene el proyecto)—. Están documentados uno por
+uno en `scripts/tc-mapa-ph.py`.
+
+⭐ **LA SALIDA NO NECESITA BORRAR NADA: se rotula encima.** El mapa queda intacto
+y la pieza repone **sólo los nombres que necesita** en Inter Tight, con un velo
+de papel detrás que tapa el original; el resto de los topónimos quedan de
+textura. De paso desaparece la tipografía ajena de dentro de la pieza.
+
+> ⚠️ Dos detalles que no son de gusto:
+> · el rótulo del proyecto va **anclado a la izquierda del pin**, no centrado —
+>   centrado le tapa el pin, que es lo que el material trae;
+> · la tarjeta se guarda en **PNG**: el origen ya es JPEG y un segundo pase de
+>   compresión vuelve a ablandar los cantos.
+
 ##### ⭐ EL MAPA NO SE AMPLÍA: SE RECORTA DEL TAMAÑO EN QUE SE VA A VER
 
 Diego, 25-09, con una referencia adjunta

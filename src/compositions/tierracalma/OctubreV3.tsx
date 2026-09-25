@@ -22,6 +22,10 @@ import {tierracalma as TC, ensureTierraCalmaFonts} from "../../brand/tierracalma
 // =============================================================================
 
 const OCT = (n: string) => staticFile(`assets/tierracalma/oct/${n}.jpg`);
+/** ⚠️ Lo mismo, pero PNG. La tarjeta del mapa va sin comprimir: `mapa3.jpg` ya
+ *  es JPEG y un segundo pase de compresión vuelve a ablandar los cantos de la
+ *  cartografía, que es justo lo que Diego marcó como «pixelado». */
+const OCT_PNG = (n: string) => staticFile(`assets/tierracalma/oct/${n}.png`);
 const MARCO = (n: string) => staticFile(`assets/tierracalma/marcos/${n}.png`);
 const SANS = TC.fonts.body;
 const SERIF = TC.fonts.display;
@@ -1262,84 +1266,71 @@ const K1: React.FC = () => (
 /**
  * ⭐ K2 · 20/10 · CARRUSEL 2/6 — «¿Qué tan conectado estarás?»
  *
- * ⛔ EL MAPA EN TARJETA, A ESCALA 1:1 (Diego, 25-09, con referencia adjunta)
- * ──────────────────────────────────────────────────────────────────────────
- * *"Genera algo así mejor, **que el mapa no quede pixelado** y se vea bien."*
- * La referencia está en
- * [`referencias/2026-09-25_tc-mapa-tarjeta.png`](../../../clients/tierra-calma/referencias/2026-09-25_tc-mapa-tarjeta.png).
+ * ⛔ EL MAPA SE ROTULA, NO SE AMPLÍA (Diego, 25-09)
+ * ─────────────────────────────────────────────────
+ * *"Los textos del mapa se siguen viendo pixelados, si tienes que rediseñarlo
+ * hazlo."* Y, en el mismo mensaje: *"no cambies el contenido, vuelve al texto de
+ * antes"* — así que el panel de datos que había probado sale y vuelve la bajada.
  *
- * ⭐ **POR QUÉ SE VEÍA PIXELADO, QUE ES EL FONDO DEL ASUNTO.** La versión
- * anterior tomaba un recorte de **873 px de ancho y lo estiraba a 1080**: un 24 %
- * de aumento sobre una captura de pantalla, que no tiene detalle que dar. Ahora
- * el recorte mide **exactamente lo que mide la ventana** —940×500— y se muestra
- * **1:1**. Un mapa no se amplía: se recorta del tamaño en que se va a ver.
+ * **La letra del mapa mide 11 px en el archivo.** Es una captura de pantalla:
+ * once píxeles no dan para más, y el recorte ya iba 1:1, así que no había
+ * escala que corregir. Borrarla para recomponerla tampoco resultó — ver el
+ * detalle de los cuatro métodos probados en `scripts/tc-mapa-ph.py`.
  *
- * Su gramática, tal como se aplicó:
- *   · el mapa en una **tarjeta de esquinas redondeadas** con sombra de contacto,
- *     no a sangre — así el mapa es un objeto y no un fondo
- *   · **panel de datos** con una fila por dato, cada una con su ícono
- *   · todo sobre el campo de color macizo de la slide
+ * ⭐ **LO QUE SÍ RESUELVE: rotular encima.** El mapa queda intacto y la pieza
+ * repone **sólo los nombres que la slide necesita**, en Inter Tight, con un velo
+ * de papel detrás que tapa el original. Los demás topónimos quedan de textura,
+ * que es su papel de todos modos. Un mapa diseñado rotula lo que la pieza dice,
+ * no todo lo que hay.
  *
- * ⛔ **LO QUE NO SE COPIÓ: su mapa.** Es otro de los regenerados — dice «Nelleno
- * Sonitorio», «Casas de La Esperarisa», «LA PRIMAYESA», «Malpú», «CESTAM
- * Presidenta Micriella Bachelet», «Acuspar's El Idillo», «Puente de Pelvin»,
- * «Sendere San Bernardo». Es la segunda referencia seguida con los topónimos
- * rotos. La cartografía sigue saliendo de `MAPA-3`.
- *
- * ⛔ **Y LO QUE NO SE COPIÓ POR DATO: «Futuro Metrotren Santiago–Melipilla».**
- * No está en la lista blanca (§ 2) y no hay OK escrito de Fran ni de Blanca. Las
- * tres filas usan **sólo datos aprobados**: Ruta 78, 30 minutos de Santiago y 15
- * minutos del peaje.
- *
- * ⚠️ **Y una decisión que hay que revisar con Diego:** las tres filas **ocupan el
- * lugar** de la bajada que traía la slide (*"Revisa accesos, vías principales y
- * qué tan fácil será mantener tu rutina…"*). Dicen lo mismo pero con datos en vez
- * de con una frase general, y no cabían las dos: entre la cabecera anclada en la
- * fila 205 y el filete de la 1285 no hay alto para tarjeta + panel + bajada.
- * Si la bajada tiene que volver, lo que sale es el panel.
+ * ⚠️ Los rótulos van por **coordenada medida sobre `mapa3.jpg`**, trasladada al
+ * recorte de la tarjeta. Si cambia el recorte, hay que rehacer la traslación —
+ * `ROTULO()` la hace en un solo lugar para que no se disperse.
  */
 
 /** La tarjeta del mapa. `w`×`h` son EXACTAMENTE las del recorte: no se escala. */
 const TARJETA_K2 = {x: 70, y: 470, w: 940, h: 500};
-/** Una fila del panel: ícono a la izquierda, dato a la derecha. */
-const FilaDato: React.FC<{icono: React.ReactNode; children: React.ReactNode}> = ({
-  icono,
-  children,
-}) => (
-  <div style={{display: "flex", alignItems: "center", gap: 20}}>
-    <div style={{width: 46, display: "flex", justifyContent: "center", flexShrink: 0}}>{icono}</div>
-    <span style={{fontFamily: SANS, fontWeight: 300, fontSize: 36, color: TC.colors.cream}}>
-      {children}
-    </span>
-  </div>
-);
+/** Esquina superior izquierda del recorte dentro de `mapa3.jpg`. */
+const RECORTE_K2 = {x: 150, y: 90};
+/** Pasa una coordenada de `mapa3.jpg` a píxeles del lienzo. */
+const ROTULO = (x: number, y: number) => ({
+  left: TARJETA_K2.x + x - RECORTE_K2.x,
+  top: TARJETA_K2.y + y - RECORTE_K2.y,
+});
 
-/** El escudo de la Ruta 78, calcado del que trae el propio mapa. */
-const IRuta: React.FC = () => (
+/**
+ * Un topónimo repuesto sobre el mapa. El `textShadow` no es un efecto: es el
+ * velo de papel que tapa la letra original de la captura, del color del propio
+ * mapa. Sin él se leerían las dos.
+ */
+const Toponimo: React.FC<{
+  x: number;
+  y: number;
+  size?: number;
+  peso?: number;
+  children: React.ReactNode;
+  ancla?: "centro" | "izq";
+}> = ({x, y, size = 30, peso = 500, ancla = "centro", children}) => (
   <div
     style={{
-      width: 44,
-      height: 34,
-      borderRadius: 7,
-      border: `2px solid ${TC.colors.cream}`,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      position: "absolute",
+      ...ROTULO(x, y),
+      // «izq» deja el rótulo A LA DERECHA del punto: es lo que necesita el de
+      // Tierra Calma para no taparle el pin, que es el elemento que el material
+      // ya trae y que Diego pidió conservar.
+      transform: ancla === "izq" ? "translate(0, -50%)" : "translate(-50%, -50%)",
+      whiteSpace: "nowrap",
       fontFamily: SANS,
-      fontWeight: 600,
-      fontSize: 21,
-      color: TC.colors.cream,
+      fontWeight: peso,
+      fontSize: size,
+      letterSpacing: "0.02em",
+      color: "#12291F",
+      textShadow:
+        "0 0 7px #EDE7D8, 0 0 7px #EDE7D8, 0 0 12px #EDE7D8, 0 0 12px #EDE7D8, 0 0 18px #EDE7D8",
     }}
   >
-    78
+    {children}
   </div>
-);
-
-const IReloj: React.FC = () => (
-  <svg viewBox="0 0 24 24" width={38} height={38} fill="none" stroke={TC.colors.cream} strokeWidth={1.6}>
-    <circle cx="12" cy="12" r="9" />
-    <path d="M12 7v5.2l3.4 2" strokeLinecap="round" />
-  </svg>
 );
 
 const K2: React.FC = () => (
@@ -1356,9 +1347,8 @@ const K2: React.FC = () => (
       />
     </Cabecera>
 
-    {/* ⭐ LA TARJETA DEL MAPA. El `<Img>` va sin `objectFit` y con el tamaño
-        exacto del archivo: cualquier reescalado acá volvería a ablandar la
-        cartografía, que es justo lo que Diego marcó. */}
+    {/* ⭐ LA TARJETA. El `<Img>` va con el tamaño exacto del archivo y sin
+        `objectFit`: cualquier reescalado acá vuelve a ablandar la cartografía. */}
     <div
       style={{
         position: "absolute",
@@ -1372,50 +1362,48 @@ const K2: React.FC = () => (
       }}
     >
       <Img
-        src={OCT("mapa3-tarjeta-k2")}
+        src={OCT_PNG("mapa3-tarjeta-k2")}
         style={{width: TARJETA_K2.w, height: TARJETA_K2.h, display: "block"}}
       />
     </div>
 
-    {/* El panel de datos — globo translúcido oscuro, como manda el sistema */}
-    <div
-      style={{
-        position: "absolute",
-        left: TARJETA_K2.x,
-        top: 1000,
-        width: TARJETA_K2.w,
-        boxSizing: "border-box",
-        padding: "30px 44px",
-        borderRadius: 24,
-        backgroundColor: "rgba(0,20,14,0.55)",
-        display: "flex",
-        flexDirection: "column",
-        gap: 18,
-      }}
-    >
-      <FilaDato icono={<IRuta />}>{sinPartir("Acceso directo por Ruta 78")}</FilaDato>
-      <FilaDato icono={<IReloj />}>A 30 minutos de Santiago</FilaDato>
-      <FilaDato icono={<IPin s={38} c={TC.colors.cream} />}>
-        {sinPartir("A 15 minutos del peaje")}
-      </FilaDato>
-    </div>
+    {/* Los rótulos repuestos. Coordenadas medidas sobre `mapa3.jpg`. */}
+    <Toponimo x={306} y={315} size={31} peso={600} ancla="izq">
+      {sinPartir("Tierra Calma")}
+    </Toponimo>
+    <Toponimo x={690} y={365} size={33} peso={600}>
+      {sinPartir("Padre Hurtado")}
+    </Toponimo>
+    <Toponimo x={862} y={120} size={30}>
+      Maipú
+    </Toponimo>
+    <Toponimo x={462} y={515} size={28}>
+      Peñaflor
+    </Toponimo>
+    <Toponimo x={687} y={263} size={24} peso={600}>
+      RUTA 78
+    </Toponimo>
 
     <div
       style={{
         position: "absolute",
         left: 0,
         right: 0,
-        top: 1228,
+        top: 1010,
+        padding: "0 140px",
         textAlign: "center",
         fontFamily: SANS,
         fontWeight: 300,
-        fontSize: 28,
-        letterSpacing: "0.14em",
-        textTransform: "uppercase",
-        color: TC.colors.sand,
+        fontSize: 34,
+        lineHeight: 1.32,
+        color: TC.colors.cream,
       }}
     >
-      {sinPartir("Padre Hurtado")} · RM
+      Revisa accesos, vías principales y qué tan fácil será mantener tu rutina desde tu nueva
+      ubicación.
+      <div style={{marginTop: 18, fontSize: 28, letterSpacing: "0.14em", textTransform: "uppercase", color: TC.colors.sand}}>
+        {sinPartir("Padre Hurtado")} · RM
+      </div>
     </div>
 
     {/* El marco va crema entero: medido sobre el PNG, `MARCO-CARRUSEL-2` sólo

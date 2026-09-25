@@ -28,5 +28,5 @@ Cada cuenta tiene su cerebro en `clients/<marca>/APRENDIZAJES.md`, alimentado en
 - [san-esteban](cliente-san-esteban.md) — 18 reglas · última cosecha 2026-09-25
 - [santa-gota](cliente-santa-gota.md) — 20 reglas · última cosecha 2026-09-25
 - [selfie](cliente-selfie.md) — 16 reglas · última cosecha 2026-09-25
-- [tierra-calma](cliente-tierra-calma.md) — 42 reglas · última cosecha 2026-09-25
+- [tierra-calma](cliente-tierra-calma.md) — 51 reglas · última cosecha 2026-09-25
 - [traverso](cliente-traverso.md) — 22 reglas · última cosecha 2026-09-25

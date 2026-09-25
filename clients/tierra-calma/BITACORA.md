@@ -5,6 +5,75 @@
 
 ---
 
+## 2026-09-25 — CIERRE DE JORNADA — Diego Aguilar
+
+**Qué se hizo:** **nueve rondas por chat**, todas con referencia adjunta, sobre
+cuatro piezas de la grilla de octubre. Ninguna llegó por comentario de Drive.
+
+| Pieza | Dónde terminó |
+|---|---|
+| `st-12-10` | mapa a sangre en papel → cuatro vueltas de trazos → **de vuelta al archivo real en duotono, sin iconos**, titular en una línea y centrado |
+| `c-20-10-2` | misma receta de mapa → tarjeta a 1:1 → **el mapa se rotula encima en Inter Tight** y vuelve la bajada original |
+| `p-09-10` | **pareja nueva** (`g-pareja2`): caminando de espaldas, otra ropa, otra pose |
+| `st-22-10` | referencia de ventana → visual del brief (glassmorphism) → celular → **calco completo del mockup de app, con la paleta de la marca** |
+
+**Dónde quedó:** todo rendido, entregado y en la rama. `OctubreV3.tsx` (bloques
+`H`, `K2`, `G`, `L`), `scripts/tc-mapa-ph.py` (renombrado desde
+`tc-mapa-trazos.py`, ahora con tres mapas), `qa/checks.py` (regla endurecida),
+cuatro referencias versionadas y los assets nuevos. **Las cuatro piezas re-subidas
+sobre su mismo `fileId`.** QA: **1 aviso**, el deliberado de la slide 2.
+
+**Qué sigue:** esperar la vuelta de Diego sobre las cuatro. La aprobación del
+cliente está prevista para el **29-09** y el creativo D1 del PAID caduca el
+**12-10**.
+
+**Abierto:**
+
+1. ⚠️ **Falta el OK escrito de Fran o Blanca** para «Rol individual» y «Acceso
+   controlado», publicados en tres piezas. Sigue siendo lo más urgente.
+2. ⭐ **Una captura de mapa a más resolución**, y que traiga el pin del proyecto
+   **y** el contorno de la comuna a la vez. Ningún archivo tiene los dos y la
+   letra de ambos mide 11 px: **es el techo de todas las vueltas de hoy**.
+3. ¿Se nombran los tramos de la barra de avance? Haría falta el proceso comercial
+   por escrito.
+4. ¿Está confirmado el **«Futuro Metrotren Santiago–Melipilla»**? Venía dibujado
+   en una referencia de la marca y se dejó fuera por no estar en la lista blanca.
+5. Avisar lo del agua potable publicado en septiembre · la mano manuscrita propia.
+
+---
+
+### ⭐ EL APRENDIZAJE DEL DÍA — dos veces el mismo patrón
+
+**1 · Cuatro vueltas corrigiendo el eje equivocado.** El mapa se veía pixelado y
+lo perseguí por el encuadre, el borde, el umbral y el trazado. El problema era
+**la resolución del archivo**: la letra mide 11 px y una calle 3-5. Ningún
+parámetro iba a salvarlo.
+
+> **A una captura se le cambia el COLOR, nunca la FORMA.**
+
+**2 · Seis métodos para borrar la letra de `mapa3`,** y ese archivo no se limpia:
+la letra y los caminos comparten brillo, densidad y halo. Lo que destrabó fue
+**dejar de limpiar** y rotular encima sólo lo que la pieza necesita.
+
+> **Un mapa diseñado rotula lo que la pieza dice, no todo lo que hay.**
+
+Las dos veces, lo que resolvió fue **ir a medir el material** en vez de calibrar
+una vez más. Es el reverso de la regla del 24-09 («si el defecto vuelve, cambia
+de eje»): cambiar de eje sólo sirve si el eje nuevo sale de una medición.
+
+**3 · Y una que es de criterio, no de técnica:** «literal, pero con el estilo de
+Tierra Calma» significa **calcar la estructura y NO el color**. El verde brillante
+de la referencia no entró; el acento siguió siendo la arena de la marca. Copiar el
+color de otra marca es traer su identidad, no su gramática.
+
+**4 · La compuerta atajó dos bloqueantes hoy, y uno era suyo.** La regla de «foto
+estirada» marcaba un fondo plano porque su guarda medía desviación estándar y los
+dos filetes del marco la superan. Se cambió por una medida robusta —en cuántas
+columnas varía la fila— y **se verificó con una pieza de 500 filas realmente
+clonadas** que no quedara ciega.
+
+---
+
 ## 2026-09-25 (13ª vuelta) — Diego Aguilar (st-22-10: el mockup de app, calcado)
 
 **Qué se hizo:** *"Literal, sigue fielmente la referencia pero con el estilo de

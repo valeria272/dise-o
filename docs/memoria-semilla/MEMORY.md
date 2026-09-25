@@ -78,3 +78,4 @@
 - [⭐ Hilton — sesión de fotos SEP 2026](hilton-sesion-fotos-sep-2026.md) — Eli 25-09: Drive 117N-uJjrMSwWj_4Y2cSIH4IwsmMkapQM, JPG en alta para BW/DT/QB/P18; primera parada antes de generar; clasificar por espacio y marca
 - [⛔ EBEMA LinkedIn — fotos de sucursal](ebema-linkedin-fotos-sucursal.md) — foto real de base + IA; lo que falta (camión) se GENERA desde bodega/patio real; ⛔ nunca estructuras inventadas, sólo personas/vehículos/materiales; oficina = ropa formal; nadie mira a cámara; Kling inventa letreros en travellings
 - [⛔ EBEMA — voz y música de stories](ebema-voz-y-musica-stories.md) — voz es-CL Lorenzo (edge-tts); los presets Higgsfield suenan a inglés y NUNCA sacar la música de un video terminado (traía voz)
+- [⭐ Expandir un reel con IA sin desenfoque](expandir-video-reframe-higgsfield.md) — reframe de Higgsfield aleja cámara y baja a 720p: usar sólo la franja del borde y el centro 4K encima

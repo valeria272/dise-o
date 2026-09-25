@@ -1,3 +1,10 @@
+## 2026-09-25 (tarde-noche) — Eli (Windows) · BETWEEN reel «La razón por la que nací con dos manos»: fuera el fondo desenfocado — 2 PRUEBAS EN DRIVE, SIN APROBAR
+
+**Qué se hizo:** contenido rechazó el relleno desenfocado de `Reel n°1 S3 BW LA RAZÓN (edición 2).mp4` (el clip viene achicado a 2100×3442 dentro de 2160×3840). **Prueba 1:** agrandar el clip hasta llenar el cuadro. Eli la descartó porque corta el vaso y la mano («la idea es que se siga viendo el vaso y la mano de ella»). **Prueba 2:** reframe 9:16 de Higgsfield (75 créditos) sobre el centro nítido. La IA alejó la cámara, bajó a 720p, se asomó el mentón y el texto quedó sin tilde, así que se usan sólo sus franjas de arriba y abajo, y encima va el centro original 4K a ancho completo, con la unión difuminada en 36 px. Las dos pruebas salieron en MP4 + GIF (388×692, 10 fps, como el GIF de la edición 2).
+**Dónde quedó:** Drive BW sept (`1089lF7D38JH8iQAHPZ2rvxbUrKpQuWFd`) › `prueba expandir` (zoom) y `prueba 2` (`1piB_pa4u0KbkT6Q75y_tCB6BIDB6MZgG`, IA), con los archivos `… (edición 3 sin desenfoque)` y `… (edición 3 expandido IA)`. Copias en `F:\Carpeta de grillas Hilton 2026\SEPTIEMBRE\BW\`. Script: `scripts/expandir-reel-ia.py`.
+**Qué sigue:** esperar lo que diga contenido de la prueba 2. Si la aprueban, reemplazar la edición 2 donde esté enlazada en la grilla.
+**Abierto:** las franjas IA son más blandas (vienen de 720p) y los últimos 0,3 s quedan quietas porque la IA salió más corta → que contenido diga si lo acepta.
+
 ## 2026-09-25 (noche) — Eli (Windows) · relectura en vivo de las grillas de octubre DT y Between — SIN PIEZAS
 
 **Qué se hizo:** Eli preguntó si había piezas nuevas en OK. DT leída por API de Sheets y Between por el `.xlsx` bajado.

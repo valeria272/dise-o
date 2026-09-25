@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-25** · Cosechas: **3**
+> Última cosecha: **2026-09-25** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -119,6 +119,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-63** · [BW] Plato en foto que el cliente pide marcar → legal **«*Imagen referencial.»** en cursiva beige al pie, al margen de marca, sobre el fondo y nunca sobre el producto (caja taupe si no se lee) — _cliente, ST Strudel S4 (16-09) y ST 30-09 Plateada (25-09-2026)_ · ✔×2
 - **R-64** · [BW] Una pieza puede **cambiar de HOJA** en la grilla, no sólo de fecha: se busca por su título en FEED **y** en STORIES antes de decir que no hay nada nuevo — _grilla BW oct, 25-09-2026: «Por qué vienes / por qué te quedas» quedó en STORIES como REVISAR CONTENIDO («DEJARLO EN FEED») y reapareció en FEED 09-10 como OK PARA DISEÑAR_ · ✔×1
 - **R-65** · [DT] La grilla corre la fecha de una pieza ya entregada sin avisar; se reconoce por el título — _grilla DT oct, 25-09-2026: Opinión Expedia pasó de FEED 10-10 a 09-10_ · ✔×1
+- **R-66** · [BW] **Un reel no lleva relleno desenfocado alrededor del clip**: se expande con IA siguiendo la escena, y se ve **entero** lo que estaba en el cuadro (el vaso y la mano), sin recortar para tapar el borde — _contenido vía Eli, reel «La razón» S3, 25-09-2026 («le molesta a contenido»; «la idea es que se siga viendo el vaso y la mano de ella»)_ · ✔×1
 
 ### Las dos
 - **R-60** · [TODAS] **Ni títulos ni bajadas llevan punto** en la gráfica (el punto sólo en párrafos largos y legales) — _Eli 25-08 (BW) y 09-09 (DT); Javier Mesa 23-09-2026, recordatorio para las cuatro cuentas_ · ✔×3
@@ -157,6 +158,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 ## 7. Lo que se rechaza
 
+- **X-27** · [BW] Tapar el borde desenfocado **agrandando el clip**: corta el vaso y la mano del borde — _Eli, reel «La razón», 25-09-2026: 1 ronda_
 - **X-26** · [BW] Lockup al pie cuando el vaso de la foto ya firma: cae encima del producto y la marca se lee dos veces — _prueba propia, feed «Necesito ir a Between», 25-09-2026 (descartada antes de mostrarla)_
 - **X-01** · [BW] **Estimar lo que Eli describió en vez de medir sus piezas publicadas**: tipografías cambiadas, jerarquía rara — _grilla de septiembre rechazada entera por Valeria, 25–26-08-2026 (2 grillas)_
 - **X-02** · [BW] **Fondo generado + recortes, logos vectoriales y sombras pegadas encima**: «parecen de paint pegoteados» — _cumpleaños rondas 11–19 (04–07-09) y ST 28-09 (14-09-2026): 5 + 3 rechazos_
@@ -186,6 +188,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 ## 8. Preguntas abiertas
 
+- [BW] Reel «La razón» prueba 2 (IA): ¿se aceptan las franjas más blandas (720p) y los últimos 0,3 s con el fondo quieto? ¿Reemplaza a la edición 2 en la grilla? → contenido / Eli
 - [DT] Una pieza nueva de **Family Time**, ¿sigue la razón de cuerpos 1,62 de `C1 FT N1` o el cuerpo único de R-04? → Eli
 - [DT] Faltan **Stag LCG** y **Trade Gothic Bold de ancho normal** (el del bloque de precio): sólo los tiene el cliente → Eli/cliente
 - [DT] Zona segura: la plantilla de Eli marca 209/369 px y el estudio mide 250/340; el logo a 241 px sólo sirve en orgánico. ¿Cuál manda si una historia se pauta? → Eli
@@ -203,6 +206,12 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [BW] ST 30-09: los archivos de Drive siguen llamándose «Plateada al Carmenere» (para no romper el enlace) aunque la pieza ya no nombra el plato → Eli
 
 ## 9. Registro de cosechas
+
+### 2026-09-25 (tarde-noche) — Claude con Eli · BETWEEN reel «La razón», fuera el fondo desenfocado
+- **Regla nueva [BW]:** R-66, un reel no lleva relleno desenfocado; se expande con IA y se ve entero el vaso y la mano (contenido vía Eli).
+- **Rechazo:** X-27, agrandar el clip para tapar el borde (1 ronda).
+- **Técnica (no es criterio del cliente):** el reframe de Higgsfield aleja la cámara y entrega 720p; se usan sólo sus franjas y el centro 4K va encima. En la memoria `expandir-video-reframe-higgsfield`.
+- **Pregunta nueva:** si contenido acepta la prueba 2.
 
 ### 2026-09-25 (noche) — Claude con Eli · relectura en vivo de las grillas de octubre, sin piezas
 - **2 reglas nuevas, sacadas de la grilla (no son criterio de Eli):** R-64 [BW] una pieza puede cambiar de hoja (ST → FEED), R-65 [DT] la grilla corre la fecha de una pieza ya entregada.

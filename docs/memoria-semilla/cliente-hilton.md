@@ -1,6 +1,6 @@
 ---
 name: cliente-hilton
-description: "HILTON — cerebro del cliente: 65 reglas firmes, última cosecha 2026-09-25. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
+description: "HILTON — cerebro del cliente: 66 reglas firmes, última cosecha 2026-09-25. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
 metadata:
   type: project
 ---
@@ -34,6 +34,7 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **R-22** · [DT] Carrusel de video: los clips son **los que el cliente enlaza en el brief**; si falta material, Drive → stock de Magnific → generar. Cuando hay material filmado, fuera el Ken Burns — _cliente 23-09; Eli 23-09-2026 («selecciona el video más bonito y legible»)_ · ✔×2
 
 ## Lo que ya costó rondas
+- **X-27** · [BW] Tapar el borde desenfocado **agrandando el clip**: corta el vaso y la mano del borde — _Eli, reel «La razón», 25-09-2026: 1 ronda_
 - **X-26** · [BW] Lockup al pie cuando el vaso de la foto ya firma: cae encima del producto y la marca se lee dos veces — _prueba propia, feed «Necesito ir a Between», 25-09-2026 (descartada antes de mostrarla)_
 - **X-01** · [BW] **Estimar lo que Eli describió en vez de medir sus piezas publicadas**: tipografías cambiadas, jerarquía rara — _grilla de septiembre rechazada entera por Valeria, 25–26-08-2026 (2 grillas)_
 - **X-02** · [BW] **Fondo generado + recortes, logos vectoriales y sombras pegadas encima**: «parecen de paint pegoteados» — _cumpleaños rondas 11–19 (04–07-09) y ST 28-09 (14-09-2026): 5 + 3 rechazos_
@@ -54,5 +55,4 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **X-17** · [DT] Íconos estirados para llenar la ranura — _Honors, 15-09-2026_
 - **X-18** · [DT] Panel con aire de sobra («muy pelaito») — _Honors ronda 6, 16-09-2026_
 - **X-19** · [DT] Verde DT en trazos y guiones — _carrusel S5, 17-09-2026_
-- **X-20** · [DT] Titular encima del logotipo grabado en el cristal (la marca se lee dos veces) — _portada S5, 17-09-2026_
-- **X-21** · [DT] Costura del mosaico m
+- **X-20** · 

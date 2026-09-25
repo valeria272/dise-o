@@ -2004,32 +2004,23 @@ const L: React.FC = () => (
  * una foto derecha sobre un papel torcido se desborda por una esquina y delata
  * el montaje.
  */
-const POLAROID = {x: 223, y: 270, w: 276, h: 248, giro: -8};
+// 🗄️ `POLAROID` (x 223 · y 270 · 276×248 · giro −8°) se retiró el 25-09: la
+// ventana no es un rectángulo girado sino un cuadrilátero a −14,4°, y la copia
+// pasó a imprimirse en el archivo con `scripts/tc-polaroid.py`.
 const NOTA = {x: 627, y: 303, w: 230, h: 284, giro: -5};
 const POSTIT = {x: 245, y: 712, w: 518, h: 493, giro: -1.5};
 
 const M: React.FC = () => (
   <Lienzo w={POST.w} h={POST.h}>
-    <Foto src={OCT("m-refri")} foco="50% 92%" />
-
-    {/* la fotografía DENTRO de la ventana de la polaroid, con su inclinación */}
-    <div
-      style={{
-        position: "absolute",
-        left: POLAROID.x,
-        top: POLAROID.y,
-        width: POLAROID.w,
-        height: POLAROID.h,
-        transform: `rotate(${POLAROID.giro}deg)`,
-        overflow: "hidden",
-      }}
-    >
-      <Img
-        src={OCT("f-fondo")}
-        style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}
-      />
-      <AbsoluteFill style={{backgroundColor: "rgba(120,96,64,0.12)"}} />
-    </div>
+    {/* ⭐ LA ESCENA YA TRAE LA FOTO IMPRESA EN LA POLAROID (Diego, 25-09: *"que
+        quede real y no sobrepuesta"*). La imprime `scripts/tc-polaroid.py`.
+        ⛔ NO se vuelve a poner una foto encima acá. La causa de que se viera
+        pegada era **geométrica**: la ventana está girada **−14,4°** y el código
+        la ponía a −8°, así que la foto se salía por un canto y dejaba filo de
+        papel por el otro. Y no es un rectángulo girado que CSS pueda reproducir:
+        es un cuadrilátero con perspectiva propia, así que la copia se imprime
+        con una homografía sobre sus cuatro vértices medidos. */}
+    <Foto src={OCT("m-refri-foto")} foco="50% 92%" />
 
     {/* ⭐ EL DATO COMERCIAL, escrito en la nota crema. `multiply` hace que la
         tinta siga las arrugas del papel en vez de flotar encima. */}

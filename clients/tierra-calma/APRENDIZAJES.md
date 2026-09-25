@@ -68,7 +68,7 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - **R-17** · El carrusel es un solo objeto: el filete se desplaza entre slides y se juzga montado en tira — _lenguaje de Carlos jul/ago; tira verificada 14-09_ · ✔×2
 - **R-18** · Recuadro = **globo translúcido oscuro** (~0,55), derecho, centrado, ajustado al texto (`inline-block`), destacado y cuerpo juntos (8 px), sin cruzar las hairlines — _Diego, 22–23-09, `c-06-10-2`, `st-22-10`, `st-08-10`, `c-20-10-4`_ · ✔×2
 - **R-19** · Slide sin foto del carrusel: fondo **verde `#003326`** con tinta crema, no crema — _Diego, 24-09, `c-20-10-2/3`_ · ✔×1
-- **R-20** · Una foto no se repite entre dos piezas del mismo mes (parecido > 0,85 = la misma, aunque el md5 difiera) — _Diego, 24-09, `c-20-10-1`; 25-09 medido antes de instalar `g-pareja2` (máx. +0,654) y detectado que `l-fondo` estaba en dos piezas_ · ✔×3
+- **R-20** · Una foto no se repite entre dos piezas del mismo mes (parecido > 0,85 = la misma, aunque el md5 difiera) — _Diego, 24-09, `c-20-10-1`; 25-09 medido antes de instalar `g-pareja2` (máx. +0,654) y detectadas **tres** duplicadas revisando otra cosa: `l-fondo`, `f-fondo` y la del polaroid_ · ✔×4
 - **R-21** · Una imagen que ya salió en pauta **no se reusa**, aunque el brief diga «la misma toma» — _Diego, 23-09, PAID octubre_ · ✔×1
 - **R-22** · Estáticos con imagen **IA** en luz cálida; el dron del 07-08 (invierno nublado) se lee con neblina y queda para video — _Valeria, 19-08_ · ✔×1
 - **R-23** · La IA respeta la **estructura real** (ladera, ripio ocre en curva, cerco de madera oscura, postes) y la vegetación se idealiza con **nativas** (espino, quillay, litre, peumo); nunca pradera europea, flores masivas ni cordillera nevada de postal — _Carlos #7, 21-08; Diego, 22-09 `st-08-10`_ · ✔×2
@@ -99,6 +99,8 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - **R-48** · **Un panel de vidrio se diseña CON lo que queda detrás.** `backdropFilter` muestra el fondo: un bloque claro detrás lo lava y se come el texto del panel — _25-09, la pantalla del celular en crema se comía la firma_ · ✔×1
 - **R-49** · **Calcar una referencia no es copiar su color.** Se calca la estructura; la paleta y la tipografía siguen siendo las de la marca — su verde brillante no entra, el acento es la arena `#C9B99A`, y el destacado sigue siendo IvyOra versales — _Diego, 25-09, «literal pero con el estilo de Tierra Calma»_ · ✔×1
 - **R-50** · Cuando la **referencia y el brief se contradicen, manda el brief** — _25-09, `st-22-10`: la referencia pedía campo blanco opaco y el brief glassmorphism sobre foto_ · ✔×1
+- **R-52** · Un objeto de la escena generada **se mide, no se supone**: la ventana de la polaroid está a **−14,4°** y se le había puesto −8°; seis grados bastan para que la foto se salga por un canto y lea como «pegada encima». Y si el objeto tiene perspectiva, no es un `rotate()` de CSS: se imprime en el archivo con una homografía — _Diego, 25-09, `p-29-10`_ · ✔×1
+- **R-53** · Lo que integra una foto dentro de un objeto, por orden de impacto: **geometría** · sombra de contacto del marco · la **luz de la escena** medida sobre el propio objeto · acabado de copia (menos micro-contraste, negros levantados, blanco cálido) · **grano** igual al de la escena — _25-09_ · ✔×1
 - **R-51** · Cada palabra del visual del brief es **una instrucción, no un adjetivo**: «glassmorphism» es `backdropFilter` de verdad, no un gris translúcido; «imagen sutil» es velo alto, no una foto más — _25-09_ · ✔×1
 
 ## 5. Excepciones
@@ -167,6 +169,7 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - ✔ suben: **R-20** (×3, medido antes de instalar la foto nueva), **R-29** (×4, dos referencias seguidas con el mapa regenerado), **R-03** (×3, se dejó fuera el Metrotren), **R-34** (×3), **R-41** (×4), **R-42** (×3, atajó dos bloqueantes).
 - nuevos rechazos **X-17…X-19**; excepciones **E-10** y **E-11**.
 - ⭐ **El patrón del día:** cuatro vueltas persiguiendo el pixelado del mapa por el eje equivocado (encuadre, borde, umbral) cuando el problema era **la resolución del archivo**. Y seis métodos de borrado de letra en `mapa3` antes de aceptar que ese archivo no se limpia. Las dos veces, lo que destrabó fue **medir el material** en vez de calibrar otra vez.
+- **R-52** y **R-53** (polaroid) · la causa de que una foto se vea sobrepuesta suele ser el **ángulo mal supuesto**, no el acabado.
 - ⚠️ Operativo: el hook de respaldo automático se llevó archivos en curso dentro de su propio commit (`8fc98f8`), dejando la traza de una ronda repartida en dos commits con nombres que no la describen.
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico

@@ -5,6 +5,53 @@
 
 ---
 
+## 2026-09-25 (14ª vuelta) — Diego Aguilar (p-29-10: la polaroid, impresa de verdad)
+
+**Qué se hizo:** *"La foto polaroid que quede real y no sobrepuesta, que se vea
+como una foto polaroid real pegada en el refrigerador."*
+
+⭐ **LA CAUSA ERA GEOMÉTRICA, NO DE ACABADO.** La composición ponía la foto con
+`rotate(-8deg)` sobre una ventana que, medida sobre el archivo, está girada
+**−14,4°**. Seis grados bastan para que la foto se salga por un canto y deje filo
+de papel por el otro — y eso es lo que el ojo lee como «pegada encima», mucho
+antes que cualquier problema de luz o de grano. Yo había dado por hecho el ángulo
+en vez de medirlo.
+
+Y no es un rectángulo girado que CSS pueda reproducir: la ventana es un
+**cuadrilátero con su propia perspectiva**. Así que la copia dejó de ponerse por
+CSS y se **imprime en el archivo** (`scripts/tc-polaroid.py`) con una homografía
+sobre los cuatro vértices medidos: TL (356,602) · TR (748,501) · BR (815,930) ·
+BL (425,1030) — leídos del **mapa de bordes**, porque sobre blanco el ojo no los
+encuentra y el gradiente sí.
+
+**Lo que la integra, en orden de impacto:** la geometría · la **sombra de
+contacto** del marco sobre la copia · la **luz de la escena**, medida sobre el
+propio papel de la polaroid y aplicada igual a la foto · el **acabado de copia**
+(menos micro-contraste, negros levantados, blanco cálido) · el **grano**, medido
+en la escena (σ = 1,11) y reproducido.
+
+⚠️ **Un detalle que sólo aparece al renderizar:** con la máscara cayendo justo
+sobre la línea de la ventana, el canto salía **punteado**. Metida 2 px hacia
+adentro, la línea original del marco queda de borde de la copia — que es lo que
+pasa con una foto de verdad.
+
+**De paso se resolvió otra repetición:** la polaroid llevaba `f-fondo`, que ya es
+el fondo de `st-08-10`. Ahora lleva **`g-acceso`**, que estaba libre (R-20). Es la
+tercera foto duplicada que aparece esta semana revisando otra cosa.
+
+⚠️ **Si se regenera `m-refri.jpg`, los cuatro vértices hay que volver a medirlos.**
+Queda escrito en el script: mejor que falle ruidosamente a que imprima torcido.
+
+**Dónde quedó:** `scripts/tc-polaroid.py` (nuevo), `m-refri-foto.jpg` versionado,
+`OctubreV3.tsx` bloque `M` simplificado. **QA: 1 aviso**, el deliberado de la
+slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios.
+
+---
+
 ## 2026-09-25 — CIERRE DE JORNADA — Diego Aguilar
 
 **Qué se hizo:** **nueve rondas por chat**, todas con referencia adjunta, sobre

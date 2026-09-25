@@ -1,3 +1,36 @@
+## 2026-09-25 — Coni (con Claude) · REEL de prueba Biotop 700/911 + llega el brief del Cyber v2
+
+**Qué se hizo:**
+- **Reel de prueba** 1080×1920, 30 fps, 15 s, con la mecánica de la referencia de
+  Pinterest de Coni (pin 241083386295510847, bajado a `raw/selfie/ref-animacion/ref.mp4`):
+  anillos que abren con los frascos volando → «Dos aliados para *un pelo en orden.*»
+  palabra a palabra → héroe del 700 sobre una onda (ficha, subrayado a mano, 3
+  beneficios, kale y gotas flotando) → barrido al 911 (quinoa, girasol, gotas) → cierre
+  con los dos cruzados, destellos, burbujas y «Encuéntralos en Selfie.cl».
+- Textos SÓLO de las fichas del e-commerce. Ingredientes generados con Seedream 5 Pro
+  (sin marca) y recortados con el color original. Frascos reales, sin intervenir.
+- Zonas seguras de Reels verificadas con guías (250 arriba · 340 abajo · 115 derecha).
+- `/abrir`: llegó **«ORGÁNICOS SELFIE - CYBER v2»** (`1ATza75bztIC2AZEzFtFncDch8zoH9pq6`):
+  3 reels sin voz, ofertas y lineamientos (resumen en `clients/_estado-sync.json`).
+
+**Dónde quedó:**
+- Entregado: Drive `SELFIE > PRUEBA` → `PRUEBA_BIOTOP_700-911_REEL.mp4` (7,9 MB).
+- Composición `src/compositions/selfie/SelfieReelBiotop.tsx` (registrada como
+  `SelfieReelBiotop`). Assets que viajan: `public/assets/selfie/2026-nuevo-estilo/reel/`
+  (frascos parados a 820 px, kale, quinoa, girasol, gota). Render:
+  `./node_modules/.bin/remotion render SelfieReelBiotop out/selfie/reel/SELFIE_REEL_BIOTOP_700-911.mp4 --codec=h264 --crf=16 --browser-executable=…`
+- Coni va a pedir **cambios por fotograma** sobre este reel (pendiente de recibirlos).
+
+**Qué sigue:** aplicar los cambios por fotograma que pida Coni y re-subir el MP4 al mismo
+nombre. Después, el kit del Cyber (portadas, stickers de % OFF, plantilla con contador)
+con este mismo lenguaje.
+
+**Abierto:**
+- **Música:** el reel va sin audio; se elige en la biblioteca de Instagram al publicar.
+- **Cyber:** faltan las líneas de BC Bonacure, el top 3 en ventas y la fecha/hora de término.
+- ⚠️ **Los commits del 24 y 25-09 siguen SIN SUBIR a GitHub**: en este Mac no hay
+  credenciales de git. Coni tiene que correr `git push` en Terminal (token de GitHub).
+
 ## 2026-09-24 — Coni (con Claude) · ESTILO NUEVO medido + PRUEBA Biotop 700/911 en 5 formatos
 
 **Qué se hizo:**

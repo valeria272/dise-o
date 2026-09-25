@@ -5,6 +5,53 @@
 
 ---
 
+## 2026-09-25 (10ª vuelta) — Diego Aguilar (st-22-10: el visual del brief manda)
+
+**Qué se hizo:** llegó el **visual del brief** para esta historia, y contradice la
+referencia que había mandado una hora antes:
+
+> *"Interfaz tipo glassmorphism sobre una imagen sutil de Tierra Calma. En primer
+> plano, una tarjeta digital con animación de «Crédito preaprobado», acompañada
+> de elementos gráficos que sugieran avance en el proceso de compra, manteniendo
+> una estética inmobiliaria premium."*
+
+La referencia pedía **campo blanco opaco** y el brief pide **vidrio sobre
+fotografía**. No conviven. **Manda el brief** — es la regla madre: el brief dice
+el QUÉ, el sistema dice el CÓMO. De la referencia sobrevive lo que no se
+contradice: la tarjeta como objeto de interfaz y el dato con check.
+
+⭐ **Cada palabra del visual se leyó como instrucción, no como adjetivo:**
+
+- **glassmorphism** → `backdropFilter` de verdad, que desenfoca la foto de atrás.
+  Un gris translúcido no es vidrio: es un globo más, y el brief habría quedado
+  cumplido de palabra y no de hecho.
+- **imagen sutil** → velo alto: se reconoce el lugar, no compite con la tarjeta.
+- **estética inmobiliaria premium** → `l-terraza`, la foto más premium del mes
+  (terraza de madera, hora dorada, el valle detrás) y que estaba sin usar en la
+  entrega V3. Con eso además `l-fondo` deja de estar en dos piezas del mes.
+- **tarjeta con «Crédito preaprobado»** → estado aprobado con su check, del mismo
+  linaje que el mock de WhatsApp de `p-09-10` y el del buscador de `st-15-10`:
+  interfaz ilustrada, no un dato del proyecto.
+- **avance en el proceso de compra** → barra de tres tramos, el primero cumplido.
+
+⛔ **Los tramos NO llevan nombre, y es deliberado.** Ponerles «Preaprobación ·
+Visita · Reserva» sería inventar un proceso comercial que no está en el brief ni
+en la lista blanca. El avance se sugiere con gráfica. Si los pasos tienen que
+nombrarse, los tiene que dar el brief.
+
+**Todo el texto de la tarjeta sale de lo que la pieza ya decía:** «Crédito
+preaprobado» del titular, «Parcelas desde UF 2.500» y la firma.
+
+**Dónde quedó:** `OctubreV3.tsx`, bloque `L`. **QA: 1 aviso**, el deliberado de la
+slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios. Y una pregunta nueva: **si los tramos del avance tienen
+que nombrarse**, hacen falta los pasos del proceso comercial por escrito.
+
+---
+
 ## 2026-09-25 (9ª vuelta) — Diego Aguilar (st-22-10 sobre referencia nueva)
 
 **Qué se hizo:** *"Para la st del 22-10 haz la historia según esta referencia"* —

@@ -5,6 +5,51 @@
 
 ---
 
+## 2026-09-25 (4ª vuelta) — Diego Aguilar (st-12-10: la calle, maciza)
+
+**Qué se hizo:** *"Que el mapa se vea de ese estilo"*, con una referencia de
+plano urbano adjunta —calles blancas gruesas y macizas sobre fondo oscuro—,
+guardada en `referencias/2026-09-25_plano-urbano-lineal.png`.
+
+**El diagnóstico:** el detector de bordes traza **los dos cantos** de cada calle,
+así que una calle salía como dos líneas paralelas **huecas**. La referencia
+dibuja la calle entera.
+
+⭐ **La solución no fue cambiar de método, fue engrosar.** En el archivo las
+calles miden 3-5 px, o sea que sus dos cantos están a 3-5 px: engordando 2 px a
+cada lado **los cantos se tocan y el hueco se cierra**. Mismo dibujo, con el
+grosor que le faltaba. Estuve a punto de reescribir todo el detector.
+
+⛔ **Lo que probé primero y no sirve: detectar la calle como región por color.**
+Está medido y es tajante: el blanco de las calles es `#F5F4F4` y el blanco con
+que Google **rellena el interior de la comuna buscada** es *exactamente el
+mismo* — los dos dan luminancia 244,3. Por brillo no se separan, y era el camino
+"obvio".
+
+⚠️ **Y la tinta pasó a ser plena.** Con alfa proporcional, la trama densa de
+Maipú salía como una papilla gris. Binarizando, esas zonas pasan a ser manchas
+limpias, que es como las resuelve la referencia.
+
+**Otra trampa medida:** con la línea binaria probé cortar más alto para limpiar
+—75, 95, 115— y **cortar alto no limpia, rompe**: a 95 la red se deshizo en
+fragmentos y ni engrosando se volvían a unir. Un camino no tiene fuerza de borde
+constante. El corte bueno es **75** con tinta plena y engrosado de 2.
+
+**Corolario que apareció solo:** desde que la red es maciza, el contorno comunal
+del mismo grosor **se pierde dentro de ella**. Se engrosó a 2 px por lado y la
+red bajó al 88 %. Es el único elemento de la pieza que dice cuál es la comuna.
+
+**Dónde quedó:** `scripts/tc-mapa-trazos.py` — `lineas()` ahora devuelve máscara
+binaria y se sumó `engrosar()`. **QA: 1 aviso**, el deliberado de la slide 2.
+Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego. `c-20-10-2` sigue sin tocar.
+
+**Abierto:** sin cambios, más la captura de mapa con el pin del proyecto y el
+contorno de la comuna a la vez.
+
+---
+
 ## 2026-09-25 (3ª vuelta) — Diego Aguilar (st-12-10: el mapa, lineal tipo plano)
 
 **Qué se hizo:** *"Mapa que sea lineal, tipo plano."*

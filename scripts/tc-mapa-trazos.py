@@ -102,34 +102,59 @@ def bordes(a: np.ndarray) -> np.ndarray:
     return fuerza
 
 
-def lineas(a: np.ndarray, umbral: float, suavizado: float) -> np.ndarray:
-    """El mapa como PLANO: línea de tinta uniforme, no trazo con gradación.
+def lineas(a: np.ndarray, umbral: float) -> np.ndarray:
+    """El mapa como PLANO: la línea está o no está, y todas pesan igual.
 
-    Diego, 25-09: *"mapa que sea lineal, tipo plano"*.
+    Diego, 25-09: *"mapa que sea lineal, tipo plano"*, y después, con una
+    referencia de plano urbano: *"que el mapa se vea de ese estilo"*.
 
-    La versión anterior entintaba **proporcionalmente** a la fuerza del borde, y
-    eso da un grabado: cada línea sale con el peso que tenía el contraste en la
-    captura, y el relieve del cerro aparece como una veladura. Un plano no es
-    eso — en un plano **la línea está o no está**, y todas pesan igual.
+    La primera versión entintaba **proporcionalmente** a la fuerza del borde, y
+    eso da un **grabado**: cada línea sale con el peso que tenía el contraste en
+    la captura y el relieve del cerro queda como veladura. Un plano no es eso.
+    Acá el gradiente se corta y lo que pasa el corte va a **tinta plena**. El
+    gris intermedio no existe: era lo que ensuciaba las zonas densas.
 
-    Así que el gradiente se corta con un umbral y se sube a tinta llena en una
-    rampa muy corta: `suavizado` es sólo el antialias del canto, no una
-    gradación. Con 35 sobre un umbral de 95, todo lo que supere 130 va a tinta
-    completa.
+    ⚠️ **El umbral selecciona qué se dibuja, y está medido:**
 
-    ⚠️ El umbral es lo que **selecciona qué se dibuja**, y está medido:
+        Ruta 78              p90  33 · p99 227 · máx 325
+        camino rural         p90  72 · p99 146 · máx 189
+        trama urbana Maipú   p90  84 · p99 117 · máx 183
+        borde verde/gris     p90  81 · p99 110 · máx 123
+        relieve del cerro    p90  40 · p99 159 · máx 209
 
-        camino rural        p99 146 · máx 189
-        trama urbana Maipú  p99 117 · máx 183
-        Ruta 78             p99 227 · máx 325
-        borde verde/gris    máx 123, pero p90 en 80
-        relieve del cerro   p90 en 40
-
-    En 95 entran los caminos y la trama urbana, y **se cae el relieve**, que es
-    lo que ensuciaba el plano. Subirlo a 120 empieza a comerse la trama urbana
-    de Maipú, que es justamente el ancla de «cerca de Santiago».
+    ⛔ **La trampa: un corte alto NO limpia, rompe.** El primer intento cortó en
+    95 —justo encima del borde verde/gris— y la red se deshizo en fragmentos
+    sueltos. Un camino **no tiene fuerza de borde constante**: varía a lo largo
+    de su recorrido según el relleno que atraviesa, y un corte alto se queda sólo
+    con los picos. En **75** la red queda continua y el relieve se cae solo.
     """
-    return np.clip((bordes(a) - umbral) / suavizado, 0, 1)
+    return (bordes(a) > umbral).astype(float)
+
+
+def engrosar(t: np.ndarray, veces: int) -> np.ndarray:
+    """Engorda la línea hasta que la calle se vea MACIZA.
+
+    Diego, 25-09, con una referencia de plano urbano: *"que el mapa se vea de ese
+    estilo"* — calles blancas gruesas y macizas sobre fondo oscuro.
+
+    ⭐ POR QUÉ ESTO BASTA, Y POR QUÉ NO HUBO QUE CAMBIAR DE MÉTODO:
+    el detector de bordes traza **los dos cantos** de cada calle, así que una
+    calle sale como dos líneas paralelas huecas. En el archivo las calles miden
+    3-5 px de ancho, o sea que sus dos cantos están a 3-5 px. Engordando 2 px a
+    cada lado **los dos cantos se tocan y el hueco se cierra**: la calle deja de
+    ser un contorno y pasa a ser un trazo lleno. Es el mismo dibujo, con el
+    grosor que le faltaba.
+
+    ⛔ Lo que NO funciona es detectar la calle como región por su color: el
+    blanco de las calles (#F5F4F4) es **exactamente el mismo** con que Google
+    rellena el interior de la comuna buscada. Medido sobre el archivo: los dos
+    dan luminancia 244,3. Por brillo no se separan.
+    """
+    for _ in range(veces):
+        t = np.maximum.reduce(
+            [t, np.roll(t, 1, 0), np.roll(t, -1, 0), np.roll(t, 1, 1), np.roll(t, -1, 1)]
+        )
+    return t
 
 
 def _dilatar(m: np.ndarray, veces: int) -> np.ndarray:
@@ -223,12 +248,15 @@ def _conv1(m: np.ndarray, nucleo: np.ndarray, eje: int) -> np.ndarray:
     return out if eje == 0 else out.T
 
 
-def alfa_limite(a: np.ndarray, engrosar: int = 1) -> np.ndarray:
+def alfa_limite(a: np.ndarray, engrosar: int = 2) -> np.ndarray:
     """Cuánto de cada píxel es el punteado rojo del límite comunal.
 
-    Se **engrosa** un píxel a cada lado: en el original es un punteado fino de
+    Se **engrosa dos píxeles a cada lado**: en el original es un punteado fino de
     1 px pensado para mirarse al 100 %, y en la pieza va reducido. Sin engrosar
-    se deshilacha y deja de leerse como un contorno.
+    se deshilacha y deja de leerse como un contorno — y desde que la red de
+    calles pasó a línea maciza (25-09), un contorno del mismo grosor que la red
+    se pierde dentro de ella. **Tiene que ser visiblemente más grueso**: es el
+    único elemento de la pieza que dice cuál es la comuna.
     """
     r, g, b = a[:, :, 0], a[:, :, 1], a[:, :, 2]
     rojez = (r - np.maximum(g, b)) / float(LIMITE["margen"])
@@ -270,12 +298,12 @@ VERSIONES = {
     # grabado, no una fotografía de mapa: pesa lo justo sobre el fondo oscuro.
     "mapa-ph-trazos-navy": {
         "fondo": "#0B2C49", "tinta": "#F3EEE3", "acento": "#C9B99A",
-        "umbral": 45.0, "suavizado": 50.0, "fuerza": 0.88,
+        "umbral": 75.0, "grosor": 2, "fuerza": 0.88,
     },
     # La alternativa en papel, por si el titular necesita fondo claro.
     "mapa-ph-trazos-papel": {
         "fondo": "#F3EEE3", "tinta": "#0B2C49", "acento": "#6C473D",
-        "umbral": 45.0, "suavizado": 50.0, "fuerza": 0.88,
+        "umbral": 75.0, "grosor": 2, "fuerza": 0.88,
     },
 }
 
@@ -294,15 +322,15 @@ def main() -> int:
     print(f"MAPA-PADRE HURTADO: {base.size[0]}×{base.size[1]}")
 
     lim = alfa_limite(a)
-    plano, halo = sin_rotulos(a, lim)
+    plano, nodib = sin_rotulos(a, lim)
     ys, xs = np.nonzero(lim > 0.25)
     print(f"· límite comunal: {len(xs)} px  ·  x {xs.min()}-{xs.max()}  y {ys.min()}-{ys.max()}")
 
     destino = pathlib.Path(a_.probar and "." or OCT)
     for nombre, cfg in VERSIONES.items():
         u = a_.umbral or cfg["umbral"]
-        t = lineas(plano, u, cfg["suavizado"]) * cfg["fuerza"]
-        t[halo] = 0.0
+        t = engrosar(lineas(plano, u), cfg["grosor"]) * cfg["fuerza"]
+        t[nodib] = 0.0
         fondo, tinta, acento = _rgb(cfg["fondo"]), _rgb(cfg["tinta"]), _rgb(cfg["acento"])
         out = fondo[None, None, :] * (1 - t[:, :, None]) + tinta[None, None, :] * t[:, :, None]
         # el límite comunal encima, como único acento

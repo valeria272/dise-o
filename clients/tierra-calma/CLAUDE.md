@@ -1294,6 +1294,34 @@ corta: el suavizado es sólo el antialias del canto, no una gradación.
 
 Con 45 y rampa de 50, el relieve —p90 en 40— se cae solo y la red queda continua.
 
+#### ⭐ LA CALLE SE DIBUJA MACIZA, NO SE CONTORNEA (Diego, 25-09, 4ª vuelta)
+
+> *"Que el mapa se vea de ese estilo"* — con una referencia de plano urbano
+> adjunta ([`referencias/2026-09-25_plano-urbano-lineal.png`](referencias/2026-09-25_plano-urbano-lineal.png)):
+> calles blancas **gruesas y macizas** sobre fondo oscuro.
+
+El detector de bordes traza **los dos cantos** de cada calle, así que una calle
+salía como dos líneas paralelas **huecas**. La referencia dibuja la calle entera.
+
+⭐ **La solución no fue cambiar de método, fue engrosar.** En el archivo las
+calles miden 3-5 px, o sea que sus dos cantos están a 3-5 px: engordando 2 px a
+cada lado **los cantos se tocan y el hueco se cierra**. Es el mismo dibujo con el
+grosor que le faltaba.
+
+⛔ **Lo que NO funciona es detectar la calle como región por su color.** Fue lo
+primero que se probó, y está medido: el blanco de las calles es `#F5F4F4` y el
+blanco con que Google **rellena el interior de la comuna buscada** es
+*exactamente el mismo* — los dos dan luminancia 244,3. Por brillo no se separan.
+
+⚠️ **Y la tinta tiene que ser plena.** Con alfa proporcional, las zonas densas
+—la trama de Maipú— salían como una papilla gris. Binarizando, esas zonas pasan a
+ser manchas limpias, que es como las resuelve la referencia.
+
+⚠️ **Corolario sobre el contorno comunal:** desde que la red pasó a línea maciza,
+un contorno del mismo grosor **se pierde dentro de ella**. Se engrosa a 2 px por
+lado y la red baja al 88 % — es el único elemento de la pieza que dice cuál es la
+comuna.
+
 #### El titular pasa a una línea y vuelve al centro
 
 *"El texto superior que quede así: «cerca de santiago» en una línea, y abajo como

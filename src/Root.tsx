@@ -87,6 +87,7 @@ import {EbemaShowroomReel, EBEMA_REEL_DURATION, EBEMA_REEL_FPS} from "./composit
 import {EbemaClickReel, EBEMA_CLICK_DURATION, EBEMA_CLICK_FPS} from "./compositions/EbemaClickReel";
 import {EbemaClickReelOctubre, OCT_DURATION, OCT_FPS} from "./compositions/EbemaClickReelOctubre";
 import {EbemaGrillaStoryClickOct, STORY_OCT_DURATION, STORY_OCT_FPS} from "./compositions/ebema/EbemaGrillaStoryClickOct";
+import {EbemaLinkedinReelTalca, TALCA_DURATION, TALCA_FPS} from "./compositions/ebema/EbemaLinkedinReelTalca";
 import {RevexLaminadosSlide} from "./compositions/RevexLaminadosCarrusel";
 import {RevexSepPieza, REVEX_SEP_PIEZAS} from "./compositions/RevexSeptiembre";
 import {RevexSep2026, REVEX_SEP26} from "./compositions/RevexSep2026";
@@ -933,6 +934,8 @@ export const RemotionRoot: React.FC = () => {
         {/* pieza 16 del brief de octubre 2026 — 14,8 s, cierre oficial de Paulina */}
         <Composition id="EbemaClickReelOctubre" component={EbemaClickReelOctubre} durationInFrames={OCT_DURATION} fps={OCT_FPS} width={1080} height={1920} />
         <Composition id="EbemaGrillaStoryClickOct" component={EbemaGrillaStoryClickOct} durationInFrames={STORY_OCT_DURATION} fps={STORY_OCT_FPS} width={1080} height={1920} />
+        {/* LinkedIn 05/10/2026 — saludo sucursal Talca, calcado del reel de La Calera (2160×3840) */}
+        <Composition id="EbemaLinkedinReelTalca" component={EbemaLinkedinReelTalca} durationInFrames={TALCA_DURATION} fps={TALCA_FPS} width={2160} height={3840} />
         <Composition
           id="EbemaShowroomReelFeed"
           component={EbemaShowroomReel}

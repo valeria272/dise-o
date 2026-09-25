@@ -92,6 +92,12 @@ public/assets/**
 # imagen de IA no se regenera dos veces igual: sin el fondo versionado la pieza no
 # se puede volver a sacar, y es lo que hizo a Revex rehacer 3 rondas de cero.
 !public/assets/ebema/grilla-oct26/**
+# LinkedIn octubre 2026 (25-09): reel de Talca (bases, clips de Kling + 30 fps, grúa real,
+# música) y los fondos de los 3 carruseles y el post. Lo descartado y las refs derivadas no viajan.
+!public/assets/ebema/linkedin-oct26/**
+public/assets/ebema/linkedin-oct26/**/descartados/**
+public/assets/ebema/linkedin-oct26/**/_refs/**
+public/assets/ebema/linkedin-oct26/**/*.log
 
 !public/assets/cava/bottles/**
 !public/assets/cava/kv/**
@@ -690,3 +696,11 @@ out/ebema/20260907_paid_octubre/*
 out/ebema/20260907_paid_octubre/editables/*.html
 !out/ebema/20260907_paid_octubre/fondos/
 !out/ebema/20260907_paid_octubre/fondos/**
+
+# EBEMA LinkedIn octubre 2026 (25-09): la ficha de entrega y la ronda 1. Las piezas se
+# reproducen con linkedin_carruseles.py + los fondos de public/assets/ebema/linkedin-oct26.
+!out/ebema/20260925_linkedin_octubre/
+out/ebema/20260925_linkedin_octubre/*
+!out/ebema/20260925_linkedin_octubre/ENTREGA.md
+!out/ebema/20260925_linkedin_octubre/resolver_r1.py
+!out/ebema/20260925_linkedin_octubre/comentarios-r1.json

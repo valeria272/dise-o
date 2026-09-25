@@ -3,6 +3,42 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-25 — Paulina Bustamante
+
+**Qué se hizo:** Todo el **LinkedIn de octubre** que la grilla deja producir, más su ronda 1.
+1. **Reel 05/10 · saludo sucursal Talca** (18,1 s, 2160×3840), calcado al píxel del reel
+   publicado de La Calera (medido: cajas de esquina, pastilla, Raleway 600/700 y **Medium
+   500** en el cuerpo, resaltado por palabras). Planos = fotos reales de Talca animadas con
+   Kling + la grúa real (C0044) a media velocidad. Ronda 1: la bodega exterior del segundo 4
+   se cambió por la nave interior («deficiente en iluminación y enfoque comercial»).
+2. **3 carruseles** (12/10 ventas, 19/10 Click, 22/10 conteo) y el **post 15/10** (CChC
+   15,5 %). Familia NUEVA de LinkedIn, medida sobre las 16 láminas de referencia de Paulina.
+   Fondos desde fotos reales de 9 sucursales (Talca, Chillán, Antofagasta…) + Seedream 5 Pro;
+   mapa de Click desde el de septiembre con Nano Banana Pro (pines en las mismas posiciones).
+3. **Ronda 1: 17 comentarios, todos aplicados, re-subidos sobre el mismo fileId y
+   respondidos + resueltos en Drive.** Ventas4 y click4 quedaron aprobadas y congeladas.
+
+**Dónde quedó:**
+- Drive `4-entregado / 2026-10 linkedin octubre` (`12rsOt4G__ljKSK5uG3s7tn0K5S7-b0wn`):
+  reel + `c_ventas/`, `c_click/`, `c_conteo/` + post. md5 verificado contra lo local.
+- Repo: `src/compositions/ebema/EbemaLinkedinReelTalca.tsx`, `linkedin_carruseles.py` y
+  `linkedin_fotos.py` en `sistema-grilla/ejemplos/octubre-2026/`, fondos y clips en
+  `public/assets/ebema/linkedin-oct26/` (excepción en `.gitignore`), `Raleway-Medium.ttf`.
+  Ficha: `out/ebema/20260925_linkedin_octubre/ENTREGA.md`. Reproducibilidad probada con `cmp`.
+- Material bajado a `raw/ebema/linkedin/` (Talca completo, 22 fotos de otras sucursales,
+  refs de carrusel y reel). El conector de Drive **no baja archivos de más de ~5 MB**: lo
+  pesado lo descarga Paulina a `raw/ebema/linkedin/_descargas`.
+
+**Qué sigue:** esperar la ronda 2 de Paulina sobre el LinkedIn (leer con
+`python scripts/drive-comentarios.py --nombre ebema_lk_`). Después, los dos comentarios de
+carruseles de feed que siguen abiertos (cbb5 y masisa2, probablemente ya aplicados: mirar y resolver).
+
+**Abierto:**
+1. LinkedIn 26/10 **Capacitaciones**: la grilla dice «PENDIENTE: confirmar tema, proveedor y
+   sucursal». 30/10 es slot libre.
+2. Paulina descartó la referencia de grilla del post: se quedó con la gramática de portada.
+3. Siguen abiertos: grilla de noviembre sin brief, logo Masisa no vectorial, EBEMA sin `reglas.yaml`.
+
 ## 2026-09-24 (tarde) — Paulina Bustamante
 
 **Qué se hizo:** La **story animada de Click (07/10)** pasó 4 rondas de comentarios de

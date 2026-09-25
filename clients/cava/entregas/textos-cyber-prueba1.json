@@ -1,0 +1,14 @@
+{
+  "_que_es": "Los textos que la pieza pinta de verdad, declarados para que qa/motor.py pueda correr las reglas de copy en vez de saltarlas. Se actualiza cada vez que cambia una línea. El logo CAVA MORANDÉ y el recuadro de ADVERTENCIA son IMÁGENES, no texto compuesto, y por eso no se declaran.",
+  "CYBER_CAVA_CARMENERE_PRUEBA1.png": [
+    "50% OFF",
+    "Llegó el Cyber.",
+    "TU CARMENERE,",
+    "A MITAD DE PRECIO.",
+    "7Colores",
+    "Limited Edition",
+    "Carmenere",
+    "$9.245",
+    "$18.490"
+  ]
+}

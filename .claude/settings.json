@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && (python3 scripts/respaldo-automatico.py || python scripts/respaldo-automatico.py)",
+            "timeout": 180
+          }
+        ]
+      }
+    ]
+  }
+}

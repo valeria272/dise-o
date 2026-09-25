@@ -785,8 +785,45 @@ Paulina, antes de empezar la sección LinkedIn (todavía no se genera nada):
   reales, que entran como `--refs`: la sucursal tiene que reconocerse.
 - ⛔ **Nunca rostros de trabajadores.** EBEMA rota personal y las fotos pueden ser
   antiguas. Las personas van de espaldas, fuera de foco o recortadas.
+- ⭐ **Lo que no existe en foto se genera con la estética real de EBEMA** (Paulina,
+  25-09): una foto real de bodega o patio entra de referencia y se le añade el camión, el
+  despacho o la escena que falte. Así están hechas sus referencias de carrusel LinkedIn.
 - Fotos base: Drive `MATERIAL DISEÑO PAULINA/EBEMA/3-fotos/fotos_sucursales/<sucursal>/`
   (una carpeta por sucursal). Referencias: `2-referencias/linkedin/{carrusel, reel}`.
+
+### ⛔ Imágenes de sucursal — ronda 1 de LinkedIn — 25-09-2026
+
+- **No se inventan estructuras** (naves, edificios, obras): sobre la foto real sólo se
+  añaden **personas, vehículos y materiales**. Una obra junto a una bodega se lee como
+  construcción dentro del patio de EBEMA.
+- **Oficina = ropa formal** (pantalón de vestir y camisa). El uniforme azul con
+  reflectante es de bodega y patio.
+- **Iluminación y enfoque comercial**: una foto real plana o con sombras duras se cambia.
+
+### ⭐ LinkedIn — reel de SALUDO DE SUCURSAL, medido — 25-09-2026
+
+Referencia que manda: `reel_calera_sept.mp4` (Drive `2-referencias/linkedin/reel`),
+18,1 s a 2160×3840. Composición calcada: `src/compositions/ebema/EbemaLinkedinReelTalca.tsx`
+(una pieza = un archivo; para otra sucursal se copia y se cambian textos y planos).
+
+| Elemento | Medida (a 2160×3840) |
+|---|---|
+| Caja roja arriba-izq. | llena 0–1011 × 0–395, radio ~100; filete 8 px a 36/48 px (1048–1055 × 444–451) |
+| Caja roja abajo-der. | llena 1104–2160 × 3442–3840; filete 1060–1067 × 3386–3393. **Fijas todo el video** |
+| Logo | pastilla blanca 1432–1875 × 0–451, anillo a color dentro; desaparece en el cierre |
+| Título | «SUCURSAL EBEMA» Raleway **600** 137 px + nombre Raleway **700** 161 px en caja roja redondeada 1305 × 189 |
+| Cuerpo | Raleway **500 (Medium)** 104,5 px, interlínea 128; se resaltan **palabras**, no líneas, en caja roja de 105 de alto |
+| Pantalla partida | corte en y = 1920; arriba entra desde la izquierda, abajo desde la derecha |
+| Cierre | fondo blanco, frase en caja roja (h 131) + bajada gris #808080, anillo EBEMA de 661 px al centro |
+| Movimiento | textos entran/salen con desenfoque + fundido (~0,4 s) |
+
+⚠️ El peso del cuerpo se midió por **grosor de trazo** (9 px = 500): con Regular queda
+flaco. `Raleway-Medium.ttf` se instanció de la variable de Google Fonts (libre).
+
+⛔ **Kling inventa letreros en travellings y paneos.** Al desplazarse imagina lo que
+está fuera de la foto y ahí pone marcas de proveedores que no existen («Gan», «cpltei»
+en la bodega de Talca). En fotos de sucursal: **sólo acercamientos rectos**, y revisar
+el último cuadro de cada clip. Personas: de perfil o de espaldas (Paulina, 25-09).
 
 ### ⭐ Las STORIES de grilla ya tienen sistema — 24-09-2026
 

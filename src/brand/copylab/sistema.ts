@@ -25,8 +25,14 @@ export const TOPES = tokens.topes;
 /** Las cuatro voces. Se citan por nombre, nunca por string suelto. */
 export const VOZ = {
   impacto: "'CL Impacto', 'Archivo', Helvetica, Arial, sans-serif",
+  /** Archivo Narrow — la cabeza que fija el pack de marca del 24-09-2026
+   *  (03_TYPOGRAPHY). Es OTRA familia, no Archivo con el eje de ancho. */
+  narrow: "'CL Narrow', 'Archivo Narrow', Helvetica, Arial, sans-serif",
   editorial: "'CL Editorial', 'DM Serif Display', Georgia, serif",
   data: "'CL Data', 'IBM Plex Mono', ui-monospace, monospace",
+  /** Inter — texto funcional (MASTER 03). */
+  funcional: "'CL Funcional', 'Inter', Arial, sans-serif",
+  /** NO es voz de marca desde el 24-09-2026. Sólo piezas v1 ya entregadas. */
   mano: "'CL Mano', 'Caveat', cursive",
 } as const;
 
@@ -54,6 +60,18 @@ export const asegurarFuentes = () => {
   src: url(${staticFile(`${base}/Archivo-Variable.ttf`)}) format('truetype');
   font-weight: 100 900;
   font-stretch: 62% 125%;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CL Narrow';
+  src: url(${staticFile(`${base}/ArchivoNarrow-Variable.ttf`)}) format('truetype');
+  font-weight: 400 700;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CL Funcional';
+  src: url(${staticFile(`${base}/Inter-Variable.ttf`)}) format('truetype');
+  font-weight: 100 900;
   font-display: block;
 }
 @font-face {
@@ -92,6 +110,7 @@ export const asegurarFuentes = () => {
   if (f) {
     [
       "900 200px 'CL Impacto'", "400 200px 'CL Impacto'",
+      "700 200px 'CL Narrow'", "400 40px 'CL Funcional'",
       "italic 400 120px 'CL Editorial'", "400 120px 'CL Editorial'",
       "500 40px 'CL Data'", "400 40px 'CL Data'",
       "700 80px 'CL Mano'",

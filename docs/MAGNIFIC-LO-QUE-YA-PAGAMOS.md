@@ -70,7 +70,7 @@ nuevos dan `404` y los viejos responden.** Medido, par por par:
 |---|---|---|
 | **PixVerse transición** ⭐⭐ | `image-to-video/pixverse-v5-transition` | **Primer Y último fotograma.** El único que deja encadenar planos: el último frame de un plano ES el primero del siguiente, por construcción |
 | **Kling 2.5 Pro** | `image-to-video/kling-v2-5-pro` | El mejor que tenemos |
-| **Kling 2.1 Pro / Master** | `image-to-video/kling-v2-1-pro`, `-master` | Hizo los reels de Más Center y el Cap. 02 |
+| **Kling 2.1 Pro / Master** | `image-to-video/kling-v2-1-pro`, `-master` | Hizo los reels de Más Center y el Cap. 02. ⚠️ 15-09: falló 12/12 con `error: null`; ver nota abajo |
 | **Kling O1 Pro** | `image-to-video/kling-o1-pro` | 🆕 |
 | **Video-01-Live** ⭐ | `image-to-video/minimax-video-01-live` | 🆕 **Anima ilustración**, no fotografía: los doodles de Between, el personaje G. Kling está entrenado en foto y por eso los deforma |
 | **Hailuo 2.3 / 02** | `image-to-video/minimax-hailuo-2-3-1080p`, `-02-1080p` | 🆕 la 2.3 |
@@ -78,6 +78,18 @@ nuevos dan `404` y los viejos responden.** Medido, par por par:
 | **WAN 2.5 / 2.2** | `image-to-video/wan-2-5-i2v-1080p`, `wan-v2-2-720p` | 🆕 la 2.5 |
 | **OmniHuman 1.5** ⭐⭐ | `video/omni-human-1-5` | 🆕 **Avatar que habla.** Es lo que estaba bloqueado por Higgsfield sin créditos: el UGC y la gemela digital |
 | **VFX** | `video/vfx` | 🆕 efectos sobre un clip ya rodado |
+
+> ⭐ **24-09-2026: Hailuo 02 es hoy el motor que responde.** `kling-v2-5-pro` dejó 8 tareas una hora en
+> IN_PROGRESS y terminó en FAILED 7 de 8. `minimax-hailuo-02-1080p` entregó los 19 planos del G.CL CAP.02 en
+> ~2 min cada uno, verticales y con el personaje intacto. Dos trampas: **sólo acepta `duration: 6`** (400 con 5
+> o 10), y **no lee `image`**: el cuadro de entrada va en `first_frame_image` como data URI. Con `image` lo valida,
+> lo ignora y genera cualquier cosa en 16:9 (dos robots azules genéricos). `scripts/magnific-video.py` ya lo
+> maneja. Si una tarea queda colgada, **no relanzar**: `scripts/magnific-video-recuperar.py` la espera y la baja.
+>
+> ⚠️ **15-09-2026 (noche):** `kling-v2-1-pro` devolvió `FAILED` con `error: null` en 12 de 12 tareas seguidas
+> (incluso con `scripts/magnific-video.py`, que ya había funcionado). **`kling-v2-5-pro` sí anduvo** el mismo
+> minuto (1928×1072, 24 fps, 5 s, ~4 min) y `minimax-hailuo-02-1080p` también aceptó. Si la 2.1 falla en
+> silencio, cambiar de modelo antes que de payload — pero la 2.5 **no acepta `image_tail`**: sin frame final.
 
 ### Texto → video 🆕
 

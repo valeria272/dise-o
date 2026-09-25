@@ -22,6 +22,10 @@ import {tierracalma as TC, ensureTierraCalmaFonts} from "../../brand/tierracalma
 // =============================================================================
 
 const OCT = (n: string) => staticFile(`assets/tierracalma/oct/${n}.jpg`);
+/** ⚠️ Lo mismo, pero PNG. La tarjeta del mapa va sin comprimir: `mapa3.jpg` ya
+ *  es JPEG y un segundo pase de compresión vuelve a ablandar los cantos de la
+ *  cartografía, que es justo lo que Diego marcó como «pixelado». */
+const OCT_PNG = (n: string) => staticFile(`assets/tierracalma/oct/${n}.png`);
 const MARCO = (n: string) => staticFile(`assets/tierracalma/marcos/${n}.png`);
 const SANS = TC.fonts.body;
 const SERIF = TC.fonts.display;
@@ -106,20 +110,23 @@ const Marco: React.FC<{archivo: string}> = ({archivo}) => (
 );
 
 /**
- * ⭐ EL MARCO TEÑIDO POR TRAMOS — para las piezas con el mapa a sangre.
+ * ⭐ EL MARCO TEÑIDO POR TRAMOS.
  *
- * El marco es un **asset bloqueado**: no se redibuja, sólo se rellena o se
- * recolorea con máscara. Pero cuando el fondo cambia de claro a oscuro dentro de
- * la misma pieza —el mapa es papel en la banda del medio y el color de marca
- * arriba y abajo— **un filete de un solo color deja de verse en un tramo**.
+ * El marco es un **asset bloqueado**: no se redibuja, sólo se recolorea con
+ * máscara. Pero cuando el fondo cambia de claro a oscuro dentro de la misma
+ * pieza —el mapa es papel en la banda del medio y navy arriba y abajo— **un
+ * filete de un solo color deja de verse en un tramo**. Así que se tiñe por
+ * tramos, con `clipPath`, y el filete contrasta con lo que cruza.
  *
- * Así que se tiñe por tramos: el filete contrasta con lo que cruza. Es el mismo
- * recurso de `MarcoTenido` aplicado tres veces con `clipPath`, no un marco
- * nuevo. La referencia que pasó Diego el 24-09 hace exactamente esto: filete
- * oscuro sobre el mapa claro y píldora crema sobre el color sólido.
+ * ⚠️ **Medir antes de usarlo:** sólo `MARCO-ST` lleva filete vertical.
+ * `MARCO-CARRUSEL-2` tiene tinta únicamente en las filas 130 y 1285, que caen
+ * sobre color macizo y no necesitan nada.
  *
  * `cortes` va en píxeles del lienzo y de arriba hacia abajo; el último `y` tiene
  * que ser el alto de la pieza.
+ *
+ * 🗄️ Historia: existió el 24-09, se retiró el 25-09 cuando el mapa pasó a trazos
+ * sobre navy, y volvió el mismo día al volver el mapa a papel claro.
  */
 const MarcoTramos: React.FC<{
   archivo: string;
@@ -312,8 +319,10 @@ const Pildora: React.FC<{
   size?: number;
   /** Separación icono-texto. Se baja cuando el texto no cabe holgado. */
   gap?: number;
+  /** ⚠️ Sobre campo CLARO hay que pasarla: el blanco por defecto desaparece. */
+  tinta?: string;
   children: React.ReactNode;
-}> = ({caja, icono, size = 30, gap = 13, children}) => (
+}> = ({caja, icono, size = 30, gap = 13, tinta = "#fff", children}) => (
   <div
     style={{
       position: "absolute",
@@ -334,7 +343,7 @@ const Pildora: React.FC<{
         fontWeight: 500,
         fontSize: size,
         letterSpacing: "0.07em",
-        color: "#fff",
+        color: tinta,
         textTransform: "uppercase",
         whiteSpace: "nowrap",
       }}
@@ -693,7 +702,16 @@ const F: React.FC = () => (
 
 const G: React.FC = () => (
   <Lienzo w={POST.w} h={POST.h}>
-    <Foto src={OCT("g-pareja")} foco="50% 55%" />
+    {/* ⭐ Diego (25-09): *"cambia a la pareja, de pose, de ropa, todo"*, manteniendo
+        la idea. Sale `g-pareja` —de pie, centrados, quietos sobre pasto parejo— y
+        entra `g-pareja2`: caminando de espaldas por el camino de ripio ocre, él
+        abrazándola, ropa distinta. Generada con Seedream 5 Pro siguiendo el ADN
+        del lugar (§ 4 bis): matorral nativo ralo pero en verde de primavera,
+        cerros ocres SIN nieve, cerco de madera oscura horizontal, luminarias.
+        ⚠️ Medido antes de instalarla: da como máximo **+0,654** contra cualquier
+        otra imagen del mes (y +0,575 contra la que reemplaza), lejos del +0,85
+        que marca «es la misma foto». */}
+    <Foto src={OCT("g-pareja2")} foco="50% 55%" />
     <Degradado arriba={0.4} abajo={0.44} velo={0.1} />
     <Marco archivo="MARCO-POST" />
     <Burbuja x={112} y={280} w={600} cola="izq">
@@ -797,9 +815,16 @@ const G: React.FC = () => (
  */
 
 /** La banda del mapa: a sangre, y con su propia proporción de recorte. */
-const MAPA = {top: 545, h: 470};
-/** Dónde abre y dónde cierra el degradado. Fuera de esto, navy macizo. */
-const MAPA_LIMPIO = {desde: 565, hasta: 930};
+/**
+ * ⭐ LA BANDA DEL MAPA — en TRAZOS desde el 25-09.
+ *
+ * `escala 1,0` y `desdeFila 110` no son a ojo: el contorno de la comuna ocupa las
+ * filas **143-473** del archivo (330 px) y la banda mide 515, así que a escala
+ * 1:1 entra completo —del 528 al 858 del lienzo— con aire por los dos lados. Y
+ * 1:1 importa por sí solo: el archivo se muestra a su resolución nativa, sin
+ * remuestrear. Un contorno cortado por el borde parece un error de encuadre.
+ */
+const MAPA = {top: 495, h: 515, escala: 1.0, desdeFila: 110};
 
 /** Placa de dato, como las del pie de la referencia. */
 const Placa: React.FC<{children: React.ReactNode}> = ({children}) => (
@@ -829,27 +854,51 @@ const H: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
     <AbsoluteFill style={{backgroundColor: TC.colors.navy}} />
 
-    {/* ⭐ EL MAPA, A SANGRE. Se disuelve en el navy por arriba y por abajo: el
-        degradado va sobre la banda y termina exactamente donde termina la
-        imagen, así que no queda canto. */}
-    <div style={{position: "absolute", left: 0, top: MAPA.top, width: STORY.w, height: MAPA.h}}>
+    {/* ⭐ EL MAPA. Diego, 25-09: *"vuelve a tomar el mapa-padre hurtado, déjalo
+        tal cual con el mismo efecto de color con el contraste de fondo, elimina
+        los iconos"*. Es el archivo real en duotono de marca (`tc-mapa-ph.py`),
+        no un trazado: tres vueltas de líneas extraídas por gradiente quedaron
+        pixeladas y se descartaron. El degradado de los cuatro lados lo disuelve
+        en el navy del lienzo, así que no hay canto ni caja. */}
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        top: MAPA.top,
+        width: STORY.w,
+        height: MAPA.h,
+        overflow: "hidden",
+      }}
+    >
       <Img
-        src={OCT("mapa3-banda-st")}
-        style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}
+        src={OCT("mapa-ph-banda-st")}
+        style={{
+          position: "absolute",
+          left: (STORY.w - 893 * MAPA.escala) / 2,
+          top: -MAPA.desdeFila * MAPA.escala,
+          width: 893 * MAPA.escala,
+          height: 631 * MAPA.escala,
+          display: "block",
+        }}
       />
       <AbsoluteFill
         style={{
-          background: `linear-gradient(to bottom,
-            ${TC.colors.navy} 0%,
-            rgba(11,44,73,0) ${((MAPA_LIMPIO.desde - MAPA.top) / MAPA.h) * 100}%,
-            rgba(11,44,73,0) ${((MAPA_LIMPIO.hasta - MAPA.top) / MAPA.h) * 100}%,
-            ${TC.colors.navy} 100%)`,
+          background: `linear-gradient(to bottom, ${TC.colors.navy} 0%, rgba(11,44,73,0) 11%,
+                        rgba(11,44,73,0) 89%, ${TC.colors.navy} 100%),
+                       linear-gradient(to right, ${TC.colors.navy} 0%, rgba(11,44,73,0) 15%,
+                        rgba(11,44,73,0) 85%, ${TC.colors.navy} 100%)`,
         }}
       />
     </div>
 
-    {/* titular sobre navy macizo, encima de la banda */}
-    <div style={{position: "absolute", left: 96, top: 250, width: 880, textAlign: "left"}}>
+    {/* ⭐ Titular sobre navy macizo, CENTRADO y con «CERCA DE SANTIAGO.» en una
+        sola línea (Diego, 25-09). Vuelve a la regla de la cuenta —todo centrado
+        al medio— de la que esta pieza se había salido al armarse sobre la
+        referencia de Sonatta, que alineaba a la izquierda.
+        ⚠️ La línea única no es sólo estética: ahorra 62 px de alto, y esos 62 px
+        son los que dejan subir la banda del mapa de la fila 543 a la 495 y
+        mostrarlo a escala 1:1 en vez de reducido al 90 %. */}
+    <div style={{position: "absolute", left: 0, right: 0, top: 250, textAlign: "center"}}>
       <div
         style={{
           fontFamily: SANS,
@@ -860,9 +909,7 @@ const H: React.FC = () => (
           color: "#fff",
         }}
       >
-        CERCA DE
-        <br />
-        SANTIAGO.
+        CERCA DE SANTIAGO.
       </div>
       <div
         style={{
@@ -883,15 +930,20 @@ const H: React.FC = () => (
       </div>
     </div>
 
-    {/* la ubicación, en píldora de contorno como la referencia. Va en el tramo
-        donde el mapa ya se disolvió, así que apoya sobre navy y no sobre
-        cartografía. */}
+    {/* La ubicación, en píldora de contorno como la referencia.
+        ⚠️ DOS COSAS MEDIDAS, NO ELEGIDAS:
+        · Va **rellena de navy macizo**, no transparente. Con el mapa en trazos
+          debajo, una píldora calada deja pasar los caminos por detrás del texto
+          — que es exactamente lo que estas vueltas vinieron a prohibir.
+        · Va en la fila 966 y no antes: el vértice sur del contorno comunal
+          cierra en la 957 (495 + (572-110)×1,0). Trece píxeles más arriba y la
+          píldora le corta la punta a la comuna. */}
     <div
       style={{
         position: "absolute",
         left: 0,
         right: 0,
-        top: 950,
+        top: 970,
         display: "flex",
         justifyContent: "center",
       }}
@@ -901,6 +953,7 @@ const H: React.FC = () => (
           display: "inline-flex",
           alignItems: "center",
           gap: 13,
+          backgroundColor: TC.colors.navy,
           border: `1px solid rgba(243,238,227,0.55)`,
           borderRadius: 999,
           padding: "13px 34px",
@@ -923,9 +976,9 @@ const H: React.FC = () => (
       style={{
         position: "absolute",
         left: 96,
-        top: 1052,
+        top: 1062,
         width: 888,
-        height: 306,
+        height: 296,
         overflow: "hidden",
         borderRadius: "56px 0 56px 0",
       }}
@@ -1010,13 +1063,15 @@ const H: React.FC = () => (
     </div>
 
     {/* ⚠️ El marco, teñido por tramos: crema sobre el navy y navy sobre el mapa
-        claro. Un filete crema cruzando el papel del mapa no se ve. */}
+        claro. Un filete crema cruzando el papel del mapa no se ve. Los cortes
+        caen donde el degradado ya resolvió a un lado o al otro: la banda va de
+        la 495 a la 1010 y abre y cierra en el 11 % y el 89 % de su alto. */}
     <MarcoTramos
       archivo="MARCO-ST"
       alto={STORY.h}
       cortes={[
-        {y: 555, color: TC.colors.cream},
-        {y: 972, color: TC.colors.navy},
+        {y: 560, color: TC.colors.cream},
+        {y: 950, color: TC.colors.navy},
         {y: STORY.h, color: TC.colors.cream},
       ]}
     />
@@ -1213,80 +1268,78 @@ const K1: React.FC = () => (
 /**
  * ⭐ K2 · 20/10 · CARRUSEL 2/6 — «¿Qué tan conectado estarás?»
  *
- * ⛔ EL MAPA ES PAPEL Y VA A SANGRE (Diego, 24-09-2026, con referencia adjunta)
- * ──────────────────────────────────────────────────────────────────────────────
- * *"Para el carrusel, exactamente la pieza del 20-10-2 sigue esta referencia,
- * que se vea así pero con el color verde."* La referencia está guardada en
- * `clients/tierra-calma/referencias/2026-09-24_tc-mapa-a-sangre.png` y su
- * gramática está explicada larga en el bloque de `H`, que la aplica igual.
+ * ⛔ EL MAPA SE ROTULA, NO SE AMPLÍA (Diego, 25-09)
+ * ─────────────────────────────────────────────────
+ * *"Los textos del mapa se siguen viendo pixelados, si tienes que rediseñarlo
+ * hazlo."* Y, en el mismo mensaje: *"no cambies el contenido, vuelve al texto de
+ * antes"* — así que el panel de datos que había probado sale y vuelve la bajada.
  *
- * En resumen: **el mapa a sangre, en papel, disolviéndose en el color de marca,
- * y ningún texto apoyado sobre la cartografía.**
+ * **La letra del mapa mide 11 px en el archivo.** Es una captura de pantalla:
+ * once píxeles no dan para más, y el recorte ya iba 1:1, así que no había
+ * escala que corregir. Borrarla para recomponerla tampoco resultó — ver el
+ * detalle de los cuatro métodos probados en `scripts/tc-mapa-ph.py`.
  *
- * ⛔ LO ÚNICO QUE NO SE PUDO COPIAR DE LA REFERENCIA, Y POR QUÉ
- * ─────────────────────────────────────────────────────────────
- * En la referencia el mapa **empieza en el borde superior** y arriba sólo va el
- * logo. Acá no se puede: el carrusel tiene una regla anterior del propio Diego
- * —*"que la ubicación de cada número con el título estén en el mismo lugar que
- * la slide 2"*— y **esta es la slide que define esa fila (205)**. Si el titular
- * se baja, se mueve en las seis.
+ * ⭐ **LO QUE SÍ RESUELVE: rotular encima.** El mapa queda intacto y la pieza
+ * repone **sólo los nombres que la slide necesita**, en Inter Tight, con un velo
+ * de papel detrás que tapa el original. Los demás topónimos quedan de textura,
+ * que es su papel de todos modos. Un mapa diseñado rotula lo que la pieza dice,
+ * no todo lo que hay.
  *
- * Así que el mapa entra **desde la fila 470**, debajo del titular, y sangra por
- * el borde inferior. Es el mismo movimiento de la referencia, corrido: color
- * macizo donde va el texto, papel donde va el mapa.
- *
- * ⚠️ El titular NO se pone encima del mapa aunque haya espacio. Un titular de
- * dos líneas sobre cartografía es exactamente el problema que estas dos vueltas
- * vinieron a arreglar — y la referencia tampoco lo hace: lo único que pone
- * sobre el mapa es el logo.
- *
- * ⚠️ GEOMETRÍA. `mapa3-banda-k2.jpg` es un recorte de 873×711 y la banda mide
- * 1080×880: **misma proporción**, así que el archivo se muestra 1:1 y nadie lo
- * reencuadra acá. El script imprime dónde cae cada topónimo en el lienzo, y ese
- * es el control: el pin en (233, 860), Maipú en (935, 619) y Padre Hurtado en
- * (731, 922) quedan dentro de la banda limpia (525–990).
- *
- * Este recorte es más alto que el de la story porque la slide pregunta por la
- * CONEXIÓN: entran los dos escudos de la **Ruta 78**, el Trapiche de Peñaflor y
- * Calera de Tango.
+ * ⚠️ Los rótulos van por **coordenada medida sobre `mapa3.jpg`**, trasladada al
+ * recorte de la tarjeta. Si cambia el recorte, hay que rehacer la traslación —
+ * `ROTULO()` la hace en un solo lugar para que no se disperse.
  */
 
-/** La banda del mapa: a sangre, desde debajo del titular hasta el borde. */
-const MAPA_K2 = {top: 470, h: 880};
+/** La tarjeta del mapa. `w`×`h` son EXACTAMENTE las del recorte: no se escala. */
+const TARJETA_K2 = {x: 70, y: 470, w: 940, h: 500};
+/** Esquina superior izquierda del recorte dentro de `mapa3.jpg`. */
+const RECORTE_K2 = {x: 150, y: 90};
+/** Pasa una coordenada de `mapa3.jpg` a píxeles del lienzo. */
+const ROTULO = (x: number, y: number) => ({
+  left: TARJETA_K2.x + x - RECORTE_K2.x,
+  top: TARJETA_K2.y + y - RECORTE_K2.y,
+});
+
 /**
- * El degradado en cuatro filas del lienzo: `abre`→`desde` es la entrada,
- * `hasta`→`cierra` la salida. ⚠️ `cierra` tiene que quedar **por encima del
- * texto de cierre** (fila 1080): si el degradado sigue abierto donde va el
- * texto, el texto se lee sobre cartografía y vuelve el problema de siempre.
+ * Un topónimo repuesto sobre el mapa. El `textShadow` no es un efecto: es el
+ * velo de papel que tapa la letra original de la captura, del color del propio
+ * mapa. Sin él se leerían las dos.
  */
-const K2_LIMPIO = {abre: 470, desde: 525, hasta: 990, cierra: 1062};
+const Toponimo: React.FC<{
+  x: number;
+  y: number;
+  size?: number;
+  peso?: number;
+  children: React.ReactNode;
+  ancla?: "centro" | "izq";
+}> = ({x, y, size = 30, peso = 500, ancla = "centro", children}) => (
+  <div
+    style={{
+      position: "absolute",
+      ...ROTULO(x, y),
+      // «izq» deja el rótulo A LA DERECHA del punto: es lo que necesita el de
+      // Tierra Calma para no taparle el pin, que es el elemento que el material
+      // ya trae y que Diego pidió conservar.
+      transform: ancla === "izq" ? "translate(0, -50%)" : "translate(-50%, -50%)",
+      whiteSpace: "nowrap",
+      fontFamily: SANS,
+      fontWeight: peso,
+      fontSize: size,
+      letterSpacing: "0.02em",
+      color: "#12291F",
+      textShadow:
+        "0 0 7px #EDE7D8, 0 0 7px #EDE7D8, 0 0 12px #EDE7D8, 0 0 12px #EDE7D8, 0 0 18px #EDE7D8",
+    }}
+  >
+    {children}
+  </div>
+);
 
 const K2: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
     {/* ⭐ Diego (24-09): "siento que quedan muy cortadas visualmente la 2da y la
-        3ra de las demás, cambiar por el color VERDE del manual". Las dos slides
-        de fondo plano van al verde profundo del logo estático. */}
+        3ra de las demás, cambiar por el color VERDE del manual". */}
     <AbsoluteFill style={{backgroundColor: TC.colors.green}} />
-
-    {/* ⭐ EL MAPA, A SANGRE. El degradado abre bajo el titular y cierra antes del
-        cierre de texto: la cartografía queda limpia en el medio y el texto
-        siempre apoya sobre verde macizo. */}
-    <div style={{position: "absolute", left: 0, top: MAPA_K2.top, width: CARR.w, height: MAPA_K2.h}}>
-      <Img
-        src={OCT("mapa3-banda-k2")}
-        style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}
-      />
-      <AbsoluteFill
-        style={{
-          background: `linear-gradient(to bottom,
-            ${TC.colors.green} 0%,
-            rgba(0,51,38,0) ${((K2_LIMPIO.desde - MAPA_K2.top) / MAPA_K2.h) * 100}%,
-            rgba(0,51,38,0) ${((K2_LIMPIO.hasta - MAPA_K2.top) / MAPA_K2.h) * 100}%,
-            ${TC.colors.green} ${((K2_LIMPIO.cierra - MAPA_K2.top) / MAPA_K2.h) * 100}%,
-            ${TC.colors.green} 100%)`,
-        }}
-      />
-    </div>
 
     <Cabecera n="01.">
       <Modulado
@@ -1296,12 +1349,49 @@ const K2: React.FC = () => (
       />
     </Cabecera>
 
+    {/* ⭐ LA TARJETA. El `<Img>` va con el tamaño exacto del archivo y sin
+        `objectFit`: cualquier reescalado acá vuelve a ablandar la cartografía. */}
+    <div
+      style={{
+        position: "absolute",
+        left: TARJETA_K2.x,
+        top: TARJETA_K2.y,
+        width: TARJETA_K2.w,
+        height: TARJETA_K2.h,
+        borderRadius: 28,
+        overflow: "hidden",
+        boxShadow: "0 22px 44px rgba(0,0,0,0.34), inset 0 0 0 1px rgba(243,238,227,0.35)",
+      }}
+    >
+      <Img
+        src={OCT_PNG("mapa3-tarjeta-k2")}
+        style={{width: TARJETA_K2.w, height: TARJETA_K2.h, display: "block"}}
+      />
+    </div>
+
+    {/* Los rótulos repuestos. Coordenadas medidas sobre `mapa3.jpg`. */}
+    <Toponimo x={306} y={315} size={31} peso={600} ancla="izq">
+      {sinPartir("Tierra Calma")}
+    </Toponimo>
+    <Toponimo x={690} y={365} size={33} peso={600}>
+      {sinPartir("Padre Hurtado")}
+    </Toponimo>
+    <Toponimo x={862} y={120} size={30}>
+      Maipú
+    </Toponimo>
+    <Toponimo x={462} y={515} size={28}>
+      Peñaflor
+    </Toponimo>
+    <Toponimo x={687} y={263} size={24} peso={600}>
+      RUTA 78
+    </Toponimo>
+
     <div
       style={{
         position: "absolute",
         left: 0,
         right: 0,
-        top: 1080,
+        top: 1010,
         padding: "0 140px",
         textAlign: "center",
         fontFamily: SANS,
@@ -1314,14 +1404,12 @@ const K2: React.FC = () => (
       Revisa accesos, vías principales y qué tan fácil será mantener tu rutina desde tu nueva
       ubicación.
       <div style={{marginTop: 18, fontSize: 28, letterSpacing: "0.14em", textTransform: "uppercase", color: TC.colors.sand}}>
-        Padre Hurtado · RM
+        {sinPartir("Padre Hurtado")} · RM
       </div>
     </div>
 
-    {/* El marco va crema entero y NO necesita teñido por tramos —al contrario
-        que la story—: medido sobre el PNG, `MARCO-CARRUSEL-2` sólo lleva tinta
-        en las filas **130 y 1285**, las dos hermanas horizontales, y no tiene
-        filete vertical. Las dos caen sobre verde macizo. */}
+    {/* El marco va crema entero: medido sobre el PNG, `MARCO-CARRUSEL-2` sólo
+        lleva tinta en las filas 130 y 1285, y las dos caen sobre verde macizo. */}
     <MarcoTenido archivo="MARCO-CARRUSEL-2" color={TC.colors.cream} />
   </Lienzo>
 );
@@ -1533,31 +1621,337 @@ const K6: React.FC = () => (
 
 // =============================================================================
 // L · 22/10 · HISTORIA · crédito preaprobado · Pilar 3
-// Diego: "globo de textos que estén derechos y centrados, quitar espacios
-// libres de los globos". Cero rotación y ajustados al texto.
 // =============================================================================
+
+/**
+ * ⭐ L · 22/10 · HISTORIA — la tarjeta de vidrio.
+ *
+ * ⛔ ACÁ MANDA EL BRIEF, NO LA REFERENCIA (25-09)
+ * ───────────────────────────────────────────────
+ * Diego pasó primero una referencia de otra marca —campo blanco, tarjeta tipo
+ * ventana, checklist— y después el **visual del brief** para esta pieza:
+ *
+ * > *"Interfaz tipo **glassmorphism** sobre una imagen **sutil** de Tierra Calma.
+ * > En primer plano, una **tarjeta digital** con animación de «Crédito
+ * > preaprobado», acompañada de elementos gráficos que sugieran **avance en el
+ * > proceso de compra**, manteniendo una estética inmobiliaria premium."*
+ *
+ * Los dos piden cosas distintas —campo claro y opaco contra vidrio sobre
+ * fotografía— y **el brief manda el QUÉ**: la pieza vuelve a tener fotografía
+ * detrás y la tarjeta pasa a ser de vidrio. De la referencia sobrevive lo que no
+ * se contradice: la tarjeta como objeto de interfaz y el dato con check.
+ *
+ * Cómo se leyó cada palabra del visual:
+ *   · **glassmorphism** → `backdropFilter` de verdad sobre la foto, no un gris
+ *     translúcido. El vidrio tiene que **desenfocar lo que tiene detrás**, si no
+ *     es un globo más;
+ *   · **imagen sutil** → `l-terraza` con velo alto: se reconoce el lugar, no
+ *     compite. Es además la foto más «inmobiliaria premium» del mes —terraza de
+ *     madera, hora dorada, el valle detrás— y en la entrega V3 estaba sin usar;
+ *   · **tarjeta digital con «Crédito preaprobado»** → estado aprobado con su
+ *     check, como el mock de WhatsApp de `p-09-10` o el de buscador de
+ *     `st-15-10`: es una interfaz ilustrada, no un dato del proyecto;
+ *   · **avance en el proceso de compra** → barra de tres tramos con el primero
+ *     cumplido.
+ *
+ * ⛔ **LOS TRAMOS NO LLEVAN NOMBRE, Y ES DELIBERADO.** Ponerles «Preaprobación ·
+ * Visita · Reserva» sería inventar un proceso comercial que **no está en el
+ * brief ni en la lista blanca** (§ 2). El avance se sugiere con gráfica; si los
+ * pasos tienen que nombrarse, los tiene que dar el brief.
+ *
+ * Todo el texto de la tarjeta sale de lo que la pieza ya decía: «Crédito
+ * preaprobado» del titular, «Parcelas desde UF 2.500» y la firma.
+ */
+
+/**
+ * ⭐ L · 22/10 · HISTORIA — el mockup de app, calcado de la referencia.
+ *
+ * Diego, 25-09: *"literal, sigue fielmente la referencia pero con el estilo de
+ * Tierra Calma, con la historia de la st-22-10"*. La referencia está en
+ * `clients/tierra-calma/referencias/2026-09-25_tarjeta-cruzando-celular.png`.
+ *
+ * Se calcó su **estructura completa**, de arriba abajo:
+ *   1. campo de color con el aparato al centro
+ *   2. cabecera de la app
+ *   3. tarjeta clara con barra de avance y su estado a la derecha
+ *   4. ⭐ la tarjeta del mensaje **cruzando el celular y saliéndose por los dos
+ *      lados**, con la insignia de color a la izquierda
+ *   5. sección clara debajo
+ *   6. barra de pestañas al pie
+ *
+ * ⛔ LO QUE CAMBIA, QUE ES EL «CON EL ESTILO DE TIERRA CALMA»:
+ *   · **su verde brillante no entra.** El acento de esta marca es la **arena**
+ *     `#C9B99A`, y es lo que lleva la barra de avance y la pestaña activa.
+ *     Copiar el verde de otra marca sería traer su identidad, no su gramática.
+ *   · el destacado va en **IvyOra versales**, no en sans negrita (R-10/R-11);
+ *   · bajo el campo verde va la fotografía del lugar, muy velada — así se cumple
+ *     el «imagen sutil de Tierra Calma» del brief sin romper el calco.
+ *
+ * ⛔ **Y TODO EL TEXTO SALE DE LA PIEZA.** La referencia trae fechas, montos y
+ * movimientos inventables; acá no se inventó ninguno. Lo único que no estaba
+ * literal es la palabra «Preaprobado» del estado, que es un fragmento del propio
+ * titular. Las pestañas del pie van **sin rótulo**: nombrarlas sería inventar
+ * secciones de una app que no existe.
+ */
+const FONO = {x: 280, y: 600, w: 520, h: 850, borde: 13};
+const AVISO = {x: 120, y: 985, w: 840, h: 158};
+
+/** Una pestaña del pie: sólo forma, sin rótulo. */
+const Pestana: React.FC<{activa?: boolean}> = ({activa}) => (
+  <div style={{display: "flex", flexDirection: "column", alignItems: "center", gap: 7}}>
+    <div
+      style={{
+        width: 24,
+        height: 24,
+        borderRadius: 8,
+        backgroundColor: activa ? TC.colors.sand : "rgba(243,238,227,0.28)",
+      }}
+    />
+    <div
+      style={{
+        width: 30,
+        height: 5,
+        borderRadius: 999,
+        backgroundColor: activa ? TC.colors.sand : "rgba(243,238,227,0.18)",
+      }}
+    />
+  </div>
+);
 
 const L: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
-    <Foto src={OCT("l-fondo")} foco="50% 50%" />
-    <Degradado arriba={0.54} abajo={0.5} />
+    {/* «imagen sutil de Tierra Calma» bajo el campo verde: se intuye el lugar */}
+    <Foto src={OCT("l-terraza")} foco="50% 55%" />
+    <AbsoluteFill style={{backgroundColor: "rgba(0,41,30,0.90)"}} />
+    {/* la mancha clara de la esquina, como en la referencia */}
+    <AbsoluteFill
+      style={{
+        background:
+          "radial-gradient(ellipse 62% 34% at 92% 6%, rgba(201,185,154,0.22) 0%, rgba(201,185,154,0) 70%)",
+      }}
+    />
     <Marco archivo="MARCO-ST" />
-    {/* Diego (23-09): "subir bloque de texto". Centrado a 1520 el titular caia
-        a 70 px del primer globo y dejaba 640 px de cielo vacio arriba. La banda
-        del titular termina donde EMPIEZA el globo (1020), que es el espacio que
-        de verdad le queda libre. */}
-    <Cuerpo desde={240} hasta={1020}>
+
+    <Cuerpo desde={250} hasta={570}>
       <Modulado
         ancho={880}
+        tinta={TC.colors.cream}
         tramos={[{t: "¿Ya tienes tu"}, {t: "crédito preaprobado", ivy: true, salto: true}, {t: "?"}]}
       />
     </Cuerpo>
-    <Globo y={1020} max={780} size={36}>
-      {"Conoce las parcelas disponibles y las alternativas para avanzar en tu compra."}
-    </Globo>
-    <Globo y={1270} max={700} size={34} destacado="Parcelas desde UF 2.500">
-      Tierra Calma · Padre Hurtado
-    </Globo>
+
+    {/* ⭐ EL APARATO */}
+    <div
+      style={{
+        position: "absolute",
+        left: FONO.x,
+        top: FONO.y,
+        width: FONO.w,
+        height: FONO.h,
+        boxSizing: "border-box",
+        padding: FONO.borde,
+        borderRadius: 58,
+        backgroundColor: "#04140E",
+        border: "1px solid rgba(243,238,227,0.26)",
+        boxShadow: "0 38px 78px rgba(0,0,0,0.5)",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          borderRadius: 46,
+          backgroundColor: "#062018",
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {/* 2 · cabecera de la app */}
+        <div style={{padding: "32px 30px 24px"}}>
+          <div
+            style={{
+              width: 92,
+              height: 8,
+              borderRadius: 999,
+              backgroundColor: "rgba(243,238,227,0.26)",
+              margin: "0 auto 24px",
+            }}
+          />
+          <div
+            style={{
+              fontFamily: SERIF,
+              fontStyle: "italic",
+              fontWeight: 500,
+              fontSize: 30,
+              textTransform: "uppercase",
+              color: TC.colors.sand,
+            }}
+          >
+            {sinPartir("Tierra Calma")}
+          </div>
+          <div
+            style={{
+              marginTop: 6,
+              fontFamily: SANS,
+              fontWeight: 300,
+              fontSize: 20,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "rgba(243,238,227,0.5)",
+            }}
+          >
+            {sinPartir("Padre Hurtado")}
+          </div>
+        </div>
+
+        {/* 3 · tarjeta clara con la barra de avance */}
+        <div
+          style={{
+            margin: "0 22px",
+            padding: "22px 24px",
+            borderRadius: 22,
+            backgroundColor: "#FBF8F2",
+          }}
+        >
+          <div style={{display: "flex", alignItems: "baseline", justifyContent: "space-between"}}>
+            <span style={{fontFamily: SANS, fontWeight: 500, fontSize: 21, color: TC.colors.navy}}>
+              {sinPartir("Parcelas desde UF 2.500")}
+            </span>
+            <span
+              style={{
+                fontFamily: SANS,
+                fontWeight: 400,
+                fontSize: 16,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "rgba(11,44,73,0.5)",
+              }}
+            >
+              Preaprobado
+            </span>
+          </div>
+          <div
+            style={{
+              marginTop: 16,
+              height: 16,
+              borderRadius: 999,
+              backgroundColor: "rgba(11,44,73,0.10)",
+              overflow: "hidden",
+            }}
+          >
+            <div style={{width: "38%", height: "100%", borderRadius: 999, backgroundColor: TC.colors.sand}} />
+          </div>
+        </div>
+
+        {/* ⚠️ Hueco RESERVADO para la tarjeta que cruza. Tiene que ser más alto
+            que ella (158 px) más el aire, o la tarjeta se come la primera línea
+            de la sección de abajo: pasó con 196 y la frase quedó partida. */}
+        <div style={{height: 300}} />
+
+        {/* 5 · sección clara de abajo */}
+        <div
+          style={{
+            flex: 1,
+            margin: "0 22px",
+            padding: "26px 24px 18px",
+            borderRadius: "22px 22px 0 0",
+            backgroundColor: "#FBF8F2",
+          }}
+        >
+          <div
+            style={{
+              fontFamily: SANS,
+              fontWeight: 300,
+              fontSize: 23,
+              lineHeight: 1.36,
+              color: "rgba(11,44,73,0.88)",
+            }}
+          >
+            Conoce las parcelas disponibles y las alternativas para avanzar en tu compra.
+          </div>
+        </div>
+
+        {/* 6 · barra de pestañas */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+            padding: "16px 24px 22px",
+            backgroundColor: "#04140E",
+          }}
+        >
+          <Pestana />
+          <Pestana activa />
+          <Pestana />
+          <Pestana />
+        </div>
+      </div>
+    </div>
+
+    {/* ⭐ 4 · LA TARJETA DEL MENSAJE, cruzando el celular y saliéndose por los lados */}
+    <div
+      style={{
+        position: "absolute",
+        left: AVISO.x,
+        top: AVISO.y,
+        width: AVISO.w,
+        height: AVISO.h,
+        boxSizing: "border-box",
+        padding: "0 42px",
+        borderRadius: 28,
+        backgroundColor: "#FBF8F2",
+        boxShadow: "0 26px 56px rgba(0,0,0,0.42)",
+        display: "flex",
+        alignItems: "center",
+        gap: 28,
+      }}
+    >
+      <div
+        style={{
+          width: 88,
+          height: 88,
+          borderRadius: 24,
+          backgroundColor: TC.colors.green,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+        }}
+      >
+        <ICheck s={44} c={TC.colors.sand} />
+      </div>
+      <div>
+        <div
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontWeight: 500,
+            fontSize: 48,
+            lineHeight: 1,
+            textTransform: "uppercase",
+            color: TC.colors.navy,
+          }}
+        >
+          Crédito preaprobado
+        </div>
+        <div
+          style={{
+            marginTop: 11,
+            fontFamily: SANS,
+            fontWeight: 400,
+            fontSize: 24,
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            color: "rgba(11,44,73,0.55)",
+          }}
+        >
+          Tu banco
+        </div>
+      </div>
+    </div>
+
     <Pildora caja={STORY.pill} icono={<IWsp s={28} />} size={30}>
       Conversemos por WhatsApp
     </Pildora>
@@ -1610,32 +2004,23 @@ const L: React.FC = () => (
  * una foto derecha sobre un papel torcido se desborda por una esquina y delata
  * el montaje.
  */
-const POLAROID = {x: 223, y: 270, w: 276, h: 248, giro: -8};
+// 🗄️ `POLAROID` (x 223 · y 270 · 276×248 · giro −8°) se retiró el 25-09: la
+// ventana no es un rectángulo girado sino un cuadrilátero a −14,4°, y la copia
+// pasó a imprimirse en el archivo con `scripts/tc-polaroid.py`.
 const NOTA = {x: 627, y: 303, w: 230, h: 284, giro: -5};
 const POSTIT = {x: 245, y: 712, w: 518, h: 493, giro: -1.5};
 
 const M: React.FC = () => (
   <Lienzo w={POST.w} h={POST.h}>
-    <Foto src={OCT("m-refri")} foco="50% 92%" />
-
-    {/* la fotografía DENTRO de la ventana de la polaroid, con su inclinación */}
-    <div
-      style={{
-        position: "absolute",
-        left: POLAROID.x,
-        top: POLAROID.y,
-        width: POLAROID.w,
-        height: POLAROID.h,
-        transform: `rotate(${POLAROID.giro}deg)`,
-        overflow: "hidden",
-      }}
-    >
-      <Img
-        src={OCT("f-fondo")}
-        style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}
-      />
-      <AbsoluteFill style={{backgroundColor: "rgba(120,96,64,0.12)"}} />
-    </div>
+    {/* ⭐ LA ESCENA YA TRAE LA FOTO IMPRESA EN LA POLAROID (Diego, 25-09: *"que
+        quede real y no sobrepuesta"*). La imprime `scripts/tc-polaroid.py`.
+        ⛔ NO se vuelve a poner una foto encima acá. La causa de que se viera
+        pegada era **geométrica**: la ventana está girada **−14,4°** y el código
+        la ponía a −8°, así que la foto se salía por un canto y dejaba filo de
+        papel por el otro. Y no es un rectángulo girado que CSS pueda reproducir:
+        es un cuadrilátero con perspectiva propia, así que la copia se imprime
+        con una homografía sobre sus cuatro vértices medidos. */}
+    <Foto src={OCT("m-refri-foto")} foco="50% 92%" />
 
     {/* ⭐ EL DATO COMERCIAL, escrito en la nota crema. `multiply` hace que la
         tinta siga las arrugas del papel en vez de flotar encima. */}

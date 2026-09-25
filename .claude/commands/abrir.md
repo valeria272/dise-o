@@ -27,7 +27,14 @@ bash scripts/sembrar-memoria.sh
 Si el pull trajo notas nuevas en `docs/memoria-semilla/`, esto las instala en la
 memoria local. Es idempotente: corre siempre, no rompe nada.
 
-## 3. Leer la bitácora del cliente
+## 3. Leer el cerebro y la bitácora del cliente
+
+Si `$ARGUMENTS` trae una marca, lee primero `clients/<marca>/APRENDIZAJES.md`: la
+cabecera (quién firma el criterio, quién aprueba), las **reglas firmes** (§4), los
+**rechazos** (§7) y las **2 últimas cosechas** (§9). Es lo que el estudio sabe de
+ese cliente; si otra diseñadora trabajó la cuenta ayer, lo que aprendió está ahí.
+⛔ Sólo el de esa marca: el de otra no se aplica aunque parezca parecida.
+
 
 Si `$ARGUMENTS` trae una marca, lee `clients/<marca>/BITACORA.md` — las **últimas
 2 o 3 entradas**. Ahí está dónde quedó el trabajo, quién lo dejó y qué falta.
@@ -45,5 +52,6 @@ nuevos, comentarios de clientes sin leer.
 
 ## 5. Confirmar el arranque
 
-Termina con un resumen corto: qué trajo el pull, qué dijo la bitácora, qué hay
+Termina con un resumen corto: qué trajo el pull, qué dijo la bitácora, **qué
+es lo último que aprendió el cerebro de la marca** (la cosecha más reciente), qué hay
 nuevo en Drive, y **cuál es la primera tarea concreta** de hoy.

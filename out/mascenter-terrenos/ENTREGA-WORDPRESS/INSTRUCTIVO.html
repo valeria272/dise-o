@@ -465,6 +465,15 @@ reemplazar: <b>https://www.mascenter.cl/wp-content/uploads/terrenos/</b></div>
   <code>terrenos@ifbinversiones.cl</code> — o sea, la postulación llega, pero el visitante tiene que
   darle enviar. Al conectarlo a Contact Form 7 el envío pasa a ser silencioso, al mismo buzón.</p>
 
+<div class="aviso">
+  <span class="rot">Los adjuntos</span>
+  <p>El campo <strong>«Planos o fotos del terreno»</strong> es el único que hoy no funciona solo, y
+    no por falta de trabajo: <code>mailto:</code> no transporta archivos —es un límite del navegador—.
+    En la versión de prueba los archivos se validan, se listan en pantalla y se nombran en el correo,
+    pero <strong>el visitante los adjunta a mano</strong> antes de darle enviar. Al montarlo en
+    Contact Form 7 la subida pasa a ser automática y el archivo llega solo al buzón.</p>
+</div>
+
 <table class="tabla">
   <tr><th>Campo en pantalla</th><th><code>name</code></th><th>Tipo</th><th>Obligatorio</th></tr>
   <tr><td>Nombre y apellido</td><td><code>nombre</code></td><td>texto</td><td>Sí</td></tr>
@@ -475,6 +484,7 @@ reemplazar: <b>https://www.mascenter.cl/wp-content/uploads/terrenos/</b></div>
   <tr><td>Superficie (m²)</td><td><code>superficie</code></td><td>número</td><td>Sí</td></tr>
   <tr><td>Dirección o rol del terreno</td><td><code>direccion</code></td><td>texto</td><td>Sí</td></tr>
   <tr><td>Cuéntanos sobre el terreno</td><td><code>mensaje</code></td><td>área de texto</td><td>Sí</td></tr>
+  <tr><td>Planos o fotos del terreno</td><td><code>archivos</code></td><td>archivo adjunto</td><td>No</td></tr>
 </table>
 
 <ol>
@@ -493,8 +503,28 @@ reemplazar: <b>https://www.mascenter.cl/wp-content/uploads/terrenos/</b></div>
     <code>&lt;div class="formulario"&gt;</code>—. El CSS ya está escrito apuntando a
     <code>form.formulario input, textarea, select</code>, así que los campos de CF7 se van a ver
     exactamente igual sin tocar nada más.</li>
-  <li>Manda una prueba y confirma que llega a <code>terrenos@ifbinversiones.cl</code>.
-    <strong>No se publica sin esa prueba.</strong></li>
+  <li><strong>El adjunto.</strong> Contact Form 7 no admite varios archivos en un mismo campo, así que
+    van tres campos opcionales, uno bajo el otro:
+    <br><code>[file archivos-1 limit:10485760 filetypes:pdf|jpg|jpeg|png|kmz|kml|dwg|zip]</code>
+    <br><code>[file archivos-2 limit:10485760 filetypes:pdf|jpg|jpeg|png|kmz|kml|dwg|zip]</code>
+    <br><code>[file archivos-3 limit:10485760 filetypes:pdf|jpg|jpeg|png|kmz|kml|dwg|zip]</code>
+    <br>Si prefieren un solo campo que acepte varios, existe el complemento gratuito
+    <em>Drag and Drop Multiple File Upload — Contact Form 7</em>; con eso basta un
+    <code>[mfile archivos]</code>. Es plugin nuevo en el sitio: decisión de ustedes.</li>
+  <li>En la pestaña <strong>Correo</strong> del formulario, en el casillero
+    <strong>«Archivos adjuntos»</strong>, escribe <code>[archivos-1] [archivos-2] [archivos-3]</code>
+    —o <code>[archivos]</code> si usaron el complemento—. <strong>Sin esto el archivo se sube pero no
+    viaja en el correo</strong>, y es el error más común de CF7.</li>
+  <li>Revisa que el servidor acepte 10 MB: en muchos hostings
+    <code>upload_max_filesize</code> y <code>post_max_size</code> vienen en 2 MB y un plano en PDF los
+    pasa. Si no se puede subir el tope, baja el <code>limit:</code> del campo para que el visitante vea
+    el aviso antes de enviar en vez de un error del servidor.</li>
+  <li>El texto de ayuda bajo el campo cambia: en la versión de prueba dice
+    «adjunta ahí los archivos antes de darle enviar» —porque el correo lo abre el visitante—. Con CF7
+    tiene que decir <em>«Plano, croquis, certificado de informes previos o fotos. PDF, JPG, PNG, KMZ o
+    DWG, hasta 10 MB.»</em> y nada más. Está en <code>TEXTOS-PARA-COPIAR.txt</code>.</li>
+  <li>Manda una prueba y confirma que llega a <code>terrenos@ifbinversiones.cl</code>,
+    <strong>con un archivo adjunto de verdad</strong>. No se publica sin esa prueba.</li>
 </ol>
 
 <div class="aviso">

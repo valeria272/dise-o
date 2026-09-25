@@ -43,7 +43,10 @@ tres rondas rehechas.
 0. **Carga la skill `direccion-de-arte`.** Trae el criterio: cómo leer una
    referencia, qué hace mala una pieza y cuándo parar en vez de producir.
 1. Lee `docs/SISTEMA-DE-MARCAS.md` si aún no lo tienes en contexto.
-2. Lee `clients/<marca>/CLAUDE.md` **completo**. Es el manual y manda.
+2. Lee `clients/<marca>/APRENDIZAJES.md` — el cerebro de la cuenta: quién aprueba,
+   reglas firmes con su ✔, excepciones, lo que se aprueba a la primera y lo que ya
+   costó rondas. Las reglas ✔×3 o más no se discuten. ⛔ Sólo el de esta marca.
+2b. Lee `clients/<marca>/CLAUDE.md` **completo**. Es el manual y manda.
 3. Lee `clients/<marca>/marca.json` — colores, fuentes, formatos, geometría.
 4. Mira las **referencias reales** del cliente (la ruta está en el manual, sección
    "Dónde está el material"). Si `raw/<marca>/` está vacío, bájalo del Drive antes

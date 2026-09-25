@@ -261,6 +261,16 @@ Si no tienes la dirección exacta, indica el cruce de calles más cercano.
 CUÉNTANOS SOBRE EL TERRENO
 ENVIAR POSTULACIÓN
 
+Planos o fotos del terreno (opcional)
+
+  [ayuda del campo — versión WordPress con Contact Form 7]
+  Plano, croquis, certificado de informes previos o fotos. PDF, JPG, PNG, KMZ o DWG, hasta 10 MB.
+
+  [ayuda del campo — versión de prueba, la que está en el HTML]
+  Plano, croquis, certificado de informes previos o fotos. PDF, JPG, PNG, KMZ o DWG, hasta 10 MB en
+  total. Al enviar te abrimos el correo con la postulación: adjunta ahí los archivos antes de darle
+  enviar.
+
 Al enviar este formulario autorizas a Más Center · Grupo IFB a contactarte para evaluar la oportunidad. Tus datos se tratan conforme a la Ley 21.719 y no se comparten con terceros ajenos a la evaluación.
 
 ========================================================================

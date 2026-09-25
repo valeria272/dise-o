@@ -1,0 +1,11 @@
+→ Seedream 5 Pro · post (traditional_3_4) · 2k
+  … CREATED
+  … IN_PROGRESS
+  … IN_PROGRESS
+  … IN_PROGRESS
+  … IN_PROGRESS
+  … IN_PROGRESS
+  ✓ seedream-b.png  (272 KB)
+
+  MÍRALA antes de usarla:
+  python3 scripts/ver-pieza.py seedream-b.png

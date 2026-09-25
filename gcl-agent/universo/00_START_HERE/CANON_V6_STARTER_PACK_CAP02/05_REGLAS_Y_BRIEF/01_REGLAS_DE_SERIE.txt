@@ -1,0 +1,35 @@
+G.CL — REGLAS DE SERIE
+
+TONO
+Microcomedia/documental corto de agencia. Contemporáneo, rápido, creativo, con sátira laboral reconocible. Debe sentirse: “esto pasa demasiado en las agencias”.
+
+DURACIÓN
+20–30 segundos máximo. Ideal 24–28 segundos.
+
+ESTRUCTURA
+0–3 s: hook.
+3–18 s: desarrollo.
+18–26 s: escalada / giro.
+26–30 s: payoff / remate.
+
+CLARIDAD
+Cada episodio debe entenderse aunque la persona nunca haya visto la serie. Debe quedar claro: qué pasó, quién tiene el problema, qué reacción provoca y cuál es el remate.
+
+PERSONAJES
+G: protagonista. Muy capaz, rápido, observador y con humor seco, pero no perfecto. Tiene límites y puede saturarse, frustrarse, quedarse sin tokens o tener glitches.
+Val, Gin y Pancho: humanos recurrentes/cameos. Deben conservar identidad visual consistente entre capítulos; su vestuario puede variar, siempre marketero, contemporáneo y cool.
+Marta: vieja escuela / senior / memoria / criterio histórico. No se impresiona fácilmente.
+R.01: usar solo si su función se entiende visualmente. Si funciona como ansioso/runner, sus acciones deben ser narrativamente claras; no debe moverse sin razón.
+
+HUMOR
+Debe venir de verdades de agencia: “una cosita más”, “para ayer”, brief confuso, cambios infinitos, reuniones innecesarias, revisiones, urgente, más wow, etc.
+
+VISUAL
+Arriba: oficina humana, real, cálida, estética Copywriters.
+Abajo: Nivel -1, creativo, funcional, raro, cool y vivo; no bodega deprimente ni cyberpunk azul genérico.
+G conserva su tecnología moderna/futurista aunque esté abajo.
+
+PRODUCCIÓN
+No improvisar texto crítico dentro de generación IA; componer UI/texto legible en post cuando sea posible.
+Evitar flicker, pantallas mutantes, laptops deformadas, props random, cambios de escala, anatomía de G inconsistente y acciones sin función narrativa.
+Cada plano debe hacer al menos una cosa: avanzar historia, revelar personalidad, entregar gag o revelar mundo.

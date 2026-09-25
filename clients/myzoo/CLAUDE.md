@@ -15,7 +15,7 @@ Línea chilena de shampoos, acondicionadores y desinfectantes para mascotas,
 **desarrollada en Australia**. Vende en dos canales: consumidor final y
 **groomer / clínica veterinaria** (formatos de 5 litros, diluibles).
 
-**Bajada de marca:** **«AM♥R QUE SE SIENTE»** — el corazón reemplaza la O de AMOR.
+**Bajada de marca:** **«AMOR QUE SE SIENTE»**, donde una **huella** reemplaza la O de AMOR (archivo oficial `myzoo_claim_amor.png`; corregido el 22-09, antes decía corazón).
 
 ### Líneas de producto
 | Línea | Qué es | Dilución |
@@ -51,7 +51,7 @@ hongos, virus y bacterias · **99,9 %** del parvovirus.
 | Color | **CMYK + tintas planas Pantone** | RGB |
 | Unidades | **milímetros** | píxeles |
 | Mesa de trabajo | **140 × 160 mm** (etiqueta 5 L) | 1080×1350 · 1080×1920 |
-| Tipografía | **Neutraface Text** + Roboto | **Neutraface 2** (corp.) + **Roboto** (compl.) |
+| Tipografía | **Neutraface Text** + Roboto | ⚠️ **Neutraface 2** (manual cliente, §2-bis) o **Neutraface Text** (editables, §2b): sin resolver |
 | Entrega | PDF de impresión + troquel | PNG |
 
 ### Envase — medido del editable `XTREME VET 5LTS.ai`
@@ -295,6 +295,47 @@ real**, nunca generado.
 
 ---
 
+> ⚠️ **Choque sin resolver (detectado en /abrir del 24-09-2026):** el 22-09 dos sesiones midieron
+> MyZoo sin saber una de la otra. La de Paulina (§2-bis/§2-ter, 118 piezas, manual del cliente) dice
+> **Neutraface 2**; la de Valeria con Claude (§2b, 23 piezas + 11 Informe.txt de editables) dice
+> **Neutraface Text**. Además hay **dos juegos** de los 4 estáticos de octubre. Lo decide Paulina,
+> que firma la marca: acá no se eligió ninguno.
+
+## 2b. ⭐ Gramática DIGITAL — medida el 22-09-2026
+
+Medida sobre **23 piezas publicadas de jul–sep 2026** (casi todas de Paulina) en
+`raw/myzoo/ref-digital/`. Pipeline: `scripts/myzoo-oct-armar.py`.
+
+| Qué | Medida (lienzo de 2250 de ancho) |
+|---|---|
+| Exportación | **2250 px de ancho**: feed 2250×2813, story 2250×4000. Paulina diseña en 1080 y exporta al ~208 % |
+| Tipografía | **Neutraface Text** Book / Demi / Bold con sus itálicas (las 6 en `public/assets/fonts/myzoo/`) + Roboto Medium en globos |
+| Logo | `logo.png` coral/amarillo «by ncg», **centrado arriba**: 353 px de ancho en feed (círculo negro y=145–399), 418 px en story |
+| Titular | Bold, MAYÚSCULAS, centrado, blanco. Feed: línea normal 171 px (H=116), **línea en franja 188 px (H=128), un 10 % más grande**. Story: todas 213 px |
+| Franja | **coral #FF6969**, texto blanco, esquinas apenas redondeadas, ~130 px de aire a los lados |
+| Bajada | Neutraface **itálica**; en fondo claro va en tinta (pieza «meli», sept) |
+| Caja de producto | verde **#6BBC4F** con texto blanco en itálica (carrusel «paseo») |
+| Celeste de fondo | **#8DC4D4** (pieza «detective»). Los fondos generados salen casi blancos y hay que llevarlos a este tono |
+| Imagen | escena a sangre, generada o foto, con el producto real montado. El cliente la quiere «llamativa, no un fondo de color plano» |
+
+### Reglas del cliente (feedback literal en `raw/myzoo/feedback-cliente.md`)
+- **Logo con «AMOR QUE SE SIENTE» debajo**, y que no quede «enano» (01-08). Se usa el archivo oficial `myzoo_claim_amor.png`, donde la O es una huella.
+- **Sin punto final** en los textos de pieza (27-08).
+- **Nada que se vea falso**: rechazó mascotas bailando hechas con IA (18-09).
+- **Limpio**: Exequiel es «muy picky». Nada de barro, desorden ni mantas colgadas.
+- **Producto en combo** cuando se habla del baño: shampoo más acondicionador, no uno solo (05-09).
+- El producto se llama **«Eliminador de Olores MyZoo»**. El claim de Xtreme-Vet es «Elimina el 99% de los gases del mal olor».
+- Mensaje **comercial claro** por encima de la referencia de tendencia.
+
+### Aprendido produciendo octubre (22-09)
+- **Nano Banana Pro no respeta la diagramación.** Ni el prompt con porcentajes ni un boceto de bloques lograron bajar al sujeto para despejar el titular. Lo que funciona:
+  1. poner la escena buena más chica, apoyada abajo, en un lienzo con márgenes gris plano;
+  2. pedirle que rellene solo esos márgenes (`outpaint` en `scripts/myzoo-oct-escenas.py`).
+- **Envase de relleno:** hay que **borrarlo** antes de montar el packshot real. Si no, su gatillo asoma y se ven dos.
+- **PREGUNTAZOO** (sección nueva de octubre) no tiene logo. El sello que se usó es una propuesta del estudio, pendiente de aprobación.
+
+---
+
 ## 3. Dónde está el material
 
 | Qué | Dónde |
@@ -326,12 +367,14 @@ real**, nunca generado.
 
 ## 5. Pendientes
 
-- [ ] **Neutraface Text** es de pago — conseguir el archivo o confirmar licencia
+- [x] **Neutraface Text** — los 6 OTF bajados de los paquetes de editables (22-09) a `public/assets/fonts/myzoo/`
 - [ ] **Roboto** se activa por Adobe Fonts en cada máquina
-- [ ] **La gramática digital no está medida.** Tengo el envase, no las piezas de RRSS.
-      Faltan 10–20 piezas digitales aprobadas para medir la retícula
+- [x] **Gramática digital medida** el 22-09 sobre 23 piezas publicadas (§2b)
 - [ ] Los valores RGB equivalentes de PANTONE 114 C, 708 C y Neutral Black C
 - [x] ~~Confirmar si el digital usa Neutraface u otra familia~~ — **resuelto 22-09-2026**: Neutraface 2 corporativa + Roboto complementaria (§2-bis)
 - [x] ~~Medir la retícula digital~~ — **hecho 22-09-2026** sobre 118 piezas (§2-ter)
 - [ ] Abrir a mano `Manual_Identidad-MyZoo-03.pdf` (331 MB, sin capa de texto)
 - [ ] Confirmar si el **rebranding 2026** cambió la paleta
+- [x] El digital usa Neutraface Text (confirmado en 11 Informe.txt de editables digitales)
+- [ ] Aprobar o reemplazar el sello PREGUNTAZOO (propuesta del estudio, oct 2026)
+- [ ] Crear `reglas.yaml` para `qa/motor.py`

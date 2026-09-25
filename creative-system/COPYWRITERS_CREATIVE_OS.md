@@ -2,7 +2,8 @@
 
 > **Copywriters no tiene una plantilla. Tiene criterio.**
 >
-> Este documento manda sobre cualquier pieza del feed de `@copywriters.cl`.
+> Este documento manda sobre cualquier pieza del feed de `@copywriters.cl`,
+> **salvo el MASTER** (`creative-system/MASTER/`, desde el 24-09-2026), que manda sobre él.
 > Si una pieza lo contradice, se descarta la pieza, no el documento.
 
 Fecha: 03-09-2026 · Dirección: Valeria Traverso · Ámbito: sólo la cuenta propia.
@@ -72,8 +73,8 @@ corporativo · «AI aesthetic» · cyberpunk · dashboard · template de social 
 | **Negro tinta** | `#080F14` | Fondo por defecto y tinta sobre claro |
 | **Off white** | `#F2F4F6` | Fondo claro. El respiro de la grilla |
 | **Blanco** | `#FFFFFF` | Tipografía sobre tinta |
-| **Copy Pink** | `#FF2D8D` | **La firma.** Una palabra, una intervención, un objeto, una anomalía |
-| Coral | `#FF683D` | Secundario. Con moderación |
+| **Copy Pink** | `#FF2D8B` | **La firma.** Una palabra, una intervención, un objeto, una anomalía |
+| Coral | `#FF6B3D` | Secundario. Con moderación |
 | Púrpura | `#9D4EDD` | Secundario. Con moderación |
 
 **El rosa no inunda.** Es firma, no relleno. Puede existir una pieza
@@ -84,38 +85,28 @@ Comprobado por programa: `clients/copywriters/reglas.yaml → color-fuera-de-sis
 
 ---
 
-## 4. Las cuatro voces
+## 4. Las voces — cerradas el 24-09-2026
 
-Los archivos viven en `public/assets/fonts/copywriters/`. Se cargan en
-`src/brand/copylab/sistema.ts`.
+> **Manda [`MASTER/03_TYPOGRAPHY.md`](MASTER/03_TYPOGRAPHY.md).** Esta sección sólo lo resume.
 
-### A · IMPACTO — Archivo (variable)
-`wght 100–900` · `wdth 62–125`. Por defecto **900 / 70**.
+| Voz | Familia | Uso |
+|---|---|---|
+| **Titular** | **Archivo Narrow** Bold | Hooks, titulares, declaraciones. La que manda |
+| **Editorial** | DM Serif Display Italic | Contraste humano. Una frase o una palabra, a menudo en rosa |
+| **Data** | IBM Plex Mono | Labels, índices, códigos, créditos. Soporte, nunca héroe |
+| **Funcional** | Inter | Texto funcional, cuando lo hay |
 
-Titulares, declaraciones, ganchos, cifras. Puede ocupar el 70% del lienzo.
+Máximo **tres** voces por pieza.
 
-> Se eligió la **variable de dos ejes** en vez de Archivo Narrow suelto por una
-> razón de sistema: el contraste entre condensada negra y extendida sale del
-> **mismo tipo**. Una pieza que juega con el ancho sigue leyéndose como la misma
-> cabeza. Con dos familias distintas, se leería como dos.
+**La escritura manual no es una voz.** Puede aparecer, de forma excepcional, como
+intervención humana sobre una fotografía (un círculo o una flecha, idealmente
+trazados a mano de verdad). Nunca titula y no se repite como recurso. Caveat y
+Archivo variable siguen en el repo **sólo** por las piezas v1 ya entregadas.
 
-### B · EDITORIAL — DM Serif Display Italic
-Contrapunto, opinión, remate, humanidad, ironía. Siempre cursiva.
-Casi siempre segunda voz — nunca la que grita. **Excepción:** cuando la pieza
-pertenece al universo de un cliente cuyo registro es sereno, la editorial titula
-(así está resuelta la pieza WORK de Cava Morandé).
-
-### C · DATA — IBM Plex Mono
-Metadata, categorías, índices, labels. Versales, tracking 0,16em, cuerpo chico.
-
-> **Es la firma silenciosa del sistema, y la razón por la que las piezas no
-> llevan logo.** Dos piezas sin nada en común se reconocen como la misma cuenta
-> porque las dos tienen la misma línea arriba, con el mismo tracking y el mismo
-> cuerpo. Identificar antes que logotipar.
-
-### D · HUMAN — Caveat
-Anotación humana. Rodear, tachar, subrayar, apuntar, anotar.
-**Uso extremadamente selectivo. Nunca como tipografía principal.**
+### Por qué la Plex Mono sigue siendo la firma silenciosa
+Dos piezas sin nada en común se reconocen como la misma cuenta porque las dos
+tienen la misma línea de metadata, con el mismo tracking y el mismo cuerpo.
+Identificar antes que logotipar.
 
 ---
 

@@ -83,11 +83,11 @@ const Escena: React.FC<{i: number; dur: number}> = ({i, dur}) => {
       <FotoQB src={`assets/hilton/qb/oct/${p.src}.jpg`} ratio={p.ratio} zoom={lerp(p.z)} cx={lerp(p.cx)} cy={lerp(p.cy)} />
       <Velo arriba={[760, 0.95]} abajo={[760, 0.95]} />
       <div style={{position: "absolute", inset: 0, opacity: t, transform: `translateY(${(1 - t) * 24}px)`}}>
-        <Linea top={ultima ? 1470 : 1560} cuerpo={50} peso={800} tracking="0.03em">{p.l1}</Linea>
-        {p.l2 && <Linea top={(ultima ? 1470 : 1560) + 60} cuerpo={50} peso={800} tracking="0.03em">{p.l2}</Linea>}
+        <Linea top={ultima ? 1300 : 1390} cuerpo={50} peso={800} tracking="0.03em">{p.l1}</Linea>
+        {p.l2 && <Linea top={(ultima ? 1300 : 1390) + 60} cuerpo={50} peso={800} tracking="0.03em">{p.l2}</Linea>}
       </div>
       {ultima && (
-        <div style={{position: "absolute", top: 1614, left: (MESA.w - 700) / 2, width: 700, height: 96,
+        <div style={{position: "absolute", top: 1444, left: (MESA.w - 700) / 2, width: 700, height: 96,
           border: "2px solid rgba(255,255,255,.9)", background: "rgba(0,0,0,.35)", display: "flex",
           alignItems: "center", justifyContent: "center", color: "#fff", fontFamily: "Raleway",
           fontWeight: 700, fontSize: 38, letterSpacing: "0.03em", opacity: tc}}>
@@ -110,9 +110,9 @@ export const QbSt22Ensalada: React.FC = () => (
       );
     })}
     {/* La línea del chef: fija en toda la pieza */}
-    <LogoQB top={200} ancho={150} />
-    <Linea top={322} cuerpo={82} familia="BellMT" interlinea={1}>RECOMENDACIÓN</Linea>
-    <Linea top={404} cuerpo={112} familia="BellMT" interlinea={1}>DEL CHEF</Linea>
-    <ImagenReferencial top={1840} />
+    <LogoQB top={250} ancho={150} />
+    <Linea top={372} cuerpo={82} familia="BellMT" interlinea={1}>RECOMENDACIÓN</Linea>
+    <Linea top={454} cuerpo={112} familia="BellMT" interlinea={1}>DEL CHEF</Linea>
+    <ImagenReferencial top={1556} />
   </AbsoluteFill>
 );

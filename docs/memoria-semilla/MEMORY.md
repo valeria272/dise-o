@@ -5,6 +5,7 @@
 > estado de las 9 marcas y las reglas globales. Después el manual de la marca en
 > `clients/<marca>/CLAUDE.md`.
 
+- [⭐⭐ Cerebro por cliente](cliente-indice.md) — clients/<marca>/APRENDIZAJES.md: leer el de la marca ANTES de diseñar; se alimenta en cada /cierre; nunca aplicar el de otra marca
 - [HILTON — cliente 4 marcas](hilton-cliente-4-marcas.md) — ⭐ DT/QB/Between/Piso18 analizado 24-08; manual clients/hilton/CLAUDE.md, flujo de grillas y plan de automatización para aliviar a Eli
 - [⛔ Brushwell no cargaba en Chrome](brushwell-no-cargaba-en-chrome.md) — CAUSA RAÍZ del rechazo de Between: el .otf CFF lo rechaza Chrome y Remotion rindió las 27 piezas con una serif de reemplazo; fix = convertir a TTF/WOFF2 y verificar con document.fonts.check
 - [Leer una ronda en la grilla xlsx](comentarios-nativos-de-excel.md) — ⭐⭐ La ronda nueva se detecta por DIFF contra la copia anterior, no leyendo la celda; el comentario viejo a veces se PREPENDE (Between) y a veces se REEMPLAZA sin dejar rastro (DT), así que la prueba que sirve es el diff por CONJUNTO de cadenas — el uniqueCount miente
@@ -74,3 +75,7 @@
 - [Between octubre — técnica de generación](between-oct-tecnica-generacion.md) — «extiende hacia arriba» sí, pedir altura no; Seedance por MCP; aislar ilustración; Noto emoji; captcha Drive; heredoc rompe TSX
 - [⭐⭐ BETWEEN octubre 2026 — estado](between-octubre-2026-estado.md) — 11 piezas APROBADAS y SUBIDAS 24-09 a S1–S5/BW/{STS,FEED}; lo no diseñado y por qué; dudas abiertas; cómo retomar
 - [⭐ Comentarios en Drive: leer, aplicar, resolver](comentarios-drive-leer-aplicar-resolver.md) — ante «dejé comentarios»: drive-comentarios.py (JSON en cp1252), el anchor dice a qué elemento apunta, aplicar a TODOS los formatos, re-subir por fileId y responder+resolver en Drive
+- [⭐ Hilton — sesión de fotos SEP 2026](hilton-sesion-fotos-sep-2026.md) — Eli 25-09: Drive 117N-uJjrMSwWj_4Y2cSIH4IwsmMkapQM, JPG en alta para BW/DT/QB/P18; primera parada antes de generar; clasificar por espacio y marca
+- [⛔ EBEMA LinkedIn — fotos de sucursal](ebema-linkedin-fotos-sucursal.md) — foto real de base + IA; lo que falta (camión) se GENERA desde bodega/patio real; ⛔ nunca estructuras inventadas, sólo personas/vehículos/materiales; oficina = ropa formal; nadie mira a cámara; Kling inventa letreros en travellings
+- [⛔ EBEMA — voz y música de stories](ebema-voz-y-musica-stories.md) — voz es-CL Lorenzo (edge-tts); los presets Higgsfield suenan a inglés y NUNCA sacar la música de un video terminado (traía voz)
+- [⭐ Expandir un reel con IA sin desenfoque](expandir-video-reframe-higgsfield.md) — reframe de Higgsfield aleja cámara y baja a 720p: usar sólo la franja del borde y el centro 4K encima

@@ -1,5 +1,5 @@
 POSTULA TU TERRENO — LANDING PARA WORDPRESS
-Más Center · Grupo IFB — entrega del 09-09-2026
+Más Center · Grupo IFB — entrega del 10-09-2026
 
 EMPIEZA POR ACÁ (2 pasos):
 
@@ -32,10 +32,20 @@ QUÉ CAMBIÓ EN ESTA ENTREGA:
      8 campos y abre el correo del visitante, dirigida a
      terrenos@ifbinversiones.cl.
 
+  3) El formulario acepta planos y fotos. Campo nuevo, opcional, al final:
+     PDF, JPG, PNG, KMZ, KML, DWG o ZIP, hasta 10 MB en total. Valida el
+     tipo y el peso, muestra en pantalla lo que se eligió y lo nombra en el
+     correo. OJO: mailto: no puede llevar adjuntos —es un límite del
+     navegador—, así que en esta versión el visitante los arrastra al correo
+     que se le abre. Con Contact Form 7 la subida pasa a ser automática.
+
 LO ÚNICO QUE FALTA:
-  Que el envío sea silencioso, sin abrir el correo del visitante.
-  Hay que conectar el formulario a Contact Form 7 y apuntarlo a
-  terrenos@ifbinversiones.cl — está explicado en el paso 7 del
-  instructivo, con los nombres de cada campo.
+  Que el envío sea silencioso —sin abrir el correo del visitante— y que el
+  archivo adjunto viaje solo. Las dos cosas se resuelven conectando el
+  formulario a Contact Form 7 y apuntándolo a terrenos@ifbinversiones.cl:
+  está explicado en el paso 7 del instructivo, con los nombres de cada
+  campo, el código del campo de archivos y las dos trampas conocidas
+  (el casillero «Archivos adjuntos» de la pestaña Correo, y el tope de
+  subida del servidor).
 
 Dudas de maquetación: la respuesta siempre está en sitio-completo.html.

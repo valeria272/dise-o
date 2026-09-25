@@ -9,7 +9,11 @@
 # Tampoco sirve 2250/1080 exacto: en flotante da 4000,0000000000005. Se rinden a
 # 2,5× (2700×4800) y se BAJAN a 2250×4000 con lanczos — bajar deja más nítido que
 # subir desde 2×.
-# El GIF sigue la receta de p18-s4-gif.py: 25 fps, 540×960, sin difuminado.
+# ⭐ GIF (25-09): 20 fps (cuadra con las centésimas del GIF, como 25), 360×640 y sin
+# difuminado. A 540×960/25 fps las dos animadas daban 58 y 75 MB porque son movimiento
+# continuo (la receta de P18 era para una pieza casi quieta); así quedan en 24 y 31 MB,
+# en el rango de los GIF de DT aprobados (12–33 MB). MP4 a crf 19: el grano del S-Log3
+# de la terraza lo inflaba a 161 MB con crf 14.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 O="out/qb/oct/entrega"; mkdir -p "$O"
@@ -27,11 +31,11 @@ video() {  # id nombre frame-estatica
   quiere "${1#QB-OCT-}" || return 0
   local tmp="out/qb/oct/_$1-2x5.mp4"
   npx remotion render src/QbOctEntry.tsx "$1" "$tmp" --scale=2.5 --crf=12 --log=error
-  "$FF" -v error -y -i "$tmp" -vf "scale=2250:4000:flags=lanczos" -c:v libx264 -crf 14 \
+  "$FF" -v error -y -i "$tmp" -vf "scale=2250:4000:flags=lanczos" -c:v libx264 -crf 19 \
     -preset slow -pix_fmt yuv420p -movflags +faststart -an "$O/$2.mp4"
   npx remotion still src/QbOctEntry.tsx "$1" "$O/$2 (estática).png" --frame="$3" --scale=2.0833 --log=error
   "$FF" -v error -y -i "$O/$2.mp4" -filter_complex \
-    "fps=25,scale=540:960:flags=lanczos,split[a][b];[a]palettegen=stats_mode=diff[p];[b][p]paletteuse=dither=none" \
+    "fps=20,scale=360:640:flags=lanczos,split[a][b];[a]palettegen=stats_mode=diff[p];[b][p]paletteuse=dither=none" \
     "$O/$2.gif"
   echo "✓ $2.mp4 · estática · gif"
 }

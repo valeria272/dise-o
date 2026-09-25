@@ -12,7 +12,7 @@
 | Vigente desde | **05-09-2026** |
 | Decide | Valeria Traverso |
 | Corrige | `COPYWRITERS_GCL_UNIVERSE_PACK_V4_FINAL` |
-| CAP.02 | **«ES UN CAMBIO CHICO»** — en production design del Nivel -1, sin generar |
+| CAP.02 | **«TURNO DE NOCHE»** — storyboard V3 definitivo (lock 18), sin generar. ⚠️ Desde el 24-09-2026 el canon visual es el **starter pack V6** (lock 14): ver §6 |
 
 ---
 
@@ -262,7 +262,15 @@ vidrio alambrado, que nunca se ve claro. Zona canon:
 | 7 | 05-09-2026 | El set de «Revisión 7» **no es canon**. El CAP.02 se construye desde el Nivel -1 | vigente |
 | 13 | 06-09-2026 | **CAP.02 = «TURNO DE NOCHE»** (restart narrativo controlado, Valeria). «Es un cambio chico» queda **archivado como experimento de desarrollo** (roadmap: CAP.04); su material aprobado se reutiliza sólo si sirve orgánicamente. Sustituye al lock 4. Story V1 en `06_VIDEO_REELS/CAP_02_TURNO_DE_NOCHE/STORY_V1.md` · **sin producir hasta aprobar la historia en papel** | vigente |
 | 8 | 05-09-2026 | **Capa satírica** (Copywriters incluido) + regla **ME RECONOZCO / ME SORPRENDE / ME ENCARIÑO ≥ 2 de 3** | vigente |
-| 9 | 05-09-2026 | **R.01 diseño canon**: aspiradora intervenida + placa + elásticos + mástil con cinta. Madre: `R01/laminas/01_master_34.png` | vigente |
+| 9 | 05-09-2026 | **R.01 diseño canon**: aspiradora intervenida + placa + elásticos + mástil con cinta. Madre: `R01/laminas/01_master_34.png` | **sustituido por los locks 14 y 16** |
 | 10 | 05-09-2026 | **Just-in-time asset lock**: se cierra lo que el plano necesita, no bibliotecas enteras | vigente |
-| 11 | 05-09-2026 | **Marta diseño canon**: matricial de 1994 intervenida, papel continuo perforado. Madre: `MARTA/laminas/01_master_34.png` | vigente |
+| 11 | 05-09-2026 | **Marta diseño canon**: matricial de 1994 intervenida, papel continuo perforado. Madre: `MARTA/laminas/01_master_34.png` | **sustituido por el lock 14** |
 | 12 | 05-09-2026 | **El Server es sólo la zona**: puerta, ámbar, ticker, vidrio. Sin character sheet. `SERVER/zone_master_puerta.png` | vigente |
+| 14 | 24-09-2026 | **Canon visual = STARTER PACK V6** (`00_START_HERE/CANON_V6_STARTER_PACK_CAP02/`): 4 frames canon de G, moodboard, cast lock, sistema de personajes, escenarios Nivel 0 y Nivel -1, CAP.01 de referencia, reglas de serie. Manda sobre cualquier lámina, master o storyboard anterior. Humanos recurrentes: Val, Gin, Pancho | vigente |
+| 15 | 24-09-2026 | **El halo de G se enciende SÓLO durante el turno de noche.** De día, sin halo | vigente |
+| 16 | 24-09-2026 | **El runner se llama ROLO.** «R.01» queda eliminado del canon (nombre y diseño de aspiradora); el diseño es el blanco con ojos rosados del pack V6. Sustituye al lock 9 | vigente |
+| 17 | 24-09-2026 | **Duración de serie: 20–30 s** (ideal 24–28). Estructura HOOK → PROBLEMA → DESARROLLO → PICO/GIRO → REMATE. G es muy capaz pero NO invencible: se cansa, se frustra, glitchea, se queda sin tokens | vigente |
+| 18 | 24-09-2026 | **CAP.02 «TURNO DE NOCHE» — historia y storyboard definitivos** (Valeria): `06_VIDEO_REELS/CAP_02_TURNO_DE_NOCHE/STORYBOARD_V3_DEFINITIVO.md`, 30 s, 18 planos. Beta fuera del CAP.02; los mensajes de madrugada son de Gin. Sustituye a STORY_V1 y STORY_V2 | vigente |
+| 19 | 24-09-2026 | **G maestro del CAP.02 + estación de G bloqueada** (Valeria): `01_CANON_VISUAL/G_MASTER_REFERENCE_VFINAL.png` (+ `.txt` con la instrucción literal) (cabeza grande, cuerpo y piernas cortos, visor limpio con la G de puntos, sin cara de emoji; halo FINO y funcional) y `03_ESCENARIOS/ESTACION_G_CANON.png` (misma mesa de roble, monitor, lámpara, taza, lápicero, libretas, pinboard y archivo en todos los planos). Nivel -1 = backstage real de agencia, no sci-fi; poco neón, el magenta es de G. Keyframes de continuidad: `out/gcl/cap02-v3/keyframes-r2/elegidos/` | vigente |
+| 20 | 25-09-2026 | **Los humanos no hablan** (o sólo excepcionalmente): se entienden por acciones, mensajes y gestos. **El universo sonoro es de los robots** — G: «eh?», «mm», glitch, risita digital · Rolo: bips y servos · Marta: un sonido seco casi vocal. CAP.02 pasa a **«volvamos a la primera versión»** (`CAP_02_TURNO_DE_NOCHE/GUION_V2_PRIMERA_VERSION.md`). Se edita como editor: 25–28 s, afuera lo que repite | vigente (la regla de voz); la historia **sustituida por el lock 21** |
+| 21 | 25-09-2026 | **CAP.02 pasa a «MAÑANA LO VEO»** (`CAP_02_TURNO_DE_NOCHE/GUION_V3_MANANA_LO_VEO.md`): el post-it es un pedido del cliente y Pancho escribe debajo en lápiz azul «mañana lo veo, 9 AM»; **el canal entre el Nivel 0 y el Nivel -1 es un TUBO NEUMÁTICO** (vidrio y bronce, luces rosadas por piso) por donde bajan los pedidos y sube el trabajo; Gin escribe a las 21:20; la carpeta MÁS WOW detona una revelación con **el robot dios**; final: «¡Gracias! Volvemos a la versión anterior» baja por el tubo y **G y su equipo explotan**. Cierre de serie del CAP.01 con «Departamento de cosas imposibles.» y próximo capítulo **«Batalla campal: G vs humanos»** | vigente |

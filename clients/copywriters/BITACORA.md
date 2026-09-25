@@ -8,6 +8,34 @@
 
 ---
 
+## 2026-09-25 · Valeria — G.CL Cap. 02 «TURNO DE NOCHE» · CORTE 16 DEFINITIVO
+
+**Qué se hizo:** El capítulo entero, de corte 3 a corte 16 en un día, con feedback de Valeria por ronda
+(guion V3 «MAÑANA LO VEO», lock 21: tubo neumático entre pisos, robot dios, explosión final). Se generaron
+25 planos nuevos N01–N25 (Seedream) y sus clips (Hailuo 02; Kling falla con humanos), 40 efectos de sonido,
+texto en perspectiva con tracking planar (`scripts/seguir-plano.py`, `superficie-curva.tsx` para el post-it
+curvado) y la música final: **«Reptilia» (The Strokes, instrumental) cortada al beat** (157,9 BPM; la batería
+entra exacto en el primer código, riff cansado a 0,78× en el descanso, el ding del cliente la mata, retoma en
+el mismo beat sobre la tarjeta de cierre). Se eliminó, por feedback: Gin/WhatsApp, voz robótica, Pancho
+escribiendo, segundo «mm», tiznados, halo cayendo, trombón, reenvío hacia abajo.
+**Dónde quedó:** `src/compositions/gcl/Cap02TurnoDeNocheV16.tsx` (`GclCap02TurnoDeNocheV16`, 45,8 s) es el
+definitivo; V3–V15 registrados en `src/Root.tsx`. Render en `out/gcl/cap02-v3/corte/…corte16.mp4` y copia en
+`~/Desktop/GCL_CAP02_STORYBOARD/`. Clips, sfx y voz en `public/assets/gcl/cap02-v3/` (viajan en el repo);
+la música NO viaja (temp tracks sin licencia, 107 MB; receta en el guion). Guion con las 16 rondas:
+`gcl-agent/universo/06_VIDEO_REELS/CAP_02_TURNO_DE_NOCHE/GUION_V3_MANANA_LO_VEO.md`. Método destilado para el
+próximo capítulo: `gcl-agent/universo/06_VIDEO_REELS/COMO_TRABAJAR_UN_CAPITULO.md`.
+**Qué sigue:** Publicar el CAP.02. Al subirlo, poner «Reptilia» desde la biblioteca de música de Instagram/TikTok
+(o licenciarla); si no está disponible, pedir una pista con derechos del mismo carácter (garage rock 155–160
+BPM, riff de bajo en la intro, batería que entra tarde) y cortarla en los mismos puntos.
+**Abierto:** (1) Título del próximo capítulo: sigue el marcador «Batalla campal: G vs humanos». (2) Licencia de
+«Reptilia». (3) El reel dura 45,8 s y el canon V6 dice 20–30 s por capítulo: Valeria lo aprobó así; anotar si
+es excepción o nuevo estándar. (4) Del cierre de hoy quedaron FUERA del repo, a propósito: el material del spot
+de Santa Gota (`public/assets/santagota/spot/`, 505 MB), sus renders de TV (`out/santagota/spot|tv-cliente`,
+el MXF de 114 MB supera el tope de GitHub) y las candidatas crudas de IA del feed (`out/copylab/**/gen/`,
+280 MB). Todo sigue en esta máquina; decidir qué de eso viaja y cómo (Drive).
+
+---
+
 ## 2026-09-06 (noche, 2) · Valeria — G.CL Cap. 02 · PREMASTER REVIEW CUT
 
 **Qué se hizo:** exportación completa de la V4 para revisión humana, con el FAIL del 04 marcado en

@@ -311,7 +311,19 @@ def franja_estirada(a, ctx, args):
     # Sólo cuenta como estiramiento si la fila clonada TIENE contenido horizontal.
     # Un fondo blanco de cierre de carrusel también da filas idénticas, y es correcto:
     # lo que delata a una foto estirada es que repite una franja *con textura*.
-    con_textura = g.std(axis=1)[:-1] > args.get("min_std_fila", 4.0)
+    # ⚠️ La desviación estándar NO basta como guarda. Una fila de fondo plano que
+    # cruza los DOS filetes verticales del marco ya da std > 4, así que un campo
+    # de color macizo se denunciaba como foto estirada (pasó con `st-22-10` el
+    # 25-09, fondo crema: 186 filas «clonadas»). Lo que separa de verdad una
+    # franja de foto de un fondo plano no es cuánto varía, sino **en cuántas
+    # columnas** varía: la foto varía en casi todas, el fondo sólo donde cruza un
+    # filete (4 columnas de 1080 = 0,4 %).
+    desv = np.abs(g - np.median(g, axis=1, keepdims=True))
+    frac_col = (desv > 6.0).mean(axis=1)
+    con_textura = (
+        (g.std(axis=1)[:-1] > args.get("min_std_fila", 4.0))
+        & (frac_col[:-1] > args.get("min_columnas_con_tinta", 0.10))
+    )
     clonada = (dif < args.get("delta_max", 0.35)) & con_textura
 
     # racha contigua más larga

@@ -1,3 +1,92 @@
+## 2026-09-25 (tarde-noche) — Eli (Windows) · BETWEEN reel «La razón por la que nací con dos manos»: fuera el fondo desenfocado — 2 PRUEBAS EN DRIVE, SIN APROBAR
+
+**Qué se hizo:** contenido rechazó el relleno desenfocado de `Reel n°1 S3 BW LA RAZÓN (edición 2).mp4` (el clip viene achicado a 2100×3442 dentro de 2160×3840). **Prueba 1:** agrandar el clip hasta llenar el cuadro. Eli la descartó porque corta el vaso y la mano («la idea es que se siga viendo el vaso y la mano de ella»). **Prueba 2:** reframe 9:16 de Higgsfield (75 créditos) sobre el centro nítido. La IA alejó la cámara, bajó a 720p, se asomó el mentón y el texto quedó sin tilde, así que se usan sólo sus franjas de arriba y abajo, y encima va el centro original 4K a ancho completo, con la unión difuminada en 36 px. Las dos pruebas salieron en MP4 + GIF (388×692, 10 fps, como el GIF de la edición 2).
+**Dónde quedó:** Drive BW sept (`1089lF7D38JH8iQAHPZ2rvxbUrKpQuWFd`) › `prueba expandir` (zoom) y `prueba 2` (`1piB_pa4u0KbkT6Q75y_tCB6BIDB6MZgG`, IA), con los archivos `… (edición 3 sin desenfoque)` y `… (edición 3 expandido IA)`. Copias en `F:\Carpeta de grillas Hilton 2026\SEPTIEMBRE\BW\`. Script: `scripts/expandir-reel-ia.py`.
+**Qué sigue:** Eli revisó la prueba 2: «casi bien», pero arriba de la cabeza se ve el pelo doble y la expansión tiene que seguir el movimiento del centro (R-67/X-28). **Pulirla quedó para otra sesión, por pedido de Eli:** registrar por frame sin suavizar, revisar la costura fotograma por fotograma y hacer mínima la franja sobre la cabeza. Método en la memoria `expandir-video-reframe-higgsfield`.
+**Abierto:** las franjas IA son más blandas (vienen de 720p) y los últimos 0,3 s quedan quietas porque la IA salió más corta → que contenido diga si lo acepta.
+
+## 2026-09-25 (noche) — Eli (Windows) · relectura en vivo de las grillas de octubre DT y Between — SIN PIEZAS
+
+**Qué se hizo:** Eli preguntó si había piezas nuevas en OK. DT leída por API de Sheets y Between por el `.xlsx` bajado.
+**DT:** las 5 en OK PARA DISEÑO son las mismas de siempre. 4 ya están entregadas (la Opinión Expedia ahora figura el **09-10**, antes 10-10) y el REEL Honors POV 14-10 sigue sin material. El resto está en CORREGIDA / EN REVISIÓN / POR GRABAR.
+**Between:** ⭐ **una pieza nueva en OK:** FEED 09-10 **reel «Por qué vienes / por qué te quedas»**, que venía de STORIES («DEJARLO EN FEED»). Es una pantalla dividida con dos rótulos fijos, clips cortos y reales, manos y movimiento. El resto en OK está entregado, salvo la ST 26-10 «WTF», que dice GRABAR ORGÁNICO.
+**Dónde quedó:** instantánea `clients/hilton/grillas/api/dt-oct-20260925.json` (base del diff).
+**Qué sigue:** si Eli dice que sí, juntar los clips para el reel BW 09-10 (sesión SEP 2026 + material de cafés, sin rostros) y mostrárselos antes de montar.
+**Abierto:** Eli no ha decidido si parte el reel de Between. DT Honors POV sigue sin grabación → contenido.
+
+## 2026-09-25 (tarde) — Eli (Windows) · BETWEEN S5 septiembre: corrección de la ST 30-09 y feed nuevo «Necesito ir a Between» — SUBIDO
+
+**Qué se hizo:** Grilla leída EN VIVO (CSV + `export?format=zip` para los enlaces; las columnas
+de STORIES se habían corrido). S5: ST 28-09 To Go `EN REVISIÓN` sin comentarios (no se tocó) ·
+FEED 28-09 Ella habló `APROBADO` · **ST 30-09 Plateada `EN CAMBIOS`**: «Por mientras no nombremos
+platos, ya que tendremos cambio de carta, el resto ok y agregar imagen referencial» → fuera la caja
+«Plateada al Carmenere», el cierre sube a su lugar, legal «*Imagen referencial.» al pie (como el
+Strudel S4) y sin punto en bajada ni cierre (regla de Javier 23-09). Rendidos MP4 9 s + **GIF**
+(25 fps, 540×960, sin dither, 9,00 s — Eli: «recuerda el video dejar el gif») + guía CM.
+**FEED «Necesito ir a Between»** (reemplaza «Espacio nuevas promos de desayuno», `CORREGIDO`):
+ref = post de Juan Valdez 12-09 (`instagram.com/p/DdMQf59iLF8`); foto REAL `cafes-sep2026/IMG_5729`
+(terraza, vaso vigente, sin cara), barra de chat calcada y traducida a taupe/beige, emojis Noto;
+**sin lockup** (R-33: la prueba con logo al pie caía encima del vaso). Eli: «subelo».
+**Dónde quedó:** Drive `S5 · BW · STS` (`1r_spPoBx-vR63J8GTRVCUkbZGGyNLnJg`): el `.mp4` reemplazado
+en el MISMO id `1ismDXD-Nizxuy24g9YuwvgE8juhHKTea` + `.gif` nuevo `1sONYFSe3iF-rQ9K6A25F5UtpTl7baErX`.
+Carpeta **`FEED` creada** en BW de la S5 (`1jzeK8xlMCD0CxnILk3MIg6HbRWV7Xdw2`) con
+`BW FEED 28-09 Necesito ir a Between.png` (`1aN-v16v7-hdfRCppk5yWiETecSFBts_X`). Los tres
+verificados por md5, mimeType y parents. Código `src/compositions/hilton/BetweenStS5.tsx`
+(`FeedS5NecesitoIr`, ids `BW-S5-F-NecesitoIr` / `-Logo` en `Root.tsx`); fondo
+`public/assets/hilton/between/s5/feed-28-09-necesito-ir.jpg`; ref en `raw/hilton/between/refs-s5/`;
+renders en `out/hilton-between-s5-r35/` (+ copia en `out/hilton-between-s5/`); revisión en
+`out/hilton-between-s5-r35/revision/index.html`.
+⛔ **Bug corregido en `between-s5-subir-drive.py`:** la clave del manifiesto era el stem, así que el
+GIF (`BW-S5-Plateada.gif`) se escribió ENCIMA del `.mp4` en Drive. Se re-subió el MP4 al mismo id y
+la clave del GIF ahora lleva la extensión.
+**Qué sigue:** esperar el visto del cliente a la ST 30-09 y al feed nuevo en la grilla.
+**Abierto:** el feed nuevo no tiene fecha en la grilla («X DEFINIR», se nombró 28-09), está en
+`CORREGIDO` y su copy dice «PENDIENTE INFO PARA REALIZAR COPY» (el de las promos) → CM. Los archivos
+de la ST 30-09 siguen llamándose «Plateada al Carmenere» para no romper el enlace, aunque la pieza ya
+no nombra el plato → Eli decide si se renombran.
+
+## 2026-09-25 (cierre) — Eli (Windows) · /arranque + la sesión de fotos SEP 2026 guardada — SIN PIEZAS
+
+**Qué se hizo:** `/arranque` en la máquina de Eli: todo estaba instalado (Node, Chrome,
+llavero abierto, Magnific válida, Drive conectado, TypeScript compila limpio, las fuentes
+de Hilton completas). Después, Eli pasó la **sesión nueva de fotos para las 4 marcas**,
+«Hotel general sesión SEP 2026» (`117N-uJjrMSwWj_4Y2cSIH4IwsmMkapQM`). Se guardó en el
+mapa de Drive del manual, en `dt-banco-de-imagenes.md` § 00 como **primera parada**
+antes de `CONTENIDO HOTEL 2026` y de la IA, y en la memoria (local + semilla del repo).
+Además se subieron los cambios de QB octubre de la mañana, que ya estaban anotados en
+`clients/qb/BITACORA.md` pero no se habían commiteado.
+**Dónde quedó:** son JPG editados en alta (`sep_26-NNN.jpg`, 7–30 MB, la numeración pasa
+de 520) y **se estaban subiendo** cuando se revisó (subidas de 13:48 a 14:29). No se bajó
+nada ni se miró ninguna imagen: sólo se leyeron los nombres de los archivos.
+**Qué sigue:** cuando termine de subirse, contar la sesión, bajarla a
+`raw/hilton/sesion-sep2026/` (versión liviana primero) y **clasificarla por espacio y por
+marca** (hotel / Between / QB / Piso 18), cruzándola con los huecos del MoodBoard del
+09-09 (§ «Qué tiene y qué le falta»).
+**Abierto:** `raw/hilton/qb/oct-ia/09-sunset-canva.jpg` es una descarga fallida (17 bytes,
+«Signature invalid»). La 09 ya usa la foto real «QB 13 oct» n°60, así que no bloquea nada,
+pero conviene borrarla o volver a bajarla.
+
+## 2026-09-25 — Eli (Windows) · BETWEEN: rediseño de la CARTA, ejercicio de 4 rondas — SUBIDO (sólo a la carpeta de refs)
+
+**Qué se hizo:** `/abrir bw` sin novedades en Drive. Después, a pedido de Eli, un **ejercicio** de
+rediseño de la carta (no es entrega: sirve para medir la calidad de diseño antes de la carta oficial).
+Tres opciones × portada/interior/contraportada a 17×30 cm, con el bloque Desayuno literal de la
+carta impresa de feb-2026. Cuatro rondas: (1) 3 direcciones; (2) harta info por hoja (6 hojas → 3),
+jerarquía en 4 niveles, sobre Grainhaus / Honeycomb / Café & Brunch; (3) un logo por hoja, B con
+fondo café, A con banda ilustrada; (4) **Eli eligió la C «Taupe y sticker»** y el fondo pasó de
+dibujos toscos a textura fina. Editables `.ai` con texto vivo por línea + `.svg`.
+**Dónde quedó:** Drive `referencias carta BW DISEÑO › PROPUESTA CARTA BW 3 OPCIONES 25-09`
+(`13OPblfC5Icv9R4Gb1fOR0dH5qGQBv8hv`), con RONDA 2/3/4 y `RONDA 4/EDITABLES`
+(`1tRWWcU_sgdG-fJIUHVWeZHcXTjFggbwS`). Local `out/hilton/between/carta-opciones/{,r2,r3,r4}/`
+con `index.html` de comparación por ronda. Código `scripts/between-carta-*`, recursos en
+`public/assets/hilton/between/carta/`. Criterio completo en el manual § BETWEEN — LA CARTA.
+**Qué sigue:** nada hasta que el cliente mande sus referencias de la carta oficial; ahí se parte
+desde la r4 opción C y se diseña el resto de la carta (almuerzo, bar, EN).
+**Abierto:** (1) Afogatto y MilkShake tienen precios distintos en el PDF impreso ($4.100 / $5.300)
+y en la planilla de feb ($3.900 / $4.900). (2) Ilustraciones y texturas son IA: en la oficial Eli
+decide si quedan o se reemplazan. (3) Se instaló Raleway Italic para el usuario (HKCU) para que
+Illustrator no la sustituyera.
+
 ## 2026-09-24 (cierre) — Eli (Windows) · /arranque de nuevo + relectura en vivo de las 4 grillas de octubre — SIN PIEZAS
 
 **Qué se hizo:** `/arranque` en la máquina Windows: todo en verde otra vez (no se instaló nada, memoria ya

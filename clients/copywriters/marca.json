@@ -16,16 +16,18 @@
     "tinta": "#080F14",
     "offwhite": "#F2F4F6",
     "blanco": "#FFFFFF",
-    "rosa": "#FF2D8D",
-    "coral": "#FF683D",
+    "rosa": "#FF2D8B",
+    "coral": "#FF6B3D",
     "purpura": "#9D4EDD"
   },
 
   "tipografias": {
-    "impacto": {"familia": "Archivo", "variable": true, "ejes": {"wght": [100, 900], "wdth": [62, 125]}, "defecto": {"wght": 900, "wdth": 70}},
+    "titular": {"familia": "Archivo Narrow", "variable": true, "ejes": {"wght": [400, 700]}, "defecto": {"wght": 700}},
+    "funcional": {"familia": "Inter", "variable": true},
+    "impacto_legado": {"familia": "Archivo", "variable": true, "ejes": {"wght": [100, 900], "wdth": [62, 125]}, "defecto": {"wght": 900, "wdth": 70}},
     "editorial": {"familia": "DM Serif Display", "estilo": "italic"},
     "data": {"familia": "IBM Plex Mono", "tracking": 0.16, "versales": true},
-    "mano": {"familia": "Caveat", "variable": true, "ejes": {"wght": [400, 700]}}
+    "mano_legado_no_es_voz": {"familia": "Caveat", "variable": true, "ejes": {"wght": [400, 700]}}
   },
   "fuentes_en": "public/assets/fonts/copywriters/",
 

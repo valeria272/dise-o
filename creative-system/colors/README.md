@@ -4,8 +4,8 @@
 #080F14   NEGRO TINTA     fondo por defecto · tinta sobre claro
 #F2F4F6   OFF WHITE       fondo claro · el respiro de la grilla
 #FFFFFF   BLANCO          tipografía sobre tinta
-#FF2D8D   COPY PINK       LA FIRMA
-#FF683D   CORAL           secundario, con moderación
+#FF2D8B   COPY PINK       LA FIRMA
+#FF6B3D   CORAL           secundario, con moderación
 #9D4EDD   PÚRPURA         secundario, con moderación
 ```
 

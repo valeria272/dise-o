@@ -1,0 +1,10 @@
+→ Nano Banana Pro · carrusel · 2K
+  … CREATED
+  … IN_PROGRESS
+  … IN_PROGRESS
+  … IN_PROGRESS
+  … IN_PROGRESS
+  ✓ nbpro-a.png  (5613 KB)
+
+  MÍRALA antes de usarla:
+  python3 scripts/ver-pieza.py nbpro-a.png

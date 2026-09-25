@@ -1,0 +1,10 @@
+→ Nano Banana Pro · carrusel · 2K
+  … IN_PROGRESS
+  … IN_PROGRESS
+  … IN_PROGRESS
+  … IN_PROGRESS
+  … IN_PROGRESS
+  ✓ out/copylab/hero/h2/recreacion-b.png  (7577 KB)
+
+  MÍRALA antes de usarla:
+  python3 scripts/ver-pieza.py out/copylab/hero/h2/recreacion-b.png

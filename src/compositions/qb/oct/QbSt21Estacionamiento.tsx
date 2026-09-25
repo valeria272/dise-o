@@ -70,6 +70,6 @@ export const QbSt21Estacionamiento: React.FC = () => (
     <LogoQB top={252} ancho={130} />
     <Linea top={356} cuerpo={70} peso={800} tracking="0.01em">{QB_ST21_DATA.pieza.titular}</Linea>
     <Linea top={448} cuerpo={34} peso={400} ancho={880}>{QB_ST21_DATA.pieza.bajada}</Linea>
-    <Legal top={1540} cuerpo={20}>{QB_ST21_DATA.pieza.legal}</Legal>
+    <Legal top={1522} cuerpo={20}>{QB_ST21_DATA.pieza.legal}</Legal>
   </AbsoluteFill>
 );

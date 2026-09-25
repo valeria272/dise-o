@@ -2,7 +2,7 @@
      SECCIÓN 09 — CONVERSEMOS — datos de contacto y formulario
      ────────────────────────────────────────────────────────────────────
      Vista previa:  vista-previa/09-*.jpg
-     Nota: ACÁ ESTÁ EL CORREO terrenos@ifbinversiones.cl. El formulario valida los campos pero todavía NO envía correo: hay que conectarlo a Contact Form 7 (paso 8 del instructivo).
+     Nota: ACÁ ESTÁ EL CORREO terrenos@ifbinversiones.cl. El formulario valida los campos —incluidos los adjuntos: tipo y peso— pero todavía NO envía correo ni sube el archivo: hay que conectarlo a Contact Form 7 (paso 7 del instructivo).
      ════════════════════════════════════════════════════════════════════
      Pega TODO este archivo dentro de un bloque «HTML personalizado».
      Antes tiene que estar pegado UNA sola vez 00-estilos-base.html.
@@ -33,6 +33,24 @@
   box-shadow:0 0 0 3px rgba(229,37,33,.12)}
 .campo input.error,.campo select.error,.campo textarea.error{border-color:var(--rojo);background:rgba(229,37,33,.03)}
 .campo .ayuda{font-size:.76rem;color:#8A8A8A;line-height:1.5}
+.campo .adjuntos{background:#fff;border:1.5px dashed rgba(0,0,0,.18);border-radius:12px;padding:13px 16px;
+  transition:border-color .3s var(--exp),box-shadow .3s var(--exp)}
+.campo .adjuntos:hover{border-color:rgba(229,37,33,.55)}
+.campo .adjuntos:focus-within{border-color:var(--rojo);box-shadow:0 0 0 3px rgba(229,37,33,.12)}
+.campo .adjuntos.error{border-color:var(--rojo);background:rgba(229,37,33,.03)}
+.campo input[type=file]{width:100%;border:0;padding:0;background:none;box-shadow:none;
+  font-size:.86rem;color:var(--texto-med)}
+.campo input[type=file]:focus{outline:none;box-shadow:none}
+.campo input[type=file]::file-selector-button{font-family:inherit;font-size:.76rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--rojo);border:0;border-radius:999px;
+  padding:10px 20px;margin-right:14px;cursor:pointer;transition:background .3s var(--exp)}
+.campo input[type=file]::file-selector-button:hover{background:var(--rojo-osc)}
+.lista-archivos{display:none;flex-direction:column;gap:6px;margin:2px 0 0;padding:0;list-style:none}
+.lista-archivos.visible{display:flex}
+.lista-archivos li{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--texto);
+  background:rgba(229,37,33,.05);border-radius:9px;padding:9px 13px}
+.lista-archivos li svg{width:15px;height:15px;fill:var(--rojo);flex-shrink:0}
+.lista-archivos li .peso{margin-left:auto;color:#8A8A8A;font-size:.75rem;flex-shrink:0}
 .formulario .btn{width:100%;justify-content:center;margin-top:24px}
 .aviso-form{margin-top:16px;font-size:.88rem;min-height:22px;font-weight:500}
 .aviso-form.ok{color:#1E7A3C}.aviso-form.mal{color:var(--rojo)}
@@ -107,6 +125,21 @@
         <div class="campo ancho">
           <label for="mensaje">Cuéntanos sobre el terreno</label>
           <textarea id="mensaje" name="mensaje" placeholder="Uso de suelo, situación normativa, accesos, entorno comercial cercano…" required></textarea>
+        </div>
+        <div class="campo ancho">
+          <label for="archivos">Planos o fotos del terreno (opcional)</label>
+          <!-- Vista de prueba: mailto: NO transporta adjuntos (límite del navegador, no
+               decisión de diseño). Acá los archivos se validan y se listan, y el visitante
+               los arrastra al correo que se abre. En WordPress este bloque lo reemplaza el
+               campo [file] de Contact Form 7 y la subida pasa a ser automática. -->
+          <div class="adjuntos" id="caja-archivos">
+            <input type="file" id="archivos" name="archivos[]" multiple
+                   accept=".pdf,.jpg,.jpeg,.png,.kmz,.kml,.dwg,.zip">
+          </div>
+          <ul class="lista-archivos" id="lista-archivos"></ul>
+          <span class="ayuda">Plano, croquis, certificado de informes previos o fotos. PDF, JPG, PNG,
+            KMZ o DWG, hasta 10 MB en total. Al enviar te abrimos el correo con la postulación:
+            <strong>adjunta ahí los archivos</strong> antes de darle enviar.</span>
         </div>
       </div>
       <button type="submit" class="btn btn-rojo">

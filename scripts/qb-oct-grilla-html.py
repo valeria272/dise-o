@@ -36,18 +36,36 @@ FF = imageio_ffmpeg.get_ffmpeg_exe()
 
 # columna de la hoja STORIES (0-based) → archivo entregado y notas de diseño
 DISENADAS = {
-    2: ("ST n°1 S1 QB OCT 26", None, "Foto real (brindis con vino blanco, sesión orgánica 2026). Promo: dentro de zona segura de paid."),
+    2: ("ST n°1 S1 QB OCT 26", None, "Plantilla de banco aprobada + foto del shooting de la carta (brindis con vino blanco). Logo del banco y tarjetas originales."),
     3: ("ST n°2 S1 QB OCT 26", None, "Bloque AYCD igual al KV. Escena generada con IA → «Imagen referencial»."),
-    5: ("ST n°4 S1 QB OCT 26", None, "Foto real (cóctel en la terraza, sesión de Víctor). Promo: zona segura."),
-    6: ("ST n°5 S1 QB OCT 26", None, "Foto real del spritz llevada a atardecer. Falta la gente desenfocada del brief (sin créditos de IA)."),
-    9: ("ST n°2 S2 QB OCT 26", None, "Con alternativas, como pidió el cliente: Aperol Spritz · Mimosa · Negroni (a validar con contenido). Premio «xxxx» por confirmar."),
+    5: ("ST n°4 S1 QB OCT 26", None, "Pieza CMR aprobada con foto nueva del shooting de la carta. Logos y chips originales."),
+    6: ("ST n°5 S1 QB OCT 26", None, "La ST de Sunset aprobada tal cual (foto y logo del KV), con los textos del brief."),
+    9: ("ST n°2 S2 QB OCT 26", None, "Alternativas literales del cliente (grilla 25-09): Aperol · Ramazzotti Rosato · St. Germain · Sangría. Sin el pie «Responde y participa por xxxx», que el cliente borró."),
     10: ("ST n°3 S2 QB OCT 26", None, "Foto real de noche en la terraza. Estrella verde como guiño a Mejores amigos."),
     15: ("ST n°1 S3 QB OCT 26", None, "Foto real (brindis, sesión de Víctor) + interfaz de llamada. Bloque AYCD del KV. Promo: zona segura."),
     17: ("ST n°3 S3 QB OCT 26", None, "Escena generada con IA; el texto del ticket se montó con las fuentes reales. «Imagen referencial»."),
     18: ("ST n°4 S3 QB OCT 26", "mp4", "Anclada a «Recomendación del chef» + «Imagen referencial», como pidió el cliente. Plato generado con IA; la mano con tenedor queda pendiente (sin créditos)."),
-    19: ("ST n°5 S3 QB OCT 26", None, "Foto real cenital de la terraza + nota escrita a mano construida en código."),
-    22: ("ST n°1 S4 QB OCT 26", "mp4", "Clips reales de la terraza, una toma por escena. El material es de noche (no atardecer)."),
+    19: ("ST n°5 S3 QB OCT 26", None, "Foto real «Fotos 4 agosto»: manos brindando con cuatro tragos en la mesa de QB (25-09) + nota escrita a mano construida en código."),
+    22: ("ST n°1 S4 QB OCT 26", "mp4", "5 clips reales de la terraza grabados DE TARDE (carpeta CAM, 10-10-2025), S-Log3 pasado a Rec.709. Sólo invitados en cuadro."),
 }
+
+
+# ⭐ 25-09: lo que cambió respecto de la entrega del 24-09 (Eli aprueba comparando)
+ANTES = os.path.join(RAIZ, "out", "qb", "oct", "_antes-r2")
+CAMBIOS = [  # ronda de Eli del 25-09 (comentarios sobre la entrega de la mañana)
+    ("ST n°1 S1 QB OCT 26", "ST n°1 S1 QB OCT 26.png", "01-10 · Banco de Chile",
+     "Sobre la plantilla de banco aprobada (ST n°1 S1 JUL): logo del banco y tarjetas originales. Foto nueva del shooting de la carta, sin saturar."),
+    ("ST n°4 S1 QB OCT 26", "ST n°4 S1 QB OCT 26.png", "08-10 · CMR Falabella",
+     "La pieza CMR aprobada con foto nueva del shooting de la carta; logos y chips originales."),
+    ("ST n°5 S1 QB OCT 26", "ST n°5 S1 QB OCT 26.png", "09-10 · Sunset",
+     "La ST de Sunset aprobada tal cual (foto y logo del KV). Sólo cambian los textos del brief."),
+    ("ST n°2 S2 QB OCT 26", "ST n°2 S2 QB OCT 26.png", "14-10 · Adivina el trago",
+     "Sólo Raleway; Bell únicamente en «Adivina». Pistas en círculos y alternativas en grilla 2×2."),
+    ("ST n°5 S3 QB OCT 26", "ST n°5 S3 QB OCT 26.png", "23-10 · Close friends",
+     "Estrellas verdes en la nota y todo el texto dentro de los márgenes de Instagram."),
+    ("ST n°1 S4 QB OCT 26 (estática)", "ST n°1 S4 QB OCT 26 (estática).png", "26-10 · Terraza",
+     "Fuera las tomas con trabajadores del hotel: sólo invitados (fotograma final)."),
+]
 
 
 def leer(gid):
@@ -156,6 +174,14 @@ def main():
       </article>''')
         partes.append(f'<section class="semana"><h2>{html.escape(s["nombre"])}</h2><div class="fila">{"".join(cards)}</div></section>')
 
+    comp = []
+    for nuevo, viejo, titulo, que in CAMBIOS:
+        a, d = os.path.join(ANTES, viejo), os.path.join(ENT, nuevo + ".png")
+        if os.path.isfile(a) and os.path.isfile(d):
+            comp.append(f'''<article class="par"><h3>{html.escape(titulo)}</h3><p class="nota">{html.escape(que)}</p>
+        <div class="dos"><figure><figcaption>Antes · 24-09</figcaption><img class="pieza" src="{img_uri(a, 420)}" alt="antes"></figure>
+        <figure><figcaption>Ahora · 25-09</figcaption><img class="pieza" src="{img_uri(d, 420)}" alt="ahora"></figure></div></article>''')
+
     feed = []
     for s in sem_fd:
         for p in s["piezas"]:
@@ -205,6 +231,12 @@ border:1px dashed var(--linea);color:var(--tinta2);font-weight:700;font-size:12p
 .archivo{{margin:0;font-size:11.5px;font-weight:700;color:var(--verde2)}}
 .nota{{margin:0;font-size:12.5px;line-height:1.45;color:var(--tinta2)}}
 .card.hecha{{border-color:var(--verde2)}}
+.cambios .fila{{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}}
+.par{{background:var(--sup);border:1px solid var(--linea);padding:12px;display:grid;gap:8px}}
+.par h3{{margin:0;font-size:14px;font-weight:800}}
+.dos{{display:grid;grid-template-columns:1fr 1fr;gap:8px}}
+.dos figure{{margin:0;display:grid;gap:4px}}
+.dos figcaption{{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta2)}}
 .feed{{max-width:1400px;margin:0 auto}}
 .feed ul{{list-style:none;padding:0;margin:0;display:grid;gap:8px}}
 .feed li{{background:var(--sup);border:1px solid var(--linea);padding:10px 12px;font-size:13.5px;line-height:1.5;display:block}}
@@ -214,10 +246,11 @@ video:focus-visible,a:focus-visible{{outline:2px solid var(--verde2);outline-off
 <div class="cab">
   <div class="marca">QB Restaurant · Grilla octubre 2026 · Diseño</div>
   <h1><b>Historias</b> de <i>octubre</i></h1>
-  <p>Se diseñó sólo lo que el cliente marcó <b>OK para diseñar</b> en la grilla viva (24-09). Las piezas están en el orden de la grilla; las que no se diseñan muestran su estado y el comentario del cliente. Entrega a 2250×4000.</p>
+  <p>Se diseñó sólo lo que el cliente marcó <b>OK para diseñar</b> en la grilla viva (relectura del 25-09). Las piezas están en el orden de la grilla; las que no se diseñan muestran su estado y el comentario del cliente. Entrega a 2250×4000.</p>
   <div class="resumen"><span class="bot">{len(DISENADAS)} diseñadas de {total_ok} OK para diseñar</span>
   <span>Feed: 0 OK para diseñar</span><span>«Imagen referencial» en todo lo generado con IA</span></div>
 </div>
+<section class="semana cambios"><h2>Ronda del 25-09 · antes y después</h2><div class="fila">{"".join(comp)}</div></section>
 {"".join(partes)}
 <section class="feed semana"><h2>Feed · nada OK para diseñar todavía</h2><ul>{"".join(feed)}</ul></section>
 '''

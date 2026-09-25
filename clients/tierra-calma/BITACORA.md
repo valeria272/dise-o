@@ -5,6 +5,876 @@
 
 ---
 
+## 2026-09-25 — CIERRE DEFINITIVO DE LA JORNADA — Diego Aguilar
+
+> ⚠️ Hubo un primer cierre tras la ronda 13; después llegaron dos rondas más
+> (`p-29-10`). Ésta es la entrada que vale para el día completo.
+
+**Qué se hizo:** **quince rondas por chat**, casi todas con referencia adjunta,
+sobre **cinco piezas** de la grilla de octubre. Ninguna llegó por Drive.
+
+| Pieza | Dónde terminó |
+|---|---|
+| `st-12-10` | tras cuatro vueltas de trazos, **de vuelta al archivo real en duotono**, sin iconos; titular en una línea y centrado |
+| `c-20-10-2` | mapa en tarjeta a 1:1 y **rotulado encima en Inter Tight**; vuelve la bajada original |
+| `p-09-10` | **pareja nueva** (`g-pareja2`), caminando de espaldas |
+| `st-22-10` | **calco completo del mockup de app** con la paleta de la marca |
+| `p-29-10` | **la polaroid impresa de verdad** con la aérea real del dron, y el imán encima |
+
+**Dónde quedó:** todo rendido, entregado y en la rama. `OctubreV3.tsx` (bloques
+`H`, `K2`, `G`, `L`, `M`), `scripts/tc-mapa-ph.py` y `scripts/tc-polaroid.py`
+(nuevos), `qa/checks.py` (regla endurecida), cinco referencias versionadas y los
+assets. **Las cinco piezas re-subidas sobre su mismo `fileId`.** QA: **1 aviso**,
+el deliberado de la slide 2.
+
+**Qué sigue:** esperar la vuelta de Diego sobre las cinco. Aprobación del cliente
+prevista para el **29-09**; el creativo D1 del PAID caduca el **12-10**.
+
+**Abierto:**
+
+1. ⚠️ **OK escrito de Fran o Blanca** para «Rol individual» y «Acceso controlado».
+2. ⭐ **Captura de mapa a más resolución**, con el pin del proyecto **y** el
+   contorno de la comuna. Es el techo de las nueve vueltas de mapa de hoy.
+3. ¿Se nombran los tramos de la barra de avance? Falta el proceso comercial.
+4. ¿Está confirmado el **Metrotren Santiago–Melipilla**?
+5. ¿La aérea del 29-10 queda así de invernal, o se calienta la gradación?
+6. Avisar lo del agua potable de septiembre · la mano manuscrita propia.
+
+**El aprendizaje del día, en una línea:** *las cuatro vueltas del mapa y las dos
+de la polaroid tuvieron la misma causa — **dar por supuesto un número que estaba
+ahí para medirse***: la resolución del archivo y el ángulo de la ventana.
+
+---
+
+## 2026-09-25 (15ª vuelta) — Diego Aguilar (p-29-10: el imán encima y la aérea real)
+
+**Qué se hizo:** *"El botón-imán tiene que quedar sobre la foto polaroid"* y *"que
+sea una foto dron de Tierra Calma"*.
+
+**1 · El imán, encima.** Al imprimir la copia en la ventana, la foto se había
+pintado por encima del imán. Ahora **el cuerpo del imán se recorta de la
+máscara** y asoma el original.
+
+⭐ **Pero su sombra NO se recorta, y ahí está lo interesante.** Si se recortara,
+quedaría un parche de papel blanco con una sombra dibujada encima de la foto —
+al revés de lo que pasa en la realidad, donde la sombra del imán cae **sobre la
+copia**. En vez de modelar esa sombra, la copia **hereda el sombreado del propio
+papel**: se mide cuánto se oscurece el papel respecto de su parte más clara y se
+le aplica lo mismo a la foto. Así la copia recibe de una vez **el degradado de la
+escena y la sombra del imán**, sin inventar ninguna luz. Reemplazó al paso de
+«luz de la escena» que tenía antes, que hacía la mitad del trabajo con el doble
+de código.
+
+**2 · La aérea real.** La copia sale del rodaje del **07-08**, toma
+`DJI_20260807093558_0308_D`: la parcelación con sus deslindes y caminos de ripio
+y, al fondo, el llano con las casas vecinas. Es «este es el lugar» en un cuadro.
+
+⚠️ No es la misma toma que `st-12-10`, que usa la `0312_D` (R-20). Y se gradúa con
+**la misma receta ya aprobada** para esa story (`tc-foto-dron-story.py`): el
+material del 07-08 es HLG y sin gradar se ve lavado y grisáceo.
+
+**Dónde quedó:** `scripts/tc-polaroid.py` (ahora lee el RAW del dron y respeta el
+imán), `m-refri-foto.jpg` regenerado. **QA: 1 aviso**, el deliberado de la slide
+2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios.
+
+---
+
+## 2026-09-25 (14ª vuelta) — Diego Aguilar (p-29-10: la polaroid, impresa de verdad)
+
+**Qué se hizo:** *"La foto polaroid que quede real y no sobrepuesta, que se vea
+como una foto polaroid real pegada en el refrigerador."*
+
+⭐ **LA CAUSA ERA GEOMÉTRICA, NO DE ACABADO.** La composición ponía la foto con
+`rotate(-8deg)` sobre una ventana que, medida sobre el archivo, está girada
+**−14,4°**. Seis grados bastan para que la foto se salga por un canto y deje filo
+de papel por el otro — y eso es lo que el ojo lee como «pegada encima», mucho
+antes que cualquier problema de luz o de grano. Yo había dado por hecho el ángulo
+en vez de medirlo.
+
+Y no es un rectángulo girado que CSS pueda reproducir: la ventana es un
+**cuadrilátero con su propia perspectiva**. Así que la copia dejó de ponerse por
+CSS y se **imprime en el archivo** (`scripts/tc-polaroid.py`) con una homografía
+sobre los cuatro vértices medidos: TL (356,602) · TR (748,501) · BR (815,930) ·
+BL (425,1030) — leídos del **mapa de bordes**, porque sobre blanco el ojo no los
+encuentra y el gradiente sí.
+
+**Lo que la integra, en orden de impacto:** la geometría · la **sombra de
+contacto** del marco sobre la copia · la **luz de la escena**, medida sobre el
+propio papel de la polaroid y aplicada igual a la foto · el **acabado de copia**
+(menos micro-contraste, negros levantados, blanco cálido) · el **grano**, medido
+en la escena (σ = 1,11) y reproducido.
+
+⚠️ **Un detalle que sólo aparece al renderizar:** con la máscara cayendo justo
+sobre la línea de la ventana, el canto salía **punteado**. Metida 2 px hacia
+adentro, la línea original del marco queda de borde de la copia — que es lo que
+pasa con una foto de verdad.
+
+**De paso se resolvió otra repetición:** la polaroid llevaba `f-fondo`, que ya es
+el fondo de `st-08-10`. Ahora lleva **`g-acceso`**, que estaba libre (R-20). Es la
+tercera foto duplicada que aparece esta semana revisando otra cosa.
+
+⚠️ **Si se regenera `m-refri.jpg`, los cuatro vértices hay que volver a medirlos.**
+Queda escrito en el script: mejor que falle ruidosamente a que imprima torcido.
+
+**Dónde quedó:** `scripts/tc-polaroid.py` (nuevo), `m-refri-foto.jpg` versionado,
+`OctubreV3.tsx` bloque `M` simplificado. **QA: 1 aviso**, el deliberado de la
+slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios.
+
+---
+
+## 2026-09-25 — CIERRE DE JORNADA — Diego Aguilar
+
+**Qué se hizo:** **nueve rondas por chat**, todas con referencia adjunta, sobre
+cuatro piezas de la grilla de octubre. Ninguna llegó por comentario de Drive.
+
+| Pieza | Dónde terminó |
+|---|---|
+| `st-12-10` | mapa a sangre en papel → cuatro vueltas de trazos → **de vuelta al archivo real en duotono, sin iconos**, titular en una línea y centrado |
+| `c-20-10-2` | misma receta de mapa → tarjeta a 1:1 → **el mapa se rotula encima en Inter Tight** y vuelve la bajada original |
+| `p-09-10` | **pareja nueva** (`g-pareja2`): caminando de espaldas, otra ropa, otra pose |
+| `st-22-10` | referencia de ventana → visual del brief (glassmorphism) → celular → **calco completo del mockup de app, con la paleta de la marca** |
+
+**Dónde quedó:** todo rendido, entregado y en la rama. `OctubreV3.tsx` (bloques
+`H`, `K2`, `G`, `L`), `scripts/tc-mapa-ph.py` (renombrado desde
+`tc-mapa-trazos.py`, ahora con tres mapas), `qa/checks.py` (regla endurecida),
+cuatro referencias versionadas y los assets nuevos. **Las cuatro piezas re-subidas
+sobre su mismo `fileId`.** QA: **1 aviso**, el deliberado de la slide 2.
+
+**Qué sigue:** esperar la vuelta de Diego sobre las cuatro. La aprobación del
+cliente está prevista para el **29-09** y el creativo D1 del PAID caduca el
+**12-10**.
+
+**Abierto:**
+
+1. ⚠️ **Falta el OK escrito de Fran o Blanca** para «Rol individual» y «Acceso
+   controlado», publicados en tres piezas. Sigue siendo lo más urgente.
+2. ⭐ **Una captura de mapa a más resolución**, y que traiga el pin del proyecto
+   **y** el contorno de la comuna a la vez. Ningún archivo tiene los dos y la
+   letra de ambos mide 11 px: **es el techo de todas las vueltas de hoy**.
+3. ¿Se nombran los tramos de la barra de avance? Haría falta el proceso comercial
+   por escrito.
+4. ¿Está confirmado el **«Futuro Metrotren Santiago–Melipilla»**? Venía dibujado
+   en una referencia de la marca y se dejó fuera por no estar en la lista blanca.
+5. Avisar lo del agua potable publicado en septiembre · la mano manuscrita propia.
+
+---
+
+### ⭐ EL APRENDIZAJE DEL DÍA — dos veces el mismo patrón
+
+**1 · Cuatro vueltas corrigiendo el eje equivocado.** El mapa se veía pixelado y
+lo perseguí por el encuadre, el borde, el umbral y el trazado. El problema era
+**la resolución del archivo**: la letra mide 11 px y una calle 3-5. Ningún
+parámetro iba a salvarlo.
+
+> **A una captura se le cambia el COLOR, nunca la FORMA.**
+
+**2 · Seis métodos para borrar la letra de `mapa3`,** y ese archivo no se limpia:
+la letra y los caminos comparten brillo, densidad y halo. Lo que destrabó fue
+**dejar de limpiar** y rotular encima sólo lo que la pieza necesita.
+
+> **Un mapa diseñado rotula lo que la pieza dice, no todo lo que hay.**
+
+Las dos veces, lo que resolvió fue **ir a medir el material** en vez de calibrar
+una vez más. Es el reverso de la regla del 24-09 («si el defecto vuelve, cambia
+de eje»): cambiar de eje sólo sirve si el eje nuevo sale de una medición.
+
+**3 · Y una que es de criterio, no de técnica:** «literal, pero con el estilo de
+Tierra Calma» significa **calcar la estructura y NO el color**. El verde brillante
+de la referencia no entró; el acento siguió siendo la arena de la marca. Copiar el
+color de otra marca es traer su identidad, no su gramática.
+
+**4 · La compuerta atajó dos bloqueantes hoy, y uno era suyo.** La regla de «foto
+estirada» marcaba un fondo plano porque su guarda medía desviación estándar y los
+dos filetes del marco la superan. Se cambió por una medida robusta —en cuántas
+columnas varía la fila— y **se verificó con una pieza de 500 filas realmente
+clonadas** que no quedara ciega.
+
+---
+
+## 2026-09-25 (13ª vuelta) — Diego Aguilar (st-22-10: el mockup de app, calcado)
+
+**Qué se hizo:** *"Literal, sigue fielmente la referencia pero con el estilo de
+Tierra Calma, con la historia de la st-22-10."*
+
+Se calcó la **estructura completa** de la referencia, de arriba abajo: campo de
+color con el aparato al centro · cabecera de la app · tarjeta clara con barra de
+avance y su estado a la derecha · **la tarjeta del mensaje cruzando el celular y
+saliéndose por los dos lados**, con la insignia a la izquierda · sección clara
+debajo · barra de pestañas al pie.
+
+⭐ **QUÉ SIGNIFICÓ «CON EL ESTILO DE TIERRA CALMA», que es donde está el trabajo:**
+
+- ⛔ **Su verde brillante NO entra.** El acento de esta marca es la **arena
+  `#C9B99A`**, y es lo que lleva la barra de avance y la pestaña activa. Copiar
+  el verde de la otra marca habría sido traer **su identidad**, no su gramática —
+  que es exactamente la línea que separa leer una referencia de calcarla.
+- El destacado va en **IvyOra versales**, no en sans negrita (R-10/R-11).
+- Bajo el campo verde va la fotografía del lugar, muy velada: así se cumple el
+  *"imagen sutil de Tierra Calma"* del brief sin romper el calco.
+
+⛔ **Y todo el texto sale de la pieza.** La referencia trae fechas, montos y
+movimientos que invitan a inventar; no se inventó ninguno. Lo único que no estaba
+literal es la palabra «Preaprobado» del estado, que es un fragmento del propio
+titular. **Las pestañas del pie van sin rótulo**: nombrarlas sería inventar
+secciones de una app que no existe.
+
+⚠️ **Un detalle de montaje que sólo se ve renderizando:** la tarjeta que cruza es
+un elemento **absoluto**, así que dentro del teléfono hay que **reservarle el
+hueco**. Con 196 px se comía la primera línea de la sección de abajo; el hueco
+tiene que ser más alto que la tarjeta (158) más su aire. Quedó en 300.
+
+**Dónde quedó:** `OctubreV3.tsx`, bloque `L`. **QA: 1 aviso**, el deliberado de
+la slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios.
+
+---
+
+## 2026-09-25 (12ª vuelta) — Diego Aguilar (st-22-10: la tarjeta cruza el celular)
+
+**Qué se hizo:** *"Que se vea así esa parte de crédito preaprobado"*, con una
+referencia de app adjunta
+(`referencias/2026-09-25_tarjeta-cruzando-celular.png`).
+
+**La gramática de esa referencia es una sola cosa, y es la que importa:** la
+tarjeta del mensaje **es más ancha que el celular y se sale por los dos lados**.
+Ese desborde es lo que la hace leer como una capa por delante del aparato, y no
+como una notificación dentro de la pantalla — que era lo que había.
+
+Aplicado: tarjeta crema de 820 px cruzando un celular de 380, con la **insignia
+cuadrada verde** a la izquierda (como el logo de la referencia), el mensaje
+grande y una bajada chica debajo.
+
+⚠️ **El contenido de la pantalla del celular son BARRAS, no texto.** Inventar
+filas de una app con frases inventadas es copy que nadie aprobó, y en esta cuenta
+eso ya costó una ronda entera (§ lo que se rechaza). Las barras sugieren una app
+sin afirmar nada.
+
+**Dónde quedó:** `OctubreV3.tsx`, bloque `L` (`FONO`, `AVISO`, `VIDRIO`).
+**QA: 1 aviso**, el deliberado de la slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios.
+
+---
+
+## 2026-09-25 (11ª vuelta) — Diego Aguilar (st-22-10: el mensaje en un celular)
+
+**Qué se hizo:** *"Está casi listo, agrégale ese mensaje de «crédito preaprobado»
+[en] un celular atrás, con este mensaje de crédito."*
+
+El mensaje sale de la tarjeta de vidrio y pasa a la **pantalla de un celular**,
+que emerge por detrás de ella. La tarjeta de vidrio se queda con la firma, la
+barra de avance y el dato.
+
+**El celular se dibuja por código**, como el mock de WhatsApp de `p-09-10` y el
+del buscador de `st-15-10`: en esta marca las interfaces ilustradas se dibujan,
+no se fotografían. Y va **derecho**, sin inclinar (X-09 rechaza las tarjetas
+inclinadas).
+
+⚠️ **Y ahí apareció algo que sólo se ve en el render: el vidrio muestra lo que
+tiene detrás.** Con la pantalla del celular en crema, el `backdropFilter` de la
+tarjeta tomaba ese blanco y lo extendía en un **lavado** que se comía la firma
+«Tierra Calma · Padre Hurtado». La pantalla pasó a oscuro (`#0C2033`) y el vidrio
+volvió a leerse.
+
+> 💡 La regla que deja: **un panel de vidrio no se diseña solo, se diseña con lo
+> que va a quedar detrás.** Cambiar el fondo cambia el panel. Es el mismo tipo de
+> dependencia que el marco teñido: el elemento se ve distinto según lo que cruza.
+
+**Lo que dice la pantalla:** «Tu banco» y «Crédito preaprobado» — el escenario que
+el propio titular plantea. No nombra ningún banco ni promete nada del proyecto.
+
+**Dónde quedó:** `OctubreV3.tsx`, bloque `L` (`FONO` y `VIDRIO`). **QA: 1 aviso**,
+el deliberado de la slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios; sigue en pie si los tramos del avance tienen que
+nombrarse, y la captura de mapa a más resolución.
+
+---
+
+## 2026-09-25 (10ª vuelta) — Diego Aguilar (st-22-10: el visual del brief manda)
+
+**Qué se hizo:** llegó el **visual del brief** para esta historia, y contradice la
+referencia que había mandado una hora antes:
+
+> *"Interfaz tipo glassmorphism sobre una imagen sutil de Tierra Calma. En primer
+> plano, una tarjeta digital con animación de «Crédito preaprobado», acompañada
+> de elementos gráficos que sugieran avance en el proceso de compra, manteniendo
+> una estética inmobiliaria premium."*
+
+La referencia pedía **campo blanco opaco** y el brief pide **vidrio sobre
+fotografía**. No conviven. **Manda el brief** — es la regla madre: el brief dice
+el QUÉ, el sistema dice el CÓMO. De la referencia sobrevive lo que no se
+contradice: la tarjeta como objeto de interfaz y el dato con check.
+
+⭐ **Cada palabra del visual se leyó como instrucción, no como adjetivo:**
+
+- **glassmorphism** → `backdropFilter` de verdad, que desenfoca la foto de atrás.
+  Un gris translúcido no es vidrio: es un globo más, y el brief habría quedado
+  cumplido de palabra y no de hecho.
+- **imagen sutil** → velo alto: se reconoce el lugar, no compite con la tarjeta.
+- **estética inmobiliaria premium** → `l-terraza`, la foto más premium del mes
+  (terraza de madera, hora dorada, el valle detrás) y que estaba sin usar en la
+  entrega V3. Con eso además `l-fondo` deja de estar en dos piezas del mes.
+- **tarjeta con «Crédito preaprobado»** → estado aprobado con su check, del mismo
+  linaje que el mock de WhatsApp de `p-09-10` y el del buscador de `st-15-10`:
+  interfaz ilustrada, no un dato del proyecto.
+- **avance en el proceso de compra** → barra de tres tramos, el primero cumplido.
+
+⛔ **Los tramos NO llevan nombre, y es deliberado.** Ponerles «Preaprobación ·
+Visita · Reserva» sería inventar un proceso comercial que no está en el brief ni
+en la lista blanca. El avance se sugiere con gráfica. Si los pasos tienen que
+nombrarse, los tiene que dar el brief.
+
+**Todo el texto de la tarjeta sale de lo que la pieza ya decía:** «Crédito
+preaprobado» del titular, «Parcelas desde UF 2.500» y la firma.
+
+**Dónde quedó:** `OctubreV3.tsx`, bloque `L`. **QA: 1 aviso**, el deliberado de la
+slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios. Y una pregunta nueva: **si los tramos del avance tienen
+que nombrarse**, hacen falta los pasos del proceso comercial por escrito.
+
+---
+
+## 2026-09-25 (9ª vuelta) — Diego Aguilar (st-22-10 sobre referencia nueva)
+
+**Qué se hizo:** *"Para la st del 22-10 haz la historia según esta referencia"* —
+una pieza de otra marca (fintech verde), guardada en
+`referencias/2026-09-25_ventana-lista.png`.
+
+**Gramática aplicada:** campo claro en vez de fotografía a sangre; titular de dos
+pesos alineado a la izquierda; la imagen dentro de una **tarjeta tipo ventana**
+con esquinas redondeadas, panel de color y la fila de tres puntos del cromo de un
+navegador; una **insignia flotante** montada sobre la esquina de la tarjeta; el
+dato con **check en círculo**.
+
+⛔ **Lo que NO se copió: su bold para destacar.** La referencia destaca con la
+sans en negrita. En esta marca **destaca IvyOra en versales** y hay sólo dos
+roles tipográficos (R-10/R-11). Copiar ese recurso habría sido romper el sistema
+por imitar a otra marca — que es distinto de copiar su gramática.
+
+⛔ **Y no se inventó lista.** La referencia trae cuatro beneficios en checklist;
+el copy de esta pieza tiene un dato. Va **una** fila con check —el destacado que
+la pieza ya traía— y la firma debajo. Si la lista tiene que ser de cuatro, los
+cuatro puntos los tiene que dar el brief.
+
+⚠️ **El campo claro obliga a dos cosas que ninguna otra pieza del mes necesitaba:**
+
+1. El **marco va teñido en navy**. El PNG es crema y sobre campo crema
+   desaparece **entero**: logo, filete y contorno de la píldora.
+2. La píldora del CTA tuvo que recibir una prop `tinta`: su texto era blanco fijo.
+
+**De paso se resolvió una repetición que venía de antes:** la foto de la tarjeta
+es `h-telefono`, que en la entrega V3 estaba sin usar. `l-fondo` estaba en DOS
+piezas del mes —el fondo de esta y la miniatura del resultado de búsqueda de
+`st-15-10`—, lo que contradice R-20.
+
+⭐ **Y LA COMPUERTA ATAJÓ UN BLOQUEANTE QUE ERA SUYO, NO DE LA PIEZA.** La regla
+de «foto estirada» marcó 186 filas clonadas (10 % del alto) sobre un **fondo
+plano**. Ya tenía una guarda por textura —sólo cuenta filas con contenido— pero
+la guarda usaba la **desviación estándar**, y una fila de fondo liso que cruza
+los **dos filetes verticales del marco** ya supera el umbral.
+
+Se cambió por una medida robusta: **en cuántas columnas** varía la fila, no
+cuánto. Una foto estirada varía en casi todas; un fondo plano sólo donde cruza un
+filete (4 columnas de 1080 = 0,4 %).
+
+> ⚠️ Y se **verificó que la regla no quedara ciega**: se fabricó una pieza con 500
+> filas realmente clonadas y la compuerta la marca (26 % del alto). Aflojar un QA
+> sin comprobar que sigue atrapando lo suyo es cómo un QA deja de servir.
+
+**Dónde quedó:** `qa/checks.py` (regla `filas_clonadas` endurecida),
+`OctubreV3.tsx` (`L` reescrita, `Pildora` con `tinta`), referencia versionada.
+**QA: 1 aviso**, el deliberado de la slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios; sigue arriba la captura de mapa a más resolución.
+
+---
+
+## 2026-09-25 (8ª vuelta) — Diego Aguilar (c-20-10-2: el mapa se rotula, no se amplía)
+
+**Qué se hizo:** *"No cambies el contenido, vuelve al texto de antes, mantén el
+mapa, que se vea legible, los textos del mapa se siguen viendo pixelados, si
+tienes que rediseñarlo hazlo."*
+
+**Vuelve el texto de antes:** el panel de datos que había probado sale y regresa
+la bajada («Revisa accesos, vías principales…») con su línea de ubicación.
+
+⭐ **EL DIAGNÓSTICO: la letra del mapa mide 11 px EN EL ARCHIVO.** El recorte ya
+iba 1:1, así que no había escala que corregir. Once píxeles de una captura de
+pantalla no dan para más, y ninguna ganancia, umbral ni filtro cambia eso.
+
+⛔ **BORRARLA PARA RECOMPONERLA NO RESULTÓ, Y COSTÓ SEIS INTENTOS.** Sobre
+`mapa3` se probó:
+
+| Método | Por qué falla |
+|---|---|
+| umbral de brillo | la letra baja a 42, **pero la Ruta 78 también (45)** y un camino rural a 92 |
+| densidad de tinta (7 px) | letra 0,55-0,67 · **camino rural 0,51**: se tocan |
+| halo perseguido | funciona en `MAPA-PADRE-HURTADO`, pero acá **se escapa** por las manchas urbanas claras: 24 % del cuadro borrado, el dibujo hecho parches |
+| sembrar y crecer por lo oscuro | deja **media palabra** en pie: las letras no se tocan entre sí |
+| sembrar, saltar entre letras y crecer | completa las etiquetas oscuras y **deja intactas las grises** |
+| cambiar a `MAPA-PADRE-HURTADO`, que sí se limpia | su encuadre **no contiene el proyecto**, y borrar su 15 % de letra deja manchas donde el relleno cruza calles |
+
+⭐ **LA SALIDA NO NECESITA BORRAR NADA: se rotula encima.** El mapa queda intacto
+y la pieza repone **sólo los nombres que la slide necesita** —Tierra Calma, Padre
+Hurtado, Maipú, Peñaflor, Ruta 78— en Inter Tight, con un velo de papel detrás
+que tapa el original. Los demás topónimos quedan de textura, que es su papel de
+todos modos.
+
+> 💡 **Un mapa diseñado rotula lo que la pieza dice, no todo lo que hay.** Estuve
+> seis intentos tratando de salvar la rotulación de Google y la respuesta era no
+> usarla. De paso desaparece la tipografía ajena de dentro de una pieza de marca.
+
+**Dos detalles que hubo que medir:**
+
+1. El rótulo de Tierra Calma va **anclado a la izquierda**, no centrado: centrado
+   le tapaba el pin, que es justo el elemento que el material trae y que Diego
+   pidió conservar.
+2. La tarjeta se guarda en **PNG**. `mapa3.jpg` ya es JPEG, y un segundo pase de
+   compresión vuelve a ablandar los cantos — parte del «pixelado» era eso.
+
+**Dónde quedó:** `scripts/tc-mapa-ph.py` con la tarjeta en PNG y los seis métodos
+descartados documentados en el código; `OctubreV3.tsx` con `Toponimo`/`ROTULO` y
+la bajada restituida. **QA: 1 aviso**, el deliberado de la slide 2. Re-subida
+sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios. Y sube de prioridad lo mismo de siempre: **una captura
+de mapa a más resolución** —y que contenga el pin del proyecto y el contorno de
+la comuna a la vez— resolvería de una todas estas vueltas.
+
+---
+
+## 2026-09-25 (7ª vuelta) — Diego Aguilar (c-20-10-2: el mapa en tarjeta, a 1:1)
+
+**Qué se hizo:** *"Genera algo así mejor, que el mapa no quede pixelado y se vea
+bien"*, con una referencia adjunta —mapa en tarjeta redondeada sobre un campo de
+color, más un panel de datos con íconos—, guardada en
+`referencias/2026-09-25_tc-mapa-tarjeta.png`.
+
+⭐ **LA CAUSA DEL PIXELADO ERA ARITMÉTICA, NO DE TRATAMIENTO.** La banda tomaba un
+recorte de **873 px de ancho y lo estiraba a 1080**: un 24 % de aumento sobre una
+captura de pantalla, que no tiene detalle que dar. Ningún duotono, ninguna
+ganancia y ningún filtro iban a arreglar eso. Ahora el recorte mide **exactamente
+lo que mide la ventana** (940×500) y se muestra **1:1**.
+
+> ⚠️ La regla: **el recorte se define por el tamaño en píxeles de la ventana en la
+> pieza**, no por lo que se ve bien en el archivo. Y el `<Img>` va con
+> `width`/`height` exactos y sin `objectFit`, porque cualquier reescalado ahí lo
+> vuelve a ablandar.
+>
+> 💡 `st-12-10` ya cumplía sin que yo lo hubiera pensado: muestra el archivo a
+> escala 1,0. Fue suerte, no criterio — ahora está escrito.
+
+**La gramática que se copió:** tarjeta de esquinas redondeadas con sombra de
+contacto (el mapa como objeto, no como fondo) y panel de datos con una fila por
+dato y su ícono, sobre el verde macizo de la slide.
+
+⛔ **Segunda referencia seguida con el mapa regenerado.** Dice «Nelleno
+Sonitorio», «Casas de La Esperarisa», «LA PRIMAYESA», «Malpú», «CESTAM Presidenta
+Micriella Bachelet», «Acuspar's El Idillo», «Puente de Pelvin», «Sendere San
+Bernardo». La cartografía siguió saliendo de `MAPA-3`.
+
+⛔ **Y algo más delicado que los topónimos: la referencia trae un DATO que no
+podemos publicar.** Su tercera fila dice *«Futuro Metrotren Santiago–Melipilla»*,
+y eso **no está en la lista blanca** ni tiene OK escrito de Fran o Blanca. Las
+tres filas quedaron con datos aprobados: Ruta 78, 30 minutos de Santiago y 15
+minutos del peaje.
+
+> 💡 **Que un dato venga dibujado en una referencia de la propia marca no lo
+> aprueba.** Es el mismo principio que con los topónimos rotos, un escalón más
+> arriba: ahí el riesgo era estético, acá es un claim comercial.
+
+⚠️ **PENDIENTE DE DIEGO:** las tres filas **ocupan el lugar** de la bajada que
+traía la slide (*"Revisa accesos, vías principales y qué tan fácil será mantener
+tu rutina…"*). Dicen lo mismo con datos en vez de con una frase general, y no
+caben las dos entre la cabecera anclada en la fila 205 y el filete de la 1285. Si
+la bajada tiene que volver, lo que sale es el panel.
+
+**Dónde quedó:** `scripts/tc-mapa-ph.py` con un tercer mapa
+(`mapa3-tarjeta-k2.jpg`, recorte 940×500 a 1:1), `OctubreV3.tsx` con `K2`
+reescrita, y la referencia versionada. **QA: 1 aviso**, el deliberado de la
+slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego, y su decisión sobre la bajada.
+
+**Abierto:** sin cambios, más la captura de mapa con el pin y el contorno a la vez.
+
+---
+
+## 2026-09-25 (6ª vuelta) — Diego Aguilar (el mapa del carrusel y la pareja del 09-10)
+
+**Qué se hizo:** *"Genera algo parecido con el mapa del 20-10-2, también cambia la
+imagen del post del 09-10, mantén la idea pero cambia a la pareja, de pose, de
+ropa, todo."*
+
+### 1 · `c-20-10-2` — el mapa, con la receta de la story
+
+`scripts/tc-mapa-ph.py` pasó a generar **los dos mapas** con la misma receta:
+duotono con el rango estirado, iconos borrados y el acento que trae el material
+repuesto en su color. Cada pieza conserva **su** archivo, y la razón está medida:
+
+| Pieza | Origen | Acento propio |
+|---|---|---|
+| `st-12-10` | `MAPA-PADRE-HURTADO.png` | el contorno de la comuna |
+| `c-20-10-2` | `mapa3.jpg` (recorte) | el **pin rojo «Tierra Calma»** |
+
+⚠️ **Ninguno de los dos trae las dos cosas.** MAPA-3 tiene el proyecto pero no el
+límite comunal; MAPA-PADRE HURTADO tiene el límite y el proyecto le queda fuera
+del encuadre (x ≈ −160). Sigue valiendo la pena pedir una captura con las dos.
+
+**Tres cosas que hubo que medir aparte para MAPA-3:**
+
+1. **El rojo necesita zona.** El archivo trae el POI del CESFAM en rojo
+   (saturación 171): sin acotar la máscara a la caja del pin, se protegía del
+   borrado y salía pintado como si fuera el pin del proyecto.
+2. **Acá los iconos sí se separan por color** —saturan 138-171 y los escudos de
+   ruta 82-89—, salvo el del Relleno Sanitario, que es gris (40) y va declarado.
+   Es al revés que en el otro mapa, donde tres de los nueve eran grises.
+3. ⚠️ **El color da el CENTRO, no el tamaño.** El primer intento dilató la mancha
+   saturada 14 px para cubrir reborde y sombra, y eso llega a 25 px del centro:
+   le cortó la última letra a «Cerro Prim-», «Fundo La Batall-» y «Parque
+   Municipal E-». La solución fue tomar el **centroide** de cada mancha y borrar
+   la misma elipse declarada del otro mapa, que llega a 16 px de lado.
+
+### 2 · `p-09-10` — pareja nueva
+
+Sale `g-pareja` (de pie, centrados y quietos sobre pasto parejo) y entra
+`g-pareja2`: **caminando de espaldas** por el camino de ripio ocre, él
+abrazándola, ropa distinta —ella lino terracota y chaleco crema, él parka verde
+oscuro y jeans—. Misma idea, mismo encuadre para los globos.
+
+Generada con **Seedream 5 Pro** siguiendo el ADN del lugar (§ 4 bis). Se hicieron
+**dos versiones**: la primera salió fiel pero **seca**, con el suelo pelado. La
+segunda pide explícitamente el verde de primavera sobre la tierra ocre, y es la
+que quedó — es el matiz de Diego del 22-09: *"que se vean mucho mejor que las
+imágenes reales del lugar, más verdes los espacios, con vegetación natural
+nativa"*. **La IA idealiza, no documenta**, pero sin convertirse en pradera.
+
+⚠️ **Medida antes de instalarla** (regla de la foto que no se repite): da como
+máximo **+0,654** contra cualquier otra imagen del mes, y **+0,575** contra la
+que reemplaza. Lejos del +0,85 que marca «es la misma foto».
+
+**Dónde quedó:** `scripts/tc-mapa-ph.py` (ahora con los dos mapas en un dict),
+`mapa3-banda-k2.jpg` regenerado, `g-pareja2.jpg` nuevo y `g-pareja.jpg` retirado.
+**QA: 1 aviso**, el deliberado de la slide 2. Las dos piezas re-subidas sobre el
+mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios, más la captura de mapa con el pin y el contorno a la vez.
+
+---
+
+## 2026-09-25 (5ª vuelta) — Diego Aguilar (st-12-10: el mapa tal cual, sin iconos)
+
+**Qué se hizo:** *"No me gusta cómo queda, los trazos quedan mal y pixelados,
+vuelve a tomar el mapa-padre hurtado, déjalo tal cual con el mismo efecto de
+color con el contraste de fondo, elimina los iconos."*
+
+Se descarta el camino de los trazos —cuatro vueltas: tinta proporcional, línea
+binaria, línea engrosada y calle maciza— y el mapa vuelve a ser **el archivo
+real en duotono de marca**. `scripts/tc-mapa-trazos.py` pasó a
+`scripts/tc-mapa-ph.py` porque ya no hace trazos.
+
+⭐ **LA LECCIÓN, QUE VALE MÁS QUE LAS CUATRO VUELTAS.** Una captura de 893×631
+trae las calles en **3-5 px**. El archivo aguanta que le cambien **el color**; no
+aguanta que le cambien **la forma**. Trazar el borde, binarizar, engrosar — todo
+eso trabaja al límite de la resolución y se ve pixelado por más medido que esté
+cada umbral. Ningún ajuste de parámetro iba a salvarlo: el problema era el
+método, y el método se eligió sin preguntarse cuánta resolución había.
+
+**El duotono va con el rango estirado.** Sin eso sale plano: el archivo vive casi
+entero entre 223 y 245 de luminancia (verde 225, beige 227, gris urbano 232,
+calles 244), así que un duotono directo sobre 0-255 lo aplasta todo contra el
+extremo claro y devuelve una lámina crema sin dibujo. Estirando de 208 a 250 cada
+relleno cae en un tono distinto.
+
+⛔ **Los iconos van DECLARADOS por coordenada, y eso es una decisión, no una
+rendición.** Se probaron cuatro reglas automáticas y las cuatro se rompieron:
+
+| Regla | Por qué falla |
+|---|---|
+| saturación > 110 | los de la Municipalidad, el Colegio y el Parque del Recuerdo son gris azulado y saturan 36-64, **por debajo del escudo de ruta verde (92)** |
+| erosionar lo oscuro | el disco lleva un pictograma blanco dentro: «lo oscuro» es un anillo y se erosiona como la letra |
+| cerrar y después erosionar | las palabras se cierran también — se comió el **13 % del mapa** con topónimos partidos |
+| densidad de tinta (ventana 21 px) | separa iconos (0,53-0,64) de topónimos (0,19-0,34), pero **los escudos de ruta son más densos** (G-300 0,64) y se iba la Ruta 78 |
+
+Son nueve en todo el archivo. Se listaron uno por uno mirando cada mancha densa
+recortada, y quedan en el script con su nombre.
+
+> 💡 Cuando una detección automática hay que calibrarla cuatro veces y aun así
+> daña el material, **la lista explícita es la respuesta correcta, no la quinta
+> calibración**. Nueve coordenadas medidas son auditables; un umbral que casi
+> funciona, no. Queda documentado que si se reemplaza el PNG hay que volver a
+> medirlas: mejor que falle ruidosamente a que borre medio mapa en silencio.
+
+**Volvió `MarcoTramos`**, que había retirado hace tres horas: con el mapa otra vez
+claro, un filete crema cruzando la banda no se ve.
+
+**Dónde quedó:** `scripts/tc-mapa-ph.py` (renombrado), `mapa-ph-banda-st.jpg`;
+retirados `mapa-ph-trazos-navy.jpg` y `-papel.jpg`. `OctubreV3.tsx` con
+`MarcoTramos` de vuelta. **QA: 1 aviso**, el deliberado de la slide 2. Re-subida
+sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego. `c-20-10-2` sigue sin tocar.
+
+**Abierto:** sin cambios, más la captura de mapa con el pin del proyecto y el
+contorno de la comuna a la vez.
+
+---
+
+## 2026-09-25 (4ª vuelta) — Diego Aguilar (st-12-10: la calle, maciza)
+
+**Qué se hizo:** *"Que el mapa se vea de ese estilo"*, con una referencia de
+plano urbano adjunta —calles blancas gruesas y macizas sobre fondo oscuro—,
+guardada en `referencias/2026-09-25_plano-urbano-lineal.png`.
+
+**El diagnóstico:** el detector de bordes traza **los dos cantos** de cada calle,
+así que una calle salía como dos líneas paralelas **huecas**. La referencia
+dibuja la calle entera.
+
+⭐ **La solución no fue cambiar de método, fue engrosar.** En el archivo las
+calles miden 3-5 px, o sea que sus dos cantos están a 3-5 px: engordando 2 px a
+cada lado **los cantos se tocan y el hueco se cierra**. Mismo dibujo, con el
+grosor que le faltaba. Estuve a punto de reescribir todo el detector.
+
+⛔ **Lo que probé primero y no sirve: detectar la calle como región por color.**
+Está medido y es tajante: el blanco de las calles es `#F5F4F4` y el blanco con
+que Google **rellena el interior de la comuna buscada** es *exactamente el
+mismo* — los dos dan luminancia 244,3. Por brillo no se separan, y era el camino
+"obvio".
+
+⚠️ **Y la tinta pasó a ser plena.** Con alfa proporcional, la trama densa de
+Maipú salía como una papilla gris. Binarizando, esas zonas pasan a ser manchas
+limpias, que es como las resuelve la referencia.
+
+**Otra trampa medida:** con la línea binaria probé cortar más alto para limpiar
+—75, 95, 115— y **cortar alto no limpia, rompe**: a 95 la red se deshizo en
+fragmentos y ni engrosando se volvían a unir. Un camino no tiene fuerza de borde
+constante. El corte bueno es **75** con tinta plena y engrosado de 2.
+
+**Corolario que apareció solo:** desde que la red es maciza, el contorno comunal
+del mismo grosor **se pierde dentro de ella**. Se engrosó a 2 px por lado y la
+red bajó al 88 %. Es el único elemento de la pieza que dice cuál es la comuna.
+
+**Dónde quedó:** `scripts/tc-mapa-trazos.py` — `lineas()` ahora devuelve máscara
+binaria y se sumó `engrosar()`. **QA: 1 aviso**, el deliberado de la slide 2.
+Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego. `c-20-10-2` sigue sin tocar.
+
+**Abierto:** sin cambios, más la captura de mapa con el pin del proyecto y el
+contorno de la comuna a la vez.
+
+---
+
+## 2026-09-25 (3ª vuelta) — Diego Aguilar (st-12-10: el mapa, lineal tipo plano)
+
+**Qué se hizo:** *"Mapa que sea lineal, tipo plano."*
+
+La versión anterior entintaba **proporcionalmente** a la fuerza del borde, y eso
+es un **grabado**: cada línea sale con el peso que tenía el contraste en la
+captura y el relieve del cerro queda como veladura. En un plano **la línea está o
+no está, y todas pesan igual**. Ahora el gradiente se corta con un umbral y sube
+a tinta llena en una rampa corta; el suavizado es el antialias del canto, no una
+gradación.
+
+⚠️ **La trampa, que costó una vuelta entera.** El primer intento cortó en **95**,
+justo encima del borde verde/gris, y el mapa salió **roto**: la red se deshizo en
+fragmentos sueltos. Un camino **no tiene fuerza de borde constante** —varía según
+el relleno que atraviesa— y un corte alto se queda sólo con los picos. El umbral
+bueno resultó ser **45**, muy por debajo del p99 de todo lo que queremos
+conservar: lo que hace que se vea «plano» no es cortar alto, es **subir a tinta
+llena rápido** después de cortar. Con 45 y rampa de 50 el relieve (p90 en 40) se
+cae solo y la red queda continua.
+
+⭐ **Y apareció la sexta causa de las etiquetas fantasma** —van seis, cada una
+distinta—. Esta vez las etiquetas se veían **más oscuras** que el navy, lo que
+parecía ruido de compresión. No lo era: **era el acento**. La misma alfa del
+límite comunal se usaba para dos cosas —proteger del borrado y **pintar**— y los
+restos de magenta con alfa 0,1 no llegaban a protegerse pero sí se pintaban en
+arena tenue. Medido: el pico en la zona del fantasma era [40,69,93] contra un
+navy de [11,44,73]. Cortando la alfa en 0,35 **dentro de `alfa_limite`**, para
+que las dos usos compartan el mismo umbral, bajó a [19,53,83] — ruido de JPEG.
+
+> 💡 La lección no es el número: es que **una máscara usada para dos cosas tiene
+> que limpiarse en un solo lugar**. Tenía el corte en el punto de uso (la
+> protección) y no en el origen, así que el otro uso se lo saltaba.
+
+**Dónde quedó:** `scripts/tc-mapa-trazos.py` — `trazos()` pasó a `bordes()` (devuelve
+la magnitud cruda) y se sumó `lineas()`, con los umbrales medidos en el docstring.
+`mapa-ph-trazos-navy.jpg` y `-papel.jpg` regenerados. **QA: 1 aviso**, el
+deliberado de la slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego. `c-20-10-2` sigue sin tocar.
+
+**Abierto:** sin cambios, más la captura de mapa que traiga el pin del proyecto y
+el contorno de la comuna a la vez.
+
+---
+
+## 2026-09-25 (2ª vuelta) — Diego Aguilar (st-12-10: sólo el plano, y el titular al centro)
+
+**Qué se hizo:** *"Elimina los textos del mapa y los iconos, sólo dejar el plano
+del mapa. El texto superior que quede así: «cerca de santiago» en una línea y
+abajo como está pero todo centrado al medio."*
+
+**El titular.** «CERCA DE SANTIAGO.» en una línea y el bloque centrado. La pieza
+se había armado en septiembre sobre la referencia de Sonatta, que alinea a la
+izquierda; vuelve a la regla de la cuenta. ⚠️ **La línea única paga el mapa:**
+ahorra 62 px de alto, y con esos 62 px la banda sube de la fila 543 a la 495 y el
+archivo se muestra a **escala 1:1** en vez de reducido al 90 %.
+
+**Quitar los rótulos se pudo medir.** En este estilo de Google Maps los caminos
+**nunca bajan de luminancia 187**; la letra de un topónimo llega a 48 y el núcleo
+de un icono a 118. Un umbral en 180 corta por el medio y no toca un camino.
+
+⭐ **Pero borrar el glifo no alcanzó, y ahí está el aprendizaje de hoy.** El mismo
+síntoma —etiquetas fantasma— volvió **cinco veces**, y cada vez tenía una causa
+distinta:
+
+| # | Qué quedaba | La causa real |
+|---|---|---|
+| 1 | los POI pintados en arena | la máscara del límite atrapaba todo lo rojo, y los POI son **magenta** (los separa el canal azul) |
+| 2 | los POI seguían ahí pese al filtro | el **antialias** magenta contra blanco da píxeles casi blancos con rojez 4 → alfa 0,06 → **se protegían solos**. Umbral de protección 0,05 → 0,35 |
+| 3 | un anillo con forma de palabra | Google pone un **halo casi blanco** alrededor de cada etiqueta, más ancho que cualquier dilatación. Se persigue desde el glifo, sólo por píxeles >236 y con tope de 8 pasos |
+| 4 | el contorno de las etiquetas grandes | la **franja de antialias** entre glifo (136) y halo (>236) no cumple ninguna condición. Se ensancha 5 px |
+| 5 | un rectángulo tenue con forma de etiqueta | **no era el rótulo: era el canto del parche.** El relleno no calza exacto con lo que lo rodea. La zona de «no dibujar» va 2 px más ancha |
+
+⛔ **Lo que NO funcionó ninguna de las cinco veces: ensanchar la máscara.** Fue el
+reflejo en los dos primeros intentos —dilatación de 2 a 3, de 5 a 7— y no movió
+el síntoma ni un pixel, porque el problema nunca estuvo en la distancia. Lo que
+funcionó las cinco veces fue **ir a mirar el píxel que sobrevivía** y preguntarse
+por qué ese en particular.
+
+Es el reverso de § 4 sexies · 13 («si el defecto vuelve, cambia de eje»): acá
+cambiar de eje funcionó cinco veces seguidas, pero sólo porque cada cambio salió
+de una medición y no de una corazonada.
+
+**Dónde quedó:** `scripts/tc-mapa-trazos.py` (funciones `alfa_limite` y
+`sin_rotulos`, con los cinco umbrales documentados en el código), `OctubreV3.tsx`
+(bloque `H`: titular centrado, `MAPA` a escala 1,0 desde la fila 495, píldora en
+la 970). **QA: 1 aviso**, el deliberado de la slide 2. Re-subida sobre el mismo
+`fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego sobre la story. El carrusel `c-20-10-2`
+sigue sin tocar, con MAPA-3 a sangre en papel verde.
+
+**Abierto:** sin cambios — el OK escrito de Fran o Blanca, el aviso del agua
+potable, la mano manuscrita propia, y **la captura de mapa que traiga el pin del
+proyecto y el contorno de la comuna a la vez** (hoy ningún archivo tiene los dos).
+
+---
+
+## 2026-09-25 — Diego Aguilar (st-12-10: el mapa pasa a TRAZOS)
+
+**Qué se hizo:** *"Necesito que el mapa [sea] en trazos, ocupa el MAPA-PADRE
+HURTADO para generar esa parte del contenido."* Sólo `st-12-10`; `c-20-10-2` no
+se tocó y sigue con MAPA-3 a sangre en papel verde.
+
+Diego subió a Drive **`MAPA-PADRE HURTADO`** (893×631, hoy 13:55,
+1j4wcVlgJh7WLmUHk8QgCZD1wZSZdAzZP). Es una captura de Google Maps **limpia** —
+topónimos correctos— centrada en la comuna, **con el contorno de Padre Hurtado
+punteado por Google**. Queda versionada en
+`raw/tierracalma/marcos-oct2026/MAPA-PADRE-HURTADO.png`.
+
+**⛔ Lo primero que hubo que resolver: trazar no es dibujar.** El 23-09 se rechazó
+un mapa de celdas *"porque el mapa no es así realmente"*, y un mapa en trazos
+podría parecer lo mismo. No lo es: `scripts/tc-mapa-trazos.py` saca la geometría
+**píxel a píxel del archivo real** y sólo cambia la tinta. Si llega el mapa
+oficial de Carlos, se reemplaza el PNG y se corre el script.
+
+**El duotono de siempre no servía, y la razón es medible:** en este estilo de
+Google Maps **los caminos son más CLAROS que el fondo** (`#F5F4F4` sobre
+`#E7E8E9`, catorce niveles). Mapear luminancia a tinta deja los caminos
+invisibles y pinta la mancha de relleno. Lo que funciona es el **gradiente**:
+toda línea da un salto de color, el relleno plano no. Y va sobre los **tres
+canales**: el borde verde/gris del área urbana casi no cambia de brillo pero sí
+de color, y sobre luminancia sola se perdía entero.
+
+⭐ **La jerarquía resultó ser un número.** Con la red de caminos a tinta llena, el
+contorno de la comuna se pierde dentro de ella y el mapa se lee como textura. Red
+al **70 %**, contorno al **100 %** y engrosado un píxel —en el original es un
+punteado de 1 px pensado para el 100 % de zoom—, y el mapa dice primero PADRE
+HURTADO y después cómo se llega.
+
+**Lo que el trazo sobre navy resolvió solo:** el archivo ya trae el navy de marca
+de fondo, así que no hay banda, ni borde, ni canto. Se fueron el degradado de
+lectura **y el componente `MarcoTramos`** (vivió del 24 al 25-09): el filete ya
+no cruza ningún tramo claro y vuelve a ser de un solo color. La regla de teñir
+por tramos queda escrita en el manual aunque el componente no esté.
+
+**Dos cosas que obligaron a medir:**
+
+1. La píldora de ubicación **calada dejaba pasar los caminos por detrás del
+   texto** — justo lo que estas vueltas vinieron a prohibir. Va rellena de navy.
+2. La píldora va en la fila **976 y no antes**: el vértice sur del contorno
+   cierra en la 963. Trece píxeles más arriba y le corta la punta a la comuna.
+
+⚠️ **Y la compuerta atajó un bloqueante que yo introduje.** Para darle aire al
+mapa subí el titular de la fila 250 a la 225 — y la 225 está **dentro de los
+250 px de zona segura de Meta**. `qa/motor.py` lo marcó como bloqueante (1,0 % de
+tinta arriba). Se devolvió el titular a la 250 y los píxeles salieron de otro
+lado: banda del mapa de la 543, escala 0,90, foto de 306 a 296 px. Es la segunda
+vez en dos días que un ajuste «de aire» pisa una zona segura: **el aire se saca
+del contenido, nunca del margen.**
+
+⛔ **LO QUE ESTE MAPA NO TIENE: la ubicación de Tierra Calma.** Medido contra
+`mapa3.jpg` con dos anclas independientes —«Casas de La Esperanza» y «Casas de
+los Bajos»—, la escala entre los archivos es **1,70** (verificada además con «Los
+Maitenes», 1,709) y el pin del proyecto cae en **x ≈ −160**: fuera del encuadre
+por la izquierda, un 18 % del ancho. **Este mapa muestra la comuna, no la
+parcela.** Hoy el proyecto lo nombra el texto.
+
+> 👉 **Para Diego:** si la story tiene que mostrar dónde está el proyecto, hace
+> falta otra captura — el mismo zoom corrido ~160 px al poniente, o un paso menos
+> de zoom. Una sola que traiga **el pin Y el contorno** dejaría la story y el
+> carrusel con el mismo mapa.
+
+**Sobre la referencia del 24-09:** se comprobó a resolución completa y **sí** dice
+«Los Maitenss». No son el mismo archivo: la referencia venía re-entintada en café
+con la tipografía rota; `MAPA-PADRE HURTADO` está limpio. Que las dos vengan de
+la marca no las hace equivalentes.
+
+**Dónde quedó:** `OctubreV3.tsx` (bloque `H` y `MAPA`), `scripts/tc-mapa-trazos.py`
+(nuevo), `mapa-ph-trazos-navy.jpg` y `mapa-ph-trazos-papel.jpg` versionados —el de
+papel queda como alternativa por si algún día el titular necesita fondo claro—.
+**QA: 1 aviso**, el deliberado de la slide 2. Re-subida sobre el mismo `fileId`
+(`1LXliMk-w5Or_iANbLYRfxF0Yrztfx-bx`).
+
+**Qué sigue:** esperar la vuelta de Diego. La aprobación del cliente está prevista
+para el **29-09** (dato del cerebro de la cuenta) y el creativo D1 del PAID caduca
+el **12-10**.
+
+**Abierto:** lo de siempre, sin moverse — el OK escrito de Fran o Blanca sobre
+«Rol individual» y «Acceso controlado», el aviso del agua potable de septiembre,
+la mano manuscrita propia, y ahora **la captura de mapa que contenga el pin y el
+contorno a la vez**.
+
+---
+
 ## 2026-09-24 — CIERRE DE JORNADA — Diego Aguilar
 
 **Qué se hizo:** tres rondas sobre la grilla de octubre, todas sobre comentarios

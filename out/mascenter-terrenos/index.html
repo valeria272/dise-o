@@ -285,6 +285,24 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   box-shadow:0 0 0 3px rgba(229,37,33,.12)}
 .campo input.error,.campo select.error,.campo textarea.error{border-color:var(--rojo);background:rgba(229,37,33,.03)}
 .campo .ayuda{font-size:.76rem;color:#8A8A8A;line-height:1.5}
+.campo .adjuntos{background:#fff;border:1.5px dashed rgba(0,0,0,.18);border-radius:12px;padding:13px 16px;
+  transition:border-color .3s var(--exp),box-shadow .3s var(--exp)}
+.campo .adjuntos:hover{border-color:rgba(229,37,33,.55)}
+.campo .adjuntos:focus-within{border-color:var(--rojo);box-shadow:0 0 0 3px rgba(229,37,33,.12)}
+.campo .adjuntos.error{border-color:var(--rojo);background:rgba(229,37,33,.03)}
+.campo input[type=file]{width:100%;border:0;padding:0;background:none;box-shadow:none;
+  font-size:.86rem;color:var(--texto-med)}
+.campo input[type=file]:focus{outline:none;box-shadow:none}
+.campo input[type=file]::file-selector-button{font-family:inherit;font-size:.76rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--rojo);border:0;border-radius:999px;
+  padding:10px 20px;margin-right:14px;cursor:pointer;transition:background .3s var(--exp)}
+.campo input[type=file]::file-selector-button:hover{background:var(--rojo-osc)}
+.lista-archivos{display:none;flex-direction:column;gap:6px;margin:2px 0 0;padding:0;list-style:none}
+.lista-archivos.visible{display:flex}
+.lista-archivos li{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--texto);
+  background:rgba(229,37,33,.05);border-radius:9px;padding:9px 13px}
+.lista-archivos li svg{width:15px;height:15px;fill:var(--rojo);flex-shrink:0}
+.lista-archivos li .peso{margin-left:auto;color:#8A8A8A;font-size:.75rem;flex-shrink:0}
 .formulario .btn{width:100%;justify-content:center;margin-top:24px}
 .aviso-form{margin-top:16px;font-size:.88rem;min-height:22px;font-weight:500}
 .aviso-form.ok{color:#1E7A3C}.aviso-form.mal{color:var(--rojo)}
@@ -718,6 +736,21 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
           <label for="mensaje">Cuéntanos sobre el terreno</label>
           <textarea id="mensaje" name="mensaje" placeholder="Uso de suelo, situación normativa, accesos, entorno comercial cercano…" required></textarea>
         </div>
+        <div class="campo ancho">
+          <label for="archivos">Planos o fotos del terreno (opcional)</label>
+          <!-- Vista de prueba: mailto: NO transporta adjuntos (límite del navegador, no
+               decisión de diseño). Acá los archivos se validan y se listan, y el visitante
+               los arrastra al correo que se abre. En WordPress este bloque lo reemplaza el
+               campo [file] de Contact Form 7 y la subida pasa a ser automática. -->
+          <div class="adjuntos" id="caja-archivos">
+            <input type="file" id="archivos" name="archivos[]" multiple
+                   accept=".pdf,.jpg,.jpeg,.png,.kmz,.kml,.dwg,.zip">
+          </div>
+          <ul class="lista-archivos" id="lista-archivos"></ul>
+          <span class="ayuda">Plano, croquis, certificado de informes previos o fotos. PDF, JPG, PNG,
+            KMZ o DWG, hasta 10 MB en total. Al enviar te abrimos el correo con la postulación:
+            <strong>adjunta ahí los archivos</strong> antes de darle enviar.</span>
+        </div>
       </div>
       <button type="submit" class="btn btn-rojo">
         Enviar postulación
@@ -900,7 +933,56 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
      Contact Form 7, este bloque se reemplaza por el envío real — mismo
      destinatario. Ver NOTAS-DE-ENTREGA.md, sección "Formulario". */
   var BUZON = 'terrenos@ifbinversiones.cl';
+  var TOPE_MB = 10, TIPOS = ['pdf','jpg','jpeg','png','kmz','kml','dwg','zip'];
   var form = document.getElementById('formulario'), aviso = document.getElementById('aviso');
+  var archivos = document.getElementById('archivos'),
+      cajaArch = document.getElementById('caja-archivos'),
+      listaArch = document.getElementById('lista-archivos');
+
+  function pesoLegible(b){
+    return b >= 1048576 ? (b/1048576).toFixed(1).replace('.', ',') + ' MB'
+                        : Math.max(1, Math.round(b/1024)) + ' KB';
+  }
+  function elegidos(){ return archivos && archivos.files ? Array.prototype.slice.call(archivos.files) : []; }
+  function revisarArchivos(){
+    var fs = elegidos(), total = 0, malos = [];
+    fs.forEach(function(f){
+      total += f.size;
+      var ext = f.name.split('.').pop().toLowerCase();
+      if(TIPOS.indexOf(ext) === -1) malos.push(f.name);
+    });
+    if(malos.length) return {error: 'Estos archivos no se pueden adjuntar: ' + malos.join(', ') +
+      '. Acepta PDF, JPG, PNG, KMZ, KML, DWG y ZIP.'};
+    if(total > TOPE_MB * 1048576) return {error: 'Los archivos suman ' + pesoLegible(total) +
+      ' y el tope es ' + TOPE_MB + ' MB. Manda los más pesados aparte a ' + BUZON + '.'};
+    return {ok: true, archivos: fs};
+  }
+  function pintarArchivos(){
+    var fs = elegidos();
+    listaArch.innerHTML = '';
+    listaArch.classList.toggle('visible', fs.length > 0);
+    fs.forEach(function(f){
+      var li = document.createElement('li');
+      li.innerHTML = '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 7V3.5L19.5 9H14z"/></svg>' +
+        '<span></span><span class="peso">' + pesoLegible(f.size) + '</span>';
+      li.querySelector('span').textContent = f.name;
+      listaArch.appendChild(li);
+    });
+  }
+  if(archivos){
+    archivos.addEventListener('change', function(){
+      cajaArch.classList.remove('error');
+      pintarArchivos();
+      var r = revisarArchivos();
+      if(r.error){
+        cajaArch.classList.add('error');
+        aviso.className = 'aviso-form mal';
+        aviso.textContent = r.error;
+      }else if(aviso.classList.contains('mal')){
+        aviso.className = 'aviso-form'; aviso.textContent = '';
+      }
+    });
+  }
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var malos = [];
@@ -915,6 +997,14 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
       aviso.textContent = 'Revisa los campos marcados: falta completar ' + malos.length +
         (malos.length === 1 ? ' dato.' : ' datos.');
       malos[0].focus();
+      return;
+    }
+    var rev = revisarArchivos();
+    if(rev.error){
+      cajaArch.classList.add('error');
+      aviso.className = 'aviso-form mal';
+      aviso.textContent = rev.error;
+      archivos.focus();
       return;
     }
     var v = function(id){ return document.getElementById(id).value.trim(); };
@@ -933,14 +1023,24 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
       '',
       'Sobre el terreno:',
       v('mensaje')
-    ].join('\r\n');
+    ];
+    var adj = rev.archivos || [];
+    if(adj.length){
+      cuerpo.push('', 'Archivos que el postulante adjunta a este mismo correo:');
+      adj.forEach(function(f){ cuerpo.push('  - ' + f.name + ' (' + pesoLegible(f.size) + ')'); });
+    }
+    cuerpo = cuerpo.join('\r\n');
     window.location.href = 'mailto:' + BUZON +
       '?subject=' + encodeURIComponent(asunto) +
       '&body=' + encodeURIComponent(cuerpo);
     aviso.className = 'aviso-form ok';
     aviso.textContent = 'Te abrimos el correo con la postulación lista para enviar a ' + BUZON +
-      '. Revísala y dale enviar. Si no se abrió tu programa de correo, escríbenos directamente a ' +
-      BUZON + ' y cuéntanos sobre tu terreno.';
+      (adj.length ? '. Adjunta ahí ' + (adj.length === 1 ? 'el archivo que elegiste (' + adj[0].name + ')'
+                                                        : 'los ' + adj.length + ' archivos que elegiste') +
+                    ' y dale enviar.'
+                  : '. Revísala y dale enviar.') +
+      ' Si no se abrió tu programa de correo, escríbenos directamente a ' + BUZON +
+      ' y cuéntanos sobre tu terreno.';
   });
   form.querySelectorAll('input,select,textarea').forEach(function(c){
     c.addEventListener('input', function(){ c.classList.remove('error'); });

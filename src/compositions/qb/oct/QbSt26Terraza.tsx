@@ -15,13 +15,17 @@
  * enlace es incorrecto o la publicación se borró (24-09). Se sigue el brief.
  *
  * DIRECCIÓN DE ARTE
- *   · TODO REAL: clips de la terraza de QB (sesión de Víctor, Sony 4K, y la
- *     sesión orgánica 2026, iPhone HLG tonemapeado). Proxies en
- *     `scripts/qb-oct-proxies.py`. Sin IA → sin «Imagen referencial».
+ *   · TODO REAL. ⭐ Rehecha el 25-09-2026 con la carpeta «videos / CAM» que pasó
+ *     Eli: Sony 4K 60p en S-Log3, grabada la TARDE del 10-10-2025 en la terraza
+ *     (luz de día que se va, los edificios detrás). S-Log3→Rec.709 con la LUT de
+ *     `slog3-a-709.py`; proxies en `scripts/qb-oct-proxies.py`. Sin IA → sin
+ *     «Imagen referencial».
+ *     E1 8526 invitados en la mesa larga · E2 8586 el trago servido · E3 8516
+ *     manos y platos · E4 8574 amigos riendo · E5 8536 pareja brindando
+ *   · ⛔ Eli 25-09: en la primera versión salían trabajadores del hotel (8519,
+ *     el brindis con dos ejecutivos) — descartado. Sólo invitados en cuadro.
  *   · Un clip por escena, fundido corto entre ellas; el texto de cada escena entra
  *     subiendo y se va con el clip. Todo centrado, dos pesos de Raleway.
- *   · ⚠️ La sesión es de NOCHE (guirnaldas encendidas): la luz de atardecer del
- *     brief no existe en el material. Anotado para Eli.
  *   · Orgánica. Sin punto en los textos (regla Hilton §F).
  */
 import React from "react";
@@ -66,7 +70,7 @@ const Escena: React.FC<{i: number; dur: number}> = ({i, dur}) => {
     <AbsoluteFill style={{opacity: entrada}}>
       <OffthreadVideo src={staticFile(`assets/hilton/qb/oct/clips/${e.clip}.mp4`)} muted
         style={{position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover"}} />
-      <Velo arriba={[520, 0.7]} abajo={[900, 0.9]} />
+      <Velo arriba={[520, 0.7]} abajo={ultima ? [1150, 0.95] : [900, 0.9]} />
       <div style={{position: "absolute", inset: 0, opacity: t, transform: `translateY(${(1 - t) * 26}px)`}}>
         <Linea top={ultima ? 1180 : 1330} cuerpo={60} peso={300} tracking="0.05em">{e.l1}</Linea>
         {e.l2 && <Linea top={(ultima ? 1180 : 1330) + 70} cuerpo={60} peso={800} tracking="0.02em">{e.l2}</Linea>}
@@ -97,6 +101,6 @@ export const QbSt26Terraza: React.FC = () => (
         </Sequence>
       );
     })}
-    <LogoQB top={200} ancho={130} />
+    <LogoQB top={250} ancho={130} />
   </AbsoluteFill>
 );

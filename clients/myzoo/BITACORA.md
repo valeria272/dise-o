@@ -60,3 +60,38 @@ cuatro desde cero**. Antes de producir se levantó lo que faltaba:
 - De los 10 estáticos del mes sólo estos 4 estaban «Por diseñar»; **5 de los otros 6
   tienen comentarios del cliente pidiendo cambios de fondo** y no se pueden producir
   hasta que contenido los resuelva.
+
+> ⚠️ **Choque sin resolver (detectado en /abrir del 24-09-2026):** el 22-09 Paulina y Valeria
+> (con Claude) hicieron por separado los mismos 4 estáticos de octubre y midieron la gramática
+> digital con resultados distintos (Neutraface 2 contra Neutraface Text). Las dos entradas quedan
+> abajo tal cual. Decide Paulina, que firma la marca.
+
+## 2026-09-22 — Valeria Traverso (con Claude)
+
+**Qué se hizo:** Se armaron los **4 estáticos de octubre** que estaban en «Por diseñar» y con «ok» del cliente al texto:
+
+| Fecha | Pieza | Columna de la grilla |
+|---|---|---|
+| 01-10 | Post del repelente, «ROMPER EN CASO DE PASEO» | C |
+| 02-10 | Story PREGUNTAZOO | D |
+| 05-10 | Post «¡MyZoo llega a todo Chile!» con Mercado Libre | G |
+| 08-10 | Post Cruelty Free con Te Protejo | I |
+
+Antes de diseñar se **midió por primera vez la gramática digital** de la marca, sobre 23 piezas publicadas de julio a septiembre (casi todas de Paulina). Quedó en `CLAUDE.md` §2b: Neutraface Text, franja coral #FF6969, exportación a 2250 px de ancho, logo con el claim debajo y el feedback del cliente.
+
+**Dónde quedó:**
+- Las piezas están en `out/myzoo/octubre-2026/` y viajan en el repo. La guía del sticker de preguntas está en `_revision/`. Qué es cada pieza y de dónde sale cada texto: `ENTREGA.md`.
+- Se rinden con `python3 scripts/myzoo-oct-armar.py`. Las escenas, los packshots y la marca están en `public/assets/myzoo/`, y las fuentes en `public/assets/fonts/myzoo/`.
+- Si hay que regenerar una escena, se usa `scripts/myzoo-oct-escenas.py`. Deja el resultado en `raw/`, que no viaja.
+- **No se subió nada al Drive ni al portal.**
+
+**Qué sigue:**
+1. Paulina revisa las 4 piezas y corrige lo que su criterio diga.
+2. Se suben a la carpeta `10. OCTUBRE` con su nomenclatura.
+3. Seguir con los estáticos que el cliente vaya pasando a «Por diseñar». Al 22-09, las columnas L, N, Q, S, W e Y siguen «En revisión». Varias traen cambios del cliente en la fila de TEXTO: L (Xtreme-Vet no es para el hogar), N (sumar «pieles sensibles»), S (cómo se sortean las entradas) y W (mostrar los productos nuevos en vez de las wipes). Y trae una idea para ampliar la pieza, no un cambio: un carrusel con más slides.
+
+**Abierto:**
+- **Sello PREGUNTAZOO:** no existe. El que va en la pieza es una propuesta del estudio y hay que aprobarlo o reemplazarlo.
+- **Veterinaria:** la de la story es generada. Se reemplaza cuando haya foto de la experta real.
+- **Mercado Libre:** la camioneta va sin su logo. Si se quiere el logo oficial en el llamado, hay que conseguir el archivo.
+- **Punto final:** se sacó en todas las piezas por la regla que pidió el cliente el 27-08. Confirmar que también aplica a posts y stories.

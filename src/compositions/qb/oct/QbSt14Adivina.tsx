@@ -17,22 +17,28 @@
  * falsas calzan con alguna pista (naranja, burbujas) para que no sea obvia.
  * En la pieza queda el espacio del sticker de encuesta de Instagram.
  *
- * ⚠️ «Responde y participa por xxxx»: el premio lo confirma Eli (24-09). Va
- * literal con «xxxx» para que nadie lo publique por error.
+ * ⭐ RONDA DEL CLIENTE (grilla leída el 25-09-2026): borró «Responde y participa
+ * por xxxx» de la bajada y fijó las alternativas en INTERACCIÓN:
+ *   «Aperol ✅ · Ramazzotti Rosato · St. Germain · Sangría»
+ * ⇒ van las cuatro, literales y en ese orden, y el pie se va. El ✅ es la
+ * respuesta para contenido: NO se marca en la pieza (regalaría la adivinanza).
  *
  * REFERENCIA: Pinterest 57280226507224461 («Guess the Destination») — título +
  * pastilla con los emojis.
  *
  * DIRECCIÓN DE ARTE
  *   · Foto REAL desenfocada: el spritz de Aperol de la terraza (IMG_3077 t=2 s).
- *   · Título con los dos pesos de la marca; las pistas en una pastilla verde de
- *     esquinas vivas (el botón de QB), las alternativas en Bell MT itálica.
+ *   · ⭐ Ronda de Eli 25-09: «se ve un poco feo… estás usando muchas tipografías,
+ *     sólo usa Raleway; en ADIVINA puede ir la distinta, Bell». ⇒ Bell MT itálica
+ *     SÓLO en «Adivina»; todo lo demás en Raleway. Fuera el formulario de cajas
+ *     con letras: las pistas van en tres círculos de línea fina y las cuatro
+ *     alternativas en una grilla 2×2 de fichas limpias.
+ *   · Todo dentro de la zona segura de Instagram (250 arriba · 340 abajo).
  *   · Orgánica.
  */
 import React from "react";
 import {AbsoluteFill} from "remotion";
 
-import {QB_BOTON_FONDO} from "../../../brand/qb";
 import {cargarFuentesQbOct, FotoQB, Linea, LogoQB, MESA, Velo} from "./QbOctKit";
 
 cargarFuentesQbOct();
@@ -42,38 +48,46 @@ const QB_ST14_DATA: Record<string, Record<string, string>> = {
   titular: "ADIVINA EL TRAGO",
   etiqueta: "PISTAS",
   texto: "¿Sabes cuál es?",
-  pie: "Responde y participa por xxxx",
-  frase: "Aperol Spritz · Mimosa · Negroni",
+  frase: "Aperol · Ramazzotti Rosato · St. Germain · Sangría",
   },
 };
 
-const Opcion: React.FC<{top: number; letra: string; texto: string}> = ({top, letra, texto}) => (
-  <div style={{position: "absolute", top, left: (MESA.w - 600) / 2, width: 600, height: 78,
-    border: "2px solid rgba(255,255,255,.85)", display: "flex", alignItems: "center",
-    color: "#fff", background: "rgba(0,0,0,.28)"}}>
-    <span style={{width: 78, textAlign: "center", fontFamily: "Raleway", fontWeight: 800,
-      fontSize: 34}}>{letra}</span>
-    <span style={{fontFamily: "BellMT", fontStyle: "italic", fontSize: 40}}>{texto}</span>
-  </div>
+const Ficha: React.FC<{x: number; y: number; texto: string}> = ({x, y, texto}) => (
+  <div style={{position: "absolute", left: x, top: y, width: 404, height: 96,
+    border: "1.5px solid rgba(255,255,255,.75)", background: "rgba(10,14,11,.38)",
+    display: "flex", alignItems: "center", justifyContent: "center", color: "#fff",
+    fontFamily: "Raleway", fontWeight: 600, fontSize: 32, letterSpacing: "0.06em",
+    textTransform: "uppercase"}}>{texto}</div>
 );
+
+const Pista: React.FC<{x: number; e: string}> = ({x, e}) => (
+  <div style={{position: "absolute", left: x, top: 846, width: 150, height: 150, borderRadius: "50%",
+    border: "1.5px solid rgba(255,255,255,.8)", background: "rgba(10,14,11,.3)",
+    display: "flex", alignItems: "center", justifyContent: "center", fontSize: 78,
+    fontFamily: "'Segoe UI Emoji','Noto Color Emoji',sans-serif"}}>{e}</div>
+);
+
+const G = 24;                         // separación entre fichas
+const X0 = (MESA.w - 404 * 2 - G) / 2;
+const P0 = (MESA.w - 150 * 3 - 60 * 2) / 2;
 
 export const QbSt14Adivina: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
     <FotoQB src="assets/hilton/qb/oct/14-adivina.jpg" ratio={2250 / 4000} zoom={1.25} cx={0.58} cy={0.32} />
-    <Velo arriba={[560, 0.7]} abajo={[700, 0.85]} plano={0.12} />
-    <LogoQB top={210} ancho={150} />
-    <Linea top={390} cuerpo={112} peso={800} tracking="0.01em">ADIVINA</Linea>
-    <Linea top={508} cuerpo={112} peso={400} italica tracking="-0.01em">el trago</Linea>
-    <Linea top={690} cuerpo={32} peso={600} tracking="0.3em">PISTAS</Linea>
-    <div style={{position: "absolute", top: 744, left: (MESA.w - 520) / 2, width: 520, height: 150,
-      background: QB_BOTON_FONDO, display: "flex", alignItems: "center", justifyContent: "center",
-      gap: 46, fontSize: 92, fontFamily: "'Segoe UI Emoji','Noto Color Emoji',sans-serif"}}>
-      <span>🍊</span><span>🫧</span><span>🥂</span>
-    </div>
-    <Linea top={1010} cuerpo={52} familia="BellMT" italica>{QB_ST14_DATA.pieza.texto}</Linea>
-    <Opcion top={1100} letra="A" texto="Aperol Spritz" />
-    <Opcion top={1196} letra="B" texto="Mimosa" />
-    <Opcion top={1292} letra="C" texto="Negroni" />
-    <Linea top={1420} cuerpo={32} peso={500}>{QB_ST14_DATA.pieza.pie}</Linea>
+    <Velo arriba={[620, 0.72]} abajo={[760, 0.86]} plano={0.14} />
+    <LogoQB top={250} ancho={130} />
+    <Linea top={392} cuerpo={176} familia="BellMT" italica>Adivina</Linea>
+    <Linea top={600} cuerpo={56} peso={800} tracking="0.3em">EL TRAGO</Linea>
+    <div style={{position: "absolute", top: 706, left: (MESA.w - 120) / 2, width: 120, height: 2,
+      background: "rgba(255,255,255,.7)"}} />
+    <Linea top={770} cuerpo={28} peso={600} tracking="0.4em">PISTAS</Linea>
+    <Pista x={P0} e="🍊" />
+    <Pista x={P0 + 210} e="🫧" />
+    <Pista x={P0 + 420} e="🥂" />
+    <Linea top={1070} cuerpo={46} peso={500} italica>{QB_ST14_DATA.pieza.texto}</Linea>
+    <Ficha x={X0} y={1162} texto="Aperol" />
+    <Ficha x={X0 + 404 + G} y={1162} texto="Ramazzotti Rosato" />
+    <Ficha x={X0} y={1162 + 96 + G} texto="St. Germain" />
+    <Ficha x={X0 + 404 + G} y={1162 + 96 + G} texto="Sangría" />
   </AbsoluteFill>
 );

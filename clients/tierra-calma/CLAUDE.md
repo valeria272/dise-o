@@ -935,6 +935,20 @@ encima; lo que se lee son **nuestros** rótulos. Receta reproducible en el
 encabezado de `Octubre.tsx`. **Pedirle a Carlos el mapa oficial** sigue abierto
 (es su pendiente #4).
 
+#### ✅ Los que SÍ son cartografía real
+
+| Archivo | Qué es | Trae | Se usa en |
+|---|---|---|---|
+| `mapa3.jpg` (1170×711) | captura de Google Maps, zoom medio | ⭐ **el pin rojo «Tierra Calma»** en (287,315) | `c-20-10-2`, a sangre en papel verde |
+| `MAPA-PADRE-HURTADO.png` (893×631) | captura de Google Maps, un zoom más cerca — la subió Diego el 25-09 | ⭐ **el contorno de la comuna** punteado, filas 143-572 | `st-12-10`, en trazos |
+
+⚠️ **Ninguno de los dos trae las dos cosas.** MAPA-3 tiene el proyecto pero no el
+límite comunal; MAPA-PADRE HURTADO tiene el límite pero **el proyecto le queda
+fuera del encuadre por la izquierda** (medido: x ≈ −160, ver § 4 sexies · 12 bis).
+Por eso hoy cada pieza usa el suyo. Una sola captura que contuviera **el pin y el
+contorno** dejaría las dos piezas con el mismo mapa — vale la pena pedirla junto
+con el mapa oficial.
+
 ---
 
 ## 4 sexies. ⭐ CÓMO SE APLICA UN COMENTARIO — el método que dejó octubre 2026
@@ -1126,12 +1140,16 @@ entonces la pieza pierde lo único que un mapa aporta, que es la prueba.
    un archivo por pieza con la proporción exacta de su banda, y la composición lo
    muestra 1:1. **Nadie reencuadra con `objectPosition`**: buscar el pin a ojo es
    lo que hacía que quedara pegado a un borde.
-5. **El filete del marco se tiñe por tramos** (`MarcoTramos`). Con el mapa claro
-   en el medio y el color de marca arriba y abajo, un filete de un solo color
-   desaparece en un tramo. La referencia hace exactamente esto: filete oscuro
-   sobre el mapa, píldora crema sobre el color. ⚠️ **Medir antes**: sólo
-   `MARCO-ST` lleva filete vertical; `MARCO-CARRUSEL-2` sólo tiene las dos líneas
-   de las filas **130 y 1285**, que caen sobre color macizo y no necesitan nada.
+5. **Si la pieza tiene fondo claro y oscuro a la vez, el filete del marco se
+   tiñe por tramos.** Con el mapa claro en el medio y el color de marca arriba y
+   abajo, un filete de un solo color desaparece en un tramo. La referencia hace
+   exactamente esto: filete oscuro sobre el mapa, píldora crema sobre el color.
+   ⚠️ **Medir antes**: sólo `MARCO-ST` lleva filete vertical; `MARCO-CARRUSEL-2`
+   sólo tiene las dos líneas de las filas **130 y 1285**, que caen sobre color
+   macizo y no necesitan nada. *(El componente `MarcoTramos` existió del 24 al
+   25-09; se retiró al pasar la story a trazos sobre navy, que no cambia de
+   claro a oscuro. La regla queda; el componente se vuelve a escribir en diez
+   líneas si hace falta.)*
 
 > 💡 **El control es numérico, no visual.** El script imprime **dónde cae cada
 > topónimo en el lienzo** —el pin, Maipú, Padre Hurtado— y todos tienen que
@@ -1151,6 +1169,323 @@ debajo del titular, y sangra por abajo. **El titular no se monta sobre el mapa
 aunque quepa** — es justo lo que estas vueltas vinieron a arreglar, y la
 referencia tampoco lo hace: lo único que pone sobre el mapa es el logo.
 
+
+#### ⛔ 12 bis · EL CAMINO DE LOS TRAZOS — RECHAZADO, y por qué vale leerlo
+
+> 🗄️ **Las cuatro subsecciones que siguen documentan un camino que Diego cortó**
+> el 25-09: *"no me gusta cómo queda, **los trazos quedan mal y pixelados**,
+> vuelve a tomar el mapa-padre hurtado, **déjalo tal cual** con el mismo efecto
+> de color con el contraste de fondo, elimina los iconos"*. Lo que manda hoy es
+> **§ 12 ter**, más abajo. Se dejan escritas porque cada una resolvió un problema
+> real de medición que va a volver a aparecer — y porque la conclusión de las
+> cuatro juntas es la regla más cara del día:
+>
+> ⭐ **Una captura de 893×631 trae las calles en 3-5 px. El archivo aguanta que
+> le cambien EL COLOR; no aguanta que le cambien LA FORMA.** Trazar el borde,
+> binarizar, engrosar — todo eso trabaja al límite de la resolución, y el
+> resultado se ve pixelado por más medido que esté cada umbral. Cuatro vueltas
+> para llegar ahí.
+
+##### La story pasa a trazos (intento 1) — y trazar NO es dibujar
+
+> *"Necesito que el mapa [sea] en trazos, ocupa el **MAPA-PADRE HURTADO** para
+> generar esa parte del contenido."*
+
+Diego subió a Drive `MAPA-PADRE HURTADO` (893×631, 25-09 13:55) y `st-12-10`
+cambió de **papel a trazos**. ⚠️ `c-20-10-2` **no cambió**: el carrusel sigue con
+MAPA-3 a sangre en papel verde. Hoy la marca tiene **dos tratamientos vivos de
+mapa** y cada pieza dice cuál usa.
+
+**⛔ Lo primero, porque es la trampa de esta cuenta:** el 23-09 se rechazó un mapa
+de celdas *"porque el mapa no es así realmente"*. Un mapa en trazos podría
+parecer lo mismo — y no lo es:
+
+| Dibujar (prohibido) | Trazar (esto) |
+|---|---|
+| la geometría sale de la cabeza | la geometría sale **píxel a píxel del archivo real** |
+| las vecindades se «verifican» después | las vecindades **son** las del archivo |
+| cambiar el mapa = redibujar | cambiar el mapa = reemplazar el PNG y correr el script |
+
+`scripts/tc-mapa-trazos.py` sólo cambia la **tinta**. El día que llegue el mapa
+oficial de Carlos se cambia un archivo.
+
+**Cómo se sacan los trazos, y por qué no sirve el duotono.** En este estilo de
+Google Maps **los caminos son más CLAROS que el fondo** (`#F5F4F4` sobre
+`#E7E8E9`: catorce niveles). Un duotono por luminancia —el de
+`tc-mapas-duotono.py`— deja los caminos invisibles y pinta la mancha de relleno.
+Lo que funciona es el **gradiente**: toda línea —casco de camino, orilla de río,
+borde entre el verde rural y el gris urbano, letra de topónimo, punteado del
+límite— produce un salto de color; el relleno plano, no.
+
+> ⚠️ El gradiente va sobre los **tres canales**, no sobre la luminancia. El borde
+> verde/gris del área urbana casi no cambia de brillo pero sí de color, y sobre
+> luminancia sola se perdía entero.
+
+**El límite comunal es el protagonista.** El archivo trae el contorno de Padre
+Hurtado dibujado por Google en punteado rojo (filas 143-572). Es el mismo caso
+que el pin del MAPA-3 —lo trae el material, no lo ponemos nosotros— y se repone
+como **el único acento**, en arena. Se **engrosa un píxel**: en el original es un
+punteado de 1 px para mirar al 100 %, y reducido se deshilacha.
+
+⭐ **Y la jerarquía es un número, no un gusto.** Con la red de caminos a tinta
+llena, el contorno se pierde dentro de ella y el mapa se lee como textura. Con la
+red al **70 %** y el contorno al **100 %**, el mapa dice primero PADRE HURTADO y
+después cómo se llega.
+
+**Lo que el trazo sobre navy resolvió de una:** el archivo ya trae el navy de
+marca de fondo, así que **no hay banda, ni borde, ni canto que disimular** — los
+trazos se apagan contra el mismo navy del lienzo. Se fueron el degradado de
+lectura y el marco teñido por tramos.
+
+⚠️ **Y lo que obligó a medir:** con el mapa debajo, la píldora de ubicación
+**calada dejaba pasar los caminos por detrás del texto**. Va rellena de navy
+macizo. Y va en la fila 976 y no antes porque el vértice sur del contorno cierra
+en la 963: trece píxeles más arriba y la píldora le corta la punta a la comuna.
+
+##### Sólo el plano: ni topónimos ni iconos (intento 2)
+
+> *"Elimina los textos del mapa y los iconos, sólo dejar el plano del mapa."*
+
+Separarlos **se puede medir**: en este estilo de Google Maps los caminos **nunca
+bajan de luminancia 187** (Ruta 78 mín. 187, camino rural mín. 187, percentil 5
+en 205), mientras que la letra de un topónimo llega a **48** y el núcleo de un
+icono a **118**. Un umbral en **180** corta por el medio y no toca un camino.
+
+Pero borrar el glifo no alcanzó. Costó **cuatro causas distintas**, y cada una
+dejaba el mismo síntoma —etiquetas fantasma— por una razón diferente:
+
+| # | Qué quedaba | Por qué | Cómo se arregló |
+|---|---|---|---|
+| 1 | los POI pintados **en arena**, como si fueran el límite | la máscara del límite atrapaba todo lo rojo, y los POI son **magenta** | el canal azul los separa: el límite es rojo anaranjado (azul 105, **por debajo** del verde 121), el POI es magenta (azul 187, muy por encima del verde 78) |
+| 2 | un anillo claro con forma de palabra | Google rodea cada etiqueta con un **halo casi blanco** más ancho que cualquier dilatación a ciegas | se **persigue** el halo desde el glifo hacia afuera, avanzando sólo por píxeles >236 y con tope de 8 pasos (sin tope se escapa por los caminos, que son igual de claros) |
+| 3 | el contorno de la palabra en las etiquetas grandes | entre el glifo (136) y el halo (>236) hay una **franja de antialias** que no cumple ninguna condición | se ensancha 5 px, el ancho medido de esa franja |
+| 4 | un rectángulo tenue con la forma de la etiqueta | **no era el rótulo: era el canto del parche.** El relleno no calza exacto con el color que lo rodea y el gradiente dibujaba ese escalón | la zona de «no dibujar» va 2 px más ancha que el parche |
+| 5 | las etiquetas otra vez, en arena tenue, *más oscuras* que el fondo | **no era tinta de línea: era el acento.** La misma alfa del límite se usaba para dos cosas —proteger del borrado **y pintar**— y los restos con alfa 0,1 no llegaban a protegerse pero sí se pintaban | la alfa se corta en 0,35 **dentro de `alfa_limite`**, antes de devolverla, para que las dos cosas usen lo mismo |
+
+⚠️ Y la que más costó, la 1, tenía un segundo piso: el antialias de una etiqueta
+magenta contra el blanco deja píxeles casi blancos con un resto de rojo
+—(252,240,248), rojez 4— que daban alfa 0,06 y **se protegían solos del
+borrado**. El umbral de protección subió de 0,05 a **0,35**; el punteado del
+límite satura en 1,0, así que lo deja entero.
+
+> 💡 Los caminos quedan **cortados** donde iba la etiqueta. No es un defecto: es
+> lo que hace un mapa de verdad cuando pone un topónimo encima.
+
+> ⭐ **La lección de método:** el mismo síntoma se repitió cinco veces y las cinco
+> tenía una causa distinta. Es el reverso de § 4 sexies · 13 —«si el defecto
+> vuelve, cambia de eje»—: acá cambiar de eje funcionó cinco veces seguidas
+> porque cada vez se **midió** el píxel que sobrevivía en vez de subir un umbral
+> a ojo. Ensanchar la máscara, que fue el reflejo, no arregló ninguna de las
+> cinco.
+
+##### Lineal, tipo plano: la línea está o no está (intento 3)
+
+> *"Mapa que sea lineal, tipo plano."*
+
+La primera versión entintaba **proporcionalmente** a la fuerza del borde. Eso da
+un **grabado**: cada línea sale con el peso que tenía el contraste en la captura,
+y el relieve del cerro aparece como una veladura. Un plano no es eso — en un
+plano **la línea está o no está, y todas pesan igual**.
+
+Así que el gradiente se corta con un umbral y sube a tinta llena en una rampa muy
+corta: el suavizado es sólo el antialias del canto, no una gradación.
+
+⚠️ **El umbral selecciona qué se dibuja, y está medido:**
+
+| | p90 | p99 | máx |
+|---|---|---|---|
+| Ruta 78 | 33 | 227 | 325 |
+| camino rural | 72 | 146 | 189 |
+| trama urbana de Maipú | 84 | 117 | 183 |
+| borde verde/gris | 81 | 110 | 123 |
+| relieve del cerro | **40** | 159 | 209 |
+
+> ⛔ **Y acá hay una trampa que costó una vuelta entera.** El primer intento cortó
+> en **95** —justo encima del borde verde/gris— y el resultado fue un mapa
+> **roto**: la red se deshizo en fragmentos sueltos. La razón es que un camino no
+> tiene una fuerza de borde constante; varía a lo largo de su recorrido según el
+> relleno que atraviesa, y un corte alto se queda sólo con los picos. El umbral
+> bueno es **45**, muy por debajo del p99 de todo lo que queremos: lo que lo hace
+> «plano» no es cortar alto, es **subir a tinta llena rápido** después de cortar.
+
+Con 45 y rampa de 50, el relieve —p90 en 40— se cae solo y la red queda continua.
+
+##### La calle se dibuja maciza, no se contornea (intento 4)
+
+> *"Que el mapa se vea de ese estilo"* — con una referencia de plano urbano
+> adjunta ([`referencias/2026-09-25_plano-urbano-lineal.png`](referencias/2026-09-25_plano-urbano-lineal.png)):
+> calles blancas **gruesas y macizas** sobre fondo oscuro.
+
+El detector de bordes traza **los dos cantos** de cada calle, así que una calle
+salía como dos líneas paralelas **huecas**. La referencia dibuja la calle entera.
+
+⭐ **La solución no fue cambiar de método, fue engrosar.** En el archivo las
+calles miden 3-5 px, o sea que sus dos cantos están a 3-5 px: engordando 2 px a
+cada lado **los cantos se tocan y el hueco se cierra**. Es el mismo dibujo con el
+grosor que le faltaba.
+
+⛔ **Lo que NO funciona es detectar la calle como región por su color.** Fue lo
+primero que se probó, y está medido: el blanco de las calles es `#F5F4F4` y el
+blanco con que Google **rellena el interior de la comuna buscada** es
+*exactamente el mismo* — los dos dan luminancia 244,3. Por brillo no se separan.
+
+⚠️ **Y la tinta tiene que ser plena.** Con alfa proporcional, las zonas densas
+—la trama de Maipú— salían como una papilla gris. Binarizando, esas zonas pasan a
+ser manchas limpias, que es como las resuelve la referencia.
+
+⚠️ **Corolario sobre el contorno comunal:** desde que la red pasó a línea maciza,
+un contorno del mismo grosor **se pierde dentro de ella**. Se engrosa a 2 px por
+lado y la red baja al 88 % — es el único elemento de la pieza que dice cuál es la
+comuna.
+
+#### ⭐ 12 ter · LO QUE MANDA: EL MAPA TAL CUAL, EN DUOTONO, SIN ICONOS
+
+> *"Vuelve a tomar el mapa-padre hurtado, déjalo tal cual con el mismo efecto de
+> color con el contraste de fondo, elimina los iconos."* — Diego, 25-09
+
+`scripts/tc-mapa-ph.py` hace **tres cosas y ninguna más**: borra los nueve
+marcadores de POI, pasa el mapa al duotono navy→crema y repone el contorno
+comunal en su color. Los topónimos y los escudos de ruta **se quedan** — el
+pedido fue «tal cual», y ahí está la Ruta 78.
+
+⚠️ **El duotono va con el rango ESTIRADO, y sin eso sale plano.** Este archivo
+vive casi entero entre 223 y 245 de luminancia —verde rural 225, beige 227, gris
+urbano 232, calles 244, blanco 255—, así que un duotono directo sobre 0-255
+aplasta todo contra el extremo claro y devuelve una lámina crema sin dibujo.
+Estirando de **208 a 250** cada relleno cae en un tono distinto y el mapa vuelve
+a leerse; la letra (48) satura contra el navy, que es donde tiene que estar.
+
+⛔ **Los iconos van DECLARADOS por coordenada, no detectados.** Se probaron cuatro
+reglas automáticas y las cuatro se rompieron:
+
+| Regla | Por qué falla |
+|---|---|
+| saturación > 110 | caza los cuatro de color, pero los de la Municipalidad, el Colegio y el Parque del Recuerdo son gris azulado y saturan 36-64 — **por debajo del escudo de ruta verde, que satura 92** |
+| erosionar lo oscuro | el disco lleva un pictograma blanco dentro, así que «lo oscuro» es un anillo y se erosiona igual que la letra |
+| cerrar y después erosionar | las palabras se cierran también: se llegó a comer el **13 % del mapa**, con topónimos partidos |
+| densidad de tinta en ventana de 21 px | separa limpio iconos (0,53-0,64) de topónimos (0,19-0,34)… pero **los escudos de ruta son aún más densos** (G-300 0,64) y se iba la Ruta 78 con ellos |
+
+Son **nueve** en todo el archivo y están listados uno por uno en el script.
+
+> 💡 **La regla general:** cuando una detección automática hay que calibrarla
+> cuatro veces y aun así daña el material, **la lista explícita es la respuesta
+> correcta**, no la quinta calibración. Nueve coordenadas medidas son auditables;
+> un umbral que casi funciona, no. ⚠️ Y se documenta que **si se reemplaza el
+> PNG, la lista hay que volver a medirla**: es preferible que falle ruidosamente
+> a que borre medio mapa en silencio.
+
+##### El carrusel usa la misma receta, con su propio archivo (25-09)
+
+`c-20-10-2` pasó al mismo tratamiento que la story. **Cada pieza conserva su
+mapa**, y la razón está medida: MAPA-3 trae el **pin del proyecto** pero no el
+límite comunal; MAPA-PADRE HURTADO trae el **límite** y el proyecto le queda
+fuera del encuadre. Ninguno tiene los dos.
+
+Tres diferencias que hubo que medir para MAPA-3:
+
+1. **El rojo necesita zona.** El archivo trae el POI del CESFAM en rojo
+   (saturación 171): sin acotar la máscara a la caja del pin, se protegía del
+   borrado y salía pintado como si fuera el pin del proyecto.
+2. **Acá los iconos sí se separan por color** (saturan 138-171, los escudos de
+   ruta 82-89) — al revés que en el otro mapa. Sólo el del Relleno Sanitario es
+   gris (40) y va declarado.
+3. ⚠️ **El color da el CENTRO, no el tamaño.** Dilatar la mancha saturada 14 px
+   para cubrir reborde y sombra llega a **25 px del centro** y le corta la última
+   letra a los topónimos vecinos. Se toma el **centroide** y se borra la elipse
+   declarada, que llega a 16 px de lado.
+
+##### ⭐ UN MAPA DISEÑADO ROTULA LO QUE LA PIEZA DICE, NO TODO LO QUE HAY
+
+Diego, 25-09, después de ver la tarjeta ya a 1:1: *"los textos del mapa se siguen
+viendo pixelados, si tienes que rediseñarlo hazlo"*.
+
+**El techo es el archivo: la letra del mapa mide 11 px.** Es una captura de
+pantalla, y el recorte ya iba 1:1, así que no había escala que corregir.
+
+⛔ **Borrarla para recomponerla NO es viable en `mapa3`.** Se probaron seis
+caminos y todos fallan, cada uno por una razón distinta —umbral de brillo (la
+Ruta 78 es tan oscura como la letra), densidad de tinta (el camino rural la
+alcanza), halo perseguido (se escapa por las manchas urbanas), sembrar y crecer
+(deja media palabra), sembrar saltando entre letras (deja las etiquetas grises) y
+cambiar al otro archivo (no contiene el proyecto)—. Están documentados uno por
+uno en `scripts/tc-mapa-ph.py`.
+
+⭐ **LA SALIDA NO NECESITA BORRAR NADA: se rotula encima.** El mapa queda intacto
+y la pieza repone **sólo los nombres que necesita** en Inter Tight, con un velo
+de papel detrás que tapa el original; el resto de los topónimos quedan de
+textura. De paso desaparece la tipografía ajena de dentro de la pieza.
+
+> ⚠️ Dos detalles que no son de gusto:
+> · el rótulo del proyecto va **anclado a la izquierda del pin**, no centrado —
+>   centrado le tapa el pin, que es lo que el material trae;
+> · la tarjeta se guarda en **PNG**: el origen ya es JPEG y un segundo pase de
+>   compresión vuelve a ablandar los cantos.
+
+##### ⭐ EL MAPA NO SE AMPLÍA: SE RECORTA DEL TAMAÑO EN QUE SE VA A VER
+
+Diego, 25-09, con una referencia adjunta
+([`referencias/2026-09-25_tc-mapa-tarjeta.png`](referencias/2026-09-25_tc-mapa-tarjeta.png)):
+*"Genera algo así mejor, **que el mapa no quede pixelado** y se vea bien."*
+
+**La causa era aritmética, no de tratamiento.** La banda del carrusel tomaba un
+recorte de **873 px de ancho y lo estiraba a 1080**: un 24 % de aumento sobre una
+captura de pantalla, que no tiene detalle que dar. Ahora el recorte mide
+**exactamente lo que mide la ventana** (940×500) y se muestra **1:1**.
+
+> ⚠️ **La regla, que vale para cualquier captura:** el recorte se define por el
+> tamaño en píxeles de la ventana en la pieza, no por lo que "se ve bien" en el
+> archivo. Y en la composición el `<Img>` va con `width`/`height` exactos y sin
+> `objectFit`, porque cualquier reescalado ahí vuelve a ablandarlo.
+>
+> 💡 `st-12-10` ya cumplía sin saberlo: muestra el archivo a escala 1,0.
+
+**La gramática que se copió de la referencia:** el mapa en una **tarjeta de
+esquinas redondeadas** con sombra de contacto —objeto, no fondo—, y un **panel de
+datos** con una fila por dato y su ícono, sobre el campo de color macizo.
+
+⛔ **Lo que NO se copió, por segunda referencia seguida: su mapa.** Otra vez uno
+regenerado — «Nelleno Sonitorio», «Casas de La Esperarisa», «LA PRIMAYESA»,
+«Malpú», «CESTAM Presidenta Micriella Bachelet», «Acuspar's El Idillo», «Puente
+de Pelvin», «Sendere San Bernardo».
+
+⛔ **Y lo que no se copió por DATO: «Futuro Metrotren Santiago–Melipilla».** No
+está en la lista blanca (§ 2) y no hay OK escrito de Fran ni de Blanca. Las tres
+filas usan sólo datos aprobados: **Ruta 78**, **30 minutos de Santiago** y **15
+minutos del peaje**. ⚠️ Que un dato venga dibujado en una referencia de la propia
+marca no lo aprueba — es el mismo principio que con los topónimos.
+
+⚠️ **Pendiente de Diego:** las tres filas **ocupan el lugar** de la bajada que
+traía la slide (*"Revisa accesos, vías principales…"*). Dicen lo mismo con datos
+en vez de con una frase general, y no caben las dos entre la cabecera de la fila
+205 y el filete de la 1285. Si la bajada vuelve, lo que sale es el panel.
+
+#### El titular pasa a una línea y vuelve al centro
+
+*"El texto superior que quede así: «cerca de santiago» en una línea, y abajo como
+está pero todo centrado al medio."* La pieza se había armado sobre la referencia
+de Sonatta, que alinea a la izquierda; vuelve a la regla de la cuenta —todo
+centrado al medio (§ 4)—.
+
+⚠️ **Y la línea única no es sólo estética: paga la banda del mapa.** Ahorra 62 px
+de alto, y esos 62 px son los que dejan subir la banda de la fila 543 a la 495 y
+mostrar el archivo a **escala 1:1** en vez de reducido al 90 %.
+
+⛔ **LO QUE ESTE MAPA NO TIENE: LA UBICACIÓN DE TIERRA CALMA.**
+Medido contra `mapa3.jpg` con dos anclas independientes —«Casas de La Esperanza»
+y «Casas de los Bajos»—, la escala entre los dos archivos es **1,70** y el pin
+del proyecto cae en **x ≈ −160**: queda **fuera del encuadre por la izquierda**,
+como un 18 % del ancho. Este mapa muestra la **comuna**, no la parcela.
+
+> 💡 Si la pieza tiene que mostrar dónde está el proyecto, hace falta **otra
+> captura**: el mismo zoom corrido ~160 px al poniente, o un paso menos de zoom.
+> Con el archivo actual, el proyecto lo nombra el texto, no el mapa.
+
+> 🗄️ **Nota sobre la referencia del 24-09 y este archivo: no son el mismo.** La
+> referencia venía re-entintada en café y con la tipografía rota («Los Maitenss»,
+> comprobado a resolución completa); `MAPA-PADRE HURTADO` es una captura limpia y
+> sus topónimos están bien. Que las dos vengan de la marca no las hace
+> equivalentes: **la referencia se lee por su gramática, el archivo fuente se
+> usa por su contenido**.
 #### ⭐ Y la que vale más allá del mapa: **la marca del cliente puede estar ya en el material**
 
 **Tierra Calma está registrada en Google Maps.** MAPA-3 trae su pin rojo y su
@@ -1169,6 +1504,109 @@ de la pieza, así que es lo primero que se mira.
 > 💡 Regla general: antes de rotular algo sobre una imagen, **mirar si la imagen
 > ya lo rotula**. Pasó con el mapa; puede pasar con una fachada, un letrero o un
 > packshot.
+
+### 12 quater. ⭐ CUANDO LA REFERENCIA Y EL BRIEF SE CONTRADICEN, MANDA EL BRIEF
+
+El 25-09, para `st-22-10`, llegaron **dos indicaciones incompatibles**: primero
+una referencia de otra marca —campo blanco opaco, tarjeta tipo ventana,
+checklist— y después el **visual del brief** de la pieza:
+
+> *"Interfaz tipo **glassmorphism** sobre una imagen **sutil** de Tierra Calma.
+> En primer plano, una **tarjeta digital** con animación de «Crédito
+> preaprobado», acompañada de elementos gráficos que sugieran **avance en el
+> proceso de compra**, manteniendo una estética inmobiliaria premium."*
+
+Campo claro y opaco **contra** vidrio sobre fotografía: no conviven. **Manda el
+brief**, que es la regla madre del estudio —el brief dice el QUÉ—. De la
+referencia sobrevive lo que no se contradice: la tarjeta como objeto de interfaz
+y el dato con check.
+
+⚠️ **Y cada palabra del visual se leyó como una instrucción, no como un adjetivo:**
+
+| Palabra del brief | Cómo se ejecutó |
+|---|---|
+| **glassmorphism** | `backdropFilter` de verdad, que **desenfoca la foto de atrás**. Un gris translúcido no es vidrio: es un globo más |
+| **imagen sutil** | velo alto sobre `l-terraza`: se reconoce el lugar, no compite |
+| **estética inmobiliaria premium** | la foto más premium del mes —terraza de madera, hora dorada, el valle detrás— que además estaba sin usar en la V3 |
+| **tarjeta con «Crédito preaprobado»** | estado aprobado con su check, como el mock de WhatsApp de `p-09-10` o el del buscador de `st-15-10`: interfaz ilustrada, no un dato del proyecto |
+| **avance en el proceso de compra** | barra de tres tramos con el primero cumplido |
+
+⛔ **LOS TRAMOS NO LLEVAN NOMBRE, Y ES DELIBERADO.** Ponerles «Preaprobación ·
+Visita · Reserva» sería inventar un proceso comercial que no está en el brief ni
+en la lista blanca. **El avance se sugiere con gráfica.** Si los pasos tienen que
+nombrarse, los tiene que dar el brief.
+
+> 💡 Todo el texto de la tarjeta sale de lo que la pieza ya decía: «Crédito
+> preaprobado» del titular, «Parcelas desde UF 2.500» y la firma.
+
+🗄️ **La versión de campo claro vivió una hora** y dejó dos cosas aprovechables,
+anotadas abajo por si vuelve a hacer falta un fondo claro.
+
+> ⭐ **CALCAR UNA REFERENCIA NO ES COPIAR SU COLOR.** El 25-09 Diego pidió seguir
+> una referencia de app *"literal, fielmente, pero con el estilo de Tierra
+> Calma"*. Se calcó su estructura entera —aparato al centro, cabecera, tarjeta
+> con barra de avance, tarjeta cruzando, sección clara, pestañas— y **su verde
+> brillante no entró**: el acento acá es la **arena `#C9B99A`**. Copiar el color
+> de otra marca es traer su identidad; copiar su estructura es leer su gramática.
+> Y el destacado sigue siendo **IvyOra versales**, nunca la sans en negrita.
+>
+> ⚠️ La referencia traía fechas, montos y movimientos: **no se inventó ninguno**,
+> y las pestañas del pie van **sin rótulo** porque nombrarlas sería inventar
+> secciones de una app que no existe.
+
+> ⭐ **La tarjeta del mensaje CRUZA el celular y se sale por los dos lados**
+> (referencia de Diego, 25-09:
+> [`referencias/2026-09-25_tarjeta-cruzando-celular.png`](referencias/2026-09-25_tarjeta-cruzando-celular.png)).
+> Ese desborde es lo que la hace leer como una capa por delante del aparato en
+> vez de una notificación dentro de la pantalla. Insignia cuadrada de color a la
+> izquierda, mensaje grande, bajada chica.
+>
+> ⚠️ **El contenido de la pantalla son BARRAS, no texto.** Inventar filas de una
+> app con frases inventadas es copy que nadie aprobó.
+
+> ⚠️ **Y el vidrio se diseña CON lo que queda detrás.** Al poner el mensaje en un
+> celular (25-09, segunda vuelta del visual), la pantalla en crema hacía que el
+> `backdropFilter` extendiera ese blanco en un **lavado** que se comía la firma
+> de la tarjeta. La pantalla pasó a oscuro y se resolvió. **Un panel de vidrio no
+> se diseña solo:** cambiar el fondo cambia el panel — la misma dependencia que
+> tiene el marco teñido con el campo que cruza.
+
+### 12 quater bis. ⭐ EL CAMPO CLARO OBLIGA A TEÑIR EL MARCO
+
+`st-22-10` se rehízo el 25-09 sobre una referencia de otra marca
+([`referencias/2026-09-25_ventana-lista.png`](referencias/2026-09-25_ventana-lista.png)):
+campo claro, titular de dos pesos, la imagen en **tarjeta tipo ventana** con el
+cromo de tres puntos, insignia flotante en la esquina y el dato con check.
+
+⚠️ **Es la primera pieza del mes con fondo claro, y eso rompe dos supuestos:**
+
+1. **El marco desaparece.** El PNG es crema: sobre campo crema no se ve ni el
+   logo, ni el filete, ni el contorno de la píldora. Va con `MarcoTenido` en
+   navy. *(Es la misma familia de problema que el filete sobre el mapa claro:
+   el marco es un asset bloqueado, pero su TINTA es responsabilidad de la pieza.)*
+2. **La píldora del CTA tenía el texto en blanco fijo.** Ahora acepta `tinta`.
+
+⛔ **Lo que NO se copió de la referencia: su bold para destacar.** Destaca con la
+sans en negrita; acá **destaca IvyOra en versales**, y hay sólo dos roles
+tipográficos. Copiar ese recurso es romper el sistema por imitar a otra marca —
+distinto de copiar su gramática. Tampoco se inventó la lista de cuatro puntos: el
+copy de la pieza tiene un dato, así que va una fila con check.
+
+### 12 quinquies. ⚠️ UN QA PUEDE FALLAR POR SU PROPIA GUARDA
+
+La regla de **«foto estirada»** marcó como bloqueante 186 filas clonadas sobre un
+**fondo plano**. Ya tenía guarda —sólo cuenta filas con textura— pero la guarda
+medía **desviación estándar**, y una fila de fondo liso que cruza los **dos
+filetes verticales del marco** ya la supera.
+
+Se cambió por una medida robusta: **en cuántas columnas** varía la fila, no
+cuánto. Una foto estirada varía en casi todas; un fondo plano sólo donde cruza un
+filete (4 columnas de 1080 = 0,4 %).
+
+> ⚠️ **Y se verificó que la regla no quedara ciega:** se fabricó una pieza con 500
+> filas realmente clonadas y la compuerta la marca (26 % del alto). **Aflojar un
+> QA sin comprobar que sigue atrapando lo suyo es cómo un QA deja de servir** —
+> corolario directo de § 4 sexies · 14.
 
 ### 13. ⭐ SI EL DEFECTO VUELVE, EL EJE DE LA CORRECCIÓN ESTÁ MAL
 

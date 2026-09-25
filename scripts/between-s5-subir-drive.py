@@ -55,6 +55,9 @@ PIEZAS = RAIZ / 'out/hilton-between-s5'
 ENTREGA = {
     'BW-S5-HumorToGo.png':  ('BW ST 28-09 Humor cafe gigante.png',       'image/png'),
     'BW-S5-Plateada.mp4':   ('BW ST 30-09 Plateada al Carmenere.mp4',    'video/mp4'),
+    # GIF para mirar y mandar (Instagram publica el MP4). Sin `image/gif` Drive
+    # lo guarda como octet-stream y no lo previsualiza.
+    'BW-S5-Plateada.gif':   ('BW ST 30-09 Plateada al Carmenere.gif',    'image/gif'),
 }
 
 
@@ -92,7 +95,7 @@ def main():
     if a.listar:
         for archivo, (nombre, _) in ENTREGA.items():
             peso = (origen / archivo).stat().st_size / 1048576
-            estado = 'YA SUBIDA' if Path(archivo).stem in ya else 'por subir'
+            estado = 'YA SUBIDA' if (archivo if archivo.endswith('.gif') else Path(archivo).stem) in ya else 'por subir'
             print(f'  {archivo:26s} -> {nombre:42s} {peso:5.1f} MB  [{estado}]')
         print(f'\nhttps://drive.google.com/drive/folders/{a.carpeta}')
         return
@@ -100,7 +103,9 @@ def main():
     svc = servicio()
     fallos = []
     for archivo, (nombre, tipo) in ENTREGA.items():
-        clave = Path(archivo).stem
+        # ⛔ La clave es el nombre SIN extensión, salvo el GIF: comparte nombre con
+        #    el MP4 y con el stem pelado el GIF se escribía ENCIMA del .mp4 (25-09).
+        clave = archivo if archivo.endswith('.gif') else Path(archivo).stem
         ruta = origen / archivo
         media = MediaFileUpload(str(ruta), mimetype=tipo, resumable=True,
                                 chunksize=8 * 1024 * 1024)

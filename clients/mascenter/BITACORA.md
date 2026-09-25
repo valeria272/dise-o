@@ -1,3 +1,30 @@
+## 2026-09-25 — Diego Aguilar (con Claude)
+
+**Qué se hizo:** Diego pidió analizar sus editables de Más Center (disco KINGSTON,
+`D:\DIEGO 2023\COPYWRITERS\MAS CENTER\`, ~60 GB, mar–sept 2026) y el Drive
+`GRUPO IFB - MÁS CENTER / 2026` (`1ODBfU0HUbvdwlKuwllcQ39QbR4V_qbSj`) con sus grillas ene–oct.
+Los `.ai` se leyeron como PDF con PyMuPDF (fuente, cuerpo y color de cada texto) y los colores se
+midieron sobre las exportaciones. **Hallazgo principal: la marca es Gotham Rounded + Gotham Black, no
+Montserrat**, y eso incluye el `PAID SEPT IFB.ai` que se usó de referencia para el sistema. El paid de
+abril a agosto usó `#E52521`, que pasó a `#DC1914` en septiembre. Se publicó un mini manual:
+https://claude.ai/artifact/2Jm2PxMkkUc297grH9FFZZ (privado).
+
+**Dónde quedó:** análisis completo en `clients/mascenter/ADN-EDITABLES.md`, con los tres sistemas,
+color, tipo por rol, gramática, Localito, las reglas del cliente leídas en las grillas y las
+inconsistencias. En `CLAUDE.md` §3 quedó un aviso que remite a ese documento. En `APRENDIZAJES.md`
+entraron R-30…R-44, y R-02 quedó revisada. **El sistema de producción NO se tocó**: `base.css`,
+`build.py`, `MasCenterReel.tsx` y `marca.json` siguen en Montserrat.
+
+**Qué sigue:** migrar el sistema de producción a Gotham cuando Diego lo confirme. Antes hay que conseguir
+Gotham Black, que no está en el disco, y convertir los `.otf` CFF a TTF/WOFF2 (el caso de Brushwell).
+Después, re-renderizar el paid de octubre y compararlo con lo ya entregado.
+
+**Abierto:** Diego no respondió si se migra a Gotham ni si se unifica el hashtag (#MásCenter o
+#MasCenter). Fechas de entrega de proyectos: el cliente pidió no publicarlas, pero julio y octubre las
+publican. Cifras que no calzan entre sí («+30 centros», «+400 / +50 locales»). Direcciones duplicadas
+(Pie Andino 1855/5855, Chamisero 10290/15135). La estrategia IG de septiembre (pptx de Copywriters)
+tiene voseo: «¿Andás pato?». Las xlsx de jun–oct no dejan leer sus comentarios.
+
 ## 2026-09-24 — Serena Abarca (con Claude)
 
 **Qué se hizo:** Serena pasó el brief de octubre (`1aK-bREojTG4AlfAPhZdLccSjoSKSiz_j`) para

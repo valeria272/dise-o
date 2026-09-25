@@ -92,6 +92,12 @@ public/assets/**
 # imagen de IA no se regenera dos veces igual: sin el fondo versionado la pieza no
 # se puede volver a sacar, y es lo que hizo a Revex rehacer 3 rondas de cero.
 !public/assets/ebema/grilla-oct26/**
+# LinkedIn octubre 2026 (25-09): reel de Talca (bases, clips de Kling + 30 fps, grúa real,
+# música) y los fondos de los 3 carruseles y el post. Lo descartado y las refs derivadas no viajan.
+!public/assets/ebema/linkedin-oct26/**
+public/assets/ebema/linkedin-oct26/**/descartados/**
+public/assets/ebema/linkedin-oct26/**/_refs/**
+public/assets/ebema/linkedin-oct26/**/*.log
 
 !public/assets/cava/bottles/**
 !public/assets/cava/kv/**
@@ -140,6 +146,10 @@ public/assets/**
 # cuesta una sesión entera de medición. Sin ellos otro diseñador no rehace la
 # entrega — se cae al recorte viejo, que era el vaso CHICO para los tres tamaños.
 !public/assets/hilton/between/togo-sep2026/togo-vaso-*-nobg.png
+# BETWEEN · carta (ejercicio 25-09-2026, 10 MB): QR de la carta actual, ilustraciones y
+# texturas IA, y los stickers de croissant y latte. Los scripts between-carta-opciones*.py
+# no corren sin esto, y es la base desde la que se parte la carta oficial.
+!public/assets/hilton/between/carta/**
 !public/assets/hilton/piso18/*.jpg
 !public/assets/hilton/piso18/*.png
 # Y el clip del salon vacio (8 MB): sale de IMG_4177.MOV, que pesa 115 MB y vive
@@ -695,3 +705,54 @@ out/ebema/20260907_paid_octubre/editables/*.html
 # (SelfiePruebaBiotop) no rinde sin ellos, y los recortes de remove-bg no salen dos
 # veces iguales. Se rehacen con scripts/selfie-biotop-productos.py si hace falta.
 !public/assets/selfie/2026-nuevo-estilo/**
+
+# EBEMA LinkedIn octubre 2026 (25-09): la ficha de entrega y la ronda 1. Las piezas se
+# reproducen con linkedin_carruseles.py + los fondos de public/assets/ebema/linkedin-oct26.
+!out/ebema/20260925_linkedin_octubre/
+out/ebema/20260925_linkedin_octubre/*
+!out/ebema/20260925_linkedin_octubre/ENTREGA.md
+!out/ebema/20260925_linkedin_octubre/resolver_r1.py
+!out/ebema/20260925_linkedin_octubre/comentarios-r1.json
+
+# ── SANTA GOTA: los assets de TV (logo, monja recortada) y los KV entregados el 11-09-2026 ──
+!public/assets/santagota/**
+!out/santagota/
+!out/santagota/kv-v4/
+!out/santagota/kv-v4/**
+
+# SANTA GOTA: los MP4 del reel son copias de raw/ (52 MB) — no viajan en git
+public/assets/santagota/*.mp4
+# MyZoo — grilla octubre 2026 (22-09-2026). Misma excepción que Revex, CAVA y Between:
+# scripts/myzoo-oct-armar.py no rinde sin estas 4 escenas generadas (JPG 93, no los
+# PNG de 17 MB de raw/), los 3 packshots reales, el claim y el sello Te Protejo.
+# Sin ellas, Paulina no reproduce la entrega en su máquina. Las piezas entregadas
+# también viajan: son la base de la ronda del cliente.
+!public/assets/myzoo/**
+!out/myzoo/
+out/myzoo/*
+!out/myzoo/octubre-2026/
+!out/myzoo/octubre-2026/**
+
+# ── CIERRE 25-09-2026 · lo que NO entra aunque las excepciones de arriba lo abran ──
+# `!out/santagota/` des-ignora la carpeta ENTERA (la intención era sólo kv-v4). Los
+# renders del spot y de TV se reconstruyen desde src/compositions/santagota/, y el
+# MXF de 114 MB supera el tope de 100 MB de GitHub: el push entero se cae con él.
+out/santagota/spot/
+out/santagota/tv-cliente/
+# El material del spot (505 MB: plates 4K upscaladas y clips) queda FUERA hasta que
+# Valeria decida qué de eso viaja; la fuente está en el Drive / carpeta local.
+public/assets/santagota/spot/
+# Feed Copywriters: las CANDIDATAS crudas de IA (8 MB c/u, 280 MB) no son la pieza.
+# Las piezas rendidas de out/copylab/<lote>/ sí viajan.
+out/copylab/**/gen/
+# ── G.CL · CAP.02 «TURNO DE NOCHE» (25-09-2026) ──────────────────────────────
+# Misma excepción deliberada que r02: los 30 clips de Hailuo (58 MB) NO son
+# deterministas; sin ellos el reel no se reproduce. Van sfx, voz y video.
+# La música NO viaja: son temp tracks (HeyGen y «Reptilia» bajada de YouTube, sin
+# licencia) y pesan 107 MB en WAV; la receta está en GUION_V3 § cortes 10 y 14.
+!public/assets/gcl/cap02-v3/
+!public/assets/gcl/cap02-v3/sfx/**
+!public/assets/gcl/cap02-v3/voz/**
+!public/assets/gcl/cap02-v3/video/**
+!public/assets/gcl/cap02-v3/video/*.mp4
+!public/assets/gcl/cap02-v3/video/_corte3/*.mp4

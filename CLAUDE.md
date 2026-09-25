@@ -36,12 +36,16 @@ de dirección de arte, no con plantillas.
 python3 qa/motor.py --marca copywriters out/copylab/v2/*.png
 ```
 
-**Las cuatro voces** (en `public/assets/fonts/copywriters/`):
-Archivo variable (impacto) · DM Serif Display Italic (editorial) ·
-IBM Plex Mono (data) · Caveat (mano).
+> ⭐ **Desde el 24-09-2026 manda el MASTER:** [`creative-system/MASTER/`](creative-system/MASTER/LEEME.md)
+> (pack de marca de Valeria). Color, tipografía y criterio salen de ahí; si otro
+> archivo lo contradice, se corrige el otro archivo **sin consultar**.
+
+**Las voces** (en `public/assets/fonts/copywriters/`): **Archivo Narrow** (titulares) ·
+DM Serif Display Italic (editorial) · IBM Plex Mono (data) · Inter (funcional).
+La escritura manual **no es una voz**: sólo intervención excepcional sobre foto.
 
 **La paleta:** `#080F14` tinta · `#F2F4F6` off-white · `#FFFFFF` blanco ·
-`#FF2D8D` **Copy Pink** (la firma) · `#FF683D` coral · `#9D4EDD` púrpura.
+`#FF2D8B` **Copy Pink** (la firma) · `#FF6B3D` coral · `#9D4EDD` púrpura.
 
 ⚠️ **No existe una composición genérica con un prop `plantilla`, y esa ausencia
 ES el sistema.** Si vas a agregar una pieza, agrégala como archivo propio con su
@@ -64,8 +68,14 @@ entra al feed.
 > sobre el pack V4 completo y sobre `GCL_CHARACTER_BIBLE.md`. Desde el 05-09-2026:
 > **el protagonista se llama G** («Gigi» no existe), **`G.C.L.` es el universo y
 > nunca el personaje**, y las cifras del V4 (60–70 %, 1 de cada 6) son orientación
-> editorial, **no reglas de producción**. El CAP.02 está **congelado**: el número
-> 02 lo reclaman tres capítulos distintos.
+> editorial, **no reglas de producción**. Desde el **24-09-2026** el canon visual es el
+> **starter pack V6** (`gcl-agent/universo/00_START_HERE/CANON_V6_STARTER_PACK_CAP02/`):
+> el runner se llama **ROLO** (R.01 ya no existe), el halo de G sólo se enciende en el
+> turno de noche y los capítulos duran 20–30 s. El CAP.02 es **«TURNO DE NOCHE»**, con
+> guion vigente **V3 «MAÑANA LO VEO»** en `CAP_02_TURNO_DE_NOCHE/GUION_V3_MANANA_LO_VEO.md` (lock 21:
+> tubo neumático entre pisos, robot dios, explosión final); el storyboard V3 y los guiones V1/V2 son registro. **Antes de abrir un capítulo nuevo de G, leer
+> [`gcl-agent/universo/06_VIDEO_REELS/COMO_TRABAJAR_UN_CAPITULO.md`](gcl-agent/universo/06_VIDEO_REELS/COMO_TRABAJAR_UN_CAPITULO.md)**
+> (método destilado de los 16 cortes del CAP.02: lo que Valeria no pidió no se construye, lista de lo eliminado, un corte por ronda).
 
 ---
 
@@ -98,9 +108,13 @@ Si llegó por ZIP: [`docs/TRASPASO-ZIP.md`](docs/TRASPASO-ZIP.md) dice qué viaj
 1. [`docs/SISTEMA-DE-MARCAS.md`](docs/SISTEMA-DE-MARCAS.md) — el método del estudio.
    Las 7 capas, la jerarquía de imágenes, el pipeline de 6 pasos y las reglas duras
    que valen para todas las marcas. **Es la ley.**
-2. `clients/<marca>/CLAUDE.md` — el manual de esa marca: paleta medida, gramática,
+2. `clients/<marca>/APRENDIZAJES.md` — **el cerebro de la cuenta**: quién aprueba,
+   reglas firmes con cuántas veces se confirmaron, excepciones, lo que se aprueba a
+   la primera y lo que ya costó rondas. Se alimenta en cada `/cierre` (método en
+   [`docs/MEMORIA-POR-CLIENTE.md`](docs/MEMORIA-POR-CLIENTE.md)).
+3. `clients/<marca>/CLAUDE.md` — el manual de esa marca: paleta medida, gramática,
    reglas aprendidas con feedback real, QA obligatorio y errores ya cometidos.
-3. `clients/<marca>/marca.json` — la ficha legible por máquina: colores, fuentes,
+4. `clients/<marca>/marca.json` — la ficha legible por máquina: colores, fuentes,
    formatos, zonas seguras y geometría en px.
 
 **La regla madre: el brief manda el QUÉ, el sistema de marca manda el CÓMO.**
@@ -114,7 +128,7 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | `/marca-nueva <nombre>` | Abrir el sistema de un cliente que todavía no existe |
 | `/adn <marca> <id-drive>` | Extraer el sistema real desde los editables del diseñador |
 | `/abrir [marca]` | **Abrir el día.** `git pull` (trae lo de los demás diseñadores) + siembra memoria + bitácora del cliente + `/al-dia` |
-| `/cierre [marca]` | **Cerrar el día.** Bitácora + commit + push — sin esto otro diseñador NO puede retomar el cliente mañana |
+| `/cierre [marca]` | **Cerrar el día.** Bitácora + **cosecha del feedback en el cerebro del cliente** (git + memoria + Drive) + commit + push — sin esto otro diseñador NO puede retomar el cliente mañana |
 | `/al-dia [marca]` | Revisa el Drive de la agencia y las carpetas de las diseñadoras: grillas nuevas, editables nuevos, comentarios sin leer (lo llama `/abrir`) |
 | `/arranque` | Primer arranque en una máquina nueva |
 

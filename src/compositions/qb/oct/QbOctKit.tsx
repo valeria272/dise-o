@@ -116,10 +116,14 @@ export const FotoQB: React.FC<{
  * las zonas donde el velo satura a negro queden como filas idénticas —que el QA
  * de agencia lee, con razón, como una foto estirada— y le quita lo plano al negro.
  * Determinista (feTurbulence con semilla fija): el mismo en cada render.
+ * ⛔ 25-09: iba en `overlay` y overlay sobre NEGRO PURO no hace nada (negro sale
+ * negro), así que justo donde el velo satura —que es donde el QA mira— las filas
+ * seguían idénticas y la 08 y la 14 no pasaban. Va en mezcla normal al 2,5 %:
+ * ±2–3 niveles en todas partes, también en el negro.
  */
-export const Grano: React.FC<{opacidad?: number}> = ({opacidad = 0.07}) => (
+export const Grano: React.FC<{opacidad?: number}> = ({opacidad = 0.025}) => (
   <svg width={MESA.w} height={MESA.h} style={{position: "absolute", inset: 0, opacity: opacidad,
-    mixBlendMode: "overlay", pointerEvents: "none"}}>
+    pointerEvents: "none"}}>
     <filter id="qb-grano"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" />
       <feColorMatrix type="saturate" values="0" /></filter>
     <rect width="100%" height="100%" filter="url(#qb-grano)" />
@@ -216,7 +220,7 @@ export const Legal: React.FC<{top: number; children: React.ReactNode; cuerpo?: n
 );
 
 /** «Imagen referencial» — obligatorio en material no real (cliente, oct-2026). */
-export const ImagenReferencial: React.FC<{top?: number}> = ({top = 1846}) => (
+export const ImagenReferencial: React.FC<{top?: number}> = ({top = 1556}) => (
   <Linea top={top} cuerpo={17} italica sombra={false} color="rgba(255,255,255,0.75)"
     ancho={600}>
     *Imagen referencial

@@ -101,6 +101,8 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - **R-50** · Cuando la **referencia y el brief se contradicen, manda el brief** — _25-09, `st-22-10`: la referencia pedía campo blanco opaco y el brief glassmorphism sobre foto_ · ✔×1
 - **R-52** · Un objeto de la escena generada **se mide, no se supone**: la ventana de la polaroid está a **−14,4°** y se le había puesto −8°; seis grados bastan para que la foto se salga por un canto y lea como «pegada encima». Y si el objeto tiene perspectiva, no es un `rotate()` de CSS: se imprime en el archivo con una homografía — _Diego, 25-09, `p-29-10`_ · ✔×1
 - **R-53** · Lo que integra una foto dentro de un objeto, por orden de impacto: **geometría** · sombra de contacto del marco · la **luz de la escena** medida sobre el propio objeto · acabado de copia (menos micro-contraste, negros levantados, blanco cálido) · **grano** igual al de la escena — _25-09_ · ✔×1
+- **R-54** · Al componer sobre una escena generada, **lo que está delante se recorta de la máscara y lo que proyecta sombra NO**: la copia debe **heredar el sombreado del propio papel** (medido contra su parte más clara), no una luz inventada. Así recibe de una vez el degradado de la escena y la sombra del objeto — _Diego, 25-09, el imán sobre la polaroid_ · ✔×1
+- **R-55** · La foto de la polaroid es **aérea REAL del rodaje del 07-08**, gradada con la receta de `tc-foto-dron-story.py` (el material es HLG y sale lavado) — _Diego, 25-09_ · ✔×1
 - **R-51** · Cada palabra del visual del brief es **una instrucción, no un adjetivo**: «glassmorphism» es `backdropFilter` de verdad, no un gris translúcido; «imagen sutil» es velo alto, no una foto más — _25-09_ · ✔×1
 
 ## 5. Excepciones

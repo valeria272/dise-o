@@ -5,6 +5,43 @@
 
 ---
 
+## 2026-09-25 (15ª vuelta) — Diego Aguilar (p-29-10: el imán encima y la aérea real)
+
+**Qué se hizo:** *"El botón-imán tiene que quedar sobre la foto polaroid"* y *"que
+sea una foto dron de Tierra Calma"*.
+
+**1 · El imán, encima.** Al imprimir la copia en la ventana, la foto se había
+pintado por encima del imán. Ahora **el cuerpo del imán se recorta de la
+máscara** y asoma el original.
+
+⭐ **Pero su sombra NO se recorta, y ahí está lo interesante.** Si se recortara,
+quedaría un parche de papel blanco con una sombra dibujada encima de la foto —
+al revés de lo que pasa en la realidad, donde la sombra del imán cae **sobre la
+copia**. En vez de modelar esa sombra, la copia **hereda el sombreado del propio
+papel**: se mide cuánto se oscurece el papel respecto de su parte más clara y se
+le aplica lo mismo a la foto. Así la copia recibe de una vez **el degradado de la
+escena y la sombra del imán**, sin inventar ninguna luz. Reemplazó al paso de
+«luz de la escena» que tenía antes, que hacía la mitad del trabajo con el doble
+de código.
+
+**2 · La aérea real.** La copia sale del rodaje del **07-08**, toma
+`DJI_20260807093558_0308_D`: la parcelación con sus deslindes y caminos de ripio
+y, al fondo, el llano con las casas vecinas. Es «este es el lugar» en un cuadro.
+
+⚠️ No es la misma toma que `st-12-10`, que usa la `0312_D` (R-20). Y se gradúa con
+**la misma receta ya aprobada** para esa story (`tc-foto-dron-story.py`): el
+material del 07-08 es HLG y sin gradar se ve lavado y grisáceo.
+
+**Dónde quedó:** `scripts/tc-polaroid.py` (ahora lee el RAW del dron y respeta el
+imán), `m-refri-foto.jpg` regenerado. **QA: 1 aviso**, el deliberado de la slide
+2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios.
+
+---
+
 ## 2026-09-25 (14ª vuelta) — Diego Aguilar (p-29-10: la polaroid, impresa de verdad)
 
 **Qué se hizo:** *"La foto polaroid que quede real y no sobrepuesta, que se vea

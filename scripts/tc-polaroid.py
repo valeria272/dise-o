@@ -60,13 +60,25 @@ except Exception:
 
 OCT = pathlib.Path(RAIZ) / "public/assets/tierracalma/oct"
 ESCENA = OCT / "m-refri.jpg"
-# ⚠️ `g-acceso` y no `f-fondo`: esta última ya estaba en `st-08-10`, y una foto no
-# se repite entre dos piezas del mismo mes (R-20).
-FOTO = OCT / "g-acceso.jpg"
+# ⭐ Diego, 25-09: *"y que sea una foto dron de Tierra Calma"*. La copia sale del
+# rodaje REAL del 07-08, no de una imagen generada.
+#
+# **La toma: `DJI_20260807093558_0308_D`.** Se eligió entre las 44 porque es la
+# que muestra la parcelación en sí —los deslindes, los caminos de ripio y, al
+# fondo, el llano con las casas vecinas—: es «este es el lugar» en un cuadro.
+# ⚠️ No es la misma que `st-12-10`, que usa la `0312_D` (R-20).
+#
+# ⚠️ El material del 07-08 es **HLG y sale plano**: sin gradar se ve lavado y
+# grisáceo, que es justo lo que el manual llama «no es el lugar».
+ORIGEN_DRON = pathlib.Path(RAIZ) / "raw/tierracalma/fotos-reales/dron/DJI_20260807093558_0308_D.JPG"
 SALIDA = OCT / "m-refri-foto.jpg"
 
 # Ventana de la polaroid, en orden TL · TR · BR · BL.
 VENTANA = [(356, 602), (748, 501), (815, 930), (425, 1030)]
+# ⭐ El botón-imán va POR ENCIMA de la copia (Diego, 25-09). Su cuerpo se recorta
+# de la máscara para que asome el original; su SOMBRA no se recorta, porque la
+# sombra tiene que caer sobre la foto — ver `sombreado` en `main()`.
+IMAN = {"centro": (556, 527), "radios": (60, 70)}
 
 
 def homografia(destino, origen):
@@ -84,6 +96,24 @@ def homografia(destino, origen):
     return np.linalg.solve(np.array(A, dtype=float), np.array(B, dtype=float))
 
 
+def gradua(im: Image.Image) -> Image.Image:
+    """Saca el HLG plano: contraste, calidez y verde, sin irse a la postal.
+
+    Misma receta que `tc-foto-dron-story.py`, que es la que Diego aprobó para la
+    aérea de `st-12-10`.
+    """
+    from PIL import ImageEnhance
+
+    a = np.clip(np.asarray(im).astype(float) / 255.0, 0, 1)
+    a = a * a * (3 - 2 * a) * 0.45 + a * 0.55       # S suave
+    a[:, :, 0] *= 1.045
+    a[:, :, 2] *= 0.975
+    im = Image.fromarray((np.clip(a, 0, 1) * 255).astype(np.uint8))
+    im = ImageEnhance.Color(im).enhance(1.28)
+    im = ImageEnhance.Contrast(im).enhance(1.10)
+    return ImageEnhance.Sharpness(im).enhance(1.15)
+
+
 def _caja(m: np.ndarray, r: int) -> np.ndarray:
     c = np.cumsum(np.cumsum(np.pad(np.asarray(m, float), ((r + 1, r), (r + 1, r))), 0), 1)
     k = 2 * r + 1
@@ -91,9 +121,11 @@ def _caja(m: np.ndarray, r: int) -> np.ndarray:
 
 
 def main() -> int:
-    for f in (ESCENA, FOTO):
+    for f in (ESCENA, ORIGEN_DRON):
         if not f.exists():
             print(f"✗ Falta {f}")
+            if f is ORIGEN_DRON:
+                print("  El rodaje del dron vive en raw/ y NO viaja en el repo — manual § 7.")
             return 1
     escena = Image.open(ESCENA).convert("RGB")
     W, H = escena.size
@@ -104,7 +136,7 @@ def main() -> int:
     lado_alto = np.hypot(*(np.subtract(VENTANA[3], VENTANA[0])))
     print(f"· ventana: {lado_ancho:.0f} × {lado_alto:.0f} px"
           f" · girada {np.degrees(np.arctan2(VENTANA[1][1] - VENTANA[0][1], VENTANA[1][0] - VENTANA[0][0])):.1f}°")
-    foto = Image.open(FOTO).convert("RGB")
+    foto = gradua(Image.open(ORIGEN_DRON).convert("RGB"))
     fw, fh = foto.size
     objetivo = lado_ancho / lado_alto
     if fw / fh > objetivo:                       # sobra ancho
@@ -143,23 +175,28 @@ def main() -> int:
         for x, y in VENTANA
     ]
     ImageDraw.Draw(mascara).polygon(adentro, fill=255)
+    # ⭐ El CUERPO del imán se recorta de la máscara: así asoma el original y el
+    # botón queda POR ENCIMA de la copia, que es lo que pidió Diego. Su sombra
+    # no se recorta — cae sobre la foto por el paso 4.
+    (ix, iy), (rx, ry) = IMAN["centro"], IMAN["radios"]
+    ImageDraw.Draw(mascara).ellipse([ix - rx, iy - ry, ix + rx, iy + ry], fill=0)
     mascara = mascara.filter(ImageFilter.GaussianBlur(1.1))
     m = np.asarray(mascara).astype(float) / 255.0
 
     capa = np.asarray(capa).astype(float)
     base = np.asarray(escena).astype(float)
 
-    # ── 4 · la luz de la escena, medida sobre el propio marco de la polaroid ─
-    # Se toma la luminancia del papel blanco alrededor de la ventana y se
-    # normaliza: la foto recibe el MISMO degradado que el papel que la sostiene.
+    # ── 4 · la copia HEREDA EL SOMBREADO DEL PAPEL ─────────────────────────
+    # El papel de la polaroid no está iluminado parejo, y además el imán le
+    # proyecta una sombra. En vez de inventar una luz, se mide cuánto se oscurece
+    # el propio papel respecto de su parte más clara y se le aplica lo mismo a la
+    # copia: así la foto recibe **el degradado de la escena y la sombra del imán**
+    # sin tener que modelarlos por separado.
     lum = base @ np.array([0.299, 0.587, 0.114])
-    suave = _caja(lum, 90)
-    anillo = (m > 0.02) & (m < 0.98)
-    del anillo
-    ref = float(np.median(suave[m > 0.5]))
-    luz = np.clip(suave / max(ref, 1e-6), 0.86, 1.14)
-    capa *= luz[:, :, None]
-    print(f"· luz de la escena: {luz[m > 0.5].min():.3f} – {luz[m > 0.5].max():.3f}")
+    papel = float(np.percentile(lum[m > 0.5], 90))
+    sombreado = np.clip(lum / max(papel, 1e-6), 0.55, 1.05)
+    capa *= sombreado[:, :, None]
+    print(f"· papel de referencia {papel:.0f} · sombreado {sombreado[m > 0.5].min():.2f}–{sombreado[m > 0.5].max():.2f}")
 
     # ── 5 · sombra de contacto del marco sobre la copia ─────────────────────
     # El marco está por encima: sombrea el canto de arriba y el de la izquierda.
@@ -184,7 +221,7 @@ def main() -> int:
 
     fuera = base * (1 - m[:, :, None]) + capa.clip(0, 255) * m[:, :, None]
     Image.fromarray(fuera.clip(0, 255).astype(np.uint8)).save(SALIDA, quality=94)
-    print(f"· {SALIDA.name}  ← {FOTO.name} impresa en la polaroid")
+    print(f"· {SALIDA.name}  ← {ORIGEN_DRON.name} impresa en la polaroid")
     return 0
 
 

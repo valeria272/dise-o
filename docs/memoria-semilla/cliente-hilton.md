@@ -1,6 +1,6 @@
 ---
 name: cliente-hilton
-description: "HILTON — cerebro del cliente: 60 reglas firmes, última cosecha 2026-09-25. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
+description: "HILTON — cerebro del cliente: 63 reglas firmes, última cosecha 2026-09-25. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
 metadata:
   type: project
 ---
@@ -12,7 +12,7 @@ sólo lo más confirmado). ⛔ Vale sólo para hilton: no se traspasa a otra mar
 Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
 
 ## Reglas más confirmadas
-- **R-33** · [BW] **Si el vaso de la foto ya trae el logotipo, la pieza no lleva lockup** (ni en la portada) — _Eli 25-08, 31-08, 01-09, 03-09 y 07-09-2026_ · ✔×5
+- **R-33** · [BW] **Si el vaso de la foto ya trae el logotipo, la pieza no lleva lockup** (ni en la portada) — _Eli 25-08, 31-08, 01-09, 03-09 y 07-09-2026; feed «Necesito ir a Between» subido sin lockup por Eli, 25-09-2026 (la prueba con logo al pie caía sobre el vaso)_ · ✔×6
 - **R-15** · [DT] **La referencia de Eli manda la composición**; tipografía y color siguen siendo DT. Una ref animada se mira cuadro a cuadro antes de diseñar — _Eli: ST 18-09 (15-09), carrusel S5 («más igual a la referencia», 17-09), Turismo (23-09), oct («¿revisaste bien la referencia?», 24-09)_ · ✔×4
 - **R-41** · [BW] **Ningún texto sobre rostros, ojos ni sobre el producto** — _Eli 25-08 y 28-08; Scarlette 31-08; Eli 24-09-2026_ · ✔×4
 - **R-47** · [BW] **Antes de generar un producto, se busca en las sesiones**. Orden: foto real > recorte > generar — _Scarlette 31-08 («tenemos ese material»); ronda 10, 04-09; cowork 10-09; Plateada 11-09-2026_ · ✔×4
@@ -34,6 +34,7 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **R-22** · [DT] Carrusel de video: los clips son **los que el cliente enlaza en el brief**; si falta material, Drive → stock de Magnific → generar. Cuando hay material filmado, fuera el Ken Burns — _cliente 23-09; Eli 23-09-2026 («selecciona el video más bonito y legible»)_ · ✔×2
 
 ## Lo que ya costó rondas
+- **X-26** · [BW] Lockup al pie cuando el vaso de la foto ya firma: cae encima del producto y la marca se lee dos veces — _prueba propia, feed «Necesito ir a Between», 25-09-2026 (descartada antes de mostrarla)_
 - **X-01** · [BW] **Estimar lo que Eli describió en vez de medir sus piezas publicadas**: tipografías cambiadas, jerarquía rara — _grilla de septiembre rechazada entera por Valeria, 25–26-08-2026 (2 grillas)_
 - **X-02** · [BW] **Fondo generado + recortes, logos vectoriales y sombras pegadas encima**: «parecen de paint pegoteados» — _cumpleaños rondas 11–19 (04–07-09) y ST 28-09 (14-09-2026): 5 + 3 rechazos_
 - **X-03** · [BW] Logotipo del vaso **achatado o curvado** por script — _ronda 4 (27-08) y 01-09-2026: 2 rondas_
@@ -54,6 +55,4 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **X-18** · [DT] Panel con aire de sobra («muy pelaito») — _Honors ronda 6, 16-09-2026_
 - **X-19** · [DT] Verde DT en trazos y guiones — _carrusel S5, 17-09-2026_
 - **X-20** · [DT] Titular encima del logotipo grabado en el cristal (la marca se lee dos veces) — _portada S5, 17-09-2026_
-- **X-21** · [DT] Costura del mosaico más gruesa que las demás («un lado azul extraño») — _ST, ronda 8, 18-09-2026_
-- **X-22** · [DT] Cifra gigante con rótulo chico en el sello de hora — _«Tu día» ronda 8, 23-09-2026_
-- **X-23** · [DT] Bajada con punt
+- **X-21** · [DT] Costura del mosaico m

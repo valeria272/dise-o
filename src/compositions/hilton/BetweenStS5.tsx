@@ -365,6 +365,7 @@
 import React from 'react';
 import {
   AbsoluteFill,
+  Img,
   interpolate,
   OffthreadVideo,
   staticFile,
@@ -374,7 +375,6 @@ import {
 import {BETWEEN} from '../../brand/hilton-between';
 import {
   Bajada,
-  CajaDato,
   FotoFondo,
   LogoBetween,
   TitularBetween,
@@ -783,28 +783,51 @@ export const StS5Plateada: React.FC<{
               fontWeight: 500,
             }}
           >
-            {'Tranqui, el plan B\nse ve bastante mejor por acá.'}
+            {/* ⛔ Sin punto final: regla del cliente del 23-09 para las 4 cuentas. */}
+            {'Tranqui, el plan B\nse ve bastante mejor por acá'}
           </Bajada>
         </Entra>
 
-        {/* UNA sola caja taupe: es el énfasis, y el énfasis es el producto.
-            Dentro del vidrio sigue siendo el único objeto MACIZO, que es lo que
-            la hace leerse como la ficha del plato. */}
-        <Entra desde={28}>
-          <div style={{marginTop: BETWEEN.aire.tituloACaja}}>
-            <CajaDato anchoDisponible={MEDIDA_VIDRIO}>Plateada al Carmenere</CajaDato>
-          </div>
-        </Entra>
+        {/* ⚖️ RONDA DEL CLIENTE (grilla viva, 25-09) — «Por mientras no nombremos
+            platos, ya que tendremos cambio de carta, el resto ok y agregar imagen
+            referencial». Se fue la caja taupe con «Plateada al Carmenere»: era el
+            único lugar donde la pieza nombraba el plato. El resto queda igual. */}
 
         {/* ⭐ EL CIERRE ENTRA AL BLOQUE DE ARRIBA, no al pie — mismo motivo que
             en la del 22-09: abajo está el plato, y el texto de la marca se
-            apoya en el fondo, nunca sobre el producto. */}
-        <Entra desde={42}>
-          <Cierre style={{marginTop: 26, width: MEDIDA_VIDRIO}}>
-            Haz tu pausa de almuerzo en Between.
+            apoya en el fondo, nunca sobre el producto. Sin la caja taupe entra
+            en el lugar que ella dejaba, con el aire de título a caja. */}
+        <Entra desde={28}>
+          <Cierre style={{marginTop: BETWEEN.aire.tituloACaja, width: MEDIDA_VIDRIO}}>
+            Haz tu pausa de almuerzo en Between
           </Cierre>
         </Entra>
       </PanelVidrio>
+
+      {/* ⚖️ «…agregar imagen referencial». Mismo legal y misma posición que la
+          ST del Strudel (S4), donde Eli lo pidió abajo: beige en cursiva, al
+          margen de marca, con sombra suave para que aguante la madera. Entra
+          con el cierre. */}
+      <div
+        style={{
+          ...useEntrada(42),
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: BETWEEN.bloque.margenX,
+          textAlign: 'center',
+          fontFamily: BETWEEN.fuentes.sans,
+          fontStyle: 'italic',
+          fontWeight: BETWEEN.pesos.regular,
+          fontSize: 28,
+          lineHeight: 1,
+          color: BETWEEN.colores.beige,
+          opacity: 0.9,
+          textShadow: '0 2px 16px rgba(36,26,18,0.75)',
+        }}
+      >
+        *Imagen referencial.
+      </div>
 
       {guia ? (
         <>
@@ -840,3 +863,179 @@ export const StS5Plateada: React.FC<{
 
 export const StS5PlateadaGuia: React.FC = () => <StS5Plateada guia />;
 
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FEED S5 · «NECESITO IR A BETWEEN»  (FEED col P · CORREGIDO, 25-09-2026)
+
+   Reemplaza a «Espacio nuevas promos de desayuno» (el cliente no tiene la
+   info comercial: «Cambiar por otro tema por favor»).
+
+   Textos LITERALES de la grilla:
+     · «Texto en barra: Necesito ir a…:»
+     · «BETWEEN | ☕ | 🥐»
+     · «Cierre: BETWEEN»
+
+   ⭐ LA REF ES EL MOLDE (R-56): post de Juan Valdez del 12-09-2026
+   (instagram.com/p/DdMQf59iLF8, en `raw/hilton/between/refs-s5/`). Medido
+   sobre la ref a 1601 de ancho y llevado a 1080 (×0,675):
+     · barra de chat: 78 % del ancho, esquinas de ~19, en dos pisos —arriba
+       «+», campo de texto con cursor, sticker y botón de envío; abajo la
+       fila de sugerencias del teclado con dos separadores finos—;
+     · la barra queda **justo encima del producto**, casi rozándolo;
+     · la palabra sugerida va entre comillas, como la muestra el teclado.
+
+   ⭐ TRADUCIDA A BETWEEN: la ref es gris casi negro con verde de WhatsApp. Acá
+   la barra es **taupe `#675B49`** macizo y todo lo claro es **beige**; el
+   botón de envío, beige con la flecha taupe. Dos tintas y nada más (R-43).
+   Va maciza y no en cristal porque detrás está el toldo BLANCO de la terraza.
+
+   ⭐ LA FOTO ES REAL (R-47): `cafes-sep2026/IMG_5729`, la terraza techada de
+   Between con el vaso vigente en la mano, sin cara (R-53). Recorte 4:5 desde
+   arriba, sin gradación: la foto ya viene limpia y el filtro fue rechazado
+   (X-08).
+
+   ⚖️ El «Cierre: BETWEEN» es el lockup, y va como variante: el vaso de la foto
+   YA trae el logotipo, y la regla de Eli confirmada cinco veces (R-33) dice
+   que entonces la pieza no lleva lockup. La A (sin lockup) es la recomendada;
+   la B lo pone al pie como en la ref, para que elija ella.
+
+   Emojis: Noto Color Emoji (licencia libre), los mismos de octubre.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const BARRA = {
+  left: 122,
+  ancho: 836,
+  top: 300,
+  radio: 20,
+  pisoArriba: 112,
+  pisoAbajo: 92,
+} as const;
+
+const Sugerencia: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <div style={{flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+    {children}
+  </div>
+);
+
+const Separador: React.FC = () => (
+  <div style={{width: 2, height: 40, background: 'rgba(255,249,235,0.35)', borderRadius: 1}} />
+);
+
+const Emoji: React.FC<{codigo: string}> = ({codigo}) => (
+  <Img
+    src={staticFile(`assets/hilton/between/oct/emoji/u${codigo}.png`)}
+    style={{width: 46, height: 46, objectFit: 'contain'}}
+  />
+);
+
+export const FeedS5NecesitoIr: React.FC<{conLogo?: boolean}> = ({conLogo = false}) => {
+  const beige = BETWEEN.colores.beige;
+  const cafe = BETWEEN.colores.cafe;
+  return (
+    <AbsoluteFill style={{backgroundColor: BETWEEN.colores.sombra}}>
+      <FotoFondo src={F + 'feed-28-09-necesito-ir.jpg'} posicion="center top" oscurecer={0} />
+
+      <div
+        style={{
+          position: 'absolute',
+          left: BARRA.left,
+          top: BARRA.top,
+          width: BARRA.ancho,
+          borderRadius: BARRA.radio,
+          overflow: 'hidden',
+          backgroundColor: cafe,
+          boxShadow: '0 18px 40px rgba(36,26,18,0.22)',
+          fontFamily: BETWEEN.fuentes.sans,
+          color: beige,
+        }}
+      >
+        {/* piso de arriba: + · campo · envío */}
+        <div
+          style={{
+            height: BARRA.pisoArriba,
+            display: 'flex',
+            alignItems: 'center',
+            padding: '0 22px 0 26px',
+            gap: 22,
+          }}
+        >
+          <svg width="44" height="44" viewBox="0 0 44 44">
+            <path d="M22 5v34M5 22h34" stroke={beige} strokeWidth="4.5" strokeLinecap="round" />
+          </svg>
+          <div
+            style={{
+              flex: 1,
+              height: 66,
+              borderRadius: 33,
+              backgroundColor: 'rgba(36,26,18,0.28)',
+              display: 'flex',
+              alignItems: 'center',
+              padding: '0 20px 0 30px',
+            }}
+          >
+            <span style={{fontSize: 36, fontWeight: BETWEEN.pesos.medium, letterSpacing: -0.3}}>
+              Necesito ir a
+            </span>
+            {/* el cursor, como en la ref */}
+            <div style={{width: 3, height: 42, marginLeft: 6, backgroundColor: beige, borderRadius: 2}} />
+            <div style={{flex: 1}} />
+            {/* ícono de sticker, de línea */}
+            <svg width="40" height="40" viewBox="0 0 40 40">
+              <path
+                d="M8 4h24a4 4 0 0 1 4 4v14L22 36H8a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z M22 36v-9a5 5 0 0 1 5-5h9"
+                fill="none"
+                stroke={beige}
+                strokeWidth="3"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <div
+            style={{
+              width: 70,
+              height: 70,
+              borderRadius: 35,
+              backgroundColor: beige,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <svg width="36" height="36" viewBox="0 0 36 36">
+              <path d="M5 6l27 12L5 30l5-12z" fill={cafe} stroke={cafe} strokeWidth="2" strokeLinejoin="round" />
+            </svg>
+          </div>
+        </div>
+
+        {/* piso de abajo: la fila de sugerencias del teclado */}
+        <div
+          style={{
+            height: BARRA.pisoAbajo,
+            display: 'flex',
+            alignItems: 'center',
+            backgroundColor: 'rgba(255,249,235,0.07)',
+            borderTop: '1.5px solid rgba(255,249,235,0.14)',
+          }}
+        >
+          <Sugerencia>
+            <span style={{fontSize: 33, fontWeight: BETWEEN.pesos.semibold, letterSpacing: 0.5}}>
+              “BETWEEN”
+            </span>
+          </Sugerencia>
+          <Separador />
+          <Sugerencia>
+            <Emoji codigo="2615" />
+          </Sugerencia>
+          <Separador />
+          <Sugerencia>
+            <Emoji codigo="1f950" />
+          </Sugerencia>
+        </div>
+      </div>
+
+      {conLogo ? <LogoBetween formato="feed" posicion="abajo" tono="beige" sombra={0.22} /> : null}
+    </AbsoluteFill>
+  );
+};
+
+export const FeedS5NecesitoIrLogo: React.FC = () => <FeedS5NecesitoIr conLogo />;

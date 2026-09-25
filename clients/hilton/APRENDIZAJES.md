@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-25** · Cosechas: **1**
+> Última cosecha: **2026-09-25** · Cosechas: **2**
 
 ## 1. Quién es el cliente
 
@@ -87,7 +87,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-30** · [BW] Taza blanca con raya negra y **KIMBO: se borra siempre**; la taza vigente es blanca total — _Eli 25-08; Scarlette 31-08; ronda 9, 03-09-2026_ · ✔×3
 - **R-31** · [BW] **El logotipo nunca se deforma ni se curva**: escala uniforme a ratio 3,0298, integrado en el vaso por tono (multiply), no por geometría — _Eli 25-08 («no se vea achatado»); cliente 31-08; Eli 01-09-2026 («no puedes curvarlo de esa manera»)_ · ✔×3
 - **R-32** · [BW] Logo **centrado y con margen** (nunca pegado al borde), dentro del rango de su formato (post 162–263 px de ancho, historia 197–282) — _Eli, 25-08-2026, cifras y plantillas_ · ✔×2
-- **R-33** · [BW] **Si el vaso de la foto ya trae el logotipo, la pieza no lleva lockup** (ni en la portada) — _Eli 25-08, 31-08, 01-09, 03-09 y 07-09-2026_ · ✔×5
+- **R-33** · [BW] **Si el vaso de la foto ya trae el logotipo, la pieza no lleva lockup** (ni en la portada) — _Eli 25-08, 31-08, 01-09, 03-09 y 07-09-2026; feed «Necesito ir a Between» subido sin lockup por Eli, 25-09-2026 (la prueba con logo al pie caía sobre el vaso)_ · ✔×6
 - **R-34** · [BW] En carrusel el logo, si va, va **sólo en la portada** — _gramática medida 27-08; Eli 07-09-2026_ · ✔×2
 - **R-35** · [BW] Raleway + Brushwell, **máx. 2 familias por pieza**; Brushwell **sólo en títulos o una palabra clave**, nunca en números ni párrafos — _Javier (cliente) y Eli, 24–25-08-2026_ · ✔×2
 - **R-36** · [BW] **Brushwell sólo en la portada**: del slide 2 en adelante, Raleway — _Eli, 01-09 y 07-09-2026 (ronda 20)_ · ✔×2
@@ -114,6 +114,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-57** · [BW] Gente natural: **gestos distintos**, platos reales de Between, y objetos repetidos variados (dos notebooks de distinto color) — _Eli, 24-09-2026_ · ✔×1
 - **R-58** · [BW] Dentro de un carrusel **no se repite escenario**, y **la foto contiene los sustantivos del copy** — _Scarlette, 31-08-2026, carrusel Cowork_ · ✔×1
 - **R-59** · [BW] Una **historia no se recorta del banco 4:5: se produce** con el hueco para el texto — _Eli, 08-09-2026 («no cumplen, deja mejores fotografías»)_ · ✔×1
+- **R-61** · [BW] Pieza animada = **MP4 + GIF**, y se suben los dos a la carpeta de la semana (GIF 25 fps, 540×960, sin difuminado, tipo `image/gif`) — _Eli, 25-09-2026, ST 30-09 Plateada («recuerda el video dejar el gif y subirlos a drive»); en DT ya era R-24_ · ✔×1
+- **R-62** · [BW] **Mientras llega la carta nueva, las piezas no nombran platos** (fuera la caja con el nombre; la foto se queda) — _cliente, grilla STORIES col U, 25-09-2026 («Por mientras no nombremos platos, ya que tendremos cambio de carta»)_ · ✔×1 · temporal: revisar cuando salga la carta
+- **R-63** · [BW] Plato en foto que el cliente pide marcar → legal **«*Imagen referencial.»** en cursiva beige al pie, al margen de marca, sobre el fondo y nunca sobre el producto (caja taupe si no se lee) — _cliente, ST Strudel S4 (16-09) y ST 30-09 Plateada (25-09-2026)_ · ✔×2
 
 ### Las dos
 - **R-60** · [TODAS] **Ni títulos ni bajadas llevan punto** en la gráfica (el punto sólo en párrafos largos y legales) — _Eli 25-08 (BW) y 09-09 (DT); Javier Mesa 23-09-2026, recordatorio para las cuatro cuentas_ · ✔×3
@@ -152,6 +155,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 ## 7. Lo que se rechaza
 
+- **X-26** · [BW] Lockup al pie cuando el vaso de la foto ya firma: cae encima del producto y la marca se lee dos veces — _prueba propia, feed «Necesito ir a Between», 25-09-2026 (descartada antes de mostrarla)_
 - **X-01** · [BW] **Estimar lo que Eli describió en vez de medir sus piezas publicadas**: tipografías cambiadas, jerarquía rara — _grilla de septiembre rechazada entera por Valeria, 25–26-08-2026 (2 grillas)_
 - **X-02** · [BW] **Fondo generado + recortes, logos vectoriales y sombras pegadas encima**: «parecen de paint pegoteados» — _cumpleaños rondas 11–19 (04–07-09) y ST 28-09 (14-09-2026): 5 + 3 rechazos_
 - **X-03** · [BW] Logotipo del vaso **achatado o curvado** por script — _ronda 4 (27-08) y 01-09-2026: 2 rondas_
@@ -192,8 +196,17 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [BW] Octubre: reseñas reales para el 20-10, «$2.990», «CONVERSA» vs «CONVERSACIÓN», @ del ganador → Eli/CM
 - [BW] Café Bombón: ¿vaso transparente o kraft? → cliente
 - [BW] Cómo llegan al CM las copias GUIA CM con la zona del sticker → Eli
+- [BW] Feed «Necesito ir a Between»: sin fecha en la grilla (se nombró 28-09), estado CORREGIDO y el copy sigue siendo el de las promos → CM
+- [BW] ST 30-09: los archivos de Drive siguen llamándose «Plateada al Carmenere» (para no romper el enlace) aunque la pieza ya no nombra el plato → Eli
 
 ## 9. Registro de cosechas
+
+### 2026-09-25 (tarde) — Claude con Eli · BETWEEN S5 septiembre
+- **3 reglas nuevas [BW]:** R-61 video = MP4 + GIF (Eli), R-62 no nombrar platos hasta la carta nueva (cliente, temporal), R-63 legal «*Imagen referencial.» al pie (cliente, ✔×2 con la S4).
+- **✔ que subieron:** R-33 (vaso que firma → sin lockup) a ✔×6: Eli subió el feed nuevo sin logo.
+- **Rechazo:** X-26, el lockup al pie sobre el vaso (prueba propia, no llegó a Eli).
+- **Preguntas nuevas:** fecha, estado y copy del feed «Necesito ir a Between» (CM) y nombre de los archivos de la ST 30-09 (Eli).
+- Sin aprobación del cliente todavía: las dos piezas esperan su visto en la grilla.
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico
 - Siembra de **60 reglas** (29 de DT, 30 de Between, 1 común), **19 excepciones**, **7 patrones aprobados** y **25 rechazos**, cada uno con quién lo dijo, fecha y pieza.

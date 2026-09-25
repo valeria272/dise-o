@@ -1,3 +1,34 @@
+## 2026-09-25 (tarde) — Eli (Windows) · BETWEEN S5 septiembre: corrección de la ST 30-09 y feed nuevo «Necesito ir a Between» — SUBIDO
+
+**Qué se hizo:** Grilla leída EN VIVO (CSV + `export?format=zip` para los enlaces; las columnas
+de STORIES se habían corrido). S5: ST 28-09 To Go `EN REVISIÓN` sin comentarios (no se tocó) ·
+FEED 28-09 Ella habló `APROBADO` · **ST 30-09 Plateada `EN CAMBIOS`**: «Por mientras no nombremos
+platos, ya que tendremos cambio de carta, el resto ok y agregar imagen referencial» → fuera la caja
+«Plateada al Carmenere», el cierre sube a su lugar, legal «*Imagen referencial.» al pie (como el
+Strudel S4) y sin punto en bajada ni cierre (regla de Javier 23-09). Rendidos MP4 9 s + **GIF**
+(25 fps, 540×960, sin dither, 9,00 s — Eli: «recuerda el video dejar el gif») + guía CM.
+**FEED «Necesito ir a Between»** (reemplaza «Espacio nuevas promos de desayuno», `CORREGIDO`):
+ref = post de Juan Valdez 12-09 (`instagram.com/p/DdMQf59iLF8`); foto REAL `cafes-sep2026/IMG_5729`
+(terraza, vaso vigente, sin cara), barra de chat calcada y traducida a taupe/beige, emojis Noto;
+**sin lockup** (R-33: la prueba con logo al pie caía encima del vaso). Eli: «subelo».
+**Dónde quedó:** Drive `S5 · BW · STS` (`1r_spPoBx-vR63J8GTRVCUkbZGGyNLnJg`): el `.mp4` reemplazado
+en el MISMO id `1ismDXD-Nizxuy24g9YuwvgE8juhHKTea` + `.gif` nuevo `1sONYFSe3iF-rQ9K6A25F5UtpTl7baErX`.
+Carpeta **`FEED` creada** en BW de la S5 (`1jzeK8xlMCD0CxnILk3MIg6HbRWV7Xdw2`) con
+`BW FEED 28-09 Necesito ir a Between.png` (`1aN-v16v7-hdfRCppk5yWiETecSFBts_X`). Los tres
+verificados por md5, mimeType y parents. Código `src/compositions/hilton/BetweenStS5.tsx`
+(`FeedS5NecesitoIr`, ids `BW-S5-F-NecesitoIr` / `-Logo` en `Root.tsx`); fondo
+`public/assets/hilton/between/s5/feed-28-09-necesito-ir.jpg`; ref en `raw/hilton/between/refs-s5/`;
+renders en `out/hilton-between-s5-r35/` (+ copia en `out/hilton-between-s5/`); revisión en
+`out/hilton-between-s5-r35/revision/index.html`.
+⛔ **Bug corregido en `between-s5-subir-drive.py`:** la clave del manifiesto era el stem, así que el
+GIF (`BW-S5-Plateada.gif`) se escribió ENCIMA del `.mp4` en Drive. Se re-subió el MP4 al mismo id y
+la clave del GIF ahora lleva la extensión.
+**Qué sigue:** esperar el visto del cliente a la ST 30-09 y al feed nuevo en la grilla.
+**Abierto:** el feed nuevo no tiene fecha en la grilla («X DEFINIR», se nombró 28-09), está en
+`CORREGIDO` y su copy dice «PENDIENTE INFO PARA REALIZAR COPY» (el de las promos) → CM. Los archivos
+de la ST 30-09 siguen llamándose «Plateada al Carmenere» para no romper el enlace, aunque la pieza ya
+no nombra el plato → Eli decide si se renombran.
+
 ## 2026-09-25 (cierre) — Eli (Windows) · /arranque + la sesión de fotos SEP 2026 guardada — SIN PIEZAS
 
 **Qué se hizo:** `/arranque` en la máquina de Eli: todo estaba instalado (Node, Chrome,

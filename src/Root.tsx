@@ -224,6 +224,8 @@ import {
 } from "./compositions/hilton/BetweenStS4";
 import {
   StS5HumorToGo, StS5Plateada, StS5HumorToGoGuia, StS5PlateadaGuia,
+  FeedS5NecesitoIr,
+  FeedS5NecesitoIrLogo,
   DURACION_PLATEADA,
 } from "./compositions/hilton/BetweenStS5";
 
@@ -329,6 +331,8 @@ export const RemotionRoot: React.FC = () => {
           durationInFrames={DURACION_PLATEADA} fps={30} width={1080} height={1920} />
         <Composition id="BW-S5-Plateada-Guia" component={StS5PlateadaGuia}
           durationInFrames={DURACION_PLATEADA} fps={30} width={1080} height={1920} />
+        <Composition id="BW-S5-F-NecesitoIr" component={FeedS5NecesitoIr} {...btFeed} />
+        <Composition id="BW-S5-F-NecesitoIr-Logo" component={FeedS5NecesitoIrLogo} {...btFeed} />
         {/* utilidad de extraccion, no una pieza: ver BetweenPlanchaTrazos.tsx */}
         <Composition id="BW-Plancha-Trazos" component={PlanchaTrazos}
           durationInFrames={1} fps={30} width={2660} height={828} />

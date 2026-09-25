@@ -1542,6 +1542,18 @@ nombrarse, los tiene que dar el brief.
 🗄️ **La versión de campo claro vivió una hora** y dejó dos cosas aprovechables,
 anotadas abajo por si vuelve a hacer falta un fondo claro.
 
+> ⭐ **CALCAR UNA REFERENCIA NO ES COPIAR SU COLOR.** El 25-09 Diego pidió seguir
+> una referencia de app *"literal, fielmente, pero con el estilo de Tierra
+> Calma"*. Se calcó su estructura entera —aparato al centro, cabecera, tarjeta
+> con barra de avance, tarjeta cruzando, sección clara, pestañas— y **su verde
+> brillante no entró**: el acento acá es la **arena `#C9B99A`**. Copiar el color
+> de otra marca es traer su identidad; copiar su estructura es leer su gramática.
+> Y el destacado sigue siendo **IvyOra versales**, nunca la sans en negrita.
+>
+> ⚠️ La referencia traía fechas, montos y movimientos: **no se inventó ninguno**,
+> y las pestañas del pie van **sin rótulo** porque nombrarlas sería inventar
+> secciones de una app que no existe.
+
 > ⭐ **La tarjeta del mensaje CRUZA el celular y se sale por los dos lados**
 > (referencia de Diego, 25-09:
 > [`referencias/2026-09-25_tarjeta-cruzando-celular.png`](referencias/2026-09-25_tarjeta-cruzando-celular.png)).

@@ -5,6 +5,47 @@
 
 ---
 
+## 2026-09-25 (13ª vuelta) — Diego Aguilar (st-22-10: el mockup de app, calcado)
+
+**Qué se hizo:** *"Literal, sigue fielmente la referencia pero con el estilo de
+Tierra Calma, con la historia de la st-22-10."*
+
+Se calcó la **estructura completa** de la referencia, de arriba abajo: campo de
+color con el aparato al centro · cabecera de la app · tarjeta clara con barra de
+avance y su estado a la derecha · **la tarjeta del mensaje cruzando el celular y
+saliéndose por los dos lados**, con la insignia a la izquierda · sección clara
+debajo · barra de pestañas al pie.
+
+⭐ **QUÉ SIGNIFICÓ «CON EL ESTILO DE TIERRA CALMA», que es donde está el trabajo:**
+
+- ⛔ **Su verde brillante NO entra.** El acento de esta marca es la **arena
+  `#C9B99A`**, y es lo que lleva la barra de avance y la pestaña activa. Copiar
+  el verde de la otra marca habría sido traer **su identidad**, no su gramática —
+  que es exactamente la línea que separa leer una referencia de calcarla.
+- El destacado va en **IvyOra versales**, no en sans negrita (R-10/R-11).
+- Bajo el campo verde va la fotografía del lugar, muy velada: así se cumple el
+  *"imagen sutil de Tierra Calma"* del brief sin romper el calco.
+
+⛔ **Y todo el texto sale de la pieza.** La referencia trae fechas, montos y
+movimientos que invitan a inventar; no se inventó ninguno. Lo único que no estaba
+literal es la palabra «Preaprobado» del estado, que es un fragmento del propio
+titular. **Las pestañas del pie van sin rótulo**: nombrarlas sería inventar
+secciones de una app que no existe.
+
+⚠️ **Un detalle de montaje que sólo se ve renderizando:** la tarjeta que cruza es
+un elemento **absoluto**, así que dentro del teléfono hay que **reservarle el
+hueco**. Con 196 px se comía la primera línea de la sección de abajo; el hueco
+tiene que ser más alto que la tarjeta (158) más su aire. Quedó en 300.
+
+**Dónde quedó:** `OctubreV3.tsx`, bloque `L`. **QA: 1 aviso**, el deliberado de
+la slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios.
+
+---
+
 ## 2026-09-25 (12ª vuelta) — Diego Aguilar (st-22-10: la tarjeta cruza el celular)
 
 **Qué se hizo:** *"Que se vea así esa parte de crédito preaprobado"*, con una

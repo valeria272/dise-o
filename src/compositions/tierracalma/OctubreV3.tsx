@@ -1664,57 +1664,83 @@ const K6: React.FC = () => (
  */
 
 /**
- * El celular, la tarjeta que lo CRUZA con el mensaje, y el panel de vidrio.
+ * ⭐ L · 22/10 · HISTORIA — el mockup de app, calcado de la referencia.
  *
- * ⭐ La tarjeta del mensaje es más ancha que el celular y se sale por los dos
- * lados (Diego, 25-09, con referencia: *"que se vea así esa parte de crédito
- * preaprobado"*). Ese desborde es lo que la hace leer como una capa por delante
- * del aparato y no como una notificación dentro de la pantalla.
+ * Diego, 25-09: *"literal, sigue fielmente la referencia pero con el estilo de
+ * Tierra Calma, con la historia de la st-22-10"*. La referencia está en
+ * `clients/tierra-calma/referencias/2026-09-25_tarjeta-cruzando-celular.png`.
+ *
+ * Se calcó su **estructura completa**, de arriba abajo:
+ *   1. campo de color con el aparato al centro
+ *   2. cabecera de la app
+ *   3. tarjeta clara con barra de avance y su estado a la derecha
+ *   4. ⭐ la tarjeta del mensaje **cruzando el celular y saliéndose por los dos
+ *      lados**, con la insignia de color a la izquierda
+ *   5. sección clara debajo
+ *   6. barra de pestañas al pie
+ *
+ * ⛔ LO QUE CAMBIA, QUE ES EL «CON EL ESTILO DE TIERRA CALMA»:
+ *   · **su verde brillante no entra.** El acento de esta marca es la **arena**
+ *     `#C9B99A`, y es lo que lleva la barra de avance y la pestaña activa.
+ *     Copiar el verde de otra marca sería traer su identidad, no su gramática.
+ *   · el destacado va en **IvyOra versales**, no en sans negrita (R-10/R-11);
+ *   · bajo el campo verde va la fotografía del lugar, muy velada — así se cumple
+ *     el «imagen sutil de Tierra Calma» del brief sin romper el calco.
+ *
+ * ⛔ **Y TODO EL TEXTO SALE DE LA PIEZA.** La referencia trae fechas, montos y
+ * movimientos inventables; acá no se inventó ninguno. Lo único que no estaba
+ * literal es la palabra «Preaprobado» del estado, que es un fragmento del propio
+ * titular. Las pestañas del pie van **sin rótulo**: nombrarlas sería inventar
+ * secciones de una app que no existe.
  */
-const FONO = {x: 350, y: 720, w: 380, h: 520, borde: 12};
-const AVISO = {x: 130, y: 950, w: 820, h: 168};
-const VIDRIO = {x: 96, y: 1300, w: 888, h: 200};
+const FONO = {x: 280, y: 600, w: 520, h: 850, borde: 13};
+const AVISO = {x: 120, y: 985, w: 840, h: 158};
+
+/** Una pestaña del pie: sólo forma, sin rótulo. */
+const Pestana: React.FC<{activa?: boolean}> = ({activa}) => (
+  <div style={{display: "flex", flexDirection: "column", alignItems: "center", gap: 7}}>
+    <div
+      style={{
+        width: 24,
+        height: 24,
+        borderRadius: 8,
+        backgroundColor: activa ? TC.colors.sand : "rgba(243,238,227,0.28)",
+      }}
+    />
+    <div
+      style={{
+        width: 30,
+        height: 5,
+        borderRadius: 999,
+        backgroundColor: activa ? TC.colors.sand : "rgba(243,238,227,0.18)",
+      }}
+    />
+  </div>
+);
 
 const L: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
-    {/* «imagen sutil»: se reconoce el lugar y no compite con la interfaz */}
+    {/* «imagen sutil de Tierra Calma» bajo el campo verde: se intuye el lugar */}
     <Foto src={OCT("l-terraza")} foco="50% 55%" />
-    <Degradado arriba={0.58} abajo={0.60} velo={0.32} />
+    <AbsoluteFill style={{backgroundColor: "rgba(0,41,30,0.90)"}} />
+    {/* la mancha clara de la esquina, como en la referencia */}
+    <AbsoluteFill
+      style={{
+        background:
+          "radial-gradient(ellipse 62% 34% at 92% 6%, rgba(201,185,154,0.22) 0%, rgba(201,185,154,0) 70%)",
+      }}
+    />
     <Marco archivo="MARCO-ST" />
 
     <Cuerpo desde={250} hasta={570}>
       <Modulado
         ancho={880}
+        tinta={TC.colors.cream}
         tramos={[{t: "¿Ya tienes tu"}, {t: "crédito preaprobado", ivy: true, salto: true}, {t: "?"}]}
       />
     </Cuerpo>
 
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 600,
-        padding: "0 150px",
-        textAlign: "center",
-        fontFamily: SANS,
-        fontWeight: 300,
-        fontSize: 34,
-        lineHeight: 1.34,
-        color: TC.colors.cream,
-      }}
-    >
-      Conoce las parcelas disponibles y las alternativas para avanzar en tu compra.
-    </div>
-
-    {/* ⭐ EL CELULAR. Dibujado por código, como el mock de WhatsApp de `p-09-10`
-        y el del buscador de `st-15-10`: en esta marca las interfaces ilustradas
-        se dibujan. Derecho, sin inclinar (X-09).
-        ⚠️ La pantalla va OSCURA: con pantalla clara, el `backdropFilter` del
-        vidrio extendía ese blanco en un lavado. El vidrio muestra lo que tiene
-        detrás, así que el fondo es parte del diseño del vidrio.
-        ⚠️ Y el contenido de la pantalla son BARRAS, no texto: una app inventada
-        con frases inventadas es copy que nadie aprobó. */}
+    {/* ⭐ EL APARATO */}
     <div
       style={{
         position: "absolute",
@@ -1724,45 +1750,147 @@ const L: React.FC = () => (
         height: FONO.h,
         boxSizing: "border-box",
         padding: FONO.borde,
-        borderRadius: 50,
-        backgroundColor: "#081B2E",
-        border: "1px solid rgba(243,238,227,0.30)",
-        boxShadow: "0 34px 70px rgba(6,14,20,0.46)",
+        borderRadius: 58,
+        backgroundColor: "#04140E",
+        border: "1px solid rgba(243,238,227,0.26)",
+        boxShadow: "0 38px 78px rgba(0,0,0,0.5)",
       }}
     >
       <div
         style={{
           width: "100%",
           height: "100%",
-          borderRadius: 40,
-          backgroundColor: "#0C2033",
+          borderRadius: 46,
+          backgroundColor: "#062018",
           overflow: "hidden",
-          padding: "26px 24px",
-          boxSizing: "border-box",
           display: "flex",
           flexDirection: "column",
-          gap: 20,
         }}
       >
+        {/* 2 · cabecera de la app */}
+        <div style={{padding: "32px 30px 24px"}}>
+          <div
+            style={{
+              width: 92,
+              height: 8,
+              borderRadius: 999,
+              backgroundColor: "rgba(243,238,227,0.26)",
+              margin: "0 auto 24px",
+            }}
+          />
+          <div
+            style={{
+              fontFamily: SERIF,
+              fontStyle: "italic",
+              fontWeight: 500,
+              fontSize: 30,
+              textTransform: "uppercase",
+              color: TC.colors.sand,
+            }}
+          >
+            {sinPartir("Tierra Calma")}
+          </div>
+          <div
+            style={{
+              marginTop: 6,
+              fontFamily: SANS,
+              fontWeight: 300,
+              fontSize: 20,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "rgba(243,238,227,0.5)",
+            }}
+          >
+            {sinPartir("Padre Hurtado")}
+          </div>
+        </div>
+
+        {/* 3 · tarjeta clara con la barra de avance */}
         <div
           style={{
-            width: 86,
-            height: 8,
-            borderRadius: 999,
-            backgroundColor: "rgba(243,238,227,0.28)",
-            margin: "0 auto 8px",
+            margin: "0 22px",
+            padding: "22px 24px",
+            borderRadius: 22,
+            backgroundColor: "#FBF8F2",
           }}
-        />
-        {[0.24, 0.16, 0.12, 0.1].map((op, i) => (
-          <div key={i} style={{display: "flex", flexDirection: "column", gap: 11}}>
-            <div style={{width: i === 0 ? "56%" : "44%", height: 11, borderRadius: 999, backgroundColor: `rgba(243,238,227,${op})`}} />
-            <div style={{width: i === 0 ? "82%" : "68%", height: 11, borderRadius: 999, backgroundColor: `rgba(243,238,227,${op * 0.62})`}} />
+        >
+          <div style={{display: "flex", alignItems: "baseline", justifyContent: "space-between"}}>
+            <span style={{fontFamily: SANS, fontWeight: 500, fontSize: 21, color: TC.colors.navy}}>
+              {sinPartir("Parcelas desde UF 2.500")}
+            </span>
+            <span
+              style={{
+                fontFamily: SANS,
+                fontWeight: 400,
+                fontSize: 16,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "rgba(11,44,73,0.5)",
+              }}
+            >
+              Preaprobado
+            </span>
           </div>
-        ))}
+          <div
+            style={{
+              marginTop: 16,
+              height: 16,
+              borderRadius: 999,
+              backgroundColor: "rgba(11,44,73,0.10)",
+              overflow: "hidden",
+            }}
+          >
+            <div style={{width: "38%", height: "100%", borderRadius: 999, backgroundColor: TC.colors.sand}} />
+          </div>
+        </div>
+
+        {/* ⚠️ Hueco RESERVADO para la tarjeta que cruza. Tiene que ser más alto
+            que ella (158 px) más el aire, o la tarjeta se come la primera línea
+            de la sección de abajo: pasó con 196 y la frase quedó partida. */}
+        <div style={{height: 300}} />
+
+        {/* 5 · sección clara de abajo */}
+        <div
+          style={{
+            flex: 1,
+            margin: "0 22px",
+            padding: "26px 24px 18px",
+            borderRadius: "22px 22px 0 0",
+            backgroundColor: "#FBF8F2",
+          }}
+        >
+          <div
+            style={{
+              fontFamily: SANS,
+              fontWeight: 300,
+              fontSize: 23,
+              lineHeight: 1.36,
+              color: "rgba(11,44,73,0.88)",
+            }}
+          >
+            Conoce las parcelas disponibles y las alternativas para avanzar en tu compra.
+          </div>
+        </div>
+
+        {/* 6 · barra de pestañas */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+            padding: "16px 24px 22px",
+            backgroundColor: "#04140E",
+          }}
+        >
+          <Pestana />
+          <Pestana activa />
+          <Pestana />
+          <Pestana />
+        </div>
       </div>
     </div>
 
-    {/* ⭐ LA TARJETA DEL MENSAJE, cruzando el celular y saliéndose por los lados */}
+    {/* ⭐ 4 · LA TARJETA DEL MENSAJE, cruzando el celular y saliéndose por los lados */}
     <div
       style={{
         position: "absolute",
@@ -1771,20 +1899,20 @@ const L: React.FC = () => (
         width: AVISO.w,
         height: AVISO.h,
         boxSizing: "border-box",
-        padding: "0 44px",
-        borderRadius: 30,
+        padding: "0 42px",
+        borderRadius: 28,
         backgroundColor: "#FBF8F2",
-        boxShadow: "0 26px 56px rgba(6,14,20,0.40)",
+        boxShadow: "0 26px 56px rgba(0,0,0,0.42)",
         display: "flex",
         alignItems: "center",
-        gap: 30,
+        gap: 28,
       }}
     >
       <div
         style={{
-          width: 92,
-          height: 92,
-          borderRadius: 26,
+          width: 88,
+          height: 88,
+          borderRadius: 24,
           backgroundColor: TC.colors.green,
           display: "flex",
           alignItems: "center",
@@ -1792,7 +1920,7 @@ const L: React.FC = () => (
           flexShrink: 0,
         }}
       >
-        <ICheck s={46} c={TC.colors.cream} />
+        <ICheck s={44} c={TC.colors.sand} />
       </div>
       <div>
         <div
@@ -1800,7 +1928,7 @@ const L: React.FC = () => (
             fontFamily: SERIF,
             fontStyle: "italic",
             fontWeight: 500,
-            fontSize: 50,
+            fontSize: 48,
             lineHeight: 1,
             textTransform: "uppercase",
             color: TC.colors.navy,
@@ -1810,10 +1938,10 @@ const L: React.FC = () => (
         </div>
         <div
           style={{
-            marginTop: 12,
+            marginTop: 11,
             fontFamily: SANS,
             fontWeight: 400,
-            fontSize: 25,
+            fontSize: 24,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
             color: "rgba(11,44,73,0.55)",
@@ -1821,56 +1949,6 @@ const L: React.FC = () => (
         >
           Tu banco
         </div>
-      </div>
-    </div>
-
-    {/* El panel de vidrio: firma, avance y dato. `backdropFilter` es lo que lo
-        hace vidrio — desenfoca la fotografía que tiene detrás. */}
-    <div
-      style={{
-        position: "absolute",
-        left: VIDRIO.x,
-        top: VIDRIO.y,
-        width: VIDRIO.w,
-        height: VIDRIO.h,
-        boxSizing: "border-box",
-        padding: "30px 46px",
-        borderRadius: 32,
-        backgroundColor: "rgba(243,238,227,0.13)",
-        border: "1px solid rgba(243,238,227,0.34)",
-        backdropFilter: "blur(24px) saturate(125%)",
-        WebkitBackdropFilter: "blur(24px) saturate(125%)",
-        boxShadow: "0 26px 56px rgba(6,14,20,0.32)",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-      }}
-    >
-      <div
-        style={{
-          fontFamily: SANS,
-          fontWeight: 400,
-          fontSize: 25,
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: "rgba(243,238,227,0.68)",
-        }}
-      >
-        {sinPartir("Tierra Calma")} · {sinPartir("Padre Hurtado")}
-      </div>
-
-      {/* «avance en el proceso de compra»: el primer tramo, cumplido */}
-      <div style={{display: "flex", gap: 12}}>
-        {[1, 0.22, 0.22].map((op, i) => (
-          <div
-            key={i}
-            style={{flex: 1, height: 8, borderRadius: 999, backgroundColor: `rgba(243,238,227,${op})`}}
-          />
-        ))}
-      </div>
-
-      <div style={{fontFamily: SANS, fontWeight: 300, fontSize: 34, color: TC.colors.cream}}>
-        {sinPartir("Parcelas desde UF 2.500")}
       </div>
     </div>
 

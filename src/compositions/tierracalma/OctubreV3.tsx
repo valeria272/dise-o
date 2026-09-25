@@ -106,20 +106,44 @@ const Marco: React.FC<{archivo: string}> = ({archivo}) => (
 );
 
 /**
- * 🗄️ AQUÍ VIVÍA `MarcoTramos` — el marco teñido por tramos, del 24-09.
+ * ⭐ EL MARCO TEÑIDO POR TRAMOS.
  *
- * Existía porque el mapa iba **en papel claro** a media pieza: un filete crema
- * cruzando esa banda desaparecía, así que el marco se teñía navy sobre el mapa
- * y crema sobre el fondo, con `clipPath`. Se retiró el 25-09 al pasar el mapa a
- * TRAZOS sobre navy: el fondo ya no cambia de claro a oscuro y el filete se lee
- * en toda su altura con un solo color.
+ * El marco es un **asset bloqueado**: no se redibuja, sólo se recolorea con
+ * máscara. Pero cuando el fondo cambia de claro a oscuro dentro de la misma
+ * pieza —el mapa es papel en la banda del medio y navy arriba y abajo— **un
+ * filete de un solo color deja de verse en un tramo**. Así que se tiñe por
+ * tramos, con `clipPath`, y el filete contrasta con lo que cruza.
  *
- * ⚠️ La regla que dejó sigue viva en el manual (§ 4 sexies · 12, punto 5): si
- * una pieza vuelve a tener fondo claro y oscuro a la vez, **el filete se tiñe
- * por tramos** — y antes hay que medir qué tinta trae el PNG, porque
- * `MARCO-CARRUSEL-2` sólo lleva las dos líneas de las filas 130 y 1285 y no
- * necesitaba nada. Se borró el componente, no el aprendizaje.
+ * ⚠️ **Medir antes de usarlo:** sólo `MARCO-ST` lleva filete vertical.
+ * `MARCO-CARRUSEL-2` tiene tinta únicamente en las filas 130 y 1285, que caen
+ * sobre color macizo y no necesitan nada.
+ *
+ * `cortes` va en píxeles del lienzo y de arriba hacia abajo; el último `y` tiene
+ * que ser el alto de la pieza.
+ *
+ * 🗄️ Historia: existió el 24-09, se retiró el 25-09 cuando el mapa pasó a trazos
+ * sobre navy, y volvió el mismo día al volver el mapa a papel claro.
  */
+const MarcoTramos: React.FC<{
+  archivo: string;
+  alto: number;
+  cortes: {y: number; color: string}[];
+}> = ({archivo, alto, cortes}) => (
+  <>
+    {cortes.map((c, i) => (
+      <div
+        key={c.y}
+        style={{
+          position: "absolute",
+          inset: 0,
+          clipPath: `inset(${i === 0 ? 0 : cortes[i - 1].y}px 0 ${alto - c.y}px 0)`,
+        }}
+      >
+        <MarcoTenido archivo={archivo} color={c.color} />
+      </div>
+    ))}
+  </>
+);
 
 /**
  * ⛔ TODO CENTRADO AL MEDIO (Diego, 23-09). El bloque de texto se centra
@@ -780,11 +804,10 @@ const G: React.FC = () => (
  * ⭐ LA BANDA DEL MAPA — en TRAZOS desde el 25-09.
  *
  * `escala 1,0` y `desdeFila 110` no son a ojo: el contorno de la comuna ocupa las
- * filas **143-572** del archivo (429 px), y la banda mide 515. A escala 1:1 el
- * contorno entra completo con 33 px de aire arriba y 53 abajo — y el archivo se
- * muestra a su resolución nativa, sin remuestrear. `desdeFila 110` es lo que
- * pone ese aire arriba. Un contorno cortado por el borde parece un error de
- * encuadre, no un mapa.
+ * filas **143-473** del archivo (330 px) y la banda mide 515, así que a escala
+ * 1:1 entra completo —del 528 al 858 del lienzo— con aire por los dos lados. Y
+ * 1:1 importa por sí solo: el archivo se muestra a su resolución nativa, sin
+ * remuestrear. Un contorno cortado por el borde parece un error de encuadre.
  */
 const MAPA = {top: 495, h: 515, escala: 1.0, desdeFila: 110};
 
@@ -816,11 +839,12 @@ const H: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
     <AbsoluteFill style={{backgroundColor: TC.colors.navy}} />
 
-    {/* ⭐ EL MAPA, EN TRAZOS. El archivo YA viene con el navy de marca de fondo
-        (`tc-mapa-trazos.py`), así que no hay banda ni borde que disimular: los
-        trazos simplemente se apagan contra el mismo navy del lienzo. Por eso el
-        degradado de los cuatro lados es invisible — no tapa un canto, disuelve
-        el dibujo. */}
+    {/* ⭐ EL MAPA. Diego, 25-09: *"vuelve a tomar el mapa-padre hurtado, déjalo
+        tal cual con el mismo efecto de color con el contraste de fondo, elimina
+        los iconos"*. Es el archivo real en duotono de marca (`tc-mapa-ph.py`),
+        no un trazado: tres vueltas de líneas extraídas por gradiente quedaron
+        pixeladas y se descartaron. El degradado de los cuatro lados lo disuelve
+        en el navy del lienzo, así que no hay canto ni caja. */}
     <div
       style={{
         position: "absolute",
@@ -832,7 +856,7 @@ const H: React.FC = () => (
       }}
     >
       <Img
-        src={OCT("mapa-ph-trazos-navy")}
+        src={OCT("mapa-ph-banda-st")}
         style={{
           position: "absolute",
           left: (STORY.w - 893 * MAPA.escala) / 2,
@@ -1023,10 +1047,19 @@ const H: React.FC = () => (
       </Placa>
     </div>
 
-    {/* El marco vuelve a ir de un solo color. El teñido por tramos existía
-        porque el mapa en papel era CLARO y se tragaba el filete crema; el mapa
-        en trazos es navy, así que el filete se lee en toda su altura. */}
-    <Marco archivo="MARCO-ST" />
+    {/* ⚠️ El marco, teñido por tramos: crema sobre el navy y navy sobre el mapa
+        claro. Un filete crema cruzando el papel del mapa no se ve. Los cortes
+        caen donde el degradado ya resolvió a un lado o al otro: la banda va de
+        la 495 a la 1010 y abre y cierra en el 11 % y el 89 % de su alto. */}
+    <MarcoTramos
+      archivo="MARCO-ST"
+      alto={STORY.h}
+      cortes={[
+        {y: 560, color: TC.colors.cream},
+        {y: 950, color: TC.colors.navy},
+        {y: STORY.h, color: TC.colors.cream},
+      ]}
+    />
     <Pildora caja={STORY.pill} icono={<IPin s={28} />} size={31}>
       Conoce el proyecto
     </Pildora>

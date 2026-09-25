@@ -1170,7 +1170,23 @@ aunque quepa** — es justo lo que estas vueltas vinieron a arreglar, y la
 referencia tampoco lo hace: lo único que pone sobre el mapa es el logo.
 
 
-#### ⭐ 12 bis · LA STORY PASA A TRAZOS (Diego, 25-09) — y trazar NO es dibujar
+#### ⛔ 12 bis · EL CAMINO DE LOS TRAZOS — RECHAZADO, y por qué vale leerlo
+
+> 🗄️ **Las cuatro subsecciones que siguen documentan un camino que Diego cortó**
+> el 25-09: *"no me gusta cómo queda, **los trazos quedan mal y pixelados**,
+> vuelve a tomar el mapa-padre hurtado, **déjalo tal cual** con el mismo efecto
+> de color con el contraste de fondo, elimina los iconos"*. Lo que manda hoy es
+> **§ 12 ter**, más abajo. Se dejan escritas porque cada una resolvió un problema
+> real de medición que va a volver a aparecer — y porque la conclusión de las
+> cuatro juntas es la regla más cara del día:
+>
+> ⭐ **Una captura de 893×631 trae las calles en 3-5 px. El archivo aguanta que
+> le cambien EL COLOR; no aguanta que le cambien LA FORMA.** Trazar el borde,
+> binarizar, engrosar — todo eso trabaja al límite de la resolución, y el
+> resultado se ve pixelado por más medido que esté cada umbral. Cuatro vueltas
+> para llegar ahí.
+
+##### La story pasa a trazos (intento 1) — y trazar NO es dibujar
 
 > *"Necesito que el mapa [sea] en trazos, ocupa el **MAPA-PADRE HURTADO** para
 > generar esa parte del contenido."*
@@ -1226,7 +1242,7 @@ lectura y el marco teñido por tramos.
 macizo. Y va en la fila 976 y no antes porque el vértice sur del contorno cierra
 en la 963: trece píxeles más arriba y la píldora le corta la punta a la comuna.
 
-#### ⛔ SÓLO EL PLANO: ni topónimos ni iconos (Diego, 25-09, 2ª vuelta)
+##### Sólo el plano: ni topónimos ni iconos (intento 2)
 
 > *"Elimina los textos del mapa y los iconos, sólo dejar el plano del mapa."*
 
@@ -1262,7 +1278,7 @@ límite satura en 1,0, así que lo deja entero.
 > a ojo. Ensanchar la máscara, que fue el reflejo, no arregló ninguna de las
 > cinco.
 
-#### ⭐ LINEAL, TIPO PLANO: la línea está o no está (Diego, 25-09, 3ª vuelta)
+##### Lineal, tipo plano: la línea está o no está (intento 3)
 
 > *"Mapa que sea lineal, tipo plano."*
 
@@ -1294,7 +1310,7 @@ corta: el suavizado es sólo el antialias del canto, no una gradación.
 
 Con 45 y rampa de 50, el relieve —p90 en 40— se cae solo y la red queda continua.
 
-#### ⭐ LA CALLE SE DIBUJA MACIZA, NO SE CONTORNEA (Diego, 25-09, 4ª vuelta)
+##### La calle se dibuja maciza, no se contornea (intento 4)
 
 > *"Que el mapa se vea de ese estilo"* — con una referencia de plano urbano
 > adjunta ([`referencias/2026-09-25_plano-urbano-lineal.png`](referencias/2026-09-25_plano-urbano-lineal.png)):
@@ -1321,6 +1337,42 @@ ser manchas limpias, que es como las resuelve la referencia.
 un contorno del mismo grosor **se pierde dentro de ella**. Se engrosa a 2 px por
 lado y la red baja al 88 % — es el único elemento de la pieza que dice cuál es la
 comuna.
+
+#### ⭐ 12 ter · LO QUE MANDA: EL MAPA TAL CUAL, EN DUOTONO, SIN ICONOS
+
+> *"Vuelve a tomar el mapa-padre hurtado, déjalo tal cual con el mismo efecto de
+> color con el contraste de fondo, elimina los iconos."* — Diego, 25-09
+
+`scripts/tc-mapa-ph.py` hace **tres cosas y ninguna más**: borra los nueve
+marcadores de POI, pasa el mapa al duotono navy→crema y repone el contorno
+comunal en su color. Los topónimos y los escudos de ruta **se quedan** — el
+pedido fue «tal cual», y ahí está la Ruta 78.
+
+⚠️ **El duotono va con el rango ESTIRADO, y sin eso sale plano.** Este archivo
+vive casi entero entre 223 y 245 de luminancia —verde rural 225, beige 227, gris
+urbano 232, calles 244, blanco 255—, así que un duotono directo sobre 0-255
+aplasta todo contra el extremo claro y devuelve una lámina crema sin dibujo.
+Estirando de **208 a 250** cada relleno cae en un tono distinto y el mapa vuelve
+a leerse; la letra (48) satura contra el navy, que es donde tiene que estar.
+
+⛔ **Los iconos van DECLARADOS por coordenada, no detectados.** Se probaron cuatro
+reglas automáticas y las cuatro se rompieron:
+
+| Regla | Por qué falla |
+|---|---|
+| saturación > 110 | caza los cuatro de color, pero los de la Municipalidad, el Colegio y el Parque del Recuerdo son gris azulado y saturan 36-64 — **por debajo del escudo de ruta verde, que satura 92** |
+| erosionar lo oscuro | el disco lleva un pictograma blanco dentro, así que «lo oscuro» es un anillo y se erosiona igual que la letra |
+| cerrar y después erosionar | las palabras se cierran también: se llegó a comer el **13 % del mapa**, con topónimos partidos |
+| densidad de tinta en ventana de 21 px | separa limpio iconos (0,53-0,64) de topónimos (0,19-0,34)… pero **los escudos de ruta son aún más densos** (G-300 0,64) y se iba la Ruta 78 con ellos |
+
+Son **nueve** en todo el archivo y están listados uno por uno en el script.
+
+> 💡 **La regla general:** cuando una detección automática hay que calibrarla
+> cuatro veces y aun así daña el material, **la lista explícita es la respuesta
+> correcta**, no la quinta calibración. Nueve coordenadas medidas son auditables;
+> un umbral que casi funciona, no. ⚠️ Y se documenta que **si se reemplaza el
+> PNG, la lista hay que volver a medirla**: es preferible que falle ruidosamente
+> a que borre medio mapa en silencio.
 
 #### El titular pasa a una línea y vuelve al centro
 

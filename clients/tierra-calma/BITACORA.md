@@ -5,6 +5,64 @@
 
 ---
 
+## 2026-09-25 (5ª vuelta) — Diego Aguilar (st-12-10: el mapa tal cual, sin iconos)
+
+**Qué se hizo:** *"No me gusta cómo queda, los trazos quedan mal y pixelados,
+vuelve a tomar el mapa-padre hurtado, déjalo tal cual con el mismo efecto de
+color con el contraste de fondo, elimina los iconos."*
+
+Se descarta el camino de los trazos —cuatro vueltas: tinta proporcional, línea
+binaria, línea engrosada y calle maciza— y el mapa vuelve a ser **el archivo
+real en duotono de marca**. `scripts/tc-mapa-trazos.py` pasó a
+`scripts/tc-mapa-ph.py` porque ya no hace trazos.
+
+⭐ **LA LECCIÓN, QUE VALE MÁS QUE LAS CUATRO VUELTAS.** Una captura de 893×631
+trae las calles en **3-5 px**. El archivo aguanta que le cambien **el color**; no
+aguanta que le cambien **la forma**. Trazar el borde, binarizar, engrosar — todo
+eso trabaja al límite de la resolución y se ve pixelado por más medido que esté
+cada umbral. Ningún ajuste de parámetro iba a salvarlo: el problema era el
+método, y el método se eligió sin preguntarse cuánta resolución había.
+
+**El duotono va con el rango estirado.** Sin eso sale plano: el archivo vive casi
+entero entre 223 y 245 de luminancia (verde 225, beige 227, gris urbano 232,
+calles 244), así que un duotono directo sobre 0-255 lo aplasta todo contra el
+extremo claro y devuelve una lámina crema sin dibujo. Estirando de 208 a 250 cada
+relleno cae en un tono distinto.
+
+⛔ **Los iconos van DECLARADOS por coordenada, y eso es una decisión, no una
+rendición.** Se probaron cuatro reglas automáticas y las cuatro se rompieron:
+
+| Regla | Por qué falla |
+|---|---|
+| saturación > 110 | los de la Municipalidad, el Colegio y el Parque del Recuerdo son gris azulado y saturan 36-64, **por debajo del escudo de ruta verde (92)** |
+| erosionar lo oscuro | el disco lleva un pictograma blanco dentro: «lo oscuro» es un anillo y se erosiona como la letra |
+| cerrar y después erosionar | las palabras se cierran también — se comió el **13 % del mapa** con topónimos partidos |
+| densidad de tinta (ventana 21 px) | separa iconos (0,53-0,64) de topónimos (0,19-0,34), pero **los escudos de ruta son más densos** (G-300 0,64) y se iba la Ruta 78 |
+
+Son nueve en todo el archivo. Se listaron uno por uno mirando cada mancha densa
+recortada, y quedan en el script con su nombre.
+
+> 💡 Cuando una detección automática hay que calibrarla cuatro veces y aun así
+> daña el material, **la lista explícita es la respuesta correcta, no la quinta
+> calibración**. Nueve coordenadas medidas son auditables; un umbral que casi
+> funciona, no. Queda documentado que si se reemplaza el PNG hay que volver a
+> medirlas: mejor que falle ruidosamente a que borre medio mapa en silencio.
+
+**Volvió `MarcoTramos`**, que había retirado hace tres horas: con el mapa otra vez
+claro, un filete crema cruzando la banda no se ve.
+
+**Dónde quedó:** `scripts/tc-mapa-ph.py` (renombrado), `mapa-ph-banda-st.jpg`;
+retirados `mapa-ph-trazos-navy.jpg` y `-papel.jpg`. `OctubreV3.tsx` con
+`MarcoTramos` de vuelta. **QA: 1 aviso**, el deliberado de la slide 2. Re-subida
+sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego. `c-20-10-2` sigue sin tocar.
+
+**Abierto:** sin cambios, más la captura de mapa con el pin del proyecto y el
+contorno de la comuna a la vez.
+
+---
+
 ## 2026-09-25 (4ª vuelta) — Diego Aguilar (st-12-10: la calle, maciza)
 
 **Qué se hizo:** *"Que el mapa se vea de ese estilo"*, con una referencia de

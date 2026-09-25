@@ -1663,9 +1663,17 @@ const K6: React.FC = () => (
  * preaprobado» del titular, «Parcelas desde UF 2.500» y la firma.
  */
 
-/** El celular que trae el mensaje, y la tarjeta de vidrio que lo cruza delante. */
-const FONO = {x: 340, y: 600, w: 400, h: 620, borde: 13};
-const VIDRIO = {x: 96, y: 1000, w: 888, h: 300};
+/**
+ * El celular, la tarjeta que lo CRUZA con el mensaje, y el panel de vidrio.
+ *
+ * ⭐ La tarjeta del mensaje es más ancha que el celular y se sale por los dos
+ * lados (Diego, 25-09, con referencia: *"que se vea así esa parte de crédito
+ * preaprobado"*). Ese desborde es lo que la hace leer como una capa por delante
+ * del aparato y no como una notificación dentro de la pantalla.
+ */
+const FONO = {x: 350, y: 720, w: 380, h: 520, borde: 12};
+const AVISO = {x: 130, y: 950, w: 820, h: 168};
+const VIDRIO = {x: 96, y: 1300, w: 888, h: 200};
 
 const L: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
@@ -1674,19 +1682,39 @@ const L: React.FC = () => (
     <Degradado arriba={0.58} abajo={0.60} velo={0.32} />
     <Marco archivo="MARCO-ST" />
 
-    <Cuerpo desde={250} hasta={580}>
+    <Cuerpo desde={250} hasta={570}>
       <Modulado
         ancho={880}
         tramos={[{t: "¿Ya tienes tu"}, {t: "crédito preaprobado", ivy: true, salto: true}, {t: "?"}]}
       />
     </Cuerpo>
 
-    {/* ⭐ EL CELULAR, DETRÁS. Diego, 25-09: *"agrégale ese mensaje de «crédito
-        preaprobado» [en] un celular atrás"*. El aparato se dibuja por código,
-        como el mock de WhatsApp de `p-09-10` y el del buscador de `st-15-10`:
-        es una interfaz ilustrada, y los mocks de esta marca se dibujan.
-        ⚠️ Va DERECHO, sin inclinar: las tarjetas inclinadas están rechazadas
-        (manual § lo que se rechaza, X-09). */}
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 600,
+        padding: "0 150px",
+        textAlign: "center",
+        fontFamily: SANS,
+        fontWeight: 300,
+        fontSize: 34,
+        lineHeight: 1.34,
+        color: TC.colors.cream,
+      }}
+    >
+      Conoce las parcelas disponibles y las alternativas para avanzar en tu compra.
+    </div>
+
+    {/* ⭐ EL CELULAR. Dibujado por código, como el mock de WhatsApp de `p-09-10`
+        y el del buscador de `st-15-10`: en esta marca las interfaces ilustradas
+        se dibujan. Derecho, sin inclinar (X-09).
+        ⚠️ La pantalla va OSCURA: con pantalla clara, el `backdropFilter` del
+        vidrio extendía ese blanco en un lavado. El vidrio muestra lo que tiene
+        detrás, así que el fondo es parte del diseño del vidrio.
+        ⚠️ Y el contenido de la pantalla son BARRAS, no texto: una app inventada
+        con frases inventadas es copy que nadie aprobó. */}
     <div
       style={{
         position: "absolute",
@@ -1696,7 +1724,7 @@ const L: React.FC = () => (
         height: FONO.h,
         boxSizing: "border-box",
         padding: FONO.borde,
-        borderRadius: 54,
+        borderRadius: 50,
         backgroundColor: "#081B2E",
         border: "1px solid rgba(243,238,227,0.30)",
         boxShadow: "0 34px 70px rgba(6,14,20,0.46)",
@@ -1706,78 +1734,98 @@ const L: React.FC = () => (
         style={{
           width: "100%",
           height: "100%",
-          borderRadius: 42,
-          // ⚠️ Pantalla OSCURA, no crema. Con la pantalla clara, el
-          // `backdropFilter` de la tarjeta de vidrio tomaba ese blanco y lo
-          // extendía en un lavado que se comía la firma. El vidrio muestra lo
-          // que tiene detrás: si detrás hay un bloque claro, el vidrio se
-          // ensucia. Medido a ojo en el render y corregido ahí mismo.
+          borderRadius: 40,
           backgroundColor: "#0C2033",
           overflow: "hidden",
-          paddingTop: 34,
+          padding: "26px 24px",
+          boxSizing: "border-box",
+          display: "flex",
+          flexDirection: "column",
+          gap: 20,
         }}
       >
-        {/* el auricular, que es lo que hace que se lea «celular» y no «tarjeta» */}
         <div
           style={{
-            width: 96,
-            height: 9,
+            width: 86,
+            height: 8,
             borderRadius: 999,
             backgroundColor: "rgba(243,238,227,0.28)",
-            margin: "0 auto 30px",
+            margin: "0 auto 8px",
           }}
         />
-        {/* ⭐ EL MENSAJE, en la pantalla */}
-        <div style={{margin: "0 22px", padding: "26px 24px", borderRadius: 26, backgroundColor: "#FFFFFF", boxShadow: "0 10px 24px rgba(11,44,73,0.10)"}}>
-          <div
-            style={{
-              fontFamily: SANS,
-              fontWeight: 400,
-              fontSize: 21,
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              color: "rgba(11,44,73,0.5)",
-              marginBottom: 16,
-            }}
-          >
-            Tu banco
+        {[0.24, 0.16, 0.12, 0.1].map((op, i) => (
+          <div key={i} style={{display: "flex", flexDirection: "column", gap: 11}}>
+            <div style={{width: i === 0 ? "56%" : "44%", height: 11, borderRadius: 999, backgroundColor: `rgba(243,238,227,${op})`}} />
+            <div style={{width: i === 0 ? "82%" : "68%", height: 11, borderRadius: 999, backgroundColor: `rgba(243,238,227,${op * 0.62})`}} />
           </div>
-          <div style={{display: "flex", alignItems: "center", gap: 16}}>
-            <div
-              style={{
-                width: 52,
-                height: 52,
-                borderRadius: 999,
-                backgroundColor: TC.colors.green,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-              }}
-            >
-              <ICheck s={28} c={TC.colors.cream} />
-            </div>
-            <span
-              style={{
-                fontFamily: SANS,
-                fontWeight: 600,
-                fontSize: 31,
-                lineHeight: 1.12,
-                color: TC.colors.navy,
-              }}
-            >
-              Crédito
-              <br />
-              preaprobado
-            </span>
-          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* ⭐ LA TARJETA DEL MENSAJE, cruzando el celular y saliéndose por los lados */}
+    <div
+      style={{
+        position: "absolute",
+        left: AVISO.x,
+        top: AVISO.y,
+        width: AVISO.w,
+        height: AVISO.h,
+        boxSizing: "border-box",
+        padding: "0 44px",
+        borderRadius: 30,
+        backgroundColor: "#FBF8F2",
+        boxShadow: "0 26px 56px rgba(6,14,20,0.40)",
+        display: "flex",
+        alignItems: "center",
+        gap: 30,
+      }}
+    >
+      <div
+        style={{
+          width: 92,
+          height: 92,
+          borderRadius: 26,
+          backgroundColor: TC.colors.green,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+        }}
+      >
+        <ICheck s={46} c={TC.colors.cream} />
+      </div>
+      <div>
+        <div
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontWeight: 500,
+            fontSize: 50,
+            lineHeight: 1,
+            textTransform: "uppercase",
+            color: TC.colors.navy,
+          }}
+        >
+          Crédito preaprobado
+        </div>
+        <div
+          style={{
+            marginTop: 12,
+            fontFamily: SANS,
+            fontWeight: 400,
+            fontSize: 25,
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            color: "rgba(11,44,73,0.55)",
+          }}
+        >
+          Tu banco
         </div>
       </div>
     </div>
 
-    {/* ⭐ LA TARJETA DE VIDRIO, CRUZANDO POR DELANTE. `backdropFilter` es lo que
-        la hace vidrio: desenfoca la mitad inferior del celular y la fotografía.
-        Sin eso sería un globo gris tapando un teléfono. */}
+    {/* El panel de vidrio: firma, avance y dato. `backdropFilter` es lo que lo
+        hace vidrio — desenfoca la fotografía que tiene detrás. */}
     <div
       style={{
         position: "absolute",
@@ -1786,13 +1834,13 @@ const L: React.FC = () => (
         width: VIDRIO.w,
         height: VIDRIO.h,
         boxSizing: "border-box",
-        padding: "36px 48px",
-        borderRadius: 34,
+        padding: "30px 46px",
+        borderRadius: 32,
         backgroundColor: "rgba(243,238,227,0.13)",
         border: "1px solid rgba(243,238,227,0.34)",
         backdropFilter: "blur(24px) saturate(125%)",
         WebkitBackdropFilter: "blur(24px) saturate(125%)",
-        boxShadow: "0 30px 64px rgba(6,14,20,0.34)",
+        boxShadow: "0 26px 56px rgba(6,14,20,0.32)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -1824,24 +1872,6 @@ const L: React.FC = () => (
       <div style={{fontFamily: SANS, fontWeight: 300, fontSize: 34, color: TC.colors.cream}}>
         {sinPartir("Parcelas desde UF 2.500")}
       </div>
-    </div>
-
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 1350,
-        padding: "0 150px",
-        textAlign: "center",
-        fontFamily: SANS,
-        fontWeight: 300,
-        fontSize: 34,
-        lineHeight: 1.34,
-        color: TC.colors.cream,
-      }}
-    >
-      Conoce las parcelas disponibles y las alternativas para avanzar en tu compra.
     </div>
 
     <Pildora caja={STORY.pill} icono={<IWsp s={28} />} size={30}>

@@ -5,6 +5,35 @@
 
 ---
 
+## 2026-09-25 (12ª vuelta) — Diego Aguilar (st-22-10: la tarjeta cruza el celular)
+
+**Qué se hizo:** *"Que se vea así esa parte de crédito preaprobado"*, con una
+referencia de app adjunta
+(`referencias/2026-09-25_tarjeta-cruzando-celular.png`).
+
+**La gramática de esa referencia es una sola cosa, y es la que importa:** la
+tarjeta del mensaje **es más ancha que el celular y se sale por los dos lados**.
+Ese desborde es lo que la hace leer como una capa por delante del aparato, y no
+como una notificación dentro de la pantalla — que era lo que había.
+
+Aplicado: tarjeta crema de 820 px cruzando un celular de 380, con la **insignia
+cuadrada verde** a la izquierda (como el logo de la referencia), el mensaje
+grande y una bajada chica debajo.
+
+⚠️ **El contenido de la pantalla del celular son BARRAS, no texto.** Inventar
+filas de una app con frases inventadas es copy que nadie aprobó, y en esta cuenta
+eso ya costó una ronda entera (§ lo que se rechaza). Las barras sugieren una app
+sin afirmar nada.
+
+**Dónde quedó:** `OctubreV3.tsx`, bloque `L` (`FONO`, `AVISO`, `VIDRIO`).
+**QA: 1 aviso**, el deliberado de la slide 2. Re-subida sobre el mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios.
+
+---
+
 ## 2026-09-25 (11ª vuelta) — Diego Aguilar (st-22-10: el mensaje en un celular)
 
 **Qué se hizo:** *"Está casi listo, agrégale ese mensaje de «crédito preaprobado»

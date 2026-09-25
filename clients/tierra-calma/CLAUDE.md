@@ -1542,6 +1542,16 @@ nombrarse, los tiene que dar el brief.
 🗄️ **La versión de campo claro vivió una hora** y dejó dos cosas aprovechables,
 anotadas abajo por si vuelve a hacer falta un fondo claro.
 
+> ⭐ **La tarjeta del mensaje CRUZA el celular y se sale por los dos lados**
+> (referencia de Diego, 25-09:
+> [`referencias/2026-09-25_tarjeta-cruzando-celular.png`](referencias/2026-09-25_tarjeta-cruzando-celular.png)).
+> Ese desborde es lo que la hace leer como una capa por delante del aparato en
+> vez de una notificación dentro de la pantalla. Insignia cuadrada de color a la
+> izquierda, mensaje grande, bajada chica.
+>
+> ⚠️ **El contenido de la pantalla son BARRAS, no texto.** Inventar filas de una
+> app con frases inventadas es copy que nadie aprobó.
+
 > ⚠️ **Y el vidrio se diseña CON lo que queda detrás.** Al poner el mensaje en un
 > celular (25-09, segunda vuelta del visual), la pantalla en crema hacía que el
 > `backdropFilter` extendiera ese blanco en un **lavado** que se comía la firma

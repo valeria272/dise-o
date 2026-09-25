@@ -26,3 +26,16 @@ Between), entrega 720p a 24 fps, dura 0,3 s menos y redibuja el texto quemado (p
 Script: `scratchpad/bw/componer.py` de esa sesión. ⚠️ El ffmpeg de Remotion no trae
 `rawvideo`, así que los frames se mandan por `image2pipe` en PNG. Entregar MP4 + GIF ([[video-siempre-con-gif]]).
 Relacionado: [[between-sin-rostros-de-modelos]].
+
+**⛔ Feedback de Eli 25-09 sobre la prueba 2 («casi bien»):** arriba de la cabeza se veían
+**dos tipos** de pelo (el original y el inventado, que no calzan en la unión), y la
+expansión tiene que ser **muy sutil, realista y seguir el movimiento del centro**.
+**Se revisa frame a frame** que nada quede descuadrado ni con movimiento extraño.
+Lo que falló técnicamente: la posición del clip dentro de la IA derivaba hasta 32 px
+(×3 en 4K) y yo la **suavicé** en vez de registrarla por frame → el borde «nada».
+
+**La próxima vez, antes de entregar:**
+- Registrar el centro contra la IA **frame por frame** (sin promedio), y rechazar los frames con coincidencia baja (<0,85).
+- Medir la diferencia de la banda de unión en **cada** frame, en especial sobre pelo, bordes de ropa y objetos que cruzan la costura. Si una zona no calza, se sube el difuminado ahí o se usa el original.
+- Revisar la costura en movimiento con la IA y el original lado a lado, no sólo con 3 o 4 frames sueltos.
+- Si la franja cae sobre pelo o cabeza, **mínima franja** (el centro lo más grande posible) y probar otra tirada de reframe.

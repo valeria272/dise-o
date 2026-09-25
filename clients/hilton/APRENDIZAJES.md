@@ -120,6 +120,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-64** · [BW] Una pieza puede **cambiar de HOJA** en la grilla, no sólo de fecha: se busca por su título en FEED **y** en STORIES antes de decir que no hay nada nuevo — _grilla BW oct, 25-09-2026: «Por qué vienes / por qué te quedas» quedó en STORIES como REVISAR CONTENIDO («DEJARLO EN FEED») y reapareció en FEED 09-10 como OK PARA DISEÑAR_ · ✔×1
 - **R-65** · [DT] La grilla corre la fecha de una pieza ya entregada sin avisar; se reconoce por el título — _grilla DT oct, 25-09-2026: Opinión Expedia pasó de FEED 10-10 a 09-10_ · ✔×1
 - **R-66** · [BW] **Un reel no lleva relleno desenfocado alrededor del clip**: se expande con IA siguiendo la escena, y se ve **entero** lo que estaba en el cuadro (el vaso y la mano), sin recortar para tapar el borde — _contenido vía Eli, reel «La razón» S3, 25-09-2026 («le molesta a contenido»; «la idea es que se siga viendo el vaso y la mano de ella»)_ · ✔×1
+- **R-67** · [BW] La expansión IA de un reel se entrega **sutil y realista, siguiendo el movimiento del centro**: se revisa **frame a frame** que nada quede descuadrado, doblado (pelo, cabeza) ni con movimiento extraño — _Eli, prueba 2 del reel «La razón», 25-09-2026 («arriba de la cabeza se ve dos tipos»; «hacerlo frame a frame»)_ · ✔×1
 
 ### Las dos
 - **R-60** · [TODAS] **Ni títulos ni bajadas llevan punto** en la gráfica (el punto sólo en párrafos largos y legales) — _Eli 25-08 (BW) y 09-09 (DT); Javier Mesa 23-09-2026, recordatorio para las cuatro cuentas_ · ✔×3
@@ -158,6 +159,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 ## 7. Lo que se rechaza
 
+- **X-28** · [BW] Costura de la expansión IA revisada sólo en 3 o 4 frames y con la posición suavizada: el pelo sale doble arriba de la cabeza y el borde nada — _Eli, reel «La razón» prueba 2, 25-09-2026 («casi bien»)_
 - **X-27** · [BW] Tapar el borde desenfocado **agrandando el clip**: corta el vaso y la mano del borde — _Eli, reel «La razón», 25-09-2026: 1 ronda_
 - **X-26** · [BW] Lockup al pie cuando el vaso de la foto ya firma: cae encima del producto y la marca se lee dos veces — _prueba propia, feed «Necesito ir a Between», 25-09-2026 (descartada antes de mostrarla)_
 - **X-01** · [BW] **Estimar lo que Eli describió en vez de medir sus piezas publicadas**: tipografías cambiadas, jerarquía rara — _grilla de septiembre rechazada entera por Valeria, 25–26-08-2026 (2 grillas)_
@@ -206,6 +208,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [BW] ST 30-09: los archivos de Drive siguen llamándose «Plateada al Carmenere» (para no romper el enlace) aunque la pieza ya no nombra el plato → Eli
 
 ## 9. Registro de cosechas
+
+### 2026-09-25 (cierre, adenda) — Claude con Eli · feedback de la prueba 2
+- **Regla nueva:** R-67, la expansión se revisa frame a frame (sutil, realista, acorde al movimiento). **Rechazo:** X-28, pelo doble arriba de la cabeza.
 
 ### 2026-09-25 (tarde-noche) — Claude con Eli · BETWEEN reel «La razón», fuera el fondo desenfocado
 - **Regla nueva [BW]:** R-66, un reel no lleva relleno desenfocado; se expande con IA y se ve entero el vaso y la mano (contenido vía Eli).

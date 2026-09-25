@@ -3,6 +3,23 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-25 (tarde) — Paulina Bustamante
+
+**Qué se hizo:** No se produjeron piezas. `/abrir ebema` + `/al-dia`: repo al día, Drive
+revisado desde las 14:30Z y abiertas en el navegador las 4 carpetas de octubre para que
+Paulina revise (carruseles, stories, LinkedIn y el paid `graficas octubre 26`). Se
+**cosechó en `APRENDIZAJES.md` la ronda 1 del LinkedIn** (R-48 a R-54), que el cierre
+de la mañana había dejado sólo en el manual.
+**Dónde quedó:** `clients/_estado-sync.json` y `clients/ebema/APRENDIZAJES.md`. Comentarios
+en Drive: LinkedIn 17/17 resueltos, stories 12/12, carruseles 58/60.
+**Qué sigue:** leer los comentarios que deje Paulina tras revisar las carpetas
+(`python scripts/drive-comentarios.py --nombre ebema_lk_`, `ebema_c_`, `ebema_st-`). Antes,
+confirmar en las piezas que **cbb5** (texto más abajo, misma separación del logo que el de
+arriba) y **masisa2** (2 líneas) ya están aplicados, y responder + resolver en Drive.
+**Abierto:** post 15/10 — ¿calcar la referencia de grilla o seguir con la gramática de
+portada? (Paulina). LinkedIn 26/10 Capacitaciones sin tema (Carlos). Grilla de noviembre
+sin brief. Los 15 comentarios de Sebastián en el paid siguen sin respuesta (Serena).
+
 ## 2026-09-25 — Paulina Bustamante
 
 **Qué se hizo:** Todo el **LinkedIn de octubre** que la grilla deja producir, más su ronda 1.

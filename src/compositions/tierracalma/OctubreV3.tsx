@@ -696,7 +696,16 @@ const F: React.FC = () => (
 
 const G: React.FC = () => (
   <Lienzo w={POST.w} h={POST.h}>
-    <Foto src={OCT("g-pareja")} foco="50% 55%" />
+    {/* ⭐ Diego (25-09): *"cambia a la pareja, de pose, de ropa, todo"*, manteniendo
+        la idea. Sale `g-pareja` —de pie, centrados, quietos sobre pasto parejo— y
+        entra `g-pareja2`: caminando de espaldas por el camino de ripio ocre, él
+        abrazándola, ropa distinta. Generada con Seedream 5 Pro siguiendo el ADN
+        del lugar (§ 4 bis): matorral nativo ralo pero en verde de primavera,
+        cerros ocres SIN nieve, cerco de madera oscura horizontal, luminarias.
+        ⚠️ Medido antes de instalarla: da como máximo **+0,654** contra cualquier
+        otra imagen del mes (y +0,575 contra la que reemplaza), lejos del +0,85
+        que marca «es la misma foto». */}
+    <Foto src={OCT("g-pareja2")} foco="50% 55%" />
     <Degradado arriba={0.4} abajo={0.44} velo={0.1} />
     <Marco archivo="MARCO-POST" />
     <Burbuja x={112} y={280} w={600} cola="izq">

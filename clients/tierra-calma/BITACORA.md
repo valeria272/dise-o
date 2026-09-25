@@ -5,6 +5,70 @@
 
 ---
 
+## 2026-09-25 (6ª vuelta) — Diego Aguilar (el mapa del carrusel y la pareja del 09-10)
+
+**Qué se hizo:** *"Genera algo parecido con el mapa del 20-10-2, también cambia la
+imagen del post del 09-10, mantén la idea pero cambia a la pareja, de pose, de
+ropa, todo."*
+
+### 1 · `c-20-10-2` — el mapa, con la receta de la story
+
+`scripts/tc-mapa-ph.py` pasó a generar **los dos mapas** con la misma receta:
+duotono con el rango estirado, iconos borrados y el acento que trae el material
+repuesto en su color. Cada pieza conserva **su** archivo, y la razón está medida:
+
+| Pieza | Origen | Acento propio |
+|---|---|---|
+| `st-12-10` | `MAPA-PADRE-HURTADO.png` | el contorno de la comuna |
+| `c-20-10-2` | `mapa3.jpg` (recorte) | el **pin rojo «Tierra Calma»** |
+
+⚠️ **Ninguno de los dos trae las dos cosas.** MAPA-3 tiene el proyecto pero no el
+límite comunal; MAPA-PADRE HURTADO tiene el límite y el proyecto le queda fuera
+del encuadre (x ≈ −160). Sigue valiendo la pena pedir una captura con las dos.
+
+**Tres cosas que hubo que medir aparte para MAPA-3:**
+
+1. **El rojo necesita zona.** El archivo trae el POI del CESFAM en rojo
+   (saturación 171): sin acotar la máscara a la caja del pin, se protegía del
+   borrado y salía pintado como si fuera el pin del proyecto.
+2. **Acá los iconos sí se separan por color** —saturan 138-171 y los escudos de
+   ruta 82-89—, salvo el del Relleno Sanitario, que es gris (40) y va declarado.
+   Es al revés que en el otro mapa, donde tres de los nueve eran grises.
+3. ⚠️ **El color da el CENTRO, no el tamaño.** El primer intento dilató la mancha
+   saturada 14 px para cubrir reborde y sombra, y eso llega a 25 px del centro:
+   le cortó la última letra a «Cerro Prim-», «Fundo La Batall-» y «Parque
+   Municipal E-». La solución fue tomar el **centroide** de cada mancha y borrar
+   la misma elipse declarada del otro mapa, que llega a 16 px de lado.
+
+### 2 · `p-09-10` — pareja nueva
+
+Sale `g-pareja` (de pie, centrados y quietos sobre pasto parejo) y entra
+`g-pareja2`: **caminando de espaldas** por el camino de ripio ocre, él
+abrazándola, ropa distinta —ella lino terracota y chaleco crema, él parka verde
+oscuro y jeans—. Misma idea, mismo encuadre para los globos.
+
+Generada con **Seedream 5 Pro** siguiendo el ADN del lugar (§ 4 bis). Se hicieron
+**dos versiones**: la primera salió fiel pero **seca**, con el suelo pelado. La
+segunda pide explícitamente el verde de primavera sobre la tierra ocre, y es la
+que quedó — es el matiz de Diego del 22-09: *"que se vean mucho mejor que las
+imágenes reales del lugar, más verdes los espacios, con vegetación natural
+nativa"*. **La IA idealiza, no documenta**, pero sin convertirse en pradera.
+
+⚠️ **Medida antes de instalarla** (regla de la foto que no se repite): da como
+máximo **+0,654** contra cualquier otra imagen del mes, y **+0,575** contra la
+que reemplaza. Lejos del +0,85 que marca «es la misma foto».
+
+**Dónde quedó:** `scripts/tc-mapa-ph.py` (ahora con los dos mapas en un dict),
+`mapa3-banda-k2.jpg` regenerado, `g-pareja2.jpg` nuevo y `g-pareja.jpg` retirado.
+**QA: 1 aviso**, el deliberado de la slide 2. Las dos piezas re-subidas sobre el
+mismo `fileId`.
+
+**Qué sigue:** esperar la vuelta de Diego.
+
+**Abierto:** sin cambios, más la captura de mapa con el pin y el contorno a la vez.
+
+---
+
 ## 2026-09-25 (5ª vuelta) — Diego Aguilar (st-12-10: el mapa tal cual, sin iconos)
 
 **Qué se hizo:** *"No me gusta cómo queda, los trazos quedan mal y pixelados,

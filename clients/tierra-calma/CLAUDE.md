@@ -1374,6 +1374,26 @@ Son **nueve** en todo el archivo y están listados uno por uno en el script.
 > PNG, la lista hay que volver a medirla**: es preferible que falle ruidosamente
 > a que borre medio mapa en silencio.
 
+##### El carrusel usa la misma receta, con su propio archivo (25-09)
+
+`c-20-10-2` pasó al mismo tratamiento que la story. **Cada pieza conserva su
+mapa**, y la razón está medida: MAPA-3 trae el **pin del proyecto** pero no el
+límite comunal; MAPA-PADRE HURTADO trae el **límite** y el proyecto le queda
+fuera del encuadre. Ninguno tiene los dos.
+
+Tres diferencias que hubo que medir para MAPA-3:
+
+1. **El rojo necesita zona.** El archivo trae el POI del CESFAM en rojo
+   (saturación 171): sin acotar la máscara a la caja del pin, se protegía del
+   borrado y salía pintado como si fuera el pin del proyecto.
+2. **Acá los iconos sí se separan por color** (saturan 138-171, los escudos de
+   ruta 82-89) — al revés que en el otro mapa. Sólo el del Relleno Sanitario es
+   gris (40) y va declarado.
+3. ⚠️ **El color da el CENTRO, no el tamaño.** Dilatar la mancha saturada 14 px
+   para cubrir reborde y sombra llega a **25 px del centro** y le corta la última
+   letra a los topónimos vecinos. Se toma el **centroide** y se borra la elipse
+   declarada, que llega a 16 px de lado.
+
 #### El titular pasa a una línea y vuelve al centro
 
 *"El texto superior que quede así: «cerca de santiago» en una línea, y abajo como

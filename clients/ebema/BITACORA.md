@@ -3,6 +3,50 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-24 (tarde) — Paulina Bustamante
+
+**Qué se hizo:** La **story animada de Click (07/10)** pasó 4 rondas de comentarios de
+Paulina y quedó **APROBADA** («bien, aprobado por mí»).
+1. Ronda 1 (5 comentarios): sin arcos en las esquinas; T2 en 2 líneas con «24/7 y sin
+   filas.» en caja roja bold; la caja «una gift card» del ancho de las otras líneas;
+   «Toca el enlace» más cerca del anillo. El **tirón de 0:10** era mío: el clip de 24 fps
+   con `playbackRate` salía a ~5 fps. Ahora todos los clips se interpolan a 30 fps.
+2. Gift card: el logo de Ebema Click se pegó en el fotograma clave y se re-animó con
+   Kling. Kling inventó una plaquita en el chaleco en los 3 intentos: se borró cuadro a
+   cuadro (`limpiar_s4.py`).
+3. Ronda 2: «el logo está chueco» (la tarjeta va inclinada ~2° y Kling lo deformaba) →
+   `pegar_logo.py` sigue la banda roja y pega el PNG oficial. T3 en bold. Los bloques del
+   cierre entran sin rebote y sangran fuera del lienzo (había 1 px blanco abajo).
+4. Ronda 3, voz y música. **1er intento rechazado**: voz «Andre» de ElevenLabs (suena a
+   extranjero) y como música usé el audio de la story de julio, que traía la locución.
+   Quedó: voz **es-CL-LorenzoNeural** (elegida por Paulina) con entusiasmo (tono +11 Hz,
+   «¡…!», «guift kard») y música **`audio_fondo3.mp3` desde el segundo 8**, a 8 dB bajo
+   la voz. Duración final **20,8 s**.
+5. **GIF** de la story para la grilla (320 px, 10 fps, 11,6 MB).
+6. **LinkedIn**: Paulina dejó referencias en `2-referencias/linkedin/{carrusel,reel}` y
+   está subiendo fotos de sucursal. Se crearon 11 subcarpetas por sucursal en
+   `3-fotos/fotos_sucursales/` (ella arrastra las fotos). Reglas nuevas: foto real de base
+   recreada con IA más estética, y **nunca rostros de trabajadores**.
+
+**Dónde quedó:**
+- Drive `4-entregado / 2026-10 grilla octubre — stories`: `ebema_st-07.10.mp4` (mismo
+  fileId, los comentarios siguen anclados) + `ebema_st-07.10.gif`.
+- Repo: `public/assets/ebema/grilla-oct26/story-animada/` con todo para reproducirla:
+  `clips_30.sh` (orden de los pasos), `limpiar_s4.py`, `pegar_logo.py`, `mezcla.py`,
+  `voz/generar.py` + los mp3 y las pruebas descartadas, `musica_original.mp3`
+  (= audio_fondo3), `mezcla.wav`. Composición `EbemaGrillaStoryClickOct` (624 cuadros).
+- `magnific-video.py` ahora imprime el task_id y retoma con `--tarea <id> --minutos N`.
+
+**Qué sigue:** LinkedIn. Primero revisar que las 11 carpetas de `fotos_sucursales` tengan
+sus fotos (Coquimbo y Concepción no tenían ninguna) y leer las referencias de
+`2-referencias/linkedin`. Recién después proponer, y no generar nada sin su OK.
+
+**Abierto:**
+1. Fotos de sucursal: Paulina las sigue subiendo; hay dos `calera-2` (png y jpg).
+2. La licencia de `audio_fondo3` es de Paulina: se asume que sirve para EBEMA.
+3. Siguen abiertos: grilla de noviembre sin brief (5 pendientes de Ariel), logo de Masisa
+   no vectorial y EBEMA sin `reglas.yaml`.
+
 ## 2026-09-24 — Serena Abarca
 
 **Qué se hizo:** El **PAID de octubre** (brief de Sebastián Córdova, 16 piezas, producido

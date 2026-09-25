@@ -776,6 +776,18 @@ diseñadora. Comparada con la story de paid, **casi nada coincide**:
 > ⛔ **El lockup de Click NO mide lo mismo en grilla que en paid.** Es un 50 % más
 > grande y va más arriba. Si se calca el de paid, la pieza se ve de otra marca.
 
+### ⛔ LinkedIn — las fotos son de sucursal REAL, sin rostros — 24-09-2026
+
+Paulina, antes de empezar la sección LinkedIn (todavía no se genera nada):
+
+- **La imagen parte de una foto real de la sucursal** y se crea con IA una versión más
+  estética. Se permiten escenas nuevas, pero siempre construidas desde las fotos
+  reales, que entran como `--refs`: la sucursal tiene que reconocerse.
+- ⛔ **Nunca rostros de trabajadores.** EBEMA rota personal y las fotos pueden ser
+  antiguas. Las personas van de espaldas, fuera de foco o recortadas.
+- Fotos base: Drive `MATERIAL DISEÑO PAULINA/EBEMA/3-fotos/fotos_sucursales/<sucursal>/`
+  (una carpeta por sucursal). Referencias: `2-referencias/linkedin/{carrusel, reel}`.
+
 ### ⭐ Las STORIES de grilla ya tienen sistema — 24-09-2026
 
 Plantillas en `clients/ebema/sistema-grilla/stories-grilla.css` (familias B y C1,
@@ -804,6 +816,21 @@ Serena de octubre (EBEMA_P01…P15) también.
 **Octubre trajo algo nuevo:** «TEST INTERACCIÓN: BOTÓN DE WHATSAPP» — una T5
 («Toca el botón y escríbenos por WhatsApp.») y el botón lo pone Instagram. El bloque
 de horarios sube 182,6 para dejarle sitio. No hay referencia previa con esto.
+
+**La story ANIMADA — rondas 1 a 3 de Paulina (24-09), APROBADA.** Valen para toda
+story animada de grilla:
+
+| Regla | Detalle |
+|---|---|
+| ⛔ **Sin los arcos rojos de las esquinas** | «elimina los círculos que salen de las esquinas para todo el video» (los de julio ya no van) |
+| **Fluido y realista** | Los clips de Kling (24 fps) se pasan a 30 fps con interpolación de movimiento ANTES de montarlos (`clips_30.sh`). Con `playbackRate` o `--muted`, Remotion repite cuadros |
+| **Una línea, una caja** | Si una frase va en 2 líneas, la segunda va en caja roja y **bold** («Con Ebema Click compras online» / **«24/7 y sin filas.»**). La caja destacada tiene el ancho de las otras líneas y crece con el texto |
+| **Texto sobre bodega en bold** | «se pierde la letra en el fondo» |
+| **Producto con logo real** | La gift card lleva el logo de Ebema Click, pegado siguiendo el objeto cuadro a cuadro (`pegar_logo.py`). Kling lo deforma y además inventa logos y plaquitas en la ropa |
+| **Cierre** | Los bloques rojos entran lento, sin rebote, y **sangran** fuera del lienzo (nunca una línea blanca en el borde). «Toca el enlace» va cerca del anillo EBEMA |
+| **Voz** | `es-CL-LorenzoNeural`, velocidad normal, tono +11 Hz, frases con «¡…!». Los anglicismos se escriben como suenan («guift kard»). ⛔ Los presets de ElevenLabs/Higgsfield suenan a extranjero |
+| **Música** | Pistas de Paulina en Drive `EBEMA/2-referencias/musica` (`audio_fondo`, `2`, `3`), ~8 dB bajo la voz. ⛔ Nunca sacar la música de un video terminado: la story de julio traía la locución mezclada |
+| **Grilla** | Se entrega también un GIF de 320 px a 10 fps (~12 MB) para pegar en Slides |
 
 ### Familia B · INFORMACIÓN DE SERVICIO — horarios y direcciones
 

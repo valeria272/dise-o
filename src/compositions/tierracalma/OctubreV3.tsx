@@ -106,6 +106,43 @@ const Marco: React.FC<{archivo: string}> = ({archivo}) => (
 );
 
 /**
+ * ⭐ EL MARCO TEÑIDO POR TRAMOS — para las piezas con el mapa a sangre.
+ *
+ * El marco es un **asset bloqueado**: no se redibuja, sólo se rellena o se
+ * recolorea con máscara. Pero cuando el fondo cambia de claro a oscuro dentro de
+ * la misma pieza —el mapa es papel en la banda del medio y el color de marca
+ * arriba y abajo— **un filete de un solo color deja de verse en un tramo**.
+ *
+ * Así que se tiñe por tramos: el filete contrasta con lo que cruza. Es el mismo
+ * recurso de `MarcoTenido` aplicado tres veces con `clipPath`, no un marco
+ * nuevo. La referencia que pasó Diego el 24-09 hace exactamente esto: filete
+ * oscuro sobre el mapa claro y píldora crema sobre el color sólido.
+ *
+ * `cortes` va en píxeles del lienzo y de arriba hacia abajo; el último `y` tiene
+ * que ser el alto de la pieza.
+ */
+const MarcoTramos: React.FC<{
+  archivo: string;
+  alto: number;
+  cortes: {y: number; color: string}[];
+}> = ({archivo, alto, cortes}) => (
+  <>
+    {cortes.map((c, i) => (
+      <div
+        key={c.y}
+        style={{
+          position: "absolute",
+          inset: 0,
+          clipPath: `inset(${i === 0 ? 0 : cortes[i - 1].y}px 0 ${alto - c.y}px 0)`,
+        }}
+      >
+        <MarcoTenido archivo={archivo} color={c.color} />
+      </div>
+    ))}
+  </>
+);
+
+/**
  * ⛔ TODO CENTRADO AL MEDIO (Diego, 23-09). El bloque de texto se centra
  * vertical y horizontalmente en el alto ÚTIL del marco — el que queda entre el
  * logo y la píldora — en vez de colgar de un `top` fijo. Así una frase corta y
@@ -706,64 +743,63 @@ const G: React.FC = () => (
 /**
  * ⭐ H · 12/10 · HISTORIA — el mapa del lugar.
  *
- * ⛔ EL MAPA ES UN OBJETO, NO UN FONDO (Diego, 24-09-2026, 2ª vuelta)
- * ─────────────────────────────────────────────────────────────────────
+ * ⛔ EL MAPA ES PAPEL Y VA A SANGRE (Diego, 24-09-2026, con referencia adjunta)
+ * ──────────────────────────────────────────────────────────────────────────────
  * *"Mejoremos la forma en que mostramos el mapa, que se vea integrado de buena
  * forma y que se lea bien. Quita el pin de Tierra Calma, solo deja el del mapa
- * original."*
+ * original."* Y después, con una pieza de la propia marca adjunta:
+ * *"exactamente la pieza del 20-10-2 sigue esta referencia… mismo ejemplo para
+ * el mapa de la st-12-10"*.
  *
- * Las tres versiones anteriores fallaron por la misma razón, agravándola:
+ * La referencia está en `clients/tierra-calma/referencias/`. Su gramática:
  *
- *   1. captura de Google Maps velada en azul → leía como una mancha
- *   2. mapa de celdas DIBUJADO (referencia Sonatta) → *"el mapa no es así
- *      realmente"*; la cartografía no se inventa
- *   3. MAPA-3 difuminado con una máscara radial → seguía leyendo como mancha,
- *      con los topónimos ilegibles, y encima nuestro rótulo crema
+ *   · el mapa **a sangre**, ocupando el ancho completo
+ *   · el mapa es **papel**: duotono a la LUZ del crema, con sus topónimos
+ *     oscuros. Nunca al revés — un mapa oscuro sobre fondo oscuro es textura
+ *   · el mapa **se disuelve** en el color de marca con degradado, sin borde
+ *   · **ningún texto de la pieza se apoya sobre el mapa**: todos se apoyan sobre
+ *     el color sólido en el que el mapa se deshace
+ *   · la ubicación va en **píldora de contorno**, no en placa maciza
+ *   · el filete del marco cambia de color según lo que cruza — ver `MarcoTramos`
  *
- * El error de fondo no era el encuadre ni el color: era **tratar el mapa como
- * ambiente**. Un mapa que no se puede leer no es un mapa, es una textura. Lo
- * que cambia acá:
- *
- *   · **Recuadro declarado.** Sin máscara, sin degradado, con borde propio y el
- *     mismo radio asimétrico de la foto de abajo. Son dos tarjetas del mismo
- *     sistema apiladas: **dónde queda** y **cómo se ve**.
- *   · **El mapa es papel.** El duotono va a la luz del crema, no a la sombra
- *     del navy: el recuadro es lo más claro de la pieza y por eso se lee.
- *   · **El pin es el del mapa.** Ver abajo.
- *   · La placa de ubicación deja de flotar y se convierte en el **pie del
- *     recuadro**: el rótulo nombra lo que el mapa muestra.
- *   · Se fue el pin fantasma de marca de agua. Era otro pin, y sobraba.
+ * ⛔ LO QUE NO SE COPIÓ: **su mapa.** Ese es uno de los corruptos —dice «Los
+ * Maitenss», «Av. El Goneuiualdde» y trae escudos **G-68** alrededor de Padre
+ * Hurtado, justo el error que el manual persigue hace meses—. La cartografía
+ * sigue saliendo de `MAPA-3`, que es real.
  *
  * ⭐ POR QUÉ SALE NUESTRO RÓTULO Y QUEDA EL DEL MAPA
  * ─────────────────────────────────────────────────
  * **Tierra Calma ya está en Google Maps.** MAPA-3 trae su pin rojo y su
- * etiqueta, puestos por Google, no por nosotros. Nuestra píldora crema encima
- * era una segunda marca tapando la primera — y la primera vale más, porque es
- * la prueba de que el lugar existe y se puede buscar.
+ * etiqueta, puestos por Google. Nuestra píldora crema encima era una segunda
+ * marca tapando la primera — y la primera vale más, porque es la prueba de que
+ * el lugar existe y se puede buscar.
  *
- * El pin sobrevive al duotono porque `scripts/tc-mapas-duotono.py` lo aísla y
- * lo repone en su rojo original: es lo único cromático de la pieza, así que es
- * lo primero que se mira. El resto del mapa —incluido el POI rojo del CESFAM,
- * que no es nuestro— se apaga con el duotono.
+ * El pin sobrevive al duotono porque `scripts/tc-mapas-duotono.py` lo aísla y lo
+ * repone en su rojo original: es lo único cromático de la pieza. El resto del
+ * mapa —incluido el POI rojo del CESFAM, que no es nuestro— se apaga.
  *
- * ⚠️ GEOMETRÍA. `mapa3-recuadro-st.jpg` es un recorte de 800×311 y la caja es
- * de 888×345: **misma proporción**, así que el archivo se muestra 1:1 y nadie
- * reencuadra con `objectPosition`. Si se cambia la caja, se cambia el recorte
- * en el script — no el `objectFit` acá.
+ * ⚠️ GEOMETRÍA. `mapa3-banda-st.jpg` es un recorte de 800×348 y la banda mide
+ * 1080×470: **misma proporción**, así que el archivo se muestra 1:1. Si se
+ * cambia la banda, se cambia el recorte en el script — no el `objectFit` acá.
  *
- * Qué entra en el recorte, y por qué (medido sobre `mapa3.jpg`):
+ * El script imprime **dónde cae cada topónimo en el lienzo**, y ese es el
+ * control: el pin en (185, 842), Maipú en (952, 579) y Padre Hurtado en
+ * (729, 910) tienen que quedar **dentro de la banda limpia** (565–930). Un
+ * topónimo bajo el degradado es un topónimo que no se lee.
+ *
+ * Qué entra en el recorte, y por qué:
  *   · el pin (287,315), con aire alrededor
  *   · «Maipú» (855,120) — el ancla de Santiago que sostiene el titular. Sin
- *     ella, «CERCA DE SANTIAGO» es una afirmación sin mapa que la respalde
- *   · «Padre Hurtado» (690,365) — el topónimo que la pieza nombra dos veces
+ *     ella, «CERCA DE SANTIAGO» es una afirmación que el mapa no respalda
+ *   · «Padre Hurtado» (690,365) — el topónimo que la pieza nombra
  *   · el escudo de la **Ruta 78** (687,263) — la vía correcta, la que el manual
  *     persigue desde que una pieza publicó «Ruta 68»
  */
 
-/** El recuadro del mapa: imagen + pie, en la misma columna que la foto. */
-const MAPA = {left: 96, top: 578, w: 888, h: 345};
-/** El pie del recuadro — la placa de ubicación, ahora pegada al mapa. */
-const MAPA_PIE = 54;
+/** La banda del mapa: a sangre, y con su propia proporción de recorte. */
+const MAPA = {top: 545, h: 470};
+/** Dónde abre y dónde cierra el degradado. Fuera de esto, navy macizo. */
+const MAPA_LIMPIO = {desde: 565, hasta: 930};
 
 /** Placa de dato, como las del pie de la referencia. */
 const Placa: React.FC<{children: React.ReactNode}> = ({children}) => (
@@ -793,8 +829,26 @@ const H: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
     <AbsoluteFill style={{backgroundColor: TC.colors.navy}} />
 
-    {/* titular, a la izquierda y arriba del mapa: primero la frase, después la
-        prueba. Antes iban lado a lado y los dos perdían. */}
+    {/* ⭐ EL MAPA, A SANGRE. Se disuelve en el navy por arriba y por abajo: el
+        degradado va sobre la banda y termina exactamente donde termina la
+        imagen, así que no queda canto. */}
+    <div style={{position: "absolute", left: 0, top: MAPA.top, width: STORY.w, height: MAPA.h}}>
+      <Img
+        src={OCT("mapa3-banda-st")}
+        style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}
+      />
+      <AbsoluteFill
+        style={{
+          background: `linear-gradient(to bottom,
+            ${TC.colors.navy} 0%,
+            rgba(11,44,73,0) ${((MAPA_LIMPIO.desde - MAPA.top) / MAPA.h) * 100}%,
+            rgba(11,44,73,0) ${((MAPA_LIMPIO.hasta - MAPA.top) / MAPA.h) * 100}%,
+            ${TC.colors.navy} 100%)`,
+        }}
+      />
+    </div>
+
+    {/* titular sobre navy macizo, encima de la banda */}
     <div style={{position: "absolute", left: 96, top: 250, width: 880, textAlign: "left"}}>
       <div
         style={{
@@ -829,54 +883,49 @@ const H: React.FC = () => (
       </div>
     </div>
 
-    {/* ⭐ EL RECUADRO DEL MAPA — imagen + pie, un solo objeto recortado por el
-        mismo radio. El `overflow: hidden` es lo que hace que el pie herede la
-        esquina redondeada de abajo a la izquierda. */}
+    {/* la ubicación, en píldora de contorno como la referencia. Va en el tramo
+        donde el mapa ya se disolvió, así que apoya sobre navy y no sobre
+        cartografía. */}
     <div
       style={{
         position: "absolute",
-        left: MAPA.left,
-        top: MAPA.top,
-        width: MAPA.w,
-        height: MAPA.h + MAPA_PIE,
-        overflow: "hidden",
-        // el mismo radio asimétrico de la foto: son tarjetas hermanas
-        borderRadius: "56px 0 56px 0",
-        // filete de arena, el mismo recurso que los del marco
-        boxShadow: "inset 0 0 0 1px rgba(201,185,154,0.45)",
+        left: 0,
+        right: 0,
+        top: 950,
+        display: "flex",
+        justifyContent: "center",
       }}
     >
-      <Img
-        src={OCT("mapa3-recuadro-st")}
-        style={{width: "100%", height: MAPA.h, objectFit: "cover", display: "block"}}
-      />
       <div
         style={{
-          height: MAPA_PIE,
-          backgroundColor: "#07203A",
-          display: "flex",
+          display: "inline-flex",
           alignItems: "center",
-          justifyContent: "center",
+          gap: 13,
+          border: `1px solid rgba(243,238,227,0.55)`,
+          borderRadius: 999,
+          padding: "13px 34px",
           fontFamily: SANS,
           fontWeight: 400,
           fontSize: 28,
           letterSpacing: "0.1em",
           textTransform: "uppercase",
           color: TC.colors.cream,
+          whiteSpace: "nowrap",
         }}
       >
+        <IPin s={26} c={TC.colors.cream} />
         Padre Hurtado · Región Metropolitana
       </div>
     </div>
 
-    {/* la foto, con la misma esquina redondeada que el recuadro del mapa */}
+    {/* la foto del sitio real */}
     <div
       style={{
         position: "absolute",
         left: 96,
-        top: 1018,
+        top: 1052,
         width: 888,
-        height: 340,
+        height: 306,
         overflow: "hidden",
         borderRadius: "56px 0 56px 0",
       }}
@@ -960,7 +1009,17 @@ const H: React.FC = () => (
       </Placa>
     </div>
 
-    <Marco archivo="MARCO-ST" />
+    {/* ⚠️ El marco, teñido por tramos: crema sobre el navy y navy sobre el mapa
+        claro. Un filete crema cruzando el papel del mapa no se ve. */}
+    <MarcoTramos
+      archivo="MARCO-ST"
+      alto={STORY.h}
+      cortes={[
+        {y: 555, color: TC.colors.cream},
+        {y: 972, color: TC.colors.navy},
+        {y: STORY.h, color: TC.colors.cream},
+      ]}
+    />
     <Pildora caja={STORY.pill} icono={<IPin s={28} />} size={31}>
       Conoce el proyecto
     </Pildora>
@@ -1154,47 +1213,81 @@ const K1: React.FC = () => (
 /**
  * ⭐ K2 · 20/10 · CARRUSEL 2/6 — «¿Qué tan conectado estarás?»
  *
- * ⛔ EL MAPA ES UN OBJETO, NO UN FONDO (Diego, 24-09-2026, 2ª vuelta)
- * ─────────────────────────────────────────────────────────────────────
- * *"Quitar pin de Tierra Calma, que sea fondo sólido con el color verde de la
- * marca más un **recuadro** con el mapa del lugar."*
+ * ⛔ EL MAPA ES PAPEL Y VA A SANGRE (Diego, 24-09-2026, con referencia adjunta)
+ * ──────────────────────────────────────────────────────────────────────────────
+ * *"Para el carrusel, exactamente la pieza del 20-10-2 sigue esta referencia,
+ * que se vea así pero con el color verde."* La referencia está guardada en
+ * `clients/tierra-calma/referencias/2026-09-24_tc-mapa-a-sangre.png` y su
+ * gramática está explicada larga en el bloque de `H`, que la aplica igual.
  *
- * Es el mismo pedido que dejó en `st-12-10` el mismo día, y las dos piezas se
- * arreglan igual — ver el bloque de `H`, que lo explica largo:
+ * En resumen: **el mapa a sangre, en papel, disolviéndose en el color de marca,
+ * y ningún texto apoyado sobre la cartografía.**
  *
- *   · el mapa deja de ir a sangre y pasa a un recuadro con su recorte propio
- *   · el duotono va a la LUZ del crema: el mapa es papel y se lee
- *   · sale nuestra píldora y queda el pin rojo que el mapa ya trae, porque
- *     **Tierra Calma ya está en Google Maps** y esa etiqueta vale más que la
- *     nuestra: prueba que el lugar existe y se puede buscar
+ * ⛔ LO ÚNICO QUE NO SE PUDO COPIAR DE LA REFERENCIA, Y POR QUÉ
+ * ─────────────────────────────────────────────────────────────
+ * En la referencia el mapa **empieza en el borde superior** y arriba sólo va el
+ * logo. Acá no se puede: el carrusel tiene una regla anterior del propio Diego
+ * —*"que la ubicación de cada número con el título estén en el mismo lugar que
+ * la slide 2"*— y **esta es la slide que define esa fila (205)**. Si el titular
+ * se baja, se mueve en las seis.
  *
- * ⚠️ El recuadro va MONTADO EN PASPARTÚ CREMA, no con filete. No es un capricho:
- * es el mismo recurso de los recortes fotográficos de la slide 3
- * (`Recorte`, paspartú de 9 px + sombra de contacto). Diego, el 24-09, había
- * pedido las slides 2 y 3 en verde justamente porque *"quedan muy cortadas
- * visualmente de las demás"*; repetir el montaje las hace la misma familia.
+ * Así que el mapa entra **desde la fila 470**, debajo del titular, y sangra por
+ * el borde inferior. Es el mismo movimiento de la referencia, corrido: color
+ * macizo donde va el texto, papel donde va el mapa.
  *
- * ⚠️ GEOMETRÍA. `mapa3-recuadro-k2.jpg` es un recorte de 800×423 y la ventana
- * mide 862×456 — **misma proporción**, así que el archivo se muestra 1:1 y
- * nadie lo reencuadra acá. Si cambia la ventana, cambia el recorte en
- * `scripts/tc-mapas-duotono.py`.
+ * ⚠️ El titular NO se pone encima del mapa aunque haya espacio. Un titular de
+ * dos líneas sobre cartografía es exactamente el problema que estas dos vueltas
+ * vinieron a arreglar — y la referencia tampoco lo hace: lo único que pone
+ * sobre el mapa es el logo.
+ *
+ * ⚠️ GEOMETRÍA. `mapa3-banda-k2.jpg` es un recorte de 873×711 y la banda mide
+ * 1080×880: **misma proporción**, así que el archivo se muestra 1:1 y nadie lo
+ * reencuadra acá. El script imprime dónde cae cada topónimo en el lienzo, y ese
+ * es el control: el pin en (233, 860), Maipú en (935, 619) y Padre Hurtado en
+ * (731, 922) quedan dentro de la banda limpia (525–990).
  *
  * Este recorte es más alto que el de la story porque la slide pregunta por la
- * CONEXIÓN: además del pin y de Maipú entran los dos escudos de la **Ruta 78**
- * y el Trapiche de Peñaflor, que son las vías reales del sector.
+ * CONEXIÓN: entran los dos escudos de la **Ruta 78**, el Trapiche de Peñaflor y
+ * Calera de Tango.
  */
 
-/** Ventana del mapa + paspartú. Mismo ancho y margen que el resto del carrusel. */
-const MAPA_K2 = {left: 96, top: 480, w: 862, h: 456, marco: 13};
+/** La banda del mapa: a sangre, desde debajo del titular hasta el borde. */
+const MAPA_K2 = {top: 470, h: 880};
+/**
+ * El degradado en cuatro filas del lienzo: `abre`→`desde` es la entrada,
+ * `hasta`→`cierra` la salida. ⚠️ `cierra` tiene que quedar **por encima del
+ * texto de cierre** (fila 1080): si el degradado sigue abierto donde va el
+ * texto, el texto se lee sobre cartografía y vuelve el problema de siempre.
+ */
+const K2_LIMPIO = {abre: 470, desde: 525, hasta: 990, cierra: 1062};
 
 const K2: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
     {/* ⭐ Diego (24-09): "siento que quedan muy cortadas visualmente la 2da y la
         3ra de las demás, cambiar por el color VERDE del manual". Las dos slides
-        de fondo plano van al verde profundo del logo estático. Acá el fondo es
-        SÓLIDO: el mapa que antes iba a sangre se retiró al recuadro. */}
+        de fondo plano van al verde profundo del logo estático. */}
     <AbsoluteFill style={{backgroundColor: TC.colors.green}} />
-    <MarcoTenido archivo="MARCO-CARRUSEL-2" color={TC.colors.cream} />
+
+    {/* ⭐ EL MAPA, A SANGRE. El degradado abre bajo el titular y cierra antes del
+        cierre de texto: la cartografía queda limpia en el medio y el texto
+        siempre apoya sobre verde macizo. */}
+    <div style={{position: "absolute", left: 0, top: MAPA_K2.top, width: CARR.w, height: MAPA_K2.h}}>
+      <Img
+        src={OCT("mapa3-banda-k2")}
+        style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}
+      />
+      <AbsoluteFill
+        style={{
+          background: `linear-gradient(to bottom,
+            ${TC.colors.green} 0%,
+            rgba(0,51,38,0) ${((K2_LIMPIO.desde - MAPA_K2.top) / MAPA_K2.h) * 100}%,
+            rgba(0,51,38,0) ${((K2_LIMPIO.hasta - MAPA_K2.top) / MAPA_K2.h) * 100}%,
+            ${TC.colors.green} ${((K2_LIMPIO.cierra - MAPA_K2.top) / MAPA_K2.h) * 100}%,
+            ${TC.colors.green} 100%)`,
+        }}
+      />
+    </div>
+
     <Cabecera n="01.">
       <Modulado
         ancho={880}
@@ -1203,35 +1296,12 @@ const K2: React.FC = () => (
       />
     </Cabecera>
 
-    {/* ⭐ EL RECUADRO: el mapa montado en paspartú, como los recortes de la
-        slide 3. La sombra de contacto es lo que lo despega del verde. */}
-    <div
-      style={{
-        position: "absolute",
-        left: MAPA_K2.left,
-        top: MAPA_K2.top,
-        backgroundColor: "#FBF8F2",
-        padding: MAPA_K2.marco,
-        boxShadow: "0 14px 30px rgba(0,0,0,0.26)",
-      }}
-    >
-      <Img
-        src={OCT("mapa3-recuadro-k2")}
-        style={{
-          width: MAPA_K2.w,
-          height: MAPA_K2.h,
-          objectFit: "cover",
-          display: "block",
-        }}
-      />
-    </div>
-
     <div
       style={{
         position: "absolute",
         left: 0,
         right: 0,
-        top: 1040,
+        top: 1080,
         padding: "0 140px",
         textAlign: "center",
         fontFamily: SANS,
@@ -1247,6 +1317,12 @@ const K2: React.FC = () => (
         Padre Hurtado · RM
       </div>
     </div>
+
+    {/* El marco va crema entero y NO necesita teñido por tramos —al contrario
+        que la story—: medido sobre el PNG, `MARCO-CARRUSEL-2` sólo lleva tinta
+        en las filas **130 y 1285**, las dos hermanas horizontales, y no tiene
+        filete vertical. Las dos caen sobre verde macizo. */}
+    <MarcoTenido archivo="MARCO-CARRUSEL-2" color={TC.colors.cream} />
   </Lienzo>
 );
 

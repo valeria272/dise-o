@@ -5,6 +5,162 @@
 
 ---
 
+## 2026-09-24 — CIERRE DE JORNADA — Diego Aguilar
+
+**Qué se hizo:** tres rondas sobre la grilla de octubre, todas sobre comentarios
+de Diego en Drive.
+
+1. **`p-29-10`** — el dato comercial pasó a ser un tercer papel del refrigerador
+   (*"el texto de Aprox. 5.000 m² también que sea un post-it"*). Escena
+   regenerada con los **tres papeles en blanco** y el texto puesto por código.
+2. **`st-12-10` y `c-20-10-2`** — el mapa dejó de ser fondo: recuadro declarado,
+   duotono a la luz del crema, y **fuera nuestro rótulo** (*"quita el pin de
+   Tierra Calma, solo deja el del mapa original"*).
+3. **`st-12-10` y `c-20-10-2`, otra vez** — con una referencia adjunta, el mapa
+   volvió **a sangre, en papel**, disolviéndose en el color de marca.
+
+**Dónde quedó:** todo rendido, entregado y commiteado.
+
+- `src/compositions/tierracalma/OctubreV3.tsx` — `M`, `H`, `K2` reescritos;
+  primitiva nueva **`MarcoTramos`** (el filete del marco teñido por tramos).
+- `scripts/tc-mapas-duotono.py` — reescrito: un recorte por pieza con la
+  proporción de su banda, el **pin rojo aislado y repuesto** sobre el duotono, y
+  el informe de dónde cae cada topónimo en el lienzo.
+- `qa/textos-tierracalma.py` — dos agujeros tapados (no leía las cifras; después
+  filtraba mal los comentarios del código).
+- Assets nuevos versionados: `mapa3-banda-st.jpg`, `mapa3-banda-k2.jpg`,
+  `m-refri.jpg`, y la referencia en
+  `clients/tierra-calma/referencias/2026-09-24_tc-mapa-a-sangre.png`.
+- Las tres piezas re-subidas a Drive **sobre el mismo `fileId`** (enlaces y
+  comentarios anclados intactos).
+- **QA: 1 aviso**, el deliberado («estarás?» en la slide 2, que Diego designó
+  como la de referencia del carrusel).
+
+**Qué sigue:** esperar la vuelta de Diego sobre el mapa a sangre. Si lo aprueba,
+el carrusel del 20-10 queda cerrado y la grilla completa vuelve a quedar a la
+espera del **cliente**: las 10 piezas siguen «En revisión» y **ningún comentario
+de los 27 de octubre vino de Fran o Blanca** — todos son internos.
+
+**Abierto:**
+
+1. ⚠️ **LO MÁS URGENTE — falta el OK ESCRITO de Fran o Blanca** para «Rol
+   individual» y «Acceso controlado». Están **publicados en tres piezas** con el
+   OK verbal de Diego y **no están en la lista blanca**.
+2. ⚠️ **Avisar lo del agua potable** publicado en `st-11-09` de septiembre: el
+   dato es falso (el agua es por noria del propietario) y salió al feed.
+3. **Decidir la tipografía manuscrita.** `p-29-10` usa **Caveat**, que es la mano
+   de Copywriters. Funciona, pero si el cliente adopta la manuscrita como
+   identidad, Tierra Calma necesita una propia.
+4. **El mapa oficial, con Carlos.** MAPA-3 es una captura de Google Maps y ya
+   está exprimida: la legibilidad tope que da son ~15 px de topónimo. Un mapa
+   vectorial del cliente resolvería las dos piezas de una.
+5. **Tres comentarios abiertos en Drive**, dejados así a propósito para que Diego
+   los cierre después de mirar: los dos del mapa y el del 23-09 sobre
+   `c-20-10-5` (*"centrar toda la información"*), superado por la instrucción de
+   alinear el carrusel completo (§ 4 sexies · 10).
+6. **Sin reglas de imagen propias en `reglas.yaml`** — se calibran contra piezas
+   aprobadas por el cliente, y no hay ninguna todavía.
+
+**Lo que se escribió en el manual hoy** (§ 4 sexies, que es el método):
+
+| # | Regla |
+|---|---|
+| 9 (ampliada) | Una referencia se lee por su gramática **aunque sea de la propia marca**: la que mandó Diego traía un mapa corrupto |
+| 12 | **El mapa es papel y va a sangre** — cinco reglas, incluida que ningún texto se apoya sobre la cartografía |
+| 12 bis | **La marca del cliente puede estar ya en el material**: Tierra Calma está en Google Maps y le montábamos encima nuestro rótulo |
+| 13 | **Si el defecto vuelve, el eje de la corrección está mal** — cuatro rondas de geometría para un problema de tono |
+| 14 | **Un QA que se toca se vuelve a correr**, y sobre todas las piezas |
+
+Y en el manual del método de la marca, ya de antes pero confirmado hoy dos veces:
+**la IA hace el objeto, el código pone el texto.** Los tres papeles del
+refrigerador se generaron en blanco; el dato nunca lo escribe la IA.
+
+---
+
+## 2026-09-24 (noche, 3ª vuelta del mapa — con referencia) — Diego Aguilar
+
+**Qué se hizo:** `st-12-10` y `c-20-10-2`, otra vez, ahora contra una referencia
+adjunta —una pieza de la propia marca, en café— guardada en
+`clients/tierra-calma/referencias/2026-09-24_tc-mapa-a-sangre.png`.
+
+> *"Para el carrusel, exactamente la pieza del 20-10-2 sigue esta referencia, que
+> se vea así pero con el color verde, mismo ejemplo para el mapa de la
+> st-12-10."*
+
+**El mapa vuelve a sangre — pero en papel.** La vuelta anterior lo había metido
+en un recuadro con borde y paspartú: ya se leía, pero quedaba como una estampilla
+pegada. La referencia lo devuelve al ancho completo y lo **disuelve en el color
+de marca** con degradado, arriba y abajo.
+
+⭐ **Y ahí está la lección de las cuatro vueltas: el problema nunca fue que el
+mapa sangrara. Fue que el mapa era OSCURO y no se leía.** El intento 3 y el
+definitivo tienen **la misma estructura** —mapa a sangre con degradado— y sólo se
+diferencian en el tono: antes el duotono iba a la sombra del navy, ahora va a la
+luz del crema. Cuatro rondas corrigiendo el encuadre, el borde y el recorte para
+descubrir que lo que había que invertir era el tono.
+
+**Las reglas que quedaron** (§ 4 sexies · 12 del manual, reescrito):
+
+1. El mapa a sangre, disolviéndose en el color de marca. Sin borde, sin máscara.
+2. El mapa es **papel**: duotono a la luz del crema.
+3. ⛔ **Ningún texto se apoya sobre el mapa.** El degradado tiene que **cerrar del
+   todo antes** de la primera línea. La primera versión del carrusel salió con el
+   degradado abierto en la fila del texto de cierre — el texto quedó sobre
+   cartografía y volvió el problema entero. Se arregló agregando una parada
+   explícita (`cierra`) en la fila 1062, sobre el texto de la 1080.
+4. La proporción del recorte es la de la banda, y se muestra 1:1.
+5. ⭐ **El filete del marco se tiñe por tramos** (`MarcoTramos`, nuevo). Con el
+   mapa claro en el medio y el color de marca arriba y abajo, un filete de un
+   solo color desaparece en un tramo. La referencia hace justo esto.
+
+⚠️ **Y ahí una medición que ahorró trabajo:** iba a teñir por tramos los dos
+marcos. Medido sobre los PNG, **`MARCO-CARRUSEL-2` no tiene filete vertical**:
+sólo lleva tinta en las filas **130 y 1285**, y las dos caen sobre verde macizo.
+El teñido por tramos hace falta únicamente en `MARCO-ST`, que sí trae un filete
+continuo (4 columnas de tinta de la fila 145 a la 1605). Antes de resolver un
+problema de contraste sobre un asset bloqueado, hay que mirar **qué tinta trae
+realmente el asset**.
+
+⛔ **Lo que NO se copió de la referencia: su mapa.** Es uno de los corruptos —dice
+«Los Maitenss», «Av. El Goneuiualdde», «Cmc o a Mäigilio» y trae escudos **G-68**
+alrededor de Padre Hurtado, el error que el manual persigue hace meses—. La
+cartografía sigue saliendo de `MAPA-3`. Se copia la gramática, nunca el contenido.
+
+⚠️ **Lo que no se pudo copiar, y por qué.** En la referencia el mapa arranca en el
+borde superior y arriba va sólo el logo. En el carrusel no se puede: la slide 2
+es la que **define la fila 205** del número y el titular para las seis, y bajar el
+titular las mueve todas (§ 4 sexies · 10). Así que ahí el mapa entra desde la fila
+470, debajo del titular, y sangra por abajo. En la story, que no tiene esa
+restricción, el mapa entra en la 545 y el titular queda arriba sobre navy macizo.
+
+**El control es numérico.** `tc-mapas-duotono.py` ahora imprime **dónde cae cada
+topónimo en el lienzo** y avisa si la proporción del recorte no es la de la banda:
+
+```
+· mapa3-banda-st.jpg  800×348 (2.299:1) desde (150,95)
+    en el lienzo: escala 1.350 · pin en (185, 842) · Maipú en (952, 579)
+                  · Padre Hurtado en (729, 910)
+· mapa3-banda-k2.jpg  873×711 (1.228:1) desde (99,0)
+    en el lienzo: escala 1.237 · pin en (233, 860) · Maipú en (935, 619)
+                  · Padre Hurtado en (731, 922)
+```
+
+Los tres tienen que quedar dentro de la banda limpia (565–930 en la story,
+525–990 en el carrusel). Un topónimo bajo el degradado no se lee, y en la
+miniatura no se nota.
+
+**Otros cambios de la story:** la placa de ubicación pasó a **píldora de
+contorno** (gramática de la referencia) y bajó a la fila 950, sobre el tramo donde
+el mapa ya se disolvió. La foto del dron quedó en 888×306.
+
+**Archivos:** entran `mapa3-banda-st.jpg` y `mapa3-banda-k2.jpg`; salen
+`mapa3-recuadro-st.jpg` y `mapa3-recuadro-k2.jpg`, que vivieron una sola ronda.
+
+**QA:** 1 aviso, el deliberado («estarás?» en la slide 2). Las dos piezas
+re-subidas sobre el mismo `fileId`.
+
+---
+
 ## 2026-09-24 (noche, 2ª vuelta del mapa) — Diego Aguilar
 
 **Qué se hizo:** `st-12-10` y `c-20-10-2`. El mismo pedido en dos piezas:

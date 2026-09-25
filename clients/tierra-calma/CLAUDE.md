@@ -320,16 +320,13 @@ incluye el marco (`MarcoTenido` en crema), los rótulos de los recortes y el pie
 > 💡 Los recortes fotográficos conservan su paspartú crema: sobre verde profundo
 > funcionan como polaroids, y es lo que le da el aire editorial a la slide.
 
-⭐ **Y «fondo plano» significa plano de verdad.** La slide 2 quedó ese día con el
-verde **pero con el mapa a sangre por detrás**, así que seguía sin ser un fondo:
-era una fotografía verde. Diego, horas después: *"quitar pin de Tierra Calma,
-que sea fondo sólido con el color verde de la marca **más un recuadro** con el
-mapa del lugar"*.
+⭐ **Ojo: «fondo plano» acá no quiere decir sin mapa.** Ese mismo día la slide 2
+quedó en verde pero con el mapa a sangre **oscuro** por detrás, y Diego pidió
+*"fondo sólido más un recuadro con el mapa"*. El recuadro se hizo… y después
+llegó la referencia, que devuelve el mapa a sangre **pero en papel**.
 
-El mapa pasó a un recuadro **montado en paspartú crema, igual que los recortes
-de la slide 3** — y ahí se cerró el reclamo original: lo que hermana a las dos
-slides no es sólo el color de fondo, es que las dos muestran **papel montado
-sobre verde**. Ver § 4 sexies · 12.
+La conclusión, que es la que vale: el problema nunca fue que el mapa sangrara,
+**fue que el mapa era oscuro y no se leía**. Ver § 4 sexies · 12.
 
 #### ⛔ UNA FOTO NO SE REPITE ENTRE DOS PIEZAS DEL MISMO MES
 
@@ -544,10 +541,11 @@ Lo prepara `scripts/tc-mapas-duotono.py`.
 > mapa** (*"tapa el pin del mapa con nuestro rótulo"*). Diego, horas después:
 > *"mejoremos la forma en que mostramos el mapa, que se vea integrado de buena
 > forma y que se lea bien, **quita el pin de Tierra Calma, solo deja el del mapa
-> original**"*. Desde acá manda **§ 4 sexies · 12 — EL MAPA ES UN OBJETO, NO UN
-> FONDO**: recuadro declarado, duotono a la luz del crema, recorte con la
-> proporción de la caja y el pin rojo del propio mapa como única nota de color.
-> Vale igual para `c-20-10-2`.
+> original**"*. Desde acá manda **§ 4 sexies · 12 — EL MAPA ES PAPEL Y VA A
+> SANGRE**: el mapa ocupa el ancho completo, se disuelve en el color de marca
+> con degradado, el duotono va a la luz del crema, ningún texto se apoya sobre la
+> cartografía y el pin rojo del propio mapa es la única nota de color. Vale igual
+> para `c-20-10-2`.
 
 ##### La fotografía de esta pieza es REAL
 
@@ -1050,6 +1048,14 @@ corruptos.
 > parchar un síntoma, conviene releer el brief: a veces el parche está tapando
 > que la pieza se desvió.
 
+⛔ **Y esto vale también cuando la referencia es de la PROPIA marca.** El 24-09
+Diego mandó una pieza de Tierra Calma —*"que se vea así pero con el color
+verde"*— y **su mapa era uno de los corruptos**: decía «Los Maitenss», «Av. El
+Goneuiualdde», «Cmc o a Mäigilio» y traía escudos **G-68** alrededor de Padre
+Hurtado. Venir de la marca no convierte al contenido en material aprobado. Se
+copió su gramática —mapa a sangre, en papel, disolviéndose en el color— y la
+cartografía siguió saliendo de `MAPA-3`, que es real.
+
 ### 10. Un comentario sobre una pieza cede ante uno sobre el conjunto
 
 El 23-09 a las 15:01 Diego pidió *"centrar toda la información"* mirando
@@ -1077,47 +1083,73 @@ ocupaba 559 px de los 574 de la píldora, o sea 9 px de aire a un lado y 6 al
 otro. El diagnóstico era correcto aunque la solución pedida no fuera posible.
 
 
-### 12. ⭐ EL MAPA ES UN OBJETO, NO UN FONDO
+### 12. ⭐ EL MAPA ES PAPEL Y VA A SANGRE
 
-Diego, 24-09-2026, en dos comentarios del mismo día sobre dos piezas distintas:
+Diego, 24-09-2026, sobre `st-12-10` y `c-20-10-2`, y al final con una referencia
+adjunta —una pieza de la propia marca, en café— guardada en
+[`referencias/2026-09-24_tc-mapa-a-sangre.png`](referencias/2026-09-24_tc-mapa-a-sangre.png):
 
 > *"Mejoremos la forma en que mostramos el mapa, que se vea integrado de buena
-> forma y que se lea bien. Quita el pin de Tierra Calma, solo deja el del mapa
-> original."* — `st-12-10`
+> forma y que se lea bien. **Quita el pin de Tierra Calma, solo deja el del mapa
+> original.**"*
 >
-> *"Quitar pin de Tierra Calma, que sea fondo sólido con el color verde de la
-> marca más un **recuadro** con el mapa del lugar."* — `c-20-10-2`
+> *"Para el carrusel, exactamente la pieza del 20-10-2 sigue esta referencia,
+> que se vea así pero con el color verde, mismo ejemplo para el mapa de la
+> st-12-10."*
 
-Es el mismo pedido dicho dos veces, y llegó después de **tres intentos fallidos**
-que empeoraban lo mismo:
+Llegó después de **cuatro intentos**, y los cuatro fallaron por lo mismo:
 
 | Intento | Qué se hizo | Por qué falló |
 |---|---|---|
 | 1 | captura de Google Maps velada en azul | leía como mancha |
 | 2 | mapa de celdas **dibujado** (referencia Sonatta) | *"el mapa no es así realmente"* — la cartografía no se inventa |
 | 3 | MAPA-3 difuminado con máscara radial / a sangre | seguía siendo mancha, con los topónimos ilegibles |
+| 4 | MAPA-3 en un **recuadro** con borde y paspartú | ya se leía, pero el mapa quedaba como una estampilla pegada; la referencia pedía que respirara |
 
-El error de fondo no era el encuadre ni el color: era **tratar el mapa como
+El error de fondo nunca fue el encuadre ni el borde: era **tratar el mapa como
 ambiente**. Un mapa que no se puede leer no es un mapa, es una textura — y
 entonces la pieza pierde lo único que un mapa aporta, que es la prueba.
 
-**Las cuatro reglas que quedaron:**
+**Las cinco reglas que quedaron:**
 
-1. **Recuadro declarado.** Sin máscara, sin degradado, sin sangre. El mapa tiene
-   borde y se sabe dónde empieza.
+1. **El mapa va a SANGRE**, ocupando el ancho completo. Ni recuadro ni máscara:
+   **se disuelve en el color de marca con degradado**, arriba y abajo.
 2. **El mapa es PAPEL.** El duotono va a la LUZ del crema, no a la sombra del
-   navy. El recuadro tiene que ser lo más claro de la pieza; si el mapa es más
-   oscuro que el fondo, no se lee.
-3. **La proporción del recorte es la de la caja.** `tc-mapas-duotono.py` entrega
-   un archivo por pieza con la proporción exacta de su ventana, y la composición
-   lo muestra 1:1. **Nadie reencuadra con `objectPosition`**: buscar el pin a ojo
-   es lo que hacía que quedara pegado a un borde. Si cambia la caja, cambia el
-   recorte en el script.
-4. **El recuadro se monta con el recurso que la pieza ya tiene.** En la story,
-   el mismo radio asimétrico de la foto: dos tarjetas hermanas, *dónde queda* y
-   *cómo se ve*. En el carrusel, el paspartú crema de los recortes de la slide 3
-   — que es, además, lo que hace que las slides 2 y 3 se lean de la misma
-   familia, el reclamo que Diego había dejado el mismo día.
+   navy. El mapa tiene que ser lo más claro de la pieza; si es más oscuro que el
+   fondo, no se lee. Esto es lo que separa el intento 3 del 5: **misma
+   estructura, tono invertido**.
+3. ⛔ **Ningún texto de la pieza se apoya sobre el mapa.** Todos se apoyan sobre
+   el color macizo en el que el mapa se deshace. El degradado tiene que **cerrar
+   del todo antes** de la primera línea de texto — si sigue abierto ahí, vuelve
+   el problema entero.
+4. **La proporción del recorte es la de la banda.** `tc-mapas-duotono.py` entrega
+   un archivo por pieza con la proporción exacta de su banda, y la composición lo
+   muestra 1:1. **Nadie reencuadra con `objectPosition`**: buscar el pin a ojo es
+   lo que hacía que quedara pegado a un borde.
+5. **El filete del marco se tiñe por tramos** (`MarcoTramos`). Con el mapa claro
+   en el medio y el color de marca arriba y abajo, un filete de un solo color
+   desaparece en un tramo. La referencia hace exactamente esto: filete oscuro
+   sobre el mapa, píldora crema sobre el color. ⚠️ **Medir antes**: sólo
+   `MARCO-ST` lleva filete vertical; `MARCO-CARRUSEL-2` sólo tiene las dos líneas
+   de las filas **130 y 1285**, que caen sobre color macizo y no necesitan nada.
+
+> 💡 **El control es numérico, no visual.** El script imprime **dónde cae cada
+> topónimo en el lienzo** —el pin, Maipú, Padre Hurtado— y todos tienen que
+> quedar dentro de la banda limpia. Un topónimo bajo el degradado es un topónimo
+> que no se lee, y en la miniatura no se nota.
+
+⛔ **Lo que NO se copió de la referencia: su mapa.** Es uno de los corruptos —dice
+«Los Maitenss», «Av. El Goneuiualdde», «Cmc o a Mäigilio» y trae escudos **G-68**
+alrededor de Padre Hurtado, justo el error que el manual persigue hace meses—. Se
+copia la gramática, nunca el contenido: la cartografía sigue saliendo de `MAPA-3`.
+
+⚠️ **Y lo que no se pudo copiar, con su razón.** En la referencia el mapa arranca
+en el borde superior y arriba va sólo el logo. En el carrusel no se puede: la
+slide 2 es la que **define la fila 205** del número y el titular para las seis, y
+bajar el titular las mueve todas. Así que ahí el mapa entra desde la fila 470,
+debajo del titular, y sangra por abajo. **El titular no se monta sobre el mapa
+aunque quepa** — es justo lo que estas vueltas vinieron a arreglar, y la
+referencia tampoco lo hace: lo único que pone sobre el mapa es el logo.
 
 #### ⭐ Y la que vale más allá del mapa: **la marca del cliente puede estar ya en el material**
 
@@ -1137,6 +1169,59 @@ de la pieza, así que es lo primero que se mira.
 > 💡 Regla general: antes de rotular algo sobre una imagen, **mirar si la imagen
 > ya lo rotula**. Pasó con el mapa; puede pasar con una fachada, un letrero o un
 > packshot.
+
+### 13. ⭐ SI EL DEFECTO VUELVE, EL EJE DE LA CORRECCIÓN ESTÁ MAL
+
+El mapa de `st-12-10` se rehizo **cuatro veces** por el mismo comentario —«no se
+lee», «se pierde», «que se vea integrado»— y las cuatro correcciones fueron sobre
+la **geometría**: primero el velo, después dibujarlo, después el encuadre y la
+máscara, después meterlo en un recuadro con borde.
+
+La versión que funcionó tiene **exactamente la misma estructura que el intento 3**
+—a sangre, disuelto en el color de marca con degradado— y cambia **una sola cosa:
+el tono del duotono**, que pasó de la sombra del navy a la luz del crema.
+
+Cuatro rondas moviendo el encuadre para descubrir que lo que había que invertir
+era el tono.
+
+> 💡 **La compuerta:** cuando un comentario se repite después de una corrección,
+> no se corrige más fuerte en el mismo eje — **se cambia de eje**. Los ejes son
+> pocos y conviene recorrerlos en voz alta: posición · tamaño · **tono/contraste**
+> · color · tipografía · el propio insumo.
+>
+> Es la misma lección que la regla de dirección de arte *«a la segunda vez que el
+> cliente repite un comentario, se prohíbe tocar el parámetro»*, que en agosto
+> costó tres rondas de Between puliendo el montaje de un vaso con el canto
+> mordido. Acá costó cuatro.
+
+### 14. ⭐ UN QA QUE SE TOCA SE VUELVE A CORRER — Y SOBRE TODAS LAS PIEZAS
+
+El 24-09 el extractor `qa/textos-tierracalma.py` **no estaba leyendo las cifras**:
+el dato viaja como `{sinPartir("Aprox. 5.000 m²")}` y la pasada de respaldo borra
+lo que va entre llaves antes de mirar. O sea que la compuerta no veía los números,
+que es justo lo que la lista blanca existe para vigilar.
+
+El arreglo —rescatar el literal de las llaves que traen una sola cadena— **abrió
+un agujero nuevo**: empezó a sacar texto de los **comentarios del código**. Como
+los comentarios de estas composiciones citan a Diego entre comillas, la regla de
+huérfanas marcó `p-09-10` por la palabra «ancho», que está en un comentario y no
+en la gráfica.
+
+El falso positivo duró una corrida porque la compuerta se volvió a mirar
+**después** de tocarla.
+
+> ⛔ **Las dos reglas:**
+>
+> 1. **Tocar el QA obliga a correrlo entero otra vez**, sobre las 16 piezas. Un
+>    QA que se cambia y no se vuelve a correr deja de medir la pieza y empieza a
+>    medirse a sí mismo.
+> 2. **El extractor tiene que fallar cuando no encuentra nada.** Ya lo hace: si
+>    una pieza devuelve cero textos, se cae. Un QA que pasa en silencio porque no
+>    leyó nada es peor que no tener QA — da permiso para entregar.
+
+> 💡 Y el corolario para escribir composiciones: **un comentario del código no es
+> copy**. Si el extractor tiene que distinguirlos, la marca de agua es el `/*`
+> — por eso se descartan las llaves que empiezan con comentario.
 
 ## 4 septies. ⭐ LA COMPUERTA — `reglas.yaml`, desde el 23-09-2026
 

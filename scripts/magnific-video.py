@@ -167,7 +167,15 @@ def main():
                     help="coda de control. 'fisica' para planos con movimiento real")
     ap.add_argument("--dur", default="5", choices=["5", "10"])
     ap.add_argument("--modelo", default="kling-v2-1-pro")
+    ap.add_argument("--tarea", help="task_id de un trabajo ya lanzado: no manda nada "
+                                    "nuevo, sólo espera y baja el video (24-09: Kling "
+                                    "tardó más de 15 min y el trabajo quedó huérfano)")
+    ap.add_argument("--minutos", type=int, default=15)
     a = ap.parse_args()
+
+    if a.tarea:
+        guarda(espera(ruta_consulta(a.modelo), a.tarea, a.minutos), a.out)
+        return
 
     if not os.path.isfile(a.imagen):
         sys.exit(f"✗ No encuentro la imagen: {a.imagen}")
@@ -187,7 +195,9 @@ def main():
     fin = f" → {os.path.basename(a.fin)}" if a.fin else ""
     print(f"→ {a.modelo} · {a.dur}s · {os.path.basename(a.imagen)}{fin}")
     r = pedir(ruta, cuerpo)
-    guarda(espera(ruta_consulta(a.modelo), r["data"]["task_id"]), a.out)
+    tid = r["data"]["task_id"]
+    print(f"  tarea {tid}  (si se corta la espera: --tarea {tid})", flush=True)
+    guarda(espera(ruta_consulta(a.modelo), tid, a.minutos), a.out)
 
 
 if __name__ == "__main__":

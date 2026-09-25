@@ -9,45 +9,49 @@ alrededor de Padre Hurtado, el error que el manual persigue hace meses—. Pero 
 una captura de Google Maps: blanca, saturada y con su propia tipografía, así que
 no se puede pegar tal cual sobre una pieza de marca.
 
-⭐ EL CAMBIO DEL 24-09 (2ª vuelta): EL MAPA ES UN OBJETO, NO UN FONDO
-─────────────────────────────────────────────────────────────────────
+⭐ EL CAMBIO DEL 24-09: EL MAPA ES PAPEL Y VA A SANGRE
+──────────────────────────────────────────────────────
 Diego, sobre la story: *"mejoremos la forma en que mostramos el mapa, que se vea
 integrado de buena forma y que se lea bien, quita el pin de Tierra Calma, solo
-deja el del mapa original"*. Y sobre la slide 2 del carrusel: *"quitar pin de
-Tierra Calma, que sea fondo sólido con el color verde de la marca más un
-**recuadro** con el mapa del lugar"*.
+deja el del mapa original"*. Después, con una referencia adjunta (una pieza de
+la propia marca, en café): *"exactamente la pieza del 20-10-2 sigue esta
+referencia, que se vea así pero con el color verde, mismo ejemplo para el mapa
+de la st-12-10"*.
 
-Son el mismo pedido dicho dos veces, y cambia tres cosas de raíz:
+La referencia está guardada en `clients/tierra-calma/referencias/`. Lo que se
+copió de ella es la **gramática**, no el contenido:
 
-1. **El mapa se recorta a un rectángulo declarado.** Antes iba a sangre (slide 2)
-   o difuminado con una máscara radial (story): en los dos casos leía como una
-   mancha, no como un mapa. Ahora cada pieza recibe **su propio recorte**, con
-   las proporciones exactas de su caja, y el archivo se muestra 1:1 — sin
-   `objectPosition` buscando el pin a ojo.
-2. **El duotono se da vuelta: el mapa es PAPEL, no velo.** Antes el mapa era
-   oscuro sobre fondo oscuro y los topónimos no se leían. Ahora la luz del
-   duotono es el crema de marca, así que el recuadro es lo más claro de la
-   pieza y la cartografía se lee.
-3. ⭐ **EL PIN ROJO SOBREVIVE AL DUOTONO.** Es el punto entero del pedido: el
-   mapa YA trae el pin y YA dice «Tierra Calma» —es un lugar registrado en
-   Google Maps—, así que nuestro rótulo encima era una segunda marca tapando la
-   primera. Un duotono por luminancia convierte ese rojo en un gris cualquiera,
-   así que acá se **aísla y se repone en su color**: es lo único cromático de
-   la pieza y por eso es lo primero que se mira.
+1. **El mapa va a SANGRE y es papel.** Ocupa el ancho completo y el duotono va a
+   la LUZ del crema, no a la sombra del navy. Antes el mapa era oscuro sobre
+   fondo oscuro y los topónimos no se leían: era una textura, no un mapa.
+2. **Se disuelve en el color de marca**, arriba y abajo, con degradado — no con
+   borde ni con máscara. El texto de la pieza nunca se apoya sobre el mapa:
+   se apoya sobre el color sólido en el que el mapa se deshace.
+3. ⭐ **EL PIN ROJO SOBREVIVE AL DUOTONO.** El mapa YA trae el pin y YA dice
+   «Tierra Calma» —es un lugar registrado en Google Maps—, así que nuestro
+   rótulo encima era una segunda marca tapando la primera. Un duotono por
+   luminancia convierte ese rojo en un gris cualquiera, así que acá se **aísla
+   y se repone en su color**: es lo único cromático de la pieza.
 
    ⚠️ Se repone SÓLO el rojo de la zona del pin. El mapa trae otro rojo —el POI
    «CESFAM Presidenta Michelle Bachelet»— que no es nuestro y tiene que
    apagarse con el resto.
 
+⛔ **LO QUE NO SE COPIÓ DE LA REFERENCIA: SU MAPA.** Ese es uno de los corruptos
+—dice «Los Maitenss», «Av. El Goneuiualdde», «Cmc o a Mäigilio» y trae escudos
+**G-68** alrededor de Padre Hurtado, justo el error que el manual persigue hace
+meses—. La cartografía sigue saliendo de `MAPA-3`, que es real.
+
 | Salida | Para | Tratamiento |
 |---|---|---|
-| `mapa3-recuadro-st.jpg` | `st-12-10` | recorte 800×297 · duotono navy→crema · pin vivo |
-| `mapa3-recuadro-k2.jpg` | `c-20-10-2` | recorte 800×423 · duotono verde→crema · pin vivo |
+| `mapa3-banda-st.jpg` | `st-12-10` | recorte 800×348 · duotono navy→crema · pin vivo |
+| `mapa3-banda-k2.jpg` | `c-20-10-2` | recorte 873×711 · duotono verde→crema · pin vivo |
 
-🗄️ Retirados el 24-09 (los archivos siguen en disco, ya no los genera nadie):
-`mapa3-verde.jpg` (slide 2 a sangre) · `mapa3-cuadro.jpg` (story con máscara) ·
-`mapa3-story.jpg`. El día que llegue el mapa oficial de Carlos se cambia
-`mapa3.jpg` y se corre esto: las dos piezas se rehacen solas.
+🗄️ Retirados (los archivos siguen en disco, ya no los genera nadie):
+`mapa3-verde.jpg` · `mapa3-cuadro.jpg` · `mapa3-story.jpg` ·
+`mapa3-recuadro-st.jpg` · `mapa3-recuadro-k2.jpg`. El día que llegue el mapa
+oficial de Carlos se cambia `mapa3.jpg` y se corre esto: las dos piezas se
+rehacen solas.
 """
 from __future__ import annotations
 
@@ -73,29 +77,35 @@ PIN = (287, 315)
 # el POI del CESFAM (x 650-830, y 145-185) no es nuestro.
 PIN_ZONA = (262, 286, 402, 346)
 
-# Recortes, medidos sobre mapa3.jpg. La proporción de cada uno es la de su caja
-# en la pieza, así que el archivo se muestra 1:1 y nadie reencuadra después.
+# Recortes, medidos sobre mapa3.jpg. La proporción de cada uno es la de su BANDA
+# en la pieza, así que el archivo se muestra 1:1 y nadie reencuadra después con
+# `objectPosition` — buscar el pin a ojo es como terminaba pegado a un borde.
 #
-#   story     888 × 345  → 2,574 : 1
-#   carrusel  888 × 470  → 1,889 : 1
+#   story     1080 × 470  → 2,298 : 1   (filas 545-1015 del lienzo)
+#   carrusel  1080 × 880  → 1,227 : 1   (filas 470-1350, sangra por abajo)
 #
 # Qué tiene que entrar, y por qué:
-#   · el pin (287,315) con aire a su alrededor
+#   · el pin (287,315) con aire a su alrededor, **dentro de la banda limpia** y
+#     no bajo un degradado: es lo único cromático de la pieza
 #   · «Padre Hurtado» (690,365) — el topónimo que la pieza nombra
 #   · el escudo de la **Ruta 78** (687,263) — la vía correcta, la que el manual
 #     persigue desde que una pieza publicó «Ruta 68»
-#   · «Maipú» (855,120) — el ancla de Santiago que sostiene el titular
+#   · «Maipú» (855,120) — el ancla de Santiago que sostiene el titular. Es lo que
+#     fija el ancho mínimo del recorte: el pin está en x 287 y Maipú en x 855,
+#     así que por debajo de ~800 px de ancho uno de los dos se cae
 #   · en el carrusel, además Peñaflor (459,515) y el segundo escudo 78 (549,411)
 RECORTES = {
-    "mapa3-recuadro-st": {
-        "caja": (150, 88, 950, 399),
+    "mapa3-banda-st": {
+        "caja": (150, 95, 950, 443),
         "duo": ("#0B2C49", "#F3EEE3"),  # navy → crema · story sobre navy
-        "pieza": "st-12-10 · caja 888×345",
+        "banda": (1080, 470, 545),
+        "pieza": "st-12-10 · banda 1080×470 en la fila 545",
     },
-    "mapa3-recuadro-k2": {
-        "caja": (150, 60, 950, 483),
+    "mapa3-banda-k2": {
+        "caja": (99, 0, 972, 711),
         "duo": ("#00291E", "#F3EEE3"),  # verde profundo → crema · slide sobre verde
-        "pieza": "c-20-10-2 · caja 888×470",
+        "banda": (1080, 880, 470),
+        "pieza": "c-20-10-2 · banda 1080×880 en la fila 470",
     },
 }
 
@@ -156,6 +166,14 @@ def main() -> int:
         fx, fy = (PIN[0] - x0) / w, (PIN[1] - y0) / h
         print(f"· {nombre}.jpg  {w}×{h} ({w / h:.3f}:1) desde ({x0},{y0})  →  {cfg['pieza']}")
         print(f"    duotono {cfg['duo'][0]} → {cfg['duo'][1]} · pin vivo en ({fx:.3f}, {fy:.3f})")
+        bw, bh, btop = cfg["banda"]
+        print(
+            f"    en el lienzo: escala {bw / w:.3f} · pin en ({fx * bw:.0f}, {btop + fy * bh:.0f})"
+            f" · Maipú en ({(855 - x0) * bw / w:.0f}, {btop + (120 - y0) * bh / h:.0f})"
+            f" · Padre Hurtado en ({(690 - x0) * bw / w:.0f}, {btop + (365 - y0) * bh / h:.0f})"
+        )
+        if abs((w / h) - (bw / bh)) > 0.005:
+            print(f"    ⚠️ la proporción del recorte NO es la de la banda ({bw / bh:.3f}:1)")
         if not (0.08 < fx < 0.92 and 0.08 < fy < 0.92):
             print("    ⚠️ el pin quedó pegado a un borde del recorte")
     return 0

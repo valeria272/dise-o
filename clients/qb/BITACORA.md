@@ -1,5 +1,65 @@
 # QB Restaurant — bitácora
 
+## 2026-09-24 (tarde) — Elisabet Soto «Eli» (con Claude) · grilla de octubre: las 11 historias diseñadas
+
+> ⚠️ La entrada de abajo («SIN PIEZAS») la escribió otra sesión al mismo tiempo y
+> ya no es cierta: las 11 historias OK PARA DISEÑAR quedaron diseñadas acá.
+
+**Qué se hizo:** se diseñaron las **11 historias** que la grilla viva marcaba OK
+PARA DISEÑAR (el feed no tiene ninguna en OK). Se tomaron los comentarios del
+cliente que estaban en las celdas OK: 14-10 **con alternativas** (Aperol Spritz ·
+Mimosa · Negroni, propuestas por diseño) y 22-10 **anclada a «Recomendación del
+chef» + «Imagen referencial»**. Decisiones de Eli en la sesión: el premio del 14-10
+lo confirma ella (va «xxxx»); la ensalada se genera con IA; las de promo (bancos,
+AYCD, Sunset, estacionamiento) van dentro de la zona segura de paid.
+
+| Pieza | Archivo | Imagen |
+|---|---|---|
+| 01-10 Banco de Chile | ST n°1 S1 | real — brindis con vino blanco (IMG_3088) |
+| 06-10 AYCD | ST n°2 S1 | IA (Seedream) + bloque del KV · «Imagen referencial» |
+| 08-10 CMR | ST n°4 S1 | real — cóctel de la terraza (Víctor C4146) |
+| 09-10 Sunset | ST n°5 S1 | real (IMG_3077) llevado a atardecer en código |
+| 14-10 Adivina el trago | ST n°2 S2 | real desenfocado |
+| 15-10 Mejores amigos | ST n°3 S2 | real (Víctor C4182) |
+| 20-10 AYCD llamada | ST n°1 S3 | real (Víctor C4216) + interfaz de llamada |
+| 21-10 Estacionamiento | ST n°3 S3 | IA + texto del ticket con fuentes reales · «Imagen referencial» |
+| 22-10 Ensalada (animada) | ST n°4 S3 | IA, animada con movimientos de cámara · «Imagen referencial» |
+| 23-10 Close friends | ST n°5 S3 | real cenital (IMG_3049) + nota construida en código |
+| 26-10 Terraza (animada) | ST n°1 S4 | 5 clips reales de la terraza |
+
+**⭐ Las sesiones de QB SÍ estaban en Drive, y son VIDEO** (iPhone 4K HLG y Sony
+709): IDs y extractor en el manual §5. **⚠️ La API de Magnific se quedó sin
+créditos a media tarde** («Error consuming credits»): por eso Sunset va sin la gente
+desenfocada del brief y la ensalada sin la mano con tenedor (los clips de Kling
+fallaron). Tres trampas técnicas nuevas en el manual §4h (escala del video, falso
+positivo de «foto estirada» → grano, formato de `qa/textos.py`).
+
+**Dónde quedó:**
+- `src/compositions/qb/oct/` (kit + 11 piezas, una por archivo con su brief en la
+  cabecera) · `src/QbOctEntry.tsx` · fondos en `public/assets/hilton/qb/oct/`
+- Scripts `scripts/qb-oct-*`: `fotogramas` (del video a la foto, con tonemap),
+  `fondos` (gradación), `proxies` (clips), `clips` (Kling, pendiente de créditos),
+  `render.sh` (entrega), `grilla-html.py` (página de la grilla), `subir-drive.py`
+- `out/qb/oct/entrega/` — las 9 estáticas re-rendidas con las correcciones del QA;
+  **al cierre seguían rindiendo los 2 videos** (MP4 + estática + GIF)
+- QA: 06 y 23 pasan limpias; en las demás quedaban 3 bloqueantes de «foto
+  estirada» (negro saturado) → corregidos con el grano, **falta re-correr el QA**
+- **NADA subido a Drive todavía** y la página HTML de la grilla sin generar
+
+**Qué sigue:**
+1. Que termine `bash scripts/qb-oct-render.sh` → re-correr el QA de QB (§4h, con `--mapa`)
+2. `python scripts/qb-oct-grilla-html.py` → publicar la página para que Eli mire la grilla
+3. `python scripts/qb-oct-subir-drive.py` → `S<n> HILTON OCT 2026 / QB / STS` (lo pidió Eli)
+
+**Abierto:**
+- Premio del 14-10 («Responde y participa por xxxx») — lo confirma Eli
+- Alternativas del 14-10 (Aperol Spritz / Mimosa / Negroni) — validar con contenido
+- Créditos de Magnific — Valeria. Con créditos: fondo de Sunset con gente y la mano
+  en la ensalada (`qb-oct-clips.py`)
+- Close friends: la toma cenital tiene una copa, no «2 o 3 tragos»; terraza: el
+  material es de noche, no de atardecer. La referencia IG de la terraza está caída
+- «VIDEO QB TERRAZA 2025» no baja por enlace: pedirle a Eli que lo comparta
+
 ## 2026-09-24 — Elisabet Soto «Eli» (con Claude) · octubre listo para partir — SIN PIEZAS
 
 **Qué se hizo:** relectura en vivo de la grilla de octubre (`14bhpFxFDRidCiuCT0gSOKgQ8r06gHGLxZlYkzFNHxZc`).

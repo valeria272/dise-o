@@ -94,7 +94,7 @@ QUÉ CAMBIA — la columna de texto, traducida a la referencia SIN inventar copy
 """
 import argparse, math, os
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from PIL import Image, ImageChops, ImageDraw, ImageFont, ImageFilter
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SP = "/private/tmp/claude-501/-Users-coni-Desktop-copylab-EDITOR-VIDEOS/8827f450-0e8f-4514-a78e-863e106cbca6/scratchpad"
@@ -121,22 +121,44 @@ MARGEN = 150                       # el mismo del logo, a los dos lados
 ANCHO_MAX = W - 2 * MARGEN
 # La franja libre, medida: bajo el logo (cierra en 422) y el recuadro legal
 # (cierra en 314), y sobre la CÁPSULA de la botella (asoma en 1483).
-# ⚠️ El piso NO es 1445 aunque quepa: con ese valor la bajada quedaba a 39 px de
-# la cápsula y se leía rozándola. A 1400 el aire sube a 83 px y la altura de
-# versal sólo baja de 187 a 179 — cuatro por ciento de tamaño a cambio del
-# doble de aire, que es el cambio que pidió Coni («la botella no debe taparse»).
-BANDA = (440, 1400)
+# ⚠️ EL TECHO NO ES 440 AUNQUE EL LOGO CIERRE EN 422. Al agrandar el descuento
+# en la ronda 3, su tinta pasó a arrancar en x=500 y el logo llega hasta x=709:
+# se solapan 209 px en horizontal, así que con el techo en 440 quedaban SÓLO
+# 16 px de aire entre «MORANDÉ» y el «5». Medido, no estimado — y es el defecto
+# que el estudio ya tiene escrito: cuando un elemento crece, hay que volver a
+# mirar qué quedó al lado. A 515 el aire sube a ~94 px.
+# ⚠️ Y el piso no es 1445 aunque quepa: ahí la bajada quedaba a 39 px de la
+# cápsula y se leía rozándola. A 1420 quedan ~63, que es el punto en que deja
+# de leerse pegada sin regalar tamaño.
+BANDA = (515, 1420)
 
 # ── el bloque del producto: CLAVADO donde ya estaba ────────────────────────
 # Coni: «el nombre del vino y los valores déjalos donde están». Son las líneas
 # base que tenía la ronda 1, escritas a mano para que NO dependan del ritmo del
 # bloque de arriba — si dependieran, agrandar el descuento las correría solas.
-Y_NOMBRE, PASO_NOMBRE = 1916, 112
-Y_PRECIO, Y_TACHADO = 2373, 2551
+# ⭐ RONDA 3: Coni lo marcó «bajar un poco para nivelar el peso visual». Baja
+# 210 px en bloque —no se re-diagrama— y con eso su centro pasa de y=2233 a
+# y=2443, que lo acerca al centro visual de la botella. Verificado contra el
+# flanco: a esa altura la botella empieza en x=996 y el riel sigue en 940.
+BAJADA_PRODUCTO = 210
+Y_NOMBRE, PASO_NOMBRE = 1916 + BAJADA_PRODUCTO, 112
+Y_PRECIO, Y_TACHADO = 2373 + BAJADA_PRODUCTO, 2551 + BAJADA_PRODUCTO
 
 BLANCO   = (255, 255, 255)
 CREMA    = (238, 233, 226)
 DORADO   = (201, 162, 78)          # #C9A24E, el dorado medio de la ficha
+# ⭐ EL DORADO DE CAVA ES UN DEGRADADO, NO UN COLOR. Lo dice marca.json con
+# todas sus letras: «es un DEGRADADO metálico en diagonal, nunca un color
+# plano», y da los cinco topes. Pintarlo plano en el medio es lo que hacía que
+# el script se leyera apagado (ronda 3 de Coni: «no se lee bien»).
+# ⚠️ Pero la rampa NO baja hasta la sombra. El manual la describe «de sombra a
+# brillo y de vuelta» para la BARRA dorada, que es una masa sobre la que se lee
+# texto negro. Acá el oro ES la tinta y va sobre fondo oscuro: con el tope
+# sombra (#5F3C12) los extremos de la palabra desaparecerían. Se usa la mitad
+# LUMINOSA de la rampa —medio → luz → brillo → luz → medio—, que conserva el
+# metal y deja el peor punto muy por encima de la vara.
+ORO_RAMPA = [(201, 162, 78), (244, 231, 176), (255, 247, 193),
+             (244, 231, 176), (201, 162, 78)]
 APAGADO  = (176, 170, 162)
 
 # Butler — la serif del email marketing de CAVA, mandada por el cliente.
@@ -199,7 +221,7 @@ def alto_versal(f, t="H"):
     return c[3] - c[1]
 
 
-def estrella(capa, cx, cy, r, color, n=3.2):
+def estrella(capa, cx, cy, r, color, n=3.2, plano=False):
     """La ✦ de la referencia. No existe en ninguna de las doce fuentes de CAVA
     —comprobado con fontTools— así que se dibuja: es un ornamento geométrico,
     no un glifo de marca.
@@ -214,7 +236,8 @@ def estrella(capa, cx, cy, r, color, n=3.2):
 
     Se supermuestrea ×6 para que el canto quede limpio a 2250 px."""
     k = 6
-    lienzo = Image.new("RGBA", (int(r * 2 * k) + 2, int(r * 2 * k) + 2), (0, 0, 0, 0))
+    modo = "L" if plano else "RGBA"
+    lienzo = Image.new(modo, (int(r * 2 * k) + 2, int(r * 2 * k) + 2), 0)
     pts = []
     for i in range(1440):
         t = i / 1440.0 * 2 * math.pi
@@ -222,9 +245,31 @@ def estrella(capa, cx, cy, r, color, n=3.2):
         x = math.copysign(abs(c) ** n, c)
         y = math.copysign(abs(sn) ** n, sn)
         pts.append((r * k + x * r * k + 1, r * k + y * r * k + 1))
-    ImageDraw.Draw(lienzo).polygon(pts, fill=color + (255,))
+    ImageDraw.Draw(lienzo).polygon(pts, fill=(color if plano else color + (255,)))
     lienzo = lienzo.resize((int(r * 2), int(r * 2)), Image.LANCZOS)
-    capa.alpha_composite(lienzo, (int(cx - r), int(cy - r)))
+    if plano:
+        caja = (int(cx - r), int(cy - r))
+        capa.paste(ImageChops.lighter(capa.crop(
+            (caja[0], caja[1], caja[0] + lienzo.width, caja[1] + lienzo.height)), lienzo), caja)
+    else:
+        capa.alpha_composite(lienzo, (int(cx - r), int(cy - r)))
+
+
+def pinta_oro(capa, mascara):
+    """Rellena una máscara con el degradado metálico de la marca, en diagonal.
+    Se usa UNA sola vez por pieza sobre la máscara de TODO lo dorado —script,
+    filete y estrella— para que los tres compartan exactamente el mismo metal
+    y no queden tres oros distintos."""
+    x = np.linspace(0, 1, W, dtype=np.float32)[None, :]
+    y = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+    t = np.clip((x * 0.72 + y * 0.28), 0, 1)          # diagonal, dominante en x
+    n = len(ORO_RAMPA) - 1
+    i = np.clip((t * n).astype(np.int32), 0, n - 1)
+    f = (t * n - i)[..., None]
+    topes = np.array(ORO_RAMPA, dtype=np.float32)
+    grad = topes[i] * (1 - f) + topes[i + 1] * f
+    img = Image.fromarray(grad.astype(np.uint8)).convert("RGBA")
+    capa.paste(img, (0, 0), mascara)
 
 
 def encuadra(ruta, zoom, ex, ey):
@@ -271,41 +316,55 @@ def pon_sello(capa):
 
 def bloque_editorial(d, capa, ancho_col, y_arriba, pinta, boton=None, url=None):
     """El bloque de la referencia, centrado en el eje de la pieza. Con
-    pinta=False sólo mide: devuelve el alto, que es lo que usa el solucionador.
-    `y_arriba` es el borde de ARRIBA del bloque, no la línea base de nada."""
+    pinta=False sólo mide. `y_arriba` es el borde de ARRIBA del bloque.
+
+    ⭐ RONDA 3 (25-09), las marcas rojas de Coni sobre el render:
+      · ✦ de arriba: ELIMINAR. Y no sólo se borra — libera 0,93 de altura de
+        versal, que es lo que deja crecer todo lo demás dentro de la misma
+        franja.
+      · «50% OFF»: AGRANDAR.
+      · el script: AGRANDAR «y no se lee bien».
+      · la bajada: AGRANDAR.
+    Los tres crecen, pero NO en la misma proporción: el script pasa de 1,02 a
+    1,30 de la altura de versal y la bajada de 0,215 a 0,265, así que ganan
+    tamaño RELATIVO contra el titular. Es lo que piden sus tres flechas: si
+    todo creciera parejo, la pieza se vería igual, sólo que más grande."""
     def linea(*a, **k):
-        if pinta: d.line(*a, **k)
+        if pinta: d_oro.line(*a, **k)
     def txt(*a, **k):
         return escribe(d, *a, **k) if pinta else 0
-    def orn(*a, **k):
-        if pinta: estrella(capa, *a, **k)
+
+    oro = Image.new("L", (W, H), 0)
+    d_oro = ImageDraw.Draw(oro)
 
     f_desc = ft(F_BUT_LIGHT, cuerpo_para_ancho(d, DESCUENTO, F_BUT_LIGHT, ancho_col, tr=0.045))
     hv = alto_versal(f_desc)
     AIRE, AIRE_CORTO = hv * 0.80, hv * 0.47
     x0, x1 = EJE - ancho_col / 2, EJE + ancho_col / 2
 
-    r_orn = hv * 0.130
-    y = y_arriba + r_orn
-    orn(EJE, y, r_orn, DORADO)
-
-    y += r_orn + AIRE + hv
+    # ⛔ SIN la ✦ de arriba: el bloque abre en la versal del descuento.
+    y = y_arriba + hv
     a = ancho(d, DESCUENTO, f_desc, 0.045)
     txt((EJE - a / 2, y), DESCUENTO, f_desc, BLANCO, 0.045)
 
-    f_scr = ft(F_SCRIPT, hv * 1.02)
+    # el script crece, y se le pone tope para que no se salga de la columna
+    cuerpo_scr = min(int(hv * 1.30),
+                     cuerpo_para_ancho(d, TITULAR, F_SCRIPT, ancho_col))
+    f_scr = ft(F_SCRIPT, cuerpo_scr)
     y += AIRE_CORTO + alto_versal(f_scr, "L")
     a = ancho(d, TITULAR, f_scr)
-    txt((EJE - a / 2, y), TITULAR, f_scr, DORADO)
+    if pinta:
+        escribe(d_oro, (EJE - a / 2, y), TITULAR, f_scr, 255)
 
     y += AIRE
     ornr = hv * 0.095
     hueco = ornr * 3.2
-    linea([(x0, y), (EJE - hueco, y)], fill=DORADO, width=3)
-    linea([(EJE + hueco, y), (x1, y)], fill=DORADO, width=3)
-    orn(EJE, y, ornr, DORADO)
+    linea([(x0, y), (EJE - hueco, y)], fill=255, width=4)
+    linea([(EJE + hueco, y), (x1, y)], fill=255, width=4)
+    if pinta:
+        estrella(oro, EJE, y, ornr, 255, plano=True)
 
-    f_baj = ft(F_BUT_REG, hv * 0.215)
+    f_baj = ft(F_BUT_REG, hv * 0.265)
     tr_baj = 0.26
     y += AIRE * 0.95 + alto_versal(f_baj)
     for i, l in enumerate(BAJADA):
@@ -313,24 +372,25 @@ def bloque_editorial(d, capa, ancho_col, y_arriba, pinta, boton=None, url=None):
         txt((EJE - a / 2, y + i * f_baj.size * 1.62), l, f_baj, CREMA, tr_baj)
     y += f_baj.size * 1.62
 
-    # las dos ranuras de la referencia que sólo se llenan si Coni da el texto
     if boton:
-        f_b = ft(F_BUT_REG, hv * 0.20)
+        f_b = ft(F_BUT_REG, hv * 0.22)
         ab = ancho(d, boton, f_b, 0.30)
         alto_b = f_b.size * 2.5
         y += AIRE
         if pinta:
-            d.rounded_rectangle([EJE - ab / 2 - 70, y, EJE + ab / 2 + 70, y + alto_b],
-                                radius=alto_b / 2, outline=DORADO, width=3)
-        txt((EJE - ab / 2, y + alto_b * 0.63), boton, f_b, DORADO, 0.30)
+            d_oro.rounded_rectangle([EJE - ab / 2 - 70, y, EJE + ab / 2 + 70, y + alto_b],
+                                    radius=alto_b / 2, outline=255, width=4)
+            escribe(d_oro, (EJE - ab / 2, y + alto_b * 0.63), boton, f_b, 255, 0.30)
         y += alto_b
     if url:
-        f_u = ft(F_BUT_REG, hv * 0.17)
+        f_u = ft(F_BUT_REG, hv * 0.19)
         au = ancho(d, url, f_u, 0.30)
         y += AIRE * 0.75 + alto_versal(f_u)
         txt((EJE - au / 2, y), url, f_u, CREMA, 0.30)
 
-    return y - y_arriba, hv, f_desc.size
+    if pinta:
+        pinta_oro(capa, oro)
+    return y - y_arriba, hv, f_desc.size, cuerpo_scr, f_baj.size
 
 
 def bloque_producto(d, capa, precio, antes):
@@ -379,12 +439,12 @@ def componer(precio, antes, boton=None, url=None):
             lo = m
         else:
             hi = m
-    alto, hv, cuerpo = bloque_editorial(d, capa, lo, BANDA[0], False, boton, url)
+    alto, hv, cuerpo, c_scr, c_baj = bloque_editorial(d, capa, lo, BANDA[0], False, boton, url)
     y0 = BANDA[0] + (hueco - alto) / 2
     bloque_editorial(d, capa, lo, y0, True, boton, url)
     bloque_producto(d, capa, precio, antes)
 
-    return Image.alpha_composite(base.convert("RGBA"), capa).convert("RGB"), lo, hv, cuerpo, y0, alto
+    return Image.alpha_composite(base.convert("RGBA"), capa).convert("RGB"), lo, hv, cuerpo, y0, alto, c_scr, c_baj
 
 
 def main():
@@ -396,12 +456,14 @@ def main():
     a = ap.parse_args()
     dest = os.path.join(RAIZ, "out", "cava", "prueba1")
     os.makedirs(dest, exist_ok=True)
-    im, anc, hv, cuerpo, y0, alto = componer(a.precio, a.antes, a.boton, a.url)
+    im, anc, hv, cuerpo, y0, alto, c_scr, c_baj = componer(a.precio, a.antes, a.boton, a.url)
     r = os.path.join(dest, "CYBER_CAVA_CARMENERE_PRUEBA1.png")
     im.save(r)
     print("  prueba1 -> %s" % r)
-    print("  bloque editorial: ancho %d (de %d posibles) · cuerpo %d · versal %d"
-          % (anc, ANCHO_MAX, cuerpo, hv))
+    print("  bloque editorial: ancho %d (de %d posibles) · versal %d"
+          % (anc, ANCHO_MAX, hv))
+    print("                    cuerpos: 50%% OFF %d · script %d · bajada %d"
+          % (cuerpo, c_scr, c_baj))
     print("                    y=%d..%d dentro de la franja %d..%d (cápsula en 1485)"
           % (y0, y0 + alto, BANDA[0], BANDA[1]))
     print("  producto: clavado en y=%d · %d · %d" % (Y_NOMBRE, Y_PRECIO, Y_TACHADO))

@@ -106,41 +106,20 @@ const Marco: React.FC<{archivo: string}> = ({archivo}) => (
 );
 
 /**
- * ⭐ EL MARCO TEÑIDO POR TRAMOS — para las piezas con el mapa a sangre.
+ * 🗄️ AQUÍ VIVÍA `MarcoTramos` — el marco teñido por tramos, del 24-09.
  *
- * El marco es un **asset bloqueado**: no se redibuja, sólo se rellena o se
- * recolorea con máscara. Pero cuando el fondo cambia de claro a oscuro dentro de
- * la misma pieza —el mapa es papel en la banda del medio y el color de marca
- * arriba y abajo— **un filete de un solo color deja de verse en un tramo**.
+ * Existía porque el mapa iba **en papel claro** a media pieza: un filete crema
+ * cruzando esa banda desaparecía, así que el marco se teñía navy sobre el mapa
+ * y crema sobre el fondo, con `clipPath`. Se retiró el 25-09 al pasar el mapa a
+ * TRAZOS sobre navy: el fondo ya no cambia de claro a oscuro y el filete se lee
+ * en toda su altura con un solo color.
  *
- * Así que se tiñe por tramos: el filete contrasta con lo que cruza. Es el mismo
- * recurso de `MarcoTenido` aplicado tres veces con `clipPath`, no un marco
- * nuevo. La referencia que pasó Diego el 24-09 hace exactamente esto: filete
- * oscuro sobre el mapa claro y píldora crema sobre el color sólido.
- *
- * `cortes` va en píxeles del lienzo y de arriba hacia abajo; el último `y` tiene
- * que ser el alto de la pieza.
+ * ⚠️ La regla que dejó sigue viva en el manual (§ 4 sexies · 12, punto 5): si
+ * una pieza vuelve a tener fondo claro y oscuro a la vez, **el filete se tiñe
+ * por tramos** — y antes hay que medir qué tinta trae el PNG, porque
+ * `MARCO-CARRUSEL-2` sólo lleva las dos líneas de las filas 130 y 1285 y no
+ * necesitaba nada. Se borró el componente, no el aprendizaje.
  */
-const MarcoTramos: React.FC<{
-  archivo: string;
-  alto: number;
-  cortes: {y: number; color: string}[];
-}> = ({archivo, alto, cortes}) => (
-  <>
-    {cortes.map((c, i) => (
-      <div
-        key={c.y}
-        style={{
-          position: "absolute",
-          inset: 0,
-          clipPath: `inset(${i === 0 ? 0 : cortes[i - 1].y}px 0 ${alto - c.y}px 0)`,
-        }}
-      >
-        <MarcoTenido archivo={archivo} color={c.color} />
-      </div>
-    ))}
-  </>
-);
 
 /**
  * ⛔ TODO CENTRADO AL MEDIO (Diego, 23-09). El bloque de texto se centra
@@ -797,9 +776,16 @@ const G: React.FC = () => (
  */
 
 /** La banda del mapa: a sangre, y con su propia proporción de recorte. */
-const MAPA = {top: 545, h: 470};
-/** Dónde abre y dónde cierra el degradado. Fuera de esto, navy macizo. */
-const MAPA_LIMPIO = {desde: 565, hasta: 930};
+/**
+ * ⭐ LA BANDA DEL MAPA — en TRAZOS desde el 25-09.
+ *
+ * `escala 0,932` y `desdeFila 105` no son a ojo: el contorno de la comuna ocupa
+ * las filas **143-572** del archivo (429 px). Para que entre COMPLETO en los
+ * 470 px de banda con aire arriba y abajo hay que reducirlo a 400 px —de ahí el
+ * 0,932— y empezar a mostrar el archivo 35 px de banda antes del contorno.
+ * Un contorno cortado por el borde parece un error de encuadre, no un mapa.
+ */
+const MAPA = {top: 543, h: 470, escala: 0.9, desdeFila: 105};
 
 /** Placa de dato, como las del pie de la referencia. */
 const Placa: React.FC<{children: React.ReactNode}> = ({children}) => (
@@ -829,21 +815,38 @@ const H: React.FC = () => (
   <Lienzo w={STORY.w} h={STORY.h}>
     <AbsoluteFill style={{backgroundColor: TC.colors.navy}} />
 
-    {/* ⭐ EL MAPA, A SANGRE. Se disuelve en el navy por arriba y por abajo: el
-        degradado va sobre la banda y termina exactamente donde termina la
-        imagen, así que no queda canto. */}
-    <div style={{position: "absolute", left: 0, top: MAPA.top, width: STORY.w, height: MAPA.h}}>
+    {/* ⭐ EL MAPA, EN TRAZOS. El archivo YA viene con el navy de marca de fondo
+        (`tc-mapa-trazos.py`), así que no hay banda ni borde que disimular: los
+        trazos simplemente se apagan contra el mismo navy del lienzo. Por eso el
+        degradado de los cuatro lados es invisible — no tapa un canto, disuelve
+        el dibujo. */}
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        top: MAPA.top,
+        width: STORY.w,
+        height: MAPA.h,
+        overflow: "hidden",
+      }}
+    >
       <Img
-        src={OCT("mapa3-banda-st")}
-        style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}
+        src={OCT("mapa-ph-trazos-navy")}
+        style={{
+          position: "absolute",
+          left: (STORY.w - 893 * MAPA.escala) / 2,
+          top: -MAPA.desdeFila * MAPA.escala,
+          width: 893 * MAPA.escala,
+          height: 631 * MAPA.escala,
+          display: "block",
+        }}
       />
       <AbsoluteFill
         style={{
-          background: `linear-gradient(to bottom,
-            ${TC.colors.navy} 0%,
-            rgba(11,44,73,0) ${((MAPA_LIMPIO.desde - MAPA.top) / MAPA.h) * 100}%,
-            rgba(11,44,73,0) ${((MAPA_LIMPIO.hasta - MAPA.top) / MAPA.h) * 100}%,
-            ${TC.colors.navy} 100%)`,
+          background: `linear-gradient(to bottom, ${TC.colors.navy} 0%, rgba(11,44,73,0) 11%,
+                        rgba(11,44,73,0) 89%, ${TC.colors.navy} 100%),
+                       linear-gradient(to right, ${TC.colors.navy} 0%, rgba(11,44,73,0) 15%,
+                        rgba(11,44,73,0) 85%, ${TC.colors.navy} 100%)`,
         }}
       />
     </div>
@@ -883,15 +886,20 @@ const H: React.FC = () => (
       </div>
     </div>
 
-    {/* la ubicación, en píldora de contorno como la referencia. Va en el tramo
-        donde el mapa ya se disolvió, así que apoya sobre navy y no sobre
-        cartografía. */}
+    {/* La ubicación, en píldora de contorno como la referencia.
+        ⚠️ DOS COSAS MEDIDAS, NO ELEGIDAS:
+        · Va **rellena de navy macizo**, no transparente. Con el mapa en trazos
+          debajo, una píldora calada deja pasar los caminos por detrás del texto
+          — que es exactamente lo que estas vueltas vinieron a prohibir.
+        · Va en la fila 966 y no antes: el vértice sur del contorno comunal
+          cierra en la 963 (543 + (572-105)×0,90). Trece píxeles más arriba y la
+          píldora le corta la punta a la comuna. */}
     <div
       style={{
         position: "absolute",
         left: 0,
         right: 0,
-        top: 950,
+        top: 976,
         display: "flex",
         justifyContent: "center",
       }}
@@ -901,6 +909,7 @@ const H: React.FC = () => (
           display: "inline-flex",
           alignItems: "center",
           gap: 13,
+          backgroundColor: TC.colors.navy,
           border: `1px solid rgba(243,238,227,0.55)`,
           borderRadius: 999,
           padding: "13px 34px",
@@ -923,9 +932,9 @@ const H: React.FC = () => (
       style={{
         position: "absolute",
         left: 96,
-        top: 1052,
+        top: 1062,
         width: 888,
-        height: 306,
+        height: 296,
         overflow: "hidden",
         borderRadius: "56px 0 56px 0",
       }}
@@ -1009,17 +1018,10 @@ const H: React.FC = () => (
       </Placa>
     </div>
 
-    {/* ⚠️ El marco, teñido por tramos: crema sobre el navy y navy sobre el mapa
-        claro. Un filete crema cruzando el papel del mapa no se ve. */}
-    <MarcoTramos
-      archivo="MARCO-ST"
-      alto={STORY.h}
-      cortes={[
-        {y: 555, color: TC.colors.cream},
-        {y: 972, color: TC.colors.navy},
-        {y: STORY.h, color: TC.colors.cream},
-      ]}
-    />
+    {/* El marco vuelve a ir de un solo color. El teñido por tramos existía
+        porque el mapa en papel era CLARO y se tragaba el filete crema; el mapa
+        en trazos es navy, así que el filete se lee en toda su altura. */}
+    <Marco archivo="MARCO-ST" />
     <Pildora caja={STORY.pill} icono={<IPin s={28} />} size={31}>
       Conoce el proyecto
     </Pildora>

@@ -935,6 +935,20 @@ encima; lo que se lee son **nuestros** rótulos. Receta reproducible en el
 encabezado de `Octubre.tsx`. **Pedirle a Carlos el mapa oficial** sigue abierto
 (es su pendiente #4).
 
+#### ✅ Los que SÍ son cartografía real
+
+| Archivo | Qué es | Trae | Se usa en |
+|---|---|---|---|
+| `mapa3.jpg` (1170×711) | captura de Google Maps, zoom medio | ⭐ **el pin rojo «Tierra Calma»** en (287,315) | `c-20-10-2`, a sangre en papel verde |
+| `MAPA-PADRE-HURTADO.png` (893×631) | captura de Google Maps, un zoom más cerca — la subió Diego el 25-09 | ⭐ **el contorno de la comuna** punteado, filas 143-572 | `st-12-10`, en trazos |
+
+⚠️ **Ninguno de los dos trae las dos cosas.** MAPA-3 tiene el proyecto pero no el
+límite comunal; MAPA-PADRE HURTADO tiene el límite pero **el proyecto le queda
+fuera del encuadre por la izquierda** (medido: x ≈ −160, ver § 4 sexies · 12 bis).
+Por eso hoy cada pieza usa el suyo. Una sola captura que contuviera **el pin y el
+contorno** dejaría las dos piezas con el mismo mapa — vale la pena pedirla junto
+con el mapa oficial.
+
 ---
 
 ## 4 sexies. ⭐ CÓMO SE APLICA UN COMENTARIO — el método que dejó octubre 2026
@@ -1126,12 +1140,16 @@ entonces la pieza pierde lo único que un mapa aporta, que es la prueba.
    un archivo por pieza con la proporción exacta de su banda, y la composición lo
    muestra 1:1. **Nadie reencuadra con `objectPosition`**: buscar el pin a ojo es
    lo que hacía que quedara pegado a un borde.
-5. **El filete del marco se tiñe por tramos** (`MarcoTramos`). Con el mapa claro
-   en el medio y el color de marca arriba y abajo, un filete de un solo color
-   desaparece en un tramo. La referencia hace exactamente esto: filete oscuro
-   sobre el mapa, píldora crema sobre el color. ⚠️ **Medir antes**: sólo
-   `MARCO-ST` lleva filete vertical; `MARCO-CARRUSEL-2` sólo tiene las dos líneas
-   de las filas **130 y 1285**, que caen sobre color macizo y no necesitan nada.
+5. **Si la pieza tiene fondo claro y oscuro a la vez, el filete del marco se
+   tiñe por tramos.** Con el mapa claro en el medio y el color de marca arriba y
+   abajo, un filete de un solo color desaparece en un tramo. La referencia hace
+   exactamente esto: filete oscuro sobre el mapa, píldora crema sobre el color.
+   ⚠️ **Medir antes**: sólo `MARCO-ST` lleva filete vertical; `MARCO-CARRUSEL-2`
+   sólo tiene las dos líneas de las filas **130 y 1285**, que caen sobre color
+   macizo y no necesitan nada. *(El componente `MarcoTramos` existió del 24 al
+   25-09; se retiró al pasar la story a trazos sobre navy, que no cambia de
+   claro a oscuro. La regla queda; el componente se vuelve a escribir en diez
+   líneas si hace falta.)*
 
 > 💡 **El control es numérico, no visual.** El script imprime **dónde cae cada
 > topónimo en el lienzo** —el pin, Maipú, Padre Hurtado— y todos tienen que
@@ -1151,6 +1169,79 @@ debajo del titular, y sangra por abajo. **El titular no se monta sobre el mapa
 aunque quepa** — es justo lo que estas vueltas vinieron a arreglar, y la
 referencia tampoco lo hace: lo único que pone sobre el mapa es el logo.
 
+
+#### ⭐ 12 bis · LA STORY PASA A TRAZOS (Diego, 25-09) — y trazar NO es dibujar
+
+> *"Necesito que el mapa [sea] en trazos, ocupa el **MAPA-PADRE HURTADO** para
+> generar esa parte del contenido."*
+
+Diego subió a Drive `MAPA-PADRE HURTADO` (893×631, 25-09 13:55) y `st-12-10`
+cambió de **papel a trazos**. ⚠️ `c-20-10-2` **no cambió**: el carrusel sigue con
+MAPA-3 a sangre en papel verde. Hoy la marca tiene **dos tratamientos vivos de
+mapa** y cada pieza dice cuál usa.
+
+**⛔ Lo primero, porque es la trampa de esta cuenta:** el 23-09 se rechazó un mapa
+de celdas *"porque el mapa no es así realmente"*. Un mapa en trazos podría
+parecer lo mismo — y no lo es:
+
+| Dibujar (prohibido) | Trazar (esto) |
+|---|---|
+| la geometría sale de la cabeza | la geometría sale **píxel a píxel del archivo real** |
+| las vecindades se «verifican» después | las vecindades **son** las del archivo |
+| cambiar el mapa = redibujar | cambiar el mapa = reemplazar el PNG y correr el script |
+
+`scripts/tc-mapa-trazos.py` sólo cambia la **tinta**. El día que llegue el mapa
+oficial de Carlos se cambia un archivo.
+
+**Cómo se sacan los trazos, y por qué no sirve el duotono.** En este estilo de
+Google Maps **los caminos son más CLAROS que el fondo** (`#F5F4F4` sobre
+`#E7E8E9`: catorce niveles). Un duotono por luminancia —el de
+`tc-mapas-duotono.py`— deja los caminos invisibles y pinta la mancha de relleno.
+Lo que funciona es el **gradiente**: toda línea —casco de camino, orilla de río,
+borde entre el verde rural y el gris urbano, letra de topónimo, punteado del
+límite— produce un salto de color; el relleno plano, no.
+
+> ⚠️ El gradiente va sobre los **tres canales**, no sobre la luminancia. El borde
+> verde/gris del área urbana casi no cambia de brillo pero sí de color, y sobre
+> luminancia sola se perdía entero.
+
+**El límite comunal es el protagonista.** El archivo trae el contorno de Padre
+Hurtado dibujado por Google en punteado rojo (filas 143-572). Es el mismo caso
+que el pin del MAPA-3 —lo trae el material, no lo ponemos nosotros— y se repone
+como **el único acento**, en arena. Se **engrosa un píxel**: en el original es un
+punteado de 1 px para mirar al 100 %, y reducido se deshilacha.
+
+⭐ **Y la jerarquía es un número, no un gusto.** Con la red de caminos a tinta
+llena, el contorno se pierde dentro de ella y el mapa se lee como textura. Con la
+red al **70 %** y el contorno al **100 %**, el mapa dice primero PADRE HURTADO y
+después cómo se llega.
+
+**Lo que el trazo sobre navy resolvió de una:** el archivo ya trae el navy de
+marca de fondo, así que **no hay banda, ni borde, ni canto que disimular** — los
+trazos se apagan contra el mismo navy del lienzo. Se fueron el degradado de
+lectura y el marco teñido por tramos.
+
+⚠️ **Y lo que obligó a medir:** con el mapa debajo, la píldora de ubicación
+**calada dejaba pasar los caminos por detrás del texto**. Va rellena de navy
+macizo. Y va en la fila 976 y no antes porque el vértice sur del contorno cierra
+en la 963: trece píxeles más arriba y la píldora le corta la punta a la comuna.
+
+⛔ **LO QUE ESTE MAPA NO TIENE: LA UBICACIÓN DE TIERRA CALMA.**
+Medido contra `mapa3.jpg` con dos anclas independientes —«Casas de La Esperanza»
+y «Casas de los Bajos»—, la escala entre los dos archivos es **1,70** y el pin
+del proyecto cae en **x ≈ −160**: queda **fuera del encuadre por la izquierda**,
+como un 18 % del ancho. Este mapa muestra la **comuna**, no la parcela.
+
+> 💡 Si la pieza tiene que mostrar dónde está el proyecto, hace falta **otra
+> captura**: el mismo zoom corrido ~160 px al poniente, o un paso menos de zoom.
+> Con el archivo actual, el proyecto lo nombra el texto, no el mapa.
+
+> 🗄️ **Nota sobre la referencia del 24-09 y este archivo: no son el mismo.** La
+> referencia venía re-entintada en café y con la tipografía rota («Los Maitenss»,
+> comprobado a resolución completa); `MAPA-PADRE HURTADO` es una captura limpia y
+> sus topónimos están bien. Que las dos vengan de la marca no las hace
+> equivalentes: **la referencia se lee por su gramática, el archivo fuente se
+> usa por su contenido**.
 #### ⭐ Y la que vale más allá del mapa: **la marca del cliente puede estar ya en el material**
 
 **Tierra Calma está registrada en Google Maps.** MAPA-3 trae su pin rojo y su

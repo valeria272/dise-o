@@ -5,6 +5,93 @@
 
 ---
 
+## 2026-09-25 — Diego Aguilar (st-12-10: el mapa pasa a TRAZOS)
+
+**Qué se hizo:** *"Necesito que el mapa [sea] en trazos, ocupa el MAPA-PADRE
+HURTADO para generar esa parte del contenido."* Sólo `st-12-10`; `c-20-10-2` no
+se tocó y sigue con MAPA-3 a sangre en papel verde.
+
+Diego subió a Drive **`MAPA-PADRE HURTADO`** (893×631, hoy 13:55,
+1j4wcVlgJh7WLmUHk8QgCZD1wZSZdAzZP). Es una captura de Google Maps **limpia** —
+topónimos correctos— centrada en la comuna, **con el contorno de Padre Hurtado
+punteado por Google**. Queda versionada en
+`raw/tierracalma/marcos-oct2026/MAPA-PADRE-HURTADO.png`.
+
+**⛔ Lo primero que hubo que resolver: trazar no es dibujar.** El 23-09 se rechazó
+un mapa de celdas *"porque el mapa no es así realmente"*, y un mapa en trazos
+podría parecer lo mismo. No lo es: `scripts/tc-mapa-trazos.py` saca la geometría
+**píxel a píxel del archivo real** y sólo cambia la tinta. Si llega el mapa
+oficial de Carlos, se reemplaza el PNG y se corre el script.
+
+**El duotono de siempre no servía, y la razón es medible:** en este estilo de
+Google Maps **los caminos son más CLAROS que el fondo** (`#F5F4F4` sobre
+`#E7E8E9`, catorce niveles). Mapear luminancia a tinta deja los caminos
+invisibles y pinta la mancha de relleno. Lo que funciona es el **gradiente**:
+toda línea da un salto de color, el relleno plano no. Y va sobre los **tres
+canales**: el borde verde/gris del área urbana casi no cambia de brillo pero sí
+de color, y sobre luminancia sola se perdía entero.
+
+⭐ **La jerarquía resultó ser un número.** Con la red de caminos a tinta llena, el
+contorno de la comuna se pierde dentro de ella y el mapa se lee como textura. Red
+al **70 %**, contorno al **100 %** y engrosado un píxel —en el original es un
+punteado de 1 px pensado para el 100 % de zoom—, y el mapa dice primero PADRE
+HURTADO y después cómo se llega.
+
+**Lo que el trazo sobre navy resolvió solo:** el archivo ya trae el navy de marca
+de fondo, así que no hay banda, ni borde, ni canto. Se fueron el degradado de
+lectura **y el componente `MarcoTramos`** (vivió del 24 al 25-09): el filete ya
+no cruza ningún tramo claro y vuelve a ser de un solo color. La regla de teñir
+por tramos queda escrita en el manual aunque el componente no esté.
+
+**Dos cosas que obligaron a medir:**
+
+1. La píldora de ubicación **calada dejaba pasar los caminos por detrás del
+   texto** — justo lo que estas vueltas vinieron a prohibir. Va rellena de navy.
+2. La píldora va en la fila **976 y no antes**: el vértice sur del contorno
+   cierra en la 963. Trece píxeles más arriba y le corta la punta a la comuna.
+
+⚠️ **Y la compuerta atajó un bloqueante que yo introduje.** Para darle aire al
+mapa subí el titular de la fila 250 a la 225 — y la 225 está **dentro de los
+250 px de zona segura de Meta**. `qa/motor.py` lo marcó como bloqueante (1,0 % de
+tinta arriba). Se devolvió el titular a la 250 y los píxeles salieron de otro
+lado: banda del mapa de la 543, escala 0,90, foto de 306 a 296 px. Es la segunda
+vez en dos días que un ajuste «de aire» pisa una zona segura: **el aire se saca
+del contenido, nunca del margen.**
+
+⛔ **LO QUE ESTE MAPA NO TIENE: la ubicación de Tierra Calma.** Medido contra
+`mapa3.jpg` con dos anclas independientes —«Casas de La Esperanza» y «Casas de
+los Bajos»—, la escala entre los archivos es **1,70** (verificada además con «Los
+Maitenes», 1,709) y el pin del proyecto cae en **x ≈ −160**: fuera del encuadre
+por la izquierda, un 18 % del ancho. **Este mapa muestra la comuna, no la
+parcela.** Hoy el proyecto lo nombra el texto.
+
+> 👉 **Para Diego:** si la story tiene que mostrar dónde está el proyecto, hace
+> falta otra captura — el mismo zoom corrido ~160 px al poniente, o un paso menos
+> de zoom. Una sola que traiga **el pin Y el contorno** dejaría la story y el
+> carrusel con el mismo mapa.
+
+**Sobre la referencia del 24-09:** se comprobó a resolución completa y **sí** dice
+«Los Maitenss». No son el mismo archivo: la referencia venía re-entintada en café
+con la tipografía rota; `MAPA-PADRE HURTADO` está limpio. Que las dos vengan de
+la marca no las hace equivalentes.
+
+**Dónde quedó:** `OctubreV3.tsx` (bloque `H` y `MAPA`), `scripts/tc-mapa-trazos.py`
+(nuevo), `mapa-ph-trazos-navy.jpg` y `mapa-ph-trazos-papel.jpg` versionados —el de
+papel queda como alternativa por si algún día el titular necesita fondo claro—.
+**QA: 1 aviso**, el deliberado de la slide 2. Re-subida sobre el mismo `fileId`
+(`1LXliMk-w5Or_iANbLYRfxF0Yrztfx-bx`).
+
+**Qué sigue:** esperar la vuelta de Diego. La aprobación del cliente está prevista
+para el **29-09** (dato del cerebro de la cuenta) y el creativo D1 del PAID caduca
+el **12-10**.
+
+**Abierto:** lo de siempre, sin moverse — el OK escrito de Fran o Blanca sobre
+«Rol individual» y «Acceso controlado», el aviso del agua potable de septiembre,
+la mano manuscrita propia, y ahora **la captura de mapa que contenga el pin y el
+contorno a la vez**.
+
+---
+
 ## 2026-09-24 — CIERRE DE JORNADA — Diego Aguilar
 
 **Qué se hizo:** tres rondas sobre la grilla de octubre, todas sobre comentarios

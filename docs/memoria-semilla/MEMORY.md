@@ -5,6 +5,7 @@
 > estado de las 9 marcas y las reglas globales. Después el manual de la marca en
 > `clients/<marca>/CLAUDE.md`.
 
+- [⭐⭐ Cerebro por cliente](cliente-indice.md) — clients/<marca>/APRENDIZAJES.md: leer el de la marca ANTES de diseñar; se alimenta en cada /cierre; nunca aplicar el de otra marca
 - [HILTON — cliente 4 marcas](hilton-cliente-4-marcas.md) — ⭐ DT/QB/Between/Piso18 analizado 24-08; manual clients/hilton/CLAUDE.md, flujo de grillas y plan de automatización para aliviar a Eli
 - [⛔ Brushwell no cargaba en Chrome](brushwell-no-cargaba-en-chrome.md) — CAUSA RAÍZ del rechazo de Between: el .otf CFF lo rechaza Chrome y Remotion rindió las 27 piezas con una serif de reemplazo; fix = convertir a TTF/WOFF2 y verificar con document.fonts.check
 - [Leer una ronda en la grilla xlsx](comentarios-nativos-de-excel.md) — ⭐⭐ La ronda nueva se detecta por DIFF contra la copia anterior, no leyendo la celda; el comentario viejo a veces se PREPENDE (Between) y a veces se REEMPLAZA sin dejar rastro (DT), así que la prueba que sirve es el diff por CONJUNTO de cadenas — el uniqueCount miente

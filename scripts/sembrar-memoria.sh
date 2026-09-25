@@ -39,10 +39,15 @@ fi
 DESTINO="$HOME/.claude/projects/$SLUG/memory"
 mkdir -p "$DESTINO"
 
-nuevos=0; respetados=0
+nuevos=0; respetados=0; cerebros=0
 for f in "$SEMILLA"/*.md; do
   b=$(basename "$f")
-  if [ -e "$DESTINO/$b" ]; then
+  # Los cerebros por cliente (cliente-*.md) los genera scripts/memoria-cliente.py
+  # desde clients/<marca>/APRENDIZAJES.md: el repo SIEMPRE manda y se pisan.
+  if [[ "$b" == cliente-* ]]; then
+    cp "$f" "$DESTINO/$b"
+    cerebros=$((cerebros+1))
+  elif [ -e "$DESTINO/$b" ]; then
     respetados=$((respetados+1))
   else
     cp "$f" "$DESTINO/$b"
@@ -50,8 +55,13 @@ for f in "$SEMILLA"/*.md; do
   fi
 done
 
+# El índice local tiene que apuntar a los cerebros, aunque sea un MEMORY.md propio.
+if [ "$cerebros" -gt 0 ] && [ -e "$DESTINO/MEMORY.md" ] && ! grep -q "cliente-indice.md" "$DESTINO/MEMORY.md"; then
+  grep -m1 "cliente-indice.md" "$SEMILLA/MEMORY.md" >> "$DESTINO/MEMORY.md" || true
+fi
+
 echo "✓ Memoria sembrada en $DESTINO"
-echo "  $nuevos notas nuevas · $respetados ya existían (se respetó la versión local)"
+echo "  $nuevos notas nuevas · $respetados ya existían (se respetó la versión local) · $cerebros cerebros de cliente al día"
 if [ "$respetados" -gt 0 ] && [ -e "$DESTINO/MEMORY.md" ]; then
   echo "  ▲ MEMORY.md local conservado: si sembraste notas nuevas, revisa que el"
   echo "    índice las liste (compara con $SEMILLA/MEMORY.md)."

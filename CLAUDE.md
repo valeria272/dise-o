@@ -98,9 +98,13 @@ Si llegó por ZIP: [`docs/TRASPASO-ZIP.md`](docs/TRASPASO-ZIP.md) dice qué viaj
 1. [`docs/SISTEMA-DE-MARCAS.md`](docs/SISTEMA-DE-MARCAS.md) — el método del estudio.
    Las 7 capas, la jerarquía de imágenes, el pipeline de 6 pasos y las reglas duras
    que valen para todas las marcas. **Es la ley.**
-2. `clients/<marca>/CLAUDE.md` — el manual de esa marca: paleta medida, gramática,
+2. `clients/<marca>/APRENDIZAJES.md` — **el cerebro de la cuenta**: quién aprueba,
+   reglas firmes con cuántas veces se confirmaron, excepciones, lo que se aprueba a
+   la primera y lo que ya costó rondas. Se alimenta en cada `/cierre` (método en
+   [`docs/MEMORIA-POR-CLIENTE.md`](docs/MEMORIA-POR-CLIENTE.md)).
+3. `clients/<marca>/CLAUDE.md` — el manual de esa marca: paleta medida, gramática,
    reglas aprendidas con feedback real, QA obligatorio y errores ya cometidos.
-3. `clients/<marca>/marca.json` — la ficha legible por máquina: colores, fuentes,
+4. `clients/<marca>/marca.json` — la ficha legible por máquina: colores, fuentes,
    formatos, zonas seguras y geometría en px.
 
 **La regla madre: el brief manda el QUÉ, el sistema de marca manda el CÓMO.**
@@ -114,7 +118,7 @@ Una pieza nueva extiende el sistema aprobado; nunca inventa uno.
 | `/marca-nueva <nombre>` | Abrir el sistema de un cliente que todavía no existe |
 | `/adn <marca> <id-drive>` | Extraer el sistema real desde los editables del diseñador |
 | `/abrir [marca]` | **Abrir el día.** `git pull` (trae lo de los demás diseñadores) + siembra memoria + bitácora del cliente + `/al-dia` |
-| `/cierre [marca]` | **Cerrar el día.** Bitácora + commit + push — sin esto otro diseñador NO puede retomar el cliente mañana |
+| `/cierre [marca]` | **Cerrar el día.** Bitácora + **cosecha del feedback en el cerebro del cliente** (git + memoria + Drive) + commit + push — sin esto otro diseñador NO puede retomar el cliente mañana |
 | `/al-dia [marca]` | Revisa el Drive de la agencia y las carpetas de las diseñadoras: grillas nuevas, editables nuevos, comentarios sin leer (lo llama `/abrir`) |
 | `/arranque` | Primer arranque en una máquina nueva |
 

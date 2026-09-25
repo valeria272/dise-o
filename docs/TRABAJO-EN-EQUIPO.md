@@ -22,7 +22,7 @@
 | Momento | Comando | Qué hace |
 |---|---|---|
 | **Al empezar el día** | **`/abrir <marca>`** | `git pull` (trae lo de los demás) → siembra memoria nueva → lee la bitácora del cliente → `/al-dia` contra el Drive → resume dónde quedó todo |
-| **Al terminar el día** | **`/cierre <marca>`** | escribe la entrada de bitácora → commitea scripts, fondos y manuales del día → `git push` → confirma que quedó respaldado |
+| **Al terminar el día** | **`/cierre <marca>`** | escribe la entrada de bitácora → **cosecha el feedback en el cerebro del cliente** (obligatorio: sin cosecha no cierra) → commitea scripts, fondos y manuales del día → `git push` → confirma que quedó respaldado |
 
 La regla que sostiene todo: **si no está en el repo, no existe.** Un render que se
 entregó hoy y cuyo script no se subió hoy es trabajo que mañana nadie puede
@@ -36,6 +36,7 @@ reproducir — ya costó rehacer Revex tres rondas desde cero.
 | Fotos, packshots, videos, editables (`raw/`, `public/assets/` pesado) | **Drive** | Pesa; los IDs de carpeta están en cada manual — cualquiera lo rebaja |
 | Entregas (`out/`) | **Drive** (carpeta de entrega del cliente) | El cliente las ve ahí; el repo guarda el generador, no el resultado |
 | Memoria del estudio | **git** (`docs/memoria-semilla/`) → cuenta de cada uno vía `sembrar-memoria.sh` | El aprendizaje no puede depender de una sola cuenta |
+| **Cerebro de cada cliente** | **git** (`clients/<marca>/APRENDIZAJES.md`) → memoria de cada uno + un Google Doc por cliente en Drive | Lo que se aprendió del cliente sobrevive a quien lo aprendió. Ver [`MEMORIA-POR-CLIENTE.md`](MEMORIA-POR-CLIENTE.md) |
 
 ## Los dos orígenes de un buen diseño — y cómo cada uno queda capturado
 

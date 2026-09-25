@@ -10,7 +10,9 @@ Control de calidad sobre lo indicado en `$ARGUMENTS` (una marca, una carpeta o u
 archivo). **Sé duro.** El objetivo es encontrar problemas, no aprobar.
 
 1. Lee `clients/<marca>/CLAUDE.md` — secciones "QA obligatorio" y "Errores ya
-   cometidos" — y `marca.json`.
+   cometidos" — y `marca.json`. Lee también `clients/<marca>/APRENDIZAJES.md`: cada
+   regla de §4 y cada rechazo de §7 es un punto del checklist. Una pieza que repite
+   un rechazo ya registrado es 🔴.
 2. Abre **cada** pieza y una referencia aprobada del cliente, y compáralas.
 3. Revisa punto por punto el checklist de la marca. Además, transversal:
 

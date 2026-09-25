@@ -24,7 +24,11 @@
 | **Al empezar el día** | **`/abrir <marca>`** | `git pull` (trae lo de los demás) → siembra memoria nueva → lee la bitácora del cliente → `/al-dia` contra el Drive → resume dónde quedó todo |
 | **Al terminar el día** | **`/cierre <marca>`** | escribe la entrada de bitácora → **cosecha el feedback en el cerebro del cliente** (obligatorio: sin cosecha no cierra) → commitea scripts, fondos y manuales del día → `git push` → confirma que quedó respaldado |
 
-La regla que sostiene todo: **si no está en el repo, no existe.** Un render que se
+La regla que sostiene todo: **si no está en el repo, no existe.** Por eso, aunque
+nadie corra `/cierre`, al terminar cualquier sesión de Claude el hook `SessionEnd`
+sube el trabajo solo (`scripts/respaldo-automatico.py`), y cada noche una rutina en
+la nube cosecha lo aprendido en el cerebro de cada cliente — ver
+[`MEMORIA-POR-CLIENTE.md`](MEMORIA-POR-CLIENTE.md). Un render que se
 entregó hoy y cuyo script no se subió hoy es trabajo que mañana nadie puede
 reproducir — ya costó rehacer Revex tres rondas desde cero.
 

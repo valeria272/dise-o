@@ -15,11 +15,30 @@
 | Dónde | Qué es | Quién lo escribe |
 |---|---|---|
 | **GitHub** · `clients/<marca>/APRENDIZAJES.md` | **La fuente.** Lo único que se edita | Claude, en el `/cierre` de la diseñadora |
-| **Memoria de Claude** · `docs/memoria-semilla/cliente-<marca>.md` | Resumen (reglas más confirmadas + rechazos) que `/abrir` instala en la máquina de **cada** diseñador | `scripts/memoria-cliente.py`, generado. No se edita a mano |
+| **Memoria de Claude** · `docs/memoria-semilla/cliente-<marca>.md` | Resumen (reglas más confirmadas + rechazos) que `/abrir` instala en la máquina de **cada** diseñador. Es una copia: si una máquina se pierde, no se pierde nada | `scripts/memoria-cliente.py`, generado. No se edita a mano |
 | **Drive** · `AGENCIA COPYWRITERS › MEMORIA DEL ESTUDIO — cerebro por cliente` | Un Google Doc por cliente, para leerlo sin abrir el estudio (KAM, Valeria, una diseñadora nueva) | El mismo script. El enlace de cada Doc no cambia: se reemplaza el contenido |
 
 Los IDs de los Docs quedan en `clients/_memoria-drive.json`, así todas las máquinas
 actualizan **el mismo** Doc.
+
+## No depende de ningún equipo — tres capas
+
+El conocimiento no puede quedarse en el Mac o el PC de nadie. Por eso hay tres
+capas, y basta con que funcione **una**:
+
+| Capa | Cuándo corre | Qué hace | Si falla |
+|---|---|---|---|
+| **1. `/cierre`** | cuando la diseñadora cierra el día | la mejor cosecha: Claude tiene la conversación entera y le pregunta a la diseñadora lo que llegó por fuera | capas 2 y 3 |
+| **2. Respaldo automático** | **al terminar cualquier sesión** de Claude, en cualquier máquina (hook `SessionEnd` en `.claude/settings.json`, versionado) | `scripts/respaldo-automatico.py`: commitea y sube TODO a GitHub aunque nadie haya corrido `/cierre` | queda el commit local y lo sube el próximo `/abrir` |
+| **3. Cosecha nocturna en la nube** | todas las noches 23:30, en la nube de Anthropic — sin ningún equipo encendido | lee lo que el equipo subió en el día (`memoria-cliente.py pendientes`), lo destila en cada cerebro, regenera la memoria y publica los Docs en Drive. Procedimiento: [`COSECHA-NOCTURNA.md`](COSECHA-NOCTURNA.md) | se pone al día la noche siguiente: los pendientes se acumulan, no se pierden |
+
+Consecuencia: **la diseñadora sólo tiene que trabajar dentro del estudio.** Aunque
+cierre VSCode sin rito, esa noche lo aprendido está en GitHub y en Drive. Lo único
+que no llega es lo que nunca pasó por el estudio (un WhatsApp del cliente que nadie
+pegó): por eso `/cierre` pregunta por eso, y por eso vale la pena hacerlo.
+
+El resumen de cada noche (marcas cosechadas, candidatas a regla del estudio,
+contradicciones) queda en `clients/_cosecha-nocturna.md`.
 
 ## El ciclo
 
@@ -74,6 +93,7 @@ en el `/cierre` de ese día, con la fuente «Drive, comentario de <quién>, <fec
 
 ```bash
 python scripts/memoria-cliente.py auditar            # qué cuentas tienen sesiones sin cosechar
+python scripts/memoria-cliente.py pendientes         # commits que todavía no llegan al cerebro
 python scripts/memoria-cliente.py verificar hilton   # ¿está la cosecha de hoy?
 python scripts/memoria-cliente.py cerrar             # lo que corre /cierre
 python scripts/memoria-cliente.py drive --todas      # re-subir todos los cerebros a Drive

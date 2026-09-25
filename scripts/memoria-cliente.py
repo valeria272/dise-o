@@ -13,6 +13,8 @@ Subcomandos:
   drive     [marca ...]   Sube APRENDIZAJES.md como Google Doc a «MEMORIA DEL ESTUDIO»
   cerrar    [marca ...]   verificar → semilla → drive. Es lo que llama /cierre
   auditar                 Tabla: última sesión en bitácora vs última cosecha, por marca
+  pendientes [--json]     Marcas con commits posteriores a su última cosecha (lo usa
+                          la cosecha nocturna en la nube)
 
 Sin marcas, `verificar` y `cerrar` detectan solas las marcas tocadas hoy (commits de
 hoy + cambios sin commitear). `semilla`, `drive` y `auditar` aceptan --todas.
@@ -303,6 +305,38 @@ def drive(marcas):
     return ok
 
 
+# ─── pendientes ───────────────────────────────────────────────────────────────
+
+def pendientes(como_json=False):
+    """Commits que tocaron cada marca DESPUÉS del último commit de su APRENDIZAJES.md."""
+    marcas = marcas_existentes()
+    out = {}
+    for m in marcas:
+        desde = git("log", "-1", "--format=%cI", "--", f"clients/{m}/APRENDIZAJES.md").strip()
+        rango = ["--since", desde] if desde else ["--since", "30 days ago"]
+        log = git("log", *rango, "--name-only", "--format=@@%h|%an|%cI|%s")
+        commits = []
+        for bloque in log.split("@@")[1:]:
+            cab, *rutas = bloque.strip().split("\n")
+            rutas = [r for r in rutas if r.strip()]
+            propias = [r for r in rutas if marca_de_ruta(r, marcas) == m
+                       and not r.endswith("APRENDIZAJES.md")]
+            if propias:
+                h, autor, fecha, asunto = cab.split("|", 3)
+                commits.append({"hash": h, "autor": autor, "fecha": fecha[:16],
+                                "asunto": asunto, "archivos": propias[:40]})
+        if commits:
+            out[m] = {"ultima_cosecha": desde[:10] or None, "commits": commits}
+    if como_json:
+        print(json.dumps(out, ensure_ascii=False, indent=1))
+        return
+    if not out:
+        print("✓ Ninguna marca tiene trabajo sin cosechar.")
+    for m, d in out.items():
+        autores = sorted({c["autor"] for c in d["commits"]})
+        print(f"{m}: {len(d['commits'])} commit(s) desde la cosecha {d['ultima_cosecha']} — {', '.join(autores)}")
+
+
 # ─── auditar ──────────────────────────────────────────────────────────────────
 
 def auditar():
@@ -318,12 +352,15 @@ def auditar():
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("accion", choices=["verificar", "semilla", "drive", "cerrar", "auditar"])
+    ap.add_argument("accion", choices=["verificar", "semilla", "drive", "cerrar", "auditar", "pendientes"])
     ap.add_argument("marcas", nargs="*")
     ap.add_argument("--todas", action="store_true")
+    ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
     if a.accion == "auditar":
         return auditar()
+    if a.accion == "pendientes":
+        return pendientes(a.json)
     todas = marcas_existentes()
     malas = [m for m in a.marcas if m not in todas]
     if malas:

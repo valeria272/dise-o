@@ -3,6 +3,9 @@ description: Cerrar el día de trabajo — escribe la bitácora, COSECHA el feed
 ---
 
 Cerrar la jornada. La regla del estudio: **si no está en el repo, no existe.**
+(Si la sesión se cierra sin este rito, el hook `SessionEnd` igual sube todo y la
+cosecha nocturna en la nube destila lo que pueda desde la bitácora — pero sólo
+acá Claude tiene la conversación completa, así que la mejor cosecha es ésta.)
 Un diseñador que se enferma mañana no puede pasarle su carpeta a nadie — el relevo
 funciona solo si lo de hoy quedó subido hoy. Y lo que se **aprendió** hoy del
 cliente vale más que la pieza: la pieza se entrega una vez, el aprendizaje evita

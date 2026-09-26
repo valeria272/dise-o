@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-25** · Cosechas: **5**
+> Última cosecha: **2026-09-26** · Cosechas: **6**
 
 ## 1. Quién es el cliente
 
@@ -228,6 +228,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] El conector de Magnific de claude.ai no está autorizado, así que no se pudo crear el Space ni fijar a los personajes en la librería → **Valeria** (no se le lleva a Eli)
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: los 5 commits de ayer para DT y Between (4442ea8, adead40, 08ef0e8, ffbc2e9, 3b42c87) ya están cosechados, cada uno en su propia entrada de abajo (BETWEEN S5 septiembre, relectura de octubre sin piezas, feedback de la prueba 2, reel «La razón», banco de la familia DT). El único que `pendientes` marcó (3b42c87) es el mismo que hizo la última cosecha del día.
 
 ### 2026-09-25 (cierre, familia DT) — Claude con Eli · banco de la familia DT sobre fotos reales
 Reglas nuevas R-68 a R-73 (familia fija, fondo real, realismo, identidad, sin gente de fondo, 3 formatos). R-27 sube a ✔×2. A-08 (tres escenas aprobadas a la primera con fondo real). Rechazos X-29 a X-34. Tres preguntas abiertas en §8. Candidata a regla del estudio: el checklist de realismo para personas IA (R-70), que se propone a Valeria.

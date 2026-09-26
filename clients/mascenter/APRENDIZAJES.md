@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de marca: Valeria Traverso)** · Aprueba: **Sebastián Córdova (paid) · Francesca Pavissich (landings y presentación comercial)**
-> Última cosecha: **2026-09-25** · Cosechas: **2**
+> Última cosecha: **2026-09-26** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -148,6 +148,9 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`05a6e13`) es el mismo commit que ya cosechó el ADN medido de los editables de Diego (ver la entrada de abajo, tipografía Gotham). Se lista a sí mismo porque tocó `ADN-EDITABLES.md`, `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit.
 
 ### 2026-09-25 — Diego Aguilar (con Claude) · editables del disco KINGSTON + Drive 2026 + grillas ene–oct
 - ⚠️ **R-02 revisada**: no es Montserrat, es Gotham → nuevo **R-30**. **R-03 precisada**: el paid de abr–ago usó `#E52521`.

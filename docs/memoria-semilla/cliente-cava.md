@@ -1,6 +1,6 @@
 ---
 name: cliente-cava
-description: "CAVA — cerebro del cliente: 22 reglas firmes, última cosecha 2026-09-25. Generado desde clients/cava/APRENDIZAJES.md; leerlo antes de diseñar para cava"
+description: "CAVA — cerebro del cliente: 22 reglas firmes, última cosecha 2026-09-26. Generado desde clients/cava/APRENDIZAJES.md; leerlo antes de diseñar para cava"
 metadata:
   type: project
 ---

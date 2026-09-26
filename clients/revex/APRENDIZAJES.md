@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (diseñadora de la agencia para Grupo Revex) · Aprueba: **Jenny Campos** (diseñadora de Grupo Revex, `jcampos@gruporevex.cl`)
-> Última cosecha: **2026-09-25** · Cosechas: **1**
+> Última cosecha: **2026-09-26** · Cosechas: **2**
 
 ## 1. Quién es el cliente
 
@@ -128,6 +128,9 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **`marca.json` desactualizado:** dice «Los tres rojos», pide «Confirmar si Gotham es la oficial» (descartada el 26-08) y su pendiente de tipografía ya está resuelto → quien toque la ficha.
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico
 - nuevo **R-01…R-32**, **E-01…E-08**, **A-01…A-02**, **X-01…X-15** desde `CLAUDE.md`, `BITACORA.md`, `feedback/2026-08-25-ronda2.md`, `reglas.yaml`, `marca.json`, `CHECKLIST-CLIENTE.md` y las memorias `revex-adn-medido` y `revex-sep2026-estado`.

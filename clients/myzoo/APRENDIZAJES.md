@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (digital: grilla, RRSS, partners) · **Constanza Lizana «Coni»** (envase y packs) · Aprueba: **por confirmar** (ver §8)
-> Última cosecha: **2026-09-25** · Cosechas: **1**
+> Última cosecha: **2026-09-26** · Cosechas: **2**
 
 ## 1. Quién es el cliente
 
@@ -103,6 +103,9 @@ Piezas **publicadas** de Paulina que fijan cada registro (no hay registro de una
 - **Web:** el look de las 46 imágenes nuevas sigue esperando OK de Valeria y del cliente desde el 21-08. → Valeria.
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: `acc93eb` (22-09, gramática digital §2b, los 4 estáticos de octubre) ya está reflejado en la siembra inicial (R-01…R-17, más abajo). `bbe3d2f`, `8bbd601` y `bb78d71` sólo movieron 4 PNG de octubre dentro y fuera del repo (uno de ellos corrigiendo un error de archivos que se coló desde el cierre de EBEMA) — higiene de archivos, sin feedback de cliente ni corrección de diseño. `41b800b` es la misma siembra inicial.
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico
 - nuevo **R-01…R-17** · de `clients/myzoo/CLAUDE.md` (25-08 y 22-09), `marca.json`, `BITACORA.md` (22-09) y las notas `myzoo-digital-y-outpaint`, `myzoo-web-imagenes` y `coni-editables-cuentas` (sólo la parte de MyZoo).

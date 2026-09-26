@@ -1,6 +1,6 @@
 ---
 name: cliente-abakos
-description: "ABAKOS — cerebro del cliente: 10 reglas firmes, última cosecha 2026-09-25. Generado desde clients/abakos/APRENDIZAJES.md; leerlo antes de diseñar para abakos"
+description: "ABAKOS — cerebro del cliente: 10 reglas firmes, última cosecha 2026-09-26. Generado desde clients/abakos/APRENDIZAJES.md; leerlo antes de diseñar para abakos"
 metadata:
   type: project
 ---

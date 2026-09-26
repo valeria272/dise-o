@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (diseñadora de la agencia para Grupo Revex) · Aprueba: **Jenny Campos** (diseñadora de Grupo Revex, la clienta)
-> Última cosecha: **2026-09-25** · Cosechas: **1**
+> Última cosecha: **2026-09-26** · Cosechas: **2**
 
 ## 1. Quién es el cliente
 
@@ -138,6 +138,9 @@ Nada de septiembre 2026 pasó a la primera. Lo que Paulina marcó como modelo y 
 - Si en otro mes el brief vuelve a pedir «un mismo ambiente en las 4 tarjetas», **preguntar antes** de asumirlo (Jenny lo derogó para septiembre) → **Serena.**
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico
 - nuevo **R-01…R-36**, **E-01…E-07**, **A-01…A-04**, **X-01…X-18** desde `CLAUDE.md`, `BITACORA.md`, las 4 rondas de `feedback/`, `reglas.yaml`, `marca.json`, `recetas/`, `material/` y la memoria `casablanca-adn-medido`.

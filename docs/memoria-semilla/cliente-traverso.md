@@ -1,6 +1,6 @@
 ---
 name: cliente-traverso
-description: "TRAVERSO — cerebro del cliente: 22 reglas firmes, última cosecha 2026-09-25. Generado desde clients/traverso/APRENDIZAJES.md; leerlo antes de diseñar para traverso"
+description: "TRAVERSO — cerebro del cliente: 22 reglas firmes, última cosecha 2026-09-26. Generado desde clients/traverso/APRENDIZAJES.md; leerlo antes de diseñar para traverso"
 metadata:
   type: project
 ---

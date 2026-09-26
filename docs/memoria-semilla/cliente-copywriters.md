@@ -1,6 +1,6 @@
 ---
 name: cliente-copywriters
-description: "COPYWRITERS — cerebro del cliente: 23 reglas firmes, última cosecha 2026-09-25. Generado desde clients/copywriters/APRENDIZAJES.md; leerlo antes de diseñar para copywriters"
+description: "COPYWRITERS — cerebro del cliente: 23 reglas firmes, última cosecha 2026-09-26. Generado desde clients/copywriters/APRENDIZAJES.md; leerlo antes de diseñar para copywriters"
 metadata:
   type: project
 ---
@@ -22,7 +22,7 @@ Criterio: **Valeria Traverso** · Aprueba: **Valeria Traverso (aprobación final
 - **R-11** · Recreaciones con IA sí, pero **declaradas** en el arte («Recreación publicitaria»); nunca se hacen pasar por hallazgo documental — _`MASTER/09`, feedback del director 24-09 (HERO2 con sello «RECREACIÓN · NO SE PUBLICA»)_ · ✔×2
 - **R-18** · Curaduría de grilla: máximo 2 piezas tipográficas seguidas; ningún mecanismo dos veces seguido; cada 3–4 posts, gente, trabajo o proceso real — _Creative OS §12 (03-09); `MASTER/01` y `/04`, 24-09_ · ✔×2
 - **R-03** · Paleta cerrada de 6 colores; rosa `#FF2D8B`, coral `#FF6B3D`. Un color nuevo dominante necesita aprobación explícita — _Valeria, `MASTER/11`, 24-09 (cierra la duda #FF2D8D/#FF2D8B)_ · ✔×1
-- **R-05** · Titulares con la voz condensada y pesada; «una palabra manda, el resto acompaña». Vigente en código: Archivo variable wght 900 · wdth 58–70, tracking −0,03 a −0,045, interlineado 0,8; secundario Inter 500 — _ronda tipográfica, `MASTER/03`, 24-09 (`Tipo.tsx`)_ · ✔×1 · ⚠️ ver §8
+- **R-05** · Titulares con la voz condensada y pesada; «una palabra manda, el resto acompaña». `marca.json` fijó el rol **`titular` en Archivo Narrow** (wght 400–700) el 25-09; el Archivo variable de la ronda del 24-09 queda como `impacto_legado` — _`marca.json`, commit 66b38a1, 25-09-2026; coincide con el manual del proyecto (`CLAUDE.md` raíz: «Archivo Narrow (titulares)»)_ · ✔×1 · ⚠️ revisada 2026-09-26 (ver §8: falta la cita explícita de Valeria confirmándolo como cierre definitivo, no sólo como valor de config)
 - **R-07** · La escritura manual NO es voz: sólo intervención excepcional sobre foto, idealmente trazada a mano de verdad. Nada de manuscrita falsa como sistema — _Valeria, `MASTER/03`, 24-09_ · ✔×1
 - **R-12** · VISUAL MATCH TEST (30 % del QA): la pieza se pone al lado de la lámina (`qa/visual_match.py`) y se pregunta «¿podría estar en la lámina?». Si no, FAIL aunque colores y fuentes estén perfectos. `qa/motor.py` es sólo QA **técnico**: nunca decir «pasa el QA» sin decir cuál — _director creativo vía Valeria, 24-09; `MASTER/09`_ · ✔×1
 - **R-13** · IMAGE-FIRST TEST: sin texto ni rosa, ¿la foto sola es de campaña? Si es sólo «correcta», vuelve a Magnific/Seedream. El diseño remata la imagen, no la rescata — _2º feedback del director, 24-09; `MASTER/09`_ · ✔×1

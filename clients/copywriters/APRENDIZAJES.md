@@ -17,7 +17,7 @@
 > `gcl-agent/universo/CANON_LOCK.md`. Léelo ahí antes de tocar cualquier cosa de G.
 >
 > Criterio: **Valeria Traverso** · Aprueba: **Valeria Traverso (aprobación final de dirección de arte, `MASTER/13`)**
-> Última cosecha: **2026-09-25** · Cosechas: **1**
+> Última cosecha: **2026-09-26** · Cosechas: **2**
 
 ## 1. Quién es el cliente
 
@@ -57,7 +57,7 @@ con humor de oficio y autoironía de agencia.
 - **R-02** · Idea antes que diseño: INSIGHT → IDEA → 3 RUTAS → CONCEPTO → DA → FORMATO → COPY → IMAGEN → DISEÑO. Sin dirección aprobada no se construye — _Creative OS §9, 03-09; `MASTER/00` y `START_HERE`, 24-09_ · ✔×2
 - **R-03** · Paleta cerrada de 6 colores; rosa `#FF2D8B`, coral `#FF6B3D`. Un color nuevo dominante necesita aprobación explícita — _Valeria, `MASTER/11`, 24-09 (cierra la duda #FF2D8D/#FF2D8B)_ · ✔×1
 - **R-04** · El rosa es señal, no relleno: intervención, objeto, material, cinta, una palabra… o no está. Máximo 5 de cada 12 posts con rosa evidente — _Creative OS §3 (03-09); `MASTER/00` y `MASTER/09` «menos branding evidente»; 4º feedback del director, 24-09_ · ✔×3
-- **R-05** · Titulares con la voz condensada y pesada; «una palabra manda, el resto acompaña». Vigente en código: Archivo variable wght 900 · wdth 58–70, tracking −0,03 a −0,045, interlineado 0,8; secundario Inter 500 — _ronda tipográfica, `MASTER/03`, 24-09 (`Tipo.tsx`)_ · ✔×1 · ⚠️ ver §8
+- **R-05** · Titulares con la voz condensada y pesada; «una palabra manda, el resto acompaña». `marca.json` fijó el rol **`titular` en Archivo Narrow** (wght 400–700) el 25-09; el Archivo variable de la ronda del 24-09 queda como `impacto_legado` — _`marca.json`, commit 66b38a1, 25-09-2026; coincide con el manual del proyecto (`CLAUDE.md` raíz: «Archivo Narrow (titulares)»)_ · ✔×1 · ⚠️ revisada 2026-09-26 (ver §8: falta la cita explícita de Valeria confirmándolo como cierre definitivo, no sólo como valor de config)
 - **R-06** · Máximo 3 voces tipográficas por pieza; la Mono nunca es héroe — _`MASTER/03`, 24-09; `marca.json` topes_ · ✔×2
 - **R-07** · La escritura manual NO es voz: sólo intervención excepcional sobre foto, idealmente trazada a mano de verdad. Nada de manuscrita falsa como sistema — _Valeria, `MASTER/03`, 24-09_ · ✔×1
 - **R-08** · El logo no va por defecto: sólo pieza institucional, cierre de reel, campaña corporativa o identificación explícita. El índice en Mono reemplaza al logo — _Creative OS §7 (lote v1: 1 de 9); `MASTER/00` y `/04`, 24-09_ · ✔×3
@@ -114,7 +114,10 @@ con humor de oficio y autoironía de agencia.
 - **¿Qué familia titula de verdad?** (Valeria) `MASTER/03` cerró Archivo Narrow Bold; la ronda
   tipográfica del mismo día pasó a Archivo variable 900; `MASTER/13` pide una grotesk condensada
   de Adobe (recomendación del estudio: Trade Gothic Next Condensed Heavy; falta Acumin Pro Extra
-  Condensed) y las Adobe no se ven en Chrome si no están activadas en el sistema.
+  Condensed) y las Adobe no se ven en Chrome si no están activadas en el sistema. El 25-09
+  (commit 66b38a1) `marca.json` pasó a declarar `titular: Archivo Narrow` y dejó el Archivo
+  variable como `impacto_legado` — apunta a que se resolvió en Narrow, pero el commit no trae
+  una cita de Valeria confirmándolo como cierre (sólo cambió el archivo de config). Confirmar.
 - **Escritura real del equipo** (plumón negro y rosado, digitalizada): mientras no exista, la manuscrita es placeholder (Valeria / equipo).
 - **La agencia no tiene fotografía propia versionada.** PEOPLE y buena parte de WORK dependen de eso; el post 10 se fotografía al equipo real (Valeria).
 - Post 05 «2,29 MM»: **dato sin verificar**. No se publica sin fuente (Valeria).
@@ -125,6 +128,11 @@ con humor de oficio y autoironía de agencia.
 - Migrar `AGENTE SOCIAL MEDIA` fuera de `GclPost` (deprecado): decisión pendiente de Valeria.
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · sesión de Valeria Traverso (66b38a1)
+- corrige **R-05** · `marca.json` fija `titular: Archivo Narrow`, deja el Archivo variable como `impacto_legado` y Caveat como `mano_legado_no_es_voz` — coincide con el `CLAUDE.md` del proyecto. ⚠️ marcada revisada porque el commit no trae la cita de Valeria confirmándolo, sólo el cambio de config; sigue en §8 como pregunta.
+- fuera de alcance a propósito: el mismo commit (66b38a1) trae el corte 16 del G.CL Cap.02 «Turno de noche» (25 planos, música, 8 elementos eliminados por feedback de Valeria) y ajustes de Santa Gota y Petra — no se cosecha acá por **E-07**: G.C.L. tiene canon propio (`gcl-agent/universo/CANON_LOCK.md`) y Santa Gota/Petra son marcas aparte con su propio cerebro.
+- el resto del commit (paleta `#FF2D8B`/`#FF6B3D` en `marca.json` y `reglas.yaml`) ya estaba cosechado como **R-03** desde la siembra inicial; sólo alcanzó al archivo de config, no es aprendizaje nuevo.
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico
 - nuevo **R-01…R-23** · sembradas desde `clients/copywriters/` (CLAUDE.md, BITACORA.md, reglas.yaml, marca.json), el Creative OS v1.1 y el pack `creative-system/MASTER/` del 24-09, que manda.

@@ -14,7 +14,7 @@
 > campañas, CRM y marcaje vive en `AGENTE PAID MEDIA*/PETRA/`.
 >
 > Criterio: **Valeria Traverso (lo que produce el estudio); las piezas finales de Meta las ejecuta el equipo de diseño de Petra** · Aprueba: **sin identificar (§8)**
-> Última cosecha: **2026-09-25** · Cosechas: **1**
+> Última cosecha: **2026-09-26** · Cosechas: **2**
 
 ## 1. Quién es el cliente
 
@@ -93,6 +93,9 @@ el catálogo y no cotizan.
 - ¿Hace falta abrir `clients/petra/CLAUDE.md` y `marca.json` con `/marca-nueva`, o el estudio seguirá sólo en landing y dirección de mensaje?
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: `clients/petra/BITACORA.md` (creado en `66b38a1`, con la entrada del 22-09 sobre la landing de cotización) ya está reflejado en la siembra inicial de abajo — R-08 a R-12, y las preguntas de §8 sobre precios contradictorios, el `SLACK_WEBHOOK` vacío y rotar la clave del WordPress. `41b800b` es la misma siembra. El resto de `66b38a1` (G.CL, feed Copywriters, Santa Gota) no es de esta marca.
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico
 - nuevo **R-01…R-12** · sembradas desde `clients/petra/BITACORA.md`, `landing-cotizacion/README.md` y `FUENTES.md` (22-09) y la propuesta de mensajes de Meta (`propuesta-sep2026.html` y `armar-propuesta-sep2026.py`, 10-09).

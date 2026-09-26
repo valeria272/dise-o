@@ -1,6 +1,6 @@
 ---
 name: cliente-rendic
-description: "RENDIC — cerebro del cliente: 17 reglas firmes, última cosecha 2026-09-25. Generado desde clients/rendic/APRENDIZAJES.md; leerlo antes de diseñar para rendic"
+description: "RENDIC — cerebro del cliente: 17 reglas firmes, última cosecha 2026-09-26. Generado desde clients/rendic/APRENDIZAJES.md; leerlo antes de diseñar para rendic"
 metadata:
   type: project
 ---

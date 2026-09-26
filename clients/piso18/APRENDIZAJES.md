@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
-> Última cosecha: **2026-09-25** · Cosechas: **3**
+> Última cosecha: **2026-09-26** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -134,6 +134,9 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - `P18C1Cumple.tsx` no declara sus textos al QA, así que la regla «sin bodas» queda «sin verificar» en cada corrida → estudio.
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: los 2 commits de ayer (67429c1, adead40) ya están cosechados en las entradas de abajo (C1 S5 cumpleaños ronda 4 aprobada; lectura de la grilla de octubre sin piezas). El único que `pendientes` marcó (adead40) es el mismo que hizo la última cosecha del día.
 
 ### 2026-09-25 (noche) — Claude con Eli · lectura de la grilla de octubre, sin piezas
 - **Sin aprendizajes nuevos:** no se diseñó nada. Grilla oct leída en vivo: FEED 7/7 EN REVISIÓN, STORIES 12 sin estado, reel orgánico sin estado; ningún comentario del cliente. Los 18 hilos son internos (Scarlette → Carlos, contenido), 4 abiertos: reel Día del Chef, ST 30-10, ST 19-10 y ST 08-10.

@@ -11,7 +11,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar** (diseñador de Rendic) · Aprueba: **Sebastián Córdova** (medios, cuenta REM)
-> Última cosecha: **2026-09-25** · Cosechas: **1**
+> Última cosecha: **2026-09-26** · Cosechas: **2**
 
 ## 1. Quién es el cliente
 
@@ -120,6 +120,9 @@ Desde el 23-09 cierra con un slogan en inglés, coherente con lo bilingüe.
 - **Manual con restos:** ver la nota ⚠️ de la sección 3; falta limpiar el `CLAUDE.md`.
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico
 - nuevo **R-01…R-17** · sembradas desde `CLAUDE.md` (medición 07-09), ronda 1 de Diego (08-09), ronda 2 de Sebastián (23-09) y QA del 24-09.

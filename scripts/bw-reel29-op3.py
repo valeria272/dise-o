@@ -7,7 +7,7 @@ Parte de la edición 2 aprobada por el cliente y le aplica lo que pidieron:
      todo lo demás es el 4K original;
   3. rearma el fondo desenfocado y vuelve a poner el texto con la misma
      tipografía, cuerpo, color y posición que la edición 2 (medidos al píxel:
-     Raleway Medium 127 px, relleno #FEF8EA, borde #645B4A ~10 px).
+     Raleway SemiBold 128 px, relleno #FEF8EA, borde #645B4A ~10 px).
 
 Uso:
   python scripts/bw-reel29-op3.py --parche-texto raw/between/reel-29sep/mg-aleph.mp4 \
@@ -31,7 +31,8 @@ W, H = 2160, 3840                 # cuadro final
 IX, IY, IW, IH = 30, 200, 2100, 3440   # recuadro interior en la edición 2
 CORTES = [0, 86, 150]
 ANCLA_Y = 1650                    # cinturón en el interior             # primer cuadro de cada toma (medido por flujo óptico)
-TEXTO = [("Por esto nací", 670, 1302), ("con dos manos", 596, 1462)]  # x tinta, alto de la P / la c
+TEXTO = [("Por esto nací", 658.5, 1271.5), ("con dos manos", 590.5, 1409.5)]  # origen PIL en el interior;
+# calzado por coincidencia de la tinta contra la edición 2 (IoU 0,87 y 0,86)
 
 
 def leer(ruta, tam):
@@ -100,14 +101,10 @@ def estabilizar(fr, suavizado):
 def texto_rgba():
     capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(capa)
-    f = ImageFont.truetype(os.path.join(DIR, "f", "Raleway.ttf"), 127)
-    f.set_variation_by_name(b"Medium")
-    for txt, x, ytope in TEXTO:
-        bx = f.getbbox(txt)
-        # alinear la tinta: bbox[0] es el lado izquierdo de la tinta; bbox[1] el tope de la P/c
-        ref = f.getbbox(txt[0])
-        ox, oy = IX + x - bx[0], IY + ytope - ref[1]
-        d.text((ox, oy), txt, font=f, fill=(254, 248, 234, 255),
+    f = ImageFont.truetype(os.path.join(DIR, "f", "Raleway.ttf"), 128)
+    f.set_variation_by_name(b"SemiBold")
+    for txt, x, y in TEXTO:
+        d.text((IX + x, IY + y), txt, font=f, fill=(254, 248, 234, 255),
                stroke_width=10, stroke_fill=(100, 91, 74, 235))
     return np.array(capa)
 
@@ -137,7 +134,19 @@ def mascara_piel(bgr):
 
 def parchar(base, parche, m, desplaz=(0, 0)):
     """Pega `parche` sobre `base` donde manda la máscara, igualando el color
-    medio en el anillo alrededor y devolviéndole el grano del original."""
+    medio en el anillo alrededor y devolviéndole el grano del original.
+    Trabaja sólo en la caja de la máscara (más un margen para el anillo)."""
+    ys, xs = np.nonzero(m > 0.001)
+    if len(ys) == 0:
+        return base
+    y0, y1 = max(ys.min() - 60, 0), min(ys.max() + 61, base.shape[0])
+    x0, x1 = max(xs.min() - 60, 0), min(xs.max() + 61, base.shape[1])
+    out = base.copy()
+    out[y0:y1, x0:x1] = _parchar(base[y0:y1, x0:x1], parche[y0:y1, x0:x1], m[y0:y1, x0:x1], desplaz)
+    return out
+
+
+def _parchar(base, parche, m, desplaz):
     if desplaz != (0, 0):
         M = np.float32([[1, 0, desplaz[0]], [0, 1, desplaz[1]]])
         parche = cv2.warpAffine(parche, M, (parche.shape[1], parche.shape[0]), borderMode=cv2.BORDER_REFLECT)

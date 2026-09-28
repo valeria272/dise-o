@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-28** · Cosechas: **13**
+> Última cosecha: **2026-09-28** · Cosechas: **14**
 
 ## 1. Quién es el cliente
 
@@ -156,7 +156,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-94** · [BW] **Editable de carta = UN .ai por opción en CMYK**, con una mesa de trabajo y una capa por hoja en orden («01 · Portada» arriba; dentro Texto · Logo · Ilustraciones · Gráfica · Fondo) + PDF de calidad 300 ppp con las ilustraciones vectorizadas — _Eli, 28-09-2026 («un Illustrator para todas… capa 1 slide 1 portada»; «tienes que estar en CMYK»)_ · ✔×1
 - **R-64** · [BW] Una pieza puede **cambiar de HOJA** en la grilla, no sólo de fecha: se busca por su título en FEED **y** en STORIES antes de decir que no hay nada nuevo — _grilla BW oct, 25-09-2026: «Por qué vienes / por qué te quedas» quedó en STORIES como REVISAR CONTENIDO («DEJARLO EN FEED») y reapareció en FEED 09-10 como OK PARA DISEÑAR_ · ✔×1
 - **R-65** · [DT] La grilla corre la fecha de una pieza ya entregada sin avisar; se reconoce por el título — _grilla DT oct, 25-09-2026: Opinión Expedia pasó de FEED 10-10 a 09-10_ · ✔×1
-- **R-66** · [BW] **Un reel no lleva relleno desenfocado alrededor del clip**: se expande con IA siguiendo la escena, y se ve **entero** lo que estaba en el cuadro (el vaso y la mano), sin recortar para tapar el borde — _contenido vía Eli, reel «La razón» S3, 25-09-2026 («le molesta a contenido»; «la idea es que se siga viendo el vaso y la mano de ella»)_ · ✔×1
+- **R-66** · [BW] **Un reel no lleva relleno desenfocado alrededor del clip**: se expande con IA siguiendo la escena, y se ve **entero** lo que estaba en el cuadro (el vaso y la mano), sin recortar para tapar el borde — _contenido vía Eli, reel «La razón» S3, 25-09-2026 («le molesta a contenido»; «la idea es que se siga viendo el vaso y la mano de ella»)_ · ✔×1 · ⚠️ revisada 2026-09-28: en este mismo reel **el cliente eligió la edición 2, con borde desenfocado**, por sobre la expansión IA (ver E-20)
+- **R-103** · [BW] **Retoque de un reel ya elegido: se parte de la edición que eligió el cliente y se toca sólo lo pedido** (estabilizar, sombra); el armado de esa edición (borde, texto, cortes) se conserva idéntico, texto calzado al píxel — _KAM vía Eli, reel «La razón» 29-09, 28-09-2026 («les gusta más la edición 2… podemos hacerle un retoque con IA»)_ · ✔×0 (op 3 en revisión)
 - **R-67** · [BW] La expansión IA de un reel se entrega **sutil y realista, siguiendo el movimiento del centro**: se revisa **frame a frame** que nada quede descuadrado, doblado (pelo, cabeza) ni con movimiento extraño — _Eli, prueba 2 del reel «La razón», 25-09-2026 («arriba de la cabeza se ve dos tipos»; «hacerlo frame a frame»)_ · ✔×1
 
 ### Las dos
@@ -181,6 +182,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **E-15** · [BW] Un rótulo enmarcado (otro objeto) no tiene que empatar el cuerpo del titular de las otras slides — _Eli, 21-09-2026, concurso («la segunda slide quedó perfecta»)_
 - **E-16** · [BW] «Cowork» sí va en pantalla (da contexto); «YA ABRIMOS» sigue prohibido — _cliente, 09-09-2026_
 - **E-17** · [BW] Plato de cerámica para el muffin en el carrusel To Go, aunque la ronda 12 los había sacado: manda la instrucción posterior de Eli — _Eli, 07-09-2026 (ronda 21)_
+- **E-20** · [BW] R-66 no aplicó en el reel «La razón» (29-09): entre la edición 2 (clip con borde desenfocado) y la prueba 2 (expansión IA), **el cliente eligió la edición 2** — _KAM vía Eli, 28-09-2026 («les gusta más la edición 2»)_. Queda la pregunta de si R-66 sigue valiendo para los próximos reels (§8)
 - **E-18** · [BW] El legal puede entrar en la franja inferior de Meta en una historia **orgánica** (si pasa a pauta, se sube) — _Eli, 07-09-2026, stories del cumpleaños_
 - **E-19** · [BW] Portada To Go con la foto de la entrada que eligió el cliente, aunque no iguale el color del carrusel — _cliente, 22-09-2026_
 
@@ -260,7 +262,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [BW] Carta oficial: ¿cuál de las 4 propuestas elige el cliente? · confirmar las erratas corregidas del Word (manquilla→mantequilla, Muffinn, Salmon, Cesar, Kuntsmann→Kunstmann, Founders Colection→Collection; precios todos con punto; «Elija 2 opciones» se dejó en usted) → cliente
 - [BW] Carta: ¿qué perfil CMYK pide la imprenta? (el papel de B y C se convirtió con Coated FOGRA39) → Eli / imprenta
 - [BW] «Si arriba ya cae…, que abajo no vuelva»: se aplicó como «sin palabra sola en la última línea»; confirmar que era eso → Eli
-- [BW] Reel «La razón» prueba 2 (IA): ¿se aceptan las franjas más blandas (720p) y los últimos 0,3 s con el fondo quieto? ¿Reemplaza a la edición 2 en la grilla? → contenido / Eli
+- ~~[BW] Reel «La razón» prueba 2 (IA): ¿reemplaza a la edición 2?~~ → **resuelto 28-09: el cliente eligió la edición 2** (E-20)
+- [BW] Reel «La razón» op 3 (28-09): ¿se aprueba? ¿basta con la sombra de la palma **más tenue** (no se borró entera)? ¿el zoom de 5 % de la estabilización corta el vaso en la toma 3? · ¿qué querían con la «máscara de recorte a la falda»? (no se hizo) → Eli / cliente
+- [BW] ¿R-66 (sin borde desenfocado) sigue valiendo para los próximos reels, o la elección de la edición 2 la levanta? → Eli / contenido
 - [DT] Una pieza nueva de **Family Time**, ¿sigue la razón de cuerpos 1,62 de `C1 FT N1` o el cuerpo único de R-04? → Eli
 - [DT] Faltan **Stag LCG** y **Trade Gothic Bold de ancho normal** (el del bloque de precio): sólo los tiene el cliente → Eli/cliente
 - [DT] Zona segura: la plantilla de Eli marca 209/369 px y el estudio mide 250/340; el logo a 241 px sólo sirve en orgánico. ¿Cuál manda si una historia se pauta? → Eli
@@ -294,6 +298,11 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 (cierre, reel «La razón» op 3) — Claude con Eli · retoque IA de la edición 2
+- **Regla nueva [BW]:** R-103, el retoque parte de la edición que eligió el cliente y toca sólo lo pedido.
+- **Excepción:** E-20, el cliente eligió la edición 2 con borde desenfocado; **R-66 revisada**. Pregunta de §8 del 25-09 resuelta; dos nuevas (aprobación de la op 3 y vigencia de R-66).
+- ⚠️ Autocrítica: el cerebro se leyó recién en el cierre; R-66 y X-27 (agrandar el clip corta vaso y mano) debieron leerse antes de estabilizar con zoom de 5 %.
 
 ### 2026-09-28 (cierre, ST 01-10 r8) — Claude con Eli · Family Time: familia completa y transición de cortina
 - **Reglas nuevas [DT]:** R-101 las personas se ven completas (el recuadro no tapa cuerpos; se aleja la cámara), R-102 sin fundido cruzado entre fotos con gente. **R-81 revisada** (su «fundido suave»).

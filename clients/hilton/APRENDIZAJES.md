@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-28** · Cosechas: **9**
+> Última cosecha: **2026-09-28** · Cosechas: **10**
 
 ## 1. Quién es el cliente
 
@@ -102,6 +102,10 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-83** · [DT] **El recuadro del programa entra JUNTO con el titular principal**; el texto de apertura dura poco (~2 s) para que la información del programa quede la mayor parte de la historia (~12 de 15 s) — _Eli, 28-09-2026, ST 01-10 Family Time r7 («cuando aparezca el texto del momento exacto… aparezca el recuadro de Family Time»)_ · ✔×1
 - **R-84** · [DT] **Menos imágenes y revisadas con zoom** antes de montarlas: en 15 s bastan 3; la que se vea rara (personaje que no parece su hoja, piel o texturas sobreprocesadas, persona cortada en el borde) se saca aunque esté en el banco. Cuidar que las caras no queden detrás del recuadro ni pegadas al titular (se mueve la foto, no el texto) — _Eli, 28-09-2026, ST 01-10 Family Time r7 («revisa bien las imágenes… que no se vean extrañas, que se vean más realistas, y utiliza menos imágenes»)_ · ✔×1
 
+- **R-85** · [DT] **«Piso18» junto es la MARCA (el centro de eventos); «Piso 18» separado es el PISO del hotel.** En una tabla o un texto sobre el centro de eventos va «PISO18»/«Piso18»; en el rótulo de un plano va el piso, que en inglés es «18th Floor» — _Eli, 28-09-2026, brochure de eventos traducido («PISO18 es la marca pero si es PISO 18 es por el piso del hotel»)_ · ✔×1
+- **R-86** · [DT] **En un documento traducido por el cliente manda el texto del Word**, aunque choque con la versión en español o entre brochures: el teléfono se cambió al del Word, y los nombres inconsistentes (Costanera Mall / Cenco Costanera) se dejaron como venían. Se consulta antes de unificar — _Eli, 28-09-2026, brochures traducidos (eligió «el del Word» y «dejar como el Word»)_ · ✔×1
+- **R-87** · [DT] **Cuando la tarea es la traducción, el brochure en español no se toca** (ni se abre para editar). Se lee sólo como referencia — _Eli, 28-09-2026 («no toques el brochure en español solo el que está para traducción»)_ · ✔×1
+- **R-88** · [DT] **Brochures: se corrige directo en el `.ai` empaquetado** (mismo nombre y carpeta, con respaldo antes) y **los PDF los exporta Eli** — _Eli, 28-09-2026 («ajústalos y me avisas para yo guardarlos en pdf»; «¿lo hiciste en la original ya empaquetada?»)_ · ✔×1
 ### Between
 - **R-30** · [BW] Taza blanca con raya negra y **KIMBO: se borra siempre**; la taza vigente es blanca total — _Eli 25-08; Scarlette 31-08; ronda 9, 03-09-2026_ · ✔×3
 - **R-31** · [BW] **El logotipo nunca se deforma ni se curva**: escala uniforme a ratio 3,0298, integrado en el vaso por tono (multiply), no por geometría — _Eli 25-08 («no se vea achatado»); cliente 31-08; Eli 01-09-2026 («no puedes curvarlo de esa manera»)_ · ✔×3
@@ -258,7 +262,16 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] ST 01-10 Family Time **ronda 7** (3 fotos, recuadro con el titular, Family Time centrado): subida a S1/DT/STS, **Eli la revisa**. En la foto de almohadas el papá queda cortado en el borde derecho: ¿se cambia? → **Eli**
 - [DT] La secuencia `.xml` para Premiere (F:/…/OCTUBRE/DT/S1/ST n°1 S1 DT OCT 26/) no se probó abriéndola en Premiere 2026 → **Eli** al abrirla
 
+- [DT] Brochures traducidos: textos del cliente que no calzan entre sí y se dejaron como en el Word: «Costanera Mall» (hotel) vs «Cenco Costanera» (eventos); «Waldorf Event Rooms» (título) vs «Waldorf Meeting Rooms» (texto) → **cliente**
+- [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
+
 ## 9. Registro de cosechas
+
+### 2026-09-28 (cierre, brochures) — Claude con Eli · DT brochures 2026 traducidos al inglés
+- **Reglas nuevas [DT]:** R-85 Piso18 (marca) vs Piso 18 (piso del hotel), R-86 en la traducción manda el Word del cliente, R-87 no se toca el brochure en español, R-88 se corrige en el `.ai` empaquetado y los PDF los exporta Eli.
+- **✔ que suben:** ninguna. **Rechazos:** ninguno. No hay aprobación todavía: Eli exporta los PDF.
+- §8: 2 preguntas nuevas (inconsistencias del texto del cliente; PDF y vínculos pendientes). La del teléfono de eventos quedó resuelta en la sesión (25877322, el del Word).
+- Técnico (no es criterio de Eli): edición del `.ai` por COM + ExtendScript, con otra sesión usando el mismo Illustrator (memoria `illustrator-desde-script-windows`).
 
 ### 2026-09-28 (cierre, ST 01-10 Family Time) — Claude con Eli · la familia fija en la historia animada, rondas 4 → 7
 - **Reglas nuevas [DT]:** R-81 historia animada con fotos y poca animación (no video), R-82 titular fuera de la caja y el programa en una bajada sutil, R-83 el recuadro entra con el titular principal, R-84 menos imágenes y revisadas con zoom.

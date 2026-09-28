@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de marca: Valeria Traverso)** · Aprueba: **Sebastián Córdova (paid) · Francesca Pavissich (landings y presentación comercial)**
-> Última cosecha: **2026-09-26** · Cosechas: **3**
+> Última cosecha: **2026-09-28** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -80,7 +80,7 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **R-28** · Una ronda se re-sube en sitio (mismo fileId y enlace, md5 verificado) — _paid octubre, 05-09 y 24-09-2026_ · ✔×2
 - **R-29** · Si un reel entregado cambia, se avisa a Sebastián Córdova (la pauta puede estar corriendo) — _bitácora 24-09-2026_ · ✔×1
 
-- **R-30** · **La tipografía de Más Center es Gotham**: Gotham Black para titular en pastilla y display de impacto; Gotham Rounded Bold (nombre de locatario, titular de arriendo), Medium (bajada, CTA, dirección), Book (descripción) y Light (pastillas de beneficios). La fuente se lee en el `.ai` (PyMuPDF `get_text('dict')`) antes de medir glifos — _editables de Diego abr–sept 2026 + `.aep` de jun–ago, leído 25-09-2026; Diego pidió usar su carpeta como referencia_ · ✔×1
+- **R-30** · **La tipografía de Más Center es Gotham**: Gotham Black para titular en pastilla y display de impacto; Gotham Rounded Bold (nombre de locatario, titular de arriendo), Medium (bajada, CTA, dirección), Book (descripción) y Light (pastillas de beneficios). La fuente se lee en el `.ai` (PyMuPDF `get_text('dict')`) antes de medir glifos — _editables de Diego abr–sept 2026 + `.aep` de jun–ago, leído 25-09-2026; Diego pidió usar su carpeta como referencia; 28-09 Diego: «migra el sistema a gotham» → sistema migrado y calibrado contra el `.ai`_ · ✔×2
 - **R-31** · La fuente de verdad del diseño son los editables de Diego (disco KINGSTON) y lo publicado en el Drive 2026, no el manual de 2023 ni el sistema del repo — _Diego, 25-09-2026_ · ✔×1
 - **R-32** · Tres sistemas que no se mezclan: orgánico IG (rojo + banda de color por tema + Localito), paid (tráfico / arriendo) y LinkedIn Grupo IFB (azul `#235D80`, celeste `#BAEAEE`, navy `#112C3A`). Algarrobal (Poppins) va aparte — _medido 25-09-2026_ · ✔×1
 - **R-33** · Carrusel de locatarios: foto real a sangre, banda de color con borde curvo, logo del locatario en círculo blanco sobre la banda, nombre Bold 45 + descripción Book 42 + 📍 «Más Center + lugar» Medium 35, flecha en círculo. La banda es roja por defecto; verde `#299A80` servicios/súper, cian `#01B8C1` clases, mostaza `#CFAF30` mascotas, rosa `#D64E74` madre/San Valentín — _editables mar-2025 → sept-2026_ · ✔×3
@@ -94,6 +94,9 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **R-41** · Público de Instagram: mujer +35 — _Scarlette, grilla may_ · ✔×1
 - **R-42** · LinkedIn Grupo IFB desde sept: fondo azul pleno sin chevron de marca de agua, lockup arriba al centro, caja azul al centro, mapas redibujados con la paleta, 1080×1080; voceros en video en las oficinas de Manquehue con cierre de logo IFB — _brief LinkedIn sept 2026_ · ✔×1
 - **R-43** · Localito: comunidad, concursos, efemérides, paid de tráfico y avisos; nunca arriendo ni LinkedIn. Desde agosto existe el corpóreo real y en sept–oct protagoniza reels de humor — _grillas ago–oct 2026_ · ✔×2 (refuerza R-06)
+- **R-45** · Reel de pauta: titular **GothamRounded Bold** en versales, pastilla y cierre **GothamRnd Book** (no Light ni Medium) — _`PERFOMANCE MASCENTER AGOSTO.aep` + grosor de trazo sobre `r-performance-agosto.mp4` (3,95 px contra 4,13 Book · 3,0 Light · 6,0 Medium), 28-09-2026_ · ✔×1
+- **R-46** · Toda migración de tipografía se valida renderizando contra el editable (`scripts/mascenter-calibrar-gotham.py`: ±3 px vertical, ±1,5 % horizontal), no a ojo, y se prueba que cada cara cargue en Chrome — _migración a Gotham, 28-09-2026_ · ✔×1
+- **R-47** · En el reel, el titular y la pastilla sin `lineas` usan `text-wrap: balance`, y el cierre fija sus cortes con el texto completo antes de tipearse: Gotham es más ancha que Montserrat y dejaba palabras solas («favoritos», «Instagram») — _migración a Gotham, 28-09-2026_ · ✔×1
 - **R-44** · Display de temporada (Eds Market, Royal Brand, Gloria Hallelujah, Garamond) sólo puntual, nunca como voz de la marca — _editables mar–sept 2026_ · ✔×1
 
 ## 5. Excepciones
@@ -132,7 +135,8 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 ## 8. Preguntas abiertas
 
 - **El rojo:** ¿sigue `#DC1914` (piezas aprobadas) o vuelve a `#E52521` (manual)? La memoria del 02-09 lo trató como «defecto»; el 04-09 se decidió extender lo aprobado → **Diego Aguilar**.
-- ~~**La tipografía:** ¿Montserrat es oficial para paid?~~ Resuelto 25-09: es Gotham (R-30). **Queda abierto: ¿se migra ya el sistema de producción y se rehace el paid de octubre?** Falta el archivo de Gotham Black → **Diego Aguilar**.
+- ~~**La tipografía:** ¿Montserrat es oficial para paid?~~ Resuelto 25-09 (R-30) y **migrado el 28-09**. Queda abierto: **¿se re-entrega el paid de octubre en Gotham?** Las gráficas P01 están rendidas en `out/mascenter/2026-10/gotham/`; los reels no, porque los clips y la pista no están en esta máquina (FUENTES ESTUDIO) → **Diego / Sebastián Córdova**.
+- Reel 02, 9:16: «TODO EN COMUNIDAD» no cabe en 790 px a 90 y cualquier corte deja una palabra sola, igual que en la v5 entregada → **Diego** decide si se acepta o se cambia el texto o el cuerpo.
 - ~~**El orgánico no está medido.**~~ Medido el 25-09 desde los editables (R-33, `ADN-EDITABLES.md`). Lo que sigue queda como historia: La memoria del 02-09 describe otro esqueleto (feed 4:5 1080×1350, logo en y 148–188, pastilla de bajada, flecha circular negra); el sistema actual es sólo paid. `DISEÑO GRILLAS` (de Ámbar) no se puede bajar → **Ámbar Gallardo**.
 - ~~Gramática de arriendo sin medir~~ Medida el 25-09: Gotham Rounded Bold titular 60/76, Medium 48, Light 35/43, CTA Bold 31/37 (`ADN-EDITABLES.md` §3).
 - Hashtag: ¿#MásCenter (hasta abril) o #MasCenter (desde mayo)? Cuenta: ¿@mascenter o @mascentercl? → **Scarlette / Diego**.
@@ -148,6 +152,14 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 — Diego Aguilar (con Claude) · migración del sistema a Gotham
+- ✔ **R-30** sube a ×2: Diego pidió «migra el sistema a gotham» y el sistema quedó calibrado contra el `.ai`.
+- nuevo **R-45** (fuentes del reel), **R-46** (validar la migración renderizando contra el editable) y **R-47** (balance en el reel).
+- Hallazgo: el `base.css` commiteado seguía en **Poppins** aunque el paid se entregó en Montserrat, así que el render de octubre no era reproducible desde el repo.
+- Hallazgo: Gotham Black no estaba en el disco KINGSTON, pero sí instalada en Windows (`%LOCALAPPDATA%\Microsoft\Windows\Fonts`).
+- Sin feedback de cliente en esta sesión: el conector de Drive estaba caído y `/al-dia` no pudo correr.
+- Plantilla del carrusel de locatarios (c-19-08, Talca) medida en su editable (mesas 11–15 de `AGOSTO IFB.ai`) → `sistema/plantillas/carrusel-locatarios-c-19-08.json`. Confirma los cuerpos de R-33 (Bold 45 · Book 42 · Medium 35) y agrega la portada: Gotham Black 82 + GothamRnd Medium 48 en pastilla roja. El carrusel del 01-10 de la grilla de octubre quedó en pausa hasta que vuelva el conector.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`05a6e13`) es el mismo commit que ya cosechó el ADN medido de los editables de Diego (ver la entrada de abajo, tipografía Gotham). Se lista a sí mismo porque tocó `ADN-EDITABLES.md`, `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit.

@@ -2,17 +2,23 @@
    Geometría MEDIDA sobre las 6 piezas de septiembre 2026 (raw/mascenter/ref-paid/sept),
    la última entrega aprobada de la misma campaña. Nada de acá es criterio propio.
    Feed 1080×1080 · Story 1080×1920. */
-@font-face{font-family:"Poppins";font-weight:400;src:url("assets/fonts/poppins-regular.woff2") format("woff2")}
-@font-face{font-family:"Poppins";font-weight:500;src:url("assets/fonts/poppins-medium.woff2") format("woff2")}
-@font-face{font-family:"Poppins";font-weight:600;src:url("assets/fonts/poppins-semibold.woff2") format("woff2")}
-@font-face{font-family:"Poppins";font-weight:700;src:url("assets/fonts/poppins-bold.woff2") format("woff2")}
+/* TIPOGRAFÍA — GOTHAM, leída en los editables de Diego (PAID SEPT IFB.ai, 25-09-2026).
+   Titular: Gotham Black · bajada: GothamRnd Medium · CTA: GothamRounded Medium.
+   TTF convertidos desde los .otf CFF con scripts/mascenter-gotham-ttf.py: Chrome rechaza
+   algunos CFF en silencio (memoria brushwell-no-cargaba-en-chrome). */
+@font-face{font-family:"Gotham Black";font-weight:900;font-display:block;src:url("assets/fonts/Gotham-Black.ttf") format("truetype")}
+@font-face{font-family:"GothamRnd";font-weight:400;font-display:block;src:url("assets/fonts/GothamRnd-Book.ttf") format("truetype")}
+@font-face{font-family:"GothamRnd";font-weight:500;font-display:block;src:url("assets/fonts/GothamRnd-Medium.ttf") format("truetype")}
+@font-face{font-family:"GothamRnd";font-weight:700;font-display:block;src:url("assets/fonts/GothamRnd-Bold.ttf") format("truetype")}
+@font-face{font-family:"GothamRounded";font-weight:300;font-display:block;src:url("assets/fonts/GothamRounded-Light.ttf") format("truetype")}
+@font-face{font-family:"GothamRounded";font-weight:500;font-display:block;src:url("assets/fonts/GothamRounded-Medium.ttf") format("truetype")}
 :root{
   --rojo:#DC1914;      /* pastilla y texto de cuerpo — medido en las 6 piezas */
   --rojo-cta:#D80000;  /* burbuja del CTA — medido */
   --blanco:#FFFFFF;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:var(--w);height:var(--h);overflow:hidden;background:var(--blanco);font-family:"Poppins",sans-serif}
+html,body{width:var(--w);height:var(--h);overflow:hidden;background:var(--blanco);font-family:"GothamRnd",sans-serif}
 .pieza{position:relative;width:var(--w);height:var(--h);overflow:hidden;background:var(--blanco)}
 /* La FOTO ocupa el tercio superior y termina en una onda: sube de izquierda a derecha.
    El recorte es la envolvente REAL de la pieza de septiembre (assets/onda.json). */
@@ -24,15 +30,15 @@ html,body{width:var(--w);height:var(--h);overflow:hidden;background:var(--blanco
 /* Pastilla roja del titular: ancho al contenido, centrada, esquinas de radio medido, texto blanco en versales. */
 .pastilla{position:absolute;left:50%;transform:translateX(-50%);top:var(--pastilla-top);
   background:var(--rojo);color:var(--blanco);border-radius:var(--pastilla-radio);
-  padding:var(--pastilla-pad);font-weight:700;text-transform:uppercase;text-align:center;
+  padding:var(--pastilla-pad);font-family:"Gotham Black",sans-serif;font-weight:900;text-transform:uppercase;text-align:center;
   font-size:var(--titular-size);line-height:var(--titular-lh);letter-spacing:0;white-space:nowrap}
 /* Bajada en rojo, centrada, sin caja. */
 .cuerpo{position:absolute;left:0;width:var(--w);top:var(--cuerpo-top);padding:0 var(--cuerpo-pad);
-  color:var(--rojo);font-weight:600;text-align:center;font-size:var(--cuerpo-size);line-height:var(--cuerpo-lh)}
+  color:var(--rojo);font-family:"GothamRnd",sans-serif;font-weight:500;text-align:center;font-size:var(--cuerpo-size);line-height:var(--cuerpo-lh)}
 /* Burbuja de diálogo del CTA, abajo a la izquierda, con cola hacia la mascota. */
 .cta{position:absolute;left:var(--cta-left);top:var(--cta-top);width:var(--cta-w);min-height:var(--cta-h);
   background:var(--rojo-cta);color:var(--blanco);border-radius:var(--cta-radio);
-  padding:var(--cta-pad);font-weight:500;text-transform:uppercase;text-align:center;
+  padding:var(--cta-pad);font-family:"GothamRounded",sans-serif;font-weight:500;text-transform:uppercase;text-align:center;
   font-size:var(--cta-size);line-height:var(--cta-lh);display:flex;align-items:center;justify-content:center}
 /* La cola sale del tercio inferior del borde derecho y apunta hacia la mascota. */
 .cta::after{content:"";position:absolute;right:calc(-1 * var(--cola-w));top:var(--cola-top);width:0;height:0;

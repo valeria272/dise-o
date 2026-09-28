@@ -35,6 +35,16 @@
  *     alternativas en una grilla 2×2 de fichas limpias.
  *   · Todo dentro de la zona segura de Instagram (250 arriba · 340 abajo).
  *   · Orgánica.
+  *
+ * ⭐ RONDA 4 DE ELI 28-09: parecerse a la ref («Guess the Destination»). Se toma:
+ *   · el TITULAR en dos voces — una línea en caja alta pesada y una palabra
+ *     caligráfica grande que la remata: «ADIVINA EL» en Raleway ExtraBold y
+ *     «trago» en Brushwell;
+ *   · las PISTAS dentro de UNA pastilla blanca, emojis grandes (antes eran tres
+ *     círculos de filete);
+ *   · el remate chico en caja alta espaciada abajo.
+ *   Se quedan la foto desenfocada del Aperol (brief) y las 4 alternativas que
+ *   pidió el cliente en la grilla.
  */
 import React from "react";
 import {AbsoluteFill} from "remotion";
@@ -60,31 +70,30 @@ const Ficha: React.FC<{x: number; y: number; texto: string}> = ({x, y, texto}) =
     textTransform: "uppercase"}}>{texto}</div>
 );
 
-const Pista: React.FC<{x: number; e: string}> = ({x, e}) => (
-  <div style={{position: "absolute", left: x, top: 846, width: 150, height: 150, borderRadius: "50%",
-    border: "1.5px solid rgba(255,255,255,.8)", background: "rgba(10,14,11,.3)",
-    display: "flex", alignItems: "center", justifyContent: "center", fontSize: 78,
-    fontFamily: "'Segoe UI Emoji','Noto Color Emoji',sans-serif"}}>{e}</div>
+/** La pastilla blanca de la ref, con las tres pistas adentro. */
+const Pastilla: React.FC<{top: number; emojis: string[]}> = ({top, emojis}) => (
+  <div style={{position: "absolute", top, left: (MESA.w - 640) / 2, width: 640, height: 190,
+    borderRadius: 95, background: "#fff", display: "flex", alignItems: "center",
+    justifyContent: "space-evenly", padding: "0 40px", boxShadow: "0 10px 40px rgba(0,0,0,.35)",
+    fontSize: 104, fontFamily: "'Segoe UI Emoji','Noto Color Emoji',sans-serif"}}>
+    {emojis.map((e) => <span key={e}>{e}</span>)}
+  </div>
 );
 
 const G = 24;                         // separación entre fichas
 const X0 = (MESA.w - 404 * 2 - G) / 2;
-const P0 = (MESA.w - 150 * 3 - 60 * 2) / 2;
 
 export const QbSt14Adivina: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
     <FotoQB src="assets/hilton/qb/oct/14-adivina.jpg" ratio={2250 / 4000} zoom={1.25} cx={0.58} cy={0.32} />
     <Velo arriba={[620, 0.72]} abajo={[760, 0.86]} plano={0.14} />
     <LogoQB top={250} ancho={130} />
-    <Linea top={392} cuerpo={176} familia="BellMT" italica>Adivina</Linea>
-    <Linea top={600} cuerpo={56} peso={800} tracking="0.3em">EL TRAGO</Linea>
-    <div style={{position: "absolute", top: 706, left: (MESA.w - 120) / 2, width: 120, height: 2,
-      background: "rgba(255,255,255,.7)"}} />
-    <Linea top={770} cuerpo={28} peso={600} tracking="0.4em">PISTAS</Linea>
-    <Pista x={P0} e="🍊" />
-    <Pista x={P0 + 210} e="🫧" />
-    <Pista x={P0 + 420} e="🥂" />
-    <Linea top={1070} cuerpo={46} peso={500} italica>{QB_ST14_DATA.pieza.texto}</Linea>
+    {/* r4: titular como «GUESS THE / Destination» */}
+    <Linea top={420} cuerpo={92} peso={800} tracking="0.02em">ADIVINA EL</Linea>
+    <Linea top={494} cuerpo={230} familia="Brushwell" interlinea={1}>trago</Linea>
+    <Linea top={752} cuerpo={26} peso={600} tracking="0.4em">PISTAS</Linea>
+    <Pastilla top={800} emojis={["🍊", "🫧", "🥂"]} />
+    <Linea top={1052} cuerpo={40} peso={500} tracking="0.14em" mayus>{QB_ST14_DATA.pieza.texto}</Linea>
     <Ficha x={X0} y={1162} texto="Aperol" />
     <Ficha x={X0 + 404 + G} y={1162} texto="Ramazzotti Rosato" />
     <Ficha x={X0} y={1162 + 96 + G} texto="St. Germain" />

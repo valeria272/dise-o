@@ -47,6 +47,11 @@
  *   · TITULAR serif en caja alta + una palabra caligráfica, como «READY TO BECOME
  *     your FAVORITE!»: «EL VIERNES» y «MOOD» en Bell MT, «cambia de» en Brushwell.
  *   · El logo «Sunset QB» no se toca: mismo archivo, lugar y tamaño.
+ *
+ * ⭐ RONDA 6 DE ELI 28-09: «el legal no se ve nada, auméntalo un poco… cuidando los
+ *   márgenes de Instagram y paid» y «oscurece un poco hacia arriba para leer
+ *   Sunset QB». Legal de 14 a 19 (el bloque de abajo sube 30 px para que cierre
+ *   en 1580); velo de arriba de 560 px al 45 % a 820 px al 80 %.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -78,7 +83,8 @@ export const QbSt09Sunset: React.FC = () => (
     {/* el canto de abajo de la foto (sube 300 px) se funde a negro */}
     <div style={{position: "absolute", left: 0, right: 0, top: 1380, height: 1920 - 1380,
       background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 45%, #000 100%)"}} />
-    <Velo arriba={[560, 0.45]} abajo={[900, 0.85]} />
+    {/* r6 (Eli): más oscuro arriba para leer «Sunset QB» */}
+    <Velo arriba={[820, 0.8]} abajo={[900, 0.85]} />
     <Img src={staticFile("assets/hilton/qb/oct/sunset-qb-logo.png")}
       style={{position: "absolute", top: 346, left: (MESA.w - LOGO_W) / 2, width: LOGO_W, height: LOGO_H}} />
     {/* rótulo a mano con flecha hacia el trago, como «Margarita» en la ref */}
@@ -91,14 +97,16 @@ export const QbSt09Sunset: React.FC = () => (
       <path d="M 498 940 L 528 961 L 500 986" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
     {/* titular como la ref: serif en caja alta + una palabra caligráfica */}
-    <Linea top={1206} cuerpo={66} familia="BellMT" tracking="0.04em">EL VIERNES</Linea>
-    <Linea top={1252} cuerpo={104} familia="Brushwell" interlinea={1}>cambia de</Linea>
-    <Linea top={1334} cuerpo={112} familia="BellMT" tracking="0.03em" interlinea={1}>MOOD</Linea>
-    <BotonVerde top={1450} ancho={520} alto={54} cuerpo={30} peso={700}>{QB_ST09_DATA.pieza.medida}</BotonVerde>
-    <Linea top={1512} cuerpo={34} peso={400} italica>
+    <Linea top={1176} cuerpo={66} familia="BellMT" tracking="0.04em">EL VIERNES</Linea>
+    <Linea top={1222} cuerpo={104} familia="Brushwell" interlinea={1}>cambia de</Linea>
+    <Linea top={1304} cuerpo={112} familia="BellMT" tracking="0.03em" interlinea={1}>MOOD</Linea>
+    <BotonVerde top={1420} ancho={520} alto={54} cuerpo={30} peso={700}>{QB_ST09_DATA.pieza.medida}</BotonVerde>
+    <Linea top={1480} cuerpo={34} peso={400} italica>
       {/* sin la ligadura «ff» y con aire entre las dos f (Eli 28-09: «se ve muy junto») */}
       <span style={{fontVariantLigatures: "none"}}>Tu af<span style={{marginLeft: "0.06em"}}>ter</span> of<span style={{marginLeft: "0.07em"}}>f</span>ice, a otro nivel</span>
     </Linea>
-    <Legal top={1556} cuerpo={14}>{QB_ST09_DATA.pieza.legal}</Legal>
+    {/* r6 (Eli): «aumenta un poco el tamaño de los legales… no se ve nada». De 14 a 19,
+        en dos líneas que cierran en y≈1578, al borde de la zona segura de paid (1580) */}
+    <Legal top={1526} cuerpo={19}>{QB_ST09_DATA.pieza.legal}</Legal>
   </AbsoluteFill>
 );

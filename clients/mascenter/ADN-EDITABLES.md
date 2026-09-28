@@ -25,10 +25,13 @@ contra Montserrat Medium 0,43). Los reels también son Gotham: `AGOSTO IFB.aep`,
 `PERFOMANCE MASCENTER JULIO.aep` e `IFB JUNIO.aep` usan Gotham Black / Gotham Rounded.
 Sólo `LOCALITO.aep` (sept) lleva además Montserrat.
 
-**Consecuencia:** `sistema/base.css`, `build.py`, `MasCenterReel.tsx`, `marca.json` y
-`reglas.yaml` están armados sobre Montserrat. Hay que migrarlos (pendiente de confirmar con Diego).
-Las fuentes están en el disco: `MAS CENTER TRASPASO/FEB 2026, DISEÑO NUEVO/IFB_FEB_Carpeta/Fonts/`
-(`gothamrnd_bold/book/medium.otf`, `Gotham Rounded Light.otf`). **Falta Gotham Black** como archivo.
+**Migrado el 28-09-2026** (lo pidió Diego): `sistema/base.css`, `build.py`, `MasCenterReel.tsx` y
+`marca.json` están en Gotham. El reel de pauta usa **GothamRounded Bold** en el titular y **GothamRnd Book**
+en la pastilla y el cierre (del `PERFOMANCE MASCENTER AGOSTO.aep` + grosor de trazo). La calibración contra
+el `.ai` (`scripts/mascenter-calibrar-gotham.py`) da ±2 px en las líneas base.
+Las fuentes: Gotham Black y Gotham Rounded están instaladas en la máquina de Diego
+(`%LOCALAPPDATA%\Microsoft\Windows\Fonts`), y GothamRnd también en el paquete FEB 2026 del disco.
+`scripts/mascenter-gotham-ttf.py` las encuentra y las convierte a TTF.
 Ojo: son `.otf` CFF, y Chrome puede rechazarlos (memoria *brushwell-no-cargaba-en-chrome*):
 convertir a TTF/WOFF2 y verificar con `document.fonts.check`.
 

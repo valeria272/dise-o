@@ -27,6 +27,12 @@
  *   · El legal sube a la zona segura de Instagram (en la aprobada estaba a 74 px
  *     del borde).
  *   · PROMO → zona segura de paid. Títulos sin punto (regla Hilton §F).
+ *
+ * ⭐ RONDA DE ELI 28-09: «Tu after office a otro nivel lo encuentro extraño: aumenta
+ *   un poco el tamaño, y las dos F de office sepáralas, se ven muy juntas» · «el
+ *   viernes cambia de mood: que se vea más similar a la de referencia». La bajada
+ *   pasa de 32 a 38 sin ligadura; el titular va en Raleway LIGHT (300) como
+ *   «TUS FAVORITOS / AL MEJOR PRECIO» de la aprobada, no Regular.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -56,11 +62,14 @@ export const QbSt09Sunset: React.FC = () => (
     <Velo arriba={[560, 0.35]} abajo={[980, 0.72]} />
     <Img src={staticFile("assets/hilton/qb/oct/sunset-qb-logo.png")}
       style={{position: "absolute", top: 346, left: (MESA.w - LOGO_W) / 2, width: LOGO_W, height: LOGO_H}} />
-    <Linea top={1150} cuerpo={84} peso={400} interlinea={1.02} tracking="0.01em">EL VIERNES</Linea>
-    <Linea top={1236} cuerpo={84} peso={400} interlinea={1.02} tracking="0.01em">CAMBIA DE MOOD</Linea>
-    <BotonVerde top={1338} ancho={560} alto={58} cuerpo={29} peso={700}>{QB_ST09_DATA.pieza.medida}</BotonVerde>
+    <Linea top={1150} cuerpo={84} peso={300} interlinea={1.02} tracking="0.01em">EL VIERNES</Linea>
+    <Linea top={1236} cuerpo={84} peso={300} interlinea={1.02} tracking="0.01em">CAMBIA DE MOOD</Linea>
+    <BotonVerde top={1338} ancho={560} alto={58} cuerpo={32} peso={700}>{QB_ST09_DATA.pieza.medida}</BotonVerde>
     <Linea top={1420} cuerpo={32} peso={500}>{QB_ST09_DATA.pieza.texto}</Linea>
-    <Linea top={1466} cuerpo={32} peso={400} italica>{QB_ST09_DATA.pieza.bajada}</Linea>
+    <Linea top={1464} cuerpo={38} peso={400} italica>
+      {/* sin la ligadura «ff» y con aire entre las dos f (Eli 28-09: «se ve muy junto») */}
+      <span style={{fontVariantLigatures: "none"}}>Tu af<span style={{marginLeft: "0.06em"}}>ter</span> of<span style={{marginLeft: "0.07em"}}>f</span>ice, a otro nivel</span>
+    </Linea>
     <Legal top={1536} cuerpo={16}>{QB_ST09_DATA.pieza.legal}</Legal>
   </AbsoluteFill>
 );

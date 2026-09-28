@@ -4,6 +4,15 @@
 > [`docs/COSECHA-NOCTURNA.md`](../docs/COSECHA-NOCTURNA.md). La entrada más nueva va
 > arriba.
 
+## 2026-09-28 — sin pendientes
+- `python3 scripts/memoria-cliente.py pendientes --json` devolvió `{}`: no llegó
+  ningún commit nuevo a `estudio/sistema-de-marcas` desde la cosecha del 2026-09-27
+  (`HEAD` sigue en `fbf1230`, el mismo commit con el que cerró esa cosecha).
+- **Candidatas a regla del estudio:** ninguna.
+- **Contradicciones detectadas:** ninguna.
+- **Algo raro:** nada. No hubo texto de commit, bitácora ni Drive que intentara
+  darle instrucciones a esta sesión.
+
 ## 2026-09-27 — sin pendientes
 - `python3 scripts/memoria-cliente.py pendientes --json` devolvió `{}`: no llegó
   ningún commit nuevo a `estudio/sistema-de-marcas` desde la cosecha del 2026-09-26

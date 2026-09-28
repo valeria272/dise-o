@@ -13,6 +13,9 @@ import {
   DURACION as DUR_FT,
   DtStFamilyTimeOct,
   DtStFamilyTimeOctGuia,
+  DtStFamilyTimeOctVideo,
+  DtStFamilyTimeOctVideoGrafica,
+  DtStFamilyTimeOctVideoGuia,
 } from './compositions/hilton/DtStFamilyTimeOct';
 import {DtFtOpinionOct, DtFtOpinionOctGuia} from './compositions/hilton/DtFtOpinionOct';
 import {DtStHonorsOct, DtStHonorsOctGuia} from './compositions/hilton/DtStHonorsOct';
@@ -28,6 +31,10 @@ const Raiz: React.FC = () => (
       {/* STORIES col C · 01-10 · ANIMADA Family Time primavera */}
       <Composition id="DT-A-Oct-FamilyTime" component={DtStFamilyTimeOct} {...animada} />
       <Composition id="DT-A-Oct-FamilyTime-Guia" component={DtStFamilyTimeOctGuia} {...animada} />
+      {/* ronda 4 (28-09): la familia fija en video — la que va a Drive */}
+      <Composition id="DT-A-Oct-FamilyTime-Video" component={DtStFamilyTimeOctVideo} {...animada} />
+      <Composition id="DT-A-Oct-FamilyTime-Video-Guia" component={DtStFamilyTimeOctVideoGuia} {...animada} />
+      <Composition id="DT-A-Oct-FamilyTime-Video-Grafica" component={DtStFamilyTimeOctVideoGrafica} {...animada} />
       {/* STORIES col G · 13-10 · ESTÁTICA Servicios del hotel */}
       <Composition id="DT-S-Oct-Servicios" component={DtStServiciosOct} {...story} />
       <Composition id="DT-S-Oct-Servicios-Guia" component={DtStServiciosOctGuia} {...story} />

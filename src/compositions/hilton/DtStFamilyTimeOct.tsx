@@ -31,7 +31,7 @@
  * ⛔ El CTA «deslizar hacia arriba» es el sticker de enlace del CM: no se dibuja.
  */
 import React from 'react';
-import {AbsoluteFill, Easing, Img, interpolate, staticFile, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, Easing, Img, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame} from 'remotion';
 
 import {DT, cargarFuentesDT, volteaApertura} from '../../brand/doubletree';
 import {ConTrade} from './dtIconosOct';
@@ -60,22 +60,45 @@ const LEGAL = 'Válido jueves a domingo y festivos. Cupos limitados.';
  * Las escenas, en orden. `desde` es el fotograma en que la escena ya está
  * entera; el barrido que la trae ocupa los `BARRIDO` fotogramas anteriores.
  */
-const ESCENAS = [
-  {src: 'assets/hilton/dt/oct/ft-familia.jpg', desde: 0, zoom: [1.0, 1.06]},
-  {src: 'assets/hilton/dt/oct/ft-familia-2.jpg', desde: 158, zoom: [1.06, 1.0]},
-  {src: 'assets/hilton/dt/oct/ft-hab.jpg', desde: 190, zoom: [1.0, 1.05]},
-  {src: 'assets/hilton/dt/oct/ft-desayuno.jpg', desde: 222, zoom: [1.06, 1.0]},
-] as const;
-const BARRIDO = 12;
+type EscenaDef = {src: string; desde: number; zoom: readonly [number, number]};
+type Tiempos = {cristal1: number; escribeDesde: number; escribeHasta: number; sale1: number; cristal2: number; entra2: number};
+type Montaje = {escenas: readonly EscenaDef[]; t: Tiempos};
 
-const T = {
-  cristal1: 30,
-  escribeDesde: 48,
-  escribeHasta: 108,
-  sale1: 138,
-  cristal2: 232,
-  entra2: 246,
-} as const;
+/** Ronda 3 (24-09, entregada): fotos fijas con zoom. */
+const FOTOS: Montaje = {
+  escenas: [
+    {src: 'assets/hilton/dt/oct/ft-familia.jpg', desde: 0, zoom: [1.0, 1.06]},
+    {src: 'assets/hilton/dt/oct/ft-familia-2.jpg', desde: 158, zoom: [1.06, 1.0]},
+    {src: 'assets/hilton/dt/oct/ft-hab.jpg', desde: 190, zoom: [1.0, 1.05]},
+    {src: 'assets/hilton/dt/oct/ft-desayuno.jpg', desde: 222, zoom: [1.06, 1.0]},
+  ],
+  t: {cristal1: 30, escribeDesde: 48, escribeHasta: 108, sale1: 138, cristal2: 232, entra2: 246},
+};
+
+/**
+ * Ronda 4 (Eli, 28-09): «utiliza los nuevos personajes… vuélvelas video para que se
+ * vea más realista, más bonito, más sutil». Las 5 escenas son clips de Kling 2.5 Pro
+ * sacados de las story del banco aprobado el 25-09 (familia sobre fotos REALES de DT,
+ * `scripts/dt-oct-ft-clips.py`). La cámara ya se mueve en el clip: sin zoom encima.
+ * Orden: la tarde larga (vista) lleva «Días más largos, clima perfecto»; después
+ * llegada, juego y desayuno en tomas cortas; la habitación tranquila sostiene el
+ * programa ~5,9 s (clip de 10 s, a velocidad real).
+ */
+const CLIPS: Montaje = {
+  escenas: [
+    {src: 'assets/hilton/dt/oct/ft-v-vista.mp4', desde: 0, zoom: [1, 1]},
+    {src: 'assets/hilton/dt/oct/ft-v-lobby.mp4', desde: 146, zoom: [1, 1]},
+    {src: 'assets/hilton/dt/oct/ft-v-almohadas.mp4', desde: 176, zoom: [1, 1]},
+    {src: 'assets/hilton/dt/oct/ft-v-restaurante.mp4', desde: 206, zoom: [1, 1]},
+    {src: 'assets/hilton/dt/oct/ft-v-hab.mp4', desde: 236, zoom: [1, 1]},
+  ],
+  // la familia de la habitación queda justo DETRÁS del cristal: se la deja ver sola
+  // ~1 s (f236→258) antes de que entre, como la foto sola de la referencia.
+  // la frase se apaga ENTERA antes de que arranque el barrido del lobby (f134):
+  // en la primera pasada quedaba un fantasma del texto sobre la familia caminando
+  t: {cristal1: 30, escribeDesde: 44, escribeHasta: 100, sale1: 118, cristal2: 258, entra2: 272},
+};
+const BARRIDO = 12;
 
 /** Los dos cristales, verticales como el de la referencia. */
 const C1 = {x: 190, y: 560, ancho: 700, alto: 900} as const;
@@ -110,10 +133,10 @@ const ConApertura: React.FC<{t: string}> = ({t}) => (
  * Una escena con su barrido de entrada: llega desde la derecha con desenfoque
  * que se apaga, ENCIMA de la anterior (que no se baja: disolvencia sin asomo).
  */
-const Escena: React.FC<{i: number}> = ({i}) => {
+const Escena: React.FC<{i: number; escenas: readonly EscenaDef[]}> = ({i, escenas}) => {
   const f = useCurrentFrame();
-  const e = ESCENAS[i];
-  const sig = ESCENAS[i + 1];
+  const e = escenas[i];
+  const sig = escenas[i + 1];
   if (sig && f > sig.desde + 2) return null;
   const p = i === 0 ? 1 : interpolate(f, [e.desde - BARRIDO, e.desde], [0, 1], {...clamp, easing: suave});
   if (p <= 0) return null;
@@ -123,19 +146,23 @@ const Escena: React.FC<{i: number}> = ({i}) => {
   const s = sig ? interpolate(f, [sig.desde - BARRIDO, sig.desde], [0, 1], {...clamp, easing: suave}) : 0;
   const x = (1 - p) * 420 - s * 260;
   const blur = (1 - p) * 26 + s * 18;
+  const estilo: React.CSSProperties = {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    transform: z === 1 ? `translateX(${x}px)` : `translateX(${x}px) scale(${z})`,
+    filter: blur > 0.3 ? `blur(${blur}px)` : undefined,
+  };
   return (
     <AbsoluteFill style={{opacity: Math.min(1, p * 1.6)}}>
-      <Img
-        src={staticFile(e.src)}
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          transform: `translateX(${x}px) scale(${z})`,
-          filter: blur > 0.3 ? `blur(${blur}px)` : undefined,
-        }}
-      />
+      {e.src.endsWith('.mp4') ? (
+        // el clip arranca cuando empieza su barrido, no en el fotograma 0
+        <Sequence from={Math.max(0, e.desde - BARRIDO)} layout="none">
+          <OffthreadVideo muted src={staticFile(e.src)} style={{...estilo, objectFit: 'cover'}} />
+        </Sequence>
+      ) : (
+        <Img src={staticFile(e.src)} style={{...estilo, objectFit: 'cover'}} />
+      )}
     </AbsoluteFill>
   );
 };
@@ -160,8 +187,18 @@ const Cristal: React.FC<{c: typeof C1 | typeof C2; p: number}> = ({c, p}) => (
   />
 );
 
-export const DtStFamilyTimeOct: React.FC<{guia?: boolean}> = ({guia = false}) => {
+/**
+ * `soloGrafica`: la capa de texto, cristal y logo sobre transparente, para la pista V2
+ * de la secuencia de Premiere (`scripts/dt-oct-ft-premiere.py`). Sin foto debajo el
+ * esmerilado no tiene qué difuminar: en Premiere el cristal es el velo y el filete.
+ */
+export const DtStFamilyTimeOct: React.FC<{guia?: boolean; montaje?: Montaje; soloGrafica?: boolean}> = ({
+  guia = false,
+  montaje = FOTOS,
+  soloGrafica = false,
+}) => {
   const f = useCurrentFrame();
+  const T = montaje.t;
 
   const p1 = interpolate(f, [T.cristal1, T.cristal1 + 18], [0, 1], {...clamp, easing: suave});
   const sale1 = interpolate(f, [T.sale1, T.sale1 + 14], [1, 0], clamp);
@@ -186,10 +223,10 @@ export const DtStFamilyTimeOct: React.FC<{guia?: boolean}> = ({guia = false}) =>
   };
 
   return (
-    <AbsoluteFill style={{backgroundColor: DT.colores.azul, overflow: 'hidden'}}>
-      {ESCENAS.map((_, i) => (
-        <Escena key={i} i={i} />
-      ))}
+    <AbsoluteFill style={{backgroundColor: soloGrafica ? 'transparent' : DT.colores.azul, overflow: 'hidden'}}>
+      {soloGrafica
+        ? null
+        : montaje.escenas.map((_, i) => <Escena key={i} i={i} escenas={montaje.escenas} />)}
 
       {/* ── ESCENA 1 · cristal alto + la frase que se escribe ── */}
       {f < T.sale1 + 14 ? (
@@ -379,3 +416,8 @@ export const DtStFamilyTimeOct: React.FC<{guia?: boolean}> = ({guia = false}) =>
 };
 
 export const DtStFamilyTimeOctGuia: React.FC = () => <DtStFamilyTimeOct guia />;
+
+/** Ronda 4 (28-09): la familia fija en video. Reemplaza a la de fotos en Drive. */
+export const DtStFamilyTimeOctVideo: React.FC = () => <DtStFamilyTimeOct montaje={CLIPS} />;
+export const DtStFamilyTimeOctVideoGrafica: React.FC = () => <DtStFamilyTimeOct montaje={CLIPS} soloGrafica />;
+export const DtStFamilyTimeOctVideoGuia: React.FC = () => <DtStFamilyTimeOct montaje={CLIPS} guia />;

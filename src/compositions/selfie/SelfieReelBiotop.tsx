@@ -1,5 +1,6 @@
 /**
- * SELFIE · REEL de prueba «Biotop 700 + 911» (25-09-2026) — 1080×1920, 30 fps, 15 s
+ * SELFIE · REEL de prueba «Biotop 700 + 911» (25-09-2026, ronda 1 de Coni el 28-09) — 1080×1920, 30 fps, 23,5 s
+ * Línea de tiempo: apertura 0–3 s · titular 3–7 s · 700 7–13 s · 911 13–19 s · cierre 18,5–23,5 s
  *
  * DIRECCIÓN DE ARTE
  * - Ritmo y mecánica: los de la referencia de Pinterest que dejó Coni
@@ -140,7 +141,6 @@ const Titular: React.FC<{y: number; delay: number; size?: number; linea2?: strin
           display: "inline-block",
           opacity: s,
           transform: `translateY(${(1 - s) * 60}px)`,
-          filter: `blur(${(1 - s) * 10}px)`,
           marginRight: "0.22em",
         }}
       >
@@ -280,27 +280,26 @@ const Beneficio: React.FC<{txt: string; x: number; y: number; w: number; delay: 
         color: C.coral,
       }}
     >
-      <span style={{fontSize: 34, color: C.coral}}>✱</span>
+      {/* el asterisco es el del logo SELFI3* (vector sacado del logo), no un ✱ tipográfico */}
+      <Img src={A("selfie-asterisco-coral.svg")} style={{width: 30, height: 31, flexShrink: 0}} />
       <span>{txt}</span>
     </div>
   );
 };
 
-/* ───────── ESCENA 1 · 0–2 s — anillos que abren y frascos que salen volando ───────── */
+/* ───────── ESCENA 1 · 0–3 s — anillos que abren y los dos frascos que se presentan ───────── */
+// Coni 28-09: antes volaban 6 frascos girando 180° y se veían raros y duraban muy poco.
+// Ahora son los DOS productos, casi derechos, que suben, se quedan ~1,3 s y salen.
 const Apertura: React.FC = () => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
-  const zoom = interpolate(f, [0, 60], [0.35, 3.2], {...clamp, easing: Easing.in(Easing.cubic)});
+  const abre = interpolate(f, [0, 30], [0.25, 1.05], {...clamp, easing: Easing.out(Easing.cubic)});
+  const zoom = interpolate(f, [72, 90], [1.05, 3.4], {...clamp, easing: Easing.in(Easing.cubic)});
   const anillos = [C.coral, C.nude, C.salmon, C.blanco, C.coral, C.nude];
-  const vuelan = [
-    {k: "700", a: -30, d: 470, r: -40},
-    {k: "911", a: 25, d: 520, r: 35},
-    {k: "700", a: 150, d: 500, r: 60},
-    {k: "911", a: 205, d: 460, r: -55},
-    {k: "700", a: 95, d: 610, r: 15},
-    {k: "911", a: 275, d: 600, r: -20},
-  ] as const;
-  const sale = interpolate(f, [34, 60], [0, 1], {...clamp, easing: Easing.in(Easing.quad)});
+  const a = sube(f, fps, 0, 14);
+  const b = sube(f, fps, 5, 14);
+  const sale = interpolate(f, [70, 90], [0, 1], {...clamp, easing: Easing.in(Easing.cubic)});
+  const flota = Math.sin(f / 14) * 10;
   return (
     <AbsoluteFill style={{background: C.salmon, overflow: "hidden"}}>
       {anillos.map((c, i) => (
@@ -314,37 +313,23 @@ const Apertura: React.FC = () => {
             height: 2200 - i * 340,
             borderRadius: "50%",
             background: c,
-            transform: `translate(-50%, -50%) scale(${zoom})`,
+            transform: `translate(-50%, -50%) scale(${f < 72 ? abre : zoom})`,
           }}
         />
       ))}
-      {vuelan.map((v, i) => {
-        const s = sube(f, fps, i * 2, 12);
-        const rad = (v.a * Math.PI) / 180;
-        const d = v.d * s + sale * 900;
-        return (
-          <Frasco
-            key={i}
-            k={v.k}
-            x={540 + Math.cos(rad) * d}
-            y={960 + Math.sin(rad) * d}
-            h={430}
-            rot={v.r + (1 - s) * 180}
-            o={s}
-          />
-        );
-      })}
+      <Frasco k="700" x={400 - sale * 700} y={980 + (1 - a) * 1100 + flota} h={760} rot={-10 * a} />
+      <Frasco k="911" x={680 + sale * 700} y={1000 + (1 - b) * 1100 - flota} h={760} rot={10 * b} />
     </AbsoluteFill>
   );
 };
 
-/* ───────── ESCENA 2 · 2–4 s — el titular, palabra a palabra, y el círculo que barre ───────── */
+/* ───────── ESCENA 2 · 3–7 s — el titular, palabra a palabra, y el círculo que barre ───────── */
 const Titulo: React.FC = () => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
   const a = sube(f, fps, 10, 13);
   const b = sube(f, fps, 16, 13);
-  const barre = interpolate(f, [44, 62], [0, 1], {...clamp, easing: Easing.in(Easing.cubic)});
+  const barre = interpolate(f, [100, 120], [0, 1], {...clamp, easing: Easing.in(Easing.cubic)});
   return (
     <AbsoluteFill style={{background: C.salmon, overflow: "hidden"}}>
       <div
@@ -389,14 +374,15 @@ const Heroe: React.FC<{
   flotan: Array<{src: string; x: number; y: number; w: number; rot: number}>;
   arriba: string;
   abajo: string;
-}> = ({k, lado, nombre, serif, resto, beneficios, flotan, arriba, abajo}) => {
+  conSalida?: boolean;
+}> = ({k, lado, nombre, serif, resto, beneficios, flotan, arriba, abajo, conSalida = true}) => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
   const onda = interpolate(f, [0, 18], [1920, 1040], {...clamp, easing: Easing.out(Easing.cubic)});
   const s = sube(f, fps, 6, 12);
   const fx = lado === 1 ? 720 : 360;
   const bob = Math.sin(f / 18) * 8;
-  const salida = interpolate(f, [104, 120], [0, 1], {...clamp, easing: Easing.in(Easing.cubic)});
+  const salida = conSalida ? interpolate(f, [164, 180], [0, 1], {...clamp, easing: Easing.in(Easing.cubic)}) : 0;
   return (
     <AbsoluteFill style={{background: arriba, overflow: "hidden"}}>
       <svg width={1080} height={1920} style={{position: "absolute", inset: 0}}>
@@ -417,7 +403,7 @@ const Heroe: React.FC<{
           x={lado === 1 ? 60 : 500}
           y={930 + i * 150}
           w={lado === 1 ? 480 : 460}
-          delay={40 + i * 14}
+          delay={36 + i * 16}
           lado={lado === 1 ? -1 : 1}
         />
       ))}
@@ -437,63 +423,34 @@ const Heroe: React.FC<{
   );
 };
 
-/* ───────── ESCENA 5 · 12–15 s — los dos cruzados, destellos y el llamado ───────── */
+/* ───────── ESCENA 5 · el cierre ───────── */
+// Coni 28-09: la transición desde el 911 son los DOS campos de la S que entran en
+// vertical, el coral desde la izquierda y el salmón desde la derecha, y encima aparece
+// la información. Fuera los destellos y los círculos: no tienen relación con Selfie.
 const Cierre: React.FC = () => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
-  const a = sube(f, fps, 4, 12);
-  const b = sube(f, fps, 10, 12);
-  const destello = interpolate(f, [26, 40], [0, 1], clamp);
-  const cta = sube(f, fps, 34, 14);
-  const burbujas = [
-    [120, 980, 34], [960, 900, 22], [200, 1500, 18], [880, 1460, 40], [520, 1600, 16], [80, 1250, 24], [990, 1220, 16],
-  ];
+  const entra = interpolate(f, [0, 20], [0, 1], {...clamp, easing: Easing.inOut(Easing.cubic)});
+  const a = sube(f, fps, 22, 12);
+  const b = sube(f, fps, 28, 12);
+  const cta = sube(f, fps, 52, 14);
   return (
-    <AbsoluteFill style={{background: C.salmon, overflow: "hidden"}}>
+    <AbsoluteFill style={{overflow: "hidden"}}>
       <svg width={1080} height={1920} style={{position: "absolute", inset: 0}}>
-        <path d="M 600 0 C 830 380, 820 700, 560 980 C 300 1250, 290 1600, 390 1920 L 0 1920 L 0 0 Z" fill={C.coral} />
+        <path
+          d="M 600 0 C 830 380, 820 700, 560 980 C 300 1250, 290 1600, 390 1920 L 1080 1920 L 1080 0 Z"
+          fill={C.salmon}
+          transform={`translate(${(1 - entra) * 1080} 0)`}
+        />
+        <path
+          d="M 600 0 C 830 380, 820 700, 560 980 C 300 1250, 290 1600, 390 1920 L 0 1920 L 0 0 Z"
+          fill={C.coral}
+          transform={`translate(${-(1 - entra) * 1080} 0)`}
+        />
       </svg>
-      {burbujas.map(([x, y, r], i) => {
-        const s = sube(f, fps, 12 + i * 3, 10);
-        return (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              left: x,
-              top: y + Math.sin((f + i * 20) / 14) * 10,
-              width: r * 2,
-              height: r * 2,
-              borderRadius: "50%",
-              border: `3px solid ${C.blanco}`,
-              opacity: s * 0.9,
-              transform: `translate(-50%, -50%) scale(${s})`,
-            }}
-          />
-        );
-      })}
       <Frasco k="700" x={450 - (1 - a) * 700} y={1110} h={640} rot={-16} />
       <Frasco k="911" x={640 + (1 - b) * 700} y={1130} h={640} rot={16} />
-      <Titular y={560} delay={0} size={0.8} />
-      {/* destellos a los lados del titular, como en la referencia */}
-      {[-1, 1].map((l) =>
-        [-24, 0, 24].map((ang, i) => (
-          <div
-            key={`${l}${i}`}
-            style={{
-              position: "absolute",
-              left: 540 + l * 395,
-              top: 650 + i * 38 - 38,
-              width: 54 * destello,
-              height: 5,
-              borderRadius: 3,
-              background: C.blanco,
-              transformOrigin: l === 1 ? "left center" : "right center",
-              transform: `translateX(${l === 1 ? 0 : -54 * destello}px) rotate(${l * ang}deg)`,
-            }}
-          />
-        )),
-      )}
+      <Titular y={560} delay={14} size={0.8} />
       <div
         style={{
           position: "absolute",
@@ -528,13 +485,13 @@ export const SelfieReelBiotop: React.FC = () => {
   const f = useCurrentFrame();
   return (
     <AbsoluteFill style={{background: C.salmon}}>
-      <Sequence durationInFrames={60}>
+      <Sequence durationInFrames={90}>
         <Apertura />
       </Sequence>
-      <Sequence from={60} durationInFrames={62}>
+      <Sequence from={90} durationInFrames={122}>
         <Titulo />
       </Sequence>
-      <Sequence from={120} durationInFrames={120}>
+      <Sequence from={210} durationInFrames={180}>
         <Heroe
           k="700"
           lado={1}
@@ -552,7 +509,7 @@ export const SelfieReelBiotop: React.FC = () => {
           abajo={C.salmon}
         />
       </Sequence>
-      <Sequence from={240} durationInFrames={120}>
+      <Sequence from={390} durationInFrames={200}>
         <Heroe
           k="911"
           lado={-1}
@@ -568,9 +525,10 @@ export const SelfieReelBiotop: React.FC = () => {
           ]}
           arriba={C.salmon}
           abajo={C.coral}
+          conSalida={false}
         />
       </Sequence>
-      <Sequence from={360}>
+      <Sequence from={555}>
         <Cierre />
       </Sequence>
       <Logo o={interpolate(f, [0, 12], [0, 1], clamp)} />

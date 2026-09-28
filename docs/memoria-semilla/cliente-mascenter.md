@@ -1,6 +1,6 @@
 ---
 name: cliente-mascenter
-description: "MASCENTER — cerebro del cliente: 44 reglas firmes, última cosecha 2026-09-26. Generado desde clients/mascenter/APRENDIZAJES.md; leerlo antes de diseñar para mascenter"
+description: "MASCENTER — cerebro del cliente: 47 reglas firmes, última cosecha 2026-09-28. Generado desde clients/mascenter/APRENDIZAJES.md; leerlo antes de diseñar para mascenter"
 metadata:
   type: project
 ---
@@ -26,12 +26,12 @@ Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de m
 - **R-21** · Un cambio de cara al cliente se da por hecho sólo cuando `curl` a la URL en vivo lo muestra; commitear no es publicar — _Francesca vio el correo viejo un día entero, landing terrenos, 09-09-2026_ · ✔×2
 - **R-22** · Un formulario publicado no promete lo que no hace: ni «Recibimos tu postulación» sin envío ni una subida de archivos que `mailto:` no transporta — _Francesca, rondas 5 y 6 de la landing de terrenos, 09/10-09-2026_ · ✔×2
 - **R-28** · Una ronda se re-sube en sitio (mismo fileId y enlace, md5 verificado) — _paid octubre, 05-09 y 24-09-2026_ · ✔×2
+- **R-30** · **La tipografía de Más Center es Gotham**: Gotham Black para titular en pastilla y display de impacto; Gotham Rounded Bold (nombre de locatario, titular de arriendo), Medium (bajada, CTA, dirección), Book (descripción) y Light (pastillas de beneficios). La fuente se lee en el `.ai` (PyMuPDF `get_text('dict')`) antes de medir glifos — _editables de Diego abr–sept 2026 + `.aep` de jun–ago, leído 25-09-2026; Diego pidió usar su carpeta como referencia; 28-09 Diego: «migra el sistema a gotham» → sistema migrado y calibrado contra el `.ai`_ · ✔×2
 - **R-34** · Logo de Más Center en toda pieza, también en LinkedIn aunque la línea sea IFB — _cliente, grilla feb: «cambie el enfoque a Más Center y no IFB. Cambiemos el logo por el de Más Center»; mar: «poner en la imagen el logo de Más Center»_ · ✔×2
 - **R-35** · No tapar el activo: poco azul y poco difuminado sobre renders y fotos de proyectos — _Scarlette, grilla feb: «bajarle un poco al color azul de los proyecto»; may: «podemos no ponerle el color azul y difuminado, la idea es darle más visibilidad al activo»_ · ✔×2
 - **R-36** · No publicar fechas de entrega de proyectos — _cliente, grilla mar: «no hablemos de fecha de entrega, ya que se ha atrasado»_ · ✔×2 (⚠️ julio y octubre las publican: ver §8)
 - **R-39** · Arriendo siempre con CTA a WhatsApp o al contacto de la bio, y copy corto — _Scarlette, grilla may: «esta super largo y debe tener foco a comunicarse por whatsapp»; «Estás dejando copy demasiado largos, nadie se detiene a leer todo»_ · ✔×2
 - **R-40** · Etiquetar a cada locatario y partner — _Scarlette, grilla may, cinco veces: «Revisa que los tags correspondan. Básico.»_ · ✔×2
-- **R-43** · Localito: comunidad, concursos, efemérides, paid de tráfico y avisos; nunca arriendo ni LinkedIn. Desde agosto existe el corpóreo real y en sept–oct protagoniza reels de humor — _grillas ago–oct 2026_ · ✔×2 (refuerza R-06)
 
 ## Lo que ya costó rondas
 - **X-01** · Poppins en paid por seguir el manual sin medir — _paid octubre ronda 1, 04-09-2026, 1 ronda_

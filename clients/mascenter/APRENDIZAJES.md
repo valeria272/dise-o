@@ -159,6 +159,7 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Hallazgo: el `base.css` commiteado seguía en **Poppins** aunque el paid se entregó en Montserrat, así que el render de octubre no era reproducible desde el repo.
 - Hallazgo: Gotham Black no estaba en el disco KINGSTON, pero sí instalada en Windows (`%LOCALAPPDATA%\Microsoft\Windows\Fonts`).
 - Sin feedback de cliente en esta sesión: el conector de Drive estaba caído y `/al-dia` no pudo correr.
+- Plantilla del carrusel de locatarios (c-19-08, Talca) medida en su editable (mesas 11–15 de `AGOSTO IFB.ai`) → `sistema/plantillas/carrusel-locatarios-c-19-08.json`. Confirma los cuerpos de R-33 (Bold 45 · Book 42 · Medium 35) y agrega la portada: Gotham Black 82 + GothamRnd Medium 48 en pastilla roja. El carrusel del 01-10 de la grilla de octubre quedó en pausa hasta que vuelva el conector.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`05a6e13`) es el mismo commit que ya cosechó el ADN medido de los editables de Diego (ver la entrada de abajo, tipografía Gotham). Se lista a sí mismo porque tocó `ADN-EDITABLES.md`, `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit.

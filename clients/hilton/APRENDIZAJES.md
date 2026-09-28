@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-28** · Cosechas: **14**
+> Última cosecha: **2026-09-28** · Cosechas: **15**
 
 ## 1. Quién es el cliente
 
@@ -298,6 +298,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 (cierre 2, reel «La razón» op 3) — Claude con Eli · carpeta renombrada
+- Sin aprendizajes nuevos del cliente: sólo se renombró la carpeta de Drive «prueba tres» → **«prueba última»** a pedido de Eli («guárdalo en mi drive como prueba última»). La op 3 sigue en revisión (§8).
 
 ### 2026-09-28 (cierre, reel «La razón» op 3) — Claude con Eli · retoque IA de la edición 2
 - **Regla nueva [BW]:** R-103, el retoque parte de la edición que eligió el cliente y toca sólo lo pedido.

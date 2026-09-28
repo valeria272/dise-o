@@ -1,3 +1,52 @@
+## 2026-09-28 — Constanza Lizana «Coni» (con Claude)
+
+**Qué se hizo:** Se abrió el KV del **Cyber Day 2026**, que son **DOS**: uno para
+**VIP** y otro para **Cyber Público**. No se produjo nada: **el brief no se pudo
+leer porque el conector de Google Drive de claude.ai está con la sesión expirada**,
+y sin él no hay forma de buscar en el Drive de la agencia. Se agotaron las
+alternativas antes de parar — el brief de septiembre (que sí se lee por export
+público) tiene cuatro pestañas y ninguna de Cyber, y no nombra «VIP» ni ningún
+segmento. Lo que sí se levantó es la **referencia real del KV**: el Cyber anterior
+está producido completo en el disco KINGSTON.
+
+**Dónde quedó:** Nada rendido. `CAVA MORANDE / 2026 / CYBER CAVA /` en KINGSTON
+tiene el editable `CYBER_CAVA.ai`, el `PAID.aep` y EXPORTADO con el KV a
+**4040 × 1932**: fondo negro satén, logo arriba a la izquierda, barra dorada con el
+llamado («YA COMENZÓ»), titular «CYBER WINE» en versales con contorno dorado +
+«week» en script, fechas, bajada, tres botellas a la derecha con sus sellos y la
+advertencia arriba a la derecha. Su carpeta MATERIAL está organizada por etapa del
+embudo (PRE · YA COMENZÓ · CARRITO · POCAS HORAS · ÚLTIMO DÍA · SE AGOTAN), que es
+lo que `marca.json` ya declara.
+
+**Qué sigue:** Reconectar Google Drive en claude.ai (Settings → Connectors) y abrir
+**chat nuevo** — el conector se carga al inicio de la sesión. Con eso, leer el brief
+del Cyber Day 2026, confirmar en qué se diferencian el KV VIP y el de Cyber Público,
+y recién ahí la composición de fondo con los vinos. Coni fue explícita en el orden:
+**primero el KV cerrado, después los mailings**, porque del KV salen todos.
+
+**Abierto:**
+1. ⛔ **El conector de Drive.** No es el token del estudio —ése funciona y autentica
+   como `valeria@copywriters.cl`—, es que su alcance es `drive.file`: sólo ve los
+   archivos que la propia app creó. Por eso puede subir entregas pero devuelve 404
+   sobre la carpeta de CAVA. El único que ve el Drive de la agencia es el conector
+   MCP de claude.ai. **Hoy le pasó lo mismo a la sesión de Más Center**, que dejó su
+   carrusel del 01-10 en pausa por esto.
+2. **Decisión de Valeria:** ampliar el token del estudio con `drive.readonly` para
+   que los scripts también lean el Drive ajeno. ⚠️ Es el único token OAuth del
+   monorepo: hay que re-autorizar con los 6 scopes actuales MÁS el nuevo de una sola
+   vez, o Google emite uno recortado y degrada los permisos de los demás proyectos
+   (pasó el 29-07-2026).
+3. Sigue en pie del 25-09: **las etiquetas garabateadas** en las tres propuestas del
+   Cyber, **el precio inventado** ($9.245 / $18.490, sin brief de octubre) y **la
+   propuesta B sin solución** en la posición fija del bloque de producto.
+
+## 2026-09-28 — Constanza Lizana «Coni» (con Claude)
+
+**Qué se hizo:** No hubo diseño. Se ordenó el Drive del Cyber: la primera prueba del 22-09 y las propuestas A, B y C de la primera vuelta (con `_V1` al final del nombre) quedaron en `DISEÑO ia › PRUEBA › VERSIONES ANTERIORES`; los archivos de control del editable, en `PRUEBA › ARCHIVOS DE TRABAJO`. Las sesiones del 22 al 25-09 se subieron hoy a GitHub, porque no habían llegado.
+**Dónde quedó:** **`out/cava` quedó vacío en el Mac** (todo comprobado por md5 en Drive). Para re-rendir: `scripts/cava-cyber-lineamiento.py`, `cava-cyber-prueba1.py` y `cava-cyber-prueba1-editable.py`.
+**Qué sigue:** que Coni elija entre la A, la B y la C del Cyber Carmenere.
+**Abierto:** la elección A/B/C y el precio que sigue bloqueando (ver la entrada del 25-09).
+
 ## 2026-09-25 — Constanza Lizana «Coni» (con Claude)
 
 **Qué se hizo:** Cuatro rondas sobre el Cyber de octubre del 7Colores Limited

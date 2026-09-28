@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza Lizana «Coni»** (ver §8: Diego Aguilar también subió piezas de septiembre) · Aprueba: **el cliente vía la KAM Constanza Olivares** (contactos Drive: maria@selfie.cl, plillo@hairexpress.cl)
-> Última cosecha: **2026-09-28** · Cosechas: **3**
+> Última cosecha: **2026-09-28** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -32,6 +32,7 @@ trends pop. La cuenta vive de promos y lanzamientos: el precio y el legal pesan.
 | Rondas típicas | El cliente corrige el **legal** cuando falta o pierde el matiz. Las rondas internas del estudio (24-08) fueron por off-brand y por recortes sucios |
 
 Nomenclatura de Coni: `GRILLA<MES>_S<n>_<NOMBRE>-<nn>.png`, `MAILS_<MES><Sn>_<CAMPAÑA>-<nn>.png`.
+- **Coni trabaja desde Drive, no desde el Mac** (pidió el 28-09-2026: «quiero que todo esté en Drive»): lo que se rinde se sube a la carpeta de la cuenta con subcarpetas (`VERSIONES ANTERIORES/`, `ARCHIVOS DE TRABAJO/`) y, comprobado por md5, se borra de `out/`. Para re-rendir, correr el script o bajar de Drive — _Coni, 28-09-2026_
 
 ## 3. Identidad en corto
 
@@ -74,6 +75,10 @@ Nomenclatura de Coni: `GRILLA<MES>_S<n>_<NOMBRE>-<nn>.png`, `MAILS_<MES><Sn>_<CA
 - **R-23** · La caja coral del nombre lleva **resplandor negro al 30 % en multiplicar** para despegarse del campo coral — _Coni, 24-09-2026_ · ✔×1
 - **R-24** · **Mail y banners pesan ≤ 1 MB**; post e historia pueden pesar más si ganan calidad — _Coni, 24-09-2026_ · ✔×1
 - **R-25** · Rigor en todos los formatos: lo que se aprueba en uno se replica igual en los demás (colores, flechas, tipografía, códigos de color) — _Coni, 24-09-2026_ · ✔×2
+- **R-26** · **Reels: el texto se lee quieto.** Nada de desenfoque en los titulares, en ningún momento del video; el titular queda **≥ 4 s** en pantalla y cada producto **~6 s** — _Coni, 28-09-2026, reel Biotop ronda 1 (commit 78510d8)_ · ✔×1
+- **R-27** · Los **ingredientes que acompañan a cada producto son los de SU ficha**, no decorativos (700: kale y vitamina E · 911: quinoa, girasol y vitamina E) — _Coni, 28-09-2026, reel Biotop ronda 1_ · ✔×1
+- **R-28** · Las **viñetas son el asterisco del logo SELFI3\*** en vector (`public/assets/selfie/2026-nuevo-estilo/selfie-asterisco.svg` y `-coral.svg`), no un punto genérico — _Coni, 28-09-2026, reel Biotop ronda 1_ · ✔×1
+- **R-29** · En el reel, el paso entre productos y al cierre lo hacen **los campos de color** del estilo nuevo (el coral entra desde la izquierda y el salmón desde la derecha, por encima), sin adornos — _Coni, 28-09-2026, reel Biotop ronda 1_ · ✔×1
 
 ## 5. Excepciones
 
@@ -104,6 +109,9 @@ No hay registro de una aprobación del cliente sobre piezas del estudio. Lo que 
 - **X-09** · Campo izquierdo en **tinta** (oscurece media pieza) — _Coni, 24-09-2026_
 - **X-10** · **Intervenir el packshot** (tapa transparente, líquido a nivel con el frasco inclinado) — _Coni, 24-09-2026: «no me gustó»_
 - **X-11** · **Magnific Upscaler Precision** sobre packshots: reescribió la etiqueta («65 ml» → «66 ml», «HYDRATING» → «RYDRATING») — _24-09-2026_
+- **X-12** · Apertura del reel con **seis frascos girando 180°**: no se alcanzan a ver. Van los **dos frascos casi derechos, ~1,6 s a la vista** — _Coni, 28-09-2026, reel Biotop · 1 ronda_
+- **X-13** · **Destellos y círculos** en el cierre del reel — _Coni, 28-09-2026, reel Biotop · 1 ronda_
+- **X-14** · **Blur en el titular** del reel (entrada desenfocada) — _Coni, 28-09-2026, reel Biotop · 1 ronda_
 
 ## 8. Preguntas abiertas
 
@@ -120,8 +128,15 @@ No hay registro de una aprobación del cliente sobre piezas del estudio. Lo que 
 - **Agrandir** es de pago con licencia del cliente: ¿cómo la recibe cada diseñador? → Coni.
 - **¿2 o 4 reels orgánicos al mes?** El manual dice 2 virales; la grilla de septiembre dice 4. → KAM.
 - La grilla de Selfie **no tiene instantánea local**: los cambios del 14-09 y 15-09 no son diffeables. Si Selfie vuelve a producción, lo primero es sembrarla. → quien haga el próximo `/abrir selfie`.
+- **Reel Biotop 700/911, ronda 1** (23,5 s, re-subido al mismo nombre en `SELFIE › PRUEBA` el 28-09): ¿aprobado o viene ronda 2? → Coni.
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 (tarde) — Claude (con Coni) · ronda 1 del reel Biotop + Coni sube a GitHub
+- nuevo **R-26…R-29** y **X-12…X-14**: las correcciones de Coni al reel Biotop (sin blur, tiempo de lectura, ingredientes de ficha, viñeta asterisco, campos de color), tomadas del commit `78510d8`. Esa sesión cerró sin `/cierre`.
+- §2: Coni trabaja desde Drive y no quiere archivos en el Mac.
+- Desde hoy Coni **sube a GitHub** (cuenta contacto813). Sus 40 commits del 21 al 28-09 ya están en el repo, así que la cosecha nocturna ve sus sesiones.
+
 
 ### 2026-09-28 — Claude (con Coni) · cosecha de las sesiones del 24 y 25-09
 - Las sesiones del 24 y 25-09 **no llegaron a la cosecha nocturna** porque sus commits no se habían subido a GitHub (falta el push manual de Coni). Se cosechan acá desde la conversación y la bitácora.

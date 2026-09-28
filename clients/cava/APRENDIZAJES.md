@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza Lizana «Coni»** (diseño) · Aprueba: **la ejecutiva de cuentas de CAVA, dueña del brief mensual** (ver §8: falta nombre y confirmar si aprueba ella o la viña)
-> Última cosecha: **2026-09-26** · Cosechas: **2**
+> Última cosecha: **2026-09-28** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -34,6 +34,7 @@ con una capa premium en el dorado y el bodegón.
 
 Nomenclatura: `CAVA_<MES3>_BRIEF<N>-<NN>.png`, **una carpeta por brief** y el `-NN`
 corre continuo a través de los ocho briefs (01→18). Campañas grandes: `CYBER_CAVA_<MOMENTO>`.
+- **Coni trabaja desde Drive, no desde el Mac** (pidió el 28-09-2026: «quiero que todo esté en Drive»): lo que se rinde se sube a la carpeta de la cuenta con subcarpetas (`VERSIONES ANTERIORES/`, `ARCHIVOS DE TRABAJO/`) y, comprobado por md5, se borra de `out/`. Para re-rendir, correr el script o bajar de Drive — _Coni, 28-09-2026_
 
 ## 3. Identidad en corto
 
@@ -112,6 +113,12 @@ son piezas **publicadas** de Coni, que son el estándar a replicar:
 - Falta un **editable empaquetado de mailing** para cerrar la geometría fina del legal y la barra dorada sobre 1080. → Coni.
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 — Claude (con Coni) · orden del Drive, sin trabajo de diseño
+- sin aprendizajes nuevos del cliente: hoy no hubo piezas ni comentarios de CAVA. Sólo se ordenó el Drive (`VERSIONES ANTERIORES/` y `ARCHIVOS DE TRABAJO/` en `DISEÑO ia › PRUEBA`) y se vació `out/cava`.
+- §2: Coni trabaja desde Drive y no quiere archivos en el Mac.
+- Las sesiones del 22 al 25-09 **no habían llegado a GitHub** (Coni no tenía la subida configurada); quedaron subidas hoy. Si la cosecha nocturna las saltó, la del 26-09 no las vio.
+
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.

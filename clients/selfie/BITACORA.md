@@ -1,3 +1,10 @@
+## 2026-09-28 — Constanza Lizana «Coni» (con Claude)
+
+**Qué se hizo:** Ronda 1 de Coni sobre el reel de prueba Biotop 700/911 (en otra sesión, commit `78510d8`): apertura con los dos frascos casi derechos, titular sin blur y 4 s en pantalla, 6 s por producto con los ingredientes de su ficha, paso al cierre con los campos coral y salmón, fuera los destellos y los círculos, y viñetas con el asterisco del logo. Queda en 23,5 s. En esta sesión, además, Coni quedó conectada a GitHub y se ordenó su Drive.
+**Dónde quedó:** el MP4 re-subido a `SELFIE › PRUEBA` como `PRUEBA_BIOTOP_700-911_REEL.mp4`. Las 4 opciones del post que estaban sueltas en la raíz del Drive se movieron a `PRUEBA › OPCIONES POST BIOTOP`; los controles de calidad, los renders intermedios y los fotogramas, a `PRUEBA › ARCHIVOS DE TRABAJO`. **`out/selfie` quedó vacío en el Mac** (todo comprobado por md5 en Drive): para re-rendir, `SelfieReelBiotop` más los asteriscos de `public/assets/selfie/2026-nuevo-estilo/`.
+**Qué sigue:** la respuesta de Coni a la ronda 1. Después, el kit del Cyber v2 (3 reels, portadas, stickers de % OFF) con este mismo lenguaje.
+**Abierto:** si la ronda 1 queda aprobada · Cyber: faltan las líneas de BC Bonacure, el top 3 en ventas y la fecha y hora de término.
+
 ## 2026-09-25 — Coni (con Claude) · REEL de prueba Biotop 700/911 + llega el brief del Cyber v2
 
 **Qué se hizo:**

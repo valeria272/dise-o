@@ -9,7 +9,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import fs from 'node:fs';
 import {bundle} from '@remotion/bundler';
-import {renderStill, selectComposition} from '@remotion/renderer';
+import {openBrowser, renderStill, selectComposition} from '@remotion/renderer';
 
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -48,12 +48,15 @@ const PIEZAS = {
 };
 
 const serveUrl = await bundle({entryPoint: path.join(RAIZ, 'src/P18OctEntry.tsx')});
+// un solo navegador para todo el lote: abrir uno por cuadro se colgó en el 17.º (28-09)
+const puppeteerInstance = await openBrowser('chrome');
 for (const [id, [sem, carpeta, nombre, frame = 0]] of Object.entries(PIEZAS)) {
   if (filtro.length && !filtro.some((f) => id.includes(f))) continue;
   const dir = sem ? path.join(base, `S${sem}`, carpeta) : path.join(base, carpeta);
   fs.mkdirSync(dir, {recursive: true});
-  const composition = await selectComposition({serveUrl, id});
+  const composition = await selectComposition({serveUrl, id, puppeteerInstance});
   const output = path.join(dir, nombre);
-  await renderStill({composition, serveUrl, output, frame, scale: escala, imageFormat: 'png'});
+  await renderStill({composition, serveUrl, output, frame, scale: escala, imageFormat: 'png', puppeteerInstance, timeoutInMilliseconds: 120000});
   console.log('✓', path.relative(RAIZ, output));
 }
+await puppeteerInstance.close({silent: true});

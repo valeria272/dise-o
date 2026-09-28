@@ -24,6 +24,15 @@ import {QbSt22Ensalada, QB_ST22_DURACION} from "./compositions/qb/oct/QbSt22Ensa
 import {QbPost05Cumple} from "./compositions/qb/oct/QbPost05Cumple";
 import {QbSt26Terraza, QB_ST26_DURACION} from "./compositions/qb/oct/QbSt26Terraza";
 
+import {QbSt07Cumple} from "./compositions/qb/oct/QbSt07Cumple";
+import {QbSt12Pulpo} from "./compositions/qb/oct/QbSt12Pulpo";
+import {QbSt16Primavera} from "./compositions/qb/oct/QbSt16Primavera";
+import {QbSt28EsteOEste} from "./compositions/qb/oct/QbSt28EsteOEste";
+import {QbFeed07AycdG1, QbFeed07AycdG2} from "./compositions/qb/oct/QbFeed07Aycd";
+import {QbFeed12SunsetG1, QbFeed12SunsetG2} from "./compositions/qb/oct/QbFeed12Sunset";
+import {QbFeed16Autor} from "./compositions/qb/oct/QbFeed16Autor";
+
+const F = {fps: 30, width: 1080, height: 1350} as const;
 const Q = {fps: 30, width: 1080, height: 1920} as const;
 
 const Raiz: React.FC = () => (
@@ -40,6 +49,16 @@ const Raiz: React.FC = () => (
     <Composition id="QB-OCT-ST22" component={QbSt22Ensalada} durationInFrames={QB_ST22_DURACION} {...Q} />
     <Composition id="QB-OCT-FEED05" component={QbPost05Cumple} durationInFrames={1} fps={30} width={1080} height={1350} />
     <Composition id="QB-OCT-ST26" component={QbSt26Terraza} durationInFrames={QB_ST26_DURACION} {...Q} />
+    {/* ronda 9 (28-09 tarde): lo que pasó a OK en la grilla */}
+    <Composition id="QB-OCT-ST07" component={QbSt07Cumple} durationInFrames={1} {...Q} />
+    <Composition id="QB-OCT-ST12" component={QbSt12Pulpo} durationInFrames={1} {...Q} />
+    <Composition id="QB-OCT-ST16" component={QbSt16Primavera} durationInFrames={1} {...Q} />
+    <Composition id="QB-OCT-ST28" component={QbSt28EsteOEste} durationInFrames={1} {...Q} />
+    <Composition id="QB-OCT-FEED07-G1" component={QbFeed07AycdG1} durationInFrames={1} {...F} />
+    <Composition id="QB-OCT-FEED07-G2" component={QbFeed07AycdG2} durationInFrames={1} {...F} />
+    <Composition id="QB-OCT-FEED12-G1" component={QbFeed12SunsetG1} durationInFrames={1} {...F} />
+    <Composition id="QB-OCT-FEED12-G2" component={QbFeed12SunsetG2} durationInFrames={1} {...F} />
+    <Composition id="QB-OCT-FEED16" component={QbFeed16Autor} durationInFrames={1} {...F} />
   </Folder>
 );
 

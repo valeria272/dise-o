@@ -45,6 +45,8 @@ const PUNTOS = [
     t: 'Espacios para ti',
     s: 'Desconecta en nuestro Winter Garden o avanza en tus proyectos desde el cowork',
     foto: 'c5-espacios',
+    // el tragaluz blanco del Winter Garden llega al borde: velo suave arriba (QA «texto al borde»)
+    veloArriba: 0.34,
   },
   {
     n: '04.',
@@ -70,10 +72,13 @@ const foto = (k: string) => `assets/hilton/dt/oct2/${k}.jpg`;
 const Portada: React.FC<{fondo: 'a' | 'b'}> = ({fondo}) => (
   <>
     <Foto src={foto(fondo === 'a' ? 'c5-portada' : 'c5-portada-b')} />
-    <AbsoluteFill style={{background: 'rgba(9,25,78,0.34)'}} />
-    <Velo desde={0.55} pie={0.5} />
+    <AbsoluteFill style={{background: 'rgba(9,25,78,0.3)'}} />
+    <Velo desde={0.4} pie={0.7} />
     <Logo formato="feed" />
-    <div style={{position: 'absolute', top: 290, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
+    {/* RONDA 3 (Eli, 28-09): «el 5 cosas que hacen especial queden abajo junto a tu estadía en
+        DoubleTree… así como la referencia 2, pero abajo junto a la flecha». Todo el texto baja y se
+        apila sobre la flecha; arriba queda sólo el logo y la foto respira. */}
+    <div style={{position: 'absolute', bottom: 132, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
       <div style={{fontFamily: DT.fuentes.texto, fontSize: 40, letterSpacing: '0.02em', textShadow: SOMBRA}}>5 cosas que</div>
       <div
         style={{
@@ -89,10 +94,9 @@ const Portada: React.FC<{fondo: 'a' | 'b'}> = ({fondo}) => (
       >
         hacen especial
       </div>
-    </div>
-    <div style={{position: 'absolute', top: 1128, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
       <div
         style={{
+          marginTop: 22,
           fontFamily: DT.fuentes.titular,
           fontStyle: 'italic',
           fontWeight: DT.pesos.light,
@@ -103,7 +107,7 @@ const Portada: React.FC<{fondo: 'a' | 'b'}> = ({fondo}) => (
       >
         tu estadía en DoubleTree
       </div>
-      <div style={{display: 'flex', justifyContent: 'center', marginTop: 22}}>
+      <div style={{display: 'flex', justifyContent: 'center', marginTop: 26}}>
         <FlechaPildora ancho={176} />
       </div>
     </div>
@@ -115,6 +119,7 @@ const Punto: React.FC<{i: number}> = ({i}) => {
   return (
     <>
       <Foto src={foto(p.foto)} />
+      {'veloArriba' in p ? <Velo desde={0.75} pie={p.veloArriba} lado="arriba" /> : null}
       <Velo desde={0.42} pie={0.86} />
       <div style={{position: 'absolute', left: M, right: M, bottom: 118, color: BLANCO}}>
         <div style={{fontFamily: DT.fuentes.titular, fontWeight: DT.pesos.light, fontSize: 62, lineHeight: 1.1, textShadow: SOMBRA}}>{p.n}</div>
@@ -146,9 +151,11 @@ const Punto: React.FC<{i: number}> = ({i}) => {
 const Cierre: React.FC = () => (
   <>
     <Foto src={foto('c5-cierre')} />
-    <AbsoluteFill style={{background: 'rgba(9,25,78,0.34)'}} />
-    <Velo desde={0.55} pie={0.5} />
-    <div style={{position: 'absolute', top: 330, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
+    <AbsoluteFill style={{background: 'rgba(9,25,78,0.3)'}} />
+    <Velo desde={0.4} pie={0.7} />
+    {/* RONDA 3 (Eli, 28-09): «todo listo para recibirte me gustaría que quede abajo, así está todo
+        compensado con la portada»: el titular baja sobre el llamado, a la misma altura que la portada. */}
+    <div style={{position: 'absolute', bottom: 150, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
       <div
         style={{
           fontFamily: DT.fuentes.titular,
@@ -163,24 +170,19 @@ const Cierre: React.FC = () => (
         <br />
         para recibirte
       </div>
-    </div>
-    <div
-      style={{
-        position: 'absolute',
-        top: 1128,
-        left: 0,
-        width: 1080,
-        textAlign: 'center',
-        color: BLANCO,
-        fontFamily: DT.fuentes.titular,
-        fontStyle: 'italic',
-        fontWeight: DT.pesos.light,
-        fontSize: 36,
-        letterSpacing: '0.01em',
-        textShadow: SOMBRA,
-      }}
-    >
-      Haz clic en el enlace de la bio y reserva tu estadía
+      <div
+        style={{
+          marginTop: 30,
+          fontFamily: DT.fuentes.titular,
+          fontStyle: 'italic',
+          fontWeight: DT.pesos.light,
+          fontSize: 36,
+          letterSpacing: '0.01em',
+          textShadow: SOMBRA,
+        }}
+      >
+        Haz clic en el enlace de la bio y reserva tu estadía
+      </div>
     </div>
   </>
 );

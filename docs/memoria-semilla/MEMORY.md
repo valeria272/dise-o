@@ -79,3 +79,4 @@
 - [⛔ EBEMA LinkedIn — fotos de sucursal](ebema-linkedin-fotos-sucursal.md) — foto real de base + IA; lo que falta (camión) se GENERA desde bodega/patio real; ⛔ nunca estructuras inventadas, sólo personas/vehículos/materiales; oficina = ropa formal; nadie mira a cámara; Kling inventa letreros en travellings
 - [⛔ EBEMA — voz y música de stories](ebema-voz-y-musica-stories.md) — voz es-CL Lorenzo (edge-tts); los presets Higgsfield suenan a inglés y NUNCA sacar la música de un video terminado (traía voz)
 - [⭐ Expandir un reel con IA sin desenfoque](expandir-video-reframe-higgsfield.md) — reframe de Higgsfield aleja cámara y baja a 720p: usar sólo la franja del borde y el centro 4K encima
+- [Listar una carpeta de Drive grande](listar-carpeta-drive-publica.md) — embeddedfolderview da la lista entera y thumbnail?sz=w3200 baja en alta; clasificación de la sesión SEP 2026 (sin fachada, recepción ni gym)

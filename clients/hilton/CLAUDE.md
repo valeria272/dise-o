@@ -1643,6 +1643,13 @@ Grilla `13yYW5QacnSRaV422SeBTgFVGwLN5mhTg0anDJzkvaK0`. Cuatro piezas aprobadas y
 7. ⭐ **Video = MP4 + GIF juntos** en la carpeta de la semana: Eli sube el GIF a la grilla.
 8. ⛔ **`&` tampoco existe en Stag** (verificado con `fontTools`): va en Trade, como `+ $ @`.
    Agregado a `stagSirve` y al componente `ConTrade` de `dtIconosOct.tsx`.
+9. ⭐⭐ **La historia animada de programa (ST 01-10 Family Time, 4 rondas el 28-09) — la
+   gramática que quedó:** sólo **fotos** (3 en 15 s, fundido suave, acercamiento ≤3 %; nada de
+   video IA ni barridos); **titulares sobre la foto**, arriba, fuera de la caja; el programa en
+   una **bajada** abajo, sobre la zona segura, esmerilado α≈0,20, en tres filas (Family Time con
+   el precio centrado debajo / íconos / correo + legal), que **entra junto con el titular
+   principal** y queda ~12 s. Código: `src/compositions/hilton/DtStFamilyTimeOctR6.tsx`.
+   Reglas R-81 a R-84 del cerebro.
 9. ⚠️ `qa/motor.py` · `respiro-borde` mide **tinta BLANCA**: en una pieza de texto azul sobre
    tarjeta clara (la opinión) cuenta los brillos de la foto en el canto y da falsa alarma. La
    opinión de Expedia aprobada la pasa; la de Google la dispara con el lounge `HDT_37`.

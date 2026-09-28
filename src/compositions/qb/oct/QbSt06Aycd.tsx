@@ -42,10 +42,14 @@ const QB_ST06_DATA: Record<string, Record<string, string>> = {
 };
 
 const BAJA = 45;
+const SUBE = -230;
 
 export const QbSt06Aycd: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
-    <FotoQB src="assets/hilton/qb/oct/06-aycd.jpg" ratio={2250 / 4050} zoom={1.12} cx={0.5} cy={0.5} />
+    {/* r4 (Eli 28-09): la campana de la ref de Sora — mano con guante que la levanta
+        sobre los tres tragos. La foto sube para que los tragos queden entre el
+        antetítulo y el bloque de precio; lo que queda abajo es mármol y velo. */}
+    <FotoQB src="assets/hilton/qb/oct/06-aycd-campana.jpg" ratio={1520 / 2736} libre bajar={SUBE} />
     <Velo arriba={[820, 0.9]} abajo={[760, 0.95]} />
     <LogoQB top={207.4 + BAJA} ancho={178.6} />
     <NombreAycd top={376.3 + BAJA} />

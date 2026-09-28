@@ -1,5 +1,12 @@
 # Piso18 — bitácora
 
+## 2026-09-28 (noche) — Elisabet Soto «Eli» (Windows, con Claude) · revisión de la grilla de octubre — SIN PIEZAS NUEVAS
+
+**Qué se hizo:** relectura en vivo de la grilla (instantánea `clients/hilton/grillas/api/p18-oct-20260928b.json`). No hay nada nuevo en OK PARA DISEÑAR: las 11 piezas con OK ya están entregadas y aprobadas. Se detectó que Carlos reordenó 3 piezas después de la entrega: Fechas 2027 pasó de 09-10 a **06-10**, Arreglos florales de 06-10 a **09-10** y Tu próxima celebración de 16-10 (S3) a **30-10 (S5)**, con el contenido idéntico.
+**Dónde quedó:** Drive y `out/piso18/oct/entrega/` **sin tocar** (siguen con las fechas viejas). Eli: «solo de diseño no muevas cosas que no son mi trabajo». Quedó listo `scripts/p18-oct-reordenar.py` (renombra conservando el enlace y mueve la celebración a S5), **sin correr**.
+**Qué sigue:** cuando pase a OK el FEED 20-10 cumpleaños (ahora POST ANIMADO), la ST 08-10 o alguna de las ST 13/15/16/19/21/30-10, diseñarla con el kit `P18Octubre.tsx`. Si se renombra, actualizar también `PIEZAS` en `scripts/p18-oct-subir-drive.py` y el mapa de `scripts/p18-oct-rendir.mjs`, porque si no, una resubida recrea los nombres viejos.
+**Abierto:** quién renombra las 3 piezas movidas (Eli / KAM). La pregunta de Carlos sobre el cumpleaños («¿en el copy o carrusel animado?») está sin responder.
+
 ## 2026-09-28 — Elisabet Soto «Eli» (Windows, con Claude) · GRILLA DE OCTUBRE completa (11 piezas) — APROBADA
 
 **Qué se hizo:** se diseñaron las 11 piezas en OK PARA DISEÑAR (FEED 06, 09, 13, 16, 23 y 27-10 · STORIES 05 animada, 07, 09, 23 y 27-10), calcando cada referencia del brief con la identidad de Piso18. Costó **3 vueltas en el día**. La ronda 1 quedó aprobada salvo cinco cosas: el color del 06-10 (rosados → azules de la ref), las cifras de Raleway («desequilibrado y extraño» = cifras de estilo antiguo → `lnum` en toda la grilla), la portada del 13-10 (dos atardeceres en el ventanal), los clips del 16-10 (→ fucsia) y las fotos del Tex-Mex (→ foto documental). En la ronda 3 sólo cambió la S2 del Tex-Mex (cenital, cuatro tacos). Eli: «te apruebo».

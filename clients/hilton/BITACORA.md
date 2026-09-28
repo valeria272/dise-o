@@ -1,3 +1,26 @@
+## 2026-09-28 (cierre) — Eli (Windows) · DT octubre: las 6 piezas nuevas en OK PARA DISEÑO, 3 rondas — 5 SUBIDAS, COWORKING EN REVISIÓN
+
+**Qué se hizo:** se diseñaron las 6 piezas que pasaron a OK el 28-09. **Ronda 1:** las 3 ST de feriado del 05-10 (ER + FT en tarjetas de resultado, con la pareja IA sobre la hab. real HDT_65; ER sola con panel vertical sobre la cubeta real; FT sola con el panel a lo ancho y la familia del banco) se **aprobaron a la primera**. **Ronda 2:** el carrusel «5 cosas» (21-10) cambió a fotos de la sesión nueva SEP 2026, con la portada calcada de la REF 2 y la hospitalidad regenerada (sin el «niño fantasma» ni gente de fondo; carteles reales repuestos). El FT feed (28-10) apiló «Family Time» y el precio al centro, y el Coworking (22-10) pasó a tres fotos nuevas del cowork. **Ronda 3:** el texto de la portada y del cierre baja junto a la flecha, el titular del FT queda centrado y el Coworking pasa a dos cristales ajustados, con el titular rápido.
+**Dónde quedó:** código `src/DtOct2Entry.tsx` + `src/compositions/hilton/{dtOct2,DtStFeriadoOct,DtFtFamilyTimeOct,DtStCoworkOct,DtC5CosasOct}.tsx` · fotos `scripts/dt-oct2-fotos.py` → `public/assets/hilton/dt/oct2/` · pareja `scripts/dt-oct2-pareja.py` (variante C) · hospitalidad `scripts/dt-oct2-hospitalidad*.py` · refs `scripts/dt-oct2-refs.py` → `raw/hilton/dt/ref-oct2/` · revisión `scripts/dt-oct2-revision{,-r2,-r3}.py` → `out/hilton/dt/oct2-revision/` · másteres `out/hilton/dt/entrega-oct2/`. La sesión SEP 2026 quedó indexada y clasificada (`raw/hilton/sesion-sep2026/indice.json`, miniaturas y 41 en alta; memoria `listar-carpeta-drive-publica`).
+**✅ SUBIDO** (`scripts/dt-oct2-subir-drive.py`, verificado por carpeta): S2/DT/STS las 3 ST 05-10 · S4/DT/FEED `C1 S4 DT n°1–7` · S5/DT/FEED `Post n°1 S5 DT`.
+**Qué sigue:** que Eli revise el Coworking r3 (`out/hilton/dt/oct2-revision/r3.html`). Si lo aprueba, se descomenta la línea del Coworking en `dt-oct2-subir-drive.py` y se sube el MP4 + GIF a S4/DT/STS.
+**Abierto:** el carrusel 21-10 dice «REEL» en la fila DISEÑOS de la grilla (→ contenido) · la sesión SEP 2026 no trae fachada, recepción ni gimnasio · el reel Honors POV 14-10 sigue sin grabar · otra sesión trabajó en paralelo la ST 01-10 Family Time (rondas 5–7, entradas de abajo).
+
+## 2026-09-28 (tarde) — Eli (Windows) · DT ST 01-10 Family Time, RONDA 7 — REEMPLAZADA EN DRIVE
+
+**Feedback de Eli sobre la r6 («me parece muy bien»):** el recuadro de Family Time entra JUNTO con «¡El momento exacto…» · «Días más largos» más corto · centrar Family Time con el $125.000 · revisar que las fotos se vean realistas · menos imágenes.
+**Qué se hizo:** tres fotos (lobby → almohadas → habitación); la cookie salió porque con zoom la «niña» se lee adulta y está sobreprocesada. Frase 1 ~2 s; titular + recuadro entran en f80 y quedan ~12 s. Family Time y el precio apilados y centrados; el recuadro se compactó para no taparles la cara a los niños (la foto de la habitación sube 40 px; la de almohadas baja 60).
+**Dónde quedó:** Drive S1/DT/STS (MP4 + GIF, md5 verificado) · Premiere en F: con las 3 fotos · `out/hilton/dt/oct/_rondas/r7/`.
+**Qué sigue:** esperar la revisión de Eli de la r7. Si pide cambiar la foto de las almohadas (el papá cortado en el borde), el lobby y la habitación son las más realistas; mover la foto antes que el texto (R-84).
+**Abierto:** que Eli lo revise · Premiere 2026 no ha abierto todavía el .xml.
+
+## 2026-09-28 (mediodía, 2) — Eli (Windows) · DT ST 01-10 Family Time, RONDA 6: sólo fotos + bajada — REEMPLAZADA EN DRIVE
+
+**Feedback de Eli sobre la r5:** el titular NO va en la caja, sólo la info de Family Time · «solamente veo videos, no quiero mucha animación… varias imágenes que queden bastante tiempo para que no se mareen» · «no tanto azul, abarca demasiado, algo sutil, una bajada» · «la jerarquía tiene que ser funcional» · «solo imágenes».
+**Qué se hizo:** composición nueva `DtStFamilyTimeOctR6.tsx` (`DT-A-Oct-FamilyTime-R6`). Cuatro FOTOS del banco (lobby → almohadas → habitación → cookie), 3,7 s c/u, fundido de 0,5 s y acercamiento del 3 %. Titulares sobre la foto (Stag a dos pesos, velo de arriba): el texto 1 en el lobby y el texto 2 desde la 2.ª foto hasta el final. La caja es una BAJADA abajo, sobre la zona segura: esmerilado α 0,20 (antes 0,40), tres filas (Family Time + precio / íconos / correo + legal), ~7 s en pantalla. ⛔ La vista a Santiago quedó fuera: el cuadro y la cabeza del papá caían justo bajo el titular.
+**Dónde quedó:** Drive S1/DT/STS (MP4 + GIF, md5 verificado) · Premiere en F: regenerado con las 4 fotos · render en `out/hilton/dt/oct/_rondas/r6/`.
+**Abierto:** que Eli lo revise.
+
 ## 2026-09-28 (mediodía) — Eli (Windows) · DT ST 01-10 Family Time, RONDA 5 — REEMPLAZADA EN DRIVE
 
 **Feedback de Eli sobre la de video:** «dura muy extraño… si hay texto importante que se mantenga más el tiempo… no lo hagas todo video, usa las mismas imágenes, que pasen como transición, y la primera toma sí sea un video… que no se vea todo tan exagerado… mejor en jerarquía, recordando la identidad visual».

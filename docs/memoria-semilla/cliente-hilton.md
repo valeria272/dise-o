@@ -1,6 +1,6 @@
 ---
 name: cliente-hilton
-description: "HILTON — cerebro del cliente: 74 reglas firmes, última cosecha 2026-09-28. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
+description: "HILTON — cerebro del cliente: 84 reglas firmes, última cosecha 2026-09-28. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
 metadata:
   type: project
 ---
@@ -13,25 +13,25 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 
 ## Reglas más confirmadas
 - **R-33** · [BW] **Si el vaso de la foto ya trae el logotipo, la pieza no lleva lockup** (ni en la portada) — _Eli 25-08, 31-08, 01-09, 03-09 y 07-09-2026; feed «Necesito ir a Between» subido sin lockup por Eli, 25-09-2026 (la prueba con logo al pie caía sobre el vaso)_ · ✔×6
-- **R-15** · [DT] **La referencia de Eli manda la composición**; tipografía y color siguen siendo DT. Una ref animada se mira cuadro a cuadro antes de diseñar — _Eli: ST 18-09 (15-09), carrusel S5 («más igual a la referencia», 17-09), Turismo (23-09), oct («¿revisaste bien la referencia?», 24-09)_ · ✔×4
+- **R-15** · [DT] **La referencia de Eli manda la composición**; tipografía y color siguen siendo DT. Una ref animada se mira cuadro a cuadro antes de diseñar — _Eli: ST 18-09 (15-09), carrusel S5 («más igual a la referencia», 17-09), Turismo (23-09), oct («¿revisaste bien la referencia?», 24-09)_ · ✔×5 · +1 las 3 ST de feriado 05-10 calcadas de sus refs, aprobadas a la primera 28-09; portada «5 cosas» 28-09
 - **R-41** · [BW] **Ningún texto sobre rostros, ojos ni sobre el producto** — _Eli 25-08 y 28-08; Scarlette 31-08; Eli 24-09-2026_ · ✔×4
 - **R-47** · [BW] **Antes de generar un producto, se busca en las sesiones**. Orden: foto real > recorte > generar — _Scarlette 31-08 («tenemos ese material»); ronda 10, 04-09; cowork 10-09; Plateada 11-09-2026_ · ✔×4
 - **R-52** · [BW] **Fidelidad al local real**: terraza, interior, mesas y muro vegetal de Between; nada de espacios inventados — _Javier 24-08; Eli 26-08; Scarlette 31-08; Eli 24-09-2026_ · ✔×4
+- **R-60** · [TODAS] **Ni títulos ni bajadas llevan punto** en la gráfica (el punto sólo en párrafos largos y legales) — _Eli 25-08 (BW) y 09-09 (DT); Javier Mesa 23-09-2026, recordatorio para las cuatro cuentas_ · ✔×4 · +1 bajadas del carrusel «5 cosas» sin punto, aprobado 28-09
+- **R-27** · [DT] Family Time tiene que **mostrar una familia** — _Eli, 24-09-2026 («sin personas no me gusta mucho»); 25-09 pidió un banco entero de la familia para cuando no haya sesión_ · ✔×3 · +1 ST feriado FT 05-10 y FEED 28-10, aprobadas 28-09
 - **R-30** · [BW] Taza blanca con raya negra y **KIMBO: se borra siempre**; la taza vigente es blanca total — _Eli 25-08; Scarlette 31-08; ronda 9, 03-09-2026_ · ✔×3
 - **R-31** · [BW] **El logotipo nunca se deforma ni se curva**: escala uniforme a ratio 3,0298, integrado en el vaso por tono (multiply), no por geometría — _Eli 25-08 («no se vea achatado»); cliente 31-08; Eli 01-09-2026 («no puedes curvarlo de esa manera»)_ · ✔×3
 - **R-53** · [BW] **Sin rostros de modelos** (ninguna sesión): del cuello hacia abajo, manos/torsos o personas dibujadas en línea. Los rostros de la sesión 2023 nunca — _Eli 25-08 (2023); cliente 27-08; Eli 24-09-2026 (4 piezas)_ · ✔×3
 - **R-55** · [BW] **Un adorno sobre una foto es ilustración**: se usan los trazos de Eli (SVG oficial), apoyados en el fondo, nunca sobre el producto; ~20 % de las historias — _Eli 25-08, 04-09 («que sean ilustradas, con el trazado que ya se conoce») y 07-09-2026_ · ✔×3
 - **R-56** · [BW] **La referencia de la grilla es el molde**: utilería, tipografía, flecha e ilustración se calcan traducidas a colores y espacios de Between — _Eli, S3 08-09; concurso 21-09; octubre 24-09-2026_ · ✔×3
-- **R-60** · [TODAS] **Ni títulos ni bajadas llevan punto** en la gráfica (el punto sólo en párrafos largos y legales) — _Eli 25-08 (BW) y 09-09 (DT); Javier Mesa 23-09-2026, recordatorio para las cuatro cuentas_ · ✔×3
 - **R-02** · [DT] Tipografía: **Stag + Trade Gothic, y nada más**. Raleway fuera de DT — _Eli, 03-09 y 08-09-2026_ · ✔×2
 - **R-03** · [DT] Lo que Stag no trae (`$ % ¿ ¡ @ & # *`) va en Trade; el `¡` en titular Stag se resuelve con el `!` girado 180° (truco de Eli) — _Eli / medición fontTools, 09-09 y 24-09-2026 (`&`)_ · ✔×2
 - **R-05** · [DT] Titular de varias líneas de largo parecido: se **justifica a una medida común** escalando cada línea, y el panel toma esa medida. Si los largos difieren mucho (rango de cuerpos >25 %), primero se parte en niveles — _Eli, 15-09 (Honors, hecho por ella en Illustrator) y 22-09-2026 (carrusel S5)_ · ✔×2
 - **R-08** · [DT] Fotos de programas: **fotografía propia del hotel con el rostro reemplazado** por uno generado (hombre/mujer), variando rostros entre piezas — _Eli, 09-09; aplicado en Family Time oct, 24-09-2026_ · ✔×2
 - **R-10** · [DT] **En feed el logo por defecto NO va** («ensucia el feed»): sólo en programas del hotel y piezas importantes — _Eli, 08-09-2026; aplicado carrusel S5 17-09_ · ✔×2
+- **R-11** · [DT] Un carrusel firma **una vez**; desde el 22-09 el S5 quedó sin versalita al pie en ninguna lámina («no tanto elemento por slide») — _Constanza y Eli, 22-09-2026_ · ✔×2 · +1 carrusel «5 cosas» 21-10, logo sólo en la portada, aprobado 28-09
 - **R-13** · [DT] El velo azul **nace en α=0 en el borde** y sube sin quiebre (paradas cada ~10 %, pie ≈0,58); para «más abajo» se curva la rampa, nunca se deja plana y se arranca de golpe — _Eli, 10-09 (ST Turismo, «se ve muy forzado») y 15-09-2026 (Honors)_ · ✔×2
 - **R-14** · [DT] Si el titular no da contraste sobre foto clara, **la tinta pasa a azul DT**; no se carga el velo, porque la foto real es el argumento — _ST Turismo 10-09; portada S5 17-09-2026_ · ✔×2
-- **R-20** · [DT] «Alinea a la izquierda bien»: cada línea se compensa por el hueco de su primer glifo hasta que la tinta nazca en el margen (88 px) — _Eli, 17-09-2026, carrusel S5_ · ✔×2
-- **R-22** · [DT] Carrusel de video: los clips son **los que el cliente enlaza en el brief**; si falta material, Drive → stock de Magnific → generar. Cuando hay material filmado, fuera el Ken Burns — _cliente 23-09; Eli 23-09-2026 («selecciona el video más bonito y legible»)_ · ✔×2
 
 ## Lo que ya costó rondas
 - **X-28** · [BW] Costura de la expansión IA revisada sólo en 3 o 4 frames y con la posición suavizada: el pelo sale doble arriba de la cabeza y el borde nada — _Eli, reel «La razón» prueba 2, 25-09-2026 («casi bien»)_

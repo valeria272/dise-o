@@ -20,6 +20,11 @@
  *     redondos abajo. Son íconos genéricos, no una captura de iOS.
  *   · ⭐ El precio va en el botón verde con degradado del KV (Eli: no varía).
  *   · PROMO → zona segura de paid.
+  *
+ * ⭐ RONDA 4 DE ELI 28-09: parecerse a la ref («Dancefloor calling»): foto nueva
+ *   con flash, dos manos brindando con tres tragos hacia la cámara y la bola
+ *   disco detrás; el velo baja para que se vea la luz cálida de la ref. Generada
+ *   → «Imagen referencial». Textos y bloque AYCD sin cambios.
  */
 import React from "react";
 import {AbsoluteFill} from "remotion";
@@ -35,7 +40,7 @@ const QB_ST20_DATA: Record<string, Record<string, string>> = {
   etiqueta: "POR $13.990",
   medida: "MARTES · 18:00 A 21:00 HRS",
   texto: "TRAGOS SELECCIONADOS",
-  legal: "Sujeto a consumo de alimentos. Promoción no acumulable con otras ofertas y beneficios.",
+  legal: "*Imagen referencial. Sujeto a consumo de alimentos. Promoción no acumulable con otras ofertas y beneficios.",
   },
 };
 
@@ -57,8 +62,8 @@ const Tel: React.FC<{color: string; colgar?: boolean; x: number; top: number; et
 
 export const QbSt20AycdLlamada: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
-    <FotoQB src="assets/hilton/qb/oct/20-aycd-llamada.jpg" ratio={2250 / 4000} zoom={1.08} cx={0.45} cy={0.42} />
-    <Velo arriba={[860, 0.92]} abajo={[800, 0.95]} />
+    <FotoQB src="assets/hilton/qb/oct/20-aycd-llamada-r4.jpg" ratio={1520 / 2736} />
+    <Velo arriba={[720, 0.8]} abajo={[760, 0.92]} />
     <LogoQB top={252} ancho={140} />
     <Linea top={360} cuerpo={30} peso={500} tracking="0.18em" color="rgba(255,255,255,.85)">llamada entrante</Linea>
     <Linea top={404} cuerpo={48} peso={300} tracking="0.05em">{QB_ST20_DATA.pieza.antetitulo}</Linea>

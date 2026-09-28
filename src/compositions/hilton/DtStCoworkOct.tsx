@@ -38,8 +38,15 @@ const ESCENAS = [
   {src: 'assets/hilton/dt/oct2/cw-3.jpg', desde: 316, zoom: [1.0, 1.05]},
 ] as const;
 
-const T = {cristal: 30, titulo: 44, sub: 196, ubica: 226} as const;
-const C = {x: 140, y: 452, ancho: 800, alto: 830} as const;
+/**
+ * RONDA 3 (Eli, 28-09): «achicar un poco ese recuadro… si es el mismo texto no es necesario que dure
+ * tanto, que sea una transición más rápida para el texto, así queda más tiempo mostrándose lo del fondo».
+ * Dos cristales AJUSTADOS a su texto, en vez de uno alto todo el rato: el titular entra, se lee ~3 s y
+ * sale; la foto queda sola ~3,5 s; y el cristal final trae la bajada y la ubicación (~6,5 s de lectura).
+ */
+const T = {c1: 26, c1Sale: 118, c2: 250, ubica: 268} as const;
+const C1 = {x: 160, y: 690, ancho: 760, alto: 340} as const;
+const C2 = {x: 150, y: 670, ancho: 780, alto: 400} as const;
 
 const useEntrada = (desde: number, dur = 16, sube = 18) => {
   const f = useCurrentFrame();
@@ -74,10 +81,57 @@ const Escena: React.FC<{i: number}> = ({i}) => {
   );
 };
 
+const Cristal: React.FC<{c: {x: number; y: number; ancho: number; alto: number}; p: number; children: React.ReactNode}> = ({
+  c,
+  p,
+  children,
+}) => (
+  <>
+    <div
+      style={{
+        position: 'absolute',
+        left: c.x,
+        top: c.y + (1 - p) * 24,
+        width: c.ancho,
+        height: c.alto,
+        borderRadius: 34,
+        background: 'linear-gradient(to bottom, rgba(250,246,240,0.08), rgba(250,246,240,0.04)), rgba(9,25,78,0.42)',
+        backdropFilter: 'blur(26px) saturate(1.05)',
+        WebkitBackdropFilter: 'blur(26px) saturate(1.05)',
+        border: '1.5px solid rgba(250,250,250,0.7)',
+        boxSizing: 'border-box',
+        opacity: p,
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        left: c.x,
+        top: c.y + (1 - p) * 24,
+        width: c.ancho,
+        height: c.alto,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        color: DT.colores.blanco,
+        opacity: p,
+      }}
+    >
+      {children}
+    </div>
+  </>
+);
+
 export const DtStCoworkOct: React.FC<{guia?: boolean}> = ({guia = false}) => {
   const f = useCurrentFrame();
-  const pc = interpolate(f, [T.cristal, T.cristal + 18], [0, 1], {...clamp, easing: suave});
-  const e = {t: useEntrada(T.titulo), sub: useEntrada(T.sub), ubica: useEntrada(T.ubica)};
+  const p1 = Math.min(
+    interpolate(f, [T.c1, T.c1 + 14], [0, 1], {...clamp, easing: suave}),
+    interpolate(f, [T.c1Sale, T.c1Sale + 12], [1, 0], {...clamp, easing: suave}),
+  );
+  const p2 = interpolate(f, [T.c2, T.c2 + 14], [0, 1], {...clamp, easing: suave});
+  const ubica = useEntrada(T.ubica);
 
   return (
     <AbsoluteFill style={{backgroundColor: DT.colores.azul, overflow: 'hidden'}}>
@@ -85,25 +139,8 @@ export const DtStCoworkOct: React.FC<{guia?: boolean}> = ({guia = false}) => {
         <Escena key={i} i={i} />
       ))}
 
-      <div
-        style={{
-          position: 'absolute',
-          left: C.x,
-          top: C.y + (1 - pc) * 30,
-          width: C.ancho,
-          height: C.alto,
-          borderRadius: 34,
-          background: 'linear-gradient(to bottom, rgba(250,246,240,0.08), rgba(250,246,240,0.04)), rgba(9,25,78,0.42)',
-          backdropFilter: 'blur(26px) saturate(1.05)',
-          WebkitBackdropFilter: 'blur(26px) saturate(1.05)',
-          border: '1.5px solid rgba(250,250,250,0.7)',
-          boxSizing: 'border-box',
-          opacity: pc,
-        }}
-      />
-
-      <div style={{position: 'absolute', left: C.x, top: C.y + 90, width: C.ancho, textAlign: 'center', color: DT.colores.blanco}}>
-        <div style={e.t}>
+      {p1 > 0 ? (
+        <Cristal c={C1} p={p1}>
           {[
             {t: 'Cambia de aire y eleva', w: DT.pesos.medium},
             {t: 'tu productividad', w: DT.pesos.light},
@@ -116,17 +153,17 @@ export const DtStCoworkOct: React.FC<{guia?: boolean}> = ({guia = false}) => {
               {l.t}
             </div>
           ))}
-        </div>
+        </Cristal>
+      ) : null}
 
-        <div style={{...e.sub}}>
-          <div style={{width: 120, height: 1.5, margin: '48px auto 40px', background: 'rgba(250,250,250,0.8)'}} />
+      {p2 > 0 ? (
+        <Cristal c={C2} p={p2}>
           <div
             style={{
-              width: 620,
-              margin: '0 auto',
+              width: 640,
               fontFamily: DT.fuentes.titular,
               fontWeight: DT.pesos.regular,
-              fontSize: 36,
+              fontSize: 38,
               lineHeight: 1.32,
               wordSpacing: '0.08em',
               textShadow: SOMBRA,
@@ -134,30 +171,29 @@ export const DtStCoworkOct: React.FC<{guia?: boolean}> = ({guia = false}) => {
           >
             Un espacio ambientado especialmente para concentrarte, reunirte o trabajar a tu ritmo
           </div>
-        </div>
-
-        <div style={{...e.ubica, marginTop: 64}}>
-          <div style={{fontFamily: DT.fuentes.texto, fontSize: 22, letterSpacing: '0.18em', textIndent: '0.18em', textShadow: SOMBRA}}>
-            UBICACIÓN
+          <div style={{...ubica, marginTop: 44}}>
+            <div style={{fontFamily: DT.fuentes.texto, fontSize: 22, letterSpacing: '0.18em', textIndent: '0.18em', textShadow: SOMBRA}}>
+              UBICACIÓN
+            </div>
+            <div
+              style={{
+                display: 'inline-block',
+                marginTop: 16,
+                border: `2px solid ${DT.colores.blanco}`,
+                borderRadius: 60,
+                padding: '14px 34px 11px',
+                fontFamily: DT.fuentes.texto,
+                fontSize: 27,
+                lineHeight: 1.2,
+                letterSpacing: '0.02em',
+                textShadow: SOMBRA,
+              }}
+            >
+              Te esperamos en el 1er y 2do nivel de la cafetería
+            </div>
           </div>
-          <div
-            style={{
-              display: 'inline-block',
-              marginTop: 16,
-              border: `2px solid ${DT.colores.blanco}`,
-              borderRadius: 60,
-              padding: '14px 34px 11px',
-              fontFamily: DT.fuentes.texto,
-              fontSize: 27,
-              lineHeight: 1.2,
-              letterSpacing: '0.02em',
-              textShadow: SOMBRA,
-            }}
-          >
-            Te esperamos en el 1er y 2do nivel de la cafetería
-          </div>
-        </div>
-      </div>
+        </Cristal>
+      ) : null}
 
       <Logo formato="story" />
 

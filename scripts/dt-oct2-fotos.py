@@ -62,7 +62,7 @@ SEP = "raw/hilton/sesion-sep2026/alta/sep_26-"
 recorta(SEP + "246.jpg", "c5-portada.jpg", FEED, cy=0.56)          # A · el sillón del lounge, como la REF 2
 recorta(BANCO + "DT-familia-vista-post-2250x2813.jpg", "c5-portada-b.jpg", FEED)  # B · la familia en el sofá
 recorta(SEP + "515.jpg", "c5-habitacion.jpg", FEED, cx=0.42)
-recorta(SEP + "237.jpg", "c5-espacios.jpg", FEED, cy=0.5)            # Winter Garden
+recorta(SEP + "237.jpg", "c5-espacios.jpg", FEED, cy=0.66)           # Winter Garden, bajo el tragaluz (QA: el techo blanco contaba como tinta)
 recorta(SEP + "366.jpg", "c5-ubicacion.jpg", FEED, cy=0.45)           # la ciudad desde arriba
 recorta(SEP + "250.jpg", "c5-cierre.jpg", FEED, cx=0.5)               # el lobby iluminado
 # coworking: tres tomas nuevas del cowork del lobby

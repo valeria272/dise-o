@@ -1,5 +1,12 @@
 # Piso18 — bitácora
 
+## 2026-09-28 — Elisabet Soto «Eli» (Windows, con Claude) · GRILLA DE OCTUBRE completa (11 piezas) — APROBADA
+
+**Qué se hizo:** se diseñaron las 11 piezas en OK PARA DISEÑAR (FEED 06, 09, 13, 16, 23 y 27-10 · STORIES 05 animada, 07, 09, 23 y 27-10), calcando cada referencia del brief con la identidad de Piso18. Costó **3 vueltas en el día**. La ronda 1 quedó aprobada salvo cinco cosas: el color del 06-10 (rosados → azules de la ref), las cifras de Raleway («desequilibrado y extraño» = cifras de estilo antiguo → `lnum` en toda la grilla), la portada del 13-10 (dos atardeceres en el ventanal), los clips del 16-10 (→ fucsia) y las fotos del Tex-Mex (→ foto documental). En la ronda 3 sólo cambió la S2 del Tex-Mex (cenital, cuatro tacos). Eli: «te apruebo».
+**Dónde quedó:** todo en Drive, `S2–S5 HILTON OCT 2026 / PISO18 / {FEED, STS}` (22 archivos, nombres del portal `P18 FEED DD-MM Tema N`). Código en `src/compositions/piso18/P18Octubre.tsx` + `src/P18OctEntry.tsx`; fotos en `public/assets/hilton/piso18/oct/`; generación, fotos, render, GIF, subida y páginas en `scripts/p18-oct-*`. Páginas: r1 https://claude.ai/artifact/HdB6ALE9a1Z442Jo1ATqW2 · r2 https://claude.ai/artifact/9KecWFtCwvm9paW37EeQeb. Los crudos (refs, IA, clip Kling) quedan en `raw/hilton/piso18/oct/`, que no viaja en git.
+**Qué sigue:** cuando pasen a OK PARA DISEÑAR, el FEED 20-10 y las STORIES 08, 13, 15, 16, 19, 21 y 30-10: releer la grilla en vivo y diseñarlas con el mismo kit.
+**Abierto:** 3 fotos IA quedaron ampliadas ×1,22–1,27 porque el upscaler de precisión falló (Tex-Mex S2 y S3, wedding planner). El GIF de la 05-10 pesa 25,8 MB (432×768, 20 fps).
+
 ## 2026-09-28 — Elisabet Soto «Eli» (Windows, con Claude) · `/al-dia hilton` foco S1 octubre — SIN PIEZAS
 
 **Qué se hizo:** diff de la grilla (25-09 20:38Z) contra la copia del 24-09. **En S1 hay 5 piezas en OK PARA DISEÑAR:** FEED 06-10 arreglos florales y 09-10 fechas 2027; ST 05-10 primavera (animada), 07-10 encuesta de estaciones y 09-10 encuesta de recuerdos de matrimonio. La ST 08-10 «pasos» quedó PENDIENTE POR CLIENTE. Llegaron 8 comentarios del cliente para S2–S5 (contenido, verbatim en el cerebro §9).

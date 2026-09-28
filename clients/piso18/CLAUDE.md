@@ -79,6 +79,12 @@ Chrome ignora `tabular-nums` **en silencio**. El `1` mide 0,450 em y el `0` 0,61
 comparación que hacen las promos. Se alinea **por código**, con cada dígito en una caja
 al **máximo** de la fila (`P18.cifras.anchoDigitoMax`), nunca al promedio.
 
+⛔⛔ **Y siempre con cifras de caja alta: `font-feature-settings: "lnum"`** (R-43). Las
+cifras por defecto de Raleway son de **estilo antiguo**: el 3, 5, 7 y 9 bajan de la línea
+base y el 0 queda a media altura. Eli lo vio en toda la grilla de octubre («2027»,
+«piso18.cl», «EN PISO18») como *«desequilibrado y extraño»* (28-09). En
+`P18Octubre.tsx` es la constante `RALEWAY`; en Illustrator, el botón «Cifras de caja alta».
+
 ## Formatos y geometría — medidos, normalizados a 1080 de ancho
 
 | Formato | Entrega | Ratio |

@@ -77,6 +77,13 @@ p.laminas([(E + "S4/FEED/P18 FEED 23-10 Estacion Tex Mex %d.png" % n, "<b>AHORA<
               "sin el desenfoque ni el brillo de estudio que las hacía ver generadas.",
               "Portada, textos y «Desliza» quedan como estaban."]))
 
+p.comparar(("out/piso18/oct/r2/S4/FEED/P18 FEED 23-10 Estacion Tex Mex 2.png", "igual a la portada, demasiados tacos"),
+           (E + "S4/FEED/P18 FEED 23-10 Estacion Tex Mex 2.png", "cenital, cuatro tacos"),
+           titulo="FEED 23-10 S2 · segunda vuelta",
+           que="«se ve muy similar a la portada (…) tal vez la vista más cenital y se ve demasiada cantidad de tacos»",
+           notas=("Qué cambió", ["Toma cenital sobre la misma cubierta y con la misma luz: cuatro tacos distintos "
+                                 "(carne, pollo, vegetales, camarón), guacamole, pico de gallo y limón, con aire alrededor."]))
+
 p.notas([
     "Las historias no cambiaron de diseño. Sólo se rindieron de nuevo para que el «18» de piso18.cl salga con cifras de "
     "caja alta, igual que el resto de la grilla.",

@@ -222,6 +222,20 @@ ESCENAS = {
                    "suave y natural solo al fondo, sin etiquetas en los frascos. Formato vertical 4:5. "
                    "Sin personas."),
     },
+    # Ronda 3 (Eli 28-09): la S2 «se ve muy similar a la portada (…) tal vez la vista más
+    # cenital y se ve demasiada cantidad de tacos» ⇒ cenital y pocos tacos.
+    "f23r3-s2": {
+        "motor": "pro", "aspecto": "carrusel", "refs": ["@f23r2-s1", "banq51.jpg"],
+        "prompt": ("Vista CENITAL, camara justo desde arriba mirando hacia abajo, sobre la misma cubierta "
+                   "oscura de la estacion Tex-Mex de la @img1, con la misma luz calida y el mismo color: "
+                   "una sola tabla de madera con SOLO CUATRO tacos de coctel en tortilla de maiz, bien "
+                   "separados, uno de carne desmechada, uno de pollo, uno de vegetales asados y uno de "
+                   "camaron, con cebolla morada, cilantro y palta; al lado un cuencos chico de guacamole, "
+                   "uno de pico de gallo y medio limon. Mucho aire oscuro de la cubierta alrededor, "
+                   "composicion ordenada y limpia. Comida real de banqueteria con imperfecciones naturales "
+                   "y texturas reales como la @img2, sin brillo artificial. Nada de fuente de queso ni "
+                   "filas de tacos. Formato vertical 4:5. Sin personas."),
+    },
 }
 
 

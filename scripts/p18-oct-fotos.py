@@ -56,7 +56,7 @@ FOTOS = {
     "f1610-5.jpg": (BASE / "deco55.jpg", (0, 463, 3701, 4626), FEED),    # Cierre, lámpara cálida
     # FEED 23-10 · Tex-Mex (generadas, 3:4 → 4:5)
     "f2310-1.jpg": (GEN / "f23r2-s1.jpg", None, FEED),  # ronda 2: foto documental
-    "f2310-2.jpg": (GEN / "f23r2-s2.jpg", None, FEED),  # ronda 2: foto documental
+    "f2310-2.jpg": (GEN / "f23r3-s2.jpg", None, FEED),  # ronda 3: cenital, cuatro tacos
     "f2310-3.jpg": (GEN / "f23r2-s3b.jpg", None, FEED),  # ronda 2: foto documental
     "f2310-4.jpg": (GEN / "f23r2-s4.jpg", None, FEED),  # ronda 2: foto documental
     # FEED 27-10 · wedding planner (generada sobre la mesa real banq 0047)

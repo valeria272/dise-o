@@ -67,5 +67,7 @@ recorta(SEP + "366.jpg", "c5-ubicacion.jpg", FEED, cy=0.45)           # la ciuda
 recorta(SEP + "250.jpg", "c5-cierre.jpg", FEED, cx=0.5)               # el lobby iluminado
 # coworking: tres tomas nuevas del cowork del lobby
 recorta(SEP + "270.jpg", "cw-1.jpg", STORY, cy=0.55)
-recorta(SEP + "267.jpg", "cw-2.jpg", STORY, cy=0.5)
+recorta(SEP + "267.jpg", "cw-2.jpg", STORY, cx=0.36)
 recorta(SEP + "264.jpg", "cw-3.jpg", STORY, cx=0.45)
+recorta("raw/hilton/dt/familia/r3/final-checkin-h2a.png", "c5-hospitalidad.jpg", FEED)  # ronda 2: sin el niño fantasma (scripts/dt-oct2-hospitalidad*.py)
+recorta(SEP + "250.jpg", "c5-cierre.jpg", FEED, cx=0.30)             # ronda 2: el lounge iluminado, otro ángulo que la portada

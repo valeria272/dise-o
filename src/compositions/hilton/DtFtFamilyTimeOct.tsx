@@ -72,16 +72,19 @@ export const DtFtFamilyTimeOct: React.FC<{tinta?: 'blanco' | 'azul'}> = ({tinta 
         ))}
       </div>
 
-      {/* el bloque del programa, el de `C1 FT N2` */}
-      <div style={{position: 'absolute', top: 872, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
-        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 30}}>
-          <div style={{fontFamily: DT.fuentes.titular, fontStyle: 'italic', fontSize: 78, lineHeight: 1, textShadow: SOMBRA, whiteSpace: 'nowrap'}}>
+      {/* el bloque del programa, el de `C1 FT N2`. Ronda 2 (Eli 28-09): «Family Time más centrado… el
+          125 podría centrarlo y arribita Family Time, bajar un poco los demás textos»: se apilan al
+          centro, «Family Time» arriba y el precio debajo; íconos, correo y legal bajan. */}
+      <div style={{position: 'absolute', top: 812, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20}}>
+          <div style={{fontFamily: DT.fuentes.titular, fontStyle: 'italic', fontSize: 96, lineHeight: 1, textShadow: SOMBRA, whiteSpace: 'nowrap'}}>
             <span style={{fontWeight: DT.pesos.semibold}}>Family</span>
             <span style={{fontWeight: DT.pesos.light}}> Time</span>
           </div>
           <div style={{textAlign: 'center'}}>
             <div
               style={{
+                display: 'inline-block',
                 background: BLANCO,
                 color: AZUL,
                 borderRadius: 60,
@@ -100,7 +103,7 @@ export const DtFtFamilyTimeOct: React.FC<{tinta?: 'blanco' | 'azul'}> = ({tinta 
           </div>
         </div>
 
-        <div style={{margin: '34px auto 0', width: 860, display: 'flex', justifyContent: 'space-between'}}>
+        <div style={{margin: '46px auto 0', width: 860, display: 'flex', justifyContent: 'space-between'}}>
           {INCLUIDOS.map((c, i) => (
             <React.Fragment key={c.icono}>
               {i > 0 ? <div style={{width: 1.5, alignSelf: 'stretch', background: 'rgba(250,250,250,0.55)'}} /> : null}
@@ -129,7 +132,7 @@ export const DtFtFamilyTimeOct: React.FC<{tinta?: 'blanco' | 'azul'}> = ({tinta 
           ))}
         </div>
 
-        <div style={{marginTop: 38}}>
+        <div style={{marginTop: 42}}>
           <div
             style={{
               display: 'inline-block',

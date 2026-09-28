@@ -9,18 +9,18 @@
  * texto arriba dentro del cristal y BARRIDOS con desenfoque entre tomas (R-15/X-24),
  * todo en color desde el primer cuadro, máx. 15 s (R-25).
  *
- * Tomas, todas reales:
- *   1. `s5/clips/cowork.mp4` — café servido a la mesa con el portátil: el mismo clip
- *      de «TIEMPO PARA TI» del carrusel «Tu día», aprobado. Es literal del brief
- *      («café servido a la mesa») y de la ubicación («la cafetería»).
- *   2. `HDT_38` — el lounge junto al vidrio, butacas y mesa baja.
- *   3. `HDT_37` — el lounge del lobby.
+ * Tomas — RONDA 2 (Eli, 28-09: «la tira se está viendo un poco [repetida]… utiliza imágenes
+ * nuevas»): las tres salen de la sesión nueva SEP 2026, el cowork del lobby:
+ *   1. `sep_26-270` — el portátil y el café servido sobre la mesa, de cerca.
+ *   2. `sep_26-267` — la butaca con el portátil abierto y el café.
+ *   3. `sep_26-264` — el lounge del cowork completo.
+ * (La ronda 1 usaba el clip del café de «Tu día» y HDT_37/38, ya vistos en el feed.)
  *
  * Textos literales; sin punto en título ni bajadas (R-60).
  * ⛔ El CTA «consulta disponibilidad» es sticker del CM: no se dibuja.
  */
 import React from 'react';
-import {AbsoluteFill, Easing, Img, OffthreadVideo, interpolate, staticFile, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, Easing, Img, interpolate, staticFile, useCurrentFrame} from 'remotion';
 
 import {DT, cargarFuentesDT} from '../../brand/doubletree';
 import {Logo, SOMBRA} from './dtOct2';
@@ -33,9 +33,9 @@ const suave = Easing.bezier(0.33, 0, 0.2, 1);
 const BARRIDO = 12;
 
 const ESCENAS = [
-  {video: 'assets/hilton/dt/s5/clips/cowork.mp4', desde: 0, zoom: [1.0, 1.04]},
-  {src: 'assets/hilton/dt/oct2/cw-lounge-2.jpg', desde: 176, zoom: [1.06, 1.0]},
-  {src: 'assets/hilton/dt/oct2/cw-lounge.jpg', desde: 316, zoom: [1.0, 1.05]},
+  {src: 'assets/hilton/dt/oct2/cw-1.jpg', desde: 0, zoom: [1.0, 1.06]},
+  {src: 'assets/hilton/dt/oct2/cw-2.jpg', desde: 176, zoom: [1.06, 1.0]},
+  {src: 'assets/hilton/dt/oct2/cw-3.jpg', desde: 316, zoom: [1.0, 1.05]},
 ] as const;
 
 const T = {cristal: 30, titulo: 44, sub: 196, ubica: 226} as const;
@@ -69,11 +69,7 @@ const Escena: React.FC<{i: number}> = ({i}) => {
   };
   return (
     <AbsoluteFill style={{opacity: Math.min(1, p * 1.6)}}>
-      {'video' in e ? (
-        <OffthreadVideo src={staticFile(e.video)} muted playbackRate={0.9} style={estilo} />
-      ) : (
-        <Img src={staticFile(e.src)} style={estilo} />
-      )}
+      <Img src={staticFile(e.src)} style={estilo} />
     </AbsoluteFill>
   );
 };

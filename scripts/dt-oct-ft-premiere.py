@@ -10,7 +10,7 @@ el XML de Final Cut 7 (Archivo › Importar): arma la secuencia con las pistas y
 cortes, y al guardar queda como `.prproj`.
 
 La secuencia, con los MISMOS tiempos de `CLIPS` en `DtStFamilyTimeOct.tsx`:
-    V1  el clip de la vista + las 4 fotos de la familia, cortados donde termina cada barrido
+    V1  las 4 fotos de la familia, cortados donde termina cada barrido
     V2  la gráfica (texto, cristal, logo) en ProRes 4444 con transparencia
     V3  el render final, APAGADO, como guía para comparar
 
@@ -36,11 +36,12 @@ BARRIDO = 12
 
 # (archivo, fotograma en que la escena ya está entera) — igual que CLIPS en el .tsx
 CLIPS = [
-    ("ft-v-vista.mp4", 0),          # ronda 5 (28-09): sólo la primera toma es video
-    ("ft-f-lobby.jpg", 146),
-    ("ft-f-almohadas.jpg", 166),
-    ("ft-f-restaurante.jpg", 186),
-    ("ft-f-hab.jpg", 206),
+    # ronda 6 (28-09): SÓLO fotos. El número es el fotograma de corte + 6, para que
+    # el corte caiga a mitad del fundido de 15 del render (`DtStFamilyTimeOctR6`)
+    ("ft-f-lobby.jpg", 0),
+    ("ft-f-almohadas.jpg", 126),
+    ("ft-f-hab.jpg", 238),
+    ("ft-f-cookie.jpg", 350),
 ]
 GRAFICA = RAIZ / "out/hilton/dt/entrega-oct/ft-video-grafica.mov"
 FINAL = RAIZ / "out/hilton/dt/entrega-oct/DT ST 01-10 Family Time primavera.mp4"

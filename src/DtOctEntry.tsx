@@ -20,6 +20,7 @@ import {
   DtStFamilyTimeOctVideoGrafica,
   DtStFamilyTimeOctVideoGuia,
 } from './compositions/hilton/DtStFamilyTimeOct';
+import {DtStFamilyTimeOctR6, DtStFamilyTimeOctR6Grafica, DtStFamilyTimeOctR6Guia} from './compositions/hilton/DtStFamilyTimeOctR6';
 import {DtFtOpinionOct, DtFtOpinionOctGuia} from './compositions/hilton/DtFtOpinionOct';
 import {DtStHonorsOct, DtStHonorsOctGuia} from './compositions/hilton/DtStHonorsOct';
 import {DtStServiciosOct, DtStServiciosOctGuia} from './compositions/hilton/DtStServiciosOct';
@@ -38,7 +39,11 @@ const Raiz: React.FC = () => (
       <Composition id="DT-A-Oct-FamilyTime-Video" component={DtStFamilyTimeOctVideo} {...animada} />
       <Composition id="DT-A-Oct-FamilyTime-Video-Guia" component={DtStFamilyTimeOctVideoGuia} {...animada} />
       <Composition id="DT-A-Oct-FamilyTime-Video-Grafica" component={DtStFamilyTimeOctVideoGrafica} {...animada} />
-      {/* ronda 5 (28-09): video sólo en la 1ª toma, fotos de transición — la que va a Drive */}
+      {/* ronda 6 (28-09): sólo fotos, titular fuera de la caja, bajada sutil — la que va a Drive */}
+      <Composition id="DT-A-Oct-FamilyTime-R6" component={DtStFamilyTimeOctR6} {...animada} />
+      <Composition id="DT-A-Oct-FamilyTime-R6-Guia" component={DtStFamilyTimeOctR6Guia} {...animada} />
+      <Composition id="DT-A-Oct-FamilyTime-R6-Grafica" component={DtStFamilyTimeOctR6Grafica} {...animada} />
+      {/* ronda 5 (28-09): video sólo en la 1ª toma, fotos de transición */}
       <Composition id="DT-A-Oct-FamilyTime-R5" component={DtStFamilyTimeOctR5} {...animada} />
       <Composition id="DT-A-Oct-FamilyTime-R5-Guia" component={DtStFamilyTimeOctR5Guia} {...animada} />
       <Composition id="DT-A-Oct-FamilyTime-R5-Grafica" component={DtStFamilyTimeOctR5Grafica} {...animada} />

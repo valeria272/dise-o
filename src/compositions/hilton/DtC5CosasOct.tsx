@@ -140,30 +140,47 @@ const Punto: React.FC<{i: number}> = ({i}) => {
   );
 };
 
+/** Ronda 2: el cierre hace ESPEJO de la portada (continuidad del carrusel): la misma foto oscurecida
+ * pareja, el titular serif grande arriba y el llamado chico en itálica abajo, donde la portada tenía
+ * «tu estadía en DoubleTree». El lounge iluminado de la sesión SEP 2026 (`sep_26-250`), otro ángulo que la portada. */
 const Cierre: React.FC = () => (
   <>
     <Foto src={foto('c5-cierre')} />
-    <AbsoluteFill style={{background: 'rgba(9,25,78,0.44)'}} />
-    <Velo desde={0.3} pie={0.7} />
-    <div style={{position: 'absolute', top: 600, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
-      <div style={{fontFamily: DT.fuentes.titular, fontWeight: DT.pesos.medium, fontSize: 76, lineHeight: 1.1, textShadow: SOMBRA}}>
-        Todo listo para recibirte
-      </div>
-      <div style={{width: 120, height: 1.5, background: 'rgba(250,250,250,0.85)', margin: '44px auto 38px'}} />
+    <AbsoluteFill style={{background: 'rgba(9,25,78,0.34)'}} />
+    <Velo desde={0.55} pie={0.5} />
+    <div style={{position: 'absolute', top: 330, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
       <div
         style={{
-          width: 720,
-          margin: '0 auto',
           fontFamily: DT.fuentes.titular,
-          fontWeight: DT.pesos.light,
-          fontSize: 38,
-          lineHeight: 1.3,
-          wordSpacing: '0.08em',
+          fontWeight: DT.pesos.regular,
+          fontSize: 104,
+          lineHeight: 1.04,
+          letterSpacing: '-0.01em',
           textShadow: SOMBRA,
         }}
       >
-        Haz clic en el enlace de la bio y reserva tu estadía
+        Todo listo
+        <br />
+        para recibirte
       </div>
+    </div>
+    <div
+      style={{
+        position: 'absolute',
+        top: 1128,
+        left: 0,
+        width: 1080,
+        textAlign: 'center',
+        color: BLANCO,
+        fontFamily: DT.fuentes.titular,
+        fontStyle: 'italic',
+        fontWeight: DT.pesos.light,
+        fontSize: 36,
+        letterSpacing: '0.01em',
+        textShadow: SOMBRA,
+      }}
+    >
+      Haz clic en el enlace de la bio y reserva tu estadía
     </div>
   </>
 );

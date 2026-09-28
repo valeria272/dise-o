@@ -292,7 +292,7 @@ export const DtStFamilyTimeOct: React.FC<{guia?: boolean; montaje?: Montaje; sol
       {f >= T.cristal2 ? (
         <>
           <Cristal c={C2} p={p2} />
-          <div style={{position: 'absolute', left: C2.x, top: C2.y + 64, width: C2.ancho, textAlign: 'center'}}>
+          <div style={{position: 'absolute', left: C2.x, top: C2.y + (montaje.grande ? 94 : 64), width: C2.ancho, textAlign: 'center'}}>
             <div style={{...e.t}}>
               {TEXTO2.map((t, i) => (
                 <div

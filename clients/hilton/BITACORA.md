@@ -1,3 +1,10 @@
+## 2026-09-28 (mediodía, 2) — Eli (Windows) · DT ST 01-10 Family Time, RONDA 6: sólo fotos + bajada — REEMPLAZADA EN DRIVE
+
+**Feedback de Eli sobre la r5:** el titular NO va en la caja, sólo la info de Family Time · «solamente veo videos, no quiero mucha animación… varias imágenes que queden bastante tiempo para que no se mareen» · «no tanto azul, abarca demasiado, algo sutil, una bajada» · «la jerarquía tiene que ser funcional» · «solo imágenes».
+**Qué se hizo:** composición nueva `DtStFamilyTimeOctR6.tsx` (`DT-A-Oct-FamilyTime-R6`). Cuatro FOTOS del banco (lobby → almohadas → habitación → cookie), 3,7 s c/u, fundido de 0,5 s y acercamiento del 3 %. Titulares sobre la foto (Stag a dos pesos, velo de arriba): el texto 1 en el lobby y el texto 2 desde la 2.ª foto hasta el final. La caja es una BAJADA abajo, sobre la zona segura: esmerilado α 0,20 (antes 0,40), tres filas (Family Time + precio / íconos / correo + legal), ~7 s en pantalla. ⛔ La vista a Santiago quedó fuera: el cuadro y la cabeza del papá caían justo bajo el titular.
+**Dónde quedó:** Drive S1/DT/STS (MP4 + GIF, md5 verificado) · Premiere en F: regenerado con las 4 fotos · render en `out/hilton/dt/oct/_rondas/r6/`.
+**Abierto:** que Eli lo revise.
+
 ## 2026-09-28 (mediodía) — Eli (Windows) · DT ST 01-10 Family Time, RONDA 5 — REEMPLAZADA EN DRIVE
 
 **Feedback de Eli sobre la de video:** «dura muy extraño… si hay texto importante que se mantenga más el tiempo… no lo hagas todo video, usa las mismas imágenes, que pasen como transición, y la primera toma sí sea un video… que no se vea todo tan exagerado… mejor en jerarquía, recordando la identidad visual».

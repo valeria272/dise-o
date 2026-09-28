@@ -2801,6 +2801,31 @@ máster aprobado de esta cuenta es **2813**. La historia sí va a 2,0833 (4000 e
 
 ---
 
+## ⭐⭐⭐ BETWEEN — LA CARTA OFICIAL 2026 (mañana/almuerzo): 4 PROPUESTAS APROBADAS (28-09-2026)
+
+Fuente: Word corregido del cliente + 3 refs en Drive `1gAZNJkaw5SKAHEmLo1yIctD-MNCE1p6v`.
+Entrega en `CARTA BETWEEN · EDITABLES APROBADOS 28-09` (`1T1yRpZ_ctjfq-gDWDmNwUPLiSUIMaxap`).
+
+- **Pedido del cliente:** limpia, más líneas, ilustración sólo si hace falta y en una esquina
+  (que no parezca QB), formato actual 17 × 30 cm, cafés y beige, leyendas permitidas.
+- **Escala mínima (Eli):** plato 9–9,5 pt Raleway Bold (caja alta en A/B/D) · precio Bold,
+  cifras de caja alta (`lnum`) · descripción 8 pt Regular · notas 7,8 pt itálica · cabecera de
+  columna 6,8 pt · leyenda 7 pt. Filetes 0,15 mm.
+- **Secuencia:** el contenido corre en el orden del Word, columna a columna y hoja a hoja
+  (paginador en `scripts/between-carta-oficial-r4.py`): sección de ≤ 10 platos no se parte; más
+  larga, con ≥ 3 por lado y su rótulo repetido; el bar parte en hoja propia; en A cada tramo
+  (mañana · almuerzo · bar) en hoja nueva con su rótulo grande en la esquina (#D9D2C3).
+- **Ilustraciones:** a mano en tinta con detalle (Seedream, `public/assets/hilton/between/carta/mano-*.png`,
+  vectorizadas en `vector/*.svg`); cada una según lo que ofrece la hoja. En D van en las
+  esquinas con degradé (sin desenfoque) y el paginador elige la de lo que más platos tiene.
+- **Las 4:** A índice lateral (café) · B óvalos a dos columnas (beige + papel) · C franjas con
+  títulos Brushwell y marco (beige + papel) · D portada partida como Loká, rótulos en
+  rectángulo, hojas alternadas café/beige, contactos en la portada.
+- **Entrega:** UN `.ai` por opción en **CMYK**, mesas lado a lado, capa por hoja («01 · Portada»
+  arriba) con subcapas Texto · Logo · Ilustraciones · Gráfica · Fondo (bloqueada); PDF desde
+  ese .ai. Cadena: `between-carta-oficial-editable.py` → `between-carta-oficial-ai-maestro.jsx`
+  (ai-puente) → `between-carta-oficial-subir.py`. El papel va como TIFF CMYK FOGRA39 a 307 ppp.
+
 ## ⭐⭐ BETWEEN — LA CARTA: EJERCICIO DE REDISEÑO, 4 RONDAS CON ELI (25-09-2026)
 
 ⛔ **Fue un EJERCICIO, no una entrega.** Eli lo pidió para medir la calidad de diseño que

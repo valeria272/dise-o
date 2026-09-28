@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-28** · Cosechas: **10**
+> Última cosecha: **2026-09-28** · Cosechas: **11**
 
 ## 1. Quién es el cliente
 
@@ -140,6 +140,12 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-61** · [BW] Pieza animada = **MP4 + GIF**, y se suben los dos a la carpeta de la semana (GIF 25 fps, 540×960, sin difuminado, tipo `image/gif`) — _Eli, 25-09-2026, ST 30-09 Plateada («recuerda el video dejar el gif y subirlos a drive»); en DT ya era R-24_ · ✔×1
 - **R-62** · [BW] **Mientras llega la carta nueva, las piezas no nombran platos** (fuera la caja con el nombre; la foto se queda) — _cliente, grilla STORIES col U, 25-09-2026 («Por mientras no nombremos platos, ya que tendremos cambio de carta»)_ · ✔×1 · temporal: revisar cuando salga la carta
 - **R-63** · [BW] Plato en foto que el cliente pide marcar → legal **«*Imagen referencial.»** en cursiva beige al pie, al margen de marca, sobre el fondo y nunca sobre el producto (caja taupe si no se lee) — _cliente, ST Strudel S4 (16-09) y ST 30-09 Plateada (25-09-2026)_ · ✔×2
+- **R-89** · [BW] **Carta: limpia, con líneas y SIN protagonismo de la ilustración** (alguna en una esquina, no más; así no se confunde con QB); formato actual 17 × 30 cm; la de mañana/almuerzo en **cafés y beige**; se puede jugar con leyendas — _cliente vía Eli, 28-09-2026 («algo más limpio sin tanta ilustración, solo de ser necesaria, más líneas»)_ · ✔×1 (4 propuestas aprobadas)
+- **R-90** · [BW] **Carta: tamaños mínimos legibles** — plato 9–9,5 pt **Bold**, descripción 8 pt **Regular**, notas 7,8 pt, cabeceras de columna 6,8 pt; lo importante marcado — _Eli, 28-09-2026, r3 («para que todo se pueda leer y las personas no tengan problema a la vista»)_ · ✔×1
+- **R-91** · [BW] **Ilustración de carta hecha a mano, con detalles, no rígida**, y **cada dibujo corresponde a lo que ofrece esa hoja** (nada de pasteles en la hoja del bar) — _Eli, 28-09-2026, r2 y r4_ · ✔×1
+- **R-92** · [BW] **Carta: filetes y ejes delgados** (0,15 mm), no tienen que destacar — _Eli, 28-09-2026, r2_ · ✔×1
+- **R-93** · [BW] **Carta: la secuencia se respeta hoja a hoja** (orden del Word, columna a columna), sin letras cortadas por la caja y sin palabra sola en la última línea de un párrafo — _Eli, 28-09-2026, r3_ · ✔×1
+- **R-94** · [BW] **Editable de carta = UN .ai por opción en CMYK**, con una mesa de trabajo y una capa por hoja en orden («01 · Portada» arriba; dentro Texto · Logo · Ilustraciones · Gráfica · Fondo) + PDF de calidad 300 ppp con las ilustraciones vectorizadas — _Eli, 28-09-2026 («un Illustrator para todas… capa 1 slide 1 portada»; «tienes que estar en CMYK»)_ · ✔×1
 - **R-64** · [BW] Una pieza puede **cambiar de HOJA** en la grilla, no sólo de fecha: se busca por su título en FEED **y** en STORIES antes de decir que no hay nada nuevo — _grilla BW oct, 25-09-2026: «Por qué vienes / por qué te quedas» quedó en STORIES como REVISAR CONTENIDO («DEJARLO EN FEED») y reapareció en FEED 09-10 como OK PARA DISEÑAR_ · ✔×1
 - **R-65** · [DT] La grilla corre la fecha de una pieza ya entregada sin avisar; se reconoce por el título — _grilla DT oct, 25-09-2026: Opinión Expedia pasó de FEED 10-10 a 09-10_ · ✔×1
 - **R-66** · [BW] **Un reel no lleva relleno desenfocado alrededor del clip**: se expande con IA siguiendo la escena, y se ve **entero** lo que estaba en el cuadro (el vaso y la mano), sin recortar para tapar el borde — _contenido vía Eli, reel «La razón» S3, 25-09-2026 («le molesta a contenido»; «la idea es que se siga viendo el vaso y la mano de ella»)_ · ✔×1
@@ -183,8 +189,13 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **A-08** · [DT] Familia IA sobre foto real de DT: el desayuno, la llegada al lobby y la noche de película en la habitación de dos camas se aprobaron **a la primera** una vez que el fondo pasó a ser real (ronda 2) — _Eli, 25-09-2026, banco familia DT_
 - **A-09** · [DT] Las **3 historias del feriado 05-10** calcadas de sus refs: tarjetas de resultado (ER + FT, con la pareja IA sobre HDT_65 y la familia del banco), panel vertical translúcido con píldoras (ER sobre la hab. real con la cubeta) y el mismo panel a lo ancho abajo (FT) — _Eli, 28-09-2026: aprobadas en la ronda 1 («lo que veo me parece muy bien»), subidas a S2/DT/STS_
 
+- **A-10** · [BW] **Carta oficial: las 4 propuestas aprobadas** (A índice lateral café · B óvalos a dos columnas beige · C franjas con títulos Brushwell · D portada partida en café con hojas alternadas) — _Eli, 28-09-2026, tras 4 rondas en el día_
+
 ## 7. Lo que se rechaza
 
+- **X-44** · [BW] Ilustraciones de carta de **trazo uniforme y rígido** (vector de línea pareja) — _Eli, 28-09-2026, r1 («estilo hecho a mano… que no sea tan rígido»)_
+- **X-45** · [BW] Dibujo que **no corresponde a la hoja** (pasteles en la hoja del bar de la D) y dibujos que la caja corta (A) — _Eli, 28-09-2026, r3_
+- **X-46** · [BW] Editables **un .ai por hoja y en RGB** — _Eli, 28-09-2026 («me va a hacer todo muy difícil después para editar»): 1 ronda de entrega_
 - **X-28** · [BW] Costura de la expansión IA revisada sólo en 3 o 4 frames y con la posición suavizada: el pelo sale doble arriba de la cabeza y el borde nada — _Eli, reel «La razón» prueba 2, 25-09-2026 («casi bien»)_
 - **X-27** · [BW] Tapar el borde desenfocado **agrandando el clip**: corta el vaso y la mano del borde — _Eli, reel «La razón», 25-09-2026: 1 ronda_
 - **X-26** · [BW] Lockup al pie cuando el vaso de la foto ya firma: cae encima del producto y la marca se lee dos veces — _prueba propia, feed «Necesito ir a Between», 25-09-2026 (descartada antes de mostrarla)_
@@ -232,6 +243,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 ## 8. Preguntas abiertas
 
+- [BW] Carta oficial: ¿cuál de las 4 propuestas elige el cliente? · confirmar las erratas corregidas del Word (manquilla→mantequilla, Muffinn, Salmon, Cesar, Kuntsmann→Kunstmann, Founders Colection→Collection; precios todos con punto; «Elija 2 opciones» se dejó en usted) → cliente
+- [BW] Carta: ¿qué perfil CMYK pide la imprenta? (el papel de B y C se convirtió con Coated FOGRA39) → Eli / imprenta
+- [BW] «Si arriba ya cae…, que abajo no vuelva»: se aplicó como «sin palabra sola en la última línea»; confirmar que era eso → Eli
 - [BW] Reel «La razón» prueba 2 (IA): ¿se aceptan las franjas más blandas (720p) y los últimos 0,3 s con el fondo quieto? ¿Reemplaza a la edición 2 en la grilla? → contenido / Eli
 - [DT] Una pieza nueva de **Family Time**, ¿sigue la razón de cuerpos 1,62 de `C1 FT N1` o el cuerpo único de R-04? → Eli
 - [DT] Faltan **Stag LCG** y **Trade Gothic Bold de ancho normal** (el del bloque de precio): sólo los tiene el cliente → Eli/cliente
@@ -266,6 +280,13 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 (cierre, carta oficial) — Claude con Eli · Between carta mañana/almuerzo, 4 rondas + entrega
+- **Reglas nuevas [BW]:** R-89 carta limpia con líneas e ilustración sólo de esquina (cliente), R-90 tamaños mínimos legibles, R-91 ilustración a mano y según la hoja, R-92 filetes delgados, R-93 secuencia hoja a hoja sin cortes ni viudas, R-94 un .ai CMYK por opción con capa por hoja.
+- **Aprobado:** A-10 las 4 propuestas. **✔ que suben:** ninguna previa (lo de la carta del 25-09 era ejercicio y vivía sólo en memoria).
+- **Rechazos:** X-44 trazo rígido, X-45 dibujo que no es de la hoja / cortado, X-46 editables sueltos y en RGB.
+- §8: 3 preguntas nuevas (opción elegida + erratas → cliente; perfil CMYK; la frase de las viudas).
+- Técnico (no es criterio de Eli): paginador JS en `between-carta-oficial-r4.py`; potracer (vtracer da segfault); `FigureStyleType.PROPORTIONAL` para cifras de caja alta en Illustrator; convertir a CMYK el raster ADENTRO de Illustrator lo botaba → TIFF FOGRA39 por fuera; ai-puente reintenta y duplica documentos si el jsx lanza error.
 
 ### 2026-09-28 (cierre, brochures) — Claude con Eli · DT brochures 2026 traducidos al inglés
 - **Reglas nuevas [DT]:** R-85 Piso18 (marca) vs Piso 18 (piso del hotel), R-86 en la traducción manda el Word del cliente, R-87 no se toca el brochure en español, R-88 se corrige en el `.ai` empaquetado y los PDF los exporta Eli.

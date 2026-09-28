@@ -5,7 +5,7 @@
 //   documento CMYK · mesas de trabajo «01 · Portada», «02 · …» lado a lado (20 mm de separación)
 //   capas en orden: 01 · Portada (arriba) … NN (abajo); dentro de cada una:
 //       Texto · Logo · Ilustraciones · Gráfica · Fondo (bloqueada)
-//   el papel de las hojas beige se rasteriza de nuevo DENTRO del documento: sale CMYK a 300 ppp
+//   el papel de las hojas beige entra como TIFF CMYK (FOGRA39, 307 ppp) incrustado
 //   PDF de la opción entera desde el mismo .ai, en el CMYK del documento, sin reducir
 //
 // Lee editable/hojas.txt («OPCION-A|1|01 · Portada») y abre editable/svg/<hoja>.svg.
@@ -68,14 +68,16 @@ var OPCION = "A";
             copia.translate(dx, dy);
             copia.name = CAPAS[c][1] + " · hoja " + hojas[h].n;
             if (CAPAS[c][0] === "Fondo") {
-                // el papel entra RGB: se rasteriza de nuevo acá, en el CMYK del documento, a 300 ppp
-                for (var r = copia.rasterItems.length - 1; r >= 0; r--) {
-                    var ri = copia.rasterItems[r], ro = new RasterizeOptions();
-                    ro.resolution = 300; ro.antiAliasingMethod = AntiAliasingMethod.ARTOPTIMIZED;
-                    ro.transparency = false;
-                    var nr = M.rasterize(ri, ri.geometricBounds, ro);
-                    nr.move(copia, ElementPlacement.PLACEATBEGINNING);   // encima del color de la hoja
-                    try { ri.remove(); } catch (e2) {}   // a veces Illustrator ya lo reemplazó
+                // el papel entra RGB en el SVG: se cambia por su versión CMYK (FOGRA39, 307 ppp) ya
+                // convertida afuera — rasterizarlo acá dentro botaba Illustrator (B y C, 28-09)
+                var tif = new File(base + "papel-cmyk/BW-CARTA-BETWEEN-OPCION-" + OPCION + "-HOJA-" + hojas[h].n + "-papel.tif");
+                if (tif.exists) {
+                    for (var r = copia.rasterItems.length - 1; r >= 0; r--) copia.rasterItems[r].remove();
+                    var pi = copia.placedItems.add();
+                    pi.file = tif;
+                    pi.width = AW; pi.height = AH; pi.position = [rect[0], rect[1]];
+                    pi.move(copia, ElementPlacement.PLACEATBEGINNING);
+                    pi.embed();
                 }
                 sub.locked = true;
             }

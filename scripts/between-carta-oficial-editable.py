@@ -17,6 +17,9 @@ asigna fuentes, pasa grupos a capas y guarda .ai + PDF por hoja; este script une
 
     python scripts/between-carta-oficial-editable.py            # SVG de las 4 opciones
     python scripts/between-carta-oficial-editable.py --unir     # une los PDF que dejó Illustrator
+⚠️ Para el .ai maestro CMYK (`between-carta-oficial-ai-maestro.jsx`) el papel de las hojas beige
+   (B, C) se pasa a TIFF CMYK FOGRA39 en editable/papel-cmyk/ y se SACA del SVG: con la imagen
+   RGB de 8 MB adentro, Illustrator se caía al copiarla o rasterizarla (28-09).
 Salida: out/hilton/between/carta-oficial/r4/editable/{svg,ai,pdf}/
 """
 import base64, html, json, re, subprocess, sys

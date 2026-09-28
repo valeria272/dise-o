@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-09-28** · Cosechas: **8**
+> Última cosecha: **2026-09-28** · Cosechas: **9**
 
 ## 1. Quién es el cliente
 
@@ -96,15 +96,16 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **R-52** · El legal se tiene que **leer**: ≥ 19 px en mesa (no 14), lo más abajo que deje la zona segura (≤ 1580), en dos líneas si hace falta; cuando va al costado de un objeto, **alineado a la izquierda** — _Eli 28-09: Sunset «aumenta un poco el tamaño de los legales… en este momento no se ve nada, y en el fondo igual es un texto importante»; estacionamiento «lo de nuestro personal déjalo abajo como otra línea… alineado hacia la izquierda para que tenga más coherencia»_ · ✔×2
 - **R-53** · Un logo o título blanco sobre una foto clara se **oscurece por arriba** hasta leerse limpio (Sunset: velo de 820 px al 80 %) — _Eli 28-09: «Sunset QB arriba, oscurece un poco hacia arriba para que se pueda leer claro»_ · ✔×1
 - **R-54** · El objeto que la mano sostiene no se ve gigante: el ticket de adelante quedó en ~326 px de ancho sobre 1080 (≈ 30 %), y van **dos** tickets en abanico, uno destacado — _Eli 28-09, ST 21-10: «está demasiado grande» (r6), «se ve muy gigante todavía… que en vez de un ticket sean dos, que ella los tenga en las manos, cosa de que uno destaque» (r7)_ · ✔×1
+- **R-55** · Una pieza de Eli **sin editable** se corrige sobre el PNG: se borra sólo la línea que cambia y se reescribe calzando fuente, cuerpo, tracking y línea base **contra el original** (render del texto viejo encima hasta que calce, y peso por tinta). La Raleway de Adobe pesa más que la de Google: el texto de Eli, que a ojo parecía Medium, calzó con Google **SemiBold** (la Medium de Google quedaba 17 % más delgada). Se conserva la caja de la pieza aunque el pedido venga en versales — _ST 29-09 Trivia de brindis, 28-09: «tomar» → «beber», pedido del cliente vía Nicolás Ávila_ · ✔×1
 
 ## 5. Excepciones
 
 - **E-01** · El ajuste de zona segura de `reglas.yaml` (5,8 % de tinta abajo) existe porque las orgánicas aprobadas rematan al pie; **no salva una pieza de pauta** — _reglas.yaml, 17-09_
 - **E-02** · La ST de AYCD de la S5 va a grilla (orgánica): el legal pudo quedar al pie. Vale para esa pieza, la siguiente se vuelve a preguntar — _Eli, 17-09: «va a grilla»_
 - **E-03** · El ancho desparejo de las cifras sólo importa **apiladas** (listas de precios, horarios en columna): ahí Bell MT (0,500 em exactos) o caja alta + alineación por código. En una línea suelta no fuerces el ancho — _manual §4, 15-09_
-- **E-04** · Un cambio de texto de contenido manda sobre la grilla: desde la v7 la bajada es «Los martes saben diferente en QB.», no «Los números están claros.» — _Nicolás Ávila, 23-09_
+- **E-04** · Un cambio de texto de contenido manda sobre la grilla: desde la v7 la bajada es «Los martes saben diferente en QB.», no «Los números están claros.» — _Nicolás Ávila, 23-09; repetido 28-09 en la ST 29-09 Trivia de brindis: «¿POR QUÉ CHOCAMOS LAS COPAS ANTES DE BEBER?» (Slack), se aplicó tal cual y «QB estaría listo con este cambio»_ · ✔×2
 - **E-06** · Si la pieza aprobada dejaba texto fuera de la zona segura (CMR: titular a 206 y legal a 1819; Sunset: legal a 1846), la versión nueva lo sube: manda R-13 sobre R-37 — _decisión del estudio 25-09 tras el aviso de Eli; **confirmada por Eli el 28-09** al pedir el legal del Sunset «cuidando siempre los márgenes de Instagram y en caso de que se utilice paid»_
-- **E-07** · R-31 (nombre nuevo por ronda) cede cuando Eli pide la carpeta limpia: se sube con el **nombre base** y lo anterior va a la **papelera**, una pieza = un archivo — _Eli 28-09, S1 de octubre: «puedes subir reemplazando la S1 de QB, de nuevo, y borra lo anterior»_. Ojo: el token del estudio (`drive.file`) sólo ve lo que subió él; la carpeta se mira con el conector de Drive antes de borrar
+- **E-07** · R-31 (nombre nuevo por ronda) cede cuando Eli pide la carpeta limpia: se sube con el **nombre base** y lo anterior va a la **papelera**, una pieza = un archivo — _Eli 28-09, S1 de octubre: «puedes subir reemplazando la S1 de QB, de nuevo, y borra lo anterior»_. Ojo: el token del estudio (`drive.file`) sólo ve lo que subió él; la carpeta se mira con el conector de Drive antes de borrar. **Si el archivo es de Eli** el token no lo puede reemplazar (404): la original se renombra `… - ANTES (<qué cambió>).png` con el conector y la nueva sube con el nombre base — el enlace cambia y hay que avisarlo (ST 29-09, 28-09)
 - **E-08** · R-37 (sobre la aprobada, sólo cambian foto y textos) **cede** cuando Eli pide parecerse a la referencia: en los bancos se cambió la tipografía del titular y el fondo, y se mantuvieron marco, pastilla, cajas, curva, 20 % y logos — _Eli 28-09: «la tipografía puede ser la del título principal igual a la referencia. Lo demás queda tal cual. Puedes cambiar la imagen del fondo»_
 - **E-05** · «LA LEY DE ELI» de DT (en DT sólo diseño, el brief no se toca) **no** se da por extendida a QB — _manual; sin confirmar_
 
@@ -168,6 +169,12 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - La Ensalada animada está dos veces en STORIES (19-10 y una sin fecha, mismo brief): ¿es un duplicado o son dos publicaciones? → contenido
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 (cierre) — Claude con Eli · ST 29-09 Trivia de brindis, cambio de texto
+- **Cliente vía Nicolás Ávila (Slack):** «tomar» → «beber». E-04 ✔×2 (el cambio de texto de contenido manda).
+- **Regla nueva R-55:** pieza de Eli sin editable → se corrige en el PNG calzando la fuente contra el original; la Raleway de Adobe pesa como la SemiBold de Google.
+- **E-07 ampliada:** archivo de Eli en Drive no se reemplaza con el token → renombrar la original «- ANTES» y subir la nueva con el nombre base (enlace nuevo).
+- Sin rondas ni rechazos: pieza entregada, falta que Eli la publique.
 
 ### 2026-09-28 (noche) — Claude con Eli · rondas 4 a 8: las historias acercadas a su referencia + post cumpleaños 05-10
 - **Reglas nuevas (Eli, verbatim en la fuente):** R-46 (parecerse a la ref en elementos concretos) · R-47 (fondo QB real; si se genera, desde una foto real de QB) · R-48 (un trago real no cambia de forma) · R-49 (copas en fila con el borde a la misma altura) · R-50 (la tinta sólo sobre el papel, la uña encima) · R-51 (aire entre la cifra y el %/OFF) · R-52 (legal legible, ≥ 19, a la izquierda si va al costado) · R-53 (oscurecer arriba para leer el logo) · R-54 (el objeto en la mano no gigante; dos tickets).

@@ -1,5 +1,12 @@
 # QB Restaurant — bitácora
 
+## 2026-09-28 (cierre) — Elisabet Soto «Eli» (Windows, con Claude) · ST 29-09 Trivia de brindis: cambio de texto del cliente
+
+**Qué se hizo:** Nicolás Ávila (contenido, Slack 15:57) pasó el cambio del cliente para la **ST 29 SEPTIEMBRE** (Trivia de brindis, S5): «¿Por qué chocamos las copas antes de **tomar**?» → «… antes de **beber**?». Con eso QB «estaría listo». La pieza es de Eli (`ST n°2 s5.png`, 25-09, `QB / STS`) y **no tiene editable** (ni en Drive ni en este equipo), así que la palabra se cambió sobre el PNG: se borró la línea 2 con inpainting y se reescribió calzando la fuente contra el original (**Raleway SemiBold 100 px, tracking +2,5** a 2250×4000; tinta 99,7 % de la original; el cambio queda sólo en x 481–1768 · y 2922–3021). Se mantuvo la caja baja de la pieza, no las versales del Slack.
+**Dónde quedó:** `out/qb/sep/ST n°2 s5.png` (nueva), `ST n°2 s5 - ANTES (tomar).png` y `ST29-QB-antes-despues.html`. **Drive `QB / STS`:** el token no puede reemplazar el archivo de Eli (404, `drive.file`), así que la original se **renombró** a `ST n°2 s5 - ANTES (tomar).png` (conector) y la nueva se subió con el nombre base → https://drive.google.com/file/d/1E0LOz4wHXbKyd3jw3LabTLq-7pejzjcV/view (**enlace nuevo**). Script: `scripts/qb-st29-sep-subir.py`.
+**Qué sigue:** Eli la sube a la grilla/publicación. Si en la grilla estaba el enlace de la original, cambiarlo por el nuevo.
+**Abierto:** la grilla dice 30-09 para la trivia y el Slack dice 29-09 → lo resuelve contenido. El mismo Slack dice que «falta que revisen BTW»: eso es de Between, no se tocó acá.
+
 ## 2026-09-28 (noche) — Elisabet Soto «Eli» (Windows, con Claude) · rondas 4 a 8: las historias de octubre, acercadas a su referencia + post cumpleaños 05-10
 
 **Qué se hizo:** Eli revisó las referencias de las historias y dijo que no se parecían: «tienen que ser con elementos similares a la referencia». Se rehicieron 9 historias (r4) y se corrigió ronda por ronda hasta la r8. Se diseñó lo único nuevo en OK: el **post estático de cumpleaños del 05-10** (FEED col. D; el rótulo dice ST/carrusel, pero el comentario del cliente pide «un estático») como collage de polaroids con flash alrededor de una tarjeta de lino, igual que la ref «Yes! Friday».

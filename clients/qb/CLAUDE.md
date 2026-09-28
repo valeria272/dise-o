@@ -77,7 +77,7 @@ medición de la historia `ST n°2 S3 QB.png`, en `raw/hilton/qb/piezas-ref/`.
 
 | Rol | Fuente | Origen | En el estudio |
 |---|---|---|---|
-| **Principal** | **Raleway** — 10 cortes en uso: Light, Regular, Medium, SemiBold, Bold, ExtraBold + Italic de varios | **Adobe Fonts** — *protegida, NO se empaqueta* | Hay Raleway de Google Fonts en `public/assets/hilton/between/fonts/`. ⚠️ No está verificado que sea el mismo corte que el de Adobe |
+| **Principal** | **Raleway** — 10 cortes en uso: Light, Regular, Medium, SemiBold, Bold, ExtraBold + Italic de varios | **Adobe Fonts** — *protegida, NO se empaqueta* | Hay Raleway de Google Fonts en `public/assets/hilton/between/fonts/`. ⚠️ No es el mismo corte que el de Adobe: medido el 28-09 sobre la ST 29-09 de Eli, su texto calza en forma con la de Google pero pesa como la **SemiBold** de Google (la Medium queda 17 % más delgada). Para calzar con una pieza de Eli, elegir el peso por tinta contra el original |
 | **Secundaria / editorial** | **Bell MT** + **Bell MT Italic** (OTF) | Empaquetada en el `.ai` | ✅ **`public/assets/hilton/qb/fonts/BELL.TTF` · `BELLI.TTF`** — versionadas el 15-09, viajan con el repo |
 | **Mano** | **Brushwell** (OTF) | Empaquetada | ✅ Ya estaba: `public/assets/hilton/between/fonts/Brushwell.*` — **byte a byte el mismo archivo** (537 296 B). Usar la versión `.ttf`/`.woff2`, porque Chrome rechaza la `.otf` CFF |
 

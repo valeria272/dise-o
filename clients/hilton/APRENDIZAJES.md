@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-28** · Cosechas: **11**
+> Última cosecha: **2026-09-28** · Cosechas: **12**
 
 ## 1. Quién es el cliente
 
@@ -106,6 +106,12 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-86** · [DT] **En un documento traducido por el cliente manda el texto del Word**, aunque choque con la versión en español o entre brochures: el teléfono se cambió al del Word, y los nombres inconsistentes (Costanera Mall / Cenco Costanera) se dejaron como venían. Se consulta antes de unificar — _Eli, 28-09-2026, brochures traducidos (eligió «el del Word» y «dejar como el Word»)_ · ✔×1
 - **R-87** · [DT] **Cuando la tarea es la traducción, el brochure en español no se toca** (ni se abre para editar). Se lee sólo como referencia — _Eli, 28-09-2026 («no toques el brochure en español solo el que está para traducción»)_ · ✔×1
 - **R-88** · [DT] **Brochures: se corrige directo en el `.ai` empaquetado** (mismo nombre y carpeta, con respaldo antes) y **los PDF los exporta Eli** — _Eli, 28-09-2026 («ajústalos y me avisas para yo guardarlos en pdf»; «¿lo hiciste en la original ya empaquetada?»)_ · ✔×1
+- **R-95** · [DT] **Cambiar a la modelo de una foto aprobada = cambiar lo que la hace reconocible, no sólo la cara**: pelo (color y largo), cejas, tono de piel, lentes y ropa/zapatos; pose, manos, luz y fondo quedan de la foto real — _Eli, 28-09-2026, pendones 0,8×3 («se siguen pareciendo»; pelirroja a los hombros, chaleco celeste, zapatos celestes, gafas negras, piel morena)_ · ✔×1
+- **R-96** · [DT] **Lo cambiado tiene que verse natural**: color de pelo que le venga a la piel (el rubio sobre piel morena y las cejas decoloradas se rechazaron), ojos relajados, sin mechones raros; se revisa con zoom antes de mostrar — _Eli, 28-09-2026 («se ve muy poco natural, ten cuidado»)_ · ✔×1
+- **R-97** · [DT] **Pieza de gran formato: se verifica que imprima bien Y que no pese** — 100 ppi reales al tamaño final, CMYK del documento (FOGRA39), PDF con corte + 1 cm de sangrado + marcas y textos en trazado; editable con fotos **enlazadas** — _Eli, 28-09-2026, pendones («considera que se vean bien… sin ser pesado»)_ · ✔×1
+- **R-98** · [DT] **El QR de una pieza impresa se lee y se entrega NORMAL** (oscuro sobre blanco): se decodifica desde el PDF final y se confirma adónde lleva — _Eli, 28-09-2026 («¿los QR están correctos?»); el de la plantilla estaba invertido_ · ✔×1
+- **R-99** · [DT] **Pedido de ajuste sobre pieza ya impresa: todo igual que el pantallazo** (redes, LinkedIn incluido, orden de contactos, qué va en la pastilla), sólo cambia lo pedido — _Eli, 28-09-2026 («todo todo todo exactamente igual solamente que hay que reemplazar el rostro»)_ · ✔×1
+- **R-100** · [DT] **El editable queda abierto en Illustrator para que Eli siga**: textos vivos, una capa por pieza — _Eli, 28-09-2026 («déjalo en el editable para yo seguir editando»)_ · ✔×1
 ### Between
 - **R-30** · [BW] Taza blanca con raya negra y **KIMBO: se borra siempre**; la taza vigente es blanca total — _Eli 25-08; Scarlette 31-08; ronda 9, 03-09-2026_ · ✔×3
 - **R-31** · [BW] **El logotipo nunca se deforma ni se curva**: escala uniforme a ratio 3,0298, integrado en el vaso por tono (multiply), no por geometría — _Eli 25-08 («no se vea achatado»); cliente 31-08; Eli 01-09-2026 («no puedes curvarlo de esa manera»)_ · ✔×3
@@ -191,7 +197,12 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 - **A-10** · [BW] **Carta oficial: las 4 propuestas aprobadas** (A índice lateral café · B óvalos a dos columnas beige · C franjas con títulos Brushwell · D portada partida en café con hojas alternadas) — _Eli, 28-09-2026, tras 4 rondas en el día_
 
+- **A-11** · [DT] **Pendones DT 0,8×3 m con caras nuevas** — 3 pendones sobre la plantilla, ronda 3 de caras + armado + QR normal: «me encantó» — _Eli, 28-09-2026. Receta: `clients/hilton/RECETA-PENDONES-DT.md`_
+
 ## 7. Lo que se rechaza
+
+- **X-47** · [DT] Cambiar **sólo la cara** (óvalo) de una modelo: se sigue reconociendo por el pelo, la piel y los lentes — _Eli, 28-09-2026, pendones r1: 1 ronda_
+- **X-48** · [DT] Pelo rubio sobre piel morena, cejas decoloradas, ojos raros y mechones sueltos: «poco natural» — _Eli, 28-09-2026, pendones r2: 1 ronda_
 
 - **X-44** · [BW] Ilustraciones de carta de **trazo uniforme y rígido** (vector de línea pareja) — _Eli, 28-09-2026, r1 («estilo hecho a mano… que no sea tan rígido»)_
 - **X-45** · [BW] Dibujo que **no corresponde a la hoja** (pasteles en la hoja del bar de la D) y dibujos que la caja corta (A) — _Eli, 28-09-2026, r3_
@@ -280,6 +291,11 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 (pendones) — Claude con Eli · DT pendones 0,8×3 m, caras nuevas + correo + Stag/Trade
+- **Reglas nuevas [DT]:** R-95 cambiar lo que hace reconocible a la modelo, R-96 que se vea natural, R-97 gran formato imprime bien y no pesa, R-98 QR leído y normal, R-99 todo igual al pantallazo salvo lo pedido, R-100 editable abierto para Eli.
+- **Aprobado:** A-11 («me encantó»). **Rechazos:** X-47 sólo la cara, X-48 rubio/cejas poco naturales. 3 rondas de caras.
+- Receta completa y reproducible en `clients/hilton/RECETA-PENDONES-DT.md` (scripts `dt-pendones-caras.py`, `dt-pendones-armar.jsx`, `dt-pendones-marcas.py`).
 
 ### 2026-09-28 (cierre, carta oficial) — Claude con Eli · Between carta mañana/almuerzo, 4 rondas + entrega
 - **Reglas nuevas [BW]:** R-89 carta limpia con líneas e ilustración sólo de esquina (cliente), R-90 tamaños mínimos legibles, R-91 ilustración a mano y según la hoja, R-92 filetes delgados, R-93 secuencia hoja a hoja sin cortes ni viudas, R-94 un .ai CMYK por opción con capa por hoja.

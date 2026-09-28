@@ -38,6 +38,17 @@
  *   desordenado… es una regla de Raleway, que se vea todo recto». La caja no llevaba
  *   QB_CIFRAS (R-11): salían las cifras de estilo antiguo (2 y 0 chicos, 3 bajo la
  *   línea). Ahora van en caja alta, a la altura de OFF.
+ *
+ * ⭐ RONDA 4 DE ELI 28-09: «revisando bien las referencias no se asemeja… la
+ *   tipografía puede ser la del título principal igual a la referencia. Lo demás
+ *   queda tal cual. Puedes cambiar la imagen del fondo». La ref (Lobster) arma el
+ *   titular con una sans FINA en caja alta y UNA palabra grande en caligráfica
+ *   que la cruza. Con las voces de QB: Raleway Light + «buen momento» en
+ *   Brushwell. El marco crece hacia abajo lo que ocupa la caligráfica y las cajas
+ *   bajan con él; pastilla, cajas, legal y tarjetas no cambian.
+ *   FOTO nueva como la ref: copas de blanco servidas y platos abajo, el salón de
+ *   QB en penumbra arriba (Seedream sobre la mesa real «QB 13 oct-3» y los platos
+ *   de la foto anterior) → lleva «Imagen referencial».
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -53,14 +64,16 @@ const QB_ST01_DATA: Record<string, Record<string, string>> = {
   etiqueta: "Banco de Chile",
   texto: "20%OFF · Lunes a viernes",
   pie: "30%OFF · Sábados y domingos",
-  legal: "Sujeto a consumo de alimentos. Promoción no acumulable con otras ofertas y beneficios.",
+  legal: "*Imagen referencial. Sujeto a consumo de alimentos. Promoción no acumulable con otras ofertas y beneficios.",
   },
 };
 
 /** Medidas de la plantilla aprobada (mesa 1080×1920), bajadas 30 px. */
 const B = 30;
-const MARCO = {x: 87, y: 398 + B, w: 899, h: 322};
-const CAJA = {w: 383, h: 92, g: 26, y: 676 + B};
+const MARCO = {x: 87, y: 398 + B, w: 899, h: 322 + 120};
+/** r4: la caligráfica necesita 120 px más de marco. */
+const CRECE = 120;
+const CAJA = {w: 383, h: 92, g: 26, y: 676 + B + CRECE};
 const VERDE_CAJA = "#2F4635";
 const VERDE_FILETE = "#35493A";
 
@@ -81,7 +94,10 @@ export const QbSt01BancoChile: React.FC = () => {
   const x1 = (MESA.w - (CAJA.w * 2 + CAJA.g)) / 2;
   return (
     <AbsoluteFill style={{background: "#000"}}>
-      <FotoQB src="assets/hilton/qb/oct/01-bancochile.jpg" ratio={2250 / 3375} zoom={1.0} cx={0.5} cy={0.5} />
+      <FotoQB src="assets/hilton/qb/oct/01-bancochile-r4.jpg" ratio={1520 / 2736} libre bajar={120} />
+      {/* la foto baja 120 px para que las copas nazcan bajo las cajas: se funde el canto */}
+      <div style={{position: "absolute", top: 0, left: 0, right: 0, height: 340,
+        background: "linear-gradient(180deg, #000 0%, #000 35%, rgba(0,0,0,0) 100%)"}} />
       <Velo arriba={[420, 0.55]} abajo={[620, 0.9]} />
       <LogoQB top={221 + B} ancho={168} />
       {/* marco de vidrio con filete verde */}
@@ -89,8 +105,10 @@ export const QbSt01BancoChile: React.FC = () => {
         border: `5px solid ${VERDE_FILETE}`, borderRadius: 14, background: "rgba(0,0,0,.55)"}} />
       <Img src={staticFile("assets/hilton/qb/oct/logo-banco-chile.png")}
         style={{position: "absolute", left: (MESA.w - 244) / 2, top: 366 + B, width: 244, height: 85}} />
-      <Linea top={492 + B} cuerpo={50} peso={800} tracking="0.01em">TU SEMANA TIENE MÁS</Linea>
-      <Linea top={552 + B} cuerpo={50} peso={400} tracking="0.01em">DE UN BUEN MOMENTO EN QB</Linea>
+      {/* r4: titular como la ref — sans fina + una palabra caligráfica grande */}
+      <Linea top={488 + B} cuerpo={46} peso={300} tracking="0.04em">TU SEMANA TIENE MÁS DE UN</Linea>
+      <Linea top={528 + B} cuerpo={150} familia="Brushwell" interlinea={1.05} sombra>buen momento</Linea>
+      <Linea top={676 + B} cuerpo={46} peso={300} tracking="0.04em">EN QB</Linea>
       <Caja x={x1} cifra="20%OFF" dia="Lunes a viernes" />
       <Caja x={x1 + CAJA.w + CAJA.g} cifra="30%OFF" dia="Sábados y domingos" />
       <Legal top={1530} cuerpo={22}>{QB_ST01_DATA.pieza.legal}</Legal>

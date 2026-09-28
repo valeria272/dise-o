@@ -36,6 +36,15 @@
  *   el original». Antes iba girado −4° en recta y el 20 medía 170 px (cifras de
  *   estilo antiguo, sin QB_CIFRAS). Ahora la curva y el 20 % salen MEDIDOS de la
  *   aprobada: arco de radio 384, 20 de 201 px, % pegado al 0, «dcto.» en la base.
+  *
+ * ⭐ RONDA 4 DE ELI 28-09: «revisando bien las referencias no se asemeja… lo mismo
+ *   para todas las historias». De la ref (Buenavista) se toma el fondo —la barra
+ *   de noche con las botellas encendidas y el trago sobre la madera— y el titular:
+ *   una línea chica, una palabra en caja alta muy pesada y una caligráfica que la
+ *   cruza. Con las voces de QB: Raleway ExtraBold 800 (el
+ *   más pesado del paquete) + Brushwell. El marco, la curva, el 20 % y los logos
+ *   de la aprobada no se tocan. Foto: Seedream con el mismo trago de la foto real
+ *   → «Imagen referencial».
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -50,7 +59,7 @@ const QB_ST08_DATA: Record<string, Record<string, string>> = {
   titular: "TU MESA TIENE BENEFICIOS TODOS LOS DÍAS",
   etiqueta: "¡Todos los días!",
   texto: "Ven y disfruta tu beneficio con Banco Falabella",
-  legal: "Sujeto a consumo de alimentos. Promoción no acumulable con otras ofertas y beneficios.",
+  legal: "*Imagen referencial. Sujeto a consumo de alimentos. Promoción no acumulable con otras ofertas y beneficios.",
   },
 };
 
@@ -84,11 +93,12 @@ const s = (f: string) => staticFile(`assets/hilton/qb/oct/${f}`);
 
 export const QbSt08Cmr: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
-    <FotoQB src="assets/hilton/qb/oct/08-cmr.jpg" ratio={2250 / 3375} zoom={1.15} cx={0.42} cy={0.62} />
+    <FotoQB src="assets/hilton/qb/oct/08-cmr-r4.jpg" ratio={1520 / 2736} zoom={1.3} cx={0.62} cy={0.484} />
     <Velo arriba={[560, 0.75]} abajo={[520, 0.8]} />
-    <Linea top={262} cuerpo={70} peso={700} interlinea={1.08}>TU MESA TIENE</Linea>
-    <Linea top={338} cuerpo={70} peso={700} interlinea={1.08}>BENEFICIOS</Linea>
-    <Linea top={414} cuerpo={70} peso={700} interlinea={1.08}>TODOS LOS DÍAS</Linea>
+    {/* r4: titular como la ref — línea chica + palabra pesada + caligráfica que la cruza */}
+    <Linea top={258} cuerpo={44} peso={700} tracking="0.06em">TU MESA TIENE</Linea>
+    <Linea top={302} cuerpo={124} peso={800} tracking="-0.02em" interlinea={1}>BENEFICIOS</Linea>
+    <Linea top={404} cuerpo={96} familia="Brushwell" interlinea={1}>todos los días</Linea>
     {/* marco: arriba vidrio, franja verde, bloque blanco */}
     <div style={{position: "absolute", left: MARCO.x, top: MARCO.y, width: MARCO.w, height: MARCO.h,
       border: `6px solid ${FILETE}`, borderRadius: 26, overflow: "hidden", background: "rgba(0,0,0,.28)"}}>

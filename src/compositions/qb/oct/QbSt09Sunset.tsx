@@ -33,6 +33,20 @@
  *   viernes cambia de mood: que se vea más similar a la de referencia». La bajada
  *   pasa de 32 a 38 sin ligadura; el titular va en Raleway LIGHT (300) como
  *   «TUS FAVORITOS / AL MEJOR PRECIO» de la aprobada, no Regular.
+ *
+ * ⭐ RONDA 4 DE ELI 28-09: «modificar ciertas cosas para que se vea como lo que
+ *   ellos solicitan y la referencia, manteniendo Sunset QB como título, que eso sí
+ *   tiene que quedar tal cual». Lo que se toma de la ref (Moksh):
+ *   · FOTO de hora dorada sobre mesa de madera: el trago protagonista a
+ *     contraluz, un plato para compartir abajo y, detrás, gente compartiendo
+ *     DESENFOCADA (lo que pedía el brief y quedó pendiente por créditos el 24-09).
+ *     Generada → «Imagen referencial».
+ *   · RÓTULO A MANO con flecha que señala el trago (en la ref, «Margarita»): acá
+ *     dice lo que el brief ya trae, «Cocktails seleccionados al mejor precio», en
+ *     Brushwell.
+ *   · TITULAR serif en caja alta + una palabra caligráfica, como «READY TO BECOME
+ *     your FAVORITE!»: «EL VIERNES» y «MOOD» en Bell MT, «cambia de» en Brushwell.
+ *   · El logo «Sunset QB» no se toca: mismo archivo, lugar y tamaño.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -47,7 +61,7 @@ const QB_ST09_DATA: Record<string, Record<string, string>> = {
   medida: "DE 16:00 A 21:00 HRS",
   texto: "Cocktails seleccionados al mejor precio",
   bajada: "Tu after office, a otro nivel",
-  legal: "*Sujeto a consumo de alimentos. *Promoción no acumulable con otras ofertas y beneficios.",
+  legal: "*Imagen referencial. *Sujeto a consumo de alimentos. *Promoción no acumulable con otras ofertas y beneficios.",
   },
 };
 
@@ -55,21 +69,36 @@ const QB_ST09_DATA: Record<string, Record<string, string>> = {
 const LOGO_W = 767;
 const LOGO_H = LOGO_W * 576 / 2556;
 
+/** La foto sube para que el trago quede entre el logo y el bloque de abajo. */
+const SUBE = -300;
+
 export const QbSt09Sunset: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
-    <FotoQB src="assets/hilton/qb/oct/09-sunset-kv.jpg" ratio={2250 / 4000} />
-    {/* el oscurecido suave de la aprobada detrás del bloque de texto */}
-    <Velo arriba={[560, 0.35]} abajo={[980, 0.72]} />
+    <FotoQB src="assets/hilton/qb/oct/09-sunset-r4.jpg" ratio={1520 / 2736} libre bajar={SUBE} />
+    {/* el canto de abajo de la foto (sube 300 px) se funde a negro */}
+    <div style={{position: "absolute", left: 0, right: 0, top: 1380, height: 1920 - 1380,
+      background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 45%, #000 100%)"}} />
+    <Velo arriba={[560, 0.45]} abajo={[900, 0.85]} />
     <Img src={staticFile("assets/hilton/qb/oct/sunset-qb-logo.png")}
       style={{position: "absolute", top: 346, left: (MESA.w - LOGO_W) / 2, width: LOGO_W, height: LOGO_H}} />
-    <Linea top={1150} cuerpo={84} peso={300} interlinea={1.02} tracking="0.01em">EL VIERNES</Linea>
-    <Linea top={1236} cuerpo={84} peso={300} interlinea={1.02} tracking="0.01em">CAMBIA DE MOOD</Linea>
-    <BotonVerde top={1338} ancho={560} alto={58} cuerpo={32} peso={700}>{QB_ST09_DATA.pieza.medida}</BotonVerde>
-    <Linea top={1420} cuerpo={32} peso={500}>{QB_ST09_DATA.pieza.texto}</Linea>
-    <Linea top={1464} cuerpo={38} peso={400} italica>
+    {/* rótulo a mano con flecha hacia el trago, como «Margarita» en la ref */}
+    <div style={{position: "absolute", left: 70, top: 742, width: 440, textAlign: "center", color: "#fff",
+      fontFamily: "Brushwell", fontSize: 62, lineHeight: 0.98, textShadow: "0 2px 16px rgba(0,0,0,.5)"}}>
+      Cocktails seleccionados<br />al mejor precio
+    </div>
+    <svg style={{position: "absolute", left: 0, top: 0}} width={MESA.w} height={MESA.h}>
+      <path d="M 300 880 C 320 960, 420 990, 525 962" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" />
+      <path d="M 498 940 L 528 961 L 500 986" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+    {/* titular como la ref: serif en caja alta + una palabra caligráfica */}
+    <Linea top={1206} cuerpo={66} familia="BellMT" tracking="0.04em">EL VIERNES</Linea>
+    <Linea top={1252} cuerpo={104} familia="Brushwell" interlinea={1}>cambia de</Linea>
+    <Linea top={1334} cuerpo={112} familia="BellMT" tracking="0.03em" interlinea={1}>MOOD</Linea>
+    <BotonVerde top={1450} ancho={520} alto={54} cuerpo={30} peso={700}>{QB_ST09_DATA.pieza.medida}</BotonVerde>
+    <Linea top={1512} cuerpo={34} peso={400} italica>
       {/* sin la ligadura «ff» y con aire entre las dos f (Eli 28-09: «se ve muy junto») */}
       <span style={{fontVariantLigatures: "none"}}>Tu af<span style={{marginLeft: "0.06em"}}>ter</span> of<span style={{marginLeft: "0.07em"}}>f</span>ice, a otro nivel</span>
     </Linea>
-    <Legal top={1536} cuerpo={16}>{QB_ST09_DATA.pieza.legal}</Legal>
+    <Legal top={1556} cuerpo={14}>{QB_ST09_DATA.pieza.legal}</Legal>
   </AbsoluteFill>
 );

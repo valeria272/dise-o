@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de marca: Valeria Traverso)** · Aprueba: **Sebastián Córdova (paid) · Francesca Pavissich (landings y presentación comercial)**
-> Última cosecha: **2026-09-28** · Cosechas: **4**
+> Última cosecha: **2026-09-28** · Cosechas: **5**
 
 ## 1. Quién es el cliente
 
@@ -59,7 +59,7 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **R-07** · Localito completo, sangrado sólo por abajo, recortado por componentes conexas grandes (no por caja) — _error del 04-09-2026: arrastró «óxima visita.»_ · ✔×1
 - **R-08** · Textos verbatim del brief; la conversión a versales la hace el sistema — _manual §6; QA del 24-09-2026 (tres pantallas pasan 7 palabras y no se tocaron)_ · ✔×2
 - **R-09** · CTA en la burbuja, en versales, siempre con «Síguenos»; sin emojis en gráfica — _manual §6_ · ✔×1
-- **R-10** · Los rótulos de locatarios reales se revisan a zoom 1:1; si la IA los reescribe, se parcha el letrero real con `parche_letrero.py` y no se insiste con el prompt — _Nano Banana Pro reescribió «cencosud» dos veces, 04-09-2026_ · ✔×2
+- **R-10** · Los rótulos de locatarios reales se revisan a zoom 1:1; si la IA los reescribe, se parcha el letrero real con `parche_letrero.py` y no se insiste con el prompt — _Nano Banana Pro reescribió «cencosud» dos veces, 04-09-2026; Seedream escribió «Litle Caesars» y «Little Cagars» en la portada del 08-10 (Chamisero II) y se parchó con el letrero de la foto real, 28-09-2026_ · ✔×4
 - **R-11** · Para feed 1:1 la foto va a nivel de calle con poco cielo, o se escala y sube (`--foto-top`) para que el logo caiga en cielo — _foto IA 3:4 con 40 % de cielo, 04-09-2026_ · ✔×1
 - **R-12** · Cuerpo del reel con montaje del estudio: planos fundidos en 0,67 s con zoom lento 1,00→1,07, textos palabra a palabra con fundido y 26 px ease-out, pastilla con resorte sin rebote — _Valeria: «los textos llegan y aparecen, no tienen una transición suave, lo mismo con los frames», 05-09-2026_ · ✔×1
 - **R-13** · El cierre del reel es la réplica exacta del cliente: panel rojo desde la izquierda 0,25 s, logo que baja y se asienta (tinta 405 px, y=840), texto que se escribe a ~80 car/s en Montserrat Regular ~57 px, 3,1 s sin fundido — _Valeria: «el cierre sácalo de las carpetas editables», 05-09-2026_ · ✔×1
@@ -80,20 +80,20 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **R-28** · Una ronda se re-sube en sitio (mismo fileId y enlace, md5 verificado) — _paid octubre, 05-09 y 24-09-2026_ · ✔×2
 - **R-29** · Si un reel entregado cambia, se avisa a Sebastián Córdova (la pauta puede estar corriendo) — _bitácora 24-09-2026_ · ✔×1
 
-- **R-30** · **La tipografía de Más Center es Gotham**: Gotham Black para titular en pastilla y display de impacto; Gotham Rounded Bold (nombre de locatario, titular de arriendo), Medium (bajada, CTA, dirección), Book (descripción) y Light (pastillas de beneficios). La fuente se lee en el `.ai` (PyMuPDF `get_text('dict')`) antes de medir glifos — _editables de Diego abr–sept 2026 + `.aep` de jun–ago, leído 25-09-2026; Diego pidió usar su carpeta como referencia; 28-09 Diego: «migra el sistema a gotham» → sistema migrado y calibrado contra el `.ai`_ · ✔×2
+- **R-30** · **La tipografía de Más Center es Gotham**: Gotham Black para titular en pastilla y display de impacto; Gotham Rounded Bold (nombre de locatario, titular de arriendo), Medium (bajada, CTA, dirección), Book (descripción) y Light (pastillas de beneficios). La fuente se lee en el `.ai` (PyMuPDF `get_text('dict')`) antes de medir glifos — _editables de Diego abr–sept 2026 + `.aep` de jun–ago, leído 25-09-2026; Diego pidió usar su carpeta como referencia; 28-09 Diego: «migra el sistema a gotham» → sistema migrado y calibrado contra el `.ai`_ · ✔×3
 - **R-31** · La fuente de verdad del diseño son los editables de Diego (disco KINGSTON) y lo publicado en el Drive 2026, no el manual de 2023 ni el sistema del repo — _Diego, 25-09-2026_ · ✔×1
 - **R-32** · Tres sistemas que no se mezclan: orgánico IG (rojo + banda de color por tema + Localito), paid (tráfico / arriendo) y LinkedIn Grupo IFB (azul `#235D80`, celeste `#BAEAEE`, navy `#112C3A`). Algarrobal (Poppins) va aparte — _medido 25-09-2026_ · ✔×1
-- **R-33** · Carrusel de locatarios: foto real a sangre, banda de color con borde curvo, logo del locatario en círculo blanco sobre la banda, nombre Bold 45 + descripción Book 42 + 📍 «Más Center + lugar» Medium 35, flecha en círculo. La banda es roja por defecto; verde `#299A80` servicios/súper, cian `#01B8C1` clases, mostaza `#CFAF30` mascotas, rosa `#D64E74` madre/San Valentín — _editables mar-2025 → sept-2026_ · ✔×3
+- **R-33** · Carrusel de locatarios: foto real a sangre, banda de color con borde curvo, logo del locatario en círculo blanco sobre la banda, nombre Bold 45 + descripción Book 42 + 📍 «Más Center + lugar» Medium 35, flecha en círculo. La banda es roja por defecto; verde `#299A80` servicios/súper, cian `#01B8C1` clases, mostaza `#CFAF30` mascotas, rosa `#D64E74` madre/San Valentín — _editables mar-2025 → sept-2026_ · ✔×5
 - **R-34** · Logo de Más Center en toda pieza, también en LinkedIn aunque la línea sea IFB — _cliente, grilla feb: «cambie el enfoque a Más Center y no IFB. Cambiemos el logo por el de Más Center»; mar: «poner en la imagen el logo de Más Center»_ · ✔×2
 - **R-35** · No tapar el activo: poco azul y poco difuminado sobre renders y fotos de proyectos — _Scarlette, grilla feb: «bajarle un poco al color azul de los proyecto»; may: «podemos no ponerle el color azul y difuminado, la idea es darle más visibilidad al activo»_ · ✔×2
 - **R-36** · No publicar fechas de entrega de proyectos — _cliente, grilla mar: «no hablemos de fecha de entrega, ya que se ha atrasado»_ · ✔×2 (⚠️ julio y octubre las publican: ver §8)
 - **R-37** · Toda cifra lleva su fuente en letra chica (Memoria 2025, DF, CBRE); en LinkedIn las cifras de mercado van en el copy del post, no en las láminas — _grilla feb: «agregar en parte inferior y más pequeño: Fuente: Diario Financiero»; brief LinkedIn sept_ · ✔×3
-- **R-38** · Imagen que se lea «Más Center»: gente comprando en los centros reales, con pin y dirección, sin banco de imágenes. La IA sirve para mejorar una foto real o generar centros de región; un render IA va rotulado «imagen referencial» — _grilla ene: «le falta imágenes más "Más Center"… alguien en una tienda, o con bolsas de compra»; jul: «Indicar de forma sutil que es una imagen referencial»; ago: «foto casual, auténtica, no de banco de imágenes»_ · ✔×3
+- **R-38** · Imagen que se lea «Más Center»: gente comprando en los centros reales, con pin y dirección, sin banco de imágenes. La IA sirve para mejorar una foto real o generar centros de región; un render IA va rotulado «imagen referencial» — _grilla ene: «le falta imágenes más "Más Center"… alguien en una tienda, o con bolsas de compra»; jul: «Indicar de forma sutil que es una imagen referencial»; ago: «foto casual, auténtica, no de banco de imágenes»_ · ✔×4
 - **R-39** · Arriendo siempre con CTA a WhatsApp o al contacto de la bio, y copy corto — _Scarlette, grilla may: «esta super largo y debe tener foco a comunicarse por whatsapp»; «Estás dejando copy demasiado largos, nadie se detiene a leer todo»_ · ✔×2
 - **R-40** · Etiquetar a cada locatario y partner — _Scarlette, grilla may, cinco veces: «Revisa que los tags correspondan. Básico.»_ · ✔×2
 - **R-41** · Público de Instagram: mujer +35 — _Scarlette, grilla may_ · ✔×1
 - **R-42** · LinkedIn Grupo IFB desde sept: fondo azul pleno sin chevron de marca de agua, lockup arriba al centro, caja azul al centro, mapas redibujados con la paleta, 1080×1080; voceros en video en las oficinas de Manquehue con cierre de logo IFB — _brief LinkedIn sept 2026_ · ✔×1
-- **R-43** · Localito: comunidad, concursos, efemérides, paid de tráfico y avisos; nunca arriendo ni LinkedIn. Desde agosto existe el corpóreo real y en sept–oct protagoniza reels de humor — _grillas ago–oct 2026_ · ✔×2 (refuerza R-06)
+- **R-43** · Localito: comunidad, concursos, efemérides, paid de tráfico y avisos; nunca arriendo ni LinkedIn. Desde agosto existe el corpóreo real y en sept–oct protagoniza reels de humor — _grillas ago–oct 2026_ · ✔×3 (refuerza R-06)
 - **R-45** · Reel de pauta: titular **GothamRounded Bold** en versales, pastilla y cierre **GothamRnd Book** (no Light ni Medium) — _`PERFOMANCE MASCENTER AGOSTO.aep` + grosor de trazo sobre `r-performance-agosto.mp4` (3,95 px contra 4,13 Book · 3,0 Light · 6,0 Medium), 28-09-2026_ · ✔×1
 - **R-46** · Toda migración de tipografía se valida renderizando contra el editable (`scripts/mascenter-calibrar-gotham.py`: ±3 px vertical, ±1,5 % horizontal), no a ojo, y se prueba que cada cara cargue en Chrome — _migración a Gotham, 28-09-2026_ · ✔×1
 - **R-47** · En el reel, el titular y la pastilla sin `lineas` usan `text-wrap: balance`, y el cierre fija sus cortes con el texto completo antes de tipearse: Gotham es más ancha que Montserrat y dejaba palabras solas («favoritos», «Instagram») — _migración a Gotham, 28-09-2026_ · ✔×1
@@ -101,6 +101,13 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **R-49** · En el carrusel de locatarios el sujeto de la foto (animal, producto, persona) va ENTERO por encima del círculo del logo (y<834) y de la banda: ni la banda ni el círculo ni la caja del titular le cortan patas, cara u orejas. Si la IA lo deja bajo, se sube la foto (la banda tapa hasta y=968) o se regenera más chico — _Diego, 04-10: «que las imágenes queden bien, se corta en algunos casos», 28-09-2026_ · ✔×1
 - **R-50** · El logo de Más Center dentro de un círculo o placa va SIEMPRE sobre rojo `#DC1914`, aunque la banda del carrusel sea de otro color (mostaza, verde…) — _Diego, 04-10: «el logo de mas center siempre va con el rojo, cambiar en la última slide», 28-09-2026_ · ✔×1
 - **R-51** · Los rótulos de estructura de la grilla («Slide 1 – Portada», «Slide 2 – Decoración», «Slide 3 – SuperZoo», «CORTE 1»…) organizan el brief y NO van en la gráfica: ni como titular, ni como nombre del local, ni como etiqueta. Sólo va el copy que la celda marca como «Texto» o que está escrito en el cuerpo del slide — _Diego, 28-09-2026: «todos los textos que dicen Slide 1 – Portada o Slide 2 – Decoración… no tienen que ir en la gráfica, omite eso en todos los carruseles»_ · ✔×1
+- **R-52** · Localito se puede disfrazar por efeméride (vampiro en Halloween). Se genera con Seedream SOBRE sus poses originales (`raw/mascenter/localito/`) puestas en fondo verde plano y se recorta por croma (`localito-vampiro-*.png`); conserva gorro «Localito», logo en la panza, guantes y zapatillas rojas. En ilustración la IA deja la panza vacía: `sistema/localito_ilustrado.py` le pone el isotipo oficial en rojo — _Diego, 08-10: «podrías hacer a Localito con disfraz de vampiro, y ambienta el carrusel de Halloween», 28-09-2026_ · ✔×2
+- **R-53** · Localito sobre una FOTO va inmerso en la escena: parado en el piso real, a escala de una persona disfrazada, con sombra de contacto y la luz de la foto (Seedream con escena + figura como refs). Nunca como recorte pegado que «vuele». Si queda en primer plano, los textos se reubican para no taparlo (portada estilo mesa 6 de c-08-08: caja arriba, pastilla + flecha abajo en el lado libre) — _Diego, 08-10: «en la portada haz a Localito inmerso en el strip center, que no se vea "volando"», 28-09-2026_ · ✔×1
+- **R-54** · Logos de locatarios: primero la carpeta que manda Diego; si no está, se buscan en la **web oficial** del local (sitio, CDN de su tienda) o en Wikimedia Commons, nunca redibujados. Se aplanan sobre su fondo antes de ir al círculo (un PNG con transparencia de paleta sale con fondo de color) y, si su caja tiene color propio, el círculo toma ese color (Fiesta & Regalos turquesa `#0199A7`) — _Diego, 08-10: «los logos de los locales búscalos en la web», 28-09-2026_ · ✔×2
+- **R-55** · ⭐ Antes de diseñar una pieza de un tema que ya existió (Mercado Campesino, Día del Niño, efemérides, locatarios), buscar la pieza anterior en los `.ai` de Diego (`PyMuPDF get_text()` por mesa, con la palabra clave del tema) y usarla de PLANTILLA: se mide con `scripts/mascenter-geo-plantilla.py` y se reutilizan sus vectores (onda, lockups) renderizados del propio `.ai`. La REF de la grilla da la idea; la plantilla viva manda el estilo — _Diego, 26-10: «el post del 26-10 sigue esta plantilla» (Día del Campesino, JULIO IFB.ai mesa 22) tras una v1 de diseño propio; 01-10: «ten en cuenta el enlace REF para la portada pero mantiene el estilo de la plantilla», 28-09-2026_ · ✔×2
+- **R-56** · Plantillas vivas del orgánico ya medidas en `sistema/plantillas/`: carrusel de locatarios c-19-08 (Talca) · carrusel de mascotas c-08-08 (mostaza) · carrusel de eventos c-31-07 (Día del Niño: título, fecha, 📍 dirección) · post Mercado Campesino julio mesa 22 (azul `#285C8C`, onda, lockup con INDAP, cajas de sedes, franja de pie). Cada pieza nueva de esos temas parte de su plantilla; los cuerpos del `.ai` miden ~9 % más angostos que la TTF (escalar por 816/900 si se calca el ancho) — _cosecha 28-09-2026_ · ✔×1
+- **R-57** · El REF de la grilla es un **hipervínculo de celda** que el conector de Drive no muestra: se baja la xlsx (conector → base64 → openpyxl) y se lee `cell.hyperlink.target`. Los pines de Pinterest se bajan de `i.pinimg.com/736x/…` (`originals` a veces devuelve XML) — _grilla IFB octubre, 28-09-2026_ · ✔×1
+- **R-58** · Las entregas del orgánico van a la carpeta del mes de la grilla (octubre: «10. OCTUBRE» `1h7_dB1HxA2KBThQhUuUinHG24DP9wHwK`) con la nomenclatura de Diego `c-dd-mm-n.png` / `p-dd-mm.png`. El token del estudio (`drive.file`) no LISTA esa carpeta pero SÍ crea archivos en ella; cada ronda se reemplaza en sitio (mismo fileId, md5 verificado) — _Diego: «todo lo generado lo dejas acá», 28-09-2026_ · ✔×3
 - **R-44** · Display de temporada (Eds Market, Royal Brand, Gloria Hallelujah, Garamond) sólo puntual, nunca como voz de la marca — _editables mar–sept 2026_ · ✔×1
 
 ## 5. Excepciones
@@ -111,6 +118,8 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **E-04** · Landings y presentación van en Poppins y rojo del brochure (`#E52521`/`#E42026`), no en Montserrat ni `#DC1914`: la regla de paid no se traspasa a web ni a deck — _landings 28-08 y 02-09; presentación 28-08-2026_
 - **E-05** · Presentación en Poppins aunque el manual pida Raleway + Chivo para Google Slides: manda el brochure aprobado — _decisión 28-08-2026, contradicción avisada_
 - **E-07** · Las exportaciones del cliente salen a 1081 px (1081×1351, 1081×1921) por Illustrator; no es medida del sistema (refuerza R-04) — _25-09-2026_
+- **E-08** · La franja azul del pie de la plantilla Mercado Campesino lleva su línea a 28 px del borde: la pieza aprobada de julio da 19 % en `respiro-borde`; excepción del 5 % inferior en `reglas.yaml` — _modo control, 28-09-2026_
+- **E-09** · En el carrusel de mascotas (c-08-08) la segunda sede de la mesa 7 baja a 1310; en SuperZoo 04-10 se apretó el paso a 38 px para respetar el respiro de 60 — _28-09-2026_
 - **E-06** · «cencoəu» en la foto es el logotipo real de Cencosud, no un error de la IA — _QA 24-09-2026_
 
 ## 6. Lo que se aprueba a la primera
@@ -118,6 +127,8 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **A-01** · Gráficas P01 (post y story) que calcan el esqueleto de septiembre con rojos exactos y rótulos reales: pasaron el QA del 24-09 sin cambios — _P01 octubre_
 - **A-02** · Terreno generado con IA como banner del hero, rotulado «Imagen referencial» — _landing de terrenos, 02-09-2026_
 - **A-03** · Mostrar dos variantes publicadas como artefactos en pestañas distintas, no como comparación estática — _landing de terrenos, 02-09-2026_
+- **A-05** · Carrusel de locatarios sobre la plantilla medida en el `.ai` (banda por tema, logo en círculo, textos en la banda, foto por locatario): Diego lo dio por «casi el diseño, sólo pequeñas correcciones» en la primera vuelta — _carrusel 04-10, 28-09-2026_
+- **A-06** · Carrusel ruta cafetera 01-10 (REF para la portada + estilo de c-19-08 + ruta punteada que une los slides): sin correcciones de diseño — _28-09-2026_
 - **A-04** · Landing Algarrobal con el QUÉ del PDF de la diseñadora (literal) y el CÓMO se mueve del sitio hermano de Pirque — _publicada 28-08-2026_
 
 ## 7. Lo que se rechaza
@@ -134,6 +145,12 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **X-11** · Montserrat en paid: salió de medir glifos sin tener a Gotham entre las candidatas; el editable decía Gotham desde el principio — _hallado 25-09-2026; afecta el paid de octubre ya entregado_
 - **X-12** · Efemérides «de reciclaje» sin respaldo: «Más Center no tiene puntos de reciclaje» — _Scarlette, grilla may_
 - **X-13** · Stories de interacción sin gancho: «Malísimo, esto no va a hacer que nadie interactúe» — _Scarlette, grilla may_
+- **X-14** · Localito recortado a mano de un PNG con fondo blanco (restos blancos) o la pose del paid con teléfono en una pieza orgánica — _carrusel 04-10 ronda 1, 28-09-2026, 1 ronda_
+- **X-15** · Fotos donde la banda, el círculo del logo o la caja del titular cortan al sujeto (orejas, patas, cara) — _Diego, 04-10 ronda 1: «se corta en algunos casos», 28-09-2026, 1 ronda_
+- **X-16** · Logo de Más Center sobre el color de la banda del tema (mostaza) en vez de rojo — _Diego, 04-10 ronda 1, 28-09-2026_
+- **X-17** · Localito pegado sobre la foto como recorte que «vuela», sin piso ni sombra — _Diego, portada 08-10, 28-09-2026, 1 ronda_
+- **X-18** · Rótulos de estructura de la grilla en la gráfica: nombres de local salidos de «Slide N – Local» y etiquetas «✓ Decoración / Dulces…» — _Diego, 04-10 y 08-10, 28-09-2026, 1 ronda para dos carruseles_
+- **X-19** · Post de un tema recurrente diseñado desde cero (26-10 v1: retrato con titular rojo detrás de la vendedora y banda verde) existiendo la pieza de julio del mismo tema — _Diego: «el post del 26-10 sigue esta plantilla», 28-09-2026, 1 ronda_
 - **X-10** · Chevron como flecha flotando sobre la foto: «se veía barato» — _presentación comercial, 28-08-2026_
 
 ## 8. Preguntas abiertas
@@ -153,9 +170,22 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Zonas seguras: la story declara 115 px a la derecha y el reel 180 px. ¿Unificar? → **Sebastián Córdova**.
 - Landings: dominio definitivo (`terrenos.mascenter.cl`, `algarrobal.mascenter.cl`), coordenada real del pin de Algarrobal, otra landing de Algarrobal sin `-mu` de origen desconocido, envío real con Contact Form 7 → **Francesca Pavissich**.
 - Presentación comercial: faltan 8 proyectos (IDs 20-23, 25, 27-29), 24 de 25 planos nuevos y la cotización → **Francesca Pavissich / Valeria**.
+- **Octubre IG, datos por validar → Scarlette Muñoz:** sedes del 08-10 (el brief dice «[VALIDAR MÁS CENTER Y DIRECCIÓN ACTUAL]»; se usaron F&R Chamisero II, Kios Club San Carlos, Starbucks Santa María y Las Flores, Dunkin' Las Flores) · KLAB publica Av. Paseo Pie Andino **5885** y el brief **5855** · «Av. Plaza 1.250» vs «Av. La Plaza 1250» · pie de la plantilla Mercado Campesino («En Más Center, lo mejor de tu comunidad está más cerca de ti.») no viene en el brief de octubre · «Los Nogales» vs «Los Nogales, Pirque».
+- **Color de banda para Halloween:** se usó naranja calabaza `#EE7A22` (propuesta, no medida) en 08-10 y 20-10 → **Diego**.
+- **`reglas.yaml › rojo-de-sistema`** sólo conoce los rojos del paid y avisa en toda banda de tema (mostaza, naranja, verde, azul). Agregar los colores de banda del orgánico → **Diego firma**.
+- En las ilustraciones del 20-10 el gorro de Localito no dice «Localito» → **Diego** decide si se agrega.
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 (noche) — Diego Aguilar (con Claude) · grilla IG de octubre completa (menos el reel del 19-10)
+- Piezas: 01-10 ruta cafetera · 04-10 día de la mascota (2 rondas) · 08-10 Halloween checklist (3 rondas: portada inmersa + sin rótulos) · 14-10 Algarrobal · 20-10 panoramas de Halloween ilustrado · 26-10 Mercado Campesino (2 rondas). Todas en «10. OCTUBRE».
+- nuevas **R-48…R-58**: Localito según el texto, sujeto entero, logo MC sobre rojo, sin rótulos de slide, Localito disfrazado, Localito inmerso, logos desde la web, plantilla de la pieza anterior del mismo tema, plantillas medidas, REF como hipervínculo, entregas en la carpeta del mes.
+- ✔ **R-10** ×4 (Seedream reescribió Little Caesars dos veces) · **R-33** +2 (bandas mostaza y verde) · **R-38** +1 («Imagen referencial» en Algarrobal) · **R-43** +1 · **R-30** +1.
+- nuevos **X-14…X-19**, **A-05/A-06**, **E-08/E-09**.
+- Hallazgo técnico: las GothamRnd traían el espacio duro U+00A0 con 25.000 unidades de avance; corregido en los TTF y en `scripts/mascenter-gotham-ttf.py` (manual §9).
+- **Candidatas a regla del estudio (para Valeria):** (1) antes de diseñar un tema que ya existió, buscar la pieza anterior en los editables y usarla de plantilla (R-55); (2) el REF de la grilla puede ser un hipervínculo de celda que el conector no muestra (R-57); (3) un personaje de marca sobre foto se integra con piso, sombra y luz, nunca como recorte flotante (R-53).
+
 
 ### 2026-09-28 — Diego Aguilar (con Claude) · migración del sistema a Gotham
 - ✔ **R-30** sube a ×2: Diego pidió «migra el sistema a gotham» y el sistema quedó calibrado contra el `.ai`.

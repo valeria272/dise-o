@@ -139,6 +139,32 @@ franjas (`out/_verificacion/mc/flk-*`) y descartar el que vibre donde nada se mu
 Todo está en `src/compositions/mascenter/MasCenterReel.tsx`; el contenido del mes va en
 `REEL_02` / `REEL_03`.
 
+### Orgánico de Instagram (grilla mensual) — plantillas y constructores
+
+**Regla madre del orgánico (R-55):** antes de diseñar, busca en los `.ai` de Diego la pieza anterior del mismo tema
+(`PyMuPDF get_text()` por mesa) y úsala de plantilla. La REF de la grilla da la idea; la plantilla manda el estilo.
+
+| Tema | Plantilla medida (`sistema/plantillas/`) | Constructor de ejemplo (`sistema/`) |
+|---|---|---|
+| Carrusel de locatarios | `carrusel-locatarios-c-19-08.json` (AGOSTO mesas 11–15) | `carrusel_ruta_cafetera.py` (01-10) |
+| Carrusel de mascotas / tema con banda de color | `carrusel-mascotas-c-08-08.json` (AGOSTO 6–10) | `carrusel_dia_mascota.py` (04-10) |
+| Carrusel de eventos (fecha + dirección) | `carrusel-eventos-c-31-07.json` (AGOSTO 1–4) | `carrusel_panoramas_halloween.py` (20-10) |
+| Post Mercado Campesino | `post-mercado-campesino-julio.json` (JULIO 22) | `post_mercado.py` (26-10) |
+| Checklist de temporada | — (sobre c-19-08) | `carrusel_halloween.py` (08-10) |
+| Post de proyecto (render) | — (portada de c-19-08) | `post_algarrobal.py` (14-10) |
+
+- **Banda de color por tema (R-33):** rojo `#DC1914` por defecto · verde `#299A80` servicios/súper · cian `#01B8C1`
+  clases · mostaza `#CFAF30` mascotas · rosa `#D64E74` madre · naranja `#EE7A22` Halloween (propuesta, sin medir).
+  **El logo de Más Center va siempre sobre rojo (R-50)**, aunque la banda sea de otro color.
+- **Sin rótulos de la grilla (R-51):** «Slide N – …», «CORTE N» y el nombre del local que venga sólo del rótulo no van.
+- **Fotos (R-49):** el sujeto va entero sobre el círculo del logo (y<834) y la banda (y≥968). Si la IA lo deja bajo, se
+  sube la foto o se regenera más chico.
+- **Localito (R-48, R-52, R-53):** poses originales con máscara en `raw/mascenter/localito/` (apunta · celebra ·
+  pulgares · saluda · vampiro-capa · vampiro-balde). La pose depende del texto de al lado. Sobre foto va inmerso, con
+  piso, sombra y luz, nunca flotando. Disfraces con Seedream sobre la pose + recorte por croma.
+- **Logos de locatarios (R-54):** carpeta de Diego → web oficial → Wikimedia; aplanados sobre su fondo antes del círculo.
+- **Entrega (R-58):** carpeta del mes de la grilla, `c-dd-mm-n.png` / `p-dd-mm.png`, reemplazo en sitio en cada ronda.
+
 ## 5. De dónde salen las imágenes
 1. **Fotos reales del cliente**: `raw/mascenter-terrenos/fotos-drive-2026-03/` (5 strip
    centers, 1200×896) y `raw/mascenter-terrenos/fotos-sitio/` (600×510, sólo referencia).
@@ -220,3 +246,12 @@ historia. Música: la misma pista de los reels de julio y agosto del cliente (ve
   `titRight` 180) y, al angostar la caja, dos titulares dejaban «EN» y «LA» solos y partían «MÁS /
   CENTER»: ahora llevan cortes editoriales en `lineas`, que el render verifica contra el texto
   del brief. Regla: **un video también se pasa por la plantilla de zonas seguras, fotograma a fotograma.**
+- **28-09-2026** — **las GothamRnd (Bold, Book, Medium) traían el espacio duro U+00A0 con 25.000 unidades de
+  avance** (el espacio normal mide 300). Cualquier `&nbsp;` («14:00&nbsp;hrs.», «Más&nbsp;Center») salía partido con
+  un hueco de media pieza. Se corrigieron los TTF de `sistema/assets/fonts` y `public/assets/fonts/mascenter`, y
+  `scripts/mascenter-gotham-ttf.py` lo corrige al regenerar (`arreglar_nbsp`). Para no partir una línea, usa
+  `<span style="white-space:nowrap">`.
+- **28-09-2026** — **el post del 26-10 se diseñó desde cero** existiendo la pieza de julio del mismo tema; Diego
+  pidió seguirla. Regla: buscar la pieza anterior del tema en los `.ai` antes de diseñar (R-55).
+- **28-09-2026** — **Seedream reescribe los letreros reales** («Litle Caesars», «Little Cagars»): R-10 vale para
+  toda foto real intervenida con IA, no sólo para Nano Banana.

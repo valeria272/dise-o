@@ -1,3 +1,20 @@
+## 2026-09-28 — Diego Aguilar (con Claude) · CIERRE: grilla IG de octubre entregada (menos el reel del 19-10)
+
+**Qué se hizo:** con el conector de Drive de vuelta, se produjo toda la grilla de Instagram de octubre salvo el reel
+del 19-10: carruseles 01-10 (ruta cafetera), 04-10 (día de la mascota), 08-10 (Halloween checklist, Localito vampiro)
+y 20-10 (panoramas de Halloween, ilustrado), y posts 14-10 (Algarrobal) y 26-10 (Mercado Campesino, sobre la
+plantilla de julio). Hubo 5 rondas de feedback de Diego, cosechadas como R-48…R-58 y X-14…X-19.
+**Dónde quedó:** 26 PNG en «10. OCTUBRE» (`1h7_dB1HxA2KBThQhUuUinHG24DP9wHwK`), con cada ronda reemplazada en sitio y el
+md5 verificado. Renders en `out/mascenter/2026-10/{carrusel-01-10,carrusel-04-10,carrusel-08-10,carrusel-20-10,post-14-10,post-26-10}/`.
+Constructores en `clients/mascenter/sistema/*.py`, plantillas medidas en `sistema/plantillas/`, poses de Localito en
+`raw/mascenter/localito/` y logos en `raw/mascenter/octubre-2026/`. Los detalles de cada ronda están en las 9 entradas
+de abajo.
+**Qué sigue:** el reel del 19-10 (corrida, a la espera de metraje), las stories de la grilla (pestaña GRILLA STORIES)
+y validar con Scarlette los datos abiertos de abajo.
+**Abierto:** sedes del 08-10 · KLAB 5885 vs 5855 · pie de la plantilla Mercado Campesino (no viene en el brief) ·
+color de banda para Halloween · colores de banda del orgánico en `reglas.yaml` (tiene que firmarlo Diego) · gorro de
+Localito sin la palabra «Localito» en las ilustraciones.
+
 ## 2026-09-28 (tarde, 9ª parte) — Diego Aguilar (con Claude) · 26-10 rehecho sobre la plantilla de julio
 
 **Feedback de Diego:** «el post del 26-10 sigue esta plantilla» (el «Hoy celebramos el Día del Campesino» de julio).

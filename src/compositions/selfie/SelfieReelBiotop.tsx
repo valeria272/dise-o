@@ -1,6 +1,7 @@
 /**
- * SELFIE · REEL de prueba «Biotop 700 + 911» (25-09-2026, ronda 1 de Coni el 28-09) — 1080×1920, 30 fps, 23,5 s
- * Línea de tiempo: apertura 0–3 s · titular 3–7 s · 700 7–13 s · 911 13–19 s · cierre 18,5–23,5 s
+ * SELFIE · REEL de prueba «Biotop 700 + 911» (25-09-2026, ronda 1 de Coni el 28-09) — 1080×1920, 30 fps, 20,5 s
+ * Línea de tiempo (ronda 2): apertura 0–2 s · titular 2–4 s · 700 4–10 s · 911 10–16 s · cierre 15,5–20,5 s
+ * Variante `cursor`: en el cierre una flecha llega a «Selfie.cl» y hace clic (SelfieReelBiotop-Cursor).
  *
  * DIRECCIÓN DE ARTE
  * - Ritmo y mecánica: los de la referencia de Pinterest que dejó Coni
@@ -124,16 +125,17 @@ const Logo: React.FC<{o?: number}> = ({o = 1}) => (
 );
 
 /** Titular de la marca: Scotch Condensed Roman + 2.ª línea Medium Italic en nude, palabra a palabra. */
-const Titular: React.FC<{y: number; delay: number; size?: number; linea2?: string}> = ({
+const Titular: React.FC<{y: number; delay: number; size?: number; linea2?: string; paso?: number}> = ({
   y,
   delay,
   size = 1,
   linea2 = C.nude,
+  paso = 4,
 }) => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
   const palabra = (txt: string, i: number) => {
-    const s = sube(f, fps, delay + i * 4, 16);
+    const s = sube(f, fps, delay + i * paso, 16);
     return (
       <span
         key={txt + i}
@@ -287,18 +289,20 @@ const Beneficio: React.FC<{txt: string; x: number; y: number; w: number; delay: 
   );
 };
 
-/* ───────── ESCENA 1 · 0–3 s — anillos que abren y los dos frascos que se presentan ───────── */
+/* ───────── ESCENA 1 · 0–2 s — anillos que abren y los dos frascos que se presentan ───────── */
 // Coni 28-09: antes volaban 6 frascos girando 180° y se veían raros y duraban muy poco.
 // Ahora son los DOS productos, casi derechos, que suben, se quedan ~1,3 s y salen.
 const Apertura: React.FC = () => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
-  const abre = interpolate(f, [0, 30], [0.25, 1.05], {...clamp, easing: Easing.out(Easing.cubic)});
-  const zoom = interpolate(f, [72, 90], [1.05, 3.4], {...clamp, easing: Easing.in(Easing.cubic)});
+  const abre = interpolate(f, [0, 22], [0.25, 1.05], {...clamp, easing: Easing.out(Easing.cubic)});
+  const zoom = interpolate(f, [46, 60], [1.05, 3.4], {...clamp, easing: Easing.in(Easing.cubic)});
   const anillos = [C.coral, C.nude, C.salmon, C.blanco, C.coral, C.nude];
-  const a = sube(f, fps, 0, 14);
-  const b = sube(f, fps, 5, 14);
-  const sale = interpolate(f, [70, 90], [0, 1], {...clamp, easing: Easing.in(Easing.cubic)});
+  // Coni 28-09 (ronda 2): subían desde fuera del cuadro y al inicio se veía la punta
+  // cortada en el borde. Ahora nacen ya dentro, al centro: fundido + leve crecimiento.
+  const a = sube(f, fps, 2, 14);
+  const b = sube(f, fps, 6, 14);
+  const sale = interpolate(f, [46, 60], [0, 1], {...clamp, easing: Easing.in(Easing.cubic)});
   const flota = Math.sin(f / 14) * 10;
   return (
     <AbsoluteFill style={{background: C.salmon, overflow: "hidden"}}>
@@ -313,40 +317,42 @@ const Apertura: React.FC = () => {
             height: 2200 - i * 340,
             borderRadius: "50%",
             background: c,
-            transform: `translate(-50%, -50%) scale(${f < 72 ? abre : zoom})`,
+            transform: `translate(-50%, -50%) scale(${f < 46 ? abre : zoom})`,
           }}
         />
       ))}
-      <Frasco k="700" x={400 - sale * 700} y={980 + (1 - a) * 1100 + flota} h={760} rot={-10 * a} />
-      <Frasco k="911" x={680 + sale * 700} y={1000 + (1 - b) * 1100 - flota} h={760} rot={10 * b} />
+      <Frasco k="700" x={400 - sale * 700} y={980 + (1 - a) * 90 + flota} h={760 * (0.82 + 0.18 * a)} rot={-10 * a} o={a} />
+      <Frasco k="911" x={680 + sale * 700} y={1000 + (1 - b) * 90 - flota} h={760 * (0.82 + 0.18 * b)} rot={10 * b} o={b} />
     </AbsoluteFill>
   );
 };
 
-/* ───────── ESCENA 2 · 3–7 s — el titular, palabra a palabra, y el círculo que barre ───────── */
+/* ───────── ESCENA 2 · 2–4 s — el titular, palabra a palabra, y el círculo que barre ───────── */
 const Titulo: React.FC = () => {
+  // Coni 28-09 (ronda 2): sobraba espacio junto al 911. Los dos frascos van ARRIBA, más
+  // grandes, sobre el círculo coral; el titular abajo. Dura 2 s: no hay más que leer.
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
-  const a = sube(f, fps, 10, 13);
-  const b = sube(f, fps, 16, 13);
-  const barre = interpolate(f, [100, 120], [0, 1], {...clamp, easing: Easing.in(Easing.cubic)});
+  const a = sube(f, fps, 0, 13);
+  const b = sube(f, fps, 4, 13);
+  const barre = interpolate(f, [46, 62], [0, 1], {...clamp, easing: Easing.in(Easing.cubic)});
   return (
     <AbsoluteFill style={{background: C.salmon, overflow: "hidden"}}>
       <div
         style={{
           position: "absolute",
-          left: -300,
-          top: -400,
-          width: 1200,
-          height: 1200,
+          left: 540,
+          top: 720,
+          width: 1060,
+          height: 1060,
           borderRadius: "50%",
           background: C.coral,
-          transform: `scale(${0.6 + 0.4 * a})`,
+          transform: `translate(-50%, -50%) scale(${0.7 + 0.3 * a})`,
         }}
       />
-      <Frasco k="700" x={230 - (1 - a) * 500} y={520} h={560} rot={-18} />
-      <Frasco k="911" x={860 + (1 - b) * 500} y={1420} h={540} rot={15} />
-      <Titular y={800} delay={0} size={0.8} />
+      <Frasco k="700" x={405} y={720 + (1 - a) * 80} h={820} rot={-9} o={a} />
+      <Frasco k="911" x={675} y={735 + (1 - b) * 80} h={820} rot={9} o={b} />
+      <Titular y={1210} delay={2} size={0.8} paso={3} />
       <div
         style={{
           position: "absolute",
@@ -427,13 +433,17 @@ const Heroe: React.FC<{
 // Coni 28-09: la transición desde el 911 son los DOS campos de la S que entran en
 // vertical, el coral desde la izquierda y el salmón desde la derecha, y encima aparece
 // la información. Fuera los destellos y los círculos: no tienen relación con Selfie.
-const Cierre: React.FC = () => {
+const Cierre: React.FC<{cursor?: boolean}> = ({cursor = false}) => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
   const entra = interpolate(f, [0, 20], [0, 1], {...clamp, easing: Easing.inOut(Easing.cubic)});
   const a = sube(f, fps, 22, 12);
   const b = sube(f, fps, 28, 12);
   const cta = sube(f, fps, 52, 14);
+  // VERSIÓN CON CURSOR (Coni 28-09): una flecha clásica llega a «Selfie.cl» y hace clic.
+  const llega = interpolate(f, [74, 100], [0, 1], {...clamp, easing: Easing.inOut(Easing.cubic)});
+  const clic = cursor ? interpolate(f, [104, 108, 116], [0, 1, 0], clamp) : 0;
+  const onda = cursor ? interpolate(f, [106, 126], [0, 1], clamp) : 0;
   return (
     <AbsoluteFill style={{overflow: "hidden"}}>
       <svg width={1080} height={1920} style={{position: "absolute", inset: 0}}>
@@ -471,27 +481,70 @@ const Cierre: React.FC = () => {
             fontFamily: "Krub",
             fontSize: 42,
             fontWeight: 200,
+            background: `rgba(255,255,255,${0.22 * clic})`,
+            transform: `scale(${1 - 0.05 * clic})`,
           }}
         >
           Encuéntralos en <span style={{fontWeight: 600, fontStyle: "italic"}}>Selfie.cl</span>
         </div>
       </div>
+      {cursor && (
+        <>
+          {/* onda del clic sobre «Selfie.cl» */}
+          <div
+            style={{
+              position: "absolute",
+              left: 712,
+              top: 1512,
+              width: 150 * onda,
+              height: 150 * onda,
+              borderRadius: "50%",
+              border: `3px solid ${C.blanco}`,
+              opacity: onda > 0 ? 1 - onda : 0,
+              transform: "translate(-50%, -50%)",
+            }}
+          />
+          {/* cursor clásico: flecha blanca con borde negro, la punta es el punto de clic */}
+          <svg
+            width={46}
+            height={66}
+            viewBox="0 0 23 33"
+            style={{
+              position: "absolute",
+              left: interpolate(llega, [0, 1], [900, 712]),
+              top: interpolate(llega, [0, 1], [1760, 1512]),
+              opacity: interpolate(f, [70, 76], [0, 1], clamp),
+              transform: `scale(${1 - 0.12 * clic})`,
+              transformOrigin: "0 0",
+              filter: "drop-shadow(0 3px 5px rgba(0,0,0,0.30))",
+            }}
+          >
+            <path
+              d="M1 1 L1 25 L7 19.5 L11 29 L15 27.3 L11 18 L19 18 Z"
+              fill={C.blanco}
+              stroke="#000"
+              strokeWidth={1.6}
+              strokeLinejoin="round"
+            />
+          </svg>
+        </>
+      )}
     </AbsoluteFill>
   );
 };
 
-export const SelfieReelBiotop: React.FC = () => {
+export const SelfieReelBiotop: React.FC<{cursor?: boolean}> = ({cursor = false}) => {
   cargaFuentes();
   const f = useCurrentFrame();
   return (
     <AbsoluteFill style={{background: C.salmon}}>
-      <Sequence durationInFrames={90}>
+      <Sequence durationInFrames={60}>
         <Apertura />
       </Sequence>
-      <Sequence from={90} durationInFrames={122}>
+      <Sequence from={60} durationInFrames={62}>
         <Titulo />
       </Sequence>
-      <Sequence from={210} durationInFrames={180}>
+      <Sequence from={120} durationInFrames={180}>
         <Heroe
           k="700"
           lado={1}
@@ -509,7 +562,7 @@ export const SelfieReelBiotop: React.FC = () => {
           abajo={C.salmon}
         />
       </Sequence>
-      <Sequence from={390} durationInFrames={200}>
+      <Sequence from={300} durationInFrames={200}>
         <Heroe
           k="911"
           lado={-1}
@@ -528,8 +581,8 @@ export const SelfieReelBiotop: React.FC = () => {
           conSalida={false}
         />
       </Sequence>
-      <Sequence from={555}>
-        <Cierre />
+      <Sequence from={465}>
+        <Cierre cursor={cursor} />
       </Sequence>
       <Logo o={interpolate(f, [0, 12], [0, 1], clamp)} />
     </AbsoluteFill>

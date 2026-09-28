@@ -352,7 +352,8 @@ export const RemotionRoot: React.FC = () => {
       </Folder>
       <Folder name="Selfie">
         <Composition id="SelfiePruebaBiotop-Post" component={SelfiePruebaBiotop} durationInFrames={1} fps={30} width={2250} height={2813} defaultProps={{formato: "post" as const}} />
-        <Composition id="SelfieReelBiotop" component={SelfieReelBiotop} durationInFrames={705} fps={30} width={1080} height={1920} />
+        <Composition id="SelfieReelBiotop" component={SelfieReelBiotop} durationInFrames={615} fps={30} width={1080} height={1920} defaultProps={{cursor: false}} />
+        <Composition id="SelfieReelBiotop-Cursor" component={SelfieReelBiotop} durationInFrames={615} fps={30} width={1080} height={1920} defaultProps={{cursor: true}} />
         <Composition id="SelfiePruebaBiotop-PostIntervenido" component={SelfiePruebaBiotop} durationInFrames={1} fps={30} width={2250} height={2813} defaultProps={{formato: "post" as const, intervenido: true}} />
         <Composition id="SelfiePruebaBiotop-Mail" component={SelfiePruebaBiotop} durationInFrames={1} fps={30} width={1200} height={1720} defaultProps={{formato: "mail" as const}} />
         <Composition id="SelfiePruebaBiotop-BannerDesk" component={SelfiePruebaBiotop} durationInFrames={1} fps={30} width={2001} height={686} defaultProps={{formato: "bannerDesk" as const}} />

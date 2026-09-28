@@ -88,8 +88,8 @@ export const QbSt21Estacionamiento: React.FC = () => (
         en tu ticket de<br /><span style={{fontStyle: "italic", fontSize: 36}}>estacionamiento</span>
       </div>
       <div style={{position: "absolute", top: 560, left: 44, right: 44, borderTop: `2px solid ${TINTA}`}} />
-      <div style={{position: "absolute", top: 574, left: 20, right: 20, fontFamily: "Raleway", fontSize: 19,
-        fontWeight: 400, lineHeight: 1.3}}>Ingreso por Encomenderos 275</div>
+      <div style={{position: "absolute", top: 572, left: 20, right: 20, fontFamily: "Raleway", fontSize: 19,
+        fontWeight: 400, lineHeight: 1.25}}>Ingreso por<br />Encomenderos 275</div>
     </div>
     <Sticker x={300} y={560} d={150} />
     <LogoQB top={252} ancho={130} />

@@ -1,3 +1,16 @@
+## 2026-09-28 (tarde, 9ª parte) — Diego Aguilar (con Claude) · 26-10 rehecho sobre la plantilla de julio
+
+**Feedback de Diego:** «el post del 26-10 sigue esta plantilla» (el «Hoy celebramos el Día del Campesino» de julio).
+Es la mesa 22 de `JULIO IFB.ai`, medida en `plantillas/post-mercado-campesino-julio.json`. Del `.ai` se sacaron el path
+exacto de la onda azul `#285C8C` y el lockup Más Center | Mercado Campesino INDAP (renderizado del editable). La foto
+es una versión de primavera de la foto de julio, hecha con Seedream. `post_mercado.py` se reescribió; la v1 quedó en
+`out/…/post-26-10/post_mercado_v1_retrato.py.bak`. Se reemplazó en sitio en Drive (md5 OK).
+- La TTF sale ~9 % más ancha que el `.ai` al mismo cuerpo, así que titular, bajada y pie se escalan por 816/900.
+- `reglas.yaml`: se agregó una excepción de `respiro-borde` para el 5 % inferior (la franja del pie), porque la pieza
+  aprobada de julio también da bloqueante (19 %) en modo control.
+- **A validar:** la línea del pie («En Más Center, lo mejor de tu comunidad está más cerca de ti.») viene de la
+  plantilla, no del brief de octubre. La plantilla dice «Los Nogales, Pirque»; se dejó «Los Nogales», como el brief.
+
 ## 2026-09-28 (tarde, 8ª parte) — Diego Aguilar (con Claude) · resto de la grilla IG de octubre (sin el reel del 19-10)
 
 **Encargo:** «continúa con los demás contenidos de la grilla de instagram, menos el reel del 19-10». Todo quedó

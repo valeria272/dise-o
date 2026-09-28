@@ -57,23 +57,54 @@ const PUNTOS = [
 
 const foto = (k: string) => `assets/hilton/dt/oct2/${k}.jpg`;
 
-const Portada: React.FC = () => (
+/**
+ * RONDA 2 (Eli, 28-09): «la portada se ve extraña… que sea como la referencia»: «5 cosas» como el
+ * «What to Expect», «hacen especial» como el «When You Stay», y «tu estadía en DoubleTree» más bajo y
+ * más chico, cerca de la flecha, «tal cual como está la dos referencia». Y otra foto: la fachada ya se
+ * usó mucho. Se calca la REF 2 medida (736×920 → ×1,467): texto chico al 20 % del alto, el titular
+ * serif grande debajo, la foto entera oscurecida pareja, y abajo (86 %) la línea en itálica sobre la
+ * píldora con la flecha.
+ *   A · el sillón del lounge (sesión SEP 2026, `sep_26-246`), como el sofá de la ref.
+ *   B · la familia en el sofá del banco aprobado (25-09), la opción más literal de la ref.
+ */
+const Portada: React.FC<{fondo: 'a' | 'b'}> = ({fondo}) => (
   <>
-    <Foto src={foto('c5-portada')} />
-    <AbsoluteFill style={{background: 'rgba(9,25,78,0.28)'}} />
-    <Velo desde={0.25} pie={0.6} />
+    <Foto src={foto(fondo === 'a' ? 'c5-portada' : 'c5-portada-b')} />
+    <AbsoluteFill style={{background: 'rgba(9,25,78,0.34)'}} />
+    <Velo desde={0.55} pie={0.5} />
     <Logo formato="feed" />
-    <div style={{position: 'absolute', top: 560, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
-      {[
-        {t: '5 cosas que hacen especial', w: DT.pesos.medium},
-        {t: 'tu estadía en DoubleTree', w: DT.pesos.light},
-      ].map((l) => (
-        <div key={l.t} style={{fontFamily: DT.fuentes.titular, fontWeight: l.w, fontSize: 70, lineHeight: 1.16, textShadow: SOMBRA, whiteSpace: 'nowrap'}}>
-          {l.t}
-        </div>
-      ))}
-      <div style={{display: 'flex', justifyContent: 'center', marginTop: 70}}>
-        <FlechaPildora ancho={180} />
+    <div style={{position: 'absolute', top: 290, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
+      <div style={{fontFamily: DT.fuentes.texto, fontSize: 40, letterSpacing: '0.02em', textShadow: SOMBRA}}>5 cosas que</div>
+      <div
+        style={{
+          fontFamily: DT.fuentes.titular,
+          fontWeight: DT.pesos.regular,
+          fontSize: 128,
+          lineHeight: 1,
+          letterSpacing: '-0.01em',
+          marginTop: 14,
+          textShadow: SOMBRA,
+          whiteSpace: 'nowrap',
+        }}
+      >
+        hacen especial
+      </div>
+    </div>
+    <div style={{position: 'absolute', top: 1128, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
+      <div
+        style={{
+          fontFamily: DT.fuentes.titular,
+          fontStyle: 'italic',
+          fontWeight: DT.pesos.light,
+          fontSize: 36,
+          letterSpacing: '0.01em',
+          textShadow: SOMBRA,
+        }}
+      >
+        tu estadía en DoubleTree
+      </div>
+      <div style={{display: 'flex', justifyContent: 'center', marginTop: 22}}>
+        <FlechaPildora ancho={176} />
       </div>
     </div>
   </>
@@ -138,8 +169,8 @@ const Cierre: React.FC = () => (
 );
 
 /** `lamina` 1–7: 1 portada, 2–6 los cinco puntos, 7 el cierre. */
-export const DtC5CosasOct: React.FC<{lamina: number}> = ({lamina}) => (
+export const DtC5CosasOct: React.FC<{lamina: number; fondo?: 'a' | 'b'}> = ({lamina, fondo = 'a'}) => (
   <AbsoluteFill style={{backgroundColor: DT.colores.azul}}>
-    {lamina === 1 ? <Portada /> : lamina === 7 ? <Cierre /> : <Punto i={lamina - 2} />}
+    {lamina === 1 ? <Portada fondo={fondo} /> : lamina === 7 ? <Cierre /> : <Punto i={lamina - 2} />}
   </AbsoluteFill>
 );

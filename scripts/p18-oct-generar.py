@@ -112,6 +112,18 @@ ESCENAS = {
                    "cucharitas, junto a limones y chiles. Detalle apetitoso, fondo del salon muy "
                    "desenfocado. Sin personas, sin etiquetas en los frascos."),
     },
+    # FEED 16-10 S3 «Cumpleaños»: el banco sólo tiene copas en primer plano, oscuras y a
+    # 1500 px (julio evento 107). Brief: «cumpleaños adulto, ambientación elegante, barra
+    # de tragos»; hilo de Scarlette: el público de cumpleaños es mayormente adulto.
+    "f16-s3": {
+        "motor": "seedream", "aspecto": "post", "refs": ["jul5.jpg", "banq43.jpg"],
+        "prompt": ("La misma barra de tragos iluminada de la @img1, en el salon de Piso18 de la @img2, "
+                   "de noche, preparada para un cumpleanos de adultos elegante: sobre la barra una fila "
+                   "de cocteles en copas (spritz naranjos, gin tonic, vino tinto), y en primer plano a "
+                   "un costado una torta de cumpleanos blanca de dos pisos con pocas velas encendidas y "
+                   "flores naturales; al fondo el salon calido con mesas montadas y la ciudad iluminada "
+                   "en los ventanales. Elegante, sobrio, sin globos, sin letreros. Sin personas."),
+    },
     "f27": {
         "motor": "seedream", "aspecto": "post", "refs": ["banq46.jpg"],
         "prompt": ("En el mismo salon de Piso18 de la @img1, con la misma mesa larga de mantel blanco y "
@@ -149,6 +161,65 @@ ESCENAS = {
         "prompt": ("Extiende la @img1 a formato vertical 9:16 agregando techo arriba y piso abajo. La "
                    "escena queda IDENTICA, el mismo lounge de noche con sus sillones, guirnaldas de luces "
                    "y la ciudad en los ventanales. Arriba mas techo oscuro con guirnaldas; abajo, piso. "
+                   "Sin personas."),
+    },
+    # ── RONDA 2 (Eli, 28-09) ────────────────────────────────────────────────
+    # 13-10 S1: «en la ventana se ve como dos tipos de atardeceres y eso se ve súper
+    # extraño» (la tirada 1 dejaba un cielo en los vidrios de arriba y otro, distinto,
+    # reflejado abajo). La S2 quedó aprobada: va de referencia de color (@img2).
+    "f13-s1r2": {
+        "motor": "pro", "aspecto": "carrusel", "refs": ["banq2.jpg", "../gen/f13-s2.jpg"],
+        "prompt": ("La misma escena de la @img1, el mismo salon de Piso18 con sus ventanales de piso a "
+                   "techo, la misma mesa con arreglos de pampas y la misma vista de edificios de Santiago, "
+                   "a la hora dorada del atardecer, con la MISMA luz y paleta de la @img2. UN SOLO CIELO "
+                   "continuo y coherente detras de todos los vidrios: el mismo degradado de naranjo a rosado "
+                   "de arriba hacia abajo, con el sol bajo en un solo lugar, sin un segundo cielo, sin "
+                   "reflejos de otro atardecer en los vidrios, sin horizontes dobles. Los edificios en "
+                   "sombra suave contra ese cielo. Luz dorada rasante sobre el piso y la mesa. Formato "
+                   "vertical 4:5. Sin personas."),
+    },
+    # 23-10 Tex-Mex: «tiene que cambiar las imágenes, que se vean mucho más realistas
+    # porque se están viendo un poco extrañas». La tirada 1 era comida de estudio
+    # (bokeh exagerado, brillo de IA). Ronda 2: foto documental del fotógrafo del evento.
+    "f23r2-s1": {
+        "motor": "pro", "aspecto": "carrusel", "refs": ["banq51.jpg", "banq56.jpg"],
+        "prompt": ("Fotografia documental tomada por el fotografo de un evento real, con la misma camara, "
+                   "la misma luz calida del salon y el mismo tratamiento de color que la @img1 y la @img2: "
+                   "una estacion de catering Tex-Mex montada sobre la misma cubierta oscura, junto al "
+                   "ventanal con la ciudad de noche. Mini tacos de coctel en tortilla de maiz ordenados "
+                   "en fila sobre tablas de madera, una fuente de nachos con queso fundido, cuencos de "
+                   "guacamole y pico de gallo, frascos de salsa. Comida real de banqueteria, con "
+                   "imperfecciones naturales, migas, porciones desparejas, texturas reales; NO comida "
+                   "de estudio, sin brillo artificial, sin desenfoque exagerado: casi todo nitido, como "
+                   "la @img1. Formato vertical 4:5: la mitad de abajo es la comida, la mitad de arriba el "
+                   "salon oscuro con luces calidas y el ventanal. Sin personas."),
+    },
+    "f23r2-s2": {
+        "motor": "pro", "aspecto": "carrusel", "refs": ["@f23r2-s1", "banq51.jpg"],
+        "prompt": ("La misma estacion Tex-Mex de la @img1, misma camara, misma luz y mismo color, ahora "
+                   "en primer plano a 40 cm: la fila de mini tacos de coctel en tortilla de maiz, con "
+                   "carne desmechada, pollo y vegetales, cebolla morada, cilantro y palta, sobre la tabla "
+                   "de madera. Comida real de banqueteria con imperfecciones naturales y texturas reales "
+                   "como la @img2, sin brillo artificial, desenfoque suave y natural solo al fondo. "
+                   "Formato vertical 4:5. Sin personas."),
+    },
+    "f23r2-s3": {
+        "motor": "pro", "aspecto": "carrusel", "refs": ["@f23r2-s1", "banq51.jpg"],
+        "prompt": ("La misma estacion Tex-Mex de la @img1, misma camara, misma luz y mismo color, ahora "
+                   "en primer plano: una FUENTE GRANDE DE NACHOS al centro del cuadro, ocupando la mitad de "
+                   "la imagen, totopos dorados bañados en queso fundido, con guacamole, pico de gallo y "
+                   "crema encima y en cuencos al lado; la fuente de queso NO aparece o queda chica y "
+                   "desenfocada al fondo. Comida real de banqueteria con imperfecciones naturales y texturas reales como "
+                   "la @img2, sin brillo artificial, desenfoque suave y natural solo al fondo. Formato "
+                   "vertical 4:5. Sin personas."),
+    },
+    "f23r2-s4": {
+        "motor": "pro", "aspecto": "carrusel", "refs": ["@f23r2-s1", "banq51.jpg"],
+        "prompt": ("La misma estacion Tex-Mex de la @img1, misma camara, misma luz y mismo color, ahora "
+                   "en primer plano: los frascos y cuencos de vidrio con las salsas de autor (roja, verde, "
+                   "chipotle oscuro y una naranja), con cucharitas, junto a limones cortados. Comida real "
+                   "de banqueteria con texturas reales como la @img2, sin brillo artificial, desenfoque "
+                   "suave y natural solo al fondo, sin etiquetas en los frascos. Formato vertical 4:5. "
                    "Sin personas."),
     },
 }

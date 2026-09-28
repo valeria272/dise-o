@@ -33,7 +33,7 @@ def recorta(src, dst, fmt, cx=0.5, cy=0.5, zoom=1.0):
 
 # ── STORIES 05-10 · feriado ──
 recorta(ALTA + "HDT_65-hab.jpg", "er-hab-story.jpg", STORY, cx=0.215)          # copas + espumante junto a la cama
-recorta(BANCO + "DT-familia-hab-2camas-post-2250x2813.jpg", "ft-hab-story.jpg", FEED)  # va arriba, a lo ancho
+recorta(BANCO + "DT-familia-hab-2camas-story-2160x3840.jpg", "ft-hab-story.jpg", STORY)  # se corre hacia arriba en la pieza
 recorta(ALTA + "HDT_43-frontis.jpg", "feriado-fondo-story.jpg", STORY, cx=0.5)  # la fachada con cielo
 recorta(BANCO + "DT-familia-restaurante-post-2250x2813.jpg", "card-familia.jpg", (900, 900), cy=0.62)
 
@@ -55,3 +55,17 @@ recorta(ALTA + "HDT_37.jpg", "c5-cierre.jpg", FEED, cx=0.5)
 
 # La pareja brindando (Nano Banana Pro sobre HDT_65 real, variante C — `scripts/dt-oct2-pareja.py`)
 recorta("raw/hilton/dt/oct2-pareja/nb-c.png", "card-pareja.jpg", (900, 900), cx=0.62, cy=0.42, zoom=1.9)
+
+# ── RONDA 2 (Eli, 28-09): «utiliza imágenes nuevas, más bonitas, para que se vaya actualizando el feed» ──
+# Todas de la sesión nueva «Hotel general sesión SEP 2026» (raw/hilton/sesion-sep2026/alta, a 3200 px).
+SEP = "raw/hilton/sesion-sep2026/alta/sep_26-"
+recorta(SEP + "246.jpg", "c5-portada.jpg", FEED, cy=0.56)          # A · el sillón del lounge, como la REF 2
+recorta(BANCO + "DT-familia-vista-post-2250x2813.jpg", "c5-portada-b.jpg", FEED)  # B · la familia en el sofá
+recorta(SEP + "515.jpg", "c5-habitacion.jpg", FEED, cx=0.42)
+recorta(SEP + "237.jpg", "c5-espacios.jpg", FEED, cy=0.5)            # Winter Garden
+recorta(SEP + "366.jpg", "c5-ubicacion.jpg", FEED, cy=0.45)           # la ciudad desde arriba
+recorta(SEP + "250.jpg", "c5-cierre.jpg", FEED, cx=0.5)               # el lobby iluminado
+# coworking: tres tomas nuevas del cowork del lobby
+recorta(SEP + "270.jpg", "cw-1.jpg", STORY, cy=0.55)
+recorta(SEP + "267.jpg", "cw-2.jpg", STORY, cy=0.5)
+recorta(SEP + "264.jpg", "cw-3.jpg", STORY, cx=0.45)

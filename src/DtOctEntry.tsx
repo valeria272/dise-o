@@ -13,6 +13,9 @@ import {
   DURACION as DUR_FT,
   DtStFamilyTimeOct,
   DtStFamilyTimeOctGuia,
+  DtStFamilyTimeOctR5,
+  DtStFamilyTimeOctR5Grafica,
+  DtStFamilyTimeOctR5Guia,
   DtStFamilyTimeOctVideo,
   DtStFamilyTimeOctVideoGrafica,
   DtStFamilyTimeOctVideoGuia,
@@ -31,10 +34,14 @@ const Raiz: React.FC = () => (
       {/* STORIES col C · 01-10 · ANIMADA Family Time primavera */}
       <Composition id="DT-A-Oct-FamilyTime" component={DtStFamilyTimeOct} {...animada} />
       <Composition id="DT-A-Oct-FamilyTime-Guia" component={DtStFamilyTimeOctGuia} {...animada} />
-      {/* ronda 4 (28-09): la familia fija en video — la que va a Drive */}
+      {/* ronda 4 (28-09): la familia fija en video, todo en clips */}
       <Composition id="DT-A-Oct-FamilyTime-Video" component={DtStFamilyTimeOctVideo} {...animada} />
       <Composition id="DT-A-Oct-FamilyTime-Video-Guia" component={DtStFamilyTimeOctVideoGuia} {...animada} />
       <Composition id="DT-A-Oct-FamilyTime-Video-Grafica" component={DtStFamilyTimeOctVideoGrafica} {...animada} />
+      {/* ronda 5 (28-09): video sólo en la 1ª toma, fotos de transición — la que va a Drive */}
+      <Composition id="DT-A-Oct-FamilyTime-R5" component={DtStFamilyTimeOctR5} {...animada} />
+      <Composition id="DT-A-Oct-FamilyTime-R5-Guia" component={DtStFamilyTimeOctR5Guia} {...animada} />
+      <Composition id="DT-A-Oct-FamilyTime-R5-Grafica" component={DtStFamilyTimeOctR5Grafica} {...animada} />
       {/* STORIES col G · 13-10 · ESTÁTICA Servicios del hotel */}
       <Composition id="DT-S-Oct-Servicios" component={DtStServiciosOct} {...story} />
       <Composition id="DT-S-Oct-Servicios-Guia" component={DtStServiciosOctGuia} {...story} />

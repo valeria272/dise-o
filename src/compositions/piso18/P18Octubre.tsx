@@ -48,6 +48,14 @@ const STORY_H = 1920;
 const SOMBRA = '0 2px 30px rgba(0,0,0,0.38)';
 const oct = (f: string) => staticFile(`assets/hilton/piso18/oct/${f}`);
 
+/**
+ * ⭐ Raleway SIEMPRE con cifras de caja alta. Sus cifras por defecto son de estilo
+ * antiguo: el 3, 5, 7 y 9 bajan de la línea base y el 0 queda a media altura, y eso
+ * es lo que Eli vio como «los números se ven desequilibrados y extraños» (ronda 1,
+ * 28-09: «2027», «piso18.cl», «EN PISO18»). Memoria `raleway-no-tiene-tabulares`.
+ */
+const RALEWAY: React.CSSProperties = {fontFamily: P18.fuentes.texto, fontFeatureSettings: '"lnum" 1'};
+
 // ───────────────────────────────────────────────────────────────────────────
 // Piezas comunes
 // ───────────────────────────────────────────────────────────────────────────
@@ -112,7 +120,7 @@ const Boton: React.FC<{top: number; children: React.ReactNode; invertido?: boole
         style={{
           backgroundColor: e.fondo,
           color: e.texto,
-          fontFamily: P18.fuentes.texto,
+          ...RALEWAY,
           fontWeight: 700,
           fontSize: 33,
           letterSpacing: 0.6,
@@ -129,11 +137,12 @@ const Boton: React.FC<{top: number; children: React.ReactNode; invertido?: boole
 };
 
 /** Cierre de feed y de historias con sticker: la LÍNEA, no la píldora (R-40). */
-const LineaCotiza: React.FC<{top: number; texto?: string; tinta?: string; sombra?: boolean}> = ({
+const LineaCotiza: React.FC<{top: number; texto?: string; tinta?: string; sombra?: boolean; cuerpo?: number}> = ({
   top,
   texto = 'Cotiza tu evento en',
   tinta = P18.colores.blanco,
   sombra = true,
+  cuerpo = 28,
 }) => (
   <div
     style={{
@@ -142,9 +151,9 @@ const LineaCotiza: React.FC<{top: number; texto?: string; tinta?: string; sombra
       right: 0,
       top,
       textAlign: 'center',
-      fontFamily: P18.fuentes.texto,
+      ...RALEWAY,
       fontWeight: 700,
-      fontSize: 28,
+      fontSize: cuerpo,
       letterSpacing: 0.3,
       color: tinta,
       textShadow: sombra ? SOMBRA : undefined,
@@ -175,20 +184,44 @@ const PapelBeige: React.FC<{semilla?: number}> = ({semilla = 3}) => (
   </AbsoluteFill>
 );
 
-/** Clip de oficina negro, el de la hoja de la referencia del 16-10. */
+/**
+ * Clip de archivador de la hoja (ref del 16-10). Ronda 1, Eli 28-09: «las cositas de
+ * archivadora en el color fucsia de piso 18, esos pinchitos que se vean un poco
+ * mejor» ⇒ cuerpo en `#D4145A` con el pliegue un tono más hondo y un brillo de metal
+ * pintado; las patas, alambre plateado con luz y sombra.
+ */
 const Clip: React.FC<{x: number; y: number; escala?: number}> = ({x, y, escala = 1}) => (
   <svg
-    width={70 * escala}
-    height={96 * escala}
-    viewBox="0 0 70 96"
-    style={{position: 'absolute', left: x, top: y, filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.35))'}}
+    width={76 * escala}
+    height={104 * escala}
+    viewBox="0 0 76 104"
+    style={{position: 'absolute', left: x, top: y, filter: 'drop-shadow(0 5px 7px rgba(0,0,0,0.38))'}}
   >
-    {/* las dos patas de alambre */}
-    <path d="M22 44 C 14 20, 18 6, 30 6 C 40 6, 42 20, 36 44" fill="none" stroke="#B9B9BE" strokeWidth={4} />
-    <path d="M34 44 C 28 22, 32 10, 42 10 C 52 10, 54 22, 48 44" fill="none" stroke="#D4D4D8" strokeWidth={4} />
-    {/* el cuerpo negro */}
-    <path d="M8 44 L62 44 L66 92 L4 92 Z" fill="#111114" />
-    <path d="M8 44 L62 44 L60 52 L10 52 Z" fill="#2A2A30" />
+    <defs>
+      <linearGradient id="p18o-clip-cuerpo" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stopColor="#A80F47" />
+        <stop offset="0.22" stopColor={P18.colores.fucsia} />
+        <stop offset="0.5" stopColor="#E8457F" />
+        <stop offset="0.78" stopColor={P18.colores.fucsia} />
+        <stop offset="1" stopColor="#A80F47" />
+      </linearGradient>
+      <linearGradient id="p18o-clip-alambre" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stopColor="#8E8E96" />
+        <stop offset="0.45" stopColor="#F2F2F4" />
+        <stop offset="1" stopColor="#9A9AA2" />
+      </linearGradient>
+    </defs>
+    {/* las dos patas de alambre, plegadas hacia atrás */}
+    <path d="M24 50 C 16 24, 20 7, 32 7 C 43 7, 45 24, 38 50" fill="none" stroke="#6E6E76" strokeWidth={5.2} strokeLinecap="round" />
+    <path d="M24 50 C 16 24, 20 7, 32 7 C 43 7, 45 24, 38 50" fill="none" stroke="url(#p18o-clip-alambre)" strokeWidth={3.4} strokeLinecap="round" />
+    <path d="M38 50 C 31 26, 35 12, 46 12 C 57 12, 59 26, 52 50" fill="none" stroke="#6E6E76" strokeWidth={5.2} strokeLinecap="round" />
+    <path d="M38 50 C 31 26, 35 12, 46 12 C 57 12, 59 26, 52 50" fill="none" stroke="url(#p18o-clip-alambre)" strokeWidth={3.4} strokeLinecap="round" />
+    {/* el cuerpo: trapecio con los cantos apenas redondeados */}
+    <path d="M10 48 Q10 46 12 46 L64 46 Q66 46 66 48 L71 98 Q71 101 68 101 L8 101 Q5 101 5 98 Z" fill="url(#p18o-clip-cuerpo)" />
+    {/* el pliegue de arriba y el filo inferior */}
+    <path d="M12 46 L64 46 Q66 46 66 48 L65 57 L11 57 L10 48 Q10 46 12 46 Z" fill="#9E0D42" />
+    <path d="M13 50 L63 50" stroke="rgba(255,255,255,0.35)" strokeWidth={1.4} />
+    <path d="M6 97 L70 97" stroke="rgba(0,0,0,0.22)" strokeWidth={2} />
   </svg>
 );
 
@@ -270,7 +303,7 @@ export const P18OF0910S2: React.FC = () => {
   cargarFuentesP18();
   const lineaCal = 'rgba(26,26,26,0.42)';
   const colX = [60, 380, 700, 1020];
-  const topCal = 890;
+  const topCal = 820;
   return (
     <AbsoluteFill>
       <PapelBeige semilla={9} />
@@ -279,11 +312,11 @@ export const P18OF0910S2: React.FC = () => {
           position: 'absolute',
           left: 0,
           right: 0,
-          top: 150,
+          top: 186,
           textAlign: 'center',
-          fontFamily: P18.fuentes.texto,
+          ...RALEWAY,
           fontWeight: 700,
-          fontSize: 24,
+          fontSize: 26,
           letterSpacing: 7,
           textIndent: 7,
           color: P18.colores.tinta,
@@ -291,11 +324,11 @@ export const P18OF0910S2: React.FC = () => {
       >
         TEMPORADA ALTA 2027
       </div>
-      <div style={{position: 'absolute', left: 40, right: 40, top: 222, textAlign: 'center', fontFamily: P18.fuentes.titular, color: P18.colores.tinta}}>
-        <div style={{fontSize: 100, fontWeight: 300, fontStyle: 'italic', lineHeight: 1.04}}>
+      <div style={{position: 'absolute', left: 40, right: 40, top: 272, textAlign: 'center', fontFamily: P18.fuentes.titular, color: P18.colores.tinta}}>
+        <div style={{fontSize: 118, fontWeight: 300, fontStyle: 'italic', lineHeight: 1.04}}>
           Las grandes historias
         </div>
-        <div style={{fontSize: 70, fontWeight: 400, lineHeight: 1.18, letterSpacing: 1.5, color: P18.colores.fucsia}}>
+        <div style={{fontSize: 80, fontWeight: 400, lineHeight: 1.2, letterSpacing: 1.5, color: P18.colores.fucsia}}>
           SE PLANEAN CON TIEMPO
         </div>
       </div>
@@ -304,9 +337,9 @@ export const P18OF0910S2: React.FC = () => {
           position: 'absolute',
           left: 0,
           right: 0,
-          top: 486,
+          top: 590,
           textAlign: 'center',
-          fontFamily: P18.fuentes.texto,
+          ...RALEWAY,
           fontWeight: 500,
           fontSize: 40,
           letterSpacing: 1.2,
@@ -333,7 +366,7 @@ export const P18OF0910S2: React.FC = () => {
             width: colX[i + 1] - colX[i],
             top: topCal + 22,
             textAlign: 'center',
-            fontFamily: P18.fuentes.texto,
+            ...RALEWAY,
             fontWeight: 500,
             fontSize: 28,
             letterSpacing: 2,
@@ -351,11 +384,12 @@ export const P18OF0910S2: React.FC = () => {
             position: 'absolute',
             left: colX[i],
             width: colX[i + 1] - colX[i],
-            top: topCal + 118,
+            top: topCal + 112,
             textAlign: 'center',
             fontFamily: P18.fuentes.titular,
-            fontWeight: 300,
-            fontSize: 210,
+            // Thin: las cifras de la ref son finas; en Light pesaban más que todo el bloque
+            fontWeight: 100,
+            fontSize: 236,
             lineHeight: 1,
             color: P18.colores.tinta,
           }}
@@ -366,14 +400,14 @@ export const P18OF0910S2: React.FC = () => {
       {/* El círculo a mano: dos vueltas que no cierran igual, como un plumón. */}
       <svg width={W} height={FEED_H} style={{position: 'absolute', inset: 0}}>
         <path
-          d="M 700 1098 C 706 1010, 610 986, 540 990 C 450 994, 380 1040, 386 1122 C 392 1210, 470 1250, 548 1248 C 640 1246, 712 1196, 706 1112 C 702 1060, 668 1020, 600 1004"
+          d="M 700 1028 C 706 940, 610 916, 540 920 C 450 924, 380 970, 386 1052 C 392 1140, 470 1180, 548 1178 C 640 1176, 712 1126, 706 1042 C 702 990, 668 950, 600 934"
           fill="none"
           stroke={P18.colores.fucsia}
           strokeWidth={6}
           strokeLinecap="round"
         />
         <path
-          d="M 690 1120 C 700 1040, 620 1000, 548 1000 C 470 1002, 398 1050, 398 1120"
+          d="M 690 1050 C 700 970, 620 930, 548 930 C 470 932, 398 980, 398 1050"
           fill="none"
           stroke={P18.colores.fucsia}
           strokeWidth={3.2}
@@ -434,7 +468,7 @@ export const P18OF1310S2: React.FC = () => {
           <line x1={0} y1={7} x2={104} y2={7} stroke="#FFFFFF" strokeWidth={1.6} />
           <path d="M97 1 L105 7 L97 13" fill="none" stroke="#FFFFFF" strokeWidth={1.6} />
         </svg>
-        <span style={{fontFamily: P18.fuentes.texto, fontWeight: 700, fontSize: 21, letterSpacing: 4}}>
+        <span style={{...RALEWAY, fontWeight: 700, fontSize: 21, letterSpacing: 4}}>
           PISO18.CL
         </span>
       </div>
@@ -445,7 +479,7 @@ export const P18OF1310S2: React.FC = () => {
           right: 0,
           top: 880,
           textAlign: 'center',
-          fontFamily: P18.fuentes.texto,
+          ...RALEWAY,
           fontWeight: 700,
           fontSize: 25,
           letterSpacing: 9,
@@ -523,7 +557,7 @@ export const P18OF1610S1: React.FC = () => {
           <br />
           SU LUGAR
         </div>
-        <div style={{fontFamily: P18.fuentes.texto, fontWeight: 700, fontSize: 19, letterSpacing: 6, textIndent: 6, marginTop: 30}}>
+        <div style={{...RALEWAY, fontWeight: 700, fontSize: 24, letterSpacing: 6, textIndent: 6, marginTop: 28}}>
           EN PISO18
         </div>
       </HojaPapel>
@@ -574,7 +608,7 @@ export const P18OF1610S5: React.FC = () => {
         </div>
       </HojaPapel>
       <Clip x={196} y={756} escala={1.1} />
-      <LineaCotiza top={1170} />
+      <LineaCotiza top={1156} cuerpo={34} />
     </AbsoluteFill>
   );
 };
@@ -598,7 +632,7 @@ export const P18OF2310S1: React.FC = () => {
       <AbsoluteFill
         style={{
           background:
-            'linear-gradient(to bottom, rgba(8,8,10,0.55) 0%, rgba(8,8,10,0.40) 38%, rgba(8,8,10,0.05) 60%, rgba(8,8,10,0) 70%, rgba(8,8,10,0.45) 100%)',
+            'linear-gradient(to bottom, rgba(8,8,10,0.55) 0%, rgba(8,8,10,0.40) 38%, rgba(8,8,10,0.05) 60%, rgba(8,8,10,0.10) 76%, rgba(8,8,10,0.78) 100%)',
         }}
       />
       <Logo top={250} ancho={250} />
@@ -626,7 +660,7 @@ export const P18OF2310S1: React.FC = () => {
           right: 0,
           top: 574,
           textAlign: 'center',
-          fontFamily: P18.fuentes.texto,
+          ...RALEWAY,
           fontWeight: 700,
           fontSize: 54,
           letterSpacing: 4,
@@ -743,7 +777,7 @@ export const P18OS0510: React.FC<{clip?: string}> = ({clip}) => {
         <div style={{...entra(24), fontFamily: P18.fuentes.titular, fontWeight: 400, fontSize: 66, lineHeight: 1.12, letterSpacing: 1, marginTop: 10}}>
           YA SE VIVE EN PISO18
         </div>
-        <div style={{...entra(36), fontFamily: P18.fuentes.texto, fontWeight: 500, fontSize: 34, lineHeight: 1.45, marginTop: 26, maxWidth: 780}}>
+        <div style={{...entra(36), ...RALEWAY, fontWeight: 500, fontSize: 34, lineHeight: 1.45, marginTop: 26, maxWidth: 780}}>
           Luz natural, flores de estación y el ambiente perfecto para tu próximo evento
         </div>
       </div>
@@ -798,10 +832,10 @@ const Calado: React.FC<{children: React.ReactNode; style: React.CSSProperties}> 
       fontFamily: P18.fuentes.titular,
       fontStyle: 'italic',
       fontWeight: 400,
-      fontSize: 150,
+      fontSize: 140,
       lineHeight: 1,
       color: 'transparent',
-      WebkitTextStroke: `2.6px ${P18.colores.fucsia}`,
+      WebkitTextStroke: `2.8px ${P18.colores.fucsia}`,
       ...style,
     }}
   >
@@ -814,13 +848,14 @@ export const P18OS0710: React.FC = () => {
   return (
     <AbsoluteFill>
       <PapelBeige semilla={17} />
-      <Logo top={150} ancho={230} oscuro />
+      {/* el logotipo dentro de los 250 px de arriba es del sistema (E-03) */}
+      <Logo top={118} ancho={230} oscuro />
       <div
         style={{
           position: 'absolute',
           left: 60,
           right: 60,
-          top: 282,
+          top: 244,
           textAlign: 'center',
           fontFamily: P18.fuentes.titular,
           color: P18.colores.tinta,
@@ -832,23 +867,23 @@ export const P18OS0710: React.FC = () => {
         </div>
       </div>
 
-      <Polaroid src="s0710-dulce.jpg" left={488} top={532} ancho={440} giro={4} />
-      <Calado style={{left: 330, top: 452}}>Dulce</Calado>
+      <Polaroid src="s0710-dulce.jpg" left={520} top={500} ancho={390} giro={4} />
+      <Calado style={{left: 270, top: 410}}>Dulce</Calado>
 
-      <Polaroid src="s0710-salada.jpg" left={560} top={1010} ancho={430} giro={-3.5} />
-      <Calado style={{right: 40, top: 930, textAlign: 'right'}}>Salada</Calado>
+      <Polaroid src="s0710-salada.jpg" left={560} top={1066} ancho={380} giro={-3.5} />
+      <Calado style={{right: 60, top: 942, textAlign: 'right'}}>Salada</Calado>
 
-      {/* Las flechas nacen del hueco del sticker (x 60–470 · y 880–1080). */}
+      {/* Las flechas nacen del hueco del sticker (x 60–480 · y 830–1030). */}
       <svg width={W} height={STORY_H} style={{position: 'absolute', inset: 0}}>
         <g fill="none" stroke={P18.colores.fucsia} strokeWidth={4} strokeLinecap="round" strokeLinejoin="round">
-          <path d="M 160 860 C 120 760, 250 690, 452 700" />
-          <path d="M 430 684 L 456 700 L 432 720" />
-          <path d="M 170 1110 C 150 1230, 300 1300, 530 1270" />
-          <path d="M 508 1250 L 534 1270 L 510 1290" />
+          <path d="M 160 810 C 120 710, 260 640, 486 650" />
+          <path d="M 464 634 L 490 650 L 466 670" />
+          <path d="M 170 1060 C 150 1200, 310 1290, 540 1280" />
+          <path d="M 518 1260 L 544 1280 L 520 1300" />
         </g>
       </svg>
 
-      <LineaCotiza top={1580} tinta={P18.colores.tinta} sombra={false} />
+      <LineaCotiza top={1528} tinta={P18.colores.tinta} sombra={false} />
     </AbsoluteFill>
   );
 };
@@ -889,6 +924,8 @@ export const P18OS0910: React.FC = () => {
       <Foto src="s0910.jpg" />
       <AbsoluteFill style={{backgroundColor: 'rgba(8,8,10,0.34)'}} />
       <VeloArriba alfa={0.6} hasta={30} />
+      {/* el pie morado de la pista no sostiene el fucsia de `piso18.cl`: se apaga */}
+      <VeloPie hasta={0.34} opacidad={0.86} />
       <Logo top={P18.geometria.logoYStory} />
       <div
         style={{
@@ -911,9 +948,9 @@ export const P18OS0910: React.FC = () => {
         style={{
           position: 'absolute',
           left: 120,
-          top: 560,
+          top: 580,
           width: 840,
-          height: 640,
+          height: 560,
           transform: 'rotate(-1.6deg)',
           backgroundColor: P18.colores.tarjeta,
           boxShadow: '0 18px 44px rgba(0,0,0,0.40)',
@@ -938,10 +975,28 @@ export const P18OS0910: React.FC = () => {
         </div>
         {/* y 300–600 de la nota: libre para la encuesta del CM */}
       </div>
-      <Cinta left={800} top={520} giro={38} />
-      <Cinta left={70} top={880} giro={-52} ancho={150} />
+      <Cinta left={820} top={556} giro={38} />
+      <Cinta left={74} top={930} giro={-52} ancho={150} />
       <div style={{position: 'absolute', left: 250, right: 250, top: 1500, height: 2, backgroundColor: 'rgba(255,255,255,0.75)'}} />
-      <LineaCotiza top={1528} />
+      {/* El sitio va BLANCO, como el de la ref: el fucsia sobre la pista morada no se
+          lee (medido en el borrador del 28-09). */}
+      <div
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 1528,
+          textAlign: 'center',
+          ...RALEWAY,
+          fontWeight: 700,
+          fontSize: 30,
+          letterSpacing: 1,
+          color: P18.colores.blanco,
+          textShadow: SOMBRA,
+        }}
+      >
+        Cotiza tu evento en piso18.cl
+      </div>
     </AbsoluteFill>
   );
 };
@@ -972,7 +1027,7 @@ export const P18OS2310: React.FC = () => {
           left: 90,
           top: 400,
           width: 900,
-          height: 880,
+          height: 600,
           borderRadius: 58,
           border: '2px solid rgba(255,255,255,0.55)',
           background: 'linear-gradient(160deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.07) 55%, rgba(255,255,255,0.12) 100%)',
@@ -1007,7 +1062,7 @@ export const P18OS2310: React.FC = () => {
           borderRadius: 20,
           backgroundColor: 'rgba(255,255,255,0.93)',
           textAlign: 'center',
-          fontFamily: P18.fuentes.texto,
+          ...RALEWAY,
           fontWeight: 500,
           fontSize: 32,
           lineHeight: 1.4,
@@ -1017,7 +1072,7 @@ export const P18OS2310: React.FC = () => {
       >
         ¿Ya agendaste tu evento corporativo de fin de año en Piso18?
       </div>
-      <Boton top={1352}>Cotiza tu evento en piso18.cl</Boton>
+      <Boton top={1080}>Cotiza tu evento en piso18.cl</Boton>
     </AbsoluteFill>
   );
 };
@@ -1069,7 +1124,7 @@ const Telefono: React.FC<{src: string; x: number; y: number; giro: number; rotul
             whiteSpace: 'nowrap',
             backgroundColor: 'rgba(255,255,255,0.94)',
             color: P18.colores.tinta,
-            fontFamily: P18.fuentes.texto,
+            ...RALEWAY,
             fontWeight: 700,
             fontSize: TEL.ancho * 0.052,
             letterSpacing: 1.6,
@@ -1110,7 +1165,7 @@ export const P18OS2710: React.FC = () => {
           right: 0,
           top: 392,
           textAlign: 'center',
-          fontFamily: P18.fuentes.texto,
+          ...RALEWAY,
           fontWeight: 700,
           fontSize: 22,
           letterSpacing: 6.5,

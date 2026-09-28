@@ -38,6 +38,7 @@ const Raiz: React.FC = () => (
       {[1, 2, 3, 4, 5, 6, 7].map((n) => (
         <Composition key={n} id={`DT-C-Oct-5Cosas-${n}`} component={DtC5CosasOct} defaultProps={{lamina: n}} {...feed} />
       ))}
+      <Composition id="DT-C-Oct-5Cosas-1B" component={DtC5CosasOct} defaultProps={{lamina: 1, fondo: 'b' as const}} {...feed} />
     </Folder>
   </>
 );

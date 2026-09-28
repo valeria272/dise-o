@@ -62,7 +62,10 @@ const LEGAL = 'Válido jueves a domingo y festivos. Cupos limitados.';
  */
 type EscenaDef = {src: string; desde: number; zoom: readonly [number, number]};
 type Tiempos = {cristal1: number; escribeDesde: number; escribeHasta: number; sale1: number; cristal2: number; entra2: number};
-type Montaje = {escenas: readonly EscenaDef[]; t: Tiempos};
+/** Cuánto se corre y se desenfoca la toma que llega (x1, b1) y la que se va (x2, b2). */
+type Barrido = {x1: number; x2: number; b1: number; b2: number};
+type Montaje = {escenas: readonly EscenaDef[]; t: Tiempos; barrido?: Barrido; grande?: boolean};
+const BARRIDO_R3: Barrido = {x1: 420, x2: 260, b1: 26, b2: 18};
 
 /** Ronda 3 (24-09, entregada): fotos fijas con zoom. */
 const FOTOS: Montaje = {
@@ -97,6 +100,33 @@ const CLIPS: Montaje = {
   // la frase se apaga ENTERA antes de que arranque el barrido del lobby (f134):
   // en la primera pasada quedaba un fantasma del texto sobre la familia caminando
   t: {cristal1: 30, escribeDesde: 44, escribeHasta: 100, sale1: 118, cristal2: 258, entra2: 272},
+};
+/**
+ * Ronda 5 (Eli, 28-09) sobre la de video: «dura muy extraño… si hay texto importante
+ * que se mantenga más el tiempo… no lo hagas todo video, usa las mismas imágenes, que
+ * pasen como transición, y la primera toma sí sea un video… que no se vea todo tan
+ * exagerado… mejor en jerarquía».
+ *   · SOLO la primera toma es video (la vista, la tarde larga de «Días más largos»),
+ *     y la frase queda ~2,6 s entera en pantalla, no ~0,6.
+ *   · lobby, almohadas y desayuno son FOTOS del banco que pasan en ~0,7 s cada una:
+ *     son el puente, no escenas que haya que leer.
+ *   · el barrido es la mitad de corto y de borroso (nada de «exagerado»).
+ *   · el programa cierra sobre la foto de la habitación y queda ~7,6 s: es el texto
+ *     importante. La familia se ve sola ~0,5 s antes de que entre el cristal.
+ *   · jerarquía del bloque (`grande`): Family Time manda, el precio segundo, el
+ *     titular baja a antetítulo y los incluidos y el contacto van en grupos aparte.
+ */
+const R5: Montaje = {
+  escenas: [
+    {src: 'assets/hilton/dt/oct/ft-v-vista.mp4', desde: 0, zoom: [1, 1]},
+    {src: 'assets/hilton/dt/oct/ft-f-lobby.jpg', desde: 146, zoom: [1.0, 1.02]},
+    {src: 'assets/hilton/dt/oct/ft-f-almohadas.jpg', desde: 166, zoom: [1.0, 1.02]},
+    {src: 'assets/hilton/dt/oct/ft-f-restaurante.jpg', desde: 186, zoom: [1.0, 1.02]},
+    {src: 'assets/hilton/dt/oct/ft-f-hab.jpg', desde: 206, zoom: [1.0, 1.035]},
+  ],
+  t: {cristal1: 18, escribeDesde: 30, escribeHasta: 72, sale1: 120, cristal2: 220, entra2: 230},
+  barrido: {x1: 180, x2: 110, b1: 10, b2: 7},
+  grande: true,
 };
 const BARRIDO = 12;
 
@@ -133,7 +163,7 @@ const ConApertura: React.FC<{t: string}> = ({t}) => (
  * Una escena con su barrido de entrada: llega desde la derecha con desenfoque
  * que se apaga, ENCIMA de la anterior (que no se baja: disolvencia sin asomo).
  */
-const Escena: React.FC<{i: number; escenas: readonly EscenaDef[]}> = ({i, escenas}) => {
+const Escena: React.FC<{i: number; escenas: readonly EscenaDef[]; b: Barrido}> = ({i, escenas, b}) => {
   const f = useCurrentFrame();
   const e = escenas[i];
   const sig = escenas[i + 1];
@@ -144,8 +174,8 @@ const Escena: React.FC<{i: number; escenas: readonly EscenaDef[]}> = ({i, escena
   const z = interpolate(f, [e.desde - BARRIDO, hasta], [...e.zoom], clamp);
   // al irse, la escena también se corre y se barre hacia la izquierda
   const s = sig ? interpolate(f, [sig.desde - BARRIDO, sig.desde], [0, 1], {...clamp, easing: suave}) : 0;
-  const x = (1 - p) * 420 - s * 260;
-  const blur = (1 - p) * 26 + s * 18;
+  const x = (1 - p) * b.x1 - s * b.x2;
+  const blur = (1 - p) * b.b1 + s * b.b2;
   const estilo: React.CSSProperties = {
     position: 'absolute',
     width: '100%',
@@ -199,6 +229,10 @@ export const DtStFamilyTimeOct: React.FC<{guia?: boolean; montaje?: Montaje; sol
 }) => {
   const f = useCurrentFrame();
   const T = montaje.t;
+  // jerarquía del bloque final: la de la ronda 3 o la de la ronda 5 (`grande`)
+  const J = montaje.grande
+    ? {tit: 48, filete: '30px auto 24px', marca: 126, precioArriba: 24, precio: 90, grupo: 62, correo: 36}
+    : {tit: 58, filete: '40px auto 30px', marca: 104, precioArriba: 30, precio: 82, grupo: 40, correo: 38};
 
   const p1 = interpolate(f, [T.cristal1, T.cristal1 + 18], [0, 1], {...clamp, easing: suave});
   const sale1 = interpolate(f, [T.sale1, T.sale1 + 14], [1, 0], clamp);
@@ -226,7 +260,7 @@ export const DtStFamilyTimeOct: React.FC<{guia?: boolean; montaje?: Montaje; sol
     <AbsoluteFill style={{backgroundColor: soloGrafica ? 'transparent' : DT.colores.azul, overflow: 'hidden'}}>
       {soloGrafica
         ? null
-        : montaje.escenas.map((_, i) => <Escena key={i} i={i} escenas={montaje.escenas} />)}
+        : montaje.escenas.map((_, i) => <Escena key={i} i={i} escenas={montaje.escenas} b={montaje.barrido ?? BARRIDO_R3} />)}
 
       {/* ── ESCENA 1 · cristal alto + la frase que se escribe ── */}
       {f < T.sale1 + 14 ? (
@@ -266,7 +300,7 @@ export const DtStFamilyTimeOct: React.FC<{guia?: boolean; montaje?: Montaje; sol
                   style={{
                     fontFamily: DT.fuentes.titular,
                     fontWeight: i === 0 ? DT.pesos.medium : DT.pesos.light,
-                    fontSize: 58,
+                    fontSize: J.tit,
                     lineHeight: 1.16,
                     color: DT.colores.blanco,
                     textShadow: SOMBRA,
@@ -278,14 +312,14 @@ export const DtStFamilyTimeOct: React.FC<{guia?: boolean; montaje?: Montaje; sol
               ))}
             </div>
 
-            <div style={{...e.marca, width: 120, height: 1.5, margin: '40px auto 30px', background: 'rgba(250,250,250,0.8)'}} />
+            <div style={{...e.marca, width: 120, height: 1.5, margin: J.filete, background: 'rgba(250,250,250,0.8)'}} />
 
             <div
               style={{
                 ...e.marca,
                 fontFamily: DT.fuentes.titular,
                 fontStyle: 'italic',
-                fontSize: 104,
+                fontSize: J.marca,
                 lineHeight: 1,
                 color: DT.colores.blanco,
                 textShadow: SOMBRA,
@@ -296,7 +330,7 @@ export const DtStFamilyTimeOct: React.FC<{guia?: boolean; montaje?: Montaje; sol
               <span style={{fontWeight: DT.pesos.light}}> Time</span>
             </div>
 
-            <div style={{...e.precio, marginTop: 30}}>
+            <div style={{...e.precio, marginTop: J.precioArriba}}>
               <div
                 style={{
                   display: 'inline-block',
@@ -306,7 +340,7 @@ export const DtStFamilyTimeOct: React.FC<{guia?: boolean; montaje?: Montaje; sol
                   padding: '10px 44px 6px',
                   fontFamily: "'Trade Gothic Cn', 'Trade Gothic', sans-serif",
                   fontWeight: 700,
-                  fontSize: 82,
+                  fontSize: J.precio,
                   lineHeight: 1,
                   letterSpacing: '0.01em',
                 }}
@@ -328,7 +362,7 @@ export const DtStFamilyTimeOct: React.FC<{guia?: boolean; montaje?: Montaje; sol
               </div>
             </div>
 
-            <div style={{...e.iconos, margin: '40px auto 0', width: C2.ancho - 50, display: 'flex', justifyContent: 'space-between'}}>
+            <div style={{...e.iconos, margin: `${J.grupo}px auto 0`, width: C2.ancho - 50, display: 'flex', justifyContent: 'space-between'}}>
               {INCLUIDOS.map((c, i) => (
                 <React.Fragment key={c.icono}>
                   {i > 0 ? <div style={{width: 1.5, alignSelf: 'stretch', background: 'rgba(250,250,250,0.55)'}} /> : null}
@@ -358,7 +392,7 @@ export const DtStFamilyTimeOct: React.FC<{guia?: boolean; montaje?: Montaje; sol
               ))}
             </div>
 
-            <div style={{...e.correo, marginTop: 46}}>
+            <div style={{...e.correo, marginTop: J.grupo}}>
               <div
                 style={{
                   display: 'inline-block',
@@ -366,7 +400,7 @@ export const DtStFamilyTimeOct: React.FC<{guia?: boolean; montaje?: Montaje; sol
                   borderRadius: 60,
                   padding: '13px 40px 10px',
                   fontFamily: DT.fuentes.texto,
-                  fontSize: 38,
+                  fontSize: J.correo,
                   lineHeight: 1,
                   letterSpacing: '0.02em',
                   color: DT.colores.blanco,
@@ -420,4 +454,9 @@ export const DtStFamilyTimeOctGuia: React.FC = () => <DtStFamilyTimeOct guia />;
 /** Ronda 4 (28-09): la familia fija en video. Reemplaza a la de fotos en Drive. */
 export const DtStFamilyTimeOctVideo: React.FC = () => <DtStFamilyTimeOct montaje={CLIPS} />;
 export const DtStFamilyTimeOctVideoGrafica: React.FC = () => <DtStFamilyTimeOct montaje={CLIPS} soloGrafica />;
+
+/** Ronda 5 (28-09): video sólo en la primera toma, fotos de transición, jerarquía nueva. */
+export const DtStFamilyTimeOctR5: React.FC = () => <DtStFamilyTimeOct montaje={R5} />;
+export const DtStFamilyTimeOctR5Guia: React.FC = () => <DtStFamilyTimeOct montaje={R5} guia />;
+export const DtStFamilyTimeOctR5Grafica: React.FC = () => <DtStFamilyTimeOct montaje={R5} soloGrafica />;
 export const DtStFamilyTimeOctVideoGuia: React.FC = () => <DtStFamilyTimeOct montaje={CLIPS} guia />;

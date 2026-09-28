@@ -32,11 +32,15 @@ STORY = (2250, 4000)
 # salida: (origen, caja (x, y, ancho, alto) o None = centrada al aspecto, tamaño final)
 FOTOS = {
     # FEED 06-10 · arreglos florales — piso_18-7 (deco-ago2024), vertical 3840×5760
-    "f0610.jpg": (BASE / "deco88.jpg", (0, 480, 3840, 4800), FEED),
+    # Ronda 2 (Eli 28-09: «en vez de ciertos rosados, esos tonos azulitos» de la ref): la
+    # misma foto recoloreada con Nano Banana Pro (rosas y dalia → azul empolvado), sobre
+    # el recorte 4:5 de la ronda 1 (0, 480, 3840, 4800). La 1 queda en `deco88.jpg`.
+    "f0610.jpg": (GEN / "f0610-azul.jpg", None, FEED),
     # FEED 09-10 · portada — 0161 (3-Finales 2026) extendida a 4:5 con Nano Banana Pro
     "f0910-1.jpg": (GEN / "f09-s1.jpg", None, FEED),
     # FEED 13-10 · atardecer — ventanal y lounge reiluminados (banq 0003 y 0001)
-    "f1310-1.jpg": (GEN / "f13-s1.jpg", None, FEED),
+    # Ronda 2: la 1 tenía dos atardeceres en el ventanal; va la tirada `f13-s1r2` (un solo cielo)
+    "f1310-1.jpg": (GEN / "f13-s1r2.jpg", None, FEED),
     "f1310-2.jpg": (GEN / "f13-s2.jpg", None, FEED),
     # FEED 16-10 · collage de la portada, cuatro cuadros 4:5 de 1125×1406
     "f1610-c1.jpg": (BASE / "banq43.jpg", None, (1125, 1406)),   # salón de noche
@@ -45,14 +49,16 @@ FOTOS = {
     "f1610-c4.jpg": (BASE / "banq18.jpg", (4200, 300, 3240, 4049), (1125, 1406)),  # lounge
     # FEED 16-10 · slides 2 a 5
     "f1610-2.jpg": (BASE / "deco86.jpg", (1344, 0, 3072, 3840), FEED),   # Matrimonios
-    "f1610-3.jpg": (BASE / "jul9.jpg", (0, 188, 1500, 1875), FEED),      # Cumpleaños · amplía ×1,5
+    # Cumpleaños: la ronda de trabajo usó julio evento 107 (copas oscuras a 1500 px, ampliaba
+    # ×1,5); se reemplazó por la barra con torta producida sobre la barra y el salón reales.
+    "f1610-3.jpg": (GEN / "f16-s3.jpg", None, FEED),
     "f1610-4.jpg": (BASE / "banq17.jpg", (1400, 0, 3200, 4000), FEED),   # Corporativos
     "f1610-5.jpg": (BASE / "deco55.jpg", (0, 463, 3701, 4626), FEED),    # Cierre, lámpara cálida
     # FEED 23-10 · Tex-Mex (generadas, 3:4 → 4:5)
-    "f2310-1.jpg": (GEN / "f23-s1.jpg", None, FEED),
-    "f2310-2.jpg": (GEN / "f23-s2b.jpg", None, FEED),
-    "f2310-3.jpg": (GEN / "f23-s3.jpg", None, FEED),
-    "f2310-4.jpg": (GEN / "f23-s4.jpg", None, FEED),
+    "f2310-1.jpg": (GEN / "f23r2-s1.jpg", None, FEED),  # ronda 2: foto documental
+    "f2310-2.jpg": (GEN / "f23r2-s2.jpg", None, FEED),  # ronda 2: foto documental
+    "f2310-3.jpg": (GEN / "f23r2-s3b.jpg", None, FEED),  # ronda 2: foto documental
+    "f2310-4.jpg": (GEN / "f23r2-s4.jpg", None, FEED),  # ronda 2: foto documental
     # FEED 27-10 · wedding planner (generada sobre la mesa real banq 0047)
     "f2710.jpg": (GEN / "f27.jpg", None, FEED),
     # STORIES
@@ -68,6 +74,13 @@ FOTOS = {
 
 
 def prepara(nombre, origen, caja, tam):
+    # ⭐ Si la generada ya pasó por el upscaler de PRECISIÓN ×2 (`gen/x2/`), va esa; la
+    # caja se escribe sobre la original y se escala con ella.
+    x2 = GEN / "x2" / origen.name
+    if origen.parent == GEN and x2.is_file():
+        k = Image.open(x2).width / Image.open(origen).width
+        caja = None if caja is None else tuple(round(v * k) for v in caja)
+        origen = x2
     if not origen.is_file():
         print(f"·  falta {origen.name} → {nombre} queda para después")
         return

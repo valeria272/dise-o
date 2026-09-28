@@ -68,8 +68,8 @@ export const DtStFeriadoPlanes: React.FC<{guia?: boolean}> = ({guia = false}) =>
   <AbsoluteFill style={{backgroundColor: AZUL}}>
     <Foto src="assets/hilton/dt/oct2/feriado-fondo-story.jpg" />
     {/* velo sólo arriba, para el titular blanco; abajo la ciudad queda limpia */}
-    <Velo desde={0.4} pie={0.85} lado="arriba" />
-    <Velo desde={0.62} pie={0.6} />
+    <Velo desde={0.45} pie={0.62} lado="arriba" />
+    <Velo desde={0.6} pie={0.78} />
 
     <Logo formato="story" />
 
@@ -317,10 +317,9 @@ export const DtStFeriadoFt: React.FC<{guia?: boolean}> = ({guia = false}) => {
   const col = (PANEL_FT.ancho - PANEL_FT.pad * 2 - 44) / 2;
   return (
     <AbsoluteFill style={{backgroundColor: AZUL}}>
-      <Img src={staticFile(p.foto)} style={{position: 'absolute', top: 0, left: 0, width: 1080, height: 1350, objectFit: 'cover'}} />
-      <div style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 1350}}>
-        <Velo desde={0.55} pie={1} />
-      </div>
+      {/* la escena 9:16 del banco, agrandada y corrida hacia arriba: la familia queda sobre el panel */}
+      <Img src={staticFile(p.foto)} style={{position: 'absolute', top: -450, left: -135, width: 1350, height: 2400}} />
+      <Velo desde={0.45} pie={0.8} />
       <Velo desde={0.72} pie={0.35} lado="arriba" />
       <Logo formato="story" />
 

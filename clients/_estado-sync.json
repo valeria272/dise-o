@@ -1,6 +1,6 @@
 {
   "_que_es": "Registro de la última vez que se revisó el Drive con /al-dia. No editar a mano.",
-  "ultima_revision": "2026-09-28T12:40:00Z",
+  "ultima_revision": "2026-09-28",
   "por_marca": {
     "ebema": {
       "revisado": "2026-09-25",
@@ -15,8 +15,8 @@
       "ultimo_hallazgo": "SIN NOVEDAD Y SIGUE TRABADO EN LO MISMO. Cero archivos nuevos de Paulina en Casablanca desde el 04-09. Los 7 comentarios ABIERTOS del 28-08 (ronda sobre las 14 piezas de septiembre) van 11 DIAS sin poder leerse: 'scripts/drive-comentarios.py' solo alcanza archivos que subio este mismo token (scope drive.file) y esos no los subio. Hay que abrirlos a mano en Drive o resubir con el token del estudio. Tampoco se paso por la compuerta de material las 16 imagenes del 28-08."
     },
     "selfie": {
-      "revisado": "2026-09-25 (/abrir)",
-      "ultimo_hallazgo": "⭐ CYBER v2 LLEGO: 'ORGANICOS SELFIE - CYBER v2.xlsx' (1ATza75bztIC2AZEzFtFncDch8zoH9pq6, Constanza Olivares, 24-09 23:25Z). 3 reels SIN VOZ (musica + textos en pantalla, estetica beauty/fashion/editorial): 1 lanzamiento 'CYBER SELFIE ya comenzo' (reveal IA + THE BEAUTY EDIT / THE PRO EDIT, cierre 'Hasta 60% OFF · Selfie.cl'), 2 producto/oferta (bolsa Selfie, stickers de % OFF), 3 urgencia 'ULTIMAS HORAS' con contador y top 3 CF + top 3 PRO. Ofertas: BC Bonacure hasta 60% (lineas por confirmar), OLIX 40%, BIOTOP 911 Quinoa 20%, KEYRA Deco 500 g 50%, KEYRACOLORS 30%, KEYRA Ox 25%, IGORA ROYAL 20%, lociones IGORA 1000 ml 20%. Textos max 6-7 palabras, >=1,5 s; tipografia y colores = NUEVA linea visual; libre 20% inferior y franja derecha. Para diseno: portadas con texto de los 3 videos, stickers de % OFF, plantilla de edicion con contador. Falta: lineas BC Bonacure, top 3 en ventas, fecha y hora de termino del Cyber. || Prueba Biotop aprobada el 24-09 (ver BITACORA.md). Sin comentarios nuevos de Coni en PRUEBA."
+      "revisado": "2026-09-28 (/abrir)",
+      "ultimo_hallazgo": "GUION TECNICO DEL CYBER (version final para grabacion): 'Guion_Tecnico_Cyber_Selfie.xlsx' (1QFWESdyIo_HFeq6m8xE9kF7unv3QHAi8, Constanza Olivares, 25-09 19:31Z) en carpeta CYBER SELFIE (1HeIummi-hIUeCdDUsEvWJPC38L3BamvI). 9:16 + adaptacion 4:5 (aire arriba/abajo), cotizacion 7804. V1 lanzamiento 15-17 s cierre 'Hasta 60% OFF · Selfie.cl' (grafica final en la NUEVA linea visual); V2 oferta 20-22 s, stickers de % OFF, cierre 'Cyber Selfie · Encuentralo en Selfie.cl'; V3 urgencia 20-22 s: 'ULTIMAS HORAS' + contador, 'Imperdibles del Cyber' / 'Imperdibles para tu salon', recap una toma por marca (BC, OLIX, BIOTOP, CLOE, KEYRA, IGORA), cierre 'Ultima oportunidad para llevarte tus favoritos'. Descuentos BC por producto: Moisture Kick shampoo/acond 30%, tratamientos 60%; CLOE sin % confirmado (va sin sticker). Falta: fecha/hora de termino para el contador. || Diseno: stickers de % OFF, portadas de los 3, grafica de cierre, contador. || El brief v2 se movio a esa carpeta con prefijo 'BRIEF'. || APRENDIZAJES.md cosechado hoy con lo del 24-25/09."
     },
     "hilton": {
       "revisado": "2026-09-28",

@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-09-28** · Cosechas: **6**
+> Última cosecha: **2026-09-28** · Cosechas: **7**
 
 ## 1. Quién es el cliente
 
@@ -44,14 +44,14 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **R-01** · QB es marca independiente: nada de DT, Between ni Piso 18 entra, y nada de QB va para allá — _Eli, 15-09: «QB Restaurant es una marca independiente…»_ · ✔×1
 - **R-02** · El feed se ve minimalista y elegante; una pieza cargada no es de QB aunque cumpla el brief — _Eli, 15-09_ · ✔×1
 - **R-03** · Cada pieza muestra cóctel, plato o rostro — _Eli, 15-09_ · ✔×1
-- **R-04** · ALL YOU CAN DRINK es un bloque cerrado igual al KV: sólo cambia la foto; logo, nombre, botón con degradado y «TODOS LOS MARTES / POR $13.990 / 18:00 a 21:00 hrs» no se tocan — _Eli, 17-09: «botón verde con efecto de degradado y logo + el nombre no»; medido igual al píxel en las ST de junio y septiembre_ · ✔×2
+- **R-04** · ALL YOU CAN DRINK es un bloque cerrado igual al KV: sólo cambia la foto; logo, nombre, botón con degradado y «TODOS LOS MARTES / POR $13.990 / 18:00 a 21:00 hrs» no se tocan — _Eli, 17-09: «botón verde con efecto de degradado y logo + el nombre no»; medido igual al píxel en las ST de junio y septiembre; ST n°2 S1 oct (AYCD 06-10), Eli 28-09: «la veo perfecta»_ · ✔×3
 - **R-05** · Se escribe «ALL YOU CAN DRINK», en versales («ALL» y «DRINK» ExtraBold, «YOU» y «CAN» itálica) — _Eli, 17-09; reglas.yaml `aycd-grafia`_ · ✔×1
 - **R-06** · Se escribe «Sunset QB»: «Sunset» en Brushwell, enlazado con el logotipo — _Eli 15-09; medido en `Post n°2 QB SUNSET`; reglas.yaml `sunset-grafia`_ · ✔×1
 - **R-07** · En una promo con KV, el KV gana a la redacción del brief; del brief se toma literal sólo lo que el KV no cubre — _ST AYCD 28-09, S5, 17-09; Sunset 09-10, Eli 25-09_ · ✔×2
 - **R-08** · El botón lleva el degradado horizontal (oscuro en bordes, claro al centro) y esquinas vivas — _barrido de `PROMOS QB 2026 AYCD 2026 ST.png`, 17-09; Eli lo declaró intocable_ · ✔×1
 - **R-09** · El logotipo hace de **palabra** en la frase («MEJOR PAYA DE **QB**», «*Sunset* QB»), no de firma en la esquina — _medido en `ST n°2 S3 QB` y `Post n°2 QB SUNSET`, 15-09_ · ✔×2
 - **R-10** · Todo va centrado; el titular es un bloque de dos pesos del mismo cuerpo — _medido en `ST n°2 S3 QB` (una pieza), 15-09_ · ✔×1
-- **R-11** · Toda cifra en Raleway lleva **cifras de caja alta (`lnum`)**; activar «tabulares» no hace nada porque `tnum` no existe — _pedido de Eli 15-09 («los números suelen verse extraños»), diagnóstico con fontTools_ · ✔×1
+- **R-11** · Toda cifra en Raleway lleva **cifras de caja alta (`lnum`)**; activar «tabulares» no hace nada porque `tnum` no existe — _pedido de Eli 15-09 («los números suelen verse extraños»), diagnóstico con fontTools; Eli 28-09 sobre la ST n°1 S1 (Banco de Chile): «los números del 20 OFF y del 30 OFF queden armónicos, se ve desordenado… es una regla de Raleway, que se vea todo recto»_ · ✔×2. Ojo: todo componente propio (cajas, cifras sueltas) tiene que llevar `...QB_CIFRAS`; `Linea` y `BotonVerde` lo traen, una caja escrita a mano no
 - **R-12** · La letra chica no tiene una sola fuente: Bell MT Italic en el post de Sunset, Raleway Itálica en la ST de AYCD. Mira la pieza antes de elegir — _corrección del 17-09_ · ✔×1
 - **R-13** · Antes de diagramar se pregunta **«¿esta va a paid?»**; si sí o hay duda, el texto va dentro de la zona segura (250 / 340 / 115 px en 9:16) — _Eli, 15-09: «El texto es importante que no pueda ir fuera del margen»; Eli 25-09: «ten cuidado con las medidas que aparecen en Instagram»_ · ✔×4. Desde el 25-09 se aplica a **las 11 historias** de octubre, orgánicas incluidas, y también al logo (tope ≥ 250)
 - **R-14** · En una pieza animada, la zona segura se mide en el **último** fotograma — _manual §6_ · ✔×1
@@ -72,19 +72,20 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **R-29** · Las promos se mantienen en el tiempo: una vigente no se da por vencida sola, se confirma con Eli — _Eli, 15-09_ · ✔×1
 - **R-30** · Ni títulos ni bajadas llevan punto (final ni intermedio), aunque el brief lo traiga — _regla del cliente Hilton, 23-09-2026, citada en el manual de QB; el cliente le sacó los puntos al 09-10 en la grilla, 25-09_ · ✔×2
 - **R-31** · Al corregir en Drive se sube con **nombre nuevo** (v4, v5…): la vista previa de Drive queda cacheada al reemplazar por el mismo ID — _17-09, Eli «no veo el cambio»; repetido en v5, v6 y v7_ · ✔×4 · ⚠️ **25-09 se incumplió**: la ronda de Eli se subió reemplazando con el mismo nombre (se le avisó del caché). La próxima ronda va con nombre nuevo
-- **R-32** · Sólo se diseña lo que está `OK PARA DISEÑAR`; `PENDIENTE POR CLIENTE` no se toca — _bitácora 17-09, 21-09, 24-09 (Trivia de brindis, Reel DJ); 25-09: 8 piezas en CAMBIADO no se diseñaron; 28-09: el feed de S1 entero en CAMBIADO, no se tocó_ · ✔×5
+- **R-32** · Sólo se diseña lo que está `OK PARA DISEÑAR`; `PENDIENTE POR CLIENTE` no se toca — _bitácora 17-09, 21-09, 24-09 (Trivia de brindis, Reel DJ); 25-09: 8 piezas en CAMBIADO no se diseñaron; 28-09: el feed de S1 entero en CAMBIADO, no se tocó; 28-09 tarde: 6 historias en CAMBIADO sin tocar_ · ✔×6
 - **R-33** · No se entrega con menos bitrate que lo aprobado (la S5 salió a crf 10 para igualar 4.484 kb/s) — _ronda 5, 21-09_ · ✔×1
 - **R-34** · Un negro saturado que el QA lee como «foto estirada» se arregla con grano de película sutil (±2), no bajando la foto con una franja negra lisa — _octubre, 24-09_ · ✔×1
 - **R-35** · El video de octubre se rinde a 2,5× y se baja a 2250×4000 con lanczos (2,0833× da alto no entero) — _`scripts/qb-oct-render.sh`, 24-09_ · ✔×1
 - **R-36** · Bell MT y Brushwell son licencia del cliente: no se reusan en otra marca — _manual §4_ · ✔×1
-- **R-37** · Si la promo ya tiene pieza aprobada (bancos, Sunset), se hace **sobre la aprobada**: cambian sólo la foto y los textos del brief; logo, sellos, marco, cajas, tarjetas y logos del banco no se redibujan — _Eli 25-09: «Banco de Chile y todos los bancos ya tenemos los diseños aprobados, los logos que hay que utilizar» · «Sunset QB, usa tal cual la pieza gráfica seleccionada, sólo cambia textos… el logo de Sunset QB déjalo tal cual» · «el 8 de octubre, el banco ya está aprobado, solamente cambios de fotografías»_ · ✔×1. Plantillas y elementos: manual «Piezas de banco y promos: sobre la APROBADA»
+- **R-37** · Si la promo ya tiene pieza aprobada (bancos, Sunset), se hace **sobre la aprobada**: cambian sólo la foto y los textos del brief; logo, sellos, marco, cajas, tarjetas y logos del banco no se redibujan — _Eli 25-09: «Banco de Chile y todos los bancos ya tenemos los diseños aprobados, los logos que hay que utilizar» · «Sunset QB, usa tal cual la pieza gráfica seleccionada, sólo cambia textos… el logo de Sunset QB déjalo tal cual» · «el 8 de octubre, el banco ya está aprobado, solamente cambios de fotografías»; Eli 28-09 sobre la ST n°4 S1 (CMR): «el texto de todos los días tiene que quedar igual de curvo, con esa curvatura… el 20 % de descuento déjalo como estaba el original»; y sobre la n°5 (Sunset): «que se vea un poco más similar a la de referencia»_ · ✔×2. **Se calca midiendo** la aprobada (cajas de glifo por componentes conexos), no a ojo: una curva no se aproxima con `rotate()` y el cuerpo del 20 sale de la altura medida. Plantillas y elementos: manual «Piezas de banco y promos: sobre la APROBADA»
 - **R-38** · Pocas tipografías: la pieza va en **Raleway**, y Bell MT sólo como acento en una palabra (en la 14, «Adivina») — _Eli 25-09 sobre la 14-10: «estás usando muchas tipografías, sólo usa Raleway, y en adivina puede ser la distinta, Bell»_ · ✔×1
 - **R-39** · Nadie que parezca trabajador del hotel (traje, uniforme, garzón) aparece como invitado: en las escenas sociales, sólo invitados — _Eli 25-09 sobre la 26-10: «salen trabajadores del hotel, no pueden usar esa»_ · ✔×1
 - **R-40** · La foto no se sobregradúa: nada de quemado ni saturado. La fuente preferida es el **shooting de la carta de enero 2026** (foto de estudio, va casi sin tocar) — _Eli 25-09 sobre la 01-10: «se ve como quemado, muy saturado, no me gusta… usa del shooting nuevo… una foto mucho más bonita, más elegante»_ · ✔×1
 - **R-41** · Las alternativas de un sticker de encuesta las fija el cliente en la celda INTERACCIÓN y van literales; el ✅ marca la respuesta para contenido y **no** se pinta en la pieza — _grilla de octubre, ST 14-10, leída 25-09_ · ✔×1
 - **R-42** · Un carrusel de promo abre con la **G1 limpia** (sólo la foto, sin texto) y la promo va en la lámina siguiente — _cliente, grilla QB oct FEED!E14 (post AYCD 07-10, pasó de estático a carrusel), leído 28-09-2026: «Que sea como esos carruseles que hicimos antes, en que la G1 está limpia y luego viene la promo»_ · ✔×1
 - **R-43** · Una historia muestra **la información más importante de inmediato**: ante un concepto elaborado (collage de 3 fotos con cortes y dibujos), va la opción más simple — _cliente, grilla QB oct STORIES!E14 (cumpleaños 07-10): «veamos opción más simple, siendo una story mostraría la información más importante de inmediato»_ · ✔×1
-- **R-44** · Una pieza se identifica por su **título**, nunca por la columna ni la fecha: la grilla las corre sin avisar — _diff de la grilla QB oct, 28-09-2026: ST Banco de Chile 01→02-10, el REEL DJ de la semana 5 pasó de la columna R a la Q y el carrusel de bancos apareció en una columna sin fecha (H)_ · ✔×1
+- **R-44** · Una pieza se identifica por su **título**, nunca por la columna ni la fecha: la grilla las corre sin avisar — _diff de la grilla QB oct, 28-09-2026: ST Banco de Chile 01→02-10, el REEL DJ de la semana 5 pasó de la columna R a la Q y el carrusel de bancos apareció en una columna sin fecha (H); 28-09 tarde: se corrieron otra vez las fechas de casi todas las historias y aparecieron 8 columnas nuevas_ · ✔×2
+- **R-45** · En la itálica de Raleway la ligadura **«ff»** se ve pegada: en «office» y similares se apaga (`fontVariantLigatures: "none"`) y se da aire entre las f; y una bajada que acompaña al titular no se deja chica (en Sunset, 32 → 38 en mesa) — _Eli 28-09 sobre la ST n°5 S1 (Sunset): «Tu after office a otro nivel lo encuentro un poco extraño. Podrías aumentar un poco el tamaño. Y las dos F de Office separarlo un poco porque se ve muy juntos»_ · ✔×1
 
 ## 5. Excepciones
 
@@ -93,6 +94,7 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **E-03** · El ancho desparejo de las cifras sólo importa **apiladas** (listas de precios, horarios en columna): ahí Bell MT (0,500 em exactos) o caja alta + alineación por código. En una línea suelta no fuerces el ancho — _manual §4, 15-09_
 - **E-04** · Un cambio de texto de contenido manda sobre la grilla: desde la v7 la bajada es «Los martes saben diferente en QB.», no «Los números están claros.» — _Nicolás Ávila, 23-09_
 - **E-06** · Si la pieza aprobada dejaba texto fuera de la zona segura (CMR: titular a 206 y legal a 1819; Sunset: legal a 1846), la versión nueva lo sube: manda R-13 sobre R-37 — _decisión del estudio 25-09 tras el aviso de Eli; sin veredicto de Eli todavía_
+- **E-07** · R-31 (nombre nuevo por ronda) cede cuando Eli pide la carpeta limpia: se sube con el **nombre base** y lo anterior va a la **papelera**, una pieza = un archivo — _Eli 28-09, S1 de octubre: «puedes subir reemplazando la S1 de QB, de nuevo, y borra lo anterior»_. Ojo: el token del estudio (`drive.file`) sólo ve lo que subió él; la carpeta se mira con el conector de Drive antes de borrar
 - **E-05** · «LA LEY DE ELI» de DT (en DT sólo diseño, el brief no se toca) **no** se da por extendida a QB — _manual; sin confirmar_
 
 ## 6. Lo que se aprueba a la primera
@@ -102,7 +104,8 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **A-03** · Foto a sangre oscurecida arriba y abajo, titular de dos pesos y franja verde a sangre al pie — _`ST n°2 S3 QB`, aprobada_
 - **A-04** · Medir el canto real del chasis por tono y ajustar la silueta: «Mejoró mucho la máscara de capa» — _ST AYCD S5 ronda 5, Eli 21-09 (con un ajuste pendiente arriba a la derecha)_
 - **A-05** · Close friends: manos brindando semicenital, de noche, con una nota de papel escrita en Brushwell — _ST 23-10, Eli 25-09: «me parece bastante bien» (único ajuste: estrellas verdes)_
-- ⚠️ Todavía **ninguna pieza del estudio** para QB tiene un «aprobado» explícito: la v6 y la v7 no tienen veredicto escrito.
+- **A-06** · ST n°2 S1 oct (AYCD 06-10): el bloque del KV con foto nueva — _Eli 28-09: «la veo perfecta»_. Primera pieza del estudio para QB con visto explícito de Eli
+- ⚠️ Del cliente todavía no hay «aprobado» explícito para ninguna pieza del estudio; la v6 y la v7 de la S5 no tienen veredicto escrito.
 
 ## 7. Lo que se rechaza
 
@@ -117,6 +120,8 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **X-10** · Trabajadores del hotel en la escena social — _ST 26-10 Terraza (clip nanvo8519), Eli 25-09, 1 ronda_
 - **X-11** · Tres familias en una historia y alternativas presentadas como formulario (cajas con letras A/B/C): «se ve un poco feo» — _ST 14-10, Eli 25-09, 1 ronda_
 - **X-12** · (interno) Borrar el texto de una pieza aprobada con inpainting de OpenCV: sobre el bokeh deja manchas y la sombra del texto deja las letras fantasma. El fondo limpio estaba en el PDF de la promo — _09-10, 25-09, cazado antes de entregar_
+- **X-13** · Sobre una pieza aprobada, aproximar a ojo lo que la aprobada tenía medido: «¡Todos los días!» recto y girado en vez de en curva, el 20 % 15 % más chico y con cifras de estilo antiguo — _ST n°4 S1 oct (CMR), Eli 28-09: «se ve muy desordenado… se ve muy mal», 1 ronda_
+- **X-14** · Cifras de estilo antiguo en las cajas de descuento (2 y 0 chicos, 3 bajo la línea) — _ST n°1 S1 oct (Banco de Chile), Eli 28-09, 1 ronda_
 - **X-07** · (interno) Estática en el frame 239 porque lo decía la cabecera: la estática y el video mostraban las bandas en lugares distintos — _v7, 23-09, cazado antes de entregar_
 
 ## 8. Preguntas abiertas
@@ -138,7 +143,16 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - FEED 05-10 sigue diciendo CARRUSEL con el brief de ST cumpleaños, y el comentario pide «un estático de cumpleaños». ¿Qué formato queda? → contenido (no se diseña: CAMBIADO)
 - El carrusel de bancos pasó a **CMR Falabella 40 % sábados + 30 % débito** (Banco de Chile salió) y el cliente lo pidió para S2. Cuando pase a OK va sobre la pieza CMR aprobada (R-37). Ojo: el brief lo sigue rotulando «SLIDE 2 — BANCO DE CHILE» y no trae slide 3 → contenido
 
+- Las 8 casillas APROBADO nuevas de STORIES (5 «ST APROBADA», 3 «ST BANCO FALABELLA» CMR 40 %) no traen brief: ¿se republican las aprobadas tal cual o hay que prepararlas con fecha/foto nueva? → **Eli**
+- La Ensalada animada está dos veces en STORIES (19-10 y una sin fecha, mismo brief): ¿es un duplicado o son dos publicaciones? → contenido
+
 ## 9. Registro de cosechas
+
+### 2026-09-28 (tarde) — Claude con Eli · ronda 3 de la S1 de octubre + relectura de la grilla
+- **Feedback de Eli, 4 historias de la S1:** n°1 cifras rectas (R-11 ✔×2, X-14) · n°2 «perfecta» (A-06, R-04 ✔×3) · n°4 curva y 20 % como el original (R-37 ✔×2, X-13) · n°5 más parecida a la referencia (R-37) y bajada más grande con las ff separadas (**R-45 nueva**).
+- Grilla: R-32 ✔×6 (nada en CAMBIADO se tocó), R-44 ✔×2 (columnas corridas otra vez). R-31 cumplida: v3 con nombre nuevo.
+- §8: 2 preguntas nuevas (las 8 APROBADO sin brief, la Ensalada duplicada).
+- **E-07 nueva:** Eli pidió subir la S1 reemplazando y borrando lo anterior; la carpeta queda con un archivo por pieza, con el nombre base.
 
 ### 2026-09-28 — Claude con Eli · `/al-dia hilton`, foco S1 de octubre (sin piezas)
 - **Reglas nuevas del cliente (grilla, verbatim):** R-42 (carrusel con G1 limpia y la promo después) y R-43 (story simple, la info principal de inmediato). R-44 sale del diff: la pieza se busca por título.

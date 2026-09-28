@@ -36,12 +36,11 @@ BARRIDO = 12
 
 # (archivo, fotograma en que la escena ya está entera) — igual que CLIPS en el .tsx
 CLIPS = [
-    # ronda 6 (28-09): SÓLO fotos. El número es el fotograma de corte + 6, para que
+    # ronda 7 (28-09): TRES fotos. El número es el fotograma de corte + 6, para que
     # el corte caiga a mitad del fundido de 15 del render (`DtStFamilyTimeOctR6`)
     ("ft-f-lobby.jpg", 0),
-    ("ft-f-almohadas.jpg", 126),
-    ("ft-f-hab.jpg", 238),
-    ("ft-f-cookie.jpg", 350),
+    ("ft-f-almohadas.jpg", 80),
+    ("ft-f-hab.jpg", 264),
 ]
 GRAFICA = RAIZ / "out/hilton/dt/entrega-oct/ft-video-grafica.mov"
 FINAL = RAIZ / "out/hilton/dt/entrega-oct/DT ST 01-10 Family Time primavera.mp4"

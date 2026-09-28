@@ -49,6 +49,11 @@ PIEZAS = [
     (2, "STS", "DT ST 05-10 Feriado ER y FT.png"),
     (2, "STS", "DT ST 05-10 Feriado Escapada Romantica.png"),
     (2, "STS", "DT ST 05-10 Feriado Family Time.png"),
+    # aprobadas el 28-09 con los ajustes de la ronda 3: carrusel «5 cosas» (FEED SEMANA 4) y Family Time (SEMANA 5)
+    *[(4, "FEED", f"C1 S4 DT n°{n}.png") for n in range(1, 8)],
+    (5, "FEED", "Post n°1 S5 DT.png"),
+    # ST 22-10 Coworking: Eli la revisa (ronda 3) — se agrega cuando la apruebe:
+    # (4, "STS", "DT ST 22-10 Coworking.mp4"), (4, "STS", "DT ST 22-10 Coworking.gif"),
 ]
 
 

@@ -49,8 +49,8 @@ export const DtFtFamilyTimeOct: React.FC<{tinta?: 'blanco' | 'azul'}> = ({tinta 
 
       <Logo formato="feed" />
 
-      {/* titular arriba a la derecha, alineado a la derecha como la ref */}
-      <div style={{position: 'absolute', top: 290, right: DT.geometria.margenLateral, textAlign: 'right'}}>
+      {/* titular — ronda 3 (Eli, 28-09): «déjalo centrado, se ve extraño que esté muy hacia un lado» */}
+      <div style={{position: 'absolute', top: 290, left: 0, width: 1080, textAlign: 'center'}}>
         {[
           {t: 'Los mejores momentos en familia', w: DT.pesos.semibold},
           {t: 'están más cerca de lo que imaginas', w: DT.pesos.light},

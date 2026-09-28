@@ -51,26 +51,35 @@ const INCLUIDOS = [
  * ENCIMA de la anterior, que no se baja — ver `disolvencia-no-se-baja-la-que-sale`).
  * Se eligieron por tener el tercio de arriba tranquilo (techo, muro), que es donde va
  * el titular, y la gente en el medio, que es lo que la bajada no tapa.
+ * Ronda 7 (Eli, 28-09): «utiliza menos imágenes… que se vean más realistas». Quedan
+ * TRES (lobby → almohadas → habitación). ⛔ Fuera la cookie: con zoom, la «niña» de
+ * la izquierda se lee como una mujer adulta y la foto está sobreprocesada.
  * ⛔ La vista a Santiago quedó fuera: el cuadro y la cabeza del papá caen justo bajo
  * el titular (se probó, «clima perfecto» le cruzaba la cara).
  */
 const FOTOS = [
-  {src: 'assets/hilton/dt/oct/ft-f-lobby.jpg', desde: 0},
-  {src: 'assets/hilton/dt/oct/ft-f-almohadas.jpg', desde: 112},
-  {src: 'assets/hilton/dt/oct/ft-f-hab.jpg', desde: 224},
-  {src: 'assets/hilton/dt/oct/ft-f-cookie.jpg', desde: 336},
+  {src: 'assets/hilton/dt/oct/ft-f-lobby.jpg', desde: 0, y: 0, s: 1},
+  // bajada 60 px (con 5 % de escala para no destapar el borde): así las cabezas de
+  // los niños quedan bajo el titular y no pegadas a «en familia!»
+  {src: 'assets/hilton/dt/oct/ft-f-almohadas.jpg', desde: 66, y: 60, s: 1.05},
+  // subida 40 px: las caras de los niños quedan sobre el recuadro, no detrás
+  {src: 'assets/hilton/dt/oct/ft-f-hab.jpg', desde: 250, y: -40, s: 1.03},
 ] as const;
 const FUNDIDO = 15;
 
+/**
+ * Ronda 7: «Días más largos» dura menos (~2 s) y, cuando entra «¡El momento exacto…»,
+ * entra con él el recuadro de Family Time: el programa queda ~12 s en pantalla.
+ */
 const T = {
-  entra1: 14,
-  sale1: 98,
-  entra2: 132,
-  bajada: 236,
+  entra1: 8,
+  sale1: 58,
+  entra2: 80,
+  bajada: 80,
 } as const;
 
 /** La bajada: ancho de columna, pegada sobre la zona segura de abajo. */
-const B = {x: DT.geometria.margenLateral, ancho: 1080 - 2 * DT.geometria.margenLateral, pie: 1920 - DT.seguras.story.abajo - 20};
+const B = {x: DT.geometria.margenLateral, ancho: 1080 - 2 * DT.geometria.margenLateral, pie: 1920 - DT.seguras.story.abajo - 12};
 
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 const suave = Easing.bezier(0.33, 0, 0.2, 1);
@@ -93,7 +102,7 @@ const FotoFija: React.FC<{i: number}> = ({i}) => {
     <AbsoluteFill style={{opacity: op}}>
       <Img
         src={staticFile(e.src)}
-        style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${z})`}}
+        style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transform: `translateY(${e.y}px) scale(${z * e.s})`}}
       />
     </AbsoluteFill>
   );
@@ -168,7 +177,7 @@ export const DtStFamilyTimeOctR6: React.FC<{guia?: boolean; soloGrafica?: boolea
             left: B.x,
             width: B.ancho,
             bottom: 1920 - B.pie,
-            padding: '30px 40px 26px',
+            padding: '22px 40px 20px',
             boxSizing: 'border-box',
             borderRadius: 26,
             background: 'rgba(9,25,78,0.20)',
@@ -181,12 +190,13 @@ export const DtStFamilyTimeOctR6: React.FC<{guia?: boolean; soloGrafica?: boolea
           }}
         >
           {/* fila 1 · qué es y cuánto vale */}
-          <div style={{...eb.marca, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 30}}>
+          {/* ronda 7: centrados y apilados — el nombre del programa y, debajo, su precio */}
+          <div style={{...eb.marca, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <div
               style={{
                 fontFamily: DT.fuentes.titular,
                 fontStyle: 'italic',
-                fontSize: 78,
+                fontSize: 70,
                 lineHeight: 1,
                 color: BLANCO,
                 textShadow: SOMBRA,
@@ -196,7 +206,7 @@ export const DtStFamilyTimeOctR6: React.FC<{guia?: boolean; soloGrafica?: boolea
               <span style={{fontWeight: DT.pesos.semibold}}>Family</span>
               <span style={{fontWeight: DT.pesos.light}}> Time</span>
             </div>
-            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <div style={{marginTop: 12, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
               <div
                 style={{
                   background: BLANCO,
@@ -205,7 +215,7 @@ export const DtStFamilyTimeOctR6: React.FC<{guia?: boolean; soloGrafica?: boolea
                   padding: '8px 30px 4px',
                   fontFamily: TRADE_CN,
                   fontWeight: 700,
-                  fontSize: 60,
+                  fontSize: 52,
                   lineHeight: 1,
                   letterSpacing: '0.01em',
                 }}
@@ -228,19 +238,19 @@ export const DtStFamilyTimeOctR6: React.FC<{guia?: boolean; soloGrafica?: boolea
             </div>
           </div>
 
-          <div style={{...eb.iconos, height: 1.5, background: 'rgba(250,250,250,0.5)', margin: '24px 0 20px'}} />
+          <div style={{...eb.iconos, height: 1.5, background: 'rgba(250,250,250,0.5)', margin: '18px 0 16px'}} />
 
           {/* fila 2 · qué incluye */}
           <div style={{...eb.iconos, display: 'flex', justifyContent: 'space-between'}}>
             {INCLUIDOS.map((c) => (
               <div key={c.icono} style={{flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <Img src={staticFile(c.icono)} style={{height: 54, width: 54 * c.prop}} />
+                <Img src={staticFile(c.icono)} style={{height: 48, width: 48 * c.prop}} />
                 <div
                   style={{
                     marginTop: 10,
                     fontFamily: DT.fuentes.titular,
                     fontWeight: DT.pesos.regular,
-                    fontSize: 24,
+                    fontSize: 22,
                     lineHeight: 1.18,
                     color: BLANCO,
                     textShadow: SOMBRA,
@@ -257,14 +267,14 @@ export const DtStFamilyTimeOctR6: React.FC<{guia?: boolean; soloGrafica?: boolea
             ))}
           </div>
 
-          <div style={{...eb.correo, height: 1.5, background: 'rgba(250,250,250,0.5)', margin: '20px 0 18px'}} />
+          <div style={{...eb.correo, height: 1.5, background: 'rgba(250,250,250,0.5)', margin: '16px 0 14px'}} />
 
           {/* fila 3 · cómo se reserva */}
           <div style={eb.correo}>
             <div
               style={{
                 fontFamily: DT.fuentes.texto,
-                fontSize: 32,
+                fontSize: 29,
                 lineHeight: 1,
                 letterSpacing: '0.02em',
                 color: BLANCO,

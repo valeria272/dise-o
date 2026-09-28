@@ -38,35 +38,34 @@ con la misma campaña, está mal.
 | Fondo | `#FFFFFF` | blanco puro, sin crema |
 | ⚠️ Rojo del manual oficial | `#E52521` | el manual 2023 dice «Vivid red»; las piezas aprobadas usan `#DC1914`. **Se extiende lo aprobado**; si Diego o el cliente quieren volver al manual, cambiar `--rojo` en `sistema/base.css` |
 
-> ⛔ **REVISADO 25-09-2026: la tipografía de Más Center es GOTHAM, no Montserrat.** Diego Aguilar
-> pidió leer sus editables. Los `.ai` de abril a septiembre (incluido `PAID SEPT IFB.ai`, la pieza de
-> referencia de esta tabla) dicen: titular **Gotham Black** (43,3 feed / 50,3 story), bajada
-> **Gotham Rounded Medium** (32 / 56) y CTA **Gotham Rounded Medium** (29,5 / 33,3). Orgánico,
-> arriendo, LinkedIn, mapas y reels también van en Gotham Rounded. La medición de abajo sólo comparó
-> Montserrat contra Poppins. Detalle, colores por mes y gramática del orgánico:
-> [`ADN-EDITABLES.md`](ADN-EDITABLES.md). **El sistema (`base.css`, `build.py`, `MasCenterReel.tsx`)
-> sigue en Montserrat hasta que Diego confirme la migración**; falta el archivo de Gotham Black.
-> Fuente de verdad del diseño: `D:\DIEGO 2023\COPYWRITERS\MAS CENTER\` (disco de Diego) y el Drive
-> `GRUPO IFB - MÁS CENTER / 2026` (`1ODBfU0HUbvdwlKuwllcQ39QbR4V_qbSj`).
+### Tipografía — GOTHAM (leída en el editable, sistema migrado el 28-09-2026)
 
-### Tipografía — ~~Montserrat (medida)~~ (histórico: ver el aviso de arriba)
+La fuente sale de los `.ai` y `.aep` de Diego Aguilar, no de medir glifos (ver §9, 28-09). Cuerpos e
+interlineados tomados del `PAID SEPT IFB.ai` con PyMuPDF; el reel, del `PERFOMANCE MASCENTER AGOSTO.aep`
+y del grosor de trazo sobre `r-performance-agosto.mp4`.
 
-⚠️ **El manual 2023 (p. 26) dice Poppins; las piezas aprobadas y los reels del cliente están en
-Montserrat.** Se midió glifo a glifo el 04-09-2026 a igual altura de capital: el CTA de septiembre
-mide 394 px, Montserrat Medium 392, Poppins Medium 370; la pastilla calza con Montserrat Bold
-(619 vs 641; Poppins 594). Valeria lo vio a ojo antes de medirlo. **Se usa Montserrat** hasta que
-Diego diga otra cosa. Archivo: `sistema/assets/fonts/Montserrat.ttf` (variable, 100–900).
-| Rol | Peso | Tamaño feed 1:1 | Tamaño story 9:16 | Archivo |
+| Rol | Fuente | Feed 1:1 | Story / reel 9:16 | Archivo |
 |---|---|---|---|---|
-| Titular en pastilla | Montserrat Bold 700, VERSALES | 43 px / interlínea 43 | 50 px / 50 | `Montserrat.ttf` |
-| Bajada | Montserrat SemiBold 600 | 30,5 px / 36 | 50 px / 56 | `Montserrat.ttf` |
-| CTA en burbuja | Montserrat Medium 500, VERSALES | 29 px / 33 | 33,5 px / 37 | `Montserrat.ttf` |
-| Reel: titular | Montserrat Bold 700, VERSALES | — | 90 px / 98 | |
-| Reel: pastilla | Montserrat Medium 500 | — | 46 px / 60 | |
+| Titular en pastilla (VERSALES) | **Gotham Black** | 43,3 / 43,3 | 50,3 / 50,3 | `Gotham-Black.ttf` |
+| Bajada | **GothamRnd Medium** | 32 / 36 | 56 / 56 | `GothamRnd-Medium.ttf` |
+| CTA en burbuja (VERSALES) | **GothamRounded Medium** | 29,6 / 33,3 | 33,3 / 37,4 | `GothamRounded-Medium.ttf` |
+| Reel: titular (VERSALES) | **GothamRounded Bold** | 60 / 66 | 90 / 98 | `GothamRounded-Bold.ttf` |
+| Reel: pastilla y cierre | **GothamRnd Book** | 38 · 40 | 46 · 57 | `GothamRnd-Book.ttf` |
+| Orgánico y arriendo | GothamRnd Bold/Book/Medium, GothamRounded Light — ver [`ADN-EDITABLES.md`](ADN-EDITABLES.md) §3 | | | |
 
-Las capitales se midieron sobre la pieza (31 px feed, 36 px story) y se convirtieron con
-la altura de capital de Montserrat (0,70 em). ⚠️ Grupo IFB usa Helvetica Neue + Cera Pro:
-son marcas distintas del mismo manual, no mezclar.
+- **Archivos:** `sistema/assets/fonts/` y `public/assets/fonts/mascenter/`, en TTF. Se generan con
+  `python scripts/mascenter-gotham-ttf.py`, que busca los `.otf` instalados o en el disco KINGSTON y
+  convierte los contornos CFF a TrueType, porque Chrome rechaza algunos CFF en silencio (caso Brushwell).
+- **Calibración:** `python scripts/mascenter-calibrar-gotham.py` renderiza la pieza `CTRL` (textos de
+  septiembre) y la compara contra el `.ai`: ±3 px en vertical y ±1,5 % en horizontal. Pasó el 28-09.
+  Diego aprieta a mano algunas líneas (−10/1000 em); el sistema no copia ese tracking.
+- En el reel, titular y pastilla usan `text-wrap: balance` (sin palabra sola), «Más Center» va unido
+  con un espacio que no corta, y el cierre fija sus cortes con el texto completo antes de tipearse.
+- Excepción E-04: landings y presentación comercial siguen en **Poppins** (brochure de Algarrobal).
+- Historia: 04-09 se midió Montserrat contra Poppins y ganó Montserrat; Gotham nunca estuvo entre las
+  candidatas. El manual 2023 dice Poppins. Ninguna de las dos es la fuente de la marca.
+- Fuente de verdad del diseño: `D:\DIEGO 2023\COPYWRITERS\MAS CENTER\` (disco de Diego) y el Drive
+  `GRUPO IFB - MÁS CENTER / 2026` (`1ODBfU0HUbvdwlKuwllcQ39QbR4V_qbSj`).
 
 ### Logos — cuál va en cada fondo
 | Archivo | Cuándo |
@@ -107,9 +106,9 @@ Nomenclatura del brief: `CLIENTE_Pieza_Formato_Medida`. Entrega en Drive:
 
 ### Reels (familia «r-performance»)
 **Lo que se conserva del reel de agosto del cliente (medido a 60 fps):** logo blanco
-arriba (tinta 211 px, y=118), titular en versales Montserrat Bold 90 px alineado a x=110
+arriba (tinta 211 px, y=118), titular en versales GothamRounded Bold 90 px alineado a x=110
 en el tercio inferior (⚠️ **la caja termina en y=1480 y no pasa de x=900**: ver §9, 24-09), pastilla roja (627 px, radio 48) con **ícono en círculo blanco
-montado en el borde superior** y texto Medium 46 px, cierre en rojo pleno (~3 s) con el
+montado en el borde superior** y texto GothamRnd Book 46 px, cierre en rojo pleno (~3 s) con el
 logo grande (tinta 405 px, centrado) y una línea Medium ~50 px, pista de ~81 BPM.
 Los reels del cliente duran 15–20 s aunque el brief diga 10 s.
 
@@ -127,7 +126,7 @@ titular. Todo en `src/compositions/mascenter/MasCenterReel.tsx` (constantes `FUN
 «el cierre sácalo de las carpetas editables»), medido a 60 fps sobre el reel de agosto:
 panel rojo que entra desde la izquierda en 0,25 s · el logo baja desde arriba (~220 px) y
 se asienta en 0,23 s con la tinta de 405 px y su borde superior en y=840 · 0,1 s después el
-texto se escribe a ~80 caracteres/s en **Montserrat Regular ~57 px**, interlínea 59, centrado
+texto se escribe a ~80 caracteres/s en **GothamRnd Book ~57 px**, interlínea 59, centrado
 en una caja de 665 px desde y=1310 · se queda 3,1 s hasta el final, sin fundido. El último
 plano sigue vivo bajo el barrido (si no, queda un hueco negro).
 
@@ -167,6 +166,8 @@ historia. Música: la misma pista de los reels de julio y agosto del cliente (ve
 
 ## 8. QA obligatorio — antes de mostrar nada
 - [ ] Medida exacta: 1080×1080 / 1080×1920 (el cliente entrega 1081 — nosotros no)
+- [ ] Tipografía Gotham cargada de verdad: `python scripts/mascenter-calibrar-gotham.py` da «✓ calibrado»
+      (si una cara no carga, Chrome pone una de reemplazo sin avisar y la calibración falla)
 - [ ] Rojos: pastilla `#DC1914`, CTA `#D80000`; ninguno otro
 - [ ] Logo: tinta 205–211 px, centrado en x=540, borde superior en 64 (feed) / 117 (story)
 - [ ] Rótulos de terceros legibles y correctos a zoom 1:1 (Jumbo, Cruz Verde…)
@@ -205,6 +206,12 @@ historia. Música: la misma pista de los reels de julio y agosto del cliente (ve
 - **09-09-2026** — el formulario de la landing decía «Recibimos tu postulación» y **no enviaba
   nada**. Un pendiente técnico deja de ser un pendiente cuando la página ya está publicada: si no
   se puede enviar de verdad, el mensaje no puede prometer que sí.
+- **28-09-2026** — **el sistema estuvo en la fuente equivocada desde el primer día.** La ronda 1 del
+  04-09 salió en Poppins porque lo decía el manual; se corrigió a Montserrat midiendo glifos, pero
+  Gotham nunca estuvo entre las candidatas, y el editable decía Gotham desde el principio. Además, el
+  `base.css` commiteado seguía declarando Poppins aunque las piezas se entregaron en Montserrat.
+  Regla: **la tipografía se lee en el editable (PyMuPDF sobre el `.ai`, texto de los `.aep`) antes de
+  medir glifos, y la migración se valida renderizando contra el editable, no a ojo.**
 - **24-09-2026** — los reels de octubre (v4) salieron con la **última línea del titular dentro de la
   franja que tapa Reels**: la caja terminaba en y=1606 (`titBottom` 314) y llegaba a x≈1020 (`right`
   60), cuando el propio brief marca 420 px abajo y 180 px a la derecha. Afectaba al gancho del primer

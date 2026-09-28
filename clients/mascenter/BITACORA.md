@@ -1,3 +1,52 @@
+## 2026-09-28 (tarde) — Diego Aguilar (con Claude) · ⏸ ENCARGO PENDIENTE: carrusel 01-10 de la grilla IFB de octubre
+
+**El encargo (literal de Diego):** «generes el primer contenido de la grilla instagram, ten en cuenta el
+enlace de referencia REF para la portada pero mantiene el estilo de la plantilla, todo lo generado lo
+dejas acá».
+- **Grilla IFB octubre:** `1t7su-peTY1w4lMckpJ3BszFDSKhnRYyK` (xlsx, pestaña `gid=1480339954`). Hay que leer
+  la primera pieza de Instagram (fecha 01-10) y la columna REF.
+- **Logos del carrusel del 01-10:** carpeta `1CQotb7uJ32_DXeGzZ1SLkiaYen6p3c0p`.
+- **Plantilla:** carpeta `17p3_wtlVQyZJArrEknyXXLpyYCkjV7Jm` → `CARRUSEL` (`1jTHFCmvCxFeZ9OGcIbFqp96I_XPNkRM7`) =
+  el carrusel c-19-08 de Talca. **Ya bajada** a `raw/mascenter/octubre-2026/plantilla-carrusel/`. Su editable
+  son las mesas 11–15 de `D:\DIEGO 2023\COPYWRITERS\MAS CENTER\AGOSTO IFB\AGOSTO IFB.ai`, **ya medidas** en
+  `clients/mascenter/sistema/plantillas/carrusel-locatarios-c-19-08.json`
+  (`scripts/mascenter-geo-plantilla.py`).
+- **Entrega:** carpeta `1h7_dB1HxA2KBThQhUuUinHG24DP9wHwK`.
+
+**Por qué quedó en pausa:** el conector de Drive estaba desconectado, y el token del estudio (`drive.file`)
+no ve la grilla, los logos ni la carpeta de entrega. Sólo la plantilla es pública. Diego eligió reconectar
+el conector y seguir en un chat nuevo.
+
+**Qué sigue:** leer la grilla (pieza del 01-10 + REF), bajar los logos, armar el carrusel sobre la geometría
+medida de la plantilla (Gotham ya migrada), hacer QA y subirlo a la carpeta de entrega.
+
+## 2026-09-28 — Diego Aguilar (con Claude)
+
+**Qué se hizo:** Diego pidió «migra el sistema a gotham».
+- Gotham Black y Gotham Rounded estaban instaladas en Windows y se convirtieron a TTF con
+  `scripts/mascenter-gotham-ttf.py`, porque Chrome rechaza algunos CFF. Chrome carga las siete caras
+  (`document.fonts.check` = true).
+- `base.css` y `build.py` quedaron con los cuerpos e interlineados del `PAID SEPT IFB.ai`. El relleno lateral
+  del CTA bajó de 32 a 14 px, porque partía «NINGUNA».
+- La calibración contra el `.ai` (`scripts/mascenter-calibrar-gotham.py`, pieza `CTRL` con los textos de
+  septiembre) da líneas base a ±2 px.
+- Reel: titular en GothamRounded Bold y pastilla y cierre en GothamRnd Book (del `.aep` de agosto más el grosor
+  de trazo). Lleva `text-wrap: balance` y el cierre fija los cortes antes de tipear.
+- `/al-dia` no corrió porque el conector de Drive estaba desconectado.
+
+**Dónde quedó:** gráficas P01 de octubre en Gotham rendidas en `out/mascenter/2026-10/gotham/`, **no
+subidas**. Los reels en Gotham no se rindieron: faltan los clips y la pista en `public/assets/mascenter/`
+(están en FUENTES ESTUDIO). Los fotogramas de revisión, hechos con clips de relleno ya borrados, están en
+`out/_verificacion/mc/gotham-reel/`. Se sacaron Montserrat y Poppins de `sistema/assets/fonts/`. Manual §3,
+§4, §8 y §9, `marca.json` y el cerebro actualizados.
+
+**Qué sigue:** bajar los clips y la pista de FUENTES ESTUDIO y renderizar los cuatro reels en Gotham. Después,
+si Diego lo aprueba, re-subir el paid de octubre en sitio a `ADS OCTUBRE` (mismo fileId, con
+`scripts/mascenter-drive-reemplazar.py`) y avisar a Sebastián Córdova.
+
+**Abierto:** ¿se re-entrega el paid de octubre ya publicado? Reel 02 en 9:16: «COMUNIDAD» queda sola (igual
+que en la v5) porque «TODO EN COMUNIDAD» no cabe en 790 px.
+
 ## 2026-09-25 — Diego Aguilar (con Claude)
 
 **Qué se hizo:** Diego pidió analizar sus editables de Más Center (disco KINGSTON,

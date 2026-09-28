@@ -26,42 +26,70 @@
     "gris_manual": "#DADADA"
   },
   "fuentes": {
-    "_nota": "Montserrat, medida glifo a glifo sobre las piezas aprobadas (04-09-2026). El manual 2023 dice Poppins y NO es lo que usa el cliente.",
+    "_nota": "GOTHAM desde el 28-09-2026: leída en los editables de Diego (PAID SEPT IFB.ai con PyMuPDF; PERFOMANCE MASCENTER AGOSTO.aep + grosor de trazo sobre r-performance-agosto.mp4). Reemplaza a Montserrat (04-09), que salió de medir glifos sin tener a Gotham entre las candidatas. El manual 2023 dice Poppins: tampoco. Excepción E-04: landings y presentación siguen en Poppins (brochure Algarrobal).",
     "titular": {
-      "familia": "Montserrat",
-      "peso": 700,
+      "familia": "Gotham Black",
+      "archivo": "Gotham-Black.ttf",
+      "peso": 900,
       "versales": true,
-      "px_feed": 43,
-      "px_story": 50
+      "px_feed": 43.3,
+      "lh_feed": 43.3,
+      "px_story": 50.3,
+      "lh_story": 50.3
     },
     "cuerpo": {
-      "familia": "Montserrat",
-      "peso": 600,
-      "px_feed": 30.5,
-      "px_story": 50
+      "familia": "GothamRnd Medium",
+      "archivo": "GothamRnd-Medium.ttf",
+      "peso": 500,
+      "px_feed": 32,
+      "lh_feed": 36,
+      "px_story": 56,
+      "lh_story": 56
     },
     "cta": {
-      "familia": "Montserrat",
+      "familia": "GothamRounded Medium",
+      "archivo": "GothamRounded-Medium.ttf",
       "peso": 500,
       "versales": true,
-      "px_feed": 29,
-      "px_story": 33.5
+      "px_feed": 29.6,
+      "lh_feed": 33.3,
+      "px_story": 33.3,
+      "lh_story": 37.4
     },
     "reel_titular": {
-      "familia": "Montserrat",
+      "familia": "GothamRounded Bold",
+      "archivo": "GothamRounded-Bold.ttf",
       "peso": 700,
+      "versales": true,
       "px": 90
     },
     "reel_pastilla": {
-      "familia": "Montserrat",
-      "peso": 500,
+      "familia": "GothamRnd Book",
+      "archivo": "GothamRnd-Book.ttf",
+      "peso": 400,
       "px": 46
     },
-    "numeros": {
-      "familia": "Montserrat",
-      "peso": 700
+    "reel_cierre": {
+      "familia": "GothamRnd Book",
+      "archivo": "GothamRnd-Book.ttf",
+      "peso": 400,
+      "px": 57
     },
-    "_ruta": "clients/mascenter/sistema/assets/fonts/Montserrat.ttf",
+    "organico": {
+      "_nota": "carrusel de locatarios (ADN-EDITABLES.md §3)",
+      "nombre_locatario": "GothamRnd Bold 45",
+      "descripcion": "GothamRnd Book 42",
+      "direccion": "GothamRnd Medium 35",
+      "display": "Gotham Black 82–120"
+    },
+    "arriendo": {
+      "titular": "GothamRounded Bold 60 feed / 76 story",
+      "bajada": "GothamRounded Medium 48",
+      "beneficios": "GothamRounded Light 35 / 43",
+      "cta": "GothamRounded Bold 31 / 37"
+    },
+    "_ruta": "clients/mascenter/sistema/assets/fonts/ (TTF) · public/assets/fonts/mascenter/ (Remotion) — generar con scripts/mascenter-gotham-ttf.py",
+    "_calibracion": "scripts/mascenter-calibrar-gotham.py compara el render contra el .ai: ±3 px vertical, ±1,5 % horizontal",
     "manual_dice": "Poppins"
   },
   "logos": {

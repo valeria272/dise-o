@@ -12,17 +12,24 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 ONDA = json.load(open(os.path.join(AQUI, "assets/onda.json")))
 
 # ── geometría medida (px) — septiembre 2026, piezas 1/2/3 ─────────────────────
+# Tipografía y cuerpos desde el EDITABLE (PAID SEPT IFB.ai, leído con PyMuPDF el 28-09-2026):
+#   titular Gotham Black 43,3/43,3 feed · 50,3/50,3 story; bajada GothamRnd Medium 32/36 · 56/56;
+#   CTA GothamRounded Medium 29,6/33,3 · 33,3/37,4. El relleno de la pastilla se calculó para que
+#   las líneas base caigan donde las pone el .ai (617,6 / 660,9 feed; 1065,8… story).
+#   Relleno vertical del CTA desde las líneas base del .ai (881,5 feed · 1537 story) sin cambiar el
+#   alto medido de la burbuja (129 / 145). Relleno lateral 14/20 px: con 32/36 la línea «Y NO TE PIERDAS NINGUNA» (426 px en
+#   Gotham) no cabía y partía «NINGUNA». Calibrar con scripts/mascenter-calibrar-gotham.py.
 GEO = {
  "feed": dict(w=1080, h=1080, foto_h=1080, logo_top=54, logo_w=239.5,
-   pastilla_top=570, titular_size=44.4, titular_lh=43, pastilla_pad="12px 47px 20px", pastilla_radio=22,
-   cuerpo_top=712, cuerpo_size=30, cuerpo_lh=36, cuerpo_pad=140,
-   cta_left=170, cta_top=841, cta_w=479, cta_h=129, cta_size=30, cta_lh=33, cta_pad="20px 32px 22px", cta_radio=15,
+   pastilla_top=570, titular_size=43.3, titular_lh=43.3, pastilla_pad="9.5px 45.7px 20.9px", pastilla_radio=22,
+   cuerpo_top=712.7, cuerpo_size=32, cuerpo_lh=36, cuerpo_pad=140,
+   cta_left=170, cta_top=841, cta_w=479, cta_h=129, cta_size=29.6, cta_lh=33.3, cta_pad="15px 14px 14.1px", cta_radio=15,
    cola_w=46, cola_h=56, cola_top=66,
    mascota_left=648, mascota_top=809, mascota_w=236),
  "story": dict(w=1080, h=1920, foto_h=1920, logo_top=107, logo_w=245.3,
-   pastilla_top=999, titular_size=51.6, titular_lh=50, pastilla_pad="26px 22px 26px", pastilla_radio=28,
-   cuerpo_top=1246, cuerpo_size=52, cuerpo_lh=56, cuerpo_pad=110,
-   cta_left=80, cta_top=1491, cta_w=540, cta_h=145, cta_size=34.4, cta_lh=37, cta_pad="22px 36px 24px", cta_radio=15,
+   pastilla_top=999, titular_size=50.3, titular_lh=50.3, pastilla_pad="22.6px 34.9px 27.5px", pastilla_radio=28,
+   cuerpo_top=1245.6, cuerpo_size=56, cuerpo_lh=56, cuerpo_pad=110,
+   cta_left=80, cta_top=1491, cta_w=540, cta_h=145, cta_size=33.3, cta_lh=37.4, cta_pad="17.3px 20px 15.5px", cta_radio=15,
    cola_w=50, cola_h=62, cola_top=78,
    mascota_left=620, mascota_top=1469, mascota_w=330),
 }
@@ -37,6 +44,16 @@ PIEZAS = [
                "story": "Ofertas, eventos y<br>novedades de tus<br>locales favoritos"},
        cta={"feed": "Síguenos y sé parte<br>de la comunidad",
             "story": "Síguenos y sé parte<br>de la comunidad"}),
+  # CONTROL de calibración: los textos de la pieza 1 de septiembre, para comparar contra el editable
+  # (qa: out/_verificacion/mc/gotham-*). No se entrega.
+  dict(id="CTRL", foto="fondos/chamisero-gente.jpg",
+       pos={"feed": "-560px", "story": "-300px"}, escala={"feed": "125%", "story": "100%"}, izq={"feed": "-40px"},
+       titular={"feed": "¿Buscas promociones,<br>tiendas y buenos datos?",
+                "story": "¿Buscas promociones,<br>tiendas y buenos<br>datos?"},
+       cuerpo={"feed": "En Más Center siempre hay algo que descubrir<br>para aprovechar tu próxima visita.",
+               "story": "En Más Center siempre hay<br>algo que descubrir para<br>aprovechar tu próxima visita."},
+       cta={"feed": "Síguenos en Instagram<br>y no te pierdas ninguna<br>novedad.",
+            "story": "Síguenos en Instagram<br>y no te pierdas ninguna<br>novedad."}),
 ]
 
 HTML = """<!doctype html><html lang="es"><head><meta charset="utf-8"><title>{titulo}</title>

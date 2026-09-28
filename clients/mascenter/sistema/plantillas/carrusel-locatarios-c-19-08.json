@@ -1,0 +1,1007 @@
+{
+ "fuente": "D:/DIEGO 2023/COPYWRITERS/MAS CENTER/AGOSTO IFB/AGOSTO IFB.ai",
+ "mesas": {
+  "11": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "Tu día tiene",
+     "fuente": "Gotham-Black",
+     "cuerpo": 82.0,
+     "color": "#FFFFFF",
+     "base": 910.8,
+     "x0": 99.8,
+     "x1": 612.1
+    },
+    {
+     "texto": "muchas paradas.",
+     "fuente": "Gotham-Black",
+     "cuerpo": 82.0,
+     "color": "#FFFFFF",
+     "base": 984.8,
+     "x0": 99.8,
+     "x1": 800.7
+    },
+    {
+     "texto": "Encuentra varias de ellas",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 48.0,
+     "color": "#FFFFFF",
+     "base": 1067.8,
+     "x0": 127.3,
+     "x1": 680.5
+    },
+    {
+     "texto": "en Más Center Talca.",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 48.0,
+     "color": "#FFFFFF",
+     "base": 1118.8,
+     "x0": 127.3,
+     "x1": 575.1
+    }
+   ],
+   "formas": [
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      437.8,
+      151.5,
+      480.6,
+      195.0
+     ],
+     "curva": false,
+     "puntos": 13
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      488.0,
+      137.7,
+      525.3,
+      195.0
+     ],
+     "curva": false,
+     "puntos": 15
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      538.0,
+      150.9,
+      571.7,
+      195.7
+     ],
+     "curva": true,
+     "puntos": 38
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      438.2,
+      205.8,
+      458.6,
+      228.9
+     ],
+     "curva": true,
+     "puntos": 30
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      581.9,
+      150.8,
+      642.9,
+      218.6
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      578.4,
+      193.3,
+      616.8,
+      228.3
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      919.8,
+      1199.5,
+      1031.6,
+      1311.3
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#000000",
+     "opacidad": 1.0,
+     "caja": [
+      941.2,
+      1226.7,
+      1010.2,
+      1284.1
+     ],
+     "curva": true,
+     "puntos": 21
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      101.7,
+      1015.4,
+      694.5,
+      1138.9
+     ],
+     "curva": true,
+     "puntos": 8
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      1080.0,
+      967.0,
+      2160.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      640.5,
+      1080.0,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      570.0,
+      856.5,
+      769.0,
+      951.5
+     ]
+    },
+    {
+     "caja": [
+      570.9,
+      622.0,
+      768.3,
+      914.9
+     ]
+    },
+    {
+     "caja": [
+      -99.7,
+      -154.0,
+      1133.4,
+      1376.8
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      640.0,
+      1080.0,
+      1350.0
+     ],
+     "px": [
+      1080,
+      710
+     ]
+    },
+    {
+     "caja": [
+      570.0,
+      856.5,
+      769.0,
+      951.5
+     ],
+     "px": [
+      199,
+      95
+     ]
+    },
+    {
+     "caja": [
+      570.9,
+      622.0,
+      768.3,
+      914.9
+     ],
+     "px": [
+      728,
+      1080
+     ]
+    }
+   ]
+  },
+  "12": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "La compra de la semana,",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1150.3,
+     "x0": 292.6,
+     "x1": 787.4
+    },
+    {
+     "texto": "sin ir más lejos.",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1195.3,
+     "x0": 391.3,
+     "x1": 688.7
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (125 0 R)",
+     "cuerpo": 35.0,
+     "color": "#DC1914",
+     "base": 1267.7,
+     "x0": 363.5,
+     "x1": 398.5
+    },
+    {
+     "texto": "Más Center Talca",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 35.0,
+     "color": "#FFFFFF",
+     "base": 1267.7,
+     "x0": 398.5,
+     "x1": 716.5
+    },
+    {
+     "texto": "Jumbo",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1089.3,
+     "x0": 464.0,
+     "x1": 616.0
+    }
+   ],
+   "formas": [
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      1080.0,
+      967.0,
+      2160.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      0.0,
+      967.0,
+      1080.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      964.6,
+      1078.2,
+      1031.2,
+      1144.8
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#000000",
+     "opacidad": 1.0,
+     "caja": [
+      977.3,
+      1094.4,
+      1018.5,
+      1128.6
+     ],
+     "curva": true,
+     "puntos": 21
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      0.0,
+      0.0,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      640.5,
+      0.0,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      425.6,
+      817.1,
+      654.4,
+      1045.9
+     ]
+    },
+    {
+     "caja": [
+      -27.5,
+      -68.0,
+      1141.0,
+      1382.6
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      -1179.7,
+      -154.0,
+      53.4,
+      1376.8
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      640.0,
+      0.0,
+      1350.0
+     ],
+     "px": [
+      0,
+      710
+     ]
+    },
+    {
+     "caja": [
+      425.6,
+      817.1,
+      654.4,
+      1045.9
+     ],
+     "px": [
+      500,
+      500
+     ]
+    }
+   ]
+  },
+  "13": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "Lo que necesitas para cuidarte,",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1150.3,
+     "x0": 231.5,
+     "x1": 848.5
+    },
+    {
+     "texto": "cerca de tu rutina.",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1195.3,
+     "x0": 360.8,
+     "x1": 719.2
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (125 0 R)",
+     "cuerpo": 35.0,
+     "color": "#000000",
+     "base": 1267.7,
+     "x0": 363.5,
+     "x1": 398.5
+    },
+    {
+     "texto": "Más Center Talca",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 35.0,
+     "color": "#FFFFFF",
+     "base": 1267.7,
+     "x0": 398.5,
+     "x1": 716.5
+    },
+    {
+     "texto": "Cruz Verde",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1089.3,
+     "x0": 418.5,
+     "x1": 661.5
+    }
+   ],
+   "formas": [
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      1080.0,
+      967.0,
+      2160.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      0.0,
+      967.0,
+      1080.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      964.6,
+      1078.2,
+      1031.2,
+      1144.8
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#000000",
+     "opacidad": 1.0,
+     "caja": [
+      977.3,
+      1094.4,
+      1018.5,
+      1128.6
+     ],
+     "curva": true,
+     "puntos": 21
+    },
+    {
+     "color": "#0093DD",
+     "opacidad": 1.0,
+     "caja": [
+      454.4,
+      832.9,
+      645.3,
+      1023.9
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      437.9,
+      829.3,
+      669.7,
+      1028.3
+     ],
+     "curva": false,
+     "puntos": 1
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1239.1
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      0.0,
+      0.0,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      469.9,
+      863.0,
+      629.8,
+      993.7
+     ]
+    },
+    {
+     "caja": [
+      -19.4,
+      -159.8,
+      1107.5,
+      1239.1
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      -1107.5,
+      -68.0,
+      61.0,
+      1382.6
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      469.9,
+      863.0,
+      629.8,
+      993.7
+     ],
+     "px": [
+      1280,
+      1046
+     ]
+    }
+   ]
+  },
+  "14": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "Una pausa rica para compartir",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1150.3,
+     "x0": 240.1,
+     "x1": 851.5
+    },
+    {
+     "texto": "o disfrutar a tu manera.",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1195.3,
+     "x0": 308.7,
+     "x1": 771.3
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (125 0 R)",
+     "cuerpo": 35.0,
+     "color": "#DC1914",
+     "base": 1267.7,
+     "x0": 363.5,
+     "x1": 398.5
+    },
+    {
+     "texto": "Más Center Talca",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 35.0,
+     "color": "#FFFFFF",
+     "base": 1267.7,
+     "x0": 398.5,
+     "x1": 716.5
+    },
+    {
+     "texto": "Papa Johns",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1089.3,
+     "x0": 414.7,
+     "x1": 665.3
+    }
+   ],
+   "formas": [
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      1080.0,
+      967.0,
+      2160.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      0.0,
+      967.0,
+      1080.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      964.6,
+      1078.2,
+      1031.2,
+      1144.8
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#000000",
+     "opacidad": 1.0,
+     "caja": [
+      977.3,
+      1094.4,
+      1018.5,
+      1128.6
+     ],
+     "curva": true,
+     "puntos": 21
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      1080.0,
+      967.0,
+      2160.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      444.5,
+      833.7,
+      635.5,
+      1024.6
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      428.0,
+      830.0,
+      659.8,
+      1029.0
+     ],
+     "curva": false,
+     "puntos": 1
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1320.0
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      0.0,
+      0.0,
+      1239.1
+     ]
+    },
+    {
+     "caja": [
+      444.5,
+      833.7,
+      635.5,
+      1024.6
+     ]
+    },
+    {
+     "caja": [
+      -7.2,
+      -111.9,
+      1146.3,
+      1320.0
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      -1099.4,
+      -159.8,
+      27.5,
+      1239.1
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      440.8,
+      826.1,
+      639.2,
+      1024.6
+     ],
+     "px": [
+      447,
+      447
+     ]
+    }
+   ]
+  },
+  "15": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "Resuelve tus trámites",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1150.3,
+     "x0": 328.0,
+     "x1": 752.0
+    },
+    {
+     "texto": "sin desordenar tu día.",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1195.3,
+     "x0": 326.6,
+     "x1": 753.4
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (125 0 R)",
+     "cuerpo": 35.0,
+     "color": "#DC1914",
+     "base": 1267.7,
+     "x0": 363.5,
+     "x1": 398.5
+    },
+    {
+     "texto": "Más Center Talca",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 35.0,
+     "color": "#FFFFFF",
+     "base": 1267.7,
+     "x0": 398.5,
+     "x1": 716.5
+    },
+    {
+     "texto": "Caja Los Andes",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1089.3,
+     "x0": 372.3,
+     "x1": 707.7
+    }
+   ],
+   "formas": [
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      0.0,
+      967.0,
+      1080.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      964.6,
+      1078.2,
+      1031.2,
+      1144.8
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#000000",
+     "opacidad": 1.0,
+     "caja": [
+      977.3,
+      1094.4,
+      1018.5,
+      1128.6
+     ],
+     "curva": true,
+     "puntos": 21
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      0.0,
+      967.0,
+      1080.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      444.5,
+      833.7,
+      635.5,
+      1024.6
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      428.0,
+      830.0,
+      659.8,
+      1029.0
+     ],
+     "curva": false,
+     "puntos": 1
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      0.0,
+      0.0,
+      1320.0
+     ]
+    },
+    {
+     "caja": [
+      456.0,
+      901.8,
+      624.0,
+      956.4
+     ]
+    },
+    {
+     "caja": [
+      -48.8,
+      -33.7,
+      1093.0,
+      1383.7
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      -1087.2,
+      -111.9,
+      66.3,
+      1320.0
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      456.0,
+      901.8,
+      624.0,
+      956.4
+     ],
+     "px": [
+      3840,
+      1247
+     ]
+    }
+   ]
+  }
+ }
+}

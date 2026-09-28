@@ -2,17 +2,21 @@
  * MÁS CENTER · reel de paid media — v3 (04-09-2026).
  *
  * Gramática del cliente (medida sobre r-performance-agosto.mp4): logo blanco arriba (tinta 211 px, y=118),
- * titular en versales Montserrat Bold ~90 px alineado a x=110 en el tercio inferior, pastilla roja #DC1914
+ * titular en versales Gotham Rounded Bold ~90 px alineado a x=110 en el tercio inferior, pastilla roja #DC1914
  * (627 px, radio 48) con ícono en círculo blanco montado en su borde superior, cierre en rojo pleno con el
- * logo grande (tinta 405 px) y una línea Montserrat Medium ~50 px, pista musical de ~81 BPM.
+ * logo grande (tinta 405 px) y una línea GothamRnd Book ~57 px, pista musical de ~81 BPM.
  *
  * MONTAJE (feedback de Valeria, 04-09): nada «llega y aparece». Los planos se funden entre sí con un
  * zoom lento continuo; los textos entran palabra a palabra con fundido y desplazamiento suave y salen
  * con fundido; la pastilla entra con un resorte sin rebote duro; el cierre funde a rojo. La v2 copiaba
  * el tipeo letra a letra y el golpe de rojo pleno del reel de agosto y se sentía brusca.
  *
- * TIPOGRAFÍA: Montserrat variable auto-hospedada, sin delayRender (memoria reel-video-gotchas). El manual
- * 2023 dice Poppins; las piezas aprobadas y los reels del cliente están en Montserrat (medido 04-09-2026).
+ * TIPOGRAFÍA (revisada 28-09-2026): GOTHAM, no Montserrat. El proyecto del reel de pauta de agosto
+ * (PERFOMANCE MASCENTER AGOSTO.aep, editable de Diego) usa GothamRounded-Bold, GothamRnd-Book y
+ * GothamRounded-Light; midiendo el grosor del trazo sobre r-performance-agosto.mp4, el titular es
+ * Rounded Bold y la pastilla y el cierre son Book (trazo 3,95 px contra 4,13 Book · 3,0 Light · 6,0 Medium).
+ * Gotham y Montserrat tienen la misma altura de capital (0,70 em): los cuerpos medidos siguen valiendo.
+ * TTF convertidos con scripts/mascenter-gotham-ttf.py, auto-hospedados sin delayRender (reel-video-gotchas).
  * Textos VERBATIM del brief de octubre 2026. Se entrega en 1080×1920 y en 1080×1080.
  */
 import React from "react";
@@ -23,16 +27,20 @@ const LOGO_TINTA = 0.856; // tinta / ancho del SVG
 const LOGO_DX = 0.019;    // el centro de la tinta está 1,9 % a la derecha del centro del SVG
 
 let fontsInjected = false;
-const ensureMontserrat = () => {
+const FUENTES: [string, number, string][] = [
+  ["GothamRounded", 700, "assets/fonts/mascenter/GothamRounded-Bold.ttf"],  // titular
+  ["GothamRnd", 400, "assets/fonts/mascenter/GothamRnd-Book.ttf"],          // pastilla y cierre
+];
+const ensureGotham = () => {
   if (fontsInjected || typeof document === "undefined") return;
   fontsInjected = true;
   const style = document.createElement("style");
-  style.textContent = `@font-face{font-family:'Montserrat';font-weight:100 900;font-display:block;src:url(${staticFile("assets/fonts/Montserrat.ttf")}) format('truetype')}`;
+  style.textContent = FUENTES.map(([f, w, src]) => `@font-face{font-family:'${f}';font-weight:${w};font-display:block;src:url(${staticFile(src)}) format('truetype')}`).join("");
   document.head.appendChild(style);
-  const f = (document as any).fonts;
-  if (f?.load) [500, 700].forEach((w) => f.load(`${w} 100px Montserrat`).catch(() => undefined));
+  const fs = (document as any).fonts;
+  if (fs?.load) FUENTES.forEach(([f, w]) => fs.load(`${w} 100px ${f}`).catch(() => undefined));
 };
-ensureMontserrat();
+ensureGotham();
 
 // `lineas`: cortes editoriales del titular en 9:16 (las palabras tienen que ser EXACTAMENTE las de `texto`).
 export type Escena = {clip: string; texto: string; lineas?: string[]; tipo: "titular" | "pastilla"; icono?: "oferta" | "evento" | "comunidad"; desde?: number; dur: number; posCuadrado?: string};
@@ -51,7 +59,8 @@ const suave = Easing.out(Easing.cubic);
 // línea del gancho —que además es la miniatura— quedaba bajo el copy de Meta. Ahora la caja
 // termina en y=1480 (titBottom 440) y deja libre la columna derecha (titRight 180). Con 790 px
 // útiles dos titulares dejaban «EN» o «LA» solos: esos llevan `lineas` (cortes medidos en
-// Montserrat Bold 90).
+// Montserrat Bold 90; re-verificados en Gotham Rounded Bold 90 el 28-09). Sin `lineas` (y siempre en
+// 1:1) el titular y la pastilla usan text-wrap: balance, que evita la palabra sola al final.
 const metricas = (w: number, h: number) =>
   h > w
     ? {logoW: 245, logoTop: 107, titSize: 90, titLh: 98, titLeft: 110, titRight: 180, titBottom: 440, pillW: 627, pillTop: 470, pillSize: 46, pillLh: 60, pillPadTop: 74, pillPadBottom: 44, pillRadio: 48, icono: 130, cierreLogoW: 405, cierreLogoTop: 840, cierreSize: 57, cierreLh: 59, cierreTop: 1310, cierreMaxW: 690}
@@ -116,13 +125,13 @@ const Plano: React.FC<{e: Escena; w: number; h: number; dur: number; fundeEntrad
       {/* velo suave abajo para que el titular blanco lea sobre cualquier plano */}
       {e.tipo === "titular" && <AbsoluteFill style={{background: "linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.28) 100%)"}} />}
       {ft >= 0 && (e.tipo === "titular" ? (
-        <div style={{position: "absolute", left: m.titLeft, right: m.titRight, bottom: m.titBottom, color: "#fff", fontFamily: "Montserrat", fontWeight: 700, textTransform: "uppercase", fontSize: m.titSize, lineHeight: `${m.titLh}px`, textShadow: "0 2px 16px rgba(0,0,0,.35)"}}>
+        <div style={{position: "absolute", left: m.titLeft, right: m.titRight, bottom: m.titBottom, color: "#fff", fontFamily: "GothamRounded", fontWeight: 700, textTransform: "uppercase", textWrap: "balance", fontSize: m.titSize, lineHeight: `${m.titLh}px`, textShadow: "0 2px 16px rgba(0,0,0,.35)"}}>
           <Palabras texto={e.texto} lineas={h > w ? e.lineas : undefined} frame={ft} dur={durTexto} paso={3} />
         </div>
       ) : (
         <div style={{position: "absolute", left: (w - m.pillW) / 2, top: m.pillTop, width: m.pillW, opacity: interpolate(ft, [0, 10], [0, 1], {extrapolateRight: "clamp"}) * interpolate(ft, [durTexto - SALE_TEXTO, durTexto], [1, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}), transform: `translateY(${(1 - pop) * 40}px) scale(${0.94 + pop * 0.06})`, transformOrigin: "50% 0%"}}>
           <div style={{position: "absolute", left: (m.pillW - m.icono) / 2, top: -m.icono * 0.5, opacity: interpolate(ft, [6, 18], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}), transform: `scale(${interpolate(ft, [6, 22], [0.7, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: suave})})`}}><Icono tipo={e.icono ?? "comunidad"} size={m.icono} /></div>
-          <div style={{background: ROJO, borderRadius: m.pillRadio, padding: `${m.pillPadTop}px 40px ${m.pillPadBottom}px`, color: "#fff", fontFamily: "Montserrat", fontWeight: 500, fontSize: m.pillSize, lineHeight: `${m.pillLh}px`, textAlign: "center", minHeight: m.pillPadTop + m.pillPadBottom + m.pillLh * 2}}>
+          <div style={{background: ROJO, borderRadius: m.pillRadio, padding: `${m.pillPadTop}px 40px ${m.pillPadBottom}px`, color: "#fff", fontFamily: "GothamRnd", fontWeight: 400, fontSize: m.pillSize, lineHeight: `${m.pillLh}px`, textAlign: "center", textWrap: "balance", minHeight: m.pillPadTop + m.pillPadBottom + m.pillLh * 2}}>
             <Palabras texto={e.texto} frame={ft - 8} dur={durTexto - 8} paso={2} salida={false} />
           </div>
         </div>
@@ -134,7 +143,7 @@ const Plano: React.FC<{e: Escena; w: number; h: number; dur: number; fundeEntrad
 /** CIERRE — réplica del cierre del reel de agosto del cliente (editables de paid), medido a 60 fps:
  *  panel rojo que entra desde la izquierda en 0,25 s · el logo baja desde arriba y se asienta en 0,23 s
  *  (tinta 405 px, borde superior en y=840) · 0,1 s después el texto se escribe a ~80 caracteres/s en
- *  Montserrat Regular ~57 px, centrado en una caja de 665 px · se queda hasta el final, sin fundido. */
+ *  GothamRnd Book ~57 px, centrado en una caja de 665 px · se queda hasta el final, sin fundido. */
 export const CIERRE_F = 93;         // 3,1 s, como el del cliente
 const WIPE_F = 7;                   // 0,25 s
 const Cierre: React.FC<{texto: string; w: number; h: number}> = ({texto, w, h}) => {
@@ -146,8 +155,9 @@ const Cierre: React.FC<{texto: string; w: number; h: number}> = ({texto, w, h}) 
   return (
     <AbsoluteFill style={{background: ROJO, transform: `translateX(${wipe}%)`}}>
       <Logo w={m.cierreLogoW} top={m.cierreLogoTop} style={{transform: `translateY(${logoY}px)`}} />
-      <div style={{position: "absolute", left: (w - m.cierreMaxW) / 2, width: m.cierreMaxW, top: m.cierreTop, color: "#fff", fontFamily: "Montserrat", fontWeight: 400, fontSize: m.cierreSize, lineHeight: `${m.cierreLh}px`, textAlign: "center"}}>
-        {texto.slice(0, chars)}
+      <div style={{position: "absolute", left: (w - m.cierreMaxW) / 2, width: m.cierreMaxW, top: m.cierreTop, color: "#fff", fontFamily: "GothamRnd", fontWeight: 400, fontSize: m.cierreSize, lineHeight: `${m.cierreLh}px`, textAlign: "center", textWrap: "balance"}}>
+        {/* el texto completo fija los cortes (balance: sin palabra sola); lo no escrito va transparente */}
+        {texto.slice(0, chars)}<span style={{opacity: 0}}>{texto.slice(chars)}</span>
       </div>
     </AbsoluteFill>
   );
@@ -163,7 +173,7 @@ const Musica: React.FC<{total: number}> = ({total}) => {
 export const duracionReel = (p: ReelProps, fps: number) => p.escenas.reduce((a, e) => a + Math.round(e.dur * fps), 0) - (p.escenas.length - 1) * FUNDIDO + CIERRE_F;
 
 export const MasCenterReel: React.FC<ReelProps> = ({escenas, cierre}) => {
-  ensureMontserrat();
+  ensureGotham();
   const {fps, width: w, height: h} = useVideoConfig();
   const frame = useCurrentFrame();
   const seqs: React.ReactNode[] = [];

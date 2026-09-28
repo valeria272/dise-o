@@ -5,7 +5,7 @@ RAIZ="$(cd ../../.. && pwd)"
 source "$RAIZ/scripts/_chrome.sh"
 AQUI="$PWD"
 shopt -s nocasematch; PATRON="${1:-}"
-DEST="$RAIZ/out/mascenter/2026-10"; mkdir -p "$DEST"
+DEST="${DEST:-$RAIZ/out/mascenter/2026-10}"; mkdir -p "$DEST"
 for f in *_Feed_*.html *_Story_*.html; do
   [ -e "$f" ] || continue
   if [ -n "$PATRON" ] && [[ "$f" != *"$PATRON"* ]]; then continue; fi

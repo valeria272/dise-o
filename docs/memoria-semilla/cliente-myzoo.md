@@ -1,6 +1,6 @@
 ---
 name: cliente-myzoo
-description: "MYZOO — cerebro del cliente: 17 reglas firmes, última cosecha 2026-09-25. Generado desde clients/myzoo/APRENDIZAJES.md; leerlo antes de diseñar para myzoo"
+description: "MYZOO — cerebro del cliente: 17 reglas firmes, última cosecha 2026-09-26. Generado desde clients/myzoo/APRENDIZAJES.md; leerlo antes de diseñar para myzoo"
 metadata:
   type: project
 ---

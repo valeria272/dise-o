@@ -30,11 +30,17 @@
  *   · Titular y legal = los del brief. En la aprobada el titular (206–293) y el
  *     legal (1819) caían fuera de la zona segura: acá todo el TEXTO entra en
  *     250 · 340. PROMO → paid.
+ *
+ * ⭐ RONDA DE ELI 28-09: «el texto de todos los días tiene que quedar igual de
+ *   curvo, con esa curvatura que estaba… el 20 % de descuento déjalo como estaba
+ *   el original». Antes iba girado −4° en recta y el 20 medía 170 px (cifras de
+ *   estilo antiguo, sin QB_CIFRAS). Ahora la curva y el 20 % salen MEDIDOS de la
+ *   aprobada: arco de radio 384, 20 de 201 px, % pegado al 0, «dcto.» en la base.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
 
-import {QB_ASSETS, QB_BOTON_FONDO} from "../../../brand/qb";
+import {QB_ASSETS, QB_BOTON_FONDO, QB_CIFRAS} from "../../../brand/qb";
 import {cargarFuentesQbOct, FotoQB, Legal, Linea, MESA, Velo} from "./QbOctKit";
 
 cargarFuentesQbOct();
@@ -52,6 +58,28 @@ const QB_ST08_DATA: Record<string, Record<string, string>> = {
 const MARCO = {x: 168, y: 643, w: 744, h: 730};
 const FRANJA = {y: 1080, h: 132};
 const FILETE = "#36493B";
+const ARCO_R = 384;
+const ETQ_CUERPO = 54;
+const ETQ_TRACK = -1.2;
+/** Posición del bloque del descuento: `y` y `x` son el tope y el borde del GLIFO
+ *  (la caja se corrige con MET, la métrica medida de Raleway ExtraBold). */
+const DCTO = {
+  veinte: {x: 306, y: 810, c: 280},
+  pct: {x: 636, y: 817, c: 190},
+  dcto: {x: 644, y: 969, c: 57},
+};
+/** Con lineHeight 1 la base cae a 0,853 em (asc 940, desc 234) y la cifra de caja
+ *  alta mide 0,718 em: su tope queda a 0,135 em de la caja. Lado = sangría del 2. */
+const MET = {tope: 0.135, lado: 0.037};
+const Cifra: React.FC<{top: number; left: number; cuerpo: number; tracking?: string; children: React.ReactNode}> = ({
+  top, left, cuerpo, tracking = "0", children,
+}) => (
+  <div style={{position: "absolute", top: top - MET.tope * cuerpo, left: left - MET.lado * cuerpo,
+    whiteSpace: "nowrap", color: "#fff", fontFamily: "Raleway", fontWeight: 800, fontSize: cuerpo,
+    lineHeight: 1, letterSpacing: tracking, textShadow: "0 3px 20px rgba(0,0,0,.35)", ...QB_CIFRAS}}>
+    {children}
+  </div>
+);
 const s = (f: string) => staticFile(`assets/hilton/qb/oct/${f}`);
 
 export const QbSt08Cmr: React.FC = () => (
@@ -74,19 +102,20 @@ export const QbSt08Cmr: React.FC = () => (
       background: QB_BOTON_FONDO, display: "flex", alignItems: "center", justifyContent: "center"}}>
       <Img src={staticFile(QB_ASSETS.logoBlanco)} style={{width: 100}} />
     </div>
-    <div style={{position: "absolute", top: 728, left: 0, width: MESA.w, textAlign: "center",
-      transform: "rotate(-4deg)", color: "#fff", fontFamily: "BellMT", fontStyle: "italic", fontSize: 54}}>
-      {QB_ST08_DATA.pieza.etiqueta}
-    </div>
-    <div style={{position: "absolute", top: 790, left: 0, width: MESA.w, display: "flex",
-      justifyContent: "center", alignItems: "flex-start", color: "#fff", fontFamily: "Raleway",
-      fontWeight: 800, textShadow: "0 3px 20px rgba(0,0,0,.35)"}}>
-      <span style={{fontSize: 290, lineHeight: 0.86, letterSpacing: "-0.03em"}}>20</span>
-      <span style={{display: "flex", flexDirection: "column", alignItems: "flex-end", marginLeft: 4}}>
-        <span style={{fontSize: 170, lineHeight: 0.9}}>%</span>
-        <span style={{fontSize: 62, lineHeight: 1, marginTop: 8}}>dcto.</span>
-      </span>
-    </div>
+    {/* «¡Todos los días!» en CURVA, calcada de la aprobada: la línea base es un
+        arco de radio 384 con la cumbre en (545, 769); el texto se centra en x 554 */}
+    <svg style={{position: "absolute", left: 0, top: 0}} width={MESA.w} height={MESA.h}>
+      <path id="qb-st08-arco" d={`M ${545 - ARCO_R} ${769 + ARCO_R} A ${ARCO_R} ${ARCO_R} 0 0 1 ${545 + ARCO_R} ${769 + ARCO_R}`} fill="none" />
+      <text fill="#fff" fontFamily="BellMT" fontStyle="italic" fontSize={ETQ_CUERPO} letterSpacing={ETQ_TRACK}
+        textAnchor="middle" style={{fontVariantLigatures: "none"}}>
+        <textPath href="#qb-st08-arco" startOffset={(Math.PI * ARCO_R) / 2 - 3}>{QB_ST08_DATA.pieza.etiqueta}</textPath>
+      </text>
+    </svg>
+    {/* el 20 % de la aprobada: cifras de caja alta, 20 de 201 px de alto (tope 810),
+        % pegado al 0 (tope 817) y «dcto.» bajo el % sobre la línea base del 20 */}
+    <Cifra top={DCTO.veinte.y} left={DCTO.veinte.x} cuerpo={DCTO.veinte.c} tracking="-0.069em">20</Cifra>
+    <Cifra top={DCTO.pct.y} left={DCTO.pct.x} cuerpo={DCTO.pct.c}>%</Cifra>
+    <Cifra top={DCTO.dcto.y} left={DCTO.dcto.x} cuerpo={DCTO.dcto.c}>dcto.</Cifra>
     <Linea top={1106} cuerpo={37} peso={700} interlinea={1.2} ancho={640} sombra={false}>
       Ven y disfruta tu beneficio<br />con Banco Falabella
     </Linea>

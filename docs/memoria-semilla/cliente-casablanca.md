@@ -1,6 +1,6 @@
 ---
 name: cliente-casablanca
-description: "CASABLANCA — cerebro del cliente: 36 reglas firmes, última cosecha 2026-09-25. Generado desde clients/casablanca/APRENDIZAJES.md; leerlo antes de diseñar para casablanca"
+description: "CASABLANCA — cerebro del cliente: 36 reglas firmes, última cosecha 2026-09-26. Generado desde clients/casablanca/APRENDIZAJES.md; leerlo antes de diseñar para casablanca"
 metadata:
   type: project
 ---

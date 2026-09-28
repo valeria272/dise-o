@@ -13,7 +13,7 @@
 > `reglas.yaml` ni bitácora: la gramática está **sin medir**.
 >
 > Criterio: **Valeria Traverso** (el único feedback registrado) · Aprueba: **no consta del lado del cliente**
-> Última cosecha: **2026-09-25** · Cosechas: **1**
+> Última cosecha: **2026-09-26** · Cosechas: **2**
 
 ## 1. Quién es el cliente
 
@@ -98,6 +98,9 @@ convierte en Google Ads: **rapidez, facilidad, «sin papeleos»**. Es financiero
   y `video2/video3-agosto.mp4`): los MP4 no bajan por MCP; pedirlos descargados — **KAM**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico
 - nuevo **R-01…R-10** · del `CLAUDE.md` de la marca y de las memorias `abakos-brand` y `ctas-verbatim-del-brief` (feedback de Valeria, agosto 2026).

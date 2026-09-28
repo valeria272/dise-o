@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar** · Aprueba: **Fran (proyecto) · Blanca (comercial)**
-> Última cosecha: **2026-09-25** · Cosechas: **2**
+> Última cosecha: **2026-09-26** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -165,6 +165,9 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - ¿Está confirmado el **«Futuro Metrotren Santiago–Melipilla»**? Venía dibujado en una referencia de la marca y se dejó fuera por no estar en la lista blanca. → Fran / Blanca.
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: los 4 commits de ayer (0cc266c, f4e46dd, 5366e6e, 74cd0bb) ya quedaron cosechados uno por uno en las entradas de abajo (nueve rondas de mapa y mockup, la polaroid impresa con geometría medida, el imán sobre la polaroid, y el cierre definitivo con 15 rondas). El único que `pendientes` marcó (74cd0bb) es el mismo que hizo la última cosecha del día.
 
 ### 2026-09-25 (tarde/noche) — Claude · **quince rondas de Diego por chat, casi todas con referencia adjunta**
 - nuevo **R-43…R-51** · el mapa no se amplía · a una captura se le cambia el color, no la forma · un mapa diseñado rotula lo que la pieza dice · PNG para los derivados · campo claro ⇒ marco teñido · el vidrio se diseña con lo que queda detrás · calcar no es copiar el color · manda el brief sobre la referencia · cada palabra del visual es una instrucción.

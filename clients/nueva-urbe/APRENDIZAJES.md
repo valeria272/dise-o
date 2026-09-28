@@ -13,7 +13,7 @@
 > ni al revés. El manual, `marca.json` y `reglas.yaml` de esta carpeta son **sólo de Rentas**.
 >
 > Criterio: **[RENTAS] composición de Paulina Bustamante (sept 2026), revisión de Diego Aguilar, dirección de Valeria Traverso · [INU] Valeria Traverso** · Aprueba: **Jean Paul Fredericksen · Yocelyn Maturana (vía Carlos Figueroa, contenido, y Ámbar Gallardo, AM)**
-> Última cosecha: **2026-09-25** · Cosechas: **1**
+> Última cosecha: **2026-09-26** · Cosechas: **2**
 
 ## 1. Quién es el cliente
 
@@ -134,6 +134,9 @@ centrada 17,5 %, banner de mailing arriba 10,2 % no centrada).
 - [AMBAS] ¿Quién diseña cada marca de aquí en adelante? Rentas cambió tres meses seguidos (Coni jul · Diego ago · Paulina sep) con tres nomenclaturas → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico
 - nuevo **R-01…R-30**, **E-01…E-08**, **A-01…A-06**, **X-01…X-13** desde `CLAUDE.md`, `BITACORA.md` (02-09 → 23-09), `reglas.yaml`, `marca.json`, `MATERIAL.md` y las memorias `nueva-urbe-brand` y `rentas-nueva-urbe-sistema`.

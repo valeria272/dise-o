@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Valeria Traverso (TV y piezas del estudio); el feed lo diseña Luis Piano, del lado del cliente, y su feed manda** · Aprueba: **Gonzalo (cliente; decide qué sale a TV)** · Estrategia de marca: **Diana Meinhardt (Brand Soul)**
-> Última cosecha: **2026-09-25** · Cosechas: **1**
+> Última cosecha: **2026-09-26** · Cosechas: **2**
 
 ## 1. Quién es el cliente
 
@@ -106,6 +106,9 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 - Obra sin commitear al 22-09 (spot y full con Instagram): mientras no entre al repo nadie más la reproduce.
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: los 4 commits de TV (`2ca00d1` Fase 1, `bd7f0fa` Fase 2, `5cc4249` V3, `4886fb0` V4) y la parte de Santa Gota del commit `66b38a1` (cierre del 21-09 con el ícono de Instagram en el full, y las 6 rondas del spot «UNA GOTA. CAMBIA TODO.» del 15-09) ya están destiladas en la siembra inicial de abajo — R-11 a R-16, A-01 a A-03, E-05, E-06 y X-01 a X-08 cubren ese material aunque los commits se autoraron el 11 y el 15-09 (llegaron a git recién el 25-09, con la fecha de commit reescrita, pero ya estaban en el árbol de trabajo cuando se sembró este archivo). El resto de `66b38a1` (feed Copywriters, Petra, G.CL) no es de esta marca.
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico
 - nuevo **R-01…R-20** · sembradas desde `clients/santa-gota/` (CLAUDE.md, BITACORA.md del 11-09 al 21-09, marca.json) y la memoria `santa-gota-tv-placements`.

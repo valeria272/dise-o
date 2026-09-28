@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza «Coni» Lizana (diseño del logo) · Valeria Traverso (dirección del manual)** · Aprueba: **la clienta de Landera (sin nombre registrado en las fuentes)**
-> Última cosecha: **2026-09-25** · Cosechas: **1**
+> Última cosecha: **2026-09-26** · Cosechas: **2**
 
 ## 1. Quién es el cliente
 
@@ -114,6 +114,9 @@ tono y el kit de plantillas; todavía no hay piezas de grilla.
 - ⚠️ `marca.json` tiene campos vencidos que contradicen el manual: `estado: "EN DEFINICIÓN — NO producir"`, `pendiente` (color y Barkentina ya resueltos), `heredadas_del_pdf: 17 iconografía` (el manual dice 15), `residuos_de_pivot.1C4907` (es el verde original del logo, no Pivot) y el CMYK `0/76/60/0` como «del gris» (corregido el 03-09). Manda el `CLAUDE.md` → actualizar la ficha.
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.
 
 ### 2026-09-25 — Claude (siembra inicial) · destilado del manual, la bitácora y el feedback histórico
 - nuevo **R-01…R-28**, **E-01…E-04**, **A-01…A-04**, **X-01…X-09** desde `CLAUDE.md` (§0–§6), `BITACORA.md` (04-09 → 05-09), `marca.json`, `plantillas/LEEME.md` y la memoria `landera-manual-marca`.

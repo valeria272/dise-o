@@ -1,6 +1,6 @@
 ---
 name: cliente-qb
-description: "QB — cerebro del cliente: 41 reglas firmes, última cosecha 2026-09-25. Generado desde clients/qb/APRENDIZAJES.md; leerlo antes de diseñar para qb"
+description: "QB — cerebro del cliente: 45 reglas firmes, última cosecha 2026-09-28. Generado desde clients/qb/APRENDIZAJES.md; leerlo antes de diseñar para qb"
 metadata:
   type: project
 ---
@@ -12,16 +12,19 @@ sólo lo más confirmado). ⛔ Vale sólo para qb: no se traspasa a otra marca.
 Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
 
 ## Reglas más confirmadas
+- **R-32** · Sólo se diseña lo que está `OK PARA DISEÑAR`; `PENDIENTE POR CLIENTE` no se toca — _bitácora 17-09, 21-09, 24-09 (Trivia de brindis, Reel DJ); 25-09: 8 piezas en CAMBIADO no se diseñaron; 28-09: el feed de S1 entero en CAMBIADO, no se tocó; 28-09 tarde: 6 historias en CAMBIADO sin tocar_ · ✔×6
 - **R-13** · Antes de diagramar se pregunta **«¿esta va a paid?»**; si sí o hay duda, el texto va dentro de la zona segura (250 / 340 / 115 px en 9:16) — _Eli, 15-09: «El texto es importante que no pueda ir fuera del margen»; Eli 25-09: «ten cuidado con las medidas que aparecen en Instagram»_ · ✔×4. Desde el 25-09 se aplica a **las 11 historias** de octubre, orgánicas incluidas, y también al logo (tope ≥ 250)
 - **R-31** · Al corregir en Drive se sube con **nombre nuevo** (v4, v5…): la vista previa de Drive queda cacheada al reemplazar por el mismo ID — _17-09, Eli «no veo el cambio»; repetido en v5, v6 y v7_ · ✔×4 · ⚠️ **25-09 se incumplió**: la ronda de Eli se subió reemplazando con el mismo nombre (se le avisó del caché). La próxima ronda va con nombre nuevo
-- **R-32** · Sólo se diseña lo que está `OK PARA DISEÑAR`; `PENDIENTE POR CLIENTE` no se toca — _bitácora 17-09, 21-09, 24-09 (Trivia de brindis, Reel DJ); 25-09: 8 piezas en CAMBIADO no se diseñaron_ · ✔×4
+- **R-04** · ALL YOU CAN DRINK es un bloque cerrado igual al KV: sólo cambia la foto; logo, nombre, botón con degradado y «TODOS LOS MARTES / POR $13.990 / 18:00 a 21:00 hrs» no se tocan — _Eli, 17-09: «botón verde con efecto de degradado y logo + el nombre no»; medido igual al píxel en las ST de junio y septiembre; ST n°2 S1 oct (AYCD 06-10), Eli 28-09: «la veo perfecta»_ · ✔×3
 - **R-27** · No se genera lo que ya está fotografiado: la fuente son las sesiones propias, y del video se saca la foto, la historia, el reel y el post en movimiento — _Eli, 15-09; aplicado en octubre con las sesiones en video, 24-09; 09, 23 y 26 pasaron a foto real el 25-09_ · ✔×3
-- **R-04** · ALL YOU CAN DRINK es un bloque cerrado igual al KV: sólo cambia la foto; logo, nombre, botón con degradado y «TODOS LOS MARTES / POR $13.990 / 18:00 a 21:00 hrs» no se tocan — _Eli, 17-09: «botón verde con efecto de degradado y logo + el nombre no»; medido igual al píxel en las ST de junio y septiembre_ · ✔×2
 - **R-07** · En una promo con KV, el KV gana a la redacción del brief; del brief se toma literal sólo lo que el KV no cubre — _ST AYCD 28-09, S5, 17-09; Sunset 09-10, Eli 25-09_ · ✔×2
 - **R-09** · El logotipo hace de **palabra** en la frase («MEJOR PAYA DE **QB**», «*Sunset* QB»), no de firma en la esquina — _medido en `ST n°2 S3 QB` y `Post n°2 QB SUNSET`, 15-09_ · ✔×2
+- **R-11** · Toda cifra en Raleway lleva **cifras de caja alta (`lnum`)**; activar «tabulares» no hace nada porque `tnum` no existe — _pedido de Eli 15-09 («los números suelen verse extraños»), diagnóstico con fontTools; Eli 28-09 sobre la ST n°1 S1 (Banco de Chile): «los números del 20 OFF y del 30 OFF queden armónicos, se ve desordenado… es una regla de Raleway, que se vea todo recto»_ · ✔×2. Ojo: todo componente propio (cajas, cifras sueltas) tiene que llevar `...QB_CIFRAS`; `Linea` y `BotonVerde` lo traen, una caja escrita a mano no
 - **R-15** · Nunca le pidas a un modelo de imagen que escriba la promo: la escena se genera con la pantalla en **verde plano** y encima se monta, con homografía, la gráfica rendida con las fuentes reales — _ST AYCD S5, 17-09; repetido en octubre (06-10 AYCD, 21-10 ticket)_ · ✔×2
 - **R-26** · Todo material que no sea real (generado o montado con IA) lleva «Imagen referencial» abajo — _cliente, grilla de octubre (STORIES 22-10), leído 24-09; el cliente lo volvió a escribir en la celda del 22-10 el 25-09_ · ✔×2
 - **R-30** · Ni títulos ni bajadas llevan punto (final ni intermedio), aunque el brief lo traiga — _regla del cliente Hilton, 23-09-2026, citada en el manual de QB; el cliente le sacó los puntos al 09-10 en la grilla, 25-09_ · ✔×2
+- **R-37** · Si la promo ya tiene pieza aprobada (bancos, Sunset), se hace **sobre la aprobada**: cambian sólo la foto y los textos del brief; logo, sellos, marco, cajas, tarjetas y logos del banco no se redibujan — _Eli 25-09: «Banco de Chile y todos los bancos ya tenemos los diseños aprobados, los logos que hay que utilizar» · «Sunset QB, usa tal cual la pieza gráfica seleccionada, sólo cambia textos… el logo de Sunset QB déjalo tal cual» · «el 8 de octubre, el banco ya está aprobado, solamente cambios de fotografías»; Eli 28-09 sobre la ST n°4 S1 (CMR): «el texto de todos los días tiene que quedar igual de curvo, con esa curvatura… el 20 % de descuento déjalo como estaba el original»; y sobre la n°5 (Sunset): «que se vea un poco más similar a la de referencia»_ · ✔×2. **Se calca midiendo** la aprobada (cajas de glifo por componentes conexos), no a ojo: una curva no se aproxima con `rotate()` y el cuerpo del 20 sale de la altura medida. Plantillas y elementos: manual «Piezas de banco y promos: sobre la APROBADA»
+- **R-44** · Una pieza se identifica por su **título**, nunca por la columna ni la fecha: la grilla las corre sin avisar — _diff de la grilla QB oct, 28-09-2026: ST Banco de Chile 01→02-10, el REEL DJ de la semana 5 pasó de la columna R a la Q y el carrusel de bancos apareció en una columna sin fecha (H); 28-09 tarde: se corrieron otra vez las fechas de casi todas las historias y aparecieron 8 columnas nuevas_ · ✔×2
 - **R-01** · QB es marca independiente: nada de DT, Between ni Piso 18 entra, y nada de QB va para allá — _Eli, 15-09: «QB Restaurant es una marca independiente…»_ · ✔×1
 - **R-02** · El feed se ve minimalista y elegante; una pieza cargada no es de QB aunque cumpla el brief — _Eli, 15-09_ · ✔×1
 - **R-03** · Cada pieza muestra cóctel, plato o rostro — _Eli, 15-09_ · ✔×1
@@ -29,9 +32,6 @@ Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nati
 - **R-06** · Se escribe «Sunset QB»: «Sunset» en Brushwell, enlazado con el logotipo — _Eli 15-09; medido en `Post n°2 QB SUNSET`; reglas.yaml `sunset-grafia`_ · ✔×1
 - **R-08** · El botón lleva el degradado horizontal (oscuro en bordes, claro al centro) y esquinas vivas — _barrido de `PROMOS QB 2026 AYCD 2026 ST.png`, 17-09; Eli lo declaró intocable_ · ✔×1
 - **R-10** · Todo va centrado; el titular es un bloque de dos pesos del mismo cuerpo — _medido en `ST n°2 S3 QB` (una pieza), 15-09_ · ✔×1
-- **R-11** · Toda cifra en Raleway lleva **cifras de caja alta (`lnum`)**; activar «tabulares» no hace nada porque `tnum` no existe — _pedido de Eli 15-09 («los números suelen verse extraños»), diagnóstico con fontTools_ · ✔×1
-- **R-12** · La letra chica no tiene una sola fuente: Bell MT Italic en el post de Sunset, Raleway Itálica en la ST de AYCD. Mira la pieza antes de elegir — _corrección del 17-09_ · ✔×1
-- **R-14** · En una pieza animada, la zona segura se mide en el **último** fotograma — _manual §6_ · ✔×1
 
 ## Lo que ya costó rondas
 - **X-01** · Ejecutar un comentario tachado: se sacó el celular, que era el centro del brief — _ST AYCD S5, ronda 1, 17-09, 1 ronda perdida_
@@ -45,4 +45,6 @@ Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nati
 - **X-10** · Trabajadores del hotel en la escena social — _ST 26-10 Terraza (clip nanvo8519), Eli 25-09, 1 ronda_
 - **X-11** · Tres familias en una historia y alternativas presentadas como formulario (cajas con letras A/B/C): «se ve un poco feo» — _ST 14-10, Eli 25-09, 1 ronda_
 - **X-12** · (interno) Borrar el texto de una pieza aprobada con inpainting de OpenCV: sobre el bokeh deja manchas y la sombra del texto deja las letras fantasma. El fondo limpio estaba en el PDF de la promo — _09-10, 25-09, cazado antes de entregar_
+- **X-13** · Sobre una pieza aprobada, aproximar a ojo lo que la aprobada tenía medido: «¡Todos los días!» recto y girado en vez de en curva, el 20 % 15 % más chico y con cifras de estilo antiguo — _ST n°4 S1 oct (CMR), Eli 28-09: «se ve muy desordenado… se ve muy mal», 1 ronda_
+- **X-14** · Cifras de estilo antiguo en las cajas de descuento (2 y 0 chicos, 3 bajo la línea) — _ST n°1 S1 oct (Banco de Chile), Eli 28-09, 1 ronda_
 - **X-07** · (interno) Estática en el frame 239 porque lo decía la cabecera: la estática y el video mostraban las bandas en lugares distintos — _v7, 23-09, cazado antes de entregar_

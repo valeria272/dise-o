@@ -33,10 +33,16 @@
  *   · Textos literales del brief. «Lunes a viernes» (la aprobada decía «Lunes y
  *     viernes»: errata de esa pieza; manda el brief).
  *   · PROMO → texto dentro de la zona segura de paid (250 · 340).
+ *
+ * ⭐ RONDA DE ELI 28-09: «los números del 20 OFF y 30 OFF queden armónicos, se ve
+ *   desordenado… es una regla de Raleway, que se vea todo recto». La caja no llevaba
+ *   QB_CIFRAS (R-11): salían las cifras de estilo antiguo (2 y 0 chicos, 3 bajo la
+ *   línea). Ahora van en caja alta, a la altura de OFF.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
 
+import {QB_CIFRAS} from "../../../brand/qb";
 import {cargarFuentesQbOct, FotoQB, Legal, Linea, LogoQB, MESA, Velo} from "./QbOctKit";
 
 cargarFuentesQbOct();
@@ -62,7 +68,7 @@ const Caja: React.FC<{x: number; cifra: string; dia: string}> = ({x, cifra, dia}
   <>
     <div style={{position: "absolute", left: x, top: CAJA.y, width: CAJA.w, height: CAJA.h,
       background: VERDE_CAJA, display: "flex", alignItems: "center", justifyContent: "center",
-      color: "#fff", fontFamily: "Raleway", fontWeight: 800, fontSize: 60, letterSpacing: "-0.01em"}}>{cifra}</div>
+      color: "#fff", fontFamily: "Raleway", fontWeight: 800, fontSize: 60, letterSpacing: "-0.01em", ...QB_CIFRAS}}>{cifra}</div>
     <div style={{position: "absolute", left: x, top: CAJA.y + CAJA.h, width: CAJA.w, height: 86,
       background: "rgba(0,0,0,.62)", display: "flex", alignItems: "center", justifyContent: "center",
       color: "#fff", fontFamily: "Raleway", fontWeight: 400, fontSize: 30}}>{dia}</div>

@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-25** · Cosechas: **4**
+> Última cosecha: **2026-09-28** · Cosechas: **7**
 
 ## 1. Quién es el cliente
 
@@ -79,9 +79,17 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-24** · [DT] Video: **MP4 + GIF juntos** en la carpeta de la semana (GIF en subcarpeta `C<n> S<n> DT - GIF`); Eli sube el GIF a la grilla — _Eli, 23-09 y 24-09-2026_ · ✔×2
 - **R-25** · [DT] Historia animada: **máx. 15 s**, y el bloque del precio con tiempo de lectura (~6–7 s) — _Eli, 24-09-2026, Family Time oct_ · ✔×1
 - **R-26** · [DT] Las **opiniones tienen plantilla** (la de Expedia aprobada): tarjeta clara partida, pestaña azul con logo, cita en Stag itálica azul, logo de la plataforma a color; para otra plataforma cambia sólo logo y signo de valoración — _Eli, 24-09-2026_ · ✔×1
-- **R-27** · [DT] Family Time tiene que **mostrar una familia** — _Eli, 24-09-2026 («sin personas no me gusta mucho»)_ · ✔×1
+- **R-27** · [DT] Family Time tiene que **mostrar una familia** — _Eli, 24-09-2026 («sin personas no me gusta mucho»); 25-09 pidió un banco entero de la familia para cuando no haya sesión_ · ✔×2
 - **R-28** · [DT] Precios de programa **literales del último carrusel vigente**: Family Time $125.000 IVA incluido · Escapada $99.000 · Noche de Bodas $189.000 — _Eli, 09-09-2026_ · ✔×1
 - **R-29** · [DT] «Categoría superior» en este hotel es la habitación **con zona de estar** (Corner, Junior Suite, Suite), no una cama — _cliente, grilla 16-09-2026 («cambiemos foto por habitación de categoría superior»)_ · ✔×1
+
+- **R-68** · [DT] Cuando no hay sesión con modelos, **la familia es SIEMPRE la misma**: 4 personajes fijos, perfil chileno, papás de 38 y niños de ~9 y ~7, distintos de las parejas de Escapada y Noche de Bodas. Hojas en `clients/hilton/dt-familia/personajes/` — _Eli, 25-09-2026, banco familia DT_ («los personajes de familia okey») · ✔×1
+- **R-69** · [DT] En las finales **el fondo es una foto REAL de DT**: la IA sólo agrega a las personas — _Eli, 25-09-2026, banco familia DT_ («siempre utiliza de fondos en los finales real de DT») · ✔×1
+- **R-70** · [DT] Personas IA **que pasen por foto de sesión**: nadie mira a cámara, expresiones naturales y ojos con vida; cada uno apoyado en su silla, sofá o cama; manos con cinco dedos, piernas y pies completos; objetos a escala real (la cookie mide unos 7 cm) — _Eli, 25-09-2026, banco familia DT_ · ✔×1
+- **R-71** · [DT] **Cada personaje se ve como su hoja** en todas las escenas (cara, pelo, edad) — _Eli, 25-09-2026, banco familia DT_ («respeta a los personajes para que se vean como ellos») · ✔×1
+- **R-72** · [DT] Nada de **personas ajenas ni reflejos de personas** en el fondo (espejos, vidrios de cuadros, personal parado detrás) — _Eli, 25-09-2026, banco familia DT_ · ✔×1
+- **R-73** · [DT] Un banco de imágenes se entrega en **post 4:5, story 9:16 y 16:9** — _Eli, 25-09-2026, banco familia DT_ («así tendremos para todo lo necesario») · ✔×1
+- **R-74** · [DT] **Escapada Romántica no se ve como Noche de Bodas**: el concepto es *escaparse y hacer algo distinto*, no el romance de recién casados — _cliente, grilla DT oct FEED!C14 (carrusel 07-10), leído 28-09-2026: «No lo dejaría taan romántico, parece más de Noche de Bodas, algo más de escaparse, hacer algo distinto»_ · ✔×1
 
 ### Between
 - **R-30** · [BW] Taza blanca con raya negra y **KIMBO: se borra siempre**; la taza vigente es blanca total — _Eli 25-08; Scarlette 31-08; ronda 9, 03-09-2026_ · ✔×3
@@ -157,6 +165,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **A-06** · [BW] Reel con **Seedance 2.5 por keyframes**: primer fotograma mesa vacía, último la foto real del producto, +8 % de saturación y nada más — _reel «Sea la razón que sea», 23-09-2026 («muy excelente»)_
 - **A-07** · [BW] Historia del quiz S3 sin comentario del cliente — _ST 14-09, ronda del cliente 09-09-2026_
 
+- **A-08** · [DT] Familia IA sobre foto real de DT: el desayuno, la llegada al lobby y la noche de película en la habitación de dos camas se aprobaron **a la primera** una vez que el fondo pasó a ser real (ronda 2) — _Eli, 25-09-2026, banco familia DT_
+
 ## 7. Lo que se rechaza
 
 - **X-28** · [BW] Costura de la expansión IA revisada sólo en 3 o 4 frames y con la posición suavizada: el pelo sale doble arriba de la cabeza y el borde nada — _Eli, reel «La razón» prueba 2, 25-09-2026 («casi bien»)_
@@ -188,6 +198,13 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **X-24** · [DT] Tomar sólo la idea general de una referencia animada — _Family Time oct, 24-09-2026 («¿revisaste bien la referencia?»)_
 - **X-25** · [DT] Proponer cambiar un precio del brief — _Eli, 09-09-2026: originó R-01_
 
+- **X-29** · [DT] Escena generada entera, con el hotel redibujado por la IA — _Eli, 25-09-2026, banco familia DT_, ronda 1 → fondo real (R-69)
+- **X-30** · [DT] Cookie gigante, más grande que la mano — _Eli, 25-09-2026, banco familia DT_
+- **X-31** · [DT] Naipes con símbolos o números raros — _Eli, 25-09-2026, banco familia DT_
+- **X-32** · [DT] Piernas o pies que faltan o sobran — _Eli, 25-09-2026, banco familia DT_ («se desapareció una pierna»)
+- **X-33** · [DT] Persona sin silla (la niña del desayuno, que Eli ya había aprobado; lo vio una colega) — _comentario reenviado por Eli, 25-09-2026_ («¿dónde está sentada la niña?»)
+- **X-34** · [DT] Personaje que pierde su identidad (la mamá pelirroja o rubia, la niña pelirroja) — _Eli, 25-09-2026, banco familia DT_. Costó 3 rondas
+
 ## 8. Preguntas abiertas
 
 - [BW] Reel «La razón» prueba 2 (IA): ¿se aceptan las franjas más blandas (720p) y los últimos 0,3 s con el fondo quieto? ¿Reemplaza a la edición 2 en la grilla? → contenido / Eli
@@ -207,7 +224,26 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [BW] Feed «Necesito ir a Between»: sin fecha en la grilla (se nombró 28-09), estado CORREGIDO y el copy sigue siendo el de las promos → CM
 - [BW] ST 30-09: los archivos de Drive siguen llamándose «Plateada al Carmenere» (para no romper el enlace) aunque la pieza ya no nombra el plato → Eli
 
+- [DT] ¿El desayuno rehecho (los cuatro en la misma mesa) reemplaza al que Eli había aprobado? Se subió a Drive con el mismo nombre y la versión anterior quedó guardada en `raw/hilton/dt/familia/r3/maestro-restaurante-v1.jpg` → **Eli**
+- [DT] La habitación `HDT_65` trae una cubeta de espumante (montaje de Escapada). En la escena de la cookie se sacó; ¿se evita esa foto para Family Time? → **Eli**
+- [DT] El conector de Magnific de claude.ai no está autorizado, así que no se pudo crear el Space ni fijar a los personajes en la librería → **Valeria** (no se le lleva a Eli)
+
+- [DT] ST 05-10 feriado (Escapada Romántica + Family Time): el brief trae «(confirmar tarifa vigente)» junto a $99.000 / $125.000. R-28 dice que son los vigentes; ¿se confirma o se deja literal? → **Eli** antes de rendir
+- [BW] Carrusel To Go (ahora 01-10) y reel de cumpleaños (ahora 02-10) en CORREGIDO con los comentarios tachados: no se diseñan hasta que digan OK PARA DISEÑAR → contenido
+
 ## 9. Registro de cosechas
+
+### 2026-09-28 — Claude con Eli · `/al-dia hilton`, foco S1 de octubre (sin piezas)
+- **Regla nueva [DT]:** R-74, Escapada Romántica no se ve como Noche de Bodas (comentario del cliente en la grilla, verbatim).
+- **Sin feedback de Eli:** no se diseñó nada. En OK quedaron las 3 stories de feriado de DT (05-10 ER+FT, y las genéricas de ER y de FT); el carrusel ER 07-10 volvió a REVISAR CONTENIDO.
+- [BW] La grilla corrió las fechas de dos piezas de S1 (To Go 02→01-10, reel cumpleaños 09→02-10); ninguna está en OK.
+- §8: 2 preguntas nuevas (tarifa del feriado DT, piezas BW en CORREGIDO).
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: los 5 commits de ayer para DT y Between (4442ea8, adead40, 08ef0e8, ffbc2e9, 3b42c87) ya están cosechados, cada uno en su propia entrada de abajo (BETWEEN S5 septiembre, relectura de octubre sin piezas, feedback de la prueba 2, reel «La razón», banco de la familia DT). El único que `pendientes` marcó (3b42c87) es el mismo que hizo la última cosecha del día.
+
+### 2026-09-25 (cierre, familia DT) — Claude con Eli · banco de la familia DT sobre fotos reales
+Reglas nuevas R-68 a R-73 (familia fija, fondo real, realismo, identidad, sin gente de fondo, 3 formatos). R-27 sube a ✔×2. A-08 (tres escenas aprobadas a la primera con fondo real). Rechazos X-29 a X-34. Tres preguntas abiertas en §8. Candidata a regla del estudio: el checklist de realismo para personas IA (R-70), que se propone a Valeria.
 
 ### 2026-09-25 (cierre, adenda) — Claude con Eli · feedback de la prueba 2
 - **Regla nueva:** R-67, la expansión se revisa frame a frame (sutil, realista, acorde al movimiento). **Rechazo:** X-28, pelo doble arriba de la cabeza.

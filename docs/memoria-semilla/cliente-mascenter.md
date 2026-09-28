@@ -1,6 +1,6 @@
 ---
 name: cliente-mascenter
-description: "MASCENTER — cerebro del cliente: 44 reglas firmes, última cosecha 2026-09-25. Generado desde clients/mascenter/APRENDIZAJES.md; leerlo antes de diseñar para mascenter"
+description: "MASCENTER — cerebro del cliente: 44 reglas firmes, última cosecha 2026-09-26. Generado desde clients/mascenter/APRENDIZAJES.md; leerlo antes de diseñar para mascenter"
 metadata:
   type: project
 ---

@@ -1,6 +1,6 @@
 ---
 name: cliente-santa-gota
-description: "SANTA-GOTA — cerebro del cliente: 20 reglas firmes, última cosecha 2026-09-25. Generado desde clients/santa-gota/APRENDIZAJES.md; leerlo antes de diseñar para santa-gota"
+description: "SANTA-GOTA — cerebro del cliente: 20 reglas firmes, última cosecha 2026-09-26. Generado desde clients/santa-gota/APRENDIZAJES.md; leerlo antes de diseñar para santa-gota"
 metadata:
   type: project
 ---

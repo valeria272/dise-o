@@ -12,7 +12,7 @@
 > grilla con proveedores, SPC), **[CLICK]** (el portal B2B) o **[AMBAS]**.
 >
 > Criterio: **Paulina Bustamante** (grilla y paid; Serena Abarca produce parte del paid y las ARIEL) · Aprueba: **Paulina valida; el cliente, vía Carlos Figueroa (cuenta/contenido)**
-> Última cosecha: **2026-09-25** · Cosechas: **2**
+> Última cosecha: **2026-09-26** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -174,6 +174,9 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - LinkedIn 26/10 **Capacitaciones**: la grilla dice «PENDIENTE: confirmar tema, proveedor y sucursal». → Carlos.
 
 ## 9. Registro de cosechas
+
+### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`bb78d71`) es el mismo commit que ya cosechó la ronda 1 del LinkedIn de octubre (ver la entrada de abajo, R-48 a R-54). Se lista a sí mismo porque tocó `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit.
 
 ### 2026-09-25 (tarde) — Paulina Bustamante · ronda 1 del LinkedIn de octubre (17 comentarios en Drive)
 - nuevo **R-48** (sólo personas/vehículos/materiales sobre foto real), **R-49** (oficina = camisa y pantalón de vestir), **R-50** (la obra no se lee dentro de EBEMA), **R-51** (titular arriba en el cielo), **R-52** (bloques contenidos, ≤ 3 líneas), **R-53** (Bold sin caja + caja roja), **R-54** (foto con enfoque comercial).

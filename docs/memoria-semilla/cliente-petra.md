@@ -1,6 +1,6 @@
 ---
 name: cliente-petra
-description: "PETRA — cerebro del cliente: 12 reglas firmes, última cosecha 2026-09-25. Generado desde clients/petra/APRENDIZAJES.md; leerlo antes de diseñar para petra"
+description: "PETRA — cerebro del cliente: 12 reglas firmes, última cosecha 2026-09-26. Generado desde clients/petra/APRENDIZAJES.md; leerlo antes de diseñar para petra"
 metadata:
   type: project
 ---

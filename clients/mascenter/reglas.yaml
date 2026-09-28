@@ -42,11 +42,15 @@ ajustes:
   respiro-borde:
     porque: >-
       Mismas excepciones: la foto va a sangre por arriba y Localito sale por el borde
-      inferior en todas las piezas aprobadas de septiembre 2026.
+      inferior en todas las piezas aprobadas de septiembre 2026. (3) La franja azul
+      del pie de la plantilla Mercado Campesino (JULIO IFB.ai, mesa 22, 1283–1350) lleva
+      su línea a 28 px del borde: la pieza aprobada de julio da 19 % en modo control
+      (28-09-2026) y Diego la fijó como plantilla del post del 26-10.
     args:
       excepciones:
         - {x0: 0.0, y0: 0.0, x1: 1.0, y1: 0.62}
         - {x0: 0.55, y0: 0.70, x1: 1.0, y1: 1.0}
+        - {x0: 0.0, y0: 0.95, x1: 1.0, y1: 1.0}
 
 reglas:
   - id: rojo-de-sistema

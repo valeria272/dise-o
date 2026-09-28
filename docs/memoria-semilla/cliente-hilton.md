@@ -1,6 +1,6 @@
 ---
 name: cliente-hilton
-description: "HILTON — cerebro del cliente: 94 reglas firmes, última cosecha 2026-09-28. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
+description: "HILTON — cerebro del cliente: 100 reglas firmes, última cosecha 2026-09-28. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
 metadata:
   type: project
 ---
@@ -34,6 +34,8 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **R-14** · [DT] Si el titular no da contraste sobre foto clara, **la tinta pasa a azul DT**; no se carga el velo, porque la foto real es el argumento — _ST Turismo 10-09; portada S5 17-09-2026_ · ✔×2
 
 ## Lo que ya costó rondas
+- **X-47** · [DT] Cambiar **sólo la cara** (óvalo) de una modelo: se sigue reconociendo por el pelo, la piel y los lentes — _Eli, 28-09-2026, pendones r1: 1 ronda_
+- **X-48** · [DT] Pelo rubio sobre piel morena, cejas decoloradas, ojos raros y mechones sueltos: «poco natural» — _Eli, 28-09-2026, pendones r2: 1 ronda_
 - **X-44** · [BW] Ilustraciones de carta de **trazo uniforme y rígido** (vector de línea pareja) — _Eli, 28-09-2026, r1 («estilo hecho a mano… que no sea tan rígido»)_
 - **X-45** · [BW] Dibujo que **no corresponde a la hoja** (pasteles en la hoja del bar de la D) y dibujos que la caja corta (A) — _Eli, 28-09-2026, r3_
 - **X-46** · [BW] Editables **un .ai por hoja y en RGB** — _Eli, 28-09-2026 («me va a hacer todo muy difícil después para editar»): 1 ronda de entrega_
@@ -50,6 +52,4 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **X-08** · [BW] Gradación **cálida y quemada** («filtro medio raro») — _Scarlette, 31-08-2026 (dos carruseles)_
 - **X-09** · [BW] Grabar encima del resultado de Magnific (curva, 4800 K, viñeta): «se ve mal el color» — _reel 23-09-2026_
 - **X-10** · [BW] Historias recortadas del banco 4:5 con el texto sostenido en cajas: «no cumplen» — _S3, 08-09-2026: se rehicieron las 3_
-- **X-11** · [BW] Jerarquía del brief invertida (la bajada como titular, el titular dentro de la barra del precio) — _carrusel To Go S4, 07-09-2026: arrastrado 20 rondas_
-- **X-12** · [BW] Caja beige sobre papel beige para destacar un rótulo — _Eli, concurso ronda 8, 21-09-2026 («borra el recuadro para que destaque»)_
-- **X-13** · [BW] Pantalla en blanco, libreta vacía, todos a
+- **X-11** · [BW] Jerarquía del brief invertida (la bajada co

@@ -92,13 +92,23 @@ def a_truetype(src: Path) -> TTFont:
     return f
 
 
+def arreglar_nbsp(f: TTFont) -> TTFont:
+    """Las GothamRnd (Bold, Book, Medium) traen el espacio duro U+00A0 con un avance de 25.000 unidades (el espacio
+    normal mide 300). Chrome lo respeta: un «14:00&nbsp;hrs.» o un «Más&nbsp;Center» sale partido con un hueco
+    enorme. Hallado el 28-09-2026 en el post del Mercado Campesino. El espacio duro mide lo mismo que el espacio."""
+    cm, hm = f.getBestCmap(), f["hmtx"]
+    if 0xA0 in cm and 0x20 in cm and hm[cm[0xA0]][0] != hm[cm[0x20]][0]:
+        hm[cm[0xA0]] = (hm[cm[0x20]][0], hm[cm[0xA0]][1])
+    return f
+
+
 def main():
     hallado = buscar()
     faltan = [ps for ps in QUIERO if ps not in hallado]
     for d in DESTINOS:
         d.mkdir(parents=True, exist_ok=True)
     for ps, src in sorted(hallado.items()):
-        f = a_truetype(src)
+        f = arreglar_nbsp(a_truetype(src))
         for d in DESTINOS:
             f.save(d / QUIERO[ps])
         print(f"✓ {ps:22s} ← {src}")

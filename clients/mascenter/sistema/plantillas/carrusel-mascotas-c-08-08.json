@@ -1,0 +1,1055 @@
+{
+ "fuente": "D:/DIEGO 2023/COPYWRITERS/MAS CENTER/AGOSTO IFB/AGOSTO IFB.ai",
+ "mesas": {
+  "6": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "¡Feliz día",
+     "fuente": "Gotham-Black",
+     "cuerpo": 123.73,
+     "color": "#FFFFFF",
+     "base": 418.4,
+     "x0": 65.7,
+     "x1": 632.1
+    },
+    {
+     "texto": "del gato!",
+     "fuente": "Gotham-Black",
+     "cuerpo": 123.73,
+     "color": "#FFFFFF",
+     "base": 532.1,
+     "x0": 65.7,
+     "x1": 625.5
+    },
+    {
+     "texto": "¿Qué tipo de gato",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 48.0,
+     "color": "#FFFFFF",
+     "base": 1133.2,
+     "x0": 258.1,
+     "x1": 713.2
+    },
+    {
+     "texto": "vive en tu casa?",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 48.0,
+     "color": "#FFFFFF",
+     "base": 1181.2,
+     "x0": 258.1,
+     "x1": 642.7
+    }
+   ],
+   "formas": [
+    {
+     "color": "#CFAF30",
+     "opacidad": 1.0,
+     "caja": [
+      1080.0,
+      968.0,
+      2160.0,
+      1351.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      437.8,
+      151.5,
+      480.6,
+      195.1
+     ],
+     "curva": false,
+     "puntos": 13
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      488.0,
+      137.7,
+      525.3,
+      195.1
+     ],
+     "curva": false,
+     "puntos": 15
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      538.0,
+      150.9,
+      571.7,
+      195.7
+     ],
+     "curva": true,
+     "puntos": 38
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      438.2,
+      205.8,
+      458.6,
+      229.0
+     ],
+     "curva": true,
+     "puntos": 30
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      581.9,
+      150.9,
+      642.9,
+      218.6
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      578.4,
+      193.4,
+      616.8,
+      228.3
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#CFAF30",
+     "opacidad": 1.0,
+     "caja": [
+      45.3,
+      297.0,
+      650.6,
+      576.4
+     ],
+     "curva": true,
+     "puntos": 78
+    },
+    {
+     "color": "#CFAF30",
+     "opacidad": 1.0,
+     "caja": [
+      168.5,
+      1074.2,
+      756.1,
+      1217.0
+     ],
+     "curva": true,
+     "puntos": 5
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      826.2,
+      1074.2,
+      969.0,
+      1217.0
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#000000",
+     "opacidad": 1.0,
+     "caja": [
+      853.5,
+      1108.9,
+      941.7,
+      1182.2
+     ],
+     "curva": true,
+     "puntos": 21
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      57.7,
+      986.7,
+      262.6,
+      1273.5
+     ]
+    },
+    {
+     "caja": [
+      -84.9,
+      -8.3,
+      1080.0,
+      1437.7
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      57.7,
+      986.7,
+      262.6,
+      1273.5
+     ],
+     "px": [
+      798,
+      1117
+     ]
+    }
+   ]
+  },
+  "7": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "El que maúlla apenas escucha abrir",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1126.2,
+     "x0": 191.0,
+     "x1": 900.5
+    },
+    {
+     "texto": "la bolsa de comida. Encuentra sus",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1171.2,
+     "x0": 203.8,
+     "x1": 887.7
+    },
+    {
+     "texto": "snacks favoritos en SuperZoo.",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1216.2,
+     "x0": 242.7,
+     "x1": 837.3
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (125 0 R)",
+     "cuerpo": 35.0,
+     "color": "#CFAF30",
+     "base": 1268.7,
+     "x0": 157.2,
+     "x1": 192.2
+    },
+    {
+     "texto": "Más Center Salvador (Av. Salvador 1822)",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 35.0,
+     "color": "#FFFFFF",
+     "base": 1268.7,
+     "x0": 192.2,
+     "x1": 922.7
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (125 0 R)",
+     "cuerpo": 35.0,
+     "color": "#CFAF30",
+     "base": 1310.7,
+     "x0": 130.9,
+     "x1": 165.8
+    },
+    {
+     "texto": "Más Center Los Ángeles (Av. Alemania 1159)",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 35.0,
+     "color": "#FFFFFF",
+     "base": 1310.7,
+     "x0": 165.8,
+     "x1": 949.2
+    },
+    {
+     "texto": "El gato goloso",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1072.4,
+     "x0": 381.5,
+     "x1": 698.5
+    }
+   ],
+   "formas": [
+    {
+     "color": "#CFAF30",
+     "opacidad": 1.0,
+     "caja": [
+      1080.0,
+      968.0,
+      2160.0,
+      1351.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#CFAF30",
+     "opacidad": 1.0,
+     "caja": [
+      0.0,
+      968.0,
+      1080.0,
+      1351.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      964.6,
+      1079.2,
+      1031.2,
+      1145.8
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#000000",
+     "opacidad": 1.0,
+     "caja": [
+      977.3,
+      1095.4,
+      1018.5,
+      1129.6
+     ],
+     "curva": true,
+     "puntos": 21
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      428.0,
+      831.0,
+      659.8,
+      1030.0
+     ],
+     "curva": false,
+     "puntos": 1
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1151.9
+     ]
+    },
+    {
+     "caja": [
+      444.6,
+      834.7,
+      635.4,
+      1025.6
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      0.0,
+      0.0,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      -24.9,
+      -238.4,
+      1095.1,
+      1151.9
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      444.6,
+      834.7,
+      635.4,
+      1025.6
+     ],
+     "px": [
+      999,
+      1000
+     ]
+    },
+    {
+     "caja": [
+      -1164.9,
+      -8.3,
+      0.0,
+      1437.7
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    }
+   ]
+  },
+  "8": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "El que solo come lo que realmente",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1126.2,
+     "x0": 191.1,
+     "x1": 900.5
+    },
+    {
+     "texto": "le gusta. Descubre su nueva comida",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1171.2,
+     "x0": 184.3,
+     "x1": 907.3
+    },
+    {
+     "texto": "favorita en Foody Pet.",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1216.2,
+     "x0": 320.8,
+     "x1": 759.2
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (125 0 R)",
+     "cuerpo": 35.0,
+     "color": "#CFAF30",
+     "base": 1285.0,
+     "x0": 200.4,
+     "x1": 235.3
+    },
+    {
+     "texto": "Más Center Talca (Av. 2 Norte 3230)",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 35.0,
+     "color": "#FFFFFF",
+     "base": 1285.0,
+     "x0": 235.3,
+     "x1": 879.6
+    },
+    {
+     "texto": "El gato exigente",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1072.4,
+     "x0": 361.8,
+     "x1": 718.2
+    }
+   ],
+   "formas": [
+    {
+     "color": "#CFAF30",
+     "opacidad": 1.0,
+     "caja": [
+      1080.0,
+      968.0,
+      2160.0,
+      1351.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#CFAF30",
+     "opacidad": 1.0,
+     "caja": [
+      0.0,
+      968.0,
+      1080.0,
+      1351.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      964.6,
+      1079.2,
+      1031.2,
+      1145.8
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#000000",
+     "opacidad": 1.0,
+     "caja": [
+      977.3,
+      1095.4,
+      1018.5,
+      1129.6
+     ],
+     "curva": true,
+     "puntos": 21
+    },
+    {
+     "color": "#0093DD",
+     "opacidad": 1.0,
+     "caja": [
+      444.5,
+      834.7,
+      635.5,
+      1025.6
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#0093DD",
+     "opacidad": 1.0,
+     "caja": [
+      428.0,
+      831.0,
+      659.8,
+      1030.0
+     ],
+     "curva": false,
+     "puntos": 1
+    },
+    {
+     "color": "#CFAF30",
+     "opacidad": 1.0,
+     "caja": [
+      -1080.0,
+      968.0,
+      0.0,
+      1351.0
+     ],
+     "curva": true,
+     "puntos": 6
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1050.7
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      0.0,
+      0.0,
+      1151.9
+     ]
+    },
+    {
+     "caja": [
+      463.0,
+      916.8,
+      617.0,
+      943.5
+     ]
+    },
+    {
+     "caja": [
+      -16.0,
+      -330.6,
+      1096.8,
+      1050.7
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      -1104.9,
+      -238.4,
+      15.1,
+      1151.9
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      463.0,
+      916.8,
+      617.0,
+      943.5
+     ],
+     "px": [
+      1617,
+      280
+     ]
+    }
+   ]
+  },
+  "9": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "El que tiene su bienestar como",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1126.2,
+     "x0": 228.4,
+     "x1": 863.2
+    },
+    {
+     "texto": "prioridad número uno. Cuídalo con",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1171.2,
+     "x0": 194.6,
+     "x1": 896.9
+    },
+    {
+     "texto": "todo el cariño en Dr. Pet.",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1216.2,
+     "x0": 296.2,
+     "x1": 783.8
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (125 0 R)",
+     "cuerpo": 35.0,
+     "color": "#CFAF30",
+     "base": 1266.0,
+     "x0": 65.4,
+     "x1": 100.4
+    },
+    {
+     "texto": "Más Center Chamisero I (Santa María 14061, Colina)",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 35.0,
+     "color": "#FFFFFF",
+     "base": 1266.0,
+     "x0": 100.4,
+     "x1": 1014.5
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (125 0 R)",
+     "cuerpo": 35.0,
+     "color": "#CFAF30",
+     "base": 1308.0,
+     "x0": 115.4,
+     "x1": 150.3
+    },
+    {
+     "texto": "Más Center Pie Andino (Av. Pie Andino 5855)",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 35.0,
+     "color": "#FFFFFF",
+     "base": 1308.0,
+     "x0": 150.3,
+     "x1": 964.6
+    },
+    {
+     "texto": "El gato consentido",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1072.4,
+     "x0": 335.0,
+     "x1": 745.0
+    }
+   ],
+   "formas": [
+    {
+     "color": "#CFAF30",
+     "opacidad": 1.0,
+     "caja": [
+      1080.0,
+      968.0,
+      2160.0,
+      1351.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#CFAF30",
+     "opacidad": 1.0,
+     "caja": [
+      0.0,
+      968.0,
+      1080.0,
+      1351.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      964.6,
+      1079.2,
+      1031.2,
+      1145.8
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#000000",
+     "opacidad": 1.0,
+     "caja": [
+      977.3,
+      1095.4,
+      1018.5,
+      1129.6
+     ],
+     "curva": true,
+     "puntos": 21
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      444.5,
+      834.7,
+      635.5,
+      1025.6
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      428.0,
+      831.0,
+      659.8,
+      1030.0
+     ],
+     "curva": false,
+     "puntos": 1
+    },
+    {
+     "color": "#CFAF30",
+     "opacidad": 1.0,
+     "caja": [
+      -1080.0,
+      968.0,
+      0.0,
+      1351.0
+     ],
+     "curva": true,
+     "puntos": 6
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1129.6
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      0.0,
+      0.0,
+      1050.7
+     ]
+    },
+    {
+     "caja": [
+      456.4,
+      853.2,
+      623.6,
+      1020.5
+     ]
+    },
+    {
+     "caja": [
+      -7.3,
+      -229.2,
+      1087.3,
+      1129.6
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      -1096.0,
+      -330.6,
+      16.8,
+      1050.7
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      456.4,
+      853.2,
+      623.6,
+      1020.5
+     ],
+     "px": [
+      447,
+      447
+     ]
+    }
+   ]
+  },
+  "10": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "El que necesita todo para sus salidas",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1126.2,
+     "x0": 176.5,
+     "x1": 915.0
+    },
+    {
+     "texto": "y su energía. Encuentra todo lo que",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1171.2,
+     "x0": 188.1,
+     "x1": 903.4
+    },
+    {
+     "texto": "necesita en Yo Mazzcota.",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 42.0,
+     "color": "#FFFFFF",
+     "base": 1216.2,
+     "x0": 290.9,
+     "x1": 789.1
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (125 0 R)",
+     "cuerpo": 35.0,
+     "color": "#CFAF30",
+     "base": 1279.3,
+     "x0": 84.8,
+     "x1": 119.7
+    },
+    {
+     "texto": "Más Center Padre Hurtado (Av. San Ignacio 1624)",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 35.0,
+     "color": "#FFFFFF",
+     "base": 1279.3,
+     "x0": 119.7,
+     "x1": 995.2
+    },
+    {
+     "texto": "El gato aventurero",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1072.4,
+     "x0": 338.0,
+     "x1": 742.0
+    }
+   ],
+   "formas": [
+    {
+     "color": "#CFAF30",
+     "opacidad": 1.0,
+     "caja": [
+      0.0,
+      968.0,
+      1080.0,
+      1351.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      964.6,
+      1079.2,
+      1031.2,
+      1145.8
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#000000",
+     "opacidad": 1.0,
+     "caja": [
+      977.3,
+      1095.4,
+      1018.5,
+      1129.6
+     ],
+     "curva": true,
+     "puntos": 21
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      444.5,
+      834.7,
+      635.5,
+      1025.6
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      428.0,
+      831.0,
+      659.8,
+      1030.0
+     ],
+     "curva": false,
+     "puntos": 1
+    },
+    {
+     "color": "#CFAF30",
+     "opacidad": 1.0,
+     "caja": [
+      -1080.0,
+      968.0,
+      0.0,
+      1351.0
+     ],
+     "curva": true,
+     "puntos": 6
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1145.8
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      0.0,
+      0.0,
+      1129.6
+     ]
+    },
+    {
+     "caja": [
+      444.5,
+      834.7,
+      635.5,
+      1025.6
+     ]
+    },
+    {
+     "caja": [
+      -61.5,
+      -291.0,
+      1095.9,
+      1145.8
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      -1087.3,
+      -229.2,
+      7.3,
+      1129.6
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      433.2,
+      822.7,
+      646.8,
+      1036.4
+     ],
+     "px": [
+      150,
+      150
+     ]
+    }
+   ]
+  }
+ }
+}

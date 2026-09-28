@@ -1,3 +1,134 @@
+## 2026-09-28 (tarde, 8ª parte) — Diego Aguilar (con Claude) · resto de la grilla IG de octubre (sin el reel del 19-10)
+
+**Encargo:** «continúa con los demás contenidos de la grilla de instagram, menos el reel del 19-10». Todo quedó
+**subido** a «10. OCTUBRE», con el md5 verificado.
+- **14-10 · post «Más Center sigue creciendo · Algarrobal»** (`post_algarrobal.py`): render aéreo de Diego
+  (`MAS CENTER ALGARROBAL/PERSPECTIVAS DIFERENTES copia`) extendido hacia arriba con cielo. Lleva pin «Más Center
+  Algarrobal» sobre el proyecto y el rótulo «Imagen referencial» (R-38). Sin velo azul (R-35) y sin fecha de
+  entrega (R-36).
+- **20-10 · carrusel «Panoramas de Halloween»** (`carrusel_panoramas_halloween.py`, 4 slides): afiche vintage
+  ilustrado con Localito vampiro. REF = carrusel Día del Niño = c-31-07, medido en
+  `plantillas/carrusel-eventos-c-31-07.json`. La IA deja la panza de Localito sin logo: `localito_ilustrado.py`
+  le pone el isotipo oficial en rojo. Logos: De Tin Marín (detinmarin.cl) y KLAB (klab.cl).
+- **26-10 · post «Mercado Campesino»** (`post_mercado.py`): foto generada (no hay material real) con la vendedora
+  recortada por delante del titular, como en la REF, y banda verde (R-33) con las tres sedes y sus horarios.
+- **Hallazgo: las GothamRnd traían el espacio duro U+00A0 con 25.000 unidades de avance** (el espacio normal mide
+  300). Un `&nbsp;` partía la línea con un hueco enorme. Se corrigieron los TTF en `sistema/assets/fonts` y
+  `public/assets/fonts/mascenter`, y `scripts/mascenter-gotham-ttf.py` ya lo corrige al regenerar.
+
+**Abierto — validar con Scarlette:** (1) KLAB publica **Av. Paseo Pie Andino 5885** y el brief dice **5855**: se
+dejó el del brief, pero es la misma duda de dirección que ya estaba anotada. (2) El brief de Mercado Campesino pide
+basarse en «la primera imagen» de la REF, que es un pin con un solo archivo: se tomó ese. (3) En las ilustraciones,
+el gorro de Localito no lleva la palabra «Localito».
+
+## 2026-09-28 (tarde, 7ª parte) — Diego Aguilar (con Claude) · sin rótulos de slide en los tres carruseles
+
+**Feedback de Diego:** los textos tipo «Slide 1 – Portada» o «Slide 2 – Decoración» no van en la gráfica (R-51).
+- **01-10:** sin cambios. «Primera parada», «Cafetería El Distrito»… son copy del brief, no rótulos.
+- **04-10:** se sacaron los nombres de la banda (SuperZoo, FoodyPet, Dr. Pet, Yo Mazzcota), que venían del rótulo
+  del slide. Descripción y sedes quedaron como un bloque centrado en la banda. El cierre conserva su titular
+  («Su día merece algo especial.»), que sí es copy.
+- **08-10:** se sacaron las etiquetas «✓ Decoración / Dulces / Café temático / Antojo dulce» y las del collage. En el
+  cierre queda sólo el ✓ sobre cada foto.
+- QA: 0 bloqueantes. Los 12 archivos (04-10 y 08-10) se reemplazaron en sitio en Drive, con el md5 verificado.
+
+## 2026-09-28 (tarde, 6ª parte) — Diego Aguilar (con Claude) · 08-10 portada: Localito inmerso
+
+**Feedback de Diego:** «en la portada haz a Localito inmerso en el strip center, que no se vea "volando"».
+Seedream lo compuso de pie en la vereda de Chamisero II, con sombra de contacto y la luz del atardecer (refs: la
+escena y la figura sobre verde; `fotos/01-portada-integrada-b.png`). **Otra vez escribió mal el letrero
+(«Little Cagars»)** y se parchó con el real (`…-b-parche.png`). Como Localito pasó al primer plano a la derecha, la
+portada tomó la gramática de la mesa 6 (c-08-08): caja de titular arriba a la izquierda y pastilla con flecha abajo
+a la izquierda. Se reemplazó en sitio en Drive (md5 OK). Candidata a regla: **Localito sobre una foto va apoyado en
+el piso de la escena, con sombra y la luz de la escena; nunca flotando como un recorte encima.**
+
+## 2026-09-28 (tarde, 5ª parte) — Diego Aguilar (con Claude) · carrusel 08-10 «Halloween se resuelve en Más Center» subido
+
+**Encargo de Diego:** «sigue con el carrusel del 08-10, podrías hacer a Localito con disfraz de vampiro, y ambienta
+el carrusel de halloween, los logos de los locales búscalos en la web». Brief: celda D7 (fila POST), sin REF enlazada.
+- **Localito vampiro:** Seedream generó el disfraz sobre las poses originales, puestas sobre verde. Se recortó por
+  croma a `raw/mascenter/localito/localito-vampiro-{capa,balde}.png`. En la portada abre la capa y en el cierre
+  lleva un balde-calabaza con dulces.
+- **Logos desde la web:** Kios Club (kiosclub.com), Fiesta & Regalos (fiestayregalos.cl y Mall Vivo) y Dunkin'
+  (Wikimedia Commons, `Dunkin' logo.svg`) → `raw/mascenter/octubre-2026/logos-halloween/`. Starbucks, el del 01-10.
+- **Fotos:** la portada sale de la foto REAL de Chamisero II (FOTOS KLAS) con luz de atardecer y calabazas. **La IA
+  reescribió «Little Caesars» como «Litle»: se parchó con el letrero real de la foto original (R-10).** Las donas
+  salen del metraje REAL de Dunkin' Las Flores (`MAS CENTER TRASPASO/…/DUNKINLASFLORES.mp4`), con decoración de
+  Halloween. Decoración, dulces y café son generados, sin logos.
+- Constructor: `clients/mascenter/sistema/carrusel_halloween.py`. Banda **naranja calabaza `#EE7A22`**: es una
+  propuesta, porque R-33 no tiene color medido para Halloween. Etiqueta de checklist por slide, murciélagos
+  sutiles y logo de Más Center sobre rojo (R-50).
+- QA: 0 bloqueantes y 7 avisos de color (naranja y turquesa). **Subidos** a «10. OCTUBRE», tamaños verificados.
+
+**Abierto:** las sedes no vienen en el brief (la otra versión de la celda dice «[VALIDAR MÁS CENTER Y DIRECCIÓN
+ACTUAL]»). Se tomaron de otras celdas de la misma grilla: Fiesta & Regalos → Chamisero II (reel orgánico de
+Halloween), Kios Club → San Carlos (story de Kios Club), Starbucks → Santa María y Las Flores (01-10), Dunkin' → Las
+Flores (metraje). **Validar con Scarlette.** La celda tiene dos versiones del texto; se usó la de la fila POST.
+
+## 2026-09-28 (tarde, 4ª parte) — Diego Aguilar (con Claude) · 04-10 ronda 2 (correcciones de Diego)
+
+**Feedback de Diego:** «está casi el diseño, sólo pequeñas correcciones»: (1) Localito puede variar de posición
+según el texto y su recorte tiene que quedar bien; (2) las imágenes se cortaban en algunos casos; (3) el logo de
+Más Center va siempre con el rojo (último slide). Quedaron como R-48, R-49 y R-50 en `APRENDIZAJES.md`.
+- Las poses de Localito se extrajeron de los `.ai` con su máscara original → `raw/mascenter/localito/` (apunta,
+  celebra, pulgares, saluda). La portada lleva el que **apunta** a la pastilla y el cierre el que **celebra**, junto a
+  «Su día merece algo especial».
+- Fotos v2: los animales quedan completos por encima del círculo y de la banda. SuperZoo y portada se regeneraron;
+  en SuperZoo y Yo Mazzcota además se sube la foto con `subir` (la banda tapa todo bajo y=968). La portada usa la
+  variante «a» (cachorro entero) y el titular bajó a Black 88 para no tocarle la cabeza. Las versiones anteriores
+  quedaron en `fotos/v1/`.
+- Cierre: el logo de Más Center va sobre rojo.
+- QA: 0 bloqueantes. Los 6 archivos se **reemplazaron en sitio** en «10. OCTUBRE» (mismos fileId, md5 verificado).
+
+## 2026-09-28 (tarde, 3ª parte) — Diego Aguilar (con Claude) · carrusel 04-10 «Día de la Mascota» subido
+
+**Qué se hizo:** la pieza del 04-10 es el carrusel «Día de la Mascota» (6 slides, celda C7). Su REF, el pin de
+Pinterest `768637861451022859` (cachorro en el pasto), está en `raw/mascenter/octubre-2026/ref-mascota-pin.jpg`.
+**La plantilla viva es `c-08-08` («¡Feliz día del gato!», mesas 6–10 de `AGOSTO IFB.ai`):** tiene los mismos cuatro
+locatarios con las mismas direcciones. Quedó medida en `sistema/plantillas/carrusel-mascotas-c-08-08.json`: banda
+mostaza `#CFAF30`, sedes en una línea «Más Center X (dirección)» y portada con caja de titular, Localito y pastilla.
+- Fotos con Seedream 5 Pro. **Yo Mazzcota parte de un fotograma REAL de su tienda** (el muro de juguetes de
+  `MARZO IFB/YO MAZZCOTA…/IMG_1549.MOV`), al que se le agregó un bichón. Las demás fotos son generadas, como en agosto.
+- El Localito de la portada es el original de Diego (`AGOSTO IFB/1x/LOCALITO.png`, saludando), recortado a
+  `raw/mascenter/octubre-2026/localito-original-recorte.png`. **El de `sistema/assets/localito.png` es el del paid,
+  con teléfono, y trae un resto blanco a la izquierda: no sirve para el orgánico.**
+- Constructor: `clients/mascenter/sistema/carrusel_dia_mascota.py`, que reutiliza el de la ruta cafetera.
+- `qa/motor.py`: 0 bloqueantes y 6 avisos de color. Los avisos salen porque `rojo-de-sistema` sólo conoce los rojos
+  del paid, no la mostaza de R-33. En SuperZoo se apretó el paso de las sedes de 42 a 38 para cumplir el respiro de
+  60 px, que la mesa 7 original tampoco cumple (1310,7).
+
+**Dónde quedó:** `out/mascenter/2026-10/carrusel-04-10/c-04-10-{1..6}.png`, **subidos** a «10. OCTUBRE» (tamaños
+verificados).
+
+**Abierto:** el titular de portada es literal, partido en entrada («Hoy, en el Día de la Mascota,») + caja («se vale
+regalonearlos de más.»). `reglas.yaml` necesita un ajuste para el orgánico (colores de banda por tema, respiro de la
+mesa 7) que tiene que firmar Diego.
+
+## 2026-09-28 (tarde, 2ª parte) — Diego Aguilar (con Claude) · carrusel 01-10 «Ruta Cafetera» rendido
+
+**Qué se hizo:** el conector de Drive volvió. La pieza del 01-10 es el carrusel **«Día Internacional del Café —
+La Ruta Cafetera Más Center»** (8 slides, celda B7). La REF es un hipervínculo de la celda que el conector no
+muestra: se bajó el xlsx y se leyó con openpyxl → pin de Pinterest `1003810204462333035` (foto POV con la bebida
+en la mano y una ruta de mapa encima), en `raw/mascenter/octubre-2026/ref-portada-pin.jpg`. Los 6 logos de
+cafeterías están en `raw/mascenter/octubre-2026/logos-cafe/`; los de mascotas de la misma carpeta son del 04-10.
+- Fotos con Seedream 5 Pro. La portada sale de la foto REAL de Más Center Las Flores (FOTOS KLAS) con la mano y el
+  vaso agregados. Los 6 cafés son generados, sin logos ni letreros inventados, porque no hay fotos reales de esas
+  cafeterías en el disco ni en Drive.
+- Constructor: `clients/mascenter/sistema/carrusel_ruta_cafetera.py`, sobre la geometría medida de c-19-08.
+  Agrega lo que pide el brief: una ruta punteada que cruza cada slide por el círculo del logo (cada local es una
+  parada), una etiqueta de parada y un collage final donde la ruta termina en el logo de Más Center.
+- `qa/motor.py --marca mascenter`: 8/8 ✓.
+
+**Dónde quedó:** `out/mascenter/2026-10/carrusel-01-10/c-01-10-{1..8}.png` (1080×1350), **subidos** a «10. OCTUBRE»
+(`1h7_dB1HxA2KBThQhUuUinHG24DP9wHwK`) con el token del estudio; los tamaños se verificaron desde el conector.
+Ojo: el token `drive.file` no puede LISTAR esa carpeta, pero sí CREAR archivos en ella (quedan a nombre de
+valeria@copywriters.cl). El aviso de `scripts/drive-subir.py` («va a Mi unidad») no se cumplió acá.
+
+**Abierto:** los logos de Dúo y La Parroquia vienen a 150 px y se ven algo blandos. Direcciones de la grilla
+por validar: «Av. Plaza 1.250» (en otras celdas es «Av. La Plaza 1250») y Pie Andino 5855 contra 1855. Se sacaron
+el ☕/🤎 y la flecha «→» del texto (sin emojis en gráfica: R-09) y se corrigieron las mayúsculas
+(«Las condes», «ConCón», «Santa Maria», «AV.»).
+
 ## 2026-09-28 (tarde) — Diego Aguilar (con Claude) · ⏸ ENCARGO PENDIENTE: carrusel 01-10 de la grilla IFB de octubre
 
 **El encargo (literal de Diego):** «generes el primer contenido de la grilla instagram, ten en cuenta el

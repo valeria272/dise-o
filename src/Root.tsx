@@ -25,6 +25,7 @@ import {AnimaticV3 as SGAnimaticV3} from "./compositions/santagota/spot/Animatic
 import {AnimaticV4 as SGAnimaticV4} from "./compositions/santagota/spot/AnimaticV4";
 import {AnimaticV5 as SGAnimaticV5} from "./compositions/santagota/spot/AnimaticV5";
 import {FullClienteIG, FullClienteIGCapa, DUR_FULL_CLIENTE} from "./compositions/santagota/tv-cliente/FullClienteIG";
+import {ReelVertical as SGReelVertical, DUR_REEL_V} from "./compositions/santagota/reel/ReelVertical";
 
 
 // COPYWRITERS — Creative Operating System v1.0. Una pieza = un archivo = una
@@ -1290,6 +1291,8 @@ export const RemotionRoot: React.FC = () => {
         {/* el full que el cliente mandó a TVN + cierre de Instagram (21-09-2026) */}
         <Composition id="SG-FULL-CLIENTE-IG" component={FullClienteIG} durationInFrames={DUR_FULL_CLIENTE} fps={29.97} width={1920} height={1080} />
         <Composition id="SG-FULL-CLIENTE-IG-CAPA" component={FullClienteIGCapa} durationInFrames={DUR_FULL_CLIENTE} fps={29.97} width={1920} height={1080} />
+        {/* «UNA SOLA GOTA LO CAMBIA TODO» vertical para Reels, desde el spot v2 de Diego (28-09-2026) */}
+        <Composition id="SG-REEL-VERTICAL" component={SGReelVertical} durationInFrames={DUR_REEL_V} fps={24} width={1080} height={1920} />
       </Folder>
       <Folder name="Copywriters">
         {/* Feed 4:5 — el formato principal del sistema. */}

@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Valeria Traverso (TV y piezas del estudio); el feed lo diseña Luis Piano, del lado del cliente, y su feed manda** · Aprueba: **Gonzalo (cliente; decide qué sale a TV)** · Estrategia de marca: **Diana Meinhardt (Brand Soul)**
-> Última cosecha: **2026-09-26** · Cosechas: **2**
+> Última cosecha: **2026-09-28** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -25,7 +25,7 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 
 | | |
 |---|---|
-| Quién pide / KAM | Valeria Traverso (con Claude) |
+| Quién pide / KAM | Valeria Traverso (con Claude) · **Diego Aguilar** también produce video de la cuenta (spot «UNA SOLA GOTA LO CAMBIA TODO» en AE + su versión vertical, 28-09) |
 | Quién aprueba (cliente) | Gonzalo, del lado del cliente (cuenta del cliente: `patagoniadechile@gmail.com`). Internamente, Valeria aprueba cada ronda antes de que salga |
 | Por dónde llega el feedback | Valeria por voz/texto en la sesión; del cliente, por correo (hilo «TVN / Santa Gota Virgen / 2026») y WhatsApp |
 | Dónde se entrega | `out/santagota/<pieza>/` + Escritorio; al canal por WeTransfer. Drive: carpeta `SANTA GOTA` `1VRQ_9ggb6n1DhQbOZiYoLP0iW-imswG9` |
@@ -63,6 +63,11 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 - **R-18** · Para saber qué se le mandó al cliente se lee el hilo de Gmail; no se confía en qué se exportó — _21-09 (el cliente mandó una versión hecha fuera del repo)_ · ✔×1
 - **R-19** · Voz: Pecadora Insolente. Tuteo, ironía hacia las reglas y nunca hacia la persona, léxico religioso profanado, sin lenguaje gourmet ni efusividad — _Brand Soul de Diana Meinhardt (07-08); QA v3 de redes_ · ✔×1
 - **R-20** · La sesión fotográfica inicial sirve para gente, gesto y ambiente, **no** para producto quieto (su etiqueta es anterior al packaging actual) — _revisión 15-09_ · ✔×1
+- **R-21** · Un cambio de formato (16:9 → 9:16) **no puede cortar la botella, su etiqueta ni la escena**. Si el recorte no la contiene, el plano se regenera vertical desde la misma imagen del space (recorte con toda la acción → franjas completadas → mismo prompt de video en 9:16), no se recorta más — _Diego, Reel vertical v1→v2, 28-09: «si tienen que volver a generar los videos para que queden bien en el encuadre hazlo»_ · ✔×1
+- **R-22** · Con la monja cocinando se ve **la escena completa**: cocina, wok, fuego y la botella en la mano — _Diego, Reel vertical v1, 28-09_ · ✔×1
+- **R-23** · Una versión derivada (otro formato del mismo spot) copia las transiciones del máster **cuadro a cuadro**; se miden en el MP4 del máster, no se aproximan — _Diego, Reel vertical v1, 28-09: «las transiciones tienen que ser iguales a la otra versión»_ · ✔×1
+- **R-24** · El logo sale del **manual `BM SANTA GOTA.pdf`** (vector con alfa: pág. 4 lima, pág. 5 naranja, pág. 3 gris), no de `LOGOS SANTA GOTA.ai`, cuyo logo trae la sombra blanca desplazada y rota detrás de la T y las A. Y nunca se corta — _Diego, Reel vertical v2→v3, 28-09: «los logos del 0:06 se cortan, sácalos del BM SANTA GOTA»_ · ✔×1
+- **R-25** · En el cierre, logo, productos y CTA **no se tocan**: en vertical van logo arriba, productos al medio y CTA abajo, con aire entre cada uno — _Diego, Reel vertical v1, 28-09: «que los elementos y textos no choquen con los productos»_ · ✔×1
 
 ## 5. Excepciones
 
@@ -83,6 +88,8 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 
 ## 7. Lo que se rechaza
 
+- **X-09** · Reel vertical hecho sólo reencuadrando el 16:9: cortaba la botella y la escena de la monja, las transiciones eran aproximadas y el CTA quedaba pegado a los productos; después, el logo del .ai con la sombra blanca rota — _Diego, 28-09; costó 2 rondas (v1 → v2 → v3)_
+
 - **X-01** · Columna 9:16 sobre placa desenfocada, «pantallitas» de video en el virtual, monja chica (62 %), texto que entra con fade — _Fase 2 TV, 11-09; costó la V3_
 - **X-02** · Zooms para llenar, planos que cruzan los cortes del reel, franja que no llega al borde (parecía lower third), «plato gigante» congelado, látigo lima — _V3 TV, 11-09; costó la V4_
 - **X-03** · Sucesión de beauty shots: «tenemos una idea pero no un MOMENTO» — _spot keyframes V1, 15-09_
@@ -94,7 +101,9 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 
 ## 8. Preguntas abiertas
 
-- **Logo vectorial:** no existe (sólo el PNG de 36 KB). Pedírselo al cliente (Valeria → Gonzalo).
+- ~~**Logo vectorial:** no existe~~ → ✅ **existe** (28-09): `D:\DIEGO 2023\COPYWRITERS\SANTA GOTA\IMAGEN SANTA GOTA 2026\BRAND MANUAL SG 2026\BM SANTA GOTA_Carpeta\BM SANTA GOTA.pdf`, págs. 3–5 (gris, lima, naranja; se extrae con PyMuPDF `get_pixmap(alpha=True)`), y en `public/assets/santagota/reel-v2/logo-bm-*.png`. Falta la versión verde con la O naranja (la del cierre) en vector.
+- ¿El spot «UNA SOLA GOTA LO CAMBIA TODO» (v2 horizontal de Diego) y su vertical v3 están aprobados por Gonzalo? (Diego / Valeria)
+- ¿El logo del cierre del Reel se cambia por uno del manual? (Diego)
 - **Plantilla técnica del virtual 775×1080** del canal: nunca llegó. No se entrega al canal sin calzarla.
 - **¿Salió al aire?** Está verificado que se **mandó** a TVN el 20-09; que esté «al aire» no está confirmado. No decirlo en ninguna pieza (Valeria / Gonzalo).
 - ¿La monja vuelve a estar permitida en TV? El 15-09 el cliente la había dejado sólo para RRSS y el 20-09 mandó justo la versión con monja (Valeria / Gonzalo).
@@ -106,6 +115,12 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 - Obra sin commitear al 22-09 (spot y full con Instagram): mientras no entre al repo nadie más la reproduce.
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 — Diego Aguilar (con Claude) · Reel vertical del spot «UNA SOLA GOTA LO CAMBIA TODO»
+- nuevo **R-21…R-25** · las cinco correcciones de Diego sobre la v1/v2 del vertical (no cortar producto ni escena → regenerar; monja con escena completa; transiciones cuadro a cuadro; logo del manual y entero; cierre sin choques).
+- nuevo **X-09** · la v1 reencuadrada (2 rondas).
+- §2 · Diego Aguilar también produce video de la cuenta.
+- §8 · se resuelve «no hay logo vectorial»: está en el manual `BM SANTA GOTA.pdf`. Abiertas: aprobación del spot y logo del cierre.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: los 4 commits de TV (`2ca00d1` Fase 1, `bd7f0fa` Fase 2, `5cc4249` V3, `4886fb0` V4) y la parte de Santa Gota del commit `66b38a1` (cierre del 21-09 con el ícono de Instagram en el full, y las 6 rondas del spot «UNA GOTA. CAMBIA TODO.» del 15-09) ya están destiladas en la siembra inicial de abajo — R-11 a R-16, A-01 a A-03, E-05, E-06 y X-01 a X-08 cubren ese material aunque los commits se autoraron el 11 y el 15-09 (llegaron a git recién el 25-09, con la fecha de commit reescrita, pero ya estaban en el árbol de trabajo cuando se sembró este archivo). El resto de `66b38a1` (feed Copywriters, Petra, G.CL) no es de esta marca.

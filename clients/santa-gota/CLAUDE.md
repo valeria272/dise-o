@@ -88,6 +88,12 @@ El feed mezcla **Bold para la palabra clave + Light para el resto** en la misma 
 
 Los planos se generaron desde el PNG quedándose con los píxeles verdes/naranjos (sin la sombra negra).
 
+⭐ **El logo VECTORIAL existe (28-09-2026):** el manual `BM SANTA GOTA.pdf` (disco de Diego,
+`IMAGEN SANTA GOTA 2026/BRAND MANUAL SG 2026/BM SANTA GOTA_Carpeta/`) trae el logo en vector con fondo
+transparente: pág. 3 gris, **pág. 4 lima**, **pág. 5 naranja** (PyMuPDF `get_pixmap(dpi=300, alpha=True)` y recortar
+sobre las muestras Pantone). Ya extraídos en `public/assets/santagota/reel-v2/logo-bm-{lima,naranja}.png` (2474×1519).
+⛔ No usar el logo de `LOGOS SANTA GOTA.ai`: trae la sombra blanca desplazada y rota detrás de la T y las A.
+
 ## 4. La gramática — cómo se compone
 ### Feed
 ⭐ **La cuenta se pasó a 4:5 (1080×1350) en la semana del 14-09-2026.** Las 20 piezas de
@@ -239,6 +245,19 @@ NORMALIDAD → GOTA → IMPACTO IMPOSIBLE (el KV) → EL MUNDO CAMBIA → CAOS G
   DE ACEITE DE OLIVA… / LO CAMBIA TODO.», la mesa en plano ABIERTO con la botella chica (`mesa_still`), sin botella sola,
   placement de los cuatro con la onda y CTA «CÓMPRALO EN TODO CHILE · SANTAGOTA.CL». ⛔ Nano Banana entrega a veces
   letterbox 2,2:1 dentro del 16:9: medir filas con contenido y recortar antes de usar.
+
+## 8d. Reel vertical del spot «UNA SOLA GOTA LO CAMBIA TODO» (28-09-2026, Diego)
+Máster horizontal de Diego en su disco (`base-santagota.prproj` → `base-santagota.mp4`; `FINAL SANTA GOTA.aep` →
+`final-santagota v2.mp4`; clips Seedream 5 Pro → Wan 3.0 del space de Magnific, prompts en cada nodo).
+Vertical: `src/compositions/santagota/reel/ReelVertical.tsx` → `SG-REEL-VERTICAL` (1080×1920 · 24 fps · 477 f).
+- Voces del AE: **Dimbo** (blanco) y **The Queen Marker** (lima 193,212,0), en `public/assets/santagota/reel-v2/`.
+- Plano que en 9:16 corta botella/etiqueta/escena → **se regenera**, no se recorta: recorte con toda la acción →
+  lienzo 9:16 con franjas grises → Seedream 5 Pro «rellena sólo las franjas» → se pegan encima los píxeles originales
+  (costura de 60 px) → Wan 3.0 9:16 con el mismo prompt del nodo (monja con cuadro inicial + final).
+  ⛔ `images_expand` de Magnific: el modo flux ya no existe y el de ideogram escribe texto basura («Outpainting…»)
+  a 736 px. No usarlo.
+- Transiciones calcadas del v2 cuadro a cuadro (ver cabecera del archivo). El audio es el del v2 tal cual.
+- ⚠ La base va re-codificada con GOP 12 (44 MB): GitHub rechaza archivos de más de 100 MB.
 
 ## 9. Errores ya cometidos (para no repetirlos)
 - Fase 2: `-ss` ANTES de `-i` con el ffmpeg de Remotion etiquetó mal los fotogramas (el «8,7 s» era 8,75 pero el

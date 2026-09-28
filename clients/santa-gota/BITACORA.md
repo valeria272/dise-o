@@ -1,5 +1,31 @@
 # SANTA GOTA — bitácora
 
+## 2026-09-28 — Diego Aguilar (con Claude) · Reel vertical del spot «UNA SOLA GOTA LO CAMBIA TODO»
+
+**Qué se hizo:** versión 9:16 para Reels del spot horizontal de Diego (`D:\DIEGO 2023\COPYWRITERS\SANTA GOTA\`:
+`base-santagota.prproj` → `base-santagota.mp4` montaje limpio; `FINAL SANTA GOTA.aep` → `final-santagota v2.mp4` con
+textos, logo, transiciones y mezcla; clips Seedream 5 Pro → Wan 3.0 del space de Magnific). Tres rondas en el día:
+- **v1:** reencuadre plano a plano del montaje + textos del AE recompuestos para 9:16 (Dimbo blanco, The Queen Marker
+  lima 193,212,0) + audio del v2 tal cual. Diego la rechazó: cortaba la botella y la escena de la monja, las
+  transiciones eran aproximadas y en el cierre los textos quedaban muy juntos a los productos.
+- **v2:** se **regeneraron en vertical** la monja (cuadro inicial + final: cocina, wok, fuego y botella en la mano), el
+  wok y el filete. Método: recorte con toda la acción → franjas completadas con Seedream 5 Pro (con los píxeles
+  originales vueltos a pegar al centro) → Wan 3.0 9:16 con el MISMO prompt del nodo. El split usa los clips fuente
+  enteros apilados. Las transiciones se calcaron cuadro a cuadro del v2 (destello 28–35, salida con estela 94–99, giro
+  131–139, zoom por la O 202–207, giro de salida 377–384). Cierre: logo arriba (sale detrás de los productos),
+  productos al medio y CTA abajo, sin tocarse.
+- **v3:** el logo del tomate y la pizza (seg. 6) salía cortado → se reemplazó por el vector oficial de
+  `IMAGEN SANTA GOTA 2026/BRAND MANUAL SG 2026/BM SANTA GOTA_Carpeta/BM SANTA GOTA.pdf` (pág. 4 lima, pág. 5 naranja).
+**Dónde quedó:** `out/santagota/reel-vertical/SANTA_GOTA_REEL_VERTICAL_v3.mp4` (1080×1920 · 24 fps · 477 cuadros ·
+audio del v2, −15,2 LUFS). Composición `SG-REEL-VERTICAL` → `src/compositions/santagota/reel/ReelVertical.tsx`;
+material en `public/assets/santagota/reel-v2/` (base re-codificada a 44 MB para caber en GitHub, clips Wan verticales,
+logos del manual, fuentes, audio). Se reproduce desde el repo (PSNR 45,5 dB contra la entrega). No se subió al Drive
+ni al Escritorio. Los intentos en Magnific quedaron en el proyecto de Santa Gota (~2.750 créditos).
+**Qué sigue:** que Diego/Valeria revisen la v3 → subirla al Drive `SANTA GOTA`. Si se quiere todo el Reel con logos
+del manual, cambiar también el logo del cierre (hoy es el PNG `logo_lime_naranja` de 810 px).
+**Abierto:** ¿el spot v2 horizontal está aprobado por Gonzalo? (no está en el hilo que se conoce) · ¿el logo del cierre
+se cambia por uno del manual? · la monja vuelve a salir (en el spot con IA, no la del reel) — confirmar con Valeria.
+
 ## 2026-09-21 · Valeria (con Claude) — TV: el cliente salió con la versión de la MONJA; se le agrega el cierre de Instagram
 
 **Qué pasó (correo «TVN / Santa Gota Virgen / 2026»):** el 15-09 Valeria mandó por WeTransfer el paquete de TVN; el

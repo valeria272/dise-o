@@ -1,6 +1,6 @@
 ---
 name: cliente-santa-gota
-description: "SANTA-GOTA — cerebro del cliente: 20 reglas firmes, última cosecha 2026-09-26. Generado desde clients/santa-gota/APRENDIZAJES.md; leerlo antes de diseñar para santa-gota"
+description: "SANTA-GOTA — cerebro del cliente: 25 reglas firmes, última cosecha 2026-09-28. Generado desde clients/santa-gota/APRENDIZAJES.md; leerlo antes de diseñar para santa-gota"
 metadata:
   type: project
 ---
@@ -34,6 +34,7 @@ Criterio: **Valeria Traverso (TV y piezas del estudio); el feed lo diseña Luis 
 - **R-20** · La sesión fotográfica inicial sirve para gente, gesto y ambiente, **no** para producto quieto (su etiqueta es anterior al packaging actual) — _revisión 15-09_ · ✔×1
 
 ## Lo que ya costó rondas
+- **X-09** · Reel vertical hecho sólo reencuadrando el 16:9: cortaba la botella y la escena de la monja, las transiciones eran aproximadas y el CTA quedaba pegado a los productos; después, el logo del .ai con la sombra blanca rota — _Diego, 28-09; costó 2 rondas (v1 → v2 → v3)_
 - **X-01** · Columna 9:16 sobre placa desenfocada, «pantallitas» de video en el virtual, monja chica (62 %), texto que entra con fade — _Fase 2 TV, 11-09; costó la V3_
 - **X-02** · Zooms para llenar, planos que cruzan los cortes del reel, franja que no llega al borde (parecía lower third), «plato gigante» congelado, látigo lima — _V3 TV, 11-09; costó la V4_
 - **X-03** · Sucesión de beauty shots: «tenemos una idea pero no un MOMENTO» — _spot keyframes V1, 15-09_

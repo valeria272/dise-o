@@ -1,0 +1,1817 @@
+{
+ "fuente": "D:/DIEGO 2023/COPYWRITERS/MAS CENTER/AGOSTO IFB/AGOSTO IFB.ai",
+ "mesas": {
+  "1": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "¡",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 397.1,
+     "x0": 224.2,
+     "x1": 262.1
+    },
+    {
+     "texto": "V",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 394.4,
+     "x0": 248.5,
+     "x1": 321.0
+    },
+    {
+     "texto": "e",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 389.1,
+     "x0": 304.7,
+     "x1": 364.4
+    },
+    {
+     "texto": "n",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 385.3,
+     "x0": 354.7,
+     "x1": 413.8
+    },
+    {
+     "texto": "a",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 381.1,
+     "x0": 429.9,
+     "x1": 483.5
+    },
+    {
+     "texto": "d",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 378.8,
+     "x0": 502.5,
+     "x1": 560.2
+    },
+    {
+     "texto": "i",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 378.3,
+     "x0": 557.6,
+     "x1": 582.3
+    },
+    {
+     "texto": "s",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 378.4,
+     "x0": 579.2,
+     "x1": 623.3
+    },
+    {
+     "texto": "f",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 379.0,
+     "x0": 618.9,
+     "x1": 653.9
+    },
+    {
+     "texto": "r",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 379.8,
+     "x0": 648.1,
+     "x1": 687.5
+    },
+    {
+     "texto": "u",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 381.1,
+     "x0": 680.2,
+     "x1": 738.9
+    },
+    {
+     "texto": "t",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 384.0,
+     "x0": 729.7,
+     "x1": 772.6
+    },
+    {
+     "texto": "a",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 386.3,
+     "x0": 761.6,
+     "x1": 821.1
+    },
+    {
+     "texto": "r",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 390.6,
+     "x0": 808.2,
+     "x1": 855.0
+    },
+    {
+     "texto": "e",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 567.9,
+     "x0": 231.9,
+     "x1": 294.4
+    },
+    {
+     "texto": "n",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 562.8,
+     "x0": 281.8,
+     "x1": 343.7
+    },
+    {
+     "texto": "M",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 556.7,
+     "x0": 357.2,
+     "x1": 436.8
+    },
+    {
+     "texto": "á",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 552.7,
+     "x0": 429.9,
+     "x1": 483.5
+    },
+    {
+     "texto": "s",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 551.0,
+     "x0": 478.4,
+     "x1": 523.0
+    },
+    {
+     "texto": "C",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 549.9,
+     "x0": 543.2,
+     "x1": 606.1
+    },
+    {
+     "texto": "e",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 550.3,
+     "x0": 601.7,
+     "x1": 655.6
+    },
+    {
+     "texto": "n",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 551.5,
+     "x0": 649.9,
+     "x1": 707.3
+    },
+    {
+     "texto": "t",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 553.8,
+     "x0": 699.4,
+     "x1": 741.0
+    },
+    {
+     "texto": "e",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 555.6,
+     "x0": 730.1,
+     "x1": 789.7
+    },
+    {
+     "texto": "r",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 559.4,
+     "x0": 778.2,
+     "x1": 823.6
+    },
+    {
+     "texto": "!",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 84.41,
+     "color": "#FFFFFF",
+     "base": 562.5,
+     "x0": 810.3,
+     "x1": 847.7
+    }
+   ],
+   "formas": [
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      -91.7,
+      1174.6,
+      1170.0,
+      1521.7
+     ],
+     "curva": true,
+     "puntos": 120
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      1079.9,
+      967.0,
+      2160.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      437.8,
+      151.5,
+      480.6,
+      195.0
+     ],
+     "curva": false,
+     "puntos": 13
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      488.0,
+      137.7,
+      525.3,
+      195.0
+     ],
+     "curva": false,
+     "puntos": 15
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      538.0,
+      150.9,
+      571.7,
+      195.7
+     ],
+     "curva": true,
+     "puntos": 38
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      438.2,
+      205.8,
+      458.6,
+      228.9
+     ],
+     "curva": true,
+     "puntos": 30
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      581.9,
+      150.8,
+      642.9,
+      218.6
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      578.4,
+      193.3,
+      616.8,
+      228.3
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      919.8,
+      1199.5,
+      1031.6,
+      1311.3
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#000000",
+     "opacidad": 1.0,
+     "caja": [
+      941.2,
+      1226.7,
+      1010.2,
+      1284.1
+     ],
+     "curva": true,
+     "puntos": 21
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      631.6,
+      35.9,
+      746.0,
+      149.5
+     ],
+     "curva": true,
+     "puntos": 79
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      103.0,
+      954.7,
+      298.5,
+      1097.0
+     ],
+     "curva": true,
+     "puntos": 57
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      869.2,
+      54.8,
+      1039.9,
+      145.9
+     ],
+     "curva": true,
+     "puntos": 64
+    },
+    {
+     "color": "#FFBFD3",
+     "opacidad": 1.0,
+     "caja": [
+      405.0,
+      740.3,
+      524.1,
+      870.4
+     ],
+     "curva": true,
+     "puntos": 18
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      385.3,
+      715.9,
+      538.1,
+      884.8
+     ],
+     "curva": true,
+     "puntos": 36
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      786.8,
+      135.0,
+      950.4,
+      237.8
+     ],
+     "curva": true,
+     "puntos": 234
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      777.8,
+      128.6,
+      962.7,
+      242.4
+     ],
+     "curva": true,
+     "puntos": 134
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      164.4,
+      128.7,
+      328.0,
+      231.5
+     ],
+     "curva": true,
+     "puntos": 234
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      152.1,
+      122.3,
+      337.1,
+      236.1
+     ],
+     "curva": true,
+     "puntos": 134
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      68.3,
+      630.3,
+      164.2,
+      835.4
+     ],
+     "curva": true,
+     "puntos": 66
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      84.9,
+      287.0,
+      995.9,
+      595.5
+     ],
+     "curva": true,
+     "puntos": 123
+    },
+    {
+     "color": "#E03632",
+     "opacidad": 1.0,
+     "caja": [
+      84.6,
+      286.0,
+      991.1,
+      596.8
+     ],
+     "curva": true,
+     "puntos": 1603
+    },
+    {
+     "color": "#F5F27C",
+     "opacidad": 1.0,
+     "caja": [
+      163.9,
+      313.1,
+      231.8,
+      429.2
+     ],
+     "curva": true,
+     "puntos": 80
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      162.4,
+      304.0,
+      240.3,
+      447.5
+     ],
+     "curva": true,
+     "puntos": 66
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      115.0,
+      435.0,
+      179.5,
+      510.1
+     ],
+     "curva": false,
+     "puntos": 12
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      180.1,
+      431.2,
+      239.8,
+      500.7
+     ],
+     "curva": false,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      273.8,
+      418.6,
+      336.6,
+      490.6
+     ],
+     "curva": true,
+     "puntos": 12
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      344.5,
+      393.4,
+      370.8,
+      484.2
+     ],
+     "curva": false,
+     "puntos": 8
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      373.1,
+      411.6,
+      448.8,
+      482.2
+     ],
+     "curva": false,
+     "puntos": 11
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      481.6,
+      408.6,
+      545.7,
+      477.2
+     ],
+     "curva": true,
+     "puntos": 12
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      555.2,
+      408.4,
+      610.3,
+      476.6
+     ],
+     "curva": false,
+     "puntos": 12
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      619.4,
+      409.2,
+      671.5,
+      478.5
+     ],
+     "curva": false,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      705.2,
+      412.6,
+      773.7,
+      484.6
+     ],
+     "curva": false,
+     "puntos": 10
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      781.0,
+      418.3,
+      805.9,
+      487.5
+     ],
+     "curva": false,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      811.7,
+      402.5,
+      883.0,
+      495.8
+     ],
+     "curva": true,
+     "puntos": 18
+    },
+    {
+     "color": "#FF98E7",
+     "opacidad": 1.0,
+     "caja": [
+      868.4,
+      405.6,
+      981.5,
+      530.8
+     ],
+     "curva": true,
+     "puntos": 112
+    },
+    {
+     "color": "#FFDB1B",
+     "opacidad": 1.0,
+     "caja": [
+      909.7,
+      450.9,
+      936.4,
+      478.4
+     ],
+     "curva": true,
+     "puntos": 7
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      866.7,
+      403.1,
+      994.6,
+      533.6
+     ],
+     "curva": true,
+     "puntos": 108
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      909.7,
+      451.5,
+      941.4,
+      480.1
+     ],
+     "curva": true,
+     "puntos": 19
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      135.4,
+      504.7,
+      270.1,
+      638.8
+     ],
+     "curva": true,
+     "puntos": 93
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      133.2,
+      508.5,
+      273.4,
+      643.6
+     ],
+     "curva": true,
+     "puntos": 78
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      63.0,
+      49.0,
+      200.1,
+      163.4
+     ],
+     "curva": true,
+     "puntos": 64
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      843.1,
+      297.6,
+      910.7,
+      381.0
+     ],
+     "curva": true,
+     "puntos": 93
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      840.8,
+      303.0,
+      912.7,
+      381.1
+     ],
+     "curva": true,
+     "puntos": 78
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      829.0,
+      840.4,
+      1583.2,
+      1235.5
+     ],
+     "curva": true,
+     "puntos": 120
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      1079.9,
+      0.0,
+      1080.0,
+      1079.0
+     ]
+    },
+    {
+     "caja": [
+      415.4,
+      636.8,
+      1080.0,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      -101.2,
+      -78.7,
+      1112.0,
+      1427.2
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      1042.2,
+      -170.1,
+      2175.3,
+      1236.6
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      415.4,
+      634.7,
+      1231.3,
+      1776.2
+     ],
+     "px": [
+      796,
+      1233
+     ]
+    }
+   ]
+  },
+  "2": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "Inscripciones gratuitas. Cupos limitados por orden de llegada",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 29.0,
+     "color": "#FFFFFF",
+     "base": 1305.4,
+     "x0": 121.0,
+     "x1": 958.8
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (125 0 R)",
+     "cuerpo": 38.0,
+     "color": "#FFFFFF",
+     "base": 1236.6,
+     "x0": 140.8,
+     "x1": 178.8
+    },
+    {
+     "texto": "Más Center San Carlos – Av. Plaza 1250",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 38.0,
+     "color": "#FFFFFF",
+     "base": 1236.6,
+     "x0": 178.8,
+     "x1": 943.2
+    },
+    {
+     "texto": "Taller de manualidades",
+     "fuente": "GothamRnd-Bold",
+     "cuerpo": 52.74,
+     "color": "#FFFFFF",
+     "base": 1043.5,
+     "x0": 240.1,
+     "x1": 858.4
+    },
+    {
+     "texto": "\"Cuando grande quiero ser\"",
+     "fuente": "GothamRnd-Bold",
+     "cuerpo": 52.74,
+     "color": "#FFFFFF",
+     "base": 1096.2,
+     "x0": 183.0,
+     "x1": 901.1
+    },
+    {
+     "texto": "Fecha:",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1165.9,
+     "x0": 60.0,
+     "x1": 215.4
+    },
+    {
+     "texto": "Sábado 1 de agosto",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1165.9,
+     "x0": 214.2,
+     "x1": 643.9
+    },
+    {
+     "texto": "Horario:",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1165.9,
+     "x0": 642.8,
+     "x1": 816.1
+    },
+    {
+     "texto": "10:30 hrs",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1165.9,
+     "x0": 815.0,
+     "x1": 1019.7
+    }
+   ],
+   "formas": [
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      -1171.7,
+      1174.6,
+      90.0,
+      1521.7
+     ],
+     "curva": true,
+     "puntos": 120
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      -0.1,
+      967.0,
+      1080.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      -251.0,
+      840.4,
+      503.2,
+      1235.5
+     ],
+     "curva": true,
+     "puntos": 120
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      486.0,
+      891.2,
+      1273.5,
+      1115.7
+     ],
+     "curva": true,
+     "puntos": 120
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      993.1,
+      1257.0,
+      1059.7,
+      1323.6
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#000000",
+     "opacidad": 1.0,
+     "caja": [
+      1005.8,
+      1273.2,
+      1047.0,
+      1307.4
+     ],
+     "curva": true,
+     "puntos": 21
+    },
+    {
+     "color": "#4CAF91",
+     "opacidad": 1.0,
+     "caja": [
+      444.4,
+      794.0,
+      635.3,
+      985.0
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#4CAF91",
+     "opacidad": 1.0,
+     "caja": [
+      427.9,
+      790.4,
+      659.7,
+      989.4
+     ],
+     "curva": false,
+     "puntos": 1
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      1079.9,
+      967.0,
+      2160.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      823.0,
+      871.3,
+      1582.6,
+      1145.5
+     ],
+     "curva": true,
+     "puntos": 120
+    },
+    {
+     "color": "#FFBFD3",
+     "opacidad": 1.0,
+     "caja": [
+      804.5,
+      183.4,
+      937.4,
+      295.5
+     ],
+     "curva": true,
+     "puntos": 18
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      783.5,
+      152.1,
+      949.6,
+      331.3
+     ],
+     "curva": true,
+     "puntos": 36
+    },
+    {
+     "color": "#FFBFD3",
+     "opacidad": 1.0,
+     "caja": [
+      862.4,
+      339.6,
+      941.3,
+      406.1
+     ],
+     "curva": true,
+     "puntos": 18
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      850.0,
+      321.1,
+      948.6,
+      427.3
+     ],
+     "curva": true,
+     "puntos": 36
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      57.7,
+      955.8,
+      194.8,
+      1070.2
+     ],
+     "curva": true,
+     "puntos": 64
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      889.6,
+      983.0,
+      1025.7,
+      1082.1
+     ],
+     "curva": true,
+     "puntos": 57
+    },
+    {
+     "color": "#F5F27C",
+     "opacidad": 1.0,
+     "caja": [
+      269.6,
+      856.0,
+      329.9,
+      971.2
+     ],
+     "curva": true,
+     "puntos": 80
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      265.2,
+      851.0,
+      339.1,
+      988.7
+     ],
+     "curva": true,
+     "puntos": 66
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      4.0,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      1080.0,
+      0.0,
+      1080.0,
+      1079.0
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1079.0
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      634.7,
+      107.8,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      468.0,
+      871.6,
+      611.7,
+      907.7
+     ]
+    },
+    {
+     "caja": [
+      -1181.2,
+      -78.7,
+      32.0,
+      1427.2
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      1059.7,
+      -243.5,
+      2184.4,
+      1152.6
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      -37.8,
+      -170.1,
+      1095.3,
+      1236.6
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      -664.6,
+      634.7,
+      151.3,
+      1776.2
+     ],
+     "px": [
+      796,
+      1233
+     ]
+    },
+    {
+     "caja": [
+      468.0,
+      871.6,
+      611.7,
+      907.7
+     ],
+     "px": [
+      195,
+      49
+     ]
+    }
+   ]
+  },
+  "3": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "Taller de manualidades",
+     "fuente": "GothamRnd-Bold",
+     "cuerpo": 52.74,
+     "color": "#FFFFFF",
+     "base": 1043.5,
+     "x0": 240.1,
+     "x1": 858.4
+    },
+    {
+     "texto": "\"Cuando grande quiero ser\"",
+     "fuente": "GothamRnd-Bold",
+     "cuerpo": 52.74,
+     "color": "#FFFFFF",
+     "base": 1096.2,
+     "x0": 183.0,
+     "x1": 901.1
+    },
+    {
+     "texto": "Fecha:",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1165.9,
+     "x0": 37.3,
+     "x1": 192.6
+    },
+    {
+     "texto": "Domingo 2 de agosto",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1165.9,
+     "x0": 191.5,
+     "x1": 666.7
+    },
+    {
+     "texto": "Horario:",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1165.9,
+     "x0": 665.5,
+     "x1": 838.9
+    },
+    {
+     "texto": "10:30 hrs",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1165.9,
+     "x0": 837.8,
+     "x1": 1042.5
+    },
+    {
+     "texto": "Inscripciones gratuitas. Cupos limitados por orden de llegada",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 29.0,
+     "color": "#FFFFFF",
+     "base": 1305.4,
+     "x0": 121.0,
+     "x1": 958.8
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (125 0 R)",
+     "cuerpo": 33.75,
+     "color": "#000000",
+     "base": 1237.7,
+     "x0": 70.6,
+     "x1": 104.3
+    },
+    {
+     "texto": "Más Center Chamisero – Av. Chamisero 10290, Colina",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 33.75,
+     "color": "#FFFFFF",
+     "base": 1237.7,
+     "x0": 104.3,
+     "x1": 1013.4
+    }
+   ],
+   "formas": [
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      1079.9,
+      967.0,
+      2160.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      823.0,
+      871.3,
+      1582.6,
+      1145.5
+     ],
+     "curva": true,
+     "puntos": 120
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      -1080.1,
+      967.0,
+      0.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      -594.0,
+      891.2,
+      193.5,
+      1115.7
+     ],
+     "curva": true,
+     "puntos": 120
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      -0.1,
+      967.0,
+      1080.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      -257.0,
+      871.3,
+      502.6,
+      1145.5
+     ],
+     "curva": true,
+     "puntos": 120
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      486.0,
+      891.2,
+      1273.5,
+      1115.7
+     ],
+     "curva": true,
+     "puntos": 120
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      993.1,
+      1257.0,
+      1059.7,
+      1323.6
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#000000",
+     "opacidad": 1.0,
+     "caja": [
+      1005.8,
+      1273.2,
+      1047.0,
+      1307.4
+     ],
+     "curva": true,
+     "puntos": 21
+    },
+    {
+     "color": "#4CAF91",
+     "opacidad": 1.0,
+     "caja": [
+      444.4,
+      794.0,
+      635.3,
+      985.0
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#4CAF91",
+     "opacidad": 1.0,
+     "caja": [
+      427.9,
+      790.4,
+      659.7,
+      989.4
+     ],
+     "curva": false,
+     "puntos": 1
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      57.7,
+      955.8,
+      194.8,
+      1070.2
+     ],
+     "curva": true,
+     "puntos": 64
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      889.6,
+      983.0,
+      1025.7,
+      1082.1
+     ],
+     "curva": true,
+     "puntos": 57
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1079.0
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      0.0,
+      0.0,
+      1079.0
+     ]
+    },
+    {
+     "caja": [
+      468.0,
+      871.6,
+      611.7,
+      907.7
+     ]
+    },
+    {
+     "caja": [
+      -20.3,
+      -243.5,
+      1104.4,
+      1152.6
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      -1117.8,
+      -170.1,
+      15.3,
+      1236.6
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      468.0,
+      871.6,
+      611.7,
+      907.7
+     ],
+     "px": [
+      195,
+      49
+     ]
+    }
+   ]
+  },
+  "4": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "Fecha:",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1165.9,
+     "x0": 53.9,
+     "x1": 209.2
+    },
+    {
+     "texto": "Sábado 8 de agosto",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1165.9,
+     "x0": 208.1,
+     "x1": 650.0
+    },
+    {
+     "texto": "Horario:",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1165.9,
+     "x0": 648.9,
+     "x1": 822.2
+    },
+    {
+     "texto": "10:30 hrs",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 45.0,
+     "color": "#FFFFFF",
+     "base": 1165.9,
+     "x0": 821.1,
+     "x1": 1025.9
+    },
+    {
+     "texto": "Inscripciones gratuitas. Cupos limitados por orden de llegada",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 29.0,
+     "color": "#FFFFFF",
+     "base": 1305.4,
+     "x0": 121.0,
+     "x1": 958.8
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (125 0 R)",
+     "cuerpo": 29.98,
+     "color": "#DC1914",
+     "base": 1234.4,
+     "x0": 71.7,
+     "x1": 101.7
+    },
+    {
+     "texto": "Más Center Pie Andino – Av. Pie Andino 5855, Lo Barnechea",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 29.98,
+     "color": "#FFFFFF",
+     "base": 1234.4,
+     "x0": 101.7,
+     "x1": 1012.3
+    },
+    {
+     "texto": "Cuentacuentos + actividad creativa",
+     "fuente": "GothamRnd-Bold",
+     "cuerpo": 52.74,
+     "color": "#FFFFFF",
+     "base": 1093.8,
+     "x0": 84.1,
+     "x1": 999.9
+    }
+   ],
+   "formas": [
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      -0.1,
+      967.0,
+      1080.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      -257.0,
+      871.3,
+      502.6,
+      1145.5
+     ],
+     "curva": true,
+     "puntos": 120
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      486.0,
+      891.2,
+      1273.5,
+      1115.7
+     ],
+     "curva": true,
+     "puntos": 120
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      -1080.1,
+      967.0,
+      0.0,
+      1350.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#DC1914",
+     "opacidad": 1.0,
+     "caja": [
+      -594.0,
+      891.2,
+      193.5,
+      1115.7
+     ],
+     "curva": true,
+     "puntos": 120
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      444.4,
+      794.0,
+      635.3,
+      985.0
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      427.9,
+      790.4,
+      659.7,
+      989.4
+     ],
+     "curva": false,
+     "puntos": 1
+    },
+    {
+     "color": "#99D2D6",
+     "opacidad": 1.0,
+     "caja": [
+      538.2,
+      867.9,
+      565.9,
+      910.1
+     ],
+     "curva": false,
+     "puntos": 4
+    },
+    {
+     "color": "#F6CE58",
+     "opacidad": 1.0,
+     "caja": [
+      553.9,
+      883.9,
+      580.7,
+      910.1
+     ],
+     "curva": false,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      54.1,
+      964.0,
+      216.2,
+      1048.2
+     ],
+     "curva": true,
+     "puntos": 64
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      854.2,
+      960.0,
+      1000.1,
+      1044.1
+     ],
+     "curva": true,
+     "puntos": 57
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      1.1,
+      1080.0,
+      1079.0
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      0.0,
+      0.0,
+      1079.0
+     ]
+    },
+    {
+     "caja": [
+      -0.0,
+      1.1,
+      1086.6,
+      1349.9
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    },
+    {
+     "caja": [
+      -1100.3,
+      -243.5,
+      24.4,
+      1152.6
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    }
+   ]
+  }
+ }
+}

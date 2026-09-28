@@ -1,0 +1,413 @@
+{
+ "fuente": "D:/DIEGO 2023/COPYWRITERS/MAS CENTER/JULIO IFB/JULIO IFB.ai",
+ "mesas": {
+  "22": {
+   "w": 1080.0,
+   "h": 1350.0,
+   "textos": [
+    {
+     "texto": "A quienes llevan lo mejor",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 60.0,
+     "color": "#FFFFFF",
+     "base": 419.6,
+     "x0": 209.9,
+     "x1": 884.5
+    },
+    {
+     "texto": "del campo a tu mesa.",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 60.0,
+     "color": "#FFFFFF",
+     "base": 478.6,
+     "x0": 256.4,
+     "x1": 823.6
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (57 0 R)",
+     "cuerpo": 30.05,
+     "color": "#285C8C",
+     "base": 873.6,
+     "x0": 353.7,
+     "x1": 383.7
+    },
+    {
+     "texto": "Más Center San Carlos",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 30.05,
+     "color": "#FFFFFF",
+     "base": 873.6,
+     "x0": 388.2,
+     "x1": 726.3
+    },
+    {
+     "texto": "Martes de 9:00 a 14:00 hrs.",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 30.05,
+     "color": "#FFFFFF",
+     "base": 907.9,
+     "x0": 337.5,
+     "x1": 742.5
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (57 0 R)",
+     "cuerpo": 30.05,
+     "color": "#285C8C",
+     "base": 971.5,
+     "x0": 303.3,
+     "x1": 333.4
+    },
+    {
+     "texto": "Más",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 30.05,
+     "color": "#FFFFFF",
+     "base": 971.5,
+     "x0": 332.6,
+     "x1": 389.9
+    },
+    {
+     "texto": "Center",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 30.05,
+     "color": "#FFFFFF",
+     "base": 971.5,
+     "x0": 394.4,
+     "x1": 491.8
+    },
+    {
+     "texto": "Los",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 30.05,
+     "color": "#FFFFFF",
+     "base": 971.5,
+     "x0": 496.3,
+     "x1": 547.9
+    },
+    {
+     "texto": "Nogales,",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 30.05,
+     "color": "#FFFFFF",
+     "base": 971.5,
+     "x0": 552.4,
+     "x1": 678.3
+    },
+    {
+     "texto": "Pirque",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 30.05,
+     "color": "#FFFFFF",
+     "base": 971.5,
+     "x0": 682.8,
+     "x1": 776.7
+    },
+    {
+     "texto": "Jueves de 8:30 a 14:00 hrs.",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 30.05,
+     "color": "#FFFFFF",
+     "base": 1005.8,
+     "x0": 338.5,
+     "x1": 741.5
+    },
+    {
+     "texto": "📍",
+     "fuente": "Type3 (57 0 R)",
+     "cuerpo": 30.05,
+     "color": "#285C8C",
+     "base": 1073.3,
+     "x0": 351.1,
+     "x1": 381.1
+    },
+    {
+     "texto": "Más Center San Vicente",
+     "fuente": "GothamRnd-Medium",
+     "cuerpo": 30.05,
+     "color": "#FFFFFF",
+     "base": 1073.3,
+     "x0": 380.4,
+     "x1": 728.9
+    },
+    {
+     "texto": "Miércoles, jueves y viernes de la",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 30.05,
+     "color": "#FFFFFF",
+     "base": 1107.6,
+     "x0": 303.6,
+     "x1": 785.5
+    },
+    {
+     "texto": "última semana del mes,",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 30.05,
+     "color": "#FFFFFF",
+     "base": 1141.9,
+     "x0": 365.8,
+     "x1": 714.3
+    },
+    {
+     "texto": "de 10:00 a 18:00 hrs.",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 30.05,
+     "color": "#FFFFFF",
+     "base": 1176.2,
+     "x0": 386.3,
+     "x1": 693.7
+    },
+    {
+     "texto": "INDAP /",
+     "fuente": "MyriadPro-Bold",
+     "cuerpo": 13.16,
+     "color": "#285C8C",
+     "base": 148.7,
+     "x0": 563.1,
+     "x1": 608.1
+    },
+    {
+     "texto": "Ministerio de Agricultura",
+     "fuente": "MyriadPro-Regular",
+     "cuerpo": 11.93,
+     "color": "#285C8C",
+     "base": 148.2,
+     "x0": 612.1,
+     "x1": 735.1
+    },
+    {
+     "texto": "HOY CELEBRAMOS",
+     "fuente": "GothamRnd-Bold",
+     "cuerpo": 72.0,
+     "color": "#FFFFFF",
+     "base": 267.1,
+     "x0": 214.4,
+     "x1": 882.9
+    },
+    {
+     "texto": "EL DÍA DEL CAMPESINO",
+     "fuente": "GothamRnd-Bold",
+     "cuerpo": 72.0,
+     "color": "#FFFFFF",
+     "base": 341.1,
+     "x0": 132.1,
+     "x1": 947.9
+    },
+    {
+     "texto": "En Más Center, lo mejor de tu comunidad está más cerca de ti.",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 29.0,
+     "color": "#FFFFFF",
+     "base": 1322.4,
+     "x0": 145.2,
+     "x1": 942.3
+    }
+   ],
+   "formas": [
+    {
+     "color": "#285C8C",
+     "opacidad": 1.0,
+     "caja": [
+      -22.5,
+      -9.8,
+      1089.9,
+      535.7
+     ],
+     "curva": true,
+     "puntos": 5
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      319.3,
+      76.1,
+      354.4,
+      111.8
+     ],
+     "curva": false,
+     "puntos": 13
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      360.5,
+      64.8,
+      391.0,
+      111.8
+     ],
+     "curva": false,
+     "puntos": 15
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      401.4,
+      75.6,
+      429.0,
+      112.3
+     ],
+     "curva": true,
+     "puntos": 38
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      437.4,
+      75.5,
+      487.4,
+      131.1
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      434.5,
+      110.4,
+      466.0,
+      139.0
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#285C8C",
+     "opacidad": 1.0,
+     "caja": [
+      287.7,
+      1038.6,
+      792.3,
+      1193.4
+     ],
+     "curva": true,
+     "puntos": 8
+    },
+    {
+     "color": "#285C8C",
+     "opacidad": 1.0,
+     "caja": [
+      287.7,
+      937.5,
+      792.3,
+      1024.3
+     ],
+     "curva": true,
+     "puntos": 8
+    },
+    {
+     "color": "#285C8C",
+     "opacidad": 1.0,
+     "caja": [
+      316.3,
+      836.3,
+      763.7,
+      922.9
+     ],
+     "curva": true,
+     "puntos": 8
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      534.0,
+      103.0,
+      632.7,
+      131.5
+     ],
+     "curva": true,
+     "puntos": 9
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      664.8,
+      77.1,
+      760.7,
+      131.5
+     ],
+     "curva": true,
+     "puntos": 10
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      578.0,
+      92.3,
+      598.4,
+      124.1
+     ],
+     "curva": true,
+     "puntos": 66
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      523.0,
+      75.4,
+      565.3,
+      117.4
+     ],
+     "curva": true,
+     "puntos": 68
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      640.1,
+      79.6,
+      664.1,
+      113.9
+     ],
+     "curva": true,
+     "puntos": 21
+    },
+    {
+     "color": "#285C8C",
+     "opacidad": 1.0,
+     "caja": [
+      0.0,
+      1283.3,
+      1080.0,
+      1350.0
+     ],
+     "curva": false,
+     "puntos": 1
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.5,
+      334.9,
+      1080.0,
+      1350.0
+     ]
+    },
+    {
+     "caja": [
+      0.5,
+      334.9,
+      1089.9,
+      1687.2
+     ],
+     "px": [
+      1856,
+      2304
+     ]
+    }
+   ]
+  }
+ }
+}

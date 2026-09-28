@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza Lizana «Coni»** (ver §8: Diego Aguilar también subió piezas de septiembre) · Aprueba: **el cliente vía la KAM Constanza Olivares** (contactos Drive: maria@selfie.cl, plillo@hairexpress.cl)
-> Última cosecha: **2026-09-28** · Cosechas: **4**
+> Última cosecha: **2026-09-28** · Cosechas: **5**
 
 ## 1. Quién es el cliente
 
@@ -70,12 +70,12 @@ Nomenclatura de Coni: `GRILLA<MES>_S<n>_<NOMBRE>-<nn>.png`, `MAILS_<MES><Sn>_<CA
 - **R-18** · Las referencias que le gustan al cliente (`SELFIE SEPT/NUEVO ESTILO/`) **no se copian literal**: se crea algo propio desde ellas — _Coni, 24-09-2026_ · ✔×1
 - **R-19** · **Una sola flecha en todos los formatos** (el trazo de la historia, curva con rulo): sale de la ficha y llega a SU producto, y **nada la tapa** — _Coni, 24-09-2026, 3 rondas: punta al revés → unificar → anclar a ficha y producto_ · ✔×3
 - **R-20** · **El producto tiene que leerse** («el cliente siempre reclama que se ven pixelados»): frasco preparado al alto exacto en px del formato y ya girado, con el color de la foto original (el recorte de remove-bg sale en PNG de paleta) — _Coni, 24-09-2026_ · ✔×2
-- **R-21** · ⛔ **El producto nunca se corta**: entero y con ≥ 40 px de mesa a cada borde; si no cabe, se achica — _Coni, 24-09-2026_ · ✔×1
+- **R-21** · ⛔ **El producto nunca se corta**: entero y con ≥ 40 px de mesa a cada borde; si no cabe, se achica. **En animación tampoco**: los frascos no entran asomándose cortados por el borde; nacen dentro del cuadro (fundido + leve crecimiento) — _Coni, 24-09-2026 (estáticas) y 28-09-2026 (reel, ronda 2)_ · ✔×2
 - **R-22** · CTA «Encuéntralos en Selfie.cl»: bajo el titular en post e historia · **al final** en el mail (cierra la lectura) · **nunca** en banners desk ni mobile — _Coni, 24-09-2026_ · ✔×1
 - **R-23** · La caja coral del nombre lleva **resplandor negro al 30 % en multiplicar** para despegarse del campo coral — _Coni, 24-09-2026_ · ✔×1
 - **R-24** · **Mail y banners pesan ≤ 1 MB**; post e historia pueden pesar más si ganan calidad — _Coni, 24-09-2026_ · ✔×1
-- **R-25** · Rigor en todos los formatos: lo que se aprueba en uno se replica igual en los demás (colores, flechas, tipografía, códigos de color) — _Coni, 24-09-2026_ · ✔×2
-- **R-26** · **Reels: el texto se lee quieto.** Nada de desenfoque en los titulares, en ningún momento del video; el titular queda **≥ 4 s** en pantalla y cada producto **~6 s** — _Coni, 28-09-2026, reel Biotop ronda 1 (commit 78510d8)_ · ✔×1
+- **R-25** · Rigor en todos los formatos: lo que se aprueba en uno se replica igual en los demás (colores, flechas, tipografía, códigos de color) — _Coni, 24-09-2026; el reel del 28-09 heredó el sistema de las estáticas_ · ✔×3 · ✔×2
+- **R-26** · **Reels: el texto se lee quieto.** Nada de desenfoque en los titulares, en ningún momento del video; el titular queda **≥ 4 s** en pantalla y cada producto **~6 s** — _Coni, 28-09-2026, reel Biotop ronda 1 (commit 78510d8)_ · ✔×1 · ⚠️ **revisada 2026-09-28 (ronda 2)**: el titular de apertura (7 palabras, sin más información) basta con **2 s** —«si dura más es innecesario»—; la apertura sin texto, 2 s; las escenas de producto siguen en ~6 s. Regla: cada escena dura lo que tarda en leerse, ni más
 - **R-27** · Los **ingredientes que acompañan a cada producto son los de SU ficha**, no decorativos (700: kale y vitamina E · 911: quinoa, girasol y vitamina E) — _Coni, 28-09-2026, reel Biotop ronda 1_ · ✔×1
 - **R-28** · Las **viñetas son el asterisco del logo SELFI3\*** en vector (`public/assets/selfie/2026-nuevo-estilo/selfie-asterisco.svg` y `-coral.svg`), no un punto genérico — _Coni, 28-09-2026, reel Biotop ronda 1_ · ✔×1
 - **R-29** · En el reel, el paso entre productos y al cierre lo hacen **los campos de color** del estilo nuevo (el coral entra desde la izquierda y el salmón desde la derecha, por encima), sin adornos — _Coni, 28-09-2026, reel Biotop ronda 1_ · ✔×1
@@ -92,6 +92,7 @@ Nomenclatura de Coni: `GRILLA<MES>_S<n>_<NOMBRE>-<nn>.png`, `MAILS_<MES><Sn>_<CA
 
 No hay registro de una aprobación del cliente sobre piezas del estudio. Lo que funciona como estándar:
 
+- **A-03** · **Reel Biotop — escenas de producto**: el frasco sube sobre una onda, la ficha entra primero, los 3 beneficios uno a uno con sus ingredientes flotando y la onda barre al siguiente — «me encanta la transición y cómo aparece cada información, funciona súper» — _Coni, 28-09-2026, aprobada sin cambios en la ronda 2_
 - **A-01** · Banner web de la Semana del Peluquer@: píldora de título pegada al borde con radio sólo a la derecha, píldoras `#FF66B0`, cifra gigante, packshots reales con sombra, globo «$1», legal abajo y logo vertical — _réplica validada contra el original de Coni, `SelfieBannerSemanaPeluquero.tsx`, 24-08-2026_
 - **A-02** · Recortes con **alfa binaria dura** sobre fondo claro y packshots recortados al bbox del alfa para que llenen su contenedor (la alfa suave + borde sticker deja manchas blancas) — _septiembre 2026, 24-08-2026_
 
@@ -112,6 +113,8 @@ No hay registro de una aprobación del cliente sobre piezas del estudio. Lo que 
 - **X-12** · Apertura del reel con **seis frascos girando 180°**: no se alcanzan a ver. Van los **dos frascos casi derechos, ~1,6 s a la vista** — _Coni, 28-09-2026, reel Biotop · 1 ronda_
 - **X-13** · **Destellos y círculos** en el cierre del reel — _Coni, 28-09-2026, reel Biotop · 1 ronda_
 - **X-14** · **Blur en el titular** del reel (entrada desenfocada) — _Coni, 28-09-2026, reel Biotop · 1 ronda_
+- **X-15** · Escena de titular con un frasco arriba a la izquierda y otro abajo a la derecha: **sobra espacio junto al 911**. Van los dos frascos **arriba, grandes**, y el titular abajo — _Coni, 28-09-2026, reel Biotop ronda 2_
+- **X-16** · Frascos que **entran desde fuera del cuadro** en la apertura: al comienzo asoma la punta cortada en el borde — _Coni, 28-09-2026, reel Biotop ronda 2_
 
 ## 8. Preguntas abiertas
 
@@ -123,6 +126,7 @@ No hay registro de una aprobación del cliente sobre piezas del estudio. Lo que 
 - **Logo oficial de Selfie Class** (no está compartido por enlace). → Coni.
 - **Referencia del carrusel «WTF es…»** (el brief trae sólo un link de IG inaccesible). → KAM.
 - **Packshot en alta de OSiS+ Session** (en el e-commerce sólo existe en baja). → Coni.
+- **Reel Biotop: ¿con o sin cursor?** El 28-09 se entregaron las dos en PRUEBA (`PRUEBA_BIOTOP_700-911_REEL.mp4` y `…_REEL_CURSOR.mp4`, con una flecha clásica que hace clic en «Selfie.cl»). → Coni.
 - **Chapaza Italic** viene en los paquetes de Coni pero no aparece en el texto vivo de la grilla: ¿para qué es? → Coni.
 - Los banners de septiembre de Coni son de **Selfie Pro** (logo horizontal, naranja): ¿cómo baja el estilo nuevo a Selfie Pro? → Coni.
 - **Agrandir** es de pago con licencia del cliente: ¿cómo la recibe cada diseñador? → Coni.
@@ -131,6 +135,13 @@ No hay registro de una aprobación del cliente sobre piezas del estudio. Lo que 
 - **Reel Biotop 700/911, ronda 1** (23,5 s, re-subido al mismo nombre en `SELFIE › PRUEBA` el 28-09): ¿aprobado o viene ronda 2? → Coni.
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 (noche) — Claude (con Coni) · ronda 2 del reel Biotop + versión con cursor
+- **R-21 ✔×2** (producto entero también en animación) · **R-25 ✔×3, probada** (el reel heredó el sistema de las estáticas).
+- **R-26 ⚠️ revisada**: el titular de apertura basta con 2 s; cada escena dura lo que tarda en leerse.
+- aprobado **A-03** (escenas de producto del reel, sin cambios en la ronda 2).
+- rechazos **X-15** (titular con un frasco en cada esquina) y **X-16** (frascos que asoman cortados al entrar).
+- abierta: ¿con o sin cursor en el cierre?
 
 ### 2026-09-28 (tarde) — Claude (con Coni) · ronda 1 del reel Biotop + Coni sube a GitHub
 - nuevo **R-26…R-29** y **X-12…X-14**: las correcciones de Coni al reel Biotop (sin blur, tiempo de lectura, ingredientes de ficha, viñeta asterisco, campos de color), tomadas del commit `78510d8`. Esa sesión cerró sin `/cierre`.

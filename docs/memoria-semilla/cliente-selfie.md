@@ -14,11 +14,12 @@ Criterio: **Constanza Lizana «Coni»** (ver §8: Diego Aguilar también subió 
 ## Reglas más confirmadas
 - **R-11** · **QA de recortes con zoom 3× píxel a píxel sobre el fucsia**, antes de renderizar. Limpieza estándar: alfa binaria >140 → erosión MinFilter 5–7 px → feather 1,2 px — _Valeria, 24-08-2026 · tres entregas seguidas con bordes sucios (mecha con halo, chica con fringe gris, Uniq One con sombra)_ · ✔×3
 - **R-19** · **Una sola flecha en todos los formatos** (el trazo de la historia, curva con rulo): sale de la ficha y llega a SU producto, y **nada la tapa** — _Coni, 24-09-2026, 3 rondas: punta al revés → unificar → anclar a ficha y producto_ · ✔×3
+- **R-25** · Rigor en todos los formatos: lo que se aprueba en uno se replica igual en los demás (colores, flechas, tipografía, códigos de color) — _Coni, 24-09-2026; el reel del 28-09 heredó el sistema de las estáticas_ · ✔×3 · ✔×2
 - **R-08** · Textos y CTAs **literales del brief**; si el brief no trae la promo, **no se inventa la oferta** (el banner comercial se deja sin diseñar) — _septiembre 2026, 24-08-2026_ · ✔×2
 - **R-12** · **El pelo suelto o crespo nunca se recorta**: genera a la persona directamente sobre el fucsia y empalma el fondo al `#FF007C` exacto — _Valeria, 24-08-2026, mecha del carrusel frizz rechazada dos veces_ · ✔×2
 - **R-17** · **El estilo nuevo manda** en toda pieza nueva: paleta coral/salmón/nude/tinta, Scotch Display + Krub, logo vertical arriba a la derecha — _Coni, 24-09-2026; prueba Biotop aprobada («me encantó»)_ · ✔×2
 - **R-20** · **El producto tiene que leerse** («el cliente siempre reclama que se ven pixelados»): frasco preparado al alto exacto en px del formato y ya girado, con el color de la foto original (el recorte de remove-bg sale en PNG de paleta) — _Coni, 24-09-2026_ · ✔×2
-- **R-25** · Rigor en todos los formatos: lo que se aprueba en uno se replica igual en los demás (colores, flechas, tipografía, códigos de color) — _Coni, 24-09-2026_ · ✔×2
+- **R-21** · ⛔ **El producto nunca se corta**: entero y con ≥ 40 px de mesa a cada borde; si no cabe, se achica. **En animación tampoco**: los frascos no entran asomándose cortados por el borde; nacen dentro del cuadro (fundido + leve crecimiento) — _Coni, 24-09-2026 (estáticas) y 28-09-2026 (reel, ronda 2)_ · ✔×2
 - **R-02** · Antes de renderizar, compara contra 2–3 piezas reales del cliente (`raw/selfie/grilla-agosto2026-designs/`) — _Valeria, 24-08-2026_ · ✔×1
 - **R-03** · **Legal siempre en promos**: «No acumulable con otras promociones. Sujeto a stock por marca. Válido hasta el [fecha].», con el matiz de la promo cuando lo hay (ej. «solo en tonos agotados en línea Igora Royal») — _correcciones del cliente en la grilla, levantado 24-08-2026_ · ✔×1
 - **R-04** · **Packshots reales**, del CDN de Shopify o de los `Links/` de los editables; la IA sólo genera fondos y ambientes. Si la ficha del sitio usa un render IA (ej. «Mochila Selfie»), saca la foto real de las piezas aprobadas — _manual Selfie, 24-08-2026_ · ✔×1
@@ -31,7 +32,6 @@ Criterio: **Constanza Lizana «Coni»** (ver §8: Diego Aguilar también subió 
 - **R-14** · Email marketing: excluye siempre spam complainers y rebotados; las bases «About to Lose / At Risk» reciben máximo 1 correo al mes; los segmentos 2025 marcados «NO USAR EN 2026» no se usan — _grilla mensual, 24-08-2026_ · ✔×1
 - **R-15** · Tono de copy: tuteo, vocativo **«amiga»**, «peluquer@» con arroba, emojis; hashtags fijos #SelfiePro #PromosSelfie #SelfieBeautyPro — _copys reales de la cuenta, 24-08-2026_ · ✔×1
 - **R-16** · Mira el e-commerce antes de diseñar (Shopify JSON: `/search/suggest.json?q=`, `/products/<handle>.json`, con User-Agent de navegador) — _manual Selfie, 24-08-2026_ · ✔×1
-- **R-18** · Las referencias que le gustan al cliente (`SELFIE SEPT/NUEVO ESTILO/`) **no se copian literal**: se crea algo propio desde ellas — _Coni, 24-09-2026_ · ✔×1
 
 ## Lo que ya costó rondas
 - **X-01** · Ejecutar el brief al pie de la letra en «perla minimal»: pieza lavada tipo skincare genérico, fuera de marca — _carrusel frizz verano vs invierno, v1, 24-08-2026 · 1 ronda_
@@ -48,3 +48,5 @@ Criterio: **Constanza Lizana «Coni»** (ver §8: Diego Aguilar también subió 
 - **X-12** · Apertura del reel con **seis frascos girando 180°**: no se alcanzan a ver. Van los **dos frascos casi derechos, ~1,6 s a la vista** — _Coni, 28-09-2026, reel Biotop · 1 ronda_
 - **X-13** · **Destellos y círculos** en el cierre del reel — _Coni, 28-09-2026, reel Biotop · 1 ronda_
 - **X-14** · **Blur en el titular** del reel (entrada desenfocada) — _Coni, 28-09-2026, reel Biotop · 1 ronda_
+- **X-15** · Escena de titular con un frasco arriba a la izquierda y otro abajo a la derecha: **sobra espacio junto al 911**. Van los dos frascos **arriba, grandes**, y el titular abajo — _Coni, 28-09-2026, reel Biotop ronda 2_
+- **X-16** · Frascos que **entran desde fuera del cuadro** en la apertura: al comienzo asoma la punta cortada en el borde — _Coni, 28-09-2026, reel Biotop ronda 2_

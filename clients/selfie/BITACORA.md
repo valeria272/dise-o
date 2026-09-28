@@ -1,3 +1,10 @@
+## 2026-09-28 (noche) — Coni (con Claude) · REEL Biotop, ronda 2 + versión con cursor
+
+**Qué se hizo:** ronda 2 de Coni sobre el reel: los frascos **nacen dentro del cuadro** (ya no asoman cortados al entrar), apertura y titular de **2 s** cada uno, titular con **los dos frascos arriba y grandes** sobre el círculo coral, y una **versión aparte con cursor** (flecha blanca con borde negro que hace clic sobre «Selfie.cl»: el botón se hunde y sale una onda). Las escenas de producto quedaron sin cambios: aprobadas.
+**Dónde quedó:** Drive `SELFIE › PRUEBA` → `PRUEBA_BIOTOP_700-911_REEL.mp4` (mismo enlace, 20,5 s) y `PRUEBA_BIOTOP_700-911_REEL_CURSOR.mp4` (nuevo). Código: `src/compositions/selfie/SelfieReelBiotop.tsx` con prop `cursor` (composiciones `SelfieReelBiotop` y `SelfieReelBiotop-Cursor`). ⚠️ Rendir fotogramas de a 3 como máximo: 14 en paralelo mataron el proceso por memoria.
+**Qué sigue:** que Coni elija con o sin cursor. Después, el kit gráfico del Cyber (stickers de % OFF, portadas, gráfica de cierre, contador) con este lenguaje.
+**Abierto:** ¿cursor o sin cursor? → Coni · Cyber: fecha y hora de término para el contador, y descuento de CLOE sin confirmar.
+
 ## 2026-09-28 — Constanza Lizana «Coni» (con Claude)
 
 **Qué se hizo:** Ronda 1 de Coni sobre el reel de prueba Biotop 700/911 (en otra sesión, commit `78510d8`): apertura con los dos frascos casi derechos, titular sin blur y 4 s en pantalla, 6 s por producto con los ingredientes de su ficha, paso al cierre con los campos coral y salmón, fuera los destellos y los círculos, y viñetas con el asterisco del logo. Queda en 23,5 s. En esta sesión, además, Coni quedó conectada a GitHub y se ordenó su Drive.

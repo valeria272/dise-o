@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-28** · Cosechas: **8**
+> Última cosecha: **2026-09-28** · Cosechas: **9**
 
 ## 1. Quién es el cliente
 
@@ -77,7 +77,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-22** · [DT] Carrusel de video: los clips son **los que el cliente enlaza en el brief**; si falta material, Drive → stock de Magnific → generar. Cuando hay material filmado, fuera el Ken Burns — _cliente 23-09; Eli 23-09-2026 («selecciona el video más bonito y legible»)_ · ✔×2
 - **R-23** · [DT] Sello «hora — rótulo»: **mismo cuerpo**, hora en Trade Regular y rótulo en Trade Bold Cn (destaca sólo por grosor) — _Eli, 23-09-2026, ronda 9 «Tu día»_ · ✔×1
 - **R-24** · [DT] Video: **MP4 + GIF juntos** en la carpeta de la semana (GIF en subcarpeta `C<n> S<n> DT - GIF`); Eli sube el GIF a la grilla — _Eli, 23-09 y 24-09-2026_ · ✔×2
-- **R-25** · [DT] Historia animada: **máx. 15 s**, y el bloque del precio con tiempo de lectura (~6–7 s) — _Eli, 24-09-2026, Family Time oct_ · ✔×1
+- **R-25** · [DT] Historia animada: **máx. 15 s**, y el bloque del precio con tiempo de lectura (~6–7 s) — _Eli, 24-09-2026, Family Time oct; 28-09 lo volvió a pedir en la ST 01-10 r6→r7 («que aparezca toda la información de Family Time un poco más antes»)_ · ✔×2
 - **R-26** · [DT] Las **opiniones tienen plantilla** (la de Expedia aprobada): tarjeta clara partida, pestaña azul con logo, cita en Stag itálica azul, logo de la plataforma a color; para otra plataforma cambia sólo logo y signo de valoración — _Eli, 24-09-2026_ · ✔×1
 - **R-27** · [DT] Family Time tiene que **mostrar una familia** — _Eli, 24-09-2026 («sin personas no me gusta mucho»); 25-09 pidió un banco entero de la familia para cuando no haya sesión_ · ✔×3 · +1 ST feriado FT 05-10 y FEED 28-10, aprobadas 28-09
 - **R-28** · [DT] Precios de programa **literales del último carrusel vigente**: Family Time $125.000 IVA incluido · Escapada $99.000 · Noche de Bodas $189.000 — _Eli, 09-09-2026_ · ✔×2 · +1 $99.000 / $125.000 en las 3 ST de feriado, aprobadas 28-09
@@ -93,9 +93,14 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-75** · [DT] **Foto nueva antes que foto repetida**: lo que ya salió varias veces en el feed (la fachada, el lounge HDT_37/38, el clip del café de «Tu día») se reemplaza por la sesión nueva «Hotel general sesión SEP 2026», para que el feed se vaya actualizando — _Eli, 28-09-2026, carrusel «5 cosas» y ST Coworking («esa imagen detrás ya la hemos utilizado bastante… utiliza imágenes nuevas, más bonitas, para que ya se vaya actualizando el feed»)_ · ✔×1
 - **R-76** · [DT] **Portada de carrusel = la jerarquía de la ref**: si la ref dice chico / GRANDE serif / chico en itálica + flecha, se calca en ese orden y a esa escala; en «5 cosas» todo el bloque va **abajo, junto a la flecha**, y el **cierre baja igual** para compensar con la portada — _Eli, 28-09-2026 («que el cinco cosas sea como el What to Expect y el hacen especial como When You Stay… abajo junto a la flecha»; «todo listo para recibirte que quede abajo, así está todo compensado con la portada»)_ · ✔×1
 - **R-77** · [DT] **Un carrusel se ve continuo y armónico**: portada y cierre se contestan (misma foto oscurecida, mismo registro tipográfico) y no se repite la misma información lámina tras lámina — _Eli, 28-09-2026 («si son carruseles tiene que verse una continuidad, tiene que verse todo armónico, no puedes repetir tantas veces la misma información»)_ · ✔×1
-- **R-78** · [DT] **En animada, el texto que no cambia no se queda todo el rato**: cristal AJUSTADO a su texto, entra, se lee (~3 s) y sale, para que el fondo se vea solo; el bloque final sí queda con su tiempo de lectura — _Eli, 28-09-2026, ST Coworking 22-10 ronda 2→3 («achicar un poco ese recuadro… si es el mismo texto no es necesario que dure tanto… así queda más tiempo mostrándose lo del fondo»)_ · ✔×1
-- **R-79** · [DT] **El titular y el bloque de programa van CENTRADOS**, aunque la ref los corra a un lado; en el bloque, «Family Time» arriba y el precio centrado debajo, el resto más abajo — _Eli, 28-09-2026, FEED 28-10 («déjalo centrado, se ve extraño que esté muy hacia un lado»; «el 125 podría centrarlo y arribita Family Time, bajar un poco los demás textos»). Va en la línea de E-07 (Honors centrado, 24-09)_ · ✔×1
+- **R-78** · [DT] **En animada, el texto que no cambia no se queda todo el rato**: cristal AJUSTADO a su texto, entra, se lee (~3 s) y sale, para que el fondo se vea solo; el bloque final sí queda con su tiempo de lectura — _Eli, 28-09-2026, ST Coworking 22-10 ronda 2→3 («achicar un poco ese recuadro… si es el mismo texto no es necesario que dure tanto… así queda más tiempo mostrándose lo del fondo»)_ · ✔×2 · +1 ST 01-10 Family Time r7, 28-09: «Días más largos» más corto para que llegue antes el programa
+- **R-79** · [DT] **El titular y el bloque de programa van CENTRADOS**, aunque la ref los corra a un lado; en el bloque, «Family Time» arriba y el precio centrado debajo, el resto más abajo — _Eli, 28-09-2026, FEED 28-10 («déjalo centrado, se ve extraño que esté muy hacia un lado»; «el 125 podría centrarlo y arribita Family Time, bajar un poco los demás textos»). Va en la línea de E-07 (Honors centrado, 24-09)_ · ✔×2 · +1 ST 01-10 Family Time r7, 28-09 («centra Family Time con el 125 para que no se vea tan mal esa jerarquía, que un poco más armónica»)
 - **R-80** · [DT] **Los rótulos del hotel no los escribe la IA**: Nano Banana reescribe carteles («Hilton Honors» → «Hlhoo», «SANTIAGO» → «KARTOKIE»); se reponen desde la foto real, sólo en ese recuadro y alineados por correlación — _hospitalidad del carrusel «5 cosas», 28-09-2026 (técnica: `scripts/dt-oct2-hospitalidad-carteles.py`)_ · ✔×1
+
+- **R-81** · [DT] **Historia animada = FOTOS, no video, y poca animación.** Pocas fotos que se queden ~3–5 s cada una, con fundido suave y un acercamiento casi quieto (≤3 %); nada de clips IA (ni en todas las tomas ni en la primera), barridos con desenfoque o tomas de 0,7 s — _Eli, 28-09-2026, ST 01-10 Family Time r4→r6 («no lo hagas todo video, usa las mismas imágenes»; «solamente veo videos, no quiero ver mucha animación… que queden bastante tiempo para que las personas no se mareen»; «solo imágenes»)_ · ✔×1
+- **R-82** · [DT] **El titular va sobre la foto, FUERA de la caja.** La caja lleva sólo la información del programa (nombre + precio / incluidos / contacto) y es una **bajada sutil abajo**, sobre la zona segura, con poco azul (esmerilado α≈0,20), no un cristal que ocupe media pantalla — _Eli, 28-09-2026, ST 01-10 Family Time r5 («el título principal no lo vas a dejar en esa caja, solamente la información general de Family Time»; «no lo dejes con tanto azul, abarca demasiado, tiene que ser algo sutil, una bajada»); r6 «me parece muy bien… sumamente correcto en la diagramación»_ · ✔×1
+- **R-83** · [DT] **El recuadro del programa entra JUNTO con el titular principal**; el texto de apertura dura poco (~2 s) para que la información del programa quede la mayor parte de la historia (~12 de 15 s) — _Eli, 28-09-2026, ST 01-10 Family Time r7 («cuando aparezca el texto del momento exacto… aparezca el recuadro de Family Time»)_ · ✔×1
+- **R-84** · [DT] **Menos imágenes y revisadas con zoom** antes de montarlas: en 15 s bastan 3; la que se vea rara (personaje que no parece su hoja, piel o texturas sobreprocesadas, persona cortada en el borde) se saca aunque esté en el banco. Cuidar que las caras no queden detrás del recuadro ni pegadas al titular (se mueve la foto, no el texto) — _Eli, 28-09-2026, ST 01-10 Family Time r7 («revisa bien las imágenes… que no se vean extrañas, que se vean más realistas, y utiliza menos imágenes»)_ · ✔×1
 
 ### Between
 - **R-30** · [BW] Taza blanca con raya negra y **KIMBO: se borra siempre**; la taza vigente es blanca total — _Eli 25-08; Scarlette 31-08; ronda 9, 03-09-2026_ · ✔×3
@@ -216,6 +221,10 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **X-37** · [DT] **Cristal alto con el mismo texto los 15 s**, tapando el fondo — _Eli, 28-09-2026, ST Coworking r2_
 - **X-38** · [DT] En el bloque de programa, **«Family Time» y el precio lado a lado** — _Eli, 28-09-2026, FEED 28-10 r1 («siento que el 125 está de más ahí»)_
 - **X-39** · [DT] Titular alineado a un lado (arriba a la derecha, como la ref) en un feed de programa — _Eli, 28-09-2026, FEED 28-10 r2_
+- **X-40** · [DT] Historia animada con **video IA en todas las tomas** (Kling) y barridos con desenfoque — _Eli, 28-09-2026, ST 01-10 Family Time r4 («dura muy extraño… no lo hagas todo video»)_
+- **X-41** · [DT] Sólo la primera toma en video + **fotos de transición de 0,7 s**: sigue sintiéndose como video y marea — _Eli, 28-09-2026, ST 01-10 r5 («solamente veo videos»)_
+- **X-42** · [DT] **Titular dentro del cristal grande** con velo azul α 0,40 que tapa media pantalla — _Eli, 28-09-2026, ST 01-10 r5 («abarca demasiado… no tanto azul»)_. La ST 01-10 costó **4 rondas** en el día (r4 → r7)
+- **X-43** · [DT] Foto del banco con la «niña» que se lee como **mujer adulta** y piel sobreprocesada (cookie en la cama) — _detectado con zoom al pedir Eli «más realistas», 28-09-2026, ST 01-10 r7_: se sacó
 
 ## 8. Preguntas abiertas
 
@@ -246,8 +255,17 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] ST 22-10 Coworking, ronda 3 (cristales ajustados, texto rápido): **Eli la revisa**; al aprobarla se sube MP4 + GIF a S4/DT/STS (`scripts/dt-oct2-subir-drive.py`, línea comentada) → **Eli**
 - [DT] Carrusel 21-10: la fila DISEÑOS de la grilla dice «REEL» y el brief es de carrusel; se diseñó y subió el carrusel → **contenido** (informado a Eli)
 - [DT] La sesión SEP 2026 no trae **fachada, recepción ni gimnasio**: el gym sigue con HDT_82 y la recepción es la de 1280 px → ¿hay sesión de esos espacios? → **Eli**
+- [DT] ST 01-10 Family Time **ronda 7** (3 fotos, recuadro con el titular, Family Time centrado): subida a S1/DT/STS, **Eli la revisa**. En la foto de almohadas el papá queda cortado en el borde derecho: ¿se cambia? → **Eli**
+- [DT] La secuencia `.xml` para Premiere (F:/…/OCTUBRE/DT/S1/ST n°1 S1 DT OCT 26/) no se probó abriéndola en Premiere 2026 → **Eli** al abrirla
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 (cierre, ST 01-10 Family Time) — Claude con Eli · la familia fija en la historia animada, rondas 4 → 7
+- **Reglas nuevas [DT]:** R-81 historia animada con fotos y poca animación (no video), R-82 titular fuera de la caja y el programa en una bajada sutil, R-83 el recuadro entra con el titular principal, R-84 menos imágenes y revisadas con zoom.
+- **✔ que suben:** R-25 (→ ✔×2), R-78 (→ ✔×2), R-79 (→ ✔×2).
+- **Rechazos:** X-40 a X-43. La pieza costó 4 rondas en el día; la r6 fue «me parece muy bien» con ajustes, todavía sin aprobación final.
+- **Subido:** ST 01-10 r7 MP4 + GIF a S1/DT/STS (reemplazan por nombre, md5 verificado) y secuencia de Premiere en F:.
+- Técnico (no es criterio de Eli): Kling 2.1 Pro devolvió FAILED sin error con créditos; 2.5 Pro sí funcionó (memoria `kling-21-pro-falla-usar-25`).
 
 ### 2026-09-28 (cierre, OK PARA DISEÑO) — Claude con Eli · las 6 piezas nuevas de DT octubre, 3 rondas
 - **Reglas nuevas [DT]:** R-75 foto nueva antes que repetida (sesión SEP 2026), R-76 portada de carrusel con la jerarquía de la ref (texto abajo con la flecha; el cierre compensa), R-77 carrusel continuo y armónico, R-78 en animada el texto fijo entra y sale rápido en cristal ajustado, R-79 titular y bloque de programa centrados, R-80 los rótulos del hotel no los escribe la IA.

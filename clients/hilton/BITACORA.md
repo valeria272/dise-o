@@ -11,7 +11,8 @@
 **Feedback de Eli sobre la r6 («me parece muy bien»):** el recuadro de Family Time entra JUNTO con «¡El momento exacto…» · «Días más largos» más corto · centrar Family Time con el $125.000 · revisar que las fotos se vean realistas · menos imágenes.
 **Qué se hizo:** tres fotos (lobby → almohadas → habitación); la cookie salió porque con zoom la «niña» se lee adulta y está sobreprocesada. Frase 1 ~2 s; titular + recuadro entran en f80 y quedan ~12 s. Family Time y el precio apilados y centrados; el recuadro se compactó para no taparles la cara a los niños (la foto de la habitación sube 40 px; la de almohadas baja 60).
 **Dónde quedó:** Drive S1/DT/STS (MP4 + GIF, md5 verificado) · Premiere en F: con las 3 fotos · `out/hilton/dt/oct/_rondas/r7/`.
-**Abierto:** que Eli lo revise.
+**Qué sigue:** esperar la revisión de Eli de la r7. Si pide cambiar la foto de las almohadas (el papá cortado en el borde), el lobby y la habitación son las más realistas; mover la foto antes que el texto (R-84).
+**Abierto:** que Eli lo revise · Premiere 2026 no ha abierto todavía el .xml.
 
 ## 2026-09-28 (mediodía, 2) — Eli (Windows) · DT ST 01-10 Family Time, RONDA 6: sólo fotos + bajada — REEMPLAZADA EN DRIVE
 

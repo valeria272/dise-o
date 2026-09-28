@@ -43,9 +43,14 @@ export const QbSt16Primavera: React.FC = () => (
     <LogoQB top={250} ancho={170} />
     <Linea top={384} cuerpo={34} peso={500} tracking="0.12em">{QB_ST16_DATA.pieza.antetitulo}</Linea>
     <Linea top={428} cuerpo={76} familia="BellMT" tracking="0.02em">{QB_ST16_DATA.pieza.titular}</Linea>
-    {/* el filete punteado de la ST de septiembre, alrededor de la copa */}
-    <div style={{position: "absolute", left: 404, top: 596, width: 612, height: 760,
-      border: "2px dashed rgba(255,255,255,.75)"}} />
+    {/* ⭐ r10 (Eli): «que se vean más similares las líneas discontinuas» a la ST3-S3
+        de septiembre. Medido allá: trazo de ~1,5 px, guion corto, verde menta
+        claro, y el marco CORRIDO a la izquierda de la copa: nace fuera y termina
+        dentro de ella (en sept: x 173–724, y 776–1566 con la copa en 244–818). */}
+    <svg width={1080} height={1920} style={{position: "absolute", left: 0, top: 0}}>
+      <rect x={361} y={548} width={522} height={1150} fill="none" stroke="#A9CDB3"
+        strokeOpacity={0.9} strokeWidth={1.6} strokeDasharray="9 6" />
+    </svg>
     <ImagenReferencial top={1556} />
   </AbsoluteFill>
 );

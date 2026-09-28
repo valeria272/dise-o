@@ -17,9 +17,9 @@
  *   · Fotos reales de la sesión de coctelería 11-09: MEDUSA (verde, vaso tallado
  *     con kiwi) y PERSÉFONE (rosado, flores) — mismo set de estudio, misma luz,
  *     así el duelo se lee parejo. Sin «Imagen referencial».
- *   · Titular: antetítulo «DINÁMICA QB» + «¿Este o este?» en Brushwell grande.
+ *   · Titular: antetítulo «DINÁMICA QB» + «¿Este o este?» en Bell MT itálica (r11).
  *   · Los nombres de los tragos en Bell MT itálica, como «Afrodita» en septiembre.
- *   · Aire entre 1230 y 1440 para el sticker de encuesta (Medusa / Perséfone).
+ *   · Aire entre 1290 y 1450 para el sticker de encuesta (Medusa / Perséfone).
  *   · ⚠️ El texto del premio es PROPUESTA (el brief decía «El primero en acertar
  *     gana un premio sorpresa»): se adaptó a votar. A confirmar con contenido.
  */
@@ -36,11 +36,14 @@ const QB_ST28_DATA: Record<string, Record<string, string>> = {
   titular: "¿Este o este?",
   a: "Medusa",
   b: "Perséfone",
+  instruccion: "¿Cuál pedirías hoy? Vota en la encuesta",
   cierre: "Vota por tu favorito y participa por un premio sorpresa",
   },
 };
 
-const FOTO = {top: 560, w: 520, h: 640, gap: 16};
+/** r10 (Eli): «baja un poco más la imagen para que se puedan colocar los textos»:
+ *  las fotos bajan de 560 a 660 y queda la línea de instrucción bajo el titular. */
+const FOTO = {top: 660, w: 520, h: 600, gap: 16};
 
 const Trago: React.FC<{src: string; left: number; pos: string}> = ({src, left, pos}) => (
   <Img src={staticFile(src)} style={{position: "absolute", top: FOTO.top, left, width: FOTO.w,
@@ -55,7 +58,10 @@ export const QbSt28EsteOEste: React.FC = () => {
     <AbsoluteFill style={{background: "#0E0C0A"}}>
       <LogoQB top={250} ancho={150} />
       <Linea top={362} cuerpo={32} peso={600} tracking="0.16em">{d.antetitulo}</Linea>
-      <Linea top={400} cuerpo={130} familia="Brushwell" interlinea={1}>{d.titular}</Linea>
+      {/* r11 (Eli): «que sea tipografía Bell igual que Medusa y Perséfone, el signo de
+          pregunta se ve extraño» en Brushwell */}
+      <Linea top={410} cuerpo={112} familia="BellMT" italica interlinea={1}>{d.titular}</Linea>
+      <Linea top={566} cuerpo={34} peso={500}>{d.instruccion}</Linea>
       <Trago src="assets/hilton/qb/oct/28-medusa.jpg" left={izq} pos="40% 50%" />
       <Trago src="assets/hilton/qb/oct/28-persefone.jpg" left={der} pos="50% 55%" />
       {/* nombres sobre el pie de cada foto */}

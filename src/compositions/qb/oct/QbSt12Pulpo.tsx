@@ -18,6 +18,10 @@
  *   · Foto: el pulpo REAL de QB («Quotidien-153», carta jul-2024) con el plato
  *     intacto; Seedream le cambió el escenario (mesa negra con veta, hojas en
  *     primer plano, como la ref) y el tinto por BLANCO → «Imagen referencial».
+ *   · ✅ APROBADA por Eli el 28-09 (r10) con dos ajustes: «Imagen referencial»
+ *     centrada, y la mesa «se ve sucia» → limpiada en la foto (manchas claras y
+ *     vetas anaranjadas de la madera, plato/copa/hojas intactos; OpenCV, no IA,
+ *     porque la IA reencuadró el plato).
  *   · Arriba, la gramática de «Conoce nuestra carta» de septiembre (ST5-S2):
  *     logo, «Conoce» fino + «nuestra carta» bold.
  *   · El nombre del plato «de forma similar»: en septiembre iba en cursiva serif
@@ -61,9 +65,9 @@ export const QbSt12Pulpo: React.FC = () => {
       <Filete top={544} left={1080 - 64 - 120} />
       <Linea top={512} cuerpo={60} familia="BellMT" italica>{d.plato}</Linea>
       <Linea top={588} cuerpo={30} peso={400} italica>{d.bajada}</Linea>
-      {/* la leyenda va sobre la mesa, a la izquierda, sobre el plato: abajo el plato ocupa todo el ancho */}
+      {/* la leyenda va CENTRADA (Eli, r10) sobre la mesa, entre la copa y el plato */}
       <Linea top={1190} cuerpo={17} italica sombra={false} color="rgba(255,255,255,0.75)"
-        izquierda={60} ancho={260}>*Imagen referencial</Linea>
+        ancho={400}>*Imagen referencial</Linea>
     </AbsoluteFill>
   );
 };

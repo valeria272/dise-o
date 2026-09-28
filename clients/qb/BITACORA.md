@@ -1,5 +1,29 @@
 # QB Restaurant — bitácora
 
+## 2026-09-28 (cierre tarde) — Elisabet Soto «Eli» (Windows, con Claude) · STS r4–r8 a Drive + lo nuevo de la grilla (rondas 9 a 13) diseñado, aprobado y subido
+
+**Qué se hizo:**
+- Eli no encontraba en Drive las historias corregidas: las 9 de las rondas 4–8 estaban rendidas en `out/qb/oct/r4/` pero **nunca se subieron**. Se subieron reemplazando con el nombre base a `S1–S3 HILTON OCT 2026 / QB / STS` (md5 verificado).
+- La grilla pasó a OK PARA DISEÑAR a las 14:00: 4 de feed y 4 historias (diff en `clients/hilton/grillas/api/qb-oct-20260928c.json`). Se diseñaron las 7 nuevas (el post 05-10 ya existía): FEED 07-10 AYCD y 12-10 Sunset como **carrusel G1 limpia + promo** (R-42), FEED 16-10 trago de autor (**Afrodita**, lo eligió Eli: Zeus/Artemisa/Eros no están fotografiados), ST 07-10 cumpleaños simple (R-43), ST 12-10 pulpo «Conoce nuestra carta», ST 16-10 primavera (spritz, molde ST3-S3 de septiembre), ST 28-10 dinámica nueva **«¿Este o este?»** (encuesta con Medusa y Perséfone reales; la eligió Eli).
+- Rondas de Eli: r10 (tragos del AYCD en vez de los de dioses, Sunset como la aprobada, flores en la palma, cumpleaños en Bell con íconos, mesa del pulpo limpia, marco punteado de septiembre, fotos más abajo en la dinámica), r11 (piscola alta, Sunset con el tamaño de la r9 más abajo, torta bonita, CONVIERTE / TU CUMPLEAÑOS, recuadros tipo botón, el plato del pulpo restaurado, «¿Este o este?» en Bell), r12–13 (botón del Sunset centrado y a 585 px, el ancho que marcó Eli con rayas).
+- **Todo aprobado y subido** a Drive (md5 verificado): STS → `S1/QB/STS/ST n°3 S1`, `S2/QB/STS/ST n°1 S2` y `ST n°5 S2`, `S4/QB/STS/ST n°3 S4`; FEED → `S1/QB/FEED/C1 S1 AYCD/C1 S1 N°1–N°2`, `S2/QB/FEED/C1 S2 SUNSET/C1 S2 N°1–N°2`, `S2/QB/FEED/Post n°1 S2`.
+
+**Dónde quedó:**
+- Código: `src/compositions/qb/oct/QbFeedKit.tsx` (mesa 4:5), `QbFeed07Aycd.tsx`, `QbFeed12Sunset.tsx`, `QbFeed16Autor.tsx`, `QbSt07Cumple.tsx`, `QbSt12Pulpo.tsx`, `QbSt16Primavera.tsx`, `QbSt28EsteOEste.tsx`, registrados en `src/QbOctEntry.tsx` (`QB-OCT-ST07/12/16/28`, `QB-OCT-FEED07-G1/G2`, `FEED12-G1/G2`, `FEED16`).
+- Fondos en `public/assets/hilton/qb/oct/` (versionados con `-f`). Generaciones, fotos bajadas y pasos de limpieza del pulpo en `raw/hilton/qb/oct-r9/` (no viaja). Refs nuevas en `raw/hilton/qb/ref-oct/` (FEED-07/12/16, E-07, I-12, O-16, AD-28).
+- Rendidas en `out/qb/oct/r9/` (los «antes» en `_antes-r9/` y `_antes-r10/`). Páginas: `revision-r9/r10/r11.html`. Subida: `scripts/qb-oct-r9-subir-drive.py`.
+- QA de QB: 0 bloqueantes; los avisos son falsos positivos (desenfoque real, plantas del spritz leídas como croma).
+
+**Qué sigue:** el video de la Ensalada (19/22-10): anclarlo a la «Recomendación del chef» (misma línea que `raw/hilton/qb/kv-chef/`) + «Imagen referencial»; pasar `qb-oct-clips.py` de Kling 2.1 a 2.5 Pro para la mano con tenedor.
+
+**Abierto:**
+- Post cumpleaños 05-10 (`out/qb/oct/r4/Post n°1 S1 QB OCT 26.png`): sin visto de Eli, **no subido** → Eli.
+- Texto del premio de «¿Este o este?» es propuesta del estudio («Vota por tu favorito y participa por un premio sorpresa») → contenido.
+- «Cuenta separadas» sigue literal en el cumpleaños → contenido.
+- Sunset G2: el legal quedó bajo el 12 % de pauta del feed porque Eli lo pidió abajo; si va a paid hay que subirlo → Eli.
+- Eli dijo que dejó «historias ya aprobadas en la grilla en tu carpeta» como referencia: no se encontró nada nuevo en Drive → que diga cuál carpeta.
+- En el árbol queda `scripts/dt-pendones-caras.py` de otra sesión (DT): no se tocó ni se commiteó.
+
 ## 2026-09-28 (cierre) — Elisabet Soto «Eli» (Windows, con Claude) · ST 29-09 Trivia de brindis: cambio de texto del cliente
 
 **Qué se hizo:** Nicolás Ávila (contenido, Slack 15:57) pasó el cambio del cliente para la **ST 29 SEPTIEMBRE** (Trivia de brindis, S5): «¿Por qué chocamos las copas antes de **tomar**?» → «… antes de **beber**?». Con eso QB «estaría listo». La pieza es de Eli (`ST n°2 s5.png`, 25-09, `QB / STS`) y **no tiene editable** (ni en Drive ni en este equipo), así que la palabra se cambió sobre el PNG: se borró la línea 2 con inpainting y se reescribió calzando la fuente contra el original (**Raleway SemiBold 100 px, tracking +2,5** a 2250×4000; tinta 99,7 % de la original; el cambio queda sólo en x 481–1768 · y 2922–3021). Se mantuvo la caja baja de la pieza, no las versales del Slack.

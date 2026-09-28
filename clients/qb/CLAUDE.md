@@ -580,6 +580,25 @@ Encontradas armando la grilla de octubre. Bajan sin token con
 - **Legal** ≥ 19 px en mesa, lo más abajo que deje la zona segura (≤ 1580); al
   costado de un objeto, alineado a la izquierda (R-52).
 
+### ⭐⭐ Lo que fijó Eli en el feed y las historias nuevas (28-09-2026, rondas 9–13)
+
+- **Tragos del ALL YOU CAN DRINK** (R-56), según la ST aprobada de septiembre:
+  schop Heineken · piscola 35° (Mistral o Alto del Carmen) · Ramazzotti · sangría ·
+  copa de espumante. La piscola en **vaso alto**. Los tragos de autor («selección de
+  dioses») **no** van en AYCD.
+- **Carrusel de promo** (R-42, probada): G1 limpia (sólo foto) + G2 con la promo, y en
+  Drive cada carrusel en su carpeta `FEED / C1 S<n> <TEMA>`.
+- **Post Sunset de feed** (E-09): titular en Raleway Light 60 px en 2 líneas, bajo las
+  manos; pastilla del horario **redondeada y sólida `#66886B`**, 585 px, centrada entre
+  titular y legal; legal al pie. Código: `src/compositions/qb/oct/QbFeed12Sunset.tsx`.
+- **Marco punteado de la línea «trago de autor»** (R-65, medido en la ST3-S3 de
+  septiembre): trazo ~1,5 px, guion 9/6, `#A9CDB3`, corrido a la izquierda del trago.
+- **Lista de beneficios** (R-60): ícono de línea fino por ítem, en recuadro oscuro tipo
+  botón. Titulares en **Bell MT mayúscula** + bajada Raleway (R-61); nada con «¿?» en
+  Brushwell.
+- **Limpiar una foto aprobada** (R-64): local, sin IA, con el protagonista protegido
+  desde la foto original.
+
 ### ⭐⭐ Las sesiones que pasó Eli el 25-09-2026
 
 Eli entregó 8 carpetas. Las miniaturas y las hojas de contacto quedaron en

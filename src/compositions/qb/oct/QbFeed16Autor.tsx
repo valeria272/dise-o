@@ -17,6 +17,9 @@
  *   · Foto: la real «_DSC9911 AFRODITA» puesta en una mano con Seedream (vaso,
  *     humo, romero y flores iguales), barra de QB desenfocada detrás →
  *     «Imagen referencial».
+ *   · RONDA 10 (Eli 28-09): «las flores quiero que caigan en la palma de la mano,
+ *     cosa que tenga sentido» → reeditada: la copa en los dedos y las tres flores
+ *     apoyadas en la palma.
  *   · LIMPIA como pidió el cliente: sin reseñas, sin estrellas, sin titular. Sólo
  *     el logo arriba y la leyenda obligatoria abajo, dentro de la zona segura.
  */

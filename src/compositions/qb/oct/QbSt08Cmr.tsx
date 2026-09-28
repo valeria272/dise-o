@@ -37,14 +37,18 @@
  *   estilo antiguo, sin QB_CIFRAS). Ahora la curva y el 20 % salen MEDIDOS de la
  *   aprobada: arco de radio 384, 20 de 201 px, % pegado al 0, «dcto.» en la base.
   *
+ * ⭐ RONDA 5 DE ELI 28-09: «quiero que sea una foto real de barra que tengamos» →
+ *   la barra iluminada del shooting «QB oct» (sesión terraza 10-10, foto 31), el
+ *   cóctel naranjo con romero asomando arriba a la izquierda como en la aprobada.
+ *   Y «el ¡Todos los días! solapa el 2 del 20» → la curva sube 14 px.
  * ⭐ RONDA 4 DE ELI 28-09: «revisando bien las referencias no se asemeja… lo mismo
  *   para todas las historias». De la ref (Buenavista) se toma el fondo —la barra
  *   de noche con las botellas encendidas y el trago sobre la madera— y el titular:
  *   una línea chica, una palabra en caja alta muy pesada y una caligráfica que la
  *   cruza. Con las voces de QB: Raleway ExtraBold 800 (el
  *   más pesado del paquete) + Brushwell. El marco, la curva, el 20 % y los logos
- *   de la aprobada no se tocan. Foto: Seedream con el mismo trago de la foto real
- *   → «Imagen referencial».
+ *   de la aprobada no se tocan. (La foto de la r4 era Seedream: la r5 la cambió
+ *   por la barra real.)
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -59,7 +63,7 @@ const QB_ST08_DATA: Record<string, Record<string, string>> = {
   titular: "TU MESA TIENE BENEFICIOS TODOS LOS DÍAS",
   etiqueta: "¡Todos los días!",
   texto: "Ven y disfruta tu beneficio con Banco Falabella",
-  legal: "*Imagen referencial. Sujeto a consumo de alimentos. Promoción no acumulable con otras ofertas y beneficios.",
+  legal: "Sujeto a consumo de alimentos. Promoción no acumulable con otras ofertas y beneficios.",
   },
 };
 
@@ -68,6 +72,8 @@ const MARCO = {x: 168, y: 643, w: 744, h: 730};
 const FRANJA = {y: 1080, h: 132};
 const FILETE = "#36493B";
 const ARCO_R = 384;
+/** Cumbre del arco. r5 (Eli 28-09): «que no toque el 2 del 20» → sube 14 px (era 769). */
+const CUMBRE = 755;
 const ETQ_CUERPO = 54;
 const ETQ_TRACK = -1.2;
 /** Posición del bloque del descuento: `y` y `x` son el tope y el borde del GLIFO
@@ -93,7 +99,10 @@ const s = (f: string) => staticFile(`assets/hilton/qb/oct/${f}`);
 
 export const QbSt08Cmr: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
-    <FotoQB src="assets/hilton/qb/oct/08-cmr-r4.jpg" ratio={1520 / 2736} zoom={1.3} cx={0.62} cy={0.484} />
+    <FotoQB src="assets/hilton/qb/oct/08-cmr-barra.jpg" ratio={3000 / 2000} zoom={0.75} cx={0.491} cy={0.993} libre />
+    {/* la foto sube para que el cóctel asome arriba a la izquierda: su canto se funde */}
+    <div style={{position: "absolute", left: 0, right: 0, top: 760, height: 1160,
+      background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 18%, #000 100%)"}} />
     <Velo arriba={[560, 0.75]} abajo={[520, 0.8]} />
     {/* r4: titular como la ref — línea chica + palabra pesada + caligráfica que la cruza */}
     <Linea top={258} cuerpo={44} peso={700} tracking="0.06em">TU MESA TIENE</Linea>
@@ -113,9 +122,9 @@ export const QbSt08Cmr: React.FC = () => (
       <Img src={staticFile(QB_ASSETS.logoBlanco)} style={{width: 100}} />
     </div>
     {/* «¡Todos los días!» en CURVA, calcada de la aprobada: la línea base es un
-        arco de radio 384 con la cumbre en (545, 769); el texto se centra en x 554 */}
+        arco de radio 384 con la cumbre en (545, CUMBRE); el texto se centra en x 554 */}
     <svg style={{position: "absolute", left: 0, top: 0}} width={MESA.w} height={MESA.h}>
-      <path id="qb-st08-arco" d={`M ${545 - ARCO_R} ${769 + ARCO_R} A ${ARCO_R} ${ARCO_R} 0 0 1 ${545 + ARCO_R} ${769 + ARCO_R}`} fill="none" />
+      <path id="qb-st08-arco" d={`M ${545 - ARCO_R} ${CUMBRE + ARCO_R} A ${ARCO_R} ${ARCO_R} 0 0 1 ${545 + ARCO_R} ${CUMBRE + ARCO_R}`} fill="none" />
       <text fill="#fff" fontFamily="BellMT" fontStyle="italic" fontSize={ETQ_CUERPO} letterSpacing={ETQ_TRACK}
         textAnchor="middle" style={{fontVariantLigatures: "none"}}>
         <textPath href="#qb-st08-arco" startOffset={(Math.PI * ARCO_R) / 2 - 3}>{QB_ST08_DATA.pieza.etiqueta}</textPath>

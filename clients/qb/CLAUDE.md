@@ -549,6 +549,36 @@ Encontradas armando la grilla de octubre. Bajan sin token con
 - Se cambia la FOTO (del shooting de la carta enero 2026, sin gradación) y los
   TEXTOS del brief; lo demás no se toca. El texto sube a la zona segura aunque la
   aprobada no lo respetara
+- ⚠️ **Revisado 28-09 (E-08):** cuando Eli pide parecerse a la referencia, en los
+  bancos también cambian la **tipografía del titular** (la de la ref, con las voces
+  de QB) y el **fondo**; marco, pastilla, cajas, curva, 20 % y logos se quedan.
+
+### ⭐⭐ La historia se parece a SU REFERENCIA — y el fondo es QB real (Eli, 28-09-2026)
+
+> «Revisando bien las referencias de las historias no se asemeja… tienen que ser
+> con elementos similares a la referencia.»
+
+- De la ref se toman **elementos concretos**: la tipografía del titular, el recurso
+  gráfico (rótulo a mano con flecha, pastilla blanca, polaroids, nota escrita,
+  ticket) y el tipo de fondo. La caligráfica de una ref se hace en **Brushwell** y
+  la serif en **Bell MT** (R-46).
+- El **fondo es QB real** (R-47): la terraza (pérgola, plantas, maceteros de
+  concreto, lámparas de mimbre de noche, mesas de listones) o la barra iluminada.
+  Fuentes: sesión «terraza 10-oct» (barra `QB oct-30/31/32`, noche `QB oct-14/15`)
+  y «QB 13 oct» (terraza de día `-30/31`, mesas `-56`). Si hay que generar, se
+  genera **con esa foto como referencia**. Nunca playa ni bar genérico.
+- Un **trago real** no cambia de forma al editar la escena (R-48): si hay que
+  ajustar su tamaño, se escala parejo. En fila, las copas con el borde a la misma
+  altura (R-49).
+- **Ticket de estacionamiento = el que diseñó Eli** (A-09):
+  `raw/hilton/qb/ref-oct/R-21-ticket-eli-28sep.png` — flechas, código de barras,
+  «P» en recuadro, TICKET / ESTACIONAMIENTO, 50 grande con %/OFF apilado y con aire
+  (R-51). Va **en la mano**, dos tickets en abanico, el de adelante ≈ 30 % del
+  ancho (R-54). La tinta se imprime **sólo sobre el papel**: máscara del papel
+  medida en la foto (`21-mascara-frente/atras.png`), el pulgar queda encima (R-50).
+  Código: `src/compositions/qb/oct/QbSt21Estacionamiento.tsx`.
+- **Legal** ≥ 19 px en mesa, lo más abajo que deje la zona segura (≤ 1580); al
+  costado de un objeto, alineado a la izquierda (R-52).
 
 ### ⭐⭐ Las sesiones que pasó Eli el 25-09-2026
 

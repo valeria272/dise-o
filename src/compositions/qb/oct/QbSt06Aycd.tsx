@@ -22,6 +22,15 @@
  *     cortina burdeo, como la referencia → lleva «Imagen referencial».
  *   · PROMO → puede ir a paid: logo y nombre bajan 45 px para entrar en y≥250.
  *     El bloque de abajo queda en sus coordenadas del KV y el legal cierra en 1580.
+ *
+ * ⭐ RONDA 5-6 DE ELI 28-09: la sangría del centro es la REAL de la ronda 3, y las
+ *   tres copas van a la MISMA altura (bordes en una línea): escena editada con
+ *   Seedream sobre la de la r4, mismo encuadre.
+ * ⭐ RONDA 7 (Eli 28-09): «la copa cambió de forma». Se rehízo: la copa del centro
+ *   es la de la r3 con su forma real (bowl tallado, pie largo), agrandada pareja
+ *   ~12 % para que su borde quede en la línea de los otros dos (±3 px).
+ * ⭐ RONDA 8 (Eli 28-09): «la parte de abajo muy gruesa» → el pie de la copa del
+ *   centro pasa a ser fino, como el de las otras dos, sin el nudo del medio.
  */
 import React from "react";
 import {AbsoluteFill} from "remotion";
@@ -42,14 +51,13 @@ const QB_ST06_DATA: Record<string, Record<string, string>> = {
 };
 
 const BAJA = 45;
-const SUBE = -230;
 
 export const QbSt06Aycd: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
     {/* r4 (Eli 28-09): la campana de la ref de Sora — mano con guante que la levanta
         sobre los tres tragos. La foto sube para que los tragos queden entre el
         antetítulo y el bloque de precio; lo que queda abajo es mármol y velo. */}
-    <FotoQB src="assets/hilton/qb/oct/06-aycd-campana.jpg" ratio={1520 / 2736} libre bajar={SUBE} />
+    <FotoQB src="assets/hilton/qb/oct/06-aycd-campana.jpg" ratio={1520 / 2736} zoom={1.08} cx={0.5} cy={0.605} libre />
     <Velo arriba={[820, 0.9]} abajo={[760, 0.95]} />
     <LogoQB top={207.4 + BAJA} ancho={178.6} />
     <NombreAycd top={376.3 + BAJA} />

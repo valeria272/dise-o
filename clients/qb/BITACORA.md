@@ -1,5 +1,28 @@
 # QB Restaurant — bitácora
 
+## 2026-09-28 (noche) — Elisabet Soto «Eli» (Windows, con Claude) · rondas 4 a 8: las historias de octubre, acercadas a su referencia + post cumpleaños 05-10
+
+**Qué se hizo:** Eli revisó las referencias de las historias y dijo que no se parecían: «tienen que ser con elementos similares a la referencia». Se rehicieron 9 historias (r4) y se corrigió ronda por ronda hasta la r8. Se diseñó lo único nuevo en OK: el **post estático de cumpleaños del 05-10** (FEED col. D; el rótulo dice ST/carrusel, pero el comentario del cliente pide «un estático») como collage de polaroids con flash alrededor de una tarjeta de lino, igual que la ref «Yes! Friday».
+- **Aprobadas por Eli hoy:** 01/02-10 Banco de Chile («déjala así»: titular Raleway Light + «buen momento» en Brushwell, foto de copas de blanco), 08-10 CMR (r5: foto REAL de barra «QB oct-31» + «¡Todos los días!» sube 14 px para no tocar el 2), 09-10 Sunset (r6: terraza real de QB, rótulo a mano con flecha, legal 14→19, velo arriba más denso), 14-10 Adivina («sumamente bien», a la primera), 15-10 Mejores amigos («me parece bien», la va a revisar mejor).
+- **En revisión (r8):** 06-10 AYCD (campana con guante sobre 3 tragos; la sangría es la REAL de la r3, los 3 bordes nivelados, pie fino tras «muy gruesa») y 21-10 Estacionamiento (mano con DOS tickets con el diseño de ticket que hizo Eli, terraza de QB de noche, tinta enmascarada al papel, 50/%/OFF con aire, legal en 2 líneas a la izquierda).
+- 20-10 AYCD llamada y 23-10 Close friends se rehicieron en la r4 como sus refs y no tuvieron comentario.
+- 22-10 Ensalada y 26-10 Terraza (videos) no se tocaron: la ref de la 22 es un reel que ya no carga.
+
+**Dónde quedó:**
+- Código: `src/compositions/qb/oct/QbSt01/06/08/09/14/15/20/21/23*.tsx` con la dirección de arte de cada ronda en la cabecera; nuevo `QbPost05Cumple.tsx` (registrado como `QB-OCT-FEED05`, 1080×1350).
+- Fondos nuevos en `public/assets/hilton/qb/oct/` (versionados con `-f`); las generaciones y las fotos reales en alta, en `raw/hilton/qb/oct-r4/` (no viaja). La imagen del ticket de Eli está en `raw/hilton/qb/ref-oct/R-21-ticket-eli-28sep.png` y la ref del cumpleaños en `ref-oct/FEED-05-cumple.jpg`.
+- Rendidas a 2250×4000 (post a 2250×2812) en `out/qb/oct/r4/`: 9 ST + `Post n°1 S1 QB OCT 26.png`. Los «antes» de cada ronda están en `out/qb/oct/_antes-r3 … _antes-r7/`.
+- Páginas de revisión: `out/qb/oct/r4/revision-r4.html … revision-r8.html` (scripts `scripts/qb-oct-r4…r8-revision.py`).
+- QA de QB: 0 bloqueantes en las ST. El post marca 1 bloqueante falso («texto al borde» = las polaroids que sangran a propósito).
+- ⛔ **NADA subido a Drive.**
+
+**Qué sigue:** el visto de Eli a la r8 del 06 (AYCD) y del 21 (estacionamiento) → subir a Drive `S<n> HILTON OCT 2026 / QB / STS` las 9 historias + el post (en `.../QB/FEED` de la S1) **con nombre nuevo** (R-31) o reemplazando si Eli lo pide (E-07). Después: la mano con tenedor de la 22 (hay créditos de Magnific; el script `qb-oct-clips.py` usa Kling 2.1, que falla: pasarlo a 2.5 Pro).
+
+**Abierto:**
+- Post cumpleaños: el brief dice «Cuenta separadas» (va literal) → ¿«Cuentas separadas»? → contenido. Y el nombre de entrega del post (`Post n°1 S1`) → confirmar con Eli.
+- 15-10: Eli la va a revisar mejor.
+- En el árbol hay trabajo de **Between** sin commitear de otra sesión (`scripts/between-carta-oficial-r1/r2.py`, `public/assets/hilton/between/carta/mano-*.png`): no se tocó ni se incluyó en este commit.
+
 ## 2026-09-28 (tarde) — Elisabet Soto «Eli» (Windows, con Claude) · ronda 3 de la S1 de octubre + relectura de la grilla
 
 **Qué se hizo:** ronda de Eli sobre las 4 historias de la S1. **ST n°1** (Banco de Chile): las cajas 20%OFF/30%OFF no llevaban `QB_CIFRAS` y salían cifras de estilo antiguo; ahora van en caja alta, a la altura de OFF (sólo cambió esa franja: 32.912 px). **ST n°2** (AYCD): «la veo perfecta», no se tocó. **ST n°4** (CMR): «¡Todos los días!» pasó de recto girado −4° a la curva de la aprobada (arco de radio 384 por SVG `textPath`) y el 20 % dcto. volvió a las medidas de la original (20 de 201 px, % pegado al 0, «dcto.» en la base): queda a 1–3 px de la aprobada. **ST n°5** (Sunset): titular en Raleway Light como la ST aprobada, «Tu after office, a otro nivel» de 32 a 38 sin la ligadura ff y con aire entre las f, y el horario del botón de 29 a 32. Después, relectura de la grilla: nada nuevo en OK.

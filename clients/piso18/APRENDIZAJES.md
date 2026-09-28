@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
-> Última cosecha: **2026-09-28** · Cosechas: **6**
+> Última cosecha: **2026-09-28** · Cosechas: **7**
 
 ## 1. Quién es el cliente
 
@@ -63,7 +63,7 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - **R-20** · Un titular que empieza con `¿` o `¡` no se compone en Against — _manual; «¿Te casas en verano?»_ · ✔×1
 - **R-21** · IvyPresto (OTF CFF) se verifica en cada render con `p18FuentesListas()`; nunca se da por cargada — _manual; precedente Brushwell_ · ✔×1
 - **R-22** · De la carpeta `14jOWfpSm7Nm1lXAABZNThZAa5_5BulzC` no se usan fotos de 2020 hacia abajo, por fecha EXIF de captura — _orden de Eli, manual_ · ✔×1
-- **R-23** · El brief es de contenido, no de diseño: un «Este no va» del cliente **no se le lleva a Eli** — _Eli, 22-09: «no tomes eso de ese no va ya que es para contenido no yo»_ · ✔×1
+- **R-23** · El brief es de contenido, no de diseño: un «Este no va» del cliente **no se le lleva a Eli** — _Eli, 22-09: «no tomes eso de ese no va ya que es para contenido no yo»_ · ✔×2 (28-09: el reordenamiento de fechas de la grilla tampoco es suyo, ver R-50)
 - **R-24** · Ni títulos ni bajadas llevan punto (final ni intermedio), aunque el brief lo traiga — _regla del cliente Hilton, 23-09-2026, citada en el manual de Piso 18_ · ✔×2 (28-09: grilla de octubre)
 - **R-25** · La corrección de color que se nota está mal: la piel no baja más de ~2 puntos, las sombras no se desploman, recorte en 0,00 % — _Eli, 22-09, terraza del reel S4: «hazlo sutil como para que no se note»_ · ✔×1
 - **R-26** · «Quemado» casi nunca es sobreexposición: se diagnostica midiendo punto de negro, dominante, micro contraste y recorte, y se hornea con ffmpeg (los deslizadores de CapCut quedan en cero) — _reel S4, 6ª sesión 22-09_ · ✔×1
@@ -73,7 +73,7 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - **R-30** · En una historia animada, posición y contraste del botón se miden en el último fotograma — _manual; reglas.yaml_ · ✔×1
 - **R-31** · Una pieza corregida se reemplaza en Drive **conservando su enlace** — _S4 rondas 4, 5, 6 y 7 (16 al 22-09)_ · ✔×6 (28-09: rondas 2 y 3 de octubre)
 - **R-32** · La revisión se publica como página de antes/después; nada interno va a la carpeta de entrega, que ve el cliente (`@hilton.com` con permiso de escritura) — _hallazgo 16-09; rondas 4–7 aprobadas así_ · ✔×5 (28-09: páginas r1 y r2 de octubre)
-- **R-33** · Lo nuevo de la grilla se detecta por diff de **conjunto de cadenas** contra la instantánea anterior: el comentario se prepende y no lo delatan ni la celda ni el `modifiedTime` — _confirmado el 16, 17 (×2), 22-09 y 28-09 (grilla oct: 8 comentarios nuevos del cliente en celdas que estaban vacías)_ · ✔×5
+- **R-33** · Lo nuevo de la grilla se detecta por diff de **conjunto de cadenas** contra la instantánea anterior: el comentario se prepende y no lo delatan ni la celda ni el `modifiedTime` — _confirmado el 16, 17 (×2), 22-09 y 28-09 (grilla oct: 8 comentarios nuevos del cliente en celdas que estaban vacías; 28-09 noche: la grilla reordenó 3 piezas entregadas)_ · ✔×6
 - **R-34** · Una pieza se identifica por su **título**, nunca por la columna: la grilla corre fechas sin avisar — _16-09 (NOCHE 25→23), 17-09, 22-09 (animada 23→24)_ · ✔×3
 - **R-35** · El GIF de una pieza animada va a 25 fps, sin difuminado y a 540×960; lo que se publica en Instagram es el MP4 — _Eli, 22-09: «guárdalo igual en gif»; `scripts/p18-s4-gif.py`_ · ✔×1
 - **R-36** · El titular va prácticamente a sangre (29 px de margen @1080): el respiro de borde de la marca es 26 px, no los 60 de agencia — _medido en `ST N°1 S1`; reglas.yaml_ · ✔×1
@@ -90,6 +90,7 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - **R-47** · Los elementos de papelería gráfica (los clips de la hoja) van en fucsia `#D4145A` — _Eli, 28-09, FEED 16-10: «las cositas de archivadora en color fucsia de piso 18»_ · ✔×1
 - **R-48** · Un ventanal reiluminado lleva **un solo cielo continuo**; si el carrusel ya tiene una lámina aprobada, esa va de referencia de color — _Eli, 28-09, 13-10 S1: «se ve como dos tipos de atardeceres y eso se ve súper extraño»_ · ✔×1
 - **R-49** · Para acercar el color de una foto a la referencia sin perderla, se EDITA esa misma foto (Nano Banana Pro: sólo el color de algunas flores); no se regenera — _Eli, 28-09, 06-10: «me gusta mucho la actual (…) en vez de ciertos rosados, esos tonos azulitos»; aprobado_ · ✔×1
+- **R-50** · Sólo diseño: cuando la grilla **mueve de fecha** una pieza ya entregada, no se renombra ni se mueve nada en Drive; se avisa a Eli qué quedó desalineado y se deja el script listo (`scripts/p18-oct-reordenar.py`) — _Eli, 28-09: «solo de diseño no muevas cosas que no son mi trabajo, es las piezas diseñadas»_ · ✔×1
 
 ## 5. Excepciones
 
@@ -153,8 +154,14 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - ~~ST 09-10 «de una matrimonio»~~ → resuelto el 28-09: va «un matrimonio» y Eli lo aprobó.
 - El upscaler de precisión de Magnific falla seguido («terminó sin entregar imagen»): Tex-Mex S2 y S3 y el wedding planner quedaron ampliados ×1,22–1,27. ¿Se reintenta antes de publicar? → estudio / Eli
 - Las piezas de octubre no declaran sus textos al QA, así que «sin bodas» queda «sin verificar» (se revisó a mano) → estudio
+- La grilla reordenó 3 piezas ya entregadas (Fechas 2027 09→06-10 · Arreglos 06→09-10 · Tu próxima celebración 16-10 S3 → 30-10 S5, contenido idéntico). En Drive siguen con la fecha vieja y el portal levanta por nombre. ¿Quién renombra? → Eli / KAM (script `scripts/p18-oct-reordenar.py`, sin correr)
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 (noche) — Elisabet Soto con Claude · revisión de la grilla de octubre, sin piezas nuevas
+- **Sin diseño:** todo lo que está en OK ya estaba entregado y aprobado. Siguen fuera: FEED 20-10 cumpleaños (PENDIENTE POR CLIENTE, ahora «POST ANIMADO» con una pregunta de Carlos sin responder), ST 08-10 (PENDIENTE), ST 13/15/16/19/21/30-10 (EN REVISIÓN) y el reel del Día del Chef (sin estado).
+- nueva **R-50** sólo diseño: no se renombra ni se mueve en Drive lo que la grilla reordena. ✔ subieron R-23 (×2) y R-33 (×6). §8: 1 pregunta nueva (quién renombra las 3 piezas movidas).
+- Fuera de alcance: nada se copió a DT, QB ni Between.
 
 ### 2026-09-28 (tarde) — Elisabet Soto con Claude · GRILLA DE OCTUBRE, 11 piezas, 3 vueltas — APROBADA
 - nuevas **R-43** Raleway siempre con `lnum` · **R-44** calcar la ref con la identidad de Piso18 · **R-45** comida IA = foto documental · **R-46** el detalle cambia el plano de la portada · **R-47** clips en fucsia · **R-48** un solo cielo en el ventanal · **R-49** editar la foto para acercar el color a la ref.

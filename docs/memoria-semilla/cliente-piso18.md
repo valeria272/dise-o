@@ -1,6 +1,6 @@
 ---
 name: cliente-piso18
-description: "PISO18 — cerebro del cliente: 49 reglas firmes, última cosecha 2026-09-28. Generado desde clients/piso18/APRENDIZAJES.md; leerlo antes de diseñar para piso18"
+description: "PISO18 — cerebro del cliente: 50 reglas firmes, última cosecha 2026-09-28. Generado desde clients/piso18/APRENDIZAJES.md; leerlo antes de diseñar para piso18"
 metadata:
   type: project
 ---
@@ -13,8 +13,8 @@ Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente Hilton, por comenta
 
 ## Reglas más confirmadas
 - **R-31** · Una pieza corregida se reemplaza en Drive **conservando su enlace** — _S4 rondas 4, 5, 6 y 7 (16 al 22-09)_ · ✔×6 (28-09: rondas 2 y 3 de octubre)
+- **R-33** · Lo nuevo de la grilla se detecta por diff de **conjunto de cadenas** contra la instantánea anterior: el comentario se prepende y no lo delatan ni la celda ni el `modifiedTime` — _confirmado el 16, 17 (×2), 22-09 y 28-09 (grilla oct: 8 comentarios nuevos del cliente en celdas que estaban vacías; 28-09 noche: la grilla reordenó 3 piezas entregadas)_ · ✔×6
 - **R-32** · La revisión se publica como página de antes/después; nada interno va a la carpeta de entrega, que ve el cliente (`@hilton.com` con permiso de escritura) — _hallazgo 16-09; rondas 4–7 aprobadas así_ · ✔×5 (28-09: páginas r1 y r2 de octubre)
-- **R-33** · Lo nuevo de la grilla se detecta por diff de **conjunto de cadenas** contra la instantánea anterior: el comentario se prepende y no lo delatan ni la celda ni el `modifiedTime` — _confirmado el 16, 17 (×2), 22-09 y 28-09 (grilla oct: 8 comentarios nuevos del cliente en celdas que estaban vacías)_ · ✔×5
 - **R-01** · «bodas» no se escribe nunca: va matrimonio(s) o novios, aunque el brief o el hashtag lo traigan — _Eli, 15-09-2026; ratificada por el cliente en `FEED!I14` el 17-09 («no usemos la palabra BODA»)_ · ✔×3 (28-09: las 11 de octubre sin «boda»)
 - **R-17** · La caja de recorte de cada pieza queda escrita en el script que la produce — _S4, 16-09: dos recortes hubo que reconstruirlos por correlación_ · ✔×3 (28-09: `scripts/p18-oct-fotos.py`)
 - **R-34** · Una pieza se identifica por su **título**, nunca por la columna: la grilla corre fechas sin avisar — _16-09 (NOCHE 25→23), 17-09, 22-09 (animada 23→24)_ · ✔×3
@@ -24,6 +24,7 @@ Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente Hilton, por comenta
 - **R-12** · El logotipo va arriba y centrado, tope y≈207 @1080 en historia y ≈105 en feed, y nunca se deforma — _kit 15-09; manual_ · ✔×2 (28-09: historias de octubre)
 - **R-15** · El zoom de una foto tiene tope 1,0: un recorte que ampliaría se rechaza y se busca otro plano en el banco — _Eli, 16-09, G3 S4: «No tiene que verse en los costados ni la mesa»_ · ✔×2
 - **R-18** · Todo fondo oscuro plano lleva grano (`GranoFondo`); `foto-estirada` no se calibra, se arregla la pieza — _S5, 15-09; referencia de Eli «tiene un cuero», no negro digital_ · ✔×2 (28-09: ST 27-10)
+- **R-23** · El brief es de contenido, no de diseño: un «Este no va» del cliente **no se le lleva a Eli** — _Eli, 22-09: «no tomes eso de ese no va ya que es para contenido no yo»_ · ✔×2 (28-09: el reordenamiento de fechas de la grilla tampoco es suyo, ver R-50)
 - **R-24** · Ni títulos ni bajadas llevan punto (final ni intermedio), aunque el brief lo traiga — _regla del cliente Hilton, 23-09-2026, citada en el manual de Piso 18_ · ✔×2 (28-09: grilla de octubre)
 - **R-27** · Antes de tocar un draft de CapCut, CapCut cerrado (0 procesos); se relee y respalda el draft, y lo que Eli editó encima no se toca — _22-09: se perdió una corrección y hubo que reconectar el clip tres veces_ · ✔×2
 - **R-40** · En el feed el cierre es la **línea** «Cotiza … en piso18.cl» (piso18.cl en fucsia), no el botón píldora de las historias — _Eli, 25-09, C1 S5: «me gusta más como estaba en el anterior (…) sin ese botón»_ · ✔×2 (28-09: 16-10 S5)
@@ -31,7 +32,6 @@ Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente Hilton, por comenta
 - **R-02** · Nada de DoubleTree entra en Piso 18 (ni tipografía, ni paleta, ni logo, ni «LA LEY DE ELI»), y nada de acá va para allá — _Eli: «Todo es propio y diferente a DT, recuerda no mezclar las marcas»; reglas.yaml_ · ✔×1
 - **R-03** · El fucsia nunca decora: sólo caja del precio, filete, `piso18.cl` del CTA, destacado del titular y botones — _medido en las 7 aprobadas; manual 22-09_ · ✔×1 · ⚠️ revisada 2026-09-25: Eli pidió «cuadros de color fucsia» como toque de color en el carrusel S5 → ver R-39 · y el 28-09 los clips del 16-10 → ver R-47
 - **R-04** · El fucsia de Selfie (`#FF007C`) no entra: el QA lo corta a ΔE 12 — _Eli, 15-09; reglas.yaml `fucsia-de-selfie`_ · ✔×1
-- **R-05** · El beige `#EFE6D9` no se pone sobre la tarjeta `#F7F5F2`: ahí no se lee como beige — _Eli, ronda 2 S4_ · ✔×1
 
 ## Lo que ya costó rondas
 - **X-01** · Una transición que no termina: el plano que sale tapando al que entra y una curva que gasta el 68 % del recorrido en 4 fotogramas — _ST N°3 S4, reclamo del cliente 22-09; el defecto venía desde la ronda 3_

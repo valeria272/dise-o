@@ -82,7 +82,7 @@ const FOTOS = [
 ] as const;
 /** La cortina: fotogramas que tarda y ancho del borde difuminado. */
 const CORTINA = 22;
-const BORDE = 260;
+const BORDE = 100;  // con 260 se montaban las dos familias en el borde
 
 /**
  * Ronda 7: «Días más largos» dura menos (~2 s) y, cuando entra «¡El momento exacto…»,
@@ -118,7 +118,8 @@ const FotoFija: React.FC<{i: number}> = ({i}) => {
   const p = i === 0 ? 1 : interpolate(f, [e.desde, e.desde + CORTINA], [0, 1], {...clamp, easing: suave});
   const borde = -BORDE + p * (1080 + 2 * BORDE);
   const mascara = i === 0 || p >= 1 ? undefined : `linear-gradient(90deg, #000 ${borde - BORDE}px, transparent ${borde}px)`;
-  const empuje = (1 - p) * 50;
+  // se asienta desde la izquierda: el hueco que deja queda del lado aún tapado por la cortina
+  const empuje = -(1 - p) * 50;
   return (
     <AbsoluteFill style={{WebkitMaskImage: mascara, maskImage: mascara}}>
       <Img
@@ -162,6 +163,12 @@ export const DtStFamilyTimeOctR8: React.FC<{guia?: boolean; soloGrafica?: boolea
     iconos: useEntrada(T.bajada + 16, 16, 10),
     correo: useEntrada(T.bajada + 24, 16, 10),
   };
+  const veloDesayuno = interpolate(
+    f,
+    [FOTOS[1].desde, FOTOS[1].desde + CORTINA, FOTOS[2].desde, FOTOS[2].desde + CORTINA],
+    [0, 1, 1, 0],
+    clamp,
+  );
   const velo2 = interpolate(f, [T.bajada - 10, T.bajada + 20], [0, 1], clamp);
 
   return (
@@ -172,6 +179,21 @@ export const DtStFamilyTimeOctR8: React.FC<{guia?: boolean; soloGrafica?: boolea
       <Velo desde={0.5} pie={0.5} lado="arriba" />
       <div style={{position: 'absolute', inset: 0, opacity: velo2}}>
         <Velo desde={0.5} pie={0.36} />
+      </div>
+
+      {/* el mural del restaurante es claro y cargado: más velo detrás del titular sólo ahí */}
+      <div style={{position: 'absolute', inset: 0, opacity: veloDesayuno}}>
+        {/* el Velo de arriba se diluye antes de y≈620: aquí va una sombra local, centrada en el titular */}
+        <div
+          style={{
+            position: 'absolute',
+            left: -100,
+            width: 1280,
+            top: 300,
+            height: 480,
+            background: 'radial-gradient(ellipse 50% 50% at 50% 50%, rgba(9,25,78,0.5) 0%, rgba(9,25,78,0.28) 50%, rgba(9,25,78,0) 100%)',
+          }}
+        />
       </div>
 
       <Logo formato="story" />
@@ -185,7 +207,7 @@ export const DtStFamilyTimeOctR8: React.FC<{guia?: boolean; soloGrafica?: boolea
 
       {/* ── texto 2 · entra en la segunda foto y se queda: es el mensaje ── */}
       {f >= T.entra2 ? (
-        <div style={{position: 'absolute', top: 450, width: 1080, textAlign: 'center', ...e2}}>
+        <div style={{position: 'absolute', top: 400, width: 1080, textAlign: 'center', ...e2}}>
           <Titular lineas={TEXTO2} cuerpo={72} />
         </div>
       ) : null}

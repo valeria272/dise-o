@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-28** · Cosechas: **12**
+> Última cosecha: **2026-09-28** · Cosechas: **13**
 
 ## 1. Quién es el cliente
 
@@ -97,7 +97,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-79** · [DT] **El titular y el bloque de programa van CENTRADOS**, aunque la ref los corra a un lado; en el bloque, «Family Time» arriba y el precio centrado debajo, el resto más abajo — _Eli, 28-09-2026, FEED 28-10 («déjalo centrado, se ve extraño que esté muy hacia un lado»; «el 125 podría centrarlo y arribita Family Time, bajar un poco los demás textos»). Va en la línea de E-07 (Honors centrado, 24-09)_ · ✔×2 · +1 ST 01-10 Family Time r7, 28-09 («centra Family Time con el 125 para que no se vea tan mal esa jerarquía, que un poco más armónica»)
 - **R-80** · [DT] **Los rótulos del hotel no los escribe la IA**: Nano Banana reescribe carteles («Hilton Honors» → «Hlhoo», «SANTIAGO» → «KARTOKIE»); se reponen desde la foto real, sólo en ese recuadro y alineados por correlación — _hospitalidad del carrusel «5 cosas», 28-09-2026 (técnica: `scripts/dt-oct2-hospitalidad-carteles.py`)_ · ✔×1
 
-- **R-81** · [DT] **Historia animada = FOTOS, no video, y poca animación.** Pocas fotos que se queden ~3–5 s cada una, con fundido suave y un acercamiento casi quieto (≤3 %); nada de clips IA (ni en todas las tomas ni en la primera), barridos con desenfoque o tomas de 0,7 s — _Eli, 28-09-2026, ST 01-10 Family Time r4→r6 («no lo hagas todo video, usa las mismas imágenes»; «solamente veo videos, no quiero ver mucha animación… que queden bastante tiempo para que las personas no se mareen»; «solo imágenes»)_ · ✔×1
+- **R-81** · [DT] **Historia animada = FOTOS, no video, y poca animación.** Pocas fotos que se queden ~3–5 s cada una, con fundido suave y un acercamiento casi quieto (≤3 %); nada de clips IA (ni en todas las tomas ni en la primera), barridos con desenfoque o tomas de 0,7 s — _Eli, 28-09-2026, ST 01-10 Family Time r4→r6 («no lo hagas todo video, usa las mismas imágenes»; «solamente veo videos, no quiero ver mucha animación… que queden bastante tiempo para que las personas no se mareen»; «solo imágenes»)_ · ✔×1 · ⚠️ revisada 2026-09-28: el **fundido** entre fotos con gente se cambió por cortina suave, ver R-102
 - **R-82** · [DT] **El titular va sobre la foto, FUERA de la caja.** La caja lleva sólo la información del programa (nombre + precio / incluidos / contacto) y es una **bajada sutil abajo**, sobre la zona segura, con poco azul (esmerilado α≈0,20), no un cristal que ocupe media pantalla — _Eli, 28-09-2026, ST 01-10 Family Time r5 («el título principal no lo vas a dejar en esa caja, solamente la información general de Family Time»; «no lo dejes con tanto azul, abarca demasiado, tiene que ser algo sutil, una bajada»); r6 «me parece muy bien… sumamente correcto en la diagramación»_ · ✔×1
 - **R-83** · [DT] **El recuadro del programa entra JUNTO con el titular principal**; el texto de apertura dura poco (~2 s) para que la información del programa quede la mayor parte de la historia (~12 de 15 s) — _Eli, 28-09-2026, ST 01-10 Family Time r7 («cuando aparezca el texto del momento exacto… aparezca el recuadro de Family Time»)_ · ✔×1
 - **R-84** · [DT] **Menos imágenes y revisadas con zoom** antes de montarlas: en 15 s bastan 3; la que se vea rara (personaje que no parece su hoja, piel o texturas sobreprocesadas, persona cortada en el borde) se saca aunque esté en el banco. Cuidar que las caras no queden detrás del recuadro ni pegadas al titular (se mueve la foto, no el texto) — _Eli, 28-09-2026, ST 01-10 Family Time r7 («revisa bien las imágenes… que no se vean extrañas, que se vean más realistas, y utiliza menos imágenes»)_ · ✔×1
@@ -112,6 +112,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-98** · [DT] **El QR de una pieza impresa se lee y se entrega NORMAL** (oscuro sobre blanco): se decodifica desde el PDF final y se confirma adónde lleva — _Eli, 28-09-2026 («¿los QR están correctos?»); el de la plantilla estaba invertido_ · ✔×1
 - **R-99** · [DT] **Pedido de ajuste sobre pieza ya impresa: todo igual que el pantallazo** (redes, LinkedIn incluido, orden de contactos, qué va en la pastilla), sólo cambia lo pedido — _Eli, 28-09-2026 («todo todo todo exactamente igual solamente que hay que reemplazar el rostro»)_ · ✔×1
 - **R-100** · [DT] **El editable queda abierto en Illustrator para que Eli siga**: textos vivos, una capa por pieza — _Eli, 28-09-2026 («déjalo en el editable para yo seguir editando»)_ · ✔×1
+- **R-101** · [DT] **En una historia, las personas se ven COMPLETAS**: ningún borde las corta y el recuadro del programa tapa mesa, cama o piso, nunca cuerpos. Si no caben entre el titular y el recuadro, se aleja la cámara (expansión IA hacia abajo y a los lados, con la original pegada encima y revisada con zoom por si aparece gente de más), no se tapa — _Eli, 28-09-2026, ST 01-10 Family Time r7 («hay en varias que se ven que desaparecen o no se ven completos»)_ · ✔×1
+- **R-102** · [DT] **Entre dos fotos con gente, no hay fundido cruzado**: al 50 % las dos familias se ven transparentes y parece que «desaparecen». Va una cortina suave (borde de ~100 px, ~0,7 s, empuje leve) — _Eli, 28-09-2026, ST 01-10 r7 («mejora transiciones»)_ · ✔×1 (r8 sin aprobar todavía)
 ### Between
 - **R-30** · [BW] Taza blanca con raya negra y **KIMBO: se borra siempre**; la taza vigente es blanca total — _Eli 25-08; Scarlette 31-08; ronda 9, 03-09-2026_ · ✔×3
 - **R-31** · [BW] **El logotipo nunca se deforma ni se curva**: escala uniforme a ratio 3,0298, integrado en el vaso por tono (multiply), no por geometría — _Eli 25-08 («no se vea achatado»); cliente 31-08; Eli 01-09-2026 («no puedes curvarlo de esa manera»)_ · ✔×3
@@ -251,6 +253,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **X-41** · [DT] Sólo la primera toma en video + **fotos de transición de 0,7 s**: sigue sintiéndose como video y marea — _Eli, 28-09-2026, ST 01-10 r5 («solamente veo videos»)_
 - **X-42** · [DT] **Titular dentro del cristal grande** con velo azul α 0,40 que tapa media pantalla — _Eli, 28-09-2026, ST 01-10 r5 («abarca demasiado… no tanto azul»)_. La ST 01-10 costó **4 rondas** en el día (r4 → r7)
 - **X-43** · [DT] Foto del banco con la «niña» que se lee como **mujer adulta** y piel sobreprocesada (cookie en la cama) — _detectado con zoom al pedir Eli «más realistas», 28-09-2026, ST 01-10 r7_: se sacó
+- **X-49** · [DT] ST 01-10 r7: **fundido de 0,5 s entre fotos con la familia** (cuerpos transparentes), **recuadro sobre la familia** del pecho para abajo y **papá cortado por el borde** en almohadas — _Eli, 28-09-2026 («desaparecen o no se ven completos»)_. La ST 01-10 va en **5 rondas** en el día (r4 → r8)
 
 ## 8. Preguntas abiertas
 
@@ -284,13 +287,18 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] ST 22-10 Coworking, ronda 3 (cristales ajustados, texto rápido): **Eli la revisa**; al aprobarla se sube MP4 + GIF a S4/DT/STS (`scripts/dt-oct2-subir-drive.py`, línea comentada) → **Eli**
 - [DT] Carrusel 21-10: la fila DISEÑOS de la grilla dice «REEL» y el brief es de carrusel; se diseñó y subió el carrusel → **contenido** (informado a Eli)
 - [DT] La sesión SEP 2026 no trae **fachada, recepción ni gimnasio**: el gym sigue con HDT_82 y la recepción es la de 1280 px → ¿hay sesión de esos espacios? → **Eli**
-- [DT] ST 01-10 Family Time **ronda 7** (3 fotos, recuadro con el titular, Family Time centrado): subida a S1/DT/STS, **Eli la revisa**. En la foto de almohadas el papá queda cortado en el borde derecho: ¿se cambia? → **Eli**
+- [DT] ST 01-10 Family Time **ronda 8** (lobby → desayuno → habitación, fotos expandidas, cortina): **NO subida**, en revisión en https://claude.ai/artifact/PLM9c136rdZWPUag6ZBDjm. En Drive S1/DT/STS sigue la r7. Si la aprueba: reemplazar MP4 + GIF y regenerar el Premiere → **Eli**
 - [DT] La secuencia `.xml` para Premiere (F:/…/OCTUBRE/DT/S1/ST n°1 S1 DT OCT 26/) no se probó abriéndola en Premiere 2026 → **Eli** al abrirla
 
 - [DT] Brochures traducidos: textos del cliente que no calzan entre sí y se dejaron como en el Word: «Costanera Mall» (hotel) vs «Cenco Costanera» (eventos); «Waldorf Event Rooms» (título) vs «Waldorf Meeting Rooms» (texto) → **cliente**
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 (cierre, ST 01-10 r8) — Claude con Eli · Family Time: familia completa y transición de cortina
+- **Reglas nuevas [DT]:** R-101 las personas se ven completas (el recuadro no tapa cuerpos; se aleja la cámara), R-102 sin fundido cruzado entre fotos con gente. **R-81 revisada** (su «fundido suave»).
+- **Rechazo:** X-49, la r7 (fundido, recuadro sobre la familia, papá cortado). La ST 01-10 suma 5 rondas en el día.
+- **Técnica (no es criterio del cliente):** la expansión Flux Pro de Freepik inventa gente en lo ampliado (una 5.ª persona, una rodilla): revisar con zoom siempre; un prompt con «no people/heads/bodies» da «Content violation», sirve «Nobody else in the room». Script `scripts/dt-oct-ft-r8-expandir.py`.
 
 ### 2026-09-28 (pendones) — Claude con Eli · DT pendones 0,8×3 m, caras nuevas + correo + Stag/Trade
 - **Reglas nuevas [DT]:** R-95 cambiar lo que hace reconocible a la modelo, R-96 que se vea natural, R-97 gran formato imprime bien y no pesa, R-98 QR leído y normal, R-99 todo igual al pantallazo salvo lo pedido, R-100 editable abierto para Eli.

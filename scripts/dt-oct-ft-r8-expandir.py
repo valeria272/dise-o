@@ -38,13 +38,27 @@ ESCENAS = {
     },
     'desayuno': {
         'src': 'DT-familia-restaurante-story-2160x3840.jpg',
-        'abajo': 900,  # con 520 el recuadro caía en los mentones
+        'abajo': 900,
+        # la v3 dejó una rodilla suelta sobre la silla vacía de abajo a la derecha
+        'borrar': [(1335, 2120, 1440, 2345)],  # con 520 el recuadro caía en los mentones
         # v1 inventó una quinta persona en el borde derecho: la gente se prohíbe con todas las letras
         'prompt': 'quiet empty hotel restaurant in the morning: dark table edge, empty cream '
                   'upholstered chairs, light wooden floor, empty tables on the right side. '
                   'Nobody else in the room.',
     },
 }
+
+
+def borrar(im, caja):
+    """Relleno local de lo que la expansión inventó (un brazo, una pierna) sobre fondo liso."""
+    import cv2
+    import numpy as np
+    a = cv2.cvtColor(np.array(im), cv2.COLOR_RGB2BGR)
+    m = np.zeros(a.shape[:2], np.uint8)
+    x0, y0, x1, y1 = caja
+    m[y0:y1, x0:x1] = 255
+    a = cv2.inpaint(a, m, 9, cv2.INPAINT_TELEA)
+    return Image.fromarray(cv2.cvtColor(a, cv2.COLOR_BGR2RGB))
 
 
 def expandir(nombre):
@@ -83,6 +97,8 @@ def expandir(nombre):
     exp.paste(orig, (lado, 0), mascara)
 
     final = exp.resize((1440, 2560), Image.LANCZOS)
+    for caja in e.get('borrar', []):
+        final = borrar(final, caja)
     salida = DEST / f'ft-r8-{nombre}.jpg'
     final.save(salida, quality=92)
     print(f'  ✓ {salida.relative_to(RAIZ)}  (la familia queda a {1440 / W:.0%} del tamaño)')

@@ -967,6 +967,42 @@ en `click_sept` el anillo crece a **404 × 415** y el CTA es texto, sin botón.
 Altura de tinta del titular **≈ 35–36**; bajada **≈ 28–31**. Consistente en VH, CMPC
 y Click.
 
+#### ⭐ Medido al píxel el 28-09-2026 (reels de octubre) — sobre los cuadros 4K
+- **La tipografía del cuerpo del reel es MONTSERRAT, no Raleway** (identificada por glifo:
+  la M de patas rectas y la V que baja a la línea base). Titular 800 en versal, girado −2°,
+  en UNA caja roja que envuelve las dos líneas; cápsula blanca con versal roja en
+  **Helvetica Bold**; bloque de producto = Montserrat 300 versal + caja roja 700 + frase 700.
+  El **cierre** sí es Raleway (gris `#6D6F72`, botón rojo con texto blanco).
+- **El cuerpo del titular no es fijo**: se ajusta para que la línea más larga llene
+  ~1.600 px de 2160 (VH 160, catálogo de septiembre 208).
+- ⛔ **RONDA 1 de Paulina (28-09-2026) — DEROGA lo de septiembre en el titular del reel:**
+  - **Enunciado DERECHO, sin rotación** (septiembre iba a −2°). Lo dijo en Aza y LP; aplicado a los 3 de familia A.
+  - **La caja roja llega a la mitad de la primera línea** — la misma regla de la portada del
+    carrusel (R-29), ya no envuelve las dos líneas.
+  - **La cápsula blanca con versal roja, mucho más grande**: Helvetica Bold 96 (antes 56).
+  - En Click, **el lockup EBEMA CLICK se mantiene todo el video hasta el cierre**, también sobre
+    el mapa (septiembre lo sacaba en el mapa).
+  - **El texto va en la zona sin objetos sobre la persona** (R-20 también en reel): si la zona
+    libre está a un costado, el bloque se alinea a ese costado.
+  - Un plano de 7 s «dura mucho»: el tramo largo se parte en dos escenas en la pausa de la
+    voz, con **texto normal de reel** (Montserrat 400 + 700 con filete rojo) acompañando la locución.
+- ⛔ **RONDA 2 (28-09-2026) — vale para TODOS los reels:** «los textos secundarios dejémoslo en
+  **2 filas**, pero **nunca dejar una palabra sola como segunda fila**. Los textos **no deben
+  llegar nunca tan al borde** del video». Medido: toda línea secundaria deja **≥ 300 px de aire a
+  cada lado en 2160** (se mide con PIL antes de renderizar; en la v1 había líneas a 76 px del borde).
+- ⛔ **Los reels de grilla se entregan SIN portada** (Paulina, 28-09: «no me dejes portadas»).
+- **Marco** (en 2160×3840): banda roja 0–1012 × 0–396 con esquina r100 y filete de 9 px a
+  36–46 px (r96); cápsula blanca x 1432–1876 hasta y 452 (r60) con el anillo x 1518–1797 ·
+  y 101–387; banda abajo 1104–2160 × 3442–3840 (r100) y filete (r80). El cierre conserva
+  el mismo marco, sin cápsula. (Las cifras «899 / 528» de arriba no calzan con esto: mandan estas.)
+- **Voz**: los 5 de septiembre **llevan locución** y leen el brief palabra por palabra
+  (transcritos con Whisper). La pantalla sólo muestra una versión corta, en jerarquía.
+- Composición viva: `src/compositions/ebema/EbemaGrillaReelsOct.tsx` (marco, bloques y
+  cierres reutilizables). App Click real: video de Paulina en `raw/ebema/app-click/`
+  (el login muestra un teléfono: empezar en el segundo 1,9). Catálogo real: capturar
+  `ebema.cl/catalogos` a 390×844 @3x con Playwright; el chat de WhatsApp del sitio lista
+  las sucursales. ⚠️ `kling-v2-1-pro` falló 10 de 10 el 28-09: usar `--modelo kling-v2-5-pro`.
+
 ### Cómo se traduce «cercano, instructivo y comercial»
 
 Ahora tiene respaldo medido:

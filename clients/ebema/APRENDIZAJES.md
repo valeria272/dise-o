@@ -12,7 +12,7 @@
 > grilla con proveedores, SPC), **[CLICK]** (el portal B2B) o **[AMBAS]**.
 >
 > Criterio: **Paulina Bustamante** (grilla y paid; Serena Abarca produce parte del paid y las ARIEL) · Aprueba: **Paulina valida; el cliente, vía Carlos Figueroa (cuenta/contenido)**
-> Última cosecha: **2026-09-26** · Cosechas: **3**
+> Última cosecha: **2026-09-28** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -31,7 +31,7 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 |---|---|
 | Quién pide / KAM | **Grilla:** contenido, Carlos Figueroa (Slides mensual; Ariel levanta pendientes). **Paid:** Sebastián Córdova (brief `Ebema - Brief Performance - <Mes>.xlsx`). **ARIEL WhatsApp:** hoja `Briefs wsp <mes> ARIEL` |
 | Quién aprueba (cliente) | Paulina firma el diseño; el cliente aprueba lo que ella valida. Sebastián comenta el paid |
-| Por dónde llega el feedback | **Comentarios anclados en los PNG de Drive** (`scripts/drive-comentarios.py`); Paulina a veces por Slack. Nunca por WhatsApp |
+| Por dónde llega el feedback | **Comentarios anclados en los PNG de Drive** (`scripts/drive-comentarios.py`) y, en video, **comentarios con marca de tiempo sobre el MP4** en Drive (se leen y resuelven con la API: `comments().list` / `replies().create(action=resolve)`); Paulina a veces por Slack. Nunca por WhatsApp |
 | Dónde se entrega | Paid: `PERFORMANCE/2026/<N>. <Mes>/graficas <mes> 26/`. Grilla: `MATERIAL DISEÑO PAULINA/EBEMA/4-entregado/` con su nomenclatura (`ebema_c_<tema><n>.png`, `ebema_st-DD.MM`) |
 | Ritmo | Grilla mensual (carruseles de proveedor, stories, reels, LinkedIn) · paid mensual por submarca · campañas ARIEL por pieza madre |
 | Rondas típicas | 2–4 por lote, a veces el mismo día (3 el 20-08; 11 sobre la portada de Masisa). Vuelve casi siempre por **las imágenes** y por medidas estimadas en vez de medidas |
@@ -47,6 +47,9 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **Formatos:** feed 4:5 1080×1350 (Paulina: 2250×2813) · story 1080×1920 · mailing
   1200×1643 · ARIEL la medida de la madre · reel de grilla 2160×3840.
 - **Sistemas:** paid en `sistema/base.css`; grilla en `sistema-grilla/`. No se mezclan.
+- **Reels de grilla:** el cuerpo va en **Montserrat** (no Raleway; medido por glifo sobre los 5
+  de septiembre, 28-09); el cierre sí es Raleway; cápsulas en Helvetica Bold. Composición viva:
+  `src/compositions/ebema/EbemaGrillaReelsOct.tsx`.
 
 ## 4. Reglas firmes
 
@@ -69,7 +72,7 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **R-17** · [CLICK] El ferretero/contratista de Click es **hombre** — _Valeria, 21-08: «no uses mujeres»_ · ✔×1
 - **R-18** · [AMBAS] Personas en **plano amplio**, ropa de trabajo, pulcras, sin uniforme corporativo; contratista en obra entre sacos y perfiles — _Paulina, rondas 2–3, 20-08_ · ✔×1
 - **R-19** · [AMBAS] Bodega IA = pasillo tipo Sodimac/Easy: ordenado, luminoso, productos variados, sin marcas legibles; nunca oscuro ni de un solo producto — _Valeria y Paulina, 20-08_ · ✔×2
-- **R-20** · [AMBAS] El texto va en la **zona libre** de la foto: nunca sobre la cara, la persona ni un letrero; si no hay holgura, se pide otra foto — _Paulina, ronda 3, 20-08; story de Temuco, 24-09; LinkedIn «cielo despejado», 25-09_ · ✔×3
+- **R-20** · [AMBAS] El texto va en la **zona libre** de la foto: nunca sobre la cara, la persona ni un letrero; si no hay holgura, se pide otra foto — _Paulina, ronda 3, 20-08; story de Temuco, 24-09; LinkedIn «cielo despejado», 25-09; reel Click 01/10: «el bloque de texto debe ir más arriba en la zona donde no hay objetos sobre la persona», 28-09_ · ✔×4
 - **R-21** · [AMBAS] Cero choques y cero desbordes: ningún texto fuera de su caja ni a < 50 px de logo, marco o puntitos; revisar feed **y** story — _Valeria, 20-08 y 24-08 (reel Click)_ · ✔×2
 - **R-22** · [AMBAS] En una variante de precio **sólo cambian los dígitos**; parche rojo, `$` y `+IVA` intactos; si la dirección es la de la madre, queda el píxel original — _Valeria, 22–25-08; Serena, 01-09_ · ✔×3
 - **R-23** · [CLICK] Campañas ARIEL: la **pieza madre de Paulina es la ley**; un bloque de campañas por madre, nunca diseño propio — _Valeria, 22/24-08 (2 rechazos); Serena, 01-09 (A7–A12 esperan madre)_ · ✔×2
@@ -78,7 +81,7 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **R-26** · [EBEMA] La grilla se organiza por **familia** (A producto en stock · B servicio · C plataformas); SPC sólo existe en paid; Click en grilla es familia C — _Paulina, 14-09_ · ✔×1
 - **R-27** · [EBEMA] Firma de grilla: cápsula blanca pegada a `x=0`, alto 155,5 e `y` 154,6 **fijos**; el ancho lo fija el logo del proveedor; sólo en la lámina 1; entre los dos logos, aire y **nunca una línea** — _Paulina, 15-09; medido en 7 piezas_ · ✔×2
 - **R-28** · [EBEMA] Carrusel de producto: arco problema → causa → solución → tip pro → cierre — _medido en 5 carruseles, 14-09_ · ✔×2
-- **R-29** · [EBEMA] Portada: pre-enunciado en **cuerpo menor** (0,62) · gancho que calza en ancho con el rojo mordiendo la mitad de las mayúsculas de su 1.ª línea · cápsula blanca con la bajada — _Paulina, 15–16-09 y 23-09_ · ✔×2
+- **R-29** · [EBEMA] Portada: pre-enunciado en **cuerpo menor** (0,62) · gancho que calza en ancho con el rojo mordiendo la mitad de las mayúsculas de su 1.ª línea · cápsula blanca con la bajada — _Paulina, 15–16-09 y 23-09; titular de los reels, ronda 1, 28-09: «el cuadro rojo debe llegar a la mitad de la primera línea»_ · ✔×3
 - **R-30** · [EBEMA] «Que el cuadro llegue a la mitad» = **crece el alto del rojo**, no se mueve el texto; interlineado del enunciado 0,84 — _Paulina, 15-09_ · ✔×1
 - **R-31** · [EBEMA] Láminas de desarrollo: **una sola caja roja**, centrada; su ancho se decide por carrusel; la línea blanca se compone al cuerpo — _medido 16-09; 29 de 29 en octubre_ · ✔×2
 - **R-32** · [EBEMA] Tip pro: la **orden en versales manda** (~60 de mayúscula, dos líneas) y la condición va en la caja roja en **caja baja**; si la orden cabe en una línea, se baja el cuerpo — _Paulina, 16-09_ · ✔×1
@@ -96,14 +99,22 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **R-44** · [EBEMA] Stories de grilla: sin caja indicadora del sticker, velo abajo, dirección entera en Helvetica con contorno redondo, flecha manuscrita calcada de la referencia — _Paulina, 24-09_ · ✔×1
 - **R-45** · [CLICK] Story animada: sin arcos en las esquinas; «una línea, una caja» (2.ª en rojo bold); texto sobre bodega en bold; logo real pegado sobre el objeto; clips interpolados a 30 fps; voz `es-CL-LorenzoNeural` con entusiasmo; música de Paulina ~8 dB bajo la voz — _Paulina, 24-09, aprobada tras 4 rondas_ · ✔×1
 - **R-46** · [EBEMA] LinkedIn se diseña aparte: foto real de la sucursal como base (refs) y **nunca rostros de trabajadores** — _Paulina, 24-09; post 15/10 rehecho sobre la foto real de Antofagasta, 25-09_ · ✔×2
-- **R-47** · [AMBAS] Cada ronda se re-sube **sobre el mismo fileId**; lo que no tiene comentario está bien y no se toca — _Paulina, 23-09 y 24-09; Serena, 24-09; LinkedIn ronda 1, 17/17 sobre el mismo fileId, 25-09_ · ✔×4
-- **R-48** · [EBEMA] Sobre la foto real **sólo se agregan personas, vehículos y materiales**; nunca estructuras que no existen — _Paulina, 25-09, `ebema_lk_post-15.10`: «creaste estructuras que no existe, a cliente eso no le gusta, solo puedes añadir personas vehiculos y materiales a criterio y que se tome como referencia imagenes reales»_ · ✔×1
-- **R-49** · [EBEMA] En oficina la ropa es **formal de oficina: camisa y pantalón de vestir** — _Paulina, 25-09, `ebema_lk_c_click1` y `ebema_lk_c_ventas1`_ · ✔×2
-- **R-50** · [EBEMA] Una obra de cliente **nunca puede leerse dentro de la bodega o el patio de EBEMA** — _Paulina, 25-09, `ebema_lk_c_ventas3`: «da a entender que la construccion esta dentro de la bodega/patio de ebema»_ · ✔×1
-- **R-51** · [EBEMA] LinkedIn: el **titular va arriba, en la zona de cielo despejado**, y la cápsula o bajada abajo — _Paulina, 25-09: `c_ventas1`, `c_conteo2`, `c_conteo3`, `post-15.10` (4 piezas, misma ronda)_ · ✔×1
-- **R-52** · [EBEMA] LinkedIn: bloques de texto **contenidos** — titular en ≤ 3 líneas, sin cuerpos inflados (frase de 112 → 90 pt; bloque −20 %). Contrapeso de R-35: ni diminuto ni gigante — _Paulina, 25-09: `c_click1`, `c_click3`, `c_ventas2`_ · ✔×1
-- **R-53** · [EBEMA] LinkedIn: enunciado de dos líneas = 1.ª en **Bold sin caja**, 2.ª en **caja roja y Bold** — _Paulina, 25-09, `c_conteo4`_ · ✔×1
-- **R-54** · [EBEMA] La foto de sucursal tiene que tener **iluminación y enfoque comercial**; si la toma exterior es pobre, se usa otra de la misma sucursal (p. ej. la nave interior) — _Paulina, 25-09, `ebema_lk_reel-05.10_talca`: «se ve muy deficiente en iluminacion y enfoque comercial»_ · ✔×1
+- **R-47** · [AMBAS] Cada ronda se re-sube **sobre el mismo fileId**; lo que no tiene comentario está bien y no se toca — _Paulina, 23-09 y 24-09; Serena, 24-09; LinkedIn ronda 1, 17/17 sobre el mismo fileId, 25-09; reels de octubre, 2 rondas sobre el mismo fileId, 28-09_ · ✔×5
+- **R-48** · [EBEMA] Sobre la foto real **sólo se agregan personas, vehículos y materiales**; nunca estructuras que no existen — _Paulina, 25-09, `ebema_lk_post-15.10`: «creaste estructuras que no existe, a cliente eso no le gusta, solo puedes añadir personas vehiculos y materiales a criterio y que se tome como referencia imagenes reales»_ · ✔×2
+- **R-49** · [EBEMA] En oficina la ropa es **formal de oficina: camisa y pantalón de vestir** — _Paulina, 25-09, `ebema_lk_c_click1` y `ebema_lk_c_ventas1`_ · ✔×3
+- **R-50** · [EBEMA] Una obra de cliente **nunca puede leerse dentro de la bodega o el patio de EBEMA** — _Paulina, 25-09, `ebema_lk_c_ventas3`: «da a entender que la construccion esta dentro de la bodega/patio de ebema»_ · ✔×2
+- **R-51** · [EBEMA] LinkedIn: el **titular va arriba, en la zona de cielo despejado**, y la cápsula o bajada abajo — _Paulina, 25-09: `c_ventas1`, `c_conteo2`, `c_conteo3`, `post-15.10` (4 piezas, misma ronda)_ · ✔×2
+- **R-52** · [EBEMA] LinkedIn: bloques de texto **contenidos** — titular en ≤ 3 líneas, sin cuerpos inflados (frase de 112 → 90 pt; bloque −20 %). Contrapeso de R-35: ni diminuto ni gigante — _Paulina, 25-09: `c_click1`, `c_click3`, `c_ventas2`_ · ✔×2
+- **R-53** · [EBEMA] LinkedIn: enunciado de dos líneas = 1.ª en **Bold sin caja**, 2.ª en **caja roja y Bold** — _Paulina, 25-09, `c_conteo4`_ · ✔×2
+- **R-54** · [EBEMA] La foto de sucursal tiene que tener **iluminación y enfoque comercial**; si la toma exterior es pobre, se usa otra de la misma sucursal (p. ej. la nave interior) — _Paulina, 25-09, `ebema_lk_reel-05.10_talca`: «se ve muy deficiente en iluminacion y enfoque comercial»_ · ✔×2
+- **R-55** · [AMBAS] Titular del reel **derecho, sin rotación** (septiembre iba a −2°) — _Paulina, ronda 1 reels, 28-09: «dejemos el enunciado derecho, sin rotación» (Aza y LP; aplicado a los 3 de familia A)_ · ✔×1
+- **R-56** · [AMBAS] La cápsula blanca con versal roja del titular del reel, **mucho más grande** (Helvetica Bold 96, antes 56) — _Paulina, 28-09, portadas de catálogo y Aza: «esto debe ser mucho más grande, aplica al reel también»_ · ✔×1
+- **R-57** · [CLICK] En el reel, **el lockup EBEMA CLICK se mantiene todo el video hasta el cierre**, también sobre el mapa — _Paulina, reel 01/10, 28-09_ · ✔×1
+- **R-58** · [AMBAS] Un plano de ~7 s «dura mucho»: el tramo se parte en dos escenas en la pausa de la voz, con **texto normal de reel** acompañando la locución — _Paulina, reel catálogo 03/10, 28-09_ · ✔×1
+- **R-59** · [AMBAS] Textos secundarios en **≤ 2 filas, nunca una palabra sola en la 2.ª**, y **nunca tan al borde**: ≥ 300 px de aire a cada lado en 2160 — _Paulina, ronda 2 reels, 28-09: «esto aplica para este reel y para todos»_ · ✔×1
+- **R-60** · [AMBAS] Los reels de grilla **se entregan sin portada** — _Paulina, 28-09: «no me dejes portadas y elimina las que ya me diste»_ · ✔×1
+- **R-61** · [EBEMA] Reel **promocional de sucursal = metraje real, cero IA** («hay que conectar con el cliente y con la gente»); prioridad al lugar del brief, bodega y mostrarios «entre medio» — _Paulina, reel San Bernardo 27/10, 28-09_ · ✔×1
+- **R-62** · [EBEMA] La persona que muestra producto (Seba) aparece **sólo cuando lo muestra o lo acerca a cámara**, nunca dejándolo o recién tomándolo («eso no es llamativo») — _Paulina, reel San Bernardo, 28-09_ · ✔×1
 
 ## 5. Excepciones
 
@@ -130,6 +141,9 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **A-05** · [EBEMA] Las láminas de octubre que no llevaban comentario en la ronda 2 — _Paulina 24-09: «lo demás está todo perfecto, no lo modifiques de ninguna manera»_
 - **A-06** · [AMBAS] Fondos IA de Magnific del paid de septiembre — _aceptados por el cliente, 20-08_
 - **A-07** · [EBEMA] Láminas finales de LinkedIn `c_ventas4` y `c_click4` — _Paulina, 25-09: «muy buena slide final», «cierre perfecto»; congeladas_
+- **A-08** · [EBEMA] **Todo el LinkedIn de octubre** (reel Talca, 3 carruseles, post 15/10) tras la ronda 1 — _Paulina, 28-09: «todo el contenido de linkedin está ok. muy bueno»_
+- **A-09** · [AMBAS] Sin un comentario en la ronda 1: las **pantallas reales** en el celular (video de la app Click, ebema.cl/catalogos con el chat de WhatsApp de las sucursales), el mapa de Click extendido al norte con los pines de Paulina, los productos reales de tienda (Aza, TechShield) y la voz Lorenzo en los 4 reels — _reels de octubre, 28-09_
+- **A-10** · [AMBAS] GIFs de 320 px, 10 fps, 256 colores (con 128 se perdía el verde del logo Aza) — _Paulina, 28-09: «ok todo bien»_
 
 ## 7. Lo que se rechaza
 
@@ -152,11 +166,18 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **X-17** · [EBEMA] Fondo IA con estructuras inventadas en el patio — _Paulina, 25-09, `post-15.10` («no me gusta nada»)_
 - **X-18** · [EBEMA] Bodega exterior de Talca mal iluminada en el reel — _Paulina, 25-09_
 - **X-19** · [EBEMA] Personas de oficina con ropa informal — _Paulina, 25-09, 2 piezas_
+- **X-20** · [AMBAS] Titular del reel girado −2° con la caja roja envolviendo las dos líneas (gramática de septiembre) — _Paulina, 28-09, ronda 1_
+- **X-21** · [AMBAS] Portadas de reel — _Paulina, 28-09: se borraron las 4_
+- **X-22** · [AMBAS] Textos secundarios en una sola línea larga, a 76–109 px del borde — _Paulina, ronda 2, 28-09 (Aza, LP; medido con PIL)_
+- **X-23** · [CLICK] Texto del reel encima de la persona (T1 de Click sobre el contratista) — _Paulina, 28-09_
+- **X-24** · [EBEMA] Un solo plano de 7 s al abrir un reel — _Paulina, reel catálogo, 28-09 (2 rondas: «más escenas», luego «3 líneas»)_
 
 ## 8. Preguntas abiertas
 
 - ¿Paulina es de la agencia o del cliente? Manual y `COMO-DISENA-EL-EQUIPO` dicen agencia (25-08); `ESTADO-MARCAS` dice «del cliente». → Valeria.
-- **Voz de reels:** el cliente pidió «Ignacio» (ElevenLabs, a mano) y Paulina eligió `es-CL-LorenzoNeural` para la story del 07/10. → Carlos / Paulina.
+- **Voz de reels:** el cliente pidió «Ignacio» (ElevenLabs, a mano) y Paulina eligió `es-CL-LorenzoNeural` para la story del 07/10; el 28-09 se usó Lorenzo en los 5 reels de octubre sin objeción. ¿El cliente sigue pidiendo Ignacio? → Carlos / Paulina.
+- **Música de reels:** los 5 de octubre usan `audio_fondo3`; `audio_fondo` y `audio_fondo2` no están en el PC (Drive privado). ¿Se varía por reel? → Paulina.
+- **Reel 27/10 San Bernardo** sin revisar todavía; el letrero de la entrada de la Zona Ofertas sólo existe con texto quemado en el reel de junio. ¿Hay toma en bruto? → Paulina.
 - **Velo en paid:** filtro 10–20 % (ronda 1), ~30 % plano (ronda 2) o degradado sólo en la zona del texto (16-09, grilla). ¿Paid sigue en `.30` plano? ¿Y la portada de Masisa? → Paulina.
 - **Posición del texto:** «nunca abajo» (Paulina, ronda 1, 20-08) vs «en feed puede ir abajo» (ronda 3) y bajada + botón abajo en v8. Hoy manda lo último. → Paulina.
 - ¿La fachada nueva (`IMG_8542`) es Temuco? Si sí, pasar también el feed. → Paulina.
@@ -170,10 +191,16 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - Licencia de `audio_fondo3` (es de Paulina). → Paulina.
 - Grilla de noviembre sin brief (5 pendientes de Ariel). → Carlos.
 - Responder los 15 comentarios de Sebastián y avisarle que el feed va en 4:5. → Serena.
-- **Post LinkedIn 15/10:** Paulina pidió «que la gráfica en general se parezca más a la referencia que se dejó en grilla»; se respondió que esa referencia estaba descartada y se mantuvo la gramática de portada. ¿Lo confirma en la ronda 2 o hay que calcar la referencia? → Paulina.
 - LinkedIn 26/10 **Capacitaciones**: la grilla dice «PENDIENTE: confirmar tema, proveedor y sucursal». → Carlos.
 
 ## 9. Registro de cosechas
+
+### 2026-09-28 — Paulina Bustamante · reels de grilla de octubre (12 comentarios en 2 rondas) + LinkedIn aprobado
+- nuevo **R-55** (titular del reel derecho), **R-56** (cápsula 96), **R-57** (lockup Click todo el video), **R-58** (plano largo → dos escenas + texto normal), **R-59** (secundarios ≤ 2 filas, sin palabra sola, ≥ 300 px), **R-60** (sin portadas), **R-61** (reel promocional = metraje real, sin IA), **R-62** (Seba sólo mostrando).
+- ✔ **R-20** ×4, **R-29** ×3 (probada; ahora también en reels), **R-47** ×5, **R-48…R-54** +1 cada una (LinkedIn aprobado completo, A-08).
+- Aprobado sin comentario: pantallas reales, mapa extendido, productos de tienda, voz Lorenzo (A-09); GIFs (A-10). Rechazos X-20…X-24.
+- Medido (va a §3 y al manual): el cuerpo de los reels de septiembre es **Montserrat**.
+- R-55 a R-60 nacen en reels de grilla; R-61/R-62, en reels de sucursal. Candidatas a regla del estudio: R-59 (aire ≥ 300 px y sin palabra sola) y R-61 (lo promocional con gente real no pasa por IA) → Valeria.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`bb78d71`) es el mismo commit que ya cosechó la ronda 1 del LinkedIn de octubre (ver la entrada de abajo, R-48 a R-54). Se lista a sí mismo porque tocó `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit.

@@ -756,3 +756,8 @@ out/copylab/**/gen/
 !public/assets/gcl/cap02-v3/video/**
 !public/assets/gcl/cap02-v3/video/*.mp4
 !public/assets/gcl/cap02-v3/video/_corte3/*.mp4
+
+# EBEMA reels de grilla octubre 2026 (28-09): la ficha de entrega (los mp4 viven en Drive y se reproducen desde src + public/assets)
+!out/ebema/20260928_grilla_octubre_reels/
+out/ebema/20260928_grilla_octubre_reels/*
+!out/ebema/20260928_grilla_octubre_reels/ENTREGA.md

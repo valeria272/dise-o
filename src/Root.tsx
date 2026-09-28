@@ -117,6 +117,10 @@ import {EbemaClickReel, EBEMA_CLICK_DURATION, EBEMA_CLICK_FPS} from "./compositi
 import {EbemaClickReelOctubre, OCT_DURATION, OCT_FPS} from "./compositions/EbemaClickReelOctubre";
 import {EbemaGrillaStoryClickOct, STORY_OCT_DURATION, STORY_OCT_FPS} from "./compositions/ebema/EbemaGrillaStoryClickOct";
 import {EbemaLinkedinReelTalca, TALCA_DURATION, TALCA_FPS} from "./compositions/ebema/EbemaLinkedinReelTalca";
+import {
+  EbemaReelClickOct, EbemaReelCatalogoOct, EbemaReelAzaOct, EbemaReelLpOct,
+  CK_DUR, CT_DUR, AZ_DUR, LP_DUR, REELS_OCT_FPS, EbemaReelSanBernardoOct, SB_DUR,
+} from "./compositions/ebema/EbemaGrillaReelsOct";
 import {RevexLaminadosSlide} from "./compositions/RevexLaminadosCarrusel";
 import {RevexSepPieza, REVEX_SEP_PIEZAS} from "./compositions/RevexSeptiembre";
 import {RevexSep2026, REVEX_SEP26} from "./compositions/RevexSep2026";
@@ -1011,6 +1015,12 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="EbemaGrillaStoryClickOct" component={EbemaGrillaStoryClickOct} durationInFrames={STORY_OCT_DURATION} fps={STORY_OCT_FPS} width={1080} height={1920} />
         {/* LinkedIn 05/10/2026 — saludo sucursal Talca, calcado del reel de La Calera (2160×3840) */}
         <Composition id="EbemaLinkedinReelTalca" component={EbemaLinkedinReelTalca} durationInFrames={TALCA_DURATION} fps={TALCA_FPS} width={2160} height={3840} />
+        {/* Grilla IG octubre 2026 — los 4 reels, calcados de los 5 de septiembre (2160×3840) */}
+        <Composition id="EbemaReelClickOct" component={EbemaReelClickOct} durationInFrames={CK_DUR} fps={REELS_OCT_FPS} width={2160} height={3840} />
+        <Composition id="EbemaReelCatalogoOct" component={EbemaReelCatalogoOct} durationInFrames={CT_DUR} fps={REELS_OCT_FPS} width={2160} height={3840} />
+        <Composition id="EbemaReelAzaOct" component={EbemaReelAzaOct} durationInFrames={AZ_DUR} fps={REELS_OCT_FPS} width={2160} height={3840} />
+        <Composition id="EbemaReelLpOct" component={EbemaReelLpOct} durationInFrames={LP_DUR} fps={REELS_OCT_FPS} width={2160} height={3840} />
+        <Composition id="EbemaReelSanBernardoOct" component={EbemaReelSanBernardoOct} durationInFrames={SB_DUR} fps={REELS_OCT_FPS} width={2160} height={3840} />
         <Composition
           id="EbemaShowroomReelFeed"
           component={EbemaShowroomReel}

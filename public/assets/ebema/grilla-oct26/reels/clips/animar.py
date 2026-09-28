@@ -30,6 +30,8 @@ P = {
     "cat_k1": (10, "Lento acercamiento de cámara. El maestro revisa el plano, anota con el lápiz en la lista "
                    "de la tabla y vuelve a mirar el plano, concentrado y tranquilo. Luz de mañana estable."
                    + QUIETO),
+    "cat_k1b": (5, "Lento acercamiento de cámara. La mano del maestro avanza con el lápiz y marca con un visto "
+                   "los ítems de la lista, uno tras otro, con calma." + QUIETO),
     "cat_k4": (5, "Lento paneo lateral de cámara. El maestro, satisfecho, mira el avance de los muros de la "
                   "obra y asiente levemente con una sonrisa; respira tranquilo." + QUIETO),
     "aza_k1": (5, "Lento travelling lateral de cámara a lo largo de la estructura de perfiles de acero, al "

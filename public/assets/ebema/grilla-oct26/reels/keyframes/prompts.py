@@ -61,6 +61,13 @@ K = {
                "recto y sin inclinación, nítido. Al fondo, desenfocada, la misma obra de casa en construcción con "
                "muros de albañilería y vigas de madera, y el antebrazo con chaleco reflectante verde lima."
                + COMUN, ["cat_k1"]),
+    # ronda 1 (Paulina, 28-09): «el video principal dura mucho tiempo, añadir más escenas» →
+    # el T1 del catálogo se parte en dos; la segunda mitad de la frase va sobre este plano.
+    "cat_k1b": ("Primer plano de las manos del mismo maestro contratista — chaleco reflectante verde lima, "
+                "polera gris — marcando con un lápiz, uno por uno, los ítems de una larga lista de materiales "
+                "en una tabla con clip apoyada sobre un plano impreso, en la misma obra de casa en construcción "
+                "con muros de albañilería, desenfocada al fondo, luz de mañana. Gesto ordenado y tranquilo. La "
+                "lista tiene renglones escritos a mano ilegibles, sin palabras legibles." + COMUN, ["cat_k1"]),
     "cat_k4": ("El mismo maestro contratista chileno de unos 45 años — casco amarillo, chaleco reflectante verde "
                "lima, polera gris — en la obra de casa en construcción, ahora satisfecho y confiado, de pie con los "
                "brazos relajados, mirando el avance de los muros, con sacos de cemento y materiales ordenados "

@@ -45,6 +45,13 @@ REELS = {
         "Se corta e instala igual que un tablero OSB estructural, para revestir muro, piso o techumbre.",
         "¡Tablero OSB LP Tech Shield, disponible en Ebema!",
     ],
+    # 27/10 · EBEMA SAN BERNARDO — ZONA OFERTAS CONSTRUCTOR (metraje real, sin IA)
+    "sb": [
+        "Si estás con una obra en marcha, esta zona de Ebema San Bernardo te puede ahorrar más de un peso.",
+        "Acá encontrarás variedad de productos para tu obra a precios de oferta: cerámicas, pisos, aditivos, pinturas, adhesivos ¡y mucho más!",
+        "Con stock disponible para llevar de inmediato y nuevas oportunidades que se renuevan cada semana.",
+        "Ven a descubrir la Zona Ofertas Constructor de Ebema San Bernardo, en Avenida General Velásquez diez mil novecientos ochenta y cinco, ¡y encuentra la mejor opción para tu obra!",
+    ],
 }
 
 

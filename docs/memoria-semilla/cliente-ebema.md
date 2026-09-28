@@ -1,6 +1,6 @@
 ---
 name: cliente-ebema
-description: "EBEMA — cerebro del cliente: 54 reglas firmes, última cosecha 2026-09-26. Generado desde clients/ebema/APRENDIZAJES.md; leerlo antes de diseñar para ebema"
+description: "EBEMA — cerebro del cliente: 62 reglas firmes, última cosecha 2026-09-28. Generado desde clients/ebema/APRENDIZAJES.md; leerlo antes de diseñar para ebema"
 metadata:
   type: project
 ---
@@ -12,13 +12,15 @@ sólo lo más confirmado). ⛔ Vale sólo para ebema: no se traspasa a otra marc
 Criterio: **Paulina Bustamante** (grilla y paid; Serena Abarca produce parte del paid y las ARIEL) · Aprueba: **Paulina valida; el cliente, vía Carlos Figueroa (cuenta/contenido)**
 
 ## Reglas más confirmadas
-- **R-47** · [AMBAS] Cada ronda se re-sube **sobre el mismo fileId**; lo que no tiene comentario está bien y no se toca — _Paulina, 23-09 y 24-09; Serena, 24-09; LinkedIn ronda 1, 17/17 sobre el mismo fileId, 25-09_ · ✔×4
+- **R-47** · [AMBAS] Cada ronda se re-sube **sobre el mismo fileId**; lo que no tiene comentario está bien y no se toca — _Paulina, 23-09 y 24-09; Serena, 24-09; LinkedIn ronda 1, 17/17 sobre el mismo fileId, 25-09; reels de octubre, 2 rondas sobre el mismo fileId, 28-09_ · ✔×5
+- **R-20** · [AMBAS] El texto va en la **zona libre** de la foto: nunca sobre la cara, la persona ni un letrero; si no hay holgura, se pide otra foto — _Paulina, ronda 3, 20-08; story de Temuco, 24-09; LinkedIn «cielo despejado», 25-09; reel Click 01/10: «el bloque de texto debe ir más arriba en la zona donde no hay objetos sobre la persona», 28-09_ · ✔×4
 - **R-01** · [AMBAS] Un solo rojo: `#EC1C23`, sin variantes ni duotonos — _muestreo del logo y de la A3 de Paulina, 20/25-08; cierre del carrusel Cedral con 91 rojos, 02-09_ · ✔×3
 - **R-02** · [AMBAS] Toda cifra en **Helvetica Bold** (precios, códigos, %, 24/7, medidas, direcciones) — _Paulina, rondas 1–2, 20-08; dirección de stories, 24-09_ · ✔×3
 - **R-03** · [AMBAS] Textos y CTA **verbatim** del brief; códigos y precios no se estiman ni se inventan — _manual §6; Paulina 14-09; ARIEL 01-09 (precio pendiente no se incluye)_ · ✔×3
 - **R-08** · [EBEMA] El logo EBEMA va en **caja blanca pegada al borde superior** (`top:0`), centrado en la caja, nunca flotando; también en reels — _Paulina 20-08; ronda 4 Paulina + Carlos, 21-08_ · ✔×3
-- **R-20** · [AMBAS] El texto va en la **zona libre** de la foto: nunca sobre la cara, la persona ni un letrero; si no hay holgura, se pide otra foto — _Paulina, ronda 3, 20-08; story de Temuco, 24-09; LinkedIn «cielo despejado», 25-09_ · ✔×3
 - **R-22** · [AMBAS] En una variante de precio **sólo cambian los dígitos**; parche rojo, `$` y `+IVA` intactos; si la dirección es la de la madre, queda el píxel original — _Valeria, 22–25-08; Serena, 01-09_ · ✔×3
+- **R-29** · [EBEMA] Portada: pre-enunciado en **cuerpo menor** (0,62) · gancho que calza en ancho con el rojo mordiendo la mitad de las mayúsculas de su 1.ª línea · cápsula blanca con la bajada — _Paulina, 15–16-09 y 23-09; titular de los reels, ronda 1, 28-09: «el cuadro rojo debe llegar a la mitad de la primera línea»_ · ✔×3
+- **R-49** · [EBEMA] En oficina la ropa es **formal de oficina: camisa y pantalón de vestir** — _Paulina, 25-09, `ebema_lk_c_click1` y `ebema_lk_c_ventas1`_ · ✔×3
 - **R-04** · [AMBAS] **Acá sólo se diseña**: proveedor, formato, pilar y textos los decide contenido; si el brief no cuadra, se informa y no se resuelve; si cambia, manda la grilla — _Paulina, 14-09; brief de Masisa cambiado el 22-09_ · ✔×2
 - **R-06** · [AMBAS] Si falta una imagen, una medida o un dato, **se avisa a Paulina**, no se rellena — _Paulina, 14-09 y 16-09_ · ✔×2
 - **R-10** · [EBEMA] Paid sucursal: marco 3 px r20 (62/77/71), píldora de ciudad, puntitos **sobre** la línea del marco con anillo blanco, «Cotiza por WhatsApp» — _Paulina ronda 2, 20-08; Valeria 21-08: «casi todo igual a julio/agosto»_ · ✔×2
@@ -30,8 +32,6 @@ Criterio: **Paulina Bustamante** (grilla y paid; Serena Abarca produce parte del
 - **R-19** · [AMBAS] Bodega IA = pasillo tipo Sodimac/Easy: ordenado, luminoso, productos variados, sin marcas legibles; nunca oscuro ni de un solo producto — _Valeria y Paulina, 20-08_ · ✔×2
 - **R-21** · [AMBAS] Cero choques y cero desbordes: ningún texto fuera de su caja ni a < 50 px de logo, marco o puntitos; revisar feed **y** story — _Valeria, 20-08 y 24-08 (reel Click)_ · ✔×2
 - **R-23** · [CLICK] Campañas ARIEL: la **pieza madre de Paulina es la ley**; un bloque de campañas por madre, nunca diseño propio — _Valeria, 22/24-08 (2 rechazos); Serena, 01-09 (A7–A12 esperan madre)_ · ✔×2
-- **R-27** · [EBEMA] Firma de grilla: cápsula blanca pegada a `x=0`, alto 155,5 e `y` 154,6 **fijos**; el ancho lo fija el logo del proveedor; sólo en la lámina 1; entre los dos logos, aire y **nunca una línea** — _Paulina, 15-09; medido en 7 piezas_ · ✔×2
-- **R-28** · [EBEMA] Carrusel de producto: arco problema → causa → solución → tip pro → cierre — _medido en 5 carruseles, 14-09_ · ✔×2
 
 ## Lo que ya costó rondas
 - **X-01** · [CLICK] Diseño propio para las ARIEL (A3 festiva con asado y A3 sobria «muy plana») — _Valeria, 22/24-08, 2 rechazos_
@@ -53,3 +53,8 @@ Criterio: **Paulina Bustamante** (grilla y paid; Serena Abarca produce parte del
 - **X-17** · [EBEMA] Fondo IA con estructuras inventadas en el patio — _Paulina, 25-09, `post-15.10` («no me gusta nada»)_
 - **X-18** · [EBEMA] Bodega exterior de Talca mal iluminada en el reel — _Paulina, 25-09_
 - **X-19** · [EBEMA] Personas de oficina con ropa informal — _Paulina, 25-09, 2 piezas_
+- **X-20** · [AMBAS] Titular del reel girado −2° con la caja roja envolviendo las dos líneas (gramática de septiembre) — _Paulina, 28-09, ronda 1_
+- **X-21** · [AMBAS] Portadas de reel — _Paulina, 28-09: se borraron las 4_
+- **X-22** · [AMBAS] Textos secundarios en una sola línea larga, a 76–109 px del borde — _Paulina, ronda 2, 28-09 (Aza, LP; medido con PIL)_
+- **X-23** · [CLICK] Texto del reel encima de la persona (T1 de Click sobre el contratista) — _Paulina, 28-09_
+- **X-24** · [EBEMA] Un solo plano de 7 s al abrir un reel — _Paulina, reel catálogo, 28-09 (2 rondas: «más escenas», luego «3 líneas»)_

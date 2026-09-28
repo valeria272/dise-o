@@ -3,6 +3,47 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-28 — Paulina Bustamante
+
+**Qué se hizo:** Los **5 reels de Instagram de la grilla de octubre**, entregados y aprobados.
+1. **01/10 Click, 03/10 catálogo Ebema.cl, 15/10 Perfiles Aza, 17/10 OSB LP TechShield**, calcados
+   al píxel de los 5 reels de septiembre (medidos hoy: **el cuerpo del reel es Montserrat**, no
+   Raleway; marco, cápsula y cierres en §4-bis del manual). Voz Lorenzo leyendo el brief verbatim
+   (los de septiembre también llevan locución, transcritos con Whisper). Imagen: 13 fotogramas
+   Seedream 5 Pro + 11 clips **Kling 2.5 Pro** (el 2.1 Pro falló 10/10). Productos reales desde
+   Prodalam (ángulo Aza con punta verde, TechShield con aluminio perforado y canto naranjo);
+   pantallas reales: el video de la app Click que dio Paulina y **ebema.cl/catalogos** capturado
+   con Playwright (con el chat de WhatsApp real de las sucursales). Mapa de Click extendido al
+   norte con Nano Banana Pro y pines trasladados por registro SIFT.
+2. **Ronda 1 (10 comentarios)** y **ronda 2 (2)** aplicadas, re-subidas sobre el mismo fileId,
+   respondidas y resueltas. Paulina: «ok todo bien».
+3. **27/10 San Bernardo · Zona Ofertas Constructor** con **metraje real, sin IA** (material de
+   Paulina en `raw/ebema/san-bernardo-zona-ofertas/`), gramática del reel de junio + etiqueta por
+   categoría al ritmo de la referencia de Construmart. Seba sólo cuando muestra el producto.
+4. **GIFs** de los 5 reels + el reel LinkedIn de Talca + la story 07/10, en Drive `4-entregado / gifs`.
+5. **Portadas borradas** a pedido de Paulina (a la papelera de Drive).
+6. LinkedIn de octubre: Paulina lo dio por **aprobado completo** («todo el contenido de linkedin
+   está ok, muy bueno»). Los comentarios de carruseles (cbb5, masisa2) los resolvió ella.
+
+**Dónde quedó:**
+- Drive `4-entregado / 2026-10 grilla octubre — reels` (`1X5MEBeKAOei0KXclNZQ0oC1fXilAO9Uy`):
+  los 5 mp4, md5 verificado. `4-entregado / gifs` (`1TALg1vqqPDFtWyJAa2CLLyDFzUKGsVcw`): 7 GIFs.
+- Repo: `src/compositions/ebema/EbemaGrillaReelsOct.tsx` (5 composiciones `EbemaReel*Oct`),
+  `public/assets/ebema/grilla-oct26/reels/` (voz, keyframes, clips, ui, logos, música,
+  `sanbernardo/cortes`), ficha `out/ebema/20260928_grilla_octubre_reels/ENTREGA.md`.
+- Manual §4-bis: marco medido, Montserrat, regla del ancho del titular y las 2 rondas.
+
+**Qué sigue:** esperar los comentarios de Paulina sobre **el reel de San Bernardo** (el único sin
+revisar), leerlos con la API sobre la carpeta de reels y aplicarlos sobre el mismo fileId.
+Después, la grilla de noviembre cuando Carlos desarrolle el brief.
+
+**Abierto:**
+1. Música: los 5 reels usan `audio_fondo3`; `audio_fondo` y `audio_fondo2` no están en el PC
+   (Drive privado: Paulina tiene que descargarlas si quiere variar).
+2. Toma en bruto del letrero de la entrada de la Zona Ofertas: sólo existe dentro del reel de
+   junio con texto quemado. Si aparece, se suma al T1 de San Bernardo.
+3. Siguen: grilla de noviembre sin brief, LinkedIn 26/10 Capacitaciones sin tema, EBEMA sin `reglas.yaml`.
+
 ## 2026-09-25 (tarde) — Paulina Bustamante
 
 **Qué se hizo:** No se produjeron piezas. `/abrir ebema` + `/al-dia`: repo al día, Drive

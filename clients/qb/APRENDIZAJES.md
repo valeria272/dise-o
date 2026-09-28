@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-09-26** · Cosechas: **5**
+> Última cosecha: **2026-09-28** · Cosechas: **6**
 
 ## 1. Quién es el cliente
 
@@ -72,7 +72,7 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **R-29** · Las promos se mantienen en el tiempo: una vigente no se da por vencida sola, se confirma con Eli — _Eli, 15-09_ · ✔×1
 - **R-30** · Ni títulos ni bajadas llevan punto (final ni intermedio), aunque el brief lo traiga — _regla del cliente Hilton, 23-09-2026, citada en el manual de QB; el cliente le sacó los puntos al 09-10 en la grilla, 25-09_ · ✔×2
 - **R-31** · Al corregir en Drive se sube con **nombre nuevo** (v4, v5…): la vista previa de Drive queda cacheada al reemplazar por el mismo ID — _17-09, Eli «no veo el cambio»; repetido en v5, v6 y v7_ · ✔×4 · ⚠️ **25-09 se incumplió**: la ronda de Eli se subió reemplazando con el mismo nombre (se le avisó del caché). La próxima ronda va con nombre nuevo
-- **R-32** · Sólo se diseña lo que está `OK PARA DISEÑAR`; `PENDIENTE POR CLIENTE` no se toca — _bitácora 17-09, 21-09, 24-09 (Trivia de brindis, Reel DJ); 25-09: 8 piezas en CAMBIADO no se diseñaron_ · ✔×4
+- **R-32** · Sólo se diseña lo que está `OK PARA DISEÑAR`; `PENDIENTE POR CLIENTE` no se toca — _bitácora 17-09, 21-09, 24-09 (Trivia de brindis, Reel DJ); 25-09: 8 piezas en CAMBIADO no se diseñaron; 28-09: el feed de S1 entero en CAMBIADO, no se tocó_ · ✔×5
 - **R-33** · No se entrega con menos bitrate que lo aprobado (la S5 salió a crf 10 para igualar 4.484 kb/s) — _ronda 5, 21-09_ · ✔×1
 - **R-34** · Un negro saturado que el QA lee como «foto estirada» se arregla con grano de película sutil (±2), no bajando la foto con una franja negra lisa — _octubre, 24-09_ · ✔×1
 - **R-35** · El video de octubre se rinde a 2,5× y se baja a 2250×4000 con lanczos (2,0833× da alto no entero) — _`scripts/qb-oct-render.sh`, 24-09_ · ✔×1
@@ -82,6 +82,9 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **R-39** · Nadie que parezca trabajador del hotel (traje, uniforme, garzón) aparece como invitado: en las escenas sociales, sólo invitados — _Eli 25-09 sobre la 26-10: «salen trabajadores del hotel, no pueden usar esa»_ · ✔×1
 - **R-40** · La foto no se sobregradúa: nada de quemado ni saturado. La fuente preferida es el **shooting de la carta de enero 2026** (foto de estudio, va casi sin tocar) — _Eli 25-09 sobre la 01-10: «se ve como quemado, muy saturado, no me gusta… usa del shooting nuevo… una foto mucho más bonita, más elegante»_ · ✔×1
 - **R-41** · Las alternativas de un sticker de encuesta las fija el cliente en la celda INTERACCIÓN y van literales; el ✅ marca la respuesta para contenido y **no** se pinta en la pieza — _grilla de octubre, ST 14-10, leída 25-09_ · ✔×1
+- **R-42** · Un carrusel de promo abre con la **G1 limpia** (sólo la foto, sin texto) y la promo va en la lámina siguiente — _cliente, grilla QB oct FEED!E14 (post AYCD 07-10, pasó de estático a carrusel), leído 28-09-2026: «Que sea como esos carruseles que hicimos antes, en que la G1 está limpia y luego viene la promo»_ · ✔×1
+- **R-43** · Una historia muestra **la información más importante de inmediato**: ante un concepto elaborado (collage de 3 fotos con cortes y dibujos), va la opción más simple — _cliente, grilla QB oct STORIES!E14 (cumpleaños 07-10): «veamos opción más simple, siendo una story mostraría la información más importante de inmediato»_ · ✔×1
+- **R-44** · Una pieza se identifica por su **título**, nunca por la columna ni la fecha: la grilla las corre sin avisar — _diff de la grilla QB oct, 28-09-2026: ST Banco de Chile 01→02-10, el REEL DJ de la semana 5 pasó de la columna R a la Q y el carrusel de bancos apareció en una columna sin fecha (H)_ · ✔×1
 
 ## 5. Excepciones
 
@@ -132,7 +135,15 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - Las bandas de UNLIMITED quedaron sólo arriba: ¿se quiere tipografía también abajo? (obliga a rehacer la escena) → Eli.
 - No hay ninguna pieza **rechazada** en disco: los topes del QA no prueban que atrapen lo malo → estudio.
 
+- FEED 05-10 sigue diciendo CARRUSEL con el brief de ST cumpleaños, y el comentario pide «un estático de cumpleaños». ¿Qué formato queda? → contenido (no se diseña: CAMBIADO)
+- El carrusel de bancos pasó a **CMR Falabella 40 % sábados + 30 % débito** (Banco de Chile salió) y el cliente lo pidió para S2. Cuando pase a OK va sobre la pieza CMR aprobada (R-37). Ojo: el brief lo sigue rotulando «SLIDE 2 — BANCO DE CHILE» y no trae slide 3 → contenido
+
 ## 9. Registro de cosechas
+
+### 2026-09-28 — Claude con Eli · `/al-dia hilton`, foco S1 de octubre (sin piezas)
+- **Reglas nuevas del cliente (grilla, verbatim):** R-42 (carrusel con G1 limpia y la promo después) y R-43 (story simple, la info principal de inmediato). R-44 sale del diff: la pieza se busca por título.
+- ✔ sube: R-32 (×5), no se diseñó nada en CAMBIADO.
+- Sin feedback de Eli. §8: 2 preguntas nuevas (formato del 05-10 y carrusel CMR).
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: los 3 commits de ayer (2fe1995, e7e3f76, adead40) ya están cosechados en las entradas de abajo (5 reglas nuevas y 4 rechazos de la ronda de Eli sobre octubre; bitácora del `/arranque` en Windows; relectura de la grilla, sin piezas). El único que `pendientes` marcó (adead40) es el mismo que hizo la última cosecha del día.

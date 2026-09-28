@@ -1,5 +1,12 @@
 # Piso18 — bitácora
 
+## 2026-09-28 — Elisabet Soto «Eli» (Windows, con Claude) · `/al-dia hilton` foco S1 octubre — SIN PIEZAS
+
+**Qué se hizo:** diff de la grilla (25-09 20:38Z) contra la copia del 24-09. **En S1 hay 5 piezas en OK PARA DISEÑAR:** FEED 06-10 arreglos florales y 09-10 fechas 2027; ST 05-10 primavera (animada), 07-10 encuesta de estaciones y 09-10 encuesta de recuerdos de matrimonio. La ST 08-10 «pasos» quedó PENDIENTE POR CLIENTE. Llegaron 8 comentarios del cliente para S2–S5 (contenido, verbatim en el cerebro §9).
+**Dónde quedó:** instantánea `clients/hilton/grillas/api/p18-oct-20260928.json`.
+**Qué sigue:** diseñar las 5 de S1.
+**Abierto:** la ST 09-10 dice «una matrimonio» → avisarle a Eli antes de rendir.
+
 ## 2026-09-25 (noche) — Eli (Windows) · grilla de OCTUBRE leída en vivo — SIN PIEZAS
 
 **Qué se hizo:** lectura de `PISO18 GRILLA OCTUBRE 2026` (`1bzTQWrTYPoSFwy2iIYCxTKuO-1XNbqT7Nk_vQz39JQA`, de Carlos, modificada el 22-09). FEED 7/7 **EN REVISIÓN**, STORIES 12 **sin estado** y el reel orgánico del Día del Chef sin estado. Sin comentarios del cliente.

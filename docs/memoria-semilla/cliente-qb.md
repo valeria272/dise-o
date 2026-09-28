@@ -1,6 +1,6 @@
 ---
 name: cliente-qb
-description: "QB — cerebro del cliente: 41 reglas firmes, última cosecha 2026-09-26. Generado desde clients/qb/APRENDIZAJES.md; leerlo antes de diseñar para qb"
+description: "QB — cerebro del cliente: 44 reglas firmes, última cosecha 2026-09-28. Generado desde clients/qb/APRENDIZAJES.md; leerlo antes de diseñar para qb"
 metadata:
   type: project
 ---
@@ -12,9 +12,9 @@ sólo lo más confirmado). ⛔ Vale sólo para qb: no se traspasa a otra marca.
 Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
 
 ## Reglas más confirmadas
+- **R-32** · Sólo se diseña lo que está `OK PARA DISEÑAR`; `PENDIENTE POR CLIENTE` no se toca — _bitácora 17-09, 21-09, 24-09 (Trivia de brindis, Reel DJ); 25-09: 8 piezas en CAMBIADO no se diseñaron; 28-09: el feed de S1 entero en CAMBIADO, no se tocó_ · ✔×5
 - **R-13** · Antes de diagramar se pregunta **«¿esta va a paid?»**; si sí o hay duda, el texto va dentro de la zona segura (250 / 340 / 115 px en 9:16) — _Eli, 15-09: «El texto es importante que no pueda ir fuera del margen»; Eli 25-09: «ten cuidado con las medidas que aparecen en Instagram»_ · ✔×4. Desde el 25-09 se aplica a **las 11 historias** de octubre, orgánicas incluidas, y también al logo (tope ≥ 250)
 - **R-31** · Al corregir en Drive se sube con **nombre nuevo** (v4, v5…): la vista previa de Drive queda cacheada al reemplazar por el mismo ID — _17-09, Eli «no veo el cambio»; repetido en v5, v6 y v7_ · ✔×4 · ⚠️ **25-09 se incumplió**: la ronda de Eli se subió reemplazando con el mismo nombre (se le avisó del caché). La próxima ronda va con nombre nuevo
-- **R-32** · Sólo se diseña lo que está `OK PARA DISEÑAR`; `PENDIENTE POR CLIENTE` no se toca — _bitácora 17-09, 21-09, 24-09 (Trivia de brindis, Reel DJ); 25-09: 8 piezas en CAMBIADO no se diseñaron_ · ✔×4
 - **R-27** · No se genera lo que ya está fotografiado: la fuente son las sesiones propias, y del video se saca la foto, la historia, el reel y el post en movimiento — _Eli, 15-09; aplicado en octubre con las sesiones en video, 24-09; 09, 23 y 26 pasaron a foto real el 25-09_ · ✔×3
 - **R-04** · ALL YOU CAN DRINK es un bloque cerrado igual al KV: sólo cambia la foto; logo, nombre, botón con degradado y «TODOS LOS MARTES / POR $13.990 / 18:00 a 21:00 hrs» no se tocan — _Eli, 17-09: «botón verde con efecto de degradado y logo + el nombre no»; medido igual al píxel en las ST de junio y septiembre_ · ✔×2
 - **R-07** · En una promo con KV, el KV gana a la redacción del brief; del brief se toma literal sólo lo que el KV no cubre — _ST AYCD 28-09, S5, 17-09; Sunset 09-10, Eli 25-09_ · ✔×2

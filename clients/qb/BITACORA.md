@@ -1,5 +1,12 @@
 # QB Restaurant — bitácora
 
+## 2026-09-28 — Elisabet Soto «Eli» (Windows, con Claude) · `/al-dia hilton` foco S1 octubre — SIN PIEZAS
+
+**Qué se hizo:** diff de la grilla (modificada hoy 12:29Z por Scarlette) contra la copia del 25-09. En S1: el carrusel de bancos se reescribió a **CMR Falabella 40 % sábados + 30 % débito** (Banco de Chile salió); está en CAMBIADO y el cliente lo pidió para S2. El 05-10 pasa a un estático de cumpleaños y el post AYCD 07-10 ahora trae slides (G1 limpia + promo), también en CAMBIADO. La ST Banco de Chile sólo cambió de fecha (01→02-10) y ya está hecha (ST n°1 S1). La portada VISTA MENSUAL ya dice OCTUBRE.
+**Dónde quedó:** instantánea `clients/hilton/grillas/api/qb-oct-20260928.json`.
+**Qué sigue:** esperar que el feed de S1 pase a OK.
+**Abierto:** el formato del 05-10 (dice CARRUSEL y el comentario pide estático) y el brief del carrusel CMR, que sigue rotulado «BANCO DE CHILE» y no trae slide 3 → contenido.
+
 ## 2026-09-25 (noche) — Elisabet Soto «Eli» (con Claude) · relectura de la grilla de octubre — SIN PIEZAS
 
 **Qué se hizo:** grilla de octubre leída en vivo por API de Sheets. No hay nada nuevo en OK: las 11 historias OK PARA DISEÑAR son las ya entregadas hoy; el feed está entero en CAMBIADO o PENDIENTE POR CLIENTE y los orgánicos, EN REVISIÓN o pendientes.

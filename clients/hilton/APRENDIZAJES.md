@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-26** · Cosechas: **6**
+> Última cosecha: **2026-09-28** · Cosechas: **7**
 
 ## 1. Quién es el cliente
 
@@ -89,6 +89,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-71** · [DT] **Cada personaje se ve como su hoja** en todas las escenas (cara, pelo, edad) — _Eli, 25-09-2026, banco familia DT_ («respeta a los personajes para que se vean como ellos») · ✔×1
 - **R-72** · [DT] Nada de **personas ajenas ni reflejos de personas** en el fondo (espejos, vidrios de cuadros, personal parado detrás) — _Eli, 25-09-2026, banco familia DT_ · ✔×1
 - **R-73** · [DT] Un banco de imágenes se entrega en **post 4:5, story 9:16 y 16:9** — _Eli, 25-09-2026, banco familia DT_ («así tendremos para todo lo necesario») · ✔×1
+- **R-74** · [DT] **Escapada Romántica no se ve como Noche de Bodas**: el concepto es *escaparse y hacer algo distinto*, no el romance de recién casados — _cliente, grilla DT oct FEED!C14 (carrusel 07-10), leído 28-09-2026: «No lo dejaría taan romántico, parece más de Noche de Bodas, algo más de escaparse, hacer algo distinto»_ · ✔×1
 
 ### Between
 - **R-30** · [BW] Taza blanca con raya negra y **KIMBO: se borra siempre**; la taza vigente es blanca total — _Eli 25-08; Scarlette 31-08; ronda 9, 03-09-2026_ · ✔×3
@@ -227,7 +228,16 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] La habitación `HDT_65` trae una cubeta de espumante (montaje de Escapada). En la escena de la cookie se sacó; ¿se evita esa foto para Family Time? → **Eli**
 - [DT] El conector de Magnific de claude.ai no está autorizado, así que no se pudo crear el Space ni fijar a los personajes en la librería → **Valeria** (no se le lleva a Eli)
 
+- [DT] ST 05-10 feriado (Escapada Romántica + Family Time): el brief trae «(confirmar tarifa vigente)» junto a $99.000 / $125.000. R-28 dice que son los vigentes; ¿se confirma o se deja literal? → **Eli** antes de rendir
+- [BW] Carrusel To Go (ahora 01-10) y reel de cumpleaños (ahora 02-10) en CORREGIDO con los comentarios tachados: no se diseñan hasta que digan OK PARA DISEÑAR → contenido
+
 ## 9. Registro de cosechas
+
+### 2026-09-28 — Claude con Eli · `/al-dia hilton`, foco S1 de octubre (sin piezas)
+- **Regla nueva [DT]:** R-74, Escapada Romántica no se ve como Noche de Bodas (comentario del cliente en la grilla, verbatim).
+- **Sin feedback de Eli:** no se diseñó nada. En OK quedaron las 3 stories de feriado de DT (05-10 ER+FT, y las genéricas de ER y de FT); el carrusel ER 07-10 volvió a REVISAR CONTENIDO.
+- [BW] La grilla corrió las fechas de dos piezas de S1 (To Go 02→01-10, reel cumpleaños 09→02-10); ninguna está en OK.
+- §8: 2 preguntas nuevas (tarifa del feriado DT, piezas BW en CORREGIDO).
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: los 5 commits de ayer para DT y Between (4442ea8, adead40, 08ef0e8, ffbc2e9, 3b42c87) ya están cosechados, cada uno en su propia entrada de abajo (BETWEEN S5 septiembre, relectura de octubre sin piezas, feedback de la prueba 2, reel «La razón», banco de la familia DT). El único que `pendientes` marcó (3b42c87) es el mismo que hizo la última cosecha del día.

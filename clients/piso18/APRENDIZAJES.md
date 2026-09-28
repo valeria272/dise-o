@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
-> Última cosecha: **2026-09-26** · Cosechas: **4**
+> Última cosecha: **2026-09-28** · Cosechas: **5**
 
 ## 1. Quién es el cliente
 
@@ -73,7 +73,7 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - **R-30** · En una historia animada, posición y contraste del botón se miden en el último fotograma — _manual; reglas.yaml_ · ✔×1
 - **R-31** · Una pieza corregida se reemplaza en Drive **conservando su enlace** — _S4 rondas 4, 5, 6 y 7 (16 al 22-09)_ · ✔×5
 - **R-32** · La revisión se publica como página de antes/después; nada interno va a la carpeta de entrega, que ve el cliente (`@hilton.com` con permiso de escritura) — _hallazgo 16-09; rondas 4–7 aprobadas así_ · ✔×4
-- **R-33** · Lo nuevo de la grilla se detecta por diff de **conjunto de cadenas** contra la instantánea anterior: el comentario se prepende y no lo delatan ni la celda ni el `modifiedTime` — _confirmado el 16, 17 (×2) y 22-09_ · ✔×4
+- **R-33** · Lo nuevo de la grilla se detecta por diff de **conjunto de cadenas** contra la instantánea anterior: el comentario se prepende y no lo delatan ni la celda ni el `modifiedTime` — _confirmado el 16, 17 (×2), 22-09 y 28-09 (grilla oct: 8 comentarios nuevos del cliente en celdas que estaban vacías)_ · ✔×5
 - **R-34** · Una pieza se identifica por su **título**, nunca por la columna: la grilla corre fechas sin avisar — _16-09 (NOCHE 25→23), 17-09, 22-09 (animada 23→24)_ · ✔×3
 - **R-35** · El GIF de una pieza animada va a 25 fps, sin difuminado y a 540×960; lo que se publica en Instagram es el MP4 — _Eli, 22-09: «guárdalo igual en gif»; `scripts/p18-s4-gif.py`_ · ✔×1
 - **R-36** · El titular va prácticamente a sangre (29 px de margen @1080): el respiro de borde de la marca es 26 px, no los 60 de agencia — _medido en `ST N°1 S1`; reglas.yaml_ · ✔×1
@@ -133,7 +133,14 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - La ronda 4 del C1 S5 la aprobó Eli, pero el cambio no pasó por la grilla: ¿el cliente la vio? → Eli / KAM.
 - `P18C1Cumple.tsx` no declara sus textos al QA, así que la regla «sin bodas» queda «sin verificar» en cada corrida → estudio.
 
+- ST 09-10 encuesta: el brief dice «¿qué es lo que más recuerdas de **una** matrimonio?». Está OK PARA DISEÑAR y el texto va literal, así que **avísale a Eli** antes de rendir → Eli / contenido
+
 ## 9. Registro de cosechas
+
+### 2026-09-28 — Claude con Eli · `/al-dia hilton`, foco S1 de octubre (sin piezas)
+- **Sin reglas nuevas:** no se diseñó nada. ✔ sube R-33 (×5).
+- Llegaron los primeros comentarios del cliente de octubre. Son de **contenido** (R-23) y se aplican cuando la pieza pase a OK. Verbatim: FEED 13-10 «Ojo que no queden todos los carruseles juntos» · FEED 20-10 «Puede ser animado y ponemos lo que trae el cumple» · ST 13-10 «No hablemos de temporada alta» · ST 15-10 «Dejémos cuadro de respuesta a ver si prende» · ST 16-10 «Solo texto principal» · ST 19-10 «Foco fiesta empresa fin de añoi» · ST 21-10 «Busquemos otra dinámica» · ST 30-10 «Dejémos El broche perfecto para tu historia».
+- S1 en OK: FEED 06-10 flores y 09-10 fechas 2027; ST 05-10 primavera, 07-10 encuesta de estaciones y 09-10 encuesta de recuerdos. La ST 08-10 «pasos» quedó PENDIENTE POR CLIENTE. §8: 1 pregunta nueva («una matrimonio»).
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: los 2 commits de ayer (67429c1, adead40) ya están cosechados en las entradas de abajo (C1 S5 cumpleaños ronda 4 aprobada; lectura de la grilla de octubre sin piezas). El único que `pendientes` marcó (adead40) es el mismo que hizo la última cosecha del día.

@@ -1,6 +1,6 @@
 ---
 name: cliente-piso18
-description: "PISO18 — cerebro del cliente: 42 reglas firmes, última cosecha 2026-09-26. Generado desde clients/piso18/APRENDIZAJES.md; leerlo antes de diseñar para piso18"
+description: "PISO18 — cerebro del cliente: 42 reglas firmes, última cosecha 2026-09-28. Generado desde clients/piso18/APRENDIZAJES.md; leerlo antes de diseñar para piso18"
 metadata:
   type: project
 ---
@@ -13,8 +13,8 @@ Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente Hilton, por comenta
 
 ## Reglas más confirmadas
 - **R-31** · Una pieza corregida se reemplaza en Drive **conservando su enlace** — _S4 rondas 4, 5, 6 y 7 (16 al 22-09)_ · ✔×5
+- **R-33** · Lo nuevo de la grilla se detecta por diff de **conjunto de cadenas** contra la instantánea anterior: el comentario se prepende y no lo delatan ni la celda ni el `modifiedTime` — _confirmado el 16, 17 (×2), 22-09 y 28-09 (grilla oct: 8 comentarios nuevos del cliente en celdas que estaban vacías)_ · ✔×5
 - **R-32** · La revisión se publica como página de antes/después; nada interno va a la carpeta de entrega, que ve el cliente (`@hilton.com` con permiso de escritura) — _hallazgo 16-09; rondas 4–7 aprobadas así_ · ✔×4
-- **R-33** · Lo nuevo de la grilla se detecta por diff de **conjunto de cadenas** contra la instantánea anterior: el comentario se prepende y no lo delatan ni la celda ni el `modifiedTime` — _confirmado el 16, 17 (×2) y 22-09_ · ✔×4
 - **R-34** · Una pieza se identifica por su **título**, nunca por la columna: la grilla corre fechas sin avisar — _16-09 (NOCHE 25→23), 17-09, 22-09 (animada 23→24)_ · ✔×3
 - **R-01** · «bodas» no se escribe nunca: va matrimonio(s) o novios, aunque el brief o el hashtag lo traigan — _Eli, 15-09-2026; ratificada por el cliente en `FEED!I14` el 17-09 («no usemos la palabra BODA»)_ · ✔×2
 - **R-09** · Cierre: `Cotiza en` blanco + `piso18.cl` en caja fucsia · `Av. Vitacura 2727, Las Condes` centrada · legal al pie con asterisco — _manual 22-09_ · ✔×2

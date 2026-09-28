@@ -10,7 +10,7 @@ el XML de Final Cut 7 (Archivo › Importar): arma la secuencia con las pistas y
 cortes, y al guardar queda como `.prproj`.
 
 La secuencia, con los MISMOS tiempos de `CLIPS` en `DtStFamilyTimeOct.tsx`:
-    V1  los 5 clips de la familia, cortados donde termina cada barrido
+    V1  el clip de la vista + las 4 fotos de la familia, cortados donde termina cada barrido
     V2  la gráfica (texto, cristal, logo) en ProRes 4444 con transparencia
     V3  el render final, APAGADO, como guía para comparar
 
@@ -36,11 +36,11 @@ BARRIDO = 12
 
 # (archivo, fotograma en que la escena ya está entera) — igual que CLIPS en el .tsx
 CLIPS = [
-    ("ft-v-vista.mp4", 0),
-    ("ft-v-lobby.mp4", 146),
-    ("ft-v-almohadas.mp4", 176),
-    ("ft-v-restaurante.mp4", 206),
-    ("ft-v-hab.mp4", 236),
+    ("ft-v-vista.mp4", 0),          # ronda 5 (28-09): sólo la primera toma es video
+    ("ft-f-lobby.jpg", 146),
+    ("ft-f-almohadas.jpg", 166),
+    ("ft-f-restaurante.jpg", 186),
+    ("ft-f-hab.jpg", 206),
 ]
 GRAFICA = RAIZ / "out/hilton/dt/entrega-oct/ft-video-grafica.mov"
 FINAL = RAIZ / "out/hilton/dt/entrega-oct/DT ST 01-10 Family Time primavera.mp4"
@@ -77,15 +77,26 @@ def clip(idx, nombre, ruta, start, end, enin, largo, pista_enabled=True, alpha=F
 def main():
     medios = CARPETA / "Medios"
     medios.mkdir(parents=True, exist_ok=True)
+    for viejo in medios.glob("ft-*"):  # lo de rondas anteriores no se queda colgando
+        viejo.unlink()
     v1 = []
     for i, (arch, desde) in enumerate(CLIPS):
         destino = medios / arch
-        shutil.copy2(ASSETS / arch, destino)
+        if arch.endswith(".mp4"):
+            # Kling entrega 24 fps y la secuencia es de 30: se pasa a 30 para que
+            # los cortes de Premiere caigan donde caen en el render
+            import subprocess
+            import imageio_ffmpeg
+            subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), "-v", "error", "-y", "-i", str(ASSETS / arch),
+                            "-r", "30", "-c:v", "libx264", "-crf", "14", "-pix_fmt", "yuv420p", str(destino)],
+                           check=True)
+        else:
+            shutil.copy2(ASSETS / arch, destino)
         # el corte cae a mitad del barrido; el clip arranca con su barrido
         entra = 0 if i == 0 else desde - BARRIDO // 2
         sale = CLIPS[i + 1][1] - BARRIDO // 2 if i + 1 < len(CLIPS) else DUR
         enin = 0 if i == 0 else BARRIDO // 2
-        largo = 300 if arch.endswith("hab.mp4") else 150
+        largo = 150 if arch.endswith(".mp4") else DUR  # una foto dura lo que se pida
         v1.append(clip(i + 1, arch, destino, entra, sale, enin, largo))
     g = medios / "grafica-texto-cristal-logo.mov"
     shutil.copy2(GRAFICA, g)

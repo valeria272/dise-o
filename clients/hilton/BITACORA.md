@@ -1,3 +1,10 @@
+## 2026-09-28 (mediodía) — Eli (Windows) · DT ST 01-10 Family Time, RONDA 5 — REEMPLAZADA EN DRIVE
+
+**Feedback de Eli sobre la de video:** «dura muy extraño… si hay texto importante que se mantenga más el tiempo… no lo hagas todo video, usa las mismas imágenes, que pasen como transición, y la primera toma sí sea un video… que no se vea todo tan exagerado… mejor en jerarquía, recordando la identidad visual».
+**Qué se hizo:** sólo la primera toma es video (la vista; la frase 1 queda ~2,6 s entera). Lobby, almohadas y desayuno pasan como FOTOS del banco, ~0,7 s cada una. El barrido baja a menos de la mitad (180/110 px, desenfoque 10/7). El programa cierra sobre la foto de la habitación y queda ~7,6 s. Jerarquía: *Family Time* 126 (antes 104), precio 90, titular como antetítulo en 48, incluidos y contacto en grupos separados por 62 px, el bloque centrado en el cristal. Composición `DT-A-Oct-FamilyTime-R5` (montaje `R5`).
+**Dónde quedó:** Drive S1/DT/STS (MP4 + GIF reemplazados, md5 verificado) · la secuencia de Premiere en F: se regeneró con las fotos · render en `out/hilton/dt/oct/_rondas/r5/`.
+**Abierto:** que Eli lo revise.
+
 ## 2026-09-28 — Eli (Windows) · DT ST 01-10 Family Time: la familia fija en VIDEO — REEMPLAZADA EN DRIVE, SIN REVISIÓN DE ELI TODAVÍA
 
 **Qué se hizo:** por pedido de Eli («utiliza los nuevos personajes… vuélvelas video, más realista, más sutil»), las 5 escenas de la story son clips de Kling 2.5 Pro sacados de las story del banco de la familia (25-09): vista a Santiago → lobby → almohadas → desayuno → habitación con la tablet (10 s, bajo el programa). Se mantuvo todo lo aprobado el 24-09 (textos, cristal, barridos, bloque, 15 s). ⚠️ **Kling 2.1 Pro devolvió FAILED sin error en todo** (también con una imagen sin personas); con créditos en la cuenta, 2.5 Pro sí anduvo. La toma de la cookie se descartó (la niña desaparece y el papá cambia de cara). Dos arreglos tras mirar la tira: la frase 1 dejaba un fantasma sobre el lobby (sale antes del barrido) y la familia de la habitación quedaba detrás del cristal (se ve sola ~1 s antes de que entre).

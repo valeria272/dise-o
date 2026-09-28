@@ -26,7 +26,7 @@
 import React from "react";
 import {AbsoluteFill} from "remotion";
 
-import {cargarFuentesQbOct, FotoQB, ImagenReferencial, Linea, LogoQB, Velo} from "./QbOctKit";
+import {cargarFuentesQbOct, FotoQB, Linea, LogoQB, Velo} from "./QbOctKit";
 
 cargarFuentesQbOct();
 
@@ -57,11 +57,13 @@ export const QbSt12Pulpo: React.FC = () => {
       <Linea top={372} cuerpo={44} peso={400}>{d.antetitulo}</Linea>
       <Linea top={418} cuerpo={70} peso={700}>{d.titular}</Linea>
       {/* el nombre del plato en la mesa vacía, sobre el plato, entre filetes */}
-      <Filete top={592} left={64} />
-      <Filete top={592} left={1080 - 64 - 120} />
-      <Linea top={560} cuerpo={60} familia="BellMT" italica>{d.plato}</Linea>
-      <Linea top={640} cuerpo={30} peso={400} italica>{d.bajada}</Linea>
-      <ImagenReferencial top={1556} />
+      <Filete top={544} left={64} />
+      <Filete top={544} left={1080 - 64 - 120} />
+      <Linea top={512} cuerpo={60} familia="BellMT" italica>{d.plato}</Linea>
+      <Linea top={588} cuerpo={30} peso={400} italica>{d.bajada}</Linea>
+      {/* la leyenda va sobre la mesa, a la izquierda, sobre el plato: abajo el plato ocupa todo el ancho */}
+      <Linea top={1190} cuerpo={17} italica sombra={false} color="rgba(255,255,255,0.75)"
+        izquierda={60} ancho={260}>*Imagen referencial</Linea>
     </AbsoluteFill>
   );
 };

@@ -2,14 +2,16 @@
 
 Parte de la edición 2 aprobada por el cliente y le aplica lo que pidieron:
   1. estabiliza la cámara (cada una de las 3 tomas por separado, cámara fija);
-  2. usa el interior limpio que devuelve Magnific (sin texto y sin la sombra
-     sobre la mano) si se le pasa con --limpio;
+  2. borra el texto quemado y la sombra de la palma con parches de Magnific
+     (Runway Aleph 2): sólo se reemplaza la zona del texto y la piel de la mano;
+     todo lo demás es el 4K original;
   3. rearma el fondo desenfocado y vuelve a poner el texto con la misma
      tipografía, cuerpo, color y posición que la edición 2 (medidos al píxel:
      Raleway Medium 127 px, relleno #FEF8EA, borde #645B4A ~10 px).
 
 Uso:
-  python scripts/bw-reel29-op3.py --limpio raw/between/reel-29sep/limpio.mp4 \
+  python scripts/bw-reel29-op3.py --parche-texto raw/between/reel-29sep/mg-aleph.mp4 \
+      --parche-mano raw/between/reel-29sep/mg-mano.mp4 \
       --salida out/hilton/between/reel29-op3.mp4
 """
 import argparse, subprocess, os, sys
@@ -27,7 +29,8 @@ except Exception:
 
 W, H = 2160, 3840                 # cuadro final
 IX, IY, IW, IH = 30, 200, 2100, 3440   # recuadro interior en la edición 2
-CORTES = [0, 86, 150]             # primer cuadro de cada toma (medido por flujo óptico)
+CORTES = [0, 86, 150]
+ANCLA_Y = 1650                    # cinturón en el interior             # primer cuadro de cada toma (medido por flujo óptico)
 TEXTO = [("Por esto nací", 670, 1302), ("con dos manos", 596, 1462)]  # x tinta, alto de la P / la c
 
 
@@ -58,7 +61,10 @@ def movimiento(a, b, mascara=None):
 def estabilizar(fr, suavizado):
     """Por toma: trayectoria acumulada → se lleva a su media (cámara fija) o a
     una versión muy suavizada; devuelve cuadros corregidos y el zoom necesario."""
-    mask = None
+    # ancla: del cinturón hacia abajo (cuerpo rígido + fondo lateral); las
+    # manos se mueven a propósito y no deben arrastrar la corrección
+    mask = np.zeros((IH // 2, IW // 2), np.uint8)
+    mask[ANCLA_Y // 2:, :] = 255
     tomas = CORTES + [len(fr)]
     salida, zoom = [None] * len(fr), 1.0
     for t in range(len(tomas) - 1):
@@ -106,19 +112,79 @@ def texto_rgba():
     return np.array(capa)
 
 
+PARCHE_TEXTO_DESPLAZ = (-1.9, -1.8)   # Aleph sale corrido ~0,6 px a 666 de ancho (phaseCorrelate)
+MANO = (1140, 240, 960, 1060)         # recorte que se le mandó a Magnific
+MANO_HASTA = 150                      # tomas 1 y 2 (palma abierta); en la 3 la mano toma el vaso
+
+
+def mascara_texto():
+    """El texto de la edición 2 está fijo en pantalla: se recalca con la misma
+    fuente, se engorda y se difumina el borde. Sólo esa zona se reemplaza."""
+    t = texto_rgba()[IY:IY + IH, IX:IX + IW, 3]
+    m = cv2.dilate((t > 0).astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (29, 29)))
+    return cv2.GaussianBlur(m.astype(np.float32), (0, 0), 6)
+
+
+def mascara_piel(bgr):
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+    h, s_, v = hsv[..., 0].astype(int), hsv[..., 1], hsv[..., 2]
+    m = (((h <= 14) | (h >= 170)) & (s_ > 40) & (s_ < 150) & (v > 110)).astype(np.uint8)
+    m = cv2.morphologyEx(m, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8))
+    m = cv2.morphologyEx(m, cv2.MORPH_CLOSE, np.ones((25, 25), np.uint8))
+    m = cv2.erode(m, np.ones((7, 7), np.uint8))   # sin tocar el filo de la mano ni las uñas
+    return cv2.GaussianBlur(m.astype(np.float32), (0, 0), 5)
+
+
+def parchar(base, parche, m, desplaz=(0, 0)):
+    """Pega `parche` sobre `base` donde manda la máscara, igualando el color
+    medio en el anillo alrededor y devolviéndole el grano del original."""
+    if desplaz != (0, 0):
+        M = np.float32([[1, 0, desplaz[0]], [0, 1, desplaz[1]]])
+        parche = cv2.warpAffine(parche, M, (parche.shape[1], parche.shape[0]), borderMode=cv2.BORDER_REFLECT)
+    b, p_ = base.astype(np.float32), parche.astype(np.float32)
+    duro = m > 0.02
+    anillo = (cv2.dilate(duro.astype(np.uint8), np.ones((41, 41), np.uint8)) > 0) & ~duro
+    if anillo.sum() > 200:
+        p_ += (b[anillo].mean(0) - p_[anillo].mean(0))
+    # grano: el original tiene ruido fino que el parche reescalado perdió
+    ruido = b - cv2.GaussianBlur(b, (0, 0), 1.2)
+    ruido_p = p_ - cv2.GaussianBlur(p_, (0, 0), 1.2)
+    if anillo.sum() > 200:
+        falta = ruido[anillo].var() - ruido_p[anillo].var()
+        if falta > 0:
+            p_ += np.random.default_rng().normal(0, np.sqrt(falta), p_.shape[:2])[..., None]
+    a = m[..., None]
+    return np.clip(b * (1 - a) + p_ * a, 0, 255).astype(np.uint8)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--original", default=os.path.join(DIR, "interior.mp4"))
-    ap.add_argument("--limpio", help="interior sin texto ni sombra (Magnific)")
+    ap.add_argument("--parche-texto", help="interior sin texto (Magnific Aleph, mismo encuadre)")
+    ap.add_argument("--parche-mano", help="recorte de la mano sin sombra (Magnific Aleph)")
     ap.add_argument("--suavizado", type=int, default=0, help="0 = cámara fija por toma")
     ap.add_argument("--sin-texto", action="store_true")
     ap.add_argument("--salida", required=True)
     a = ap.parse_args()
 
     orig = leer(a.original, (IW, IH))
-    fuente = leer(a.limpio, (IW, IH)) if a.limpio else orig
-    n = min(len(orig), len(fuente))
-    orig, fuente = orig[:n], fuente[:n]
+    n = len(orig)
+    fuente = [f.copy() for f in orig]
+    if a.parche_texto:
+        m = mascara_texto()
+        limpio = leer(a.parche_texto, (IW, IH))
+        for i in range(min(n, len(limpio))):
+            fuente[i] = parchar(fuente[i], limpio[i], m, desplaz=PARCHE_TEXTO_DESPLAZ)
+    if a.parche_mano:
+        x, y, w, h = MANO
+        mano = leer(a.parche_mano, (w, h))
+        # Aleph devolvió el recorte a 24 cps (119 cuadros para 150): se toma el
+        # cuadro más cercano en el tiempo; el calce medido es < 0,4 px
+        for i in range(min(n, MANO_HASTA)):
+            j = min(round(i * len(mano) / MANO_HASTA), len(mano) - 1)
+            base = fuente[i][y:y + h, x:x + w]
+            mk = mascara_piel(base)
+            fuente[i][y:y + h, x:x + w] = parchar(base, mano[j], mk)
     # el movimiento se mide sobre la fuente que se va a mostrar
     Ms, zoom = estabilizar(fuente, a.suavizado)
     print(f"cuadros {n} · zoom para tapar bordes {zoom:.3f}", file=sys.stderr)
@@ -138,9 +204,10 @@ def main():
         inner = cv2.warpAffine(fuente[i], (Z @ M)[:2], (IW, IH), flags=cv2.INTER_LANCZOS4,
                                borderMode=cv2.BORDER_REFLECT)
         # fondo: el mismo cuadro estabilizado, agrandado y desenfocado (como en la edición 2)
-        fondo = cv2.resize(inner, (W, int(IH * W / IW)))
-        y0 = (fondo.shape[0] - H) // 2
-        fondo = fondo[y0:y0 + H] if y0 >= 0 else cv2.resize(inner, (W, H))
+        esc = max(W / IW, H / IH)
+        fondo = cv2.resize(inner, (round(IW * esc), round(IH * esc)))
+        x0, y0 = (fondo.shape[1] - W) // 2, (fondo.shape[0] - H) // 2
+        fondo = fondo[y0:y0 + H, x0:x0 + W]
         fondo = cv2.GaussianBlur(fondo, (0, 0), 40)
         cuadro = fondo.copy()
         cuadro[IY:IY + IH, IX:IX + IW] = inner

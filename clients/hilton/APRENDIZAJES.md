@@ -114,6 +114,12 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-100** · [DT] **El editable queda abierto en Illustrator para que Eli siga**: textos vivos, una capa por pieza — _Eli, 28-09-2026 («déjalo en el editable para yo seguir editando»)_ · ✔×1
 - **R-101** · [DT] **En una historia, las personas se ven COMPLETAS**: ningún borde las corta y el recuadro del programa tapa mesa, cama o piso, nunca cuerpos. Si no caben entre el titular y el recuadro, se aleja la cámara (expansión IA hacia abajo y a los lados, con la original pegada encima y revisada con zoom por si aparece gente de más), no se tapa — _Eli, 28-09-2026, ST 01-10 Family Time r7 («hay en varias que se ven que desaparecen o no se ven completos»)_ · ✔×1
 - **R-102** · [DT] **Entre dos fotos con gente, no hay fundido cruzado**: al 50 % las dos familias se ven transparentes y parece que «desaparecen». Va una cortina suave (borde de ~100 px, ~0,7 s, empuje leve) — _Eli, 28-09-2026, ST 01-10 r7 («mejora transiciones»)_ · ✔×1 (r8 sin aprobar todavía)
+- **R-104** · [DT] **Los PUNTEOS de beneficios llevan punto final**, con viñeta: R-60 (sin punto) vale para titulares y bajadas; cuando el texto es un listado de beneficios u opciones, cada ítem cierra con punto — _Eli, 29-09-2026, carrusel Escapada 07-10 lámina 2 («yo sé que es una regla, pero eso es más para la portada… cuando son textos muy extensos, que son como punteos de los beneficios, esos sí van con puntos»)_ · ✔×1
+- **R-105** · [DT] **Texto apilado en Stag con aire: interlínea ≥1,28** (titular de portada 1,3; punteo 1,36). A 1,10–1,14 «están muy juntos los textos… cuando se trata de stack» — _Eli, 29-09-2026, carrusel Escapada 07-10, portada y lámina 2_ · ✔×1
+- **R-106** · [DT] **Pares paralelos, un solo peso**: «Agrega sunset» / «Agrega masajes» van las dos líneas en el mismo peso (Medium), no a dos pesos como un titular — _Eli, 29-09-2026, carrusel Escapada 07-10 («que tengan el mismo peso»)_ · ✔×1
+- **R-107** · [DT] **Adicionales de un mismo listado, mismo signo**: si uno dice «+$21.000», el otro dice «+$100.000» — _Eli, 29-09-2026, carrusel Escapada 07-10 («dice más 21, entonces también tienes que agregar más 100, para que tenga coherencia»)_ · ✔×1
+- **R-108** · [DT] **El nombre del programa tiene su forma**: fuera de la portada, «Escapada Romántica» (como «Family Time» o «Noche de Bodas») va como logotipo de texto, Stag itálica a dos pesos (SemiBold + Light), no como antetítulo en versales — _Eli, 29-09-2026, carrusel Escapada 07-10 lámina 2 («la forma del texto que siempre le agrego, como el del Family Time o el de Noche de Bodas»)_ · ✔×1
+- **R-109** · [DT] **«Desde» va ARRIBA del precio**, chico, y la píldora del precio queda centrada — _Eli, 29-09-2026, portada Escapada 07-10 («el desde que quede arriba, para que eso quede centrado y se vea mucho mejor uniformemente»; r3 «el desde así está bien»)_ · ✔×1
 ### Between
 - **R-30** · [BW] Taza blanca con raya negra y **KIMBO: se borra siempre**; la taza vigente es blanca total — _Eli 25-08; Scarlette 31-08; ronda 9, 03-09-2026_ · ✔×3
 - **R-31** · [BW] **El logotipo nunca se deforma ni se curva**: escala uniforme a ratio 3,0298, integrado en el vaso por tono (multiply), no por geometría — _Eli 25-08 («no se vea achatado»); cliente 31-08; Eli 01-09-2026 («no puedes curvarlo de esa manera»)_ · ✔×3
@@ -161,7 +167,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-67** · [BW] La expansión IA de un reel se entrega **sutil y realista, siguiendo el movimiento del centro**: se revisa **frame a frame** que nada quede descuadrado, doblado (pelo, cabeza) ni con movimiento extraño — _Eli, prueba 2 del reel «La razón», 25-09-2026 («arriba de la cabeza se ve dos tipos»; «hacerlo frame a frame»)_ · ✔×1
 
 ### Las dos
-- **R-60** · [TODAS] **Ni títulos ni bajadas llevan punto** en la gráfica (el punto sólo en párrafos largos y legales) — _Eli 25-08 (BW) y 09-09 (DT); Javier Mesa 23-09-2026, recordatorio para las cuatro cuentas_ · ✔×4 · +1 bajadas del carrusel «5 cosas» sin punto, aprobado 28-09
+- **R-60** · [TODAS] **Ni títulos ni bajadas llevan punto** en la gráfica (⚠️ en DT los punteos de beneficios SÍ, ver R-104) (el punto sólo en párrafos largos y legales) — _Eli 25-08 (BW) y 09-09 (DT); Javier Mesa 23-09-2026, recordatorio para las cuatro cuentas_ · ✔×4 · +1 bajadas del carrusel «5 cosas» sin punto, aprobado 28-09
 
 ## 5. Excepciones
 
@@ -202,6 +208,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **A-10** · [BW] **Carta oficial: las 4 propuestas aprobadas** (A índice lateral café · B óvalos a dos columnas beige · C franjas con títulos Brushwell · D portada partida en café con hojas alternadas) — _Eli, 28-09-2026, tras 4 rondas en el día_
 
 - **A-11** · [DT] **Pendones DT 0,8×3 m con caras nuevas** — 3 pendones sobre la plantilla, ronda 3 de caras + armado + QR normal: «me encantó» — _Eli, 28-09-2026. Receta: `clients/hilton/RECETA-PENDONES-DT.md`_
+
+- **A-12** · [DT] **Carrusel Escapada Romántica 07-10** (2 láminas): portada calcada de la ref con la pareja IA sobre la habitación REAL `sep_26-505` + lámina de adicionales en tabla con filetes. La composición y la foto pasaron a la primera («lo veo ok, muy bien»; «la portada me gustó mucho»); las rondas 2–3 fueron sólo tipografía (R-104–R-109) — _Eli, 29-09-2026_
 
 ## 7. Lo que se rechaza
 
@@ -298,6 +306,11 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 (carrusel Escapada 07-10) — Claude con Eli · 3 rondas, APROBADO
+- **Reglas nuevas [DT]:** R-104 punteo de beneficios con punto final (acota R-60), R-105 interlínea ≥1,28 en lo apilado, R-106 pares paralelos a un peso, R-107 mismo signo en los adicionales, R-108 el nombre del programa como logotipo de texto, R-109 «Desde» arriba del precio.
+- **Aprobado a la primera:** A-12, la composición y la foto (pareja IA sobre habitación real, tono de escapada según R-74).
+- **Técnica:** receta completa en `clients/hilton/RECETA-CARRUSEL-PROGRAMA-DT.md`. Windows bloqueó `remotion.exe` ese día: los stills salieron con `scripts/still-por-chrome.py`.
 
 ### 2026-09-28 (cierre 2, reel «La razón» op 3) — Claude con Eli · carpeta renombrada
 - Sin aprendizajes nuevos del cliente: sólo se renombró la carpeta de Drive «prueba tres» → **«prueba última»** a pedido de Eli («guárdalo en mi drive como prueba última»). La op 3 sigue en revisión (§8).

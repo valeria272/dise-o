@@ -1,3 +1,34 @@
+## 2026-09-29 (mediodía) — Eli (Windows) · DT FEED 07-10 carrusel ESCAPADA ROMÁNTICA — ✅ APROBADO (ronda 3), GUARDADO, NO SUBIDO A DRIVE
+
+**Eli:** «okey, guarda este resultado y cómo lo realizaste».
+**Dónde quedó:** máster `out/hilton/dt/entrega-oct3/C1 S2 DT n°1.png` y `n°2.png` (2250×2812, = r3) · fotos en git (`public/assets/hilton/dt/oct3/`, con excepción en `.gitignore`) · receta `clients/hilton/RECETA-CARRUSEL-PROGRAMA-DT.md` · reglas R-104–R-109 y A-12 en `APRENDIZAJES.md`.
+**Qué sigue:** subirlo a S2/DT/FEED cuando Eli confirme la carpeta y el nombre.
+
+## 2026-09-29 (mañana, 3) — Eli (Windows) · DT FEED 07-10 carrusel ESCAPADA ROMÁNTICA, RONDA 3 — EN REVISIÓN, NO SUBIDA
+
+**Feedback de Eli sobre la r2 («la portada me gustó mucho, el desde así está bien»):** «agregar sunset y agregar masaje, que tengan el mismo peso» · «están muy juntos los textos, en todos, cuando se trata de stack» · los beneficios son PUNTEO y llevan punto final («yo sé que es una regla, pero eso es más para la portada; cuando son textos extensos, que son punteos de los beneficios, esos sí van con puntos») · «dice +21, entonces también +100».
+**Qué se hizo:** «Agrega / sunset» y «Agrega / masajes» en Stag Medium las dos líneas; interlínea de todo lo apilado a ~1,3 (titular de portada 1,3, «Personaliza» 1,28, columna 1,28, punteo 1,36); detalle como punteo con «•» colgado y punto final; «+$100.000». QA motor: las 2 ✓. Render con `scripts/still-por-chrome.py` (remotion.exe sigue bloqueado).
+**Dónde quedó:** `out/hilton/dt/oct3-revision/r3/escapada-{1,2}.png` · revisión (misma URL, versión 3) https://claude.ai/artifact/9oZT3AsCsYwnrGgmTxYfSi.
+**Aprendizajes para cosechar:** (1) excepción a R-60: los PUNTEOS de beneficios llevan punto final; (2) texto apilado en Stag con interlínea ≥1,28, a 1,1–1,14 «se ve junto»; (3) los pares paralelos («Agrega X») van en un solo peso; (4) los precios de un mismo listado de adicionales llevan el mismo signo («+»).
+**Qué sigue:** OK de Eli → subir a S2/DT/FEED.
+
+## 2026-09-29 (mañana, 2) — Eli (Windows) · DT FEED 07-10 carrusel ESCAPADA ROMÁNTICA, RONDA 2 — EN REVISIÓN, NO SUBIDA
+
+**Feedback de Eli sobre la r1 («lo veo ok, muy bien»):** en la lámina 2 va el NOMBRE DEL PROGRAMA con su forma de siempre, «como el de Family Time o el de Noche de Bodas» (no el antetítulo en versales); en la portada «el desde que quede arriba, para que eso quede centrado». Lo demás aprobado.
+**Qué se hizo:** lámina 2 con «Escapada Romántica» en Stag itálica a dos pesos (SemiBold + Light, 92 px, la forma del Family Time del FEED 28-10) y «Personaliza tu experiencia» a 58. Portada: «Desde» sobre la píldora del precio, todo centrado; el bloque bajó (tope 36 px, precio 56) para no tocar los zapatos de la pareja. QA motor: las 2 ✓.
+**⚠️ Render:** desde las ~10:00 el Control de aplicaciones de Windows BLOQUEA `remotion.exe` (el compositor): `npx remotion still` muere con `spawn UNKNOWN`. Estos stills salieron con `scripts/still-por-chrome.py` (paquete web + Chrome del sistema), mismo tamaño y mismas fuentes que la r1.
+**Dónde quedó:** `out/hilton/dt/oct3-revision/r2/escapada-{1,2}.png` · revisión (misma URL, versión 2) https://claude.ai/artifact/9oZT3AsCsYwnrGgmTxYfSi.
+**Qué sigue:** OK de Eli → subir a S2/DT/FEED (confirmar nombre `C1 S2 DT n°1–2`).
+**Abierto:** foto real del sunset QB → Eli · el bloqueo de `remotion.exe` impide rendir VIDEO en esta máquina (el still tiene salida) → quien administre el equipo.
+
+## 2026-09-29 (mañana) — Eli (Windows) · DT FEED 07-10 carrusel ESCAPADA ROMÁNTICA, RONDA 1 — EN REVISIÓN, NO SUBIDA
+
+**Grilla:** sin cambios desde el 28-09 20:08Z (diff `api/dt-oct-20260928.json` → `api/dt-oct-20260929.json`). Única pieza nueva para diseño: el carrusel 07-10 (OK PARA DISEÑO, comentarios de diseño tachados: contenido cambió el titular y lo dejó atemporal). ST 27-10 Noche de Bodas sigue en REVISAR CONTENIDO (comentario para contenido). La opinión Expedia se movió del 10-10 al 09-10 (el archivo de Drive conserva la fecha vieja; no se renombró).
+**Qué se hizo:** 2 láminas 1080×1350 (`src/compositions/hilton/DtCEscapadaOct.tsx`, entry `src/DtOct3Entry.tsx`). REF (pin 932315560378216027, bajada a `raw/hilton/dt/ref-oct2/fd-07-10-escapada-{1,2}.jpg`): portada calcada de la REF 1 (antetítulo en versales, titular Stag centrado, píldora de contorno con la dirección) y lámina 2 calcada de la REF 2 (foto oscurecida + tabla con filetes). Portada: habitación REAL `sep_26-505` (sesión SEP 2026) + pareja, cubeta y atardecer con Nano Banana Pro (variante a), techo expandido con Flux Pro para bajar las caras bajo el titular. Lámina 2: mesa de la terraza de QB al atardecer con dos tragos, GENERADA con el KV Sunset QB aprobado como referencia (no hay foto real en alta). QA motor: portada ✓; lámina 2 con un aviso de banda desenfocada (el techo fuera de foco de la propia foto).
+**Dónde quedó:** `out/hilton/dt/oct3-revision/r1/escapada-{1,2}.png` · revisión https://claude.ai/artifact/9oZT3AsCsYwnrGgmTxYfSi (`scripts/dt-oct3-escapada-revision.py`) · fotos `scripts/dt-oct3-escapada-fotos.py` → `public/assets/hilton/dt/oct3/` · crudos `raw/hilton/dt/oct3-escapada/`.
+**Qué sigue:** revisión de Eli. Si aprueba, subir a S2/DT/FEED como `C1 S2 DT n°1–2` (confirmar la semana y el nombre con Eli).
+**Abierto:** ¿hay foto real del sunset de QB para la lámina 2? → Eli · siguen en revisión la ST 01-10 Family Time r8 y el Coworking r3.
+
 ## 2026-09-28 (noche, 3) — Eli (Windows) · BETWEEN reel «La razón» 29-09: OPCIÓN 3 (retoque IA de la edición 2) — EN REVISIÓN, SUBIDA A «prueba última» (antes «prueba tres»)
 
 **Pedido (KAM vía Eli):** el cliente prefiere la **edición 2**; pide retoque con IA: quitar o bajar el temblor, la Pauli más estática, borrar la sombra (≈ s 2 y 4) y pregunta por una máscara de recorte en la falda. Eli: «pídele a Magnific».

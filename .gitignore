@@ -117,6 +117,10 @@ public/assets/ebema/linkedin-oct26/**/*.log
 # DT octubre 2026 (24-09): fondos revelados, familia regenerada, íconos de Eli, logo Google.
 # Las piezas se entregaron: sus fondos vuelven al repo el mismo día (el-render-vuelve-al-repo).
 !public/assets/hilton/dt/oct/**
+# DT octubre, tercera tanda (29-09): carrusel Escapada Romántica 07-10, APROBADO. La portada
+# (sep_26-505 + pareja IA + techo expandido) y la mesa del sunset generada; se rehacen con
+# scripts/dt-oct3-escapada-fotos.py pero cuestan créditos y no salen iguales.
+!public/assets/hilton/dt/oct3/**
 
 # CARRUSEL S5 · 28-09 «Tu día en DoubleTree». Van los recortes de FOTO (la lámina
 # del gym, que todavía no es video) pero NO los clips.

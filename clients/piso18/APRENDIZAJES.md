@@ -9,8 +9,8 @@
 > (DoubleTree, QB y Between son cuentas aparte aunque compartan edificio y Drive).
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
-> Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
-> Última cosecha: **2026-09-29** · Cosechas: **9**
+> Criterio: **Elisabet Soto «Eli»**, con revisión de la jefa de diseño **Constanza Lizana** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
+> Última cosecha: **2026-09-29** · Cosechas: **10**
 
 ## 1. Quién es el cliente
 
@@ -26,7 +26,7 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 |---|---|
 | Quién pide / KAM | Eli encarga al estudio; la grilla (brief de contenido) la dejan Carlos Figueroa y Scarlette Muñoz |
 | Quién aprueba (cliente) | Hilton, en la grilla. Eli revisa y aprueba antes, mirando una página de antes/después |
-| Por dónde llega el feedback | Comentarios en celda de la grilla (hojas FEED · STORIES · ORGÁNICO), **prependidos** sobre el anterior; encargo directo de Eli |
+| Por dónde llega el feedback | Comentarios en celda de la grilla (hojas FEED · STORIES · ORGÁNICO), **prependidos** sobre el anterior; encargo directo de Eli; y **hilos nativos de la jefa de diseño Constanza Lizana** con @Eli, anclados a la celda del brief (desde el 29-09, R-59) |
 | Dónde se entrega | `S<n> HILTON <MES> 2026 › PISO18` en Drive (la carpeta hereda permisos de escritura del cliente); banners en `10sST2d5K43vVYFgtn084AsAMNRwCYEoe` |
 | Ritmo | Grilla mensual por semanas (S1–S5); estáticas, historias animadas en Remotion y reels en CapCut |
 | Rondas típicas | Carrusel S4: 5 rondas. Historia animada S4: 7 rondas (orden de fotos, titular y, sobre todo, la transición) |
@@ -71,7 +71,7 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - **R-28** · En la historia animada (Remotion) los planos se escriben del primero al último para que el que entra quede arriba, con curva simétrica — _reclamo del cliente 22-09: «se queda pegada a la mitad»_ · ✔×1
 - **R-29** · Una transición se mide en secuencia PNG en **todas** las transiciones: cero fotogramas congelados dentro del empuje y cero saltos >25 fuera — _S4 ronda 7, 22-09; reglas.yaml v5_ · ✔×1
 - **R-30** · En una historia animada, posición y contraste del botón se miden en el último fotograma — _manual; reglas.yaml_ · ✔×1
-- **R-31** · Una pieza corregida se reemplaza en Drive **conservando su enlace** — _S4 rondas 4, 5, 6 y 7 (16 al 22-09)_ · ✔×7 (28-09: rondas 2 y 3 de octubre) · 29-09: ronda 4: 8 archivos reemplazados
+- **R-31** · Una pieza corregida se reemplaza en Drive **conservando su enlace** — _S4 rondas 4, 5, 6 y 7 (16 al 22-09)_ · ✔×7 (28-09: rondas 2 y 3 de octubre) · 29-09: ronda 4: 8 archivos reemplazados · ✔×8 (29-09 rondas 5 y 6: 6 láminas, md5 verificado)
 - **R-32** · La revisión se publica como página de antes/después; nada interno va a la carpeta de entrega, que ve el cliente (`@hilton.com` con permiso de escritura) — _hallazgo 16-09; rondas 4–7 aprobadas así_ · ✔×6 (28-09: páginas r1 y r2 de octubre) · 29-09: páginas r4 y st1510
 - **R-33** · Lo nuevo de la grilla se detecta por diff de **conjunto de cadenas** contra la instantánea anterior: el comentario se prepende y no lo delatan ni la celda ni el `modifiedTime` — _confirmado el 16, 17 (×2), 22-09 y 28-09 (grilla oct: 8 comentarios nuevos del cliente en celdas que estaban vacías; 28-09 noche: la grilla reordenó 3 piezas entregadas)_ · ✔×7 · 29-09: grilla 29-09 12:21Z: 5 comentarios nuevos sobre piezas entregadas
 - **R-34** · Una pieza se identifica por su **título**, nunca por la columna: la grilla corre fechas sin avisar — _16-09 (NOCHE 25→23), 17-09, 22-09 (animada 23→24)_ · ✔×3
@@ -97,7 +97,7 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - **R-54** · Si la ref trae papel (hoja rasgada, nota), va una **textura de papel real** (generada con la ref de guía) y el rasgado con mordidas hondas del mismo tono; el papel plano y el zigzag no pasan — _Eli, 29-09, ST 15-10: «la textura muy, muy igual al papel que está ahí»_ · ✔×1
 - **R-55** · El fondo de una historia es una escena real de Piso18 **con sus luces** (esferas con velas, guirnaldas), poco desenfocada para que brillen, y lo lindo de la foto queda a la vista, no detrás del texto — _Eli, 29-09, ST 15-10: «más con luces que tiene Piso18, una escena más bonita»_ · ✔×1
 - **R-56** · «Fondo de algún montaje» = foto real de un salón montado, oscurecida (~0,5) y con desenfoque gaussiano para que no compita con lo del frente; rótulos y flechas encima, en fucsia — _cliente ST D14 29-09 + Eli, 2 vueltas_ · ✔×1
-- **R-57** · Los rótulos en Raleway de caja alta llevan espaciado **discreto (~0,08 em, 2 px a 26 px)**; el espaciado abierto de letra por letra (0,27 em) se lee como diseño de IA — _Constanza Lizana (jefa de diseño), 29-09, FEED 09-10 G2: «Ojo con esa separación de letra x letra en las palabras, es demasiado ia :(»_ · ✔×1
+- **R-57** · Los rótulos en Raleway de caja alta llevan espaciado **discreto (~0,08 em, 2 px a 26 px)**; el espaciado abierto de letra por letra (0,27 em) se lee como diseño de IA — _Constanza Lizana (jefa de diseño), 29-09, FEED 09-10 G2: «Ojo con esa separación de letra x letra en las palabras, es demasiado ia :(»_ · ✔×2 (Eli 29-09 la extendió a todo el mes: 13-10, 16-10, ST 15-10, ST 27-10)
 - **R-58** · Texto grande sobre una foto va en **relleno sólido**, no calado/contorno: el trazo fino se pierde contra la foto — _Constanza Lizana, 29-09, ST 07-10: «Se pierde mucho el texto "dulce" "salada" en delineado, prueba con la línea más gruesa o bien mejor sólido»_ · ✔×1
 - **R-59** · La jefa de diseño (Constanza Lizana) comenta con **hilos nativos de la grilla que mencionan a Eli**, no en las celdas: el diff de celdas no los ve. Leer siempre `read_file_content` con `includeComments=true` y filtrar por autor y fecha; los estados de sus piezas pasan a EN CAMBIOS / EN CAMBIOS DISEÑO — _29-09, ronda 5_ · ✔×1
 
@@ -177,7 +177,9 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - Las piezas de octubre no declaran sus textos al QA, así que «sin bodas» queda «sin verificar» (se revisó a mano) → estudio
 - La grilla reordenó 3 piezas ya entregadas (Fechas 2027 09→06-10 · Arreglos 06→09-10 · Tu próxima celebración 16-10 S3 → 30-10 S5, contenido idéntico). En Drive siguen con la fecha vieja y el portal levanta por nombre. ¿Quién renombra? → Eli / KAM (script `scripts/p18-oct-reordenar.py`, sin correr)
 - Smart App Control de Windows bloquea el compositor de Remotion en la máquina de Eli desde el 29-09: los MP4 (ST 16 y 30-10) no se pueden rendir ahí → **Valeria**
-- El cliente preguntó «¿el montaje es real o IA?» (FEED Arreglos): la foto es real y sólo se recoloreó con IA. ¿Quién le responde? → Eli / KAM
+- ~~El cliente preguntó «¿el montaje es real o IA?»~~ → respondido en la celda D13 el 29-09 («ES REAL SOLO SE MODIFICO UN POCO EL COLOR») y tachado.
+- Los dos hilos de Constanza (FEED C9, STORIES D8) siguen **abiertos** en la grilla y las piezas en EN CAMBIOS / EN CAMBIOS DISEÑO: ¿quién los responde/cierra y devuelve el estado? → Eli
+- ¿El criterio de espaciado de Constanza aplica a septiembre y a las piezas futuras de otras diseñadoras en Piso18? Se aplicó sólo a octubre → Eli / Constanza
 - La ST 09-10 conserva «Cotiza tu evento en piso18.cl» sin CTA en el brief (R-51): Eli la dio por buena; ¿se mantiene? → Eli
 
 ## 9. Registro de cosechas
@@ -185,7 +187,11 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 ### 2026-09-29 (tarde) — Elisabet Soto con Claude · RONDA 5: comentarios de Constanza Lizana — CORREGIDAS Y EN DRIVE
 - Constanza, en hilos nativos (verbatim): FEED C9 «Aquí en el slide 2 "Temporada alta 2027" Ojo con esa separación de letra x letra en las palabras, es demasiado ia :(» · STORIES D8 «Se pierde mucho el texto "dulce" "salada" en delineado, prueba con la línea más gruesa o bien mejor sólido».
 - nuevas **R-57** espaciado discreto · **R-58** texto sobre foto en sólido · **R-59** los hilos de la jefa de diseño se leen aparte. Rechazos **X-29**, **X-30**. Página https://claude.ai/artifact/3JstsrpP24PacLKw8VR8zc; md5 en Drive verificado.
-- Ronda 6 (misma tarde): R-57 aplicada a 13-10 G2, 16-10 G1, ST 15-10 y ST 27-10 — reemplazadas en Drive (md5 verificado). «TEX MEX» (0,07) ya cumplía.
+- Ronda 6 (misma tarde), Eli: «ahora sabiendo ese aprendizaje, ve si hay algo que corregir a futuro de grilla de oct» → R-57 aplicada a 13-10 G2 («ESCRIBE TU HISTORIA DE AMOR» 0,36 y «PISO18.CL» 0,19), 16-10 G1 («EN PISO18» 0,25), ST 15-10 (temáticas 0,16) y ST 27-10 («VISITA VIRTUAL 360°» 0,30) — reemplazadas en Drive (md5 verificado). «TEX MEX» (0,07) ya cumplía. Página https://claude.ai/artifact/Hxn9fNwxfKnR4iJPMN9v4D.
+- ✔ subieron: **R-31** (×8), **R-57** (×2). §2 actualizado: Constanza comenta por hilos nativos. §8: 2 preguntas nuevas.
+- Eli, 29-09: «como siempre de aquí en adelante reemplaza los cambios que realizaste y déjalos en Drive» → toda corrección se reemplaza en Drive en el mismo turno, sin esperar OK (preferencia de Eli, memoria `subir-a-drive-al-aprobar`).
+- Técnica: el render por Chrome dibuja distinto la perspectiva 3D (celulares de la ST 27-10 corridos) → se injertó sólo la franja del rótulo sobre el PNG aprobado.
+- Fuera de alcance: el criterio de Constanza también llegó a DT y Between el mismo día, pero se cosecha en `clients/hilton/`, no acá. Candidata a regla del estudio (para Valeria): «rótulos en caja alta con espaciado discreto; el tracking abierto se lee como IA».
 
 ### 2026-09-29 — Elisabet Soto con Claude · RONDA 4 de octubre + ST 15-10 nueva (8 vueltas en el día) — APROBADAS Y EN DRIVE
 - Cliente en la grilla (verbatim): FEED C13 «Según brief la G2 también es imagen, seleccionemos alguna horizontal para que quede dividida de forma continua?» · FEED D13 «Falta logo, el montaje es real o IA?» · ST C14 «Ok, pero quitemos botón diseñado para no repetir info» · ST D14 «Veamos un fondo más entretenido? que sea d ealgún montaje» · ST F14 «El Que con q mayúscula».

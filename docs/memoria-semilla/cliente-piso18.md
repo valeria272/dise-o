@@ -1,6 +1,6 @@
 ---
 name: cliente-piso18
-description: "PISO18 — cerebro del cliente: 56 reglas firmes, última cosecha 2026-09-29. Generado desde clients/piso18/APRENDIZAJES.md; leerlo antes de diseñar para piso18"
+description: "PISO18 — cerebro del cliente: 59 reglas firmes, última cosecha 2026-09-29. Generado desde clients/piso18/APRENDIZAJES.md; leerlo antes de diseñar para piso18"
 metadata:
   type: project
 ---
@@ -9,10 +9,10 @@ metadata:
 la fuente es `clients/piso18/APRENDIZAJES.md` (léelo completo antes de producir; esto es
 sólo lo más confirmado). ⛔ Vale sólo para piso18: no se traspasa a otra marca.
 
-Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
+Criterio: **Elisabet Soto «Eli»**, con revisión de la jefa de diseño **Constanza Lizana** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
 
 ## Reglas más confirmadas
-- **R-31** · Una pieza corregida se reemplaza en Drive **conservando su enlace** — _S4 rondas 4, 5, 6 y 7 (16 al 22-09)_ · ✔×7 (28-09: rondas 2 y 3 de octubre) · 29-09: ronda 4: 8 archivos reemplazados
+- **R-31** · Una pieza corregida se reemplaza en Drive **conservando su enlace** — _S4 rondas 4, 5, 6 y 7 (16 al 22-09)_ · ✔×7 (28-09: rondas 2 y 3 de octubre) · 29-09: ronda 4: 8 archivos reemplazados · ✔×8 (29-09 rondas 5 y 6: 6 láminas, md5 verificado)
 - **R-33** · Lo nuevo de la grilla se detecta por diff de **conjunto de cadenas** contra la instantánea anterior: el comentario se prepende y no lo delatan ni la celda ni el `modifiedTime` — _confirmado el 16, 17 (×2), 22-09 y 28-09 (grilla oct: 8 comentarios nuevos del cliente en celdas que estaban vacías; 28-09 noche: la grilla reordenó 3 piezas entregadas)_ · ✔×7 · 29-09: grilla 29-09 12:21Z: 5 comentarios nuevos sobre piezas entregadas
 - **R-32** · La revisión se publica como página de antes/después; nada interno va a la carpeta de entrega, que ve el cliente (`@hilton.com` con permiso de escritura) — _hallazgo 16-09; rondas 4–7 aprobadas así_ · ✔×6 (28-09: páginas r1 y r2 de octubre) · 29-09: páginas r4 y st1510
 - **R-01** · «bodas» no se escribe nunca: va matrimonio(s) o novios, aunque el brief o el hashtag lo traigan — _Eli, 15-09-2026; ratificada por el cliente en `FEED!I14` el 17-09 («no usemos la palabra BODA»)_ · ✔×4 (28-09: las 11 de octubre sin «boda») · 29-09: ronda 4 y ST 15-10 sin «boda»

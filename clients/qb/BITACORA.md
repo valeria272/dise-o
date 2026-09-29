@@ -1,5 +1,33 @@
 # QB Restaurant — bitácora
 
+## 2026-09-29 (tarde) — Elisabet Soto «Eli» (Windows, con Claude) · lo que faltaba de octubre: 8 «ST APROBADA» + post 05-10 a Drive, y Drive renumerado por fecha
+
+**Qué se hizo:**
+- `/abrir qb` + `/al-dia qb`: la grilla de octubre se movió 15:17Z (Scarlette), 2 celdas: FEED 07-10 ESTÁTICA→CARRUSEL (ya entregado así) y ST 30-10 título «¿Planes para hoy?», que sigue en REVISAR CONTENIDO (no se diseñó). Instantáneas `api/qb-oct-20260929b.json`, `qb-sept-20260929b.json`.
+- Eli: «diseña lo que está OK en octubre, súbelo a Drive según la fecha y las semanas». Cruce grilla × Drive: todo lo OK estaba hecho y subido salvo **el post 05-10 (nunca subido)**, **las 8 «ST APROBADA» sin archivo** y la **Ensalada 19-10** (versión sin mano).
+- Las 8 aprobadas se hicieron sobre la pieza aprobada de cada promo con **foto REAL nueva por fecha** (Eli: «guíate de las referencias que da contenido pero conserva logos, nombres importantes y legales»):
+  | Fecha | Pieza | Foto | Drive |
+  |---|---|---|---|
+  | 13-10 | AYCD | foto limpia de la ST aprobada de sept (+ «Imagen referencial») | `S2/QB/STS/ST n°2 S2` |
+  | S2 (tras el 16) | Sunset | QB 13 oct-57 | `ST n°6 S2` |
+  | 17-10 | CMR 40 % sábados | American Baby ribs 1 (carta ene-26) | `ST n°7 S2` |
+  | S3 (tras el 22) | Sunset | QB 13 oct-67 | `S3/…/ST n°5 S3` |
+  | 25-10 | CMR 40 % sábados | Cerveza Atenea 2 | `ST n°6 S3` |
+  | 27-10 | AYCD | IMG_4756 copa Ramazzotti (real) | `S4/…/ST n°2 S4` |
+  | S4 (tras el 28) | Sunset | QB 13 oct-52 | `ST n°4 S4` |
+  | 31-10 | CMR 40 % sábados | Papas trufadas 5 | `ST n°5 S4` |
+- CMR 40 % se **calcó midiendo** la aprobada «CMR 40-30OFF» (caja, curva, 40 %, franja, las 4 tarjetas recortadas de la aprobada → `tarjetas-cmr-4.png`); texto del brief de la col. 15-10. Todo en zona segura de paid.
+- Post cumpleaños 05-10 → `S1/QB/FEED/Post n°1 S1 QB OCT 26.png`.
+- **Renumerado en Drive por el orden actual de la grilla** (renombrar, el enlace no cambia): S2 Adivina n°2→n°3, Mejores amigos n°3→n°4; S3 AYCD llamada n°1→n°2, Ensalada n°4→n°1 (mp4, estática, gif), Close friends n°5→n°4.
+- Ensalada 19-10: `qb-oct-clips.py` pasó a **Kling 2.5 Pro** (2.1 falla sin error). Al cierre: **los 4 clips listos** en `raw/hilton/qb/oct-ia/clips/` (`s22_e1` acercamiento, `s22_e2` la mano entra con el tenedor, `s22_e3` macro del tenedor, `s22_e4` bocado hacia cámara). **Ninguno revisado ni montado todavía** (raw/ no viaja: si otra máquina retoma, regenerar con `python scripts/qb-oct-clips.py`).
+
+**Dónde quedó:** `src/compositions/qb/oct/QbStAprobadaAycd.tsx`, `QbStAprobadaSunset.tsx`, `QbStAprobadaCmr40.tsx` (registradas `QB-OCT-AP-AYCD/SUNSET/CMR40` con prop de fecha/semana). Fotos `public/assets/hilton/qb/oct/ap-*.jpg`; originales en `raw/hilton/qb/oct-aprobadas/` (no viaja). Entrega `out/qb/oct/r14/` + `_textos.json`. Scripts nuevos: `scripts/qb-oct-subir.py` (una pieza a su semana, md5) y `scripts/qb-oct-renumerar.py`. ⛔ `qb-oct-subir-drive.py` y `qb-oct-r9-subir-drive.py` quedaron marcados «no volver a correr» (nombres viejos). QA `--textos`: 0 bloqueantes, 9 avisos falsos positivos conocidos.
+**Qué sigue:** mirar los clips (¿el plato y los camarones conservan la forma? ¿la mano es creíble?, checklist de personas IA); Después montarlos en `QbSt22Ensalada.tsx` (mano con tenedor, línea «Recomendación del chef», «Imagen referencial»), rendir MP4 + estática + GIF y subir como `ST n°1 S3` reemplazando.
+**Abierto:**
+- Visto de Eli a las 8 «ST APROBADA» → Eli.
+- Legal del brief CMR corregido («Valido… octubrepagando» → «Válido… octubre pagando») → contenido, si lo quiere literal.
+- Local: `out/qb/oct/entrega/` y `r9/` conservan los nombres VIEJOS de las historias renumeradas; la fuente de verdad del nombre es Drive.
+
 ## 2026-09-29 — Elisabet Soto «Eli» (Windows, con Claude) · `/abrir qb` + relectura de las grillas — SIN PIEZAS
 
 **Qué se hizo:** `/abrir qb` y `/al-dia qb`. La grilla de OCTUBRE no se tocaba desde el 28-09 17:48Z: diff celda por celda contra `api/qb-oct-20260928c.json` = 0 (se releyó dos veces en la sesión, igual). La grilla de SEPTIEMBRE se movió el 28-09 20:44Z (Sebastián): es el cierre del mes, casi todo en YA POSTEADO o APROBADO; la Trivia de brindis quedó APROBADO («Antes de *beber* y ok!»). Eli preguntó por la **S5 de octubre**: contenido no ha movido nada ahí.

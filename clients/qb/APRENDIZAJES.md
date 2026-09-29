@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-09-29** · Cosechas: **12**
+> Última cosecha: **2026-09-29** · Cosechas: **13**
 
 ## 1. Quién es el cliente
 
@@ -107,6 +107,11 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **R-63** · Una torta de cumpleaños se ve **clásica y bonita**: blanca lisa, perlas, cinta verde QB y unas ramitas finas. Nada de decoraciones raras (rosetas tipo suculenta) — _Eli 28-09, ST 07-10: «la torta está un poco feíta, añádele detalles verdes como de QB» (r10); «hay unas decoraciones extrañas… que se vea una torta bonita de cumpleaños» (r11)_ · ✔×1
 - **R-64** · «Limpiar la mesa» de una foto aprobada es **local y sin IA**: la IA la reencuadra. Se limpian las manchas de la superficie y se **protege el protagonista** (plato, copa) con una máscara desde la foto original: una limpieza que lo alcanza lo alisa y «desaparece» contra la mesa — _Eli 28-09, ST 12-10: «la mesa se ve sucia, déjala más limpia» (r10); «el plato desapareció, hay una parte de arriba que está difuminada» (r11); método en `raw/hilton/qb/oct-r9/` (motas → inpaint, vetas → desaturar, nudo → parche de la misma tabla, plato restaurado)_ · ✔×1
 - **R-65** · El marco punteado de la línea «trago de autor» (ST3-S3 de septiembre) se calca: trazo **~1,5 px**, guion corto (9/6), **verde menta claro** `#A9CDB3`, corrido a la izquierda del trago (nace afuera y termina dentro de él) — _Eli 28-09, ST 16-10: «que se vea más similares las líneas discontinuas»; aprobada después del ajuste_ · ✔×1
+- **R-66** · Una casilla **«ST APROBADA»** o **«ST BANCO …»** en APROBADO sin brief **sí se diseña**: es la pieza aprobada de esa promo **con foto nueva por fecha** (que no salga idéntica dos veces en el mes). Se guía por la referencia que dio contenido para ese mismo tema en otra columna, y se **conservan logos, nombres importantes y legales** de la aprobada. El texto que la aprobada no trae sale del brief de la misma promo (CMR 40 % sábados → col. 15-10) — _Eli 29-09: «guíate de las referencias que da contenido pero hay elementos que conservar: logos, nombres importantes y legales, cosas así»_ · ✔×1. Plantillas medidas: AYCD = `AYCD-ST-sep2026`, Sunset = `St n1 QB SUNSET`, CMR 40 % = `CMR 40-30OFF 1080x1920` (todas en `raw/hilton/qb/aprobadas/`); código en `QbStAprobadaAycd/Sunset/Cmr40.tsx`
+- **R-67** · En Drive, el **n° de cada historia dentro de su semana sigue el orden ACTUAL de la grilla** (fecha y posición), no el de cuando se diseñó. Si la grilla corre fechas o intercala piezas, se **renombra** lo subido (el ID y el enlace no cambian) antes de subir lo nuevo, en un orden que no pise nombres (`scripts/qb-oct-renumerar.py`). Las piezas en REVISAR/PENDIENTE no toman número hasta que se diseñan — _Eli 29-09: «ve subiéndolo al drive, actualízalo según la fecha y las semanas»_ · ✔×1
+- **R-68** · El **schop del AYCD es Heineken**: una foto con otra cerveza de marca visible (el brindis IMG_4822 de «Fotos 4 agosto» es **Kunstmann**) no sirve para AYCD aunque sea real y linda — _R-56 aplicada a la foto, 29-09_ · ✔×1
+- **R-69** · Las plantillas aprobadas de AYCD y CMR tienen el nombre/titular arriba y el bloque de precio al medio-abajo: la foto que les sirve es **de tragos o mesa sin caras al centro**. Una foto de personas deja el nombre sobre las caras y el bloque sobre los tragos. Para CMR «mesa servida» manda el **shooting de la carta ene-2026** (R-40): American Baby ribs 1, Cerveza Atenea 2, Papas trufadas 5 — _29-09, cazado en la revisión antes de entregar_ · ✔×1
+- **R-70** · En la ST de Sunset, el titular en **Raleway Light** no se lee sobre tragos de colores: la foto **sube** (FotoQB `libre` + `bajar` negativo) para que los tragos queden entre el logo y el titular y el titular caiga sobre la mesa; el canto de abajo se funde a negro. Un velo local solo no alcanza — _29-09, S2/S3/S4_ · ✔×1
 
 ## 5. Excepciones
 
@@ -168,6 +173,8 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **X-26** · Leer «centra el botón» como centrado vertical cuando Eli marcaba el **ancho** con rayas — _FEED 12-10 G2, Eli 28-09, 1 ronda_
 - **X-27** · (interno) Rondas rendidas y dadas por entregadas que nunca se subieron a Drive: Eli no encontraba las STS r4–r8 — _28-09, cazado por Eli_. Entregar = subir y verificar el md5
 - **X-07** · (interno) Estática en el frame 239 porque lo decía la cabecera: la estática y el video mostraban las bandas en lugares distintos — _v7, 23-09, cazado antes de entregar_
+- **X-28** · (interno) Tomar para AYCD un brindis con schop **Kunstmann** (IMG_4822) y fotos con caras donde va el nombre — _ST 13-10 aprobada, 29-09, cazado en la revisión antes de entregar_
+- **X-29** · (interno) Titular Light de Sunset encima de cinco tragos de colores: ilegible, el velo radial no lo salvó — _ST Sunset S2–S4, 29-09, cazado antes de entregar_
 
 ## 8. Preguntas abiertas
 
@@ -190,7 +197,8 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - La ref del 22-10 (reel de Instagram) ya no carga: ¿hay otra? → **Eli**
 - El carrusel de bancos pasó a **CMR Falabella 40 % sábados + 30 % débito** (Banco de Chile salió) y el cliente lo pidió para S2. Cuando pase a OK va sobre la pieza CMR aprobada (R-37). Ojo: el brief lo sigue rotulando «SLIDE 2 — BANCO DE CHILE» y no trae slide 3 → contenido
 
-- Las 8 casillas APROBADO nuevas de STORIES (5 «ST APROBADA», 3 «ST BANCO FALABELLA» CMR 40 %) no traen brief: ¿se republican las aprobadas tal cual o hay que prepararlas con fecha/foto nueva? → **Eli**
+- ~~Las 8 casillas APROBADO sin brief~~ → resuelto 29-09 (R-66): foto nueva por fecha sobre la aprobada. Falta el **visto de Eli** a las 8 subidas; la del AYCD 13-10 reusa la foto de la ST de septiembre (no consta si es real → lleva «Imagen referencial») → **Eli**
+- El legal del brief de CMR 40 % dice «*Valido los sábados de octubrepagando con CMR»: se corrigió a «*Válido … octubre pagando …» (tilde y espacio). Si contenido lo quiere literal → **contenido**
 - La Ensalada animada está dos veces en STORIES (19-10 y una sin fecha, mismo brief): ¿es un duplicado o son dos publicaciones? → contenido
 
 - El texto del premio de «¿Este o este?» («Vota por tu favorito y participa por un premio sorpresa») es propuesta del estudio: el brief decía «El primero en acertar gana un premio sorpresa» → **contenido**.
@@ -202,6 +210,13 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - ST 30-10: el cliente pidió otro título («¿Planes para hoy?», «algo más cool») y el Reel DJ S5 no trae horarios; ambos en REVISAR CONTENIDO → **contenido**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 (tarde) — Claude con Eli · lo que faltaba de octubre: las 8 «ST APROBADA», el post 05-10 y Drive ordenado por fecha
+- **Reglas nuevas (Eli, verbatim en la fuente):** R-66 («ST APROBADA» = la aprobada con foto nueva, conservando logos, nombres y legales) · R-67 (el n° en Drive sigue el orden actual de la grilla; se renombra, el enlace queda).
+- **Reglas del estudio, cazadas antes de entregar:** R-68 (schop del AYCD = Heineken) · R-69 (plantillas AYCD/CMR piden tragos o mesa, no caras) · R-70 (Sunset: la foto sube para que el titular Light caiga sobre la mesa).
+- **Rechazos internos:** X-28, X-29. Sin feedback de Eli todavía sobre las 8: quedan en §8.
+- **Técnico:** las fotos de `sesiones-25-09/` son miniaturas de 400 px; el original se baja por el ID de `_indice.tsv` con `drive.usercontent.google.com/download?id=…&confirm=t`. `remotion still` volvió a andar. QA `--textos`: 0 bloqueantes (los avisos de «banda con otro foco» = velo sobre bokeh, y «croma» = la tarjeta CMR verde, falsos positivos ya conocidos).
+- §8: 1 resuelta (las 8 APROBADO) y 2 nuevas (visto de Eli, legal del brief CMR corregido).
 
 ### 2026-09-29 — Claude con Eli · `/abrir qb`, relectura de las grillas de octubre y septiembre
 - sin aprendizajes nuevos: no se diseñó ni hubo feedback de Eli o del cliente sobre piezas del estudio. La grilla de octubre no cambió (diff = 0); la de septiembre sólo cerró el mes (YA POSTEADO/APROBADO; Trivia de brindis aprobada con «beber», que ya estaba cosechado en E-04).

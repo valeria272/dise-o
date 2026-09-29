@@ -1,6 +1,6 @@
 ---
 name: cliente-qb
-description: "QB — cerebro del cliente: 65 reglas firmes, última cosecha 2026-09-29. Generado desde clients/qb/APRENDIZAJES.md; leerlo antes de diseñar para qb"
+description: "QB — cerebro del cliente: 70 reglas firmes, última cosecha 2026-09-29. Generado desde clients/qb/APRENDIZAJES.md; leerlo antes de diseñar para qb"
 metadata:
   type: project
 ---

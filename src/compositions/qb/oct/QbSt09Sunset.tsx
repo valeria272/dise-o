@@ -57,7 +57,9 @@
  *   ve raro con la palabra beneficios solita abajo, porfis no debemos palabras
  *   solitas» → el legal se corta por frase en dos líneas parejas:
  *   «*Imagen referencial. *Sujeto a consumo de alimentos.» /
- *   «*Promoción no acumulable con otras ofertas y beneficios.» Mismo cuerpo y lugar.
+ *   «*Promoción no acumulable con otras ofertas y beneficios.» Mismo cuerpo.
+ * ⭐ RONDA 16 (Eli 29-09): «el legal lo dejaría más abajo» → de 1526 a 1612 (cierra
+ *   en ≈1660): sale de la zona de paid y queda dentro del margen de Instagram orgánico.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -114,6 +116,6 @@ export const QbSt09Sunset: React.FC = () => (
     </Linea>
     {/* r6 (Eli): «aumenta un poco el tamaño de los legales… no se ve nada». De 14 a 19,
         en dos líneas que cierran en y≈1578, al borde de la zona segura de paid (1580) */}
-    <Legal top={1526} cuerpo={19}>{QB_ST09_DATA.pieza.legal}<br />{QB_ST09_DATA.pieza.legal2}</Legal>
+    <Legal top={1612} cuerpo={19}>{QB_ST09_DATA.pieza.legal}<br />{QB_ST09_DATA.pieza.legal2}</Legal>
   </AbsoluteFill>
 );

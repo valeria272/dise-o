@@ -1,5 +1,15 @@
 # QB Restaurant — bitácora
 
+## 2026-09-29 (tarde 3) — Elisabet Soto «Eli» (Windows, con Claude) · ronda 16: la lectura de Eli sobre el comentario de Constanza
+
+**Qué se hizo:** Eli revisó la r15: Cumpleaños y Banco OK. Ajustes:
+- **AYCD 06-10 (ST n°2 S1):** «Tus favoritos, las veces que quieras» con aire (nombre→línea 21→33 px, como Cumpleaños); legal 14→19 px, dos líneas por frase, «mucho más abajo para que no destaque» (cierra ≈1660).
+- **Sunset 09-10 (ST n°5 S1):** legal más abajo (cierra 1573→1660).
+- **AYCD 13-10 (ST n°2 S2):** «se ve mucho legal y muy pesado, deja un margen, dos o máximo tres líneas»: legal en 2 líneas y la lista de tragos baja 26 px (margen 6→32 px, cierra 1577). La 27-10 no cambia.
+- Reemplazadas en Drive (md5 igual). Revisión `out/qb/oct/r16/revision-r16.html` (`scripts/qb-oct-r16-revision.py`), artefacto publicado.
+
+**Abierto:** los legales del AYCD 06-10 y del Sunset 09-10 quedaron bajo el margen de paid (1580) por pedido de Eli; dentro del orgánico (1670). Si van a paid, se suben → Eli.
+
 ## 2026-09-29 (tarde 2) — Elisabet Soto «Eli» (Windows, con Claude) · ronda 15: comentarios de Constanza en la grilla de octubre
 
 **Qué se hizo:** Constanza Lizana (jefa de diseño) dejó 2 comentarios nativos en la grilla de octubre (16:20Z, anclados a STORIES!D9 y G9; la capa viva sólo movió estados: C/D/E a EN REVISIÓN, G a PENDIENTE POR CLIENTE). Instantánea `api/qb-oct-20260929c.json`.

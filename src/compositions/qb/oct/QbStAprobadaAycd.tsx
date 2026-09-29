@@ -25,6 +25,11 @@
  *   · PROMO → paid: logo y nombre bajan 45 px (tope ≥ 250) y el bloque sube 90 px
  *     para que el legal (19 px, R-52) y la lista de tragos cierren antes de 1580.
  *     En la aprobada ambos caían fuera de la zona segura (1635 y 1830): E-06.
+ *
+ * ⭐ RONDA 16 (Eli 29-09, 13-10): «se ve mucho legal y muy pesado… deja como un
+ *   margen», el legal en dos líneas de párrafo como máximo. Con «Imagen referencial»
+ *   el legal ocupa 2 líneas y la lista de tragos quedaba pegada debajo: la lista baja
+ *   26 px (margen) y cierra en 1580, el borde de la zona segura. La 27-10 no cambia.
  */
 import React from "react";
 import {AbsoluteFill} from "remotion";
@@ -62,7 +67,7 @@ export const QbStAprobadaAycd: React.FC<{fecha: QbAycdFecha}> = ({fecha}) => {
       <BloqueAycd antetitulo={1311.4 - SUBE} boton={1364.6 - SUBE} horario={1479.4 - SUBE} />
       <Legal top={1452} cuerpo={19}>{/* Constanza 29-09: con «Imagen referencial» el legal se alarga y dejaba «beneficios» sola → corte por frase */}
         {f.referencial ? <>{QB_AYCD_AP_DATA.referencial}{QB_AYCD_AP_DATA.legal1}<br />{QB_AYCD_AP_DATA.legal2}</> : QB_AYCD_AP_DATA.legal}</Legal>
-      <Linea top={1500} cuerpo={20} italica peso={400} interlinea={1.35} sombra={false}
+      <Linea top={f.referencial ? 1526 : 1500} cuerpo={20} italica peso={400} interlinea={1.35} sombra={false}
         color="rgba(255,255,255,0.9)" ancho={900}>
         {QB_AYCD_AP_DATA.tragos[0]}<br />{QB_AYCD_AP_DATA.tragos[1]}
       </Linea>

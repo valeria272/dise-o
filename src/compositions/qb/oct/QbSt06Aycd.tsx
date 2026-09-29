@@ -31,6 +31,13 @@
  *   ~12 % para que su borde quede en la línea de los otros dos (±3 px).
  * ⭐ RONDA 8 (Eli 28-09): «la parte de abajo muy gruesa» → el pie de la copa del
  *   centro pasa a ser fino, como el de las otras dos, sin el nudo del medio.
+ * ⭐ RONDA 16 (Eli 29-09, tras el comentario de Constanza): «Tus favoritos, las veces
+ *   que quieras tiene que verse más alineado, como en las otras historias: darle un
+ *   poco de aire» → del nombre a la línea pasa de 21 a 33 px, lo de Cumpleaños.
+ *   «El legal está demasiado pequeño… auméntale el tamaño y déjalo mucho más abajo,
+ *   que no destaque» → de 14 a 19 px, en dos líneas cortadas por frase (sin palabras
+ *   solas), cerrando en ≈1660: sale de la zona de paid (1580) y queda en la de
+ *   Instagram orgánico (1670).
  */
 import React from "react";
 import {AbsoluteFill} from "remotion";
@@ -46,7 +53,8 @@ const QB_ST06_DATA: Record<string, Record<string, string>> = {
   etiqueta: "POR $13.990",
   medida: "TODOS LOS MARTES · 18:00 a 21:00 hrs",
   texto: "En tragos seleccionados",
-  legal: "*Imagen referencial. Sujeto a consumo de alimentos. Promoción no acumulable con otras ofertas y beneficios.",
+  legal: "*Imagen referencial. Sujeto a consumo de alimentos.",
+  legal2: "Promoción no acumulable con otras ofertas y beneficios.",
   },
 };
 
@@ -61,10 +69,10 @@ export const QbSt06Aycd: React.FC = () => (
     <Velo arriba={[820, 0.9]} abajo={[760, 0.95]} />
     <LogoQB top={207.4 + BAJA} ancho={178.6} />
     <NombreAycd top={376.3 + BAJA} />
-    <Linea top={610} cuerpo={34} italica peso={400}>{QB_ST06_DATA.pieza.antetitulo}</Linea>
+    <Linea top={622} cuerpo={34} italica peso={400}>{QB_ST06_DATA.pieza.antetitulo}</Linea>
     {/* 25-09: el bloque sube 30 px para que texto y legal entren en la zona segura */}
     <BloqueAycd antetitulo={1281.4} boton={1334.6} horario={1449.4} />
     <Linea top={1508} cuerpo={27} italica peso={300}>{QB_ST06_DATA.pieza.texto}</Linea>
-    <Legal top={1546} cuerpo={14}>{QB_ST06_DATA.pieza.legal}</Legal>
+    <Legal top={1612} cuerpo={19}>{QB_ST06_DATA.pieza.legal}<br />{QB_ST06_DATA.pieza.legal2}</Legal>
   </AbsoluteFill>
 );

@@ -38,6 +38,8 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **X-71** · [BW] Reel 02-10 con **tres voces** (palo, Brushwell, fina espaciada) e interlínea abierta (R-127): «too much» — _Constanza, 29-09-2026: 1 ronda_
 - **X-72** · [BW] ST 02-10: interlínea cerrada de más (−0,2): la tilde de la «Ñ» pegada a la línea de arriba — _Eli, 29-09-2026: 1 ronda_
 - **X-73** · [BW] Reel 02-10: «VA POR» solo en su línea, se leía «VAPOR» — _Eli, 29-09-2026: 1 ronda_
+- **X-74** · [DT] Octubre entero con **letras espaciadas** (antetítulo 0,34 em, «EN PAREJA →» 0,16, píldoras en versales espaciadas, «IVA INCLUIDO» 0,16) y **títulos de historia a alturas distintas** (versal en 416/488/495/518 y dos dentro de un panel; en la Family Time animada el título saltaba 72 px entre escenas) — _Constanza Lizana, 29-09-2026: 1 ronda, 7 piezas corregidas_ (→ R-132, R-133, R-134)
+- **X-75** · [DT] Ronda de Constanza aplicada con la norma a 488: el título de la Family Time **tapaba la cabeza de la mamá**; la flecha fina y el legal de la feriado ER+FT **no se leían** sobre la foto; el título de «escápate en pareja» **salía del recuadro**; y en Honors el ajuste (30 px) **no se notaba** («quedó exactamente igual») — _Eli, 29-09-2026: 1 ronda, 6 piezas_ (→ R-134 a 440, R-135, R-136)
 - **X-60** · [DT] Pareja IA con **look pintado**: atardecer naranja agregado en la ventana, color saturado y cálido, piel y ropa de ilustración, posturas poco creíbles — «se ve extraña» — _Eli, 29-09-2026, portada Escapada 07-10, ya aprobada en r1–r3 y reabierta: 1 ronda (r4)_
 - **X-51** · [BW] POV con el **muffin apoyado sobre la tapa del vaso** y chico (calcado de la ref, que traía la galleta sobre la taza): «rara», «desproporcionado» — _cliente, ST 02-10, 28-09-2026: 1 ronda_
 - **X-47** · [DT] Cambiar **sólo la cara** (óvalo) de una modelo: se sigue reconociendo por el pelo, la piel y los lentes — _Eli, 28-09-2026, pendones r1: 1 ronda_
@@ -46,8 +48,4 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **X-45** · [BW] Dibujo que **no corresponde a la hoja** (pasteles en la hoja del bar de la D) y dibujos que la caja corta (A) — _Eli, 28-09-2026, r3_
 - **X-46** · [BW] Editables **un .ai por hoja y en RGB** — _Eli, 28-09-2026 («me va a hacer todo muy difícil después para editar»): 1 ronda de entrega_
 - **X-28** · [BW] Costura de la expansión IA revisada sólo en 3 o 4 frames y con la posición suavizada: el pelo sale doble arriba de la cabeza y el borde nada — _Eli, reel «La razón» prueba 2, 25-09-2026 («casi bien»)_
-- **X-27** · [BW] Tapar el borde desenfocado **agrandando el clip**: corta el vaso y la mano del borde — _Eli, reel «La razón», 25-09-2026: 1 ronda_
-- **X-26** · [BW] Lockup al pie cuando el vaso de la foto ya firma: cae encima del producto y la marca se lee dos veces — _prueba propia, feed «Necesito ir a Between», 25-09-2026 (descartada antes de mostrarla)_
-- **X-01** · [BW] **Estimar lo que Eli describió en vez de medir sus piezas publicadas**: tipografías cambiadas, jerarquía rara — _grilla de septiembre rechazada entera por Valeria, 25–26-08-2026 (2 grillas)_
-- **X-02** · [BW] **Fondo generado + recortes, logos vectoriales y sombras pegadas encima**: «parecen de paint pegoteados» — _cumpleaños rondas 11–19 (04–07-09) y ST 28-09 (14-09-2026): 5 + 3 rechazos_
-- **X-03** · [BW] Logotipo del vaso **achatado o curvado** por script — _ronda 4 (27-08)
+- **X-27** · [BW] Tapar el borde desenfocado **ag

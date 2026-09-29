@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-29** · Cosechas: **24**
+> Última cosecha: **2026-09-29** · Cosechas: **25**
 
 ## 1. Quién es el cliente
 
@@ -70,7 +70,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-15** · [DT] **La referencia de Eli manda la composición**; tipografía y color siguen siendo DT. Una ref animada se mira cuadro a cuadro antes de diseñar — _Eli: ST 18-09 (15-09), carrusel S5 («más igual a la referencia», 17-09), Turismo (23-09), oct («¿revisaste bien la referencia?», 24-09)_ · ✔×6 · +1 las 3 ST de feriado 05-10 calcadas de sus refs, aprobadas a la primera 28-09; portada «5 cosas» 28-09 · +1 carrusel Escapada 07-10, aprobado 29-09 (portada y lámina 2 calcadas de las 2 imágenes del pin)
 - **R-16** · [DT] Panel de cuadrantes: la tinta ocupa **~47–50 % de la celda**; si se ve «pelaito» se aprieta el contenedor, no se agranda la letra — _grilla + Eli en el editable, 16-09-2026, Honors_ · ✔×1
 - **R-17** · [DT] Íconos de línea: cada uno a **su propia proporción** dentro de la ranura (no estirados para llenarla) — _Eli, 15-09-2026 («se ven achatados, aplastados»)_ · ✔×1
-- **R-18** · [DT] Textos que no son titular: abrir **espacio entre palabras** (no el tracking) para que respiren; el titular no se toca — _Eli, 15-09-2026, Honors ronda 4_ · ✔×1
+- **R-18** · [DT] Textos que no son titular: abrir **espacio entre palabras** (no el tracking) para que respiren; el titular no se toca — _Eli, 15-09-2026, Honors ronda 4_ · ✔×1 · ⚠️ revisada 2026-09-29: con medida — hasta ~0,08 em; a 0,10–0,12 em Constanza lo lee como «tipografías separadas en cada palabra» (legal de la lámina 2 de Escapada y del ST feriado bajaron a 0,03–0,08; ver R-132)
 - **R-19** · [DT] Cuadro de cristal: el fondo **difuminado dentro de la caja** (≈3,5 px @1080) — _Eli, 15-09-2026, Honors ronda 3_ · ✔×1
 - **R-20** · [DT] «Alinea a la izquierda bien»: cada línea se compensa por el hueco de su primer glifo hasta que la tinta nazca en el margen (88 px) — _Eli, 17-09-2026, carrusel S5_ · ✔×2
 - **R-21** · [DT] En carrusel de video, **el texto no anima si el fondo ya se mueve**; queda un solo gesto animado — _Constanza Lizana, 22-09-2026 (acotado a la portada del S5)_ · ✔×1
@@ -116,7 +116,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-101** · [DT] **En una historia, las personas se ven COMPLETAS**: ningún borde las corta y el recuadro del programa tapa mesa, cama o piso, nunca cuerpos. Si no caben entre el titular y el recuadro, se aleja la cámara (expansión IA hacia abajo y a los lados, con la original pegada encima y revisada con zoom por si aparece gente de más), no se tapa — _Eli, 28-09-2026, ST 01-10 Family Time r7 («hay en varias que se ven que desaparecen o no se ven completos»)_ · ✔×1
 - **R-102** · [DT] **Entre dos fotos con gente, no hay fundido cruzado**: al 50 % las dos familias se ven transparentes y parece que «desaparecen». Va una cortina suave (borde de ~100 px, ~0,7 s, empuje leve) — _Eli, 28-09-2026, ST 01-10 r7 («mejora transiciones»)_ · ✔×1 (r8 sin aprobar todavía)
 - **R-104** · [DT] **Los PUNTEOS de beneficios llevan punto final**, con viñeta: R-60 (sin punto) vale para titulares y bajadas; cuando el texto es un listado de beneficios u opciones, cada ítem cierra con punto — _Eli, 29-09-2026, carrusel Escapada 07-10 lámina 2 («yo sé que es una regla, pero eso es más para la portada… cuando son textos muy extensos, que son como punteos de los beneficios, esos sí van con puntos»)_ · ✔×1
-- **R-105** · [DT] **Texto apilado en Stag con aire: interlínea ≥1,28** (titular de portada 1,3; punteo 1,36). A 1,10–1,14 «están muy juntos los textos… cuando se trata de stack» — _Eli, 29-09-2026, carrusel Escapada 07-10, portada y lámina 2_ · ✔×1
+- **R-105** · [DT] **Texto apilado en Stag con aire: interlínea ≥1,28** (titular de portada 1,3; punteo 1,36). A 1,10–1,14 «están muy juntos los textos… cuando se trata de stack» — _Eli, 29-09-2026, carrusel Escapada 07-10, portada y lámina 2_ · ✔×1 · ⚠️ revisada 2026-09-29: Constanza pidió MENOS interlínea en esa misma portada («se ve muy separado»); quedó en 1,16 y falta que Eli decida (§8). En titulares de HISTORIA manda R-134 (1,06)
 - **R-132** · [DT] **Sin tracking abierto: en DT las letras no se separan.** Versales, antetítulos, destacados con flecha, «IVA INCLUIDO» y píldoras van a ≤0,03 em; el recurso de letras espaciadas no es de DT (R-18 sigue: lo que se abre es el espacio entre PALABRAS, no entre letras) — _Constanza Lizana (jefa de diseño), 29-09-2026, grilla DT octubre: portada Escapada, ST feriado ×3 («en DT no se usan las palabras con cada letra tan separada»)_ · ✔×1
 - **R-133** · [DT] **Los incluye/bullets van en Stag (serif), caja baja**, no en versales Trade — _Constanza Lizana, 29-09-2026, ST feriado ER y FT («en los bullets habitualmente usas la tipografía con serif»)_ · ✔×1
 - **R-134** · [DT] **El titular de una historia arranca SIEMPRE a la misma distancia del logo**: versal en y = **440** @1080×1920 (Constanza fijó la regla en 488; Eli la subió a 440 el mismo día: «un poco más arriba… después tapa a la familia»), en estáticas y animadas, y en todas las escenas de una misma animada; interlínea de titular 1,06. En código: `topTitulo(cuerpo)` y `TITULO_STORY` de `src/compositions/hilton/dtOct2.tsx`. Si el diseño metía el titular dentro de un panel, el titular sale del panel — _Constanza Lizana, 29-09-2026, ST Family Time S1 («deben estar en la misma separación del logo… le bajaría un poco al interlineado… apliquemos esto a todas las historias»)_ · ✔×1
@@ -261,6 +261,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **X-71** · [BW] Reel 02-10 con **tres voces** (palo, Brushwell, fina espaciada) e interlínea abierta (R-127): «too much» — _Constanza, 29-09-2026: 1 ronda_
 - **X-72** · [BW] ST 02-10: interlínea cerrada de más (−0,2): la tilde de la «Ñ» pegada a la línea de arriba — _Eli, 29-09-2026: 1 ronda_
 - **X-73** · [BW] Reel 02-10: «VA POR» solo en su línea, se leía «VAPOR» — _Eli, 29-09-2026: 1 ronda_
+- **X-74** · [DT] Octubre entero con **letras espaciadas** (antetítulo 0,34 em, «EN PAREJA →» 0,16, píldoras en versales espaciadas, «IVA INCLUIDO» 0,16) y **títulos de historia a alturas distintas** (versal en 416/488/495/518 y dos dentro de un panel; en la Family Time animada el título saltaba 72 px entre escenas) — _Constanza Lizana, 29-09-2026: 1 ronda, 7 piezas corregidas_ (→ R-132, R-133, R-134)
+- **X-75** · [DT] Ronda de Constanza aplicada con la norma a 488: el título de la Family Time **tapaba la cabeza de la mamá**; la flecha fina y el legal de la feriado ER+FT **no se leían** sobre la foto; el título de «escápate en pareja» **salía del recuadro**; y en Honors el ajuste (30 px) **no se notaba** («quedó exactamente igual») — _Eli, 29-09-2026: 1 ronda, 6 piezas_ (→ R-134 a 440, R-135, R-136)
 - **X-60** · [DT] Pareja IA con **look pintado**: atardecer naranja agregado en la ventana, color saturado y cálido, piel y ropa de ilustración, posturas poco creíbles — «se ve extraña» — _Eli, 29-09-2026, portada Escapada 07-10, ya aprobada en r1–r3 y reabierta: 1 ronda (r4)_
 - **X-51** · [BW] POV con el **muffin apoyado sobre la tapa del vaso** y chico (calcado de la ref, que traía la galleta sobre la taza): «rara», «desproporcionado» — _cliente, ST 02-10, 28-09-2026: 1 ronda_
 - **X-47** · [DT] Cambiar **sólo la cara** (óvalo) de una modelo: se sigue reconociendo por el pelo, la piel y los lentes — _Eli, 28-09-2026, pendones r1: 1 ronda_
@@ -331,9 +333,10 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 ## 8. Preguntas abiertas
 
+- [DT] Interlínea del titular de la portada Escapada 07-10: Eli pidió 1,3 (R-105) y Constanza «que sea menos»; quedó en **1,16** → **Eli** (29-09)
 - [BW] FEED 09-10 «Reúnete en Between» (aprobado y reemplazado 29-09): en Drive sigue como `BW FEED 05-10 Esa reunion podria ser un cafe.png` en S1/BW/FEED; ¿se renombra a «BW FEED 09-10 Reunete en Between» y se mueve a la semana del 09-10? → **Eli**
 - [BW] ~~Reels: Eli va a pasar videos de referencia~~ ✅ **los mandó el 29-09** («tómalos de ref a futuro de animación»): 4 reels + 1 estática en `clients/hilton/referencias-animacion-bw/LEEME.md`. Falta conversar cuál usar en el próximo reel → **Eli**
-- [DT] Carrusel Escapada 07-10 (aprobado 29-09): ¿se sube a S2/DT/FEED como `C1 S2 DT n°1–2`? · ¿hay foto REAL de la terraza de QB al atardecer para reemplazar la mesa generada de la lámina 2? → Eli
+- [DT] Carrusel Escapada 07-10 (aprobado 29-09): ~~¿se sube a S2/DT/FEED como `C1 S2 DT n°1–2`?~~ ✅ subido 29-09 · ¿hay foto REAL de la terraza de QB al atardecer para reemplazar la mesa generada de la lámina 2? → Eli
 - [DT] Opinión Expedia: la grilla la movió del 10-10 al 09-10 y el archivo de Drive conserva la fecha vieja; ¿se renombra o se deja? → Eli
 - [BW] Carta oficial: ¿cuál de las 4 propuestas elige el cliente? · confirmar las erratas corregidas del Word (manquilla→mantequilla, Muffinn, Salmon, Cesar, Kuntsmann→Kunstmann, Founders Colection→Collection; precios todos con punto; «Elija 2 opciones» se dejó en usted) → cliente
 - [BW] Carta: ¿qué perfil CMYK pide la imprenta? (el papel de B y C se convirtió con Coated FOGRA39) → Eli / imprenta
@@ -376,6 +379,13 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 (cierre 7, ronda Constanza DT octubre + ronda 2 de Eli + auditoría) — Claude con Eli · 5 reglas nuevas [DT], APROBADO
+- **Fuente nueva en DT:** Constanza Lizana (jefa de diseño) comentó la grilla DT octubre con 4 hilos nativos @Eli; **dos estaban anclados en otra celda** (STORIES!D7 era para la ST Family Time S1; F9 era para las feriado ER y FT). Eli lo aclaró.
+- **Reglas nuevas [DT]:** R-132 sin tracking (≤0,03 em) · R-133 bullets en Stag caja baja · R-134 titular de historia con la versal en y = 440 bajo el logo e interlínea 1,06, en todas (Constanza la fijó en 488 y Eli la subió) · R-135 lo chico sobre foto dentro de una forma · R-136 título sobre panel alineado al texto de adentro.
+- **⚠️ Revisadas:** R-18 (el aire entre palabras, con medida) · R-105 (interlínea de la portada, en §8).
+- **Rechazos:** X-74 (Constanza, 1 ronda, 7 piezas) · X-75 (Eli, 1 ronda, 6 piezas).
+- **Auditoría del resto de octubre** con estas reglas: 3 piezas corregidas (Opinión 10-10, Post FT S5, Escapada lámina 2); «5 cosas» ya cumplía. Las 20 piezas de DT octubre en Drive, md5 verificado.
 
 ### 2026-09-29 (cierre 6, ronda Constanza S1–S2) — Claude con Eli · 6 reglas nuevas [BW], APROBADO en 2 vueltas
 - **Fuente nueva:** Constanza Lizana (jefa de diseño) comenta también la grilla de Between, con comentarios nativos anclados a la celda (FEED F10, STORIES C9/D9/H9) que el CSV vivo no muestra.

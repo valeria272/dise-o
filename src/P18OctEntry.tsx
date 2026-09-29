@@ -37,6 +37,7 @@ const FEED: [string, React.FC][] = [
 const STORIES: [string, React.FC][] = [
   ['P18O-S0710', O.P18OS0710],
   ['P18O-S0910', O.P18OS0910],
+  ['P18O-S1510', O.P18OS1510],
   ['P18O-S2310', O.P18OS2310],
   ['P18O-S2710', O.P18OS2710],
 ];

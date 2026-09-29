@@ -23,6 +23,12 @@ REFS = {
     "st-07-10-estacion-favorita": "https://cl.pinterest.com/pin/938930222333732959/",
     "st-09-10-recuerdos": "https://cl.pinterest.com/pin/743023638582449991/",
     "st-23-10-corporativo": "https://cl.pinterest.com/pin/1096908053026703148/",
+    # en OK PARA DISEÑAR al 29-09 (enlaces leídos de STORIES!I11:Q11)
+    "st-15-10-cumple": "https://cl.pinterest.com/pin/978125612833263938/",
+    "st-16-10-equipo-1": "https://cl.pinterest.com/pin/469007748715707953/",
+    "st-16-10-equipo-2": "https://cl.pinterest.com/pin/1055460862691124252/",
+    "st-30-10-broche-texto": "https://cl.pinterest.com/pin/1098315427895450995/",
+    "st-30-10-broche": "https://cl.pinterest.com/pin/570479477821889041/",
 }
 def dom(url):
     r = subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--virtual-time-budget=20000",

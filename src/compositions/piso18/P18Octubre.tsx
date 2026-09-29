@@ -83,6 +83,25 @@ const Logo: React.FC<{top: number; ancho?: number; oscuro?: boolean}> = ({
   />
 );
 
+/**
+ * SEGUNDA VERSIÓN del logotipo: en la esquina inferior derecha, blanco y siempre a la
+ * misma medida (Eli, 29-09: «trata de que siempre ese logotipo en esa esquina sean
+ * iguales (…) como una segunda versión, pero con el logo hacia abajo»). Para piezas
+ * de foto sin texto; pide un velo leve abajo (`VeloPie`) para leerse. Feed 1080×1350.
+ */
+const LogoEsquina: React.FC<{alto?: number}> = ({alto = FEED_H}) => (
+  <Img
+    src={staticFile('assets/hilton/piso18/logo.png')}
+    style={{
+      position: 'absolute',
+      width: 210,
+      height: 210 / P18.geometria.logoProporcion,
+      left: W - 48 - 210,
+      top: alto - 48 - 210 / P18.geometria.logoProporcion,
+    }}
+  />
+);
+
 /** Velo superior de marca (R-14): alfa 0,588 arriba → 0 al 41,7 % del alto. */
 const VeloArriba: React.FC<{alfa?: number; hasta?: number}> = ({alfa = 0.588, hasta = 41.7}) => (
   <AbsoluteFill
@@ -271,15 +290,15 @@ const HojaPapel: React.FC<{
  * («verde oliva, terracota y joya»). Sin logotipo: la ref no lo trae y Eli ya
  * pidió portadas limpias («bórrale el logo, muy repetitivo», 15-09).
  *
- * Ronda 4, cliente 29-09 (FEED D13): «Falta logo» ⇒ logotipo arriba y centrado
- * (R-12). El fondo detrás es el mantel y la ventana desenfocados (p50 229, p90 252
- * medido en la zona del logo): el blanco no se lee y un velo oscuro ensuciaría la
- * luz del día, así que va en la tinta de la marca, como sobre papel.
+ * Ronda 4, cliente 29-09 (FEED D13): «Falta logo». Va la segunda versión del
+ * logotipo, `LogoEsquina`: blanco, abajo a la derecha, sobre un velo leve de pie.
  */
 export const P18OF0610: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
     <Foto src="f0610.jpg" />
-    <Logo top={P18.geometria.logoYFeed} oscuro />
+    {/* Ronda 4c, Eli 29-09: «oscurece abajo muy levemente y que el logo sea en blanco» */}
+    <VeloPie hasta={0.3} opacidad={0.42} />
+    <LogoEsquina />
   </AbsoluteFill>
 );
 
@@ -306,52 +325,67 @@ const VeloF0910: React.FC = () => <VeloArriba alfa={0.72} hasta={50} />;
 export const P18OF0910S1: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
     <Foto src="f0910-p1.jpg" />
+    {/* Ronda 4d, Eli 29-09 («el fondo negro de esa transición, sigue corrigiéndola»): la
+        capa negra de la S2 ya empieza acá, en el tercio derecho, y llega al corte con el
+        mismo 0,76 de la S2: al deslizar el oscuro fluye sin escalón. */}
+    <AbsoluteFill
+      style={{background: 'linear-gradient(to right, rgba(8,8,10,0) 0%, rgba(8,8,10,0) 58%, rgba(8,8,10,0.76) 100%)'}}
+    />
     <VeloF0910 />
     <Logo top={P18.geometria.logoYFeed} />
   </AbsoluteFill>
 );
 
-/** S2 · mitad derecha: «Las grandes historias se planean con tiempo. Asegura tu fecha 2027» */
+/**
+ * S2 · Ronda 4b, Eli 29-09: «me gustaba cómo se veía temporada alta con ese diseño y
+ * el calendario (…) hacer como una opacidad negra mostrando el calendario, que de fondo
+ * se vea esa misma imagen». Vuelve el diseño aprobado (titular a dos voces +
+ * calendario con el sábado encerrado) y el papel se cambia por la mitad derecha de la
+ * foto continua bajo una capa negra PAREJA en toda la lámina (Eli, 2.ª vuelta: «quiero
+ * que la G dos tenga esa transparencia oscurecida» en toda; la foto sigue continua y
+ * el cambio de luz en el corte es buscado). Todo el texto pasa a blanco; el fucsia queda en
+ * «SE PLANEAN CON TIEMPO» y el círculo del 16, como en la versión aprobada.
+ */
+const CapaNegraF0910: React.FC = () => (
+  <AbsoluteFill
+    style={{
+      background:
+        'rgba(8,8,10,0.76)',
+    }}
+  />
+);
+
 export const P18OF0910S2: React.FC = () => {
   cargarFuentesP18();
+  const lineaCal = 'rgba(255,255,255,0.5)';
+  const colX = [60, 380, 700, 1020];
+  const topCal = 820;
   return (
     <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
       <Foto src="f0910-p2.jpg" />
-      <VeloF0910 />
+      <CapaNegraF0910 />
       <div
         style={{
           position: 'absolute',
           left: 0,
           right: 0,
-          top: 112,
+          top: 186,
           textAlign: 'center',
           ...RALEWAY,
           fontWeight: 700,
-          fontSize: 24,
+          fontSize: 26,
           letterSpacing: 7,
           textIndent: 7,
           color: P18.colores.blanco,
-          textShadow: SOMBRA,
         }}
       >
         TEMPORADA ALTA 2027
       </div>
-      <div
-        style={{
-          position: 'absolute',
-          left: 30,
-          right: 30,
-          top: 170,
-          textAlign: 'center',
-          fontFamily: P18.fuentes.titular,
-          color: P18.colores.blanco,
-          textShadow: SOMBRA,
-        }}
-      >
-        <div style={{fontSize: 108, fontWeight: 300, fontStyle: 'italic', lineHeight: 1.04}}>
+      <div style={{position: 'absolute', left: 40, right: 40, top: 272, textAlign: 'center', fontFamily: P18.fuentes.titular, color: P18.colores.blanco}}>
+        <div style={{fontSize: 118, fontWeight: 300, fontStyle: 'italic', lineHeight: 1.04}}>
           Las grandes historias
         </div>
-        <div style={{fontSize: 72, fontWeight: 400, lineHeight: 1.2, letterSpacing: 1.5}}>
+        <div style={{fontSize: 80, fontWeight: 400, lineHeight: 1.2, letterSpacing: 1.5, color: P18.colores.fucsia}}>
           SE PLANEAN CON TIEMPO
         </div>
       </div>
@@ -360,19 +394,84 @@ export const P18OF0910S2: React.FC = () => {
           position: 'absolute',
           left: 0,
           right: 0,
-          top: 408,
+          top: 590,
           textAlign: 'center',
           ...RALEWAY,
-          fontWeight: 600,
-          fontSize: 36,
+          fontWeight: 500,
+          fontSize: 40,
           letterSpacing: 1.2,
           color: P18.colores.blanco,
-          textShadow: '0 2px 18px rgba(0,0,0,0.75), 0 0 4px rgba(0,0,0,0.5)',
         }}
       >
-        {/* todo blanco: el fucsia sobre el follaje no se lee (borrador r4, 29-09) */}
         Asegura tu fecha 2027
       </div>
+
+      {/* ── el calendario, a sangre por abajo como en la ref ───────────── */}
+      <svg width={W} height={FEED_H} style={{position: 'absolute', inset: 0}}>
+        <line x1={0} y1={topCal} x2={W} y2={topCal} stroke={lineaCal} strokeWidth={2} />
+        <line x1={0} y1={topCal + 76} x2={W} y2={topCal + 76} stroke={lineaCal} strokeWidth={2} />
+        {colX.map((x) => (
+          <line key={x} x1={x} y1={topCal} x2={x} y2={FEED_H} stroke={lineaCal} strokeWidth={2} />
+        ))}
+      </svg>
+      {['VIERNES', 'SÁBADO', 'DOMINGO'].map((d, i) => (
+        <div
+          key={d}
+          style={{
+            position: 'absolute',
+            left: colX[i],
+            width: colX[i + 1] - colX[i],
+            top: topCal + 22,
+            textAlign: 'center',
+            ...RALEWAY,
+            fontWeight: 500,
+            fontSize: 28,
+            letterSpacing: 2,
+            textIndent: 2,
+            color: P18.colores.blanco,
+          }}
+        >
+          {d}
+        </div>
+      ))}
+      {['15', '16', '17'].map((n, i) => (
+        <div
+          key={n}
+          style={{
+            position: 'absolute',
+            left: colX[i],
+            width: colX[i + 1] - colX[i],
+            top: topCal + 112,
+            textAlign: 'center',
+            fontFamily: P18.fuentes.titular,
+            // Thin: las cifras de la ref son finas; en Light pesaban más que todo el bloque
+            fontWeight: 100,
+            fontSize: 236,
+            lineHeight: 1,
+            color: P18.colores.blanco,
+          }}
+        >
+          {n}
+        </div>
+      ))}
+      {/* El círculo a mano: dos vueltas que no cierran igual, como un plumón. */}
+      <svg width={W} height={FEED_H} style={{position: 'absolute', inset: 0}}>
+        <path
+          d="M 700 1028 C 706 940, 610 916, 540 920 C 450 924, 380 970, 386 1052 C 392 1140, 470 1180, 548 1178 C 640 1176, 712 1126, 706 1042 C 702 990, 668 950, 600 934"
+          fill="none"
+          stroke={P18.colores.fucsia}
+          strokeWidth={6}
+          strokeLinecap="round"
+        />
+        <path
+          d="M 690 1050 C 700 970, 620 930, 548 930 C 470 932, 398 980, 398 1050"
+          fill="none"
+          stroke={P18.colores.fucsia}
+          strokeWidth={3.2}
+          strokeLinecap="round"
+          opacity={0.8}
+        />
+      </svg>
     </AbsoluteFill>
   );
 };
@@ -808,19 +907,21 @@ const Calado: React.FC<{children: React.ReactNode; style: React.CSSProperties; t
  * Ronda 4, cliente 29-09 (STORIES D14): «¿Veamos un fondo más entretenido? que sea
  * de algún montaje» ⇒ el papel beige sale y entra la foto de un MONTAJE real del
  * salón (mesa redonda con el centro alto de pampas, deco `piso_18-112`), apagada
- * para que las polaroids manden. Sobre foto, el titular, los rótulos calados y las
- * flechas pasan a blanco (sobre el salón oscurecido el trazo fucsia de 2,8 px no se
- * lee); el fucsia queda en `piso18.cl` (R-03). La composición es la aprobada.
+ * para que las polaroids manden. Ronda 4b, Eli 29-09: «oscurece un poco más el fondo,
+ * y así la palabra dulce con salada y la flechita sean del color fucsia de piso 18»;
+ * el titular queda blanco. La composición es la aprobada.
  */
 export const P18OS0710: React.FC = () => {
   cargarFuentesP18();
   const blanco = P18.colores.blanco;
+  const fucsia = P18.colores.fucsia;
   return (
     <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
-      {/* sin desenfoque: con blur el pie del mantel quedaba liso y el QA lo leía como
-          foto estirada (R-18: se arregla la pieza, no la regla) */}
-      <Foto src="s0710-fondo.jpg" />
-      <AbsoluteFill style={{backgroundColor: 'rgba(8,8,10,0.32)'}} />
+      {/* Ronda 4c, Eli 29-09: «desenfoque gaussiano, para que no destaque tanto como lo
+          que está al frente». El grano de encima evita que el pie liso del mantel se lea
+          como foto estirada (R-18). */}
+      <Foto src="s0710-fondo.jpg" style={{filter: 'blur(7px)', transform: 'scale(1.03)'}} />
+      <AbsoluteFill style={{backgroundColor: 'rgba(8,8,10,0.5)'}} />
       <VeloArriba alfa={0.62} hasta={28} />
       <VeloPie hasta={0.36} opacidad={0.84} />
       <GranoFondo semilla={71} />
@@ -845,22 +946,22 @@ export const P18OS0710: React.FC = () => {
       </div>
 
       <Polaroid src="s0710-dulce.jpg" left={520} top={500} ancho={390} giro={4} />
-      <Calado trazo={blanco} style={{left: 270, top: 410, filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.7))'}}>Dulce</Calado>
+      <Calado trazo={fucsia} style={{left: 270, top: 410, filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.7))'}}>Dulce</Calado>
 
       <Polaroid src="s0710-salada.jpg" left={560} top={1066} ancho={380} giro={-3.5} />
-      <Calado trazo={blanco} style={{right: 60, top: 942, textAlign: 'right', filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.7))'}}>Salada</Calado>
+      <Calado trazo={fucsia} style={{right: 60, top: 942, textAlign: 'right', filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.7))'}}>Salada</Calado>
 
       {/* Las flechas nacen del hueco del sticker (x 60–480 · y 830–1030). */}
       <svg width={W} height={STORY_H} style={{position: 'absolute', inset: 0}}>
-        <g fill="none" stroke={blanco} strokeWidth={4} strokeLinecap="round" strokeLinejoin="round">
+        <g fill="none" stroke={fucsia} strokeWidth={4} strokeLinecap="round" strokeLinejoin="round">
           <path d="M 160 810 C 120 710, 260 640, 486 650" />
           <path d="M 464 634 L 490 650 L 466 670" />
           <path d="M 170 1060 C 150 1200, 310 1290, 540 1280" />
           <path d="M 518 1260 L 544 1280 L 520 1300" />
         </g>
       </svg>
-
-      <LineaCotiza top={1528} />
+      {/* Sin «Cotiza tu evento en piso18.cl»: el brief sólo trae la barra «💖» (Eli 29-09:
+          el llamado va SÓLO cuando el brief lo pide). */}
     </AbsoluteFill>
   );
 };
@@ -975,6 +1076,133 @@ export const P18OS0910: React.FC = () => {
       >
         Cotiza tu evento en piso18.cl
       </div>
+    </AbsoluteFill>
+  );
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STORIES 15-10 · ENCUESTA «¿CUÁL SERÍA LA TEMÁTICA DE TU CUMPLEAÑOS SOÑADO?»
+// ═══════════════════════════════════════════════════════════════════════════
+/**
+ * OK PARA DISEÑAR el 29-09. Brief: «sticker de encuesta con 3 paletas visuales (retro,
+ * tropical, blanco y dorado)»; interacción: «Bloque de respuestas»; comentario del
+ * cliente: «Dejémos cuadro de respuesta a ver si prende».
+ *
+ * Ref (pin 978125612833263938, «Midori»): el local de noche a sangre, una HOJA de
+ * papel rasgada abajo al centro con el texto arriba, y cruzándola una TIRA de tres
+ * fotos con marco blanco que se sale de la hoja por los lados. Acá la hoja es el
+ * beige de la marca con fibra, el texto es la pregunta (itálica fina + destacado,
+ * como la 09-10) y las tres fotos son las tres temáticas, cada una con su nombre en
+ * el marco. El papel de abajo queda LIMPIO para el cuadro de respuestas del CM (R-11).
+ * Sin «Cotiza…»: el brief no trae CTA (Eli 29-09). Sin el 🎉 del brief: los emojis
+ * los pone el CM.
+ * Fotos: de fondo las esferas con velas del salón real (deco piso_18-143, ronda 2); las
+ * temáticas, generadas sobre la mesa larga real banq46 (`p18-oct-generar.py st15-*`),
+ * foto documental sin personas; la hoja, una textura de papel arrugado generada con la
+ * ref de guía (`st15-papel`).
+ */
+const HOJA_15 = {x: 110, y: 470, w: 860, h: 1120};
+/**
+ * Borde rasgado de abajo, como el de la ref: mordidas HONDAS e irregulares (hasta ~70 px,
+ * tres ondas que no se repiten) con un deshilachado fino encima (un punto cada 3 px con
+ * ruido fijo). Sin filo blanco: en la ref el borde es del mismo tono del papel.
+ * Ronda 2, Eli 29-09: «la textura del papel rasgado igual a la referencia».
+ */
+const rasgado = (w: number, h: number) => {
+  const pts: string[] = ['0px 0px', `${w}px 0px`];
+  for (let x = w, i = 0; x >= 0; x -= 3, i++) {
+    const r1 = ((i * 7919) % 101) / 101;
+    const r2 = ((i * 104729 + 17) % 53) / 53;
+    const onda = 22 * Math.sin(x / 67 + 0.4) + 14 * Math.sin(x / 29 + 2.1) + 9 * Math.sin(x / 151 + 1.3);
+    const y = h - 48 + onda - 10 * r1 - (r2 > 0.86 ? 12 * r2 : 0);
+    pts.push(`${x}px ${y.toFixed(1)}px`);
+  }
+  return `polygon(${pts.join(', ')})`;
+};
+
+const Tematica: React.FC<{src: string; nombre: string}> = ({src, nombre}) => (
+  <div style={{width: 272, padding: '11px 11px 0', backgroundColor: '#FFFFFF', boxShadow: '0 10px 28px rgba(0,0,0,0.30)'}}>
+    <Img src={oct(src)} style={{width: '100%', aspectRatio: '3 / 4', objectFit: 'cover', display: 'block'}} />
+    <div
+      style={{
+        ...RALEWAY,
+        fontWeight: 700,
+        fontSize: 19,
+        letterSpacing: 3,
+        textIndent: 3,
+        textAlign: 'center',
+        color: P18.colores.tinta,
+        padding: '16px 0 18px',
+      }}
+    >
+      {nombre}
+    </div>
+  </div>
+);
+
+export const P18OS1510: React.FC = () => {
+  cargarFuentesP18();
+  return (
+    <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
+      {/* esferas con velas del salón de noche: poco desenfoque para que las luces brillen */}
+      <Foto src="s1510-fondo.jpg" style={{filter: 'blur(1.5px)', transform: 'scale(1.01)'}} />
+      <AbsoluteFill style={{backgroundColor: 'rgba(8,8,10,0.34)'}} />
+      <GranoFondo semilla={29} />
+      <Logo top={P18.geometria.logoYStory} />
+
+      {/* la hoja rasgada */}
+      {/* la sombra va en el contenedor: el clip-path del hijo también cortaría la sombra */}
+      <div
+        style={{
+          position: 'absolute',
+          left: HOJA_15.x,
+          top: HOJA_15.y,
+          width: HOJA_15.w,
+          height: HOJA_15.h,
+          filter: 'drop-shadow(0 14px 26px rgba(0,0,0,0.55))',
+        }}
+      >
+        {/* la hoja es una textura de papel arrugado (`st15-papel`), no el PapelBeige plano */}
+        <div style={{position: 'absolute', inset: 0, clipPath: rasgado(HOJA_15.w, HOJA_15.h)}}>
+          <Foto src="s1510-papel.jpg" />
+        </div>
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          left: HOJA_15.x + 50,
+          width: HOJA_15.w - 100,
+          top: HOJA_15.y + 70,
+          textAlign: 'center',
+          fontFamily: P18.fuentes.titular,
+          color: P18.colores.tinta,
+        }}
+      >
+        <div style={{fontSize: 58, fontWeight: 300, fontStyle: 'italic', lineHeight: 1.1}}>¿Cuál sería la temática</div>
+        <div style={{fontSize: 58, fontWeight: 400, lineHeight: 1.1}}>
+          de tu <span style={{fontStyle: 'italic', color: P18.colores.fucsia}}>cumpleaños soñado?</span>
+        </div>
+      </div>
+
+      {/* la tira de tres fotos, al ancho de la hoja: sacarla por los lados como en la ref la mete en la zona que tapa Meta */}
+      <div
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: HOJA_15.y + 250,
+          display: 'flex',
+          justifyContent: 'center',
+          gap: 16,
+          // la tira termina en x≈964: a la derecha, Meta tapa 115 px (QA, borrador 29-09)
+          transform: 'rotate(-1.2deg)',
+        }}
+      >
+        <Tematica src="s1510-retro.jpg" nombre="RETRO" />
+        <Tematica src="s1510-tropical.jpg" nombre="TROPICAL" />
+        <Tematica src="s1510-dorado.jpg" nombre="BLANCO Y DORADO" />
+      </div>
+      {/* y 1260–1560: papel limpio para el cuadro de respuestas del CM */}
     </AbsoluteFill>
   );
 };
@@ -1183,4 +1411,11 @@ export const P18OGuiaStory: React.FC<{children: React.ReactNode}> = ({children})
     <div style={{position: 'absolute', left: 0, right: 0, top: 0, height: P18.seguras.story.arriba, background: 'rgba(255,0,0,0.22)', borderBottom: '2px solid red'}} />
     <div style={{position: 'absolute', left: 0, right: 0, bottom: 0, height: P18.seguras.story.abajo, background: 'rgba(255,0,0,0.22)', borderTop: '2px solid red'}} />
   </AbsoluteFill>
+);
+
+/** Guía de zonas seguras de la 15-10, para el render por Chrome (no se sube). */
+export const P18OS1510Guia: React.FC = () => (
+  <P18OGuiaStory>
+    <P18OS1510 />
+  </P18OGuiaStory>
 );

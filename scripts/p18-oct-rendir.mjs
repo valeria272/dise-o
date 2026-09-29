@@ -37,6 +37,7 @@ const PIEZAS = {
   'P18O-F2710': [5, 'FEED', 'P18 FEED 27-10 Wedding planner.png'],
   'P18O-S0710': [2, 'STS', 'P18 ST 07-10 Estacion favorita.png'],
   'P18O-S0910': [2, 'STS', 'P18 ST 09-10 Recuerdos de matrimonio.png'],
+  'P18O-S1510': [3, 'STS', 'P18 ST 15-10 Cumpleanos sonado.png'],
   'P18O-S2310': [4, 'STS', 'P18 ST 23-10 Evento corporativo.png'],
   'P18O-S2710': [5, 'STS', 'P18 ST 27-10 Visita virtual.png'],
   // la estática de la animada (último fotograma) y las guías de QA, que NO se suben

@@ -75,6 +75,19 @@ FOTOS = {
     "s0710-fondo.jpg": (BASE / "deco112.jpg", (300, 0, 3240, 5760), STORY),
     "s0710-dulce.jpg": (BASE / "banq20.jpg", (900, 0, 3900, 4000), (1000, 1026)),
     "s0710-salada.jpg": (BASE / "banq51.jpg", (1000, 0, 3900, 4000), (1000, 1026)),
+    # ST 15-10 · encuesta cumpleaños: fondo = la mesa larga real (banq46) de noche, a
+    # 1080×1920 porque va desenfocada (a 2250 ampliaría ×1,04); las tres temáticas se
+    # generaron sobre esa misma mesa (`p18-oct-generar.py st15-*`).
+    # ronda 2 (Eli 29-09: «el fondo más con las luces que tiene Piso18, una escena más
+    # bonita»): esferas de vidrio con velas sobre el salón de noche (deco piso_18-143).
+    # caja más cerrada (2700×4800, reduce ×0,83) y más abajo, para que las esferas queden
+    # ARRIBA, alrededor del logo, y no detrás de la hoja
+    "s1510-fondo.jpg": (BASE / "deco143.jpg", (570, 960, 2700, 4800), STORY),
+    # la hoja: textura de papel generada (`st15-papel`), al 860×1120 de la mesa ×2,0833
+    "s1510-papel.jpg": (GEN / "st15-papel.jpg", None, (1792, 2334)),
+    "s1510-retro.jpg": (GEN / "st15-retro.jpg", None, (600, 800)),
+    "s1510-tropical.jpg": (GEN / "st15-tropical.jpg", None, (600, 800)),
+    "s1510-dorado.jpg": (GEN / "st15-dorado.jpg", None, (600, 800)),
     "s0910.jpg": (GEN / "st09b.jpg", None, STORY),
     "s2310.jpg": (GEN / "st23.jpg", None, STORY),
     "s2710-fondo.jpg": (BASE / "deco86.jpg", (1800, 0, 2160, 3840), (1400, 2489)),

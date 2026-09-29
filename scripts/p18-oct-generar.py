@@ -236,6 +236,47 @@ ESCENAS = {
                    "y texturas reales como la @img2, sin brillo artificial. Nada de fuente de queso ni "
                    "filas de tacos. Formato vertical 4:5. Sin personas."),
     },
+    # ── ST 15-10 · encuesta «¿Cuál sería la temática de tu cumpleaños soñado?» (OK 29-09)
+    # Brief: «sticker de encuesta con 3 paletas visuales (retro, tropical, blanco y dorado)».
+    # El banco no tiene cumpleaños tematizados (banco-2026 es un matrimonio; deco-ago2024,
+    # centros florales): se ambienta la MISMA mesa larga real (banq46) en cada paleta.
+    "st15-retro": {
+        "motor": "pro", "aspecto": "post", "refs": ["banq46.jpg"],
+        "prompt": ("El mismo salon de Piso18 de la @img1, la misma mesa larga con sillas de madera y el "
+                   "mismo follaje colgante, ambientada para un CUMPLEANOS de tematica RETRO anos 70: "
+                   "mantel mostaza, globos en naranjo quemado, mostaza y cafe, una bola disco espejada "
+                   "colgando sobre la mesa, velas y flores secas en tonos terracota. Foto documental "
+                   "del fotografo del evento, luz calida del salon de noche, casi todo nitido. "
+                   "Formato vertical 3:4. Sin personas."),
+    },
+    "st15-tropical": {
+        "motor": "pro", "aspecto": "post", "refs": ["banq46.jpg"],
+        "prompt": ("El mismo salon de Piso18 de la @img1, la misma mesa larga con sillas de madera y el "
+                   "mismo follaje colgante, ambientada para un CUMPLEANOS de tematica TROPICAL: hojas "
+                   "de palmera y monstera sobre el mantel blanco, flores de colores vivos (fucsia, "
+                   "naranjo, amarillo), pinas y frutas tropicales como centro de mesa, globos verdes "
+                   "y coral. Foto documental del fotografo del evento, luz calida del salon de noche, "
+                   "casi todo nitido. Formato vertical 3:4. Sin personas."),
+    },
+    "st15-dorado": {
+        "motor": "pro", "aspecto": "post", "refs": ["banq46.jpg"],
+        "prompt": ("El mismo salon de Piso18 de la @img1, la misma mesa larga con sillas de madera y el "
+                   "mismo follaje colgante, ambientada para un CUMPLEANOS elegante en BLANCO Y DORADO: "
+                   "mantel blanco, globos blancos y dorados agrupados, platos de sitio dorados, copas, "
+                   "velas altas y rosas blancas, detalles de cubiertos dorados. Foto documental del "
+                   "fotografo del evento, luz calida del salon de noche, casi todo nitido. Formato "
+                   "vertical 3:4. Sin personas."),
+    },
+    # ST 15-10 ronda 2 (Eli 29-09: «la textura del papel rasgado muy igual a la referencia»):
+    # una TEXTURA de papel, a sangre, sin bordes; el rasgado se recorta en código.
+    "st15-papel": {
+        "motor": "pro", "aspecto": "post", "refs": ["ref-papel-15.jpg"],
+        "prompt": ("Textura fotografica de una hoja de papel beige claro, cruda, con la MISMA textura del "
+                   "papel de la @img1: papel arrugado y vuelto a estirar, pliegues suaves y quiebres "
+                   "finos, manchas tenues, fibra visible, grano fino. Toma cenital y plana, la hoja llena "
+                   "TODO el encuadre de borde a borde, sin bordes visibles, sin sombras fuertes, luz pareja "
+                   "y suave. Solo el papel, nada encima: ignora las fotos, el texto y el fondo de la @img1."),
+    },
 }
 
 

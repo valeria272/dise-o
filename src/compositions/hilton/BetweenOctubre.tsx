@@ -836,12 +836,41 @@ export const FeedOct05Reunion: React.FC<{src?: string}> = ({src = G + 'gen-f05-1
         alinear="centro"
         anchoDisponible={BETWEEN.bloque.columna}
       />
+      {/* ⭐ RONDA 29-09 (Eli): la bajada se solapaba con los notebooks abajo → sube
+          bajo «a tu jornada»; la «y» queda arriba («…en Between y»), un poco más
+          gruesa y más grande. */}
+      {/* ⭐ RONDA 29-09 b (Eli): el relleno beige de las letras lleva además un
+          contorno café de marca, delgado y sutil, «estilo lifestyle».
+          RONDA 29-09 c: «un poco más» de trazo y sin puntas cuadradas → va en SVG,
+          porque -webkit-text-stroke une en inglete (picos en la M, la A, la v) y
+          no deja redondear. Trazo de 5 px por DETRÁS del relleno (paint-order):
+          asoman 2,5 px, con uniones y remates redondos. */}
+      <svg
+        width={1000}
+        height={112}
+        style={{marginTop: BETWEEN.aire.tituloABajada, overflow: 'visible', filter: 'drop-shadow(0 2px 8px rgba(36,26,18,0.6))'}}
+      >
+        {['Encuentra tu mesa en Between y', 'cambia la sala de reuniones por algo mejor'].map((linea, i) => (
+          <text
+            key={linea}
+            x={500}
+            y={38 + i * 47.5}
+            textAnchor="middle"
+            fontFamily={SANS}
+            fontSize={38}
+            fontWeight={700}
+            fill={C.beige}
+            stroke={C.cafe}
+            strokeWidth={5}
+            strokeLinejoin="round"
+            strokeLinecap="round"
+            paintOrder="stroke fill"
+          >
+            {linea}
+          </text>
+        ))}
+      </svg>
     </Columna>
-    <div style={{position: 'absolute', left: 0, right: 0, bottom: 70}}>
-      <Texto size={32} peso={600} sombra>
-        {'Encuentra tu mesa en Between\ny cambia la sala de reuniones por algo mejor'}
-      </Texto>
-    </div>
   </AbsoluteFill>
 );
 

@@ -1,3 +1,17 @@
+## 2026-09-29 (tarde, 3) — Eli (Windows) · BETWEEN: ronda 29-09 subida a Drive + reel FEED 02-10 «Café de cumpleaños» ✅ APROBADO en 3 rondas y SUBIDO
+
+**Qué se hizo:** (1) Eli buscó en Drive la ronda aprobada del 29-09 y no estaba → subida y reemplazada con `between-oct-subir-drive.py --ronda 2`: ST 01-10 y ST 02-10 (MP4 + GIF + PORTADA) en S1/BW/STS; reel 12-10 (MP4 + GIF + PORTADA) en **S4/BW/FEED** (bloque SEMANA 4 de la hoja FEED). (2) Reel FEED 02-10 cumpleaños desde cero: foto quieta hiperrealista del vaso To Go con vela (NB Pro 4K, limpiada y ampliada), sólo anima el texto (tres voces + máquina de escribir, titular detrás de la vela), globos y confeti originales de Eli, legal en 5 botones café, música ElevenLabs + un efecto por texto, −14 LUFS. Ronda 2: legal en botones, ilustraciones de Eli, vela que se enciende. Ronda 3: la vela se enciende AL INICIO (hook), confeti espejado hacia la llama, botones centrados. «Maravilloso… quedó bacán».
+**Dónde quedó:** código `src/compositions/hilton/BetweenFeed0210Cumple.tsx` · render sin compositor `scripts/reel-por-chrome.mjs` · audio y montaje `scripts/bw-fd-02-10-cumple-audio.py` · fotos en `public/assets/hilton/between/oct/f-cumple-*` · entrega `out/hilton/between/oct-r2/BW FEED 02-10 Cafe de cumpleanos.{mp4,gif}` + PORTADA → **subidos a S1/BW/FEED, md5 verificados** · revisión https://claude.ai/artifact/NBkRUUAPydG7A82b2188Kz · refs de Eli (7 pins) en `raw/hilton/between/oct/refs/f02-cumple/pins/`.
+**Qué sigue:** usar este reel como molde para el próximo reel de texto animado de Between (memoria `between-reel-texto-animado-receta`).
+**Abierto:** el FEED «Esa reunión podría ser un café» sigue en Drive como 05-10 en S1; la grilla lo tiene el 09-10 en el bloque SEMANA 3 → ¿renombrar y mover? → **Eli**.
+
+## 2026-09-29 (tarde, 3) — Eli (Windows) · DT carrusel Escapada Romántica 07-10: portada RONDA 4 con foto nueva — ✅ APROBADA («excelente resultado»)
+
+**Qué se hizo:** Eli: «la pareja se ve extraña, debe ser realista y una foto actual de sesión de habitación mejor lograda». Se cambió la base a la habitación real `sep_26-476` (sesión SEP 2026, king con banqueta y ventanal, sin usar en el feed), se sacó el atardecer naranja pintado y la pareja se regeneró con NB Pro 4K como frame de sesión (bloque `REAL`), sentada en la banqueta brindando. 2 variantes; se eligió la **a** (revisada con zoom: manos, 4 pies, apoyo). La cubeta quedó sobre la cama.
+**Dónde quedó:** `scripts/dt-oct3-escapada-fotos.py portada2 a` → `subir2 a` → `public/assets/hilton/dt/oct3/er-portada.jpg` · render por Chrome en `out/hilton/dt/entrega-oct3/r4/` y **máster reemplazado** en `out/hilton/dt/entrega-oct3/C1 S2 DT n°1.png` (la r3 respaldada en `out/hilton/dt/oct3-revision/r3/`) · antes/después `out/hilton/dt/oct3-revision/r4.html` = https://claude.ai/artifact/9oZT3AsCsYwnrGgmTxYfSi · receta actualizada (§2).
+**Qué sigue:** reemplazar `C1 S2 DT n°1` en Drive S2/HILTON OCT 2026/DT/FEED (ahí está la r3) con `dt-oct2-subir-drive.py` y verificar md5.
+**Abierto:** si Eli prefiere la cubeta en el velador y no sobre la cama (se le avisó; aprobó igual). El QA de foco y bordes no corrió (scipy bloqueado por Control de aplicaciones); se revisó a ojo.
+
 ## 2026-09-29 (tarde, 2) — Eli (Windows) · DT ST 01-10 Family Time, RONDA 9 con la familia aprobada + TODO octubre DT subido a Drive
 
 **Eli:** «hay fotos que no reemplazaste… desapariciones de rostro, de narices… recuerda que ya tenemos nuestro personaje para Family Time» · «sube a Drive todo de octubre por semanas, el carrusel no está arriba».

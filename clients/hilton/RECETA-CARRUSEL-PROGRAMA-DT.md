@@ -28,6 +28,13 @@ la composición y la foto pasaron a la primera, y las rondas 2 y 3 fueron sólo 
 3. **Nano Banana Pro** (`scripts/magnific.py pro`, 2K, la foto como `--refs`) con los bloques `KEEP` / `ANAT` / `NAT` de `scripts/dt-familia/ronda3.py` (R-69/R-70): sólo agrega la pareja, la cubeta con el espumante en primer plano y el atardecer en la ventana. Pareja **nueva**, distinta de la familia y de la del feriado. Prompt en tono de escapada: ropa de fin de semana y, explícito, *no rose petals, no bathrobes, no candles, no bridal details*. Se sacaron 2 variantes; se eligió la **a**.
 4. Las caras quedaban a la altura del titular y sobraba alfombra: **Flux Pro expand** (Freepik) **sólo arriba** (+11 % de techo), la variante original pegada encima con borde suave y el mismo alto recortado de la alfombra (`… fotos.py subir a`). La pareja baja sin redibujarse.
 
+> ⭐ **Ronda 4 (29-09, APROBADA — «excelente resultado»).** Eli: «la pareja se ve extraña, debe ser
+> realista y una foto actual de sesión de habitación mejor lograda». La foto de arriba se reemplazó:
+> base **`sep_26-476`** (king con banqueta, ventanal, luz de tarde real, recorte `cx=0.42` sin el minibar),
+> **sin atardecer pintado** y la pareja pedida como frame sin retocar de la sesión (bloque `REAL`, NB Pro
+> **4K**, pareja sentada en la banqueta). `py scripts/dt-oct3-escapada-fotos.py portada2 a` → `subir2 a`.
+> **Así se hace desde ahora cualquier portada con personas en habitación.**
+
 ## 3 · La foto de la lámina 2
 
 El brief pedía «mesa en QB al atardecer con dos tragos». La terraza de QB sólo está en miniaturas nocturnas de 400 px y la coctelería real es de barra con luz morada. Por eso se **generó** con Nano Banana Pro, con el KV **Sunset QB aprobado** como referencia del lugar: dos tragos, una entrada desenfocada, sin gente ni texto (variante **b**). ⚠️ Hay que avisarle a Eli que es generada. Si aparece una foto real, se cambia.

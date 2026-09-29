@@ -112,7 +112,8 @@ const Caja: React.FC<{x: number; cifra: string; dia: string}> = ({x, cifra, dia}
 );
 
 const TARJ_W = 470;
-const TARJ_TOP = 1420;
+/** r20: el legal de historia va al pie (≈1748), así que las tarjetas bajan con él. */
+const TARJ_TOP = 1500;
 
 export const QbSt01BancoChile: React.FC = () => {
   const x1 = (MESA.w - (CAJA.w * 2 + CAJA.g)) / 2;

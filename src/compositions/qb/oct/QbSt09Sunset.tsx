@@ -73,6 +73,11 @@
  *     (Nano Banana Pro con la ref de la terraza real de QB): terraza a nivel de
  *     calle, pérgola, árboles, la calle con autos detrás; papas trufadas en vez de
  *     brochetas → sigue «Imagen referencial». El logo «Sunset QB» no se toca.
+ * ⭐ RONDA 20 (Eli 29-09): «el cambio se refería a la terraza: no se parece a QB, que se vea
+ *   más similar a las fotos que ya tienen». Foto regenerada con la terraza real de QB (13 oct
+ *   30 y 32) de referencia: techo de tela beige recogida con ventiladores, maceteros de
+ *   greda, sillas de listones, piso de piedra y ventanales. Titular «EL VIERNES CAMBIA» +
+ *   «de mood» (la D quedaba colgando arriba). Legal al pie (≈1748), regla de historias.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -99,31 +104,33 @@ const LOGO_H = LOGO_W * 576 / 2556;
 
 /** La foto sube para que el trago quede entre el logo y el bloque de abajo. */
 /** r19: la foto nueva sube 460 para que las papas queden sobre el titular, no detrás. */
-const SUBE = -460;
+const SUBE = -430;
 
 export const QbSt09Sunset: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
-    <FotoQB src="assets/hilton/qb/oct/09-sunset-r19.jpg" ratio={3072 / 5504} libre bajar={SUBE} />
+    <FotoQB src="assets/hilton/qb/oct/09-sunset-r20.jpg" ratio={3072 / 5504} libre bajar={SUBE} />
     {/* el canto de abajo de la foto (sube 300 px) se funde a negro */}
     <div style={{position: "absolute", left: 0, right: 0, top: 1060, height: 1920 - 1060,
       background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 45%, #000 100%)"}} />
     {/* r6 (Eli): más oscuro arriba para leer «Sunset QB» */}
-    <Velo arriba={[820, 0.8]} abajo={[900, 0.85]} />
+    <Velo arriba={[900, 0.86]} abajo={[900, 0.85]} />
     <Img src={staticFile("assets/hilton/qb/oct/sunset-qb-logo.png")}
       style={{position: "absolute", top: 346, left: (MESA.w - LOGO_W) / 2, width: LOGO_W, height: LOGO_H}} />
     {/* r19: el rótulo de la flecha en Raleway (una sola voz) y el precio como dato fuerte */}
-    <div style={{position: "absolute", left: 60, top: 744, width: 460, textAlign: "center", color: "#fff",
+    {/* r20: la copa quedó a la izquierda → el rótulo pasa a la derecha y la flecha apunta a ella */}
+    <div style={{position: "absolute", left: 590, top: 700, width: 440, textAlign: "center", color: "#fff",
       fontFamily: "Raleway", textShadow: "0 2px 16px rgba(0,0,0,.55)"}}>
       <div style={{fontSize: 34, fontWeight: 400, fontStyle: "italic", lineHeight: 1.15}}>Cocktails seleccionados<br />al mejor precio</div>
       <div style={{fontSize: 58, fontWeight: 800, letterSpacing: "0.02em", lineHeight: 1, marginTop: 14, ...CIFRAS}}>{QB_ST09_DATA.pieza.precio}</div>
     </div>
     <svg style={{position: "absolute", left: 0, top: 0}} width={MESA.w} height={MESA.h}>
-      <path d="M 300 912 C 340 990, 470 985, 590 890" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" />
-      <path d="M 556 888 L 591 889 L 586 923" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M 800 868 C 800 950, 740 985, 672 962" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" />
+      <path d="M 698 940 L 670 961 L 700 984" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
     {/* r19 (Eli): «EL VIERNES CAMBIA DE» en Raleway; «mood», la única palabra en otra voz */}
-    <Linea top={1196} cuerpo={52} peso={300} tracking="0.06em">EL VIERNES CAMBIA DE</Linea>
-    <Linea top={1244} cuerpo={150} familia="Brushwell" interlinea={1}>mood</Linea>
+    {/* r20 (Eli): «que sea "de mood": la D está quedando de más ahí arriba» */}
+    <Linea top={1196} cuerpo={56} peso={300} tracking="0.06em">EL VIERNES CAMBIA</Linea>
+    <Linea top={1246} cuerpo={140} familia="Brushwell" interlinea={1}>de mood</Linea>
     <BotonVerde top={1420} ancho={520} alto={54} cuerpo={30} peso={700}>{QB_ST09_DATA.pieza.medida}</BotonVerde>
     <Linea top={1480} cuerpo={34} peso={400} italica>
       {/* sin la ligadura «ff» y con aire entre las dos f (Eli 28-09: «se ve muy junto») */}
@@ -131,6 +138,7 @@ export const QbSt09Sunset: React.FC = () => (
     </Linea>
     {/* r6 (Eli): «aumenta un poco el tamaño de los legales… no se ve nada». De 14 a 19,
         en dos líneas que cierran en y≈1578, al borde de la zona segura de paid (1580) */}
-    <Legal top={1612} cuerpo={19}>{QB_ST09_DATA.pieza.legal}<br />{QB_ST09_DATA.pieza.legal2}</Legal>
+    {/* r20 (Eli 29-09): en HISTORIAS el legal va más abajo, al pie (≈1748), «casi para siempre» */}
+    <Legal top={1748} cuerpo={19}>{QB_ST09_DATA.pieza.legal}<br />{QB_ST09_DATA.pieza.legal2}</Legal>
   </AbsoluteFill>
 );

@@ -741,3 +741,24 @@ medición del bloque de AYCD, el degradado de marca y las reglas ejecutables.*
 
 Detalle y fuentes: `APRENDIZAJES.md` R-32, R-71 a R-76.
 
+
+---
+
+## 4i. Tres reglas de sistema que dejó la ronda 19–21 (Eli + contenido, 29-09-2026)
+
+1. **Dos voces por pieza, no más.** Raleway para todo + UNA de acento: una palabra en
+   Brushwell («mood», «buen momento», «trago») **o** el titular en Bell MT. Nunca las dos
+   en la misma pieza, y el rótulo de apoyo (el de la flecha) va en Raleway. Scarlette:
+   «se ven raro con tantas diferentes»; Eli: «recuerda no usar tantas tipografías por
+   pieza». Un carrusel se revisa **entero**: la misma voz de acento en todas las láminas.
+2. **En HISTORIAS el legal va al pie**, ≈ y 1748–1790 de 1920 (Eli: «casi para siempre»).
+   Tarjetas y bajadas se acomodan encima. En feed se mantiene la zona segura del 12 %.
+3. **La terraza de QB se reconoce**: primer piso a nivel de calle, techo de **tela beige
+   recogida con ventiladores negros** y guirnaldas, árboles en maceteros de greda, sillas de
+   listones, piso de piedra y ventanales de marco negro. Toda terraza generada se hace con
+   «QB 13 oct» 30 y 32 de referencia (`raw/hilton/qb/oct-r19/ref-QB-13-oct-*.jpg`). Nada de
+   azotea con vista a la ciudad.
+
+Y una técnica: para que varios tragos tengan **la misma altura** (bordes en una línea,
+fondos de copa en otra), se sirven en **el mismo modelo de copa** y se **mide** en la foto
+a resolución completa antes de entregar; con modelos distintos la IA no lo iguala.

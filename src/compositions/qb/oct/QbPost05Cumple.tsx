@@ -44,12 +44,36 @@
  *     todo, por «+»). Textos literales del brief («Cuentas divididas» reemplaza a
  *     «Cuenta separadas»).
  *   · Sólo la N°1 y la N°4 llevan la torta generada → «*Imagen referencial».
+ *
+ * ⭐⭐ RONDA 20 (Eli 29-09): «el carrusel se ve muy exagerado. La portada, más limpia, con una
+ *   imagen de cumpleaños — como la de la historia, esa imagen que logré que se ve mucho
+ *   mejor — y la siguiente slide, con respecto a la referencia; las otras, con imagen
+ *   variada».
+ *   · N°1: la torta de la ST 07-10 a sangre, velo arriba, «Tu cumpleaños» (Brushwell) +
+ *     «SE CELEBRA EN QB» (Raleway) + bajada. Nada más.
+ *   · N°2: la REFERENCIA (collage de polaroids con flash + tarjeta de lino), con el texto
+ *     de «¿VIENES CON 8 O MÁS?». Es la única lámina con collage.
+ *   · N°3 y N°4: una foto real distinta a sangre cada una y la información en el
+ *     recuadro oscuro con filete de la historia animada (mismo registro que la ST 07).
+ *
+ * ⭐⭐ RONDA 21 (Eli 29-09): «el carrusel se ve muy saturado y mal. Quiero que la PORTADA sea
+ *   igual a la referencia y las demás slides sean como la de la torta, con mejores fotos;
+ *   ya que está en el ojo, utiliza fotos más actuales».
+ *   · N°1 = la referencia: collage de polaroids + tarjeta de lino con «Tu cumpleaños / SE
+ *     CELEBRA EN QB» y la bajada. Polaroids con fotos de «Fotos 4 agosto» (editadas, ago-2026:
+ *     la sesión más reciente de QB) + la torta.
+ *   · N°2–N°4 = el registro de la portada de la torta: UNA foto a sangre, velo arriba y el
+ *     texto en blanco directo sobre él. Sin recuadros, sin cajas, sin tarjetas. Íconos de
+ *     línea finos sólo donde ordenan una lista.
+ *     N°2 IMG_4988 (amigos brindando en la mesa) · N°3 IMG_4877 (el grupo grande en la mesa)
+ *     · N°4 la torta de la historia (postre y torta propia).
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
 
 import {QB_ASSETS, QB_LOGO} from "../../../brand/qb";
-import {cargarFuentesQbOct, CIFRAS, Grano, Linea} from "./QbOctKit";
+import {BotonVerde, cargarFuentesQbOct, CIFRAS, Grano, Linea, Velo} from "./QbOctKit";
+import {FotoFeed} from "./QbFeedKit";
 
 cargarFuentesQbOct();
 
@@ -107,16 +131,14 @@ const Polaroid: React.FC<{
 /** r19: sin la lista de beneficios la tarjeta pierde 120 px y se centra en el hueco. */
 const TARJETA = {x: 150, y: 360, w: 780, h: 470};
 
+/** r21 · N°1: la REFERENCIA — polaroids con flash alrededor de la tarjeta de lino. */
 export const QbFeed05CumpleG1: React.FC = () => (
   <AbsoluteFill style={{background: "#15110E"}}>
-    {/* fila de arriba */}
-    <Polaroid src="05-cumple-107.jpg" x={-50} y={-40} w={430} giro={-4} pos="50% 55%" />
-    <Polaroid src="05-cumple-101.jpg" x={330} y={-70} w={420} giro={3} pos="55% 40%" />
-    <Polaroid src="05-cumple-108.jpg" x={710} y={-30} w={430} giro={-2.5} pos="30% 45%" />
-    {/* costados, medio escondidas tras la tarjeta */}
-    <Polaroid src="05-cumple-92.jpg" x={-120} y={380} w={330} giro={4} pos="30% 40%" alto={1.1} />
-    <Polaroid src="05-cumple-93.jpg" x={880} y={420} w={330} giro={-3.5} pos="45% 35%" alto={1.1} />
-    {/* la tarjeta de lino */}
+    <Polaroid src="cumple-ago-4808.jpg" x={-50} y={-40} w={430} giro={-4} pos="50% 50%" />
+    <Polaroid src="cumple-ago-4796.jpg" x={330} y={-70} w={420} giro={3} pos="50% 45%" />
+    <Polaroid src="cumple-ago-4820.jpg" x={710} y={-30} w={430} giro={-2.5} pos="50% 40%" />
+    <Polaroid src="cumple-ago-4842.jpg" x={-120} y={380} w={330} giro={4} pos="50% 35%" alto={1.1} />
+    <Polaroid src="cumple-ago-4812.jpg" x={880} y={420} w={330} giro={-3.5} pos="50% 35%" alto={1.1} />
     <div style={{position: "absolute", left: TARJETA.x, top: TARJETA.y, width: TARJETA.w, height: TARJETA.h,
       background: "#EEE6D8", boxShadow: "0 3px 6px rgba(0,0,0,.3), 0 20px 50px rgba(0,0,0,.55)",
       backgroundImage: "repeating-linear-gradient(0deg, rgba(90,70,40,.05) 0 1px, transparent 1px 4px), repeating-linear-gradient(90deg, rgba(90,70,40,.05) 0 1px, transparent 1px 4px)"}} />
@@ -135,9 +157,8 @@ export const QbFeed05CumpleG1: React.FC = () => (
     <Linea top={TARJETA.y + 420} cuerpo={14} italica color="#6B6259" sombra={false} ancho={400}>
       {QB_POST05_DATA.pieza.legal}
     </Linea>
-    {/* fila de abajo: la torta (generada) y un brindis */}
     <Polaroid src="05-cumple-torta.jpg" x={-30} y={862} w={560} giro={-3} pos="50% 55%" />
-    <Polaroid src="05-cumple-104.jpg" x={560} y={880} w={540} giro={3.5} pos="50% 40%" />
+    <Polaroid src="cumple-ago-4985.jpg" x={560} y={880} w={540} giro={3.5} pos="50% 45%" />
     <Grano />
   </AbsoluteFill>
 );
@@ -201,11 +222,11 @@ const Fila: React.FC<{top: number; icono: string; children: React.ReactNode; fue
 );
 
 /** Lo que se ELIGE: dos recuadros lado a lado unidos por «o» (o «+»). */
-const Opciones: React.FC<{top: number; a: string; b: string; iconoA: string; iconoB: string; union?: string}> = ({
-  top, a, b, iconoA, iconoB, union = "o",
+const Opciones: React.FC<{top: number; a: string; b: string; iconoA: string; iconoB: string; union?: string; w?: number}> = ({
+  top, a, b, iconoA, iconoB, union = "o", w = 360,
 }) => {
   const caja = (txt: string, ic: string) => (
-    <div style={{width: 360, height: 180, boxSizing: "border-box", border: `2px solid ${VERDE}`, borderRadius: 10,
+    <div style={{width: w, height: 180, boxSizing: "border-box", border: `2px solid ${VERDE}`, borderRadius: 10,
       display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10,
       color: TINTA, fontFamily: "Raleway", fontWeight: 600, fontSize: 30, textAlign: "center", ...CIFRAS}}>
       <Icono n={ic} t={58} />
@@ -223,63 +244,72 @@ const Opciones: React.FC<{top: number; a: string; b: string; iconoA: string; ico
   );
 };
 
+/** r21 · N°2–N°4: una foto a sangre y el texto blanco directo sobre el velo (el registro de
+ *  la portada de la torta de la r20). */
+const TB = {fill: "none", stroke: "#fff", strokeWidth: 2.2, strokeLinecap: "round" as const, strokeLinejoin: "round" as const};
+const ICONOS_B: Record<string, React.ReactNode> = {
+  postre: <><path d="M10 21 H34 L30 37 H14 Z" {...TB} /><path d="M10 21 C10 10 34 10 34 21" {...TB} /><circle cx="22" cy="8" r="2.6" {...TB} /></>,
+  torta: <><path d="M8 24 H36 V38 H8 Z" {...TB} /><path d="M8 30 C12 33 16 27 22 30 C28 33 32 27 36 30" {...TB} /><path d="M15 24 V17 M22 24 V15 M29 24 V17" {...TB} /></>,
+  cuenta: <><path d="M12 5 H32 V38 L28.7 35.5 L25.3 38 L22 35.5 L18.7 38 L15.3 35.5 L12 38 Z" {...TB} /><path d="M17 13 H27 M17 19 H27 M17 25 H24" {...TB} /></>,
+};
+const Blanco: React.FC<{top: number; cuerpo: number; peso?: number; italica?: boolean; tracking?: string; children: React.ReactNode}> = ({
+  top, cuerpo, peso = 400, italica = false, tracking, children,
+}) => <Linea top={top} cuerpo={cuerpo} peso={peso} italica={italica} tracking={tracking} ancho={960}>{children}</Linea>;
+
 export const QbFeed05CumpleG2: React.FC = () => {
   const d = QB_POST05_DATA.g2;
-  const y = LINO.y;
   return (
-    <AbsoluteFill style={{background: "#15110E"}}>
-      <Fondo a="05-cumple-101.jpg" b="15-amigos-72.jpg" c="15-amigos-98.jpg" e="05-cumple-93.jpg"
-        posA="55% 40%" posB="50% 45%" posC="50% 40%" posE="45% 35%" />
-      <Titulo top={y + 86}>{d.titular}</Titulo>
-      <Recibe top={y + 180}>{d.recibe}</Recibe>
-      <Filete top={y + 246} />
-      <Fila top={y + 280} icono="copa" fuerte cuerpo={56}>{d.texto}</Fila>
-      <Linea top={y + 382} cuerpo={28} peso={700} tracking="0.12em" color={VERDE} sombra={false}>{d.elige}</Linea>
-      <Opciones top={y + 446} a={d.opcion1} b={d.opcion2} iconoA="balde" iconoB="botella" />
-      <Grano />
+    <AbsoluteFill style={{background: "#000"}}>
+      <FotoFeed src="assets/hilton/qb/oct/cumple-ago-4988.jpg" pos="50% 50%" />
+      <Velo arriba={[760, 0.92]} abajo={[240, 0.4]} />
+      <Blanco top={96} cuerpo={60} peso={800} tracking="0.04em">{d.titular}</Blanco>
+      <Blanco top={180} cuerpo={30} italica peso={300}>{d.recibe}</Blanco>
+      <Blanco top={232} cuerpo={74} peso={800} tracking="0.03em">{d.texto}</Blanco>
+      <Blanco top={330} cuerpo={30} peso={400}>+ Elige tu favorito: 1 bucket de 6 cervezas</Blanco>
+      <Blanco top={372} cuerpo={30} peso={400}>o 1 botella de espumante</Blanco>
     </AbsoluteFill>
   );
 };
 
 export const QbFeed05CumpleG3: React.FC = () => {
   const d = QB_POST05_DATA.g3;
-  const y = LINO.y;
   return (
-    <AbsoluteFill style={{background: "#15110E"}}>
-      <Fondo a="05-cumple-107.jpg" b="05-cumple-108.jpg" c="05-cumple-92.jpg" e="15-amigos-101.jpg"
-        posA="50% 55%" posB="30% 45%" posC="30% 40%" posE="50% 40%" />
-      <Titulo top={y + 62}>{d.titular}</Titulo>
-      <Linea top={y + 150} cuerpo={88} familia="Brushwell" color={VERDE} sombra={false} interlinea={1}>{d.bajada}</Linea>
-      <Recibe top={y + 272}>{d.recibe}</Recibe>
-      <Filete top={y + 334} />
-      <Fila top={y + 362} icono="refill" fuerte cuerpo={33}>{d.texto}</Fila>
-      <Opciones top={y + 446} a={d.opcion1} b={d.opcion2} iconoA="balde" iconoB="botella" union="+" />
-      <Linea top={y + 658} cuerpo={28} italica color={TINTA} sombra={false}>{d.pie}</Linea>
-      <Grano />
+    <AbsoluteFill style={{background: "#000"}}>
+      <FotoFeed src="assets/hilton/qb/oct/cumple-ago-4877.jpg" pos="50% 50%" />
+      <Velo arriba={[800, 0.92]} abajo={[240, 0.4]} />
+      <Blanco top={86} cuerpo={60} peso={800} tracking="0.04em">{d.titular}</Blanco>
+      <Linea top={160} cuerpo={92} familia="Brushwell" interlinea={1}>{d.bajada}</Linea>
+      <Blanco top={288} cuerpo={30} italica peso={300}>{d.recibe}</Blanco>
+      <Blanco top={336} cuerpo={40} peso={800}>Refill ilimitado de 1 trago a elección</Blanco>
+      <Blanco top={396} cuerpo={30} peso={400}>+ 1 bucket de cervezas + 1 botella de espumante</Blanco>
+      <Blanco top={444} cuerpo={26} italica peso={300}>{d.pie}</Blanco>
     </AbsoluteFill>
   );
 };
 
 export const QbFeed05CumpleG4: React.FC = () => {
   const d = QB_POST05_DATA.g4;
-  const y = LINO.y;
+  const items = [["postre", d.item1], ["torta", d.item2], ["cuenta", d.item3]] as const;
   return (
-    <AbsoluteFill style={{background: "#15110E"}}>
-      <Fondo a="05-cumple-torta.jpg" b="05-cumple-104.jpg" c="12-pulpo.jpg" e="feed16-autor.jpg"
-        posA="50% 55%" posB="50% 40%" posC="50% 50%" posE="50% 45%" />
-      <Titulo top={y + 90} cuerpo={50}>{d.titular}</Titulo>
-      <Filete top={y + 176} />
-      <Fila top={y + 216} icono="postre">{d.item1}</Fila>
-      <Fila top={y + 300} icono="torta">{d.item2}</Fila>
-      <Fila top={y + 384} icono="cuenta">{d.item3}</Fila>
-      {/* CTA del brief en el botón verde de QB (esquinas vivas) */}
-      <div style={{position: "absolute", top: y + 500, left: (W - 720) / 2, width: 720, height: 112,
-        background: VERDE, display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center",
-        color: "#fff", fontFamily: "Raleway", fontWeight: 700, fontSize: 30, letterSpacing: "0.06em", lineHeight: 1.3}}>
-        ARMA EL GRUPO Y RESERVA<br />TU CUMPLE EN QB
+    <AbsoluteFill style={{background: "#000"}}>
+      <FotoFeed src="assets/hilton/qb/oct/07-cumple-torta-verde.jpg" pos="50% 75%" />
+      <Velo arriba={[760, 0.92]} abajo={[300, 0.5]} />
+      <Blanco top={96} cuerpo={58} peso={800} tracking="0.04em">{d.titular}</Blanco>
+      <div style={{position: "absolute", top: 190, left: 0, right: 0, display: "flex", justifyContent: "center"}}>
+        <div style={{display: "flex", flexDirection: "column", gap: 14, color: "#fff", fontFamily: "Raleway",
+          fontSize: 32, fontWeight: 500, textShadow: "0 2px 12px rgba(0,0,0,.5)"}}>
+          {items.map(([ic, t]) => (
+            <div key={ic} style={{display: "flex", alignItems: "center", gap: 16}}>
+              <svg width={40} height={40} viewBox="0 0 44 44" style={{flex: "none"}}>{ICONOS_B[ic]}</svg>
+              <span>{t}</span>
+            </div>
+          ))}
+        </div>
       </div>
-      <Linea top={y + 690} cuerpo={16} italica color="#6B6259" sombra={false} ancho={400}>{d.legal}</Linea>
-      <Grano />
+      <BotonVerde top={410} ancho={720} alto={96} cuerpo={28}>
+        <span style={{textAlign: "center", lineHeight: 1.25, letterSpacing: "0.05em"}}>ARMA EL GRUPO Y RESERVA<br />TU CUMPLE EN QB</span>
+      </BotonVerde>
+      <Linea top={1150} cuerpo={16} italica ancho={400} color="rgba(255,255,255,.8)">{d.legal}</Linea>
     </AbsoluteFill>
   );
 };

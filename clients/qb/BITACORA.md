@@ -1,5 +1,28 @@
 # QB Restaurant — bitácora
 
+## 2026-09-29 (noche) — Elisabet Soto «Eli» (Windows, con Claude) · rondas 19–21: los hilos de Scarlette y Nicolás, CMR 09-10 y ST 08-10 nuevos, carrusel de cumpleaños
+
+**Qué se hizo:**
+- `/abrir qb` + `/al-dia`: la grilla de octubre se movió 20:05Z (Scarlette) y trajo **5 hilos nativos a @Eli** + 1 de Nicolás (se leen con `read_file_content` + `includeComments`; no salen en el CSV). Eli: «toma siempre lo de Nicolás, Scar y cliente» y dejó en **EN CAMBIOS** todo lo comentado. Se releyó la grilla 3 veces en la ronda (estados cambiando en vivo).
+- **r19** (todo reemplazado en Drive, md5): ST 01-10 Banco (sin «EN QB», tarjetas arriba y legal abajo) · ST 06-10 AYCD (copón de sangría) · ST 09-10 Sunset (una sola voz: Raleway + «mood», «DESDE $3.990», terraza y papas trufadas) · **ST 08-10 = CMR 40 % sábados** (la aprobada con foto nueva; la «20 % todos los días» pasó al 15-10 como ST n°5 S2 y la S2 se renumeró 5→6, 6→7, 7→8) · ST 07-10 cumpleaños **animada** (mp4 + gif + estática, textos nuevos) · FEED 05-10 cumpleaños pasa a **carrusel de 4** · FEED 06-10 AYCD portada (botella de agua → espumante, injerto sólo de esa zona) · **carrusel CMR 09-10 nuevo** (3 láminas; la N°2 es el bloque de la CMR aprobada, `BloqueCmr40`, verificado 0 px de diferencia).
+- Drive S1 FEED renumerado por la grilla (R-67): `C1 S1 CUMPLEAÑOS` · `C2 S1 AYCD` (antes C1, renombrada) · `C3 S1 CMR`. Lo reemplazado quedó como «ANTES r18 - …».
+- **r20** (Eli): Banco (recuadro más corto, cajas pegadas al titular) · AYCD (copas «de la misma altura», no más grande) · Sunset (terraza regenerada con las fotos reales de QB: techo de tela beige con ventiladores; «EL VIERNES CAMBIA / de mood») · ST 08 (foto que no se repita: Muhammara siria 1; **legal al pie ≈1748**) · carrusel cumpleaños (portada limpia + ref) · página con el GIF animado.
+- **r21**: AYCD con los tres tragos en **el mismo modelo de copón** (medido: bordes 2750/2745/2752, fondos 3545/3540/3560) → **APROBADA por Eli**. Carrusel de cumpleaños: portada = la referencia (polaroids + lino) y N°2–4 con fotos de «Fotos 4 agosto» editadas → Eli: **no aprobado**, «tiene muchas tipografías y no se ven coherencias de la slide 2 en adelante»; se sigue mañana.
+
+**Dónde quedó:**
+- Código: `QbSt01BancoChile`, `QbSt06Aycd`, `QbSt09Sunset`, `QbSt07Cumple` (animada, `QB_ST07_DURACION` 330), `QbStAprobadaCmr40` (fecha «08» + `BloqueCmr40` exportado), `QbFeed09Cmr.tsx` (nuevo), `QbPost05Cumple.tsx` (G1–G4), `QbFeed07Aycd` (G1 espumante); registrados en `src/QbOctEntry.tsx` (`QB-OCT-FEED05-G1..4`, `QB-OCT-FEED09-G1..3`, `QB-OCT-ST08-CMR40`).
+- Renders: `out/qb/oct/r19/`, `r20/`, `r21/` (cada una con `_antes/`). Páginas: `revision-r19/r20/r21.html` + artefactos (r19 https://claude.ai/artifact/LFgzp67Dxd7XL7qLLxJqwf · r20 https://claude.ai/artifact/WUAf8yVY2UtTocZKoVJGXb · r21 https://claude.ai/artifact/Lrx5iAuyWwEncemPHak3Q9).
+- Scripts: `qb-oct-r19-nb.py` (Nano Banana Pro con refs), `qb-oct-r19-drive.py` (subida + renumeración r19), `qb-oct-r19/r20/r21-revision.py`. Generaciones y fotos en alta en `raw/hilton/qb/oct-r19/` (no viaja).
+- Video ST 07: rendido por `remotion render --sequence` + ffmpeg de `imageio_ffmpeg` (el render directo a mp4 sigue bloqueado en esta máquina).
+
+**Qué sigue:** el carrusel de cumpleaños (C1 S1 N°1–N°4): UNA voz tipográfica coherente en las 4 (hoy mezcla Brushwell, Raleway ExtraBold/Light/itálica y la tarjeta de lino) y un mismo sistema desde la N°2; mostrarlo antes de dar por cerrado. Después, los Reels DJ S2/S3/S5 (OK en la grilla, sin receta todavía).
+
+**Abierto:**
+- Carrusel cumpleaños: en Drive está la r21 (no aprobada) → rehacer mañana.
+- Visto de Eli a lo que no comentó en r20/r21: Banco 01-10, Sunset 09-10, ST 08-10 CMR, historia animada 07-10 (dijo «lo demás está bien» en r20).
+- Reel DJ S5: sigue «Falta horario» del martes 20 → contenido. Hilo de Scarlette a Nicolás (Sunset 22-10 con Halloween sutil) → contenido.
+- Brief CMR 09-10 salta de la slide 2 a la 4 (no trae 3): se hicieron 3 láminas → contenido si faltaba una.
+
 ## 2026-09-29 (tarde 5) — Elisabet Soto «Eli» (Windows, con Claude) · ronda 18: legal más grande y en una línea, SÓLO en lo que está OK PARA DISEÑAR
 
 **Qué se hizo:** Eli pidió «algo similar en los otros legales» y después acotó: **«sólo los ajustes a los que están OK para diseñar en la grilla»**. `Legal` del kit ganó `unaLinea` (columna 960). Medido con la fuente: con «Imagen referencial» cabe a 19 px; sin ella, a 22. Se aplicó y subió (md5 igual) sólo a las dos en OK: **ST n°2 S3** (AYCD llamada 20-10, 17→19 px) y **C1 S2 N°2** (Sunset 12-10 G2, 19→22 px). Las otras 12 (EN CAMBIOS / EN REVISIÓN / PENDIENTE / APROBADO) se revirtieron en código a lo entregado; sus renders de prueba quedaron en `out/qb/oct/r18/_no-ok-sin-usar/` (no se usan). Revisión `revision-r18.html`.

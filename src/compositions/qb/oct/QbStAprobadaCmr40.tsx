@@ -48,8 +48,8 @@ const QB_CMR40_DATA = {
 const FOTOS = {
   // r19 (Scarlette 29-09, STORIES!F14: «tomar porfis, la corrimos de fecha»): la ST del
   // 40 % pasó al 08-10 con el mismo brief → la aprobada con foto nueva (R-66)
-  // r20 (Eli 29-09): «otra imagen de fondo que no se repita tantas veces» → Adamames Thai 1
-  "08": {src: "cmr08-edamame.jpg", zoom: 1.0, cx: 0.5, cy: 0.5},
+  // r20 (Eli 29-09): «otra imagen de fondo que no se repita tantas veces» → Muhammara siria 1 (limonada, vino y el plato; mesa tranquila tras el titular)
+  "08": {src: "cmr08-muhammara.jpg", zoom: 1.0, cx: 0.5, cy: 0.5},
   "17": {src: "ap-cmr17.jpg", zoom: 1.0, cx: 0.5, cy: 0.52},  // American Baby ribs 1
   "25": {src: "ap-cmr25.jpg", zoom: 1.0, cx: 0.5, cy: 0.45},  // Cerveza Atenea 2 (brindis)
   "31": {src: "ap-cmr31.jpg", zoom: 1.0, cx: 0.5, cy: 0.5},   // Papas trufadas 5

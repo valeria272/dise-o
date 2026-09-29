@@ -110,6 +110,11 @@ recortado por alfa y recompuesto por luminancia.
 las dos). Va arriba y centrado. ⛔ **Nunca se deforma:** escala uniforme desde su
 proporción real (2,4825).
 
+⭐ **Segunda versión — en la esquina** (Eli, 29-09, FEED Arreglos florales): para fotos
+sin texto, el logotipo va **blanco, abajo a la derecha, 210 px de ancho @1080 y 48 px de
+margen**, sobre un velo leve de pie. *«Que siempre ese logotipo en esa esquina sean
+iguales.»* En código: `LogoEsquina` de `src/compositions/piso18/P18Octubre.tsx`.
+
 ⚠️ **La trampa:** el `logo PISO18.png` del material de origen **no es un logotipo** —
 es una plantilla de historia 2250×4000 con un velo negro en degradado que ocupa el
 99,4 % de sus píxeles con alfa. El velo es **intencional y parte del sistema**: es lo
@@ -147,6 +152,11 @@ Las Condes` centrada · legal al pie, cuerpo mínimo, con asterisco.
 
 *«Siempre hay que hacer botones en las historias, y en algunos reels.»* Redirigir a
 cotizar es el objetivo comercial de la cuenta.
+
+⚠️ **Revisado el 29-09 por Eli:** el botón —y la línea «Cotiza tu evento en piso18.cl»—
+va **sólo cuando el brief trae CTA** (fila INTERACCIÓN/CTA de la grilla). *«Solamente si
+está en el brief, no lo agregues siempre.»* Si la interacción es una barra, una encuesta
+o un cuadro de respuestas, no se agrega ningún llamado.
 
 ⛔ **Dos esquemas y no hay un tercero.** Ni otro color, ni degradado, ni transparente
 sobre la foto.

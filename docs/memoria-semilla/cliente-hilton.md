@@ -1,6 +1,6 @@
 ---
 name: cliente-hilton
-description: "HILTON — cerebro del cliente: 142 reglas firmes, última cosecha 2026-09-29. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
+description: "HILTON — cerebro del cliente: 145 reglas firmes, última cosecha 2026-09-29. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
 metadata:
   type: project
 ---
@@ -30,8 +30,8 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **R-28** · [DT] Precios de programa **literales del último carrusel vigente**: Family Time $125.000 IVA incluido · Escapada $99.000 · Noche de Bodas $189.000 — _Eli, 09-09-2026_ · ✔×3 · +1 $99.000 / $125.000 en las 3 ST de feriado, aprobadas 28-09 · +1 carrusel Escapada 07-10, aprobado 29-09 ($99.000)
 - **R-75** · [DT] **Foto nueva antes que foto repetida**: lo que ya salió varias veces en el feed (la fachada, el lounge HDT_37/38, el clip del café de «Tu día») se reemplaza por la sesión nueva «Hotel general sesión SEP 2026», para que el feed se vaya actualizando — _Eli, 28-09-2026, carrusel «5 cosas» y ST Coworking («esa imagen detrás ya la hemos utilizado bastante… utiliza imágenes nuevas, más bonitas, para que ya se vaya actualizando el feed»)_ · ✔×3 · +1 carrusel Escapada 07-10, aprobado 29-09 (foto de la sesión SEP 2026 sin usar en el feed) · +1 portada r4 con sep_26-476, sin usar, aprobada 29-09
 - **R-79** · [DT] **El titular y el bloque de programa van CENTRADOS**, aunque la ref los corra a un lado; en el bloque, «Family Time» arriba y el precio centrado debajo, el resto más abajo — _Eli, 28-09-2026, FEED 28-10 («déjalo centrado, se ve extraño que esté muy hacia un lado»; «el 125 podría centrarlo y arribita Family Time, bajar un poco los demás textos»). Va en la línea de E-07 (Honors centrado, 24-09)_ · ✔×3 · +1 ST 01-10 Family Time r7, 28-09 («centra Family Time con el 125 para que no se vea tan mal esa jerarquía, que un poco más armónica») · +1 carrusel Escapada 07-10, aprobado 29-09 (titular y bloque del precio centrados)
+- **R-96** · [DT] **Lo cambiado tiene que verse natural**: color de pelo que le venga a la piel (el rubio sobre piel morena y las cejas decoloradas se rechazaron), ojos relajados, sin mechones raros; se revisa con zoom antes de mostrar — _Eli, 28-09-2026 («se ve muy poco natural, ten cuidado»)_ · ✔×3 · +1 cara nueva de la cookie natural (R-117), aprobada 29-09 · +1 pendón teléfono r8: rubio miel sobre piel clara, cejas y cara intactas
 - **R-30** · [BW] Taza blanca con raya negra y **KIMBO: se borra siempre**; la taza vigente es blanca total — _Eli 25-08; Scarlette 31-08; ronda 9, 03-09-2026_ · ✔×3
-- **R-31** · [BW] **El logotipo nunca se deforma ni se curva**: escala uniforme a ratio 3,0298, integrado en el vaso por tono (multiply), no por geometría — _Eli 25-08 («no se vea achatado»); cliente 31-08; Eli 01-09-2026 («no puedes curvarlo de esa manera»)_ · ✔×3
 
 ## Lo que ya costó rondas
 - **X-70** · [BW] ST 01-10 con **8 combinaciones de cuerpo/peso/estilo** (script sans + ExtraBold de otro cuerpo, SemiBold 44, Medium 32, itálica) y halo escalonado: «se ve desordenado», «no queda bien delineado» — _Constanza, 29-09-2026: 1 ronda_
@@ -39,6 +39,7 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **X-72** · [BW] ST 02-10: interlínea cerrada de más (−0,2): la tilde de la «Ñ» pegada a la línea de arriba — _Eli, 29-09-2026: 1 ronda_
 - **X-73** · [BW] Reel 02-10: «VA POR» solo en su línea, se leía «VAPOR» — _Eli, 29-09-2026: 1 ronda_
 - **X-74** · [DT] Octubre entero con **letras espaciadas** (antetítulo 0,34 em, «EN PAREJA →» 0,16, píldoras en versales espaciadas, «IVA INCLUIDO» 0,16) y **títulos de historia a alturas distintas** (versal en 416/488/495/518 y dos dentro de un panel; en la Family Time animada el título saltaba 72 px entre escenas) — _Constanza Lizana, 29-09-2026: 1 ronda, 7 piezas corregidas_ (→ R-132, R-133, R-134)
+- **X-76** · [DT] Pendón cookie con la 3-79 **rehecha con IA** (cara nueva calzada en la boca, mano en pinza, franja de la persona regenerada en 4K, rondas r4–r7, aprobada como «quedó perfecto»): Eli volvió a la **foto original** sin IA — _Eli, 29-09-2026, r8: 4 rondas de IA descartadas_ (→ R-137)
 - **X-75** · [DT] Ronda de Constanza aplicada con la norma a 488: el título de la Family Time **tapaba la cabeza de la mamá**; la flecha fina y el legal de la feriado ER+FT **no se leían** sobre la foto; el título de «escápate en pareja» **salía del recuadro**; y en Honors el ajuste (30 px) **no se notaba** («quedó exactamente igual») — _Eli, 29-09-2026: 1 ronda, 6 piezas_ (→ R-134 a 440, R-135, R-136)
 - **X-60** · [DT] Pareja IA con **look pintado**: atardecer naranja agregado en la ventana, color saturado y cálido, piel y ropa de ilustración, posturas poco creíbles — «se ve extraña» — _Eli, 29-09-2026, portada Escapada 07-10, ya aprobada en r1–r3 y reabierta: 1 ronda (r4)_
 - **X-51** · [BW] POV con el **muffin apoyado sobre la tapa del vaso** y chico (calcado de la ref, que traía la galleta sobre la taza): «rara», «desproporcionado» — _cliente, ST 02-10, 28-09-2026: 1 ronda_
@@ -46,6 +47,4 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **X-48** · [DT] Pelo rubio sobre piel morena, cejas decoloradas, ojos raros y mechones sueltos: «poco natural» — _Eli, 28-09-2026, pendones r2: 1 ronda_
 - **X-44** · [BW] Ilustraciones de carta de **trazo uniforme y rígido** (vector de línea pareja) — _Eli, 28-09-2026, r1 («estilo hecho a mano… que no sea tan rígido»)_
 - **X-45** · [BW] Dibujo que **no corresponde a la hoja** (pasteles en la hoja del bar de la D) y dibujos que la caja corta (A) — _Eli, 28-09-2026, r3_
-- **X-46** · [BW] Editables **un .ai por hoja y en RGB** — _Eli, 28-09-2026 («me va a hacer todo muy difícil después para editar»): 1 ronda de entrega_
-- **X-28** · [BW] Costura de la expansión IA revisada sólo en 3 o 4 frames y con la posición suavizada: el pelo sale doble arriba de la cabeza y el borde nada — _Eli, reel «La razón» prueba 2, 25-09-2026 («casi bien»)_
-- **X-27** · [BW] Tapar el borde desenfocado **ag
+- **X-46** · [BW] Editables **un .ai por hoja y en RGB** — _Eli, 28-09-2026 («me va a hacer todo muy difícil después para

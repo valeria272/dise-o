@@ -128,3 +128,32 @@ El .ai quedó **guardado** con esos tres vínculos. El PDF de imprenta está **p
 - **Precisión ×2 dos veces** (×4): textura pintada en pelo y piel (R-116).
 - `doc.save()` por COM dio «operation was cancelled» pero el documento quedó `saved=true`:
   verificar por el estado y por los vínculos dentro del .ai, no por el mensaje.
+
+## 8 · Ronda 8 (29-09-2026, noche) — rubia y cookie original
+
+**Lo que pidió Eli:** «la 3-79 es la foto final a usar en la cookie» · pendón de la chica hablando
+por celular: «cambiar el color de pelo a rubio» · la cookie: «dejar la imagen original (que sale la
+mano con la galleta) y dejar el ajuste del correo». Script: `scripts/dt-pendones-r8.py`.
+
+- **Cookie = la 3-79 real, sin IA.** No hay cara que cambiar: la foto corta en la boca. Ventana
+  x 180..1240 (dedos, anillo, bolsa, la otra mano) = 82 cm con sangrado; la foto parte a 40 cm del
+  borde para que la mano quede BAJO el titular y la bolsa llegue al QR (202 cm). Fundidos de 18 cm
+  arriba y 14 abajo al azul (32,32,73). El árbol desenfocado del muro queda bajo el velo del titular.
+  El precision ×2 de la 3-79 entera falló 2 veces sin imagen; **la ventana sola sí escala**.
+- **Rubio:** «golden blonde» dio cobrizo claro (3 de 3); con «ABSOLUTELY NO red, copper…» salió
+  rubio miel (nb4) aún frutilla → a la nb4 se le baja el rojo en LAB (a* × 0,45, L × 1,08 + 14) y
+  se monta SÓLO sobre el pelo: croma > 30 y L < 160 de la original (piel: croma < 27, L > 165),
+  sin óvalo de cara, follaje ni pulseras. Cara, cejas, mano y teléfono = foto aprobada.
+- Vínculos nuevos `pendon-2-telefono-r8.jpg` / `pendon-3-cookie-r8.jpg` con los MISMOS píxeles que
+  los r4 → en el .ai se cambia sólo `placedItem.file` (geometría intacta, verificada).
+- ⛔ `doc.save()` guardó el .ai compatible con PDF: **214 MB**. Se regrabó con `saveAs` +
+  `pdfCompatible=false` → 2,7 MB.
+- Previsualización PNG 150 ppp (export PNG24 al 208,33 %) → Drive «PENDONES 2026 ACTUALIZADOS»
+  (`scripts/dt-pendones-subir-previsualizacion.py`). Los PNG que subió Eli no se pueden
+  reemplazar ni borrar ni mover (token drive.file 404, conector MCP sin permiso), pero el conector SÍ los
+  renombra: los de Eli quedaron «ANTERIOR - …» y los nuevos con el nombre original (md5 verificado).
+- **Ajuste de Eli después de subir:** los contactos de la cookie a **negrita** (Trade Gothic Bold), como en
+  los otros dos (R-138). Si el título de Illustrator tiene «*», hay cambios suyos sin guardar: se exporta
+  desde el documento abierto y se guarda con `pdfCompatible=false`.
+- Revisión: https://claude.ai/artifact/2478u7XKpiFeprAJ4pgQ8S · respaldo de lo anterior en
+  `raw/hilton/dt/pendones-2026/r8/antes/`. PDF de imprenta: pendiente hasta que Eli apruebe.

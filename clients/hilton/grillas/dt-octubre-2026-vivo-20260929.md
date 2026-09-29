@@ -1,7 +1,7 @@
 # Grilla DOUBLETREE — instantánea
 
 > Instantánea del 29-09-2026 tomada con `/al-dia`.
-> Origen: `raw/hilton/dt/DT-grilla-octubre-2026-20260929.xlsx`.
+> Origen: `raw/hilton/dt/DT-grilla-octubre-2026-20260929b.xlsx`.
 > **Sirve de base para el DIFF de la próxima ronda**: los comentarios se
 > prependen sobre los viejos en la misma celda, así que sin esta copia no se
 > distingue lo nuevo de lo ya resuelto.
@@ -17,7 +17,7 @@ SEMANA 2
 ```
 
 
-### Columna C — **OK PARA DISEÑO**
+### Columna C — **EN REVISIÓN**
 
 **FECHA:**
 
@@ -110,7 +110,7 @@ Para que no quede obsoleto tan rápido, consideremos que este post sea de Escapa
 En ese sentido, modifiquemos este post para que sea atemporal y hagamos 3 historias genéricas de feriado, la primera que englobe a ER y FT, otra solo de ER y otra solo de FT~~
 
 
-### Columna D — **OK PARA DISEÑO**
+### Columna D — **EN REVISIÓN**
 
 **FECHA:**
 
@@ -175,7 +175,7 @@ SEMANA 3
 ```
 
 
-### Columna F — **OK PARA DISEÑO**
+### Columna F — **POR GRABAR**
 
 **FECHA:**
 
@@ -449,7 +449,7 @@ SEMANA 1
 ```
 
 
-### Columna C — **OK PARA DISEÑO**
+### Columna C — **EN REVISIÓN**
 
 **FECHA:**
 
@@ -516,7 +516,7 @@ SEMANA 2
 ```
 
 
-### Columna E — **OK PARA DISEÑO**
+### Columna E — **EN REVISIÓN**
 
 **FECHA:**
 
@@ -572,7 +572,7 @@ Cambiar por las historias mencionadas en feed
 ```
 
 
-### Columna F — **OK PARA DISEÑO**
+### Columna F — **EN REVISIÓN**
 
 **FECHA:**
 
@@ -610,7 +610,7 @@ REF
 ```
 
 
-### Columna G — **OK PARA DISEÑO**
+### Columna G — **EN REVISIÓN**
 
 **FECHA:**
 

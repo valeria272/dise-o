@@ -30,6 +30,12 @@
  *   margen», el legal en dos líneas de párrafo como máximo. Con «Imagen referencial»
  *   el legal ocupa 2 líneas y la lista de tragos quedaba pegada debajo: la lista baja
  *   26 px (margen) y cierra en 1580, el borde de la zona segura. La 27-10 no cambia.
+ * ⭐ RONDA 17 (Eli 29-09, 13-10): «que imagen referencial, sujeto a consumo de alimentos
+ *   y promoción no acumulable estén en la misma línea… y luego los tragos, porque son
+ *   distintos del legal… los cócteles no son tanto legal: aumenta un poco el tamaño y
+ *   ordénalos mejor». → El legal va en UNA línea (18 px, 1000 de ancho) y debajo, con
+ *   margen, la lista de tragos a 24 px en Raleway recta (no itálica, para que no se lea
+ *   como legal), en dos líneas parejas separadas por «·».
  */
 import React from "react";
 import {AbsoluteFill} from "remotion";
@@ -41,10 +47,11 @@ cargarFuentesQbOct();
 const QB_AYCD_AP_DATA = {
   referencial: "*Imagen referencial. ",
   legal: "*Sujeto a consumo de alimentos. *Promoción no acumulable con otras ofertas y beneficios.",
-  legal1: "*Sujeto a consumo de alimentos.",
-  legal2: "*Promoción no acumulable con otras ofertas y beneficios.",
   tragos: ["Schop Heineken - Piscola 35° (Mistral o Alto del Carmen) - Ramazzotti",
     "Sangría - Copa de espumante (opción de la casa)"],
+  /** r17: los mismos tragos, reordenados en dos líneas parejas. */
+  tragosOrden: ["Schop Heineken · Piscola 35° (Mistral o Alto del Carmen)",
+    "Ramazzotti · Sangría · Copa de espumante (opción de la casa)"],
 };
 
 const FOTOS = {
@@ -65,12 +72,27 @@ export const QbStAprobadaAycd: React.FC<{fecha: QbAycdFecha}> = ({fecha}) => {
       <LogoQB top={207.4 + BAJA} ancho={178.6} />
       <NombreAycd top={376.3 + BAJA} />
       <BloqueAycd antetitulo={1311.4 - SUBE} boton={1364.6 - SUBE} horario={1479.4 - SUBE} />
-      <Legal top={1452} cuerpo={19}>{/* Constanza 29-09: con «Imagen referencial» el legal se alarga y dejaba «beneficios» sola → corte por frase */}
-        {f.referencial ? <>{QB_AYCD_AP_DATA.referencial}{QB_AYCD_AP_DATA.legal1}<br />{QB_AYCD_AP_DATA.legal2}</> : QB_AYCD_AP_DATA.legal}</Legal>
-      <Linea top={f.referencial ? 1526 : 1500} cuerpo={20} italica peso={400} interlinea={1.35} sombra={false}
-        color="rgba(255,255,255,0.9)" ancho={900}>
-        {QB_AYCD_AP_DATA.tragos[0]}<br />{QB_AYCD_AP_DATA.tragos[1]}
-      </Linea>
+      {f.referencial ? (
+        <>
+          {/* r17 (Eli 29-09): el legal entero en UNA línea, y la lista de tragos aparte, más grande */}
+          <Linea top={1452} cuerpo={18} italica interlinea={1.3} sombra={false}
+            color="rgba(255,255,255,0.88)" ancho={1000}>
+            {QB_AYCD_AP_DATA.referencial}{QB_AYCD_AP_DATA.legal}
+          </Linea>
+          <Linea top={1500} cuerpo={24} peso={400} interlinea={1.4} sombra={false}
+            color="rgba(255,255,255,0.95)" ancho={960}>
+            {QB_AYCD_AP_DATA.tragosOrden[0]}<br />{QB_AYCD_AP_DATA.tragosOrden[1]}
+          </Linea>
+        </>
+      ) : (
+        <>
+          <Legal top={1452} cuerpo={19}>{QB_AYCD_AP_DATA.legal}</Legal>
+          <Linea top={1500} cuerpo={20} italica peso={400} interlinea={1.35} sombra={false}
+            color="rgba(255,255,255,0.9)" ancho={900}>
+            {QB_AYCD_AP_DATA.tragos[0]}<br />{QB_AYCD_AP_DATA.tragos[1]}
+          </Linea>
+        </>
+      )}
     </AbsoluteFill>
   );
 };

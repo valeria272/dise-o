@@ -1,5 +1,10 @@
 # QB Restaurant — bitácora
 
+## 2026-09-29 (tarde 4) — Elisabet Soto «Eli» (Windows, con Claude) · ronda 17: legal de la AYCD 13-10 en una línea
+
+**Qué se hizo:** Eli: el resto de las ST OK. En la **AYCD 13-10 (ST n°2 S2)** el legal completo («*Imagen referencial… beneficios.») va en UNA línea (18 px, ancho 1000) y debajo, con margen, los tragos «que no son tanto legal»: 24 px, Raleway recta, dos líneas parejas con «·». La 27-10 (mismo componente) verificada idéntica. Reemplazada en Drive (md5 igual). Revisión `out/qb/oct/r17/revision-r17.html` (`scripts/qb-oct-r17-revision.py`).
+**Aprendizaje:** en QB, la lista de tragos del AYCD NO es legal: va separada, más grande y recta; el legal, lo más compacto posible (una línea) aunque baje de 19 px.
+
 ## 2026-09-29 (tarde 3) — Elisabet Soto «Eli» (Windows, con Claude) · ronda 16: la lectura de Eli sobre el comentario de Constanza
 
 **Qué se hizo:** Eli revisó la r15: Cumpleaños y Banco OK. Ajustes:

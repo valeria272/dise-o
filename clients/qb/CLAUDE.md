@@ -728,3 +728,16 @@ que no marcan lo bueno, pero no que atrapen lo malo.
 
 *Creado el 15-09-2026 con lo dictado por Eli. Ampliado el 17-09-2026 con la
 medición del bloque de AYCD, el degradado de marca y las reglas ejecutables.*
+
+---
+
+## Legales, separación y listas — criterio del 29-09-2026 (Constanza + Eli)
+
+- **Legal en UNA línea**, columna de 960 (60 px por lado), en Raleway Itálica al cuerpo más grande que cabe: **19 px** con «*Imagen referencial» (~110 caracteres), **22 px** sin ella (~88). Medido con `PIL.ImageFont` sobre `Raleway-Italic.ttf` antes de rendir. Si no cabe a ≥ 19 (CMR 40 %, ~165), **dos líneas exactas cortadas por frase**. Nunca una palabra sola en la última línea. Kit: `<Legal unaLinea>` en `QbOctKit.tsx`.
+- **La lista de tragos del AYCD no es legal:** va aparte, con margen, 24 px en Raleway **recta**, dos líneas parejas con «·».
+- **Logo → primer elemento de abajo = 53 px** en todas las historias de la semana (la del bloque AYCD del KV). El logo no sube: baja el contenido.
+- **Recuadros de beneficios** al ancho del renglón más largo, 26 px de aire por lado, centrados.
+- ⛔ Cualquier ajuste «para todos» se aplica **sólo a lo que está en OK PARA DISEÑAR** en la grilla.
+
+Detalle y fuentes: `APRENDIZAJES.md` R-32, R-71 a R-76.
+

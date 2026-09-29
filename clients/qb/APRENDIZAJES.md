@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-09-29** · Cosechas: **13**
+> Última cosecha: **2026-09-29** · Cosechas: **14**
 
 ## 1. Quién es el cliente
 
@@ -26,7 +26,7 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 |---|---|
 | Quién pide / KAM | Eli encarga al estudio; contenido (Nicolás Ávila) pide cambios de texto por Slack |
 | Quién aprueba (cliente) | El cliente, en la grilla; Eli revisa cada ronda mirando video, estática y comparaciones en Drive |
-| Por dónde llega el feedback | Celda `COMENTARIOS CLIENTE` de la grilla **Sheet nativa** (gid FEED `351027330` · STORIES `49019995` · ORGÁNICOS `1890610027`); Eli con marcas en rojo sobre capturas |
+| Por dónde llega el feedback | **Constanza Lizana, jefa de diseño**, deja comentarios **nativos** anclados a celdas de la grilla (se leen con `read_file_content` + `includeComments`, no salen en el CSV) y Eli los interpreta ronda por ronda (29-09) · Celda `COMENTARIOS CLIENTE` de la grilla **Sheet nativa** (gid FEED `351027330` · STORIES `49019995` · ORGÁNICOS `1890610027`); Eli con marcas en rojo sobre capturas |
 | Dónde se entrega | Drive `QB / STS` (`1Ve22wlyaFlOMe4FGgyPw4J-nXKYiP4UU`); octubre en `S<n> HILTON OCT 2026 / QB / STS`; el feed en `…/QB/FEED` y **cada carrusel en su carpeta** `C1 S<n> <TEMA>` (así nombra Eli: el tema va en la carpeta) |
 | Ritmo | Grilla mensual; sólo se diseña lo que está `OK PARA DISEÑAR`. `CAMBIADO` = contenido reescribió el brief tras el comentario del cliente y **vuelve a revisión**: no se diseña (grilla de octubre, 25-09). Contenido de octubre: Scarlette Muñoz |
 | Rondas típicas | La ST animada de AYCD (S5) llegó a v7: montaje del celular (mate, perspectiva, croma) y nitidez de textos |
@@ -72,7 +72,7 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **R-29** · Las promos se mantienen en el tiempo: una vigente no se da por vencida sola, se confirma con Eli — _Eli, 15-09_ · ✔×1
 - **R-30** · Ni títulos ni bajadas llevan punto (final ni intermedio), aunque el brief lo traiga — _regla del cliente Hilton, 23-09-2026, citada en el manual de QB; el cliente le sacó los puntos al 09-10 en la grilla, 25-09_ · ✔×2
 - **R-31** · Al corregir en Drive se sube con **nombre nuevo** (v4, v5…): la vista previa de Drive queda cacheada al reemplazar por el mismo ID — _17-09, Eli «no veo el cambio»; repetido en v5, v6 y v7_ · ✔×4 · ⚠️ **25-09 se incumplió**: la ronda de Eli se subió reemplazando con el mismo nombre (se le avisó del caché). La próxima ronda va con nombre nuevo
-- **R-32** · Sólo se diseña lo que está `OK PARA DISEÑAR`; `PENDIENTE POR CLIENTE` no se toca — _bitácora 17-09, 21-09, 24-09 (Trivia de brindis, Reel DJ); 25-09: 8 piezas en CAMBIADO no se diseñaron; 28-09: el feed de S1 entero en CAMBIADO, no se tocó; 28-09 tarde: 6 historias en CAMBIADO sin tocar_ ; 28-09 tarde: 8 pasaron a OK, sólo esas se diseñaron (las REVISAR CONTENIDO, no) · ✔×7
+- **R-32** · Sólo se diseña lo que está `OK PARA DISEÑAR`; `PENDIENTE POR CLIENTE` no se toca — _bitácora 17-09, 21-09, 24-09 (Trivia de brindis, Reel DJ); 25-09: 8 piezas en CAMBIADO no se diseñaron; 28-09: el feed de S1 entero en CAMBIADO, no se tocó; 28-09 tarde: 6 historias en CAMBIADO sin tocar_ ; 28-09 tarde: 8 pasaron a OK, sólo esas se diseñaron (las REVISAR CONTENIDO, no) · ✔×8. ⭐ **Vale también para los AJUSTES:** una corrección «para todos» (p. ej. el legal en una línea) se aplica **sólo** a las piezas en OK PARA DISEÑAR; lo APROBADO, EN CAMBIOS, EN REVISIÓN o PENDIENTE no se toca aunque tenga el mismo defecto — _Eli 29-09: «solo los ajustes son a los que están okey para diseñar en grilla» (r18: de 14 piezas, 2)_
 - **R-33** · No se entrega con menos bitrate que lo aprobado (la S5 salió a crf 10 para igualar 4.484 kb/s) — _ronda 5, 21-09_ · ✔×1
 - **R-34** · Un negro saturado que el QA lee como «foto estirada» se arregla con grano de película sutil (±2), no bajando la foto con una franja negra lisa — _octubre, 24-09_ · ✔×1
 - **R-35** · El video de octubre se rinde a 2,5× y se baja a 2250×4000 con lanczos (2,0833× da alto no entero) — _`scripts/qb-oct-render.sh`, 24-09_ · ✔×1
@@ -93,7 +93,7 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **R-49** · Tragos en fila van con el **borde de las copas a la misma altura** — _Eli 28-09, AYCD 06-10: «tanto el primero, el segundo y el tercer cóctel a la misma altura, la copa»_ · ✔×1
 - **R-50** · El texto impreso sobre un objeto en la mano (ticket, nota) vive **sólo sobre el papel**: se enmascara con la silueta del papel medida en la foto; el dedo y la uña quedan encima — _Eli 28-09, ST 21-10: «la línea de puntitos sobresale de la uña, se solapa, eso no debería haber pasado»_ · ✔×1
 - **R-51** · Cifra grande con % y OFF: **aire** entre la cifra y el bloque %/OFF, nunca se tocan (≥ 14 px en un ticket de 300 de ancho) — _Eli 28-09, ST 21-10: «el OFF está muy cerca del cero, se solapan… y el porcentaje también: que se vea mucho más armónico»_ · ✔×1
-- **R-52** · El legal se tiene que **leer**: ≥ 19 px en mesa (no 14), lo más abajo que deje la zona segura (≤ 1580), en dos líneas si hace falta; cuando va al costado de un objeto, **alineado a la izquierda** — _Eli 28-09: Sunset «aumenta un poco el tamaño de los legales… en este momento no se ve nada, y en el fondo igual es un texto importante»; estacionamiento «lo de nuestro personal déjalo abajo como otra línea… alineado hacia la izquierda para que tenga más coherencia»_ · ✔×2
+- **R-52** · El legal se tiene que **leer**: ≥ 19 px en mesa (no 14), lo más abajo que deje la zona segura (≤ 1580), en dos líneas si hace falta ⚠️ revisada 2026-09-29 → ver R-73 (una línea); cuando va al costado de un objeto, **alineado a la izquierda** — _Eli 28-09: Sunset «aumenta un poco el tamaño de los legales… en este momento no se ve nada, y en el fondo igual es un texto importante»; estacionamiento «lo de nuestro personal déjalo abajo como otra línea… alineado hacia la izquierda para que tenga más coherencia»; Eli 29-09 sobre el AYCD 06-10 (14 px): «el legal está demasiado pequeño, auméntale un poco más el tamaño»_ · ✔×3
 - **R-53** · Un logo o título blanco sobre una foto clara se **oscurece por arriba** hasta leerse limpio (Sunset: velo de 820 px al 80 %) — _Eli 28-09: «Sunset QB arriba, oscurece un poco hacia arriba para que se pueda leer claro»_ · ✔×1
 - **R-54** · El objeto que la mano sostiene no se ve gigante: el ticket de adelante quedó en ~326 px de ancho sobre 1080 (≈ 30 %), y van **dos** tickets en abanico, uno destacado — _Eli 28-09, ST 21-10: «está demasiado grande» (r6), «se ve muy gigante todavía… que en vez de un ticket sean dos, que ella los tenga en las manos, cosa de que uno destaque» (r7)_ · ✔×1
 - **R-55** · Una pieza de Eli **sin editable** se corrige sobre el PNG: se borra sólo la línea que cambia y se reescribe calzando fuente, cuerpo, tracking y línea base **contra el original** (render del texto viejo encima hasta que calce, y peso por tinta). La Raleway de Adobe pesa más que la de Google: el texto de Eli, que a ojo parecía Medium, calzó con Google **SemiBold** (la Medium de Google quedaba 17 % más delgada). Se conserva la caja de la pieza aunque el pedido venga en versales — _ST 29-09 Trivia de brindis, 28-09: «tomar» → «beber», pedido del cliente vía Nicolás Ávila_ · ✔×1
@@ -113,6 +113,13 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **R-69** · Las plantillas aprobadas de AYCD y CMR tienen el nombre/titular arriba y el bloque de precio al medio-abajo: la foto que les sirve es **de tragos o mesa sin caras al centro**. Una foto de personas deja el nombre sobre las caras y el bloque sobre los tragos. Para CMR «mesa servida» manda el **shooting de la carta ene-2026** (R-40): American Baby ribs 1, Cerveza Atenea 2, Papas trufadas 5 — _29-09, cazado en la revisión antes de entregar_ · ✔×1
 - **R-70** · En la ST de Sunset, el titular en **Raleway Light** no se lee sobre tragos de colores: la foto **sube** (FotoQB `libre` + `bajar` negativo) para que los tragos queden entre el logo y el titular y el titular caiga sobre la mesa; el canto de abajo se funde a negro. Un velo local solo no alcanza — _29-09, S2/S3/S4_ · ✔×1
 
+- **R-71** · En las historias de una misma semana, la **separación logo → primer elemento de abajo es la MISMA**: **53 px de mesa**, la del AYCD (bloque del KV, R-04). El logo no sube (su tope ≈250 es la zona segura): **baja el contenido** — _Constanza Lizana (jefa de diseño), grilla 29-09: «ojo con la separación del título de historia con el logo. Mantengamos a todas la misma separación» (medido 43 / 53 / 36 px en Banco, AYCD y Cumpleaños); Eli revisó: «la corrección que hiciste está súper bien»_ · ✔×1
+- **R-72** · **Sin palabras solas** en la última línea de un legal o texto («beneficios» sola abajo): se corta **por frase** — _Constanza, grilla 29-09 (ST 09-10 Sunset): «se ve raro con la palabra beneficios solita abajo, porfis no debemos palabras solitas»_ · ✔×1
+- **R-73** · El legal va en **UNA línea**, en una columna de 960 (60 px por lado), al cuerpo más grande que cabe: medido con la fuente, **19 px** con «*Imagen referencial» (~110 caracteres) y **22 px** sin ella (~88). Si es el doble de largo (CMR 40 %, ~165), **dos líneas exactas cortadas por frase** a 21. Kit: `<Legal unaLinea>` — _Eli 29-09, ST 13-10: «que imagen referencial, sujeto a consumo de alimentos y promoción no acumulable estén en la misma línea»; r18: «haz algo similar en los otros legales, verifica que no se vean tan pequeñas»_ · ✔×2
+- **R-74** · La **lista de tragos del AYCD no es legal**: va **aparte**, con margen bajo el legal, a **24 px en Raleway recta** (no itálica) y en **dos líneas parejas** separadas por «·» — _Eli 29-09, ST 13-10: «los cócteles no son tanto legal: aumenta un poco el tamaño y ordénalo mejor»; «deja como un margen, se ve mucho legal y muy pesado»_ · ✔×1
+- **R-75** · Una lista de beneficios en **recuadros** toma el **ancho del renglón más largo** (max-content) y cierra con el **mismo aire con que abre** (26 px por lado), centrada; no va a ancho fijo de columna — _Constanza, grilla 29-09 (ST 07-10 Cumpleaños): «los bullets de los beneficios están muuuy largos… manda el primer beneficio porque es el más largo, pero déjale un poco menos de aire al fin de la frase»; Eli: «súper bien»_ · ✔×1
+- **R-76** · Bajo el nombre del AYCD, la frase de apoyo («Tus favoritos, las veces que quieras») lleva **aire**: ~33 px del nombre, el mismo que hay entre titular y bajada en las historias vecinas; a 21 px se lee pegada — _Eli 29-09 leyendo el comentario de Constanza: «tiene que verse más alineado como en las otras historias que están al lado, darle un poco de aire»_ · ✔×1
+
 ## 5. Excepciones
 
 - **E-01** · El ajuste de zona segura de `reglas.yaml` (5,8 % de tinta abajo) existe porque las orgánicas aprobadas rematan al pie; **no salva una pieza de pauta** — _reglas.yaml, 17-09_
@@ -124,6 +131,7 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **E-08** · R-37 (sobre la aprobada, sólo cambian foto y textos) **cede** cuando Eli pide parecerse a la referencia: en los bancos se cambió la tipografía del titular y el fondo, y se mantuvieron marco, pastilla, cajas, curva, 20 % y logos — _Eli 28-09: «la tipografía puede ser la del título principal igual a la referencia. Lo demás queda tal cual. Puedes cambiar la imagen del fondo»_
 - **E-09** · En el **post Sunset de feed** la pastilla del horario es **redondeada y sólida** en el verde claro `#66886B`, no el botón de esquinas vivas con degradado (ése sigue siendo el del AYCD) — _Eli 28-09, FEED 12-10: «haz que eso sea en puntas redondeadas… utiliza el verde clarito de QB»_
 - **E-10** · R-13 cede a pedido explícito: en el Sunset G2 (orgánico) el legal quedó al pie, bajo el 12 % de pauta del feed — _Eli 28-09: «el sujeto a consumo… más abajo, cerca donde está el fondo negrito»_. Si esa pieza va a paid, se sube
+- **E-11** · R-13 cede otra vez a pedido explícito: en la ST 06-10 AYCD y la ST 09-10 Sunset el legal va **«mucho más abajo, para que no destaque»** (cierra ≈1660, bajo el margen de paid 1580 y dentro del orgánico 1670) — _Eli 29-09_. Si alguna va a paid, se sube
 - **E-05** · «LA LEY DE ELI» de DT (en DT sólo diseño, el brief no se toca) **no** se da por extendida a QB — _manual; sin confirmar_
 
 ## 6. Lo que se aprueba a la primera
@@ -176,8 +184,15 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **X-28** · (interno) Tomar para AYCD un brindis con schop **Kunstmann** (IMG_4822) y fotos con caras donde va el nombre — _ST 13-10 aprobada, 29-09, cazado en la revisión antes de entregar_
 - **X-29** · (interno) Titular Light de Sunset encima de cinco tragos de colores: ilegible, el velo radial no lo salvó — _ST Sunset S2–S4, 29-09, cazado antes de entregar_
 
+- **X-30** · Legal a **14 px** en la ST 06-10 AYCD: «demasiado pequeño» — _Eli 29-09, 1 ronda_
+- **X-31** · Legal y lista de tragos **pegados en un bloque de 4 líneas** itálicas (ST 13-10): «se ve mucho legal y muy pesado» — _Eli 29-09, 2 rondas (r16 y r17)_
+- **X-32** · Separación logo→titular distinta en historias de la misma semana (43 / 53 / 36 px) y la palabra «beneficios» sola en el legal — _Constanza 29-09, 1 ronda_
+- **X-33** · (interno) Aplicar un ajuste global a las 14 piezas con legal cuando sólo 2 estaban en OK PARA DISEÑAR — _r18, Eli 29-09, cazado antes de subir; las 12 se revirtieron a lo entregado_
+
 ## 8. Preguntas abiertas
 
+- El ancho del logo QB no es igual en las historias de S1 (Banco 168, AYCD 179, Cumpleaños 160 px): ¿se iguala? No se pidió → **Eli / Constanza**.
+- ¿La ST 06-10 AYCD o la ST 09-10 Sunset van a paid? Su legal quedó bajo el margen de paid (E-11) → **Eli**.
 - ¿Cómo van las cifras: caja alta en Raleway, Bell MT o según el caso? (`adn/cifras-comparacion.png`) → **Eli**.
 - ¿De dónde sale **PANTONE 361 C**, que el `.ai` declara y es más brillante que los dos extremos del degradado? → Eli.
 - La v6 (21-09) y la v7 (23-09) de la ST de AYCD no tienen veredicto escrito → Eli.
@@ -210,6 +225,14 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - ST 30-10: el cliente pidió otro título («¿Planes para hoy?», «algo más cool») y el Reel DJ S5 no trae horarios; ambos en REVISAR CONTENIDO → **contenido**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 (noche) — Claude con Eli · rondas 15–18: los comentarios de Constanza y los legales
+- **Fuente nueva:** Constanza Lizana (jefa de diseño) comenta en la grilla con hilos **nativos** (§2); Eli los interpreta y corrige la lectura.
+- **Reglas nuevas:** R-71 (misma separación logo→titular, 53 px) · R-72 (sin palabras solas) · R-73 (legal en una línea: 19 / 22 px medidos; CMR 40 % en dos) · R-74 (la lista de tragos del AYCD no es legal) · R-75 (recuadros al ancho del renglón más largo) · R-76 (aire bajo el nombre del AYCD).
+- **✔ que subieron:** R-32 ✔×8 (se extiende a los AJUSTES: sólo lo que está en OK) · R-52 ✔×3 (⚠️ revisada por R-73).
+- **Excepción:** E-11 (legal bajo el margen de paid por pedido de Eli). **Rechazos:** X-30 a X-33.
+- **Entregado a Drive (md5 igual):** S1 STS n°1, n°2, n°3, n°5 · S2 STS n°2 · S3 STS n°2 · C1 S1 N°2 · C1 S2 N°2.
+- §8: 2 nuevas (ancho del logo; paid de 06-10 y 09-10).
 
 ### 2026-09-29 (tarde) — Claude con Eli · lo que faltaba de octubre: las 8 «ST APROBADA», el post 05-10 y Drive ordenado por fecha
 - **Reglas nuevas (Eli, verbatim en la fuente):** R-66 («ST APROBADA» = la aprobada con foto nueva, conservando logos, nombres y legales) · R-67 (el n° en Drive sigue el orden actual de la grilla; se renombra, el enlace queda).

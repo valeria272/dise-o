@@ -298,6 +298,23 @@ ESCENAS = {
             "40% DE ARRIBA es el espacio real de la @img1 algo desenfocado. Luz calida natural, "
             "texturas reales. Tazas, notebook y celulares sin letras ni logo. " + CANDADO),
     },
+    # ── RONDA 6 (hilo de Scarlette en FEED!F15, 29-09): «el fondo no se ve muy between» ──
+    # Se edita la foto APROBADA y sólo cambia el entorno; después se reinjerta encima la
+    # figura aprobada (manos, vaso, vela) para que no cambie ni un píxel.
+    "f02-10-fondo": {
+        "refs": ["cumple-reel-aprobada.jpg", "jardin-invierno-real.jpg", "muro-verde-real.jpg"],
+        "prompt": (
+            "Edita la @img1 manteniendo EXACTAMENTE IGUALES la mujer, su sweater de punto cafe, "
+            "sus dos manos con anillos y pulseras, el vaso de cafe To Go con el logotipo BETWEEN, la "
+            "tapa negra, la vela a rayas y su llama encendida, en la misma posicion, tamano y luz. "
+            "UNICO CAMBIO: el interior de cafeteria generico del fondo se reemplaza por el espacio "
+            "REAL de Between de la @img2 y la @img3: el muro verde vertical lleno de helechos y "
+            "plantas, la pared de piedra gris, los sillones de mimbre redondos con cojin blanco, las "
+            "mesas de madera y el techo de jardin de invierno con guirnaldas de luces calidas. El "
+            "fondo va MUY DESENFOCADO, como un iPhone en modo retrato, en luz calida de tarde, para "
+            "que la llama siga siendo el punto mas brillante. El 35% DE ARRIBA queda tranquilo y "
+            "algo oscuro, sin objetos nitidos, para texto. Mismo encuadre vertical 9:16. " + CANDADO),
+    },
 }
 
 

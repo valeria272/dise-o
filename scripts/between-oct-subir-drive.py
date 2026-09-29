@@ -100,6 +100,13 @@ ENTREGA_R5 = RAIZ / "out/hilton/between/oct-r5"
 PIEZAS_R5 = [p for p in PIEZAS_R4 if "02-10" in p[2]]
 
 
+# Ronda 6 (hilos 29-09 noche): Nicolás en STORIES!H13 pide «Imagen referencial» y
+# «Happy Birthday ♥» en la polaroid; Scarlette en FEED!F15, «el fondo no se ve muy
+# Between» en el reel. Se sube cada pieza a medida que queda.
+ENTREGA_R6 = RAIZ / "out/hilton/between/oct-r6"
+PIEZAS_R6 = [p for p in PIEZAS_R4 if "07-10" in p[2] or "FEED 02-10" in p[2]]
+
+
 def servicio():
     ruta = token_google()
     creds = Credentials.from_authorized_user_file(str(ruta))
@@ -125,10 +132,10 @@ def carpeta(svc, nombre, padre):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--solo", default="")
-    ap.add_argument("--ronda", choices=["1", "2", "4", "5"], default="1")
+    ap.add_argument("--ronda", choices=["1", "2", "4", "5", "6"], default="1")
     a = ap.parse_args()
     entrega, piezas = {"2": (ENTREGA_R2, PIEZAS_R2), "4": (ENTREGA_R4, PIEZAS_R4),
-         "5": (ENTREGA_R5, PIEZAS_R5)}.get(
+         "5": (ENTREGA_R5, PIEZAS_R5), "6": (ENTREGA_R6, PIEZAS_R6)}.get(
         a.ronda, (ENTREGA, PIEZAS))
     svc = servicio()
     cache = {}

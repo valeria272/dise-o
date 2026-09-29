@@ -532,8 +532,56 @@ export const StOct07Cumple: React.FC<{src?: string}> = ({src = G + 'gen-07-10-fi
       </div>
     </Columna>
     <Ilustra cual="globosPar" x={40} y={700} ancho={230} opacidad={0.85} />
+    {/* ⭐ HILO NICOLÁS 29-09 (STORIES!H13): «Agreguemos a la Polaroid "Happy
+        Birthday" con el corazoncito al lado». Escrito a mano en el margen blanco
+        de la polaroid, girado con ella (−9,8°, medido sobre el borde de la foto
+        interior) y en tinta que multiplica sobre el papel. */}
+    <div
+      style={{
+        position: 'absolute',
+        left: POLA.x,
+        top: POLA.y,
+        transform: `translate(-50%, -50%) rotate(${POLA.giro}deg)`,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 6,
+        whiteSpace: 'nowrap',
+        mixBlendMode: 'multiply',
+      }}
+    >
+      <span style={{fontFamily: BETWEEN.fuentes.script, fontSize: POLA.size, lineHeight: 1, color: '#3a2c24'}}>
+        Happy Birthday
+      </span>
+      <svg width={POLA.corazon} height={POLA.corazon} viewBox="0 0 24 22" style={{marginTop: 14}}>
+        <path d="M12 21 C5 15 1 11 1 6.5 C1 3.4 3.4 1 6.4 1 C8.6 1 10.6 2.3 12 4.3 C13.4 2.3 15.4 1 17.6 1 C20.6 1 23 3.4 23 6.5 C23 11 19 15 12 21 Z" fill="#c8102e" />
+      </svg>
+    </div>
+    {/* ⚖️ HILO NICOLÁS 29-09: «Agregar el legal "Imagen referencial" abajito».
+        Mismo legal que las ST de S4/S5 de septiembre (beige, cursiva, 28, sombra
+        suave), pero al margen IZQUIERDO: al centro caería encima del vaso. */}
+    <div
+      style={{
+        position: 'absolute',
+        left: BETWEEN.bloque.margenX,
+        bottom: BETWEEN.bloque.margenX,
+        fontFamily: SANS,
+        fontStyle: 'italic',
+        fontWeight: BETWEEN.pesos.regular,
+        fontSize: 28,
+        lineHeight: 1,
+        color: C.beige,
+        opacity: 0.9,
+        textShadow: '0 2px 16px rgba(36,26,18,0.75)',
+      }}
+    >
+      *Imagen referencial.
+    </div>
   </AbsoluteFill>
 );
+/** Centro del margen inferior de la polaroid en lienzo de 1080, medido sobre el máster 2250:
+ *  punto medio entre el borde de la foto interior (−11,3°) y el canto del papel (−10,3°).
+ *  Ronda 7 (Eli): «mejora la posición con respecto a la polaroid y que sea al centro». */
+const POLA = {x: 800.6, y: 1869.6, giro: -10.8, size: 30, corazon: 18};
 
 /* ══════════════════════════════════════════════════════════════════════════
    08-10 · HISTORIA — TRIVIA BETWEEN

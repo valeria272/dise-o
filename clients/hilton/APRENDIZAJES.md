@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-29** · Cosechas: **29**
+> Última cosecha: **2026-09-29** · Cosechas: **30**
 
 ## 1. Quién es el cliente
 
@@ -171,7 +171,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-110** · [BW] **Producto en mano (POV): cada mano lleva lo suyo y a escala real** — el dulce en su papel en una mano, el vaso en la otra; nada apoyado encima de la tapa. El muffin es tan ancho como la boca del vaso — _cliente, grilla BW OCT STORIES col D, 28-09-2026 («Está rara esa forma de llevar el café con muffin arriba (está desproporcionado también, muffin muy chico) Veamos algo que se vea más natural y en proporciones»)_ · ✔×2 (ST 02-10 r2 aprobada por Eli 29-09 · r5 con la misma toma, aprobada final 29-09)
 - **R-111** · [BW] **Anuncio de ganador de concurso: decir que se le contactará para entregarle el premio** — _cliente, grilla BW OCT STORIES col C, 28-09-2026 («Aquí falta algo que diga que lo contactaremos para entregarle información sobre su premio»)_ · ✔×2 (ST 01-10 r2 aprobada 29-09 · ronda Constanza, aprobada final 29-09)
 - **R-62** · [BW] **Mientras llega la carta nueva, las piezas no nombran platos** (fuera la caja con el nombre; la foto se queda) — _cliente, grilla STORIES col U, 25-09-2026 («Por mientras no nombremos platos, ya que tendremos cambio de carta»)_ · ✔×1 · temporal: revisar cuando salga la carta
-- **R-63** · [BW] Plato en foto que el cliente pide marcar → legal **«*Imagen referencial.»** en cursiva beige al pie, al margen de marca, sobre el fondo y nunca sobre el producto (caja taupe si no se lee) — _cliente, ST Strudel S4 (16-09) y ST 30-09 Plateada (25-09-2026)_ · ✔×2
+- **R-63** · [BW] Plato en foto que el cliente pide marcar → legal **«*Imagen referencial.»** en cursiva beige al pie, al margen de marca, sobre el fondo y nunca sobre el producto (caja taupe si no se lee) — _cliente, ST Strudel S4 (16-09) y ST 30-09 Plateada (25-09-2026)_ · ✔×2 · aplicado 29-09 en ST 07-10 cumpleaños (hilo de Nicolás), abajo a la IZQUIERDA porque al centro pisaba el vaso — sin aprobación explícita todavía
 - **R-89** · [BW] **Carta: limpia, con líneas y SIN protagonismo de la ilustración** (alguna en una esquina, no más; así no se confunde con QB); formato actual 17 × 30 cm; la de mañana/almuerzo en **cafés y beige**; se puede jugar con leyendas — _cliente vía Eli, 28-09-2026 («algo más limpio sin tanta ilustración, solo de ser necesaria, más líneas»)_ · ✔×1 (4 propuestas aprobadas)
 - **R-90** · [BW] **Carta: tamaños mínimos legibles** — plato 9–9,5 pt **Bold**, descripción 8 pt **Regular**, notas 7,8 pt, cabeceras de columna 6,8 pt; lo importante marcado — _Eli, 28-09-2026, r3 («para que todo se pueda leer y las personas no tengan problema a la vista»)_ · ✔×1
 - **R-91** · [BW] **Ilustración de carta hecha a mano, con detalles, no rígida**, y **cada dibujo corresponde a lo que ofrece esa hoja** (nada de pasteles en la hoja del bar) — _Eli, 28-09-2026, r2 y r4_ · ✔×1
@@ -182,6 +182,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-147** · [BW] **Carta para impresión Y digital: 3 mm de sangrado** fuera de la hoja en todo lo que toca el borde (fondo, papel, filetes, ilustraciones de esquina) «para que no se vea el límite ni quede con bordes sin color»; y **tamaños mínimos que sirvan para los dos** — _Eli, 29-09-2026_ · ✔×1 (repetida 29-09 noche: «0,3 cm por cada lado, en total 0,6… al guardar a PDF no quede bordes de blanco»)
 - **R-149** · [BW] **Jerarquía de una carta en 4 escalones que se VEN**: título principal (Menú / tramo, el más grande) > **sección** unos puntos sobre el plato y **más gruesa** (Raleway ExtraBold 12–13 pt, o Brushwell 23 en la C; si no cabe, dos líneas, nunca más chica) > plato (Bold 9,5, caja alta) > descripción (la más chica, **Regular** 8,5, caja baja) — _Eli, 29-09-2026 («los títulos siempre son unos puntos más que los párrafos… no se nota Sándwiches y tostadas, tienen que engrosar»)_ · ✔×0
 - **R-150** · [BW] **Carta impresa: nada bajo 8 pt**, y lo calado (beige sobre café) nunca en peso fino; la nota en cursiva a 8,5. El título «Menú» en Brushwell, **sólo la M en mayúscula**, una vez y diagramado (no etiqueta en rectángulo) — _Eli, 29-09-2026 («verifica el mínimo… no puede quedar muy pequeño o muy fino»; «quita el menú… que diga menú en una tipografía atractiva»)_ · ✔×0
+- **R-151** · [BW] **El fondo de una foto generada tiene que leerse «Between»**: el jardín de invierno real (muro verde, piedra gris, toldo con guirnaldas, sillones de mimbre), no un café genérico con ampolletas. Se cambia SÓLO el entorno (edición NB Pro de la foto aprobada con 2 fotos reales del local como referencia) y se desenfoca como retrato — _Scarlette Muñoz, hilo nativo @Eli en grilla BW OCT FEED!F15, 29-09-2026, reel 02-10 («el fondo no se ve muy between»)_ · ✔×0 (Eli no lo objetó en la ronda siguiente, sin aprobación explícita)
+- **R-152** · [BW] **Texto escrito sobre un objeto de la foto (la polaroid) va CENTRADO en su área y con su giro**, con aire parejo a los cuatro lados y al cuerpo que quepa (no al que llene); se mide el centro entre los bordes reales del objeto, no a ojo — _Nicolás Ávila, hilo STORIES!H13 29-09 («agreguemos a la polaroid "Happy Birthday" con el corazoncito al lado»); Eli, 29-09-2026, ST 07-10 («mejora la posición con respecto a la polaroid y que sea al centro»)_ · ✔×0
 - **R-148** · [BW] **Perfil de color de la carta = el de las cartas anteriores de Between: CMYK Coated FOGRA39 (ISO 12647-2:2004)**, asignado explícitamente al documento — _Eli, 29-09-2026 («verifícalo en los editables de cartas anteriores el perfil del color»); medido en «Carta 2026 Between – Mundial.ai»; las cartas de QB están en RGB sRGB y NO se copian_ · ✔×0
 - **R-64** · [BW] Una pieza puede **cambiar de HOJA** en la grilla, no sólo de fecha: se busca por su título en FEED **y** en STORIES antes de decir que no hay nada nuevo — _grilla BW oct, 25-09-2026: «Por qué vienes / por qué te quedas» quedó en STORIES como REVISAR CONTENIDO («DEJARLO EN FEED») y reapareció en FEED 09-10 como OK PARA DISEÑAR_ · ✔×1
 - **R-65** · [DT] La grilla corre la fecha de una pieza ya entregada sin avisar; se reconoce por el título — _grilla DT oct, 25-09-2026: Opinión Expedia pasó de FEED 10-10 a 09-10_ · ✔×1
@@ -342,6 +344,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **X-64** · [BW] Reel 02-10: los dos abanicos de confeti con la misma orientación (el derecho no espejado), cruzados sobre la llama — _Eli, 29-09-2026 («se ve extraño… que estén mirando hacia la vela»): 1 ronda_
 - **X-65** · [BW] La ronda aprobada del 29-09 (ST 01-10, ST 02-10, reel 12-10) quedó sin subir «porque Eli la re-subía»: Eli la buscó en Drive y no estaba — _Eli, 29-09-2026 («no me subiste y reemplazaste los nuevos cambios»)_
 
+- **X-79** · [BW] ST 07-10: «Happy Birthday ♥» en la polaroid corrido a la izquierda, pegado a la foto interior (8 px arriba, 69 abajo) y casi del ancho del margen; giro −9,8° a ojo cuando el papel está a −10,8° — _Eli, 29-09-2026: 1 ronda_ (→ R-152)
+
 ## 8. Preguntas abiertas
 
 - [BW] Carta R5: ¿los mínimos (nada bajo 7,5 pt; descripción 8,5) y el texto a tinta llena (sin 78–88 % de opacidad) le parecen para impresión y digital? · ¿el .ai de la opción A en F: (re-guardado 29-09 16:04) trae cambios suyos? → **Eli**
@@ -393,6 +397,13 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 (cierre 12, hilos de Nicolás y Scarlette — ST 07-10 y reel 02-10) — Claude con Eli · 2 reglas nuevas [BW], en revisión
+- **Fuente:** hilos nativos de la grilla BW OCT (sólo salen en `xl/comments*.xml` del blob bajado por usercontent; el conector no trae hilos de un .xlsx). El hilo de Scarlette → @nicolas (FEED!E11, carrusel To Go) es de contenido y no se diseñó.
+- **Reglas nuevas [BW]:** R-151 fondo generado = jardín de invierno real de Between (Scarlette) · R-152 texto sobre objeto de la foto centrado en su área y con su giro (Nicolás + Eli).
+- **R-63** aplicado otra vez (legal «*Imagen referencial.»), sin ✔ hasta que se apruebe.
+- **Rechazo:** X-79 posición del «Happy Birthday» (1 ronda). Eli pidió «único ajuste» sólo ese: el legal y el fondo nuevo del reel no tuvieron objeción, pero tampoco OK explícito.
+- **Técnico:** `f-cumple-mascara-llama.png` es el GOLPE DE LUZ (mano y tapa), no la llama; imgly deja fuera el torso (sweater) → se une una máscara por color.
 
 ### 2026-09-29 (cierre 11, carta R5 aprobada con ajustes) — Claude con Eli · 2 reglas nuevas [BW]
 - **Aprobado:** diseño R5 de la carta — «la A quedó perfecta», C «de las mejores», B bien; D con ajustes. PDF de diseño en Drive («CARTA BETWEEN · R5 29-09», md5 ✓).

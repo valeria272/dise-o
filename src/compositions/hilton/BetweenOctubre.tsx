@@ -581,7 +581,7 @@ export const StOct07Cumple: React.FC<{src?: string}> = ({src = G + 'gen-07-10-fi
 /** Centro del margen inferior de la polaroid en lienzo de 1080, medido sobre el máster 2250:
  *  punto medio entre el borde de la foto interior (−11,3°) y el canto del papel (−10,3°).
  *  Ronda 7 (Eli): «mejora la posición con respecto a la polaroid y que sea al centro». */
-const POLA = {x: 800.6, y: 1869.6, giro: -10.8, size: 24, corazon: 15};
+const POLA = {x: 801.5, y: 1874.5, giro: -10.8, size: 24, corazon: 15};
 
 /* ══════════════════════════════════════════════════════════════════════════
    08-10 · HISTORIA — TRIVIA BETWEEN

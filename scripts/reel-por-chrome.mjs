@@ -9,6 +9,9 @@
 // ⚠️ Sólo imágenes, texto y SVG. <Video>/<OffthreadVideo>/<Audio> no.
 //
 //   node scripts/reel-por-chrome.mjs <archivo.tsx> <Export> <ancho> <alto> <duracion> <carpeta> [--solo 0,40,120]
+//        [--escala 2] [--transparente]
+// --transparente: PNG con alfa (fondo de página y de Chrome transparentes), para montar
+// una capa de texto sobre un video con ffmpeg — el camino de las piezas con <OffthreadVideo>.
 import path from 'node:path';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -21,9 +24,13 @@ const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const [archivo, exp, ancho, alto, duracion, carpeta] = process.argv.slice(2);
 const iSolo = process.argv.indexOf('--solo');
 const solo = iSolo > 0 ? process.argv[iSolo + 1].split(',').map(Number) : null;
+const iEsc = process.argv.indexOf('--escala');
+const ESCALA = iEsc > 0 ? Number(process.argv[iEsc + 1]) : 1;
+const TRANSP = process.argv.includes('--transparente');
 const W = Number(ancho), H = Number(alto), N = Number(duracion);
 const SALIDA = path.resolve(RAIZ, carpeta);
-const TMP = path.join(RAIZ, 'raw/_reel-chrome');
+// una carpeta por proceso: dos sesiones rindiendo a la vez se pisaban el paquete (29-09)
+const TMP = path.join(RAIZ, 'raw/_reel-chrome', `tmp-${process.pid}`);
 fs.mkdirSync(TMP, {recursive: true});
 fs.mkdirSync(SALIDA, {recursive: true});
 
@@ -52,7 +59,7 @@ const cuadro = () => new Promise((r) => requestAnimationFrame(() => requestAnima
   (window as any).__arranco = 1; })();
 `);
 fs.writeFileSync(path.join(TMP, 'index.html'),
-  '<!doctype html><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:#000;overflow:hidden}</style><div id="r"></div><script src="/__r/entry.js"></script>');
+  `<!doctype html><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:${TRANSP ? 'transparent' : '#000'};overflow:hidden}</style><div id="r"></div><script src="/__r/entry.js"></script>`);
 await esbuild.build({
   entryPoints: [path.join(TMP, 'entry.tsx')], bundle: true, outfile: path.join(TMP, 'entry.js'), format: 'iife',
   jsx: 'automatic', loader: {'.tsx': 'tsx', '.ts': 'ts'}, define: {'process.env.NODE_ENV': '"production"'}, logLevel: 'error',
@@ -96,7 +103,8 @@ try {
     ws.send(JSON.stringify({id, method, params}));
   });
   const valor = async (expr) => (await cdp('Runtime.evaluate', {expression: expr, returnByValue: true, awaitPromise: true})).result.value;
-  await cdp('Emulation.setDeviceMetricsOverride', {width: W, height: H, deviceScaleFactor: 1, mobile: false});
+  await cdp('Emulation.setDeviceMetricsOverride', {width: W, height: H, deviceScaleFactor: ESCALA, mobile: false});
+  if (TRANSP) await cdp('Emulation.setDefaultBackgroundColorOverride', {color: {r: 0, g: 0, b: 0, a: 0}});
   await cdp('Page.navigate', {url: `http://127.0.0.1:${puerto}/__r/index.html?${Date.now()}`});
   for (let i = 0; i < 150 && !(await valor('window.__arranco || 0')); i++) await espera(200);
   const faltan = await valor(`[...document.fonts].filter(f => f.status !== 'loaded').map(f => f.family).join(',')`);

@@ -190,7 +190,55 @@ const Texto: React.FC<{
    px). No se regeneró: la tirada de Nano Banana escribía «COFFEE AGN» en el vaso.
    El «[BOTÓN @usuario]» es la mención: zona reservada para el sticker real.
    ══════════════════════════════════════════════════════════════════════════ */
-const ZONA_MENCION: Zona = {ancho: 460, alto: 96, top: 803}; // medido: centrado entre «Felicidades» (784) y «Te ganaste» (918)
+const ZONA_MENCION: Zona = {ancho: 460, alto: 96, top: 805}; // medido r3: centrado entre «Felicidades» y «Te ganaste»
+
+/**
+ * ⭐ RONDA CONSTANZA 29-09 (grilla col C, comentario nativo): «demasiadas
+ * variantes tipográficas y muchos tamaños, se ve desordenado, unifiquemos […] y
+ * donde dice "Ya tenemos CEO del café" no queda bien delineado».
+ *  · Tres voces y nada más, todas Raleway: TITULAR (ExtraBold 112, las dos
+ *    líneas al MISMO cuerpo), CAJA (ExtraBold 45, el sello y el premio iguales)
+ *    y TEXTO (SemiBold 36, sin itálica: Felicidades, Te ganaste, el aviso del
+ *    premio y el cierre). Antes eran 8 combinaciones de cuerpo/peso/estilo.
+ *  · «Delineado»: el halo de 24 sombras (`contorno` del kit) salía escalonado
+ *    en «YA TENEMOS» al 2× — dientes de sierra en cada curva. Ahora es un trazo
+ *    SVG redondo (asoma 7 px, como el halo de antes) en una capa DEBAJO del relleno (dos <text>, no
+ *    paint-order, que Chrome aplica glifo a glifo y cruza las letras).
+ */
+const CEO_LINEAS = ['YA TENEMOS', 'CEO DEL CAFÉ'];
+const CEO_SIZE = 112;
+const CEO_PASO = 112; // de línea base a línea base: 30 px de aire entre mayúsculas
+const TituloCeo: React.FC = () => {
+  const alto = 22 + CEO_SIZE * 0.71 + CEO_PASO + 10;
+  const capa = (trazo: boolean) =>
+    CEO_LINEAS.map((l, i) => (
+      <text
+        key={l + trazo}
+        x={500}
+        y={22 + CEO_SIZE * 0.71 + i * CEO_PASO}
+        textAnchor="middle"
+        fontFamily={SANS}
+        fontSize={CEO_SIZE}
+        fontWeight={800}
+        letterSpacing={`${BETWEEN.trackingCaps}em`}
+        fill={trazo ? C.beige : C.cafe}
+        stroke={trazo ? C.beige : 'none'}
+        strokeWidth={trazo ? 14 : 0}
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      >
+        {l}
+      </text>
+    ));
+  return (
+    <svg width={1000} height={alto} style={{overflow: 'visible'}}>
+      {capa(true)}
+      {capa(false)}
+    </svg>
+  );
+};
+
+const TXT_CEO = {size: 36, peso: 600, color: C.cafe} as const;
 
 export const StOct01Ganador: React.FC<{guia?: boolean}> = ({guia = false}) => (
   <AbsoluteFill style={{backgroundColor: '#dfc9bb'}}>
@@ -204,44 +252,30 @@ export const StOct01Ganador: React.FC<{guia?: boolean}> = ({guia = false}) => (
           color: C.beige,
           fontFamily: SANS,
           fontWeight: 800,
-          fontSize: 50,
-          letterSpacing: '0.02em',
+          fontSize: BETWEEN.tipos.cajaDato,
           padding: '12px 34px 14px',
           lineHeight: 1,
         }}
       >
         VACANTE CERRADA
       </div>
-      <div style={{height: 34}} />
-      <TitularBetween
-        script="Ya tenemos"
-        scriptSans
-        pesoCaps={BETWEEN.pesos.extrabold}
-        caps="CEO del café"
-        sizeCaps={112}
-        contorno={12}
-        aireScriptATitulo={BETWEEN.aire.scriptATitulo + 12 + 6}
-        tono="cafe"
-        alinear="centro"
-        anchoDisponible={BETWEEN.bloque.columna}
-      />
-      <Texto size={44} peso={600} color={C.cafe} style={{marginTop: 32}}>
+      <div style={{height: 28}} />
+      <TituloCeo />
+      <Texto {...TXT_CEO} style={{marginTop: 22}}>
         Felicidades
       </Texto>
       <div style={{height: ZONA_MENCION.alto + 14}} />
-      <Texto size={44} peso={600} color={C.cafe}>
-        Te ganaste
-      </Texto>
+      <Texto {...TXT_CEO}>Te ganaste</Texto>
       <div style={{marginTop: 14, display: 'flex'}}>
         <CajaDato style={{backgroundColor: C.beige, color: C.cafe}}>1 MES DE CAFÉ GRATIS</CajaDato>
       </div>
       {/* Ronda cliente 28-09 (grilla col C): «falta algo que diga que lo
           contactaremos para entregarle información sobre su premio». Va en el
           nivel del premio (aire corto) y el cierre se separa más (R-38). */}
-      <Texto size={32} peso={500} color={C.cafe} style={{marginTop: 14}}>
+      <Texto {...TXT_CEO} style={{marginTop: 16}}>
         {'Te contactaremos para entregarte\nla información de tu premio'}
       </Texto>
-      <Texto size={32} peso={500} italic color={C.cafe} style={{marginTop: 30}}>
+      <Texto {...TXT_CEO} style={{marginTop: 30}}>
         Gracias a todos por participar
       </Texto>
     </Columna>
@@ -278,7 +312,7 @@ const entra = (frame: number, desde: number, dur = 12) =>
     easing: Easing.out(Easing.cubic),
   });
 
-export const StOct02ToGoPov: React.FC<{guia?: boolean}> = ({guia = false}) => {
+export const StOct02ToGoPov: React.FC<{guia?: boolean; capa?: boolean}> = ({guia = false, capa = false}) => {
   useFuentesListas();
   const frame = useCurrentFrame();
   const a = entra(frame, 6) * (1 - entra(frame, 92, 10));
@@ -288,18 +322,22 @@ export const StOct02ToGoPov: React.FC<{guia?: boolean}> = ({guia = false}) => {
   const b4 = entra(frame, 138);
   const sube = (t: number) => ({opacity: t, transform: `translateY(${(1 - t) * 24}px)`});
   return (
-    <AbsoluteFill style={{backgroundColor: C.sombra}}>
-      <OffthreadVideo src={staticFile(F + 's-togo-pov-r2.mp4')} muted style={{width: 1080, height: 1920}} />
+    <AbsoluteFill style={{backgroundColor: capa ? 'transparent' : C.sombra}}>
+      {capa ? null : <OffthreadVideo src={staticFile(F + 's-togo-pov-r2.mp4')} muted style={{width: 1080, height: 1920}} />}
       <AbsoluteFill
         style={{
           background:
             'linear-gradient(180deg, rgba(36,26,18,0.34) 0%, rgba(36,26,18,0.16) 30%, rgba(36,26,18,0) 42%)',
         }}
       />
+      {/* ⭐ RONDA CONSTANZA 29-09 (grilla col D): «¿qué mejora tu mañana?, menos
+          interlineado» → el kit mide la tinta con el «¿» que baja y la tilde de la «Ñ»
+          que sube; con −0,2 el aire VISIBLE entre mayúsculas baja de ~55 a ~25 px. */}
       <Columna top={256}>
         <div style={sube(a)}>
           <TitularBetween
             caps={'¿Qué mejora\ntu mañana?'}
+            aireEntreCapsProp={-0.2}
             sizeCaps={100}
             tono="beige"
             alinear="centro"
@@ -320,11 +358,17 @@ export const StOct02ToGoPov: React.FC<{guia?: boolean}> = ({guia = false}) => {
         <div style={{...sube(b2), marginTop: BETWEEN.aire.tituloACaja, display: 'flex'}}>
           <CajaDato>DESDE $2.990</CajaDato>
         </div>
-        <div style={{...sube(b3), marginTop: BETWEEN.cajas.gap, display: 'flex'}}>
-          <CajaDato size={36} style={{textTransform: 'none', fontWeight: 600}}>Muffin, brownie, vigilantes u otros</CajaDato>
-        </div>
-        <div style={{...sube(b4), marginTop: BETWEEN.cajas.gap, display: 'flex'}}>
-          <CajaDato size={38}>LUNES A VIERNES · 08:00 A 10:00 HRS</CajaDato>
+        {/* ⭐ RONDA CONSTANZA 29-09: «Muffin, brownie…» del MISMO tamaño que la
+            caja del horario, y la letra un poco más grande en proporción,
+            manteniendo su variante (SemiBold, caja baja). Las dos cajas se
+            estiran al ancho de la más larga (el horario). */}
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'stretch'}}>
+          <div style={{...sube(b3), marginTop: BETWEEN.cajas.gap, display: 'flex'}}>
+            <CajaDato size={41} style={{textTransform: 'none', fontWeight: 600, flex: 1}}>Muffin, brownie, vigilantes u otros</CajaDato>
+          </div>
+          <div style={{...sube(b4), marginTop: BETWEEN.cajas.gap, display: 'flex'}}>
+            <CajaDato size={38} style={{flex: 1}}>LUNES A VIERNES · 08:00 A 10:00 HRS</CajaDato>
+          </div>
         </div>
       </Columna>
       {guia ? <ZonaReservada zona={ZONA_CARTA_POV} etiqueta={'STICKER\nLINK CARTA\n300 × 140'} /> : null}
@@ -447,18 +491,24 @@ export const StOct05PasoPorUnCafe: React.FC<{guia?: boolean}> = ({guia = false})
    Registro: script Brushwell «Un regalo» + caja alta, el de las piezas de
    cumpleaños aprobadas.
    ══════════════════════════════════════════════════════════════════════════ */
+const AIRE_REGALO = -4;
 export const StOct07Cumple: React.FC<{src?: string}> = ({src = G + 'gen-07-10-final.jpg'}) => (
   <AbsoluteFill style={{backgroundColor: C.sombra}}>
     <FotoFondo src={src} oscurecer={0.06} />
+    {/* ⭐ RONDA CONSTANZA 29-09 (grilla col H): «mucho interlineado en el llamado
+        principal y lo de ven por tu café» → la script baja sobre la caja alta
+        (la cola de la «g» entra al aire de la mayúscula, como en la ref) y la
+        bajada pasa de 1,4 a 1,12 de interlínea. */}
     <Columna top={300}>
       <TitularBetween
         script="Un regalo"
         caps="en tu día"
+        aireScriptATitulo={AIRE_REGALO}
         tono="beige"
         alinear="centro"
         anchoDisponible={BETWEEN.bloque.columna}
       />
-      <Bajada size={42} style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: 'center', whiteSpace: 'pre-line', fontWeight: 500}}>
+      <Bajada size={42} style={{marginTop: BETWEEN.aire.tituloABajada, lineHeight: 1.12, textAlign: 'center', whiteSpace: 'pre-line', fontWeight: 500}}>
         {'Ven por tu café gratis\nel día de tu cumpleaños'}
       </Bajada>
       {/* el legal sube al bloque: al bajar la escena, el vaso ocupa la mesa del pie */}
@@ -925,6 +975,9 @@ export const FeedOct14Espacios: React.FC = () => (
 /* variantes GUÍA — llevan dibujada la zona del sticker. No se entregan al cliente. */
 export const StOct01GanadorGuia: React.FC = () => <StOct01Ganador guia />;
 export const StOct02ToGoPovGuia: React.FC = () => <StOct02ToGoPov guia />;
+/** Sólo la capa de texto, con alfa: se monta sobre la toma con ffmpeg (remotion.exe bloqueado). */
+export const StOct02ToGoPovCapa: React.FC = () => <StOct02ToGoPov capa />;
+export const StOct02ToGoPovCapaGuia: React.FC = () => <StOct02ToGoPov capa guia />;
 export const StOct05PasoPorUnCafeGuia: React.FC = () => <StOct05PasoPorUnCafe guia />;
 export const StOct08TriviaGuia: React.FC = () => <StOct08Trivia guia />;
 export const StOct27EventosGuia: React.FC = () => <StOct27Eventos guia />;

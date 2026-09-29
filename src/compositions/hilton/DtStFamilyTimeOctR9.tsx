@@ -46,7 +46,7 @@ import {AbsoluteFill, Easing, Img, interpolate, staticFile, useCurrentFrame} fro
 
 import {DT, cargarFuentesDT} from '../../brand/doubletree';
 import {ConTrade} from './dtIconosOct';
-import {Logo, SOMBRA, Stag, TRADE_CN, Velo} from './dtOct2';
+import {Logo, SOMBRA, Stag, TITULO_STORY, TRADE_CN, Velo, topTitulo} from './dtOct2';
 
 cargarFuentesDT();
 
@@ -146,7 +146,7 @@ const Titular: React.FC<{lineas: readonly string[]; cuerpo: number}> = ({lineas,
           fontFamily: DT.fuentes.titular,
           fontWeight: i === 0 ? DT.pesos.medium : DT.pesos.light,
           fontSize: cuerpo,
-          lineHeight: 1.14,
+          lineHeight: TITULO_STORY.interlinea,
           color: BLANCO,
           textShadow: SOMBRA,
           whiteSpace: 'nowrap',
@@ -205,16 +205,19 @@ export const DtStFamilyTimeOctR9: React.FC<{guia?: boolean; soloGrafica?: boolea
 
       <Logo formato="story" />
 
+      {/* RONDA 10 (Constanza, 29-09): «ojo con la ubicación del título… deben estar en la misma separación del
+          logo, y le bajaría un poco al interlineado». Los dos textos arrancaban a alturas distintas (versal en 488 y
+          416, medido): ahora los dos en la norma común, interlínea 1,06. */}
       {/* ── texto 1 · sobre la primera foto ── */}
       {f < T.sale1 + 12 ? (
-        <div style={{position: 'absolute', top: 470, width: 1080, textAlign: 'center', ...e1, opacity: e1.opacity * sale1}}>
+        <div style={{position: 'absolute', top: topTitulo(80), width: 1080, textAlign: 'center', ...e1, opacity: e1.opacity * sale1}}>
           <Titular lineas={TEXTO1} cuerpo={80} />
         </div>
       ) : null}
 
       {/* ── texto 2 · entra en la segunda foto y se queda: es el mensaje ── */}
       {f >= T.entra2 ? (
-        <div style={{position: 'absolute', top: 400, width: 1080, textAlign: 'center', ...e2}}>
+        <div style={{position: 'absolute', top: topTitulo(72), width: 1080, textAlign: 'center', ...e2}}>
           <Titular lineas={TEXTO2} cuerpo={72} />
         </div>
       ) : null}
@@ -276,9 +279,8 @@ export const DtStFamilyTimeOctR9: React.FC<{guia?: boolean; soloGrafica?: boolea
                 style={{
                   marginTop: 8,
                   fontFamily: DT.fuentes.texto,
-                  fontSize: 19,
-                  letterSpacing: '0.16em',
-                  textIndent: '0.16em',
+                  fontSize: 21,
+                  letterSpacing: '0.03em',
                   color: BLANCO,
                   textShadow: SOMBRA,
                 }}

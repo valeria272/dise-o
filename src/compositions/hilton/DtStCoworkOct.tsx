@@ -172,7 +172,8 @@ export const DtStCoworkOct: React.FC<{guia?: boolean}> = ({guia = false}) => {
             Un espacio ambientado especialmente para concentrarte, reunirte o trabajar a tu ritmo
           </div>
           <div style={{...ubica, marginTop: 44}}>
-            <div style={{fontFamily: DT.fuentes.texto, fontSize: 22, letterSpacing: '0.18em', textIndent: '0.18em', textShadow: SOMBRA}}>
+            {/* Constanza, 29-09: «en DT no se usan las palabras con cada letra tan separada» */}
+            <div style={{fontFamily: DT.fuentes.texto, fontSize: 25, letterSpacing: '0.03em', textShadow: SOMBRA}}>
               UBICACIÓN
             </div>
             <div

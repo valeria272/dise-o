@@ -1126,6 +1126,12 @@ export const TitularBetween: React.FC<{
    */
   aireScriptATitulo?: number;
   /**
+   * Aire entre dos líneas de caja alta, como proporción de la altura de la
+   * mayúscula. Por defecto 0,35 (medido en el post n°2 s4). Opt-in: Constanza
+   * (29-09-2026, ST 02-10) pidió «menos interlineado» en una pieza concreta.
+   */
+  aireEntreCapsProp?: number;
+  /**
    * ⭐ Tracking de la caja alta, en `em`. Por defecto `BETWEEN.trackingCaps`
    * (−0,024), que es el valor MEDIDO sobre la pieza de referencia: con él
    * «PERFECTO» da 568 px a 117.
@@ -1243,6 +1249,7 @@ export const TitularBetween: React.FC<{
   sizeCaps = BETWEEN.tipos.tituloCaps,
   sizeScript,
   aireScriptATitulo,
+  aireEntreCapsProp = 0.35,
   trackingCapsEm,
   pesoCaps,
   cajaAlta = true,
@@ -1334,7 +1341,7 @@ export const TitularBetween: React.FC<{
    * o sea 0,35 de la altura. Se guarda como proporción para que aguante
    * cualquier cuerpo.
    */
-  const aireEntreCaps = Math.round((tCaps.alto || nCaps * 0.73) * 0.35);
+  const aireEntreCaps = Math.round((tCaps.alto || nCaps * 0.73) * aireEntreCapsProp);
   const tScript = medirTinta(textoScript, cssScript(nScript), trScript, nScript);
 
   /** Cuánto mover la caja para que quede centrada la TINTA y no el avance. */

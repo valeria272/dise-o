@@ -33,7 +33,7 @@ import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
 
 import {DT, cargarFuentesDT} from '../../brand/doubletree';
-import {Foto, Logo, SOMBRA, Stag, TRADE_CN, Velo} from './dtOct2';
+import {Foto, Logo, SOMBRA, Stag, TITULO_STORY, TRADE_CN, Velo, topTitulo} from './dtOct2';
 
 cargarFuentesDT();
 
@@ -73,7 +73,8 @@ export const DtStFeriadoPlanes: React.FC<{guia?: boolean}> = ({guia = false}) =>
 
     <Logo formato="story" />
 
-    <div style={{position: 'absolute', top: 480, left: 0, width: 1080, textAlign: 'center'}}>
+    {/* RONDA 5 (Constanza, 29-09): titular a la separación común del logo e interlínea menor */}
+    <div style={{position: 'absolute', top: topTitulo(70), left: 0, width: 1080, textAlign: 'center'}}>
       {[
         {t: '¿Fin de semana largo?', w: DT.pesos.medium},
         {t: 'Tenemos un plan', w: DT.pesos.light},
@@ -85,7 +86,7 @@ export const DtStFeriadoPlanes: React.FC<{guia?: boolean}> = ({guia = false}) =>
             fontFamily: DT.fuentes.titular,
             fontWeight: l.w,
             fontSize: 70,
-            lineHeight: 1.14,
+            lineHeight: TITULO_STORY.interlinea,
             color: BLANCO,
             textShadow: SOMBRA,
             whiteSpace: 'nowrap',
@@ -125,7 +126,9 @@ export const DtStFeriadoPlanes: React.FC<{guia?: boolean}> = ({guia = false}) =>
         />
         <div style={{marginLeft: 38, color: AZUL}}>
           <div style={{display: 'flex', alignItems: 'center'}}>
-            <span style={{fontFamily: DT.fuentes.texto, fontSize: 24, letterSpacing: '0.16em', textTransform: 'uppercase'}}>
+            {/* RONDA 5 (Constanza, 29-09): «ojo con los destacados de cada bullet con una flecha al lado… en DT
+                no se usan las palabras con cada letra tan separada» → versales Trade sin tracking abierto */}
+            <span style={{fontFamily: DT.fuentes.texto, fontSize: 27, letterSpacing: '0.03em', textTransform: 'uppercase'}}>
               {p.quien}
             </span>
             <Flechita />
@@ -149,8 +152,7 @@ export const DtStFeriadoPlanes: React.FC<{guia?: boolean}> = ({guia = false}) =>
         textAlign: 'center',
         fontFamily: DT.fuentes.texto,
         fontSize: 25,
-        letterSpacing: '0.02em',
-        wordSpacing: '0.12em',
+        wordSpacing: '0.08em',
         color: BLANCO,
         textShadow: SOMBRA,
       }}
@@ -201,17 +203,60 @@ const FT: Programa = {
   incluye: ['Habitación doble', '2 adultos + 2 niños hasta 12 años', 'Desayuno buffet'],
 };
 
-const PANEL = {x: 88, y: 470, ancho: 600, alto: 1090, radio: 44, pad: 54} as const;
+/**
+ * RONDA 5 (Constanza, 29-09) en las dos de panel:
+ * · «misma separación del logo»: el titular SALE del panel y va bajo el logo, a la norma común
+ *   (`topTitulo`), alineado a la izquierda con el canto del panel. Interlínea 1,06.
+ * · «tipografías separadas en cada palabra»: fuera el tracking abierto de «IVA INCLUIDO» y de las
+ *   píldoras.
+ * · «en los bullets habitualmente usas la tipografía con serif»: lo que incluye va en Stag, en caja
+ *   baja, como el punteo del carrusel; las píldoras de contorno de la ref se quedan.
+ */
+const CUERPO_TIT = 64;
+
+const TituloPrograma: React.FC<{lineas: {t: string; w: number}[]}> = ({lineas}) => (
+  <div style={{position: 'absolute', top: topTitulo(CUERPO_TIT), left: 88, color: BLANCO}}>
+    {lineas.map((l) => (
+      <div
+        key={l.t}
+        style={{fontFamily: DT.fuentes.titular, fontWeight: l.w, fontSize: CUERPO_TIT, lineHeight: TITULO_STORY.interlinea, textShadow: SOMBRA, whiteSpace: 'nowrap'}}
+      >
+        <Stag t={l.t} />
+      </div>
+    ))}
+  </div>
+);
+
+const Pildora: React.FC<{t: string; cuerpo: number; pad: string}> = ({t, cuerpo, pad}) => (
+  <div
+    style={{
+      boxSizing: 'border-box',
+      border: '1.6px solid rgba(250,250,250,0.85)',
+      borderRadius: 999,
+      padding: pad,
+      textAlign: 'center',
+      fontFamily: DT.fuentes.titular,
+      fontWeight: DT.pesos.regular,
+      fontSize: cuerpo,
+      lineHeight: 1.2,
+      whiteSpace: 'nowrap',
+    }}
+  >
+    <Stag t={t} />
+  </div>
+);
+
+const PANEL = {x: 88, y: 800, ancho: 600, alto: 680, radio: 44, pad: 54} as const;
 
 export const DtStFeriadoPrograma: React.FC<{cual: 'er' | 'ft'; guia?: boolean}> = ({cual, guia = false}) => {
   const p = cual === 'er' ? ER : FT;
-  const dentro = PANEL.ancho - PANEL.pad * 2;
   return (
     <AbsoluteFill style={{backgroundColor: AZUL}}>
       <Foto src={p.foto} style={{objectPosition: `${p.focoX} 50%`}} />
-      <Velo desde={0.6} pie={0.4} lado="arriba" />
+      <Velo desde={0.42} pie={0.72} lado="arriba" />
 
       <Logo formato="story" />
+      <TituloPrograma lineas={p.titulo} />
 
       <div
         style={{
@@ -231,47 +276,19 @@ export const DtStFeriadoPrograma: React.FC<{cual: 'er' | 'ft'; guia?: boolean}> 
           flexDirection: 'column',
         }}
       >
-        <div>
-          {p.titulo.map((l) => (
-            <div
-              key={l.t}
-              style={{fontFamily: DT.fuentes.titular, fontWeight: l.w, fontSize: 64, lineHeight: 1.12, whiteSpace: 'nowrap'}}
-            >
-              <Stag t={l.t} />
-            </div>
-          ))}
-        </div>
-
-        <div style={{marginTop: 44, display: 'flex', alignItems: 'flex-end'}}>
+        <div style={{display: 'flex', alignItems: 'flex-end'}}>
           {p.desde ? (
-            <span style={{fontFamily: DT.fuentes.texto, fontSize: 30, letterSpacing: '0.04em', marginRight: 14, marginBottom: 8}}>
+            <span style={{fontFamily: DT.fuentes.texto, fontSize: 30, letterSpacing: '0.02em', marginRight: 14, marginBottom: 8}}>
               {p.desde}
             </span>
           ) : null}
           <span style={{fontFamily: TRADE_CN, fontWeight: 700, fontSize: 92, lineHeight: 0.9}}>{p.precio}</span>
         </div>
-        <div style={{marginTop: 12, fontFamily: DT.fuentes.texto, fontSize: 24, letterSpacing: '0.16em'}}>IVA INCLUIDO</div>
+        <div style={{marginTop: 12, fontFamily: DT.fuentes.texto, fontSize: 25, letterSpacing: '0.03em'}}>IVA INCLUIDO</div>
 
-        <div style={{marginTop: 42, display: 'flex', flexDirection: 'column', gap: 16}}>
+        <div style={{marginTop: 40, display: 'flex', flexDirection: 'column', gap: 16}}>
           {p.incluye.map((x) => (
-            <div
-              key={x}
-              style={{
-                width: dentro,
-                boxSizing: 'border-box',
-                border: `1.6px solid rgba(250,250,250,0.85)`,
-                borderRadius: 999,
-                padding: '15px 18px 12px',
-                textAlign: 'center',
-                fontFamily: DT.fuentes.texto,
-                fontSize: 21,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {x}
-            </div>
+            <Pildora key={x} t={x} cuerpo={27} pad="13px 18px 11px" />
           ))}
         </div>
 
@@ -308,20 +325,28 @@ export const DtStFeriadoEr: React.FC = () => <DtStFeriadoPrograma cual="er" />;
  * FT sola. Misma gramática de la ref (panel azul, píldoras de contorno, botón lleno),
  * pero el panel va ABAJO y a lo ancho: en todas las escenas del banco la familia
  * ocupa el centro del cuadro y un panel vertical a la izquierda la tapaba (ronda
- * interna 1). La foto 4:5 va arriba, a sangre, y se funde en azul DT.
+ * interna 1). RONDA 5: el titular sube bajo el logo en tres líneas (la bajada Light en
+ * una), la foto baja 130 px para que la familia quede entre titular y panel, y el panel
+ * se queda con precio + incluye a dos columnas y el pie.
  */
-const PANEL_FT = {x: 88, y: 1010, ancho: 904, alto: 560, radio: 44, pad: 50} as const;
+const FT_TITULO = [
+  {t: 'Fin de semana', w: DT.pesos.medium},
+  {t: 'largo en familia,', w: DT.pesos.medium},
+  {t: 'sin salir de Santiago', w: DT.pesos.light},
+];
+const PANEL_FT = {x: 88, y: 1165, ancho: 904, alto: 405, radio: 44, pad: 46} as const;
 
 export const DtStFeriadoFt: React.FC<{guia?: boolean}> = ({guia = false}) => {
   const p = FT;
   const col = (PANEL_FT.ancho - PANEL_FT.pad * 2 - 44) / 2;
   return (
     <AbsoluteFill style={{backgroundColor: AZUL}}>
-      {/* la escena 9:16 del banco, agrandada y corrida hacia arriba: la familia queda sobre el panel */}
-      <Img src={staticFile(p.foto)} style={{position: 'absolute', top: -450, left: -135, width: 1350, height: 2400}} />
-      <Velo desde={0.45} pie={0.8} />
-      <Velo desde={0.72} pie={0.35} lado="arriba" />
+      {/* la escena 9:16 del banco, agrandada: la familia queda entre el titular y el panel */}
+      <Img src={staticFile(p.foto)} style={{position: 'absolute', top: -320, left: -135, width: 1350, height: 2400}} />
+      <Velo desde={0.5} pie={0.8} />
+      <Velo desde={0.6} pie={0.6} lado="arriba" />
       <Logo formato="story" />
+      <TituloPrograma lineas={FT_TITULO} />
 
       <div
         style={{
@@ -342,35 +367,14 @@ export const DtStFeriadoFt: React.FC<{guia?: boolean}> = ({guia = false}) => {
           flexDirection: 'column',
         }}
       >
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <div style={{width: col}}>
-            {p.titulo.map((l) => (
-              <div key={l.t} style={{fontFamily: DT.fuentes.titular, fontWeight: l.w, fontSize: 52, lineHeight: 1.12, whiteSpace: 'nowrap'}}>
-                <Stag t={l.t} />
-              </div>
-            ))}
+        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+          <div style={{width: col - 20}}>
+            <div style={{fontFamily: TRADE_CN, fontWeight: 700, fontSize: 100, lineHeight: 0.9}}>{p.precio}</div>
+            <div style={{marginTop: 12, fontFamily: DT.fuentes.texto, fontSize: 25, letterSpacing: '0.03em'}}>IVA INCLUIDO</div>
           </div>
-          <div style={{width: col + 20, display: 'flex', flexDirection: 'column', gap: 14, paddingTop: 6}}>
-            <div style={{fontFamily: TRADE_CN, fontWeight: 700, fontSize: 84, lineHeight: 0.9}}>{p.precio}</div>
-            <div style={{fontFamily: DT.fuentes.texto, fontSize: 22, letterSpacing: '0.16em', marginBottom: 8}}>IVA INCLUIDO</div>
+          <div style={{width: col + 40, display: 'flex', flexDirection: 'column', gap: 12}}>
             {p.incluye.map((x) => (
-              <div
-                key={x}
-                style={{
-                  boxSizing: 'border-box',
-                  border: '1.6px solid rgba(250,250,250,0.85)',
-                  borderRadius: 999,
-                  padding: '13px 12px 10px',
-                  textAlign: 'center',
-                  fontFamily: DT.fuentes.texto,
-                  fontSize: 19,
-                  letterSpacing: '0.035em',
-                  textTransform: 'uppercase',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                <span style={{fontFamily: DT.fuentes.texto}}>{x}</span>
-              </div>
+              <Pildora key={x} t={x} cuerpo={24} pad="11px 12px 9px" />
             ))}
           </div>
         </div>

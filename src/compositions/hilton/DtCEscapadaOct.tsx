@@ -40,9 +40,9 @@ const Antetitulo: React.FC<{top: number}> = ({top}) => (
       width: 1080,
       textAlign: 'center',
       fontFamily: DT.fuentes.texto,
-      fontSize: 26,
-      letterSpacing: '0.34em',
-      textIndent: '0.34em',
+      // RONDA 5 (Constanza, 29-09): «que cada tipografía esté más junta, ese recurso no lo usas en DT»
+      fontSize: 30,
+      letterSpacing: '0.03em',
       color: BLANCO,
       textShadow: SOMBRA,
     }}
@@ -71,16 +71,18 @@ const Portada: React.FC<{foto: string}> = ({foto}) => (
 
     <Logo formato="feed" />
 
-    {/* RONDA 3 (Eli, 29-09): «están muy juntos los textos… cuando se trata de stack»: interlínea 1,3 */}
+    {/* RONDA 3 (Eli, 29-09): «están muy juntos los textos… cuando se trata de stack»: interlínea 1,3.
+        RONDA 5 (Constanza, 29-09): «el interlineado entre un break… y sin salir… que sea menos, se ve muy
+        separado» → 1,16, a medio camino: no vuelve al 1,10 que Eli encontró apretado. */}
     <Antetitulo top={290} />
-    <div style={{position: 'absolute', top: 336, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
+    <div style={{position: 'absolute', top: 342, left: 0, width: 1080, textAlign: 'center', color: BLANCO}}>
       {[
         {t: 'Un break de fin de semana', w: DT.pesos.semibold},
         {t: 'sin salir de la ciudad', w: DT.pesos.light},
       ].map((l) => (
         <div
           key={l.t}
-          style={{fontFamily: DT.fuentes.titular, fontWeight: l.w, fontSize: 64, lineHeight: 1.3, textShadow: SOMBRA, whiteSpace: 'nowrap'}}
+          style={{fontFamily: DT.fuentes.titular, fontWeight: l.w, fontSize: 64, lineHeight: 1.16, textShadow: SOMBRA, whiteSpace: 'nowrap'}}
         >
           <Stag t={l.t} />
         </div>
@@ -106,7 +108,7 @@ const Portada: React.FC<{foto: string}> = ({foto}) => (
       >
         $99.000
       </span>
-      <div style={{marginTop: 8, fontFamily: DT.fuentes.texto, fontSize: 19, letterSpacing: '0.16em', textIndent: '0.16em', textShadow: SOMBRA}}>
+      <div style={{marginTop: 8, fontFamily: DT.fuentes.texto, fontSize: 21, letterSpacing: '0.03em', textShadow: SOMBRA}}>
         IVA INCLUIDO
       </div>
 

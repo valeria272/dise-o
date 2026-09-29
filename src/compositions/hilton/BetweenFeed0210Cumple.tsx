@@ -29,9 +29,9 @@ import {useFuentesListas} from './BetweenSistema';
 
 const C = BETWEEN.colores;
 const SANS = BETWEEN.fuentes.sans;
-const SCRIPT = BETWEEN.fuentes.script;
 const SOMBRA = '0 2px 16px rgba(36,26,18,0.55)';
 const X0 = 76; // margen izquierdo (zona segura 60 + respiro)
+const HOOK_L1 = 532; // «¿ESTÁS DE»: con 556 la cola del «¿» y la tilde de la «Ñ» todavía rozaban la otra línea
 
 /** Escenas: [inicio, fin) en fotogramas a 30 fps */
 export const ESCENAS_CUMPLE = {
@@ -222,24 +222,17 @@ const palo = (size: number, peso = 900, extra: React.CSSProperties = {}): React.
   fontFamily: SANS, fontWeight: peso, fontSize: size, lineHeight: 0.95, color: C.beige,
   textShadow: SOMBRA, letterSpacing: '-0.01em', ...extra,
 });
-const fino = (size: number): React.CSSProperties => ({
-  fontFamily: SANS, fontWeight: 400, fontSize: size, lineHeight: 1, color: C.beige,
-  textShadow: SOMBRA, letterSpacing: '0.34em',
-});
-const mano = (size: number): React.CSSProperties => ({
-  fontFamily: SCRIPT, fontSize: size, lineHeight: 1, color: C.beige, textShadow: SOMBRA,
-});
 
 /* ───────── textos (literales de la grilla, sin punto final) ───────── */
 export const TXT = {
   estas: '¿ESTÁS',
-  de: 'de',
+  de: 'DE',
   cumple: 'CUMPLEAÑOS?',
   elCafe: 'EL CAFÉ',
-  vaPor: 'va por',
+  vaPor: 'VA POR',
   cuenta: 'NUESTRA CUENTA',
   ven1: 'Ven por tu',
-  cafeGratis: 'café gratis',
+  cafeGratis: 'CAFÉ GRATIS',
   ven2: 'el día de tu cumpleaños',
   legal:
     'Beneficio válido únicamente de lunes a viernes, el mismo día de tu cumpleaños, ' +
@@ -285,10 +278,16 @@ export const FeedOct02Cumple: React.FC = () => {
       <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(36,26,18,0.62) 0%, rgba(36,26,18,0.38) 30%, rgba(36,26,18,0) 50%)'}} />
 
       {/* ── 1 · HOOK (detrás de la figura) ── */}
+      {/* ⭐ RONDA CONSTANZA 29-09 (grilla FEED col F): «usemos solo 1 tipografía, la
+          sans serif, y que esté más bajo el interlineado, se ven muy separados».
+          «de» deja la Brushwell y pasa a la misma Raleway Black en caja alta; las
+          dos líneas al MISMO cuerpo (134) y «¿ESTÁS DE» baja hasta que la cola del «¿»
+          queda justo sobre «CUMPLEAÑOS?», que no se mueve: la vela sigue cruzándola por delante.
+          Los tiempos no cambian (el audio cae en los mismos fotogramas). */}
       <Escena rango={ESCENAS_CUMPLE.hook}>
-        <div style={{position: 'absolute', left: X0, top: 440, display: 'flex', alignItems: 'flex-end', gap: 18}}>
-          <Pop desde={T.estasPop}><div style={palo(176)}>{TXT.estas}</div></Pop>
-          <Trazo texto={TXT.de} desde={T.deTrazo[0]} dura={T.deTrazo[1]} style={{...mano(150), marginBottom: -34}} />
+        <div style={{position: 'absolute', left: X0 - 4, top: HOOK_L1, display: 'flex', alignItems: 'flex-end', gap: 30}}>
+          <Pop desde={T.estasPop}><div style={palo(134)}>{TXT.estas}</div></Pop>
+          <Trazo texto={TXT.de} desde={T.deTrazo[0]} dura={T.deTrazo[1]} style={{...palo(134), padding: '0.25em 0.1em 0 0'}} />
         </div>
         <Maquina texto={TXT.cumple} desde={T.cumple[0]} porLetra={T.cumple[1]}
           style={{...palo(134), position: 'absolute', left: X0 - 4, top: 700}} />
@@ -313,10 +312,13 @@ export const FeedOct02Cumple: React.FC = () => {
 
       {/* ── 2 · EL CAFÉ VA POR NUESTRA CUENTA ── */}
       <Escena rango={ESCENAS_CUMPLE.cafe}>
+        {/* ⭐ RONDA CONSTANZA 29-09: «demasiada separación en el interlineado y
+            creo que es too much 3 tipografías distintas, unifique» → las tres líneas
+            en Raleway Black 104, caja alta, interlínea 0,95 sin márgenes extra. */}
         <div style={{position: 'absolute', left: X0, top: 340}}>
-          <Maquina texto={TXT.elCafe} desde={T.elCafe[0]} porLetra={T.elCafe[1]} style={fino(58)} />
-          <Trazo texto={TXT.vaPor} desde={T.vaPor[0]} dura={T.vaPor[1]} style={{...mano(170), marginTop: 6, marginLeft: -8}} />
-          <Maquina texto={TXT.cuenta} desde={T.cuenta[0]} porLetra={T.cuenta[1]} style={{...palo(104), marginTop: -8}} />
+          <Maquina texto={TXT.elCafe} desde={T.elCafe[0]} porLetra={T.elCafe[1]} style={palo(104)} />
+          <Trazo texto={TXT.vaPor} desde={T.vaPor[0]} dura={T.vaPor[1]} style={{...palo(104), padding: '0.25em 0.1em 0 0', marginTop: '-0.25em'}} />
+          <Maquina texto={TXT.cuenta} desde={T.cuenta[0]} porLetra={T.cuenta[1]} style={palo(104)} />
         </div>
       </Escena>
 
@@ -324,8 +326,10 @@ export const FeedOct02Cumple: React.FC = () => {
       <Escena rango={ESCENAS_CUMPLE.ven}>
         <div style={{position: 'absolute', left: X0, top: 300}}>
           <Maquina texto={TXT.ven1} desde={T.ven1[0]} porLetra={T.ven1[1]} style={palo(66, 500, {letterSpacing: '0.01em'})} />
-          <Trazo texto={TXT.cafeGratis} desde={T.cafeGratis[0]} dura={T.cafeGratis[1]} style={{...mano(176), marginTop: 4, marginLeft: -8}} />
-          <Maquina texto={TXT.ven2} desde={T.ven2[0]} porLetra={T.ven2[1]} style={{...palo(66, 500, {letterSpacing: '0.01em'}), marginTop: 6}} />
+          {/* misma regla llevada a la escena 3 (criterio dicho = se audita el reel
+              entero): «café gratis» deja la Brushwell por la Raleway Black del resto. */}
+          <Trazo texto={TXT.cafeGratis} desde={T.cafeGratis[0]} dura={T.cafeGratis[1]} style={{...palo(112), padding: '0.25em 0.1em 0 0', marginTop: `calc(12px - 0.25em)`}} />
+          <Maquina texto={TXT.ven2} desde={T.ven2[0]} porLetra={T.ven2[1]} style={{...palo(66, 500, {letterSpacing: '0.01em'}), marginTop: 14}} />
         </div>
       </Escena>
 

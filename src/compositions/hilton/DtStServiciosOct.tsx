@@ -30,6 +30,7 @@ import {AbsoluteFill, Img, staticFile} from 'remotion';
 
 import {DT, cargarFuentesDT} from '../../brand/doubletree';
 import {ConTrade, Icono, NombreIcono} from './dtIconosOct';
+import {TITULO_STORY, topTitulo} from './dtOct2';
 
 cargarFuentesDT();
 
@@ -96,8 +97,8 @@ export const DtStServiciosOct: React.FC<{guia?: boolean}> = ({guia = false}) => 
         }}
       />
 
-      {/* 5 · titular a dos pesos y un mismo cuerpo */}
-      <div style={{position: 'absolute', top: 470, left: 0, width: MESA.ancho, textAlign: 'center'}}>
+      {/* 5 · titular a dos pesos y un mismo cuerpo. RONDA 5 (Constanza, 29-09): separación común del logo, interlínea 1,06 */}
+      <div style={{position: 'absolute', top: topTitulo(78), left: 0, width: MESA.ancho, textAlign: 'center'}}>
         {TITULO.map((t, i) => (
           <div
             key={t}
@@ -105,7 +106,7 @@ export const DtStServiciosOct: React.FC<{guia?: boolean}> = ({guia = false}) => 
               fontFamily: DT.fuentes.titular,
               fontWeight: i === 0 ? DT.pesos.medium : DT.pesos.light,
               fontSize: 78,
-              lineHeight: 1.14,
+              lineHeight: TITULO_STORY.interlinea,
               color: DT.colores.blanco,
               textShadow: SOMBRA,
               whiteSpace: 'nowrap',

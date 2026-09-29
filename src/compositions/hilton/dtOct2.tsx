@@ -41,6 +41,18 @@ export const Stag: React.FC<{t: string}> = ({t}) => (
   </>
 );
 
+/**
+ * El TITULAR de una historia arranca siempre a la misma distancia del logo (Constanza, 29-09:
+ * «deben estar en la misma separación del logo… apliquemos esto a todas las historias») y con
+ * menos interlínea que antes (1,14 → 1,06). La norma es la mayúscula en y=488 (la de Servicios
+ * 13-10). `topTitulo` convierte eso al `top` de la caja según el cuerpo: Stag usa las métricas
+ * win (942/219 sobre 1000) y la versal mide 700, así que la versal cae a
+ * `top + fs·((lh − 1,161)/2 + 0,242)`. Medido contra los render: ±1 px.
+ */
+export const TITULO_STORY = {versal: 488, interlinea: 1.06} as const;
+export const topTitulo = (fs: number, lh: number = TITULO_STORY.interlinea) =>
+  Math.round(TITULO_STORY.versal - fs * ((lh - 1.161) / 2 + 0.242));
+
 /** Logotipo vertical blanco (R-09), a su proporción real y en la posición de la plantilla. */
 export const Logo: React.FC<{formato: 'story' | 'feed'; color?: 'blanco' | 'azul'; top?: number}> = ({
   formato,

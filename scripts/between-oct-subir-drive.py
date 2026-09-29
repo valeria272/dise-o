@@ -19,6 +19,7 @@ enlace). ⚠️ Scope `drive.file`: verificar después con el conector MCP.
 Uso:  python scripts/between-oct-subir-drive.py [--ronda 2] [--solo "BW ST 19-10"]
 """
 import argparse
+import hashlib
 import os
 import pathlib
 import sys
@@ -78,6 +79,21 @@ PIEZAS_R2 = [
 ]
 
 
+# Ronda de Constanza (jefa de diseño), 29-09: comentarios nativos en la grilla sobre
+# S1 y S2. Mismos nombres → se REEMPLAZAN y conservan el enlace.
+ENTREGA_R4 = RAIZ / "out/hilton/between/oct-r4"
+PIEZAS_R4 = [
+    (1, "STS", "BW ST 01-10 Anuncio ganador concurso.png"),
+    (1, "STS", "BW ST 02-10 Promos To Go POV.mp4"),
+    (1, "STS", "BW ST 02-10 Promos To Go POV.gif"),
+    (1, "STS", "BW ST 02-10 Promos To Go POV - PORTADA.png"),
+    (1, "FEED", "BW FEED 02-10 Cafe de cumpleanos.mp4"),
+    (1, "FEED", "BW FEED 02-10 Cafe de cumpleanos.gif"),
+    (1, "FEED", "BW FEED 02-10 Cafe de cumpleanos - PORTADA.png"),
+    (2, "STS", "BW ST 07-10 Cafe gratis por cumpleanos.png"),
+]
+
+
 def servicio():
     ruta = token_google()
     creds = Credentials.from_authorized_user_file(str(ruta))
@@ -103,9 +119,10 @@ def carpeta(svc, nombre, padre):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--solo", default="")
-    ap.add_argument("--ronda", choices=["1", "2"], default="1")
+    ap.add_argument("--ronda", choices=["1", "2", "4"], default="1")
     a = ap.parse_args()
-    entrega, piezas = (ENTREGA_R2, PIEZAS_R2) if a.ronda == "2" else (ENTREGA, PIEZAS)
+    entrega, piezas = {"2": (ENTREGA_R2, PIEZAS_R2), "4": (ENTREGA_R4, PIEZAS_R4)}.get(
+        a.ronda, (ENTREGA, PIEZAS))
     svc = servicio()
     cache = {}
     for sem, sub, nombre in piezas:
@@ -132,7 +149,9 @@ def main():
                                    fields="id,md5Checksum,parents", supportsAllDrives=True).execute()
             accion = "subido"
         ok = destino in (f.get("parents") or [])
-        print(f"{'✓' if ok else '⚠️ FUERA DE LUGAR'} S{sem}/BW/{sub}/{nombre} — {accion} · md5 {f.get('md5Checksum')}")
+        igual = f.get("md5Checksum") == hashlib.md5(ruta.read_bytes()).hexdigest()
+        print(f"{'✓' if ok else '⚠️ FUERA DE LUGAR'} S{sem}/BW/{sub}/{nombre} — {accion} · md5 "
+              f"{f.get('md5Checksum')} {'= local' if igual else '≠ LOCAL ⚠️'}")
 
 
 if __name__ == "__main__":

@@ -13,6 +13,7 @@ la música va pareja, con un hueco fijo de EQ para que los efectos se oigan.
 
     py scripts/bw-fd-02-10-cumple-audio.py
 """
+import os
 import subprocess
 import sys
 import wave
@@ -23,8 +24,8 @@ import numpy as np
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 RAIZ = Path(__file__).resolve().parent.parent
 A = RAIZ / "raw/hilton/between/oct/audio-f02"
-CUADROS = RAIZ / "raw/_reel-chrome/f02"
-OUT = RAIZ / "out/hilton/between/oct-r2"
+CUADROS = RAIZ / os.environ.get("BW_F02_CUADROS", "raw/_reel-chrome/f02")  # ronda 4: raw/_reel-chrome/f02-r4
+OUT = RAIZ / os.environ.get("BW_F02_OUT", "out/hilton/between/oct-r2")
 NOMBRE = "BW FEED 02-10 Cafe de cumpleanos"
 FF = r"C:\Users\Elisabet\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\imageio_ffmpeg\binaries\ffmpeg-win-x86_64-v7.1.exe"
 SR, FPS, N = 48000, 30, 375

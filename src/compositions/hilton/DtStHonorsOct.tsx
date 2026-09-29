@@ -34,6 +34,7 @@ import {AbsoluteFill, Img, staticFile} from 'remotion';
 
 import {DT, cargarFuentesDT} from '../../brand/doubletree';
 import {Icono, NombreIcono} from './dtIconosOct';
+import {TITULO_STORY, topTitulo} from './dtOct2';
 
 cargarFuentesDT();
 
@@ -91,8 +92,9 @@ export const DtStHonorsOct: React.FC<{guia?: boolean}> = ({guia = false}) => (
       }}
     />
 
-    {/* titular — ronda 2: CENTRADO (Eli, 24-09: «me gustaría que todo fuera como centrado») */}
-    <div style={{position: 'absolute', top: 500, left: 0, width: MESA.ancho, textAlign: 'center'}}>
+    {/* titular — ronda 2: CENTRADO (Eli, 24-09: «me gustaría que todo fuera como centrado»).
+        RONDA 5 (Constanza, 29-09): separación común del logo, interlínea 1,06 */}
+    <div style={{position: 'absolute', top: topTitulo(CUERPO_TITULO), left: 0, width: MESA.ancho, textAlign: 'center'}}>
       {TITULO.map(({t, peso}) => (
         <div
           key={t}
@@ -100,7 +102,7 @@ export const DtStHonorsOct: React.FC<{guia?: boolean}> = ({guia = false}) => (
             fontFamily: DT.fuentes.titular,
             fontWeight: peso,
             fontSize: CUERPO_TITULO,
-            lineHeight: 1.1,
+            lineHeight: TITULO_STORY.interlinea,
             color: DT.colores.blanco,
             textShadow: SOMBRA,
             whiteSpace: 'nowrap',

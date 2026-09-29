@@ -332,12 +332,13 @@ export const StOct02ToGoPov: React.FC<{guia?: boolean; capa?: boolean}> = ({guia
       />
       {/* ⭐ RONDA CONSTANZA 29-09 (grilla col D): «¿qué mejora tu mañana?, menos
           interlineado» → el kit mide la tinta con el «¿» que baja y la tilde de la «Ñ»
-          que sube; con −0,2 el aire VISIBLE entre mayúsculas baja de ~55 a ~25 px. */}
+          que sube; con −0,2 el aire VISIBLE entre mayúsculas bajó de ~55 a ~25 px.
+          Eli 29-09: «demasiado junto, la Ñ muy cerca de la M y la E» → −0,08 (~12 px más). */}
       <Columna top={256}>
         <div style={sube(a)}>
           <TitularBetween
             caps={'¿Qué mejora\ntu mañana?'}
-            aireEntreCapsProp={-0.2}
+            aireEntreCapsProp={-0.08}
             sizeCaps={100}
             tono="beige"
             alinear="centro"

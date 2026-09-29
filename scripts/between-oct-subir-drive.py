@@ -94,6 +94,12 @@ PIEZAS_R4 = [
 ]
 
 
+# Ronda 5 (Eli, 29-09): «TU MAÑANA» baja un poco y el reel dice «EL CAFÉ VA POR» /
+# «NUESTRA CUENTA». 01-10 y 07-10 quedaron APROBADAS en la ronda 4.
+ENTREGA_R5 = RAIZ / "out/hilton/between/oct-r5"
+PIEZAS_R5 = [p for p in PIEZAS_R4 if "02-10" in p[2]]
+
+
 def servicio():
     ruta = token_google()
     creds = Credentials.from_authorized_user_file(str(ruta))
@@ -119,9 +125,10 @@ def carpeta(svc, nombre, padre):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--solo", default="")
-    ap.add_argument("--ronda", choices=["1", "2", "4"], default="1")
+    ap.add_argument("--ronda", choices=["1", "2", "4", "5"], default="1")
     a = ap.parse_args()
-    entrega, piezas = {"2": (ENTREGA_R2, PIEZAS_R2), "4": (ENTREGA_R4, PIEZAS_R4)}.get(
+    entrega, piezas = {"2": (ENTREGA_R2, PIEZAS_R2), "4": (ENTREGA_R4, PIEZAS_R4),
+         "5": (ENTREGA_R5, PIEZAS_R5)}.get(
         a.ronda, (ENTREGA, PIEZAS))
     svc = servicio()
     cache = {}

@@ -31,6 +31,7 @@ const C = BETWEEN.colores;
 const SANS = BETWEEN.fuentes.sans;
 const SOMBRA = '0 2px 16px rgba(36,26,18,0.55)';
 const X0 = 76; // margen izquierdo (zona segura 60 + respiro)
+const TAM_CUENTA = 104;
 const HOOK_L1 = 532; // «¿ESTÁS DE»: con 556 la cola del «¿» y la tilde de la «Ñ» todavía rozaban la otra línea
 
 /** Escenas: [inicio, fin) en fotogramas a 30 fps */
@@ -315,10 +316,15 @@ export const FeedOct02Cumple: React.FC = () => {
         {/* ⭐ RONDA CONSTANZA 29-09: «demasiada separación en el interlineado y
             creo que es too much 3 tipografías distintas, unifique» → las tres líneas
             en Raleway Black 104, caja alta, interlínea 0,95 sin márgenes extra. */}
-        <div style={{position: 'absolute', left: X0, top: 340}}>
-          <Maquina texto={TXT.elCafe} desde={T.elCafe[0]} porLetra={T.elCafe[1]} style={palo(104)} />
-          <Trazo texto={TXT.vaPor} desde={T.vaPor[0]} dura={T.vaPor[1]} style={{...palo(104), padding: '0.25em 0.1em 0 0', marginTop: '-0.25em'}} />
-          <Maquina texto={TXT.cuenta} desde={T.cuenta[0]} porLetra={T.cuenta[1]} style={palo(104)} />
+        {/* ⭐ Eli 29-09: «VA POR» se leía «VAPOR» → dos líneas, «EL CAFÉ VA POR» y
+            debajo «NUESTRA CUENTA», con más aire entre «VA» y «POR». */}
+        <div style={{position: 'absolute', left: X0, top: 380}}>
+          <div style={{display: 'flex', alignItems: 'flex-end', gap: '0.26em', fontSize: TAM_CUENTA}}>
+            <Maquina texto={TXT.elCafe} desde={T.elCafe[0]} porLetra={T.elCafe[1]} style={palo(TAM_CUENTA)} />
+            <Trazo texto={TXT.vaPor} desde={T.vaPor[0]} dura={T.vaPor[1]}
+              style={{...palo(TAM_CUENTA), padding: '0.25em 0.1em 0 0', wordSpacing: '0.15em'}} />
+          </div>
+          <Maquina texto={TXT.cuenta} desde={T.cuenta[0]} porLetra={T.cuenta[1]} style={palo(TAM_CUENTA)} />
         </div>
       </Escena>
 

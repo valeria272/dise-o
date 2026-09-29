@@ -101,6 +101,7 @@ def html_r5(op):
     # plato (9,5 Bold) > descripción (8,5 Regular). Si no cabe en la columna, dos líneas; nunca más chica.
     # a 8 pt la leyenda del pie ya no cabe en una línea (se salía de la hoja): dos líneas equilibradas
     h = h.replace("</style>", ".leyenda{white-space:normal!important;text-wrap:balance;line-height:1.5}</style>", 1)
+    h = re.sub(r"(\d{2}:\d{2}) (hrs|HRS|Hrs)", "\1 \2", h)       # «22:00 HRS» nunca se parte
     if op in SECCION:
         h = h.replace("</style>", SECCION[op] + "</style>", 1)
     return h

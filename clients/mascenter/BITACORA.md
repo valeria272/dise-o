@@ -1,3 +1,30 @@
+## 2026-09-29 (2ª parte) — Diego Aguilar (con Claude) · LinkedIn IFB de octubre: 4 carruseles (18 slides)
+
+**Encargo:** «sigue con la pestaña grilla linkedin, recuerda que acá ya es IFB corporativo, con los colores azules y
+celestes». Leída de la copia local de la grilla (conector de Drive caído).
+- Plantillas medidas (R-55): `plantillas/linkedin-carrusel-algarrobal.json` (SEPT IFB.ai 14–17) y
+  `linkedin-carrusel-19-anios-lk-13-08.json` (AGOSTO IFB.ai 33–35). Del `.ai` salieron el lockup GRUPO IFB | MÁS CENTER
+  en blanco (`raw/mascenter/octubre-2026/ifb/lockup-ifb-mascenter-blanco.png`) y el velo de fondo: **`#235D80` al 90 %
+  sobre la foto desenfocada** (ajustado contra el render del `.ai`).
+- **lk-06-10 Linderos (4):** sobre Algarrobal. Portada con el render oficial de mascenter.cl/linderos recortado por el
+  isotipo; ubicación con **mapa esquemático** («referencial, sin escala»), porque la web no publica la dirección
+  exacta; ficha con los datos del brief (coinciden con la web) e íconos; cierre en caja celeste con aérea generada
+  sobre el render oficial.
+- **lk-10-10 «Un activo…» (6):** foto por slide, números 01–04 grandes en celeste y el lockup chico al pie. Fotos:
+  aérea de Algarrobal, mapa de la mesa 15, render de Chicureo, equipo (generado), Chamisero II real, La Serena real.
+- **lk-19-10 «De 4 a 49 activos» (4):** sobre lk-13-08. Mosaico de activos reales (`IMAGENES INDIVIDUALES`), gráfico de 4
+  hitos, pastillas celestes por clase de activo y fuente Memoria 2025 (R-37).
+- **lk-27-10 «¿Tienes un terreno?» (4):** terreno de la landing, aérea de Algarrobal, mosaico de centros reales y cierre
+  con URL.
+- La columna del 22-10 (UAF, «pendiente cliente») no se hizo. QA: 0 bloqueantes; hubo un falso positivo de «foto
+  estirada» en la ficha navy, que se resolvió ajustando la caja.
+
+**Dónde quedó:** 18 PNG en «10. OCTUBRE» (md5 OK). Constructor `clients/mascenter/sistema/linkedin_octubre.py`.
+**Abierto → Scarlette / Diego:** (1) el brief dice **«2028 → 49»**, pero el copy dice «Hoy, son 49» y la Memoria 2025 da
+49 en 2025: se puso 2025. (2) La URL «POSTULA TU TERRENO EN XXX» se completó con `mascenter-terrenos.vercel.app` (el
+dominio definitivo sigue pendiente). (3) La entrega estimada «MAY. 2027» va publicada, aunque R-36 pide no publicar
+fechas; viene en el brief y en la web. (4) Dirección exacta de Linderos, para un mapa real.
+
 ## 2026-09-29 — Diego Aguilar (con Claude) · stories diseñadas de octubre (menos la del 15-10)
 
 **Qué se hizo:** «ahora vamos con la pestaña de grilla stories de instagram, genera todo menos la st del 15-10».

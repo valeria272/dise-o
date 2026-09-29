@@ -1,0 +1,1645 @@
+{
+ "fuente": "D:/DIEGO 2023/COPYWRITERS/MAS CENTER/SEPTIEMBRE IFB/SEPT IFB.ai",
+ "mesas": {
+  "14": {
+   "w": 1080.0,
+   "h": 1080.0,
+   "textos": [
+    {
+     "texto": "NUEVO",
+     "fuente": "Gotham-Black",
+     "cuerpo": 59.0,
+     "color": "#FFFFFF",
+     "base": 306.5,
+     "x0": 80.5,
+     "x1": 318.4
+    },
+    {
+     "texto": "STRIP CENTER",
+     "fuente": "Gotham-Black",
+     "cuerpo": 59.0,
+     "color": "#FFFFFF",
+     "base": 367.5,
+     "x0": 80.5,
+     "x1": 540.3
+    },
+    {
+     "texto": "EN COLINA",
+     "fuente": "Gotham-Black",
+     "cuerpo": 59.0,
+     "color": "#FFFFFF",
+     "base": 428.5,
+     "x0": 80.5,
+     "x1": 422.3
+    },
+    {
+     "texto": "Comercio y servicios",
+     "fuente": "GothamRounded-Light",
+     "cuerpo": 48.0,
+     "color": "#FFFFFF",
+     "base": 568.7,
+     "x0": 78.9,
+     "x1": 582.7
+    },
+    {
+     "texto": "de proximidad",
+     "fuente": "GothamRounded-Light",
+     "cuerpo": 48.0,
+     "color": "#FFFFFF",
+     "base": 617.8,
+     "x0": 78.9,
+     "x1": 434.0
+    },
+    {
+     "texto": "sobre la Autopista",
+     "fuente": "GothamRounded-Light",
+     "cuerpo": 48.0,
+     "color": "#FFFFFF",
+     "base": 666.8,
+     "x0": 78.9,
+     "x1": 523.7
+    },
+    {
+     "texto": "Los Libertadores.",
+     "fuente": "GothamRounded-Light",
+     "cuerpo": 48.0,
+     "color": "#FFFFFF",
+     "base": 715.8,
+     "x0": 78.9,
+     "x1": 487.8
+    },
+    {
+     "texto": "Más Center Algarrobal",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 40.0,
+     "color": "#BAEAEE",
+     "base": 500.9,
+     "x0": 104.8,
+     "x1": 558.7
+    }
+   ],
+   "formas": [
+    {
+     "color": "#112C3A",
+     "opacidad": 1.0,
+     "caja": [
+      78.9,
+      460.1,
+      590.9,
+      514.2
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      185.0,
+      115.4,
+      224.2,
+      159.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      182.7,
+      142.7,
+      207.4,
+      165.2
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      107.1,
+      116.0,
+      136.2,
+      165.4
+     ],
+     "curva": true,
+     "puntos": 11
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      142.9,
+      116.0,
+      178.6,
+      165.4
+     ],
+     "curva": true,
+     "puntos": 26
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      256.8,
+      103.9,
+      285.5,
+      133.1
+     ],
+     "curva": false,
+     "puntos": 13
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      290.5,
+      94.7,
+      315.6,
+      133.1
+     ],
+     "curva": false,
+     "puntos": 15
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      324.1,
+      103.5,
+      346.6,
+      133.5
+     ],
+     "curva": true,
+     "puntos": 38
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      353.5,
+      103.5,
+      394.4,
+      149.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      351.2,
+      132.0,
+      376.9,
+      155.4
+     ],
+     "curva": true,
+     "puntos": 4
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      1080.1,
+      0.0,
+      1080.0,
+      1080.0
+     ]
+    },
+    {
+     "caja": [
+      340.4,
+      599.2,
+      869.2,
+      1080.0
+     ]
+    },
+    {
+     "caja": [
+      384.7,
+      0.0,
+      1080.0,
+      952.8
+     ]
+    },
+    {
+     "caja": [
+      384.7,
+      0.0,
+      1080.0,
+      963.8
+     ]
+    },
+    {
+     "caja": [
+      1078.4,
+      -0.0,
+      2871.2,
+      1080.0
+     ],
+     "px": [
+      5312,
+      3200
+     ]
+    },
+    {
+     "caja": [
+      -174.3,
+      0.0,
+      1985.1,
+      1083.2
+     ],
+     "px": [
+      5145,
+      2581
+     ]
+    },
+    {
+     "caja": [
+      378.8,
+      -2.6,
+      1250.2,
+      952.8
+     ],
+     "px": [
+      2009,
+      2206
+     ]
+    },
+    {
+     "caja": [
+      -174.3,
+      0.0,
+      1985.1,
+      1083.2
+     ],
+     "px": [
+      5145,
+      2581
+     ]
+    }
+   ]
+  },
+  "15": {
+   "w": 1080.0,
+   "h": 1080.0,
+   "textos": [
+    {
+     "texto": "Co",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 753.4,
+     "x0": 1061.3,
+     "x1": 1079.9
+    },
+    {
+     "texto": "ofi",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 767.7,
+     "x0": 1061.3,
+     "x1": 1078.5
+    },
+    {
+     "texto": "Autopista Los Libertadores",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 289.4,
+     "x0": 912.8,
+     "x1": 986.1
+    },
+    {
+     "texto": "Autopista Los Libertadores",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 902.1,
+     "x0": 856.0,
+     "x1": 888.0
+    },
+    {
+     "texto": "C",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 521.2,
+     "x0": 532.4,
+     "x1": 552.4
+    },
+    {
+     "texto": "al",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 516.2,
+     "x0": 541.2,
+     "x1": 563.7
+    },
+    {
+     "texto": "l",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 509.9,
+     "x0": 552.5,
+     "x1": 567.1
+    },
+    {
+     "texto": "e",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 507.9,
+     "x0": 556.0,
+     "x1": 574.3
+    },
+    {
+     "texto": "Teresa S",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 502.5,
+     "x0": 565.6,
+     "x1": 626.9
+    },
+    {
+     "texto": "p",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 474.4,
+     "x0": 615.7,
+     "x1": 634.7
+    },
+    {
+     "texto": "i",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 470.0,
+     "x0": 623.6,
+     "x1": 638.2
+    },
+    {
+     "texto": "kula",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 468.1,
+     "x0": 627.0,
+     "x1": 664.5
+    },
+    {
+     "texto": "de C",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 453.2,
+     "x0": 661.8,
+     "x1": 693.8
+    },
+    {
+     "texto": "a",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 455.7,
+     "x0": 691.9,
+     "x1": 702.8
+    },
+    {
+     "texto": "st",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 456.5,
+     "x0": 700.9,
+     "x1": 715.6
+    },
+    {
+     "texto": "r",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 457.6,
+     "x0": 713.7,
+     "x1": 721.3
+    },
+    {
+     "texto": "o",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 458.0,
+     "x0": 719.4,
+     "x1": 729.8
+    },
+    {
+     "texto": "Autopista Nororiente",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.31,
+     "color": "#FFFFFF",
+     "base": 948.4,
+     "x0": 622.4,
+     "x1": 767.3
+    },
+    {
+     "texto": "Club",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 12.82,
+     "color": "#FFFFFF",
+     "base": 342.7,
+     "x0": 715.1,
+     "x1": 748.7
+    },
+    {
+     "texto": "Chicureo",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 12.82,
+     "color": "#FFFFFF",
+     "base": 356.5,
+     "x0": 715.1,
+     "x1": 775.2
+    },
+    {
+     "texto": "Colegio San",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 12.82,
+     "color": "#FFFFFF",
+     "base": 302.7,
+     "x0": 710.8,
+     "x1": 791.8
+    },
+    {
+     "texto": "Nicolás Diácono",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 12.82,
+     "color": "#FFFFFF",
+     "base": 316.5,
+     "x0": 710.8,
+     "x1": 817.1
+    },
+    {
+     "texto": "Clinica",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 12.82,
+     "color": "#FFFFFF",
+     "base": 612.6,
+     "x0": 724.9,
+     "x1": 773.9
+    },
+    {
+     "texto": "Veterinaria",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 12.82,
+     "color": "#FFFFFF",
+     "base": 626.4,
+     "x0": 724.9,
+     "x1": 799.9
+    },
+    {
+     "texto": "Condominio",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.26,
+     "color": "#FFFFFF",
+     "base": 769.3,
+     "x0": 511.1,
+     "x1": 595.3
+    },
+    {
+     "texto": "Algarrobal II",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.26,
+     "color": "#FFFFFF",
+     "base": 783.6,
+     "x0": 511.1,
+     "x1": 595.1
+    },
+    {
+     "texto": "Condominio",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.26,
+     "color": "#FFFFFF",
+     "base": 286.6,
+     "x0": 575.4,
+     "x1": 659.6
+    },
+    {
+     "texto": "Algarrobal I",
+     "fuente": "Poppins-Bold",
+     "cuerpo": 13.26,
+     "color": "#FFFFFF",
+     "base": 300.9,
+     "x0": 575.4,
+     "x1": 655.6
+    },
+    {
+     "texto": "UBICACIÓN",
+     "fuente": "Gotham-Black",
+     "cuerpo": 47.27,
+     "color": "#112C3A",
+     "base": 100.7,
+     "x0": 111.0,
+     "x1": 405.2
+    },
+    {
+     "texto": "ESTRATÉGICA",
+     "fuente": "Gotham-Black",
+     "cuerpo": 47.27,
+     "color": "#112C3A",
+     "base": 149.6,
+     "x0": 111.0,
+     "x1": 456.7
+    },
+    {
+     "texto": "Emplazado sobre uno",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 32.05,
+     "color": "#112C3A",
+     "base": 184.9,
+     "x0": 111.0,
+     "x1": 474.8
+    },
+    {
+     "texto": "de los principales ejes",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 32.05,
+     "color": "#112C3A",
+     "base": 216.1,
+     "x0": 111.0,
+     "x1": 481.5
+    },
+    {
+     "texto": "de acceso a Colina.",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 32.05,
+     "color": "#112C3A",
+     "base": 247.4,
+     "x0": 111.0,
+     "x1": 423.8
+    },
+    {
+     "texto": "Autopista Los Libertadores",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 27.69,
+     "color": "#BAEAEE",
+     "base": 289.0,
+     "x0": 127.9,
+     "x1": 501.3
+    },
+    {
+     "texto": "Entorno residencial",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 27.69,
+     "color": "#BAEAEE",
+     "base": 380.3,
+     "x0": 127.9,
+     "x1": 401.3
+    },
+    {
+     "texto": "en crecimiento",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 27.69,
+     "color": "#BAEAEE",
+     "base": 407.3,
+     "x0": 127.9,
+     "x1": 331.3
+    },
+    {
+     "texto": "Alto ﬂujo vehicular",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 27.69,
+     "color": "#BAEAEE",
+     "base": 332.9,
+     "x0": 127.9,
+     "x1": 385.4
+    }
+   ],
+   "formas": [
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      1069.5,
+      512.7,
+      1108.7,
+      551.8
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#235D80",
+     "opacidad": 1.0,
+     "caja": [
+      1075.0,
+      518.6,
+      1101.4,
+      545.9
+     ],
+     "curva": true,
+     "puntos": 111
+    },
+    {
+     "color": "#112C3A",
+     "opacidad": 1.0,
+     "caja": [
+      1041.9,
+      738.1,
+      1142.7,
+      773.2
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      1016.3,
+      736.1,
+      1055.5,
+      775.2
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#235D80",
+     "opacidad": 1.0,
+     "caja": [
+      1022.7,
+      742.2,
+      1049.0,
+      768.9
+     ],
+     "curva": true,
+     "puntos": 134
+    },
+    {
+     "color": "#112C3A",
+     "opacidad": 1.0,
+     "caja": [
+      909.1,
+      99.8,
+      987.0,
+      301.8
+     ],
+     "curva": true,
+     "puntos": 8
+    },
+    {
+     "color": "#112C3A",
+     "opacidad": 1.0,
+     "caja": [
+      854.0,
+      707.5,
+      887.1,
+      914.5
+     ],
+     "curva": true,
+     "puntos": 8
+    },
+    {
+     "color": "#112C3A",
+     "opacidad": 1.0,
+     "caja": [
+      794.1,
+      388.9,
+      854.5,
+      444.0
+     ],
+     "curva": true,
+     "puntos": 9
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      844.0,
+      346.4,
+      965.0,
+      401.9
+     ],
+     "curva": true,
+     "puntos": 8
+    },
+    {
+     "color": "#E32722",
+     "opacidad": 1.0,
+     "caja": [
+      884.5,
+      350.3,
+      904.6,
+      375.0
+     ],
+     "curva": false,
+     "puntos": 15
+    },
+    {
+     "color": "#E32722",
+     "opacidad": 1.0,
+     "caja": [
+      926.1,
+      355.9,
+      953.2,
+      385.1
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#235D80",
+     "opacidad": 1.0,
+     "caja": [
+      809.6,
+      359.8,
+      848.6,
+      419.3
+     ],
+     "curva": true,
+     "puntos": 17
+    },
+    {
+     "color": "#112C3A",
+     "opacidad": 1.0,
+     "caja": [
+      610.5,
+      898.0,
+      782.0,
+      956.9
+     ],
+     "curva": true,
+     "puntos": 8
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      771.5,
+      463.1,
+      809.2,
+      500.7
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      811.2,
+      463.1,
+      848.9,
+      500.7
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      915.5,
+      711.2,
+      953.2,
+      748.9
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      958.3,
+      711.2,
+      996.0,
+      748.9
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#112C3A",
+     "opacidad": 1.0,
+     "caja": [
+      705.7,
+      328.0,
+      795.0,
+      361.8
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      779.6,
+      326.1,
+      817.3,
+      363.7
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#235D80",
+     "opacidad": 1.0,
+     "caja": [
+      697.3,
+      288.0,
+      838.5,
+      321.8
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      819.6,
+      286.1,
+      857.3,
+      323.7
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#112C3A",
+     "opacidad": 1.0,
+     "caja": [
+      714.7,
+      597.9,
+      821.1,
+      631.6
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      802.2,
+      595.9,
+      839.9,
+      633.6
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      731.8,
+      463.1,
+      769.5,
+      500.7
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#112C3A",
+     "opacidad": 1.0,
+     "caja": [
+      491.7,
+      754.1,
+      612.1,
+      789.0
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      466.2,
+      752.1,
+      505.2,
+      791.1
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#235D80",
+     "opacidad": 1.0,
+     "caja": [
+      471.7,
+      757.9,
+      498.0,
+      785.2
+     ],
+     "curva": true,
+     "puntos": 111
+    },
+    {
+     "color": "#112C3A",
+     "opacidad": 1.0,
+     "caja": [
+      556.1,
+      271.4,
+      676.5,
+      306.3
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      530.6,
+      269.4,
+      569.6,
+      308.4
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#235D80",
+     "opacidad": 1.0,
+     "caja": [
+      536.0,
+      275.2,
+      562.4,
+      302.4
+     ],
+     "curva": true,
+     "puntos": 111
+    },
+    {
+     "color": "#235D80",
+     "opacidad": 1.0,
+     "caja": [
+      113.6,
+      261.5,
+      517.1,
+      296.7
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#235D80",
+     "opacidad": 1.0,
+     "caja": [
+      113.6,
+      350.8,
+      415.1,
+      420.1
+     ],
+     "curva": true,
+     "puntos": 8
+    },
+    {
+     "color": "#235D80",
+     "opacidad": 1.0,
+     "caja": [
+      113.6,
+      306.1,
+      401.7,
+      341.4
+     ],
+     "curva": true,
+     "puntos": 6
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.1,
+      0.0,
+      1078.5,
+      1080.0
+     ]
+    },
+    {
+     "caja": [
+      772.8,
+      474.8,
+      807.9,
+      492.3
+     ]
+    },
+    {
+     "caja": [
+      813.5,
+      468.1,
+      845.5,
+      497.4
+     ]
+    },
+    {
+     "caja": [
+      917.7,
+      713.4,
+      951.0,
+      746.8
+     ]
+    },
+    {
+     "caja": [
+      960.6,
+      713.5,
+      993.8,
+      746.7
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      599.2,
+      -217.2,
+      1080.0
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      206.1,
+      170.2,
+      845.0
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      206.1,
+      177.6,
+      845.0
+     ]
+    },
+    {
+     "caja": [
+      1138.7,
+      166.6,
+      1080.0,
+      558.0
+     ]
+    },
+    {
+     "caja": [
+      -1.6,
+      -0.0,
+      1791.2,
+      1080.0
+     ],
+     "px": [
+      5312,
+      3200
+     ]
+    },
+    {
+     "caja": [
+      772.8,
+      474.8,
+      807.9,
+      492.3
+     ],
+     "px": [
+      5120,
+      2562
+     ]
+    },
+    {
+     "caja": [
+      813.5,
+      468.1,
+      845.5,
+      497.4
+     ],
+     "px": [
+      2233,
+      2048
+     ]
+    },
+    {
+     "caja": [
+      917.7,
+      713.4,
+      951.0,
+      746.8
+     ],
+     "px": [
+      1280,
+      1281
+     ]
+    },
+    {
+     "caja": [
+      960.6,
+      713.5,
+      993.8,
+      746.7
+     ],
+     "px": [
+      500,
+      500
+     ]
+    },
+    {
+     "caja": [
+      -1254.3,
+      0.0,
+      905.1,
+      1083.2
+     ],
+     "px": [
+      5145,
+      2581
+     ]
+    },
+    {
+     "caja": [
+      -701.2,
+      -2.6,
+      170.2,
+      952.8
+     ],
+     "px": [
+      2009,
+      2206
+     ]
+    },
+    {
+     "caja": [
+      -1254.3,
+      0.0,
+      905.1,
+      1083.2
+     ],
+     "px": [
+      5145,
+      2581
+     ]
+    },
+    {
+     "caja": [
+      1063.6,
+      160.5,
+      1668.8,
+      614.4
+     ],
+     "px": [
+      1448,
+      1086
+     ]
+    }
+   ]
+  },
+  "16": {
+   "w": 1080.0,
+   "h": 1080.0,
+   "textos": [
+    {
+     "texto": "MÁS CENTER ALGARROBAL",
+     "fuente": "Gotham-Black",
+     "cuerpo": 55.0,
+     "color": "#FFFFFF",
+     "base": 673.9,
+     "x0": 143.3,
+     "x1": 936.7
+    },
+    {
+     "texto": "Un proyecto pensado para el exito comercial.",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 34.0,
+     "color": "#BAEAEE",
+     "base": 719.8,
+     "x0": 148.8,
+     "x1": 931.2
+    },
+    {
+     "texto": "21 locales",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 25.47,
+     "color": "#FFFFFF",
+     "base": 862.1,
+     "x0": 206.8,
+     "x1": 325.7
+    },
+    {
+     "texto": "comerciales",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 25.47,
+     "color": "#FFFFFF",
+     "base": 887.5,
+     "x0": 191.2,
+     "x1": 341.3
+    },
+    {
+     "texto": "117",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 25.47,
+     "color": "#FFFFFF",
+     "base": 862.1,
+     "x0": 516.7,
+     "x1": 557.8
+    },
+    {
+     "texto": "estacionamientos",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 25.47,
+     "color": "#FFFFFF",
+     "base": 887.5,
+     "x0": 422.8,
+     "x1": 644.1
+    },
+    {
+     "texto": "15.446 m",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 25.47,
+     "color": "#FFFFFF",
+     "base": 862.1,
+     "x0": 730.8,
+     "x1": 844.2
+    },
+    {
+     "texto": "²",
+     "fuente": "MyriadPro-Regular",
+     "cuerpo": 25.47,
+     "color": "#FFFFFF",
+     "base": 862.1,
+     "x0": 844.2,
+     "x1": 852.1
+    },
+    {
+     "texto": "de terreno",
+     "fuente": "GothamRnd-Book",
+     "cuerpo": 25.47,
+     "color": "#FFFFFF",
+     "base": 887.5,
+     "x0": 725.5,
+     "x1": 857.4
+    }
+   ],
+   "formas": [
+    {
+     "color": "#112C3A",
+     "opacidad": 1.0,
+     "caja": [
+      75.3,
+      514.8,
+      196.1,
+      549.8
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      -10.5,
+      512.7,
+      28.7,
+      551.8
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#235D80",
+     "opacidad": 1.0,
+     "caja": [
+      -5.0,
+      518.6,
+      21.4,
+      545.9
+     ],
+     "curva": true,
+     "puntos": 111
+    },
+    {
+     "color": "#112C3A",
+     "opacidad": 1.0,
+     "caja": [
+      -38.1,
+      738.1,
+      62.7,
+      773.2
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#112C3A",
+     "opacidad": 1.0,
+     "caja": [
+      58.7,
+      598.0,
+      1021.3,
+      942.4
+     ],
+     "curva": true,
+     "puntos": 8
+    },
+    {
+     "color": "#BAEAEE",
+     "opacidad": 1.0,
+     "caja": [
+      234.4,
+      779.9,
+      298.0,
+      830.7
+     ],
+     "curva": true,
+     "puntos": 90
+    },
+    {
+     "color": "#BAEAEE",
+     "opacidad": 1.0,
+     "caja": [
+      256.2,
+      760.7,
+      276.2,
+      787.7
+     ],
+     "curva": true,
+     "puntos": 11
+    },
+    {
+     "color": "#BAEAEE",
+     "opacidad": 1.0,
+     "caja": [
+      756.3,
+      760.6,
+      826.6,
+      831.0
+     ],
+     "curva": true,
+     "puntos": 24
+    },
+    {
+     "color": "#BAEAEE",
+     "opacidad": 1.0,
+     "caja": [
+      775.2,
+      760.8,
+      826.4,
+      811.9
+     ],
+     "curva": true,
+     "puntos": 10
+    },
+    {
+     "color": "#BAEAEE",
+     "opacidad": 1.0,
+     "caja": [
+      777.1,
+      780.6,
+      801.6,
+      808.2
+     ],
+     "curva": true,
+     "puntos": 21
+    },
+    {
+     "color": "#BAEAEE",
+     "opacidad": 1.0,
+     "caja": [
+      505.8,
+      787.5,
+      561.1,
+      827.8
+     ],
+     "curva": true,
+     "puntos": 66
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      -1.5,
+      1080.0
+     ]
+    },
+    {
+     "caja": [
+      566.3,
+      172.0,
+      1021.3,
+      558.0
+     ]
+    },
+    {
+     "caja": [
+      58.7,
+      166.6,
+      513.7,
+      558.0
+     ]
+    },
+    {
+     "caja": [
+      -1081.6,
+      -0.0,
+      711.2,
+      1080.0
+     ],
+     "px": [
+      5312,
+      3200
+     ]
+    },
+    {
+     "caja": [
+      521.3,
+      166.6,
+      1051.8,
+      564.5
+     ],
+     "px": [
+      1448,
+      1086
+     ]
+    },
+    {
+     "caja": [
+      -16.4,
+      160.5,
+      588.8,
+      614.4
+     ],
+     "px": [
+      1448,
+      1086
+     ]
+    }
+   ]
+  },
+  "17": {
+   "w": 1080.0,
+   "h": 1080.0,
+   "textos": [
+    {
+     "texto": "Seguimos desarrollando",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 65.0,
+     "color": "#235D80",
+     "base": 518.7,
+     "x0": 139.3,
+     "x1": 957.9
+    },
+    {
+     "texto": "espacios que generan",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 65.0,
+     "color": "#235D80",
+     "base": 582.7,
+     "x0": 179.3,
+     "x1": 918.0
+    },
+    {
+     "texto": "valor y desarrollo.",
+     "fuente": "GothamRounded-Bold",
+     "cuerpo": 65.0,
+     "color": "#235D80",
+     "base": 646.7,
+     "x0": 241.8,
+     "x1": 835.9
+    }
+   ],
+   "formas": [
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      467.3,
+      346.6,
+      506.5,
+      390.2
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      465.1,
+      373.9,
+      489.7,
+      396.4
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      389.4,
+      347.2,
+      418.6,
+      396.6
+     ],
+     "curva": true,
+     "puntos": 11
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      425.3,
+      347.2,
+      460.9,
+      396.6
+     ],
+     "curva": true,
+     "puntos": 26
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      539.2,
+      335.1,
+      567.9,
+      364.3
+     ],
+     "curva": false,
+     "puntos": 13
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      572.9,
+      325.9,
+      597.9,
+      364.3
+     ],
+     "curva": false,
+     "puntos": 15
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      606.4,
+      334.7,
+      629.0,
+      364.7
+     ],
+     "curva": true,
+     "puntos": 38
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      635.9,
+      334.7,
+      676.8,
+      380.1
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      633.5,
+      363.2,
+      659.3,
+      386.6
+     ],
+     "curva": true,
+     "puntos": 4
+    },
+    {
+     "color": "#BAEAEE",
+     "opacidad": 1.0,
+     "caja": [
+      80.2,
+      445.6,
+      1001.1,
+      681.8
+     ],
+     "curva": true,
+     "puntos": 8
+    }
+   ],
+   "imagenes": []
+  }
+ }
+}

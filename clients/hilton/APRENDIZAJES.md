@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-29** · Cosechas: **20**
+> Última cosecha: **2026-09-29** · Cosechas: **21**
 
 ## 1. Quién es el cliente
 
@@ -86,7 +86,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-68** · [DT] Cuando no hay sesión con modelos, **la familia es SIEMPRE la misma**: 4 personajes fijos, perfil chileno, papás de 38 y niños de ~9 y ~7, distintos de las parejas de Escapada y Noche de Bodas. Hojas en `clients/hilton/dt-familia/personajes/` — _Eli, 25-09-2026, banco familia DT_ («los personajes de familia okey») · ✔×2 · +1 la familia fija en la ST feriado FT y el FEED 28-10, aprobados 28-09
 - **R-69** · [DT] En las finales **el fondo es una foto REAL de DT**: la IA sólo agrega a las personas — _Eli, 25-09-2026, banco familia DT_ («siempre utiliza de fondos en los finales real de DT») · ✔×3 · +1 pareja IA sobre la hab. real HDT_65 y hospitalidad sobre la recepción real, aprobadas 28-09 · +1 carrusel Escapada 07-10, aprobado 29-09 (pareja IA sobre la habitación real sep_26-505)
 - **R-70** · [DT] Personas IA **que pasen por foto de sesión**: nadie mira a cámara, expresiones naturales y ojos con vida; cada uno apoyado en su silla, sofá o cama; manos con cinco dedos, piernas y pies completos; objetos a escala real (la cookie mide unos 7 cm) — _Eli, 25-09-2026, banco familia DT_ · ✔×2 · +1 carrusel Escapada 07-10, aprobado 29-09 (pareja sin mirar a cámara, manos y copas correctas)
-- **R-71** · [DT] **Cada personaje se ve como su hoja** en todas las escenas (cara, pelo, edad) — _Eli, 25-09-2026, banco familia DT_ («respeta a los personajes para que se vean como ellos») · ✔×1
+- **R-71** · [DT] **Cada personaje se ve como su hoja** en todas las escenas (cara, pelo, edad) — _Eli, 25-09-2026, banco familia DT_ («respeta a los personajes para que se vean como ellos») · ✔×2 · +1 Eli lo reclamó de nuevo 29-09 en la ST 01-10 («recuerda que ya tenemos nuestro personaje para Family Time»): en el desayuno de la r8 el papá y el niño NO eran los de las hojas
+- **R-120** · [DT] **Cada rostro de la familia completo y nítido, en cada foto Y en cada transición**: ojos, nariz y boca visibles, nada lo tapa (almohadas en el aire, el croissant en la boca), nadie cortado por el borde, y en el cruce de dos fotos no puede leerse una persona de más — _Eli, 29-09-2026, ST 01-10 Family Time («hay fotos… desapariciones de rostro, de narices, de cosas así»)_ · ✔×0 (r9 en revisión)
 - **R-72** · [DT] Nada de **personas ajenas ni reflejos de personas** en el fondo (espejos, vidrios de cuadros, personal parado detrás) — _Eli, 25-09-2026, banco familia DT_ · ✔×1
 - **R-73** · [DT] Un banco de imágenes se entrega en **post 4:5, story 9:16 y 16:9** — _Eli, 25-09-2026, banco familia DT_ («así tendremos para todo lo necesario») · ✔×1
 - **R-74** · [DT] **Escapada Romántica no se ve como Noche de Bodas**: el concepto es *escaparse y hacer algo distinto*, no el romance de recién casados — _cliente, grilla DT oct FEED!C14 (carrusel 07-10), leído 28-09-2026: «No lo dejaría taan romántico, parece más de Noche de Bodas, algo más de escaparse, hacer algo distinto»_ · ✔×2 · +1 carrusel Escapada 07-10, aprobado 29-09 (tono de escapada, sin pétalos ni batas)
@@ -175,6 +176,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-67** · [BW] La expansión IA de un reel se entrega **sutil y realista, siguiendo el movimiento del centro**: se revisa **frame a frame** que nada quede descuadrado, doblado (pelo, cabeza) ni con movimiento extraño — _Eli, prueba 2 del reel «La razón», 25-09-2026 («arriba de la cabeza se ve dos tipos»; «hacerlo frame a frame»)_ · ✔×1
 - **R-118** · [BW] **La bajada del feed se tiene que leer: Raleway Bold ~38 px** en lienzo 1080 (SemiBold 32 «se ve muy pequeña») y va pegada al titular, no suelta abajo sobre el producto — _Eli, 29-09-2026, FEED 09-10 «Reúnete en Between» («un poquito más grueso… más grande la tipografía porque se ve muy pequeña»)_ · ✔×1
 - **R-119** · [BW] **Texto «lifestyle» = relleno beige + contorno FINO en café de marca #675b49 alrededor de las letras**, con uniones y remates REDONDOS (SVG `<text>`, stroke 5 px, `paint-order: stroke fill` → asoman 2,5 px). Ni pincelada detrás ni `-webkit-text-stroke` (une en inglete: picos en M, A, v, y) — _Eli, 29-09-2026, FEED 09-10 («un trazo en color café de Between, delgado, sutil, estilo lifestyle»; «si se ven puntas cuadradas, redondéalas»; «que se vea armónico»)_ · ✔×1
+
+- **R-121** · [DT] **Lo terminado del mes se sube a Drive en cuanto está listo**, en su semana (`S<n> HILTON OCT 2026/DT/{STS,FEED}`), sin esperar a que Eli lo pida — _Eli, 29-09-2026 («sube a Drive todo de octubre por semanas, ya que el carrusel que hicimos no está arriba, sé eficiente»)_ · ✔×1
 
 ### Las dos
 - **R-60** · [TODAS] **Ni títulos ni bajadas llevan punto** en la gráfica (⚠️ en DT los punteos de beneficios SÍ, ver R-104) (el punto sólo en párrafos largos y legales) — _Eli 25-08 (BW) y 09-09 (DT); Javier Mesa 23-09-2026, recordatorio para las cuatro cuentas_ · ✔×5 · +1 bajadas del carrusel «5 cosas» sin punto, aprobado 28-09 · +1 carrusel Escapada 07-10, aprobado 29-09 (titulares sin punto (el punteo es R-104))
@@ -285,6 +288,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **X-54** · [DT] Meñique largo y desenfocado estirado hacia la bolsa; después, dedos estirados en vez de pinza — _Eli, 29-09-2026 («el dedo de ella se me hace muy extraño»): 2 rondas_
 - **X-55** · [DT] Emblema del árbol DT **cortado a la mitad**, después completado con IA «pegoteado», después borrado con **manchones** — _Eli, 29-09-2026: 3 rondas. Una expansión además inventó un letrero «DoubleTree» (R-80, descartada antes de mostrar)_
 - **X-56** · [DT] Foto de pendón reescalada ×4 en dos pasadas: textura «pintada» en pelo y piel — _Eli, 29-09-2026: 1 ronda_
+- **X-59** · [DT] ST 01-10 Family Time: en Drive quedó la r7 con las **caras tapadas por las almohadas** y el papá cortado, y la r8 traía al **papá y al niño equivocados** en el desayuno — _Eli, 29-09-2026: ronda 9 de la pieza_. Además, en el QA de la r9 la **cortina fundía dos fotos y se leía un niño de más** (detectado antes de mostrar; se corrigió desenfocando ambas en el cruce)
 - **X-57** · [BW] FEED 09-10: pedido de «trazado» leído como **pincelada café detrás de cada línea** — era un contorno en las letras — _Eli, 29-09-2026: 1 ronda_
 - **X-58** · [BW] FEED 09-10: contorno con `-webkit-text-stroke`, **muy fino (1,5 px) y con puntas en ángulo** — _Eli, 29-09-2026 («un poco más… redondea las puntas cuadradas»): 1 ronda_
 
@@ -327,13 +331,20 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Carrusel 21-10: la fila DISEÑOS de la grilla dice «REEL» y el brief es de carrusel; se diseñó y subió el carrusel → **contenido** (informado a Eli)
 - [DT] La sesión SEP 2026 no trae **fachada, recepción ni gimnasio**: el gym sigue con HDT_82 y la recepción es la de 1280 px → ¿hay sesión de esos espacios? → **Eli**
 - [DT] Pendones 0,8×3 r7 aprobados y .ai guardado: falta **regenerar el PDF de imprenta** de los tres (el `…IMPRESION.pdf` es del 28-09) y confirmar con la imprenta → **Claude/Eli**
-- [DT] ST 01-10 Family Time **ronda 8** (lobby → desayuno → habitación, fotos expandidas, cortina): **NO subida**, en revisión en https://claude.ai/artifact/PLM9c136rdZWPUag6ZBDjm. En Drive S1/DT/STS sigue la r7. Si la aprueba: reemplazar MP4 + GIF y regenerar el Premiere → **Eli**
+- [DT] ST 01-10 Family Time **ronda 9** (la familia aprobada en las 3 escenas + desenfoque en las cortinas): **YA SUBIDA** a S1/DT/STS (MP4 + GIF) el 29-09; falta la opinión de Eli, y el Premiere de F: sigue con las fotos de la r7 → **Eli**
+- [DT] ST 22-10 Coworking r3 **subida a S4/DT/STS sin OK explícito**, por el «sube todo» del 29-09 → **Eli** confirma o pide cambios
 - [DT] La secuencia `.xml` para Premiere (F:/…/OCTUBRE/DT/S1/ST n°1 S1 DT OCT 26/) no se probó abriéndola en Premiere 2026 → **Eli** al abrirla
 
 - [DT] Brochures traducidos: textos del cliente que no calzan entre sí y se dejaron como en el Word: «Costanera Mall» (hotel) vs «Cenco Costanera» (eventos); «Waldorf Event Rooms» (título) vs «Waldorf Meeting Rooms» (texto) → **cliente**
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 (cierre 3, Family Time r9 + subida de octubre) — Claude con Eli · 2 reglas nuevas [DT]
+- **Reglas nuevas [DT]:** R-120 cada rostro completo y nítido, también dentro de las transiciones; R-121 lo terminado del mes se sube a Drive por semana sin esperar.
+- **✔ que suben:** R-71 (Eli volvió a exigir la familia de las hojas). **Rechazos:** X-59, ronda 9 de la ST 01-10.
+- **Subido y verificado:** Escapada `C1 S2 DT n°1–2` (S2/FEED), Coworking r3 (S4/STS), Family Time r9 (S1/STS). DT octubre queda completo salvo el reel Honors 14-10 (sin material).
+- **Técnica (no es criterio):** para re-rendir una escena con la familia, borronear las cabezas de la imagen base; si no, Nano Banana copia a las personas viejas.
 
 ### 2026-09-29 (cierre 2, referencias de animación) — Claude con Eli · sin reglas nuevas
 - **Sin aprendizajes de criterio nuevos:** no hubo piezas ni correcciones; Eli entregó referencias de animación para reels futuros de Between (ficha en `referencias-animacion-bw/LEEME.md`). Se cerró a medias el pendiente §8 de los reels: faltan conversar cuál usar.

@@ -167,7 +167,7 @@ const LineaCotiza: React.FC<{top: number; texto?: string; tinta?: string; sombra
  * Papel beige con fibra (pedido de Eli en la S4: «al fondo beige añade textura de
  * papel sutil beige»). Nunca beige sobre la tarjeta casi blanca (R-05).
  */
-const PapelBeige: React.FC<{semilla?: number}> = ({semilla = 3}) => (
+export const PapelBeige: React.FC<{semilla?: number}> = ({semilla = 3}) => (
   <AbsoluteFill style={{backgroundColor: P18.colores.beige}}>
     <svg width="100%" height="100%" style={{position: 'absolute', inset: 0}} preserveAspectRatio="none">
       <filter id={`p18o-papel-${semilla}`}>
@@ -270,65 +270,88 @@ const HojaPapel: React.FC<{
  * terracota, follaje oliva y la vela, que es exactamente la paleta del brief
  * («verde oliva, terracota y joya»). Sin logotipo: la ref no lo trae y Eli ya
  * pidió portadas limpias («bórrale el logo, muy repetitivo», 15-09).
+ *
+ * Ronda 4, cliente 29-09 (FEED D13): «Falta logo» ⇒ logotipo arriba y centrado
+ * (R-12). El fondo detrás es el mantel y la ventana desenfocados (p50 229, p90 252
+ * medido en la zona del logo): el blanco no se lee y un velo oscuro ensuciaría la
+ * luz del día, así que va en la tinta de la marca, como sobre papel.
  */
 export const P18OF0610: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
     <Foto src="f0610.jpg" />
+    <Logo top={P18.geometria.logoYFeed} oscuro />
   </AbsoluteFill>
 );
 
 // ═══════════════════════════════════════════════════════════════════════════
 // FEED 09-10 · CARRUSEL «FECHAS 2027 EN TEMPORADA ALTA»
 // ═══════════════════════════════════════════════════════════════════════════
-/** S1 · panorámica del salón ambientado para matrimonio. Sin texto. */
+/**
+ * RONDA 4 · cliente 29-09 (FEED C13): «Según brief la G2 también es imagen,
+ * seleccionemos alguna horizontal para que quede dividida de forma continua».
+ *
+ * Las dos láminas son UNA foto: la 0161 horizontal (la misma de la portada
+ * aprobada, ahora sin extender) partida al medio (`f0910-p1/p2`, cajas en
+ * `scripts/p18-oct-fotos.py`). Todo lo que cruza el corte es idéntico a los dos
+ * lados: el velo de arriba es el mismo en ambas, así el techo no «salta» al
+ * deslizar. La S1 sigue sin texto (brief) y lleva el logotipo arriba y centrado
+ * (R-12), como pidió el cliente en el post del mismo día. La S2 conserva el
+ * titular aprobado de la ronda 1, en blanco sobre la foto (R-06); el calendario
+ * de papel sale porque la lámina ya no es papel. La versión de papel quedó en
+ * `out/piso18/oct/r3-respaldo/`.
+ */
+const VeloF0910: React.FC = () => <VeloArriba alfa={0.72} hasta={50} />;
+
+/** S1 · mitad izquierda de la panorámica. Sin texto; sólo el logotipo. */
 export const P18OF0910S1: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
-    <Foto src="f0910-1.jpg" />
+    <Foto src="f0910-p1.jpg" />
+    <VeloF0910 />
+    <Logo top={P18.geometria.logoYFeed} />
   </AbsoluteFill>
 );
 
-/**
- * S2 · «Las grandes historias se planean con tiempo. Asegura tu fecha 2027»
- *
- * Ref (pin 807129564520273185, «Makers Market»): papel claro, una línea chica en
- * versales, un titular a dos voces (palo seco rojo + script encima), una fecha
- * y, abajo, un calendario de tres días con el del medio encerrado a mano.
- * Traducido a Piso18: el papel es el beige de la marca con fibra; las dos voces
- * son las de su titular (itálica fina + VERSALES, R-06) y el rojo pasa al fucsia
- * en la línea que se quiere que el ojo pegue. El calendario es un fin de semana
- * real de la temporada alta 2027: viernes 15, sábado 16 y domingo 17 de enero
- * (el 1-1-2027 cae viernes), con el sábado encerrado en fucsia.
- */
+/** S2 · mitad derecha: «Las grandes historias se planean con tiempo. Asegura tu fecha 2027» */
 export const P18OF0910S2: React.FC = () => {
   cargarFuentesP18();
-  const lineaCal = 'rgba(26,26,26,0.42)';
-  const colX = [60, 380, 700, 1020];
-  const topCal = 820;
   return (
-    <AbsoluteFill>
-      <PapelBeige semilla={9} />
+    <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
+      <Foto src="f0910-p2.jpg" />
+      <VeloF0910 />
       <div
         style={{
           position: 'absolute',
           left: 0,
           right: 0,
-          top: 186,
+          top: 112,
           textAlign: 'center',
           ...RALEWAY,
           fontWeight: 700,
-          fontSize: 26,
+          fontSize: 24,
           letterSpacing: 7,
           textIndent: 7,
-          color: P18.colores.tinta,
+          color: P18.colores.blanco,
+          textShadow: SOMBRA,
         }}
       >
         TEMPORADA ALTA 2027
       </div>
-      <div style={{position: 'absolute', left: 40, right: 40, top: 272, textAlign: 'center', fontFamily: P18.fuentes.titular, color: P18.colores.tinta}}>
-        <div style={{fontSize: 118, fontWeight: 300, fontStyle: 'italic', lineHeight: 1.04}}>
+      <div
+        style={{
+          position: 'absolute',
+          left: 30,
+          right: 30,
+          top: 170,
+          textAlign: 'center',
+          fontFamily: P18.fuentes.titular,
+          color: P18.colores.blanco,
+          textShadow: SOMBRA,
+        }}
+      >
+        <div style={{fontSize: 108, fontWeight: 300, fontStyle: 'italic', lineHeight: 1.04}}>
           Las grandes historias
         </div>
-        <div style={{fontSize: 80, fontWeight: 400, lineHeight: 1.2, letterSpacing: 1.5, color: P18.colores.fucsia}}>
+        <div style={{fontSize: 72, fontWeight: 400, lineHeight: 1.2, letterSpacing: 1.5}}>
           SE PLANEAN CON TIEMPO
         </div>
       </div>
@@ -337,84 +360,19 @@ export const P18OF0910S2: React.FC = () => {
           position: 'absolute',
           left: 0,
           right: 0,
-          top: 590,
+          top: 408,
           textAlign: 'center',
           ...RALEWAY,
-          fontWeight: 500,
-          fontSize: 40,
+          fontWeight: 600,
+          fontSize: 36,
           letterSpacing: 1.2,
-          color: P18.colores.tinta,
+          color: P18.colores.blanco,
+          textShadow: '0 2px 18px rgba(0,0,0,0.75), 0 0 4px rgba(0,0,0,0.5)',
         }}
       >
+        {/* todo blanco: el fucsia sobre el follaje no se lee (borrador r4, 29-09) */}
         Asegura tu fecha 2027
       </div>
-
-      {/* ── el calendario, a sangre por abajo como en la ref ───────────── */}
-      <svg width={W} height={FEED_H} style={{position: 'absolute', inset: 0}}>
-        <line x1={0} y1={topCal} x2={W} y2={topCal} stroke={lineaCal} strokeWidth={2} />
-        <line x1={0} y1={topCal + 76} x2={W} y2={topCal + 76} stroke={lineaCal} strokeWidth={2} />
-        {colX.map((x) => (
-          <line key={x} x1={x} y1={topCal} x2={x} y2={FEED_H} stroke={lineaCal} strokeWidth={2} />
-        ))}
-      </svg>
-      {['VIERNES', 'SÁBADO', 'DOMINGO'].map((d, i) => (
-        <div
-          key={d}
-          style={{
-            position: 'absolute',
-            left: colX[i],
-            width: colX[i + 1] - colX[i],
-            top: topCal + 22,
-            textAlign: 'center',
-            ...RALEWAY,
-            fontWeight: 500,
-            fontSize: 28,
-            letterSpacing: 2,
-            textIndent: 2,
-            color: P18.colores.tinta,
-          }}
-        >
-          {d}
-        </div>
-      ))}
-      {['15', '16', '17'].map((n, i) => (
-        <div
-          key={n}
-          style={{
-            position: 'absolute',
-            left: colX[i],
-            width: colX[i + 1] - colX[i],
-            top: topCal + 112,
-            textAlign: 'center',
-            fontFamily: P18.fuentes.titular,
-            // Thin: las cifras de la ref son finas; en Light pesaban más que todo el bloque
-            fontWeight: 100,
-            fontSize: 236,
-            lineHeight: 1,
-            color: P18.colores.tinta,
-          }}
-        >
-          {n}
-        </div>
-      ))}
-      {/* El círculo a mano: dos vueltas que no cierran igual, como un plumón. */}
-      <svg width={W} height={FEED_H} style={{position: 'absolute', inset: 0}}>
-        <path
-          d="M 700 1028 C 706 940, 610 916, 540 920 C 450 924, 380 970, 386 1052 C 392 1140, 470 1180, 548 1178 C 640 1176, 712 1126, 706 1042 C 702 990, 668 950, 600 934"
-          fill="none"
-          stroke={P18.colores.fucsia}
-          strokeWidth={6}
-          strokeLinecap="round"
-        />
-        <path
-          d="M 690 1050 C 700 970, 620 930, 548 930 C 470 932, 398 980, 398 1050"
-          fill="none"
-          stroke={P18.colores.fucsia}
-          strokeWidth={3.2}
-          strokeLinecap="round"
-          opacity={0.8}
-        />
-      </svg>
     </AbsoluteFill>
   );
 };
@@ -781,9 +739,8 @@ export const P18OS0510: React.FC<{clip?: string}> = ({clip}) => {
           Luz natural, flores de estación y el ambiente perfecto para tu próximo evento
         </div>
       </div>
-      <div style={entra(52)}>
-        <Boton top={1440}>Cotiza tu evento en piso18.cl</Boton>
-      </div>
+      {/* Ronda 4, cliente 29-09 (STORIES C14): «quitemos botón diseñado para no repetir
+          info» ⇒ sin botón; el pie queda libre para el sticker de enlace del CM (E-07). */}
     </AbsoluteFill>
   );
 };
@@ -825,7 +782,11 @@ const Polaroid: React.FC<{src: string; left: number; top: number; ancho: number;
   </div>
 );
 
-const Calado: React.FC<{children: React.ReactNode; style: React.CSSProperties}> = ({children, style}) => (
+const Calado: React.FC<{children: React.ReactNode; style: React.CSSProperties; trazo?: string}> = ({
+  children,
+  style,
+  trazo = P18.colores.fucsia,
+}) => (
   <div
     style={{
       position: 'absolute',
@@ -835,7 +796,7 @@ const Calado: React.FC<{children: React.ReactNode; style: React.CSSProperties}> 
       fontSize: 140,
       lineHeight: 1,
       color: 'transparent',
-      WebkitTextStroke: `2.8px ${P18.colores.fucsia}`,
+      WebkitTextStroke: `2.8px ${trazo}`,
       ...style,
     }}
   >
@@ -843,13 +804,28 @@ const Calado: React.FC<{children: React.ReactNode; style: React.CSSProperties}> 
   </div>
 );
 
+/*
+ * Ronda 4, cliente 29-09 (STORIES D14): «¿Veamos un fondo más entretenido? que sea
+ * de algún montaje» ⇒ el papel beige sale y entra la foto de un MONTAJE real del
+ * salón (mesa redonda con el centro alto de pampas, deco `piso_18-112`), apagada
+ * para que las polaroids manden. Sobre foto, el titular, los rótulos calados y las
+ * flechas pasan a blanco (sobre el salón oscurecido el trazo fucsia de 2,8 px no se
+ * lee); el fucsia queda en `piso18.cl` (R-03). La composición es la aprobada.
+ */
 export const P18OS0710: React.FC = () => {
   cargarFuentesP18();
+  const blanco = P18.colores.blanco;
   return (
-    <AbsoluteFill>
-      <PapelBeige semilla={17} />
+    <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
+      {/* sin desenfoque: con blur el pie del mantel quedaba liso y el QA lo leía como
+          foto estirada (R-18: se arregla la pieza, no la regla) */}
+      <Foto src="s0710-fondo.jpg" />
+      <AbsoluteFill style={{backgroundColor: 'rgba(8,8,10,0.32)'}} />
+      <VeloArriba alfa={0.62} hasta={28} />
+      <VeloPie hasta={0.36} opacidad={0.84} />
+      <GranoFondo semilla={71} />
       {/* el logotipo dentro de los 250 px de arriba es del sistema (E-03) */}
-      <Logo top={118} ancho={230} oscuro />
+      <Logo top={118} ancho={230} />
       <div
         style={{
           position: 'absolute',
@@ -858,7 +834,8 @@ export const P18OS0710: React.FC = () => {
           top: 244,
           textAlign: 'center',
           fontFamily: P18.fuentes.titular,
-          color: P18.colores.tinta,
+          color: blanco,
+          textShadow: SOMBRA,
         }}
       >
         <div style={{fontSize: 66, fontWeight: 300, lineHeight: 1.08}}>¿Cuál es tu estación</div>
@@ -868,14 +845,14 @@ export const P18OS0710: React.FC = () => {
       </div>
 
       <Polaroid src="s0710-dulce.jpg" left={520} top={500} ancho={390} giro={4} />
-      <Calado style={{left: 270, top: 410}}>Dulce</Calado>
+      <Calado trazo={blanco} style={{left: 270, top: 410, filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.7))'}}>Dulce</Calado>
 
       <Polaroid src="s0710-salada.jpg" left={560} top={1066} ancho={380} giro={-3.5} />
-      <Calado style={{right: 60, top: 942, textAlign: 'right'}}>Salada</Calado>
+      <Calado trazo={blanco} style={{right: 60, top: 942, textAlign: 'right', filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.7))'}}>Salada</Calado>
 
       {/* Las flechas nacen del hueco del sticker (x 60–480 · y 830–1030). */}
       <svg width={W} height={STORY_H} style={{position: 'absolute', inset: 0}}>
-        <g fill="none" stroke={P18.colores.fucsia} strokeWidth={4} strokeLinecap="round" strokeLinejoin="round">
+        <g fill="none" stroke={blanco} strokeWidth={4} strokeLinecap="round" strokeLinejoin="round">
           <path d="M 160 810 C 120 710, 260 640, 486 650" />
           <path d="M 464 634 L 490 650 L 466 670" />
           <path d="M 170 1060 C 150 1200, 310 1290, 540 1280" />
@@ -883,7 +860,7 @@ export const P18OS0710: React.FC = () => {
         </g>
       </svg>
 
-      <LineaCotiza top={1528} tinta={P18.colores.tinta} sombra={false} />
+      <LineaCotiza top={1528} />
     </AbsoluteFill>
   );
 };
@@ -970,7 +947,8 @@ export const P18OS0910: React.FC = () => {
             color: P18.colores.tinta,
           }}
         >
-          ¿qué es lo que más recuerdas de{' '}
+          {/* Ronda 4, cliente 29-09 (STORIES F14): «El Que con q mayúscula» */}
+          ¿Qué es lo que más recuerdas de{' '}
           <span style={{fontStyle: 'italic', color: P18.colores.fucsia}}>un matrimonio?</span>
         </div>
         {/* y 300–600 de la nota: libre para la encuesta del CM */}

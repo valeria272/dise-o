@@ -190,13 +190,13 @@ const Texto: React.FC<{
    px). No se regeneró: la tirada de Nano Banana escribía «COFFEE AGN» en el vaso.
    El «[BOTÓN @usuario]» es la mención: zona reservada para el sticker real.
    ══════════════════════════════════════════════════════════════════════════ */
-const ZONA_MENCION: Zona = {ancho: 460, alto: 96, top: 918};
+const ZONA_MENCION: Zona = {ancho: 460, alto: 96, top: 803}; // medido: centrado entre «Felicidades» (784) y «Te ganaste» (918)
 
 export const StOct01Ganador: React.FC<{guia?: boolean}> = ({guia = false}) => (
   <AbsoluteFill style={{backgroundColor: '#dfc9bb'}}>
     <FotoFondo src={F + 's-ganador.jpg'} oscurecer={0} />
     <LogoCafe />
-    <Columna top={441}>
+    <Columna top={411}>
       <div
         style={{
           transform: 'rotate(-3deg)',
@@ -225,17 +225,23 @@ export const StOct01Ganador: React.FC<{guia?: boolean}> = ({guia = false}) => (
         alinear="centro"
         anchoDisponible={BETWEEN.bloque.columna}
       />
-      <Texto size={44} peso={600} color={C.cafe} style={{marginTop: 40}}>
+      <Texto size={44} peso={600} color={C.cafe} style={{marginTop: 32}}>
         Felicidades
       </Texto>
-      <div style={{height: ZONA_MENCION.alto + 22}} />
+      <div style={{height: ZONA_MENCION.alto + 14}} />
       <Texto size={44} peso={600} color={C.cafe}>
         Te ganaste
       </Texto>
       <div style={{marginTop: 14, display: 'flex'}}>
         <CajaDato style={{backgroundColor: C.beige, color: C.cafe}}>1 MES DE CAFÉ GRATIS</CajaDato>
       </div>
-      <Texto size={32} peso={500} italic color={C.cafe} style={{marginTop: 26}}>
+      {/* Ronda cliente 28-09 (grilla col C): «falta algo que diga que lo
+          contactaremos para entregarle información sobre su premio». Va en el
+          nivel del premio (aire corto) y el cierre se separa más (R-38). */}
+      <Texto size={32} peso={500} color={C.cafe} style={{marginTop: 14}}>
+        {'Te contactaremos para entregarte\nla información de tu premio'}
+      </Texto>
+      <Texto size={32} peso={500} italic color={C.cafe} style={{marginTop: 30}}>
         Gracias a todos por participar
       </Texto>
     </Columna>

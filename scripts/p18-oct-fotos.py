@@ -38,6 +38,12 @@ FOTOS = {
     "f0610.jpg": (GEN / "f0610-azul.jpg", None, FEED),
     # FEED 09-10 · portada — 0161 (3-Finales 2026) extendida a 4:5 con Nano Banana Pro
     "f0910-1.jpg": (GEN / "f09-s1.jpg", None, FEED),
+    # Ronda 4 (cliente 29-09, FEED C13: «la G2 también es imagen, seleccionemos alguna
+    # horizontal para que quede dividida de forma continua»): la MISMA 0161 horizontal,
+    # sin extender, recortada a 8:5 (dos 4:5 lado a lado) y partida al medio. El corte
+    # cae en el hueco entre la 3.ª y la 4.ª silla. Reduce (×0,78), no amplía.
+    "f0910-p1.jpg": (BASE / "fin160.jpg", (0, 100, 2884, 3605), FEED),
+    "f0910-p2.jpg": (BASE / "fin160.jpg", (2883, 100, 2884, 3605), FEED),
     # FEED 13-10 · atardecer — ventanal y lounge reiluminados (banq 0003 y 0001)
     # Ronda 2: la 1 tenía dos atardeceres en el ventanal; va la tirada `f13-s1r2` (un solo cielo)
     "f1310-1.jpg": (GEN / "f13-s1r2.jpg", None, FEED),
@@ -63,6 +69,10 @@ FOTOS = {
     "f2710.jpg": (GEN / "f27.jpg", None, FEED),
     # STORIES
     "s0510.jpg": (BASE / "deco93.jpg", (300, 0, 3240, 5760), STORY),     # primavera (estática)
+    # Ronda 4 (cliente 29-09, STORIES D14: «un fondo más entretenido, que sea de algún
+    # montaje»): la mesa redonda montada con el centro alto de pampas (deco piso_18-112),
+    # en vez del papel beige. 2:3 → 9:16 centrada; reduce, no amplía.
+    "s0710-fondo.jpg": (BASE / "deco112.jpg", (300, 0, 3240, 5760), STORY),
     "s0710-dulce.jpg": (BASE / "banq20.jpg", (900, 0, 3900, 4000), (1000, 1026)),
     "s0710-salada.jpg": (BASE / "banq51.jpg", (1000, 0, 3900, 4000), (1000, 1026)),
     "s0910.jpg": (GEN / "st09b.jpg", None, STORY),

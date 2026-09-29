@@ -52,8 +52,12 @@ PIEZAS = [
     # aprobadas el 28-09 con los ajustes de la ronda 3: carrusel «5 cosas» (FEED SEMANA 4) y Family Time (SEMANA 5)
     *[(4, "FEED", f"C1 S4 DT n°{n}.png") for n in range(1, 8)],
     (5, "FEED", "Post n°1 S5 DT.png"),
-    # ST 22-10 Coworking: Eli la revisa (ronda 3) — se agrega cuando la apruebe:
-    # (4, "STS", "DT ST 22-10 Coworking.mp4"), (4, "STS", "DT ST 22-10 Coworking.gif"),
+    # ST 22-10 Coworking r3 — Eli pidió subir todo octubre (29-09)
+    (4, "STS", "DT ST 22-10 Coworking.mp4"),
+    (4, "STS", "DT ST 22-10 Coworking.gif"),
+    # FEED 07-10 carrusel Escapada Romántica — aprobado 29-09 (entrega-oct3)
+    (2, "FEED", "../entrega-oct3/C1 S2 DT n°1.png"),
+    (2, "FEED", "../entrega-oct3/C1 S2 DT n°2.png"),
 ]
 
 
@@ -88,7 +92,8 @@ def main():
     for sem, sub, nombre in PIEZAS:
         if a.solo and a.solo not in nombre:
             continue
-        ruta = ENTREGA / nombre
+        ruta = (ENTREGA / nombre).resolve()
+        nombre = ruta.name
         if not ruta.is_file():
             sys.exit(f"x falta {ruta}")
         if (sem, sub) not in cache:

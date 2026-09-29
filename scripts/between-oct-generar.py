@@ -229,6 +229,28 @@ ESCENAS = {
             "traves. Formato vertical 4:5. ENCUADRE: el 30% de arriba es el techo y la parte alta "
             "del muro, tranquilo, para un titular. " + CANDADO),
     },
+    # ── FEED 02-10 REEL cumpleaños (29-09, Eli): foto quieta, sólo el texto anima ──
+    "f02-10": {
+        "refs": ["togo-grande-frontal.jpg", "ref-cumple-reel.jpg"],
+        "prompt": (
+            "Fotografia vertical 9:16 hiperrealista, estilo lifestyle tomada con iPhone, como la "
+            "@img2: primer plano de unas manos de mujer que sostienen, como un pequeno regalo, el "
+            "vaso de cafe To Go de carton kraft con tapa NEGRA y el logotipo BETWEEN impreso, igual "
+            "al de la @img1. La mano izquierda lo toma desde abajo, con los dedos rodeando el vaso "
+            "SIN TAPAR el logotipo; la derecha entra desde arriba a la derecha y con la punta de los "
+            "dedos acomoda una vela de cumpleanos delgada, a rayas rosado palido y blanco, clavada "
+            "en la tapa y ENCENDIDA. La llama ilumina los dedos con un brillo calido anaranjado, como "
+            "en la @img2. Unas finas pulseras y anillos dorados, unas cortas y naturales color nude. "
+            "Piel real con textura, poros y pequenas imperfecciones, cinco dedos en cada mano. Fondo: "
+            "un sweater de punto cafe oscuro y el interior calido de una cafeteria muy desenfocado, "
+            "penumbra de tarde con pocos puntos de luz ambar. SIN CARA: el rostro queda fuera del "
+            "cuadro. ENCUADRE: el vaso va en la MITAD INFERIOR, centrado y de frente, con el logotipo "
+            "completo y legible; la llama queda a la altura del 55% contando desde abajo; el 35% DE "
+            "ARRIBA es fondo oscuro calido, parejo y sin objetos nitidos, para texto. Grano fino de "
+            "celular, color calido natural, nada de aspecto render ni plastico. El vaso NO tiene "
+            "anillo blanco en la base. El logotipo se lee BETWEEN con la E invertida como en la "
+            "@img1, y COFFEE & BAR abajo, una sola vez. " + CANDADO),
+    },
     # ── RONDA 3 (24-09, Eli) ───────────────────────────────────────────────
     "f05-10d": {
         "aspecto": "carrusel",

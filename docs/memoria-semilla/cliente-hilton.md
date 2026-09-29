@@ -1,6 +1,6 @@
 ---
 name: cliente-hilton
-description: "HILTON — cerebro del cliente: 117 reglas firmes, última cosecha 2026-09-29. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
+description: "HILTON — cerebro del cliente: 119 reglas firmes, última cosecha 2026-09-29. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
 metadata:
   type: project
 ---
@@ -14,7 +14,7 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 ## Reglas más confirmadas
 - **R-33** · [BW] **Si el vaso de la foto ya trae el logotipo, la pieza no lleva lockup** (ni en la portada) — _Eli 25-08, 31-08, 01-09, 03-09 y 07-09-2026; feed «Necesito ir a Between» subido sin lockup por Eli, 25-09-2026 (la prueba con logo al pie caía sobre el vaso)_ · ✔×7 · +1 ST 02-10 r2 y reel FEED 12-10 sin lockup (el vaso firma), aprobados 29-09
 - **R-15** · [DT] **La referencia de Eli manda la composición**; tipografía y color siguen siendo DT. Una ref animada se mira cuadro a cuadro antes de diseñar — _Eli: ST 18-09 (15-09), carrusel S5 («más igual a la referencia», 17-09), Turismo (23-09), oct («¿revisaste bien la referencia?», 24-09)_ · ✔×6 · +1 las 3 ST de feriado 05-10 calcadas de sus refs, aprobadas a la primera 28-09; portada «5 cosas» 28-09 · +1 carrusel Escapada 07-10, aprobado 29-09 (portada y lámina 2 calcadas de las 2 imágenes del pin)
-- **R-41** · [BW] **Ningún texto sobre rostros, ojos ni sobre el producto** — _Eli 25-08 y 28-08; Scarlette 31-08; Eli 24-09-2026_ · ✔×5 · +1 reel FEED 12-10: rótulo arriba y no al medio como la ref, aprobado 29-09
+- **R-41** · [BW] **Ningún texto sobre rostros, ojos ni sobre el producto** — _Eli 25-08 y 28-08; Scarlette 31-08; Eli 24-09-2026_ · ✔×6 · +1 FEED 09-10: la bajada salió de encima de los notebooks, aprobado 29-09 · +1 reel FEED 12-10: rótulo arriba y no al medio como la ref, aprobado 29-09
 - **R-47** · [BW] **Antes de generar un producto, se busca en las sesiones**. Orden: foto real > recorte > generar — _Scarlette 31-08 («tenemos ese material»); ronda 10, 04-09; cowork 10-09; Plateada 11-09-2026_ · ✔×5 · +1 reel FEED 12-10 con 13 clips reales del disco F: antes de generar, aprobado 29-09
 - **R-60** · [TODAS] **Ni títulos ni bajadas llevan punto** en la gráfica (⚠️ en DT los punteos de beneficios SÍ, ver R-104) (el punto sólo en párrafos largos y legales) — _Eli 25-08 (BW) y 09-09 (DT); Javier Mesa 23-09-2026, recordatorio para las cuatro cuentas_ · ✔×5 · +1 bajadas del carrusel «5 cosas» sin punto, aprobado 28-09 · +1 carrusel Escapada 07-10, aprobado 29-09 (titulares sin punto (el punteo es R-104))
 - **R-52** · [BW] **Fidelidad al local real**: terraza, interior, mesas y muro vegetal de Between; nada de espacios inventados — _Javier 24-08; Eli 26-08; Scarlette 31-08; Eli 24-09-2026_ · ✔×4

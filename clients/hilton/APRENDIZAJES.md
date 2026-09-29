@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-29** · Cosechas: **18**
+> Última cosecha: **2026-09-29** · Cosechas: **19**
 
 ## 1. Quién es el cliente
 
@@ -138,7 +138,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-38** · [BW] Bloque de texto: el salto **entre niveles** es mayor que el salto **dentro** del nivel — _Eli, 02-09-2026 («usa un ojo crítico en los espacios entre líneas»)_ · ✔×2 · +1 ST 01-10 r2: línea del premio con aire corto y el cierre más separado, aprobada 29-09
 - **R-39** · [BW] **La jerarquía del brief es parte del brief**: lo que el brief pone primero es el titular; CTA, legal y textos literales de la celda de diseño — _Eli, 07-09-2026 (ronda 20); cliente 01-09 (CTA)_ · ✔×2
 - **R-40** · [BW] **Nada saturado**: máx. 3 bloques, un solo protagonista; tracking sólo en horarios; mayúscula total sólo en lo que debe destacar — _Eli, 25-08-2026_ · ✔×2
-- **R-41** · [BW] **Ningún texto sobre rostros, ojos ni sobre el producto** — _Eli 25-08 y 28-08; Scarlette 31-08; Eli 24-09-2026_ · ✔×5 · +1 reel FEED 12-10: rótulo arriba y no al medio como la ref, aprobado 29-09
+- **R-41** · [BW] **Ningún texto sobre rostros, ojos ni sobre el producto** — _Eli 25-08 y 28-08; Scarlette 31-08; Eli 24-09-2026_ · ✔×6 · +1 FEED 09-10: la bajada salió de encima de los notebooks, aprobado 29-09 · +1 reel FEED 12-10: rótulo arriba y no al medio como la ref, aprobado 29-09
 - **R-42** · [BW] Si el texto no se lee, **caja taupe `#675B49`**; no se oscurece la foto (multiply mínimo). Una sola caja-cartel antes que tres apiladas — _instrucción textual del cliente; S3 08-09-2026_ · ✔×2
 - **R-43** · [BW] **La paleta son dos tintas**: no se inventa un tercer marrón; para destacar se **invierte** (beige con tinta café). Y el logo «en café» es `#675B49`, no negro — _S3 concurso ronda 5, 16-09-2026 (pedido del cliente de «otro tono de café»); Eli, 08-09-2026 (logo negro cazado a ojo)_ · ✔×2
 - **R-44** · [BW] **Botón blanco = el llamado, uno por pieza**, con texto café de marca — _Eli, 01-09-2026_ · ✔×1
@@ -173,6 +173,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-66** · [BW] **Un reel no lleva relleno desenfocado alrededor del clip**: se expande con IA siguiendo la escena, y se ve **entero** lo que estaba en el cuadro (el vaso y la mano), sin recortar para tapar el borde — _contenido vía Eli, reel «La razón» S3, 25-09-2026 («le molesta a contenido»; «la idea es que se siga viendo el vaso y la mano de ella»)_ · ✔×1 · ⚠️ revisada 2026-09-28: en este mismo reel **el cliente eligió la edición 2, con borde desenfocado**, por sobre la expansión IA (ver E-20)
 - **R-103** · [BW] **Retoque de un reel ya elegido: se parte de la edición que eligió el cliente y se toca sólo lo pedido** (estabilizar, sombra); el armado de esa edición (borde, texto, cortes) se conserva idéntico, texto calzado al píxel — _KAM vía Eli, reel «La razón» 29-09, 28-09-2026 («les gusta más la edición 2… podemos hacerle un retoque con IA»)_ · ✔×0 (op 3 en revisión)
 - **R-67** · [BW] La expansión IA de un reel se entrega **sutil y realista, siguiendo el movimiento del centro**: se revisa **frame a frame** que nada quede descuadrado, doblado (pelo, cabeza) ni con movimiento extraño — _Eli, prueba 2 del reel «La razón», 25-09-2026 («arriba de la cabeza se ve dos tipos»; «hacerlo frame a frame»)_ · ✔×1
+- **R-118** · [BW] **La bajada del feed se tiene que leer: Raleway Bold ~38 px** en lienzo 1080 (SemiBold 32 «se ve muy pequeña») y va pegada al titular, no suelta abajo sobre el producto — _Eli, 29-09-2026, FEED 09-10 «Reúnete en Between» («un poquito más grueso… más grande la tipografía porque se ve muy pequeña»)_ · ✔×1
+- **R-119** · [BW] **Texto «lifestyle» = relleno beige + contorno FINO en café de marca #675b49 alrededor de las letras**, con uniones y remates REDONDOS (SVG `<text>`, stroke 5 px, `paint-order: stroke fill` → asoman 2,5 px). Ni pincelada detrás ni `-webkit-text-stroke` (une en inglete: picos en M, A, v, y) — _Eli, 29-09-2026, FEED 09-10 («un trazo en color café de Between, delgado, sutil, estilo lifestyle»; «si se ven puntas cuadradas, redondéalas»; «que se vea armónico»)_ · ✔×1
 
 ### Las dos
 - **R-60** · [TODAS] **Ni títulos ni bajadas llevan punto** en la gráfica (⚠️ en DT los punteos de beneficios SÍ, ver R-104) (el punto sólo en párrafos largos y legales) — _Eli 25-08 (BW) y 09-09 (DT); Javier Mesa 23-09-2026, recordatorio para las cuatro cuentas_ · ✔×5 · +1 bajadas del carrusel «5 cosas» sin punto, aprobado 28-09 · +1 carrusel Escapada 07-10, aprobado 29-09 (titulares sin punto (el punteo es R-104))
@@ -283,9 +285,12 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **X-54** · [DT] Meñique largo y desenfocado estirado hacia la bolsa; después, dedos estirados en vez de pinza — _Eli, 29-09-2026 («el dedo de ella se me hace muy extraño»): 2 rondas_
 - **X-55** · [DT] Emblema del árbol DT **cortado a la mitad**, después completado con IA «pegoteado», después borrado con **manchones** — _Eli, 29-09-2026: 3 rondas. Una expansión además inventó un letrero «DoubleTree» (R-80, descartada antes de mostrar)_
 - **X-56** · [DT] Foto de pendón reescalada ×4 en dos pasadas: textura «pintada» en pelo y piel — _Eli, 29-09-2026: 1 ronda_
+- **X-57** · [BW] FEED 09-10: pedido de «trazado» leído como **pincelada café detrás de cada línea** — era un contorno en las letras — _Eli, 29-09-2026: 1 ronda_
+- **X-58** · [BW] FEED 09-10: contorno con `-webkit-text-stroke`, **muy fino (1,5 px) y con puntas en ángulo** — _Eli, 29-09-2026 («un poco más… redondea las puntas cuadradas»): 1 ronda_
 
 ## 8. Preguntas abiertas
 
+- [BW] FEED 09-10 «Reúnete en Between» (aprobado y reemplazado 29-09): en Drive sigue como `BW FEED 05-10 Esa reunion podria ser un cafe.png` en S1/BW/FEED; ¿se renombra a «BW FEED 09-10 Reunete en Between» y se mueve a la semana del 09-10? → **Eli**
 - [BW] **Reels: Eli quiere conversar cómo mejorarlos** y va a pasar videos de referencia (29-09, tras aprobar el FEED 12-10). Antes del próximo reel de Between, preguntar si ya los mandó → **Eli**
 - [DT] Carrusel Escapada 07-10 (aprobado 29-09): ¿se sube a S2/DT/FEED como `C1 S2 DT n°1–2`? · ¿hay foto REAL de la terraza de QB al atardecer para reemplazar la mesa generada de la lámina 2? → Eli
 - [DT] Opinión Expedia: la grilla la movió del 10-10 al 09-10 y el archivo de Drive conserva la fecha vieja; ¿se renombra o se deja? → Eli
@@ -329,6 +334,11 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 (FEED 09-10 «Reúnete en Between») — Claude con Eli · bajada y contorno café, 4 vueltas, APROBADO
+- **Reglas nuevas [BW]:** R-118 bajada de feed Bold ~38 junto al titular; R-119 contorno fino café de marca, redondeado, alrededor de las letras (estilo lifestyle).
+- **✔ que suben:** R-41 (la bajada salió de encima de los notebooks). **Rechazos:** X-57 pincelada detrás (malentendido), X-58 trazo fino con picos. «Quedó okey» → reemplazado en S1/BW/FEED con el mismo nombre.
+- **Cómo llega el feedback:** Eli dicta por voz y el dictado a veces sale transcrito en portugués; se traduce y se sigue en español.
 
 ### 2026-09-29 (pendones 0,8×3, rondas 4–7) — Claude con Eli · foto a la medida, cookie rehecha, teléfono sin textura IA
 - **Reglas nuevas [DT]:** R-112 foto a la medida del pendón y los tres con el mismo esquema, R-113 las manos son cruciales (pinza real, 1:1), R-114 foto con parches → se regenera entera, R-115 emblema completo o nada, R-116 sin texturas de IA (una pasada ×2), R-117 ojos bien logrados.

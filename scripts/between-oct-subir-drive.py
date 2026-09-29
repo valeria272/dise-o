@@ -16,7 +16,7 @@ Idempotente: las carpetas BW/STS/FEED las crea esta app, así que las puede
 volver a encontrar; y un archivo con el mismo nombre se REEMPLAZA (conserva el
 enlace). ⚠️ Scope `drive.file`: verificar después con el conector MCP.
 
-Uso:  python scripts/between-oct-subir-drive.py [--solo "BW ST 19-10"]
+Uso:  python scripts/between-oct-subir-drive.py [--ronda 2] [--solo "BW ST 19-10"]
 """
 import argparse
 import os
@@ -59,6 +59,21 @@ PIEZAS = [
 ]
 
 
+# Ronda 29-09 (aprobada por Eli): reemplaza las dos historias de la S1 y suma el
+# reel FEED 12-10, que en la hoja FEED cae en el bloque SEMANA 4 junto al 14-10.
+# Video = MP4 + GIF, siempre.
+ENTREGA_R2 = RAIZ / "out/hilton/between/oct-r2"
+PIEZAS_R2 = [
+    (1, "STS", "BW ST 01-10 Anuncio ganador concurso.png"),
+    (1, "STS", "BW ST 02-10 Promos To Go POV.mp4"),
+    (1, "STS", "BW ST 02-10 Promos To Go POV.gif"),
+    (1, "STS", "BW ST 02-10 Promos To Go POV - PORTADA.png"),
+    (4, "FEED", "BW FEED 12-10 Por que vienes por que te quedas.mp4"),
+    (4, "FEED", "BW FEED 12-10 Por que vienes por que te quedas.gif"),
+    (4, "FEED", "BW FEED 12-10 Por que vienes por que te quedas - PORTADA.png"),
+]
+
+
 def servicio():
     ruta = token_google()
     creds = Credentials.from_authorized_user_file(str(ruta))
@@ -84,13 +99,15 @@ def carpeta(svc, nombre, padre):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--solo", default="")
+    ap.add_argument("--ronda", choices=["1", "2"], default="1")
     a = ap.parse_args()
+    entrega, piezas = (ENTREGA_R2, PIEZAS_R2) if a.ronda == "2" else (ENTREGA, PIEZAS)
     svc = servicio()
     cache = {}
-    for sem, sub, nombre in PIEZAS:
+    for sem, sub, nombre in piezas:
         if a.solo and a.solo not in nombre:
             continue
-        ruta = ENTREGA / nombre
+        ruta = entrega / nombre
         if not ruta.is_file():
             sys.exit(f"x falta {ruta}")
         if (sem, sub) not in cache:

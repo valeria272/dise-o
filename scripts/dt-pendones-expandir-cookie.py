@@ -359,18 +359,23 @@ def montar_final():
     kb, db = sift.detectAndCompute(cv2.cvtColor(nb, cv2.COLOR_BGR2GRAY), None)
     m = cv2.BFMatcher().knnMatch(da, db, k=2)
     sel = [a for a, b in m if a.distance < 0.8 * b.distance
-           and 355 <= ka[a.queryIdx].pt[0] <= 1170 and 260 <= ka[a.queryIdx].pt[1] <= 2075]
+           and 400 <= ka[a.queryIdx].pt[0] <= 1260 and 920 <= ka[a.queryIdx].pt[1] <= 2030]
     pa = np.float32([ka[g.queryIdx].pt for g in sel]); pb = np.float32([kb[g.trainIdx].pt for g in sel])
     A, inl = cv2.estimateAffinePartial2D(pa, pb, method=cv2.RANSAC, ransacReprojThreshold=3.0)
+    print(f'  bolsa: escala {np.hypot(A[0,0],A[1,0]):.3f} giro {np.degrees(np.arctan2(A[1,0],A[0,0])):.1f}°')
     h, w = nb.shape[:2]
     rect = np.zeros(og.shape[:2], np.uint8)
-    rect[395:2015, 415:1110] = 255          # bolsa (desde su borde de arriba)
-    rect[312:400, 560:935] = 255            # galleta que sobresale
-    rect[1190:1685, 700:1255] = 255         # mano derecha
+    # ⚠️ coordenadas en px REALES de la 3-79 (la 1ª versión leyó la grilla a 1/3 en y)
+    rect[1075:2060, 430:1110] = 255         # bolsa (con la franja verde entera)
+    rect[935:1095, 530:965] = 255           # galleta que sobresale
+    rect[1190:1690, 700:1255] = 255         # mano derecha
     hsv = cv2.cvtColor(og, cv2.COLOR_BGR2HSV)
     oscuro = ((hsv[..., 2] < 95) & (hsv[..., 1] < 110)).astype(np.uint8) * 255
     oscuro = cv2.morphologyEx(oscuro, cv2.MORPH_OPEN, np.ones((9, 9), np.uint8))
     toma = cv2.bitwise_and(rect, cv2.bitwise_not(oscuro))
+    # sobre la bolsa sólo galleta y papel kraft (con color); el muro gris de atrás no
+    gris = ((hsv[..., 1] < 45) & (np.arange(og.shape[0])[:, None] < 1085)).astype(np.uint8) * 255
+    toma = cv2.bitwise_and(toma, cv2.bitwise_not(gris))
     toma = cv2.morphologyEx(toma, cv2.MORPH_OPEN, np.ones((7, 7), np.uint8))
     warp = cv2.warpAffine(og, A, (w, h), flags=cv2.INTER_LANCZOS4)
     tw = cv2.warpAffine(toma, A, (w, h))
@@ -378,12 +383,12 @@ def montar_final():
     hsvn = cv2.cvtColor(nb, cv2.COLOR_BGR2HSV)
     # el muro NB es azul grisáceo y cae en «morado» con S≥40: se exige más saturación
     bolsa_nb = cv2.bitwise_or(cv2.inRange(hsvn, (118, 85, 45), (160, 255, 210)),
-                              cv2.inRange(hsvn, (35, 90, 70), (85, 255, 255)))
+                              cv2.inRange(hsvn, (30, 60, 50), (90, 255, 255)))
     hsvw = cv2.cvtColor(warp, cv2.COLOR_BGR2HSV)
     bolsa_real = cv2.bitwise_or(cv2.inRange(hsvw, (115, 40, 30), (165, 255, 210)),
                                 cv2.inRange(hsvw, (35, 90, 70), (85, 255, 255)))
     bolsa_real = cv2.bitwise_and(bolsa_real, tw)
-    cerca = cv2.dilate(bolsa_real, np.ones((61, 61), np.uint8))   # sólo pegado a la bolsa real
+    cerca = cv2.dilate(bolsa_real, np.ones((101, 101), np.uint8))   # sólo pegado a la bolsa real
     fuera = cv2.bitwise_and(bolsa_nb, cv2.bitwise_and(cerca, cv2.bitwise_not(cv2.dilate(bolsa_real, np.ones((7, 7), np.uint8)))))
     fuera = cv2.morphologyEx(fuera, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8))
     fuera = cv2.dilate(fuera, np.ones((11, 11), np.uint8))
@@ -398,3 +403,159 @@ def montar_final():
 if __name__ == '__main__' and '--final' in sys.argv:
     montar_final()
     encuadrar_reflejo()
+
+
+# ── Eli 29-09 sobre la mano izquierda de la NB: «sale como otro dedo difuminado… las uñas
+# como difuminado de velocidad… marcas en la mano… se ve muy falsa». La mano con el trozo
+# pasa a ser la REAL de la 3-79, con su propio calce (antes no encontraba puntos porque la
+# zona estaba mal medida). Máscara: la mano y el trozo (piel, uñas, anillo, galleta), sin
+# el muro oscuro de atrás.
+def mano_real():
+    import cv2
+    import numpy as np
+    mo = cv2.imread(str(TMP / 'cookie-montada.png'))
+    og = cv2.imread(str(SESION / 'sesion_3-79.jpg'))
+    nb = cv2.cvtColor(np.asarray(Image.open(TMP / 'cookie-nb3.png').convert('RGB')), cv2.COLOR_RGB2BGR)
+    sift = cv2.SIFT_create(15000)
+    ka, da = sift.detectAndCompute(cv2.cvtColor(og, cv2.COLOR_BGR2GRAY), None)
+    kb, db = sift.detectAndCompute(cv2.cvtColor(nb, cv2.COLOR_BGR2GRAY), None)
+    m = cv2.BFMatcher().knnMatch(da, db, k=2)
+    sel = [a for a, b in m if a.distance < 0.85 * b.distance
+           and ka[a.queryIdx].pt[0] <= 700 and 700 <= ka[a.queryIdx].pt[1] <= 1320]
+    pa = np.float32([ka[g.queryIdx].pt for g in sel]); pb = np.float32([kb[g.trainIdx].pt for g in sel])
+    A, inl = cv2.estimateAffinePartial2D(pa, pb, method=cv2.RANSAC, ransacReprojThreshold=4.0)
+    print(f'  mano: {int(inl.sum())}/{len(sel)} puntos · escala {np.hypot(A[0,0],A[1,0]):.3f} '
+          f'giro {np.degrees(np.arctan2(A[1,0],A[0,0])):.1f}°')
+    return A, og, mo
+
+if __name__ == '__main__' and '--mano' in sys.argv:
+    mano_real()
+
+
+# ── Método invertido (Eli 29-09: «la mano es crucial»): el CUERPO es la foto real entera
+# (manos, galleta, bolsa en su geometría) y de la NB sólo se toma cabeza y cuello, llevada
+# al marco de la original con la inversa del calce de la bolsa. Costura en el pecho, sobre
+# las manos (la mano con el trozo empieza en y≈740 de la 3-79).
+def cuerpo_real(costura=620, banda=160, dx=0, dy=0):
+    import cv2
+    import numpy as np
+    nb = cv2.cvtColor(np.asarray(Image.open(TMP / 'cookie-nb3.png').convert('RGB')), cv2.COLOR_RGB2BGR)
+    og = cv2.imread(str(SESION / 'sesion_3-79.jpg'))
+    sift = cv2.SIFT_create(12000)
+    ka, da = sift.detectAndCompute(cv2.cvtColor(og, cv2.COLOR_BGR2GRAY), None)
+    kb, db = sift.detectAndCompute(cv2.cvtColor(nb, cv2.COLOR_BGR2GRAY), None)
+    m = cv2.BFMatcher().knnMatch(da, db, k=2)
+    sel = [a for a, b in m if a.distance < 0.8 * b.distance
+           and 400 <= ka[a.queryIdx].pt[0] <= 1260 and 920 <= ka[a.queryIdx].pt[1] <= 2030]
+    pa = np.float32([ka[g.queryIdx].pt for g in sel]); pb = np.float32([kb[g.trainIdx].pt for g in sel])
+    A, _ = cv2.estimateAffinePartial2D(pa, pb, method=cv2.RANSAC, ransacReprojThreshold=3.0)
+    Ai = cv2.invertAffineTransform(A)
+    Ai[0, 2] += dx; Ai[1, 2] += dy
+    # lienzo en el marco de la original, con margen arriba y a la izquierda para la cabeza
+    ARRIBA_O, IZQ_O = 1500, 200
+    T = np.float32([[1, 0, IZQ_O], [0, 1, ARRIBA_O]])
+    W, H = 1500 + IZQ_O, 2250 + ARRIBA_O
+    M = Ai.copy(); M[:, 2] += [IZQ_O, ARRIBA_O]
+    cab = cv2.warpAffine(nb, M, (W, H), flags=cv2.INTER_LANCZOS4, borderMode=cv2.BORDER_REPLICATE)
+    lienzo = cab.astype(np.float32)
+    og_l = cv2.warpAffine(og, T, (W, H))
+    y = np.arange(H, dtype=np.float32)[:, None]
+    a = np.clip((y - (ARRIBA_O + costura)) / banda, 0, 1)            # 0 arriba (NB) → 1 abajo (real)
+    a = np.repeat(a, W, 1)
+    a[:, :IZQ_O] = np.clip(a[:, :IZQ_O], 0, 0)                          # franja izq. expandida: NB
+    a = cv2.GaussianBlur(a, (0, 0), 3)[..., None]
+    out = og_l * a + lienzo * (1 - a)
+    cv2.imwrite(str(TMP / 'cookie-cuerpo-real.png'), out.clip(0, 255).astype(np.uint8))
+    print(f'  lienzo {W}×{H} · costura en y={costura} de la 3-79 · banda {banda}')
+
+if __name__ == '__main__' and '--cuerpo' in sys.argv:
+    cuerpo_real()
+
+
+# ── La cabeza NB calzada en la BOCA real: en la 3-79 la modelo está corrida a la izquierda
+# (su boca asoma en la esquina) y la NB la centró detrás de la bolsa; calzada por la bolsa,
+# la cabeza quedaba 460 px a la derecha de su cuello. Aquí la comisura derecha de la NB
+# (915, 810) va a la comisura real (195, 90), escala 1,25 (boca→mentón 180 vs 210 px).
+# El lienzo final se arma directo en el marco de la original y a la proporción del pendón:
+# mentón al 40 %, bolsa hasta ~71 % (el QR parte en 67 %).
+S_CAB, NB_BOCA, OG_BOCA = 1.25, (915, 810), (195, 90)
+XL, W_F = -290, 1560
+H_F = round(W_F * PROP_PENDON) if 'PROP_PENDON' in dir() else round(1560 * 8560 / 2324)
+YT = 300 - round(0.40 * H_F)
+
+def cabeza_en_boca(costura=330, banda=150):
+    import cv2
+    import numpy as np
+    nb = cv2.cvtColor(np.asarray(Image.open(TMP / 'cookie-nb3.png').convert('RGB')), cv2.COLOR_RGB2BGR)
+    # el cuerpo es la 3-79 ensanchada 290 px a la izquierda (x −290..1500 = x 0.. del lienzo)
+    og = cv2.imread(str(TMP / 'cookie-og-ancha.png'))
+    s = S_CAB
+    tx = OG_BOCA[0] - s * NB_BOCA[0] - XL
+    ty = OG_BOCA[1] - s * NB_BOCA[1] - YT
+    M = np.float32([[s, 0, tx], [0, s, ty]])
+    cab = cv2.warpAffine(nb, M, (W_F, H_F), flags=cv2.INTER_LANCZOS4, borderMode=cv2.BORDER_REPLICATE)
+    valido = cv2.warpAffine(np.full(nb.shape[:2], 255, np.uint8), M, (W_F, H_F))
+    # donde la NB no llega (arriba a la derecha), fondo muy desenfocado
+    lejos = cv2.GaussianBlur(cab, (0, 0), 40)
+    v = cv2.GaussianBlur(valido.astype(np.float32) / 255, (0, 0), 25)[..., None]
+    base = cab * v + lejos * (1 - v)
+    # la original en su lugar; bajo su borde inferior, su última franja estirada y desenfocada
+    ox, oy = 0, -YT
+    lienzo = base.copy()
+    alfa = np.zeros((H_F, W_F), np.float32)
+    y = np.arange(2250, dtype=np.float32)[:, None]
+    # costura que baja a la izquierda: el pelo NB cae sobre el hombro y se cortaba en recto
+    xs = np.arange(og.shape[1], dtype=np.float32)[None, :]
+    # (bajarla 220 px mezclaba los dos collares, y≈580–630: se queda sobre ellos)
+    c = costura + 60 * np.clip((420 - xs) / 300, 0, 1) + 330 * np.clip((200 - xs) / 120, 0, 1)
+    b = banda + 40 * np.clip((420 - xs) / 300, 0, 1) + 120 * np.clip((200 - xs) / 120, 0, 1)
+    ramp = np.clip((y - c) / b, 0, 1)
+    x1 = min(W_F, ox + og.shape[1])
+    alfa[oy:oy + 2250, ox:x1] = ramp[:, :x1 - ox]
+    og_l = np.zeros_like(base); og_l[oy:oy + 2250, ox:x1] = og[:, :x1 - ox]
+    fin = oy + 2250
+    if fin < H_F:
+        tira = cv2.resize(og[2250 - 160:, :x1 - ox], (x1 - ox, H_F - fin + 220), interpolation=cv2.INTER_CUBIC)
+        tira = cv2.GaussianBlur(tira, (0, 0), 45)
+        r = np.linspace(0, 1, 220)[:, None, None]
+        og_l[fin - 220:fin, ox:x1] = og_l[fin - 220:fin, ox:x1] * (1 - r) + tira[:220] * r
+        og_l[fin:, ox:x1] = tira[220:]
+        alfa[fin:, ox:x1] = 1
+    # borde izquierdo de la original (x = ox): rampa de 60 px hacia la NB
+    alfa = cv2.GaussianBlur(alfa, (0, 0), 3)[..., None]
+    out = og_l * alfa + base * (1 - alfa)
+    cv2.imwrite(str(TMP / 'cookie-lienzo.png'), out.clip(0, 255).astype(np.uint8))
+    print(f'  lienzo {W_F}×{H_F} · boca NB→real, escala {s} · costura y={costura}+{banda}')
+
+if __name__ == '__main__' and '--boca' in sys.argv:
+    cabeza_en_boca()
+
+
+# ── A la izquierda del borde de la 3-79 se colaba el cuerpo NB (su mano y su bolsa): esa
+# franja sale de expandir la ORIGINAL 290 px a la izquierda (manga, antebrazo, chaqueta).
+def original_izq():
+    import cv2
+    import numpy as np
+    og = Image.open(SESION / 'sesion_3-79.jpg').convert('RGB')
+    e = TMP / 'cookie-og-entrada.jpg'; og.save(e, quality=95)
+    crudo = paso(e, 'cookie-og-izq', 0,
+                 'continuation of the same photograph to the left: more of the same woman\'s cream '
+                 'blazer sleeve, her forearm and wrist leading to the hand that holds the cookie piece, '
+                 'her wavy light-brown hair on the shoulder at the top, same soft focus and warm light. '
+                 'No other hands, no text, nobody else.', izq=-XL)
+    exp = Image.open(crudo).convert('RGB')
+    s = (1500 - XL) / exp.width
+    exp = exp.resize((1500 - XL, round(exp.height * s)), Image.LANCZOS)
+    g = lambda im: cv2.cvtColor(np.asarray(im.resize((im.width // 4, im.height // 4))), cv2.COLOR_RGB2GRAY)
+    _, sc, _, (mx, my) = cv2.minMaxLoc(cv2.matchTemplate(g(exp), g(og), cv2.TM_CCOEFF_NORMED))
+    print(f'  expansión izq: calce {sc:.3f} en ({mx*4},{my*4})')
+    L = Image.new('RGB', (1500 - XL, 2250)); L.paste(exp, (0, -my * 4))
+    m = Image.new('L', (1500, 2250), 255)
+    import numpy as np
+    r = np.ones((2250, 1500), np.float32); r[:, :40] = np.linspace(0, 1, 40)[None, :]
+    L.paste(og, (-XL, 0), Image.fromarray((r * 255).astype(np.uint8)))
+    L.save(TMP / 'cookie-og-ancha.png')
+    return L
+
+if __name__ == '__main__' and '--izq' in sys.argv:
+    original_izq()

@@ -82,3 +82,49 @@ Drive tenía 205 de 331; la que faltaba estaba en `F:\SESIONES HILTON\...\sesion
 
 Copiar .ai + PDF a la carpeta de F: (comparar hash), **abrir el .ai en Illustrator** para que Eli
 siga editando y verificar que los 3 enlaces resuelven.
+
+## 7 · Rondas 4–7 (29-09-2026) — foto a la medida, cookie rehecha · «quedó perfecto»
+
+**Lo que pidió Eli:** la foto de la cookie era otra (la del pantallazo es la **3-79**, la galleta
+ya partida, no la 3-80); velos más sutiles como la referencia; «expandir la fotografía a la
+medida del pendón… que se vea la persona»; titular legible. Eli ajustó **a mano la 1 y la 2** en
+el .ai (foto grande a sangre, velo del titular + velo del QR) → **la 3 se calca de la 2**.
+
+### Qué quedó
+| Pendón | Vínculo | Cómo |
+|---|---|---|
+| 1 bata | `Links/pendon-1-bata.jpg` | sin cambios (ajuste de Eli) |
+| 2 teléfono | `Links/pendon-2-telefono-r4.jpg` | alta **rehecha**: `final3-173a` recorte x 120..1133 → precisión **×2 una pasada** → Lanczos 3228×7170; ojos NB en dos elipses |
+| 3 cookie | `Links/pendon-3-cookie-r4.jpg` | ver abajo; 3228×11890 = 100 ppi a 82×302 cm, CMYK FOGRA39 |
+
+El .ai quedó **guardado** con esos tres vínculos. El PDF de imprenta está **pendiente de regenerar**.
+
+### La cookie, en orden (lo que funcionó)
+1. **Lienzo en el marco de la foto real** (`scripts/dt-pendones-expandir-cookie.py --boca`): el
+   cuerpo es la 3-79 ensanchada 290 px a la izquierda con Flux (`--izq`, sólo manga/antebrazo);
+   la cabeza (NB Pro sobre la 3-79 **sin la boca**, `--nb3`) se calza **por la comisura de la
+   boca real** (NB (915,810) → 3-79 (195,90), ×1,25), costura bajo el mentón y sobre los
+   collares (y 330–480). Ancho 1560 px, mentón al 40 %, bolsa hasta ~71 %.
+2. ×2 de precisión (una pasada) → `cookie-v2-x2.png`.
+3. **Mano en pinza** (`scripts/dt-pendones-r4-retoques.py mano2`): NB Pro edita el recorte de la
+   mano (3 variantes; la 2: índice y medio con el pulgar debajo, anular con el anillo y meñique
+   recogidos). Se toma la NB entera salvo bolsa y galleta, rampas de 160 px a los bordes.
+4. **Ronda 7, la que se aprobó** (`r7` + `r7montar`): la franja de la persona (×2, y 2500..8046) se
+   **regenera ENTERA** con NB Pro **4K**, usando el resultado anterior como referencia y pidiendo
+   muro liso sin emblemas. Sólo se repone la **etiqueta redonda real** («OH NUTS! CONTAINS
+   WALNUTS», elipse (968,1797) de la 3-79, calce SIFT de la bolsa con 236 puntos). Se monta
+   con igualación de tono y rampas de 260 px.
+
+### Lo que NO funcionó (no repetir)
+- **Flux expand** con personas o >700 px hacia arriba: arma **collages** (otra mujer arriba),
+  escribe **letreros inventados** (texto sobre la boca, «DoubleTree» y una D gigante en el muro).
+  Sirve sólo para franjas chicas sin caras (manga, muro liso).
+- **Nano Banana con la boca real en el lienzo** → pone una cara entera encima (dos bocas).
+- **Pegar recortes reales sobre la escena NB** (mano, bolsa): halos, fantasmas, dedo de más.
+  Una sola homografía no sirve porque la NB mueve la mano respecto de la bolsa.
+- **Medir coordenadas en una grilla reducida sin escalar**: las zonas quedaron 3 veces más arriba.
+- **Emblema del árbol**: cortarlo, completarlo con IA o borrarlo con relleno deja «medio árbol»,
+  «pegoteado» o manchones. La salida fue regenerar la foto entera con muro liso (R-115).
+- **Precisión ×2 dos veces** (×4): textura pintada en pelo y piel (R-116).
+- `doc.save()` por COM dio «operation was cancelled» pero el documento quedó `saved=true`:
+  verificar por el estado y por los vínculos dentro del .ai, no por el mensaje.

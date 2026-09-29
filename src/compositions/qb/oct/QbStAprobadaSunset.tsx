@@ -23,6 +23,9 @@
  *     Foto real → sin «Imagen referencial».
  *   · PROMO → paid: el legal sube de 1855 a la zona segura, a 19 px (R-52, E-06).
  *     Arriba se oscurece para leer el logo (R-53).
+ *   · El titular Light cae sobre los tragos (como en la aprobada, donde cruzaba la
+ *     copa); con tragos de colores detrás no se leía → velo elíptico local detrás
+ *     del titular y la pastilla, sin mover nada de su lugar.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -55,6 +58,9 @@ export const QbStAprobadaSunset: React.FC<{semana: QbSunsetSemana}> = ({semana})
       <Velo arriba={[760, 0.72]} abajo={[620, 0.8]} />
       <Img src={staticFile("assets/hilton/qb/oct/sunset-qb-logo.png")}
         style={{position: "absolute", top: 346, left: (MESA.w - LOGO_W) / 2, width: LOGO_W, height: LOGO_H}} />
+      {/* velo local para leer el titular sobre los tragos */}
+      <div style={{position: "absolute", left: -60, width: MESA.w + 120, top: 1080, height: 380,
+        background: "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,.62) 0%, rgba(0,0,0,.42) 55%, rgba(0,0,0,0) 100%)"}} />
       <Linea top={1170 - 25} cuerpo={85} peso={300} tracking="0.01em" interlinea={0.94}>
         {QB_SUNSET_AP_DATA.titular[0]}<br />{QB_SUNSET_AP_DATA.titular[1]}
       </Linea>

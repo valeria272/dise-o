@@ -54,6 +54,7 @@ PIEZAS = [
     (3, "FEED", "P18 FEED 13-10 Atardecer 2.png"),
 ] + [(3, "FEED", f"P18 FEED 16-10 Tu proxima celebracion {n}.png") for n in range(1, 6)] + [
     (4, "FEED", f"P18 FEED 23-10 Estacion Tex Mex {n}.png") for n in range(1, 5)] + [
+    (3, "STS", "P18 ST 15-10 Cumpleanos sonado.png"),  # aprobada 29-09
     (4, "STS", "P18 ST 23-10 Evento corporativo.png"),
     (5, "FEED", "P18 FEED 27-10 Wedding planner.png"),
     (5, "STS", "P18 ST 27-10 Visita virtual.png"),

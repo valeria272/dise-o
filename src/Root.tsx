@@ -50,6 +50,7 @@ import {Post12, Post16} from "./compositions/copylab/Posts12";
 import {TipoPost} from "./compositions/copylab/Tipo";
 import {Recompuesta} from "./compositions/copylab/Recompuesta";
 import {Fuente} from "./compositions/copylab/Fuentes";
+import {CarruselSenal} from "./compositions/copylab/CarruselSenal";
 import {RentasReelOctubre} from "./compositions/rentas/RentasReelOctubre";
 import {NuevaUrbeFacilidadesReel, NU_REEL_DURATION, NU_REEL_FPS} from "./compositions/NuevaUrbeFacilidadesReel";
 import {VideoSquare01} from "./compositions/VideoSquare01";
@@ -1298,6 +1299,13 @@ export const RemotionRoot: React.FC = () => {
       </Folder>
       <Folder name="Copywriters">
         {/* Feed 4:5 — el formato principal del sistema. */}
+        {/* Sistema Visual 29-09-2026 — carrusel de prueba, 5 láminas */}
+        <Composition
+          id="CL2-CarruselSenal"
+          component={CarruselSenal}
+          {...clFeed}
+          defaultProps={{lamina: 1}}
+        />
         <Composition id="CL-Signal"   component={Signal}   {...clFeed} />
         <Composition id="CL-Metafora" component={Metafora} {...clFeed} />
         <Composition id="CL-Work"     component={Work}     {...clFeed} />

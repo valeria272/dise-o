@@ -16,7 +16,8 @@
 
 marca: copywriters
 nombre: Copywriters · Grupo Copylab (@copywriters.cl)
-version: 1
+version: 2   # 29-09-2026 — paleta del Sistema Visual nuevo. El tope 18% NO se ha
+             # recalibrado contra un control con esta paleta: ver docs del sistema.
 actualizado: 2026-09-03
 
 autoridad:
@@ -33,9 +34,9 @@ reglas:
     severidad: bloqueante
     autor: Valeria Traverso
     cita: >-
-      «PALETA PRINCIPAL: NEGRO TINTA #080F14 · OFF WHITE #F2F4F6 · BLANCO
-      #FFFFFF · COPY PINK #FF2D8B. PALETA SECUNDARIA — usar con moderación:
-      CORAL #FF6B3D · PURPLE #9D4EDD.»
+      «PALETA DE COLORES: NEGRO #0B0B0B · OFF WHITE #F5F3EE · ROSA #FF3D9C ·
+      DURAZNO #FF9F8F · ROJO #E64332 · BEIGE #D8CDC4 · GRIS #B7B7B7 ·
+      CARBÓN #2A2A2A.»  (board del 29-09-2026)
     fuente: brief v1.0 §3 · creative-system/colors/
     porque: >-
       El sistema renuncia a la plantilla, así que la paleta queda cargando casi
@@ -58,7 +59,7 @@ reglas:
       control salta. Es la lección de siempre: un falso positivo no se arregla
       aflojando el tope, porque el falso negativo que se crea no lo ve nadie.
     args:
-      colores: ["#080F14", "#F2F4F6", "#FFFFFF", "#FF2D8B", "#FF6B3D", "#9D4EDD"]
+      colores: ["#0B0B0B", "#F5F3EE", "#FF3D9C", "#FF9F8F", "#E64332", "#D8CDC4", "#B7B7B7", "#2A2A2A", "#FFFFFF"]
       sat_min: 0.30
       max_std_local: 1.6
       delta_e: 22.0
@@ -104,7 +105,7 @@ reglas:
       tope a todos: bajar el tope habría permitido, sin que nadie lo note, que
       cualquier pieza se pintara media de rosa.
     args:
-      colores: ["#FF2D8B"]
+      colores: ["#FF3D9C"]
       delta_e: 16.0
       max_fraccion: 0.30
       solo_plano: true

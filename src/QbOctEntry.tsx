@@ -31,6 +31,9 @@ import {QbSt28EsteOEste} from "./compositions/qb/oct/QbSt28EsteOEste";
 import {QbFeed07AycdG1, QbFeed07AycdG2} from "./compositions/qb/oct/QbFeed07Aycd";
 import {QbFeed12SunsetG1, QbFeed12SunsetG2} from "./compositions/qb/oct/QbFeed12Sunset";
 import {QbFeed16Autor} from "./compositions/qb/oct/QbFeed16Autor";
+import {QbStAprobadaAycd} from "./compositions/qb/oct/QbStAprobadaAycd";
+import {QbStAprobadaCmr40} from "./compositions/qb/oct/QbStAprobadaCmr40";
+import {QbStAprobadaSunset} from "./compositions/qb/oct/QbStAprobadaSunset";
 
 const F = {fps: 30, width: 1080, height: 1350} as const;
 const Q = {fps: 30, width: 1080, height: 1920} as const;
@@ -59,6 +62,10 @@ const Raiz: React.FC = () => (
     <Composition id="QB-OCT-FEED12-G1" component={QbFeed12SunsetG1} durationInFrames={1} {...F} />
     <Composition id="QB-OCT-FEED12-G2" component={QbFeed12SunsetG2} durationInFrames={1} {...F} />
     <Composition id="QB-OCT-FEED16" component={QbFeed16Autor} durationInFrames={1} {...F} />
+    {/* 29-09: las «ST APROBADA» de la grilla, sobre la aprobada con foto real nueva */}
+    <Composition id="QB-OCT-AP-AYCD" component={QbStAprobadaAycd} durationInFrames={1} {...Q} defaultProps={{fecha: "13" as const}} />
+    <Composition id="QB-OCT-AP-CMR40" component={QbStAprobadaCmr40} durationInFrames={1} {...Q} defaultProps={{fecha: "17" as const}} />
+    <Composition id="QB-OCT-AP-SUNSET" component={QbStAprobadaSunset} durationInFrames={1} {...Q} defaultProps={{semana: "S2" as const}} />
   </Folder>
 );
 

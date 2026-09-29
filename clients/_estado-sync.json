@@ -84,8 +84,8 @@
       "ultimo_hallazgo": "CUENTA NO MAPEADA. Carpeta 'SANTA GOTA' (1VRQ_9ggb6n1DhQbOZiYoLP0iW-imswG9) colgando de la raiz de AGENCIA COPYWRITERS, tocada el 14-09 15:15Z. Trae 'SANTA GOTA SOCIAL MEDIA MANAGEMENT.pdf' (02-09), Estrategia, Logo Oficial, Marcas Inspiradoras, Fotos Sesion Inicial, TVI, 'Diseno Luis Piano' y un ZIP de 1,4 GB de contenido y diseno. Sin manual ni kit en el estudio: si entra a produccion hay que abrirla con /marca-nueva."
     },
     "qb": {
-      "revisado": "2026-09-29 (/abrir qb — SOLO QB)",
-      "ultimo_hallazgo": "29-09: grilla QB OCT sin cambios desde 28-09 17:48Z (diff por celda contra api/qb-oct-20260928c.json = 0; instantánea api/qb-oct-20260929.json). Estados oct: FEED 4 OK (todas hechas y subidas) · 4 REVISAR CONTENIDO · 2 PENDIENTE; STORIES 15 OK (todas hechas salvo el video Ensalada 22-10) · 8 APROBADO sin brief · 3 REVISAR · 2 PENDIENTE; ORGÁNICOS 2 EN REVISIÓN · 2 PENDIENTE. Grilla QB SEPT movida 28-09 20:44Z (Sebastián): cierre de mes, casi todo YA POSTEADO/APROBADO; Trivia de brindis APROBADO ('Antes de *beber* y ok!'); queda ST 25-09 'Conoce nuestra carta' (postre, lógica de la story Afrodita) en OK PARA DISEÑAR con fecha vencida → preguntar a Eli; Line up y Promos de la semana PENDIENTE POR CLIENTE ('CORRER A OCT'). Drive: nada nuevo de Eli para QB (sus carpetas nuevas de anoche son del Brochure DT). Instantánea api/qb-sept-20260929.json."
+      "revisado": "2026-09-29 tarde (/abrir qb — SOLO QB)",
+      "ultimo_hallazgo": "29-09 tarde: grilla QB OCT movida 15:17Z (Scarlette), 2 celdas vs api/qb-oct-20260929.json: FEED 07-10 AYCD TIPO ESTÁTICA→CARRUSEL (formaliza lo ya entregado, R-42) y ST 30-10 título 'TU PLAN FAVORITO / EN UN MISMO LUGAR' → '¿Planes para hoy?' pero sigue REVISAR CONTENIDO (no se diseña, R-32). Grilla SEPT: sólo copy de un orgánico y uno APROBADO→YA POSTEADO. Drive: de Eli sólo pendones DT (otra marca). Instantáneas api/qb-oct-20260929b.json y qb-sept-20260929b.json."
     },
     "dt": {
       "revisado": "2026-09-24 tarde (/abrir DT — SOLO DT)",

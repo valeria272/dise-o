@@ -37,7 +37,8 @@ const X0 = 76; // margen izquierdo (zona segura 60 + respiro)
 export const ESCENAS_CUMPLE = {
   hook: [0, 75], // 2,5 s
   cafe: [75, 165], // 3 s
-  ven: [165, 400], // (sin salida: queda quieto hasta el final) 3 s + 4 s con el legal al lado (el cierre junta toda la info)
+  ven: [165, 255], // 3 s
+  legal: [255, 400], // 4 s: se enciende la vela + legal en botones (sin salida: queda quieto)
 } as const;
 export const DURACION_CUMPLE = 375;
 
@@ -118,40 +119,100 @@ const Escena: React.FC<{rango: readonly [number, number]; children: React.ReactN
   );
 };
 
-/** Destellos de línea alrededor de la llama, dibujados a mano (como los globos de la ST 07-10). */
-const LLAMA = {x: 556, y: 790};
-const Destellos: React.FC<{desde: number}> = ({desde}) => {
+/**
+ * Ilustraciones ORIGINALES de Eli (su trazo de pincel, `BetweenRecursos.ILUSTRACIONES`).
+ * Ronda 2 (29-09): «que sea más bonito, mejores trazados… globitos, cosas que vayan
+ * surgiendo». Mis rayos de SVG se fueron: entran sus globos, confeti y corazón.
+ * Cada una SURGE (sube y se destapa de abajo hacia arriba) y después flota suave.
+ */
+const RECURSO = (n: string) => staticFile(`assets/hilton/between/recursos/${n}.png`);
+const Surge: React.FC<{
+  src: string; x: number; y: number; ancho: number; desde: number; sube?: number; rot?: number;
+  fase?: number; destape?: 'abajo' | 'centro';
+}> = ({src, x, y, ancho, desde, sube = 220, rot = 0, fase = 0, destape = 'abajo'}) => {
   const f = useCurrentFrame();
-  const rayos = [
-    {a: -150, r0: 78, r1: 128},
-    {a: -118, r0: 92, r1: 150},
-    {a: -62, r0: 92, r1: 150},
-    {a: -30, r0: 78, r1: 128},
-  ];
-  const brillo = 0.85 + 0.15 * Math.sin((f - desde) / 5);
+  if (f < desde) return null;
+  const t = interpolate(f, [desde, desde + 26], [0, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+  const flota = Math.sin((f - desde) / 16 + fase) * 7;
+  const gira = Math.sin((f - desde) / 22 + fase) * 2.2;
+  const mascara = destape === 'abajo'
+    ? `linear-gradient(0deg, #000 ${t * 120 - 12}%, transparent ${t * 120}%)`
+    : `radial-gradient(circle, #000 ${t * 70}%, transparent ${t * 70 + 12}%)`;
   return (
-    <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, opacity: brillo}}>
-      {rayos.map((r, i) => {
-        const t = interpolate(f, [desde + i * 3, desde + i * 3 + 9], [0, 1], {
-          extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic),
-        });
-        const rad = (r.a * Math.PI) / 180;
-        const x0 = LLAMA.x + Math.cos(rad) * r.r0, y0 = LLAMA.y + Math.sin(rad) * r.r0;
-        const x1 = LLAMA.x + Math.cos(rad) * r.r1, y1 = LLAMA.y + Math.sin(rad) * r.r1;
-        const largo = Math.hypot(x1 - x0, y1 - y0);
-        return (
-          <line key={i} x1={x0} y1={y0} x2={x1} y2={y1} stroke={C.beige} strokeWidth={5} strokeLinecap="round"
-            strokeDasharray={largo} strokeDashoffset={largo * (1 - t)} />
-        );
-      })}
-      {/* dos estrellitas de cuatro puntas */}
-      {[{x: 676, y: 742, s: 20, d: 14}].map((e, i) => {
-        const t = spring({frame: f - desde - e.d, fps: 30, config: {damping: 9, stiffness: 160}});
-        const p = `M ${e.x} ${e.y - e.s} Q ${e.x} ${e.y} ${e.x + e.s} ${e.y} Q ${e.x} ${e.y} ${e.x} ${e.y + e.s} Q ${e.x} ${e.y} ${e.x - e.s} ${e.y} Q ${e.x} ${e.y} ${e.x} ${e.y - e.s} Z`;
-        return <path key={i} d={p} fill={C.beige} opacity={f < desde + e.d ? 0 : 1}
-          transform={`translate(${e.x} ${e.y}) scale(${t}) translate(${-e.x} ${-e.y})`} />;
-      })}
-    </svg>
+    <Img src={src} style={{
+      position: 'absolute', left: x, top: y, width: ancho,
+      transform: `translateY(${(1 - t) * sube + flota}px) rotate(${rot + gira}deg) scale(${destape === 'centro' ? 0.6 + 0.4 * t : 1})`,
+      transformOrigin: '50% 100%', opacity: Math.min(1, t * 1.4),
+      WebkitMaskImage: mascara, maskImage: mascara,
+      filter: 'drop-shadow(3px 4px 3px rgba(0,0,0,0.25))',
+    }} />
+  );
+};
+
+/** La llama: la foto encendida entra sólo en la zona de la vela y los dedos, con un golpe de luz. */
+const LLAMA = {x: 556, y: 772};
+const Encendido: React.FC<{desde: number}> = ({desde}) => {
+  const f = useCurrentFrame();
+  if (f < desde) return null;
+  const t = interpolate(f, [desde, desde + 7], [0, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.quad)});
+  const golpe = interpolate(f, [desde, desde + 5, desde + 22], [0, 1, 0.35], {extrapolateRight: 'clamp'});
+  const titila = 0.9 + 0.1 * Math.sin((f - desde) * 0.9) * Math.sin((f - desde) * 0.37);
+  const mascara = `url(${staticFile('assets/hilton/between/oct/f-cumple-mascara-llama.png')})`;
+  return (
+    <>
+      <Img src={staticFile('assets/hilton/between/oct/f-cumple-reel.jpg')} style={{
+        position: 'absolute', width: 1080, height: 1920, opacity: t,
+        WebkitMaskImage: mascara, maskImage: mascara, WebkitMaskSize: '100% 100%', maskSize: '100% 100%',
+      }} />
+      <AbsoluteFill style={{
+        mixBlendMode: 'screen', opacity: golpe * titila,
+        background: `radial-gradient(circle at ${LLAMA.x}px ${LLAMA.y}px, rgba(255,190,110,0.55) 0px, rgba(255,150,70,0.18) 150px, rgba(0,0,0,0) 330px)`,
+      }} />
+    </>
+  );
+};
+
+/**
+ * Confeti de Eli como destello de la vela (ronda 3: «que estén mirando hacia la vela»).
+ * El PNG converge en su esquina inferior derecha (93 % · 89 %, medido en el alfa): ese
+ * vértice va pegado a la llama y el de la derecha es el PNG espejado (`confeti-espejo.png`) y gira al revés, así los dos abren desde ella.
+ */
+const VERTICE = {x: 0.93, y: 0.89};
+const Abanico: React.FC<{desde: number; lado: 'izq' | 'der'; ancho: number; gira: number}> = ({desde, lado, ancho, gira}) => {
+  const f = useCurrentFrame();
+  if (f < desde) return null;
+  const s = spring({frame: f - desde, fps: 30, config: {damping: 10, stiffness: 150, mass: 0.6}});
+  const alto = ancho * (455 / 429);
+  const vx = LLAMA.x + (lado === 'izq' ? -40 : 40);
+  const vy = LLAMA.y + 16;
+  const late = 1 + 0.035 * Math.sin((f - desde) / 7);
+  return (
+    <Img src={RECURSO(lado === 'izq' ? 'confeti' : 'confeti-espejo')} style={{
+      position: 'absolute', width: ancho, height: alto,
+      left: lado === 'izq' ? vx - ancho * VERTICE.x : vx - ancho * (1 - VERTICE.x),
+      top: vy - alto * VERTICE.y,
+      transformOrigin: `${(lado === 'izq' ? VERTICE.x : 1 - VERTICE.x) * 100}% ${VERTICE.y * 100}%`,
+      transform: `rotate(${lado === 'izq' ? gira : -gira}deg) scale(${s * late})`,
+      opacity: Math.min(1, s * 2),
+      filter: 'drop-shadow(0 0 10px rgba(255,190,120,0.35))',
+    }} />
+  );
+};
+
+/** El legal en «botones» café (la caja taupe del sistema), entrando con un rebote. */
+const Boton: React.FC<{texto: string; desde: number; x: number; rot: number}> = ({texto, desde, x, rot}) => {
+  const f = useCurrentFrame();
+  const s = spring({frame: f - desde, fps: 30, config: {damping: 12, stiffness: 170, mass: 0.7}});
+  return (
+    <div style={{
+      alignSelf: 'center', marginLeft: x, opacity: f < desde ? 0 : Math.min(1, s * 1.5),
+      transform: `translateY(${(1 - s) * 26}px) rotate(${rot * s}deg) scale(${0.8 + 0.2 * s})`, transformOrigin: 'center center',
+      backgroundColor: BETWEEN.cajas.fondo, borderRadius: BETWEEN.cajas.radio, padding: '15px 32px 17px',
+      fontFamily: SANS, fontWeight: 700, fontSize: 37, lineHeight: 1.1, color: C.beige, whiteSpace: 'nowrap',
+      boxShadow: '0 6px 18px rgba(36,26,18,0.35)',
+    }}>
+      {texto}
+    </div>
   );
 };
 
@@ -186,36 +247,40 @@ export const TXT = {
 };
 /** Tiempos de cada golpe (los usa también el script de audio). */
 export const TIEMPOS = {
-  estasPop: 2,
-  deTrazo: [12, 12] as const,
-  cumple: [22, 2.6] as const,
-  destellos: 136,
+  estasPop: 12,
+  deTrazo: [20, 12] as const,
+  cumple: [28, 2.3] as const,
+  globos: 118,
+  globo: 176,
+  enciende: 4,
+  confeti: 262,
   elCafe: [80, 2.4] as const,
   vaPor: [98, 14] as const,
   cuenta: [112, 2.2] as const,
   ven1: [170, 2.2] as const,
   cafeGratis: [194, 14] as const,
   ven2: [210, 1.3] as const,
-  legal: 256,
+  legal: [268, 6] as const, // primer botón y separación entre botones
 };
 
 export const FeedOct02Cumple: React.FC = () => {
   useFuentesListas();
   const f = useCurrentFrame();
   const T = TIEMPOS;
-  // el legal entra por líneas, sin máquina: es largo y tiene que leerse en paz
-  const lineasLegal = [
-    'Beneficio válido únicamente',
-    'de lunes a viernes, el mismo',
-    'día de tu cumpleaños,',
-    'presentando carnet de',
-    'identidad al momento',
-    'de solicitarlo.',
+  // el legal en cuatro botones café, cortados donde se respira
+  const botones = [
+    {t: 'Beneficio válido únicamente', x: 0, rot: -1.2},
+    {t: 'de lunes a viernes,', x: 0, rot: 1.2},
+    {t: 'el mismo día de tu cumpleaños,', x: 0, rot: -1.2},
+    {t: 'presentando carnet de identidad', x: 0, rot: 1.2},
+    {t: 'al momento de solicitarlo.', x: 0, rot: -1.2},
   ];
   return (
     <AbsoluteFill style={{backgroundColor: C.sombra}}>
-      <Img src={staticFile('assets/hilton/between/oct/f-cumple-reel.jpg')}
+      {/* la vela parte APAGADA y se enciende al arrancar: es el hook (ronda 3 de Eli) */}
+      <Img src={staticFile('assets/hilton/between/oct/f-cumple-apagada.jpg')}
         style={{position: 'absolute', width: 1080, height: 1920, objectFit: 'cover'}} />
+      <Encendido desde={T.enciende} />
       {/* velo café arriba, sólo donde vive el texto */}
       <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(36,26,18,0.62) 0%, rgba(36,26,18,0.38) 30%, rgba(36,26,18,0) 50%)'}} />
 
@@ -230,10 +295,21 @@ export const FeedOct02Cumple: React.FC = () => {
       </Escena>
 
       {/* la figura recortada tapa el titular: la vela pasa por delante */}
-      <Img src={staticFile('assets/hilton/between/oct/f-cumple-figura.png')}
-        style={{position: 'absolute', width: 1080, height: 1920}} />
+      {f < ESCENAS_CUMPLE.hook[1] && (
+        <>
+          <Img src={staticFile('assets/hilton/between/oct/f-cumple-figura-apagada.png')}
+            style={{position: 'absolute', width: 1080, height: 1920}} />
+          <Img src={staticFile('assets/hilton/between/oct/f-cumple-figura.png')}
+            style={{position: 'absolute', width: 1080, height: 1920,
+              opacity: interpolate(f, [T.enciende, T.enciende + 7], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}} />
+        </>
+      )}
 
-      {f >= T.destellos && f < DURACION_CUMPLE && <Destellos desde={T.destellos} />}
+      {/* ilustraciones de Eli que van surgiendo */}
+      <Surge src={RECURSO('globos-par')} x={86} y={1010} ancho={236} desde={T.globos} rot={-8} />
+      <Surge src={RECURSO('globo-alt')} x={842} y={1060} ancho={112} desde={T.globo} rot={7} fase={1.7} />
+      <Abanico desde={T.confeti} lado="izq" ancho={165} gira={-34} />
+      <Abanico desde={T.confeti + 2} lado="der" ancho={165} gira={-34} />
 
       {/* ── 2 · EL CAFÉ VA POR NUESTRA CUENTA ── */}
       <Escena rango={ESCENAS_CUMPLE.cafe}>
@@ -251,21 +327,16 @@ export const FeedOct02Cumple: React.FC = () => {
           <Trazo texto={TXT.cafeGratis} desde={T.cafeGratis[0]} dura={T.cafeGratis[1]} style={{...mano(176), marginTop: 4, marginLeft: -8}} />
           <Maquina texto={TXT.ven2} desde={T.ven2[0]} porLetra={T.ven2[1]} style={{...palo(66, 500, {letterSpacing: '0.01em'}), marginTop: 6}} />
         </div>
-        {/* legal: columna chica a la izquierda de la vela, entra por líneas */}
-        <div style={{position: 'absolute', left: X0, top: 800, width: 420}}>
-          {lineasLegal.map((l, i) => {
-            const d = T.legal + i * 4;
-            const t = interpolate(f, [d, d + 10], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
-            return (
-              <div key={i} style={{fontFamily: SANS, fontWeight: 500, fontSize: 30, lineHeight: 1.45, color: C.beige,
-                textShadow: SOMBRA, opacity: t, transform: `translateY(${(1 - t) * 12}px)`, whiteSpace: 'nowrap'}}>
-                {l}
-              </div>
-            );
-          })}
-        </div>
       </Escena>
 
+      {/* ── 4 · LEGAL en botones ── */}
+      <Escena rango={ESCENAS_CUMPLE.legal}>
+        <div style={{position: 'absolute', left: 0, right: 0, top: 262, display: 'flex', flexDirection: 'column', gap: 12, transform: `translateX(${LLAMA.x - 540}px)`}}>
+          {botones.map((b, i) => (
+            <Boton key={i} texto={b.t} desde={T.legal[0] + i * T.legal[1]} x={b.x} rot={b.rot} />
+          ))}
+        </div>
+      </Escena>
     </AbsoluteFill>
   );
 };

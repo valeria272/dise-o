@@ -24,11 +24,12 @@ R = "raw/hilton/dt/oct3-escapada/"
 os.makedirs(R, exist_ok=True)
 QUE = sys.argv[1]
 SUF = sys.argv[2] if len(sys.argv) > 2 else "a"
+RES = "4K" if QUE == "portada2" else "2K"
 
 
 def nb(prompt, refs, out):
     r = subprocess.run(["py", "scripts/magnific.py", "pro", prompt, "--refs", *refs,
-                        "--aspecto", "carrusel", "--resolucion", "2K", "--out", out],
+                        "--aspecto", "carrusel", "--resolucion", RES, "--out", out],
                        capture_output=True, text=True, encoding="utf-8", errors="replace")
     print((r.stdout + r.stderr)[-500:])
 
@@ -49,6 +50,39 @@ if QUE == "portada":
            "A spontaneous escape weekend in the city, NOT a wedding night: no rose petals, no bathrobes, no candles, "
            "no bridal details. Keep exactly the same camera framing, room and furniture as image 1.")
     nb(f"{KEEP} {WHO} {ACT} {ANAT} {NAT}", [R + "fondo-505.jpg"], R + f"portada-{SUF}.png")
+
+elif QUE == "portada2":
+    # ⭐ Ronda 4 (Eli 29-09): «la pareja se ve extraña, debe ser realista y una foto actual de
+    # sesión de habitación mejor lograda». Se cambia la base por `sep_26-476` (king con banqueta y
+    # ventanal con sol de tarde, sesión SEP 2026, sin usar) y la pareja se pide en registro de
+    # FOTO DE SESIÓN: luz y color de la foto original, sin atardecer pintado ni naranja.
+    O = Image.open("raw/hilton/sesion-sep2026/alta/sep_26-476.jpg")
+    w, h = O.size
+    cw = int(h * 4 / 5)
+    x0 = int(w * 0.42) - cw // 2          # ventana + cama, sin el mueble del minibar
+    O.crop((x0, 0, x0 + cw, h)).resize((2400, 3000), Image.LANCZOS).save(R + "fondo-476.jpg", quality=94)
+    WHO = ("Add ONE real couple in their early thirties, Chilean, ordinary attractive people (not models): she has "
+           "shoulder-length dark brown hair loosely tucked behind one ear, he has short dark brown hair and a short "
+           "neat beard. Simple weekend clothes with real fabric texture and natural wrinkles: she wears a cream "
+           "fine-knit sweater and light blue jeans, he a navy crewneck sweater and grey trousers, white sneakers.")
+    ACT = ("They sit close together on the leather bench at the foot of the bed, both seated fully on the bench "
+           "cushion, feet flat on the carpet, turned slightly toward each other, clinking two flutes of sparkling wine "
+           "held at chest height, looking at each other with soft natural smiles, mid-conversation. On the right "
+           "bedside table, a small silver ice bucket with a sparkling wine bottle. Keep the real afternoon daylight "
+           "of image 1: the soft sun coming through the sheer curtain and the lamps on, same colours and same muted "
+           "neutral grading — do NOT add an orange sunset, do NOT warm or saturate the image. People at correct scale "
+           "for the bench and the bed. A spontaneous city escape, NOT a wedding night: no rose petals, no bathrobes, "
+           "no candles, no bridal details. Keep exactly the same camera framing, room and furniture as image 1.")
+    REAL = ("Photographic realism is the priority: it must look like an unretouched frame from the same professional "
+            "hotel photo session, shot on a full-frame camera with a 24mm lens at f/5.6, natural skin with pores and "
+            "slight imperfections, no plastic or painted look, no illustration, no HDR, no glow, no cinematic colour "
+            "grading, faces sharp and proportionate to the bodies.")
+    nb(f"{KEEP} {WHO} {ACT} {ANAT} {NAT} {REAL}", [R + "fondo-476.jpg"], R + f"portada2-{SUF}.png")
+
+elif QUE == "subir2":
+    Image.open(R + f"portada2-{SUF}.png").convert("RGB").resize((2250, 2813), Image.LANCZOS).save(
+        "public/assets/hilton/dt/oct3/er-portada.jpg", quality=92)
+    print("ok er-portada.jpg (ronda 4)")
 
 elif QUE == "subir":
     # La variante elegida deja las caras a la altura del titular (y≈0,31). Sobra alfombra

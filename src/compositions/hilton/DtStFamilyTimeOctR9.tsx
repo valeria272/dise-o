@@ -83,7 +83,8 @@ const FOTOS = [
 ] as const;
 /** La cortina: fotogramas que tarda y ancho del borde difuminado. */
 const CORTINA = 22;
-const BORDE = 100;  // con 260 se montaban las dos familias en el borde
+const BORDE = 100;
+const DESENFOQUE = 22;  // px sobre la foto de 1440: pico en el cruce de la cortina  // con 260 se montaban las dos familias en el borde
 
 /**
  * Ronda 7: «Días más largos» dura menos (~2 s) y, cuando entra «¡El momento exacto…»,
@@ -121,11 +122,16 @@ const FotoFija: React.FC<{i: number}> = ({i}) => {
   const mascara = i === 0 || p >= 1 ? undefined : `linear-gradient(90deg, #000 ${borde - BORDE}px, transparent ${borde}px)`;
   // se asienta desde la izquierda: el hueco que deja queda del lado aún tapado por la cortina
   const empuje = -(1 - p) * 50;
+  // Ronda 9 (QA 29-09): con la familia en otro lugar en cada foto, en el cruce se leía un
+  // niño DE MÁS (el del lobby parado junto a la mesa, el del desayuno junto a la cama).
+  // Las dos fotos se desenfocan en la cortina: nadie de la otra foto se lee nítido.
+  const q = sig ? interpolate(f, [sig.desde, sig.desde + CORTINA], [0, 1], clamp) : 0;
+  const desenfoque = Math.max((1 - p) * DESENFOQUE, Math.sin(Math.min(q, 1) * Math.PI / 2) * DESENFOQUE);
   return (
     <AbsoluteFill style={{WebkitMaskImage: mascara, maskImage: mascara}}>
       <Img
         src={staticFile(e.src)}
-        style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transform: `translate(${empuje}px, ${e.y}px) scale(${z * e.s})`}}
+        style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transform: `translate(${empuje}px, ${e.y}px) scale(${z * e.s})`, filter: desenfoque > 0.3 ? `blur(${desenfoque}px)` : undefined}}
       />
     </AbsoluteFill>
   );

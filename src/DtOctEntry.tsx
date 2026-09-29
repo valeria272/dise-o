@@ -20,6 +20,7 @@ import {
   DtStFamilyTimeOctVideoGrafica,
   DtStFamilyTimeOctVideoGuia,
 } from './compositions/hilton/DtStFamilyTimeOct';
+import {DtStFamilyTimeOctR9, DtStFamilyTimeOctR9Grafica} from './compositions/hilton/DtStFamilyTimeOctR9';
 import {DtStFamilyTimeOctR8, DtStFamilyTimeOctR8Grafica, DtStFamilyTimeOctR8Guia} from './compositions/hilton/DtStFamilyTimeOctR8';
 import {DtStFamilyTimeOctR6, DtStFamilyTimeOctR6Grafica, DtStFamilyTimeOctR6Guia} from './compositions/hilton/DtStFamilyTimeOctR6';
 import {DtFtOpinionOct, DtFtOpinionOctGuia} from './compositions/hilton/DtFtOpinionOct';
@@ -41,6 +42,8 @@ const Raiz: React.FC = () => (
       <Composition id="DT-A-Oct-FamilyTime-Video-Guia" component={DtStFamilyTimeOctVideoGuia} {...animada} />
       <Composition id="DT-A-Oct-FamilyTime-Video-Grafica" component={DtStFamilyTimeOctVideoGrafica} {...animada} />
       {/* ronda 8 (28-09): familia completa (fotos expandidas) + cortina en vez de fundido */}
+      <Composition id="DT-A-Oct-FamilyTime-R9" component={DtStFamilyTimeOctR9} {...animada} />
+      <Composition id="DT-A-Oct-FamilyTime-R9-Grafica" component={DtStFamilyTimeOctR9Grafica} {...animada} />
       <Composition id="DT-A-Oct-FamilyTime-R8" component={DtStFamilyTimeOctR8} {...animada} />
       <Composition id="DT-A-Oct-FamilyTime-R8-Guia" component={DtStFamilyTimeOctR8Guia} {...animada} />
       <Composition id="DT-A-Oct-FamilyTime-R8-Grafica" component={DtStFamilyTimeOctR8Grafica} {...animada} />

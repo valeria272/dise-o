@@ -1,3 +1,12 @@
+## 2026-09-29 (tarde, 2) — Eli (Windows) · DT ST 01-10 Family Time, RONDA 9 con la familia aprobada + TODO octubre DT subido a Drive
+
+**Eli:** «hay fotos que no reemplazaste… desapariciones de rostro, de narices… recuerda que ya tenemos nuestro personaje para Family Time» · «sube a Drive todo de octubre por semanas, el carrusel no está arriba».
+**Diagnóstico:** en Drive estaba la r7 (almohadas: caras tapadas por las almohadas, papá cortado en el borde); en la r8 el papá y el niño del desayuno NO eran papa-A / nino-A.
+**Qué se hizo:** las 3 escenas (lobby → desayuno → habitación) re-rendidas ENTERAS con Nano Banana Pro 4K 9:16, con la escena de la r8 como imagen 1 y las 4 hojas y las 4 caras aprobadas (`scripts/dt-oct-ft-r9.py`, 2 variantes c/u; elegidas lobby-b, desayuno-c, hab-b). ⚠️ Con las caras de la r8 a la vista, NB copió al papá y al niño viejos: el desayuno se rehízo con las cabezas BORRONEADAS en la imagen 1 y así la identidad salió de las hojas. Revisadas a 1:1 (manos, pies, sillas, nadie cortado). Composición `DT-A-Oct-FamilyTime-R9` (misma gráfica y tiempos de la r8). El ffmpeg interno de Remotion está bloqueado por Windows: secuencia PNG con `--sequence` + ffmpeg de imageio (MP4 crf 16; GIF 720×1280 a 12,5 cps, sin difuminado, 45 MB).
+**✅ SUBIDO y verificado por carpeta:** S1/DT/STS Family Time MP4 (reemplazado) + GIF · S2/DT/FEED `C1 S2 DT n°1–2` (Escapada) · S4/DT/STS Coworking r3 MP4 + GIF (`dt-oct2-subir-drive.py`).
+**Dónde quedó:** `out/hilton/dt/oct/_rondas/r9/` · máster en `out/hilton/dt/entrega-oct/` · crudos `raw/hilton/dt/oct/r9/`.
+**Abierto:** si en S1/DT/STS aparece un GIF duplicado (el de la r7 se subió por otra vía y el token no lo ve), borrar el viejo → Eli · el Coworking se subió en r3 sin OK explícito, por el pedido «sube todo» → Eli.
+
 ## 2026-09-29 (cierre 2) — Eli (Windows) · BETWEEN: referencias de animación para futuros reels
 
 **Qué se hizo:** Eli pasó 4 pines de Pinterest (videos) y 1 imagen editorial «coming soon» con la indicación «tómalos de ref a futuro de animación». Se bajaron con Chrome headless, se sacaron tiras de 8 fotogramas y se describió qué hace cada una.

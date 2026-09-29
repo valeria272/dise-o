@@ -1,3 +1,10 @@
+## 2026-09-29 — Elisabet Soto «Eli» (Windows, con Claude) · CIERRE DT
+
+**Qué se hizo:** diff de la grilla DT octubre: sin cambios desde el 28-09 20:08Z; la única pieza nueva para diseño era el carrusel Escapada Romántica 07-10. Se diseñó en 3 rondas y quedó **APROBADO** («okey, guarda este resultado»): la portada, con la pareja IA sobre la habitación real `sep_26-505` y el techo expandido, y la lámina de adicionales con el nombre del programa como logotipo de texto. Receta escrita y reglas R-104–R-109 cosechadas. Windows empezó a bloquear `remotion.exe`: se hizo `scripts/still-por-chrome.py` para rendir stills.
+**Dónde quedó:** máster `out/hilton/dt/entrega-oct3/C1 S2 DT n°1–2.png` · código, fotos y receta en git (commit 4ea28f0) · revisión https://claude.ai/artifact/9oZT3AsCsYwnrGgmTxYfSi. **NO subido a Drive.**
+**Qué sigue:** subir el carrusel a S2/DT/FEED cuando Eli confirme el nombre. Esperan la revisión de Eli la ST 01-10 Family Time r8 y el Coworking r3.
+**Abierto:** foto real del sunset de QB (lámina 2 generada) → Eli · el nombre de la opinión Expedia (ahora 09-10) → Eli · `remotion.exe` bloqueado por el Control de aplicaciones de Windows: sin render de VIDEO/GIF en esta máquina → quien administre el equipo · ST 27-10 Noche de Bodas en REVISAR CONTENIDO → contenido.
+
 ## 2026-09-29 (mediodía) — Eli (Windows) · DT FEED 07-10 carrusel ESCAPADA ROMÁNTICA — ✅ APROBADO (ronda 3), GUARDADO, NO SUBIDO A DRIVE
 
 **Eli:** «okey, guarda este resultado y cómo lo realizaste».

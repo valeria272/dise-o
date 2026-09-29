@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Valeria Traverso (TV y piezas del estudio); el feed lo diseña Luis Piano, del lado del cliente, y su feed manda** · Aprueba: **Gonzalo (cliente; decide qué sale a TV)** · Estrategia de marca: **Diana Meinhardt (Brand Soul)**
-> Última cosecha: **2026-09-28** · Cosechas: **3**
+> Última cosecha: **2026-09-29** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -115,6 +115,9 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 - Obra sin commitear al 22-09 (spot y full con Instagram): mientras no entre al repo nadie más la reproduce.
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`d5dee3f`) es el mismo commit que ya cosechó el reel vertical del spot (ver la entrada de abajo, R-21 a R-25). Se lista a sí mismo porque tocó `BITACORA.md`/`CLAUDE.md` y `APRENDIZAJES.md` en el mismo commit. El mismo commit también toca `clients/mascenter/`, ya revisado por separado: nada se mezcló entre las dos marcas.
 
 ### 2026-09-28 — Diego Aguilar (con Claude) · Reel vertical del spot «UNA SOLA GOTA LO CAMBIA TODO»
 - nuevo **R-21…R-25** · las cinco correcciones de Diego sobre la v1/v2 del vertical (no cortar producto ni escena → regenerar; monja con escena completa; transiciones cuadro a cuadro; logo del manual y entero; cierre sin choques).

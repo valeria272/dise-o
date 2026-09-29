@@ -12,7 +12,7 @@
 > grilla con proveedores, SPC), **[CLICK]** (el portal B2B) o **[AMBAS]**.
 >
 > Criterio: **Paulina Bustamante** (grilla y paid; Serena Abarca produce parte del paid y las ARIEL) · Aprueba: **Paulina valida; el cliente, vía Carlos Figueroa (cuenta/contenido)**
-> Última cosecha: **2026-09-28** · Cosechas: **4**
+> Última cosecha: **2026-09-29** · Cosechas: **5**
 
 ## 1. Quién es el cliente
 
@@ -194,6 +194,9 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - LinkedIn 26/10 **Capacitaciones**: la grilla dice «PENDIENTE: confirmar tema, proveedor y sucursal». → Carlos.
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`8f2d539`) es el mismo commit que ya cosechó los reels de octubre (ver la entrada de abajo, R-55 a R-62). Se lista a sí mismo porque tocó `BITACORA.md`/`CLAUDE.md` y `APRENDIZAJES.md` en el mismo commit.
 
 ### 2026-09-28 — Paulina Bustamante · reels de grilla de octubre (12 comentarios en 2 rondas) + LinkedIn aprobado
 - nuevo **R-55** (titular del reel derecho), **R-56** (cápsula 96), **R-57** (lockup Click todo el video), **R-58** (plano largo → dos escenas + texto normal), **R-59** (secundarios ≤ 2 filas, sin palabra sola, ≥ 300 px), **R-60** (sin portadas), **R-61** (reel promocional = metraje real, sin IA), **R-62** (Seba sólo mostrando).

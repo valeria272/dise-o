@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza Lizana «Coni»** (diseño) · Aprueba: **la ejecutiva de cuentas de CAVA, dueña del brief mensual** (ver §8: falta nombre y confirmar si aprueba ella o la viña)
-> Última cosecha: **2026-09-28** · Cosechas: **3**
+> Última cosecha: **2026-09-29** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -102,6 +102,7 @@ son piezas **publicadas** de Coni, que son el estándar a replicar:
 
 ## 8. Preguntas abiertas
 
+- **Reconectar el conector de Google Drive de claude.ai** antes de retomar el Cyber Day 2026 (Settings → Connectors, abrir chat nuevo): el 28-09 se cayó la sesión y Coni no pudo leer el brief (ni confirmar en qué se diferencian el KV VIP y el KV Cyber Público). → quien retome CAVA.
 - **¿Quién aprueba del lado del cliente?** Sólo aparece «la ejecutiva de cuentas» como dueña del brief; falta su nombre y si la viña revisa aparte. → Valeria / KAM.
 - **Precios de septiembre 2026 sin confirmar:** brief 5 (50 % OFF, el brief decía $16.640, se usó $9.245), brief 8 (40 %, $7.830 → $11.754) y brief 9 (40 %, $14.370 → $21.564). → ejecutiva de CAVA.
 - **¿Qué leyenda va cada mes** (embarazo o menores)? ¿Tiene la ADVERTENCIA un tamaño mínimo legal? → ejecutiva de CAVA.
@@ -113,6 +114,11 @@ son piezas **publicadas** de Coni, que son el estándar a replicar:
 - Falta un **editable empaquetado de mailing** para cerrar la geometría fina del legal y la barra dorada sobre 1080. → Coni.
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 — Claude nocturno (nube) · sesión de Coni bloqueada por el conector de Drive
+- sin aprendizajes nuevos de cliente: el 28-09 Coni intentó abrir el KV del Cyber Day 2026 (son dos piezas, VIP y Cyber Público) pero el conector de Google Drive de claude.ai tenía la sesión expirada y no se pudo leer el brief — no se produjo nada — _Coni, BITACORA.md 28-09-2026_.
+- nueva pregunta abierta (§8): reconectar el conector antes de retomar el Cyber Day 2026.
+- nota técnica, no de marca (candidata a regla del estudio, ver el reporte de la cosecha): el token OAuth del estudio autentica como `valeria@copywriters.cl` pero su alcance es `drive.file` — sólo ve lo que la propia app creó — y por eso no sirve para leer el Drive de la agencia; sólo el conector MCP de claude.ai lo ve. El mismo día le pasó lo mismo a la sesión de Más Center — _Coni, BITACORA.md 28-09-2026_.
 
 ### 2026-09-28 — Claude (con Coni) · orden del Drive, sin trabajo de diseño
 - sin aprendizajes nuevos del cliente: hoy no hubo piezas ni comentarios de CAVA. Sólo se ordenó el Drive (`VERSIONES ANTERIORES/` y `ARCHIVOS DE TRABAJO/` en `DISEÑO ia › PRUEBA`) y se vació `out/cava`.

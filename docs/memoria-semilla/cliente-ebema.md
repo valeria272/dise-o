@@ -1,6 +1,6 @@
 ---
 name: cliente-ebema
-description: "EBEMA — cerebro del cliente: 62 reglas firmes, última cosecha 2026-09-28. Generado desde clients/ebema/APRENDIZAJES.md; leerlo antes de diseñar para ebema"
+description: "EBEMA — cerebro del cliente: 62 reglas firmes, última cosecha 2026-09-29. Generado desde clients/ebema/APRENDIZAJES.md; leerlo antes de diseñar para ebema"
 metadata:
   type: project
 ---

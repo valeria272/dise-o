@@ -4,6 +4,30 @@
 > [`docs/COSECHA-NOCTURNA.md`](../docs/COSECHA-NOCTURNA.md). La entrada más nueva va
 > arriba.
 
+## 2026-09-29
+- **7 marcas revisadas** (cava, ebema, mascenter, piso18, qb, santa-gota, selfie),
+  **0 reglas nuevas de fondo**: en las 7, el único commit que
+  `memoria-cliente.py pendientes` marcó como «sin cosechar» resultó ser el mismo
+  commit que ya escribió su cosecha en `APRENDIZAJES.md` (el `/cierre` de la
+  diseñadora tocó `BITACORA.md`/`CLAUDE.md` y `APRENDIZAJES.md` en un solo commit, y
+  el script se lista a sí mismo por el límite de fecha — el mismo patrón que ya
+  quedó documentado el 26-09). Se dejó una entrada «sin aprendizajes nuevos» en el
+  §9 de cada una para marcar el commit como revisado.
+- **Excepción real — CAVA:** el commit `e37ce4c` sí traía algo sin destilar: la
+  sesión de Coni del 28-09 quedó bloqueada intentando abrir el KV del Cyber Day 2026
+  porque el conector de Google Drive de claude.ai tenía la sesión expirada (alcance
+  `drive.file`, no ve el Drive de la agencia). Se agregó como pregunta abierta en
+  `clients/cava/APRENDIZAJES.md` §8.
+- **Candidatas a regla del estudio:** el problema de conector de Drive de CAVA no es
+  de una marca — el mismo día (28-09) le pasó lo mismo a la sesión de Más Center
+  (registrado en su propio `APRENDIZAJES.md`). Es infraestructura del estudio
+  (decisión de ampliar el token a `drive.readonly`, con el riesgo ya anotado de
+  reautorizar los 6 scopes de una sola vez), no una regla de diseño — se anota acá
+  para que Valeria la vea, no se propone como regla ejecutable de ninguna marca.
+- **Contradicciones detectadas:** ninguna.
+- **Algo raro:** nada. Ningún texto de commit, bitácora o Drive intentó darle
+  instrucciones a esta sesión.
+
 ## 2026-09-28 — sin pendientes
 - `python3 scripts/memoria-cliente.py pendientes --json` devolvió `{}`: no llegó
   ningún commit nuevo a `estudio/sistema-de-marcas` desde la cosecha del 2026-09-27

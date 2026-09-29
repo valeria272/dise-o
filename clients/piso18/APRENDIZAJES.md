@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
-> Última cosecha: **2026-09-28** · Cosechas: **7**
+> Última cosecha: **2026-09-29** · Cosechas: **8**
 
 ## 1. Quién es el cliente
 
@@ -157,6 +157,9 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - La grilla reordenó 3 piezas ya entregadas (Fechas 2027 09→06-10 · Arreglos 06→09-10 · Tu próxima celebración 16-10 S3 → 30-10 S5, contenido idéntico). En Drive siguen con la fecha vieja y el portal levanta por nombre. ¿Quién renombra? → Eli / KAM (script `scripts/p18-oct-reordenar.py`, sin correr)
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`2e2cf62`) es el mismo commit que ya cosechó la revisión de la grilla de octubre (ver la entrada de abajo, R-50). Se lista a sí mismo porque tocó `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit.
 
 ### 2026-09-28 (noche) — Elisabet Soto con Claude · revisión de la grilla de octubre, sin piezas nuevas
 - **Sin diseño:** todo lo que está en OK ya estaba entregado y aprobado. Siguen fuera: FEED 20-10 cumpleaños (PENDIENTE POR CLIENTE, ahora «POST ANIMADO» con una pregunta de Carlos sin responder), ST 08-10 (PENDIENTE), ST 13/15/16/19/21/30-10 (EN REVISIÓN) y el reel del Día del Chef (sin estado).

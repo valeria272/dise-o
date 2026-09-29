@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de marca: Valeria Traverso)** · Aprueba: **Sebastián Córdova (paid) · Francesca Pavissich (landings y presentación comercial)**
-> Última cosecha: **2026-09-28** · Cosechas: **5**
+> Última cosecha: **2026-09-29** · Cosechas: **6**
 
 ## 1. Quién es el cliente
 
@@ -177,6 +177,9 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`a7cb1aa`) es el mismo commit que ya cosechó la grilla IG de octubre completa (ver la entrada de abajo, R-48 a R-58). Se lista a sí mismo porque tocó `BITACORA.md`/`CLAUDE.md` y `APRENDIZAJES.md` en el mismo commit.
 
 ### 2026-09-28 (noche) — Diego Aguilar (con Claude) · grilla IG de octubre completa (menos el reel del 19-10)
 - Piezas: 01-10 ruta cafetera · 04-10 día de la mascota (2 rondas) · 08-10 Halloween checklist (3 rondas: portada inmersa + sin rótulos) · 14-10 Algarrobal · 20-10 panoramas de Halloween ilustrado · 26-10 Mercado Campesino (2 rondas). Todas en «10. OCTUBRE».

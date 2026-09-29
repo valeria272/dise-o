@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza Lizana «Coni»** (ver §8: Diego Aguilar también subió piezas de septiembre) · Aprueba: **el cliente vía la KAM Constanza Olivares** (contactos Drive: maria@selfie.cl, plillo@hairexpress.cl)
-> Última cosecha: **2026-09-28** · Cosechas: **5**
+> Última cosecha: **2026-09-29** · Cosechas: **6**
 
 ## 1. Quién es el cliente
 
@@ -135,6 +135,9 @@ No hay registro de una aprobación del cliente sobre piezas del estudio. Lo que 
 - **Reel Biotop 700/911, ronda 1** (23,5 s, re-subido al mismo nombre en `SELFIE › PRUEBA` el 28-09): ¿aprobado o viene ronda 2? → Coni.
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`af5eecf`) es el mismo commit que ya cosechó la ronda 2 del reel Biotop (ver la entrada de abajo). Se lista a sí mismo porque tocó `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit. El mismo commit también toca `docs/memoria-semilla/cliente-cava.md` (regeneración de memoria, no cosecha de marca).
 
 ### 2026-09-28 (noche) — Claude (con Coni) · ronda 2 del reel Biotop + versión con cursor
 - **R-21 ✔×2** (producto entero también en animación) · **R-25 ✔×3, probada** (el reel heredó el sistema de las estáticas).

@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-09-28** · Cosechas: **10**
+> Última cosecha: **2026-09-29** · Cosechas: **11**
 
 ## 1. Quién es el cliente
 
@@ -200,6 +200,9 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - ¿La numeración de posts de feed de Eli es por semana («Post n°1 S2») o correlativa? Se entregó por semana → **Eli**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`5602e8a`) es el mismo commit que ya cosechó las rondas 9–13 de octubre (ver la entrada de abajo, R-56 a R-65). Se lista a sí mismo porque tocó `BITACORA.md`/`CLAUDE.md` y `APRENDIZAJES.md` en el mismo commit.
 
 ### 2026-09-28 (cierre tarde) — Claude con Eli · STS r4–r8 a Drive + lo nuevo de la grilla, rondas 9 a 13
 - **Reglas nuevas (Eli, verbatim en la fuente):** R-56 (tragos del AYCD; piscola en vaso alto) · R-57 (cambiar sólo lo pedido) · R-58 (el texto no tapa las manos) · R-59 (las rayas de Eli son la medida) · R-60 (íconos de línea en recuadros tipo botón) · R-61 (Bell en mayúscula + Raleway; ¿? nunca en Brushwell) · R-62 (lógica física: flores en la palma) · R-63 (torta clásica y bonita) · R-64 (limpiar la mesa local, sin IA, protegiendo el plato) · R-65 (marco punteado de septiembre, medido).

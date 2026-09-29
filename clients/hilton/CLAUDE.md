@@ -2822,6 +2822,21 @@ celda** (no salen en el CSV vivo: se leen en `xl/comments*.xml` del xlsx bajado 
 
 ## ⭐⭐⭐ BETWEEN — LA CARTA OFICIAL 2026 (mañana/almuerzo): 4 PROPUESTAS APROBADAS (28-09-2026)
 
+> ⭐ **R5 (29-09-2026) manda sobre la escala de abajo** — aprobada por Eli («la A quedó perfecta»):
+> - **Jerarquía que se VE (R-149):** título principal (Menú / tramo) > **sección** en Raleway
+>   **ExtraBold** 13 pt (A) · 12 pt (B, D), unos puntos sobre el plato y más gruesa; si no cabe,
+>   dos líneas, nunca más chica (C: Brushwell 23) > **plato** Bold 9,5 caja alta > **descripción**
+>   Regular 8,5 caja baja, lo más chico del cuerpo.
+> - **Impresión (R-150):** nada bajo **8 pt**; nota itálica 8,5; lo calado (beige sobre café) nunca
+>   fino. Leyenda del pie en dos líneas, cortando sólo en «·».
+> - **D portada:** sin etiqueta «MENÚ» → UN título «Menú» en Brushwell 54 pt, sólo la M mayúscula.
+> - **Sangrado 3 mm por lado** (R-147) y perfil **Coated FOGRA39** (R-148).
+> - **Editable (R-146):** estilos de párrafo con nombre, «Plato ⇥ $precio», muestras globales. Se
+>   arma **hoja por hoja** con `python scripts/between-carta-r5-por-hoja.py <A-D> <n>` — avisarle a
+>   Eli ANTES de usar Illustrator; el script nunca lo lanza. Diseño: `between-carta-oficial-r5.py`;
+>   datos: `between-carta-oficial-editable-r5.py`; Drive: `between-carta-oficial-subir-r5.py` →
+>   `CARTA BETWEEN · R5 29-09` (`1CkdYQYwKVkfU5RL1oCnAoEt4zdWS-H3B`).
+
 Fuente: Word corregido del cliente + 3 refs en Drive `1gAZNJkaw5SKAHEmLo1yIctD-MNCE1p6v`.
 Entrega en `CARTA BETWEEN · EDITABLES APROBADOS 28-09` (`1T1yRpZ_ctjfq-gDWDmNwUPLiSUIMaxap`).
 

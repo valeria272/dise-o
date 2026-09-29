@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-29** · Cosechas: **28**
+> Última cosecha: **2026-09-29** · Cosechas: **29**
 
 ## 1. Quién es el cliente
 
@@ -178,8 +178,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-92** · [BW] **Carta: filetes y ejes delgados** (0,15 mm), no tienen que destacar — _Eli, 28-09-2026, r2_ · ✔×1
 - **R-93** · [BW] **Carta: la secuencia se respeta hoja a hoja** (orden del Word, columna a columna), sin letras cortadas por la caja y sin palabra sola en la última línea de un párrafo — _Eli, 28-09-2026, r3_ · ✔×1
 - **R-94** · [BW] **Editable de carta = UN .ai por opción en CMYK**, con una mesa de trabajo y una capa por hoja en orden («01 · Portada» arriba; dentro Texto · Logo · Ilustraciones · Gráfica · Fondo) + PDF de calidad 300 ppp con las ilustraciones vectorizadas — _Eli, 28-09-2026 («un Illustrator para todas… capa 1 slide 1 portada»; «tienes que estar en CMYK»)_ · ✔×1 · ⚠️ ampliada 2026-09-29, ver R-146 a R-148 (el .ai por opción no basta: tiene que ser fácil de corregir, con perfil y sangrado)
-- **R-146** · [BW] **El editable de una carta tiene que ser FÁCIL DE CORREGIR**: el texto por bloque con estilos de párrafo con nombre (Sección, Plato, Descripción…), plato y precio en la misma línea con tabulador a la derecha, mayúsculas como atributo; nunca una línea = un texto suelto — _Eli, 29-09-2026 («lo que veo que al momento de corregir va a ser muy difícil, debe ser fácil»)_ · ✔×0 (R5 en armado)
-- **R-147** · [BW] **Carta para impresión Y digital: 3 mm de sangrado** fuera de la hoja en todo lo que toca el borde (fondo, papel, filetes, ilustraciones de esquina) «para que no se vea el límite ni quede con bordes sin color»; y **tamaños mínimos que sirvan para los dos** — _Eli, 29-09-2026_ · ✔×0
+- **R-146** · [BW] **El editable de una carta tiene que ser FÁCIL DE CORREGIR**: el texto por bloque con estilos de párrafo con nombre (Sección, Plato, Descripción…), plato y precio en la misma línea con tabulador a la derecha, mayúsculas como atributo; nunca una línea = un texto suelto — _Eli, 29-09-2026 («lo que veo que al momento de corregir va a ser muy difícil, debe ser fácil»)_ · ✔×1 (repetida 29-09 noche: «verifica que esté todo bien armado en los editables para yo después poder hacer ajustes de a poco»; R5 en armado)
+- **R-147** · [BW] **Carta para impresión Y digital: 3 mm de sangrado** fuera de la hoja en todo lo que toca el borde (fondo, papel, filetes, ilustraciones de esquina) «para que no se vea el límite ni quede con bordes sin color»; y **tamaños mínimos que sirvan para los dos** — _Eli, 29-09-2026_ · ✔×1 (repetida 29-09 noche: «0,3 cm por cada lado, en total 0,6… al guardar a PDF no quede bordes de blanco»)
 - **R-149** · [BW] **Jerarquía de una carta en 4 escalones que se VEN**: título principal (Menú / tramo, el más grande) > **sección** unos puntos sobre el plato y **más gruesa** (Raleway ExtraBold 12–13 pt, o Brushwell 23 en la C; si no cabe, dos líneas, nunca más chica) > plato (Bold 9,5, caja alta) > descripción (la más chica, **Regular** 8,5, caja baja) — _Eli, 29-09-2026 («los títulos siempre son unos puntos más que los párrafos… no se nota Sándwiches y tostadas, tienen que engrosar»)_ · ✔×0
 - **R-150** · [BW] **Carta impresa: nada bajo 8 pt**, y lo calado (beige sobre café) nunca en peso fino; la nota en cursiva a 8,5. El título «Menú» en Brushwell, **sólo la M en mayúscula**, una vez y diagramado (no etiqueta en rectángulo) — _Eli, 29-09-2026 («verifica el mínimo… no puede quedar muy pequeño o muy fino»; «quita el menú… que diga menú en una tipografía atractiva»)_ · ✔×0
 - **R-148** · [BW] **Perfil de color de la carta = el de las cartas anteriores de Between: CMYK Coated FOGRA39 (ISO 12647-2:2004)**, asignado explícitamente al documento — _Eli, 29-09-2026 («verifícalo en los editables de cartas anteriores el perfil del color»); medido en «Carta 2026 Between – Mundial.ai»; las cartas de QB están en RGB sRGB y NO se copian_ · ✔×0
@@ -271,6 +271,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **X-73** · [BW] Reel 02-10: «VA POR» solo en su línea, se leía «VAPOR» — _Eli, 29-09-2026: 1 ronda_
 - **X-74** · [DT] Octubre entero con **letras espaciadas** (antetítulo 0,34 em, «EN PAREJA →» 0,16, píldoras en versales espaciadas, «IVA INCLUIDO» 0,16) y **títulos de historia a alturas distintas** (versal en 416/488/495/518 y dos dentro de un panel; en la Family Time animada el título saltaba 72 px entre escenas) — _Constanza Lizana, 29-09-2026: 1 ronda, 7 piezas corregidas_ (→ R-132, R-133, R-134)
 - **X-76** · [DT] Pendón cookie con la 3-79 **rehecha con IA** (cara nueva calzada en la boca, mano en pinza, franja de la persona regenerada en 4K, rondas r4–r7, aprobada como «quedó perfecto»): Eli volvió a la **foto original** sin IA — _Eli, 29-09-2026, r8: 4 rondas de IA descartadas_ (→ R-137)
+- **X-78** · [BW] Carta R5 opción D: la etiqueta «MENÚ» en rectángulo en la portada («ese texto está de más… ya se entiende») y **secciones que no se distinguían del plato** (sección 9–10 pt Bold vs plato 9,5 Bold: «no se nota Sándwiches y tostadas, tienen que engrosar»); además textos a 7,5 pt para imprenta — _Eli, 29-09-2026: 1 ronda_ (→ R-149, R-150)
 - **X-77** · [BW] Editables de la carta R4 (28-09): texto una línea = un objeto (≈400 por hoja), sin sangrado y sin perfil de color asignado — «al momento de corregir va a ser muy difícil» — _Eli, 29-09-2026: se rehacen las 4 opciones_
 - **X-75** · [DT] Ronda de Constanza aplicada con la norma a 488: el título de la Family Time **tapaba la cabeza de la mamá**; la flecha fina y el legal de la feriado ER+FT **no se leían** sobre la foto; el título de «escápate en pareja» **salía del recuadro**; y en Honors el ajuste (30 px) **no se notaba** («quedó exactamente igual») — _Eli, 29-09-2026: 1 ronda, 6 piezas_ (→ R-134 a 440, R-135, R-136)
 - **X-60** · [DT] Pareja IA con **look pintado**: atardecer naranja agregado en la ventana, color saturado y cálido, piel y ropa de ilustración, posturas poco creíbles — «se ve extraña» — _Eli, 29-09-2026, portada Escapada 07-10, ya aprobada en r1–r3 y reabierta: 1 ronda (r4)_
@@ -392,6 +393,13 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 (cierre 11, carta R5 aprobada con ajustes) — Claude con Eli · 2 reglas nuevas [BW]
+- **Aprobado:** diseño R5 de la carta — «la A quedó perfecta», C «de las mejores», B bien; D con ajustes. PDF de diseño en Drive («CARTA BETWEEN · R5 29-09», md5 ✓).
+- **Reglas nuevas [BW]:** R-149 jerarquía título > sección (ExtraBold, unos puntos más) > plato > descripción Regular · R-150 nada bajo 8 pt en la carta impresa, lo calado nunca fino, «Menú» en Brushwell con sólo la M mayúscula.
+- **✔ subieron:** R-146 ✔×1 (editable fácil de corregir, repetida) · R-147 ✔×1 (0,3 cm de sangrado por lado, repetida).
+- **Rechazo:** X-78 etiqueta «MENÚ» en rectángulo + secciones indistinguibles del plato + 7,5 pt (1 ronda).
+- **Sigue abierto:** los .ai R5 (Illustrator cerrado; se arman hoja por hoja avisándole a Eli antes).
 
 ### 2026-09-29 (cierre 10, `/abrir BW` sin piezas) — Claude con Eli · sin aprendizajes nuevos
 - **Sin aprendizajes nuevos:** la sesión fue sólo apertura (pull, `/al-dia BW`); no hubo pieza, corrección ni comentario del cliente. Grilla BW OCT sin cambios y 0 comentarios en Drive. La carta R5 sigue sin .ai armado; R-146 a R-148 siguen en ✔×0.

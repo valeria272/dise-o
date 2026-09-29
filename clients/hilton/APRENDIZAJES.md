@@ -291,7 +291,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 ## 8. Preguntas abiertas
 
 - [BW] FEED 09-10 «Reúnete en Between» (aprobado y reemplazado 29-09): en Drive sigue como `BW FEED 05-10 Esa reunion podria ser un cafe.png` en S1/BW/FEED; ¿se renombra a «BW FEED 09-10 Reunete en Between» y se mueve a la semana del 09-10? → **Eli**
-- [BW] **Reels: Eli quiere conversar cómo mejorarlos** y va a pasar videos de referencia (29-09, tras aprobar el FEED 12-10). Antes del próximo reel de Between, preguntar si ya los mandó → **Eli**
+- [BW] ~~Reels: Eli va a pasar videos de referencia~~ ✅ **los mandó el 29-09** («tómalos de ref a futuro de animación»): 4 reels + 1 estática en `clients/hilton/referencias-animacion-bw/LEEME.md`. Falta conversar cuál usar en el próximo reel → **Eli**
 - [DT] Carrusel Escapada 07-10 (aprobado 29-09): ¿se sube a S2/DT/FEED como `C1 S2 DT n°1–2`? · ¿hay foto REAL de la terraza de QB al atardecer para reemplazar la mesa generada de la lámina 2? → Eli
 - [DT] Opinión Expedia: la grilla la movió del 10-10 al 09-10 y el archivo de Drive conserva la fecha vieja; ¿se renombra o se deja? → Eli
 - [BW] Carta oficial: ¿cuál de las 4 propuestas elige el cliente? · confirmar las erratas corregidas del Word (manquilla→mantequilla, Muffinn, Salmon, Cesar, Kuntsmann→Kunstmann, Founders Colection→Collection; precios todos con punto; «Elija 2 opciones» se dejó en usted) → cliente

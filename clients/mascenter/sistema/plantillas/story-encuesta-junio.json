@@ -1,0 +1,154 @@
+{
+ "fuente": "D:/DIEGO 2023/COPYWRITERS/MAS CENTER/JUNIO IFB/IFB JUNIO.ai",
+ "mesas": {
+  "18": {
+   "w": 1080.0,
+   "h": 1920.0,
+   "textos": [
+    {
+     "texto": "¿QUÉ ES LO QUE",
+     "fuente": "GothamRnd-Bold",
+     "cuerpo": 63.0,
+     "color": "#FFFFFF",
+     "base": 373.7,
+     "x0": 290.0,
+     "x1": 805.1
+    },
+    {
+     "texto": "MÁS VISITAS CUANDO",
+     "fuente": "GothamRnd-Bold",
+     "cuerpo": 63.0,
+     "color": "#FFFFFF",
+     "base": 443.7,
+     "x0": 208.3,
+     "x1": 886.7
+    },
+    {
+     "texto": "VIENES A MÁS CENTER?",
+     "fuente": "GothamRnd-Bold",
+     "cuerpo": 63.0,
+     "color": "#FFFFFF",
+     "base": 513.7,
+     "x0": 180.6,
+     "x1": 914.5
+    }
+   ],
+   "formas": [
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      437.8,
+      151.5,
+      480.6,
+      195.0
+     ],
+     "curva": false,
+     "puntos": 13
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      488.0,
+      137.7,
+      525.3,
+      195.0
+     ],
+     "curva": false,
+     "puntos": 15
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      538.0,
+      150.9,
+      571.7,
+      195.7
+     ],
+     "curva": true,
+     "puntos": 38
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      438.2,
+      205.8,
+      458.6,
+      228.9
+     ],
+     "curva": true,
+     "puntos": 30
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      581.9,
+      150.8,
+      642.9,
+      218.6
+     ],
+     "curva": true,
+     "puntos": 6
+    },
+    {
+     "color": "#FFFFFF",
+     "opacidad": 1.0,
+     "caja": [
+      578.4,
+      193.3,
+      616.8,
+      228.3
+     ],
+     "curva": true,
+     "puntos": 4
+    }
+   ],
+   "imagenes": [
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      1920.0
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      663.7
+     ]
+    },
+    {
+     "caja": [
+      -2.3,
+      -0.0,
+      1080.0,
+      1939.1
+     ],
+     "px": [
+      1536,
+      2752
+     ]
+    },
+    {
+     "caja": [
+      0.0,
+      0.0,
+      1080.0,
+      664.0
+     ],
+     "px": [
+      1080,
+      664
+     ]
+    }
+   ]
+  }
+ }
+}

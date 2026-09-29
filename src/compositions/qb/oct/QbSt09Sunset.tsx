@@ -52,6 +52,12 @@
  *   márgenes de Instagram y paid» y «oscurece un poco hacia arriba para leer
  *   Sunset QB». Legal de 14 a 19 (el bloque de abajo sube 30 px para que cierre
  *   en 1580); velo de arriba de 560 px al 45 % a 820 px al 80 %.
+ *
+ * ⭐ RONDA DE CONSTANZA (jefa de diseño, grilla 29-09): «aquí en la letra chica se
+ *   ve raro con la palabra beneficios solita abajo, porfis no debemos palabras
+ *   solitas» → el legal se corta por frase en dos líneas parejas:
+ *   «*Imagen referencial. *Sujeto a consumo de alimentos.» /
+ *   «*Promoción no acumulable con otras ofertas y beneficios.» Mismo cuerpo y lugar.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -66,7 +72,8 @@ const QB_ST09_DATA: Record<string, Record<string, string>> = {
   medida: "DE 16:00 A 21:00 HRS",
   texto: "Cocktails seleccionados al mejor precio",
   bajada: "Tu after office, a otro nivel",
-  legal: "*Imagen referencial. *Sujeto a consumo de alimentos. *Promoción no acumulable con otras ofertas y beneficios.",
+  legal: "*Imagen referencial. *Sujeto a consumo de alimentos.",
+  legal2: "*Promoción no acumulable con otras ofertas y beneficios.",
   },
 };
 
@@ -107,6 +114,6 @@ export const QbSt09Sunset: React.FC = () => (
     </Linea>
     {/* r6 (Eli): «aumenta un poco el tamaño de los legales… no se ve nada». De 14 a 19,
         en dos líneas que cierran en y≈1578, al borde de la zona segura de paid (1580) */}
-    <Legal top={1526} cuerpo={19}>{QB_ST09_DATA.pieza.legal}</Legal>
+    <Legal top={1526} cuerpo={19}>{QB_ST09_DATA.pieza.legal}<br />{QB_ST09_DATA.pieza.legal2}</Legal>
   </AbsoluteFill>
 );

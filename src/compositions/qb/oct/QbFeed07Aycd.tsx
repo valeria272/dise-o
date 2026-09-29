@@ -42,7 +42,8 @@ const QB_FEED07_DATA: Record<string, Record<string, string>> = {
   antetitulo: "TODOS LOS MARTES",
   precio: "POR $13.990",
   horario: "18:00 a 21:00 hrs",
-  legal: "*Imagen referencial. *Sujeto a consumo de alimentos. *Promoción no acumulable con otras ofertas y beneficios.",
+  legal: "*Imagen referencial. *Sujeto a consumo de alimentos.",
+  legal2: "*Promoción no acumulable con otras ofertas y beneficios.",
   },
 };
 
@@ -64,7 +65,8 @@ export const QbFeed07AycdG2: React.FC = () => {
       <NombreAycd top={262} cuerpo={112} />
       <BloqueAycd antetitulo={866} boton={920} horario={1034}
         textoAntetitulo={d.antetitulo} textoBoton={d.precio} textoHorario={d.horario} />
-      <Legal top={1110} cuerpo={19}>{d.legal}</Legal>
+      {/* Constanza 29-09: «no debemos palabras solitas» → corte por frase */}
+      <Legal top={1110} cuerpo={19}>{d.legal}<br />{d.legal2}</Legal>
     </AbsoluteFill>
   );
 };

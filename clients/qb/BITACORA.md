@@ -1,5 +1,17 @@
 # QB Restaurant — bitácora
 
+## 2026-09-29 (tarde 2) — Elisabet Soto «Eli» (Windows, con Claude) · ronda 15: comentarios de Constanza en la grilla de octubre
+
+**Qué se hizo:** Constanza Lizana (jefa de diseño) dejó 2 comentarios nativos en la grilla de octubre (16:20Z, anclados a STORIES!D9 y G9; la capa viva sólo movió estados: C/D/E a EN REVISIÓN, G a PENDIENTE POR CLIENTE). Instantánea `api/qb-oct-20260929c.json`.
+- **Misma separación logo→titular** en Banco de Chile, AYCD y Cumpleaños: medido 43 / 53 / 36 px. Manda el AYCD (bloque del KV, R-04) → 53 px en las tres. El logo no se mueve (tope ≈251, zona segura): baja el contenido (Banco +10, Cumpleaños +16,5).
+- **Cumpleaños:** los 5 recuadros toman el ancho del primer beneficio (max-content) con 26 px de aire por lado, centrados.
+- **«No debemos palabras solitas»** (legal del Sunset 09-10): corte por frase en dos líneas. Auditados los legales de las 13 promos de octubre: la misma viuda estaba en Banco de Chile, AYCD 13-10 (ST n°2 S2) y FEED 07-10 G2 → corregidas igual.
+- Reemplazadas en Drive (md5 igual): `S1/QB/STS/ST n°1, n°3, n°5 S1`, `S2/QB/STS/ST n°2 S2`, `S1/QB/FEED/C1 S1 AYCD/C1 S1 N°2`.
+
+**Dónde quedó:** `QbSt01BancoChile.tsx`, `QbSt07Cumple.tsx`, `QbSt09Sunset.tsx`, `QbStAprobadaAycd.tsx`, `QbFeed07Aycd.tsx`. Render `out/qb/oct/r15/` (antes en `_antes/`), revisión `revision-r15.html` (script `scripts/qb-oct-r15-revision.py`), artefacto https://claude.ai/artifact/6fvxX9BrpxN2ZNp3Am4zDJ. QA: 0 bloqueantes.
+**Qué sigue:** visto de Constanza/Eli a la r15.
+**Abierto:** el ancho del logo no es igual en las tres (168 / 179 / 160 px) — no se pidió, no se tocó → Eli/Constanza.
+
 ## 2026-09-29 (tarde) — Elisabet Soto «Eli» (Windows, con Claude) · lo que faltaba de octubre: 8 «ST APROBADA» + post 05-10 a Drive, y Drive renumerado por fecha
 
 **Qué se hizo:**

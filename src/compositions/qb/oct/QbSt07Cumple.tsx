@@ -31,6 +31,15 @@
  *     translúcido con el ícono y el texto.
  *   · Aire abajo para el sticker del link («ARMA EL GRUPO Y RESERVA AHORA»).
  *   · «Cuenta separadas» va literal del brief (concordancia consultada a contenido).
+ *
+ * ⭐ RONDA DE CONSTANZA (jefa de diseño, grilla 29-09): «ojo con la separación del
+ *   título de historia con el logo, mantengamos a todas la misma separación» →
+ *   logo→CONVIERTE pasa de 36 a 53 px, la del AYCD (bloque del KV): el logo no se
+ *   mueve (está en el tope de la zona segura) y todo lo de abajo baja 16,5 px.
+ *   «Los bullets de los beneficios están muuuy largos, que sean un poco más cortos,
+ *   manda el primer beneficio porque es el más largo, pero déjale un poco menos de
+ *   aire al fin de la frase» → los cinco recuadros toman el ancho del primero
+ *   (max-content) y cierran con el mismo aire que abren (26 px por lado), centrados.
  */
 import React from "react";
 import {AbsoluteFill} from "remotion";
@@ -61,10 +70,13 @@ const ICONOS: Record<string, React.ReactNode> = {
   torta: <><path d="M8 24 H36 V38 H8 Z" {...T} /><path d="M8 30 C12 33 16 27 22 30 C28 33 32 27 36 30" {...T} /><path d="M15 24 V17 M22 24 V15 M29 24 V17" {...T} /><path d="M15 12.5 V13 M22 10.5 V11 M29 12.5 V13" {...T} strokeWidth={3.4} /></>,
 };
 
-const Item: React.FC<{top: number; icono: string; children: React.ReactNode; fuerte?: boolean}> = ({
-  top, icono, children, fuerte = false,
+/** Constanza 29-09: logo→titular = 53 px, la misma separación que el AYCD. */
+const AIRE_LOGO = 16.5;
+
+const Item: React.FC<{icono: string; children: React.ReactNode; fuerte?: boolean}> = ({
+  icono, children, fuerte = false,
 }) => (
-  <div style={{position: "absolute", top, left: 120, width: 840, height: 68, boxSizing: "border-box",
+  <div style={{height: 68, boxSizing: "border-box",
     display: "flex", alignItems: "center", gap: 20, padding: "0 26px", borderRadius: 12,
     background: "rgba(8,10,9,.62)", border: "1px solid rgba(255,255,255,.14)",
     color: "#fff", fontFamily: "Raleway", fontWeight: fuerte ? 700 : 500, fontSize: fuerte ? 30 : 29, ...CIFRAS}}>
@@ -83,15 +95,20 @@ export const QbSt07Cumple: React.FC = () => {
       <FotoQB src="assets/hilton/qb/oct/07-cumple-torta-verde.jpg" ratio={1770 / 2360} cx={0.5} />
       <Velo arriba={[1100, 0.85]} abajo={[520, 0.8]} />
       <LogoQB top={250} ancho={160} />
-      <Linea top={372} cuerpo={70} familia="BellMT" tracking="0.02em" interlinea={1.02}>
+      <Linea top={372 + AIRE_LOGO} cuerpo={70} familia="BellMT" tracking="0.02em" interlinea={1.02}>
         CONVIERTE<br />TU CUMPLEAÑOS
       </Linea>
-      <Linea top={528} cuerpo={48} peso={300} tracking="0.01em">{d.bajada}</Linea>
-      <Item top={622} icono="copa" fuerte>{d.beneficio}</Item>
-      <Item top={702} icono="shot">{r1}</Item>
-      <Item top={782} icono="postre">{r2}</Item>
-      <Item top={862} icono="cuenta">{r3}</Item>
-      <Item top={942} icono="torta">{r4}</Item>
+      <Linea top={528 + AIRE_LOGO} cuerpo={48} peso={300} tracking="0.01em">{d.bajada}</Linea>
+      {/* Constanza 29-09: los recuadros miden lo que mide el primer beneficio, centrados */}
+      <div style={{position: "absolute", top: 622 + AIRE_LOGO, left: 0, right: 0, display: "flex", justifyContent: "center"}}>
+        <div style={{display: "flex", flexDirection: "column", gap: 12, width: "max-content"}}>
+          <Item icono="copa" fuerte>{d.beneficio}</Item>
+          <Item icono="shot">{r1}</Item>
+          <Item icono="postre">{r2}</Item>
+          <Item icono="cuenta">{r3}</Item>
+          <Item icono="torta">{r4}</Item>
+        </div>
+      </div>
       <ImagenReferencial top={1556} />
     </AbsoluteFill>
   );

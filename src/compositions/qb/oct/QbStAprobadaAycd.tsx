@@ -36,6 +36,8 @@ cargarFuentesQbOct();
 const QB_AYCD_AP_DATA = {
   referencial: "*Imagen referencial. ",
   legal: "*Sujeto a consumo de alimentos. *Promoción no acumulable con otras ofertas y beneficios.",
+  legal1: "*Sujeto a consumo de alimentos.",
+  legal2: "*Promoción no acumulable con otras ofertas y beneficios.",
   tragos: ["Schop Heineken - Piscola 35° (Mistral o Alto del Carmen) - Ramazzotti",
     "Sangría - Copa de espumante (opción de la casa)"],
 };
@@ -58,7 +60,8 @@ export const QbStAprobadaAycd: React.FC<{fecha: QbAycdFecha}> = ({fecha}) => {
       <LogoQB top={207.4 + BAJA} ancho={178.6} />
       <NombreAycd top={376.3 + BAJA} />
       <BloqueAycd antetitulo={1311.4 - SUBE} boton={1364.6 - SUBE} horario={1479.4 - SUBE} />
-      <Legal top={1452} cuerpo={19}>{f.referencial ? QB_AYCD_AP_DATA.referencial : ""}{QB_AYCD_AP_DATA.legal}</Legal>
+      <Legal top={1452} cuerpo={19}>{/* Constanza 29-09: con «Imagen referencial» el legal se alarga y dejaba «beneficios» sola → corte por frase */}
+        {f.referencial ? <>{QB_AYCD_AP_DATA.referencial}{QB_AYCD_AP_DATA.legal1}<br />{QB_AYCD_AP_DATA.legal2}</> : QB_AYCD_AP_DATA.legal}</Legal>
       <Linea top={1500} cuerpo={20} italica peso={400} interlinea={1.35} sombra={false}
         color="rgba(255,255,255,0.9)" ancho={900}>
         {QB_AYCD_AP_DATA.tragos[0]}<br />{QB_AYCD_AP_DATA.tragos[1]}

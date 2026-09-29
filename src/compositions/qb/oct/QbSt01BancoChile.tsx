@@ -49,6 +49,16 @@
  *   FOTO nueva como la ref: copas de blanco servidas y platos abajo, el salón de
  *   QB en penumbra arriba (Seedream sobre la mesa real «QB 13 oct-3» y los platos
  *   de la foto anterior) → lleva «Imagen referencial».
+ *
+ * ⭐ RONDA DE CONSTANZA (jefa de diseño, grilla 29-09): «en estas 3 historias de
+ *   banco de chile, all you can drink y la de cumpleaños, ojo con la separación del
+ *   título de historia con el logo. Mantengamos a todas la misma separación».
+ *   Medido: logo→pastilla 43 px acá, logo→nombre 53 px en el AYCD, 36 en el
+ *   cumpleaños. Manda el AYCD (bloque del KV, R-04): todo lo que va bajo el logo
+ *   baja 10 px (marco, pastilla, titular y cajas); el logo sigue en la zona segura
+ *   y el legal y las tarjetas no se mueven.
+ *   «No debemos palabras solitas» (la misma ronda, sobre el Sunset): el legal quedaba
+ *   con «ofertas y beneficios.» colgando → se corta por frase en dos líneas.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -64,16 +74,19 @@ const QB_ST01_DATA: Record<string, Record<string, string>> = {
   etiqueta: "Banco de Chile",
   texto: "20%OFF · Lunes a viernes",
   pie: "30%OFF · Sábados y domingos",
-  legal: "*Imagen referencial. Sujeto a consumo de alimentos. Promoción no acumulable con otras ofertas y beneficios.",
+  legal: "*Imagen referencial. Sujeto a consumo de alimentos.",
+  legal2: "Promoción no acumulable con otras ofertas y beneficios.",
   },
 };
 
 /** Medidas de la plantilla aprobada (mesa 1080×1920), bajadas 30 px. */
 const B = 30;
-const MARCO = {x: 87, y: 398 + B, w: 899, h: 322 + 120};
+/** Constanza 29-09: logo→pastilla = 53 px, la misma separación que el AYCD. */
+const AIRE_LOGO = 10;
+const MARCO = {x: 87, y: 398 + B + AIRE_LOGO, w: 899, h: 322 + 120};
 /** r4: la caligráfica necesita 120 px más de marco. */
 const CRECE = 120;
-const CAJA = {w: 383, h: 92, g: 26, y: 676 + B + CRECE};
+const CAJA = {w: 383, h: 92, g: 26, y: 676 + B + CRECE + AIRE_LOGO};
 const VERDE_CAJA = "#2F4635";
 const VERDE_FILETE = "#35493A";
 
@@ -104,14 +117,14 @@ export const QbSt01BancoChile: React.FC = () => {
       <div style={{position: "absolute", left: MARCO.x, top: MARCO.y, width: MARCO.w, height: MARCO.h,
         border: `5px solid ${VERDE_FILETE}`, borderRadius: 14, background: "rgba(0,0,0,.55)"}} />
       <Img src={staticFile("assets/hilton/qb/oct/logo-banco-chile.png")}
-        style={{position: "absolute", left: (MESA.w - 244) / 2, top: 366 + B, width: 244, height: 85}} />
+        style={{position: "absolute", left: (MESA.w - 244) / 2, top: 366 + B + AIRE_LOGO, width: 244, height: 85}} />
       {/* r4: titular como la ref — sans fina + una palabra caligráfica grande */}
-      <Linea top={488 + B} cuerpo={46} peso={300} tracking="0.04em">TU SEMANA TIENE MÁS DE UN</Linea>
-      <Linea top={528 + B} cuerpo={150} familia="Brushwell" interlinea={1.05} sombra>buen momento</Linea>
-      <Linea top={676 + B} cuerpo={46} peso={300} tracking="0.04em">EN QB</Linea>
+      <Linea top={488 + B + AIRE_LOGO} cuerpo={46} peso={300} tracking="0.04em">TU SEMANA TIENE MÁS DE UN</Linea>
+      <Linea top={528 + B + AIRE_LOGO} cuerpo={150} familia="Brushwell" interlinea={1.05} sombra>buen momento</Linea>
+      <Linea top={676 + B + AIRE_LOGO} cuerpo={46} peso={300} tracking="0.04em">EN QB</Linea>
       <Caja x={x1} cifra="20%OFF" dia="Lunes a viernes" />
       <Caja x={x1 + CAJA.w + CAJA.g} cifra="30%OFF" dia="Sábados y domingos" />
-      <Legal top={1530} cuerpo={22}>{QB_ST01_DATA.pieza.legal}</Legal>
+      <Legal top={1530} cuerpo={22}>{QB_ST01_DATA.pieza.legal}<br />{QB_ST01_DATA.pieza.legal2}</Legal>
       <Img src={staticFile("assets/hilton/qb/oct/tarjetas-banco-chile.png")}
         style={{position: "absolute", left: (MESA.w - TARJ_W) / 2, top: 1620, width: TARJ_W, height: TARJ_W / 2}} />
     </AbsoluteFill>

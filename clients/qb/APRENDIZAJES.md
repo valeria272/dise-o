@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-09-29** · Cosechas: **11**
+> Última cosecha: **2026-09-29** · Cosechas: **12**
 
 ## 1. Quién es el cliente
 
@@ -198,8 +198,14 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - Eli dijo que dejó «historias ya aprobadas en la grilla en tu carpeta» para tomar como referencia: no se encontró nada nuevo en Drive → **Eli**, qué carpeta.
 - ¿El Sunset G2 (feed 12-10) va a paid? Si sí, el legal sube a la zona segura (E-10) → **Eli**.
 - ¿La numeración de posts de feed de Eli es por semana («Post n°1 S2») o correlativa? Se entregó por semana → **Eli**.
+- La ST 25-09 «Conoce nuestra carta» (postre) sigue en OK PARA DISEÑAR en la grilla de **septiembre** con la fecha vencida: ¿se publica o ya la hizo Eli? → **Eli**.
+- ST 30-10: el cliente pidió otro título («¿Planes para hoy?», «algo más cool») y el Reel DJ S5 no trae horarios; ambos en REVISAR CONTENIDO → **contenido**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 — Claude con Eli · `/abrir qb`, relectura de las grillas de octubre y septiembre
+- sin aprendizajes nuevos: no se diseñó ni hubo feedback de Eli o del cliente sobre piezas del estudio. La grilla de octubre no cambió (diff = 0); la de septiembre sólo cerró el mes (YA POSTEADO/APROBADO; Trivia de brindis aprobada con «beber», que ya estaba cosechado en E-04).
+- §8: 2 preguntas nuevas (ST postre de septiembre vencida → Eli; título de la ST 30-10 y horarios del Reel DJ S5 → contenido).
 
 ### 2026-09-29 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`5602e8a`) es el mismo commit que ya cosechó las rondas 9–13 de octubre (ver la entrada de abajo, R-56 a R-65). Se lista a sí mismo porque tocó `BITACORA.md`/`CLAUDE.md` y `APRENDIZAJES.md` en el mismo commit.

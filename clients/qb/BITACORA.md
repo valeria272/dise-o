@@ -1,5 +1,16 @@
 # QB Restaurant — bitácora
 
+## 2026-09-29 — Elisabet Soto «Eli» (Windows, con Claude) · `/abrir qb` + relectura de las grillas — SIN PIEZAS
+
+**Qué se hizo:** `/abrir qb` y `/al-dia qb`. La grilla de OCTUBRE no se tocaba desde el 28-09 17:48Z: diff celda por celda contra `api/qb-oct-20260928c.json` = 0 (se releyó dos veces en la sesión, igual). La grilla de SEPTIEMBRE se movió el 28-09 20:44Z (Sebastián): es el cierre del mes, casi todo en YA POSTEADO o APROBADO; la Trivia de brindis quedó APROBADO («Antes de *beber* y ok!»). Eli preguntó por la **S5 de octubre**: contenido no ha movido nada ahí.
+**Dónde quedó:** instantáneas `clients/hilton/grillas/api/qb-oct-20260929.json` y `qb-sept-20260929.json`; `clients/_estado-sync.json` al día. Estado de octubre: FEED 4 OK (hechas y subidas) · 4 REVISAR CONTENIDO · 2 PENDIENTE; STORIES 15 OK (todas hechas salvo el video de la Ensalada 22-10) · 8 APROBADO sin brief · 3 REVISAR · 2 PENDIENTE. S5 (23–31-10): ST 26 Terraza y 28 «¿Este o este?» hechas; ST 27 AYCD, Sunset y 31 CMR 40 % = aprobadas que se republican; **ST 30-10** REVISAR CONTENIDO (el cliente pide cambiar el título a «¿Planes para hoy?» o «algo más cool»); **FEED 23-10 Reel DJ S5** REVISAR CONTENIDO («falta horario»); Halloween (FEED 22-10 y orgánico 26-10) PENDIENTE POR CLIENTE, «por definir».
+**Qué sigue:** el video de la Ensalada 22-10 (anclado a la «Recomendación del chef» + «Imagen referencial»; antes pasar `scripts/qb-oct-clips.py` de Kling 2.1 a 2.5 Pro para la mano con tenedor). La S5 espera a contenido.
+**Abierto:**
+- ST 30-10: título nuevo → contenido (Scarlette). Reel DJ S5: horarios → contenido.
+- ST 25-09 «Conoce nuestra carta» (postre, lógica de la story Afrodita) sigue en OK PARA DISEÑAR en la grilla de SEPTIEMBRE con la fecha vencida: ¿se publica igual o ya la hizo Eli? → Eli.
+- El carrusel CMR (FEED col. H) tiene comentario del cliente: vuelve a la **primera semana**, sólo CMR 40 % + débito 30 %; sigue en REVISAR CONTENIDO → no se diseña todavía.
+- En el árbol hay trabajo sin commitear de otras sesiones (Piso 18, DT, Between): no se tocó ni entra en este commit.
+
 ## 2026-09-28 (cierre tarde) — Elisabet Soto «Eli» (Windows, con Claude) · STS r4–r8 a Drive + lo nuevo de la grilla (rondas 9 a 13) diseñado, aprobado y subido
 
 **Qué se hizo:**

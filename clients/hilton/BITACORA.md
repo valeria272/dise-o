@@ -1,3 +1,10 @@
+## 2026-09-29 (cierre 2) — Eli (Windows) · BETWEEN: referencias de animación para futuros reels
+
+**Qué se hizo:** Eli pasó 4 pines de Pinterest (videos) y 1 imagen editorial «coming soon» con la indicación «tómalos de ref a futuro de animación». Se bajaron con Chrome headless, se sacaron tiras de 8 fotogramas y se describió qué hace cada una.
+**Dónde quedó:** `clients/hilton/referencias-animacion-bw/LEEME.md` + tiras + imagen (commit 68e2878) · mp4 en `raw/hilton/between/refs-29-09/` (ignorados por git; se re-bajan desde el pin).
+**Qué sigue:** en el próximo reel o historia animada de Between, proponerle a Eli cuál de las 5 usar según el brief (la del dibujo de línea → vaso real es la que más calza con la línea ilustrada de la marca).
+**Abierto:** el nombre y la semana en Drive del FEED 09-10 «Reúnete en Between» → Eli.
+
 ## 2026-09-29 (tarde) — Eli (Windows) · BETWEEN FEED 09-10 «Reúnete en Between»: bajada + contorno café — ✅ APROBADO («quedó okey») y REEMPLAZADO en Drive
 
 **Qué se hizo:** la bajada «Encuentra tu mesa en Between y / cambia la sala de reuniones por algo mejor» estaba abajo, sobre los notebooks → sube bajo «A TU JORNADA», con la «y» en la primera línea, Raleway Bold 38 (antes SemiBold 32). Después, un contorno café de marca #675b49 alrededor de las letras: primero se leyó mal como pincelada detrás (X-57), luego fino con picos (X-58), y al final en SVG con trazo de 5 px, uniones redondas y `paint-order` (R-119). 4 vueltas.

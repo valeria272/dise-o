@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-29** · Cosechas: **19**
+> Última cosecha: **2026-09-29** · Cosechas: **20**
 
 ## 1. Quién es el cliente
 
@@ -334,6 +334,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 (cierre 2, referencias de animación) — Claude con Eli · sin reglas nuevas
+- **Sin aprendizajes de criterio nuevos:** no hubo piezas ni correcciones; Eli entregó referencias de animación para reels futuros de Between (ficha en `referencias-animacion-bw/LEEME.md`). Se cerró a medias el pendiente §8 de los reels: faltan conversar cuál usar.
 
 ### 2026-09-29 (FEED 09-10 «Reúnete en Between») — Claude con Eli · bajada y contorno café, 4 vueltas, APROBADO
 - **Reglas nuevas [BW]:** R-118 bajada de feed Bold ~38 junto al titular; R-119 contorno fino café de marca, redondeado, alrededor de las letras (estilo lifestyle).

@@ -3,7 +3,7 @@
 Plantillas (R-55, medidas en sistema/plantillas/):
   · C «Tu marca podría estar acá» (arriendo)   → st-12-08 «El negocio que has soñado» (AGOSTO IFB.ai mesa 26):
       titular Gotham Black 85 (bases 416,5 / 502,5), bajada GothamRounded Medium 73 (bases 619,8 / 693,9),
-      pastilla blanca abajo 88–991 × 1729–1805 con GothamRnd Medium 36 en negro. Sin Localito (R-06).
+      pastilla blanca abajo con GothamRnd Medium 36 en negro (st-12-08 la lleva en 1729–1805; aquí sube a 1570–1646 porque la barra de respuesta de la story tapa los 269 px de abajo: la pieza de agosto da bloqueante en modo control). Sin Localito (R-06).
   · E «Antojos de miedo» (encuesta)            → st-08-06 «¿Qué es lo que más visitas…?» (IFB JUNIO.ai mesa 18):
       foto a sangre, velo arriba, titular GothamRnd Bold 63 blanco (bases 373,7 / 443,7 / 513,7).
   · F «Un gustito de miedo» (Localito)         → st-09-08 «¡Feliz Día del Niño!» (AGOSTO IFB.ai mesa 25):
@@ -29,7 +29,7 @@ OUT = RAIZ / "out/mascenter/2026-10/stories"
 W, H = 1080, 1920
 tb = base.top_desde_base
 K = 816 / 900          # la TTF sale ~9 % más ancha que el .ai al mismo cuerpo (medido en la mesa 22 de julio)
-NOMBRES = {"C": "st-arriendo-tu-marca", "E": "st-19-10", "F": "st-30-10"}
+NOMBRES = {"C": "st-arriendo-tu-marca", "E": "st-19-10", "E2": "st-19-10-para-encuesta", "F": "st-30-10"}
 
 
 def fnt(archivo, t):
@@ -91,14 +91,14 @@ def story_arriendo():
 {''.join(f'<div class="centro" style="top:{tb(606 + 66 * i, c_b, 66, "rnd"):.1f}px;font-weight:500;font-size:{c_b:.1f}px;line-height:66px">{l}</div>' for i, l in enumerate(baj))}
 {marco}
 {pin}
-<div style="position:absolute;left:88px;top:1729px;width:903px;height:76px;border-radius:38px;background:#fff"></div>
-<div class="centro" style="top:{tb(1779.5, 36.23, 40, 'rnd'):.1f}px;color:#000;font-weight:500;font-size:36.23px;line-height:40px;text-transform:uppercase">Encuentra el espacio para tu negocio.</div>"""
+<div style="position:absolute;left:88px;top:1570px;width:903px;height:76px;border-radius:38px;background:#fff"></div>
+<div class="centro" style="top:{tb(1620.5, 36.23, 40, 'rnd'):.1f}px;color:#000;font-weight:500;font-size:36.23px;line-height:40px;text-transform:uppercase">Encuentra el espacio para tu negocio.</div>"""
 
 
 # ───────────────────────────── E · antojos de miedo (encuesta) ─────────────────────────────
-def story_antojos():
+def story_antojos(con_opciones=True):
     """Foto generada (trend de los fantasmas, REF del brief): tres fantasmas con sábana y lentes oscuros con café,
-    pizza y sushi en la terraza de un strip center, sin marcas. Zona libre 1150–1450 para el sticker de ENCUESTA (lo pone
+    pizza y sushi en la terraza de un strip center, sin marcas. Zona libre 1030–1310 para el sticker de ENCUESTA (lo pone
     la CM con las tres opciones del brief); las opciones van también en la gráfica, en pastillas rojas como las de
     st-12-08, para que la story se entienda sin el sticker."""
     img = foto_9x16("E-antojos.png")
@@ -106,8 +106,8 @@ def story_antojos():
     opciones = [("Starbucks", "Más Center Santa María"), ("Papa Johns", "Más Center Talca"), ("Sushi Khai", "Más Center Larraín")]
     f_o = fnt("GothamRnd-Bold", 34)
     pills = ""
-    for i, (local, centro) in enumerate(opciones):
-        y = 1478 + i * 78
+    for i, (local, centro) in enumerate(opciones if con_opciones else []):
+        y = 1330 + i * 78
         texto = f'<b style="font-weight:700">{local}</b>&nbsp;·&nbsp;{centro}'
         ancho = 70 + f_o.getlength(f"{local} · {centro}")
         pills += (f'<div style="position:absolute;left:{(W - ancho) / 2:.0f}px;top:{y}px;width:{ancho:.0f}px;height:62px;border-radius:31px;'
@@ -119,8 +119,8 @@ def story_antojos():
 <div class="centro" style="top:{tb(420, c_t, 92, 'rnd'):.1f}px;font-weight:700;font-size:{c_t:.1f}px;line-height:92px;text-transform:uppercase">Antojos<br>de miedo.</div>
 <div class="centro" style="top:{tb(606, 46, 54, 'rnd'):.1f}px;font-weight:400;font-size:46px;line-height:54px">Café, pizza o sushi…<br>¿cuál te persigue hoy?</div>
 {pills}
-<div style="position:absolute;left:88px;top:1729px;width:903px;height:76px;border-radius:38px;background:#fff"></div>
-<div class="centro" style="top:{tb(1779.5, 34, 40, 'rnd'):.1f}px;color:#000;font-weight:500;font-size:34px;line-height:40px;text-transform:uppercase">Encuentra tu favorito en Más Center</div>"""
+<div style="position:absolute;left:88px;top:1570px;width:903px;height:76px;border-radius:38px;background:#fff"></div>
+<div class="centro" style="top:{tb(1620.5, 34, 40, 'rnd'):.1f}px;color:#000;font-weight:500;font-size:34px;line-height:40px;text-transform:uppercase">Encuentra tu favorito en Más Center</div>"""
 
 
 # ───────────────────────────── F · un gustito de miedo (Localito) ─────────────────────────────
@@ -150,8 +150,8 @@ def story_gustito():
 
 
 if __name__ == "__main__":
-    pedidos = sys.argv[1:] or ["C", "E", "F"]
-    fabricas = {"C": story_arriendo, "E": story_antojos, "F": story_gustito}
+    pedidos = sys.argv[1:] or ["C", "E", "E2", "F"]
+    fabricas = {"C": story_arriendo, "E": story_antojos, "E2": lambda: story_antojos(False), "F": story_gustito}
     for c in pedidos:
         if c in fabricas:
             render(c, fabricas[c]())

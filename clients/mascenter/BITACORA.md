@@ -1,3 +1,31 @@
+## 2026-09-29 — Diego Aguilar (con Claude) · stories diseñadas de octubre (menos la del 15-10)
+
+**Qué se hizo:** «ahora vamos con la pestaña de grilla stories de instagram, genera todo menos la st del 15-10».
+El conector de Drive estaba caído, así que la pestaña se leyó de la copia local de la grilla bajada el 28-09
+(`raw/mascenter/octubre-2026/grilla-ifb-oct.xlsx`); si cambió después, hay que re-bajarla. Cada story partió de su
+plantilla (R-55), medida en `sistema/plantillas/`:
+- **B · reel animado Kios Club** (sin fecha en la grilla) → `st-kiosclub-halloween.mp4` (12 s). Composición
+  `MC-Story-Kiosclub-Halloween` en `src/compositions/mascenter/KiosclubStoryHalloween.tsx`: caldero vacío → dulces
+  cayendo en tres tandas → humo y reveal del caldero lleno. Fondos y dulces con Seedream; los dulces se recortaron por
+  croma, sin los cortados ni el que traía texto falso. Abre con el mensaje puesto (R-15). **Sin pista:** la de la marca
+  no está en esta máquina.
+- **C · arriendo «Tu marca podría estar acá»** (sin fecha) → `st-arriendo-tu-marca.png`, sobre `st-12-08`. Foto REAL de
+  Pirque II llevada a 9:16 con un local vaciado, marcado con un marco punteado y un pin. Letreros verificados contra la
+  original. Sin Localito (R-06).
+- **E · «Antojos de miedo»** (la grilla dice 19-09; se tomó como 19-10) → `st-19-10.png` y `st-19-10-para-encuesta.png`
+  (sin las pastillas de opciones, para que la CM ponga la encuesta), sobre `st-08-06`.
+- **F · «Un gustito de miedo»** (la grilla dice 30-09; se tomó como 30-10) → `st-30-10.png`, sobre `st-09-08`: Localito
+  vampiro inmerso en la plaza de San Carlos. La v1 traía letreros reescritos («EL IISTITO»); se rehízo con el fondo
+  desenfocado.
+- La pastilla de abajo de `st-12-08` (1729–1805) da bloqueante de zona segura también en la pieza aprobada de agosto;
+  aquí subió a 1570–1646, porque la barra de respuesta de la story tapa esa franja. QA: 0 bloqueantes, 2 avisos de color.
+
+**Dónde quedó:** 5 archivos subidos a «10. OCTUBRE», md5 verificado. Renders en `out/mascenter/2026-10/stories/`,
+constructor `clients/mascenter/sistema/stories_octubre.py`, assets del video en `public/assets/mascenter/kiosclub/`.
+**Qué sigue:** feedback de Diego sobre las 4 stories; agregar la pista al video si se quiere con música.
+**Abierto:** fechas de B y C (la grilla no las trae) y de E y F (dicen 19-09 y 30-09) → **Scarlette**. La encuesta y el
+botón 🍬 los pone la CM en Instagram. Sucursal de Papa Johns (Talca) y Sushi Khai (Larraín), tal como vienen en el brief.
+
 ## 2026-09-28 — Diego Aguilar (con Claude) · CIERRE: grilla IG de octubre entregada (menos el reel del 19-10)
 
 **Qué se hizo:** con el conector de Drive de vuelta, se produjo toda la grilla de Instagram de octubre salvo el reel

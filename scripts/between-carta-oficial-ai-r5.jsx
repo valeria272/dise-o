@@ -17,6 +17,7 @@
 //     python scripts/ai-puente.py --jsx scripts/between-carta-oficial-ai-r5.jsx
 // OPCION (primera línea) = "A" | "B" | "C" | "D".
 var OPCION = "A";
+var SOLO = 1;          // >0: arma sólo esa cantidad de hojas (prueba) y no exporta PDF
 (function () {
     var BASE = "C:/Users/Elisabet/EDITOR VIDEOS/out/hilton/between/carta-oficial/r5/editable/";
     var PAPEL = "C:/Users/Elisabet/EDITOR VIDEOS/out/hilton/between/carta-oficial/r4/editable/papel-cmyk/BW-CARTA-BETWEEN-OPCION-B-HOJA-1-papel.tif";
@@ -28,6 +29,11 @@ var OPCION = "A";
     app.userInteractionLevel = UserInteractionLevel.DONTDISPLAYALERTS;
     var M = app.documents.add(DocumentColorSpace.CMYK, AW, AH), S = null, h = 0;
     var avisos = [];
+    var LOG = new File(BASE + "maestro/_avance-" + OPCION + ".txt");
+    (new Folder(BASE + "maestro")).create();
+    LOG.encoding = "UTF-8"; LOG.open("w"); LOG.close();
+    function log(t) { LOG.open("a"); LOG.writeln(new Date().toTimeString().substr(0, 8) + " " + t); LOG.close(); }
+    log("inicio");
     try {
         try { M.colorProfileName = PERFIL; } catch (e0) { avisos.push("perfil: " + e0); }
         var capaInicial = M.layers[0];
@@ -189,8 +195,8 @@ var OPCION = "A";
         }
 
         var capasHoja = [], resumen = [];
-        for (h = 0; h < D.hojas.length; h++) {
-            var H = D.hojas[h];
+        for (h = 0; h < (SOLO || D.hojas.length); h++) {
+            var H = D.hojas[h]; log("hoja " + H.nombre);
             var x0 = h * (AW + GAP), rect = [x0, AH, x0 + AW, 0];
             var ab = h === 0 ? M.artboards[0] : M.artboards.add(rect);
             ab.artboardRect = rect; ab.name = H.nombre;
@@ -212,7 +218,7 @@ var OPCION = "A";
             }
 
             // gráfica, ilustraciones y logo desde el SVG de la hoja
-            S = app.open(new File(BASE + "svg/" + H.svg));
+            log("  abre svg"); S = app.open(new File(BASE + "svg/" + H.svg)); log("  svg abierto");
             var sr = S.artboards[0].artboardRect, dx = rect[0] - sr[0], dy = rect[1] - sr[1];
             var PARES = [["Grafica", "Gráfica"], ["Ilustraciones", "Ilustraciones"], ["Logo", "Logo"]];
             for (var pp = 0; pp < PARES.length; pp++) {
@@ -239,7 +245,7 @@ var OPCION = "A";
 
             // texto vivo con estilos
             var nt = 0;
-            for (var mi = 0; mi < H.marcos.length; mi++) { marco(sub["Texto"], H.marcos[mi], x0); nt++; }
+            for (var mi = 0; mi < H.marcos.length; mi++) { log("  texto " + H.marcos[mi].nombre); marco(sub["Texto"], H.marcos[mi], x0); nt++; }
             sub["Fondo"].locked = true;
             capasHoja.push(L);
             resumen.push(H.nombre + ": " + nt + " textos");
@@ -252,7 +258,10 @@ var OPCION = "A";
         var carpeta = new Folder(BASE + "maestro"); if (!carpeta.exists) carpeta.create();
         var oa = new IllustratorSaveOptions();
         oa.pdfCompatible = true; oa.embedLinkedFiles = true; oa.compressed = true; oa.saveMultipleArtboards = false;
-        M.saveAs(new File(BASE + "maestro/" + nombre + ".ai"), oa);
+        log("guarda ai"); M.saveAs(new File(BASE + "maestro/" + nombre + (SOLO ? "-PRUEBA" : "") + ".ai"), oa); log("ai guardado");
+        if (SOLO) { M.close(SaveOptions.DONOTSAVECHANGES); app.userInteractionLevel = nivel; return "PRUEBA " + resumen.join(" | ") + "
+" + avisos.join("
+"); }
         var perfil = M.colorProfileName;
         M.close(SaveOptions.DONOTSAVECHANGES); M = null;
 

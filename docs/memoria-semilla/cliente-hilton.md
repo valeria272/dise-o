@@ -1,6 +1,6 @@
 ---
 name: cliente-hilton
-description: "HILTON — cerebro del cliente: 145 reglas firmes, última cosecha 2026-09-29. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
+description: "HILTON — cerebro del cliente: 148 reglas firmes, última cosecha 2026-09-29. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
 metadata:
   type: project
 ---
@@ -40,11 +40,11 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **X-73** · [BW] Reel 02-10: «VA POR» solo en su línea, se leía «VAPOR» — _Eli, 29-09-2026: 1 ronda_
 - **X-74** · [DT] Octubre entero con **letras espaciadas** (antetítulo 0,34 em, «EN PAREJA →» 0,16, píldoras en versales espaciadas, «IVA INCLUIDO» 0,16) y **títulos de historia a alturas distintas** (versal en 416/488/495/518 y dos dentro de un panel; en la Family Time animada el título saltaba 72 px entre escenas) — _Constanza Lizana, 29-09-2026: 1 ronda, 7 piezas corregidas_ (→ R-132, R-133, R-134)
 - **X-76** · [DT] Pendón cookie con la 3-79 **rehecha con IA** (cara nueva calzada en la boca, mano en pinza, franja de la persona regenerada en 4K, rondas r4–r7, aprobada como «quedó perfecto»): Eli volvió a la **foto original** sin IA — _Eli, 29-09-2026, r8: 4 rondas de IA descartadas_ (→ R-137)
+- **X-77** · [BW] Editables de la carta R4 (28-09): texto una línea = un objeto (≈400 por hoja), sin sangrado y sin perfil de color asignado — «al momento de corregir va a ser muy difícil» — _Eli, 29-09-2026: se rehacen las 4 opciones_
 - **X-75** · [DT] Ronda de Constanza aplicada con la norma a 488: el título de la Family Time **tapaba la cabeza de la mamá**; la flecha fina y el legal de la feriado ER+FT **no se leían** sobre la foto; el título de «escápate en pareja» **salía del recuadro**; y en Honors el ajuste (30 px) **no se notaba** («quedó exactamente igual») — _Eli, 29-09-2026: 1 ronda, 6 piezas_ (→ R-134 a 440, R-135, R-136)
 - **X-60** · [DT] Pareja IA con **look pintado**: atardecer naranja agregado en la ventana, color saturado y cálido, piel y ropa de ilustración, posturas poco creíbles — «se ve extraña» — _Eli, 29-09-2026, portada Escapada 07-10, ya aprobada en r1–r3 y reabierta: 1 ronda (r4)_
 - **X-51** · [BW] POV con el **muffin apoyado sobre la tapa del vaso** y chico (calcado de la ref, que traía la galleta sobre la taza): «rara», «desproporcionado» — _cliente, ST 02-10, 28-09-2026: 1 ronda_
 - **X-47** · [DT] Cambiar **sólo la cara** (óvalo) de una modelo: se sigue reconociendo por el pelo, la piel y los lentes — _Eli, 28-09-2026, pendones r1: 1 ronda_
 - **X-48** · [DT] Pelo rubio sobre piel morena, cejas decoloradas, ojos raros y mechones sueltos: «poco natural» — _Eli, 28-09-2026, pendones r2: 1 ronda_
 - **X-44** · [BW] Ilustraciones de carta de **trazo uniforme y rígido** (vector de línea pareja) — _Eli, 28-09-2026, r1 («estilo hecho a mano… que no sea tan rígido»)_
-- **X-45** · [BW] Dibujo que **no corresponde a la hoja** (pasteles en la hoja del bar de la D) y dibujos que la caja corta (A) — _Eli, 28-09-2026, r3_
-- **X-46** · [BW] Editables **un .ai por hoja y en RGB** — _Eli, 28-09-2026 («me va a hacer todo muy difícil después para
+- **X-45** · [BW] Dibujo que **no cor

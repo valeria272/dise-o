@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-29** · Cosechas: **26**
+> Última cosecha: **2026-09-29** · Cosechas: **27**
 
 ## 1. Quién es el cliente
 
@@ -177,7 +177,10 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-91** · [BW] **Ilustración de carta hecha a mano, con detalles, no rígida**, y **cada dibujo corresponde a lo que ofrece esa hoja** (nada de pasteles en la hoja del bar) — _Eli, 28-09-2026, r2 y r4_ · ✔×1
 - **R-92** · [BW] **Carta: filetes y ejes delgados** (0,15 mm), no tienen que destacar — _Eli, 28-09-2026, r2_ · ✔×1
 - **R-93** · [BW] **Carta: la secuencia se respeta hoja a hoja** (orden del Word, columna a columna), sin letras cortadas por la caja y sin palabra sola en la última línea de un párrafo — _Eli, 28-09-2026, r3_ · ✔×1
-- **R-94** · [BW] **Editable de carta = UN .ai por opción en CMYK**, con una mesa de trabajo y una capa por hoja en orden («01 · Portada» arriba; dentro Texto · Logo · Ilustraciones · Gráfica · Fondo) + PDF de calidad 300 ppp con las ilustraciones vectorizadas — _Eli, 28-09-2026 («un Illustrator para todas… capa 1 slide 1 portada»; «tienes que estar en CMYK»)_ · ✔×1
+- **R-94** · [BW] **Editable de carta = UN .ai por opción en CMYK**, con una mesa de trabajo y una capa por hoja en orden («01 · Portada» arriba; dentro Texto · Logo · Ilustraciones · Gráfica · Fondo) + PDF de calidad 300 ppp con las ilustraciones vectorizadas — _Eli, 28-09-2026 («un Illustrator para todas… capa 1 slide 1 portada»; «tienes que estar en CMYK»)_ · ✔×1 · ⚠️ ampliada 2026-09-29, ver R-146 a R-148 (el .ai por opción no basta: tiene que ser fácil de corregir, con perfil y sangrado)
+- **R-146** · [BW] **El editable de una carta tiene que ser FÁCIL DE CORREGIR**: el texto por bloque con estilos de párrafo con nombre (Sección, Plato, Descripción…), plato y precio en la misma línea con tabulador a la derecha, mayúsculas como atributo; nunca una línea = un texto suelto — _Eli, 29-09-2026 («lo que veo que al momento de corregir va a ser muy difícil, debe ser fácil»)_ · ✔×0 (R5 en armado)
+- **R-147** · [BW] **Carta para impresión Y digital: 3 mm de sangrado** fuera de la hoja en todo lo que toca el borde (fondo, papel, filetes, ilustraciones de esquina) «para que no se vea el límite ni quede con bordes sin color»; y **tamaños mínimos que sirvan para los dos** — _Eli, 29-09-2026_ · ✔×0
+- **R-148** · [BW] **Perfil de color de la carta = el de las cartas anteriores de Between: CMYK Coated FOGRA39 (ISO 12647-2:2004)**, asignado explícitamente al documento — _Eli, 29-09-2026 («verifícalo en los editables de cartas anteriores el perfil del color»); medido en «Carta 2026 Between – Mundial.ai»; las cartas de QB están en RGB sRGB y NO se copian_ · ✔×0
 - **R-64** · [BW] Una pieza puede **cambiar de HOJA** en la grilla, no sólo de fecha: se busca por su título en FEED **y** en STORIES antes de decir que no hay nada nuevo — _grilla BW oct, 25-09-2026: «Por qué vienes / por qué te quedas» quedó en STORIES como REVISAR CONTENIDO («DEJARLO EN FEED») y reapareció en FEED 09-10 como OK PARA DISEÑAR_ · ✔×1
 - **R-65** · [DT] La grilla corre la fecha de una pieza ya entregada sin avisar; se reconoce por el título — _grilla DT oct, 25-09-2026: Opinión Expedia pasó de FEED 10-10 a 09-10_ · ✔×1
 - **R-66** · [BW] **Un reel no lleva relleno desenfocado alrededor del clip**: se expande con IA siguiendo la escena, y se ve **entero** lo que estaba en el cuadro (el vaso y la mano), sin recortar para tapar el borde — _contenido vía Eli, reel «La razón» S3, 25-09-2026 («le molesta a contenido»; «la idea es que se siga viendo el vaso y la mano de ella»)_ · ✔×1 · ⚠️ revisada 2026-09-28: en este mismo reel **el cliente eligió la edición 2, con borde desenfocado**, por sobre la expansión IA (ver E-20)
@@ -266,6 +269,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **X-73** · [BW] Reel 02-10: «VA POR» solo en su línea, se leía «VAPOR» — _Eli, 29-09-2026: 1 ronda_
 - **X-74** · [DT] Octubre entero con **letras espaciadas** (antetítulo 0,34 em, «EN PAREJA →» 0,16, píldoras en versales espaciadas, «IVA INCLUIDO» 0,16) y **títulos de historia a alturas distintas** (versal en 416/488/495/518 y dos dentro de un panel; en la Family Time animada el título saltaba 72 px entre escenas) — _Constanza Lizana, 29-09-2026: 1 ronda, 7 piezas corregidas_ (→ R-132, R-133, R-134)
 - **X-76** · [DT] Pendón cookie con la 3-79 **rehecha con IA** (cara nueva calzada en la boca, mano en pinza, franja de la persona regenerada en 4K, rondas r4–r7, aprobada como «quedó perfecto»): Eli volvió a la **foto original** sin IA — _Eli, 29-09-2026, r8: 4 rondas de IA descartadas_ (→ R-137)
+- **X-77** · [BW] Editables de la carta R4 (28-09): texto una línea = un objeto (≈400 por hoja), sin sangrado y sin perfil de color asignado — «al momento de corregir va a ser muy difícil» — _Eli, 29-09-2026: se rehacen las 4 opciones_
 - **X-75** · [DT] Ronda de Constanza aplicada con la norma a 488: el título de la Family Time **tapaba la cabeza de la mamá**; la flecha fina y el legal de la feriado ER+FT **no se leían** sobre la foto; el título de «escápate en pareja» **salía del recuadro**; y en Honors el ajuste (30 px) **no se notaba** («quedó exactamente igual») — _Eli, 29-09-2026: 1 ronda, 6 piezas_ (→ R-134 a 440, R-135, R-136)
 - **X-60** · [DT] Pareja IA con **look pintado**: atardecer naranja agregado en la ventana, color saturado y cálido, piel y ropa de ilustración, posturas poco creíbles — «se ve extraña» — _Eli, 29-09-2026, portada Escapada 07-10, ya aprobada en r1–r3 y reabierta: 1 ronda (r4)_
 - **X-51** · [BW] POV con el **muffin apoyado sobre la tapa del vaso** y chico (calcado de la ref, que traía la galleta sobre la taza): «rara», «desproporcionado» — _cliente, ST 02-10, 28-09-2026: 1 ronda_
@@ -337,6 +341,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 ## 8. Preguntas abiertas
 
+- [BW] Carta R5: ¿los mínimos (nada bajo 7,5 pt; descripción 8,5) y el texto a tinta llena (sin 78–88 % de opacidad) le parecen para impresión y digital? · ¿el .ai de la opción A en F: (re-guardado 29-09 16:04) trae cambios suyos? → **Eli**
+
 - [DT] Interlínea del titular de la portada Escapada 07-10: Eli pidió 1,3 (R-105) y Constanza «que sea menos»; quedó en **1,16** → **Eli** (29-09)
 - [BW] FEED 09-10 «Reúnete en Between» (aprobado y reemplazado 29-09): en Drive sigue como `BW FEED 05-10 Esa reunion podria ser un cafe.png` en S1/BW/FEED; ¿se renombra a «BW FEED 09-10 Reunete en Between» y se mueve a la semana del 09-10? → **Eli**
 - [BW] ~~Reels: Eli va a pasar videos de referencia~~ ✅ **los mandó el 29-09** («tómalos de ref a futuro de animación»): 4 reels + 1 estática en `clients/hilton/referencias-animacion-bw/LEEME.md`. Falta conversar cuál usar en el próximo reel → **Eli**
@@ -384,6 +390,11 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 (cierre 9, editables de la carta R5) — Claude con Eli · 3 reglas nuevas [BW], A MEDIAS
+- **Reglas nuevas [BW]:** R-146 editable fácil de corregir (estilos de párrafo, tabulador de precio) · R-147 3 mm de sangrado y mínimos para impresión y digital · R-148 CMYK Coated FOGRA39 como las cartas anteriores de Between. R-94 ampliada.
+- **Rechazo:** X-77 editables R4 línea por línea, sin sangrado ni perfil (1 ronda).
+- **Sin aprobación todavía:** el .ai R5 no se pudo armar (Illustrator trabado en el arranque); diseño R5 y datos medidos listos.
 
 ### 2026-09-29 (cierre 8, pendones r8) — Claude con Eli · 3 reglas nuevas [DT], en revisión
 - **Pedido de Eli:** pendón teléfono con el pelo **rubio**; pendón cookie con la **3-79 original, sin IA**, y el correo nuevo; PNG a 150 ppp en «PENDONES 2026 ACTUALIZADOS».

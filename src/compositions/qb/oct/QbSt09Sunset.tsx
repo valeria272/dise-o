@@ -60,11 +60,24 @@
  *   «*Promoción no acumulable con otras ofertas y beneficios.» Mismo cuerpo.
  * ⭐ RONDA 16 (Eli 29-09): «el legal lo dejaría más abajo» → de 1526 a 1612 (cierra
  *   en ≈1660): sale de la zona de paid y queda dentro del margen de Instagram orgánico.
+ *
+ * ⭐⭐ RONDA 19 — SCARLETTE (contenido, hilo en STORIES!G14, 29-09): «sumar la info del
+ *   "Desde $3.990" y las tipografías de "El viernes cambia de mood" siento que se ven
+ *   raro con tantas diferentes, dejaría solo una tipo» · «ajustar el fondo, ya que
+ *   pareciera que está en una azotea y QB se encuentra en un 1er piso, y cambiar el
+ *   plato, ya que no tenemos camarones en brochetas».
+ *   ELI (29-09): «deja "mood" como el único cambio tipográfico y "el viernes cambia
+ *   de" en Raleway; recuerda no usar tantas tipografías por pieza».
+ *   → Voces: Raleway + UNA palabra en Brushwell («mood»); fuera la Bell MT. El rótulo
+ *     de la flecha pasa a Raleway y suma «DESDE $3.990» como dato fuerte. FOTO nueva
+ *     (Nano Banana Pro con la ref de la terraza real de QB): terraza a nivel de
+ *     calle, pérgola, árboles, la calle con autos detrás; papas trufadas en vez de
+ *     brochetas → sigue «Imagen referencial». El logo «Sunset QB» no se toca.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
 
-import {BotonVerde, cargarFuentesQbOct, FotoQB, Legal, Linea, MESA, Velo} from "./QbOctKit";
+import {BotonVerde, cargarFuentesQbOct, CIFRAS, FotoQB, Legal, Linea, MESA, Velo} from "./QbOctKit";
 
 cargarFuentesQbOct();
 
@@ -73,6 +86,7 @@ const QB_ST09_DATA: Record<string, Record<string, string>> = {
   titular: "EL VIERNES CAMBIA DE MOOD",
   medida: "DE 16:00 A 21:00 HRS",
   texto: "Cocktails seleccionados al mejor precio",
+  precio: "DESDE $3.990",
   bajada: "Tu after office, a otro nivel",
   legal: "*Imagen referencial. *Sujeto a consumo de alimentos.",
   legal2: "*Promoción no acumulable con otras ofertas y beneficios.",
@@ -84,31 +98,32 @@ const LOGO_W = 767;
 const LOGO_H = LOGO_W * 576 / 2556;
 
 /** La foto sube para que el trago quede entre el logo y el bloque de abajo. */
-const SUBE = -300;
+/** r19: la foto nueva sube 460 para que las papas queden sobre el titular, no detrás. */
+const SUBE = -460;
 
 export const QbSt09Sunset: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
-    <FotoQB src="assets/hilton/qb/oct/09-sunset-r4.jpg" ratio={1520 / 2736} libre bajar={SUBE} />
+    <FotoQB src="assets/hilton/qb/oct/09-sunset-r19.jpg" ratio={3072 / 5504} libre bajar={SUBE} />
     {/* el canto de abajo de la foto (sube 300 px) se funde a negro */}
-    <div style={{position: "absolute", left: 0, right: 0, top: 1380, height: 1920 - 1380,
+    <div style={{position: "absolute", left: 0, right: 0, top: 1060, height: 1920 - 1060,
       background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 45%, #000 100%)"}} />
     {/* r6 (Eli): más oscuro arriba para leer «Sunset QB» */}
     <Velo arriba={[820, 0.8]} abajo={[900, 0.85]} />
     <Img src={staticFile("assets/hilton/qb/oct/sunset-qb-logo.png")}
       style={{position: "absolute", top: 346, left: (MESA.w - LOGO_W) / 2, width: LOGO_W, height: LOGO_H}} />
-    {/* rótulo a mano con flecha hacia el trago, como «Margarita» en la ref */}
-    <div style={{position: "absolute", left: 70, top: 742, width: 440, textAlign: "center", color: "#fff",
-      fontFamily: "Brushwell", fontSize: 62, lineHeight: 0.98, textShadow: "0 2px 16px rgba(0,0,0,.5)"}}>
-      Cocktails seleccionados<br />al mejor precio
+    {/* r19: el rótulo de la flecha en Raleway (una sola voz) y el precio como dato fuerte */}
+    <div style={{position: "absolute", left: 60, top: 744, width: 460, textAlign: "center", color: "#fff",
+      fontFamily: "Raleway", textShadow: "0 2px 16px rgba(0,0,0,.55)"}}>
+      <div style={{fontSize: 34, fontWeight: 400, fontStyle: "italic", lineHeight: 1.15}}>Cocktails seleccionados<br />al mejor precio</div>
+      <div style={{fontSize: 58, fontWeight: 800, letterSpacing: "0.02em", lineHeight: 1, marginTop: 14, ...CIFRAS}}>{QB_ST09_DATA.pieza.precio}</div>
     </div>
     <svg style={{position: "absolute", left: 0, top: 0}} width={MESA.w} height={MESA.h}>
-      <path d="M 300 880 C 320 960, 420 990, 525 962" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" />
-      <path d="M 498 940 L 528 961 L 500 986" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M 300 912 C 340 990, 470 985, 590 890" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" />
+      <path d="M 556 888 L 591 889 L 586 923" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
-    {/* titular como la ref: serif en caja alta + una palabra caligráfica */}
-    <Linea top={1176} cuerpo={66} familia="BellMT" tracking="0.04em">EL VIERNES</Linea>
-    <Linea top={1222} cuerpo={104} familia="Brushwell" interlinea={1}>cambia de</Linea>
-    <Linea top={1304} cuerpo={112} familia="BellMT" tracking="0.03em" interlinea={1}>MOOD</Linea>
+    {/* r19 (Eli): «EL VIERNES CAMBIA DE» en Raleway; «mood», la única palabra en otra voz */}
+    <Linea top={1196} cuerpo={52} peso={300} tracking="0.06em">EL VIERNES CAMBIA DE</Linea>
+    <Linea top={1244} cuerpo={150} familia="Brushwell" interlinea={1}>mood</Linea>
     <BotonVerde top={1420} ancho={520} alto={54} cuerpo={30} peso={700}>{QB_ST09_DATA.pieza.medida}</BotonVerde>
     <Linea top={1480} cuerpo={34} peso={400} italica>
       {/* sin la ligadura «ff» y con aire entre las dos f (Eli 28-09: «se ve muy junto») */}

@@ -46,6 +46,10 @@ const QB_CMR40_DATA = {
 
 /** Una foto por fecha (todas del shooting de la carta, enero 2026). */
 const FOTOS = {
+  // r19 (Scarlette 29-09, STORIES!F14: «tomar porfis, la corrimos de fecha»): la ST del
+  // 40 % pasó al 08-10 con el mismo brief → la aprobada con foto nueva (R-66)
+  // r20 (Eli 29-09): «otra imagen de fondo que no se repita tantas veces» → Adamames Thai 1
+  "08": {src: "cmr08-edamame.jpg", zoom: 1.0, cx: 0.5, cy: 0.5},
   "17": {src: "ap-cmr17.jpg", zoom: 1.0, cx: 0.5, cy: 0.52},  // American Baby ribs 1
   "25": {src: "ap-cmr25.jpg", zoom: 1.0, cx: 0.5, cy: 0.45},  // Cerveza Atenea 2 (brindis)
   "31": {src: "ap-cmr31.jpg", zoom: 1.0, cx: 0.5, cy: 0.5},   // Papas trufadas 5
@@ -71,6 +75,41 @@ const Cifra: React.FC<{top: number; left: number; cuerpo: number; peso?: number;
   </div>
 );
 
+/** El bloque de la aprobada (caja, sello, 40 %, franja de débito y tarjetas), tal
+ *  cual. r19: separado para que el carrusel CMR del feed lo use igual, trasladado
+ *  `dy` px — sólo traslación, nunca `scale()` (X-03). */
+export const BloqueCmr40: React.FC<{dy?: number}> = ({dy = 0}) => (
+  <div style={{position: "absolute", left: 0, top: dy, width: MESA.w, height: MESA.h}}>
+      {/* caja: filete verde, vidrio oscuro, y la franja de débito que la cierra */}
+    <div style={{position: "absolute", left: CAJA.x, top: CAJA.y, width: CAJA.w, height: CAJA.h,
+      border: `4px solid ${FILETE}`, borderBottom: "none", borderRadius: "18px 18px 0 0",
+      background: "rgba(0,0,0,.34)"}} />
+    <div style={{position: "absolute", left: CAJA.x, top: FRANJA.y, width: CAJA.w, height: FRANJA.h, background: FILETE}} />
+    <Img src={staticFile("assets/hilton/qb/oct/ou-logo.png")}
+      style={{position: "absolute", left: 460, top: 595 + DY, width: 165, height: 163}} />
+    {/* «¡Pagando con CMR!» en arco suave, como la aprobada (x 368–720, cumbre en 797) */}
+    <svg style={{position: "absolute", left: 0, top: 0}} width={MESA.w} height={MESA.h}>
+      <path id="qb-cmr40-arco" d={`M ${544 - 640} ${815 + DY + 640} A 640 640 0 0 1 ${544 + 640} ${815 + DY + 640}`} fill="none" />
+      <text fill="#fff" fontFamily="Raleway" fontWeight={600} fontSize={40} textAnchor="middle">
+        <textPath href="#qb-cmr40-arco" startOffset={(Math.PI * 640) / 2}>{QB_CMR40_DATA.etiqueta}</textPath>
+      </text>
+    </svg>
+    <Cifra top={850 + DY} left={292} cuerpo={286} tracking="-0.05em">40</Cifra>
+    <Cifra top={855 + DY} left={640} cuerpo={188}>%</Cifra>
+    <Cifra top={1010 + DY} left={641} cuerpo={56}>dcto.</Cifra>
+    {/* franja: 30 % + «dcto.» bajo el % + tres líneas en Bold */}
+    <Cifra top={1100 + DY} left={316} cuerpo={111} tracking="-0.04em">30</Cifra>
+    <Cifra top={1102 + DY} left={453} cuerpo={75}>%</Cifra>
+    <Cifra top={1162 + DY} left={456} cuerpo={24} peso={700}>dcto.</Cifra>
+    <div style={{position: "absolute", left: 537, top: 1100 + DY - 7, color: "#fff", fontFamily: "Raleway",
+      fontWeight: 700, fontSize: 28.5, lineHeight: "30px", letterSpacing: "0.005em"}}>
+      {QB_CMR40_DATA.debito.map((l) => <div key={l}>{l}</div>)}
+    </div>
+    <Img src={staticFile("assets/hilton/qb/oct/tarjetas-cmr-4.png")}
+      style={{position: "absolute", left: TARJETAS.x, top: TARJETAS.y, width: TARJETAS.w, height: TARJETAS.w * 295 / 791}} />
+  </div>
+);
+
 export const QbStAprobadaCmr40: React.FC<{fecha: QbCmr40Fecha}> = ({fecha}) => {
   const f = FOTOS[fecha];
   return (
@@ -81,37 +120,20 @@ export const QbStAprobadaCmr40: React.FC<{fecha: QbCmr40Fecha}> = ({fecha}) => {
       {/* titular de dos pesos del mismo cuerpo, como la aprobada (versal 45 px) */}
       <Linea top={395 + DY - 17} cuerpo={63} peso={800} tracking="0.01em" interlinea={1}>{QB_CMR40_DATA.titular1}</Linea>
       <Linea top={470 + DY - 17} cuerpo={63} peso={300} tracking="0.01em" interlinea={1}>{QB_CMR40_DATA.titular2}</Linea>
-      {/* caja: filete verde, vidrio oscuro, y la franja de débito que la cierra */}
-      <div style={{position: "absolute", left: CAJA.x, top: CAJA.y, width: CAJA.w, height: CAJA.h,
-        border: `4px solid ${FILETE}`, borderBottom: "none", borderRadius: "18px 18px 0 0",
-        background: "rgba(0,0,0,.34)"}} />
-      <div style={{position: "absolute", left: CAJA.x, top: FRANJA.y, width: CAJA.w, height: FRANJA.h, background: FILETE}} />
-      <Img src={staticFile("assets/hilton/qb/oct/ou-logo.png")}
-        style={{position: "absolute", left: 460, top: 595 + DY, width: 165, height: 163}} />
-      {/* «¡Pagando con CMR!» en arco suave, como la aprobada (x 368–720, cumbre en 797) */}
-      <svg style={{position: "absolute", left: 0, top: 0}} width={MESA.w} height={MESA.h}>
-        <path id="qb-cmr40-arco" d={`M ${544 - 640} ${815 + DY + 640} A 640 640 0 0 1 ${544 + 640} ${815 + DY + 640}`} fill="none" />
-        <text fill="#fff" fontFamily="Raleway" fontWeight={600} fontSize={40} textAnchor="middle">
-          <textPath href="#qb-cmr40-arco" startOffset={(Math.PI * 640) / 2}>{QB_CMR40_DATA.etiqueta}</textPath>
-        </text>
-      </svg>
-      <Cifra top={850 + DY} left={292} cuerpo={286} tracking="-0.05em">40</Cifra>
-      <Cifra top={855 + DY} left={640} cuerpo={188}>%</Cifra>
-      <Cifra top={1010 + DY} left={641} cuerpo={56}>dcto.</Cifra>
-      {/* franja: 30 % + «dcto.» bajo el % + tres líneas en Bold */}
-      <Cifra top={1100 + DY} left={316} cuerpo={111} tracking="-0.04em">30</Cifra>
-      <Cifra top={1102 + DY} left={453} cuerpo={75}>%</Cifra>
-      <Cifra top={1162 + DY} left={456} cuerpo={24} peso={700}>dcto.</Cifra>
-      <div style={{position: "absolute", left: 537, top: 1100 + DY - 7, color: "#fff", fontFamily: "Raleway",
-        fontWeight: 700, fontSize: 28.5, lineHeight: "30px", letterSpacing: "0.005em"}}>
-        {QB_CMR40_DATA.debito.map((l) => <div key={l}>{l}</div>)}
-      </div>
-      <Img src={staticFile("assets/hilton/qb/oct/tarjetas-cmr-4.png")}
-        style={{position: "absolute", left: TARJETAS.x, top: TARJETAS.y, width: TARJETAS.w, height: TARJETAS.w * 295 / 791}} />
+      <BloqueCmr40 />
       <Linea top={1426} cuerpo={37} peso={400} interlinea={1.12} ancho={900}>
         Tu panorama de sábado ahora<br />tiene un nuevo beneficio
       </Linea>
-      <Legal top={1512} cuerpo={20}>{QB_CMR40_DATA.legal}</Legal>
+      {fecha === "08" ? (
+        // r19: sin cortes a mitad de frase (Constanza 29-09, «no debemos palabras solitas»)
+        // r20 (Eli 29-09): en HISTORIAS el legal va más abajo, donde marcó (≈ a 1750)
+        <Legal top={1748} cuerpo={20}>
+          *Válido los sábados de octubre pagando con CMR. *Excluye compras con factura.<br />
+          *No contempla tope de descuento. *Promoción no acumulable con otras ofertas y beneficios.
+        </Legal>
+      ) : (
+        <Legal top={1512} cuerpo={20}>{QB_CMR40_DATA.legal}</Legal>
+      )}
     </AbsoluteFill>
   );
 };

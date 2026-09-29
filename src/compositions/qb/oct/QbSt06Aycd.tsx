@@ -38,6 +38,12 @@
  *   que no destaque» → de 14 a 19 px, en dos líneas cortadas por frase (sin palabras
  *   solas), cerrando en ≈1660: sale de la zona de paid (1580) y queda en la de
  *   Instagram orgánico (1670).
+ *
+ * ⭐ RONDA 19 — NICOLÁS (contenido, hilo en STORIES!D13, 29-09): «el copón de
+ *   sangría debería ser un poquito más grande que las otras 2». No se escala a mano
+ *   ([[reescalar-un-producto-en-la-foto]]): Nano Banana Pro regeneró la escena
+ *   aprobada con el copón ≈20 % más grande, mismo cristal tallado, mismas frutas;
+ *   spritz, flauta, campana, telón y mármol iguales (`raw/hilton/qb/oct-r19/`).
  */
 import React from "react";
 import {AbsoluteFill} from "remotion";
@@ -65,7 +71,7 @@ export const QbSt06Aycd: React.FC = () => (
     {/* r4 (Eli 28-09): la campana de la ref de Sora — mano con guante que la levanta
         sobre los tres tragos. La foto sube para que los tragos queden entre el
         antetítulo y el bloque de precio; lo que queda abajo es mármol y velo. */}
-    <FotoQB src="assets/hilton/qb/oct/06-aycd-campana.jpg" ratio={1520 / 2736} zoom={1.08} cx={0.5} cy={0.605} libre />
+    <FotoQB src="assets/hilton/qb/oct/06-aycd-sangria-r19.jpg" ratio={3072 / 5504} zoom={1.08} cx={0.5} cy={0.565} libre />
     <Velo arriba={[820, 0.9]} abajo={[760, 0.95]} />
     <LogoQB top={207.4 + BAJA} ancho={178.6} />
     <NombreAycd top={376.3 + BAJA} />

@@ -21,10 +21,11 @@ import {QbSt20AycdLlamada} from "./compositions/qb/oct/QbSt20AycdLlamada";
 import {QbSt21Estacionamiento} from "./compositions/qb/oct/QbSt21Estacionamiento";
 import {QbSt23CloseFriends} from "./compositions/qb/oct/QbSt23CloseFriends";
 import {QbSt22Ensalada, QB_ST22_DURACION} from "./compositions/qb/oct/QbSt22Ensalada";
+import {QbFeed09CmrG1, QbFeed09CmrG2, QbFeed09CmrG3} from "./compositions/qb/oct/QbFeed09Cmr";
 import {QbFeed05CumpleG1, QbFeed05CumpleG2, QbFeed05CumpleG3, QbFeed05CumpleG4} from "./compositions/qb/oct/QbPost05Cumple";
 import {QbSt26Terraza, QB_ST26_DURACION} from "./compositions/qb/oct/QbSt26Terraza";
 
-import {QbSt07Cumple} from "./compositions/qb/oct/QbSt07Cumple";
+import {QbSt07Cumple, QB_ST07_DURACION} from "./compositions/qb/oct/QbSt07Cumple";
 import {QbSt12Pulpo} from "./compositions/qb/oct/QbSt12Pulpo";
 import {QbSt16Primavera} from "./compositions/qb/oct/QbSt16Primavera";
 import {QbSt28EsteOEste} from "./compositions/qb/oct/QbSt28EsteOEste";
@@ -56,7 +57,7 @@ const Raiz: React.FC = () => (
     <Composition id="QB-OCT-FEED05-G4" component={QbFeed05CumpleG4} durationInFrames={1} {...F} />
     <Composition id="QB-OCT-ST26" component={QbSt26Terraza} durationInFrames={QB_ST26_DURACION} {...Q} />
     {/* ronda 9 (28-09 tarde): lo que pasó a OK en la grilla */}
-    <Composition id="QB-OCT-ST07" component={QbSt07Cumple} durationInFrames={1} {...Q} />
+    <Composition id="QB-OCT-ST07" component={QbSt07Cumple} durationInFrames={QB_ST07_DURACION} {...Q} />
     <Composition id="QB-OCT-ST12" component={QbSt12Pulpo} durationInFrames={1} {...Q} />
     <Composition id="QB-OCT-ST16" component={QbSt16Primavera} durationInFrames={1} {...Q} />
     <Composition id="QB-OCT-ST28" component={QbSt28EsteOEste} durationInFrames={1} {...Q} />
@@ -65,9 +66,13 @@ const Raiz: React.FC = () => (
     <Composition id="QB-OCT-FEED12-G1" component={QbFeed12SunsetG1} durationInFrames={1} {...F} />
     <Composition id="QB-OCT-FEED12-G2" component={QbFeed12SunsetG2} durationInFrames={1} {...F} />
     <Composition id="QB-OCT-FEED16" component={QbFeed16Autor} durationInFrames={1} {...F} />
+    <Composition id="QB-OCT-FEED09-G1" component={QbFeed09CmrG1} durationInFrames={1} {...F} />
+    <Composition id="QB-OCT-FEED09-G2" component={QbFeed09CmrG2} durationInFrames={1} {...F} />
+    <Composition id="QB-OCT-FEED09-G3" component={QbFeed09CmrG3} durationInFrames={1} {...F} />
     {/* 29-09: las «ST APROBADA» de la grilla, sobre la aprobada con foto real nueva */}
     <Composition id="QB-OCT-AP-AYCD" component={QbStAprobadaAycd} durationInFrames={1} {...Q} defaultProps={{fecha: "13" as const}} />
     <Composition id="QB-OCT-AP-CMR40" component={QbStAprobadaCmr40} durationInFrames={1} {...Q} defaultProps={{fecha: "17" as const}} />
+    <Composition id="QB-OCT-ST08-CMR40" component={QbStAprobadaCmr40} durationInFrames={1} {...Q} defaultProps={{fecha: "08" as const}} />
     <Composition id="QB-OCT-AP-SUNSET" component={QbStAprobadaSunset} durationInFrames={1} {...Q} defaultProps={{semana: "S2" as const}} />
   </Folder>
 );

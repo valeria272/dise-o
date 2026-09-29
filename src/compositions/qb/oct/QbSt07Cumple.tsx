@@ -40,9 +40,26 @@
  *   manda el primer beneficio porque es el más largo, pero déjale un poco menos de
  *   aire al fin de la frase» → los cinco recuadros toman el ancho del primero
  *   (max-content) y cierran con el mismo aire que abren (26 px por lado), centrados.
+ *
+ * ⭐⭐ RONDA 19 — PASA A ANIMADA (Scarlette, hilo en STORIES!E14, 29-09): «ajusté el
+ *   formato a animado y te dejé los nuevos textos». Cambiaron los beneficios:
+ *   Texto 1: Convierte tu cumpleaños en una noche inolvidable.
+ *   Texto 2: DESDE 8 PERSONAS · El cumpleañero recibe 4 tragos + Bucket de 6
+ *     cervezas o botella de espumante.
+ *   Texto 3: Y SI LA LISTA LLEGA A 15… · Refill ilimitado de 1 trago - bucket de
+ *     cervezas - botella de espumante.
+ *   Texto 4: HAZ LA LISTA. NOS VEMOS EN QB. · Postre · torta propia · cuentas
+ *     divididas · packs de shots.
+ *   → Se conserva lo aprobado (foto, logo, titular Bell + Raleway, recuadro oscuro
+ *     con filete). Lo que se anima es la INFORMACIÓN: el texto 2 aparece de
+ *     inmediato (R-43, «mostraría la información más importante de inmediato») y
+ *     el 3 y el 4 lo reemplazan en el mismo recuadro (sin puntos de avance: sobre
+ *     las bengalas no se veían). La foto se acerca muy lento (zoom por tamaño, nunca scale()).
+ *     Dos voces: Bell MT en el titular y Raleway en todo lo demás.
+ *   Estática (la que va a la grilla) = el fotograma del texto 2.
  */
 import React from "react";
-import {AbsoluteFill} from "remotion";
+import {AbsoluteFill, Easing, interpolate, useCurrentFrame} from "remotion";
 
 import {cargarFuentesQbOct, CIFRAS, FotoQB, ImagenReferencial, Linea, LogoQB, Velo} from "./QbOctKit";
 
@@ -52,10 +69,30 @@ const QB_ST07_DATA: Record<string, Record<string, string>> = {
   pieza: {
   titular: "CONVIERTE TU CUMPLEAÑOS",
   bajada: "en una noche inolvidable",
-  beneficio: "5 tragos de cortesía para el cumpleañero/a",
-  resto: "Shots de regalo · Postre · Cuenta separadas · Puedes traer tu propia torta",
+  },
+  t2: {
+  antetitulo: "DESDE 8 PERSONAS",
+  recibe: "El cumpleañero recibe",
+  fuerte: "4 tragos",
+  texto: "+ Bucket de 6 cervezas o botella de espumante",
+  },
+  t3: {
+  antetitulo: "Y SI LA LISTA LLEGA A 15…",
+  fuerte: "Refill ilimitado de 1 trago",
+  texto: "Bucket de cervezas · Botella de espumante",
+  },
+  t4: {
+  antetitulo: "HAZ LA LISTA. NOS VEMOS EN QB",
+  texto: "Postre · Torta propia · Cuentas divididas · Packs de shots",
   },
 };
+
+/** 30 fps: texto 2 desde el comienzo, 3 y 4 cada 3 s; el 4 se queda. */
+export const QB_ST07_DURACION = 330;
+const CAMBIOS = [0, 105, 210];
+const FUNDE = 14;
+/** Fotograma de la estática: el texto 2 ya asentado. */
+export const QB_ST07_ESTATICA = 80;
 
 // ───────────────────────────────────────────────────────────────────────────
 // Íconos de línea (trazo 2,2 sobre caja de 44): el registro de los íconos de
@@ -87,28 +124,81 @@ const Item: React.FC<{icono: string; children: React.ReactNode; fuerte?: boolean
   </div>
 );
 
+/** Recuadro de la información: el mismo vidrio oscuro con filete de la aprobada. */
+const Recuadro: React.FC<{i: number; children: React.ReactNode}> = ({i, children}) => {
+  const f = useCurrentFrame();
+  const ini = CAMBIOS[i];
+  const fin = CAMBIOS[i + 1];
+  const entra = i === 0 ? interpolate(f, [4, 4 + FUNDE], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})
+    : interpolate(f, [ini, ini + FUNDE], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+  const sale = fin === undefined ? 0 : interpolate(f, [fin - 2, fin + FUNDE - 6], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+  const op = entra * (1 - sale);
+  if (op <= 0) return null;
+  const dy = (1 - Easing.out(Easing.cubic)(entra)) * 26 - sale * 18;
+  return (
+    <div style={{position: "absolute", top: 660 + AIRE_LOGO + dy, left: 0, right: 0, display: "flex",
+      justifyContent: "center", opacity: op}}>
+      <div style={{width: 820, boxSizing: "border-box", padding: "34px 40px 38px", borderRadius: 14,
+        background: "rgba(8,10,9,.64)", border: "1px solid rgba(255,255,255,.16)", textAlign: "center",
+        color: "#fff", fontFamily: "Raleway", ...CIFRAS}}>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+const Ante: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <div style={{fontSize: 30, fontWeight: 700, letterSpacing: "0.14em", marginBottom: 18}}>{children}</div>
+);
+const Fuerte: React.FC<{children: React.ReactNode; icono?: string}> = ({children, icono}) => (
+  <div style={{display: "flex", alignItems: "center", justifyContent: "center", gap: 18, fontSize: 50,
+    fontWeight: 800, lineHeight: 1.1}}>
+    {icono && <svg width={52} height={52} viewBox="0 0 44 44" style={{flex: "none"}}>{ICONOS[icono]}</svg>}
+    <span>{children}</span>
+  </div>
+);
+const Texto: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <div style={{fontSize: 31, fontWeight: 400, lineHeight: 1.3, marginTop: 14}}>{children}</div>
+);
+
 export const QbSt07Cumple: React.FC = () => {
-  const d = QB_ST07_DATA.pieza;
-  const [r1, r2, r3, r4] = d.resto.split(" · ");
+  const f = useCurrentFrame();
+  const d = QB_ST07_DATA;
+  const zoom = interpolate(f, [0, QB_ST07_DURACION], [1, 1.06]);
+  const [x1, x2, x3, x4] = d.t4.texto.split(" · ");
   return (
     <AbsoluteFill style={{background: "#000"}}>
-      <FotoQB src="assets/hilton/qb/oct/07-cumple-torta-verde.jpg" ratio={1770 / 2360} cx={0.5} />
+      <FotoQB src="assets/hilton/qb/oct/07-cumple-torta-verde.jpg" ratio={1770 / 2360} cx={0.5} zoom={zoom} />
       <Velo arriba={[1100, 0.85]} abajo={[520, 0.8]} />
       <LogoQB top={250} ancho={160} />
       <Linea top={372 + AIRE_LOGO} cuerpo={70} familia="BellMT" tracking="0.02em" interlinea={1.02}>
         CONVIERTE<br />TU CUMPLEAÑOS
       </Linea>
-      <Linea top={528 + AIRE_LOGO} cuerpo={48} peso={300} tracking="0.01em">{d.bajada}</Linea>
-      {/* Constanza 29-09: los recuadros miden lo que mide el primer beneficio, centrados */}
-      <div style={{position: "absolute", top: 622 + AIRE_LOGO, left: 0, right: 0, display: "flex", justifyContent: "center"}}>
-        <div style={{display: "flex", flexDirection: "column", gap: 12, width: "max-content"}}>
-          <Item icono="copa" fuerte>{d.beneficio}</Item>
-          <Item icono="shot">{r1}</Item>
-          <Item icono="postre">{r2}</Item>
-          <Item icono="cuenta">{r3}</Item>
-          <Item icono="torta">{r4}</Item>
+      <Linea top={528 + AIRE_LOGO} cuerpo={48} peso={300} tracking="0.01em">{d.pieza.bajada}</Linea>
+      <Recuadro i={0}>
+        <Ante>{d.t2.antetitulo}</Ante>
+        <div style={{fontSize: 30, fontStyle: "italic", fontWeight: 300, marginBottom: 10}}>{d.t2.recibe}</div>
+        <Fuerte icono="copa">{d.t2.fuerte}</Fuerte>
+        <Texto>{d.t2.texto}</Texto>
+      </Recuadro>
+      <Recuadro i={1}>
+        <Ante>{d.t3.antetitulo}</Ante>
+        <Fuerte icono="copa">{d.t3.fuerte}</Fuerte>
+        <Texto>{d.t3.texto}</Texto>
+      </Recuadro>
+      <Recuadro i={2}>
+        <Ante>{d.t4.antetitulo}</Ante>
+        <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", gap: "18px 24px", marginTop: 6,
+          fontSize: 31, fontWeight: 500, textAlign: "left"}}>
+          {([["postre", x1], ["torta", x2], ["cuenta", x3], ["shot", x4]] as const).map(([ic, t]) => (
+            <div key={ic} style={{display: "flex", alignItems: "center", gap: 14}}>
+              <svg width={42} height={42} viewBox="0 0 44 44" style={{flex: "none"}}>{ICONOS[ic]}</svg>
+              <span>{t}</span>
+            </div>
+          ))}
         </div>
-      </div>
+      </Recuadro>
+
       <ImagenReferencial top={1556} />
     </AbsoluteFill>
   );

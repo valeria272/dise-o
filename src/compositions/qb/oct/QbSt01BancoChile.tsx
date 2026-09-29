@@ -90,8 +90,9 @@ const QB_ST01_DATA: Record<string, Record<string, string>> = {
 const B = 30;
 /** Constanza 29-09: logo→pastilla = 53 px, la misma separación que el AYCD. */
 const AIRE_LOGO = 10;
-/** r19: sin «EN QB» el marco se achica 60 px (la línea y su aire). */
-const ACHICA = 60;
+/** r19: sin «EN QB» el marco se achica (la línea y su aire). r20 (Eli 29-09: «hay demasiada
+ *  caja… sube más lo del 20 y el 30 y acorta ese recuadro»): de 60 a 100 px. */
+const ACHICA = 100;
 /** r4: la caligráfica necesita 120 px más de marco. */
 const CRECE = 120;
 const MARCO = {x: 87, y: 398 + B + AIRE_LOGO, w: 899, h: 322 + CRECE - ACHICA};

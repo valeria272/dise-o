@@ -72,15 +72,27 @@ export const QbStAprobadaAycd: React.FC<{fecha: QbAycdFecha}> = ({fecha}) => {
       <LogoQB top={207.4 + BAJA} ancho={178.6} />
       <NombreAycd top={376.3 + BAJA} />
       <BloqueAycd antetitulo={1311.4 - SUBE} boton={1364.6 - SUBE} horario={1479.4 - SUBE} />
-      {/* r17-r18 (Eli 29-09): el legal entero en UNA línea (19 px con «Imagen referencial»,
-          22 sin) y la lista de tragos aparte, más grande y recta. La 27-10 igual que la 13-10 */}
-      <Legal top={1452} cuerpo={f.referencial ? 19 : 22} unaLinea>
-        {f.referencial ? QB_AYCD_AP_DATA.referencial : ""}{QB_AYCD_AP_DATA.legal}
-      </Legal>
-      <Linea top={1500} cuerpo={24} peso={400} interlinea={1.4} sombra={false}
-        color="rgba(255,255,255,0.95)" ancho={960}>
-        {QB_AYCD_AP_DATA.tragosOrden[0]}<br />{QB_AYCD_AP_DATA.tragosOrden[1]}
-      </Linea>
+      {f.referencial ? (
+        <>
+          {/* r17 (Eli 29-09): el legal entero en UNA línea, y la lista de tragos aparte, más grande */}
+          <Linea top={1452} cuerpo={18} italica interlinea={1.3} sombra={false}
+            color="rgba(255,255,255,0.88)" ancho={1000}>
+            {QB_AYCD_AP_DATA.referencial}{QB_AYCD_AP_DATA.legal}
+          </Linea>
+          <Linea top={1500} cuerpo={24} peso={400} interlinea={1.4} sombra={false}
+            color="rgba(255,255,255,0.95)" ancho={960}>
+            {QB_AYCD_AP_DATA.tragosOrden[0]}<br />{QB_AYCD_AP_DATA.tragosOrden[1]}
+          </Linea>
+        </>
+      ) : (
+        <>
+          <Legal top={1452} cuerpo={19}>{QB_AYCD_AP_DATA.legal}</Legal>
+          <Linea top={1500} cuerpo={20} italica peso={400} interlinea={1.35} sombra={false}
+            color="rgba(255,255,255,0.9)" ancho={900}>
+            {QB_AYCD_AP_DATA.tragos[0]}<br />{QB_AYCD_AP_DATA.tragos[1]}
+          </Linea>
+        </>
+      )}
     </AbsoluteFill>
   );
 };

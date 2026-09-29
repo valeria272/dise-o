@@ -124,8 +124,7 @@ export const QbSt01BancoChile: React.FC = () => {
       <Linea top={676 + B + AIRE_LOGO} cuerpo={46} peso={300} tracking="0.04em">EN QB</Linea>
       <Caja x={x1} cifra="20%OFF" dia="Lunes a viernes" />
       <Caja x={x1 + CAJA.w + CAJA.g} cifra="30%OFF" dia="Sábados y domingos" />
-      {/* r18 (Eli 29-09): legal en UNA línea, 19 px */}
-      <Legal top={1540} cuerpo={19} unaLinea>{QB_ST01_DATA.pieza.legal} {QB_ST01_DATA.pieza.legal2}</Legal>
+      <Legal top={1530} cuerpo={22}>{QB_ST01_DATA.pieza.legal}<br />{QB_ST01_DATA.pieza.legal2}</Legal>
       <Img src={staticFile("assets/hilton/qb/oct/tarjetas-banco-chile.png")}
         style={{position: "absolute", left: (MESA.w - TARJ_W) / 2, top: 1620, width: TARJ_W, height: TARJ_W / 2}} />
     </AbsoluteFill>

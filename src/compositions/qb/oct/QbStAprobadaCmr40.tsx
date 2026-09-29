@@ -42,8 +42,6 @@ const QB_CMR40_DATA = {
   etiqueta: "¡Pagando con CMR!",
   debito: ["CON TU TARJETA", "DE DÉBITO BANCO", "FALABELLA"],
   legal: "*Válido los sábados de octubre pagando con CMR. *Excluye compras con factura. *No contempla tope de descuento. *Promoción no acumulable con otras ofertas y beneficios.",
-  legal1: "*Válido los sábados de octubre pagando con CMR. *Excluye compras con factura.",
-  legal2: "*No contempla tope de descuento. *Promoción no acumulable con otras ofertas y beneficios.",
 };
 
 /** Una foto por fecha (todas del shooting de la carta, enero 2026). */
@@ -113,9 +111,7 @@ export const QbStAprobadaCmr40: React.FC<{fecha: QbCmr40Fecha}> = ({fecha}) => {
       <Linea top={1426} cuerpo={37} peso={400} interlinea={1.12} ancho={900}>
         Tu panorama de sábado ahora<br />tiene un nuevo beneficio
       </Linea>
-      {/* r18 (Eli 29-09): es el doble de largo que los otros (no cabe en una línea legible):
-          de 20 a 21 px, en DOS líneas exactas cortadas por frase (columna de 960) */}
-      <Legal top={1512} cuerpo={21} unaLinea>{QB_CMR40_DATA.legal1}<br />{QB_CMR40_DATA.legal2}</Legal>
+      <Legal top={1512} cuerpo={20}>{QB_CMR40_DATA.legal}</Legal>
     </AbsoluteFill>
   );
 };

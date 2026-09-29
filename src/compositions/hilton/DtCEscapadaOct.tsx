@@ -279,8 +279,8 @@ const Personaliza: React.FC<{foto: string}> = ({foto}) => (
         fontFamily: DT.fuentes.texto,
         fontSize: 24,
         lineHeight: 1.4,
-        letterSpacing: '0.02em',
-        wordSpacing: '0.1em',
+        // R-132 (Constanza, 29-09: «tipografías separadas en cada palabra»): menos aire entre palabras
+        wordSpacing: '0.03em',
         color: BLANCO,
         textShadow: SOMBRA,
       }}

@@ -135,7 +135,8 @@ export const DtFtOpinionOct: React.FC<{guia?: boolean}> = ({guia = false}) => {
           whiteSpace: 'nowrap',
         }}
       >
-        <span style={{fontWeight: DT.pesos.regular, letterSpacing: '0.07em'}}>{NOMBRE} </span>
+        {/* R-132 (Constanza, 29-09): sin letras espaciadas en DT — 0,07 → 0,03 */}
+        <span style={{fontWeight: DT.pesos.regular, letterSpacing: '0.03em'}}>{NOMBRE} </span>
         <span style={{fontWeight: DT.pesos.semibold, letterSpacing: '0.03em'}}>{CITA}</span>
       </div>
 

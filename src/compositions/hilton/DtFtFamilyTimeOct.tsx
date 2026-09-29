@@ -97,7 +97,7 @@ export const DtFtFamilyTimeOct: React.FC<{tinta?: 'blanco' | 'azul'}> = ({tinta 
             >
               $125.000
             </div>
-            <div style={{marginTop: 8, fontFamily: DT.fuentes.texto, fontSize: 19, letterSpacing: '0.16em', textIndent: '0.16em', textShadow: SOMBRA}}>
+            <div style={{marginTop: 8, fontFamily: DT.fuentes.texto, fontSize: 21, letterSpacing: '0.03em', textShadow: SOMBRA}}>{/* R-132 (Constanza, 29-09): sin letras espaciadas en DT */}
               IVA INCLUIDO
             </div>
           </div>

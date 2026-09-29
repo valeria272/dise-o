@@ -25,9 +25,9 @@ p.comparar((f"{A}/ft-1.png", "antes · texto 1, versal en 488"), (f"{D}/ft-1.png
 p.comparar((f"{A}/ft-2.png", "antes · el texto 2 subía a 416: el título saltaba 72 px entre escenas"),
            (f"{D}/ft-2.png", "ahora · el texto 2 arranca en el mismo punto que el 1"),
            titulo="ST 01-10 Family Time (animada) · texto 2 y bajada",
-           notas=("Esta era la falla que marcó Constanza: dentro de la misma historia los dos títulos no quedaban a la "
+           notas=("Qué era", ["Esta era la falla que marcó Constanza: dentro de la misma historia los dos títulos no quedaban a la "
                   "misma distancia del logo.",
-                  "De pasada, «IVA INCLUIDO» de la bajada va sin letras espaciadas."))
+                  "De pasada, «IVA INCLUIDO» de la bajada va sin letras espaciadas."]))
 p.comparar((f"{A}/DT ST 13-10 Servicios del hotel.png", "antes · interlínea 1,14"),
            (f"{D}/DT ST 13-10 Servicios del hotel.png", "ahora · misma altura, interlínea 1,06"),
            titulo="ST 13-10 Servicios del hotel", detalle=(0, 300, 1080, 760))
@@ -79,9 +79,10 @@ p.comparar((f"{A}/C1 S2 DT n°1.png", "antes"), (f"{D}/C1 S2 DT n°1.png", "ahor
 # ── 5 · coworking ──────────────────────────────────────────────────────────
 p.comparar((f"{A}/cw-2.png", "antes · UBICACIÓN con letras separadas"), (f"{D}/cw-2.png", "ahora · letras juntas"),
            titulo="ST 22-10 Coworking (animada) · por la misma regla", detalle=(140, 900, 940, 1400),
-           notas=("Constanza no la comentó, pero tenía el mismo recurso que ella dice que no se usa en DT.",
+           notas=("Ojo", ["Constanza no la comentó, pero tenía el mismo recurso que ella dice que no se usa en DT.",
                   "El título de Coworking NO se movió: va dentro del cristal al centro, no bajo el logo, así que no es "
-                  "una historia «con estas características». Si quieres que también suba bajo el logo, dime y lo hago."))
+                  "una historia «con estas características». Si quieres que también suba bajo el logo, dime y lo hago.",
+                  "⚠️ <b>NO está subido a Drive</b>: como Constanza no la comentó, espera tu OK."]))
 
 p.notas([
     "⚠️ <b>Choque con una regla tuya de hoy.</b> En la ronda 3 del carrusel pediste interlínea 1,3 en lo apilado "
@@ -91,5 +92,6 @@ p.notas([
     "El resto del carrusel (lámina 2) no se tocó: Constanza no la comentó.",
     "La separación se verificó midiendo cada render: la mayúscula del titular cae en y = 487–489 en las 7 historias.",
     "Las animadas se re-rindieron completas (MP4 + GIF). Family Time es la ronda 9 con este solo cambio de títulos.",
+    "<b>En Drive (reemplazadas, md5 verificado):</b> S1/STS Family Time MP4 + GIF · S2/STS las 3 feriado · S2/FEED portada C1 S2 DT n°1 · S3/STS Servicios · S5/STS Honors. Coworking queda sin subir hasta tu OK.",
 ])
 p.escribir()

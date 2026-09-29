@@ -95,11 +95,26 @@ export const DtStFeriadoPlanes: React.FC<{guia?: boolean}> = ({guia = false}) =>
           <Stag t={l.t} />
         </div>
       ))}
-      {/* la flecha fina de la ref, que baja a los planes */}
-      <svg width={24} height={96} viewBox="0 0 24 96" style={{marginTop: 34, filter: 'drop-shadow(0 1px 3px rgba(9,25,78,0.5))'}}>
-        <line x1="12" y1="0" x2="12" y2="92" stroke={BLANCO} strokeWidth="2" />
-        <path d="M4 82 L12 94 L20 82" fill="none" stroke={BLANCO} strokeWidth="2" strokeLinejoin="round" />
-      </svg>
+      {/* la flecha de la ref, que baja a los planes. RONDA 6 (Eli, 29-09): «no se ve… déjala en algún
+          recuadro» → dentro de un círculo blanco lleno, flecha azul */}
+      <div
+        style={{
+          width: 84,
+          height: 84,
+          margin: '40px auto 0',
+          borderRadius: '50%',
+          background: BLANCO,
+          boxShadow: '0 6px 20px rgba(9,25,78,0.35)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <svg width={26} height={40} viewBox="0 0 26 40">
+          <line x1="13" y1="2" x2="13" y2="36" stroke={AZUL} strokeWidth="3" strokeLinecap="round" />
+          <path d="M3 26 L13 37 L23 26" fill="none" stroke={AZUL} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
     </div>
 
     {PLANES.map((p, i) => (
@@ -146,18 +161,27 @@ export const DtStFeriadoPlanes: React.FC<{guia?: boolean}> = ({guia = false}) =>
     <div
       style={{
         position: 'absolute',
-        top: 1512,
+        top: 1522,
         left: 0,
         width: 1080,
         textAlign: 'center',
-        fontFamily: DT.fuentes.texto,
-        fontSize: 25,
-        wordSpacing: '0.08em',
-        color: BLANCO,
-        textShadow: SOMBRA,
       }}
     >
-      IVA incluido. Válido jueves a domingo y festivos.
+      {/* RONDA 6 (Eli, 29-09): «más abajo… con un recuadrito o algún fondo, porque no se lee» */}
+      <span
+        style={{
+          display: 'inline-block',
+          padding: '13px 30px 10px',
+          borderRadius: 999,
+          background: 'rgba(9,25,78,0.82)',
+          fontFamily: DT.fuentes.texto,
+          fontSize: 26,
+          wordSpacing: '0.08em',
+          color: BLANCO,
+        }}
+      >
+        IVA incluido. Válido jueves a domingo y festivos.
+      </span>
     </div>
 
     {guia ? <Guia /> : null}
@@ -214,8 +238,9 @@ const FT: Programa = {
  */
 const CUERPO_TIT = 64;
 
+// RONDA 6 (Eli, 29-09): «me incomoda que salga del recuadro ese texto» → alineado al texto de ADENTRO del panel (88 + 54)
 const TituloPrograma: React.FC<{lineas: {t: string; w: number}[]}> = ({lineas}) => (
-  <div style={{position: 'absolute', top: topTitulo(CUERPO_TIT), left: 88, color: BLANCO}}>
+  <div style={{position: 'absolute', top: topTitulo(CUERPO_TIT), left: 88 + 54, color: BLANCO}}>
     {lineas.map((l) => (
       <div
         key={l.t}
@@ -246,7 +271,7 @@ const Pildora: React.FC<{t: string; cuerpo: number; pad: string}> = ({t, cuerpo,
   </div>
 );
 
-const PANEL = {x: 88, y: 800, ancho: 600, alto: 680, radio: 44, pad: 54} as const;
+const PANEL = {x: 88, y: 760, ancho: 600, alto: 680, radio: 44, pad: 54} as const;
 
 export const DtStFeriadoPrograma: React.FC<{cual: 'er' | 'ft'; guia?: boolean}> = ({cual, guia = false}) => {
   const p = cual === 'er' ? ER : FT;
@@ -334,7 +359,7 @@ const FT_TITULO = [
   {t: 'largo en familia,', w: DT.pesos.medium},
   {t: 'sin salir de Santiago', w: DT.pesos.light},
 ];
-const PANEL_FT = {x: 88, y: 1165, ancho: 904, alto: 405, radio: 44, pad: 46} as const;
+const PANEL_FT = {x: 88, y: 1165, ancho: 904, alto: 405, radio: 44, pad: 54} as const;
 
 export const DtStFeriadoFt: React.FC<{guia?: boolean}> = ({guia = false}) => {
   const p = FT;

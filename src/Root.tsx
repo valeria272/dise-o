@@ -124,6 +124,7 @@ import {
   EbemaReelClickOct, EbemaReelCatalogoOct, EbemaReelAzaOct, EbemaReelLpOct,
   CK_DUR, CT_DUR, AZ_DUR, LP_DUR, REELS_OCT_FPS, EbemaReelSanBernardoOct, SB_DUR,
 } from "./compositions/ebema/EbemaGrillaReelsOct";
+import {EbemaTeaserGota, TEASER_DUR, TEASER_FPS} from "./compositions/ebema/EbemaTeaserGota";
 import {RevexLaminadosSlide} from "./compositions/RevexLaminadosCarrusel";
 import {RevexSepPieza, REVEX_SEP_PIEZAS} from "./compositions/RevexSeptiembre";
 import {RevexSep2026, REVEX_SEP26} from "./compositions/RevexSep2026";
@@ -1025,6 +1026,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="EbemaReelAzaOct" component={EbemaReelAzaOct} durationInFrames={AZ_DUR} fps={REELS_OCT_FPS} width={2160} height={3840} />
         <Composition id="EbemaReelLpOct" component={EbemaReelLpOct} durationInFrames={LP_DUR} fps={REELS_OCT_FPS} width={2160} height={3840} />
         <Composition id="EbemaReelSanBernardoOct" component={EbemaReelSanBernardoOct} durationInFrames={SB_DUR} fps={REELS_OCT_FPS} width={2160} height={3840} />
+        <Composition id="EbemaTeaserGota" component={EbemaTeaserGota} durationInFrames={TEASER_DUR} fps={TEASER_FPS} width={1080} height={1920} />
         <Composition
           id="EbemaShowroomReelFeed"
           component={EbemaShowroomReel}

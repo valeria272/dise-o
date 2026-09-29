@@ -617,10 +617,12 @@ const CierreSB: React.FC = () => {
       <AbsoluteFill style={{opacity: o}}>
         <Img src={A("logos/logo_ebema_anillo_claro.png")} style={{position: "absolute", left: 1071 - 651 / 2, top: 1166, width: 651 * (952 / 935)}} />
         <div style={{position: "absolute", left: 0, right: 0, top: 2000, display: "flex", flexDirection: "column", alignItems: "center"}}>
+          {/* RONDA 1 · 29-09 (Paulina, 24,7 s): «dejemos el texto del cuadro rojo en una sola línea
+              bajando un poco el pt para que no llegue tan a los bordes el cuadro» (80 → 60, una línea) */}
           <div style={{display: "flex", alignItems: "center", background: RED, padding: "14px 40px 16px", color: WHITE, fontFamily: HELV,
-            fontWeight: 700, fontSize: 80, lineHeight: 1.15}}>
-            <Icono tipo="pin" c={WHITE} s={86} />
-            <div>Av. General Velásquez 10985<br />San Bernardo</div>
+            fontWeight: 700, fontSize: 60, lineHeight: 1.15, whiteSpace: "nowrap"}}>
+            <Icono tipo="pin" c={WHITE} s={66} />
+            <div>Av. General Velásquez 10985, San Bernardo</div>
           </div>
           {["Lunes y martes 8:30 a 18:00 hrs", "Miércoles a viernes 8:30 a 17:00 hrs"].map((t, i) => (
             <div key={t} style={{display: "flex", alignItems: "center", marginTop: i === 0 ? 44 : 14, fontFamily: HELV, fontWeight: 700,
@@ -685,7 +687,8 @@ export const EbemaReelSanBernardoOct: React.FC = () => {
         <Subtitulo a={s(0.1)} b={SBT.t1b} blanca="Si estás con una" roja="obra en marcha," />
         {/* la cápsula «te puede ahorrar más de un peso» medía 1.923 px a cuerpo 96 (regla de ≥ 300 px
             de aire): baja al subtítulo en dos filas */}
-        <Titular a={SBT.t1b + 2} b={T2} pre="Esta zona de Ebema San Bernardo" lineas={["Zona Ofertas", "Constructor"]}
+        {/* RONDA 1 · 29-09 (Paulina, 3,4 s): «elimina la línea de texto de arriba "esta zona de ebema..."» */}
+        <Titular a={SBT.t1b + 2} b={T2} lineas={["Zona Ofertas", "Constructor"]}
           top={1900} cuerpo={TITULO_SB} />
         <Subtitulo a={SBT.t1b + 16} b={T2} blanca="te puede ahorrar" roja="más de un peso." />
         <Subtitulo a={T2 + 3} b={SBC.cer} blanca="Variedad de productos" roja="a precios de oferta." />

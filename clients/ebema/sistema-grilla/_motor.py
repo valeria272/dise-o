@@ -121,7 +121,11 @@ def cuerpo(l):
     if l.get("pie") is not None:
         # Con el subtexto ya en la cápsula, el pie se queda sólo con la flecha
         # de «desliza». Va igual: está en 4 de las 5 portadas medidas.
-        txt = f'<div class="txt">{fmt(l["pie"])}</div>' if l["pie"] else ""
+        # `|` = salto de línea decidido a mano, como en el titular. Paulina,
+        # 29-09-2026 sobre masisa1: «las palabras "para trabajar" dejarlas en la
+        # segunda línea».
+        txt = (f'<div class="txt">{"<br>".join(fmt(x) for x in lineas(l["pie"]))}</div>'
+               if l["pie"] else "")
         pie = (f'<div class="pie-flecha">{txt}'
                f'<div class="pildora"><svg viewBox="0 0 190 20">'
                f'<path d="M0 10 H176 M166 3 L177 10 L166 17" fill="none" '

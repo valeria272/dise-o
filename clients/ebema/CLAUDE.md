@@ -1467,3 +1467,23 @@ se distinguen entre sí. La capa `clients/ebema/sistema/carrusel.css` **extiende
 La **Ruta B rompe el centrado** del sistema (compone alineada a la izquierda sobre
 blanco, no centrada sobre la foto). **Está sin aprobar por Paulina** — no se produce
 una entrega con ella hasta que ella la firme. La Ruta A no mueve nada de sitio.
+
+## 14. Teaser con key visual del cliente — «La Gota de Color» (29-09-2026)
+
+Pieza fuera de grilla, pedida por el cliente vía Carlos Figueroa, **aprobada por el cliente
+tras 4 rondas de Paulina**. Composición `EbemaTeaserGota` (`src/compositions/ebema/EbemaTeaserGota.tsx`),
+assets en `public/assets/ebema/teaser-gota/` (KV y brief en `fuentes/`).
+
+- **Manda el KV del cliente, no el sistema:** su tipografía (DejaVu Sans, medida glifo a
+  glifo) y sus textos tal cual; el rojo sí se lleva a `#EC1C23`. Sin cierre oficial de reel.
+- **Cierre:** fondo **blanco** con el logo oficial rojo y gris, apareciendo lento y **sin
+  sonido**. El logo blanco sobre negro se rechazó («se ve muy oscuro»).
+- **Movimiento físico = IA de video real, en un solo plano.** La caída se hizo con Kling 2.5
+  Pro animando el movimiento INVERSO desde el cuadro final aprobado (la gota sube, se
+  redondea y la luz se apaga) y reproduciéndolo al revés: termina exacto en el cuadro final y
+  empalma sin corte. Rechazado: recorte fijo deslizándose («tosco») y fundir dos formas de la
+  gota («se corta»). Kling 2.1 Pro con cuadro final (`--fin`) volvió a fallar.
+- **Sonido:** gota que toca agua (`agua_a`, un golpe, tono de burbuja que sube) + remate en el
+  momento en que se ilumina; nada de whoosh con el texto. Los efectos se eligen **midiéndolos**
+  (golpes, ataque, nivel): la primera gota sonaba ~20× más bajo y nadie la oía.
+- **Ritmo:** 8 s; la caída en ~1,75 s. A 11 s «no se ve llamativo».

@@ -44,7 +44,8 @@ CARRUSEL = {
          "sobre": "PARA UN CLÓSET EMPOTRADO",
          "caja": "BIEN RESUELTO",
          "capsula": "Tablero Estructural Masisa",
-         "pie": "Precisión, firmeza y una base adecuada para trabajar muebles a medida"},
+         # RONDA 3 · 29-09: «las palabras "para trabajar" dejarlas en la segunda línea».
+         "pie": "Precisión, firmeza y una base adecuada|para trabajar muebles a medida"},
 
         # L2 · precisión en el trabajo
         # brief texto:  «Cuando el espacio es exacto, el corte también tiene que serlo.»

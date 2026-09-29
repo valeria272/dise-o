@@ -12,7 +12,7 @@
 > grilla con proveedores, SPC), **[CLICK]** (el portal B2B) o **[AMBAS]**.
 >
 > Criterio: **Paulina Bustamante** (grilla y paid; Serena Abarca produce parte del paid y las ARIEL) · Aprueba: **Paulina valida; el cliente, vía Carlos Figueroa (cuenta/contenido)**
-> Última cosecha: **2026-09-29** · Cosechas: **5**
+> Última cosecha: **2026-09-29** · Cosechas: **6**
 
 ## 1. Quién es el cliente
 
@@ -99,7 +99,7 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **R-44** · [EBEMA] Stories de grilla: sin caja indicadora del sticker, velo abajo, dirección entera en Helvetica con contorno redondo, flecha manuscrita calcada de la referencia — _Paulina, 24-09_ · ✔×1
 - **R-45** · [CLICK] Story animada: sin arcos en las esquinas; «una línea, una caja» (2.ª en rojo bold); texto sobre bodega en bold; logo real pegado sobre el objeto; clips interpolados a 30 fps; voz `es-CL-LorenzoNeural` con entusiasmo; música de Paulina ~8 dB bajo la voz — _Paulina, 24-09, aprobada tras 4 rondas_ · ✔×1
 - **R-46** · [EBEMA] LinkedIn se diseña aparte: foto real de la sucursal como base (refs) y **nunca rostros de trabajadores** — _Paulina, 24-09; post 15/10 rehecho sobre la foto real de Antofagasta, 25-09_ · ✔×2
-- **R-47** · [AMBAS] Cada ronda se re-sube **sobre el mismo fileId**; lo que no tiene comentario está bien y no se toca — _Paulina, 23-09 y 24-09; Serena, 24-09; LinkedIn ronda 1, 17/17 sobre el mismo fileId, 25-09; reels de octubre, 2 rondas sobre el mismo fileId, 28-09_ · ✔×5
+- **R-47** · [AMBAS] Cada ronda se re-sube **sobre el mismo fileId**; lo que no tiene comentario está bien y no se toca — _Paulina, 23-09 y 24-09; Serena, 24-09; LinkedIn ronda 1, 17/17 sobre el mismo fileId, 25-09; reels de octubre, 2 rondas sobre el mismo fileId, 28-09; reel San Bernardo, masisa1 y 4 rondas del teaser «La Gota de Color», 29-09_ · ✔×6
 - **R-48** · [EBEMA] Sobre la foto real **sólo se agregan personas, vehículos y materiales**; nunca estructuras que no existen — _Paulina, 25-09, `ebema_lk_post-15.10`: «creaste estructuras que no existe, a cliente eso no le gusta, solo puedes añadir personas vehiculos y materiales a criterio y que se tome como referencia imagenes reales»_ · ✔×2
 - **R-49** · [EBEMA] En oficina la ropa es **formal de oficina: camisa y pantalón de vestir** — _Paulina, 25-09, `ebema_lk_c_click1` y `ebema_lk_c_ventas1`_ · ✔×3
 - **R-50** · [EBEMA] Una obra de cliente **nunca puede leerse dentro de la bodega o el patio de EBEMA** — _Paulina, 25-09, `ebema_lk_c_ventas3`: «da a entender que la construccion esta dentro de la bodega/patio de ebema»_ · ✔×2
@@ -110,11 +110,18 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **R-55** · [AMBAS] Titular del reel **derecho, sin rotación** (septiembre iba a −2°) — _Paulina, ronda 1 reels, 28-09: «dejemos el enunciado derecho, sin rotación» (Aza y LP; aplicado a los 3 de familia A)_ · ✔×1
 - **R-56** · [AMBAS] La cápsula blanca con versal roja del titular del reel, **mucho más grande** (Helvetica Bold 96, antes 56) — _Paulina, 28-09, portadas de catálogo y Aza: «esto debe ser mucho más grande, aplica al reel también»_ · ✔×1
 - **R-57** · [CLICK] En el reel, **el lockup EBEMA CLICK se mantiene todo el video hasta el cierre**, también sobre el mapa — _Paulina, reel 01/10, 28-09_ · ✔×1
-- **R-58** · [AMBAS] Un plano de ~7 s «dura mucho»: el tramo se parte en dos escenas en la pausa de la voz, con **texto normal de reel** acompañando la locución — _Paulina, reel catálogo 03/10, 28-09_ · ✔×1
-- **R-59** · [AMBAS] Textos secundarios en **≤ 2 filas, nunca una palabra sola en la 2.ª**, y **nunca tan al borde**: ≥ 300 px de aire a cada lado en 2160 — _Paulina, ronda 2 reels, 28-09: «esto aplica para este reel y para todos»_ · ✔×1
+- **R-58** · [AMBAS] Un plano de ~7 s «dura mucho»: el tramo se parte en dos escenas en la pausa de la voz, con **texto normal de reel** acompañando la locución — _Paulina, reel catálogo 03/10, 28-09; teaser «La Gota de Color», 29-09: «la caída es muy lenta y el video no se ve llamativo, puede ser de ocho segundos»_ · ✔×2
+- **R-59** · [AMBAS] Textos secundarios en **≤ 2 filas, nunca una palabra sola en la 2.ª**, y **nunca tan al borde**: ≥ 300 px de aire a cada lado en 2160 — _Paulina, ronda 2 reels, 28-09: «esto aplica para este reel y para todos»; reel San Bernardo, 29-09: la dirección del cierre «en una sola línea bajando un poco el pt para que no llegue tan a los bordes el cuadro»_ · ✔×2
 - **R-60** · [AMBAS] Los reels de grilla **se entregan sin portada** — _Paulina, 28-09: «no me dejes portadas y elimina las que ya me diste»_ · ✔×1
-- **R-61** · [EBEMA] Reel **promocional de sucursal = metraje real, cero IA** («hay que conectar con el cliente y con la gente»); prioridad al lugar del brief, bodega y mostrarios «entre medio» — _Paulina, reel San Bernardo 27/10, 28-09_ · ✔×1
-- **R-62** · [EBEMA] La persona que muestra producto (Seba) aparece **sólo cuando lo muestra o lo acerca a cámara**, nunca dejándolo o recién tomándolo («eso no es llamativo») — _Paulina, reel San Bernardo, 28-09_ · ✔×1
+- **R-61** · [EBEMA] Reel **promocional de sucursal = metraje real, cero IA** («hay que conectar con el cliente y con la gente»); prioridad al lugar del brief, bodega y mostrarios «entre medio» — _Paulina, reel San Bernardo 27/10, 28-09; ronda 1 del 29-09 corrigió sólo tomas y textos, sin pedir IA_ · ✔×2
+- **R-62** · [EBEMA] La persona que muestra producto (Seba) aparece **sólo cuando lo muestra o lo acerca a cámara**, nunca dejándolo o recién tomándolo («eso no es llamativo») — _Paulina, reel San Bernardo, 28-09; se mantuvo en la ronda del 29-09 sin comentarios_ · ✔×2
+- **R-63** · [EBEMA] Reel promocional de sucursal: el titular va **sin pre-enunciado** encima («Zona Ofertas Constructor» solo) — _Paulina, reel San Bernardo 27/10, 29-09 (3,4 s): «elimina la línea de texto de arriba "esta zona de ebema..."»_ · ✔×1
+- **R-64** · [EBEMA] En el reel de sucursal la bodega se muestra **llena** (pallets de piso a techo, zona Constructor); nunca una repisa a medio llenar — _Paulina, San Bernardo, 29-09 (15,6 s): «esta toma no me gusta. usa una toma de la zona ebema constructor o de bodega más llena»_ · ✔×1
+- **R-65** · [EBEMA] El corte de línea de un texto de dos filas va **por sentido**, no donde lo deje el ancho: «Precisión, firmeza y una base adecuada / para trabajar muebles a medida» — _Paulina, masisa1, 29-09: «las palabras "para trabajar" dejarlas en la segunda línea»_ · ✔×1
+- **R-66** · [EBEMA] Cuando el cliente manda su propio **key visual**, la pieza usa **su tipografía** aunque no sea la del sistema (fue DejaVu Sans, medida glifo a glifo) y **sus textos tal cual**; el rojo igual se lleva a `#EC1C23` (R-01) — _Paulina, teaser «La Gota de Color», 29-09: «usemos la tipo del key visual»; aprobado por el cliente_ · ✔×1
+- **R-67** · [EBEMA] Cierre con logo: **fondo blanco y logo oficial rojo y gris**; la versión blanca sobre negro «se ve muy oscura» — _Paulina, teaser, ronda 4, 29-09: «dejémoslo en blanco con el logo de Ebema normal, el que tiene rojo con gris»_ · ✔×1
+- **R-68** · [AMBAS] Un objeto físico que se mueve (gota, producto que cae) se anima con **movimiento real de IA de video**, nunca con un recorte fijo que se desliza; y una transformación va en **un solo plano continuo**, nunca fundiendo dos formas. Técnica que funcionó: Kling anima el movimiento **inverso** desde el cuadro final y se reproduce al revés, así termina exacto en el cuadro aprobado — _Paulina, teaser, ronda 2 (29-09): «debe verse realista, se ve tosco y poco profesional»; ronda 4: «al tocar el piso se corta… quiero que sea fluido»_ · ✔×1
+- **R-69** · [AMBAS] El sonido acompaña **la acción** y se oye: la gota suena **como gota que toca agua**, el remate va en el **clímax visual** (cuando se ilumina), el logo entra **en silencio** y **sin whoosh** al aparecer el texto — _Paulina, teaser, rondas 2 y 3, 29-09_ · ✔×1
 
 ## 5. Excepciones
 
@@ -131,6 +138,7 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **E-11** · [EBEMA] Story paid: logo **arriba centrado**, saliendo del borde superior (Valeria revirtió el «desde la izquierda» de Paulina) — _20-08_
 - **E-12** · [EBEMA] Chillán, Rancagua y San Bernardo, sin foto real: pasillo IA `v5_mix_*` hasta que llegue — _Valeria, 20-08_
 - **E-13** · [CLICK] En ofertas de producto Click el enunciado puede rotar levemente — _Paulina, 20-08_
+- **E-14** · [EBEMA] Un teaser de campaña con **key visual propio del cliente** no lleva el cierre oficial de reel (R-24) ni la tipografía del sistema (R-66): cierra con el logo sobre blanco (R-67) — _Paulina, teaser «La Gota de Color», 29-09; aprobado por el cliente_
 
 ## 6. Lo que se aprueba a la primera
 
@@ -144,6 +152,8 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **A-08** · [EBEMA] **Todo el LinkedIn de octubre** (reel Talca, 3 carruseles, post 15/10) tras la ronda 1 — _Paulina, 28-09: «todo el contenido de linkedin está ok. muy bueno»_
 - **A-09** · [AMBAS] Sin un comentario en la ronda 1: las **pantallas reales** en el celular (video de la app Click, ebema.cl/catalogos con el chat de WhatsApp de las sucursales), el mapa de Click extendido al norte con los pines de Paulina, los productos reales de tienda (Aza, TechShield) y la voz Lorenzo en los 4 reels — _reels de octubre, 28-09_
 - **A-10** · [AMBAS] GIFs de 320 px, 10 fps, 256 colores (con 128 se perdía el verde del logo Aza) — _Paulina, 28-09: «ok todo bien»_
+- **A-11** · [EBEMA] El bloque de textos del KV del cliente en su jerarquía (MUY PRONTO rojo · titular blanco · filete · sucursales en rojo) sobre velo en rampa: nunca recibió un comentario en 4 rondas — _teaser, 29-09, aprobado por el cliente_
+- **A-12** · [EBEMA] Cambio de toma en el reel de sucursal por otra real del mismo material y dirección en una línea: aprobado a la primera («bien») — _San Bernardo, 29-09_
 
 ## 7. Lo que se rechaza
 
@@ -171,6 +181,12 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **X-22** · [AMBAS] Textos secundarios en una sola línea larga, a 76–109 px del borde — _Paulina, ronda 2, 28-09 (Aza, LP; medido con PIL)_
 - **X-23** · [CLICK] Texto del reel encima de la persona (T1 de Click sobre el contratista) — _Paulina, 28-09_
 - **X-24** · [EBEMA] Un solo plano de 7 s al abrir un reel — _Paulina, reel catálogo, 28-09 (2 rondas: «más escenas», luego «3 líneas»)_
+- **X-25** · [EBEMA] Gota «atada» a un chorro que baja desde arriba, y suelo irregular tipo roca — _Paulina, teaser ronda 1, 29-09: «no debe verse un chorro de agua… la base suelo debe ser plana»_
+- **X-26** · [AMBAS] Recorte fijo de un objeto deslizándose por la pantalla (composición 2D) para simular una caída: «tosco y poco profesional» — _Paulina, teaser ronda 2, 29-09_
+- **X-27** · [AMBAS] Fundido entre dos versiones distintas del objeto en el momento clave (gota redonda → alargada): se lee como corte — _Paulina, teaser ronda 4, 29-09_
+- **X-28** · [AMBAS] Efecto de sonido que no se oye (la gota iba ~20 veces más baja que el resto) y whoosh al entrar el texto — _Paulina, teaser rondas 2 y 3, 29-09_
+- **X-29** · [EBEMA] Logo blanco sobre negro al cierre: «se ve muy oscuro» — _Paulina, teaser ronda 4, 29-09_
+- **X-30** · [EBEMA] Repisas de pinturas a medio llenar como toma de «stock» en un reel de sucursal — _Paulina, San Bernardo, 29-09_
 
 ## 8. Preguntas abiertas
 
@@ -194,6 +210,12 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - LinkedIn 26/10 **Capacitaciones**: la grilla dice «PENDIENTE: confirmar tema, proveedor y sucursal». → Carlos.
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 — Paulina Bustamante · ronda 1 del reel San Bernardo + masisa1 + teaser «La Gota de Color» (4 rondas, aprobado por el cliente)
+- nuevo **R-63** (reel de sucursal sin pre-enunciado), **R-64** (bodega llena), **R-65** (corte de línea por sentido), **R-66** (KV del cliente: su tipografía y sus textos), **R-67** (cierre en blanco con logo oficial), **R-68** (movimiento real de IA y transformación continua; técnica del clip inverso), **R-69** (sonido que acompaña la acción, remate en el clímax, logo en silencio).
+- ✔ **R-47** ×6, **R-58** ×2, **R-59** ×2, **R-61** ×2, **R-62** ×2. Excepción **E-14** (teaser con KV propio). Aprobado a la primera: **A-11**, **A-12**. Rechazos **X-25…X-30**.
+- Grilla de octubre cerrada y pasada a contenido; sus comentarios no han llegado.
+- Candidata a regla del estudio: **R-68** (lo físico se anima con IA de video, nunca con un recorte que se desliza; clip inverso para terminar en el cuadro aprobado) → Valeria.
 
 ### 2026-09-29 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`8f2d539`) es el mismo commit que ya cosechó los reels de octubre (ver la entrada de abajo, R-55 a R-62). Se lista a sí mismo porque tocó `BITACORA.md`/`CLAUDE.md` y `APRENDIZAJES.md` en el mismo commit.

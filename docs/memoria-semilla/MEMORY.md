@@ -83,3 +83,4 @@
 - [⛔ EBEMA reel promocional = metraje real](ebema-reel-promocional-metraje-real.md) — Zona Ofertas San Bernardo 28-09: cero IA; Seba sólo cuando MUESTRA el producto; gramática del reel anterior de la sucursal + etiqueta por categoría
 - [⭐ DT pendones 0,8×3 — caras nuevas](dt-pendones-caras-nuevas.md) — aprobados 28-09 y r7 29-09 («quedó perfecto»); receta §7
 - [⭐⭐ Foto por partes → se regenera entera](foto-por-partes-se-regenera-entera.md) — parches con personas: NB Pro 4K con el armado de referencia + rótulos reales
+- [⭐ Kling: clip inverso para terminar en el cuadro aprobado](kling-clip-inverso-cuadro-final.md) — Kling 2.5 no acepta cuadro final: se anima el movimiento inverso y se reproduce al revés; recorte deslizándose = «tosco» (teaser EBEMA 29-09)

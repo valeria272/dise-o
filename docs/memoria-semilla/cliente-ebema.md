@@ -1,6 +1,6 @@
 ---
 name: cliente-ebema
-description: "EBEMA — cerebro del cliente: 62 reglas firmes, última cosecha 2026-09-29. Generado desde clients/ebema/APRENDIZAJES.md; leerlo antes de diseñar para ebema"
+description: "EBEMA — cerebro del cliente: 69 reglas firmes, última cosecha 2026-09-29. Generado desde clients/ebema/APRENDIZAJES.md; leerlo antes de diseñar para ebema"
 metadata:
   type: project
 ---
@@ -12,7 +12,7 @@ sólo lo más confirmado). ⛔ Vale sólo para ebema: no se traspasa a otra marc
 Criterio: **Paulina Bustamante** (grilla y paid; Serena Abarca produce parte del paid y las ARIEL) · Aprueba: **Paulina valida; el cliente, vía Carlos Figueroa (cuenta/contenido)**
 
 ## Reglas más confirmadas
-- **R-47** · [AMBAS] Cada ronda se re-sube **sobre el mismo fileId**; lo que no tiene comentario está bien y no se toca — _Paulina, 23-09 y 24-09; Serena, 24-09; LinkedIn ronda 1, 17/17 sobre el mismo fileId, 25-09; reels de octubre, 2 rondas sobre el mismo fileId, 28-09_ · ✔×5
+- **R-47** · [AMBAS] Cada ronda se re-sube **sobre el mismo fileId**; lo que no tiene comentario está bien y no se toca — _Paulina, 23-09 y 24-09; Serena, 24-09; LinkedIn ronda 1, 17/17 sobre el mismo fileId, 25-09; reels de octubre, 2 rondas sobre el mismo fileId, 28-09; reel San Bernardo, masisa1 y 4 rondas del teaser «La Gota de Color», 29-09_ · ✔×6
 - **R-20** · [AMBAS] El texto va en la **zona libre** de la foto: nunca sobre la cara, la persona ni un letrero; si no hay holgura, se pide otra foto — _Paulina, ronda 3, 20-08; story de Temuco, 24-09; LinkedIn «cielo despejado», 25-09; reel Click 01/10: «el bloque de texto debe ir más arriba en la zona donde no hay objetos sobre la persona», 28-09_ · ✔×4
 - **R-01** · [AMBAS] Un solo rojo: `#EC1C23`, sin variantes ni duotonos — _muestreo del logo y de la A3 de Paulina, 20/25-08; cierre del carrusel Cedral con 91 rojos, 02-09_ · ✔×3
 - **R-02** · [AMBAS] Toda cifra en **Helvetica Bold** (precios, códigos, %, 24/7, medidas, direcciones) — _Paulina, rondas 1–2, 20-08; dirección de stories, 24-09_ · ✔×3
@@ -58,3 +58,5 @@ Criterio: **Paulina Bustamante** (grilla y paid; Serena Abarca produce parte del
 - **X-22** · [AMBAS] Textos secundarios en una sola línea larga, a 76–109 px del borde — _Paulina, ronda 2, 28-09 (Aza, LP; medido con PIL)_
 - **X-23** · [CLICK] Texto del reel encima de la persona (T1 de Click sobre el contratista) — _Paulina, 28-09_
 - **X-24** · [EBEMA] Un solo plano de 7 s al abrir un reel — _Paulina, reel catálogo, 28-09 (2 rondas: «más escenas», luego «3 líneas»)_
+- **X-25** · [EBEMA] Gota «atada» a un chorro que baja desde arriba, y suelo irregular tipo roca — _Paulina, teaser ronda 1, 29-09: «no debe verse un chorro de agua… la base suelo debe ser plana»_
+- **X-26** · [AMBAS] Recorte fij

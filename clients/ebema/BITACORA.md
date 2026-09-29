@@ -3,6 +3,45 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-29 — Paulina Bustamante
+
+**Qué se hizo:**
+1. **Grilla de octubre cerrada** y pasada a contenido para su revisión. Ronda 1 del **reel 27/10
+   San Bernardo** (3 comentarios en Drive): fuera el pre-titular «Esta zona de Ebema San
+   Bernardo»; la toma de repisas de pinturas (IMG_1932) cambiada por la **bodega llena de sacos
+   en pallets** (IMG_1927 @0,3 s, metraje real); dirección del cierre en **una sola línea** a 60
+   (antes 2 líneas a 80), ~380 px de aire por lado. GIF rehecho. **masisa1**: «para trabajar»
+   bajó a la 2.ª línea del pie (el motor ahora acepta `|` en el pie).
+2. **Drive ordenado:** carruseles y reels de octubre juntos en `4-entregado / 2026-10 grilla
+   octubre — carruseles y reels` (1h6NF1qsJNgMhLAyqcJQJmYtKXL1Ltkau); las 4 notas internas
+   (ENTREGA/BRIEF/PROMPTS/LEEME-packshots) en `_notas de producción del estudio (no se publican)`.
+3. **Teaser «La Gota de Color»** (pedido del cliente vía Carlos Figueroa; centro de pinturas
+   con Codelpa en Concepción y Temuco, sin revelar que son pinturas). **Aprobado por el cliente
+   tras 4 rondas de Paulina.** 8 s, 1080×1920. Tipografía del KV del cliente = **DejaVu Sans**
+   (medida glifo a glifo), rojo EBEMA #EC1C23. Caída = un solo clip de Kling 2.5 Pro desde el
+   cuadro final, animando la gota que SUBE (la punta se recoge hasta ser esfera y la luz se
+   apaga) y reproducido **al revés**: cae redonda, se alarga y enciende la luz sin corte. Sonido
+   de gota sobre agua (`agua_a`) + remate en el momento en que se ilumina; cierre en blanco con
+   el logo oficial, sin sonido.
+
+**Dónde quedó:**
+- Reel San Bernardo y masisa1 re-subidos sobre el mismo fileId; comentarios respondidos y resueltos.
+- Teaser: Drive `4-entregado / 2026-10 teaser «La Gota de Color»` (1hgUCr5Ud45by6slApy7MhPx9qLq_ADnD),
+  archivo `ebema_reel-30.09_teaser-gota.mp4` (19K3h_AtaulI6S6uiaGkKYp0dURN0beUW). Sin GIF (no va en grilla).
+- Repo: `src/compositions/ebema/EbemaTeaserGota.tsx` (composición `EbemaTeaserGota`),
+  `public/assets/ebema/teaser-gota/` (clips, sfx, fuentes DejaVu, KV y cuadro `fin_g2` en
+  `fuentes/`), `scripts/ebema-teaser-gota-sfx.py`. Descartes en `out/ebema/20260929_teaser_gota/descartados/`.
+
+**Qué sigue:** esperar los comentarios de **contenido** sobre la grilla de octubre; leerlos en
+Drive, aplicarlos en todos los formatos, re-subir sobre el mismo fileId y resolver.
+
+**Abierto:**
+1. Grilla de noviembre sin brief (Carlos). LinkedIn 26/10 Capacitaciones sin tema (Carlos).
+2. Paulina tiene que confirmar en Drive que «2026-10 grilla octubre — carruseles» quedó dentro
+   de la carpeta combinada (el token del estudio no ve esa carpeta: la creó otra herramienta).
+3. En el comentario de la ronda 1 del teaser Paulina escribió «*en* sucursales Concepción y
+   Temuco»; quedó sin «EN» (texto del KV) y el cliente lo aprobó así.
+
 ## 2026-09-28 — Paulina Bustamante
 
 **Qué se hizo:** Los **5 reels de Instagram de la grilla de octubre**, entregados y aprobados.

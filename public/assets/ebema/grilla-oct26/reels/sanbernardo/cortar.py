@@ -34,14 +34,21 @@ CORTES = {
     "t2_pinturas":  ("IMG_1980", 0.3, 1.0),   # Seba con las pinturas en OFERTA, a cámara
     "t2_adhesivos": ("IMG_1916", 0.1, 0.8),   # Sika Center de la sala de ventas
     "t2_mas":       ("IMG_1978", 0.3, 1.5),   # Seba sonriendo con la cerámica
-    "t3_stock":     ("IMG_1932", 30.0, 2.6),  # repisas con pinturas en la bodega
+    # RONDA 1 · 29-09 (Paulina, 15,6 s): «esta toma no me gusta. usa una toma de la zona
+    # ebema constructor o de bodega más llena» → las repisas de pinturas (IMG_1932 @30)
+    # se cambian por la bodega de sacos en pallets, llena de piso a techo.
+    "t3_stock":     ("IMG_1927", 0.3, 2.6),   # bodega llena: pallets de sacos
     "t3_precios":   ("IMG_3852", 3.0, 2.8),   # la reja con los carteles de precio
     "t4_seba":      ("IMG_1974", 0.0, 1.3),   # Seba de frente, invitando
 }
 
 if __name__ == "__main__":
     os.makedirs(os.path.join(AQUI, "cortes"), exist_ok=True)
+    import sys
+    solo = set(sys.argv[1:])  # `python cortar.py t3_stock` recorta sólo esa
     for n, (toma, a, d) in CORTES.items():
+        if solo and n not in solo:
+            continue
         out = os.path.join(AQUI, "cortes", n + ".mp4")
         subprocess.run([FF, "-v", "error", "-y", "-ss", str(a), "-t", str(d), "-i", os.path.join(SRC, toma + ".MOV"),
                         "-vf", "fps=30,scale=2160:3840:flags=lanczos", "-c:v", "libx264", "-crf", "16", "-preset", "slow",

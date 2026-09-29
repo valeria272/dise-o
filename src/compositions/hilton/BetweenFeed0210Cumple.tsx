@@ -37,8 +37,7 @@ const X0 = 76; // margen izquierdo (zona segura 60 + respiro)
 export const ESCENAS_CUMPLE = {
   hook: [0, 75], // 2,5 s
   cafe: [75, 165], // 3 s
-  ven: [165, 255], // 3 s
-  legal: [255, 375], // 4 s
+  ven: [165, 400], // (sin salida: queda quieto hasta el final) 3 s + 4 s con el legal al lado (el cierre junta toda la info)
 } as const;
 export const DURACION_CUMPLE = 375;
 
@@ -128,7 +127,6 @@ const Destellos: React.FC<{desde: number}> = ({desde}) => {
     {a: -118, r0: 92, r1: 150},
     {a: -62, r0: 92, r1: 150},
     {a: -30, r0: 78, r1: 128},
-    {a: 180, r0: 70, r1: 108},
   ];
   const brillo = 0.85 + 0.15 * Math.sin((f - desde) / 5);
   return (
@@ -147,7 +145,7 @@ const Destellos: React.FC<{desde: number}> = ({desde}) => {
         );
       })}
       {/* dos estrellitas de cuatro puntas */}
-      {[{x: 700, y: 640, s: 26, d: 14}, {x: 420, y: 700, s: 18, d: 18}].map((e, i) => {
+      {[{x: 676, y: 742, s: 20, d: 14}].map((e, i) => {
         const t = spring({frame: f - desde - e.d, fps: 30, config: {damping: 9, stiffness: 160}});
         const p = `M ${e.x} ${e.y - e.s} Q ${e.x} ${e.y} ${e.x + e.s} ${e.y} Q ${e.x} ${e.y} ${e.x} ${e.y + e.s} Q ${e.x} ${e.y} ${e.x - e.s} ${e.y} Q ${e.x} ${e.y} ${e.x} ${e.y - e.s} Z`;
         return <path key={i} d={p} fill={C.beige} opacity={f < desde + e.d ? 0 : 1}
@@ -191,14 +189,14 @@ export const TIEMPOS = {
   estasPop: 2,
   deTrazo: [12, 12] as const,
   cumple: [22, 2.6] as const,
-  destellos: 32,
+  destellos: 136,
   elCafe: [80, 2.4] as const,
   vaPor: [98, 14] as const,
   cuenta: [112, 2.2] as const,
   ven1: [170, 2.2] as const,
   cafeGratis: [194, 14] as const,
   ven2: [210, 1.3] as const,
-  legal: 262,
+  legal: 256,
 };
 
 export const FeedOct02Cumple: React.FC = () => {
@@ -207,10 +205,12 @@ export const FeedOct02Cumple: React.FC = () => {
   const T = TIEMPOS;
   // el legal entra por líneas, sin máquina: es largo y tiene que leerse en paz
   const lineasLegal = [
-    'Beneficio válido únicamente de lunes',
-    'a viernes, el mismo día de tu cumpleaños,',
-    'presentando carnet de identidad',
-    'al momento de solicitarlo.',
+    'Beneficio válido únicamente',
+    'de lunes a viernes, el mismo',
+    'día de tu cumpleaños,',
+    'presentando carnet de',
+    'identidad al momento',
+    'de solicitarlo.',
   ];
   return (
     <AbsoluteFill style={{backgroundColor: C.sombra}}>
@@ -221,19 +221,19 @@ export const FeedOct02Cumple: React.FC = () => {
 
       {/* ── 1 · HOOK (detrás de la figura) ── */}
       <Escena rango={ESCENAS_CUMPLE.hook}>
-        <div style={{position: 'absolute', left: X0, top: 380, display: 'flex', alignItems: 'flex-end', gap: 18}}>
+        <div style={{position: 'absolute', left: X0, top: 440, display: 'flex', alignItems: 'flex-end', gap: 18}}>
           <Pop desde={T.estasPop}><div style={palo(176)}>{TXT.estas}</div></Pop>
           <Trazo texto={TXT.de} desde={T.deTrazo[0]} dura={T.deTrazo[1]} style={{...mano(150), marginBottom: -34}} />
         </div>
         <Maquina texto={TXT.cumple} desde={T.cumple[0]} porLetra={T.cumple[1]}
-          style={{...palo(134), position: 'absolute', left: X0 - 4, top: 640}} />
+          style={{...palo(134), position: 'absolute', left: X0 - 4, top: 700}} />
       </Escena>
 
       {/* la figura recortada tapa el titular: la vela pasa por delante */}
       <Img src={staticFile('assets/hilton/between/oct/f-cumple-figura.png')}
         style={{position: 'absolute', width: 1080, height: 1920}} />
 
-      {f >= T.destellos && f < ESCENAS_CUMPLE.legal[1] && <Destellos desde={T.destellos} />}
+      {f >= T.destellos && f < DURACION_CUMPLE && <Destellos desde={T.destellos} />}
 
       {/* ── 2 · EL CAFÉ VA POR NUESTRA CUENTA ── */}
       <Escena rango={ESCENAS_CUMPLE.cafe}>
@@ -246,28 +246,26 @@ export const FeedOct02Cumple: React.FC = () => {
 
       {/* ── 3 · VEN POR TU CAFÉ GRATIS ── */}
       <Escena rango={ESCENAS_CUMPLE.ven}>
-        <div style={{position: 'absolute', left: X0, top: 350}}>
+        <div style={{position: 'absolute', left: X0, top: 300}}>
           <Maquina texto={TXT.ven1} desde={T.ven1[0]} porLetra={T.ven1[1]} style={palo(66, 500, {letterSpacing: '0.01em'})} />
           <Trazo texto={TXT.cafeGratis} desde={T.cafeGratis[0]} dura={T.cafeGratis[1]} style={{...mano(176), marginTop: 4, marginLeft: -8}} />
           <Maquina texto={TXT.ven2} desde={T.ven2[0]} porLetra={T.ven2[1]} style={{...palo(66, 500, {letterSpacing: '0.01em'}), marginTop: 6}} />
         </div>
-      </Escena>
-
-      {/* ── 4 · LEGAL ── */}
-      <Escena rango={ESCENAS_CUMPLE.legal} salida={10}>
-        <div style={{position: 'absolute', left: X0, top: 380, width: 1080 - X0 - 130}}>
+        {/* legal: columna chica a la izquierda de la vela, entra por líneas */}
+        <div style={{position: 'absolute', left: X0, top: 800, width: 420}}>
           {lineasLegal.map((l, i) => {
-            const d = T.legal + i * 5;
+            const d = T.legal + i * 4;
             const t = interpolate(f, [d, d + 10], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
             return (
-              <div key={i} style={{fontFamily: SANS, fontWeight: 500, fontSize: 40, lineHeight: 1.42, color: C.beige,
-                textShadow: SOMBRA, opacity: t, transform: `translateY(${(1 - t) * 14}px)`, whiteSpace: 'nowrap'}}>
+              <div key={i} style={{fontFamily: SANS, fontWeight: 500, fontSize: 30, lineHeight: 1.45, color: C.beige,
+                textShadow: SOMBRA, opacity: t, transform: `translateY(${(1 - t) * 12}px)`, whiteSpace: 'nowrap'}}>
                 {l}
               </div>
             );
           })}
         </div>
       </Escena>
+
     </AbsoluteFill>
   );
 };

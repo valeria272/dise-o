@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-29** · Cosechas: **16**
+> Última cosecha: **2026-09-29** · Cosechas: **17**
 
 ## 1. Quién es el cliente
 
@@ -120,38 +120,46 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-107** · [DT] **Adicionales de un mismo listado, mismo signo**: si uno dice «+$21.000», el otro dice «+$100.000» — _Eli, 29-09-2026, carrusel Escapada 07-10 («dice más 21, entonces también tienes que agregar más 100, para que tenga coherencia»)_ · ✔×1
 - **R-108** · [DT] **El nombre del programa tiene su forma**: fuera de la portada, «Escapada Romántica» (como «Family Time» o «Noche de Bodas») va como logotipo de texto, Stag itálica a dos pesos (SemiBold + Light), no como antetítulo en versales — _Eli, 29-09-2026, carrusel Escapada 07-10 lámina 2 («la forma del texto que siempre le agrego, como el del Family Time o el de Noche de Bodas»)_ · ✔×1
 - **R-109** · [DT] **«Desde» va ARRIBA del precio**, chico, y la píldora del precio queda centrada — _Eli, 29-09-2026, portada Escapada 07-10 («el desde que quede arriba, para que eso quede centrado y se vea mucho mejor uniformemente»; r3 «el desde así está bien»)_ · ✔×1
+- **R-112** · [DT] **Pendón: la foto a la medida del pendón**, a sangre completa, con la persona entera a la vista; velos sutiles como la referencia; y **los tres pendones con el mismo esquema** (titular, velos, recorte de foto): Eli ajustó a mano la 1 y la 2 y la 3 se calcó de la 2 — _Eli, 29-09-2026, pendones 0,8×3 r4 («expandir la fotografía a la medida del pendón… que se vea la persona»; «ajusta la de cookie similar a las otras en textos»)_ · ✔×1
+- **R-113** · [DT] **Las manos son cruciales**: se ven como una mano real haciendo esa acción (una galleta se toma en pinza, con los dedos juntos), cinco dedos, en el mismo foco que la escena, **revisadas a 1:1** antes de mostrar — _Eli, 29-09-2026, pendón cookie r4→r6 («el tema de la mano es crucial»; «natural, como cuando uno agarra una galleta, con todas [los dedos] juntas»)_ · ✔×1
+- **R-114** · [DT] **Si una foto armada por partes muestra parches (manchas, fantasmas, costuras), se REGENERA entera como UNA foto** a partir del resultado aprobado (Nano Banana Pro 4K con la composición como referencia) y después sólo se reponen los rótulos reales — _Eli, 29-09-2026, pendón cookie r7 («hazla de nuevo con la imagen… para mejorar la calidad»; «quedó perfecto»)_ · ✔×1
+- **R-115** · [DT] **Un emblema o logo del hotel en el fondo va completo o no va**: nunca cortado a la mitad, nunca «pegoteado», nunca redibujado por IA (R-80). Si no hay foto real completa, se saca — _Eli, 29-09-2026, pendón cookie («borró el árbol del logo de DT y quedó en la mitad»; «el árbol quedó mal y pegoteado»)_ · ✔×1
+- **R-116** · [DT] **Nada de texturas que delaten la IA**: el reescalado de gran formato va en UNA pasada ×2 de precisión + Lanczos; dos pasadas ×2 dejan pelo y piel «pintados» — _Eli, 29-09-2026, pendón teléfono («tiene detalles de texturas extrañas que delatan la IA»)_ · ✔×1
+- **R-117** · [DT] Ojos de una cara cambiada: **relajados y bien logrados**, como los de la cookie; se corrigen sólo los ojos (dos elipses con el tono de la cara), sin tocar piel ni pelo — _Eli, 29-09-2026, pendón teléfono («los ojos… similar a los de la cookie»)_ · ✔×1
 ### Between
 - **R-30** · [BW] Taza blanca con raya negra y **KIMBO: se borra siempre**; la taza vigente es blanca total — _Eli 25-08; Scarlette 31-08; ronda 9, 03-09-2026_ · ✔×3
 - **R-31** · [BW] **El logotipo nunca se deforma ni se curva**: escala uniforme a ratio 3,0298, integrado en el vaso por tono (multiply), no por geometría — _Eli 25-08 («no se vea achatado»); cliente 31-08; Eli 01-09-2026 («no puedes curvarlo de esa manera»)_ · ✔×3
 - **R-32** · [BW] Logo **centrado y con margen** (nunca pegado al borde), dentro del rango de su formato (post 162–263 px de ancho, historia 197–282) — _Eli, 25-08-2026, cifras y plantillas_ · ✔×2
-- **R-33** · [BW] **Si el vaso de la foto ya trae el logotipo, la pieza no lleva lockup** (ni en la portada) — _Eli 25-08, 31-08, 01-09, 03-09 y 07-09-2026; feed «Necesito ir a Between» subido sin lockup por Eli, 25-09-2026 (la prueba con logo al pie caía sobre el vaso)_ · ✔×6
+- **R-33** · [BW] **Si el vaso de la foto ya trae el logotipo, la pieza no lleva lockup** (ni en la portada) — _Eli 25-08, 31-08, 01-09, 03-09 y 07-09-2026; feed «Necesito ir a Between» subido sin lockup por Eli, 25-09-2026 (la prueba con logo al pie caía sobre el vaso)_ · ✔×7 · +1 ST 02-10 r2 y reel FEED 12-10 sin lockup (el vaso firma), aprobados 29-09
 - **R-34** · [BW] En carrusel el logo, si va, va **sólo en la portada** — _gramática medida 27-08; Eli 07-09-2026_ · ✔×2
 - **R-35** · [BW] Raleway + Brushwell, **máx. 2 familias por pieza**; Brushwell **sólo en títulos o una palabra clave**, nunca en números ni párrafos — _Javier (cliente) y Eli, 24–25-08-2026_ · ✔×2
 - **R-36** · [BW] **Brushwell sólo en la portada**: del slide 2 en adelante, Raleway — _Eli, 01-09 y 07-09-2026 (ronda 20)_ · ✔×2
 - **R-37** · [BW] La script **acompaña**: arriba, corta y nunca más ancha que el titular. Cuando compiten, se baja la secundaria — _gramática 27-08; Eli, 02-09-2026 (ronda 8, jerarquía)_ · ✔×2
-- **R-38** · [BW] Bloque de texto: el salto **entre niveles** es mayor que el salto **dentro** del nivel — _Eli, 02-09-2026 («usa un ojo crítico en los espacios entre líneas»)_ · ✔×1
+- **R-38** · [BW] Bloque de texto: el salto **entre niveles** es mayor que el salto **dentro** del nivel — _Eli, 02-09-2026 («usa un ojo crítico en los espacios entre líneas»)_ · ✔×2 · +1 ST 01-10 r2: línea del premio con aire corto y el cierre más separado, aprobada 29-09
 - **R-39** · [BW] **La jerarquía del brief es parte del brief**: lo que el brief pone primero es el titular; CTA, legal y textos literales de la celda de diseño — _Eli, 07-09-2026 (ronda 20); cliente 01-09 (CTA)_ · ✔×2
 - **R-40** · [BW] **Nada saturado**: máx. 3 bloques, un solo protagonista; tracking sólo en horarios; mayúscula total sólo en lo que debe destacar — _Eli, 25-08-2026_ · ✔×2
-- **R-41** · [BW] **Ningún texto sobre rostros, ojos ni sobre el producto** — _Eli 25-08 y 28-08; Scarlette 31-08; Eli 24-09-2026_ · ✔×4
+- **R-41** · [BW] **Ningún texto sobre rostros, ojos ni sobre el producto** — _Eli 25-08 y 28-08; Scarlette 31-08; Eli 24-09-2026_ · ✔×5 · +1 reel FEED 12-10: rótulo arriba y no al medio como la ref, aprobado 29-09
 - **R-42** · [BW] Si el texto no se lee, **caja taupe `#675B49`**; no se oscurece la foto (multiply mínimo). Una sola caja-cartel antes que tres apiladas — _instrucción textual del cliente; S3 08-09-2026_ · ✔×2
 - **R-43** · [BW] **La paleta son dos tintas**: no se inventa un tercer marrón; para destacar se **invierte** (beige con tinta café). Y el logo «en café» es `#675B49`, no negro — _S3 concurso ronda 5, 16-09-2026 (pedido del cliente de «otro tono de café»); Eli, 08-09-2026 (logo negro cazado a ojo)_ · ✔×2
 - **R-44** · [BW] **Botón blanco = el llamado, uno por pieza**, con texto café de marca — _Eli, 01-09-2026_ · ✔×1
 - **R-45** · [BW] Cifras de precio con **números alineados** («opentype tabular, como en Illustrator») — _Eli, 01-09 y 02-09-2026_ · ✔×2
 - **R-46** · [BW] Caja de bajada **sin palabras viudas**: una frase por línea, como el brief — _Scarlette 31-08; Eli 01-09-2026_ · ✔×2
-- **R-47** · [BW] **Antes de generar un producto, se busca en las sesiones**. Orden: foto real > recorte > generar — _Scarlette 31-08 («tenemos ese material»); ronda 10, 04-09; cowork 10-09; Plateada 11-09-2026_ · ✔×4
+- **R-47** · [BW] **Antes de generar un producto, se busca en las sesiones**. Orden: foto real > recorte > generar — _Scarlette 31-08 («tenemos ese material»); ronda 10, 04-09; cowork 10-09; Plateada 11-09-2026_ · ✔×5 · +1 reel FEED 12-10 con 13 clips reales del disco F: antes de generar, aprobado 29-09
 - **R-48** · [BW] Si hay que generar, **se genera la escena completa** con las fotos reales como referencia (método de `PROMPTS-DE-ELI.md`); pegar recortes encima es el último recurso — _Eli, 07-09 (rehízo ella el cumpleaños) y 14-09-2026 (ST 28-09)_ · ✔×2
-- **R-49** · [BW] En toda tirada generada, **el logotipo del vaso se revisa al 300 %** — _14-09 (3 de 6 con la Ǝ mal) y 24-09-2026 («COFFEEE»)_ · ✔×2
+- **R-49** · [BW] En toda tirada generada, **el logotipo del vaso se revisa al 300 %** — _14-09 (3 de 6 con la Ǝ mal) y 24-09-2026 («COFFEEE»)_ · ✔×3 · +1 ST 02-10 r2: de 2 tiradas una traía la E normal → descartada, 29-09
 - **R-50** · [BW] Vaso To Go vigente: **kraft, logo impreso directo, tapa negra**. Café nunca canela; vapor sólo en invierno — _Javier (cliente) 24-08; Eli 28-08-2026 («el vaso to go es el antiguo»)_ · ✔×2
 - **R-51** · [BW] El recipiente dice si el cliente se queda o se va: **To Go para llevar, taza y platillo para quedarse** — _Eli, 10-09-2026, ST Cowork_ · ✔×1
 - **R-52** · [BW] **Fidelidad al local real**: terraza, interior, mesas y muro vegetal de Between; nada de espacios inventados — _Javier 24-08; Eli 26-08; Scarlette 31-08; Eli 24-09-2026_ · ✔×4
-- **R-53** · [BW] **Sin rostros de modelos** (ninguna sesión): del cuello hacia abajo, manos/torsos o personas dibujadas en línea. Los rostros de la sesión 2023 nunca — _Eli 25-08 (2023); cliente 27-08; Eli 24-09-2026 (4 piezas)_ · ✔×3
+- **R-53** · [BW] **Sin rostros de modelos** (ninguna sesión): del cuello hacia abajo, manos/torsos o personas dibujadas en línea. Los rostros de la sesión 2023 nunca — _Eli 25-08 (2023); cliente 27-08; Eli 24-09-2026 (4 piezas)_ · ✔×4 · +1 reel FEED 12-10: 14 tomas sin rostros (sólo manos, producto, espacios), aprobado 29-09
 - **R-54** · [BW] Foto: realista y apetitosa, **nada quemado ni luz de flash**, sin brillos de mesa, conservando plato y desayuno — _Eli 25-08; Scarlette 31-08-2026 («se ven quemadas»)_ · ✔×2
 - **R-55** · [BW] **Un adorno sobre una foto es ilustración**: se usan los trazos de Eli (SVG oficial), apoyados en el fondo, nunca sobre el producto; ~20 % de las historias — _Eli 25-08, 04-09 («que sean ilustradas, con el trazado que ya se conoce») y 07-09-2026_ · ✔×3
-- **R-56** · [BW] **La referencia de la grilla es el molde**: utilería, tipografía, flecha e ilustración se calcan traducidas a colores y espacios de Between — _Eli, S3 08-09; concurso 21-09; octubre 24-09-2026_ · ✔×3
+- **R-56** · [BW] **La referencia de la grilla es el molde**: utilería, tipografía, flecha e ilustración se calcan traducidas a colores y espacios de Between — _Eli, S3 08-09; concurso 21-09; octubre 24-09-2026_ · ✔×4 · +1 reel FEED 12-10 calcó la pantalla dividida de la ref, aprobado 29-09
 - **R-57** · [BW] Gente natural: **gestos distintos**, platos reales de Between, y objetos repetidos variados (dos notebooks de distinto color) — _Eli, 24-09-2026_ · ✔×1
 - **R-58** · [BW] Dentro de un carrusel **no se repite escenario**, y **la foto contiene los sustantivos del copy** — _Scarlette, 31-08-2026, carrusel Cowork_ · ✔×1
 - **R-59** · [BW] Una **historia no se recorta del banco 4:5: se produce** con el hueco para el texto — _Eli, 08-09-2026 («no cumplen, deja mejores fotografías»)_ · ✔×1
-- **R-61** · [BW] Pieza animada = **MP4 + GIF**, y se suben los dos a la carpeta de la semana (GIF 25 fps, 540×960, sin difuminado, tipo `image/gif`) — _Eli, 25-09-2026, ST 30-09 Plateada («recuerda el video dejar el gif y subirlos a drive»); en DT ya era R-24_ · ✔×1
+- **R-61** · [BW] Pieza animada = **MP4 + GIF**, y se suben los dos a la carpeta de la semana (GIF 25 fps, 540×960, sin difuminado, tipo `image/gif`) — _Eli, 25-09-2026, ST 30-09 Plateada («recuerda el video dejar el gif y subirlos a drive»); en DT ya era R-24_ · ✔×2 · +1 ST 02-10 r2 y reel 12-10 entregados MP4 + GIF, 29-09
+- **R-110** · [BW] **Producto en mano (POV): cada mano lleva lo suyo y a escala real** — el dulce en su papel en una mano, el vaso en la otra; nada apoyado encima de la tapa. El muffin es tan ancho como la boca del vaso — _cliente, grilla BW OCT STORIES col D, 28-09-2026 («Está rara esa forma de llevar el café con muffin arriba (está desproporcionado también, muffin muy chico) Veamos algo que se vea más natural y en proporciones»)_ · ✔×1 (ST 02-10 r2 aprobada por Eli 29-09)
+- **R-111** · [BW] **Anuncio de ganador de concurso: decir que se le contactará para entregarle el premio** — _cliente, grilla BW OCT STORIES col C, 28-09-2026 («Aquí falta algo que diga que lo contactaremos para entregarle información sobre su premio»)_ · ✔×1 (ST 01-10 r2 aprobada 29-09)
 - **R-62** · [BW] **Mientras llega la carta nueva, las piezas no nombran platos** (fuera la caja con el nombre; la foto se queda) — _cliente, grilla STORIES col U, 25-09-2026 («Por mientras no nombremos platos, ya que tendremos cambio de carta»)_ · ✔×1 · temporal: revisar cuando salga la carta
 - **R-63** · [BW] Plato en foto que el cliente pide marcar → legal **«*Imagen referencial.»** en cursiva beige al pie, al margen de marca, sobre el fondo y nunca sobre el producto (caja taupe si no se lee) — _cliente, ST Strudel S4 (16-09) y ST 30-09 Plateada (25-09-2026)_ · ✔×2
 - **R-89** · [BW] **Carta: limpia, con líneas y SIN protagonismo de la ilustración** (alguna en una esquina, no más; así no se confunde con QB); formato actual 17 × 30 cm; la de mañana/almuerzo en **cafés y beige**; se puede jugar con leyendas — _cliente vía Eli, 28-09-2026 («algo más limpio sin tanta ilustración, solo de ser necesaria, más líneas»)_ · ✔×1 (4 propuestas aprobadas)
@@ -211,8 +219,13 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 - **A-12** · [DT] **Carrusel Escapada Romántica 07-10** (2 láminas): portada calcada de la ref con la pareja IA sobre la habitación REAL `sep_26-505` + lámina de adicionales en tabla con filetes. La composición y la foto pasaron a la primera («lo veo ok, muy bien»; «la portada me gustó mucho»); las rondas 2–3 fueron sólo tipografía (R-104–R-109) — _Eli, 29-09-2026_
 
+- **A-13** · [BW] **Reel en pantalla dividida con clips REALES del local** (7 por lado, corte seco sincronizado cada 1,6 s, rótulo Raleway beige arriba, sin rostros, sin audio): aprobado a la primera — _Eli, 29-09-2026, FEED 12-10 «Por qué vienes / Por qué te quedas» («está muy bien, como está todo, en las transiciones»; «quedó perfecta»)_
+
+- **A-14** · [DT] **Pendones DT 0,8×3 m, ronda 7**: los tres a sangre completa con el esquema de la 2; cookie con la foto 3-79 (galleta partida) regenerada entera como una sola foto; teléfono con alta de una pasada y ojos corregidos: «quedó perfecto» — _Eli, 29-09-2026. Receta: `clients/hilton/RECETA-PENDONES-DT.md` §7_
+
 ## 7. Lo que se rechaza
 
+- **X-51** · [BW] POV con el **muffin apoyado sobre la tapa del vaso** y chico (calcado de la ref, que traía la galleta sobre la taza): «rara», «desproporcionado» — _cliente, ST 02-10, 28-09-2026: 1 ronda_
 - **X-47** · [DT] Cambiar **sólo la cara** (óvalo) de una modelo: se sigue reconociendo por el pelo, la piel y los lentes — _Eli, 28-09-2026, pendones r1: 1 ronda_
 - **X-48** · [DT] Pelo rubio sobre piel morena, cejas decoloradas, ojos raros y mechones sueltos: «poco natural» — _Eli, 28-09-2026, pendones r2: 1 ronda_
 
@@ -265,9 +278,15 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **X-43** · [DT] Foto del banco con la «niña» que se lee como **mujer adulta** y piel sobreprocesada (cookie en la cama) — _detectado con zoom al pedir Eli «más realistas», 28-09-2026, ST 01-10 r7_: se sacó
 - **X-49** · [DT] ST 01-10 r7: **fundido de 0,5 s entre fotos con la familia** (cuerpos transparentes), **recuadro sobre la familia** del pecho para abajo y **papá cortado por el borde** en almohadas — _Eli, 28-09-2026 («desaparecen o no se ven completos»)_. La ST 01-10 va en **5 rondas** en el día (r4 → r8)
 - **X-50** · [DT] Carrusel Escapada 07-10, **2 rondas sólo de tipografía** (composición y foto pasaron a la primera): antetítulo en versales en vez del nombre del programa como logotipo; «Desde» al lado del precio; «Agrega / sunset» a dos pesos; interlínea 1,1–1,14 en lo apilado; punteo sin punto final; «$100.000» sin «+». Todo quedó como R-104–R-109 — _Eli, 29-09-2026_
+- **X-52** · [DT] Pendón cookie con la foto EQUIVOCADA (3-80, galleta entera): la del pantallazo era la 3-79, con la galleta ya partida — _Eli, 29-09-2026: 1 ronda_
+- **X-53** · [DT] **Mano generada por IA** pegada con recortes reales encima: dedo de más, uñas «con difuminado de velocidad», marcas, halo en la mano real — _Eli, 29-09-2026 («se ve muy falsa»): 2 rondas_
+- **X-54** · [DT] Meñique largo y desenfocado estirado hacia la bolsa; después, dedos estirados en vez de pinza — _Eli, 29-09-2026 («el dedo de ella se me hace muy extraño»): 2 rondas_
+- **X-55** · [DT] Emblema del árbol DT **cortado a la mitad**, después completado con IA «pegoteado», después borrado con **manchones** — _Eli, 29-09-2026: 3 rondas. Una expansión además inventó un letrero «DoubleTree» (R-80, descartada antes de mostrar)_
+- **X-56** · [DT] Foto de pendón reescalada ×4 en dos pasadas: textura «pintada» en pelo y piel — _Eli, 29-09-2026: 1 ronda_
 
 ## 8. Preguntas abiertas
 
+- [BW] **Reels: Eli quiere conversar cómo mejorarlos** y va a pasar videos de referencia (29-09, tras aprobar el FEED 12-10). Antes del próximo reel de Between, preguntar si ya los mandó → **Eli**
 - [DT] Carrusel Escapada 07-10 (aprobado 29-09): ¿se sube a S2/DT/FEED como `C1 S2 DT n°1–2`? · ¿hay foto REAL de la terraza de QB al atardecer para reemplazar la mesa generada de la lámina 2? → Eli
 - [DT] Opinión Expedia: la grilla la movió del 10-10 al 09-10 y el archivo de Drive conserva la fecha vieja; ¿se renombra o se deja? → Eli
 - [BW] Carta oficial: ¿cuál de las 4 propuestas elige el cliente? · confirmar las erratas corregidas del Word (manquilla→mantequilla, Muffinn, Salmon, Cesar, Kuntsmann→Kunstmann, Founders Colection→Collection; precios todos con punto; «Elija 2 opciones» se dejó en usted) → cliente
@@ -309,6 +328,17 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 (pendones 0,8×3, rondas 4–7) — Claude con Eli · foto a la medida, cookie rehecha, teléfono sin textura IA
+- **Reglas nuevas [DT]:** R-112 foto a la medida del pendón y los tres con el mismo esquema, R-113 las manos son cruciales (pinza real, 1:1), R-114 foto con parches → se regenera entera, R-115 emblema completo o nada, R-116 sin texturas de IA (una pasada ×2), R-117 ojos bien logrados.
+- **Aprobado:** A-14 («quedó perfecto»). **Rechazos:** X-52 a X-56. 7 rondas en el día (la cookie concentró casi todas).
+- Técnica completa en `RECETA-PENDONES-DT.md` §7 (scripts `dt-pendones-expandir*.py`, `dt-pendones-r4-retoques.py`). El PDF de imprenta de los tres **falta regenerarlo** desde el .ai guardado.
+
+### 2026-09-29 (ronda ST 01-10 / 02-10 + reel FEED 12-10) — Claude con Eli · comentarios del cliente en la grilla y reel nuevo
+- **Reglas nuevas [BW]:** R-110 producto en mano, cada mano lo suyo y a escala real; R-111 el anuncio de ganador dice que se le contactará por el premio. Las dos salen del cliente en la grilla, verbatim.
+- **✔ que subieron:** R-33, R-38, R-41, R-47, R-49, R-53, R-56, R-61. **A-13** reel en pantalla dividida con clips reales, aprobado a la primera. **X-51** muffin sobre la tapa.
+- **Cómo llegó el feedback:** el cliente comenta en COMENTARIOS DISEÑO de piezas **ya subidas** y las devuelve de OK PARA DISEÑAR a REVISAR CONTENIDO; sólo se ve con el diff de la instantánea (`grillas/between-octubre-2026-vivo-20260929.md`).
+- **Material:** el video real de Between está en el disco externo F: (`SESION DE FOTOS BW`); en Drive esas carpetas están cerradas al dominio.
 
 ### 2026-09-29 (carrusel Escapada 07-10) — Claude con Eli · 3 rondas, APROBADO
 - **Reglas nuevas [DT]:** R-104 punteo de beneficios con punto final (acota R-60), R-105 interlínea ≥1,28 en lo apilado, R-106 pares paralelos a un peso, R-107 mismo signo en los adicionales, R-108 el nombre del programa como logotipo de texto, R-109 «Desde» arriba del precio.

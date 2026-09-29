@@ -5,6 +5,7 @@
 import React from 'react';
 import {Composition, registerRoot} from 'remotion';
 import * as O from './compositions/hilton/BetweenOctubre';
+import {FeedOct12PorQue, DURACION_PORQUE} from './compositions/hilton/BetweenFeed1210PorQue';
 
 const feed = {durationInFrames: 1, fps: 30, width: 1080, height: 1350} as const;
 const story = {durationInFrames: 1, fps: 30, width: 1080, height: 1920} as const;
@@ -27,6 +28,7 @@ const Raiz: React.FC = () => (
     <Composition id="BW-O-28-Bonjour" component={O.StOct28Bonjour} {...story} />
     <Composition id="BW-O-28-Bonjour-Guia" component={O.StOct28BonjourGuia} {...story} />
     <Composition id="BW-O-F05-Reunion" component={O.FeedOct05Reunion} {...feed} />
+    <Composition id="BW-O-F12-PorQue" component={FeedOct12PorQue} {...story} durationInFrames={DURACION_PORQUE} />
     <Composition id="BW-O-F14-Espacios" component={O.FeedOct14Espacios} {...feed} />
   </>
 );

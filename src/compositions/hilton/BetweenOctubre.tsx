@@ -257,7 +257,13 @@ export const StOct01Ganador: React.FC<{guia?: boolean}> = ({guia = false}) => (
    REAL (M313) como referencias, animado con Seedance 2.5 en el Space «Between
    octubre» (Kling 2.1 falló). El vaso trae el logotipo impreso → SIN lockup.
    Dos tiempos, como pide el brief («Luego entra:»):
-     0–3,3 s  ¿QUÉ MEJORA TU MAÑANA? / YO:
+     0–3,3 s  ¿QUÉ MEJORA TU MAÑANA?
+   ⭐ Ronda cliente 28-09 (grilla col D): «Está rara esa forma de llevar el café
+   con muffin arriba (desproporcionado, muffin muy chico) … más natural y en
+   proporciones. Eliminemos el Yo:». Toma r2 (`s-togo-pov-r2.mp4`): cada mano
+   lleva lo suyo — vaso en la derecha, muffin en su papel tulipa en la
+   izquierda — a escala real; Nano Banana Pro 4K (logo «BƎTWEEN» revisado al
+   300 %) animado con Kling 2.5 Pro. Fuera el «Yo:».
      3,3–8 s  CAFÉ + DULCE TO GO · Desde $2.990 · Muffin, brownie… · horario
    ⚠️ El brief escribe «$2,990» con coma; en pesos chilenos el separador es el
    punto (la misma grilla escribe «$1.990» en el feed). Va «$2.990» y se avisa.
@@ -283,7 +289,7 @@ export const StOct02ToGoPov: React.FC<{guia?: boolean}> = ({guia = false}) => {
   const sube = (t: number) => ({opacity: t, transform: `translateY(${(1 - t) * 24}px)`});
   return (
     <AbsoluteFill style={{backgroundColor: C.sombra}}>
-      <OffthreadVideo src={staticFile(F + 's-togo-pov.mp4')} muted style={{width: 1080, height: 1920}} />
+      <OffthreadVideo src={staticFile(F + 's-togo-pov-r2.mp4')} muted style={{width: 1080, height: 1920}} />
       <AbsoluteFill
         style={{
           background:
@@ -299,19 +305,6 @@ export const StOct02ToGoPov: React.FC<{guia?: boolean}> = ({guia = false}) => {
             alinear="centro"
             anchoDisponible={BETWEEN.bloque.columna}
           />
-          <div
-            style={{
-              fontFamily: BETWEEN.fuentes.script,
-              fontSize: 116,
-              color: C.beige,
-              textAlign: 'center',
-              lineHeight: 1,
-              marginTop: 6,
-              textShadow: SOMBRA,
-            }}
-          >
-            Yo:
-          </div>
         </div>
       </Columna>
       <Columna top={330}>

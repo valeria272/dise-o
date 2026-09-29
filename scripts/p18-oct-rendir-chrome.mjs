@@ -32,6 +32,9 @@ const PIEZAS = {
   'P18O-S0710': ['P18OS0710', 1920, 2, 'STS', 'P18 ST 07-10 Estacion favorita.png'],
   'P18O-S0910': ['P18OS0910', 1920, 2, 'STS', 'P18 ST 09-10 Recuerdos de matrimonio.png'],
   'P18O-S1510': ['P18OS1510', 1920, 3, 'STS', 'P18 ST 15-10 Cumpleanos sonado.png'],
+  'P18O-F1310-2': ['P18OF1310S2', 1350, 3, 'FEED', 'P18 FEED 13-10 Atardecer 2.png'],
+  'P18O-F1610-1': ['P18OF1610S1', 1350, 3, 'FEED', 'P18 FEED 16-10 Tu proxima celebracion 1.png'],
+  'P18O-S2710': ['P18OS2710', 1920, 5, 'STS', 'P18 ST 27-10 Visita virtual.png'],
   'P18O-S1510-Guia': ['P18OS1510Guia', 1920, 0, 'GUIAS', 'P18 ST 15-10 GUIA.png'],
 };
 

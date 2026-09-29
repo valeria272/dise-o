@@ -97,6 +97,9 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - **R-54** · Si la ref trae papel (hoja rasgada, nota), va una **textura de papel real** (generada con la ref de guía) y el rasgado con mordidas hondas del mismo tono; el papel plano y el zigzag no pasan — _Eli, 29-09, ST 15-10: «la textura muy, muy igual al papel que está ahí»_ · ✔×1
 - **R-55** · El fondo de una historia es una escena real de Piso18 **con sus luces** (esferas con velas, guirnaldas), poco desenfocada para que brillen, y lo lindo de la foto queda a la vista, no detrás del texto — _Eli, 29-09, ST 15-10: «más con luces que tiene Piso18, una escena más bonita»_ · ✔×1
 - **R-56** · «Fondo de algún montaje» = foto real de un salón montado, oscurecida (~0,5) y con desenfoque gaussiano para que no compita con lo del frente; rótulos y flechas encima, en fucsia — _cliente ST D14 29-09 + Eli, 2 vueltas_ · ✔×1
+- **R-57** · Los rótulos en Raleway de caja alta llevan espaciado **discreto (~0,08 em, 2 px a 26 px)**; el espaciado abierto de letra por letra (0,27 em) se lee como diseño de IA — _Constanza Lizana (jefa de diseño), 29-09, FEED 09-10 G2: «Ojo con esa separación de letra x letra en las palabras, es demasiado ia :(»_ · ✔×1
+- **R-58** · Texto grande sobre una foto va en **relleno sólido**, no calado/contorno: el trazo fino se pierde contra la foto — _Constanza Lizana, 29-09, ST 07-10: «Se pierde mucho el texto "dulce" "salada" en delineado, prueba con la línea más gruesa o bien mejor sólido»_ · ✔×1
+- **R-59** · La jefa de diseño (Constanza Lizana) comenta con **hilos nativos de la grilla que mencionan a Eli**, no en las celdas: el diff de celdas no los ve. Leer siempre `read_file_content` con `includeComments=true` y filtrar por autor y fecha; los estados de sus piezas pasan a EN CAMBIOS / EN CAMBIOS DISEÑO — _29-09, ronda 5_ · ✔×1
 
 ## 5. Excepciones
 
@@ -151,6 +154,8 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - **X-26** · Rótulos y flechas en blanco sobre el montaje, con el fondo poco oscuro — _ST 07-10, Eli 29-09, 1 vuelta_
 - **X-27** · Papel plano con borde en dientes de sierra — _ST 15-10, Eli 29-09, 1 vuelta_
 - **X-28** · Fondo de la mesa apagada, sin luces, con lo bonito tapado por la hoja — _ST 15-10, Eli 29-09, 1 vuelta_
+- **X-29** · Rótulo de caja alta con letter-spacing 7 px (0,27 em) — _FEED 09-10 G2, Constanza 29-09_
+- **X-30** · Rótulos calados (contorno 2,8 px) sobre foto oscurecida — _ST 07-10, Constanza 29-09_
 
 ## 8. Preguntas abiertas
 
@@ -176,6 +181,11 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - La ST 09-10 conserva «Cotiza tu evento en piso18.cl» sin CTA en el brief (R-51): Eli la dio por buena; ¿se mantiene? → Eli
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 (tarde) — Elisabet Soto con Claude · RONDA 5: comentarios de Constanza Lizana — CORREGIDAS Y EN DRIVE
+- Constanza, en hilos nativos (verbatim): FEED C9 «Aquí en el slide 2 "Temporada alta 2027" Ojo con esa separación de letra x letra en las palabras, es demasiado ia :(» · STORIES D8 «Se pierde mucho el texto "dulce" "salada" en delineado, prueba con la línea más gruesa o bien mejor sólido».
+- nuevas **R-57** espaciado discreto · **R-58** texto sobre foto en sólido · **R-59** los hilos de la jefa de diseño se leen aparte. Rechazos **X-29**, **X-30**. Página https://claude.ai/artifact/3JstsrpP24PacLKw8VR8zc; md5 en Drive verificado.
+- Ronda 6 (misma tarde): R-57 aplicada a 13-10 G2, 16-10 G1, ST 15-10 y ST 27-10 — reemplazadas en Drive (md5 verificado). «TEX MEX» (0,07) ya cumplía.
 
 ### 2026-09-29 — Elisabet Soto con Claude · RONDA 4 de octubre + ST 15-10 nueva (8 vueltas en el día) — APROBADAS Y EN DRIVE
 - Cliente en la grilla (verbatim): FEED C13 «Según brief la G2 también es imagen, seleccionemos alguna horizontal para que quede dividida de forma continua?» · FEED D13 «Falta logo, el montaje es real o IA?» · ST C14 «Ok, pero quitemos botón diseñado para no repetir info» · ST D14 «Veamos un fondo más entretenido? que sea d ealgún montaje» · ST F14 «El Que con q mayúscula».

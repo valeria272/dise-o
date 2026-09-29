@@ -374,8 +374,10 @@ export const P18OF0910S2: React.FC = () => {
           ...RALEWAY,
           fontWeight: 700,
           fontSize: 26,
-          letterSpacing: 7,
-          textIndent: 7,
+          // Ronda 5, Constanza 29-09 (FEED C9): «ojo con esa separación de letra x letra
+          // (…) es demasiado IA». El espaciado baja de 7 px (0,27 em) a 2 px (0,08 em).
+          letterSpacing: 2,
+          textIndent: 2,
           color: P18.colores.blanco,
         }}
       >
@@ -525,7 +527,8 @@ export const P18OF1310S2: React.FC = () => {
           <line x1={0} y1={7} x2={104} y2={7} stroke="#FFFFFF" strokeWidth={1.6} />
           <path d="M97 1 L105 7 L97 13" fill="none" stroke="#FFFFFF" strokeWidth={1.6} />
         </svg>
-        <span style={{...RALEWAY, fontWeight: 700, fontSize: 21, letterSpacing: 4}}>
+        {/* Ronda 6, Eli 29-09: criterio de Constanza (R-57) aplicado a todo el mes, espaciado ~0,08 em (antes 4 px = 0,19 em) */}
+        <span style={{...RALEWAY, fontWeight: 700, fontSize: 21, letterSpacing: 1.7}}>
           PISO18.CL
         </span>
       </div>
@@ -539,8 +542,9 @@ export const P18OF1310S2: React.FC = () => {
           ...RALEWAY,
           fontWeight: 700,
           fontSize: 25,
-          letterSpacing: 9,
-          textIndent: 9,
+          // Ronda 6, Eli 29-09: criterio de Constanza (R-57) aplicado a todo el mes, espaciado ~0,08 em (antes 9 px = 0,36 em)
+          letterSpacing: 2,
+          textIndent: 2,
           color: P18.colores.blanco,
           textShadow: SOMBRA,
         }}
@@ -614,7 +618,7 @@ export const P18OF1610S1: React.FC = () => {
           <br />
           SU LUGAR
         </div>
-        <div style={{...RALEWAY, fontWeight: 700, fontSize: 24, letterSpacing: 6, textIndent: 6, marginTop: 28}}>
+        <div style={{...RALEWAY, fontWeight: 700, fontSize: 24, letterSpacing: 2, textIndent: 2, marginTop: 28 /* R-57, antes 6 px = 0,25 em */}}>
           EN PISO18
         </div>
       </HojaPapel>
@@ -881,10 +885,11 @@ const Polaroid: React.FC<{src: string; left: number; top: number; ancho: number;
   </div>
 );
 
-const Calado: React.FC<{children: React.ReactNode; style: React.CSSProperties; trazo?: string}> = ({
+const Calado: React.FC<{children: React.ReactNode; style: React.CSSProperties; trazo?: string; solido?: boolean}> = ({
   children,
   style,
   trazo = P18.colores.fucsia,
+  solido = false,
 }) => (
   <div
     style={{
@@ -894,8 +899,8 @@ const Calado: React.FC<{children: React.ReactNode; style: React.CSSProperties; t
       fontWeight: 400,
       fontSize: 140,
       lineHeight: 1,
-      color: 'transparent',
-      WebkitTextStroke: `2.8px ${trazo}`,
+      color: solido ? trazo : 'transparent',
+      WebkitTextStroke: solido ? undefined : `2.8px ${trazo}`,
       ...style,
     }}
   >
@@ -946,10 +951,12 @@ export const P18OS0710: React.FC = () => {
       </div>
 
       <Polaroid src="s0710-dulce.jpg" left={520} top={500} ancho={390} giro={4} />
-      <Calado trazo={fucsia} style={{left: 270, top: 410, filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.7))'}}>Dulce</Calado>
+      {/* Ronda 5, Constanza 29-09 (STORIES D8): «se pierde mucho el texto “dulce”
+          “salada” en delineado (…) mejor sólido» ⇒ relleno fucsia, ya no calado. */}
+      <Calado solido trazo={fucsia} style={{left: 270, top: 410, filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.7))'}}>Dulce</Calado>
 
       <Polaroid src="s0710-salada.jpg" left={560} top={1066} ancho={380} giro={-3.5} />
-      <Calado trazo={fucsia} style={{right: 60, top: 942, textAlign: 'right', filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.7))'}}>Salada</Calado>
+      <Calado solido trazo={fucsia} style={{right: 60, top: 942, textAlign: 'right', filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.7))'}}>Salada</Calado>
 
       {/* Las flechas nacen del hueco del sticker (x 60–480 · y 830–1030). */}
       <svg width={W} height={STORY_H} style={{position: 'absolute', inset: 0}}>
@@ -1128,8 +1135,9 @@ const Tematica: React.FC<{src: string; nombre: string}> = ({src, nombre}) => (
         ...RALEWAY,
         fontWeight: 700,
         fontSize: 19,
-        letterSpacing: 3,
-        textIndent: 3,
+        // Ronda 6, Eli 29-09: criterio de Constanza (R-57) aplicado a todo el mes, espaciado ~0,08 em (antes 3 px = 0,16 em)
+        letterSpacing: 1.5,
+        textIndent: 1.5,
         textAlign: 'center',
         color: P18.colores.tinta,
         padding: '16px 0 18px',
@@ -1374,8 +1382,9 @@ export const P18OS2710: React.FC = () => {
           ...RALEWAY,
           fontWeight: 700,
           fontSize: 22,
-          letterSpacing: 6.5,
-          textIndent: 6.5,
+          // Ronda 6, Eli 29-09: criterio de Constanza (R-57) aplicado a todo el mes, espaciado ~0,08 em (antes 6,5 px = 0,30 em)
+          letterSpacing: 1.8,
+          textIndent: 1.8,
           color: 'rgba(255,255,255,0.72)',
         }}
       >

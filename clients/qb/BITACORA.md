@@ -1,5 +1,10 @@
 # QB Restaurant — bitácora
 
+## 2026-09-29 (tarde 5) — Elisabet Soto «Eli» (Windows, con Claude) · ronda 18: todos los legales de octubre en una línea — EN REVISIÓN
+
+**Qué se hizo:** Eli: «haz algo similar en los otros legales de QB, verifica que no se vean tan pequeños y me muestras». `Legal` del kit ganó `unaLinea` (columna 960, sin corte). Medido con la fuente: con «Imagen referencial» (~110 car.) cabe a **19 px**; sin ella (~88), a **22 px**; el CMR 40 % (~165 car.) va en **2 líneas exactas a 21**. 14 piezas: ST n°1/2/5 S1, ST n°2 S3 (17→19), C1 S1 N°2, C1 S2 N°2, ST n°2 S2 (18→19), ST n°2 S4 (+ tragos como la 13-10), Sunset aprobadas n°6 S2 / n°5 S3 / n°4 S4, CMR 40 % n°7 S2 / n°6 S3 / n°5 S4. Diff: sólo cambió el legal. Rendidas en `out/qb/oct/r18/`, revisión `revision-r18.html` (`scripts/qb-oct-r18-revision.py`).
+**Qué sigue:** con el visto de Eli, reemplazar las 14 en Drive (`scripts/qb-oct-subir.py`, carpeta = semana del nombre; los C1 van a `FEED/C1 S1 AYCD` y `FEED/C1 S2 SUNSET`).
+
 ## 2026-09-29 (tarde 4) — Elisabet Soto «Eli» (Windows, con Claude) · ronda 17: legal de la AYCD 13-10 en una línea
 
 **Qué se hizo:** Eli: el resto de las ST OK. En la **AYCD 13-10 (ST n°2 S2)** el legal completo («*Imagen referencial… beneficios.») va en UNA línea (18 px, ancho 1000) y debajo, con margen, los tragos «que no son tanto legal»: 24 px, Raleway recta, dos líneas parejas con «·». La 27-10 (mismo componente) verificada idéntica. Reemplazada en Drive (md5 igual). Revisión `out/qb/oct/r17/revision-r17.html` (`scripts/qb-oct-r17-revision.py`).

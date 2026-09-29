@@ -72,6 +72,7 @@ export const QbSt20AycdLlamada: React.FC = () => (
     <Tel color="#66886B" x={MESA.w / 2 + 250} top={1075} etiqueta="Aceptar" />
     <BloqueAycd antetitulo={1290} boton={1340} horario={1450}
       textoAntetitulo={QB_ST20_DATA.pieza.texto} textoHorario={QB_ST20_DATA.pieza.medida} />
-    <Legal top={1530} cuerpo={17}>{QB_ST20_DATA.pieza.legal}</Legal>
+    {/* r18 (Eli 29-09): de 17 a 19 px, en una línea */}
+    <Legal top={1530} cuerpo={19} unaLinea>{QB_ST20_DATA.pieza.legal}</Legal>
   </AbsoluteFill>
 );

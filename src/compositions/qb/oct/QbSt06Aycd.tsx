@@ -73,6 +73,7 @@ export const QbSt06Aycd: React.FC = () => (
     {/* 25-09: el bloque sube 30 px para que texto y legal entren en la zona segura */}
     <BloqueAycd antetitulo={1281.4} boton={1334.6} horario={1449.4} />
     <Linea top={1508} cuerpo={27} italica peso={300}>{QB_ST06_DATA.pieza.texto}</Linea>
-    <Legal top={1612} cuerpo={19}>{QB_ST06_DATA.pieza.legal}<br />{QB_ST06_DATA.pieza.legal2}</Legal>
+    {/* r18 (Eli 29-09): legal en UNA línea */}
+    <Legal top={1625} cuerpo={19} unaLinea>{QB_ST06_DATA.pieza.legal} {QB_ST06_DATA.pieza.legal2}</Legal>
   </AbsoluteFill>
 );

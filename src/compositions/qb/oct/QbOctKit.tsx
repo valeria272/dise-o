@@ -209,13 +209,16 @@ export const Linea: React.FC<{
 );
 
 /** Legal chico en Raleway itálica (el de la ST de AYCD). Sin punto final no:
- *  el legal es párrafo y SÍ lleva punto (regla Hilton §F). */
-export const Legal: React.FC<{top: number; children: React.ReactNode; cuerpo?: number}> = ({
-  top, children, cuerpo = 21,
+ *  el legal es párrafo y SÍ lleva punto (regla Hilton §F).
+ *  ⭐ `unaLinea` (Eli 29-09, r17-r18): el legal va entero en UNA línea, en una
+ *  columna de 960 (60 px por lado). Medido con la fuente: el legal con «Imagen
+ *  referencial» (~110 caracteres) cabe a 19 px; el corto (~88), a 22. */
+export const Legal: React.FC<{top: number; children: React.ReactNode; cuerpo?: number; unaLinea?: boolean}> = ({
+  top, children, cuerpo = 21, unaLinea = false,
 }) => (
   <Linea top={top} cuerpo={cuerpo} italica interlinea={1.3} sombra={false}
-    color="rgba(255,255,255,0.88)" ancho={880}>
-    {children}
+    color="rgba(255,255,255,0.88)" ancho={unaLinea ? 960 : 880}>
+    {unaLinea ? <span style={{whiteSpace: "nowrap"}}>{children}</span> : children}
   </Linea>
 );
 

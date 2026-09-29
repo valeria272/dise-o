@@ -72,7 +72,8 @@ export const QbStAprobadaSunset: React.FC<{semana: QbSunsetSemana}> = ({semana})
         {QB_SUNSET_AP_DATA.titular[0]}<br />{QB_SUNSET_AP_DATA.titular[1]}
       </Linea>
       <BotonVerde top={1332} ancho={560} alto={54} cuerpo={30} peso={700}>{QB_SUNSET_AP_DATA.horario}</BotonVerde>
-      <Legal top={1530} cuerpo={19}>{QB_SUNSET_AP_DATA.legal}</Legal>
+      {/* r18 (Eli 29-09): de 19 a 22 px, en una línea */}
+      <Legal top={1528} cuerpo={22} unaLinea>{QB_SUNSET_AP_DATA.legal}</Legal>
     </AbsoluteFill>
   );
 };

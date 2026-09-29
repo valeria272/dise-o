@@ -83,7 +83,8 @@ export const QbFeed12SunsetG2: React.FC = () => {
         borderRadius: 25, background: "#66886B", display: "flex", alignItems: "center",
         justifyContent: "center", paddingTop: 2, color: "#fff", fontFamily: "Raleway", fontWeight: 700,
         fontSize: 28, letterSpacing: "0.02em", ...CIFRAS}}>{d.horario}</div>
-      <Legal top={1250} cuerpo={19}>{d.legal}</Legal>
+      {/* r18 (Eli 29-09): de 19 a 22 px, en una línea */}
+      <Legal top={1248} cuerpo={22} unaLinea>{d.legal}</Legal>
     </AbsoluteFill>
   );
 };

@@ -21,7 +21,7 @@ import {QbSt20AycdLlamada} from "./compositions/qb/oct/QbSt20AycdLlamada";
 import {QbSt21Estacionamiento} from "./compositions/qb/oct/QbSt21Estacionamiento";
 import {QbSt23CloseFriends} from "./compositions/qb/oct/QbSt23CloseFriends";
 import {QbSt22Ensalada, QB_ST22_DURACION} from "./compositions/qb/oct/QbSt22Ensalada";
-import {QbPost05Cumple} from "./compositions/qb/oct/QbPost05Cumple";
+import {QbFeed05CumpleG1, QbFeed05CumpleG2, QbFeed05CumpleG3, QbFeed05CumpleG4} from "./compositions/qb/oct/QbPost05Cumple";
 import {QbSt26Terraza, QB_ST26_DURACION} from "./compositions/qb/oct/QbSt26Terraza";
 
 import {QbSt07Cumple} from "./compositions/qb/oct/QbSt07Cumple";
@@ -50,7 +50,10 @@ const Raiz: React.FC = () => (
     <Composition id="QB-OCT-ST21" component={QbSt21Estacionamiento} durationInFrames={1} {...Q} />
     <Composition id="QB-OCT-ST23" component={QbSt23CloseFriends} durationInFrames={1} {...Q} />
     <Composition id="QB-OCT-ST22" component={QbSt22Ensalada} durationInFrames={QB_ST22_DURACION} {...Q} />
-    <Composition id="QB-OCT-FEED05" component={QbPost05Cumple} durationInFrames={1} fps={30} width={1080} height={1350} />
+    <Composition id="QB-OCT-FEED05-G1" component={QbFeed05CumpleG1} durationInFrames={1} {...F} />
+    <Composition id="QB-OCT-FEED05-G2" component={QbFeed05CumpleG2} durationInFrames={1} {...F} />
+    <Composition id="QB-OCT-FEED05-G3" component={QbFeed05CumpleG3} durationInFrames={1} {...F} />
+    <Composition id="QB-OCT-FEED05-G4" component={QbFeed05CumpleG4} durationInFrames={1} {...F} />
     <Composition id="QB-OCT-ST26" component={QbSt26Terraza} durationInFrames={QB_ST26_DURACION} {...Q} />
     {/* ronda 9 (28-09 tarde): lo que pasó a OK en la grilla */}
     <Composition id="QB-OCT-ST07" component={QbSt07Cumple} durationInFrames={1} {...Q} />

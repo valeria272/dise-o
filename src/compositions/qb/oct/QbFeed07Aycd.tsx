@@ -27,6 +27,12 @@
  *     DRINK» con sus pesos del KV, TODOS LOS MARTES, el botón verde con el precio
  *     y el horario fino. Fondo: los cinco tragos del AYCD en la barra (generada)
  *     → «Imagen referencial» en el legal.
+ *   · ⭐ RONDA 19 (Scarlette, hilo en FEED!D14, 29-09): «cambiar la botella de agua
+ *     por una de espumante». Nano Banana Pro cambió sólo la botella (espumante verde
+ *     con cápsula dorada, etiqueta crema sin marca legible) y se INJERTÓ esa zona
+ *     sobre la foto aprobada con máscara difuminada: copa, jigger y barra intactos
+ *     (`scripts/qb-oct-r19-nb.py`, `raw/hilton/qb/oct-r19/`). En Drive el carrusel
+ *     pasa a C2 S1 AYCD (el C1 S1 es ahora el carrusel de cumpleaños del 05-10).
  */
 import React from "react";
 import {AbsoluteFill} from "remotion";
@@ -49,7 +55,7 @@ const QB_FEED07_DATA: Record<string, Record<string, string>> = {
 
 export const QbFeed07AycdG1: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
-    <FotoFeed src="assets/hilton/qb/oct/feed07-g1.jpg" pos="50% 50%" />
+    <FotoFeed src="assets/hilton/qb/oct/feed07-g1-r19.jpg" pos="50% 50%" />
     <Linea top={1150} cuerpo={17} italica ancho={500} color="rgba(255,255,255,0.8)">*Imagen referencial</Linea>
   </AbsoluteFill>
 );

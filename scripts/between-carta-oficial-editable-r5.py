@@ -126,7 +126,7 @@ function bloques(){
   const ROL=el=>{const c=el.classList;
     if(el.tagName==='H2'||c.contains('ov')||c.contains('rect'))return'seccion';
     if(c.contains('nt'))return'nota'; if(c.contains('hr')||c.contains('pre'))return'horario_sec';
-    if(c.contains('leyenda'))return'leyenda'; if(c.contains('tramo'))return'tramo'; return'info'};
+    if(c.contains('titulo'))return'titulo'; if(c.contains('leyenda'))return'leyenda'; if(c.contains('tramo'))return'tramo'; return'info'};
   const enItems=el=>!!el.closest('.items');
   const esHoja=el=>{
     if(enItems(el)||el.closest('script,style,template'))return false;
@@ -172,6 +172,7 @@ PS = dict(ed4.PS)
 PS[("Raleway", 400, "italic")] = "Raleway-Italic"
 PS[("Raleway", 600, "italic")] = "Raleway-SemiBoldItalic"
 PS[("Raleway", 700, "italic")] = "Raleway-BoldItalic"
+PS[("Raleway", 800, "normal")] = "Raleway-ExtraBold"
 
 
 def hexa(css):
@@ -258,7 +259,7 @@ def normalizar(marcos, faltan):
 
 ROL_NOMBRE = {"cabcol": "Cabecera de columnas", "plato": "Plato", "desc": "Descripción", "nota": "Nota",
               "seccion": "Sección", "horario_sec": "Horario de sección", "leyenda": "Leyenda", "tramo": "Tramo",
-              "info": "Información"}
+              "info": "Información", "titulo": "Título"}
 COLOR_NOMBRE = {"#675B49": "BW Café", "#FFF9EB": "BW Beige", "#D9D2C3": "BW Café claro"}
 
 

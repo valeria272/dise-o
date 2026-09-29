@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-29** · Cosechas: **27**
+> Última cosecha: **2026-09-29** · Cosechas: **28**
 
 ## 1. Quién es el cliente
 
@@ -390,6 +390,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-29 (cierre 10, `/abrir BW` sin piezas) — Claude con Eli · sin aprendizajes nuevos
+- **Sin aprendizajes nuevos:** la sesión fue sólo apertura (pull, `/al-dia BW`); no hubo pieza, corrección ni comentario del cliente. Grilla BW OCT sin cambios y 0 comentarios en Drive. La carta R5 sigue sin .ai armado; R-146 a R-148 siguen en ✔×0.
 
 ### 2026-09-29 (cierre 9, editables de la carta R5) — Claude con Eli · 3 reglas nuevas [BW], A MEDIAS
 - **Reglas nuevas [BW]:** R-146 editable fácil de corregir (estilos de párrafo, tabulador de precio) · R-147 3 mm de sangrado y mínimos para impresión y digital · R-148 CMYK Coated FOGRA39 como las cartas anteriores de Between. R-94 ampliada.

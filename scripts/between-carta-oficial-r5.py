@@ -56,7 +56,13 @@ POR_OPCION = {
           (".sc .pre{font-size:7.6pt;", ".sc .pre{font-size:8pt;"),
           (".it .f{font-size:9pt;letter-spacing:.04em;", ".it .f{font-size:9.5pt;letter-spacing:.04em;"),
           ("font-size:6.6pt;font-weight:600;", "font-size:7.5pt;font-weight:600;"),
-          ("text-transform:uppercase;opacity:.8\">", "text-transform:uppercase\">")],
+          ("text-transform:uppercase;opacity:.8\">", "text-transform:uppercase\">"),
+          # Eli 29-09: la etiqueta «MENÚ» en rectángulo sobraba; si va, que sea UN título en letra
+          # atractiva y mejor diagramado → Brushwell grande abriendo el panel del logo, filete fino debajo
+          ('<div class="abs" style="left:85mm;right:0;top:16mm;text-align:center"><span class="rect">Menú</span></div>',
+           '<div class="abs titulo" style="left:85mm;right:0;top:30mm;text-align:center;font-family:Brushwell;font-weight:400;'
+           'font-size:54pt;line-height:1;letter-spacing:.02em;text-transform:none">Menú</div>'
+           '<div class="abs" style="left:118.5mm;width:18mm;top:53.5mm;border-top:.15mm solid currentColor"></div>')],
 }
 
 
@@ -65,6 +71,14 @@ POR_OPCION = {
 DOS_LINEAS = ("Tentaciones de nuestra vitrina", "Tentaciones de<br>nuestra vitrina")
 CSS_DOS = (".ov.dos,.rect.dos{white-space:normal;text-align:center;line-height:1.3;font-size:9.5pt;letter-spacing:.14em}"
            ".ov.dos{padding:3.2mm 7mm 3mm}")
+
+
+_SEC_CAJA = ("{{font-size:12pt!important;font-weight:800!important;letter-spacing:.1em!important;"
+             "white-space:normal!important;text-align:center;line-height:1.25!important;text-wrap:balance;"
+             "max-width:100%;box-sizing:border-box}}")
+SECCION = {"A": ".ix h2{font-size:13pt!important;font-weight:800!important}",
+           "B": ".ov,.ov.largo,.ov.dos" + _SEC_CAJA.format(),
+           "D": ".rect,.rect.largo,.rect.dos" + _SEC_CAJA.format()}
 
 
 def html_r5(op):
@@ -79,6 +93,16 @@ def html_r5(op):
         if a not in h:
             sys.exit(f"x R5 {op}: no encontré «{a[:60]}…» en el HTML de la R4")
         h = h.replace(a, b)
+    # Eli 29-09 (imprenta): nada bajo 8 pt — casi todo va calado en beige sobre café y a 7,5 pt la
+    # letra fina se tapa con la tinta. La nota en cursiva sube a 8,5 pt. El Título (Brushwell) no se toca.
+    h = re.sub(r"font-size:(\d+(?:\.\d+)?)pt", lambda m: f"font-size:{max(float(m.group(1)), 8):g}pt", h)
+    h = h.replace(".nt{font-size:8pt;", ".nt{font-size:8.5pt;")
+    # Eli 29-09 (jerarquía): la SECCIÓN va unos puntos sobre el plato y más gruesa → título > sección >
+    # plato (9,5 Bold) > descripción (8,5 Regular). Si no cabe en la columna, dos líneas; nunca más chica.
+    # a 8 pt la leyenda del pie ya no cabe en una línea (se salía de la hoja): dos líneas equilibradas
+    h = h.replace("</style>", ".leyenda{white-space:normal!important;text-wrap:balance;line-height:1.5}</style>", 1)
+    if op in SECCION:
+        h = h.replace("</style>", SECCION[op] + "</style>", 1)
     return h
 
 

@@ -59,6 +59,13 @@
  *   y el legal y las tarjetas no se mueven.
  *   «No debemos palabras solitas» (la misma ronda, sobre el Sunset): el legal quedaba
  *   con «ofertas y beneficios.» colgando → se corta por frase en dos líneas.
+ *
+ * ⭐ RONDA 19 — SCARLETTE (contenido, hilo en STORIES!C14, 29-09): «eliminemos el
+ *   "en QB" para que puedas achicar un poco el cuadro, hacer cambio de legal con las
+ *   tarjetas (arriba tarjetas, abajo legal)». Sin «EN QB» el marco pierde los 60 px
+ *   (tarjetas 540→470 px de ancho, apoyadas en la mesa delante de las copas: más
+ *   arriba flotaban sobre los tallos; el legal cierra en ≈1720)
+ *   de esa línea y las cajas suben con él; tarjetas y legal intercambian lugar.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -70,7 +77,7 @@ cargarFuentesQbOct();
 
 const QB_ST01_DATA: Record<string, Record<string, string>> = {
   pieza: {
-  titular: "TU SEMANA TIENE MÁS DE UN BUEN MOMENTO EN QB",
+  titular: "TU SEMANA TIENE MÁS DE UN BUEN MOMENTO",
   etiqueta: "Banco de Chile",
   texto: "20%OFF · Lunes a viernes",
   pie: "30%OFF · Sábados y domingos",
@@ -83,10 +90,12 @@ const QB_ST01_DATA: Record<string, Record<string, string>> = {
 const B = 30;
 /** Constanza 29-09: logo→pastilla = 53 px, la misma separación que el AYCD. */
 const AIRE_LOGO = 10;
-const MARCO = {x: 87, y: 398 + B + AIRE_LOGO, w: 899, h: 322 + 120};
+/** r19: sin «EN QB» el marco se achica 60 px (la línea y su aire). */
+const ACHICA = 60;
 /** r4: la caligráfica necesita 120 px más de marco. */
 const CRECE = 120;
-const CAJA = {w: 383, h: 92, g: 26, y: 676 + B + CRECE + AIRE_LOGO};
+const MARCO = {x: 87, y: 398 + B + AIRE_LOGO, w: 899, h: 322 + CRECE - ACHICA};
+const CAJA = {w: 383, h: 92, g: 26, y: 676 + B + CRECE + AIRE_LOGO - ACHICA};
 const VERDE_CAJA = "#2F4635";
 const VERDE_FILETE = "#35493A";
 
@@ -101,7 +110,8 @@ const Caja: React.FC<{x: number; cifra: string; dia: string}> = ({x, cifra, dia}
   </>
 );
 
-const TARJ_W = 540;
+const TARJ_W = 470;
+const TARJ_TOP = 1420;
 
 export const QbSt01BancoChile: React.FC = () => {
   const x1 = (MESA.w - (CAJA.w * 2 + CAJA.g)) / 2;
@@ -121,12 +131,12 @@ export const QbSt01BancoChile: React.FC = () => {
       {/* r4: titular como la ref — sans fina + una palabra caligráfica grande */}
       <Linea top={488 + B + AIRE_LOGO} cuerpo={46} peso={300} tracking="0.04em">TU SEMANA TIENE MÁS DE UN</Linea>
       <Linea top={528 + B + AIRE_LOGO} cuerpo={150} familia="Brushwell" interlinea={1.05} sombra>buen momento</Linea>
-      <Linea top={676 + B + AIRE_LOGO} cuerpo={46} peso={300} tracking="0.04em">EN QB</Linea>
       <Caja x={x1} cifra="20%OFF" dia="Lunes a viernes" />
       <Caja x={x1 + CAJA.w + CAJA.g} cifra="30%OFF" dia="Sábados y domingos" />
-      <Legal top={1530} cuerpo={22}>{QB_ST01_DATA.pieza.legal}<br />{QB_ST01_DATA.pieza.legal2}</Legal>
+      {/* r19: arriba las tarjetas, abajo el legal */}
       <Img src={staticFile("assets/hilton/qb/oct/tarjetas-banco-chile.png")}
-        style={{position: "absolute", left: (MESA.w - TARJ_W) / 2, top: 1620, width: TARJ_W, height: TARJ_W / 2}} />
+        style={{position: "absolute", left: (MESA.w - TARJ_W) / 2, top: TARJ_TOP, width: TARJ_W, height: TARJ_W / 2}} />
+      <Legal top={TARJ_TOP + TARJ_W / 2 + 14} cuerpo={22}>{QB_ST01_DATA.pieza.legal}<br />{QB_ST01_DATA.pieza.legal2}</Legal>
     </AbsoluteFill>
   );
 };

@@ -41,7 +41,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTRADA = os.path.join(RAIZ, "raw", "hilton", "qb", "oct-ia")
 SALIDA = os.path.join(ENTRADA, "clips")
 BASE = "https://api.freepik.com/v1/ai"
-MODELO = "kling-v2-1-pro"
+MODELO = "kling-v2-5-pro"   # 29-09: 2.1 Pro devuelve FAILED sin error (memoria kling-21-pro-falla-usar-25)
 CTX = ssl.create_default_context(cafile=certifi.where())
 UA = "copylab-estudio/1.0"   # el WAF de Freepik castiga el User-Agent de urllib
 

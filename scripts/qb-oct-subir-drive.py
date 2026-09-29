@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""QB · OCTUBRE 2026 — sube las 11 historias a las carpetas de semana de Eli.
+"""⛔ 29-09-2026: NO volver a correr. La grilla corrió las fechas y las historias se
+RENUMERARON en Drive (`qb-oct-renumerar.py`): estos nombres son los viejos y
+subirían duplicados. Para subir, `scripts/qb-oct-subir.py <semana> <ruta> <archivo>`.
+
+QB · OCTUBRE 2026 — sube las 11 historias a las carpetas de semana de Eli.
 
 Eli (24-09-2026): «cuando termines puedes subirlo a grilla en la carpeta
 correspondiente de drive que te dejé». Misma estructura que DT:

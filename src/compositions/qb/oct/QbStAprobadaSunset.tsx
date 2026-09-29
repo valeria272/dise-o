@@ -44,7 +44,7 @@ const FOTOS = {
   // `bajar` negativo: la foto sube para que los tragos queden entre el logo y el
   // titular, y el titular caiga sobre la mesa (el canto de abajo se funde a negro)
   S2: {src: "ap-sun2.jpg", zoom: 1.0, cx: 0.5, cy: 0.5, bajar: -250},
-  S3: {src: "ap-sun3.jpg", zoom: 0.9, cx: 0.5, cy: 0.5, bajar: -250},
+  S3: {src: "ap-sun3.jpg", zoom: 0.9, cx: 0.5, cy: 0.5, bajar: -140},
   S4: {src: "ap-sun4.jpg", zoom: 1.05, cx: 0.5, cy: 0.5, bajar: -420},
 } as const;
 export type QbSunsetSemana = keyof typeof FOTOS;

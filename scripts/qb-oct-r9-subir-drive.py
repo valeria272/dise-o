@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""QB · OCTUBRE 2026 — sube lo nuevo de la grilla (rondas 9–12, aprobado por Eli el
+"""⛔ 29-09-2026: NO volver a correr. La grilla corrió las fechas y las historias se
+RENUMERARON en Drive (`qb-oct-renumerar.py`): estos nombres son los viejos y
+subirían duplicados. Para subir, `scripts/qb-oct-subir.py <semana> <ruta> <archivo>`.
+
+QB · OCTUBRE 2026 — sube lo nuevo de la grilla (rondas 9–12, aprobado por Eli el
 28-09) a las carpetas de semana:
 
     S<n> HILTON OCT 2026 / QB / STS            ← historias

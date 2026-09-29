@@ -1,6 +1,6 @@
 ---
 name: cliente-hilton
-description: "HILTON — cerebro del cliente: 131 reglas firmes, última cosecha 2026-09-29. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
+description: "HILTON — cerebro del cliente: 142 reglas firmes, última cosecha 2026-09-29. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
 metadata:
   type: project
 ---
@@ -9,7 +9,7 @@ metadata:
 la fuente es `clients/hilton/APRENDIZAJES.md` (léelo completo antes de producir; esto es
 sólo lo más confirmado). ⛔ Vale sólo para hilton: no se traspasa a otra marca.
 
-Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni» comenta en la grilla de DT) · Aprueba: **Javier Mesa (Hilton)**
+Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
 
 ## Reglas más confirmadas
 - **R-33** · [BW] **Si el vaso de la foto ya trae el logotipo, la pieza no lleva lockup** (ni en la portada) — _Eli 25-08, 31-08, 01-09, 03-09 y 07-09-2026; feed «Necesito ir a Between» subido sin lockup por Eli, 25-09-2026 (la prueba con logo al pie caía sobre el vaso)_ · ✔×8 · +1 ST 02-10 r2 y reel FEED 12-10 sin lockup (el vaso firma), aprobados 29-09 · +1 reel FEED 02-10 cumpleaños, aprobado 29-09: sin lockup, el vaso firma
@@ -34,6 +34,10 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **R-31** · [BW] **El logotipo nunca se deforma ni se curva**: escala uniforme a ratio 3,0298, integrado en el vaso por tono (multiply), no por geometría — _Eli 25-08 («no se vea achatado»); cliente 31-08; Eli 01-09-2026 («no puedes curvarlo de esa manera»)_ · ✔×3
 
 ## Lo que ya costó rondas
+- **X-70** · [BW] ST 01-10 con **8 combinaciones de cuerpo/peso/estilo** (script sans + ExtraBold de otro cuerpo, SemiBold 44, Medium 32, itálica) y halo escalonado: «se ve desordenado», «no queda bien delineado» — _Constanza, 29-09-2026: 1 ronda_
+- **X-71** · [BW] Reel 02-10 con **tres voces** (palo, Brushwell, fina espaciada) e interlínea abierta (R-127): «too much» — _Constanza, 29-09-2026: 1 ronda_
+- **X-72** · [BW] ST 02-10: interlínea cerrada de más (−0,2): la tilde de la «Ñ» pegada a la línea de arriba — _Eli, 29-09-2026: 1 ronda_
+- **X-73** · [BW] Reel 02-10: «VA POR» solo en su línea, se leía «VAPOR» — _Eli, 29-09-2026: 1 ronda_
 - **X-60** · [DT] Pareja IA con **look pintado**: atardecer naranja agregado en la ventana, color saturado y cálido, piel y ropa de ilustración, posturas poco creíbles — «se ve extraña» — _Eli, 29-09-2026, portada Escapada 07-10, ya aprobada en r1–r3 y reabierta: 1 ronda (r4)_
 - **X-51** · [BW] POV con el **muffin apoyado sobre la tapa del vaso** y chico (calcado de la ref, que traía la galleta sobre la taza): «rara», «desproporcionado» — _cliente, ST 02-10, 28-09-2026: 1 ronda_
 - **X-47** · [DT] Cambiar **sólo la cara** (óvalo) de una modelo: se sigue reconociendo por el pelo, la piel y los lentes — _Eli, 28-09-2026, pendones r1: 1 ronda_
@@ -46,8 +50,4 @@ Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni
 - **X-26** · [BW] Lockup al pie cuando el vaso de la foto ya firma: cae encima del producto y la marca se lee dos veces — _prueba propia, feed «Necesito ir a Between», 25-09-2026 (descartada antes de mostrarla)_
 - **X-01** · [BW] **Estimar lo que Eli describió en vez de medir sus piezas publicadas**: tipografías cambiadas, jerarquía rara — _grilla de septiembre rechazada entera por Valeria, 25–26-08-2026 (2 grillas)_
 - **X-02** · [BW] **Fondo generado + recortes, logos vectoriales y sombras pegadas encima**: «parecen de paint pegoteados» — _cumpleaños rondas 11–19 (04–07-09) y ST 28-09 (14-09-2026): 5 + 3 rechazos_
-- **X-03** · [BW] Logotipo del vaso **achatado o curvado** por script — _ronda 4 (27-08) y 01-09-2026: 2 rondas_
-- **X-04** · [BW] Adornos que imitan fotografía (papelitos de color, cintas de oro): «infantil», «parece un plátano» — _cumpleaños, 04-09-2026: 3 pasadas_
-- **X-05** · [BW] **Generar un producto o un espacio que ya estaba fotografiado** («que no se vea tan IA») — _rondas 4–10 (27-08 a 04-09), cowork 10-09, Plateada 11-09-2026: 4+ rondas_
-- **X-06** · [BW] El **vaso To Go antiguo** (faja de papel, cuerpo carbón) — _Eli, 28-08-2026_
-- **X-07** · [BW] **Retocar la proporción de una foto aprobada** (escalar productos, regenerar escena): «pegoteado», «el sándwich no se parece al real» → «vuelve a la foto anterior» — _c
+- **X-03** · [BW] Logotipo del vaso **achatado o curvado** por script — _ronda 4 (27-08)

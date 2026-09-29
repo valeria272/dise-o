@@ -2801,6 +2801,25 @@ máster aprobado de esta cuenta es **2813**. La historia sí va a 2,0833 (4000 e
 
 ---
 
+## ⭐⭐⭐ BETWEEN — EL CRITERIO DE CONSTANZA (jefa de diseño), 29-09-2026
+
+Constanza Lizana comenta la grilla de Between con **comentarios nativos anclados a la
+celda** (no salen en el CSV vivo: se leen en `xl/comments*.xml` del xlsx bajado por
+`drive.usercontent…&confirm=t`). Su ronda sobre S1–S2 de octubre, aprobada por Eli:
+
+1. **Máx. 3 voces por pieza, todas Raleway** — titular (líneas al mismo cuerpo) · caja ·
+   texto (un cuerpo, un peso, sin itálica suelta). R-140.
+2. **Reel de texto en UNA familia**: Raleway Black caja alta + Raleway 500. ⛔ Ya no va la
+   mezcla palo + Brushwell que se escribe + fina espaciada de la receta del 29-09 (R-127
+   revisada). R-141.
+3. **Interlineado cerrado sin tocar tildes, «¿» ni «Ñ»**. Ojo: `TitularBetween` mide la
+   tinta con acentos y signos; la prop `aireEntreCapsProp` (0,35 por defecto) tiene que
+   ir NEGATIVA para que se note (ST 02-10 quedó en −0,08; −0,2 pegaba la Ñ). R-142.
+4. **Contorno sticker en SVG** (trazo redondo debajo, relleno encima); el `contorno` del
+   kit (24 sombras) sale escalonado al 2×. Código: `TituloCeo` en `BetweenOctubre.tsx`. R-143.
+5. **Cajas de una pila, del mismo ancho** (flex stretch). R-144.
+6. **Que las palabras juntas no formen otra** («VA POR» → «VAPOR»). R-145.
+
 ## ⭐⭐⭐ BETWEEN — LA CARTA OFICIAL 2026 (mañana/almuerzo): 4 PROPUESTAS APROBADAS (28-09-2026)
 
 Fuente: Word corregido del cliente + 3 refs en Drive `1gAZNJkaw5SKAHEmLo1yIctD-MNCE1p6v`.

@@ -71,6 +71,10 @@ PIEZAS_R2 = [
     (4, "FEED", "BW FEED 12-10 Por que vienes por que te quedas.mp4"),
     (4, "FEED", "BW FEED 12-10 Por que vienes por que te quedas.gif"),
     (4, "FEED", "BW FEED 12-10 Por que vienes por que te quedas - PORTADA.png"),
+    # reel cumpleaños (FEED col F, bloque SEMANA 1), aprobado por Eli el 29-09 en ronda 3
+    (1, "FEED", "BW FEED 02-10 Cafe de cumpleanos.mp4"),
+    (1, "FEED", "BW FEED 02-10 Cafe de cumpleanos.gif"),
+    (1, "FEED", "BW FEED 02-10 Cafe de cumpleanos - PORTADA.png"),
 ]
 
 

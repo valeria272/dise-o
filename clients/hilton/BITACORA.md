@@ -9,7 +9,8 @@
 
 **Qué se hizo:** Eli: «la pareja se ve extraña, debe ser realista y una foto actual de sesión de habitación mejor lograda». Se cambió la base a la habitación real `sep_26-476` (sesión SEP 2026, king con banqueta y ventanal, sin usar en el feed), se sacó el atardecer naranja pintado y la pareja se regeneró con NB Pro 4K como frame de sesión (bloque `REAL`), sentada en la banqueta brindando. 2 variantes; se eligió la **a** (revisada con zoom: manos, 4 pies, apoyo). La cubeta quedó sobre la cama.
 **Dónde quedó:** `scripts/dt-oct3-escapada-fotos.py portada2 a` → `subir2 a` → `public/assets/hilton/dt/oct3/er-portada.jpg` · render por Chrome en `out/hilton/dt/entrega-oct3/r4/` y **máster reemplazado** en `out/hilton/dt/entrega-oct3/C1 S2 DT n°1.png` (la r3 respaldada en `out/hilton/dt/oct3-revision/r3/`) · antes/después `out/hilton/dt/oct3-revision/r4.html` = https://claude.ai/artifact/9oZT3AsCsYwnrGgmTxYfSi · receta actualizada (§2).
-**Qué sigue:** reemplazar `C1 S2 DT n°1` en Drive S2/HILTON OCT 2026/DT/FEED (ahí está la r3) con `dt-oct2-subir-drive.py` y verificar md5.
+**✅ Reemplazado en Drive** S2/HILTON OCT 2026/DT/FEED/`C1 S2 DT n°1.png` (md5 261e8c83… = local), tras «recuerda siempre subir a Drive ya que busco y no está actualizado».
+**Qué sigue:** nada de esta pieza.
 **Abierto:** si Eli prefiere la cubeta en el velador y no sobre la cama (se le avisó; aprobó igual). El QA de foco y bordes no corrió (scipy bloqueado por Control de aplicaciones); se revisó a ojo.
 
 ## 2026-09-29 (tarde, 2) — Eli (Windows) · DT ST 01-10 Family Time, RONDA 9 con la familia aprobada + TODO octubre DT subido a Drive

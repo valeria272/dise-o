@@ -11,6 +11,8 @@
 
 **Dónde quedó:** código en `src/compositions/qb/oct/` (`QbSt01BancoChile`, `QbStAprobadaCmr40`, `QbSt09Sunset`, `QbFeed09Cmr`, `QbPost05Cumple`); fotos nuevas en `public/assets/hilton/qb/oct/` (`09-sunset-r28.jpg`, `feed09-pano-ribs11-r28.jpg` y las intermedias); renders `out/qb/oct/r22…r28/` con `_antes/` y `revision-rNN.html`; scripts `qb-oct-r24…r28-revision.py`; carta Terraza y generaciones en `raw/hilton/qb/oct-r24…r28/` (no viaja). `qb-oct-r19-nb.py` ahora reintenta si Freepik tarda en responder.
 
+**Verificado en Drive (después del cierre):** las 9 piezas del día (ST n°1, n°4, n°5 S1 · C3 S1 N°1–3 · C1 S1 N°2–4) tienen en Drive el mismo md5 que el render final y que `out/qb/oct/entrega/`; nombres y enlaces sin cambios.
+
 **Qué sigue:** confirmar con Eli el carrusel de cumpleaños r27 y seguir con lo que quede EN CAMBIOS / OK PARA DISEÑAR en la grilla de octubre (Reels DJ S2/S3/S5).
 
 **Abierto:** carrusel de cumpleaños r27 sin visto propio · el legal de la N°2 del carrusel CMR cierra en ≈1255 (fuera del 12 % de feed, por pedido de Eli): si va a paid, se sube.

@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-09-30** · Cosechas: **17**
+> Última cosecha: **2026-09-30** · Cosechas: **18**
 
 ## 1. Quién es el cliente
 
@@ -266,6 +266,9 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - El legal de la N°2 del carrusel CMR cierra en ≈1255 (E-12): ¿el carrusel va a paid? → **Eli**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 (2) — Claude con Eli · segundo /cierre
+- sin aprendizajes nuevos: después del primer cierre sólo se verificó en Drive que las 9 piezas del día estén reemplazadas (md5 igual al render final). No hubo feedback nuevo.
 
 ### 2026-09-30 — Claude con Eli · rondas 22–28: Banco, ST 40 %, Sunset, carrusel CMR y cumpleaños
 - **Fuente:** Eli (chat, con capturas marcadas en rojo) y el hilo de Nicolás sobre el Sunset. Eli pide además cada revisión en HTML de antes/después con «qué cambió en texto», **abierta en Google Chrome** (§2).

@@ -128,7 +128,8 @@ TOTEM_BUIN = LIN / "linderos-4-totem.jpg"
 
 def linderos_1():
     # el render viene 16:9 con mucho cielo: se recorta al edificio y su estacionamiento antes de llenar la ventana
-    foto = cubrir(abrir(RENDER_BUIN).crop((1500, 1150, 3300, 2340)), 700, 1080, 0.5, 0.5)
+    # Diego 30-09: «cambiar la imagen, que sea una toma dron de Linderos en el atardecer» → dron generado sobre sus renders oficiales
+    foto = cubrir(abrir(FOTOS / "linderos-dron-atardecer.png"), 700, 1080, 0.55, 0.5)
     # Isotipo a 9,2× en la misma posición que en Algarrobal (matrix medida sobre la mesa 14).
     ventana = (f'<svg class="abs" style="left:0;top:0" width="{W}" height="{H}" viewBox="0 0 {W} {H}">'
                f'<defs><clipPath id="iso"><path transform="matrix(9.2,0,0,9.2,-1891,-320)" d="{ISO}"/></clipPath></defs>'
@@ -182,7 +183,7 @@ def linderos_3():
     b = cubrir(abrir(ARAMCO_BUIN), 506, 404, 0.35, 0.6)
     datos = [("local", "10", "locales comerciales"), ("auto", "77", "estacionamientos"), ("m2", "2.383 m²", "superficie total"),
              ("plano", "911 m²", "superficie de locales"), ("cal", "MAY. 2027", "entrega estimada")]
-    fichas = "".join(f'<div style="width:172px;text-align:center">{icono(k)}<div style="margin-top:10px;font-weight:700;font-size:28px;line-height:32px">{n}</div>'
+    fichas = "".join(f'<div style="width:172px;text-align:center">{icono(k, 72)}<div style="margin-top:10px;font-weight:700;font-size:28px;line-height:32px">{n}</div>'
                      f'<div style="font-size:19px;line-height:23px;opacity:.95">{t}</div></div>' for k, n, t in datos)
     return f"""
 <div class="foto-card" style="left:40px;top:70px;width:490px;height:460px"><img src="{uri(a)}"></div>
@@ -314,7 +315,7 @@ def crecer_2():
         f"font-family:GothamRounded;font-weight:700;font-size:64px;line-height:70px;color:{CELESTE};text-transform:uppercase", "center", W)}
 <div class="abs" style="left:150px;top:{base_y}px;width:780px;height:3px;background:{CELESTE}"></div>
 {barras}
-<div class="abs" style="left:150px;top:300px;font-family:'GothamRnd';font-weight:500;font-size:18px;letter-spacing:.08em;color:{CELESTE}">ACTIVOS DEL PORTAFOLIO IFB</div>
+<div class="abs" style="left:0;width:{W}px;text-align:center;top:300px;font-family:'GothamRnd';font-weight:500;font-size:18px;letter-spacing:.08em;color:{CELESTE}">ACTIVOS DEL PORTAFOLIO IFB</div>
 <div class="fuente">{FUENTE}</div>"""
 
 
@@ -382,9 +383,9 @@ def terreno_3():
 def terreno_4():
     return f"""
 {lockup_centro(200, 400)}
-<div class="abs" style="left:80px;top:430px;width:921px;height:250px;border-radius:30px;background:{CELESTE}"></div>
-<div class="centro black" style="top:{tb(535, 64, 66, 'black'):.1f}px;font-size:64px;line-height:66px;color:{AZUL}">Postula tu terreno en</div>
-<div class="centro gr" style="top:{tb(620, 50, 56, 'rnd'):.1f}px;font-weight:700;font-size:50px;line-height:56px;color:{AZUL}">{URL_TERRENOS}</div>
+<div class="centro black" style="top:{tb(520, 64, 66, 'black'):.1f}px;font-size:64px;line-height:66px">Postula tu terreno en</div>
+<div class="abs" style="left:{(W - 820) / 2:.0f}px;top:568px;width:820px;height:96px;border-radius:30px;background:{CELESTE}"></div>
+<div class="centro gr" style="top:{tb(633, 50, 56, 'rnd'):.1f}px;font-weight:700;font-size:50px;line-height:56px;color:{AZUL}">{URL_TERRENOS}</div>
 <div class="centro gr" style="top:{tb(820, 44, 50, 'rnd'):.1f}px;font-weight:700;font-size:44px;line-height:50px;color:{CELESTE}">Grupo IFB</div>"""
 
 

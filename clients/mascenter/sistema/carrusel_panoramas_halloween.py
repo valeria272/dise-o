@@ -15,7 +15,7 @@ Sale: out/mascenter/2026-10/carrusel-20-10/c-20-10-<n>.png (1080×1350)
 """
 import subprocess, sys
 from pathlib import Path
-from PIL import Image, ImageFont
+from PIL import Image, ImageFilter, ImageFont
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import carrusel_ruta_cafetera as base
@@ -145,9 +145,23 @@ SLIDES = {
 }
 
 
+def afiche(nombre):
+    """Cierre (comentario de Diego 30-09 en c-20-10-4: «que no se corte la imagen, que se vea un strip center detrás,
+    mantener estilo caricatura»): la ilustración va ENTERA como afiche (3:4, 552×736) sobre la misma escena desenfocada
+    y oscurecida; así ni la banda ni el círculo del logo le cortan nada a los personajes."""
+    im = Image.open(base.FOTOS / nombre).convert("RGB")
+    fondo = base.foto_4x5(nombre, 0.5).filter(ImageFilter.GaussianBlur(14))
+    fondo = Image.blend(fondo, Image.new("RGB", fondo.size, (28, 18, 40)), 0.45)
+    card = im.resize((552, 736), Image.LANCZOS)
+    return (f'<img class="foto" src="{base.data_uri(fondo)}">'
+            f'<img src="{base.data_uri(card)}" style="position:absolute;left:{(W - 552) // 2}px;top:40px;width:552px;height:736px;'
+            f'border:8px solid #f3e6cf;border-radius:10px;box-shadow:0 18px 40px rgba(0,0,0,.45)">')
+
+
 def interior(s, flecha=True):
+    foto = afiche(s["img"]) if s.get("afiche") else f'<img class="foto" src="{ilustracion(s["img"])}">'
     return f"""
-<img class="foto" src="{ilustracion(s['img'])}">
+{foto}
 <div class="banda"></div>
 {circulo(s['logo'])}
 {banda(s['titulo'], s['bajada'], s.get('fecha'), s.get('lugar'), s.get('direccion'), s.get('compacto', False))}
@@ -161,5 +175,5 @@ if __name__ == "__main__":
         elif n in SLIDES:
             render(n, interior(SLIDES[n]))
         else:
-            render(4, interior(dict(img="04-cierre.png", logo="mascenter", titulo="Dos panoramas para vivir Halloween.",
+            render(4, interior(dict(img="04-cierre-v2-base.png", afiche=True, logo="mascenter", titulo="Dos panoramas para vivir Halloween.",
                                     bajada="Guarda las fechas y prepárate para un Halloween en familia en Más Center."), flecha=False))

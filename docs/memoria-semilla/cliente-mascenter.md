@@ -1,6 +1,6 @@
 ---
 name: cliente-mascenter
-description: "MASCENTER — cerebro del cliente: 69 reglas firmes, última cosecha 2026-09-30. Generado desde clients/mascenter/APRENDIZAJES.md; leerlo antes de diseñar para mascenter"
+description: "MASCENTER — cerebro del cliente: 74 reglas firmes, última cosecha 2026-09-30. Generado desde clients/mascenter/APRENDIZAJES.md; leerlo antes de diseñar para mascenter"
 metadata:
   type: project
 ---
@@ -23,6 +23,7 @@ Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de m
 - **R-34** · Logo de Más Center en toda pieza, también en LinkedIn aunque la línea sea IFB — _cliente, grilla feb: «cambie el enfoque a Más Center y no IFB. Cambiemos el logo por el de Más Center»; mar: «poner en la imagen el logo de Más Center»_ · ✔×3
 - **R-43** · Localito: comunidad, concursos, efemérides, paid de tráfico y avisos; nunca arriendo ni LinkedIn. Desde agosto existe el corpóreo real y en sept–oct protagoniza reels de humor — _grillas ago–oct 2026_ · ✔×3 (refuerza R-06)
 - **R-55** · ⭐ Antes de diseñar una pieza de un tema que ya existió (Mercado Campesino, Día del Niño, efemérides, locatarios), buscar la pieza anterior en los `.ai` de Diego (`PyMuPDF get_text()` por mesa, con la palabra clave del tema) y usarla de PLANTILLA: se mide con `scripts/mascenter-geo-plantilla.py` y se reutilizan sus vectores (onda, lockups) renderizados del propio `.ai`. La REF de la grilla da la idea; la plantilla viva manda el estilo — _Diego, 26-10: «el post del 26-10 sigue esta plantilla» (Día del Campesino, JULIO IFB.ai mesa 22) tras una v1 de diseño propio; 01-10: «ten en cuenta el enlace REF para la portada pero mantiene el estilo de la plantilla», 28-09-2026_ · ✔×3
+- **R-65** · ⭐ Ningún texto queda al límite de su contenedor (caja, pastilla, ventana de foto): aire interior visible, mínimo ~40 px a los lados en cajas grandes. Si no cabe, se parte en dos líneas o se baja un punto el cuerpo antes que apretar el margen — _Diego, lk-06-10-1: «que no quede el texto al límite del contenedor, dar más espacio»; lk-06-10-3: «textos que no queden al límite del recuadro», 30-09-2026_ · ✔×3
 - **R-02** · ⚠️ revisada 2026-09-25 → ver **R-30**. ~~En paid la tipografía es Montserrat, aunque el manual 2023 diga Poppins; la letra se identifica por glifos sobre la pieza aprobada — _Valeria lo vio a ojo y rechazó la ronda 1 («esa tipografía tampoco es»); medido glifo a glifo, 04/05-09-2026_ · ✔×2~~ La medición sólo comparó contra Poppins.
 - **R-04** · Medida exacta 1080×1080 / 1080×1920, nunca 1081 como entrega el cliente — _medición 02-09-2026; `marca.json › reglas_duras`_ · ✔×2
 - **R-06** · Localito sólo en la campaña de comunidad; nunca en la de arriendo — _manual §1, 04-09-2026_ · ✔×2
@@ -31,7 +32,6 @@ Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de m
 - **R-20** · Fotos «fachada o pasillo con gente», nunca stock genérico; los banners del home de `mascenter.cl` no sirven (stock europeo y cafetería) — _brief de octubre; landing terrenos, 02-09-2026_ · ✔×2
 - **R-21** · Un cambio de cara al cliente se da por hecho sólo cuando `curl` a la URL en vivo lo muestra; commitear no es publicar — _Francesca vio el correo viejo un día entero, landing terrenos, 09-09-2026_ · ✔×2
 - **R-22** · Un formulario publicado no promete lo que no hace: ni «Recibimos tu postulación» sin envío ni una subida de archivos que `mailto:` no transporta — _Francesca, rondas 5 y 6 de la landing de terrenos, 09/10-09-2026_ · ✔×2
-- **R-28** · Una ronda se re-sube en sitio (mismo fileId y enlace, md5 verificado) — _paid octubre, 05-09 y 24-09-2026_ · ✔×2
 
 ## Lo que ya costó rondas
 - **X-01** · Poppins en paid por seguir el manual sin medir — _paid octubre ronda 1, 04-09-2026, 1 ronda_

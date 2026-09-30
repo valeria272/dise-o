@@ -97,10 +97,12 @@ def slide_local(s):
     for i, sede in enumerate(s.get("sedes", [])):
         partes.append(f'<div class="centro lugar" style="top:{tb(y0 + paso * i, 35, 40, "rnd"):.1f}px">{base.PIN}<span>{sede}</span></div>')
     if s.get("localito"):
-        pose, x, alto = s["localito"]
+        # el texto se corre a la derecha para que Localito, a la izquierda, lo apunte sin taparlo
+        partes = [q.replace('style="top:', 'style="left:190px;width:870px;top:', 1) if 'class="centro' in q else q for q in partes]
+        pose, x, alto, pie = (list(s["localito"]) + [980])[:4]   # pie: y donde apoya (980 = sobre la banda)
         loc = localito_pose(pose)
         ancho = alto * loc.width / loc.height
-        partes.append(f'<img src="{base.data_uri(loc, "PNG")}" style="position:absolute;left:{x}px;top:{980 - alto}px;width:{ancho:.0f}px">')
+        partes.append(f'<img src="{base.data_uri(loc, "PNG")}" style="position:absolute;left:{x}px;top:{pie - alto}px;width:{ancho:.0f}px">')
     if not s.get("sin_flecha"):
         partes.append(f'<div class="flecha" style="left:965px;top:1079px;width:67px;height:67px">{base.FLECHA}</div>')
     return "\n".join(partes)
@@ -161,7 +163,7 @@ LOCALES = {
             logo=dict(archivo="logo-yo mazzcota.jpg", escala=1.13, fondo="#ffffff")),
     6: dict(foto="06-cierre.png", foco_y=0.45, titular="Su día merece algo especial.",
             desc=["Encuentra distintas opciones", "para regalonearlos en Más Center."],
-            logo="mascenter", sin_flecha=True, localito=("celebra", 40, 330)),
+            logo="mascenter", sin_flecha=True, localito=("apunta", 6, 318, 1372)),   # Diego 30-09: «más cerca del texto, que tenga coherencia su uso»
 }
 
 if __name__ == "__main__":

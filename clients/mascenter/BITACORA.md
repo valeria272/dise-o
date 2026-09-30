@@ -1,3 +1,10 @@
+## 2026-09-30 (3ª parte) — Diego Aguilar (con Claude) · 6 comentarios de Diego en IG y LinkedIn resueltos
+
+**Qué se hizo:** c-04-10-6 Localito en la banda apuntando al texto · c-20-10-4 nueva ilustración con strip center, entera como afiche sobre la escena desenfocada · lk-06-10-1 dron de Linderos al atardecer (Seedream sobre sus renders) · lk-06-10-3 íconos 72 px · lk-19-10-2 etiqueta centrada · lk-27-10-4 sólo la URL destacada. En la grilla, Scarlette dejó en stand by el reel del 19-10 y la story de la corrida (ya estaban fuera).
+**Dónde quedó:** 6 PNG reemplazados en sitio en «10. OCTUBRE» (md5 OK), comentarios respondidos y resueltos. Cerebro: R-70–R-74, X-26/X-27.
+**Qué sigue:** OK final de Diego sobre la grilla; stand by de la corrida hasta que Scarlette la libere.
+**Abierto:** los datos por validar del 29-09 siguen igual.
+
 ## 2026-09-30 (2ª parte) — Diego Aguilar (con Claude) · story Kios Club: fondo naranjo y textos oscuros
 
 **Qué se hizo:** feedback de Diego («el fondo cámbialo por fondo naranjo, el texto no se lee bien, prueba dejándolo con un tono más oscuro del manual de marca»). Fondos del caldero vacío y lleno pasados a naranjo con Seedream en modo edición (siguen alineados); titulares, 📍 sede y dirección en el rojo oscuro del manual `#65140F` sin sombra; la pastilla roja se mantiene. Se corrigió además un marco claro en el último segundo (el zoom final bajaba de 1).

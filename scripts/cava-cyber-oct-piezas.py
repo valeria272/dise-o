@@ -66,7 +66,7 @@ PIEZAS = [
     # El brief dice «ACCESO VIP AL CYBER», pero el gancho entra directo al logo
     # CYBERWINE week: dejarlo completo repetía «CYBER» dos veces seguidas. Coni
     # quitó la palabra el 30-09 y la frase sigue cerrando contra el logo.
-    dict(n=1, escena="vip", fin=0.92, tope=790, gancho="ACCESO VIP AL",
+    dict(n=1, escena="vip", fin=0.92, tope=790, borde=0.885, vert=0.30, gancho="ACCESO VIP AL",
          titular="45% OFF", bajada="ANTES QUE NADIE", cupon="CYBERVIP",
          producto=["MORANDÉ EL CABERNET", "DE RANQUIL 2021"],
          botella="ranquil", oferta="$34.970", normal="$59.990",
@@ -74,7 +74,9 @@ PIEZAS = [
          # Dónde caen los sellos ahora que la botella viene en el montaje: se
          # ubican a mano sobre el hombro, del lado libre. Antes colgaban del
          # bbox del packshot, que ya no se pega.
-         sellos_en=(0.905, 0.285), sellos_diam=152, sellos_paso=0.062,
+         # Sobre el CUELLO, sin bajar a la etiqueta: la etiqueta del Ranquil
+         # arranca al 42 % del alto del montaje.
+         sellos_en=(0.822, 0.268), sellos_diam=138, sellos_paso=0.056,
          legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
                "No acumulable con otras promociones. Hasta agotar stock."),
     # Sin bajada: el brief dice «HOUSE OF MORANDÉ A $46.630», pero el nombre del
@@ -362,7 +364,9 @@ def vertical(p):
     # El fondo es el MONTAJE: la botella ya viene parada sobre la plataforma del
     # KV. Se recorta el sobrante por la derecha para que la botella se corra a
     # ese costado y el texto tenga el suyo.
-    base, k_img, x_img = escena_montada(p["n"], "mail", ALTO, fin=p["fin"])
+    base, k_img, x_img = escena_montada(p["n"], "mail", ALTO, fin=p["fin"],
+                                    borde=p.get("borde", 0.955),
+                                    vert=p.get("vert", 0.5))
     im = viñeta(base, 0.22)
     marco(im)
     advertencia(im)
@@ -422,7 +426,8 @@ def vertical(p):
         esc = Image.open(LOCKUP)  # sólo para tener PIL a mano
         anc_img = k_img * 1536
         sello(im, px * anc_img - x_img,
-              (py + i * p["sellos_paso"]) * k_img * 2752 - (k_img * 2752 - im.height) / 2,
+              (py + i * p["sellos_paso"]) * k_img * 2752
+              - (k_img * 2752 - im.height) * p.get("vert", 0.5),
               nombre, diam=p["sellos_diam"])
 
     pie_legal(im, p, y=y_legal + CAP_LEGAL * 1.55, ancho_max=940, cap=CAP_LEGAL)

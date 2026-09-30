@@ -231,7 +231,7 @@ def _ancla(xy, tam, ancla):
 ESCENAS = CAVA / "cyber-oct/escenas"
 
 
-def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955):
+def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5):
     """El fondo YA trae la botella puesta sobre la plataforma del KV.
 
     Estos montajes se generaron con Magnific en el space de Coni, con su propio
@@ -253,7 +253,9 @@ def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955):
     im = im.resize((int(round(im.width * k)), int(round(im.height * k))), Image.LANCZOS)
     x0 = int(round(fin * im.width - borde * W))
     x0 = max(0, min(x0, im.width - W))             # sin salirse del montaje
-    y0 = int((im.height - H) * 0.5)
+    # `vert` corre el encuadre en vertical: por debajo de 0,5 se muestra más
+    # parte alta del montaje y la botella baja dentro de la pieza.
+    y0 = int((im.height - H) * vert)
     return im.crop((x0, y0, x0 + W, y0 + H)), k, x0
 
 

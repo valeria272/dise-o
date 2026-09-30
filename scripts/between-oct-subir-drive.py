@@ -110,6 +110,11 @@ PIEZAS_R6 = [p for p in PIEZAS_R4 if "07-10" in p[2] or "FEED 02-10" in p[2]]
 ENTREGA_R7 = RAIZ / "out/hilton/between/oct-r7"
 PIEZAS_R7 = [p for p in PIEZAS_R4 if "07-10" in p[2]]
 
+# FEED 01-10 carrusel Promos To Go (grilla col E, OK PARA DISEÑAR 30-09), bloque SEMANA 1.
+ENTREGA_FD01 = RAIZ / "out/hilton/between/oct-fd01"
+# Eli 30-09: carrusel = carpeta propia «C1 <tema> S<n>» y láminas «C1 n°<k> <tema> S<n>».
+PIEZAS_FD01 = [(1, "FEED/C1 togo S1", f"C1 n°{k} togo S1.png") for k in range(1, 5)]
+
 
 def servicio():
     ruta = token_google()
@@ -136,10 +141,11 @@ def carpeta(svc, nombre, padre):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--solo", default="")
-    ap.add_argument("--ronda", choices=["1", "2", "4", "5", "6", "7"], default="1")
+    ap.add_argument("--ronda", choices=["1", "2", "4", "5", "6", "7", "fd01"], default="1")
     a = ap.parse_args()
     entrega, piezas = {"2": (ENTREGA_R2, PIEZAS_R2), "4": (ENTREGA_R4, PIEZAS_R4),
-         "5": (ENTREGA_R5, PIEZAS_R5), "6": (ENTREGA_R6, PIEZAS_R6), "7": (ENTREGA_R7, PIEZAS_R7)}.get(
+         "5": (ENTREGA_R5, PIEZAS_R5), "6": (ENTREGA_R6, PIEZAS_R6), "7": (ENTREGA_R7, PIEZAS_R7),
+         "fd01": (ENTREGA_FD01, PIEZAS_FD01)}.get(
         a.ronda, (ENTREGA, PIEZAS))
     svc = servicio()
     cache = {}
@@ -152,7 +158,10 @@ def main():
         if (sem, sub) not in cache:
             bw = cache.get((sem, "BW")) or carpeta(svc, "BW", SEMANAS[sem])
             cache[(sem, "BW")] = bw
-            cache[(sem, sub)] = carpeta(svc, sub, bw)
+            padre = bw
+            for parte in sub.split("/"):  # «FEED/C1 togo S1» = carpeta del carrusel dentro de FEED
+                padre = carpeta(svc, parte, padre)
+            cache[(sem, sub)] = padre
         destino = cache[(sem, sub)]
         q = f"name = '{nombre}' and '{destino}' in parents and trashed = false"
         prev = svc.files().list(q=q, fields="files(id)", supportsAllDrives=True,

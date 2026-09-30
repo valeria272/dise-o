@@ -1040,6 +1040,261 @@ export const FeedOct14Espacios: React.FC = () => (
   </AbsoluteFill>
 );
 
+/* ══════════════════════════════════════════════════════════════════════════
+   FEED 01-10 · CARRUSEL — PROMOS TO GO (4 láminas)
+
+   Grilla col E, OK PARA DISEÑAR 30-09. Hilo Scarlette → Nicolás: «ajustar
+   carrusel con info de PROMOS TO GO» (ya ajustado en el brief). Comentario de
+   diseño: «propuesta nueva […] el último carrusel es reciclado», «mismo formato
+   que el diseño que subimos ahora último, pero con diseño actualizado (respetar
+   la misma info de cada slide)» y «si usamos IA ver que las proporciones de los
+   vasos y las comidas sean adecuadas».
+   Ref (Pinterest «NON COFFE IS READY»): los vasos en fila y un rótulo con su
+   nombre SOBRE cada uno → acá el rótulo es tamaño + precio.
+
+   Escenas: Nano Banana Pro con los tres vasos aprobados por Eli el 22-09 (ya a
+   escala real 0,712/0,861/1) y la comida de la sesión 25-jul-2025 como
+   referencia (`scripts/between-oct-generar.py`, claves fd01-*). La 4 es la «a»
+   con el vigilante borrado por edición (4e): se leía como mini croissant.
+
+   Sistema (reglas vigentes S3+): 3 voces Raleway (R-140) — TITULAR 800 versales
+   84 con aire 0,2 (R-156) · CAJA 800 para precios, todas del mismo ancho (R-144),
+   cifras tabulares (R-45) · TEXTO 700/38 (R-118) para bajada, rótulos y horario.
+   Sin lockup: el vaso firma (R-33). Sin Brushwell (R-36: sólo portada, y acá la
+   portada ya es producto). Sin punto final. Legal «*Imágenes referenciales.»
+   como en el carrusel anterior, porque hay producto generado.
+   ══════════════════════════════════════════════════════════════════════════ */
+const TOGO_CAJA = 210;
+const TOGO_PRECIOS = {
+  cafe: ['$1.990', '$2.790', '$2.990'],
+  sandwich: ['$3.490', '$4.290', '$4.490'],
+  dulce: ['$2.990', '$3.790', '$3.990'],
+  tres: ['$4.490', '$5.290', '$5.490'],
+} as const;
+// Eli 30-09: «antes de Mediano, etc., va "Café"»
+const TAMANOS = ['Café Mediano', 'Café Grande', 'Café XL'] as const;
+
+/** Rótulo de un tamaño: nombre en TEXTO y precio en CAJA (ancho fijo, R-144). */
+const RotuloPrecio: React.FC<{nombre: string; precio: string}> = ({nombre, precio}) => (
+  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8}}>
+    <Texto size={38} peso={700} sombra>
+      {nombre}
+    </Texto>
+    <CajaDato size={44} style={{width: TOGO_CAJA}}>
+      <span style={{display: 'inline-flex', alignItems: 'baseline', whiteSpace: 'pre'}}>
+        {conCifras(precio, BETWEEN.pesos.extrabold)}
+      </span>
+    </CajaDato>
+  </div>
+);
+
+const FilaPrecios: React.FC<{precios: readonly string[]; top: number}> = ({precios, top}) => (
+  <div style={{position: 'absolute', top, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 16}}>
+    {/* columnas del MISMO ancho: con «Café Mediano» más largo, el gap parejo corría los ejes */}
+    {TAMANOS.map((t, i) => (
+      <div key={t} style={{width: 270, display: 'flex', justifyContent: 'center'}}>
+        <RotuloPrecio nombre={t} precio={precios[i]} />
+      </div>
+    ))}
+  </div>
+);
+
+/**
+ * Eli 30-09: «flechitas como guía visual, igual a la referencia, una de las
+ * primeras» → la flecha PUNTEADA con un rulo que baja del titular al primer
+ * rótulo de la ref, y las rayitas de acento («///») junto a otro. Trazo beige
+ * punteado de remate redondo; la punta, sólida, sigue la tangente del final.
+ */
+const FlechaPunteada: React.FC<{d: string}> = ({d}) => {
+  const n = d.replace(/[A-Za-z]/g, ' ').trim().split(/[\s,]+/).map(Number);
+  const [x2, y2] = [n[n.length - 2], n[n.length - 1]];
+  const [x1, y1] = [n[n.length - 4], n[n.length - 3]];
+  const ang = Math.atan2(y2 - y1, x2 - x1);
+  const ala = (s: number) => `${x2 - 20 * Math.cos(ang + s * 0.55)} ${y2 - 20 * Math.sin(ang + s * 0.55)}`;
+  const base = {fill: 'none', stroke: C.beige, strokeWidth: 4.5, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const};
+  return (
+    <g style={{filter: 'drop-shadow(0 2px 4px rgba(36,26,18,0.55))'}}>
+      <path d={d} style={{...base, strokeDasharray: '2 13'}} />
+      <path d={`M ${ala(1)} L ${x2} ${y2} L ${ala(-1)}`} style={base} />
+    </g>
+  );
+};
+
+/**
+ * Las tres rayitas de acento de la ref, en abanico desde (x, y).
+ * Eli 30-09 r3 (con un recorte de muestra): «más grandes y mejor diseñadas» →
+ * CUÑAS, no líneas: finas en la punta que mira al producto y anchas con corte
+ * recto afuera. La del centro, un poco más larga; esquinas apenas suavizadas
+ * con un trazo del mismo color.
+ */
+const Acento: React.FC<{x: number; y: number; giro?: number; escala?: number}> = ({x, y, giro = 0, escala = 1}) => {
+  const cuna = (largo: number, ancho: number) => {
+    const g = 12; // aire entre el vértice común y el nacimiento de cada cuña
+    return `M -1.5 ${-g} L 1.5 ${-g} L ${ancho / 2} ${-g - largo} L ${-ancho / 2} ${-g - largo} Z`;
+  };
+  return (
+    <g
+      transform={`translate(${x} ${y}) rotate(${giro}) scale(${escala})`}
+      style={{filter: 'drop-shadow(0 2px 5px rgba(36,26,18,0.55))'}}
+    >
+      {[
+        {a: -44, largo: 44, ancho: 17},
+        {a: 0, largo: 56, ancho: 19},
+        {a: 44, largo: 44, ancho: 17},
+      ].map((r) => (
+        <path
+          key={r.a}
+          d={cuna(r.largo, r.ancho)}
+          transform={`rotate(${r.a})`}
+          fill={C.beige}
+          stroke={C.beige}
+          strokeWidth={2.5}
+          strokeLinejoin="round"
+        />
+      ))}
+    </g>
+  );
+};
+
+const CapaFlechas: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <svg width={1080} height={1350} style={{position: 'absolute', left: 0, top: 0}}>
+    {children}
+  </svg>
+);
+
+const LegalReferencial: React.FC = () => (
+  <div style={{position: 'absolute', right: 60, bottom: 34}}>
+    <Texto size={20} peso={500} sombra>
+      *Imágenes referenciales.
+    </Texto>
+  </div>
+);
+
+/** Velo de arriba para el titular y de abajo para el horario; la foto no se oscurece (R-42). */
+const VelosToGo: React.FC<{pie?: boolean}> = ({pie = true}) => (
+  <>
+    <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(36,26,18,0.42) 0%, rgba(36,26,18,0.25) 26%, rgba(36,26,18,0) 42%)'}} />
+    {pie ? (
+      <AbsoluteFill style={{background: 'linear-gradient(0deg, rgba(36,26,18,0.55) 0%, rgba(36,26,18,0.3) 9%, rgba(36,26,18,0) 17%)'}} />
+    ) : null}
+  </>
+);
+
+const TituloToGo: React.FC<{caps: string; top?: number}> = ({caps, top = 96}) => (
+  <Columna top={top}>
+    <TitularBetween
+      caps={caps}
+      sizeCaps={84}
+      aireEntreCapsProp={0.2}
+      tono="beige"
+      alinear="centro"
+      anchoDisponible={BETWEEN.bloque.columna}
+    />
+  </Columna>
+);
+
+const HorarioPie: React.FC<{texto: string}> = ({texto}) => (
+  <div style={{position: 'absolute', left: 0, right: 0, bottom: 74, display: 'flex', justifyContent: 'center'}}>
+    <Texto size={38} peso={700} sombra>
+      {conCifras(texto, 700)}
+    </Texto>
+  </div>
+);
+
+/** 1 · TU CAFÉ TO GO — cada precio sobre su vaso, como los rótulos de la ref. */
+export const FeedOct01ToGo1: React.FC = () => (
+  <AbsoluteFill style={{backgroundColor: C.sombra}}>
+    <FotoFondo src={G + 'gen-fd01-1-a.jpg'} oscurecer={0.04} />
+    <VelosToGo pie={false} />
+    <TituloToGo caps="Tu café to go" />
+    <Columna top={96 + 84 + 26}>
+      <Texto size={38} peso={700} sombra>
+        {'De lunes a viernes\n'}
+        {conCifras('desde las 8:00 a 10:00 hrs', 700)}
+      </Texto>
+    </Columna>
+    {/* Eli 30-09: «que centre según cada vaso» → eje = centro de la TAPA, medido
+        con regla sobre el render a 1080×1350 (antes 205/488/770, corridos) */}
+    {[
+      // Eli 30-09 r6 (línea roja sobre la portada): Mediano y Grande «chocaban» con
+      // su tapa → los tres rótulos a la MISMA altura que el del XL (top 374)
+      {x: 225, tope: 520},
+      {x: 531, tope: 520},
+      {x: 844, tope: 520},
+    ].map((v, i) => (
+      <div key={i} style={{position: 'absolute', left: v.x - 150, width: 300, top: v.tope - 146, display: 'flex', justifyContent: 'center'}}>
+        <RotuloPrecio nombre={TAMANOS[i]} precio={TOGO_PRECIOS.cafe[i]} />
+      </div>
+    ))}
+    {/* como la ref: del titular baja la punteada con rulo al primer rótulo; acento junto al último */}
+    <CapaFlechas>
+      {/* Eli 30-09 r5, con su garabato en rojo sobre la portada: cada flecha SALE DEL
+          PRECIO, hace un rulo sobre la tapa y ENTRA al vaso. Su captura venía recortada
+          distinto, así que el trazo se calcó RELATIVO a cada caja, tapa y vaso
+          (Mediano: caja 120–330 × 598–664, tapa desde 690 · Grande: caja 426–636 ×
+          526–592, tapa desde 618 · XL: caja 739–949 × 428–494, tapa desde 520). */}
+      <FlechaPunteada d="M 104 470 C 88 580 100 712 156 756C 206 770 222 716 186 706 C 146 696 148 776 250 790 C 286 795 302 812 302 842" />
+      <FlechaPunteada d="M 516 504 C 510 590 518 664 556 694C 600 718 632 680 604 656 C 576 634 538 666 528 706 C 520 738 512 762 504 796" />
+      <FlechaPunteada d="M 960 452 C 1012 470 1034 522 1014 568 C 996 606 948 606 952 578 C 956 548 1002 558 988 602 C 970 652 886 656 842 706" />
+      <Acento x={930} y={372} giro={48} />
+    </CapaFlechas>
+    <LegalReferencial />
+  </AbsoluteFill>
+);
+
+/** 2 · CAFÉ + SÁNDWICH */
+export const FeedOct01ToGo2: React.FC = () => (
+  <AbsoluteFill style={{backgroundColor: C.sombra}}>
+    <FotoFondo src={G + 'gen-fd01-2-a.jpg'} oscurecer={0.04} />
+    <VelosToGo />
+    <TituloToGo caps={'Café + sándwich'} />
+    <Columna top={96 + 84 + 26}>
+      <Texto size={38} peso={700} sombra>
+        Ave Palta o Jamón Queso
+      </Texto>
+    </Columna>
+    <FilaPrecios precios={TOGO_PRECIOS.sandwich} top={290} />
+    <HorarioPie texto="De 8:00 a 10:00 hrs" />
+    <LegalReferencial />
+  </AbsoluteFill>
+);
+
+/** 3 · CAFÉ + OPCIÓN DULCE */
+export const FeedOct01ToGo3: React.FC = () => (
+  <AbsoluteFill style={{backgroundColor: C.sombra}}>
+    <FotoFondo src={G + 'gen-fd01-3-a.jpg'} oscurecer={0.04} />
+    <VelosToGo />
+    <TituloToGo caps={'Café + opción dulce'} />
+    <Columna top={96 + 84 + 26}>
+      <Texto size={38} peso={700} sombra>
+        Vigilantes · Muffin · Brownie · Otros
+      </Texto>
+    </Columna>
+    <FilaPrecios precios={TOGO_PRECIOS.dulce} top={290} />
+    <CapaFlechas>
+      <Acento x={1005} y={752} giro={40} />
+    </CapaFlechas>
+    <HorarioPie texto="De 8:00 a 10:00 hrs" />
+    <LegalReferencial />
+  </AbsoluteFill>
+);
+
+/** 4 · CAFÉ + SÁNDWICH + DULCE — la más abundante */
+export const FeedOct01ToGo4: React.FC = () => (
+  <AbsoluteFill style={{backgroundColor: C.sombra}}>
+    <FotoFondo src={G + 'gen-fd01-4e-a.jpg'} oscurecer={0.04} />
+    <VelosToGo />
+    <TituloToGo caps={'Café + sándwich\n+ dulce'} />
+    {/* la caja del XL rozaba el borde de la bolsa (tope ~457) → la fila sube a 300 */}
+    <FilaPrecios precios={TOGO_PRECIOS.tres} top={300} />
+    <CapaFlechas>
+      <Acento x={442} y={662} giro={-42} />
+    </CapaFlechas>
+    <HorarioPie texto="De 8:00 a 10:00 hrs" />
+    <LegalReferencial />
+  </AbsoluteFill>
+);
+
 /* variantes GUÍA — llevan dibujada la zona del sticker. No se entregan al cliente. */
 export const StOct01GanadorGuia: React.FC = () => <StOct01Ganador guia />;
 export const StOct02ToGoPovGuia: React.FC = () => <StOct02ToGoPov guia />;

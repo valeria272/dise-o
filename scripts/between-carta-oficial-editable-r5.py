@@ -100,6 +100,17 @@ function bloques(){
         let e=k.previousElementSibling; tras_corte=!!(e&&e.classList.contains('corte'));
         if(k.classList.contains('cabcol')){
           const spans=[...k.children]; const cr=corridas(k);
+          if(k.closest('.pcol')){
+            // R6: columnas alineadas a la IZQUIERDA con su precio (tab izquierdo = valor negativo) y el
+            // rótulo que va en dos líneas («Molde /» sobre «Marraqueta») se arma línea a línea, pegado abajo
+            const filas=spans.map(sp=>{const L=[];corridas(sp).forEach(q=>q.lin.forEach(l=>{const x=L.find(x=>Math.abs(x.b-l.base)<1);
+              if(x)x.t+=' '+l.t; else L.push({b:l.base,t:l.t})}));return L.map(x=>x.t.trim())});
+            const nf=Math.max(...filas.map(f=>f.length)), rows=[];
+            for(let r=0;r<nf;r++)rows.push('\t'+filas.map(f=>f[r-(nf-f.length)]||'').join('\t').replace(/\t+$/,''));
+            paras.push({rol:'cabcol',tabs:spans.map(sp=>-(sp.getBoundingClientRect().left-c.x)),
+              texto:rows.join('\u0003'),corr:cr,alinea:'left'});
+            continue;
+          }
           paras.push({rol:'cabcol',tabs:spans.map(s=>s.getBoundingClientRect().right-c.x),
             texto:'\t'+spans.map(s=>s.textContent.trim()).join('\t'),corr:cr,alinea:'left'});
           continue;
@@ -107,7 +118,8 @@ function bloques(){
         const f=k.querySelector('.f'), nm=f.querySelector('.n'), ps=f.querySelector('.p')?[f.querySelector('.p')]:[...f.querySelectorAll('.pp>span')];
         const cn=corridas(nm);
         const lineas=cn.length?cn[0].lin:[];
-        const tabs=ps.map(s=>s.getBoundingClientRect().right-c.x);
+        const izq=!!(k.closest('.pcol')&&f.querySelector('.pp'));
+        const tabs=ps.map(s=>izq?-(s.getBoundingClientRect().left-c.x):s.getBoundingClientRect().right-c.x);
         const precios=ps.map(s=>s.textContent.trim());
         // plato: primera línea del nombre ⇥ precios ; si el nombre se partió, el resto va tras un salto de línea
         let texto=(lineas[0]?lineas[0].t:nm.textContent.trim());
@@ -238,6 +250,9 @@ def normalizar(marcos, faltan):
                         else:
                             lineas.append([b, l["t"]])
                 partir = pa["rol"] in ("seccion", "info", "tramo", "horario_sec", "leyenda") or mc["tipo"] == "punto"
+                # R6: las NOTAS también con los cortes de Chrome (Illustrator las recomponía distinto al PDF:
+                # «Croissant blanco / integral / molde blanco…» en la A)
+                partir = partir or (RONDA != "r5" and pa["rol"] == "nota")
                 texto = "\u0003".join(t.strip() for _, t in lineas) if partir else " ".join(t.strip() for _, t in lineas)
                 texto = re.sub(r" {2,}", " ", texto)
             # corridas con otro peso dentro del párrafo (p. ej. «Lunes a viernes» en negrita)

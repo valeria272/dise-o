@@ -88,3 +88,5 @@
 - [⭐ QB — criterio de carruseles y escenas](qb-criterio-carruseles-y-escenas.md) — Eli 30-09: logo sólo portada, titulares/pies a la misma altura, sin velo negro sin texto; trago protagonista, plato de la carta real, luz sutil
 - [⛔⛔ QB: el fondo sale de una FOTO REAL](qb-fondo-desde-foto-real.md) — Eli 30-09: terraza generada «no se parece a QB»; foto de la sesión + IA sólo agrega plato/trago; sin manos, luz natural
 - [⭐ Antes y después SIEMPRE en HTML](antes-y-despues-en-html.md) — molde _revision.py; se ABRE en Google Chrome sin que lo pida (Eli 30-09) + qué cambió en texto
+- [⭐⭐⭐ Carrusel de producto Between — receta aprobada](between-carrusel-producto-receta.md) — Eli 30-09 «me encantó»: To Go 01-10 a la primera; vasos aprobados + comida real como ref en NB Pro, rótulo precio sobre cada vaso, 3 voces, Drive + HTML
+- [⛔ Carrusel: carpeta «C1 <tema> S<n>» + «C1 n°1 …»](carrusel-nombre-y-carpeta-c1.md) — Eli 30-09: cada carrusel en su carpeta, láminas numeradas, para no confundir

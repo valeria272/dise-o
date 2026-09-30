@@ -110,7 +110,11 @@
         function tabs(lista) {
             var out = [];
             for (var i = 0; i < lista.length; i++) {
-                var ts = new TabStopInfo(); ts.alignment = TabStopAlignment.Right; ts.position = lista[i] - 0.05; out.push(ts);
+                var ts = new TabStopInfo();
+                // R6: valor negativo = tabulador IZQUIERDO (columnas de precio alineadas con su rótulo)
+                if (lista[i] < 0) { ts.alignment = TabStopAlignment.Left; ts.position = -lista[i]; }
+                else { ts.alignment = TabStopAlignment.Right; ts.position = lista[i] - 0.05; }
+                out.push(ts);
             }
             return out;
         }
@@ -143,8 +147,12 @@
                 var pa = P0.paragraphAttributes;
                 if (i > 0 && Math.abs(pd.antes - st.d.antes) > 0.3) pa.spaceBefore = pd.antes;
                 if (i === 0) pa.spaceBefore = 0;
-                if (pd.tabs.length) pa.tabStops = tabs(pd.tabs);
-                if (pd.sangria_der > 0.5) pa.rightIndent = pd.sangria_der;
+                // cada línea forzada es un párrafo para Illustrator: tabuladores y sangría en TODAS
+                for (j = 0; j < n; j++) {
+                    var pj = tf.paragraphs[idx + j].paragraphAttributes;
+                    if (pd.tabs.length) pj.tabStops = tabs(pd.tabs);
+                    if (pd.sangria_der > 0.5) pj.rightIndent = pd.sangria_der;
+                }
                 if (Math.abs(pd.inter - st.d.inter) > 0.3) {
                     for (j = 0; j < n; j++) tf.paragraphs[idx + j].characterAttributes.leading = pd.inter;
                 }
@@ -169,6 +177,25 @@
                 if (desborda(tf)) avisos.push("⚠ desborda: " + m.nombre);
                 else if (crece) avisos.push("creció " + (crece * 6) + " pt: " + m.nombre);
             }
+            // texto de punto: al aplicar un estilo CENTRADO o a la DERECHA, Illustrator deja el borde
+            // izquierdo donde estaba (el texto crecía hacia la derecha desde su centro: rótulos de la D
+            // corridos medio ancho). Se lleva a donde lo midió Chrome
+            // el eje se toma de la CAJA medida del bloque (m.x, m.w), no de su primer párrafo: en un bloque
+            // centrado de varias líneas (horario y contactos de la portada D) el primer párrafo lo corría 12 mm
+            // ⚠️ Textos de punto CENTRADOS o a la DERECHA: el estilo de párrafo declara la justificación pero
+            // Illustrator la dibuja a la izquierda desde el ancla (rótulos de la D corridos medio ancho, horario
+            // fuera de la hoja). Se fija sobre el TEXTO mismo, y no se mueve nada: el ancla ya está en su eje.
+            // (Medir tf.left para corregir no sirve: al armar informa la posición vieja.) Verificación sobre el
+            // .ai reabierto: between-carta-r6-verificar.py
+            if (m.tipo !== "area" && p0.alinea !== "left") {
+                for (var pj2 = 0; pj2 < tf.paragraphs.length; pj2++)
+                    tf.paragraphs[pj2].paragraphAttributes.justification = JUST[p0.alinea];
+                // al cambiar la justificación Illustrator deja el texto quieto y MUEVE el ancla: se devuelve el
+                // ancla (dato guardado, no medida de dibujo) al eje medido en Chrome
+                var eje = p0.alinea === "center" ? x0 + (p0.x0 + p0.r0) / 2 : x0 + p0.r0;
+                var dx = eje - tf.anchor[0];
+                if (Math.abs(dx) > 0.5) tf.translate(dx, 0);
+            }
             return tf;
         }
         function desborda(tf) {
@@ -184,7 +211,9 @@
         function recolorear(it) {
             var t = it.typename;
             if (t === "GroupItem") { for (var i = 0; i < it.pageItems.length; i++) recolorear(it.pageItems[i]); return; }
-            if (t === "CompoundPathItem") { for (i = 0; i < it.pathItems.length; i++) recolorear(it.pathItems[i]); return; }
+            // un trazo compuesto comparte UN color: basta con pintar el primer sub-trazo. Los dibujos a
+            // mano vectorizados traen miles de sub-trazos y recorrerlos todos tomaba ~10 min por hoja (R6)
+            if (t === "CompoundPathItem") { if (it.pathItems.length) recolorear(it.pathItems[0]); return; }
             if (t !== "PathItem") return;
             if (it.filled) { var s = aMuestra(it.fillColor); if (s) it.fillColor = s; }
             if (it.stroked) { var s2 = aMuestra(it.strokeColor); if (s2) it.strokeColor = s2; }

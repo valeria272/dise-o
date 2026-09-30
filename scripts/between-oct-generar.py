@@ -315,6 +315,86 @@ ESCENAS = {
             "que la llama siga siendo el punto mas brillante. El 35% DE ARRIBA queda tranquilo y "
             "algo oscuro, sin objetos nitidos, para texto. Mismo encuadre vertical 9:16. " + CANDADO),
     },
+    # ── FEED 01-10 CARRUSEL PROMOS TO GO (30-09, OK PARA DISEÑAR) ──
+    # Brief: mesa de madera, productos reales protagonistas, fondos cálidos y naturales, look
+    # actualizado; ojo con las proporciones (vasos = trío aprobado por Eli el 22-09 a escala
+    # real; comida = sesión 25-jul-2025). Ref: los tres vasos escalonados de «NON COFFE».
+    "fd01-1": {
+        "aspecto": "carrusel",
+        "refs": ["td-trio-vasos.jpg", "td-mesa-sandwich.jpg", "fd-01-10-togo-ref.jpg"],
+        "prompt": (
+            "Fotografia de producto vertical 4:5 en la cafeteria Between: los TRES vasos de cafe To "
+            "Go de la @img1, IDENTICOS (carton kraft, tapa negra, logotipo BETWEEN COFFEE & BAR "
+            "impreso, con la E invertida), con EXACTAMENTE la misma proporcion de tamanos entre "
+            "ellos: el chico a la izquierda, el mediano al centro y el mas alto a la derecha. "
+            "Estan parados sobre la mesa de madera calida de la @img2, escalonados como en la "
+            "@img3: el del centro un poco mas adelante, los otros dos un poco mas atras, todos "
+            "de frente con el logotipo completo y legible. Fondo: el muro verde de helechos de la "
+            "@img2, MUY desenfocado. Luz natural suave de manana, lateral, sombras de contacto "
+            "suaves sobre la madera. ENCUADRE: los vasos ocupan el 55% INFERIOR del cuadro, "
+            "centrados, con aire a los costados; el 40% DE ARRIBA es solo muro verde muy "
+            "desenfocado y tranquilo, sin objetos, para poner texto. " + CANDADO),
+    },
+    "fd01-2": {
+        "aspecto": "carrusel",
+        "refs": ["td-vaso-grande.jpg", "td-mesa-sandwich.jpg", "td-croissant-jq.jpg"],
+        "prompt": (
+            "Fotografia de producto vertical 4:5 en la cafeteria Between, sobre la mesa de madera "
+            "calida de la @img2 con el muro verde de helechos MUY desenfocado atras. Al centro, "
+            "protagonista, el vaso de cafe To Go de la @img1, IDENTICO (carton kraft, tapa negra, "
+            "logotipo BETWEEN COFFEE & BAR impreso de frente y legible). A su izquierda, un poco "
+            "adelante, el sandwich de ave palta de la @img2 cortado en triangulo, pan de molde "
+            "tostado, IGUAL al de la foto, sobre un papel blanco. A su derecha, un poco adelante, "
+            "un sandwich de jamon y queso en el MISMO pan de molde tostado en triangulo, con jamon "
+            "rosado y queso fundido asomando, sobre papel blanco. Los sandwiches a escala real "
+            "junto al vaso: un triangulo mide casi lo mismo que el alto del vaso. Luz natural "
+            "suave de manana. ENCUADRE: los productos ocupan el 55% INFERIOR del cuadro; el 40% "
+            "DE ARRIBA es solo muro verde desenfocado y tranquilo, sin objetos, para texto. "
+            + CANDADO),
+    },
+    "fd01-3": {
+        "aspecto": "carrusel",
+        "refs": ["td-vaso-grande.jpg", "td-vigilantes.jpg", "td-muffin.jpg", "td-brownie.jpg"],
+        "prompt": (
+            "Fotografia de producto vertical 4:5 en la cafeteria Between, sobre la mesa de madera "
+            "calida de la @img2 con el muro verde de helechos MUY desenfocado atras. Al centro, "
+            "protagonista, el vaso de cafe To Go de la @img1, IDENTICO (carton kraft, tapa negra, "
+            "logotipo BETWEEN COFFEE & BAR impreso de frente y legible). Alrededor del vaso, "
+            "adelante y a los costados, tres opciones dulces a escala real, cada una IGUAL a su "
+            "foto: los dos vigilantes de hojaldre con azucar de la @img2 a la izquierda, el muffin "
+            "de chocolate con su papel cafe de la @img3 a la derecha, y el brownie cuadrado de la "
+            "@img4 adelante al centro-derecha, apoyados sobre papel blanco, sin platos. "
+            "Composicion ordenada y limpia, variedad sin recargar. Luz natural suave de manana. "
+            "ENCUADRE: los productos ocupan el 55% INFERIOR del cuadro; el 40% DE ARRIBA es solo "
+            "muro verde desenfocado y tranquilo, sin objetos, para texto. " + CANDADO),
+    },
+    "fd01-4": {
+        "aspecto": "carrusel",
+        "refs": ["td-vaso-grande.jpg", "td-mesa-sandwich.jpg", "td-muffin.jpg"],
+        "prompt": (
+            "Fotografia de producto vertical 4:5 en la cafeteria Between, sobre la mesa de madera "
+            "calida de la @img2 con el muro verde de helechos MUY desenfocado atras. Un desayuno "
+            "completo para llevar, abundante pero ordenado: al centro-derecha el vaso de cafe To "
+            "Go de la @img1, IDENTICO (carton kraft, tapa negra, logotipo BETWEEN COFFEE & BAR "
+            "impreso de frente y legible); detras, a la derecha, una bolsa de papel kraft lisa, "
+            "sin logo ni letras, abierta; a la izquierda, adelante, el sandwich de ave palta de la "
+            "@img2 cortado en triangulo sobre papel blanco, IGUAL al de la foto; y al centro "
+            "adelante el muffin de chocolate de la @img3 con su papel cafe. Solo esos tres "
+            "productos y la bolsa, nada mas. Todo a escala real junto al vaso. Luz natural suave de "
+            "manana. ENCUADRE: los productos ocupan el 55% INFERIOR del cuadro; el 40% DE ARRIBA "
+            "es solo muro verde desenfocado y tranquilo, sin objetos, para texto. " + CANDADO),
+    },
+    # La «a» traía un vigilante que se leía como mini croissant: se borra sobre esa misma toma.
+    "fd01-4e": {
+        "aspecto": "carrusel",
+        "refs": ["gen-fd01-4-a.jpg"],
+        "prompt": (
+            "Edita la @img1 manteniendo EXACTAMENTE IGUALES el vaso de cafe To Go con su logotipo, la "
+            "bolsa de papel kraft, el sandwich de ave palta sobre su papel, el muffin de chocolate, "
+            "la mesa y el muro verde, en la misma posicion, tamano y luz. UNICO CAMBIO: borra el "
+            "pequeno croissant de hojaldre que esta adelante entre el sandwich y el muffin, y deja "
+            "en su lugar la madera de la mesa, continua y natural. " + CANDADO),
+    },
 }
 
 

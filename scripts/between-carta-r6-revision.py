@@ -90,6 +90,7 @@ p.comparar((r5("D", 1), "R5: rótulos de distinto ancho y alto, portada con colu
                "«Tentaciones de nuestra vitrina» no cabe ni cerrando el espaciado, así que va en dos.",
                "Portada: la columna de la carta pasa de 63 a 71 mm (con dos precios los nombres se partían todos) y el "
                "panel del logo se corre 8 mm. El logo queda un poco más chico (~57 mm de ancho).",
+               "Portada al MISMO margen que las demás hojas: Sándwiches y Tentaciones bajan de 14 a 30 mm, a la altura de los rótulos de las hojas interiores y alineados con «Menú»; la columna tiene el mismo alto que las otras.",
                "La D sigue en 5 hojas."]))
 
 p.notas([

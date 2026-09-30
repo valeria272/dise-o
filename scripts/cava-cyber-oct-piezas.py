@@ -84,7 +84,7 @@ PIEZAS = [
     # La botella dentro de SU montaje (canto derecho, tapa, base) y dónde tiene
     # que quedar en la pieza: entre el «week» y el cupón, cerrando en la «E».
     dict(n=2, escena="vip", fin=0.735, tope=790,
-         bot=(0.83, 0.19, 0.69), destino=(991, 678, 2003),
+         bot=(0.83, 0.19, 0.69), destino=(991, 618, 1943),
          gancho="TU CUPÓN VIP SIGUE ACTIVO",
          titular="45% OFF", bajada=None, cupon="CYBERVIP",
          producto=["HOUSE OF MORANDÉ", "MEZCLAS TINTAS 2021"],

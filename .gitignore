@@ -84,6 +84,11 @@ public/assets/**
 # los scripts scripts/revex-*.py no corren sin estas fotos, y sin ellas cada
 # ronda de correcciones vuelve a empezar de cero en otra máquina (27-08-2026).
 !public/assets/revex/sep/**
+# Y los ambientes de octubre 2026 (Seedream, no deterministas: no se regeneran iguales).
+!public/assets/revex/oct/
+!public/assets/revex/oct/amb_*.png
+!public/assets/revex/oct/productos/
+!public/assets/revex/oct/productos/**
 # CAVA: los bottle shots y sus versiones 2x (upscaler de precisión) son el
 # material con el que se montan los KV. Sin ellos otro diseñador no reproduce la
 # entrega — se cae al packshot chico y el bodegón sale distinto.

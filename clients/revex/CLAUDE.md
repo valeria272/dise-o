@@ -843,3 +843,78 @@ fachada literal. Es decisión de dirección de arte + KAM, no del render.
 - **Los JPG de 5 MB no conviene bajarlos** por el conector: el base64 no cabe en
   contexto. Para inspeccionarlos visualmente hay que copiarlos a una carpeta de la
   agencia y bajarlos de otra forma.
+
+---
+
+# ⭐ Octubre 2026 — carruseles de producto para pauta (29-09-2026)
+
+Brief de Sebastián Córdova (`1rnAxEwixHZ5MLybEcg7SkI36FiljlBLa`): 7 carruseles, 24 tarjetas,
+48 piezas. Entrega en `out/revex/oct2026/` (ver su `ENTREGA.md`). Scripts:
+`scripts/revex-oct2026-ambientes.py` y `scripts/revex-oct2026-piezas.py`.
+
+## Decisiones de Serena del 29-09 (valen para este lote)
+- **1:1 a 2250 × 2250** + story 2250 × 4000. El brief pedía 1080; se entrega a la resolución de Paulina.
+- **«Cotiza por WhatsApp» SÍ va en la gráfica** de los carruseles de producto, en cápsula gris
+  `#868686` como `rvx_austral_2`. R-17 (sacarla) era de la pauta de **sucursales**, no de producto.
+- Texto **blanco con velo** aunque el brief pida «texto oscuro»: el CÓMO es de Paulina.
+
+## El material de producto está en el sitio y no hay que pedirlo
+`gruporevex.cl` es WooCommerce y su API pública entrega SKU, nombre, categoría e imágenes originales:
+`https://www.gruporevex.cl/wp-json/wc/store/v1/products?search=<texto>&per_page=50`.
+**Buscar por SKU no funciona**: hay que buscar por nombre y filtrar por `sku`. De 26 SKU del brief,
+22 estaban. Las `_0` son textura a sangre (sirven de muestra); las `_1` son la palmeta sobre blanco.
+La **categoría** que da el sitio («Muro», «Porcelanatos y Gres», «Muro a muro») define si el
+ambiente lleva el producto en la pared o en el piso: **Keraz y los blancos son de MURO**.
+
+## La tarjeta de producto de Paulina, medida (norm 1080)
+Muestra de 530 de ancho con borde blanco ≈ 4 y radio 12 · banderola `#D92028` de 251 × 130 mín.,
+con categoría cap 9,5 (regular, tracking +0,06), nombre cap 13 (bold) y medida cap 12 · pliegue
+`#AD1C27` · cápsula del CTA `#868686` de alto 42 · bloque de logo a la izquierda (cx 199,9).
+- **Flecha de medida sólo con UNA medida.** Con una lista («20×30 · 25×40 · 30×60»), la línea va sin flecha.
+- **Cerámica blanca lisa:** la foto del sitio es blanco puro y la muestra se lee como tarjeta vacía.
+  Se arma la palmeta real **en su aparejo, con junta** (`aparejo()` del script).
+- **Oferta:** el sello «EN OFERTA» va en barra roja **separada ≥ 90** de la banderola (R-05).
+
+## Ambientes con IA — lo que funcionó y lo que no
+- ✅ **Serie «misma sala, cambia sólo el producto»:** Seedream 5 Pro **edit** con ref 1 = base y
+  ref 2 = foto del producto. Deja la sala idéntica al píxel.
+- ✅ **La base tiene que dejar libre el centro inferior**, donde van la muestra y el texto. La
+  primera 01a puso el mueble justo ahí y la muestra lo tapaba.
+- ✅ **Story = expansión del cuadrado** (`image-expand/flux-pro`, 720 arriba y 400 abajo sobre 1440):
+  es la misma sala por construcción.
+- ⛔ **La expansión inventa piso:** bajo una alfombra **muro a muro** puso madera dos veces, con y
+  sin instrucción. Para las 04 la story es el cuadrado **recortado** (`DESDE_CUADRADO`).
+- ⛔ **Los nombres de color engañan al modelo:** «chestnut» salió óxido (S 0,54 contra 0,14 del
+  producto). Se mide con saturación HSV contra la foto del sitio y se describe el color **sin**
+  palabras que lo empujen.
+- ⛔ **Formatos chicos:** Seedream no respeta «10×20» ni «15×15». Hay que darlo en hileras de piso
+  a techo y en relación con lo que ya hay («tres veces más chico»). El 15×15 recién salió cuadrado
+  con **Nano Banana Pro**.
+
+## QA de octubre (29-09): tres reglas que no estaban escritas
+1. **El velo no puede cambiar el color del producto.** Un velo a luma fija sobre un piso claro
+   llegó al 62 % y el Roble Arena se leyó Titanio. El velo general va con tope **0,36**, y la
+   legibilidad del texto chico se resuelve con **bandas** de velo acotadas detrás de la frase o el CTA
+   y del pie (`banda()` en `revex-oct2026-piezas.py`). Vara de contraste: el cuerpo de Austral de
+   Paulina está en **2,0–4,0:1**; un pie de cap 12 necesita más (≥ 5:1).
+2. **La banderola no lleva categoría si el brief no la trae.** «CERÁMICA DE MURO» salía del sitio;
+   el brief no la tenía → fuera (R-23). Si el brief da la categoría como BAJADA (alfombras, SPC),
+   va en la banderola, literal.
+3. **Nombre de archivo:** si el brief define su convención (`REVEX_P01_Story_1080x1920.jpg`), manda
+   sobre la del portal.
+
+## ⭐ Ronda 2 de octubre — Paulina, 29-09-2026 (8 comentarios en «ADS Revex octubre»)
+Carpeta `1puZ1PWbgaqJo53agyQHVdJSKFjUGAIvx`. **Mandan sobre lo anterior de este archivo:**
+1. **Banderola SIN pliegue** — *«eliminar triangulo. esto va para todas las otras graficas que lo
+   tengan»* (P01A, P06, P07A). Deroga el pliegue `#AD1C27` en las tarjetas de producto.
+2. **Nada de franjas de velo** — *«hay zonas con huinchas negras con transparencia que no deben ir,
+   siempre debe ir un degradado muy suave detras del texto para que destaque pero nunca ese tipo
+   de cuadro cortado»*. Deroga las `banda()` del QA del mismo día: el texto se apoya en un
+   **degradado largo** (smoothstep, 0 → 0,42), que en la story vuelve a 0 bajo el texto.
+3. **La story tiene su propia escala** — *«toda esta estructura debe adaptarse al tamaño de la
+   storie. no usar exactamente lo mismo del post a la storie porque se ve muy pequeño»*. En este
+   lote va ×1,35 (Urban ×1,2, porque tres 60×120 no caben).
+4. **Texto de la story más grande y en 2 líneas, sin palabra sola abajo** — el pie va partido en la
+   coma: «Pisos SPC, laminados, porcelanatos, / pisos de ingeniería y mucho más».
+5. **Toda tarjeta de producto lleva muestra** — *«faltó la muestra del producto»* (P06). Sin foto
+   real, la muestra es un recorte del ambiente, rotulado `PROVISORIO_IA_…`, hasta que llegue la foto.

@@ -1,3 +1,26 @@
+## 2026-09-29/30 — Serena Abarca (con Claude)
+
+**Qué se hizo:** Se produjo el lote de **pauta de octubre** del brief de Sebastián Córdova
+(`1rnAxEwixHZ5MLybEcg7SkI36FiljlBLa`): 7 carruseles, 24 tarjetas, **48 piezas** (1:1 a 2250 + story
+2250×4000). Las muestras son fotos oficiales de gruporevex.cl (API WooCommerce, 22 de 26 SKU) y los
+ambientes son IA (Seedream edit: misma sala, cambia el producto). Hubo QA interno (el velo cambiaba el
+color del producto) y **ronda 2 con los 8 comentarios de Paulina**, todos aplicados.
+
+**Dónde quedó:** La ronda 2 está **reemplazada en el mismo archivo** en Drive «ADS Revex octubre»
+(`1puZ1PWbgaqJo53agyQHVdJSKFjUGAIvx`), con MD5 verificado, más su `ENTREGA.md`. Local:
+`out/revex/oct2026/` y `~/Desktop/REVEX-octubre-2026/`. Scripts: `scripts/revex-oct2026-ambientes.py`
+y `scripts/revex-oct2026-piezas.py`; material en `public/assets/revex/oct/` (versionado).
+
+**Qué sigue:** Esperar la revisión de Paulina sobre la ronda 2. Responder y resolver sus 8
+comentarios en Drive (o que los cierre ella: lo decide Serena). Cuando lleguen las fotos reales,
+reemplazar el archivo en `public/assets/revex/oct/productos/` y volver a correr `revex-oct2026-piezas.py`.
+
+**Abierto:** Faltan fotos reales de **adoquines de caucho** (P06 lleva una muestra PROVISORIA hecha
+con IA), **Blanco Brillo 15×15**, **Urban 30×60** y **Brick Blanco mate** → Jenny. Confirmar los
+nombres de color del Urban (Pearl / Light Grey / Anthracite) → Jenny. El copy del anuncio de 02 dice
+«look del mármol» e incluye el Antique Grey, que es hidráulico → Sebastián. El QA marca un falso
+positivo en P02C feed (cortina y ventana blancas al borde).
+
 ## 2026-09-09 — Valeria Traverso (con Claude)
 
 **Qué se hizo:** No se diseñó nada; se **reparó el material de referencia** durante el arranque

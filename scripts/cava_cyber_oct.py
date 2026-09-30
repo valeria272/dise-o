@@ -278,78 +278,27 @@ def logo(im, cy_x, y, ancho=217.4):
 
 
 # ── El lockup CYBERWINE week ─────────────────────────────────────────────────
-# Relaciones medidas sobre el lockup del KV VIP: CYBERWINE mide 1519×250 px
-# (x 400..1918, y 760..1009) y la cursiva «week» arranca en x 1356, y 906, con
-# los ojos de las letras en 193 px de alto.
-#
-# ⚠️ La cursiva NO se puede dimensionar por el ancho de su mancha: el rasgo
-# ascendente de la «k» se dispara y domina la caja, así que ajustar por ancho la
-# deja a dos tercios del tamaño y el conjunto se vuelve un garabato. Se ancla
-# por ALTURA DE OJO —la mancha de «wee»— que es lo que el ojo compara.
-WEEK_OJO = 193 / 250.0      # alto de «wee» respecto a la mayúscula de CYBERWINE
-WEEK_IZQ = (1356 - 400) / 1519.0    # dónde entra, sobre el ancho del titular
-WEEK_TOP = (906 - 760) / 250.0      # cuánto baja, sobre la mayúscula
-
-
-def _geometria_lockup(ancho, track=-0.022):
-    """Dónde cae cada trozo del lockup para un ancho dado, SIN pintar nada."""
-    ft = fuente("xbold", _cuerpo_para_ancho("xbold", "CYBERWINE", u(ancho), track))
-    cj = mide("CYBERWINE", ft, track)
-    cw, cap = cj[2] - cj[0], cj[3] - cj[1]
-    fts = fuente("script", _cuerpo_para_cap("script", cap * WEEK_OJO, ref="wee"))
-    cs = mide("week", fts)
-    # Relativo al canto izquierdo de CYBERWINE (que va centrado en cx):
-    izq = min(0.0, cw * WEEK_IZQ)
-    der = max(float(cw), cw * WEEK_IZQ + (cs[2] - cs[0]))
-    return ft, fts, cw, cap, izq, der
+LOCKUP = CAVA / "cyber-oct/lockup-cyberwine-week.png"
 
 
 def lockup(im, cx, y_top, ancho, margen=26):
-    """CYBERWINE en Poppins ExtraBold con el degradado, y «week» en Amalfi Coast.
+    """El logo CYBERWINE week: se COPIA del editable, no se recompone.
 
-    Se resuelve por ANCHO, no por altura de mayúscula: en una pieza vertical la
-    columna tiene un ancho dado y el titular tiene que caber en él.
+    Lo tenía reconstruido con las fuentes y salía distinto —Coni lo escribió en
+    Poppins **Bold**, no ExtraBold, y con un tracking cerrado que yo no tenía—,
+    así que cada pieza llevaba una versión ligeramente propia de su logo. Ahora
+    es el dibujo de ella, levantado del .ai con scripts/cava-cyber-oct-extraer.py
+    (y sin el filete: pidió que no vaya en ninguna pieza).
 
-    ⚠️ El conjunto se mide ENTERO antes de pintarlo y, si se sale del lienzo, se
-    achica hasta que quepa. La cola de la «k» de la cursiva se estira más allá
-    del canto derecho de CYBERWINE —no pasa en el KV, donde el bloque es más
-    ancho de columna—, así que sin esta comprobación el «week» se corta en
-    cuanto una pieza aprieta la columna. El lockup no se corta nunca.
-
-    Devuelve la y de la base del conjunto.
+    Devuelve la y de la base.
     """
-    track = -0.022
-    m = u(margen)
-    for _ in range(8):
-        ft, fts, cw, cap, izq, der = _geometria_lockup(ancho, track)
-        x0 = cx - cw / 2
-        sobra = max(m - (x0 + izq), (x0 + der) - (im.width - m))
-        if sobra <= 0.5:
-            break
-        ancho *= max(0.6, 1 - (sobra * 2.05) / (der - izq))
-
-    b = texto_oro(im, (cx - cw / 2, u(y_top)), "CYBERWINE", ft, track)
-    cw, cap = b[2] - b[0], b[3] - b[1]
-    xs = b[0] + cw * WEEK_IZQ
-    ys = b[1] + cap * WEEK_TOP
-    # La cursiva monta sobre el dorado de WINE: blanco sobre dorado no contrasta.
-    # Una sombra suave la despega sin cambiar el dibujo del KV.
-    _sombra_texto(im, (xs, ys), "week", fts, radio=cw * 0.012)
-    bs = texto_plano(im, (xs, ys), "week", fts, BLANCO)
-    return max(b[3], bs[3] if bs else b[3])
-
-
-def _sombra_texto(im, xy, texto, ft, radio, alfa=190):
-    mask = _mascara(texto, ft)
-    if mask is None:
-        return
-    r = max(1, int(radio))
-    capa = Image.new("RGBA", (mask.width + r * 6, mask.height + r * 6), (0, 0, 0, 0))
-    capa.paste((0, 0, 0, alfa), (r * 3, r * 3), mask)
-    capa = capa.filter(ImageFilter.GaussianBlur(r * 1.6))
-    x, y = int(xy[0]) - r * 3, int(xy[1]) - r * 3
-    reg = im.crop((x, y, x + capa.width, y + capa.height)).convert("RGBA")
-    im.paste(Image.alpha_composite(reg, capa).convert("RGB"), (x, y))
+    lg = Image.open(LOCKUP).convert("RGBA")
+    w = int(min(u(ancho), im.width - u(margen) * 2))
+    h = int(round(w * lg.height / lg.width))      # proporción intacta
+    x, y = int(cx - w / 2), int(u(y_top))
+    x = max(int(u(margen)), min(x, im.width - int(u(margen)) - w))
+    im.paste(_reescala_rgba(lg, w, h), (x, y), _reescala_rgba(lg, w, h))
+    return y + h
 
 
 def _cuerpo_para_ancho(peso, texto, ancho_px, track=0.0):
@@ -385,12 +334,9 @@ def _cuerpo_para_cap(peso, cap_px, ref="H"):
     return int(round((lo + hi) / 2))
 
 
-def hairline(im, cx, y, ancho, grosor=1.6):
-    w = int(u(ancho))
-    h = max(1, int(u(grosor)))
-    im.paste(rampa_oro(w, h), (int(cx - w / 2), int(u(y))))
-
-
+# ⛔ El filete bajo el lockup se eliminó el 30-09 a pedido de Coni: «elimina la
+# línea y eso aplica para todo. No es necesaria la línea que está debajo del
+# logo Cyber Wine Week». También se borra al extraer el logo del editable.
 # ── Banda dorada del gancho ──────────────────────────────────────────────────
 def banda_gancho(im, cx, y, texto, cap=34, alto=None, holgura=30):
     """Pastilla dorada con el gancho en negro. Es el recurso del editable 2025."""
@@ -455,23 +401,27 @@ def cupon(im, cx, y, codigo, encabezado="CUPÓN EXCLUSIVO:", pie=None,
 
     # El texto se ajusta AL TROQUEL. Escribirlo a cuerpo fijo lo desborda en
     # cuanto el cupón se achica para el formato cuadrado.
-    util = w - u(18) * 2 - u(26) * 2       # dentro del filete interior, con aire
-    ft_h = fuente("light", _cuerpo_para_ancho("light", encabezado, util * 0.80, 0.06))
-    ch = mide(encabezado, ft_h, 0.06)
-    _escribe(dr, ((w - (ch[2] - ch[0])) / 2 - ch[0], h * 0.135 - ch[1]),
-             encabezado, ft_h, TINTA + (255,), 0.06)
-
+    # El contenido se arma como UN BLOQUE y se centra en el troquel. Antes cada
+    # línea iba a una fracción fija del alto y entre «CUPÓN EXCLUSIVO:» y el
+    # código quedaba un hueco grande: Coni pidió cerrar ese aire.
+    util = w - u(18) * 2 - u(22) * 2       # dentro del filete interior
+    ft_h = fuente("light", _cuerpo_para_ancho("light", encabezado, util * 0.74, 0.06))
     ft_c = fuente("xbold", _cuerpo_para_ancho("xbold", codigo, util, -0.015))
-    cc = mide(codigo, ft_c, -0.015)
-    _escribe(dr, ((w - (cc[2] - cc[0])) / 2 - cc[0],
-                  h * (0.62 if pie else 0.70) - (cc[3] - cc[1]) / 2 - cc[1]),
-             codigo, ft_c, TINTA + (255,), -0.015)
-
+    ch, cc = mide(encabezado, ft_h, 0.06), mide(codigo, ft_c, -0.015)
+    alto_h, alto_c = ch[3] - ch[1], cc[3] - cc[1]
+    aire = alto_h * 0.34                   # aire entre las dos líneas, cerrado
+    piezas = [(encabezado, ft_h, 0.06, ch, alto_h), (codigo, ft_c, -0.015, cc, alto_c)]
     if pie:
         ft_p = fuente("med", _cuerpo_para_ancho("med", pie, util * 0.92))
         cp = mide(pie, ft_p)
-        _escribe(dr, ((w - (cp[2] - cp[0])) / 2 - cp[0], h * 0.845 - cp[1]),
-                 pie, ft_p, TINTA + (255,))
+        piezas.append((pie, ft_p, 0.0, cp, cp[3] - cp[1]))
+
+    total = sum(x[4] for x in piezas) + aire * (len(piezas) - 1)
+    cursor = (h - total) / 2      # ojo: NO llamarlo `y`, que es el parámetro de
+    for texto, ft, tr, caja, alto_l in piezas:   # colocación de la pieza entera
+        _escribe(dr, ((w - (caja[2] - caja[0])) / 2 - caja[0], cursor - caja[1]),
+                 texto, ft, TINTA + (255,), tr)
+        cursor += alto_l + aire
 
     tk = tk.rotate(giro, Image.BICUBIC, expand=True)
     sombra = Image.new("RGBA", tk.size, (0, 0, 0, 0))
@@ -577,38 +527,25 @@ def _halo(im, cx, cy, ancho, alto, radio, alfa=110, color=(158, 96, 44)):
     im.paste(Image.alpha_composite(reg, capa).convert("RGB"), (x0, y0))
 
 
-def sello(im, cx, cy, cifra, casa, diam=126):
-    """Disco de premio, con la gramática del editable 2025: casa arriba, cifra
-    grande y PUNTOS abajo, los tres DENTRO del disco.
+SELLOS = {
+    "descorchados-98-2021": CAVA / "sellos/descorchados-98-2021.png",
+    "james-suckling-98": CAVA / "sellos/james-suckling-98.png",
+}
 
-    Va como gráfica plana, sin resplandor y sin seguir la perspectiva de la
-    botella. El puntaje y la casa son los de ESE vino y ESA cosecha.
+
+def sello(im, cx, cy, nombre, diam=126):
+    """Sello de premio: el archivo OFICIAL, colocado como gráfica plana.
+
+    Los dibujaba yo con el puntaje que decía el brief y salían mal —Coni mandó
+    los buenos, que son 98 y 98—. Un sello es una marca registrada: se pega, no
+    se redibuja. Van superpuestos, sin resplandor y sin seguir la perspectiva de
+    la botella.
     """
-    S = 3
+    sl = Image.open(SELLOS[nombre]).convert("RGBA")
     d = int(u(diam))
-    capa = Image.new("RGBA", (d * S, d * S), (0, 0, 0, 0))
-    dr = ImageDraw.Draw(capa)
-    dr.ellipse([0, 0, d * S - 1, d * S - 1], fill=(16, 14, 14, 240))
-    g = int(u(2.6) * S)
-    dr.ellipse([int(u(7) * S)] * 2 + [d * S - 1 - int(u(7) * S)] * 2,
-               outline=(214, 156, 71, 255), width=g)
-    capa = capa.resize((d, d), Image.LANCZOS)
-
-    util = d * 0.70
-    ftc = fuente("semi", _cuerpo_para_ancho("semi", casa, util, 0.04))
-    ftn = fuente("xbold", _cuerpo_para_cap("xbold", d * 0.30))
-    ftp = fuente("semi", _cuerpo_para_ancho("semi", "PUNTOS", util * 0.62, 0.06))
-    bc, bn, bp = mide(casa, ftc, 0.04), mide(cifra, ftn), mide("PUNTOS", ftp, 0.06)
-    hc, hn, hp = bc[3] - bc[1], bn[3] - bn[1], bp[3] - bp[1]
-    aire = d * 0.055
-    total = hc + aire + hn + aire + hp
-    y = cy - total / 2
-
-    im.paste(capa, (int(cx - d / 2), int(cy - d / 2)), capa)
-    texto_plano(im, (cx, y), casa, ftc, BLANCO, 0.04, ancla="centro")
-    texto_oro(im, (cx, y + hc + aire), cifra, ftn, ancla="centro")
-    texto_plano(im, (cx, y + hc + aire + hn + aire), "PUNTOS", ftp, BLANCO, 0.06,
-                ancla="centro")
+    h = int(round(d * sl.height / sl.width))
+    sl = _reescala_rgba(sl, d, h)
+    im.paste(sl, (int(cx - d / 2), int(cy - h / 2)), sl)
 
 
 # ── Entrega ──────────────────────────────────────────────────────────────────

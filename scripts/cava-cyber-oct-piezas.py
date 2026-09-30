@@ -26,7 +26,7 @@ from PIL import Image, ImageDraw
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from cava_cyber_oct import (  # noqa: E402
     ESC, ESCRITORIO, u, fondo, viñeta, marco, advertencia, logo, lockup,
-    hairline, banda_gancho, cupon, botella, sello, guarda, fuente, mide,
+    banda_gancho, cupon, botella, sello, guarda, fuente, mide,
     texto_oro, texto_plano, _cuerpo_para_cap, _cuerpo_para_ancho, BLANCO,
 )
 
@@ -66,7 +66,7 @@ PIEZAS = [
          titular="45% OFF", bajada="ANTES QUE NADIE", cupon="CYBERVIP",
          producto=["MORANDÉ EL CABERNET", "DE RANQUIL 2021"],
          botella="ranquil", oferta="$34.970", normal="$59.990",
-         sellos=[("98", "DESCORCHADOS"), ("98", "J. SUCKLING")],
+         sellos=["descorchados-98-2021", "james-suckling-98"],
          legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
                "No acumulable con otras promociones. Hasta agotar stock."),
     dict(n=2, escena="vip", gancho="TU CUPÓN VIP SIGUE ACTIVO",
@@ -121,7 +121,7 @@ def cuadrada(p):
     columna_botella(im, p, cx=u(248), base_y=1002, alto=770, sellos_a="izq")
 
     COL = u(730)
-    TOPE = 882          # donde arranca el bloque de producto; nadie lo invade
+    TOPE = 1000         # hasta dónde puede bajar el cupón, sobre el legal
 
     y = 214
     if p["gancho"]:
@@ -132,13 +132,15 @@ def cuadrada(p):
     c = texto_oro(im, (COL, u(y)), p["titular"], ft, -0.02, ancla="centro")
     ftb = fuente("light", _cuerpo_para_ancho("light", p["bajada"], u(430), 0.06))
     b = texto_plano(im, (COL, c[3] + u(12)), p["bajada"], ftb, BLANCO, 0.06, ancla="centro")
-    y = b[3] / ESC + 18
+    y = b[3] / ESC + 22
 
+    # Mismo orden que en la vertical: oferta, nombre del vino con su precio y el
+    # cupón al final.
+    alto_pr = alto_bloque_producto(p, 23, 520)
+    bloque_producto(im, COL, y_base=y + alto_pr, p=p, cap=23, ancho_max=520)
     if p["cupon"]:
-        cupon_al_hueco(im, COL, y, TOPE, p["cupon"], ancho_max=500)
-
-    bloque_producto(im, COL, y_base=1014, p=p, cap=23, ancho_max=520)
-    pie_legal(im, p, y=1036, ancho_max=980)
+        cupon_al_hueco(im, COL, y + alto_pr + 24, TOPE, p["cupon"], ancho_max=500)
+    pie_legal(im, p, y=1030, ancho_max=980)
     return im
 
 
@@ -163,7 +165,6 @@ def vertical(p):
         ft_g = fuente("light", _cuerpo_para_ancho("light", p["gancho"], u(720), 0.075))
         y = texto_oro(im, (CX, u(y)), p["gancho"], ft_g, 0.075, ancla="centro")[3] / ESC + 14
     y = lockup(im, CX, y, ancho=840) / ESC + 30
-    hairline(im, CX, y, ancho=780)
 
     dobles = bool(p.get("botella2"))
     ft_t = fuente("xbold", _cuerpo_para_ancho("xbold", p["titular"],
@@ -171,30 +172,36 @@ def vertical(p):
     if dobles:
         # Dos botellas necesitan el centro del lienzo: la pieza se apila —
         # oferta, botellas, producto— en lugar de partirse en dos columnas.
-        t = texto_oro(im, (CX, u(902)), p["titular"], ft_t, -0.02, ancla="centro")
+        t = texto_oro(im, (CX, u(866)), p["titular"], ft_t, -0.02, ancla="centro")
         ftb = fuente("light", _cuerpo_para_ancho("light", p["bajada"], u(720), 0.055))
         b = texto_plano(im, (CX, t[3] + u(18)), p["bajada"], ftb, BLANCO, 0.055,
                         ancla="centro")
-        # El alto de las botellas sale del HUECO que queda, no de un número
-        # puesto a ojo: con un alto fijo, un titular de dos palabras más largo
-        # hacía que el cuello de la botella se metiera dentro de la bajada.
-        Y_BASE, CAP = 1846, 26
-        techo = b[3] / ESC + 26
-        piso = Y_BASE - alto_bloque_producto(p, CAP, 900) - 24
-        columna_botella(im, p, cx=CX, base_y=piso, alto=min(560, piso - techo),
+        # Mismo orden que en las del cupón: bajo la oferta va el nombre del vino
+        # con su precio, y las botellas abajo. El alto de las botellas sale del
+        # HUECO que queda, no de un número puesto a ojo: con un alto fijo, el
+        # cuello de la botella se metía dentro de la bajada.
+        CAP = 26
+        y = b[3] / ESC + 30
+        alto_pr = alto_bloque_producto(p, CAP, 900)
+        bloque_producto(im, CX, y_base=y + alto_pr, p=p, cap=CAP, ancho_max=900)
+        techo = y + alto_pr + 34
+        columna_botella(im, p, cx=CX, base_y=1800, alto=min(640, 1800 - techo),
                         sellos_a="izq")
-        bloque_producto(im, CX, y_base=Y_BASE, p=p, cap=CAP, ancho_max=900)
     else:
         # Botella a la izquierda y mensaje a la derecha: la mesa 21 del editable.
         columna_botella(im, p, cx=u(310), base_y=1792, alto=830, sellos_a="izq")
         COL = u(742)
-        t = texto_oro(im, (COL, u(946)), p["titular"], ft_t, -0.02, ancla="centro")
+        # Orden pedido por Coni el 30-09: la oferta arriba, después el nombre del
+        # vino con su precio, y el cupón al final.
+        t = texto_oro(im, (COL, u(898)), p["titular"], ft_t, -0.02, ancla="centro")
         ftb = fuente("light", _cuerpo_para_ancho("light", p["bajada"], u(500), 0.055))
         b = texto_plano(im, (COL, t[3] + u(16)), p["bajada"], ftb, BLANCO, 0.055,
                         ancla="centro")
+        y = b[3] / ESC + 34
+        alto_pr = alto_bloque_producto(p, 27, 520)
+        bloque_producto(im, COL, y_base=y + alto_pr, p=p, cap=27, ancho_max=520)
         if p["cupon"]:
-            cupon_al_hueco(im, COL, b[3] / ESC + 26, 1592, p["cupon"], ancho_max=488)
-        bloque_producto(im, COL, y_base=1800, p=p, cap=27, ancho_max=520)
+            cupon_al_hueco(im, COL, y + alto_pr + 30, 1800, p["cupon"], ancho_max=488)
 
     pie_legal(im, p, y=1866, ancho_max=920)
     return im
@@ -252,10 +259,10 @@ def columna_botella(im, p, cx, base_y, alto, sellos_a="izq", hueco=16):
         ancla = botella(im, BOTELLAS[p["botella"]], cx - total / 2 + w1 / 2, base_y, a1)
     else:
         ancla = botella(im, BOTELLAS[p["botella"]], cx, base_y, alto)
-    d = alto * 0.185
-    for i, (cifra, casa) in enumerate(p.get("sellos", [])):
-        x = ancla[0] + u(d * 0.18) if sellos_a == "izq" else ancla[2] - u(d * 0.18)
-        sello(im, x, ancla[1] + u(d * 0.62 + i * d * 1.16), cifra, casa, diam=d)
+    d = alto * 0.20
+    for i, nombre in enumerate(p.get("sellos", [])):
+        x = ancla[0] + u(d * 0.16) if sellos_a == "izq" else ancla[2] - u(d * 0.16)
+        sello(im, x, ancla[1] + u(d * 0.60 + i * d * 1.12), nombre, diam=d)
 
 
 def _tipografia_producto(p, cap, ancho_max):
@@ -305,10 +312,43 @@ def bloque_producto(im, cx, y_base, p, cap=30, ancho_max=600):
     return y_base - alto_precio - cap * 0.75 - alto_nombre
 
 
-def pie_legal(im, p, y, ancho_max=940):
-    ft = fuente("light", _cuerpo_para_ancho("light", p["legal"], u(ancho_max), 0.01))
-    texto_plano(im, (im.width / 2, u(y)), p["legal"], ft, (182, 174, 166), 0.01,
-                ancla="centro")
+def parte_en_dos(texto):
+    """Reparte el texto en dos líneas lo más parejas posible.
+
+    Se prueban todos los cortes y gana el que deja las dos líneas de ancho
+    parecido, penalizando que la segunda quede muy corta: una línea con dos
+    palabras sueltas debajo se lee como un error, no como una bajada.
+    """
+    palabras = texto.split()
+    if len(palabras) < 4:
+        return [texto]
+    mejor, puntaje = None, None
+    for i in range(1, len(palabras)):
+        a, b = " ".join(palabras[:i]), " ".join(palabras[i:])
+        desnivel = abs(len(a) - len(b))
+        viuda = max(0, 3 - len(b.split())) * 22      # castigo por cola corta
+        pt = desnivel + viuda
+        if puntaje is None or pt < puntaje:
+            mejor, puntaje = (a, b), pt
+    return list(mejor)
+
+
+def pie_legal(im, p, y, ancho_max=940, cap=12.5, interlinea=1.55):
+    """La letra chica, SIEMPRE en dos líneas.
+
+    En una sola línea el cuerpo se achica hasta ser ilegible en tamaño mail: es
+    texto legal y tiene que poder leerse.
+    """
+    lineas = parte_en_dos(p["legal"])
+    ft = fuente("light", _cuerpo_para_cap("light", u(cap)))
+    for linea in lineas:                             # que ninguna se pase de ancho
+        ft = min(ft, fuente("light", _cuerpo_para_ancho("light", linea, u(ancho_max), 0.01)),
+                 key=lambda f: f.size)
+    paso = ft.size / ESC * interlinea
+    y0 = y - (len(lineas) - 1) * paso                # crece hacia arriba
+    for i, linea in enumerate(lineas):
+        texto_plano(im, (im.width / 2, u(y0 + i * paso)), linea, ft, (188, 180, 172),
+                    0.01, ancla="centro")
 
 
 # ── CLI ─────────────────────────────────────────────────────────────────────

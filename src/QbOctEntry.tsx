@@ -15,6 +15,7 @@ import {QbSt01BancoChile} from "./compositions/qb/oct/QbSt01BancoChile";
 import {QbSt06Aycd} from "./compositions/qb/oct/QbSt06Aycd";
 import {QbSt08Cmr} from "./compositions/qb/oct/QbSt08Cmr";
 import {QbSt09Sunset} from "./compositions/qb/oct/QbSt09Sunset";
+import {QbSt09SunsetV2} from "./compositions/qb/oct/QbSt09SunsetV2";
 import {QbSt14Adivina} from "./compositions/qb/oct/QbSt14Adivina";
 import {QbSt15MejoresAmigos} from "./compositions/qb/oct/QbSt15MejoresAmigos";
 import {QbSt20AycdLlamada} from "./compositions/qb/oct/QbSt20AycdLlamada";
@@ -45,6 +46,8 @@ const Raiz: React.FC = () => (
     <Composition id="QB-OCT-ST06" component={QbSt06Aycd} durationInFrames={1} {...Q} />
     <Composition id="QB-OCT-ST08" component={QbSt08Cmr} durationInFrames={1} {...Q} />
     <Composition id="QB-OCT-ST09" component={QbSt09Sunset} durationInFrames={1} {...Q} />
+    {/* 30-09: ST Sunset v2 — foto de Magnific de Eli con un solo cóctel (alternativa a la r28) */}
+    <Composition id="QB-OCT-ST09-V2" component={QbSt09SunsetV2} durationInFrames={1} {...Q} />
     <Composition id="QB-OCT-ST14" component={QbSt14Adivina} durationInFrames={1} {...Q} />
     <Composition id="QB-OCT-ST15" component={QbSt15MejoresAmigos} durationInFrames={1} {...Q} />
     <Composition id="QB-OCT-ST20" component={QbSt20AycdLlamada} durationInFrames={1} {...Q} />

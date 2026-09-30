@@ -301,7 +301,8 @@ def html_d():
     # portada: la columna de la carta 63 → 71 mm (con dos precios los nombres se partían todos);
     # el panel del logo se corre 8 mm y queda centrado en su nuevo ancho
     for a, b in (('class="vl" style="left:85mm;top:0;height:300mm"', 'class="vl" style="left:93mm;top:0;height:300mm"'),
-                 ("left:12mm;width:63mm;top:14mm;height:274mm", "left:12mm;width:71mm;top:14mm;height:274mm"),
+                 ("left:12mm;width:63mm;top:14mm;height:274mm", "left:12mm;width:71mm;top:30mm;height:246mm"),
+                 # Eli 30-09: la portada parte al MISMO margen que las demás hojas (30 mm, alto 246)
                  ("left:85mm;right:0;top:30mm", "left:93mm;right:0;top:30mm"),
                  ("left:118.5mm;width:18mm;top:53.5mm", "left:122.5mm;width:18mm;top:53.5mm"),
                  ("left:95mm;right:10mm;top:100mm;height:24mm", "left:103mm;right:10mm;top:100mm;height:24mm"),

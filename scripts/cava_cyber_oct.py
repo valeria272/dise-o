@@ -231,7 +231,8 @@ def _ancla(xy, tam, ancla):
 ESCENAS = CAVA / "cyber-oct/escenas"
 
 
-def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5, zoom=1.0):
+def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5, zoom=1.0,
+                   alto_img=1.0):
     """El fondo YA trae la botella puesta sobre la plataforma del KV.
 
     Estos montajes se generaron con Magnific en el space de Coni, con su propio
@@ -252,14 +253,46 @@ def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5, zoom=1.
     # `zoom` pasa de «cubrir justo» a «cubrir con holgura». Sin holgura no hay
     # margen vertical que repartir y `vert` no puede mover nada: el montaje entra
     # exacto y queda clavado.
-    k = max(W / im.width, H / im.height) * zoom    # cubrir, nunca deformar
+    # `alto_img` deja que el montaje ocupe MENOS que la pieza. Cubrirla entera
+    # obliga a agrandarlo, y entonces la botella crece hasta meterse debajo del
+    # logo. Ocupando menos, la botella baja y se achica; el aire que queda
+    # arriba se rellena estirando la franja alta del propio montaje, que ahí es
+    # cortina lisa.
+    Hi = int(round(H * alto_img))
+    k = max(W / im.width, Hi / im.height) * zoom   # cubrir, nunca deformar
     im = im.resize((int(round(im.width * k)), int(round(im.height * k))), Image.LANCZOS)
     x0 = int(round(fin * im.width - borde * W))
     x0 = max(0, min(x0, im.width - W))             # sin salirse del montaje
     # `vert` corre el encuadre en vertical: por debajo de 0,5 se muestra más
     # parte alta del montaje y la botella baja dentro de la pieza.
-    y0 = int((im.height - H) * vert)
-    return im.crop((x0, y0, x0 + W, y0 + H)), k, x0
+    y0 = int(max(0, im.height - Hi) * vert)
+    recorte = im.crop((x0, y0, x0 + W, y0 + min(Hi, im.height - y0)))
+
+    if recorte.height >= H:
+        return recorte.crop((0, 0, W, H)), k, x0, 0
+    falta = H - recorte.height
+    lienzo = Image.new("RGB", (W, H))
+    # El relleno sale de ESPEJAR la franja alta del montaje, no de estirar una
+    # línea: estirada deja un canto horizontal visible donde empieza. La costura
+    # va fundida.
+    ceja = recorte.crop((0, 0, W, min(recorte.height, max(60, falta))))
+    ceja = ceja.transpose(Image.FLIP_TOP_BOTTOM)
+    if ceja.height < falta:
+        ceja = ceja.resize((W, falta), Image.LANCZOS)
+    else:
+        ceja = ceja.crop((0, ceja.height - falta, W, ceja.height))
+    lienzo.paste(ceja, (0, 0))
+    lienzo.paste(recorte, (0, falta))
+    fundido = min(160, falta)
+    if fundido > 4:
+        tira = lienzo.crop((0, falta - fundido, W, falta + fundido))
+        suave = tira.filter(ImageFilter.GaussianBlur(fundido / 3))
+        m = np.linspace(0, 1, tira.height) * np.linspace(1, 0, tira.height) * 4
+        lienzo.paste(Image.composite(suave, tira,
+                     Image.fromarray((np.clip(m, 0, 1)[:, None] * 255)
+                                     .astype(np.uint8).repeat(W, axis=1))),
+                     (0, falta - fundido))
+    return lienzo, k, x0, falta
 
 
 def fondo(escena, formato, alto_ud=None):

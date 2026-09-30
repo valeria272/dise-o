@@ -81,7 +81,8 @@ PIEZAS = [
                "No acumulable con otras promociones. Hasta agotar stock."),
     # Sin bajada: el brief dice «HOUSE OF MORANDÉ A $46.630», pero el nombre del
     # vino y su precio ya van más abajo en la pieza. Coni la quitó el 30-09.
-    dict(n=2, escena="vip", fin=0.80, tope=520, borde=0.889, vert=0.16, zoom=1.05,
+    dict(n=2, escena="vip", fin=0.80, tope=520, borde=0.889, vert=0.30, zoom=1.0,
+         alto_img=0.80,
          gancho="TU CUPÓN VIP SIGUE ACTIVO",
          titular="45% OFF", bajada=None, cupon="CYBERVIP",
          producto=["HOUSE OF MORANDÉ", "MEZCLAS TINTAS 2021"],
@@ -369,10 +370,11 @@ def vertical(p):
     # El fondo es el MONTAJE: la botella ya viene parada sobre la plataforma del
     # KV. Se recorta el sobrante por la derecha para que la botella se corra a
     # ese costado y el texto tenga el suyo.
-    base, k_img, x_img = escena_montada(p["n"], "mail", ALTO, fin=p["fin"],
+    base, k_img, x_img, y_img = escena_montada(p["n"], "mail", ALTO, fin=p["fin"],
                                     borde=p.get("borde", 0.955),
                                     vert=p.get("vert", 0.5),
-                                    zoom=p.get("zoom", 1.0))
+                                    zoom=p.get("zoom", 1.0),
+                                    alto_img=p.get("alto_img", 1.0))
     im = viñeta(base, 0.22)
     marco(im)
     advertencia(im)
@@ -433,7 +435,7 @@ def vertical(p):
         anc_img = k_img * 1536
         sello(im, px * anc_img - x_img,
               (py + i * p["sellos_paso"]) * k_img * 2752
-              - (k_img * 2752 - im.height) * p.get("vert", 0.5),
+              - max(0, k_img * 2752 - im.height) * p.get("vert", 0.5) + y_img,
               nombre, diam=p["sellos_diam"])
 
     pie_legal(im, p, y=y_legal + CAP_LEGAL * 1.55, ancho_max=940, cap=CAP_LEGAL)

@@ -46,6 +46,8 @@ import {BETWEEN} from '../../brand/hilton-between';
 import {
   Bajada,
   CajaDato,
+  CIFRAS_ALTAS,
+  conCifras,
   FotoFondo,
   LogoBetween,
   TitularBetween,
@@ -780,8 +782,9 @@ export const StOct20LoDicen: React.FC = () => (
         top: 1480,
         textAlign: 'center',
         fontFamily: SANS,
-        fontStyle: 'italic',
-        fontWeight: 500,
+        // ⭐ 30-09 (reglas nuevas, R-140 de Constanza): sin itálica suelta y el
+        // mismo peso que el texto de las tarjetas; sobre la madera, SemiBold.
+        fontWeight: 600,
         fontSize: 36,
         lineHeight: 1.3,
         color: C.beige,
@@ -834,6 +837,7 @@ export const StOct27Eventos: React.FC<{guia?: boolean}> = ({guia = false}) => (
       <TitularBetween
         caps={'¿Buscas un espacio\npara tu próximo evento?'}
         sizeCaps={72}
+        aireEntreCapsProp={0.1}
         tono="beige"
         alinear="centro"
         anchoDisponible={840}
@@ -856,6 +860,7 @@ export const StOct27Eventos: React.FC<{guia?: boolean}> = ({guia = false}) => (
    flecha de línea que señala el plato con su nombre. Acá la hora es la del
    brief, 08:00, y la flecha es la de la plancha de Eli.
    ══════════════════════════════════════════════════════════════════════════ */
+const BONJOUR_CAJA = 560;
 const ZONA_CARTA_BONJOUR: Zona = {ancho: 300, alto: 140, top: 1420, left: 690};
 
 export const StOct28Bonjour: React.FC<{guia?: boolean}> = ({guia = false}) => (
@@ -883,11 +888,12 @@ export const StOct28Bonjour: React.FC<{guia?: boolean}> = ({guia = false}) => (
       <TitularBetween
         caps={'Así parten\nlas buenas mañanas'}
         sizeCaps={74}
+        aireEntreCapsProp={0.1}
         tono="beige"
         alinear="centro"
         anchoDisponible={BETWEEN.bloque.columna}
       />
-      <Bajada size={40} style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: 'center', whiteSpace: 'pre-line', fontWeight: 500}}>
+      <Bajada size={40} style={{marginTop: BETWEEN.aire.tituloABajada, textAlign: 'center', whiteSpace: 'pre-line', fontWeight: 600}}>
         {'Desayuno Bonjour\npara comenzar el día'}
       </Bajada>
     </Columna>
@@ -904,8 +910,17 @@ export const StOct28Bonjour: React.FC<{guia?: boolean}> = ({guia = false}) => (
     </svg>
     <div style={{position: 'absolute', left: 0, right: 0, top: 1440, display: 'flex', justifyContent: 'center'}}>
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10}}>
-        <CajaDato size={40}>DESAYUNOS BETWEEN</CajaDato>
-        <CajaDato size={40}>08:00 A 11:30 HRS</CajaDato>
+        {/* ⭐ 30-09 (R-144): las dos cajas de la pila, del MISMO ancho.
+            Y el «11» sale de la caja tabular: dos «1» seguidos quedaban cada uno
+            centrado en su caja y se leía «1 1:30». Va proporcional con lnum. */}
+        <CajaDato size={40} style={{width: BONJOUR_CAJA}}>DESAYUNOS BETWEEN</CajaDato>
+        <CajaDato size={40} style={{width: BONJOUR_CAJA}}>
+          <span style={{display: 'inline-flex', alignItems: 'baseline', whiteSpace: 'pre'}}>
+            {conCifras('08:00 A ', BETWEEN.pesos.extrabold)}
+            <span style={{...CIFRAS_ALTAS}}>11</span>
+            {conCifras(':30 HRS', BETWEEN.pesos.extrabold)}
+          </span>
+        </CajaDato>
       </div>
     </div>
     {guia ? <ZonaReservada zona={ZONA_CARTA_BONJOUR} etiqueta={'STICKER\nLINK CARTA\n300 × 140'} /> : null}
@@ -1000,6 +1015,7 @@ export const FeedOct14Espacios: React.FC = () => (
       <TitularBetween
         caps={'Espacios que invitan\na quedarse'}
         sizeCaps={84}
+        aireEntreCapsProp={0.1}
         tono="beige"
         alinear="centro"
         anchoDisponible={BETWEEN.bloque.columna}
@@ -1013,7 +1029,8 @@ export const FeedOct14Espacios: React.FC = () => (
           padding: '14px 34px 16px',
         }}
       >
-        <Texto size={34} peso={600}>
+        {/* ⭐ 30-09 (R-118): la bajada del feed se tiene que leer → Bold 38 */}
+        <Texto size={38} peso={700}>
           {'Café, comodidad\ny buenos momentos en Between'}
         </Texto>
       </div>

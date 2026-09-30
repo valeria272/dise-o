@@ -94,7 +94,10 @@ PIEZAS = [
     # Dos vinos: maqueta centrada. El par va arriba y debajo se apila la oferta,
     # el nombre en dos líneas, el precio, el cupón y la alarma.
     dict(n=3, escena="vip", maqueta="centrada", tope=790,
-         bot=(0.60, 0.95, 0.31, 0.71), destino=(None, 700, 1520), extender=True,
+         # Montaje hecho por Coni en Magnific: 1536×3992, ya en la proporción de
+         # la pieza y con el par centrado y el fondo extendido de verdad. No
+         # hay que ensanchar nada.
+         bot=(0.31, 0.71, 0.245, 0.538), destino=(None, 700, 1560),
          oferta_una_linea=True, precio_x=1.30,
          gancho="ÚLTIMO DÍA VIP",
          titular="45% OFF", bajada=None, cupon="CYBERVIP",

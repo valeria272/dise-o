@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-30** · Cosechas: **36**
+> Última cosecha: **2026-09-30** · Cosechas: **37**
 
 ## 1. Quién es el cliente
 
@@ -412,6 +412,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 (cierre, `/abrir bw` + `/al-dia bw` de la noche) — Claude con Eli · sin aprendizajes nuevos
+- sin aprendizajes nuevos: la sesión fue sólo apertura. La grilla BW OCT está idéntica (md5) a la de la ronda 9; no se diseñó ni se corrigió ninguna pieza y no hubo comentarios nuevos de Eli, de Constanza ni del cliente. Único hallazgo: el doc «TEMAS NOVIEMBRE | HILTON | 24/09» con la propuesta de temas de BW para noviembre (todavía no es grilla).
 
 ### 2026-09-30 (cierre, BW octubre rondas 8–9: reglas nuevas desde la S3) — Claude con Eli · 4 reglas nuevas [BW], APROBADO salvo 1 vuelta
 - **Qué pasó:** Eli pidió aplicar las reglas nuevas SÓLO de S3 en adelante (S1–S2 en revisión, intocables) y ordenar Drive por la semana de la grilla. Se corrigieron 4 piezas (Bonjour, Evento, Lo dicen ustedes, Espacios) y se movieron el reel 12-10 y el FEED 14-10 de S4 a S3. Eli: «lo demás lo veo bien»; el 14-10 pidió titular un poco menos junto y otro corte de bajada.

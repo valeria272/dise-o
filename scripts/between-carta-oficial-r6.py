@@ -39,6 +39,86 @@ BEIGE, CAFE, CLARO75 = r4.BEIGE, r4.CAFE, r4.CLARO75
 # aclarado sobre beige (75 % café + 25 % beige), con el mismo peso visual
 CAFE75 = "#8D8272"
 
+# ═══ ORTOGRAFÍA Y MAYÚSCULAS (Eli 30-09, para toda la carta) ═══
+# El contenido y los precios se cotejaron contra el Word del cliente (1gAZNJkaw5SKAHEmLo1yIctD-MNCE1p6v):
+# coinciden. Acá va lo que el Word trae mal escrito: un párrafo parte con mayúscula y lo demás va en
+# minúscula salvo nombres propios (César, Calafate, Cáhuil); después de dos puntos, minúscula;
+# variedades de uva y de licor en minúscula; «g» es el símbolo de gramo.
+TEXTO = [
+    ("Croissant blanco / Integral / Molde blanco / Molde Integral / Marraqueta",
+     "Croissant blanco / integral / molde blanco / molde integral / marraqueta"),
+    ("Opciones de pan: Marraqueta / Pan de campo / Tostadas blancas / Tostadas integrales.",
+     "Opciones de pan: marraqueta / pan de campo / tostadas blancas / tostadas integrales."),
+    ("Huevos fritos, tocino, Hotcake con mantequilla y syrup.", "Huevos fritos, tocino, hotcake con mantequilla y syrup."),
+    ("Sabores disponibles: Pistacho,", "Sabores disponibles: pistacho,"),
+    ("Acompañamiento a elección entre: Papas fritas,", "Acompañamiento a elección entre: papas fritas,"),
+    ("(Agregados no incluidos en la pasta del día).", "(agregados no incluidos en la pasta del día)."),
+    ("Poroto verde, tomate, y ají verde.", "Poroto verde, tomate y ají verde."),
+    ("Crema o sopa del día a elección del Chef.", "Crema o sopa del día a elección del chef."),
+    ("5 und rellena de carne,", "5 und rellenas de carne,"),
+    ("5 und rellena de queso", "5 und rellenas de queso"),
+    ("Carmenere, Cabernet Sauvignon, Chardonnay, Sauvignon Blanc.", "Carmenere, cabernet sauvignon, chardonnay, sauvignon blanc."),
+    ("Tradicional, Menta, Menta Jengibre o Berries.", "Tradicional, menta, menta jengibre o berries."),
+    ("Carmenere, Oporto, Gin, naranja y Syrup especiado.", "Carmenere, oporto, gin, naranja y syrup especiado."),
+    # nombres de plato (se ven en caja alta, pero el editable los guarda escritos normal)
+    ("Galletitas 100gr", "Galletitas 100 g"), ("Hamburguesa casera 100grs", "Hamburguesa casera 100 g"),
+    ("Afogatto", "Affogato"), ("Hamburguesa Italiana", "Hamburguesa italiana"),
+    ("Té e Infusiones", "Té e infusiones"), ("Kuchen o Pie", "Kuchen o pie"), ("Kuchen / Pie", "Kuchen / pie"),
+    ("Latte Bombón", "Latte bombón"), ("MilkShake", "Milkshake"),
+]
+
+
+def _corregir_texto():
+    usado = set()
+    def f(t):
+        for a, b in TEXTO:
+            if a in t:
+                usado.add(a)
+                t = t.replace(a, b)
+        return t
+    for sec in r4.SEC.values():
+        sec["notas"] = [f(n) for n in sec["notas"]]
+        sec["items"] = [it if it == r4.CORTE else (f(it[0]), f(it[1]), it[2]) for it in sec["items"]]
+    falta = [a for a, _ in TEXTO if a not in usado]
+    if falta:
+        sys.exit(f"x R6: corrección que no encontró su texto: {falta}")
+
+
+_corregir_texto()
+
+
+def _precios(pr, n, unico, _orig=r4.precios):
+    """En una sección con columnas, el precio único va en SU columna (Cheeseburger → Filete),
+    no suelto al borde: así rótulo y precio quedan uno sobre otro."""
+    if n > 1 and len(pr) == 1 and unico != "primera":
+        pr = [""] * (n - 1) + pr
+        return '<span class="pp">' + "".join(f"<span>{c}</span>" for c in pr) + "</span>"
+    return _orig(pr, n, unico)
+
+
+r4.precios = _precios
+
+
+def _items(sec):
+    """Como `r4.items`, pero lo que viene DESPUÉS de un filete (Tostadas, Cheeseburger, Empanadas)
+    ya no es parte de las columnas: su precio único va a la derecha como cualquier plato, en vez de
+    quedar bajo «Molde», «Filete» o «Mini» sin serlo."""
+    n = len(sec["cols"]) or 1
+    h, tras = [], False
+    for it in sec["items"]:
+        if it == r4.CORTE:
+            h.append('<div class="it corte"></div>')
+            tras = True
+            continue
+        nom, d, pr = it
+        dd = f'<div class="d">{d}</div>' if d else ""
+        pp = (f'<span class="p">{pr[0]}</span>' if tras and len(pr) == 1 else _precios(pr, n, sec["unico"]))
+        h.append(f'<div class="it{" cd" if d else ""}"><div class="f"><span class="n">{nom}</span>{pp}</div>{dd}</div>')
+    return "".join(h)
+
+
+r4.items = _items
+
 # Lo que corrige la tipografía, medido en la hoja ya paginada
 TIPO = r"""<script>
 const MM=96/25.4, NB=' ';
@@ -47,8 +127,41 @@ function reservarPrecios(){
   const tpl=document.getElementById('fuente').content, caja=document.querySelector('.caja');
   for(const s of tpl.querySelectorAll('.sc')){
     const c=s.cloneNode(true); c.style.visibility='hidden'; caja.append(c);
-    let w=0; c.querySelectorAll('.it .f').forEach(f=>{const p=f.querySelector('.pp,.p'); if(p)w=Math.max(w,p.getBoundingClientRect().width)});
-    c.remove(); s.style.setProperty('--pr',(w+4*MM)+'px');
+    // columnas de precio (Simple/Doble, Pollo/Veggie/Filete, Normal/Mini…): cada columna mide lo
+    // que su rótulo o su precio más ancho, y rótulo y precios parten del MISMO borde izquierdo
+    const cab=c.querySelector('.cabcol');
+    if(cab){const n=cab.children.length, ws=Array(n).fill(0);
+      c.querySelectorAll('.cabcol,.it .pp').forEach(r=>[...r.children].forEach((e,i)=>{if(i<n)ws[i]=Math.max(ws[i],e.getBoundingClientRect().width)}));
+      // si rótulos anchos («POLLO / VEGGIE») no dejan caber la fila, el rótulo va en dos líneas y la
+      // columna mide lo que su precio o la palabra más larga del rótulo
+      // nombre COMPLETO más largo de las filas con columnas: si con él no cabe la fila, el rótulo va en dos
+      const sp=document.createElement('span'); sp.style.cssText='white-space:nowrap';
+      const nm=Math.max(0,...[...c.querySelectorAll('.it')].filter(it=>it.querySelector('.f .pp')).map(it=>{const e=it.querySelector('.n');
+        sp.textContent=e.textContent; e.parentElement.append(sp); const w=sp.getBoundingClientRect().width; sp.remove(); return w}));
+      const minC=Math.min(...[...document.querySelectorAll('.caja')].map(k=>k.getBoundingClientRect().width));
+      const disp=c.querySelector('.items').getBoundingClientRect().width-(caja.getBoundingClientRect().width-minC)-nm-4*MM-(n-1)*3*MM;
+      if(ws.reduce((a,b)=>a+b,0)>disp){
+        ws.fill(0);
+        c.querySelectorAll('.it .pp').forEach(r=>[...r.children].forEach((e,i)=>{if(i<n)ws[i]=Math.max(ws[i],e.getBoundingClientRect().width)}));
+        [...cab.children].forEach((e,i)=>{const sp=document.createElement('span');sp.style.cssText='white-space:nowrap';
+          e.textContent.split(/\s+/).forEach(t=>{sp.textContent=t;e.append(sp);ws[i]=Math.max(ws[i],sp.getBoundingClientRect().width);sp.remove()})});
+        s.querySelector('.cabcol').classList.add('dos');c.querySelector('.cabcol').classList.add('dos');
+      }
+      ws.forEach((w,i)=>{s.style.setProperty('--c'+i,Math.ceil(w+1)+'px');c.style.setProperty('--c'+i,Math.ceil(w+1)+'px')});
+      s.classList.add('pcol');c.classList.add('pcol');}
+    // rótulo de sección en caja (D): una sola línea si cabe cerrando el espaciado; si no, dos
+    const rt=c.querySelector('.rect');
+    if(rt){for(const ls of ['.06em','.04em','.02em']){rt.style.letterSpacing=ls; if(rt.scrollWidth<=rt.clientWidth+.5)break}
+      const o=s.querySelector('.rect');
+      if(rt.scrollWidth>rt.clientWidth+.5){o.classList.add('partido')}else o.style.letterSpacing=rt.style.letterSpacing}
+    // la descripción deja libre el ancho de los precios de SU grupo (los platos entre dos filetes):
+    // mismo borde derecho para todo el grupo, y el grupo de precio único no reserva dos columnas
+    const its=[...c.querySelectorAll('.items > .it')], orig=[...s.querySelectorAll('.items > .it')];
+    let g=[];
+    const cerrarG=()=>{const w=Math.max(0,...g.map(k=>{const p=its[k].querySelector('.f .pp,.f .p');return p?p.getBoundingClientRect().width:0}));
+      g.forEach(k=>orig[k].style.setProperty('--pr',(w+4*MM)+'px')); g=[]};
+    its.forEach((it,k)=>{if(it.classList.contains('corte'))cerrarG(); else g.push(k)}); cerrarG();
+    c.remove();
   }
   // palabras de una letra: nunca al final de línea (van pegadas a la siguiente)
   const w=document.createTreeWalker(tpl,NodeFilter.SHOW_TEXT); let n;
@@ -87,6 +200,15 @@ function corregir(el){
     if(!hecho)return;
   }
 }
+// una hoja de dos columnas con la derecha vacía (la sección siguiente no cabía y, por regla,
+// no se parte entre hojas): la última sección de la izquierda pasa a la derecha
+function equilibrar(){
+  document.querySelectorAll('.hoja').forEach(h=>{const cj=[...h.querySelectorAll('.caja')];
+    if(cj.length!==2||cj[1].querySelector('.sc'))return;
+    const secs=[...cj[0].children].filter(e=>e.classList.contains('sc'));
+    if(secs.length<2)return; const u=secs[secs.length-1]; if(u.classList.contains('cont'))return;
+    cj[1].append(u); if(cj[1].scrollHeight>cj[1].clientHeight+.5)cj[0].append(u)});
+}
 function revisar(){
   const hoja=document.querySelectorAll('.hoja'), avisos=[];
   // el NOMBRE del plato no entra: «ENSALADA / BETWEEN» tiene que poder partirse
@@ -108,10 +230,17 @@ function revisar(){
         const m=Math.min(b.left-R.left,R.right-b.right,b.top-R.top,R.bottom-b.bottom)/MM;
         if(m<10){avisos.push('hoja '+(k+1)+' a '+m.toFixed(1)+' mm del corte: '+n.textContent.trim().slice(0,25));break}}}
     h.classList.remove('ver')});
+  if(document.body.dataset.partidas)avisos.push('sección que cambia de hoja: '+document.body.dataset.partidas);
   document.body.dataset.avisos=avisos.join(' | ')||'ok';
 }
 </script>"""
 CSS6 = (".it .d{max-width:none!important;padding-right:var(--pr,0)!important}"
+        ".pcol .pp,.pcol .cabcol{gap:3mm!important;justify-content:flex-end}"
+        ".pcol .pp span,.pcol .cabcol span{min-width:0!important;text-align:left!important;flex:none}"
+        ".cabcol.dos{align-items:flex-end}.cabcol.dos span{white-space:normal;line-height:1.25}"
+        ".it .f .pp,.it .f .p{flex:none}.it .f .n{min-width:0}"
+        + "".join(f".pcol .pp span:nth-child({i+1}),.pcol .cabcol span:nth-child({i+1}){{width:var(--c{i})!important}}" for i in range(4))
+        +
         ".it .f{gap:4mm!important}")
 
 
@@ -120,7 +249,27 @@ def tras_paginar(h):
     a = "document.fonts.ready.then(paginar);"
     if a not in h:
         sys.exit("x R6: no encontré el arranque del paginador")
-    h = h.replace(a, "document.fonts.ready.then(()=>{reservarPrecios();paginar();revisar();"
+    # Eli 30-09 («última ley»): una sección NO pasa a otra hoja. Puede seguir en la otra columna de
+    # la MISMA hoja; si no alcanza, la sección entera parte en la hoja siguiente (salvo que ya
+    # empiece arriba de una hoja vacía y ni así quepa: ahí no hay otra salida y el control lo avisa)
+    for x, y in (("let i=0, primero=true;", "let i=0, primero=true; let piezas=[];"),
+                 ("   let puestos=0;", "   piezas.push([bi,c]); let puestos=0;"),
+                 ("    primero=false;cerrar();bi++;",
+                  "    const hA=caja.closest('.hoja'), sig=cajas[bi+1];\n"
+                  "    if(sig&&sig.closest('.hoja')!==hA){\n"
+                  "     const b0=piezas[0][0], mia=new Set(piezas.map(q=>q[1]));\n"
+                  "     const antes=[...hA.querySelectorAll('.caja .sc')].some(e=>!mia.has(e));\n"
+                  "     if(antes){piezas.forEach(q=>q[1].remove());piezas=[];i=0;primero=true;\n"
+                  "       while(bi<cajas.length&&cajas[bi].closest('.hoja')===hA){cerrar();bi++}continue}\n"
+                  "     partidas.push(s.dataset.t)}\n"
+                  "    primero=false;cerrar();bi++;"),
+                 ("let bi=0; const sobra=[];", "let bi=0; const sobra=[]; const partidas=[];"),
+                 ("document.body.dataset.sobra=sobra.join('|')||'ok';",
+                  "document.body.dataset.sobra=sobra.join('|')||'ok'; document.body.dataset.partidas=partidas.join('|');")):
+        if x not in h:
+            sys.exit(f"x R6: el paginador cambió, no encontré «{x[:40]}»")
+        h = h.replace(x, y, 1)
+    h = h.replace(a, "document.fonts.ready.then(()=>{reservarPrecios();paginar();equilibrar();revisar();"
                      "const p=new URLSearchParams(location.search).get('p');"
                      "if(p){const hs=[...document.querySelectorAll('.hoja')];hs.forEach(x=>x.classList.remove('ver'));"
                      "hs[p-1]&&hs[p-1].classList.add('ver')}});")
@@ -142,7 +291,31 @@ def html_b():
 def html_d():
     """D: columnas de 67 mm con dos precios → la columna de precio se compacta (15,5 → 14 mm, lo
     justo para «$12.500»), así la descripción que deja libre el precio no queda en 30 mm."""
-    return r5.html_r5("D").replace("</style>", ".it .pp span,.cabcol span{min-width:14mm!important}</style>", 1)
+    h = r5.html_r5("D").replace("Tentaciones de<br>nuestra vitrina", "Tentaciones de nuestra vitrina")
+    # portada: la columna de la carta 63 → 71 mm (con dos precios los nombres se partían todos);
+    # el panel del logo se corre 8 mm y queda centrado en su nuevo ancho
+    for a, b in (('class="vl" style="left:85mm;top:0;height:300mm"', 'class="vl" style="left:93mm;top:0;height:300mm"'),
+                 ("left:12mm;width:63mm;top:14mm;height:274mm", "left:12mm;width:71mm;top:14mm;height:274mm"),
+                 ("left:85mm;right:0;top:30mm", "left:93mm;right:0;top:30mm"),
+                 ("left:118.5mm;width:18mm;top:53.5mm", "left:122.5mm;width:18mm;top:53.5mm"),
+                 ("left:95mm;right:10mm;top:100mm;height:24mm", "left:103mm;right:10mm;top:100mm;height:24mm"),
+                 ("left:85mm;right:0;top:134mm", "left:93mm;right:0;top:134mm"),
+                 ("left:85mm;right:0;top:188mm", "left:93mm;right:0;top:188mm")):
+        if a not in h:
+            sys.exit(f"x R6 D: no encontré «{a}» en la portada")
+        h = h.replace(a, b, 1)
+    # en el panel más angosto «SÁBADOS, DOMINGOS Y FESTIVOS» quedaba a 9,8 mm del corte: espaciado .14 → .1em
+    a = "top:134mm;text-align:center;font-size:8pt;letter-spacing:.14em"
+    if a not in h:
+        sys.exit("x R6 D: no encontré el horario de la portada")
+    h = h.replace(a, a.replace(".14em", ".1em"), 1)
+    # Eli 30-09: rótulos de distinto tamaño lado a lado «se ven muy extraño» → TODOS a lo ancho de la
+    # columna, mismo cuerpo (11 pt ExtraBold) y mismo alto; en una línea cerrando el espaciado si
+    # hace falta, y sólo el que no cabe ni así va en dos
+    return h.replace("</style>", ".rect,.rect.largo,.rect.dos{display:block!important;width:100%!important;"
+                     "font-size:11pt!important;letter-spacing:.06em!important;white-space:nowrap!important;"
+                     "padding:2.4mm 2mm 2.2mm!important;text-align:center}"
+                     ".rect.partido{white-space:normal!important;text-wrap:balance}</style>", 1)
 
 
 OPCIONES = {"A": lambda: r5.html_r5("A"), "B": html_b, "D": html_d}

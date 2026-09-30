@@ -31,7 +31,11 @@ ed4 = importlib.util.module_from_spec(_s)
 _s.loader.exec_module(ed4)
 
 RAIZ = ed4.RAIZ
-R5 = RAIZ / "out/hilton/between/carta-oficial/r5"
+# R6 (30-09): misma receta sobre la R6 → CARTA_RONDA=r6. Allí la descripción viaja con los saltos
+# decididos en Chrome (huérfanas, «y» al final) como saltos de línea forzados: el .ai no los recompone
+import os
+RONDA = os.environ.get("CARTA_RONDA", "r5")
+R5 = RAIZ / "out/hilton/between/carta-oficial" / RONDA
 ED = R5 / "editable"
 W, H = ed4.W, ed4.H
 
@@ -113,9 +117,13 @@ function bloques(){
         const cp=ps.length?corridas(ps[0]):[];
         paras.push({rol:'plato',tabs,texto,corr:cn.concat(cp),alinea:'left',tras_corte});
         const d=k.querySelector('.d');
-        if(d){const cd=corridas(d);
-          paras.push({rol:'desc',texto:d.textContent.trim().replace(/\s+/g,' '),corr:cd,alinea:'left',
-                      sangria_der:c.w-d.getBoundingClientRect().width})}
+        if(d){const cd=corridas(d), L=[];
+          cd.forEach(q=>q.lin.forEach(l=>{const x=L.find(x=>Math.abs(x.b-l.base)<1); if(x)x.t+=' '+l.t; else L.push({b:l.base,t:l.t})}));
+          const fijo=__FIJAR__;
+          const texto=fijo?L.map(x=>x.t.trim()).join(''):d.textContent.trim().replace(/\s+/g,' ');
+          // ancho del texto sin la reserva del precio (padding-right); con saltos fijos, 2 px de holgura
+          const wd=d.getBoundingClientRect().width-parseFloat(getComputedStyle(d).paddingRight)+(fijo?2:0);
+          paras.push({rol:'desc',texto,corr:cd,alinea:'left',sangria_der:c.w-wd})}
       }
       marcos.push({tipo:'area',rol:'items',nombre:(secc||'Platos')+(cols.length>1?' · col '+(ci+1):''),
         x:c.x,y:c.hijos[0].getBoundingClientRect().top,w:c.w,
@@ -333,13 +341,14 @@ def main():
     info = json.loads((R5 / "paginas.json").read_text(encoding="utf-8"))
     for d in ("svg", "datos", "_tmp"):
         (ED / d).mkdir(parents=True, exist_ok=True)
-    for op in [a for a in sys.argv[1:] if not a.startswith("-")] or list("ABCD"):
-        n0 = f"BW-CARTA-OFICIAL-R5-OP{op}"
+    for op in [a for a in sys.argv[1:] if not a.startswith("-")] or list(info):
+        n0 = f"BW-CARTA-OFICIAL-{RONDA.upper()}-OP{op}"
         src = (R5 / "html" / f"{n0}.html").read_text(encoding="utf-8")
         g_html = ED / "_tmp" / f"{n0}-grafica.html"
         g_html.write_text(src.replace("</body>", ed4.EXTRACTOR + "</body>"), encoding="utf-8")
+        bloques = BLOQUES.replace("__FIJAR__", "true" if RONDA != "r5" else "false")
         t_html = ED / "_tmp" / f"{n0}-texto.html"
-        t_html.write_text(src.replace("</body>", BLOQUES + "</body>"), encoding="utf-8")
+        t_html.write_text(src.replace("</body>", bloques + "</body>"), encoding="utf-8")
         hojas = []
         for p in range(1, info[op]["paginas"] + 1):
             n = f"BW-CARTA-BETWEEN-OPCION-{op}-HOJA-{p}"
@@ -349,7 +358,7 @@ def main():
             svg, _, _, ni = ed4.svg_hoja(g, None)    # el papel entra en Illustrator como TIFF CMYK
             (ED / "svg" / f"{n}.svg").write_text(svg, encoding="utf-8")
             faltan = set()
-            marcos = normalizar(medir(t_html, p, BLOQUES, "BLOQUES"), faltan)
+            marcos = normalizar(medir(t_html, p, bloques, "BLOQUES"), faltan)
             hojas.append({"n": p, "nombre": nombre_hoja(p, marcos), "svg": f"{n}.svg", "fondo": fondo,
                           "papel": g["papel"], "marcos": marcos})
             npar = sum(len(m["paras"]) for m in marcos)

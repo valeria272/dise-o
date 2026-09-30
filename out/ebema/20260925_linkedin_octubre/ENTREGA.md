@@ -26,6 +26,30 @@ Drive: `MATERIAL DISEÑO PAULINA / EBEMA / 4-entregado / 2026-10 linkedin octubr
   `npx remotion render EbemaLinkedinReelTalca <salida>.mp4 --codec=h264 --crf=16`.
   ⚠️ Cierra el reproductor antes: en Windows el render falla si el mp4 está abierto.
 
+## 15/10 — el post pasa a CARRUSEL (Paulina, 30-09: «este post es carrusel. realizar las demas slides.»)
+
+Brief: grilla, diapositiva `id.g37d1a4a2dbc_0_172` — «CARRUSEL LINKEDIN — Crecimiento del sector,
+presencia regional de Ebema». Textos **literales**; sólo se decidieron los cortes de línea y los resaltados.
+
+| Lámina | Texto | Fondo |
+|---|---|---|
+| `ebema_lk_c_crecimiento1` | el post aprobado, **byte a byte** (mismo fileId `1EcwP17r…`, sólo renombrado) | foto real de Antofagasta |
+| `ebema_lk_c_crecimiento2` | T2 «Más proyectos en todo el país significan más necesidad de materiales, en más lugares a la vez.» | obra de un tercero, Seedream 5 Pro (`linkedin_fotos.py crecimiento2`), sin letreros ni logos |
+| `ebema_lk_c_crecimiento3` | T3 «Ahí es donde pesa contar con un proveedor presente en múltiples regiones, no solo en un punto del país.» | **satélite real** NASA Blue Marble + las 11 sucursales del manual (`linkedin_mapa_sucursales.py`) |
+| `ebema_lk_c_crecimiento4` | T4 «Ebema, cerca de donde el sector está creciendo.» | cierre congelado (ventas4) sobre la bodega real de Talca desenfocada (r1) |
+
+⚠️ **Se apartó del brief en un punto, y hay que confirmarlo:** el brief pide para la L2 un «mapa de Chile
+con obras activas» y para la L3 «sucursales a lo largo de Chile». Dos mapas seguidos repetían la lámina,
+así que la L2 va con foto de obra y el mapa queda para la L3 y el cierre. Si Paulina quiere el mapa también
+en la L2, se arma con el mismo satélite.
+⚠️ En el mapa, Quilicura y San Bernardo están a 20 px a escala país: se abrieron ±30 px en horizontal
+(≈ 0,4° de longitud, los dos dentro de la cuenca de Santiago) para que se lean como dos pines.
+
+**Ronda 1 (Paulina, 30-09):** ver bitácora; `subir_crecimiento_r1.py`, versiones previas en `_crecimiento_r1_antes/`.
+
+Drive (`4-entregado / 2026-10 linkedin octubre / c_crecimiento`): crecimiento2 `1SlrT_48…`, crecimiento3 `1pAUwbIj…`,
+crecimiento4 `1mqfotXo…`; md5 verificado. Script: `subir_crecimiento.py`. Comentario del post resuelto.
+
 ## Ronda 1 (Paulina, 25-09) — 17 comentarios, todos aplicados y resueltos en Drive
 
 Lista completa en `comentarios-r1.json`; respuestas con `resolver_r1.py`. Reglas que

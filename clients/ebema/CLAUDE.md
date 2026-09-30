@@ -800,6 +800,16 @@ Paulina, antes de empezar la sección LinkedIn (todavía no se genera nada):
   reflectante es de bodega y patio.
 - **Iluminación y enfoque comercial**: una foto real plana o con sombras duras se cambia.
 
+### ⭐ LinkedIn — un mapa de Chile se arma con satélite REAL, no con IA — 30-09-2026
+
+- La IA cambia la geografía (Seedream movió la costa en click3, `descartados/click3_mapa_seedream_cambia_geografia.jpg`).
+  El mapa de las 11 sucursales del carrusel 15/10 sale de **NASA Blue Marble** (dominio público, vía GIBS)
+  con la máscara tierra/agua **OSM_Land_Mask** de la misma fuente, y sólo se gradúa por código:
+  `sistema-grilla/ejemplos/octubre-2026/linkedin_mapa_sucursales.py` (pines en coordenada real).
+- ⛔ El mar no se detecta por color: el bosque valdiviano y el Atlántico son igual de oscuros que el océano.
+- ⛔ Un prompt de escena que NO es sucursal no lleva el texto común «sucursal de EBEMA»: con él, Seedream
+  levanta un edificio con logo EBEMA inventado (v1 de `crecimiento2`).
+
 ### ⭐ LinkedIn — reel de SALUDO DE SUCURSAL, medido — 25-09-2026
 
 Referencia que manda: `reel_calera_sept.mp4` (Drive `2-referencias/linkedin/reel`),

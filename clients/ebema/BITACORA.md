@@ -3,6 +3,46 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-30 (tarde) — Paulina Bustamante · LinkedIn 15/10 pasa a carrusel + sanjuan4
+
+**Qué se hizo:**
+1. **LinkedIn 15/10 → carrusel de 4** (`ebema_lk_c_crecimiento1–4`), familia de `linkedin_carruseles.py`.
+   L1 = el post aprobado byte a byte (mismo fileId, renombrado). L2 foto de obra (Seedream), L3 **mapa
+   satelital real** (NASA Blue Marble, dominio público) con las 11 sucursales, L4 el cierre congelado sobre
+   el mapa desenfocado. Textos literales de la grilla. Subido a `2026-10 linkedin octubre` con md5 y el
+   comentario «este post es carrusel» resuelto.
+2. **sanjuan4** (comentario de Paulina): «IDEAL PARA» arriba y «ESTANQUES, POZOS Y FOSAS» en la caja. Caja
+   436 → 760 para conservar el cuerpo (136 px de alto, igual que la L2); la bajada no se movió. Re-subida
+   sobre el mismo fileId y resuelta (`subir_r3d.py`, antes en `_ronda3d_antes/`).
+
+**Ojo:** la v1 del fondo de la L2 inventó un edificio con logo EBEMA porque el `COMUN` de `linkedin_fotos.py`
+dice «sucursal de EBEMA». Las escenas que no son sucursal ahora usan `SIN_SUCURSAL`. Descarte en `fondos/descartados/`.
+
+**Ronda 1 de Paulina (mismo día):** carrusel a su carpeta `c_crecimiento` (`1ZDyryblB-oaB5wJhuCxk1cDkueT853hA`)
+dentro de `2026-10 linkedin octubre`, como los otros. crecimiento2: foto nueva con la obra llenando el cuadro
+(«sin exagerar el espacio, que no se vea vacío») y sólo la 3.ª línea en caja, la 1.ª en Bold. crecimiento3:
+mapa +22 % (108,3 px/°), pines al 80 % y el racimo La Calera–Rancagua abierto. crecimiento4: fondo = bodega
+REAL de Talca (IMG_6976) desenfocada — el patio de la L1 dejaba el letrero rojo junto a la frase. **sanjuan3**:
+caja 935 → 780, del ancho exacto de «CEMENTO ESPECIAL SAN JUAN,». Todo sobre el mismo fileId, md5 y 5
+comentarios resueltos (`subir_crecimiento_r1.py`).
+**Ronda 2 (crecimiento2):** «la escena se ve muy sucia y desordenada… minimalista, realista pero limpio y
+profesional; la zona oscura sólo detrás del texto». Foto v5 minimalista (nave en montaje sobre radier limpio),
+velo nuevo `solo_texto` (se apaga al 36 %) y `zoom=1.12` anclado abajo para no dejar cielo vacío. `subir_crecimiento_r2.py`.
+
+**Dónde quedó:** todo entregado y en Drive, sin comentarios abiertos. Scripts: `linkedin_carruseles.py`
+(carrusel `crecimiento`, velo `solo_texto`, `zoom`, `pin_escala`), `linkedin_fotos.py` (`crecimiento2` v5 +
+`SIN_SUCURSAL`), `linkedin_mapa_sucursales.py` (nuevo), `carrusel_sanjuan.py` (cajas 780 / 760). Fondos en
+`public/assets/ebema/linkedin-oct26/carruseles/fondos/` (descartes v1–v4 en `descartados/`). Subidas:
+`out/ebema/20260925_linkedin_octubre/{subir_crecimiento,carpeta_crecimiento,subir_crecimiento_r1,subir_crecimiento_r2}.py`
+y `out/ebema/20260923_grilla_octubre/subir_r3d.py`.
+
+**Qué sigue:** esperar la vuelta de Paulina/cliente sobre el carrusel 15/10. Noviembre y LinkedIn 26/10 no se
+toman hasta que avisen Carlos y Scar.
+
+**Abierto:** la L2 sigue con foto de obra en vez del «mapa con obras activas» del brief; Paulina no lo objetó
+en 2 rondas. sanjuan3: su bajada quedó 17 px más arriba que la de L2/L4 (se priorizó la distancia
+título→bajada de la 3c) → confirmar con Paulina.
+
 ## 2026-09-30 — Paulina Bustamante
 
 **Qué se hizo:** Ronda de **contenido** sobre la grilla de octubre. Los comentarios llegaron en la

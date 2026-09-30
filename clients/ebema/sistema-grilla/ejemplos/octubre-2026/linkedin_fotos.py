@@ -94,7 +94,32 @@ FOTOS = {
         "Vista amplia de una obra de infraestructura productiva en Chile, una nave industrial en "
         "construcción con estructura metálica y grúa, cordillera al fondo, cielo despejado. "
         "Composición: la obra ocupa la mitad inferior; el tercio superior es cielo parejo."),
+    # ── 15/10 · el post pasa a CARRUSEL (Paulina, 30-09) — L2 «más proyectos en todo el país»
+    # No es una sucursal: es una obra de un tercero, así que no entra foto de EBEMA como ref
+    # (con antofa-1 de ref, la v1 del post levantó una nave DENTRO del patio de EBEMA → X-17).
+    # r1 30-09, Paulina: «cambiar imagen por una que deje el espacio necesario para el texto sin
+    # exagerar y que se vea "vacío"» (v2: 55 % de cielo liso).
+    # r2 30-09: «LA ESCENA SE VE MUY SUCIA Y DESORDENADA. Hazlo minimalista, realista pero limpio y
+    # profesional» (v3: fierro tirado, pallets revueltos, tierra suelta). v4: pocos elementos y orden.
+    "crecimiento2": ([],
+        "Obra de infraestructura productiva en la zona central de Chile, fotografía de arquitectura "
+        "minimalista, limpia y profesional: la estructura de acero de una nave industrial en montaje, "
+        "con marcos repetidos y ordenados en perspectiva, sobre un radier de hormigón nuevo, liso y "
+        "despejado. Una grúa torre a un costado. Dos trabajadores con casco blanco y chaleco "
+        "reflectante, de espaldas, pequeños en el cuadro. Muy pocos materiales: un par de paquetes "
+        "de vigas perfectamente apilados y alineados. Sin basura, sin escombros, sin fierro tirado, "
+        "sin tierra suelta. Cordillera de los Andes suave al fondo, luz de mañana cálida y pareja. "
+        "Cámara baja. Composición: la estructura sube hasta el 30 % del alto del cuadro y ocupa el "
+        "ancho; sólo la franja del 28 % superior es cielo azul limpio y parejo, sin nubes ni cables."),
 }
+
+# Las escenas que NO son una sucursal no llevan COMUN: su «Fotografía realista de una sucursal
+# de EBEMA» hizo que la v1 de crecimiento2 levantara un edificio con un logo EBEMA inventado.
+SIN_SUCURSAL = {"crecimiento2": (
+    "Fotografía publicitaria realista 4:5, color natural y limpio. Las personas de espaldas, "
+    "sin rostro visible. Una sola fotografía continua, sin collage. No aparece ningún edificio "
+    "comercial, oficina, tienda ni bodega terminada; no hay ningún letrero, logo, marca ni texto "
+    "en ninguna parte de la imagen. Sin marcas de agua.")}
 
 
 def jpg(ruta):
@@ -119,7 +144,9 @@ def una(clave):
     out = os.path.join(OUT, f"{clave}.jpg")
     if os.path.exists(out):
         return f"= {clave} (ya existe)"
-    cmd = [PY, MAG, "seedream", escena + " " + COMUN, "--aspecto", "carrusel", "--out", out, "--refs", *refs]
+    cmd = [PY, MAG, "seedream", escena + " " + SIN_SUCURSAL.get(clave, COMUN), "--aspecto", "carrusel", "--out", out]
+    if refs:
+        cmd += ["--refs", *refs]
     r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
     return f"{'✓' if os.path.exists(out) else '✗'} {clave}\n{r.stdout[-400:]}{r.stderr[-400:]}"
 

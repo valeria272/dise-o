@@ -57,7 +57,11 @@ CARRUSEL = {
         # L3 · brief: «Cemento Especial San Juan, formulación puzolánica» / «pensado
         #      para estructuras en contacto directo con agua o suelo húmedo.»
         #      Visual: aplicación o mezcla del cemento → USO → escena
-        {"foto": "fotos/sanjuan/03.jpg", "y": 234, "ancho_caja": 935,
+        # ⭐ RONDA 3d — Paulina, 30-09-2026, sobre sanjuan3: «este bloque dejémoslo del mismo tamaño
+        # que la primera línea para que se vea estético» → caja 935 → 780: la caja roja mide lo mismo
+        # que «CEMENTO ESPECIAL SAN JUAN,» (313–1936 contra 311–1935 a 2250). La distancia título →
+        # bajada sigue en 63 px como en L4; la bajada queda 17 px más arriba que en L2/L4.
+        {"foto": "fotos/sanjuan/03.jpg", "y": 234, "ancho_caja": 780,
          "sobre": "CEMENTO ESPECIAL SAN JUAN,", "cuerpo": 52,
          "caja": "FORMULACIÓN PUZOLÁNICA",
          "bajada": "Pensado para estructuras en **contacto directo con agua** o suelo húmedo."},
@@ -70,9 +74,11 @@ CARRUSEL = {
         # que la distancia entre título y bajada sea la misma en las 3 slides de "info"». Con el
         # arranque (505) y la bajada ya igualados, eso obliga a que el bloque del título mida lo
         # mismo en L2–L4: la caja de L4 se achica y L2/L3 ajustan su ancho para terminar juntas.
-        {"foto": "fotos/sanjuan/04.jpg", "y": 231, "ancho_caja": 436,
-         "sobre": "IDEAL PARA ESTANQUES,",
-         "caja": "POZOS Y FOSAS",
+        # ⭐ RONDA 3d — Paulina, 30-09-2026: «dejemos la palabra estanques en la segunda línea. arriba
+        # sólo queda "ideal para"» → caja 436 → 760 para conservar el cuerpo (136 px de alto a 2250).
+        {"foto": "fotos/sanjuan/04.jpg", "y": 231, "ancho_caja": 760,
+         "sobre": "IDEAL PARA",
+         "caja": "ESTANQUES, POZOS Y FOSAS",
          "bajada": "Mayor durabilidad frente a la **humedad constante**."},
 
         # L5 · CIERRE — brief: «Cemento Especial San Juan, disponible en Ebema.»

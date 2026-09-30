@@ -115,10 +115,13 @@ def lamina(l):
             "arriba": "linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 40%, rgba(0,0,0,.10) 100%)",
             "abajo": "linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.22) 55%, rgba(0,0,0,.62) 100%)",
             "cierre": "rgba(0,0,0,.18)",
+            "abajo_fuerte": "linear-gradient(180deg, rgba(0,0,0,.06) 0%, rgba(0,0,0,.12) 60%, rgba(0,0,0,.62) 74%, rgba(0,0,0,.72) 100%)",   # 15/10 L3: el texto cae sobre la nieve de los Andes
+            "solo_texto": "linear-gradient(180deg, rgba(0,0,0,.50) 0%, rgba(0,0,0,.42) 18%, rgba(0,0,0,.18) 28%, rgba(0,0,0,0) 36%)",   # 15/10 r2: «la zona oscura sólo detrás del texto y no oscurecer toda la escena»
             "arriba_abajo": "linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 35%, rgba(0,0,0,.10) 65%, rgba(0,0,0,.55) 100%)",
             "post": "linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.30) 30%, rgba(0,0,0,.05) 50%, rgba(0,0,0,.10) 75%, rgba(0,0,0,.50) 100%)",
             "portada_arriba": "linear-gradient(180deg, rgba(0,0,0,.20) 0%, rgba(0,0,0,.45) 30%, rgba(0,0,0,.18) 60%, rgba(0,0,0,.30) 100%)"}[l.get("velo", tipo if tipo in ("portada", "cierre") else l["pos"])]
-    partes = [f'<img class="bg" src="{url(fondo(l["fondo"], tipo == "cierre"))}">',
+    zoom = (f' style="transform:scale({l["zoom"]});transform-origin:50% 100%"' if l.get("zoom") else "")   # 15/10 r2: acercar anclado abajo
+    partes = [f'<img class="bg"{zoom} src="{url(fondo(l["fondo"], tipo == "cierre"))}">',
               f'<div class="velo" style="background:{velo}"></div>']
     if tipo == "portada":
         if l.get("logo") == "click":
@@ -153,14 +156,18 @@ def lamina(l):
                 partes.append(f'<img class="clicklogo" style="top:1470px;width:1180px" src="{url(SIS + "/img/ebemaclick_Logo_blanco.png")}">')
             else:
                 partes.append(f'<img class="anillo" src="{url(SIS + "/img/logo_ebema_anillo_oscuro.png")}">')
-    for x, y, nombre in l.get("ciudades", []):
-        partes.append(PIN.format(x=x - 30, y=y - 78) + f'<div class="ciudad" style="left:{x + 40}px;top:{y - 70}px">{html.escape(nombre)}</div>')
+    e = l.get("pin_escala", 1)     # 15/10 r1: el mapa país lleva pines al 80 % para que el racimo respire
+    pw, ph = round(60 * e), round(78 * e)
+    for x, y, nombre, *lado in l.get("ciudades", []):
+        pos = (f"right:{W - x + round(40 * e)}px" if lado == ["izq"] else f"left:{x + round(40 * e)}px")
+        partes.append(PIN.format(x=x - pw // 2, y=y - ph, w=pw, h=ph) +
+                      f'<div class="ciudad" style="{pos};top:{y - 70 if e == 1 else y - ph // 2 - 33}px">{html.escape(nombre)}</div>')
     clase = "lam cierre" if tipo == "cierre" else "lam"
     return f'<!doctype html><html><head><meta charset="utf-8"><style>{CSS}{CSS_PIN}</style></head><body><div class="{clase}">{"".join(partes)}</div></body></html>'
 
 
 # pin de ubicación como en ebema_c_click3 (gota roja con punto blanco, 60 × 78)
-PIN = ('<svg style="position:absolute;left:{x}px;top:{y}px" width="60" height="78" viewBox="0 0 60 78">'
+PIN = ('<svg style="position:absolute;left:{x}px;top:{y}px" width="{w}" height="{h}" viewBox="0 0 60 78">'
        '<path d="M30 0C13.4 0 0 13.4 0 30c0 21 30 48 30 48s30-27 30-48C60 13.4 46.6 0 30 0z" fill="#EC1C23"/>'
        '<circle cx="30" cy="29" r="11" fill="#fff"/></svg>')
 CSS_PIN = (".ciudad { position:absolute; font-size: 50px; font-weight: 600; color:#fff; white-space:nowrap;"
@@ -217,6 +224,8 @@ CARRUSELES = {
 }
 
 # ── 15/10 · POST LINKEDIN (estático, Paulina 25-09) — Crecimiento del sector
+# 30-09: «este post es carrusel. realizar las demas slides.» → pasa a ser la L1 de
+# CARRUSELES["crecimiento"], tal cual quedó aprobado (A-08).
 POST = dict(tipo="portada", fondo="post.jpg", top=600, capsula_top=2330, velo="post", sup_px=80,  # 80 y top 600: la caja queda ~100 px sobre el letrero EBEMA y la 1ª línea libra la pastilla
             # r1 25-09: «el bloque arriba, en el cielo despejado, y el cuadro con texto abajo»;
             # fondo = foto REAL del patio de Antofagasta (antofa-3) sólo con luz comercial
@@ -225,6 +234,39 @@ POST = dict(tipo="portada", fondo="post.jpg", top=600, capsula_top=2330, velo="p
             sup="La inversión en infraestructura|productiva crecería un",
             caja="15,5 % este año", caja_tam="s",
             capsula="Según la Cámara Chilena de la Construcción,|la cifra más alta desde 2015.")
+
+
+# Las 11 sucursales del manual sobre el satélite REAL (linkedin_mapa_sucursales.py → SUCURSALES,
+# misma proyección). A escala país La Calera, Quilicura, San Bernardo y Rancagua caen en 120 px:
+# las etiquetas se alternan a izquierda y derecha para no montarse. Quilicura y San Bernardo
+# quedan a 20 px (se veía un solo pin): se abren ±30 px en horizontal (≈ 0,4° de longitud),
+# r1 30-09 («se ven muy amontonados»): el mapa pasó de 88,7 a 108,3 px/°, pines al 80 % y Quilicura /
+# San Bernardo / Rancagua abiertos (±40 px en x; SB +7 y Rancagua +11 en y) para que ninguna gota se toque.
+# los dos siguen dentro de la cuenca de Santiago.
+SUCURSALES = [(1004, 150, "Antofagasta"), (919, 832, "Coquimbo"), (932, 1140, "La Calera", "izq"),
+              (1018, 1202, "Quilicura"), (936, 1234, "San Bernardo", "izq"), (976, 1300, "Rancagua"),
+              (890, 1426, "Talca", "izq"), (850, 1554, "Chillán"), (764, 1577, "Concepción", "izq"),
+              (805, 1784, "Temuco"), (774, 2080, "Puerto Montt")]
+
+# ── 15/10 · CARRUSEL LINKEDIN — Crecimiento del sector, presencia regional de Ebema
+# (grilla, diapositiva id.g37d1a4a2dbc_0_172; textos LITERALES del brief).
+# L2 · brief: «mapa de Chile con obras activas» → foto de obra (el mapa va en L3 y en el cierre;
+#      dos mapas seguidos repetían la lámina). L3/L4 · mapa satelital real, no IA.
+CARRUSELES["crecimiento"] = [
+    POST,
+    # r1 30-09: «dejemos solo la tercera línea con cuadro rojo, y la primera línea más gruesa»
+    # + «cambiar imagen por una que deje el espacio necesario para el texto sin exagerar» (v2 de la foto)
+    # r2 30-09: foto limpia y minimalista + velo sólo detrás del texto («solo_texto»)
+    dict(tipo="desarrollo", fondo="crecimiento2.jpg", pos="arriba", velo="solo_texto", zoom=1.12, top=330,
+         texto="~~Más proyectos en todo el país~~|significan más necesidad de materiales,|**en más lugares a la vez.**"),
+    dict(tipo="desarrollo", fondo="crecimiento3_mapa.jpg", pos="abajo", velo="abajo_fuerte", top=2230, escala=0.9, ciudades=SUCURSALES, pin_escala=0.8,
+         texto="Ahí es donde pesa contar con un proveedor|**presente en múltiples regiones,**|no solo en un punto del país."),
+    # r1 30-09: «dejemos de fondo una bodega o patio de ebema» → foto REAL de la bodega de Talca
+    # (IMG_6976), desenfocada. No el patio de la L1: su letrero rojo EBEMA, desenfocado, quedaba
+    # como una mancha roja pegada a «está creciendo.».
+    dict(tipo="cierre", fondo="crecimiento4_bodega_talca_real.jpg", top=786,   # = _refs/IMG_6976.jpg (foto real), versionada
+         texto="**Ebema,**|cerca de donde el sector|está creciendo."),
+]
 
 
 def render(nombre, l):
@@ -246,5 +288,4 @@ if __name__ == "__main__":
             n = f"ebema_lk_c_{slug}{i}"
             if not solo or any(s in n for s in solo):
                 render(n, l)
-    if not solo or "post" in solo:
-        render("ebema_lk_post-15.10", POST)
+    # el post 15/10 ya no se rinde suelto: es ebema_lk_c_crecimiento1 (30-09)

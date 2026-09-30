@@ -779,3 +779,4 @@ out/ebema/20260928_grilla_octubre_reels/*
 # sin ellas el sistema cae al fallback libre (Bebas Neue / Caveat) y no se rompe.
 public/assets/fonts/copywriters/BebasNeuePro-*.otf
 public/assets/fonts/copywriters/BalloonURW-*.otf
+public/assets/fonts/copywriters/NeueHaasGroteskText-*.otf

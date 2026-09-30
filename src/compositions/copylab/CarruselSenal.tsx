@@ -143,7 +143,7 @@ const Linea: React.FC<{
 }> = ({children, cuerpo, color = C2.offwhite}) => (
   <div
     style={{
-      fontFamily: VOZ2.titular, fontSize: cuerpo, lineHeight: 0.86,
+      fontFamily: VOZ2.titular, fontWeight: 700, fontSize: cuerpo, lineHeight: 0.86,
       color, textTransform: "uppercase", letterSpacing: 0,
       whiteSpace: "nowrap",
     }}
@@ -170,7 +170,7 @@ const L1: React.FC = () => (
 
     {/* El subrayado va SIEMPRE bajo la línea de base, nunca sobre la letra:
         cruzando la palabra deja de ser subrayado y se lee como tachado. */}
-    <Subrayado x={M - 6} y={1081} ancho={620} alto={40} grosor={16} />
+    <Subrayado x={M - 6} y={1106} ancho={648} alto={40} grosor={16} />
     <Rotulo texto="COPYWRITERS.CL" x={M} y={H - M - 20} color={C2.gris} />
   </FondoNegro>
 );
@@ -184,7 +184,7 @@ const L2: React.FC = () => (
       <div style={{position: "absolute", left: 76, top: 170}}>
         <div
           style={{
-            fontFamily: VOZ2.cuerpo, fontWeight: 300, fontSize: 112,
+            fontFamily: VOZ2.cuerpo, fontWeight: 400, fontSize: 112,
             lineHeight: 1.1, color: C2.negro, textTransform: "uppercase",
             letterSpacing: -1,
           }}
@@ -220,11 +220,12 @@ const L3: React.FC = () => (
     <div
       style={{
         position: "absolute", left: M + 8, top: 790,
-        fontFamily: VOZ2.mano, fontSize: 62, fontWeight: 600,
-        color: C2.negro, transform: "rotate(-3.5deg)", lineHeight: 1.05,
+        fontFamily: VOZ2.mano, fontSize: 58, fontWeight: 700,
+        color: C2.negro, transform: "rotate(-2deg)", lineHeight: 1.05,
+        textTransform: "uppercase",
       }}
     >
-      el presupuesto no cambió.
+      EL PRESUPUESTO NO CAMBIÓ.
     </div>
 
     <Flecha x={664} y={886} ancho={176} alto={126} giro={8} />
@@ -246,17 +247,17 @@ const L4: React.FC = () => (
       <Linea cuerpo={164} color={C2.rosa}>DIRIGEN.</Linea>
     </div>
 
-    <Subrayado x={M - 4} y={882} ancho={452} alto={38} grosor={14} />
+    <Subrayado x={M - 4} y={908} ancho={468} alto={38} grosor={14} />
 
     <div
       style={{
         position: "absolute", left: 596, top: 968,
-        fontFamily: VOZ2.mano, fontSize: 56, fontWeight: 600,
-        color: C2.offwhite, transform: "rotate(-4deg)", lineHeight: 1.08,
-        textAlign: "right",
+        fontFamily: VOZ2.mano, fontSize: 56, fontWeight: 700,
+        color: C2.offwhite, transform: "rotate(-2deg)", lineHeight: 1.08,
+        textAlign: "right", textTransform: "uppercase",
       }}
     >
-      todavía.
+      TODAVÍA.
     </div>
 
     <Rotulo texto="COPYWRITERS.CL" x={M} y={H - M - 20} color={C2.gris} />
@@ -271,14 +272,15 @@ const L5: React.FC = () => (
     <div
       style={{
         position: "absolute", left: M, top: 318,
-        fontFamily: VOZ2.mano, fontSize: 138, fontWeight: 700,
-        color: C2.rosa, lineHeight: 1.12, transform: "rotate(-3deg)",
+        fontFamily: VOZ2.mano, fontSize: 122, fontWeight: 700,
+        color: C2.rosa, lineHeight: 1.16, transform: "rotate(-2deg)",
+        textTransform: "uppercase",
       }}
     >
-      Ideas.<br />Personas.<br />Marcas.<br />Resultados<br />reales.
+      IDEAS.<br />PERSONAS.<br />MARCAS.<br />RESULTADOS<br />REALES.
     </div>
 
-    <Subrayado x={M + 6} y={1062} ancho={412} alto={40} grosor={15} color={C2.offwhite} />
+    <Subrayado x={M + 6} y={1044} ancho={396} alto={40} grosor={15} color={C2.offwhite} />
 
     <div
       style={{

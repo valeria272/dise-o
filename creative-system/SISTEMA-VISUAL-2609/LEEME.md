@@ -53,22 +53,32 @@ Directrices de diseño para contenido, casos, campañas, cultura y comunicacione
 
 | Rol | El board pide | Está corriendo | Estado |
 |---|---|---|---|
-| Títulos principales | **Bebas Neue Pro** | Bebas Neue | ✅ Sustituto fiel — mismo dibujo, mismo autor (Ryoichi Tsunekawa). La Pro agrega pesos y anchos, no cambia la letra |
-| Títulos secundarios y destacados | **URW Balloon** | Caveat | ⚠️ **Placeholder.** Sostiene el gesto, no es la letra |
-| Cuerpo de texto | **Dharma Type** | Inter | ⚠️ **El nombre no existe.** Dharma Type es la *fundición* (la que dibuja Bebas Neue), no una familia. Falta el tipo real |
+| Títulos principales | **Bebas Neue Pro** | Bebas Neue Pro — Light 300 / Regular 400 / Middle 500 / **Bold 700** | ✅ La real |
+| Títulos secundarios y destacados | **URW Balloon** | **Balloon URW** — Light 400 / Bold 700 | ✅ La real |
+| Cuerpo de texto | **Dharma Type** | **Neue Haas Grotesk Text Pro** — Roman 400 / Italic / Medium 500 / Bold 700 | ✅ Resuelto 30-09: «Dharma Type» era la fundición, no una familia. Valeria eligió la Haas. ⛔ El corte **Display** es otro y NO va en cuerpo |
 | Metadata y rótulos | — | IBM Plex Mono | Heredada; el board la usa pero no la nombra |
 
-⛔ **Ninguna de las tres del board está activada en Adobe CC en este Mac.** Verificado el
-29-09-2026 leyendo las tablas de nombres de los 167 archivos de
-`~/Library/Application Support/Adobe/CoreSync/plugins/livetype/.w`: 19 familias activas
-(Abril, Acumin Pro, Balbum, Bodoni, FranklinGothic URW, Futura PT, IvyOra, Neue Haas
-Grotesk, Trade Gothic Next), **ninguna es Bebas Neue Pro, URW Balloon ni Dharma Type**.
+✅ **Activadas en Adobe el 30-09-2026.** El caché pasó de 167 a 219 archivos.
+Bebas Neue Pro trae **40 estilos** (7 pesos × 3 anchos + itálicas) y hay cinco cortes de
+Balloon: **Balloon URW** (Light/Bold), Balloon D Extra Bold, Balloon Outline P,
+Balloon Drop Shadow D y Balloon SC D. Hoy sólo se cargan 4 de Bebas y 2 de Balloon;
+los anchos Expanded/SemiExpanded y los cortes Outline/Drop Shadow están **sin explotar**.
 
-Cuando se activen, se cambia el `@font-face` de `sistemaV2.ts` y **nada más**: las piezas
-citan la voz por nombre (`VOZ2.titular`), nunca la familia suelta.
+> ⚠️ **En Adobe se llama «Balloon URW», no «URW Balloon».** Por eso el board manda pero
+> su nomenclatura no sirve para buscar la fuente.
+>
+> ⚠️ Adobe **descarga** las fuentes pero en este Mac no las **activa a nivel sistema**:
+> CoreText no lista ninguna familia de Adobe, ni siquiera Acumin o Futura PT, que llevan
+> meses sincronizadas. A Remotion le da lo mismo (el `@font-face` apunta al archivo
+> directo), pero en Canva, Word o Photoshop no van a aparecer.
+>
+> ⚠️ Los `.otf` de Adobe están en `.gitignore`: la licencia cubre renderizar local, no
+> redistribuir el archivo. Quien clone el repo sin ellos cae al fallback libre
+> (Bebas Neue / Caveat) y no se rompe nada — pero **no está viendo la pieza real**.
 
-> ⚠️ Una fuente de Adobe que no está activada **en el sistema** no la ve Chrome, y
-> Remotion rinde con la de reemplazo sin avisar. Ya pasó con Brushwell en Between.
+**La mano va en CAJA ALTA.** Así está en las 15 tarjetas de la grilla: «BUEN CONTENIDO
+TAMBIÉN VENDE.», «IDEAS QUE MUEVEN MARCAS.», «TECNOLOGÍA QUE CONECTA PERSONAS.».
+Balloon URW ya viene inclinada: no hace falta girarla más de 2°.
 
 **Topes:** máximo 3 voces por pieza. La mono nunca es héroe.
 
@@ -85,6 +95,10 @@ lee como vector y delata el molde.
 > deja de ser subrayado y se lee como **tachado** — invierte el sentido de la frase. Se
 > cometió el 29-09 en dos láminas del primer carrusel: una tachaba «CRITERIO.» y la otra
 > «reales.». Al mover un titular hay que recalcular el subrayado, no arrastrarlo.
+>
+> Y **volvió a pasar el 30-09 al entrar la fuente real**: Bebas Neue Pro Bold tiene más
+> altura de caja que la Bebas libre, así que los tres subrayados calibrados contra la
+> libre quedaron cruzando la letra. **Cambiar de peso obliga a recalibrar el subrayado.**
 
 **Texturas:** papel · plástico/film · fotografía real · texturas editoriales. El grano se
 resuelve por código (`granoSVG`), no con un JPG: así ninguna pieza depende de un asset
@@ -109,12 +123,15 @@ de la web · **métricas, casos, clientes o personas inventadas** (si falta el d
 
 - ✅ Tokens, motor, ficha y compuerta de QA escritos y corriendo.
 - ✅ Primera pieza: `CL2-CarruselSenal`, 5 láminas, en `out/copylab/v2-carrusel/`.
-- ⚠️ **Las 3 fuentes del board siguen sin activar.** Es lo único que separa esto de estar al 100 %.
+- ✅ **Las tres voces del board corriendo con la fuente real** (30-09): Bebas Neue Pro, Balloon URW y Neue Haas Grotesk Text Pro.
 - ⚠️ **`reglas.yaml` subió a versión 2 con la paleta nueva, pero el tope del 18 % de color
   fuera de sistema NO se recalibró contra un control con esta paleta.** El tope viejo se
   midió inyectando un azul SaaS sobre las piezas del lote v1. Hay que repetir esa medición.
 - ⚠️ El QA técnico necesita `scipy`: se corre con `/Users/Vale/copylab-venv/bin/python3`,
   no con el `python3` del sistema (ahí las 7 reglas revientan y el motor sólo avisa).
+- ✅ **Cuerpo resuelto** (30-09): Neue Haas Grotesk Text Pro, elegida por Valeria. Inter queda de fallback.
+- ❔ Los anchos **Expanded / SemiExpanded** de Bebas Pro y los cortes **Outline / Drop Shadow**
+  de Balloon están sin usar. Son repertorio disponible, no deuda.
 - ❔ El board no dice nada del **logo**. Se mantiene la regla vigente: no va por defecto.
 - ❔ Falta definir si el sistema viejo (`tokens.json`, `sistema.ts`, piezas v1) se archiva
   o se deja vivo. Hoy se deja vivo para no romper lo ya entregado.

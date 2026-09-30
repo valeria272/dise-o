@@ -31,8 +31,9 @@ export const VOZ2 = {
   titular: "'CL2 Titular', 'Bebas Neue Pro', 'Bebas Neue', Impact, sans-serif",
   /** Balloon URW — destacados y notas a mano. La voz humana del sistema. */
   mano: "'CL2 Mano', 'Balloon URW', 'Caveat', cursive",
-  /** Inter — cuerpo de texto. */
-  cuerpo: "'CL2 Cuerpo', 'Inter', Helvetica, Arial, sans-serif",
+  /** Neue Haas Grotesk Text Pro — cuerpo de texto. El corte «Text» está dibujado
+   *  para leerse en cuerpo chico; el «Display» es otro y NO va acá. */
+  cuerpo: "'CL2 Cuerpo', 'Neue Haas Grotesk Text Pro', 'Inter', Helvetica, Arial, sans-serif",
   /** IBM Plex Mono — metadata y rótulos. Nunca es héroe. */
   data: "'CL2 Data', 'IBM Plex Mono', ui-monospace, monospace",
 } as const;
@@ -88,8 +89,30 @@ export const asegurarFuentesV2 = () => {
 }
 @font-face {
   font-family: 'CL2 Cuerpo';
-  src: url(${staticFile(`${base}/Inter-Variable.ttf`)}) format('truetype');
-  font-weight: 100 900;
+  src: url(${staticFile(`${base}/NeueHaasGroteskText-Roman.otf`)}) format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CL2 Cuerpo';
+  src: url(${staticFile(`${base}/NeueHaasGroteskText-Italic.otf`)}) format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CL2 Cuerpo';
+  src: url(${staticFile(`${base}/NeueHaasGroteskText-Medium.otf`)}) format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CL2 Cuerpo';
+  src: url(${staticFile(`${base}/NeueHaasGroteskText-Bold.otf`)}) format('opentype');
+  font-weight: 700;
+  font-style: normal;
   font-display: block;
 }
 @font-face {

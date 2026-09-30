@@ -6,7 +6,6 @@
   "bajada": "Directrices de diseño para contenido, casos, campañas, cultura y comunicaciones.",
   "fuenteDeVerdad": "Board entregado por Valeria el 29-09-2026 (Descargas, 'Imagen de ChatGPT 29 sept 2026, 04_42_50 p.m..png') + la grilla de 15 posts ('… 04_02_14 p.m. (1).png'). Copia en creative-system/SISTEMA-VISUAL-2609/.",
   "reemplazaA": "creative-system/MASTER/ (24-09-2026) y src/brand/copylab/tokens.json (Creative OS v1.0, 03-09-2026). Las piezas ya entregadas con el sistema viejo NO se retocan.",
-
   "colores": {
     "negro": "#0B0B0B",
     "offwhite": "#F5F3EE",
@@ -17,7 +16,6 @@
     "gris": "#B7B7B7",
     "carbon": "#2A2A2A"
   },
-
   "usoDeColorPorContenido": {
     "editorial": {
       "color": "negro",
@@ -44,13 +42,14 @@
       "que": "Nuevo cliente, proyectos."
     }
   },
-
   "jerarquiaColor": {
-    "fondos": ["negro", "offwhite"],
+    "fondos": [
+      "negro",
+      "offwhite"
+    ],
     "acentoPrimario": "rosa",
     "regla": "El rosa es señal, no relleno: una palabra del titular, un subrayado, una flecha, una cinta. Si el rosa se puede borrar sin que la pieza pierda sentido, estaba de adorno."
   },
-
   "voces": {
     "titular": {
       "familia": "Bebas Neue Pro",
@@ -72,10 +71,16 @@
       "inclinacion": -4
     },
     "cuerpo": {
-      "familia": "Inter",
-      "archivo": "Inter-Variable.ttf",
+      "familia": "Neue Haas Grotesk Text Pro",
+      "archivos": [
+        "NeueHaasGroteskText-Roman.otf (400)",
+        "NeueHaasGroteskText-Italic.otf (400 it)",
+        "NeueHaasGroteskText-Medium.otf (500)",
+        "NeueHaasGroteskText-Bold.otf (700)"
+      ],
       "declaradoEnElBoard": "Dharma Type (Regular / Medium)",
-      "estado": "POR CONFIRMAR — 'Dharma Type' es la FUNDICIÓN (la que dibuja Bebas Neue Pro, ya activada), no un tipo de letra. El board pide un nombre que no existe como familia; Inter sostiene el rol hasta que Valeria diga cuál es. Único punto abierto del sistema.",
+      "estado": "RESUELTO 30-09-2026 — «Dharma Type» era la fundición, no una familia. Valeria eligió Neue Haas Grotesk Text Pro: la Helvetica auténtica, ya activada en su Adobe, y el corte «Text» está dibujado para cuerpo chico. Inter queda de fallback.",
+      "ojo": "El corte DISPLAY de Neue Haas es otro y NO va acá: está dibujado para titular.",
       "uso": "Cuerpo de texto. Regular / Medium.",
       "tracking": 0.0,
       "interlineado": 1.35
@@ -90,55 +95,84 @@
       "versales": true
     }
   },
-
   "fuentesPendientes": [
-    "Dharma Type (cuerpo) — no es una familia tipográfica, es la fundición. Hay que reemplazar el nombre en el board por el tipo real del cuerpo. Mientras tanto va Inter. ES EL ÚNICO PENDIENTE.",
-    "RESUELTO 30-09-2026 — Bebas Neue Pro y Balloon URW: Valeria las activó en Adobe Fonts (el caché pasó de 167 a 219 archivos) y los .otf se copiaron a public/assets/fonts/copywriters/.",
-    "OJO — Adobe sincroniza pero NO activa a nivel sistema en este Mac: la carpeta .r del caché está vacía y CoreText lista 184 familias sin una sola de Adobe (ni Acumin ni Futura PT, que llevan meses). Para Remotion da lo mismo porque el @font-face apunta al archivo, pero en Canva/Word/Photoshop las fuentes NO van a aparecer hasta que eso se arregle.",
-    "LICENCIA — los .otf de Adobe están en .gitignore. La licencia de Adobe Fonts cubre renderizar local; NO cubre subir el archivo a git ni servirlo en un sitio. Para web se necesita un kit de use.typekit.net."
+    "Ninguna. Las tres voces del board quedaron resueltas el 30-09-2026."
   ],
-
   "estilosTipograficos": {
     "tituloPrincipal": "titular",
     "destacado": "mano",
     "notaAMano": "mano",
     "cuerpo": "cuerpo"
   },
-
   "elementosGraficos": [
-    {"id": "flecha", "que": "Flechas y anotaciones. Trazo de marcador, rosa, dibujada a mano — nunca una flecha de icono."},
-    {"id": "subrayado", "que": "Subrayados y círculos. Rosa, de un solo trazo, por debajo o alrededor de la palabra que manda."},
-    {"id": "highlight", "que": "Highlights y marcadores. Asterisco o destello rosa de marcador."},
-    {"id": "sticker", "que": "Stickers y etiquetas. Rectángulo rosa levemente girado con texto en caja alta."},
-    {"id": "cinta", "que": "Cintas y recortes. Cinta adhesiva gris translúcida, arrugada, que sujeta el papel."},
-    {"id": "manuscrito", "que": "Elementos manuscritos. La anotación al margen que comenta lo que dice el titular."}
+    {
+      "id": "flecha",
+      "que": "Flechas y anotaciones. Trazo de marcador, rosa, dibujada a mano — nunca una flecha de icono."
+    },
+    {
+      "id": "subrayado",
+      "que": "Subrayados y círculos. Rosa, de un solo trazo, por debajo o alrededor de la palabra que manda."
+    },
+    {
+      "id": "highlight",
+      "que": "Highlights y marcadores. Asterisco o destello rosa de marcador."
+    },
+    {
+      "id": "sticker",
+      "que": "Stickers y etiquetas. Rectángulo rosa levemente girado con texto en caja alta."
+    },
+    {
+      "id": "cinta",
+      "que": "Cintas y recortes. Cinta adhesiva gris translúcida, arrugada, que sujeta el papel."
+    },
+    {
+      "id": "manuscrito",
+      "que": "Elementos manuscritos. La anotación al margen que comenta lo que dice el titular."
+    }
   ],
-
-  "texturas": ["papel", "plastico-film", "fotografia-real", "texturas-editoriales"],
-
+  "texturas": [
+    "papel",
+    "plastico-film",
+    "fotografia-real",
+    "texturas-editoriales"
+  ],
   "formatos": {
-    "feed": {"ancho": 1080, "alto": 1350, "nombre": "Feed / Post 4:5"},
-    "cuadrado": {"ancho": 1080, "alto": 1080, "nombre": "Cuadrado 1:1"},
-    "story": {"ancho": 1080, "alto": 1920, "nombre": "Stories / Reels 9:16"}
+    "feed": {
+      "ancho": 1080,
+      "alto": 1350,
+      "nombre": "Feed / Post 4:5"
+    },
+    "cuadrado": {
+      "ancho": 1080,
+      "alto": 1080,
+      "nombre": "Cuadrado 1:1"
+    },
+    "story": {
+      "ancho": 1080,
+      "alto": 1920,
+      "nombre": "Stories / Reels 9:16"
+    }
   },
-
   "zonasSeguras": {
-    "story": {"arriba": 250, "abajo": 340, "derecha": 155},
-    "feed": {"abajo": 135},
+    "story": {
+      "arriba": 250,
+      "abajo": 340,
+      "derecha": 155
+    },
+    "feed": {
+      "abajo": 135
+    },
     "fuente": "docs/SISTEMA-DE-MARCAS.md §4 — es dónde Meta dibuja su UI, no criterio estético."
   },
-
   "margen": {
     "base": 0.074,
     "nota": "Fracción del ancho. En 1080 son 80 px. Punto de partida, no retícula: una pieza puede sangrar al borde si el concepto lo pide."
   },
-
   "topes": {
     "vocesPorPieza": 3,
     "intervencionesPorPieza": 2,
     "nota": "Tres voces como máximo: titular + mano + data, o titular + cuerpo + data. La mono nunca es héroe."
   },
-
   "prohibido": [
     "Cards, glassmorphism, sombras difusas de UI.",
     "Gradientes decorativos de fondo.",

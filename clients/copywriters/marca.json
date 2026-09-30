@@ -22,23 +22,36 @@
   },
   "tipografias": {
     "titular": {
-      "familia": "Bebas Neue",
-      "archivo": "BebasNeue.ttf",
+      "familia": "Bebas Neue Pro",
+      "cortes": [
+        "Light 300",
+        "Regular 400",
+        "Middle 500",
+        "Bold 700"
+      ],
       "caja": "alta siempre",
-      "board_pide": "Bebas Neue Pro",
-      "estado": "SUSTITUTO FIEL — mismo dibujo y mismo autor; la Pro no está activada en Adobe."
+      "estado": "✅ La real, activada 30-09-2026 (40 estilos disponibles; se cargan 4)."
     },
     "mano": {
-      "familia": "Caveat",
-      "archivo": "Caveat-Variable.ttf",
-      "board_pide": "URW Balloon",
-      "estado": "PLACEHOLDER — URW Balloon no está activada y no tiene equivalente libre."
+      "familia": "Balloon URW",
+      "cortes": [
+        "Light 400",
+        "Bold 700"
+      ],
+      "caja": "alta siempre",
+      "ojo": "En Adobe se llama «Balloon URW», no «URW Balloon» como dice el board.",
+      "estado": "✅ La real, activada 30-09-2026."
     },
     "cuerpo": {
-      "familia": "Inter",
-      "archivo": "Inter-Variable.ttf",
+      "familia": "Neue Haas Grotesk Text Pro",
+      "cortes": [
+        "55 Roman",
+        "56 Italic",
+        "65 Medium",
+        "75 Bold"
+      ],
       "board_pide": "Dharma Type",
-      "estado": "POR CONFIRMAR — 'Dharma Type' es la fundición, no una familia. Falta el nombre real."
+      "estado": "RESUELTO 30-09-2026 — Valeria eligió Neue Haas Grotesk Text Pro. Ojo: el corte «Display» es otro y no va en cuerpo."
     },
     "data": {
       "familia": "IBM Plex Mono",

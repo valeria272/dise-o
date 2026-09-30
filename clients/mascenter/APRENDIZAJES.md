@@ -118,6 +118,7 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **R-66** · Y al revés: la caja se ajusta a su contenido, sin espacio sobrante (ni ancho ni alto de más) — _Diego, lk-19-10-1: «demasiado espacio sobrante en el contenedor», 30-09-2026_ · ✔×1
 - **R-67** · Pasos numerados (01–04): número grande y bloque título + texto **alineados por la altura de mayúscula** y pegados al número (~34 px), no flotando lejos — _Diego, lk-10-10-2: «que queden más alineados los bloques de texto, y juntarlos un poco más», 30-09-2026_ · ✔×1
 - **R-68** · Si Diego manda renders oficiales del proyecto, reemplazan cualquier imagen generada o bajada de la web en toda la pieza (portada, ficha y cierre). Renders 16:9 con mucho cielo se recortan al edificio antes de meterlos en ventanas verticales; los tótems o letreros que quedan pegados al borde se sacan del encuadre — _Diego, 06-10: «para el carrusel del 06-10 utiliza las imágenes adjuntas» (4 renders de Linderos: pasillo, frontal, Aramco, tótem), 30-09-2026_ · ✔×1
+- **R-69** · Texto sobre fondo claro de temporada (naranjo, lila, crema): en el **rojo oscuro del manual `#65140F`** (`marca.json › rojo_oscuro_manual`), sin sombra; el blanco con sombra no se lee. Halloween en stories: fondo **naranjo** (no lila) — _Diego, story Kios Club 30-09-2026: «el fondo cámbialo por fondo naranjo, el texto no se lee bien, prueba dejándolo con un tono más oscuro del manual de marca»_ · ✔×1
 - **R-44** · Display de temporada (Eds Market, Royal Brand, Gloria Hallelujah, Garamond) sólo puntual, nunca como voz de la marca — _editables mar–sept 2026_ · ✔×1
 
 ## 5. Excepciones
@@ -167,6 +168,7 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **X-22** · Pedirle a Wan que se aleje de una imagen completa: tiene que inventar lo que queda fuera del cuadro (quedó planteado en 2F y se corrigió antes de generar) — _reel Linderos, 29-09-2026_
 - **X-23** · Slide de cierre redundante en LinkedIn (lk-19-10-4 «Crecer no es solo sumar activos / 49 activos», repetía la portada): Diego la eliminó — _comentario «eliminar», 30-09-2026_. El carrusel quedó en 3 y la 3 lleva el lockup (R-64)
 - **X-24** · Logo repetido en slides intermedias (pasos 01–04, ficha, mosaico) — _Diego, 30-09-2026, 1 ronda (R-64)_
+- **X-25** · Story animada con fondo lila y textos blancos con sombra: «el texto no se lee bien» — _Diego, story Kios Club, 30-09-2026, 1 ronda_
 - **X-10** · Chevron como flecha flotando sobre la foto: «se veía barato» — _presentación comercial, 28-08-2026_
 
 ## 8. Preguntas abiertas
@@ -195,6 +197,11 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 (2ª parte) — Diego Aguilar (con Claude) · story Kios Club ronda 2
+- nueva **R-69** (texto en `#65140F` sobre fondos claros de temporada; Halloween en naranjo) · **X-25** (lila + blanco con sombra, ilegible).
+- Técnico: el fondo se cambió con Seedream en modo edición sobre los dos fotogramas (vacío y lleno) con el mismo prompt: los calderos siguen alineados (IoU 0,86) y el reveal calza.
+- Pendiente de decidir: el logo de Más Center sigue blanco sobre el naranjo claro de arriba (no se pidió cambiarlo).
 
 ### 2026-09-30 — Diego Aguilar (con Claude) · ronda 2 de LinkedIn IFB (7 comentarios de Diego en Drive)
 - Comentarios leídos con `drive-comentarios.py --nombre lk-`, aplicados, respondidos y **resueltos** en Drive; los 17 archivos se reemplazaron en sitio (md5 OK) y lk-19-10-4 fue a la papelera.

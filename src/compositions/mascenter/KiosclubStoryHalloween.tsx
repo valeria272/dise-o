@@ -16,6 +16,9 @@ import React from "react";
 import {AbsoluteFill, Easing, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig} from "remotion";
 
 const ROJO = "#DC1914";
+// Diego 30-09: «el fondo cámbialo por fondo naranjo, el texto no se lee bien, prueba dejándolo con un tono más oscuro del
+// manual de marca» → fondo naranjo y textos en el rojo oscuro del manual Grupo IFB 2023 (marca.json › rojo_oscuro_manual).
+const OSCURO = "#65140F";
 const K = "assets/mascenter/kiosclub/";
 const FUENTES: [string, number, string][] = [
   ["GothamRounded", 700, "assets/fonts/mascenter/GothamRounded-Bold.ttf"],
@@ -98,14 +101,14 @@ export const KiosclubStoryHalloween: React.FC = () => {
   const zoom = interpolate(f, [0, 240], [1, 1.05], {extrapolateRight: "clamp"});
   const reveal = interpolate(f, [228, 244], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   const flash = interpolate(f, [222, 232, 252], [0, 1, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
-  const zoomFinal = interpolate(f, [228, 360], [1.05, 0.98], {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.quad)});
+  const zoomFinal = interpolate(f, [228, 360], [1.06, 1.0], {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.quad)});
   const humo = (f % 90) / 90;
-  const titulo: React.CSSProperties = {position: "absolute", left: 40, right: 40, top: 320, textAlign: "center", color: "#fff", fontFamily: "GothamRounded",
-    fontWeight: 700, fontSize: 74, lineHeight: "84px", textTransform: "uppercase", textShadow: "0 4px 22px rgba(60,20,100,.45)"};
+  const titulo: React.CSSProperties = {position: "absolute", left: 40, right: 40, top: 320, textAlign: "center", color: OSCURO, fontFamily: "GothamRounded",
+    fontWeight: 700, fontSize: 74, lineHeight: "84px", textTransform: "uppercase"};
   const pastilla = spring({fps, frame: f - 262, config: {damping: 200}});
   return (
-    <AbsoluteFill style={{background: "#b9a4e8", overflow: "hidden"}}>
-      <Img src={staticFile(`${K}B-caldero-vacio.jpg`)} style={{position: "absolute", width: 1080, height: 1920, transform: `scale(${zoom})`, transformOrigin: "50% 60%"}} />
+    <AbsoluteFill style={{background: "#f19a5e", overflow: "hidden"}}>
+      <Img src={staticFile(`${K}B-caldero-vacio-naranjo.jpg`)} style={{position: "absolute", width: 1080, height: 1920, transform: `scale(${zoom})`, transformOrigin: "50% 60%"}} />
       {/* humo que sube del caldero vacío */}
       {[0, 0.33, 0.66].map((d, i) => {
         const q = (humo + d) % 1;
@@ -116,9 +119,9 @@ export const KiosclubStoryHalloween: React.FC = () => {
         <Dulce key={`${t0}-${i}`} i={i} t0={t0 + j * 5} x={360 + ((j * 137) % 360)} tam={170 + ((j * 53) % 60)} giro={(j % 2 ? 1 : -1) * (90 + j * 30)} />
       )))}
       {/* reveal: caldero lleno */}
-      <Img src={staticFile(`${K}B-caldero-lleno.jpg`)} style={{position: "absolute", width: 1080, height: 1920, opacity: reveal, transform: `scale(${zoomFinal})`, transformOrigin: "50% 62%"}} />
-      <AbsoluteFill style={{background: "radial-gradient(circle at 50% 58%, rgba(255,255,255,.95), rgba(240,230,255,.6) 45%, rgba(255,255,255,0) 75%)", opacity: flash}} />
-      <Img src={staticFile("assets/mascenter/logo-blanco.svg")} style={{position: "absolute", left: 437, top: 117, width: 206, filter: "drop-shadow(0 2px 10px rgba(60,20,100,.35))"}} />
+      <Img src={staticFile(`${K}B-caldero-lleno-naranjo.jpg`)} style={{position: "absolute", width: 1080, height: 1920, opacity: reveal, transform: `scale(${zoomFinal})`, transformOrigin: "50% 62%"}} />
+      <AbsoluteFill style={{background: "radial-gradient(circle at 50% 58%, rgba(255,255,255,.95), rgba(255,235,215,.6) 45%, rgba(255,255,255,0) 75%)", opacity: flash}} />
+      <Img src={staticFile("assets/mascenter/logo-blanco.svg")} style={{position: "absolute", left: 437, top: 117, width: 206, filter: "drop-shadow(0 2px 10px rgba(101,20,15,.35))"}} />
 
       <Palabras texto={"¿Qué necesita\nun Halloween dulce?"} desde={-40} hasta={92} style={titulo} />
       <Palabras texto={"Un poco de esto…"} desde={96} hasta={140} style={titulo} />
@@ -132,10 +135,10 @@ export const KiosclubStoryHalloween: React.FC = () => {
           <div style={{background: ROJO, color: "#fff", borderRadius: 34, padding: "12px 36px 16px", fontFamily: "GothamRnd", fontWeight: 400, fontSize: 40, lineHeight: "48px", textAlign: "center"}}>
             Encuentra tus dulces favoritos<br />en KiosClub.
           </div>
-          <div style={{display: "flex", alignItems: "center", gap: 6, color: "#fff", fontFamily: "GothamRnd", fontWeight: 500, fontSize: 32, lineHeight: "38px", textShadow: "0 2px 12px rgba(60,20,100,.5)"}}>
+          <div style={{display: "flex", alignItems: "center", gap: 6, color: OSCURO, fontFamily: "GothamRnd", fontWeight: 500, fontSize: 32, lineHeight: "38px"}}>
             {PIN}<span>Más Center San Carlos de Apoquindo</span>
           </div>
-          <div style={{color: "#fff", fontFamily: "GothamRnd", fontWeight: 400, fontSize: 30, lineHeight: "36px", marginTop: -12, textShadow: "0 2px 12px rgba(60,20,100,.5)"}}>
+          <div style={{color: OSCURO, fontFamily: "GothamRnd", fontWeight: 400, fontSize: 30, lineHeight: "36px", marginTop: -12}}>
             Av. Plaza 1.250, Las Condes.
           </div>
           <div style={{marginTop: 2, background: "#1c1c1c", borderRadius: 16, padding: "10px 22px"}}>

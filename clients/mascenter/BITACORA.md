@@ -1,3 +1,10 @@
+## 2026-09-30 (2ª parte) — Diego Aguilar (con Claude) · story Kios Club: fondo naranjo y textos oscuros
+
+**Qué se hizo:** feedback de Diego («el fondo cámbialo por fondo naranjo, el texto no se lee bien, prueba dejándolo con un tono más oscuro del manual de marca»). Fondos del caldero vacío y lleno pasados a naranjo con Seedream en modo edición (siguen alineados); titulares, 📍 sede y dirección en el rojo oscuro del manual `#65140F` sin sombra; la pastilla roja se mantiene. Se corrigió además un marco claro en el último segundo (el zoom final bajaba de 1).
+**Dónde quedó:** `st-kiosclub-halloween.mp4` reemplazado en sitio en «10. OCTUBRE» (md5 OK). Fondos en `public/assets/mascenter/kiosclub/*-naranjo.jpg`; composición `MC-Story-Kiosclub-Halloween`.
+**Qué sigue:** OK de Diego; si el logo blanco no se lee sobre el naranjo claro de arriba, pasarlo a `#65140F` también.
+**Abierto:** sin pista musical (la de la marca no está en esta máquina).
+
 ## 2026-09-30 — Diego Aguilar (con Claude) · LinkedIn IFB ronda 2: 7 comentarios de Diego resueltos
 
 **Qué se hizo:** Diego dejó 7 comentarios en los PNG de LinkedIn y mandó 4 renders oficiales de Linderos (pasillo,

@@ -66,7 +66,7 @@ PIEZAS = [
     # El brief dice «ACCESO VIP AL CYBER», pero el gancho entra directo al logo
     # CYBERWINE week: dejarlo completo repetía «CYBER» dos veces seguidas. Coni
     # quitó la palabra el 30-09 y la frase sigue cerrando contra el logo.
-    dict(n=1, escena="vip", libre=0.65, gancho="ACCESO VIP AL",
+    dict(n=1, escena="vip", fin=0.92, tope=790, gancho="ACCESO VIP AL",
          titular="45% OFF", bajada="ANTES QUE NADIE", cupon="CYBERVIP",
          producto=["MORANDÉ EL CABERNET", "DE RANQUIL 2021"],
          botella="ranquil", oferta="$34.970", normal="$59.990",
@@ -74,32 +74,32 @@ PIEZAS = [
          # Dónde caen los sellos ahora que la botella viene en el montaje: se
          # ubican a mano sobre el hombro, del lado libre. Antes colgaban del
          # bbox del packshot, que ya no se pega.
-         sellos_en=(884, 690), sellos_diam=152, sellos_paso=168,
+         sellos_en=(0.905, 0.285), sellos_diam=152, sellos_paso=0.062,
          legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
                "No acumulable con otras promociones. Hasta agotar stock."),
     # Sin bajada: el brief dice «HOUSE OF MORANDÉ A $46.630», pero el nombre del
     # vino y su precio ya van más abajo en la pieza. Coni la quitó el 30-09.
-    dict(n=2, escena="vip", libre=0.52, gancho="TU CUPÓN VIP SIGUE ACTIVO",
+    dict(n=2, escena="vip", fin=0.8, tope=620, gancho="TU CUPÓN VIP SIGUE ACTIVO",
          titular="45% OFF", bajada=None, cupon="CYBERVIP",
          producto=["HOUSE OF MORANDÉ", "MEZCLAS TINTAS 2021"],
          botella="house", oferta="$46.630", normal="$84.790", sellos=[],
          legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
                "No acumulable con otras promociones. Hasta agotar stock."),
-    dict(n=3, escena="vip", libre=0.55, gancho="ÚLTIMO DÍA VIP",
+    dict(n=3, escena="vip", fin=0.88, tope=545, gancho="ÚLTIMO DÍA VIP",
          titular="45% OFF", bajada="SE DESACTIVA MAÑANA", cupon="CYBERVIP",
          producto=["MORANDÉ SELECCIÓN ENOLÓGICA", "CARMENERE Y CABERNET SAUVIGNON"],
          botella="enologica_ca", botella2="enologica_cs",
          oferta="$9.340", normal="$16.990", sellos=[],
          legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
                "No acumulable con otras promociones. Hasta agotar stock."),
-    dict(n=4, escena="pub", libre=0.43, gancho=None,   # el KV público no lleva bajada sobre el lockup
+    dict(n=4, escena="pub", fin=0.88, tope=385, gancho=None,   # el KV público no lleva bajada sobre el lockup
          titular="HASTA 50% OFF", bajada="EN TUS FAVORITOS", cupon=None,
          producto=["PACK X6 7COLORES GRAN RESERVA", "CARMENERE / VIOGNIER 2023"],
          botella="7c_gran_reserva", botella2="vitis_carmenere",
          oferta="$4.290 c/u", normal="$47.340", sellos=[],
          legal="Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. "
                "No acumulable con otras promociones."),
-    dict(n=5, escena="pub", libre=0.5, gancho="SE ESTÁN AGOTANDO",
+    dict(n=5, escena="pub", fin=0.9, tope=520, gancho="SE ESTÁN AGOTANDO",
          titular="50% OFF", bajada="SOLO HASTA MAÑANA", cupon=None,
          producto=["PACK X6 7COLORES SINGLE", "VINEYARD RED BLEND 2022"],
          botella="7c_single", botella2="vitis_cabernet",
@@ -110,7 +110,7 @@ PIEZAS = [
          sellos=[],
          legal="Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. "
                "No acumulable con otras promociones."),
-    dict(n=6, escena="pub", libre=0.58, gancho="ÚLTIMAS HORAS DEL CYBER",
+    dict(n=6, escena="pub", fin=0.92, tope=640, gancho="ÚLTIMAS HORAS DEL CYBER",
          titular="50% OFF", bajada="HOY CIERRA", cupon=None,
          producto=["PACK X6 SELECCIÓN DE VIÑEDOS", "GRAN RESERVA CARMENERE 2024"],
          botella="vinedos_carmenere", botella2="charmat",
@@ -282,12 +282,12 @@ def vertical(p):
         if ft_g else 0
     # El descuento va apilado: la cifra arriba, OFF debajo y la bajada abajo.
     lin_of = parte_oferta(p["titular"])
-    # El ancho de la columna de texto lo dicta el MONTAJE: no puede invadir la
-    # zona donde empiezan las botellas. `libre` es la fracción del ancho de la
-    # escena en la que arranca la botella, medida sobre cada montaje.
-    k_esc = 1.25                                  # cuánto se agranda la escena al cubrir
-    tope_x = p["libre"] * k_esc * 1080 - 26
-    ancho_of = max(230, tope_x - x_de_la_C(u(540), ANCHO_LOCKUP) / ESC)
+    # El ancho de la columna lo dicta el MONTAJE: no puede invadir la zona donde
+    # arrancan las botellas. `tope` es esa vertical, en unidades de mesa, medida
+    # sobre CADA pieza ya compuesta. Se dejó como número por pieza y no como
+    # fórmula: al correr el encuadre para que la botella entre entera, la escala
+    # y el desplazamiento cambian de una pieza a otra y una fórmula única erraba.
+    ancho_of = max(230, p["tope"] - x_de_la_C(u(540), ANCHO_LOCKUP) / ESC)
     ft_t = fuente("xbold", _cuerpo_para_cap("xbold", u(CAP_OFERTA)))
     for l in lin_of:
         ft_t = min(ft_t, fuente("xbold", _cuerpo_para_ancho("xbold", l, u(ancho_of), -0.02)),
@@ -362,7 +362,8 @@ def vertical(p):
     # El fondo es el MONTAJE: la botella ya viene parada sobre la plataforma del
     # KV. Se recorta el sobrante por la derecha para que la botella se corra a
     # ese costado y el texto tenga el suyo.
-    im = viñeta(escena_montada(p["n"], "mail", ALTO, enfoque=p.get("enfoque", 1.0)), 0.22)
+    base, k_img, x_img = escena_montada(p["n"], "mail", ALTO, fin=p["fin"])
+    im = viñeta(base, 0.22)
     marco(im)
     advertencia(im)
     CX = u(540)
@@ -413,10 +414,16 @@ def vertical(p):
 
     if p["cupon"]:
         cupon(im, CX, y_cupon, p["cupon"], ancho=620, alto=620 / PROP_CUPON)
+    # Los sellos van sobre la BOTELLA, y la botella vive en el montaje: su sitio
+    # se declara en fracciones de la escena y se transforma con el mismo
+    # encuadre. Así no se despegan cuando la imagen se corre.
     for i, nombre in enumerate(p.get("sellos", [])):
-        cx_s, cy_s = p["sellos_en"]
-        sello(im, u(cx_s), u(cy_s + i * p["sellos_paso"]), nombre,
-              diam=p["sellos_diam"])
+        px, py = p["sellos_en"]
+        esc = Image.open(LOCKUP)  # sólo para tener PIL a mano
+        anc_img = k_img * 1536
+        sello(im, px * anc_img - x_img,
+              (py + i * p["sellos_paso"]) * k_img * 2752 - (k_img * 2752 - im.height) / 2,
+              nombre, diam=p["sellos_diam"])
 
     pie_legal(im, p, y=y_legal + CAP_LEGAL * 1.55, ancho_max=940, cap=CAP_LEGAL)
     return im

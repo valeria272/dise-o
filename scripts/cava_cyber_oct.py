@@ -231,7 +231,7 @@ def _ancla(xy, tam, ancla):
 ESCENAS = CAVA / "cyber-oct/escenas"
 
 
-def escena_montada(n, formato, alto_ud, enfoque=1.0):
+def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955):
     """El fondo YA trae la botella puesta sobre la plataforma del KV.
 
     Estos montajes se generaron con Magnific en el space de Coni, con su propio
@@ -241,18 +241,20 @@ def escena_montada(n, formato, alto_ud, enfoque=1.0):
 
     Por eso acá no se pega packshot ni losa: la pieza ya es su KV.
 
-    `enfoque` dice desde dónde se recorta el ancho sobrante: 0 = se quita todo
-    por la derecha (la botella se corre hacia la derecha del encuadre), 1 = se
-    quita por la izquierda.
+    El encuadre NO se centra: se corre para que la botella entre ENTERA. Coni:
+    «da lo mismo si el formato no cuadra, tienes que ir corriendo la imagen para
+    que la botella se vea». `fin` es la fracción del montaje donde termina la
+    botella de más a la derecha, y `borde` dónde debe caer en la pieza.
     """
     W = ANCHO[formato]
     H = int(round(u(alto_ud)))
     im = Image.open(ESCENAS / f"brief{n}.jpg").convert("RGB")
     k = max(W / im.width, H / im.height)           # cubrir, nunca deformar
     im = im.resize((int(round(im.width * k)), int(round(im.height * k))), Image.LANCZOS)
-    x0 = int((im.width - W) * (1 - enfoque))
+    x0 = int(round(fin * im.width - borde * W))
+    x0 = max(0, min(x0, im.width - W))             # sin salirse del montaje
     y0 = int((im.height - H) * 0.5)
-    return im.crop((x0, y0, x0 + W, y0 + H))
+    return im.crop((x0, y0, x0 + W, y0 + H)), k, x0
 
 
 def fondo(escena, formato, alto_ud=None):

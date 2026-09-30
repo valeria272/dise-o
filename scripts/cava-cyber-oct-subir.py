@@ -102,12 +102,17 @@ def qa_en_verde(piezas):
 
 
 def main():
-    piezas = sorted(ENTREGA.glob("*/*.png"))
+    # Sin argumentos sube todo; con argumentos, sólo esas carpetas. Sirve para
+    # dejar una en pausa —WhatsApp quedó en stand-by el 30-09— sin tener que
+    # tocar el script.
+    pedidas = [a for a in sys.argv[1:] if a in DESTINOS] or list(DESTINOS)
+    piezas = sorted(p for c in pedidas for p in (ENTREGA / c).glob("*.png"))
     if not piezas:
-        sys.exit("No hay piezas en out/cava/cyber-octubre/")
+        sys.exit("No hay piezas que subir en out/cava/cyber-octubre/")
     qa_en_verde(piezas)
     d = svc()
-    for carpeta, destino in DESTINOS.items():
+    for carpeta in pedidas:
+        destino = DESTINOS[carpeta]
         lote = sorted((ENTREGA / carpeta).glob("*.png"))
         if not lote:
             continue

@@ -497,7 +497,7 @@ def botella(im, ruta, cx, base_y, alto, reflejo=0.30):
     bt = bt.crop(bt.split()[3].getbbox())      # recorta el aire transparente
     h = int(u(alto))
     w = int(round(h * bt.width / bt.height))   # ← la proporción nativa manda
-    bt = bt.resize((w, h), Image.LANCZOS)
+    bt = _reescala_rgba(bt, w, h)
     x, y = int(cx - w / 2), int(u(base_y)) - h
 
     # Halo cálido detrás. En el set del KV la botella recibe una luz de contra
@@ -529,6 +529,26 @@ def botella(im, ruta, cx, base_y, alto, reflejo=0.30):
 
     im.paste(bt, (x, y), bt)
     return (x, y, x + w, y + h)
+
+
+def _reescala_rgba(im, w, h):
+    """Reescala respetando el alfa PREMULTIPLICADO.
+
+    Varios packshots del e-commerce vienen recortados sobre BLANCO: el alfa es
+    0 pero el RGB de fuera de la botella sigue siendo blanco. Si se reescala el
+    RGB y el alfa por separado —que es lo que hace PIL— los píxeles del canto
+    mezclan ese blanco y la botella queda con un filo claro alrededor sobre el
+    fondo oscuro del KV. Premultiplicando, el canto mezcla transparencia en vez
+    de blanco.
+    """
+    a = np.asarray(im).astype(np.float32)
+    al = a[..., 3:4] / 255.0
+    pre = np.concatenate([a[..., :3] * al, a[..., 3:4]], axis=2)
+    pre = Image.fromarray(pre.clip(0, 255).astype(np.uint8)).resize((w, h), Image.LANCZOS)
+    b = np.asarray(pre).astype(np.float32)
+    al2 = np.maximum(b[..., 3:4] / 255.0, 1e-4)
+    rgb = (b[..., :3] / al2).clip(0, 255)
+    return Image.fromarray(np.concatenate([rgb, b[..., 3:4]], axis=2).astype(np.uint8), "RGBA")
 
 
 def _halo(im, cx, cy, ancho, alto, radio, alfa=110, color=(158, 96, 44)):

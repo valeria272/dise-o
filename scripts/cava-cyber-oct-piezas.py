@@ -21,7 +21,7 @@ columna de mensaje al otro.
 import sys
 import pathlib
 
-from PIL import ImageDraw
+from PIL import Image, ImageDraw
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from cava_cyber_oct import (  # noqa: E402
@@ -47,10 +47,17 @@ BOTELLAS = {
     "7c_gran_reserva": BT / "BTT_7_COLORES_GRAN_RVA CA_VI_VINTAGE.png",
     "vitis_carmenere": BT / "BottleShot Vitis Unica CR (Maipo).png",
     "charmat": BT / "BottleShot_Morande_ExtraBrut Charmat SINGOTAS.png",
-    # ⛔ Faltan tres en el banco: 7Colores Single Vineyard Red Blend 2022,
-    #    Vitis Única Cabernet Sauvignon y Selección de Viñedos GR Carmenere
-    #    2024. Están en el Bottle Shot del kit digital (SharePoint de Morandé).
-    #    Regla de la marca: si falta un bottle shot SE PIDE, no se genera.
+    # Estas tres no estaban en BRIEF/KV. Salen de los packshots del catálogo que
+    # ya vivían en el repo, en su versión 1x.
+    #
+    # ⛔ NO se usa la carpeta `2x/`: esas son upscales de precisión y el modelo
+    #    REESCRIBIÓ las etiquetas. En el 7Colores dejó «SINGLE VIN5CI80»,
+    #    «WIRE06 CHILE» y el sello como «IAMESSOCKLIHG.COM». Las 1x traen el
+    #    texto real y, al tamaño al que se entregan (la botella mide ~450 px en
+    #    el PNG final), sobra resolución.
+    "7c_single": RAIZ / "public/assets/cava/bottles/7colores-single-vineyard-red-blend.png",
+    "vitis_cabernet": RAIZ / "public/assets/cava/bottles/vitis-unica-cabernet.png",
+    "vinedos_carmenere": RAIZ / "public/assets/cava/bottles/seleccion-vinedos-gr-carmenere.png",
 }
 
 # ── Los 6 envíos, textuales del brief ───────────────────────────────────────
@@ -85,15 +92,18 @@ PIEZAS = [
     dict(n=5, escena="pub", gancho="SE ESTÁN AGOTANDO",
          titular="50% OFF", bajada="SOLO HASTA MAÑANA", cupon=None,
          producto=["PACK X6 7COLORES SINGLE", "VINEYARD RED BLEND 2022"],
-         botella=None, falta="7Colores Single Vineyard Red Blend 2022",
+         botella="7c_single", botella2="vitis_cabernet",
          oferta="$5.490 c/u", normal="$71.940",
-         sellos=[("92", "DESCORCHADOS"), ("91", "J. SUCKLING")],
+         # Sin discos: el packshot oficial YA trae quemados los dos sellos del
+         # brief —Descorchados 92 y James Suckling 91—. Superponer los míos
+         # sería duplicar el mismo premio dos veces en la misma botella.
+         sellos=[],
          legal="Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. "
                "No acumulable con otras promociones."),
     dict(n=6, escena="pub", gancho="ÚLTIMAS HORAS DEL CYBER",
          titular="50% OFF", bajada="HOY CIERRA", cupon=None,
          producto=["PACK X6 SELECCIÓN DE VIÑEDOS", "GRAN RESERVA CARMENERE 2024"],
-         botella=None, falta="Selección de Viñedos Gran Reserva Carmenere 2024",
+         botella="vinedos_carmenere", botella2="charmat",
          oferta="$4.490 c/u", normal="$53.940", sellos=[],
          legal="Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. "
                "No acumulable con otras promociones."),
@@ -161,11 +171,19 @@ def vertical(p):
     if dobles:
         # Dos botellas necesitan el centro del lienzo: la pieza se apila —
         # oferta, botellas, producto— en lugar de partirse en dos columnas.
-        t = texto_oro(im, (CX, u(946)), p["titular"], ft_t, -0.02, ancla="centro")
+        t = texto_oro(im, (CX, u(902)), p["titular"], ft_t, -0.02, ancla="centro")
         ftb = fuente("light", _cuerpo_para_ancho("light", p["bajada"], u(720), 0.055))
-        texto_plano(im, (CX, t[3] + u(18)), p["bajada"], ftb, BLANCO, 0.055, ancla="centro")
-        columna_botella(im, p, cx=CX, base_y=1620, alto=520, sellos_a="izq")
-        bloque_producto(im, CX, y_base=1812, p=p, cap=27, ancho_max=900)
+        b = texto_plano(im, (CX, t[3] + u(18)), p["bajada"], ftb, BLANCO, 0.055,
+                        ancla="centro")
+        # El alto de las botellas sale del HUECO que queda, no de un número
+        # puesto a ojo: con un alto fijo, un titular de dos palabras más largo
+        # hacía que el cuello de la botella se metiera dentro de la bajada.
+        Y_BASE, CAP = 1846, 26
+        techo = b[3] / ESC + 26
+        piso = Y_BASE - alto_bloque_producto(p, CAP, 900) - 24
+        columna_botella(im, p, cx=CX, base_y=piso, alto=min(560, piso - techo),
+                        sellos_a="izq")
+        bloque_producto(im, CX, y_base=Y_BASE, p=p, cap=CAP, ancho_max=900)
     else:
         # Botella a la izquierda y mensaje a la derecha: la mesa 21 del editable.
         columna_botella(im, p, cx=u(310), base_y=1792, alto=830, sellos_a="izq")
@@ -205,14 +223,33 @@ def cupon_al_hueco(im, cx, y, tope, codigo, ancho_max=500, giro=GIRO_CUPON):
     return cupon(im, cx, y + sobra / 2, codigo, ancho=ancho, alto=alto, giro=giro) / ESC
 
 
-def columna_botella(im, p, cx, base_y, alto, sellos_a="izq"):
+SECUNDARIO = 0.88       # el brief distingue «PRODUCTO ESTRELLA» de «SECUNDARIO»
+
+
+def _ancho_colocado(ruta, alto):
+    """Ancho que va a ocupar ese packshot a esa altura, sin dibujarlo."""
+    im = Image.open(ruta)
+    b = im.convert("RGBA").split()[3].getbbox()
+    return u(alto) * (b[2] - b[0]) / (b[3] - b[1])
+
+
+def columna_botella(im, p, cx, base_y, alto, sellos_a="izq", hueco=16):
+    """Coloca una botella, o dos repartidas por sus anchos REALES.
+
+    Separarlas por una fracción de la altura las montaba una encima de otra en
+    cuanto una era más ancha que la otra, y los sellos que el packshot trae
+    quemados quedaban tapados. Acá se miden los dos anchos y se reparte el
+    conjunto; la estrella va más grande y se dibuja ÚLTIMA, así queda delante.
+    """
     if not p.get("botella"):
         return
     if p.get("botella2"):
-        sep = u(alto * 0.15)
-        b1 = botella(im, BOTELLAS[p["botella"]], cx - sep, base_y, alto)
-        botella(im, BOTELLAS[p["botella2"]], cx + sep, base_y, alto * 0.96)
-        ancla = b1
+        a1, a2 = alto, alto * SECUNDARIO
+        w1 = _ancho_colocado(BOTELLAS[p["botella"]], a1)
+        w2 = _ancho_colocado(BOTELLAS[p["botella2"]], a2)
+        total = w1 + w2 + u(hueco)
+        botella(im, BOTELLAS[p["botella2"]], cx + total / 2 - w2 / 2, base_y, a2)
+        ancla = botella(im, BOTELLAS[p["botella"]], cx - total / 2 + w1 / 2, base_y, a1)
     else:
         ancla = botella(im, BOTELLAS[p["botella"]], cx, base_y, alto)
     d = alto * 0.185
@@ -221,17 +258,30 @@ def columna_botella(im, p, cx, base_y, alto, sellos_a="izq"):
         sello(im, x, ancla[1] + u(d * 0.62 + i * d * 1.16), cifra, casa, diam=d)
 
 
+def _tipografia_producto(p, cap, ancho_max):
+    ft = fuente("bold", _cuerpo_para_cap("bold", u(cap)))
+    for linea in p["producto"]:                      # que nunca se salga del ancho
+        ft = min(ft, fuente("bold", _cuerpo_para_ancho("bold", linea, u(ancho_max), 0.01)),
+                 key=lambda f: f.size)
+    return ft, ft.size / ESC * 1.40
+
+
+def alto_bloque_producto(p, cap=30, ancho_max=600):
+    """Lo que mide el bloque nombre+precio, para poder repartir el aire antes
+    de dibujar nada."""
+    _, paso = _tipografia_producto(p, cap, ancho_max)
+    fto = fuente("xbold", _cuerpo_para_cap("xbold", u(cap * 1.7)))
+    ao = mide(p["oferta"], fto)
+    return len(p["producto"]) * paso + cap * 0.75 + (ao[3] - ao[1]) / ESC
+
+
 def bloque_producto(im, cx, y_base, p, cap=30, ancho_max=600):
     """Nombre del vino y precio, anclados POR ABAJO.
 
     Anclarlo por arriba dejaba el precio encima del legal cuando el cupón crecía:
     el pie legal es la última línea de la pieza y no se puede pisar.
     """
-    ft = fuente("bold", _cuerpo_para_cap("bold", u(cap)))
-    for linea in p["producto"]:                      # que nunca se salga del ancho
-        ft = min(ft, fuente("bold", _cuerpo_para_ancho("bold", linea, u(ancho_max), 0.01)),
-                 key=lambda f: f.size)
-    paso = ft.size / ESC * 1.40
+    ft, paso = _tipografia_producto(p, cap, ancho_max)
     alto_nombre = len(p["producto"]) * paso
 
     fto = fuente("xbold", _cuerpo_para_cap("xbold", u(cap * 1.7)))

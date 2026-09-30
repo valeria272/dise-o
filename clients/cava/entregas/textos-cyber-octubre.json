@@ -1,5 +1,5 @@
 {
-  "_que_es": "Los textos que cada pieza pinta de verdad, declarados para que qa/motor.py corra las reglas de copy en vez de saltarlas. Salen literales del brief «CAVA _ Briefs Cyber octubre 2026.xlsx». El logo y el recuadro de ADVERTENCIA son IMÁGENES levantadas del KV de Coni, no texto compuesto, y por eso no se declaran.",
+  "_que_es": "Los textos que cada pieza pinta de verdad, declarados para que qa/motor.py corra las reglas de copy en vez de saltarlas. Salen literales del brief «CAVA _ Briefs Cyber octubre 2026.xlsx». El logo y el recuadro de ADVERTENCIA son IMÁGENES levantadas del KV de Coni, y los sellos de premio de 7Colores, Vitis Única y Selección de Viñedos vienen quemados en el packshot oficial: ninguno es texto compuesto por acá, por eso no se declaran.",
   "CYBER_CAVA_OCT_WSP1_VIP.png": [
     "ACCESO VIP AL CYBER",
     "45% OFF",
@@ -100,6 +100,26 @@
     "CARMENERE / VIOGNIER 2023",
     "$4.290 c/u",
     "$47.340",
+    "Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. No acumulable con otras promociones."
+  ],
+  "CYBER_CAVA_OCT_MAIL5_GENERAL.png": [
+    "SE ESTÁN AGOTANDO",
+    "50% OFF",
+    "SOLO HASTA MAÑANA",
+    "PACK X6 7COLORES SINGLE",
+    "VINEYARD RED BLEND 2022",
+    "$5.490 c/u",
+    "$71.940",
+    "Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. No acumulable con otras promociones."
+  ],
+  "CYBER_CAVA_OCT_MAIL6_GENERAL.png": [
+    "ÚLTIMAS HORAS DEL CYBER",
+    "50% OFF",
+    "HOY CIERRA",
+    "PACK X6 SELECCIÓN DE VIÑEDOS",
+    "GRAN RESERVA CARMENERE 2024",
+    "$4.490 c/u",
+    "$53.940",
     "Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. No acumulable con otras promociones."
   ]
 }

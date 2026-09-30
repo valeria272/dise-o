@@ -1452,6 +1452,24 @@ Geometría medida de cada madre, script y QA: en la carpeta de la entrega del me
 (`out/ebema/YYYYMMDD_wsp_*/ENTREGA.md`) y en la memoria
 `ebema-click-campanas-ariel-solo-diseno`.
 
+### ARIEL sin madre: pieza de catálogo (30-09-2026, Piazza A4/A5)
+
+Cuando la campaña es de otra línea y **no hay madre que parchar**, se diseña una
+pieza nueva **extendiendo el lenguaje de la madre del mes**: el cabezal EBEMA CLICK
+se copia al píxel, más la caja roja del título, la píldora blanca y el mármol. Costó
+11 rondas; lo que quedó firme está en `APRENDIZAJES.md` R-78…R-86:
+
+- Los productos son **el píxel de las fichas del proveedor**, recortados. La IA sólo hace el set vacío.
+- Todos los productos **miran hacia el mismo lado**. Se agrupan **por tipo, uno por nivel**, y
+  **ninguno flota**: la repisa va de muro a muro y es liviana.
+- La zona de íconos y CTA es del **mismo mármol, clara y sin aristas**.
+- La caja roja del título arranca a la **mitad de la barra de la «A»** de la 1.ª línea, medida sobre el glifo.
+- **Sólo va lo que escribe Carlos.** La versión contratista pierde el exhibidor y el legal si el brief no
+  los trae, y se acorta.
+
+Generador y receta: `out/ebema/20260930_wsp_A4_piazza_catalogo/` (`componer.py` +
+`ENTREGA.md`), que rinde las dos piezas byte a byte.
+
 ---
 
 ## 13. Carruseles — la capa `carrusel.css` (02-09-2026)

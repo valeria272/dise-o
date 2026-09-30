@@ -420,6 +420,17 @@ out/ebema/20260902_carrusel_cedral/*
 out/ebema/20260902_carrusel_cedral/editables/*
 !out/ebema/20260902_carrusel_cedral/editables/build.py
 !out/ebema/20260902_carrusel_cedral/editables/carrusel.css
+# ── ARIEL A4/A5 Piazza catálogo (30-09-2026): el render vuelve al repo ──
+# componer.py regenera las 2 piezas byte a byte (comprobado con cmp) desde el
+# fondo (Magnific, no determinista) y los recortes (raw/ no viaja).
+!out/ebema/20260930_wsp_A4_piazza_catalogo/
+out/ebema/20260930_wsp_A4_piazza_catalogo/*
+!out/ebema/20260930_wsp_A4_piazza_catalogo/ENTREGA.md
+!out/ebema/20260930_wsp_A4_piazza_catalogo/*.py
+!out/ebema/20260930_wsp_A4_piazza_catalogo/recortes/
+!out/ebema/20260930_wsp_A4_piazza_catalogo/fondos/
+out/ebema/20260930_wsp_A4_piazza_catalogo/fondos/*
+!out/ebema/20260930_wsp_A4_piazza_catalogo/fondos/fondo_v4_x2.png
 # ══════════ RONDA 7 de Between septiembre 2026 (02-09-2026) ══════════
 # Las 8 piezas de la S1 se ENTREGARON hoy, así que sus fondos vuelven al repo:
 # sin esto la ronda hay que rehacerla de cero en otra máquina, que es lo que ya

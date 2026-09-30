@@ -3,6 +3,30 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-30 (noche) — Paulina Bustamante · WhatsApp ARIEL A4/A5 Piazza catálogo
+
+**Qué se hizo:** [CLICK] Paulina pidió las campañas **A4 (ferretero) y A5 (contratista)** de la hoja
+`Briefs wsp septiembre ARIEL` («GRIFERÍA PIAZZA: +50 PRODUCTOS PARA TU FERRETERÍA / OBRA»). No hay
+madre para esta línea: se diseñó extendiendo el lenguaje de su madre de Portezuelo (cabezal copiado al
+píxel, título en caja roja, píldora blanca, mármol gris). Las griferías son los **7 packshots reales**
+de la carpeta del brief, recortados de las fichas (la IA sólo hizo el set vacío, Seedream + escalado
+Magnific). **11 rondas en la sesión**, aprobada y enviada a contenido. La A5 es la A4 con «PARA TU OBRA»
+al mismo cuerpo, **sin exhibidor ni legal** (el brief de la A5 no los trae) y más corta (4180).
+
+**Dónde quedó:** Drive `EBEMA CLICK › 2026 › SEPTIEMBRE › SEMANA 1 › wtps_piazza_catalogo`
+(`1EWgxVIhamwI_rqduQsqN6PvI3aCFwXbY`), junto a sus `ebema_wtps_piazza_ferre/cont.png`:
+`ebema_wtps_piazza_catalogo_ferre.png` y `_cont.png`, tamaño verificado contra el local. Generador
+`out/ebema/20260930_wsp_A4_piazza_catalogo/componer.py` (rinde las dos **byte a byte**, comprobado con
+`cmp`) + `recortar.py` + `logo_piazza.py` + `fondos/fondo_v4_x2.png` + `recortes/`, versionados hoy;
+detalle en su `ENTREGA.md`. Fichas en `raw/ebema/piazza-catalogo-a4a5/` (fuente: Drive `PIAZZA`
+`1_Z4eOq5FTBb9EP0MNGMnOMkZvYw0l6eg`).
+
+**Qué sigue:** nada de esta campaña, salvo lo que devuelva contenido. En la hoja ARIEL la A6 está vacía.
+
+**Abierto:** dónde va el **logo Piazza**: el brief pide «AÑADIR LOGO PIAZZA», Paulina lo sacó porque
+«se llena la imagen» y dijo «después vemos dónde lo agregamos». Salió así a contenido. El logo en alta ya
+está extraído (`recortes/logo_piazza.png`, 784 px).
+
 ## 2026-09-30 (tarde) — Paulina Bustamante · LinkedIn 15/10 pasa a carrusel + sanjuan4
 
 **Qué se hizo:**

@@ -23,7 +23,7 @@ Cada cuenta tiene su cerebro en `clients/<marca>/APRENDIZAJES.md`, alimentado en
 - [piso18](cliente-piso18.md) — 59 reglas · última cosecha 2026-09-30
 - [qb](cliente-qb.md) — 84 reglas · última cosecha 2026-09-30
 - [rendic](cliente-rendic.md) — 17 reglas · última cosecha 2026-09-30
-- [revex](cliente-revex.md) — 32 reglas · última cosecha 2026-09-30
+- [revex](cliente-revex.md) — 37 reglas · última cosecha 2026-09-30
 - [sal-lobos](cliente-sal-lobos.md) — 12 reglas · última cosecha 2026-09-30
 - [san-esteban](cliente-san-esteban.md) — 18 reglas · última cosecha 2026-09-30
 - [santa-gota](cliente-santa-gota.md) — 25 reglas · última cosecha 2026-09-30

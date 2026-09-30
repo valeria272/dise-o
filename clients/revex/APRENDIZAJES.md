@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (diseñadora de la agencia para Grupo Revex) · Aprueba: **Jenny Campos** (diseñadora de Grupo Revex, `jcampos@gruporevex.cl`)
-> Última cosecha: **2026-09-30** · Cosechas: **3**
+> Última cosecha: **2026-09-30** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 

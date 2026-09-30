@@ -1,5 +1,12 @@
 # Piso18 — bitácora
 
+## 2026-09-30 — Elisabet Soto «Eli» (Windows, con Claude) · búsqueda de los comentarios de Scarlette — SIN PIEZAS TOCADAS
+
+**Qué se hizo:** Eli pidió corregir la grilla de octubre «según comentarios de contenido de Scar», reemplazar en Drive, dejar EN CAMBIOS lo dudoso y armar el HTML de antes/después. **No se encontró ningún comentario nuevo de Scarlette:** hilos nativos (sus 3 abiertos son del 15-09, sobre las refs del brief, respondidos «corregido» por Carlos), diff de celdas contra `p18-oct-20260929c.json` (sólo FEED C14 y STORIES D15 → EN REVISIÓN), notas y tachados (sólo D13 Arreglos, ya resuelto), Slack #contenido-hilton (nada hoy; el 28-09 Scarlette a Carlos: «En piso18 hay que ajustar unos st que tienen los tag no actualizados y hay una fecha que hay que cambiar» = contenido), y las carpetas PISO18 S2–S5 de Drive (sin cambios; no hay S1).
+**Dónde quedó:** instantánea nueva `clients/hilton/grillas/api/p18-oct-20260930.json`. Ninguna pieza, render ni archivo de Drive tocado. Se confirmó que el token del estudio puede escribir el estado de la grilla (validación con «EN CAMBIOS»), aún no usado.
+**Qué sigue:** que Eli pegue o capture los comentarios de Scarlette (si están en los PNG de Drive, el token no los lee) → estimar por pieza, corregir, reemplazar en Drive con md5, EN CAMBIOS sólo en lo corregido o dudoso, HTML de antes/después.
+**Abierto:** dónde están los comentarios de Scarlette → Eli. Lo de antes sigue: ST 16-10 y 30-10 animadas (MP4 bloqueado en esta máquina), nombres viejos en Drive de las 3 piezas reordenadas.
+
 ## 2026-09-29 (tarde) — Elisabet Soto «Eli» (Windows, con Claude) · RONDAS 5 y 6: comentarios de la jefa de diseño Constanza Lizana — EN DRIVE
 
 **Qué se hizo:** Constanza dejó 2 hilos nativos en la grilla de octubre (no en celdas: el diff de valores no los ve). Ronda 5: FEED 09-10 Fechas 2027 G2, «TEMPORADA ALTA 2027» con espaciado 7 → 2 px («es demasiado IA»); ST 07-10 Estación favorita, «Dulce/Salada» de contorno a fucsia sólido. Ronda 6, a pedido de Eli, el mismo criterio al resto del mes: 13-10 G2 (2 rótulos), 16-10 G1, ST 15-10 y ST 27-10 → ~0,08 em. Se verificó 3 veces que Constanza no tenía más comentarios (hilos, notas/tachados, diff).

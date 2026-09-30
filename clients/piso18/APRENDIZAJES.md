@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»**, con revisión de la jefa de diseño **Constanza Lizana** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
-> Última cosecha: **2026-09-30** · Cosechas: **11**
+> Última cosecha: **2026-09-30** · Cosechas: **12**
 
 ## 1. Quién es el cliente
 
@@ -26,7 +26,7 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 |---|---|
 | Quién pide / KAM | Eli encarga al estudio; la grilla (brief de contenido) la dejan Carlos Figueroa y Scarlette Muñoz |
 | Quién aprueba (cliente) | Hilton, en la grilla. Eli revisa y aprueba antes, mirando una página de antes/después |
-| Por dónde llega el feedback | Comentarios en celda de la grilla (hojas FEED · STORIES · ORGÁNICO), **prependidos** sobre el anterior; encargo directo de Eli; y **hilos nativos de la jefa de diseño Constanza Lizana** con @Eli, anclados a la celda del brief (desde el 29-09, R-59) |
+| Por dónde llega el feedback | Comentarios en celda de la grilla (hojas FEED · STORIES · ORGÁNICO), **prependidos** sobre el anterior; encargo directo de Eli; y **hilos nativos de la jefa de diseño Constanza Lizana** con @Eli, anclados a la celda del brief (desde el 29-09, R-59); contenido (Scarlette/Carlos) también coordina por **Slack #contenido-hilton** (`C0B3CANLT0A`), y ahí van pedidos de grilla (tags, fechas) que no son de diseño |
 | Dónde se entrega | `S<n> HILTON <MES> 2026 › PISO18` en Drive (la carpeta hereda permisos de escritura del cliente); banners en `10sST2d5K43vVYFgtn084AsAMNRwCYEoe` |
 | Ritmo | Grilla mensual por semanas (S1–S5); estáticas, historias animadas en Remotion y reels en CapCut |
 | Rondas típicas | Carrusel S4: 5 rondas. Historia animada S4: 7 rondas (orden de fotos, titular y, sobre todo, la transición) |
@@ -181,8 +181,15 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - Los dos hilos de Constanza (FEED C9, STORIES D8) siguen **abiertos** en la grilla y las piezas en EN CAMBIOS / EN CAMBIOS DISEÑO: ¿quién los responde/cierra y devuelve el estado? → Eli
 - ¿El criterio de espaciado de Constanza aplica a septiembre y a las piezas futuras de otras diseñadoras en Piso18? Se aplicó sólo a octubre → Eli / Constanza
 - La ST 09-10 conserva «Cotiza tu evento en piso18.cl» sin CTA en el brief (R-51): Eli la dio por buena; ¿se mantiene? → Eli
+- 30-09: Eli pidió corregir «según comentarios de contenido de Scar» y **no aparece ninguno nuevo** (ni hilos, ni celdas, ni notas, ni Slack). ¿Dónde los dejó? Si es sobre los PNG en Drive, el token no los lee → Eli (pegar o capturar)
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Elisabet Soto con Claude · búsqueda de los comentarios de Scarlette, sin piezas tocadas
+- sin aprendizajes de diseño: no se encontró ningún comentario nuevo de Scarlette sobre octubre (hilos, diff de celdas, notas/tachados, Slack #contenido-hilton, carpetas de Drive). Nada se corrigió ni se subió.
+- §2: se agrega Slack #contenido-hilton como canal por donde contenido coordina (lo del 28-09 de Scarlette, «tags no actualizados y una fecha que cambiar», es para Carlos, no para diseño). §8: 1 pregunta nueva (dónde están los comentarios).
+- Técnica: la validación del estado en la grilla acepta «EN CAMBIOS» y el token del estudio tiene scope `spreadsheets` → se puede dejar el estado por API cuando Eli lo pida pieza por pieza.
+- Fuera de alcance: los cambios de DT y QB en el árbol son de otra sesión; no se commitean acá.
 
 ### 2026-09-30 — Claude nocturno (nube) · revisión de rutina (bec3553)
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`bec3553`) es el mismo commit de Elisabet Soto donde ya cosechó R-57 ✔×2 y R-31 ✔×8 (ver la entrada de abajo). Se lista a sí mismo porque tocó `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit.

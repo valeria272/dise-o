@@ -81,7 +81,8 @@ PIEZAS = [
                "No acumulable con otras promociones. Hasta agotar stock."),
     # Sin bajada: el brief dice «HOUSE OF MORANDÉ A $46.630», pero el nombre del
     # vino y su precio ya van más abajo en la pieza. Coni la quitó el 30-09.
-    dict(n=2, escena="vip", fin=0.735, tope=790, borde=0.889, vert=0.14, zoom=1.16,
+    dict(n=2, escena="vip", fin=0.735, tope=790, borde=0.857, vert=0.10, zoom=1.16,
+         alto_img=0.80,
          gancho="TU CUPÓN VIP SIGUE ACTIVO",
          titular="45% OFF", bajada=None, cupon="CYBERVIP",
          producto=["HOUSE OF MORANDÉ", "MEZCLAS TINTAS 2021"],

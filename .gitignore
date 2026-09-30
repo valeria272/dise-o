@@ -109,9 +109,14 @@ public/assets/ebema/linkedin-oct26/**/*.log
 
 !public/assets/cava/bottles/**
 !public/assets/cava/kv/**
-# CAVA Cyber octubre 2026 (30-09): la ADVERTENCIA levantada en píxeles del KV de
-# Coni. Es exigencia legal y no se recompone, así que el archivo ES la pieza.
+# CAVA Cyber octubre 2026 (30-09): la ADVERTENCIA y el logo CYBERWINE week
+# levantados en píxeles del KV de Coni, y los seis montajes generados con
+# Magnific sobre su set. No se recomponen ni se regeneran igual: el archivo ES
+# la pieza.
 !public/assets/cava/cyber-oct/**
+# Los sellos de premio: son los archivos OFICIALES que mandó Coni. Un sello es
+# una marca registrada y no se redibuja, así que si no viajan no hay entrega.
+!public/assets/cava/sellos/**
 
 # DOUBLETREE: el fondo de la historia del Día del Turismo (4 MB). Misma
 # excepción que Revex y CAVA: `scripts/dt-rendir.py` no rinde la pieza sin esta

@@ -120,6 +120,10 @@ export const QbFeed09CmrG2: React.FC = () => {
     <AbsoluteFill style={{background: "#000", width: FEED.w, height: FEED.h}}>
       <Panorama lado={1} />
       <VeloPano />
+      {/* r24: la mano de la ribs asomaba dentro del marco → sombra detrás del bloque, que se
+          apaga antes del borde izquierdo para no cortar la unión con la N°1 */}
+      <div style={{position: "absolute", left: 0, top: 0, width: FEED.w, height: FEED.h,
+        background: "radial-gradient(ellipse 520px 560px at 540px 640px, rgba(0,0,0,.72) 0%, rgba(0,0,0,.55) 55%, rgba(0,0,0,0) 100%)"}} />
       <Linea top={TIT.top} cuerpo={TIT.cuerpo} peso={800} tracking="0.01em" interlinea={1}>{d.titular1}</Linea>
       <div style={{position: "absolute", left: 0, top: 0, width: MESA.w, height: FEED.h, overflow: "hidden"}}>
         <BloqueCmr40 dy={SUBE_BLOQUE} />

@@ -1,5 +1,16 @@
 # QB Restaurant — bitácora
 
+## 2026-09-30 — Elisabet Soto «Eli» (Windows, con Claude) · rondas 22–24: Banco, Sunset, carrusel CMR, ST 40 %
+
+**Qué se hizo** (todo reemplazado en Drive, md5 igual):
+- **ST n°1 S1 Banco de Chile** r22–r23: tarjetas y legal más abajo, pie oscurecido (sombra sobre el plato), tarjetas pegadas al legal sin solapar (reflejo medido en el alfa del PNG), foto 60 px más arriba → Eli: «okey» (aprobada).
+- **ST n°5 S1 Sunset** r24 (Nicolás: «muy oscura, más sunset y cálida»; Eli: no tan oscuro abajo + plato de la carta de TERRAZA de qbrestaurant.cl): **empanadas de mechada** (foto de la carta terraza de ref, `raw/hilton/qb/oct-r24/carta-p05-0.jpeg`), Nano Banana Pro sobre la r20 con luz de atardecer real + mesa extendida hacia abajo (outpainting) → sin bloque negro al pie; velos más livianos y baño cálido soft-light.
+- **C3 S1 carrusel CMR** r24: logo SÓLO en la portada; titulares de las 3 láminas a y=200, Raleway 68 (ExtraBold/Light); N°1+N°2 = UNA foto del shooting de la carta (**American Baby ribs 11**, horizontal) en panorama partido, mismo velo; sombra radial detrás del bloque en la N°2. N°3 sigue con el brindis (Eli: la ref «bastante bien»).
+- **ST n°4 S1 CMR 40 %** r24: «Tu panorama de sábado…» en SemiBold y 50 px más abajo (sólo la fecha 08).
+
+**Dónde quedó:** renders `out/qb/oct/r22/`, `r23/`, `r24/` (con `_antes/`); carta terraza en `raw/hilton/qb/oct-r24/menu-terraza.pdf`.
+**Abierto:** visto de Eli/Nicolás al Sunset r24, al carrusel CMR r24 y a la ST 40 % r24.
+
 ## 2026-09-29 (noche) — Elisabet Soto «Eli» (Windows, con Claude) · rondas 19–21: los hilos de Scarlette y Nicolás, CMR 09-10 y ST 08-10 nuevos, carrusel de cumpleaños
 
 **Qué se hizo:**

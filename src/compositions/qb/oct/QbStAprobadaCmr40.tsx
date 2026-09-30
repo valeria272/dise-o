@@ -121,7 +121,9 @@ export const QbStAprobadaCmr40: React.FC<{fecha: QbCmr40Fecha}> = ({fecha}) => {
       <Linea top={395 + DY - 17} cuerpo={63} peso={800} tracking="0.01em" interlinea={1}>{QB_CMR40_DATA.titular1}</Linea>
       <Linea top={470 + DY - 17} cuerpo={63} peso={300} tracking="0.01em" interlinea={1}>{QB_CMR40_DATA.titular2}</Linea>
       <BloqueCmr40 />
-      <Linea top={1426} cuerpo={37} peso={400} interlinea={1.12} ancho={900}>
+      {/* r24 (Eli 30-09, ST n°4 S1): «"tu panorama" no se lee mucho: más grueso y bájalo un
+          poco» → SemiBold y 50 px más abajo, sólo en la del 08 (las otras fechas no se tocan) */}
+      <Linea top={fecha === "08" ? 1476 : 1426} cuerpo={37} peso={fecha === "08" ? 600 : 400} interlinea={1.12} ancho={900}>
         Tu panorama de sábado ahora<br />tiene un nuevo beneficio
       </Linea>
       {fecha === "08" ? (

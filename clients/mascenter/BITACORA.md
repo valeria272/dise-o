@@ -1,3 +1,10 @@
+## 2026-09-29 (3ª parte) — Diego Aguilar (con Claude) · reel horizontal Linderos: prompts de IA escena por escena
+
+**Qué se hizo:** análisis del brief `BRIEF_MasCenter_Linderos_v2.xlsx` y prompts escena por escena. Diego genera las imágenes en **Seedream 5 Pro** y los videos en **Wan 3.0**, y pone en edición todos los logos y textos. Quedó así: gancho de 2×4 s (la Ruta 5 en diagonal + el nodo Hermanos Carrera en cenital; Diego pidió sacar el terreno inventado), escena 1 de 3×5 s (plaza de Buin → barrio → comercio), escena 2 de 28 s en 6 clips (render oficial + supermercado, farmacia y galería genéricos) y cierre de 3×5 s al atardecer. En C1 la vista a la altura de los ojos deformaba los letreros, así que se subió a aérea de 30 m y se mantuvo el letrero de Unimarc. En 2A y 2B Wan deformaba los textos del render, así que la cámara queda fija en Wan y el movimiento se hace en edición.
+**Dónde quedó:** prompts finales en `clients/mascenter/sistema/linderos-reel-prompts.md`. Encuadres del render (2A entero, 2B recorte x1780–4160 y190–1529, C1 fachada) en `out/mascenter/linderos/`, reproducibles byte a byte con `sistema/linderos_reel_encuadres.py`. Las referencias originales están en `raw/mascenter/linderos-reel/refs/` (gitignored; el render aéreo es el de mascenter.cl/linderos). Diego está generando; el estudio todavía no rindió ni entregó nada.
+**Qué sigue:** revisar lo que genere Diego: letras de Unimarc y del tótem, la arquitectura de C3 contra el render original y las caras y manos en 1B, 1C, 2C, 2D y 2E. Después, el montaje: gráficas de cifras, contador de 1,8 M y cortina de marca.
+**Abierto:** (1) La bencinera **Aramco + Stop** sale en el render y el brief no la nombra → Diego / cliente. (2) En el render hay otro Unimarc al otro lado de la Ruta 5. (3) Estacionamientos y número de locales siguen POR CONFIRMAR. (4) Falta la ubicación real del terreno (tampoco estaba para LinkedIn).
+
 ## 2026-09-29 (2ª parte) — Diego Aguilar (con Claude) · LinkedIn IFB de octubre: 4 carruseles (18 slides)
 
 **Encargo:** «sigue con la pestaña grilla linkedin, recuerda que acá ya es IFB corporativo, con los colores azules y

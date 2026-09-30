@@ -34,7 +34,7 @@ def main() -> None:
         destino = OUT / salida
         destino.parent.mkdir(parents=True, exist_ok=True)
         im.resize((1920, 1080), Image.LANCZOS).save(destino, quality=95)
-        print(f"{salida}  ←  {origen} {caja or '(entero)'}")
+        print(f"{salida} <- {origen} {caja or '(entero)'}")
 
 
 if __name__ == "__main__":

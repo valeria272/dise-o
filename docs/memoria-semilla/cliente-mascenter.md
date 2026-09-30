@@ -1,6 +1,6 @@
 ---
 name: cliente-mascenter
-description: "MASCENTER — cerebro del cliente: 60 reglas firmes, última cosecha 2026-09-30. Generado desde clients/mascenter/APRENDIZAJES.md; leerlo antes de diseñar para mascenter"
+description: "MASCENTER — cerebro del cliente: 63 reglas firmes, última cosecha 2026-09-29. Generado desde clients/mascenter/APRENDIZAJES.md; leerlo antes de diseñar para mascenter"
 metadata:
   type: project
 ---
@@ -52,4 +52,5 @@ Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de m
 - **X-17** · Localito pegado sobre la foto como recorte que «vuela», sin piso ni sombra — _Diego, portada 08-10, 28-09-2026, 1 ronda_
 - **X-18** · Rótulos de estructura de la grilla en la gráfica: nombres de local salidos de «Slide N – Local» y etiquetas «✓ Decoración / Dulces…» — _Diego, 04-10 y 08-10, 28-09-2026, 1 ronda para dos carruseles_
 - **X-19** · Post de un tema recurrente diseñado desde cero (26-10 v1: retrato con titular rojo detrás de la vendedora y banda verde) existiendo la pieza de julio del mismo tema — _Diego: «el post del 26-10 sigue esta plantilla», 28-09-2026, 1 ronda_
-- **X-10** · Chevron como flecha flotando sobre la foto: «se veía barato» — _presentación comercial, 28-08-2026_
+- **X-20** · Una imagen a la altura de los ojos de la fachada con locales rotulados (Seedream + Wan): las letras de las tiendas se deforman — _Diego, C1 del reel Linderos, 29-09-2026, 1 ronda_
+- **X-21** · Inventar con IA el terreno del proyecto (paño en obra junto a la Ruta 5) sin su ubicación real: Die

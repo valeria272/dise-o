@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-30** · Cosechas: **31**
+> Última cosecha: **2026-09-30** · Cosechas: **32**
 
 ## 1. Quién es el cliente
 
@@ -80,10 +80,10 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-25** · [DT] Historia animada: **máx. 15 s**, y el bloque del precio con tiempo de lectura (~6–7 s) — _Eli, 24-09-2026, Family Time oct; 28-09 lo volvió a pedir en la ST 01-10 r6→r7 («que aparezca toda la información de Family Time un poco más antes»)_ · ✔×2
 - **R-26** · [DT] Las **opiniones tienen plantilla** (la de Expedia aprobada): tarjeta clara partida, pestaña azul con logo, cita en Stag itálica azul, logo de la plataforma a color; para otra plataforma cambia sólo logo y signo de valoración — _Eli, 24-09-2026_ · ✔×1
 - **R-27** · [DT] Family Time tiene que **mostrar una familia** — _Eli, 24-09-2026 («sin personas no me gusta mucho»); 25-09 pidió un banco entero de la familia para cuando no haya sesión_ · ✔×3 · +1 ST feriado FT 05-10 y FEED 28-10, aprobadas 28-09
-- **R-28** · [DT] Precios de programa **literales del último carrusel vigente**: Family Time $125.000 IVA incluido · Escapada $99.000 · Noche de Bodas $189.000 — _Eli, 09-09-2026_ · ✔×3 · +1 $99.000 / $125.000 en las 3 ST de feriado, aprobadas 28-09 · +1 carrusel Escapada 07-10, aprobado 29-09 ($99.000)
+- **R-28** · [DT] Precios de programa **literales del último carrusel vigente**: Family Time $125.000 IVA incluido · Escapada $99.000 · Noche de Bodas $189.000 — _Eli, 09-09-2026_ · ✔×4 · +1 $189.000 de Noche de Bodas en la ST feriado 05-10, aprobada 30-09 · +1 $99.000 / $125.000 en las 3 ST de feriado, aprobadas 28-09 · +1 carrusel Escapada 07-10, aprobado 29-09 ($99.000)
 - **R-29** · [DT] «Categoría superior» en este hotel es la habitación **con zona de estar** (Corner, Junior Suite, Suite), no una cama — _cliente, grilla 16-09-2026 («cambiemos foto por habitación de categoría superior»)_ · ✔×1
 
-- **R-68** · [DT] Cuando no hay sesión con modelos, **la familia es SIEMPRE la misma**: 4 personajes fijos, perfil chileno, papás de 38 y niños de ~9 y ~7, distintos de las parejas de Escapada y Noche de Bodas. Hojas en `clients/hilton/dt-familia/personajes/` — _Eli, 25-09-2026, banco familia DT_ («los personajes de familia okey») · ✔×2 · +1 la familia fija en la ST feriado FT y el FEED 28-10, aprobados 28-09
+- **R-68** · [DT] Cuando no hay sesión con modelos, **la familia es SIEMPRE la misma**: 4 personajes fijos, perfil chileno, papás de 38 y niños de ~9 y ~7, distintos de las parejas de Escapada y Noche de Bodas. Hojas en `clients/hilton/dt-familia/personajes/` — _Eli, 25-09-2026, banco familia DT_ («los personajes de familia okey») · ✔×3 · +1 FT r10 y ST feriado con tres parejas/familia distintas, aprobadas 30-09 · +1 la familia fija en la ST feriado FT y el FEED 28-10, aprobados 28-09
 - **R-69** · [DT] En las finales **el fondo es una foto REAL de DT**: la IA sólo agrega a las personas — _Eli, 25-09-2026, banco familia DT_ («siempre utiliza de fondos en los finales real de DT») · ✔×4 · +1 pareja IA sobre la hab. real HDT_65 y hospitalidad sobre la recepción real, aprobadas 28-09 · +1 carrusel Escapada 07-10, aprobado 29-09 (pareja IA sobre la habitación real sep_26-505) · +1 portada Escapada r4 sobre sep_26-476, aprobada 29-09
 - **R-70** · [DT] Personas IA **que pasen por foto de sesión**: nadie mira a cámara, expresiones naturales y ojos con vida; cada uno apoyado en su silla, sofá o cama; manos con cinco dedos, piernas y pies completos; objetos a escala real (la cookie mide unos 7 cm) — _Eli, 25-09-2026, banco familia DT_ · ✔×2 · +1 carrusel Escapada 07-10, aprobado 29-09 (pareja sin mirar a cámara, manos y copas correctas)
 - **R-71** · [DT] **Cada personaje se ve como su hoja** en todas las escenas (cara, pelo, edad) — _Eli, 25-09-2026, banco familia DT_ («respeta a los personajes para que se vean como ellos») · ✔×2 · +1 Eli lo reclamó de nuevo 29-09 en la ST 01-10 («recuerda que ya tenemos nuestro personaje para Family Time»): en el desayuno de la r8 el papá y el niño NO eran los de las hojas
@@ -136,6 +136,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-137** · [DT] **Si la foto de sesión no muestra la cara de la modelo, va la foto REAL tal cual, sin IA**: nada de cara nueva, mano regenerada ni escena rehecha; sólo el escalado de una pasada para la medida — _Eli, 29-09-2026, pendón cookie r8 («la sesion_3-79 es la foto final… dejar la imagen original (que sale la mano con la galleta)»)_ · ✔×1
 - **R-138** · [DT] Pendones 0,8×3: **los contactos del recuadro del QR van en negrita (Trade Gothic Bold), en los tres**. Eli lo corrigió a mano en la cookie, que estaba en el peso normal — _Eli, 29-09-2026, pendón cookie r8 (ajuste suyo en el .ai: «ajusté la última un poco»)_ · ✔×1
 - **R-139** · [DT] Pendones: **la previsualización se entrega como PNG a 150 ppp** en la carpeta de Drive «PENDONES 2026 ACTUALIZADOS» (`1ksPasLUqIT2Gj574nIqh6ydiB5biUb8R`), con el mismo nombre del archivo que reemplaza; lo anterior no se deja a la vista con el mismo nombre — _Eli, 29-09-2026 («sube acá la imagen png en 150ppp solo para previsualizar»; «guarda nuevamente y quita lo anterior en drive»)_ · ✔×1
+- **R-153** · [DT] **Un producto de restaurante en pantalla es REAL y de la carta**: si la pieza muestra plato o tragos de QB, va una foto de la sesión real (`raw/hilton/qb/sesiones-25-09/orig/carta__*`), no una generada. Contenido detecta lo inventado (copas que el hotel no tiene, platos que no están en la carta) — _Scarlette Muñoz, hilo @Eli FEED!C14, 29-09-2026, carrusel Escapada 07-10 lámina 2 («no tenemos [copas] con mango rosado… pongamos imagen de algún producto de QB, esos panes no se encuentran en la carta»); Eli, 30-09-2026 («este gran resultado sirve para los próximos diseños»)_ · ✔×1
+- **R-154** · [DT] **El material que manda contenido reemplaza al generado tal cual**: su foto o su video del hotel entra en la escena que indican, recortado al formato sin tapar el logo ni el titular (la lámpara del buffet se dejó sobre el logo, no detrás) — _Scarlette Muñoz, hilo @Eli STORIES!C15, 29-09-2026, ST 01-10 Family Time («cambiemos la imagen de la familia tomando desayuno por… y la que salen caminando por una de la habitación»); Eli, 30-09-2026 («este gran resultado sirve para los próximos diseños»)_ · ✔×1
+- **R-155** · [DT] **Programa nuevo en una pieza de varios programas = foto de su propio material aprobado**: la tarjeta de Noche de Bodas usa la pareja del carrusel NB que Eli entregó en septiembre (otra pareja que la de Escapada), no una generación nueva — _contenido sumó la línea al brief tras el hilo de Scarlette a Carlos (STORIES!E15, 29-09); Eli, 30-09-2026 («este gran resultado sirve para los próximos diseños»)_ · ✔×1
 ### Between
 - **R-30** · [BW] Taza blanca con raya negra y **KIMBO: se borra siempre**; la taza vigente es blanca total — _Eli 25-08; Scarlette 31-08; ronda 9, 03-09-2026_ · ✔×3
 - **R-31** · [BW] **El logotipo nunca se deforma ni se curva**: escala uniforme a ratio 3,0298, integrado en el vaso por tono (multiply), no por geometría — _Eli 25-08 («no se vea achatado»); cliente 31-08; Eli 01-09-2026 («no puedes curvarlo de esa manera»)_ · ✔×3
@@ -239,6 +242,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **E-18** · [BW] El legal puede entrar en la franja inferior de Meta en una historia **orgánica** (si pasa a pauta, se sube) — _Eli, 07-09-2026, stories del cumpleaños_
 - **E-19** · [BW] Portada To Go con la foto de la entrada que eligió el cliente, aunque no iguale el color del carrusel — _cliente, 22-09-2026_
 
+- **E-21** · [DT] R-81 («historia animada = fotos, no video») no aplica a un **video real que manda contenido**: la ST Family Time r10 abre con el paneo real de la habitación de Scarlette (3,7 s, sin gente) — _Scarlette, hilo STORIES!C15, 29-09; Eli, 30-09-2026 («este gran resultado sirve para los próximos diseños»)_
+
 ## 6. Lo que se aprueba a la primera
 
 - **A-01** · [DT] Carrusel de video con clips reales del hotel, velo + tinta blanca, sello de hora y firma única: el Día del Turismo lo aprobó el cliente con **un solo ajuste** (un punto) — _C1 S5 DT Turismo, 23-09-2026_
@@ -264,6 +269,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 - **A-15** · [BW] **Reel FEED 02-10 «Café de cumpleaños»** (12,5 s): foto quieta del vaso To Go con vela, la vela se enciende como hook, texto en tres voces con máquina de escribir, globos y confeti originales de Eli, legal en botones café y un sonido por texto: «maravilloso el resultado… quedó bacán» — _Eli, 29-09-2026, ronda 3. Receta: memoria `between-reel-texto-animado-receta`; código `src/compositions/hilton/BetweenFeed0210Cumple.tsx`_
 - **A-20** · [BW] **ST 01-10 Ganador y ST 07-10 Cumpleaños con el criterio de Constanza** (3 voces Raleway, contorno SVG, interlineado cerrado): aprobadas por Eli a la primera — _Eli, 29-09-2026 («la primera… quedó aprobada»; «esa del regalo… te lo dejo aprobado»)_
+
+- **A-21** · [DT] **Ronda de hilos de contenido resuelta con material real** (FT r10 con video y buffet reales, Escapada lámina 2 con foto de la carta de QB, feriado con la 3.ª tarjeta Noche de Bodas), subida a Drive + HTML en el mismo turno: aprobada a la primera — _Eli, 30-09-2026 («este gran resultado sirve para los próximos diseños»)_. Receta en la memoria `ronda-de-hilos-receta-aprobada`
 
 ## 7. Lo que se rechaza
 
@@ -348,6 +355,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 ## 8. Preguntas abiertas
 
+- [DT] Escapada 07-10 lámina 2: la foto real de QB muestra trucha (fondo) al frente y copas de vino; el brief dice «una entrada + dos tragos». ¿Sirve o se cambia por cócteles reales de la sesión Sunset? → **Eli / Scarlette** (30-09)
+- [DT] ST 01-10 Family Time r10 queda con dos escenas de habitación (video sin gente + familia en la cama). ¿Otra foto de cierre? → **Eli** (30-09)
 - [BW] Carta R5: ¿los mínimos (nada bajo 7,5 pt; descripción 8,5) y el texto a tinta llena (sin 78–88 % de opacidad) le parecen para impresión y digital? · ¿el .ai de la opción A en F: (re-guardado 29-09 16:04) trae cambios suyos? → **Eli**
 
 - [DT] Interlínea del titular de la portada Escapada 07-10: Eli pidió 1,3 (R-105) y Constanza «que sea menos»; quedó en **1,16** → **Eli** (29-09)
@@ -397,6 +406,13 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 (cierre, hilos de Scarlette en DT octubre) — Claude con Eli · 3 reglas nuevas [DT], APROBADO a la primera
+- **Fuente:** 3 hilos nativos de la grilla DT OCT (29-09 noche): STORIES!C15 y FEED!C14 de Scarlette @Eli; STORIES!E15 de Scarlette a Carlos (contenido), que terminó en una línea nueva del brief. Las tres piezas estaban EN CAMBIOS (estado leído en vivo por Sheets API: el token SÍ tiene scope `spreadsheets`).
+- **Reglas nuevas [DT]:** R-153 producto de restaurante real y de la carta, R-154 el material de contenido reemplaza al generado, R-155 programa nuevo con su propio material aprobado.
+- **✔ que suben:** R-28 (→ ✔×4), R-68 (→ ✔×3). **Excepción:** E-21 (video real de contenido pese a R-81). **Aprobado a la primera:** A-21 («gran resultado»).
+- **Abierto (§8):** trucha/vino vs. entrada/tragos en la lámina 2; dos escenas de habitación en FT.
+- **Candidata a regla del estudio (→ Valeria):** «foto real del cliente antes que generada cuando contenido la señala como inexistente» ya es regla en varias marcas; ver memoria `ronda-de-hilos-receta-aprobada`.
 
 ### 2026-09-30 — Claude nocturno (nube) · revisión de rutina (ce49b24)
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`ce49b24`) es el mismo commit de Elisabet Soto donde ya cosechó R-151, R-152 y X-79 (ver la entrada de abajo). Se lista a sí mismo porque tocó `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit.

@@ -298,7 +298,11 @@ export const DtCEscapadaOct: React.FC<{lamina: number; foto?: string}> = ({lamin
     {lamina === 1 ? (
       <Portada foto={foto ?? 'assets/hilton/dt/oct3/er-portada.jpg'} />
     ) : (
-      <Personaliza foto={foto ?? 'assets/hilton/dt/oct3/er-sunset.jpg'} />
+      // RONDA 6 (Scarlette, hilo FEED!C14, 30-09): «la 2da slide es la más débil por las copas (no tenemos con
+      // mango rosado) y el plato (pongamos imagen de algún producto de QB, esos panes no se encuentran en la carta)»
+      // → sale la foto generada; entra la foto REAL de la carta de QB (sesión que pasó Eli el 25-09, «Ostiones
+      // parmesanos a la batayaki 20»: brindis con las copas de la casa sobre los ostiones y la trucha).
+      <Personaliza foto={foto ?? 'assets/hilton/dt/oct3/er-sunset-qb-real.jpg'} />
     )}
   </AbsoluteFill>
 );

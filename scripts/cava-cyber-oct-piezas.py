@@ -25,7 +25,8 @@ from PIL import Image, ImageDraw
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from cava_cyber_oct import (  # noqa: E402
-    ESC, ESCRITORIO, LOCKUP, u, fondo, viñeta, marco, advertencia, logo, lockup, losa,
+    ESC, ESCRITORIO, LOCKUP, u, fondo, escena_montada, viñeta, marco, advertencia,
+    logo, lockup, losa,
     banda_gancho, cupon, botella, sello, guarda, fuente, mide,
     texto_oro, texto_plano, _cuerpo_para_cap, _cuerpo_para_ancho, BLANCO,
 )
@@ -65,36 +66,40 @@ PIEZAS = [
     # El brief dice «ACCESO VIP AL CYBER», pero el gancho entra directo al logo
     # CYBERWINE week: dejarlo completo repetía «CYBER» dos veces seguidas. Coni
     # quitó la palabra el 30-09 y la frase sigue cerrando contra el logo.
-    dict(n=1, escena="vip", gancho="ACCESO VIP AL",
+    dict(n=1, escena="vip", libre=0.65, gancho="ACCESO VIP AL",
          titular="45% OFF", bajada="ANTES QUE NADIE", cupon="CYBERVIP",
          producto=["MORANDÉ EL CABERNET", "DE RANQUIL 2021"],
          botella="ranquil", oferta="$34.970", normal="$59.990",
          sellos=["descorchados-98-2021", "james-suckling-98"],
+         # Dónde caen los sellos ahora que la botella viene en el montaje: se
+         # ubican a mano sobre el hombro, del lado libre. Antes colgaban del
+         # bbox del packshot, que ya no se pega.
+         sellos_en=(884, 690), sellos_diam=152, sellos_paso=168,
          legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
                "No acumulable con otras promociones. Hasta agotar stock."),
     # Sin bajada: el brief dice «HOUSE OF MORANDÉ A $46.630», pero el nombre del
     # vino y su precio ya van más abajo en la pieza. Coni la quitó el 30-09.
-    dict(n=2, escena="vip", gancho="TU CUPÓN VIP SIGUE ACTIVO",
+    dict(n=2, escena="vip", libre=0.52, gancho="TU CUPÓN VIP SIGUE ACTIVO",
          titular="45% OFF", bajada=None, cupon="CYBERVIP",
          producto=["HOUSE OF MORANDÉ", "MEZCLAS TINTAS 2021"],
          botella="house", oferta="$46.630", normal="$84.790", sellos=[],
          legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
                "No acumulable con otras promociones. Hasta agotar stock."),
-    dict(n=3, escena="vip", gancho="ÚLTIMO DÍA VIP",
+    dict(n=3, escena="vip", libre=0.55, gancho="ÚLTIMO DÍA VIP",
          titular="45% OFF", bajada="SE DESACTIVA MAÑANA", cupon="CYBERVIP",
          producto=["MORANDÉ SELECCIÓN ENOLÓGICA", "CARMENERE Y CABERNET SAUVIGNON"],
          botella="enologica_ca", botella2="enologica_cs",
          oferta="$9.340", normal="$16.990", sellos=[],
          legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
                "No acumulable con otras promociones. Hasta agotar stock."),
-    dict(n=4, escena="pub", gancho=None,   # el KV público no lleva bajada sobre el lockup
+    dict(n=4, escena="pub", libre=0.43, gancho=None,   # el KV público no lleva bajada sobre el lockup
          titular="HASTA 50% OFF", bajada="EN TUS FAVORITOS", cupon=None,
          producto=["PACK X6 7COLORES GRAN RESERVA", "CARMENERE / VIOGNIER 2023"],
          botella="7c_gran_reserva", botella2="vitis_carmenere",
          oferta="$4.290 c/u", normal="$47.340", sellos=[],
          legal="Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. "
                "No acumulable con otras promociones."),
-    dict(n=5, escena="pub", gancho="SE ESTÁN AGOTANDO",
+    dict(n=5, escena="pub", libre=0.5, gancho="SE ESTÁN AGOTANDO",
          titular="50% OFF", bajada="SOLO HASTA MAÑANA", cupon=None,
          producto=["PACK X6 7COLORES SINGLE", "VINEYARD RED BLEND 2022"],
          botella="7c_single", botella2="vitis_cabernet",
@@ -105,7 +110,7 @@ PIEZAS = [
          sellos=[],
          legal="Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. "
                "No acumulable con otras promociones."),
-    dict(n=6, escena="pub", gancho="ÚLTIMAS HORAS DEL CYBER",
+    dict(n=6, escena="pub", libre=0.58, gancho="ÚLTIMAS HORAS DEL CYBER",
          titular="50% OFF", bajada="HOY CIERRA", cupon=None,
          producto=["PACK X6 SELECCIÓN DE VIÑEDOS", "GRAN RESERVA CARMENERE 2024"],
          botella="vinedos_carmenere", botella2="charmat",
@@ -277,7 +282,12 @@ def vertical(p):
         if ft_g else 0
     # El descuento va apilado: la cifra arriba, OFF debajo y la bajada abajo.
     lin_of = parte_oferta(p["titular"])
-    ancho_of = 700 if dobles else 430
+    # El ancho de la columna de texto lo dicta el MONTAJE: no puede invadir la
+    # zona donde empiezan las botellas. `libre` es la fracción del ancho de la
+    # escena en la que arranca la botella, medida sobre cada montaje.
+    k_esc = 1.25                                  # cuánto se agranda la escena al cubrir
+    tope_x = p["libre"] * k_esc * 1080 - 26
+    ancho_of = max(230, tope_x - x_de_la_C(u(540), ANCHO_LOCKUP) / ESC)
     ft_t = fuente("xbold", _cuerpo_para_cap("xbold", u(CAP_OFERTA)))
     for l in lin_of:
         ft_t = min(ft_t, fuente("xbold", _cuerpo_para_ancho("xbold", l, u(ancho_of), -0.02)),
@@ -325,10 +335,11 @@ def vertical(p):
         salto_bajada = 0.0
         alto_desc = (len(lin_of) - 1) * paso_of + (b_ult[3] - b_prim[1]) / ESC
 
-    # Con DOS botellas el texto no cabe al costado: el par ocupa medio lienzo y
-    # se monta encima. Esas piezas conservan el apilado centrado —oferta, nombre
-    # con su precio, botellas—, que respeta igual el orden que pidió Coni.
-    ancho_texto = (900 if dobles else W_CAJA / ESC)
+    # Todas las piezas comparten la misma maqueta: la columna de texto a la
+    # izquierda y las botellas —que ya vienen en el montaje— a la derecha. Antes
+    # las de dos botellas iban centradas, pero con el montaje de fondo el texto
+    # les caía encima.
+    ancho_texto = W_CAJA / ESC
     lineas, ft_n = _nombre_en_lineas(p, CAP_NOMBRE, ancho_texto)
     paso_n = ft_n.size / ESC * 1.34
     ft_o = fuente("xbold", _cuerpo_para_cap("xbold", u(CAP_PRECIO)))
@@ -339,35 +350,23 @@ def vertical(p):
 
     y_gancho = Y_GANCHO
     y_lockup = y_gancho + alto_g + (16 if ft_g else 0)
-    if dobles:
-        # centrada: descuento, nombre con precio y las dos botellas, apilados
-        y_oferta = y_lockup + _alto_lockup(ANCHO_LOCKUP) + 44
-        y_banda = y_oferta + alto_desc + 46
-        alto_bot = 660
-        alto_banda = alto_texto + 42 + alto_bot
-    else:
-        # el descuento entra DENTRO de la banda, alineado a la «C», y la botella
-        # se queda con todo el costado derecho
-        # La botella conserva su distancia bajo el logo CYBERWINE week; el texto
-        # arranca más abajo, a ras de la tapa.
-        y_banda = y_lockup + _alto_lockup(ANCHO_LOCKUP) + 52
-        alto_bot = ALTO_BOTELLA
-        y_oferta = y_banda + alto_bot * TEXTO_BAJO_TAPA
-        alto_banda = max(alto_bot, (y_oferta - y_banda) + alto_desc + 58 + alto_texto)
+    y_banda = y_lockup + _alto_lockup(ANCHO_LOCKUP) + 52
+    y_oferta = y_banda + ALTO_BOTELLA * TEXTO_BAJO_TAPA
+    alto_banda = max(ALTO_BOTELLA, (y_oferta - y_banda) + alto_desc + 58 + alto_texto)
     y_cupon = y_banda + alto_banda + 54
     alto_cupon = (cupon_alto(620) if p["cupon"] else 0)
     y_legal = y_cupon + alto_cupon + (58 if p["cupon"] else 10)
     ALTO = y_legal + CAP_LEGAL * 1.55 + MARGEN_PIE
 
     # ── 2. lienzo y fondo ───────────────────────────────────────────────────
-    im = viñeta(fondo(p["escena"], "mail", alto_ud=ALTO), 0.34)
+    # El fondo es el MONTAJE: la botella ya viene parada sobre la plataforma del
+    # KV. Se recorta el sobrante por la derecha para que la botella se corra a
+    # ese costado y el texto tenga el suyo.
+    im = viñeta(escena_montada(p["n"], "mail", ALTO, enfoque=p.get("enfoque", 1.0)), 0.22)
     marco(im)
     advertencia(im)
     CX = u(540)
-    if dobles:
-        logo(im, CX, Y_LOGO, ancho=217.4)                     # centrado al eje
-    else:
-        logo(im, x_de_la_C(CX, ANCHO_LOCKUP), Y_LOGO, ancho=217.4, ancla="izq")
+    logo(im, x_de_la_C(CX, ANCHO_LOCKUP), Y_LOGO, ancho=217.4, ancla="izq")
 
     # ── 3. dibujar ──────────────────────────────────────────────────────────
     if ft_g:
@@ -384,8 +383,6 @@ def vertical(p):
         # MORANDÉ y que la «C» de CYBERWINE. Coni: «para que no queden los
         # elementos tan desarticulados».
         x_desc, ancla_desc = x_de_la_C(CX, ANCHO_LOCKUP), "izq"
-        columna_botella(im, p, cx=u(CX_BOTELLA), base_y=y_banda + alto_banda,
-                        alto=alto_bot, sellos_a="der")
     # El pen se retrasa lo que la mancha se despega de él, para que el bloque
     # ARRANQUE visualmente en y_oferta.
     pen = y_oferta - b_prim[1] / ESC
@@ -398,14 +395,10 @@ def vertical(p):
         texto_plano(im, (x_desc, u(pen + salto_bajada) + cb[1]),
                     p["bajada"], ft_b, BLANCO, 0.055, ancla=ancla_desc)
 
-    if dobles:
-        x_texto, ancla, yy = CX, "centro", y_banda
-    else:
-        # Cierran contra la «E» de ANTES QUE NADIE, que es el canto derecho de
-        # la caja. Coni: «no me gusta cómo queda la justificación del nombre del
-        # vino más los precios hacia la izquierda, justifícalo a la derecha».
-        x_texto, ancla = x_de_la_C(CX, ANCHO_LOCKUP) + W_CAJA, "der"
-        yy = y_oferta + alto_desc + 58
+    # Cierran contra la «E» de ANTES QUE NADIE, que es el canto derecho de la
+    # caja. Coni: «justifícalo a la derecha».
+    x_texto, ancla = x_de_la_C(CX, ANCHO_LOCKUP) + W_CAJA, "der"
+    yy = y_oferta + alto_desc + 58
 
     yy = lineas_a_plomo(im, x_texto, yy, lineas, ft_n, paso_n, BLANCO, 0.01, ancla)
     yy += CAP_NOMBRE * 0.9
@@ -413,15 +406,18 @@ def vertical(p):
     yy += (co[3] - co[1]) / ESC + CAP_PRECIO * 0.34
     bv = texto_plano(im, (x_texto, u(yy)), p["normal"], ft_v, GRIS, ancla=ancla)
 
-    if dobles:
-        columna_botella(im, p, cx=CX, base_y=y_banda + alto_banda, alto=alto_bot,
-                        sellos_a="der")
+
     ImageDraw.Draw(im).line([bv[0] - u(5), (bv[1] + bv[3]) / 2,
                              bv[2] + u(5), (bv[1] + bv[3]) / 2],
                             fill=GRIS, width=max(1, int(u(2.6))))
 
     if p["cupon"]:
         cupon(im, CX, y_cupon, p["cupon"], ancho=620, alto=620 / PROP_CUPON)
+    for i, nombre in enumerate(p.get("sellos", [])):
+        cx_s, cy_s = p["sellos_en"]
+        sello(im, u(cx_s), u(cy_s + i * p["sellos_paso"]), nombre,
+              diam=p["sellos_diam"])
+
     pie_legal(im, p, y=y_legal + CAP_LEGAL * 1.55, ancho_max=940, cap=CAP_LEGAL)
     return im
 

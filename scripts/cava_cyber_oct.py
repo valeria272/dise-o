@@ -228,6 +228,33 @@ def _ancla(xy, tam, ancla):
 
 
 # ── Fondo ────────────────────────────────────────────────────────────────────
+ESCENAS = CAVA / "cyber-oct/escenas"
+
+
+def escena_montada(n, formato, alto_ud, enfoque=1.0):
+    """El fondo YA trae la botella puesta sobre la plataforma del KV.
+
+    Estos montajes se generaron con Magnific en el space de Coni, con su propio
+    método: su key visual como referencia de escena y el packshot oficial como
+    referencia de producto. Los VIP llevan los destellos dorados y los del
+    público no — esa es la diferencia que ella marcó entre las dos versiones.
+
+    Por eso acá no se pega packshot ni losa: la pieza ya es su KV.
+
+    `enfoque` dice desde dónde se recorta el ancho sobrante: 0 = se quita todo
+    por la derecha (la botella se corre hacia la derecha del encuadre), 1 = se
+    quita por la izquierda.
+    """
+    W = ANCHO[formato]
+    H = int(round(u(alto_ud)))
+    im = Image.open(ESCENAS / f"brief{n}.jpg").convert("RGB")
+    k = max(W / im.width, H / im.height)           # cubrir, nunca deformar
+    im = im.resize((int(round(im.width * k)), int(round(im.height * k))), Image.LANCZOS)
+    x0 = int((im.width - W) * (1 - enfoque))
+    y0 = int((im.height - H) * 0.5)
+    return im.crop((x0, y0, x0 + W, y0 + H))
+
+
 def fondo(escena, formato, alto_ud=None):
     """Recorta el set a la proporción que pida la pieza.
 

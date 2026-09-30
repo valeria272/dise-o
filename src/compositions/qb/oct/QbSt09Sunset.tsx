@@ -78,6 +78,14 @@
  *   30 y 32) de referencia: techo de tela beige recogida con ventiladores, maceteros de
  *   greda, sillas de listones, piso de piedra y ventanales. Titular «EL VIERNES CAMBIA» +
  *   «de mood» (la D quedaba colgando arriba). Legal al pie (≈1748), regla de historias.
+ * ⭐⭐ RONDA 24 — NICOLÁS (contenido, grilla 30-09): «siento que está muy oscura en general
+ *   la imagen… que se vea más sunset y cálida la foto». ELI: «que no esté tan oscuro abajo,
+ *   se vea el tono de atardecer» y «usa un plato de la carta de terraza» (qbrestaurant.cl).
+ *   → Plato: EMPANADAS DE MECHADA (carta Terraza, Entradas), con su foto de la carta de
+ *     referencia (que además trae un spritz). Foto regenerada con Nano Banana Pro sobre la
+ *     r20 (la terraza de QB se mantiene) con luz de atardecer real, y la mesa EXTENDIDA
+ *     hacia abajo por outpainting, así que la foto llena la historia sin subirla: fuera el
+ *     bloque negro del pie. Velos más livianos (arriba 0,86→0,7; abajo 0,85→0,55).
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -105,15 +113,17 @@ const LOGO_H = LOGO_W * 576 / 2556;
 /** La foto sube para que el trago quede entre el logo y el bloque de abajo. */
 /** r19: la foto nueva sube 460 para que las papas queden sobre el titular, no detrás. */
 const SUBE = -430;
+/** r24: la foto nueva trae la mesa extendida hasta el pie → llena la historia sin subir. */
+const SUBE_R24 = 0;
 
 export const QbSt09Sunset: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
-    <FotoQB src="assets/hilton/qb/oct/09-sunset-r20.jpg" ratio={3072 / 5504} libre bajar={SUBE} />
-    {/* el canto de abajo de la foto (sube 300 px) se funde a negro */}
-    <div style={{position: "absolute", left: 0, right: 0, top: 1060, height: 1920 - 1060,
-      background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 45%, #000 100%)"}} />
-    {/* r6 (Eli): más oscuro arriba para leer «Sunset QB» */}
-    <Velo arriba={[900, 0.86]} abajo={[900, 0.85]} />
+    <FotoQB src="assets/hilton/qb/oct/09-sunset-r24.jpg" ratio={3072 / 5504} libre bajar={SUBE_R24} />
+    {/* r6 (Eli): más oscuro arriba para leer «Sunset QB» · r24: más liviano, que se vea el atardecer */}
+    <Velo arriba={[900, 0.7]} abajo={[1000, 0.55]} />
+    {/* r24: el velo negro enfría el atardecer (el piso viraba a violeta) → baño cálido suave */}
+    <AbsoluteFill style={{mixBlendMode: "soft-light",
+      background: "linear-gradient(180deg, rgba(255,150,60,.35) 0%, rgba(255,120,40,.45) 55%, rgba(255,110,40,.35) 100%)"}} />
     <Img src={staticFile("assets/hilton/qb/oct/sunset-qb-logo.png")}
       style={{position: "absolute", top: 346, left: (MESA.w - LOGO_W) / 2, width: LOGO_W, height: LOGO_H}} />
     {/* r19: el rótulo de la flecha en Raleway (una sola voz) y el precio como dato fuerte */}

@@ -53,9 +53,14 @@ const Guia: React.FC = () => (
 const PLANES = [
   {quien: 'En pareja', programa: 'Escapada Romántica', precio: 'desde $99.000', foto: 'assets/hilton/dt/oct2/card-pareja.jpg'},
   {quien: 'En familia', programa: 'Family Time', precio: '$125.000', foto: 'assets/hilton/dt/oct2/card-familia.jpg'},
+  // RONDA 7 (30-09): contenido sumó al brief «Recién casados → Noche de Bodas, $189.000» (hilo de Scarlette
+  // a Carlos, STORIES!E15). La foto es la pareja del carrusel Noche de Bodas que Eli entregó en septiembre
+  // (S2 HILTON SEP 2026/DT/NOCHE DE BODAS, C1 S1 N°1): otra pareja que la de Escapada (R-68).
+  {quien: 'Recién casados', programa: 'Noche de Bodas', precio: '$189.000', foto: 'assets/hilton/dt/oct2/card-nochebodas.jpg'},
 ] as const;
 
-const TARJETA = {x: 110, ancho: 860, alto: 250, radio: 34, foto: 206, y0: 930, paso: 290} as const;
+// Ronda 7: con tres planes la tarjeta baja de 250 a 220 y sube a y0 = 830 (la flecha termina en ≈775)
+const TARJETA = {x: 110, ancho: 860, alto: 220, radio: 32, foto: 180, y0: 830, paso: 245} as const;
 
 const Flechita: React.FC = () => (
   <svg width={34} height={14} viewBox="0 0 34 14" style={{margin: '0 12px', transform: 'translateY(-2px)'}}>
@@ -161,7 +166,7 @@ export const DtStFeriadoPlanes: React.FC<{guia?: boolean}> = ({guia = false}) =>
     <div
       style={{
         position: 'absolute',
-        top: 1522,
+        top: TARJETA.y0 + PLANES.length * TARJETA.paso + 25,
         left: 0,
         width: 1080,
         textAlign: 'center',

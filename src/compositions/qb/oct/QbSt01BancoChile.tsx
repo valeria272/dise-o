@@ -66,6 +66,20 @@
  *   (tarjetas 540→470 px de ancho, apoyadas en la mesa delante de las copas: más
  *   arriba flotaban sobre los tallos; el legal cierra en ≈1720)
  *   de esa línea y las cajas suben con él; tarjetas y legal intercambian lugar.
+ *
+ * ⭐ RONDA 22 — ELI 30-09: «las tarjetas y el legal están demasiado arriba… en las
+ *   tarjetas se ven muy extrañas. Baja un poco más el legal junto a las tarjetas,
+ *   oscurece un poco más ese lado del legal… que se vea mucho más realista».
+ *   Tarjetas y legal bajan juntos 45 px (el legal cierra en ≈1852) y el pie se
+ *   oscurece: velo de abajo más alto y denso + una sombra baja que apaga el plato
+ *   bajo las tarjetas y el legal, para que no floten sobre la comida iluminada.
+ *
+ * ⭐ RONDA 23 — ELI 30-09: «junta un poco más las tarjetas al legal pero que no
+ *   solape y sube un poco la imagen para que no tape el texto y deja oscuro abajo».
+ *   El legal se queda en 1794; las tarjetas bajan hasta que su reflejo (medido en
+ *   el alfa del PNG: tarjeta sólida hasta 770/1100, reflejo tenue hasta 920) termina
+ *   ~12 px antes del legal. La foto sube 60 px (bajar 120→60): el plato sale de
+ *   detrás del legal y el pie queda en el velo oscuro.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -112,18 +126,26 @@ const Caja: React.FC<{x: number; cifra: string; dia: string}> = ({x, cifra, dia}
 );
 
 const TARJ_W = 470;
-/** r20: el legal de historia va al pie (≈1748), así que las tarjetas bajan con él. */
-const TARJ_TOP = 1500;
+/** r20: el legal de historia va al pie (≈1748), así que las tarjetas bajan con él.
+ *  r22 (Eli 30-09): «baja un poco más el legal junto a las tarjetas». */
+const BAJA_PIE = 45;
+const LEGAL_TOP = 1500 + BAJA_PIE + TARJ_W / 2 + 14;
+/** r23: «junta las tarjetas al legal, sin solapar» — el reflejo (920/1100 del PNG)
+ *  termina 12 px sobre el legal. */
+const TARJ_TOP = LEGAL_TOP - (TARJ_W / 2) * (920 / 1100) - 12;
 
 export const QbSt01BancoChile: React.FC = () => {
   const x1 = (MESA.w - (CAJA.w * 2 + CAJA.g)) / 2;
   return (
     <AbsoluteFill style={{background: "#000"}}>
-      <FotoQB src="assets/hilton/qb/oct/01-bancochile-r4.jpg" ratio={1520 / 2736} libre bajar={120} />
-      {/* la foto baja 120 px para que las copas nazcan bajo las cajas: se funde el canto */}
+      <FotoQB src="assets/hilton/qb/oct/01-bancochile-r4.jpg" ratio={1520 / 2736} libre bajar={60} />
+      {/* la foto baja 60 px (r23: antes 120) para que las copas nazcan bajo las cajas: se funde el canto */}
       <div style={{position: "absolute", top: 0, left: 0, right: 0, height: 340,
         background: "linear-gradient(180deg, #000 0%, #000 35%, rgba(0,0,0,0) 100%)"}} />
-      <Velo arriba={[420, 0.55]} abajo={[620, 0.9]} />
+      <Velo arriba={[420, 0.55]} abajo={[760, 0.95]} />
+      {/* r22: el lado del legal más oscuro — el plato bajo tarjetas y legal queda en sombra */}
+      <div style={{position: "absolute", left: 0, right: 0, bottom: 0, height: 520,
+        background: "linear-gradient(0deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.55) 40%, rgba(0,0,0,0) 100%)"}} />
       <LogoQB top={221 + B} ancho={168} />
       {/* marco de vidrio con filete verde */}
       <div style={{position: "absolute", left: MARCO.x, top: MARCO.y, width: MARCO.w, height: MARCO.h,
@@ -138,7 +160,7 @@ export const QbSt01BancoChile: React.FC = () => {
       {/* r19: arriba las tarjetas, abajo el legal */}
       <Img src={staticFile("assets/hilton/qb/oct/tarjetas-banco-chile.png")}
         style={{position: "absolute", left: (MESA.w - TARJ_W) / 2, top: TARJ_TOP, width: TARJ_W, height: TARJ_W / 2}} />
-      <Legal top={TARJ_TOP + TARJ_W / 2 + 14} cuerpo={22}>{QB_ST01_DATA.pieza.legal}<br />{QB_ST01_DATA.pieza.legal2}</Legal>
+      <Legal top={LEGAL_TOP} cuerpo={22}>{QB_ST01_DATA.pieza.legal}<br />{QB_ST01_DATA.pieza.legal2}</Legal>
     </AbsoluteFill>
   );
 };

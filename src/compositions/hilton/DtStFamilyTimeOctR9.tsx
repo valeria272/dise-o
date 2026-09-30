@@ -42,7 +42,7 @@
  * ⛔ El CTA «deslizar hacia arriba» es el sticker de enlace del CM: no se dibuja.
  */
 import React from 'react';
-import {AbsoluteFill, Easing, Img, interpolate, staticFile, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, Easing, Img, OffthreadVideo, interpolate, staticFile, useCurrentFrame} from 'remotion';
 
 import {DT, cargarFuentesDT} from '../../brand/doubletree';
 import {ConTrade} from './dtIconosOct';
@@ -80,7 +80,22 @@ const FOTOS = [
   {src: 'assets/hilton/dt/oct/ft-r9-lobby.jpg', desde: 0, y: 0, s: 1},
   {src: 'assets/hilton/dt/oct/ft-r9-desayuno.jpg', desde: 92, y: 0, s: 1},
   {src: 'assets/hilton/dt/oct/ft-r9-hab.jpg', desde: 250, y: 0, s: 1},
-] as const;
+];
+
+type Escena = {src: string; desde: number; y: number; s: number; video?: boolean};
+
+/**
+ * RONDA 10 (Scarlette, hilo en STORIES!C15, 29-09): «cambiemos la imagen de la familia tomando
+ * desayuno por [foto del buffet] y la que salen caminando por una de la habitación [video]».
+ * El lobby sale; abre el paneo real de la habitación doble (3,7 s, a 0,95 para que llegue a la
+ * cortina) y el desayuno es la foto real del buffet, recortada de 3:4 a 9:16. La familia de la
+ * cama se queda: Family Time tiene que mostrar una familia.
+ */
+const FOTOS_R10: Escena[] = [
+  {src: 'assets/hilton/dt/oct/ft-r10-hab-video.mp4', desde: 0, y: 0, s: 1, video: true},
+  {src: 'assets/hilton/dt/oct/ft-r10-desayuno.jpg', desde: 92, y: 0, s: 1},
+  {src: 'assets/hilton/dt/oct/ft-r9-hab.jpg', desde: 250, y: 0, s: 1},
+];
 /** La cortina: fotogramas que tarda y ancho del borde difuminado. */
 const CORTINA = 22;
 const BORDE = 100;
@@ -109,10 +124,10 @@ const useEntrada = (desde: number, dur = 18, sube = 16) => {
   return {opacity: p, transform: `translateY(${(1 - p) * sube}px)`};
 };
 
-const FotoFija: React.FC<{i: number}> = ({i}) => {
+const FotoFija: React.FC<{i: number; fotos: Escena[]}> = ({i, fotos}) => {
   const f = useCurrentFrame();
-  const e = FOTOS[i];
-  const sig = FOTOS[i + 1];
+  const e = fotos[i];
+  const sig = fotos[i + 1];
   if (f < e.desde || (sig && f > sig.desde + CORTINA)) return null;
   const hasta = sig ? sig.desde + CORTINA : DURACION_R9;
   const z = interpolate(f, [e.desde, hasta], [1, 1.04], clamp);
@@ -129,10 +144,19 @@ const FotoFija: React.FC<{i: number}> = ({i}) => {
   const desenfoque = Math.max((1 - p) * DESENFOQUE, Math.sin(Math.min(q, 1) * Math.PI / 2) * DESENFOQUE);
   return (
     <AbsoluteFill style={{WebkitMaskImage: mascara, maskImage: mascara}}>
-      <Img
-        src={staticFile(e.src)}
-        style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transform: `translate(${empuje}px, ${e.y}px) scale(${z * e.s})`, filter: desenfoque > 0.3 ? `blur(${desenfoque}px)` : undefined}}
-      />
+      {e.video ? (
+        <OffthreadVideo
+          src={staticFile(e.src)}
+          muted
+          playbackRate={0.95}
+          style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: desenfoque > 0.3 ? `blur(${desenfoque}px)` : undefined}}
+        />
+      ) : (
+        <Img
+          src={staticFile(e.src)}
+          style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transform: `translate(${empuje}px, ${e.y}px) scale(${z * e.s})`, filter: desenfoque > 0.3 ? `blur(${desenfoque}px)` : undefined}}
+        />
+      )}
     </AbsoluteFill>
   );
 };
@@ -159,7 +183,7 @@ const Titular: React.FC<{lineas: readonly string[]; cuerpo: number}> = ({lineas,
 );
 
 /** `soloGrafica`: velos, textos, bajada y logo sobre transparente, para la V2 de Premiere. */
-export const DtStFamilyTimeOctR9: React.FC<{guia?: boolean; soloGrafica?: boolean}> = ({guia = false, soloGrafica = false}) => {
+export const DtStFamilyTimeOctR9: React.FC<{guia?: boolean; soloGrafica?: boolean; fotos?: Escena[]}> = ({guia = false, soloGrafica = false, fotos = FOTOS}) => {
   const f = useCurrentFrame();
   const e1 = useEntrada(T.entra1);
   const sale1 = interpolate(f, [T.sale1, T.sale1 + 12], [1, 0], clamp);
@@ -172,7 +196,7 @@ export const DtStFamilyTimeOctR9: React.FC<{guia?: boolean; soloGrafica?: boolea
   };
   const veloDesayuno = interpolate(
     f,
-    [FOTOS[1].desde, FOTOS[1].desde + CORTINA, FOTOS[2].desde, FOTOS[2].desde + CORTINA],
+    [fotos[1].desde, fotos[1].desde + CORTINA, fotos[2].desde, fotos[2].desde + CORTINA],
     [0, 1, 1, 0],
     clamp,
   );
@@ -180,7 +204,7 @@ export const DtStFamilyTimeOctR9: React.FC<{guia?: boolean; soloGrafica?: boolea
 
   return (
     <AbsoluteFill style={{backgroundColor: soloGrafica ? 'transparent' : AZUL, overflow: 'hidden'}}>
-      {soloGrafica ? null : FOTOS.map((_, i) => <FotoFija key={i} i={i} />)}
+      {soloGrafica ? null : fotos.map((_, i) => <FotoFija key={i} i={i} fotos={fotos} />)}
 
       {/* velo de arriba para el titular y el logo; el de abajo aparece con la bajada */}
       <Velo desde={0.5} pie={0.5} lado="arriba" />
@@ -363,3 +387,4 @@ export const DtStFamilyTimeOctR9: React.FC<{guia?: boolean; soloGrafica?: boolea
 
 export const DtStFamilyTimeOctR9Guia: React.FC = () => <DtStFamilyTimeOctR9 guia />;
 export const DtStFamilyTimeOctR9Grafica: React.FC = () => <DtStFamilyTimeOctR9 soloGrafica />;
+export const DtStFamilyTimeOctR10: React.FC = () => <DtStFamilyTimeOctR9 fotos={FOTOS_R10} />;

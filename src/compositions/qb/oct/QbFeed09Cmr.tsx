@@ -33,6 +33,19 @@
  *     la mesa servida).
  *   · El legal va SÓLO en la N°2, que es donde está la promo, en dos líneas cortadas
  *     por frase (sin palabras solas). Zona segura de feed: texto ≤ 1188.
+ *
+ * ⭐⭐ RONDA 24 — ELI 30-09: «en los tres tenemos el logo: solamente en la portada» ·
+ *   «coherencia en jerarquía con los títulos en posiciones, para que se vea recto hacia
+ *   los siguientes slides y tenga continuidad; puede ser en la portada con la segunda» ·
+ *   «un plato o una escena del shooting de platos, puedes utilizar uno; la última puede
+ *   variar con otro tipo de imagen» · la referencia (el brindis de la N°3) «bastante bien».
+ *   → Logo SÓLO en la N°1. Los tres titulares con la MISMA medida: tope y=200, Raleway 68
+ *     (ExtraBold arriba, Light abajo; «CMR FALABELLA» en ExtraBold). 68 porque la línea más
+ *     larga («YA TIENES EL BENEFICIO.», 849 px medido) cabe en la columna de 960.
+ *   → N°1 + N°2 = UNA foto del shooting de la carta: «American Baby ribs 11» (horizontal:
+ *     schop y spritz, dos manos tomando las ribs), partida en panorama 2160 px entre las
+ *     dos láminas, con el mismo velo en ambas para que el corte no se note. N°3 sigue con
+ *     el brindis.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -68,6 +81,18 @@ const Foto: React.FC<{src: string; cy?: number}> = ({src, cy = 0.5}) => (
   <FotoFeed src={`assets/hilton/qb/oct/${src}`} pos={`50% ${cy * 100}%`} />
 );
 
+/** r24: una foto partida entre N°1 y N°2 (panorama 2160 px), sin scale(). */
+const PANO = {w: FEED.w * 2, h: FEED.w * 2 * 2 / 3};
+const Panorama: React.FC<{lado: 0 | 1}> = ({lado}) => (
+  <Img src={staticFile("assets/hilton/qb/oct/feed09-pano-ribs11.jpg")}
+    style={{position: "absolute", left: -lado * FEED.w, top: (FEED.h - PANO.h) / 2, width: PANO.w, height: PANO.h}} />
+);
+/** r24: el mismo velo en N°1 y N°2, para que la unión del panorama no salte. */
+const VeloPano: React.FC = () => <Velo arriba={[560, 0.88]} abajo={[560, 0.85]} plano={0.15} />;
+
+/** r24 (Eli 30-09): los tres titulares a la misma altura y el mismo cuerpo. */
+const TIT = {top: 200, cuerpo: 68, paso: 76};
+
 const Logo: React.FC<{top: number}> = ({top}) => (
   <Img src={staticFile(QB_ASSETS.logoBlanco)} style={{position: "absolute", top, left: (FEED.w - 150) / 2, width: 150}} />
 );
@@ -76,32 +101,31 @@ export const QbFeed09CmrG1: React.FC = () => {
   const d = QB_FEED09_DATA.g1;
   return (
     <AbsoluteFill style={{background: "#000", width: FEED.w, height: FEED.h}}>
-      <Foto src="feed09-g1-ribs.jpg" cy={0.62} />
-      <Velo arriba={[620, 0.88]} abajo={[300, 0.4]} />
-      <Logo top={92} />
-      <Linea top={250} cuerpo={92} peso={800} tracking="0.01em" interlinea={1}>{d.titular1}</Linea>
-      <Linea top={352} cuerpo={92} peso={300} tracking="0.01em" interlinea={1}>{d.titular2}</Linea>
-      <Linea top={478} cuerpo={34} italica peso={400}>{d.bajada}</Linea>
+      <Panorama lado={0} />
+      <VeloPano />
+      <Logo top={58} />
+      <Linea top={TIT.top} cuerpo={TIT.cuerpo} peso={800} tracking="0.01em" interlinea={1}>{d.titular1}</Linea>
+      <Linea top={TIT.top + TIT.paso} cuerpo={TIT.cuerpo} peso={300} tracking="0.01em" interlinea={1}>{d.titular2}</Linea>
+      <Linea top={TIT.top + TIT.paso * 2 + 16} cuerpo={34} italica peso={400}>{d.bajada}</Linea>
     </AbsoluteFill>
   );
 };
 
 /** El bloque de la aprobada va 380 px más arriba que en la historia. */
-const SUBE_BLOQUE = -380;
+const SUBE_BLOQUE = -350; // r24: baja 30 para dejar aire bajo el titular (y=200)
 
 export const QbFeed09CmrG2: React.FC = () => {
   const d = QB_FEED09_DATA.g2;
   return (
     <AbsoluteFill style={{background: "#000", width: FEED.w, height: FEED.h}}>
-      <Foto src="feed09-g2-entrana.jpg" cy={0.6} />
-      <Velo arriba={[520, 0.85]} abajo={[520, 0.9]} plano={0.18} />
-      <Logo top={50} />
-      <Linea top={158} cuerpo={58} peso={800} tracking="0.03em" interlinea={1}>{d.titular1}</Linea>
+      <Panorama lado={1} />
+      <VeloPano />
+      <Linea top={TIT.top} cuerpo={TIT.cuerpo} peso={800} tracking="0.01em" interlinea={1}>{d.titular1}</Linea>
       <div style={{position: "absolute", left: 0, top: 0, width: MESA.w, height: FEED.h, overflow: "hidden"}}>
         <BloqueCmr40 dy={SUBE_BLOQUE} />
       </div>
-      <Linea top={1044} cuerpo={34} peso={600}>{d.texto}</Linea>
-      <Legal top={1106} cuerpo={19}>{d.legal}<br />{d.legal2}</Legal>
+      <Linea top={1070} cuerpo={34} peso={600}>{d.texto}</Linea>
+      <Legal top={1128} cuerpo={19}>{d.legal}<br />{d.legal2}</Legal>
     </AbsoluteFill>
   );
 };
@@ -112,9 +136,8 @@ export const QbFeed09CmrG3: React.FC = () => {
     <AbsoluteFill style={{background: "#000", width: FEED.w, height: FEED.h}}>
       <Foto src="ap-cmr25.jpg" cy={0.55} />
       <Velo arriba={[600, 0.88]} abajo={[420, 0.7]} />
-      <Logo top={92} />
-      <Linea top={262} cuerpo={60} peso={800} tracking="0.01em" interlinea={1}>{d.titular1}</Linea>
-      <Linea top={334} cuerpo={60} peso={300} tracking="0.01em" interlinea={1}>{d.titular2}</Linea>
+      <Linea top={TIT.top} cuerpo={TIT.cuerpo} peso={800} tracking="0.01em" interlinea={1}>{d.titular1}</Linea>
+      <Linea top={TIT.top + TIT.paso} cuerpo={TIT.cuerpo} peso={300} tracking="0.01em" interlinea={1}>{d.titular2}</Linea>
       <BotonVerde top={1040} ancho={520} alto={92} cuerpo={40}>{d.cta}</BotonVerde>
     </AbsoluteFill>
   );

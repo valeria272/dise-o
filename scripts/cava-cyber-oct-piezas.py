@@ -160,17 +160,35 @@ def cuadrada(p):
 # El alto no está fijado: sale de sumar los bloques. Por eso primero se mide
 # todo y después se crea el lienzo.
 
-CAP_OFERTA, CAP_BAJADA = 92, 33
-CAP_NOMBRE, CAP_PRECIO = 33, 50
+CAP_OFERTA, CAP_BAJADA = 126, 31
+CAP_NOMBRE, CAP_PRECIO = 32, 48
 CAP_LEGAL = 17               # Coni pidió agrandar la letra chica
-ALTO_BOTELLA = 800
-COL_TEXTO = 556              # dónde cierra por la derecha la columna de texto
-CX_BOTELLA = 762
+ALTO_BOTELLA = 1130          # la botella manda: es la protagonista de la pieza
+COL_TEXTO = 548              # dónde cierra por la derecha la columna de texto
+CX_BOTELLA = 782
+
+
+def parte_oferta(titular):
+    """«45% OFF» → dos líneas: la cifra arriba y OFF abajo.
+
+    Coni el 30-09: «cuarenta por ciento arriba en una línea y abajo off. Y
+    debajo de eso, antes que nadie». Sirve igual para «HASTA 50% OFF».
+    """
+    t = titular.strip()
+    return ([t[:-3].strip(), "OFF"] if t.upper().endswith("OFF") and len(t) > 3
+            else [t])
 
 
 def _alto_lockup(ancho):
     lg = Image.open(LOCKUP)
     return ancho * lg.height / lg.width
+
+
+# El bloque de descuento se alinea con la «C» de CYBERWINE, que es el canto
+# izquierdo del logo. Coni: «ubícala más hacia la izquierda, justificado ojalá
+# alineado a la C». Centrado dejaba un vacío grande a su izquierda.
+def x_de_la_C(cx, ancho_lockup):
+    return cx - u(ancho_lockup) / 2
 
 
 def _nombre_en_lineas(p, cap, ancho_max, maximo=3):
@@ -204,14 +222,21 @@ def vertical(p):
             if p["gancho"] else None)
     alto_g = (mide(p["gancho"], ft_g, 0.075)[3] - mide(p["gancho"], ft_g, 0.075)[1]) / ESC \
         if ft_g else 0
+    # El descuento va apilado: la cifra arriba, OFF debajo y la bajada abajo.
+    lin_of = parte_oferta(p["titular"])
+    ancho_of = 700 if dobles else 430
     ft_t = fuente("xbold", _cuerpo_para_cap("xbold", u(CAP_OFERTA)))
-    ft_t = min(ft_t, fuente("xbold", _cuerpo_para_ancho("xbold", p["titular"], u(820), -0.02)),
-               key=lambda f: f.size)
-    ct = mide(p["titular"], ft_t, -0.02)
+    for l in lin_of:
+        ft_t = min(ft_t, fuente("xbold", _cuerpo_para_ancho("xbold", l, u(ancho_of), -0.02)),
+                   key=lambda f: f.size)
+    paso_of = ft_t.size / ESC * 0.99
     ft_b = fuente("light", _cuerpo_para_cap("light", u(CAP_BAJADA)))
-    ft_b = min(ft_b, fuente("light", _cuerpo_para_ancho("light", p["bajada"], u(860), 0.055)),
+    ft_b = min(ft_b, fuente("light", _cuerpo_para_ancho("light", p["bajada"],
+                                                        u(ancho_of + 60), 0.055)),
                key=lambda f: f.size)
     cb = mide(p["bajada"], ft_b, 0.055)
+    alto_oferta = (len(lin_of) - 1) * paso_of \
+        + (mide(lin_of[-1], ft_t, -0.02)[3] - mide(lin_of[-1], ft_t, -0.02)[1]) / ESC
 
     # Con DOS botellas el texto no cabe al costado: el par ocupa medio lienzo y
     # se monta encima. Esas piezas conservan el apilado centrado —oferta, nombre
@@ -227,11 +252,20 @@ def vertical(p):
 
     y_gancho = 452
     y_lockup = y_gancho + alto_g + (16 if ft_g else 0)
-    y_oferta = y_lockup + _alto_lockup(ANCHO_LOCKUP) + 44
-    y_bajada = y_oferta + (ct[3] - ct[1]) / ESC + 18
-    y_banda = y_bajada + (cb[3] - cb[1]) / ESC + 58
-    alto_bot = 660 if dobles else ALTO_BOTELLA
-    alto_banda = (alto_texto + 42 + alto_bot) if dobles else max(alto_bot, alto_texto)
+    alto_desc = alto_oferta + 20 + (cb[3] - cb[1]) / ESC
+    if dobles:
+        # centrada: descuento, nombre con precio y las dos botellas, apilados
+        y_oferta = y_lockup + _alto_lockup(ANCHO_LOCKUP) + 44
+        y_banda = y_oferta + alto_desc + 46
+        alto_bot = 660
+        alto_banda = alto_texto + 42 + alto_bot
+    else:
+        # el descuento entra DENTRO de la banda, alineado a la «C», y la botella
+        # se queda con todo el costado derecho
+        y_banda = y_lockup + _alto_lockup(ANCHO_LOCKUP) + 52
+        y_oferta = y_banda
+        alto_bot = ALTO_BOTELLA
+        alto_banda = max(alto_bot, alto_desc + 58 + alto_texto)
     y_cupon = y_banda + alto_banda + 54
     alto_cupon = (cupon_alto(620) if p["cupon"] else 0)
     y_legal = y_cupon + alto_cupon + (58 if p["cupon"] else 10)
@@ -248,16 +282,26 @@ def vertical(p):
     if ft_g:
         texto_oro(im, (CX, u(y_gancho)), p["gancho"], ft_g, 0.075, ancla="centro")
     lockup(im, CX, y_lockup, ancho=ANCHO_LOCKUP)
-    texto_oro(im, (CX, u(y_oferta)), p["titular"], ft_t, -0.02, ancla="centro")
-    texto_plano(im, (CX, u(y_bajada)), p["bajada"], ft_b, BLANCO, 0.055, ancla="centro")
+
+    XC = x_de_la_C(CX, ANCHO_LOCKUP)
+    if dobles:
+        x_desc, ancla_desc = CX, "centro"
+    else:
+        x_desc, ancla_desc = XC, "izq"
+        columna_botella(im, p, cx=u(CX_BOTELLA), base_y=y_banda + alto_banda,
+                        alto=alto_bot, sellos_a="der")
+    yo = y_oferta
+    for l in lin_of:
+        texto_oro(im, (x_desc, u(yo)), l, ft_t, -0.02, ancla=ancla_desc)
+        yo += paso_of
+    yo = y_oferta + alto_oferta + 20
+    texto_plano(im, (x_desc, u(yo)), p["bajada"], ft_b, BLANCO, 0.055, ancla=ancla_desc)
 
     if dobles:
         x_texto, ancla, yy = CX, "centro", y_banda
     else:
         x_texto, ancla = u(COL_TEXTO), "der"
-        yy = y_banda + (alto_banda - alto_texto) / 2
-        columna_botella(im, p, cx=u(CX_BOTELLA), base_y=y_banda + alto_banda,
-                        alto=alto_bot, sellos_a="der")
+        yy = y_oferta + alto_desc + 58
 
     for linea in lineas:
         texto_plano(im, (x_texto, u(yy)), linea, ft_n, BLANCO, 0.01, ancla=ancla)

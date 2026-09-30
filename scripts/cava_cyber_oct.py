@@ -231,7 +231,7 @@ def _ancla(xy, tam, ancla):
 ESCENAS = CAVA / "cyber-oct/escenas"
 
 
-def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5):
+def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5, zoom=1.0):
     """El fondo YA trae la botella puesta sobre la plataforma del KV.
 
     Estos montajes se generaron con Magnific en el space de Coni, con su propio
@@ -249,7 +249,10 @@ def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5):
     W = ANCHO[formato]
     H = int(round(u(alto_ud)))
     im = Image.open(ESCENAS / f"brief{n}.jpg").convert("RGB")
-    k = max(W / im.width, H / im.height)           # cubrir, nunca deformar
+    # `zoom` pasa de «cubrir justo» a «cubrir con holgura». Sin holgura no hay
+    # margen vertical que repartir y `vert` no puede mover nada: el montaje entra
+    # exacto y queda clavado.
+    k = max(W / im.width, H / im.height) * zoom    # cubrir, nunca deformar
     im = im.resize((int(round(im.width * k)), int(round(im.height * k))), Image.LANCZOS)
     x0 = int(round(fin * im.width - borde * W))
     x0 = max(0, min(x0, im.width - W))             # sin salirse del montaje

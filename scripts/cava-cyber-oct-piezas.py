@@ -66,7 +66,7 @@ PIEZAS = [
     # El brief dice «ACCESO VIP AL CYBER», pero el gancho entra directo al logo
     # CYBERWINE week: dejarlo completo repetía «CYBER» dos veces seguidas. Coni
     # quitó la palabra el 30-09 y la frase sigue cerrando contra el logo.
-    dict(n=1, escena="vip", fin=0.92, tope=790, borde=0.885, vert=0.30, gancho="ACCESO VIP AL",
+    dict(n=1, escena="vip", fin=0.92, tope=790, borde=0.885, vert=0.14, zoom=1.16, gancho="ACCESO VIP AL",
          titular="45% OFF", bajada="ANTES QUE NADIE", cupon="CYBERVIP",
          producto=["MORANDÉ EL CABERNET", "DE RANQUIL 2021"],
          botella="ranquil", oferta="$34.970", normal="$59.990",
@@ -76,7 +76,7 @@ PIEZAS = [
          # bbox del packshot, que ya no se pega.
          # Sobre el CUELLO, sin bajar a la etiqueta: la etiqueta del Ranquil
          # arranca al 42 % del alto del montaje.
-         sellos_en=(0.822, 0.268), sellos_diam=138, sellos_paso=0.056,
+         sellos_en=(0.822, 0.322), sellos_diam=138, sellos_paso=0.056,
          legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
                "No acumulable con otras promociones. Hasta agotar stock."),
     # Sin bajada: el brief dice «HOUSE OF MORANDÉ A $46.630», pero el nombre del
@@ -366,7 +366,8 @@ def vertical(p):
     # ese costado y el texto tenga el suyo.
     base, k_img, x_img = escena_montada(p["n"], "mail", ALTO, fin=p["fin"],
                                     borde=p.get("borde", 0.955),
-                                    vert=p.get("vert", 0.5))
+                                    vert=p.get("vert", 0.5),
+                                    zoom=p.get("zoom", 1.0))
     im = viñeta(base, 0.22)
     marco(im)
     advertencia(im)

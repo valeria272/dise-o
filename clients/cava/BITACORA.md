@@ -1,3 +1,35 @@
+## 2026-09-30 — Constanza Lizana «Coni» (con Claude)
+
+**Qué se hizo:** Se produjeron los **6 mails del Cyber Wine Week de octubre** (3 VIP
+con cupón CYBERVIP + 3 público), verticales, PNG a 1080 de ancho y alto libre. El
+cambio grande del día: las piezas dejaron de componerse pegando packshot sobre
+fondo y pasaron a **montarse sobre el KV de verdad** — seis montajes generados en
+Magnific, en el space de Coni (página KV CYBER), con su key visual como referencia
+de escena y el packshot oficial como referencia de producto. Los VIP llevan los
+destellos dorados; los del público, no. Briefs 1, 2 y 3 VIP cerrados con ella tras
+varias rondas de ajuste fino.
+
+**Dónde quedó:** `scripts/cava_cyber_oct.py` (motor), `scripts/cava-cyber-oct-piezas.py`
+(las 6 piezas), `scripts/cava-cyber-oct-extraer.py` (levanta el logo CYBERWINE week
+y la ADVERTENCIA del .ai de Coni) y `scripts/cava-cyber-oct-subir.py`. Assets nuevos
+versionados: los 7 packshots oficiales, los 2 sellos, el logo extraído, la
+advertencia y los 6 montajes. Las 6 piezas pasan `qa/motor.py --marca cava` y están
+en Drive: `DISEÑO ia › OCTUBRE › CYBER CAVA VIP` y `CYBER CAVA GENERAL`.
+
+**Qué sigue:** Revisar con Coni los **briefs 4, 5 y 6** (los tres del público). Para
+esos hay que generar los montajes **en la proporción de la pieza** (≈1:2,3), no en
+9:16 — es el error que costó más vueltas hoy.
+
+**Abierto:**
+- Faltan los **sellos de 92 Descorchados y 91 J. Suckling** para las piezas 5 y 6. Los
+  traía quemados el packshot viejo y se perdieron al pasar al montaje generado. Coni
+  tiene que mandarlos como mandó los de 98.
+- **WhatsApp en stand-by** por decisión de Coni. Las 4 cuadradas que quedaron subidas
+  en `CYBER CAVA WHATSAPP` tienen el **logo viejo y los sellos malos**: no se usan.
+- La línea chica del valle en la etiqueta del 7Colores Single Vineyard (pieza 5) es
+  texto que inventa el modelo. A tamaño de mail no se lee; decisión de Coni.
+- El `git push` no lo puede hacer Claude (lo bloquea el clasificador). Lo corre ella.
+
 ## 2026-09-28 — Constanza Lizana «Coni» (con Claude)
 
 **Qué se hizo:** Se abrió el KV del **Cyber Day 2026**, que son **DOS**: uno para

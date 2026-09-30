@@ -11,7 +11,7 @@ Cada cuenta tiene su cerebro en `clients/<marca>/APRENDIZAJES.md`, alimentado en
 
 - [abakos](cliente-abakos.md) — 10 reglas · última cosecha 2026-09-30
 - [casablanca](cliente-casablanca.md) — 36 reglas · última cosecha 2026-09-30
-- [cava](cliente-cava.md) — 33 reglas · última cosecha 2026-09-30
+- [cava](cliente-cava.md) — 39 reglas · última cosecha 2026-09-30
 - [copywriters](cliente-copywriters.md) — 27 reglas · última cosecha 2026-09-30
 - [ebema](cliente-ebema.md) — 86 reglas · última cosecha 2026-09-30
 - [hilton](cliente-hilton.md) — 173 reglas · última cosecha 2026-09-30

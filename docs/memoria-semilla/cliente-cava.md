@@ -1,6 +1,6 @@
 ---
 name: cliente-cava
-description: "CAVA — cerebro del cliente: 28 reglas firmes, última cosecha 2026-09-30. Generado desde clients/cava/APRENDIZAJES.md; leerlo antes de diseñar para cava"
+description: "CAVA — cerebro del cliente: 39 reglas firmes, última cosecha 2026-09-30. Generado desde clients/cava/APRENDIZAJES.md; leerlo antes de diseñar para cava"
 metadata:
   type: project
 ---
@@ -17,6 +17,7 @@ Criterio: **Constanza Lizana «Coni»** (diseño) · Aprueba: **la ejecutiva de 
 - **R-03** · La banda del legal es **azul y rojo tocándose, sin blanco entre medio** — _medido sobre `CYBER_LLEVATEVINOS.png` y `KV_FIESTAS PATRIAS_2025.png`, 27-08-2026_ · ✔×2
 - **R-05** · Las botellas no se tocan: ni tamaño relativo entre ellas, ni etiqueta (año, cepa, valle, letra), ni estirar ni espejar. Sólo recortar, escalar el conjunto con **un solo factor** y ajustar sombra. El ratio final tiene que ser igual al del archivo (±0,005; `pegar_botella()` aborta si no) — _medido en los editables de Coni: Black Series Syrah 0,338 = 0,338 y Chardonnay 0,370 = 0,370, 25-08-2026_ · ✔×2
 - **R-18** · Abre **cada link del brief** y contrasta con `cavamorande.cl/products/<slug>.json`: los slugs están desactualizados y redirigen a otro vino. Manda el nombre escrito en la celda, verificado — _briefs 7 y 8 de septiembre 2026, 27-08-2026_ · ✔×2
+- **R-24** · El descuento de campaña es un **bloque editorial centrado** — «50% OFF» en Butler Light, el titular corto en Authentic Signature (script), filete con ✦, y la bajada en Butler Regular versales espaciadas en dos líneas — y **no** un disco. La escala y la tinta se adaptan a cada escena (verificado con contraste WCAG), pero el estilo no cambia. **El nombre del vino y los precios NO entran al bloque**: siguen en sans bold (R-09) — _Coni lo ajustó a mano en Illustrator, 25-09-2026; reemplaza el disco del 24-09-2026 (manual §11 bis)_ · ✔×2 _(dos cosechas independientes —la nocturna del 30-09 y la de Coni del 28-09— llegaron a la misma regla por separado)_
 - **R-04** · El legal se compone en **gobCL Bold** (tipografía oficial del Gobierno de Chile), no en una sans cualquiera — _/adn sobre los editables de Coni, 25-08-2026_ · ✔×1
 - **R-06** · Los sellos de premio no se inventan, no se les cambia el puntaje y no se pasan de un vino a otro: son de certificadores externos y valen para **esa cosecha** — _manual CAVA §2, 25-08-2026_ · ✔×1
 - **R-07** · Si falta un bottle shot, **se pide, no se genera** (SharePoint de Morandé o disco de la diseñadora) — _manual CAVA §2, 25-08-2026_ · ✔×1
@@ -31,7 +32,6 @@ Criterio: **Constanza Lizana «Coni»** (diseño) · Aprueba: **la ejecutiva de 
 - **R-16** · Para ampliar bottle shots, **upscaler de precisión** (`scripts/cava-botellas-2x.py`), nunca el creativo (redibuja letras) ni LANCZOS ×1,9 (ablanda la etiqueta) — _28-08-2026_ · ✔×1
 - **R-17** · El apilado de botellas va **de derecha a izquierda**, porque los bottle shots del e-commerce traen el sello incrustado hacia la derecha del hombro — _28-08-2026_ · ✔×1
 - **R-19** · Verifica que `precio final = lista × (1 − %)`. Si no cuadra, se produce con la cifra corregida y **no se programa el envío** hasta que la ejecutiva confirme (tema SERNAC) — _decisión de Valeria, 27-08-2026, briefs 5, 8 y 9_ · ✔×1
-- **R-20** · Precios en CLP chileno ($10.990), el anterior tachado; **MORANDÉ con tilde** y **7Colores junto**. Bloqueantes en `reglas.yaml` — _Dirección de área y catálogo técnico, 25/27-08-2026_ · ✔×1
 
 ## Lo que ya costó rondas
 - **X-01** · Armar el lote sobre un print de baja resolución y una referencia de cupón del Cyber: salió fondo azul marino en vez del bodegón cálido, **tarjetas blancas** que la marca no usa, una barra dorada inventada, botellas a media escala y texto centrado cuando el sistema alinea a la izquierda — _mailings de septiembre 2026, v1, 27-08-2026 · se rehízo entero_
@@ -43,3 +43,7 @@ Criterio: **Constanza Lizana «Coni»** (diseño) · Aprueba: **la ejecutiva de 
 - **X-07** · Sombra de botella armada con **elipses superpuestas**: la suma de sus bordes difuminados dejaba un borrón que no correspondía a ninguna forma real, además desproporcionada (1632 px contra 887 de la botella) y corrida 266 px al costado. Coni la marcó tres veces; las dos primeras se diagnosticó mal (se culpó a la orientación y al fondo) — la correcta es derivar la sombra del **alfa de la propia botella** — _KV Cyber de octubre, 24-09-2026, tres rondas_
 - **X-08** · Usar una **Raleway extraída del editable sin renderizarla primero**: de las nueve variables sólo la Black tenía los contornos completos y el primer render de «50% OFF» salió con «50%» y una sola «o» debajo — _Cyber de octubre, 24-09-2026_
 - **X-09** · Poner **dos recuadros de advertencia** en la misma pieza por entender mal «agregar otro recuadro» — va uno solo, el de conducir — _Cyber de octubre, 24-09-2026_
+- **X-10** · El **disco** del descuento (naranja, «50%» grande y «OFF» debajo), que fue la forma pedida el 24-09: al día siguiente Coni trajo una referencia editorial y lo reemplazó entero. Vivió un día — _25-09-2026 · `marca.json › descuento` reescrito_
+- **X-11** · Agrandar un elemento sin volver a mirar qué quedó al lado: al subir el «50% OFF» su tinta pasó a arrancar en x=500 y el logo llega a x=709 — 209 px de solape con **16 px de aire** contra «MORANDÉ» — _25-09-2026, cazado midiendo, no mirando_
+- **X-12** · Un degradado puesto sobre **texto** en un SVG: Illustrator no lo importa y el «Llegó el Cyber.» abrió en NEGRO en el `.ai`. Sobre trazados sí lo importa, así que fallaba sólo el texto — _25-09-2026, cazado exportando el .ai y comparándolo contra el PNG_
+- **X-13** · Dar por faltante una fuente por buscarla en `~/Library/Fonts`: **Adobe Fonts no vive ahí**. Bebas Neue Pro estaba activada y completa; se comprueba preguntándole a Illustrator, no al s

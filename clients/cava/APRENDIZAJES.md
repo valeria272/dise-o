@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza Lizana «Coni»** (diseño) · Aprueba: **la ejecutiva de cuentas de CAVA, dueña del brief mensual** (ver §8: falta nombre y confirmar si aprueba ella o la viña)
-> Última cosecha: **2026-09-30** · Cosechas: **5**
+> Última cosecha: **2026-09-30** · Cosechas: **6**
 
 ## 1. Quién es el cliente
 
@@ -131,6 +131,9 @@ son piezas **publicadas** de Coni, que son el estándar a replicar:
 - **X-11** · Agrandar un elemento sin volver a mirar qué quedó al lado: al subir el «50% OFF» su tinta pasó a arrancar en x=500 y el logo llega a x=709 — 209 px de solape con **16 px de aire** contra «MORANDÉ» — _25-09-2026, cazado midiendo, no mirando_
 - **X-12** · Un degradado puesto sobre **texto** en un SVG: Illustrator no lo importa y el «Llegó el Cyber.» abrió en NEGRO en el `.ai`. Sobre trazados sí lo importa, así que fallaba sólo el texto — _25-09-2026, cazado exportando el .ai y comparándolo contra el PNG_
 - **X-13** · Dar por faltante una fuente por buscarla en `~/Library/Fonts`: **Adobe Fonts no vive ahí**. Bebas Neue Pro estaba activada y completa; se comprueba preguntándole a Illustrator, no al sistema de archivos — _25-09-2026_
+- **X-14** · El logo **CYBERWINE week no se recompone con las fuentes**. Está en Poppins **Bold** —no ExtraBold— y con tracking cerrado; rehecho salía distinto y cada pieza llevaba su propia versión del logo de Coni. Se levanta en píxeles del `.ai`, igual que la ADVERTENCIA (`scripts/cava-cyber-oct-extraer.py`) — _Coni, 30-09-2026: «creo que lo modificaste, debe ser como el que te dejé en el editable»_ · costó 1 ronda
+- **X-15** · Los **sellos de premio no se dibujan**: son archivos oficiales. Los míos llevaban los puntajes que declaraba el brief (91 y 92) y los correctos eran **98 y 98**. Un sello es una marca registrada: si no está el archivo, se pide — _Coni, 30-09-2026_ · costó 2 rondas
+- **X-16** · **El fondo no se rellena estirando el borde.** Cuando el montaje no daba de alto o de ancho yo lo ensanchaba clonando la última columna: «se ve muy feo». Con dos botellas y una sola ficha de precio, el fondo **se extiende en Magnific** y se entrega el par ya centrado — _Coni, 30-09-2026; ella misma hizo el montaje 1536×3992_ · costó 3 rondas
 
 ## 8. Preguntas abiertas
 
@@ -152,6 +155,29 @@ son piezas **publicadas** de Coni, que son el estándar a replicar:
 - ⛔ **Propuesta B sin solución en la posición fija del bloque de producto:** cae sobre la sombra proyectada de la botella, cuya luminancia intermedia no contrasta con nada (blanco 2,82:1 · negro 1,63:1). Subirlo al naranja limpio (negro 5,9:1) o dejar B fuera. → Coni.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Coni (con Claude) · los 6 mails del Cyber de octubre, briefs 1–3 cerrados
+- nuevo **R-34…R-39** · seis reglas de la sesión más larga de la cuenta: el montaje se hace
+  en Magnific con su KV y el packshot oficial (VIP con destellos, público sin), **en la
+  proporción de la pieza y no en 9:16**, extendiendo el fondo cuando hay dos botellas; la
+  botella se coloca **por cálculo y no por tanteo**; las piezas se afinan **contra el mismo
+  patrón, nunca una contra otra**; el logo va arriba a la izquierda también en la maqueta
+  centrada; y la botella se ve **completa**, sin que ningún texto la tape.
+- ✔ confirmadas en la práctica: **R-32** (el dorado es degradado metálico, no plano) al
+  reconstruir el lockup, y **R-30** (el cuerpo se resuelve por ancho Y alto, midiendo la
+  mancha) al calzar la cursiva y el interlineado del nombre del vino.
+- §7 **X-14** · el logo CYBERWINE week **no se recompone con las fuentes**: está en Poppins
+  **Bold** —no ExtraBold— con tracking cerrado, y rehecho salía distinto. Se levanta en
+  píxeles del `.ai` de Coni, como ya se hacía con la ADVERTENCIA.
+- §7 **X-15** · los sellos de premio **no se dibujan**: son archivos oficiales. Los míos
+  llevaban los puntajes del brief (91 y 92) y los correctos eran 98 y 98.
+- §8 pregunta nueva: faltan los sellos de 92 Descorchados y 91 J. Suckling para las piezas
+  5 y 6 — se los pidió a Coni y quedaron pendientes.
+- ⛔ **Candidatas a regla del estudio, para Valeria:** (1) un asset de marca registrada
+  —sello, logo— **se pega, no se redibuja**, y si no está el archivo se pide; (2) cuando un
+  ajuste visual no mueve NADA, lo primero es comprobar que el cambio llegó al archivo: hoy
+  se perdieron tres vueltas mirando la misma pieza por un reemplazo que nunca aplicó. No las
+  copio a otras marcas: las decide ella.
 
 ### 2026-09-30 — Coni (con Claude) · resolución del choque de cosechas
 

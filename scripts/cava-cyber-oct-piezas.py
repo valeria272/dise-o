@@ -62,7 +62,10 @@ BOTELLAS = {
 
 # ── Los 6 envíos, textuales del brief ───────────────────────────────────────
 PIEZAS = [
-    dict(n=1, escena="vip", gancho="ACCESO VIP AL CYBER",
+    # El brief dice «ACCESO VIP AL CYBER», pero el gancho entra directo al logo
+    # CYBERWINE week: dejarlo completo repetía «CYBER» dos veces seguidas. Coni
+    # quitó la palabra el 30-09 y la frase sigue cerrando contra el logo.
+    dict(n=1, escena="vip", gancho="ACCESO VIP AL",
          titular="45% OFF", bajada="ANTES QUE NADIE", cupon="CYBERVIP",
          producto=["MORANDÉ EL CABERNET", "DE RANQUIL 2021"],
          botella="ranquil", oferta="$34.970", normal="$59.990",

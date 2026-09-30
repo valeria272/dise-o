@@ -1,7 +1,7 @@
 {
   "_que_es": "Los textos que cada pieza pinta de verdad, declarados para que qa/motor.py corra las reglas de copy en vez de saltarlas. Salen literales del brief «CAVA _ Briefs Cyber octubre 2026.xlsx». El logo y el recuadro de ADVERTENCIA son IMÁGENES levantadas del KV de Coni, y los sellos de premio de 7Colores, Vitis Única y Selección de Viñedos vienen quemados en el packshot oficial: ninguno es texto compuesto por acá, por eso no se declaran.",
   "CYBER_CAVA_OCT_WSP1_VIP.png": [
-    "ACCESO VIP AL CYBER",
+    "ACCESO VIP AL",
     "45% OFF",
     "ANTES QUE NADIE",
     "MORANDÉ EL CABERNET",
@@ -10,16 +10,10 @@
     "$59.990",
     "Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. No acumulable con otras promociones. Hasta agotar stock.",
     "CUPÓN EXCLUSIVO:",
-    "CYBERVIP",
-    "DESCORCHADOS",
-    "98",
-    "PUNTOS",
-    "J. SUCKLING",
-    "98",
-    "PUNTOS"
+    "CYBERVIP"
   ],
   "CYBER_CAVA_OCT_MAIL1_VIP.png": [
-    "ACCESO VIP AL CYBER",
+    "ACCESO VIP AL",
     "45% OFF",
     "ANTES QUE NADIE",
     "MORANDÉ EL CABERNET",
@@ -28,13 +22,7 @@
     "$59.990",
     "Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. No acumulable con otras promociones. Hasta agotar stock.",
     "CUPÓN EXCLUSIVO:",
-    "CYBERVIP",
-    "DESCORCHADOS",
-    "98",
-    "PUNTOS",
-    "J. SUCKLING",
-    "98",
-    "PUNTOS"
+    "CYBERVIP"
   ],
   "CYBER_CAVA_OCT_WSP2_VIP.png": [
     "TU CUPÓN VIP SIGUE ACTIVO",
@@ -113,6 +101,26 @@
     "Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. No acumulable con otras promociones."
   ],
   "CYBER_CAVA_OCT_MAIL6_GENERAL.png": [
+    "ÚLTIMAS HORAS DEL CYBER",
+    "50% OFF",
+    "HOY CIERRA",
+    "PACK X6 SELECCIÓN DE VIÑEDOS",
+    "GRAN RESERVA CARMENERE 2024",
+    "$4.490 c/u",
+    "$53.940",
+    "Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. No acumulable con otras promociones."
+  ],
+  "CYBER_CAVA_OCT_WSP5_GENERAL.png": [
+    "SE ESTÁN AGOTANDO",
+    "50% OFF",
+    "SOLO HASTA MAÑANA",
+    "PACK X6 7COLORES SINGLE",
+    "VINEYARD RED BLEND 2022",
+    "$5.490 c/u",
+    "$71.940",
+    "Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. No acumulable con otras promociones."
+  ],
+  "CYBER_CAVA_OCT_WSP6_GENERAL.png": [
     "ÚLTIMAS HORAS DEL CYBER",
     "50% OFF",
     "HOY CIERRA",

@@ -341,7 +341,10 @@ def vertical_centrada(p):
     im = viñeta(base, 0.22)
     marco(im)
     advertencia(im)
-    logo(im, CX, Y_LOGO, ancho=217.4)
+    # El logo va donde va en TODA la campaña: arriba y pegado a la izquierda, al
+    # mismo canto que la «C» de CYBERWINE. Que la pieza sea centrada no cambia
+    # la cabecera.
+    logo(im, x_de_la_C(CX, ANCHO_LOCKUP), Y_LOGO, ancho=217.4, ancla="izq")
 
     texto_oro(im, (CX, u(Y_GANCHO)), p["gancho"], ft_g, 0.075, ancla="centro")
     lockup(im, CX, Y_GANCHO + (cg[3] - cg[1]) / ESC + 14, ancho=ANCHO_LOCKUP)

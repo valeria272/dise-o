@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza Lizana «Coni»** (ver §8: Diego Aguilar también subió piezas de septiembre) · Aprueba: **el cliente vía la KAM Constanza Olivares** (contactos Drive: maria@selfie.cl, plillo@hairexpress.cl)
-> Última cosecha: **2026-09-29** · Cosechas: **6**
+> Última cosecha: **2026-09-30** · Cosechas: **7**
 
 ## 1. Quién es el cliente
 
@@ -79,6 +79,9 @@ Nomenclatura de Coni: `GRILLA<MES>_S<n>_<NOMBRE>-<nn>.png`, `MAILS_<MES><Sn>_<CA
 - **R-27** · Los **ingredientes que acompañan a cada producto son los de SU ficha**, no decorativos (700: kale y vitamina E · 911: quinoa, girasol y vitamina E) — _Coni, 28-09-2026, reel Biotop ronda 1_ · ✔×1
 - **R-28** · Las **viñetas son el asterisco del logo SELFI3\*** en vector (`public/assets/selfie/2026-nuevo-estilo/selfie-asterisco.svg` y `-coral.svg`), no un punto genérico — _Coni, 28-09-2026, reel Biotop ronda 1_ · ✔×1
 - **R-29** · En el reel, el paso entre productos y al cierre lo hacen **los campos de color** del estilo nuevo (el coral entra desde la izquierda y el salmón desde la derecha, por encima), sin adornos — _Coni, 28-09-2026, reel Biotop ronda 1_ · ✔×1
+- **R-30** · **Renders de reels de Selfie (Remotion): máximo 3 fotogramas en paralelo.** Lanzar 14 en paralelo mató el proceso por falta de memoria — _bitácora, Coni/Claude, 28-09-2026 (noche), reel Biotop ronda 2_ · ✔×1
+- **R-31** · Los **ingredientes flotantes** que acompañan cada producto (kale, quinoa, girasol) se generan con **Seedream 5 Pro, sin marca visible**, y se recortan conservando el color de la generación original — _bitácora, Coni, 25-09-2026, reel de prueba Biotop_ · ✔×1
+- **R-32** · **Los reels van sin música propia**: el audio se elige en la biblioteca de Instagram al momento de publicar — _bitácora, Coni, 25-09-2026, reel de prueba Biotop_ · ✔×1
 
 ## 5. Excepciones
 
@@ -126,7 +129,8 @@ No hay registro de una aprobación del cliente sobre piezas del estudio. Lo que 
 - **Logo oficial de Selfie Class** (no está compartido por enlace). → Coni.
 - **Referencia del carrusel «WTF es…»** (el brief trae sólo un link de IG inaccesible). → KAM.
 - **Packshot en alta de OSiS+ Session** (en el e-commerce sólo existe en baja). → Coni.
-- **Reel Biotop: ¿con o sin cursor?** El 28-09 se entregaron las dos en PRUEBA (`PRUEBA_BIOTOP_700-911_REEL.mp4` y `…_REEL_CURSOR.mp4`, con una flecha clásica que hace clic en «Selfie.cl»). → Coni.
+- **Reel Biotop: ¿con o sin cursor?** El 28-09 se entregaron las dos en PRUEBA (`PRUEBA_BIOTOP_700-911_REEL.mp4` y `…_REEL_CURSOR.mp4`, con una flecha **blanca de borde negro** que hace clic sobre «Selfie.cl»: el botón se hunde y sale una onda). → Coni.
+- **Cyber (5–7 oct):** faltan las líneas de BC Bonacure, el top 3 en ventas, la fecha y hora exacta de término (para el contador) y el descuento de CLOE sin confirmar — _bitácora, 25 y 28-09-2026_. → Coni / Fernanda Leiva (Selfie).
 - **Chapaza Italic** viene en los paquetes de Coni pero no aparece en el texto vivo de la grilla: ¿para qué es? → Coni.
 - Los banners de septiembre de Coni son de **Selfie Pro** (logo horizontal, naranja): ¿cómo baja el estilo nuevo a Selfie Pro? → Coni.
 - **Agrandir** es de pago con licencia del cliente: ¿cómo la recibe cada diseñador? → Coni.
@@ -135,6 +139,13 @@ No hay registro de una aprobación del cliente sobre piezas del estudio. Lo que 
 - **Reel Biotop 700/911, ronda 1** (23,5 s, re-subido al mismo nombre en `SELFIE › PRUEBA` el 28-09): ¿aprobado o viene ronda 2? → Coni.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesiones de Constanza Lizana «Coni» (con Claude), subidas por Diego Aguilar al cerrar su sesión (a8e0647)
+- El commit `a8e0647` («mascenter: respaldo automático al cerrar la sesión de Diego Aguilar») subió por primera vez a git `clients/selfie/BITACORA.md`, `CLAUDE.md` y `marca.json` — hasta ahora sólo vivían locales. **Diego Aguilar firma el commit porque su hook de cierre de sesión barrió con lo que estaba sin subir, pero el contenido es de las sesiones de Coni del 24, 25 y 28-09** (así lo dice la propia bitácora: "Coni (con Claude)"). No se le atribuye criterio a Diego.
+- Casi todo ese contenido **ya estaba cosechado** en las entradas del 26, 28 (×2) y 29-09 de abajo — se revisó línea por línea para no duplicar ✔. No se subió ningún ✔ porque no es una ronda de feedback nueva, es el mismo feedback llegando a git más tarde.
+- Sí había tres aprendizajes técnicos de la bitácora que nunca habían entrado como regla: nuevo **R-30** (máx. 3 fotogramas en paralelo al renderizar reels — 14 en paralelo mató el proceso por memoria), **R-31** (ingredientes flotantes con Seedream 5 Pro, sin marca, color de la generación) y **R-32** (reels sin música propia; el audio se elige en la biblioteca de Instagram al publicar).
+- §8: se precisó la descripción del cursor del reel (flecha blanca de borde negro, el botón se hunde y sale una onda) y se agregó como pregunta abierta el **Cyber** (líneas BC Bonacure, top 3 en ventas, fecha/hora del contador, descuento CLOE) — se mencionaba tres veces en la bitácora pero nunca había quedado en §8.
+- Nada raro en el diff: es texto de marca y bitácora, sin instrucciones camufladas.
 
 ### 2026-09-29 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`af5eecf`) es el mismo commit que ya cosechó la ronda 2 del reel Biotop (ver la entrada de abajo). Se lista a sí mismo porque tocó `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit. El mismo commit también toca `docs/memoria-semilla/cliente-cava.md` (regeneración de memoria, no cosecha de marca).

@@ -12,7 +12,7 @@
 > grilla con proveedores, SPC), **[CLICK]** (el portal B2B) o **[AMBAS]**.
 >
 > Criterio: **Paulina Bustamante** (grilla y paid; Serena Abarca produce parte del paid y las ARIEL) · Aprueba: **Paulina valida; el cliente, vía Carlos Figueroa (cuenta/contenido)**
-> Última cosecha: **2026-09-29** · Cosechas: **6**
+> Última cosecha: **2026-09-30** · Cosechas: **7**
 
 ## 1. Quién es el cliente
 
@@ -210,6 +210,9 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - LinkedIn 26/10 **Capacitaciones**: la grilla dice «PENDIENTE: confirmar tema, proveedor y sucursal». → Carlos.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · revisión de rutina (e0c6e8d)
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`e0c6e8d`) es el mismo commit de Paulina donde ya cosechó el teaser «La Gota de Color» y el reel de San Bernardo (ver la entrada de abajo, R-63 a R-69). Se lista a sí mismo porque tocó `BITACORA.md`/`CLAUDE.md` y `APRENDIZAJES.md` en el mismo commit.
 
 ### 2026-09-29 — Paulina Bustamante · ronda 1 del reel San Bernardo + masisa1 + teaser «La Gota de Color» (4 rondas, aprobado por el cliente)
 - nuevo **R-63** (reel de sucursal sin pre-enunciado), **R-64** (bodega llena), **R-65** (corte de línea por sentido), **R-66** (KV del cliente: su tipografía y sus textos), **R-67** (cierre en blanco con logo oficial), **R-68** (movimiento real de IA y transformación continua; técnica del clip inverso), **R-69** (sonido que acompaña la acción, remate en el clímax, logo en silencio).

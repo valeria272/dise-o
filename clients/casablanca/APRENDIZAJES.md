@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (diseñadora de la agencia para Grupo Revex) · Aprueba: **Jenny Campos** (diseñadora de Grupo Revex, la clienta)
-> Última cosecha: **2026-09-26** · Cosechas: **2**
+> Última cosecha: **2026-09-30** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -136,8 +136,14 @@ Nada de septiembre 2026 pasó a la primera. Lo que Paulina marcó como modelo y 
 - **c2-3** sigue sin una foto que no sea fachada («un piso instalado o una vista acogedora») → **Jenny.**
 - **Avisarle a Jenny** que su sitio publica «Camarú UV 120 x 2130» sin explicar el `LV` → **Serena.**
 - Si en otro mes el brief vuelve a pedir «un mismo ambiente en las 4 tarjetas», **preguntar antes** de asumirlo (Jenny lo derogó para septiembre) → **Serena.**
+- **El cielo de las 4 fachadas IA de Paulina (28-08) es azul intenso con nubes dramáticas**, mientras la fachada real es pálido y velado. Queda sin decidir si corregirlo (bajar saturación o reiluminar): Casablanca es aire, y un cielo publicitario saturado puede leerse fuera de tono — _nota del estudio, `material/2026-08-28-material-paulina.md`, punto 4_ → **quien monte esas piezas.**
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesiones de Paulina Bustamante, dirección de área y Jenny Campos (a8e0647)
+- sin aprendizajes nuevos: el commit `a8e0647` (subido por Diego Aguilar vía el hook de respaldo automático, pero él no participó en ninguna decisión de diseño de esta pieza) es el mismo commit que sembró `APRENDIZAJES.md` por primera vez — trae de una sola vez `CLAUDE.md`, `BITACORA.md`, las 4 rondas de `feedback/` (25-08, 28-08 ronda3, 28-08 ronda4-cliente, 16-09), `material/2026-08-28-material-paulina.md`, `recetas/fondos-ambiente-IA.md`, `reglas.yaml`, `marca.json` y `medidas.json`, y ese mismo commit ya incluye la cosecha destilada (R-01…R-36, E-01…E-07, A-01…A-04, X-01…X-18, más las preguntas de §8). Se revisó cada archivo del diff uno por uno contra el cerebro actual y todo lo cosechable ya estaba: nada de `feedback/2026-08-28-ronda3.md` (7 comentarios de Paulina sobre C1/C2), de `material/2026-08-28-material-paulina.md` (16 imágenes de Paulina, las fachadas IA y las fotos «lascondes») ni de `reglas.yaml`/`marca.json` queda fuera de lo ya registrado.
+- Único agregado: una pregunta nueva en §8 sobre el cielo saturado de las fachadas IA de Paulina, que no estaba anotada (fuente: nota interna del estudio en `material/2026-08-28-material-paulina.md`, no una persona hablando, así que no es regla — sólo pregunta).
+- Algo raro: el commit trae el asunto **«mascenter: respaldo automático…»** pero no toca ningún archivo de mascenter — sólo archivos de Casablanca. Parece una etiqueta mal puesta por el script de respaldo automático (quizás heredó el nombre de otra sesión de Diego Aguilar), no contenido de otra marca colado. No se encontró ninguna instrucción camuflada dirigida a Claude en el texto del diff.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.

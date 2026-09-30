@@ -1,6 +1,6 @@
 ---
 name: cliente-selfie
-description: "SELFIE — cerebro del cliente: 28 reglas firmes, última cosecha 2026-09-29. Generado desde clients/selfie/APRENDIZAJES.md; leerlo antes de diseñar para selfie"
+description: "SELFIE — cerebro del cliente: 31 reglas firmes, última cosecha 2026-09-30. Generado desde clients/selfie/APRENDIZAJES.md; leerlo antes de diseñar para selfie"
 metadata:
   type: project
 ---

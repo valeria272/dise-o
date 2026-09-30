@@ -4,6 +4,64 @@
 > [`docs/COSECHA-NOCTURNA.md`](../docs/COSECHA-NOCTURNA.md). La entrada más nueva va
 > arriba.
 
+## 2026-09-30
+- **21 marcas cosechadas**: abakos, casablanca, cava, copywriters, ebema, hilton, landera,
+  mascenter, myzoo, nueva-urbe, petra, piso18, qb, rendic, revex, sal-lobos, san-esteban,
+  santa-gota, selfie, tierra-calma, traverso.
+- **Reglas nuevas de fondo, con feedback real destilado:**
+  - **CAVA** (Constanza Lizana, 23–25-09): R-23 a R-28 — sellos de premio planos sin
+    resplandor, bloque de descuento editorial, una sola advertencia del Ministerio por
+    pieza, página 18 del PDF oficial de advertencias, oclusión de contacto además de la
+    sombra proyectada; corrige el naranjo del logo a `#E1670E`.
+  - **COPYWRITERS** (Valeria Traverso, board del 29-09): cambio de sistema completo — pasa
+    a mandar `creative-system/SISTEMA-VISUAL-2609/LEEME.md` (ya no `MASTER/`); paleta nueva
+    (R-24, revisa R-03), la prueba del rosa (R-25), el subrayado a mano nunca cruza la letra
+    (R-26, error real cometido el mismo día en 2 láminas), el grano se resuelve por código
+    (R-27). Quedan abiertas 3 preguntas: qué fuentes reales reemplazan a los 3 placeholders
+    del board, el tope de color de `reglas.yaml` sin recalibrar contra la paleta nueva, y si
+    se archiva el sistema viejo.
+  - **MYZOO** (cliente, verbatim ya citado en `CLAUDE.md` pero nunca destilado): R-18 a R-24
+    — sin punto final, logo con claim legible, combo shampoo+acondicionador, nombre correcto
+    del eliminador de olores, y corrige R-anterior sobre el ícono de la bajada (huella, no
+    corazón). Rechazo nuevo X-07 (mascotas «bailando» generadas con IA).
+  - **SELFIE** (Constanza Lizana, 24–28-09): R-30 a R-32 — tope de 3 fotogramas en paralelo
+    al rendir en Remotion (memoria), ingredientes flotantes con Seedream 5 Pro sin marca,
+    reels sin música propia.
+  - **TRAVERSO** (Valeria Traverso, 09–10-09 sobre el reel «Los de siempre»): R-23 a R-26 —
+    tope de prompt de Nano Banana Pro (3.000 caracteres), cuando la IA falla se recorta la
+    ventana buena y nunca se regenera (✔×3), transiciones de plantilla prohibidas, las
+    referencias CHARACTER MASTER LOCKED no permiten cambiar el ángulo de cámara.
+- **Ya cosechadas por la propia diseñadora en su `/cierre`** (el commit que `pendientes`
+  marcó es el mismo commit donde ya escribieron su cosecha — se lista a sí mismo porque tocó
+  `BITACORA.md`/`CLAUDE.md` y `APRENDIZAJES.md` a la vez): **ebema, hilton, piso18, qb,
+  mascenter**. Nada que agregar; sólo se dejó la entrada de rutina para marcar el commit
+  como revisado.
+- **Sin aprendizajes nuevos, contenido ya destilado**: abakos, casablanca, landera,
+  nueva-urbe, petra, rendic, revex, sal-lobos, san-esteban, santa-gota, tierra-calma. En
+  las 11, el commit `a8e0647` resultó traer a git por primera vez archivos que sólo vivían
+  en disco, pero su contenido (bitácoras y manuales con fecha ≤ 26-09) ya estaba destilado
+  en cosechas anteriores. Se verificó byte a byte en varias (casablanca, revex, sal-lobos).
+- **Candidatas a regla del estudio** (ninguna copiada a otra marca — sólo se anotan acá
+  para que Valeria decida):
+  - Una fuente extraída de un `.ai` es un subconjunto y puede traer glifos con contorno
+    vacío sin dar error: siempre renderizar antes de usarla (CAVA).
+  - La oclusión de contacto (no sólo la sombra proyectada) es necesaria para que un
+    compuesto se vea apoyado sobre otra superficie (CAVA).
+  - Cuando la IA falla dentro de un clip bueno (repite un plano en vez de un insert,
+    alucina al final), se recorta la ventana que sí sirve — nunca se regenera todo el clip
+    (TRAVERSO, confirmado 3 veces el mismo día).
+- **Contradicciones detectadas:** ninguna (la única revisión, R-03 de copywriters, es un
+  reemplazo de sistema decidido por la propia Valeria, no una contradicción de criterio).
+- **Algo raro — para que alguien revise el hook, no es una instrucción y no se siguió como
+  tal:** el commit `a8e0647` («mascenter: respaldo automático al cerrar la sesión de Diego
+  Aguilar», cuerpo del mensaje: «3 archivo(s)») en realidad es un commit **raíz** (sin
+  padre) de la rama, con más de 5.800 archivos y ~800.000 líneas: trae de una sola vez casi
+  todos los clientes del estudio, los 8 skills del proyecto y el tooling completo. El
+  nombre de marca y el conteo de archivos del mensaje no corresponden a nada de lo que el
+  commit realmente trae — es una etiqueta mal puesta por `scripts/respaldo-automatico.py`,
+  no una sesión real de trabajo en Más Center. No se encontró ningún texto, en ningún
+  commit ni bitácora revisada, que intentara darle instrucciones a esta cosecha.
+
 ## 2026-09-29
 - **7 marcas revisadas** (cava, ebema, mascenter, piso18, qb, santa-gota, selfie),
   **0 reglas nuevas de fondo**: en las 7, el único commit que

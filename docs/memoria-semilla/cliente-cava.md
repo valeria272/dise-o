@@ -1,6 +1,6 @@
 ---
 name: cliente-cava
-description: "CAVA — cerebro del cliente: 22 reglas firmes, última cosecha 2026-09-29. Generado desde clients/cava/APRENDIZAJES.md; leerlo antes de diseñar para cava"
+description: "CAVA — cerebro del cliente: 28 reglas firmes, última cosecha 2026-09-30. Generado desde clients/cava/APRENDIZAJES.md; leerlo antes de diseñar para cava"
 metadata:
   type: project
 ---
@@ -40,3 +40,6 @@ Criterio: **Constanza Lizana «Coni»** (diseño) · Aprueba: **la ejecutiva de 
 - **X-04** · Barril grande y bonito con «botellitas» encima (botellas al 36 % del alto) — _KV de septiembre, 28-08-2026_
 - **X-05** · Dar por buena una referencia sin abrirla: los `.png` de `raw/cava/ref/` eran HTML de login de Google — _27-08-2026 y de nuevo 09-09-2026 · causa raíz del X-01_
 - **X-06** · `image-relight` sobre el KV compuesto: tinto ámbar, etiqueta amarilla — _28-08-2026_
+- **X-07** · Sombra de botella armada con **elipses superpuestas**: la suma de sus bordes difuminados dejaba un borrón que no correspondía a ninguna forma real, además desproporcionada (1632 px contra 887 de la botella) y corrida 266 px al costado. Coni la marcó tres veces; las dos primeras se diagnosticó mal (se culpó a la orientación y al fondo) — la correcta es derivar la sombra del **alfa de la propia botella** — _KV Cyber de octubre, 24-09-2026, tres rondas_
+- **X-08** · Usar una **Raleway extraída del editable sin renderizarla primero**: de las nueve variables sólo la Black tenía los contornos completos y el primer render de «50% OFF» salió con «50%» y una sola «o» debajo — _Cyber de octubre, 24-09-2026_
+- **X-09** · Poner **dos recuadros de advertencia** en la misma pieza por entender mal «agregar otro recuadro» — va uno solo, el de conducir — _Cyber de octubre, 24-09-2026_

@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-29** · Cosechas: **30**
+> Última cosecha: **2026-09-30** · Cosechas: **31**
 
 ## 1. Quién es el cliente
 
@@ -397,6 +397,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · revisión de rutina (ce49b24)
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`ce49b24`) es el mismo commit de Elisabet Soto donde ya cosechó R-151, R-152 y X-79 (ver la entrada de abajo). Se lista a sí mismo porque tocó `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit.
 
 ### 2026-09-29 (cierre 12, hilos de Nicolás y Scarlette — ST 07-10 y reel 02-10) — Claude con Eli · 2 reglas nuevas [BW], en revisión
 - **Fuente:** hilos nativos de la grilla BW OCT (sólo salen en `xl/comments*.xml` del blob bajado por usercontent; el conector no trae hilos de un .xlsx). El hilo de Scarlette → @nicolas (FEED!E11, carrusel To Go) es de contenido y no se diseñó.

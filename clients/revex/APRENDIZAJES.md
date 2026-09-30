@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (diseñadora de la agencia para Grupo Revex) · Aprueba: **Jenny Campos** (diseñadora de Grupo Revex, `jcampos@gruporevex.cl`)
-> Última cosecha: **2026-09-26** · Cosechas: **2**
+> Última cosecha: **2026-09-30** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -128,6 +128,12 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **`marca.json` desactualizado:** dice «Los tres rojos», pide «Confirmar si Gotham es la oficial» (descartada el 26-08) y su pendiente de tipografía ya está resuelto → quien toque la ficha.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesión de Diego Aguilar (a8e0647)
+- sin aprendizajes nuevos: `a8e064765257122c9d17e0ded2d36a478d39fe83` es un **commit raíz** (sin padre) subido por el hook de respaldo automático al cerrar la sesión de Diego Aguilar — el mensaje dice "mascenter", pero el commit trae de golpe un snapshot enorme (más de mil archivos, incluidas skills completas de `.agents/`) del que `clients/revex/BITACORA.md`, `CHECKLIST-CLIENTE.md`, `CLAUDE.md`, `marca.json`, `reglas.yaml` y `feedback/2026-08-25-ronda2.md` forman parte marcados como "new file".
+- Verificado con `git diff a8e0647 -- clients/revex/...`: el contenido de esos seis archivos es **byte a byte idéntico** al que ya vive en `HEAD` de esta rama. No hay ronda de feedback, comentario de Paulina/Serena/Jenny ni dato de cliente que no esté ya destilado en las cosechas del 25 y 26-09.
+- Nada que subir de ✔, nada que rechazar, ninguna excepción ni pregunta nueva. Revisado también por instrucciones camufladas en el diff (grep de patrones de inyección): no apareció nada — sólo una mención legítima de `.gitignore`.
+- Autoría real del feedback histórico contenido en esos archivos sigue siendo la de siempre (Paulina, Serena, Jenny, Valeria); Diego Aguilar es sólo quien subió el respaldo de su sesión, no quien generó contenido de Revex.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.

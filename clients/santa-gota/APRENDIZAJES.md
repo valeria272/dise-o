@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Valeria Traverso (TV y piezas del estudio); el feed lo diseña Luis Piano, del lado del cliente, y su feed manda** · Aprueba: **Gonzalo (cliente; decide qué sale a TV)** · Estrategia de marca: **Diana Meinhardt (Brand Soul)**
-> Última cosecha: **2026-09-29** · Cosechas: **4**
+> Última cosecha: **2026-09-30** · Cosechas: **5**
 
 ## 1. Quién es el cliente
 
@@ -115,6 +115,9 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 - Obra sin commitear al 22-09 (spot y full con Instagram): mientras no entre al repo nadie más la reproduce.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesiones de Diego Aguilar (a8e0647)
+- sin aprendizajes nuevos: el commit `a8e0647` («mascenter: respaldo automático al cerrar la sesión de Diego Aguilar» — el rótulo «mascenter» es del hook de respaldo, no de la marca; los 3 archivos que toca son de Santa Gota) es la **primera vez que `BITACORA.md`, `CLAUDE.md` y `marca.json` de esta marca llegan a git** (`new file mode`, sin commit previo para ninguno de los tres). Comparado archivo a archivo contra la versión actual en el árbol de trabajo: **idénticos, cero diferencias**. Todo el contenido (bitácora del 11-09 al 28-09, manual, ficha) ya estaba en el árbol de trabajo cuando se hizo la siembra inicial del 25-09 y ya quedó destilado en R-01…R-25, A-01…A-05, X-01…X-09, E-01…E-06 en las cosechas anteriores (25-09, 26-09, 28-09). No se detectaron instrucciones camufladas en el diff.
 
 ### 2026-09-29 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`d5dee3f`) es el mismo commit que ya cosechó el reel vertical del spot (ver la entrada de abajo, R-21 a R-25). Se lista a sí mismo porque tocó `BITACORA.md`/`CLAUDE.md` y `APRENDIZAJES.md` en el mismo commit. El mismo commit también toca `clients/mascenter/`, ya revisado por separado: nada se mezcló entre las dos marcas.

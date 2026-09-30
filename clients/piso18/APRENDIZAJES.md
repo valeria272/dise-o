@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»**, con revisión de la jefa de diseño **Constanza Lizana** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
-> Última cosecha: **2026-09-29** · Cosechas: **10**
+> Última cosecha: **2026-09-30** · Cosechas: **11**
 
 ## 1. Quién es el cliente
 
@@ -183,6 +183,9 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - La ST 09-10 conserva «Cotiza tu evento en piso18.cl» sin CTA en el brief (R-51): Eli la dio por buena; ¿se mantiene? → Eli
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · revisión de rutina (bec3553)
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`bec3553`) es el mismo commit de Elisabet Soto donde ya cosechó R-57 ✔×2 y R-31 ✔×8 (ver la entrada de abajo). Se lista a sí mismo porque tocó `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit.
 
 ### 2026-09-29 (tarde) — Elisabet Soto con Claude · RONDA 5: comentarios de Constanza Lizana — CORREGIDAS Y EN DRIVE
 - Constanza, en hilos nativos (verbatim): FEED C9 «Aquí en el slide 2 "Temporada alta 2027" Ojo con esa separación de letra x letra en las palabras, es demasiado ia :(» · STORIES D8 «Se pierde mucho el texto "dulce" "salada" en delineado, prueba con la línea más gruesa o bien mejor sólido».

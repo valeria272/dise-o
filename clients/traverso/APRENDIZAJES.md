@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (grilla mensual) · dirección de los reels propios: **Valeria Traverso** · Aprueba: **Paloma Irribarra, PM de Alimentos Traverso** (pirribarra@traverso.cl)
-> Última cosecha: **2026-09-26** · Cosechas: **2**
+> Última cosecha: **2026-09-30** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -70,7 +70,11 @@ entran al portal: `Por diseñar` y `Corregido`.
 - **R-19** · Posiciones fijas: Mostaza Suave (amarillo) izquierda · Mostaza Tradicional (dorado) centro, medio paso adelante · Ketchup (rojo) derecha — _BIBLIA-v2, 09-09-2026_ · ✔×1
 - **R-20** · Referencias por tipo de plano: smoking cerrado → sólo fichas/trío LOCKED; reveal y product hero → trío + packshots. Un trío anterior como referencia hereda su defecto — _09-09-2026_ · ✔×2
 - **R-21** · **La edición manda sobre la generación**: timeline sobre beats medidos → keyframes → clips → montaje; los cortes caen sobre eventos musicales concretos — _Valeria, «THE ENTRANCE», 09-09-2026_ · ✔×2
-- **R-22** · El test final: **sin textos ni audio se tiene que entender la historia**; «no agregar más: quitar, conectar y acelerar» — _Valeria, V5 y V6, 09-09-2026_ · ✔×2
+- **R-22** · El test final: **sin textos ni audio se tiene que entender la historia**; «no agregar más: quitar, conectar y acelerar» (también dicho como «no más escenas, más dirección en los segundos que hay») — _Valeria, ronda 3 (22:45), V5 y V6, 09-09-2026_ · ✔×3
+- **R-23** · El prompt de Nano Banana Pro para los character masters va bajo **3.000 caracteres**: el generador aborta antes de llamar si se pasa — _`CLAUDE.md` regla 5 / `BIBLIA-v2.md`, ajuste final de character master, 09-09-2026_ · ✔×1
+- **R-24** · Cuando el modelo de IA no entrega el plano pedido —Nano Banana Pro repite el trío completo en vez de un insert individual, o Kling degrada/alucina hacia el final de un clip— la solución es **recortar la ventana buena del mismo material, nunca pedir una regeneración nueva** — _`BIBLIA.md` v1, inserts k03/k04 repetidos, 09-09-2026 · `EDICION-THE-ENTRANCE.md`, c01 inventa una figura después del s. 2, 09-09-2026 · BITACORA, cierre de Valeria: la mostaza «rompía la carpeta» (artefacto de Kling), reunión recortada a 14,3 s, 10-09-2026_ · ✔×3
+- **R-25** · Transiciones prohibidas en los reels: glitch, zoom transition, morph, transición de plantilla, flashes ni efectos tipo CapCut; los cortes son hard cuts, match cuts, smash cuts o wipes justificados por movimiento o luz — _`BIBLIA.md` §5 y `EDICION-THE-ENTRANCE.md` §D, 09-09-2026_ · ✔×2
+- **R-26** · Con las referencias CHARACTER MASTER LOCKED, el modelo **no logra cambiar el ángulo de cámara** (un contrapicado sale a altura de ojos, un cenital deforma la tapa); un ángulo dramático distinto se resuelve en montaje (push-in + tilt sobre el clip), no pidiéndoselo al generador — _`EDICION-THE-ENTRANCE.md`, notas de QC, plano E07a, 09-09-2026_ · ✔×1
 
 ## 5. Excepciones
 
@@ -110,8 +114,32 @@ entran al portal: `Por diseñar` y `Corregido`.
 - **Acceso a Instagram:** el cliente tiene que agregar el BM de la agencia como socio de su página + IG para publicar desde el portal. → Paloma.
 - La **gramática de la grilla no está medida**: no hay `marca.json`, `reglas.yaml` ni instantánea de la grilla. Hay que hacerle `/adn` a las piezas de Paulina (carrusel `16.09_carrusel`, stories 25.09) antes de automatizar. → Paulina.
 - El copy de la reunión cambió de «NADIE NECESITA PRESENTARLOS» (V9) a **«CERO PRESENTACIONES.»** (V10, decisión verbal de Valeria); la nota de memoria todavía mezcla las dos. Manda la V10.
+- El rótulo **GRUPO COPYLAB** sobre la puerta (planos K08/c13 en adelante) es tipografía genérica generada por Kling dentro del clip, no el logo real compuesto; si molesta hay que regenerar ese keyframe con el logo real antes de animar. → Valeria.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesiones de Valeria Traverso del 09 y 10-09-2026 (a8e0647)
+- El commit `a8e0647` (subido por el hook de respaldo automático de Diego Aguilar, que no participó en el
+  feedback) trajo a git por primera vez `BITACORA.md`, `CLAUDE.md`, `BIBLIA.md`, `BIBLIA-v2.md`,
+  `EDICION-RUTAS-MUSICALES.md` y `EDICION-THE-ENTRANCE.md` del reel «Los de siempre» — archivos que ya
+  existían localmente y que alimentaron la siembra inicial del 2026-09-25 (por eso casi todo su
+  contenido ya estaba destilado en R-18…R-22, E-01, A-03/A-04 y X-06/X-07/X-08).
+- nuevo **R-23** · límite de 3.000 caracteres en el prompt de Nano Banana Pro para los character masters.
+- nuevo **R-24** · ante un fallo de generación (Nano Banana Pro repite el trío, Kling alucina al final del
+  clip) se recorta la ventana buena, nunca se regenera — patrón que aparece 3 veces en este mismo diff
+  (BIBLIA v1, EDICION-THE-ENTRANCE, BITACORA 10-09). **Candidata a regla del estudio**: no es específica
+  de Traverso, aplica a cualquier cuenta que use Nano Banana Pro o Kling — se la propongo a Valeria en vez
+  de copiarla a otra marca.
+- nuevo **R-25** · transiciones prohibidas en los reels (glitch, zoom transition, morph, plantilla, CapCut).
+- nuevo **R-26** · las referencias LOCKED impiden cambiar el ángulo de cámara; el ángulo se resuelve en montaje.
+- refuerza **R-22** (✔×2 → ✔×3) · la misma regla de «no agregar, dirigir mejor» aparece una vez más
+  (ronda 3, 22:45) antes de las dos confirmaciones ya contadas (V5 y V6).
+- nueva pregunta abierta: el rótulo «GRUPO COPYLAB» sobre la puerta es tipografía genérica de Kling, no el
+  logo real.
+- **Algo raro:** el mensaje del commit dice «mascenter: respaldo automático… 3 archivo(s)», pero el commit
+  completo toca cientos de archivos de varias marcas y de `.agents/skills/`, y los 6 archivos revisados acá
+  son todos de Traverso, ninguno de Mascenter. Es un mensaje autogenerado por el hook que no describe el
+  contenido real del commit — no hay instrucciones camufladas en el diff, sólo esa etiqueta mal puesta.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.

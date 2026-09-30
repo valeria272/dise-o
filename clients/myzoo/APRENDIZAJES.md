@@ -9,13 +9,15 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (digital: grilla, RRSS, partners) · **Constanza Lizana «Coni»** (envase y packs) · Aprueba: **por confirmar** (ver §8)
-> Última cosecha: **2026-09-26** · Cosechas: **2**
+> Última cosecha: **2026-09-30** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
 MyZoo (Proinn / NCG) es una línea chilena de shampoos, acondicionadores y
-desinfectantes para mascotas, **desarrollada en Australia**, con bajada **«AM♥R QUE SE
-SIENTE»** (el corazón reemplaza la O). Vende a consumidor final y a **groomers y
+desinfectantes para mascotas, **desarrollada en Australia**, con bajada **«AMOR QUE SE
+SIENTE»**, donde una **huella** reemplaza la O de AMOR (archivo oficial
+`myzoo_claim_amor.png`; ⚠️ **corregido el 22-09-2026** — antes se creía que era un
+corazón, ver R-24). Vende a consumidor final y a **groomers y
 clínicas veterinarias** (formatos de 5 L, diluibles). Líneas: Avena Coloidal (1:2),
 Expert Care, Groomer Grade (1:10) y Xtreme Vet (desinfectante hospitalario). Sus claims
 (Cruelty Free ONG Te Protejo, 99,9999 % de hongos, virus y bacterias…) son **regulados**.
@@ -62,6 +64,13 @@ Nomenclatura de Paulina: todo en minúscula con guion bajo, marca al principio �
 - **R-15** · Mientras no lleguen los originales, compón todo en **Neutraface Bold / Bold Italic**: los archivos Book y Demi dejan un hueco tras cada «í» (redonda e itálica, mayúscula y minúscula) — _medido rindiendo con Chrome, 22-09-2026_ · ✔×1
 - **R-16** · Cuando la escena generada tapa la zona del titular, ve directo al **outpaint dirigido**: la escena más chica y apoyada abajo en un lienzo del tamaño final con márgenes gris `#808080`, y pide rellenar sólo lo gris. Nano Banana Pro no respeta porcentajes, «alejar la cámara» ni bocetos — _octubre 2026, 22-09-2026 · 4 rondas de generación perdidas antes de dar con esto_ · ✔×1
 - **R-17** · Si la escena generada trae un envase de relleno, bórralo antes de montar el packshot real — _octubre 2026, 22-09-2026_ · ✔×1
+- **R-18** · Los textos de pieza van **sin punto final** — _cliente, 27-08-2026 (`raw/myzoo/feedback-cliente.md`, citado en `CLAUDE.md` §2b)_ · ✔×1
+- **R-19** · El logo lleva siempre **«Amor que se siente»** debajo, legible, nunca «enano» — _cliente, 01-08-2026, ídem_ · ✔×1
+- **R-20** · Cuando la pieza habla del baño, el producto se muestra **en combo** (shampoo + acondicionador), nunca uno solo — _cliente, 05-09-2026, ídem_ · ✔×1
+- **R-21** · La limpieza de la escena es un filtro duro: nada de barro, desorden ni mantas colgadas (contacto del cliente **Exequiel**, descrito como «muy picky») — _cliente, `raw/myzoo/feedback-cliente.md`, sin fecha exacta en la fuente_ · ✔×1
+- **R-22** · El nombre comercial correcto es **«Eliminador de Olores MyZoo»**; el claim de Xtreme Vet es «Elimina el 99% de los gases del mal olor» — _`raw/myzoo/feedback-cliente.md`, citado en `CLAUDE.md` §2b_ · ✔×1
+- **R-23** · El **mensaje comercial claro** pesa más que la referencia de tendencia — _cliente, `raw/myzoo/feedback-cliente.md`_ · ✔×1
+- **R-24** · La bajada de marca lleva una **huella** (no un corazón) reemplazando la O de AMOR; se creía corazón hasta que se revisó el archivo oficial el 22-09-2026 — _`myzoo_claim_amor.png`, corrección documentada en `CLAUDE.md` §1, 22-09-2026_ · ✔×1
 
 ## 5. Excepciones
 
@@ -69,6 +78,7 @@ Nomenclatura de Paulina: todo en minúscula con guion bajo, marca al principio �
 - **E-02** · El **envase** usa Neutraface **Text** (empaquetada, de pago) y Roboto por Adobe Fonts; el digital usa Neutraface **2** — _Informe.txt de `XTREME VET 5LTS.ai` vs. manual del cliente_
 - **E-03** · **Sitio web** (rebranding, `myzoo-v3.vercel.app`): los packshots actuales se **mantienen** (son el packaging vigente) y los productos nuevos (wipes, 5 L, Xtreme Vet) todavía no entran — _pedido del 21-08-2026_
 - **E-04** · En la **web** las escenas se generan con Magnific dejando espacio y el packshot real se monta después con PIL (etiqueta exacta) — _pipeline decidido el 21-08-2026_
+- **E-05** · Sobre **fondo amarillo** (ej. pieza Cruelty Free), titular y bajada van **en tinta**, no en blanco, porque el blanco no se lee ahí; la franja coral se mantiene igual — _decisión de producción, `out/myzoo/octubre-2026/ENTREGA.md`, pieza `08.10_post_crueltyfree`, 22-09-2026_
 
 ## 6. Lo que se aprueba a la primera
 
@@ -87,6 +97,7 @@ Piezas **publicadas** de Paulina que fijan cada registro (no hay registro de una
 - **X-04** · Pedir el logo del partner para cada pieza de partners: es trabarse sin motivo — _Paulina, 22-09-2026_
 - **X-05** · Usar Neutraface Book o Demi tal como vienen: «deberí a», «as í», «Í NDICE» — _octubre 2026, 22-09-2026_
 - **X-06** · Fotos de la web **recicladas** (IA repetida en 9 de 9 posts de blog, stock repetido en testimonios, Coco/Aloe con la foto de Avena, mapa con pines falsos): es lo que el cliente pidió cambiar entero — _diagnóstico del sitio, 21-08-2026_
+- **X-07** · Generar mascotas **«bailando»** u otras poses no naturales con IA: el cliente lo rechazó por verse falso — _cliente, 18-09-2026, `raw/myzoo/feedback-cliente.md`_
 
 ## 8. Preguntas abiertas
 
@@ -101,8 +112,19 @@ Piezas **publicadas** de Paulina que fijan cada registro (no hay registro de una
 - **RGB equivalentes** de PANTONE 114 C, 708 C y Neutral Black C para que el digital calce con el envase. → Coni.
 - La grilla de octubre tiene **dos hojas visibles casi idénticas** (`Grilla Octubre ` con espacio y `Grilla Octubre`): el portal las lee como dos meses. → Nicolás.
 - **Web:** el look de las 46 imágenes nuevas sigue esperando OK de Valeria y del cliente desde el 21-08. → Valeria.
+- **¿Quién es Exequiel del lado del cliente?** Aparece en el feedback literal como «muy picky» sobre la limpieza de la escena (R-21), sin cargo registrado. → KAM de MyZoo.
+- **¿La regla de «sin punto final» (27-08, R-18) aplica también a posts y stories, o sólo a lo que ya se probó?** — _`BITACORA.md`, 22-09-2026, sesión de Valeria_. → Paulina / cliente.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesiones de Paulina Bustamante (medición del 22-09) y Valeria Traverso con Claude (armado del 22-09) — commit `a8e0647`
+- nuevo **R-18…R-24** · reglas de cliente citadas en `CLAUDE.md` §2b (fuente `raw/myzoo/feedback-cliente.md`) que estaban documentadas ahí desde el 22-09 pero **nunca se habían destilado** a este cerebro: sin punto final (27-08), logo con «Amor que se siente» legible (01-08), combo shampoo+acondicionador al hablar del baño (05-09), limpieza de la escena (contacto Exequiel, sin fecha), nombre correcto «Eliminador de Olores MyZoo», y mensaje comercial por sobre la tendencia.
+- nuevo **X-07** · rechazo del cliente a mascotas «bailando» generadas con IA (18-09) — estaba en el manual, no en el cerebro.
+- nuevo **E-05** · titular y bajada en tinta sobre fondo amarillo (el blanco no se lee ahí) — decisión de producción registrada en `out/myzoo/octubre-2026/ENTREGA.md`, pieza Cruelty Free.
+- **corrige §1** · la bajada de marca lleva una **huella**, no un corazón, reemplazando la O de AMOR. Este archivo tenía el dato viejo (corazón); `CLAUDE.md` ya lo había corregido el 22-09-2026 contra el archivo oficial `myzoo_claim_amor.png`. Nueva regla: **R-24**.
+- 2 preguntas nuevas en §8: quién es Exequiel del lado del cliente, y si «sin punto final» aplica también a posts y stories.
+- El resto del contenido de `BITACORA.md`, `CLAUDE.md` y `marca.json` en el commit `a8e0647` (el sistema gráfico, la gramática digital de 118 piezas, el logo a 145 px, los cuatro registros, la excepción del logo del partner, el defecto de Neutraface Book/Demi, el pipeline de outpaint) ya estaba cosechado en la siembra inicial del 25 y 26-09 (R-01…R-17, E-01…E-04, A-01…A-04, X-01…X-06) — no se duplica.
+- **Algo raro:** el commit `a8e0647` (autor Diego Aguilar) trae en su mensaje «respaldo automático... 3 archivo(s)», pero el diff real son **5.832 archivos y ~801.000 líneas** — el repo completo, incluidas otras marcas y las skills del estudio — y su asunto dice «mascenter» aunque el contenido acá revisado es de MyZoo. El conteo del mensaje no corresponde al contenido; se trata como anomalía del script de respaldo automático (probablemente el commit semilla del repo en esta rama), no como instrucción. No se encontró ninguna instrucción camuflada dirigida a este agente dentro del texto de los archivos.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: `acc93eb` (22-09, gramática digital §2b, los 4 estáticos de octubre) ya está reflejado en la siembra inicial (R-01…R-17, más abajo). `bbe3d2f`, `8bbd601` y `bb78d71` sólo movieron 4 PNG de octubre dentro y fuera del repo (uno de ellos corrigiendo un error de archivos que se coló desde el cierre de EBEMA) — higiene de archivos, sin feedback de cliente ni corrección de diseño. `41b800b` es la misma siembra inicial.

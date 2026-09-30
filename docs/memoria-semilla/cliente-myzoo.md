@@ -1,6 +1,6 @@
 ---
 name: cliente-myzoo
-description: "MYZOO — cerebro del cliente: 17 reglas firmes, última cosecha 2026-09-26. Generado desde clients/myzoo/APRENDIZAJES.md; leerlo antes de diseñar para myzoo"
+description: "MYZOO — cerebro del cliente: 24 reglas firmes, última cosecha 2026-09-30. Generado desde clients/myzoo/APRENDIZAJES.md; leerlo antes de diseñar para myzoo"
 metadata:
   type: project
 ---
@@ -29,6 +29,9 @@ Criterio: **Paulina Bustamante** (digital: grilla, RRSS, partners) · **Constanz
 - **R-15** · Mientras no lleguen los originales, compón todo en **Neutraface Bold / Bold Italic**: los archivos Book y Demi dejan un hueco tras cada «í» (redonda e itálica, mayúscula y minúscula) — _medido rindiendo con Chrome, 22-09-2026_ · ✔×1
 - **R-16** · Cuando la escena generada tapa la zona del titular, ve directo al **outpaint dirigido**: la escena más chica y apoyada abajo en un lienzo del tamaño final con márgenes gris `#808080`, y pide rellenar sólo lo gris. Nano Banana Pro no respeta porcentajes, «alejar la cámara» ni bocetos — _octubre 2026, 22-09-2026 · 4 rondas de generación perdidas antes de dar con esto_ · ✔×1
 - **R-17** · Si la escena generada trae un envase de relleno, bórralo antes de montar el packshot real — _octubre 2026, 22-09-2026_ · ✔×1
+- **R-18** · Los textos de pieza van **sin punto final** — _cliente, 27-08-2026 (`raw/myzoo/feedback-cliente.md`, citado en `CLAUDE.md` §2b)_ · ✔×1
+- **R-19** · El logo lleva siempre **«Amor que se siente»** debajo, legible, nunca «enano» — _cliente, 01-08-2026, ídem_ · ✔×1
+- **R-20** · Cuando la pieza habla del baño, el producto se muestra **en combo** (shampoo + acondicionador), nunca uno solo — _cliente, 05-09-2026, ídem_ · ✔×1
 
 ## Lo que ya costó rondas
 - **X-01** · Armar el feed a 1080×1350 (lo que decía la ficha antes de medir) — _ficha corregida el 22-09-2026 tras medir 118 piezas_
@@ -37,3 +40,4 @@ Criterio: **Paulina Bustamante** (digital: grilla, RRSS, partners) · **Constanz
 - **X-04** · Pedir el logo del partner para cada pieza de partners: es trabarse sin motivo — _Paulina, 22-09-2026_
 - **X-05** · Usar Neutraface Book o Demi tal como vienen: «deberí a», «as í», «Í NDICE» — _octubre 2026, 22-09-2026_
 - **X-06** · Fotos de la web **recicladas** (IA repetida en 9 de 9 posts de blog, stock repetido en testimonios, Coco/Aloe con la foto de Avena, mapa con pines falsos): es lo que el cliente pidió cambiar entero — _diagnóstico del sitio, 21-08-2026_
+- **X-07** · Generar mascotas **«bailando»** u otras poses no naturales con IA: el cliente lo rechazó por verse falso — _cliente, 18-09-2026, `raw/myzoo/feedback-cliente.md`_

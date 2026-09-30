@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza Lizana «Coni»** (diseño) · Aprueba: **la ejecutiva de cuentas de CAVA, dueña del brief mensual** (ver §8: falta nombre y confirmar si aprueba ella o la viña)
-> Última cosecha: **2026-09-29** · Cosechas: **4**
+> Última cosecha: **2026-09-30** · Cosechas: **5**
 
 ## 1. Quién es el cliente
 
@@ -38,8 +38,13 @@ corre continuo a través de los ocho briefs (01→18). Campañas grandes: `CYBER
 
 ## 3. Identidad en corto
 
-- **Logo:** CAVA en versales blancas espaciadas + triángulo de puntos naranjos `#DD660E`
-  sobre la A + MORANDÉ debajo. Siempre del PNG oficial (`1IhUJwgtAYsgAdfR2qWrH1rySmE5tWOw1`).
+- **Logo:** CAVA en versales blancas espaciadas + triángulo de puntos naranjos + MORANDÉ
+  debajo. Siempre del PNG oficial (`1IhUJwgtAYsgAdfR2qWrH1rySmE5tWOw1`). ⚠️ revisada
+  2026-09-30: el naranjo **NO es `#DD660E`** (anotado a ojo) — es **`#E1670E`**, leído del
+  vector del logo en `CAVA_SEPT.ai` y comprobado contra dos piezas publicadas
+  (`CAVA_SEPT_BRIEF3.png` y `CYBER_CAVA_ST.png`) — _hallazgo técnico, 23-09-2026,
+  `marca.json` ya lo trae corregido_. El logo tiene **dos tintas**: el texto en blanco
+  y el racimo de la V + la tilde de MORANDÉ en este naranjo — un logo todo blanco está mal.
 - **Dorado:** degradado metálico en diagonal `#5F3C12` → `#C9A24E` → `#FFF7C1`. Nunca plano.
 - **Fondo de campañas (Cyber, Black):** satén negro texturado `#333234` → `#1A1A1B` → `#070707`, nunca negro plano.
 - **Dos sistemas tipográficos que conviven:**
@@ -72,6 +77,12 @@ corre continuo a través de los ocho briefs (01→18). Campañas grandes: `CYBER
 - **R-20** · Precios en CLP chileno ($10.990), el anterior tachado; **MORANDÉ con tilde** y **7Colores junto**. Bloqueantes en `reglas.yaml` — _Dirección de área y catálogo técnico, 25/27-08-2026_ · ✔×1
 - **R-21** · Del brief se toman **sólo** «Banner principal» y «Texto en imagen»; Tema, Asunto y Preheader son para Mailchimp — _manual CAVA §11, 27-08-2026_ · ✔×1
 - **R-22** · Antes de diseñar un mailing, **mira los mailings anteriores** reales, no un print ni una referencia de otra campaña, y verifica con `file` que cada referencia sea imagen — _Valeria, 27-08-2026: «no revisaste otros mailings y la referencia»_ · ✔×1
+- **R-23** · Los sellos de premio van **superpuestos como gráfica plana** sobre la botella: no siguen su perspectiva ni llevan resplandor, sólo una sombra corta que los despegue del fondo — _Coni, comentario en Drive sobre las 3 propuestas del Cyber de octubre, 23-09-2026: «no es necesario que sea realista... quítale el resplandor al sello»_ · ✔×1
+- **R-24** · El descuento de campaña es un **bloque editorial centrado** — «50% OFF» en Butler Light, el titular corto en Authentic Signature (script), filete con ✦, y la bajada en Butler Regular versales espaciadas en dos líneas — y **no** un disco. La escala y la tinta se adaptan a cada escena (verificado con contraste WCAG), pero el estilo no cambia — _Coni lo ajustó a mano en Illustrator, 25-09-2026; reemplaza el disco del 24-09-2026 (manual §11 bis)_ · ✔×1
+- **R-25** · Una fuente **extraída de un `.ai`** es un subconjunto: trae el mapa de caracteres completo pero puede tener glifos con el **contorno vacío**, sin dar error — siempre renderizar el texto y mirarlo antes de dar una fuente por buena — _hallazgo técnico, 23–24-09-2026 (de 9 variables de Raleway sólo la Black estaba entera; Bebas Neue Pro hubo que fundirla de dos editables)_ · ✔×1
+- **R-26** · **Una sola advertencia del Ministerio por pieza** — las variantes de la Ley 19.925 son alternativas y rotan, no se suman dos recuadros en la misma gráfica — _Coni, 24-09-2026, corrigiendo un error propio (se había entendido «agregar otro recuadro» y se pusieron dos)_ · ✔×1
+- **R-27** · Para la advertencia de «conducir», **no sirve cualquier página** de `ADVERTENCIAS_BEBIDAS-ALCOHOLICAS.pdf`: las 27 y 43 traen una errata («LIMITA LA CAPACIDA», sin la D), las 6/10/30/34/38 llevan el Ministerio arriba (al revés que en CAVA) y la 22 es cuadrada y la banda cae fuera de la zona que revisa `franja_legal`. Sirve la **página 18**, exportada a **940 px** de ancho (a 808 la banda da 56 px y el check exige 60, rechaza) — _medido 24-09-2026 contra `qa/motor.py --marca cava`_ · ✔×1
+- **R-28** · Para que un producto compuesto se vea apoyado no basta la sombra proyectada: hace falta la **oclusión de contacto** — el objeto tapa la luz rasante y oscurece la superficie alrededor de su base. Sin eso queda un halo claro y el producto se lee flotando — _hallazgo técnico, escenas del Cyber de octubre sobre piedra, 23-09-2026_ · ✔×1
 
 ## 5. Excepciones
 
@@ -99,6 +110,9 @@ son piezas **publicadas** de Coni, que son el estándar a replicar:
 - **X-04** · Barril grande y bonito con «botellitas» encima (botellas al 36 % del alto) — _KV de septiembre, 28-08-2026_
 - **X-05** · Dar por buena una referencia sin abrirla: los `.png` de `raw/cava/ref/` eran HTML de login de Google — _27-08-2026 y de nuevo 09-09-2026 · causa raíz del X-01_
 - **X-06** · `image-relight` sobre el KV compuesto: tinto ámbar, etiqueta amarilla — _28-08-2026_
+- **X-07** · Sombra de botella armada con **elipses superpuestas**: la suma de sus bordes difuminados dejaba un borrón que no correspondía a ninguna forma real, además desproporcionada (1632 px contra 887 de la botella) y corrida 266 px al costado. Coni la marcó tres veces; las dos primeras se diagnosticó mal (se culpó a la orientación y al fondo) — la correcta es derivar la sombra del **alfa de la propia botella** — _KV Cyber de octubre, 24-09-2026, tres rondas_
+- **X-08** · Usar una **Raleway extraída del editable sin renderizarla primero**: de las nueve variables sólo la Black tenía los contornos completos y el primer render de «50% OFF» salió con «50%» y una sola «o» debajo — _Cyber de octubre, 24-09-2026_
+- **X-09** · Poner **dos recuadros de advertencia** en la misma pieza por entender mal «agregar otro recuadro» — va uno solo, el de conducir — _Cyber de octubre, 24-09-2026_
 
 ## 8. Preguntas abiertas
 
@@ -112,8 +126,18 @@ son piezas **publicadas** de Coni, que son el estándar a replicar:
 - Acceso a los **bottle shots limpios** (SharePoint de Morandé, disco de la diseñadora): sin ellos se trabaja con los del e-commerce, con el sello incrustado. → Coni / la viña.
 - **Bebas Neue Pro** y **Brandon Grotesque** hay que activarlas en Creative Cloud en cada máquina; **gobCL** no está instalada en el repo; el cliente mandó sólo **Butler Bold** (los otros pesos son de la familia libre). → Coni / ejecutiva.
 - Falta un **editable empaquetado de mailing** para cerrar la geometría fina del legal y la barra dorada sobre 1080. → Coni.
+- **El precio real del Cyber de octubre (7Colores Limited Edition Carmenere) sigue sin llegar.** Las cuatro/tres propuestas circulan con `$9.245 / $18.490` **DE MUESTRA**, sin brief de octubre ni respaldo en los editables de 2026. Ninguna es publicable hasta que la ejecutiva lo confirme. → ejecutiva de CAVA.
+- **Componer el packshot real de la etiqueta sobre la botella integrada por IA** en las escenas del Cyber de octubre: Magnific redibuja «LIMITED EDITION», «Carménère», «D.O. VALLE DEL MAULE» y «PRODUCTO DE CHILE» como garabatos al integrar la botella en la escena. Dos vías automáticas (`cava-encaja-packshot.py`, `cava-etiqueta-oficial.py`) no dieron un resultado limpio — hay que abordarlo de frente, no parchando. → quien retome el Cyber de octubre.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesiones de Constanza Lizana «Coni» (a8e0647)
+- nuevo **R-23…R-28** · destilados de `clients/cava/BITACORA.md` (sesiones del 23, 24 y 25-09-2026), `CLAUDE.md` §11 bis y `marca.json` — llegados al repo en un respaldo automático de sesión de Diego Aguilar (commit `a8e0647`), que subió el respaldo pero **no dio el feedback**: quien habla en el texto (comentarios, decisiones, correcciones a mano) es Coni, salvo lo marcado como «hallazgo técnico».
+- nuevo **X-07…X-09** · anti-patrones de las mismas sesiones (sombra por elipses, Raleway sin renderizar, doble advertencia).
+- ⚠️ corregido en §3: el naranjo del logo es `#E1670E`, no `#DD660E` (medido del vector el 23-09-2026); `marca.json` ya lo tenía así desde esa fecha, este archivo no lo había cosechado todavía.
+- nuevas preguntas abiertas (§8): el precio del Cyber de octubre sigue sin confirmar, y falta resolver de frente (no parchando) cómo componer el packshot oficial sobre la botella integrada por IA en esas escenas.
+- Nada de §6 (aprobado a la primera): las piezas del Cyber de octubre pasaron por 8 rondas el 24-09 y 4 más el 25-09, todas correcciones de Coni sobre su propio trabajo en curso — no hay una pieza de esas fechas que el cliente haya aprobado.
+- Nota para el reporte (no entra al archivo): la regla de fuentes extraídas de un `.ai` (R-25) y la de oclusión de contacto en el compuesto (R-28) leen como candidatas a **regla del estudio** — no son específicas de vino ni de botellas.
 
 ### 2026-09-29 — Claude nocturno (nube) · sesión de Coni bloqueada por el conector de Drive
 - sin aprendizajes nuevos de cliente: el 28-09 Coni intentó abrir el KV del Cyber Day 2026 (son dos piezas, VIP y Cyber Público) pero el conector de Google Drive de claude.ai tenía la sesión expirada y no se pudo leer el brief — no se produjo nada — _Coni, BITACORA.md 28-09-2026_.

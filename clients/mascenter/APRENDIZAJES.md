@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de marca: Valeria Traverso)** · Aprueba: **Sebastián Córdova (paid) · Francesca Pavissich (landings y presentación comercial)**
-> Última cosecha: **2026-09-29** · Cosechas: **7**
+> Última cosecha: **2026-09-30** · Cosechas: **8**
 
 ## 1. Quién es el cliente
 
@@ -181,6 +181,9 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · revisión de rutina (3c8f86b)
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`3c8f86b`) es el mismo commit de Diego Aguilar donde ya cosechó R-59/R-60 y E-10 (ver la entrada de abajo). Se lista a sí mismo porque tocó `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit.
 
 ### 2026-09-29 — Diego Aguilar (con Claude) · stories y LinkedIn IFB de octubre
 - **Sin feedback nuevo de Diego ni del cliente en la sesión:** se entregaron 4 stories (una animada) y 4 carruseles de LinkedIn (18 slides); todavía no hay revisión.

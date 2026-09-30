@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-09-29** · Cosechas: **15**
+> Última cosecha: **2026-09-30** · Cosechas: **16**
 
 ## 1. Quién es el cliente
 
@@ -245,6 +245,9 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - E-11 (legales bajo el margen de paid) queda superada en historias por R-79: ¿las historias de QB van a paid alguna vez? Si sí, el legal al pie choca con la zona de paid → **Eli**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · revisión de rutina (0fb8ff8)
+- sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`0fb8ff8`) es el mismo commit de Elisabet Soto donde ya cosechó R-77 a R-84, X-34 a X-38, A-15 y A-16 (ver la entrada de abajo). Se lista a sí mismo porque tocó `BITACORA.md` y `APRENDIZAJES.md` en el mismo commit.
 
 ### 2026-09-29 (noche 2) — Claude con Eli · rondas 19–21: hilos de Scarlette y Nicolás, CMR 09-10, ST 08-10 y carrusel de cumpleaños
 - **Fuente nueva:** contenido (Scarlette, Nicolás) comenta con hilos nativos a @Eli (§2) → R-77.

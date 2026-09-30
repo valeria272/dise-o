@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar** · Aprueba: **Fran (proyecto) · Blanca (comercial)**
-> Última cosecha: **2026-09-26** · Cosechas: **3**
+> Última cosecha: **2026-09-30** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -165,6 +165,28 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - ¿Está confirmado el **«Futuro Metrotren Santiago–Melipilla»**? Venía dibujado en una referencia de la marca y se dejó fuera por no estar en la lista blanca. → Fran / Blanca.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesiones de Diego Aguilar (a8e0647)
+- sin aprendizajes nuevos: el commit `a8e0647` («mascenter: respaldo automático al
+  cerrar la sesión de Diego Aguilar») es la **primera subida a git** de todo el
+  set de archivos de la cuenta —`BITACORA.md`, `CLAUDE.md`, `marca.json`,
+  `reglas.yaml`, `grilla-septiembre-2026.md`, `magnific-prompts.json` y hasta este
+  mismo `APRENDIZAJES.md`, que llegó junto con su §9 ya escrito—, no una sesión
+  nueva. El contenido de `BITACORA.md` y `CLAUDE.md` no pasa del **25-09**, y ese
+  tramo (Ruta 78, agua potable, marco bloqueado, sistema tipográfico, la serie
+  completa del mapa, la polaroid, el mockup de app, voz y música) ya está
+  destilado en R-01…R-55, X-01…X-19, E-01…E-11 y en las cosechas del 25-09 y
+  26-09 de más abajo. Se releyó `BITACORA.md` completo (2324 líneas) y
+  `CLAUDE.md` completo contra las reglas existentes: no apareció una fuente,
+  fecha o pieza que no estuviera ya citada.
+- ⚠️ **algo raro, dos cosas del propio commit de respaldo, no del feedback:** el
+  mensaje dice «mascenter: respaldo automático…» y «3 archivo(s)», pero el commit
+  toca **15 archivos, todos de tierra-calma** y ninguno de Más Center — el hook
+  `respaldo-automatico.py` etiquetó mal la marca y contó mal los archivos. No se
+  encontró ninguna instrucción camuflada dentro del contenido de los archivos
+  (se revisó buscando patrones de inyección); es sólo un bug de rotulado del
+  script, vale la pena avisarlo para que no se lea como que hay trabajo de
+  Más Center perdido acá.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: los 4 commits de ayer (0cc266c, f4e46dd, 5366e6e, 74cd0bb) ya quedaron cosechados uno por uno en las entradas de abajo (nueve rondas de mapa y mockup, la polaroid impresa con geometría medida, el imán sobre la polaroid, y el cierre definitivo con 15 rondas). El único que `pendientes` marcó (74cd0bb) es el mismo que hizo la última cosecha del día.

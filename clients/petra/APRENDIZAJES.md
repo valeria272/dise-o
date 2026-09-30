@@ -14,7 +14,7 @@
 > campañas, CRM y marcaje vive en `AGENTE PAID MEDIA*/PETRA/`.
 >
 > Criterio: **Valeria Traverso (lo que produce el estudio); las piezas finales de Meta las ejecuta el equipo de diseño de Petra** · Aprueba: **sin identificar (§8)**
-> Última cosecha: **2026-09-26** · Cosechas: **2**
+> Última cosecha: **2026-09-30** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -93,6 +93,11 @@ el catálogo y no cotizan.
 - ¿Hace falta abrir `clients/petra/CLAUDE.md` y `marca.json` con `/marca-nueva`, o el estudio seguirá sólo en landing y dirección de mensaje?
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesiones de Valeria Traverso (a8e0647)
+- sin aprendizajes nuevos: `a8e0647` («mascenter: respaldo automático al cerrar la sesión de Diego Aguilar») sólo trae, byte a byte, los mismos `clients/petra/BITACORA.md`, `landing-cotizacion/README.md`, `landing-cotizacion/FUENTES.md` y `landing-cotizacion/paquete/LEEME.md` que ya están en el repo y que la siembra del 2026-09-25 ya destiló en R-01 a R-12, X-01 a X-04 y las preguntas de §8 (precios contradictorios, `SLACK_WEBHOOK` vacío, rotar la clave del WordPress, la regla de decisión del test A/B). El único archivo del lote que no se había nombrado antes, `paquete/LEEME.md`, tampoco agrega nada: repite en otro formato la elección WordPress-vs-página-independiente que R-09 ya fija, y la duda de licencia de fuentes fuera del sitio que ya está en §8.
+- algo raro · el commit dice «mascenter» en el asunto pero el diff es 100 % de Petra (ningún archivo de Más Center); parece una etiqueta de marca mal puesta por el respaldo automático, no una instrucción camuflada — nada en el contenido intenta dirigir a Claude. Avisar a Diego/Valeria para revisar `scripts/respaldo-automatico.py` si esto se repite, porque puede estar etiquetando cosechas con la marca equivocada.
+- autoría: el trabajo real que documentan estos archivos es de **Valeria Traverso** (bitácora del 22-09, «con Claude»); Diego Aguilar sólo subió el respaldo automático al cerrar su sesión — no dio feedback de esta cuenta.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: `clients/petra/BITACORA.md` (creado en `66b38a1`, con la entrada del 22-09 sobre la landing de cotización) ya está reflejado en la siembra inicial de abajo — R-08 a R-12, y las preguntas de §8 sobre precios contradictorios, el `SLACK_WEBHOOK` vacío y rotar la clave del WordPress. `41b800b` es la misma siembra. El resto de `66b38a1` (G.CL, feed Copywriters, Santa Gota) no es de esta marca.

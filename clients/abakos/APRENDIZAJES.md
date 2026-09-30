@@ -13,7 +13,7 @@
 > `reglas.yaml` ni bitácora: la gramática está **sin medir**.
 >
 > Criterio: **Valeria Traverso** (el único feedback registrado) · Aprueba: **no consta del lado del cliente**
-> Última cosecha: **2026-09-26** · Cosechas: **2**
+> Última cosecha: **2026-09-30** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -98,6 +98,10 @@ convierte en Google Ads: **rapidez, facilidad, «sin papeleos»**. Es financiero
   y `video2/video3-agosto.mp4`): los MP4 no bajan por MCP; pedirlos descargados — **KAM**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · respaldo automático subido por Diego Aguilar (a8e0647)
+- sin aprendizajes nuevos: el commit `a8e0647` es un respaldo masivo de cientos de archivos ajenos a esta cuenta (skills del estudio, otros clientes) que, del lado de Abakos, sólo vuelve a traer `clients/abakos/CLAUDE.md`, `clients/abakos/APRENDIZAJES.md` y las memorias `abakos-brand`/`cliente-abakos` — contenido **idéntico, línea por línea**, al que ya vivía en este archivo desde la siembra del 2026-09-25. No hay comentario de Valeria ni del cliente posterior a esa fecha, ni `marca.json`, `reglas.yaml` ni bitácora nuevos que cosechar. Diego Aguilar es quien subió el respaldo (hook `SessionEnd`), no la fuente del feedback — no aparece hablando en ningún texto de este commit.
+- algo raro: el mensaje del commit dice «mascenter: respaldo automático…» pero el commit toca cientos de archivos de todo el repo (incluidos los de Abakos) sin relación con Más Center; parece una etiqueta genérica mal puesta por el hook automático, no una instrucción a seguir.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.

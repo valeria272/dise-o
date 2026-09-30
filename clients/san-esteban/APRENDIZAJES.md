@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar** · Aprueba: **Sebastián Córdova** (medios, cuenta REM) · Orgánico: Scarlette Muñoz
-> Última cosecha: **2026-09-26** · Cosechas: **2**
+> Última cosecha: **2026-09-30** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -127,6 +127,10 @@ formación valórica, trayectoria.
 - **Rol de Sebastián:** ¿es contraparte del colegio o del equipo de cuentas? — **Serena**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesiones de Serena Abarca y Diego Aguilar, respaldadas recién en `a8e0647`
+- sin aprendizajes nuevos: `a8e0647` es un **respaldo automático** (hook `SessionEnd` de la sesión de Diego Aguilar) que subió a git, por primera vez, los archivos `BITACORA.md`, `CHECKLIST-CLIENTE.md`, `CLAUDE.md`, `marca.json`, `reglas.yaml` y `sistema/README.md` de esta cuenta. Pero su contenido ya estaba destilado: la medición del 07-09-2026 y la ronda de Sebastián Córdova del 23/24-09-2026 son exactamente las fuentes que sembraron **R-01…R-18**, **E-01…E-06**, **A-01…A-03** y **X-01…X-10** el 2026-09-25. Se comparó línea por línea (colores, geometría, la corrección de la barra de CTA a y=1540, los cierres de reel inventados, el nombre partido, las preguntas de §8) y no aparece ningún dato, cita o pieza que no estuviera ya en este archivo.
+- algo raro: el commit `a8e0647` trae **5.832 archivos y ~801.000 líneas** (skills completas, `node_modules`-like, videos, tooling de todo el estudio), pero su mensaje dice *«mascenter: respaldo automático… 3 archivo(s)»*. Ni el conteo ni la marca mencionada (`mascenter`) corresponden a lo que el commit realmente trae — parece un backup masivo mal etiquetado por el script `respaldo-automatico.py` (probablemente el primer respaldo de una máquina nueva), no una sesión real de trabajo en San Esteban ni en Más Center. No se encontró ninguna instrucción camuflada en el diff, sólo el mensaje incorrecto. Vale la pena que alguien revise `scripts/respaldo-automatico.py` — el conteo y el nombre de marca que arma para el mensaje de commit no reflejan el diff real.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.

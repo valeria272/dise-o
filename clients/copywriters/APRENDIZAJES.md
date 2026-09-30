@@ -9,15 +9,17 @@
 > Que sea la cuenta de la casa no la hace un caso especial: el criterio del feed propio
 > no cruza a ningún cliente. Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
-> ⭐ **Desde el 24-09-2026 manda `creative-system/MASTER/`.** Si otro archivo lo contradice,
-> se corrige el otro archivo sin consultar. Y por encima de las reglas escritas manda la
-> **lámina** `MASTER/reference/LOOK_AND_FEEL_REFERENCE.png`.
+> ⭐ **Desde el 29-09-2026 manda `creative-system/SISTEMA-VISUAL-2609/LEEME.md`.** Reemplaza
+> al pack `MASTER/` (24-09-2026) y al Creative OS v1.0 (03-09-2026) — los dos quedan como
+> registro histórico, no como fuente vigente. Si alguno los contradice, se corrige el otro
+> archivo sin consultar. Y por encima de las reglas escritas manda la **lámina**
+> `creative-system/SISTEMA-VISUAL-2609/reference/BOARD_SISTEMA_VISUAL_29-09.png`.
 >
 > ⛔ **El universo G.C.L. / personaje G no se resume acá.** Tiene canon propio con candados:
 > `gcl-agent/universo/CANON_LOCK.md`. Léelo ahí antes de tocar cualquier cosa de G.
 >
 > Criterio: **Valeria Traverso** · Aprueba: **Valeria Traverso (aprobación final de dirección de arte, `MASTER/13`)**
-> Última cosecha: **2026-09-26** · Cosechas: **2**
+> Última cosecha: **2026-09-30** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -55,7 +57,7 @@ con humor de oficio y autoironía de agencia.
 
 - **R-01** · No hay plantilla: una pieza = un archivo con su dirección de arte escrita en la cabecera; no existe composición genérica con prop `plantilla` — _Valeria, brief Creative OS v1.0, 03-09-2026; reforzado en el 4º feedback del 24-09 («no existe el look Copywriters»)_ · ✔×2
 - **R-02** · Idea antes que diseño: INSIGHT → IDEA → 3 RUTAS → CONCEPTO → DA → FORMATO → COPY → IMAGEN → DISEÑO. Sin dirección aprobada no se construye — _Creative OS §9, 03-09; `MASTER/00` y `START_HERE`, 24-09_ · ✔×2
-- **R-03** · Paleta cerrada de 6 colores; rosa `#FF2D8B`, coral `#FF6B3D`. Un color nuevo dominante necesita aprobación explícita — _Valeria, `MASTER/11`, 24-09 (cierra la duda #FF2D8D/#FF2D8B)_ · ✔×1
+- **R-03** · Paleta cerrada de 6 colores; rosa `#FF2D8B`, coral `#FF6B3D`. Un color nuevo dominante necesita aprobación explícita — _Valeria, `MASTER/11`, 24-09 (cierra la duda #FF2D8D/#FF2D8B)_ · ✔×1 · ⚠️ revisada 2026-09-30: la paleta cambió entera con el Sistema Visual nuevo — ver **R-24**. Los valores de esta entrada quedan como `colores_legado_no_usar` en `marca.json`, vigentes sólo en piezas ya entregadas (ver E-02).
 - **R-04** · El rosa es señal, no relleno: intervención, objeto, material, cinta, una palabra… o no está. Máximo 5 de cada 12 posts con rosa evidente — _Creative OS §3 (03-09); `MASTER/00` y `MASTER/09` «menos branding evidente»; 4º feedback del director, 24-09_ · ✔×3
 - **R-05** · Titulares con la voz condensada y pesada; «una palabra manda, el resto acompaña». `marca.json` fijó el rol **`titular` en Archivo Narrow** (wght 400–700) el 25-09; el Archivo variable de la ronda del 24-09 queda como `impacto_legado` — _`marca.json`, commit 66b38a1, 25-09-2026; coincide con el manual del proyecto (`CLAUDE.md` raíz: «Archivo Narrow (titulares)»)_ · ✔×1 · ⚠️ revisada 2026-09-26 (ver §8: falta la cita explícita de Valeria confirmándolo como cierre definitivo, no sólo como valor de config)
 - **R-06** · Máximo 3 voces tipográficas por pieza; la Mono nunca es héroe — _`MASTER/03`, 24-09; `marca.json` topes_ · ✔×2
@@ -76,6 +78,10 @@ con humor de oficio y autoironía de agencia.
 - **R-21** · Casos de cliente: el trabajo es el héroe; la marca del cliente se respeta entera y nuestra tipografía no le gana — _`MASTER/03` y `/05`, 24-09_ · ✔×1
 - **R-22** · Nunca mostrar bocetos planos para juzgar una cuenta que vive de la imagen: menos piezas, pero terminadas — _Valeria, 24-09 («¿estos son tus diseños finales?!»)_ · ✔×1
 - **R-23** · Firma de cierre aprobada: **COPYWRITERS** + bajada cursiva «estrategia, creatividad y resultados.» — _memoria `copywriters-agency-positioning` (Valeria)_ · ✔×1
+- **R-24** · ⭐ Paleta nueva del Sistema Visual (reemplaza la R-03): negro `#0B0B0B` · off white `#F5F3EE` · **rosa `#FF3D9C`** (la firma) · durazno `#FF9F8F` (clientes) · rojo `#E64332` (cultura) · beige `#D8CDC4` (IA/proceso) · gris `#B7B7B7` (lanzamientos). El color no es decoración: es taxonomía de tipo de contenido (editorial=negro, casos/resultados=rosa, clientes=durazno, cultura=rojo, IA=beige, lanzamientos=gris) — _Valeria, board `SISTEMA_VISUAL_29-09.png`, 29-09-2026; `marca.json` y `reglas.yaml` v2_ · ✔×1
+- **R-25** · La prueba del rosa: si al borrar el rosa de la pieza la frase sigue diciendo lo mismo, el rosa estaba de adorno — va sobre la palabra que decide la frase — _board 29-09-2026_ · ✔×1
+- **R-26** · ⛔ El subrayado a mano va bajo la línea de base, nunca cruzando la letra: cruzándola se lee como tachado e invierte el sentido de la frase. Al mover un titular hay que recalcular el subrayado, nunca arrastrarlo — _error real cometido el 29-09 en dos láminas del primer carrusel del sistema nuevo («CRITERIO.» y «reales.» salieron tachadas por error)_ · ✔×1
+- **R-27** · El grano de textura se resuelve por código (`granoSVG` en `sistemaV2.ts`), nunca con un JPG de textura: así no depende de un asset que alguien mueva y escala con el lienzo — _`SISTEMA-VISUAL-2609/LEEME.md` §3, 29-09-2026_ · ✔×1
 
 ## 5. Excepciones
 
@@ -86,6 +92,7 @@ con humor de oficio y autoironía de agencia.
 - **E-05** · Mundo cliente y mundo calle (NADIE LO FIRMÓ): color real cuando es identidad del cliente o parte del hallazgo, aunque rompa el B/N+rosa — _`MASTER/13`, 24-09_
 - **E-06** · NADIE LO FIRMÓ usa sólo carteles **reales** fotografiados; Magnific sólo revela/amplía, nunca inventa un cartel «encontrado» — _board v2, 24-09_
 - **E-07** · G.C.L. es la familia 06 del sistema, pero su canon es propio: `gcl-agent/universo/CANON_LOCK.md` — _CLAUDE.md del estudio_
+- **E-08** · Las piezas ya entregadas del sistema viejo (paleta `#FF2D8B`/`#FF2D8D`, Archivo Narrow como titular) no se retocan con la paleta nueva: el sistema viejo se deja vivo a propósito para no romper lo ya entregado, hasta que Valeria decida si se archiva — _`SISTEMA-VISUAL-2609/LEEME.md` §6, 29-09-2026_
 
 ## 6. Lo que se aprueba a la primera
 
@@ -126,8 +133,19 @@ con humor de oficio y autoironía de agencia.
 - Posts 03, 05, 10, 14 y 15 por rehacer; el 03 lleva afiches en inglés que hay que cambiar en la final.
 - Copy del reel SEÑAL («NO ES TU PRODUCTO. / Es cómo lo dices.») lo propuso el estudio, no un brief: ¿queda? (Valeria).
 - Migrar `AGENTE SOCIAL MEDIA` fuera de `GclPost` (deprecado): decisión pendiente de Valeria.
+- **Las tres voces que pide el board del Sistema Visual no están activadas en Adobe CC** (Bebas Neue Pro, URW Balloon, y una todavía sin nombre real: «Dharma Type» es la fundición que dibuja Bebas Neue, no una familia de cuerpo de texto). Hoy corren sustitutos: Bebas Neue (fiel, mismo autor), Caveat (placeholder, no es la letra) e Inter (provisional). Falta activar las fuentes reales y decidir el nombre que reemplaza a «Dharma Type» — _`SISTEMA-VISUAL-2609/LEEME.md` §2 y §6, 29-09-2026 (Valeria)_.
+- **El tope de 18 % de color fuera de sistema en `reglas.yaml` no se recalibró contra la paleta nueva.** Se midió inyectando un azul SaaS sobre las piezas del lote v1 (paleta vieja); hay que repetir esa medición con la paleta del 29-09 antes de confiar en la compuerta — _`SISTEMA-VISUAL-2609/LEEME.md` §6, 29-09-2026_.
+- ¿Se archiva el sistema viejo (`tokens.json`, `sistema.ts`, piezas v1) o se deja vivo indefinidamente junto al nuevo? — _pendiente de Valeria_.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesión de Valeria Traverso (94c3f2a, a8e0647)
+- nuevo **R-24** (paleta nueva del Sistema Visual: negro `#0B0B0B` · off white `#F5F3EE` · rosa `#FF3D9C` · durazno · rojo · beige · gris, taxonomía por tipo de contenido), **R-25** (la prueba del rosa), **R-26** (⛔ el subrayado a mano nunca cruza la letra — error real el mismo día en dos láminas), **R-27** (el grano se resuelve por código, no por JPG).
+- ⚠️ **R-03 revisada**: la paleta cerrada de 6 colores del 24-09 queda reemplazada por la de R-24. Sus valores viejos pasan a `colores_legado_no_usar` en `marca.json` y siguen vigentes sólo en piezas ya entregadas — nueva **E-08**.
+- Fuente: `creative-system/SISTEMA-VISUAL-2609/LEEME.md` (board del 29-09-2026, Valeria Traverso), que **desde el 29-09 reemplaza a `MASTER/` y al Creative OS v1.0** como sistema vigente — se actualizó la cabecera de este archivo para apuntar ahí. `MASTER/` y el Creative OS quedan como registro histórico, no se borran.
+- Tres preguntas nuevas en §8: qué reemplaza a las tres voces del board que no están activadas en Adobe CC (Bebas Neue Pro / URW Balloon / la que hoy se llama «Dharma Type» y ese no es un nombre real de familia); el tope de 18% de color fuera de sistema en `reglas.yaml` sigue calibrado contra la paleta vieja, no la nueva; y si el sistema viejo (`tokens.json`, `sistema.ts`, piezas v1) se archiva.
+- El commit `94c3f2a` (Valeria Traverso, respaldo automático) trae el sistema nuevo completo: `marca.json` y `reglas.yaml` a v2, el board y la grilla de referencia, el motor `sistemaV2.ts` + `tokens-v2.json`, la fuente Bebas Neue, y la primera pieza (`CarruselSenal.tsx`, 5 láminas en `out/copylab/v2-carrusel/`). El commit `a8e0647` (subido por Diego Aguilar, hook de respaldo — no es fuente del feedback) sólo trae de vuelta `BITACORA.md`, `CLAUDE.md`, `dieciocho-2026/*`, `marca.json` y `reglas.yaml` de copywriters, y ese contenido (piezas de Fiestas Patrias del 18, correo, invitaciones) ya estaba fuera del alcance de este cerebro por ser trabajo de producción puntual sin corrección ni feedback de cliente citable — no hay nada cosechable ahí.
+- Algo raro: ninguna instrucción camuflada en los diffs revisados.
 
 ### 2026-09-26 — Claude nocturno (nube) · sesión de Valeria Traverso (66b38a1)
 - corrige **R-05** · `marca.json` fija `titular: Archivo Narrow`, deja el Archivo variable como `impacto_legado` y Caveat como `mano_legado_no_es_voz` — coincide con el `CLAUDE.md` del proyecto. ⚠️ marcada revisada porque el commit no trae la cita de Valeria confirmándolo, sólo el cambio de config; sigue en §8 como pregunta.

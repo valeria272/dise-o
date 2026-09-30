@@ -11,7 +11,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar** (diseñador de Rendic) · Aprueba: **Sebastián Córdova** (medios, cuenta REM)
-> Última cosecha: **2026-09-26** · Cosechas: **2**
+> Última cosecha: **2026-09-30** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -120,6 +120,10 @@ Desde el 23-09 cierra con un slogan en inglés, coherente con lo bilingüe.
 - **Manual con restos:** ver la nota ⚠️ de la sección 3; falta limpiar el `CLAUDE.md`.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesión de Diego Aguilar (a8e0647)
+- sin aprendizajes nuevos: el commit `a8e0647` («respaldo automático al cerrar la sesión de Diego Aguilar», 29-09-2026) sube a git, por primera vez, los archivos `BITACORA.md`, `CLAUDE.md` y `marca.json` de Rendic. Su contenido —la elipse medida, el logo ARC 7421C, el slogan que reemplaza a la firma, las correcciones de Diego del 08-09, la ronda de Sebastián del 23-09 y el QA del 24-09— es idéntico, cita por cita, a lo que las cosechas del 25-09 y el 26-09 ya destilaron en este cerebro (R-01…R-17, E-01…E-06, A-01…A-03, X-01…X-09). No hay feedback, cita ni pieza con fecha posterior al 24-09-2026.
+- algo raro: el commit se atribuye a «mascenter» y dice «3 archivo(s)», pero en la misma revisión trae de una sola vez cientos de archivos de decenas de marcas y de las carpetas de skills del estudio (no sólo mascenter ni sólo 3 archivos): parece una carga masiva del repo, no una sesión real de trabajo en Rendic. Dentro del diff de los archivos de Rendic no se encontró ninguna instrucción camuflada; sólo aparece una mención operativa normal a un «token propio de Serena» en Drive (para leer comentarios), que no es una instrucción y no se ejecutó como tal.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.

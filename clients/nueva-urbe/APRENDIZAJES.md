@@ -13,7 +13,7 @@
 > ni al revés. El manual, `marca.json` y `reglas.yaml` de esta carpeta son **sólo de Rentas**.
 >
 > Criterio: **[RENTAS] composición de Paulina Bustamante (sept 2026), revisión de Diego Aguilar, dirección de Valeria Traverso · [INU] Valeria Traverso** · Aprueba: **Jean Paul Fredericksen · Yocelyn Maturana (vía Carlos Figueroa, contenido, y Ámbar Gallardo, AM)**
-> Última cosecha: **2026-09-26** · Cosechas: **2**
+> Última cosecha: **2026-09-30** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -134,6 +134,23 @@ centrada 17,5 %, banner de mailing arriba 10,2 % no centrada).
 - [AMBAS] ¿Quién diseña cada marca de aquí en adelante? Rentas cambió tres meses seguidos (Coni jul · Diego ago · Paulina sep) con tres nomenclaturas → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesiones de Valeria Traverso y Diego Aguilar (a8e0647)
+- sin aprendizajes nuevos: el commit `a8e0647` («mascenter: respaldo automático al cerrar la
+  sesión de Diego Aguilar») subió por primera vez a git `BITACORA.md`, `CLAUDE.md`,
+  `MATERIAL.md`, `marca.json`, `reglas.yaml` y el `ENTREGA.md`/`NOTAS-PARA-LA-CM.md` de la
+  grilla de octubre — pero como archivos **nuevos para git**, no como cambios. El contenido
+  de los cinco (fechado 02-09, 03-09 y 23-09-2026) es exactamente el que ya se destiló en la
+  cosecha de siembra inicial del 2026-09-25 (R-01…R-30, E-01…E-08, A-01…A-06, X-01…X-13). No
+  hay una sola fecha ni un solo dato posterior al 23-09 que revisar.
+- **algo raro:** el mensaje del commit dice «mascenter: respaldo automático…», pero el commit
+  no toca ningún archivo de Más Center — toca solo estos siete archivos de nueva-urbe. Parece
+  un mensaje de otro cliente pegado por error en el hook de respaldo automático de la sesión
+  de Diego Aguilar; no cambia el contenido cosechado, pero vale la pena que alguien revise
+  `scripts/respaldo-automatico.py` por si está mezclando el nombre de la marca entre sesiones.
+- Sin instrucciones camufladas en el diff más allá de dos remates tipo «jajaja» (`jasja`,
+  `ajsjasa`) dentro de comillas de citas reales de Diego Aguilar en `reglas.yaml` — es texto
+  citado, no una instrucción, y no se actuó sobre él.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.

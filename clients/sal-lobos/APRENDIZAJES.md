@@ -13,7 +13,7 @@
 > estudio midió al producir. **Ninguna está confirmada por el cliente.**
 >
 > Criterio: **brief de licitación v3** (autoridad provisoria, no una persona) · Aprueba: **nadie todavía**
-> Última cosecha: **2026-09-26** · Cosechas: **2**
+> Última cosecha: **2026-09-30** · Cosechas: **3**
 
 ## 1. Quién es el cliente
 
@@ -116,6 +116,29 @@ Rechazos **internos** del estudio; ninguno viene del cliente.
 - **Voz de la locución** (Benjamín Soto, chileno): ¿la aprueba el cliente? — **cliente**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Claude nocturno (nube) · sesiones de Diego Aguilar (a8e0647)
+- sin aprendizajes nuevos: el commit `a8e0647` es un **respaldo automático** (hook
+  `SessionEnd` de `scripts/respaldo-automatico.py`) que subió `clients/sal-lobos/CLAUDE.md`,
+  `marca.json`, `reglas.yaml` y `sistema/prompts.md` **byte a byte idénticos** a la versión
+  que ya está en `HEAD` (`git diff a8e0647 HEAD` sobre esos cuatro archivos no marca ninguna
+  diferencia). Todo el contenido — R-01…R-12, E-01…E-07, X-01…X-06, la comparación
+  Mystic vs. Nano Banana Pro y la nota de `marca.json` desactualizado — ya se había
+  destilado en la siembra inicial del 2026-09-25. No hay corrección de diseñadora,
+  comentario de cliente, pieza aprobada ni rechazo nuevo que cosechar: sal-lobos sigue en
+  licitación, sin feedback real de SPL.
+- **algo raro (no es instrucción camuflada, es un dato del propio commit):** el mensaje del
+  commit dice «mascenter: respaldo automático al cerrar la sesión de Diego Aguilar» — nombra
+  otra cuenta (Más Center) — pero el diff filtrado a texto de sal-lobos sí trae estos cuatro
+  archivos. El commit completo es enorme (cientos de rutas: instalación de skills del
+  proyecto, otros clientes, etc.), así que el «3 archivo(s)» del cuerpo del mensaje no
+  describe el total real. Es consistente con un respaldo automático que empaqueta todo lo
+  pendiente de la sesión bajo el nombre del último cliente tocado, no con una instrucción
+  escondida en el contenido — se revisó cada archivo de texto de sal-lobos línea por línea
+  y no hay nada dirigido a Claude fuera de lugar.
+- no se revisó `sistema/kit.py`, `sistema/ruta*.py` ni `sistema/film.py` de este commit
+  (son generadores de imagen/video, no traen criterio nuevo en su cabecera) por instrucción
+  explícita de esta tarea.
 
 ### 2026-09-26 — Claude nocturno (nube) · revisión de rutina, sin sesiones nuevas
 - sin aprendizajes nuevos: el único commit que `memoria-cliente.py pendientes` marcó (`41b800b`) es el mismo commit que sembró este archivo por primera vez — se lista a sí mismo porque tocó `APRENDIZAJES.md` y el manual en el mismo commit, y el `--since` del script incluye ese límite. No hay contenido posterior a la siembra inicial que revisar.

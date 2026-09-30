@@ -1,6 +1,6 @@
 ---
 name: cliente-traverso
-description: "TRAVERSO — cerebro del cliente: 22 reglas firmes, última cosecha 2026-09-26. Generado desde clients/traverso/APRENDIZAJES.md; leerlo antes de diseñar para traverso"
+description: "TRAVERSO — cerebro del cliente: 26 reglas firmes, última cosecha 2026-09-30. Generado desde clients/traverso/APRENDIZAJES.md; leerlo antes de diseñar para traverso"
 metadata:
   type: project
 ---
@@ -13,10 +13,12 @@ Criterio: **Paulina Bustamante** (grilla mensual) · dirección de los reels pro
 
 ## Reglas más confirmadas
 - **R-01** · **El packaging real no se modifica**: ni tamaño, ni textos, ni colores, ni branding, ni sellos o claims inventados. La IA nunca regenera una etiqueta; los packshots salen de `raw/traverso/packshots/` o de traverso.cl (Bootic, imágenes en `i.bolder.run` / `r.bolder.run/4093/original/`) — _Valeria, 18-08 y 19-08-2026; reel «Los de siempre», 09-09-2026_ · ✔×3
+- **R-22** · El test final: **sin textos ni audio se tiene que entender la historia**; «no agregar más: quitar, conectar y acelerar» (también dicho como «no más escenas, más dirección en los segundos que hay») — _Valeria, ronda 3 (22:45), V5 y V6, 09-09-2026_ · ✔×3
+- **R-24** · Cuando el modelo de IA no entrega el plano pedido —Nano Banana Pro repite el trío completo en vez de un insert individual, o Kling degrada/alucina hacia el final de un clip— la solución es **recortar la ventana buena del mismo material, nunca pedir una regeneración nueva** — _`BIBLIA.md` v1, inserts k03/k04 repetidos, 09-09-2026 · `EDICION-THE-ENTRANCE.md`, c01 inventa una figura después del s. 2, 09-09-2026 · BITACORA, cierre de Valeria: la mostaza «rompía la carpeta» (artefacto de Kling), reunión recortada a 14,3 s, 10-09-2026_ · ✔×3
 - **R-09** · Reels multi-clip: **una sola banda sonora** de punta a punta; el audio de cada clip se mutea y cambiar de canción se lee como empalme — _Valeria, spot v5 (19-08) y reel «Los de siempre» V5 (09-09-2026)_ · ✔×2
 - **R-20** · Referencias por tipo de plano: smoking cerrado → sólo fichas/trío LOCKED; reveal y product hero → trío + packshots. Un trío anterior como referencia hereda su defecto — _09-09-2026_ · ✔×2
 - **R-21** · **La edición manda sobre la generación**: timeline sobre beats medidos → keyframes → clips → montaje; los cortes caen sobre eventos musicales concretos — _Valeria, «THE ENTRANCE», 09-09-2026_ · ✔×2
-- **R-22** · El test final: **sin textos ni audio se tiene que entender la historia**; «no agregar más: quitar, conectar y acelerar» — _Valeria, V5 y V6, 09-09-2026_ · ✔×2
+- **R-25** · Transiciones prohibidas en los reels: glitch, zoom transition, morph, transición de plantilla, flashes ni efectos tipo CapCut; los cortes son hard cuts, match cuts, smash cuts o wipes justificados por movimiento o luz — _`BIBLIA.md` §5 y `EDICION-THE-ENTRANCE.md` §D, 09-09-2026_ · ✔×2
 - **R-02** · El producto va a **tamaño real** (~20 cm, más bajo que una botella de bebida); la IA tiende a agrandar los envases y hay que exigirlo en el prompt — _Valeria, reel v1, 19-08-2026_ · ✔×1
 - **R-03** · Logo **bandera** del brandbook, nunca el óvalo; titulares en **Optima**, nunca una condensada genérica. No cambiar colores, deformar ni inclinar el logo — _brandbook; piezas de la grilla v1 marcadas para corregir, 18-08-2026_ · ✔×1
 - **R-04** · La cuenta **no es «producto + mesa» plano**: es el universo de corpóreos y personajes (mascotas con lentes de sol, alfombra roja, carrito nocturno, piquero a las papas…) con copys chispeantes — _Valeria, 18-08-2026_ · ✔×1
@@ -30,8 +32,6 @@ Criterio: **Paulina Bustamante** (grilla mensual) · dirección de los reels pro
 - **R-13** · **Ecovin no se mezcla** con el feed de Traverso (marca separada, RRSS desde cero) — _correo de kickoff del cliente, 17-08-2026_ · ✔×1
 - **R-14** · La feria **Food & Service** es B2B: tono profesional, campaña en 3 fases (antes / durante / después) y **no se publica sin confirmar el n° de stand** — _kickoff 17-08-2026 y plan de septiembre_ · ✔×1
 - **R-15** · Con el material de `public/assets/traverso/reel/`, **nunca dos cortes seguidos del mismo grupo** (15 clips son 8 escenas; `05b`/`05c`/`05d` son calcos) y la mesa larga se guarda para el remate — _corte del 22-09-2026_ · ✔×1
-- **R-16** · Una tarjeta de la grilla se identifica por su **título**, nunca por su columna, y en el Drive el archivo lleva **la fecha DD-MM delante** (`01-09 Señales 1.png`) — _portal de aprobaciones, 05-09-2026_ · ✔×1
-- **R-17** · Reels: zonas seguras **250 px arriba / 340 abajo / 115 a la derecha**, verificadas con overlay sobre fotogramas — _QA del reel «Los de siempre», 10-09-2026_ · ✔×1
 
 ## Lo que ya costó rondas
 - **X-01** · Logo tipo óvalo y tipografía condensada genérica en las piezas generadas — _grilla de septiembre v1, 18-08-2026_

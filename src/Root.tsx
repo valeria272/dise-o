@@ -51,6 +51,10 @@ import {TipoPost} from "./compositions/copylab/Tipo";
 import {Recompuesta} from "./compositions/copylab/Recompuesta";
 import {Fuente} from "./compositions/copylab/Fuentes";
 import {CarruselSenal} from "./compositions/copylab/CarruselSenal";
+import {FotoAceite} from "./compositions/copylab/FotoAceite";
+import {FotoEscritorio} from "./compositions/copylab/FotoEscritorio";
+import {FotoDiario} from "./compositions/copylab/FotoDiario";
+import {Caso001} from "./compositions/copylab/Caso001";
 import {RentasReelOctubre} from "./compositions/rentas/RentasReelOctubre";
 import {NuevaUrbeFacilidadesReel, NU_REEL_DURATION, NU_REEL_FPS} from "./compositions/NuevaUrbeFacilidadesReel";
 import {VideoSquare01} from "./compositions/VideoSquare01";
@@ -148,6 +152,7 @@ import {LosDeSiempreEntranceV2, ENT2_FPS, ENT2_W, ENT2_H, ENT2_DURATION} from ".
 import {LosDeSiempreEntranceV3, ENT3_FPS, ENT3_W, ENT3_H, ENT3_DURATION} from "./compositions/traverso/LosDeSiempreEntranceV3";
 import {LosDeSiempreEntranceV4, ENT4_FPS, ENT4_W, ENT4_H, ENT4_DURATION} from "./compositions/traverso/LosDeSiempreEntranceV4";
 import {LosDeSiempreV10, V10_FPS, V10_W, V10_H, V10_DURATION} from "./compositions/traverso/LosDeSiempreV10";
+import {BienvenidaSantaGota, SGB_FPS, SGB_W, SGB_H, SGB_DURATION} from "./compositions/santagota/bienvenida/BienvenidaSantaGota";
 import {LosDeSiempreV9, V9_FPS, V9_W, V9_H, V9_DURATION} from "./compositions/traverso/LosDeSiempreV9";
 import {LosDeSiempreV8, V8_FPS, V8_W, V8_H, V8_DURATION} from "./compositions/traverso/LosDeSiempreV8";
 import {LosDeSiempreV7, V7_FPS, V7_W, V7_H, V7_DURATION} from "./compositions/traverso/LosDeSiempreV7";
@@ -578,6 +583,7 @@ export const RemotionRoot: React.FC = () => {
           )),
         )}
         <Composition id="TraversoV10" component={LosDeSiempreV10} durationInFrames={V10_DURATION} fps={V10_FPS} width={V10_W} height={V10_H} />
+        <Composition id="SG-BIENVENIDA" component={BienvenidaSantaGota} durationInFrames={SGB_DURATION} fps={SGB_FPS} width={SGB_W} height={SGB_H} />
         <Composition id="TraversoV9" component={LosDeSiempreV9} durationInFrames={V9_DURATION} fps={V9_FPS} width={V9_W} height={V9_H} />
         <Composition id="TraversoV8" component={LosDeSiempreV8} durationInFrames={V8_DURATION} fps={V8_FPS} width={V8_W} height={V8_H} />
         <Composition id="TraversoV7" component={LosDeSiempreV7} durationInFrames={V7_DURATION} fps={V7_FPS} width={V7_W} height={V7_H} />
@@ -1301,6 +1307,13 @@ export const RemotionRoot: React.FC = () => {
       </Folder>
       <Folder name="Copywriters">
         {/* Feed 4:5 — el formato principal del sistema. */}
+        {/* Dirección de arte RRSS 30-09-2026 — caso de éxito 001, 6 láminas */}
+        <Composition id="CL2-Caso001" component={Caso001} {...clFeed}
+                     defaultProps={{lamina: 1}} />
+        {/* Sistema Visual 29-09-2026 — piezas con fotografía */}
+        <Composition id="CL2-FotoAceite"     component={FotoAceite}     {...clFeed} />
+        <Composition id="CL2-FotoEscritorio" component={FotoEscritorio} {...clFeed} />
+        <Composition id="CL2-FotoDiario"     component={FotoDiario}     {...clFeed} />
         {/* Sistema Visual 29-09-2026 — carrusel de prueba, 5 láminas */}
         <Composition
           id="CL2-CarruselSenal"

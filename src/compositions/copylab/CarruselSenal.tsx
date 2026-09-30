@@ -20,6 +20,10 @@
 // escribió ninguno nuevo: esta pieza prueba el sistema, no propone mensajes.
 //
 // Formato: 1080×1350 (feed 4:5). Cinco láminas.
+//
+// 30-09: se eliminaron paginación («SEÑAL», «VOL. 027», «02 — EL PRINCIPIO»),
+// la firma COPYWRITERS.CL en cada lámina y el «TODAVÍA.» colgado — ley de
+// DIRECCION-DE-ARTE-RRSS.md §2.
 // ============================================================================
 import React from "react";
 import {AbsoluteFill} from "remotion";
@@ -32,7 +36,6 @@ import {
   pathsFlecha,
 } from "../../brand/copylab/sistemaV2";
 
-const A = 1080;
 const H = 1350;
 const M = 80; // margen base — punto de partida, no retícula
 
@@ -110,21 +113,6 @@ const Papel: React.FC<{
 );
 
 /** Rótulo mono al pie o a la cabeza. Nunca es héroe. */
-const Rotulo: React.FC<{
-  texto: string; x: number; y: number; color?: string; cuerpo?: number;
-}> = ({texto, x, y, color = C2.gris, cuerpo = 21}) => (
-  <div
-    style={{
-      position: "absolute", left: x, top: y,
-      fontFamily: VOZ2.data, fontSize: cuerpo, fontWeight: 500,
-      letterSpacing: cuerpo * 0.16, color, textTransform: "uppercase",
-      whiteSpace: "nowrap",
-    }}
-  >
-    {texto}
-  </div>
-);
-
 /** Fondo negro con grano editorial. */
 const FondoNegro: React.FC<{children: React.ReactNode}> = ({children}) => (
   <AbsoluteFill style={{background: C2.negro}}>
@@ -157,9 +145,6 @@ const Linea: React.FC<{
 // ===========================================================================
 const L1: React.FC = () => (
   <FondoNegro>
-    <Rotulo texto="SEÑAL" x={M} y={M} color={C2.rosa} />
-    <Rotulo texto="VOL. 027" x={A - M - 96} y={M} />
-
     <div style={{position: "absolute", left: M, top: 268}}>
       <Linea cuerpo={192}>TU MARCA</Linea>
       <Linea cuerpo={192}>NO NECESITA</Linea>
@@ -171,7 +156,6 @@ const L1: React.FC = () => (
     {/* El subrayado va SIEMPRE bajo la línea de base, nunca sobre la letra:
         cruzando la palabra deja de ser subrayado y se lee como tachado. */}
     <Subrayado x={M - 6} y={1106} ancho={648} alto={40} grosor={16} />
-    <Rotulo texto="COPYWRITERS.CL" x={M} y={H - M - 20} color={C2.gris} />
   </FondoNegro>
 );
 
@@ -198,7 +182,6 @@ const L2: React.FC = () => (
     <Cinta x={330} y={150} ancho={230} alto={74} giro={-3.5}
            color="rgba(255,61,156,0.78)" />
 
-    <Rotulo texto="02 — EL PRINCIPIO" x={M} y={H - M - 20} color={C2.gris} />
   </FondoNegro>
 );
 
@@ -210,8 +193,6 @@ const L3: React.FC = () => (
     <AbsoluteFill
       style={{backgroundImage: granoSVG(0.085, 9), backgroundSize: "300px 300px"}}
     />
-    <Rotulo texto="SEÑAL" x={M} y={M} color={C2.negro} />
-
     <div style={{position: "absolute", left: M, top: 430}}>
       <Linea cuerpo={168} color={C2.negro}>MISMA PAUTA.</Linea>
       <Linea cuerpo={168} color={C2.rosa}>OTRO COPY.</Linea>
@@ -230,7 +211,6 @@ const L3: React.FC = () => (
 
     <Flecha x={664} y={886} ancho={176} alto={126} giro={8} />
 
-    <Rotulo texto="03" x={M} y={H - M - 20} color={C2.carbon} />
   </AbsoluteFill>
 );
 
@@ -239,8 +219,6 @@ const L3: React.FC = () => (
 // ===========================================================================
 const L4: React.FC = () => (
   <FondoNegro>
-    <Rotulo texto="04 — PROCESO" x={M} y={M} color={C2.gris} />
-
     <div style={{position: "absolute", left: M, top: 470}}>
       <Linea cuerpo={164}>LA IA ACELERA.</Linea>
       <Linea cuerpo={164}>LAS IDEAS</Linea>
@@ -260,7 +238,6 @@ const L4: React.FC = () => (
       TODAVÍA.
     </div>
 
-    <Rotulo texto="COPYWRITERS.CL" x={M} y={H - M - 20} color={C2.gris} />
   </FondoNegro>
 );
 

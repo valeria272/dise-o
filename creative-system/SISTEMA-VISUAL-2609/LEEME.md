@@ -145,3 +145,55 @@ de la web · **métricas, casos, clientes o personas inventadas** (si falta el d
 # Compuerta de QA (con el venv, no con python3 del sistema)
 /Users/Vale/copylab-venv/bin/python3 qa/motor.py --marca copywriters out/copylab/v2-carrusel/*.png
 ```
+
+---
+
+## 7 · Fotografía — lo aprendido el 30-09-2026
+
+La agencia **no tiene fotografía propia versionada**, así que las piezas con foto
+salen de **Seedream 5 Pro** (`scripts/magnific.py seedream`), el generador por defecto
+del estudio. Eso es legítimo mientras se respete la jerarquía: **la IA hace ambiente y
+objeto, nunca el producto, nunca el logo, nunca un dato**. Por eso acá no hay piezas de
+equipo, backstage ni casos: inventarlas rompe R-10.
+
+Los originales viven rotulados en `raw/copywriters/v2-foto/` para poder reemplazarlos el
+día que exista foto de verdad.
+
+**Tres trampas medidas, para no repetirlas:**
+
+1. ⚠️ **`--aspecto feed` NO es 4:5, es 1:1**, y recorta un 20 % del ancho al montarlo.
+   El 4:5 del feed es **`--aspecto carrusel`**.
+2. ⚠️ **Seedream devuelve 3:4 (1770×2360) aunque se le pida 4:5.** Hay que **recortar**
+   con `objectFit: cover` + `objectPosition`, nunca estirar. Por eso el componente
+   `Foto` de `piezasV2.tsx` expone `foco`: decide qué se conserva del encuadre.
+3. ⚠️ **Pedir explícitamente «no legible text».** Si el modelo escribe, escribe mal —
+   y en la pieza del diario toda la letra tiene que ser del sistema, no del generador.
+
+**Dos reglas de composición que salieron de mirar las piezas rendidas:**
+
+- **El velo va donde va el texto, no sobre toda la pieza.** Oscurecer la foto entera
+  para poder escribir encima es admitir que la foto no servía. En la del aceite el velo
+  es un degradado radial en una esquina.
+- **El texto sobre un objeto inclinado va en el plano del objeto.** En la del diario el
+  bloque impreso va girado 11°, que es la inclinación **medida** del borde superior de la
+  hoja. Un texto horizontal sobre un papel inclinado delata el montaje al instante.
+
+**Sobre el QA técnico:** la regla `color_fuera_de_sistema` tiene `sat_min 0.3` y
+`max_std_local 1.6`, o sea **sólo mira zonas planas y saturadas**. Por diseño ignora la
+textura fotográfica y vigila los rellenos de marca. Que una pieza con foto la pase **no
+dice nada sobre la foto** — eso lo juzga el IMAGE-FIRST TEST (R-13), que es humano.
+
+## 8 · Deuda abierta de la tanda del 30-09
+
+- ⛔ **«LA IA ACELERA. LAS IDEAS DIRIGEN.» está dos veces**: lámina 04 del carrusel y
+  pieza del escritorio. La versión con foto es mejor; hay que cambiarle el copy a la
+  lámina del carrusel.
+- ⚠️ **Cuatro de las ocho piezas repiten el mismo mecanismo** (bloque Bebas abajo a la
+  izquierda + última palabra en rosa + subrayado). Es exactamente el riesgo de **X-04**:
+  el «look Copywriters» también es plantilla. Hace falta ampliar el repertorio —
+  sticker, cinta, recorte, texto dentro del objeto— antes de crecer la grilla.
+- ⚠️ **Fila 1 de la hoja de contacto: cuatro piezas tipográficas seguidas.** R-18 pone el
+  tope en dos. Al armar grilla real hay que intercalar.
+- ❔ Sin explotar: los anchos **Expanded / SemiExpanded** de Bebas Pro y los cortes
+  **Outline / Drop Shadow** de Balloon.
+

@@ -157,3 +157,24 @@ mano con la galleta) y dejar el ajuste del correo». Script: `scripts/dt-pendone
   desde el documento abierto y se guarda con `pdfCompatible=false`.
 - Revisión: https://claude.ai/artifact/2478u7XKpiFeprAJ4pgQ8S · respaldo de lo anterior en
   `raw/hilton/dt/pendones-2026/r8/antes/`. PDF de imprenta: pendiente hasta que Eli apruebe.
+
+## 9 · Ronda 9 (30-09-2026) — alta para imprenta · sólo el .ai
+
+**Contexto:** Eli dejó el .ai con dos mesas (CHICA y COOKIE) y agrandó la foto de la chica a 137,6 cm de
+ancho → el vínculo quedó a **60 ppp efectivos** (la cookie, a 83). «Me preocupa la calidad… que se vea sin pixelados».
+⛔ **Los PDF los arma Eli** («yo armo los pdf, tú sólo ve el Adobe AI»): no generar ni dejar PDF en la carpeta.
+
+- Script `scripts/dt-pendones-alta-r9.py` (`prueba` · `franjas tel|cookie` · `montar tel|cookie`).
+- Motor: **`image-upscaler-precision-v2`**, `flavor: photo`, sharpen 7, smart_grain 7, ultra_detail 20.
+  Comparado sobre la cara contra el precision v1: la v1 quema bordes y endurece la piel; la v2 queda natural.
+- Sólo se escala con IA la ventana visible (+150 px); franjas de 1600 px con 320 de traslape, en paralelo
+  (un 502 transitorio se reintenta: el script salta las franjas ya hechas). Cada franja se **amarra en tono**
+  al Lanczos de la aprobada (diferencia con desenfoque σ 24): color idéntico, detalle nuevo.
+- Chica: vínculo **6456×14340 a 200 ppp** (= mismo tamaño físico) → 119 ppp efectivos. Cookie: rehecha como
+  en §8 a 1,5× desde `3-79-ventana-x2` escalada ×2 → **4842×17835 a 150 ppp** → 124 ppp.
+- Mismo tamaño físico ⇒ en el .ai basta `placedItem.file` (diferencia de geometría 0,000 pt, verificada).
+- Letras del letrero, de la bolsa y la etiqueta «OH NUTS!» revisadas a 1:1: el v2 no las reescribió.
+- Vínculos `pendon-2-telefono-r9.jpg` (93 MB) y `pendon-3-cookie-r9.jpg` (44 MB); los r8 quedan de respaldo.
+  Respaldo del .ai anterior en `raw/hilton/dt/pendones-2026/r9/antes/`. Revisión `r9/revision-alta.html`.
+- ⚠️ Por script, `saveAs` a PDF deja inválida la referencia al documento («there is no document»):
+  volver a buscarlo por `fullName` en un segundo script.

@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-30** · Cosechas: **40**
+> Última cosecha: **2026-09-30** · Cosechas: **41**
 
 ## 1. Quién es el cliente
 
@@ -109,10 +109,10 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-88** · [DT] **Brochures: se corrige directo en el `.ai` empaquetado** (mismo nombre y carpeta, con respaldo antes) y **los PDF los exporta Eli** — _Eli, 28-09-2026 («ajústalos y me avisas para yo guardarlos en pdf»; «¿lo hiciste en la original ya empaquetada?»)_ · ✔×1
 - **R-95** · [DT] **Cambiar a la modelo de una foto aprobada = cambiar lo que la hace reconocible, no sólo la cara**: pelo (color y largo), cejas, tono de piel, lentes y ropa/zapatos; pose, manos, luz y fondo quedan de la foto real — _Eli, 28-09-2026, pendones 0,8×3 («se siguen pareciendo»; pelirroja a los hombros, chaleco celeste, zapatos celestes, gafas negras, piel morena)_ · ✔×1
 - **R-96** · [DT] **Lo cambiado tiene que verse natural**: color de pelo que le venga a la piel (el rubio sobre piel morena y las cejas decoloradas se rechazaron), ojos relajados, sin mechones raros; se revisa con zoom antes de mostrar — _Eli, 28-09-2026 («se ve muy poco natural, ten cuidado»)_ · ✔×3 · +1 cara nueva de la cookie natural (R-117), aprobada 29-09 · +1 pendón teléfono r8: rubio miel sobre piel clara, cejas y cara intactas
-- **R-97** · [DT] **Pieza de gran formato: se verifica que imprima bien Y que no pese** — 100 ppi reales al tamaño final, CMYK del documento (FOGRA39), PDF con corte + 1 cm de sangrado + marcas y textos en trazado; editable con fotos **enlazadas** — _Eli, 28-09-2026, pendones («considera que se vean bien… sin ser pesado»)_ · ✔×2 · +1 pendones r7: 100 ppi reales a 82×302 cm, CMYK FOGRA39, vínculos nuevos, aprobados 29-09
+- **R-97** · [DT] ⚠️ revisada 2026-09-30 (ver R-175: 100 ppi se miden en la foto colocada, meta ≥ ~120) · **Pieza de gran formato: se verifica que imprima bien Y que no pese** — 100 ppi reales al tamaño final, CMYK del documento (FOGRA39), PDF con corte + 1 cm de sangrado + marcas y textos en trazado; editable con fotos **enlazadas** — _Eli, 28-09-2026, pendones («considera que se vean bien… sin ser pesado»)_ · ✔×2 · +1 pendones r7: 100 ppi reales a 82×302 cm, CMYK FOGRA39, vínculos nuevos, aprobados 29-09
 - **R-98** · [DT] **El QR de una pieza impresa se lee y se entrega NORMAL** (oscuro sobre blanco): se decodifica desde el PDF final y se confirma adónde lleva — _Eli, 28-09-2026 («¿los QR están correctos?»); el de la plantilla estaba invertido_ · ✔×1
 - **R-99** · [DT] **Pedido de ajuste sobre pieza ya impresa: todo igual que el pantallazo** (redes, LinkedIn incluido, orden de contactos, qué va en la pastilla), sólo cambia lo pedido — _Eli, 28-09-2026 («todo todo todo exactamente igual solamente que hay que reemplazar el rostro»)_ · ✔×1
-- **R-100** · [DT] **El editable queda abierto en Illustrator para que Eli siga**: textos vivos, una capa por pieza — _Eli, 28-09-2026 («déjalo en el editable para yo seguir editando»)_ · ✔×1
+- **R-100** · [DT] **El editable queda abierto en Illustrator para que Eli siga**: textos vivos, una capa por pieza — _Eli, 28-09-2026 («déjalo en el editable para yo seguir editando»)_ · ✔×2 · +1 pendones r9: vínculos cambiados con geometría intacta (0,000 pt), .ai guardado y abierto
 - **R-101** · [DT] **En una historia, las personas se ven COMPLETAS**: ningún borde las corta y el recuadro del programa tapa mesa, cama o piso, nunca cuerpos. Si no caben entre el titular y el recuadro, se aleja la cámara (expansión IA hacia abajo y a los lados, con la original pegada encima y revisada con zoom por si aparece gente de más), no se tapa — _Eli, 28-09-2026, ST 01-10 Family Time r7 («hay en varias que se ven que desaparecen o no se ven completos»)_ · ✔×1
 - **R-102** · [DT] **Entre dos fotos con gente, no hay fundido cruzado**: al 50 % las dos familias se ven transparentes y parece que «desaparecen». Va una cortina suave (borde de ~100 px, ~0,7 s, empuje leve) — _Eli, 28-09-2026, ST 01-10 r7 («mejora transiciones»)_ · ✔×1 (r8 sin aprobar todavía)
 - **R-104** · [DT] **Los PUNTEOS de beneficios llevan punto final**, con viñeta: R-60 (sin punto) vale para titulares y bajadas; cuando el texto es un listado de beneficios u opciones, cada ítem cierra con punto — _Eli, 29-09-2026, carrusel Escapada 07-10 lámina 2 («yo sé que es una regla, pero eso es más para la portada… cuando son textos muy extensos, que son como punteos de los beneficios, esos sí van con puntos»)_ · ✔×1
@@ -139,6 +139,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - **R-153** · [DT] **Un producto de restaurante en pantalla es REAL y de la carta**: si la pieza muestra plato o tragos de QB, va una foto de la sesión real (`raw/hilton/qb/sesiones-25-09/orig/carta__*`), no una generada. Contenido detecta lo inventado (copas que el hotel no tiene, platos que no están en la carta) — _Scarlette Muñoz, hilo @Eli FEED!C14, 29-09-2026, carrusel Escapada 07-10 lámina 2 («no tenemos [copas] con mango rosado… pongamos imagen de algún producto de QB, esos panes no se encuentran en la carta»); Eli, 30-09-2026 («este gran resultado sirve para los próximos diseños»)_ · ✔×1
 - **R-154** · [DT] **El material que manda contenido reemplaza al generado tal cual**: su foto o su video del hotel entra en la escena que indican, recortado al formato sin tapar el logo ni el titular (la lámpara del buffet se dejó sobre el logo, no detrás) — _Scarlette Muñoz, hilo @Eli STORIES!C15, 29-09-2026, ST 01-10 Family Time («cambiemos la imagen de la familia tomando desayuno por… y la que salen caminando por una de la habitación»); Eli, 30-09-2026 («este gran resultado sirve para los próximos diseños»)_ · ✔×1
 - **R-155** · [DT] **Programa nuevo en una pieza de varios programas = foto de su propio material aprobado**: la tarjeta de Noche de Bodas usa la pareja del carrusel NB que Eli entregó en septiembre (otra pareja que la de Escapada), no una generación nueva — _contenido sumó la línea al brief tras el hilo de Scarlette a Carlos (STORIES!E15, 29-09); Eli, 30-09-2026 («este gran resultado sirve para los próximos diseños»)_ · ✔×1
+- **R-174** · [DT] **En impresos, Eli arma los PDF de imprenta; yo dejo sólo el .ai listo** (vínculos, geometría intacta, guardado liviano con `pdfCompatible=false`). No se exporta ni se deja un PDF en la carpeta de entrega salvo que lo pida — _Eli, 30-09-2026, pendones r9 («yo armo los pdf tú solo ve el adobe AI»)_ · ✔×1
+- **R-175** · [DT] **La resolución de gran formato se mide sobre la foto COMO QUEDÓ en el .ai** (ppp efectivos = píxeles ÷ ancho colocado), no sobre el vínculo: Eli agranda la foto a mano y el vínculo de 100 ppp cayó a 60. Meta ≥ ~120 ppp efectivos; el vínculo nuevo lleva el mismo tamaño físico (más píxeles y más ppp declarados) para que en el .ai sólo cambie `placedItem.file` — _Eli, 30-09-2026, pendones r9 («me preocupa la calidad… 0,8×3 m… sin pixelados»)_ · ✔×1
 ### Between
 - **R-30** · [BW] Taza blanca con raya negra y **KIMBO: se borra siempre**; la taza vigente es blanca total — _Eli 25-08; Scarlette 31-08; ronda 9, 03-09-2026_ · ✔×3
 - **R-31** · [BW] **El logotipo nunca se deforma ni se curva**: escala uniforme a ratio 3,0298, integrado en el vaso por tono (multiply), no por geometría — _Eli 25-08 («no se vea achatado»); cliente 31-08; Eli 01-09-2026 («no puedes curvarlo de esa manera»)_ · ✔×3
@@ -381,6 +383,7 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 ## 8. Preguntas abiertas
 
+- [DT] Pendones r9 (alta con precision v2 «photo», 119 y 124 ppp efectivos): ¿Eli confirma que no delata IA (R-116)? Si sí, R-116 se afina: una 2.ª pasada v2 sólo en la ventana visible, con tono amarrado, no «pinta». Y los PDF de imprenta se re-exportan desde el .ai nuevo sin bajar resolución → **Eli** (30-09)
 - [DT] Escapada 07-10 lámina 2: la foto real de QB muestra trucha (fondo) al frente y copas de vino; el brief dice «una entrada + dos tragos». ¿Sirve o se cambia por cócteles reales de la sesión Sunset? → **Eli / Scarlette** (30-09)
 - [DT] ST 01-10 Family Time r10 queda con dos escenas de habitación (video sin gente + familia en la cama). ¿Otra foto de cierre? → **Eli** (30-09)
 - [BW] Carta R6: ¿qué opción (A café · B beige · D portada partida) va al cliente? · «Elija 2 opciones» (usted) vs «Elige tu tamaño» (tú) en el Word del cliente: ¿se unifica? · ~~¿el .ai A en F: trae cambios suyos?~~ resuelto: los R6 van con nombre propio y los R4 de Eli quedan intactos → **Eli**
@@ -432,6 +435,13 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 (cierre 3, pendones DT r9: alta para imprenta) — Claude con Eli · 2 reglas nuevas [DT], 1 ✔, R-97 revisada
+- **Qué pasó:** Eli dejó el .ai con 2 mesas (CHICA, COOKIE) y agrandó la chica → 60 ppp efectivos (cookie 83). Vínculos r9 con Magnific precision v2 (flavor photo) sólo en la ventana visible, tono amarrado a lo aprobado: 119 y 124 ppp. Letras de letrero/bolsa/etiqueta y dedos intactos a 1:1. A mitad de camino Eli cortó: los PDF los arma ella.
+- **Reglas nuevas [DT]:** R-174 Eli arma los PDF, yo sólo el .ai · R-175 ppp medidos en la foto colocada, meta ≥ ~120.
+- **✔ subieron:** R-100 +1. **Revisada:** R-97 (el umbral de 100 ppi se mide en la foto colocada).
+- **Sin veredicto todavía:** la alta r9 → §8.
+- **Candidata a regla del estudio (para Valeria):** R-175 — en gran formato, medir ppp efectivos en el PDF/.ai final, no en el archivo de la foto.
 
 ### 2026-09-30 (cierre 2, carta R6: editables verificados contra el PDF) — Claude con Eli · 1 regla nueva [BW], 1 ✔, 1 rechazo propio
 - **Qué pasó:** Eli pidió confirmar que el editable estuviera al día con los PDF entregados. La verificación sobre los .ai REABIERTOS encontró textos centrados/derecha corridos medio ancho y una nota con otro corte; se corrigió el ancla en el jsx, las notas pasaron a saltos fijos y se rearmaron las 21 hojas → texto idéntico e imagen a ±2 px en todas. Re-copiados a F: y a Drive (03 · EDITABLES), md5 ✓.

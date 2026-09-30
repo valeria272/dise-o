@@ -163,6 +163,12 @@ Todo está en `src/compositions/mascenter/MasCenterReel.tsx`; el contenido del m
   pulgares · saluda · vampiro-capa · vampiro-balde). La pose depende del texto de al lado. Sobre foto va inmerso, con
   piso, sombra y luz, nunca flotando. Disfraces con Seedream sobre la pose + recorte por croma.
 - **Logos de locatarios (R-54):** carpeta de Diego → web oficial → Wikimedia; aplanados sobre su fondo antes del círculo.
+- **Logo en carruseles (R-64):** sólo en la portada y la última slide; nunca en fichas, pasos ni mosaicos intermedios.
+- **Espaciado (R-65/R-66/R-67):** ningún texto al límite de su caja (aire ≥ 40 px), cajas ajustadas al contenido, pasos
+  numerados alineados por la altura de mayúscula y pegados al número.
+- **LinkedIn IFB (R-32, R-42, R-62):** azul `#235D80` · celeste `#BAEAEE` · navy `#112C3A`; fondo = foto desenfocada bajo
+  velo azul al 90 %; lockup GRUPO IFB | MÁS CENTER; constructor `sistema/linkedin_octubre.py`. Renders oficiales de Diego
+  mandan (R-68).
 - **Entrega (R-58):** carpeta del mes de la grilla, `c-dd-mm-n.png` / `p-dd-mm.png`, reemplazo en sitio en cada ronda.
 
 ## 5. De dónde salen las imágenes

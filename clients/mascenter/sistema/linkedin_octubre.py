@@ -118,24 +118,28 @@ def icono(k, s=46):
 
 
 # ═══════════════════════════ 06-10 · Linderos (plantilla Algarrobal) ═══════════════════════════
-RENDER_BUIN = REF / "renders/web-buin-02-scaled.jpg"        # render oficial de mascenter.cl/linderos
-BANNER_BUIN = REF / "renders/web-mascenter_banner_buin-1.jpg"
-AEREA_BUIN = FOTOS / "linderos-aerea.png"                     # perspectiva generada sobre el render oficial
+# Renders oficiales de Linderos que mandó Diego el 30-09 («para el carrusel del 06-10 utiliza las imágenes adjuntas»).
+LIN = REF / "renders/linderos-oficial"
+RENDER_BUIN = LIN / "linderos-2-frontal.jpg"
+PASILLO_BUIN = LIN / "linderos-1-pasillo.jpg"
+ARAMCO_BUIN = LIN / "linderos-3-aramco.jpg"
+TOTEM_BUIN = LIN / "linderos-4-totem.jpg"
 
 
 def linderos_1():
-    foto = cubrir(abrir(RENDER_BUIN), 760, 1080, 0.62, 0.5)
+    # el render viene 16:9 con mucho cielo: se recorta al edificio y su estacionamiento antes de llenar la ventana
+    foto = cubrir(abrir(RENDER_BUIN).crop((1500, 1150, 3300, 2340)), 700, 1080, 0.5, 0.5)
     # Isotipo a 9,2× en la misma posición que en Algarrobal (matrix medida sobre la mesa 14).
     ventana = (f'<svg class="abs" style="left:0;top:0" width="{W}" height="{H}" viewBox="0 0 {W} {H}">'
-               f'<defs><clipPath id="iso"><path transform="matrix(9.2,0,0,9.2,-1961,-320)" d="{ISO}"/></clipPath></defs>'
-               f'<image href="{uri(foto)}" x="320" y="0" width="760" height="1080" preserveAspectRatio="xMidYMid slice" clip-path="url(#iso)"/></svg>')
+               f'<defs><clipPath id="iso"><path transform="matrix(9.2,0,0,9.2,-1891,-320)" d="{ISO}"/></clipPath></defs>'
+               f'<image href="{uri(foto)}" x="380" y="0" width="700" height="1080" preserveAspectRatio="xMidYMid slice" clip-path="url(#iso)"/></svg>')
     cuerpo_t = ["Comercio y servicios", "de proximidad a metros", "de la Panamericana Sur."]
     return f"""{ventana}
 {lockup(80, 88, 316)}
 {lineas(["Nuevo", "Strip center", "en Buin"], 80, tb(306.5, 59, 61, 'black'), 61, "font-family:'Gotham Black';font-weight:900;font-size:59px;line-height:61px;text-transform:uppercase")}
 <div class="abs" style="left:79px;top:460px;width:430px;height:54px;border-radius:27px;background:{NAVY}"></div>
 <div class="abs gr" style="left:79px;width:430px;top:{tb(500.9, 40, 46, 'rnd'):.1f}px;text-align:center;font-weight:700;font-size:40px;line-height:46px;color:{CELESTE}">Más Center Linderos</div>
-{lineas(cuerpo_t, 79, tb(568.7, 40, 46, 'rnd'), 46, "font-family:GothamRounded;font-weight:300;font-size:40px;line-height:46px")}
+{lineas(cuerpo_t, 79, tb(568.7, 38, 45, 'rnd'), 45, "font-family:GothamRounded;font-weight:300;font-size:38px;line-height:45px")}
 <div class="ref" style="right:30px;bottom:22px">Imagen referencial</div>"""
 
 
@@ -174,25 +178,24 @@ def linderos_2():
 
 
 def linderos_3():
-    a = cubrir(abrir(RENDER_BUIN), 506, 404, 0.45, 0.62)
-    b = cubrir(abrir(BANNER_BUIN), 506, 404, 0.25, 0.5)
+    a = cubrir(abrir(PASILLO_BUIN), 506, 404, 0.45, 0.6)
+    b = cubrir(abrir(ARAMCO_BUIN), 506, 404, 0.35, 0.6)
     datos = [("local", "10", "locales comerciales"), ("auto", "77", "estacionamientos"), ("m2", "2.383 m²", "superficie total"),
              ("plano", "911 m²", "superficie de locales"), ("cal", "MAY. 2027", "entrega estimada")]
-    fichas = "".join(f'<div style="width:176px;text-align:center">{icono(k)}<div style="margin-top:10px;font-weight:700;font-size:28px;line-height:32px">{n}</div>'
-                     f'<div style="font-size:21px;line-height:25px;opacity:.95">{t}</div></div>' for k, n, t in datos)
+    fichas = "".join(f'<div style="width:172px;text-align:center">{icono(k)}<div style="margin-top:10px;font-weight:700;font-size:28px;line-height:32px">{n}</div>'
+                     f'<div style="font-size:19px;line-height:23px;opacity:.95">{t}</div></div>' for k, n, t in datos)
     return f"""
-<div class="foto-card" style="left:40px;top:120px;width:490px;height:420px"><img src="{uri(a)}"></div>
-<div class="foto-card" style="left:550px;top:120px;width:490px;height:420px"><img src="{uri(b)}"></div>
-{lockup_centro(34, 250)}
-<div class="abs" style="left:59px;top:612px;width:962px;height:340px;border-radius:30px;background:{NAVY}"></div>
+<div class="foto-card" style="left:40px;top:70px;width:490px;height:460px"><img src="{uri(a)}"></div>
+<div class="foto-card" style="left:550px;top:70px;width:490px;height:460px"><img src="{uri(b)}"></div>
+<div class="abs" style="left:40px;top:572px;width:1000px;height:400px;border-radius:30px;background:{NAVY}"></div>
 <div class="centro black" style="top:{tb(662, 55, 60, 'black'):.1f}px;font-size:55px;line-height:60px">Más Center Linderos</div>
-<div class="centro gr" style="top:{tb(712, 26, 32, 'rnd'):.1f}px;font-weight:700;font-size:26px;line-height:32px;color:{CELESTE}">Un proyecto pensado para acompañar el crecimiento de la comuna.</div>
-<div class="abs" style="left:69px;width:942px;top:772px;display:flex;justify-content:space-between">{fichas}</div>
+<div class="centro gr" style="top:{tb(710, 28, 34, 'rnd'):.1f}px;font-weight:700;font-size:28px;line-height:34px;color:{CELESTE}">Un proyecto pensado para acompañar<br>el crecimiento de la comuna.</div>
+<div class="abs" style="left:92px;width:896px;top:790px;display:flex;justify-content:space-between">{fichas}</div>
 <div class="ref" style="right:30px;bottom:22px">Imágenes referenciales</div>"""
 
 
 def linderos_4():
-    foto = cubrir(abrir(AEREA_BUIN), W, 520, 0.5, 0.6)
+    foto = cubrir(abrir(TOTEM_BUIN).crop((600, 0, 4160, 2340)), W, 520, 0.5, 0.62)   # sin el tótem pegado al borde
     return f"""
 <img src="{uri(foto)}" class="abs" style="left:0;top:560px;width:{W}px;height:520px;object-fit:cover">
 <div class="abs" style="left:0;top:560px;width:{W}px;height:200px;background:linear-gradient(180deg,{AZUL} 0,rgba(35,93,128,0) 100%)"></div>
@@ -205,14 +208,22 @@ def linderos_4():
 
 # ═══════════════════════════ 10-10 · «Un activo no se construye…» ═══════════════════════════
 def paso(n, titulo, texto, foto, fx=0.5, fy=0.5, ref=False):
+    """Número grande + bloque título/texto alineados por la altura de mayúscula y a 34 px del número (comentario de
+    Diego 30-09: «que queden más alineados los bloques de texto, y juntarlos un poco más»). Sin lockup: el logo va sólo
+    en la portada y la última slide."""
     im = cubrir(foto, 960, 600, fx, fy)
+    ancho_n = fnt("Gotham-Black", 230).getlength(n) - 6 * (len(n) - 1)
+    x = round(58 + ancho_n + 34)
+    alto_cap = 218 - 51                          # bbox medido de «0» en Gotham Black a 230
+    tope = 700                                   # altura de mayúscula común del número y del título
+    base_n = tope + alto_cap
+    base_t = tope + 64 * 0.72
     return f"""
-<div class="foto-card" style="left:60px;top:60px;width:960px;height:600px"><img src="{uri(im)}"></div>
-<div class="abs" style="left:60px;top:60px;width:960px;height:600px;border-radius:26px;background:linear-gradient(180deg,rgba(35,93,128,0) 55%,rgba(35,93,128,.55) 100%)"></div>
-<div class="abs" style="left:52px;top:{tb(846, 230, 230, 'black'):.1f}px;font-family:'Gotham Black';font-weight:900;font-size:230px;line-height:230px;color:{CELESTE};letter-spacing:-6px">{n}</div>
-<div class="abs black" style="left:430px;top:{tb(760, 64, 66, 'black'):.1f}px;font-size:64px;line-height:66px">{titulo}</div>
-<div class="abs gr" style="left:432px;width:600px;top:{tb(820, 36, 42, 'rnd'):.1f}px;font-weight:300;font-size:36px;line-height:42px">{texto}</div>
-{lockup(60, 972, 230)}
+<div class="foto-card" style="left:60px;top:60px;width:960px;height:590px"><img src="{uri(im)}"></div>
+<div class="abs" style="left:60px;top:60px;width:960px;height:590px;border-radius:26px;background:linear-gradient(180deg,rgba(35,93,128,0) 55%,rgba(35,93,128,.55) 100%)"></div>
+<div class="abs" style="left:52px;top:{tb(base_n, 230, 230, 'black'):.1f}px;font-family:'Gotham Black';font-weight:900;font-size:230px;line-height:230px;color:{CELESTE};letter-spacing:-6px">{n}</div>
+<div class="abs black" style="left:{x}px;top:{tb(base_t, 64, 66, 'black'):.1f}px;font-size:64px;line-height:66px">{titulo}</div>
+<div class="abs gr" style="left:{x + 2}px;width:{1020 - x}px;top:{tb(base_t + 54, 34, 40, 'rnd'):.1f}px;font-weight:300;font-size:34px;line-height:40px">{texto}</div>
 {'<div class="ref" style="right:30px;bottom:22px">Imagen referencial</div>' if ref else ''}"""
 
 
@@ -278,7 +289,7 @@ def crecer_1():
 {mosaico(fotos, 0, 0, W, H, 3, gap=0, radio=0)}
 <div class="abs" style="left:0;top:0;width:{W}px;height:{H}px;background:rgba(35,93,128,.78)"></div>
 {lockup_centro(150, 330)}
-<div class="abs" style="left:170px;top:360px;width:740px;height:360px;border-radius:30px;background:#fff"></div>
+<div class="abs" style="left:250px;top:398px;width:580px;height:318px;border-radius:30px;background:#fff"></div>
 <div class="centro black" style="top:{tb(478, 84, 88, 'black'):.1f}px;font-size:84px;line-height:88px;color:{AZUL}">De 4 a 49</div>
 <div class="centro black" style="top:{tb(562, 84, 88, 'black'):.1f}px;font-size:84px;line-height:88px;color:{AZUL}">activos.</div>
 {lineas(["15 años de crecimiento del", "portafolio de Grupo IFB."], 0, tb(632, 34, 40, 'rnd'), 40, f"font-family:GothamRounded;font-weight:300;font-size:34px;line-height:40px;color:{NAVY}", "center", W)}
@@ -311,12 +322,13 @@ def crecer_3():
     fotos = [ind("SC Chamisero I.png"), ind("Local Comercial Alonso de Córdova II.png"), ind("Oficinas Parque Sur.png"),
              ind("Bodega Quilicura.png"), ind("Multifamily Bungalow Oaks.png")]
     et = ["Strip centers", "Locales comerciales", "Oficinas", "Bodegaje", "Activos en Estados Unidos"]
-    grid = mosaico(fotos[:3], 50, 300, 980, 330, 3, gap=14, etiquetas=et[:3]) + mosaico(fotos[3:], 50, 644, 980, 330, 2, gap=14, etiquetas=et[3:])
+    grid = mosaico(fotos[:3], 50, 260, 980, 330, 3, gap=14, etiquetas=et[:3]) + mosaico(fotos[3:], 50, 604, 980, 330, 2, gap=14, etiquetas=et[3:])
     return f"""
 {lineas(["Hoy, el portafolio va más allá", "de una sola clase de activo."], 0, tb(120, 50, 58, 'rnd'), 58,
         f"font-family:GothamRounded;font-weight:700;font-size:50px;line-height:58px;color:{CELESTE};text-transform:uppercase", "center", W)}
 {grid}
-<div class="fuente">{FUENTE}</div>"""
+<div class="abs" style="left:50px;bottom:30px;font-size:17px;color:#fff;opacity:.85">{FUENTE}</div>
+{lockup(W - 50 - 190, 1000, 190)}"""
 
 
 def crecer_4():
@@ -364,8 +376,7 @@ def terreno_3():
     return f"""
 {lineas(["Buscamos nuevas ubicaciones", "para seguir creciendo."], 0, tb(118, 50, 58, 'black'), 58,
         "font-family:'Gotham Black';font-weight:900;font-size:50px;line-height:58px;text-transform:uppercase", "center", W)}
-{mosaico(fotos, 50, 270, 980, 720, 3, gap=14)}
-{lockup(W - 50 - 200, 1014, 200)}"""
+{mosaico(fotos, 50, 270, 980, 760, 3, gap=14)}"""
 
 
 def terreno_4():
@@ -380,7 +391,7 @@ def terreno_4():
 CARRUSELES = {
     "06": ("lk-06-10", [linderos_1, linderos_2, linderos_3, linderos_4]),
     "10": ("lk-10-10", [ACTIVO[i] for i in range(1, 7)]),
-    "19": ("lk-19-10", [crecer_1, crecer_2, crecer_3, crecer_4]),
+    "19": ("lk-19-10", [crecer_1, crecer_2, crecer_3]),   # la 4 la eliminó Diego (30-09)
     "27": ("lk-27-10", [terreno_1, terreno_2, terreno_3, terreno_4]),
 }
 

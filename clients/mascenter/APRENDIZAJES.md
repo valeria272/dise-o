@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de marca: Valeria Traverso)** · Aprueba: **Sebastián Córdova (paid) · Francesca Pavissich (landings y presentación comercial)**
-> Última cosecha: **2026-09-30** · Cosechas: **8**
+> Última cosecha: **2026-09-30** · Cosechas: **9**
 
 ## 1. Quién es el cliente
 
@@ -88,7 +88,7 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **R-35** · No tapar el activo: poco azul y poco difuminado sobre renders y fotos de proyectos — _Scarlette, grilla feb: «bajarle un poco al color azul de los proyecto»; may: «podemos no ponerle el color azul y difuminado, la idea es darle más visibilidad al activo»_ · ✔×2
 - **R-36** · No publicar fechas de entrega de proyectos — _cliente, grilla mar: «no hablemos de fecha de entrega, ya que se ha atrasado»_ · ✔×2 (⚠️ julio y octubre las publican: ver §8)
 - **R-37** · Toda cifra lleva su fuente en letra chica (Memoria 2025, DF, CBRE); en LinkedIn las cifras de mercado van en el copy del post, no en las láminas — _grilla feb: «agregar en parte inferior y más pequeño: Fuente: Diario Financiero»; brief LinkedIn sept_ · ✔×4
-- **R-38** · Imagen que se lea «Más Center»: gente comprando en los centros reales, con pin y dirección, sin banco de imágenes. La IA sirve para mejorar una foto real o generar centros de región; un render IA va rotulado «imagen referencial» — _grilla ene: «le falta imágenes más "Más Center"… alguien en una tienda, o con bolsas de compra»; jul: «Indicar de forma sutil que es una imagen referencial»; ago: «foto casual, auténtica, no de banco de imágenes»_ · ✔×4
+- **R-38** · Imagen que se lea «Más Center»: gente comprando en los centros reales, con pin y dirección, sin banco de imágenes. La IA sirve para mejorar una foto real o generar centros de región; un render IA va rotulado «imagen referencial» — _grilla ene: «le falta imágenes más "Más Center"… alguien en una tienda, o con bolsas de compra»; jul: «Indicar de forma sutil que es una imagen referencial»; ago: «foto casual, auténtica, no de banco de imágenes»_ · ✔×5
 - **R-39** · Arriendo siempre con CTA a WhatsApp o al contacto de la bio, y copy corto — _Scarlette, grilla may: «esta super largo y debe tener foco a comunicarse por whatsapp»; «Estás dejando copy demasiado largos, nadie se detiene a leer todo»_ · ✔×2
 - **R-40** · Etiquetar a cada locatario y partner — _Scarlette, grilla may, cinco veces: «Revisa que los tags correspondan. Básico.»_ · ✔×2
 - **R-41** · Público de Instagram: mujer +35 — _Scarlette, grilla may_ · ✔×1
@@ -108,11 +108,16 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **R-56** · Plantillas vivas del orgánico ya medidas en `sistema/plantillas/`: carrusel de locatarios c-19-08 (Talca) · carrusel de mascotas c-08-08 (mostaza) · carrusel de eventos c-31-07 (Día del Niño: título, fecha, 📍 dirección) · post Mercado Campesino julio mesa 22 (azul `#285C8C`, onda, lockup con INDAP, cajas de sedes, franja de pie) · stories: arriendo st-12-08 y Localito st-09-08 (`stories-agosto-dianino-arriendo.json`), encuesta st-08-06 (`story-encuesta-junio.json`) · LinkedIn IFB: carrusel Algarrobal (`linkedin-carrusel-algarrobal.json`) y lk-13-08 «19 años» (`linkedin-carrusel-19-anios-lk-13-08.json`). Cada pieza nueva de esos temas parte de su plantilla; los cuerpos del `.ai` miden ~9 % más angostos que la TTF (escalar por 816/900 si se calca el ancho) — _cosecha 28-09-2026_ · ✔×1
 - **R-57** · El REF de la grilla es un **hipervínculo de celda** que el conector de Drive no muestra: se baja la xlsx (conector → base64 → openpyxl) y se lee `cell.hyperlink.target`. Los pines de Pinterest se bajan de `i.pinimg.com/736x/…` (`originals` a veces devuelve XML) — _grilla IFB octubre, 28-09-2026_ · ✔×1
 - **R-58** · Las entregas del orgánico van a la carpeta del mes de la grilla (octubre: «10. OCTUBRE» `1h7_dB1HxA2KBThQhUuUinHG24DP9wHwK`) con la nomenclatura de Diego `c-dd-mm-n.png` / `p-dd-mm.png`. El token del estudio (`drive.file`) no LISTA esa carpeta pero SÍ crea archivos en ella; cada ronda se reemplaza en sitio (mismo fileId, md5 verificado) — _Diego: «todo lo generado lo dejas acá», 28-09-2026_ · ✔×4
-- **R-62** · Fondo de LinkedIn IFB = foto real desenfocada bajo velo `#235D80` al **90 %** en modo normal (ajustado contra el render de AGOSTO IFB.ai mesa 33, 8 puntos); lockup GRUPO IFB | MÁS CENTER en blanco extraído del `.ai` (`raw/mascenter/octubre-2026/ifb/lockup-ifb-mascenter-blanco.png`); portada de proyecto = foto recortada por el isotipo de Más Center (Algarrobal, SEPT mesa 14) — _medido 29-09-2026, LinkedIn octubre_ · ✔×1
+- **R-62** · Fondo de LinkedIn IFB = foto real desenfocada bajo velo `#235D80` al **90 %** en modo normal (ajustado contra el render de AGOSTO IFB.ai mesa 33, 8 puntos); lockup GRUPO IFB | MÁS CENTER en blanco extraído del `.ai` (`raw/mascenter/octubre-2026/ifb/lockup-ifb-mascenter-blanco.png`); portada de proyecto = foto recortada por el isotipo de Más Center (Algarrobal, SEPT mesa 14) — _medido 29-09-2026, LinkedIn octubre_ · ✔×2
 - **R-63** · Cuando la IA reescribe letreros de fondo que no son el protagonista, en vez de parchar se regenera con **fondo desenfocado** (letreros ilegibles); el parche real (R-10) queda para letreros que se leen — _story «gustito de miedo» v1 «EL IISTITO», 29-09-2026_ · ✔×1
 - **R-59** · Wan no mueve la cámara sobre una imagen con letras (render del proyecto, letreros, tótems): el video va con la **cámara fija** y sólo anima autos, gente y árboles. El acercamiento o la panorámica se hacen en edición. Si una letra tiembla, se pone encima el letrero recortado del render como capa fija (con la cámara quieta calza píxel a píxel). Lo mismo con Seedream: si se ven letreros de cerca, la toma se sube a vista aérea — _Diego, reel Linderos: C1 «se deforman mucho las letras de las tiendas, hagamos la vista más aérea», 2A «lo mismo, no deformar los textos», 2B «también se deforma», 29-09-2026_ · ✔×1
 - **R-60** · En una imagen del proyecto, el letrero de la marca ancla (Unimarc) **se queda**, igual que en el render. Sólo los locales chicos pueden ir sin letras. Si la IA lo deforma, se tapa sólo la palabra con el logo oficial en edición (capa con tracking) — _Diego, C1 del reel Linderos: «no borres el de unimarc», 29-09-2026_ · ✔×1
 - **R-61** · En los reels con IA, Diego genera (Seedream 5 Pro → imagen, Wan 3.0 → video) y pone él los logos y textos. Claude entrega los prompts escena por escena, en inglés, con la VO repartida por clip y la gráfica de cada una, y prepara los encuadres del render oficial sin pasarlo por IA. Se avanza escena por escena, cuando Diego lo pide — _reel Linderos, 29-09-2026_ · ✔×1
+- **R-64** · ⭐ En los carruseles el logo (lockup IFB | Más Center, o el logo de Más Center) va **sólo en la portada y en la última slide**; nunca en las slides intermedias (fichas, pasos numerados, mosaicos) — _Diego, comentario en lk-06-10-3 (30-09-2026): «quitar logo, solo lo llevan las portadas y últimas slides en el caso de carruseles»; lk-27-10-3: «eliminar logos»_ · ✔×2
+- **R-65** · ⭐ Ningún texto queda al límite de su contenedor (caja, pastilla, ventana de foto): aire interior visible, mínimo ~40 px a los lados en cajas grandes. Si no cabe, se parte en dos líneas o se baja un punto el cuerpo antes que apretar el margen — _Diego, lk-06-10-1: «que no quede el texto al límite del contenedor, dar más espacio»; lk-06-10-3: «textos que no queden al límite del recuadro», 30-09-2026_ · ✔×2
+- **R-66** · Y al revés: la caja se ajusta a su contenido, sin espacio sobrante (ni ancho ni alto de más) — _Diego, lk-19-10-1: «demasiado espacio sobrante en el contenedor», 30-09-2026_ · ✔×1
+- **R-67** · Pasos numerados (01–04): número grande y bloque título + texto **alineados por la altura de mayúscula** y pegados al número (~34 px), no flotando lejos — _Diego, lk-10-10-2: «que queden más alineados los bloques de texto, y juntarlos un poco más», 30-09-2026_ · ✔×1
+- **R-68** · Si Diego manda renders oficiales del proyecto, reemplazan cualquier imagen generada o bajada de la web en toda la pieza (portada, ficha y cierre). Renders 16:9 con mucho cielo se recortan al edificio antes de meterlos en ventanas verticales; los tótems o letreros que quedan pegados al borde se sacan del encuadre — _Diego, 06-10: «para el carrusel del 06-10 utiliza las imágenes adjuntas» (4 renders de Linderos: pasillo, frontal, Aramco, tótem), 30-09-2026_ · ✔×1
 - **R-44** · Display de temporada (Eds Market, Royal Brand, Gloria Hallelujah, Garamond) sólo puntual, nunca como voz de la marca — _editables mar–sept 2026_ · ✔×1
 
 ## 5. Excepciones
@@ -160,6 +165,8 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **X-20** · Una imagen a la altura de los ojos de la fachada con locales rotulados (Seedream + Wan): las letras de las tiendas se deforman — _Diego, C1 del reel Linderos, 29-09-2026, 1 ronda_
 - **X-21** · Inventar con IA el terreno del proyecto (paño en obra junto a la Ruta 5) sin su ubicación real: Diego lo cambió por otra toma de dron de la carretera — _gancho del reel Linderos, 29-09-2026, 1 ronda_
 - **X-22** · Pedirle a Wan que se aleje de una imagen completa: tiene que inventar lo que queda fuera del cuadro (quedó planteado en 2F y se corrigió antes de generar) — _reel Linderos, 29-09-2026_
+- **X-23** · Slide de cierre redundante en LinkedIn (lk-19-10-4 «Crecer no es solo sumar activos / 49 activos», repetía la portada): Diego la eliminó — _comentario «eliminar», 30-09-2026_. El carrusel quedó en 3 y la 3 lleva el lockup (R-64)
+- **X-24** · Logo repetido en slides intermedias (pasos 01–04, ficha, mosaico) — _Diego, 30-09-2026, 1 ronda (R-64)_
 - **X-10** · Chevron como flecha flotando sobre la foto: «se veía barato» — _presentación comercial, 28-08-2026_
 
 ## 8. Preguntas abiertas
@@ -188,6 +195,15 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 — Diego Aguilar (con Claude) · ronda 2 de LinkedIn IFB (7 comentarios de Diego en Drive)
+- Comentarios leídos con `drive-comentarios.py --nombre lk-`, aplicados, respondidos y **resueltos** en Drive; los 17 archivos se reemplazaron en sitio (md5 OK) y lk-19-10-4 fue a la papelera.
+- nuevas **R-64** (logo sólo en portada y última slide), **R-65** (texto nunca al límite del contenedor), **R-66** (caja ajustada al contenido), **R-67** (pasos numerados alineados y juntos), **R-68** (renders oficiales de Diego mandan) · nuevos **X-23**, **X-24**.
+- ✔ **R-38** (renders reales del proyecto) · **R-62** (línea IFB: la aprobó en todo lo demás, sólo pidió ajustes de espaciado).
+- Lo que NO comentó (se da por bien encaminado): paleta y velo IFB, gráfico de barras, mosaicos con etiquetas celestes, mapa esquemático de Linderos.
+- Técnico: Drive devolvió 500 en `files.list` a mitad de la subida; el script quedó con reintentos. Conflicto de cosechas con la sesión del reel de Linderos: ambas usaron R-59/R-60 → las de LinkedIn pasaron a **R-62/R-63**.
+- **Candidatas a regla del estudio (para Valeria):** R-65 («ningún texto al límite de su contenedor») y R-64 («logo sólo en portada y cierre de un carrusel») son de criterio general de diseño.
+
 
 ### 2026-09-29 (3ª parte) — Diego Aguilar (con Claude) · reel horizontal Linderos: prompts Seedream 5 Pro + Wan 3.0
 - nuevas **R-59** (Wan con la cámara fija sobre imágenes con letras; movimiento en edición), **R-60** (el letrero de Unimarc se queda) y **R-61** (el reparto de trabajo en los reels con IA).

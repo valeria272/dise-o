@@ -1,3 +1,17 @@
+## 2026-09-30 — Diego Aguilar (con Claude) · LinkedIn IFB ronda 2: 7 comentarios de Diego resueltos
+
+**Qué se hizo:** Diego dejó 7 comentarios en los PNG de LinkedIn y mandó 4 renders oficiales de Linderos (pasillo,
+frontal, Aramco, tótem) → `raw/mascenter/octubre-2026/renders/linderos-oficial/`. Cambios: 06-10 con sus renders en portada,
+ficha y cierre, texto de la portada con aire, ficha sin logo y con márgenes · 10-10 pasos 01–04 alineados y sin logo ·
+19-10 portada con la caja ajustada y **slide 4 eliminada** (el carrusel queda en 3; la 3 lleva el lockup) · 27-10-3 sin
+logos. Regla nueva: el logo va sólo en la portada y la última slide (R-64).
+**Dónde quedó:** 17 PNG reemplazados en sitio en «10. OCTUBRE» (md5 OK), lk-19-10-4 en la papelera, los 7 comentarios
+respondidos y resueltos en Drive. Constructor `sistema/linkedin_octubre.py`. QA: 0 bloqueantes.
+**Qué sigue:** la ronda de Diego sobre las stories; lo de LinkedIn queda a la espera del OK final.
+**Abierto:** siguen los datos por validar del 29-09 (2025 vs 2028, URL del terreno, «MAY. 2027», dirección de Linderos).
+En la ficha de Linderos aparece la bencinera Aramco de los renders: la otra sesión (reel) preguntó si se muestra; aquí se
+usó porque Diego mandó ese render para el 06-10.
+
 ## 2026-09-29 (3ª parte) — Diego Aguilar (con Claude) · reel horizontal Linderos: prompts de IA escena por escena
 
 **Qué se hizo:** análisis del brief `BRIEF_MasCenter_Linderos_v2.xlsx` y prompts escena por escena. Diego genera las imágenes en **Seedream 5 Pro** y los videos en **Wan 3.0**, y pone en edición todos los logos y textos. Quedó así: gancho de 2×4 s (la Ruta 5 en diagonal + el nodo Hermanos Carrera en cenital; Diego pidió sacar el terreno inventado), escena 1 de 3×5 s (plaza de Buin → barrio → comercio), escena 2 de 28 s en 6 clips (render oficial + supermercado, farmacia y galería genéricos) y cierre de 3×5 s al atardecer. En C1 la vista a la altura de los ojos deformaba los letreros, así que se subió a aérea de 30 m y se mantuvo el letrero de Unimarc. En 2A y 2B Wan deformaba los textos del render, así que la cámara queda fija en Wan y el movimiento se hace en edición.

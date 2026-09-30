@@ -179,6 +179,30 @@ def parte_oferta(titular):
             else [t])
 
 
+def lineas_a_plomo(im, x, y_pen, lineas, ft, paso, color=None, track=0.0, ancla="izq"):
+    """Escribe varias líneas con el interlineado PAREJO.
+
+    ⚠️ Las funciones de pintado pegan la mancha, no la caja tipográfica, así que
+    repartir con un paso fijo sobre el tope de la mancha rompe el interlineado:
+    «MORANDÉ EL» lleva la tilde de la É y su tinta empieza 26 px más arriba que
+    «CABERNET DE», y la cola de la Q de «RANQUIL 2021» la estira 4 px por abajo.
+    El bloque se veía desalineado sin que ninguna línea estuviera mal.
+
+    Acá se reparte sobre el ORIGEN DE ESCRITURA —la línea base— y se compensa,
+    línea a línea, cuánto se despega su mancha de ese origen.
+    """
+    y = y_pen
+    for linea in lineas:
+        b = mide(linea, ft, track)
+        destino = u(y) + b[1]
+        if color is None:
+            texto_oro(im, (x, destino), linea, ft, track, ancla=ancla)
+        else:
+            texto_plano(im, (x, destino), linea, ft, color, track, ancla=ancla)
+        y += paso
+    return y
+
+
 def _alto_lockup(ancho):
     lg = Image.open(LOCKUP)
     return ancho * lg.height / lg.width
@@ -229,14 +253,26 @@ def vertical(p):
     for l in lin_of:
         ft_t = min(ft_t, fuente("xbold", _cuerpo_para_ancho("xbold", l, u(ancho_of), -0.02)),
                    key=lambda f: f.size)
-    paso_of = ft_t.size / ESC * 0.99
+    # El paso se fija por ALTURA DE MAYÚSCULA, no por cuerpo: el cuerpo arrastra
+    # ascendentes y descendentes que acá no existen —son cifras y versales— y
+    # dejaba las dos líneas demasiado separadas.
+    paso_of = CAP_OFERTA * 1.12
     ft_b = fuente("light", _cuerpo_para_cap("light", u(CAP_BAJADA)))
     ft_b = min(ft_b, fuente("light", _cuerpo_para_ancho("light", p["bajada"],
                                                         u(ancho_of + 60), 0.055)),
                key=lambda f: f.size)
     cb = mide(p["bajada"], ft_b, 0.055)
-    alto_oferta = (len(lin_of) - 1) * paso_of \
-        + (mide(lin_of[-1], ft_t, -0.02)[3] - mide(lin_of[-1], ft_t, -0.02)[1]) / ESC
+    # Todo el bloque del descuento se mide en el espacio del ORIGEN DE
+    # ESCRITURA, que es donde se dibuja. Medir la mancha y dibujar por línea
+    # base son dos rejillas distintas: mezclarlas hacía que la bajada se
+    # montara encima del OFF.
+    b_prim = mide(lin_of[0], ft_t, -0.02)
+    b_ult = mide(lin_of[-1], ft_t, -0.02)
+    # La bajada arranca donde TERMINA LA MANCHA de la última línea, más aire. Si
+    # se reserva un hueco a ojo, «ANTES QUE NADIE» se monta sobre el OFF.
+    salto_bajada = ((len(lin_of) - 1) * paso_of
+                    + (b_ult[3] - cb[1]) / ESC + CAP_BAJADA * 0.75)
+    alto_desc = salto_bajada + (cb[3] - b_prim[1]) / ESC
 
     # Con DOS botellas el texto no cabe al costado: el par ocupa medio lienzo y
     # se monta encima. Esas piezas conservan el apilado centrado —oferta, nombre
@@ -252,7 +288,6 @@ def vertical(p):
 
     y_gancho = 452
     y_lockup = y_gancho + alto_g + (16 if ft_g else 0)
-    alto_desc = alto_oferta + 20 + (cb[3] - cb[1]) / ESC
     if dobles:
         # centrada: descuento, nombre con precio y las dos botellas, apilados
         y_oferta = y_lockup + _alto_lockup(ANCHO_LOCKUP) + 44
@@ -283,19 +318,21 @@ def vertical(p):
         texto_oro(im, (CX, u(y_gancho)), p["gancho"], ft_g, 0.075, ancla="centro")
     lockup(im, CX, y_lockup, ancho=ANCHO_LOCKUP)
 
-    XC = x_de_la_C(CX, ANCHO_LOCKUP)
+    # Toda la columna izquierda cierra en la MISMA vertical —descuento, bajada,
+    # nombre y precios—, contra la botella. Coni: «que quede alineado a nombre
+    # del vino y los precios, para que se vea mucho más armónico».
     if dobles:
         x_desc, ancla_desc = CX, "centro"
     else:
-        x_desc, ancla_desc = XC, "izq"
+        x_desc, ancla_desc = u(COL_TEXTO), "der"
         columna_botella(im, p, cx=u(CX_BOTELLA), base_y=y_banda + alto_banda,
                         alto=alto_bot, sellos_a="der")
-    yo = y_oferta
-    for l in lin_of:
-        texto_oro(im, (x_desc, u(yo)), l, ft_t, -0.02, ancla=ancla_desc)
-        yo += paso_of
-    yo = y_oferta + alto_oferta + 20
-    texto_plano(im, (x_desc, u(yo)), p["bajada"], ft_b, BLANCO, 0.055, ancla=ancla_desc)
+    # El pen se retrasa lo que la mancha se despega de él, para que el bloque
+    # ARRANQUE visualmente en y_oferta.
+    pen = y_oferta - b_prim[1] / ESC
+    lineas_a_plomo(im, x_desc, pen, lin_of, ft_t, paso_of, track=-0.02, ancla=ancla_desc)
+    texto_plano(im, (x_desc, u(pen + salto_bajada) + cb[1]),
+                p["bajada"], ft_b, BLANCO, 0.055, ancla=ancla_desc)
 
     if dobles:
         x_texto, ancla, yy = CX, "centro", y_banda
@@ -303,9 +340,7 @@ def vertical(p):
         x_texto, ancla = u(COL_TEXTO), "der"
         yy = y_oferta + alto_desc + 58
 
-    for linea in lineas:
-        texto_plano(im, (x_texto, u(yy)), linea, ft_n, BLANCO, 0.01, ancla=ancla)
-        yy += paso_n
+    yy = lineas_a_plomo(im, x_texto, yy, lineas, ft_n, paso_n, BLANCO, 0.01, ancla)
     yy += CAP_NOMBRE * 0.9
     texto_oro(im, (x_texto, u(yy)), p["oferta"], ft_o, ancla=ancla)
     yy += (co[3] - co[1]) / ESC + CAP_PRECIO * 0.34

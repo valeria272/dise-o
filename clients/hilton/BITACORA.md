@@ -5,6 +5,13 @@
 **Qué sigue:** releer la grilla BW OCT por si pasan a OK el ST 25-10 To Go animada, almuerzos 07-10 y los spooky; diseñarlos con la receta del carrusel To Go.
 **Abierto:** foto real del sándwich jamón queso en triángulo y del brownie (hoy generados) → **Eli/cliente** · la celda dice «REF - REF 2 - REF 3» pero sólo trae un enlace → **contenido** · R-62 (no nombrar platos hasta la carta nueva) vs brief que sí los nombra → se dejaron, **Eli** no objetó.
 
+## 2026-09-30 (tarde, 2) — Eli (Windows) · BETWEEN CARTA R6: editables verificados contra los PDF entregados
+
+**Qué se hizo:** Eli pidió confirmar que los .ai estuvieran al día con los PDF. Verificador nuevo sobre los .ai REABIERTOS desde F: (texto carácter por carácter + imagen ±2 px): encontró textos centrados/derecha corridos medio ancho (Illustrator mueve el ancla al aplicar la justificación) y la nota «Croissant blanco…» con otro corte. Se corrigió el jsx (ancla al eje medido, notas con saltos fijos) y se rearmaron las 21 hojas.
+**Dónde quedó:** A · B · D **TODO COINCIDE** con el PDF entregado (texto idéntico; imagen 0,02–0,18 %). Re-copiados a F: `OPCION X/BW-CARTA-BETWEEN-OPCION-X-R6.ai` y a Drive «CARTA BETWEEN · R6 30-09 · MUESTRA › 03 · EDITABLES», md5 ✓. Informe en `out/hilton/between/carta-oficial/r6/verificacion/informe.txt`.
+**Qué sigue:** Eli elige la opción → PDF de imprenta desde ese .ai. Tras cualquier cambio: rearmar TODAS las hojas (rehacer la 1 crea el .ai de nuevo) y correr `python scripts/between-carta-r6-verificar.py`.
+**Abierto:** opción elegida → **Eli** · «Elija»/«Elige» → **Eli / cliente**.
+
 ## 2026-09-30 (tarde) — Eli (Windows) · BETWEEN CARTA R6: A · B nueva · D con reglas de impreso, .ai CMYK y muestra en Drive
 
 **Qué se hizo:** Eli eligió **A y D** y una **B nueva = la A al revés** (beige con papel, texto café). R6 (`scripts/between-carta-oficial-r6.py`, parte de la R5) con paso tipográfico medido en Chrome: descripción 4 mm antes del precio con borde parejo por grupo, sin huérfanas, sin «y/o/e/a/u» al final de línea, columnas de precio alineadas a la izquierda con su rótulo, una sección por hoja, rótulos de la D en una línea y a lo ancho, portada D al mismo margen (30 mm), ortografía contra el Word del cliente (chef, hotcake, cepas en minúscula, 100 g, Affogato, «rellenas»). Controles automáticos en cada vuelta. **.ai** armados hoja por hoja (≈17 s/hoja tras arreglar el recoloreado de trazos compuestos y el centrado de textos de punto). **Mockup**: escena de Magnific (Nano Banana Pro) con hojas en blanco, cenital, 1,74 ≈ 17:30, y la carta exacta calzada encima (`between-carta-r6-funda.py`).

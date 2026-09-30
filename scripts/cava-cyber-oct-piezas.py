@@ -94,7 +94,8 @@ PIEZAS = [
     # Dos vinos: maqueta centrada. El par va arriba y debajo se apila la oferta,
     # el nombre en dos líneas, el precio, el cupón y la alarma.
     dict(n=3, escena="vip", maqueta="centrada", tope=790,
-         bot=(0.60, 0.95, 0.31, 0.71), destino=(None, 700, 1520),
+         bot=(0.60, 0.95, 0.31, 0.71), destino=(None, 700, 1520), extender=True,
+         oferta_una_linea=True, precio_x=1.30,
          gancho="ÚLTIMO DÍA VIP",
          titular="45% OFF", bajada=None, cupon="CYBERVIP",
          alarma="SE DESACTIVA MAÑANA",
@@ -299,16 +300,25 @@ def vertical_centrada(p):
 
     ft_g = fuente("light", _cuerpo_para_ancho("light", p["gancho"], u(ANCHO_LOCKUP), 0.075))
     cg = mide(p["gancho"], ft_g, 0.075)
-    lin_of = parte_oferta(p["titular"])
+    lin_of = [p["titular"]] if p.get("oferta_una_linea") else parte_oferta(p["titular"])
     ft_t = fuente("xbold", _cuerpo_para_cap("xbold", u(CAP_OFERTA)))
+    ft_t = min(ft_t, fuente("xbold", _cuerpo_para_ancho("xbold", lin_of[0], u(880), -0.02)),
+               key=lambda f: f.size)
     paso_of = CAP_OFERTA * 1.12
     b0 = mide(lin_of[0], ft_t, -0.02)
     alto_of = (len(lin_of) - 1) * paso_of + (b0[3] - b0[1]) / ESC
 
-    lineas, ft_n = _nombre_en_lineas(p, CAP_NOMBRE, 900, maximo=2)
+    # El corte del nombre viene declarado en la pieza y se respeta tal cual:
+    # Coni lo quiere en dos líneas concretas, no en las que salgan.
+    lineas = list(p["producto"])
+    ft_n = fuente("bold", _cuerpo_para_cap("bold", u(CAP_NOMBRE)))
+    for l in lineas:
+        ft_n = min(ft_n, fuente("bold", _cuerpo_para_ancho("bold", l, u(900), 0.01)),
+                   key=lambda f: f.size)
     paso_n = ft_n.size / ESC * 1.40
-    ft_o = fuente("xbold", _cuerpo_para_cap("xbold", u(CAP_PRECIO)))
-    ft_v = fuente("light", _cuerpo_para_cap("light", u(CAP_PRECIO * 0.56)))
+    cap_pre = CAP_PRECIO * p.get("precio_x", 1.0)
+    ft_o = fuente("xbold", _cuerpo_para_cap("xbold", u(cap_pre)))
+    ft_v = fuente("light", _cuerpo_para_cap("light", u(cap_pre * 0.60)))
     co, cv = mide(p["oferta"], ft_o), mide(p["normal"], ft_v)
 
     Y_BOT_TOP, Y_BOT_BASE = p["destino"][1], p["destino"][2]
@@ -316,17 +326,18 @@ def vertical_centrada(p):
     y_of = y
     y_nom = y_of + alto_of + 52
     y_pre = y_nom + len(lineas) * paso_n + 34
-    alto_pre = (co[3] - co[1]) / ESC + CAP_PRECIO * 0.34 + (cv[3] - cv[1]) / ESC
+    alto_pre = (co[3] - co[1]) / ESC + cap_pre * 0.34 + (cv[3] - cv[1]) / ESC
     y_cup = y_pre + alto_pre + 66
     alto_cup = cupon_alto(620)
-    ft_al = fuente("bold", _cuerpo_para_ancho("bold", p["alarma"], u(560), 0.06))
+    ft_al = fuente("bold", _cuerpo_para_ancho("bold", p["alarma"], u(700), 0.06))
     ca = mide(p["alarma"], ft_al, 0.06)
     y_al = y_cup + alto_cup + 44
     y_legal = y_al + (ca[3] - ca[1]) / ESC + 56
     ALTO = y_legal + CAP_LEGAL * 1.55 + MARGEN_PIE
 
     base, k_img, x_img, y_img = escena_montada(p["n"], "mail", ALTO, bot=p["bot"],
-                                               destino=p["destino"])
+                                               destino=p["destino"],
+                                               extender=p.get("extender", False))
     im = viñeta(base, 0.22)
     marco(im)
     advertencia(im)
@@ -339,7 +350,7 @@ def vertical_centrada(p):
     lineas_a_plomo(im, CX, pen, lin_of, ft_t, paso_of, track=-0.02, ancla="centro")
     lineas_a_plomo(im, CX, y_nom, lineas, ft_n, paso_n, BLANCO, 0.01, "centro")
     texto_oro(im, (CX, u(y_pre)), p["oferta"], ft_o, ancla="centro")
-    bv = texto_plano(im, (CX, u(y_pre + (co[3] - co[1]) / ESC + CAP_PRECIO * 0.34)),
+    bv = texto_plano(im, (CX, u(y_pre + (co[3] - co[1]) / ESC + cap_pre * 0.34)),
                      p["normal"], ft_v, GRIS, ancla="centro")
     ImageDraw.Draw(im).line([bv[0] - u(5), (bv[1] + bv[3]) / 2,
                              bv[2] + u(5), (bv[1] + bv[3]) / 2],

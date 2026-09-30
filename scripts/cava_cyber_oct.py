@@ -232,7 +232,7 @@ ESCENAS = CAVA / "cyber-oct/escenas"
 
 
 def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5, zoom=1.0,
-                   alto_img=1.0, baja=0.0, bot=None, destino=None):
+                   alto_img=1.0, baja=0.0, bot=None, destino=None, extender=False):
     """El fondo YA trae la botella puesta sobre la plataforma del KV.
 
     Estos montajes se generaron con Magnific en el space de Coni, con su propio
@@ -281,14 +281,27 @@ def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5, zoom=1.
         # El montaje tiene que cubrir el ancho sí o sí: si la escala que pide la
         # botella lo deja más angosto que la pieza, se agranda y la botella
         # crece con él. Antes quedaban franjas negras a los lados.
-        kk = max(kk, W / im.width)
+        if not extender:
+            kk = max(kk, W / im.width)
         esc = (int(round(im.width * kk)), int(round(im.height * kk)))
         img = im.resize(esc, Image.LANCZOS)
         dx = int(round(f_x1 * esc[0] - x_der))
-        dx = max(0, min(dx, esc[0] - W))       # el montaje siempre cubre el ancho
+        if not extender:
+            dx = max(0, min(dx, esc[0] - W))   # el montaje siempre cubre el ancho
         dy = int(round(f_y0 * esc[1] - y_top))
         lienzo = Image.new("RGB", (W, H))
         arriba = max(0, -dy)
+        if extender:
+            # Se ensancha el montaje con su propio borde —cortina lisa— para
+            # poder CENTRAR el par de botellas aunque la imagen no dé de ancho.
+            # Coni: «no importa si la imagen no da, extiéndela».
+            izq, der = -dx, esc[0] - dx
+            if izq > 0:
+                lienzo.paste(img.crop((0, 0, 3, esc[1])).resize((izq, esc[1]),
+                             Image.LANCZOS), (0, arriba))
+            if der < W:
+                lienzo.paste(img.crop((esc[0] - 3, 0, esc[0], esc[1]))
+                             .resize((W - der, esc[1]), Image.LANCZOS), (der, arriba))
         visible = img.crop((0, max(0, dy), esc[0], esc[1]))
         lienzo.paste(visible, (-dx, arriba))
 
@@ -305,8 +318,15 @@ def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5, zoom=1.
             falta_ab = H - fondo_y
             # Abajo se ESTIRA una franja fina del mármol, no se espeja una
             # ancha: espejada aparecían las botellas repetidas como fantasmas.
-            pie = visible.crop((0, visible.height - 24, esc[0], visible.height))
-            lienzo.paste(pie.resize((esc[0], falta_ab), Image.LANCZOS), (-dx, fondo_y))
+            # El pie se apaga en un degradado hacia el burdeo del fondo, que es
+            # lo que pidió Coni y además evita repetir mármol estirado.
+            tira = np.asarray(visible.crop((0, visible.height - 24, esc[0],
+                                            visible.height)).resize((W, falta_ab),
+                                            Image.LANCZOS)).astype(float)
+            burdeo = np.array([46, 14, 22], dtype=float)
+            t = np.linspace(0, 1, falta_ab)[:, None, None] ** 0.9
+            lienzo.paste(Image.fromarray(((1 - t) * tira + t * burdeo)
+                                         .clip(0, 255).astype(np.uint8)), (0, fondo_y))
         return lienzo, kk, dx, arriba
 
     Hi = int(round(H * alto_img))

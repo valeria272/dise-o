@@ -163,6 +163,7 @@ def cuadrada(p):
 CAP_OFERTA, CAP_BAJADA = 126, 31
 CAP_NOMBRE, CAP_PRECIO = 32, 48
 CAP_LEGAL = 17               # Coni pidió agrandar la letra chica
+TOPE_TRACK = 0.22            # cuánto se puede abrir una línea antes de desarmarse
 ALTO_BOTELLA = 1130          # la botella manda: es la protagonista de la pieza
 COL_TEXTO = 548              # dónde cierra por la derecha la columna de texto
 CX_BOTELLA = 782
@@ -196,7 +197,8 @@ def parte_oferta(titular):
             else [t])
 
 
-def lineas_a_plomo(im, x, y_pen, lineas, ft, paso, color=None, track=0.0, ancla="izq"):
+def lineas_a_plomo(im, x, y_pen, lineas, ft, paso, color=None, track=0.0, ancla="izq",
+                   tracks=None):
     """Escribe varias líneas con el interlineado PAREJO.
 
     ⚠️ Las funciones de pintado pegan la mancha, no la caja tipográfica, así que
@@ -209,13 +211,14 @@ def lineas_a_plomo(im, x, y_pen, lineas, ft, paso, color=None, track=0.0, ancla=
     línea a línea, cuánto se despega su mancha de ese origen.
     """
     y = y_pen
-    for linea in lineas:
-        b = mide(linea, ft, track)
+    for i, linea in enumerate(lineas):
+        tr = tracks[i] if tracks else track
+        b = mide(linea, ft, tr)
         destino = u(y) + b[1]
         if color is None:
-            texto_oro(im, (x, destino), linea, ft, track, ancla=ancla)
+            texto_oro(im, (x, destino), linea, ft, tr, ancla=ancla)
         else:
-            texto_plano(im, (x, destino), linea, ft, color, track, ancla=ancla)
+            texto_plano(im, (x, destino), linea, ft, color, tr, ancla=ancla)
         y += paso
     return y
 
@@ -274,17 +277,41 @@ def vertical(p):
     # ascendentes y descendentes que acá no existen —son cifras y versales— y
     # dejaba las dos líneas demasiado separadas.
     paso_of = CAP_OFERTA * 1.12
-    ft_b = fuente("light", _cuerpo_para_cap("light", u(CAP_BAJADA)))
-    ft_b = min(ft_b, fuente("light", _cuerpo_para_ancho("light", p["bajada"],
-                                                        u(ancho_of + 60), 0.055)),
-               key=lambda f: f.size)
+    # LA CAJA INVISIBLE. Coni: «que el ancho de antes que nadie quede alineado
+    # desde el 4 hasta el %, lo mismo con la palabra OFF; se debe formar como
+    # una caja visualmente para que no se vea tan desordenado».
+    #
+    # El ancho lo pone la primera línea —la cifra— y las demás se ajustan a él:
+    # las que están en el mismo cuerpo se abren con TRACKING (OFF pasa de 325 a
+    # 382 ud repartiendo la diferencia entre sus dos huecos) y la frase, que es
+    # de otro cuerpo, se ajusta cambiando el CUERPO. Estirar los glifos no es
+    # opción: deformaría la tipografía.
+    b0 = mide(lin_of[0], ft_t, -0.02)
+    W_CAJA = b0[2] - b0[0]
+    tracks_of, sangria_of = [-0.02], [0.0]
+    for l in lin_of[1:]:
+        c = mide(l, ft_t, 0.0)
+        huecos = max(1, len(l) - 1)
+        tr = (W_CAJA - (c[2] - c[0])) / (huecos * ft_t.size)
+        if tr > TOPE_TRACK:
+            # No se puede estirar tanto sin que la palabra se desarme: «HASTA
+            # 50%» es tres veces más ancha que «OFF» y el tracking necesario
+            # dejaba las letras sueltas. Esa línea se deja con su espaciado
+            # normal y se CENTRA dentro de la caja.
+            tracks_of.append(-0.02)
+            c2 = mide(l, ft_t, -0.02)
+            sangria_of.append((W_CAJA - (c2[2] - c2[0])) / 2)
+        else:
+            tracks_of.append(tr)
+            sangria_of.append(0.0)
+    ft_b = fuente("light", _cuerpo_para_ancho("light", p["bajada"], W_CAJA, 0.055))
     cb = mide(p["bajada"], ft_b, 0.055)
     # Todo el bloque del descuento se mide en el espacio del ORIGEN DE
     # ESCRITURA, que es donde se dibuja. Medir la mancha y dibujar por línea
     # base son dos rejillas distintas: mezclarlas hacía que la bajada se
     # montara encima del OFF.
-    b_prim = mide(lin_of[0], ft_t, -0.02)
-    b_ult = mide(lin_of[-1], ft_t, -0.02)
+    b_prim = b0
+    b_ult = mide(lin_of[-1], ft_t, tracks_of[-1])
     # La bajada arranca donde TERMINA LA MANCHA de la última línea, más aire. Si
     # se reserva un hueco a ojo, «ANTES QUE NADIE» se monta sobre el OFF.
     salto_bajada = ((len(lin_of) - 1) * paso_of
@@ -294,7 +321,7 @@ def vertical(p):
     # Con DOS botellas el texto no cabe al costado: el par ocupa medio lienzo y
     # se monta encima. Esas piezas conservan el apilado centrado —oferta, nombre
     # con su precio, botellas—, que respeta igual el orden que pidió Coni.
-    ancho_texto = (900 if dobles else 460)
+    ancho_texto = (900 if dobles else W_CAJA / ESC)
     lineas, ft_n = _nombre_en_lineas(p, CAP_NOMBRE, ancho_texto)
     paso_n = ft_n.size / ESC * 1.34
     ft_o = fuente("xbold", _cuerpo_para_cap("xbold", u(CAP_PRECIO)))
@@ -355,14 +382,21 @@ def vertical(p):
     # El pen se retrasa lo que la mancha se despega de él, para que el bloque
     # ARRANQUE visualmente en y_oferta.
     pen = y_oferta - b_prim[1] / ESC
-    lineas_a_plomo(im, x_desc, pen, lin_of, ft_t, paso_of, track=-0.02, ancla=ancla_desc)
+    for i, l in enumerate(lin_of):
+        tr = tracks_of[i]
+        b = mide(l, ft_t, tr)
+        x = x_desc + (sangria_of[i] if ancla_desc == "izq" else 0)
+        texto_oro(im, (x, u(pen + i * paso_of) + b[1]), l, ft_t, tr, ancla=ancla_desc)
     texto_plano(im, (x_desc, u(pen + salto_bajada) + cb[1]),
                 p["bajada"], ft_b, BLANCO, 0.055, ancla=ancla_desc)
 
     if dobles:
         x_texto, ancla, yy = CX, "centro", y_banda
     else:
-        x_texto, ancla = x_de_la_C(CX, ANCHO_LOCKUP), "izq"
+        # Cierran contra la «E» de ANTES QUE NADIE, que es el canto derecho de
+        # la caja. Coni: «no me gusta cómo queda la justificación del nombre del
+        # vino más los precios hacia la izquierda, justifícalo a la derecha».
+        x_texto, ancla = x_de_la_C(CX, ANCHO_LOCKUP) + W_CAJA, "der"
         yy = y_oferta + alto_desc + 58
 
     yy = lineas_a_plomo(im, x_texto, yy, lineas, ft_n, paso_n, BLANCO, 0.01, ancla)

@@ -1,3 +1,10 @@
+## 2026-09-30 (4ª parte) — Diego Aguilar (con Claude) · cierres de los carruseles de IG como portada
+
+**Qué se hizo:** la última slide de 01, 04, 08 y 20-10 dejó la plantilla de interiores y repite su portada con foto de cierre: 01-10 POV con café en Las Flores al atardecer (titular y bajada que dio Diego); 04-10 perro y gato al atardecer, caja y pastilla mostaza y Localito celebrando; 08-10 Localito vampiro con balde en Chamisero II al anochecer; 20-10 la ilustración con strip center a sangre, con caja y pastilla naranjas.
+**Dónde quedó:** 4 PNG reemplazados en sitio en «10. OCTUBRE» (md5 OK). Constructor nuevo `clients/mascenter/sistema/cierres_octubre.py`; fotos en cada `fotos/`.
+**Qué sigue:** OK de Diego. LinkedIn no se tocó (sus cierres ya siguen la portada); preguntar si aplica igual.
+**Abierto:** en el 01-10 la pastilla queda sobre la mano (el vaso se ve entero): Seedream no achicó el vaso en tres intentos.
+
 ## 2026-09-30 (3ª parte) — Diego Aguilar (con Claude) · 6 comentarios de Diego en IG y LinkedIn resueltos
 
 **Qué se hizo:** c-04-10-6 Localito en la banda apuntando al texto · c-20-10-4 nueva ilustración con strip center, entera como afiche sobre la escena desenfocada · lk-06-10-1 dron de Linderos al atardecer (Seedream sobre sus renders) · lk-06-10-3 íconos 72 px · lk-19-10-2 etiqueta centrada · lk-27-10-4 sólo la URL destacada. En la grilla, Scarlette dejó en stand by el reel del 19-10 y la story de la corrida (ya estaban fuera).

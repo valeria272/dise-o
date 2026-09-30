@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de marca: Valeria Traverso)** · Aprueba: **Sebastián Córdova (paid) · Francesca Pavissich (landings y presentación comercial)**
-> Última cosecha: **2026-09-30** · Cosechas: **10**
+> Última cosecha: **2026-09-30** · Cosechas: **11**
 
 ## 1. Quién es el cliente
 
@@ -124,6 +124,8 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **R-72** · En un bloque de cierre con CTA se destaca **sólo el dato accionable** (la URL, el teléfono) en la caja celeste; el resto del texto va suelto sobre el azul — _Diego, lk-27-10-4: «destacar solo esta parte del bloque», 30-09-2026_ · ✔×1
 - **R-73** · Íconos de las fichas de proyecto a ~72 px en 1080 (no 46); etiquetas de gráficos centradas sobre el gráfico — _Diego, lk-06-10-3: «agrandar más los íconos»; lk-19-10-2: «dejar en el medio», 30-09-2026_ · ✔×1
 - **R-74** · Portada de proyecto en LinkedIn: toma de **dron al atardecer** del proyecto (generada sobre los renders oficiales de Diego si no hay foto) — _Diego, lk-06-10-1: «cambiar la imagen, que sea una toma dron de Linderos en el atardecer», 30-09-2026_ · ✔×1
+- **R-75** · ⭐ La **última slide de un carrusel es un CIERRE, no un interior**: repite la gramática de su portada (foto a sangre, logo arriba, titular + pastilla, sin banda ni círculo ni flecha) con una foto **hermana de la portada, al atardecer / anochecer**. Constructor: `sistema/cierres_octubre.py` — _Diego, 30-09-2026: «hay que dejar el diseño como la portada, como es el cierre, no tiene que ser como las demás slides, dejar fotografía parecida a la portada, quizás de atardecer, lo mismo para las últimas slides de los otros carruseles, que sea una imagen de cierre y que no siga con la plantilla»_ · ✔×1 (⚠️ reemplaza el cierre en banda de R-70 y el collage del 01-10)
+- **R-76** · Seedream no respeta tamaños ni posiciones pedidas para un objeto en primer plano (vaso, personajes): tras un intento, se resuelve en la diagramación (partir el titular en más líneas, correr bloques) en vez de insistir — _cierre 01-10: tres generaciones con el vaso grande al centro-derecha, 30-09-2026_ · ✔×1
 - **R-44** · Display de temporada (Eds Market, Royal Brand, Gloria Hallelujah, Garamond) sólo puntual, nunca como voz de la marca — _editables mar–sept 2026_ · ✔×1
 
 ## 5. Excepciones
@@ -176,6 +178,7 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **X-25** · Story animada con fondo lila y textos blancos con sombra: «el texto no se lee bien» — _Diego, story Kios Club, 30-09-2026, 1 ronda_
 - **X-26** · Localito en una esquina, lejos del texto, sin relación con lo que dice (c-04-10-6) — _Diego, 30-09-2026, 1 ronda_
 - **X-27** · Ilustración con los personajes cortados por la banda (c-20-10-4) — _Diego, 30-09-2026, 1 ronda_
+- **X-28** · Cierre de carrusel armado como slide interior (banda + círculo + collage o Localito en la banda) — _Diego, 30-09-2026, 1 ronda para los 4 carruseles de IG_
 - **X-10** · Chevron como flecha flotando sobre la foto: «se veía barato» — _presentación comercial, 28-08-2026_
 
 ## 8. Preguntas abiertas
@@ -205,6 +208,10 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 (4ª parte) — Diego Aguilar (con Claude) · cierres de los 4 carruseles de IG
+- nueva **R-75** (el cierre repite la portada con foto hermana al atardecer), **R-76** (Seedream no respeta tamaños en primer plano: resolver diagramando) · **X-28**. R-70 queda revisada: Localito apuntando al texto vale para interiores, el cierre ya no va en banda.
+- Texto del cierre del 01-10 confirmado por Diego: «¿Cuál sería tu primera parada?» / «Celebra el Día Internacional del Café recorriendo tus favoritos en Más Center.».
 
 ### 2026-09-30 (3ª parte) — Diego Aguilar (con Claude) · 6 comentarios nuevos en IG y LinkedIn
 - nuevas **R-70** (Localito apunta al texto), **R-71** (afiche completo cuando la ilustración no cabe), **R-72** (destacar sólo el dato accionable), **R-73** (íconos 72 px, etiquetas centradas), **R-74** (portada de proyecto = dron al atardecer) · **X-26**, **X-27**.

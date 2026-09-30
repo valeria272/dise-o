@@ -163,6 +163,7 @@ Todo está en `src/compositions/mascenter/MasCenterReel.tsx`; el contenido del m
   pulgares · saluda · vampiro-capa · vampiro-balde). La pose depende del texto de al lado. Sobre foto va inmerso, con
   piso, sombra y luz, nunca flotando. Disfraces con Seedream sobre la pose + recorte por croma.
 - **Logos de locatarios (R-54):** carpeta de Diego → web oficial → Wikimedia; aplanados sobre su fondo antes del círculo.
+- **Cierre (R-75):** la última slide repite la gramática de la portada (foto a sangre + logo + titular + pastilla, sin banda ni círculo ni flecha) con una foto hermana de la portada al atardecer; `sistema/cierres_octubre.py`.
 - **Logo en carruseles (R-64):** sólo en la portada y la última slide; nunca en fichas, pasos ni mosaicos intermedios.
 - **Espaciado (R-65/R-66/R-67):** ningún texto al límite de su caja (aire ≥ 40 px), cajas ajustadas al contenido, pasos
   numerados alineados por la altura de mayúscula y pegados al número.

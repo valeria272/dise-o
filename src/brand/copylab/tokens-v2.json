@@ -53,19 +53,19 @@
 
   "voces": {
     "titular": {
-      "familia": "Bebas Neue",
-      "archivo": "BebasNeue.ttf",
+      "familia": "Bebas Neue Pro",
+      "archivo": "BebasNeuePro-{Light,Regular,Middle,Bold}.otf",
       "declaradoEnElBoard": "Bebas Neue Pro",
-      "estado": "SUSTITUTO FIEL — la Pro no está activada en este Mac (ver §fuentesPendientes). Bebas Neue es el mismo dibujo del mismo autor (Ryoichi Tsunekawa / Dharma Type); la Pro agrega pesos y anchos, no cambia la letra.",
+      "estado": "LA DEL BOARD — activada en Adobe Fonts y bajada al proyecto el 30-09-2026. No es variable: un archivo por peso. Se cargan cuatro de los siete de Dharma (Thin · Light · Book · Regular · Middle · Bold · ExtraBold) como 300/400/500/700. Bebas Neue libre queda de fallback para quien clone el repo sin los .otf.",
       "uso": "Títulos principales. Es caja alta siempre. Una palabra manda, el resto acompaña.",
       "tracking": 0.0,
       "interlineado": 0.86
     },
     "mano": {
-      "familia": "Caveat",
-      "archivo": "Caveat-Variable.ttf",
+      "familia": "Balloon URW",
+      "archivo": "BalloonURW-{Light,Bold}.otf",
       "declaradoEnElBoard": "URW Balloon",
-      "estado": "PLACEHOLDER — URW Balloon no está activada y no tiene equivalente libre. Caveat sostiene el gesto (marcador, inclinada, informal) pero NO es la letra del board.",
+      "estado": "LA DEL BOARD — activada y bajada el 30-09-2026. Se llama 'Balloon URW' en Adobe, no 'URW Balloon'. Verificado que trae caja baja real (la Balloon original de ATF es solo mayúsculas) y los acentos del español completos: áéíóúüñ¿¡. Dos pesos, Light=400 y Bold=700. Caveat queda de fallback.",
       "uso": "Títulos secundarios y destacados. Frases cortas, stickers, anotaciones. Es la voz humana del sistema.",
       "tracking": 0.0,
       "interlineado": 1.08,
@@ -75,7 +75,7 @@
       "familia": "Inter",
       "archivo": "Inter-Variable.ttf",
       "declaradoEnElBoard": "Dharma Type (Regular / Medium)",
-      "estado": "POR CONFIRMAR — 'Dharma Type' es la FUNDICIÓN (la que dibuja Bebas Neue), no un tipo de letra. El board pide un nombre que no existe como familia; Inter sostiene el rol hasta que Valeria diga cuál es.",
+      "estado": "POR CONFIRMAR — 'Dharma Type' es la FUNDICIÓN (la que dibuja Bebas Neue Pro, ya activada), no un tipo de letra. El board pide un nombre que no existe como familia; Inter sostiene el rol hasta que Valeria diga cuál es. Único punto abierto del sistema.",
       "uso": "Cuerpo de texto. Regular / Medium.",
       "tracking": 0.0,
       "interlineado": 1.35
@@ -92,9 +92,10 @@
   },
 
   "fuentesPendientes": [
-    "Bebas Neue Pro — no activada en Adobe CC. Verificado el 29-09-2026 leyendo las tablas de nombres de los 167 archivos de ~/Library/Application Support/Adobe/CoreSync/plugins/livetype/.w: 19 familias activas, ninguna es ésta.",
-    "URW Balloon — ídem. Sin equivalente libre; es la que más se nota que falta, porque la mano es la firma del sistema.",
-    "Dharma Type — no es una familia tipográfica. Hay que reemplazar el nombre en el board por el tipo real del cuerpo."
+    "Dharma Type (cuerpo) — no es una familia tipográfica, es la fundición. Hay que reemplazar el nombre en el board por el tipo real del cuerpo. Mientras tanto va Inter. ES EL ÚNICO PENDIENTE.",
+    "RESUELTO 30-09-2026 — Bebas Neue Pro y Balloon URW: Valeria las activó en Adobe Fonts (el caché pasó de 167 a 219 archivos) y los .otf se copiaron a public/assets/fonts/copywriters/.",
+    "OJO — Adobe sincroniza pero NO activa a nivel sistema en este Mac: la carpeta .r del caché está vacía y CoreText lista 184 familias sin una sola de Adobe (ni Acumin ni Futura PT, que llevan meses). Para Remotion da lo mismo porque el @font-face apunta al archivo, pero en Canva/Word/Photoshop las fuentes NO van a aparecer hasta que eso se arregle.",
+    "LICENCIA — los .otf de Adobe están en .gitignore. La licencia de Adobe Fonts cubre renderizar local; NO cubre subir el archivo a git ni servirlo en un sitio. Para web se necesita un kit de use.typekit.net."
   ],
 
   "estilosTipograficos": {

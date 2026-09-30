@@ -773,3 +773,9 @@ out/copylab/**/gen/
 !out/ebema/20260928_grilla_octubre_reels/
 out/ebema/20260928_grilla_octubre_reels/*
 !out/ebema/20260928_grilla_octubre_reels/ENTREGA.md
+
+# Fuentes de Adobe Fonts (Bebas Neue Pro, Balloon URW). La licencia cubre
+# renderizar local, NO redistribuir el archivo. Se bajan desde Creative Cloud;
+# sin ellas el sistema cae al fallback libre (Bebas Neue / Caveat) y no se rompe.
+public/assets/fonts/copywriters/BebasNeuePro-*.otf
+public/assets/fonts/copywriters/BalloonURW-*.otf

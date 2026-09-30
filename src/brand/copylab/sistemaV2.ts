@@ -21,14 +21,16 @@ export const FORMATOS2 = tokens.formatos;
 
 /** Las cuatro voces. Se citan por nombre, nunca por string suelto.
  *
- *  ⚠️ `titular` y `mano` NO son las del board todavía: Bebas Neue Pro y URW
- *  Balloon no están activadas en Adobe. Ver `tokens-v2.json → fuentesPendientes`.
- *  El día que se activen, se cambia el @font-face de acá y nada más. */
+ *  Desde el 30-09-2026 `titular` y `mano` SÍ son las del board: Bebas Neue Pro y
+ *  Balloon URW, sacadas de Adobe Fonts. Los archivos viven en public/ y NO van a
+ *  git (ver .gitignore): la licencia de Adobe cubre renderizar local, no
+ *  redistribuir el .otf. Si alguien clona el repo en otra máquina, las piezas
+ *  caen al sustituto libre que quedó de fallback y no se rompe nada. */
 export const VOZ2 = {
-  /** Bebas Neue — títulos principales. Caja alta siempre. */
-  titular: "'CL2 Titular', 'Bebas Neue', 'Bebas Neue Pro', Impact, sans-serif",
-  /** Caveat — destacados y notas a mano. La voz humana del sistema. */
-  mano: "'CL2 Mano', 'Caveat', 'URW Balloon', cursive",
+  /** Bebas Neue Pro — títulos principales. Caja alta siempre. */
+  titular: "'CL2 Titular', 'Bebas Neue Pro', 'Bebas Neue', Impact, sans-serif",
+  /** Balloon URW — destacados y notas a mano. La voz humana del sistema. */
+  mano: "'CL2 Mano', 'Balloon URW', 'Caveat', cursive",
   /** Inter — cuerpo de texto. */
   cuerpo: "'CL2 Cuerpo', 'Inter', Helvetica, Arial, sans-serif",
   /** IBM Plex Mono — metadata y rótulos. Nunca es héroe. */
@@ -50,14 +52,38 @@ export const asegurarFuentesV2 = () => {
   const css = `
 @font-face {
   font-family: 'CL2 Titular';
-  src: url(${staticFile(`${base}/BebasNeue.ttf`)}) format('truetype');
+  src: url(${staticFile(`${base}/BebasNeuePro-Light.otf`)}) format('opentype');
+  font-weight: 300;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CL2 Titular';
+  src: url(${staticFile(`${base}/BebasNeuePro-Regular.otf`)}) format('opentype');
+  font-weight: 400;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CL2 Titular';
+  src: url(${staticFile(`${base}/BebasNeuePro-Middle.otf`)}) format('opentype');
+  font-weight: 500;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CL2 Titular';
+  src: url(${staticFile(`${base}/BebasNeuePro-Bold.otf`)}) format('opentype');
+  font-weight: 700;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CL2 Mano';
+  src: url(${staticFile(`${base}/BalloonURW-Light.otf`)}) format('opentype');
   font-weight: 400;
   font-display: block;
 }
 @font-face {
   font-family: 'CL2 Mano';
-  src: url(${staticFile(`${base}/Caveat-Variable.ttf`)}) format('truetype');
-  font-weight: 400 700;
+  src: url(${staticFile(`${base}/BalloonURW-Bold.otf`)}) format('opentype');
+  font-weight: 700;
   font-display: block;
 }
 @font-face {

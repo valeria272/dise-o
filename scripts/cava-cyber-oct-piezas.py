@@ -81,8 +81,10 @@ PIEZAS = [
                "No acumulable con otras promociones. Hasta agotar stock."),
     # Sin bajada: el brief dice «HOUSE OF MORANDÉ A $46.630», pero el nombre del
     # vino y su precio ya van más abajo en la pieza. Coni la quitó el 30-09.
-    dict(n=2, escena="vip", fin=0.735, tope=790, borde=0.857, vert=0.10, zoom=1.16,
-         alto_img=0.80,
+    # La botella dentro de SU montaje (canto derecho, tapa, base) y dónde tiene
+    # que quedar en la pieza: entre el «week» y el cupón, cerrando en la «E».
+    dict(n=2, escena="vip", fin=0.735, tope=790,
+         bot=(0.83, 0.19, 0.69), destino=(991, 678, 2003),
          gancho="TU CUPÓN VIP SIGUE ACTIVO",
          titular="45% OFF", bajada=None, cupon="CYBERVIP",
          producto=["HOUSE OF MORANDÉ", "MEZCLAS TINTAS 2021"],
@@ -379,7 +381,8 @@ def vertical(p):
                                     vert=p.get("vert", 0.5),
                                     zoom=p.get("zoom", 1.0),
                                     alto_img=p.get("alto_img", 1.0),
-                                    baja=p.get("baja", 0.0))
+                                    baja=p.get("baja", 0.0),
+                                    bot=p.get("bot"), destino=p.get("destino"))
     im = viñeta(base, 0.22)
     marco(im)
     advertencia(im)

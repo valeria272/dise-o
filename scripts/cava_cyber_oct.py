@@ -232,7 +232,7 @@ ESCENAS = CAVA / "cyber-oct/escenas"
 
 
 def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5, zoom=1.0,
-                   alto_img=1.0, baja=0.0):
+                   alto_img=1.0, baja=0.0, bot=None, destino=None):
     """El fondo YA trae la botella puesta sobre la plataforma del KV.
 
     Estos montajes se generaron con Magnific en el space de Coni, con su propio
@@ -258,6 +258,30 @@ def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5, zoom=1.
     # logo. Ocupando menos, la botella baja y se achica; el aire que queda
     # arriba se rellena estirando la franja alta del propio montaje, que ahí es
     # cortina lisa.
+    if bot and destino:
+        # COLOCACIÓN POR CÁLCULO. `bot` dice dónde está la botella dentro del
+        # montaje —canto derecho, tapa y base, en fracciones— y `destino` dónde
+        # tiene que quedar en la pieza. De ahí salen la escala y los dos
+        # desplazamientos, sin tanteo: la botella cabe entera entre el logo y el
+        # cupón y cierra contra la «E» porque así se despejó, no porque se haya
+        # probado hasta que saliera.
+        f_x1, f_y0, f_y1 = bot
+        x_der, y_top, y_bot = (u(v) for v in destino)
+        kk = (y_bot - y_top) / ((f_y1 - f_y0) * im.height)
+        esc = (int(round(im.width * kk)), int(round(im.height * kk)))
+        img = im.resize(esc, Image.LANCZOS)
+        dx = int(round(f_x1 * esc[0] - x_der))
+        dy = int(round(f_y0 * esc[1] - y_top))
+        lienzo = Image.new("RGB", (W, H))
+        if dy > 0:
+            lienzo.paste(img.crop((0, dy, esc[0], min(esc[1], dy + H))), (-dx, 0))
+        else:
+            ceja = img.crop((0, 0, esc[0], min(esc[1], 40)))
+            ceja = ceja.transpose(Image.FLIP_TOP_BOTTOM).resize((esc[0], -dy), Image.LANCZOS)
+            lienzo.paste(ceja, (-dx, 0))
+            lienzo.paste(img.crop((0, 0, esc[0], min(esc[1], H + dy))), (-dx, -dy))
+        return lienzo, kk, dx, max(0, -dy)
+
     Hi = int(round(H * alto_img))
     k = max(W / im.width, Hi / im.height) * zoom   # cubrir, nunca deformar
     im = im.resize((int(round(im.width * k)), int(round(im.height * k))), Image.LANCZOS)

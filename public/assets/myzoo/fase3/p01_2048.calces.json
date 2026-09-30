@@ -1,0 +1,56 @@
+[
+ {
+  "pack": "MyZoo_wipes_rosa_110u.png",
+  "roi": [
+   700,
+   250,
+   1320,
+   950
+  ],
+  "tapar": [
+   [
+    530,
+    760,
+    1170,
+    1450
+   ]
+  ],
+  "cortar_izq": 0.31,
+  "luz": "suave"
+ },
+ {
+  "pack": "MyZoo_wipes_azul_110u.png",
+  "roi": [
+   530,
+   740,
+   1170,
+   1460
+  ],
+  "tapar": [
+   [
+    700,
+    250,
+    1320,
+    740
+   ],
+   [
+    370,
+    1170,
+    890,
+    1740
+   ]
+  ],
+  "cortar_izq": 0.31,
+  "luz": "suave"
+ },
+ {
+  "pack": "MyZoo_wipes_azul_15u.png",
+  "roi": [
+   370,
+   1160,
+   890,
+   1740
+  ],
+  "luz": "suave"
+ }
+]

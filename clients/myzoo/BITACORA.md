@@ -3,6 +3,32 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-30 — Paulina Bustamante (con Claude)
+
+**Qué se hizo:**
+- **Recorrido completo del Drive de la agencia** (`AGENCIA COPYWRITERS/MYZOO`, 15 carpetas) → mapa en `DRIVE-AGENCIA.md`. Se leyó por primera vez el `Manual_Identidad-MyZoo-03`: Roboto es la corporativa y hay una paleta secundaria.
+- Paulina confirmó que ella diseña MyZoo en digital (grilla básica y paid).
+- **Paid Fase 3, P01 (Pet Wipes desde $2.990):** la imagen limpia quedó **aprobada por Paulina** tras 5 rondas. Es una vista cenital cálida: golden en la alfombra, mesa de roble, los tres Pet Wipes acostados con espacio para los precios y franjas libres arriba y abajo. Se entregó en 4096 px.
+- La P07 (tip piel sensible) tiene imagen limpia, sin revisión todavía.
+
+**Dónde quedó:**
+- Aprobada en Drive `MYZOO/IMÁGENES APROBADAS FASE 3` (`173IB55J4Ne8CpLL3MJ8G7kN3U7rvsAfy`), en 4096×4096 PNG.
+- Local: `out/myzoo/paid-fase3/imagen-limpia/`.
+- Fuentes del render en `public/assets/myzoo/fase3/` (ver `LEEME.md`, se reproduce con un comando).
+- Scripts: `scripts/myzoo-f3-recortar.py` (packshots sobre blanco → PNG con transparencia) y `scripts/myzoo-f3-calzar.py`. Este último calza el packshot real sobre el envase generado con SIFT + homografía, con opciones de luz, recorte y limpieza.
+- Paulina deja material en `MYZOO/PACKSHOTS FASE 3 (para Claude)` (`1g5slxhZzSrwKk_aRg-aTmz7M49hDOcWC`).
+
+**Qué sigue:**
+1. Paulina compone texto y logo de la P01 en Illustrator y la devuelve a la carpeta PACKSHOTS FASE 3.
+2. Con esa pieza como referencia de composición, generar las imágenes limpias de las piezas 02, 08, 09 y 10, y después ver reels (03–06) y stories.
+3. Revisar la P07 con Paulina: le falta el producto y las franjas libres.
+
+**Abierto:**
+- **¿Qué envase de Pet Wipes está vigente?** Los packshots de Paulina dicen «Todo Uso»; el arte de Coni (`WIPES`, abril) y el brief dicen «Uso Frecuente». → Paulina / Coni.
+- Brief Fase 3 sin links de material y con entrega vencida (29-09). → Sebastián Córdova.
+- Magnific devolvió «Error consuming credits» de forma intermitente (Seedream y Nano Banana), aunque la cuenta tiene más de un millón de créditos. → avisar a Valeria si se repite.
+- En la P01 aprobada asoma un borde oscuro en el costado izquierdo del envase azul. Paulina la aprobó igual; queda limpiarlo si lo pide.
+
 ## 2026-09-22 — Paulina Bustamante
 
 **Qué se hizo:** El día partió con un encargo de Valeria —revisar cuatro estáticos

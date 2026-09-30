@@ -22,6 +22,8 @@
 | Informes | `1Pe86kieuv_lXlFr5Bo4fGcLWYQ06ks1L` | Métricas RRSS (sólo hasta mayo), informes mensuales, informe F1 de campaña |
 | Organización | `15fAk9kFHDVDzcA8wj4GVttsqbbiHjEp5` | Directrices DM, Gantt, auditoría |
 | Web | `1AcmdOKx8CSjG8YUfD7LmzBrkr7tINaPW` | `MyZoo-Entrega.zip`, **Logos partners** `1o7m2hbt…` (de Paulina) |
+| **IMÁGENES APROBADAS FASE 3** | `173IB55J4Ne8CpLL3MJ8G7kN3U7rvsAfy` | Imágenes limpias aprobadas por Paulina para el paid de octubre, en 4096 px (creada 30-09) |
+| PACKSHOTS FASE 3 (para Claude) | `1g5slxhZzSrwKk_aRg-aTmz7M49hDOcWC` | Donde Paulina deja packshots y piezas armadas para Claude |
 | Concursos | `1OdHknvijE--iJQADsjMu05wWzJX-q9R4` | Bases «1 año gratis» |
 | Offline · Growth | — | Vacía · sólo enero |
 

@@ -344,6 +344,21 @@ Medida sobre **23 piezas publicadas de jul–sep 2026** (casi todas de Paulina) 
 
 ---
 
+## 2c. ⭐ PAID — cómo se produce la imagen (30-09-2026, Fase 3)
+
+El paid es **otro destino** (APRENDIZAJES E-06): 1080, línea de la Fase 2. Desde la Fase 3,
+**el estudio entrega la IMAGEN LIMPIA** (sin texto, logo ni CTA) y **Paulina compone en
+Illustrator** (R-32). La receta aprobada (A-05) está en APRENDIZAJES R-33 a R-43 y el
+método técnico en R-36:
+
+1. `scripts/myzoo-f3-recortar.py`: saca del fondo blanco los packshots que entrega Paulina.
+2. `magnific.py pro --refs <packshots>`: Nano Banana Pro genera la escena **con** los envases.
+3. `scripts/myzoo-f3-calzar.py`: calza la etiqueta real encima (SIFT + homografía).
+4. Si quedan bordes fantasma: limpieza con Nano Banana sobre la imagen calzada y se calza de nuevo.
+5. Entrega: `escalar --precision 2x` + calce a 4K → Drive `IMÁGENES APROBADAS FASE 3`.
+
+⛔ Nunca se mueven ni se dibujan envases, sombras o cantos por código (X-08).
+
 ## 3. Dónde está el material
 
 | Qué | Dónde |

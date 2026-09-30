@@ -120,16 +120,30 @@ def fuente(peso, cuerpo):
 # getbbox() de PIL devuelve la caja tipográfica, no la mancha. Para cuadrar un
 # titular con el de otra persona hay que RENDERIZAR y umbralizar: fue lo que el
 # 25-09 hizo cuadrar la cursiva de Coni al píxel.
-def mide(texto, ft, track=0.0):
-    """Mancha real del texto. El lienzo se dimensiona con el CUERPO, no fijo:
-    Amalfi Coast dibuja hasta 1,8 veces el cuerpo por debajo del origen y con un
-    lienzo corto la cursiva se cortaba por abajo — por eso «week» salía partida
-    en trazos sueltos."""
+def _lienzo_texto(texto, ft, track=0.0):
+    """Lienzo con margen sobrado a los cuatro lados, y dónde quedó el origen.
+
+    Un solo sitio decide el margen. Cuando `mide()` y la máscara del pintado lo
+    calculaban por su cuenta, terminaron discrepando: la medición recortaba la
+    cola de la cursiva 53 px y devolvía una mancha más baja que la que después
+    se pintaba.
+    """
     m = int(ft.size * 2.5) + 200
-    im = Image.new("L", (int(_ancho(texto, ft, track)) + int(ft.size * 3) + 400,
-                         int(ft.size * 4.0) + 400), 0)
-    dr = ImageDraw.Draw(im)
-    _escribe(dr, (m, m), texto, ft, 255, track)
+    w = int(_ancho(texto, ft, track)) + m * 2
+    h = int(ft.size * 4.5) + m * 2
+    im = Image.new("L", (w, h), 0)
+    _escribe(ImageDraw.Draw(im), (m, m), texto, ft, 255, track)
+    return im, m
+
+
+def mide(texto, ft, track=0.0):
+    """Mancha real del texto, en coordenadas relativas al origen de escritura.
+
+    Puede devolver x0 o y0 NEGATIVOS: Amalfi Coast entra con salida negativa y
+    su mancha empieza a la izquierda del origen. Quien pinte tiene que contar
+    con eso o le corta el arranque a la letra.
+    """
+    im, m = _lienzo_texto(texto, ft, track)
     b = im.getbbox()
     return (0, 0, 0, 0) if b is None else (b[0] - m, b[1] - m, b[2] - m, b[3] - m)
 
@@ -165,16 +179,25 @@ def rampa_oro(w, h):
     return Image.fromarray(np.tile(col.astype(np.uint8), (max(1, int(h)), 1, 1)))
 
 
+def _mascara(texto, ft, track=0.0):
+    """Máscara del texto recortada a su mancha, sin cortarlo por ningún lado.
+
+    ⚠️ Se dibuja con MARGEN a los cuatro lados y recién después se recorta. La
+    «w» de Amalfi Coast entra con salida negativa —su mancha empieza 21 px a la
+    IZQUIERDA del origen a cuerpo 300—, así que dibujarla pegada a x=0 le comía
+    el arranque y «week» salía cortada. Lo mismo vale para cualquier cursiva o
+    itálica que se use más adelante.
+    """
+    mask, _ = _lienzo_texto(texto, ft, track)
+    b = mask.getbbox()
+    return None if b is None else mask.crop(b)
+
+
 def texto_oro(lienzo, xy, texto, ft, track=0.0, ancla="izq"):
     """Escribe con el degradado metálico. Devuelve la caja de tinta."""
-    w = int(_ancho(texto, ft, track)) + int(ft.size * 3)
-    h = int(ft.size * 4.0)
-    mask = Image.new("L", (w, h), 0)
-    _escribe(ImageDraw.Draw(mask), (0, int(ft.size * 0.9)), texto, ft, 255, track)
-    b = mask.getbbox()
-    if b is None:
+    mask = _mascara(texto, ft, track)
+    if mask is None:
         return None
-    mask = mask.crop(b)
     oro = rampa_oro(mask.width, mask.height)
     x, y = _ancla(xy, mask.size, ancla)
     lienzo.paste(oro, (int(x), int(y)), mask)
@@ -182,14 +205,9 @@ def texto_oro(lienzo, xy, texto, ft, track=0.0, ancla="izq"):
 
 
 def texto_plano(lienzo, xy, texto, ft, color, track=0.0, ancla="izq"):
-    w = int(_ancho(texto, ft, track)) + int(ft.size * 3)
-    h = int(ft.size * 4.0)
-    mask = Image.new("L", (w, h), 0)
-    _escribe(ImageDraw.Draw(mask), (0, int(ft.size * 0.9)), texto, ft, 255, track)
-    b = mask.getbbox()
-    if b is None:
+    mask = _mascara(texto, ft, track)
+    if mask is None:
         return None
-    mask = mask.crop(b)
     x, y = _ancla(xy, mask.size, ancla)
     lienzo.paste(Image.new("RGB", mask.size, color), (int(x), int(y)), mask)
     return (int(x), int(y), int(x) + mask.width, int(y) + mask.height)
@@ -273,21 +291,45 @@ WEEK_IZQ = (1356 - 400) / 1519.0    # dónde entra, sobre el ancho del titular
 WEEK_TOP = (906 - 760) / 250.0      # cuánto baja, sobre la mayúscula
 
 
-def lockup(im, cx, y_top, ancho):
+def _geometria_lockup(ancho, track=-0.022):
+    """Dónde cae cada trozo del lockup para un ancho dado, SIN pintar nada."""
+    ft = fuente("xbold", _cuerpo_para_ancho("xbold", "CYBERWINE", u(ancho), track))
+    cj = mide("CYBERWINE", ft, track)
+    cw, cap = cj[2] - cj[0], cj[3] - cj[1]
+    fts = fuente("script", _cuerpo_para_cap("script", cap * WEEK_OJO, ref="wee"))
+    cs = mide("week", fts)
+    # Relativo al canto izquierdo de CYBERWINE (que va centrado en cx):
+    izq = min(0.0, cw * WEEK_IZQ)
+    der = max(float(cw), cw * WEEK_IZQ + (cs[2] - cs[0]))
+    return ft, fts, cw, cap, izq, der
+
+
+def lockup(im, cx, y_top, ancho, margen=26):
     """CYBERWINE en Poppins ExtraBold con el degradado, y «week» en Amalfi Coast.
 
     Se resuelve por ANCHO, no por altura de mayúscula: en una pieza vertical la
-    columna tiene un ancho dado y el titular tiene que caber en él. Devuelve la
-    y de la base del conjunto.
+    columna tiene un ancho dado y el titular tiene que caber en él.
+
+    ⚠️ El conjunto se mide ENTERO antes de pintarlo y, si se sale del lienzo, se
+    achica hasta que quepa. La cola de la «k» de la cursiva se estira más allá
+    del canto derecho de CYBERWINE —no pasa en el KV, donde el bloque es más
+    ancho de columna—, así que sin esta comprobación el «week» se corta en
+    cuanto una pieza aprieta la columna. El lockup no se corta nunca.
+
+    Devuelve la y de la base del conjunto.
     """
     track = -0.022
-    cuerpo = _cuerpo_para_ancho("xbold", "CYBERWINE", u(ancho), track)
-    ft = fuente("xbold", cuerpo)
-    caja = mide("CYBERWINE", ft, track)
-    b = texto_oro(im, (cx - (caja[2] - caja[0]) / 2, u(y_top)), "CYBERWINE", ft, track)
-    cw, cap = b[2] - b[0], b[3] - b[1]
+    m = u(margen)
+    for _ in range(8):
+        ft, fts, cw, cap, izq, der = _geometria_lockup(ancho, track)
+        x0 = cx - cw / 2
+        sobra = max(m - (x0 + izq), (x0 + der) - (im.width - m))
+        if sobra <= 0.5:
+            break
+        ancho *= max(0.6, 1 - (sobra * 2.05) / (der - izq))
 
-    fts = fuente("script", _cuerpo_para_cap("script", cap * WEEK_OJO, ref="wee"))
+    b = texto_oro(im, (cx - cw / 2, u(y_top)), "CYBERWINE", ft, track)
+    cw, cap = b[2] - b[0], b[3] - b[1]
     xs = b[0] + cw * WEEK_IZQ
     ys = b[1] + cap * WEEK_TOP
     # La cursiva monta sobre el dorado de WINE: blanco sobre dorado no contrasta.
@@ -298,14 +340,9 @@ def lockup(im, cx, y_top, ancho):
 
 
 def _sombra_texto(im, xy, texto, ft, radio, alfa=190):
-    w = int(_ancho(texto, ft)) + int(ft.size * 3)
-    h = int(ft.size * 4.0)
-    mask = Image.new("L", (w, h), 0)
-    _escribe(ImageDraw.Draw(mask), (0, int(ft.size * 0.9)), texto, ft, 255)
-    b = mask.getbbox()
-    if b is None:
+    mask = _mascara(texto, ft)
+    if mask is None:
         return
-    mask = mask.crop(b)
     r = max(1, int(radio))
     capa = Image.new("RGBA", (mask.width + r * 6, mask.height + r * 6), (0, 0, 0, 0))
     capa.paste((0, 0, 0, alfa), (r * 3, r * 3), mask)
@@ -466,21 +503,16 @@ def botella(im, ruta, cx, base_y, alto, reflejo=0.30):
     # Halo cálido detrás. En el set del KV la botella recibe una luz de contra
     # que la despega de la cortina; sin ella, una botella negra como la del
     # House desaparece sobre el fondo oscuro. Es ajuste de luz, no de etiqueta.
-    hw, hh = int(w * 2.1), int(h * 1.18)
-    halo = Image.new("RGBA", (hw, hh), (0, 0, 0, 0))
-    ImageDraw.Draw(halo).ellipse([0, 0, hw - 1, hh - 1], fill=(158, 96, 44, 120))
-    halo = halo.filter(ImageFilter.GaussianBlur(int(u(60))))
-    hx, hy = int(cx - hw / 2), int(y + h * 0.5 - hh / 2)
-    reg = im.crop((hx, hy, hx + hw, hy + hh)).convert("RGBA")
-    im.paste(Image.alpha_composite(reg, halo).convert("RGB"), (hx, hy))
+    #
+    # ⚠️ La capa lleva MARGEN de tres radios de desenfoque a los cuatro lados y
+    # la elipse va metida dentro de ese margen. Sin eso el desenfoque se corta
+    # contra el borde de su propia capa y el halo se ve como un RECTÁNGULO
+    # alrededor de la botella — que es justo lo que se coló en la primera vuelta.
+    _halo(im, cx, y + h * 0.5, w * 1.5, h * 0.92, radio=u(70), alfa=112)
 
-    # sombra de contacto
-    som = Image.new("RGBA", (w + int(u(60)), int(u(46))), (0, 0, 0, 0))
-    ImageDraw.Draw(som).ellipse([0, 0, som.width - 1, som.height - 1], fill=(0, 0, 0, 165))
-    som = som.filter(ImageFilter.GaussianBlur(int(u(14))))
-    sx, sy = int(cx - som.width / 2), int(u(base_y) - u(20))
-    reg = im.crop((sx, sy, sx + som.width, sy + som.height)).convert("RGBA")
-    im.paste(Image.alpha_composite(reg, som).convert("RGB"), (sx, sy))
+    # sombra de contacto — misma cocina que el halo, con su margen
+    _halo(im, cx, u(base_y) - u(4), w + u(50), u(40), radio=u(15), alfa=170,
+          color=(0, 0, 0))
 
     # reflejo sobre el mármol
     if reflejo > 0:
@@ -497,6 +529,32 @@ def botella(im, ruta, cx, base_y, alto, reflejo=0.30):
 
     im.paste(bt, (x, y), bt)
     return (x, y, x + w, y + h)
+
+
+def _halo(im, cx, cy, ancho, alto, radio, alfa=110, color=(158, 96, 44)):
+    """Mancha de luz elíptica y de verdad blanda, centrada en (cx, cy).
+
+    El margen de 3·radio es lo que evita que el desenfoque tope el borde de la
+    capa: un blur truncado deja un canto recto y el halo se lee cuadrado.
+    """
+    r = max(1, int(radio))
+    pad = r * 3
+    aw, ah = int(ancho) + pad * 2, int(alto) + pad * 2
+    capa = Image.new("RGBA", (aw, ah), (0, 0, 0, 0))
+    ImageDraw.Draw(capa).ellipse([pad, pad, aw - 1 - pad, ah - 1 - pad],
+                                 fill=color + (int(alfa),))
+    capa = capa.filter(ImageFilter.GaussianBlur(r))
+
+    hx, hy = int(cx - aw / 2), int(cy - ah / 2)
+    # Recortar contra el lienzo: pedirle a PIL una región fuera de borde
+    # devuelve negro y eso pintaría un bloque oscuro junto a la botella.
+    x0, y0 = max(0, hx), max(0, hy)
+    x1, y1 = min(im.width, hx + aw), min(im.height, hy + ah)
+    if x1 <= x0 or y1 <= y0:
+        return
+    capa = capa.crop((x0 - hx, y0 - hy, x1 - hx, y1 - hy))
+    reg = im.crop((x0, y0, x1, y1)).convert("RGBA")
+    im.paste(Image.alpha_composite(reg, capa).convert("RGB"), (x0, y0))
 
 
 def sello(im, cx, cy, cifra, casa, diam=126):

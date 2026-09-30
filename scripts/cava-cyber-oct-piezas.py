@@ -1,0 +1,283 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""CAVA · Cyber Wine Week octubre 2026 — las 12 piezas.
+
+6 mails verticales (tamaño historia) + 6 cuadradas para las plantillas de
+WhatsApp/ManyChat. Los textos salen LITERALES del brief
+«CAVA _ Briefs Cyber octubre 2026.xlsx» (pestañas MAILS MAILCHIMP | OCTUBRE y
+WHATSAPP | OCTUBRE): no se inventa un CTA ni un claim.
+
+    python3 scripts/cava-cyber-oct-piezas.py            # todo
+    python3 scripts/cava-cyber-oct-piezas.py wsp1       # una
+
+Los briefs 1–3 son PREVIA VIP (cupón CYBERVIP, 45 % OFF) y salen del KV VIP.
+Los briefs 4–6 son CYBER PÚBLICO (hasta 50 % OFF, sin cupón) y salen del KV
+público. El brief lo dice y el KV manda.
+
+La maqueta está calcada del editable del Cyber pasado (CYBER_CAVA.ai): la
+vertical de la mesa 21/26 y la cuadrada de la mesa 24 — botella a un lado,
+columna de mensaje al otro.
+"""
+import sys
+import pathlib
+
+from PIL import ImageDraw
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from cava_cyber_oct import (  # noqa: E402
+    ESC, ESCRITORIO, u, fondo, viñeta, marco, advertencia, logo, lockup,
+    hairline, banda_gancho, cupon, botella, sello, guarda, fuente, mide,
+    texto_oro, texto_plano, _cuerpo_para_cap, _cuerpo_para_ancho, BLANCO,
+)
+
+RAIZ = pathlib.Path(__file__).resolve().parent.parent
+SALIDA = RAIZ / "out/cava/cyber-octubre"
+GRIS = (206, 200, 192)
+
+# ── Los packshots oficiales que Coni dejó en BRIEF/KV ───────────────────────
+# Viven versionados en el repo: hoy sólo existían en su escritorio y sin ellos
+# otro diseñador no reproduce la entrega — se cae al packshot chico del
+# e-commerce (800–1000 px) y la etiqueta deja de leerse.
+BT = RAIZ / "public/assets/cava/bottles/oficiales"
+BOTELLAS = {
+    "ranquil": BT / "BottleShot_Morande_CabernetRanquil (Cap 42).png",
+    "house": BT / "MOR_HOUSE_.png",
+    "enologica_ca": BT / "BottleShot_Morande_SeleccionEnologica_CA.png",
+    "enologica_cs": BT / "BottleShot_Morande_SeleccionEnologica_CS.png",
+    "7c_gran_reserva": BT / "BTT_7_COLORES_GRAN_RVA CA_VI_VINTAGE.png",
+    "vitis_carmenere": BT / "BottleShot Vitis Unica CR (Maipo).png",
+    "charmat": BT / "BottleShot_Morande_ExtraBrut Charmat SINGOTAS.png",
+    # ⛔ Faltan tres en el banco: 7Colores Single Vineyard Red Blend 2022,
+    #    Vitis Única Cabernet Sauvignon y Selección de Viñedos GR Carmenere
+    #    2024. Están en el Bottle Shot del kit digital (SharePoint de Morandé).
+    #    Regla de la marca: si falta un bottle shot SE PIDE, no se genera.
+}
+
+# ── Los 6 envíos, textuales del brief ───────────────────────────────────────
+PIEZAS = [
+    dict(n=1, escena="vip", gancho="ACCESO VIP AL CYBER",
+         titular="45% OFF", bajada="ANTES QUE NADIE", cupon="CYBERVIP",
+         producto=["MORANDÉ EL CABERNET", "DE RANQUIL 2021"],
+         botella="ranquil", oferta="$34.970", normal="$59.990",
+         sellos=[("98", "DESCORCHADOS"), ("98", "J. SUCKLING")],
+         legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
+               "No acumulable con otras promociones. Hasta agotar stock."),
+    dict(n=2, escena="vip", gancho="TU CUPÓN VIP SIGUE ACTIVO",
+         titular="45% OFF", bajada="HOUSE OF MORANDÉ A $46.630", cupon="CYBERVIP",
+         producto=["HOUSE OF MORANDÉ", "MEZCLAS TINTAS 2021"],
+         botella="house", oferta="$46.630", normal="$84.790", sellos=[],
+         legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
+               "No acumulable con otras promociones. Hasta agotar stock."),
+    dict(n=3, escena="vip", gancho="ÚLTIMO DÍA VIP",
+         titular="45% OFF", bajada="SE DESACTIVA MAÑANA", cupon="CYBERVIP",
+         producto=["MORANDÉ SELECCIÓN ENOLÓGICA", "CARMENERE Y CABERNET SAUVIGNON"],
+         botella="enologica_ca", botella2="enologica_cs",
+         oferta="$9.340", normal="$16.990", sellos=[],
+         legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
+               "No acumulable con otras promociones. Hasta agotar stock."),
+    dict(n=4, escena="pub", gancho=None,   # el KV público no lleva bajada sobre el lockup
+         titular="HASTA 50% OFF", bajada="EN TUS FAVORITOS", cupon=None,
+         producto=["PACK X6 7COLORES GRAN RESERVA", "CARMENERE / VIOGNIER 2023"],
+         botella="7c_gran_reserva", botella2="vitis_carmenere",
+         oferta="$4.290 c/u", normal="$47.340", sellos=[],
+         legal="Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. "
+               "No acumulable con otras promociones."),
+    dict(n=5, escena="pub", gancho="SE ESTÁN AGOTANDO",
+         titular="50% OFF", bajada="SOLO HASTA MAÑANA", cupon=None,
+         producto=["PACK X6 7COLORES SINGLE", "VINEYARD RED BLEND 2022"],
+         botella=None, falta="7Colores Single Vineyard Red Blend 2022",
+         oferta="$5.490 c/u", normal="$71.940",
+         sellos=[("92", "DESCORCHADOS"), ("91", "J. SUCKLING")],
+         legal="Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. "
+               "No acumulable con otras promociones."),
+    dict(n=6, escena="pub", gancho="ÚLTIMAS HORAS DEL CYBER",
+         titular="50% OFF", bajada="HOY CIERRA", cupon=None,
+         producto=["PACK X6 SELECCIÓN DE VIÑEDOS", "GRAN RESERVA CARMENERE 2024"],
+         botella=None, falta="Selección de Viñedos Gran Reserva Carmenere 2024",
+         oferta="$4.490 c/u", normal="$53.940", sellos=[],
+         legal="Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. "
+               "No acumulable con otras promociones."),
+]
+
+
+# ── Cuadrada 1:1 para la plantilla de WhatsApp ──────────────────────────────
+def cuadrada(p):
+    im = viñeta(fondo(p["escena"], "wsp"), 0.40)
+    marco(im)
+    advertencia(im)                       # ocupa x 671..1080, y 0..204
+
+    # El logo se centra en el aire que deja la advertencia, nunca debajo de ella.
+    logo(im, u(500), 44, ancho=196)
+    columna_botella(im, p, cx=u(248), base_y=1002, alto=770, sellos_a="izq")
+
+    COL = u(730)
+    TOPE = 882          # donde arranca el bloque de producto; nadie lo invade
+
+    y = 214
+    if p["gancho"]:
+        y = banda_gancho(im, COL, y, p["gancho"], cap=27, holgura=24) / ESC + 10
+    y = lockup(im, COL, y, ancho=550) / ESC + 18
+
+    ft = fuente("xbold", _cuerpo_para_ancho("xbold", p["titular"], u(390), -0.02))
+    c = texto_oro(im, (COL, u(y)), p["titular"], ft, -0.02, ancla="centro")
+    ftb = fuente("light", _cuerpo_para_ancho("light", p["bajada"], u(430), 0.06))
+    b = texto_plano(im, (COL, c[3] + u(12)), p["bajada"], ftb, BLANCO, 0.06, ancla="centro")
+    y = b[3] / ESC + 18
+
+    if p["cupon"]:
+        cupon_al_hueco(im, COL, y, TOPE, p["cupon"], ancho_max=500)
+
+    bloque_producto(im, COL, y_base=1014, p=p, cap=23, ancho_max=520)
+    pie_legal(im, p, y=1036, ancho_max=980)
+    return im
+
+
+# ── Vertical tamaño historia ────────────────────────────────────────────────
+def vertical(p):
+    """Mail vertical tamaño historia.
+
+    Cabecera centrada a todo el ancho —logo, gancho, lockup— y abajo dos
+    columnas: la botella a la izquierda y el mensaje comercial a la derecha.
+    Es la maqueta de la mesa 21 del editable del Cyber pasado. Apilarlo todo en
+    una sola columna dejaba la botella del tamaño de una uña.
+    """
+    im = viñeta(fondo(p["escena"], "mail"), 0.34)
+    marco(im)
+    advertencia(im)
+
+    CX = u(540)
+    logo(im, CX, 258, ancho=217.4)        # bajo la advertencia, centrado
+
+    y = 452
+    if p["gancho"]:
+        ft_g = fuente("light", _cuerpo_para_ancho("light", p["gancho"], u(720), 0.075))
+        y = texto_oro(im, (CX, u(y)), p["gancho"], ft_g, 0.075, ancla="centro")[3] / ESC + 14
+    y = lockup(im, CX, y, ancho=840) / ESC + 30
+    hairline(im, CX, y, ancho=780)
+
+    dobles = bool(p.get("botella2"))
+    ft_t = fuente("xbold", _cuerpo_para_ancho("xbold", p["titular"],
+                                              u(760 if dobles else 490), -0.02))
+    if dobles:
+        # Dos botellas necesitan el centro del lienzo: la pieza se apila —
+        # oferta, botellas, producto— en lugar de partirse en dos columnas.
+        t = texto_oro(im, (CX, u(946)), p["titular"], ft_t, -0.02, ancla="centro")
+        ftb = fuente("light", _cuerpo_para_ancho("light", p["bajada"], u(720), 0.055))
+        texto_plano(im, (CX, t[3] + u(18)), p["bajada"], ftb, BLANCO, 0.055, ancla="centro")
+        columna_botella(im, p, cx=CX, base_y=1620, alto=520, sellos_a="izq")
+        bloque_producto(im, CX, y_base=1812, p=p, cap=27, ancho_max=900)
+    else:
+        # Botella a la izquierda y mensaje a la derecha: la mesa 21 del editable.
+        columna_botella(im, p, cx=u(310), base_y=1792, alto=830, sellos_a="izq")
+        COL = u(742)
+        t = texto_oro(im, (COL, u(946)), p["titular"], ft_t, -0.02, ancla="centro")
+        ftb = fuente("light", _cuerpo_para_ancho("light", p["bajada"], u(500), 0.055))
+        b = texto_plano(im, (COL, t[3] + u(16)), p["bajada"], ftb, BLANCO, 0.055,
+                        ancla="centro")
+        if p["cupon"]:
+            cupon_al_hueco(im, COL, b[3] / ESC + 26, 1592, p["cupon"], ancho_max=488)
+        bloque_producto(im, COL, y_base=1800, p=p, cap=27, ancho_max=520)
+
+    pie_legal(im, p, y=1866, ancho_max=920)
+    return im
+
+
+# ── Piezas compartidas ──────────────────────────────────────────────────────
+PROP_CUPON = 675 / 345.0        # la del cupón que diseñó Coni — no se altera
+GIRO_CUPON = -7.0
+
+
+def cupon_al_hueco(im, cx, y, tope, codigo, ancho_max=500, giro=GIRO_CUPON):
+    """Mete el cupón en el aire que queda, sin deformarlo.
+
+    Al girarlo −7° la caja crece, así que el alto útil hay que despejarlo de
+    `alto·cosθ + ancho·senθ`. Con un alto fijo el troquel se comía el nombre del
+    vino en cuanto el lockup crecía.
+    """
+    import math
+    hueco = max(0.0, tope - y - 12)
+    k = math.cos(math.radians(abs(giro))) + PROP_CUPON * math.sin(math.radians(abs(giro)))
+    alto = min(ancho_max / PROP_CUPON, hueco / k)
+    if alto < 110:                                   # no cabe: mejor no ponerlo
+        return y
+    ancho = alto * PROP_CUPON
+    sobra = hueco - alto * k
+    return cupon(im, cx, y + sobra / 2, codigo, ancho=ancho, alto=alto, giro=giro) / ESC
+
+
+def columna_botella(im, p, cx, base_y, alto, sellos_a="izq"):
+    if not p.get("botella"):
+        return
+    if p.get("botella2"):
+        sep = u(alto * 0.15)
+        b1 = botella(im, BOTELLAS[p["botella"]], cx - sep, base_y, alto)
+        botella(im, BOTELLAS[p["botella2"]], cx + sep, base_y, alto * 0.96)
+        ancla = b1
+    else:
+        ancla = botella(im, BOTELLAS[p["botella"]], cx, base_y, alto)
+    d = alto * 0.185
+    for i, (cifra, casa) in enumerate(p.get("sellos", [])):
+        x = ancla[0] + u(d * 0.18) if sellos_a == "izq" else ancla[2] - u(d * 0.18)
+        sello(im, x, ancla[1] + u(d * 0.62 + i * d * 1.16), cifra, casa, diam=d)
+
+
+def bloque_producto(im, cx, y_base, p, cap=30, ancho_max=600):
+    """Nombre del vino y precio, anclados POR ABAJO.
+
+    Anclarlo por arriba dejaba el precio encima del legal cuando el cupón crecía:
+    el pie legal es la última línea de la pieza y no se puede pisar.
+    """
+    ft = fuente("bold", _cuerpo_para_cap("bold", u(cap)))
+    for linea in p["producto"]:                      # que nunca se salga del ancho
+        ft = min(ft, fuente("bold", _cuerpo_para_ancho("bold", linea, u(ancho_max), 0.01)),
+                 key=lambda f: f.size)
+    paso = ft.size / ESC * 1.40
+    alto_nombre = len(p["producto"]) * paso
+
+    fto = fuente("xbold", _cuerpo_para_cap("xbold", u(cap * 1.7)))
+    ftn = fuente("light", _cuerpo_para_cap("light", u(cap * 0.9)))
+    ao = mide(p["oferta"], fto); an = mide(p["normal"], ftn)
+    alto_precio = (ao[3] - ao[1]) / ESC
+
+    y = y_base - alto_precio - cap * 0.75 - alto_nombre
+    for i, linea in enumerate(p["producto"]):
+        texto_plano(im, (cx, u(y) + i * u(paso)), linea, ft, BLANCO, 0.01, ancla="centro")
+
+    y += alto_nombre + cap * 0.75
+    sep = u(cap * 0.55)
+    x0 = cx - ((ao[2] - ao[0]) + sep + (an[2] - an[0])) / 2
+    co = texto_oro(im, (x0, u(y)), p["oferta"], fto)
+    cn = texto_plano(im, (co[2] + sep, co[3] - (an[3] - an[1]) - u(cap * 0.10)),
+                     p["normal"], ftn, GRIS)
+    ImageDraw.Draw(im).line(
+        [cn[0] - u(5), (cn[1] + cn[3]) / 2, cn[2] + u(5), (cn[1] + cn[3]) / 2],
+        fill=GRIS, width=max(1, int(u(2.2))))
+    return y_base - alto_precio - cap * 0.75 - alto_nombre
+
+
+def pie_legal(im, p, y, ancho_max=940):
+    ft = fuente("light", _cuerpo_para_ancho("light", p["legal"], u(ancho_max), 0.01))
+    texto_plano(im, (im.width / 2, u(y)), p["legal"], ft, (182, 174, 166), 0.01,
+                ancla="centro")
+
+
+# ── CLI ─────────────────────────────────────────────────────────────────────
+def construye(clave):
+    tipo, n = ("wsp", int(clave[3:])) if clave.startswith("wsp") else ("mail", int(clave[4:]))
+    p = PIEZAS[n - 1]
+    if not p.get("botella"):
+        print(f"  ⏭  {clave}: falta el bottle shot de «{p['falta']}» — se pide, no se genera")
+        return None
+    im = cuadrada(p) if tipo == "wsp" else vertical(p)
+    carpeta = "VIP" if p["escena"] == "vip" else "GENERAL"
+    nombre = f"CYBER_CAVA_OCT_{'WSP' if tipo == 'wsp' else 'MAIL'}{p['n']}_{carpeta}.png"
+    destino = SALIDA / ("whatsapp" if tipo == "wsp" else carpeta.lower()) / nombre
+    kb = guarda(im, destino, tipo)
+    print(f"  ✓ {destino.relative_to(RAIZ)}  ({kb:.0f} KB)")
+    return destino
+
+
+if __name__ == "__main__":
+    claves = sys.argv[1:] or [f"wsp{i}" for i in range(1, 7)] + [f"mail{i}" for i in range(1, 7)]
+    for c in claves:
+        construye(c)

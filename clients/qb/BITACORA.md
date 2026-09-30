@@ -1,5 +1,12 @@
 # QB Restaurant — bitácora
 
+## 2026-09-30 (tarde) — Elisabet Soto «Eli» (Windows, con Claude) · ST Sunset versión 2
+
+**Qué se hizo:** a pedido de Eli, una **versión 2 de la ST 09-10 Sunset** para mostrarle a contenido junto a la r28 aprobada: la foto es la «AA — v7 Post 3:4» del Space de Magnific de Eli, con **sólo el spritz del centro** (Nano Banana Pro quitó el espumante y el mojito), extendida a 9:16 alejando la cámara y con el trago original pegado encima. Ronda 1 de Eli: cajita translúcida sutil detrás de «Cocktails seleccionados… DESDE $3.990» y botón «DE 16:00 A 21:00 HRS» al ancho de «Tu after office, a otro nivel» (520 → 392 px) → **aprobada** («quedó perfecto»).
+**Dónde quedó:** `src/compositions/qb/oct/QbSt09SunsetV2.tsx` (id `QB-OCT-ST09-V2` en `src/QbOctEntry.tsx`); foto `public/assets/hilton/qb/oct/09-sunset-v2.jpg`; pasos en `raw/hilton/qb/sunset-v2/` (no viaja; el original está en Drive `19oeR1nnv77-agmvbWvpoMgJqIZWakjR5`); render final `out/qb/oct/sunset-v2/r1/`; revisiones `scripts/qb-oct-sunset-v2-revision.py` y `…-r1-revision.py`. En Drive como archivo NUEVO: `S1 HILTON OCT 2026 / QB / STS / ST n°5 S1 QB OCT 26 - SUNSET V2.png` (id `1iQO3LZZEAXOnypwf_kL96ysHE3Stes2k`, md5 igual). La r28 no se tocó.
+**Qué sigue:** que contenido elija entre la r28 y la v2; si gana la v2, renombrarla como la ST n°5 oficial (la r28 pasa a «ANTES»). Aplicar R-94 (botón al ancho de la línea) en las piezas nuevas.
+**Abierto:** la elección de contenido entre r28 y v2 · si Eli quiere R-94 también en piezas ya entregadas con botón ancho (se le ofreció).
+
 ## 2026-09-30 — Elisabet Soto «Eli» (Windows, con Claude) · rondas 22–28: Banco, ST 40 %, Sunset, carrusel CMR y cumpleaños
 
 **Qué se hizo** (todo reemplazado en Drive en el acto, md5 igual; revisión HTML de cada ronda abierta en Chrome):

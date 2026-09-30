@@ -57,7 +57,7 @@ CARRUSEL = {
         # cierra la línea blanca y el rojo se lleva la frase entera. Con 32 letras
         # dentro del rojo, 778 lo dejaba muy chico: esta lámina declara su propio
         # ancho de caja, 860, y el `cuerpo` baja para que la blanca no se desborde.
-        {"foto": "fotos/masisa/02.jpg", "y": 250, "ancho_caja": 860,
+        {"foto": "fotos/masisa/02.jpg", "y": 235, "bajada_baja": 25,   # r3 30-09: texto a 505 px (ver sanjuan) "ancho_caja": 860,
          "sobre": "CUANDO EL ESPACIO ES EXACTO,", "cuerpo": 46,
          "caja": "EL CORTE TAMBIÉN TIENE QUE SERLO",
          # RONDA 2 · 24-09: «este texto déjalo en 2 líneas solamente». Se abre al
@@ -69,7 +69,7 @@ CARRUSEL = {
         # brief texto:  «La estructura parte por elegir bien el tablero.»
         # brief visual: «Estructura interior del clóset en proceso, mostrando repisas,
         #                divisiones y diferentes puntos de apoyo.»  → USO → escena
-        {"foto": "fotos/masisa/03.jpg", "y": 226,
+        {"foto": "fotos/masisa/03.jpg", "y": 231,
          "sobre": "LA ESTRUCTURA PARTE",
          "caja": "POR ELEGIR BIEN EL TABLERO",
          "bajada": "Considera dimensiones, distribución y carga antes de definir el **espesor**."},

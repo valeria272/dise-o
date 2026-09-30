@@ -39,7 +39,10 @@ CORTES = {
     # se cambian por la bodega de sacos en pallets, llena de piso a techo.
     "t3_stock":     ("IMG_1927", 0.3, 2.6),   # bodega llena: pallets de sacos
     "t3_precios":   ("IMG_3852", 3.0, 2.8),   # la reja con los carteles de precio
-    "t4_seba":      ("IMG_1974", 0.0, 1.3),   # Seba de frente, invitando
+    # RONDA 2 · 30-09 (Paulina, 18,8 s): «hay una toma casi al final del video del seba que
+    # sale haciendo nada, cambiarla» → fuera IMG_1974 (Seba de pie, sin producto); entra
+    # IMG_1977 @2,1: sostiene la cerámica y mira a cámara (R-62: sólo cuando MUESTRA).
+    "t4_seba":      ("IMG_1977", 2.1, 1.3),   # Seba muestra la cerámica, mirando a cámara
 }
 
 if __name__ == "__main__":

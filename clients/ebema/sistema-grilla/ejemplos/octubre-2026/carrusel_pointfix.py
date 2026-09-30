@@ -30,7 +30,7 @@ CARRUSEL = {
         # L2 · brief: «Antes de que entre el ganado o se pierda el límite» /
         #      «un cerco a tiempo evita problemas mayores.»
         #      Visual: instalación de postes para el cerco → USO → escena
-        {"foto": "fotos/pointfix/02.jpg", "y": 246,
+        {"foto": "fotos/pointfix/02.jpg", "y": 234, "bajada_baja": 23,   # r3 30-09: texto a 505 px (ver sanjuan)
          "sobre": "ANTES DE QUE ENTRE EL GANADO", "cuerpo": 50,
          "caja": "O SE PIERDA EL LÍMITE",
          "bajada": "Un cerco a tiempo **evita problemas mayores**."},
@@ -42,7 +42,7 @@ CARRUSEL = {
         # «4 PUNTAS» solo son 8 letras y la caja se compondría gigante: el corte va
         # antes, dejando el nombre del producto y la cifra juntos dentro del rojo.
         # El 4 sale en Helvetica Bold solo, por la regla de las cifras.
-        {"foto": "fotos/pointfix/03.jpg", "y": 232,
+        {"foto": "fotos/pointfix/03.jpg", "y": 232, "bajada_baja": 4,
          "sobre": "ALAMBRE DE PÚAS",
          "caja": "POINTFIX, 4 PUNTAS",
          "bajada": "Resistente, pensado para **cercos agrícolas y ganaderos**."},
@@ -57,10 +57,13 @@ CARRUSEL = {
         # El corte del titular se mueve una palabra a la derecha. La bajada tiene 43
         # letras y a 40 px pasaba de los 740 de `max-width`, así que se partía en dos:
         # con 34 entra en una.
-        {"foto": "fotos/pointfix/04.jpg", "y": 226,
+        {"foto": "fotos/pointfix/04.jpg", "y": 231,
          "sobre": "SE INSTALA CON",
          "caja": "POSTES Y GRAPAS",
-         "bajada": "Tensado **parejo** a lo largo de todo el cerco.", "bajada_cuerpo": 34},
+         # ⭐ RONDA 3 — Paulina, 30-09-2026: «el tamaño tipográfico donde dice "Tensado
+         # parejo..." es más pequeño que en slide 2 y 3». Vuelve al cuerpo del sistema
+         # (40) y, para no romper la r1 («una sola línea»), se abre el ancho de la bajada.
+         "bajada": "Tensado **parejo** a lo largo de todo el cerco.", "bajada_ancho": 860},
 
         # L5 · CIERRE — brief: «Alambre de púas Pointfix, disponible en Ebema.»
         #      Visual: rollo de alambre + logo Ebema.

@@ -34,7 +34,7 @@ CARRUSEL = {
         # L2 · brief: «El suelo agrícola tiene sulfatos naturales» / «con el tiempo,
         #      atacan y deterioran el hormigón común.»
         #      Visual: detalle de hormigón dañado → ESPECIFICACIÓN → zoom
-        {"foto": "fotos/cbb/02.jpg", "y": 246,
+        {"foto": "fotos/cbb/02.jpg", "y": 233,   # r3 30-09: texto a 505 px (ver sanjuan)
          "sobre": "EL SUELO AGRÍCOLA TIENE", "cuerpo": 56,
          "caja": "SULFATOS NATURALES",
          "bajada": "Con el tiempo, **atacan y deterioran** el hormigón común."},
@@ -42,7 +42,7 @@ CARRUSEL = {
         # L3 · brief: «Cemento Especial CBB, pensado para esa exposición» /
         #      «formulación puzolánica que resiste el ataque químico del suelo.»
         #      Visual: aplicación o mezcla del cemento → USO → escena
-        {"foto": "fotos/cbb/03.jpg", "y": 232,
+        {"foto": "fotos/cbb/03.jpg", "y": 232, "bajada_baja": 12,
          "sobre": "CEMENTO ESPECIAL CBB,", "cuerpo": 58,
          "caja": "PENSADO PARA ESA EXPOSICIÓN",
          "bajada": "Formulación puzolánica que resiste el **ataque químico** del suelo."},

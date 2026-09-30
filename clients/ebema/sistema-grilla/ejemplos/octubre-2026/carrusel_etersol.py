@@ -33,7 +33,7 @@ CARRUSEL = {
         # L2 · brief: «Sin barro ni pasto amarillo» / «a diferencia del pasto natural,
         #      no necesita riego, corte ni fertilizante se mantiene verde todo el año.»
         #      Visual: detalle de textura del pasto sintético → ESPECIFICACIÓN → zoom
-        {"foto": "fotos/etersol/02.jpg", "y": 242,
+        {"foto": "fotos/etersol/02.jpg", "y": 231,   # r3 30-09: texto a 505 px (ver sanjuan)
          "sobre": "SIN BARRO",
          "caja": "NI PASTO AMARILLO",
          "bajada": "No necesita riego, corte ni fertilizante: **se mantiene verde todo el año**."},
@@ -44,7 +44,7 @@ CARRUSEL = {
         # El titular son dos palabras: partirlo entre línea blanca y caja roja deja
         # una caja de 6 letras que se compone gigante y se sale de la banda de alto
         # (70-80). Va entero en el rojo — sigue siendo una sola caja por lámina.
-        {"foto": "fotos/etersol/03.jpg", "y": 236,
+        {"foto": "fotos/etersol/03.jpg", "y": 242, "bajada_baja": 61,
          "sobre": "",
          "caja": "INSTALACIÓN SIMPLE",
          "bajada": "Se instala sobre **tierra compactada o radier**, sin obra mayor."},
@@ -54,7 +54,7 @@ CARRUSEL = {
         #      otro beneficio EN EL REGISTRO NORMAL. Va así, sin invertir la jerarquía.
         #      «Ideal para patios, terrazas y áreas de juego» /
         #      «resiste el tránsito diario y no se decolora con el sol.»
-        {"foto": "fotos/etersol/04.jpg", "y": 228,
+        {"foto": "fotos/etersol/04.jpg", "y": 231, "bajada_baja": 15,
          "sobre": "IDEAL PARA PATIOS,",
          "caja": "TERRAZAS Y ÁREAS DE JUEGO",
          "bajada": "Resiste el **tránsito diario** y no se decolora con el sol."},

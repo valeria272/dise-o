@@ -189,15 +189,17 @@ const Titular: React.FC<{
 // ⭐ Ronda 2 (Paulina, 28-09): «los textos secundarios dejémoslo en 2 filas, pero nunca dejar una
 // palabra sola como segunda fila; aplica para todos. Los textos no deben llegar nunca tan al borde
 // del video» → toda línea secundaria deja ≥ 300 px de aire a cada lado (medido con PIL).
-const BloqueProducto: React.FC<{a: number; b: number; fina: string | string[]; caja: string; bold?: {t: string[]; a: number; b: number}[]; top?: number}> =
-  ({a, b, fina, caja, bold = [], top = 1950}) => {
+// ⭐ Ronda 3 (Paulina, 30-09, reel LP @7,9 s): «la palabra "tablero osb LP" está muy fina,
+// aumentar grosor» → `pesoFina` (300 por defecto; Aza no tuvo comentario y no se toca).
+const BloqueProducto: React.FC<{a: number; b: number; fina: string | string[]; caja: string; bold?: {t: string[]; a: number; b: number}[]; top?: number; pesoFina?: number}> =
+  ({a, b, fina, caja, bold = [], top = 1950, pesoFina = 300}) => {
     const f = useCurrentFrame(); const {fps} = useVideoConfig();
     const o = vive(f, a, b);
     return (
       <div style={{position: "absolute", left: 0, right: 0, top, display: "flex", flexDirection: "column", alignItems: "center",
         opacity: o, transform: `translateY(${sube(f, a, fps)}px)`}}>
         {(Array.isArray(fina) ? fina : [fina]).map((t) => (
-          <div key={t} style={{fontFamily: MONT, fontWeight: 300, fontSize: 92, lineHeight: 1.05, color: WHITE, textTransform: "uppercase",
+          <div key={t} style={{fontFamily: MONT, fontWeight: pesoFina, fontSize: 92, lineHeight: 1.05, color: WHITE, textTransform: "uppercase",
             letterSpacing: 1, textShadow: "0 4px 18px rgba(0,0,0,.45)", textAlign: "center"}}>{t}</div>
         ))}
         <div style={{background: RED, padding: "6px 170px 10px", fontFamily: MONT, fontWeight: 700, fontSize: 96, lineHeight: 1.1,
@@ -216,8 +218,11 @@ const BloqueProducto: React.FC<{a: number; b: number; fina: string | string[]; c
 
 /** T3 · dato de uso (VH_12): una línea liviana + una en bold con un filete rojo debajo. */
 /** izquierda: sólo cuando la zona libre está a un costado del sujeto (R-20 manda sobre el centrado). */
-const BloqueUso: React.FC<{a: number; b: number; liviana: string; bold: string | string[]; top?: number; izquierda?: number; filete?: number; cuerpoBold?: number}> =
-({a, b, liviana, bold, top = 1880, izquierda, filete = 1400, cuerpoBold = 78}) => {
+// ⭐ Ronda 3 (Paulina, 30-09, reel LP @12,1 s): «donde dice "Se corta e instala" es demasiado
+// pequeña la tipografía, que se iguale al resto que está en esa variante» → `cuerpoLiviana`
+// (70 por defecto; en LP va al cuerpo de la línea bold, 78).
+const BloqueUso: React.FC<{a: number; b: number; liviana: string; bold: string | string[]; top?: number; izquierda?: number; filete?: number; cuerpoBold?: number; cuerpoLiviana?: number}> =
+({a, b, liviana, bold, top = 1880, izquierda, filete = 1400, cuerpoBold = 78, cuerpoLiviana = 70}) => {
   const f = useCurrentFrame(); const {fps} = useVideoConfig();
   const o = vive(f, a, b);
   const linea = interpolate(f, [a + 6, a + 26], [0, 1], clamp);
@@ -225,7 +230,7 @@ const BloqueUso: React.FC<{a: number; b: number; liviana: string; bold: string |
     <div style={{position: "absolute", left: izquierda ?? 0, right: izquierda === undefined ? 0 : undefined, top, display: "flex",
       flexDirection: "column", alignItems: izquierda === undefined ? "center" : "flex-start",
       opacity: o, transform: `translateY(${sube(f, a, fps)}px)`, textShadow: "0 4px 18px rgba(0,0,0,.5)"}}>
-      <div style={{fontFamily: MONT, fontWeight: 400, fontSize: 70, color: WHITE, lineHeight: 1.1}}>{liviana}</div>
+      <div style={{fontFamily: MONT, fontWeight: 400, fontSize: cuerpoLiviana, color: WHITE, lineHeight: 1.1}}>{liviana}</div>
       {(Array.isArray(bold) ? bold : [bold]).map((t) => (
         <div key={t} style={{fontFamily: MONT, fontWeight: 700, fontSize: cuerpoBold, color: WHITE, lineHeight: 1.15}}>{t}</div>
       ))}
@@ -499,10 +504,11 @@ export const EbemaReelAzaOct: React.FC = () => {
         <Marco />
         <Titular a={s(0.9)} b={AZ.t2 - 2} logo={{src: "logos/logo_aza_negativo.png", w: 900, top: 1330}}
           pre={["Reforzar una estructura", "también puede ser"]} lineas={["una decisión", "más consciente"]} capsula="con el planeta" cuerpo={167} />
-        <BloqueProducto a={AZ.t2 + 10} b={AZ.t3} fina="Perfiles Aza" caja="Acero Verde"
+        {/* r3 30-09: Paulina pidió llevar a Aza las dos correcciones del reel LP */}
+        <BloqueProducto a={AZ.t2 + 10} b={AZ.t3} fina="Perfiles Aza" caja="Acero Verde" pesoFina={500}
           bold={[{t: ["Acero reciclado, con menor", "huella de carbono."], a: AZ.t2 + 22, b: AZ.t2 + s(4.9)},
             {t: ["El mismo desempeño de un", "perfil convencional."], a: AZ.t2 + s(4.9), b: AZ.t3}]} />
-        <BloqueUso a={AZ.t3 + 6} b={AZ.cierre} liviana="Se sueldan y atornillan" bold="igual que un perfil convencional." />
+        <BloqueUso a={AZ.t3 + 6} b={AZ.cierre} liviana="Se sueldan y atornillan" bold="igual que un perfil convencional." cuerpoLiviana={78} />
       </Sequence>
       <Sequence from={AZ.cierre}>
         <CierreBlanco c={{textoTop: 1120, arriba: [{t: "Perfiles Aza,"}, {t: "disponibles en Ebema.", bold: true}], boton: "Cotiza directo por WhatsApp"}} />
@@ -528,10 +534,10 @@ export const EbemaReelLpOct: React.FC = () => {
         <Marco />
         <Titular a={s(0.6)} b={LP.t2 - 2} logo={{src: "logos/logo_lp.png", w: 560, top: 1300}}
           pre="Hay tableros que también trabajan" lineas={["por bajar", "la temperatura"]} capsula="Tablero OSB LP TechShield" cuerpo={162} />
-        <BloqueProducto a={LP.t2 + 10} b={LP.t3} fina="Tablero OSB LP" caja="TechShield"
+        <BloqueProducto a={LP.t2 + 10} b={LP.t3} fina="Tablero OSB LP" caja="TechShield" pesoFina={500}
           bold={[{t: ["Barrera que refleja", "el calor,"], a: LP.t2 + 22, b: LP.t2 + s(3.9)},
             {t: ["además de la resistencia", "estructural de un OSB."], a: LP.t2 + s(3.9), b: LP.t3}]} />
-        <BloqueUso a={LP.t3 + 6} b={LP.cierre} liviana="Se corta e instala" bold="igual que un tablero OSB estructural." />
+        <BloqueUso a={LP.t3 + 6} b={LP.cierre} liviana="Se corta e instala" bold="igual que un tablero OSB estructural." cuerpoLiviana={78} />
       </Sequence>
       <Sequence from={LP.cierre}>
         <CierreBlanco c={{textoTop: 1120, arriba: [{t: "Tablero OSB LP TechShield,"}, {t: "disponible en Ebema.", bold: true}], boton: "Cotiza directo por WhatsApp"}} />

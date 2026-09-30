@@ -193,7 +193,8 @@ CARRUSELES = {
         dict(tipo="desarrollo", fondo="click2.jpg", pos="abajo", top=2100,
              texto="Mientras el ferretero o contratista|compra online, **el equipo valida**|**disponibilidad** y prepara|el despacho directo."),
         # r1: «un poco más arriba y un 20 % más pequeño»
-        dict(tipo="desarrollo", fondo="click3_mapa.jpg", pos="abajo", top=2080, escala=0.8, ciudades=CIUDADES,
+        # r2 30-09: «el texto inicial se pierde un poco, ¿podemos agrandar un poco el texto?» → 0.8 → 0.9
+        dict(tipo="desarrollo", fondo="click3_mapa.jpg", pos="abajo", top=2040, escala=0.9, ciudades=CIUDADES,
              texto="Una plataforma disponible las 24 horas,|en **Santiago, Rancagua, Chillán,**|**Concepción, Temuco y Puerto Montt.**"),
         dict(tipo="cierre", fondo="click1_v1.jpg", top=786, logo="click",   # r1: «cierre perfecto» — se congela
              texto="**Ebema Click,**|la plataforma y el equipo|que la hace posible."),

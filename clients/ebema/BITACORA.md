@@ -3,6 +3,33 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-09-30 — Paulina Bustamante
+
+**Qué se hizo:** Ronda de **contenido** sobre la grilla de octubre. Los comentarios llegaron en la
+grilla de Slides y Paulina los copió como comentarios sobre las piezas en Drive. 11 comentarios; 10 aplicados,
+re-subidos sobre el mismo fileId (md5 verificado) y resueltos:
+1. **Carruseles de feed:** el texto de las L2–L4 arranca a la **misma altura (505 px de 2813)** en los
+   6 carruseles (antes bajaba ~40 px de la 2 a la 4) y **las bajadas quedan a la misma altura** dentro
+   de cada carrusel (nuevo `bajada_baja` en `_motor.py`; «no quiero que toques la caja»). pointfix4
+   vuelve al cuerpo 40 en una línea (`bajada_ancho` 860); volcanita4 en 2 líneas. **San Juan:** caja de
+   L4 más chica y L2/L3 con `ancho_caja` propio (436 / 705 / 935) para que título, bajada y distancia
+   entre ambos coincidan en las 3 slides de info.
+2. **Stories:** caja de stock al ancho de las barras de horario (805) — 28/10 y también 21/10 (misma plantilla).
+3. **LinkedIn click3:** texto a escala 0,9.
+4. **Reels:** LP y **Aza** con la línea fina en Montserrat 500 y la liviana del mismo cuerpo que la bold (78);
+   San Bernardo: la toma de Seba parado (IMG_1974) se cambió por IMG_1977 @2,1 (muestra la cerámica). GIFs rehechos.
+
+**Dónde quedó:** scripts `out/ebema/20260923_grilla_octubre/subir_r3.py`, `subir_r3b.py`, `subir_r3c.py`;
+versiones previas en `_ronda3_antes/`, `_ronda3b_antes/`, `_ronda3c_antes/` de cada entrega. Cambios en
+`carrusel_*.py`, `_motor.py`, `stories-grilla.css`, `linkedin_carruseles.py`, `EbemaGrillaReelsOct.tsx`,
+`sanbernardo/cortar.py`. **Sin commitear todavía.**
+
+**Qué sigue:** **LinkedIn 15/10: el post pasa a CARRUSEL** (comentario abierto en `ebema_lk_post-15.10.png`).
+El brief está en la grilla, diapositiva `id.g37d1a4a2dbc_0_172` del deck `1suZHE44KCg1gmlfRzN5SBGrh0UEyAlG3s5-fRHby0IY`.
+Sólo se lee con el **conector de Drive de claude.ai** (la llave del estudio da 403). El post actual queda de portada.
+
+**Abierto:** lo demás pendiente (noviembre, LinkedIn 26/10) **no se toma hasta que avisen Carlos y Scar**.
+
 ## 2026-09-29 — Paulina Bustamante
 
 **Qué se hizo:**

@@ -22,7 +22,7 @@ Línea chilena de shampoos, acondicionadores y desinfectantes para mascotas,
 |---|---|---|
 | **Avena Coloidal** | Shampoo + Acondicionador con vitamina E. Pieles sensibles, irritadas o con alergias | 1:2 |
 | **Expert Care** | Shampoo de hidratación profunda. Aceite de argán, vitamina E, té verde | — |
-| **Groomer Grade** | El mismo concepto en formato profesional | **1:10** |
+| **Grooming Grade** («Nutri repair coat», 5 L) | El mismo concepto en formato profesional | **1:1 · 1:5 · 1:10** según suciedad |
 | **Xtreme Vet** | Desinfectante de grado hospitalario para superficies clínicas | — |
 
 ### Packs
@@ -81,7 +81,15 @@ finales salen en PDF (`PACK_MYZOO_FINALEXTRACARE.pdf`, `PACK_MYZOO_FINALESSENTIA
 > carpeta `MYZOO/Compartido/`. Es el documento **del cliente**, no una interpretación
 > nuestra. Resuelve dos de los pendientes que este manual daba por abiertos.
 
-### Las dos tipografías — confirmado, ya no es «por confirmar»
+> ⛔ **Corregido el 30-09-2026 — lo que se usa de verdad:** **titular en Neutraface Text
+> Bold, en mayúsculas**, y **bajada, píldoras y CTA en Roboto**. Así lo dicen el
+> `Manual_Identidad-MyZoo-03.pdf` (`1iTOi-HO1FyCkp5GbFlL6ngI2dbbQATCY`, más reciente que este
+> branding: Roboto es la corporativa y Neutraface va sólo en títulos y packaging, **nunca en
+> bloques de texto**), las 13 piezas de octubre de Paulina y todos los editables. En Drive no
+> existe Neutraface 2, sólo Neutraface **Text**. La tabla de abajo es la del branding NCG y
+> queda como registro. Ver `APRENDIZAJES.md` R-25 y `DRIVE-AGENCIA.md` §5.
+
+### Las dos tipografías según el branding NCG (superado por el Manual 03, ver arriba)
 
 | Rol | Familia | Pesos que declara el manual |
 |---|---|---|
@@ -200,7 +208,7 @@ piezas de septiembre. Pero hay dos más, en uso constante, que **no están en el
 
 | | HEX | Uso |
 |---|---|---|
-| Celeste apagado | **`#8DC4D4`** | el color no-oficial más usado de todos (2.º después del blanco) |
+| Celeste apagado | **`#83C0CD`** (oficial, paleta secundaria del Manual 03; se había medido como `#8DC4D4`) | el más usado después del blanco |
 | Crema | **`#F2EAD5`** | fondos cálidos |
 
 ### Los cuatro registros — MyZoo NO tiene una plantilla
@@ -357,7 +365,7 @@ Medida sobre **23 piezas publicadas de jul–sep 2026** (casi todas de Paulina) 
 [ ] ¿Es envase o digital? Especificación correcta (CMYK+Pantone+mm vs RGB+px)
 [ ] Claims y porcentajes LITERALES del catálogo del cliente
 [ ] "**Imágenes referenciales**" en toda gráfica de pack
-[ ] Dilución correcta por línea (Avena 1:2 · Groomer Grade 1:10)
+[ ] Dilución correcta por línea (Avena 1:2 · Grooming Grade 1:1/1:5/1:10)
 [ ] Variante de ojos correcta si es pack (normal / OJOS AMARILLOS)
 [ ] Logo del PNG oficial, nunca recreado
 [ ] Si es impresión: troquel incluido y tintas planas declaradas

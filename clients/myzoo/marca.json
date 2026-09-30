@@ -50,7 +50,7 @@
       "_nota": "MEDIDO sobre 118 piezas entregadas jul-sep 2026. NO es 1080x1350: se entrega a 2250 px de ancho, como Revex."
     },
     "tipografias": {
-      "corporativa": "Neutraface 2",
+      "corporativa": "Roboto (Manual 03) — en la practica: titular Neutraface Text Bold, cuerpo Roboto (corregido 30-09-2026)",
       "pesos": [
         "Light",
         "Light Italic",
@@ -78,7 +78,7 @@
       "regla": "Vivo + pastel + NEGRO. El negro sostiene el contraste y hace protagonista al color; no es decorativo.",
       "_errata_manual": "El PDF imprime el verde como RGB 107/118/79, que no corresponde a su propio HEX #6BBC4F (107/188/79). Manda el HEX.",
       "no_oficiales_en_uso": {
-        "celeste": "#8DC4D4",
+        "celeste": "#83C0CD",
         "crema": "#F2EAD5",
         "_nota": "No estan en el manual del cliente pero se usan constantemente. El celeste es el color no-oficial mas frecuente."
       }
@@ -121,7 +121,7 @@
       "componentes": "aceite de argán, vitamina E, té verde"
     },
     {
-      "nombre": "Groomer Grade",
+      "nombre": "Grooming Grade",
       "productos": [
         "Shampoo"
       ],

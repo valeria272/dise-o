@@ -32,7 +32,7 @@ CARRUSEL = {
         # L2 · brief: «No cualquier placa aguanta la humedad constante» / «la
         #      Volcanita estándar no está pensada para esa exposición.»
         #      Visual: detalle de placa dañada por humedad → ESPECIFICACIÓN → zoom
-        {"foto": "fotos/volcanita/02.jpg", "y": 244,
+        {"foto": "fotos/volcanita/02.jpg", "y": 234, "bajada_baja": 12,   # r3 30-09: texto a 505 px (ver sanjuan)
          "sobre": "NO CUALQUIER PLACA AGUANTA", "cuerpo": 52,
          "caja": "LA HUMEDAD CONSTANTE",
          "bajada": "La Volcanita estándar **no está pensada** para esa exposición."},
@@ -40,7 +40,7 @@ CARRUSEL = {
         # L3 · brief: «Volcanita RH, resistente a la humedad» / «núcleo y cara
         #      tratados para instalarse en baños, lavanderías y cocinas.»
         #      Visual: instalación de placa Volcanita RH → USO → escena
-        {"foto": "fotos/volcanita/03.jpg", "y": 230,
+        {"foto": "fotos/volcanita/03.jpg", "y": 231, "bajada_baja": 4,
          "sobre": "VOLCANITA RH,",
          "caja": "RESISTENTE A LA HUMEDAD",
          "bajada": "Núcleo y cara tratados para instalarse en **baños, lavanderías y cocinas**."},
@@ -48,10 +48,11 @@ CARRUSEL = {
         # L4 · rotulado «(Tip pro)» en el brief pero es un beneficio, no una orden:
         #      registro normal. «Se instala igual que la Volcanita estándar» /
         #      «mismo sistema de tabiquería — atornillado y terminación con cinta y pasta.»
-        {"foto": "fotos/volcanita/04.jpg", "y": 222,
+        {"foto": "fotos/volcanita/04.jpg", "y": 232,
          "sobre": "SE INSTALA IGUAL QUE",
          "caja": "LA VOLCANITA ESTÁNDAR",
-         "bajada": "Mismo sistema de tabiquería: **atornillado y terminación** con cinta y pasta."},
+         # ⭐ RONDA 3 — Paulina, 30-09-2026: «debe quedar en 2 líneas como la slide 2 y 3».
+         "bajada": "Mismo sistema de tabiquería: **atornillado y terminación** con cinta y pasta.", "bajada_ancho": 800},
 
         # L5 · CIERRE — brief: «Volcanita RH, disponible en Ebema.»
         {"foto": "fotos/volcanita/05.jpg", "cierre": True},

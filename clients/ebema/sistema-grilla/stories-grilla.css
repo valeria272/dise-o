@@ -64,7 +64,8 @@
 /* Caja de borde blanco «STOCK COMPLETO EN / MATERIALES PARA TU OBRA»:
    823,2 × 150,2 · 26 bajo la 2ª barra · mayúscula 29,3 → 41,3 · interlínea 44,7 */
 .st-b .stock { position:absolute; z-index:4; left:50%; transform:translateX(-50%);
-               width:823.2px; height:150.2px; border:3.4px solid #fff; border-radius:16px;
+               width:805px; height:150.2px;   /* r3 30-09 (Paulina, st-28.10): «los bullets de
+               horarios y el de stock deben tener el mismo ancho» — era 823,2 (medido en la ref) */ border:3.4px solid #fff; border-radius:16px;
                color:#fff; text-align:center; text-transform:uppercase;
                display:flex; flex-direction:column; align-items:center; justify-content:center;
                font-size:41.3px; line-height:1.082; }

@@ -8,8 +8,8 @@
 > **Vale SOLO para MYZOO.** Nada de acá se copia a otra marca, ni a una hermana.
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
-> Criterio: **Paulina Bustamante** (digital: grilla, RRSS, partners) · **Constanza Lizana «Coni»** (envase y packs) · Aprueba: **por confirmar** (ver §8)
-> Última cosecha: **2026-09-30** · Cosechas: **3**
+> Criterio: **Paulina Bustamante** (digital: grilla orgánica + paid — confirmado por ella el 30-09) · **Constanza Lizana «Coni»** (envase y packs) · Aprueba: **Magdalena** (proinnbrands), en la grilla
+> Última cosecha: **2026-09-30 (tarde)** · Cosechas: **4** · Mapa completo del Drive: [`DRIVE-AGENCIA.md`](DRIVE-AGENCIA.md)
 
 ## 1. Quién es el cliente
 
@@ -28,7 +28,9 @@ En digital el tono es cercano y juguetón, con un partner comercial fuerte (Merc
 | | |
 |---|---|
 | Quién pide / KAM | Contenidos arma la grilla (Nicolás, dueño de la grilla de octubre) · contacto agencia en la web: Ámbar Gallardo «Bambi» |
-| Quién aprueba (cliente) | Magdalena (proinnbrands) aparece como contacto en el proyecto web; para la grilla no hay nombre registrado |
+| Quién aprueba (cliente) | **Magdalena** (`magdalena@proinnbrands.com`) — escribe en las filas «COMENTARIOS CLIENTE TEXTO / DISEÑOS» de la grilla por rondas fechadas; «ok» = aprobado. «Mane» en las minutas es probablemente ella. **Exequiel** es del cliente: terreno y retail (Petco, Salcobrand) |
+| Paid | Brief y plan de medios los arma **Sebastián Córdova** (Paid Media); antes Serena Abarca. Llega como xlsx en `Paid/2026/Fase N` |
+| ⚠️ Dos Constanzas | **Constanza Olivares «Cotti»** (agencia: minutas, crea las carpetas del mes, sube reels) **no es** Constanza Lizana «Coni» (diseño de envase) |
 | Por dónde llega el feedback | Comentarios del cliente en la grilla (Sheet) + correcciones de Paulina en vivo en el estudio |
 | Dónde se entrega | Drive `MATERIAL DISEÑO PAULINA/MYZOO/5-en-revision/<AAAA-MM_mes>/` · entregado en `4-entregado/` · diseños por mes en `MYZOO/Diseño/` (`1maP-C8y1k8piEwT81Dhgv3KZuRrJxeqp`) |
 | Ritmo | Grilla mensual (10 estáticos en octubre 2026) + packaging a pedido + web a pedido |
@@ -59,18 +61,25 @@ Nomenclatura de Paulina: todo en minúscula con guion bajo, marca al principio �
 - **R-10** · El **producto siempre es packshot real**, nunca generado. La foto de ambiente puede ser de banco o IA, gradada cálida y con poca profundidad de campo — _medición de las piezas de Paulina, 22-09-2026 (fashionday usa IA en la pasarela)_ · ✔×1
 - **R-11** · Claims y porcentajes van **literales del catálogo** del cliente, sin redondear ni reformular — _catálogo y PDF de lanzamientos del cliente, manual 25-08-2026_ · ✔×1
 - **R-12** · Toda gráfica de pack lleva **«Imágenes referenciales»** — _packs de Coni (`PACK_MYZOO_ESSENTIALS`, `EXTRACARE`), 25-08-2026_ · ✔×1
-- **R-13** · Dilución correcta por línea (Avena 1:2 · Groomer Grade 1:10) y variante de ojos correcta en packs (normal / «OJOS AMARILLOS») — _catálogo y packs de Coni, 25-08-2026_ · ✔×1
+- **R-13** · Dilución correcta por línea (Avena 1:2 · **Grooming Grade** 1:1/1:5/1:10 según suciedad — en la etiqueta se llama «Grooming», no «Groomer», corregido 30-09) y variante de ojos correcta en packs (normal / «OJOS AMARILLOS») — _catálogo y packs de Coni, 25-08-2026_ · ✔×1
 - **R-14** · La jerarquía entre Neutraface 2 y Roboto **la decide la diseñadora**; no hay regla que las reparta — _manual del cliente: «El uso de ambas quedará a criterio de quién las necesite»_ · ✔×1
 - **R-15** · Mientras no lleguen los originales, compón todo en **Neutraface Bold / Bold Italic**: los archivos Book y Demi dejan un hueco tras cada «í» (redonda e itálica, mayúscula y minúscula) — _medido rindiendo con Chrome, 22-09-2026_ · ✔×1
 - **R-16** · Cuando la escena generada tapa la zona del titular, ve directo al **outpaint dirigido**: la escena más chica y apoyada abajo en un lienzo del tamaño final con márgenes gris `#808080`, y pide rellenar sólo lo gris. Nano Banana Pro no respeta porcentajes, «alejar la cámara» ni bocetos — _octubre 2026, 22-09-2026 · 4 rondas de generación perdidas antes de dar con esto_ · ✔×1
 - **R-17** · Si la escena generada trae un envase de relleno, bórralo antes de montar el packshot real — _octubre 2026, 22-09-2026_ · ✔×1
-- **R-18** · Los textos de pieza van **sin punto final** — _cliente, 27-08-2026 (`raw/myzoo/feedback-cliente.md`, citado en `CLAUDE.md` §2b)_ · ✔×1
+- **R-18** · **Evita el punto final en las gráficas por defecto**. No es regla dura: lo decide contenido (Cotti o Nicolás) al revisar la pieza terminada, según cómo se vea. Si lo piden, se pone y Paulina lo avisa. Si una gráfica queda con muchos puntos, **pregúntale a Paulina** — _Paulina, 30-09-2026: «usualmente no llevan. Yo suelo no ponerlo. Y si me lo piden, lo pongo»; reemplaza la versión anterior («sin punto final», cliente 27-08)_ · ✔×2
 - **R-19** · El logo lleva siempre **«Amor que se siente»** debajo, legible, nunca «enano» — _cliente, 01-08-2026, ídem_ · ✔×1
 - **R-20** · Cuando la pieza habla del baño, el producto se muestra **en combo** (shampoo + acondicionador), nunca uno solo — _cliente, 05-09-2026, ídem_ · ✔×1
 - **R-21** · La limpieza de la escena es un filtro duro: nada de barro, desorden ni mantas colgadas (contacto del cliente **Exequiel**, descrito como «muy picky») — _cliente, `raw/myzoo/feedback-cliente.md`, sin fecha exacta en la fuente_ · ✔×1
 - **R-22** · El nombre comercial correcto es **«Eliminador de Olores MyZoo»**; el claim de Xtreme Vet es «Elimina el 99% de los gases del mal olor» — _`raw/myzoo/feedback-cliente.md`, citado en `CLAUDE.md` §2b_ · ✔×1
 - **R-23** · El **mensaje comercial claro** pesa más que la referencia de tendencia — _cliente, `raw/myzoo/feedback-cliente.md`_ · ✔×1
 - **R-24** · La bajada de marca lleva una **huella** (no un corazón) reemplazando la O de AMOR; se creía corazón hasta que se revisó el archivo oficial el 22-09-2026 — _`myzoo_claim_amor.png`, corrección documentada en `CLAUDE.md` §1, 22-09-2026_ · ✔×1
+- **R-25** · Tipografía en la práctica: **titular en Neutraface Text Bold, en mayúsculas**; **bajada, píldoras y CTA en Roboto** (Medium/Bold). El `Manual_Identidad-MyZoo-03` dice que Roboto es la corporativa y que Neutraface va sólo en títulos y packaging, **nunca en bloques de texto**. En Drive no existe Neutraface 2, sólo Neutraface Text — _las 13 piezas de octubre de Paulina + Manual 03 lám. tipografía + editables, 30-09-2026_ · ✔×13
+- **R-26** · La **caja de color del titular toma el color del partner o del evento**: Meli amarillo `#FFE600`, Guau Fest `#00E0AD`/`#5F3086`, Halloween `#E84B1E`. Sin partner, va coral, verde o celeste — _octubre de Paulina, 30-09-2026_ · ✔×3
+- **R-27** · En las piezas de **evento**, el logo del organizador va **arriba, junto al de MyZoo**, y el par va centrado. Esto matiza R-09: la excepción del logo del partner vale para lo comercial, no para eventos — _`20_post-parquepet`, `22_story-huellas`, octubre 2026_ · ✔×2
+- **R-28** · El celeste de la marca es **`#83C0CD`**, de la paleta secundaria oficial del Manual 03. El `#8DC4D4` era una aproximación medida. La paleta secundaria completa es `#FFBE69 · #8458FB · #FF008E · #E7D6D1 · #FF4800 · #83C0CD · #184B7A` — _Manual 03 + `12_post-xtremevet`, 30-09-2026_ · ✔×2
+- **R-29** · Dentro de un mes **no repitas foto** y **varía el producto**: el cliente lo marca — _Magdalena en la grilla: «esta foto es la misma del 4/7..» (14/07), «HAY MUCHO DE SHAMPOO ESTE MES» (24/07, 30/07)_ · ✔×3
+- **R-30** · Manual 03: el logo mide **mínimo 100 px** en digital, lleva zona de protección 2x y **el círculo del isotipo nunca va en blanco**. Los recursos gráficos oficiales son las «oo» sueltas, el círculo con ojos y la «m» y la «y» recortadas sobre color plano — _`Manual_Identidad-MyZoo-03.pdf` `1iTOi-HO1FyCkp5GbFlL6ngI2dbbQATCY`, leído el 30-09-2026_ · ✔×1
+- **R-31** · Los **concursos** son la pieza que más mueve la cuenta: la mecánica va en un bloque claro («SÍGUENOS Y PARTICIPA») y lleva los logos de los aliados. En stories, deja libre abajo al centro para el sticker de enlace — _informes de mayo e informe F1 de campaña_ · ✔×1
 
 ## 5. Excepciones
 
@@ -78,6 +87,15 @@ Nomenclatura de Paulina: todo en minúscula con guion bajo, marca al principio �
 - **E-02** · El **envase** usa Neutraface **Text** (empaquetada, de pago) y Roboto por Adobe Fonts; el digital usa Neutraface **2** — _Informe.txt de `XTREME VET 5LTS.ai` vs. manual del cliente_
 - **E-03** · **Sitio web** (rebranding, `myzoo-v3.vercel.app`): los packshots actuales se **mantienen** (son el packaging vigente) y los productos nuevos (wipes, 5 L, Xtreme Vet) todavía no entran — _pedido del 21-08-2026_
 - **E-04** · En la **web** las escenas se generan con Magnific dejando espacio y el packshot real se monta después con PIL (etiqueta exacta) — _pipeline decidido el 21-08-2026_
+- **E-06** · **El paid es otro destino, con otra gramática** (ver [[un-sistema-es-de-un-destino]]). Medido en las piezas de la campaña «Huele a alguien que amas», la Fase 2 y PetVet:
+  - se entrega en **1080** (1:1 y 4:5), y sólo enero y PetVet salieron a 2250;
+  - **el logo va grande abajo a la izquierda**, no a 145 px arriba;
+  - la banda coral es una **pincelada** y no la caja redondeada;
+  - los envases van en fila abajo a la derecha.
+
+  **Fase 3 (octubre 2026) sigue la línea visual de la Fase 2:** perro y gato en casa, sillón, luz cálida. **Los protagonistas son los animales y casi no aparecen personas.** Los productos los entrega Paulina — _Paulina, 30-09-2026; `DRIVE-AGENCIA.md` §4_
+- **E-07** · **PREGUNTAZOO** sale **sin el logo de MyZoo** y lleva su propio sello; fondo celeste con doodles — _`02-story`, octubre 2026 (versión final de Paulina)_
+- **E-08** · Hay **un solo** titular alineado a la izquierda en octubre: Xtreme Vet, la pieza técnica de 5 L. Todo lo demás va centrado — _`12_post-xtremevet`_
 - **E-05** · Sobre **fondo amarillo** (ej. pieza Cruelty Free), titular y bajada van **en tinta**, no en blanco, porque el blanco no se lee ahí; la franja coral se mantiene igual — _decisión de producción, `out/myzoo/octubre-2026/ENTREGA.md`, pieza `08.10_post_crueltyfree`, 22-09-2026_
 
 ## 6. Lo que se aprueba a la primera
@@ -101,21 +119,48 @@ Piezas **publicadas** de Paulina que fijan cada registro (no hay registro de una
 
 ## 8. Preguntas abiertas
 
-- **¿Quién aprueba del lado del cliente la grilla?** Magdalena (proinnbrands) sólo aparece en el proyecto web. → KAM de MyZoo.
-- ⚠️ **¿Quién firma el criterio digital?** El manual dice «Coni + Paulina»; `clients/cava/reglas.yaml` pone a Coni con alcance sobre MyZoo; el barrido del Drive (22-09) dice que Paulina produce MyZoo y Coni sólo el packaging. Este archivo asume **Paulina digital · Coni envase**. → Valeria.
-- **Textos en pantalla de los 4 estáticos de octubre** (repelente, PREGUNTAZOO, Mercado Libre, cruelty free): los propuso el estudio desde el copy aprobado; falta que Paulina los valide. El sello PREGUNTAZOO es una propuesta. → Paulina.
-- **Correcciones pendientes de octubre:** mockup del teléfono con la tienda MyZoo en Meli; «salir.» sola en la última línea del bloque verde de repelente; bajada de PREGUNTAZOO en Bold por el defecto de fuente. → quien retome la grilla.
-- ⚠️ **¿Dónde quedaron los 4 estáticos de octubre?** La bitácora dice subidos a `5-en-revision/2026-10_octubre/v1-rehechas-22-09`; la nota de memoria dice «sin subir, esperando el visto de Valeria y Paulina»; el último `/al-dia` los ve en `2026-10_octubre/v1-valeria`. Además la bitácora nombra `scripts/myzoo-octubre.py` y la nota `myzoo-oct-escenas.py` + `myzoo-oct-armar.py`. → Paulina.
-- **Archivos originales de Neutraface Text Book y Demi** (y la licencia de Neutraface). → cliente / Paulina.
-- **`Manual_Identidad-MyZoo-03.pdf`** (331 MB, 09-2025, sin capa de texto) no se ha leído; si contradice algo, manda ese. → abrirlo a mano.
-- **¿Salió el rebranding 2026** (`MYZOO/Rebranding/`) con paleta nueva y «uso de los ojos»? → cliente.
-- **RGB equivalentes** de PANTONE 114 C, 708 C y Neutral Black C para que el digital calce con el envase. → Coni.
-- La grilla de octubre tiene **dos hojas visibles casi idénticas** (`Grilla Octubre ` con espacio y `Grilla Octubre`): el portal las lee como dos meses. → Nicolás.
+**Para Paulina (del recorrido del Drive, 30-09):**
+- ⚠️ **«Amor que se siente» (R-19):** en tu octubre va bajo el logo sólo en 08; en 05, 12 y 27 va al pie, y en 19, 20, 22, 23 y 29 no aparece. ¿Es obligatorio bajo el logo o depende de la pieza? El feedback del 01/08 dice «Bajar el logo y agregarle el claim». → Paulina.
+- **Paid Fase 3:** ¿se aceptan renders IA del producto (la F2 usó Freepik) o sólo el PNG oficial (R-10)? La línea visual ya está resuelta (E-06). → Paulina.
+- **Brief Fase 3 sin material:** «Material» dice «LINK» y no hay packshot de Pet Wipes ni del pack. Además la numeración del brief no calza con la del plan de medios. Entrega vencida el 29-09. → Sebastián Córdova.
+- **08, 12 y 19 de octubre salieron a 2255×2817**, no a 2250×2813: ¿error de exportación?
+- **`27_post_algonuevo` dice «APUNTO»**; lo correcto es «A PUNTO».
+- **El copy de 12/10 (Xtreme-Vet) en la grilla** es el de la pieza de 5 L, pegado por error. → Nicolás.
+- **¿Qué packshots están vigentes?** Los PNG de `Fotos Productos` son de 2025 con etiqueta vieja, y la Avena 420 cc tiene etiqueta nueva desde el 16-09.
+
+**Otras:**
+- **Archivos sanos de Neutraface Text Book y Demi.** En Drive todas las copias son el mismo archivo defectuoso. Queda por probar `NeutraTextTF-Book 2.otf` / `-Demi 2.otf`, de una carpeta de EBEMA (IDs en `DRIVE-AGENCIA.md` §5).
+- **RGB equivalentes** de PANTONE 114 C, 708 C y Neutral Black C. Puede estar en `GUÍA_PANTONE.ai` `1-GxpWFk9PATQqJDJyNuna0oir0UR8FGE`. → Coni.
+- **Nombre del eliminador:** el envase y el plan de paid dicen «Odor Eliminator»; el cliente pidió «Eliminador de olores» (R-22). ¿Cuál va en paid?
 - **Web:** el look de las 46 imágenes nuevas sigue esperando OK de Valeria y del cliente desde el 21-08. → Valeria.
-- **¿Quién es Exequiel del lado del cliente?** Aparece en el feedback literal como «muy picky» sobre la limpieza de la escena (R-21), sin cargo registrado. → KAM de MyZoo.
-- **¿La regla de «sin punto final» (27-08, R-18) aplica también a posts y stories, o sólo a lo que ya se probó?** — _`BITACORA.md`, 22-09-2026, sesión de Valeria_. → Paulina / cliente.
+- **¿«Mane» es Magdalena?** → KAM.
+
+**Resueltas el 30-09:**
+- Punto final: evitarlo por defecto, sin regla dura (R-18). Fase 3: sigue la línea visual de la Fase 2 (E-06). Paulina sube los packshots a `MYZOO/PACKSHOTS FASE 3 (para Claude)` `1g5slxhZzSrwKk_aRg-aTmz7M49hDOcWC`.
+- Quién aprueba: Magdalena.
+- Quién firma el digital: Paulina, confirmado por ella.
+- Quién es Exequiel: cliente, terreno y retail.
+- Las dos hojas de la grilla de octubre: manda **«Grilla Octubre »** (con espacio); la otra es un borrador viejo.
+- Manual 03: leído (R-25, R-28, R-30).
+- El rebranding 2026 **no salió**: nunca se entregó paleta nueva ni «uso de los ojos».
+- **Los 4 estáticos de octubre del estudio (22-09) quedaron superados:** las versiones finales son las de Paulina en `Diseño/10. OCTUBRE` (01, 02 y 05 aprobadas por el cliente; 08 en revisión).
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 (tarde) — Claude con Paulina Bustamante · recorrido completo del Drive de la agencia
+- Paulina confirmó que ella diseña MyZoo en digital (grilla orgánica básica + paid). Pidió leer todo `AGENCIA COPYWRITERS/MYZOO`; se recorrieron las 15 carpetas → mapa en **`DRIVE-AGENCIA.md`**.
+- **Nuevo R-25 a R-31:**
+  - R-25: titular en Neutraface Text y cuerpo en Roboto.
+  - R-26: la caja toma el color del partner o del evento.
+  - R-27: en eventos, logo del organizador junto al de MyZoo.
+  - R-28: celeste oficial `#83C0CD` + paleta secundaria.
+  - R-29: no repetir foto y variar el producto.
+  - R-30: protección, mínimo y recursos del Manual 03.
+  - R-31: el concurso como pieza clave.
+- **Nuevo E-06 a E-08:** gramática del paid como destino propio, PREGUNTAZOO sin logo y Xtreme Vet alineado a la izquierda.
+- **Corrige** R-13: se llama «Grooming Grade».
+- **§8 reescrito:** siete preguntas resueltas y siete nuevas para Paulina, sobre todo R-18/R-19 contra su octubre y la gramática del paid Fase 3.
+- **Aplicado el mismo día:** R-25, R-28 y el nombre «Grooming Grade» ya están en `CLAUDE.md` y `marca.json`.
 
 ### 2026-09-30 — Claude nocturno (nube) · sesiones de Paulina Bustamante (medición del 22-09) y Valeria Traverso con Claude (armado del 22-09) — commit `a8e0647`
 - nuevo **R-18…R-24** · reglas de cliente citadas en `CLAUDE.md` §2b (fuente `raw/myzoo/feedback-cliente.md`) que estaban documentadas ahí desde el 22-09 pero **nunca se habían destilado** a este cerebro: sin punto final (27-08), logo con «Amor que se siente» legible (01-08), combo shampoo+acondicionador al hablar del baño (05-09), limpieza de la escena (contacto Exequiel, sin fecha), nombre correcto «Eliminador de Olores MyZoo», y mensaje comercial por sobre la tendencia.

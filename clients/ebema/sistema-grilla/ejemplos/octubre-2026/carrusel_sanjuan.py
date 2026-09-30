@@ -45,7 +45,11 @@ CARRUSEL = {
         # que cbb4: la segunda mitad de la frase principal es la que lleva el rojo.
         # La imagen se regenera aparte («que no se vea como un cuadro en la zona de
         # arriba»): el plano llega más amplio y con fondo real, no vacío.
-        {"foto": "fotos/sanjuan/02.jpg", "y": 248,
+        # ⭐ RONDA 3 — Paulina, 30-09-2026, aquí: «el bloque de texto siempre debe comenzar
+        # a la misma altura, debe tener siempre la misma distancia en la zona superior».
+        # Las L2–L4 de los 6 carruseles bajaban ~40 px de una a otra (y 246→232→226):
+        # ahora el texto arranca a 505 px de 2813 en todas (medido en el PNG, no en `y`).
+        {"foto": "fotos/sanjuan/02.jpg", "y": 231, "ancho_caja": 705,
          "sobre": "CON EL TIEMPO, PIERDE",
          "caja": "RESISTENCIA Y SE AGRIETA",
          "bajada": "El contacto permanente con agua desgasta el hormigón común."},
@@ -53,7 +57,7 @@ CARRUSEL = {
         # L3 · brief: «Cemento Especial San Juan, formulación puzolánica» / «pensado
         #      para estructuras en contacto directo con agua o suelo húmedo.»
         #      Visual: aplicación o mezcla del cemento → USO → escena
-        {"foto": "fotos/sanjuan/03.jpg", "y": 234,
+        {"foto": "fotos/sanjuan/03.jpg", "y": 234, "ancho_caja": 935,
          "sobre": "CEMENTO ESPECIAL SAN JUAN,", "cuerpo": 52,
          "caja": "FORMULACIÓN PUZOLÁNICA",
          "bajada": "Pensado para estructuras en **contacto directo con agua** o suelo húmedo."},
@@ -62,7 +66,11 @@ CARRUSEL = {
         #      registro normal (§4-bis, el caso de cedral).
         #      «Ideal para estanques, pozos y fosas» /
         #      «mayor durabilidad frente a la humedad constante.»
-        {"foto": "fotos/sanjuan/04.jpg", "y": 224,
+        # ⭐ RONDA 3c — Paulina, 30-09-2026, sobre sanjuan4: «disminuir el tamaño de este título para
+        # que la distancia entre título y bajada sea la misma en las 3 slides de "info"». Con el
+        # arranque (505) y la bajada ya igualados, eso obliga a que el bloque del título mida lo
+        # mismo en L2–L4: la caja de L4 se achica y L2/L3 ajustan su ancho para terminar juntas.
+        {"foto": "fotos/sanjuan/04.jpg", "y": 231, "ancho_caja": 436,
          "sobre": "IDEAL PARA ESTANQUES,",
          "caja": "POZOS Y FOSAS",
          "bajada": "Mayor durabilidad frente a la **humedad constante**."},

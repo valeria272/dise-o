@@ -114,7 +114,13 @@ def cuerpo(l):
         # 24-09-2026 sobre masisa2: «este texto déjalo en 2 líneas solamente». Con
         # 740 la frase caía en 3; se alinea al ancho de caja de la lámina.
         ba = l.get("bajada_ancho")
-        estilo = (f"font-size:{bc}px;" if bc else "") + (f"max-width:{ba}px;" if ba else "")
+        # `bajada_baja`: px (a 1080) que se suman al margen de 20 sobre la bajada. Paulina,
+        # 30-09-2026: «no quiero que toques la caja, solo iguala las bajadas, que estén a la
+        # misma altura». La caja roja se compone al ancho y su alto varía entre láminas, así
+        # que la bajada se empuja hasta la más baja del carrusel; la caja no se mueve.
+        bb = l.get("bajada_baja")
+        estilo = ((f"font-size:{bc}px;" if bc else "") + (f"max-width:{ba}px;" if ba else "")
+                  + (f"margin-top:{20 + bb}px;" if bb else ""))
         eb = f' style="{estilo}"' if estilo else ""
         extra = f'<div class="bajada"{eb}>{fmt(l["bajada"])}</div>'
     pie = ""

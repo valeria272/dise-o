@@ -81,8 +81,8 @@ PIEZAS = [
                "No acumulable con otras promociones. Hasta agotar stock."),
     # Sin bajada: el brief dice «HOUSE OF MORANDÉ A $46.630», pero el nombre del
     # vino y su precio ya van más abajo en la pieza. Coni la quitó el 30-09.
-    dict(n=2, escena="vip", fin=0.80, tope=520, borde=0.889, vert=0.30, zoom=1.0,
-         alto_img=0.80,
+    dict(n=2, escena="vip", fin=0.86, tope=790, borde=0.889, vert=0.14, zoom=1.16,
+         alto_img=0.90,
          gancho="TU CUPÓN VIP SIGUE ACTIVO",
          titular="45% OFF", bajada=None, cupon="CYBERVIP",
          producto=["HOUSE OF MORANDÉ", "MEZCLAS TINTAS 2021"],
@@ -253,12 +253,16 @@ def x_de_la_C(cx, ancho_lockup):
     return cx - u(ancho_lockup) / 2
 
 
-def _nombre_en_lineas(p, cap, ancho_max, maximo=3):
+def _nombre_en_lineas(p, cap, ancho_max, maximo=4):
     """Parte el nombre del vino en hasta `maximo` líneas que quepan en el ancho.
 
     Coni: «quizás en tres líneas, no necesariamente dos, en tres líneas para que
     alcance al lado de la botella». Se busca el menor número de líneas con el
     cuerpo pedido; si no cabe, se agrega una más.
+
+    Se admiten hasta CUATRO antes de tocar el cuerpo. Con tres, un nombre largo
+    como «HOUSE OF MORANDÉ MEZCLAS TINTAS 2021» obligaba a achicar la letra y esa
+    pieza quedaba con otra tipografía que el resto de la campaña.
     """
     palabras = " ".join(p["producto"]).split()
     ft = fuente("bold", _cuerpo_para_cap("bold", u(cap)))

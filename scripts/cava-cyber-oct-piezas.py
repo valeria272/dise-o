@@ -91,10 +91,15 @@ PIEZAS = [
          botella="house", oferta="$46.630", normal="$84.790", sellos=[],
          legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
                "No acumulable con otras promociones. Hasta agotar stock."),
-    dict(n=3, escena="vip", fin=0.88, tope=545, gancho="ÚLTIMO DÍA VIP",
-         titular="45% OFF", bajada="SE DESACTIVA MAÑANA", cupon="CYBERVIP",
-         producto=["MORANDÉ SELECCIÓN ENOLÓGICA", "CARMENERE Y CABERNET SAUVIGNON"],
-         botella="enologica_ca", botella2="enologica_cs",
+    # Dos vinos: maqueta centrada. El par va arriba y debajo se apila la oferta,
+    # el nombre en dos líneas, el precio, el cupón y la alarma.
+    dict(n=3, escena="vip", maqueta="centrada", tope=790,
+         bot=(0.60, 0.95, 0.31, 0.71), destino=(None, 700, 1520),
+         gancho="ÚLTIMO DÍA VIP",
+         titular="45% OFF", bajada=None, cupon="CYBERVIP",
+         alarma="SE DESACTIVA MAÑANA",
+         producto=["MORANDÉ SELECCIÓN ENOLÓGICA",
+                   "CARMENERE Y CABERNET SAUVIGNON"],
          oferta="$9.340", normal="$16.990", sellos=[],
          legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
                "No acumulable con otras promociones. Hasta agotar stock."),
@@ -281,7 +286,77 @@ def _nombre_en_lineas(p, cap, ancho_max, maximo=4):
     return [l for l in lineas if l], ft
 
 
+def vertical_centrada(p):
+    """Maqueta para las piezas de DOS vinos, ordenada por Coni de arriba abajo:
+    los dos vinos centrados, y debajo la oferta, el nombre en dos líneas, el
+    precio, el cupón y una línea de alarma al pie.
+
+    No es la maqueta de las de un vino con otros números: es otra maqueta. Con
+    dos botellas el eje deja de estar al costado y el centro pasa a mandar.
+    """
+    ANCHO_LOCKUP = 840
+    CX = u(540)
+
+    ft_g = fuente("light", _cuerpo_para_ancho("light", p["gancho"], u(ANCHO_LOCKUP), 0.075))
+    cg = mide(p["gancho"], ft_g, 0.075)
+    lin_of = parte_oferta(p["titular"])
+    ft_t = fuente("xbold", _cuerpo_para_cap("xbold", u(CAP_OFERTA)))
+    paso_of = CAP_OFERTA * 1.12
+    b0 = mide(lin_of[0], ft_t, -0.02)
+    alto_of = (len(lin_of) - 1) * paso_of + (b0[3] - b0[1]) / ESC
+
+    lineas, ft_n = _nombre_en_lineas(p, CAP_NOMBRE, 900, maximo=2)
+    paso_n = ft_n.size / ESC * 1.40
+    ft_o = fuente("xbold", _cuerpo_para_cap("xbold", u(CAP_PRECIO)))
+    ft_v = fuente("light", _cuerpo_para_cap("light", u(CAP_PRECIO * 0.56)))
+    co, cv = mide(p["oferta"], ft_o), mide(p["normal"], ft_v)
+
+    Y_BOT_TOP, Y_BOT_BASE = p["destino"][1], p["destino"][2]
+    y = Y_BOT_BASE + 70
+    y_of = y
+    y_nom = y_of + alto_of + 52
+    y_pre = y_nom + len(lineas) * paso_n + 34
+    alto_pre = (co[3] - co[1]) / ESC + CAP_PRECIO * 0.34 + (cv[3] - cv[1]) / ESC
+    y_cup = y_pre + alto_pre + 66
+    alto_cup = cupon_alto(620)
+    ft_al = fuente("bold", _cuerpo_para_ancho("bold", p["alarma"], u(560), 0.06))
+    ca = mide(p["alarma"], ft_al, 0.06)
+    y_al = y_cup + alto_cup + 44
+    y_legal = y_al + (ca[3] - ca[1]) / ESC + 56
+    ALTO = y_legal + CAP_LEGAL * 1.55 + MARGEN_PIE
+
+    base, k_img, x_img, y_img = escena_montada(p["n"], "mail", ALTO, bot=p["bot"],
+                                               destino=p["destino"])
+    im = viñeta(base, 0.22)
+    marco(im)
+    advertencia(im)
+    logo(im, CX, Y_LOGO, ancho=217.4)
+
+    texto_oro(im, (CX, u(Y_GANCHO)), p["gancho"], ft_g, 0.075, ancla="centro")
+    lockup(im, CX, Y_GANCHO + (cg[3] - cg[1]) / ESC + 14, ancho=ANCHO_LOCKUP)
+
+    pen = y_of - b0[1] / ESC
+    lineas_a_plomo(im, CX, pen, lin_of, ft_t, paso_of, track=-0.02, ancla="centro")
+    lineas_a_plomo(im, CX, y_nom, lineas, ft_n, paso_n, BLANCO, 0.01, "centro")
+    texto_oro(im, (CX, u(y_pre)), p["oferta"], ft_o, ancla="centro")
+    bv = texto_plano(im, (CX, u(y_pre + (co[3] - co[1]) / ESC + CAP_PRECIO * 0.34)),
+                     p["normal"], ft_v, GRIS, ancla="centro")
+    ImageDraw.Draw(im).line([bv[0] - u(5), (bv[1] + bv[3]) / 2,
+                             bv[2] + u(5), (bv[1] + bv[3]) / 2],
+                            fill=GRIS, width=max(1, int(u(2.6))))
+    cupon(im, CX, y_cup, p["cupon"], ancho=620, alto=620 / PROP_CUPON)
+    # La alarma va bajo el cupón, en blanco y en BOLD: es el aviso de que el
+    # cupón se apaga, y en la variante normal se perdía junto al legal.
+    texto_plano(im, (CX, u(y_al) + ca[1]), p["alarma"], ft_al, BLANCO, 0.06,
+                ancla="centro")
+    pie_legal(im, p, y=y_legal + CAP_LEGAL * 1.55, ancho_max=940, cap=CAP_LEGAL)
+    return im
+
+
 def vertical(p):
+    if p.get("maqueta") == "centrada":
+        return vertical_centrada(p)
+
     dobles = bool(p.get("botella2"))
     ANCHO_LOCKUP = 840
 
@@ -611,7 +686,9 @@ def pie_legal(im, p, y, ancho_max=940, cap=12.5, interlinea=1.55):
 def construye(clave):
     tipo, n = ("wsp", int(clave[3:])) if clave.startswith("wsp") else ("mail", int(clave[4:]))
     p = PIEZAS[n - 1]
-    if not p.get("botella"):
+    # El chequeo mira `falta`, no `botella`: desde que la botella viene dentro
+    # del montaje generado, ninguna pieza pega ya un packshot suelto.
+    if p.get("falta"):
         print(f"  ⏭  {clave}: falta el bottle shot de «{p['falta']}» — se pide, no se genera")
         return None
     im = cuadrada(p) if tipo == "wsp" else vertical(p)

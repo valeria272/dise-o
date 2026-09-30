@@ -265,22 +265,49 @@ def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5, zoom=1.
         # desplazamientos, sin tanteo: la botella cabe entera entre el logo y el
         # cupón y cierra contra la «E» porque así se despejó, no porque se haya
         # probado hasta que saliera.
-        f_x1, f_y0, f_y1 = bot
-        x_der, y_top, y_bot = (u(v) for v in destino)
+        # Con cuatro valores el primero es el canto IZQUIERDO y el conjunto se
+        # centra: es lo que necesita una pieza de dos vinos, donde lo que manda
+        # no es un borde sino el eje del par.
+        f_x0 = None
+        if len(bot) == 4:
+            f_x0, f_x1, f_y0, f_y1 = bot
+        else:
+            f_x1, f_y0, f_y1 = bot
+        x_der, y_top, y_bot = (u(v) if v is not None else None for v in destino)
         kk = (y_bot - y_top) / ((f_y1 - f_y0) * im.height)
+        if x_der is None:
+            ancho_par = (f_x1 - f_x0) * im.width * kk
+            x_der = u(540) + ancho_par / 2
+        # El montaje tiene que cubrir el ancho sí o sí: si la escala que pide la
+        # botella lo deja más angosto que la pieza, se agranda y la botella
+        # crece con él. Antes quedaban franjas negras a los lados.
+        kk = max(kk, W / im.width)
         esc = (int(round(im.width * kk)), int(round(im.height * kk)))
         img = im.resize(esc, Image.LANCZOS)
         dx = int(round(f_x1 * esc[0] - x_der))
+        dx = max(0, min(dx, esc[0] - W))       # el montaje siempre cubre el ancho
         dy = int(round(f_y0 * esc[1] - y_top))
         lienzo = Image.new("RGB", (W, H))
-        if dy > 0:
-            lienzo.paste(img.crop((0, dy, esc[0], min(esc[1], dy + H))), (-dx, 0))
-        else:
-            ceja = img.crop((0, 0, esc[0], min(esc[1], 40)))
-            ceja = ceja.transpose(Image.FLIP_TOP_BOTTOM).resize((esc[0], -dy), Image.LANCZOS)
-            lienzo.paste(ceja, (-dx, 0))
-            lienzo.paste(img.crop((0, 0, esc[0], min(esc[1], H + dy))), (-dx, -dy))
-        return lienzo, kk, dx, max(0, -dy)
+        arriba = max(0, -dy)
+        visible = img.crop((0, max(0, dy), esc[0], esc[1]))
+        lienzo.paste(visible, (-dx, arriba))
+
+        # Los huecos se rellenan espejando la propia franja del montaje —arriba
+        # cortina, abajo mármol— con la costura fundida. Sin esto la pieza deja
+        # ver el canto del montaje cuando el alto que pide el texto supera lo
+        # que el montaje da a la escala de la botella.
+        if arriba:
+            ceja = visible.crop((0, 0, esc[0], min(visible.height, max(60, arriba))))
+            ceja = ceja.transpose(Image.FLIP_TOP_BOTTOM)
+            lienzo.paste(ceja.resize((esc[0], arriba), Image.LANCZOS), (-dx, 0))
+        fondo_y = arriba + visible.height
+        if fondo_y < H:
+            falta_ab = H - fondo_y
+            # Abajo se ESTIRA una franja fina del mármol, no se espeja una
+            # ancha: espejada aparecían las botellas repetidas como fantasmas.
+            pie = visible.crop((0, visible.height - 24, esc[0], visible.height))
+            lienzo.paste(pie.resize((esc[0], falta_ab), Image.LANCZOS), (-dx, fondo_y))
+        return lienzo, kk, dx, arriba
 
     Hi = int(round(H * alto_img))
     k = max(W / im.width, Hi / im.height) * zoom   # cubrir, nunca deformar

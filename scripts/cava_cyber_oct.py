@@ -232,7 +232,7 @@ ESCENAS = CAVA / "cyber-oct/escenas"
 
 
 def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5, zoom=1.0,
-                   alto_img=1.0):
+                   alto_img=1.0, baja=0.0):
     """El fondo YA trae la botella puesta sobre la plataforma del KV.
 
     Estos montajes se generaron con Magnific en el space de Coni, con su propio
@@ -268,9 +268,16 @@ def escena_montada(n, formato, alto_ud, fin=0.90, borde=0.955, vert=0.5, zoom=1.
     y0 = int(max(0, im.height - Hi) * vert)
     recorte = im.crop((x0, y0, x0 + W, y0 + min(Hi, im.height - y0)))
 
-    if recorte.height >= H:
+    # `baja` empuja el montaje hacia abajo SIN achicarlo: es lo que separa la
+    # cápsula de la botella del logo sin tocar el tamaño del vino, que es lo que
+    # manda en la campaña. Lo que sobra por abajo se pierde.
+    empuje = int(round(u(baja)))
+    if recorte.height - empuje >= H:
         return recorte.crop((0, 0, W, H)), k, x0, 0
-    falta = H - recorte.height
+    falta = H - recorte.height + empuje
+    if falta <= 0:
+        return recorte.crop((0, -falta, W, -falta + H)), k, x0, 0
+    recorte = recorte.crop((0, 0, W, min(recorte.height, H - falta)))
     lienzo = Image.new("RGB", (W, H))
     # El relleno sale de ESPEJAR la franja alta del montaje, no de estirar una
     # línea: estirada deja un canto horizontal visible donde empieza. La costura

@@ -288,22 +288,13 @@ def vertical(p):
     # opción: deformaría la tipografía.
     b0 = mide(lin_of[0], ft_t, -0.02)
     W_CAJA = b0[2] - b0[0]
-    tracks_of, sangria_of = [-0.02], [0.0]
-    for l in lin_of[1:]:
-        c = mide(l, ft_t, 0.0)
-        huecos = max(1, len(l) - 1)
-        tr = (W_CAJA - (c[2] - c[0])) / (huecos * ft_t.size)
-        if tr > TOPE_TRACK:
-            # No se puede estirar tanto sin que la palabra se desarme: «HASTA
-            # 50%» es tres veces más ancha que «OFF» y el tracking necesario
-            # dejaba las letras sueltas. Esa línea se deja con su espaciado
-            # normal y se CENTRA dentro de la caja.
-            tracks_of.append(-0.02)
-            c2 = mide(l, ft_t, -0.02)
-            sangria_of.append((W_CAJA - (c2[2] - c2[0])) / 2)
-        else:
-            tracks_of.append(tr)
-            sangria_of.append(0.0)
+    # ⛔ El OFF NO se estira para llenar la caja. Se probó el 30-09 —abrirlo con
+    # tracking hasta el ancho de la cifra— y Coni lo bajó: la palabra se lee
+    # «O F F», desarmada. Conserva su espaciado y arranca donde arranca la
+    # cifra. Quien sí se ajusta al ancho de la caja es la FRASE, que al ser de
+    # otro cuerpo se acomoda sin abrir las letras.
+    tracks_of = [-0.02] * len(lin_of)
+    sangria_of = [0.0] * len(lin_of)
     ft_b = fuente("light", _cuerpo_para_ancho("light", p["bajada"], W_CAJA, 0.055))
     cb = mide(p["bajada"], ft_b, 0.055)
     # Todo el bloque del descuento se mide en el espacio del ORIGEN DE

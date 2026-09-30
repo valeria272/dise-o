@@ -54,7 +54,7 @@ PIEZAS = [
     (2, "STS", "BW ST 08-10 Trivia Between.png"),
     (3, "STS", "BW ST 19-10 Cowork.png"),
     (3, "STS", "BW ST 20-10 Lo dicen ustedes.png"),
-    (4, "FEED", "BW FEED 14-10 Espacios Between.png"),
+    (3, "FEED", "BW FEED 14-10 Espacios Between.png"),  # grilla 30-09: bloque SEMANA 3
     (4, "STS", "BW ST 27-10 Espacio para tu evento.png"),
     (5, "STS", "BW ST 28-10 Desayuno Bonjour.png"),
 ]
@@ -69,9 +69,9 @@ PIEZAS_R2 = [
     (1, "STS", "BW ST 02-10 Promos To Go POV.mp4"),
     (1, "STS", "BW ST 02-10 Promos To Go POV.gif"),
     (1, "STS", "BW ST 02-10 Promos To Go POV - PORTADA.png"),
-    (4, "FEED", "BW FEED 12-10 Por que vienes por que te quedas.mp4"),
-    (4, "FEED", "BW FEED 12-10 Por que vienes por que te quedas.gif"),
-    (4, "FEED", "BW FEED 12-10 Por que vienes por que te quedas - PORTADA.png"),
+    (3, "FEED", "BW FEED 12-10 Por que vienes por que te quedas.mp4"),
+    (3, "FEED", "BW FEED 12-10 Por que vienes por que te quedas.gif"),
+    (3, "FEED", "BW FEED 12-10 Por que vienes por que te quedas - PORTADA.png"),
     # reel cumpleaños (FEED col F, bloque SEMANA 1), aprobado por Eli el 29-09 en ronda 3
     (1, "FEED", "BW FEED 02-10 Cafe de cumpleanos.mp4"),
     (1, "FEED", "BW FEED 02-10 Cafe de cumpleanos.gif"),

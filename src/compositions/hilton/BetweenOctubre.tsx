@@ -1015,7 +1015,7 @@ export const FeedOct14Espacios: React.FC = () => (
       <TitularBetween
         caps={'Espacios que invitan\na quedarse'}
         sizeCaps={84}
-        aireEntreCapsProp={0.1}
+        aireEntreCapsProp={0.2}
         tono="beige"
         alinear="centro"
         anchoDisponible={BETWEEN.bloque.columna}
@@ -1029,9 +1029,11 @@ export const FeedOct14Espacios: React.FC = () => (
           padding: '14px 34px 16px',
         }}
       >
-        {/* ⭐ 30-09 (R-118): la bajada del feed se tiene que leer → Bold 38 */}
+        {/* ⭐ 30-09 (R-118): la bajada del feed se tiene que leer → Bold 38.
+            Eli r9: el titular «muy junto» con 0,1 → 0,2; y el corte «…y buenos» /
+            «momentos en Between» (el anterior «se veía extraño»). */}
         <Texto size={38} peso={700}>
-          {'Café, comodidad\ny buenos momentos en Between'}
+          {'Café, comodidad y buenos\nmomentos en Between'}
         </Texto>
       </div>
     </Columna>

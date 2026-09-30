@@ -284,13 +284,14 @@ def advertencia(im, ancho=408.5):
     return (im.width - w, 0, im.width, h)
 
 
-def logo(im, cy_x, y, ancho=217.4):
+def logo(im, x, y, ancho=217.4, ancla="centro"):
     lg = Image.open(LOGO).convert("RGBA")
     w = int(u(ancho))
     h = int(round(w * lg.height / lg.width))
-    lg = lg.resize((w, h), Image.LANCZOS)
-    im.paste(lg, (int(cy_x - w / 2), int(u(y))), lg)
-    return (int(cy_x - w / 2), int(u(y)), int(cy_x + w / 2), int(u(y)) + h)
+    lg = _reescala_rgba(lg, w, h)
+    x0 = int(x - w / 2) if ancla == "centro" else (int(x) if ancla == "izq" else int(x - w))
+    im.paste(lg, (x0, int(u(y))), lg)
+    return (x0, int(u(y)), x0 + w, int(u(y)) + h)
 
 
 # ── El lockup CYBERWINE week ─────────────────────────────────────────────────

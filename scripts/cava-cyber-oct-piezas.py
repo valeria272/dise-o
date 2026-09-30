@@ -166,6 +166,18 @@ CAP_LEGAL = 17               # Coni pidió agrandar la letra chica
 ALTO_BOTELLA = 1130          # la botella manda: es la protagonista de la pieza
 COL_TEXTO = 548              # dónde cierra por la derecha la columna de texto
 CX_BOTELLA = 782
+# Cuánto baja el bloque de texto respecto al tope de la botella. Coni: «la
+# información del 45% off, la frase, el nombre y los precios, un poquito más
+# abajo… a ras de la tapa de la botella». Es una fracción del alto de la
+# botella, medida sobre el packshot: ahí termina la cápsula y arranca el cuello.
+TEXTO_BAJO_TAPA = 0.12
+# Los sellos ocupaban el 64 % del ancho de la botella y la tapaban. «Si bien es
+# importante el sello porque son los premios que ha ganado el vino, es mucho más
+# importante que se vea el vino».
+SELLO_POR_BOTELLA = 0.138
+Y_LOGO, Y_GANCHO = 152, 330  # la cabecera sube: el ángulo superior izquierdo
+                             # quedaba vacío con el logo centrado y más abajo
+MARGEN_PIE = 92              # aire entre la letra legal y el filete dorado
 
 
 def parte_oferta(titular):
@@ -286,7 +298,7 @@ def vertical(p):
     alto_texto = (len(lineas) * paso_n + CAP_NOMBRE * 0.9
                   + (co[3] - co[1]) / ESC + CAP_PRECIO * 0.34 + (cv[3] - cv[1]) / ESC)
 
-    y_gancho = 452
+    y_gancho = Y_GANCHO
     y_lockup = y_gancho + alto_g + (16 if ft_g else 0)
     if dobles:
         # centrada: descuento, nombre con precio y las dos botellas, apilados
@@ -297,21 +309,26 @@ def vertical(p):
     else:
         # el descuento entra DENTRO de la banda, alineado a la «C», y la botella
         # se queda con todo el costado derecho
+        # La botella conserva su distancia bajo el logo CYBERWINE week; el texto
+        # arranca más abajo, a ras de la tapa.
         y_banda = y_lockup + _alto_lockup(ANCHO_LOCKUP) + 52
-        y_oferta = y_banda
         alto_bot = ALTO_BOTELLA
-        alto_banda = max(alto_bot, alto_desc + 58 + alto_texto)
+        y_oferta = y_banda + alto_bot * TEXTO_BAJO_TAPA
+        alto_banda = max(alto_bot, (y_oferta - y_banda) + alto_desc + 58 + alto_texto)
     y_cupon = y_banda + alto_banda + 54
     alto_cupon = (cupon_alto(620) if p["cupon"] else 0)
     y_legal = y_cupon + alto_cupon + (58 if p["cupon"] else 10)
-    ALTO = y_legal + CAP_LEGAL * 1.55 + 54
+    ALTO = y_legal + CAP_LEGAL * 1.55 + MARGEN_PIE
 
     # ── 2. lienzo y fondo ───────────────────────────────────────────────────
     im = viñeta(fondo(p["escena"], "mail", alto_ud=ALTO), 0.34)
     marco(im)
     advertencia(im)
     CX = u(540)
-    logo(im, CX, 258, ancho=217.4)
+    if dobles:
+        logo(im, CX, Y_LOGO, ancho=217.4)                     # centrado al eje
+    else:
+        logo(im, x_de_la_C(CX, ANCHO_LOCKUP), Y_LOGO, ancho=217.4, ancla="izq")
 
     # ── 3. dibujar ──────────────────────────────────────────────────────────
     if ft_g:
@@ -418,7 +435,7 @@ def columna_botella(im, p, cx, base_y, alto, sellos_a="izq", hueco=16):
         ancla = botella(im, BOTELLAS[p["botella"]], cx - total / 2 + w1 / 2, base_y, a1)
     else:
         ancla = botella(im, BOTELLAS[p["botella"]], cx, base_y, alto)
-    d = alto * 0.20
+    d = alto * SELLO_POR_BOTELLA
     for i, nombre in enumerate(p.get("sellos", [])):
         x = ancla[0] + u(d * 0.16) if sellos_a == "izq" else ancla[2] - u(d * 0.16)
         sello(im, x, ancla[1] + u(d * 0.60 + i * d * 1.12), nombre, diam=d)

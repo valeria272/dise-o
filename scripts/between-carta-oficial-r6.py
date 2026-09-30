@@ -130,7 +130,7 @@ function reservarPrecios(){
     // columnas de precio (Simple/Doble, Pollo/Veggie/Filete, Normal/Mini…): cada columna mide lo
     // que su rótulo o su precio más ancho, y rótulo y precios parten del MISMO borde izquierdo
     const cab=c.querySelector('.cabcol');
-    if(cab){const n=cab.children.length, ws=Array(n).fill(0);
+    if(cab){c.classList.add('pcol'); const n=cab.children.length, ws=Array(n).fill(0);
       c.querySelectorAll('.cabcol,.it .pp').forEach(r=>[...r.children].forEach((e,i)=>{if(i<n)ws[i]=Math.max(ws[i],e.getBoundingClientRect().width)}));
       // si rótulos anchos («POLLO / VEGGIE») no dejan caber la fila, el rótulo va en dos líneas y la
       // columna mide lo que su precio o la palabra más larga del rótulo
@@ -221,6 +221,12 @@ function revisar(){
   document.querySelectorAll('.caja .it.cd').forEach(it=>{const p=it.querySelector('.f .pp,.f .p'), d=it.querySelector('.d');
     if(!p||!d)return; const pr=p.getBoundingClientRect().left, dr=d.getBoundingClientRect().right-parseFloat(getComputedStyle(d).paddingRight);
     if(pr-dr<3.5*MM)avisos.push('desc bajo precio: '+d.textContent.slice(0,30))});
+  // control: nombre pegado a su precio (menos de 3 mm) o precio fuera de su columna
+  document.querySelectorAll('.caja .it .f').forEach(f=>{const n=f.querySelector('.n'), p=f.querySelector('.pp,.p'); if(!n||!p)return;
+    const r=document.createRange(); r.selectNodeContents(n); const nr=Math.max(...[...r.getClientRects()].map(b=>b.right));
+    const pl=Math.min(...[...p.querySelectorAll('span')].concat([p]).filter(e=>e.textContent.trim()).map(e=>{const q=document.createRange();q.selectNodeContents(e);return q.getClientRects()[0]?q.getClientRects()[0].left:1e9}));
+    if(pl-nr<3*MM)avisos.push('nombre pegado al precio: '+n.textContent.slice(0,25));
+    if(p.getBoundingClientRect().right>f.getBoundingClientRect().right+1)avisos.push('precio fuera de columna: '+n.textContent.slice(0,25))});
   // control: cajas que desbordan tras los cortes, y texto a menos de 10 mm del corte
   document.querySelectorAll('.caja').forEach(c=>{if(c.closest('.hoja.vacia'))return; if(c.scrollHeight>c.clientHeight+0.5)avisos.push('desborda caja '+c.dataset.orden)});
   [...hoja].forEach((h,k)=>{if(h.classList.contains('vacia'))return; h.classList.add('ver'); const R=h.getBoundingClientRect();

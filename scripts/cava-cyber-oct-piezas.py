@@ -25,7 +25,7 @@ from PIL import Image, ImageDraw
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from cava_cyber_oct import (  # noqa: E402
-    ESC, ESCRITORIO, u, fondo, viñeta, marco, advertencia, logo, lockup,
+    ESC, ESCRITORIO, LOCKUP, u, fondo, viñeta, marco, advertencia, logo, lockup,
     banda_gancho, cupon, botella, sello, guarda, fuente, mide,
     texto_oro, texto_plano, _cuerpo_para_cap, _cuerpo_para_ancho, BLANCO,
 )
@@ -145,71 +145,151 @@ def cuadrada(p):
 
 
 # ── Vertical tamaño historia ────────────────────────────────────────────────
-def vertical(p):
-    """Mail vertical tamaño historia.
+# ── La maqueta del mail, según la ronda 2 de Coni (30-09) ───────────────────
+#
+#   ADVERTENCIA arriba a la derecha (ley, pegada al borde)
+#   logo CAVA centrado
+#   gancho + logo CYBERWINE week, centrados
+#   la OFERTA y su bajada, centradas, justo debajo del logo
+#   banda: la botella con sus sellos a la DERECHA
+#          el nombre del vino y el precio a la izquierda, ALINEADOS A LA DERECHA
+#          para que cierren contra la botella
+#   el cupón al pie
+#   la letra legal, en dos líneas
+#
+# El alto no está fijado: sale de sumar los bloques. Por eso primero se mide
+# todo y después se crea el lienzo.
 
-    Cabecera centrada a todo el ancho —logo, gancho, lockup— y abajo dos
-    columnas: la botella a la izquierda y el mensaje comercial a la derecha.
-    Es la maqueta de la mesa 21 del editable del Cyber pasado. Apilarlo todo en
-    una sola columna dejaba la botella del tamaño de una uña.
+CAP_OFERTA, CAP_BAJADA = 92, 33
+CAP_NOMBRE, CAP_PRECIO = 33, 50
+CAP_LEGAL = 17               # Coni pidió agrandar la letra chica
+ALTO_BOTELLA = 800
+COL_TEXTO = 556              # dónde cierra por la derecha la columna de texto
+CX_BOTELLA = 762
+
+
+def _alto_lockup(ancho):
+    lg = Image.open(LOCKUP)
+    return ancho * lg.height / lg.width
+
+
+def _nombre_en_lineas(p, cap, ancho_max, maximo=3):
+    """Parte el nombre del vino en hasta `maximo` líneas que quepan en el ancho.
+
+    Coni: «quizás en tres líneas, no necesariamente dos, en tres líneas para que
+    alcance al lado de la botella». Se busca el menor número de líneas con el
+    cuerpo pedido; si no cabe, se agrega una más.
     """
-    im = viñeta(fondo(p["escena"], "mail"), 0.34)
+    palabras = " ".join(p["producto"]).split()
+    ft = fuente("bold", _cuerpo_para_cap("bold", u(cap)))
+    for n in range(1, maximo + 1):
+        corte, lineas, por = [], [], len(palabras) / n
+        for i in range(n):
+            lineas.append(" ".join(palabras[int(round(i * por)):int(round((i + 1) * por))]))
+        if all((mide(l, ft, 0.01)[2] - mide(l, ft, 0.01)[0]) <= u(ancho_max)
+               for l in lineas if l):
+            return [l for l in lineas if l], ft
+    # no cabe ni en `maximo`: se achica el cuerpo hasta que entre
+    ft = min((fuente("bold", _cuerpo_para_ancho("bold", l, u(ancho_max), 0.01))
+              for l in lineas), key=lambda f: f.size)
+    return [l for l in lineas if l], ft
+
+
+def vertical(p):
+    dobles = bool(p.get("botella2"))
+    ANCHO_LOCKUP = 840
+
+    # ── 1. medir ────────────────────────────────────────────────────────────
+    ft_g = (fuente("light", _cuerpo_para_ancho("light", p["gancho"], u(720), 0.075))
+            if p["gancho"] else None)
+    alto_g = (mide(p["gancho"], ft_g, 0.075)[3] - mide(p["gancho"], ft_g, 0.075)[1]) / ESC \
+        if ft_g else 0
+    ft_t = fuente("xbold", _cuerpo_para_cap("xbold", u(CAP_OFERTA)))
+    ft_t = min(ft_t, fuente("xbold", _cuerpo_para_ancho("xbold", p["titular"], u(820), -0.02)),
+               key=lambda f: f.size)
+    ct = mide(p["titular"], ft_t, -0.02)
+    ft_b = fuente("light", _cuerpo_para_cap("light", u(CAP_BAJADA)))
+    ft_b = min(ft_b, fuente("light", _cuerpo_para_ancho("light", p["bajada"], u(860), 0.055)),
+               key=lambda f: f.size)
+    cb = mide(p["bajada"], ft_b, 0.055)
+
+    # Con DOS botellas el texto no cabe al costado: el par ocupa medio lienzo y
+    # se monta encima. Esas piezas conservan el apilado centrado —oferta, nombre
+    # con su precio, botellas—, que respeta igual el orden que pidió Coni.
+    ancho_texto = (900 if dobles else COL_TEXTO - 40)
+    lineas, ft_n = _nombre_en_lineas(p, CAP_NOMBRE, ancho_texto)
+    paso_n = ft_n.size / ESC * 1.34
+    ft_o = fuente("xbold", _cuerpo_para_cap("xbold", u(CAP_PRECIO)))
+    ft_v = fuente("light", _cuerpo_para_cap("light", u(CAP_PRECIO * 0.56)))
+    co, cv = mide(p["oferta"], ft_o), mide(p["normal"], ft_v)
+    alto_texto = (len(lineas) * paso_n + CAP_NOMBRE * 0.9
+                  + (co[3] - co[1]) / ESC + CAP_PRECIO * 0.34 + (cv[3] - cv[1]) / ESC)
+
+    y_gancho = 452
+    y_lockup = y_gancho + alto_g + (16 if ft_g else 0)
+    y_oferta = y_lockup + _alto_lockup(ANCHO_LOCKUP) + 44
+    y_bajada = y_oferta + (ct[3] - ct[1]) / ESC + 18
+    y_banda = y_bajada + (cb[3] - cb[1]) / ESC + 58
+    alto_bot = 660 if dobles else ALTO_BOTELLA
+    alto_banda = (alto_texto + 42 + alto_bot) if dobles else max(alto_bot, alto_texto)
+    y_cupon = y_banda + alto_banda + 54
+    alto_cupon = (cupon_alto(620) if p["cupon"] else 0)
+    y_legal = y_cupon + alto_cupon + (58 if p["cupon"] else 10)
+    ALTO = y_legal + CAP_LEGAL * 1.55 + 54
+
+    # ── 2. lienzo y fondo ───────────────────────────────────────────────────
+    im = viñeta(fondo(p["escena"], "mail", alto_ud=ALTO), 0.34)
     marco(im)
     advertencia(im)
-
     CX = u(540)
-    logo(im, CX, 258, ancho=217.4)        # bajo la advertencia, centrado
+    logo(im, CX, 258, ancho=217.4)
 
-    y = 452
-    if p["gancho"]:
-        ft_g = fuente("light", _cuerpo_para_ancho("light", p["gancho"], u(720), 0.075))
-        y = texto_oro(im, (CX, u(y)), p["gancho"], ft_g, 0.075, ancla="centro")[3] / ESC + 14
-    y = lockup(im, CX, y, ancho=840) / ESC + 30
+    # ── 3. dibujar ──────────────────────────────────────────────────────────
+    if ft_g:
+        texto_oro(im, (CX, u(y_gancho)), p["gancho"], ft_g, 0.075, ancla="centro")
+    lockup(im, CX, y_lockup, ancho=ANCHO_LOCKUP)
+    texto_oro(im, (CX, u(y_oferta)), p["titular"], ft_t, -0.02, ancla="centro")
+    texto_plano(im, (CX, u(y_bajada)), p["bajada"], ft_b, BLANCO, 0.055, ancla="centro")
 
-    dobles = bool(p.get("botella2"))
-    ft_t = fuente("xbold", _cuerpo_para_ancho("xbold", p["titular"],
-                                              u(760 if dobles else 490), -0.02))
     if dobles:
-        # Dos botellas necesitan el centro del lienzo: la pieza se apila —
-        # oferta, botellas, producto— en lugar de partirse en dos columnas.
-        t = texto_oro(im, (CX, u(866)), p["titular"], ft_t, -0.02, ancla="centro")
-        ftb = fuente("light", _cuerpo_para_ancho("light", p["bajada"], u(720), 0.055))
-        b = texto_plano(im, (CX, t[3] + u(18)), p["bajada"], ftb, BLANCO, 0.055,
-                        ancla="centro")
-        # Mismo orden que en las del cupón: bajo la oferta va el nombre del vino
-        # con su precio, y las botellas abajo. El alto de las botellas sale del
-        # HUECO que queda, no de un número puesto a ojo: con un alto fijo, el
-        # cuello de la botella se metía dentro de la bajada.
-        CAP = 26
-        y = b[3] / ESC + 30
-        alto_pr = alto_bloque_producto(p, CAP, 900)
-        bloque_producto(im, CX, y_base=y + alto_pr, p=p, cap=CAP, ancho_max=900)
-        techo = y + alto_pr + 34
-        columna_botella(im, p, cx=CX, base_y=1800, alto=min(640, 1800 - techo),
-                        sellos_a="izq")
+        x_texto, ancla, yy = CX, "centro", y_banda
     else:
-        # Botella a la izquierda y mensaje a la derecha: la mesa 21 del editable.
-        columna_botella(im, p, cx=u(310), base_y=1792, alto=830, sellos_a="izq")
-        COL = u(742)
-        # Orden pedido por Coni el 30-09: la oferta arriba, después el nombre del
-        # vino con su precio, y el cupón al final.
-        t = texto_oro(im, (COL, u(898)), p["titular"], ft_t, -0.02, ancla="centro")
-        ftb = fuente("light", _cuerpo_para_ancho("light", p["bajada"], u(500), 0.055))
-        b = texto_plano(im, (COL, t[3] + u(16)), p["bajada"], ftb, BLANCO, 0.055,
-                        ancla="centro")
-        y = b[3] / ESC + 34
-        alto_pr = alto_bloque_producto(p, 27, 520)
-        bloque_producto(im, COL, y_base=y + alto_pr, p=p, cap=27, ancho_max=520)
-        if p["cupon"]:
-            cupon_al_hueco(im, COL, y + alto_pr + 30, 1800, p["cupon"], ancho_max=488)
+        x_texto, ancla = u(COL_TEXTO), "der"
+        yy = y_banda + (alto_banda - alto_texto) / 2
+        columna_botella(im, p, cx=u(CX_BOTELLA), base_y=y_banda + alto_banda,
+                        alto=alto_bot, sellos_a="der")
 
-    pie_legal(im, p, y=1866, ancho_max=920)
+    for linea in lineas:
+        texto_plano(im, (x_texto, u(yy)), linea, ft_n, BLANCO, 0.01, ancla=ancla)
+        yy += paso_n
+    yy += CAP_NOMBRE * 0.9
+    texto_oro(im, (x_texto, u(yy)), p["oferta"], ft_o, ancla=ancla)
+    yy += (co[3] - co[1]) / ESC + CAP_PRECIO * 0.34
+    bv = texto_plano(im, (x_texto, u(yy)), p["normal"], ft_v, GRIS, ancla=ancla)
+
+    if dobles:
+        columna_botella(im, p, cx=CX, base_y=y_banda + alto_banda, alto=alto_bot,
+                        sellos_a="der")
+    ImageDraw.Draw(im).line([bv[0] - u(5), (bv[1] + bv[3]) / 2,
+                             bv[2] + u(5), (bv[1] + bv[3]) / 2],
+                            fill=GRIS, width=max(1, int(u(2.6))))
+
+    if p["cupon"]:
+        cupon(im, CX, y_cupon, p["cupon"], ancho=620, alto=620 / PROP_CUPON)
+    pie_legal(im, p, y=y_legal + CAP_LEGAL * 1.55, ancho_max=940, cap=CAP_LEGAL)
     return im
 
 
 # ── Piezas compartidas ──────────────────────────────────────────────────────
 PROP_CUPON = 675 / 345.0        # la del cupón que diseñó Coni — no se altera
 GIRO_CUPON = -7.0
+
+
+def cupon_alto(ancho, giro=GIRO_CUPON):
+    """Alto que ocupa el troquel YA GIRADO, para poder reservarle el sitio."""
+    import math
+    alto = ancho / PROP_CUPON
+    return alto * math.cos(math.radians(abs(giro))) + ancho * math.sin(math.radians(abs(giro)))
 
 
 def cupon_al_hueco(im, cx, y, tope, codigo, ancho_max=500, giro=GIRO_CUPON):

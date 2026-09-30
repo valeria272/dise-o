@@ -54,29 +54,33 @@ def u(v):
 # ── Lienzos ──────────────────────────────────────────────────────────────────
 # El mail es vertical tamaño historia; el de WhatsApp es cuadrado, como exige la
 # pestaña WHATSAPP del brief («Gráfica: CUADRADA (1:1) para cada pieza»).
-LIENZOS = {
-    "mail": (2250, 4000),      # 1080×1920 ud — 9:16
-    "wsp": (2250, 2250),       # 1080×1080 ud — 1:1
-}
+# El ANCHO manda; el alto lo pone el contenido. Coni el 30-09: «tiene que
+# mantenerse en 1080 de ancho y de alto puede ir variando, depende de la
+# información». Un mail no se lee de un vistazo como una historia: puede correr.
+ANCHO = {"mail": 2250, "wsp": 2250}
+LIENZOS = {"wsp": (2250, 2250)}          # la de WhatsApp sí es 1:1 fija
 # Lo que se entrega: nítido pero liviano, porque sube a plataforma.
 # Tamaño de historia exacto. Se subió a 1350/1440 creyendo que la cursiva Amalfi
 # Coast se perdía a 1080, pero el garabato venía de un recorte de la máscara, no
 # de la resolución: arreglado eso, a 1080 lee perfecta y el archivo pesa un
 # tercio menos. Entre dos entregas que se ven igual, gana la liviana.
-ENTREGA = {"mail": (1080, 1920), "wsp": (1080, 1080)}
+ENTREGA = {"mail": 1080, "wsp": 1080}    # ancho de entrega; el alto sale de él
 
 # ── Fondos: los archivos que enlaza su .ai ───────────────────────────────────
 SET = {
     "vip": ESCRITORIO / "BRIEF/KV/REFERENCIA FOTO VIP/SyWcSOtUb8.jpg",
     "pub": ESCRITORIO / "BRIEF/KV/REFERENCIA FOTO PUBLICO/ks3R7kV16B.jpg",
 }
-# Ventanas elegidas sobre la foto ORIGINAL. Se quedan a la izquierda del set: ahí
-# está la cortina y el mármol y NO hay botellas quemadas en la foto.
-VENTANA = {
-    ("vip", "mail"): (560, 0, 3244, 4771),
-    ("vip", "wsp"): (60, 900, 3460, 4300),
-    ("pub", "mail"): (800, 0, 3405, 4631),
-    ("pub", "wsp"): (350, 800, 3750, 4200),
+# Dónde se recorta la foto ORIGINAL. Se elige la zona limpia —cortina y mármol,
+# a la izquierda del set— porque las botellas del bodegón vienen quemadas en la
+# foto y acá van los packshots oficiales encima.
+#   eje    = centro horizontal del recorte, en px de la foto
+#   franja = (y0, y1) de la foto que se usa
+RECORTE = {
+    ("vip", "mail"): {"eje": 1902, "franja": (0, 4771)},
+    ("vip", "wsp"): {"eje": 1760, "franja": (900, 4300)},
+    ("pub", "mail"): {"eje": 2102, "franja": (0, 4631)},
+    ("pub", "wsp"): {"eje": 2050, "franja": (800, 4200)},
 }
 
 ADVERTENCIA = CAVA / "cyber-oct/advertencia-kv-oct.png"
@@ -224,12 +228,24 @@ def _ancla(xy, tam, ancla):
 
 
 # ── Fondo ────────────────────────────────────────────────────────────────────
-def fondo(escena, formato):
-    x0, y0, x1, y1 = VENTANA[(escena, formato)]
-    W, H = LIENZOS[formato]
-    im = Image.open(SET[escena]).convert("RGB").crop((x0, y0, x1, y1))
-    im = im.resize((W, H), Image.LANCZOS)
-    return im
+def fondo(escena, formato, alto_ud=None):
+    """Recorta el set a la proporción que pida la pieza.
+
+    Como el alto es variable, la ventana no puede estar escrita a mano: se fija
+    el eje y la franja de la foto y el ANCHO del recorte se despeja de la
+    proporción pedida. Así el encuadre del set es el mismo en todas las piezas,
+    corran lo que corran.
+    """
+    W = ANCHO[formato]
+    H = LIENZOS[formato][1] if formato in LIENZOS else int(round(u(alto_ud)))
+    r = RECORTE[(escena, formato)]
+    fy0, fy1 = r["franja"]
+    foto = Image.open(SET[escena]).convert("RGB")
+    ancho_rec = (fy1 - fy0) * W / H
+    x0 = r["eje"] - ancho_rec / 2
+    x0 = max(0, min(x0, foto.width - ancho_rec))     # sin salirse de la foto
+    im = foto.crop((int(x0), fy0, int(x0 + ancho_rec), fy1))
+    return im.resize((W, H), Image.LANCZOS)
 
 
 def viñeta(im, fuerza=0.35):
@@ -458,7 +474,13 @@ def botella(im, ruta, cx, base_y, alto, reflejo=0.30):
     # la elipse va metida dentro de ese margen. Sin eso el desenfoque se corta
     # contra el borde de su propia capa y el halo se ve como un RECTÁNGULO
     # alrededor de la botella — que es justo lo que se coló en la primera vuelta.
-    _halo(im, cx, y + h * 0.5, w * 1.5, h * 0.92, radio=u(70), alfa=112)
+    # Coni el 30-09: «no quiero que ninguna de las botellas tenga un destello o
+    # halo dorado detrás porque se ve extraño, se ve un poco falso… o que sea
+    # más sutil». Queda un lavado de luz ambiente, apenas: gris cálido en vez de
+    # dorado, la mitad de opaco y mucho más abierto, para que la botella negra
+    # siga despegando de la cortina sin que se vea un resplandor.
+    _halo(im, cx, y + h * 0.52, w * 2.0, h * 1.02, radio=u(105), alfa=46,
+          color=(122, 100, 88))
 
     # sombra de contacto — misma cocina que el halo, con su margen
     _halo(im, cx, u(base_y) - u(4), w + u(50), u(40), radio=u(15), alfa=170,
@@ -553,7 +575,8 @@ def guarda(im, destino, formato):
     """PNG nítido pero liviano: se baja al tamaño de entrega y se cuantiza."""
     destino = pathlib.Path(destino)
     destino.parent.mkdir(parents=True, exist_ok=True)
-    W, H = ENTREGA[formato]
+    W = ENTREGA[formato]
+    H = int(round(im.height * W / im.width))     # el alto sigue al ancho
     fin = im.resize((W, H), Image.LANCZOS)
     fin.save(destino, "PNG", optimize=True)
 

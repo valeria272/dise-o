@@ -25,7 +25,7 @@ from PIL import Image, ImageDraw
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from cava_cyber_oct import (  # noqa: E402
-    ESC, ESCRITORIO, LOCKUP, u, fondo, viñeta, marco, advertencia, logo, lockup,
+    ESC, ESCRITORIO, LOCKUP, u, fondo, viñeta, marco, advertencia, logo, lockup, losa,
     banda_gancho, cupon, botella, sello, guarda, fuente, mide,
     texto_oro, texto_plano, _cuerpo_para_cap, _cuerpo_para_ancho, BLANCO,
 )
@@ -72,8 +72,10 @@ PIEZAS = [
          sellos=["descorchados-98-2021", "james-suckling-98"],
          legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
                "No acumulable con otras promociones. Hasta agotar stock."),
+    # Sin bajada: el brief dice «HOUSE OF MORANDÉ A $46.630», pero el nombre del
+    # vino y su precio ya van más abajo en la pieza. Coni la quitó el 30-09.
     dict(n=2, escena="vip", gancho="TU CUPÓN VIP SIGUE ACTIVO",
-         titular="45% OFF", bajada="HOUSE OF MORANDÉ A $46.630", cupon="CYBERVIP",
+         titular="45% OFF", bajada=None, cupon="CYBERVIP",
          producto=["HOUSE OF MORANDÉ", "MEZCLAS TINTAS 2021"],
          botella="house", oferta="$46.630", normal="$84.790", sellos=[],
          legal="Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. "
@@ -133,9 +135,13 @@ def cuadrada(p):
 
     ft = fuente("xbold", _cuerpo_para_ancho("xbold", p["titular"], u(390), -0.02))
     c = texto_oro(im, (COL, u(y)), p["titular"], ft, -0.02, ancla="centro")
-    ftb = fuente("light", _cuerpo_para_ancho("light", p["bajada"], u(430), 0.06))
-    b = texto_plano(im, (COL, c[3] + u(12)), p["bajada"], ftb, BLANCO, 0.06, ancla="centro")
-    y = b[3] / ESC + 22
+    if p["bajada"]:
+        ftb = fuente("light", _cuerpo_para_ancho("light", p["bajada"], u(430), 0.06))
+        b = texto_plano(im, (COL, c[3] + u(12)), p["bajada"], ftb, BLANCO, 0.06,
+                        ancla="centro")
+        y = b[3] / ESC + 22
+    else:
+        y = c[3] / ESC + 22
 
     # Mismo orden que en la vertical: oferta, nombre del vino con su precio y el
     # cupón al final.
@@ -298,8 +304,11 @@ def vertical(p):
     # otro cuerpo se acomoda sin abrir las letras.
     tracks_of = [-0.02] * len(lin_of)
     sangria_of = [0.0] * len(lin_of)
-    ft_b = fuente("light", _cuerpo_para_ancho("light", p["bajada"], W_CAJA, 0.055))
-    cb = mide(p["bajada"], ft_b, 0.055)
+    if p["bajada"]:
+        ft_b = fuente("light", _cuerpo_para_ancho("light", p["bajada"], W_CAJA, 0.055))
+        cb = mide(p["bajada"], ft_b, 0.055)
+    else:
+        ft_b, cb = None, (0, 0, 0, 0)
     # Todo el bloque del descuento se mide en el espacio del ORIGEN DE
     # ESCRITURA, que es donde se dibuja. Medir la mancha y dibujar por línea
     # base son dos rejillas distintas: mezclarlas hacía que la bajada se
@@ -308,9 +317,13 @@ def vertical(p):
     b_ult = mide(lin_of[-1], ft_t, tracks_of[-1])
     # La bajada arranca donde TERMINA LA MANCHA de la última línea, más aire. Si
     # se reserva un hueco a ojo, «ANTES QUE NADIE» se monta sobre el OFF.
-    salto_bajada = ((len(lin_of) - 1) * paso_of
-                    + (b_ult[3] - cb[1]) / ESC + CAP_BAJADA * 0.75)
-    alto_desc = salto_bajada + (cb[3] - b_prim[1]) / ESC
+    if ft_b:
+        salto_bajada = ((len(lin_of) - 1) * paso_of
+                        + (b_ult[3] - cb[1]) / ESC + CAP_BAJADA * 0.75)
+        alto_desc = salto_bajada + (cb[3] - b_prim[1]) / ESC
+    else:
+        salto_bajada = 0.0
+        alto_desc = (len(lin_of) - 1) * paso_of + (b_ult[3] - b_prim[1]) / ESC
 
     # Con DOS botellas el texto no cabe al costado: el par ocupa medio lienzo y
     # se monta encima. Esas piezas conservan el apilado centrado —oferta, nombre
@@ -381,8 +394,9 @@ def vertical(p):
         b = mide(l, ft_t, tr)
         x = x_desc + (sangria_of[i] if ancla_desc == "izq" else 0)
         texto_oro(im, (x, u(pen + i * paso_of) + b[1]), l, ft_t, tr, ancla=ancla_desc)
-    texto_plano(im, (x_desc, u(pen + salto_bajada) + cb[1]),
-                p["bajada"], ft_b, BLANCO, 0.055, ancla=ancla_desc)
+    if ft_b:
+        texto_plano(im, (x_desc, u(pen + salto_bajada) + cb[1]),
+                    p["bajada"], ft_b, BLANCO, 0.055, ancla=ancla_desc)
 
     if dobles:
         x_texto, ancla, yy = CX, "centro", y_banda
@@ -452,7 +466,7 @@ def _ancho_colocado(ruta, alto):
     return u(alto) * (b[2] - b[0]) / (b[3] - b[1])
 
 
-def columna_botella(im, p, cx, base_y, alto, sellos_a="izq", hueco=16):
+def columna_botella(im, p, cx, base_y, alto, sellos_a="izq", hueco=16, sobre_losa=True):
     """Coloca una botella, o dos repartidas por sus anchos REALES.
 
     Separarlas por una fracción de la altura las montaba una encima de otra en
@@ -462,6 +476,12 @@ def columna_botella(im, p, cx, base_y, alto, sellos_a="izq", hueco=16):
     """
     if not p.get("botella"):
         return
+    if sobre_losa:
+        # La losa va PRIMERO: la botella se para encima, no al revés.
+        # El ancho se calibra contra la BOTELLA, no contra el lienzo: en el KV
+        # la botella mide unas tres veces el alto de la losa. Con la losa más
+        # grande el canto de piedra pesaba más que el vino.
+        losa(im, cx, base_y, ancho=alto * (0.86 if p.get("botella2") else 0.65))
     if p.get("botella2"):
         a1, a2 = alto, alto * SECUNDARIO
         w1 = _ancho_colocado(BOTELLAS[p["botella"]], a1)

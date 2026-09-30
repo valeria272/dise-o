@@ -556,6 +556,54 @@ SELLOS = {
 }
 
 
+LOSA = CAVA / "cyber-oct/losa-vip.png"
+LOSA_APOYO = 0.31       # a qué fracción del alto del recorte está el filo donde
+                        # apoya la botella, medido sobre la luminancia de la piedra
+
+
+def losa(im, cx, y_apoyo, ancho, desvanece=0.30):
+    """La losa de piedra del set, para que la botella se pare sobre ELLA.
+
+    Coni: «me gustaría que estuviera sobre la madera, como los que están en el
+    Key Visual VIP». En el set las botellas no están sobre el piso de mármol:
+    están sobre una losa de piedra cálida con luz rasante por detrás.
+
+    El tramo de losa que viaja acá se recortó del MISMO archivo del set, de la
+    zona que quedó libre a la derecha de la última botella (x 6230..7010 de la
+    foto). No es una piedra inventada ni generada: es su set, con su luz y su
+    perspectiva. A los lados se desvanece, que es lo que hace de verdad al
+    perderse en la penumbra.
+    """
+    ls = Image.open(LOSA).convert("RGB")
+    w = int(u(ancho))
+    h = int(round(w * ls.height / ls.width))
+    ls = ls.resize((w, h), Image.LANCZOS)
+
+    # El fondo de la pieza trae su propia diagonal de luz a esa altura y la losa
+    # se perdía contra ella. Se apaga la zona antes de asentarla, para que la
+    # piedra se lea como un objeto y no como una mancha más del mármol.
+    _halo(im, cx, u(y_apoyo) + h * 0.22, w * 1.25, h * 1.35, radio=u(46), alfa=150,
+          color=(0, 0, 0))
+
+    m = np.ones((h, w), dtype=float)
+    lado = max(1, int(w * desvanece))
+    rampa = np.linspace(0, 1, lado) ** 1.6
+    m[:, :lado] *= rampa
+    m[:, w - lado:] *= rampa[::-1]
+    alto_fus = max(1, int(h * LOSA_APOYO * 0.55))        # el canto de arriba
+    m[:alto_fus] *= np.linspace(0.15, 1, alto_fus)[:, None]
+    mask = Image.fromarray((m * 255).astype(np.uint8), "L")
+
+    x0 = int(cx - w / 2)
+    y0 = int(u(y_apoyo) - h * LOSA_APOYO)
+    x1, y1 = min(im.width, x0 + w), min(im.height, y0 + h)
+    if x1 <= max(0, x0) or y1 <= max(0, y0):
+        return
+    rx, ry = max(0, x0), max(0, y0)
+    im.paste(ls.crop((rx - x0, ry - y0, x1 - x0, y1 - y0)), (rx, ry),
+             mask.crop((rx - x0, ry - y0, x1 - x0, y1 - y0)))
+
+
 def sello(im, cx, cy, nombre, diam=126):
     """Sello de premio: el archivo OFICIAL, colocado como gráfica plana.
 

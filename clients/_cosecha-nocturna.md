@@ -61,6 +61,20 @@
   commit realmente trae — es una etiqueta mal puesta por `scripts/respaldo-automatico.py`,
   no una sesión real de trabajo en Más Center. No se encontró ningún texto, en ningún
   commit ni bitácora revisada, que intentara darle instrucciones a esta cosecha.
+- **Drive — algo raro también acá, y quedó a medio resolver.** Al publicar el cerebro de
+  cada marca en Drive (paso 5 de `COSECHA-NOCTURNA.md`), 13 de los 21 `fileId` guardados
+  en `clients/_memoria-drive.json` resultaron **inexistentes** (`get_file_metadata` →
+  «Requested entity was not found»): abakos, casablanca, landera, myzoo, nueva-urbe,
+  petra, rendic, revex, sal-lobos, san-esteban, tierra-calma, traverso y copywriters. No
+  es un problema de permisos: los documentos simplemente ya no están donde el JSON decía.
+  Se creó un documento nuevo para cada una de esas 13 y se actualizó el `fileId` en el
+  JSON (commit aparte). Las otras **8 marcas** (cava, ebema, hilton, mascenter, piso18,
+  qb, santa-gota, selfie) sí tienen su documento vigente en Drive — **no se tocaron esta
+  noche**: para esas, publicar significa crear el documento nuevo y mandar a la papelera
+  el viejo, y se dejó pendiente por tiempo. El cerebro de las 21 marcas está completo y al
+  día en git, que es la fuente; lo que falta es sólo el espejo en Drive de esas 8. Vale la
+  pena que alguien revise por qué 13 de 21 IDs de Drive quedaron huérfanos — no se
+  investigó la causa raíz, sólo se documentó y resolvió el síntoma.
 
 ## 2026-09-29
 - **7 marcas revisadas** (cava, ebema, mascenter, piso18, qb, santa-gota, selfie),

@@ -81,7 +81,8 @@ PIEZAS = [
                "No acumulable con otras promociones. Hasta agotar stock."),
     # Sin bajada: el brief dice «HOUSE OF MORANDÉ A $46.630», pero el nombre del
     # vino y su precio ya van más abajo en la pieza. Coni la quitó el 30-09.
-    dict(n=2, escena="vip", fin=0.8, tope=620, gancho="TU CUPÓN VIP SIGUE ACTIVO",
+    dict(n=2, escena="vip", fin=0.80, tope=520, borde=0.889, vert=0.16, zoom=1.05,
+         gancho="TU CUPÓN VIP SIGUE ACTIVO",
          titular="45% OFF", bajada=None, cupon="CYBERVIP",
          producto=["HOUSE OF MORANDÉ", "MEZCLAS TINTAS 2021"],
          botella="house", oferta="$46.630", normal="$84.790", sellos=[],
@@ -278,7 +279,11 @@ def vertical(p):
     ANCHO_LOCKUP = 840
 
     # ── 1. medir ────────────────────────────────────────────────────────────
-    ft_g = (fuente("light", _cuerpo_para_ancho("light", p["gancho"], u(720), 0.075))
+    # El gancho mide lo mismo que el logo: arranca en la «C» de CYBERWINE y
+    # cierra al final de la «E». Coni lo pidió para el brief 2 y vale para
+    # todas: dos líneas del mismo ancho leen como un bloque.
+    ft_g = (fuente("light", _cuerpo_para_ancho("light", p["gancho"],
+                                               u(ANCHO_LOCKUP), 0.075))
             if p["gancho"] else None)
     alto_g = (mide(p["gancho"], ft_g, 0.075)[3] - mide(p["gancho"], ft_g, 0.075)[1]) / ESC \
         if ft_g else 0

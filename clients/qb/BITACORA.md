@@ -1,15 +1,19 @@
 # QB Restaurant — bitácora
 
-## 2026-09-30 — Elisabet Soto «Eli» (Windows, con Claude) · rondas 22–24: Banco, Sunset, carrusel CMR, ST 40 %
+## 2026-09-30 — Elisabet Soto «Eli» (Windows, con Claude) · rondas 22–28: Banco, ST 40 %, Sunset, carrusel CMR y cumpleaños
 
-**Qué se hizo** (todo reemplazado en Drive, md5 igual):
-- **ST n°1 S1 Banco de Chile** r22–r23: tarjetas y legal más abajo, pie oscurecido (sombra sobre el plato), tarjetas pegadas al legal sin solapar (reflejo medido en el alfa del PNG), foto 60 px más arriba → Eli: «okey» (aprobada).
-- **ST n°5 S1 Sunset** r24 (Nicolás: «muy oscura, más sunset y cálida»; Eli: no tan oscuro abajo + plato de la carta de TERRAZA de qbrestaurant.cl): **empanadas de mechada** (foto de la carta terraza de ref, `raw/hilton/qb/oct-r24/carta-p05-0.jpeg`), Nano Banana Pro sobre la r20 con luz de atardecer real + mesa extendida hacia abajo (outpainting) → sin bloque negro al pie; velos más livianos y baño cálido soft-light.
-- **C3 S1 carrusel CMR** r24: logo SÓLO en la portada; titulares de las 3 láminas a y=200, Raleway 68 (ExtraBold/Light); N°1+N°2 = UNA foto del shooting de la carta (**American Baby ribs 11**, horizontal) en panorama partido, mismo velo; sombra radial detrás del bloque en la N°2. N°3 sigue con el brindis (Eli: la ref «bastante bien»).
-- **ST n°4 S1 CMR 40 %** r24: «Tu panorama de sábado…» en SemiBold y 50 px más abajo (sólo la fecha 08).
+**Qué se hizo** (todo reemplazado en Drive en el acto, md5 igual; revisión HTML de cada ronda abierta en Chrome):
+- **ST n°1 S1 Banco de Chile** (r22–r23): tarjetas y legal más abajo y juntos (el reflejo del PNG termina 12 px antes del legal), pie más oscuro, foto 60 px arriba → **aprobada** («okey»).
+- **ST n°4 S1 CMR 40 %** (r24): «Tu panorama de sábado…» en SemiBold y 50 px más abajo, sólo la fecha 08 → **aprobada** («lo demás okey»).
+- **ST n°5 S1 Sunset** (r24–r28, hilo de Nicolás «muy oscura, más sunset y cálida» + Eli): empanadas → Tabla Argentina con manos → foto nueva sin manos → terraza a nivel de calle generada → **foto REAL «QB 13 oct-49»** con el spritz y la Tabla Argentina agregados → r28: cóctel protagonista, UNA tabla desenfocada, rayo de sol sutil desde la derecha → **aprobada** («okey»). El plato sale de la carta de Terraza de qbrestaurant.cl.
+- **C3 S1 carrusel CMR** (r24–r28): logo sólo en la portada; titulares de las 3 a y=200, Raleway 68; N°1+N°2 = «American Baby ribs 11» en panorama (mano derecha borrada con Nano Banana); sin degradado negro detrás del 40 %; los tres pies a y=1150 → **aprobado** («okey»).
+- **C1 S1 carrusel cumpleaños** (r27): grilla común N°2–N°4 (titular 90 · apoyo 170 · destacado 214 · detalle 290/332 · pie 390), sólo Raleway, pie claro; N°1 sin cambios → entregado, sin comentario propio.
 
-**Dónde quedó:** renders `out/qb/oct/r22/`, `r23/`, `r24/` (con `_antes/`); carta terraza en `raw/hilton/qb/oct-r24/menu-terraza.pdf`.
-**Abierto:** visto de Eli/Nicolás al Sunset r24, al carrusel CMR r24 y a la ST 40 % r24.
+**Dónde quedó:** código en `src/compositions/qb/oct/` (`QbSt01BancoChile`, `QbStAprobadaCmr40`, `QbSt09Sunset`, `QbFeed09Cmr`, `QbPost05Cumple`); fotos nuevas en `public/assets/hilton/qb/oct/` (`09-sunset-r28.jpg`, `feed09-pano-ribs11-r28.jpg` y las intermedias); renders `out/qb/oct/r22…r28/` con `_antes/` y `revision-rNN.html`; scripts `qb-oct-r24…r28-revision.py`; carta Terraza y generaciones en `raw/hilton/qb/oct-r24…r28/` (no viaja). `qb-oct-r19-nb.py` ahora reintenta si Freepik tarda en responder.
+
+**Qué sigue:** confirmar con Eli el carrusel de cumpleaños r27 y seguir con lo que quede EN CAMBIOS / OK PARA DISEÑAR en la grilla de octubre (Reels DJ S2/S3/S5).
+
+**Abierto:** carrusel de cumpleaños r27 sin visto propio · el legal de la N°2 del carrusel CMR cierra en ≈1255 (fuera del 12 % de feed, por pedido de Eli): si va a paid, se sube.
 
 ## 2026-09-29 (noche) — Elisabet Soto «Eli» (Windows, con Claude) · rondas 19–21: los hilos de Scarlette y Nicolás, CMR 09-10 y ST 08-10 nuevos, carrusel de cumpleaños
 

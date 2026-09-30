@@ -86,6 +86,36 @@
  *     r20 (la terraza de QB se mantiene) con luz de atardecer real, y la mesa EXTENDIDA
  *     hacia abajo por outpainting, así que la foto llena la historia sin subirla: fuera el
  *     bloque negro del pie. Velos más livianos (arriba 0,86→0,7; abajo 0,85→0,55).
+ * ⭐ RONDA 25 — ELI 30-09: «ese plato no me convence, que se vea más lifestyle, un plato
+ *   mejor para compartir, y el naranja es demasiado saturado: la luz debe ser natural y
+ *   sutil». → TABLA ARGENTINA (carta Terraza, «Platos para compartir», su foto de la carta
+ *   de referencia) con manos de amigos sirviéndose; sale el baño naranja soft-light de la
+ *   r24 y la foto se corrige en origen: balance gris-mundo al 30 % (medias RGB 187/114/102
+ *   → 155/118/109) y saturación ×0,9: al 50 % se iba a gris violáceo bajo el velo.
+ * ⭐ RONDA 26 — ELI 30-09: «sin manos, y aparece otra mesa extraña: vuelve a hacer esa
+ *   foto mejor». La mesa extraña salía del outpainting de la r24. Foto NUEVA desde cero
+ *   (Nano Banana Pro): UNA sola mesa de listones vista ~30° desde arriba que llena la mitad
+ *   de abajo hasta el borde, la Tabla Argentina completa y el spritz, sin manos; después se
+ *   cambió SÓLO el fondo por la terraza real de QB (13 oct 30 y 32: tela beige, ventiladores,
+ *   ventanales de marco negro, maceteros de greda). Luz natural; sin corrección de color.
+ *   Esa foto dejaba la tabla bajo el titular → se «alejó la cámara» (foto al 67 % en el
+ *   lienzo + outpainting de terraza y MISMA mesa vacía hasta el pie) y la vista de los
+ *   ventanales se cambió a nivel de calle (sin techos: QB es primer piso). El bloque de
+ *   texto baja 134 px a la mesa vacía; el legal sigue en 1748.
+ * ⭐⭐ RONDA 27 — ELI 30-09: «el fondo tiene que ser realista, igual a QB… es uno de los
+ *   mayores comentarios que llega, que no se parece a QB». → La base es una FOTO REAL de la
+ *   terraza («QB 13 oct-49», recortada a 9:16): techo de tela drapeada con vigas negras,
+ *   ventiladores y ampolletas, plantas, estufas, mesas y sillas reales. La IA sólo AGREGA el
+ *   spritz y la Tabla Argentina sobre la mesa de adelante y unos invitados lejos; después la
+ *   foto sube 250 px y la MISMA mesa se extiende hasta el pie (outpainting sólo de esa franja).
+ *   Rótulo «Cocktails… DESDE $3.990» a la izquierda, sobre la copa; bloque de texto 194 px
+ *   más abajo, sobre la mesa libre.
+ * ⭐ RONDA 28 — ELI 30-09: «los platos para compartir destacan mucho; la idea es que el
+ *   cóctel destaque más: sólo una tabla y un poco más desenfocada… y un poco más de luz de
+ *   atardecer en algún costado, como un rayito muy natural, muy sutil». → Sobre la misma foto
+ *   real: fuera el plato de papas, UNA tabla más chica y atrás (Nano Banana); desenfoque
+ *   gaussiano 14 px sólo en la tabla (elipse difuminada) y un haz tibio en «screen» al 32 %
+ *   que entra desde la derecha. El spritz, nítido.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -115,34 +145,36 @@ const LOGO_H = LOGO_W * 576 / 2556;
 const SUBE = -430;
 /** r24: la foto nueva trae la mesa extendida hasta el pie → llena la historia sin subir. */
 const SUBE_R24 = 0;
+/** r26: la tabla termina en y≈1320 → el bloque de texto baja a la mesa vacía. */
+const BAJA_TEXTO = 194; // r27: la tabla termina en y≈1371
 
 export const QbSt09Sunset: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
-    <FotoQB src="assets/hilton/qb/oct/09-sunset-r24.jpg" ratio={3072 / 5504} libre bajar={SUBE_R24} />
+    <FotoQB src="assets/hilton/qb/oct/09-sunset-r28.jpg" ratio={3072 / 5504} libre bajar={SUBE_R24} />
     {/* r6 (Eli): más oscuro arriba para leer «Sunset QB» · r24: más liviano, que se vea el atardecer */}
     <Velo arriba={[900, 0.7]} abajo={[1000, 0.55]} />
-    {/* r24: el velo negro enfría el atardecer (el piso viraba a violeta) → baño cálido suave */}
-    <AbsoluteFill style={{mixBlendMode: "soft-light",
-      background: "linear-gradient(180deg, rgba(255,150,60,.35) 0%, rgba(255,120,40,.45) 55%, rgba(255,110,40,.35) 100%)"}} />
+
     <Img src={staticFile("assets/hilton/qb/oct/sunset-qb-logo.png")}
       style={{position: "absolute", top: 346, left: (MESA.w - LOGO_W) / 2, width: LOGO_W, height: LOGO_H}} />
     {/* r19: el rótulo de la flecha en Raleway (una sola voz) y el precio como dato fuerte */}
     {/* r20: la copa quedó a la izquierda → el rótulo pasa a la derecha y la flecha apunta a ella */}
-    <div style={{position: "absolute", left: 590, top: 700, width: 440, textAlign: "center", color: "#fff",
+    <div style={{position: "absolute", left: 40, top: 556, width: 520, textAlign: "center", color: "#fff",
       fontFamily: "Raleway", textShadow: "0 2px 16px rgba(0,0,0,.55)"}}>
       <div style={{fontSize: 34, fontWeight: 400, fontStyle: "italic", lineHeight: 1.15}}>Cocktails seleccionados<br />al mejor precio</div>
       <div style={{fontSize: 58, fontWeight: 800, letterSpacing: "0.02em", lineHeight: 1, marginTop: 14, ...CIFRAS}}>{QB_ST09_DATA.pieza.precio}</div>
     </div>
     <svg style={{position: "absolute", left: 0, top: 0}} width={MESA.w} height={MESA.h}>
-      <path d="M 800 868 C 800 950, 740 985, 672 962" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" />
-      <path d="M 698 940 L 670 961 L 700 984" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" strokeLinejoin="round" />
+      {/* r26: la copa quedó en x≈310–540 → la flecha llega a su borde derecho */}
+      {/* r27: el rótulo pasa a la izquierda, sobre la copa; la flecha baja al trago */}
+      <path d="M 470 720 C 500 760, 470 800, 395 830" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" />
+      <path d="M 425 818 L 393 831 L 413 857" fill="none" stroke="#fff" strokeWidth={4.5} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
     {/* r19 (Eli): «EL VIERNES CAMBIA DE» en Raleway; «mood», la única palabra en otra voz */}
     {/* r20 (Eli): «que sea "de mood": la D está quedando de más ahí arriba» */}
-    <Linea top={1196} cuerpo={56} peso={300} tracking="0.06em">EL VIERNES CAMBIA</Linea>
-    <Linea top={1246} cuerpo={140} familia="Brushwell" interlinea={1}>de mood</Linea>
-    <BotonVerde top={1420} ancho={520} alto={54} cuerpo={30} peso={700}>{QB_ST09_DATA.pieza.medida}</BotonVerde>
-    <Linea top={1480} cuerpo={34} peso={400} italica>
+    <Linea top={1196 + BAJA_TEXTO} cuerpo={56} peso={300} tracking="0.06em">EL VIERNES CAMBIA</Linea>
+    <Linea top={1246 + BAJA_TEXTO} cuerpo={140} familia="Brushwell" interlinea={1}>de mood</Linea>
+    <BotonVerde top={1420 + BAJA_TEXTO} ancho={520} alto={54} cuerpo={30} peso={700}>{QB_ST09_DATA.pieza.medida}</BotonVerde>
+    <Linea top={1480 + BAJA_TEXTO} cuerpo={34} peso={400} italica>
       {/* sin la ligadura «ff» y con aire entre las dos f (Eli 28-09: «se ve muy junto») */}
       <span style={{fontVariantLigatures: "none"}}>Tu af<span style={{marginLeft: "0.06em"}}>ter</span> of<span style={{marginLeft: "0.07em"}}>f</span>ice, a otro nivel</span>
     </Linea>

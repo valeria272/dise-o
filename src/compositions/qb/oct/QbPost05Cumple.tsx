@@ -256,17 +256,46 @@ const Blanco: React.FC<{top: number; cuerpo: number; peso?: number; italica?: bo
   top, cuerpo, peso = 400, italica = false, tracking, children,
 }) => <Linea top={top} cuerpo={cuerpo} peso={peso} italica={italica} tracking={tracking} ancho={960}>{children}</Linea>;
 
+/** ⭐ r25 (Eli 30-09): «mejora la jerarquía, que cada slide se vea parejo en todo el
+ *  carrusel… y no tan oscuro abajo si no hay texto». UNA grilla para N°2–N°4, sólo Raleway
+ *  (sale la Brushwell de la N°3): mismas alturas en las tres láminas.
+ *    titular   y=90   ExtraBold 56, versales
+ *    apoyo     y=170  Light itálica 30
+ *    destacado y=214  ExtraBold 52, versales
+ *    detalle   y=290 · 332  Regular 30
+ *    pie       y=390  Light itálica 26 (o el botón, en la N°4)
+ *  Velo sólo arriba, detrás del texto; abajo apenas un 20 % (nada de texto ahí). */
+const G = {tit: 90, apoyo: 170, dest: 214, det1: 290, det2: 332, pie: 390};
+const VeloCumple: React.FC<{abajo?: number}> = ({abajo = 0.2}) => (
+  <Velo arriba={[700, 0.9]} abajo={[260, abajo]} />
+);
+const Tit: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <Blanco top={G.tit} cuerpo={56} peso={800} tracking="0.04em">{children}</Blanco>
+);
+const Apoyo: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <Blanco top={G.apoyo} cuerpo={30} italica peso={300}>{children}</Blanco>
+);
+const Dest: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <Blanco top={G.dest} cuerpo={52} peso={800} tracking="0.03em">{children}</Blanco>
+);
+const Det: React.FC<{top: number; children: React.ReactNode}> = ({top, children}) => (
+  <Blanco top={top} cuerpo={30} peso={400}>{children}</Blanco>
+);
+const Pie: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <Blanco top={G.pie} cuerpo={26} italica peso={300}>{children}</Blanco>
+);
+
 export const QbFeed05CumpleG2: React.FC = () => {
   const d = QB_POST05_DATA.g2;
   return (
     <AbsoluteFill style={{background: "#000"}}>
       <FotoFeed src="assets/hilton/qb/oct/cumple-ago-4988.jpg" pos="50% 50%" />
-      <Velo arriba={[760, 0.92]} abajo={[240, 0.4]} />
-      <Blanco top={96} cuerpo={60} peso={800} tracking="0.04em">{d.titular}</Blanco>
-      <Blanco top={180} cuerpo={30} italica peso={300}>{d.recibe}</Blanco>
-      <Blanco top={232} cuerpo={74} peso={800} tracking="0.03em">{d.texto}</Blanco>
-      <Blanco top={330} cuerpo={30} peso={400}>+ Elige tu favorito: 1 bucket de 6 cervezas</Blanco>
-      <Blanco top={372} cuerpo={30} peso={400}>o 1 botella de espumante</Blanco>
+      <VeloCumple />
+      <Tit>{d.titular}</Tit>
+      <Apoyo>{d.recibe}</Apoyo>
+      <Dest>{d.texto}</Dest>
+      <Det top={G.det1}>+ Elige tu favorito:</Det>
+      <Det top={G.det2}>1 bucket de 6 cervezas o 1 botella de espumante</Det>
     </AbsoluteFill>
   );
 };
@@ -276,13 +305,13 @@ export const QbFeed05CumpleG3: React.FC = () => {
   return (
     <AbsoluteFill style={{background: "#000"}}>
       <FotoFeed src="assets/hilton/qb/oct/cumple-ago-4877.jpg" pos="50% 50%" />
-      <Velo arriba={[800, 0.92]} abajo={[240, 0.4]} />
-      <Blanco top={86} cuerpo={60} peso={800} tracking="0.04em">{d.titular}</Blanco>
-      <Linea top={160} cuerpo={92} familia="Brushwell" interlinea={1}>{d.bajada}</Linea>
-      <Blanco top={288} cuerpo={30} italica peso={300}>{d.recibe}</Blanco>
-      <Blanco top={336} cuerpo={40} peso={800}>Refill ilimitado de 1 trago a elección</Blanco>
-      <Blanco top={396} cuerpo={30} peso={400}>+ 1 bucket de cervezas + 1 botella de espumante</Blanco>
-      <Blanco top={444} cuerpo={26} italica peso={300}>{d.pie}</Blanco>
+      <VeloCumple />
+      <Tit>{d.titular}</Tit>
+      <Apoyo>{d.bajada} · {d.recibe.charAt(0).toLowerCase() + d.recibe.slice(1)}</Apoyo>
+      <Dest>REFILL ILIMITADO</Dest>
+      <Det top={G.det1}>de 1 trago a elección</Det>
+      <Det top={G.det2}>+ 1 bucket de cervezas + 1 botella de espumante</Det>
+      <Pie>{d.pie}</Pie>
     </AbsoluteFill>
   );
 };
@@ -293,23 +322,24 @@ export const QbFeed05CumpleG4: React.FC = () => {
   return (
     <AbsoluteFill style={{background: "#000"}}>
       <FotoFeed src="assets/hilton/qb/oct/07-cumple-torta-verde.jpg" pos="50% 75%" />
-      <Velo arriba={[760, 0.92]} abajo={[300, 0.5]} />
-      <Blanco top={96} cuerpo={58} peso={800} tracking="0.04em">{d.titular}</Blanco>
-      <div style={{position: "absolute", top: 190, left: 0, right: 0, display: "flex", justifyContent: "center"}}>
-        <div style={{display: "flex", flexDirection: "column", gap: 14, color: "#fff", fontFamily: "Raleway",
-          fontSize: 32, fontWeight: 500, textShadow: "0 2px 12px rgba(0,0,0,.5)"}}>
+      <VeloCumple abajo={0.35} />
+      <Tit>{d.titular}</Tit>
+      {/* la lista ocupa el lugar de apoyo + destacado + detalle, con el mismo paso */}
+      <div style={{position: "absolute", top: G.apoyo, left: 0, right: 0, display: "flex", justifyContent: "center"}}>
+        <div style={{display: "flex", flexDirection: "column", gap: 12, color: "#fff", fontFamily: "Raleway",
+          fontSize: 30, fontWeight: 400, textShadow: "0 2px 12px rgba(0,0,0,.5)"}}>
           {items.map(([ic, t]) => (
             <div key={ic} style={{display: "flex", alignItems: "center", gap: 16}}>
-              <svg width={40} height={40} viewBox="0 0 44 44" style={{flex: "none"}}>{ICONOS_B[ic]}</svg>
+              <svg width={38} height={38} viewBox="0 0 44 44" style={{flex: "none"}}>{ICONOS_B[ic]}</svg>
               <span>{t}</span>
             </div>
           ))}
         </div>
       </div>
-      <BotonVerde top={410} ancho={720} alto={96} cuerpo={28}>
+      <BotonVerde top={G.pie - 20} ancho={720} alto={92} cuerpo={27}>
         <span style={{textAlign: "center", lineHeight: 1.25, letterSpacing: "0.05em"}}>ARMA EL GRUPO Y RESERVA<br />TU CUMPLE EN QB</span>
       </BotonVerde>
-      <Linea top={1150} cuerpo={16} italica ancho={400} color="rgba(255,255,255,.8)">{d.legal}</Linea>
+      <Linea top={1150} cuerpo={16} italica ancho={400} color="rgba(255,255,255,.85)">{d.legal}</Linea>
     </AbsoluteFill>
   );
 };

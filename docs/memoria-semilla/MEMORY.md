@@ -84,3 +84,7 @@
 - [⭐ DT pendones 0,8×3 — caras nuevas](dt-pendones-caras-nuevas.md) — aprobados 28-09 y r7 29-09 («quedó perfecto»); receta §7
 - [⭐⭐ Foto por partes → se regenera entera](foto-por-partes-se-regenera-entera.md) — parches con personas: NB Pro 4K con el armado de referencia + rótulos reales
 - [⭐ Kling: clip inverso para terminar en el cuadro aprobado](kling-clip-inverso-cuadro-final.md) — Kling 2.5 no acepta cuadro final: se anima el movimiento inverso y se reproduce al revés; recorte deslizándose = «tosco» (teaser EBEMA 29-09)
+- [⭐ QB octubre 2026](qb-octubre-2026-estado.md) — 30-09: Banco, ST 40 %, Sunset r28 (foto real + cóctel protagonista) y carrusel CMR r28 APROBADOS; cumpleaños r27 entregado
+- [⭐ QB — criterio de carruseles y escenas](qb-criterio-carruseles-y-escenas.md) — Eli 30-09: logo sólo portada, titulares/pies a la misma altura, sin velo negro sin texto; trago protagonista, plato de la carta real, luz sutil
+- [⛔⛔ QB: el fondo sale de una FOTO REAL](qb-fondo-desde-foto-real.md) — Eli 30-09: terraza generada «no se parece a QB»; foto de la sesión + IA sólo agrega plato/trago; sin manos, luz natural
+- [⭐ Antes y después SIEMPRE en HTML](antes-y-despues-en-html.md) — molde _revision.py; se ABRE en Google Chrome sin que lo pida (Eli 30-09) + qué cambió en texto

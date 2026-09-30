@@ -46,6 +46,18 @@
  *     schop y spritz, dos manos tomando las ribs), partida en panorama 2160 px entre las
  *     dos láminas, con el mismo velo en ambas para que el corte no se note. N°3 sigue con
  *     el brindis.
+ * ⭐ RONDA 25 — ELI 30-09: «no necesito tono oscuro cuando no hay mucho texto; baja
+ *   "beneficios especiales" casi al final pero no tanto; que se vea cerca, armónico, con el
+ *   segundo slide». → Velos más livianos (arriba 0,88→0,8; abajo sólo 260 px al 25 %) y una
+ *   sombra ovalada SÓLO detrás del texto de abajo. La bajada de la N°1 baja a y=1070, la
+ *   misma altura que «Sábados pagando con tu tarjeta CMR» de la N°2.
+ * ⭐ RONDA 28 — ELI 30-09 (con una línea roja al pie de las tres y un círculo en la mano de
+ *   la N°2): «el 40… se ve muy oscuro detrás, quita ese degradado negro» y «beneficios
+ *   especiales, sábados y el legal, y reserva: bájalos». → Fuera la sombra ovalada detrás
+ *   del bloque. La mano derecha con la ribs (la del círculo) se borró de la foto (Nano
+ *   Banana sobre «American Baby ribs 11»): detrás del bloque queda el spritz y la mesa. Los
+ *   tres pies bajan juntos a y=1150 (bajada N°1, texto + legal N°2, botón N°3).
+ *   ⚠️ El legal de la N°2 cierra en ≈1255: sale de la zona de 12 % de feed, por pedido de Eli.
  */
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
@@ -84,11 +96,19 @@ const Foto: React.FC<{src: string; cy?: number}> = ({src, cy = 0.5}) => (
 /** r24: una foto partida entre N°1 y N°2 (panorama 2160 px), sin scale(). */
 const PANO = {w: FEED.w * 2, h: FEED.w * 2 * 2 / 3};
 const Panorama: React.FC<{lado: 0 | 1}> = ({lado}) => (
-  <Img src={staticFile("assets/hilton/qb/oct/feed09-pano-ribs11.jpg")}
-    style={{position: "absolute", left: -lado * FEED.w, top: (FEED.h - PANO.h) / 2, width: PANO.w, height: PANO.h}} />
+  <Img src={staticFile("assets/hilton/qb/oct/feed09-pano-ribs11-r28.jpg")}
+    style={{position: "absolute", left: -lado * FEED.w, top: (FEED.h - PANO.h) / 2, width: PANO.w, height: PANO.h, objectFit: "cover"}} />
 );
 /** r24: el mismo velo en N°1 y N°2, para que la unión del panorama no salte. */
-const VeloPano: React.FC = () => <Velo arriba={[560, 0.88]} abajo={[560, 0.85]} plano={0.15} />;
+const VeloPano: React.FC = () => <Velo arriba={[520, 0.8]} abajo={[260, 0.25]} />;
+/** r25 (Eli 30-09: «no necesito tono oscuro cuando no hay mucho texto»): la sombra va SÓLO
+ *  detrás del texto de abajo, centrada y apagada antes de los bordes (no corta el panorama). */
+const SombraPie: React.FC = () => (
+  <div style={{position: "absolute", left: 0, top: 0, width: FEED.w, height: FEED.h,
+    background: "radial-gradient(ellipse 540px 190px at 540px 1200px, rgba(0,0,0,.62) 0%, rgba(0,0,0,.4) 55%, rgba(0,0,0,0) 100%)"}} />
+);
+/** r25: la bajada de la N°1 y el texto de la N°2 a la MISMA altura (continuidad). */
+const PIE_TOP = 1150; // r28 (Eli, con una línea roja): los tres pies bajan juntos
 
 /** r24 (Eli 30-09): los tres titulares a la misma altura y el mismo cuerpo. */
 const TIT = {top: 200, cuerpo: 68, paso: 76};
@@ -103,10 +123,12 @@ export const QbFeed09CmrG1: React.FC = () => {
     <AbsoluteFill style={{background: "#000", width: FEED.w, height: FEED.h}}>
       <Panorama lado={0} />
       <VeloPano />
+      <SombraPie />
       <Logo top={58} />
       <Linea top={TIT.top} cuerpo={TIT.cuerpo} peso={800} tracking="0.01em" interlinea={1}>{d.titular1}</Linea>
       <Linea top={TIT.top + TIT.paso} cuerpo={TIT.cuerpo} peso={300} tracking="0.01em" interlinea={1}>{d.titular2}</Linea>
-      <Linea top={TIT.top + TIT.paso * 2 + 16} cuerpo={34} italica peso={400}>{d.bajada}</Linea>
+      {/* r25 (Eli): «baja beneficios especiales casi al final, pero no tanto» → a la altura del pie de la N°2 */}
+      <Linea top={PIE_TOP} cuerpo={34} italica peso={400}>{d.bajada}</Linea>
     </AbsoluteFill>
   );
 };
@@ -120,16 +142,13 @@ export const QbFeed09CmrG2: React.FC = () => {
     <AbsoluteFill style={{background: "#000", width: FEED.w, height: FEED.h}}>
       <Panorama lado={1} />
       <VeloPano />
-      {/* r24: la mano de la ribs asomaba dentro del marco → sombra detrás del bloque, que se
-          apaga antes del borde izquierdo para no cortar la unión con la N°1 */}
-      <div style={{position: "absolute", left: 0, top: 0, width: FEED.w, height: FEED.h,
-        background: "radial-gradient(ellipse 520px 560px at 540px 640px, rgba(0,0,0,.72) 0%, rgba(0,0,0,.55) 55%, rgba(0,0,0,0) 100%)"}} />
+      <SombraPie />
       <Linea top={TIT.top} cuerpo={TIT.cuerpo} peso={800} tracking="0.01em" interlinea={1}>{d.titular1}</Linea>
       <div style={{position: "absolute", left: 0, top: 0, width: MESA.w, height: FEED.h, overflow: "hidden"}}>
         <BloqueCmr40 dy={SUBE_BLOQUE} />
       </div>
-      <Linea top={1070} cuerpo={34} peso={600}>{d.texto}</Linea>
-      <Legal top={1128} cuerpo={19}>{d.legal}<br />{d.legal2}</Legal>
+      <Linea top={PIE_TOP} cuerpo={34} peso={600}>{d.texto}</Linea>
+      <Legal top={PIE_TOP + 56} cuerpo={19}>{d.legal}<br />{d.legal2}</Legal>
     </AbsoluteFill>
   );
 };
@@ -139,10 +158,10 @@ export const QbFeed09CmrG3: React.FC = () => {
   return (
     <AbsoluteFill style={{background: "#000", width: FEED.w, height: FEED.h}}>
       <Foto src="ap-cmr25.jpg" cy={0.55} />
-      <Velo arriba={[600, 0.88]} abajo={[420, 0.7]} />
+      <Velo arriba={[560, 0.8]} abajo={[300, 0.35]} />
       <Linea top={TIT.top} cuerpo={TIT.cuerpo} peso={800} tracking="0.01em" interlinea={1}>{d.titular1}</Linea>
       <Linea top={TIT.top + TIT.paso} cuerpo={TIT.cuerpo} peso={300} tracking="0.01em" interlinea={1}>{d.titular2}</Linea>
-      <BotonVerde top={1040} ancho={520} alto={92} cuerpo={40}>{d.cta}</BotonVerde>
+      <BotonVerde top={PIE_TOP} ancho={520} alto={92} cuerpo={40}>{d.cta}</BotonVerde>
     </AbsoluteFill>
   );
 };

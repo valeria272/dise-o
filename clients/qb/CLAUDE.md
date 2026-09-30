@@ -553,6 +553,19 @@ Encontradas armando la grilla de octubre. Bajan sin token con
   bancos también cambian la **tipografía del titular** (la de la ref, con las voces
   de QB) y el **fondo**; marco, pastilla, cajas, curva, 20 % y logos se quedan.
 
+### ⛔⛔ El fondo de una escena NO se genera (Eli, 30-09-2026 · R-89)
+
+> «El fondo tiene que ser realista, igual a QB… es uno de los mayores comentarios
+> que llega, que no se parece a QB.»
+
+El lienzo es una **foto real de la sesión** (terraza de día: «QB 13 oct-49»,
+`raw/hilton/qb/oct-r19/`), recortada al formato; la IA sólo **agrega** el trago,
+el plato de la **carta real** (qbrestaurant.cl, la de Terraza para la terraza) e
+invitados lejos. El trago es protagonista y el plato va desenfocado (R-86); la luz,
+natural, con un rayo sutil si piden atardecer (R-88). Ejemplo aprobado:
+`QbSt09Sunset.tsx` r28. Esto deja sin efecto «generar con la foto de referencia»
+de más abajo.
+
 ### ⭐⭐ La historia se parece a SU REFERENCIA — y el fondo es QB real (Eli, 28-09-2026)
 
 > «Revisando bien las referencias de las historias no se asemeja… tienen que ser

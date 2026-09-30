@@ -78,7 +78,12 @@ def main():
         tareas.append((i + 1, d["data"]["task_id"]))
     for i, t in tareas:
         for _ in range(120):
-            st, d = http("%s/%s" % (BASE, t))
+            try:  # 30-09: un timeout al consultar no mata la corrida, se reintenta
+                st, d = http("%s/%s" % (BASE, t))
+            except (TimeoutError, OSError) as e:
+                print("  … reintento (%s)" % e)
+                time.sleep(5)
+                continue
             s = (d.get("data") or {}).get("status") if isinstance(d, dict) else None
             if s in ("COMPLETED", "SUCCESS"):
                 u = url_de(d.get("data", {}).get("generated", d))

@@ -81,6 +81,9 @@ Nomenclatura de Paulina: todo en minúscula con guion bajo, marca al principio �
 - **R-30** · Manual 03: el logo mide **mínimo 100 px** en digital, lleva zona de protección 2x y **el círculo del isotipo nunca va en blanco**. Los recursos gráficos oficiales son las «oo» sueltas, el círculo con ojos y la «m» y la «y» recortadas sobre color plano — _`Manual_Identidad-MyZoo-03.pdf` `1iTOi-HO1FyCkp5GbFlL6ngI2dbbQATCY`, leído el 30-09-2026_ · ✔×1
 - **R-31** · Los **concursos** son la pieza que más mueve la cuenta: la mecánica va en un bloque claro («SÍGUENOS Y PARTICIPA») y lleva los logos de los aliados. En stories, deja libre abajo al centro para el sticker de enlace — _informes de mayo e informe F1 de campaña_ · ✔×1
 
+- **R-32** · En paid, **Paulina recibe la IMAGEN LIMPIA** (escena + productos, sin logo, sin CTA, sin textos, sin pincelada) y compone ella el texto. No se le entrega la pieza armada — _Paulina, 30-09-2026: «no me gusta la forma en que ubicaste los textos, esa mancha que creaste de color rosado. Quiero que me des solo la imagen»_ · ✔×1
+- **R-33** · El producto va **DENTRO de la escena**: apoyado en la mesa, con la luz, la perspectiva y la sombra de la escena, como parte de la foto. Un packshot pegado encima con sombra por código se ve «montado» y se rechaza. El encuadre comercial que funciona: **el animal cerca y grande**, y la mesa con los productos a un costado — _Paulina, 30-09-2026, sobre P01 v1: «se ven como encima de la imagen… necesito que los productos estén en la escena»_ · ✔×1
+
 ## 5. Excepciones
 
 - **E-01** · El registro **C (co-marca comercial)** sí lleva barra blanca superior con los dos logos (MyZoo + partner) — _`myzoo_meli_post`, julio 2026_
@@ -93,7 +96,7 @@ Nomenclatura de Paulina: todo en minúscula con guion bajo, marca al principio �
   - la banda coral es una **pincelada** y no la caja redondeada;
   - los envases van en fila abajo a la derecha.
 
-  **Fase 3 (octubre 2026) sigue la línea visual de la Fase 2:** perro y gato en casa, sillón, luz cálida. **Los protagonistas son los animales y casi no aparecen personas.** Los productos los entrega Paulina — _Paulina, 30-09-2026; `DRIVE-AGENCIA.md` §4_
+  **Fase 3 (octubre 2026) sigue la línea visual de la Fase 2:** perro y gato en casa, sillón, luz cálida. **Los protagonistas son los animales y casi no aparecen personas.** Se sigue la línea de colores, ambientación y animales, **pero variando** para que no quede idéntica. **Producto:** se integra a la escena ajustando sombras y color, con las **etiquetas y sus textos intactos**; si hay que regenerarlo, el prompt lleva el texto literal de la etiqueta. La IA **no agrega títulos ni logos**, salvo el de MyZoo. Los productos los entrega Paulina — _Paulina, 30-09-2026; `DRIVE-AGENCIA.md` §4_
 - **E-07** · **PREGUNTAZOO** sale **sin el logo de MyZoo** y lleva su propio sello; fondo celeste con doodles — _`02-story`, octubre 2026 (versión final de Paulina)_
 - **E-08** · Hay **un solo** titular alineado a la izquierda en octubre: Xtreme Vet, la pieza técnica de 5 L. Todo lo demás va centrado — _`12_post-xtremevet`_
 - **E-05** · Sobre **fondo amarillo** (ej. pieza Cruelty Free), titular y bajada van **en tinta**, no en blanco, porque el blanco no se lee ahí; la franja coral se mantiene igual — _decisión de producción, `out/myzoo/octubre-2026/ENTREGA.md`, pieza `08.10_post_crueltyfree`, 22-09-2026_
@@ -121,10 +124,8 @@ Piezas **publicadas** de Paulina que fijan cada registro (no hay registro de una
 
 **Para Paulina (del recorrido del Drive, 30-09):**
 - ⚠️ **«Amor que se siente» (R-19):** en tu octubre va bajo el logo sólo en 08; en 05, 12 y 27 va al pie, y en 19, 20, 22, 23 y 29 no aparece. ¿Es obligatorio bajo el logo o depende de la pieza? El feedback del 01/08 dice «Bajar el logo y agregarle el claim». → Paulina.
-- **Paid Fase 3:** ¿se aceptan renders IA del producto (la F2 usó Freepik) o sólo el PNG oficial (R-10)? La línea visual ya está resuelta (E-06). → Paulina.
 - **Brief Fase 3 sin material:** «Material» dice «LINK» y no hay packshot de Pet Wipes ni del pack. Además la numeración del brief no calza con la del plan de medios. Entrega vencida el 29-09. → Sebastián Córdova.
 - **08, 12 y 19 de octubre salieron a 2255×2817**, no a 2250×2813: ¿error de exportación?
-- **`27_post_algonuevo` dice «APUNTO»**; lo correcto es «A PUNTO».
 - **El copy de 12/10 (Xtreme-Vet) en la grilla** es el de la pieza de 5 L, pegado por error. → Nicolás.
 - **¿Qué packshots están vigentes?** Los PNG de `Fotos Productos` son de 2025 con etiqueta vieja, y la Avena 420 cc tiene etiqueta nueva desde el 16-09.
 
@@ -136,6 +137,7 @@ Piezas **publicadas** de Paulina que fijan cada registro (no hay registro de una
 - **¿«Mane» es Magdalena?** → KAM.
 
 **Resueltas el 30-09:**
+- **La grilla de octubre está aprobada entera por el cliente y queda cerrada** («APUNTO» y lo demás no se toca). Producto en paid: integrado a la escena con las etiquetas intactas (E-06).
 - Punto final: evitarlo por defecto, sin regla dura (R-18). Fase 3: sigue la línea visual de la Fase 2 (E-06). Paulina sube los packshots a `MYZOO/PACKSHOTS FASE 3 (para Claude)` `1g5slxhZzSrwKk_aRg-aTmz7M49hDOcWC`.
 - Quién aprueba: Magdalena.
 - Quién firma el digital: Paulina, confirmado por ella.

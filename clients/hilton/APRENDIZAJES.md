@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-30** · Cosechas: **32**
+> Última cosecha: **2026-09-30** · Cosechas: **33**
 
 ## 1. Quién es el cliente
 
@@ -406,6 +406,10 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 (cierre, `/arranque` + `/al-dia hilton`) — Claude con Eli · sin aprendizajes nuevos
+- sin aprendizajes nuevos: la sesión sólo revisó la máquina y leyó las 4 grillas de octubre; no se diseñó ni se corrigió ninguna pieza de DT ni de BW, y no hubo comentarios nuevos de la diseñadora ni del cliente (los cambios de estado de DT de las 12:41Z corresponden a los hilos de Scarlette ya cosechados en la entrada de abajo).
+- Dato técnico (no es regla del cliente): el render de MP4 volvió a funcionar en el Windows de Eli el 30-09.
 
 ### 2026-09-30 (cierre, hilos de Scarlette en DT octubre) — Claude con Eli · 3 reglas nuevas [DT], APROBADO a la primera
 - **Fuente:** 3 hilos nativos de la grilla DT OCT (29-09 noche): STORIES!C15 y FEED!C14 de Scarlette @Eli; STORIES!E15 de Scarlette a Carlos (contenido), que terminó en una línea nueva del brief. Las tres piezas estaban EN CAMBIOS (estado leído en vivo por Sheets API: el token SÍ tiene scope `spreadsheets`).

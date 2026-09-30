@@ -1,3 +1,10 @@
+## 2026-09-30 (tarde) — Eli (Windows) · `/arranque` + `/al-dia hilton`: qué queda por diseñar en octubre — SIN PIEZAS
+
+**Qué se hizo:** `/arranque`: la máquina está completa y **`remotion render` vuelve a sacar MP4** (still + video de prueba OK; el bloqueo de Smart App Control del 29-09 ya no está). Después, lectura en vivo de las 4 grillas de octubre (DT y QB por API de Sheets, BW por usercontent) cruzada con lo entregado en Drive. No hay grillas de noviembre todavía.
+**Dónde quedó:** instantáneas `clients/hilton/grillas/api/{dt,qb}-oct-20260930b.json` y `bw-oct-20260930.json`; registro en `clients/_estado-sync.json`. Estado: DT → todo lo OK entregado; FEED 07-10, ST 01-10 y ST 05-10 EN CAMBIOS (ya resueltas hoy con los hilos de Scarlette). BW → todo lo OK entregado. QB → sólo quedan los Reels DJ 09/15/23-10 (video); el resto lo lleva la sesión de QB del día.
+**Qué sigue:** **Piso18 ST 16-10 «Equipo» y ST 30-10 «Broche perfecto»** (animadas, OK PARA DISEÑAR), ahora que el MP4 sale en esta máquina.
+**Abierto:** material grabado para DT (reel Honors POV 14-10, orgánicos 15 y 20-10; el del chef pide propuestas «más lúdico»), BW ST 26-10 WTF (grabar orgánico) y los Reels DJ de QB.
+
 ## 2026-09-30 — Eli (Windows) · DT octubre: hilos de Scarlette (contenido) — 3 piezas en Drive, APROBADO («gran resultado»)
 
 **Qué se hizo:** se leyeron los 3 hilos nuevos de la grilla DT OCT (`13yYW5Qa…`, 29-09 noche); las 3 piezas estaban EN CAMBIOS (leído por Sheets API). **ST 01-10 Family Time r10**: el lobby pasa a ser el video real de la habitación doble que mandó Scarlette y el desayuno, su foto real del buffet (HEIC → 9:16, recortado desde y=720 para que la lámpara quede sobre el logo); la familia en la cama se queda. **Carrusel Escapada 07-10, lámina 2**: fuera la foto generada (copas de pie rosado, panes que no están en la carta) → foto real de la carta de QB («Ostiones parmesanos a la batayaki 20»). **ST 05-10 feriado ER + FT**: tercera tarjeta «Recién casados → Noche de Bodas $189.000» (contenido la sumó al brief), con la pareja del carrusel NB de septiembre de Eli. Eli: «este gran resultado sirve para los próximos diseños».

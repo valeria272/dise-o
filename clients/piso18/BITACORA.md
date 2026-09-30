@@ -1,5 +1,12 @@
 # Piso18 — bitácora
 
+## 2026-09-30 (tarde) — Elisabet Soto «Eli» (Windows, con Claude) · `/al-dia hilton`: las dos animadas ya se pueden hacer — SIN PIEZAS
+
+**Qué se hizo:** relectura de la grilla P18 OCT (sin movimiento desde 29-09 17:40Z; base `api/p18-oct-20260930.json`). Todo lo OK PARA DISEÑAR está entregado salvo las dos animadas. En `/arranque` se comprobó que **`remotion render` vuelve a sacar MP4** en esta máquina.
+**Dónde quedó:** nada nuevo en código ni en Drive.
+**Qué sigue:** **ST 16-10 «Equipo Piso18»** («solo texto principal») y **ST 30-10 «El broche perfecto para tu historia»**: buscar video de garzones / recorrido del venue en Drive; refs ya bajadas (`st-16-10-*`, `st-30-10-*`). Entregar MP4 + GIF.
+**Abierto:** FEED 20-10 y ST 13, 19, 21-10 siguen en REVISAR CONTENIDO; ST 08-10 PENDIENTE POR CLIENTE.
+
 ## 2026-09-30 — Elisabet Soto «Eli» (Windows, con Claude) · búsqueda de los comentarios de Scarlette — SIN PIEZAS TOCADAS
 
 **Qué se hizo:** Eli pidió corregir la grilla de octubre «según comentarios de contenido de Scar», reemplazar en Drive, dejar EN CAMBIOS lo dudoso y armar el HTML de antes/después. **No se encontró ningún comentario nuevo de Scarlette:** hilos nativos (sus 3 abiertos son del 15-09, sobre las refs del brief, respondidos «corregido» por Carlos), diff de celdas contra `p18-oct-20260929c.json` (sólo FEED C14 y STORIES D15 → EN REVISIÓN), notas y tachados (sólo D13 Arreglos, ya resuelto), Slack #contenido-hilton (nada hoy; el 28-09 Scarlette a Carlos: «En piso18 hay que ajustar unos st que tienen los tag no actualizados y hay una fecha que hay que cambiar» = contenido), y las carpetas PISO18 S2–S5 de Drive (sin cambios; no hay S1).

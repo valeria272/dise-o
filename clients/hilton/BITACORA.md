@@ -1,3 +1,10 @@
+## 2026-09-30 (mediodía) — Eli (Windows) · consulta: subir piezas a la grilla (relevo en vacaciones) — SIN PIEZAS
+
+**Qué se hizo:** Eli preguntó si Claude podría subir los diseños aprobados a la grilla de Hilton (ejemplo: Between) como **imagen SOBRE las celdas**, sin borrar el brief y con los tamaños que ella usa, para que otra diseñadora pueda tomar los cambios y subirlos si ella está de vacaciones. Respuesta: sí se puede. «Imagen en la celda» / `=IMAGE()` borra el brief, así que no sirve. La API de Sheets no crea imágenes flotantes: hace falta un Apps Script (`insertImage` + `setWidth`/`setHeight`) instalado una vez por grilla, midiendo antes las imágenes que ya dejó Eli.
+**Dónde quedó:** nada construido. Eli: «no lo hagas… sirve para tenerlo presente para más adelante». Idea guardada en la memoria `idea-subir-piezas-a-grilla-hilton`.
+**Qué sigue:** lo mismo que la entrada de la tarde: Piso18 ST 16-10 y ST 30-10 (animadas).
+**Abierto:** si se retoma, instalar el script en cada grilla (BW/DT/QB/P18) → **Valeria** (no Eli).
+
 ## 2026-09-30 (tarde) — Eli (Windows) · `/arranque` + `/al-dia hilton`: qué queda por diseñar en octubre — SIN PIEZAS
 
 **Qué se hizo:** `/arranque`: la máquina está completa y **`remotion render` vuelve a sacar MP4** (still + video de prueba OK; el bloqueo de Smart App Control del 29-09 ya no está). Después, lectura en vivo de las 4 grillas de octubre (DT y QB por API de Sheets, BW por usercontent) cruzada con lo entregado en Drive. No hay grillas de noviembre todavía.

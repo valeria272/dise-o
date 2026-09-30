@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-30** · Cosechas: **33**
+> Última cosecha: **2026-09-30** · Cosechas: **34**
 
 ## 1. Quién es el cliente
 
@@ -406,6 +406,10 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 (cierre, consulta sobre subir a la grilla) — Claude con Eli · sin aprendizajes nuevos
+- sin aprendizajes nuevos: la sesión fue solo una pregunta de Eli sobre capacidad (imagen sobre celdas en la grilla, para relevo en vacaciones). No se diseñó ni se corrigió ninguna pieza y no hubo feedback del cliente ni de la diseñadora.
+- Dato para cuando se retome (no es regla): en las grillas de Hilton el brief de la celda **no se puede borrar** porque se revisa de vez en cuando → la pieza va como imagen flotante (Apps Script), nunca con `=IMAGE()` ni «imagen en la celda» (Eli, 30-09).
 
 ### 2026-09-30 (cierre, `/arranque` + `/al-dia hilton`) — Claude con Eli · sin aprendizajes nuevos
 - sin aprendizajes nuevos: la sesión sólo revisó la máquina y leyó las 4 grillas de octubre; no se diseñó ni se corrigió ninguna pieza de DT ni de BW, y no hubo comentarios nuevos de la diseñadora ni del cliente (los cambios de estado de DT de las 12:41Z corresponden a los hilos de Scarlette ya cosechados en la entrada de abajo).

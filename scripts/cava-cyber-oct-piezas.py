@@ -175,6 +175,11 @@ TEXTO_BAJO_TAPA = 0.12
 # importante el sello porque son los premios que ha ganado el vino, es mucho más
 # importante que se vea el vino».
 SELLO_POR_BOTELLA = 0.138
+# Dónde cae el CENTRO del primer sello, en fracción del alto de la botella.
+# El tope es la etiqueta: medida sobre los siete packshots oficiales, la más
+# alta —la Selección Enológica— arranca al 40 % del alto. Con este valor el
+# segundo sello cierra en el 38 % y ninguno la toca.
+SELLO_PRIMERO = 0.15
 Y_LOGO, Y_GANCHO = 152, 330  # la cabecera sube: el ángulo superior izquierdo
                              # quedaba vacío con el logo centrado y más abajo
 MARGEN_PIE = 92              # aire entre la letra legal y el filete dorado
@@ -289,7 +294,7 @@ def vertical(p):
     # Con DOS botellas el texto no cabe al costado: el par ocupa medio lienzo y
     # se monta encima. Esas piezas conservan el apilado centrado —oferta, nombre
     # con su precio, botellas—, que respeta igual el orden que pidió Coni.
-    ancho_texto = (900 if dobles else COL_TEXTO - 40)
+    ancho_texto = (900 if dobles else 460)
     lineas, ft_n = _nombre_en_lineas(p, CAP_NOMBRE, ancho_texto)
     paso_n = ft_n.size / ESC * 1.34
     ft_o = fuente("xbold", _cuerpo_para_cap("xbold", u(CAP_PRECIO)))
@@ -341,7 +346,10 @@ def vertical(p):
     if dobles:
         x_desc, ancla_desc = CX, "centro"
     else:
-        x_desc, ancla_desc = u(COL_TEXTO), "der"
+        # Toda la columna arranca en el MISMO canto izquierdo que el logo CAVA
+        # MORANDÉ y que la «C» de CYBERWINE. Coni: «para que no queden los
+        # elementos tan desarticulados».
+        x_desc, ancla_desc = x_de_la_C(CX, ANCHO_LOCKUP), "izq"
         columna_botella(im, p, cx=u(CX_BOTELLA), base_y=y_banda + alto_banda,
                         alto=alto_bot, sellos_a="der")
     # El pen se retrasa lo que la mancha se despega de él, para que el bloque
@@ -354,7 +362,7 @@ def vertical(p):
     if dobles:
         x_texto, ancla, yy = CX, "centro", y_banda
     else:
-        x_texto, ancla = u(COL_TEXTO), "der"
+        x_texto, ancla = x_de_la_C(CX, ANCHO_LOCKUP), "izq"
         yy = y_oferta + alto_desc + 58
 
     yy = lineas_a_plomo(im, x_texto, yy, lineas, ft_n, paso_n, BLANCO, 0.01, ancla)
@@ -438,7 +446,7 @@ def columna_botella(im, p, cx, base_y, alto, sellos_a="izq", hueco=16):
     d = alto * SELLO_POR_BOTELLA
     for i, nombre in enumerate(p.get("sellos", [])):
         x = ancla[0] + u(d * 0.16) if sellos_a == "izq" else ancla[2] - u(d * 0.16)
-        sello(im, x, ancla[1] + u(d * 0.60 + i * d * 1.12), nombre, diam=d)
+        sello(im, x, ancla[1] + u(alto * SELLO_PRIMERO + i * d * 1.12), nombre, diam=d)
 
 
 def _tipografia_producto(p, cap, ancho_max):

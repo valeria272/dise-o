@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de marca: Valeria Traverso)** · Aprueba: **Sebastián Córdova (paid) · Francesca Pavissich (landings y presentación comercial)**
-> Última cosecha: **2026-09-30** · Cosechas: **11**
+> Última cosecha: **2026-09-30** · Cosechas: **12**
 
 ## 1. Quién es el cliente
 
@@ -126,6 +126,8 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **R-74** · Portada de proyecto en LinkedIn: toma de **dron al atardecer** del proyecto (generada sobre los renders oficiales de Diego si no hay foto) — _Diego, lk-06-10-1: «cambiar la imagen, que sea una toma dron de Linderos en el atardecer», 30-09-2026_ · ✔×1
 - **R-75** · ⭐ La **última slide de un carrusel es un CIERRE, no un interior**: repite la gramática de su portada (foto a sangre, logo arriba, titular + pastilla, sin banda ni círculo ni flecha) con una foto **hermana de la portada, al atardecer / anochecer**. Constructor: `sistema/cierres_octubre.py` — _Diego, 30-09-2026: «hay que dejar el diseño como la portada, como es el cierre, no tiene que ser como las demás slides, dejar fotografía parecida a la portada, quizás de atardecer, lo mismo para las últimas slides de los otros carruseles, que sea una imagen de cierre y que no siga con la plantilla»_ · ✔×1 (⚠️ reemplaza el cierre en banda de R-70 y el collage del 01-10)
 - **R-76** · Seedream no respeta tamaños ni posiciones pedidas para un objeto en primer plano (vaso, personajes): tras un intento, se resuelve en la diagramación (partir el titular en más líneas, correr bloques) en vez de insistir — _cierre 01-10: tres generaciones con el vaso grande al centro-derecha, 30-09-2026_ · ✔×1
+- **R-77** · ⭐ Textos del cierre **centrados**: titular Gotham Black blanco SIN caja y **sólo la bajada destacada** en su pastilla de color (rojo, mostaza o naranja según el carrusel); el bloque va donde la foto está limpia (cielo), nunca sobre el sujeto — _Diego, c-04-10-6 (30-09-2026): «solo destacar bajada, haz lo mismo en todos los cierres de carruseles» · «todos los textos de los cierres que queden en su mayoría centrados»; c-01-10-8: «que el texto quede en un lugar donde la lectura no se dificulte»_ · ✔×1 (⚠️ precisa R-75: la caja del titular de la portada NO se repite en el cierre)
+- **R-78** · El cierre del 01-10 cambió de strip center (Las Flores → San Carlos): la foto de cierre no tiene que ser el mismo centro de la portada, sino una escena hermana — _Diego, c-01-10-8: «cambiar stripcenter de fondo», 30-09-2026_ · ✔×1
 - **R-44** · Display de temporada (Eds Market, Royal Brand, Gloria Hallelujah, Garamond) sólo puntual, nunca como voz de la marca — _editables mar–sept 2026_ · ✔×1
 
 ## 5. Excepciones
@@ -208,6 +210,10 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-09-30 (5ª parte) — Diego Aguilar (con Claude) · cierres: textos centrados y sólo la bajada destacada
+- nuevas **R-77** (cierre centrado, titular sin caja, sólo la bajada en pastilla) y **R-78** (el cierre puede ir sobre otro centro) · R-75 precisada.
+- Se aplicó a los 4 cierres de IG; los 3 comentarios, respondidos y resueltos.
 
 ### 2026-09-30 (4ª parte) — Diego Aguilar (con Claude) · cierres de los 4 carruseles de IG
 - nueva **R-75** (el cierre repite la portada con foto hermana al atardecer), **R-76** (Seedream no respeta tamaños en primer plano: resolver diagramando) · **X-28**. R-70 queda revisada: Localito apuntando al texto vale para interiores, el cierre ya no va en banda.

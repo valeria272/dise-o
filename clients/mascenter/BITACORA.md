@@ -1,3 +1,10 @@
+## 2026-09-30 (5ª parte) — Diego Aguilar (con Claude) · cierres centrados, sólo la bajada destacada
+
+**Qué se hizo:** 3 comentarios de Diego en los cierres: textos centrados, sólo la bajada destacada (titular sin caja) en los 4 cierres de IG, y en el 01-10 otro strip center de fondo (San Carlos real al atardecer; la valla Winkler Nutrition es real) con el texto sobre el cielo.
+**Dónde quedó:** 4 PNG reemplazados en sitio (md5 OK); comentarios resueltos. `sistema/cierres_octubre.py` con el helper `centrado()`.
+**Qué sigue:** OK de Diego.
+**Abierto:** nada nuevo.
+
 ## 2026-09-30 (4ª parte) — Diego Aguilar (con Claude) · cierres de los carruseles de IG como portada
 
 **Qué se hizo:** la última slide de 01, 04, 08 y 20-10 dejó la plantilla de interiores y repite su portada con foto de cierre: 01-10 POV con café en Las Flores al atardecer (titular y bajada que dio Diego); 04-10 perro y gato al atardecer, caja y pastilla mostaza y Localito celebrando; 08-10 Localito vampiro con balde en Chamisero II al anochecer; 20-10 la ilustración con strip center a sangre, con caja y pastilla naranjas.

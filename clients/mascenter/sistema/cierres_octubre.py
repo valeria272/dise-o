@@ -59,24 +59,39 @@ def caja_y_pastilla(color, titular, pastilla, b1=400, p1=1180, cuerpo=84, pas_ar
             f'{tit}<div style="position:absolute;left:45px;top:{p_top}px;width:{p_w:.0f}px;height:{p_bot - p_top}px;background:{color};border-radius:30px"></div>{pas}')
 
 
+def centrado(color, titular, bajada, b1=330, cuerpo=78, sombra=True):
+    """Cierre (Diego 30-09, comentarios en c-04-10-6 y c-01-10-8): «todos los textos de los cierres que queden en su
+    mayoría centrados» · «solo destacar bajada» · «que el texto quede en un lugar donde la lectura no se dificulte».
+    Titular Gotham Black blanco centrado, SIN caja; sólo la bajada va destacada en su pastilla de color, centrada."""
+    lh = round(cuerpo * 0.95)
+    sh = "text-shadow:0 3px 18px rgba(0,0,0,.45);" if sombra else ""
+    tit = "".join(f'<div class="centro" style="top:{tb(b1 + lh * i, cuerpo, lh, "black"):.1f}px;font-family:&quot;Gotham Black&quot;;font-weight:900;'
+                  f'font-size:{cuerpo}px;line-height:{lh}px;text-transform:uppercase;{sh}">{l}</div>' for i, l in enumerate(titular))
+    plh = 50
+    p1 = b1 + lh * (len(titular) - 1) + 40 + 64
+    p_top, p_bot = p1 - 58, p1 + plh * (len(bajada) - 1) + 24
+    p_w = 44 * 2 + max(RBOLD(42).getlength(l) for l in bajada)
+    pas = "".join(f'<div class="centro" style="top:{tb(p1 + plh * i, 42, 50, "rnd"):.1f}px;font-weight:700;font-size:42px;line-height:50px">{l}</div>'
+                  for i, l in enumerate(bajada))
+    return (f'{tit}<div style="position:absolute;left:{(W - p_w) / 2:.0f}px;top:{p_top}px;width:{p_w:.0f}px;height:{p_bot - p_top}px;'
+            f'background:{color};border-radius:30px"></div>{pas}')
+
+
 def velo(a=.28, b=.35):
     return f'<div class="velo" style="background:linear-gradient(180deg,rgba(0,0,0,{a}) 0,rgba(0,0,0,0) 26%,rgba(0,0,0,0) 72%,rgba(0,0,0,{b}) 100%)"></div>'
 
 
 # ─────────────────────────────── 01-10 · ruta cafetera ───────────────────────────────
 def cierre_01():
-    base.FOTOS = OCT / "carrusel-01-10/fotos"
-    pin = (f'<svg style="position:absolute;left:{700 - 29}px;top:{560 - 74}px;width:58px;height:74px" viewBox="0 0 58 74">'
-           f'<path d="M29 72 C 29 72, 4 40, 4 27 A25 25 0 0 1 54 27 C 54 40, 29 72, 29 72Z" fill="{base.ROJO}" stroke="#fff" stroke-width="4"/>'
-           f'<circle cx="29" cy="27" r="9" fill="#fff"/></svg>')
-    ruta = (f'<svg class="ruta" viewBox="0 0 {W} {H}"><path d="M-10 420 C 180 330, 330 520, 480 470 S 660 420, 700 500" fill="none" '
-            f'stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-dasharray="1 20" opacity=".95"/></svg>')
-    return base.slide_portada(dict(foto="08-cierre-atardecer.png", foco_y=0.5, extra=ruta + pin, sin_flecha=True,
-                                   titular=["¿Cuál sería", "tu primera", "parada?"],   # en 3 líneas: el vaso ocupa la derecha
-                                   pastilla=["Celebra el Día", "Internacional del Café", "recorriendo tus favoritos", "en Más Center."]))
+    """Foto: Más Center San Carlos REAL (FOTOS KLAS) al atardecer con el vaso chico abajo a la derecha (Diego pidió
+    cambiar el strip center del fondo). La valla de Winkler Nutrition es real (está en la foto original)."""
+    return f"""
+<img class="foto" src="{foto(OCT / 'carrusel-01-10/fotos/08-cierre-atardecer.png', 0.5)}">
+{velo(.32, .2)}
+<div class="logo-mc">{base.LOGO_MC}</div>
+{centrado(base.ROJO, ["¿Cuál sería tu", "primera parada?"], ["Celebra el Día Internacional del Café", "recorriendo tus favoritos en Más Center."], b1=350, cuerpo=74)}"""
 
 
-# ─────────────────────────────── 04-10 · día de la mascota ───────────────────────────────
 def cierre_04():
     loc = Image.open(RAIZ / "raw/mascenter/localito/localito-celebra.png").convert("RGBA")
     loc = loc.crop(loc.getbbox())
@@ -84,29 +99,28 @@ def cierre_04():
     ancho = alto * loc.width / loc.height
     return f"""
 <img class="foto" src="{foto(OCT / 'carrusel-04-10/fotos/06-cierre-atardecer.png', 0.4)}">
-{velo(.3, .2)}
+{velo(.34, .2)}
 <div class="logo-mc">{base.LOGO_MC}</div>
-{caja_y_pastilla(MOSTAZA, ["Su día merece", "algo especial."], ["Encuentra distintas opciones", "para regalonearlos", "en Más Center."], b1=400, pas_arriba=True)}
+{centrado(MOSTAZA, ["Su día merece", "algo especial."], ["Encuentra distintas opciones", "para regalonearlos en Más Center."], b1=350, cuerpo=78)}
 <img src="{base.data_uri(loc, 'PNG')}" style="position:absolute;left:24px;top:{H + 16 - alto}px;width:{ancho:.0f}px">"""
 
 
-# ─────────────────────────────── 08-10 · Halloween checklist ───────────────────────────────
 def cierre_08():
     from carrusel_halloween import murcielagos
     return f"""
 <img class="foto" src="{foto(OCT / 'carrusel-08-10/fotos/06-cierre-anochecer.png', 0.5)}">
-{velo(.3, .4)}
-{murcielagos(((560, 300, 2.2, -8), (660, 250, 1.6, 10), (430, 380, 1.3, -4)))}
+{velo(.4, .3)}
+{murcielagos(((110, 250, 2.0, -8), (200, 200, 1.4, 10), (900, 230, 1.6, -4)))}
 <div class="logo-mc">{base.LOGO_MC}</div>
-{caja_y_pastilla(NARANJA, ["Checklist listo.", "Ahora sí, que", "empiece Halloween."], ["Encuentra estas y más", "alternativas en Más Center."], b1=400, p1=1190, cuerpo=72)}"""
+{centrado(NARANJA, ["Checklist listo.", "Ahora sí, que", "empiece Halloween."], ["Encuentra estas y más", "alternativas en Más Center."], b1=340, cuerpo=64)}"""
 
 
-# ─────────────────────────────── 20-10 · panoramas de Halloween ───────────────────────────────
 def cierre_20():
     return f"""
 <img class="foto" src="{foto(OCT / 'carrusel-20-10/fotos/04-cierre-v3-ext.png', 0.0)}">
+<div class="velo" style="background:linear-gradient(180deg,rgba(20,10,40,.55) 0,rgba(20,10,40,.25) 32%,rgba(0,0,0,0) 45%)"></div>
 <div class="logo-mc">{base.LOGO_MC}</div>
-{caja_y_pastilla(NARANJA, ["Dos panoramas", "para vivir", "Halloween."], ["Guarda las fechas y prepárate", "para un Halloween en familia", "en Más Center."], b1=350, p1=1170, cuerpo=62)}"""
+{centrado(NARANJA, ["Dos panoramas", "para vivir Halloween."], ["Guarda las fechas y prepárate para", "un Halloween en familia en Más Center."], b1=320, cuerpo=62)}"""
 
 
 def render(carpeta, nombre, cuerpo):

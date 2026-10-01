@@ -9,8 +9,38 @@ celda «Brief / Nota / imagen» de Carlos.
 
 **Drive:** `EBEMA CLICK › 2026 › SEPTIEMBRE › SEMANA 1 › wtps_piazza_catalogo`
 (`1EWgxVIhamwI_rqduQsqN6PvI3aCFwXbY`)
-- `ebema_wtps_piazza_catalogo_ferre.png` — A4, 2500×4510, md5 `25ea09ae49369f8c364d4d8558bb5f21`
+- `ebema_wtps_piazza_catalogo_ferre.png` — A4, **2500×5530**, md5 `2bcdb36728a7afbc285e2ef6d885e72a` (corrección del cliente del 01-10; la del 30-09 era 2500×4510, md5 `25ea09ae…`, y quedó como versión anterior del mismo archivo en Drive)
 - `ebema_wtps_piazza_catalogo_cont.png` — A5, 2500×4180, md5 `c93fb68ef24676ea01bbbfbaed2bd034`
+
+## Corrección del cliente — 01-10-2026 (sólo la A4)
+
+El cliente pidió, vía Carlos, que en la zona de la promo del exhibidor vaya **la imagen del
+exhibidor**. Paulina entregó la lámina armada (`exhibidor/promo_exhibidor_paulina.png`,
+2500×1625) y pidió ponerla «exactamente igual, sólo que más pequeña», bajo los íconos; después
+el botón y el legal.
+
+- La lámina entra **con su píxel, al 80 %** (2000×1300, `EXH_TOP = 3765`): reemplaza el sello
+  rojo «EXHIBIDOR CON MUESTRAS GRATIS». Comprobado: diferencia 0 contra la referencia reducida.
+- Lo único construido es el empalme (`bloque_exhibidor`): a los costados sigue el mármol de la
+  pieza llevado al tono del borde de la lámina, y arriba y abajo el mármol entra en rampa. Se
+  probó repetir en espejo la franja del borde y dejaba un dibujo de caleidoscopio.
+- La pieza crece de 4510 a **5530** de alto. De y = 0 a 3400 no cambia ni un píxel.
+- La A5 no se toca (mismo md5 `c93fb68e…`).
+- **Ronda 2 (Paulina, mismo día):** el cuadro rojo de la lámina se queda tal cual, pero adentro
+  va **sólo el texto de Carlos** — «EXHIBIDOR CON MUESTRAS GRATIS / por compras sobre
+  $300.000 + IVA» — y se elimina la letra chica «*Muestras no se cobran.», que ya está en el
+  legal. Con eso se cierra la diferencia $200.000 / $300.000: manda el brief.
+  `lamina_exhibidor()` repinta el interior del cuadro (bordes y filete intactos), escribe el
+  texto con la tipografía del sello del 30-09 (versales Raleway 800; cifra en Helvetica Bold)
+  y borra la letra chica con inpainting. Comprobado: 0 píxeles cambiados fuera de esas dos zonas.
+- **Ronda 3 (Paulina, mismo día):** «agranda un poco más el cuadro completo, se ve muy
+  pequeñito; agrándalo hacia la derecha; puedes mover el muestrario a la izquierda». El cuadro
+  (filete + rojo + texto) entra ahora a su **tamaño original de la lámina**, sin remuestrear:
+  filete de 1413×491, x 900–2313 (antes 1128×392), centrado a la misma altura. El muestrario
+  se corre **130 px a la izquierda** (`EXH_X = 120`). El resto de la lámina sigue al 80 %.
+- **Aprobada por Paulina el 01-10** («lo apruebo, déjalo en la carpeta») y subida sobre el mismo fileId (`106p9uVRntP0-AdLHDMdCFb3FC_skTeIA`), md5 `2bcdb36728a7afbc285e2ef6d885e72a` verificado contra el local.
+- Versiones anteriores (PNG + script, sólo en local): `_ronda11_aprobada_30-09/` (la del
+  30-09), `_ronda12_lamina_tal_cual/` (lámina sin tocar) y `_ronda13_cuadro_chico/`.
 
 ## Cómo se reproduce
 

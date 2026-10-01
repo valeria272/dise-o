@@ -3,6 +3,40 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-10-01 — Paulina Bustamante · corrección del cliente a la ARIEL A4 (foto del exhibidor)
+
+**Qué se hizo:** [CLICK] El cliente pidió, vía Carlos, que en la zona de la promo del exhibidor de la
+**A4 (ferretero)** vaya **la imagen del exhibidor** (el brief ya decía «FOTO EXHIBIDOR» y el 30-09 salió
+sólo con el sello rojo). Paulina entregó la lámina armada (exhibidor + cuadro rojo, 2500×1625) y pidió
+ponerla «exactamente igual, sólo que más pequeña» bajo los íconos, y después el botón y el legal.
+**3 rondas, aprobada:** (1) la lámina tal cual al 80 %, empalmada con el mármol de la pieza; (2) dentro
+del cuadro rojo **sólo el texto de Carlos** («EXHIBIDOR CON MUESTRAS GRATIS / por compras sobre
+$300.000 + IVA» — la lámina decía «desde $200.000») y fuera la letra chica «*Muestras no se cobran.»,
+que ya está en el legal; (3) el cuadro completo un 25 % más grande hacia la derecha y el muestrario
+130 px a la izquierda. La pieza creció de 4510 a **5530** de alto. **La A5 no se tocó** (mismo md5).
+
+**Dónde quedó:** subida sobre el mismo fileId (`106p9uVRntP0-AdLHDMdCFb3FC_skTeIA`,
+`ebema_wtps_piazza_catalogo_ferre.png`, md5 `2bcdb367…` verificado); la del 30-09 queda como versión
+anterior en Drive. Generador `out/ebema/20260930_wsp_A4_piazza_catalogo/componer.py`
+(`lamina_exhibidor` + `bloque_exhibidor`; rinde la A4 **byte a byte** y la A5 igual que ayer) +
+`exhibidor/promo_exhibidor_paulina.png`, versionados hoy; detalle en su `ENTREGA.md`. Rondas previas en
+`_ronda11_aprobada_30-09/`, `_ronda12_lamina_tal_cual/`, `_ronda13_cuadro_chico/` (sólo local).
+
+`/abrir` + `/al-dia` de la mañana: sin ronda nueva sobre las piezas `ebema_*`; el token del estudio ya
+lee el Drive ajeno (grilla de Slides y sus comentarios, sin el conector).
+
+**Qué sigue:** nada de esta campaña salvo lo que devuelva contenido o el cliente. Noviembre y LinkedIn
+26/10 siguen esperando el aviso de Carlos y Scar (el 26/10 sigue «PENDIENTE» en la grilla).
+
+**Abierto:**
+1. Carlos dejó hoy 13:54Z un comentario abierto a Paulina («Aquí está!») en una celda «Brief / Nota /
+   imagen» de `Briefs wsp septiembre ARIEL`; la API no dice de cuál campaña. Si era esta corrección,
+   está cerrada; si no, hay algo sin ver → Paulina.
+2. Logo Piazza: sigue sin entrar como logo suelto (R-86); ahora la marca se lee en el tablero del
+   exhibidor de la A4. La A5 sigue sin él → Paulina / Carlos.
+3. Existe `GRILLA NOVIEMBRE 2026 - EBEMA (temas).docx` (Carlos, 28-09): temas y proveedores, «sin
+   desarrollar brief todavía». No se produce.
+
 ## 2026-09-30 (noche) — Paulina Bustamante · WhatsApp ARIEL A4/A5 Piazza catálogo
 
 **Qué se hizo:** [CLICK] Paulina pidió las campañas **A4 (ferretero) y A5 (contratista)** de la hoja

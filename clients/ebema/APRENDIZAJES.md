@@ -12,7 +12,7 @@
 > grilla con proveedores, SPC), **[CLICK]** (el portal B2B) o **[AMBAS]**.
 >
 > Criterio: **Paulina Bustamante** (grilla y paid; Serena Abarca produce parte del paid y las ARIEL) · Aprueba: **Paulina valida; el cliente, vía Carlos Figueroa (cuenta/contenido)**
-> Última cosecha: **2026-10-01** · Cosechas: **10**
+> Última cosecha: **2026-10-01** · Cosechas: **11**
 
 ## 1. Quién es el cliente
 
@@ -55,7 +55,7 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 
 - **R-01** · [AMBAS] Un solo rojo: `#EC1C23`, sin variantes ni duotonos — _muestreo del logo y de la A3 de Paulina, 20/25-08; cierre del carrusel Cedral con 91 rojos, 02-09_ · ✔×3
 - **R-02** · [AMBAS] Toda cifra en **Helvetica Bold** (precios, códigos, %, 24/7, medidas, direcciones) — _Paulina, rondas 1–2, 20-08; dirección de stories, 24-09_ · ✔×3
-- **R-03** · [AMBAS] Textos y CTA **verbatim** del brief; códigos y precios no se estiman ni se inventan — _manual §6; Paulina 14-09; ARIEL 01-09 (precio pendiente no se incluye); Paulina, ARIEL A4/A5 Piazza, 30-09: «solo escribe lo que Carlos escribe» (fuera la dirección de sucursal que no venía en el brief)_ · ✔×4
+- **R-03** · [AMBAS] Textos y CTA **verbatim** del brief; códigos y precios no se estiman ni se inventan — _manual §6; Paulina 14-09; ARIEL 01-09 (precio pendiente no se incluye); Paulina, ARIEL A4/A5 Piazza, 30-09: «solo escribe lo que Carlos escribe» (fuera la dirección de sucursal que no venía en el brief); Paulina, A4, 01-10: su propia lámina decía «desde $200.000» y «se envía de regalo exhibidor con muestrario»; «dejemos el cuadro rojo pero con el texto que me dejó Carlos» ($300.000)_ · ✔×5
 - **R-04** · [AMBAS] **Acá sólo se diseña**: proveedor, formato, pilar y textos los decide contenido; si el brief no cuadra, se informa y no se resuelve; si cambia, manda la grilla — _Paulina, 14-09; brief de Masisa cambiado el 22-09_ · ✔×2
 - **R-05** · [AMBAS] Antes de abrir nada se declara **destino** (grilla/paid) y familia o submarca; nunca referencias de la otra columna — _Paulina, 14-09 (story 19 descartada)_ · ✔×1
 - **R-06** · [AMBAS] Si falta una imagen, una medida o un dato, **se avisa a Paulina**, no se rellena — _Paulina, 14-09 y 16-09_ · ✔×2
@@ -87,7 +87,7 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **R-32** · [EBEMA] Tip pro: la **orden en versales manda** (~60 de mayúscula, dos líneas) y la condición va en la caja roja en **caja baja**; si la orden cabe en una línea, se baja el cuerpo — _Paulina, 16-09_ · ✔×1
 - **R-33** · [EBEMA] Cierre del carrusel: el producto como **stock en la bodega** a los costados, centro despejado para el anillo y el botón, todo desenfocado; **nunca el PNG del producto al centro** — _Paulina, 24-09 (ronda 2)_ · ✔×1
 - **R-34** · [EBEMA] Cierre: botón «¡Cotiza por whatsapp» ajustado a su texto (430,1), producto en 46 px y dos líneas, «en el link de la bio!» 34/700; aire parejo (120) arriba y abajo del anillo — _Paulina, 23-09 y 24-09_ · ✔×2
-- **R-35** · [EBEMA] Nunca textos tan pequeños: jerarquía que llame la atención sin ser grotesca — _Paulina, 23-09; ronda de contenido 30-09, `lk_c_click3`: «el texto inicial se pierde un poco, ¿podemos agrandar un poco el texto?» (0,8 → 0,9)_ · ✔×2
+- **R-35** · [AMBAS] Nunca textos tan pequeños: jerarquía que llame la atención sin ser grotesca — _Paulina, 23-09; ronda de contenido 30-09, `lk_c_click3`: «el texto inicial se pierde un poco, ¿podemos agrandar un poco el texto?» (0,8 → 0,9); Paulina, ARIEL A4 (Click), 01-10: el cuadro del exhibidor al 80 % «se ve muy pequeñito» → +25 %_ · ✔×3
 - **R-36** · [EBEMA] Si el brief mete todo en el titular, **manda el beneficio** y la enumeración baja a la bajada en caja baja — _Paulina, 23-09, `cbb4` y `sanjuan2`_ · ✔×1
 - **R-37** · [AMBAS] La imagen es **minimalista** y nunca destaca más que el texto — _Paulina, 16-09; Paulina, 30-09, `lk_c_crecimiento2`: «la escena se ve muy sucia y desordenada. hazlo minimalista realista pero limpio y profesional»; Paulina, ARIEL Piazza, 30-09: «ordenemos eso, porque se ve muy desordenado»_ · ✔×4
 - **R-38** · [AMBAS] El velo va sólo en la zona del texto, en **rampa suave**, sin cortes ni meseta; nunca bloque sólido — _Paulina, 16-09 y 23-09; Paulina, 30-09, `lk_c_crecimiento2`: «la zona oscura detrás del texto solo debe ir detrás del texto y no oscurecer toda la escena»_ · ✔×3
@@ -99,7 +99,7 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **R-44** · [EBEMA] Stories de grilla: sin caja indicadora del sticker, velo abajo, dirección entera en Helvetica con contorno redondo, flecha manuscrita calcada de la referencia — _Paulina, 24-09_ · ✔×1
 - **R-45** · [CLICK] Story animada: sin arcos en las esquinas; «una línea, una caja» (2.ª en rojo bold); texto sobre bodega en bold; logo real pegado sobre el objeto; clips interpolados a 30 fps; voz `es-CL-LorenzoNeural` con entusiasmo; música de Paulina ~8 dB bajo la voz — _Paulina, 24-09, aprobada tras 4 rondas_ · ✔×1
 - **R-46** · [EBEMA] LinkedIn se diseña aparte: foto real de la sucursal como base (refs) y **nunca rostros de trabajadores** — _Paulina, 24-09; post 15/10 rehecho sobre la foto real de Antofagasta, 25-09_ · ✔×2
-- **R-47** · [AMBAS] Cada ronda se re-sube **sobre el mismo fileId**; lo que no tiene comentario está bien y no se toca — _Paulina, 23-09 y 24-09; Serena, 24-09; LinkedIn ronda 1, 17/17 sobre el mismo fileId, 25-09; reels de octubre, 2 rondas sobre el mismo fileId, 28-09; reel San Bernardo, masisa1 y 4 rondas del teaser «La Gota de Color», 29-09; carrusel 15/10 (3 rondas) + sanjuan3/4, 30-09, todo sobre el mismo fileId_ · ✔×7
+- **R-47** · [AMBAS] Cada ronda se re-sube **sobre el mismo fileId**; lo que no tiene comentario está bien y no se toca — _Paulina, 23-09 y 24-09; Serena, 24-09; LinkedIn ronda 1, 17/17 sobre el mismo fileId, 25-09; reels de octubre, 2 rondas sobre el mismo fileId, 28-09; reel San Bernardo, masisa1 y 4 rondas del teaser «La Gota de Color», 29-09; carrusel 15/10 (3 rondas) + sanjuan3/4, 30-09, todo sobre el mismo fileId; corrección del cliente a la ARIEL A4, 01-10, sobre el mismo fileId_ · ✔×8
 - **R-48** · [EBEMA] Sobre la foto real **sólo se agregan personas, vehículos y materiales**; nunca estructuras que no existen — _Paulina, 25-09, `ebema_lk_post-15.10`: «creaste estructuras que no existe, a cliente eso no le gusta, solo puedes añadir personas vehiculos y materiales a criterio y que se tome como referencia imagenes reales»_ · ✔×2
 - **R-49** · [EBEMA] En oficina la ropa es **formal de oficina: camisa y pantalón de vestir** — _Paulina, 25-09, `ebema_lk_c_click1` y `ebema_lk_c_ventas1`_ · ✔×3
 - **R-50** · [EBEMA] Una obra de cliente **nunca puede leerse dentro de la bodega o el patio de EBEMA** — _Paulina, 25-09, `ebema_lk_c_ventas3`: «da a entender que la construccion esta dentro de la bodega/patio de ebema»_ · ✔×2
@@ -136,9 +136,13 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **R-81** · [CLICK] La **zona de información bajo la escena** (íconos, CTA) es del **mismo material** del muro y la cubierta, **clara, iluminada y sin cortes**; nunca las aristas del set cruzando los íconos ni un bloque gris oscuro — _Paulina, ARIEL A4 Piazza, 30-09: ronda 1 («que esa zona sea plana, no que se vea como un corte»), ronda 3 («no hacerme como un cuadrado negro, se ve fatal»), ronda 4 («dale un poquito más de iluminación»)_ · ✔×3
 - **R-82** · [CLICK] Título ARIEL: la caja roja **arranca a la mitad de la barra horizontal de la «A» de la 1.ª línea**, medida sobre el glifo. El interlineado deja el tilde de la 2.ª línea a ~26 px de la 1.ª: con 40 choca y con 88 «se ve raro». La píldora blanca va **montada sobre el rojo** y la bajada **en mayúsculas** — _Paulina, ARIEL A4 Piazza, 30-09: rondas 1, 7, 8, 9 y 10 (5 vueltas sólo sobre el título)_ · ✔×1
 - **R-83** · [CLICK] Si el título blanco se pierde contra el fondo, se **oscurece parejo toda la franja de arriba** al tono de su lado más oscuro, conservando la veta — _Paulina, ARIEL A4 Piazza, 30-09, ronda 11: «oscurece un poco la zona de arriba… así como está en la zona de la derecha… para que no se pierda GRIFERÍA»_ · ✔×1
-- **R-84** · [CLICK] En ARIEL **sólo va lo que escribe Carlos** en la celda: sin la dirección de sucursal si el brief no la trae; si la versión contratista no trae exhibidor ni legal, **se sacan y la pieza se acorta** (no tiene que medir lo mismo que la de ferretero). El botón queda centrado entre los íconos y el borde inferior — _Paulina, ARIEL A4/A5 Piazza, 30-09: «si Carlos no lo escribe… para diseño no va»; A5: «no lleva exhibidor ni legal… acorta la pieza»_ · ✔×1
+- **R-84** · [CLICK] En ARIEL **sólo va lo que escribe Carlos** en la celda: sin la dirección de sucursal si el brief no la trae; si la versión contratista no trae exhibidor ni legal, **se sacan y la pieza se acorta** (no tiene que medir lo mismo que la de ferretero). El botón queda centrado entre los íconos y el borde inferior — _Paulina, ARIEL A4/A5 Piazza, 30-09: «si Carlos no lo escribe… para diseño no va»; A5: «no lleva exhibidor ni legal… acorta la pieza»; A4, 01-10: en el cuadro rojo «solamente eso» (el texto de Carlos), y la pieza se **alarga** a 5530 para que entre la foto_ · ✔×2
 - **R-85** · [CLICK] Una llave **sin base** que queda «pegada al suelo» lleva una **roseta angosta**, del grosor del cuello y hecha con el cromo de la propia llave; nunca una base ancha ni el pie de otro producto — _Paulina, ARIEL A4 Piazza, 30-09: rondas 6, 7 y 8 («yo sé que el modelo es así pero se ve…»; «más que una base ancha, una base angostita»)_ · ✔×1
 - **R-86** · [CLICK] El **logo del proveedor** que pide el brief no entra si **llena la imagen**: se saca y se decide después dónde va — _Paulina, ARIEL A4 Piazza, 30-09, ronda 1: «elimino el logo Piazza porque siento que se llena la imagen. Después vemos dónde lo agregamos»_ · ✔×1
+- **R-87** · [CLICK] Si el brief pide una **foto** («FOTO EXHIBIDOR», con su enlace), **la foto va en la pieza**: un sello de texto no la reemplaza. La pieza se alarga lo que haga falta — _cliente, vía Carlos → Paulina, 01-10, ARIEL A4: «en la zona donde va la promo del exhibidor se ponga una imagen del exhibidor. Cliente pidió la corrección»_ · ✔×1
+- **R-88** · [CLICK] Cuando Paulina entrega una **lámina ya armada** para insertar, entra **su píxel** (reducido si hace falta), no se redibuja; lo único que se construye es el empalme con el fondo de la pieza, sin que se lea como recuadro pegado — _Paulina, ARIEL A4, 01-10: «necesito que sea exactamente igual, sólo que más pequeño… exactamente igual como la imagen que te dejé de referencia»; ronda 1: «todo bien, perfecto»_ · ✔×1
+- **R-89** · [CLICK] Un dato que ya está en el **legal** no se repite en letra chica dentro de la pieza — _Paulina, ARIEL A4, 01-10: «elimina la letra chica que dice muestras no se cobran, porque… ya está en la zona legal»_ · ✔×1
+- **R-90** · [CLICK] Exhibidor + cuadro de promo: **manda el cuadro**. Se agranda hacia la derecha y el muestrario se corre a la izquierda para hacerle sitio (quedó en 1413 px de ancho sobre 2500) — _Paulina, ARIEL A4, 01-10, ronda 3: «agranda un poco más el cuadro completo… se ve muy pequeñito, agrándalo hacia la derecha. Puedes mover el muestrario hacia la izquierda para que quepa más el cuadro»_ · ✔×1
 
 ## 5. Excepciones
 
@@ -173,6 +177,7 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **A-11** · [EBEMA] El bloque de textos del KV del cliente en su jerarquía (MUY PRONTO rojo · titular blanco · filete · sucursales en rojo) sobre velo en rampa: nunca recibió un comentario en 4 rondas — _teaser, 29-09, aprobado por el cliente_
 - **A-12** · [EBEMA] Cambio de toma en el reel de sucursal por otra real del mismo material y dirección en una línea: aprobado a la primera («bien») — _San Bernardo, 29-09_
 - **A-13** · [CLICK] La franja de íconos (bandera · escudo · camión en círculo blanco) + caja roja del exhibidor + CTA cápsula con filete blanco: «me gusta la zona inferior» en la ronda 1 y no volvió a tocarse salvo el escudo — _ARIEL A4 Piazza, 30-09_
+- **A-14** · [CLICK] El empalme de la lámina del exhibidor con el mármol de la pieza (muro y cubierta de muro a muro, sin recuadro): ningún comentario en 3 rondas — _ARIEL A4, 01-10: «todo bien, perfecto»_
 
 ## 7. Lo que se rechaza
 
@@ -216,6 +221,8 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **X-38** · [CLICK] Escudo de garantía dibujado con contorno de polígono («se ve muy raro») — _ARIEL A4 Piazza, 30-09, ronda 1_
 - **X-39** · [CLICK] Base de la llave individual hecha con un disco plano o con el pie del lavatorio vecino («quedó rara la base») — _ARIEL A4 Piazza, 30-09, rondas 6 y 7_
 - **X-40** · [CLICK] Bases de producto mochas por un recorte que cortaba la ficha muy arriba («le cortaste la base») — _ARIEL A4 Piazza, 30-09, ronda 4_
+- **X-41** · [CLICK] Sello de texto «EXHIBIDOR CON MUESTRAS GRATIS» donde el brief pedía «FOTO EXHIBIDOR»: el cliente lo devolvió después de aprobada y enviada — _cliente vía Carlos, ARIEL A4, 01-10_
+- **X-42** · [CLICK] Cuadro de promo del exhibidor al 80 % del tamaño de la lámina: «se ve muy pequeñito» — _Paulina, ARIEL A4, 01-10, ronda 3_
 
 ## 8. Preguntas abiertas
 
@@ -239,9 +246,18 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - LinkedIn 26/10 **Capacitaciones**: la grilla dice «PENDIENTE: confirmar tema, proveedor y sucursal». → Carlos.
 - **Carrusel 15/10, L2:** el brief pedía «mapa de Chile con obras activas»; va foto de obra para no repetir el mapa de la L3. Paulina no lo objetó en 2 rondas, pero tampoco lo aprobó explícito. → Paulina.
 - **sanjuan3:** con la caja al ancho de la 1.ª línea (R-71) la bajada quedó 17 px más arriba que en L2/L4; se priorizó la distancia título → bajada (R-70). ¿Manda la distancia o la altura? → Paulina.
-- **Logo Piazza en la A4/A5:** el brief pide «AÑADIR LOGO PIAZZA» y salió sin él (R-86). ¿Dónde va, o se queda fuera? → Paulina / Carlos.
+- **Logo Piazza en la A4/A5:** el brief pide «AÑADIR LOGO PIAZZA» y salió sin él (R-86). Desde el 01-10 la A4 muestra «Piazza» en el tablero del exhibidor; la A5 sigue sin nada. ¿Basta con eso, o va el logo? → Paulina / Carlos.
+- **Comentario de Carlos del 01-10 13:54Z** («@paulina Aquí está!») en una celda «Brief / Nota / imagen» de `Briefs wsp septiembre ARIEL`: la API no dice de cuál campaña. ¿Era la corrección del exhibidor u otra cosa? → Paulina.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Paulina Bustamante · corrección del cliente a la ARIEL A4: foto del exhibidor (3 rondas, aprobada y subida)
+- nuevo **R-87** (si el brief pide una foto, la foto va; el sello de texto no la reemplaza), **R-88** (lámina armada de Paulina: entra su píxel, sólo se construye el empalme), **R-89** (lo que está en el legal no se repite en letra chica), **R-90** (manda el cuadro: crece a la derecha y el muestrario se corre).
+- ✔ **R-03** ×5 (Paulina corrigió su propia lámina para dejar el texto de Carlos: $300.000, no $200.000), **R-35** ×3 (probada; pasa a [AMBAS], ahora también en Click), **R-47** ×8, **R-84** ×2. Aprobado a la primera: **A-14** (el empalme). Rechazos **X-41**, **X-42**.
+- De dónde vino: el brief de la A4 decía «FOTO EXHIBIDOR» con su enlace desde el principio; el 30-09 se resolvió con un sello rojo y pasó 11 rondas sin que nadie lo echara de menos. Lo pidió el cliente al día siguiente. Al leer un brief ARIEL, **cada línea suelta en mayúsculas es un elemento que tiene que estar en la pieza**.
+- Técnica, a la `ENTREGA.md`: el costado de la lámina se rellena con la veta de la pieza llevada al tono del borde (repetir la franja en espejo dejaba un caleidoscopio); el cuadro agrandado entra a su resolución original, sin remuestrear.
+- Las correcciones del cliente a Click llegan por Carlos, que las baja a la hoja del brief y avisa a Paulina con un comentario en la celda.
+- Candidata a regla del estudio: **R-89** (lo que ya dice el legal no se repite en la pieza) → Valeria.
 
 ### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (d6a5eb9)
 - sin aprendizajes nuevos: el commit `d6a5eb9` («WhatsApp ARIEL A4/A5 Piazza catálogo aprobadas (11 rondas) + cosecha R-78…R-86») es el mismo que Paulina ya cosechó ella misma el 30-09 en la entrada de arriba (R-78 a R-86, E-15, A-13, X-34…X-40). Se lista de nuevo porque tocó `BITACORA.md`/`CLAUDE.md` y `APRENDIZAJES.md` en el mismo commit. No hay nada posterior que agregar.

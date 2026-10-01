@@ -366,13 +366,168 @@ def icono(tipo, d=190):
     return im.resize((d, d), Image.LANCZOS)
 
 
+# ---------------------------------------------------------------- exhibidor
+# Corrección del cliente (01-10-2026, vía Carlos → Paulina): en la zona del sello del
+# exhibidor va la FOTO del exhibidor. Paulina entregó la lámina armada
+# (`exhibidor/promo_exhibidor_paulina.png`, 2500x1625) y pidió ponerla «exactamente
+# igual, sólo que más pequeña», bajo los íconos; después el botón y el legal.
+# La lámina no se redibuja ni se retoca: entra su píxel, reducido. Lo único que se
+# construye es el empalme: su muro y su cubierta se prolongan hasta los bordes y el
+# mármol de la pieza se lleva al tono de la lámina, para que no se lea como un
+# recuadro pegado (R-81: la zona de información no se corta).
+EXHIBIDOR = AQUI / "exhibidor/promo_exhibidor_paulina.png"
+EXH_ANCHO = 2000                   # 80 % del original
+EXH_TOP = 3765                     # borde superior de la lámina en el lienzo
+EXH_ALTO = round(1625 * EXH_ANCHO / 2500)
+H_EXH = EXH_TOP + EXH_ALTO + 85 + 150 + 88 + 142   # botón, legal y el mismo aire final
+
+
+def alargar(im, alto):
+    """La pieza crece hacia abajo: el mármol claro de la zona plana sigue, en espejo."""
+    a = np.array(im)
+    extra = alto - a.shape[0]
+    return Image.fromarray(np.concatenate([a, a[::-1][:extra]], axis=0))
+
+
+def _suave(v, sigma):
+    """Promedio gaussiano a lo largo de x de un perfil (ancho, 3)."""
+    r = int(sigma * 3)
+    k = np.exp(-0.5 * (np.arange(-r, r + 1) / sigma) ** 2); k /= k.sum()
+    pad = np.pad(v, ((r, r), (0, 0)), mode="edge")
+    return np.stack([np.convolve(pad[:, c], k, mode="valid") for c in range(3)], axis=1)
+
+
+# Ronda 2 (Paulina, 01-10): el cuadro rojo se queda tal cual, pero adentro va SÓLO el texto
+# de Carlos («EXHIBIDOR CON MUESTRAS GRATIS por compras sobre $300.000 + IVA»), y se
+# elimina la letra chica «*Muestras no se cobran.»: ya está en el legal de abajo.
+# Medido sobre la lámina (2500x1625): cuadro rojo x 1013–2345 · y 574–970.
+CAJA_EXH = (1013, 574, 2345, 970)
+LETRA_CHICA = (1850, 1034, 2405, 1104)      # tinta en x 1874–2379 · y 1052–1085
+# Ronda 3 (Paulina, 01-10): «agranda un poco más el cuadro completo, se ve muy pequeñito;
+# agrándalo hacia la derecha. Puedes mover el muestrario hacia la izquierda para que quepa».
+# El cuadro entra a su tamaño ORIGINAL de la lámina (1,25 veces el de la ronda 2, sin
+# remuestrear) y el muestrario se corre 130 px a la izquierda.
+GRUPO_EXH = (932, 486, 2425, 1057)          # filete blanco x 972–2385 · y 526–1017, + 40 de aire
+EXH_X = 120                                 # borde izquierdo de la lámina (centrada sería 250)
+CUADRO_X = 900                              # borde izquierdo del filete en el lienzo
+
+
+def lamina_exhibidor():
+    import cv2
+    im = Image.open(EXHIBIDOR).convert("RGB")
+    a = np.array(im)
+    # 1. letra chica fuera: inpainting sobre la máscara de las letras dilatada (§12 del manual)
+    x0, y0, x1, y1 = LETRA_CHICA
+    zona = a[y0:y1, x0:x1]
+    gris = zona.mean(2)
+    tinta = (gris < np.median(gris) - 12).astype(np.uint8) * 255
+    tinta = cv2.dilate(tinta, np.ones((9, 9), np.uint8))
+    a[y0:y1, x0:x1] = cv2.inpaint(zona, tinta, 7, cv2.INPAINT_TELEA)
+    im = Image.fromarray(a)
+    # 2. texto viejo fuera: el interior del cuadro vuelve a rojo pleno (los bordes no se tocan)
+    cx0, cy0, cx1, cy1 = CAJA_EXH
+    d = ImageDraw.Draw(im)
+    d.rectangle([cx0 + 35, cy0 + 35, cx1 - 35, cy1 - 35], fill=ROJO)
+    # 3. texto de Carlos, con la tipografía del sello aprobado el 30-09: versales Raleway 800
+    #    y, debajo, Raleway 500 con la cifra en Helvetica Bold (R-02). Tres filas, como la lámina.
+    f1, f1n = raleway(104, 800), helv(100)
+    f2, f2n = raleway(72, 500), helv(72)
+    cx = (cx0 + cx1) / 2
+    cap1 = f1.getbbox("E")[3] - f1.getbbox("E")[1]
+    cap2 = f2.getbbox("E")[3] - f2.getbbox("E")[1]
+    g1, g2 = 34, 50                                  # aire entre filas
+    alto = cap1 * 2 + g1 + g2 + cap2
+    b = (cy0 + cy1) / 2 - alto / 2 + cap1
+    centrado(d, cx, b, "EXHIBIDOR CON", f1, f1n, (255, 255, 255))
+    b += g1 + cap1
+    centrado(d, cx, b, "MUESTRAS GRATIS", f1, f1n, (255, 255, 255))
+    b += g2 + cap2
+    centrado(d, cx, b, "por compras sobre $300.000 + IVA", f2, f2n, (255, 255, 255))
+    # 4. ronda 3: el cuadro se saca de la lámina como grupo (filete + sombra + rojo + texto),
+    #    para ponerlo más grande, y la lámina queda sin él (el muro se rellena por inpainting;
+    #    casi todo ese relleno queda debajo del cuadro nuevo).
+    grupo = im.crop(GRUPO_EXH)
+    a = np.array(im)
+    x0, y0, x1, y1 = GRUPO_EXH[0] + 8, GRUPO_EXH[1] + 8, GRUPO_EXH[2] - 8, GRUPO_EXH[3] - 8
+    hueco = np.zeros(a.shape[:2], np.uint8)
+    hueco[y0:y1, x0:x1] = 255
+    a = cv2.inpaint(a, hueco, 5, cv2.INPAINT_TELEA)
+    return Image.fromarray(a), grupo
+
+
+def bloque_exhibidor(lienzo):
+    """Pega la lámina de Paulina a EXH_ANCHO y la empalma con el mármol de la pieza."""
+    lam, grupo = lamina_exhibidor()
+    ref = lam.resize((EXH_ANCHO, EXH_ALTO), Image.LANCZOS)
+    ra = np.array(ref).astype(float)
+    margen = EXH_X
+    a = np.array(lienzo.convert("RGB")).astype(float)
+    y0, y1 = EXH_TOP, EXH_TOP + EXH_ALTO
+    bajo = np.array(lienzo.convert("RGB").filter(ImageFilter.GaussianBlur(45))).astype(float)
+
+    # A los costados sigue el mármol de la pieza (su veta), llevado fila a fila al tono
+    # del borde de la lámina: así el muro y la arista de la cubierta llegan de muro a
+    # muro. (Repetir en espejo la franja del borde dejaba un dibujo de caleidoscopio.)
+    def perfil(cols):
+        v = cols.mean(1)
+        k = np.exp(-0.5 * (np.arange(-9, 10) / 3.0) ** 2); k /= k.sum()
+        pad = np.pad(v, ((9, 9), (0, 0)), mode="edge")
+        return np.stack([np.convolve(pad[:, c], k, mode="valid") for c in range(3)], axis=1)
+
+    veta = a[y0:y1] - bajo[y0:y1]
+    pi, pd = perfil(ra[:, :16]), perfil(ra[:, -16:])
+    tx = np.clip((np.arange(W) - W / 2 + 300) / 600, 0, 1)[None, :, None]     # izq → der
+    costado = veta + pi[:, None, :] * (1 - tx) + pd[:, None, :] * tx
+    lam = np.zeros((EXH_ALTO, W, 3)); lam[:, margen:margen + EXH_ANCHO] = ra
+    # la lámina se funde con ese mármol en su margen libre (125 px a la izq., 92 a la der.)
+    m = np.zeros(W)
+    m[margen:margen + EXH_ANCHO] = 1
+    m[margen:margen + 70] = np.linspace(0, 1, 70)
+    m[margen + EXH_ANCHO - 40:margen + EXH_ANCHO] = np.linspace(1, 0, 40)
+    m = m[None, :, None]
+    banda = costado * (1 - m) + lam * m
+
+    def entonar(ya, yb, objetivo, sube):
+        """Lleva el mármol de la pieza al tono del borde de la lámina, en rampa."""
+        t = np.clip((np.arange(ya, yb) - ya) / (yb - ya), 0, 1)
+        t = t * t * (3 - 2 * t)
+        w = (t if sube else 1 - t)[:, None, None]
+        gan = objetivo[None] / np.maximum(bajo[ya:yb], 1)
+        a[ya:yb] *= 1 + (gan - 1) * w
+
+    entonar(y0 - 300, y0 + 40, _suave(banda[:24].mean(0), 120), True)
+    entonar(y1 - 40, y1 + 300, _suave(banda[-24:].mean(0), 120), False)
+
+    # la lámina entra con un fundido corto arriba y abajo, dentro de su margen libre
+    alfa = np.ones(EXH_ALTO)
+    alfa[:30] = np.linspace(0, 1, 30)
+    alfa[-28:] = np.linspace(1, 0, 28)
+    alfa = alfa[:, None, None]
+    a[y0:y1] = a[y0:y1] * (1 - alfa) + banda * alfa
+
+    # el cuadro, a tamaño original, centrado en la misma altura que tenía en la lámina
+    g = np.array(grupo).astype(float)
+    gh, gw = g.shape[:2]
+    esc = EXH_ANCHO / 2500
+    gx = CUADRO_X - 40
+    gy = round(EXH_TOP + (GRUPO_EXH[1] + GRUPO_EXH[3]) / 2 * esc - gh / 2)
+    fx = np.minimum(np.minimum(np.arange(gw), np.arange(gw)[::-1]) / 28, 1)
+    fy = np.minimum(np.minimum(np.arange(gh), np.arange(gh)[::-1]) / 28, 1)
+    ag = (fy[:, None] * fx[None, :])[..., None]
+    a[gy:gy + gh, gx:gx + gw] = a[gy:gy + gh, gx:gx + gw] * (1 - ag) + g * ag
+    return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).convert("RGBA")
+
+
 # ---------------------------------------------------------------- pieza
-def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True):
+def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True, foto_exhibidor=False):
     lienzo, s, x0 = fondo()
     lienzo = lienzo.convert("RGBA")
 
     # 1. zona inferior plana y repisa (ronda 1)
-    lienzo = muro_oscuro(zona_plana(lienzo.convert("RGB"))).convert("RGBA")
+    plana = zona_plana(lienzo.convert("RGB"))
+    if foto_exhibidor:
+        plana = alargar(plana, H_EXH)
+    lienzo = muro_oscuro(plana).convert("RGBA")
     repisa(lienzo, fondo()[0])
 
     # 2. cabezal: píxel original de la madre (EBEMA CLICK · Materiales y beneficios)
@@ -458,6 +613,11 @@ def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True):
     centrado(d, W / 2, py0 + 99, bajada, fp, fpn, GRIS_PILDORA, 0)
     # logo Piazza: fuera en la ronda 1 («se llena la imagen»); se decide después dónde va
 
+    # 5 bis. lámina del exhibidor (01-10): antes de los íconos, para entonar el mármol limpio
+    if foto_exhibidor:
+        lienzo = bloque_exhibidor(lienzo)
+        d = ImageDraw.Draw(lienzo)
+
     # 6. íconos: bandera · escudo · camión — ronda 1: textos más grandes
     ICO_Y, DI = 3330, 200
     items = [("bandera", ["Origen", "Argentina"]),
@@ -481,7 +641,7 @@ def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True):
     fe2, fe2n = raleway(64, 500), helv(64)
     ew = max(ancho(e1, fe1, fe1n), ancho(e2, fe2, fe2n)) + 2 * 110
     EY0 = 3800
-    if exhibidor:
+    if exhibidor and not foto_exhibidor:
         d.rounded_rectangle([W / 2 - ew / 2, EY0, W / 2 + ew / 2, EY0 + 270], radius=34, fill=ROJO)
         centrado(d, W / 2, EY0 + 118, e1, fe1, fe1n, (255, 255, 255))
         centrado(d, W / 2, EY0 + 212, e2, fe2, fe2n, (255, 255, 255))
@@ -494,6 +654,8 @@ def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True):
     # ronda A5-2: el botón queda centrado entre el pie de las etiquetas (3702) y el
     # borde inferior (4180): 164 px de aire arriba y abajo
     CY0 = EY0 + 270 + 60 if exhibidor else 3866
+    if foto_exhibidor:
+        CY0 = EXH_TOP + EXH_ALTO + 85
     d.rounded_rectangle([W / 2 - cw / 2, CY0, W / 2 + cw / 2, CY0 + 150], radius=75, fill=ROJO,
                         outline=(255, 255, 255), width=6)
     d.text((W / 2, CY0 + 77), cta, font=fc, fill=(255, 255, 255), anchor="mm")
@@ -511,6 +673,7 @@ def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True):
 
 
 if __name__ == "__main__":
-    componer(AQUI / "A4_piazza_catalogo_ferretero.png")
+    # A4 — desde el 01-10 lleva la lámina del exhibidor en vez del sello rojo (sólo la A4)
+    componer(AQUI / "A4_piazza_catalogo_ferretero.png", foto_exhibidor=True)
     # A5 — contratista: idéntica a la A4 aprobada, sólo cambia la 2.ª línea del título
     componer(AQUI / "A5_piazza_catalogo_contratista.png", linea2="PARA TU OBRA", exhibidor=False)

@@ -1467,6 +1467,11 @@ se copia al píxel, más la caja roja del título, la píldora blanca y el márm
 - **Sólo va lo que escribe Carlos.** La versión contratista pierde el exhibidor y el legal si el brief no
   los trae, y se acorta.
 
+- **Lo que el brief lista como foto, va como foto** (01-10-2026): la A4 decía «FOTO EXHIBIDOR» y salió con
+  un sello de texto; el cliente la devolvió. Ahora lleva la lámina del exhibidor de Paulina bajo los íconos
+  (su píxel, empalmado con el mármol), con el cuadro rojo grande y sólo el texto de Carlos. La pieza creció
+  a 2500×5530. R-87…R-90.
+
 Generador y receta: `out/ebema/20260930_wsp_A4_piazza_catalogo/` (`componer.py` +
 `ENTREGA.md`), que rinde las dos piezas byte a byte.
 

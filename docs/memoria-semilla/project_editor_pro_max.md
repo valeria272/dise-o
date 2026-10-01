@@ -29,5 +29,5 @@ npx remotion render <CompositionId> out/video.mp4
 ./scripts/batch-render.sh Showcase youtube tiktok square
 ```
 
-## 8 Skills de Claude instalados en .agents/skills/
-remotion-best-practices, motion-designer, awwwards-animations, animated-component-libraries, ffmpeg, explainer-video-guide, remotion-render, playwright-mcp
+## Skills instaladas en .claude/skills/ y .agents/skills/ (al 01-10-2026)
+Remotion oficial (remotion-best-practices + 11 remotion-*), motion-designer, awwwards-animations, animated-component-libraries, ffmpeg, explainer-video-guide, playwright-mcp, direccion-de-arte, algorithmic-art y 12 de Figma (figma-use y familia, audit/apply/fix-design-system, sync-figma-token). Lista y cuándo usar cada una: CLAUDE.md § Agent Skills.

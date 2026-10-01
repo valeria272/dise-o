@@ -28,6 +28,7 @@ import {AnimaticV4 as SGAnimaticV4} from "./compositions/santagota/spot/Animatic
 import {AnimaticV5 as SGAnimaticV5} from "./compositions/santagota/spot/AnimaticV5";
 import {FullClienteIG, FullClienteIGCapa, DUR_FULL_CLIENTE} from "./compositions/santagota/tv-cliente/FullClienteIG";
 import {ReelVertical as SGReelVertical, DUR_REEL_V} from "./compositions/santagota/reel/ReelVertical";
+import {Lamina1 as SGPecado1, Lamina2 as SGPecado2, Lamina3 as SGPecado3, Lamina4 as SGPecado4, Lamina5 as SGPecado5} from "./compositions/santagota/paid/CarruselPecado";
 
 
 // COPYWRITERS — Creative Operating System v1.0. Una pieza = un archivo = una
@@ -57,7 +58,10 @@ import {FotoAceite} from "./compositions/copylab/FotoAceite";
 import {FotoEscritorio} from "./compositions/copylab/FotoEscritorio";
 import {FotoDiario} from "./compositions/copylab/FotoDiario";
 import {Caso001} from "./compositions/copylab/Caso001";
+import {CW01Cyber} from "./compositions/copylab/CW01Cyber";
+import {CW04CyberIA} from "./compositions/copylab/CW04CyberIA";
 import {PostG} from "./compositions/copylab/PostG";
+import {ReelProceso, REEL_PROCESO_FRAMES} from "./compositions/copylab/ReelProceso";
 import {RentasReelOctubre} from "./compositions/rentas/RentasReelOctubre";
 import {RentasReelNoviembre} from "./compositions/rentas/RentasReelNoviembre";
 import {NuevaUrbeFacilidadesReel, NU_REEL_DURATION, NU_REEL_FPS} from "./compositions/NuevaUrbeFacilidadesReel";
@@ -1337,13 +1341,26 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="SG-FULL-CLIENTE-IG" component={FullClienteIG} durationInFrames={DUR_FULL_CLIENTE} fps={29.97} width={1920} height={1080} />
         <Composition id="SG-FULL-CLIENTE-IG-CAPA" component={FullClienteIGCapa} durationInFrames={DUR_FULL_CLIENTE} fps={29.97} width={1920} height={1080} />
         {/* «UNA SOLA GOTA LO CAMBIA TODO» vertical para Reels, desde el spot v2 de Diego (28-09-2026) */}
+        {/* Carrusel de pauta «Elige tu pecado» (01-10-2026) — 4:5 */}
+        <Composition id="SG-PECADO-1" component={SGPecado1} durationInFrames={1} fps={30} width={1080} height={1350} />
+        <Composition id="SG-PECADO-2" component={SGPecado2} durationInFrames={1} fps={30} width={1080} height={1350} />
+        <Composition id="SG-PECADO-3" component={SGPecado3} durationInFrames={1} fps={30} width={1080} height={1350} />
+        <Composition id="SG-PECADO-4" component={SGPecado4} durationInFrames={1} fps={30} width={1080} height={1350} />
+        <Composition id="SG-PECADO-5" component={SGPecado5} durationInFrames={1} fps={30} width={1080} height={1350} />
         <Composition id="SG-REEL-VERTICAL" component={SGReelVertical} durationInFrames={DUR_REEL_V} fps={24} width={1080} height={1920} />
       </Folder>
       <Folder name="Copywriters">
         {/* Feed 4:5 — el formato principal del sistema. */}
         <Composition id="CL2-PostG" component={PostG} {...clFeed} />
+        {/* Reel trend «Process» → «Los 16 cortes» (prueba de skills de reels, 01-10-2026). */}
+        <Composition id="CL2-ReelProceso" component={ReelProceso} durationInFrames={REEL_PROCESO_FRAMES} fps={30} width={1080} height={1920} defaultProps={{conMusica: true}} />
         {/* Dirección de arte RRSS 30-09-2026 — caso de éxito 001, 6 láminas */}
         <Composition id="CL2-Caso001" component={Caso001} {...clFeed}
+                     defaultProps={{lamina: 1}} />
+        {/* Grilla octubre 2026 (brief de redes sociales) — CW-01 y CW-04 */}
+        <Composition id="CL2-CW01-Cyber" component={CW01Cyber} {...clFeed}
+                     defaultProps={{lamina: 1}} />
+        <Composition id="CL2-CW04-CyberIA" component={CW04CyberIA} {...clFeed}
                      defaultProps={{lamina: 1}} />
         {/* Sistema Visual 29-09-2026 — piezas con fotografía */}
         <Composition id="CL2-FotoAceite"     component={FotoAceite}     {...clFeed} />

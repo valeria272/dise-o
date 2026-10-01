@@ -8,6 +8,34 @@
 
 ---
 
+## 2026-10-01 · Valeria (sesión Claude) — skills de reels + reel «Los 16 cortes» **aprobado**
+
+**Qué se hizo:** Se instalaron y adaptaron skills nuevas para el estudio (12 de Figma, el set oficial de
+Remotion, `algorithmic-art` y 9 de reels/trends: `tt-trend-mapper`, `viral-hooks`, `tt-hook-scripter`,
+`viral-instagram-reels`, `viral-captions-and-ctas`, `short-form-video`, `caption-animation`,
+`ad-creative-video`, `video-shotcraft`) y se empezaron a probar una por una sobre esta cuenta. Prueba 1
+(`tt-trend-mapper`) sobre trends vivos de octubre: «Process» 7/8 y «Please keep me in your thoughts» 6/8
+pasan; efectos IA de Higgsfield 5/8 y «Gossip Girl's Fall» 2/8 (otoño en primavera) no. Se bajó y **midió**
+el reel de referencia de «Process» (4 capítulos con etiqueta fija, cortes en 0,37·1,33·2,97·4,53 s, 152 BPM)
+y se produjo **«Los 16 cortes»** con material real del CAP.02. Valeria lo aprobó («ok está bien»).
+
+**Dónde quedó:** `src/compositions/copylab/ReelProceso.tsx` (`CL2-ReelProceso`) · material en
+`public/assets/copywriters/proceso/` (con excepción en `.gitignore`; el audio TEMP del trend no viaja) ·
+renders en `out/copylab/pruebas-skills/reel-proceso/` (`CL_reel-los-16-cortes.mp4` limpio para subir y la
+`_REVISION-con-audio-temp`) · informe en `out/copylab/pruebas-skills/01-tt-trend-mapper.md` · referencias
+en `out/copylab/pruebas-skills/referencias/`.
+
+**Qué sigue:** prueba 2 de skills: `viral-captions-and-ctas` + `caption-animation` → caption y comentario
+fijado del mismo reel. Después `viral-hooks`/`tt-hook-scripter` para el trend «Please keep me in your
+thoughts» (faltan los 10 copies de R-15 para que Valeria elija).
+
+**Abierto:** que el equipo de redes lo meta en la grilla · si se puede mostrar el texto interno del guion
+del CAP.02 · tipo de cuenta de @copywriters.cl (empresa limita el audio del trend) · PostG dice «23
+VERSIONES» y en el repo hay 16 cortes · conectar una cuenta de TikTok en Higgsfield para medir la música
+en tendencia.
+
+---
+
 ## 2026-10-01 · Valeria — Sistema Visual: CASO 001 **aprobado** y la lámina del 30-09 como ley de ejecución
 
 **Qué se hizo:** Se cerró el carrusel **CASO 001** (6 láminas) replicando la lámina que Valeria entregó

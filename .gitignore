@@ -806,3 +806,8 @@ out/ebema/20260928_grilla_octubre_reels/*
 public/assets/fonts/copywriters/BebasNeuePro-*.otf
 public/assets/fonts/copywriters/BalloonURW-*.otf
 public/assets/fonts/copywriters/NeueHaasGroteskText-*.otf
+
+# Reel «Los 16 cortes» (01-10-2026): material real derivado de out/gcl/cap02-v3. El audio TEMP no tiene licencia y no viaja.
+!public/assets/copywriters/proceso/
+!public/assets/copywriters/proceso/**
+public/assets/copywriters/proceso/TEMP-*

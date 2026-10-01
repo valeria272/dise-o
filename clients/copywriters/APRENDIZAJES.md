@@ -33,7 +33,7 @@
 > `gcl-agent/universo/CANON_LOCK.md`. Léelo ahí antes de tocar cualquier cosa de G.
 >
 > Criterio: **Valeria Traverso** · Aprueba: **Valeria Traverso (aprobación final de dirección de arte, `MASTER/13`)**
-> Última cosecha: **2026-10-01** · Cosechas: **5**
+> Última cosecha: **2026-10-01** · Cosechas: **6**
 
 ## 1. Quién es el cliente
 
@@ -76,9 +76,9 @@ con humor de oficio y autoironía de agencia.
 - **R-05** · Titulares con la voz condensada y pesada; «una palabra manda, el resto acompaña». `marca.json` fijó el rol **`titular` en Archivo Narrow** (wght 400–700) el 25-09; el Archivo variable de la ronda del 24-09 queda como `impacto_legado` — _`marca.json`, commit 66b38a1, 25-09-2026; coincide con el manual del proyecto (`CLAUDE.md` raíz: «Archivo Narrow (titulares)»)_ · ✔×1 · ⚠️ revisada 2026-09-26 (ver §8: falta la cita explícita de Valeria confirmándolo como cierre definitivo, no sólo como valor de config)
 - **R-06** · Máximo 3 voces tipográficas por pieza; la Mono nunca es héroe — _`MASTER/03`, 24-09; `marca.json` topes_ · ✔×2
 - **R-07** · La escritura manual NO es voz: sólo intervención excepcional sobre foto, idealmente trazada a mano de verdad. Nada de manuscrita falsa como sistema — _Valeria, `MASTER/03`, 24-09_ · ✔×1
-- **R-08** · El logo no va por defecto: sólo pieza institucional, cierre de reel, campaña corporativa o identificación explícita. El índice en Mono reemplaza al logo — _Creative OS §7 (lote v1: 1 de 9); `MASTER/00` y `/04`, 24-09_ · ✔×3
+- **R-08** · El logo no va por defecto: sólo pieza institucional, cierre de reel, campaña corporativa o identificación explícita. El índice en Mono reemplaza al logo — _Creative OS §7 (lote v1: 1 de 9); `MASTER/00` y `/04`, 24-09; reel «Los 16 cortes» sin logo, aprobado 01-10_ · ✔×4
 - **R-09** · Una anomalía fuerte por pieza; 1–2 intervenciones, cada una con razón semántica; del kit gráfico, 1 gesto por pieza (2 como excepción) — _Creative OS §5 y §8, 03-09; `MASTER/13`, 24-09_ · ✔×2
-- **R-10** · Nunca inventar métricas, casos, clientes, personas del equipo ni backstage. Si falta material real: **PLACEHOLDER — NO PUBLICABLE** — _`MASTER/00`, `/07`, `/13`, 24-09; se sacó DATA «43» del board v2; el −37 % de PROOF y el +73 % de Santa Gota son de maqueta_ · ✔×3
+- **R-10** · Nunca inventar métricas, casos, clientes, personas del equipo ni backstage. Si falta material real: **PLACEHOLDER — NO PUBLICABLE** — _`MASTER/00`, `/07`, `/13`, 24-09; se sacó DATA «43» del board v2; el −37 % de PROOF y el +73 % de Santa Gota son de maqueta; 01-10-2026: el hook del reel «Los 16 cortes» iba a decir «23 versiones» (la cifra de PostG) y en el repo hay 16 cortes — Valeria eligió el medido_ · ✔×4
 - **R-11** · Recreaciones con IA sí, pero **declaradas** en el arte («Recreación publicitaria»); nunca se hacen pasar por hallazgo documental — _`MASTER/09`, feedback del director 24-09 (HERO2 con sello «RECREACIÓN · NO SE PUBLICA»)_ · ✔×2
 - **R-12** · VISUAL MATCH TEST (30 % del QA): la pieza se pone al lado de la lámina (`qa/visual_match.py`) y se pregunta «¿podría estar en la lámina?». Si no, FAIL aunque colores y fuentes estén perfectos. `qa/motor.py` es sólo QA **técnico**: nunca decir «pasa el QA» sin decir cuál — _director creativo vía Valeria, 24-09; `MASTER/09`_ · ✔×1
 - **R-13** · IMAGE-FIRST TEST: sin texto ni rosa, ¿la foto sola es de campaña? Si es sólo «correcta», vuelve a Magnific/Seedream. El diseño remata la imagen, no la rescata — _2º feedback del director, 24-09; `MASTER/09`_ · ✔×1
@@ -99,17 +99,20 @@ con humor de oficio y autoironía de agencia.
 
 - **R-28** · ⭐ La voz tipográfica **NO es condensada**. La lámina ley del 30-09 se compone con Bebas Neue Pro **SemiExpanded / Expanded ExtraBold**: `impacto` (SemiExp ExtraBold) para titulares y KPI, `bloque` (Expanded ExtraBold) cuando el número ES la pieza, `titular` (ancho normal, 700) sólo para líneas largas que tienen que caber. Un KPI en ancho normal se lee flaco y pierde presencia publicitaria. La mano es **Balloon D Extra Bold**, no la URW Light — _Valeria, lámina `CARRUSEL_CASO_001_LEY_30-09.png`, 30-09-2026; `sistemaV2.ts` → `VOZ2`_ · ✔×1 · **cierra la pregunta abierta «¿qué familia titula de verdad?»**
 - **R-29** · El subrayado va como **ÁREA, no como línea**: ancho en el vientre, afilado en las puntas (`pathTrazoGrueso` + `<Trazo>` en `piezasV2.tsx`). Un trazo de grosor parejo se lee como un `border` de CSS, no como plumón — _lámina ley 30-09_ · ✔×1
-- **R-30** · Texto claro sobre fotografía lleva **sombra corta** (`SOMBRA_SOBRE_FOTO`). Sin ella flota encima de la imagen en vez de estar dentro de la escena — _lámina ley 30-09_ · ✔×1
-- **R-31** · El **texto funcional** —comparaciones, notas al pie, unidades: «vs. 9,8X», «0–1 órdenes enviando a toda la base»— va en **caja mixta**. En versales se convierte en metadata, que es justo lo que el feed eliminó. (Ojo: la **mano** sí es caja alta, R-07 y la grilla del board) — _lámina ley 30-09_ · ✔×1
+- **R-30** · Texto claro sobre fotografía lleva **sombra corta** (`SOMBRA_SOBRE_FOTO`). Sin ella flota encima de la imagen en vez de estar dentro de la escena — _lámina ley 30-09; etiquetas del reel «Los 16 cortes», aprobado 01-10_ · ✔×2
+- **R-31** · El **texto funcional** —comparaciones, notas al pie, unidades: «vs. 9,8X», «0–1 órdenes enviando a toda la base»— va en **caja mixta**. En versales se convierte en metadata, que es justo lo que el feed eliminó. (Ojo: la **mano** sí es caja alta, R-07 y la grilla del board) — _lámina ley 30-09; etiquetas de capítulo del reel «Los 16 cortes» en caja mixta, aprobado 01-10_ · ✔×2
 - **R-32** · Un mockup necesita **cromo** o no es un mockup: un rectángulo blanco con una foto y un botón es un rectángulo. `src/brand/copylab/mockups.tsx` → `AnuncioIG` (avatar, marca, «Publicidad», «•••») y `MailIOS` (barra de estado con hora, señal, wifi y batería **dibujadas**, «‹ Todos», remitente con avatar y fecha). Y se **apoya**: perspectiva corta + **dos** sombras —una corta y dura que pega el borde al suelo, otra larga y blanda que da volumen—, grano en `multiply` y caída de luz. Una sola sombra genérica lo deja flotando — _Valeria, 30-09 («mockups básicos, mal hechos»)_ · ✔×2
 - **R-33** · La geometría de un mockup sobre foto **se mide, no se estima**: máscara de brillo + componente conexa mayor (`scipy.ndimage.label`) mapeada por la transformación de `objectFit: cover`. La pantalla del teléfono es un **trapecio** (556 px arriba vs 609 abajo) → `perspective(1400px) rotateX(10deg)`. Poner un rectángulo plano sobre un plano en perspectiva es el error que Valeria marcó **dos veces seguidas** — _30-09_ · ✔×2
 - **R-34** · ⭐⭐ **El orden en que se corrige** una lámina que se ve mal y no se sabe por qué: **ancho y peso de la tipografía → grosor del trazo → sombra sobre foto → caja del texto funcional → cromo del mockup → temperatura de la foto**. Los seis fallos de la ronda del 30-09 estaban exactamente en ese orden, y el primero era el de fondo — _`DIRECCION-DE-ARTE-RRSS.md` §13, 30-09_ · ✔×1
 - **R-35** · Temperatura de la foto: madera vieja, ladrillo, luz de tungsteno. El **gris frío y el hormigón limpio** devuelven la pieza al registro de presentación corporativa — _lámina ley 30-09_ · ✔×1
 - **R-36** · Una cifra se sangra fuera del lienzo por **UN lado solamente**. Sangrada por los dos, el crop se comió el «1» y «19,2X» se leyó «9,2X»: una cifra ilegible deja de ser un dato — _error real, 30-09_ · ✔×1
 - **R-37** · Compuerta nueva `qa/borde.py`: caza texto cortado o pegado al borde del lienzo. Calibrada contra control (pasa las 15 piezas reales; caza 7 violaciones inyectadas en 3 piezas distintas). ⚠️ Tanto ésta como `qa/motor.py` corren con el **venv compartido** `/Users/Vale/copylab-venv/bin/python3`: con el `python3` del sistema falta scipy y las 7 reglas del motor degradan a warning **en silencio** — _30-09_ · ✔×1
-- **R-38** · El feed **no se llena de gráficas Copywriters**: se muestra **qué hace Copywriters** con una dirección de arte reconocible. Las piezas basadas en frase son **1 de 12**, no 8. Los pilares son contenido real: trabajo de clientes, producto, equipo, backstage, pantallas IA, resultados, cliente nuevo, G y tendencias concretas — _Valeria, 30-09_ · ✔×1 · ⚠️ revisada 2026-10-01: el mix de la grilla lo decide redes sociales; el estudio lo hace cumplir en cada pieza, no lo planifica.
-- **R-39** · ⛔ Fuera del feed: enumeraciones (`01/06`, `VOL. 027`, «02 — EL PRINCIPIO»), microtexto flotante y `COPYWRITERS.CL` permanente. Una pieza = una idea, entendida en 1–2 segundos — _brief `DIRECCIÓN DE ARTE RRSS`, 30-09_ · ✔×2
+- **R-38** · El feed **no se llena de gráficas Copywriters**: se muestra **qué hace Copywriters** con una dirección de arte reconocible. Las piezas basadas en frase son **1 de 12**, no 8. Los pilares son contenido real: trabajo de clientes, producto, equipo, backstage, pantallas IA, resultados, cliente nuevo, G y tendencias concretas — _Valeria, 30-09; reel «Los 16 cortes» (trend + proceso real de G), aprobado 01-10_ · ✔×2 · ⚠️ revisada 2026-10-01: el mix de la grilla lo decide redes sociales; el estudio lo hace cumplir en cada pieza, no lo planifica.
+- **R-39** · ⛔ Fuera del feed: enumeraciones (`01/06`, `VOL. 027`, «02 — EL PRINCIPIO»), microtexto flotante y `COPYWRITERS.CL` permanente. Una pieza = una idea, entendida en 1–2 segundos — _brief `DIRECCIÓN DE ARTE RRSS`, 30-09; el reel «Los 16 cortes» recorta la cabecera «TEMPORADA 1 · CAPÍTULO 02» quemada en los cortes, aprobado 01-10_ · ✔×3
 - **R-40** · Balloon es **gesto**, no una segunda capa de texto permanente. Puede cruzar una foto, ser el titular, rodear un KPI, salirse del lienzo o integrarse con Bebas. Tope escrito: «frase rosada + subrayado» en máximo **2 de cada 10** piezas — estaba en 7 de 14 — _Valeria, 30-09 («si siempre es frase rosada + subrayado, en diez posts ya tendremos otra plantilla»)_ · ✔×1
+
+- **R-41** · ⭐ **Subirse a un trend = medir la referencia antes de guionar.** Se baja el reel del trend y se mide (hoja de cuadros, cortes, beat): los capítulos, la etiqueta, los instantes de corte. La métrica del original se respeta al frame y **el giro va en un solo capítulo**. Describirlo de oído falla: la primera descripción de «Process» (versión tachada + ráfaga de cortes) no tenía nada que ver con el trend real (4 capítulos con etiqueta fija, 7,5 s) — _reel «Los 16 cortes», aprobado por Valeria 01-10-2026 («ok está bien»)_ · ✔×1
+- **R-42** · El audio del trend va **sólo como pista temporal** de revisión; la pieza de entrega se rinde sin audio y la música se agrega en la app al publicar. La licencia depende del tipo de cuenta (empresa = sólo la Sound Collection comercial) y un reel que va a pauta no puede llevar audio en tendencia — _reel «Los 16 cortes», 01-10-2026; skill `viral-instagram-reels`_ · ✔×1
 
 ## 5. Excepciones
 
@@ -131,6 +134,7 @@ con humor de oficio y autoironía de agencia.
 - **A-05** · El texto dentro del objeto fotografiado (diario, hoja arrugada, hoja rosa en la impresora) funcionó mejor que el texto encima — _grilla de 12 posts, 3er feedback 24-09_
 - **A-06** · **CASO 001 — carrusel de 6 láminas: APROBADO** el 01-10-2026, en la versión que replica la lámina ley (`src/compositions/copylab/Caso001.tsx`, `out/copylab/caso001/entrega/`). ⚠️ Aprobado como **diseño**; sigue **NO PUBLICABLE** hasta verificar las cifras y tener la autorización del cliente (R-10) — _Valeria, 01-10-2026_
 - **A-07** · «UN CAMBIO CHICO.» / Balloon «23 VERSIONES DESPUÉS.» (`PostG.tsx`): primera pieza hecha con **material real** del estudio —un frame del CAP.02 que ya estaba renderizado— y el rosa no se agregó, ya estaba en la escena. Así se trabaja el pilar G — _01-10-2026_
+- **A-08** · **«Los 16 cortes»** (`CL2-ReelProceso`, 1080×1920, 7,5 s): primer reel subido a un trend («Process», octubre 2026), aprobado a la primera. Cuatro capítulos con etiqueta fija —«El guion» · «Las pruebas» · «Los 16 cortes» · «El resultado»— y todo material real del CAP.02 (texto del guion V3, keyframes Pro vs Seedream, un cuadro de cada corte, el robot dios del corte 16). No se generó nada; el rosa ya estaba en la escena — _Valeria, 01-10-2026_
 
 ## 7. Lo que se rechaza
 
@@ -176,6 +180,10 @@ con humor de oficio y autoironía de agencia.
   El 18 % se había calibrado sobre piezas tipográficas y con fotografía dominante bloqueaba el
   tinto profundo y el neón de G, que son canon.
 - ¿Se archiva el sistema viejo (`tokens.json`, `sistema.ts`, piezas v1) o se deja vivo indefinidamente junto al nuevo? — _pendiente de Valeria_.
+- **Tipo de cuenta de @copywriters.cl** (empresa o creador): decide si el audio de un trend se puede usar en la app (R-42) (Valeria).
+- ¿Se puede mostrar el **texto interno del guion** del CAP.02 en un reel público? «Los 16 cortes» lo muestra en el capítulo 1 (Valeria).
+- **PostG dice «23 VERSIONES DESPUÉS»** y en el repo hay 16 cortes del CAP.02. ¿De dónde sale el 23, o se corrige PostG? (Valeria).
+- La música en tendencia de TikTok por Higgsfield necesita una **cuenta de TikTok conectada**; al 01-10 no había ninguna (Valeria / redes).
 
 ### Bloqueado esperando a Valeria (levantado 4 veces, sin respuesta)
 
@@ -198,6 +206,13 @@ con humor de oficio y autoironía de agencia.
   reescribió. Pendiente decidir si se rehacen o se jubilan, dado que además son piezas de frase (R-38).
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude (Opus 5.5) · sesión de Valeria Traverso · **reel «Los 16 cortes» aprobado**
+- nuevo **R-41** (medir la referencia del trend antes de guionar; el giro en un capítulo) y **R-42** (audio del trend sólo como pista temporal; licencia por tipo de cuenta).
+- nueva **A-08**: «Los 16 cortes», primer reel sobre un trend, aprobado a la primera («ok está bien»).
+- ✔ subieron: **R-10** ×4 (23 → 16: la cifra medida), **R-08** ×4, **R-39** ×3, **R-30** ×2, **R-31** ×2, **R-38** ×2.
+- §8: cuatro preguntas nuevas (tipo de cuenta, texto del guion, el «23» de PostG, TikTok sin conectar).
+- Contexto: el reel salió de la prueba 1 de las skills de reels instaladas hoy (`tt-trend-mapper`); informe en `out/copylab/pruebas-skills/01-tt-trend-mapper.md`.
 
 ### 2026-10-01 — Claude (Opus 5) · sesión de Valeria Traverso · **CASO 001 aprobado**
 

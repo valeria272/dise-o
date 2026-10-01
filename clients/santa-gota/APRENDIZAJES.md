@@ -103,7 +103,7 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 ## 8. Preguntas abiertas
 
 - ~~**Logo vectorial:** no existe~~ → ✅ **existe** (28-09): `D:\DIEGO 2023\COPYWRITERS\SANTA GOTA\IMAGEN SANTA GOTA 2026\BRAND MANUAL SG 2026\BM SANTA GOTA_Carpeta\BM SANTA GOTA.pdf`, págs. 3–5 (gris, lima, naranja; se extrae con PyMuPDF `get_pixmap(alpha=True)`), y en `public/assets/santagota/reel-v2/logo-bm-*.png`. Falta la versión verde con la O naranja (la del cierre) en vector.
-- ¿El spot «UNA SOLA GOTA LO CAMBIA TODO» (v2 horizontal de Diego) y su vertical v3 están aprobados por Gonzalo? (Diego / Valeria)
+- ~~¿El spot «UNA SOLA GOTA LO CAMBIA TODO» está aprobado?~~ → ✅ **aprobado** (Valeria, 01-10): el spot de Diego queda final y su versión vertical v3 es la entrega. Revisada el 01-10 desde el repo (`SG-REEL-VERTICAL`, 477 cuadros sin negros, textos dentro del cuadro y de las zonas seguras).
 - ¿El logo del cierre del Reel se cambia por uno del manual? (Diego)
 - **Plantilla técnica del virtual 775×1080** del canal: nunca llegó. No se entrega al canal sin calzarla.
 - **¿Salió al aire?** Está verificado que se **mandó** a TVN el 20-09; que esté «al aire» no está confirmado. No decirlo en ninguna pieza (Valeria / Gonzalo).

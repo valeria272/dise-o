@@ -613,18 +613,50 @@ const colors = useColorScheme("dark"); // colors.bg, colors.text, colors.accent
 
 ## Agent Skills
 
-This project has 8 specialized skills installed. They provide deep domain knowledge — use them when relevant:
+This project has specialized skills installed. They provide deep domain knowledge — use them when relevant:
 
 | Skill | When to use |
 |---|---|
-| **remotion-best-practices** | Always active — correct Remotion API usage, captions, audio, video, transitions, trimming |
+| **remotion-best-practices** | Always active — router oficial de Remotion: decide qué skill `remotion-*` cargar |
+| **remotion-markup** | Escribir markup de Remotion: animación, efectos, tipografías, transiciones, timing, motion blur, edición de video |
+| **remotion-captions** | Transcribir, mostrar y animar subtítulos |
+| **remotion-multimedia** | Recortar, cortar o leer metadata de video y audio (Mediabunny) |
+| **remotion-create** / **remotion-studio** / **remotion-render** | Abrir una composición nueva, previsualizar en Studio, exportar **en local** |
+| **remotion-docs** / **remotion-upgrade** | Buscar en la documentación oficial; actualizar Remotion (el proyecto está en 4.0.489, las skills en 4.0.532) |
+| **remotion-maps** / **remotion-interactivity** / **remotion-saas** | Mapas animados, props editables desde Studio, apps sobre Remotion |
 | **motion-designer** | Planning scene composition, timing, pacing, camera movement, visual hierarchy, storytelling flow |
 | **awwwards-animations** | Premium animations — GSAP, Framer Motion, Anime.js, Lenis patterns for 60fps award-winning quality |
 | **animated-component-libraries** | Building UI components — Magic UI (150+ components) and React Bits (90+ components) references |
 | **ffmpeg** | Video/audio processing — format conversion, compression, resizing, audio extraction, filters |
 | **explainer-video-guide** | Creating explainer or educational videos — structure, scripting, pacing |
-| **remotion-render** | Programmatic rendering pipelines and advanced render configuration |
 | **playwright-mcp** | Browsing the web for visual references, style inspiration, screenshots of websites |
+| **algorithmic-art** | Texturas y fondos generativos con p5.js (flow fields, partículas). Siempre subordinado al sistema de la marca |
+
+> Las skills `remotion-*` son el set oficial de `remotion-dev/skills`, instalado el
+> 01-10-2026. Reemplazó la `remotion-best-practices` de marzo y una `remotion-render`
+> que mandaba el render a un servicio externo de pago (inference.sh): **el estudio
+> renderiza en local**. Viven duplicadas en `.claude/skills/` y `.agents/skills/`.
+
+### Skills de Reels (instaladas el 01-10-2026)
+
+Sacadas de repos públicos y **adaptadas**: se les quitó la publicidad y cada una abre
+con una «Nota COPYLAB» (la marca manda, español de Chile, no publica). Se están probando
+una por una sobre @copywriters.cl — resultados en `out/copylab/pruebas-skills/`.
+
+| Skill | Cuándo usarla |
+|---|---|
+| **tt-trend-mapper** | ¿Nos subimos a este trend? Pauta 0–8 (calce, momento, estructura, giro); se sube con 6+. Saltar también es decisión |
+| **viral-hooks** | Banco de hooks en tres capas (imagen, voz, texto en pantalla) y sus antipatrones |
+| **tt-hook-scripter** | Hook de 1–3 s según objetivo: verlo completo, guardar, comentar o compartir |
+| **viral-instagram-reels** | Mecánica de Reels: Trial Reels, envíos por DM, originalidad, licencias de audio por tipo de cuenta, Insights |
+| **viral-captions-and-ctas** | Caption, texto en pantalla para ver sin sonido, CTA de envío, hashtags |
+| **short-form-video** | Gramática de retención 9:16: hook en el frame 1, cortes irregulares, zonas seguras, loop + scripts de revisión |
+| **caption-animation** | Subtítulos palabra a palabra (Whisper multilingüe), con colores y fuentes de la marca |
+| **ad-creative-video** | Pauta: 1 plantilla × CSV = N variantes para test A/B, multiformato |
+| **video-shotcraft** | 157 fichas de movimiento con parámetros medidos + demo TSX y corte al beat con librosa. Índice en español en `INDICE.md`. Sólo se toma el movimiento |
+
+> Trends vivos: la música en tendencia de TikTok sale de Higgsfield
+> (`tiktok_music_trending`), **que necesita una cuenta de TikTok conectada**.
 
 ### Skills de Figma (instaladas el 01-10-2026)
 

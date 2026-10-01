@@ -112,6 +112,13 @@ entrega a 941×1672 (no es la medida nativa 1080×1920, pero es lo que llega).
 5. **El plumón lima** bajo la palabra clave del titular («Jaque mate», «Donde cae, **pasan cosas**», «Échale a la comida, **no al acelerador**»).
 6. **La cinta lima con extremos de plumón** (serie 4:5 del 16-09): banda arriba con un emoji chico + el plato en minúscula, y la botella en línea blanca a la derecha. Es el formato de carrusel de recetas.
 7. **Packshot sobre hueso**, sombra dura, producto en la esquina inferior derecha.
+8. ⭐ **La capa dibujada a mano** (nueva, carrusel «Cómo abrir tu Santa Gota» del 24-09, el más reciente con diseño):
+   foto REAL de la jornada del 10-09 con el color subido (rosado polvoso → rosado-rojo saturado) + titular de
+   plumón inclinado blanco/lima, cinta de papel blanco con texto a mano negro, círculo lima con el número,
+   estrellas, rayitas y flechas a mano. Es la gramática de los carruseles. En el estudio: Caveat Brush (titular)
+   + Kalam Bold (cintas), `src/compositions/santagota/paid/CarruselPecado.tsx` (01-10, carrusel de pauta).
+   ⛔ Para pauta el cliente pidió explícitamente **no** «producto recortado sobre fondo plano»: el producto va en
+   la mano de la modelo o sobre un set real (la banqueta de DSC08030, recortada SIN el parquet).
 
 ### TV (brief 11-09-2026 — ver `src/compositions/santagota/`)
 | Pieza | Medida | Composición |

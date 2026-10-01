@@ -819,3 +819,22 @@ cliente «tragos fuera de proporciones en la G2; G1 más simple, muy literal con
 ⚠️ **Sunset QB y CMR 40 % sábados: desde el 01-10 mandan los KV que Eli rehízo a mano** (Drive
 `1M3SpaNu8G2e-hiIywJ3CbWeI5PiHJ4nN` y `15m5fxONYLmS3LL3Md8ydPkyzltLNwvDj`), no las composiciones del repo.
 
+## 4l. Banner web animado 1920×300 — se edita en el Canva de Eli (01-10-2026, R-112 a R-115)
+
+El banner web («Banner QB BCO CMR - BCO CHILE 1920x300alto OCTUBRE», Canva `DAHWyTySL9g`) es **una sola página
+animada** de 10,87 s con tres momentos y fundido a negro entre ellos: 20 % «¡Todos los días!» (0–3,8 s) →
+40 % CMR / 30 % débito (3,8–7,5 s) → Banco de Chile (7,5 s en adelante). Cada momento tiene su franja verde, que es
+una **imagen aplanada**: el texto no se edita, se reemplaza la franja.
+
+- **Rótulos:** 20 % = «¡POR TODO EL MES!» · 40/30 = «¡SÁBADOS DE OCTUBRE!» · Banco de Chile = «¡TODOS LOS DÍAS!».
+- **Franja nueva:** `scripts/qb-banner-web-franja-sabados.py` la redibuja nítida (degradado, rótulo, bajada, logos;
+  Montserrat Bold) desde un cuadro quieto del export. **Sin puntos «•»** (son elementos de Eli) y con bajada y logos
+  donde van en las otras. PNG de 7200×198 en caja 1920×52,8, top 247,2.
+- **Lo que el conector de Canva NO hace en esta página:** no entrega elementos (página «unsupported»), así que no
+  reemplaza, no mueve y **no borra**; no fija el **tiempo** de un elemento; no acepta video ni GIF, sólo PNG. Lo que
+  se agrega se ve toda la duración hasta que Eli le pone el tiempo. **Decírselo antes de guardar.**
+- **Una sola capa:** probar en borrador, medir la miniatura que devuelve Canva y guardar una vez. Canva encuadra con
+  una miniatura de 800 px de ancho y alto entero: si la proporción no calza, agranda la imagen.
+- **Verificación:** exportar `mp4`, sacar cuadros (`node_modules/@remotion/compositor-win32-x64-msvc/ffmpeg.exe`) y
+  comparar contra el export anterior: los momentos no pedidos tienen que salir idénticos.
+- El MP4 de Canva ablanda las imágenes anchas (las tres franjas); en el editor y en PNG se ven nítidas.

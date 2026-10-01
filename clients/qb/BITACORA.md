@@ -1,5 +1,13 @@
 # QB Restaurant — bitácora
 
+## 2026-10-01 (tarde 7) — Elisabet Soto «Eli» (Windows, con Claude) · banner web animado: franja «¡SÁBADOS DE OCTUBRE!» en el 40 % / 30 %
+
+**Qué se hizo:** Eli pasó su Canva del banner web 1920×300 («Banner QB BCO CMR - BCO CHILE 1920x300alto OCTUBRE», `DAHWyTySL9g`): tres momentos en una sola página animada de 10,87 s (20 % «¡Todos los días!» → 40 % CMR / 30 % débito → Banco de Chile). En el momento del 40/30 la franja verde seguía diciendo «¡POR TODO EL MES!» y ella no podía cambiarla (es una imagen aplanada). Se redibujó la franja completa nítida (degradado, rótulo «¡SÁBADOS DE OCTUBRE!», bajada y logos; Montserrat Bold) con `scripts/qb-banner-web-franja-sabados.py` y se puso en su Canva como capa PNG. Costó 3 rondas: la 1.ª calzaba el texto al desenfoque del export («se ve desenfocado y mal»); la 2.ª quedó nítida pero con los puntos y la bajada redistribuidos; la 3.ª, sin puntos y calzada con las otras franjas. Eli borró las capas sobrantes, la acomodó y le puso el tiempo del momento. Verificado exportando y comparando cuadro a cuadro: 0–3,80 s y 7,47–10,87 s idénticos al original; el legal no cambió.
+**Dónde quedó:** en el Canva de Eli (guardado y ajustado por ella). Acá: `out/qb/oct/banner-web/` (`banner-canva-final.mp4`, `revision-final.png`, `antes-despues-momento-40.png`, `franja-sabados-de-octubre.png`, `_antes/banner-canva-antes.mp4`). **No se subió a Drive:** no se sabe en qué carpeta va el banner web.
+**Aprobado por Eli:** «lo dejé ajustado, quedó okey, revísalo y guárdalo en tu memoria».
+**Qué sigue:** si Eli dice la carpeta, subir el MP4 final. Para el próximo cambio de franja: una sola capa, medida en borrador antes de guardar, y avisarle de entrada que el tiempo y el borrado se hacen en Canva.
+**Abierto:** carpeta de Drive del banner web → **Eli** · la franja nueva no se funde a negro al salir (0,1 s sobre el negro antes de Banco de Chile) → **Eli** · el MP4 de Canva ablanda las franjas (las tres); ¿se parten en tramos para que salgan nítidas en video? → **Eli**.
+
 ## 2026-10-01 (cierre) — Elisabet Soto «Eli» (Windows, con Claude) · /cierre QB
 
 **Qué se hizo:** cierre del día. Cosecha en `APRENDIZAJES.md` (22.ª): R-104 a R-111, E-14, A-21 y A-22, X-49 a X-54; manual `CLAUDE.md` con §4j ampliada (Reel DJ) y §4k nueva (carrusel en panorama, KV de Eli). Relectura de la grilla a las 16:00: único cambio, el brief nuevo del FEED 22-10 «Sunset QB Halloween», en PENDIENTE POR CLIENTE (no se diseña).

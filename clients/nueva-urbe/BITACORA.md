@@ -52,6 +52,18 @@ dentro del `10. OCTUBRE` de grillas, por pedido de Diego. Script: `scripts/renta
 - ✅ **WhatsApp resuelto por el brief:** `+56 9 9707 9951`; el 9955 «quedó discontinuado, no usarlo».
 - Constructor `editables/mail.py` + `mail.css`; fondos a 2× en `fondos/mail/`. QA 8/8 limpias.
 
+**Cierre (01-10-2026):** Diego aprobó todo — «quedaron super bien» (grilla) y «quedaron super buenos los
+contenidos» (mailings). Cosecha en `APRENDIZAJES.md` (R-31…R-36, E-09…E-11, A-07…A-11, X-14…X-17) y guía
+nueva [`GRILLA-MENSUAL.md`](GRILLA-MENSUAL.md) con el orden de trabajo para los próximos meses.
+
+**Qué sigue:** esperar la revisión de Carlos y del cliente sobre las 22 piezas (leer comentarios anclados **y**
+la celda `COMENTARIOS CLIENTE` de la grilla). Para diciembre: copiar `out/rentas/20261100_grilla_noviembre/`
+y seguir `GRILLA-MENSUAL.md`.
+
+**Abierto:** fotos o video vertical del living y dormitorio (cliente vía Ámbar) · emojis del brief en pieza y
+redacción del reajuste cada 12 meses (Carlos) · precio/superficie contra el sitio (cliente) · si se corrige el
+reel de octubre y si «Arrienda» en Bold pasa a regla de los estáticos (Diego).
+
 ---
 
 ## 2026-09-23 (cierre del día) — Diego Aguilar (con Claude)

@@ -3,6 +3,8 @@
 > Cliente desde 2020. Arriendo de departamentos en Calama. `rentas.inu.cl` · `@rentasnuevaurbe`
 > Ficha legible por máquina: [`marca.json`](marca.json) · kit de código: `src/brand/rentas.ts`
 > Bitácora: [`BITACORA.md`](BITACORA.md)
+> ⭐ **¿Vas a producir la grilla o los mailings de un mes?** Parte por [`GRILLA-MENSUAL.md`](GRILLA-MENSUAL.md): el orden de
+> trabajo de punta a punta (grilla de noviembre 2026, aprobada con 1 ronda). Punto de partida: `out/rentas/20261100_grilla_noviembre/`.
 
 ## ⛔ Lo primero: Rentas NO es INU
 
@@ -351,6 +353,30 @@ Diego usaba **bandas de ancho completo** y el titular en **versales** sobre band
 caja que abraza el texto y mezcla Light/Bold. La paleta y la caja del logo son las mismas. Si una
 pieza de octubre sale con bandas de borde a borde, siguió el criterio equivocado.
 
+## ⭐ Noviembre 2026 — lo que se sumó al sistema (Diego Aguilar, 30-09-2026)
+
+Cuatro criterios nuevos, los cuatro con cita en `APRENDIZAJES.md` (R-31 a R-34):
+
+| Criterio | Cómo se cumple en el código |
+|---|---|
+| **El texto no tapa a las personas** («dejar el texto arriba, que no tape las cabezas») | Si la gente está en la mitad baja, el bloque va con `.bloque.alto-feed` (18,5 %, bajo la caja del logo) y `velo-arriba-firme`. En las láminas numeradas el texto ya va arriba: la gente se pide en la mitad baja de la foto |
+| **Los elementos no van pegados** («que no queden juntos») | `.atributos.separados` (300 px sobre 4500) y `.anchos` para rótulos largos. ⚠️ Los márgenes entre bloques van en **px**: en `em` se calculan sobre la fuente base del bloque (16 px) y quedan en nada |
+| **En mailing sólo se grafica lo naranjo** | banner · atención · gráfica de proyecto · cierre. Verde y amarillo van en el cuerpo del correo |
+| **Si el bloque trae REF, se sigue esa idea** | Composición de la referencia + paleta y tipografía de Rentas. REF vertical → ficha a **1201×1501**: `ficha-dlf` (foto + panel de características) y `ficha-addr` (tarjetas en arco) en `mail.css` |
+
+**Historia con encuesta:** clase `.story.encuesta` — el sticker va arriba (13-30 % libre) y el texto baja al 31 %.
+
+**PAID:** portada con `velo-abajo-paid`; el cierre no dibuja botón (el CTA es el de Meta) y el cursor lima apunta hacia abajo.
+
+**Imágenes:** Seedream 5 Pro con la foto real del condominio en `--refs` (personas) o relight de cambio mínimo
+(atardecer). Los originales quedan en `fondos/ia/` y `preparar.py` los lleva a lienzo. Fotos reales en
+`raw/nuevaurbe/rentas/fotos/` (se bajan con `scripts/drive-carpeta.py 1_TUAwOKmMX3vYmEJuYzipVtK1ODMKpFh …`).
+
+**Reel:** `RentasReelNoviembre.tsx` es la base vigente (locución literal de los bloques `VOZ:`, cierre de 6,8 s con la
+URL hablada, entradas con frame absoluto). ⚠️ `public/assets/rentas/fotos/dormitorio.jpg` trae franjas: no usarlo.
+
+**Render en Windows:** `editables/render.py` (rutas absolutas en `--screenshot`); `render.sh` es el de macOS.
+
 ## ⛔ Compuerta de material: «Calama» NO quiere decir Valle Altiplánico
 
 La empresa tiene **dos proyectos en Calama**: Valle Altiplánico (deptos, Rentas) y
@@ -434,6 +460,9 @@ Dos precisiones que costaron el 23-09-2026:
 > julio, agosto y el mailing de octubre escriben `9955`, y la nota final del mailing dice literal
 > «(2) número de WhatsApp (se usa +56 9 9707 9955)». Los briefs y las piezas no coinciden entre sí.
 > **En pieza manda lo publicado (9951)** salvo que el cliente diga otra cosa.
+>
+> ✅ **Resuelto el 30-09-2026:** el brief de mailing de noviembre dice `+56 9 9707 9951` y que el `9955`
+> «quedó discontinuado, no usarlo».
 
 ## Qué vuelve al repo y qué no
 

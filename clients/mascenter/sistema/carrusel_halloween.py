@@ -115,8 +115,11 @@ def banda_textos(titular, bajada, sede=None):
     for l in partir(bajada, F_BOOK):
         partes.append(f'<div class="centro desc" style="top:{tb(y, 42, 45, "rnd"):.1f}px">{l}</div>'); y += 45
     if sede:
+        # una sola línea siempre (dos sedes caben si se baja el cuerpo): partida en dos quedaba pegada a la bajada
+        F_MED = ImageFont.truetype(str(AQUI / "assets/fonts/GothamRnd-Medium.ttf"), 35)
+        cs = 35 if F_MED.getlength(sede) + 46 <= 960 else 32
         ys = min(y + 20, 1292)
-        partes.append(f'<div class="centro lugar" style="top:{tb(ys, 35, 40, "rnd"):.1f}px">{base.PIN}<span>{sede}</span></div>')
+        partes.append(f'<div class="centro lugar" style="top:{tb(ys, cs, 40, "rnd"):.1f}px;font-size:{cs}px">{base.PIN}<span>{sede}</span></div>')
         y = ys
     assert y <= 1300, titular
     return "\n".join(partes)
@@ -134,37 +137,27 @@ def slide_local(s):
 
 
 def portada():
-    """Localito vampiro INMERSO en el strip center (pedido de Diego, 28-09: «que no se vea volando»): Seedream lo
-    compuso de pie en la vereda de Chamisero II, con sombra y la luz del atardecer (refs: la escena + la figura);
-    el letrero de Little Caesars se volvió a parchar con el real (R-10). Como Localito ocupa el primer plano a la
-    derecha, la portada usa la gramática de la mesa 6 (c-08-08): caja de titular arriba a la izquierda, sobre el
-    cielo, y pastilla + flecha abajo a la izquierda, lejos de la capa y de las zapatillas."""
-    img = base.foto_4x5("01-portada-integrada-b-parche.png", 0.5)
-    cuerpo, lh = 84, 77                                   # mesa 6: Black 123,7 / 113,7 (0,92), a escala
+    """v2 (comentarios del cliente vía Diego, 01-10): «no me gusta cómo se ve el título en ese cuadro naranjo, lo mismo
+    con el desliza» → Diego: «dejaría el título sin destacar y el desliza y revisa… a la izquierda en una sola línea y
+    con la flecha en la esquina izquierda». «La 1 y la última slide tienen demasiadas calabazas» → la foto real de
+    Chamisero II con Localito se editó dejando sólo una calabaza y con flujo de clientes en la vereda (letreros
+    verificados a zoom: Little Caesars Pizza y Subway intactos)."""
+    img = base.foto_4x5("01-portada-v2.png", 1.0)   # sube la foto: las zapatillas de Localito quedan sobre el «Desliza»
+    cuerpo, lh = 84, 80
     lineas = ["Halloween", "se acerca…", "¿Ya tienes todo?"]
-    b1 = 390
-    caja_top = b1 - round(121.4 * cuerpo / 123.7)
-    caja_bot = b1 + lh * (len(lineas) - 1) + round(44.3 * cuerpo / 123.7)
-    ancho = 66 - 45 + max(ImageFont.truetype(str(AQUI / "assets/fonts/Gotham-Black.ttf"), cuerpo).getlength(l) for l in lineas) + 19
-    tit = "".join(f'<div class="titular" style="left:66px;font-size:{cuerpo}px;line-height:{lh}px;'
+    b1 = 380
+    tit = "".join(f'<div class="titular" style="left:60px;font-size:{cuerpo}px;line-height:{lh}px;'
                   f'top:{tb(b1 + lh * i, cuerpo, lh, "black"):.1f}px">{l}</div>' for i, l in enumerate(lineas))
-    pas = ["Desliza y revisa", "tu checklist."]
-    p1, plh = 1200, 48
-    p_top, p_bot = p1 - 59, p1 + plh * (len(pas) - 1) + 36
-    p_w = 30 * 2 + max(F_BOLD.getlength(l) * 42 / 45 for l in pas)
-    pas_html = "".join(f'<div style="position:absolute;left:86px;top:{tb(p1 + plh * i, 42, 48, "rnd"):.1f}px;'
-                       f'font-weight:700;font-size:42px;line-height:48px">{l}</div>' for i, l in enumerate(pas))
-    d = 96
+    d = 76
+    f_top = H - 40 - d                                       # flecha en la esquina inferior izquierda
     return f"""
 <img class="foto" src="{base.data_uri(img)}">
-<div class="velo" style="background:linear-gradient(180deg,rgba(0,0,0,.25) 0,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 72%,rgba(0,0,0,.35) 100%)"></div>
+<div class="velo" style="background:linear-gradient(180deg,rgba(0,0,0,.5) 0,rgba(0,0,0,.34) 30%,rgba(0,0,0,0) 50%,rgba(0,0,0,0) 74%,rgba(0,0,0,.5) 100%)"></div>
 {murcielagos(((640, 360, 2.4, -8), (760, 300, 1.7, 10), (905, 250, 1.4, -4)))}
 <div class="logo-mc">{base.LOGO_MC}</div>
-<div style="position:absolute;left:45px;top:{caja_top}px;width:{ancho:.0f}px;height:{caja_bot - caja_top}px;background:{NARANJA};border-radius:34px"></div>
 {tit}
-<div style="position:absolute;left:56px;top:{p_top}px;width:{p_w:.0f}px;height:{p_bot - p_top}px;background:{NARANJA};border-radius:34px"></div>
-{pas_html}
-<div class="flecha" style="left:{56 + p_w + 14:.0f}px;top:{(p_top + p_bot) / 2 - d / 2:.0f}px;width:{d}px;height:{d}px">{base.FLECHA}</div>"""
+<div class="flecha" style="left:56px;top:{f_top}px;width:{d}px;height:{d}px">{base.FLECHA}</div>
+<div style="position:absolute;left:{56 + d + 24}px;top:{tb(f_top + d / 2 + 13, 37, 44, 'rnd'):.1f}px;font-weight:700;font-size:37px;line-height:44px;white-space:nowrap">Desliza y revisa tu checklist.</div>"""
 
 
 def cierre():
@@ -187,17 +180,17 @@ def cierre():
 
 
 SLIDES = {
-    2: dict(foto="02-decoracion.png", check="Decoración", titular="Para que tu casa dé un poquito más de miedo.",
-            bajada="Decoración y accesorios para armar el ambiente.", sede="Fiesta & Regalos · Más Center Chamisero II",
+    2: dict(foto="02-fiesta.png", foco_y=0.3, check="Decoración", titular="Para que tu casa dé un poquito más de miedo.",
+            bajada="Decoración y accesorios para armar el ambiente.", sede="Fiesta & Regalos · Más Center Chamisero II y San Carlos",
             logo=dict(archivo="fiestayregalos.jpg", escala=1.0, fondo="#0199A7")),
-    3: dict(foto="03-dulces.png", check="Dulces", titular="Porque sin dulces, solo queda el truco.",
-            bajada="Encuentra golosinas para tener el bowl listo.", sede="Kios Club · Más Center San Carlos",
+    3: dict(foto="03-kios.png", foco_y=0.3, check="Dulces", titular="Porque sin dulces, solo queda el truco.",
+            bajada="Encuentra golosinas para tener el bowl listo.", sede="Kios Club · Más Center San Carlos y Pie Andino",
             logo=dict(archivo="kiosclub-plano.png", escala=0.9, fondo="#1c1c1c")),
-    4: dict(foto="04-cafe.png", check="Café temático", titular="Para entrar en modo Halloween desde el primer sorbo.",
+    4: dict(foto="04-starbucks.png", foco_y=0.4, check="Café temático", titular="Para entrar en modo Halloween desde el primer sorbo.",
             bajada="Descubre los sabores de temporada para disfrutar esta fecha.",
             sede="Starbucks · Más Center Santa María y Las Flores",
             logo=dict(archivo="../logos-cafe/logo-starbucks (2).webp", escala=0.92, fondo="#ffffff", recorte=(180, 0, 1260, 1080))),
-    5: dict(foto="05-donas.png", check="Antojo dulce", titular="Para probar el lado más dulce de Halloween.",
+    5: dict(foto="05-dunkin.png", foco_y=0.3, check="Antojo dulce", titular="Para probar el lado más dulce de Halloween.",
             bajada="Donas temáticas para sumarle sabor a la celebración.", sede="Dunkin' · Más Center Las Flores",
             logo=dict(archivo="dunkin-plano.png", escala=0.9, fondo="#ffffff")),
 }

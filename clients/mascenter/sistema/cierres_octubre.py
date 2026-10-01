@@ -108,9 +108,11 @@ def cierre_04():
 
 
 def cierre_08():
+    """v2 (01-10): Más Center Las Flores REAL al anochecer con flujo de clientes y Halloween sutil (el cliente: «demasiadas
+    calabazas»; Diego: las imágenes de los Más Center salen de FOTOS KLAS). Sin Localito (R-85)."""
     from carrusel_halloween import murcielagos
     return f"""
-<img class="foto" src="{foto(OCT / 'carrusel-08-10/fotos/06-cierre-anochecer.png', 0.5)}">
+<img class="foto" src="{foto(OCT / 'carrusel-08-10/fotos/06-cierre-lasflores.png', 0.5)}">
 {velo(.4, .3)}
 {murcielagos(((110, 250, 2.0, -8), (200, 200, 1.4, 10), (900, 230, 1.6, -4)))}
 <div class="logo-mc">{base.LOGO_MC}</div>

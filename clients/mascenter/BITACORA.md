@@ -1,3 +1,18 @@
+## 2026-10-01 — Diego Aguilar (con Claude) · 08-10 Halloween: tiendas reales, portada sin caja, sedes completas
+
+**Qué se hizo:** comentarios del cliente (pegados por Diego). Fotos nuevas recreadas desde material real con Halloween sutil y gente:
+- **Fiesta & Regalos:** fachada de su Instagram.
+- **Kios Club:** pasillos reales tomados de un blog de 2019.
+- **Starbucks:** el interior con la sirena del video de los editables de Diego.
+- **Dunkin':** el mesón real de Las Flores, desde el metraje de Diego.
+- **Portada:** Chamisero II real con Localito, con una sola calabaza y gente.
+- **Cierre:** Las Flores real (FOTOS KLAS) al anochecer, sin Localito.
+
+En la portada el titular va sin caja y «Desliza y revisa tu checklist.» en una línea con la flecha en la esquina izquierda. Las sedes suman San Carlos (Fiesta & Regalos) y Pie Andino (Kios Club). Letreros verificados a zoom.
+**Dónde quedó:** c-08-10-1…6 reemplazados en sitio (md5 OK). Fuentes en `raw/mascenter/octubre-2026/halloween/tiendas/`; fotos v1 en `fotos/v1/`.
+**Qué sigue:** OK de Diego y del cliente. La carpeta de Drive de FOTOS KLAS no es legible con el token del estudio: se usó la copia del disco D:.
+**Abierto:** la grilla (xlsx de Office en Drive) no se puede leer sin el conector de Drive; commit y push pendientes.
+
 ## 2026-09-30 (cierre) — Diego Aguilar (con Claude) · grilla de octubre cerrada y método documentado
 
 **Qué se hizo:** Diego dio por buena la grilla de octubre. Se escribió `clients/mascenter/GRILLA-MENSUAL.md` (cómo se corre una grilla de punta a punta, con todo lo aprendido este mes) y quedó enlazado desde el manual.

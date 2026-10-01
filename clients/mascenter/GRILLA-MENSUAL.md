@@ -86,7 +86,7 @@ No se crea una composición genérica.
 
 ## 4. Imágenes: de dónde salen y cómo se tratan
 
-**Jerarquía** (R-79):
+**Jerarquía** (R-79, R-87). El cliente lo pidió dos veces en octubre: **se muestran las tiendas reales, no imágenes genéricas**; en fechas de temporada, la tienda con decoración sutil y con gente. Las fotos de los Más Center salen de **FOTOS KLAS** (`D:/DIEGO 2023/COPYWRITERS/MAS CENTER/FOTOS KLAS/9. Fotos cuadros IFB/Strip centers/`), y el metraje de locales de `MAS CENTER TRASPASO/ALGUNOS VIDEOS/`.
 1. **Foto real** del local o del proyecto: web oficial, Instagram (`scripts/ig-fotos-publicas.py <cuenta> <carpeta>`,
    que usa el embed público), Google o material de Diego.
 2. Su **producto real**, recortado y montado en una escena. Se armoniza con Seedream en modo edición.
@@ -146,6 +146,9 @@ No se crea una composición genérica.
 | Etiqueta de parada a la izquierda | Centrada en todas las slides | R-83 |
 | Fotos adjuntas usadas tal cual | Repasarlas y recrearlas si hace falta | R-82 |
 | Contorno del sticker en inglete y con sombra | Contorno redondo, sin sombra | R-84 |
+| Halloween con bodegones genéricos y muchas calabazas | Las tiendas reales con decoración sutil y clientes | R-87 |
+| Titular de portada en caja naranja y «Desliza» en pastilla | Titular suelto; «Desliza» en una línea con la flecha en la esquina izquierda | R-88 |
+| Sede con un solo centro | Todos los centros donde está el local | R-89 |
 | Textos pegados al borde de cajas y pastillas | Aire interior siempre | R-65 |
 | Logo en slides intermedias de LinkedIn | Sólo en la portada y el cierre | R-64 |
 | Imágenes web en la ficha de Linderos | Los renders oficiales que mandó | R-68 |

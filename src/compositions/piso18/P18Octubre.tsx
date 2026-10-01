@@ -364,25 +364,8 @@ export const P18OF0910S2: React.FC = () => {
     <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
       <Foto src="f0910-p2.jpg" />
       <CapaNegraF0910 />
-      <div
-        style={{
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          top: 186,
-          textAlign: 'center',
-          ...RALEWAY,
-          fontWeight: 700,
-          fontSize: 26,
-          // Ronda 5, Constanza 29-09 (FEED C9): «ojo con esa separación de letra x letra
-          // (…) es demasiado IA». El espaciado baja de 7 px (0,27 em) a 2 px (0,08 em).
-          letterSpacing: 2,
-          textIndent: 2,
-          color: P18.colores.blanco,
-        }}
-      >
-        TEMPORADA ALTA 2027
-      </div>
+      {/* Ronda 7, cliente 01-10 (FEED C13): «Eliminar temporada alta de la G2» ⇒ sale el
+          rótulo «TEMPORADA ALTA 2027»; el resto de la lámina aprobada no se mueve. */}
       <div style={{position: 'absolute', left: 40, right: 40, top: 272, textAlign: 'center', fontFamily: P18.fuentes.titular, color: P18.colores.blanco}}>
         <div style={{fontSize: 118, fontWeight: 300, fontStyle: 'italic', lineHeight: 1.04}}>
           Las grandes historias
@@ -670,6 +653,90 @@ export const P18OF1610S5: React.FC = () => {
       </HojaPapel>
       <Clip x={196} y={756} escala={1.1} />
       <LineaCotiza top={1156} cuerpo={34} />
+    </AbsoluteFill>
+  );
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// FEED 20-10 · POST ANIMADO «CUMPLEAÑOS EN PISO18»
+// ═══════════════════════════════════════════════════════════════════════════
+/**
+ * OK PARA DISEÑAR el 01-10. Brief: «ambientación de cumpleaños en Piso18, con la torta como
+ * protagonista y detalles de mesa personalizados»; «los textos se deben animar pero la
+ * imagen debe mantenerse quieta». Cliente (FEED H13): «Que se animen los textos de las cosas
+ * que incluye el cumple».
+ *
+ * La foto NO se mueve (ni acercamiento): sólo entran los textos. Arriba el logotipo y el
+ * nombre de la pieza a dos voces (R-06); debajo, los cinco textos del brief uno por uno, con
+ * el número en cuadro fucsia de la lista de beneficios aprobada (R-39, C1 S5). Los
+ * paréntesis del brief bajan a una segunda línea más liviana para que el renglón no se
+ * parta. Sin línea «Cotiza…»: la hoja FEED no trae CTA (R-51).
+ * Foto producida sobre el salón real de noche (banq 0044 y 0047), sin personas: las refs del
+ * brief son fiestas con gente, pero el visual pedido es la torta y la mesa.
+ */
+export const P18_F2010_DUR = 240;
+const INCLUYE_20: [string, string?][] = [
+  ['Ambientación y decoración'],
+  ['Servicios audiovisuales', '(DJ en vivo, amplificación, iluminación LED)'],
+  ['Estaciones de comida'],
+  ['Fiesta y barra libre', '(con opción de incluir karaoke)'],
+  ['Comida de trasnoche'],
+];
+
+export const P18OF2010: React.FC = () => {
+  cargarFuentesP18();
+  const f = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const entra = (desde: number, dx = 0, dy = 26) => {
+    const s = spring({frame: f - desde, fps, config: {damping: 200}, durationInFrames: 22});
+    return {opacity: s, transform: `translate(${(1 - s) * dx}px, ${(1 - s) * dy}px)`};
+  };
+  return (
+    <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
+      <Foto src="f2010.jpg" />
+      <AbsoluteFill
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(8,8,10,0.80) 0%, rgba(8,8,10,0.74) 46%, rgba(8,8,10,0.46) 60%, rgba(8,8,10,0) 74%)',
+        }}
+      />
+      <Logo top={P18.geometria.logoYFeed} />
+      <div style={{position: 'absolute', left: 0, right: 0, top: 248, textAlign: 'center', fontFamily: P18.fuentes.titular, color: P18.colores.blanco, textShadow: SOMBRA}}>
+        <div style={{...entra(6), fontStyle: 'italic', fontWeight: 300, fontSize: 112, lineHeight: 1}}>Cumpleaños</div>
+        <div style={{...entra(14), fontWeight: 400, fontSize: 56, lineHeight: 1.2, letterSpacing: 1}}>EN PISO18</div>
+      </div>
+      <div style={{position: 'absolute', left: 212, top: 476, display: 'flex', flexDirection: 'column', gap: 20}}>
+        {INCLUYE_20.map(([texto, detalle], i) => {
+          const desde = 34 + i * 24;
+          const caja = spring({frame: f - desde, fps, config: {damping: 14, stiffness: 160}, durationInFrames: 20});
+          return (
+            <div key={texto} style={{display: 'flex', alignItems: 'flex-start', gap: 22}}>
+              <div
+                style={{
+                  width: 46,
+                  height: 46,
+                  flexShrink: 0,
+                  backgroundColor: P18.colores.fucsia,
+                  color: P18.colores.blanco,
+                  fontFamily: P18.fuentes.titular,
+                  fontWeight: 400,
+                  fontSize: 30,
+                  lineHeight: '46px',
+                  textAlign: 'center',
+                  opacity: Math.min(1, caja * 1.4),
+                  transform: `scale(${0.6 + 0.4 * caja})`,
+                }}
+              >
+                {i + 1}
+              </div>
+              <div style={{...entra(desde + 3, -22, 0), color: P18.colores.blanco, textShadow: SOMBRA, ...RALEWAY}}>
+                <div style={{fontWeight: 700, fontSize: 33, lineHeight: '46px'}}>{texto}</div>
+                {detalle && <div style={{fontWeight: 500, fontSize: 24, lineHeight: 1.25, marginTop: -2, opacity: 0.9}}>{detalle}</div>}
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </AbsoluteFill>
   );
 };
@@ -1211,6 +1278,384 @@ export const P18OS1510: React.FC = () => {
         <Tematica src="s1510-dorado.jpg" nombre="BLANCO Y DORADO" />
       </div>
       {/* y 1260–1560: papel limpio para el cuadro de respuestas del CM */}
+    </AbsoluteFill>
+  );
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STORIES 13-10 · «CUENTA REGRESIVA AL 2027»
+// ═══════════════════════════════════════════════════════════════════════════
+/**
+ * Tomada el 01-10 por encargo de Eli («toma las stories del 13 y 19 de octubre, sólo que
+ * corrige según comentario de cliente»). Cliente (STORIES H14): «Digamos Cuenta regresiva
+ * al 2027 · No hablemos de temporada alta» ⇒ el titular es «Cuenta regresiva al 2027» y
+ * «temporada» no aparece en la pieza.
+ *
+ * Ref (pin 368310075797660531, «Mes de aniversario»): un SOBRE de color abierto sobre la
+ * foto de una mesa, con la TARJETA blanca asomando y el texto adentro (titular, una línea
+ * en píldora de contorno y el regalo), y el legal chico sobre el sobre. Acá el sobre es el
+ * fucsia de la marca, la tarjeta es el papel `#F7F5F2` y adentro va la oferta con el bloque
+ * de precio aprobado de `ST N°1 S1` («¿Te casas en verano?»): ANTES tachado y AHORA en caja
+ * fucsia (R-08), cifras en Raleway con cada dígito en su caja (R-19). La bajada va sobre el
+ * sobre, como el legal de la ref; el legal «*Desde 60 invitados», al pie. Brief con CTA
+ * («Cotiza ya en piso18.cl») ⇒ botón, invertido para no sumar más fucsia.
+ * Foto: la mesa real de matrimonio con flores y esferas (deco `piso_18-88`).
+ */
+const Cifras: React.FC<{texto: string; cuerpo: number}> = ({texto, cuerpo}) => (
+  <span style={{display: 'inline-flex', alignItems: 'baseline'}}>
+    {texto.split('').map((c, i) =>
+      /\d/.test(c) ? (
+        <span key={i} style={{display: 'inline-block', width: cuerpo * P18.cifras.anchoDigitoMax, textAlign: 'center'}}>
+          {c}
+        </span>
+      ) : (
+        <span key={i}>{c}</span>
+      ),
+    )}
+  </span>
+);
+
+const SOBRE_13 = {x: 110, y: 980, w: 860, h: 580, pico: 480, v: 290};
+const TARJETA_13 = {x: 200, y: 548, w: 680};
+
+export const P18OS1310: React.FC = () => {
+  cargarFuentesP18();
+  const S = SOBRE_13;
+  const fucsia = P18.colores.fucsia;
+  const cx = S.x + S.w / 2;
+  return (
+    <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
+      <Foto src="s1310-fondo.jpg" />
+      <AbsoluteFill style={{backgroundColor: 'rgba(8,8,10,0.30)'}} />
+      <VeloArriba alfa={0.66} hasta={30} />
+      <VeloPie hasta={0.3} opacidad={0.8} />
+      <Logo top={P18.geometria.logoYStory} />
+
+      {/* el sobre por detrás: la solapa abierta y el fondo del bolsillo */}
+      <svg width={W} height={STORY_H} style={{position: 'absolute', inset: 0, filter: 'drop-shadow(0 22px 34px rgba(0,0,0,0.45))'}}>
+        <path
+          d={`M ${S.x} ${S.y} L ${cx - 26} ${S.pico + 14} Q ${cx} ${S.pico - 6} ${cx + 26} ${S.pico + 14} L ${S.x + S.w} ${S.y} L ${S.x + S.w} ${S.y + S.h} L ${S.x} ${S.y + S.h} Z`}
+          fill="#B00F49"
+        />
+      </svg>
+
+      {/* la tarjeta: asoma del sobre y se pierde detrás de las solapas del frente */}
+      <div
+        style={{
+          position: 'absolute',
+          left: TARJETA_13.x,
+          top: TARJETA_13.y,
+          width: TARJETA_13.w,
+          height: S.y + S.v - TARJETA_13.y,
+          backgroundColor: P18.colores.tarjeta,
+          boxShadow: '0 8px 22px rgba(0,0,0,0.30)',
+          color: P18.colores.tinta,
+          textAlign: 'center',
+        }}
+      >
+        <div style={{marginTop: 46, fontFamily: P18.fuentes.titular, fontStyle: 'italic', fontWeight: 300, fontSize: 78, lineHeight: 1}}>
+          Cuenta regresiva
+        </div>
+        <div style={{fontFamily: P18.fuentes.titular, fontWeight: 400, fontSize: 88, lineHeight: 1.08, letterSpacing: 1}}>
+          AL 2027
+        </div>
+        <div style={{display: 'flex', justifyContent: 'center', marginTop: 22}}>
+          <div
+            style={{
+              ...RALEWAY,
+              fontWeight: 700,
+              fontSize: 21,
+              letterSpacing: 1.7,
+              textIndent: 1.7,
+              padding: '10px 26px',
+              borderRadius: 999,
+              border: `1.6px solid ${P18.colores.tinta}`,
+              whiteSpace: 'nowrap',
+            }}
+          >
+            DESCUENTO DE VERANO EN TU MATRIMONIO
+          </div>
+        </div>
+        {/* ANTES: la cifra tachada, chica */}
+        <div style={{marginTop: 26, display: 'flex', justifyContent: 'center', alignItems: 'baseline', gap: 14, ...RALEWAY, color: 'rgba(26,26,26,0.72)'}}>
+          <span style={{fontWeight: 700, fontSize: 20, letterSpacing: 1.6}}>ANTES</span>
+          <span style={{position: 'relative', fontWeight: 500, fontSize: 44, lineHeight: 1}}>
+            <Cifras texto="$6.000.000" cuerpo={44} />
+            <span style={{position: 'absolute', left: -6, right: -6, top: '54%', height: 2.4, backgroundColor: fucsia}} />
+          </span>
+        </div>
+        {/* AHORA: la cifra nueva en la caja fucsia */}
+        <div style={{display: 'flex', justifyContent: 'center', marginTop: 16}}>
+          <div style={{backgroundColor: fucsia, color: P18.colores.blanco, padding: '12px 38px 16px', ...RALEWAY}}>
+            <div style={{fontWeight: 700, fontSize: 22, letterSpacing: 1.8, textIndent: 1.8}}>AHORA</div>
+            <div style={{fontWeight: 800, fontSize: 78, lineHeight: 1.02}}>
+              <Cifras texto="$4.500.000" cuerpo={78} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* el frente del sobre: dos solapas laterales y la de abajo, con el filete en relieve */}
+      <svg width={W} height={STORY_H} style={{position: 'absolute', inset: 0}}>
+        <defs>
+          <linearGradient id="p18o-sobre-lado" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor="#C71255" />
+            <stop offset="0.5" stopColor={fucsia} />
+            <stop offset="1" stopColor="#C71255" />
+          </linearGradient>
+          <linearGradient id="p18o-sobre-pie" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#DC2A6A" />
+            <stop offset="1" stopColor={fucsia} />
+          </linearGradient>
+        </defs>
+        <path
+          d={`M ${S.x} ${S.y} L ${cx} ${S.y + S.v} L ${S.x + S.w} ${S.y} L ${S.x + S.w} ${S.y + S.h} L ${S.x} ${S.y + S.h} Z`}
+          fill="url(#p18o-sobre-lado)"
+        />
+        <path
+          d={`M ${S.x} ${S.y + S.h} L ${cx - 30} ${S.y + S.v - 22} Q ${cx} ${S.y + S.v - 44} ${cx + 30} ${S.y + S.v - 22} L ${S.x + S.w} ${S.y + S.h} Z`}
+          fill="url(#p18o-sobre-pie)"
+          style={{filter: 'drop-shadow(0 -4px 8px rgba(80,0,30,0.35))'}}
+        />
+        {/* filete en relieve, como el del sobre de la ref */}
+        <path
+          d={`M ${S.x + 14} ${S.y + 30} L ${cx} ${S.y + S.v + 6} L ${S.x + S.w - 14} ${S.y + 30}`}
+          fill="none"
+          stroke="rgba(255,255,255,0.20)"
+          strokeWidth={1.6}
+        />
+        <path
+          d={`M ${S.x + 16} ${S.y + S.h - 14} L ${cx - 26} ${S.y + S.v - 4} Q ${cx} ${S.y + S.v - 24} ${cx + 26} ${S.y + S.v - 4} L ${S.x + S.w - 16} ${S.y + S.h - 14} Z`}
+          fill="none"
+          stroke="rgba(90,0,34,0.30)"
+          strokeWidth={1.6}
+        />
+      </svg>
+      <div
+        style={{
+          position: 'absolute',
+          left: S.x + 150,
+          width: S.w - 300,
+          top: S.y + S.h - 138,
+          textAlign: 'center',
+          ...RALEWAY,
+          fontStyle: 'italic',
+          fontWeight: 500,
+          fontSize: 25,
+          lineHeight: 1.36,
+          color: P18.colores.blanco,
+        }}
+      >
+        Válido para matrimonios realizados en diciembre, enero, febrero o marzo
+      </div>
+
+      <Boton top={1608} invertido>
+        Cotiza ya en piso18.cl
+      </Boton>
+      <div
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 1768,
+          textAlign: 'center',
+          ...RALEWAY,
+          fontStyle: 'italic',
+          fontWeight: 500,
+          fontSize: 23,
+          color: P18.colores.blanco,
+          textShadow: SOMBRA,
+        }}
+      >
+        *Desde 60 invitados
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STORIES 19-10 · «FIESTA DE EMPRESA DE FIN DE AÑO»
+// ═══════════════════════════════════════════════════════════════════════════
+/**
+ * Tomada el 01-10 por encargo de Eli, con el comentario del cliente (STORIES L14): «Ok pero
+ * no digamos diciembre, cerremos en corporativas · Foco fiesta empresa fin de año» ⇒ la
+ * bajada termina en «fiestas corporativas» y «diciembre» no aparece en la pieza (tampoco en
+ * la gráfica: el brief pedía un calendario apuntando a diciembre).
+ *
+ * Ref (pin 1096908053025288014): fondo en blanco y negro con grano, una POLAROID a color
+ * pegada con cinta y, montada sobre ella, una HOJA de cuaderno arrancada con el texto en
+ * rojo. Acá la cinta y el destacado son el fucsia de la marca, la hoja es el papel
+ * `#F7F5F2` con renglones y la letra es IvyPresto itálica (el titular empieza con «¿»: no
+ * va en Against, R-20). Fondo: mesas del salón de noche (julio evento 50) en blanco y
+ * negro; polaroid: brindis de fin de año producido sobre el salón y la barra reales (R-41).
+ * Brief con CTA («Asegura tu fecha en piso18.cl») ⇒ botón.
+ */
+const HOJA_19 = {x: 176, y: 880, w: 740, h: 600};
+/** Hoja de cuaderno: mordidas cuadradas del espiral a la izquierda y la esquina de abajo redonda. */
+const arrancada = (w: number, h: number) => {
+  const pts: string[] = [];
+  const paso = 46;
+  for (let y = 0, i = 0; y < h; y += paso, i++) {
+    const j = ((i * 7919) % 11) - 5; // el desgarro no es parejo
+    pts.push(`${26 + j * 0.6}px ${y}px`, `${26 + j * 0.6}px ${y + 12}px`, `${2 + (j > 2 ? 9 : 0)}px ${y + 14 + (j % 3)}px`, `${4}px ${y + 34}px`, `${24 + j * 0.5}px ${y + 36}px`);
+  }
+  pts.push(`26px ${h}px`, `${w - 30}px ${h}px`, `${w - 8}px ${h - 8}px`, `${w}px ${h - 30}px`, `${w}px 0px`);
+  return `polygon(${pts.join(', ')})`;
+};
+
+export const P18OS1910: React.FC = () => {
+  cargarFuentesP18();
+  const H = HOJA_19;
+  const fucsia = P18.colores.fucsia;
+  return (
+    <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
+      <Foto src="s1910-fondo.jpg" style={{filter: 'grayscale(1) contrast(1.06) brightness(0.72) blur(2px)', transform: 'scale(1.02)'}} />
+      <AbsoluteFill style={{backgroundColor: 'rgba(8,8,10,0.30)'}} />
+      <VeloArriba alfa={0.6} hasta={26} />
+      <VeloPie hasta={0.3} opacidad={0.8} />
+      <GranoFondo semilla={19} />
+      <Logo top={P18.geometria.logoYStory} />
+
+      {/* la hoja va primero: la polaroid se monta sobre su borde de arriba, como en la ref */}
+      <div style={{position: 'absolute', left: H.x, top: H.y, width: H.w, height: H.h, transform: 'rotate(-0.8deg)', filter: 'drop-shadow(0 14px 24px rgba(0,0,0,0.5))'}}>
+        <div style={{position: 'absolute', inset: 0, clipPath: arrancada(H.w, H.h), backgroundColor: P18.colores.tarjeta}}>
+          {Array.from({length: 9}).map((_, i) => (
+            <div key={i} style={{position: 'absolute', left: 70, right: 28, top: 176 + i * 46, height: 1.4, backgroundColor: 'rgba(26,26,26,0.13)'}} />
+          ))}
+          <GranoFondo semilla={57} />
+        </div>
+        <div style={{position: 'absolute', left: 84, right: 44, top: 168, textAlign: 'center', color: P18.colores.tinta}}>
+          <div style={{fontFamily: P18.fuentes.titular, fontStyle: 'italic', fontWeight: 400, fontSize: 53, lineHeight: 1.12}}>
+            ¿Ya tienen fecha para
+            <br />
+            el evento de <span style={{color: fucsia}}>fin de año</span>
+            <br />
+            <span style={{color: fucsia}}>de la empresa?</span>
+          </div>
+          <div style={{...RALEWAY, fontWeight: 500, fontSize: 29, lineHeight: 1.36, marginTop: 30}}>
+            Últimas fechas disponibles
+            <br />
+            para fiestas corporativas
+          </div>
+          <div style={{...RALEWAY, fontWeight: 800, fontSize: 31, marginTop: 20, color: fucsia}}>¡Cotiza hoy!</div>
+        </div>
+      </div>
+
+      {/* la polaroid con su cinta */}
+      <div
+        style={{
+          position: 'absolute',
+          left: 292,
+          top: 392,
+          width: 520,
+          padding: '22px 22px 74px',
+          backgroundColor: '#FFFFFF',
+          transform: 'rotate(2.6deg)',
+          boxShadow: '0 18px 40px rgba(0,0,0,0.5)',
+        }}
+      >
+        <Img src={oct('s1910-fiesta.jpg')} style={{width: '100%', aspectRatio: '1 / 1', objectFit: 'cover', display: 'block'}} />
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          left: 468,
+          top: 372,
+          width: 190,
+          height: 58,
+          transform: 'rotate(-2deg)',
+          backgroundColor: fucsia,
+          opacity: 0.94,
+          boxShadow: '0 3px 8px rgba(0,0,0,0.3)',
+        }}
+      />
+
+      <Boton top={1572}>Asegura tu fecha en piso18.cl</Boton>
+    </AbsoluteFill>
+  );
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STORIES 21-10 · ENCUESTA «ESTACIONES DE COMIDA»
+// ═══════════════════════════════════════════════════════════════════════════
+/**
+ * OK PARA DISEÑAR el 01-10, con el brief ya corregido por contenido (cliente, STORIES M14:
+ * «en vs 2 estaciones de comida (salada) y dejar una tercera alternativa que diga las 2»).
+ * Brief: «pantalla dividida con fotografías de ambas propuestas: lado A Estación Japonesa,
+ * lado B Estación New York»; texto «¿Cuáles arman el menú perfecto para tu evento?» +
+ * «(Dato: puedes combinar hasta 2 estaciones)»; sticker de 3 opciones (Japonesa / New York
+ * / ¡Las 2!), que pone el CM (R-11).
+ *
+ * La ref es la misma «Midori» de la 15-10 (seis días antes). Para no repetir esa historia,
+ * de la ref se toma la HOJA de papel rasgado con el texto, y la composición es la del
+ * brief: la pantalla partida en dos, una estación arriba y otra abajo, con la hoja cruzando
+ * el corte. El papel de abajo del texto queda LIMPIO para el sticker. Sin CTA en el brief
+ * ⇒ sin botón ni línea (R-51). Fotos producidas sobre el buffet real banq 0052 (R-45).
+ */
+const HOJA_21 = {x: 120, y: 648, w: 840, h: 640};
+const rasgadoDoble = (w: number, h: number) => {
+  const pts: string[] = [];
+  for (let x = 0, i = 0; x <= w; x += 3, i++) {
+    const r1 = ((i * 6007) % 97) / 97;
+    const onda = 16 * Math.sin(x / 53 + 1.1) + 10 * Math.sin(x / 23 + 0.3) + 7 * Math.sin(x / 131 + 2.2);
+    pts.push(`${x}px ${(34 + onda - 8 * r1).toFixed(1)}px`);
+  }
+  for (let x = w, i = 0; x >= 0; x -= 3, i++) {
+    const r1 = ((i * 7919) % 101) / 101;
+    const r2 = ((i * 104729 + 17) % 53) / 53;
+    const onda = 22 * Math.sin(x / 67 + 0.4) + 14 * Math.sin(x / 29 + 2.1) + 9 * Math.sin(x / 151 + 1.3);
+    pts.push(`${x}px ${(h - 48 + onda - 10 * r1 - (r2 > 0.86 ? 12 * r2 : 0)).toFixed(1)}px`);
+  }
+  return `polygon(${pts.join(', ')})`;
+};
+
+const RotuloEstacion: React.FC<{top: number; nombre: string}> = ({top, nombre}) => (
+  <div style={{position: 'absolute', left: 0, right: 0, top, textAlign: 'center', color: P18.colores.blanco, textShadow: '0 2px 18px rgba(0,0,0,0.75)'}}>
+    <span style={{fontFamily: P18.fuentes.titular, fontWeight: 300, fontSize: 60, lineHeight: 1}}>Estación </span>
+    <span style={{fontFamily: P18.fuentes.titular, fontStyle: 'italic', fontWeight: 400, fontSize: 68, lineHeight: 1}}>{nombre}</span>
+  </div>
+);
+
+export const P18OS2110: React.FC = () => {
+  cargarFuentesP18();
+  const H = HOJA_21;
+  return (
+    <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
+      <div style={{position: 'absolute', left: 0, top: 0, width: W, height: STORY_H / 2, overflow: 'hidden'}}>
+        <Foto src="s2110-japonesa.jpg" />
+      </div>
+      <div style={{position: 'absolute', left: 0, top: STORY_H / 2, width: W, height: STORY_H / 2, overflow: 'hidden'}}>
+        <Foto src="s2110-newyork.jpg" />
+      </div>
+      {/* el logotipo cae sobre la comida: velo de portada más hondo que el de R-14 */}
+      <VeloArriba alfa={0.9} hasta={36} />
+      {/* un oscuro leve detrás de cada rótulo, pegado a la hoja */}
+      <AbsoluteFill
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(8,8,10,0) 22%, rgba(8,8,10,0.5) 31%, rgba(8,8,10,0.5) 68%, rgba(8,8,10,0) 80%, rgba(8,8,10,0) 86%, rgba(8,8,10,0.55) 100%)',
+        }}
+      />
+      <Logo top={P18.geometria.logoYStory} />
+      <RotuloEstacion top={552} nombre="Japonesa" />
+      <RotuloEstacion top={1300} nombre="New York" />
+
+      <div style={{position: 'absolute', left: H.x, top: H.y, width: H.w, height: H.h, transform: 'rotate(-0.9deg)', filter: 'drop-shadow(0 14px 26px rgba(0,0,0,0.55))'}}>
+        <div style={{position: 'absolute', inset: 0, clipPath: rasgadoDoble(H.w, H.h)}}>
+          <Foto src="s1510-papel.jpg" />
+        </div>
+        <div style={{position: 'absolute', left: 50, right: 50, top: 92, textAlign: 'center', fontFamily: P18.fuentes.titular, color: P18.colores.tinta}}>
+          <div style={{fontSize: 56, fontWeight: 300, fontStyle: 'italic', lineHeight: 1.1}}>¿Cuáles arman</div>
+          <div style={{fontSize: 56, fontWeight: 400, lineHeight: 1.1}}>
+            el <span style={{fontStyle: 'italic', color: P18.colores.fucsia}}>menú perfecto</span>
+          </div>
+          <div style={{fontSize: 56, fontWeight: 400, lineHeight: 1.1}}>para tu evento?</div>
+          <div style={{...RALEWAY, fontWeight: 600, fontSize: 25, marginTop: 20}}>
+            (Dato: puedes combinar hasta 2 estaciones)
+          </div>
+        </div>
+        {/* y 340–580 de la hoja: papel limpio para el sticker de 3 opciones del CM */}
+      </div>
     </AbsoluteFill>
   );
 };

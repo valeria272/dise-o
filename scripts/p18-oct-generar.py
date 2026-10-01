@@ -277,6 +277,96 @@ ESCENAS = {
                    "TODO el encuadre de borde a borde, sin bordes visibles, sin sombras fuertes, luz pareja "
                    "y suave. Solo el papel, nada encima: ignora las fotos, el texto y el fondo de la @img1."),
     },
+    # ── 01-10 · lo liberado de la grilla (Eli: ST 13 y 19-10 con el comentario del cliente,
+    #    ST 21-10 y FEED 20-10 en OK PARA DISEÑAR) ────────────────────────────────────────
+    # ST 19-10 «fiesta de empresa de fin de año»: la foto de la polaroid. El banco no tiene
+    # fiestas corporativas sin rostros reales; se produce sobre el salón y la barra reales (R-41).
+    "st19-fiesta": {
+        "motor": "pro", "aspecto": "feed", "refs": ["banq43.jpg", "jul5.jpg"],
+        "prompt": ("Fotografia documental tomada por el fotografo del evento con FLASH DIRECTO, en el "
+                   "mismo salon de Piso18 de la @img1, de noche, con sus guirnaldas de luces calidas y la "
+                   "ciudad en los ventanales, y la barra iluminada de la @img2 al fondo: la fiesta de fin "
+                   "de ano de una empresa. Cuatro companeros de trabajo chilenos de 30 a 45 anos, bien "
+                   "vestidos (camisa y blazer, vestido de coctel), de pie alrededor de una mesa alta de "
+                   "coctel, chocando copas de espumante en un brindis, vistos de espaldas y de perfil, "
+                   "riendo entre ellos. Escena oscura, grano fino, leve desenfoque de movimiento en las "
+                   "manos. Formato cuadrado. " + PERSONAS),
+    },
+    # Tirada 1: dos caras de frente, bien iluminadas, sonrisa de banco de imágenes (X-12).
+    # Tirada b: foto robada desde atrás del grupo, más oscura y con movimiento.
+    "st19-fiestab": {
+        "motor": "pro", "aspecto": "feed", "refs": ["banq43.jpg", "jul5.jpg"],
+        "prompt": ("Foto ROBADA por el fotografo del evento con flash directo y obturacion lenta, en el "
+                   "mismo salon de Piso18 de la @img1, de noche, con sus guirnaldas de luces calidas y la "
+                   "ciudad en los ventanales, y la barra iluminada de la @img2 al fondo: la fiesta de fin "
+                   "de ano de una empresa. Tomada DESDE ATRAS de un grupo de cuatro companeros de trabajo "
+                   "chilenos de 30 a 45 anos, bien vestidos, de pie alrededor de una mesa alta de coctel: "
+                   "en primer plano dos de ellos DE ESPALDAS, y entre sus hombros se ven las manos de "
+                   "todos chocando copas de espumante en el centro del cuadro; los otros dos de perfil, "
+                   "medio tapados, riendo. Ninguna cara completa a la vista. Escena oscura, luces del "
+                   "salon con estelas, grano fino, leve desenfoque de movimiento. Formato cuadrado. "
+                   + PERSONAS),
+    },
+    # ST 21-10 encuesta «Estación Japonesa / Estación New York»: no hay foto de ninguna de las
+    # dos en las sesiones; foto documental sobre el buffet real (R-45), cuadradas para la
+    # pantalla dividida.
+    "st21-japonesa": {
+        "motor": "pro", "aspecto": "feed", "refs": ["banq51.jpg", "banq56.jpg"],
+        "prompt": ("Fotografia documental tomada por el fotografo de un evento real, con la misma camara, "
+                   "la misma luz calida del salon y el mismo tratamiento de color que la @img1 y la @img2: "
+                   "una ESTACION DE COMIDA JAPONESA de banqueteria montada sobre la misma cubierta oscura, "
+                   "con el mismo follaje y flores al fondo. Tablas de madera y bandejas de pizarra con "
+                   "rolls de sushi variados, nigiris de salmon y de atun, gyozas doradas, cuencos chicos "
+                   "con salsa de soya, jengibre y wasabi, palillos de madera. Comida real de banqueteria, "
+                   "con imperfecciones naturales, porciones desparejas, texturas reales; NO comida de "
+                   "estudio, sin brillo artificial, sin desenfoque exagerado: casi todo nitido, como la "
+                   "@img1. Formato cuadrado, la comida llena el cuadro. Sin personas."),
+    },
+    "st21-newyork": {
+        "motor": "pro", "aspecto": "feed", "refs": ["banq51.jpg", "banq56.jpg"],
+        "prompt": ("Fotografia documental tomada por el fotografo de un evento real, con la misma camara, "
+                   "la misma luz calida del salon y el mismo tratamiento de color que la @img1 y la @img2: "
+                   "una ESTACION DE COMIDA ESTILO NEW YORK de banqueteria montada sobre la misma cubierta "
+                   "oscura, con el mismo follaje y flores al fondo. Tablas de madera con mini hamburguesas "
+                   "gourmet en pan brioche con queso cheddar derretido, sliders de pastrami, mini bagels "
+                   "con pastrami y pepinillos, conos de papel kraft liso con papas fritas, cuencos chicos "
+                   "de salsas. Comida real de banqueteria, con imperfecciones naturales, porciones "
+                   "desparejas, texturas reales; NO comida de estudio, sin brillo artificial, sin "
+                   "desenfoque exagerado: casi todo nitido, como la @img1. Formato cuadrado, la comida "
+                   "llena el cuadro. Sin personas."),
+    },
+    # FEED 20-10 post animado «Cumpleaños en Piso18»: «ambientación de cumpleaños con la torta
+    # como protagonista y detalles de mesa personalizados (vajilla, centros de mesa, decoración
+    # a color)». La imagen queda quieta y los textos se animan encima: la mitad de arriba
+    # tiene que ser tranquila y oscura.
+    "f20-cumple": {
+        "motor": "pro", "aspecto": "carrusel", "refs": ["banq43.jpg", "banq46.jpg"],
+        "prompt": ("Fotografia documental del fotografo del evento, en el mismo salon de Piso18 de la "
+                   "@img1 y la @img2, de noche, ambientado para un cumpleanos de adultos: en primer plano, "
+                   "sobre una mesa redonda con mantel oscuro, una TORTA de cumpleanos de dos pisos, blanca "
+                   "con flores naturales de colores y pocas velas finas encendidas, como protagonista; a "
+                   "su alrededor platos de sitio dorados, copas de colores, servilletas de genero y "
+                   "centros de mesa de flores de colores vivos. Al fondo el salon calido con las "
+                   "guirnaldas de luces y la ciudad en los ventanales, sin globos, sin letreros. Luz "
+                   "calida del salon, casi todo nitido, comida y vajilla reales con imperfecciones "
+                   "naturales. Formato vertical 4:5. ENCUADRE: la torta y la mesa ocupan el 45% de abajo; "
+                   "el 55% de arriba es el salon oscuro y tranquilo con luces calidas, para poner texto "
+                   "encima. Sin personas."),
+    },
+    # Tirada b: en la 1 la torta llegaba a la mitad del cuadro y la lista de cinco textos la
+    # tapaba. Misma escena, cámara más lejos y más alta: la torta en el tercio de abajo.
+    "f20-cumpleb": {
+        "motor": "pro", "aspecto": "carrusel", "refs": ["@f20-cumple", "banq43.jpg"],
+        "prompt": ("La MISMA escena de la @img1: la misma torta blanca de dos pisos con flores de colores "
+                   "y velas finas encendidas, la misma mesa de mantel oscuro con platos de sitio dorados, "
+                   "copas de colores y centros de flores, en el mismo salon de Piso18 de la @img2 de noche. "
+                   "Ahora con la camara MAS LEJOS: la torta se ve mas chica y mas abajo. ENCUADRE "
+                   "obligatorio: la torta y la mesa ocupan SOLO el 35% de abajo del cuadro, con la punta "
+                   "de las velas a dos tercios de la altura; el 65% de arriba es el salon oscuro y "
+                   "tranquilo, techo negro con guirnaldas de luces calidas y los ventanales con la ciudad, "
+                   "sin lamparas grandes, sin nada llamativo, para poner texto encima. Formato vertical "
+                   "4:5. Sin personas, sin globos, sin letreros."),
+    },
 }
 
 

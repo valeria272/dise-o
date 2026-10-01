@@ -29,6 +29,11 @@ REFS = {
     "st-16-10-equipo-2": "https://cl.pinterest.com/pin/1055460862691124252/",
     "st-30-10-broche-texto": "https://cl.pinterest.com/pin/1098315427895450995/",
     "st-30-10-broche": "https://cl.pinterest.com/pin/570479477821889041/",
+    # liberadas el 01-10 (FEED!H11, STORIES!H11, L11, M11)
+    "fd-20-10-cumple-1": "https://cl.pinterest.com/pin/3377768469325720/",
+    "fd-20-10-cumple-2": "https://cl.pinterest.com/pin/88242473945430370/",
+    "st-13-10-cuenta-regresiva": "https://cl.pinterest.com/pin/368310075797660531/",
+    "st-19-10-fin-de-ano": "https://cl.pinterest.com/pin/1096908053025288014/",
 }
 def dom(url):
     r = subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--virtual-time-budget=20000",

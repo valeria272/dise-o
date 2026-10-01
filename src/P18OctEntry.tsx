@@ -37,7 +37,10 @@ const FEED: [string, React.FC][] = [
 const STORIES: [string, React.FC][] = [
   ['P18O-S0710', O.P18OS0710],
   ['P18O-S0910', O.P18OS0910],
+  ['P18O-S1310', O.P18OS1310],
   ['P18O-S1510', O.P18OS1510],
+  ['P18O-S1910', O.P18OS1910],
+  ['P18O-S2110', O.P18OS2110],
   ['P18O-S2310', O.P18OS2310],
   ['P18O-S2710', O.P18OS2710],
 ];
@@ -51,6 +54,7 @@ const Raiz: React.FC = () => (
       {FEED.map(([id, C]) => (
         <Composition key={id} id={id} component={C} {...feed} />
       ))}
+      <Composition id="P18O-F2010" component={O.P18OF2010} {...feed} durationInFrames={O.P18_F2010_DUR} />
     </Folder>
     <Folder name="P18-Oct-Stories">
       {STORIES.map(([id, C]) => (

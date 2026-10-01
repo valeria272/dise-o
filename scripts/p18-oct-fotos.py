@@ -88,6 +88,24 @@ FOTOS = {
     "s1510-retro.jpg": (GEN / "st15-retro.jpg", None, (600, 800)),
     "s1510-tropical.jpg": (GEN / "st15-tropical.jpg", None, (600, 800)),
     "s1510-dorado.jpg": (GEN / "st15-dorado.jpg", None, (600, 800)),
+    # ── 01-10 · ST 13, 19 y 21-10 + FEED 20-10 ──────────────────────────────────────────
+    # ST 13-10 · fondo del sobre: mesa real de matrimonio con flores y esferas (deco
+    # piso_18-88, vertical 3840×5760), 2:3 → 9:16 centrada; reduce, no amplía.
+    "s1310-fondo.jpg": (BASE / "deco102.jpg", (300, 0, 3240, 5760), STORY),
+    # ST 19-10 · fondo en blanco y negro: mesas del salón de noche (julio evento 50,
+    # 1500×2250). Va desenfocado y bajo grano: a 1080×1920 (a 2250 ampliaría ×1,78).
+    "s1910-fondo.jpg": (BASE / "jul56.jpg", (117, 0, 1266, 2250), (1080, 1920)),
+    # la polaroid muestra 476 px de mesa ⇒ 1000×1000 alcanza (×2,08 = 992)
+    # tirada b: foto robada desde atrás del grupo (la 1 era de banco de imágenes, X-12)
+    "s1910-fiesta.jpg": (GEN / "st19-fiestab.jpg", None, (1000, 1000)),
+    # ST 21-10 · pantalla dividida, cada mitad 1080×960 de mesa (9:8). Generadas a 2048²:
+    # se recorta el alto; arriba (Japonesa) se ve el tercio alto, abajo (New York) el bajo.
+    "s2110-japonesa.jpg": (GEN / "st21-japonesa.jpg", (0, 0, 2048, 1820), (2250, 2000)),
+    # New York: caja corrida a la derecha y abajo para dejar fuera la tabla de quesos del
+    # buffet de referencia (no es de esta estación); sobre el ×2 de precisión no amplía.
+    "s2110-newyork.jpg": (GEN / "st21-newyork.jpg", (300, 380, 1748, 1554), (2250, 2000)),
+    # FEED 20-10 · cumpleaños, 1856×2304 (4:5)
+    "f2010.jpg": (GEN / "f20-cumple.jpg", None, FEED),
     "s0910.jpg": (GEN / "st09b.jpg", None, STORY),
     "s2310.jpg": (GEN / "st23.jpg", None, STORY),
     "s2710-fondo.jpg": (BASE / "deco86.jpg", (1800, 0, 2160, 3840), (1400, 2489)),

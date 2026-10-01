@@ -10,6 +10,7 @@ onboarding.
 
     python3 scripts/llavero.py abrir     ← lo que corre un diseñador nuevo
     python3 scripts/llavero.py estado    ← ¿está abierto? ¿qué claves tengo?
+    python3 scripts/llavero.py actualizar ← lo corre /abrir: trae el token nuevo si lo hay
     python3 scripts/llavero.py ver       ← qué hay dentro (valores enmascarados)
 
     python3 scripts/llavero.py guardar   ← solo Valeria: rehace el llavero
@@ -406,6 +407,43 @@ def cmd_guardar(args):
     print("  Ahora súbelo:  git add credentials/llavero.copylab && git commit && git push")
 
 
+def cmd_actualizar(args):
+    """Lo corre /abrir cada mañana, sin preguntar nada.
+
+    Si el llavero trae un token de Google con MÁS scopes que el de esta máquina
+    (pasó el 01-10-2026, cuando entró drive.readonly), lo reemplaza. Nunca pisa
+    un token local que tenga lo mismo o más. Si la contraseña no está guardada
+    en este equipo, no la pide: se salta y avisa.
+    """
+    if not (os.environ.get("COPYLAB_LLAVE") or GUARDADA.is_file()):
+        print("· llavero: la contraseña no está guardada en este equipo, no reviso el token.\n"
+              "  Para hacerlo a mano: python3 scripts/llavero.py abrir --forzar")
+        return
+    if not LLAVERO.is_file():
+        print("· llavero: no hay llavero en el repo, nada que actualizar.")
+        return
+    nuevo = leer_llavero().get("archivos", {}).get("token.json")
+    if not nuevo:
+        print("· llavero: no trae token de Google.")
+        return
+    destino = RAIZ / "credentials" / "token.json"
+    scopes_nuevo = set(json.loads(nuevo).get("scopes") or [])
+    scopes_local = set()
+    if destino.is_file():
+        try:
+            scopes_local = set(json.loads(destino.read_text(encoding="utf-8")).get("scopes") or [])
+        except ValueError:
+            pass
+    if destino.is_file() and not (scopes_nuevo > scopes_local):
+        print(f"✓ token de Google al día ({len(scopes_local)} permisos)")
+        return
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    destino.write_text(nuevo, encoding="utf-8")
+    os.chmod(destino, stat.S_IRUSR | stat.S_IWUSR)
+    print(f"✓ token de Google actualizado desde el llavero "
+          f"({len(scopes_local)} → {len(scopes_nuevo)} permisos)")
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -416,6 +454,8 @@ def main():
                    help="pisa los archivos que ya existan (token.json, etc.)")
     a.set_defaults(func=cmd_abrir)
 
+    sub.add_parser("actualizar", help="trae el token nuevo del llavero si trae más permisos "
+                   "(lo corre /abrir; no pregunta nada)").set_defaults(func=cmd_actualizar)
     sub.add_parser("estado", help="qué credenciales tengo montadas").set_defaults(func=cmd_estado)
     sub.add_parser("ver", help="qué hay dentro del llavero (enmascarado)").set_defaults(func=cmd_ver)
     sub.add_parser("logins", help="los accesos de navegador y qué conectores activar").set_defaults(func=cmd_logins)

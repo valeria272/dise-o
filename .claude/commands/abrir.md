@@ -18,6 +18,18 @@ git pull --rebase
 - Si el pull falla por red, avisa y sigue — pero deja dicho que el repo puede estar
   desactualizado.
 
+## 1 bis. Traer las credenciales nuevas del llavero
+
+```bash
+python3 scripts/llavero.py actualizar
+```
+
+(En Windows: `python scripts\llavero.py actualizar`.) Si Valeria re-cifró el llavero
+con un token de Google con más permisos —pasó el 01-10-2026, cuando entró
+`drive.readonly` para leer el Drive ajeno—, esto lo instala solo. No pregunta nada
+y nunca pisa un token igual o mejor. Si dice que la contraseña no está guardada,
+avísale a la persona en una línea y sigue.
+
 ## 2. Sembrar memoria nueva
 
 ```bash

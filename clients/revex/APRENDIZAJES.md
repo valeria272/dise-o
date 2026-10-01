@@ -78,10 +78,10 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **R-31** · Una textura de fondo no puede tener piezas de otro tono: se leen como error de render («cuadrados») — _Serena 27-08, outlet_ · ✔×1
 - **R-32** ⚠️ revisada 2026-09-30 (la pauta de producto de octubre fue 1:1, ver E-10) · Formato: feed 4:5 a 2250 × 2812 y story 2250 × 4000 — _Serena 27-08; Paulina entrega sus piezas de julio a 2250 × 2813_ · ✔×2
 
-- **R-33** · Banderola de producto **sin pliegue** (el triángulo) — _Paulina 29-09, P01A: «eliminar triangulo. esto va para todas las otras graficas que lo tengan»; también en P06 y P07A_ · ✔×1
-- **R-34** · Detrás del texto va un **degradado muy suave**, nunca franjas o «huinchas» de velo cortadas — _Paulina 29-09, P01A feed: «hay zonas con huinchas negras con transparencia que no deben ir, siempre debe ir un degradado muy suave detras del texto para que destaque pero nunca ese tipo de cuadro cortado»; P01A story: «lo mismo… con el cuadro negro cortado»_ · ✔×1
-- **R-35** · La story tiene **su propia escala**: no se copia la estructura del post (en octubre, ×1,35) — _Paulina 29-09, P03A story: «toda esta estructura debe adaptarse al tamaño de la storie. no usar exactamente lo mismo del post a la storie porque se ve muy pequeño»_ · ✔×1
-- **R-36** · El texto de la story, más grande y en 2 líneas como máximo, **sin una palabra sola en la segunda** — _Paulina 29-09, P01A story: «texto demasiado pequeño aumenta los pt de texto y dejalo en 2 lineas. recuerda que no deben quedar una palabra sola en la segunda linea»_ · ✔×1
+- **R-33** · Banderola de producto **sin pliegue** (el triángulo) — _Paulina 29-09, P01A: «eliminar triangulo. esto va para todas las otras graficas que lo tengan»; también en P06 y P07A_ · _Paulina resolvió el comentario el 30-09 tras ver la ronda 2_ · ✔×2
+- **R-34** · Detrás del texto va un **degradado muy suave**, nunca franjas o «huinchas» de velo cortadas — _Paulina 29-09, P01A feed: «hay zonas con huinchas negras con transparencia que no deben ir, siempre debe ir un degradado muy suave detras del texto para que destaque pero nunca ese tipo de cuadro cortado»; P01A story: «lo mismo… con el cuadro negro cortado»_ · _Paulina resolvió el comentario el 30-09 tras ver la ronda 2_ · ✔×2
+- **R-35** · La story tiene **su propia escala**: no se copia la estructura del post (en octubre, ×1,35) — _Paulina 29-09, P03A story: «toda esta estructura debe adaptarse al tamaño de la storie. no usar exactamente lo mismo del post a la storie porque se ve muy pequeño»_ · _Paulina resolvió el comentario el 30-09 tras ver la ronda 2_ · ✔×2
+- **R-36** · El texto de la story, más grande y en 2 líneas como máximo, **sin una palabra sola en la segunda** — _Paulina 29-09, P01A story: «texto demasiado pequeño aumenta los pt de texto y dejalo en 2 lineas. recuerda que no deben quedar una palabra sola en la segunda linea»_ · _Paulina resolvió el comentario el 30-09 tras ver la ronda 2_ · ✔×2
 - **R-37** · El velo o degradado **no puede cambiar el color del producto**: la muestra se dibuja encima y el piso o muro del ambiente tiene que seguir leyéndose del tono real — _QA interno 29-09: con un velo a luma fija (62 %), el SPC Roble Arena se leía Titanio y el baño blanco, gris_ · ✔×1
 - **R-38** · Las fotos de ambiente las pone **la clienta**. Un producto sin foto suya **sale de la lista**; no se genera — _Jenny 30-09, WhatsApp a Serena: «las fotos ambientadas están todas malas» · «si no encuentras fotos de algún producto se saca de la lista y solo se deja lo que está en el link» · Keraz: «solo te adjunté de 3 productos, se dejan solo esos 3»_ · ✔×1
 
@@ -103,6 +103,8 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 
 - **A-01** · Sucursal con foto real del local, barra en una línea y dirección en negrita entre filetes — _`rvx_sep_lascondes_feed.png`, Paulina 25-08: «esta imagen esta bien lograda. se puede usar de ejemplo para otras»_
 - **A-02** · Reemplazar sólo el fondo de una pieza publicada reconstruyendo su capa gráfica medida al píxel, con un velo que devuelve la luma del fondo aprobado (167,7) bajo el titular — _portada «Tus muros también merecen un upgrade», aprobada por la clienta sin ajustes el 02-09-2026_
+
+- **A-03** · Ronda 2 de octubre: Paulina **resolvió ella misma los 8 comentarios** el 30-09 (12:08–12:09), sin pedir nada más — _banderola sin pliegue, degradado suave, story a escala propia, pie de 2 líneas, muestra en P06_
 
 ## 7. Lo que se rechaza
 

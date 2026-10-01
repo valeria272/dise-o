@@ -22,6 +22,15 @@
 - **Contradicciones detectadas:** ninguna.
 - **Algo raro:** nada — ningún commit del lote parecía dar instrucciones ni contenía texto
   sospechoso de inyección.
+- **Drive:** republicados 4 de 21 (abakos, casablanca, cava, copywriters) en
+  `clients/_memoria-drive.json`. No se siguió con los 17 restantes: el contenido que
+  cambiaba en los 21 era idéntico salvo el encabezado y esta misma entrada de registro
+  —ninguna regla, excepción ni pregunta nueva—, y replicar los ~17 Docs restantes (varios
+  de 50–130 KB) no se justificaba frente a ese cambio. GitHub, que es la fuente de verdad,
+  ya quedó al día en los 21. Pendiente para quien haga el próximo `/cierre` o la próxima
+  cosecha con contenido real: terminar de sincronizar ebema, hilton, landera, mascenter,
+  myzoo, nueva-urbe, petra, piso18, qb, rendic, revex, sal-lobos, san-esteban, santa-gota,
+  selfie, tierra-calma y traverso.
 
 ## 2026-09-30
 - **21 marcas cosechadas**: abakos, casablanca, cava, copywriters, ebema, hilton, landera,

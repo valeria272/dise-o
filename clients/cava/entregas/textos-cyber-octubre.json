@@ -1,16 +1,17 @@
 {
-  "_que_es": "Los textos que cada pieza pinta de verdad, declarados para que qa/motor.py corra las reglas de copy en vez de saltarlas. Salen literales del brief «CAVA _ Briefs Cyber octubre 2026.xlsx». El logo y el recuadro de ADVERTENCIA son IMÁGENES levantadas del KV de Coni, y los sellos de premio de 7Colores, Vitis Única y Selección de Viñedos vienen quemados en el packshot oficial: ninguno es texto compuesto por acá, por eso no se declaran.",
+  "_que_es": "Los textos que cada pieza pinta de verdad, declarados para que qa/motor.py corra las reglas de copy en vez de saltarlas. Salen literales del brief «CAVA _ Briefs Cyber octubre 2026.xlsx». El logo y el recuadro de ADVERTENCIA son IMÁGENES levantadas del KV de Coni, y los sellos de premio de 7Colores, Vitis Única y Selección de Viñedos vienen quemados en el packshot oficial: ninguno es texto compuesto por acá, por eso no se declaran. Desde el 01-10 los envíos del público se entregan partidos: un banner principal y un banner por pack (`_PACK*`), porque Mailchimp los sube por separado y linkea cada uno a su producto. Las de WhatsApp van en 1123×1401 (Coni, 01-10; el brief pedía 1:1) y las VIP sí llevan nombre y precio en la gráfica (Coni, 01-10), aunque el brief de ManyChat los dejaba para el texto del mensaje.",
   "CYBER_CAVA_OCT_WSP1_VIP.png": [
-    "ACCESO VIP AL",
-    "45% OFF",
+    "ACCESO VIP",
+    "45%",
+    "OFF",
     "ANTES QUE NADIE",
     "MORANDÉ EL CABERNET",
     "DE RANQUIL 2021",
     "$34.970",
     "$59.990",
-    "Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. No acumulable con otras promociones. Hasta agotar stock.",
     "CUPÓN EXCLUSIVO:",
-    "CYBERVIP"
+    "CYBERVIP",
+    "Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. No acumulable con otras promociones. Hasta agotar stock."
   ],
   "CYBER_CAVA_OCT_MAIL1_VIP.png": [
     "ACCESO VIP AL",
@@ -25,15 +26,17 @@
     "CYBERVIP"
   ],
   "CYBER_CAVA_OCT_WSP2_VIP.png": [
-    "TU CUPÓN VIP SIGUE ACTIVO",
-    "45% OFF",
+    "TU CUPÓN VIP",
+    "SIGUE ACTIVO",
+    "45%",
+    "OFF",
     "HOUSE OF MORANDÉ",
     "MEZCLAS TINTAS 2021",
     "$46.630",
     "$84.790",
-    "Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. No acumulable con otras promociones. Hasta agotar stock.",
     "CUPÓN EXCLUSIVO:",
-    "CYBERVIP"
+    "CYBERVIP",
+    "Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. No acumulable con otras promociones. Hasta agotar stock."
   ],
   "CYBER_CAVA_OCT_MAIL2_VIP.png": [
     "TU CUPÓN VIP SIGUE ACTIVO",
@@ -48,15 +51,20 @@
   ],
   "CYBER_CAVA_OCT_WSP3_VIP.png": [
     "ÚLTIMO DÍA VIP",
-    "45% OFF",
-    "SE DESACTIVA MAÑANA",
+    "45%",
+    "OFF",
     "MORANDÉ SELECCIÓN ENOLÓGICA",
-    "CARMENERE Y CABERNET SAUVIGNON",
+    "CARMENERE",
     "$9.340",
     "$16.990",
-    "Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. No acumulable con otras promociones. Hasta agotar stock.",
+    "MORANDÉ SELECCIÓN ENOLÓGICA",
+    "CABERNET SAUVIGNON",
+    "$9.340",
+    "$16.990",
     "CUPÓN EXCLUSIVO:",
-    "CYBERVIP"
+    "CYBERVIP",
+    "SE DESACTIVA MAÑANA",
+    "Cupón CYBERVIP válido del 1 al 4 de octubre de 2026. No acumulable con otras promociones. Hasta agotar stock."
   ],
   "CYBER_CAVA_OCT_MAIL3_VIP.png": [
     "ÚLTIMO DÍA VIP",
@@ -71,61 +79,107 @@
     "CYBERVIP"
   ],
   "CYBER_CAVA_OCT_WSP4_GENERAL.png": [
-    "HASTA 50% OFF",
-    "EN TUS FAVORITOS",
+    "HASTA",
+    "50%",
+    "OFF",
     "PACK X6 7COLORES GRAN RESERVA",
     "CARMENERE / VIOGNIER 2023",
-    "$4.290 c/u",
+    "$25.740",
     "$47.340",
+    "PACK X6 MORANDÉ VITIS ÚNICA",
+    "CARMENERE",
+    "$44.940",
+    "$89.940",
     "Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. No acumulable con otras promociones."
   ],
   "CYBER_CAVA_OCT_MAIL4_GENERAL.png": [
-    "HASTA 50% OFF",
-    "EN TUS FAVORITOS",
-    "PACK X6 7COLORES GRAN RESERVA",
-    "CARMENERE / VIOGNIER 2023",
-    "$4.290 c/u",
-    "$47.340",
+    "HASTA",
+    "50%",
+    "OFF",
     "Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. No acumulable con otras promociones."
   ],
   "CYBER_CAVA_OCT_MAIL5_GENERAL.png": [
     "SE ESTÁN AGOTANDO",
-    "50% OFF",
+    "50%",
+    "OFF",
     "SOLO HASTA MAÑANA",
-    "PACK X6 7COLORES SINGLE",
-    "VINEYARD RED BLEND 2022",
-    "$5.490 c/u",
-    "$71.940",
     "Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. No acumulable con otras promociones."
   ],
   "CYBER_CAVA_OCT_MAIL6_GENERAL.png": [
     "ÚLTIMAS HORAS DEL CYBER",
-    "50% OFF",
-    "HOY CIERRA",
-    "PACK X6 SELECCIÓN DE VIÑEDOS",
-    "GRAN RESERVA CARMENERE 2024",
-    "$4.490 c/u",
-    "$53.940",
+    "50%",
+    "OFF",
     "Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. No acumulable con otras promociones."
   ],
   "CYBER_CAVA_OCT_WSP5_GENERAL.png": [
     "SE ESTÁN AGOTANDO",
-    "50% OFF",
+    "50%",
+    "OFF",
     "SOLO HASTA MAÑANA",
-    "PACK X6 7COLORES SINGLE",
-    "VINEYARD RED BLEND 2022",
-    "$5.490 c/u",
+    "PACK X6 7COLORES SINGLE VINEYARD",
+    "RED BLEND 2022",
+    "$32.940",
     "$71.940",
+    "PACK X6 MORANDÉ VITIS ÚNICA",
+    "CABERNET SAUVIGNON",
+    "$44.940",
+    "$89.940",
     "Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. No acumulable con otras promociones."
   ],
   "CYBER_CAVA_OCT_WSP6_GENERAL.png": [
     "ÚLTIMAS HORAS DEL CYBER",
-    "50% OFF",
-    "HOY CIERRA",
-    "PACK X6 SELECCIÓN DE VIÑEDOS",
+    "50%",
+    "OFF",
+    "PACK X6 MORANDÉ SELECCIÓN DE VIÑEDOS",
     "GRAN RESERVA CARMENERE 2024",
-    "$4.490 c/u",
+    "$26.940",
     "$53.940",
+    "PACK X6 MORANDÉ ESPUMANTE",
+    "EXTRA BRUT CHARMAT",
+    "$23.940",
+    "$47.940",
     "Válido del 5 al 7 de octubre de 2026 o hasta agotar stock. No acumulable con otras promociones."
+  ],
+  "CYBER_CAVA_OCT_MAIL4_GENERAL_PACK1-7COLORES.png": [
+    "45% OFF",
+    "Pack x6 7Colores Gran Reserva",
+    "Carmenere / Viognier 2023",
+    "$25.740",
+    "$47.340"
+  ],
+  "CYBER_CAVA_OCT_MAIL4_GENERAL_PACK2-VITIS.png": [
+    "50% OFF",
+    "Pack x6 Morandé",
+    "Vitis Única Carmenere",
+    "$44.940",
+    "$89.940"
+  ],
+  "CYBER_CAVA_OCT_MAIL5_GENERAL_PACK1-7COLORES.png": [
+    "50% OFF",
+    "Pack x6 7Colores Single Vineyard",
+    "Red Blend 2022",
+    "$32.940",
+    "$71.940"
+  ],
+  "CYBER_CAVA_OCT_MAIL5_GENERAL_PACK2-VITIS.png": [
+    "50% OFF",
+    "Pack x6 Morandé Vitis Única",
+    "Cabernet Sauvignon",
+    "$44.940",
+    "$89.940"
+  ],
+  "CYBER_CAVA_OCT_MAIL6_GENERAL_PACK1-VINEDOS.png": [
+    "50% OFF",
+    "Pack x6 Morandé Selección de Viñedos",
+    "Gran Reserva Carmenere 2024",
+    "$26.940",
+    "$53.940"
+  ],
+  "CYBER_CAVA_OCT_MAIL6_GENERAL_PACK2-CHARMAT.png": [
+    "50% OFF",
+    "Pack x6 Morandé Espumante",
+    "Extra Brut Charmat",
+    "$23.940",
+    "$47.940"
   ]
 }

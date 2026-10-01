@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza Lizana «Coni»** (diseño) · Aprueba: **la ejecutiva de cuentas de CAVA, dueña del brief mensual** (ver §8: falta nombre y confirmar si aprueba ella o la viña)
-> Última cosecha: **2026-10-01** · Cosechas: **7**
+> Última cosecha: **2026-10-01** · Cosechas: **8**
 
 ## 1. Quién es el cliente
 
@@ -92,12 +92,25 @@ corre continuo a través de los ocho briefs (01→18). Campañas grandes: `CYBER
 
 - **R-34** · Los montajes de botella del Cyber se hacen **en Magnific, en el space de Coni** (página KV CYBER), con SU key visual como referencia de escena y el packshot oficial como referencia de producto: la botella tiene que quedar parada sobre las losas de piedra del set. Los VIP llevan destellos dorados y los del público **no** — es la diferencia que ella marcó entre las dos versiones — _Coni, 30-09-2026_ · ✔×1
 - **R-35** · El montaje se genera **en la proporción de la pieza**, no en 9:16. Los mailings corren entre 1:2,2 y 1:2,6 y un montaje 9:16 no da de alto ni de ancho: rellenar estirando el borde «se ve muy feo». Con dos botellas y una sola ficha de precio, **se extiende el fondo en Magnific** y se entrega el par ya centrado — _Coni, 30-09-2026: «trabajémosla junto a Magnific y a esto me refiero con extender el fondo»_ · ✔×1
-- **R-36** · La botella se coloca **por cálculo, no por tanteo**: la pieza declara dónde está dentro de su montaje (canto, tapa y base en fracciones) y dónde debe quedar en la pieza, y de ahí salen escala y desplazamiento. Ajustar a ojo no converge porque escala y posición están acopladas — cada corrección de tamaño rompe la alineación horizontal — _30-09-2026, tras cuatro vueltas sobre la misma pieza_ · ✔×1
-- **R-37** · Las piezas de una campaña se afinan **contra el mismo patrón, nunca una contra otra**. Afinando pieza por pieza «hasta que cupiera», cada mail terminó con su propia escala de botella y de tipografía — _Coni, 30-09-2026: «empecemos a educarnos con la visual que estamos trabajando»_ · ✔×1
+- **R-36** · La botella se coloca **por cálculo, no por tanteo**: la pieza declara dónde está dentro de su montaje (canto, tapa y base en fracciones) y dónde debe quedar en la pieza, y de ahí salen escala y desplazamiento. Ajustar a ojo no converge porque escala y posición están acopladas — cada corrección de tamaño rompe la alineación horizontal — _30-09-2026, tras cuatro vueltas sobre la misma pieza; confirmado 01-10-2026 en los banners del público y en las seis de WhatsApp_ · ✔×2
+- **R-37** · Las piezas de una campaña se afinan **contra el mismo patrón, nunca una contra otra**. Afinando pieza por pieza «hasta que cupiera», cada mail terminó con su propia escala de botella y de tipografía — _Coni, 30-09-2026: «empecemos a educarnos con la visual que estamos trabajando»; confirmado 01-10-2026: «guiémonos en el WhatsApp 1»_ · ✔×2
 - **R-38** · El logo CAVA MORANDÉ va **arriba y pegado a la izquierda**, al mismo canto que la «C» de CYBERWINE, y el gancho mide **lo mismo que el logo** (de la C al final de la E). Vale también en las piezas de maqueta centrada: que el cuerpo sea centrado no cambia la cabecera — _Coni, 30-09-2026_ · ✔×1
 - **R-39** · Nada de texto puede tapar la botella, y la botella se ve **completa**: entre la cursiva del logo y el cupón. Cuando el producto es más ancho —el House frente al Ranquil— el que cede es el encuadre, no la botella — _Coni, 30-09-2026_ · ✔×1
 
+- **R-40** · Cuando un envío trae **dos productos con precios distintos**, el mail NO se arma con los dos precios sobre la foto: se entrega **partido** — un banner principal (frase, logo, advertencia y foto) y **un banner por pack** (fondo del color del principal, recuadro blanco, % OFF, nombre, precio y pack de 6). La persona de Mailchimp los sube por separado y linkea cada uno a su URL de la tienda; un solo PNG no se puede linkear a dos productos — _Coni, 01-10-2026, con sus referencias de una campaña anterior_ · ✔×1
+- **R-41** · En el banner de pack el porcentaje va con el **mismo tratamiento tipográfico del banner principal** —oro de la campaña, una sola línea, sin pastilla—. La pastilla dorada con filete es el recurso de septiembre y no entra acá. Sobre el recuadro blanco el degradado baja su techo al dorado medio **#C9A24E** de `marca.json`: el oro de la campaña sube a casi blanco y ahí desaparece — _Coni, 01-10-2026: «utilizaste el recurso de septiembre»_ · ✔×1
+- **R-42** · Ninguna línea de nombre queda con **una palabra sola** colgando: «Pack x6 Morandé Vitis Única / Carmenere» se corta «Pack x6 Morandé / Vitis Única Carmenere». El corte viene declarado en la pieza y el script aborta si la última línea trae una sola palabra — _Coni, 01-10-2026_ · ✔×1
+- **R-43** · El cuerpo de un texto que se repite en varias piezas se decide **mirando todas las piezas a la vez**, y manda la más larga. Ajustando pieza por pieza, el nombre corto sale más grande que el largo y dejan de ser la misma familia — _Coni, 01-10-2026, sobre los dos banners de pack y después sobre las seis de WhatsApp_ · ✔×2
+- **R-44** · Las piezas de **WhatsApp van en 1123×1401** (vertical), no en la cuadrada 1:1 que pide el brief de ManyChat. La indicación de Coni manda; la discrepancia se informa y se deja escrita en el código y en la ficha de textos para que nadie la «corrija» de vuelta — _Coni, 01-10-2026_ · ✔×1
+- **R-45** · Las seis de WhatsApp comparten **una sola geometría**, tomada de la pieza aprobada: dónde cae el **eje** de la botella (y con él su cupón), dónde se **apoya** y cuánto **mide**, más el lockup fijo. De esos tres destinos se despeja el recorte de cada montaje. Es al revés de lo que parece: no es el montaje el que decide la maqueta, es la maqueta la que obliga al montaje — _Coni, 01-10-2026: «guiémonos en el WhatsApp 1, ahí están aprobados todos los tamaños»_ · ✔×1
+- **R-46** · El **eje manda sobre el canto**. Fijando dónde arranca la botella, una más angosta queda descentrada respecto de su cupón; fijando el centro, queda a plomo mida lo que mida — _Coni, 01-10-2026_ · ✔×1
+- **R-47** · **Dos vinos en una pieza = dos bloques**, cada uno con su nombre y su precio. «Carmenere y Cabernet Sauvignon» en una línea con un precio se lee como si los dos juntos costaran eso. Y con dos productos los precios van **en una línea** (oferta y tachado al lado); con uno, **apilados** — _Coni, 01-10-2026_ · ✔×1
+- **R-48** · El **montaje se pide con lienzo de sobra**. Hoy hubo que regenerar cuatro escenas porque no tenían campo para poner la botella donde la maqueta manda. Cuando la ley no se puede cumplir, se cambia el montaje, no la ley — _01-10-2026, cuatro regeneraciones por el mismo motivo_ · ✔×1
+- **R-49** · La **ADVERTENCIA le come la cápsula** a la botella más alta: la geometría de WhatsApp deja la tapa a 175 unidades y el recuadro legal baja hasta 204. Cuando la botella alta de la pieza llega ahí, **se baja la imagen** —no se achica la botella ni se mueve el recuadro legal—, aunque se pierda la base de piedra — _Coni, 01-10-2026, sobre las tres del público_ · ✔×1
+
 ## 5. Excepciones
+
+- **La franja del Ministerio NO va en los banners de pack** (`*_PACK*`): no son piezas sueltas, son trozos de un mismo mail cuya cabecera —el banner principal— sí la lleva. Declarado en `reglas.yaml` con `excepto_archivos`, y con candado: `cava-cyber-oct-subir.py` aborta si un `_PACK` intenta viajar sin su banner principal — _01-10-2026_
 
 - **E-01** · El fondo satén negro vale para **campañas** (Cyber, Black). El KV **mensual** sigue el brief del mes: septiembre 2026 fue Fiestas Patrias (viñedo otoñal, luz de atardecer, nunca frío ni azulado, adorno de flores rojas y espigas, sin folclor caricaturesco); desde el brief 9 (22-09) pasa a primaveral «sin detalles patrios» — _brief de septiembre 2026_
 - **E-02** · La zona segura de Meta sólo aplica a las stories reales (`*_ST_*`, `*_STORY_*`), no a los mailings verticales de Mailchimp — _`reglas.yaml`, ajuste `zona-segura-meta`_
@@ -106,6 +119,8 @@ corre continuo a través de los ocho briefs (01→18). Campañas grandes: `CYBER
 - **E-05** · El fondo no siempre es Magnific: el KV del Cyber enlaza 23 fondos, mezcla de IA y stock; se prueban hasta dar con el del mes — _/adn sobre el editable del Cyber, 25-08-2026_
 
 ## 6. Lo que se aprueba a la primera
+
+- **El banner de pack calcado de la referencia.** Midiendo con programa la referencia que mandó Coni —recuadro blanco, regla vertical en el 50,6 %, pastilla de 160×122, nombre, precio y tachado— salió aprobado de una: «entendiste perfecto lo que yo te comentaba» — _01-10-2026_
 
 No hay registro de una pieza del estudio aprobada por el cliente. Los patrones de abajo
 son piezas **publicadas** de Coni, que son el estándar a replicar:
@@ -134,9 +149,16 @@ son piezas **publicadas** de Coni, que son el estándar a replicar:
 - **X-14** · El logo **CYBERWINE week no se recompone con las fuentes**. Está en Poppins **Bold** —no ExtraBold— y con tracking cerrado; rehecho salía distinto y cada pieza llevaba su propia versión del logo de Coni. Se levanta en píxeles del `.ai`, igual que la ADVERTENCIA (`scripts/cava-cyber-oct-extraer.py`) — _Coni, 30-09-2026: «creo que lo modificaste, debe ser como el que te dejé en el editable»_ · costó 1 ronda
 - **X-15** · Los **sellos de premio no se dibujan**: son archivos oficiales. Los míos llevaban los puntajes que declaraba el brief (91 y 92) y los correctos eran **98 y 98**. Un sello es una marca registrada: si no está el archivo, se pide — _Coni, 30-09-2026_ · costó 2 rondas
 - **X-16** · **El fondo no se rellena estirando el borde.** Cuando el montaje no daba de alto o de ancho yo lo ensanchaba clonando la última columna: «se ve muy feo». Con dos botellas y una sola ficha de precio, el fondo **se extiende en Magnific** y se entrega el par ya centrado — _Coni, 30-09-2026; ella misma hizo el montaje 1536×3992_ · costó 3 rondas
+- **X-17** · Un **degradado pintado como capa encima de todo** para despegar el texto de la foto. Apaga parejo y mata lo que es la escena —la madera, el reflejo, los destellos—. El degradado es **parte de la imagen**: va dentro del montaje, no sobre la maqueta — _Coni, 01-10-2026; ella misma lo hizo en el montaje del brief 3_ · costó 1 ronda
+- **X-18** · **Reconstruir una etiqueta para quitarle un sello.** Una botella es simétrica y el sello sobre el vidrio se saca espejando el lado limpio; pero cuando el sello **baja hasta la etiqueta**, el espejo la escribe al revés —«MORANDÉ» salió «MORAROM»— y acotarlo deja parches. Si el sello pisa la etiqueta se va a buscar la foto limpia (la de seis botellas que publica la tienda), no se reconstruye — _01-10-2026_ · costó 4 intentos
+- **X-19** · **Calcular los tamaños de cada pieza desde su propia columna.** Como la columna salía de dónde caía la botella en su montaje, el lockup de una pieza salió **16 % más grande** que el de otra, y con él toda la tipografía. Los tamaños de una familia se fijan una vez y las piezas se ajustan a ellos — _Coni, 01-10-2026: «seamos conscientes de que los elementos tienen que ser del mismo tamaño»_ · costó 1 ronda
+- **X-20** · El **expand de Ideogram inventa objetos**: una tercera botella falsa, plantas, una mesita con luces, una ventana. El modo **classic** salió limpio a la primera en los cuatro montajes y cuesta 10 créditos en vez de 50 — _01-10-2026_
+- **X-21** · **Renderizar sólo las piezas que se están revisando** cuando el cambio es de sistema. Al fijar el cuerpo del nombre quedaron tres piezas con el valor viejo y tres con el nuevo. Un cambio de sistema se regenera en una sola pasada — _Coni, 01-10-2026_ · costó 1 ronda
 
 ## 8. Preguntas abiertas
 
+- ⛔ **Dos descuentos del brief del Cyber no cuadran:** el 7Colores Gran Reserva del brief 4 da **45,6 %** real ($47.340 → $25.740) y el Single Vineyard del brief 5 da **54,2 %** ($71.940 → $32.940). Van declarados hacia abajo (45 % y 50 %) y los envíos **no se programan** hasta que confirme. → ejecutiva de CAVA.
+- **Falta el packshot limpio del 7Colores Single Vineyard**, sin los sellos impresos sobre la etiqueta. Hoy se resolvió con la foto oficial de seis botellas de la tienda, retocada. → la viña, vía la ejecutiva.
 - **Reconectar el conector de Google Drive de claude.ai** antes de retomar el Cyber Day 2026 (Settings → Connectors, abrir chat nuevo): el 28-09 se cayó la sesión y Coni no pudo leer el brief (ni confirmar en qué se diferencian el KV VIP y el KV Cyber Público). → quien retome CAVA.
 - **¿Quién aprueba del lado del cliente?** Sólo aparece «la ejecutiva de cuentas» como dueña del brief; falta su nombre y si la viña revisa aparte. → Valeria / KAM.
 - **Precios de septiembre 2026 sin confirmar:** brief 5 (50 % OFF, el brief decía $16.640, se usó $9.245), brief 8 (40 %, $7.830 → $11.754) y brief 9 (40 %, $14.370 → $21.564). → ejecutiva de CAVA.
@@ -155,6 +177,27 @@ son piezas **publicadas** de Coni, que son el estándar a replicar:
 - ⛔ **Propuesta B sin solución en la posición fija del bloque de producto:** cae sobre la sombra proyectada de la botella, cuya luminancia intermedia no contrasta con nada (blanco 2,82:1 · negro 1,63:1). Subirlo al naranja limpio (negro 5,9:1) o dejar B fuera. → Coni.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Coni (con Claude) · el Cyber completo: público, packs y WhatsApp
+- nuevo **R-40…R-49** · diez reglas, casi todas de sistema y no de pieza: el mail se
+  **parte** cuando hay dos packs con precios distintos; el porcentaje del banner de pack
+  usa el oro de la campaña con el techo bajado para el fondo blanco; ninguna línea deja
+  una palabra sola; el cuerpo de una familia se decide mirando todas las piezas; WhatsApp
+  va en **1123×1401** con **una sola geometría** para las seis, donde el **eje** de la
+  botella manda sobre su canto; dos vinos son dos bloques con su propio precio; el montaje
+  se pide con lienzo de sobra; y la **advertencia** obliga a bajar la imagen, no a achicar
+  la botella.
+- nuevo **X-17…X-21** · el degradado va dentro de la imagen y no como capa; una etiqueta
+  no se reconstruye para quitarle un sello; los tamaños no se calculan desde la columna de
+  cada pieza; el expand de Ideogram inventa objetos y el modo classic no; y un cambio de
+  sistema se regenera en una sola pasada.
+- nueva **excepción** · los `*_PACK*` quedan fuera de la regla de la franja del Ministerio
+  porque son trozos de un mail cuya cabecera sí la lleva — con candado en el script de subida.
+- nuevo en **§6** · el banner de pack calcado con programa de la referencia de Coni se
+  aprobó a la primera.
+- ✔ **R-01** sumó las 19 piezas del día · **R-36** y **R-37** (colocar por cálculo y afinar
+  contra un patrón) se confirmaron otra vez: son la base de la geometría única de WhatsApp.
+- abierto en **§8** · los dos descuentos que no cuadran y el packshot limpio del Single Vineyard.
 
 ### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (9d73c4d)
 - sin aprendizajes nuevos: el commit `9d73c4d` («CAVA: cierre del 30-09 — los 6 mails del Cyber de octubre y la cosecha de la jornada») es el propio `/cierre` de Coni, ya reflejado en la entrada de arriba (R-34 a R-39). No hay nada posterior que agregar.

@@ -341,6 +341,9 @@ def vertical_centrada(p):
     base, k_img, x_img, y_img = escena_montada(p["n"], "mail", ALTO, bot=p["bot"],
                                                destino=p["destino"],
                                                extender=p.get("extender", False))
+    # El degradé del piso NO se pinta acá: viene dentro del montaje. Coni lo
+    # resolvió en la imagen el 01-10 y así es como corresponde — oscurecer por
+    # capa encima apaga también los destellos y la madera, que son la escena.
     im = viñeta(base, 0.22)
     marco(im)
     advertencia(im)

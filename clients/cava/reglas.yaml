@@ -79,6 +79,15 @@ reglas:
       tolerancia: 26
       min_px: 60
       alto_px_2250: 520
+    # ⛔ La ÚNICA excepción, y es acotada: los banners de pack (`*_PACK*`) no
+    # son piezas sueltas, son TROZOS de un mismo mail. Cuando el envío trae dos
+    # productos con precios distintos, la cuenta entrega un banner principal y
+    # un banner por pack, porque la persona de Mailchimp los sube por separado
+    # y linkea cada uno a su URL de la tienda. El correo que recibe la persona
+    # lleva la ADVERTENCIA una vez, en la cabecera, que es el banner principal.
+    # Antes de subir, `cava-cyber-oct-subir.py` exige que exista ese banner
+    # hermano y que ÉL sí traiga la franja: un `_PACK` suelto no se entrega.
+    excepto_archivos: ["*_PACK*"]
 
   - id: precio-clp
     titulo: Precio mal escrito

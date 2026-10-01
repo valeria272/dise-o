@@ -58,13 +58,17 @@ def u(v):
 # mantenerse en 1080 de ancho y de alto puede ir variando, depende de la
 # información». Un mail no se lee de un vistazo como una historia: puede correr.
 ANCHO = {"mail": 2250, "wsp": 2250}
-LIENZOS = {"wsp": (2250, 2250)}          # la de WhatsApp sí es 1:1 fija
+# ⚠️ La de WhatsApp YA NO ES 1:1. El brief pedía cuadrada, pero Coni fijó el
+# 01-10 el formato vertical **1123×1401 px** para las plantillas de ManyChat.
+# Manda ella; la discrepancia con el brief queda informada, no resuelta por acá.
+# 2250 / (1123/1401) = 2807, y al entregar a 1123 de ancho el alto cae en 1401.
+LIENZOS = {"wsp": (2250, 2807)}
 # Lo que se entrega: nítido pero liviano, porque sube a plataforma.
 # Tamaño de historia exacto. Se subió a 1350/1440 creyendo que la cursiva Amalfi
 # Coast se perdía a 1080, pero el garabato venía de un recorte de la máscara, no
 # de la resolución: arreglado eso, a 1080 lee perfecta y el archivo pesa un
 # tercio menos. Entre dos entregas que se ven igual, gana la liviana.
-ENTREGA = {"mail": 1080, "wsp": 1080}    # ancho de entrega; el alto sale de él
+ENTREGA = {"mail": 1080, "wsp": 1123}    # ancho de entrega; el alto sale de él
 
 # ── Fondos: los archivos que enlaza su .ai ───────────────────────────────────
 SET = {
@@ -698,6 +702,10 @@ def _halo(im, cx, cy, ancho, alto, radio, alfa=110, color=(158, 96, 44)):
 SELLOS = {
     "descorchados-98-2021": CAVA / "sellos/descorchados-98-2021.png",
     "james-suckling-98": CAVA / "sellos/james-suckling-98.png",
+    # Los del 7Colores Single Vineyard: copiados de su propio packshot con
+    # scripts/cava-sellos-7colores.py, no redibujados.
+    "descorchados-92": CAVA / "sellos/descorchados-92.png",
+    "james-suckling-91": CAVA / "sellos/james-suckling-91.png",
 }
 
 

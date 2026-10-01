@@ -1,3 +1,40 @@
+## 2026-10-01 — Constanza Lizana «Coni» (con Claude)
+
+**Qué se hizo:** Se cerró el **Cyber Wine Week de octubre completo**: 6 mails, 4
+banners de pack y 6 piezas de WhatsApp. Tres cambios de sistema, no de pieza:
+(1) cuando un envío trae **dos productos con precios distintos** el mail se
+entrega **partido** —un banner principal y un banner por pack—, porque Mailchimp
+sube cada uno por separado y lo linkea a su URL; (2) las piezas de **WhatsApp
+pasan a 1123×1401** (el brief pedía 1:1) y comparten **una sola geometría**: se
+fija dónde cae el eje de la botella, su base y su alto, y de ahí se despeja el
+recorte de cada montaje; (3) el **gradiente del fondo va dentro de la imagen**, no
+como capa encima. Briefs 4, 5 y 6 del público revisados y aprobados, y las seis de
+WhatsApp aprobadas una por una.
+
+**Dónde quedó:** `scripts/cava-cyber-oct-publico.py` (nuevo: banners del público,
+banners de pack y las 6 de WhatsApp), `scripts/cava-quitar-sellos.py` y
+`scripts/cava-sellos-7colores.py` (nuevos), más ajustes en `cava_cyber_oct.py`,
+`cava-cyber-oct-piezas.py` y `cava-cyber-oct-subir.py`. Assets nuevos versionados:
+los dos sellos del 7Colores Single Vineyard levantados de su packshot
+(`descorchados-92`, `james-suckling-91`), el Vitis Cabernet sin sello, las fotos
+oficiales de pack de la tienda y **nueve montajes** (`brief*-banner.jpg`,
+`brief*-wsp.jpg`). Las 13 piezas de mail y las 6 de WhatsApp pasan
+`qa/motor.py --marca cava` y están en Drive: `DISEÑO ia › OCTUBRE › CYBER CAVA
+VIP`, `CYBER CAVA GENERAL` y `CYBER CAVA WHATSAPP`.
+
+**Qué sigue:** Subir las **6 plantillas a Meta** (iban vencidas: las VIP el 30/09 y
+las del público el 01/10, y Meta demora hasta 24 h). El primer envío es el
+**02/10 a las 10:00** por Mailchimp y 12:30 por WhatsApp.
+
+**Abierto:**
+- ⛔ **Dos cifras del brief no cuadran:** el 7Colores Gran Reserva del brief 4 da
+  **45,6 %** real ($47.340 → $25.740) y el 7Colores Single Vineyard del brief 5 da
+  **54,2 %** ($71.940 → $32.940). Van declaradas hacia abajo (45 % y 50 %) y **no
+  se programan los envíos hasta que la ejecutiva confirme**.
+- Falta el **packshot limpio del 7Colores Single Vineyard**: el único que existe
+  trae los sellos impresos sobre la etiqueta. Hoy se resolvió con la foto oficial
+  de seis botellas de la tienda, retocada.
+
 ## 2026-09-30 — Constanza Lizana «Coni» (con Claude)
 
 **Qué se hizo:** Se produjeron los **6 mails del Cyber Wine Week de octubre** (3 VIP

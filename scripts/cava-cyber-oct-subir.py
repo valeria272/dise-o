@@ -101,6 +101,26 @@ def qa_en_verde(piezas):
     print("  ✓ QA en verde")
 
 
+def banner_hermano(piezas):
+    """Ningún `_PACK` viaja huérfano.
+
+    Los banners de pack están EXENTOS de la regla de la franja del Ministerio
+    (`clients/cava/reglas.yaml`) porque son trozos de un mail cuya cabecera sí
+    la lleva. Esa exención sólo es legítima si la cabecera existe y se sube con
+    ellos: si alguien manda un `_PACK` solo, el correo saldría sin advertencia.
+    """
+    nombres = {p.name for p in piezas}
+    for p in piezas:
+        if "_PACK" not in p.name:
+            continue
+        banner = p.name.split("_PACK")[0] + ".png"
+        if banner not in nombres:
+            sys.exit(f"ABORTA: {p.name} va sin su banner principal ({banner}). "
+                     "Un banner de pack no lleva la franja del Ministerio: la "
+                     "lleva la cabecera, y tiene que viajar con él.")
+    print("  ✓ cada banner de pack viaja con su banner principal")
+
+
 def main():
     # Sin argumentos sube todo; con argumentos, sólo esas carpetas. Sirve para
     # dejar una en pausa —WhatsApp quedó en stand-by el 30-09— sin tener que
@@ -109,6 +129,7 @@ def main():
     piezas = sorted(p for c in pedidas for p in (ENTREGA / c).glob("*.png"))
     if not piezas:
         sys.exit("No hay piezas que subir en out/cava/cyber-octubre/")
+    banner_hermano(piezas)
     qa_en_verde(piezas)
     d = svc()
     for carpeta in pedidas:

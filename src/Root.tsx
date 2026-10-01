@@ -55,6 +55,7 @@ import {FotoAceite} from "./compositions/copylab/FotoAceite";
 import {FotoEscritorio} from "./compositions/copylab/FotoEscritorio";
 import {FotoDiario} from "./compositions/copylab/FotoDiario";
 import {Caso001} from "./compositions/copylab/Caso001";
+import {PostG} from "./compositions/copylab/PostG";
 import {RentasReelOctubre} from "./compositions/rentas/RentasReelOctubre";
 import {NuevaUrbeFacilidadesReel, NU_REEL_DURATION, NU_REEL_FPS} from "./compositions/NuevaUrbeFacilidadesReel";
 import {VideoSquare01} from "./compositions/VideoSquare01";
@@ -1307,6 +1308,7 @@ export const RemotionRoot: React.FC = () => {
       </Folder>
       <Folder name="Copywriters">
         {/* Feed 4:5 — el formato principal del sistema. */}
+        <Composition id="CL2-PostG" component={PostG} {...clFeed} />
         {/* Dirección de arte RRSS 30-09-2026 — caso de éxito 001, 6 láminas */}
         <Composition id="CL2-Caso001" component={Caso001} {...clFeed}
                      defaultProps={{lamina: 1}} />

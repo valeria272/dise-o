@@ -27,8 +27,15 @@ export const FORMATOS2 = tokens.formatos;
  *  redistribuir el .otf. Si alguien clona el repo en otra máquina, las piezas
  *  caen al sustituto libre que quedó de fallback y no se rompe nada. */
 export const VOZ2 = {
-  /** Bebas Neue Pro — títulos principales. Caja alta siempre. */
+  /** Bebas Neue Pro — títulos principales. Caja alta siempre.
+   *  Ancho normal: para líneas largas que tienen que caber. */
   titular: "'CL2 Titular', 'Bebas Neue Pro', 'Bebas Neue', Impact, sans-serif",
+  /** Bebas Neue Pro SemiExpanded — LA VOZ DE LOS TITULARES Y LOS KPI.
+   *  La referencia del 30-09 no es condensada: es ancha y pesada. Un KPI en el
+   *  ancho normal se lee flaco y pierde la presencia publicitaria. */
+  impacto: "'CL2 Impacto', 'Bebas Neue Pro SemiExp', Impact, sans-serif",
+  /** Bebas Neue Pro Expanded ExtraBold — cuando el número ES la pieza. */
+  bloque: "'CL2 Bloque', 'Bebas Neue Pro Exp', Impact, sans-serif",
   /** Balloon URW — destacados y notas a mano. La voz humana del sistema. */
   mano: "'CL2 Mano', 'Balloon URW', 'Caveat', cursive",
   /** Neue Haas Grotesk Text Pro — cuerpo de texto. El corte «Text» está dibujado
@@ -76,9 +83,33 @@ export const asegurarFuentesV2 = () => {
   font-display: block;
 }
 @font-face {
+  font-family: 'CL2 Impacto';
+  src: url(${staticFile(`${base}/BebasNeuePro-SemiExpBold.otf`)}) format('opentype');
+  font-weight: 700;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CL2 Impacto';
+  src: url(${staticFile(`${base}/BebasNeuePro-SemiExpExtraBold.otf`)}) format('opentype');
+  font-weight: 800;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CL2 Bloque';
+  src: url(${staticFile(`${base}/BebasNeuePro-ExpExtraBold.otf`)}) format('opentype');
+  font-weight: 800;
+  font-display: block;
+}
+@font-face {
   font-family: 'CL2 Mano';
   src: url(${staticFile(`${base}/BalloonURW-Light.otf`)}) format('opentype');
   font-weight: 400;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CL2 Mano';
+  src: url(${staticFile(`${base}/BalloonD-ExtraBold.otf`)}) format('opentype');
+  font-weight: 800;
   font-display: block;
 }
 @font-face {
@@ -156,6 +187,37 @@ export const pathSubrayado = (ancho: number, alto: number) =>
   `M ${ancho * 0.02} ${alto * 0.62}` +
   ` C ${ancho * 0.22} ${alto * 0.12}, ${ancho * 0.48} ${alto * 0.92}, ${ancho * 0.72} ${alto * 0.38}` +
   ` S ${ancho * 0.93} ${alto * 0.2}, ${ancho * 0.99} ${alto * 0.5}`;
+
+/**
+ * Subrayado GRUESO con punta — el de la referencia del 30-09.
+ *
+ * No es un trazo de grosor parejo: un plumón real deja la marca ancha en el
+ * medio y afilada donde entra y donde sale. Por eso va como área cerrada y no
+ * como línea, con el vientre en el centro y las dos puntas en cero.
+ */
+export const pathTrazoGrueso = (ancho: number, alto: number, grosor: number) => {
+  const p: string[] = [];
+  const n = 26;
+  const y = (t: number) =>
+    alto * 0.5 + Math.sin(t * Math.PI * 1.35 + 0.4) * alto * 0.2 - t * alto * 0.1;
+  // Filo de arriba, de izquierda a derecha.
+  for (let i = 0; i <= n; i++) {
+    const t = i / n;
+    const g = grosor * Math.sin(Math.PI * Math.min(1, Math.max(0, t))) ** 0.55;
+    p.push(`${i ? "L" : "M"} ${ancho * t} ${y(t) - g / 2}`);
+  }
+  // Y de vuelta por abajo.
+  for (let i = n; i >= 0; i--) {
+    const t = i / n;
+    const g = grosor * Math.sin(Math.PI * Math.min(1, Math.max(0, t))) ** 0.55;
+    p.push(`L ${ancho * t} ${y(t) + g / 2}`);
+  }
+  return p.join(" ") + " Z";
+};
+
+/** Sombra suave para separar tipografía clara de una fotografía clara.
+ *  En la referencia el titular no flota: tiene una caída corta debajo. */
+export const SOMBRA_SOBRE_FOTO = "0 6px 26px rgba(0,0,0,0.55), 0 2px 6px rgba(0,0,0,0.4)";
 
 /** Flecha de anotación: cuerpo curvo + dos plumas. Devuelve los tres paths. */
 export const pathsFlecha = (ancho: number, alto: number) => {

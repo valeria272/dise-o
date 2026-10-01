@@ -21,7 +21,7 @@
 import React from "react";
 import {AbsoluteFill} from "remotion";
 import {asegurarFuentesV2} from "../../brand/copylab/sistemaV2";
-import {Foto, Mano, Subrayado} from "../../brand/copylab/piezasV2";
+import {Foto, Mano} from "../../brand/copylab/piezasV2";
 
 export const FotoAceite: React.FC = () => {
   asegurarFuentesV2();
@@ -45,7 +45,6 @@ export const FotoAceite: React.FC = () => {
       <Mano x={72} y={132} cuerpo={86} interlineado={1.06}>
         BUEN<br />CONTENIDO<br />TAMBIÉN<br />VENDE.
       </Mano>
-      <Subrayado x={78} y={502} ancho={248} alto={32} grosor={12} giro={-2} />
 
     </AbsoluteFill>
   );

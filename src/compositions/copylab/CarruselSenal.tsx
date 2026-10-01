@@ -153,9 +153,6 @@ const L1: React.FC = () => (
       <Linea cuerpo={192}>UNA IDEA.</Linea>
     </div>
 
-    {/* El subrayado va SIEMPRE bajo la línea de base, nunca sobre la letra:
-        cruzando la palabra deja de ser subrayado y se lee como tachado. */}
-    <Subrayado x={M - 6} y={1106} ancho={648} alto={40} grosor={16} />
   </FondoNegro>
 );
 
@@ -225,7 +222,6 @@ const L4: React.FC = () => (
       <Linea cuerpo={164} color={C2.rosa}>DIRIGEN.</Linea>
     </div>
 
-    <Subrayado x={M - 4} y={908} ancho={468} alto={38} grosor={14} />
 
     <div
       style={{
@@ -257,7 +253,6 @@ const L5: React.FC = () => (
       IDEAS.<br />PERSONAS.<br />MARCAS.<br />RESULTADOS<br />REALES.
     </div>
 
-    <Subrayado x={M + 6} y={1044} ancho={396} alto={40} grosor={15} color={C2.offwhite} />
 
     <div
       style={{

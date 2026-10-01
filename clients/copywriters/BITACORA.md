@@ -8,6 +8,38 @@
 
 ---
 
+## 2026-10-01 · Valeria — Sistema Visual: CASO 001 **aprobado** y la lámina del 30-09 como ley de ejecución
+
+**Qué se hizo:** Se cerró el carrusel **CASO 001** (6 láminas) replicando la lámina que Valeria entregó
+como ley (`creative-system/SISTEMA-VISUAL-2609/reference/CARRUSEL_CASO_001_LEY_30-09.png`: «Es así como
+debes diseñar. Respétalo tal cual»). Venía de **cuatro rondas de feedback sobre ejecución, no concepto**
+—«mockups básicos, mal hechos», «textos descuadrados, otros que no se leen, el mock up en el celular mal
+puesto»—. Se midieron las seis diferencias y se corrigieron en orden: **ancho tipográfico** (el error de
+fondo: el sistema no es condensada, es Bebas Neue Pro SemiExpanded/Expanded ExtraBold, y la mano es
+Balloon D Extra Bold), **grosor del trazo** (va como área, no como línea), **sombra sobre foto**, **caja
+mixta en el texto funcional**, **cromo del mockup** y **temperatura de la foto** (madera, ladrillo,
+tungsteno; se regeneraron 3 fotos con Seedream). Valeria aprobó el 01-10.
+
+**Dónde quedó:** `src/compositions/copylab/Caso001.tsx` · nuevo `src/brand/copylab/mockups.tsx`
+(`AnuncioIG` y `MailIOS` con cromo de verdad) · `Trazo` y las props `voz`/`sombra`/`tracking` en
+`piezasV2.tsx` · `pathTrazoGrueso` y `SOMBRA_SOBRE_FOTO` en `sistemaV2.ts` · compuerta nueva
+**`qa/borde.py`** (texto cortado o pegado al borde, calibrada contra control) · `reglas.yaml` con el tope
+de color fuera de sistema recalibrado **18 % → 55 %** · la ley escrita en `DIRECCION-DE-ARTE-RRSS.md` §13
+y destilada en `APRENDIZAJES.md` **R-28 a R-40** (el resumen operativo es **R-34**, el orden de
+corrección). Entrega: `out/copylab/caso001/entrega/` y `~/Desktop/COPYWRITERS_v7_30-09.zip`.
+
+**Qué sigue:** **la grilla.** Es lo que Valeria pidió al aprobar.
+
+**Abierto:** (1) ⛔ Las cifras del caso (19,2X ROAS · +116 % CTR · 47–52 % · 4–11) **no están
+verificadas** y la marca es **Santa Gota**, cliente real: aprobado como diseño, no publicable sin los
+números confirmados y sin autorización (R-10). (2) ⛔ Qué clientes se pueden mostrar en el feed propio —
+decisión comercial; el material ya está en el repo. (3) ⛔ Fotografía real del equipo/cultura/backstage:
+destraba 4 de los 12 pilares y no se genera. (4) ⛔ Capturas reales de pantallas IA. (5) Las otras piezas
+(`CarruselSenal`, `FotoAceite`, `FotoEscritorio`, `FotoDiario`, `PostG`) **no** se rehicieron con la
+ejecución nueva; además son piezas de frase (R-38): decidir si se rehacen o se jubilan.
+
+---
+
 ## 2026-09-25 · Valeria — G.CL Cap. 02 «TURNO DE NOCHE» · CORTE 16 DEFINITIVO
 
 **Qué se hizo:** El capítulo entero, de corte 3 a corte 16 en un día, con feedback de Valeria por ronda

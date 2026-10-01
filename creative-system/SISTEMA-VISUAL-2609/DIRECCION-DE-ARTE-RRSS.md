@@ -70,6 +70,42 @@ pensamientos, stickers, anotaciones, palabras sueltas. **Debe sentirse espontán
 > ⛔ **Balloon NO es una segunda capa de texto permanente.** Es un gesto.
 > El patrón correcto: `19,2X` en Bebas · Balloon: *«y no subimos la pauta.»*
 
+### ⛔⛔ Balloon no es siempre «frase rosada + subrayado debajo»
+
+Ése es el tic que hay que romper, y es el que ya se instaló: en la primera tanda
+el subrayado rosa apareció en **7 de 14 piezas**. En diez posts eso es otra plantilla.
+
+**El repertorio de Balloon — hay que rotarlo, no repetirlo:**
+
+| Gesto | Dónde se probó |
+|---|---|
+| Cruza el KPI en diagonal, encima del número | Caso 001 · lámina 3 |
+| **Es el titular**, enorme, y se sale del lienzo | Caso 001 · lámina 6 (`NADIE.`) |
+| Rodeada con un círculo de marcador | Caso 001 · lámina 5 |
+| Se apoya contra el titular, sin subrayado | Caso 001 · lámina 1 |
+| Cruza en diagonal bajo la escena | Caso 001 · lámina 2 |
+| Anotación sobre la fotografía | «Buen contenido también vende.» |
+
+Pendientes de probar: **integrarse con Bebas en la misma línea**, rodear un
+producto, escribirse sobre un objeto de la foto, salir por arriba.
+
+> **Tope operativo: el subrayado rosa no puede estar en más de 2 de cada 10 piezas.**
+> Si una pieza lo pide, se pregunta qué otro gesto haría lo mismo mejor.
+
+### La data se compone, no se acomoda
+
+Un KPI no va apilado ordenadamente con su compañero: eso es un reporte.
+
+- **Escala extrema** — el número puede pasar de los 450 px y **salirse del lienzo**.
+  Pero si el crop se come un dígito, la cifra deja de leerse y deja de ser un dato:
+  se sangra por **un** lado, no por los dos.
+- **Asimetría y tensión** — el segundo KPI entra más chico, desplazado, girado y
+  **pisando** al primero. No son iguales: hay un primer impacto y un segundo.
+- **Superposición con la fotografía**, no al lado de ella.
+- **La comparación va chica y abajo.** Se descubre después.
+- ⚠️ Si el gesto en Balloon cruza un número blanco, **no puede ser blanco**: se borra.
+  En ese cruce el rosa se lo lleva el gesto, no la cifra.
+
 **Sans limpia (Neue Haas Grotesk Text Pro)** — información funcional y textos
 pequeños. **Nunca compite con Bebas.**
 
@@ -162,3 +198,103 @@ Creatividad · criterio · cultura internet · resultados · tecnología · pers
 - ⚠️ Los pilares **cultura, BTS y equipo piden fotografía REAL** (iPhone, flash,
   backstage). La agencia no la tiene versionada. Eso no se genera con IA: se fotografía.
   Es el insumo que falta y ningún prompt lo reemplaza.
+
+---
+
+## 12 · ⛔ El feed no se llena de gráficas Copywriters
+
+> **El objetivo no es llenar el feed de gráficas Copywriters. Es mostrar QUÉ HACE
+> Copywriters con una dirección de arte reconocible.** — Valeria, 30-09-2026
+
+«Menos ruido. Más criterio.», «La IA acelera…», «Ideas. Personas. Marcas.» y
+compañía **pueden existir dentro del universo de marca, pero no se convierte cada
+concepto de marca en un post.** En la proporción de 12, POV es **1**.
+
+⚠️ **El síntoma de que se volvió a la fábrica de frases:** si al mirar la tanda
+la mayoría de las piezas se sostienen en una frase y no en algo que pasó, el
+sistema volvió atrás. Pasó el 30-09: 8 de 9 piezas sueltas eran frases.
+
+**Antes de diseñar un post suelto, la pregunta es qué se está mostrando:**
+trabajo de clientes · producto · equipo · backstage · pantalla de IA real ·
+un resultado · un cliente nuevo · G · una tendencia concreta.
+Si la respuesta es «un concepto de marca», probablemente no va.
+
+### Material real disponible vs. material que falta (al 30-09-2026)
+
+| Pilar | Estado |
+|---|---|
+| **G** | ✅ Frames del CAP.02 renderizados en `out/gcl/cap02-v3/corte/`. Es nuestro y no pide permiso a nadie |
+| **Trabajo de clientes / producto** | ⚠️ El material EXISTE (`out/santagota` 74 · `out/ebema` 93 · `out/selfie` 25 · `out/traverso` 18 · `out/mascenter` 6). Falta la **decisión comercial**: qué clientes se pueden mostrar en el feed propio |
+| **Equipo · cultura · backstage** | ⛔ **No hay material y no se genera: se fotografía.** Una jornada con iPhone y flash destraba 4 de los 12 pilares |
+| **Pantallas de IA** | ⛔ Necesita capturas **reales**. Inventar una pantalla es inventar el trabajo |
+| **Resultados** | ⛔ Cifras verificadas + permiso del cliente |
+| **Nuevo cliente** | ⛔ Un cliente nuevo real y su producto |
+| **Tendencias** | ⛔ Una noticia concreta y actual. No se inventa |
+
+---
+
+## 13 · ⭐⭐ La ejecución — lámina del 30-09 (tarde)
+
+> **Manda esta lámina:** [`reference/CARRUSEL_CASO_001_LEY_30-09.png`](reference/CARRUSEL_CASO_001_LEY_30-09.png)
+> «Es así como debes diseñar. Respétalo tal cual.» — Valeria
+
+Lo anterior estaba bien de concepto y **mal de ejecución**. Lo que separa una
+cosa de la otra, medido contra esa lámina:
+
+### 1 · La tipografía NO es condensada
+
+| Rol | Corte |
+|---|---|
+| KPI, número protagonista | **Bebas Neue Pro Expanded ExtraBold** (`voz="bloque"`) |
+| Titulares | **Bebas Neue Pro SemiExpanded ExtraBold** (`voz="impacto"`) |
+| Líneas largas que deben caber | Bebas Neue Pro ancho normal (`voz="titular"`) |
+| La mano | **Balloon D Extra Bold** (peso 800), no la URW Light |
+
+> Un KPI en el ancho normal se lee **flaco** y pierde la presencia publicitaria.
+> Éste fue el error de fondo: el sistema estaba dibujado con la voz equivocada.
+
+### 2 · El subrayado es un TRAZO GRUESO CON PUNTA
+
+No es una línea de grosor parejo: un plumón real deja la marca **ancha en el
+vientre y afilada donde entra y donde sale**. Va como **área cerrada**
+(`pathTrazoGrueso`), nunca como `stroke` de grosor constante — un trazo parejo
+se lee como un `border` de CSS.
+
+### 3 · El texto claro sobre foto lleva sombra corta
+
+`SOMBRA_SOBRE_FOTO` — sin ella la tipografía flota y se despega de la imagen.
+
+### 4 · El texto funcional va en CAJA MIXTA
+
+`vs. 9,8X` · `1,09% → 2,35%` · `0–1 órdenes enviando a toda la base.`
+En versales se convierte en metadata, que es justo lo que el feed eliminó. En
+caja mixta es una nota al pie y se lee como lo que es.
+
+### 5 · Los mockups llevan CROMO REAL
+
+Un rectángulo blanco con una foto y un botón **no es un anuncio: es un
+rectángulo**. Lo que lo vuelve creíble es el cromo, y va en `src/brand/copylab/mockups.tsx`:
+
+- **`AnuncioIG`** — avatar, nombre de la marca, rótulo «Publicidad», menú de
+  tres puntos, imagen, copy y botón.
+- **`MailIOS`** — barra de estado con hora, señal, wifi y batería dibujados;
+  «‹ Todos»; remitente con avatar, «Para: Ti» y fecha; asunto; y recién ahí el
+  correo de la marca.
+
+Y se apoyan en la superficie: **perspectiva corta + DOS sombras** —una corta y
+dura que pega el borde al suelo, otra larga y blanda que da volumen—, las dos
+cayendo hacia donde la fotografía tira las suyas. Con una sola sombra genérica
+el mockup se ve pegado en Photoshop.
+
+### 6 · La fotografía es cálida y rústica
+
+Madera vieja, ladrillo, luz de tungsteno, ámbar cayendo a sombra. **No** gris
+frío ni hormigón limpio: eso devuelve la pieza al registro de presentación.
+
+### 7 · El orden en que se corrige
+
+Cuando una lámina «se ve mal» y no se sabe por qué, se revisa en este orden:
+**ancho y peso de la tipografía → grosor del trazo → sombra sobre foto →
+caja del texto funcional → cromo del mockup → temperatura de la foto.**
+En la tanda del 30-09 los seis fallos estaban en ese orden.
+

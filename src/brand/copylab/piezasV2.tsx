@@ -14,7 +14,8 @@
 // ============================================================================
 import React from "react";
 import {AbsoluteFill, Img, staticFile} from "remotion";
-import {C2, VOZ2, granoSVG, pathSubrayado, pathsFlecha} from "./sistemaV2";
+import {C2, VOZ2, SOMBRA_SOBRE_FOTO, granoSVG, pathSubrayado,
+        pathTrazoGrueso, pathsFlecha} from "./sistemaV2";
 
 /** Subrayado de marcador. Un solo trazo por debajo de la palabra que manda. */
 export const Subrayado: React.FC<{
@@ -100,14 +101,44 @@ export const Rotulo: React.FC<{
   }}>{texto}</div>
 );
 
-/** Una línea de titular. Bebas Neue Pro, caja alta, peso declarado. */
+/**
+ * Trazo grueso de plumón — el subrayado de la referencia del 30-09.
+ *
+ * Va como ÁREA, no como línea: un plumón real deja la marca ancha en el medio
+ * y afilada en las puntas. Un trazo de grosor parejo se lee como un `border`.
+ */
+export const Trazo: React.FC<{
+  x: number; y: number; ancho: number; grosor?: number; color?: string;
+  giro?: number;
+}> = ({x, y, ancho, grosor = 22, color = C2.rosa, giro = -1}) => (
+  <svg
+    width={ancho} height={grosor * 2.6}
+    style={{position: "absolute", left: x, top: y, overflow: "visible",
+            transform: `rotate(${giro}deg)`}}
+  >
+    <path d={pathTrazoGrueso(ancho, grosor * 2.6, grosor)} fill={color} />
+  </svg>
+);
+
+/**
+ * Una línea de titular.
+ *
+ * `voz` decide el ancho, y no es decoración: la referencia del 30-09 NO es
+ * condensada. Un KPI en el ancho normal se lee flaco y pierde presencia.
+ *   · `impacto` (SemiExpanded) — titulares y KPI. El de uso corriente.
+ *   · `bloque`  (Expanded ExtraBold) — cuando el número ES la pieza.
+ *   · `titular` (ancho normal) — sólo para líneas largas que deben caber.
+ */
 export const Linea: React.FC<{
   children: React.ReactNode; cuerpo: number; color?: string; peso?: number;
-}> = ({children, cuerpo, color = C2.offwhite, peso = 700}) => (
+  voz?: "impacto" | "bloque" | "titular"; sombra?: boolean; tracking?: number;
+}> = ({children, cuerpo, color = C2.offwhite, peso = 800, voz = "impacto",
+       sombra = false, tracking = 0}) => (
   <div style={{
-    fontFamily: VOZ2.titular, fontWeight: peso, fontSize: cuerpo,
-    lineHeight: 0.86, color, textTransform: "uppercase", letterSpacing: 0,
-    whiteSpace: "nowrap",
+    fontFamily: VOZ2[voz], fontWeight: voz === "titular" ? 700 : peso,
+    fontSize: cuerpo, lineHeight: 0.84, color, textTransform: "uppercase",
+    letterSpacing: tracking, whiteSpace: "nowrap",
+    textShadow: sombra ? SOMBRA_SOBRE_FOTO : undefined,
   }}>{children}</div>
 );
 
@@ -120,7 +151,7 @@ export const Mano: React.FC<{
        interlineado = 1.12, children}) => (
   <div style={{
     position: "absolute", left: x, top: y,
-    fontFamily: VOZ2.mano, fontWeight: 700, fontSize: cuerpo, color,
+    fontFamily: VOZ2.mano, fontWeight: 800, fontSize: cuerpo, color,
     lineHeight: interlineado, transform: `rotate(${giro}deg)`,
     textTransform: "uppercase", textAlign: alineacion,
   }}>{children}</div>
@@ -146,12 +177,14 @@ export const FondoNegro: React.FC<{children: React.ReactNode}> = ({children}) =>
  * quitarles alto para llegar a 4:5).
  */
 export const Foto: React.FC<{
-  src: string; foco?: string; oscurecer?: number;
-}> = ({src, foco = "center", oscurecer = 0}) => (
+  src: string; foco?: string; oscurecer?: number; zoom?: number;
+}> = ({src, foco = "center", oscurecer = 0, zoom = 1}) => (
   <>
     <Img src={staticFile(src)}
          style={{position: "absolute", inset: 0, width: "100%", height: "100%",
-                 objectFit: "cover", objectPosition: foco}} />
+                 objectFit: "cover", objectPosition: foco,
+                 transform: zoom === 1 ? undefined : `scale(${zoom})`,
+                 transformOrigin: foco}} />
     {oscurecer > 0 && (
       <AbsoluteFill style={{background: `rgba(11,11,11,${oscurecer})`}} />
     )}

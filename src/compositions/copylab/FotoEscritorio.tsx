@@ -23,7 +23,7 @@
 import React from "react";
 import {AbsoluteFill} from "remotion";
 import {C2, asegurarFuentesV2} from "../../brand/copylab/sistemaV2";
-import {Foto, Linea, Subrayado} from "../../brand/copylab/piezasV2";
+import {Foto, Linea} from "../../brand/copylab/piezasV2";
 
 export const FotoEscritorio: React.FC = () => {
   asegurarFuentesV2();
@@ -38,7 +38,6 @@ export const FotoEscritorio: React.FC = () => {
         <Linea cuerpo={128} color={C2.negro}>LAS IDEAS</Linea>
         <Linea cuerpo={128} color={C2.rosa}>DIRIGEN.</Linea>
       </div>
-      <Subrayado x={76} y={1120} ancho={366} alto={34} grosor={12} />
 
 
     </AbsoluteFill>

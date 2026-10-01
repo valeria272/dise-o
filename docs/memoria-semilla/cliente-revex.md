@@ -1,6 +1,6 @@
 ---
 name: cliente-revex
-description: "REVEX — cerebro del cliente: 37 reglas firmes, última cosecha 2026-10-01. Generado desde clients/revex/APRENDIZAJES.md; leerlo antes de diseñar para revex"
+description: "REVEX — cerebro del cliente: 38 reglas firmes, última cosecha 2026-10-01. Generado desde clients/revex/APRENDIZAJES.md; leerlo antes de diseñar para revex"
 metadata:
   type: project
 ---
@@ -25,13 +25,13 @@ Criterio: **Paulina Bustamante** (diseñadora de la agencia para Grupo Revex) ·
 - **R-23** · Textos en pantalla y CTA literales del brief; no se inventan — _manual, tono y copy_ · _QA 29-09: se sacó «CERÁMICA DE MURO», que no estaba en el brief de octubre_ · ✔×2
 - **R-27** ⚠️ revisada 2026-09-30 (el pliegue se derogó, ver R-33) · Ficha de producto: muestra con borde blanco + banderola `#D92028` con pliegue, categoría en regular + nombre en bold; medida con flechas; specs en cápsula outline — _manual; 61 estáticas de Paulina vistas una por una, 24-08_ · _Paulina 29-09, P06: «faltó la muestra del producto»_ · ✔×2
 - **R-32** ⚠️ revisada 2026-09-30 (la pauta de producto de octubre fue 1:1, ver E-10) · Formato: feed 4:5 a 2250 × 2812 y story 2250 × 4000 — _Serena 27-08; Paulina entrega sus piezas de julio a 2250 × 2813_ · ✔×2
+- **R-33** · Banderola de producto **sin pliegue** (el triángulo) — _Paulina 29-09, P01A: «eliminar triangulo. esto va para todas las otras graficas que lo tengan»; también en P06 y P07A_ · _Paulina resolvió el comentario el 30-09 tras ver la ronda 2_ · ✔×2
+- **R-34** · Detrás del texto va un **degradado muy suave**, nunca franjas o «huinchas» de velo cortadas — _Paulina 29-09, P01A feed: «hay zonas con huinchas negras con transparencia que no deben ir, siempre debe ir un degradado muy suave detras del texto para que destaque pero nunca ese tipo de cuadro cortado»; P01A story: «lo mismo… con el cuadro negro cortado»_ · _Paulina resolvió el comentario el 30-09 tras ver la ronda 2_ · ✔×2
+- **R-35** · La story tiene **su propia escala**: no se copia la estructura del post (en octubre, ×1,35) — _Paulina 29-09, P03A story: «toda esta estructura debe adaptarse al tamaño de la storie. no usar exactamente lo mismo del post a la storie porque se ve muy pequeño»_ · _Paulina resolvió el comentario el 30-09 tras ver la ronda 2_ · ✔×2
+- **R-36** · El texto de la story, más grande y en 2 líneas como máximo, **sin una palabra sola en la segunda** — _Paulina 29-09, P01A story: «texto demasiado pequeño aumenta los pt de texto y dejalo en 2 lineas. recuerda que no deben quedar una palabra sola en la segunda linea»_ · _Paulina resolvió el comentario el 30-09 tras ver la ronda 2_ · ✔×2
 - **R-06** · Titular en 2 líneas como máximo; si no cabe, se acorta el texto — _Paulina 25-08, concurso_ · ✔×1
 - **R-07** · Jerarquía real: destacar el enunciado y el CTA — _Paulina 25-08, concurso: «usar jerarquia de textos para destacar mas el enunciado y el CTA»_ · ✔×1
 - **R-08** · Aire bajo el logo: el titular no se pega al bloque rojo — _Paulina 25-08, rvx_sep_outlet_feed: «evitar poner texto muy cerca del logo»_ · ✔×1
-- **R-09** · En story el bloque de texto va centrado o en el segundo cuarto (y ≈ 480–960 sobre 1920), para que no lo tape el copy — _Paulina 25-08, rvx_sep_temuco_story; el estudio la declaró regla de ambas marcas en `feedback/2026-08-25-ronda2.md`_ · ✔×1
-- **R-10** · Desenfoque completo o ninguno: nada de bandas ni cuadros desenfocados — _Paulina 25-08, rvx_sep_temuco_feed: «evita usar cuadros desenfocados. si se necesita desenfocar la imagen del fondo se debe desenfocar completa»_ · ✔×1
-- **R-13** · Los cuatro rojos no se intercambian: `#D3152B` (logotipo) y `#D31A2B` (cuadro) no son el mismo — _medición 26-08 sobre 82 referencias_ · ✔×1
-- **R-16** · Un dato duro y un botón; nunca una escalera de cápsulas (dirección + botón negro + horario) — _manual, error de la v1 de septiembre_ · ✔×1
 
 ## Lo que ya costó rondas
 - **X-01** · Outlet como afiche rojo plano con caja blanca gigante y banda amarilla pegada; sucursales con cápsula de dirección + botón negro + otra línea — _septiembre v1, `out/revex/sep/`_

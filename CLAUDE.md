@@ -213,6 +213,18 @@ Nueva Urbe y Traverso **ya tienen manual** (medido con `scripts/doctor.sh` el
 
 > **PENDIENTE (2026-07-19):** Hacer **UGC real con Higgsfield**. Higgsfield es conector de claude.ai que quedó APAGADO — la usuaria lo reconecta (`/mcp reconnect all` o claude.ai → Connectors) y abre **chat nuevo** para que cargue. Al iniciar, verificar con `ToolSearch "+higgsfield"`; si aparece, revisar el aparato de UGC y generar. Checklist y estado en la memoria `higgsfield-ugc-next.md`. El reel de bienvenida **Tierra Calma quedó terminado** (`~/Downloads/tierra-calma-bienvenida.mp4`, `src/compositions/TierraCalmaReel.tsx`).
 
+## ⛔ Vercel: este repo NUNCA se conecta por Git
+
+Ningún proyecto de Vercel se engancha a este repo (`valeria272/dise-o`), ni por el
+dashboard («Import Git Repository») ni con `vercel git connect`. Con 40–60 commits al día
+del equipo, cada commit reconstruye cada proyecto enganchado: el 30-09-2026 eso costó
+**USD 100 extra** (33.582 minutos de build, todos fallidos) con solo dos páginas
+conectadas (mascenter-terrenos y algarrobal-mascenter). El presupuesto de Vercel es
+USD 20/mes, el plan y nada más.
+
+Una página estática de `out/` se publica **a mano**, desde su carpeta y cuando se decide:
+`npx vercel deploy --prod --yes`. Sin link Git.
+
 ## Idioma — español de Chile (regla innegociable)
 
 Todo lo que este proyecto escriba —correos, mensajes de Slack, copys de anuncios,

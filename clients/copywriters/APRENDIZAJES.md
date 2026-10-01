@@ -9,6 +9,13 @@
 > Que sea la cuenta de la casa no la hace un caso especial: el criterio del feed propio
 > no cruza a ningún cliente. Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
+> ⭐⭐ **Desde el 30-09-2026 la referencia de EJECUCIÓN es la lámina**
+> `creative-system/SISTEMA-VISUAL-2609/reference/CARRUSEL_CASO_001_LEY_30-09.png` («Es así como debes
+> diseñar. Respétalo tal cual. Toma esto como tu base, como ley»). El sistema sigue siendo el del
+> 29-09; la lámina manda el CÓMO: ancho tipográfico, grosor de trazo, sombra, caja del texto
+> funcional, cromo del mockup y temperatura de la foto. Las reglas destiladas están en **R-28 a R-40**
+> y el orden de corrección en **R-34**; el desarrollo largo, en `DIRECCION-DE-ARTE-RRSS.md` §13.
+>
 > ⭐ **Desde el 29-09-2026 manda `creative-system/SISTEMA-VISUAL-2609/LEEME.md`.** Reemplaza
 > al pack `MASTER/` (24-09-2026) y al Creative OS v1.0 (03-09-2026) — los dos quedan como
 > registro histórico, no como fuente vigente. Si alguno los contradice, se corrige el otro
@@ -19,7 +26,7 @@
 > `gcl-agent/universo/CANON_LOCK.md`. Léelo ahí antes de tocar cualquier cosa de G.
 >
 > Criterio: **Valeria Traverso** · Aprueba: **Valeria Traverso (aprobación final de dirección de arte, `MASTER/13`)**
-> Última cosecha: **2026-10-01** · Cosechas: **4**
+> Última cosecha: **2026-10-01** · Cosechas: **5**
 
 ## 1. Quién es el cliente
 
@@ -83,6 +90,20 @@ con humor de oficio y autoironía de agencia.
 - **R-26** · ⛔ El subrayado a mano va bajo la línea de base, nunca cruzando la letra: cruzándola se lee como tachado e invierte el sentido de la frase. Al mover un titular hay que recalcular el subrayado, nunca arrastrarlo — _error real cometido el 29-09 en dos láminas del primer carrusel del sistema nuevo («CRITERIO.» y «reales.» salieron tachadas por error)_ · ✔×1
 - **R-27** · El grano de textura se resuelve por código (`granoSVG` en `sistemaV2.ts`), nunca con un JPG de textura: así no depende de un asset que alguien mueva y escala con el lienzo — _`SISTEMA-VISUAL-2609/LEEME.md` §3, 29-09-2026_ · ✔×1
 
+- **R-28** · ⭐ La voz tipográfica **NO es condensada**. La lámina ley del 30-09 se compone con Bebas Neue Pro **SemiExpanded / Expanded ExtraBold**: `impacto` (SemiExp ExtraBold) para titulares y KPI, `bloque` (Expanded ExtraBold) cuando el número ES la pieza, `titular` (ancho normal, 700) sólo para líneas largas que tienen que caber. Un KPI en ancho normal se lee flaco y pierde presencia publicitaria. La mano es **Balloon D Extra Bold**, no la URW Light — _Valeria, lámina `CARRUSEL_CASO_001_LEY_30-09.png`, 30-09-2026; `sistemaV2.ts` → `VOZ2`_ · ✔×1 · **cierra la pregunta abierta «¿qué familia titula de verdad?»**
+- **R-29** · El subrayado va como **ÁREA, no como línea**: ancho en el vientre, afilado en las puntas (`pathTrazoGrueso` + `<Trazo>` en `piezasV2.tsx`). Un trazo de grosor parejo se lee como un `border` de CSS, no como plumón — _lámina ley 30-09_ · ✔×1
+- **R-30** · Texto claro sobre fotografía lleva **sombra corta** (`SOMBRA_SOBRE_FOTO`). Sin ella flota encima de la imagen en vez de estar dentro de la escena — _lámina ley 30-09_ · ✔×1
+- **R-31** · El **texto funcional** —comparaciones, notas al pie, unidades: «vs. 9,8X», «0–1 órdenes enviando a toda la base»— va en **caja mixta**. En versales se convierte en metadata, que es justo lo que el feed eliminó. (Ojo: la **mano** sí es caja alta, R-07 y la grilla del board) — _lámina ley 30-09_ · ✔×1
+- **R-32** · Un mockup necesita **cromo** o no es un mockup: un rectángulo blanco con una foto y un botón es un rectángulo. `src/brand/copylab/mockups.tsx` → `AnuncioIG` (avatar, marca, «Publicidad», «•••») y `MailIOS` (barra de estado con hora, señal, wifi y batería **dibujadas**, «‹ Todos», remitente con avatar y fecha). Y se **apoya**: perspectiva corta + **dos** sombras —una corta y dura que pega el borde al suelo, otra larga y blanda que da volumen—, grano en `multiply` y caída de luz. Una sola sombra genérica lo deja flotando — _Valeria, 30-09 («mockups básicos, mal hechos»)_ · ✔×2
+- **R-33** · La geometría de un mockup sobre foto **se mide, no se estima**: máscara de brillo + componente conexa mayor (`scipy.ndimage.label`) mapeada por la transformación de `objectFit: cover`. La pantalla del teléfono es un **trapecio** (556 px arriba vs 609 abajo) → `perspective(1400px) rotateX(10deg)`. Poner un rectángulo plano sobre un plano en perspectiva es el error que Valeria marcó **dos veces seguidas** — _30-09_ · ✔×2
+- **R-34** · ⭐⭐ **El orden en que se corrige** una lámina que se ve mal y no se sabe por qué: **ancho y peso de la tipografía → grosor del trazo → sombra sobre foto → caja del texto funcional → cromo del mockup → temperatura de la foto**. Los seis fallos de la ronda del 30-09 estaban exactamente en ese orden, y el primero era el de fondo — _`DIRECCION-DE-ARTE-RRSS.md` §13, 30-09_ · ✔×1
+- **R-35** · Temperatura de la foto: madera vieja, ladrillo, luz de tungsteno. El **gris frío y el hormigón limpio** devuelven la pieza al registro de presentación corporativa — _lámina ley 30-09_ · ✔×1
+- **R-36** · Una cifra se sangra fuera del lienzo por **UN lado solamente**. Sangrada por los dos, el crop se comió el «1» y «19,2X» se leyó «9,2X»: una cifra ilegible deja de ser un dato — _error real, 30-09_ · ✔×1
+- **R-37** · Compuerta nueva `qa/borde.py`: caza texto cortado o pegado al borde del lienzo. Calibrada contra control (pasa las 15 piezas reales; caza 7 violaciones inyectadas en 3 piezas distintas). ⚠️ Tanto ésta como `qa/motor.py` corren con el **venv compartido** `/Users/Vale/copylab-venv/bin/python3`: con el `python3` del sistema falta scipy y las 7 reglas del motor degradan a warning **en silencio** — _30-09_ · ✔×1
+- **R-38** · El feed **no se llena de gráficas Copywriters**: se muestra **qué hace Copywriters** con una dirección de arte reconocible. Las piezas basadas en frase son **1 de 12**, no 8. Los pilares son contenido real: trabajo de clientes, producto, equipo, backstage, pantallas IA, resultados, cliente nuevo, G y tendencias concretas — _Valeria, 30-09_ · ✔×1
+- **R-39** · ⛔ Fuera del feed: enumeraciones (`01/06`, `VOL. 027`, «02 — EL PRINCIPIO»), microtexto flotante y `COPYWRITERS.CL` permanente. Una pieza = una idea, entendida en 1–2 segundos — _brief `DIRECCIÓN DE ARTE RRSS`, 30-09_ · ✔×2
+- **R-40** · Balloon es **gesto**, no una segunda capa de texto permanente. Puede cruzar una foto, ser el titular, rodear un KPI, salirse del lienzo o integrarse con Bebas. Tope escrito: «frase rosada + subrayado» en máximo **2 de cada 10** piezas — estaba en 7 de 14 — _Valeria, 30-09 («si siempre es frase rosada + subrayado, en diez posts ya tendremos otra plantilla»)_ · ✔×1
+
 ## 5. Excepciones
 
 - **E-01** · Pieza 100 % rosa: legítima cuando el concepto la pide (TYPE LAB), una cada 12–15; ahí no hay intervención a mano (sobre rosa no existe). `reglas.yaml` la exime por nombre (`*typelab*`, `*rosa-total*`) — _brief v1.0 §3, 03-09_
@@ -101,6 +122,8 @@ con humor de oficio y autoironía de agencia.
 - **A-03** · «LA GOMA», primera pieza del pack nuevo: `ESCRIBIMOS CON LA GOMA.` + *(la de borrar)* + mono «LO QUE SACAMOS / TAMBIÉN ES TRABAJO.»; en el feed, versión **macro sin cara** — _`CL-Goma`, 24-09_
 - **A-04** · Copies elegidos por Valeria: «Nadie lee el diario. Tú acabas de leer esto.» · «Lo anotamos.» · «Este texto tenía tres párrafos.» · «mejor no.» · «Mejor esto que otro "somos líderes".» · «Amén.» — _`Recompuesta.tsx`, 24-09_
 - **A-05** · El texto dentro del objeto fotografiado (diario, hoja arrugada, hoja rosa en la impresora) funcionó mejor que el texto encima — _grilla de 12 posts, 3er feedback 24-09_
+- **A-06** · **CASO 001 — carrusel de 6 láminas: APROBADO** el 01-10-2026, en la versión que replica la lámina ley (`src/compositions/copylab/Caso001.tsx`, `out/copylab/caso001/entrega/`). ⚠️ Aprobado como **diseño**; sigue **NO PUBLICABLE** hasta verificar las cifras y tener la autorización del cliente (R-10) — _Valeria, 01-10-2026_
+- **A-07** · «UN CAMBIO CHICO.» / Balloon «23 VERSIONES DESPUÉS.» (`PostG.tsx`): primera pieza hecha con **material real** del estudio —un frame del CAP.02 que ya estaba renderizado— y el rosa no se agregó, ya estaba en la escena. Así se trabaja el pilar G — _01-10-2026_
 
 ## 7. Lo que se rechaza
 
@@ -115,16 +138,17 @@ con humor de oficio y autoironía de agencia.
 - **X-09** · La Goma con cara: la cara pesaba más que la goma. Mystic pone lápiz rosado en vez de goma y pinta uñas → Seedream 5 Pro, o se edita la buena con Nano Banana Pro — _`CL-Goma`, 24-09, 4 rondas_
 - **X-10** · Estética Claude/SaaS: cards redondeadas, glassmorphism, dashboards, cerebros IA, robots, circuitos, degradados tech — _`MASTER/00` y `/08`, 24-09_
 - **X-11** · Remate rosa sobre gris medio (ilegible a tamaño feed); cifra de PROOF desbordada 15 px; lámina de carrusel que se salía (se arregla **reescribiendo el copy**, no bajando el cuerpo) — _lote v1, 03-09_
+- **X-12** · Mockups básicos: rectángulo plano sobre un teléfono en perspectiva, tarjetas pegadas sin sombra ni cromo, titular que se sale de la hoja impresa, textos descuadrados e ilegibles. «Errores que NO pueden pasar» — _Valeria, 30-09, **dos rondas seguidas**_
+- **X-13** · Llenar el feed con piezas basadas en frases: «estamos volviendo al sistema anterior». El objetivo no es la gráfica Copywriters, es el trabajo — _Valeria, 30-09_
+- **X-14** · Tipografía condensada para KPI y titulares del sistema nuevo: se lee flaca y la pieza pierde presencia publicitaria — _Valeria, lámina ley 30-09_
 
 ## 8. Preguntas abiertas
 
-- **¿Qué familia titula de verdad?** (Valeria) `MASTER/03` cerró Archivo Narrow Bold; la ronda
-  tipográfica del mismo día pasó a Archivo variable 900; `MASTER/13` pide una grotesk condensada
-  de Adobe (recomendación del estudio: Trade Gothic Next Condensed Heavy; falta Acumin Pro Extra
-  Condensed) y las Adobe no se ven en Chrome si no están activadas en el sistema. El 25-09
-  (commit 66b38a1) `marca.json` pasó a declarar `titular: Archivo Narrow` y dejó el Archivo
-  variable como `impacto_legado` — apunta a que se resolvió en Narrow, pero el commit no trae
-  una cita de Valeria confirmándolo como cierre (sólo cambió el archivo de config). Confirmar.
+- ✅ **CERRADA 30-09-2026 — ¿qué familia titula?** **Bebas Neue Pro**, y lo que faltaba no era
+  la familia sino el **ancho**: SemiExpanded / Expanded ExtraBold (ver **R-28**). Archivo Narrow y
+  el Archivo variable quedan como legado del sistema v1 (E-02/E-08). Cuerpo de texto:
+  **Neue Haas Grotesk Text Pro**, elegido por Valeria — «Dharma Type» del board es la **fundición**
+  que dibuja Bebas Neue, no una familia de cuerpo.
 - **Escritura real del equipo** (plumón negro y rosado, digitalizada): mientras no exista, la manuscrita es placeholder (Valeria / equipo).
 - **La agencia no tiene fotografía propia versionada.** PEOPLE y buena parte de WORK dependen de eso; el post 10 se fotografía al equipo real (Valeria).
 - Post 05 «2,29 MM»: **dato sin verificar**. No se publica sin fuente (Valeria).
@@ -133,11 +157,64 @@ con humor de oficio y autoironía de agencia.
 - Posts 03, 05, 10, 14 y 15 por rehacer; el 03 lleva afiches en inglés que hay que cambiar en la final.
 - Copy del reel SEÑAL («NO ES TU PRODUCTO. / Es cómo lo dices.») lo propuso el estudio, no un brief: ¿queda? (Valeria).
 - Migrar `AGENTE SOCIAL MEDIA` fuera de `GclPost` (deprecado): decisión pendiente de Valeria.
-- **Las tres voces que pide el board del Sistema Visual no están activadas en Adobe CC** (Bebas Neue Pro, URW Balloon, y una todavía sin nombre real: «Dharma Type» es la fundición que dibuja Bebas Neue, no una familia de cuerpo de texto). Hoy corren sustitutos: Bebas Neue (fiel, mismo autor), Caveat (placeholder, no es la letra) e Inter (provisional). Falta activar las fuentes reales y decidir el nombre que reemplaza a «Dharma Type» — _`SISTEMA-VISUAL-2609/LEEME.md` §2 y §6, 29-09-2026 (Valeria)_.
-- **El tope de 18 % de color fuera de sistema en `reglas.yaml` no se recalibró contra la paleta nueva.** Se midió inyectando un azul SaaS sobre las piezas del lote v1 (paleta vieja); hay que repetir esa medición con la paleta del 29-09 antes de confiar en la compuerta — _`SISTEMA-VISUAL-2609/LEEME.md` §6, 29-09-2026_.
+- ✅ **CERRADA 30-09-2026 — las voces del board están activadas.** Valeria las activó en Adobe CC
+  (la caché pasó de 167 a 219 archivos). Verificadas leyendo las tablas `name` de los `.otf`
+  ocultos: Bebas Neue Pro con 40 cortes, **Balloon URW** (Adobe la nombra así, NO «URW Balloon»)
+  + **Balloon D Extra Bold** / Outline P / Drop Shadow D, y Neue Haas Grotesk Text Pro. Los cuatro
+  cortes que usa el sistema cubren el español completo. ⚠️ Los `.otf` van a `.gitignore`: la
+  licencia cubre el render local, no la redistribución.
+- ✅ **CERRADA 30-09-2026 — el tope de color fuera de sistema se recalibró: 18 % → 55 %**, con la
+  medición escrita en el `porque` de la regla en `reglas.yaml` (12 de 15 piezas en 0,0 %; las de
+  vino en 26,8 % y 40,2 %; G en 39,7 %; el control con azul SaaS `#5B6CFF` inyectado en 76,2 %).
+  El 18 % se había calibrado sobre piezas tipográficas y con fotografía dominante bloqueaba el
+  tinto profundo y el neón de G, que son canon.
 - ¿Se archiva el sistema viejo (`tokens.json`, `sistema.ts`, piezas v1) o se deja vivo indefinidamente junto al nuevo? — _pendiente de Valeria_.
 
+### Bloqueado esperando a Valeria (levantado 4 veces, sin respuesta)
+
+- ⛔ **Las cifras del CASO 001** (19,2X ROAS · +116 % CTR · 47–52 % apertura · 4–11 órdenes) salen
+  del board y **no están verificadas contra ninguna cuenta**. Y la marca del caso es **Santa Gota**,
+  cliente real. El carrusel está aprobado como diseño y **no sale** sin los números confirmados y
+  sin autorización del cliente (R-10).
+- ⛔ **Qué clientes se pueden mostrar públicamente en el feed propio.** Es una decisión comercial,
+  no de diseño: el material ya existe en el repo (`out/santagota` 74 archivos, `out/ebema` 93,
+  `out/selfie` 25, `out/traverso` 18, `out/mascenter` 6). Con la lista salen 3 piezas el mismo día.
+- ⛔ **Fotografía real del equipo / cultura / backstage.** Destraba **4 de los 12 pilares** —los que
+  le dan el lado humano al feed— y **no se genera: se fotografía**. Una tarde con iPhone y flash
+  (reunión, rodaje, almuerzo, monitor de cámara, storyboards sobre la mesa) alcanza.
+- ⛔ **Pantallas IA**: hacen falta capturas **reales** de Claude Code / VS Code trabajando. La
+  composición la pone la dirección de arte, pero la captura tiene que ser de verdad — inventar una
+  pantalla es inventar el trabajo.
+- **Las otras piezas no se rehicieron con la ejecución de la lámina ley.** `CarruselSenal.tsx`,
+  `FotoAceite.tsx`, `FotoEscritorio.tsx`, `FotoDiario.tsx` y `PostG.tsx` siguen con la voz
+  condensada, el subrayado fino y las notas en versales (R-28 a R-31). Sólo `Caso001.tsx` se
+  reescribió. Pendiente decidir si se rehacen o se jubilan, dado que además son piezas de frase (R-38).
+
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude (Opus 5) · sesión de Valeria Traverso · **CASO 001 aprobado**
+
+La ronda más cara del sistema nuevo: **cuatro rondas de feedback duro sobre ejecución**, no sobre
+concepto. El concepto estaba aprobado desde el 30-09 y lo que fallaba era el oficio.
+
+- ⭐⭐ Lámina nueva como **ley de ejecución**: `reference/CARRUSEL_CASO_001_LEY_30-09.png`
+  («Es así como debes diseñar. Respétalo tal cual»). Se destiló en **R-28 a R-40** y en
+  `DIRECCION-DE-ARTE-RRSS.md` §13; el resumen operativo es **R-34, el orden de corrección**.
+- Las seis diferencias medidas entre mi versión y la suya, en ese orden: **ancho tipográfico**
+  (R-28, el error de fondo), **grosor del trazo** (R-29), **sombra sobre foto** (R-30), **caja del
+  texto funcional** (R-31), **cromo del mockup** (R-32/R-33) y **temperatura de la foto** (R-35).
+- Código nuevo: `src/brand/copylab/mockups.tsx` (`AnuncioIG` y `MailIOS` con cromo de verdad),
+  `Trazo` + props `voz`/`sombra`/`tracking` en `piezasV2.tsx`, `pathTrazoGrueso` y
+  `SOMBRA_SOBRE_FOTO` en `sistemaV2.ts`, y la compuerta **`qa/borde.py`** (R-37).
+- Nuevos **X-12** (mockups básicos, dos rondas seguidas), **X-13** (feed de frases) y **X-14**
+  (condensada para KPI). Nuevas **A-06** (CASO 001 aprobado como diseño) y **A-07** (el pilar G con
+  material real).
+- **Tres preguntas abiertas se cerraron**: la familia que titula, las voces del board activadas en
+  Adobe, y el tope de color recalibrado a 55 % contra control. En §8 quedan sólo las que dependen
+  de Valeria — y cuatro de ellas son **bloqueos**, no dudas.
+- La disciplina que explica la ronda: **medir en vez de estimar** (tablas de fuentes, el trapecio de
+  la pantalla, los bordes de la hoja, la distribución de paleta), cada medición contra un control.
+  Y la compuerta de borde existe para que esta clase de error no dependa de acordarse de mirar.
 
 ### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f0c930c, f6df90e)
 - sin aprendizajes nuevos: los dos commits que marcó `pendientes` son, otra vez, los mismos que ya se cosecharon con otros hashes por un rebase — `f0c930c` es el respaldo de Valeria Traverso que ya se destiló arriba (la llegada del sistema v2: `marca.json`/`reglas.yaml` a v2, `sistemaV2.ts`, `CarruselSenal.tsx`) y `f6df90e` es el commit raíz, con el mismo contenido de Fiestas Patrias del 18 (dieciocho-2026/*) ya descartado como «sin corrección ni feedback citable». No hay nada nuevo que agregar.

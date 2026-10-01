@@ -1,6 +1,6 @@
 ---
 name: cliente-copywriters
-description: "COPYWRITERS — cerebro del cliente: 27 reglas firmes, última cosecha 2026-10-01. Generado desde clients/copywriters/APRENDIZAJES.md; leerlo antes de diseñar para copywriters"
+description: "COPYWRITERS — cerebro del cliente: 40 reglas firmes, última cosecha 2026-10-01. Generado desde clients/copywriters/APRENDIZAJES.md; leerlo antes de diseñar para copywriters"
 metadata:
   type: project
 ---
@@ -21,6 +21,9 @@ Criterio: **Valeria Traverso** · Aprueba: **Valeria Traverso (aprobación final
 - **R-09** · Una anomalía fuerte por pieza; 1–2 intervenciones, cada una con razón semántica; del kit gráfico, 1 gesto por pieza (2 como excepción) — _Creative OS §5 y §8, 03-09; `MASTER/13`, 24-09_ · ✔×2
 - **R-11** · Recreaciones con IA sí, pero **declaradas** en el arte («Recreación publicitaria»); nunca se hacen pasar por hallazgo documental — _`MASTER/09`, feedback del director 24-09 (HERO2 con sello «RECREACIÓN · NO SE PUBLICA»)_ · ✔×2
 - **R-18** · Curaduría de grilla: máximo 2 piezas tipográficas seguidas; ningún mecanismo dos veces seguido; cada 3–4 posts, gente, trabajo o proceso real — _Creative OS §12 (03-09); `MASTER/01` y `/04`, 24-09_ · ✔×2
+- **R-32** · Un mockup necesita **cromo** o no es un mockup: un rectángulo blanco con una foto y un botón es un rectángulo. `src/brand/copylab/mockups.tsx` → `AnuncioIG` (avatar, marca, «Publicidad», «•••») y `MailIOS` (barra de estado con hora, señal, wifi y batería **dibujadas**, «‹ Todos», remitente con avatar y fecha). Y se **apoya**: perspectiva corta + **dos** sombras —una corta y dura que pega el borde al suelo, otra larga y blanda que da volumen—, grano en `multiply` y caída de luz. Una sola sombra genérica lo deja flotando — _Valeria, 30-09 («mockups básicos, mal hechos»)_ · ✔×2
+- **R-33** · La geometría de un mockup sobre foto **se mide, no se estima**: máscara de brillo + componente conexa mayor (`scipy.ndimage.label`) mapeada por la transformación de `objectFit: cover`. La pantalla del teléfono es un **trapecio** (556 px arriba vs 609 abajo) → `perspective(1400px) rotateX(10deg)`. Poner un rectángulo plano sobre un plano en perspectiva es el error que Valeria marcó **dos veces seguidas** — _30-09_ · ✔×2
+- **R-39** · ⛔ Fuera del feed: enumeraciones (`01/06`, `VOL. 027`, «02 — EL PRINCIPIO»), microtexto flotante y `COPYWRITERS.CL` permanente. Una pieza = una idea, entendida en 1–2 segundos — _brief `DIRECCIÓN DE ARTE RRSS`, 30-09_ · ✔×2
 - **R-03** · Paleta cerrada de 6 colores; rosa `#FF2D8B`, coral `#FF6B3D`. Un color nuevo dominante necesita aprobación explícita — _Valeria, `MASTER/11`, 24-09 (cierra la duda #FF2D8D/#FF2D8B)_ · ✔×1 · ⚠️ revisada 2026-09-30: la paleta cambió entera con el Sistema Visual nuevo — ver **R-24**. Los valores de esta entrada quedan como `colores_legado_no_usar` en `marca.json`, vigentes sólo en piezas ya entregadas (ver E-02).
 - **R-05** · Titulares con la voz condensada y pesada; «una palabra manda, el resto acompaña». `marca.json` fijó el rol **`titular` en Archivo Narrow** (wght 400–700) el 25-09; el Archivo variable de la ronda del 24-09 queda como `impacto_legado` — _`marca.json`, commit 66b38a1, 25-09-2026; coincide con el manual del proyecto (`CLAUDE.md` raíz: «Archivo Narrow (titulares)»)_ · ✔×1 · ⚠️ revisada 2026-09-26 (ver §8: falta la cita explícita de Valeria confirmándolo como cierre definitivo, no sólo como valor de config)
 - **R-07** · La escritura manual NO es voz: sólo intervención excepcional sobre foto, idealmente trazada a mano de verdad. Nada de manuscrita falsa como sistema — _Valeria, `MASTER/03`, 24-09_ · ✔×1
@@ -29,9 +32,6 @@ Criterio: **Valeria Traverso** · Aprueba: **Valeria Traverso (aprobación final
 - **R-14** · La imagen dice A, el copy dice B, la cabeza completa C. Si el copy describe la imagen → FAIL — _7º feedback, 24-09_ · ✔×1
 - **R-15** · Copy en pieza corto (2–9 palabras el hook); la explicación va al caption. Antes de diseñar se proponen 10 copies por pieza en territorios distintos y Valeria elige — _`MASTER/07`; 7º feedback 24-09 (`creative-system/FEED-12/COPY-60.md`)_ · ✔×1
 - **R-16** · Antes de componer se decide **qué manda** (imagen, texto, objeto, dato o intervención: uno solo) — _8º feedback, 24-09 (`Recompuesta.tsx`)_ · ✔×1
-- **R-17** · El diseño muchas veces vive **dentro** del mundo fotografiado (diario, hoja, etiqueta, letrero): ¿dónde vive la idea? → ¿qué soporte la vuelve real? → recién ahí la imagen. Si la IA escribe el texto en el objeto, la ortografía se revisa a mano — _`MASTER/13`; 3er feedback 24-09 (`Posts12.tsx`)_ · ✔×1
-- **R-19** · En metáforas visuales la primera queda descartada: mínimo 5 rutas, se tachan las obvias — _Creative OS v1.1 §9, 03-09_ · ✔×1
-- **R-20** · Zonas seguras: en 9:16 el margen derecho de la marca es **155 px** (Meta ocupa 115); 4:5 deja 135 px abajo — _error del cover «0:14», 03-09; `reglas.yaml`_ · ✔×1
 
 ## Lo que ya costó rondas
 - **X-01** · La misma fórmula en serie: condensada + remate serif rosa + fondo negro (7 de 9 piezas) — _lote v1, 03-09; «no es de diseño, es de amplitud creativa»; costó la capa v1.1_
@@ -45,3 +45,6 @@ Criterio: **Valeria Traverso** · Aprueba: **Valeria Traverso (aprobación final
 - **X-09** · La Goma con cara: la cara pesaba más que la goma. Mystic pone lápiz rosado en vez de goma y pinta uñas → Seedream 5 Pro, o se edita la buena con Nano Banana Pro — _`CL-Goma`, 24-09, 4 rondas_
 - **X-10** · Estética Claude/SaaS: cards redondeadas, glassmorphism, dashboards, cerebros IA, robots, circuitos, degradados tech — _`MASTER/00` y `/08`, 24-09_
 - **X-11** · Remate rosa sobre gris medio (ilegible a tamaño feed); cifra de PROOF desbordada 15 px; lámina de carrusel que se salía (se arregla **reescribiendo el copy**, no bajando el cuerpo) — _lote v1, 03-09_
+- **X-12** · Mockups básicos: rectángulo plano sobre un teléfono en perspectiva, tarjetas pegadas sin sombra ni cromo, titular que se sale de la hoja impresa, textos descuadrados e ilegibles. «Errores que NO pueden pasar» — _Valeria, 30-09, **dos rondas seguidas**_
+- **X-13** · Llenar el feed con piezas basadas en frases: «estamos volviendo al sistema anterior». El objetivo no es la gráfica Copywriters, es el trabajo — _Valeria, 30-09_
+- **X-14** · Tipografía condensada para KPI y titulares del sistema nuevo: se lee flaca y la pieza pierde presencia publicitaria — _Valeria, lámina ley 30-09_

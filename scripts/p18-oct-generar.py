@@ -367,6 +367,16 @@ ESCENAS = {
                    "sin lamparas grandes, sin nada llamativo, para poner texto encima. Formato vertical "
                    "4:5. Sin personas, sin globos, sin letreros."),
     },
+    # La tirada b devolvió el mismo encuadre. Lo que sí resulta (como en f09-s1 y st23-x) es
+    # EXTENDER hacia arriba: a 9:16 con más techo, y el 4:5 se recorta más arriba.
+    "f20-cumplex": {
+        "motor": "pro", "aspecto": "story", "refs": ["@f20-cumple"],
+        "prompt": ("Extiende la @img1 a formato vertical 9:16 agregando SOLO techo arriba. La escena "
+                   "queda IDENTICA: la misma torta blanca de dos pisos con flores y velas, la misma mesa "
+                   "con platos dorados y copas de colores, el mismo salon con ventanales, sin cambiar "
+                   "nada. Arriba se ve mas techo negro del salon con las mismas guirnaldas de luces "
+                   "calidas, tranquilo y oscuro, sin lamparas nuevas. Sin personas."),
+    },
 }
 
 

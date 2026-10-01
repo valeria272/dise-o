@@ -1628,7 +1628,9 @@ export const P18OS2110: React.FC = () => {
         <Foto src="s2110-newyork.jpg" />
       </div>
       {/* el logotipo cae sobre la comida: velo de portada más hondo que el de R-14 */}
-      <VeloArriba alfa={0.9} hasta={36} />
+      <AbsoluteFill
+        style={{background: 'linear-gradient(to bottom, rgba(8,8,10,0.88) 0%, rgba(8,8,10,0.8) 17%, rgba(8,8,10,0.3) 24%, rgba(8,8,10,0) 30%)'}}
+      />
       {/* un oscuro leve detrás de cada rótulo, pegado a la hoja */}
       <AbsoluteFill
         style={{

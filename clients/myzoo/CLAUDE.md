@@ -359,6 +359,23 @@ método técnico en R-36:
 
 ⛔ Nunca se mueven ni se dibujan envases, sombras o cantos por código (X-08).
 
+> ⚠️ **Desde el 01-10-2026 el método vigente es el de la P01 v7 (APRENDIZAJES R-51).** El
+> cliente reclama que las imágenes «se ven muy IA», y encadenar retoques sobre una
+> imagen ya generada la empeora en cada pasada (X-10). La receta ahora es:
+>
+> 1. **Escena desde cero, en una sola generación y sólo con texto**, pedida como foto de
+>    cámara real y con la **mesa vacía** (prompt en `public/assets/myzoo/fase3/p01v7_prompt_placa.txt`).
+>    Se piden 6 tomas y se elige la más fotográfica.
+> 2. **Boceto por código:** los packshots reales COMPLETOS, escalados y girados, en la
+>    posición exacta (R-48: columna recta, cada envase ladeado ≈31°, sin tocarse). Si la
+>    ubicación no está clara, **el boceto se le muestra a Paulina antes de generar** (R-50).
+> 3. **Una pasada de Nano Banana Pro sobre el boceto**, sólo para volumen y sombra; tapa
+>    cerrada. De esa pasada se usa sólo la zona de los envases, con máscara difuminada.
+> 4. Calce de la etiqueta real (`myzoo-f3-calzar.py`, sin `cortar_izq`) y grano
+>    (`myzoo-f3-grano.py`).
+>
+> **Si después cambia la composición, se vuelve al paso 1. No se retoca.**
+
 ## 3. Dónde está el material
 
 | Qué | Dónde |

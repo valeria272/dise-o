@@ -18,6 +18,31 @@
 - ⚠️ Las fuentes del render están en `raw/myzoo/2026-10_parquepet/` (no viaja en git). Para que sea reproducible hay que pasar a `public/assets/myzoo/` las que usan los scripts (`v4/s_b_2x.png`, `t0_e`, `t1_c`, `t2_d`, `bg_a`) antes del commit.
 - Nada de esto está commiteado todavía.
 
+## 2026-10-01 — Paulina Bustamante (con Claude) · paid Fase 3, P01 rehecha desde cero
+
+**Qué se hizo:**
+- **La P01 aprobada ayer se reabrió.** Al componer el texto en Illustrator, Paulina vio que la imagen no dejaba espacio: pidió más aire arriba y los envases en una **columna recta** (cada uno ladeado como en la aprobada, sin montarse ni tocarse), pegada a la izquierda, con el perro de protagonista.
+- Costó **siete versiones**. Tres rondas se fueron en entender «más alineadas verticalmente» (se leyó como envases derechos, después como montados). Las tres siguientes fueron retoques sobre la imagen de ayer, y cada pasada la dejó más artificial: packs «como render», perro «plano», y al final «todo se ve muy IA».
+- Paulina avisó que **la clienta está reclamando que las imágenes se ven IA** y pidió rehacer todo, hiperrealista.
+- **v7: escena nueva desde cero**, en una sola generación pedida como foto de cámara real (mesa vacía, golden entero mirando a cámara, alfombra crema, aire arriba). Los envases se pusieron con un boceto de los packshots reales en la posición aprobada, una pasada de integración sólo para volumen y sombra, y la etiqueta real calzada encima.
+
+**Dónde quedó:**
+- Entrega local: `out/myzoo/paid-fase3/imagen-limpia/MYZOO_P01_imagen_v7_nueva-desde-cero_{2048,1080}.png`. **Paulina todavía no da su veredicto sobre la v7.**
+- Fuentes versionadas en `public/assets/myzoo/fase3/p01v7_*` (ver `LEEME.md`; se reproduce byte a byte). Script nuevo: `scripts/myzoo-f3-grano.py`.
+- **Nada subido a Drive.** La carpeta `IMÁGENES APROBADAS FASE 3` sigue con la P01 del 30-09, que ya no es la vigente.
+- Pruebas descartadas en `raw/myzoo/fase3/escenas/` (`p01C`…`p02A`), no viajan.
+
+**Qué sigue:**
+1. Veredicto de Paulina sobre la v7. Si sirve: escalar a 4096 con `escalar --precision`, volver a calzar a 4K y **reemplazar** la imagen de `IMÁGENES APROBADAS FASE 3`.
+2. Con la P01 compuesta por Paulina como referencia, las imágenes limpias de 02, 08, 09 y 10 — **con el método nuevo desde el principio** (manual §2c).
+3. La P07 sigue sin revisar, y es de la tanda vieja: lo más probable es que haya que rehacerla con el mismo criterio de realismo.
+
+**Abierto:**
+- En la v7 los envases quedaron más chicos respecto del perro y hay madera libre entre la columna y el perro (la mesa llega a la mitad del cuadro). → Paulina.
+- ¿Qué envase de Pet Wipes está vigente, «Todo Uso» o «Uso Frecuente»? Sigue sin respuesta. → Paulina / Coni.
+- Del Drive (minuta y reunión del 30-09): la web y el plan de medios de Fase 3 parten cerca del **5 de octubre**; el reparto de los $800.000 sigue en discusión. Pedidos de diseño nuevos: story de Huellas Fest (24-10, Lampa; falta dirección y horario, Exequiel), portadas de destacadas de eventos, post de concurso Guau Fest. La grilla de noviembre se modificó el 30-09 y no se leyó.
+- El escalador creativo de Magnific (`escalar` sin `--precision`) devolvió «image is required» con un recorte de 1268×2048. No se investigó.
+
 ## 2026-09-30 — Paulina Bustamante (con Claude)
 
 **Qué se hizo:**

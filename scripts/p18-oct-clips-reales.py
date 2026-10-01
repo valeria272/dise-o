@@ -33,7 +33,9 @@ CLIPS = {
     "s1610-c.mp4": ("Capsula 3 marzo 2026 parte 1/IMG_1847.MOV", 1.3, 2.8),  # garzona con la bandeja de cóctel
     "s1610-d.mp4": ("Capsula 1 marzo 2026/IMG_5740.MOV", 3.4, 3.8),   # la bandeja de cerca, sin rostros
     # ST 30-10 «El broche perfecto para tu historia»: recorrido que termina en el letrero
-    "s3010-a.mp4": ("Capsula 1 marzo 2026/IMG_5671.MOV", 2.6, 3.0),   # salón montado, hacia el centro de flores
+    # ⚠️ a los 5,3 s del original un foco de la pista encandila la cámara (destello de 3
+    # fotogramas, medido como salto de 46 en el MP4): el tramo termina antes, en 5,2 s.
+    "s3010-a.mp4": ("Capsula 1 marzo 2026/IMG_5671.MOV", 2.2, 3.0),   # salón montado, hacia el centro de flores
     "s3010-b.mp4": ("Capsula 3 marzo 2026 parte 1/IMG_5664.MOV", 0.8, 3.0),  # mesa larga bajo las lámparas
     "s3010-c.mp4": ("Capsula 2 marzo 2026/IMG_5746.MOV", 4.2, 2.8),   # el ventanal y la ciudad
     "s3010-d.mp4": ("Capsula 3 marzo 2026 parte 1/IMG_5690.MOV", 0.0, 4.2),  # letrero de neón PISO18 de la barra

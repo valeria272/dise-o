@@ -33,6 +33,7 @@ import {
   AbsoluteFill,
   Img,
   OffthreadVideo,
+  Sequence,
   interpolate,
   spring,
   staticFile,
@@ -1570,7 +1571,8 @@ export const P18OS1910: React.FC = () => {
         }}
       />
 
-      <Boton top={1572}>Asegura tu fecha en piso18.cl</Boton>
+      {/* el botón cierra en y≈1612: casi entero sobre la zona que tapa Instagram (1580) */}
+      <Boton top={1524}>Asegura tu fecha en piso18.cl</Boton>
     </AbsoluteFill>
   );
 };
@@ -1859,6 +1861,142 @@ export const P18OS2710: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STORIES 16-10 y 30-10 · ANIMADAS CON VIDEO REAL
+// ═══════════════════════════════════════════════════════════════════════════
+/**
+ * Las dos refs son un video del lugar con el titular centrado encima, quieto, en serif
+ * (pins 1055460862691124252 «La magia está en los detalles» y 570479477821889041). Acá el
+ * video es material REAL de Piso18 (cápsulas de marzo 2026, disco F:, tramos en
+ * `scripts/p18-oct-clips-reales.py`) y el titular va a dos voces (R-06).
+ *
+ * Los planos se escriben del PRIMERO al ÚLTIMO para que el que entra quede arriba (R-28), y
+ * la disolvencia sube sólo la capa que entra: la que sale se queda al 100 % debajo (memoria
+ * `disolvencia-no-se-baja-la-que-sale`). El botón entra al final; su posición y contraste
+ * se miden en el último fotograma (R-30).
+ */
+const CRUCE = 8;
+type Plano = {src: string; frames: number};
+const inicios = (planos: Plano[]) => {
+  const out: number[] = [];
+  let t = 0;
+  planos.forEach((p, i) => {
+    out.push(t);
+    t += p.frames - (i < planos.length - 1 ? CRUCE : 0);
+  });
+  return {desde: out, total: t};
+};
+
+const PlanoVideo: React.FC<{src: string; desde: number; frames: number; primero: boolean}> = ({src, desde, frames, primero}) => {
+  const f = useCurrentFrame();
+  if (f < desde || f >= desde + frames) return null;
+  const opacity = primero ? 1 : interpolate(f - desde, [0, CRUCE], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  return (
+    <AbsoluteFill style={{opacity}}>
+      <OffthreadVideo src={oct(src)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+    </AbsoluteFill>
+  );
+};
+
+const HistoriaVideo: React.FC<{
+  planos: Plano[];
+  fina: string[];
+  versales: string;
+  boton: string;
+  topTitular: number;
+  /** el último plano ya trae el logotipo (letrero de neón): el gráfico se apaga antes */
+  logoSaleEnUltimo?: boolean;
+}> = ({planos, fina, versales, boton, topTitular, logoSaleEnUltimo}) => {
+  cargarFuentesP18();
+  const f = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const {desde, total} = inicios(planos);
+  const ultimo = desde[desde.length - 1];
+  const entra = (d: number) => {
+    const s = spring({frame: f - d, fps, config: {damping: 200}, durationInFrames: 26});
+    return {opacity: s, transform: `translateY(${(1 - s) * 30}px)`};
+  };
+  const logoOp = logoSaleEnUltimo ? interpolate(f, [ultimo - 4, ultimo + CRUCE], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}) : 1;
+  const botonDesde = Math.min(ultimo + 22, total - 70);
+  return (
+    <AbsoluteFill style={{backgroundColor: P18.colores.tinta, overflow: 'hidden'}}>
+      {planos.map((p, i) => (
+        <SecuenciaPlano key={p.src} desde={desde[i]} frames={p.frames}>
+          <PlanoVideo src={p.src} desde={0} frames={p.frames} primero={i === 0} />
+        </SecuenciaPlano>
+      ))}
+      <AbsoluteFill
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(8,8,10,0.66) 0%, rgba(8,8,10,0.56) 22%, rgba(8,8,10,0.50) 40%, rgba(8,8,10,0.16) 56%, rgba(8,8,10,0.10) 70%, rgba(8,8,10,0.50) 100%)',
+        }}
+      />
+      <div style={{...entra(4), opacity: Math.min(entra(4).opacity, logoOp)}}>
+        <Logo top={P18.geometria.logoYStory} />
+      </div>
+      <div style={{position: 'absolute', left: 60, right: 60, top: topTitular, textAlign: 'center', color: P18.colores.blanco, fontFamily: P18.fuentes.titular, textShadow: SOMBRA}}>
+        {fina.map((l, i) => (
+          <div key={l} style={{...entra(12 + i * 8), fontStyle: 'italic', fontWeight: 300, fontSize: 100, lineHeight: 1.04}}>
+            {l}
+          </div>
+        ))}
+        <div style={{...entra(14 + fina.length * 8), fontWeight: 400, fontSize: 62, lineHeight: 1.2, letterSpacing: 1, marginTop: 14}}>{versales}</div>
+      </div>
+      <div style={entra(botonDesde)}>
+        <Boton top={1470}>{boton}</Boton>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const SecuenciaPlano: React.FC<{desde: number; frames: number; children: React.ReactNode}> = ({desde, frames, children}) => (
+  <Sequence from={desde} durationInFrames={frames} layout="none">
+    {children}
+  </Sequence>
+);
+
+/** ST 16-10 · «Equipo Piso18». Cliente (STORIES J14): «Solo texto principal». CTA del brief: «Conoce más en piso18.cl». */
+const PLANOS_1610: Plano[] = [
+  {src: 's1610-a.mp4', frames: 81},
+  {src: 's1610-b.mp4', frames: 90},
+  {src: 's1610-c.mp4', frames: 84},
+  {src: 's1610-d.mp4', frames: 114},
+];
+export const P18_S1610_DUR = inicios(PLANOS_1610).total;
+export const P18OS1610: React.FC = () => (
+  <HistoriaVideo
+    planos={PLANOS_1610}
+    fina={['El secreto de una', 'noche inolvidable']}
+    versales="ESTÁ EN LOS DETALLES"
+    boton="Conoce más en piso18.cl"
+    topTitular={470}
+  />
+);
+
+/**
+ * ST 30-10 · «Broche perfecto». Cliente (STORIES Q14): «Dejémos El broche perfecto para tu
+ * historia» ⇒ sale «En Piso18,». Brief: «recorrido breve por el venue terminando en fachada
+ * o logo Piso18» ⇒ el último plano es el letrero de neón PISO18 de la barra, y ahí el
+ * logotipo gráfico se apaga para no tener dos. CTA: «Reserva tu fecha en piso18.cl».
+ */
+const PLANOS_3010: Plano[] = [
+  {src: 's3010-a.mp4', frames: 90},
+  {src: 's3010-b.mp4', frames: 90},
+  {src: 's3010-c.mp4', frames: 84},
+  {src: 's3010-d.mp4', frames: 108},
+];
+export const P18_S3010_DUR = inicios(PLANOS_3010).total;
+export const P18OS3010: React.FC = () => (
+  <HistoriaVideo
+    planos={PLANOS_3010}
+    fina={['El broche perfecto']}
+    versales="PARA TU HISTORIA"
+    boton="Reserva tu fecha en piso18.cl"
+    topTitular={760}
+    logoSaleEnUltimo
+  />
+);
 
 /** Guía de QA de historia: zonas seguras de Instagram en rojo. No se entrega. */
 export const P18OGuiaStory: React.FC<{children: React.ReactNode}> = ({children}) => (

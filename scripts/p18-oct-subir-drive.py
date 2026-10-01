@@ -55,6 +55,20 @@ PIEZAS = [
 ] + [(3, "FEED", f"P18 FEED 16-10 Tu proxima celebracion {n}.png") for n in range(1, 6)] + [
     (4, "FEED", f"P18 FEED 23-10 Estacion Tex Mex {n}.png") for n in range(1, 5)] + [
     (3, "STS", "P18 ST 15-10 Cumpleanos sonado.png"),  # aprobada 29-09
+    # 01-10: ST 13 y 19-10 con el comentario del cliente, ST 21-10, FEED 20-10 animado y las
+    # dos historias animadas con video real (MP4 + GIF + portada)
+    (3, "STS", "P18 ST 13-10 Cuenta regresiva al 2027.png"),
+    (3, "STS", "P18 ST 16-10 Equipo Piso18.mp4"),
+    (3, "STS", "P18 ST 16-10 Equipo Piso18.gif"),
+    (3, "STS", "P18 ST 16-10 Equipo Piso18 portada.png"),
+    (4, "FEED", "P18 FEED 20-10 Cumpleanos en Piso18.mp4"),
+    (4, "FEED", "P18 FEED 20-10 Cumpleanos en Piso18.gif"),
+    (4, "FEED", "P18 FEED 20-10 Cumpleanos en Piso18 portada.png"),
+    (4, "STS", "P18 ST 19-10 Fiesta de empresa fin de ano.png"),
+    (4, "STS", "P18 ST 21-10 Estaciones de comida.png"),
+    (5, "STS", "P18 ST 30-10 Broche perfecto.mp4"),
+    (5, "STS", "P18 ST 30-10 Broche perfecto.gif"),
+    (5, "STS", "P18 ST 30-10 Broche perfecto portada.png"),
     (4, "STS", "P18 ST 23-10 Evento corporativo.png"),
     (5, "FEED", "P18 FEED 27-10 Wedding planner.png"),
     (5, "STS", "P18 ST 27-10 Visita virtual.png"),

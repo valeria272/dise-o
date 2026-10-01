@@ -46,6 +46,8 @@ const PIEZAS = {
   // la estática de la animada (último fotograma) y las guías de QA, que NO se suben
   'P18O-S0510': [2, 'STS', 'P18 ST 05-10 Primavera en Piso18 portada.png', 299],
   'P18O-F2010': [4, 'FEED', 'P18 FEED 20-10 Cumpleanos en Piso18 portada.png', 239],
+  'P18O-S1610': [3, 'STS', 'P18 ST 16-10 Equipo Piso18 portada.png', 'ultimo'],
+  'P18O-S3010': [5, 'STS', 'P18 ST 30-10 Broche perfecto portada.png', 'ultimo'],
   'P18O-S0710-Guia': [0, 'GUIAS', 'P18 ST 07-10 GUIA.png'],
   'P18O-S0910-Guia': [0, 'GUIAS', 'P18 ST 09-10 GUIA.png'],
   'P18O-S1310-Guia': [0, 'GUIAS', 'P18 ST 13-10 GUIA.png'],
@@ -58,11 +60,12 @@ const PIEZAS = {
 const serveUrl = await bundle({entryPoint: path.join(RAIZ, 'src/P18OctEntry.tsx')});
 // un solo navegador para todo el lote: abrir uno por cuadro se colgó en el 17.º (28-09)
 const puppeteerInstance = await openBrowser('chrome');
-for (const [id, [sem, carpeta, nombre, frame = 0]] of Object.entries(PIEZAS)) {
+for (const [id, [sem, carpeta, nombre, cuadro = 0]] of Object.entries(PIEZAS)) {
   if (filtro.length && !filtro.some((f) => id.includes(f))) continue;
   const dir = sem ? path.join(base, `S${sem}`, carpeta) : path.join(base, carpeta);
   fs.mkdirSync(dir, {recursive: true});
   const composition = await selectComposition({serveUrl, id, puppeteerInstance});
+  const frame = cuadro === 'ultimo' ? composition.durationInFrames - 1 : cuadro;
   const output = path.join(dir, nombre);
   await renderStill({composition, serveUrl, output, frame, scale: escala, imageFormat: 'png', puppeteerInstance, timeoutInMilliseconds: 120000});
   console.log('✓', path.relative(RAIZ, output));

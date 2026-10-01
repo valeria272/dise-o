@@ -1,6 +1,6 @@
 ---
 name: cliente-piso18
-description: "PISO18 — cerebro del cliente: 59 reglas firmes, última cosecha 2026-10-01. Generado desde clients/piso18/APRENDIZAJES.md; leerlo antes de diseñar para piso18"
+description: "PISO18 — cerebro del cliente: 61 reglas firmes, última cosecha 2026-10-01. Generado desde clients/piso18/APRENDIZAJES.md; leerlo antes de diseñar para piso18"
 metadata:
   type: project
 ---
@@ -12,11 +12,11 @@ sólo lo más confirmado). ⛔ Vale sólo para piso18: no se traspasa a otra mar
 Criterio: **Elisabet Soto «Eli»**, con revisión de la jefa de diseño **Constanza Lizana** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
 
 ## Reglas más confirmadas
-- **R-31** · Una pieza corregida se reemplaza en Drive **conservando su enlace** — _S4 rondas 4, 5, 6 y 7 (16 al 22-09)_ · ✔×7 (28-09: rondas 2 y 3 de octubre) · 29-09: ronda 4: 8 archivos reemplazados · ✔×8 (29-09 rondas 5 y 6: 6 láminas, md5 verificado)
-- **R-33** · Lo nuevo de la grilla se detecta por diff de **conjunto de cadenas** contra la instantánea anterior: el comentario se prepende y no lo delatan ni la celda ni el `modifiedTime` — _confirmado el 16, 17 (×2), 22-09 y 28-09 (grilla oct: 8 comentarios nuevos del cliente en celdas que estaban vacías; 28-09 noche: la grilla reordenó 3 piezas entregadas)_ · ✔×7 · 29-09: grilla 29-09 12:21Z: 5 comentarios nuevos sobre piezas entregadas
+- **R-31** · Una pieza corregida se reemplaza en Drive **conservando su enlace** — _S4 rondas 4, 5, 6 y 7 (16 al 22-09)_ · ✔×7 (28-09: rondas 2 y 3 de octubre) · 29-09: ronda 4: 8 archivos reemplazados · ✔×8 (29-09 rondas 5 y 6: 6 láminas, md5 verificado) · 01-10: G2 de Fechas 2027 (✔×9)
+- **R-33** · Lo nuevo de la grilla se detecta por diff de **conjunto de cadenas** contra la instantánea anterior: el comentario se prepende y no lo delatan ni la celda ni el `modifiedTime` — _confirmado el 16, 17 (×2), 22-09 y 28-09 (grilla oct: 8 comentarios nuevos del cliente en celdas que estaban vacías; 28-09 noche: la grilla reordenó 3 piezas entregadas)_ · ✔×7 · 29-09: grilla 29-09 12:21Z: 5 comentarios nuevos sobre piezas entregadas · 01-10: C13 con comentario nuevo arriba y el viejo tachado (✔×8)
 - **R-32** · La revisión se publica como página de antes/después; nada interno va a la carpeta de entrega, que ve el cliente (`@hilton.com` con permiso de escritura) — _hallazgo 16-09; rondas 4–7 aprobadas así_ · ✔×6 (28-09: páginas r1 y r2 de octubre) · 29-09: páginas r4 y st1510
 - **R-01** · «bodas» no se escribe nunca: va matrimonio(s) o novios, aunque el brief o el hashtag lo traigan — _Eli, 15-09-2026; ratificada por el cliente en `FEED!I14` el 17-09 («no usemos la palabra BODA»)_ · ✔×4 (28-09: las 11 de octubre sin «boda») · 29-09: ronda 4 y ST 15-10 sin «boda»
-- **R-17** · La caja de recorte de cada pieza queda escrita en el script que la produce — _S4, 16-09: dos recortes hubo que reconstruirlos por correlación_ · ✔×4 (28-09: `scripts/p18-oct-fotos.py`) · 29-09: cajas de fin160, deco112, deco143 en `p18-oct-fotos.py`
+- **R-17** · La caja de recorte de cada pieza queda escrita en el script que la produce — _S4, 16-09: dos recortes hubo que reconstruirlos por correlación_ · ✔×4 (28-09: `scripts/p18-oct-fotos.py`) · 29-09: cajas de fin160, deco112, deco143 en `p18-oct-fotos.py` · 01-10: cajas y tramos de video de la ronda 7 (✔×5)
 - **R-11** · La interacción no se dibuja: se deja el aire y el sticker real lo pone el CM — _manual; marca.json `botones`_ · ✔×3 (28-09: ST 07 y 09-10) · 29-09: ST 15-10, hueco para el cuadro de respuestas
 - **R-18** · Todo fondo oscuro plano lleva grano (`GranoFondo`); `foto-estirada` no se calibra, se arregla la pieza — _S5, 15-09; referencia de Eli «tiene un cuero», no negro digital_ · ✔×3 (28-09: ST 27-10) · 29-09: ST 07-10: el grano arregló la «foto estirada» del QA
 - **R-24** · Ni títulos ni bajadas llevan punto (final ni intermedio), aunque el brief lo traiga — _regla del cliente Hilton, 23-09-2026, citada en el manual de Piso 18_ · ✔×3 (28-09: grilla de octubre) · 29-09: ronda 4 y ST 15-10
@@ -30,7 +30,7 @@ Criterio: **Elisabet Soto «Eli»**, con revisión de la jefa de diseño **Const
 - **R-40** · En el feed el cierre es la **línea** «Cotiza … en piso18.cl» (piso18.cl en fucsia), no el botón píldora de las historias — _Eli, 25-09, C1 S5: «me gusta más como estaba en el anterior (…) sin ese botón»_ · ✔×2 (28-09: 16-10 S5)
 - **R-41** · Personas generadas: foto de **fotógrafo de eventos** (flash directo, grano, gesto no posado, escena oscura) y pocas personas; y nunca las mismas caras de una pieza publicada — _Eli, 25-09, C1 S5: «se ve bastante falsa (…) sacaría a los dos chicos»_ · ✔×2 (28-09: pista 09-10 y wedding planner, aprobadas)
 - **R-43** · Raleway va SIEMPRE con **cifras de caja alta** (`lnum`): las de estilo antiguo (el 3, 5, 7 y 9 bajan de la línea base, el 0 queda a media altura) se leen «desequilibradas y extrañas» — _Eli, 28-09, grilla oct: «los números y la tipografía de Raleway tiene que verse armónica (…) se está viendo muy desequilibrado»; «acuérdate de lo mismo en toda la grilla»_ · ✔×2 · 29-09: Eli: «los números se ven súper bien» en el calendario
-- **R-44** · Una grilla con referencias se calca pieza por pieza: la composición de la ref, con la paleta, las tipografías y el logo de Piso18 — _Eli, 28-09: «guíate de las referencias, que sea muy igual solo que con la identidad visual de PISO18»; 11 piezas aprobadas así_ · ✔×2 · 29-09: ST 15-10 calcada de la ref Midori
+- **R-44** · Una grilla con referencias se calca pieza por pieza: la composición de la ref, con la paleta, las tipografías y el logo de Piso18 — _Eli, 28-09: «guíate de las referencias, que sea muy igual solo que con la identidad visual de PISO18»; 11 piezas aprobadas así_ · ✔×2 · 29-09: ST 15-10 calcada de la ref Midori · 01-10: ST 13 y 19-10 calcadas de su ref, sin veredicto aún
 - **R-45** · Comida generada = **foto documental del fotógrafo del evento** (luz del salón, casi todo nítido, porciones de banquetería con imperfecciones), con el buffet real de Piso18 de referencia; nunca comida de estudio con bokeh y brillo — _Eli, 28-09, Tex-Mex: «que se vean mucho más realistas porque se están viendo un poco extrañas»_ · ✔×2 · 29-09: temáticas de la 15-10, Eli: «se quedaron perfectas»
 
 ## Lo que ya costó rondas

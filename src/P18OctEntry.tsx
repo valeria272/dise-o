@@ -61,6 +61,8 @@ const Raiz: React.FC = () => (
         <Composition key={id} id={id} component={C} {...story} />
       ))}
       <Composition id="P18O-S0510" component={Animada} {...story} durationInFrames={O.P18_S0510_DUR} />
+      <Composition id="P18O-S1610" component={O.P18OS1610} {...story} durationInFrames={O.P18_S1610_DUR} />
+      <Composition id="P18O-S3010" component={O.P18OS3010} {...story} durationInFrames={O.P18_S3010_DUR} />
       <Composition id="P18O-S0510-foto" component={AnimadaEstatica} {...story} durationInFrames={O.P18_S0510_DUR} />
       {STORIES.map(([id, C]) => (
         <Composition

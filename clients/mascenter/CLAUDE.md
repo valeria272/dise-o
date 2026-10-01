@@ -141,6 +141,8 @@ Todo está en `src/compositions/mascenter/MasCenterReel.tsx`; el contenido del m
 
 ### Orgánico de Instagram (grilla mensual) — plantillas y constructores
 
+> ⭐ **Para correr un mes completo, parte por [`GRILLA-MENSUAL.md`](GRILLA-MENSUAL.md)**: el orden de trabajo, la gramática aprobada en octubre 2026, el tratamiento de imágenes, el QA y el cierre de cada ronda de comentarios.
+
 **Regla madre del orgánico (R-55):** antes de diseñar, busca en los `.ai` de Diego la pieza anterior del mismo tema
 (`PyMuPDF get_text()` por mesa) y úsala de plantilla. La REF de la grilla da la idea; la plantilla manda el estilo.
 
@@ -164,6 +166,9 @@ Todo está en `src/compositions/mascenter/MasCenterReel.tsx`; el contenido del m
   piso, sombra y luz, nunca flotando. Disfraces con Seedream sobre la pose + recorte por croma.
 - **Logos de locatarios (R-54):** carpeta de Diego → web oficial → Wikimedia; aplanados sobre su fondo antes del círculo.
 - **Cierre (R-75, R-77):** la última slide es una imagen de cierre (foto a sangre hermana de la portada, al atardecer; logo arriba) con el **titular centrado sin caja** y **sólo la bajada en pastilla**, sobre la zona limpia de la foto; sin banda, círculo ni flecha; `sistema/cierres_octubre.py`.
+- **Locatarios reales (R-79):** la foto de cada local se parece al local real — foto suya › su producto real montado y armonizado › Seedream con referencias de sus fotos. IG: `scripts/ig-fotos-publicas.py` (embed público); si no está la cuenta, capturas de Diego. Fotos con texto chico se escalan con Lanczos, no con IA.
+- **Portada desde referencia (R-81):** si Diego manda una referencia, se sigue su gramática y la marca se mantiene en color, tipografía, logo y Localito.
+- **Carrusel de recorrido (R-80):** salto de círculo a círculo con la cumbre en el borde del slide + tablero de avance en la etiqueta de parada (`salto_svg`, `tablero` en `carrusel_ruta_cafetera.py`).
 - **Logo en carruseles (R-64):** sólo en la portada y la última slide; nunca en fichas, pasos ni mosaicos intermedios.
 - **Espaciado (R-65/R-66/R-67):** ningún texto al límite de su caja (aire ≥ 40 px), cajas ajustadas al contenido, pasos
   numerados alineados por la altura de mayúscula y pegados al número.

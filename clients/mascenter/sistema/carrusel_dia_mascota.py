@@ -16,7 +16,7 @@ Sale: out/mascenter/2026-10/carrusel-04-10/c-04-10-<n>.png (1080×1350)
 """
 import subprocess, sys
 from pathlib import Path
-from PIL import Image
+from PIL import Image, ImageFont
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import carrusel_ruta_cafetera as base  # tipografías, pin, flecha, logo y métricas: una sola fuente
@@ -108,7 +108,7 @@ def slide_local(s):
     return "\n".join(partes)
 
 
-def portada():
+def portada_v1():  # reemplazada el 30-09 por portada_v2 (referencia Bichotopia)
     img = base.foto_4x5("01-portada.png", 0.0)
     # Localito APUNTANDO a la pastilla: la pose y la caja de la mesa 6 (57,7–262,6 × 986,7–1273,5).
     localito = localito_pose("apunta")
@@ -144,6 +144,54 @@ def portada():
 <div class="flecha" style="left:{258 + 587 * 42 / 48 + 42 + 168 - 168 + 20:.0f}px;top:{flecha_top:.0f}px;width:{flecha_d}px;height:{flecha_d}px">{base.FLECHA}</div>"""
 
 
+def portada_v2():
+    """Portada v2 (Diego, 30-09): «que se parezca a esta referencia» (raw/mascenter/octubre-2026/ref-portada-04-10-bichotopia.png:
+    foto cenital del cachorro mirando a cámara, titular centrado tipo sticker con contorno grueso sobre su cabeza y una
+    pastilla clara) + comentario en c-04-10-1: «dejar en medio, destacar en la variante black "Hoy, en el Día de la Mascota"».
+    Titular Gotham Black en versales, blanco con contorno mostaza redondo y sin sombra (ni en pastilla ni en huellas); «se vale regalonearlos de más.» en
+    pastilla crema; abajo la pastilla mostaza compacta (2 líneas) con Localito apuntándola y la flecha."""
+    img = base.foto_4x5("01-portada-v3-arm.png", 0.5)
+    localito = localito_pose("apunta")
+    OSC = "#5C4A0E"  # mostaza oscuro para el texto sobre crema
+    huella = ('<svg viewBox="0 0 40 40" width="{w}" height="{w}"><g fill="#fff"><ellipse cx="20" cy="27" rx="9" ry="7.5"/>'
+              '<ellipse cx="9" cy="16" rx="4" ry="5"/><ellipse cx="16" cy="9" rx="4" ry="5"/><ellipse cx="24" cy="9" rx="4" ry="5"/>'
+              '<ellipse cx="31" cy="16" rx="4" ry="5"/></g></svg>')
+    def sticker(x, y, rot, w=74):
+        return (f'<div style="position:absolute;left:{x}px;top:{y}px;width:{w}px;height:{w}px;border-radius:50%;background:{MOSTAZA};'
+                f'border:5px solid #fff;display:flex;align-items:center;justify-content:center;transform:rotate({rot}deg);'
+                f'">{huella.format(w=int(w * .55))}</div>')
+    tit = ["Hoy, en el Día", "de la Mascota,"]
+    c, lh, b1 = 86, 94, 232
+    # Contorno con uniones y remates REDONDOS y sin sombra (Diego, comentario en c-04-10-1: «genera un trazo redondo
+    # no cuadrado ni con sombra»): -webkit-text-stroke hace esquinas en inglete, así que el titular va en SVG con
+    # stroke-linejoin/linecap round y paint-order stroke (el trazo queda detrás del relleno blanco).
+    tit_html = (f'<svg class="ruta" viewBox="0 0 {W} {H}" style="overflow:visible">' + "".join(
+        f'<text x="{W / 2}" y="{b1 + lh * i}" text-anchor="middle" font-family="Gotham Black" font-weight="900" font-size="{c}" '
+        f'letter-spacing="{c * .01:.2f}" fill="#fff" stroke="{MOSTAZA}" stroke-width="20" stroke-linejoin="round" stroke-linecap="round" '
+        f'paint-order="stroke fill">{l.upper()}</text>' for i, l in enumerate(tit)) + "</svg>")
+    pill = "se vale regalonearlos de más."
+    pw = 44 * 2 + ImageFont.truetype(str(AQUI / "assets/fonts/GothamRnd-Bold.ttf"), 44).getlength(pill)
+    p_top = b1 + lh + 52
+    cta = ["Descubre opciones para sorprender", "a tu regalón en Más Center."]
+    c_b1 = 1222
+    c_top, c_bot = c_b1 - 52, c_b1 + 44 + 30
+    c_w = max(ImageFont.truetype(str(AQUI / "assets/fonts/GothamRnd-Bold.ttf"), 35).getlength(l) for l in cta)
+    cta_html = "".join(f'<div style="position:absolute;left:236px;top:{tb(c_b1 + 44 * i, 35, 44, "rnd"):.1f}px;font-weight:700;'
+                       f'font-size:35px;line-height:44px">{l}</div>' for i, l in enumerate(cta))
+    return f"""
+<img class="foto" src="{base.data_uri(img)}">
+<div class="velo" style="background:linear-gradient(180deg,rgba(0,0,0,.18) 0,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 78%,rgba(0,0,0,.22) 100%)"></div>
+<div class="logo-mc" style="left:{(W - 150) / 2:.0f}px;top:34px;width:150px">{base.LOGO_MC}</div>
+{sticker(58, 368, -12)}{sticker(950, 140, 10, 66)}
+{tit_html}
+<div style="position:absolute;left:{(W - pw) / 2:.0f}px;top:{p_top}px;width:{pw:.0f}px;height:66px;border-radius:33px;background:#FFF6DC"></div>
+<div class="centro" style="top:{tb(p_top + 48, 44, 50, 'rnd'):.1f}px;font-weight:700;font-size:44px;line-height:50px;color:{OSC}">{pill}</div>
+<div class="pastilla-m" style="left:200px;top:{c_top}px;width:{36 * 2 + c_w:.0f}px;height:{c_bot - c_top}px"></div>
+{cta_html}
+<img src="{base.data_uri(localito, 'PNG')}" style="position:absolute;left:34px;top:1098px;width:{175:.0f}px">
+<div class="flecha" style="left:{200 + 72 + c_w + 22:.0f}px;top:{(c_top + c_bot) / 2 - 58:.0f}px;width:116px;height:116px">{base.FLECHA}</div>"""
+
+
 LOCALES = {
     2: dict(foto="02-superzoo.png", foco_y=0.5, subir=150, 
             desc=["Encuentra juguetes, snacks y", "accesorios en SuperZoo para", "darle una sorpresa."],
@@ -168,4 +216,4 @@ LOCALES = {
 
 if __name__ == "__main__":
     for n in [int(a) for a in sys.argv[1:]] or range(1, 7):
-        render(n, portada() if n == 1 else slide_local(LOCALES[n]))
+        render(n, portada_v2() if n == 1 else slide_local(LOCALES[n]))

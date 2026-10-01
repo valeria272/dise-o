@@ -135,11 +135,15 @@ def linderos_1():
                f'<defs><clipPath id="iso"><path transform="matrix(9.2,0,0,9.2,-1891,-320)" d="{ISO}"/></clipPath></defs>'
                f'<image href="{uri(foto)}" x="380" y="0" width="700" height="1080" preserveAspectRatio="xMidYMid slice" clip-path="url(#iso)"/></svg>')
     cuerpo_t = ["Comercio y servicios", "de proximidad a metros", "de la Panamericana Sur."]
+    # Diego 30-09 (lk-06-10-1): «dar espacio al texto dentro del contenedor, que no queden nunca los textos al límite»
+    # → la pastilla se mide sobre el texto real + 42 px de aire por lado y 66 de alto (R-65).
+    from PIL import ImageFont
+    ANCHO_LIN = ImageFont.truetype(str(Path(__file__).resolve().parent / "assets/fonts/GothamRnd-Bold.ttf"), 40).getlength("Más Center Linderos") + 84
     return f"""{ventana}
 {lockup(80, 88, 316)}
 {lineas(["Nuevo", "Strip center", "en Buin"], 80, tb(306.5, 59, 61, 'black'), 61, "font-family:'Gotham Black';font-weight:900;font-size:59px;line-height:61px;text-transform:uppercase")}
-<div class="abs" style="left:79px;top:460px;width:430px;height:54px;border-radius:27px;background:{NAVY}"></div>
-<div class="abs gr" style="left:79px;width:430px;top:{tb(500.9, 40, 46, 'rnd'):.1f}px;text-align:center;font-weight:700;font-size:40px;line-height:46px;color:{CELESTE}">Más Center Linderos</div>
+<div class="abs" style="left:79px;top:454px;width:{ANCHO_LIN:.0f}px;height:66px;border-radius:33px;background:{NAVY}"></div>
+<div class="abs gr" style="left:79px;width:{ANCHO_LIN:.0f}px;top:{tb(501.5, 40, 46, 'rnd'):.1f}px;text-align:center;font-weight:700;font-size:40px;line-height:46px;color:{CELESTE}">Más Center Linderos</div>
 {lineas(cuerpo_t, 79, tb(568.7, 38, 45, 'rnd'), 45, "font-family:GothamRounded;font-weight:300;font-size:38px;line-height:45px")}
 <div class="ref" style="right:30px;bottom:22px">Imagen referencial</div>"""
 

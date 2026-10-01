@@ -6,6 +6,7 @@ import {SanEstebanReel, SE_REEL_FPS, SE_REEL_DURACION} from "./compositions/SanE
 import {REEL_TRAFICO, REEL_WSP_ANTOFAGASTA, REEL_MUDANZA} from "./compositions/sanEstebanReelesOctubre";
 import {MasCenterReel, REEL_02, REEL_03, duracionReel} from "./compositions/mascenter/MasCenterReel";
 import {KiosclubStoryHalloween, KIOSCLUB_FRAMES} from "./compositions/mascenter/KiosclubStoryHalloween";
+import {IfbReelNuevosProyectos, IFB_REEL_FRAMES} from "./compositions/mascenter/IfbReelNuevosProyectos";
 
 // SANTA GOTA — placements de TV (huincha / virtual / full screen). Fase 1: stills.
 import {HuinchaTV} from "./compositions/santagota/HuinchaTV";
@@ -57,6 +58,7 @@ import {FotoDiario} from "./compositions/copylab/FotoDiario";
 import {Caso001} from "./compositions/copylab/Caso001";
 import {PostG} from "./compositions/copylab/PostG";
 import {RentasReelOctubre} from "./compositions/rentas/RentasReelOctubre";
+import {RentasReelNoviembre} from "./compositions/rentas/RentasReelNoviembre";
 import {NuevaUrbeFacilidadesReel, NU_REEL_DURATION, NU_REEL_FPS} from "./compositions/NuevaUrbeFacilidadesReel";
 import {VideoSquare01} from "./compositions/VideoSquare01";
 import {BSaleProbe} from "./compositions/BSaleProbe";
@@ -260,6 +262,7 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Folder name="MasCenter">
+        <Composition id="IFB-Reel-Nuevos-Proyectos" component={IfbReelNuevosProyectos} durationInFrames={IFB_REEL_FRAMES} fps={30} width={1080} height={1920} />
         <Composition id="MC-Story-Kiosclub-Halloween" component={KiosclubStoryHalloween} durationInFrames={KIOSCLUB_FRAMES} fps={30} width={1080} height={1920} />
         <Composition id="MC-Reel-02" component={MasCenterReel} durationInFrames={duracionReel(REEL_02, 30)} fps={30} width={1080} height={1920} defaultProps={REEL_02} />
         <Composition id="MC-Reel-03" component={MasCenterReel} durationInFrames={duracionReel(REEL_03, 30)} fps={30} width={1080} height={1920} defaultProps={REEL_03} />
@@ -1245,6 +1248,14 @@ export const RemotionRoot: React.FC = () => {
           id="RentasReelOctubre"
           component={RentasReelOctubre}
           durationInFrames={900}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="RentasReelNoviembre"
+          component={RentasReelNoviembre}
+          durationInFrames={870}
           fps={30}
           width={1080}
           height={1920}

@@ -4,6 +4,56 @@
 
 ---
 
+## 2026-09-30 — Diego Aguilar (con Claude) · grilla NOVIEMBRE producida
+
+**Qué se hizo:** se leyó la grilla `RENTAS_NUEVA_URBE_GRILLA_NOVIEMBRE_2026.pptx` (Carlos,
+mod. 30-09 15:24Z; copia en `raw/nuevaurbe/rentas/grilla-nov2026/`) y se produjeron las 6
+piezas del mes con el sistema de octubre: reel 03-11, ST proyecto 04-11, estático 10-11,
+carrusel PAID 17-11, carrusel «Vive al aire libre» 24-11 y ST encuesta 25-11. Los mailings
+no: «ver brief separado» y ese brief no existe todavía (la carpeta de mailing llega a `10. OCTUBRE`).
+
+**Dónde quedó:** `out/rentas/20261100_grilla_noviembre/` (`editables/build.py` + `render.py`
+para Windows, `fondos/generar_ia.sh` + `fondos/preparar.py`) · reel en
+`src/compositions/rentas/RentasReelNoviembre.tsx` · voz en `public/assets/rentas/vo-nov/`.
+**En Drive:** subcarpeta `NOVIEMBRE 2026 - DISEÑOS` (`1bX7QbCDsRFI3xq98sV4c3Tk7uKUuhAsY`)
+dentro del `10. OCTUBRE` de grillas, por pedido de Diego. Script: `scripts/rentas-nov-subir-drive.py`.
+
+**Decisiones y hallazgos:**
+- Locución **literal** de los 6 bloques `VOZ` (Benjamín Soto), con la URL hablada completa:
+  el cierre dura 6,8 s. Cierra el error X-12 de octubre para este mes.
+- ⚠️ `public/assets/rentas/fotos/dormitorio.jpg` **trae franjas desenfocadas** (la versión que
+  Valeria rechazó, R-18). Se reemplazó por el baño. No usarlo.
+- ⚠️ **Bug heredado del reel de octubre:** `useEntrada()` llamado dentro del JSX del componente
+  padre usa el frame ABSOLUTO, así que en la placa azul y el cierre los textos aparecían de
+  golpe. En noviembre se corrigió pasando el frame absoluto de entrada; `RentasReelOctubre.tsx`
+  sigue con el bug (ya entregado, no se tocó).
+- IA (Seedream 5 Pro) con foto real de referencia: 5 escenas en el quincho real y 3 del PAID
+  sobre la cocina/living reales — escenas distintas a las de octubre. Estático y ST encuesta
+  son las fotos reales con relight de cambio mínimo.
+- `reglas.yaml › respiro-borde`: se descuenta el logotipo de la caja blanca (falso positivo
+  en portadas con poco texto). QA final: 0 bloqueantes · 3 avisos (cielo liso, caja del logo).
+
+**Ronda de Diego (30-09, 3 comentarios en Drive) — aplicada, re-subida por fileId y resuelta:**
+- Estático 10-11 «agrandar texto, que quede en bold» → «Arrienda» de t-l Light a t-xl Bold.
+  Excepción a R-07 (dos pesos) en esta pieza, pedida explícitamente.
+- Estático 10-11 «que no queden juntos» → la fila de atributos iba a 16 px de la caja (margen en
+  em sobre la fuente base del bloque); ahora 300 px sobre 4500 y discos más separados.
+- Aire libre 1 «dejar el texto arriba, que no tape las cabezas» → bloque al 18,5 %, bajo la caja
+  del logo. Mismo criterio que el cierre 5: **si la foto tiene gente, el texto no la tapa**.
+
+**Mailings de noviembre (03-11 y 24-11) — producidos y subidos a `MAIL`
+(`1DMbH3WWg46dxXavck0saGdIOnSiHs68C`, dentro de NOVIEMBRE 2026 - DISEÑOS):**
+- Brief `BRIEF NOVIEMBRE 2026 MAILING RENTAS.docx`. Regla de Diego: **solo lo NARANJO se grafica**
+  (banner · atención · gráfica de proyecto · imagen de cierre); verde y amarillo van en Fidelizador.
+- ⭐ **Si el bloque trae REF, se sigue esa idea.** Las dos fichas traían Pinterest: M1 = DLF
+  (foto arriba + panel claro de características con íconos en disco), M2 = «The Address»
+  (foto cálida oscura + amenidades en tarjetas giradas en arco + píldora al pie). Las dos REF
+  son verticales → ficha a **1201×1501**. Refs en `raw/nuevaurbe/rentas/mail-nov2026/`.
+- ✅ **WhatsApp resuelto por el brief:** `+56 9 9707 9951`; el 9955 «quedó discontinuado, no usarlo».
+- Constructor `editables/mail.py` + `mail.css`; fondos a 2× en `fondos/mail/`. QA 8/8 limpias.
+
+---
+
 ## 2026-09-23 (cierre del día) — Diego Aguilar (con Claude)
 
 **Qué se hizo:** se corrigió la **slide 2 del carrusel PAID del 20-10**. El pedido NO

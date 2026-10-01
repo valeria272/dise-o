@@ -74,7 +74,19 @@ ajustes:
       en las piezas es el margen INFERIOR, que era el único donde nos habíamos
       ido más pegados que ella (43-48 px contra sus 58-59): el bloque bajo del
       banner subió de 5,5 % a 8,7 % en base.css.
+      30-09-2026 · se descuenta además el LOGOTIPO de la caja blanca, que la marca
+      cuelga del borde por sistema (feed arriba, historia abajo). Salió en la
+      portada del carrusel «Vive al aire libre» de noviembre: la tinta en el margen
+      era el logotipo (y 143-249 px, x 2118-2374, centrado) y pesaba 11 % sólo
+      porque esa portada tiene poco texto. Las portadas de octubre, con la misma
+      caja, pasaban porque traían más texto. Las regiones son las de la caja medida
+      (feed 24,2 % × 14,6 % arriba · historia 17,5 % × 8,75 % abajo); el texto
+      fuera de ellas se sigue midiendo igual.
     excepto_archivos: ["*mail*"]
+    args:
+      excepciones:
+        - {x0: 0.379, y0: 0.0, x1: 0.621, y1: 0.146}
+        - {x0: 0.41, y0: 0.9125, x1: 0.59, y1: 1.0}
 
   zona-segura-meta:
     porque: >-

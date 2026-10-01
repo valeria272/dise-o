@@ -1,3 +1,59 @@
+## 2026-09-30 (cierre) — Diego Aguilar (con Claude) · grilla de octubre cerrada y método documentado
+
+**Qué se hizo:** Diego dio por buena la grilla de octubre. Se escribió `clients/mascenter/GRILLA-MENSUAL.md` (cómo se corre una grilla de punta a punta, con todo lo aprendido este mes) y quedó enlazado desde el manual.
+**Dónde quedó:** todas las piezas en «10. OCTUBRE» (Drive), sin comentarios abiertos.
+**Qué sigue:** noviembre arranca leyendo `GRILLA-MENSUAL.md` y copiando los constructores de octubre del mismo tipo.
+**Abierto:** los datos por confirmar con Scarlette (ver §8 de GRILLA-MENSUAL.md); el reel del 19-10 y la story de la corrida en stand by; **commit y push de todo el día pendientes**.
+
+## 2026-09-30 (12ª parte) — Diego Aguilar (con Claude) · reel LinkedIn 23-10 «Nuevos proyectos Más Center»
+
+**Qué se hizo:** el reel que faltaba de la pestaña LinkedIn (la celda dice «23-03» por un error de formato del Excel; es el 23-10). Sigue la REF del pin 2814818512168314: cielo con nubes, strip center recortado que sube desde abajo, lockup Grupo IFB | Más Center fijo arriba, 4 tarjetas con renders (Chicureo, Linderos, 4 Esquinas, Algarrobal) que entran y salen girando en 3D con los textos de los cortes 1–4 en etiquetas blancas, y cierre «7 nuevos desarrollos Más Center.» con la pastilla celeste «2026 – 2028». 16 s, 1080×1920, música instrumental generada con Magnific.
+**Dónde quedó:** `lk-23-10.mp4` subido a «10. OCTUBRE». Composición `IFB-Reel-Nuevos-Proyectos` (`src/compositions/mascenter/IfbReelNuevosProyectos.tsx`); assets en `public/assets/mascenter/reel-23-10/`; REF y cuadros en `raw/mascenter/octubre-2026/refs-linkedin/reel-23-10/`.
+**Qué sigue:** OK de Diego. El edificio que sube es Seedream sobre el render web de Buin (con Unimarc): confirmar que sirve como imagen genérica de «nuevos proyectos».
+**Abierto:** commit y push pendientes (falta el permiso).
+
+## 2026-09-30 (11ª parte) — Diego Aguilar (con Claude) · lk-06-10-1: aire en la pastilla
+
+**Qué se hizo:** la pastilla «Más Center Linderos» se mide sobre el texto real + 42 px por lado y 66 px de alto (comentario de Diego, tercera vez que pide R-65); comentario resuelto.
+**Dónde quedó:** lk-06-10-1 reemplazado en sitio (md5 OK).
+**Qué sigue:** OK de Diego; commit y push pendientes.
+**Abierto:** las etiquetas chicas del mapa (lk-06-10-2) y del mosaico usan 16 px de aire lateral: revisar si Diego las ve apretadas.
+
+## 2026-09-30 (10ª parte) — Diego Aguilar (con Claude) · 04-10-6 sin Localito
+
+**Qué se hizo:** se sacó a Localito del cierre del 04-10 (comentario de Diego) y se resolvió el comentario.
+**Dónde quedó:** c-04-10-6 reemplazado en sitio (md5 OK); `cierre_04()` en `cierres_octubre.py`.
+**Qué sigue:** OK de Diego; commit y push pendientes.
+**Abierto:** nada.
+
+## 2026-09-30 (9ª parte) — Diego Aguilar (con Claude) · 04-10-1: contorno redondo sin sombra
+
+**Qué se hizo:** comentario de Diego en el titular: el contorno pasó a SVG con uniones redondas y sin sombra; también se sacó la sombra de la pastilla crema y de las huellas. Comentario resuelto.
+**Dónde quedó:** c-04-10-1 reemplazado en sitio (md5 OK).
+**Qué sigue:** OK de Diego; commit y push pendientes.
+**Abierto:** nada.
+
+## 2026-09-30 (8ª parte) — Diego Aguilar (con Claude) · 01-10: adjuntas recreadas + etiqueta de parada centrada
+
+**Qué se hizo:** las 3 fotos que mandó Diego (Tarco, La Parroquia, Dúo) se recrearon en alta con Seedream sobre la adjunta: la etiqueta «Bolivia, Caranavi / TARCO» se conserva, en La Parroquia se quitó la flecha de la interfaz de IG y en Dúo la caja con letras. La etiqueta de parada con el tablero va centrada en las slides 2 a 7.
+**Dónde quedó:** c-01-10-1…8 reemplazados en sitio (md5 OK); fotos `fotos/0{4,5,6}-*-v3.png`.
+**Qué sigue:** OK de Diego; commit y push pendientes (falta el permiso).
+**Abierto:** nada.
+
+## 2026-09-30 (7ª parte) — Diego Aguilar (con Claude) · 01-10 con fotos reales de todas las cafeterías · portada 04-10 como la referencia
+
+**Qué se hizo:** 01-10: las 6 paradas quedaron con fotos reales. El Distrito (latte + matcha de su IG, sin el texto encima), Starbucks (Pumpkin Spice Latte Frío de @starbuckschile) y La Ermita (croissant de almendra de su IG) salen del embed público de Instagram (`scripts/ig-fotos-publicas.py`); Tarco (máquina + frasco «Bolivia, Caranavi»), La Parroquia (vitrina) y Dúo (tiramisú + espresso) son las que mandó Diego. 04-10-1: portada nueva según la referencia Bichotopia + comentario de Diego (titular «Hoy, en el Día de la Mascota,» centrado en Gotham Black tipo sticker, pastilla crema, foto cenital con cachorro y gatito); comentario resuelto.
+**Dónde quedó:** c-01-10-1…8 y c-04-10-1 reemplazados en sitio (md5 OK). Material en `raw/mascenter/octubre-2026/cafes-reales/` (`ig-*/` y `diego-ig/`); `portada_v2()` en `carrusel_dia_mascota.py`.
+**Qué sigue:** OK de Diego; commit y push pendientes (la sesión no tuvo permiso).
+**Abierto:** la foto de Dúo trae en la esquina superior derecha el borde de una caja con letras.
+
+## 2026-09-30 (6ª parte) — Diego Aguilar (con Claude) · 01-10: cafeterías reales + juego de ruta
+
+**Qué se hizo:** pedido del cliente vía Diego («son un poco genéricas las cafeterías… ¿algún jueguito de ir saltando de cafetería en cafetería?»). Fotos nuevas con material real: El Distrito = su foto real de la taza Dammann (extendida a 4:5); Tarco = su bolsa real «VICIO» recortada de cafetarco.cl y armonizada sobre la mesa; La Ermita = Seedream con sus banners de tortas como referencia (brazo de reina, mil hojas, tres leches); Starbucks = vaso y frappuccino con la sirena. Juego de ruta: cada tramo es un salto de círculo a círculo con la cumbre en el borde del slide (se lee continuo al deslizar), la portada despega desde el pin de la taza y el cierre recibe el último salto en un pin sobre el vaso; la etiqueta de parada lleva el tablero 1–6 con ✓ en las visitadas.
+**Dónde quedó:** los 8 PNG reemplazados en sitio en «10. OCTUBRE» (md5 OK). `sistema/carrusel_ruta_cafetera.py` (`salto_svg`, `tablero`) y `cierres_octubre.py`; fotos v1 genéricas respaldadas en `fotos/v1-genericas/`.
+**Qué sigue:** OK de Diego/cliente. Capturas del IG de Dúo Coffee & Bread (@duocoffeandbread) y de La Parroquia (Pirque) para reemplazar sus dos fotos, que siguen siendo Seedream sin referencia real.
+**Abierto:** IG y Facebook no se pueden bajar automáticamente (429).
+
 ## 2026-09-30 (5ª parte) — Diego Aguilar (con Claude) · cierres centrados, sólo la bajada destacada
 
 **Qué se hizo:** 3 comentarios de Diego en los cierres: textos centrados, sólo la bajada destacada (titular sin caja) en los 4 cierres de IG, y en el 01-10 otro strip center de fondo (San Carlos real al atardecer; la valla Winkler Nutrition es real) con el texto sobre el cielo.

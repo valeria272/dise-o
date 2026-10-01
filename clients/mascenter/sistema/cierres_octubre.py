@@ -84,25 +84,27 @@ def velo(a=.28, b=.35):
 # ─────────────────────────────── 01-10 · ruta cafetera ───────────────────────────────
 def cierre_01():
     """Foto: Más Center San Carlos REAL (FOTOS KLAS) al atardecer con el vaso chico abajo a la derecha (Diego pidió
-    cambiar el strip center del fondo). La valla de Winkler Nutrition es real (está en la foto original)."""
+    cambiar el strip center del fondo). La valla de Winkler Nutrition es real (está en la foto original).
+    Recibe el último salto de la ruta (sale del slide 7 con cumbre en el borde) y termina en el pin del vaso."""
     return f"""
 <img class="foto" src="{foto(OCT / 'carrusel-01-10/fotos/08-cierre-atardecer.png', 0.5)}">
 {velo(.32, .2)}
 <div class="logo-mc">{base.LOGO_MC}</div>
+<svg class="ruta" viewBox="0 0 {W} {H}">
+  <path d="M0 {base.CUMBRE} C 260 {base.CUMBRE}, 380 1150, 620 1160 S 800 1080, 835 1000" {base.TRAZO}/></svg>
+<svg style="position:absolute;left:806px;top:908px;width:58px;height:74px" viewBox="0 0 58 74">
+  <path d="M29 72 C 29 72, 4 40, 4 27 A25 25 0 0 1 54 27 C 54 40, 29 72, 29 72Z" fill="{base.ROJO}" stroke="#fff" stroke-width="4"/>
+  <circle cx="29" cy="27" r="9" fill="#fff"/></svg>
 {centrado(base.ROJO, ["¿Cuál sería tu", "primera parada?"], ["Celebra el Día Internacional del Café", "recorriendo tus favoritos en Más Center."], b1=350, cuerpo=74)}"""
 
 
 def cierre_04():
-    loc = Image.open(RAIZ / "raw/mascenter/localito/localito-celebra.png").convert("RGBA")
-    loc = loc.crop(loc.getbbox())
-    alto = 300
-    ancho = alto * loc.width / loc.height
+    """Sin Localito: Diego, comentario en c-04-10-6 (30-09-2026): «eliminar localito»."""
     return f"""
 <img class="foto" src="{foto(OCT / 'carrusel-04-10/fotos/06-cierre-atardecer.png', 0.4)}">
 {velo(.34, .2)}
 <div class="logo-mc">{base.LOGO_MC}</div>
-{centrado(MOSTAZA, ["Su día merece", "algo especial."], ["Encuentra distintas opciones", "para regalonearlos en Más Center."], b1=350, cuerpo=78)}
-<img src="{base.data_uri(loc, 'PNG')}" style="position:absolute;left:24px;top:{H + 16 - alto}px;width:{ancho:.0f}px">"""
+{centrado(MOSTAZA, ["Su día merece", "algo especial."], ["Encuentra distintas opciones", "para regalonearlos en Más Center."], b1=350, cuerpo=78)}"""
 
 
 def cierre_08():

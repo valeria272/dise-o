@@ -1,0 +1,84 @@
+/* ══════════ MAILINGS NOVIEMBRE 2026 — sólo lo nuevo; lo demás sale de base.css ══════════ */
+
+/* Ficha VERTICAL (4:5): las dos referencias del brief son verticales. */
+.pieza.mail.ficha-v { height:1501px; }
+
+/* Cierre con el texto a la IZQUIERDA: la familia va en la mitad derecha de la foto.
+   Es la alineación que el manual reserva a los bloques de correo. */
+.mail .bloque.izq { left:5.5%; transform:none; width:52%; text-align:left; }
+.velo-izq-mail { position:absolute; inset:0;
+  background:linear-gradient(to right, rgba(0,0,0,.58) 0%, rgba(0,0,0,.30) 42%, transparent 66%); }
+
+/* ── Ficha mailing 1 · REF DLF «Club Arcade» ─────────────────────────────
+   Foto arriba; abajo un panel CLARO de características: rótulo entre filetes,
+   dirección, y una grilla de 3×2 con ícono en disco + texto al costado. */
+.ficha-dlf .foto { height:62%; }
+.velo-ficha-dlf { position:absolute; left:0; right:0; top:0; height:62%;
+  background:linear-gradient(to bottom, transparent 70%, rgba(255,255,255,.85) 100%); }
+.ficha-panel { position:absolute; left:0; right:0; bottom:0; height:38%;
+  background:var(--blanco); padding:128px 70px 0; text-align:center; color:var(--azul); }
+.ficha-rotulo { display:flex; align-items:center; gap:22px; font-weight:700; font-size:31px;
+  letter-spacing:.01em; }
+.ficha-rotulo::before, .ficha-rotulo::after { content:""; flex:1; height:2px; background:rgba(19,114,241,.35); }
+.ficha-dir { color:#4A5568; font-size:23px; margin-top:6px; }
+.rasgos { display:grid; grid-template-columns:repeat(3,1fr); gap:30px 20px; margin-top:40px; text-align:left; }
+.rasgo { display:flex; align-items:center; gap:16px; font-size:21px; font-weight:700; line-height:1.18; color:#1F2A3A; }
+.disco-az { flex:none; width:76px; height:76px; border-radius:50%; background:var(--azul);
+  display:flex; align-items:center; justify-content:center; }
+.disco-az svg { width:44px; height:44px; }
+/* la nube del precio de la marca, montada sobre el corte foto/panel */
+.nube-precio { position:absolute; left:50%; transform:translateX(-50%); top:calc(62% - 104px);
+  width:360px; height:176px; background:var(--blanco); color:var(--azul); font-style:italic;
+  border-radius:26px 96px 26px 96px; box-shadow:0 14px 40px rgba(0,0,0,.18);
+  display:flex; flex-direction:column; justify-content:center; padding:0 40px; }
+.nube-precio .d { font-weight:300; font-size:24px; text-align:left; }
+.nube-precio .c { font-weight:900; font-size:64px; line-height:1.02; text-align:center; }
+.nube-precio .m { font-weight:300; font-size:23px; text-align:right; }
+
+/* ── Ficha mailing 2 · REF «The Address» ─────────────────────────────────
+   Foto cálida oscurecida; cabecera centrada con filete; cinco tarjetas blancas
+   redondeadas, giradas 45°, en arco alrededor del titular; píldora al pie. */
+.velo-addr { position:absolute; inset:0; background:
+  linear-gradient(to bottom, rgba(10,8,6,.72) 0%, rgba(10,8,6,.45) 30%, rgba(10,8,6,.40) 62%, rgba(10,8,6,.72) 100%); }
+.addr-cabeza { position:absolute; top:132px; left:0; right:0; text-align:center; }
+.addr-nombre { font-weight:700; font-size:34px; letter-spacing:.02em; }
+.addr-filete { width:420px; height:2px; background:rgba(255,255,255,.55); margin:20px auto 16px; }
+.addr-sub { font-style:italic; font-weight:400; font-size:36px; color:var(--lima); }
+.tarjeta { position:absolute; width:176px; height:176px; margin:-88px 0 0 -88px;
+  background:var(--blanco); border-radius:38px; transform:rotate(45deg);
+  box-shadow:0 14px 34px rgba(0,0,0,.35); }
+.tarjeta .dentro { transform:rotate(-45deg); width:100%; height:100%; display:flex;
+  flex-direction:column; align-items:center; justify-content:center; gap:6px;
+  color:#1F2A3A; font-weight:700; font-size:19px; line-height:1.12; text-align:center; }
+.tarjeta svg { width:58px; height:58px; }
+.tarjeta.p1 { left:17%; top:67%; }
+.tarjeta.p2 { left:28%; top:47%; }
+.tarjeta.p3 { left:50%; top:39%; }
+.tarjeta.p4 { left:72%; top:47%; }
+.tarjeta.p5 { left:83%; top:67%; }
+.addr-centro { position:absolute; left:0; right:0; top:61%; text-align:center; }
+.addr-centro .fila { display:inline-flex; align-items:center; gap:14px; font-weight:700; font-size:40px;
+  text-shadow:0 4px 20px rgba(0,0,0,.5); }
+.addr-centro svg { width:52px; height:52px; }
+.addr-centro .sep { opacity:.6; margin:0 6px; }
+.addr-pie { position:absolute; left:0; right:0; bottom:92px; text-align:center; }
+.pildora-precio { display:inline-block; background:var(--lima); color:var(--azul); font-size:28px;
+  font-weight:400; border-radius:9999px; padding:18px 40px; }
+.pildora-precio b { font-weight:700; }
+.emoji { font-family:'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif;
+         font-style:normal; font-size:.8em; vertical-align:.04em; }
+
+/* Ajuste de respiros (medido sobre el render): el panel de la ficha 1 dejaba ~15 % de
+   blanco muerto al pie; el contenido se centra en el panel y la grilla toma más aire.
+   En la ficha 2 las tarjetas de los extremos rozaban la fila «2 y 3 dorms | 2 baños». */
+.ficha-panel { display:flex; flex-direction:column; justify-content:center; padding:96px 70px 20px; }
+.rasgos { gap:44px 20px; margin-top:46px; }
+.rasgo { font-size:23px; }
+.disco-az { width:84px; height:84px; }
+.disco-az svg { width:48px; height:48px; }
+.tarjeta.p1 { left:15%; top:71%; }
+.tarjeta.p5 { left:85%; top:71%; }
+.tarjeta.p2 { left:28%; top:48%; }
+.tarjeta.p4 { left:72%; top:48%; }
+.addr-centro { top:59.5%; }
+.addr-centro .fila { font-size:38px; }

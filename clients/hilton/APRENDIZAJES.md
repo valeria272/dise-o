@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-10-01** · Cosechas: **46**
+> Última cosecha: **2026-10-01** · Cosechas: **47**
 
 ## 1. Quién es el cliente
 
@@ -34,6 +34,7 @@ Las dos comparten Drive y dirección, **no criterio**: nada de DT pasa a Between
 | Dónde se entrega | `HILTON/CONTENIDOS/2026/<N>. <MES>/S<n> HILTON <MES> 2026/{DT,BW}/{STS,FEED}` (CONTENIDOS/2026 = `1V3rvFNzOI9geT2h7-GyZ4XHY9vuu25uv`). En BW no se sube hasta que Eli da la carpeta oficial |
 | Ritmo | Grilla mensual por semanas S1–S5 (estático, carrusel, reel, historia animada/estática) + cartas, mailings, pantallas y banners a pedido |
 | Rondas típicas | Muchas. BW: 4 rondas por grilla (oct-2026) y hasta 20+ en una pieza cuando se componía en vez de generar. DT: 3–6 por pieza, casi siempre por la referencia o por la foto |
+| Sitio web de Año Nuevo | [DT + Piso18] Eli lo diseña en **Figma**, no en Illustrator: archivo «Año Nuevo 2025» (`itOaRURkyCVeTMpNrJ7JW1`, marco `WEB_año_nuevo` 1920×6000, «Rio Vibes · Año Nuevo 2026»). Siete tramos: portada con título y 4 sellos de precio · franja de preventa · paquetes con la carta · marcas · preguntas frecuentes · formulario · pie. Tipografías Raleway + Quattrocento Sans; es pieza de evento, **fuera del sistema Stag/azul de la grilla**. El conector de Figma de Claude Code quedó activo el 01-10-2026 con su cuenta (plan Starter: cortó tras ~35 acciones en una tarde) — _Eli, 01-10-2026_ |
 
 ## 3. Identidad en corto
 
@@ -404,6 +405,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 ## 8. Preguntas abiertas
 
+- [DT + P18] Prueba de sitio de Año Nuevo 2027 con temática casino (Figma `9ep6vgSDvaH5aguD9juupC`): Eli la pidió «para ver qué tal» y **no dio veredicto** (sólo pidió el enlace). ¿Sirve el camino? · quedaron dos ajustes sin aplicar por el tope del conector (logos de marcas a la izquierda para que Kunstmann no caiga sobre el vaso; fondo más oscuro en preguntas frecuentes) · el nombre «Gran Casino», la temática y si «Se recomiendan prendas blancas» sigue valiendo los define contenido/cliente → **Eli** (01-10)
+- [DT + P18] El archivo de referencia «Año Nuevo 2025» trae erratas en la carta («Glenfidich», «Hendrix´s», «Alto del Carme», «Extra Burt», «Télefono», «Cómo reservar?»): corregidas sólo en la prueba; el original no se tocó → **Eli** (01-10)
+
 - ~~[BW] Carrusel To Go 01-10: falta el OK final de la lámina n°2 (flechas)~~ ✅ **resuelto 01-10: Eli cerró el carrusel en la r22** («la bolsita un poco más grande y ok»). Queda que Eli pegue la n°5 nueva en la grilla (la pegada es la r20)
 - [BW] El cliente pidió sacar los horarios «en la G2»; se sacaron de TODAS las láminas de producto (R-177). ¿Era sólo de una? · ¿el logo de la bolsa va en café de marca o en el terracota de la bolsa real? · ¿la portada lleva una frase gancho (como «Tu desayuno va contigo» de septiembre)? → **cliente / Nicolás** (01-10)
 - [BW] «Reúnete en Between» 07-10: la sesión de septiembre no trae gente (523 fotos revisadas); se subió una OPCIÓN con foto real del lounge junto a la vigente, sin respuesta. ¿Sirve, o hay fotos de Scarlette del shooting? Y sigue con el nombre viejo «BW FEED 05-10 Esa reunion…» → **Eli / Scarlette** (01-10)
@@ -463,6 +467,13 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 (6) — Claude con Eli · DT + P18: instalación de Figma y dos PRUEBAS de sitio de Año Nuevo · sin reglas nuevas
+- **Qué pasó:** Eli pidió instalar Figma, leer la guía de Figma sobre skills de Claude y probar. Prueba 1: sitio de Año Nuevo del DoubleTree en azul/verde con fotos reales. Prueba 2: sitio «Gran Casino · Año Nuevo 2027» con la misma distribución de su archivo «Rio Vibes» (7 tramos, 1920 px), fondos generados con Seedream 5 Pro. El conector cortó por tope de uso antes de dos ajustes finales.
+- **Sin aprendizajes de criterio:** Eli no aprobó ni corrigió nada; sólo pidió el enlace. No sube ningún ✔ ni entra ningún rechazo.
+- **Lo que se supo del cliente** → §2: el sitio de Año Nuevo vive en Figma y tiene una estructura fija de siete tramos.
+- **De método (no es regla de marca):** en Figma por conector no están Stag ni Trade Gothic (sólo fuentes de Google), así que una pieza de DT sale con reemplazos y hay que avisarlo · el plan gratuito corta mucho antes de lo documentado: una captura por logo es un gasto que no se repite.
+- **Abiertas** → §8 (dos nuevas).
 
 ### 2026-10-01 (5) — Claude con Eli · BW: `/abrir bw` + carrusel To Go r21–r22 (la bolsa de la última = la de la portada) · 2 reglas nuevas, CARRUSEL CERRADO
 - **Qué pasó:** apertura y `/al-dia bw` (la grilla sólo movió dos estados a EN CAMBIOS; sin hilos ni comentarios nuevos). Eli pidió que la bolsa de la lámina n°5 se pareciera a la de la portada; r21 con la misma bolsa (vertical, asas paradas) pegada a medida, r22 un 10 % más grande. Con eso dio el carrusel por listo. Reemplazada en Drive, md5 = local.

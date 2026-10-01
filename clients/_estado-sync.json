@@ -1,6 +1,6 @@
 {
   "_que_es": "Registro de la última vez que se revisó el Drive con /al-dia. No editar a mano.",
-  "ultima_revision": "2026-09-30",
+  "ultima_revision": "2026-10-01",
   "por_marca": {
     "ebema": {
       "revisado": "2026-09-30",
@@ -64,8 +64,8 @@
       "ultimo_hallazgo": "MARCA NUEVA sin mapear: 'Landera_Textos_Manual_de_Marca' v1/v2 (constanza.olivares, 22-23-09, unidad compartida 0AICqolVwYE2OUk9PVA). || Coni monto el 14-09 un arbol DISEÑO completo de aplicaciones Landera (1iszldo-EASujMZoNicLCJhc-tIvzu-xS): BANNERS (PRESS/LINKEDIN/PRINCIPAL WEB), FIRMA CORREO (FARMLAND y GESTION), REDES SOCIALES (FEED-01/02/03, STORIE, PORTADA), BRAND (GORRO/CAMISA/POLERA/LAPIZ/CUADERNO) y TEMPLATE ppt (Template Press - Landera, 4 laminas con Lorem ipsum, modificado el 21-09 -- sigue vivo). Pisa las laminas 25/26 presentacion, 30 linkedin, 32 instagram, 33 firmas y 38 vestuario del manual v3.0. DISCREPANCIA: el manual norma 4 firmas (gerencia/operaciones/inversiones/campo) y Coni hizo 2 (FARMLAND/GESTION) -- otra estructura de unidades de negocio. Sin comentarios en Drive sobre los 3 entregables del 07-09: la 4a ronda del cliente no ha llegado por ahi."
     },
     "copywriters": {
-      "revisado": "2026-09-29 (/abrir copywriters)",
-      "ultimo_hallazgo": "29-09 (/abrir copywriters): SIN NOVEDAD para la cuenta propia. El feed vive en el repo, no en una carpeta de cliente del Drive. La carpeta AGENCIA COPYWRITERS/COPYWRITERS (1OhqLbkbJHSrY_e-E-aR5dUudM-tDKHPI) no registra archivos modificados desde el 20-09. Lo que se movio hoy con el nombre Copywriters es COMERCIAL, no diseno: cotizacion 7809 Rex+ macro influencers (19:42Z), cotizacion 7808 Mas Center Halloween/Corrida (18:05Z), CHV 2026-2 control de inversion (19:12Z), CRM Type de Petra (13:51Z) y el PPTO Copywriters (12:27Z). El doc 'COPYWRITERS - cerebro del cliente' (16eVSRhAevMEJ0H6y3uuTxSBzT1xrH2UmI6A84E1JUZ4) sigue en la version del 26-09: le faltan las cosechas nuevas si hoy se cierra algo. El pull de la manana trajo solo trabajo de Eli en DT/QB/Between/Piso18, nada de la cuenta propia."
+      "revisado": "2026-10-01 (/abrir copywriters)",
+      "ultimo_hallazgo": "01-10: SIN NOVEDAD de diseño en Drive para la cuenta propia (carpeta COPYWRITERS sin cambios desde el 20-09; el feed vive en el repo). Lo que se movió es comercial (PPTO Copywriters) y el portal. ⚠️ Hay 3 Docs 'COPYWRITERS — cerebro del cliente' en MEMORIA DEL ESTUDIO: 1dya… (nube 03:10Z, 15 KB, sin CASO 001), 1OaB… (sesión local 13:20Z) y 1eoJ… (13:22Z, completo, el registrado). Causa: la nube y el Mac usan credenciales distintas con alcance drive.file y cada una sólo ve los Docs que creó; cada lado crea el suyo."
     },
     "fork": {
       "revisado": "2026-09-15 (/al-dia -- barrido, sin hallazgo propio)",

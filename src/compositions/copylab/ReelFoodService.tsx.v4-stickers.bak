@@ -1,0 +1,174 @@
+// ============================================================================
+// REEL · ESPACIO FOOD SERVICE 2026 — «Del stand al reel»
+// ----------------------------------------------------------------------------
+// PEDIDO    Valeria, 01-10-2026: «un reel de lo que fue Espacio Food Service con
+//           nuestro equipo, que va a crear contenido para Traverso; corto y bonito».
+// MATERIAL  69 clips en bruto de Sebastián Serrano (Drive: FOOD SERVICE 2026 /
+//           Recap · Mr Wagyu). iPhone 4K HLG → cortados a 1080×1920 SDR (tonemap
+//           hable) por ~/copylab-work/foodservice_raw/cortar.py, que manda.
+// IDEA      El reel ES el trabajo: la jornada contada desde la cámara del equipo
+//           (credencial, stand, chefs, gente probando) y el remate dice para qué
+//           estábamos ahí. Mecanismo 04 PHOTOGRAPHIC OBSERVATION: el material real
+//           carga la pieza; la tipografía se aparta.
+// RITMO     Cortes al beat de «Pump It» (≈154 BPM, 11,69 f por beat), casi todos de 2 beats,
+//           hook de 4 y cierre de 6. Las posiciones salen de cortes.json.
+// TEXTO     Tres placas, ninguna de más de 6 palabras. Mano (Balloon) en rosa sólo
+//           en la palabra que decide; sombra corta sobre foto (ley 2609 §13.3).
+// ZONAS     9:16 · 250 arriba · 340 abajo · 155 derecha.
+// MÚSICA    Ninguna en el archivo. «Pump It» (Black Eyed Peas) tiene derechos: se
+//           agrega desde la biblioteca de IG al publicar. v1 (140 BPM + temp-g-hype140)
+//           quedó reemplazada el 01-10-2026.
+// ⛔ NO     Ninguna persona del equipo identificable (pedido de Valeria: en el
+//           material viejo aparece gente que ya no está). Los rostros son de chefs
+//           y visitantes del evento.
+// ============================================================================
+import React from "react";
+import {AbsoluteFill, Audio, OffthreadVideo, Sequence, interpolate, staticFile,
+        useCurrentFrame} from "remotion";
+import {C2, VOZ2, SOMBRA_SOBRE_FOTO, asegurarFuentesV2} from "../../brand/copylab/sistemaV2";
+import {Img} from "remotion";
+
+// [desde, frames] de cada toma — copiado de _cortes/cortes.json
+const TOMAS: [number, number][] = [
+  [0, 47], [47, 23], [70, 24], [94, 23], [117, 24], [141, 23], [164, 23], [187, 24], [211, 23], [234, 24], [258, 23], [281, 24], [305, 23], [328, 23], [351, 24], [375, 23], [398, 12], [410, 12], [422, 23], [445, 70],
+];
+/** Placa final con el logo de Traverso: 4 beats de «Pump It» (11,72 f por beat). */
+const PLACA = 47;
+const FIN_TOMAS = 515;
+export const REEL_FOODSERVICE_FRAMES = FIN_TOMAS + PLACA;
+/** Inicio de la toma i: los textos se cuelgan de los cortes, no de frames sueltos. */
+const T = (i: number) => TOMAS[i][0];
+const BLANCO = "#FFFFFF";
+
+/** Aparece en 5 frames y se va en 4: el texto entra con el corte, no flota. */
+const usarOpacidad = (desde: number, hasta: number) => {
+  const f = useCurrentFrame();
+  return interpolate(f, [desde, desde + 5, hasta - 4, hasta], [0, 1, 1, 0],
+                     {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Rotulo: React.FC<{texto: string; y: number; desde: number; hasta: number}> = ({texto, y, desde, hasta}) => (
+  <div style={{position: "absolute", left: 80, top: y, opacity: usarOpacidad(desde, hasta),
+               fontFamily: VOZ2.data, fontSize: 30, fontWeight: 500, letterSpacing: 4.8,
+               color: BLANCO, textTransform: "uppercase", textShadow: SOMBRA_SOBRE_FOTO}}>
+    {texto}
+  </div>
+);
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Mano: React.FC<{lineas: string[]; y: number; desde: number; hasta: number; cuerpo?: number; color?: string}> =
+  ({lineas, y, desde, hasta, cuerpo = 104, color = C2.rosa}) => (
+  <div style={{position: "absolute", left: 80, top: y, opacity: usarOpacidad(desde, hasta),
+               transform: "rotate(-2deg)", fontFamily: VOZ2.mano, fontWeight: 800, fontSize: cuerpo,
+               lineHeight: 1.05, color, textTransform: "uppercase", textShadow: SOMBRA_SOBRE_FOTO}}>
+    {lineas.map((l) => <div key={l}>{l}</div>)}
+  </div>
+);
+
+const Sticker: React.FC<{lineas: string[]; y: number; desde: number; hasta: number; giro: number}> =
+  ({lineas, y, desde, hasta, giro}) => (
+  <div style={{position: "absolute", left: 80, top: y, opacity: usarOpacidad(desde, hasta),
+               transform: `rotate(${giro}deg)`, background: C2.rosa, padding: "18px 34px 14px",
+               boxShadow: "0 8px 24px rgba(0,0,0,0.35)", fontFamily: VOZ2.mano, fontWeight: 800,
+               fontSize: 92, lineHeight: 1.02, color: C2.negro, textTransform: "uppercase"}}>
+    {lineas.map((l) => <div key={l}>{l}</div>)}
+  </div>
+);
+
+/** Caja negra con Bebas: la intro pasa por un cielo casi blanco (toma 1) y un piso verde:
+ *  un titular suelto no se lee en todas. Entra con un pequeño «pop» de 6 frames. */
+const Caja: React.FC<{lineas: string[]; y: number; desde: number; hasta: number; giro: number; cuerpo?: number}> =
+  ({lineas, y, desde, hasta, giro, cuerpo = 104}) => {
+  const f = useCurrentFrame();
+  const pop = interpolate(f, [desde, desde + 6], [0.86, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+  return (
+    <div style={{position: "absolute", left: 80, top: y, opacity: usarOpacidad(desde, hasta),
+                 transform: `rotate(${giro}deg) scale(${pop})`, transformOrigin: "left top",
+                 background: C2.negro, padding: "22px 34px 14px", boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+                 fontFamily: VOZ2.impacto, fontWeight: 700, fontSize: cuerpo, lineHeight: 0.95,
+                 color: BLANCO, textTransform: "uppercase"}}>
+      {lineas.map((l) => <div key={l}>{l}</div>)}
+    </div>
+  );
+};
+
+const PlacaTraverso: React.FC = () => {
+  const f = useCurrentFrame();
+  const op = interpolate(f, [0, 4], [0, 1], {extrapolateRight: "clamp"});
+  const esc = interpolate(f, [0, PLACA], [0.96, 1.0], {extrapolateRight: "clamp"});
+  return (
+    // Fondo blanco (Valeria, 01-10): la bandera se ve como en el brandbook, sobre blanco.
+    <AbsoluteFill style={{background: "#FFFFFF", alignItems: "center", justifyContent: "center"}}>
+      <div style={{opacity: op, display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <Img src={staticFile("assets/traverso/logo.png")} style={{width: 780, transform: `scale(${esc})`}} />
+        <div style={{marginTop: 70, fontFamily: VOZ2.data, fontSize: 30, letterSpacing: 5,
+                     color: C2.negro, textTransform: "uppercase"}}>En Espacio Food Service 2026</div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+/** conMusica: la versión de REVISIÓN lleva «Pump It» bajado de YouTube, SIN LICENCIA.
+ *  La que se publica va sin música y el tema se pone desde la biblioteca de IG. */
+export const ReelFoodService: React.FC<{conMusica?: boolean}> = ({conMusica = false}) => {
+  asegurarFuentesV2();
+  const f = useCurrentFrame();
+  const enCierre = f >= T(19);
+  return (
+    <AbsoluteFill style={{background: C2.negro}}>
+      {TOMAS.map(([desde, n], i) => (
+        <Sequence key={i} from={desde} durationInFrames={n}>
+          <OffthreadVideo src={staticFile(`assets/foodservice-traverso/${String(i).padStart(2, "0")}.mp4`)}
+                          muted style={{width: "100%", height: "100%", objectFit: "cover"}} />
+        </Sequence>
+      ))}
+
+      {/* Velo SÓLO donde va el texto del cierre (ley 2609: el velo va donde va el texto). */}
+      {enCierre && (
+        <AbsoluteFill style={{opacity: interpolate(f, [T(19), T(19) + 9], [0, 1], {extrapolateRight: "clamp"}),
+          background: "linear-gradient(180deg, rgba(11,11,11,0) 38%, rgba(11,11,11,0.72) 78%)"}} />
+      )}
+
+      {/* INTRO (Valeria, 01-10): «fuimos a cubrir Espacio Food Service con nuestro equipo
+          para nuestro cliente Traverso y enterarnos de todas las novedades». Dos golpes, cada
+          uno con su caja y su sticker; el segundo dura 4 tomas para que alcance a leerse. */}
+      <Caja lineas={["Fuimos a cubrir", "Espacio Food Service"]} y={300} desde={1} hasta={T(2)} giro={-2} cuerpo={92} />
+      <Sticker lineas={["con nuestro", "equipo de content."]} y={545} desde={10} hasta={T(2)} giro={2} />
+      <Caja lineas={["Para nuestro", "cliente Traverso,"]} y={300} desde={T(2) + 2} hasta={T(6) - 2} giro={2} cuerpo={92} />
+      <Sticker lineas={["y enterarnos", "de todo lo nuevo."]} y={545} desde={T(2) + 12} hasta={T(6) - 2} giro={-2} />
+      {/* Sticker rosa con la mano en negro: el fondo cambia en cada corte (mesón blanco,
+          mascota amarilla) y un texto suelto se perdía en dos de ellos. El sticker se lee
+          sobre cualquier toma. «se graba.» termina antes de que entre la mascota (toma 12). */}
+      <Sticker lineas={["Lo que se", "cocina,"]} y={1230} desde={T(6) + 4} hasta={T(10) - 3} giro={-3} />
+      <Sticker lineas={["se graba."]} y={1230} desde={T(10) + 4} hasta={T(12) - 2} giro={2} />
+
+      {/* Cierre */}
+      <div style={{position: "absolute", left: 80, top: 1080, opacity: usarOpacidad(T(19) + 6, FIN_TOMAS + 2)}}>
+        <div style={{fontFamily: VOZ2.impacto, fontWeight: 700, fontSize: 170, lineHeight: 0.9,
+                     color: BLANCO, textShadow: SOMBRA_SOBRE_FOTO}}>DEL STAND</div>
+        <div style={{fontFamily: VOZ2.mano, fontWeight: 800, fontSize: 150, color: C2.rosa,
+                     transform: "rotate(-2deg)", marginTop: 6, textShadow: SOMBRA_SOBRE_FOTO}}>AL REEL.</div>
+        <div style={{fontFamily: VOZ2.data, fontSize: 28, letterSpacing: 4.5, color: BLANCO, marginTop: 26,
+                     textTransform: "uppercase"}}>Contenido para @traversochile</div>
+      </div>
+
+
+      {/* PLACA FINAL — pedido de Valeria (01-10): cerrar con el logo de Traverso e indicar que
+          estamos en Espacio Food Service. Logo BANDERA del brandbook (R-03: nunca el óvalo, sin
+          girar ni deformar); sólo entra con un leve acercamiento. */}
+      <Sequence from={FIN_TOMAS} durationInFrames={PLACA}>
+        <PlacaTraverso />
+      </Sequence>
+      {conMusica && (
+        // Entra en el beat de 18,312 s, donde arranca la banda completa (medido, no a oído).
+        <Audio src={staticFile("assets/foodservice-traverso/temp-pumpit-SIN-LICENCIA.wav")}
+               startFrom={Math.round(18.312 * 30)}
+               volume={(fr) => interpolate(fr, [0, 3, REEL_FOODSERVICE_FRAMES - 14, REEL_FOODSERVICE_FRAMES],
+                                           [0, 0.7, 0.7, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})} />
+      )}
+      {/* SIN MÚSICA a propósito (Valeria, 01-10): «Pump It» de Black Eyed Peas se pone en
+          la app al publicar. Los cortes están en la grilla de 154 BPM de ese tema. */}
+    </AbsoluteFill>
+  );
+};

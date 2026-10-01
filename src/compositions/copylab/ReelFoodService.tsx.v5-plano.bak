@@ -1,0 +1,129 @@
+// ============================================================================
+// REEL · ESPACIO FOOD SERVICE 2026 — «Del stand al reel»
+// ----------------------------------------------------------------------------
+// PEDIDO    Valeria, 01-10-2026: «un reel de lo que fue Espacio Food Service con
+//           nuestro equipo, que va a crear contenido para Traverso; corto y bonito».
+// MATERIAL  69 clips en bruto de Sebastián Serrano (Drive: FOOD SERVICE 2026 /
+//           Recap · Mr Wagyu). iPhone 4K HLG → cortados a 1080×1920 SDR (tonemap
+//           hable) por ~/copylab-work/foodservice_raw/cortar.py, que manda.
+// IDEA      El reel ES el trabajo: la jornada contada desde la cámara del equipo
+//           (credencial, stand, chefs, gente probando) y el remate dice para qué
+//           estábamos ahí. Mecanismo 04 PHOTOGRAPHIC OBSERVATION: el material real
+//           carga la pieza; la tipografía se aparta.
+// RITMO     Cortes al beat de «Pump It» (≈154 BPM, 11,69 f por beat), casi todos de 2 beats,
+//           hook de 4 y cierre de 6. Las posiciones salen de cortes.json.
+// TEXTO     Tres placas, ninguna de más de 6 palabras. Mano (Balloon) en rosa sólo
+//           en la palabra que decide; sombra corta sobre foto (ley 2609 §13.3).
+// ZONAS     9:16 · 250 arriba · 340 abajo · 155 derecha.
+// MÚSICA    Ninguna en el archivo. «Pump It» (Black Eyed Peas) tiene derechos: se
+//           agrega desde la biblioteca de IG al publicar. v1 (140 BPM + temp-g-hype140)
+//           quedó reemplazada el 01-10-2026.
+// ⛔ NO     Ninguna persona del equipo identificable (pedido de Valeria: en el
+//           material viejo aparece gente que ya no está). Los rostros son de chefs
+//           y visitantes del evento.
+// ============================================================================
+import React from "react";
+import {AbsoluteFill, Audio, OffthreadVideo, Sequence, interpolate, staticFile,
+        useCurrentFrame} from "remotion";
+import {C2, VOZ2, SOMBRA_SOBRE_FOTO, asegurarFuentesV2} from "../../brand/copylab/sistemaV2";
+import {Img} from "remotion";
+
+// [desde, frames] de cada toma — copiado de _cortes/cortes.json
+const TOMAS: [number, number][] = [
+  [0, 47], [47, 23], [70, 24], [94, 23], [117, 24], [141, 23], [164, 23], [187, 24], [211, 23], [234, 24], [258, 23], [281, 24], [305, 23], [328, 23], [351, 24], [375, 23], [398, 12], [410, 12], [422, 23], [445, 70],
+];
+
+/** Placa final con el logo de Traverso: 4 beats de «Pump It» (11,72 f por beat). */
+const PLACA = 47;
+const FIN_TOMAS = 515;
+export const REEL_FOODSERVICE_FRAMES = FIN_TOMAS + PLACA;
+/** Inicio de la toma i: los textos se cuelgan de los cortes, no de frames sueltos. */
+const T = (i: number) => TOMAS[i][0];
+const BLANCO = "#FFFFFF";
+
+/** Aparece en 5 frames y se va en 4: el texto entra con el corte, no flota. */
+const usarOpacidad = (desde: number, hasta: number) => {
+  const f = useCurrentFrame();
+  return interpolate(f, [desde, desde + 5, hasta - 4, hasta], [0, 1, 1, 0],
+                     {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+};
+
+/** UNA sola voz para todo el reel (jefa de diseño, 01-10): Bebas Neue Pro, centrada, blanca,
+ *  sin recuadros ni letra a mano ni mono. Sobre la toma va un velo oscuro SÓLO en la franja del
+ *  texto, para que se lea también en el cielo blanco del acceso. */
+const Texto: React.FC<{lineas: string[]; desde: number; hasta: number; y?: number; cuerpo?: number}> =
+  ({lineas, desde, hasta, y = 1120, cuerpo = 96}) => {
+  const op = usarOpacidad(desde, hasta);
+  return (
+    <>
+      <div style={{position: "absolute", left: 0, right: 0, top: y - 120, height: lineas.length * cuerpo * 0.95 + 240,
+                   opacity: op * 0.85,
+                   background: "linear-gradient(180deg, rgba(11,11,11,0) 0%, rgba(11,11,11,0.55) 30%, rgba(11,11,11,0.55) 70%, rgba(11,11,11,0) 100%)"}} />
+      <div style={{position: "absolute", left: 60, right: 60, top: y, opacity: op, textAlign: "center",
+                   fontFamily: VOZ2.impacto, fontWeight: 700, fontSize: cuerpo, lineHeight: 0.95,
+                   color: BLANCO, textTransform: "uppercase", textShadow: SOMBRA_SOBRE_FOTO}}>
+        {/* nowrap: el corte de línea lo decide el guion, no el ancho de la pantalla */}
+        {lineas.map((l) => <div key={l} style={{whiteSpace: "nowrap"}}>{l}</div>)}
+      </div>
+    </>
+  );
+};
+
+const PlacaTraverso: React.FC = () => {
+  const f = useCurrentFrame();
+  const op = interpolate(f, [0, 4], [0, 1], {extrapolateRight: "clamp"});
+  const esc = interpolate(f, [0, PLACA], [0.96, 1.0], {extrapolateRight: "clamp"});
+  return (
+    // Fondo blanco (Valeria, 01-10): la bandera se ve como en el brandbook, sobre blanco.
+    <AbsoluteFill style={{background: "#FFFFFF", alignItems: "center", justifyContent: "center"}}>
+      <div style={{opacity: op, display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <Img src={staticFile("assets/traverso/logo.png")} style={{width: 780, transform: `scale(${esc})`}} />
+        <div style={{marginTop: 60, fontFamily: VOZ2.impacto, fontWeight: 700, fontSize: 64,
+                     color: C2.negro, textTransform: "uppercase", textAlign: "center"}}>Espacio Food Service 2026</div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+/** conMusica: la versión de REVISIÓN lleva «Pump It» bajado de YouTube, SIN LICENCIA.
+ *  La que se publica va sin música y el tema se pone desde la biblioteca de IG. */
+export const ReelFoodService: React.FC<{conMusica?: boolean}> = ({conMusica = false}) => {
+  asegurarFuentesV2();
+  return (
+    <AbsoluteFill style={{background: C2.negro}}>
+      {TOMAS.map(([desde, n], i) => (
+        <Sequence key={i} from={desde} durationInFrames={n}>
+          <OffthreadVideo src={staticFile(`assets/foodservice-traverso/${String(i).padStart(2, "0")}.mp4`)}
+                          muted style={{width: "100%", height: "100%", objectFit: "cover"}} />
+        </Sequence>
+      ))}
+
+
+      {/* INTRO (Valeria, 01-10): fuimos a cubrir Espacio Food Service con nuestro equipo de
+          content, para nuestro cliente Traverso, y a enterarnos de todo lo nuevo. */}
+      <Texto lineas={["Fuimos a cubrir", "Espacio Food Service", "con nuestro", "equipo de content"]} desde={1} hasta={T(2)} cuerpo={84} />
+      <Texto lineas={["Para nuestro", "cliente Traverso", "y enterarnos", "de todo lo nuevo"]} desde={T(2) + 2} hasta={T(6) - 2} cuerpo={84} />
+      <Texto lineas={["Lo que se cocina,"]} desde={T(6) + 4} hasta={T(10) - 3} />
+      <Texto lineas={["se graba."]} desde={T(10) + 4} hasta={T(12) - 2} />
+
+      {/* Cierre */}
+      <Texto lineas={["Del stand", "al reel."]} desde={T(19) + 6} hasta={FIN_TOMAS + 2} y={1060} cuerpo={150} />
+
+      {/* PLACA FINAL — pedido de Valeria (01-10): cerrar con el logo de Traverso e indicar que
+          estamos en Espacio Food Service. Logo BANDERA del brandbook (R-03: nunca el óvalo, sin
+          girar ni deformar); sólo entra con un leve acercamiento. */}
+      <Sequence from={FIN_TOMAS} durationInFrames={PLACA}>
+        <PlacaTraverso />
+      </Sequence>
+      {conMusica && (
+        // Entra en el beat de 18,312 s, donde arranca la banda completa (medido, no a oído).
+        <Audio src={staticFile("assets/foodservice-traverso/temp-pumpit-SIN-LICENCIA.wav")}
+               startFrom={Math.round(18.312 * 30)}
+               volume={(fr) => interpolate(fr, [0, 3, REEL_FOODSERVICE_FRAMES - 14, REEL_FOODSERVICE_FRAMES],
+                                           [0, 0.7, 0.7, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})} />
+      )}
+      {/* SIN MÚSICA a propósito (Valeria, 01-10): «Pump It» de Black Eyed Peas se pone en
+          la app al publicar. Los cortes están en la grilla de 154 BPM de ese tema. */}
+    </AbsoluteFill>
+  );
+};

@@ -108,12 +108,20 @@ def espera(ruta_tarea, task_id, minutos=8):
     """Sondea hasta que la tarea termina. Devuelve la lista de URLs generadas."""
     limite = time.time() + minutos * 60
     espera_s = 3
+    vacias = 0
     while time.time() < limite:
         r = pedir(f"{ruta_tarea}/{task_id}")
         d = r.get("data", r)
         estado = (d.get("status") or "").upper()
         if estado in ("COMPLETED", "SUCCESS"):
-            return d.get("generated") or d.get("result") or []
+            urls = d.get("generated") or d.get("result") or []
+            # El upscaler de precisión marca COMPLETED unos segundos ANTES de
+            # llenar `generated` (medido el 01-10-2026): se sigue sondeando.
+            if urls or vacias >= 6:
+                return urls
+            vacias += 1
+            time.sleep(6)
+            continue
         if estado in ("FAILED", "ERROR"):
             sys.exit(f"✗ La tarea falló: {json.dumps(d)[:300]}")
         print(f"  … {estado or 'EN PROCESO'}", flush=True)

@@ -9,8 +9,8 @@ celda «Brief / Nota / imagen» de Carlos.
 
 **Drive:** `EBEMA CLICK › 2026 › SEPTIEMBRE › SEMANA 1 › wtps_piazza_catalogo`
 (`1EWgxVIhamwI_rqduQsqN6PvI3aCFwXbY`)
-- `ebema_wtps_piazza_catalogo_ferre.png` — A4, **2500×5530**, md5 `2bcdb36728a7afbc285e2ef6d885e72a` (corrección del cliente del 01-10; la del 30-09 era 2500×4510, md5 `25ea09ae…`, y quedó como versión anterior del mismo archivo en Drive)
-- `ebema_wtps_piazza_catalogo_cont.png` — A5, 2500×4180, md5 `c93fb68ef24676ea01bbbfbaed2bd034`
+- `ebema_wtps_piazza_catalogo_ferre.png` — A4, **2500×5530**, md5 `1b9649e68f3deb19233e7d36614468a9` desde la 2.ª corrección del 01-10 (productos actualizados); antes `2bcdb36728a7afbc285e2ef6d885e72a` (corrección del cliente del 01-10; la del 30-09 era 2500×4510, md5 `25ea09ae…`, y quedó como versión anterior del mismo archivo en Drive)
+- `ebema_wtps_piazza_catalogo_cont.png` — A5, 2500×4180, md5 `c305594d2f0a3316e244d958c9925f0d` desde la 2.ª corrección del 01-10; antes `c93fb68ef24676ea01bbbfbaed2bd034`
 
 ## Corrección del cliente — 01-10-2026 (sólo la A4)
 
@@ -41,6 +41,35 @@ el botón y el legal.
 - **Aprobada por Paulina el 01-10** («lo apruebo, déjalo en la carpeta») y subida sobre el mismo fileId (`106p9uVRntP0-AdLHDMdCFb3FC_skTeIA`), md5 `2bcdb36728a7afbc285e2ef6d885e72a` verificado contra el local.
 - Versiones anteriores (PNG + script, sólo en local): `_ronda11_aprobada_30-09/` (la del
   30-09), `_ronda12_lamina_tal_cual/` (lámina sin tocar) y `_ronda13_cuadro_chico/`.
+
+## Segunda corrección del cliente — 01-10-2026, tarde (A4 y A5) · aprobada y subida
+
+Carlos, 14:14, comentario en las celdas «Brief / Nota / imagen» de la A4 y de la A5:
+**«Carpeta con productos actualizados!»**. En el brief el enlace PRODUCTOS pasó a ser
+«PRODUCTOS ACTUALIZADO» → carpeta **`SÓLO PIAZZA`** (`1tmtgvsYbzr_1Y-OJ8QQBDK_0cjGP6Qz7`, dentro de
+`PIAZZA`): 7 packshots de 640×905 sobre blanco, bajados a
+`raw/ebema/piazza-catalogo-a4a5/solo-piazza_01-10/`. No trae más texto que ése.
+
+- **Siguen 3**, con su recorte de la ficha en alta: Calyx negro PZ20000NE, lavatorio PZ6000 y
+  lavaplato vertical PZ6009.
+- **Salen 4:** llave individual GR317, tina ducha PZ6002, ducha PZ6012 y combinación Azteca AZ3214.
+- **Entran 4**, cada uno en el lugar del que reemplaza (mismo tipo, mismo nivel — R-80):
+  temporizada **PZ43001** al centro de la repisa · tina ducha **PZ20002NE** y ducha **PZ20012NE**
+  (Calyx negro) en el muro · monomando cocina **PZ20009NE** (Calyx negro) en la cubierta.
+  Los códigos salen de cotejar cada imagen con `piazzagriferia.cl/img/productos/<sku>.jpg`.
+- Los 4 nuevos miran a la derecha tal como vienen: ninguno se espeja (la ducha trae «Piazza» escrito).
+- ⚠️ **Resolución:** las imágenes nuevas son de 640 px y entran ampliadas 1,23–1,33× (la
+  temporizada, reducida). No hay fuente mejor: el sitio de Piazza las tiene a 650×927 y en Drive
+  no existe ficha de esos códigos. Si el proveedor manda las fichas, se cambian en `recortes/`.
+- Recorte: `recortar_solo_piazza.py`. En `componer.py` sólo cambió la lista de productos.
+  Comprobado: fuera de la escena (y 1111–3259) no cambia ni un píxel en ninguna de las dos.
+- La versión aprobada el 01-10 en la mañana queda en `_ronda14_aprobada_01-10/` (PNG + script).
+- **Aprobadas por Paulina el 01-10** («están ok, déjalas en la carpeta») y subidas sobre los mismos fileId,
+  md5 verificado contra el local: A4 `106p9uVRntP0-AdLHDMdCFb3FC_skTeIA` → `1b9649e68f3deb19233e7d36614468a9` ·
+  A5 `1k4Q7quHjnQ56Nkitv5JfRCvkBwcwOhDp` → `c305594d2f0a3316e244d958c9925f0d`. Las de la mañana quedan como
+  versión anterior en Drive.
+- **Abierto:** los 2 comentarios de Carlos en el Sheet siguen sin resolver. El token del estudio responde
+  como Valeria Traverso, así que no se contestó desde acá → los cierra Paulina.
 
 ## Cómo se reproduce
 

@@ -542,13 +542,20 @@ def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True, foto_exhibido
     #    arriba · repisa con los 3 de lavamanos: Calyx negra · llave individual · Portezuelo
     #    medio  · las 2 de ducha instaladas en el muro
     #    abajo  · en la cubierta, más grandes y más abajo: lavaplato · Azteca
+    # Corrección del cliente (01-10, vía Carlos: «Carpeta con productos actualizados!»): el
+    # enlace PRODUCTOS del brief pasa a la carpeta «SÓLO PIAZZA», con 7 packshots. Tres siguen
+    # (Calyx negro, Portezuelo lavatorio, lavaplato vertical); salen GR317, PZ6002, PZ6012 y
+    # la Azteca, y cada uno se reemplaza por el nuevo de su mismo tipo, en su mismo lugar:
+    #    repisa   · llave individual → temporizada PZ43001
+    #    muro     · tina ducha y ducha cromadas → las Calyx negras PZ20002NE y PZ20012NE
+    #    cubierta · combinación Azteca → monomando cocina Calyx negro PZ20009NE
     base_rep = REPISA_Y + 58
-    for k, cx, h_ in [("PZ20000NE", 560, 420), ("GR317", 1250, 350), ("PZ6000", 1940, 420)]:
+    for k, cx, h_ in [("PZ20000NE", 560, 420), ("PZ43001", 1250, 420), ("PZ6000", 1940, 420)]:
         de_cubierta(lienzo, k, cx, base_rep, h_, centrar_caja=True)
-    de_muro(lienzo, "PZ6002", 700, 1790, 690)       # tina ducha
-    de_muro(lienzo, "PZ6012", 1820, 1745, 600)      # ducha
-    de_cubierta(lienzo, "PZ6009", 760, 3170, 860, centrar_caja=True)   # lavaplato vertical
-    de_cubierta(lienzo, "AZ3214", 1720, 3170, 800, centrar_caja=True)  # combinación Azteca
+    de_muro(lienzo, "PZ20002NE", 700, 1790, 690)    # tina ducha
+    de_muro(lienzo, "PZ20012NE", 1820, 1745, 640)   # ducha
+    de_cubierta(lienzo, "PZ6009", 760, 3170, 860, centrar_caja=True)     # lavaplato vertical
+    de_cubierta(lienzo, "PZ20009NE", 1720, 3170, 860, centrar_caja=True) # monomando cocina negro
 
     d = ImageDraw.Draw(lienzo)
 

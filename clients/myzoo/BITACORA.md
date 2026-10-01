@@ -3,6 +3,21 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-10-01 — Paulina Bustamante (con Claude) · post 20/10 Parque Pet
+
+**Qué se hizo:** el cliente rechazó la imagen del post del 20/10 («se ve muy falso, muuuy IA») y pidió que pareciera el Parque Pet. Se rehízo la imagen limpia desde cero y, tras 6 rondas con Paulina, quedó **aprobada por ella**: los dos perros de pie al centro, carpas sin marca alrededor, tutores con perros y el cerro San Cristóbal.
+
+**Dónde quedó:**
+- Local: `out/myzoo/octubre-2026/20_parquepet/` (`…perros-de-pie_2250x2813.png` y `…_ALTA_3536x4421.png`; las versiones descartadas en `_descartadas/`; historial en `ENTREGA.md`).
+- Drive: `MATERIAL DISEÑO PAULINA/MYZOO/5-en-revision/2026-10_octubre/20_post-parquepet_imagen-limpia_01-10` (`1GOh8v-eBwxmlMAR3eXIUcAVlrJ6vrGIt`).
+- Scripts: `myzoo-parquepet-depie.py` → `myzoo-parquepet-depie-fondo.py` (y `myzoo-parquepet-stand.py`, de la versión con stand que se descartó). `magnific.py`: el escalador de precisión ya no «falla» cuando marca COMPLETED antes de entregar la imagen.
+
+**Qué sigue:** Paulina monta logos, titular y píldoras sobre la imagen y la pieza va al cliente.
+
+**Abierto:**
+- ⚠️ Las fuentes del render están en `raw/myzoo/2026-10_parquepet/` (no viaja en git). Para que sea reproducible hay que pasar a `public/assets/myzoo/` las que usan los scripts (`v4/s_b_2x.png`, `t0_e`, `t1_c`, `t2_d`, `bg_a`) antes del commit.
+- Nada de esto está commiteado todavía.
+
 ## 2026-09-30 — Paulina Bustamante (con Claude)
 
 **Qué se hizo:**

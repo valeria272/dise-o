@@ -54,48 +54,70 @@ for n, (f, cx, y0, a) in LAMINAS.items():
     color(recorte(im, cx, y0, a)).save(os.path.join(SAL, f"{n}.jpg"), quality=92)
     print(n, f)
 
-# ── Lámina 5: el Pack Completo en el «altar» ──
+# ── Lámina 5: MILAGRO — los cuatro productos del Pack Completo LEVITAN contra la pared del set ──
+# 01-10: la versión con el pack apoyado en la banqueta «se ve feo» (Valeria): un packshot de estudio pegado,
+# chico y sin peso. La levitación es un truco publicitario a la vista (calza con «milagro») y no finge un apoyo.
+# Fondo: la pared rosada REAL de DSC08030, sin banqueta ni parquet. Producto: los 4 packshots oficiales sueltos.
 im = ImageOps.exif_transpose(Image.open(os.path.join(J, "DSC08030.JPG"))).convert("RGB")  # 3376×6000
-# La lata que quedó sobre la banqueta asoma entre los productos del pack: se tapa con la pared real de la
-# izquierda, a la misma altura (la pared es pareja; el degradé vertical se conserva al copiar fila por fila).
-LATA = (1480, 2700, 1700, 3245)
-parche = im.crop((LATA[0] - 300, LATA[1], LATA[2] - 300, LATA[3]))
-im.paste(parche, LATA[:2])
-# asiento medido: x 1150–2025, borde superior y ≈ 3250; el parquet empieza en y ≈ 4400
-cw = 1800
-ch = int(cw * 5 / 4)
-x0, y0 = 1588 - cw // 2, 4250 - ch
-base = im.crop((x0, y0, x0 + cw, y0 + ch)).resize((W, H), Image.LANCZOS)
-# Esta toma está más expuesta: el realce general la manda a salmón. Se lleva la pared, canal por canal,
-# al rosado-rojo medido en las láminas 1–4 (≈ 175, 85, 90).
-pared = [sum(c) / len(c) for c in zip(*base.crop((200, 300, 700, 900)).getdata())]
-mult = [t / m for t, m in zip((175, 85, 90), pared)]
-base = Image.merge("RGB", [ch_.point(lambda v, f=f: min(255, int(v * f))) for ch_, f in zip(base.split(), mult)])
-base = ImageEnhance.Contrast(base).enhance(1.08)
-k = W / cw
-asiento_x0, asiento_x1, asiento_y = (1150 - x0) * k, (2025 - x0) * k, (3262 - y0) * k
+# sólo pared: bajo el borde del fondo (y ≈ 1025) y sobre la lata que quedó en la banqueta (tapa en y ≈ 2765)
+cw = 1290
+x0, y0 = 1690 - cw // 2, 1130
+base = im.crop((x0, y0, x0 + cw, y0 + int(cw * 5 / 4))).resize((W, H), Image.LANCZOS)
+# más expuesta que las otras: la pared se lleva, canal por canal, al rosado-rojo de las láminas 1–4
+pared = [sum(c) / len(c) for c in zip(*base.crop((900, 1900, 1300, 2300)).getdata())]
+mult = [t / m for t, m in zip((178, 86, 92), pared)]
+base = Image.merge("RGB", [c.point(lambda v, f=f: min(255, int(v * f))) for c, f in zip(base.split(), mult)])
+base = ImageEnhance.Contrast(base).enhance(1.06)
 
-pack = Image.open(os.path.join(RAIZ, "public/assets/santagota/producto/pack-completo.png")).convert("RGBA")
-bb = pack.getbbox()
-pack = pack.crop(bb)
-pw = int((asiento_x1 - asiento_x0) * 1.02)
-ph = int(pack.height * pw / pack.width)
-pack = pack.resize((pw, ph), Image.LANCZOS)
-px = int((asiento_x0 + asiento_x1) / 2 - pw / 2)
-py = int(asiento_y - ph + 6)
+P = os.path.join(RAIZ, "public/assets/santagota/producto")
+# (archivo, centro x, base y, alto, giro°) — de atrás hacia adelante: latas detrás, squeeze delante.
+# Altos en proporción real: 750 > 500 > latas.
+GRUPO = [
+    ("lata-cocinar-frente.png", 470, 1600, 660, -14),
+    ("lata-aderezar-frente.png", 1700, 1560, 660, 15),
+    ("squeeze-750-frente.png", 900, 1640, 1100, -6),
+    ("squeeze-500-frente.png", 1300, 1600, 970, 7),
+]
 
-# sombra de contacto: la silueta aplastada y difusa sobre el asiento
+
+def integra(prod: Image.Image) -> Image.Image:
+    """Penumbra hacia la base + rebote rosado de la pared en el canto (sobre la silueta, no el área)."""
+    a = prod.split()[3]
+    rgb = prod.convert("RGB")
+    # penumbra: la base un 14 % más oscura, protegiendo las luces de la etiqueta
+    grad = Image.linear_gradient("L").resize(prod.size)  # 0 arriba → 255 abajo
+    lum = rgb.convert("L")
+    m = ImageChops.multiply(grad.point(lambda v: int(v * 0.55)), lum.point(lambda v: 255 - int(v * 0.6)))
+    rgb = Image.composite(ImageEnhance.Brightness(rgb).enhance(0.72), rgb, m)
+    # canto: anillo de la silueta binaria, teñido con el rosado de la pared
+    sil = a.point(lambda v: 255 if v > 128 else 0)
+    anillo = ImageChops.subtract(sil, sil.filter(ImageFilter.MinFilter(15))).filter(ImageFilter.GaussianBlur(3))
+    rosa = Image.new("RGB", prod.size, (255, 150, 160))
+    rgb = Image.composite(ImageChops.screen(rgb, rosa), rgb, anillo.point(lambda v: int(v * 0.45)))
+    out = rgb.filter(ImageFilter.GaussianBlur(0.7))  # la foto es más blanda que el packshot de estudio
+    out.putalpha(a)
+    return out
+
+
+capas = []
+for f, cx, by, h, rot in GRUPO:
+    pr = Image.open(os.path.join(P, f)).convert("RGBA")
+    pr = pr.crop(pr.getbbox())
+    pr = pr.resize((int(pr.width * h / pr.height), h), Image.LANCZOS)
+    pr = integra(pr).rotate(rot, resample=Image.BICUBIC, expand=True)
+    capas.append((pr, int(cx - pr.width / 2), int(by - pr.height)))
+
+# sombras proyectadas en la pared: el objeto flota a ~30 cm, la sombra cae abajo-derecha y difusa
 sombra = Image.new("L", base.size, 0)
-sil = pack.split()[3].resize((pw, max(1, int(ph * 0.06))))
-sombra.paste(sil, (px, int(asiento_y - ph * 0.03)))
-sombra = sombra.filter(ImageFilter.GaussianBlur(14)).point(lambda v: int(v * 0.55))
-oscuro = Image.new("RGB", base.size, (40, 12, 14))
-base = Image.composite(oscuro, base, sombra)
-# luz ambiente del set sobre el producto: un velo rosado muy leve en el lado de sombra
-velo = Image.new("RGBA", pack.size, (235, 120, 125, 0))
-grad = Image.linear_gradient("L").rotate(90).resize(pack.size).point(lambda v: int(v * 0.10))
-velo.putalpha(ImageChops.multiply(grad, pack.split()[3]))
-pack = Image.alpha_composite(pack, velo)
-base.paste(pack, (px, py), pack)
+for pr, x, y in capas:
+    sombra.paste(pr.split()[3], (x + 60, y + 95), pr.split()[3])
+sombra = sombra.filter(ImageFilter.GaussianBlur(38)).point(lambda v: int(v * 0.42))
+base = Image.composite(Image.new("RGB", base.size, (92, 26, 36)), base, sombra)
+for pr, x, y in capas:
+    base.paste(pr, (x, y), pr)
+
+# grano parejo sobre todo, para que producto y pared compartan textura
+ruido = Image.effect_noise(base.size, 7).convert("RGB")
+base = Image.blend(base, ImageChops.add(base, ruido, 1, -128), 0.5)
 base.save(os.path.join(SAL, "05.jpg"), quality=92)
-print("05 DSC08030 + pack-completo", (px, py, pw, ph))
+print("05 levitación", [(x, y, pr.size) for pr, x, y in capas])

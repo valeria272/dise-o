@@ -28,6 +28,8 @@ import {AnimaticV4 as SGAnimaticV4} from "./compositions/santagota/spot/Animatic
 import {AnimaticV5 as SGAnimaticV5} from "./compositions/santagota/spot/AnimaticV5";
 import {FullClienteIG, FullClienteIGCapa, DUR_FULL_CLIENTE} from "./compositions/santagota/tv-cliente/FullClienteIG";
 import {ReelVertical as SGReelVertical, DUR_REEL_V} from "./compositions/santagota/reel/ReelVertical";
+import {ReelFuegoFinal as SGR2, DUR_R2} from "./compositions/santagota/paid/ReelFuegoFinal";
+import {DipticoFeed as SGE1Feed, DipticoStory as SGE1Story} from "./compositions/santagota/paid/DipticoFuegoFinal";
 import {Lamina1 as SGPecado1, Lamina2 as SGPecado2, Lamina3 as SGPecado3, Lamina4 as SGPecado4, Lamina5 as SGPecado5} from "./compositions/santagota/paid/CarruselPecado";
 
 
@@ -1342,6 +1344,9 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="SG-FULL-CLIENTE-IG-CAPA" component={FullClienteIGCapa} durationInFrames={DUR_FULL_CLIENTE} fps={29.97} width={1920} height={1080} />
         {/* «UNA SOLA GOTA LO CAMBIA TODO» vertical para Reels, desde el spot v2 de Diego (28-09-2026) */}
         {/* Carrusel de pauta «Elige tu pecado» (01-10-2026) — 4:5 */}
+        <Composition id="SG-R2-FUEGO-FINAL" component={SGR2} durationInFrames={DUR_R2} fps={24} width={1080} height={1920} />
+        <Composition id="SG-E1-FEED" component={SGE1Feed} durationInFrames={1} fps={30} width={1080} height={1350} />
+        <Composition id="SG-E1-STORY" component={SGE1Story} durationInFrames={1} fps={30} width={1080} height={1920} />
         <Composition id="SG-PECADO-1" component={SGPecado1} durationInFrames={1} fps={30} width={1080} height={1350} />
         <Composition id="SG-PECADO-2" component={SGPecado2} durationInFrames={1} fps={30} width={1080} height={1350} />
         <Composition id="SG-PECADO-3" component={SGPecado3} durationInFrames={1} fps={30} width={1080} height={1350} />

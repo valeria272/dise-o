@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Valeria Traverso (TV y piezas del estudio); el feed lo diseña Luis Piano, del lado del cliente, y su feed manda** · Aprueba: **Gonzalo (cliente; decide qué sale a TV)** · Estrategia de marca: **Diana Meinhardt (Brand Soul)**
-> Última cosecha: **2026-10-01** · Cosechas: **6**
+> Última cosecha: **2026-10-01** · Cosechas: **7**
 
 ## 1. Quién es el cliente
 
@@ -44,12 +44,12 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 
 ## 4. Reglas firmes
 
-- **R-01** · Santa Gota es fotografía con flash y **una sola** intervención gráfica encima (logo plano, botella en línea, aureola, plumón, logo grabado en la materia…). Si hay dos, sobra una — _manual §2, medido sobre el feed de Luis Piano 11-09 y 15-09_ · ✔×2
+- **R-01** · Santa Gota es fotografía con flash y **una sola** intervención gráfica encima (logo plano, botella en línea, aureola, plumón, logo grabado en la materia…). Si hay dos, sobra una — _manual §2, medido sobre el feed de Luis Piano 11-09 y 15-09_ · ✔×2 · ⚠️ revisada 2026-10-01: en **carruseles y pauta** la capa a mano (titular de plumón + cinta + círculo de precio) cuenta como UNA intervención — así lo hace el carrusel orgánico del 24-09 y así se aprobó «Elige tu pecado»
 - **R-02** · Prohibidos los códigos del aceite tradicional: oliva, hojas de olivo, madera, beige, dorados, gourmet, degradados — _brief / `marca.json` reglas duras, 11-09; QA de cada ronda de TV_ · ✔×2
 - **R-03** · Logo a color nunca sobre lima (verde sobre verde desaparece): va sobre botella, hueso, blanco o foto oscura; sobre lima, plano botella; sobre foto, plano blanco — _medición 11-09, Fase 1 TV_ · ✔×2
-- **R-04** · Son **dos aceites distintos**, nunca «dos tamaños». Toda pieza o respuesta de producto lo deja claro — _revisión de cuenta 15-09; manual de redes QA v3 del cliente_ · ✔×2
-- **R-05** · Precio, SKU y formato salen de `https://santagota.cl/products.json?limit=250` el mismo día, nunca de memoria — _revisión 15-09 (10 SKU, cambian)_ · ✔×1
-- **R-06** · La IA no toca producto, logo ni monja. Producto sólo el packshot oficial, escalado uniforme (`Producto` recibe sólo la altura; rotar sí, estirar no) — _Fase 2 TV 11-09; spot 15-09 (etiqueta Δ < 6)_ · ✔×3
+- **R-04** · Son **dos aceites distintos**, nunca «dos tamaños». Toda pieza o respuesta de producto lo deja claro — _revisión de cuenta 15-09; manual de redes QA v3 del cliente_ · ✔×3
+- **R-05** · Precio, SKU y formato salen de `https://santagota.cl/products.json?limit=250` el mismo día, nunca de memoria — _revisión 15-09 (10 SKU, cambian)_ · ✔×2
+- **R-06** · La IA no toca producto, logo ni monja. Producto sólo el packshot oficial, escalado uniforme (`Producto` recibe sólo la altura; rotar sí, estirar no) — _Fase 2 TV 11-09; spot 15-09 (etiqueta Δ < 6)_ · ✔×4
 - **R-07** · Concepto y CTA van literales del brief — _brief TV 11-09 («EL ACEITE QUE LLEGÓ A REVOLUCIONAR TU COCINA.» · SANTAGOTA.CL)_ · ✔×1
 - **R-08** · Naranja sólo como gesto: aureola, plumón, pastilla del CTA. Nada más — _dirección aprobada Fase 2, 11-09_ · ✔×2
 - **R-09** · La monja es la del **reel** (actriz real, 24 fps), no la de las fotos del feed (IA, otra actriz). Stills: fotograma 8,708 s (foco medido) — _Fase 1–2 TV, 11-09; el cliente salió con ella a TVN, 20-09_ · ✔×2
@@ -58,7 +58,7 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 - **R-12** · Menos efectos = más premium; nada debe parecer IA o stock; «menos aceite, más impacto» — _Valeria, spot V2/V3, 15-09_ · ✔×2
 - **R-13** · Si una mano generada no es 100 % creíble, mejor sin mano. En rodaje: mano real + proxy + tracking — _Valeria, animatic V2, 15-09_ · ✔×1
 - **R-14** · Los productos nunca «aparecen» con fade o slide: se descubren por luz, cámara o corte — _animatic V2, 15-09_ · ✔×1
-- **R-15** · Antes de entregar video: hoja de contacto a 6 fps **del MP4 renderizado** (no del timeline); alfa mirado sobre gris — _V3 TV 11-09 (planos que cruzaban cortes del reel); QA §8_ · ✔×2
+- **R-15** · Antes de entregar video: hoja de contacto a 6 fps **del MP4 renderizado** (no del timeline); alfa mirado sobre gris — _V3 TV 11-09 (planos que cruzaban cortes del reel); QA §8_ · ✔×3
 - **R-16** · Huincha ≤ 7,00 s → **209 cuadros** a 29,97 (210 ya son 7,007) — _brief TV, 11-09_ · ✔×1
 - **R-17** · Interlínea mínima 0,98 con tildes en mayúscula (a 0,92 la Ó choca) — _error Fase 2, 11-09_ · ✔×1
 - **R-18** · Para saber qué se le mandó al cliente se lee el hilo de Gmail; no se confía en qué se exportó — _21-09 (el cliente mandó una versión hecha fuera del repo)_ · ✔×1
@@ -69,6 +69,13 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 - **R-23** · Una versión derivada (otro formato del mismo spot) copia las transiciones del máster **cuadro a cuadro**; se miden en el MP4 del máster, no se aproximan — _Diego, Reel vertical v1, 28-09: «las transiciones tienen que ser iguales a la otra versión»_ · ✔×1
 - **R-24** · El logo sale del **manual `BM SANTA GOTA.pdf`** (vector con alfa: pág. 4 lima, pág. 5 naranja, pág. 3 gris), no de `LOGOS SANTA GOTA.ai`, cuyo logo trae la sombra blanca desplazada y rota detrás de la T y las A. Y nunca se corta — _Diego, Reel vertical v2→v3, 28-09: «los logos del 0:06 se cortan, sácalos del BM SANTA GOTA»_ · ✔×1
 - **R-25** · En el cierre, logo, productos y CTA **no se tocan**: en vertical van logo arriba, productos al medio y CTA abajo, con aire entre cada uno — _Diego, Reel vertical v1, 28-09: «que los elementos y textos no choquen con los productos»_ · ✔×1
+
+- **R-26** · **Nada de estrellitas** dibujadas: «se ve perno y somos taquilla». La capa a mano es plumón, cinta, círculo de precio, rayitas, flechas y aureola; las estrellas del carrusel orgánico del 24-09 NO se heredan — _Valeria, pauta 01-10 (carrusel «Elige tu pecado» y E1)_ · ✔×1
+- **R-27** · En pauta el producto va en manos reales de la jornada o, si se recorta, con un montaje creíble y bonito (la levitación aprobada); nunca packshot sobre fondo plano ni pegado en un apoyo (la banqueta «se ve feo») — _Valeria, pauta 01-10_ · ✔×1
+
+- **R-28** · Un cierre de reel de pauta **no puede quedar quieto**: corte seco a una imagen con actitud y el CTA entrando de golpe en los pulsos (COMPRA → EN → SANTAGOTA.CL), con la imagen latiendo al beat — _Valeria sobre R2, 01-10: «el cierre quedó plano, fome, debe tener un cierre de COMPRA EN SANTAGOTA.CL algo así»_ · ✔×1
+- **R-29** · La madera también se saca del **set de la jornada**: el piso es parquet; se recorta siempre por encima (banqueta, Cami en DSC00267) — _QA del estudio, 01-10, contra R-02_ · ✔×1
+- **R-30** · Producto de la jornada: el color se sube igual en todas las piezas (rosado polvoso → rosado-rojo saturado, como el carrusel del 24-09); si una toma está más expuesta, la pared se lleva canal por canal a ≈ (175, 85, 90) — _carrusel «Elige tu pecado», 01-10_ · ✔×1
 
 ## 5. Excepciones
 
@@ -87,7 +94,16 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 - **A-04** · Spot: keyframes V2 aprobados en concepto (8,5/10) y V3 aprobada — _15-09_
 - **A-05** · El recurso más fuerte del feed publicado: **el logo grabado en la materia** (tallado en el pan, rapado en la nuca, en los dientes, en la polera) — _feed de Luis Piano, leído 15-09_
 
+- **A-06** · Carrusel de pauta **«Elige tu pecado»**: foto real de la jornada + capa a mano (plumón, cinta, círculo de precio), un producto y su precio por lámina, «MILAGRO.» con los 4 productos levitando — _Valeria, 01-10 («me parece bien», tras corregir la lámina 5 y sacar las estrellas)_
+- **A-07** · Post **«Uno para el fuego. Otro para el final.»** (díptico, producto en manos reales, «los dos $18.990») — _Valeria, 01-10, a la primera salvo las estrellas_
+- **A-08** · Reel **«Fuego y final»**: material real al beat de la pista del spot, «¿UN SOLO ACEITE PARA TODO? → PECADO.», fuego/final, «LOS DOS.» y cierre COMPRA EN SANTAGOTA.CL — _Valeria, 01-10: «está bueno», tras rehacer el cierre_
+- **A-09** · El reel vertical v3 de Diego del spot «UNA SOLA GOTA LO CAMBIA TODO» queda **aprobado** como final — _Valeria, 01-10_
+
 ## 7. Lo que se rechaza
+
+- **X-10** · Packshot del Pack Completo recortado y apoyado en la banqueta del set: «eso se ve feo»; antes: «no debe ser solo el producto recortado con un fondo plano» — _Valeria, carrusel 01-10; 2 rondas (banqueta → levitación)_
+- **X-11** · Estrellitas dibujadas: «no uses estrellitas, se ve PERNO y somos taquilla» — _Valeria, 01-10; hubo que re-exportar carrusel y post_
+- **X-12** · Cierre de reel con fotos quietas, precio y cinta «Pídelos en santagota.cl»: «quedó plano, fome» — _Valeria, R2 01-10; 1 ronda_
 
 - **X-09** · Reel vertical hecho sólo reencuadrando el 16:9: cortaba la botella y la escena de la monja, las transiciones eran aproximadas y el CTA quedaba pegado a los productos; después, el logo del .ai con la sombra blanca rota — _Diego, 28-09; costó 2 rondas (v1 → v2 → v3)_
 
@@ -110,12 +126,21 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 - ¿La monja vuelve a estar permitida en TV? El 15-09 el cliente la había dejado sólo para RRSS y el 20-09 mandó justo la versión con monja (Valeria / Gonzalo).
 - ¿Huincha y virtual de la versión que salió? Sólo existe el full; el proyecto del otro agente no está versionado.
 - ¿Se corrige la botella ensanchada del full emitido?
+- **Derechos para pauta** de la jornada del 10-09 (modelo Cami Power + registro de Pipez/Intenso): confirmar antes de pautar las piezas de octubre (Valeria / Gonzalo).
+- **Precio «antes» tachado** («MILAGRO.»): ¿estuvo vigente de verdad y hasta cuándo dura la rebaja? (Gonzalo).
+- Música propia para los reels de pauta: hoy va la mezcla del spot; la API de música de Magnific está retirada (Valeria).
 - ¿Emojis en gráfica sí o no? El manual dice no; la serie de recetas del diseñador usa uno (Luis Piano / Valeria).
 - ¿El feed se sigue haciendo con IA o se explota la sesión real ya pagada? (Valeria).
 - `SANTA GOTA SOCIAL MEDIA MANAGEMENT.pdf` (81 MB, sin capa de texto) sin leer.
 - Obra sin commitear al 22-09 (spot y full con Instagram): mientras no entre al repo nadie más la reproduce.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Valeria Traverso (con Claude) · paid media de octubre (carrusel, post, reel)
+- nuevo **R-26** (sin estrellitas) · **R-27** (producto en manos reales o montaje creíble) · **R-28** (cierre de reel con golpe de compra) · **R-29** (sin parquet de la jornada) · **R-30** (color de la jornada).
+- ✔ sube: R-04 ×3 · R-05 ×2 · R-06 ×4 · R-15 ×3. **R-01 ⚠️ revisada**: en carruseles/pauta la capa a mano cuenta como una sola intervención.
+- nuevo **A-06…A-09** (carrusel, post, reel, y el reel vertical de Diego aprobado) · nuevo **X-10…X-12** (banqueta, estrellitas, cierre fome).
+- §3 · material nuevo: jornada audiovisual del 10-09. §8 · derechos para pauta, precio «antes», música.
 
 ### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f0c930c, f6df90e)
 - sin aprendizajes nuevos: `f6df90e` es el commit raíz de la rama, con el mismo `CLAUDE.md`/`BITACORA.md`/`marca.json` de siempre, ya destilado en la siembra inicial del 25-09.

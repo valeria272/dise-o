@@ -1,6 +1,6 @@
 ---
 name: cliente-santa-gota
-description: "SANTA-GOTA — cerebro del cliente: 25 reglas firmes, última cosecha 2026-10-01. Generado desde clients/santa-gota/APRENDIZAJES.md; leerlo antes de diseñar para santa-gota"
+description: "SANTA-GOTA — cerebro del cliente: 30 reglas firmes, última cosecha 2026-10-01. Generado desde clients/santa-gota/APRENDIZAJES.md; leerlo antes de diseñar para santa-gota"
 metadata:
   type: project
 ---
@@ -12,17 +12,17 @@ sólo lo más confirmado). ⛔ Vale sólo para santa-gota: no se traspasa a otra
 Criterio: **Valeria Traverso (TV y piezas del estudio); el feed lo diseña Luis Piano, del lado del cliente, y su feed manda** · Aprueba: **Gonzalo (cliente; decide qué sale a TV)** · Estrategia de marca: **Diana Meinhardt (Brand Soul)**
 
 ## Reglas más confirmadas
-- **R-06** · La IA no toca producto, logo ni monja. Producto sólo el packshot oficial, escalado uniforme (`Producto` recibe sólo la altura; rotar sí, estirar no) — _Fase 2 TV 11-09; spot 15-09 (etiqueta Δ < 6)_ · ✔×3
-- **R-01** · Santa Gota es fotografía con flash y **una sola** intervención gráfica encima (logo plano, botella en línea, aureola, plumón, logo grabado en la materia…). Si hay dos, sobra una — _manual §2, medido sobre el feed de Luis Piano 11-09 y 15-09_ · ✔×2
+- **R-06** · La IA no toca producto, logo ni monja. Producto sólo el packshot oficial, escalado uniforme (`Producto` recibe sólo la altura; rotar sí, estirar no) — _Fase 2 TV 11-09; spot 15-09 (etiqueta Δ < 6)_ · ✔×4
+- **R-04** · Son **dos aceites distintos**, nunca «dos tamaños». Toda pieza o respuesta de producto lo deja claro — _revisión de cuenta 15-09; manual de redes QA v3 del cliente_ · ✔×3
+- **R-15** · Antes de entregar video: hoja de contacto a 6 fps **del MP4 renderizado** (no del timeline); alfa mirado sobre gris — _V3 TV 11-09 (planos que cruzaban cortes del reel); QA §8_ · ✔×3
+- **R-01** · Santa Gota es fotografía con flash y **una sola** intervención gráfica encima (logo plano, botella en línea, aureola, plumón, logo grabado en la materia…). Si hay dos, sobra una — _manual §2, medido sobre el feed de Luis Piano 11-09 y 15-09_ · ✔×2 · ⚠️ revisada 2026-10-01: en **carruseles y pauta** la capa a mano (titular de plumón + cinta + círculo de precio) cuenta como UNA intervención — así lo hace el carrusel orgánico del 24-09 y así se aprobó «Elige tu pecado»
 - **R-02** · Prohibidos los códigos del aceite tradicional: oliva, hojas de olivo, madera, beige, dorados, gourmet, degradados — _brief / `marca.json` reglas duras, 11-09; QA de cada ronda de TV_ · ✔×2
 - **R-03** · Logo a color nunca sobre lima (verde sobre verde desaparece): va sobre botella, hueso, blanco o foto oscura; sobre lima, plano botella; sobre foto, plano blanco — _medición 11-09, Fase 1 TV_ · ✔×2
-- **R-04** · Son **dos aceites distintos**, nunca «dos tamaños». Toda pieza o respuesta de producto lo deja claro — _revisión de cuenta 15-09; manual de redes QA v3 del cliente_ · ✔×2
+- **R-05** · Precio, SKU y formato salen de `https://santagota.cl/products.json?limit=250` el mismo día, nunca de memoria — _revisión 15-09 (10 SKU, cambian)_ · ✔×2
 - **R-08** · Naranja sólo como gesto: aureola, plumón, pastilla del CTA. Nada más — _dirección aprobada Fase 2, 11-09_ · ✔×2
 - **R-09** · La monja es la del **reel** (actriz real, 24 fps), no la de las fotos del feed (IA, otra actriz). Stills: fotograma 8,708 s (foco medido) — _Fase 1–2 TV, 11-09; el cliente salió con ella a TVN, 20-09_ · ✔×2
 - **R-11** · Montaje de TV: cortes secos motivados, nada de zoom/empuje para llenar, franjas de borde a borde, monja grande, end frame quieto; nada entra con fade — _pauta cerrada de Valeria V4, 11-09_ · ✔×2
 - **R-12** · Menos efectos = más premium; nada debe parecer IA o stock; «menos aceite, más impacto» — _Valeria, spot V2/V3, 15-09_ · ✔×2
-- **R-15** · Antes de entregar video: hoja de contacto a 6 fps **del MP4 renderizado** (no del timeline); alfa mirado sobre gris — _V3 TV 11-09 (planos que cruzaban cortes del reel); QA §8_ · ✔×2
-- **R-05** · Precio, SKU y formato salen de `https://santagota.cl/products.json?limit=250` el mismo día, nunca de memoria — _revisión 15-09 (10 SKU, cambian)_ · ✔×1
 - **R-07** · Concepto y CTA van literales del brief — _brief TV 11-09 («EL ACEITE QUE LLEGÓ A REVOLUCIONAR TU COCINA.» · SANTAGOTA.CL)_ · ✔×1
 - **R-10** · No se produce ninguna cara reconocible tipo celebridad generada con IA sin autorización escrita (derecho de imagen) — _revisión 15-09, pieza «Santo munchies»_ · ✔×1
 - **R-13** · Si una mano generada no es 100 % creíble, mejor sin mano. En rodaje: mano real + proxy + tracking — _Valeria, animatic V2, 15-09_ · ✔×1
@@ -34,6 +34,9 @@ Criterio: **Valeria Traverso (TV y piezas del estudio); el feed lo diseña Luis 
 - **R-20** · La sesión fotográfica inicial sirve para gente, gesto y ambiente, **no** para producto quieto (su etiqueta es anterior al packaging actual) — _revisión 15-09_ · ✔×1
 
 ## Lo que ya costó rondas
+- **X-10** · Packshot del Pack Completo recortado y apoyado en la banqueta del set: «eso se ve feo»; antes: «no debe ser solo el producto recortado con un fondo plano» — _Valeria, carrusel 01-10; 2 rondas (banqueta → levitación)_
+- **X-11** · Estrellitas dibujadas: «no uses estrellitas, se ve PERNO y somos taquilla» — _Valeria, 01-10; hubo que re-exportar carrusel y post_
+- **X-12** · Cierre de reel con fotos quietas, precio y cinta «Pídelos en santagota.cl»: «quedó plano, fome» — _Valeria, R2 01-10; 1 ronda_
 - **X-09** · Reel vertical hecho sólo reencuadrando el 16:9: cortaba la botella y la escena de la monja, las transiciones eran aproximadas y el CTA quedaba pegado a los productos; después, el logo del .ai con la sombra blanca rota — _Diego, 28-09; costó 2 rondas (v1 → v2 → v3)_
 - **X-01** · Columna 9:16 sobre placa desenfocada, «pantallitas» de video en el virtual, monja chica (62 %), texto que entra con fade — _Fase 2 TV, 11-09; costó la V3_
 - **X-02** · Zooms para llenar, planos que cruzan los cortes del reel, franja que no llega al borde (parecía lower third), «plato gigante» congelado, látigo lima — _V3 TV, 11-09; costó la V4_

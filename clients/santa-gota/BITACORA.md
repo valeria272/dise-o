@@ -1,5 +1,25 @@
 # SANTA GOTA — bitácora
 
+## 2026-10-01 — Valeria Traverso (con Claude) · Paid media de octubre: carrusel, post y reel
+
+**Qué se hizo:** `/abrir` encontró material no registrado: la **jornada audiovisual del 10-09** (459 JPG + 34 clips 4K, Drive
+`1F7cx_nO4HygXW9qwH_-RV_p3q8qenHVN` y `1Keuu2fmh-olwoDpl0y_ybiADhYg6BIpC`). Se revisó y aprobó el **reel vertical v3 de Diego** (el spot
+quedó aprobado, Valeria). Se armó la **propuesta de pauta** (artifact https://claude.ai/artifact/1ZpcXEbjNM2AEoZH9tG5vC: 6 estáticos + 4 reels
+por etapa descubrir/entender/comprar) leyendo el IG público (12 últimas: la referencia es el carrusel «Cómo abrir tu Santa Gota» del 24-09).
+Se produjeron y aprobaron 3 piezas: **carrusel «Elige tu pecado»** (5 láminas 4:5, la 5 rehecha con los 4 productos levitando porque la
+banqueta «se veía fea»), **post E1 «Uno para el fuego, otro para el final»** (4:5 + story, producto en manos reales) y **reel R2 «Fuego y
+final»** (15,6 s, material real al beat de la pista del spot; el cierre se rehizo: «quedó plano, fome» → COMPRA EN SANTAGOTA.CL).
+**Dónde quedó:** Drive `SANTA GOTA › PAID MEDIA › OCTUBRE 2026` (`1Dwlxl3OiawHaZABDPZdmajk0gKqq0UU3`), 3 subcarpetas. Código:
+`src/compositions/santagota/paid/{CarruselPecado,DipticoFuegoFinal,ReelFuegoFinal}.tsx` (`SG-PECADO-1…5`, `SG-E1-FEED/STORY`,
+`SG-R2-FUEGO-FINAL`); fotos con `scripts/santagota-carrusel-paid-fotos.py` y `santagota-e1-fotos.py`; tramos de video con
+`scripts/santagota-r2-tramos.sh`. Originales de la jornada en `raw/santa-gota/jornada-10-09/` (fuera de git, se bajan del Drive).
+Renders en `out/santagota/paid-{carrusel,e1,r2}/`.
+**Qué sigue:** E2/E3/E4 (Milagro, Usa recarga repite, Bendita sea la gota), R3 (Cami a cámara: escuchar primero el audio de C9795/C9796) y
+R4 (Milagro en stop motion con las ráfagas).
+**Abierto:** derechos de imagen de la modelo (Cami Power) y del registro (Pipez/Intenso) **para avisos pagados** · que el precio «antes»
+tachado haya estado vigente (SERNAC) y hasta cuándo dura la rebaja · presupuesto/fechas · píxel de Meta en Shopify · la selección retocada
+de la jornada sigue sin llegar · el logo del cierre del reel vertical de Diego (¿manual?).
+
 ## 2026-09-28 — Diego Aguilar (con Claude) · Reel vertical del spot «UNA SOLA GOTA LO CAMBIA TODO»
 
 **Qué se hizo:** versión 9:16 para Reels del spot horizontal de Diego (`D:\DIEGO 2023\COPYWRITERS\SANTA GOTA\`:

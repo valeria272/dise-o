@@ -115,7 +115,7 @@ entrega a 941×1672 (no es la medida nativa 1080×1920, pero es lo que llega).
 8. ⭐ **La capa dibujada a mano** (nueva, carrusel «Cómo abrir tu Santa Gota» del 24-09, el más reciente con diseño):
    foto REAL de la jornada del 10-09 con el color subido (rosado polvoso → rosado-rojo saturado) + titular de
    plumón inclinado blanco/lima, cinta de papel blanco con texto a mano negro, círculo lima con el número,
-   estrellas, rayitas y flechas a mano. Es la gramática de los carruseles. En el estudio: Caveat Brush (titular)
+   rayitas y flechas a mano. ⛔ **Sin estrellitas** aunque el orgánico las use: «se ve perno, somos taquilla» (Valeria 01-10). Es la gramática de los carruseles. En el estudio: Caveat Brush (titular)
    + Kalam Bold (cintas), `src/compositions/santagota/paid/CarruselPecado.tsx` (01-10, carrusel de pauta).
    ⛔ Para pauta el cliente pidió explícitamente **no** «producto recortado sobre fondo plano»: el producto va en
    la mano de la modelo o sobre un set real (la banqueta de DSC08030, recortada SIN el parquet).

@@ -84,6 +84,9 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **R-36** · El texto de la story, más grande y en 2 líneas como máximo, **sin una palabra sola en la segunda** — _Paulina 29-09, P01A story: «texto demasiado pequeño aumenta los pt de texto y dejalo en 2 lineas. recuerda que no deben quedar una palabra sola en la segunda linea»_ · _Paulina resolvió el comentario el 30-09 tras ver la ronda 2_ · ✔×2
 - **R-37** · El velo o degradado **no puede cambiar el color del producto**: la muestra se dibuja encima y el piso o muro del ambiente tiene que seguir leyéndose del tono real — _QA interno 29-09: con un velo a luma fija (62 %), el SPC Roble Arena se leía Titanio y el baño blanco, gris_ · ✔×1
 - **R-38** · Las fotos de ambiente las pone **la clienta**. Un producto sin foto suya **sale de la lista**; no se genera — _Jenny 30-09, WhatsApp a Serena: «las fotos ambientadas están todas malas» · «si no encuentras fotos de algún producto se saca de la lista y solo se deja lo que está en el link» · Keraz: «solo te adjunté de 3 productos, se dejan solo esos 3»_ · ✔×1
+- **R-39** · En la story, la muestra **no tapa el ambiente**: va más chica que el texto y muestra **sólo un trozo** del producto; el bloque completo va centrado en el cuadro — _lista de la clienta vía Serena, 01-10, ref. P02A story_ · ✔×1
+- **R-40** · En el feed, el bloque de logo va **centrado** (cx 540), también en las tarjetas de producto — _clienta 01-10: «solo centra el logo»_ · ✔×1 · ⚠️ revisa E-04 (logo a la izquierda en slides de producto) para esta clienta
+- **R-41** · Una pieza de producto que «se ve vacía» lleva frase de titular blanca entre «EN OFERTA» y la banderola; la frase separa los dos rojos (R-05) — _clienta 01-10, SPC y caucho_ · ✔×1
 
 ## 5. Excepciones
 
@@ -128,6 +131,7 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **X-18** · Tarjeta de producto sin muestra porque no había foto — _P06, Paulina 29-09_
 - **X-19** · Stories expandidas con `image-expand` bajo una alfombra muro a muro: inventó piso de madera, dos veces — _04A–D, estudio 29-09; se resolvió con el cuadrado recortado_
 - **X-20** · Las 24 tarjetas de octubre con ambientes generados con IA (Seedream), aunque llevaran muestra real: **todas rechazadas por la clienta** — _Jenny 30-09; costó una ronda completa (ronda 3). Se rehízo con sus 18 fotos_
+- **X-21** · Recortar la muestra de una foto del sitio que trae **franjas blancas entre tablas**: se leen como «doble línea» en el borde del marco — _SPC Gravity 07B/07C, clienta 01-10. Se recorta una sola tabla y se verifica que no queden filas blancas_
 
 ## 8. Preguntas abiertas
 

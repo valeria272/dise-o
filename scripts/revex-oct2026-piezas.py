@@ -36,7 +36,7 @@ OUT = os.path.join(RAIZ, "out/revex/oct2026")
 FEED = (2250, 2250)
 STORY = (2250, 4000)
 
-AJUSTE_Y = {(k, st): d for k in ("03A", "03B", "03C") for st, d in ((False, 50), (True, 180))}  # Urban: nombres de color sobre muro claro (30-09) · (pieza, story) → desplazamiento vertical del bloque, medido sobre SU foto
+AJUSTE_Y = {(k, False): 50 for k in ("03A", "03B", "03C")}  # Urban: nombres de color sobre muro claro (30-09) · (pieza, story) → desplazamiento vertical del bloque, medido sobre SU foto
 PLIEGUE = (0xAD, 0x1C, 0x27)
 CTA_GRIS = (0x86, 0x86, 0x86)
 PIE = "Pisos SPC, laminados, porcelanatos, pisos de ingeniería y mucho más"
@@ -45,6 +45,15 @@ CTA = "Cotiza por WhatsApp"
 # pieza: amb, [muestras], categoría (banderola, sup), TÍTULO, BAJADA, APOYO, sello
 # categoría: SÓLO si el brief la trae (en 04/05/06/07 viene como BAJADA). En 01/02 la
 # primera versión ponía «CERÁMICA DE MURO», sacado del sitio: no está en el brief → fuera (QA 29-09, R-23).
+# ⭐ RONDA 4 — 01-10-2026. Lista de cambios de Serena con lo que marcó la clienta
+#   («Solo cambia lo que está en esta lista. No muevas nada más de las piezas»):
+#   1 stories: logo centrado (YA lo estaba: x 432–647, medido) · bloque centrado · muestra más chica
+#     y con «solo un trozo del producto» para que se vea el ambiente · 2 feed: SÓLO centrar el logo ·
+#   3 SPC Gravity: una sola línea en el marco (la 2ª era la franja blanca entre tablas de la foto del
+#     sitio → se recorta UNA tabla) + «EN OFERTA» + «Dale un nuevo aire a tu HOGAR» ·
+#   4 caucho: «EN OFERTA» + «Pisos seguros y resistentes para tus espacios exteriores» ·
+#   5 alfombras: fuera «a pedido» y «stock»; «Alfombras personalizadas · Tú eliges la medida, el
+#     diseño y la cinta» (la lista nombra 04 y Nature Rainbow, que ya no existen: se aplica a P05A–C).
 # ⭐ RONDA 3 — 30-09-2026. Jenny Campos (la clienta), por WhatsApp a Serena:
 #   «las fotos ambientadas están todas malas» · «si no encuentras fotos de algún producto se
 #   saca de la lista y solo se deja lo que está en el link» · «en keraz te solicité 5 productos y
@@ -81,21 +90,22 @@ T = {
  # SÓLO líneas literales del brief de 05 + la etiqueta de cada foto de la clienta
  # («EN STOCK», «A PEDIDO»). Confirmar con Sebastián.
  "05A": dict(foto="ALFOMBRA DIMENSIONADA EN STOCK.webp", foco=(0.62, 0.5), m=["muestra_cliente_05A.png"],
-             cat="En stock", tit="Alfombras dimensionadas", baj=None,
-             apo="Terminación con cinta en los bordes", cuadrada=True),
+             cat=None, tit="Alfombras personalizadas", baj=None,
+             apo="Tú eliges la medida, el diseño y la cinta", cuadrada=True),
  "05B": dict(foto="ALFOMBRA DIMENSIONADAS A PEDIDO.jpg", foco=(0.62, 0.5), m=["muestra_cliente_05B.png"],
-             cat="A pedido", tit="Alfombras dimensionadas", baj=None,
-             apo="Alfombra dimensionada a tu medida", cuadrada=True),
+             cat=None, tit="Alfombras personalizadas", baj=None,
+             apo="Tú eliges la medida, el diseño y la cinta", cuadrada=True),
  "05C": dict(foto="ALFOMBRA DIMENSIONADAS A PEDIDO 2.jpg", foco=(0.6, 0.5), m=["muestra_cliente_05C.png"],
-             cat="A pedido", tit="Alfombras dimensionadas", baj=None, apo=CTA, cuadrada=True),
+             cat=None, tit="Alfombras personalizadas", baj=None,
+             apo="Tú eliges la medida, el diseño y la cinta", cuadrada=True),
  "06":  dict(foto="Adoquines.png", foco=(0.55, 0.5), m=["muestra_cliente_06.png"],
-             cat="Color negro · espesores de 25 y 45 mm", tit="Adoquines de caucho", baj=None, apo=CTA),
+             cat="Color negro · espesores de 25 y 45 mm", tit="Adoquines de caucho", baj=None, apo=CTA, sello="EN OFERTA", frase=("Pisos seguros y resistentes", "para tus espacios exteriores")),
  "07A": dict(foto="SPC GRAVITY ARENA.png", foco=(0.6, 0.5), m=["5903607305_0.jpg"], cat="Piso SPC",
-             tit="SPC Gravity · Roble Arena", baj=None, apo=None),
- "07B": dict(foto="SPC GRAVITY TITANIO.png", foco=(0.6, 0.5), m=["5903607308_0.jpg"], cat="Piso SPC",
-             tit="SPC Gravity · Roble Titanio", baj=None, apo=None),
- "07C": dict(foto="SPC GRAVITY NATURAL.png", foco=(0.6, 0.5), m=["5903607311_0.jpg"], cat="Piso SPC",
-             tit="SPC Gravity · Roble Natural", baj=None, apo=CTA),
+             tit="SPC Gravity · Roble Arena", baj=None, apo=None, sello="EN OFERTA", frase=("Dale un nuevo aire a tu HOGAR",)),
+ "07B": dict(foto="SPC GRAVITY TITANIO.png", foco=(0.6, 0.5), m=["tabla_5903607308.png"], cat="Piso SPC",
+             tit="SPC Gravity · Roble Titanio", baj=None, apo=None, sello="EN OFERTA", frase=("Dale un nuevo aire a tu HOGAR",)),
+ "07C": dict(foto="SPC GRAVITY NATURAL.png", foco=(0.6, 0.5), m=["tabla_5903607311.png"], cat="Piso SPC",
+             tit="SPC Gravity · Roble Natural", baj=None, apo=CTA, sello="EN OFERTA", frase=("Dale un nuevo aire a tu HOGAR",)),
 }
 for _k, _t in T.items():
     _t["amb"] = _k.lower()        # sólo para los ajustes por pieza de abajo
@@ -150,7 +160,7 @@ def velo_abajo(L, desde, hasta, alpha, luma_obj=None, suelta=None):
     L.im = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)); L.d = ImageDraw.Draw(L.im, "RGBA")
 
 
-def muestra(L, archivo, x0, y0, w, h, recorte=None):
+def muestra(L, archivo, x0, y0, w, h, recorte=None, zoom=1.0):
     """Muestra real con borde blanco y sombra suave, como la de Paulina."""
     im = Image.open(os.path.join(PROD, archivo)).convert("RGB")
     iw, ih = im.size
@@ -159,6 +169,9 @@ def muestra(L, archivo, x0, y0, w, h, recorte=None):
     # con la palmeta sobre blanco en las _1: se usan las _0, que son textura a sangre)
     if iw / ih > r: nw = ih * r; box = ((iw - nw) / 2, 0, (iw + nw) / 2, ih)
     else: nh = iw / r; box = (0, (ih - nh) / 2, iw, (ih + nh) / 2)
+    if zoom < 1:   # «solo un trozo del producto» (story, ronda 4): recorte centrado más cerrado
+        cx, cy, bw, bh = (box[0] + box[2]) / 2, (box[1] + box[3]) / 2, (box[2] - box[0]) * zoom, (box[3] - box[1]) * zoom
+        box = (cx - bw / 2, cy - bh / 2, cx + bw / 2, cy + bh / 2)
     im = im.crop(tuple(map(round, box))).resize((round(L.P(w)), round(L.P(h))), Image.LANCZOS)
     # sombra
     sh = Image.new("RGBA", L.im.size, (0, 0, 0, 0))
@@ -308,6 +321,15 @@ def pie(L, y, cap=12, peso=600):
     L.texto(PIE, y, cuerpo, peso, BLANCO, 540, 0.01)
 
 
+def frase(L, lineas, y, cap, e):
+    """Frase de titular (ronda 4: SPC y caucho «se ven vacías»). Montserrat 750, blanca, centrada,
+    máximo 2 líneas y sin palabra sola. Va SIN barra: la barra roja de «EN OFERTA» ya está arriba
+    y dos cuadros rojos pegados rompen R-05."""
+    for i, ln in enumerate(lineas):
+        L.texto(ln, y + i * cap * 1.55, L.cuerpo_para_cap(cap, 750), 750, BLANCO, 540, -0.02)
+    return y + (len(lineas) - 1) * cap * 1.55 + cap
+
+
 def apoyo(L, txt, y, cap=17):
     cuerpo = L.cuerpo_para_cap(cap, 600)
     L.texto(txt, y, cuerpo, 600, BLANCO, 540)
@@ -337,30 +359,59 @@ def pieza(k, story=False):
     #    el bloque sube a piso liso (feed) y el pie de la story ya no pisa el apilado.
     #  · 03 story: los nombres de color caían sobre la ventana (casi blanca) y no se leían.
     y_m += AJUSTE_Y.get((k, story), 0)
+    # Ronda 4: en la story la muestra va al tamaño del feed (×1,0) y con «solo un trozo» del
+    # producto (zoom 0,5), para que se vea el ambiente; textos y banderola siguen a ×1,35 (R-35).
+    em = 1.15 if story else e   # 1,0 dejaba la muestra tapada por la banderola (texto a ×1,35)
+    zoom = 0.5 if story else 1.0
+    fr = t.get("frase")
+    cap_fr = 26 * e
+    h_fr = (cap_fr + (len(fr) - 1) * cap_fr * 1.55) if fr else 0
+    # extensión vertical del bloque, relativa a y_m (para centrarlo en la story)
+    if t.get("urban"):
+        top, fondo_m = -116 * e, 123 * (1.2 if story else e) + 32.5 * e
+    elif t.get("cuadrada"):
+        top, fondo_m = -40 * em, -40 * em + 250 * em
+    else:
+        top, fondo_m = -14 * e, 190 * em
+        if fr: top = -14 * e - 34 * e - h_fr - 50 * e - 20 * e - 12 * e
+        elif t.get("sello"): top = -150 * e - 12 * e
+    abajo = fondo_m + 42 * e + (91 * e if (t["apo"] and t["apo"] != CTA) else 0) + 42 * e
+    if story:
+        abajo += 80 + 17 * 1.75 + 17
+        # Ronda 4: «centra el bloque de contenido» → el centro del bloque cae en el centro del cuadro
+        y_m = 960 - (top + abajo) / 2
     # degradado muy suave detrás del bloque de texto; la muestra se dibuja encima y no se toca
     if story:
-        degradado(L, 820, 1060, 0.42, 1330, 1640)
+        degradado(L, y_m + top - 60, y_m + top + 180, 0.42, y_m + abajo + 40, y_m + abajo + 320)
+    elif fr:
+        degradado(L, 380, 700, 0.42)          # la frase va más arriba que el texto de las demás
     else:
         degradado(L, 600, 930, 0.42)
     if story:
         L.bloque_logo(story=True)
     else:
-        L.bloque_logo(cx=199.9)
+        L.bloque_logo(cx=540)                # ronda 4, punto 2: «solo centra el logo»
 
     y = y_m
-    if t.get("sello"):
+    if fr:
+        # «EN OFERTA» arriba, la frase al medio y la banderola abajo: la frase separa los dos rojos (R-05)
+        y_fr = y - 14 * e - 34 * e - h_fr
+        frase(L, fr, y_fr, cap_fr, e)
+        L.barra(t["sello"], y_fr - 50 * e - 20 * e, 20 * e, peso=775, tracking=0.04, padx=20 * e, padv=12 * e)
+    elif t.get("sello"):
         # separada ≥ 90 de la banderola: dos cuadros rojos pegados rompen la regla R-05 de Paulina
         L.barra(t["sello"], y - 150 * e, 20 * e, peso=775, tracking=0.04, padx=20 * e, padv=12 * e)
 
     if t.get("urban"):
         a, b = t["urban"]
-        eu = min(e, 1.2)                         # 3 × 60×120 a ×1,35 no caben en 1080
+        eu = 1.2 if story else e                 # Urban: escala de la ronda 3; con 1,0 los nombres de color no se leían
         k_cm = 2.05 * eu  # misma escala en las 3 tarjetas: se ve crecer el formato
         w, h = b * k_cm, a * k_cm
         gap = 22 * eu
         tot = 3 * w + 2 * gap
         x = 540 - tot / 2
         fila = 123 * eu
+        # nota: los nombres de color y la banderola siguen a escala e (texto de story, R-35)
         yb = y + fila - h  # alineadas abajo, así se nota el cambio de alto
         for nombre, pre in URBAN:
             f = f"derivado_{pre}003060.png" if (a, b) == (30, 60) else \
@@ -378,20 +429,20 @@ def pieza(k, story=False):
         banderola(L, t["cat"], t["tit"], t["baj"], 540 + bw / 2, y - (26 + 90) * e, e)
         y = y + fila + (20 + 12.5) * e
     elif t.get("cuadrada"):
-        mw = mh = 250 * e
+        mw = mh = 250 * em
         mx = 540 - mw / 2 - 120 * e
-        muestra(L, t["m"][0], mx, y - 40 * e, mw, mh)
-        banderola(L, t["cat"], t["tit"], None, mx + mw + 250 * e, y + 60 * e, e)
-        y = y - 40 * e + mh
+        muestra(L, t["m"][0], mx, y - 40 * em, mw, mh, zoom=zoom)
+        banderola(L, t["cat"], t["tit"], None, mx + mw + 250 * e, y + 60 * em, e)
+        y = y - 40 * em + mh
     else:
         # 06 no tiene foto de producto: la muestra es un recorte PROVISORIO del ambiente
         # generado (los adoquines apilados, que muestran los dos espesores). Paulina 29-09:
         # «faltó la muestra del producto».
         archivo = t["m"][0]
         mw, mh = ((440, 220) if archivo.startswith("PROVISORIO") else (530, 190))
-        mw, mh = mw * e, mh * e
+        mw, mh = mw * em, mh * em
         mx = 540 - mw / 2
-        muestra(L, archivo, mx, y, mw, mh)
+        muestra(L, archivo, mx, y, mw, mh, zoom=zoom)
         banderola(L, t["cat"], t["tit"], t["baj"], mx + mw - 23 * e, y - 14 * e, e)
         y = y + mh
 

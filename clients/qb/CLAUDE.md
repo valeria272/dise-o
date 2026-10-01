@@ -843,3 +843,11 @@ una **imagen aplanada**: el texto no se edita, se reemplaza la franja.
 - **Verificación:** exportar `mp4`, sacar cuadros (`node_modules/@remotion/compositor-win32-x64-msvc/ffmpeg.exe`) y
   comparar contra el export anterior: los momentos no pedidos tienen que salir idénticos.
 - El MP4 de Canva ablanda las imágenes anchas (las tres franjas); en el editor y en PNG se ven nítidas.
+
+## 4m. Drive por semana — sólo lo vigente (01-10-2026, R-67, R-118 a R-120)
+
+- Las semanas de octubre son las de la grilla **actual**: S1 = 1–2 · S2 = 5–9 · S3 = 12–17 · S4 = 19–25 · S5 = 26–31. Si la grilla
+  las corre, lo subido se **mueve y renombra** (mismo enlace); la grilla sólo se lee.
+- En `S<n> / QB / FEED|STS` no quedan «ANTES» ni piezas fuera de grilla: se respaldan en local y se retiran (contenido se pierde).
+- Los KV que sube Eli toman número y conservan su nombre al final (`ST n°1 S1 QB OCT 26 - KV SUNSET.png`). Sus archivos sólo se
+  pueden renombrar; para cambiarlos de semana se copia y se le avisa cuál borrar.

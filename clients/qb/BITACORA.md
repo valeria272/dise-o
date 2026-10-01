@@ -1,5 +1,12 @@
 # QB Restaurant — bitácora
 
+## 2026-10-01 (cierre 2) — Elisabet Soto «Eli» (Windows, con Claude) · /cierre QB
+
+**Qué se hizo:** cierre de la tarde. Drive de QB ordenado por la semana nueva de la grilla (detalle en «tarde 9») y, a pedido de Eli, sin carpetas «ANTES» en las semanas. Cosecha 25 en `APRENDIZAJES.md`: R-118 a R-120, X-59, R-67 ✔×2.
+**Dónde quedó:** Drive `S1…S5 HILTON OCT 2026 / QB` con sólo lo vigente; respaldo de lo retirado en `out/qb/oct/reorden-semanas/antes-retirados/` (no viaja; en la papelera de Drive por 30 días). Sin piezas nuevas ni renders.
+**Qué sigue:** foto de Felipe Saxofonista → Reels DJ; cuando pasen a OK, post/ST 20 % almuerzo, reel Barrio El Golf y Sunset Halloween (sobre el KV de Sunset de Eli). Para subir piezas nuevas de la antigua «S1», usar las rutas de S2 (`C2 S2 AYCD`, `ST n°… S2`).
+**Abierto:** semana del Reel DJ del 20 al 24-10 (está en S5 por la columna del brief) → **contenido** · borrar los dos «YA ESTÁ EN S… - …» → **Eli** · stories repetidas de Sunset y CMR 40 % de S3–S5 con el diseño anterior al KV nuevo → **Eli**.
+
 ## 2026-10-01 (tarde 9) — Elisabet Soto «Eli» (Windows, con Claude) · Drive de QB reordenado por la semana nueva de la grilla
 
 **Qué se hizo:** Eli: «ordena las gráficas de QB nuevamente según semana, ya que hubo cambios» · «me refiero a los diseños, no edites nada de grilla». Contenido partió la semana 1 y corrió el mes: **S1 = 1–2 oct · S2 = 5–9 · S3 = 12–17 · S4 = 19–25 · S5 = 26–31** (antes S1 = 1–9 y todo una semana antes). En Drive se movió y renombró (mismo ID y enlace, R-67): historias S2→S3, S3→S4, S4→S5 con el mismo n°; de la S1 pasaron a S2 AYCD (n°1), cumpleaños animada (n°2), CMR 40 % KV (n°3) y Sunset KV (n°4, copia); en S1 quedan Sunset KV (n°1, 02-10 12:00) y Banco de Chile (n°2, 02-10 17:00). FEED: carruseles de cumpleaños y AYCD a S2 (`C1 S2 CUMPLEAÑOS`, `C2 S2 AYCD`), post trago de autor a S3 (`Post n°1 S3`), KV de Eli como `Post n°1 S1 … KV SUNSET` (01-10) y `Post n°2 S1 … KV CMR` (02-10). Los carruseles de Sunset y CMR, que la grilla ya no trae (los reemplazaron los KV de Eli), se retiraron de Drive (Eli: «no dejes ahí los antes, ya que contenido se perderá»): respaldo en `out/qb/oct/reorden-semanas/antes-retirados/` (md5 igual) y carpetas a la papelera (`10r3Y4-Ba-AoW1aFTRU3FM35ZaxNRfmN2`, `1iGJX0M5GffdtVgVVTFNnvxuaNHvkCJZ0`). La grilla sólo se leyó.

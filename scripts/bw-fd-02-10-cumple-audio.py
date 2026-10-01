@@ -28,7 +28,7 @@ CUADROS = RAIZ / os.environ.get("BW_F02_CUADROS", "raw/_reel-chrome/f02")  # ron
 OUT = RAIZ / os.environ.get("BW_F02_OUT", "out/hilton/between/oct-r2")
 NOMBRE = "BW FEED 02-10 Cafe de cumpleanos"
 FF = r"C:\Users\Elisabet\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\imageio_ffmpeg\binaries\ffmpeg-win-x86_64-v7.1.exe"
-SR, FPS, N = 48000, 30, 375
+SR, FPS, N = 48000, 30, 495  # ronda 11 (01-10): 16,5 s para que se alcance a leer todo
 DUR = N / FPS
 
 
@@ -79,17 +79,17 @@ poner(plumon, 98, 0.30)                   # va por
 tecleo("NUESTRA CUENTA", 112, 2.2)
 pop2 = leer("pop2")
 poner(pop2, 120, 0.26)                    # surgen los globos (ronda 2: ilustraciones de Eli)
-poner(whoosh, 157, 0.28)                  # sale «nuestra cuenta»
-tecleo("Ven por tu", 170, 2.2)
-poner(pop2, 178, 0.22)                    # surge el globo de la derecha
-poner(plumon, 194, 0.30)                  # café gratis
-tecleo("el día de tu cumpleaños", 210, 1.3, cada=2)
-poner(brillo, 262, 0.32)                  # se abre el confeti desde la llama
+poner(whoosh, 172, 0.28)                  # sale «nuestra cuenta»
+tecleo("Ven por tu", 185, 2.2)
+poner(pop2, 193, 0.22)                    # surge el globo de la derecha
+poner(plumon, 209, 0.30)                  # café de regalo
+tecleo("el día de tu cumpleaños", 227, 1.3, cada=2)
+poner(brillo, 307, 0.32)                  # se abre el confeti desde la llama
 for k in range(5):                        # cada botón del legal
-    poner(pop, 268 + 6 * k, 0.20 + 0.03 * (k % 2))
+    poner(pop, 314 + 8 * k, 0.20 + 0.03 * (k % 2))
 
 # música: pareja, sin ducking; fundido de 0,8 s al final
-musica = leer("musica", recortar=False)[: len(pista)]
+musica = leer("musica-larga", recortar=False)[: len(pista)]  # bw-fd-02-10-cumple-musica-larga.py
 env = np.ones(len(musica), np.float32)
 fin = int(DUR * SR)
 env[fin - int(0.8 * SR): fin] = np.linspace(1, 0, int(0.8 * SR))

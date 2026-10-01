@@ -1196,26 +1196,44 @@ const TituloToGo: React.FC<{caps: string; top?: number}> = ({caps, top = 96}) =>
   </Columna>
 );
 
-const HorarioPie: React.FC<{texto: string}> = ({texto}) => (
-  <div style={{position: 'absolute', left: 0, right: 0, bottom: 74, display: 'flex', justifyContent: 'center'}}>
-    <Texto size={38} peso={700} sombra>
-      {conCifras(texto, 700)}
-    </Texto>
-  </div>
+/**
+ * ⭐ RONDA CLIENTE 01-10 (grilla FEED E15): «Acá falta una slide de introducción, como lo
+ * hemos hecho anteriormente, donde vaya la info de horarios y esas cosas. En la G2 se
+ * elimina la info de horarios y en la G4 debemos poner logo Between a la bolsa […] debe ser
+ * con logo actual».
+ *  · Lámina 0 nueva: la introducción lleva el horario (como la portada del carrusel de
+ *    septiembre). Sólo textos que ya estaban en el brief: «Promos To Go» y el horario.
+ *  · El horario sale de las láminas de producto (en septiembre vivía sólo en la portada).
+ *  · La bolsa es la BLANCA que usa el local (foto del cliente en la grilla) con el
+ *    logotipo vigente calzado en café de marca (`scripts/bw-fd-01-10-bolsa-logo.py`).
+ */
+export const FeedOct01ToGo0: React.FC = () => (
+  <AbsoluteFill style={{backgroundColor: C.sombra}}>
+    <FotoFondo src={G + 'gen-fd01-r0-logo.jpg'} oscurecer={0.04} />
+    <VelosToGo pie={false} />
+    <TituloToGo caps="Promos to go" />
+    <Columna top={96 + 84 + 26}>
+      <Texto size={38} peso={700} sombra>
+        De lunes a viernes
+      </Texto>
+      <div style={{marginTop: 14, display: 'flex'}}>
+        <CajaDato size={44}>
+          <span style={{display: 'inline-flex', alignItems: 'baseline', whiteSpace: 'pre'}}>
+            {conCifras('De 8:00 a 10:00 hrs', BETWEEN.pesos.extrabold)}
+          </span>
+        </CajaDato>
+      </div>
+    </Columna>
+    <LegalReferencial />
+  </AbsoluteFill>
 );
 
 /** 1 · TU CAFÉ TO GO — cada precio sobre su vaso, como los rótulos de la ref. */
 export const FeedOct01ToGo1: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: C.sombra}}>
-    <FotoFondo src={G + 'gen-fd01-1-a.jpg'} oscurecer={0.04} />
+    <FotoFondo src={G + 'gen-fd01-r2-a.jpg'} oscurecer={0.04} />
     <VelosToGo pie={false} />
     <TituloToGo caps="Tu café to go" />
-    <Columna top={96 + 84 + 26}>
-      <Texto size={38} peso={700} sombra>
-        {'De lunes a viernes\n'}
-        {conCifras('desde las 8:00 a 10:00 hrs', 700)}
-      </Texto>
-    </Columna>
     {/* Eli 30-09: «que centre según cada vaso» → eje = centro de la TAPA, medido
         con regla sobre el render a 1080×1350 (antes 205/488/770, corridos) */}
     {[
@@ -1248,8 +1266,8 @@ export const FeedOct01ToGo1: React.FC = () => (
 /** 2 · CAFÉ + SÁNDWICH */
 export const FeedOct01ToGo2: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: C.sombra}}>
-    <FotoFondo src={G + 'gen-fd01-2-a.jpg'} oscurecer={0.04} />
-    <VelosToGo />
+    <FotoFondo src={G + 'gen-fd01-r3-a.jpg'} oscurecer={0.04} />
+    <VelosToGo pie={false} />
     <TituloToGo caps={'Café + sándwich'} />
     <Columna top={96 + 84 + 26}>
       <Texto size={38} peso={700} sombra>
@@ -1257,7 +1275,6 @@ export const FeedOct01ToGo2: React.FC = () => (
       </Texto>
     </Columna>
     <FilaPrecios precios={TOGO_PRECIOS.sandwich} top={290} />
-    <HorarioPie texto="De 8:00 a 10:00 hrs" />
     <LegalReferencial />
   </AbsoluteFill>
 );
@@ -1265,8 +1282,8 @@ export const FeedOct01ToGo2: React.FC = () => (
 /** 3 · CAFÉ + OPCIÓN DULCE */
 export const FeedOct01ToGo3: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: C.sombra}}>
-    <FotoFondo src={G + 'gen-fd01-3-a.jpg'} oscurecer={0.04} />
-    <VelosToGo />
+    <FotoFondo src={G + 'gen-fd01-r4-a.jpg'} oscurecer={0.04} />
+    <VelosToGo pie={false} />
     <TituloToGo caps={'Café + opción dulce'} />
     <Columna top={96 + 84 + 26}>
       <Texto size={38} peso={700} sombra>
@@ -1277,7 +1294,6 @@ export const FeedOct01ToGo3: React.FC = () => (
     <CapaFlechas>
       <Acento x={1005} y={752} giro={40} />
     </CapaFlechas>
-    <HorarioPie texto="De 8:00 a 10:00 hrs" />
     <LegalReferencial />
   </AbsoluteFill>
 );
@@ -1285,15 +1301,16 @@ export const FeedOct01ToGo3: React.FC = () => (
 /** 4 · CAFÉ + SÁNDWICH + DULCE — la más abundante */
 export const FeedOct01ToGo4: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: C.sombra}}>
-    <FotoFondo src={G + 'gen-fd01-4e-a.jpg'} oscurecer={0.04} />
-    <VelosToGo />
+    <FotoFondo src={G + 'gen-fd01-r5-logo.jpg'} oscurecer={0.04} />
+    <VelosToGo pie={false} />
     <TituloToGo caps={'Café + sándwich\n+ dulce'} />
-    {/* la caja del XL rozaba el borde de la bolsa (tope ~457) → la fila sube a 300 */}
-    <FilaPrecios precios={TOGO_PRECIOS.tres} top={300} />
+    {/* la caja del XL rozaba el borde de la bolsa (tope ~457) → la fila sube a 300;
+        01-10: con la bolsa blanca las asas llegan a ~417 → sube a 284 */}
+    <FilaPrecios precios={TOGO_PRECIOS.tres} top={284} />
     <CapaFlechas>
-      <Acento x={442} y={662} giro={-42} />
+      {/* Eli 01-10: café XL a la izquierda de la bolsa → el acento va sobre su tapa, sin tocar la bolsa */}
+      <Acento x={398} y={548} giro={-42} />
     </CapaFlechas>
-    <HorarioPie texto="De 8:00 a 10:00 hrs" />
     <LegalReferencial />
   </AbsoluteFill>
 );

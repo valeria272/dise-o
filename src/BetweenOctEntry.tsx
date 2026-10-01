@@ -30,6 +30,7 @@ const Raiz: React.FC = () => (
     <Composition id="BW-O-F05-Reunion" component={O.FeedOct05Reunion} {...feed} />
     <Composition id="BW-O-F12-PorQue" component={FeedOct12PorQue} {...story} durationInFrames={DURACION_PORQUE} />
     <Composition id="BW-O-F14-Espacios" component={O.FeedOct14Espacios} {...feed} />
+    <Composition id="BW-O-F01-ToGo-0" component={O.FeedOct01ToGo0} {...feed} />
     <Composition id="BW-O-F01-ToGo-1" component={O.FeedOct01ToGo1} {...feed} />
     <Composition id="BW-O-F01-ToGo-2" component={O.FeedOct01ToGo2} {...feed} />
     <Composition id="BW-O-F01-ToGo-3" component={O.FeedOct01ToGo3} {...feed} />

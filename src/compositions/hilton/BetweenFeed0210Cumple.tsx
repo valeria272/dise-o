@@ -32,16 +32,21 @@ const SANS = BETWEEN.fuentes.sans;
 const SOMBRA = '0 2px 16px rgba(36,26,18,0.55)';
 const X0 = 76; // margen izquierdo (zona segura 60 + respiro)
 const TAM_CUENTA = 104;
+const TAM_REGALO = 104; // «CAFÉ DE REGALO» es más larga que «CAFÉ GRATIS» (112): cabe en la zona segura
 const HOOK_L1 = 532; // «¿ESTÁS DE»: con 556 la cola del «¿» y la tilde de la «Ñ» todavía rozaban la otra línea
 
 /** Escenas: [inicio, fin) en fotogramas a 30 fps */
 export const ESCENAS_CUMPLE = {
   hook: [0, 75], // 2,5 s
-  cafe: [75, 165], // 3 s
-  ven: [165, 255], // 3 s
-  legal: [255, 400], // 4 s: se enciende la vela + legal en botones (sin salida: queda quieto)
+  cafe: [75, 180], // 3,5 s
+  ven: [180, 300], // 4 s
+  legal: [300, 520], // 6,5 s: confeti + legal en botones (sin salida: queda quieto)
 } as const;
-export const DURACION_CUMPLE = 375;
+// ⭐ Ronda 11 (01-10): cliente en la grilla (FEED G15) «Agregar legales. No decir gratis, que diga
+// Ven por tu café de regalo» + hilo de Nicolás (G12) «preocupémonos de los tiempos de los textos…
+// que se alcance a leer todo». El hook queda igual (2,5 s); las otras escenas ganan 0,5 · 1 · 2,5 s
+// y cada texto queda quieto más de 1 s después de terminar de escribirse. 12,5 → 16,5 s.
+export const DURACION_CUMPLE = 495;
 
 /** Cada golpe de tecla, para que el audio caiga en el mismo fotograma. */
 export const TECLEO = (texto: string, desde: number, porLetra: number) =>
@@ -233,7 +238,7 @@ export const TXT = {
   vaPor: 'VA POR',
   cuenta: 'NUESTRA CUENTA',
   ven1: 'Ven por tu',
-  cafeGratis: 'CAFÉ GRATIS',
+  cafeRegalo: 'CAFÉ DE REGALO',
   ven2: 'el día de tu cumpleaños',
   legal:
     'Beneficio válido únicamente de lunes a viernes, el mismo día de tu cumpleaños, ' +
@@ -245,23 +250,23 @@ export const TIEMPOS = {
   deTrazo: [20, 12] as const,
   cumple: [28, 2.3] as const,
   globos: 118,
-  globo: 176,
+  globo: 191,
   enciende: 4,
-  confeti: 262,
+  confeti: 307,
   elCafe: [80, 2.4] as const,
   vaPor: [98, 14] as const,
   cuenta: [112, 2.2] as const,
-  ven1: [170, 2.2] as const,
-  cafeGratis: [194, 14] as const,
-  ven2: [210, 1.3] as const,
-  legal: [268, 6] as const, // primer botón y separación entre botones
+  ven1: [185, 2.2] as const,
+  cafeRegalo: [209, 16] as const,
+  ven2: [227, 1.3] as const,
+  legal: [314, 8] as const, // primer botón y separación entre botones
 };
 
 export const FeedOct02Cumple: React.FC = () => {
   useFuentesListas();
   const f = useCurrentFrame();
   const T = TIEMPOS;
-  // el legal en cuatro botones café, cortados donde se respira
+  // el beneficio en cinco botones café, cortados donde se respira
   const botones = [
     {t: 'Beneficio válido únicamente', x: 0, rot: -1.2},
     {t: 'de lunes a viernes,', x: 0, rot: 1.2},
@@ -269,6 +274,16 @@ export const FeedOct02Cumple: React.FC = () => {
     {t: 'presentando carnet de identidad', x: 0, rot: 1.2},
     {t: 'al momento de solicitarlo.', x: 0, rot: -1.2},
   ];
+  // Eli 01-10 (tarde): «el legal del *Presenta tu… *Extras y… va en modo legal abajo en pequeño».
+  // Es el legal que el cliente pegó en la grilla (captura del reel anterior, FEED G14), verbatim y
+  // con su «*» al inicio de cada línea. Entra con la oferta y se queda hasta el final.
+  const LEGAL_CHICO = [
+    '*Presenta tu cédula de identidad para canjear tu café el día de tu cumpleaños.',
+    '*Extras y personalizaciones no incluidas.',
+  ];
+  const legalChico = interpolate(f, [ESCENAS_CUMPLE.ven[0] + 6, ESCENAS_CUMPLE.ven[0] + 20], [0, 1], {
+    extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
+  });
   return (
     <AbsoluteFill style={{backgroundColor: C.sombra}}>
       {/* la vela parte APAGADA y se enciende al arrancar: es el hook (ronda 3 de Eli) */}
@@ -328,13 +343,13 @@ export const FeedOct02Cumple: React.FC = () => {
         </div>
       </Escena>
 
-      {/* ── 3 · VEN POR TU CAFÉ GRATIS ── */}
+      {/* ── 3 · VEN POR TU CAFÉ DE REGALO ── */}
       <Escena rango={ESCENAS_CUMPLE.ven}>
         <div style={{position: 'absolute', left: X0, top: 300}}>
           <Maquina texto={TXT.ven1} desde={T.ven1[0]} porLetra={T.ven1[1]} style={palo(66, 500, {letterSpacing: '0.01em'})} />
           {/* misma regla llevada a la escena 3 (criterio dicho = se audita el reel
               entero): «café gratis» deja la Brushwell por la Raleway Black del resto. */}
-          <Trazo texto={TXT.cafeGratis} desde={T.cafeGratis[0]} dura={T.cafeGratis[1]} style={{...palo(112), padding: '0.25em 0.1em 0 0', marginTop: `calc(12px - 0.25em)`}} />
+          <Trazo texto={TXT.cafeRegalo} desde={T.cafeRegalo[0]} dura={T.cafeRegalo[1]} style={{...palo(TAM_REGALO), padding: '0.25em 0.1em 0 0', marginTop: `calc(12px - 0.25em)`}} />
           <Maquina texto={TXT.ven2} desde={T.ven2[0]} porLetra={T.ven2[1]} style={{...palo(66, 500, {letterSpacing: '0.01em'}), marginTop: 14}} />
         </div>
       </Escena>
@@ -347,6 +362,16 @@ export const FeedOct02Cumple: React.FC = () => {
           ))}
         </div>
       </Escena>
+
+      {/* ── legal chico al pie, sobre un velo suave para que se lea encima del sweater ── */}
+      <AbsoluteFill style={{opacity: legalChico, background: 'linear-gradient(0deg, rgba(36,26,18,0.72) 0%, rgba(36,26,18,0.5) 9%, rgba(36,26,18,0) 17%)'}} />
+      <div style={{
+        position: 'absolute', left: 60, right: 60, top: 1818, opacity: legalChico, textAlign: 'center',
+        fontFamily: SANS, fontWeight: 500, fontStyle: 'italic', fontSize: 25, lineHeight: 1.32, color: C.beige,
+        textShadow: '0 1px 6px rgba(36,26,18,0.8)',
+      }}>
+        {LEGAL_CHICO.map((l) => <div key={l}>{l}</div>)}
+      </div>
     </AbsoluteFill>
   );
 };

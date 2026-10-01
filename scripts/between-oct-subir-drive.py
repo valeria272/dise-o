@@ -44,6 +44,8 @@ SEMANAS = {  # carpetas S<n> HILTON OCT 2026 que creó Eli
 }
 
 # (semana, subcarpeta, archivo) — EN ORDEN de publicación
+# 01-10: la grilla corrió Cowork (19→12-10), Lo dicen ustedes (20→13-10) y Evento (27→22-10);
+# en Drive se RENOMBRARON (`between-oct-r11-drive.py --solo fechas`) y acá van con el nombre nuevo.
 PIEZAS = [
     (1, "STS", "BW ST 01-10 Anuncio ganador concurso.png"),
     (1, "STS", "BW ST 02-10 Promos To Go POV.mp4"),
@@ -52,10 +54,10 @@ PIEZAS = [
     (2, "STS", "BW ST 05-10 Paso por un cafe y.png"),
     (2, "STS", "BW ST 07-10 Cafe gratis por cumpleanos.png"),
     (2, "STS", "BW ST 08-10 Trivia Between.png"),
-    (3, "STS", "BW ST 19-10 Cowork.png"),
-    (3, "STS", "BW ST 20-10 Lo dicen ustedes.png"),
+    (3, "STS", "BW ST 12-10 Cowork.png"),
+    (3, "STS", "BW ST 13-10 Lo dicen ustedes.png"),
     (3, "FEED", "BW FEED 14-10 Espacios Between.png"),  # grilla 30-09: bloque SEMANA 3
-    (4, "STS", "BW ST 27-10 Espacio para tu evento.png"),
+    (4, "STS", "BW ST 22-10 Espacio para tu evento.png"),
     (5, "STS", "BW ST 28-10 Desayuno Bonjour.png"),
 ]
 
@@ -122,6 +124,23 @@ ENTREGA_R10 = RAIZ / "out/hilton/between/oct-r10"
 PIEZAS_R10 = [(1, "STS", "BW ST 01-10 Anuncio ganador concurso.png")]
 
 
+# Ronda 11 (cliente en la grilla + hilo de Nicolás, 01-10): el reel de cumpleaños dice «CAFÉ DE
+# REGALO», suma el legal de extras y dura 16,5 s para que se alcance a leer.
+ENTREGA_R11 = RAIZ / "out/hilton/between/oct-r11"
+PIEZAS_R11 = [p for p in PIEZAS_R4 if "FEED 02-10" in p[2]]
+
+
+# Ronda 12 (Eli, 01-10): «*» al inicio de cada texto legal del reel, como punteo.
+ENTREGA_R12 = RAIZ / "out/hilton/between/oct-r12"
+PIEZAS_R12 = PIEZAS_R11
+
+
+# Ronda 15 (Eli, 01-10): el legal del cliente («*Presenta tu cédula… *Extras…») va chico al pie; los
+# botones vuelven a ser los cinco del beneficio.
+ENTREGA_R15 = RAIZ / "out/hilton/between/oct-r15"
+PIEZAS_R15 = PIEZAS_R11
+
+
 def servicio():
     ruta = token_google()
     creds = Credentials.from_authorized_user_file(str(ruta))
@@ -147,11 +166,11 @@ def carpeta(svc, nombre, padre):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--solo", default="")
-    ap.add_argument("--ronda", choices=["1", "2", "4", "5", "6", "7", "10", "fd01"], default="1")
+    ap.add_argument("--ronda", choices=["1", "2", "4", "5", "6", "7", "10", "11", "12", "15", "fd01"], default="1")
     a = ap.parse_args()
     entrega, piezas = {"2": (ENTREGA_R2, PIEZAS_R2), "4": (ENTREGA_R4, PIEZAS_R4),
          "5": (ENTREGA_R5, PIEZAS_R5), "6": (ENTREGA_R6, PIEZAS_R6), "7": (ENTREGA_R7, PIEZAS_R7),
-         "10": (ENTREGA_R10, PIEZAS_R10), "fd01": (ENTREGA_FD01, PIEZAS_FD01)}.get(
+         "10": (ENTREGA_R10, PIEZAS_R10), "11": (ENTREGA_R11, PIEZAS_R11), "12": (ENTREGA_R12, PIEZAS_R12), "15": (ENTREGA_R15, PIEZAS_R15), "fd01": (ENTREGA_FD01, PIEZAS_FD01)}.get(
         a.ronda, (ENTREGA, PIEZAS))
     svc = servicio()
     cache = {}

@@ -83,6 +83,7 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **R-35** · La story tiene **su propia escala**: no se copia la estructura del post (en octubre, ×1,35) — _Paulina 29-09, P03A story: «toda esta estructura debe adaptarse al tamaño de la storie. no usar exactamente lo mismo del post a la storie porque se ve muy pequeño»_ · ✔×1
 - **R-36** · El texto de la story, más grande y en 2 líneas como máximo, **sin una palabra sola en la segunda** — _Paulina 29-09, P01A story: «texto demasiado pequeño aumenta los pt de texto y dejalo en 2 lineas. recuerda que no deben quedar una palabra sola en la segunda linea»_ · ✔×1
 - **R-37** · El velo o degradado **no puede cambiar el color del producto**: la muestra se dibuja encima y el piso o muro del ambiente tiene que seguir leyéndose del tono real — _QA interno 29-09: con un velo a luma fija (62 %), el SPC Roble Arena se leía Titanio y el baño blanco, gris_ · ✔×1
+- **R-38** · Las fotos de ambiente las pone **la clienta**. Un producto sin foto suya **sale de la lista**; no se genera — _Jenny 30-09, WhatsApp a Serena: «las fotos ambientadas están todas malas» · «si no encuentras fotos de algún producto se saca de la lista y solo se deja lo que está en el link» · Keraz: «solo te adjunté de 3 productos, se dejan solo esos 3»_ · ✔×1
 
 ## 5. Excepciones
 
@@ -124,6 +125,7 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **X-17** · Story armada con la misma estructura del post, a la misma escala: «se ve muy pequeño» — _P03A story, Paulina 29-09_
 - **X-18** · Tarjeta de producto sin muestra porque no había foto — _P06, Paulina 29-09_
 - **X-19** · Stories expandidas con `image-expand` bajo una alfombra muro a muro: inventó piso de madera, dos veces — _04A–D, estudio 29-09; se resolvió con el cuadrado recortado_
+- **X-20** · Las 24 tarjetas de octubre con ambientes generados con IA (Seedream), aunque llevaran muestra real: **todas rechazadas por la clienta** — _Jenny 30-09; costó una ronda completa (ronda 3). Se rehízo con sus 18 fotos_
 
 ## 8. Preguntas abiertas
 
@@ -139,7 +141,7 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **Material pendiente:** foto vertical del local de Las Condes; render del muro de mármol en grande; logos oficiales blanco y negro (`1QbdKum6gWUihKfAbSJv3E0AII5fBWPxg`, por conector) → **Jenny / Serena.** Subir la portada «muros» al Drive desde una máquina con token.
 - **Meses sin revisar:** marzo y abril 2026 sin carpeta de diseño; 2024 y 2025 completos → **Serena.**
 - **`marca.json` desactualizado:** dice «Los tres rojos», pide «Confirmar si Gotham es la oficial» (descartada el 26-08) y su pendiente de tipografía ya está resuelto → quien toque la ficha.
-- **Octubre — fotos reales que faltan:** adoquines de caucho (P06 PROVISORIA), Blanco Brillo 15×15, Urban 30×60, Brick Blanco mate → **Jenny** (vía Serena).
+- **Octubre — cerámicas blancas P01A y P01B en espera**: Jenny está validando esas fotos (30-09) → **Jenny.** · Textos del carrusel nuevo de alfombras dimensionadas «en general» (el brief no los trae) → **Sebastián.**
 - **Octubre — nombres de color del Urban** (Pearl / Light Grey / Anthracite, sacados del sitio): confirmar → **Jenny.**
 - **Octubre — copy del anuncio de 02:** dice «El look del mármol» e incluye el Antique Grey, que es hidráulico → **Sebastián.**
 - **Octubre — responder y resolver los 8 comentarios de Paulina en Drive**, o que los cierre ella → **Serena.**

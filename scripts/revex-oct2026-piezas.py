@@ -36,6 +36,7 @@ OUT = os.path.join(RAIZ, "out/revex/oct2026")
 FEED = (2250, 2250)
 STORY = (2250, 4000)
 
+AJUSTE_Y = {(k, st): d for k in ("03A", "03B", "03C") for st, d in ((False, 50), (True, 180))}  # Urban: nombres de color sobre muro claro (30-09) · (pieza, story) → desplazamiento vertical del bloque, medido sobre SU foto
 PLIEGUE = (0xAD, 0x1C, 0x27)
 CTA_GRIS = (0x86, 0x86, 0x86)
 PIE = "Pisos SPC, laminados, porcelanatos, pisos de ingeniería y mucho más"
@@ -44,63 +45,80 @@ CTA = "Cotiza por WhatsApp"
 # pieza: amb, [muestras], categoría (banderola, sup), TÍTULO, BAJADA, APOYO, sello
 # categoría: SÓLO si el brief la trae (en 04/05/06/07 viene como BAJADA). En 01/02 la
 # primera versión ponía «CERÁMICA DE MURO», sacado del sitio: no está en el brief → fuera (QA 29-09, R-23).
+# ⭐ RONDA 3 — 30-09-2026. Jenny Campos (la clienta), por WhatsApp a Serena:
+#   «las fotos ambientadas están todas malas» · «si no encuentras fotos de algún producto se
+#   saca de la lista y solo se deja lo que está en el link» · «en keraz te solicité 5 productos y
+#   solo te adjunté de 3… se dejan solo esos 3» · «de las alfombras sacar los 2 post y dejar solo
+#   de alfombras dimensionadas en general, te adjunté 3 imágenes» · cerámicas blancas: «estoy
+#   esperando validación».
+# Los fondos IA quedan DESCARTADOS: cada tarjeta usa la foto de la clienta (carpeta «AGENCIA »,
+# 1RfSf8kOi5f9hLmL2TJQAWssQGqqIB4JB → public/assets/revex/oct/cliente/, con PROCEDENCIA.tsv).
+# foto = archivo de la clienta · foco = posición vertical del recorte (feed, story).
+CLI = os.path.join(RAIZ, "public/assets/revex/oct/cliente")
 T = {
- "01A": dict(amb="01a", m=["aparejo_6910003060.png"], cat=None, tit="Blanco Brillante",
-             baj="Formatos 20×30 · 25×40 · 30×60", apo="Luz y amplitud para baños y cocinas"),
- "01B": dict(amb="01b", m=["aparejo_6910102540.png"], cat=None, tit="Blanco Mate",
-             baj="Formatos 25×40 · 30×60", apo="El blanco de siempre, sin brillo"),
- "01C": dict(amb="01c", m=["6351001020_0.jpg"], cat=None, tit="Biselado Blanco Brillo",
-             baj="Formato 10×20", apo="Un borde biselado que suma relieve al muro"),
- "01D": dict(amb="01d", m=["derivado_6353001515.png"], cat=None, tit="Blanco Brillo",
-             baj="Formato 15×15", apo="El formato clásico para muros"),
- "01E": dict(amb="01e", m=["6355175250_0.jpg"], cat=None, tit="Brick Blanco",
-             baj="Formato 7,5×25 · en brillo o mate", apo=CTA),
- "02A": dict(amb="02a", m=["6954003060_0.jpg"], cat=None, tit="Keraz Antique Grey",
-             baj="Formato 30×60", apo="Consulta la oferta por WhatsApp", sello="EN OFERTA"),
- "02B": dict(amb="02b", m=["6962003060_0.jpg"], cat=None, tit="Keraz Marmo Ocean Vein",
-             baj="Efecto mármol · 30×60", apo=None),
- "02C": dict(amb="02c", m=["6957003060_0.jpg"], cat=None, tit="Keraz Marmo Grey",
-             baj="Efecto mármol · 30×60", apo=None),
- "02D": dict(amb="02d", m=["6958003060_0.jpg"], cat=None, tit="Keraz Marmo Rombo",
-             baj="Efecto mármol · 30×60", apo=None),
- "02E": dict(amb="02e", m=["6963003060_0.jpg"], cat=None, tit="Keraz Calacatta Gold",
-             baj="Efecto mármol · 30×60", apo=CTA),
- "03A": dict(amb="03", urban=(30, 60), cat=None, tit="Porcelanato Urban",
-             baj="Formato 30×60", apo="Disponible en 3 colores"),
- "03B": dict(amb="03", urban=(60, 60), cat=None, tit="Porcelanato Urban",
-             baj="Formato 60×60", apo="Disponible en 3 colores"),
- "03C": dict(amb="03", urban=(60, 120), cat=None, tit="Porcelanato Urban",
-             baj="Gran formato 60×120", apo=CTA),
- "04A": dict(amb="04a", m=["5690020092_0.jpg"], cat="Alfombra muro a muro", tit="Santana · Gris Perla",
-             baj=None, apo="Rollo de 4 m de ancho", cuadrada=True),
- "04B": dict(amb="04b", m=["5690040063_0.jpg"], cat="Alfombra muro a muro", tit="Salamanca · Arena",
-             baj=None, apo="Rollo de 4 m de ancho", cuadrada=True),
- "04C": dict(amb="04c", m=["5690066600_0.jpg"], cat="Alfombra muro a muro", tit="Bruselas · Lino",
-             baj=None, apo="Rollo de 4 m de ancho", cuadrada=True),
- "04D": dict(amb="04d", m=["5690067000_0.jpg"], cat="Alfombra muro a muro", tit="Bruselas · Castaña",
-             baj=None, apo=CTA, cuadrada=True),
- "05A": dict(amb="05a", m=["5698209037_0.jpg"], cat="Alfombra dimensionada a tu medida",
-             tit="Nature Rainbow · Tivoli", baj=None, apo="Terminación con cinta en los bordes", cuadrada=True),
- "05B": dict(amb="05b", m=["5698209073_0.jpg"], cat="Alfombra dimensionada a tu medida",
-             tit="Nature Rainbow · Trieste", baj=None, apo="Terminación con cinta en los bordes", cuadrada=True),
- "05C": dict(amb="05c", m=["5698209084_0.jpg"], cat="Alfombra dimensionada a tu medida",
-             tit="Nature Rainbow · Treviso", baj=None, apo=CTA, cuadrada=True),
- "06":  dict(amb="06", m=["PROVISORIO_IA_caucho_detalle.png"], cat="Color negro · espesores de 25 y 45 mm", tit="Adoquines de caucho",
-             baj=None, apo=CTA),
- "07A": dict(amb="07a", m=["5903607305_0.jpg"], cat="PISO SPC", tit="SPC Gravity · Roble Arena",
-             baj=None, apo=None),
- "07B": dict(amb="07b", m=["5903607308_0.jpg"], cat="PISO SPC", tit="SPC Gravity · Roble Titanio",
-             baj=None, apo=None),
- "07C": dict(amb="07c", m=["5903607311_0.jpg"], cat="PISO SPC", tit="SPC Gravity · Roble Natural",
-             baj=None, apo=CTA),
+ # 01A Blanco Brillante y 01B Blanco Mate: EN ESPERA, Jenny está validando esas fotos (30-09).
+ "01C": dict(foto="BISELADO BLANCO BRILLO.png", foco=(0.30, 0.5), m=["6351001020_0.jpg"], cat=None,
+             tit="Biselado Blanco Brillo", baj="Formato 10×20", apo="Un borde biselado que suma relieve al muro"),
+ "01D": dict(foto="2x/BLANCO BRILLO 15X15 CR.jpg", foco=(0.35, 0.5), m=["muestra_cliente_01D.png"], cat=None,
+             tit="Blanco Brillo", baj="Formato 15×15", apo="El formato clásico para muros"),
+ "01E": dict(foto="2x/BRICK BLANCO MT 7,5x25 CR.jpg", foco=(0.30, 0.5), m=["muestra_cliente_01E.png"], cat=None,
+             tit="Brick Blanco", baj="Formato 7,5×25 · en brillo o mate", apo=CTA),
+ "02A": dict(foto="KERAZ ANTIQUE GREY.png", foco=(0.5, 0.5), m=["6954003060_0.jpg"], cat=None,
+             tit="Keraz Antique Grey", baj="Formato 30×60", apo="Consulta la oferta por WhatsApp", sello="EN OFERTA"),
+ "02B": dict(foto="KERAZ MARMO OCEAN VEIN.png", foco=(0.5, 0.5), m=["6962003060_0.jpg"], cat=None,
+             tit="Keraz Marmo Ocean Vein", baj="Efecto mármol · 30×60", apo=None),
+ "02C": dict(foto="2x/KERAZ MARMO GREY.jpg", foco=(0.5, 0.5), m=["6957003060_0.jpg"], cat=None,
+             tit="Keraz Marmo Grey", baj="Efecto mármol · 30×60", apo=CTA),
+ # 02D Marmo Rombo y 02E Calacatta Gold: FUERA, la clienta no mandó foto («se dejan solo esos 3»).
+ "03A": dict(foto="URBAN LIGHT GREY NAT 30x60 VT.png", foco=(0.55, 0.5), urban=(30, 60), cat=None,
+             tit="Porcelanato Urban", baj="Formato 30×60", apo="Disponible en 3 colores"),
+ "03B": dict(foto="Urban Light Grey Nat 60x60.png", foco=(0.55, 0.5), urban=(60, 60), cat=None,
+             tit="Porcelanato Urban", baj="Formato 60×60", apo="Disponible en 3 colores"),
+ "03C": dict(foto="URBAN PEARL NAT 60x120.png", foco=(0.55, 0.5), urban=(60, 120), cat=None,
+             tit="Porcelanato Urban", baj="Gran formato 60×120", apo=CTA),
+ # 04 (muro a muro) y los modelos de 05: FUERA. Queda UN carrusel de alfombras dimensionadas
+ # «en general» con las 3 fotos de la clienta. ⚠️ El brief no trae texto para esto: se usan
+ # SÓLO líneas literales del brief de 05 + la etiqueta de cada foto de la clienta
+ # («EN STOCK», «A PEDIDO»). Confirmar con Sebastián.
+ "05A": dict(foto="ALFOMBRA DIMENSIONADA EN STOCK.webp", foco=(0.62, 0.5), m=["muestra_cliente_05A.png"],
+             cat="En stock", tit="Alfombras dimensionadas", baj=None,
+             apo="Terminación con cinta en los bordes", cuadrada=True),
+ "05B": dict(foto="ALFOMBRA DIMENSIONADAS A PEDIDO.jpg", foco=(0.62, 0.5), m=["muestra_cliente_05B.png"],
+             cat="A pedido", tit="Alfombras dimensionadas", baj=None,
+             apo="Alfombra dimensionada a tu medida", cuadrada=True),
+ "05C": dict(foto="ALFOMBRA DIMENSIONADAS A PEDIDO 2.jpg", foco=(0.6, 0.5), m=["muestra_cliente_05C.png"],
+             cat="A pedido", tit="Alfombras dimensionadas", baj=None, apo=CTA, cuadrada=True),
+ "06":  dict(foto="Adoquines.png", foco=(0.55, 0.5), m=["muestra_cliente_06.png"],
+             cat="Color negro · espesores de 25 y 45 mm", tit="Adoquines de caucho", baj=None, apo=CTA),
+ "07A": dict(foto="SPC GRAVITY ARENA.png", foco=(0.6, 0.5), m=["5903607305_0.jpg"], cat="Piso SPC",
+             tit="SPC Gravity · Roble Arena", baj=None, apo=None),
+ "07B": dict(foto="SPC GRAVITY TITANIO.png", foco=(0.6, 0.5), m=["5903607308_0.jpg"], cat="Piso SPC",
+             tit="SPC Gravity · Roble Titanio", baj=None, apo=None),
+ "07C": dict(foto="SPC GRAVITY NATURAL.png", foco=(0.6, 0.5), m=["5903607311_0.jpg"], cat="Piso SPC",
+             tit="SPC Gravity · Roble Natural", baj=None, apo=CTA),
 }
+for _k, _t in T.items():
+    _t["amb"] = _k.lower()        # sólo para los ajustes por pieza de abajo
+
+# Muestras que salen de la PROPIA foto de la clienta (no hay packshot en el sitio de esos productos):
+# recorte (x0, y0, x1, y1) en fracción de la foto.
+MUESTRA_DE_FOTO = {
+    # 01D y 01E: la muestra deja de ser DERIVADA — sale del muro real de la foto de la clienta
+    "01D": ("BLANCO BRILLO 15X15 CR.png", (0.52, 0.10, 0.665, 0.55)),
+    "01E": ("BRICK BLANCO MT 7,5x25 CR.png", (0.45, 0.02, 0.95, 0.28)),
+    "05A": ("ALFOMBRA DIMENSIONADA EN STOCK.webp", (0.30, 0.62, 0.62, 0.78)),
+    "05B": ("ALFOMBRA DIMENSIONADAS A PEDIDO.jpg", (0.30, 0.76, 0.62, 0.90)),
+    "05C": ("ALFOMBRA DIMENSIONADAS A PEDIDO 2.jpg", (0.40, 0.80, 0.60, 0.97)),
+    "06":  ("Adoquines.png", (0.25, 0.70, 0.75, 0.90)),
+}
+
+
 # BAJADA de 04/05/06/07: el brief la da como bajada («Alfombra muro a muro», «Piso SPC»…);
 # en la gramática de Paulina ese dato es la categoría de la banderola, así que va ahí, literal.
-T["07A"]["cat"] = T["07B"]["cat"] = T["07C"]["cat"] = "Piso SPC"
 # Stories que NO usan la expansión sino el cuadrado recortado en vertical (cover):
 # en las alfombras muro a muro, image-expand inventó piso de madera bajo la alfombra
 # dos veces seguidas, con y sin instrucción (29-09). Recorte = la misma foto aprobada.
-DESDE_CUADRADO = {"04a", "04b", "04c", "04d"}
+DESDE_CUADRADO = set()   # ronda 3: ya no hay ambientes IA ni expansiones
 URBAN = [("Pearl", "7411"), ("Light Grey", "7412"), ("Anthracite", "7413")]
 
 
@@ -297,13 +315,19 @@ def apoyo(L, txt, y, cap=17):
 
 
 # ─────────────────────────────── armado ───────────────────────────────
+def muestras_de_foto():
+    for k, (f, (x0, y0, x1, y1)) in MUESTRA_DE_FOTO.items():
+        im = Image.open(os.path.join(CLI, f)).convert("RGB"); W, H = im.size
+        im.crop((round(x0 * W), round(y0 * H), round(x1 * W), round(y1 * H))).save(
+            os.path.join(PROD, f"muestra_cliente_{k}.png"))
+
+
 def pieza(k, story=False):
     t = T[k]
     aparejo("6910003060_0.jpg", 60, 30, os.path.join(PROD, "aparejo_6910003060.png"), n=(3, 3))
     aparejo("6910102540_0.jpg", 25, 40, os.path.join(PROD, "aparejo_6910102540.png"), n=(5, 2))
     L = Lienzo(*(STORY if story else FEED))
-    amb = os.path.join(AMB, f"amb_{t['amb']}{'_story' if story and t['amb'] not in DESDE_CUADRADO else ''}.png")
-    L.fondo(amb)
+    L.fondo(os.path.join(CLI, t["foto"]), foco=t["foco"][1 if story else 0])
     # La story tiene su PROPIA escala: copiar el cuadrado «se ve muy pequeño» (Paulina 29-09,
     # P03A story: «toda esta estructura debe adaptarse al tamaño de la storie»).
     e = 1.35 if story else 1.0
@@ -312,7 +336,7 @@ def pieza(k, story=False):
     #  · 06: el apilado de adoquines de la escena quedaba bajo la muestra y asomaba por el marco;
     #    el bloque sube a piso liso (feed) y el pie de la story ya no pisa el apilado.
     #  · 03 story: los nombres de color caían sobre la ventana (casi blanca) y no se leían.
-    y_m += {("06", False): -280, ("06", True): -80, ("03", True): 180}.get((t["amb"][:2], story), 0)
+    y_m += AJUSTE_Y.get((k, story), 0)
     # degradado muy suave detrás del bloque de texto; la muestra se dibuja encima y no se toca
     if story:
         degradado(L, 820, 1060, 0.42, 1330, 1640)
@@ -390,12 +414,13 @@ def main():
     ap.add_argument("que", nargs="*", default=[])
     ap.add_argument("--solo-feed", action="store_true")
     a = ap.parse_args()
+    muestras_de_foto()
     ks = [k for k in T if not a.que or any(k.startswith(q.upper()) for q in a.que)]
     for k in ks:
         for story in ([False] if a.solo_feed else [False, True]):
-            amb = os.path.join(AMB, f"amb_{T[k]['amb']}{'_story' if story and T[k]['amb'] not in DESDE_CUADRADO else ''}.png")
+            amb = os.path.join(CLI, T[k]["foto"])
             if not os.path.exists(amb):
-                print(f"· {k} {'story' if story else 'feed'}: falta {os.path.basename(amb)}"); continue
+                print(f"· {k} {'story' if story else 'feed'}: falta {T[k]['foto']}"); continue
             L = pieza(k, story)
             nombre = f"REVEX_P{k}_{'Story_2250x4000' if story else 'Feed_2250x2250'}.png"
             print("✓", L.guardar(os.path.join(OUT, nombre)))

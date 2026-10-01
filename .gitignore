@@ -89,6 +89,9 @@ public/assets/**
 !public/assets/revex/oct/amb_*.png
 !public/assets/revex/oct/productos/
 !public/assets/revex/oct/productos/**
+# Ronda 3 (30-09): las fotos de ambiente de la clienta reemplazan a las de IA
+!public/assets/revex/oct/cliente/
+!public/assets/revex/oct/cliente/**
 # CAVA: los bottle shots y sus versiones 2x (upscaler de precisión) son el
 # material con el que se montan los KV. Sin ellos otro diseñador no reproduce la
 # entrega — se cae al packshot chico y el bodegón sale distinto.

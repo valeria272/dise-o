@@ -918,3 +918,10 @@ Carpeta `1puZ1PWbgaqJo53agyQHVdJSKFjUGAIvx`. **Mandan sobre lo anterior de este 
    coma: «Pisos SPC, laminados, porcelanatos, / pisos de ingeniería y mucho más».
 5. **Toda tarjeta de producto lleva muestra** — *«faltó la muestra del producto»* (P06). Sin foto
    real, la muestra es un recorte del ambiente, rotulado `PROVISORIO_IA_…`, hasta que llegue la foto.
+
+## ⛔ Ronda 3 de octubre — la clienta, 30-09-2026: nada de ambientes con IA
+Jenny Campos, por WhatsApp: *«las fotos ambientadas están todas malas»*. Mandó 18 fotos propias
+(`public/assets/revex/oct/cliente/`). **Regla (R-38):** el ambiente lo pone la clienta; el producto sin
+foto suya sale de la lista. Antes de generar un ambiente para Revex, **pedirle a Jenny sus fotos**. Sus
+fotos traen muros blancos y ventanas pegados al borde, lo que dispara falsos positivos de zona segura y
+de respiro en `qa/motor.py`: se verifican pasando la foto sola, sin texto, por la compuerta.

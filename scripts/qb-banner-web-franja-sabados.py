@@ -10,7 +10,7 @@ Ronda 1 (01-10): se calzó el texto nuevo al desenfoque del original → Eli: «
 desenfocado y mal». Lo que se agrega va nítido, no imitando el defecto de la base.
 
 Uso:
-    python scripts/qb-banner-web-franja-sabados.py out/qb/oct/banner-web/_antes/cuadro-200-momento-40.png <salida.png>
+    python scripts/qb-banner-web-franja-sabados.py out/qb/oct/banner-web/_antes/cuadro-200-momento-40.png <salida.png> [sabados|invita]
 
 El cuadro es uno quieto del export mp4 de Canva (3642×568), p. ej. el 200.
 """
@@ -32,7 +32,10 @@ X_LOGOS, ANCHO_LOGOS = 2845, 488  # los logos no se mueven
 CENTRO_Y = 516.5                  # eje de la franja (ahí van los puntos de Eli y los logos)
 CUERPO_ROTULO = 50.0              # el original mide 55,5; «¡SÁBADOS DE OCTUBRE!» no cabe antes del punto (x 993)
 X_BAJADA = 1110                   # donde parte la bajada en las otras franjas
-ROTULO = "¡SÁBADOS DE OCTUBRE!"
+# 01-10 (tarde): Eli cambió el KV de CMR a «¡EL SÁBADO INVITA CMR!» y el rótulo lo sigue
+# (el post y la ST mandan). Mide 2 % más que el anterior: cabe con el mismo cuerpo (hasta x 939).
+ROTULOS = {"sabados": "¡SÁBADOS DE OCTUBRE!", "invita": "¡EL SÁBADO INVITA CMR!"}
+ROTULO = ROTULOS[sys.argv[3] if len(sys.argv) > 3 else "invita"]
 BAJADA = "Ven y disfruta tu beneficio con Banco Falabella"
 BLANCO, S = (250, 250, 250), 2    # S = sobremuestreo de salida
 # Canva calcula el encuadre con una miniatura de 800 px de ancho y alto ENTERO: si la
@@ -82,6 +85,10 @@ def main() -> None:
     print(f"{sys.argv[2]} {im.size} - rotulo hasta {fin_rotulo:.0f} (punto de Eli en 993-1016)")
     alto_pag = 1920 * SALIDA[1] / SALIDA[0]
     print(f"en la pagina: left 0, top {300 - alto_pag:.2f}, ancho 1920, alto {alto_pag:.2f}")
+    # Eli la reajustó igual las dos veces (01-10, medido sobre su export): 4 % más grande y
+    # corrida a la izquierda, para que el rótulo parta en x 111 y calce con sus puntos.
+    e = 1.04
+    print(f"calce de Eli: left -38.5, top {300 - alto_pag * e:.2f}, ancho {1920 * e:.1f}, alto {alto_pag * e:.2f}")
 
 
 if __name__ == "__main__":

@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-10-01** · Cosechas: **23**
+> Última cosecha: **2026-10-01** · Cosechas: **24**
 
 ## 1. Quién es el cliente
 
@@ -157,10 +157,12 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **R-109** · ⛔ Reel DJ: **el cuerpo del DJ nunca se desvanece ni desaparece bajo los textos**: la capa sigue hasta los banners (y ≥ 1560). Si la foto llega sólo al pecho, se extiende hacia abajo (Nano Banana Pro) y se pega encima la foto real alineada, para que cara y manos sean las originales. Si la ropa clara tapa la fecha, se baja la **luz** de la ropa detrás de los textos, no la opacidad — _Eli 01-10 (Reel DJ S3, Seba Soto, con captura): «ojo, desapareció su cuerpo abajo, eso no debe pasar» → «okey!! guárdalo en tu memoria»_ · ✔×1
 - **R-110** · Reel DJ: **«Juanjo» de la grilla lleva la foto y el logo «JOTA»** (carpeta JOTA del Drive de DJ); Flo Veloso lleva su logo pasado a blanco; Paula Achurra no lleva logo — _Eli 01-10: «el logo es JOTA»_ · ✔×1
 - **R-111** · El Reel DJ se entrega **MP4 + GIF** en `S<n> HILTON OCT 2026 / QB / FEED / Reel n°1 S<n> QB OCT 26` (GIF 360×640, 12,5 cps, ~12 MB) — _Eli 01-10: «guárdalas en drive en sus semanas respectivas»_ · ✔×1
-- **R-112** · ⭐ **Banner web animado (1920×300, tres momentos en una página de Canva de Eli):** el cambio se hace **en su Canva**, no en un video armado aparte, y **sólo en el momento pedido**; los otros momentos y el legal no se tocan. Se verifica exportando el `mp4` y comparando cuadro a cuadro: los demás momentos tienen que salir idénticos — _Eli 01-10 (banner octubre, `DAHWyTySL9g`): «solo la franja del 40, 30 de CMR y Falabella porque el 20 % está bien» · «deja el legal, solo es la franja» · «necesito que hagas esa edición en el Canva para yo tener acceso» · «eso solo es para el de 40/30, los demás estaban bien sus textos»_ · ✔×1
-- **R-113** · En el banner web, el momento **40 % CMR / 30 % débito** lleva el rótulo **«¡SÁBADOS DE OCTUBRE!»** en la franja (no «¡POR TODO EL MES!», que es del 20 % de todos los días) — _Eli 01-10: «exacto, esa reemplázala por eso que debería decir»_ · ✔×1
-- **R-114** · ⛔ Lo que se agrega a un editable va **nítido**: nunca se imita el desenfoque o la baja resolución que trae la base en el export — _Eli 01-10 (franja del banner web, ronda 1): «se ve desenfocado y mal»_ · ✔×1
-- **R-115** · Una franja nueva del banner web **calza con sus hermanas**: bajada y logos en la misma posición que en las otras franjas, y **sin los puntos «•»**, que son elementos aparte en el Canva de Eli. Si el rótulo nuevo es más largo, se achica el rótulo; no se redistribuye la franja — _Eli 01-10 (ronda 3): «quítale los dos puntos y ajústalo similar a los otros y queda»_ · ✔×1
+- **R-112** · ⭐ **Banner web animado (1920×300, tres momentos en una página de Canva de Eli):** el cambio se hace **en su Canva**, no en un video armado aparte, y **sólo en el momento pedido**; los otros momentos y el legal no se tocan. Se verifica exportando el `mp4` y comparando cuadro a cuadro: los demás momentos tienen que salir idénticos — _Eli 01-10 (banner octubre, `DAHWyTySL9g`): «solo la franja del 40, 30 de CMR y Falabella porque el 20 % está bien» · «deja el legal, solo es la franja» · «necesito que hagas esa edición en el Canva para yo tener acceso» · «eso solo es para el de 40/30, los demás estaban bien sus textos»_ · ✔×2 (01-10, franja «¡EL SÁBADO INVITA CMR!»)
+- **R-113** · ⚠️ revisada 2026-10-01 (ver R-116: el rótulo pasó a «¡EL SÁBADO INVITA CMR!») · En el banner web, el momento **40 % CMR / 30 % débito** lleva el rótulo **«¡SÁBADOS DE OCTUBRE!»** en la franja (no «¡POR TODO EL MES!», que es del 20 % de todos los días) — _Eli 01-10: «exacto, esa reemplázala por eso que debería decir»_ · ✔×1
+- **R-114** · ⛔ Lo que se agrega a un editable va **nítido**: nunca se imita el desenfoque o la baja resolución que trae la base en el export — _Eli 01-10 (franja del banner web, ronda 1): «se ve desenfocado y mal»_ · ✔×2 (01-10, franja «¡EL SÁBADO INVITA CMR!»)
+- **R-115** · Una franja nueva del banner web **calza con sus hermanas**: bajada y logos en la misma posición que en las otras franjas, y **sin los puntos «•»**, que son elementos aparte en el Canva de Eli. Si el rótulo nuevo es más largo, se achica el rótulo; no se redistribuye la franja — _Eli 01-10 (ronda 3): «quítale los dos puntos y ajústalo similar a los otros y queda»_ · ✔×2 (01-10, franja «¡EL SÁBADO INVITA CMR!»)
+- **R-116** · ⭐ **El KV manda sobre los derivados:** cuando Eli cambia el KV de una promo (post y ST), el banner web sigue al KV. Desde el 01-10 el momento **40 % CMR / 30 % débito** lleva en la franja el titular del KV nuevo, **«¡EL SÁBADO INVITA CMR!»** (antes «¡SÁBADOS DE OCTUBRE!»), todo en Montserrat Bold como las otras franjas; la bajada y los logos no cambian — _Eli 01-10 (banner web, `DAHWyTySL9g`): «ahora cambia el texto, ya que cambió… el post y ST mandan en KV, esto en el del 40/30 % cambia el texto de abajo banner verde»_ · ✔×1
+- **R-117** · **Calce de Eli para la franja del banner web:** la franja va **4 % más grande y corrida a la izquierda** — left ≈ −38,5 · top ≈ 245,1 · ≈ 1997×54,9 (no 0 / 247,2 / 1920×52,8) —, de modo que el rótulo parte en x 111 de página, la bajada en x 570 y los logos en x 1522–1788, bajo sus puntos «•». Tiempo del momento 40/30: entra a los 3,97 s y sale de corte a los 7,37 s — _medido sobre el export de Eli las dos veces que la ajustó a mano (tarde 7 y tarde 8, 01-10): «ya guardé nuevamente un ajuste, guárdalo en tu memoria»_ · ✔×2
 
 ## 5. Excepciones
 
@@ -204,6 +206,7 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **A-21** · **Carrusel AYCD 06-10 (C2 S1) r31**: la foto real «QB oct-31» partida en panorama (G1 el vaso tallado con romero, centrado, con sangría; G2 la misma foto detrás de la promo), «*Imagen referencial» abajo al centro. Responde al comentario del cliente («tragos fuera de proporciones en la G2; G1 más simple, muy literal con la refe») — _Eli 01-10: «okey, guárdalo en tu memoria»_ (costó 3 rondas: X-49 a X-51)
 - **A-22** · **Reels DJ S3 (15-10) y S5 (23-10)** sobre copias de la plantilla del S2 (R-96 a R-103 + R-108 a R-111): Seba Soto (mezclilla, cuerpo extendido), Juanjo/JOTA, Nacho Mella (camisa blanca), Isa, Flo Veloso, Paula Achurra; Felipe provisorio. MP4 31,3 s con música completa + GIF, en Drive — _Eli 01-10: «okey!! guárdalo en tu memoria»_ (costó 2 rondas, las dos por Seba: X-52 y X-53)
 - **A-23** · **Banner web animado de octubre** (R-112 a R-115): franja «¡SÁBADOS DE OCTUBRE!» nítida, sin puntos y calzada con las otras, sólo en el momento 40 % / 30 %; 20 % y Banco de Chile idénticos al original — _Eli 01-10: «lo dejé ajustado, quedó okey, revísalo y guárdalo en tu memoria»_ (costó 3 rondas y un ajuste a mano de Eli: X-55 a X-58)
+- **A-24** · **Banner web, franja «¡EL SÁBADO INVITA CMR!»** (R-112, R-114 a R-117): una sola capa puesta a la primera en el Canva de Eli; ella borró la anterior, la calzó (R-117) y le puso el tiempo — _Eli 01-10: «okey, ya guardé nuevamente un ajuste, guárdalo en tu memoria»_ (0 rondas; un ajuste a mano de Eli)
 - ⚠️ Del cliente todavía no hay «aprobado» explícito para ninguna pieza del estudio; la v6 y la v7 de la S5 no tienen veredicto escrito.
 
 ## 7. Lo que se rechaza
@@ -320,11 +323,22 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - Las láminas de CMR y Sunset del Reel DJ en Canva siguen con el diseño anterior a los KV del 01-10: ¿se actualizan? → **Eli**.
 - **FEED 22-10 «Sunset QB Halloween»** (post / ST estática): el brief apareció el 01-10 a las 16:00 — la gráfica actual de Sunset QB con un guiño sutil de Halloween (sombra o proyección «spooky»), textos del KV nuevo de Eli. Está en **PENDIENTE POR CLIENTE**: no se diseña hasta que pase a OK; cuando pase, va sobre el KV de Eli del 01-10 → **cliente**.
 - Máquina de Eli: `remotion still` volvió a dar `spawn UNKNOWN` el 01-10 (se rindió con `scripts/still-por-chrome.py`) y `scipy` está roto, así que dos chequeos del QA (texto al borde, foco por bandas) no corren → **Valeria**.
-- **Banner web de octubre**: ¿en qué carpeta de Drive va? El MP4 final está en `out/qb/oct/banner-web/banner-canva-final.mp4`, sin subir → **Eli**.
+- ~~Banner web de octubre: ¿en qué carpeta de Drive va?~~ → resuelto 01-10: Eli sube su propio export a `…/Banner web` (`1im7cIZay5oIh-OriB9h1eU2jxt0Kyvxt`), dentro de la carpeta del KV de CMR. **Ojo:** el MP4 y el GIF que hay ahí son de las 17:43, anteriores al rótulo «¡EL SÁBADO INVITA CMR!»; falta que exporte de nuevo → **Eli**.
 - Banner web: la franja nueva del 40/30 no se funde a negro al salir (queda 0,1 s sobre el negro antes de Banco de Chile) → **Eli**.
+- KV de CMR nuevo («¡EL SÁBADO INVITA CMR!», 01-10): ¿las «PANTALLAS 40% CMR» (`1YXtcvFy6Pz9hD26fSn2_Z_Mz9Qvnv59Z`) ya llevan el titular nuevo? ¿Y las historias y el carrusel CMR ya entregados con «¡AHORA LOS SÁBADOS SE DISFRUTAN MÁS!» / «Tu panorama de sábado…» (están en APROBADO, no se tocaron)? → **Eli**.
 - Banner web: el MP4 de Canva ablanda las tres franjas (usa una versión de baja resolución de las imágenes anchas); en PNG y en el editor se ven nítidas. ¿Se parten en tramos de 480 px para que salgan nítidas en video? → **Eli**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 (5) — Claude con Eli · banner web: la franja sigue al KV nuevo de CMR · 2 reglas nuevas, 1 revisada, 1 aprobada
+- **Fuente:** Eli en el chat (01-10, tarde). Sin comentarios del cliente.
+- **Qué pasó:** Eli cambió el KV de CMR sábados a «¡EL SÁBADO INVITA CMR!» y pidió llevarlo a la franja del 40 % / 30 % del banner web. Una capa, a la primera; ella la calzó y le puso el tiempo, y pidió guardar el ajuste. Se midió su export.
+- **Reglas nuevas:** R-116 el KV manda sobre el banner: rótulo «¡EL SÁBADO INVITA CMR!» · R-117 calce de Eli (franja 4 % más grande, left −38,5; 3,97–7,37 s).
+- **Revisada:** R-113 (⚠️ el rótulo ya no es «¡SÁBADOS DE OCTUBRE!»).
+- **✔ que subieron:** R-112 ✔×2 (en su Canva, sólo el momento pedido; 20 % y Banco de Chile intactos) · R-114 ✔×2 (nítida) · R-115 ✔×2 (sin puntos, mismo cuerpo de rótulo).
+- **Aprobada:** A-24, a la primera (la receta de la tarde 7 funcionó: 0 rondas contra 3).
+- **Rechazos:** ninguno.
+- **Candidata a regla del estudio (para Valeria):** cuando la diseñadora ajusta a mano algo que el estudio dejó puesto, se **mide** su ajuste y la próxima vez se entrega ya con esos valores (acá, el mismo calce dos veces seguidas).
 
 ### 2026-10-01 (4) — Claude con Eli · banner web animado: franja «¡SÁBADOS DE OCTUBRE!» · 4 reglas nuevas, 1 aprobada
 - **Fuente:** Eli en el chat (01-10, una captura del panel Compartir de Canva). Sin comentarios del cliente.

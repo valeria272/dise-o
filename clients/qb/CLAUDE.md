@@ -819,17 +819,22 @@ cliente «tragos fuera de proporciones en la G2; G1 más simple, muy literal con
 ⚠️ **Sunset QB y CMR 40 % sábados: desde el 01-10 mandan los KV que Eli rehízo a mano** (Drive
 `1M3SpaNu8G2e-hiIywJ3CbWeI5PiHJ4nN` y `15m5fxONYLmS3LL3Md8ydPkyzltLNwvDj`), no las composiciones del repo.
 
-## 4l. Banner web animado 1920×300 — se edita en el Canva de Eli (01-10-2026, R-112 a R-115)
+## 4l. Banner web animado 1920×300 — se edita en el Canva de Eli (01-10-2026, R-112 a R-117)
 
 El banner web («Banner QB BCO CMR - BCO CHILE 1920x300alto OCTUBRE», Canva `DAHWyTySL9g`) es **una sola página
 animada** de 10,87 s con tres momentos y fundido a negro entre ellos: 20 % «¡Todos los días!» (0–3,8 s) →
 40 % CMR / 30 % débito (3,8–7,5 s) → Banco de Chile (7,5 s en adelante). Cada momento tiene su franja verde, que es
 una **imagen aplanada**: el texto no se edita, se reemplaza la franja.
 
-- **Rótulos:** 20 % = «¡POR TODO EL MES!» · 40/30 = «¡SÁBADOS DE OCTUBRE!» · Banco de Chile = «¡TODOS LOS DÍAS!».
+- **Rótulos:** 20 % = «¡POR TODO EL MES!» · 40/30 = **«¡EL SÁBADO INVITA CMR!»** (desde el 01-10 en la tarde: sigue al titular
+  del KV nuevo de CMR; antes «¡SÁBADOS DE OCTUBRE!») · Banco de Chile = «¡TODOS LOS DÍAS!». **Si cambia el KV de una
+  promo, el banner lo sigue** (R-116).
 - **Franja nueva:** `scripts/qb-banner-web-franja-sabados.py` la redibuja nítida (degradado, rótulo, bajada, logos;
   Montserrat Bold) desde un cuadro quieto del export. **Sin puntos «•»** (son elementos de Eli) y con bajada y logos
-  donde van en las otras. PNG de 7200×198 en caja 1920×52,8, top 247,2.
+  donde van en las otras. PNG de 7200×198. El rótulo se elige con el tercer argumento (`sabados` | `invita`).
+- **Calce de Eli (R-117):** la franja se inserta **4 % más grande y corrida a la izquierda** — left −38,5 · top 245,1 ·
+  1997×54,9 —, como ella la dejó las dos veces (rótulo desde x 111 de página, bajo sus puntos). La caja «exacta»
+  (0 / 247,2 / 1920×52,8) es sólo el punto de partida que ella corrige. Tiempo del 40/30: 3,97–7,37 s.
 - **Lo que el conector de Canva NO hace en esta página:** no entrega elementos (página «unsupported»), así que no
   reemplaza, no mueve y **no borra**; no fija el **tiempo** de un elemento; no acepta video ni GIF, sólo PNG. Lo que
   se agrega se ve toda la duración hasta que Eli le pone el tiempo. **Decírselo antes de guardar.**

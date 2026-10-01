@@ -12,9 +12,9 @@ Uso:
     python scripts/autorizar-google.py
     python scripts/autorizar-google.py --cliente ruta/al/client_secret.json
 
-⚠️ Pide **los 6 scopes de siempre**. No recortarlos: el mismo token lo usan los
-scripts de correo, calendario y planillas del monorepo, y guardar uno recortado
-deja a los demás sin permisos.
+⚠️ Pide **los 6 scopes de siempre + drive.readonly** (desde el 01-10-2026, para
+leer el Drive ajeno: carpetas de las diseñadoras y del cliente). No recortarlos:
+guardar un token recortado deja sin permisos a los scripts que lo usan.
 """
 import argparse
 import sys
@@ -30,6 +30,7 @@ SCOPES = [
     "https://www.googleapis.com/auth/gmail.labels",
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive.readonly",
 ]
 
 

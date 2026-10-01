@@ -152,11 +152,20 @@ y Higgsfield, no solo la contraseña del llavero.
 
 ---
 
-## Los 6 scopes del token de Google, y por qué no se recortan
+## Los 7 scopes del token de Google, y por qué no se recortan
 
 ```
-calendar · gmail.send · gmail.modify · gmail.labels · spreadsheets · drive.file
+calendar · gmail.send · gmail.modify · gmail.labels · spreadsheets · drive.file · drive.readonly
 ```
+
+`drive.readonly` entró el **01-10-2026** (decisión de Valeria, pedida por Coni): con
+eso los scripts **leen** el Drive ajeno —las carpetas de las diseñadoras y del
+cliente— sin que nadie tenga que compartir nada. Para escribir sigue valiendo
+`drive.file`. El token del monorepo (`ASISTENTE PERSONAL`) se quedó con 6.
+
+Los scripts que leen piden las credenciales con `credenciales_google()` de
+`scripts/_entorno.py`: intenta con los 7 y, si el token es uno viejo de 6, cae
+solo a los 6. Ningún script guarda un token con menos scopes que el archivo.
 
 Es el único token OAuth del monorepo. Si al refrescarlo Google devuelve menos
 scopes y se guarda así, **se degradan los permisos de todos los demás proyectos**

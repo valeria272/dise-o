@@ -57,6 +57,53 @@ def token_google():
     ])
 
 
+SCOPES_GOOGLE = [
+    "https://www.googleapis.com/auth/calendar",
+    "https://www.googleapis.com/auth/gmail.send",
+    "https://www.googleapis.com/auth/gmail.modify",
+    "https://www.googleapis.com/auth/gmail.labels",
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive.file",
+]
+# Desde el 01-10-2026 el token del ESTUDIO (credentials/token.json) trae además
+# drive.readonly, para leer el Drive ajeno (carpetas de las diseñadoras, del
+# cliente). El del monorepo (ASISTENTE PERSONAL) no lo trae.
+DRIVE_LECTURA = "https://www.googleapis.com/auth/drive.readonly"
+
+
+def credenciales_google(leer_drive_ajeno=True):
+    """Credenciales de Google, refrescadas.
+
+    Intenta con los 6 scopes + drive.readonly; si el token no tiene ese permiso
+    (el del monorepo, o uno viejo del llavero), Google responde invalid_scope y
+    se cae a los 6 de siempre. Nunca guarda un token con menos scopes que el
+    archivo: la regla del monorepo (29-07-2026).
+    """
+    import json
+    from google.auth.exceptions import RefreshError
+    from google.auth.transport.requests import Request
+    from google.oauth2.credentials import Credentials
+
+    ruta = token_google()
+    if not ruta:
+        sys.exit("✗ No encuentro el token de Google. Corre  python3 scripts/_entorno.py")
+    ruta = pathlib.Path(ruta)
+    intentos = [SCOPES_GOOGLE + [DRIVE_LECTURA], SCOPES_GOOGLE] if leer_drive_ajeno else [SCOPES_GOOGLE]
+    ultimo = None
+    for scopes in intentos:
+        c = Credentials.from_authorized_user_file(str(ruta), scopes)
+        try:
+            c.refresh(Request())
+        except RefreshError as e:
+            ultimo = e
+            continue
+        en_archivo = set(json.loads(ruta.read_text()).get("scopes") or [])
+        if set(c.scopes or scopes) >= en_archivo:
+            ruta.write_text(c.to_json())
+        return c
+    sys.exit(f"✗ No se pudo refrescar el token de Google: {ultimo}")
+
+
 def env_compartido():
     """Ruta al .env compartido, o None.
 

@@ -68,10 +68,9 @@ def servicio():
         sys.exit("✗ No encuentro el token de Google.\n"
                  "  Corre  python3 scripts/_entorno.py  para ver dónde lo busca.\n"
                  "  Si no lo tienes, usa el conector MCP de Drive desde el chat.")
-    # ⚠️ Sin lista de scopes: pedir un subconjunto degrada el token compartido
-    # de todo el monorepo al refrescarlo. Ver CLAUDE.md de la raíz.
-    return build("drive", "v3", credentials=Credentials.from_authorized_user_file(ruta),
-                 cache_discovery=False)
+    # Con drive.readonly si el token lo trae; nunca guarda uno recortado.
+    from _entorno import credenciales_google
+    return build("drive", "v3", credentials=credenciales_google(), cache_discovery=False)
 
 
 def listar(srv, carpeta, recursivo=False, _prefijo=""):

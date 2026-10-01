@@ -8,7 +8,7 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _entorno import token_google as _token_google
+from _entorno import credenciales_google
 
 SCOPES = ["https://www.googleapis.com/auth/calendar",
           "https://www.googleapis.com/auth/gmail.send",
@@ -18,14 +18,8 @@ SCOPES = ["https://www.googleapis.com/auth/calendar",
           "https://www.googleapis.com/auth/drive.file"]
 
 def creds():
-    tok = pathlib.Path(str(_token_google()))
-    c = Credentials.from_authorized_user_file(str(tok), SCOPES)
-    if c.expired and c.refresh_token:
-        c.refresh(Request())
-        faltan = set(SCOPES) - set(c.scopes or [])
-        if faltan: sys.exit(f"ABORTA: el refresco perdió scopes {faltan}.")
-        tok.write_text(c.to_json())
-    return c
+    # Con drive.readonly si el token lo trae: lee también el Drive ajeno.
+    return credenciales_google()
 
 fid, destino = sys.argv[1], pathlib.Path(sys.argv[2])
 destino.mkdir(parents=True, exist_ok=True)

@@ -8,48 +8,30 @@
 You are a professional video editor. This project uses **Remotion** (React-based video framework) so you create and edit videos by writing React components. Users describe videos in natural language; you write the code.
 
 
-## COPYWRITERS — Creative Operating System v1.0 (desde 03-09-2026)
+## COPYWRITERS — Sistema Visual (cerrado el 01-10-2026)
 
-El feed de `@copywriters.cl` **se reconstruyó desde cero**. Este proyecto ya no
-hace sólo video: produce las piezas gráficas de la cuenta propia con un sistema
-de dirección de arte, no con plantillas.
-
-> **La regla madre: Copywriters no tiene una plantilla. Tiene criterio.**
-> La consistencia sale de tipografía, dirección de arte, tratamiento fotográfico,
-> paleta, tono, composición, intervención y jerarquía — **no** de repetir el mismo
-> layout. Si el feed empieza a parecer un template de Instagram, el sistema falló.
+El feed de `@copywriters.cl` tiene **un solo sistema vigente**, creado con este
+mismo estudio y cerrado el 01-10-2026 (CASO 001 aprobado). Manual operativo:
+**[`clients/copywriters/CLAUDE.md`](clients/copywriters/CLAUDE.md)** — léelo antes de
+tocar una pieza de la cuenta.
 
 | Qué | Dónde |
 |---|---|
-| **La ley** | [`creative-system/COPYWRITERS_CREATIVE_OS.md`](creative-system/COPYWRITERS_CREATIVE_OS.md) |
-| Tokens (los lee TypeScript **y** Python) | `src/brand/copylab/tokens.json` |
-| Motor: fuentes · tipografía · mano · lienzo | `src/brand/copylab/` |
-| Las piezas — **una pieza = un archivo** | `src/compositions/copylab/` |
-| Reglas ejecutables de QA | `clients/copywriters/reglas.yaml` |
-| Manual operativo de la cuenta | [`clients/copywriters/CLAUDE.md`](clients/copywriters/CLAUDE.md) |
-| Playbooks de imagen, motion, formatos, anti-patrones | `creative-system/*.md` |
-| Lote v1 renderizado (13 stills) | `out/copylab/v1/` |
+| **La ley de ejecución** | `creative-system/SISTEMA-VISUAL-2609/reference/CARRUSEL_CASO_001_LEY_30-09.png` |
+| El sistema | [`creative-system/SISTEMA-VISUAL-2609/LEEME.md`](creative-system/SISTEMA-VISUAL-2609/LEEME.md) + `DIRECCION-DE-ARTE-RRSS.md` §13 |
+| Reglas destiladas | `clients/copywriters/APRENDIZAJES.md` R-24 a R-40 (orden de corrección: R-34) |
+| Motor | `src/brand/copylab/tokens-v2.json` · `sistemaV2.ts` · `piezasV2.tsx` · `mockups.tsx` |
+| Pieza de referencia | `src/compositions/copylab/Caso001.tsx` |
 
-```bash
-./node_modules/.bin/remotion still CL-Signal out/copylab/v2/01-signal.png \
-  --browser-executable="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-python3 qa/motor.py --marca copywriters out/copylab/v2/*.png
-```
+**Voces:** Bebas Neue Pro SemiExpanded/Expanded ExtraBold (nunca condensada) · Balloon D
+Extra Bold como gesto · Neue Haas Grotesk Text Pro. **Paleta:** negro `#0B0B0B` · off white
+`#F5F3EE` · **rosa `#FF3D9C`** · durazno · rojo · beige · gris — el color es taxonomía.
 
-> ⭐ **Desde el 24-09-2026 manda el MASTER:** [`creative-system/MASTER/`](creative-system/MASTER/LEEME.md)
-> (pack de marca de Valeria). Color, tipografía y criterio salen de ahí; si otro
-> archivo lo contradice, se corrige el otro archivo **sin consultar**.
-
-**Las voces** (en `public/assets/fonts/copywriters/`): **Archivo Narrow** (titulares) ·
-DM Serif Display Italic (editorial) · IBM Plex Mono (data) · Inter (funcional).
-La escritura manual **no es una voz**: sólo intervención excepcional sobre foto.
-
-**La paleta:** `#080F14` tinta · `#F2F4F6` off-white · `#FFFFFF` blanco ·
-`#FF2D8B` **Copy Pink** (la firma) · `#FF6B3D` coral · `#9D4EDD` púrpura.
-
-⚠️ **No existe una composición genérica con un prop `plantilla`, y esa ausencia
-ES el sistema.** Si vas a agregar una pieza, agrégala como archivo propio con su
-dirección de arte escrita en la cabecera.
+- **Las grillas las hace el equipo de redes sociales**, no el estudio. Llegan a Drive →
+  `GRILLAS IA` (`17K33Ru-CxTNwxfKCCJcmETHUsoLqKPO-`).
+- **Todo se deja en la carpeta de la cuenta:** `1doZoVI8FikFiF-6xGjKwUP6KCGs0wcFU`.
+- **No se analiza el look and feel anterior** (Creative OS v1.0, pack `MASTER/`,
+  `GclPost`, lotes viejos en `out/copylab/`): es registro histórico, no referencia.
 
 ⚠️ El crema/navy/**lime** de `src/brand/copywriters.ts` es el de la **web** y no
 entra al feed.

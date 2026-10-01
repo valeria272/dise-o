@@ -1,5 +1,10 @@
 # COPYWRITERS — CREATIVE OPERATING SYSTEM v1.1
 
+> ⛔ **HISTÓRICO — NO VIGENTE desde el 29-09-2026.** El sistema de la cuenta es
+> `creative-system/SISTEMA-VISUAL-2609/` (cerrado el 01-10-2026, manual en
+> `clients/copywriters/CLAUDE.md`). Este archivo no es referencia: no se mide, no se
+> extiende y no se usa para producir.
+
 > **Copywriters no tiene una plantilla. Tiene criterio.**
 >
 > Este documento manda sobre cualquier pieza del feed de `@copywriters.cl`,

@@ -1,5 +1,10 @@
 # MASTER — la fuente de verdad de @copywriters.cl
 
+> ⛔ **HISTÓRICO — NO VIGENTE desde el 29-09-2026.** El sistema de la cuenta es
+> `creative-system/SISTEMA-VISUAL-2609/` (cerrado el 01-10-2026, manual en
+> `clients/copywriters/CLAUDE.md`). Este archivo no es referencia: no se mide, no se
+> extiende y no se usa para producir.
+
 Pack de marca entregado por Valeria el 24-09-2026. **Manda sobre todo lo demás en
 `creative-system/`**, incluido `COPYWRITERS_CREATIVE_OS.md`. Si hay contradicción,
 gana este directorio y se corrige el otro archivo.

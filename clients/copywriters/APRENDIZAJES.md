@@ -9,6 +9,13 @@
 > Que sea la cuenta de la casa no la hace un caso especial: el criterio del feed propio
 > no cruza a ningún cliente. Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
+> ⛔⛔ **Desde el 01-10-2026 (Valeria):** (1) **las grillas las hace el equipo de redes
+> sociales** y llegan a Drive → `GRILLAS IA` (`17K33Ru-CxTNwxfKCCJcmETHUsoLqKPO-`); el estudio
+> produce las piezas, no decide la grilla. (2) **Todo se deja en la carpeta de la cuenta**
+> `1doZoVI8FikFiF-6xGjKwUP6KCGs0wcFU`. (3) **No se analiza el look and feel anterior** de la
+> cuenta: el sistema se creó en este estudio y se cerró el 01-10; lo previo es registro, no
+> referencia.
+>
 > ⭐⭐ **Desde el 30-09-2026 la referencia de EJECUCIÓN es la lámina**
 > `creative-system/SISTEMA-VISUAL-2609/reference/CARRUSEL_CASO_001_LEY_30-09.png` («Es así como debes
 > diseñar. Respétalo tal cual. Toma esto como tu base, como ley»). El sistema sigue siendo el del
@@ -79,7 +86,7 @@ con humor de oficio y autoironía de agencia.
 - **R-15** · Copy en pieza corto (2–9 palabras el hook); la explicación va al caption. Antes de diseñar se proponen 10 copies por pieza en territorios distintos y Valeria elige — _`MASTER/07`; 7º feedback 24-09 (`creative-system/FEED-12/COPY-60.md`)_ · ✔×1
 - **R-16** · Antes de componer se decide **qué manda** (imagen, texto, objeto, dato o intervención: uno solo) — _8º feedback, 24-09 (`Recompuesta.tsx`)_ · ✔×1
 - **R-17** · El diseño muchas veces vive **dentro** del mundo fotografiado (diario, hoja, etiqueta, letrero): ¿dónde vive la idea? → ¿qué soporte la vuelve real? → recién ahí la imagen. Si la IA escribe el texto en el objeto, la ortografía se revisa a mano — _`MASTER/13`; 3er feedback 24-09 (`Posts12.tsx`)_ · ✔×1
-- **R-18** · Curaduría de grilla: máximo 2 piezas tipográficas seguidas; ningún mecanismo dos veces seguido; cada 3–4 posts, gente, trabajo o proceso real — _Creative OS §12 (03-09); `MASTER/01` y `/04`, 24-09_ · ✔×2
+- **R-18** · Curaduría de grilla: máximo 2 piezas tipográficas seguidas; ningún mecanismo dos veces seguido; cada 3–4 posts, gente, trabajo o proceso real — _Creative OS §12 (03-09); `MASTER/01` y `/04`, 24-09_ · ✔×2 · ⚠️ revisada 2026-10-01: la grilla ahora la arma el equipo de redes sociales; esta curaduría es criterio para ellos, no tarea del estudio.
 - **R-19** · En metáforas visuales la primera queda descartada: mínimo 5 rutas, se tachan las obvias — _Creative OS v1.1 §9, 03-09_ · ✔×1
 - **R-20** · Zonas seguras: en 9:16 el margen derecho de la marca es **155 px** (Meta ocupa 115); 4:5 deja 135 px abajo — _error del cover «0:14», 03-09; `reglas.yaml`_ · ✔×1
 - **R-21** · Casos de cliente: el trabajo es el héroe; la marca del cliente se respeta entera y nuestra tipografía no le gana — _`MASTER/03` y `/05`, 24-09_ · ✔×1
@@ -100,7 +107,7 @@ con humor de oficio y autoironía de agencia.
 - **R-35** · Temperatura de la foto: madera vieja, ladrillo, luz de tungsteno. El **gris frío y el hormigón limpio** devuelven la pieza al registro de presentación corporativa — _lámina ley 30-09_ · ✔×1
 - **R-36** · Una cifra se sangra fuera del lienzo por **UN lado solamente**. Sangrada por los dos, el crop se comió el «1» y «19,2X» se leyó «9,2X»: una cifra ilegible deja de ser un dato — _error real, 30-09_ · ✔×1
 - **R-37** · Compuerta nueva `qa/borde.py`: caza texto cortado o pegado al borde del lienzo. Calibrada contra control (pasa las 15 piezas reales; caza 7 violaciones inyectadas en 3 piezas distintas). ⚠️ Tanto ésta como `qa/motor.py` corren con el **venv compartido** `/Users/Vale/copylab-venv/bin/python3`: con el `python3` del sistema falta scipy y las 7 reglas del motor degradan a warning **en silencio** — _30-09_ · ✔×1
-- **R-38** · El feed **no se llena de gráficas Copywriters**: se muestra **qué hace Copywriters** con una dirección de arte reconocible. Las piezas basadas en frase son **1 de 12**, no 8. Los pilares son contenido real: trabajo de clientes, producto, equipo, backstage, pantallas IA, resultados, cliente nuevo, G y tendencias concretas — _Valeria, 30-09_ · ✔×1
+- **R-38** · El feed **no se llena de gráficas Copywriters**: se muestra **qué hace Copywriters** con una dirección de arte reconocible. Las piezas basadas en frase son **1 de 12**, no 8. Los pilares son contenido real: trabajo de clientes, producto, equipo, backstage, pantallas IA, resultados, cliente nuevo, G y tendencias concretas — _Valeria, 30-09_ · ✔×1 · ⚠️ revisada 2026-10-01: el mix de la grilla lo decide redes sociales; el estudio lo hace cumplir en cada pieza, no lo planifica.
 - **R-39** · ⛔ Fuera del feed: enumeraciones (`01/06`, `VOL. 027`, «02 — EL PRINCIPIO»), microtexto flotante y `COPYWRITERS.CL` permanente. Una pieza = una idea, entendida en 1–2 segundos — _brief `DIRECCIÓN DE ARTE RRSS`, 30-09_ · ✔×2
 - **R-40** · Balloon es **gesto**, no una segunda capa de texto permanente. Puede cruzar una foto, ser el titular, rodear un KPI, salirse del lienzo o integrarse con Bebas. Tope escrito: «frase rosada + subrayado» en máximo **2 de cada 10** piezas — estaba en 7 de 14 — _Valeria, 30-09 («si siempre es frase rosada + subrayado, en diez posts ya tendremos otra plantilla»)_ · ✔×1
 

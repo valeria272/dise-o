@@ -7,6 +7,11 @@
 16 carpetas de cliente. Pero las planificaciones de medios revelan **~24 cuentas activas**
 (ver [`ESTADO-MARCAS.md`](ESTADO-MARCAS.md)).
 
+## ⭐ COPYWRITERS — la cuenta propia (desde 01-10-2026)
+`1doZoVI8FikFiF-6xGjKwUP6KCGs0wcFU` — **todo lo del feed de @copywriters.cl se deja acá.**
+- `GRILLAS IA/` — `17K33Ru-CxTNwxfKCCJcmETHUsoLqKPO-`: las grillas que arma el equipo de redes sociales
+- `ASESORÍAS/AUDIT - ABR 26/` — material antiguo de abril, no es del feed
+
 ## ⭐ LOGO CLIENTES — la fuente canónica de logos
 `1Nplwe3IJtQy8y9ESLklyplu-T75Qs95v` (dentro de `COPYWRITERS/`, de Constanza Lizana)
 

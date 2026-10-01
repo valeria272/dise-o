@@ -1,83 +1,98 @@
 # COPYWRITERS · Grupo Copylab — manual de la cuenta propia
 
-> **Antes de tocar una pieza:** lee
-> [`creative-system/COPYWRITERS_CREATIVE_OS.md`](../../creative-system/COPYWRITERS_CREATIVE_OS.md).
-> Este archivo es el resumen operativo; el sistema completo está allá.
-
 **Ámbito:** la cuenta `@copywriters.cl`. **Este criterio no se traspasa a ningún
-cliente**, igual que el de Paulina no cruza a Hilton (regla del estudio,
-`docs/SISTEMA-DE-MARCAS.md`). Que sea la cuenta de la casa no la hace un caso
-especial.
+cliente**, igual que el de Paulina no cruza a Hilton (`docs/SISTEMA-DE-MARCAS.md`).
 
-**Firma el criterio:** Valeria Traverso.
+**Firma el criterio y aprueba:** Valeria Traverso.
 
 ---
 
-## La regla madre
+## ⛔ El único sistema vigente — desde el 01-10-2026
 
-**Copywriters no tiene una plantilla. Tiene criterio.**
+El sistema visual de esta cuenta **se creó con este mismo estudio y se cerró el 01-10-2026**
+(CASO 001 aprobado). Es el único que existe para producir:
 
-La consistencia sale de tipografía, dirección de arte, tratamiento fotográfico,
-paleta, tono, composición, intervención y jerarquía. **No de repetir el mismo
-layout.** Dos piezas seguidas pueden ser completamente distintas y seguir
-pareciendo Copywriters.
+| Qué | Dónde |
+|---|---|
+| **La ley de ejecución** (el CÓMO) | `creative-system/SISTEMA-VISUAL-2609/reference/CARRUSEL_CASO_001_LEY_30-09.png` |
+| El sistema (paleta, voces, taxonomía) | [`creative-system/SISTEMA-VISUAL-2609/LEEME.md`](../../creative-system/SISTEMA-VISUAL-2609/LEEME.md) + `reference/BOARD_SISTEMA_VISUAL_29-09.png` |
+| Dirección de arte RRSS (§13 = la ley destilada) | [`creative-system/SISTEMA-VISUAL-2609/DIRECCION-DE-ARTE-RRSS.md`](../../creative-system/SISTEMA-VISUAL-2609/DIRECCION-DE-ARTE-RRSS.md) |
+| Las reglas destiladas | `APRENDIZAJES.md` — **R-24 a R-40**; el orden de corrección es **R-34** |
+| Tokens · motor · mockups | `src/brand/copylab/tokens-v2.json` · `sistemaV2.ts` · `piezasV2.tsx` · `mockups.tsx` |
+| La pieza de referencia en código | `src/compositions/copylab/Caso001.tsx` |
+| Ficha y compuerta | `marca.json` · `reglas.yaml` |
 
-Si el feed empieza a parecer un template de Instagram, el sistema falló.
+**No se analiza el look and feel anterior de la cuenta.** Ni el feed publicado, ni
+el Creative OS v1.0 (03-09), ni el pack `MASTER/` (24-09), ni `GclPost`, ni piezas
+de lotes viejos (`out/copylab/v1`, `v2`…). Son registro histórico: no son
+referencia, no se miden y no se usan para «extender» nada. Si un archivo viejo
+contradice al sistema vigente, se corrige el viejo sin consultar.
+
+En una línea: **Bebas Neue Pro SemiExpanded/Expanded ExtraBold** (nunca condensada) ·
+mano **Balloon D Extra Bold** como gesto · cuerpo **Neue Haas Grotesk Text Pro** ·
+negro `#0B0B0B`, off white `#F5F3EE`, **rosa `#FF3D9C`** como señal · el color es
+taxonomía por tipo de contenido.
+
+---
+
+## Quién hace qué
+
+| | Quién |
+|---|---|
+| **La grilla** (qué se publica, cuándo, con qué copy) | **El equipo de redes sociales.** El estudio no arma grillas de esta cuenta |
+| Dónde llegan las grillas | Drive → `COPYWRITERS / GRILLAS IA` (`17K33Ru-CxTNwxfKCCJcmETHUsoLqKPO-`) |
+| Producir las piezas de la grilla con el sistema | El estudio (`/pieza copywriters …`) |
+| Aprobación de dirección de arte | Valeria |
+
+El brief manda el QUÉ (la grilla de redes); el sistema manda el CÓMO. Si la grilla
+pide algo que el sistema no resuelve, se pregunta a Valeria — no se inventa.
+
+## Dónde se deja todo
+
+**Carpeta de la cuenta en Drive:** `1doZoVI8FikFiF-6xGjKwUP6KCGs0wcFU`
+(<https://drive.google.com/drive/folders/1doZoVI8FikFiF-6xGjKwUP6KCGs0wcFU>).
+Todo lo que se entregue de esta cuenta va ahí. Adentro:
+
+- `GRILLAS IA/` — las grillas que deja redes sociales (entrada)
+- `ASESORÍAS/AUDIT - ABR 26/` — material antiguo de abril; no es del feed
+
+El render y su script vuelven al repo el mismo día (`out/copylab/…`); la entrega
+final sube a la carpeta de Drive.
 
 ---
 
 ## Producir una pieza
 
 ```
-INSIGHT → IDEA → 3 RUTAS → CONCEPTO → DIRECCIÓN DE ARTE
-       → FORMATO → COPY → IMAGEN → DISEÑO
+GRILLA DE REDES → QUÉ MANDA (R-16) → IMAGEN → DISEÑO CON LA LÁMINA AL LADO → QA
 ```
 
-**Una pieza = un archivo** en `src/compositions/copylab/`, con su dirección de
-arte escrita en la cabecera. No existe una composición genérica con un prop
-`plantilla`, y esa ausencia **es** el sistema.
+**Una pieza = un archivo** en `src/compositions/copylab/`, con su dirección de arte en
+la cabecera. No existe una composición genérica con prop `plantilla`.
 
 ```bash
-# Registrar en src/Root.tsx como CL-<Nombre> y renderizar
-./node_modules/.bin/remotion still CL-Signal out/copylab/v2/01-signal.png \
+./node_modules/.bin/remotion still CL-<Nombre> out/copylab/<lote>/01.png \
   --browser-executable="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
-# La compuerta. Una pieza que no pasa, no se muestra.
-python3 qa/motor.py --marca copywriters out/copylab/v2/*.png
+# Compuertas técnicas — con el venv compartido (con el python3 del sistema falta
+# scipy y las reglas degradan a warning en silencio, R-37)
+/Users/Vale/copylab-venv/bin/python3 qa/motor.py --marca copywriters out/copylab/<lote>/*.png
+/Users/Vale/copylab-venv/bin/python3 qa/borde.py out/copylab/<lote>/*.png
 ```
 
-⚠️ En este Mac hace falta el sandbox fuera de iCloud: memoria
-`render-remotion-fix-mac`.
+El QA técnico no dice si la pieza está bien. Lo que decide es el **VISUAL MATCH
+TEST**: al lado de la lámina ley, ¿podría estar en ella? (R-12). Si una lámina se
+ve mal, se corrige en el orden de **R-34**: ancho y peso tipográfico → grosor del
+trazo → sombra sobre foto → caja del texto funcional → cromo del mockup →
+temperatura de la foto.
+
+⚠️ En este Mac hace falta el sandbox fuera de iCloud: memoria `render-remotion-fix-mac`.
 
 ---
 
-## Los cinco topes que más se rompen
+## Lo que no se publica
 
-1. **Una anomalía fuerte por pieza.** No dos.
-2. **1–2 intervenciones a mano**, cada una con razón semántica. No decorar: intervenir.
-3. **El logo NO va por defecto.** En el lote v1 aparece en 1 de 9.
-4. **El rosa es firma, no relleno.**
-5. **Ningún dato inventado en una pieza PROOF.**
-
----
-
-## Errores ya cometidos (03-09-2026) — no repetirlos
-
-| Qué pasó | Qué aprendimos |
-|---|---|
-| El remate rosado de METÁFORA caía sobre gris medio y a tamaño de feed desaparecía | El velo sobre foto no ambienta: **deja leer**. Si hace falta 90% de velo, la foto está mala |
-| La cifra de PROOF se desbordaba 15 px y la fractura se leía como error de render | Una caída de 52 px con deriva lateral separa el trozo; 24 px sin deriva lo **fractura** |
-| El «0:14» del cover quedó 30 px bajo la interfaz de Instagram | En 9:16 el margen derecho de esta marca es **155 px**, no 80 |
-| La lámina 03 del carrusel se salía 41 px | Bajarle el cuerpo sólo a esa lámina la deja más chica que sus hermanas. Lo correcto fue **reescribir el copy** para que las tres midan lo mismo |
-| La primera imagen de la metáfora invirtió el concepto | Cuando una generación falla no faltan adjetivos: **falta una decisión de cámara** |
-| La primera generación de G.CL traía el anillo de audífonos rojo | La biblia manda **coral**. No se arregla en post: se regenera |
-
----
-
-## Lo que el QA NO puede comprobar
-
-Que el remate rosado se lea. Se intentó automatizar con dos métricas distintas y
-ninguna separa el control malo de las piezas buenas — el detalle del experimento
-está escrito en `reglas.yaml`. **Es un punto de revisión humano.**
-
-Y, por supuesto, si la idea es buena. Eso lo decide el CREATIVE SCORE.
+- Cifras sin fuente verificada ni casos de clientes sin autorización (R-10). El CASO
+  001 (Santa Gota) está aprobado **como diseño**, no para publicar.
+- Fotografía del equipo, la cultura o el backstage generada con IA: se fotografía de verdad.
+- Recreaciones IA sin declarar (R-11).

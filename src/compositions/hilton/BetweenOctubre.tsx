@@ -1206,10 +1206,16 @@ const TituloToGo: React.FC<{caps: string; top?: number}> = ({caps, top = 96}) =>
  *  · El horario sale de las láminas de producto (en septiembre vivía sólo en la portada).
  *  · La bolsa es la BLANCA que usa el local (foto del cliente en la grilla) con el
  *    logotipo vigente calzado en café de marca (`scripts/bw-fd-01-10-bolsa-logo.py`).
+ *
+ * Eli 01-10 (r16), después de probar las cinco sobre fotos reales de la sesión To Go: «no lograste un
+ * buen resultado en las fotos del carrusel; más como las del inicio, déjalas así, sólo la portada y
+ * la última ajústalas». Las láminas del medio vuelven a las escenas aprobadas el 30-09 (1-a, 2-a,
+ * 3-a) con los comentarios del cliente; portada = mano con café destapado (0h-b); última = café XL
+ * + bolsa blanca con logo (n5).
  */
 export const FeedOct01ToGo0: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: C.sombra}}>
-    <FotoFondo src={G + 'gen-fd01-r0-logo.jpg'} oscurecer={0.04} />
+    <FotoFondo src={G + 'gen-fd01-0m-logo.jpg'} oscurecer={0.04} />
     <VelosToGo pie={false} />
     <TituloToGo caps="Promos to go" />
     <Columna top={96 + 84 + 26}>
@@ -1231,7 +1237,7 @@ export const FeedOct01ToGo0: React.FC = () => (
 /** 1 · TU CAFÉ TO GO — cada precio sobre su vaso, como los rótulos de la ref. */
 export const FeedOct01ToGo1: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: C.sombra}}>
-    <FotoFondo src={G + 'gen-fd01-r2-a.jpg'} oscurecer={0.04} />
+    <FotoFondo src={G + 'gen-fd01-1-a.jpg'} oscurecer={0.04} />
     <VelosToGo pie={false} />
     <TituloToGo caps="Tu café to go" />
     {/* Eli 30-09: «que centre según cada vaso» → eje = centro de la TAPA, medido
@@ -1239,9 +1245,13 @@ export const FeedOct01ToGo1: React.FC = () => (
     {[
       // Eli 30-09 r6 (línea roja sobre la portada): Mediano y Grande «chocaban» con
       // su tapa → los tres rótulos a la MISMA altura que el del XL (top 374)
-      {x: 225, tope: 520},
-      {x: 531, tope: 520},
-      {x: 844, tope: 520},
+      // Eli 01-10 (r17): sin la línea de horarios quedó un hueco bajo el título → los
+      // rótulos suben. r18 (su captura con la franja roja sobre las láminas 2–4): NO a la
+      // altura del horario de la portada sino a la de la FILA DE PRECIOS de las láminas 3 y 4
+      // (`FilaPrecios top={290}`), para que la secuencia quede pareja
+      {x: 225, tope: 436},
+      {x: 531, tope: 436},
+      {x: 844, tope: 436},
     ].map((v, i) => (
       <div key={i} style={{position: 'absolute', left: v.x - 150, width: 300, top: v.tope - 146, display: 'flex', justifyContent: 'center'}}>
         <RotuloPrecio nombre={TAMANOS[i]} precio={TOGO_PRECIOS.cafe[i]} />
@@ -1254,10 +1264,17 @@ export const FeedOct01ToGo1: React.FC = () => (
           distinto, así que el trazo se calcó RELATIVO a cada caja, tapa y vaso
           (Mediano: caja 120–330 × 598–664, tapa desde 690 · Grande: caja 426–636 ×
           526–592, tapa desde 618 · XL: caja 739–949 × 428–494, tapa desde 520). */}
-      <FlechaPunteada d="M 104 470 C 88 580 100 712 156 756C 206 770 222 716 186 706 C 146 696 148 776 250 790 C 286 795 302 812 302 842" />
-      <FlechaPunteada d="M 516 504 C 510 590 518 664 556 694C 600 718 632 680 604 656 C 576 634 538 666 528 706 C 520 738 512 762 504 796" />
-      <FlechaPunteada d="M 960 452 C 1012 470 1034 522 1014 568 C 996 606 948 606 952 578 C 956 548 1002 558 988 602 C 970 652 886 656 842 706" />
-      <Acento x={930} y={372} giro={48} />
+      {/* r19 (Eli: «las flechas más arriba, junto; no importa si no están cerca de los cafés,
+          sólo que apunten») → cortas (~90 px), pegadas bajo cada caja de precio, con un rulo
+          chico y la punta hacia su vaso. r20: «se ven muy cortas ahora» → el doble de largo
+          (~180 px, de 424 a 606) y el rulo más amplio. Reemplaza lo de la r18: */}
+      {/* r18 (Eli: «las flechas se ven muy largas»): ya no nacen en la caja del precio; son
+          cortas y parejas, parten ~110–130 px sobre cada tapa, y el rulo sobre la tapa y la
+          entrada al vaso quedan donde estaban */}
+      <FlechaPunteada d="M 225 424 C 241 468 233 512 199 522 C 153 534 143 474 181 472 C 217 470 237 536 225 606" />
+      <FlechaPunteada d="M 531 424 C 515 468 523 512 557 522 C 603 534 613 474 575 472 C 539 470 519 536 531 606" />
+      <FlechaPunteada d="M 844 424 C 828 468 836 512 870 522 C 916 534 926 474 888 472 C 852 470 832 536 844 606" />
+      <Acento x={930} y={288} giro={48} />
     </CapaFlechas>
     <LegalReferencial />
   </AbsoluteFill>
@@ -1266,7 +1283,7 @@ export const FeedOct01ToGo1: React.FC = () => (
 /** 2 · CAFÉ + SÁNDWICH */
 export const FeedOct01ToGo2: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: C.sombra}}>
-    <FotoFondo src={G + 'gen-fd01-r3-a.jpg'} oscurecer={0.04} />
+    <FotoFondo src={G + 'gen-fd01-2-a.jpg'} oscurecer={0.04} />
     <VelosToGo pie={false} />
     <TituloToGo caps={'Café + sándwich'} />
     <Columna top={96 + 84 + 26}>
@@ -1282,7 +1299,7 @@ export const FeedOct01ToGo2: React.FC = () => (
 /** 3 · CAFÉ + OPCIÓN DULCE */
 export const FeedOct01ToGo3: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: C.sombra}}>
-    <FotoFondo src={G + 'gen-fd01-r4-a.jpg'} oscurecer={0.04} />
+    <FotoFondo src={G + 'gen-fd01-3-a.jpg'} oscurecer={0.04} />
     <VelosToGo pie={false} />
     <TituloToGo caps={'Café + opción dulce'} />
     <Columna top={96 + 84 + 26}>
@@ -1301,7 +1318,7 @@ export const FeedOct01ToGo3: React.FC = () => (
 /** 4 · CAFÉ + SÁNDWICH + DULCE — la más abundante */
 export const FeedOct01ToGo4: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: C.sombra}}>
-    <FotoFondo src={G + 'gen-fd01-r5-logo.jpg'} oscurecer={0.04} />
+    <FotoFondo src={G + 'gen-fd01-n5-logo.jpg'} oscurecer={0.04} />
     <VelosToGo pie={false} />
     <TituloToGo caps={'Café + sándwich\n+ dulce'} />
     {/* la caja del XL rozaba el borde de la bolsa (tope ~457) → la fila sube a 300;
@@ -1309,7 +1326,7 @@ export const FeedOct01ToGo4: React.FC = () => (
     <FilaPrecios precios={TOGO_PRECIOS.tres} top={284} />
     <CapaFlechas>
       {/* Eli 01-10: café XL a la izquierda de la bolsa → el acento va sobre su tapa, sin tocar la bolsa */}
-      <Acento x={398} y={548} giro={-42} />
+      <Acento x={214} y={566} giro={-34} />
     </CapaFlechas>
     <LegalReferencial />
   </AbsoluteFill>

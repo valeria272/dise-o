@@ -273,9 +273,12 @@ export const StOct01Ganador: React.FC<{guia?: boolean}> = ({guia = false}) => (
       </div>
       {/* Ronda cliente 28-09 (grilla col C): «falta algo que diga que lo
           contactaremos para entregarle información sobre su premio». Va en el
-          nivel del premio (aire corto) y el cierre se separa más (R-38). */}
+          nivel del premio (aire corto) y el cierre se separa más (R-38).
+          Hilo de Nicolás 01-10 (STORIES!C12): «Cambiemos el texto de abajo por
+          este → Te contactaremos por interno con la información de tu premio.»
+          Sin punto final (regla Hilton) y el corte antes de «con». */}
       <Texto {...TXT_CEO} style={{marginTop: 16}}>
-        {'Te contactaremos para entregarte\nla información de tu premio'}
+        {'Te contactaremos por interno\ncon la información de tu premio'}
       </Texto>
       <Texto {...TXT_CEO} style={{marginTop: 30}}>
         Gracias a todos por participar

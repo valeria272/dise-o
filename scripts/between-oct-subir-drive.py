@@ -116,6 +116,12 @@ ENTREGA_FD01 = RAIZ / "out/hilton/between/oct-fd01"
 PIEZAS_FD01 = [(1, "FEED/C1 togo S1", f"C1 n°{k} togo S1.png") for k in range(1, 5)]
 
 
+# Ronda 10 (hilo de Nicolás en STORIES!C12, 01-10): la línea del premio de la ST 01-10
+# pasa a «Te contactaremos por interno con la información de tu premio».
+ENTREGA_R10 = RAIZ / "out/hilton/between/oct-r10"
+PIEZAS_R10 = [(1, "STS", "BW ST 01-10 Anuncio ganador concurso.png")]
+
+
 def servicio():
     ruta = token_google()
     creds = Credentials.from_authorized_user_file(str(ruta))
@@ -141,11 +147,11 @@ def carpeta(svc, nombre, padre):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--solo", default="")
-    ap.add_argument("--ronda", choices=["1", "2", "4", "5", "6", "7", "fd01"], default="1")
+    ap.add_argument("--ronda", choices=["1", "2", "4", "5", "6", "7", "10", "fd01"], default="1")
     a = ap.parse_args()
     entrega, piezas = {"2": (ENTREGA_R2, PIEZAS_R2), "4": (ENTREGA_R4, PIEZAS_R4),
          "5": (ENTREGA_R5, PIEZAS_R5), "6": (ENTREGA_R6, PIEZAS_R6), "7": (ENTREGA_R7, PIEZAS_R7),
-         "fd01": (ENTREGA_FD01, PIEZAS_FD01)}.get(
+         "10": (ENTREGA_R10, PIEZAS_R10), "fd01": (ENTREGA_FD01, PIEZAS_FD01)}.get(
         a.ronda, (ENTREGA, PIEZAS))
     svc = servicio()
     cache = {}

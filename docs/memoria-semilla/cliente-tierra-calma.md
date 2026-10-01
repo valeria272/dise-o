@@ -1,6 +1,6 @@
 ---
 name: cliente-tierra-calma
-description: "TIERRA-CALMA — cerebro del cliente: 55 reglas firmes, última cosecha 2026-09-30. Generado desde clients/tierra-calma/APRENDIZAJES.md; leerlo antes de diseñar para tierra-calma"
+description: "TIERRA-CALMA — cerebro del cliente: 55 reglas firmes, última cosecha 2026-10-01. Generado desde clients/tierra-calma/APRENDIZAJES.md; leerlo antes de diseñar para tierra-calma"
 metadata:
   type: project
 ---

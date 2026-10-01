@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (diseñadora de la agencia para Grupo Revex) · Aprueba: **Jenny Campos** (diseñadora de Grupo Revex, la clienta)
-> Última cosecha: **2026-09-30** · Cosechas: **3**
+> Última cosecha: **2026-10-01** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -139,6 +139,9 @@ Nada de septiembre 2026 pasó a la primera. Lo que Paulina marcó como modelo y 
 - **El cielo de las 4 fachadas IA de Paulina (28-08) es azul intenso con nubes dramáticas**, mientras la fachada real es pálido y velado. Queda sin decidir si corregirlo (bajar saturación o reiluminar): Casablanca es aire, y un cielo publicitario saturado puede leerse fuera de tono — _nota del estudio, `material/2026-08-28-material-paulina.md`, punto 4_ → **quien monte esas piezas.**
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
+- sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.
 
 ### 2026-09-30 — Claude nocturno (nube) · sesiones de Paulina Bustamante, dirección de área y Jenny Campos (a8e0647)
 - sin aprendizajes nuevos: el commit `a8e0647` (subido por Diego Aguilar vía el hook de respaldo automático, pero él no participó en ninguna decisión de diseño de esta pieza) es el mismo commit que sembró `APRENDIZAJES.md` por primera vez — trae de una sola vez `CLAUDE.md`, `BITACORA.md`, las 4 rondas de `feedback/` (25-08, 28-08 ronda3, 28-08 ronda4-cliente, 16-09), `material/2026-08-28-material-paulina.md`, `recetas/fondos-ambiente-IA.md`, `reglas.yaml`, `marca.json` y `medidas.json`, y ese mismo commit ya incluye la cosecha destilada (R-01…R-36, E-01…E-07, A-01…A-04, X-01…X-18, más las preguntas de §8). Se revisó cada archivo del diff uno por uno contra el cerebro actual y todo lo cosechable ya estaba: nada de `feedback/2026-08-28-ronda3.md` (7 comentarios de Paulina sobre C1/C2), de `material/2026-08-28-material-paulina.md` (16 imágenes de Paulina, las fachadas IA y las fotos «lascondes») ni de `reglas.yaml`/`marca.json` queda fuera de lo ya registrado.

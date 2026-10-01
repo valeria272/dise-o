@@ -9,24 +9,24 @@ Cada cuenta tiene su cerebro en `clients/<marca>/APRENDIZAJES.md`, alimentado en
 `/cierre`. ⛔ El criterio de una marca NO se traspasa a otra. Método completo:
 `docs/MEMORIA-POR-CLIENTE.md`.
 
-- [abakos](cliente-abakos.md) — 10 reglas · última cosecha 2026-09-30
-- [casablanca](cliente-casablanca.md) — 36 reglas · última cosecha 2026-09-30
-- [cava](cliente-cava.md) — 39 reglas · última cosecha 2026-09-30
-- [copywriters](cliente-copywriters.md) — 27 reglas · última cosecha 2026-09-30
-- [ebema](cliente-ebema.md) — 86 reglas · última cosecha 2026-09-30
-- [hilton](cliente-hilton.md) — 175 reglas · última cosecha 2026-09-30
-- [landera](cliente-landera.md) — 28 reglas · última cosecha 2026-09-30
-- [mascenter](cliente-mascenter.md) — 78 reglas · última cosecha 2026-09-30
-- [myzoo](cliente-myzoo.md) — 43 reglas · última cosecha 2026-09-30
-- [nueva-urbe](cliente-nueva-urbe.md) — 30 reglas · última cosecha 2026-09-30
-- [petra](cliente-petra.md) — 12 reglas · última cosecha 2026-09-30
-- [piso18](cliente-piso18.md) — 59 reglas · última cosecha 2026-09-30
-- [qb](cliente-qb.md) — 95 reglas · última cosecha 2026-09-30
-- [rendic](cliente-rendic.md) — 17 reglas · última cosecha 2026-09-30
-- [revex](cliente-revex.md) — 37 reglas · última cosecha 2026-09-30
-- [sal-lobos](cliente-sal-lobos.md) — 12 reglas · última cosecha 2026-09-30
-- [san-esteban](cliente-san-esteban.md) — 18 reglas · última cosecha 2026-09-30
-- [santa-gota](cliente-santa-gota.md) — 25 reglas · última cosecha 2026-09-30
-- [selfie](cliente-selfie.md) — 31 reglas · última cosecha 2026-09-30
-- [tierra-calma](cliente-tierra-calma.md) — 55 reglas · última cosecha 2026-09-30
-- [traverso](cliente-traverso.md) — 26 reglas · última cosecha 2026-09-30
+- [abakos](cliente-abakos.md) — 10 reglas · última cosecha 2026-10-01
+- [casablanca](cliente-casablanca.md) — 36 reglas · última cosecha 2026-10-01
+- [cava](cliente-cava.md) — 39 reglas · última cosecha 2026-10-01
+- [copywriters](cliente-copywriters.md) — 27 reglas · última cosecha 2026-10-01
+- [ebema](cliente-ebema.md) — 86 reglas · última cosecha 2026-10-01
+- [hilton](cliente-hilton.md) — 175 reglas · última cosecha 2026-10-01
+- [landera](cliente-landera.md) — 28 reglas · última cosecha 2026-10-01
+- [mascenter](cliente-mascenter.md) — 78 reglas · última cosecha 2026-10-01
+- [myzoo](cliente-myzoo.md) — 43 reglas · última cosecha 2026-10-01
+- [nueva-urbe](cliente-nueva-urbe.md) — 30 reglas · última cosecha 2026-10-01
+- [petra](cliente-petra.md) — 12 reglas · última cosecha 2026-10-01
+- [piso18](cliente-piso18.md) — 59 reglas · última cosecha 2026-10-01
+- [qb](cliente-qb.md) — 95 reglas · última cosecha 2026-10-01
+- [rendic](cliente-rendic.md) — 17 reglas · última cosecha 2026-10-01
+- [revex](cliente-revex.md) — 37 reglas · última cosecha 2026-10-01
+- [sal-lobos](cliente-sal-lobos.md) — 12 reglas · última cosecha 2026-10-01
+- [san-esteban](cliente-san-esteban.md) — 18 reglas · última cosecha 2026-10-01
+- [santa-gota](cliente-santa-gota.md) — 25 reglas · última cosecha 2026-10-01
+- [selfie](cliente-selfie.md) — 31 reglas · última cosecha 2026-10-01
+- [tierra-calma](cliente-tierra-calma.md) — 55 reglas · última cosecha 2026-10-01
+- [traverso](cliente-traverso.md) — 26 reglas · última cosecha 2026-10-01

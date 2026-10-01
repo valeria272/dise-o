@@ -13,7 +13,7 @@
 > estudio midió al producir. **Ninguna está confirmada por el cliente.**
 >
 > Criterio: **brief de licitación v3** (autoridad provisoria, no una persona) · Aprueba: **nadie todavía**
-> Última cosecha: **2026-09-30** · Cosechas: **3**
+> Última cosecha: **2026-10-01** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -116,6 +116,9 @@ Rechazos **internos** del estudio; ninguno viene del cliente.
 - **Voz de la locución** (Benjamín Soto, chileno): ¿la aprueba el cliente? — **cliente**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
+- sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.
 
 ### 2026-09-30 — Claude nocturno (nube) · sesiones de Diego Aguilar (a8e0647)
 - sin aprendizajes nuevos: el commit `a8e0647` es un **respaldo automático** (hook

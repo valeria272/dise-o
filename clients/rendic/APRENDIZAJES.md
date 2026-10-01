@@ -11,7 +11,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar** (diseñador de Rendic) · Aprueba: **Sebastián Córdova** (medios, cuenta REM)
-> Última cosecha: **2026-09-30** · Cosechas: **3**
+> Última cosecha: **2026-10-01** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -120,6 +120,9 @@ Desde el 23-09 cierra con un slogan en inglés, coherente con lo bilingüe.
 - **Manual con restos:** ver la nota ⚠️ de la sección 3; falta limpiar el `CLAUDE.md`.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
+- sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.
 
 ### 2026-09-30 — Claude nocturno (nube) · sesión de Diego Aguilar (a8e0647)
 - sin aprendizajes nuevos: el commit `a8e0647` («respaldo automático al cerrar la sesión de Diego Aguilar», 29-09-2026) sube a git, por primera vez, los archivos `BITACORA.md`, `CLAUDE.md` y `marca.json` de Rendic. Su contenido —la elipse medida, el logo ARC 7421C, el slogan que reemplaza a la firma, las correcciones de Diego del 08-09, la ronda de Sebastián del 23-09 y el QA del 24-09— es idéntico, cita por cita, a lo que las cosechas del 25-09 y el 26-09 ya destilaron en este cerebro (R-01…R-17, E-01…E-06, A-01…A-03, X-01…X-09). No hay feedback, cita ni pieza con fecha posterior al 24-09-2026.

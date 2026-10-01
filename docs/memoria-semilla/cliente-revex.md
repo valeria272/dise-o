@@ -1,6 +1,6 @@
 ---
 name: cliente-revex
-description: "REVEX — cerebro del cliente: 37 reglas firmes, última cosecha 2026-09-30. Generado desde clients/revex/APRENDIZAJES.md; leerlo antes de diseñar para revex"
+description: "REVEX — cerebro del cliente: 37 reglas firmes, última cosecha 2026-10-01. Generado desde clients/revex/APRENDIZAJES.md; leerlo antes de diseñar para revex"
 metadata:
   type: project
 ---

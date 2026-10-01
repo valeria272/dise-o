@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (grilla mensual) · dirección de los reels propios: **Valeria Traverso** · Aprueba: **Paloma Irribarra, PM de Alimentos Traverso** (pirribarra@traverso.cl)
-> Última cosecha: **2026-09-30** · Cosechas: **3**
+> Última cosecha: **2026-10-01** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -117,6 +117,9 @@ entran al portal: `Por diseñar` y `Corregido`.
 - El rótulo **GRUPO COPYLAB** sobre la puerta (planos K08/c13 en adelante) es tipografía genérica generada por Kling dentro del clip, no el logo real compuesto; si molesta hay que regenerar ese keyframe con el logo real antes de animar. → Valeria.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
+- sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.
 
 ### 2026-09-30 — Claude nocturno (nube) · sesiones de Valeria Traverso del 09 y 10-09-2026 (a8e0647)
 - El commit `a8e0647` (subido por el hook de respaldo automático de Diego Aguilar, que no participó en el

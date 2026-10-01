@@ -12,7 +12,7 @@
 > grilla con proveedores, SPC), **[CLICK]** (el portal B2B) o **[AMBAS]**.
 >
 > Criterio: **Paulina Bustamante** (grilla y paid; Serena Abarca produce parte del paid y las ARIEL) · Aprueba: **Paulina valida; el cliente, vía Carlos Figueroa (cuenta/contenido)**
-> Última cosecha: **2026-09-30** · Cosechas: **9**
+> Última cosecha: **2026-10-01** · Cosechas: **10**
 
 ## 1. Quién es el cliente
 
@@ -242,6 +242,9 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **Logo Piazza en la A4/A5:** el brief pide «AÑADIR LOGO PIAZZA» y salió sin él (R-86). ¿Dónde va, o se queda fuera? → Paulina / Carlos.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (d6a5eb9)
+- sin aprendizajes nuevos: el commit `d6a5eb9` («WhatsApp ARIEL A4/A5 Piazza catálogo aprobadas (11 rondas) + cosecha R-78…R-86») es el mismo que Paulina ya cosechó ella misma el 30-09 en la entrada de arriba (R-78 a R-86, E-15, A-13, X-34…X-40). Se lista de nuevo porque tocó `BITACORA.md`/`CLAUDE.md` y `APRENDIZAJES.md` en el mismo commit. No hay nada posterior que agregar.
 
 ### 2026-09-30 (noche) — Paulina Bustamante · WhatsApp ARIEL A4/A5 Grifería Piazza catálogo (11 rondas, aprobada y enviada a contenido)
 - nuevo **R-78** (productos mirando al mismo lado), **R-79** (nada flota; repisa de muro a muro, liviana), **R-80** (un tipo por nivel, tamaños parejos, sin pedestales), **R-81** (zona de info del mismo material, clara y sin cortes), **R-82** (caja roja desde la barra de la «A», interlineado, píldora montada), **R-83** (oscurecer parejo la franja del título), **R-84** (sólo lo que escribe Carlos; la A5 sin exhibidor ni legal, más corta), **R-85** (roseta angosta), **R-86** (logo del proveedor fuera si llena).

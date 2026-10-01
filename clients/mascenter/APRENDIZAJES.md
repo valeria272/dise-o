@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de marca: Valeria Traverso)** · Aprueba: **Sebastián Córdova (paid) · Francesca Pavissich (landings y presentación comercial)**
-> Última cosecha: **2026-09-30** · Cosechas: **12**
+> Última cosecha: **2026-10-01** · Cosechas: **13**
 
 ## 1. Quién es el cliente
 
@@ -210,6 +210,9 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (8f11386)
+- sin aprendizajes nuevos: el commit `8f11386` («mascenter: cierres de IG centrados y sólo la bajada destacada… cosecha R-77/R-78») es el mismo que Diego ya cosechó el 30-09 en la entrada de arriba (5ª parte, cierres de IG). No hay nada posterior que agregar.
 
 ### 2026-09-30 (5ª parte) — Diego Aguilar (con Claude) · cierres: textos centrados y sólo la bajada destacada
 - nuevas **R-77** (cierre centrado, titular sin caja, sólo la bajada en pastilla) y **R-78** (el cierre puede ir sobre otro centro) · R-75 precisada.

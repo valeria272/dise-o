@@ -19,7 +19,7 @@
 > `gcl-agent/universo/CANON_LOCK.md`. Léelo ahí antes de tocar cualquier cosa de G.
 >
 > Criterio: **Valeria Traverso** · Aprueba: **Valeria Traverso (aprobación final de dirección de arte, `MASTER/13`)**
-> Última cosecha: **2026-09-30** · Cosechas: **3**
+> Última cosecha: **2026-10-01** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -138,6 +138,9 @@ con humor de oficio y autoironía de agencia.
 - ¿Se archiva el sistema viejo (`tokens.json`, `sistema.ts`, piezas v1) o se deja vivo indefinidamente junto al nuevo? — _pendiente de Valeria_.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f0c930c, f6df90e)
+- sin aprendizajes nuevos: los dos commits que marcó `pendientes` son, otra vez, los mismos que ya se cosecharon con otros hashes por un rebase — `f0c930c` es el respaldo de Valeria Traverso que ya se destiló arriba (la llegada del sistema v2: `marca.json`/`reglas.yaml` a v2, `sistemaV2.ts`, `CarruselSenal.tsx`) y `f6df90e` es el commit raíz, con el mismo contenido de Fiestas Patrias del 18 (dieciocho-2026/*) ya descartado como «sin corrección ni feedback citable». No hay nada nuevo que agregar.
 
 ### 2026-09-30 — Claude nocturno (nube) · sesión de Valeria Traverso (94c3f2a, a8e0647)
 - nuevo **R-24** (paleta nueva del Sistema Visual: negro `#0B0B0B` · off white `#F5F3EE` · rosa `#FF3D9C` · durazno · rojo · beige · gris, taxonomía por tipo de contenido), **R-25** (la prueba del rosa), **R-26** (⛔ el subrayado a mano nunca cruza la letra — error real el mismo día en dos láminas), **R-27** (el grano se resuelve por código, no por JPG).

@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-09-30** · Cosechas: **19**
+> Última cosecha: **2026-10-01** · Cosechas: **20**
 
 ## 1. Quién es el cliente
 
@@ -270,6 +270,9 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - El legal de la N°2 del carrusel CMR cierra en ≈1255 (E-12): ¿el carrusel va a paid? → **Eli**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (59e61a6)
+- sin aprendizajes nuevos: el commit `59e61a6` («qb: respaldo automático al cerrar la sesión de Elisabet Soto») sube el mismo estado de trabajo que ya quedó cosechado el 30-09 en la entrada de arriba (ST Sunset v2, R-94/R-95). Es el hook de respaldo, no una sesión con feedback nuevo.
 
 ### 2026-09-30 (3) — Claude con Eli · ST Sunset v2 (un solo cóctel, foto de Magnific)
 - **Fuente:** Eli en el chat (30-09), sobre la ST 09-10 Sunset.

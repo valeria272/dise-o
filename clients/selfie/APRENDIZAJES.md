@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza Lizana «Coni»** (ver §8: Diego Aguilar también subió piezas de septiembre) · Aprueba: **el cliente vía la KAM Constanza Olivares** (contactos Drive: maria@selfie.cl, plillo@hairexpress.cl)
-> Última cosecha: **2026-09-30** · Cosechas: **7**
+> Última cosecha: **2026-10-01** · Cosechas: **8**
 
 ## 1. Quién es el cliente
 
@@ -139,6 +139,9 @@ No hay registro de una aprobación del cliente sobre piezas del estudio. Lo que 
 - **Reel Biotop 700/911, ronda 1** (23,5 s, re-subido al mismo nombre en `SELFIE › PRUEBA` el 28-09): ¿aprobado o viene ronda 2? → Coni.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
+- sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.
 
 ### 2026-09-30 — Claude nocturno (nube) · sesiones de Constanza Lizana «Coni» (con Claude), subidas por Diego Aguilar al cerrar su sesión (a8e0647)
 - El commit `a8e0647` («mascenter: respaldo automático al cerrar la sesión de Diego Aguilar») subió por primera vez a git `clients/selfie/BITACORA.md`, `CLAUDE.md` y `marca.json` — hasta ahora sólo vivían locales. **Diego Aguilar firma el commit porque su hook de cierre de sesión barrió con lo que estaba sin subir, pero el contenido es de las sesiones de Coni del 24, 25 y 28-09** (así lo dice la propia bitácora: "Coni (con Claude)"). No se le atribuye criterio a Diego.

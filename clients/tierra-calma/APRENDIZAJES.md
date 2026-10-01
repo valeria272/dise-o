@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar** · Aprueba: **Fran (proyecto) · Blanca (comercial)**
-> Última cosecha: **2026-09-30** · Cosechas: **4**
+> Última cosecha: **2026-10-01** · Cosechas: **5**
 
 ## 1. Quién es el cliente
 
@@ -165,6 +165,9 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - ¿Está confirmado el **«Futuro Metrotren Santiago–Melipilla»**? Venía dibujado en una referencia de la marca y se dejó fuera por no estar en la lista blanca. → Fran / Blanca.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
+- sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.
 
 ### 2026-09-30 — Claude nocturno (nube) · sesiones de Diego Aguilar (a8e0647)
 - sin aprendizajes nuevos: el commit `a8e0647` («mascenter: respaldo automático al

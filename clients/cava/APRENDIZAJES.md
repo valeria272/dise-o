@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza Lizana «Coni»** (diseño) · Aprueba: **la ejecutiva de cuentas de CAVA, dueña del brief mensual** (ver §8: falta nombre y confirmar si aprueba ella o la viña)
-> Última cosecha: **2026-09-30** · Cosechas: **6**
+> Última cosecha: **2026-10-01** · Cosechas: **7**
 
 ## 1. Quién es el cliente
 
@@ -155,6 +155,9 @@ son piezas **publicadas** de Coni, que son el estándar a replicar:
 - ⛔ **Propuesta B sin solución en la posición fija del bloque de producto:** cae sobre la sombra proyectada de la botella, cuya luminancia intermedia no contrasta con nada (blanco 2,82:1 · negro 1,63:1). Subirlo al naranja limpio (negro 5,9:1) o dejar B fuera. → Coni.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (9d73c4d)
+- sin aprendizajes nuevos: el commit `9d73c4d` («CAVA: cierre del 30-09 — los 6 mails del Cyber de octubre y la cosecha de la jornada») es el propio `/cierre` de Coni, ya reflejado en la entrada de arriba (R-34 a R-39). No hay nada posterior que agregar.
 
 ### 2026-09-30 — Coni (con Claude) · los 6 mails del Cyber de octubre, briefs 1–3 cerrados
 - nuevo **R-34…R-39** · seis reglas de la sesión más larga de la cuenta: el montaje se hace

@@ -13,7 +13,7 @@
 > ni al revés. El manual, `marca.json` y `reglas.yaml` de esta carpeta son **sólo de Rentas**.
 >
 > Criterio: **[RENTAS] composición de Paulina Bustamante (sept 2026), revisión de Diego Aguilar, dirección de Valeria Traverso · [INU] Valeria Traverso** · Aprueba: **Jean Paul Fredericksen · Yocelyn Maturana (vía Carlos Figueroa, contenido, y Ámbar Gallardo, AM)**
-> Última cosecha: **2026-09-30** · Cosechas: **3**
+> Última cosecha: **2026-10-01** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -134,6 +134,9 @@ centrada 17,5 %, banner de mailing arriba 10,2 % no centrada).
 - [AMBAS] ¿Quién diseña cada marca de aquí en adelante? Rentas cambió tres meses seguidos (Coni jul · Diego ago · Paulina sep) con tres nomenclaturas → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
+- sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.
 
 ### 2026-09-30 — Claude nocturno (nube) · sesiones de Valeria Traverso y Diego Aguilar (a8e0647)
 - sin aprendizajes nuevos: el commit `a8e0647` («mascenter: respaldo automático al cerrar la

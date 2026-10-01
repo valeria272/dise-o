@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Valeria Traverso (TV y piezas del estudio); el feed lo diseña Luis Piano, del lado del cliente, y su feed manda** · Aprueba: **Gonzalo (cliente; decide qué sale a TV)** · Estrategia de marca: **Diana Meinhardt (Brand Soul)**
-> Última cosecha: **2026-09-30** · Cosechas: **5**
+> Última cosecha: **2026-10-01** · Cosechas: **6**
 
 ## 1. Quién es el cliente
 
@@ -115,6 +115,10 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 - Obra sin commitear al 22-09 (spot y full con Instagram): mientras no entre al repo nadie más la reproduce.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f0c930c, f6df90e)
+- sin aprendizajes nuevos: `f6df90e` es el commit raíz de la rama, con el mismo `CLAUDE.md`/`BITACORA.md`/`marca.json` de siempre, ya destilado en la siembra inicial del 25-09.
+- `f0c930c` sube `src/compositions/santagota/bienvenida/BienvenidaSantaGota.tsx` y sus assets (`monja-reel-07sept.mp4`, `musica-extendida.wav`), pero **no es una pieza para el cliente Santa Gota**: por su propia cabecera es un reel de bienvenida para la cuenta `@copywriters.cl`, que reutiliza tal cual (sin cortar ni retocar) el reel de la monja del 07-09 ya aprobado — un caso de estudio del estudio, no feedback nuevo de Santa Gota. No se cosecha acá; si corresponde, es candidata para la memoria del propio Copywriters, no para este cerebro.
 
 ### 2026-09-30 — Claude nocturno (nube) · sesiones de Diego Aguilar (a8e0647)
 - sin aprendizajes nuevos: el commit `a8e0647` («mascenter: respaldo automático al cerrar la sesión de Diego Aguilar» — el rótulo «mascenter» es del hook de respaldo, no de la marca; los 3 archivos que toca son de Santa Gota) es la **primera vez que `BITACORA.md`, `CLAUDE.md` y `marca.json` de esta marca llegan a git** (`new file mode`, sin commit previo para ninguno de los tres). Comparado archivo a archivo contra la versión actual en el árbol de trabajo: **idénticos, cero diferencias**. Todo el contenido (bitácora del 11-09 al 28-09, manual, ficha) ya estaba en el árbol de trabajo cuando se hizo la siembra inicial del 25-09 y ya quedó destilado en R-01…R-25, A-01…A-05, X-01…X-09, E-01…E-06 en las cosechas anteriores (25-09, 26-09, 28-09). No se detectaron instrucciones camufladas en el diff.

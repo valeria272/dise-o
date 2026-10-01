@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»**, con revisión de la jefa de diseño **Constanza Lizana** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
-> Última cosecha: **2026-09-30** · Cosechas: **13**
+> Última cosecha: **2026-10-01** · Cosechas: **14**
 
 ## 1. Quién es el cliente
 
@@ -184,6 +184,9 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - 30-09: Eli pidió corregir «según comentarios de contenido de Scar» y **no aparece ninguno nuevo** (ni hilos, ni celdas, ni notas, ni Slack). ¿Dónde los dejó? Si es sobre los PNG en Drive, el token no los lee → Eli (pegar o capturar)
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
+- sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.
 
 ### 2026-09-30 (tarde, `/al-dia hilton`) — Claude con Eli · sin aprendizajes nuevos
 - sin aprendizajes nuevos: sólo se releyó la grilla (sin cambios desde el 29-09) y no se tocó ninguna pieza. Lo único nuevo es técnico: el MP4 ya sale en la máquina de Eli, así que ST 16-10 y 30-10 dejan de estar bloqueadas.

@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-09-30** · Cosechas: **41**
+> Última cosecha: **2026-10-01** · Cosechas: **42**
 
 ## 1. Quién es el cliente
 
@@ -435,6 +435,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (86a2378)
+- sin aprendizajes nuevos: el commit `86a2378` («DT: pendones 0,8×3 r9 — alta para imprenta… cosecha R-174, R-175, R-97 revisada») es el mismo que Eli ya cosechó el 30-09 en la entrada de arriba (cierre 3, pendones DT r9). No hay nada posterior que agregar.
 
 ### 2026-09-30 (cierre 3, pendones DT r9: alta para imprenta) — Claude con Eli · 2 reglas nuevas [DT], 1 ✔, R-97 revisada
 - **Qué pasó:** Eli dejó el .ai con 2 mesas (CHICA, COOKIE) y agrandó la chica → 60 ppp efectivos (cookie 83). Vínculos r9 con Magnific precision v2 (flavor photo) sólo en la ventana visible, tono amarrado a lo aprobado: 119 y 124 ppp. Letras de letrero/bolsa/etiqueta y dedos intactos a 1:1. A mitad de camino Eli cortó: los PDF los arma ella.

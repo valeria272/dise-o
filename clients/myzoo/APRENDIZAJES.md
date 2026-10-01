@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (digital: grilla orgánica + paid — confirmado por ella el 30-09) · **Constanza Lizana «Coni»** (envase y packs) · Aprueba: **Magdalena** (proinnbrands), en la grilla
-> Última cosecha: **2026-09-30 (cierre)** · Cosechas: **5** · Mapa completo del Drive: [`DRIVE-AGENCIA.md`](DRIVE-AGENCIA.md)
+> Última cosecha: **2026-10-01** · Cosechas: **6** · Mapa completo del Drive: [`DRIVE-AGENCIA.md`](DRIVE-AGENCIA.md)
 
 ## 1. Quién es el cliente
 
@@ -166,6 +166,9 @@ Piezas **publicadas** de Paulina que fijan cada registro (no hay registro de una
 - **Los 4 estáticos de octubre del estudio (22-09) quedaron superados:** las versiones finales son las de Paulina en `Diseño/10. OCTUBRE` (01, 02 y 05 aprobadas por el cliente; 08 en revisión).
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (43b7467)
+- sin aprendizajes nuevos: el commit `43b7467` («MYZOO: paid Fase 3 — P01 Pet Wipes aprobada por Paulina… cosecha R-25 a R-43, E-06 a E-08, A-05, X-08») es el mismo que ya se cosechó el 30-09 en la entrada de arriba («producción del paid Fase 3, P01 aprobada», R-32 a R-43). Se lista de nuevo porque tocó `BITACORA.md`/`CLAUDE.md`/`APRENDIZAJES.md` en el mismo commit. No hay nada posterior que agregar.
 
 ### 2026-09-30 (cierre) — Claude con Paulina Bustamante · producción del paid Fase 3, P01 aprobada
 - **Primera imagen de paid producida por el estudio y aprobada por Paulina** (A-05): «maravillosa, me encanta». Costó 5 rondas.

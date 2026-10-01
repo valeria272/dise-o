@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (diseñadora de la agencia para Grupo Revex) · Aprueba: **Jenny Campos** (diseñadora de Grupo Revex, `jcampos@gruporevex.cl`)
-> Última cosecha: **2026-09-30** · Cosechas: **4**
+> Última cosecha: **2026-10-01** · Cosechas: **5**
 
 ## 1. Quién es el cliente
 
@@ -145,6 +145,9 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **Octubre — responder y resolver los 8 comentarios de Paulina en Drive**, o que los cierre ella → **Serena.**
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
+- sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.
 
 ### 2026-09-30 — Claude con Serena Abarca · pauta de octubre (48 piezas) + ronda 2 de Paulina
 - nuevo **R-33** (sin pliegue), **R-34** (degradado suave, nunca franjas), **R-35** (story con escala propia), **R-36** (story en 2 líneas, sin palabra sola), **R-37** (el velo no cambia el color del producto)

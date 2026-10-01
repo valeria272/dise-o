@@ -13,7 +13,7 @@
 > `reglas.yaml` ni bitácora: la gramática está **sin medir**.
 >
 > Criterio: **Valeria Traverso** (el único feedback registrado) · Aprueba: **no consta del lado del cliente**
-> Última cosecha: **2026-09-30** · Cosechas: **3**
+> Última cosecha: **2026-10-01** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -98,6 +98,9 @@ convierte en Google Ads: **rapidez, facilidad, «sin papeleos»**. Es financiero
   y `video2/video3-agosto.mp4`): los MP4 no bajan por MCP; pedirlos descargados — **KAM**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
+- sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.
 
 ### 2026-09-30 — Claude nocturno (nube) · respaldo automático subido por Diego Aguilar (a8e0647)
 - sin aprendizajes nuevos: el commit `a8e0647` es un respaldo masivo de cientos de archivos ajenos a esta cuenta (skills del estudio, otros clientes) que, del lado de Abakos, sólo vuelve a traer `clients/abakos/CLAUDE.md`, `clients/abakos/APRENDIZAJES.md` y las memorias `abakos-brand`/`cliente-abakos` — contenido **idéntico, línea por línea**, al que ya vivía en este archivo desde la siembra del 2026-09-25. No hay comentario de Valeria ni del cliente posterior a esa fecha, ni `marca.json`, `reglas.yaml` ni bitácora nuevos que cosechar. Diego Aguilar es quien subió el respaldo (hook `SessionEnd`), no la fuente del feedback — no aparece hablando en ningún texto de este commit.

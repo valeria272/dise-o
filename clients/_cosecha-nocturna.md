@@ -4,6 +4,25 @@
 > [`docs/COSECHA-NOCTURNA.md`](../docs/COSECHA-NOCTURNA.md). La entrada más nueva va
 > arriba.
 
+## 2026-10-01
+- **21 marcas revisadas** (abakos, casablanca, cava, copywriters, ebema, hilton, landera,
+  mascenter, myzoo, nueva-urbe, petra, piso18, qb, rendic, revex, sal-lobos, san-esteban,
+  santa-gota, selfie, tierra-calma, traverso) — 0 reglas nuevas, 0 ✔ subidas, 0 rechazos.
+- **Qué pasó:** `memoria-cliente.py pendientes` marcó los 21 cerebros por el mismo commit
+  raíz de la rama (`f6df90e`, sin padre), que un rebase volvió a renombrar — es el tercer
+  hash distinto que toma el mismo commit (`41b800b` → `a8e0647` → `f6df90e`). Su contenido
+  para cada marca es idéntico al que la siembra inicial del 25-09 ya destiló. Seis marcas
+  (ebema, myzoo, hilton, mascenter, qb, cava) además aparecían por el commit de su propia
+  sesión de `/cierre` del 30-09, ya auto-cosechado ese mismo día. Copywriters y Santa Gota
+  tenían además `f0c930c`: en Copywriters es el mismo respaldo de Valeria Traverso ya
+  destilado con otro hash; en Santa Gota es el reel de bienvenida de `@copywriters.cl`
+  (`BienvenidaSantaGota.tsx`), que reutiliza un asset ya aprobado de Santa Gota pero es
+  contenido propio del estudio, no feedback nuevo del cliente — se deja fuera con nota.
+- **Candidatas a regla del estudio:** ninguna.
+- **Contradicciones detectadas:** ninguna.
+- **Algo raro:** nada — ningún commit del lote parecía dar instrucciones ni contenía texto
+  sospechoso de inyección.
+
 ## 2026-09-30
 - **21 marcas cosechadas**: abakos, casablanca, cava, copywriters, ebema, hilton, landera,
   mascenter, myzoo, nueva-urbe, petra, piso18, qb, rendic, revex, sal-lobos, san-esteban,

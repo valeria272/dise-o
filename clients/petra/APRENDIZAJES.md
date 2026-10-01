@@ -14,7 +14,7 @@
 > campañas, CRM y marcaje vive en `AGENTE PAID MEDIA*/PETRA/`.
 >
 > Criterio: **Valeria Traverso (lo que produce el estudio); las piezas finales de Meta las ejecuta el equipo de diseño de Petra** · Aprueba: **sin identificar (§8)**
-> Última cosecha: **2026-09-30** · Cosechas: **3**
+> Última cosecha: **2026-10-01** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -93,6 +93,9 @@ el catálogo y no cotizan.
 - ¿Hace falta abrir `clients/petra/CLAUDE.md` y `marca.json` con `/marca-nueva`, o el estudio seguirá sólo en landing y dirección de mensaje?
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
+- sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.
 
 ### 2026-09-30 — Claude nocturno (nube) · sesiones de Valeria Traverso (a8e0647)
 - sin aprendizajes nuevos: `a8e0647` («mascenter: respaldo automático al cerrar la sesión de Diego Aguilar») sólo trae, byte a byte, los mismos `clients/petra/BITACORA.md`, `landing-cotizacion/README.md`, `landing-cotizacion/FUENTES.md` y `landing-cotizacion/paquete/LEEME.md` que ya están en el repo y que la siembra del 2026-09-25 ya destiló en R-01 a R-12, X-01 a X-04 y las preguntas de §8 (precios contradictorios, `SLACK_WEBHOOK` vacío, rotar la clave del WordPress, la regla de decisión del test A/B). El único archivo del lote que no se había nombrado antes, `paquete/LEEME.md`, tampoco agrega nada: repite en otro formato la elección WordPress-vs-página-independiente que R-09 ya fija, y la duda de licencia de fuentes fuera del sitio que ya está en §8.

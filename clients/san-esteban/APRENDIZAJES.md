@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar** · Aprueba: **Sebastián Córdova** (medios, cuenta REM) · Orgánico: Scarlette Muñoz
-> Última cosecha: **2026-09-30** · Cosechas: **3**
+> Última cosecha: **2026-10-01** · Cosechas: **4**
 
 ## 1. Quién es el cliente
 
@@ -127,6 +127,9 @@ formación valórica, trayectoria.
 - **Rol de Sebastián:** ¿es contraparte del colegio o del equipo de cuentas? — **Serena**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
+- sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.
 
 ### 2026-09-30 — Claude nocturno (nube) · sesiones de Serena Abarca y Diego Aguilar, respaldadas recién en `a8e0647`
 - sin aprendizajes nuevos: `a8e0647` es un **respaldo automático** (hook `SessionEnd` de la sesión de Diego Aguilar) que subió a git, por primera vez, los archivos `BITACORA.md`, `CHECKLIST-CLIENTE.md`, `CLAUDE.md`, `marca.json`, `reglas.yaml` y `sistema/README.md` de esta cuenta. Pero su contenido ya estaba destilado: la medición del 07-09-2026 y la ronda de Sebastián Córdova del 23/24-09-2026 son exactamente las fuentes que sembraron **R-01…R-18**, **E-01…E-06**, **A-01…A-03** y **X-01…X-10** el 2026-09-25. Se comparó línea por línea (colores, geometría, la corrección de la barra de CTA a y=1540, los cierres de reel inventados, el nombre partido, las preguntas de §8) y no aparece ningún dato, cita o pieza que no estuviera ya en este archivo.

@@ -13,7 +13,7 @@
 //    altura de caja que la Bebas libre.
 // ============================================================================
 import React from "react";
-import {AbsoluteFill, Img, staticFile} from "remotion";
+import {AbsoluteFill, Easing, Img, interpolate, staticFile, useCurrentFrame} from "remotion";
 import {C2, VOZ2, SOMBRA_SOBRE_FOTO, granoSVG, pathSubrayado,
         pathTrazoGrueso, pathsFlecha} from "./sistemaV2";
 
@@ -190,3 +190,34 @@ export const Foto: React.FC<{
     )}
   </>
 );
+
+/**
+ * LA MANO CON CURVA — Balloon corriendo por un trazado (textPath).
+ *
+ * Nació con la ronda 3 de CW-01 (01-10-2026, Valeria: «dale curvas, intención»).
+ * Se ESCRIBE: una máscara barre el trazado de izquierda a derecha entre `desde` y
+ * `desde + dura` (con dura = 1 queda escrita desde el primer cuadro: piezas fijas).
+ * ⚠️ El trazado tiene que ser MÁS LARGO que el texto: lo que sobra se corta.
+ */
+export const ManoCurva: React.FC<{
+  id: string; d: string; px: number; texto: string; color?: string;
+  desde?: number; dura?: number; sombra?: boolean;
+}> = ({id, d, px, texto, color = C2.rosa, desde = 0, dura = 22, sombra = false}) => {
+  const f = useCurrentFrame();
+  const p = interpolate(f, [desde, desde + dura], [0, 1],
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic)});
+  return (
+    <svg width={1080} height={1350} viewBox="0 0 1080 1350"
+         style={{position: "absolute", left: 0, top: 0, overflow: "visible",
+                 filter: sombra ? "drop-shadow(0 5px 14px rgba(0,0,0,0.6))" : undefined}}>
+      <defs>
+        <path id={id} d={d} />
+        <clipPath id={`${id}-m`}><rect x={-200} y={-200} width={1480 * p} height={1750} /></clipPath>
+      </defs>
+      <text clipPath={`url(#${id}-m)`} fill={color}
+            style={{fontFamily: VOZ2.mano, fontWeight: 800, fontSize: px, textTransform: "uppercase"}}>
+        <textPath href={`#${id}`}>{texto}</textPath>
+      </text>
+    </svg>
+  );
+};

@@ -60,8 +60,8 @@ import {FotoAceite} from "./compositions/copylab/FotoAceite";
 import {FotoEscritorio} from "./compositions/copylab/FotoEscritorio";
 import {FotoDiario} from "./compositions/copylab/FotoDiario";
 import {Caso001} from "./compositions/copylab/Caso001";
-import {CW01Cyber} from "./compositions/copylab/CW01Cyber";
-import {CW04CyberIA} from "./compositions/copylab/CW04CyberIA";
+import {CW01Cyber, CW01_FRAMES} from "./compositions/copylab/CW01Cyber";
+import {CW04CyberIA, CW04_FRAMES} from "./compositions/copylab/CW04CyberIA";
 import {PostG} from "./compositions/copylab/PostG";
 import {ReelProceso, REEL_PROCESO_FRAMES} from "./compositions/copylab/ReelProceso";
 import {RentasReelOctubre} from "./compositions/rentas/RentasReelOctubre";
@@ -1364,9 +1364,9 @@ export const RemotionRoot: React.FC = () => {
                      defaultProps={{lamina: 1}} />
         {/* Grilla octubre 2026 (brief de redes sociales) — CW-01 y CW-04 */}
         <Composition id="CL2-CW01-Cyber" component={CW01Cyber} {...clFeed}
-                     defaultProps={{lamina: 1}} />
+                     durationInFrames={CW01_FRAMES} defaultProps={{lamina: 1}} />
         <Composition id="CL2-CW04-CyberIA" component={CW04CyberIA} {...clFeed}
-                     defaultProps={{lamina: 1}} />
+                     durationInFrames={CW04_FRAMES} defaultProps={{lamina: 1}} />
         {/* Sistema Visual 29-09-2026 — piezas con fotografía */}
         <Composition id="CL2-FotoAceite"     component={FotoAceite}     {...clFeed} />
         <Composition id="CL2-FotoEscritorio" component={FotoEscritorio} {...clFeed} />

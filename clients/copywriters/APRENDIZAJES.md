@@ -114,6 +114,13 @@ con humor de oficio y autoironía de agencia.
 - **R-41** · ⭐ **Subirse a un trend = medir la referencia antes de guionar.** Se baja el reel del trend y se mide (hoja de cuadros, cortes, beat): los capítulos, la etiqueta, los instantes de corte. La métrica del original se respeta al frame y **el giro va en un solo capítulo**. Describirlo de oído falla: la primera descripción de «Process» (versión tachada + ráfaga de cortes) no tenía nada que ver con el trend real (4 capítulos con etiqueta fija, 7,5 s) — _reel «Los 16 cortes», aprobado por Valeria 01-10-2026 («ok está bien»)_ · ✔×1
 - **R-42** · El audio del trend va **sólo como pista temporal** de revisión; la pieza de entrega se rinde sin audio y la música se agrega en la app al publicar. La licencia depende del tipo de cuenta (empresa = sólo la Sound Collection comercial) y un reel que va a pauta no puede llevar audio en tendencia — _reel «Los 16 cortes», 01-10-2026; skill `viral-instagram-reels`_ · ✔×1
 
+- **R-43** · ⛔ Antes de usar material del equipo, confirmar que **las personas que salen siguen trabajando en la agencia**. La persona de la botella del rodaje «Indispensables de oficina» (julio 2026, crudos IMG_2851, IMG_2852 e IMG_2854 en Drive › CONTENIDO ORGÁNICO › JULIO) **ya no trabaja con nosotros**: esos clips no se usan — _Valeria, 01-10-2026, reel «Indispensables de oficina»_ · ✔×1
+
+- **R-44** · ⛔ En la pieza no va **cuerpo de texto en Neue Haas**: «estos textos planos son feos, parecen de IA, ¿y para qué sirven?». Lo que se dice va en **Bebas o en Balloon**; lo que sólo sirve para verificar (la fuente de un dato) va al **caption**, no a la gráfica — _Valeria, CW-01 y CW-04, 01-10-2026, dos rondas seguidas_ · ✔×2
+- **R-45** · ⭐ **Juega con la tipografía en cada gráfica.** Bebas Neue Pro tiene registros que dan contraste dentro de un mismo titular: **Light 300 finísima contra Expanded ExtraBold**, y Bebas **en contorno** (`-webkit-text-stroke`). Balloon **con curva e intención**: corre por un trazado (`ManoCurva` en `piezasV2.tsx`, textPath), rodea un objeto como anillo, se escribe en pantalla, se escribe CON TINTA sobre un papel de la foto. Un titular puesto recto sobre la foto se lee básico — _Valeria, 01-10: «dale curvas, intención», «puedes variar, jugar, eres experto en diseño»_ · ✔×2
+- **R-46** · **Un carrusel también lleva video.** Las láminas con un objeto vivo (arena que cae, neblina en un foco, lluvia, una pantalla) van en **MP4 de 5 s** animadas con Kling 2.5 Pro desde la foto aprobada. Si hay algo MONTADO sobre la foto (una pantalla real, una anotación que apunta), se pide cámara fija y **se mide el clip cuadro a cuadro**: si la cámara igual se mueve, la anotación lo sigue con el desplazamiento medido — _CW-01 y CW-04, 01-10-2026_ · ✔×1
+- **R-47** · Una pantalla real en una pieza se difumina **hasta que con zoom 2× no se lea un nombre ni una cifra**, y se verifica con zoom: la tabla de campañas de Paid Media Pro a 550 px de ancho igual dejaba leer «ENTEL», «SHELL» y los montos — _CW-01, 01-10-2026_ · ✔×1
+
 ## 5. Excepciones
 
 - **E-01** · Pieza 100 % rosa: legítima cuando el concepto la pide (TYPE LAB), una cada 12–15; ahí no hay intervención a mano (sobre rosa no existe). `reglas.yaml` la exime por nombre (`*typelab*`, `*rosa-total*`) — _brief v1.0 §3, 03-09_
@@ -136,6 +143,8 @@ con humor de oficio y autoironía de agencia.
 - **A-07** · «UN CAMBIO CHICO.» / Balloon «23 VERSIONES DESPUÉS.» (`PostG.tsx`): primera pieza hecha con **material real** del estudio —un frame del CAP.02 que ya estaba renderizado— y el rosa no se agregó, ya estaba en la escena. Así se trabaja el pilar G — _01-10-2026_
 - **A-08** · **«Los 16 cortes»** (`CL2-ReelProceso`, 1080×1920, 7,5 s): primer reel subido a un trend («Process», octubre 2026), aprobado a la primera. Cuatro capítulos con etiqueta fija —«El guion» · «Las pruebas» · «Los 16 cortes» · «El resultado»— y todo material real del CAP.02 (texto del guion V3, keyframes Pro vs Seedream, un cuadro de cada corte, el robot dios del corte 16). No se generó nada; el rosa ya estaba en la escena — _Valeria, 01-10-2026_
 
+- **A-09** · **CW-01 «72 HORAS» y CW-04 «UNA IA TAMBIÉN RECOMIENDA»: APROBADOS** el 01-10-2026 («¡Me gusta!») en la ronda 3. Lo que los hizo pasar: una sola mesa de nogal como escenario de toda la serie (Seedream), un objeto por etapa, la pantalla real con su alerta rodeada a plumón, Balloon en curva y anillo, Bebas Light/Expanded/contorno, y 5 de 9 láminas en video. Entrega en Drive › GRILLAS IA › CW-01 / CW-04 — _`CW01Cyber.tsx`, `CW04CyberIA.tsx`_
+
 ## 7. Lo que se rechaza
 
 - **X-01** · La misma fórmula en serie: condensada + remate serif rosa + fondo negro (7 de 9 piezas) — _lote v1, 03-09; «no es de diseño, es de amplitud creativa»; costó la capa v1.1_
@@ -152,6 +161,8 @@ con humor de oficio y autoironía de agencia.
 - **X-12** · Mockups básicos: rectángulo plano sobre un teléfono en perspectiva, tarjetas pegadas sin sombra ni cromo, titular que se sale de la hoja impresa, textos descuadrados e ilegibles. «Errores que NO pueden pasar» — _Valeria, 30-09, **dos rondas seguidas**_
 - **X-13** · Llenar el feed con piezas basadas en frases: «estamos volviendo al sistema anterior». El objetivo no es la gráfica Copywriters, es el trabajo — _Valeria, 30-09_
 - **X-14** · Tipografía condensada para KPI y titulares del sistema nuevo: se lee flaca y la pieza pierde presencia publicitaria — _Valeria, lámina ley 30-09_
+
+- **X-15** · Carrusel tipográfico sobre negro o papel, sin fotografía ni gesto (CW-01/CW-04 v1): «muy mal, eso no es lo que construimos». El sistema es fotografía + mano + idea por pieza, aunque el brief diga «tipográfico» — _Valeria, 01-10-2026_
 
 ## 8. Preguntas abiertas
 

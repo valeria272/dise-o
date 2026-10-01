@@ -2,157 +2,223 @@
 // COPYWRITERS · CW-04 — «EN ESTE CYBER, UNA IA TAMBIÉN RECOMIENDA.» · 4 láminas
 // ----------------------------------------------------------------------------
 // BRIEF     clients/copywriters/briefs/202610_BRIEF_ESTUDIO_copywriters.md (CW-04).
-//           Pilar «Tendencias de IA», tipo Editorial → NEGRO. Sale 07-10 12:30.
-//           Serie INTERNET DEPT. (formato de la grilla 2609, SIN «VOL.» ni fecha).
-// DIRECCIÓN Una página de diario: papel off-white, tinta negra, cabezal con
-//           doble filete. Lo editorial ES el negro sobre papel, no un fondo negro.
-//           · El rosa marca «IA» en la portada y vuelve sólo donde decide la
-//             frase (R-25).
-//           · Las secciones van como antetítulo en palabras («QUÉ PASÓ.»), no
-//             numeradas: R-39 saca las enumeraciones del feed.
-//           · Gesto único: el trazo rosa TACHA «el mejor del mercado» en L4.
-//             Acá el tachado es el significado (lo que se elimina); por eso es
-//             la única vez que un trazo cruza la letra a propósito (R-26).
-//           · Sin mono y sin cajas (jefa de diseño, 01-10).
-//           · La fuente del dato va al pie, en caja mixta: es una noticia.
-// Formato 1080×1350.
+//           Pilar «Tendencias de IA», editorial. Sale miércoles 07-10 · 12:30.
+//           Serie INTERNET DEPT. (sin «VOL.» ni fecha).
+// RONDA 3   Valeria (01-10): «estos textos planos son feos, parecen de IA, ¿y para
+//           qué sirven?» + «en cada gráfica puedes variar, jugar».
+//           · FUERA el cuerpo en Neue Haas. La fuente del dato (CCS vía BioBio y The
+//             Clinic, 29-09-2026) va al CAPTION, no a la gráfica: le sirve a quien
+//             verifica, no a quien mira. La línea de ChatGPT pasa a ser la mano.
+//           · La tipografía juega por lámina con los extremos de Bebas Neue Pro:
+//             Light 300 finísima contra Expanded ExtraBold, y Bebas en CONTORNO.
+//             Balloon corre por curvas (ManoCurva, del kit).
+//           · 01 y 02 son video (Kling 2.5 Pro desde las fotos): neblina en el foco,
+//             lluvia en la vereda.
+//
+// IDEA      Una tienda de noche donde nadie atiende y alguien igual elige: entre
+//           cientos de cajas iguales, un foco ilumina una sola. Después la tienda que
+//           no cierra y la etiqueta del producto, que es lo que esa IA lee.
+//           INTERNET DEPT. es un cabezal de papel que corta la foto como página de
+//           diario. El tachado de «el mejor del mercado» es el único trazo que cruza
+//           la letra a propósito: tachar es el significado (R-26).
+// GEOMETRÍA Caja iluminada, vidriera y etiquetas MEDIDAS sobre cada foto (R-33).
+// FOTOS     Seedream 5 Pro (raw/copywriters/202610/gen/d1–d4) · video v5, v6.
+// Formato 1080×1350 · 30 fps · 150 cuadros (01 y 02 en MP4; 03 y 04 fijas).
 // ============================================================================
 import React from "react";
-import {AbsoluteFill} from "remotion";
-import {C2, VOZ2, asegurarFuentesV2, granoSVG} from "../../brand/copylab/sistemaV2";
-import {Linea, Trazo} from "../../brand/copylab/piezasV2";
+import {AbsoluteFill, OffthreadVideo, interpolate, staticFile, useCurrentFrame, Easing} from "remotion";
+import {C2, VOZ2, SOMBRA_SOBRE_FOTO, asegurarFuentesV2, granoSVG} from "../../brand/copylab/sistemaV2";
+import {Foto, ManoCurva, Trazo} from "../../brand/copylab/piezasV2";
 
-const M = 80;
-const TINTA = C2.negro;
+export const CW04_FRAMES = 150;
+const M = 76;
+const F = (n: string) => `assets/copywriters/202610/${n}`;
+const TINTA = "#1B1A19";
+const fijo = {extrapolateLeft: "clamp", extrapolateRight: "clamp"} as const;
 
-const Papel: React.FC<{children: React.ReactNode}> = ({children}) => (
-  <AbsoluteFill style={{background: C2.offwhite}}>
-    <AbsoluteFill style={{backgroundImage: granoSVG(0.1, 11), backgroundSize: "300px 300px"}} />
-    {children}
-  </AbsoluteFill>
+const Grano: React.FC = () => (
+  <AbsoluteFill style={{backgroundImage: granoSVG(0.05, 5), backgroundSize: "300px 300px"}} />
 );
 
-const Filete: React.FC<{y: number; grueso?: number}> = ({y, grueso = 3}) => (
-  <div style={{position: "absolute", left: M, right: M, top: y, height: grueso,
-               background: TINTA}} />
+const FondoVideo: React.FC<{src: string}> = ({src}) => (
+  <OffthreadVideo src={staticFile(src)} muted
+    style={{position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover"}} />
 );
 
-/** Cabezal del diario. Grande en la portada, chico en el interior. */
-const Cabezal: React.FC<{grande?: boolean}> = ({grande = false}) => {
-  const px = grande ? 132 : 58;
-  const top = grande ? 92 : 70;
-  return (
-    <>
-      <Filete y={top - 22} grueso={grande ? 6 : 4} />
-      <Filete y={top - 12} grueso={1.5} />
-      <div style={{position: "absolute", left: M, right: M, top, display: "flex",
-                   justifyContent: "center"}}>
-        <Linea cuerpo={px} color={TINTA} tracking={grande ? 2 : 1}>INTERNET DEPT.</Linea>
-      </div>
-      <Filete y={top + px * 0.84 + 16} grueso={1.5} />
-      <Filete y={top + px * 0.84 + 26} grueso={grande ? 6 : 4} />
-    </>
-  );
+/**
+ * Bebas con todos sus registros. `voz`: titular (ancho normal) · impacto
+ * (SemiExpanded) · bloque (Expanded ExtraBold). `peso` 300 = Light finísima.
+ * `contorno` deja sólo el trazo: la letra se vuelve dibujo.
+ */
+const Tipo: React.FC<{
+  px: number; voz?: "titular" | "impacto" | "bloque"; peso?: number; color?: string;
+  contorno?: number; tracking?: number; sombra?: boolean; children: React.ReactNode;
+}> = ({px, voz = "impacto", peso, color = C2.offwhite, contorno = 0, tracking = 0,
+       sombra = false, children}) => (
+  <div style={{
+    fontFamily: VOZ2[voz], fontWeight: peso ?? (voz === "titular" ? 700 : 800),
+    fontSize: px, lineHeight: 0.84, letterSpacing: tracking, whiteSpace: "nowrap",
+    textTransform: "uppercase",
+    color: contorno ? "transparent" : color,
+    WebkitTextStroke: contorno ? `${contorno}px ${color}` : undefined,
+    textShadow: sombra && !contorno ? SOMBRA_SOBRE_FOTO : undefined,
+    filter: sombra && contorno ? "drop-shadow(0 4px 12px rgba(0,0,0,0.7))" : undefined,
+  }}>{children}</div>
+);
+
+const En: React.FC<{x: number; y: number; giro?: number; children: React.ReactNode}> =
+({x, y, giro = 0, children}) => (
+  <div style={{position: "absolute", left: x, top: y,
+               transform: giro ? `rotate(${giro}deg)` : undefined}}>{children}</div>
+);
+
+/** Entrada: sube y aparece. */
+const Sube: React.FC<{desde: number; children: React.ReactNode}> = ({desde, children}) => {
+  const f = useCurrentFrame();
+  const p = interpolate(f, [desde, desde + 14], [0, 1], {...fijo, easing: Easing.out(Easing.cubic)});
+  return <div style={{opacity: p, transform: `translateY(${(1 - p) * 24}px)`}}>{children}</div>;
 };
 
-const Antetitulo: React.FC<{y: number; children: React.ReactNode}> = ({y, children}) => (
-  <div style={{position: "absolute", left: M, top: y}}>
-    <Linea cuerpo={52} color={TINTA} tracking={2.5}>{children}</Linea>
+/** Cabezal de diario: papel con doble filete, sobre la foto. */
+const Cabezal: React.FC<{alto: number; grande?: boolean; children?: React.ReactNode}> =
+({alto, grande = false, children}) => (
+  <div style={{position: "absolute", left: 0, top: 0, width: 1080, height: alto,
+               background: C2.offwhite, boxShadow: "0 10px 30px rgba(0,0,0,0.45)"}}>
+    <AbsoluteFill style={{backgroundImage: granoSVG(0.1, 11), backgroundSize: "300px 300px"}} />
+    <div style={{position: "absolute", left: 0, right: 0, top: grande ? 62 : 46,
+                 display: "flex", justifyContent: "center"}}>
+      <Tipo px={grande ? 118 : 58} color={C2.negro} tracking={grande ? 2 : 1}>INTERNET DEPT.</Tipo>
+    </div>
+    {children}
+    <div style={{position: "absolute", left: M, right: M, bottom: 30, height: 1.5, background: C2.negro}} />
+    <div style={{position: "absolute", left: M, right: M, bottom: 18, height: 5, background: C2.negro}} />
   </div>
 );
 
-const Cuerpo: React.FC<{x?: number; y: number; px?: number; ancho?: number;
-                        color?: string; children: React.ReactNode}> =
-({x = M, y, px = 42, ancho = 1080 - 2 * M, color = "rgba(11,11,11,0.86)", children}) => (
-  <div style={{position: "absolute", left: x, top: y, width: ancho,
-               fontFamily: VOZ2.cuerpo, fontWeight: 400, fontSize: px,
-               lineHeight: 1.34, color}}>{children}</div>
-);
+const Sigue: React.FC<{children: React.ReactNode}> = ({children}) => {
+  const f = useCurrentFrame();
+  const dx = interpolate(f, [0, CW04_FRAMES], [0, -172]);
+  return <AbsoluteFill style={{transform: `translateX(${dx}px)`}}>{children}</AbsoluteFill>;
+};
 
-const Fuente: React.FC<{children: React.ReactNode}> = ({children}) => (
-  <Cuerpo y={1350 - 135 - 60} px={23} color="rgba(11,11,11,0.55)">{children}</Cuerpo>
-);
-
-// ====================== 01 · PORTADA ======================
+// ====================== 01 · EL FOCO (video) ======================
+// Caja iluminada medida: x 574–855 · y 640–800.
 const L1: React.FC = () => (
-  <Papel>
-    <Cabezal grande />
-    <div style={{position: "absolute", left: M - 6, top: 360}}>
-      <Linea cuerpo={170} color={TINTA}>EN ESTE CYBER,</Linea>
-      <div style={{height: 22}} />
-      <div style={{display: "flex", alignItems: "flex-end", gap: 34}}>
-        <Linea cuerpo={170} color={TINTA}>UNA</Linea>
-        <Linea cuerpo={170} voz="bloque" color={C2.rosa}>IA</Linea>
+  <AbsoluteFill style={{background: C2.negro}}>
+    <FondoVideo src={F("v5-foco.mp4")} />
+    <AbsoluteFill style={{
+      background: "linear-gradient(0deg, rgba(11,11,11,0.95) 0%, rgba(11,11,11,0.72) 26%, rgba(11,11,11,0) 44%)",
+    }} />
+    <Grano />
+    <Cabezal alto={238} grande />
+    {/* La mano cae en curva sobre la caja elegida. La cámara del clip se desliza
+        a la izquierda (≈ −35 px/s, MEDIDO sobre la caja): la anotación la sigue. */}
+    <Sigue>
+      <ManoCurva id="d1a" d="M 760 400 C 900 380, 1010 470, 920 600" px={86} texto="esta."
+                 color={C2.offwhite} desde={20} dura={16} sombra />
+    </Sigue>
+    {/* Tres registros de Bebas en un titular: Light, Expanded, contorno. */}
+    <En x={M} y={840}><Sube desde={0}>
+      <Tipo px={96} peso={300} voz="titular" tracking={3} sombra>EN ESTE CYBER,</Tipo>
+    </Sube></En>
+    <En x={M - 8} y={938}><Sube desde={6}>
+      <div style={{display: "flex", gap: 30}}>
+        <Tipo px={200} voz="bloque" sombra>UNA</Tipo>
+        <Tipo px={200} voz="bloque" color={C2.rosa} sombra>IA</Tipo>
       </div>
-      <div style={{height: 22}} />
-      <Linea cuerpo={170} color={TINTA}>TAMBIÉN</Linea>
-      <div style={{height: 22}} />
-      <Linea cuerpo={170} color={TINTA}>RECOMIENDA.</Linea>
-    </div>
-  </Papel>
+    </Sube></En>
+    <En x={M} y={1124}><Sube desde={12}>
+      <Tipo px={96} voz="titular" contorno={2.6} sombra>TAMBIÉN RECOMIENDA.</Tipo>
+    </Sube></En>
+  </AbsoluteFill>
 );
 
-// ====================== 02 · QUÉ PASÓ ======================
+// ====================== 02 · LA TIENDA QUE NO CIERRA (video) ======================
+// Vidriera medida: x 227–840 · y 320–880. El papel tapa el letrero blanco.
 const L2: React.FC = () => (
-  <Papel>
-    <Cabezal />
-    <Antetitulo y={250}>QUÉ PASÓ.</Antetitulo>
-    <div style={{position: "absolute", left: M - 8, top: 372}}>
-      <Linea cuerpo={232} voz="bloque" color={TINTA}>CYBERAI</Linea>
-    </div>
-    <Cuerpo y={630} px={46}>
-      El CyberMonday 2026 estrena un asistente de IA que funciona 24/7 dentro de
-      Cyber.cl y le recomienda productos a la gente.
-    </Cuerpo>
-    <Fuente>Fuente: Cámara de Comercio de Santiago, vía BioBio y The Clinic, 29-09-2026.</Fuente>
-  </Papel>
+  <AbsoluteFill style={{background: C2.negro}}>
+    <FondoVideo src={F("v6-tienda.mp4")} />
+    <AbsoluteFill style={{
+      background: "linear-gradient(0deg, rgba(11,11,11,0.94) 0%, rgba(11,11,11,0.66) 24%, rgba(11,11,11,0) 38%)",
+    }} />
+    <Grano />
+    <Cabezal alto={330}>
+      <div style={{position: "absolute", left: M, top: 150}}>
+        <Tipo px={104} voz="titular" peso={300} color={C2.negro} tracking={4}>QUÉ PASÓ.</Tipo>
+      </div>
+    </Cabezal>
+    <ManoCurva id="d2a" d="M 72 948 C 250 790, 620 1010, 1010 836" px={64} texto="te dice qué comprar."
+               desde={18} dura={22} sombra />
+    <En x={M - 10} y={962}><Sube desde={0}>
+      <Tipo px={172} voz="bloque" sombra>CYBERAI</Tipo>
+    </Sube></En>
+    <En x={M} y={1120}><Sube desde={8}>
+      <Tipo px={74} voz="titular" peso={300} tracking={10} sombra>ATIENDE 24/7.</Tipo>
+    </Sube></En>
+  </AbsoluteFill>
 );
 
-// ====================== 03 · POR QUÉ IMPORTA ======================
+// ====================== 03 · LA ETIQUETA (fija) ======================
+// Etiqueta medida: x 316–744 · y 410–1100 (cuerpo libre bajo el ojal: y 560–1090).
 const L3: React.FC = () => (
-  <Papel>
-    <Cabezal />
-    <Antetitulo y={250}>POR QUÉ IMPORTA.</Antetitulo>
-    <div style={{position: "absolute", left: M - 4, top: 370}}>
-      <Linea cuerpo={112} color={TINTA}>TUS DESCRIPCIONES</Linea>
-      <div style={{height: 12}} />
-      <Linea cuerpo={112} color={TINTA}>YA NO LAS LEE</Linea>
-      <div style={{height: 12}} />
-      <Linea cuerpo={112} color={TINTA}>SÓLO UNA PERSONA.</Linea>
-    </div>
-    <div style={{position: "absolute", left: M - 4, top: 770, display: "flex",
-                 alignItems: "flex-end", gap: 30}}>
-      <Linea cuerpo={112} color={TINTA}>LAS LEE UNA</Linea>
-      <Linea cuerpo={150} voz="bloque" color={C2.rosa}>IA</Linea>
-    </div>
-    <Cuerpo y={940} px={50}>que decide qué recomendar.</Cuerpo>
-  </Papel>
-);
-
-// ====================== 04 · QUÉ HACEMOS ======================
-const L4: React.FC = () => (
-  <Papel>
-    <Cabezal />
-    <Antetitulo y={250}>QUÉ HACEMOS.</Antetitulo>
-    <Cuerpo y={342} px={42}>Descripciones claras y completas:</Cuerpo>
-    <div style={{position: "absolute", left: M - 4, top: 430}}>
-      {["QUÉ ES.", "PARA QUIÉN.", "PRECIO.", "STOCK."].map((t) => (
-        <div key={t} style={{marginBottom: 14}}>
-          <Linea cuerpo={88} color={TINTA}>{t}</Linea>
-        </div>
-      ))}
-    </div>
-    <Cuerpo y={884} px={42}>Y nada de</Cuerpo>
-    <div style={{position: "absolute", left: M - 4, top: 948}}>
-      <div style={{position: "relative"}}>
-        <Linea cuerpo={74} color="rgba(11,11,11,0.62)">«EL MEJOR DEL MERCADO».</Linea>
-        <Trazo x={-12} y={4} ancho={700} grosor={20} giro={0} />
+  <AbsoluteFill style={{background: C2.negro}}>
+    <Foto src={F("d3.png")} />
+    <Grano />
+    <Cabezal alto={250}>
+      <div style={{position: "absolute", left: M, top: 134}}>
+        <Tipo px={80} voz="impacto" contorno={3} color={C2.negro} tracking={2}>POR QUÉ IMPORTA.</Tipo>
+      </div>
+    </Cabezal>
+    <div style={{position: "absolute", left: 330, top: 598, width: 400, transform: "rotate(1deg)"}}>
+      <div style={{fontFamily: VOZ2.mano, fontWeight: 800, fontSize: 52, lineHeight: 1.08,
+                   color: TINTA, textAlign: "center", textTransform: "uppercase",
+                   mixBlendMode: "multiply", opacity: 0.92}}>
+        TU FICHA YA<br />NO LA LEE SÓLO<br />UNA PERSONA.
+      </div>
+      <div style={{height: 34}} />
+      <div style={{fontFamily: VOZ2.mano, fontWeight: 800, fontSize: 52, lineHeight: 1.08,
+                   color: C2.rosa, textAlign: "center", textTransform: "uppercase"}}>
+        LA LEE UNA IA<br />QUE DECIDE QUÉ<br />RECOMENDAR.
       </div>
     </div>
-    <Cuerpo y={1068} px={32} color="rgba(11,11,11,0.72)" ancho={860}>
-      Lo mismo que va a pedir ChatGPT cuando lleguen sus avisos a Chile.
-    </Cuerpo>
-  </Papel>
+  </AbsoluteFill>
+);
+
+// ====================== 04 · LO QUE VA EN LA ETIQUETA (fija) ======================
+// Etiqueta medida: centro ≈ (566, 736), 488 × 645, girada −10°.
+const L4: React.FC = () => (
+  <AbsoluteFill style={{background: C2.negro}}>
+    <Foto src={F("d4.png")} />
+    <AbsoluteFill style={{
+      background: "linear-gradient(0deg, rgba(11,11,11,0.86) 0%, rgba(11,11,11,0.4) 14%, rgba(11,11,11,0) 24%)",
+    }} />
+    <Grano />
+    <Cabezal alto={250}>
+      <div style={{position: "absolute", left: M, top: 132, transform: "rotate(-2deg)"}}>
+        <div style={{fontFamily: VOZ2.mano, fontWeight: 800, fontSize: 64, color: C2.negro,
+                     textTransform: "uppercase"}}>QUÉ HACEMOS.</div>
+      </div>
+    </Cabezal>
+    <div style={{position: "absolute", left: 380, top: 590, width: 420,
+                 transform: "rotate(-10deg)", transformOrigin: "50% 50%"}}>
+      <div style={{fontFamily: VOZ2.mano, fontWeight: 800, fontSize: 54, lineHeight: 1.1,
+                   color: TINTA, textAlign: "center", textTransform: "uppercase",
+                   mixBlendMode: "multiply", opacity: 0.92}}>
+        QUÉ ES.<br />PARA QUIÉN.<br />PRECIO.<br />STOCK.
+      </div>
+      <div style={{height: 28}} />
+      <div style={{position: "relative"}}>
+        {/* Un tachado deja LEER lo que tacha: trazo fino, por el centro de cada línea. */}
+        <div style={{fontFamily: VOZ2.mano, fontWeight: 800, fontSize: 44, lineHeight: 1.15,
+                     color: TINTA, textAlign: "center", textTransform: "uppercase",
+                     mixBlendMode: "multiply", opacity: 0.92}}>«EL MEJOR<br />DEL MERCADO»</div>
+        <Trazo x={78} y={2} ancho={264} grosor={8} giro={1} />
+        <Trazo x={40} y={53} ancho={340} grosor={8} giro={1} />
+      </div>
+    </div>
+    <ManoCurva id="d4a" d="M 72 1176 C 330 1080, 640 1236, 1010 1112" px={54}
+               texto="lo mismo que va a pedir chatgpt." color={C2.offwhite} sombra dura={1} />
+  </AbsoluteFill>
 );
 
 const LAMINAS = [L1, L2, L3, L4];

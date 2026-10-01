@@ -90,3 +90,5 @@
 - [⭐ Antes y después SIEMPRE en HTML](antes-y-despues-en-html.md) — molde _revision.py; se ABRE en Google Chrome sin que lo pida (Eli 30-09) + qué cambió en texto
 - [⭐⭐⭐ Carrusel de producto Between — receta aprobada](between-carrusel-producto-receta.md) — Eli 30-09 «me encantó»: To Go 01-10 a la primera; vasos aprobados + comida real como ref en NB Pro, rótulo precio sobre cada vaso, 3 voces, Drive + HTML
 - [⛔ Carrusel: carpeta «C1 <tema> S<n>» + «C1 n°1 …»](carrusel-nombre-y-carpeta-c1.md) — Eli 30-09: cada carrusel en su carpeta, láminas numeradas, para no confundir
+- [⭐⭐⭐ Reel DJ de QB — receta aprobada](qb-reels-dj-en-canva-de-eli.md) — Eli 01-10 «para futuros reels de DJ»: reemplazar sobre su plantilla de Canva, recortes con Magnific comparados contra la foto, tiempos y música con qb-reel-dj-ajustar.py
+- [⛔ Recortes sin halo ni cortes raros](recortes-sin-halo-ni-cortes-raros.md) — Eli 01-10: quitafondo de Magnific, limpieza suave y comparar contra la foto original; que no falte cabeza ni pelo

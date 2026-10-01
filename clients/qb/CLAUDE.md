@@ -775,3 +775,23 @@ Detalle y fuentes: `APRENDIZAJES.md` R-32, R-71 a R-76.
 Y una técnica: para que varios tragos tengan **la misma altura** (bordes en una línea,
 fondos de copa en otra), se sirven en **el mismo modelo de copa** y se **mide** en la foto
 a resolución completa antes de entregar; con modelos distintos la IA no lo iguala.
+
+## 4j. Reel DJ semanal — se reemplaza sobre la plantilla de Canva de Eli (01-10-2026)
+
+«La semana se vive en QB» sale todas las semanas. **No se rehace: se reemplaza** sobre el
+editable de Canva que Eli duplica de la semana anterior (R-96 a R-103 del cerebro).
+
+- **Acceso:** el enlace «puede editar» no alcanza al conector de Canva; Eli tiene que invitar
+  como persona a la cuenta de la agencia. Se prueba con `read-design` + `open_transaction`.
+- **Secuencia fija:** noches (martes · jueves · viernes · sábado) → CMR 40 % → Falabella 20 % →
+  Banco de Chile → All You Can Drink → Sunset QB (con botón «DESDE $3.990»). En cada noche sólo
+  cambian capa del DJ, logo, día, nombre y hora. Brief: grilla, hoja FEED, columnas «REELS DJ».
+- **Fotos:** Drive `1th-bRNRe023qpggMJ6aPduxBs6ZENiYd`, una carpeta por DJ. Seba Soto lleva el
+  logo SEBSS; Isa Serafini el suyo en blanco; Nacho Mella no lleva logo. Si falta una foto
+  (pendiente del cliente), va una provisoria y el reel NO se sube a Drive hasta reemplazarla.
+- **Recorte:** quitafondo de Magnific por el conector, limpieza suave y **comparación contra la
+  foto original** (cabeza, pelo, audífonos, manos) antes de ponerlo. Nunca halo ni cortes rectos.
+- **Video final:** el conector no toca duración ni audio. Se exporta el MP4 y se corre
+  `python scripts/qb-reel-dj-ajustar.py <export.mp4> <salida.mp4> 2.8 2.5` (portada 2,8 s,
+  segunda noche 2,5 s, música de principio a fin). `scripts/qb-reel-dj-medir.py` lo verifica.
+- **Dónde queda:** `out/qb/oct/reel-dj-s<n>/`; revisión en HTML de antes/después.

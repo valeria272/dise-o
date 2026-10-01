@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-10-01** · Cosechas: **42**
+> Última cosecha: **2026-10-01** · Cosechas: **43**
 
 ## 1. Quién es el cliente
 
@@ -435,6 +435,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 (2) — Claude con Eli · `/abrir Hilton` + `/al-dia` · sin aprendizajes nuevos
+- sin aprendizajes nuevos: la sesión no produjo piezas de DT ni de Between; fue apertura, lectura de grillas y después trabajo de QB (su cosecha está en `clients/qb/APRENDIZAJES.md`). Hallazgos de estado, no de criterio: DT reorganizó contenidos (carrusel Escapada a noviembre, Honors POV pasa a carrusel, orgánico 15-10 pasa a reel de cookie) y la grilla de BW cambió la fecha de seis historias y de «Reúnete en Between» sin cambiar de semana. Ningún comentario nuevo de Eli, Constanza ni del cliente sobre piezas de estas dos marcas.
 
 ### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (86a2378)
 - sin aprendizajes nuevos: el commit `86a2378` («DT: pendones 0,8×3 r9 — alta para imprenta… cosecha R-174, R-175, R-97 revisada») es el mismo que Eli ya cosechó el 30-09 en la entrada de arriba (cierre 3, pendones DT r9). No hay nada posterior que agregar.

@@ -92,3 +92,5 @@
 - [⛔ Carrusel: carpeta «C1 <tema> S<n>» + «C1 n°1 …»](carrusel-nombre-y-carpeta-c1.md) — Eli 30-09: cada carrusel en su carpeta, láminas numeradas, para no confundir
 - [⭐⭐⭐ Reel DJ de QB — receta aprobada](qb-reels-dj-en-canva-de-eli.md) — Eli 01-10 «para futuros reels de DJ»: reemplazar sobre su plantilla de Canva, recortes con Magnific comparados contra la foto, tiempos y música con qb-reel-dj-ajustar.py
 - [⛔ Recortes sin halo ni cortes raros](recortes-sin-halo-ni-cortes-raros.md) — Eli 01-10: quitafondo de Magnific, limpieza suave y comparar contra la foto original; que no falte cabeza ni pelo
+- [⭐⭐⭐ Carrusel de promo QB — foto real en panorama](qb-carrusel-panorama-foto-real.md) — Eli 01-10 «okey, guárdalo»: una foto real para G1+G2, cóctel centrado, «Imagen referencial» abajo al centro
+- [⛔ Octubre: OK PARA DISEÑAR se toma](octubre-ok-para-disenar-se-toma.md) — Eli 01-10: sin preguntar; cruzar antes con Drive porque el estado de la grilla queda atrasado

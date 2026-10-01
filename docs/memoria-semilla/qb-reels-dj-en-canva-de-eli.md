@@ -25,3 +25,24 @@ Eli, 01-10-2026, al cerrar el Reel DJ S2 OCT de QB: «guarda este resultado en t
 9. **Revisión:** cuadros del video final a tamaño completo de cada noche + HTML de antes/después (`scripts/qb-oct-reel-dj-s2-revision.py`) abierto en Chrome. Todo queda en `out/qb/oct/reel-dj-s<n>/`.
 
 Relacionado: [[qb-octubre-2026-estado]], [[pieza-migrada-al-editable]], [[antes-y-despues-en-html]], [[video-siempre-con-gif]], [[canva-plan-disponible]].
+
+**01-10 (tarde), S3 y S5 — lo que acortó el trabajo a una pasada:**
+- El conector SÍ puede duplicar la plantilla (`copy-design` sobre `DAHWxIFbuvA`): la copia queda en la cuenta del conector y conserva los mismos `locator_id` de página y de capa, así que las operaciones se repiten tal cual.
+- `scripts/qb-reel-dj-recorte.py <fuente> <magnific.png> <salida> <hoja>` hace la limpieza y la hoja de comparación.
+- Calce de la capa: tope de la cabeza en y≈660, alto de cabeza ≈ 330 px, centro de la cara en x=540; el PNG se sube ya recortado a la medida y se pone con `update_fill` + `resize_element` + `position_element` + `crop_media` a ese mismo tamaño. Si el recorte llega sólo al pecho queda corto bajo los textos: elegir una foto de torso.
+- Logos: blanco sobre transparente, recortados a su tinta; ~300 px de ancho, base en y≈1205.
+
+**01-10 (tarde), corrección de Eli sobre el S3 — elegir la FOTO antes que el recorte:**
+- «Su foto tiene la cabeza cortada, se ve extraño» (Seba Soto, IMG_4212): el recorte era fiel, la foto era la mala. ⛔ No usar fotos de gran angular / con mucho grano / pelo oscuro contra fondo oscuro: recortadas, el borde de la cabeza queda recto y se lee cortado. Elegir una foto frontal con la cabeza despegada del fondo aunque sea chica, y ampliarla 2× con Magnific Precision (sublime, retratos; ~90 créditos — el 4× cuesta 270 y no hace falta).
+- Antes de ampliar, comprobar que el recorte previo incluye el cuerpo COMPLETO (las dos manos): se paga por cada intento.
+- ⛔⛔ **El cuerpo del DJ NUNCA se desvanece ni desaparece bajo los textos** (Eli 01-10: «desapareció su cuerpo abajo, eso no debe pasar»). La capa tiene que seguir hasta los banners (y≥1560). Si la foto llega sólo al pecho: extenderla hacia abajo con Nano Banana Pro (1:1, «extend downward only… nothing in front of him») y pegar ENCIMA la foto real alineada (SIFT + homografía, degradado de ~300 px), para que cara y manos sigan siendo las reales; después quitafondo. `images_expand` de Magnific no sirve para esto (inventa una cabina delante y sale a 1024 px). Si la ropa es clara y la fecha no se lee, se baja la LUZ de la ropa detrás de los textos (al 50 %), no la opacidad.
+- Se suben a Drive aunque Felipe esté con foto provisoria si Eli lo pide: `scripts/qb-oct-reel-dj-drive.py <semanas> --hacer` → `S<n> / QB / FEED / Reel n°1 S<n> QB OCT 26.mp4` + `.gif` (GIF 360×640, 12,5 cps, ~12 MB).
+- «Juanjo» de la grilla = carpeta y logo **JOTA** (confirmado por Eli).
+
+**⭐ 01-10 (tarde) — Eli APROBÓ los Reels DJ S3 y S5 («okey!! guárdalo en tu memoria»).** Lo que quedó como vara para los próximos:
+1. **La foto se elige antes que el recorte:** frontal, cabeza despegada del fondo; nada de gran angular con grano ni pelo oscuro sobre fondo oscuro (la cabeza se lee «cortada»). Si es chica, ampliar 2× con Magnific Precision.
+2. **El cuerpo sigue bajo los textos hasta los banners; nunca se desvanece.** Si la foto llega al pecho, se extiende hacia abajo con Nano Banana Pro y se pega encima la foto real alineada (cara y manos reales).
+3. **Capa calzada:** tope de la cabeza en y≈660, cabeza ≈ 330 px, cara centrada en el arco (se corre a x≈480 si hay que dejar entrar las dos manos).
+4. **Logo del DJ** en blanco sobre el pecho (JOTA para «Juanjo», SEBSS para Seba Soto, el de Flo Veloso pasado a blanco).
+5. **Entrega:** MP4 + GIF en `S<n> HILTON OCT 2026 / QB / FEED / Reel n°1 S<n> QB OCT 26`, aunque Felipe siga con foto provisoria.
+Referencia aprobada: `out/qb/oct/reel-dj-s3/` y `reel-dj-s5/` (cuadros, capas y revisión).

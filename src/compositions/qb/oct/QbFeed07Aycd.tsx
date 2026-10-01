@@ -33,11 +33,39 @@
  *     sobre la foto aprobada con máscara difuminada: copa, jigger y barra intactos
  *     (`scripts/qb-oct-r19-nb.py`, `raw/hilton/qb/oct-r19/`). En Drive el carrusel
  *     pasa a C2 S1 AYCD (el C1 S1 es ahora el carrusel de cumpleaños del 05-10).
+ *   · ⭐ RONDA 29 (CLIENTE, celda FEED!E14, 01-10; el comentario anterior quedó tachado):
+ *     «Están fuera de proporciones los tragos en la G2; en la G1, mantener más simple,
+ *     creo que está muy literal con la refe, veamos algo más de este estilo» + pin
+ *     1068760555331775825 (UN vaso solo en la esquina de la barra, fondo cálido fuera
+ *     de foco).
+ *     G1: una copa de sangría (trago del AYCD) sola sobre la barra perforada de QB.
+ *     Base: la foto REAL «QB oct-31» (terraza 10-oct), que es ese mismo plano; Nano
+ *     Banana Pro la llevó a vertical y cambió el trago de autor por la sangría. Sin
+ *     bartender, sin botella, sin manos.
+ *     G2: los cinco tragos del AYCD en UNA fila, de frente, en el mismo plano y sobre la
+ *     misma barra, para que cada vaso tenga su tamaño real (copones iguales, flauta
+ *     angosta, vaso alto y schop más bajos). La fila va entera entre el nombre y el
+ *     bloque de la promo (foto al 80 %, bordes completados por reflejo): nada la tapa.
+ *     Con el fondo ya oscuro el velo baja al mínimo. Fotos y pasos en
+ *     `raw/hilton/qb/oct-r29/`. Textos: sin cambios.
+ *   · ⭐ RONDA 30 (Eli 01-10): «usar el material real que dejaste, porque es la más
+ *     similar [a la referencia]… en la segunda slide pondría todo lo mismo, esa misma
+ *     foto del octubre 31 sirve para ambas y que sea una transición bonita».
+ *     G1 + G2 = la foto REAL «QB oct-31» partida en PANORAMA (recorte 2700×1688 desde
+ *     x=300, y=300 → 4500×2812): el vaso sobre la barra en la G1 y la barra que sigue,
+ *     fuera de foco, detrás de la promo en la G2. Salen los cinco tragos en fila.
+ *     El trago de la foto es de autor (no entra en el AYCD, R-56): Nano Banana Pro
+ *     cambió SÓLO el líquido por sangría, mismo vaso tallado y mismo romero; la franja
+ *     del empalme con la G2 es la foto real. `feed07-g1-r30-real.jpg` = la foto tal cual.
+ *     Pasos en `raw/hilton/qb/oct-r30/`.
+ *   · RONDA 31 (Eli 01-10): «lo de imagen referencial abajo al centro y mejora la
+ *     posición del cóctel». El panorama se corre 70 px de foto a la izquierda (x=230)
+ *     para que el vaso quede CENTRADO en la G1; la leyenda baja al centro del pie.
  */
 import React from "react";
 import {AbsoluteFill} from "remotion";
 
-import {BloqueAycd, cargarFuentesQbOct, Legal, Linea, LogoQB, NombreAycd, Velo} from "./QbOctKit";
+import {BloqueAycd, cargarFuentesQbOct, Legal, Linea, LogoQB, NombreAycd} from "./QbOctKit";
 import {FotoFeed} from "./QbFeedKit";
 
 cargarFuentesQbOct();
@@ -55,8 +83,12 @@ const QB_FEED07_DATA: Record<string, Record<string, string>> = {
 
 export const QbFeed07AycdG1: React.FC = () => (
   <AbsoluteFill style={{background: "#000"}}>
-    <FotoFeed src="assets/hilton/qb/oct/feed07-g1-r19.jpg" pos="50% 50%" />
-    <Linea top={1150} cuerpo={17} italica ancho={500} color="rgba(255,255,255,0.8)">*Imagen referencial</Linea>
+    <FotoFeed src="assets/hilton/qb/oct/feed07-g1-r31.jpg" pos="50% 50%" />
+    {/* r31 (Eli): abajo al centro. Ahí la barra tiene puntos de luz: cajita translúcida sutil (R-94) */}
+    <div style={{position: "absolute", top: 1268, left: 0, width: 1080, display: "flex", justifyContent: "center"}}>
+      <span style={{fontFamily: "Raleway", fontStyle: "italic", fontSize: 17, color: "rgba(255,255,255,0.92)",
+        background: "rgba(0,0,0,0.38)", backdropFilter: "blur(6px)", padding: "5px 14px"}}>*Imagen referencial</span>
+    </div>
   </AbsoluteFill>
 );
 
@@ -64,9 +96,11 @@ export const QbFeed07AycdG2: React.FC = () => {
   const d = QB_FEED07_DATA.pieza;
   return (
     <AbsoluteFill style={{background: "#000"}}>
-      <FotoFeed src="assets/hilton/qb/oct/feed07-g2.jpg" pos="50% 60%" filtro="brightness(0.9)" />
-      {/* r10: más denso arriba, la copa rosada queda tras «YOU» y «DRINK» */}
-      <Velo arriba={[700, 0.93]} abajo={[640, 0.9]} />
+      <FotoFeed src="assets/hilton/qb/oct/feed07-g2-r31.jpg" pos="50% 50%" />
+      {/* r30: el velo entra de izquierda a derecha y parte en 0 en el borde del empalme,
+          para que la unión con la G1 no se note al deslizar */}
+      <AbsoluteFill style={{background:
+        "linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 24%, rgba(0,0,0,0.5) 100%)"}} />
       <LogoQB top={96} ancho={170} />
       <NombreAycd top={262} cuerpo={112} />
       <BloqueAycd antetitulo={866} boton={920} horario={1034}

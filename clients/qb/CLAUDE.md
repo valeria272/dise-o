@@ -788,10 +788,34 @@ editable de Canva que Eli duplica de la semana anterior (R-96 a R-103 del cerebr
   cambian capa del DJ, logo, día, nombre y hora. Brief: grilla, hoja FEED, columnas «REELS DJ».
 - **Fotos:** Drive `1th-bRNRe023qpggMJ6aPduxBs6ZENiYd`, una carpeta por DJ. Seba Soto lleva el
   logo SEBSS; Isa Serafini el suyo en blanco; Nacho Mella no lleva logo. Si falta una foto
-  (pendiente del cliente), va una provisoria y el reel NO se sube a Drive hasta reemplazarla.
+  (pendiente del cliente), va una provisoria; el reel se sube a Drive sólo si Eli lo pide (E-14, 01-10) y se resube al reemplazarla.
 - **Recorte:** quitafondo de Magnific por el conector, limpieza suave y **comparación contra la
   foto original** (cabeza, pelo, audífonos, manos) antes de ponerlo. Nunca halo ni cortes rectos.
 - **Video final:** el conector no toca duración ni audio. Se exporta el MP4 y se corre
   `python scripts/qb-reel-dj-ajustar.py <export.mp4> <salida.mp4> 2.8 2.5` (portada 2,8 s,
   segunda noche 2,5 s, música de principio a fin). `scripts/qb-reel-dj-medir.py` lo verifica.
 - **Dónde queda:** `out/qb/oct/reel-dj-s<n>/`; revisión en HTML de antes/después.
+- **La foto se elige antes que el recorte (01-10, R-108):** frontal, cabeza despegada del fondo; nada de gran
+  angular con grano ni pelo oscuro contra fondo oscuro. Si es chica, 2× con Magnific Precision (el 4× no hace falta).
+- ⛔ **El cuerpo del DJ nunca se desvanece bajo los textos (R-109):** la capa sigue hasta los banners. Si la foto
+  llega al pecho: extender hacia abajo con Nano Banana Pro y pegar encima la foto real alineada; después quitafondo
+  y `python scripts/qb-reel-dj-recorte.py <fuente> <magnific.png> <salida> <hoja>`.
+- **Calce de la capa:** tope de la cabeza en y≈660, cabeza ≈ 330 px, cara centrada en el arco.
+- **Plantilla:** el conector la duplica con `copy-design` sobre el reel de la semana anterior; los `locator_id` se conservan.
+- **Entrega:** `python scripts/qb-oct-reel-dj-drive.py <semanas> --hacer` → `S<n> / QB / FEED / Reel n°1 S<n> QB OCT 26`
+  en `.mp4` y `.gif`. «Juanjo» = logo y carpeta JOTA.
+
+## 4k. Carrusel de promo = una foto real en panorama (01-10-2026, R-104 a R-106)
+
+Aprobado por Eli en el carrusel All You Can Drink del 06-10 (`QbFeed07Aycd.tsx`, r31), tras el comentario del
+cliente «tragos fuera de proporciones en la G2; G1 más simple, muy literal con la refe»:
+
+- **Una sola foto real horizontal** de la sesión para las dos láminas (3:2 alcanza para 2 × 4:5): G1 el trago
+  solo y **centrado**; G2 la misma foto que sigue, fuera de foco, detrás del bloque de la promo. Sin tragos nuevos en la G2.
+- **«*Imagen referencial» abajo al centro** de la G1; sobre luces, con cajita translúcida sutil.
+- El velo de la G2 es horizontal y **parte en 0 en el borde del empalme**, para que la unión no se note al deslizar.
+- Si el trago de la foto no es de la promo, se cambia **sólo el líquido** dentro del mismo vaso; lo demás queda real.
+
+⚠️ **Sunset QB y CMR 40 % sábados: desde el 01-10 mandan los KV que Eli rehízo a mano** (Drive
+`1M3SpaNu8G2e-hiIywJ3CbWeI5PiHJ4nN` y `15m5fxONYLmS3LL3Md8ydPkyzltLNwvDj`), no las composiciones del repo.
+

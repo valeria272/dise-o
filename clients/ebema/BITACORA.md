@@ -3,6 +3,43 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-10-01 (tarde) — Paulina Bustamante · ARIEL A4/A5 Piazza: tres correcciones más del cliente
+
+**Qué se hizo:** [CLICK] Después de la foto del exhibidor (entrada de abajo), el cliente devolvió las
+piezas **tres veces más el mismo día**, siempre vía Carlos, y las tres se aprobaron y subieron:
+(1) **productos actualizados** — el enlace del brief pasó a la carpeta `SÓLO PIAZZA` (7 packshots): siguen
+3, salen 4 y entran 4, cada uno en el lugar del que reemplaza (temporizada PZ43001 y las Calyx negras
+PZ20002NE, PZ20012NE y PZ20009NE); aprobadas a la primera. (2) **Cambio de texto + logo** — Carlos, 15:29,
+en las dos celdas: «Vale y Ariel pidieron cambio de texto y que se añadiera el logo de Piazza abajo con la
+iconografía». Título «GRIFERÍA PIAZZA / PARA TU FERRETERÍA» (A5: «PARA TU OBRA»), sin «+50 PRODUCTOS»;
+bajada «APROVECHA INCREÍBLES PRECIOS DE LANZAMIENTO»; el logo Piazza abre la fila de íconos, separado por
+un filete. Aprobadas a la primera. (3) **Círculo «+ DE 50 PRODUCTOS»** — pedido del cliente vía Paulina;
+ella definió el lugar (zona de las llaves curvas, a la derecha, corriendo las dos llaves a la izquierda;
+rojo EBEMA, letra blanca). Dos propuestas sobre la A5; eligió la del filete blanco y pidió unificar el
+«+ DE 50» («una cruz pequeña, un D grande y un 50 flaco»). 2 rondas, aprobada y aplicada a las dos.
+
+**Dónde quedó:** Drive `EBEMA CLICK › 2026 › SEPTIEMBRE › SEMANA 1 › wtps_piazza_catalogo`, sobre los
+mismos fileId, md5 verificado contra el local: A4 `106p9uVRntP0-AdLHDMdCFb3FC_skTeIA` →
+`59238b3fb48edc49fa2b2735920bfa52` (2500×5530) · A5 `1k4Q7quHjnQ56Nkitv5JfRCvkBwcwOhDp` →
+`cdd92d56f636a7078c0206155aa85f53` (2500×4180). Generador
+`out/ebema/20260930_wsp_A4_piazza_catalogo/componer.py` (`sello_productos`, fila con logo, título nuevo),
+que rinde las dos byte a byte; cada ronda está en su `ENTREGA.md`. Versiones anteriores, sólo en local:
+`_ronda14_aprobada_01-10/`, `_ronda15_enviada_cliente_01-10/`, `_ronda16_aprobada_logo_01-10/` y
+`_propuestas_circulo/`. Nada a medias.
+
+**Qué sigue:** nada de esta campaña salvo que el cliente vuelva a devolverla. Noviembre y LinkedIn 26/10
+siguen esperando el aviso de Carlos y Scar.
+
+**Abierto:**
+1. Los 2 comentarios de Carlos de las 15:29 (cambio de texto + logo) siguen **sin resolver** en el Sheet:
+   el token del estudio responde como Valeria Traverso, así que los cierra Paulina.
+2. El círculo «+ DE 50 PRODUCTOS» **no está en el brief**: llegó por Paulina. Si Carlos actualiza la celda,
+   comparar el texto.
+3. Las 4 griferías nuevas vienen de packshots de 640 px, ampliados 1,23–1,33×. Si el proveedor manda las
+   fichas en alta, se cambian en `recortes/`.
+4. El logo Piazza de la ficha trae la franja blanca de su banderita, que casi se pierde sobre el mármol
+   claro. Nadie lo comentó.
+
 ## 2026-10-01 — Paulina Bustamante · corrección del cliente a la ARIEL A4 (foto del exhibidor)
 
 **Qué se hizo:** [CLICK] El cliente pidió, vía Carlos, que en la zona de la promo del exhibidor de la

@@ -519,7 +519,90 @@ def bloque_exhibidor(lienzo):
 
 
 # ---------------------------------------------------------------- pieza
-def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True, foto_exhibidor=False):
+# Fila de la iconografía con el logo Piazza (01-10 tarde)
+LOGO_ANCHO, LOGO_X = 500, 140
+FILETE_X = 735
+ICO_CX = (1000, 1540, 2110)
+
+
+# Cliente (01-10, vía Paulina): un círculo con «+ de 50 productos». Paulina: en la zona de las
+# llaves curvas, a la derecha; las dos llaves se corren a la izquierda; círculo rojo EBEMA con
+# letra blanca, «más de 50» y en la segunda línea «productos».
+CUB_CX_CIRCULO = (570, 1340)
+SELLO_C, SELLO_D = (2075, 2760), 580
+
+
+def _trazo(f, ch):
+    """Grosor del asta vertical de un glifo (px), medido a media altura."""
+    im = Image.new("L", (f.size * 2, f.size * 2), 0)
+    ImageDraw.Draw(im).text((f.size // 2, int(f.size * 1.5)), ch, font=f, fill=255, anchor="ls")
+    a = np.array(im) > 128
+    ys = np.where(a.any(1))[0]
+    return int(a[(ys.min() + ys.max()) // 2].sum())
+
+
+def sello_productos(lienzo):
+    """Círculo rojo con filete blanco (el del botón): «+ DE 50 / PRODUCTOS».
+    Paulina, 01-10: el «+ DE 50» se veía «una cruz pequeña, un DE grande y un 50 flaco»:
+    las tres partes van al mismo grosor. La cifra sigue en Helvetica Bold (R-02), engrosada
+    hasta el asta de la Raleway 800, y el «+» se dibuja con esa misma asta, más grande."""
+    (cx, cy), D = SELLO_C, SELLO_D
+    S = 4
+    disco = Image.new("L", (D * S, D * S), 0)
+    ImageDraw.Draw(disco).ellipse([0, 0, D * S - 1, D * S - 1], fill=255)
+    disco = disco.resize((D, D), Image.LANCZOS)
+    x0, y0 = round(cx - D / 2), round(cy - D / 2)
+    sombra(lienzo, disco, (x0, y0), 8, 14, 16, 0.42)
+    capa = Image.new("RGBA", (D, D), ROJO + (255,)); capa.putalpha(disco)
+    lienzo.alpha_composite(capa, (x0, y0))
+    ar = Image.new("L", (D * S, D * S), 0)
+    ImageDraw.Draw(ar).ellipse([22 * S, 22 * S, (D - 22) * S, (D - 22) * S], outline=255, width=6 * S)
+    ar = ar.resize((D, D), Image.LANCZOS)
+    capa = Image.new("RGBA", (D, D), (255, 255, 255, 255)); capa.putalpha(ar)
+    lienzo.alpha_composite(capa, (x0, y0))
+    d = ImageDraw.Draw(lienzo)
+    BL = (255, 255, 255)
+    ancho_txt = D - 170
+
+    def linea1(size):
+        f = raleway(size, 800)
+        cap = f.getbbox("E")[3] - f.getbbox("E")[1]
+        asta = _trazo(f, "I")
+        fn = helv(size)
+        for _ in range(4):                      # la cifra, con su trazo, mide la versal
+            st = max(0, round((asta - _trazo(fn, "1")) / 2))
+            alto = fn.getbbox("5")[3] - fn.getbbox("5")[1] + 2 * st
+            fn = helv(max(10, round(fn.size * cap / alto)))
+        st = max(0, round((asta - _trazo(fn, "1")) / 2))
+        mas = round(cap * 0.74)                 # brazo del «+»
+        esp = round(cap * 0.30)
+        w_de, w_50 = f.getlength("DE"), fn.getlength("50") + 2 * st
+        return f, fn, cap, asta, st, mas, esp, w_de, w_50, mas + esp + w_de + esp + w_50
+
+    size = 220
+    while linea1(size)[-1] > ancho_txt:
+        size -= 2
+    f1, fn, cap1, asta, st, mas, esp, w_de, w_50, total = linea1(size)
+    l2 = "PRODUCTOS"
+    size2 = 200
+    while raleway(size2, 800).getlength(l2) > ancho_txt:
+        size2 -= 2
+    f2 = raleway(size2, 800)
+    cap2 = f2.getbbox("E")[3] - f2.getbbox("E")[1]
+    aire = 40
+    b1 = round(cy - (cap1 + aire + cap2) / 2 + cap1 + 4)
+    x = cx - total / 2
+    my = b1 - cap1 / 2                          # el «+» va centrado en la altura de la versal
+    d.rectangle([x, my - asta / 2, x + mas, my + asta / 2], fill=BL)
+    d.rectangle([x + mas / 2 - asta / 2, my - mas / 2, x + mas / 2 + asta / 2, my + mas / 2], fill=BL)
+    x += mas + esp
+    d.text((x, b1), "DE", font=f1, fill=BL, anchor="ls")
+    x += w_de + esp
+    d.text((x + st, b1 - st), "50", font=fn, fill=BL, anchor="ls", stroke_width=st, stroke_fill=BL)
+    centrado(d, cx, b1 + aire + cap2, l2, f2, f2, BL)
+
+
+def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True, foto_exhibidor=False, circulo=False):
     lienzo, s, x0 = fondo()
     lienzo = lienzo.convert("RGBA")
 
@@ -554,16 +637,20 @@ def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True, foto_exhibido
         de_cubierta(lienzo, k, cx, base_rep, h_, centrar_caja=True)
     de_muro(lienzo, "PZ20002NE", 700, 1790, 690)    # tina ducha
     de_muro(lienzo, "PZ20012NE", 1820, 1745, 640)   # ducha
-    de_cubierta(lienzo, "PZ6009", 760, 3170, 860, centrar_caja=True)     # lavaplato vertical
-    de_cubierta(lienzo, "PZ20009NE", 1720, 3170, 860, centrar_caja=True) # monomando cocina negro
+    cx_cub = CUB_CX_CIRCULO if circulo else (760, 1720)
+    de_cubierta(lienzo, "PZ6009", cx_cub[0], 3170, 860, centrar_caja=True)     # lavaplato vertical
+    de_cubierta(lienzo, "PZ20009NE", cx_cub[1], 3170, 860, centrar_caja=True)  # monomando cocina negro
+    if circulo:
+        sello_productos(lienzo)
 
     d = ImageDraw.Draw(lienzo)
 
-    # 4. título en 2 líneas (ronda 1): «GRIFERÍA PIAZZA: +50 PRODUCTOS» / «PARA TU FERRETERÍA»
-    lineas = ["GRIFERÍA PIAZZA: +50 PRODUCTOS", linea2]
+    # 4. título en 2 líneas (ronda 1). Cambio de texto del cliente (Vale y Ariel, vía Carlos,
+    #    01-10 tarde): el título pasa a «GRIFERÍA PIAZZA PARA TU FERRETERÍA / OBRA», sin «+50 PRODUCTOS»
+    lineas = ["GRIFERÍA PIAZZA", linea2]
     # el cuerpo se mide SIEMPRE sobre la A4 aprobada: en la A5 «PARA TU OBRA» va
     # del mismo tamaño que «PARA TU FERRETERÍA» (Paulina, 30-09)
-    MEDIR = ["GRIFERÍA PIAZZA: +50 PRODUCTOS", "PARA TU FERRETERÍA"]
+    MEDIR = ["GRIFERÍA PIAZZA", "PARA TU FERRETERÍA"]
     ANCHO_T, CAP_MAX = 2150, 165
     medidas = []
     for t, tm in zip(lineas, MEDIR):
@@ -596,7 +683,8 @@ def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True, foto_exhibido
     medio_barra = (min(barra) + max(barra)) / 2
     caja_y0 = bases[0] - (base_a - medio_barra)
     caja_y1 = bases[-1] + 115          # ronda 1: el rojo baja más y la píldora se despega del texto
-    anchos = [ancho(t, ft, fn, -2) for t, ft, fn, _ in medidas]
+    # la caja se mide sobre el texto de la A4, igual que el cuerpo: la A5 lleva la misma caja
+    anchos = [ancho(tm, ft, fn, -2) for (_, ft, fn, _), tm in zip(medidas, MEDIR)]
     caja_x0, caja_x1 = W / 2 - max(anchos) / 2 - 55, W / 2 + max(anchos) / 2 + 55
     sc = Image.new("L", lienzo.size, 0)
     ImageDraw.Draw(sc).rectangle([caja_x0 + 8, caja_y0 + 10, caja_x1 + 8, caja_y1 + 10], fill=110)
@@ -612,13 +700,15 @@ def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True, foto_exhibido
         centrado(d, W / 2, b, t, ft, fn, (255, 255, 255), -2)
 
     # 5. píldora blanca con la bajada — ronda 1: más grande y en mayúsculas
-    bajada = "Calidad argentina con 5 años de garantía".upper()
+    # cambio de texto del cliente (01-10 tarde): antes «Calidad argentina con 5 años de garantía»
+    bajada = "APROVECHA INCREÍBLES PRECIOS DE LANZAMIENTO"
     fp, fpn = raleway(76, 600), helv(74)
     aw = ancho(bajada, fp, fpn, 0)
     py0 = caja_y1 - 62   # ronda 10: la píldora sube
     d.rectangle([W / 2 - aw / 2 - 90, py0, W / 2 + aw / 2 + 90, py0 + 142], fill=(255, 255, 255))
     centrado(d, W / 2, py0 + 99, bajada, fp, fpn, GRIS_PILDORA, 0)
-    # logo Piazza: fuera en la ronda 1 («se llena la imagen»); se decide después dónde va
+    # logo Piazza: fuera de acá en la ronda 1 («se llena la imagen»); desde el 01-10 va abajo,
+    # con la iconografía (paso 6)
 
     # 5 bis. lámina del exhibidor (01-10): antes de los íconos, para entonar el mármol limpio
     if foto_exhibidor:
@@ -631,8 +721,16 @@ def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True, foto_exhibido
              ("escudo", ["Garantía", "5 años"]),
              ("camion", ["Despacho directo", "del proveedor"])]
     fl, fln = raleway(62, 700), helv(60)
-    for i, (tipo, lab) in enumerate(items):
-        cx = W / 2 + (i - 1) * 740
+    # Cliente (Vale y Ariel, vía Carlos, 01-10 tarde): «que se añadiera el logo de Piazza abajo
+    # con la iconografía». El logo abre la fila, separado por un filete, y los 3 íconos se
+    # corren a la derecha. Es el logo de la ficha (logo_piazza.py), sin redibujar.
+    logo = Image.open(AQUI / "recortes/logo_piazza.png").convert("RGBA")
+    logo = logo.resize((LOGO_ANCHO, round(logo.height * LOGO_ANCHO / logo.width)), Image.LANCZOS)
+    medio = ICO_Y + (DI + 86 + 74) / 2 - 6            # centro óptico del bloque ícono + etiqueta
+    lienzo.alpha_composite(logo, (LOGO_X, round(medio - logo.height / 2)))
+    d = ImageDraw.Draw(lienzo)
+    d.line([(FILETE_X, ICO_Y + 6), (FILETE_X, ICO_Y + DI + 86 + 74 + 4)], fill=(150, 152, 156), width=4)
+    for (tipo, lab), cx in zip(items, ICO_CX):
         ic = icono(tipo, DI)
         sa = Image.new("L", lienzo.size, 0)
         ImageDraw.Draw(sa).ellipse([cx - DI / 2 + 4, ICO_Y + 10, cx + DI / 2 + 4, ICO_Y + DI + 10], fill=120)
@@ -681,6 +779,6 @@ def componer(salida, linea2="PARA TU FERRETERÍA", exhibidor=True, foto_exhibido
 
 if __name__ == "__main__":
     # A4 — desde el 01-10 lleva la lámina del exhibidor en vez del sello rojo (sólo la A4)
-    componer(AQUI / "A4_piazza_catalogo_ferretero.png", foto_exhibidor=True)
+    componer(AQUI / "A4_piazza_catalogo_ferretero.png", foto_exhibidor=True, circulo=True)
     # A5 — contratista: idéntica a la A4 aprobada, sólo cambia la 2.ª línea del título
-    componer(AQUI / "A5_piazza_catalogo_contratista.png", linea2="PARA TU OBRA", exhibidor=False)
+    componer(AQUI / "A5_piazza_catalogo_contratista.png", linea2="PARA TU OBRA", exhibidor=False, circulo=True)

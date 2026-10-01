@@ -72,6 +72,47 @@ Carlos, 14:14, comentario en las celdas «Brief / Nota / imagen» de la A4 y de 
 - **Abierto:** los 2 comentarios de Carlos en el Sheet siguen sin resolver. El token del estudio responde
   como Valeria Traverso, así que no se contestó desde acá → los cierra Paulina.
 
+## Tercera corrección del cliente — 01-10-2026, 15:29 (A4 y A5) · aprobada y subida
+
+Carlos, comentario abierto en las celdas «Brief / Nota / imagen» de la A4 y de la A5:
+**«Vale y Ariel pidieron cambio de texto y que se añadiera el logo de Piazza abajo con la iconografía»**.
+En el brief el texto nuevo viene marcado en morado.
+
+- **Título:** «GRIFERÍA PIAZZA: +50 PRODUCTOS / PARA TU …» → **«GRIFERÍA PIAZZA / PARA TU FERRETERÍA»**
+  (A5: «PARA TU OBRA»). Las dos líneas quedan al mismo cuerpo (versal de 165 px); la caja roja se mide
+  sobre el texto de la A4 y es la misma en la A5.
+- **Bajada:** «CALIDAD ARGENTINA CON 5 AÑOS DE GARANTÍA» → **«APROVECHA INCREÍBLES PRECIOS DE LANZAMIENTO»**.
+- **Logo Piazza:** abre la fila de la iconografía (500 px de ancho, x 140), separado por un filete; los 3
+  íconos se corren a la derecha (centros 1000 · 1540 · 2110). Es `recortes/logo_piazza.png`, el de la
+  ficha, sin redibujar. Cierra el pendiente de R-86.
+- Comprobado: sólo cambian las filas 373–1006 (título y píldora) y 3312–3703 (fila de íconos); el resto,
+  ni un píxel, en ninguna de las dos.
+- La versión enviada al cliente en la tarde queda en `_ronda15_enviada_cliente_01-10/` (PNG + script).
+- **Aprobadas por Paulina el 01-10** («ok, déjalas en el drive») y subidas sobre los mismos fileId, md5
+  verificado contra el local: A4 `106p9uVRntP0-AdLHDMdCFb3FC_skTeIA` → `f5dd94c161c978446c8de7790f90f53a` ·
+  A5 `1k4Q7quHjnQ56Nkitv5JfRCvkBwcwOhDp` → `3ccea8cb03d279f294a23e33dfcf4103`. Las de la tarde quedan como
+  versión anterior en Drive.
+- **Abierto:** los 2 comentarios de Carlos (15:29) siguen sin resolver en el Sheet → los cierra Paulina.
+
+## Cuarta corrección del cliente — 01-10-2026 (A4 y A5) · aprobada y subida
+
+El cliente pidió, vía Paulina, **un círculo con «+ de 50 productos»**. Paulina: en la zona de las llaves
+curvas, a la derecha; las dos llaves se corren a la izquierda; círculo rojo EBEMA con letra blanca.
+
+- Se le mostraron 2 propuestas sobre la A5 (`_propuestas_circulo/`): A, liso con «MÁS DE 50»; B, con filete
+  blanco y «+ DE 50». **Eligió la B**, con una corrección: «se ve como una cruz pequeña, un DE grande y un
+  50 flaco… unifica eso».
+- `sello_productos()`: círculo de 580 px, centro (2075, 2760). El «+» se dibuja con el asta de la Raleway
+  800 y más grande; el «50» sigue en Helvetica Bold (R-02), engrosado hasta esa misma asta y a la altura de
+  la versal.
+- Llaves de la cubierta: centros 760 · 1720 → **570 · 1340** (`CUB_CX_CIRCULO`).
+- Comprobado: sólo cambian las filas 2313–3259 (cubierta), en las dos piezas.
+- La versión aprobada con el logo queda en `_ronda16_aprobada_logo_01-10/` (PNG + script).
+- **Aprobadas por Paulina el 01-10** («sube ambas al drive») y subidas sobre los mismos fileId, md5
+  verificado contra el local: A4 `106p9uVRntP0-AdLHDMdCFb3FC_skTeIA` → `59238b3fb48edc49fa2b2735920bfa52` ·
+  A5 `1k4Q7quHjnQ56Nkitv5JfRCvkBwcwOhDp` → `cdd92d56f636a7078c0206155aa85f53`. Las del logo quedan como
+  versión anterior en Drive.
+
 ## Cómo se reproduce
 
 ```bash

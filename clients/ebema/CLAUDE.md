@@ -1472,6 +1472,13 @@ se copia al píxel, más la caja roja del título, la píldora blanca y el márm
   (su píxel, empalmado con el mármol), con el cuadro rojo grande y sólo el texto de Carlos. La pieza creció
   a 2500×5530. R-87…R-90.
 
+- **Logo del proveedor y dato destacado** (01-10-2026, tarde): el logo Piazza **abre la fila de íconos**, a la
+  izquierda y separado por un filete; el dato «+ DE 50 PRODUCTOS» va en un **círculo rojo con filete blanco**
+  dentro de la escena, a la derecha, y los productos se corren para hacerle sitio. En el círculo, signo,
+  letras y cifra van al mismo grosor (la cifra en Helvetica Bold, engrosada). R-91…R-93.
+- **Correcciones del cliente:** llegan como comentario de Carlos en la celda del brief, con el texto nuevo en
+  morado. Leer los comentarios del Sheet antes de tocar la pieza.
+
 Generador y receta: `out/ebema/20260930_wsp_A4_piazza_catalogo/` (`componer.py` +
 `ENTREGA.md`), que rinde las dos piezas byte a byte.
 

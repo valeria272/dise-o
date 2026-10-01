@@ -54,11 +54,20 @@ GRUPOS = {
                   "c-20-10-4", "c-20-10-5", "c-20-10-6"],
     "V3_POSTS": ["p-09-10", "p-29-10"],
     "V3_STORIES": ["st-08-10", "st-12-10", "st-15-10", "st-22-10"],
+    # Noviembre 2026 — `Noviembre.tsx`. Un TSX sólo exporta los grupos de su mes;
+    # los que no están se omiten con aviso, así que los dos meses conviven acá.
+    "NOV_CARR_E": [f"c-09-11-{i}" for i in range(1, 6)],
+    "NOV_CARR_F": [f"c-11-11-{i}" for i in range(1, 8)],
+    "NOV_CARR_M": [f"c-30-11-{i}" for i in range(1, 7)],
+    "NOV_POSTS": ["p-17-11", "p-24-11"],
+    "NOV_STORIES": ["st-13-11", "st-20-11", "st-26-11"],
 }
 
 # Componentes que pintan texto VISIBLE. `Numero` queda fuera a propósito: "04." es
 # un ordinal de navegación del carrusel, no copy, y dispararía la regla de huérfanas.
-CON_HIJOS = ("Globo", "Pastilla", "Pildora", "Indicador", "Bajada", "Pie", "Rotulo")
+CON_HIJOS = ("Globo", "Pastilla", "Pildora", "Indicador", "Bajada", "Pie", "Rotulo",
+             # noviembre 2026
+             "Cta", "Letrero", "Tira", "Campo", "Titular", "Punto", "Capsula", "IvyIzq")
 # Props que llevan copy impreso.
 PROPS_TEXTO = ("destacado", "etiqueta", "titulo", "bajada", "pie", "label")
 

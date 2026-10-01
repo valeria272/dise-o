@@ -94,3 +94,5 @@
 - [⛔ Recortes sin halo ni cortes raros](recortes-sin-halo-ni-cortes-raros.md) — Eli 01-10: quitafondo de Magnific, limpieza suave y comparar contra la foto original; que no falte cabeza ni pelo
 - [⭐⭐⭐ Carrusel de promo QB — foto real en panorama](qb-carrusel-panorama-foto-real.md) — Eli 01-10 «okey, guárdalo»: una foto real para G1+G2, cóctel centrado, «Imagen referencial» abajo al centro
 - [⛔ Octubre: OK PARA DISEÑAR se toma](octubre-ok-para-disenar-se-toma.md) — Eli 01-10: sin preguntar; cruzar antes con Drive porque el estado de la grilla queda atrasado
+- [⭐ Tierra Calma — noviembre 2026](tierra-calma-noviembre-2026.md) — las 10 piezas entregadas el 01-10 (25 archivos) en la carpeta NOVIEMBRE; primera vuelta de Diego aplicada; Noviembre.tsx extiende OctubreV3
+- [⭐ La referencia de Diego es la maqueta](la-referencia-de-diego-es-la-maqueta.md) — feedback 01-10: la pieza se arma SOBRE el pin desde la primera pasada, bajando el carrusel completo, con paleta y tipografía de la marca

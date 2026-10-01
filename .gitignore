@@ -581,6 +581,9 @@ out/rentas/**/mail/
 # su script Y sus fondos se commitean el mismo día.
 !public/assets/tierracalma/marcos/**
 !public/assets/tierracalma/oct/**
+# Noviembre 2026: fondos, fotograma fijo y clips del reel. Sin esto la entrega no se
+# reproduce en otra máquina (memoria `el-render-vuelve-al-repo`).
+!public/assets/tierracalma/nov/**
 # PAID octubre (23-09): recortes del dron, marco 1:1 derivado, fondos de D1 y la
 # geometría medida (paid-oct.json). Los genera scripts/tc-paid-oct-prep.py.
 !public/assets/tierracalma/paid-oct/**

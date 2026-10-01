@@ -113,6 +113,19 @@ import {
   V3_POSTS,
   V3_STORIES,
 } from "./compositions/tierracalma/OctubreV3";
+import {
+  NovCarrE,
+  NovCarrF,
+  NovCarrM,
+  NovPosts,
+  NovStories,
+  NOV_CARR_E,
+  NOV_CARR_F,
+  NOV_CARR_M,
+  NOV_POSTS,
+  NOV_STORIES,
+} from "./compositions/tierracalma/Noviembre";
+import {NovReelTerreno, NovReelDia, NOV_REEL_D_DURATION, NOV_REEL_I_DURATION} from "./compositions/tierracalma/NoviembreVideo";
 import {PaidOct1x1, PaidOct4x5, PaidOctD1_9x16, PaidOctD1_4x5, PAID_OCT_1x1, PAID_OCT_4x5} from "./compositions/tierracalma/PaidOctubre";
 import {HistoriaPrimavera, HistoriaPaso, HistoriaEpoca, HISTORIA_DURATION} from "./compositions/tierracalma/HistoriasAnimadas";
 import {PruebaPosts4x5, PruebaHistoria, PruebaReel, PRUEBA_POSTS, PRUEBA_HISTORIA_ANIM_DURATION, PRUEBA_REEL_DURATION} from "./compositions/tierracalma/PruebaCarlos";
@@ -786,6 +799,14 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="TCV3CarrE" component={V3CarrE} durationInFrames={V3_CARR_E.length} fps={30} width={1080} height={1350} />
         <Composition id="TCV3CarrK" component={V3CarrK} durationInFrames={V3_CARR_K.length} fps={30} width={1080} height={1350} />
         <Composition id="TCV3Posts" component={V3Posts} durationInFrames={V3_POSTS.length} fps={30} width={1080} height={1350} />
+        {/* NOVIEMBRE 2026 — grilla de Carlos (propuesta 25-09). Extiende el sistema de OctubreV3. */}
+        <Composition id="TCNovReelTerreno" component={NovReelTerreno} durationInFrames={NOV_REEL_D_DURATION} fps={30} width={1080} height={1920} />
+        <Composition id="TCNovReelDia" component={NovReelDia} durationInFrames={NOV_REEL_I_DURATION} fps={30} width={1080} height={1920} />
+        <Composition id="TCNovCarrE" component={NovCarrE} durationInFrames={NOV_CARR_E.length} fps={30} width={1080} height={1350} />
+        <Composition id="TCNovCarrF" component={NovCarrF} durationInFrames={NOV_CARR_F.length} fps={30} width={1080} height={1350} />
+        <Composition id="TCNovCarrM" component={NovCarrM} durationInFrames={NOV_CARR_M.length} fps={30} width={1080} height={1350} />
+        <Composition id="TCNovPosts" component={NovPosts} durationInFrames={NOV_POSTS.length} fps={30} width={1080} height={1350} />
+        <Composition id="TCNovStories" component={NovStories} durationInFrames={NOV_STORIES.length} fps={30} width={1080} height={1920} />
         {/* PAID OCTUBRE 2026 — campaña WhatsApp del 01-oct (brief de Ignacio) */}
         <Composition id="TCPaidOct1x1" component={PaidOct1x1} durationInFrames={PAID_OCT_1x1.length} fps={30} width={1080} height={1080} />
         <Composition id="TCPaidOct4x5" component={PaidOct4x5} durationInFrames={PAID_OCT_4x5.length} fps={30} width={1080} height={1350} />

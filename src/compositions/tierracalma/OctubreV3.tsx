@@ -2122,3 +2122,17 @@ export const V3CarrE: React.FC = () => <Serie piezas={V3_CARR_E} />;
 export const V3CarrK: React.FC = () => <Serie piezas={V3_CARR_K} />;
 export const V3Posts: React.FC = () => <Serie piezas={V3_POSTS} />;
 export const V3Stories: React.FC = () => <Serie piezas={V3_STORIES} />;
+
+// =============================================================================
+// El sistema, exportado. Noviembre 2026 (`Noviembre.tsx`) EXTIENDE estas
+// primitivas en vez de copiarlas: una regla corregida acá —la escala, el globo,
+// el nombre que no se parte— vale para los dos meses sin tocar dos archivos.
+// Exportar no cambia un píxel de octubre.
+// =============================================================================
+export {
+  POST, STORY, CARR, SANS, SERIF, IVY, MARCO,
+  Lienzo, Foto, Degradado, Marco, MarcoTenido, MarcoTramos, Cuerpo, Modulado, Aire,
+  IPin, IWsp, ICheck, Pildora, Globo, Pastilla, Cabecera, Indicador, Serie,
+  cuerpoSans, sinPartir,
+};
+export type {Tramo};

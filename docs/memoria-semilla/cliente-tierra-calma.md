@@ -1,6 +1,6 @@
 ---
 name: cliente-tierra-calma
-description: "TIERRA-CALMA — cerebro del cliente: 55 reglas firmes, última cosecha 2026-10-01. Generado desde clients/tierra-calma/APRENDIZAJES.md; leerlo antes de diseñar para tierra-calma"
+description: "TIERRA-CALMA — cerebro del cliente: 63 reglas firmes, última cosecha 2026-10-01. Generado desde clients/tierra-calma/APRENDIZAJES.md; leerlo antes de diseñar para tierra-calma"
 metadata:
   type: project
 ---
@@ -20,6 +20,8 @@ Criterio: **Diego Aguilar** · Aprueba: **Fran (proyecto) · Blanca (comercial)*
 - **R-07** · Tuteo: «pásalo / pásala», nunca «pasalo»; los briefs de Ignacio traen voseo y se corrige siempre — _Diego, 23-09 (`sin-voseo`); se publicó «alcance» en sept; B4/D1 oct_ · ✔×3
 - **R-34** · Zonas seguras: story 250 arriba / 340 abajo; en PAID nada a menos de **70 px del filete** (se achica el elemento, no el margen) — _compuerta 23-09 `st-12-10`; Diego 24-09 PAID; 25-09 la compuerta atajó el titular subido a la fila 225_ · ✔×3
 - **R-42** · Antes de entregar se corre la compuerta (`textos-tierracalma.py` + `qa/motor.py --marca tierra-calma`); si se toca el QA, se corre de nuevo sobre todas las piezas — _manual §4 septies, 23-09; bitácora 24-09; 25-09 atajó DOS bloqueantes (zona segura y foto estirada)_ · ✔×3
+- **R-56** ⭐ · **La referencia que elige Diego manda sobre la interpretación propia del visual.** Si la grilla o Diego traen un pin, la pieza se arma SOBRE ese pin en la primera pasada; resolverla «con el sistema» y dejar la referencia como inspiración cuesta rehacerla entera — _Diego, 01-10: mandó rehacer `c-11-11`, `c-30-11` y la portada de `c-09-11`, las tres con la misma instrucción («básate en esta referencia…», «ocupa este carrusel de referencia…», «déjala como esta referencia»); la del 30-11 y la del 09-11 eran los MISMOS pines que ya traía la grilla_ · ✔×3
+- **R-58** · De la referencia se calca la **estructura, incluida la alineación**; el color y la tipografía siguen siendo los de la marca (R-49). La traducción que quedó hecha: su acento (naranjo, amarillo iOS, rojo, turquesa) → **arena `#C9B99A` y café `#6C473D`**; su sans negra para destacar → **IvyOra versales**; su marco o su firma → **el marco bloqueado de Tierra Calma**, teñido si el campo es claro (R-47) — _Diego, 01-10: «…pero dale con la estética de Tierra Calma», «manteniendo la estética de Tierra Calma»_ · ✔×3
 - **R-03** ⭐ · Sólo se publican datos de la lista blanca (~5.000 m², desde UF 2.500, 30 min de Santiago, 15 min del peaje, canchas, colegios/súper/bancos, electricidad subterránea, cierre perimetral, máx. 2 casas, Ruta 78 + Camino a Melipilla); lo demás, OK escrito de Fran o Blanca — _brief sept; propuesta de temas oct de Carlos, 08-09_ · ✔×2
 - **R-04** · Prohibido sin validar: m² exactos, factibilidad de servicios, plusvalía numérica («2,8 % de rentabilidad»), cabañas/turismo (el reglamento limita a 2 casas) y otros condominios — _manual §2; alertas de la grilla sept, 21-08_ · ✔×2
 - **R-06** · «Tierra Calma» en dos palabras y **nunca partido entre líneas**; tampoco «Padre Hurtado», «UF 2.500» ni «5.000 m²» — _Diego, 23-09 (grafía) y 24-09 reel `r-01-10` («siempre»), `p-29-10`_ · ✔×2
@@ -30,8 +32,6 @@ Criterio: **Diego Aguilar** · Aprueba: **Fran (proyecto) · Blanca (comercial)*
 - **R-17** · El carrusel es un solo objeto: el filete se desplaza entre slides y se juzga montado en tira — _lenguaje de Carlos jul/ago; tira verificada 14-09_ · ✔×2
 - **R-18** · Recuadro = **globo translúcido oscuro** (~0,55), derecho, centrado, ajustado al texto (`inline-block`), destacado y cuerpo juntos (8 px), sin cruzar las hairlines — _Diego, 22–23-09, `c-06-10-2`, `st-22-10`, `st-08-10`, `c-20-10-4`_ · ✔×2
 - **R-23** · La IA respeta la **estructura real** (ladera, ripio ocre en curva, cerco de madera oscura, postes) y la vegetación se idealiza con **nativas** (espino, quillay, litre, peumo); nunca pradera europea, flores masivas ni cordillera nevada de postal — _Carlos #7, 21-08; Diego, 22-09 `st-08-10`_ · ✔×2
-- **R-24** · La imagen tiene que verse **creíble**: si hay foto real que sirve, cambio mínimo sobre ella («do not add, do not remove»); no se inventa paisaje (nada de skyline de Santiago); lo que la foto no muestra lo cuenta el texto — _Diego, 24-09, PAID 02-B y casacabe_ · ✔×2
-- **R-26** · Gente **de espaldas o de lejos**, nunca mirando a cámara; sin personas identificables — _brief (manual §5); Diego, 23-09 PAID_ · ✔×2
 
 ## Lo que ya costó rondas
 - **X-01** · Reusar los clips genéricos `tc1_mist`…`tc5_flare` (ya publicados) — _Valeria, 19-08_
@@ -53,3 +53,7 @@ Criterio: **Diego Aguilar** · Aprueba: **Fran (proyecto) · Blanca (comercial)*
 - **X-17** · El mapa **trazado**: líneas extraídas por gradiente, en cuatro vueltas —tinta proporcional, línea binaria, línea engrosada y calle maciza—. «Los trazos quedan mal y pixelados» — _Diego, 25-09, 4 rondas_
 - **X-18** · **Ampliar** una captura de mapa para llenar la ventana (873 px estirados a 1080 = 24 %) — _Diego, 25-09_
 - **X-19** · Cambiar el copy de una slide por un panel de datos que el brief no pidió — _Diego, 25-09, «no cambies el contenido, vuelve al texto de antes»_
+- **X-20** · Dibujar dentro de la pieza el sticker de pregunta de Instagram con su campo de respuesta: un botón falso — _Diego, 01-10, `st-13-11`: «eliminar»_
+- **X-21** · Portada de carrusel con una escena generada (una arboleda con una persona al fondo) habiendo dron real del lugar — _Diego, 01-10, `c-30-11-1`: «cambiar imagen»_
+- **X-22** · El carrusel editorial «de sistema»: fondo crema liso, pregunta centrada, ícono de línea en un círculo y la respuesta debajo. Se reemplazó entero por la referencia — _Diego, 01-10, `c-11-11`_
+- **X-23** · El carrusel de «foto + titular + globo 

@@ -5,6 +5,162 @@
 
 ---
 
+## 2026-10-01 (2ª vuelta) — Diego Aguilar (con Claude) · cinco pedidos y el reel que faltaba
+
+**Qué se hizo:** cinco pedidos de Diego —tres por chat con referencia de Pinterest
+y dos por comentario en Drive— y el reel del 19-11, que estaba detenido. **La grilla
+de noviembre queda entregada completa: 10 piezas, 25 archivos**, todos sobre su
+mismo `fileId` (`entrega-noviembre-2026.json`).
+
+| Pieza | Pedido, verbatim | Qué quedó |
+|---|---|---|
+| `c-11-11` (7) | *«básate en esta referencia pero dale con la estética de Tierra Calma»* | rehecho entero: portada de hojas de papel con clips, slides sobre papel cuadriculado con un objeto arriba a la derecha, titular a la izquierda con la palabra «seleccionada» y bajada con subrayado |
+| `c-30-11` (6) | *«ocupa este carrusel de referencia manteniendo la estética»* | rehecho entero: tarjeta de app de notas al centro sobre foto cálida; portada y cierre a la izquierda con píldora |
+| `c-30-11-1` | comentario en Drive: *«cambiar imagen, pon una toma dron de Tierra Calma, que se vea real pero calidad profesional»* | aérea REAL DJI_0318 con cambio mínimo |
+| `c-09-11-1` | *«la portada déjala como esta referencia»* | dos mitades (edificio · casa en parcela), la «o» sobre la costura y cada cifra bajo su foto |
+| `st-13-11` | comentario anclado en Drive: *«eliminar»* | fuera el recuadro dibujado del sticker de pregunta; el CTA pasó a la píldora |
+| `r-19-11` | *«para los colegios y cesfam usa estas imágenes, mejora la calidad»* | reel de 32,9 s; el corte 4 son las tres fotos reales mejoradas, en tarjetas con su nombre |
+
+Los dos comentarios de Drive quedaron **respondidos y resueltos**
+(`scripts/drive-responder.py`, nuevo).
+
+**QA:** 0 bloqueantes · 7 avisos declarados (tres «huérfanas» que son el destacado en
+su línea y cuatro «desenfoque parcial» que son la profundidad de campo de la foto
+detrás de la tarjeta). Fotos repetidas: máximo +0,811 sobre 1.566 pares.
+
+### Lo que se midió
+
+- **La compuerta marcó dos portadas por «texto pegado al borde» y ninguna era texto.**
+  En `c-11-11-1` era el filete del propio marco (columnas 50–57): la pieza no tiene
+  texto claro que lo diluya → excepción de ESE archivo en `reglas.yaml`, con la
+  medición. En `c-09-11-1` era el cielo casi blanco del edificio pegado al borde:
+  ahí no se exceptuó nada, se le puso un velo a la foto — que además era lo que
+  hacía falta para que el filete se viera.
+- **El extractor del QA no lee lo que viaja en un `.map()` de objetos ni dentro de
+  `{sinPartir("…")}`.** Pasó dos veces hoy (las tiras del afiche y los rótulos de la
+  portada del 09-11) y las dos veces eran las CIFRAS. Se escriben como hijos planos.
+- **La música salió clonada otra vez**, ahora contra la pista B de octubre (+0,55).
+  Re-tirada con el mismo prompt: −0,01 · +0,05 · +0,14.
+- **Créditos de Magnific por el conector, 2ª vuelta:** ~3.790 (5 clips × 450 y dos
+  pistas, 740 + 800). Total del día ≈ 6.350.
+
+**Qué sigue:** la vuelta de Diego sobre las piezas rehechas.
+
+**Abierto** (además de lo de la entrada de abajo, que sigue igual):
+
+1. ⚠️ **Qué foto es qué colegio.** Las tres fotos del `r-19-11` llegaron sin nombre:
+   se rotularon en el orden del brief — 1.ª «Colegio Brasilia», 2.ª «Colegio Francisco
+   de Aguirre», 3.ª «CESFAM Juan Pablo II». Si las dos primeras van al revés, se
+   intercambian dos cadenas en `LUGARES` (`NoviembreVideo.tsx`).
+2. La grilla sigue diciendo «Peumayen College» en la hoja de fuentes y «Colegio
+   Brasilia» en el corte: falta la confirmación de Blanca que la propia nota pide.
+3. `c-11-11` y `c-30-11` van **alineados a la izquierda**, como sus referencias, y no
+   «todo centrado al medio» (R-14). En octubre una pieza armada así se devolvió al
+   centro.
+
+---
+
+## 2026-10-01 — Diego Aguilar (con Claude) · GRILLA DE NOVIEMBRE, primera entrega
+
+**Qué se hizo:** se abrió noviembre. Grilla de Carlos
+(`Tierra_Calma_Grilla_Noviembre_2026.xlsx`, Drive `1Rb3NHTfxQucCLywklBe61QMdEGEPGLzY`,
+modificada el 30-09): **10 piezas, todas en estado «Propuesta»**, sin comentarios
+del cliente. Instantánea verbatim en [`grilla-noviembre-2026.md`](grilla-noviembre-2026.md);
+las 9 referencias de Pinterest bajadas a `referencias/nov2026/`.
+
+**Entregado en Drive** — carpeta **NOVIEMBRE** `1Ebvh3yVJ6Z2uqZ7AiE0RGTGqT9EhoXBV`,
+la que creó Diego hoy. **24 archivos, 9 de las 10 piezas** (los `fileId` quedaron en
+[`entrega-noviembre-2026.json`](entrega-noviembre-2026.json)):
+
+| Pieza | Archivos | Cómo quedó |
+|---|---|---|
+| `c-09-11` ¿Depto o parcela? | 5 | letreros de camino generados EN BLANCO, la letra la pone el código; slide 4 es un plano dibujado A ESCALA (440 m² construidos = 8,8 %); cierre con aérea real |
+| `c-11-11` Lo que nadie te cuenta | 7 | editorial sobre CREMA, como pide el brief; ícono y respuesta anclados en la misma fila en las cinco dudas |
+| `st-13-11` Pie en cuotas | 1 | vidrio de verdad sobre la terraza; el lugar del sticker de pregunta va dibujado |
+| `p-17-11` ¿Cuánto necesitas…? | 1 | afiche en el poste con cinco tiras; papel de la IA, texto del código |
+| `st-20-11` Todo esto cabe | 1 | aérea real + parcela con dos construcciones, cuatro indicadores |
+| `p-24-11` Ven a conocer | 1 | FOTO REAL del camino con cercos (`foto 13.jpg`), cambio mínimo |
+| `st-26-11` Pase de visita | 1 | ticket dibujado en código sobre aérea real |
+| `c-30-11` Antes de comprar | 6 | fotografía cálida + globo de la marca como «tarjeta» |
+| `r-04-11` Del terreno a tu casa | 1 mp4 | 26,9 s · voz de la marca · pista nueva · cierre oficial |
+
+**Dónde quedó el código:** `src/compositions/tierracalma/Noviembre.tsx` (23 estáticas)
+y `NoviembreVideo.tsx` (el reel). **Extienden octubre, no lo copian**: las primitivas
+se EXPORTARON desde `OctubreV3.tsx` (una línea al final; octubre no cambia un píxel).
+
+```bash
+python scripts/tc-nov-imagenes.py        # Seedream 5 Pro, prompts versionados
+python scripts/tc-nov-instalar.py        # deja cada fondo al tamaño exacto del lienzo
+python scripts/tc-nov-rendir.py          # rinde y nombra → out/tierracalma/nov2026/entrega/
+python scripts/tc-nov-tiras.py           # los carruseles montados en tira
+python qa/textos-tierracalma.py src/compositions/tierracalma/Noviembre.tsx \
+    --out out/tierracalma/nov2026/textos.json
+python qa/motor.py --marca tierra-calma --textos out/tierracalma/nov2026/textos.json \
+    out/tierracalma/nov2026/entrega/*.png
+python scripts/tc-parecido.py public/assets/tierracalma/nov public/assets/tierracalma/oct
+```
+
+**QA:** 0 bloqueantes · **6 avisos**, todos declarados: cuatro «huérfanas» que son el
+destacado en su propia línea (CONSTRUIR ×2, 3,97 %, $1.000.000) y dos «desenfoque
+parcial» que son la profundidad de campo real de la foto (`c-30-11-2`, `st-13-11`).
+
+### Lo que se midió, y cambió la pieza
+
+- **Una portada salió repetida de OCTUBRE.** `scripts/tc-parecido.py` (nuevo) mide
+  noviembre contra sí mismo **y contra el mes anterior**: la portada de `c-30-11`
+  dio **+0,877** contra `l-fondo` de octubre, y la segunda versión +0,873. «Cielo
+  arriba, ladera abajo» es la estructura de medio mes pasado y otro sujeto no la
+  cambia. La tercera cambia la ESTRUCTURA —el titular vive sobre la copa en sombra
+  de una arboleda— y el máximo del mes quedó en +0,798.
+- **La música salió clonada, y corta.** La primera pista dio **+0,56** de parecido de
+  arreglo contra la pista A de octubre (dos pistas distintas dan −0,09) y resolvía a
+  los 23 s, dejando el logo de cierre en silencio. Se re-tiró con el **mismo prompt**
+  a 31 s: −0,05 y +0,16, y suena hasta el segundo 28. `scripts/tc-musica-parecido.py`
+  (nuevo) deja la medición repetible.
+- **La voz no cabe en las ranuras de octubre.** Las cuatro líneas miden 144, 161, 144
+  y 84 frames; la ranura era de 140. Los clips corren al 86 % y el corte 2 —un cuadro
+  fijo— dura lo que su línea necesita. La voz no se aceleró.
+- **Kling 2.1 Pro por API falló las tres veces sin dar error.** Los clips se hicieron
+  con Kling 3.0 por el conector de Magnific, con fotograma inicial y final.
+
+**Créditos de Magnific gastados hoy por el conector:** ~2.560 (3 clips × 450, dos
+pistas 540 + 620, cuatro líneas de voz ~52). El modo ilimitado no aplica ahí.
+
+### ⛔ Lo que NO se hizo: el reel del 19-11 («¿Y si este fuera tu día a día?»)
+
+Está detenido por dos cosas que no se resuelven produciendo:
+
+1. **La grilla se contradice en los colegios.** El corte 4 dice «Colegio **Brasilia**
+   · Colegio Francisco de Aguirre»; la hoja de fuentes verificadas en Google Maps
+   dice «**Peumayen College** · Colegio Francisco de Aguirre». Y la propia nota pide
+   *«confirmar con Blanca que los colegios sean los más cercanos»*.
+2. **El corte 4 pide un «mapa ilustrado» con colegio y centro de salud.** Esta cuenta
+   ya rechazó el mapa dibujado (*«el mapa no es así realmente»*) y los dos archivos de
+   cartografía real que hay no muestran esos lugares. Hace falta una captura que los
+   contenga, o la decisión de mostrarlos sin mapa.
+
+**Qué sigue:** la vuelta de Diego sobre las 24. Después, el reel del 19-11 cuando
+estén los dos datos.
+
+**Abierto:**
+
+1. ⚠️ **Datos nuevos fuera de la lista blanca** (manual § 2), todos citados por la
+   grilla como «Ficha Técnica (BVM Propiedades)»: ROL individual, constructibilidad
+   10 %, dos pisos, portería, gasto común $60.000, entrega en 60 días, reserva
+   $1.000.000 abonable y reembolsable, pie hasta UF 800 en 24 cuotas, leasing, «todos
+   los bancos», WhatsApp +56 9 9158 6643. Falta el OK escrito de Fran o Blanca.
+2. `c-11-11` va sobre **crema** (lo pide el brief) y no en verde (R-19). ¿Queda así?
+3. Las cinco dudas de `c-11-11` son **provisorias** hasta el mapeo de Fran y Blanca.
+4. La celda de referencias trae «REF - REF 2 - REF 3» pero el xlsx guarda **un solo
+   enlace por celda**: las REF 2 y 3 no se pudieron leer. Si importan, hay que pegarlas.
+5. `st-13-11`: el sticker de pregunta nativo va ENCIMA del recuadro dibujado.
+6. El token del estudio (`drive.file`) **no ve la grilla ni la carpeta** (404): la
+   grilla se leyó por el conector de Drive y la subida funciona igual por `--carpeta`.
+7. Siguen abiertos los de octubre: OK escrito de «Rol individual» y «Acceso
+   controlado», el aviso del agua potable de septiembre, la captura de mapa.
+
+---
+
 ## 2026-09-25 — CIERRE DEFINITIVO DE LA JORNADA — Diego Aguilar
 
 > ⚠️ Hubo un primer cierre tras la ronda 13; después llegaron dos rondas más

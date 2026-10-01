@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar** · Aprueba: **Fran (proyecto) · Blanca (comercial)**
-> Última cosecha: **2026-10-01** · Cosechas: **5**
+> Última cosecha: **2026-10-01** · Cosechas: **6**
 
 ## 1. Quién es el cliente
 
@@ -28,10 +28,10 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 |---|---|
 | Quién pide / KAM | KAM **Constanza Olivares** (manual §10; ⚠️ `marca.json` dice Ámbar Gallardo). Grilla orgánica: **Carlos Figueroa** (propuesta de temas). PAID: **Ignacio Retamal** (brief xlsx en `PERFORMANCE/<Mes> 2026/`) y Sebastián Córdova |
 | Quién aprueba (cliente) | **Fran** (proyecto) y **Blanca** (comercial): los únicos que validan un dato comercial. Internamente revisa y comenta **Diego Aguilar** |
-| Por dónde llega el feedback | **Por chat, con imágenes de referencia adjuntas** (25-09: nueve rondas seguidas, ninguna por Drive) · comentarios de Diego sobre los PNG en Drive · **cambios de texto por la grilla xlsx, sin comentario** (22-09) · cliente por correo/WhatsApp vía KAM |
-| Dónde se entrega | Orgánico oct: `1lJG3Xzwh77zSCSDQ4DiPsAJK0fAqcNwF` · PAID oct: `1mJSqrR7aK7V96DQosCA1hArH7Oxr-Uqg` · septiembre del estudio: `SEPTIEMBRE/APRENDIZAJE IA — NO PUBLICAR` |
-| Ritmo | Grilla mensual. Contrato: **6 estáticos + 4 reels + 4 creativos de pauta + SAC L–V**. Octubre: 10 piezas / 18 archivos |
-| Rondas típicas | Octubre: **5 rondas y 27 comentarios, todos internos de Diego**; PAID: 6 rondas. Vuelve por tipografía, centrado, mapas e imágenes que no se parecen al lugar. Ninguna pieza de octubre aprobada aún por el cliente |
+| Por dónde llega el feedback | **Por chat, con una referencia**: adjunta (25-09, quince rondas) o como **enlace de Pinterest** (01-10, tres pedidos) — el pin puede ser un CARRUSEL y hay que bajarlo entero · **comentarios de Diego sobre los PNG en Drive**, a veces **anclados a una zona** (el `anchor` dice a qué elemento apunta) y **no siempre avisados**: hay que listar la carpeta completa en cada vuelta (01-10: avisó uno y había dos) · cambios de texto por la grilla xlsx, sin comentario (22-09) · cliente por correo/WhatsApp vía KAM |
+| Dónde se entrega | **Orgánico nov: `1Ebvh3yVJ6Z2uqZ7AiE0RGTGqT9EhoXBV`** (carpeta NOVIEMBRE de Diego; fileIds en `entrega-noviembre-2026.json`) · Orgánico oct: `1lJG3Xzwh77zSCSDQ4DiPsAJK0fAqcNwF` · PAID oct: `1mJSqrR7aK7V96DQosCA1hArH7Oxr-Uqg` · septiembre del estudio: `SEPTIEMBRE/APRENDIZAJE IA — NO PUBLICAR` |
+| Ritmo | Grilla mensual. Contrato: **6 estáticos + 4 reels + 4 creativos de pauta + SAC L–V**. Octubre: 10 piezas / 18 archivos. **Noviembre: 10 piezas / 25 archivos** (3 carruseles, 2 posts, 3 stories, 2 reels), entregadas el 01-10 sobre una grilla que seguía en «Propuesta» |
+| Rondas típicas | Octubre: **5 rondas y 27 comentarios, todos internos de Diego**; PAID: 6 rondas. Vuelve por tipografía, centrado, mapas e imágenes que no se parecen al lugar. **Noviembre, 1ª vuelta (01-10): 5 pedidos el mismo día de la entrega — 3 piezas rehechas sobre una referencia, 1 imagen cambiada por dron real, 1 elemento eliminado.** Ninguna pieza aprobada aún por el cliente |
 
 ## 3. Identidad en corto
 
@@ -105,6 +105,15 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - **R-55** · La foto de la polaroid es **aérea REAL del rodaje del 07-08**, gradada con la receta de `tc-foto-dron-story.py` (el material es HLG y sale lavado) — _Diego, 25-09_ · ✔×1
 - **R-51** · Cada palabra del visual del brief es **una instrucción, no un adjetivo**: «glassmorphism» es `backdropFilter` de verdad, no un gris translúcido; «imagen sutil» es velo alto, no una foto más — _25-09_ · ✔×1
 
+- **R-56** ⭐ · **La referencia que elige Diego manda sobre la interpretación propia del visual.** Si la grilla o Diego traen un pin, la pieza se arma SOBRE ese pin en la primera pasada; resolverla «con el sistema» y dejar la referencia como inspiración cuesta rehacerla entera — _Diego, 01-10: mandó rehacer `c-11-11`, `c-30-11` y la portada de `c-09-11`, las tres con la misma instrucción («básate en esta referencia…», «ocupa este carrusel de referencia…», «déjala como esta referencia»); la del 30-11 y la del 09-11 eran los MISMOS pines que ya traía la grilla_ · ✔×3
+- **R-57** · **Un pin de carrusel se baja ENTERO** —portada, slides del medio y cierre— antes de diseñar. El `og:image` del enlace trae una sola slide; las demás salen del HTML del pin (`i.pinimg.com/1200x/…`). Calcar sólo la que se ve es calcar la mitad — _01-10: `c-30-11` se había hecho mirando una slide de seis; `c-11-11` traía siete_ · ✔×2
+- **R-58** · De la referencia se calca la **estructura, incluida la alineación**; el color y la tipografía siguen siendo los de la marca (R-49). La traducción que quedó hecha: su acento (naranjo, amarillo iOS, rojo, turquesa) → **arena `#C9B99A` y café `#6C473D`**; su sans negra para destacar → **IvyOra versales**; su marco o su firma → **el marco bloqueado de Tierra Calma**, teñido si el campo es claro (R-47) — _Diego, 01-10: «…pero dale con la estética de Tierra Calma», «manteniendo la estética de Tierra Calma»_ · ✔×3
+- **R-59** · **Lo que la plataforma pone, no se dibuja.** El sticker de pregunta (y cualquier sticker nativo) lo pone la CM al publicar: la pieza le deja la franja libre y el llamado va en la píldora del marco — _Diego, 01-10, comentario anclado en `st-13-11`: «eliminar»_ · ✔×1
+- **R-60** · La **portada** de un carrusel va con **dron real de Tierra Calma**, «que se vea real pero calidad profesional»: aérea del rodaje del 07-08 con cambio mínimo (sin bruma, luz limpia, nada agregado), no una escena generada — _Diego, 01-10, comentario en `c-30-11-1`; mismo criterio que `st-12-10` y la polaroid (E-01, R-55)_ · ✔×1
+- **R-61** · Un **lugar real del sector** (colegio, CESFAM) se muestra con **su foto real, mejorada**: misma fachada, más nitidez, cielo limpio, y fuera cables, autos y personas (R-26). No va en un mapa ni en una escena inventada — _Diego, 01-10, `r-19-11`: «para los colegios y cesfam usa estas imágenes, mejora la calidad de las imágenes»_ · ✔×1
+- **R-62** · **Un comentario de Drive se lee con su ancla, se aplica, se responde y se resuelve.** Una palabra suelta («eliminar») sólo se entiende mirando a qué zona apunta el `anchor`; y un comentario aplicado que queda abierto hace creer que falta — _01-10, `st-13-11` y `c-30-11-1`; `scripts/drive-comentarios.py --json` + `scripts/drive-responder.py`_ · ✔×2
+- **R-63** · El **dato y la cifra se escriben donde el QA los lea**: como hijo plano de un componente de texto. Dentro de un `.map()` de objetos o de `{sinPartir("…")}` el extractor no los ve y la compuerta da la pieza por limpia sin haber leído justo los números — _01-10, dos veces: las tiras de `p-17-11` y los rótulos de `c-09-11-1`_ · ✔×2
+
 ## 5. Excepciones
 
 - **E-01** · El dron SÍ va en estáticos si se gradea y el texto va en el cielo (lenguaje de Carlos) — _Valeria, 21-08_; y `st-12-10` lleva aérea real — _Diego, 24-09_
@@ -118,6 +127,10 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - **E-09** · `c-20-10-2` y `-3` quedan fuera del check de desenfoque parcial (son gráficas con velo, no fotos) — _`reglas.yaml`, 23-09_
 - **E-10** · `st-22-10` va sobre **campo verde macizo con la foto muy velada debajo**, no con fotografía a sangre: es el calco de la referencia de app que pidió Diego, y así cumple igual el «imagen sutil» del brief — _Diego, 25-09_
 - **E-11** · Las pestañas del pie del mockup van **sin rótulo**, y las filas de la pantalla son **barras**: nombrarlas sería inventar secciones de una app que no existe — _25-09_
+- **E-12** · `c-11-11` y `c-30-11` van **alineados a la izquierda**, como sus referencias, y no «todo centrado al medio» (R-14). ⚠️ Excepción PROVISORIA: en octubre una pieza armada así (`st-12-10`) se devolvió al centro; Diego todavía no vio estas dos — _01-10_
+- **E-13** · En `c-11-11` el destacado va **dentro de una caja de «selección»** (arena con dos tiradores café) y la bajada lleva un **tramo subrayado**; en `c-30-11` el dato va subrayado dentro de una **tarjeta de app de notas**. Son recursos de esas dos referencias: no pasan a otras piezas sin que Diego los pida — _01-10_
+- **E-14** · `c-11-11` va sobre **papel crema cuadriculado** y no en el verde de R-19: lo pide el brief («fondo crema») y es el campo de la referencia — _grilla de noviembre; Diego, 01-10_
+- **E-15** · El reel `r-04-11` lleva el texto **arriba** y no al centro: el centro del cuadro es la parcela (R-14, se acota la banda). Y sus cortes no duran 140 frames: la voz de la marca mide 144–161 por línea — _01-10_
 
 ## 6. Lo que se aprueba a la primera
 
@@ -148,6 +161,12 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - **X-18** · **Ampliar** una captura de mapa para llenar la ventana (873 px estirados a 1080 = 24 %) — _Diego, 25-09_
 - **X-19** · Cambiar el copy de una slide por un panel de datos que el brief no pidió — _Diego, 25-09, «no cambies el contenido, vuelve al texto de antes»_
 
+- **X-20** · Dibujar dentro de la pieza el sticker de pregunta de Instagram con su campo de respuesta: un botón falso — _Diego, 01-10, `st-13-11`: «eliminar»_
+- **X-21** · Portada de carrusel con una escena generada (una arboleda con una persona al fondo) habiendo dron real del lugar — _Diego, 01-10, `c-30-11-1`: «cambiar imagen»_
+- **X-22** · El carrusel editorial «de sistema»: fondo crema liso, pregunta centrada, ícono de línea en un círculo y la respuesta debajo. Se reemplazó entero por la referencia — _Diego, 01-10, `c-11-11`_
+- **X-23** · El carrusel de «foto + titular + globo translúcido» cuando la referencia era otra cosa (una tarjeta de app de notas) — _Diego, 01-10, `c-30-11`_
+- **X-24** · La portada del letrero de camino con dos flechas, aunque el visual del brief la describía así: la referencia del brief era «uno contra otro» y ésa fue la que valió — _Diego, 01-10, `c-09-11-1`_
+
 ## 8. Preguntas abiertas
 
 - **OK escrito de Fran o Blanca** para «Rol individual» y «Acceso controlado», publicados en tres piezas de octubre con el OK verbal de Diego (22-09). → KAM.
@@ -163,8 +182,28 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - ⭐ **Captura de mapa a MÁS RESOLUCIÓN**, y que traiga el pin del proyecto **y** el contorno de la comuna a la vez. Hoy ningún archivo tiene los dos, y la letra de ambos mide 11 px: es el techo de todas estas vueltas. → Carlos / Diego.
 - ¿Los **tramos de la barra de avance** tienen que nombrarse? Haría falta el proceso comercial por escrito; hoy el avance se sugiere sólo con gráfica. → Diego / Fran.
 - ¿Está confirmado el **«Futuro Metrotren Santiago–Melipilla»**? Venía dibujado en una referencia de la marca y se dejó fuera por no estar en la lista blanca. → Fran / Blanca.
+- ⚠️ **Qué foto es qué colegio** en `r-19-11`: llegaron sin nombre y se rotularon en el orden del brief (1.ª «Colegio Brasilia», 2.ª «Colegio Francisco de Aguirre»). → Diego.
+- La grilla de noviembre nombra «**Peumayen College**» en la hoja de fuentes y «**Colegio Brasilia**» en el corte 4, y pide confirmar los colegios más cercanos. → Blanca, vía KAM.
+- **OK escrito** para los datos de la Ficha Técnica (BVM) que usa noviembre y no están en la lista blanca: ROL individual, 10 % construible, dos pisos, portería, gasto común $60.000, entrega en 60 días, reserva $1.000.000 abonable y reembolsable, pie hasta UF 800 en 24 cuotas, leasing, «todos los bancos», WhatsApp +56 9 9158 6643, y los externos (Inciti 49 m² / UF 3.928 · tasa 3,97 %). → Fran / Blanca.
+- Las cinco dudas de `c-11-11` son **provisorias** hasta el mapeo de dudas reales. → Fran / Blanca.
+- ¿Los dos carruseles a la izquierda se quedan así (E-12)? → Diego.
+- Las **REF 2 y REF 3** de la grilla no se pudieron leer: el xlsx guarda un enlace por celda. → Carlos.
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 — Diego Aguilar (con Claude) · grilla de noviembre: entrega y primera vuelta de Diego
+- **Feedback de Diego, verbatim, cinco pedidos en el día de la entrega:**
+  1. `c-11-11` — *«el carrusel del 11-11 básate en esta referencia [pin 711639178673568424] pero dale con la estética de Tierra Calma»*
+  2. `r-19-11` — *«para los colegios y cefam del reels del 19 usa estas imágenes, mejora la calidad de las imágenes»* (tres fotos adjuntas)
+  3. `c-30-11` — *«para el carrusel del 30-11 ocupa este carrusel de referencia [pin 765752742937243580] manteniendo la estética de tierra calma»*
+  4. `c-09-11-1` — *«la portada del carrusel del 09-11 déjala como esta referencia [pin 318981586127902407]»*
+  5. `st-13-11` — comentario anclado en Drive: *«eliminar»* · y, sin avisar, en `c-30-11-1`: *«cambiar imagen, pon una toma dron de tierra calma, que se vea real pero calidad profesional»*
+- nuevo **R-56…R-63** · la referencia de Diego manda · el pin de carrusel se baja entero · se calca la estructura con la paleta y la tipografía de la marca · lo que la plataforma pone no se dibuja · la portada pide dron real · un lugar real va con su foto real mejorada · el comentario se lee con su ancla y se resuelve · el dato se escribe donde el QA lo lea.
+- nuevas excepciones **E-12…E-15** · nuevos rechazos **X-20…X-24**.
+- ✔ suben: **R-49** (×2: dos referencias más calcadas sin traer su color), **R-50** (×2: `p-24-11` siguió el visual del brief y no la referencia del calendario — ⚠️ pero ver el patrón de abajo), **R-20** (×5: medido también contra el mes ANTERIOR; una portada cayó con +0,877), **R-24** (×3: aéreas y acceso con cambio mínimo), **R-26** (×3), **R-27** (×3: letrero, afiche y hojas en blanco, la letra en código), **R-33** (×3: dos pistas clonadas, las dos re-tiradas con el mismo prompt), **R-41** (×5) y **R-42** (×4).
+- ⭐ **EL PATRÓN DEL DÍA.** Las tres piezas que Diego mandó rehacer eran las tres en que yo había resuelto el visual «con el sistema» —globo, cabecera, ícono— y había tratado la referencia como un tono. Dos de esas referencias **ya venían en la grilla**. En esta cuenta la referencia no es inspiración: es la maqueta. R-50 («manda el brief sobre la referencia») sigue valiendo cuando los dos se CONTRADICEN, pero no autoriza a ignorar la referencia cuando el visual es vago.
+- **Lo que se le puede dar por aprendido a la primera** (no hubo comentario sobre ellas en esta vuelta, que no es lo mismo que aprobadas): `p-17-11` (afiche), `p-24-11` (foto real del acceso), `st-20-11` (aérea con indicadores), `st-26-11` (ticket), `c-09-11` slides 2–5 y `r-04-11`.
+- ⚠️ Operativo: el token del estudio no ve la grilla ni las carpetas ajenas (404); Kling 2.1 Pro por API falla sin error y el conector de Magnific descuenta créditos (~6.350 hoy).
 
 ### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
 - sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.

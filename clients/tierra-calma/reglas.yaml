@@ -79,6 +79,24 @@ ajustes:
       min_std_banda: 12.0
     excepto_archivos: ["c-20-10-2.png", "c-20-10-3.png"]
 
+  respiro-borde:
+    porque: >-
+      La portada de `c-11-11` (noviembre 2026) lleva TODO su texto en tinta navy
+      sobre la hoja de papel, así que lo único «claro con borde» que la
+      comprobación encuentra es el FILETE del marco: `MARCO-CARRUSEL-1` cierra por
+      la izquierda en x 50–57, dentro de los 60 px. Medido: 2.277 px de tinta en
+      toda la pieza, 1.024 de ellos en el margen izquierdo, columnas 50, 52 y 57,
+      filas 169–1248 — o sea, el filete y nada más. En las demás portadas el
+      titular blanco diluye ese mismo filete bajo el tope y por eso nunca saltó.
+
+      El marco es un asset bloqueado de la marca (manual § 4 quinquies): no se
+      mueve. Y el texto de esta pieza se midió aparte: el bloque ocupa x 262–818,
+      a más de 200 px de cualquier borde.
+
+      ⚠️ La excepción es de ESTE archivo, no de la regla: una portada nueva con
+      texto claro vuelve a pasar por la comprobación completa.
+    excepto_archivos: ["c-11-11-1.png"]
+
 reglas:
 
   - id: sin-agua-potable

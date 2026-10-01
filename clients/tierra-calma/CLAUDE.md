@@ -1715,6 +1715,88 @@ contra piezas **aprobadas por el cliente** y Tierra Calma no las tiene: las 10 d
 octubre siguen «En revisión». Cuando se aprueben: `python qa/calibrar.py`.
 
 
+## 4 octies. ⭐ NOVIEMBRE 2026 — cómo se extiende el sistema a un mes nuevo
+
+Octubre dejó el sistema; noviembre es el primer mes que lo **reusa**. Lo que quedó:
+
+- **Un mes nuevo es un archivo nuevo que IMPORTA las primitivas**, no una copia.
+  `OctubreV3.tsx` las exporta al final (`Modulado`, `Globo`, `Cabecera`, `Pildora`,
+  `Marco`, `cuerpoSans`, `sinPartir`…) y `Noviembre.tsx` las usa. Una regla corregida
+  en la primitiva vale para los dos meses.
+- **El extractor del QA conoce los dos meses**: en `qa/textos-tierracalma.py` se agrega
+  el grupo del mes a `GRUPOS` y los componentes de texto nuevos a `CON_HIJOS`.
+  ⚠️ Un componente de texto que no esté ahí cae en la pasada de respaldo, y si recibe
+  el texto como `{sinPartir("…")}` **no se lee**: el texto va como hijo plano y el
+  `sinPartir` se llama adentro del componente.
+- **La foto se instala al tamaño del lienzo** (`tc-nov-instalar.py`): la fila de la foto
+  ES la fila del lienzo y todo lo medido vale tal cual.
+- **R-20 se mide, y también contra el mes anterior** (`scripts/tc-parecido.py`). Una
+  portada con «cielo arriba, ladera abajo» da > 0,85 contra medio octubre aunque el
+  sujeto sea otro: lo que hay que cambiar es la **estructura** del cuadro.
+- **Objeto en blanco + letra en código** (R-27) ya tiene tres usos: el post-it, el
+  letrero de camino y el afiche con tiras. El centro y la inclinación de cada
+  superficie se miden por píxel sobre el JPG instalado y quedan en el comentario.
+- **En carrusel, lo que se repite se ancla** (R-15): en `c-11-11` el ícono y la
+  respuesta caen en la misma fila en las cinco slides (`RESP_Y`).
+- **Reel:** la voz de la marca es lenta; **se mide antes de fijar la duración de los
+  cortes**, y si no cabe se alarga el corte, no se acelera la voz. La pista se mide con
+  `scripts/tc-musica-parecido.py` (largo real y parecido de arreglo) antes de instalarla.
+- **Kling con fotograma inicial y final** encadena planos sin salto. Por API sólo lo
+  acepta 2.1 Pro (y el 01-10 falló sin error); por el conector lo acepta 3.0.
+
+### ⭐ Lo que enseñó la primera vuelta de Diego (01-10-2026) — leer ANTES de diseñar un mes
+
+El mismo día de la entrega Diego mandó rehacer tres piezas, cambió una imagen y
+eliminó un elemento. Lo que quedó, en orden de cuánto ahorra:
+
+1. **La referencia es la maqueta, no la inspiración.** Las tres piezas rehechas
+   (`c-11-11`, `c-30-11`, portada de `c-09-11`) eran las que se habían resuelto con el
+   lenguaje de octubre —globo, cabecera, ícono— dejando la referencia de lado. Dos
+   de esas referencias **ya estaban en la grilla**. Antes de maquetar una pieza:
+   abrir su REF, y armar la pieza sobre ella.
+2. **Un pin de carrusel se baja completo.** El enlace muestra una slide; el carrusel
+   tiene seis o siete. Portada, slides del medio y cierre tienen gramáticas
+   distintas y hay que calcar las tres.
+   ```bash
+   curl -sL -A "<user-agent de navegador>" https://cl.pinterest.com/pin/<id>/ \
+     | grep -o 'https://i.pinimg.com/1200x/[a-f0-9/]*\.jpg' | sort -u
+   ```
+3. **Calcar ≠ copiar el color.** Estructura y alineación, de la referencia; paleta y
+   tipografía, de la marca. La tabla de traducción que ya se usó tres veces:
+
+   | En la referencia | En Tierra Calma |
+   |---|---|
+   | color de acento (naranjo, amarillo, rojo, turquesa) | arena `#C9B99A` y café `#6C473D` |
+   | sans negra para destacar | **IvyOra versales** |
+   | caja de color detrás de una palabra | caja de arena al 52 % con IvyOra adentro |
+   | su logo, su usuario, su marco | el **marco bloqueado**; la firma «Tierra Calma · Padre Hurtado» |
+   | fondo blanco o gris | crema `#F3EEE3` — y entonces el marco va teñido en navy |
+   | sus textos | ninguno: el copy es el de la grilla, verbatim |
+
+4. **Lo que pone la plataforma no se dibuja.** Stickers de pregunta, de enlace o de
+   encuesta: la pieza les deja el lugar libre.
+5. **Portada = dron real.** «Que se vea real pero calidad profesional»: una aérea del
+   rodaje del 07-08, recortada al formato ANTES de mandarla a Seedream y con el
+   prompt de cambio mínimo (`MINIMO` en `tc-nov-imagenes.py`).
+6. **Un lugar real se muestra con su foto real mejorada**, no en un mapa: misma
+   fachada, más nitidez, sin cables, autos ni personas.
+7. **Los comentarios de Drive se listan TODOS en cada vuelta** —Diego avisó uno y
+   había dos— y se leen con su ancla:
+   ```bash
+   python scripts/drive-comentarios.py <carpeta> --json salida.json   # trae el `anchor`
+   python scripts/drive-responder.py <fileId> <commentId> "Aplicado: …"  # responde y resuelve
+   ```
+   El ancla es `[x0, y0, x1, y1]` en fracción de la pieza: multiplicada por el ancho
+   y el alto dice sobre qué elemento se escribió el comentario.
+
+⚠️ **Dos cosas que siguen abiertas con Diego:** los dos carruseles rehechos van
+alineados a la izquierda como sus referencias (en octubre una pieza así volvió al
+centro), y falta saber qué foto es qué colegio en el reel del 19-11.
+
+Estado y pendientes del mes: la entrada del 01-10 de la bitácora.
+
+---
+
 ## 5. Reglas de diseño (del brief, innegociables)
 
 - **Zona segura 9:16:** 14% libre arriba y abajo. Nada de texto en el 10% inferior.

@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-10-01** · Cosechas: **43**
+> Última cosecha: **2026-10-01** · Cosechas: **44**
 
 ## 1. Quién es el cliente
 
@@ -383,6 +383,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 ## 8. Preguntas abiertas
 
+- [BW] **Ronda pendiente sobre 3 feeds entregados** (grilla, fila COMENTARIOS DISEÑO, 01-10 15:38Z, los tres en REVISAR CONTENIDO): carrusel To Go «Acá falta una slide de introducción, como lo hemos hecho anteriormente, donde vaya la infor de horarios y esas cosas. En la G2 se elimina la info de horarios y en la G4 debemos poner logo Between a la bolsa… debe ser con logo actual» · reel cumpleaños 02-10 «Agregar legales. No decir gratis, que diga Ven por tu café de regalo» · «Reúnete en Between» «Veamos opción de foto que haya sacado la scar o nannel el día del shooting?». ¿Se parte ya o se espera OK PARA DISEÑAR? ¿Dónde está el ejemplo de bolsa y la foto del shooting? Cuando se resuelva, cosechar como reglas («de regalo» en vez de «gratis»; carrusel de promos con lámina de introducción y horarios sólo ahí; bolsa To Go con logo actual) → **Eli / Nicolás** (01-10)
+- [DT] FEED col C (reel Escapada Romántica, «NOVIEMBRE») y FEED 14-10 (carrusel Hilton Honors, 5 láminas, fotos reales de la 2.ª jornada, sin IA): los dos EN REVISIÓN; no se diseñan hasta OK PARA DISEÑO, y el carrusel necesita la selección de tomas con Sebastián Serrano → **contenido** (01-10)
+
 - [DT] Pendones r9 (alta con precision v2 «photo», 119 y 124 ppp efectivos): ¿Eli confirma que no delata IA (R-116)? Si sí, R-116 se afina: una 2.ª pasada v2 sólo en la ventana visible, con tono amarrado, no «pinta». Y los PDF de imprenta se re-exportan desde el .ai nuevo sin bajar resolución → **Eli** (30-09)
 - [DT] Escapada 07-10 lámina 2: la foto real de QB muestra trucha (fondo) al frente y copas de vino; el brief dice «una entrada + dos tragos». ¿Sirve o se cambia por cócteles reales de la sesión Sunset? → **Eli / Scarlette** (30-09)
 - [DT] ST 01-10 Family Time r10 queda con dos escenas de habitación (video sin gente + familia en la cama). ¿Otra foto de cierre? → **Eli** (30-09)
@@ -435,6 +438,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 (3) — Claude con Eli · 2.º `/abrir hilton` + `/al-dia` de la tarde · sin aprendizajes nuevos
+- sin aprendizajes nuevos: la sesión no produjo ni corrigió piezas; fue apertura y lectura de grillas (15:40Z y 17:25Z). Hallazgos de estado: tres feeds de BW ya entregados (carrusel To Go, reel cumpleaños 02-10, «Reúnete en Between») recibieron comentarios en la fila COMENTARIOS DISEÑO y pasaron a REVISAR CONTENIDO — quedan verbatim en §8 y se cosechan como reglas cuando la ronda se haga y se apruebe; tres historias de BW pasaron a APROBADO (To Go en movimiento, «Paso por un café y…», Trivia) sin cambios de nuestra parte; DT ya tiene escritos el reel de Escapada y el carrusel Honors, ambos EN REVISIÓN. La ronda 10 de BW (ST 01-10 ganador) la hizo otra sesión en paralelo: su cosecha es de esa sesión.
 
 ### 2026-10-01 (2) — Claude con Eli · `/abrir Hilton` + `/al-dia` · sin aprendizajes nuevos
 - sin aprendizajes nuevos: la sesión no produjo piezas de DT ni de Between; fue apertura, lectura de grillas y después trabajo de QB (su cosecha está en `clients/qb/APRENDIZAJES.md`). Hallazgos de estado, no de criterio: DT reorganizó contenidos (carrusel Escapada a noviembre, Honors POV pasa a carrusel, orgánico 15-10 pasa a reel de cookie) y la grilla de BW cambió la fecha de seis historias y de «Reúnete en Between» sin cambiar de semana. Ningún comentario nuevo de Eli, Constanza ni del cliente sobre piezas de estas dos marcas.

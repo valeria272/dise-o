@@ -697,15 +697,15 @@ export const P18OF2010: React.FC = () => {
       <AbsoluteFill
         style={{
           background:
-            'linear-gradient(to bottom, rgba(8,8,10,0.80) 0%, rgba(8,8,10,0.74) 46%, rgba(8,8,10,0.46) 60%, rgba(8,8,10,0) 74%)',
+            'linear-gradient(to bottom, rgba(8,8,10,0.78) 0%, rgba(8,8,10,0.72) 48%, rgba(8,8,10,0.4) 58%, rgba(8,8,10,0) 70%)',
         }}
       />
       <Logo top={P18.geometria.logoYFeed} />
-      <div style={{position: 'absolute', left: 0, right: 0, top: 248, textAlign: 'center', fontFamily: P18.fuentes.titular, color: P18.colores.blanco, textShadow: SOMBRA}}>
-        <div style={{...entra(6), fontStyle: 'italic', fontWeight: 300, fontSize: 112, lineHeight: 1}}>Cumpleaños</div>
-        <div style={{...entra(14), fontWeight: 400, fontSize: 56, lineHeight: 1.2, letterSpacing: 1}}>EN PISO18</div>
+      <div style={{position: 'absolute', left: 0, right: 0, top: 232, textAlign: 'center', fontFamily: P18.fuentes.titular, color: P18.colores.blanco, textShadow: SOMBRA}}>
+        <div style={{...entra(6), fontStyle: 'italic', fontWeight: 300, fontSize: 104, lineHeight: 1}}>Cumpleaños</div>
+        <div style={{...entra(14), fontWeight: 400, fontSize: 52, lineHeight: 1.2, letterSpacing: 1}}>EN PISO18</div>
       </div>
-      <div style={{position: 'absolute', left: 212, top: 476, display: 'flex', flexDirection: 'column', gap: 20}}>
+      <div style={{position: 'absolute', left: 226, top: 428, display: 'flex', flexDirection: 'column', gap: 14}}>
         {INCLUYE_20.map(([texto, detalle], i) => {
           const desde = 34 + i * 24;
           const caja = spring({frame: f - desde, fps, config: {damping: 14, stiffness: 160}, durationInFrames: 20});
@@ -713,15 +713,15 @@ export const P18OF2010: React.FC = () => {
             <div key={texto} style={{display: 'flex', alignItems: 'flex-start', gap: 22}}>
               <div
                 style={{
-                  width: 46,
-                  height: 46,
+                  width: 42,
+                  height: 42,
                   flexShrink: 0,
                   backgroundColor: P18.colores.fucsia,
                   color: P18.colores.blanco,
                   fontFamily: P18.fuentes.titular,
                   fontWeight: 400,
-                  fontSize: 30,
-                  lineHeight: '46px',
+                  fontSize: 28,
+                  lineHeight: '42px',
                   textAlign: 'center',
                   opacity: Math.min(1, caja * 1.4),
                   transform: `scale(${0.6 + 0.4 * caja})`,
@@ -730,8 +730,8 @@ export const P18OF2010: React.FC = () => {
                 {i + 1}
               </div>
               <div style={{...entra(desde + 3, -22, 0), color: P18.colores.blanco, textShadow: SOMBRA, ...RALEWAY}}>
-                <div style={{fontWeight: 700, fontSize: 33, lineHeight: '46px'}}>{texto}</div>
-                {detalle && <div style={{fontWeight: 500, fontSize: 24, lineHeight: 1.25, marginTop: -2, opacity: 0.9}}>{detalle}</div>}
+                <div style={{fontWeight: 700, fontSize: 31, lineHeight: '42px'}}>{texto}</div>
+                {detalle && <div style={{fontWeight: 500, fontSize: 22, lineHeight: 1.2, marginTop: -2, opacity: 0.9}}>{detalle}</div>}
               </div>
             </div>
           );

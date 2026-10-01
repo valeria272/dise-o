@@ -105,7 +105,10 @@ FOTOS = {
     # buffet de referencia (no es de esta estación); sobre el ×2 de precisión no amplía.
     "s2110-newyork.jpg": (GEN / "st21-newyork.jpg", (300, 380, 1748, 1554), (2250, 2000)),
     # FEED 20-10 · cumpleaños, 1856×2304 (4:5)
-    "f2010.jpg": (GEN / "f20-cumple.jpg", None, FEED),
+    # La torta llegaba a la mitad del cuadro y la lista la tapaba: `f20-cumplex` es la misma
+    # foto EXTENDIDA hacia arriba a 9:16 (1536×2752) y el 4:5 se recorta más arriba, con la
+    # punta de las velas al 57 % del alto. Sobre el ×2 de precisión no amplía.
+    "f2010.jpg": (GEN / "f20-cumplex.jpg", (0, 590, 1536, 1920), FEED),
     "s0910.jpg": (GEN / "st09b.jpg", None, STORY),
     "s2310.jpg": (GEN / "st23.jpg", None, STORY),
     "s2710-fondo.jpg": (BASE / "deco86.jpg", (1800, 0, 2160, 3840), (1400, 2489)),

@@ -68,6 +68,7 @@ Carlos, 14:14, comentario en las celdas «Brief / Nota / imagen» de la A4 y de 
   md5 verificado contra el local: A4 `106p9uVRntP0-AdLHDMdCFb3FC_skTeIA` → `1b9649e68f3deb19233e7d36614468a9` ·
   A5 `1k4Q7quHjnQ56Nkitv5JfRCvkBwcwOhDp` → `c305594d2f0a3316e244d958c9925f0d`. Las de la mañana quedan como
   versión anterior en Drive.
+- **Enviadas al cliente el 01-10 (tarde):** a la espera de correcciones o aprobación.
 - **Abierto:** los 2 comentarios de Carlos en el Sheet siguen sin resolver. El token del estudio responde
   como Valeria Traverso, así que no se contestó desde acá → los cierra Paulina.
 

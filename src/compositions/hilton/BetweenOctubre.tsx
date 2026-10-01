@@ -1318,7 +1318,10 @@ export const FeedOct01ToGo3: React.FC = () => (
 /** 4 · CAFÉ + SÁNDWICH + DULCE — la más abundante */
 export const FeedOct01ToGo4: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: C.sombra}}>
-    <FotoFondo src={G + 'gen-fd01-n5-logo.jpg'} oscurecer={0.04} />
+    {/* Eli 01-10 (r21): «ajusta la bolsa, no se parece a la de la portada» → la MISMA bolsa de la
+        portada (vertical, asas de papel torcido paradas, punta a ~419; r22 un 10 % más grande), pegada a medida y detrás del
+        muffin (`scripts/bw-fd-01-10-bolsa-portada.py`); el resto de la foto son los píxeles de la n5 */}
+    <FotoFondo src={G + 'gen-fd01-n6-logo.jpg'} oscurecer={0.04} />
     <VelosToGo pie={false} />
     <TituloToGo caps={'Café + sándwich\n+ dulce'} />
     {/* la caja del XL rozaba el borde de la bolsa (tope ~457) → la fila sube a 300;

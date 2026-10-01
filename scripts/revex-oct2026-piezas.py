@@ -337,7 +337,17 @@ def apoyo(L, txt, y, cap=17):
 
 
 # ─────────────────────────────── armado ───────────────────────────────
+# Sólo para la STORY (QA ronda 4): el recorte del 15×15 caía sobre el vidrio de la ducha y, con
+# el zoom de «un trozo», quedaba ×7,5 y sin ninguna palmeta visible. Se recorta el muro bajo el
+# lavamanos, de la versión ×2. El feed NO cambia: la clienta lo aprobó.
+MUESTRA_STORY = {"01D": ("2x/BLANCO BRILLO 15X15 CR.jpg", (0.16, 0.68, 0.50, 0.81))}
+
+
 def muestras_de_foto():
+    for k, (f, (x0, y0, x1, y1)) in MUESTRA_STORY.items():
+        im = Image.open(os.path.join(CLI, f)).convert("RGB"); W, H = im.size
+        im.crop((round(x0 * W), round(y0 * H), round(x1 * W), round(y1 * H))).save(
+            os.path.join(PROD, f"muestra_cliente_{k}_story.png"))
     for k, (f, (x0, y0, x1, y1)) in MUESTRA_DE_FOTO.items():
         im = Image.open(os.path.join(CLI, f)).convert("RGB"); W, H = im.size
         im.crop((round(x0 * W), round(y0 * H), round(x1 * W), round(y1 * H))).save(
@@ -363,6 +373,11 @@ def pieza(k, story=False):
     # producto (zoom 0,5), para que se vea el ambiente; textos y banderola siguen a ×1,35 (R-35).
     em = 1.15 if story else e   # 1,0 dejaba la muestra tapada por la banderola (texto a ×1,35)
     zoom = 0.5 if story else 1.0
+    m0 = t.get("m", [None])[0] if t.get("m") else None
+    if story and k in MUESTRA_STORY: m0 = f"muestra_cliente_{k}_story.png"
+    # una muestra recortada de la foto de la clienta YA es un trozo: sin zoom extra (QA ronda 4:
+    # con zoom quedaban ×3–7,5 y se pixelaban)
+    if m0 and m0.startswith("muestra_cliente_"): zoom = 1.0
     fr = t.get("frase")
     cap_fr = 26 * e
     h_fr = (cap_fr + (len(fr) - 1) * cap_fr * 1.55) if fr else 0
@@ -431,14 +446,14 @@ def pieza(k, story=False):
     elif t.get("cuadrada"):
         mw = mh = 250 * em
         mx = 540 - mw / 2 - 120 * e
-        muestra(L, t["m"][0], mx, y - 40 * em, mw, mh, zoom=zoom)
+        muestra(L, m0, mx, y - 40 * em, mw, mh, zoom=zoom)
         banderola(L, t["cat"], t["tit"], None, mx + mw + 250 * e, y + 60 * em, e)
         y = y - 40 * em + mh
     else:
         # 06 no tiene foto de producto: la muestra es un recorte PROVISORIO del ambiente
         # generado (los adoquines apilados, que muestran los dos espesores). Paulina 29-09:
         # «faltó la muestra del producto».
-        archivo = t["m"][0]
+        archivo = m0
         mw, mh = ((440, 220) if archivo.startswith("PROVISORIO") else (530, 190))
         mw, mh = mw * em, mh * em
         mx = 540 - mw / 2

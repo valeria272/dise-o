@@ -925,3 +925,10 @@ Jenny Campos, por WhatsApp: *«las fotos ambientadas están todas malas»*. Mand
 foto suya sale de la lista. Antes de generar un ambiente para Revex, **pedirle a Jenny sus fotos**. Sus
 fotos traen muros blancos y ventanas pegados al borde, lo que dispara falsos positivos de zona segura y
 de respiro en `qa/motor.py`: se verifican pasando la foto sola, sin texto, por la compuerta.
+
+## QA ronda 4 (01-10): la muestra no se amplía más de lo que aguanta
+Al pedir «sólo un trozo del producto» en la story se amplió también el recorte de muestras que **ya eran
+un trozo** de la foto de la clienta: P01D quedó ×7,5 (borrosa y sin ninguna palmeta visible) y P05B ×3,6.
+**Regla:** una muestra recortada de una foto de la clienta (`muestra_cliente_*`) va sin zoom extra; antes de
+entregar, calcular la ampliación (px dibujados ÷ px de origen) y revisar a 100 % toda muestra que pase ×2,5.
+Y el recorte tiene que mostrar el **formato** del producto: un trozo de 15×15 sin junta no se lee como 15×15.

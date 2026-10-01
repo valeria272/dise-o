@@ -626,6 +626,32 @@ This project has 8 specialized skills installed. They provide deep domain knowle
 | **remotion-render** | Programmatic rendering pipelines and advanced render configuration |
 | **playwright-mcp** | Browsing the web for visual references, style inspiration, screenshots of websites |
 
+### Skills de Figma (instaladas el 01-10-2026)
+
+Sacadas de la [biblioteca de skills de Figma](https://www.figma.com/resource-library/claude-skills-for-design/):
+las oficiales de `figma/mcp-server-guide` y tres de la comunidad. Todas funcionan
+con el **conector MCP de Figma**, que cada persona tiene que autorizar en su cuenta
+de claude.ai (o con `/mcp`). Sin conector, las skills no hacen nada.
+
+| Skill | Cuándo usarla |
+|---|---|
+| **figma-use** | **Obligatoria antes de cualquier `use_figma`.** Es la base: crear, editar o leer nodos, estilos, variables y auto layout |
+| **figma-generate-design** | Armar una pieza, pantalla o landing en Figma con los componentes y variables de la marca |
+| **figma-generate-library** | Llevar el sistema de una marca (`src/brand/*.ts`, `tokens-v2.json`, `marca.json`) a variables y componentes de Figma |
+| **figma-create-new-file** | Antes de crear un archivo nuevo de Figma Design, FigJam o Slides |
+| **figma-use-motion** | Animar nodos en Figma: keyframes, easing, duración de la línea de tiempo |
+| **figma-implement-motion** | Pasar una animación hecha en Figma a código (sirve de puente hacia Remotion) |
+| **figma-shaders** | Efectos y rellenos procedurales (shaders) dentro de Figma |
+| **figma-use-slides** | Presentaciones en Figma Slides (propuestas, presentaciones comerciales) |
+| **audit-design-system** | Revisar una pieza en Figma y marcar lo que se salió del sistema: componentes sueltos, overrides locales, colores sin variable |
+| **apply-design-system** | Reconectar una pieza existente a los componentes y variables correctos |
+| **fix-design-system-finding** | Corregir un hallazgo puntual de la auditoría |
+| **sync-figma-token** | Comparar los tokens del código con las variables de Figma y reportar diferencias antes de aplicar nada |
+
+> Estas skills le enseñan a operar Figma; **no reemplazan el sistema de marcas**. El
+> brief manda el QUÉ, `clients/<marca>/` manda el CÓMO, y la compuerta sigue siendo
+> `qa/motor.py`.
+
 ### Browsing for Visual References
 
 When the user says things like:

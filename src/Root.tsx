@@ -43,6 +43,7 @@ import {TypeLab} from "./compositions/copylab/TypeLab";
 import {ReelCover} from "./compositions/copylab/ReelCover";
 import {Carrusel} from "./compositions/copylab/Carrusel";
 import {ReelSenal, REEL_SENAL_FRAMES} from "./compositions/copylab/ReelSenal";
+import {ReelFoodService, REEL_FOODSERVICE_FRAMES} from "./compositions/copylab/ReelFoodService";
 import {Goma} from "./compositions/copylab/Goma";
 import {Feed12} from "./compositions/copylab/Feed12";
 import {HeroGoma, HeroNadie01, HeroSantaGota} from "./compositions/copylab/Heroes";
@@ -1357,6 +1358,8 @@ export const RemotionRoot: React.FC = () => {
         {/* 9:16 — respeta las zonas seguras de Meta. */}
         <Composition id="CL-ReelCover" component={ReelCover} {...clStory} />
         <Composition id="CL-ReelSenal" component={ReelSenal} {...clStory} durationInFrames={REEL_SENAL_FRAMES} />
+        <Composition id="CL2-ReelFoodService" component={ReelFoodService} {...clStory} durationInFrames={REEL_FOODSERVICE_FRAMES} />
+        <Composition id="CL2-ReelFoodServicePumpIt" component={ReelFoodService} {...clStory} durationInFrames={REEL_FOODSERVICE_FRAMES} defaultProps={{conMusica: true}} />
       </Folder>
     </>
   );

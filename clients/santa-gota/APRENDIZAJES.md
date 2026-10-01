@@ -40,6 +40,7 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 - **Logo:** único original `logo-color.png` 810×510 (no hay vector); planos blanco y botella derivados.
 - **Formatos:** feed **4:5 1080×1350** (desde la semana del 14-09) · story 1080×1920 (llega a 941×1672) · TV: huincha 1920×216 alfa · virtual 775×1080 alfa · full 1920×1080 29,97 MXF.
 - **Material real:** packshots oficiales con alfa en `public/assets/santagota/producto/` · reel de la monja (actriz real) · sesión fotográfica inicial en Drive `1CTS0v8xqdHHJQxtJ7-FAfSyr_ThIpW_f`.
+- **Jornada audiovisual del 10-09** (Pipez / Felipe Rojas, correo «SantaGota | Jornada audiovisual» del 17-09): **459 JPG en bruto** en Drive `1F7cx_nO4HygXW9qwH_-RV_p3q8qenHVN` y **34 clips MP4 (8,8 GB)** en «VIDEO INTERNO SANTA GOTA» `1Keuu2fmh-olwoDpl0y_ybiADhYg6BIpC`. La selección retocada y corregida de color está prometida y no ha llegado (al 01-10). Es material real: se revisa antes de generar con IA (hallado en `/al-dia` 01-10, sin mirar aún).
 
 ## 4. Reglas firmes
 

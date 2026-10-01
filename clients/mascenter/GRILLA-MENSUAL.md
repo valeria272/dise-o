@@ -131,7 +131,13 @@ No se crea una composición genérica.
 5. **Cosechar.** Regla nueva o confirmada en `APRENDIZAJES.md`, una entrada en `BITACORA.md` y
    `scripts/memoria-cliente.py cerrar mascenter`.
 
-## 7. Lo que Diego corrigió en octubre, para no repetirlo
+### Comentarios en la grilla (Scarlette, Nicolás)
+
+Además de los comentarios de Diego en cada archivo, el equipo comenta **dentro del xlsx de la grilla**. Se leen con el
+conector de Drive (`read_file_content` con `includeComments`); no traen la celda, así que se asignan por contenido y
+hora y se confirma lo dudoso (R-95). El conector no permite responderlos: los cierra Diego.
+
+## 7. Lo que Diego y el equipo corrigieron en octubre, para no repetirlo
 
 | Se hizo así | Diego pidió | Regla |
 |---|---|---|
@@ -149,6 +155,11 @@ No se crea una composición genérica.
 | Halloween con bodegones genéricos y muchas calabazas | Las tiendas reales con decoración sutil y clientes | R-87 |
 | Titular de portada en caja naranja y «Desliza» en pastilla | Titular suelto; «Desliza» en una línea con la flecha en la esquina izquierda | R-88 |
 | Sede con un solo centro | Todos los centros donde está el local | R-89 |
+| Fondo con strip center genérico, vacío o con mesas | Strip center real (FOTOS KLAS) con flujo de clientes | R-90 |
+| Plantilla repetida 3 veces en el feed (Mercado Campesino) | Seguir la REF de la celda | R-91 |
+| Afiche vintage con cuadros naranjos | Tipografía temática, sin cuadros; no tapar el strip center | R-92 |
+| Texto apretado en cuadro blanco (story) | Texto suelto con aire | R-93 |
+| Mapa esquemático y superficie del brief (Linderos) | Mapa y datos del brochure oficial | R-94 |
 | Textos pegados al borde de cajas y pastillas | Aire interior siempre | R-65 |
 | Logo en slides intermedias de LinkedIn | Sólo en la portada y el cierre | R-64 |
 | Imágenes web en la ficha de Linderos | Los renders oficiales que mandó | R-68 |

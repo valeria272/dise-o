@@ -163,29 +163,31 @@ def mapa_esquema():
 
 
 def linderos_2():
-    pin_x, pin_y = 668, 640
-    pin = (f'<svg class="abs" style="left:{pin_x - 34}px;top:{pin_y - 88}px;width:68px;height:88px" viewBox="0 0 58 74">'
-           f'<path d="M29 72 C 29 72, 4 40, 4 27 A25 25 0 0 1 54 27 C 54 40, 29 72, 29 72Z" fill="{base.ROJO}" stroke="#fff" stroke-width="4"/>'
-           f'<circle cx="29" cy="27" r="9" fill="#fff"/></svg>')
-    etq = lambda x, y, t, bg=NAVY: (f'<div class="abs" style="left:{x}px;top:{y}px;padding:6px 16px;border-radius:17px;background:{bg};'
-                                    f'color:#fff;font-weight:700;font-size:22px;line-height:24px">{t}</div>')
+    """v2 (Scarlette, 01-10: «hay que usar el mapa que se encuentra en el brochure del proyecto»): mapa REAL de la
+    página 5 de BROCHURE_LINDEROS.pdf (render a 330 dpi, recorte cuadrado 1235–2859 × 60–1684), a sangre. El bloque de
+    texto va en una caja navy abajo a la izquierda, donde el mapa no tiene rótulos."""
+    mapa = Image.open(REF / "linderos-brochure/p05-330.png").convert("RGB").crop((1235, 60, 2859, 1684)).resize((W, H), Image.LANCZOS)
     baj = ["A metros de la Panamericana Sur,", "en un sector de alta afluencia", "vehicular, buenos accesos y", "creciente desarrollo urbano."]
-    return f"""{mapa_esquema()}
-<div class="abs" style="left:0;top:0;width:{W}px;height:430px;background:linear-gradient(180deg,rgba(238,242,244,1) 0,rgba(238,242,244,.92) 70%,rgba(238,242,244,0) 100%)"></div>
-{lineas(["Ubicación", "estratégica"], 111, tb(100.7, 47.27, 49, 'black'), 49, f"font-family:'Gotham Black';font-weight:900;font-size:47.27px;line-height:49px;color:{NAVY};text-transform:uppercase")}
-{lineas(baj, 111, tb(184.9, 32.05, 31.2, 'rnd'), 31.2, f"font-family:GothamRounded;font-weight:700;font-size:32.05px;line-height:31.2px;color:{NAVY}")}
-{pin}
-<div class="abs" style="left:{pin_x + 34}px;top:{pin_y - 80}px;padding:10px 20px;border-radius:22px;background:#fff;box-shadow:0 6px 18px rgba(17,44,58,.25);
-  display:flex;flex-direction:column;gap:2px"><span style="font-weight:700;font-size:26px;color:{AZUL}">Más Center Linderos</span><span style="font-size:20px;color:{NAVY}">Buin</span></div>
-{etq(726, 170, "Panamericana Sur · Ruta 5", AZUL)}
-{etq(120, 640, "Buin")}
-<div class="abs" style="left:111px;bottom:30px;font-size:17px;color:{NAVY};opacity:.75">Mapa referencial, sin escala.</div>"""
+    # La caja queda bajo el rótulo «Colegio San Isidro» (y≈700–751) y a la izquierda de «Carretera Panamericana Sur»
+    # (x≈620–665): 570 px de ancho, titular en una línea y la bajada en cuatro.
+    c, lh = 24, 30
+    ancho, x0 = 548, 40
+    ct = 60
+    while fnt("Gotham-Black", ct).getlength("UBICACIÓN ESTRATÉGICA") > ancho - 2 * 36:
+        ct -= 1
+    alto = 32 + ct + 14 + lh * len(baj) + 26
+    y0 = H - 40 - alto
+    assert y0 >= 770, y0
+    return f"""<img src="{uri(mapa)}" class="abs" style="left:0;top:0;width:{W}px;height:{H}px">
+<div class="abs" style="left:{x0}px;top:{y0}px;width:{ancho}px;height:{alto}px;border-radius:26px;background:{NAVY};box-shadow:0 10px 30px rgba(17,44,58,.35)"></div>
+{lineas(["Ubicación estratégica"], x0 + 36, tb(y0 + 32 + ct * 0.74, ct, ct, 'black'), ct, f"font-family:'Gotham Black';font-weight:900;font-size:{ct}px;line-height:{ct}px;color:{CELESTE};text-transform:uppercase;white-space:nowrap")}
+{lineas(baj, x0 + 36, tb(y0 + 32 + ct + 14 + 21, c, lh, 'rnd'), lh, f"font-family:GothamRounded;font-weight:700;font-size:{c}px;line-height:{lh}px;color:#fff")}"""
 
 
 def linderos_3():
     a = cubrir(abrir(PASILLO_BUIN), 506, 404, 0.45, 0.6)
     b = cubrir(abrir(ARAMCO_BUIN), 506, 404, 0.35, 0.6)
-    datos = [("local", "10", "locales comerciales"), ("auto", "77", "estacionamientos"), ("m2", "2.383 m²", "superficie total"),
+    datos = [("local", "10", "locales comerciales"), ("auto", "77", "estacionamientos"), ("m2", "2.335 m²", "superficie total"),
              ("plano", "911 m²", "superficie de locales"), ("cal", "MAY. 2027", "entrega estimada")]
     fichas = "".join(f'<div style="width:172px;text-align:center">{icono(k, 72)}<div style="margin-top:10px;font-weight:700;font-size:28px;line-height:32px">{n}</div>'
                      f'<div style="font-size:19px;line-height:23px;opacity:.95">{t}</div></div>' for k, n, t in datos)
@@ -206,8 +208,8 @@ def linderos_4():
 <div class="abs" style="left:0;top:560px;width:{W}px;height:200px;background:linear-gradient(180deg,{AZUL} 0,rgba(35,93,128,0) 100%)"></div>
 {lockup_centro(120, 330)}
 <div class="abs" style="left:80px;top:300px;width:921px;height:236px;border-radius:30px;background:{CELESTE}"></div>
-{lineas(["Seguimos desarrollando", "espacios que generan", "valor y desarrollo."], 80, tb(372.7, 65, 64, 'rnd'), 64,
-        f"font-family:GothamRounded;font-weight:700;font-size:62px;line-height:64px;color:{AZUL};text-transform:none", "center", 921)}
+{lineas(["Seguimos creando espacios", "que generan valor y", "desarrollo a la comunidad."], 80, tb(376, 56, 62, 'rnd'), 62,
+        f"font-family:GothamRounded;font-weight:700;font-size:56px;line-height:62px;color:{AZUL};text-transform:none", "center", 921)}
 <div class="ref" style="right:30px;bottom:22px">Imagen referencial</div>"""
 
 
@@ -263,7 +265,7 @@ ACTIVO = {
     4: lambda: paso("03", "Gestionar", "Administrar activamente cada activo y su propuesta comercial.",
                     abrir(FOTOS / "equipo.png"), 0.5, 0.4, ref=True),
     5: lambda: paso("04", "Operar", "Acompañar su evolución en el tiempo.",
-                    Image.open(IND / "SC Chamisero II.png").convert("RGB"), 0.5, 0.55),
+                    Image.open(FOTOS / "operar-v2.png").convert("RGB"), 0.5, 0.5),   # Nicolás Ávila 01-10: «más público o autitos, se ve muy vacío» → dron de La Serena real con flujo
     6: activo_6,
 }
 
@@ -385,11 +387,10 @@ def terreno_3():
 
 
 def terreno_4():
+    """v2 (Scarlette, 01-10: «sacar ese link, y poner "Postula tu terreno con nosotros"»)."""
     return f"""
-{lockup_centro(200, 400)}
-<div class="centro black" style="top:{tb(520, 64, 66, 'black'):.1f}px;font-size:64px;line-height:66px">Postula tu terreno en</div>
-<div class="abs" style="left:{(W - 820) / 2:.0f}px;top:568px;width:820px;height:96px;border-radius:30px;background:{CELESTE}"></div>
-<div class="centro gr" style="top:{tb(633, 50, 56, 'rnd'):.1f}px;font-weight:700;font-size:50px;line-height:56px;color:{AZUL}">{URL_TERRENOS}</div>
+{lockup_centro(250, 400)}
+<div class="centro black" style="top:{tb(590, 70, 78, 'black'):.1f}px;font-size:70px;line-height:78px">Postula tu terreno<br>con nosotros</div>
 <div class="centro gr" style="top:{tb(820, 44, 50, 'rnd'):.1f}px;font-weight:700;font-size:44px;line-height:50px;color:{CELESTE}">Grupo IFB</div>"""
 
 

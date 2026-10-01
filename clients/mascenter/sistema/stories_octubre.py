@@ -101,7 +101,7 @@ def story_antojos(con_opciones=True):
     pizza y sushi en la terraza de un strip center, sin marcas. Zona libre 1030–1310 para el sticker de ENCUESTA (lo pone
     la CM con las tres opciones del brief); las opciones van también en la gráfica, en pastillas rojas como las de
     st-12-08, para que la story se entienda sin el sticker."""
-    img = foto_9x16("E-antojos.png")
+    img = foto_9x16("st-19-10-v2.png")   # v2 (Scarlette 01-10: «que sea la imagen de alguno de nuestros strip reales»): Más Center Santa María real (FOTOS KLAS), fantasmas de pie, sin mesas
     c_t = 100 * K
     opciones = [("Starbucks", "Más Center Santa María"), ("Papa Johns", "Más Center Talca"), ("Sushi Khai", "Más Center Larraín")]
     f_o = fnt("GothamRnd-Bold", 34)
@@ -133,20 +133,20 @@ def story_gustito():
     """Localito vampiro INMERSO en la plaza de Más Center San Carlos (foto real como escena, R-53), con fondo
     desenfocado para que la IA no escriba letreros falsos (la v1 escribió «EL IISTITO», R-10). Gramática de
     st-09-08: placa roja con borde blanco y leve giro para el titular, caja blanca con texto rojo, estrellas doodle."""
-    img = foto_9x16("F-gustito.png")
+    img = foto_9x16("st-30-10-v2b.png")   # v2 (Scarlette 01-10): Más Center Las Flores real, sin mesas de consumo y con dos calabazas
     c_t = 64                               # «UN GUSTITO DE MIEDO.» mide 928 px a 78: a 64 queda en ~760, dentro de la placa de 896
     return f"""
 <img src="{base.data_uri(img)}" style="position:absolute;left:0;top:0;width:{W}px">
-<div class="velo" style="background:linear-gradient(180deg,rgba(0,0,0,.28) 0,rgba(0,0,0,0) 16%)"></div>
+<div class="velo" style="background:linear-gradient(180deg,rgba(0,0,0,.34) 0,rgba(0,0,0,.2) 30%,rgba(0,0,0,0) 42%)"></div>
 {logo()}
 <div style="position:absolute;left:92px;top:262px;width:896px;height:214px;background:{base.ROJO};border:7px solid #fff;border-radius:40px;
   transform:rotate(-2.5deg);box-shadow:0 10px 26px rgba(0,0,0,.25)"></div>
 <div class="centro" style="top:{tb(358, c_t, 76, 'black'):.1f}px;transform:rotate(-2.5deg);font-family:'Gotham Black';font-weight:900;font-size:{c_t}px;line-height:76px;text-transform:uppercase">Un día para darse<br>un gustito de miedo.</div>
-<div style="position:absolute;left:87px;top:500px;width:906px;height:236px;background:#fff;border-radius:36px;box-shadow:0 10px 26px rgba(0,0,0,.2)"></div>
-<div class="centro" style="top:{tb(574, 46, 54, 'rnd'):.1f}px;color:{base.ROJO};font-weight:400;font-size:46px;line-height:54px">Disfruta Halloween con tus panoramas<br>y antojos favoritos.</div>
-<div class="centro" style="top:{tb(690, 44, 50, 'rnd'):.1f}px;color:{base.ROJO};font-weight:700;font-size:44px;line-height:50px;text-transform:uppercase">Nos vemos en Más Center.</div>
+<div class="centro" style="top:{tb(592, 50, 62, 'rnd'):.1f}px;font-weight:500;font-size:50px;line-height:62px;text-shadow:0 2px 14px rgba(0,0,0,.35)">Disfruta Halloween con tus<br>panoramas y antojos favoritos.</div>
 {ESTRELLA.format(x=40, y=200, w=110, r=-12)}
-{ESTRELLA.format(x=930, y=440, w=96, r=14)}"""
+{ESTRELLA.format(x=930, y=440, w=96, r=14)}
+<div style="position:absolute;left:88px;top:1570px;width:903px;height:76px;border-radius:38px;background:#fff"></div>
+<div class="centro" style="top:{tb(1620.5, 36, 40, 'rnd'):.1f}px;color:{base.ROJO};font-weight:700;font-size:36px;line-height:40px;text-transform:uppercase">Nos vemos en Más Center.</div>"""
 
 
 if __name__ == "__main__":

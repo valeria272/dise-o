@@ -1,3 +1,15 @@
+## 2026-10-01 (2ª parte) — Diego Aguilar (con Claude) · comentarios de la grilla: 14 piezas corregidas
+
+**Qué se hizo:**
+- **c-08-10-1** (3 comentarios de Diego): Más Center San Carlos real al atardecer con Localito y clientes; titular en mayúsculas; «Desliza…» en pastilla naranja a la derecha con la flecha al final.
+- **c-20-10** (Scarlette): portada sin cuadros, con Spicy Rice; slide 2 con «Sábado 24 de octubre · San Carlos de Apoquindo», «25 de octubre · Chamisero II», «Desde las 10:30 hrs.» y el legal; slide 3 con «Sábado 24 de octubre · Pie Andino»; cierre con el strip center despejado.
+- **p-26-10** (Scarlette + Diego): rehecho desde la REF, titular gigante detrás del feriante, mercado en San Carlos real.
+- **st-19-10**: fantasmas frente a Más Center Santa María real. **st-30-10**: Localito en Las Flores real, sin mesas, dos calabazas, sin cuadro blanco.
+- **lk-06-10**: mapa real del brochure, 2.335 m², cierre «Seguimos creando espacios que generan valor y desarrollo a la comunidad». **lk-27-10-4**: «Postula tu terreno con nosotros», sin link. **lk-10-10-5**: dron de La Serena real con autos y gente.
+**Dónde quedó:** 14 PNG reemplazados en sitio en «10. OCTUBRE» (md5 OK); comentarios de Diego resueltos. Fotos reales en `raw/mascenter/fotos-klas/`; brochure en `raw/mascenter/octubre-2026/linderos-brochure/`.
+**Qué sigue:** OK de Scarlette y Diego; Diego cierra los comentarios de la grilla.
+**Abierto:** en c-20-10-2 la segunda fecha va como «25 de octubre» (así la escribió Scarlette; es domingo). Commit y push pendientes.
+
 ## 2026-10-01 — Diego Aguilar (con Claude) · 08-10 Halloween: tiendas reales, portada sin caja, sedes completas
 
 **Qué se hizo:** comentarios del cliente (pegados por Diego). Fotos nuevas recreadas desde material real con Halloween sutil y gente:

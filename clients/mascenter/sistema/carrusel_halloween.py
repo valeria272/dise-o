@@ -137,27 +137,36 @@ def slide_local(s):
 
 
 def portada():
-    """v2 (comentarios del cliente vía Diego, 01-10): «no me gusta cómo se ve el título en ese cuadro naranjo, lo mismo
-    con el desliza» → Diego: «dejaría el título sin destacar y el desliza y revisa… a la izquierda en una sola línea y
-    con la flecha en la esquina izquierda». «La 1 y la última slide tienen demasiadas calabazas» → la foto real de
-    Chamisero II con Localito se editó dejando sólo una calabaza y con flujo de clientes en la vereda (letreros
-    verificados a zoom: Little Caesars Pizza y Subway intactos)."""
-    img = base.foto_4x5("01-portada-v2.png", 1.0)   # sube la foto: las zapatillas de Localito quedan sobre el «Desliza»
-    cuerpo, lh = 84, 80
+    """v3 (comentarios de Diego en c-08-10-1, 01-10-2026): «cambiar la imagen del strip center» → Más Center San Carlos
+    REAL (FOTOS KLAS) al atardecer con Localito vampiro inmerso, flujo de clientes y dos calabazas; «dejar en mayúscula»
+    el titular (suelto, sin caja: comentario de Scarlette); «dejar el texto destacado en naranjo con la flecha al
+    final, dejar en el lado derecho» → «Desliza y revisa tu checklist.» en pastilla naranja de una línea, a la
+    derecha, con la flecha al final."""
+    img = base.foto_4x5("01-portada-v3.png", 0.5)
     lineas = ["Halloween", "se acerca…", "¿Ya tienes todo?"]
-    b1 = 380
-    tit = "".join(f'<div class="titular" style="left:60px;font-size:{cuerpo}px;line-height:{lh}px;'
+    F_BLK = lambda t: ImageFont.truetype(str(AQUI / "assets/fonts/Gotham-Black.ttf"), t)
+    cuerpo = 84
+    while max(F_BLK(cuerpo).getlength(l.upper()) for l in lineas) > 940:
+        cuerpo -= 1
+    lh = round(cuerpo * 0.98)
+    b1 = 360
+    tit = "".join(f'<div class="titular" style="left:60px;font-size:{cuerpo}px;line-height:{lh}px;text-transform:uppercase;'
                   f'top:{tb(b1 + lh * i, cuerpo, lh, "black"):.1f}px">{l}</div>' for i, l in enumerate(lineas))
-    d = 76
-    f_top = H - 40 - d                                       # flecha en la esquina inferior izquierda
+    txt = "Desliza y revisa tu checklist."
+    d, c = 76, 37
+    p_w = 40 * 2 + ImageFont.truetype(str(AQUI / "assets/fonts/GothamRnd-Bold.ttf"), c).getlength(txt)
+    p_h = 76
+    p_top = H - 44 - p_h
+    f_left = W - 56 - d                                       # la flecha cierra la línea, a la derecha
+    p_left = f_left - 16 - p_w
     return f"""
 <img class="foto" src="{base.data_uri(img)}">
-<div class="velo" style="background:linear-gradient(180deg,rgba(0,0,0,.5) 0,rgba(0,0,0,.34) 30%,rgba(0,0,0,0) 50%,rgba(0,0,0,0) 74%,rgba(0,0,0,.5) 100%)"></div>
-{murcielagos(((640, 360, 2.4, -8), (760, 300, 1.7, 10), (905, 250, 1.4, -4)))}
+<div class="velo" style="background:linear-gradient(180deg,rgba(0,0,0,.5) 0,rgba(0,0,0,.34) 30%,rgba(0,0,0,0) 50%,rgba(0,0,0,0) 78%,rgba(0,0,0,.35) 100%)"></div>
 <div class="logo-mc">{base.LOGO_MC}</div>
 {tit}
-<div class="flecha" style="left:56px;top:{f_top}px;width:{d}px;height:{d}px">{base.FLECHA}</div>
-<div style="position:absolute;left:{56 + d + 24}px;top:{tb(f_top + d / 2 + 13, 37, 44, 'rnd'):.1f}px;font-weight:700;font-size:37px;line-height:44px;white-space:nowrap">Desliza y revisa tu checklist.</div>"""
+<div style="position:absolute;left:{p_left:.0f}px;top:{p_top}px;width:{p_w:.0f}px;height:{p_h}px;border-radius:{p_h // 2}px;background:{NARANJA}"></div>
+<div style="position:absolute;left:{p_left + 40:.0f}px;top:{tb(p_top + p_h / 2 + 13, c, 44, 'rnd'):.1f}px;font-weight:700;font-size:{c}px;line-height:44px;white-space:nowrap">{txt}</div>
+<div class="flecha" style="left:{f_left}px;top:{p_top}px;width:{d}px;height:{d}px">{base.FLECHA}</div>"""
 
 
 def cierre():

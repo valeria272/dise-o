@@ -120,11 +120,23 @@ def cierre_08():
 
 
 def cierre_20():
-    return f"""
+    """v2 (Scarlette, 01-10: «justo el cuadro naranja tapa todo lo que es el strip center»): el titular va en el cielo
+    con la tipografía temática de la portada y la bajada baja al sendero, bajo los personajes; el strip center de la
+    ilustración queda despejado."""
+    import carrusel_panoramas_halloween as pan
+    baj = ["Guarda las fechas y prepárate para", "un Halloween en familia en Más Center."]
+    c, plh = 34, 42
+    p_w = 40 * 2 + max(RBOLD(c).getlength(l) for l in baj)
+    p_h = plh * len(baj) + 36
+    p_top = H - 48 - p_h
+    pas = "".join(f'<div class="centro" style="top:{tb(p_top + 18 + plh * i + 31, c, plh, "rnd"):.1f}px;font-weight:700;font-size:{c}px;line-height:{plh}px">{l}</div>'
+                  for i, l in enumerate(baj))
+    return f"""<style>{pan.TEMATICA}</style>
 <img class="foto" src="{foto(OCT / 'carrusel-20-10/fotos/04-cierre-v3-ext.png', 0.0)}">
-<div class="velo" style="background:linear-gradient(180deg,rgba(20,10,40,.55) 0,rgba(20,10,40,.25) 32%,rgba(0,0,0,0) 45%)"></div>
-<div class="logo-mc">{base.LOGO_MC}</div>
-{centrado(NARANJA, ["Dos panoramas", "para vivir Halloween."], ["Guarda las fechas y prepárate para", "un Halloween en familia en Más Center."], b1=320, cuerpo=62)}"""
+<div class="logo-mc" style="top:44px;left:457px;width:166px">{base.LOGO_MC}</div>
+{pan.titulo_tematico(["Dos panoramas", "para vivir Halloween."], 190, 74, 78, 12)}
+<div style="position:absolute;left:{(W - p_w) / 2:.0f}px;top:{p_top}px;width:{p_w:.0f}px;height:{p_h}px;background:{NARANJA};border-radius:30px"></div>
+{pas}"""
 
 
 def render(carpeta, nombre, cuerpo):

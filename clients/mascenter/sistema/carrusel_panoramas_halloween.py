@@ -36,6 +36,7 @@ CAL = ('<svg viewBox="0 0 40 40" style="width:{s}px;height:{s}px;flex:none;margi
        '<rect x="18" y="21" width="5" height="4" fill="#333"/><rect x="25" y="21" width="5" height="4" fill="#333"/>'
        '<rect x="11" y="27" width="5" height="4" fill="#333"/></svg>')
 CSS_EXTRA = f""".banda{{top:967px;height:{H-967}px;background:{NARANJA}}}
+.pin-ico.chico{{width:30px;height:30px;margin-top:-5px}}
 .linea{{position:absolute;left:0;width:{W}px;display:flex;align-items:center;justify-content:center;gap:8px}}"""
 
 
@@ -63,85 +64,89 @@ def circulo(logo):
             f'<img src="{uri}" style="width:{int(176 * esc)}px"></div></div>')
 
 
-def banda(titulo, bajada, fecha=None, lugar=None, direccion=None, compacto=False):
-    """Pila centrada en la banda (bajo el círculo, 1052–1300). Titular Bold (c-31-07: 52,74), bajada Book, fecha
-    con calendario y 📍 lugar en Medium. `compacto` (cuando el titular del brief ocupa dos líneas): cuerpos un punto
-    más chicos y fecha + lugar en la misma línea, como la fila «Fecha: … Horario: …» de c-31-07."""
-    tb_, tt = (44, 48) if compacto else (50, 54)
-    bj, bl = (30, 35) if compacto else (34, 39)
-    filas = [("Bold", tb_, tt, l) for l in partir(titulo, FNT("Bold", tb_), 840)]
-    filas += [("Book", bj, bl, l) for l in partir(bajada, FNT("Book", bj), 860)]
-    extra = []
-    if compacto and fecha and lugar:
-        extra.append(("fecha+lugar", 30, 40, (fecha, lugar)))
-    else:
-        if fecha:
-            extra.append(("fecha", 34, 44, fecha))
-        if lugar:
-            extra.append(("lugar", 34, 40, lugar))
-    if direccion:
-        extra.append(("dir", 28 if compacto else 30, 34 if compacto else 36, direccion))
-    alto = sum(f[2] for f in filas) + sum(e[2] for e in extra) + (10 if extra else 0) + 8
-    y = max(1052, 1150 - alto / 2)
-    partes = []
-    for i, (cara, c, lh, t) in enumerate(filas):
-        if i and cara == "Book" and filas[i - 1][0] == "Bold":
-            y += 8
-        peso = {"Bold": 700, "Book": 400}[cara]
-        partes.append(f'<div class="centro" style="top:{tb(y, c, lh, "rnd"):.1f}px;font-weight:{peso};font-size:{c}px;line-height:{lh}px">{t}</div>')
-        y += lh
-    if extra:
-        y += 10
-    for tipo, c, lh, t in extra:
+def banda(titulo, bajada, citas=(), hora=None, legal=None):
+    """Pila centrada en la banda (bajo el círculo, 1052–1322): titular Bold, bajada Book, una línea por cita
+    (calendario + fecha · 📍 centro), la hora y el legal chico al pie. Los cuerpos bajan un punto si hay dos citas."""
+    denso = len(citas) > 1 or len(partir(titulo, FNT("Bold", 46), 840)) > 1
+    ct, lt = (42, 46) if denso else (48, 52)
+    cb, lb = (28, 33) if denso else (31, 36)
+    cc, lc = (27, 37) if denso else (30, 40)
+    filas = [("tit", ct, lt, l) for l in partir(titulo, FNT("Bold", ct), 840)]
+    filas += [("baj", cb, lb, l) for l in partir(bajada, FNT("Book", cb), 860)]
+    filas += [("cita", cc, lc, c) for c in citas]
+    if hora:
+        filas.append(("hora", cc, lc, hora))
+    if legal:
+        filas.append(("legal", 20, 28, legal))
+    huecos = {"baj": 6, "cita": 10, "legal": 8}
+    alto = sum(f[2] for f in filas) + sum(huecos.get(t, 0) for t in {f[0] for f in filas})
+    y = max(1006, 1172 - alto / 2) + filas[0][2] * 0.72   # el círculo del logo termina en 985
+    partes, previo = [], None
+    for tipo, c, lh, t in filas:
+        if previo and tipo != previo:
+            y += huecos.get(tipo, 0)
         top = tb(y, c, lh, "rnd")
-        if tipo == "fecha+lugar":
-            partes.append(f'<div class="linea" style="top:{top:.1f}px;font-weight:500;font-size:{c}px;line-height:{lh}px;gap:6px">'
-                          f'{CAL.format(s=34)}<span>{t[0]}</span><span style="width:18px"></span>{base.PIN}<span style="font-weight:700">{t[1]}</span></div>')
-        elif tipo == "fecha":
-            partes.append(f'<div class="linea" style="top:{top:.1f}px;font-weight:500;font-size:{c}px;line-height:{lh}px">{CAL.format(s=38)}<span>{t}</span></div>')
-        elif tipo == "lugar":
-            partes.append(f'<div class="linea" style="top:{top:.1f}px;font-weight:700;font-size:{c}px;line-height:{lh}px">{base.PIN}<span>{t}</span></div>')
-        else:
+        if tipo == "tit":
+            partes.append(f'<div class="centro" style="top:{top:.1f}px;font-weight:700;font-size:{c}px;line-height:{lh}px">{t}</div>')
+        elif tipo == "baj":
             partes.append(f'<div class="centro" style="top:{top:.1f}px;font-weight:400;font-size:{c}px;line-height:{lh}px">{t}</div>')
-        y += lh
-    assert y - lh <= 1300, (titulo, y - lh)
+        elif tipo == "cita":
+            partes.append(f'<div class="linea" style="top:{top:.1f}px;font-weight:500;font-size:{c}px;line-height:{lh}px;gap:6px">'
+                          f'{CAL.format(s=30)}<span>{t[0]}</span><span style="width:10px"></span>{base.PIN.replace("pin-ico", "pin-ico chico")}<span style="font-weight:700">{t[1]}</span></div>')
+        elif tipo == "hora":
+            partes.append(f'<div class="centro" style="top:{top:.1f}px;font-weight:700;font-size:{c}px;line-height:{lh}px">{t}</div>')
+        else:
+            partes.append(f'<div class="centro" style="top:{top:.1f}px;font-weight:400;font-size:{c}px;line-height:{lh}px;opacity:.95">{t}</div>')
+        y += lh; previo = tipo
+    assert y - lh <= 1322, (titulo, y - lh)
     return "\n".join(partes)
 
 
+TEMATICA = "@font-face{font-family:'Spicy Rice';font-display:block;src:url('" + (AQUI / "assets/fonts/SpicyRice-Regular.ttf").as_uri() + "')}"
+CREMA, TINTA = "#F6E7C8", "#2A1638"
+
+
+def titulo_tematico(lineas, b1, cuerpo, lh, trazo=14):
+    """Titular en Spicy Rice (afiche antiguo de Halloween) crema con contorno redondo morado oscuro, SIN caja ni sombra
+    (Scarlette 01-10: «usemos una tipografía temática para la portada y no usar los cuadros naranjos»; R-84)."""
+    return (f'<svg class="ruta" viewBox="0 0 {W} {H}" style="overflow:visible">' + "".join(
+        f'<text x="{W / 2}" y="{b1 + lh * i}" text-anchor="middle" font-family="Spicy Rice" font-size="{cuerpo}" fill="{CREMA}" '
+        f'stroke="{TINTA}" stroke-width="{trazo}" stroke-linejoin="round" stroke-linecap="round" paint-order="stroke fill">{l}</text>'
+        for i, l in enumerate(lineas)) + "</svg>")
+
+
 def portada():
-    cuerpo_t, lh = 80, 74
-    lineas = ["Dos panoramas para", "pasarlo de miedo", "este Halloween."]
-    b1 = 356
-    caja_top = b1 - round(121.4 * cuerpo_t / 123.7)
-    caja_bot = b1 + lh * (len(lineas) - 1) + round(44.3 * cuerpo_t / 123.7)
-    ancho = 66 - 45 + max(ImageFont.truetype(str(AQUI / "assets/fonts/Gotham-Black.ttf"), cuerpo_t).getlength(l) for l in lineas) + 19
-    tit = "".join(f'<div class="titular" style="left:66px;font-size:{cuerpo_t}px;line-height:{lh}px;'
-                  f'top:{tb(b1 + lh * i, cuerpo_t, lh, "black"):.1f}px">{l}</div>' for i, l in enumerate(lineas))
-    pas = ["Actividades para jugar,", "imaginar y disfrutar", "en familia. Descúbrelas", "en Más Center."]
-    p1, plh = 1150, 36
-    p_top, p_bot = p1 - 46, p1 + plh * (len(pas) - 1) + 26
-    p_w = 26 * 2 + max(FNT("Bold", 30).getlength(l) for l in pas)
-    pas_html = "".join(f'<div style="position:absolute;left:62px;top:{tb(p1 + plh * i, 30, 36, "rnd"):.1f}px;'
-                       f'font-weight:700;font-size:30px;line-height:36px">{l}</div>' for i, l in enumerate(pas))
-    d = 96
-    return f"""
+    """v2 (Scarlette, 01-10): sin cuadros naranjos y con tipografía temática, para no perder lo vintage. La bajada va
+    en una etiqueta de papel crema (el color del propio afiche) con texto morado oscuro."""
+    pas = ["Actividades para jugar, imaginar y disfrutar", "en familia. Descúbrelas en Más Center."]
+    c, plh = 29, 36
+    p_w = 34 * 2 + max(FNT("Bold", c).getlength(l) for l in pas)
+    p_h = plh * len(pas) + 40
+    d = 84
+    p_left = (W - p_w - 16 - d) / 2
+    p_top = H - 52 - p_h
+    pas_html = "".join(f'<div style="position:absolute;left:{p_left + 34:.0f}px;top:{tb(p_top + 20 + plh * i + 27, c, plh, "rnd"):.1f}px;'
+                       f'font-weight:700;font-size:{c}px;line-height:{plh}px;color:{TINTA};white-space:nowrap">{l}</div>' for i, l in enumerate(pas))
+    return f"""<style>{TEMATICA}</style>
 <img class="foto" src="{ilustracion('01-portada-logo.png')}">
-<div class="logo-mc">{base.LOGO_MC}</div>
-<div style="position:absolute;left:45px;top:{caja_top}px;width:{ancho:.0f}px;height:{caja_bot - caja_top}px;background:{NARANJA};border-radius:34px"></div>
-{tit}
-<div style="position:absolute;left:36px;top:{p_top}px;width:{p_w:.0f}px;height:{p_bot - p_top}px;background:{NARANJA};border-radius:30px"></div>
+<div class="logo-mc" style="top:70px">{base.LOGO_MC}</div>
+{titulo_tematico(["Dos panoramas para", "pasarlo de miedo", "este Halloween."], 262, 92, 92)}
+<div style="position:absolute;left:{p_left:.0f}px;top:{p_top}px;width:{p_w:.0f}px;height:{p_h}px;background:{CREMA};border-radius:26px"></div>
 {pas_html}
-<div class="flecha" style="left:{36 + p_w + 14:.0f}px;top:{(p_top + p_bot) / 2 - d / 2:.0f}px;width:{d}px;height:{d}px">{base.FLECHA}</div>"""
+<div class="flecha" style="left:{p_left + p_w + 16:.0f}px;top:{p_top + p_h / 2 - d / 2:.0f}px;width:{d}px;height:{d}px;background:{CREMA}">{base.FLECHA}</div>"""
 
 
 SLIDES = {
     2: dict(img="02-detinmarin-logo.png", logo=dict(archivo="LETRERO-pantallas-02-plano.png", escala=0.95, fondo="#ffffff"),
             titulo="¡Manos a la obra!", bajada="Crea y pinta fantasmas y calabazas de yeso junto a De Tin Marín.",
-            fecha="Domingo 25 de octubre", lugar="Más Center San Carlos", direccion="Av. La Plaza 1250, Las Condes."),
+            # Fechas y sedes corregidas por Scarlette (comentario en la grilla, 01-10-2026)
+            citas=[("Sábado 24 de octubre", "Más Center San Carlos de Apoquindo"), ("25 de octubre", "Más Center Chamisero II")],
+            hora="Desde las 10:30 hrs.", legal="Cupos limitados por orden de llegada."),
     3: dict(img="03-klab-logo.png", logo=dict(archivo="klab-plano.png", escala=0.9, fondo="#ffffff"),
             titulo="Historias que dan vida a nuevos personajes.",
             bajada="Disfruta un cuentacuentos y crea tu propio personaje u objeto de Halloween junto a KLAB.",
-            fecha="Sábado 31 de octubre", lugar="Más Center Pie Andino", direccion="Av. Pie Andino 5855, Lo Barnechea.", compacto=True),
+            citas=[("Sábado 24 de octubre", "Más Center Pie Andino")],
+            hora="Desde las 10:30 hrs.", legal="Cupos limitados por orden de llegada."),
 }
 
 
@@ -164,7 +169,7 @@ def interior(s, flecha=True):
 {foto}
 <div class="banda"></div>
 {circulo(s['logo'])}
-{banda(s['titulo'], s['bajada'], s.get('fecha'), s.get('lugar'), s.get('direccion'), s.get('compacto', False))}
+{banda(s['titulo'], s['bajada'], s.get('citas', ()), s.get('hora'), s.get('legal'))}
 {f'<div class="flecha" style="left:965px;top:1079px;width:67px;height:67px">{base.FLECHA}</div>' if flecha else ''}"""
 
 

@@ -90,6 +90,17 @@ temperatura de la foto.
 
 ---
 
+## ⛔⛔ Si Valeria trae una lámina, se calca (02-10-2026)
+
+Cuando Valeria entrega una imagen de referencia, **manda sobre todo lo demás**, incluido
+este manual: se copia slide por slide, copy palabra por palabra, midiendo y comparando lado
+a lado (R-48). El look de casos de éxito que aprobó está en R-49 y en
+`creative-system/SISTEMA-VISUAL-2609/reference/CW02_REFERENCIA_VALERIA_02-10.png`:
+foto luminosa y cálida del mundo del cliente, Bebas Bold blanco grande a la izquierda,
+remate en Balloon rosa con subrayado, cinta rosa con Balloon negro, mockups grandes.
+Implementación de referencia: `src/compositions/copylab/CW02Concurso.tsx` (componentes
+`B` y `Bal` calibrados por alto de mayúscula).
+
 ## Ejecución probada (01-10-2026, CW-01 · CW-04 · CYBER MOOD)
 
 - **Fotografía primero, aunque el brief diga «tipográfico».** La pieza tipográfica sobre negro fue X-15.

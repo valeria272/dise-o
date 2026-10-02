@@ -1,6 +1,6 @@
 ---
 name: cliente-copywriters
-description: "COPYWRITERS — cerebro del cliente: 47 reglas firmes, última cosecha 2026-10-02. Generado desde clients/copywriters/APRENDIZAJES.md; leerlo antes de diseñar para copywriters"
+description: "COPYWRITERS — cerebro del cliente: 50 reglas firmes, última cosecha 2026-10-02. Generado desde clients/copywriters/APRENDIZAJES.md; leerlo antes de diseñar para copywriters"
 metadata:
   type: project
 ---
@@ -49,3 +49,4 @@ Criterio: **Valeria Traverso** · Aprueba: **Valeria Traverso (aprobación final
 - **X-13** · Llenar el feed con piezas basadas en frases: «estamos volviendo al sistema anterior». El objetivo no es la gráfica Copywriters, es el trabajo — _Valeria, 30-09_
 - **X-14** · Tipografía condensada para KPI y titulares del sistema nuevo: se lee flaca y la pieza pierde presencia publicitaria — _Valeria, lámina ley 30-09_
 - **X-15** · Carrusel tipográfico sobre negro o papel, sin fotografía ni gesto (CW-01/CW-04 v1): «muy mal, eso no es lo que construimos». El sistema es fotografía + mano + idea por pieza, aunque el brief diga «tipográfico» — _Valeria, 01-10-2026_
+- **X-16** · Interpretar en vez de seguir: metáfora de volantines (no se entendió, colores fuera de la paleta) y después escenas oscuras y conceptuales de strip center. Valeria terminó dibujando la lámina ella misma — _CW-02, 02-10-2026, 2 rondas_

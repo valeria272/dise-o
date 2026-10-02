@@ -33,7 +33,7 @@
 > `gcl-agent/universo/CANON_LOCK.md`. Léelo ahí antes de tocar cualquier cosa de G.
 >
 > Criterio: **Valeria Traverso** · Aprueba: **Valeria Traverso (aprobación final de dirección de arte, `MASTER/13`)**
-> Última cosecha: **2026-10-02** · Cosechas: **8**
+> Última cosecha: **2026-10-02** · Cosechas: **9**
 
 ## 1. Quién es el cliente
 
@@ -122,6 +122,10 @@ con humor de oficio y autoironía de agencia.
 - **R-46** · **Un carrusel también lleva video.** Las láminas con un objeto vivo (arena que cae, neblina en un foco, lluvia, una pantalla) van en **MP4 de 5 s** animadas con Kling 2.5 Pro desde la foto aprobada. Si hay algo MONTADO sobre la foto (una pantalla real, una anotación que apunta), se pide cámara fija y **se mide el clip cuadro a cuadro**: si la cámara igual se mueve, la anotación lo sigue con el desplazamiento medido — _CW-01 y CW-04, 01-10-2026_ · ✔×2
 - **R-47** · Una pantalla real en una pieza se difumina **hasta que con zoom 2× no se lea un nombre ni una cifra**, y se verifica con zoom: la tabla de campañas de Paid Media Pro a 550 px de ancho igual dejaba leer «ENTEL», «SHELL» y los montos — _CW-01, 01-10-2026_ · ✔×1
 
+- **R-48** · ⛔⛔ **Si Valeria entrega una lámina de referencia, se CALCA: no se interpreta.** «Tú inventas lineamientos… haz EXACTAMENTE esto, copia cada slide». Se guarda en `creative-system/SISTEMA-VISUAL-2609/reference/`, se recorta slide por slide a 1080 de ancho, se le pone grilla y se MIDE cada bloque (alto de mayúscula, x, y); después se renderiza y se compara LADO A LADO contra la referencia, y se corrige hasta que calce. Copy palabra por palabra. Lo único que no se calca es lo que la volvería deshonesta (caras generadas mirando a cámara, comentarios con nombres inventados) y se avisa — _Valeria, CW-02, 02-10-2026, tras dos rondas de interpretación propia rechazadas_ · ✔×1
+- **R-49** · ⭐ **El look que aprobó Valeria para los casos de éxito (CW-02):** fotografía **luminosa y cálida del mundo del cliente** (un mall con techo de vidrio, sol de tarde, gente de espaldas o desenfocada, bolsas blanco + rosa), NO escenas oscuras de estudio; titulares **Bebas Neue Pro de ancho normal, Bold, blancos y grandes**, alineados a la izquierda; el remate en **Balloon rosa** (D Extra Bold), girado −6°, con **subrayado de plumón** debajo; una **cinta rosa de brocha con Balloon negro encima** como acento; mockups de teléfono a tamaño grande con la pantalla real del formato (Reels, comentarios); tarjetas 01/02/03 redondeadas cuando hay pasos. Referencia: `reference/CW02_REFERENCIA_VALERIA_02-10.png` — _Valeria, 02-10-2026_ · ✔×1
+- **R-50** · Lo **concreto y del rubro** se entiende; la **metáfora** no: los volantines «no los entendí», y además metían colores (rojo, azul) que «no combinan con nuestro rosado». En un caso, el escenario es el del cliente y los colores de la foto acompañan al rosa (blanco, crema, ámbar) — _Valeria, CW-02 v1, 02-10-2026_ · ✔×1
+
 ## 5. Excepciones
 
 - **E-01** · Pieza 100 % rosa: legítima cuando el concepto la pide (TYPE LAB), una cada 12–15; ahí no hay intervención a mano (sobre rosa no existe). `reglas.yaml` la exime por nombre (`*typelab*`, `*rosa-total*`) — _brief v1.0 §3, 03-09_
@@ -151,6 +155,8 @@ con humor de oficio y autoironía de agencia.
 
 - **A-10** · **«CYBER MOOD» (post animado 4:5, 8 s): APROBADO a la primera** el 01-10-2026 («muy bueno, aprobado»). Pedido: «irónico, entretenido, cool, motion breve, que nos veamos onderos». Lo que funcionó: UN objeto con chiste (el cartel de hotel «NO MOLESTAR.» que gira a «NO ATENDEREMOS…») hecho en CÓDIGO sobre una foto Seedream (puerta de nogal con luz rosa por debajo), con física simple (caída con resorte, péndulo amortiguado, giro 3D) y la manilla repintada DELANTE del cartel; Bebas Expanded contra Light; Balloon en curva como remate — _`src/compositions/copylab/CyberMood.tsx`, Drive › GRILLAS IA › CYBER MOOD_
 
+- **A-11** · **CW-02 «+3.627 NUEVOS SEGUIDORES» (caso strip center, 8 láminas): aprobado** («ahora sí») en la ronda 3, calcado de la referencia de Valeria (R-48, R-49); lámina 1 en video (Kling, ella se aleja de espaldas + el texto entra en secuencia y la cinta se pinta). Drive › GRILLAS IA › CW-02 — _`CW02Concurso.tsx`, 02-10-2026_
+
 ## 7. Lo que se rechaza
 
 - **X-01** · La misma fórmula en serie: condensada + remate serif rosa + fondo negro (7 de 9 piezas) — _lote v1, 03-09; «no es de diseño, es de amplitud creativa»; costó la capa v1.1_
@@ -170,7 +176,12 @@ con humor de oficio y autoironía de agencia.
 
 - **X-15** · Carrusel tipográfico sobre negro o papel, sin fotografía ni gesto (CW-01/CW-04 v1): «muy mal, eso no es lo que construimos». El sistema es fotografía + mano + idea por pieza, aunque el brief diga «tipográfico» — _Valeria, 01-10-2026_
 
+- **X-16** · Interpretar en vez de seguir: metáfora de volantines (no se entendió, colores fuera de la paleta) y después escenas oscuras y conceptuales de strip center. Valeria terminó dibujando la lámina ella misma — _CW-02, 02-10-2026, 2 rondas_
+
 ## 8. Preguntas abiertas
+
+- CW-02 lámina 7: «3 ACTIVACIONES SEMANALES · teaser / sorteo principal / último impulso» viene de la referencia; el dato verificado es «3 sorteos semanales». ¿Es correcto así? (Valeria).
+- CW-02 lámina 5: comentarios difuminados; si hay capturas reales del post, se montan (Valeria / CM).
 
 - **Avisar a redes (agente social) de CW-01, CW-04 y CYBER MOOD**: su sesión se cerró antes de la entrega. Falta: pegar enlaces en ENLACE CONTENIDO; el copy interno de CW-01 cambió respecto del brief; la fuente de CW-04 va al caption; CYBER MOOD no está en su grilla (va dom 04-10 noche) (Valeria / agente social).
 - **LinkedIn y carruseles con video**: LinkedIn no acepta video dentro de un carrusel de documento. ¿Se publica allá con las portadas PNG o sólo en IG/FB? (Valeria / CM).
@@ -226,6 +237,11 @@ con humor de oficio y autoironía de agencia.
   reescribió. Pendiente decidir si se rehacen o se jubilan, dado que además son piezas de frase (R-38).
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude (Opus 5.5) · sesión de Valeria Traverso · **CW-02 aprobado calcando su referencia**
+- Tres rondas: v1 volantines (**X-16**, **R-50**), v2 strip center conceptual y oscuro, v3 **calcada** de la lámina que Valeria dibujó (**R-48**) → aprobada (**A-11**). El look de casos queda escrito en **R-49**.
+- Técnica: medir la referencia por altura de mayúscula y calibrar el offset de Bebas y Balloon contra el propio render; no existe Bebas Neue Pro ExtraBold de ancho normal (se engrosa la Bold con contorno del mismo color).
+
 
 ### 2026-10-02 — Claude nocturno (nube) · `/cierre` de Valeria Traverso (`c57a3df`)
 - sin aprendizajes nuevos: Valeria Traverso ya cosechó CYBER MOOD en su propio `/cierre` del 01-10 — R-44/R-45 probadas (✔×3) y A-10 quedaron escritos ahí mismo. Nada que agregar.

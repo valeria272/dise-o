@@ -133,6 +133,9 @@ con humor de oficio y autoironía de agencia.
 - **E-07** · G.C.L. es la familia 06 del sistema, pero su canon es propio: `gcl-agent/universo/CANON_LOCK.md` — _CLAUDE.md del estudio_
 - **E-08** · Las piezas ya entregadas del sistema viejo (paleta `#FF2D8B`/`#FF2D8D`, Archivo Narrow como titular) no se retocan con la paleta nueva: el sistema viejo se deja vivo a propósito para no romper lo ya entregado, hasta que Valeria decida si se archiva — _`SISTEMA-VISUAL-2609/LEEME.md` §6, 29-09-2026_
 
+- **E-09** · Reels de trend con lista: se pueden **enumerar** los elementos («INDISPENSABLE N°1, N°2, N°3») cuando sin el número el hook se lee como un título más y no como el inicio de una lista. Excepción a R-39 — _Valeria, 02-10-2026, reel «Indispensables de agencia» versión B_
+- **E-10** · En el reel «Indispensables de agencia» la recreación con IA (aterrizaje y caminata del cierre) va **sin rótulo** «Recreación con IA», a pedido de Valeria. Excepción a R-11 sólo para esa pieza; R-11 sigue vigente — _Valeria, 02-10-2026_
+
 ## 6. Lo que se aprueba a la primera
 
 - **A-01** · La identidad v1 (paleta, voces, metadata, tratamiento editorial, B/N, rosa como intervención) se aprobó tal cual y no se rediseña — _lote v1, 13 stills, 03-09-2026_

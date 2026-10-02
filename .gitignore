@@ -811,6 +811,9 @@ public/assets/fonts/copywriters/NeueHaasGroteskText-*.otf
 !public/assets/copywriters/proceso/
 !public/assets/copywriters/proceso/**
 public/assets/copywriters/proceso/TEMP-*
+!public/assets/copywriters/indispensables/
+!public/assets/copywriters/indispensables/**
+public/assets/copywriters/indispensables/TEMP-*
 # Grilla de octubre 2026 de @copywriters.cl (CW-01, CW-04…): fotos Seedream y clips Kling de piezas entregadas
 !public/assets/copywriters/202610/
 !public/assets/copywriters/202610/**

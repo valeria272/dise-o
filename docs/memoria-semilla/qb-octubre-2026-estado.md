@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 8597972c-6a6e-4b1d-843e-64948395dece
-  modified: 2026-09-30T13:41:25.224Z
+  modified: 2026-10-02T15:18:33.921Z
 ---
 
 Estado de la grilla de QB octubre al **30-09-2026** (rondas 22–28, con Eli). Todo
@@ -59,13 +59,28 @@ va la foto real (y partida en panorama si el carrusel tiene dos láminas), no un
 sobre el código** ([[pieza-migrada-al-editable]]): Sunset = Drive `1M3SpaNu8G2e-hiIywJ3CbWeI5PiHJ4nN`
 («TUS FAVORITOS AL MEJOR PRECIO · DESDE $3.990 · VIERNES DE 16:00 A 21:00 HRS», tres tragos, logo Sunset QB
 arriba); CMR = Drive `15m5fxONYLmS3LL3Md8ydPkyzltLNwvDj` («¡AHORA LOS SÁBADOS SE DISFRUTAN MÁS!», 40 % + 30 %
-débito, también pantallas). Copias en `raw/hilton/qb/eli-01-10/`. Antes de tocar Sunset o CMR, partir de ahí.
+débito, también pantallas). **01-10 en la tarde Eli volvió a cambiar el KV de CMR: titular «¡EL SÁBADO INVITA CMR!»
+y foto nueva (ostiones, limones, copa de vino)**; copias en `raw/hilton/qb/eli-01-10/v2/`, y el banner web ya lo
+sigue ([[canva-banner-animado-limites-del-conector]]). Copias anteriores en `raw/hilton/qb/eli-01-10/`. Antes de tocar Sunset o CMR, partir de ahí.
 
 **01-10 · Reels DJ S3 (15-10) y S5 (23-10) ARMADOS y EN DRIVE (S3 y S5 / QB / FEED, «Reel n°1 S<n> QB OCT 26» .mp4 + .gif), con Felipe provisorio; JOTA confirmado por Eli; Seba Soto con la foto de mezclilla y el cuerpo completo — ⭐ APROBADOS por Eli («okey!!»).** Copias de la plantilla del S2 hechas
 con el conector de Canva: S3 `DAHWygD5dcQ`, S5 `DAHWyh1dYY0`; MP4 en `out/qb/oct/reel-dj-s3|s5/`, revisión
 `reel-dj-s3/revision/revision-reel-dj-s3-s5.html`. Pendiente: foto de Felipe Saxofonista (provisoria en S2, S3
 y S5), confirmar que «Juanjo» = carpeta «JOTA», horario del martes 20. Cruce hecho ese día: todas las
 historias en OK PARA DISEÑAR ya estaban entregadas en Drive.
+
+**⚠️ 01-10 tarde — la grilla corrió las semanas y Drive se reordenó (Eli: «ordena las gráficas según semana… no edites nada de grilla»):**
+S1 = 1–2 oct · S2 = 5–9 · S3 = 12–17 · S4 = 19–25 · S5 = 26–31. Todo lo que arriba dice «S1» (AYCD, cumpleaños, CMR 40 %,
+Sunset 09-10) vive ahora en **S2** (`C1 S2 CUMPLEAÑOS`, `C2 S2 AYCD`, `ST n°1–4 S2`); las historias viejas de S2/S3/S4 son S3/S4/S5.
+En S1 quedan los KV de Eli (`Post n°1 S1 … KV SUNSET`, `Post n°2 S1 … KV CMR`, `ST n°1 S1 … KV SUNSET`) y Banco de Chile (`ST n°2 S1`).
+Los carruseles Sunset y CMR se retiraron de Drive (respaldo local en `out/qb/oct/reorden-semanas/antes-retirados/`; [[sin-antes-en-carpetas-de-semana]]). Los Reels DJ siguen en S3 y S5. Los archivos de Eli sólo se
+pueden RENOMBRAR (ni token ni conector los mueven): se copia a la semana correcta y se marca el original. Detalle: bitácora «tarde 9»,
+`out/qb/oct/reorden-semanas/`.
+
+**02-10 · POST + ST «20 % dcto. almuerzo» (FEED col. D, S1) — ⭐ APROBADOS por Eli (r37) y en Drive:**
+`S1 / QB / FEED / Post n°3 S1 QB OCT 26 - 20 ALMUERZO.png` y `STS / ST n°3 S1 QB OCT 26 - 20 ALMUERZO.png`
+(md5 verificado). La celda seguía EN REVISIÓN en la grilla; se diseñó antes por pedido de Eli. Receta en
+[[qb-promo-descuento-receta-aprobada]].
 
 **Why:** para retomar QB sin releer la bitácora entera; detalle en
 `clients/qb/BITACORA.md` (30-09).

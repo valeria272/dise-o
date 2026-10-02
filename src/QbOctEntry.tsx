@@ -36,6 +36,7 @@ import {QbFeed16Autor} from "./compositions/qb/oct/QbFeed16Autor";
 import {QbStAprobadaAycd} from "./compositions/qb/oct/QbStAprobadaAycd";
 import {QbStAprobadaCmr40} from "./compositions/qb/oct/QbStAprobadaCmr40";
 import {QbStAprobadaSunset} from "./compositions/qb/oct/QbStAprobadaSunset";
+import {QbAlmuerzo20Feed, QbAlmuerzo20St} from "./compositions/qb/oct/QbAlmuerzo20";
 
 const F = {fps: 30, width: 1080, height: 1350} as const;
 const Q = {fps: 30, width: 1080, height: 1920} as const;
@@ -77,6 +78,9 @@ const Raiz: React.FC = () => (
     <Composition id="QB-OCT-AP-CMR40" component={QbStAprobadaCmr40} durationInFrames={1} {...Q} defaultProps={{fecha: "17" as const}} />
     <Composition id="QB-OCT-ST08-CMR40" component={QbStAprobadaCmr40} durationInFrames={1} {...Q} defaultProps={{fecha: "08" as const}} />
     <Composition id="QB-OCT-AP-SUNSET" component={QbStAprobadaSunset} durationInFrames={1} {...Q} defaultProps={{semana: "S2" as const}} />
+    {/* 02-10 (r33): POST + ST «20 % dcto. almuerzo», FEED col. D de la S1 */}
+    <Composition id="QB-OCT-ALM20-FEED" component={QbAlmuerzo20Feed} durationInFrames={1} {...F} />
+    <Composition id="QB-OCT-ALM20-ST" component={QbAlmuerzo20St} durationInFrames={1} {...Q} />
   </Folder>
 );
 

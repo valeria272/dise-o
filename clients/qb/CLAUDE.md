@@ -873,3 +873,21 @@ una **imagen aplanada**: el texto no se edita, se reemplaza la franja.
 - Las solicitudes fuera de grilla (pantallas, banner web, mailing, tótem) están en la planilla de pendientes de
   Scarlette, `Planificacion_Hilton_Octubre_2026.xlsx` (`1yiOqGACxtSjqm28lV041GhSo73JLlQtB`), con responsable y fecha.
 
+## 4o. Promo de descuento que no es de banco — el 20 % almuerzo (02-10-2026, R-127 a R-134)
+
+Aprobada por Eli en 5 rondas (`src/compositions/qb/oct/QbAlmuerzo20.tsx`, post 4:5 + ST 9:16). Para la próxima
+promo de descuento se parte de esa composición y se cambian foto y textos:
+
+- **Arriba:** logo, titular en dos líneas y dos pesos (la segunda, más grande) y el descuento. Nada más.
+- **El descuento:** el número enorme en serif alta (Bodoni Moda, excepción E-15) y «DCTO. %» girado 90° al costado,
+  del alto exacto de la cifra. Los números de Bell MT son bajos y con rulo: no sirven para esto.
+- **Al medio, la foto:** plato y bebida **completos y a la vista**. Antes de elegirla, comprobar que caben entre el
+  bloque de arriba y el grupo de abajo; en vertical no caben, por eso se usó una toma **horizontal**
+  («QB_enero_26-103», entraña + tinto sobre la mesa de madera). La foto se arma con `scripts/qb-oct-r33-fotos.py`
+  (`BANDAS`): se funde a negro arriba y abajo. ⛔ No alargar la madera en espejo: los listones quedan en zigzag.
+- **Abajo, un grupo con tamaños que bajan:** lo que se destaca en ExtraBold y dos líneas → días y horario → CTA
+  («ARMA TU ALMUERZO Y» + botón verde corto «RESERVA AHORA») → legal, lo más chico, sobre base limpia.
+- **ST con márgenes de paid:** todo el texto entre 250 y 1580.
+- ⚠️ Una serif que sólo se usa en la cifra hay que **esperarla** (`delayRender` + `document.fonts.load`) y
+  **comprobar el alto del dígito** en el render: Bell MT no cargó en Chrome en la prueba del 02-10.
+

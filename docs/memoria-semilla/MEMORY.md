@@ -97,5 +97,6 @@
 - [⛔ Octubre: OK PARA DISEÑAR se toma](octubre-ok-para-disenar-se-toma.md) — Eli 01-10: sin preguntar; cruzar antes con Drive porque el estado de la grilla queda atrasado
 - [⭐ Tierra Calma — noviembre 2026](tierra-calma-noviembre-2026.md) — las 10 piezas entregadas el 01-10 (25 archivos) en la carpeta NOVIEMBRE; primera vuelta de Diego aplicada; Noviembre.tsx extiende OctubreV3
 - [⭐ La referencia de Diego es la maqueta](la-referencia-de-diego-es-la-maqueta.md) — feedback 01-10: la pieza se arma SOBRE el pin desde la primera pasada, bajando el carrusel completo, con paleta y tipografía de la marca
+- [⭐⭐⭐ QB promo de descuento — receta aprobada](qb-promo-descuento-receta-aprobada.md) — Eli 02-10 «me gusta, guarda»: 20 % almuerzo (post + ST paid) — cifra enorme en serif con «DCTO. %» girado, foto horizontal con plato y vino a la vista, grupo abajo con tamaños escalonados, botón corto «RESERVA AHORA»
 - [⭐ QB pantalla AYCD + Sunset QB](qb-pantalla-aycd-sunset.md) — Eli 02-10: misma jerarquía en las dos mitades; editable en F:, entrega y GRILLA IA QB se actualizan juntas
 - [⭐ Illustrator desde script (Windows)](illustrator-desde-script-windows.md) — COM + jsx; el .ai se guarda por copia verificada + reemplazo, nunca se deja a un Ctrl+S

@@ -1,0 +1,4 @@
+[
+  {"pack": "../assets/ps_odorperro.png", "roi": [1500, 3100, 2040, 4070], "luz": "canal"},
+  {"pack": "../assets/ps_odorgato.png", "roi": [1940, 3120, 2480, 4140], "luz": "canal"}
+]

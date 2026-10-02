@@ -3,6 +3,29 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-10-02 — Paulina Bustamante (con Claude) · stories Cyber × Mercado Libre (Story 1 y Story 2)
+
+**Qué se hizo:**
+- **Story 1 Cyber (sale el lunes 5-10):** sobre una imagen de Paulina, se rehízo la escena con el neón detrás del papel, porcentajes blancos inflados y animales fotográficos. Pasó por cuatro versiones: con dos Odor Eliminator → con el packshot grupal de los 8 envases y una sin productos → sin productos, ampliada y con el papel más ancho → con los globos «20%» y «30%». **Aprobada la v4 sin productos**; Paulina ya la compuso con logo, titular, fila de productos, bajada y legal.
+- **Story 2 «Última patita del Cyber» (viernes 9-10):** dos vueltas rechazadas con la idea descrita en palabras; con el boceto de distribución de Paulina salió la toma aprobada (gato en primer plano con el reloj de bolsillo, perro sorprendido en la caja). Se le pusieron los mismos globos «20%» y «30%». **Aprobada la v4.**
+- Sólo imagen limpia en las dos: sin logo, sin texto, sin productos.
+
+**Dónde quedó:**
+- Finales (2250 × 4000) en Drive `MATERIAL DISEÑO PAULINA/MYZOO/5-en-revision/2026-10_octubre` (`1Q1UEkTjgIvb5moLK8MBuar_0SazaX_uA`): `myzoo_storie_cyber_imagen-limpia_v4_sin-productos_20-30.png` y `myzoo_storie_cyber2_imagen-limpia_v4_20-30.png`. En la misma carpeta siguen todas las versiones anteriores (v1 a v3 de cada una), sin borrar.
+- Fuentes versionadas en `public/assets/myzoo/cyber/` (pasadas del generador en JPG 93, prompts, boceto, brief, `LEEME.md`). Tomas completas en `raw/myzoo/cyber/` y `raw/myzoo/cyber2/` (no viajan). Copias locales en `out/myzoo/cyber-2026/`.
+- Scripts: `scripts/myzoo-cyber-story.py` (story 1) y `scripts/myzoo-cyber-porcentajes.py` (globos con cifra, las dos).
+
+**Qué sigue:**
+1. Paulina compone la Story 2 en Illustrator (texto principal, bajada, CTA y legal del brief).
+2. Si pide la pasada de detalle del pelaje en la Story 2 (gato y perro son tomas directas, sin retoque), se hace en recorte cerrado como la del beagle de la Story 1.
+3. Sigue pendiente lo del cierre anterior de hoy: producto sobre los fondos de la Fase 3, los 4 reels, el post «Perro promedio en Chile» y las 2 portadas de destacadas.
+
+**Abierto:**
+- Falta el veredicto del cliente sobre las dos stories. El gato de la Story 2 está en una pose armada y el cliente ya rechazó mascotas «bailando». → Paulina / Magdalena.
+- El logo de Mercado Libre de la caja es generado; no se montó el oficial.
+- En la Story 2 la caja quedó al centro y no a la derecha como en el boceto; Paulina la aprobó así.
+- Magnific devolvió «Error consuming credits» al lanzar tomas en paralelo; de a una funcionó. No se sabe si es límite de la cuenta o del día.
+
 ## 2026-10-02 — Paulina Bustamante (con Claude) · paid Fase 3, fondos de los 6 estáticos
 
 **Qué se hizo:**

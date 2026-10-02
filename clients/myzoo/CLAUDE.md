@@ -376,6 +376,19 @@ método técnico en R-36:
 >
 > **Si después cambia la composición, se vuelve al paso 1. No se retoca.**
 
+## 2d. ⭐ STORIES DE CAMPAÑA — Cyber × Mercado Libre (02-10-2026)
+
+Dos imágenes limpias aprobadas por Paulina (APRENDIZAJES A-07); la gramática está en R-55 a R-60:
+
+- **Sin productos, sin logo y sin texto:** Paulina compone encima (su Story 1 armada es la referencia:
+  `public/assets/myzoo/cyber/s1_armada_por_paulina.png`). Piso amarillo libre abajo, zona superior clara.
+- **El set:** papel amarillo vivo y ancho, neón cian detrás del papel, muro apenas en los bordes, caja de
+  Mercado Libre, beagle y gato con lentes de sol.
+- **Gráfica:** sólo globos blancos inflados con las cifras del legal («20%» izquierda, «30%» derecha). Minimalista.
+- **Si la distribución importa, se trabaja con el boceto de Paulina** como segunda referencia del generador.
+- Fuentes, prompts y pasos: `public/assets/myzoo/cyber/LEEME.md`. Scripts: `scripts/myzoo-cyber-story.py` y
+  `scripts/myzoo-cyber-porcentajes.py`.
+
 ## 3. Dónde está el material
 
 | Qué | Dónde |

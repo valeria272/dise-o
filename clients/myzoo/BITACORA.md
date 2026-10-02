@@ -3,6 +3,30 @@
 > Una entrada por jornada, la más nueva arriba. Lo de hoy se escribe hoy: el
 > relevo de mañana lee esto antes de abrir cualquier archivo.
 
+## 2026-10-02 — Paulina Bustamante (con Claude) · paid Fase 3, fondos de los 6 estáticos
+
+**Qué se hizo:**
+- **Cambio de método, propuesto por Paulina:** se dejó de pelear escena y envases a la vez. Se generaron **todos los fondos sin producto**, con el animal cerca y mirando a cámara; el producto entra después.
+- Fondos de P01, P02, P07, P08, P09 y P10 (6 estáticos). Paulina: «muy buenas, muy realistas y acorde a los key visual de la fase 1 y fase 2».
+- Ronda 2, por tres comentarios suyos en Drive (respondidos y resueltos): P01 más cálida (escena nueva), P07 manta caramelo y P08 sofá caramelo (misma foto, una pasada de edición).
+- `/al-dia`: las 4 solicitudes de la grilla de octubre pasaron a «Por diseñar» (Story 1 Cyber Mercado Libre para el **lunes 5-10**, Story 2 Cyber 9-10, post «Perro promedio en Chile», 2 portadas de destacadas). No se tocaron hoy.
+
+**Dónde quedó:**
+- Drive `MYZOO/IMÁGENES FONDO FASE 3` (`1IL9OZal_kTHoDS3m0QICoWwDroDeie7l`): las 6 vigentes en la raíz, el resto en `otras tomas` y `ronda 2 · alternativas`.
+- Fuentes vigentes versionadas en `public/assets/myzoo/fase3/fondos/` (2048 px). Todas las tomas en `raw/myzoo/fase3/fondos/` (no viaja). Generador: `scripts/myzoo-f3-fondos.py`. Página de revisión local: `out/myzoo/paid-fase3/fondos/REVISION.html`.
+
+**Qué sigue:**
+1. Paulina monta texto y logos en Illustrator sobre los fondos y **muestra cómo lo hizo**, para que sirva de referencia en los próximos encargos.
+2. Producto sobre los fondos de P01, P02, P09 y P10 (por definir con ella si lo pone ella o se integra con IA).
+3. Los 4 reels (03 a 06) no tienen nada generado.
+4. Story 1 del Cyber, que sale el lunes 5-10.
+
+**Abierto:**
+- Los fondos de la ronda 2 no tienen veredicto explícito; Paulina dijo «por ahora con esto estamos ok». No se revisaron con zoom (pelaje, manos).
+- El brief pide P09 «sin mascota o muy secundaria», P10 «sin mascota» y P02 «fondo limpio y claro»; se hicieron con el animal protagonista por indicación de Paulina. → avisar a Sebastián Córdova.
+- La P01 v7 del 01-10 quedó superada por este método; `IMÁGENES APROBADAS FASE 3` sigue con la P01 del 30-09.
+- Las 4 solicitudes nuevas de la grilla vienen sin fecha, sin copy y sin «ok» del cliente al texto. → Nicolás.
+
 ## 2026-10-01 — Paulina Bustamante (con Claude) · post 20/10 Parque Pet
 
 **Qué se hizo:** el cliente rechazó la imagen del post del 20/10 («se ve muy falso, muuuy IA») y pidió que pareciera el Parque Pet. Se rehízo la imagen limpia desde cero y, tras 6 rondas con Paulina, quedó **aprobada por ella**: los dos perros de pie al centro, carpas sin marca alrededor, tutores con perros y el cerro San Cristóbal.

@@ -48,7 +48,6 @@ const NEGRO = '#07050F';
  * · MORADO  — la cara iluminada: textos y logo sobre negro.
  * · MORADO_MEDIO — el mismo tono, un punto más oscuro: texto sobre el botón blanco (variante `blanco`, hoy sin uso).
  */
-const MORADO = '#9639F4';
 const MORADO_MEDIO = '#7F32CE';
 const FILETE = 'linear-gradient(90deg, rgba(255,255,255,0.45) 0%, #FFFFFF 50%, rgba(255,255,255,0.45) 100%)';
 const SOMBRA = '0 3px 10px rgba(7,5,15,0.6), 0 0 2px rgba(7,5,15,0.5)';
@@ -116,62 +115,57 @@ const LINEAS: Record<Linea, {
   },
 };
 const CORREO = 'reservas.dtv@hilton.com';
+/**
+ * Eli, 02-10: «A toda la OP 2 añade el signo + en vez del punto: debe decir "+ IVA", sin "incluido"».
+ * ⚠️ Sólo la opción 2 (post y sus tres adaptaciones). La opción 1 sigue con el texto del brief,
+ * «PARA 2 PERSONAS · IVA INCLUIDO»: las dos opciones dicen cosas distintas sobre el precio (avisado a Eli).
+ */
+const BAJO_PRECIO_OP2 = 'PARA 2 PERSONAS + IVA';
 /** La dirección del hotel, como la escribe el brief en el copy del post («📍 Av. Vitacura 2727, Las Condes»). */
 const DIRECCION = 'Av. Vitacura 2727, Las Condes';
 
 // ── Las piezas ─────────────────────────────────────────────────────────────────────────────────
 
 /**
- * Titular en versales Stag, dos líneas a UNA medida (R-05): «DOUBLETREE» a cuerpo 64 y «SE VISTE DE
- * MORADO» a 39,5 dan el mismo ancho (≈ 440 px con tracking 0,05 em, medido con la fuente). Todo en lila.
- */
-const Titular: React.FC<{lineas: [string, string]; k?: number; color?: string}> = ({lineas, k = 1, color = MORADO}) => (
-  <div style={{textAlign: 'center', color, textShadow: React.useContext(Sombra), fontFamily: DT.fuentes.titular, fontWeight: DT.pesos.medium, letterSpacing: '0.05em', whiteSpace: 'nowrap'}}>
-    <div style={{fontSize: 64 * k, lineHeight: 1}}>{lineas[0]}</div>
-    <div style={{marginTop: 5 * k, fontSize: 39.5 * k, lineHeight: 1, wordSpacing: '0.04em'}}>
-      <Stag t={lineas[1]} />
-    </div>
-  </div>
-);
-
-/**
  * El sello «CYBER / Day». La script del «Day» no está en esta máquina y Kallimata (la que sí hay) es
  * de trazo fino: «Army» no se leía. Va en Stag Light Italic, que es como DT escribe el acento
  * manuscrito (E-09) y como el propio Cyber arma «Escapada / Romántica», con la textura metálica en lila.
  */
-const Sello: React.FC<{palabra: string; script: string; cuerpo: number; peso?: number}> = ({palabra, script, cuerpo, peso = DT.pesos.semibold}) => {
+/** Ancho ÷ alto de `army-pincel.png` (2600 × 1330). */
+const ARMY_PROPORCION = 2600 / 1330;
+/** Cuánto se monta el rótulo «ARMY» sobre la línea de «PREVENTA», en cuerpos (el PNG trae aire arriba a la izquierda). */
+const SELLO_MONTA = 0.12;
+/**
+ * RONDA 14 (Eli, 02-10): «quieren literal el army con el corazón. Y "Tarifa" déjalo en las tres más pequeño,
+ * arriba de army. PREVENTA en los tres menos grueso».
+ * · «ARMY» es el rótulo de la clienta, calcado, con su corazón y en su lila (`army-pincel.png`, lo arma
+ *   `scripts/dt-army-fachada.py`). Sube hacia la derecha: la «Y» se mete bajo «PREVENTA», como en la maqueta.
+ * · «Tarifa», en Stag Light Italic y chica, va arriba a la izquierda del rótulo, en el hueco que deja el
+ *   arranque de la «A».
+ * · «PREVENTA» baja de SemiBold / Medium a Regular.
+ * `army` = alto del rótulo en cuerpos de «PREVENTA».
+ */
+const Sello: React.FC<{palabra: string; script: string; cuerpo: number; peso?: number; army?: number}> = ({palabra, script, cuerpo, peso = DT.pesos.regular, army = 1.9}) => {
   const sombra = React.useContext(Sombra);
   const tinta = React.useContext(Tinta);
+  const resto = script.replace(/\s*ARMY$/, '');
+  const alto = cuerpo * army;
+  const ancho = alto * ARMY_PROPORCION;
   return (
   <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
     <div style={{fontFamily: DT.fuentes.titular, fontWeight: peso, fontSize: cuerpo, lineHeight: 1, letterSpacing: '0.06em', marginRight: '-0.06em', color: tinta.texto, textShadow: sombra, whiteSpace: 'nowrap'}}>
       {palabra}
     </div>
-    <div
-      style={{
-        marginTop: -cuerpo * 0.1,
-        fontFamily: DT.fuentes.titular,
-        fontStyle: 'italic',
-        fontWeight: DT.pesos.light,
-        fontSize: cuerpo * 0.66,
-        lineHeight: 1.08,
-        letterSpacing: '0.035em',
-        wordSpacing: '0.06em',
-        padding: `0 ${cuerpo * 0.2}px`,
-        whiteSpace: 'nowrap',
-        ...(tinta.script
-          ? {color: tinta.script}
-          : {
-              backgroundImage: `url(${staticFile('assets/hilton/dt/army/textura-lila.jpg')})`,
-              backgroundSize: 'cover',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-              color: 'transparent',
-            }),
-        filter: sombra === 'none' ? undefined : 'drop-shadow(0 4px 6px rgba(7,5,15,0.55))',
-      }}
-    >
-      {script}
+    <div style={{marginTop: -cuerpo * SELLO_MONTA, display: 'flex', alignItems: 'flex-start', justifyContent: 'center'}}>
+      {resto ? (
+        <div style={{marginTop: alto * 0.2, marginRight: -ancho * 0.1, fontFamily: DT.fuentes.titular, fontStyle: 'italic', fontWeight: DT.pesos.light, fontSize: cuerpo * 0.46, lineHeight: 1, letterSpacing: '0.035em', color: tinta.texto, textShadow: sombra, whiteSpace: 'nowrap'}}>
+          {resto}
+        </div>
+      ) : null}
+      <Img
+        src={staticFile('assets/hilton/dt/army/army-pincel.png')}
+        style={{height: alto, width: ancho, filter: sombra === 'none' ? undefined : 'drop-shadow(0 4px 6px rgba(7,5,15,0.55))'}}
+      />
     </div>
   </div>
   );
@@ -201,7 +195,17 @@ const Precio: React.FC<{antes?: string; precio: string; bajo: string; cuerpo: nu
       <div style={{height: 3, background: tinta.filete}} />
       <div style={{paddingTop: cuerpo * 0.16, fontFamily: TRADE_CN, fontWeight: 700, fontSize: cuerpo, lineHeight: 0.9, letterSpacing: '0.025em', whiteSpace: 'nowrap'}}>{precio}</div>
       {/* RONDA 5: «para dos personas más IVA incluido no se está notando mucho» → Trade Bold Cn y de 0,20 a 0,27 */}
-      <div style={{padding: `${cuerpo * 0.06}px 0 ${cuerpo * 0.12}px`, fontFamily: TRADE_CN, fontWeight: 700, fontSize: cuerpo * 0.27, lineHeight: 1.1, letterSpacing: '0.09em', whiteSpace: 'nowrap'}}>{bajo}</div>
+      <div style={{padding: `${cuerpo * 0.06}px 0 ${cuerpo * 0.12}px`, fontFamily: TRADE_CN, fontWeight: 700, fontSize: cuerpo * 0.27, lineHeight: 1.1, letterSpacing: '0.09em', whiteSpace: 'nowrap'}}>
+        {/* Eli, 02-10: «el signo + céntralo entre el texto, se ve extraño» → el «+» de Trade Bold Cn se apoya en la
+            línea de base y queda 0,115 em bajo el centro de las versales (medido en el render): se sube eso mismo.
+            «Y el + más cerca un poco del IVA» → menos aire a su derecha que a su izquierda */}
+        {bajo.split(' + ').map((t, i) => (
+          <React.Fragment key={t}>
+            {i ? <span style={{display: 'inline-block', margin: '0 0.16em 0 0.34em', transform: 'translateY(-0.115em)'}}>+</span> : null}
+            {t}
+          </React.Fragment>
+        ))}
+      </div>
       <div style={{height: 3, background: tinta.filete}} />
     </div>
   );
@@ -294,9 +298,9 @@ const Incluye: React.FC<{items: {icono: Icono; l: string[]}[]; cuerpo: number; c
   );
 };
 
-const Legal: React.FC<{t: string; top: number; ancho: number}> = ({t, top, ancho}) => (
+const Legal: React.FC<{t: string; top: number; ancho: number; cuerpo?: number}> = ({t, top, ancho, cuerpo = 19}) => (
   <div
-    style={{position: 'absolute', top, left: (1080 - ancho) / 2, width: ancho, textAlign: 'center', color: React.useContext(Tinta).texto, fontFamily: DT.fuentes.texto, fontSize: 19, lineHeight: 1.3, letterSpacing: '0.02em', textShadow: React.useContext(Sombra), opacity: 0.92}}
+    style={{position: 'absolute', top, left: (1080 - ancho) / 2, width: ancho, textAlign: 'center', color: React.useContext(Tinta).texto, fontFamily: DT.fuentes.texto, fontSize: cuerpo, lineHeight: 1.3, letterSpacing: '0.02em', textShadow: React.useContext(Sombra), opacity: 0.92}}
   >
     {t}
   </div>
@@ -324,7 +328,8 @@ const METAL =
   'linear-gradient(to bottom, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0) 45%, rgba(14,4,30,0.3) 100%), ' +
   'linear-gradient(90deg, #2B0D4D 0%, #401470 9%, #7F32CE 22%, #A04DFA 31%, #7730C2 40%, #44167A 52%, #2D0E50 64%, #401470 76%, #7A30C8 88%, #4A1884 95%, #2F0F54 100%)';
 
-const Boton: React.FC<{top: number; cuerpo?: number; blanco?: boolean}> = ({top, cuerpo = 40, blanco}) => (
+// `plano` (ronda 14, opción 2): «así la dos mejor» [la maqueta] · «sin lo metálico» → morado liso, esquinas redondas.
+const Boton: React.FC<{top: number; cuerpo?: number; blanco?: boolean; plano?: boolean}> = ({top, cuerpo = 40, blanco, plano}) => (
   <div style={{position: 'absolute', top, left: 0, width: 1080, display: 'flex', justifyContent: 'center'}}>
     <div
       style={{
@@ -332,8 +337,8 @@ const Boton: React.FC<{top: number; cuerpo?: number; blanco?: boolean}> = ({top,
         padding: `0 ${cuerpo * 1.2}px`,
         display: 'flex',
         alignItems: 'center',
-        background: blanco ? '#FFFFFF' : METAL,
-        borderRadius: 4,
+        background: blanco ? '#FFFFFF' : plano ? MORADO_MEDIO : METAL,
+        borderRadius: plano ? 12 : 4,
         color: blanco ? MORADO_MEDIO : BLANCO,
         fontFamily: TRADE_CN,
         fontWeight: 700,
@@ -427,7 +432,7 @@ export const DtArmyCiudad: React.FC<{linea: Linea; variante?: 'titular' | 'logo'
   const c = LINEAS[linea];
   const conLogo = variante === 'logo';
   const s = 0.9;
-  const TECHO = conLogo ? 676 : 662; // y del techo del hotel en la pieza
+  const TECHO = 738; // y del techo del hotel en la pieza (ronda 15: baja con el bloque del precio, que creció)
   return (
     <AbsoluteFill style={{backgroundColor: NEGRO}}>
       <Img
@@ -442,52 +447,81 @@ export const DtArmyCiudad: React.FC<{linea: Linea; variante?: 'titular' | 'logo'
             // RONDA 7 (Eli): «esa transición de degradado de abajo, que sea más sutil: que de abajo sea más
             // negro y vaya cada vez con menos degradado» → el pie ya no cierra en una franja de 80 px: sube
             // parejo desde el borde (0,97) hasta desaparecer a media altura del hotel, en 560 px.
-            'linear-gradient(to bottom, rgba(7,5,15,0.78) 0%, rgba(7,5,15,0.7) 12%, rgba(7,5,15,0.7) 43%, rgba(7,5,15,0.28) 48%, rgba(7,5,15,0) 52%, rgba(7,5,15,0) 58%, rgba(7,5,15,0.14) 63%, rgba(7,5,15,0.34) 68%, rgba(7,5,15,0.56) 73%, rgba(7,5,15,0.74) 78%, rgba(7,5,15,0.86) 84%, rgba(7,5,15,0.94) 91%, rgba(7,5,15,0.97) 100%)',
+            // RONDA 15: el velo de arriba llega hasta el pie del precio (y ≈ 730) y el del pie parte bajo el techo del hotel
+            'linear-gradient(to bottom, rgba(7,5,15,0.78) 0%, rgba(7,5,15,0.7) 12%, rgba(7,5,15,0.7) 50%, rgba(7,5,15,0.28) 54%, rgba(7,5,15,0) 57%, rgba(7,5,15,0) 61%, rgba(7,5,15,0.16) 65%, rgba(7,5,15,0.36) 69%, rgba(7,5,15,0.56) 73%, rgba(7,5,15,0.74) 78%, rgba(7,5,15,0.86) 84%, rgba(7,5,15,0.94) 91%, rgba(7,5,15,0.97) 100%)',
         }}
       />
 
-      {conLogo ? (
-        <>
-          <LogoDT top={26} ancho={236} tinta="morado" />
-          <Fila top={241}>
-            <div style={{textAlign: 'center', color: MORADO, textShadow: SOMBRA, fontFamily: DT.fuentes.titular, fontWeight: DT.pesos.medium, fontSize: 46, lineHeight: 1, letterSpacing: '0.06em', wordSpacing: '0.04em', whiteSpace: 'nowrap'}}>
-              {c.titulo[1]}
-            </div>
-          </Fila>
-          <Fila top={295}>
-            <Sello palabra={c.sello} script={c.script} cuerpo={96} peso={DT.pesos.medium} />
-          </Fila>
-          <Fila top={458}>
-            <Precio antes={c.antes} precio={c.precio} bajo={c.bajoPrecio} cuerpo={90} ancho={470} />
-          </Fila>
-        </>
-      ) : (
-        <>
-          <LogoDT top={38} ancho={124} />
-          <Fila top={158}>
-            <Titular lineas={c.titulo} k={0.72} />
-          </Fila>
-          <Fila top={252}>
-            <Sello palabra={c.sello} script={c.script} cuerpo={104} />
-          </Fila>
-          <Fila top={436}>
-            <Precio antes={c.antes} precio={c.precio} bajo={c.bajoPrecio} cuerpo={92} ancho={470} />
-          </Fila>
-        </>
-      )}
+      {/* RONDA 13 (Scarlette, 02-10): «yo no usaría esto bajo del logo» [el titular «DOUBLETREE SE VISTE DE
+          MORADO»]; Eli: «eso para los 3» → fuera el titular en las tres: del logo se pasa directo al sello, que
+          crece con el sitio que quedó. */}
+      {/* RONDA 15 (Eli, 02-10, sobre la página de revisión): «quiero que el botón quede igual como está en la
+          opción 2, para que todo se vea centrado. Sube un poco más "Noches del 16 y 17 de octubre" y los íconos, al
+          igual que está en la opción 2. Y necesito que el antes y el precio y todo eso quede un poco más grande…
+          las tres tal cual como está en la opción 2… para que se vea todo bien unificado».
+          → las opciones 1 y 3 toman los TAMAÑOS y la columna de la 2 (sello, precio, fecha, íconos, botón liso,
+            dirección, legal) y su mismo pie; la fecha y los íconos suben 126 px y quedan sobre el hotel, bajo el
+            precio. Sólo cambia el logo: blanco en la 1 (igual al de la 2), morado y más grande en la 3. */}
+      {conLogo ? <LogoDT top={20} ancho={218} tinta="morado" /> : <LogoDT top={30} ancho={178} />}
+      <Fila top={conLogo ? 208 : 202}>
+        <Sello palabra={c.sello} script={c.script} cuerpo={112} army={conLogo ? 1.8 : 1.85} />
+      </Fila>
+      <Fila top={512}>
+        <Precio antes={c.antes} precio={c.precio} bajo={c.bajoPrecio} cuerpo={100} ancho={520} />
+      </Fila>
 
-      {/* el pie: fecha, lo que incluye, el botón y el legal, sobre el negro */}
-      <Fila top={976}>
-        {/* sin óvalo y más grande (28 → 37). RONDA 11 (Eli): «y noches en la op 3, ese texto a blanco» → en la
-            opción 3 vuelve de morado a blanco, igual que en la 1 */}
-        <Fecha t={c.fecha} cuerpo={37} />
+      <Fila top={850}>
+        <Fecha t={c.fecha} cuerpo={40} />
       </Fila>
-      <Fila top={1036}>
-        <Incluye items={c.incluye} cuerpo={22} columna={290} />
+      <Fila top={922}>
+        <Incluye items={c.incluye} cuerpo={24} columna={300} />
       </Fila>
-      <Boton top={1166} cuerpo={38} />
-      <Direccion top={1246} />
-      <Legal t={c.legal} top={1300} ancho={960} />
+      <Boton top={1076} cuerpo={42} plano />
+      <Direccion top={1178} cuerpo={28} />
+      <Legal t={c.legal} top={1280} ancho={960} />
+    </AbsoluteFill>
+  );
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════════════════════
+// 2 · LA FOTO DE LA CLIENTA — el hotel al atardecer con filtro morado, todo el texto al eje sobre la foto
+// ═══════════════════════════════════════════════════════════════════════════════════════════════
+/**
+ * RONDA 14 (Eli, 02-10, con la maqueta de Scarlette): «así la dos mejor y queda» · «la foto de la op 2 literal
+ * del de la clienta que mandó, en un filtro morado» · botón «sin lo metálico».
+ * Sin recuadro: logo blanco arriba (como en la pieza de la clienta), «PREVENTA / Tarifa ARMY», el precio entre
+ * filetes, la fecha, lo que incluye, el botón morado liso, la dirección y el legal, todo sobre la foto. Un velo
+ * morado oscuro, parejo, asienta la foto bajo el texto (sin recuadros ni brillos).
+ */
+export const DtArmyClienta: React.FC<{linea: Linea}> = ({linea}) => {
+  const c = LINEAS[linea];
+  return (
+    <AbsoluteFill style={{backgroundColor: NEGRO}}>
+      <Img src={staticFile('assets/hilton/dt/army/clienta-morada.jpg')} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top'}} />
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background:
+            'linear-gradient(to bottom, rgba(18,6,40,0.12) 0%, rgba(18,6,40,0.3) 14%, rgba(18,6,40,0.5) 30%, rgba(18,6,40,0.56) 70%, rgba(18,6,40,0.74) 88%, rgba(18,6,40,0.86) 100%)',
+        }}
+      />
+      <LogoDT top={30} ancho={178} />
+      <Fila top={202}>
+        <Sello palabra={c.sello} script={c.script} cuerpo={112} army={1.85} />
+      </Fila>
+      <Fila top={512}>
+        <Precio antes={c.antes} precio={c.precio} bajo={BAJO_PRECIO_OP2} cuerpo={100} ancho={520} />
+      </Fila>
+      <Fila top={778}>
+        <Fecha t={c.fecha} cuerpo={40} />
+      </Fila>
+      <Fila top={858}>
+        <Incluye items={c.incluye} cuerpo={24} columna={300} />
+      </Fila>
+      <Boton top={1076} cuerpo={42} plano />
+      <Direccion top={1178} cuerpo={28} />
+      <Legal t={c.legal} top={1280} ancho={960} />
     </AbsoluteFill>
   );
 };
@@ -500,8 +534,16 @@ export const DtArmyCiudad: React.FC<{linea: Linea; variante?: 'titular' | 'logo'
 // azul va a α ≈ 0,30, al medio ≈ 0,6 y desde el 80 % es azul macizo.
 const PANEL = {x: 152, y: 187, ancho: 776, alto: 971, radio: 38} as const;
 
-export const DtArmyHabitacion: React.FC<{linea: Linea; foto?: string}> = ({linea, foto = 'assets/hilton/dt/army/habitacion-army-b.jpg'}) => {
+/**
+ * RONDA 13 (Eli, 02-10) — `tarjeta`: la opción 2 con «esta distribución» (el post de BTS Journal que mandó):
+ * la foto entera en morado y una TARJETA BLANCA al centro, opaca y de esquinas redondas, con el logo arriba.
+ * El fondo es la fachada del hotel al atardecer («que se parezca al fondo de la clienta»). Sin titular bajo
+ * el logo (Scarlette: «yo no usaría esto bajo del logo»), la tarjeta parte más abajo y deja ver el cielo y la
+ * cornisa del hotel.
+ */
+export const DtArmyHabitacion: React.FC<{linea: Linea; foto?: string; tarjeta?: boolean}> = ({linea, foto = 'assets/hilton/dt/army/habitacion-army-b.jpg', tarjeta}) => {
   const c = LINEAS[linea];
+  const panelY = tarjeta ? 236 : PANEL.y;
   return (
     <AbsoluteFill style={{backgroundColor: NEGRO}}>
       <Img src={staticFile(foto)} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}} />
@@ -510,20 +552,16 @@ export const DtArmyHabitacion: React.FC<{linea: Linea; foto?: string}> = ({linea
         style={{
           position: 'absolute',
           left: PANEL.x,
-          top: PANEL.y,
+          top: panelY,
           width: PANEL.ancho,
-          height: PANEL.alto,
+          height: PANEL.y + PANEL.alto - panelY,
           borderRadius: PANEL.radio,
           boxSizing: 'border-box',
-          // RONDA 8 (Eli): «quitémosle definitivamente el morado que tiene, todo ese como transición… sólo que
-          // quede como un desenfoque más sutil… podría ser todo como un blanco sutil, ese recuadro con un
-          // poquito de opacidad… DoubleTree se viste de morado, o sea el mismo color que unificamos, para que
-          // se note, e igual el logo sea morado… y el botón sea como el de las tres opciones».
-          // → el recuadro es vidrio BLANCO (α 0,80, desenfoque 3 px): la habitación se adivina detrás. Logo y
-          //   titular en el morado del hotel; el resto del texto en negro, con el morado sólo de acento
-          //   («Tarifa ARMY» y el tachado). El botón es el metálico de las otras dos.
+          // RONDA 8 (Eli): el recuadro es vidrio BLANCO (α 0,80, desenfoque 3 px), logo y titular en el morado
+          // del hotel y el resto del texto en la tinta clara. Como `tarjeta` es blanco casi macizo (α 0,94),
+          // como la tarjeta de la referencia: sobre la fachada, la grilla de ventanas se colaba por el vidrio.
           border: '3px solid rgba(255,255,255,0.96)',
-          background: 'rgba(255,255,255,0.8)',
+          background: tarjeta ? 'rgba(255,255,255,0.94)' : 'rgba(255,255,255,0.8)',
           backdropFilter: 'blur(3px)',
           WebkitBackdropFilter: 'blur(3px)',
           boxShadow: '0 16px 50px rgba(7,5,15,0.3)',
@@ -532,12 +570,10 @@ export const DtArmyHabitacion: React.FC<{linea: Linea; foto?: string}> = ({linea
 
       <Sombra.Provider value="none">
         <Tinta.Provider value={TINTA_CLARA}>
-          <LogoDT top={232} ancho={132} tinta="morado" />
-          <Fila top={362}>
-            <Titular lineas={c.titulo} k={0.76} />
-          </Fila>
-          <Fila top={462}>
-            <Sello palabra={c.sello} script={c.script} cuerpo={104} />
+          {/* RONDA 13: sin el titular «DOUBLETREE SE VISTE DE MORADO» (Scarlette; Eli: «eso para los 3») */}
+          <LogoDT top={tarjeta ? 270 : 240} ancho={tarjeta ? 140 : 150} tinta="morado" />
+          <Fila top={tarjeta ? 410 : 396}>
+            <Sello palabra={c.sello} script={c.script} cuerpo={tarjeta ? 108 : 112} />
           </Fila>
           <Fila top={644}>
             <Precio antes={c.antes} precio={c.precio} bajo={c.bajoPrecio} cuerpo={94} ancho={480} />
@@ -556,6 +592,154 @@ export const DtArmyHabitacion: React.FC<{linea: Linea; foto?: string}> = ({linea
       <Boton top={1176} cuerpo={38} />
       {/* RONDA 11 (Eli): «en la op 2, en texto blanco sin botón y queda» → fuera la placa blanca */}
       <Direccion top={1262} />
+    </AbsoluteFill>
+  );
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════════════════════
+// ADAPTACIONES — historia, historia para paid y post para paid (1:1) de las opciones 1 y 2
+// ═══════════════════════════════════════════════════════════════════════════════════════════════
+/**
+ * Eli, 02-10: «OP 1 y 2 quedaron, por favor ten las adaptaciones listas para todas cuando te diga cuál quede».
+ * Es el MISMO KV del post (mismo orden, mismas piezas, botón liso) llevado a tres formatos:
+ * · `st`     — historia orgánica 1080 × 1920 (máster 2250 × 4000). El legal va al pie (~1740), como en las
+ *              historias de DT.
+ * · `stPaid` — historia para Meta Ads: nada entre y 0–250 ni bajo y 1580 (ahí van el perfil y el botón del
+ *              anuncio), y 60 px de margen a los lados.
+ * · `paid`   — post de paid 1080 × 1080 (Hilton entrega el paid en cuadrado y a 1080, sin ampliar).
+ * `fondo`: `ciudad` (opción 1: la aérea con el hotel morado) o `clienta` (opción 2: su foto con filtro morado).
+ */
+export type FormatoArmy = 'st' | 'stPaid' | 'paid';
+type Caja = {top: number; cuerpo: number};
+const FORMATOS: Record<FormatoArmy, {
+  alto: number;
+  logo: {top: number; ancho: number};
+  sello: Caja;
+  precio: Caja & {ancho: number};
+  fecha: Caja;
+  incluye: Caja & {columna: number};
+  boton: Caja;
+  direccion: Caja;
+  legal: Caja & {ancho: number};
+  /** la aérea: escala de la foto, la y del techo del hotel (queda justo bajo el precio) y `velo`: el mínimo de
+   *  negro sobre el hotel (0 = se ve limpio; en el cuadrado no hay sitio y la fecha y los íconos van encima) */
+  hotel: {s: number; techo: number; velo: number};
+  /** todo el bloque de texto escalado desde arriba (`k`) y corrido (`dy`), para centrarlo en el alto */
+  bloque?: {k: number; dy: number};
+  /** px que el velo de arriba se abre ANTES del pie del precio, cuando el hotel sube a pegarse al precio */
+  adelanta?: number;
+}> = {
+  st: {
+    alto: 1920,
+    // el logo parte en y 256: en las historias de DT va bajo la franja de 250 px de la interfaz
+    logo: {top: 256, ancho: 180},
+    sello: {top: 420, cuerpo: 120},
+    precio: {top: 760, cuerpo: 108, ancho: 560},
+    fecha: {top: 1216, cuerpo: 44},
+    incluye: {top: 1296, cuerpo: 26, columna: 310},
+    boton: {top: 1474, cuerpo: 46},
+    direccion: {top: 1586, cuerpo: 30},
+    legal: {top: 1736, cuerpo: 22, ancho: 900},
+    hotel: {s: 1.1, techo: 1004, velo: 0},
+  },
+  stPaid: {
+    alto: 1920,
+    logo: {top: 262, ancho: 170},
+    sello: {top: 428, cuerpo: 112},
+    precio: {top: 746, cuerpo: 100, ancho: 520},
+    fecha: {top: 1050, cuerpo: 40},
+    incluye: {top: 1122, cuerpo: 24, columna: 300},
+    boton: {top: 1290, cuerpo: 42},
+    direccion: {top: 1392, cuerpo: 28},
+    legal: {top: 1488, cuerpo: 19, ancho: 900},
+    // Eli, 02-10: «para paid ST zona segura la op 1, que el hotel suba un poco, cerca del precio» → el techo sube
+    // 36 px (976 → 940) y el velo de arriba se abre antes, para que el hotel se vea desde el filete del precio
+    hotel: {s: 1.05, techo: 940, velo: 0},
+    adelanta: 26,
+  },
+  paid: {
+    alto: 1080,
+    logo: {top: 30, ancho: 126},
+    sello: {top: 148, cuerpo: 90},
+    precio: {top: 390, cuerpo: 82, ancho: 440},
+    fecha: {top: 604, cuerpo: 34},
+    incluye: {top: 662, cuerpo: 20, columna: 262},
+    boton: {top: 794, cuerpo: 36},
+    direccion: {top: 878, cuerpo: 24},
+    legal: {top: 946, cuerpo: 17, ancho: 940},
+    hotel: {s: 0.8, techo: 580, velo: 0.46},
+    // Eli, 02-10: «en post paid centra toda la info, ya que se ve extraño, y que crezca un poco en ambos» → el
+    // bloque (y 30–968) crece 6 % y queda con el mismo aire arriba y abajo (43 px)
+    bloque: {k: 1.06, dy: 11},
+  },
+};
+
+// El recorte de la aérea que usan las adaptaciones (x 1560–3040 · y 0–1900 de la foto completa), ampliado 2× con
+// el escalador de precisión para que la historia a máster no salga blanda. Lo arma `scripts/dt-army-fachada.py`.
+const RECORTE = {src: 'assets/hilton/dt/army/hotel-morado-recorte.jpg', x0: 1560, y0: 0, w: 1480, h: 1900} as const;
+
+export const DtArmyAdaptacion: React.FC<{linea: Linea; fondo: 'ciudad' | 'clienta'; formato: FormatoArmy}> = ({linea, fondo, formato}) => {
+  const c = LINEAS[linea];
+  const F = FORMATOS[formato];
+  const pct = (y: number) => `${((y / F.alto) * 100).toFixed(2)}%`;
+  const {k, dy} = F.bloque ?? {k: 1, dy: 0};
+  // el filete de abajo del precio, ya con el bloque escalado, menos lo que el velo se adelanta
+  const finPrecio = (F.precio.top + F.precio.cuerpo * 2.1 + 6) * k + dy - (F.adelanta ?? 0);
+  const techo = F.hotel.techo * k + dy;
+  const v = (a: number) => `rgba(7,5,15,${Math.max(a, F.hotel.velo)})`;
+  return (
+    <AbsoluteFill style={{backgroundColor: NEGRO}}>
+      {fondo === 'ciudad' ? (
+        <>
+          <Img
+            src={staticFile(RECORTE.src)}
+            style={{position: 'absolute', width: RECORTE.w * F.hotel.s, height: RECORTE.h * F.hotel.s, left: 540 - (FOTO.cajaX - RECORTE.x0) * F.hotel.s, top: techo - (FOTO.cajaY0 - RECORTE.y0) * F.hotel.s}}
+          />
+          {/* el mismo velo del post, atado al pie del precio: negro parejo arriba, limpio en el techo del hotel y
+              un degradado largo hacia el pie */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: `linear-gradient(to bottom, rgba(7,5,15,0.78) 0%, rgba(7,5,15,0.7) 10%, rgba(7,5,15,0.7) ${pct(finPrecio - 55)}, ${v(0.28)} ${pct(finPrecio)}, ${v(0)} ${pct(finPrecio + 42)}, ${v(0)} ${pct(finPrecio + 95)}, ${v(0.16)} ${pct(finPrecio + 150)}, ${v(0.36)} ${pct(finPrecio + 205)}, ${v(0.56)} ${pct(finPrecio + 260)}, ${v(0.74)} ${pct(Math.min(F.alto - 3, finPrecio + 325))}, ${v(0.86)} ${pct(Math.min(F.alto - 2, finPrecio + 405))}, ${v(0.94)} ${pct(Math.min(F.alto - 1, finPrecio + 500))}, rgba(7,5,15,0.97) 100%)`,
+            }}
+          />
+        </>
+      ) : (
+        <>
+          {/* la foto de la clienta es 4:5: en 9:16 se recorta por los lados con el hotel al centro; en 1:1, por abajo */}
+          {/* Eli, 02-10: «en ambas ST que no se vea esa línea del hotel» → con el recorte al 64 % se asomaba en el borde
+              derecho una franja del edificio vecino; al 57 % el muro del hotel llega hasta el borde */}
+          <Img src={staticFile('assets/hilton/dt/army/clienta-morada.jpg')} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: formato === 'paid' ? 'center top' : '57% center'}} />
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background:
+                'linear-gradient(to bottom, rgba(18,6,40,0.12) 0%, rgba(18,6,40,0.3) 14%, rgba(18,6,40,0.5) 30%, rgba(18,6,40,0.56) 70%, rgba(18,6,40,0.74) 88%, rgba(18,6,40,0.86) 100%)',
+            }}
+          />
+        </>
+      )}
+
+      <div style={{position: 'absolute', left: 0, top: 0, width: 1080, height: F.alto, transform: `translateY(${dy}px) scale(${k})`, transformOrigin: '540px 0px'}}>
+      <LogoDT top={F.logo.top} ancho={F.logo.ancho} />
+      <Fila top={F.sello.top}>
+        <Sello palabra={c.sello} script={c.script} cuerpo={F.sello.cuerpo} army={1.85} />
+      </Fila>
+      <Fila top={F.precio.top}>
+        <Precio antes={c.antes} precio={c.precio} bajo={fondo === 'clienta' ? BAJO_PRECIO_OP2 : c.bajoPrecio} cuerpo={F.precio.cuerpo} ancho={F.precio.ancho} />
+      </Fila>
+      <Fila top={F.fecha.top}>
+        <Fecha t={c.fecha} cuerpo={F.fecha.cuerpo} />
+      </Fila>
+      <Fila top={F.incluye.top}>
+        <Incluye items={c.incluye} cuerpo={F.incluye.cuerpo} columna={F.incluye.columna} />
+      </Fila>
+      <Boton top={F.boton.top} cuerpo={F.boton.cuerpo} plano />
+      <Direccion top={F.direccion.top} cuerpo={F.direccion.cuerpo} />
+      <Legal t={c.legal} top={F.legal.top} ancho={F.legal.ancho} cuerpo={F.legal.cuerpo} />
+      </div>
     </AbsoluteFill>
   );
 };

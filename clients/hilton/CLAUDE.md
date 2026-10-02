@@ -1737,6 +1737,27 @@ pasa nada si se ven los rostros, por formato de storie». **No es precedente.**
 > KV de post 4:5 de la preventa «Tarifa ARMY», **aprobado por Eli en tres opciones** tras 11 rondas.
 > Reglas completas en `APRENDIZAJES.md` **R-192 a R-203**, E-22 a E-24, X-92 a X-102.
 
+> ⚠️ **La tarde del 02-10 el KV cambió (rondas 12–15, comentarios de Scarlette y de la clienta) y eso es lo
+> vigente** — `APRENDIZAJES.md` **R-204 a R-213**, E-25, E-26, X-103 a X-110. Lo que manda sobre la tabla de abajo:
+>
+> | Qué | Vigente |
+> |---|---|
+> | Titular bajo el logo | **No va.** Del logo se pasa directo a «PREVENTA» |
+> | «ARMY» | **El rótulo de pincel de la clienta, literal, con su corazón**, en su lila `#BF7FF5` (`army-pincel.png`). «Tarifa» chica, arriba a la izquierda |
+> | «PREVENTA» | Stag **Regular** |
+> | Opción 2 | **La foto de la clienta** (hotel al atardecer) con filtro morado, sin recuadro, logo blanco arriba. La habitación con globos y la fachada se retiraron |
+> | Diagramación | **Una sola para todas las opciones** (la de la 2): fecha e íconos arriba, bajo el precio |
+> | Botón | **Morado liso**, esquinas redondas. El metálico salió |
+> | Línea bajo el precio | Opción 1: «PARA 2 PERSONAS · IVA INCLUIDO» (brief). Opción 2: «PARA 2 PERSONAS + IVA» (pedido de Eli). ⚠️ **Abierto: no dicen lo mismo** |
+> | Adaptaciones | Historia 2250 × 4000 · historia de paid 1080 × 1920 (todo entre y 250 y 1580) · post de paid 1080 × 1080, bloque centrado en el alto |
+> | Entrega | Drive `GRÁFICAS DT ARMY` → `CONTENIDO/` y `PAID/`; paid a 150 ppp, en PNG y JPG |
+>
+> ```bash
+> python scripts/dt-army-fachada.py     # rótulo ARMY, foto de la clienta con filtro, recorte ampliado de la aérea
+> python scripts/dt-army-rendir.py      # posts + adaptaciones (filtros: Ciudad · Clienta · Paid · Army-ST)
+> python scripts/dt-army-subir.py       # la opción 2 a Drive: CONTENIDO y PAID, 150 ppp, JPG de paid
+> ```
+
 **«Estilo cyber DT» no es el layout de programa.** Es el molde del Cyber de mayo
 (`F:\Paid Hilton 2026\CYBER HILTON 2026 MAYO`, con su editable y sus Links): todo **centrado** —
 logo · titular en versales Stag · sello a dos voces · precio entre dos filetes · botón-barra al pie.
@@ -1766,7 +1787,7 @@ python scripts/dt-army-revision.py    # la página que mira Eli
 
 Código: `src/compositions/hilton/DtArmy.tsx` (copy en `LINEAS`; la línea de VENTA está cargada y sin
 rendir) · `src/DtArmyEntry.tsx`. Entrega: Drive `GRÁFICAS DT ARMY` (`1fu6GlR9uEydLdieUtnIrOrgovibyUOMf`).
-**Falta:** elegir opción → ST, post paid 1:1, ST paid → línea de venta.
+**Falta:** que el cliente elija entre la opción 1 y la 2 (la 2 ya está completa en Drive) · resolver «+ IVA» contra «IVA incluido» · línea de venta.
 
 ## ⭐⭐ PISO18 — MARCA PROPIA (dictado por Eli el 09-09-2026)
 

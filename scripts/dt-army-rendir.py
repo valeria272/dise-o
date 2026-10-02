@@ -34,10 +34,19 @@ PUBLICO = ["assets/hilton/dt/fonts", "assets/hilton/dt/logo-dt-blanco.png", "ass
 # id de composición → (nombre de archivo, escala del máster)
 PIEZAS = {
     f"DT-Army-KV-{p}-{linea}": (f"DT ARMY KV Post {linea.upper()} - {nombre}.png", "2.0837")
-    for p, nombre in (("Ciudad", "Opción 1 Ciudad"), ("Habitacion", "Opción 2 Habitación"),
+    # ronda 14: la opción 2 es la foto de la clienta con filtro morado; la habitación con globos (ronda 11) y
+    # la fachada del Día del Turismo (rondas 12 y 13) se retiraron — sus composiciones siguen registradas
+    for p, nombre in (("Ciudad", "Opción 1 Ciudad"), ("Clienta", "Opción 2 Hotel al atardecer"),
                       ("CiudadLogo", "Opción 3 Ciudad logo morado"))
     for linea in ("Preventa",)          # Eli, 02-10: «omite por ahora venta» (las composiciones siguen registradas)
 }
+# Las adaptaciones de las opciones 1 y 2 (Eli, 02-10: «ten las adaptaciones listas para todas cuando te diga cuál
+# quede»): historia a máster 2250 × 4000; el paid va a 1080, sin ampliar (Hilton: paid a 150 ppp como máximo).
+PIEZAS.update({
+    f"DT-Army-{fid}-{p}-Preventa": (f"adaptaciones/DT ARMY {formato} PREVENTA - {nombre}.png", escala)
+    for fid, formato, escala in (("ST", "ST", "2.0833"), ("STPaid", "ST Paid", "1"), ("PostPaid", "Post Paid", "1"))
+    for p, nombre in (("Ciudad", "Opción 1 Ciudad"), ("Clienta", "Opción 2 Hotel al atardecer"))
+})
 
 
 def npx() -> str:

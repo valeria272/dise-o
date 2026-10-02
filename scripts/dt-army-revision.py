@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""DOUBLETREE · campaña ARMY (02-10) — KV de post 4:5 de PREVENTA, ronda 8: tres opciones."""
+"""DOUBLETREE · campaña ARMY (02-10) — KV de post 4:5 de PREVENTA, ronda 15: las opciones 1 y 3 con la diagramación de la 2 (botón liso, fecha e íconos arriba, precio más grande)."""
 import pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from _revision import Pagina  # noqa: E402
@@ -8,13 +8,91 @@ from _revision import Pagina  # noqa: E402
 R = "out/hilton/dt/army"
 N = "DT ARMY KV Post PREVENTA - "
 O1, O2, O3 = N + "Opción 1 Ciudad.png", N + "Opción 2 Habitación.png", N + "Opción 3 Ciudad logo morado.png"
+O2F = N + "Opción 2 Fachada morada.png"
+O2C = N + "Opción 2 Hotel al atardecer.png"
 p = Pagina("dt", "DOUBLETREE · CAMPAÑA ARMY",
-           "KV de post · preventa: tres opciones",
-           "02-10-2026 · ronda 11 · sólo preventa, post 4:5 (2250 × 2813) · en Drive, carpeta GRÁFICAS DT ARMY",
+           "KV de post · preventa, y las adaptaciones de las opciones 1 y 2",
+           "02-10-2026 · ronda 15 · sólo preventa, post 4:5 (2250 × 2813) · en Drive, carpeta GRÁFICAS DT ARMY",
            f"{R}/revision.html", origen="scripts/dt-army-revision.py")
 
-p.opciones([(f"{R}/{O1}", "1 · ciudad"), (f"{R}/{O2}", "2 · habitación doble"), (f"{R}/{O3}", "3 · ciudad con el logo morado")],
+p.opciones([(f"{R}/{O1}", "1 · ciudad"), (f"{R}/{O2C}", "2 · la foto de la clienta, con filtro morado"), (f"{R}/{O3}", "3 · ciudad con el logo morado")],
            titulo="Las tres opciones")
+
+A = f"{R}/adaptaciones/DT ARMY "
+C1, C2 = "PREVENTA - Opción 1 Ciudad.png", "PREVENTA - Opción 2 Hotel al atardecer.png"
+p.pedido("OP 1 y 2 quedaron, por favor ten las adaptaciones listas para todas cuando te diga cuál quede",
+         "Eli", "02-10 · adaptaciones de las opciones 1 y 2",
+         que="<b>Qué hay:</b> el mismo KV del post llevado a <b>historia</b> (2250 × 4000), <b>historia para paid</b> "
+             "(1080 × 1920, con la zona segura de Meta: nada en los 250 px de arriba ni en los 340 de abajo) y <b>post "
+             "para paid</b> (1080 × 1080), para la opción 1 y para la opción 2. Están sólo en local: <b>no se subieron a "
+             "Drive</b> hasta que digas cuál queda.")
+p.opciones([(A + "ST " + C1, "historia · opción 1"), (A + "ST " + C2, "historia · opción 2")], titulo="Historia")
+p.opciones([(A + "ST Paid " + C1, "historia para paid · opción 1"), (A + "ST Paid " + C2, "historia para paid · opción 2")],
+           titulo="Historia para paid (zona segura de Meta)")
+p.opciones([(A + "Post Paid " + C1, "post para paid · opción 1"), (A + "Post Paid " + C2, "post para paid · opción 2")],
+           titulo="Post para paid (1:1)")
+
+p.pedido("Quiero que el botón quede igual como está en la opción 2, para que todo se vea centrado. Sube un poco más "
+         "«Noches del 16 y 17 de octubre» y los íconos, al igual que está en la opción 2. Y necesito que el antes y el "
+         "precio y todo eso quede un poco más grande… las tres tal cual como está en la opción 2… para que se vea todo "
+         "bien unificado", "Eli", "02-10 · ronda 15 · opciones 1 y 3",
+         que="<b>Qué cambió en las opciones 1 y 3:</b> toman la <b>diagramación de la 2</b>. El botón es el <b>morado liso</b>. "
+             "«PREVENTA», «ARMY», el <b>«ANTES» y el precio</b> crecieron al tamaño de la 2. La <b>fecha y los íconos</b> "
+             "van más grandes y <b>126 px más arriba</b>, sobre el hotel. Botón, dirección y legal quedan a la misma altura "
+             "en las tres. La opción 2 no cambió.")
+p.comparar((f"{R}/r14/{O1}", "ronda 14"), (f"{R}/{O1}", "ahora · diagramada como la 2"), titulo="Opción 1 · ciudad")
+p.comparar((f"{R}/r14/{O3}", "ronda 14"), (f"{R}/{O3}", "ahora · diagramada como la 2"),
+           titulo="Opción 3 · ciudad con el logo morado")
+
+p.pedido("quieren literal el army con el corazón. Y que «Tarifa» déjalo en las tres más pequeño, arriba de army. "
+         "PREVENTA en los tres menos grueso", "Eli", "02-10 · ronda 14 · en las tres",
+         que="<b>Qué cambió en las tres:</b> «ARMY» es <b>el rótulo de la clienta, calcado, con su corazón</b> y en su "
+             "mismo lila. <b>«Tarifa»</b> va más chica, arriba a la izquierda del rótulo. <b>«PREVENTA»</b> bajó de peso "
+             "(de seminegra a regular). Para hacerle sitio al rótulo, el precio bajó unos 15–20 px en las opciones 1 y 3.")
+p.comparar((f"{R}/r13/{O1}", "ronda 13"), (f"{R}/r14/{O1}", "ronda 14 · ARMY literal, Tarifa chica, PREVENTA liviana"),
+           titulo="Opción 1 · ciudad")
+p.comparar((f"{R}/r13/{O3}", "ronda 13"), (f"{R}/r14/{O3}", "ronda 14 · ARMY literal, Tarifa chica, PREVENTA liviana"),
+           titulo="Opción 3 · ciudad con el logo morado")
+p.comparar((f"{R}/r13/{O1}", "ronda 13"), (f"{R}/r14/{O1}", "ronda 14"), titulo="El sello, de cerca (opción 1)",
+           detalle=(180, 150, 900, 480))
+
+p.pedido("la foto de la op 2 literal del de la clienta que mandó, en un filtro morado · así la dos mejor y queda "
+         "[maqueta de Scarlette] · botón sin lo metálico", "Eli / Scarlette", "02-10 · ronda 14 · opción 2",
+         que="<b>Qué cambió en la opción 2:</b> el fondo es <b>la foto de la clienta</b> (el hotel al atardecer), limpia de "
+             "los textos del teaser y con un <b>filtro morado</b>. La distribución es la de la maqueta: <b>sin recuadro</b>, "
+             "logo blanco arriba, todo el texto al centro sobre la foto y el <b>botón morado liso</b>, sin el metálico. "
+             "Los textos son los del brief: <b>«ANTES $185.000»</b> (la maqueta decía $135.000).")
+p.comparar((f"{R}/r13/{O2F}", "ronda 13 · fachada con tarjeta blanca"), (f"{R}/{O2C}", "ahora · la foto de la clienta"),
+           titulo="Opción 2")
+p.comparar((f"{R}/refs/ref-clienta.jpg", "la imagen de la clienta"), (f"{R}/{O2C}", "la opción 2"),
+           titulo="Opción 2 · junto a la referencia")
+
+p.pedido("esta ref mandó clienta… por ende ésta sería la base, para que sigamos usando el «Army» de la misma forma, "
+         "mantener el logo · para las 3 opciones", "Eli", "02-10 · ronda 13 · en las tres",
+         que="<b>Qué cambió en las tres:</b> «ARMY» va con <b>trazo de pincel</b>, como en la referencia de la clienta, en el "
+             "morado del hotel y apenas inclinado hacia arriba. «Tarifa» sigue en la itálica de DT. Los logos quedan como "
+             "estaban.")
+p.pedido("yo no usaría esto bajo del logo [«DOUBLETREE SE VISTE DE MORADO»] · eso para los 3",
+         "Scarlette / Eli", "02-10 · ronda 13 · en las tres",
+         que="<b>Qué cambió en las tres:</b> salió el titular «DOUBLETREE SE VISTE DE MORADO» de debajo del logo. Del logo se "
+             "pasa directo a «PREVENTA / Tarifa ARMY», que creció un poco con el sitio que quedó.")
+p.comparar((f"{R}/r11/{O1}", "antes"), (f"{R}/r13/{O1}", "ronda 13 · sin titular, ARMY de pincel"), titulo="Opción 1 · ciudad")
+p.comparar((f"{R}/r11/{O3}", "antes"), (f"{R}/r13/{O3}", "ronda 13 · sin título, ARMY de pincel"), titulo="Opción 3 · ciudad con el logo morado")
+
+p.pedido("la 2 tiene unos globos muy wtf, pero haría otra opción cambiando ésa. Con la imagen de fachada que usamos para el "
+         "Día del Turismo, la dejaría completa en MORADO como la ref… · la op 2 que se parezca al fondo de la clienta · "
+         "con esta distribución la 2 [tarjeta blanca al centro sobre la foto morada]",
+         "Scarlette / Eli", "02-10 · rondas 12 y 13 · opción 2",
+         que="<b>Qué cambió en la opción 2:</b> sale la habitación con globos y entra la <b>fachada del hotel</b> (la foto de "
+             "la portada del Día del Turismo) <b>al atardecer y entera en morado</b>, como el fondo de la clienta. La "
+             "distribución es la del post que mandaste: foto morada a sangre y una <b>tarjeta blanca</b> al centro, con el "
+             "logo arriba; el cielo y la cornisa del hotel se ven sobre la tarjeta. El atardecer se hizo con IA sobre la "
+             "foto real, sin cambiar el edificio; el <b>letrero «DoubleTree» de la fachada es el real</b> (la IA lo había "
+             "reescrito y se repuso desde la foto).")
+p.comparar((f"{R}/r11/{O2}", "antes · habitación con globos"), (f"{R}/r13/{O2F}", "ronda 13 · fachada al atardecer"),
+           titulo="Opción 2")
+p.comparar((f"{R}/r12/{O2F}", "ronda 12 · fachada de día teñida"), (f"{R}/r13/{O2F}", "ronda 13 · atardecer, tarjeta blanca"),
+           titulo="Opción 2 · de la ronda 12 a ésta")
 
 p.pedido("en la op 2, en texto blanco sin botón y queda · y noches en la op 3, ese texto a blanco",
          "Eli", "02-10 · ronda 11 · opciones 2 y 3",

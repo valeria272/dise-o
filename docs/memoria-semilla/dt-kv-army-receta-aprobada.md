@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: f8de9cbd-b13e-44e6-9f03-a0caa5a889ba
-  modified: 2026-10-02T17:54:15.220Z
+  modified: 2026-10-02T18:48:30.542Z
 ---
 
 Eli, 02-10-2026: aprobó el **KV de post 4:5 de la preventa «Tarifa ARMY»** de DoubleTree (campaña por
@@ -15,6 +15,22 @@ guardarlo; el mismo día sumó la dirección del hotel y dos ajustes más, y cer
 Código: `src/compositions/hilton/DtArmy.tsx` · `src/DtArmyEntry.tsx` · `scripts/dt-army-{fotos,rendir,revision}.py`.
 **Pendiente:** elegir opción → ST, post paid 1:1 y ST paid; después la línea de VENTA ($185.000 → $135.000,
 noches 15-16-17, texto en `LINEAS.venta`, sin rendir ni revisar).
+
+⚠️ **Rondas 12–15 (02-10, tarde, por comentarios de Scarlette y de la clienta) — mandan sobre lo de abajo.
+APROBADAS por Eli («deja solo estas 3 actualizadas en Drive… y ok»); en Drive quedan sólo
+`… Opción 1 Ciudad / Opción 2 Hotel al atardecer / Opción 3 Ciudad logo morado.png`:**
+- **Las tres con UNA diagramación, la de la opción 2** (`DtArmyClienta`): mismos tamaños de sello, «ANTES» y
+  precio, fecha, íconos (columna 300), **botón morado liso** en las tres, dirección y legal a la misma altura.
+  En la 1 y la 3 la fecha y los íconos van sobre el hotel (Eli lo pidió así: «sube un poco más»).
+- **«ARMY» es el rótulo de pincel de la clienta, literal, con su corazón** y en su lila `#BF7FF5`
+  (`public/assets/hilton/dt/army/army-pincel.png`, calcado de `raw/hilton/dt/bts/ref-clienta.jpg`). Una fuente
+  de pincel «parecida» no sirvió: pidieron el literal. «Tarifa» chica, arriba a la izquierda del rótulo.
+- **Sin el titular «DOUBLETREE SE VISTE DE MORADO»** bajo el logo, en las tres (Scarlette).
+- **«PREVENTA» en Stag Regular** («menos grueso»).
+- **Opción 2 = la foto de la clienta** (hotel al atardecer) con filtro morado, sin recuadro, logo blanco arriba,
+  todo al eje y **botón morado liso** (no el metálico), como la maqueta de Scarlette. La habitación con globos
+  y la fachada del Día del Turismo quedaron retiradas (`out/hilton/dt/army/retiradas/`, y en la papelera de Drive).
+- Si la IA toca una foto del hotel, **revisar el letrero «DoubleTree» de la fachada**: lo reescribe.
 
 **Why:** fueron 9 rondas en una tarde con urgencia; casi todas por cosas que se podían haber acertado antes.
 

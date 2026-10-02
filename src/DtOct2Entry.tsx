@@ -11,7 +11,15 @@ import {Composition, Folder, registerRoot} from 'remotion';
 import {DtC5CosasOct} from './compositions/hilton/DtC5CosasOct';
 import {DURACION as DUR_CW, DtStCoworkOct, DtStCoworkOctGuia} from './compositions/hilton/DtStCoworkOct';
 import {DtFtFamilyTimeOct} from './compositions/hilton/DtFtFamilyTimeOct';
-import {DtStFeriadoEr, DtStFeriadoFt, DtStFeriadoPlanes, DtStFeriadoPlanesGuia} from './compositions/hilton/DtStFeriadoOct';
+import {
+  DtStFeriadoEr,
+  DtStFeriadoErAdicionales,
+  DtStFeriadoErAdicionalesGuia,
+  DtStFeriadoFt,
+  DtStFeriadoPlanes,
+  DtStFeriadoPlanesGuia,
+} from './compositions/hilton/DtStFeriadoOct';
+import {DtStNocheBodasOct, DtStNocheBodasOctGuia} from './compositions/hilton/DtStNocheBodasOct';
 
 const feed = {durationInFrames: 1, fps: 30, width: 1080, height: 1350} as const;
 const animada = {durationInFrames: DUR_CW, fps: 30, width: 1080, height: 1920} as const;
@@ -25,6 +33,12 @@ const Raiz: React.FC = () => (
       <Composition id="DT-S-Oct-FeriadoPlanes-Guia" component={DtStFeriadoPlanesGuia} {...story} />
       {/* STORIES col F · 05-10 · feriado Escapada Romántica */}
       <Composition id="DT-S-Oct-FeriadoER" component={DtStFeriadoEr} {...story} />
+      {/* STORIES col F · ronda 8 (02-10) · la misma con los adicionales sunset y masajes */}
+      <Composition id="DT-S-Oct-FeriadoER-Adicionales" component={DtStFeriadoErAdicionales} {...story} />
+      <Composition id="DT-S-Oct-FeriadoER-Adicionales-Guia" component={DtStFeriadoErAdicionalesGuia} {...story} />
+      {/* STORIES col H · ST adicional Noche de Bodas (02-10) */}
+      <Composition id="DT-S-Oct-NocheBodas" component={DtStNocheBodasOct} {...story} />
+      <Composition id="DT-S-Oct-NocheBodas-Guia" component={DtStNocheBodasOctGuia} {...story} />
       {/* STORIES col G · 05-10 · feriado Family Time */}
       <Composition id="DT-S-Oct-FeriadoFT" component={DtStFeriadoFt} {...story} />
       {/* STORIES col K · 22-10 · ANIMADA Coworking */}

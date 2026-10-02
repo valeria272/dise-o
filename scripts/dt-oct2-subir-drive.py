@@ -58,6 +58,8 @@ PIEZAS = [
     # FEED 07-10 carrusel Escapada Romántica — aprobado 29-09 (entrega-oct3)
     (2, "FEED", "../entrega-oct3/C1 S2 DT n°1.png"),
     (2, "FEED", "../entrega-oct3/C1 S2 DT n°2.png"),
+    # 02-10 · ST adicional Noche de Bodas (STORIES col H, sin fecha, bloque de la SEMANA 2)
+    (2, "STS", "../entrega-oct6/DT ST S2 Noche de Bodas.png"),
 ]
 
 

@@ -352,6 +352,119 @@ export const DtStFeriadoPrograma: React.FC<{cual: 'er' | 'ft'; guia?: boolean}> 
 export const DtStFeriadoEr: React.FC = () => <DtStFeriadoPrograma cual="er" />;
 
 /**
+ * RONDA 8 (02-10) · ER sola CON ADICIONALES. Hilo de Carlos a Eli en STORIES!F10: «me ayudas con
+ * esto? hay que añadirle los ad ons»; la celda pasó a EN CAMBIOS y el brief sumó «Agrega sunset:
+ * +$21.000…» y «Agrega masajes…», el mismo texto de la lámina 2 del carrusel Escapada 07-10.
+ * Los adicionales se escriben como quedaron APROBADOS ahí (R-104 punteo con punto final, R-106 los
+ * dos «Agrega…» a un peso, R-107 «+» en los dos precios), en filas separadas por filetes.
+ * El panel crece hacia abajo hasta la zona segura (cierra en y = 1566) y lo de arriba se aprieta
+ * un punto; titular, foto y ancho del panel no se mueven. La variante anterior queda intacta.
+ */
+const ADICIONALES = [
+  {que: 'Agrega sunset', precio: '+$21.000', det: [['Una entrada (fría o caliente, a elección)', 'en QB Restaurant.'], ['Dos tragos seleccionados.']]},
+  {que: 'Agrega masajes', precio: '+$100.000', det: [['Dos masajes de 60 minutos.'], ['Valor preferencial con tu reserva.']]},
+] as const;
+
+const PANEL_AD = {x: 88, y: 738, ancho: 600, alto: 828, radio: 44, pad: 54} as const;
+const FILETE_AD = '1.5px solid rgba(250,250,250,0.55)';
+
+export const DtStFeriadoErAdicionales: React.FC<{guia?: boolean}> = ({guia = false}) => {
+  const p = ER;
+  return (
+    <AbsoluteFill style={{backgroundColor: AZUL}}>
+      <Foto src={p.foto} style={{objectPosition: `${p.focoX} 50%`}} />
+      <Velo desde={0.42} pie={0.72} lado="arriba" />
+
+      <Logo formato="story" />
+      <TituloPrograma lineas={p.titulo} />
+
+      <div
+        style={{
+          position: 'absolute',
+          left: PANEL_AD.x,
+          top: PANEL_AD.y,
+          width: PANEL_AD.ancho,
+          height: PANEL_AD.alto,
+          borderRadius: PANEL_AD.radio,
+          background: 'rgba(9,25,78,0.84)',
+          backdropFilter: 'blur(3.5px)',
+          WebkitBackdropFilter: 'blur(3.5px)',
+          padding: `${PANEL_AD.pad - 8}px ${PANEL_AD.pad}px ${PANEL_AD.pad - 12}px`,
+          boxSizing: 'border-box',
+          color: BLANCO,
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <div style={{display: 'flex', alignItems: 'flex-end'}}>
+          <span style={{fontFamily: DT.fuentes.texto, fontSize: 28, letterSpacing: '0.02em', marginRight: 14, marginBottom: 7}}>{p.desde}</span>
+          <span style={{fontFamily: TRADE_CN, fontWeight: 700, fontSize: 84, lineHeight: 0.9}}>{p.precio}</span>
+          <span style={{fontFamily: DT.fuentes.texto, fontSize: 23, letterSpacing: '0.03em', marginLeft: 16, marginBottom: 8}}>IVA INCLUIDO</span>
+        </div>
+
+        <div style={{marginTop: 26, display: 'flex', flexDirection: 'column', gap: 11}}>
+          {p.incluye.map((x) => (
+            <Pildora key={x} t={x} cuerpo={25} pad="10px 18px 8px" />
+          ))}
+        </div>
+
+        <div style={{marginTop: 26, borderTop: FILETE_AD}}>
+          {ADICIONALES.map((a) => (
+            <div key={a.que} style={{padding: '15px 0 14px', borderBottom: FILETE_AD}}>
+              <div style={{display: 'flex', alignItems: 'baseline', justifyContent: 'space-between'}}>
+                <span style={{fontFamily: DT.fuentes.titular, fontWeight: DT.pesos.medium, fontSize: 31, lineHeight: 1.1}}>{a.que}</span>
+                <span style={{fontFamily: TRADE_CN, fontWeight: 700, fontSize: 40, lineHeight: 1}}>{a.precio}</span>
+              </div>
+              <div style={{marginTop: 7}}>
+                {a.det.map((d) => (
+                  <div
+                    key={d[0]}
+                    style={{display: 'flex', fontFamily: DT.fuentes.titular, fontWeight: DT.pesos.regular, fontSize: 22, lineHeight: 1.3, wordSpacing: '0.06em'}}
+                  >
+                    <span style={{width: 20, flexShrink: 0}}>•</span>
+                    <div>
+                      {d.map((x) => (
+                        <div key={x} style={{whiteSpace: 'nowrap'}}>
+                          {x}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{flex: 1}} />
+
+        <div
+          style={{
+            alignSelf: 'center',
+            background: BLANCO,
+            color: AZUL,
+            borderRadius: 999,
+            padding: '14px 34px 10px',
+            fontFamily: DT.fuentes.texto,
+            fontSize: 30,
+            letterSpacing: '0.02em',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          reservas.dtv@hilton.com
+        </div>
+        <div style={{marginTop: 14, alignSelf: 'center', fontFamily: DT.fuentes.texto, fontSize: 22, letterSpacing: '0.02em'}}>
+          Sujeto a disponibilidad.
+        </div>
+      </div>
+
+      {guia ? <Guia /> : null}
+    </AbsoluteFill>
+  );
+};
+export const DtStFeriadoErAdicionalesGuia: React.FC = () => <DtStFeriadoErAdicionales guia />;
+
+/**
  * FT sola. Misma gramática de la ref (panel azul, píldoras de contorno, botón lleno),
  * pero el panel va ABAJO y a lo ancho: en todas las escenas del banco la familia
  * ocupa el centro del cuadro y un panel vertical a la izquierda la tapaba (ronda

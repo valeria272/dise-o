@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-10-02** · Cosechas: **27**
+> Última cosecha: **2026-10-02** · Cosechas: **28**
 
 ## 1. Quién es el cliente
 
@@ -349,6 +349,9 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - Banner web: el MP4 de Canva ablanda las tres franjas (usa una versión de baja resolución de las imágenes anchas); en PNG y en el editor se ven nítidas. ¿Se parten en tramos de 480 px para que salgan nítidas en video? → **Eli**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 (3) — Claude con Eli · segundo /cierre
+- sin aprendizajes nuevos: entre el primer cierre (commit 583f4caa) y éste no hubo piezas, rondas ni comentarios. Se comprobó que lo de QB está en el remoto y que no quedó nada de la marca sin subir.
 
 ### 2026-10-02 (2) — Claude con Eli · pantalla digital AYCD + Sunset QB y editables a GRILLA IA QB · 6 reglas nuevas, 1 aprobada, 3 rechazos propios
 - **Fuente:** Eli en el chat (02-10). La solicitud viene de la planilla de pendientes de Scarlette («Pantalla web All You Can Drink + Sunset», URGENTE 2, responsable Eli), no de la grilla. Sin comentarios del cliente.

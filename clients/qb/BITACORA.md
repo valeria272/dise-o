@@ -1,5 +1,12 @@
 # QB Restaurant — bitácora
 
+## 2026-10-02 (cierre 2) — Elisabet Soto «Eli» (Windows, con Claude) · /cierre QB
+
+**Qué se hizo:** segundo cierre del día, sin trabajo nuevo: se comprobó que el commit de la pantalla AYCD + Sunset QB (583f4caa) está en el remoto y que no quedó nada de QB sin subir.
+**Dónde quedó:** igual que la entrada de abajo.
+**Qué sigue:** Reel DJ S2 (sale el 05-10, falta la foto de Felipe Saxofonista) · reordenar en Drive las stories de S4 y S5 según la grilla del 02-10 · newsletter de bienvenida y mailing de promos cuando llegue el brief de textos.
+**Abierto:** lo mismo de la entrada de abajo.
+
 ## 2026-10-02 — Elisabet Soto «Eli» (Windows, con Claude) · pantalla digital AYCD + Sunset QB y editables aprobados a GRILLA IA QB
 
 **Qué se hizo:** `/abrir qb` + relectura de la grilla (instantánea `qb-oct-20261002.json`) y de la planilla de pendientes de Scarlette (`Planificacion_Hilton_Octubre_2026.xlsx`, Slack #hilton- 01-10). De esa planilla, la solicitud «Pantalla web All You Can Drink + Sunset» (urgente, de Eli): una pieza con las dos promos en **1080×1920** y **1230×720** (ascensor). Se partió de sus editables (`PANTALLA SUNSET QB+AYCD.ai`, mesas 12 y 11, con el QB TIME 2x$7.990 antiguo) y de `SUNSET QB PROMO 2026.ai` (KV aprobado el 01-10). Tres rondas en código con antes y después en HTML: r1 Sunset nuevo en la misma estructura; r2 los cócteles de Sunset («debe verse armónico»); r3 horario en las dos promos y el velo del recuadro de Sunset igual al de AYCD. Después se actualizaron las mesas 11 y 12 **dentro de su `.ai`** por script (foto de la terraza enlazada, logo y franja «DESDE $3.990» del KV, marco y velo duplicados de AYCD, textos vivos) y las imágenes finales se exportaron del `.ai`. Además se sacó un `.ai` por pieza de las promos **aprobadas** (Sunset post y ST; AYCD post y ST con la foto del Ramazzotti rosado).

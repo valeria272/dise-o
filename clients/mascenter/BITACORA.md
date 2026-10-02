@@ -1,3 +1,10 @@
+## 2026-10-02 — Diego Aguilar (con Claude) · p-26-10: persona integrada y logos sin fondo
+
+**Qué se hizo:** comentario del cliente («se ve un poco sobrepuesta la persona, sobre todo en el pelo; eliminar fondo de los logos»). El velo azul del cielo ahora va horneado en la foto y el feriante se recorta de esa misma foto, con la máscara contraída 2 px y suavizada; el lockup Más Center | Mercado Campesino va en blanco sin la placa azul.
+**Dónde quedó:** p-26-10 reemplazado en sitio (md5 OK); `clients/mascenter/sistema/post_mercado.py` (`velar`, `lockup_sin_fondo`).
+**Qué sigue:** OK del cliente.
+**Abierto:** este cambio todavía no está commiteado (lo sube el próximo cierre o el respaldo automático).
+
 ## 2026-10-01 (2ª parte) — Diego Aguilar (con Claude) · comentarios de la grilla: 14 piezas corregidas
 
 **Qué se hizo:**

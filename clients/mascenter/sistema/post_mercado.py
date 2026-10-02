@@ -46,12 +46,38 @@ def encuadre(im, dy=0.5):
     return im.crop((0, y, W, y + H))
 
 
+def velar(im):
+    """Velo azul del cielo HORNEADO en la foto (antes iba como capa sólo bajo el titular y la persona, recortada de la
+    foto sin velo, quedaba más clara que su entorno: «se ve un poco sobrepuesta, sobre todo se nota en el pelo»)."""
+    import numpy as np
+    a = np.asarray(im).astype(float)
+    y = np.linspace(0, 1, im.height)
+    op = np.interp(y, [0, .26, .42, .54, 1], [.62, .50, .22, 0, 0])[:, None, None]
+    return Image.fromarray((a * (1 - op) + np.array([12, 38, 74]) * op).round().astype("uint8"))
+
+
+def lockup_sin_fondo(ruta):
+    """El lockup Más Center | Mercado Campesino viene del .ai sobre su placa azul: la placa se vuelve transparente y
+    queda el trazo blanco (comentario del cliente, 02-10: «eliminar fondo de los logos»)."""
+    import numpy as np
+    a = np.asarray(Image.open(ruta).convert("RGB")).astype(float)
+    lum = a.mean(axis=2)
+    base_l = float(np.median(lum))                      # la placa azul es el tono dominante
+    alfa = np.clip((lum - base_l - 12) / (255 - base_l - 12), 0, 1)
+    out = np.dstack([np.full(lum.shape, 255.0)] * 3 + [alfa * 255]).round().astype("uint8")
+    im = Image.fromarray(out, "RGBA")
+    return im.crop(im.getbbox())
+
+
 def cuerpo():
     foto = Image.open(OUT / "fotos/vendedor-v2.png").convert("RGB")
     alfa = Image.open(OUT / "fotos/vendedor-v2-nobg.png").convert("RGBA").getchannel("A")
-    persona = foto.copy(); persona.putalpha(alfa.filter(ImageFilter.GaussianBlur(1.2)))   # color de la foto, máscara del recorte
     DY = 0.5
-    fondo, persona = encuadre(foto, DY), encuadre(persona, DY)
+    fondo = velar(encuadre(foto, DY))
+    # La persona sale de la MISMA foto ya velada (misma luz que su entorno) y la máscara se contrae 2 px y se suaviza:
+    # así el borde del pelo no arrastra cielo claro sobre las letras.
+    alfa = encuadre(alfa, DY).filter(ImageFilter.MinFilter(5)).filter(ImageFilter.GaussianBlur(1.8))
+    persona = fondo.copy(); persona.putalpha(alfa)
     # Silueta medida sobre el recorte ya encuadrado: cabeza x 458–630, y 415–640; hombros desde y≈690 (x 386–731).
     # «TU COMPRA» y «MÁS FRESCA» llenan el ancho SOBRE la cabeza (el pelo roza la segunda línea) y «ESTÁ» / «AQUÍ»
     # la flanquean a la altura de la cara: el titular queda detrás de la persona, como en la REF, sin letras tapadas.
@@ -85,14 +111,13 @@ def cuerpo():
         for k, h in enumerate(horas):
             cols += (f'<div style="position:absolute;left:{x + 32}px;top:{tb(1244 + 26 * k, 20, 26, "rnd"):.1f}px;font-weight:400;font-size:20px;'
                      f'line-height:26px;white-space:nowrap">{h}</div>')
-    lockup = Image.open(RAIZ / "raw/mascenter/octubre-2026/refs/lockup-mc-mercadocampesino.png")
+    lockup = lockup_sin_fondo(RAIZ / "raw/mascenter/octubre-2026/refs/lockup-mc-mercadocampesino.png")
     return f"""<style>.pin-ico.chico{{width:28px;height:28px;margin-top:-5px}}</style>
 <img src="{base.data_uri(fondo)}" style="position:absolute;left:0;top:0;width:{W}px;height:{H}px">
-<div class="velo" style="background:linear-gradient(180deg,rgba(12,38,74,.62) 0,rgba(12,38,74,.5) 26%,rgba(12,38,74,.22) 42%,rgba(0,0,0,0) 54%)"></div>
 {tit}
 <img src="{base.data_uri(persona, 'PNG')}" style="position:absolute;left:0;top:0;width:{W}px;height:{H}px">
 <div class="velo" style="background:linear-gradient(180deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) 68%,rgba(0,0,0,.7) 79%,rgba(0,0,0,.9) 100%)"></div>
-<img src="{base.data_uri(lockup, 'PNG')}" style="position:absolute;left:330px;top:44px;width:420px">
+<img src="{base.data_uri(lockup, 'PNG')}" style="position:absolute;left:{(W - 430) // 2}px;top:52px;width:430px">
 {bajada}
 {cols}"""
 

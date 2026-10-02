@@ -45,7 +45,7 @@ const PIEZAS = {
   'P18O-S2710': [5, 'STS', 'P18 ST 27-10 Visita virtual.png'],
   // la estática de la animada (último fotograma) y las guías de QA, que NO se suben
   'P18O-S0510': [2, 'STS', 'P18 ST 05-10 Primavera en Piso18 portada.png', 299],
-  'P18O-F2010': [4, 'FEED', 'P18 FEED 20-10 Cumpleanos en Piso18 portada.png', 239],
+  'P18O-F2010': [4, 'FEED', 'P18 FEED 20-10 Cumpleanos en Piso18 portada.png', 'ultimo'],
   'P18O-S1610': [3, 'STS', 'P18 ST 16-10 Equipo Piso18 portada.png', 'ultimo'],
   'P18O-S3010': [5, 'STS', 'P18 ST 30-10 Broche perfecto portada.png', 'ultimo'],
   'P18O-S0710-Guia': [0, 'GUIAS', 'P18 ST 07-10 GUIA.png'],

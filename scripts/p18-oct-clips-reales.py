@@ -40,11 +40,11 @@ CLIPS = {
     "s3010-a.mp4": ("sesion 27 de febrero 2026/IMG_5760.MOV", 0.8, 3.0),   # atardecer por el ventanal, mesa montada
     "s3010-b.mp4": ("Capsula 4 marzo 2026/IMG_5669.MOV", 4.0, 3.0),        # centro de flores y puestos, de cerca
     "s3010-c.mp4": ("Capsula 4 marzo 2026/IMG_1876.MOV", 0.2, 2.8),        # salón de noche con las guirnaldas
-    # el letrero de neón, NIVELADO (gira 13°) y recortado sobre el 4K para dejar fuera la
+    # el letrero de neón, NIVELADO (gira 9°, lo que deja el cuadro sin esquinas vacías) y recortado sobre el 4K para dejar fuera la
     # licuadora; la cámara panea y a los 2,4 s el «8» toca el borde: va 0–1,85 s a mitad de
     # velocidad (el original es de 59,94 fps, así que a 30 fps no se inventa ningún fotograma).
     "s3010-d.mp4": ("Capsula 3 marzo 2026 parte 1/IMG_5690.MOV", 0.0, 1.85,
-                    "rotate=-13*PI/180:bilinear=1,crop=1360:2418:140:230,setpts=2*PTS"),
+                    "rotate=-9*PI/180:bilinear=1,crop=1460:2596:130:130,setpts=2*PTS"),
 }
 
 HLG_A_SDR = ("zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,"

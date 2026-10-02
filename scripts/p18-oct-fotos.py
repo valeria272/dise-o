@@ -97,7 +97,12 @@ FOTOS = {
     "s1910-fondo.jpg": (BASE / "jul56.jpg", (117, 0, 1266, 2250), (1080, 1920)),
     # la polaroid muestra 476 px de mesa ⇒ 1000×1000 alcanza (×2,08 = 992)
     # tirada b: foto robada desde atrás del grupo (la 1 era de banco de imágenes, X-12)
-    "s1910-fiesta.jpg": (GEN / "st19-fiestab.jpg", None, (1000, 1000)),
+    # Ronda 8 (Eli 02-10: «la fotografía se ve un poco extraña, yo ocuparía una real, hay
+    # sesiones donde se muestra como corporativo»): sale el brindis generado (`st19-fiestab`)
+    # y entra una foto REAL del evento de julio (piso 18-106, 1500×2250): los spritz en la
+    # barra iluminada con los invitados de traje desenfocados detrás, sin rostros nítidos.
+    # Cuadrado de 1500 px desde y=560; reduce (×0,67), no amplía.
+    "s1910-fiesta.jpg": (BASE / "jul106.jpg", (0, 560, 1500, 1500), (1000, 1000)),
     # ST 21-10 · pantalla dividida, cada mitad 1080×960 de mesa (9:8). Generadas a 2048²:
     # se recorta el alto; arriba (Japonesa) se ve el tercio alto, abajo (New York) el bajo.
     "s2110-japonesa.jpg": (GEN / "st21-japonesa.jpg", (0, 0, 2048, 1820), (2250, 2000)),
@@ -108,13 +113,43 @@ FOTOS = {
     # La torta llegaba a la mitad del cuadro y la lista la tapaba: `f20-cumplex` es la misma
     # foto EXTENDIDA hacia arriba a 9:16 (1536×2752) y el 4:5 se recorta más arriba, con la
     # punta de las velas al 57 % del alto. Sobre el ×2 de precisión no amplía.
-    "f2010.jpg": (GEN / "f20-cumplex.jpg", (0, 590, 1536, 1920), FEED),
+    # Ronda 8 (Eli 02-10: «faltan más detalles en la imagen de cumpleaños porque parece más
+    # matrimonio»): `f20-cumplee` es la misma foto editada (globos, regalos, serpentinas,
+    # velas de colores; la bengala de la tirada d se sacó), con la misma caja.
+    # Ronda 9 (Eli 02-10: «la imagen se ve demasiado exagerada (…) que la torta tenga algún
+    # número como cuarenta»): se vuelve a la foto sobria; `f20-base40` es `f20-cumplex` con las
+    # velas del 40 y nada más. La caja sube 40 px (y=550) para que las llamas queden bajo la
+    # última caja de la lista. Los globos van aparte, como capas (`scripts/p18-oct-globos.py`).
+    "f2010.jpg": (GEN / "f20-base40.jpg", (0, 550, 1536, 1920), FEED),
     "s0910.jpg": (GEN / "st09b.jpg", None, STORY),
     "s2310.jpg": (GEN / "st23.jpg", None, STORY),
     "s2710-fondo.jpg": (BASE / "deco86.jpg", (1800, 0, 2160, 3840), (1400, 2489)),
     "s2710-tour.jpg": (REFS / "matterport-movil.png", None, (900, 1950)),
     "s2710-salon.jpg": (BASE / "banq0.jpg", (3100, 0, 1842, 3990), (900, 1950)),
 }
+
+
+def fibra():
+    """Textura de papel NEUTRA (gris medio) para sumarla a un color plano con `overlay`.
+
+    Ronda 8 (Eli 02-10): «que el sobre tuviera un poco de texturita para que se viera más
+    realista» (ST 13-10) y «que la hoja se vea un poquitito más texturizada» (ST 19-10).
+    Sale del papel real de la 15-10 (`st15-papel`): se le quita el color y la luz general
+    (se divide por su propio desenfoque) y queda sólo la fibra y los pliegues finos.
+    """
+    import numpy as np
+    from PIL import ImageFilter
+    origen = GEN / "st15-papel.jpg"
+    if not origen.is_file():
+        print("·  falta st15-papel.jpg → papel-fibra.jpg queda para después")
+        return
+    g = Image.open(origen).convert("L").resize((1792, 2334), Image.LANCZOS)
+    a = np.asarray(g, dtype=np.float32)
+    base = np.asarray(g.filter(ImageFilter.GaussianBlur(70)), dtype=np.float32)
+    d = (a / np.maximum(base, 1) - 1.0) * 2.2      # sólo el relieve, con algo más de contraste
+    out = np.clip(128 + d * 128, 0, 255).astype(np.uint8)
+    Image.fromarray(out).save(OUT / "papel-fibra.jpg", quality=92)
+    print(f"✓  papel-fibra.jpg      ← st15-papel.jpg (relieve neutro, desviación {out.std():.1f})")
 
 
 def prepara(nombre, origen, caja, tam):
@@ -153,6 +188,8 @@ def main():
         if solo and not any(s in nombre for s in solo):
             continue
         prepara(nombre, origen, caja, tam)
+    if not solo or any("fibra" in x for x in solo):
+        fibra()
 
 
 if __name__ == "__main__":

@@ -205,6 +205,29 @@ export const PapelBeige: React.FC<{semilla?: number}> = ({semilla = 3}) => (
 );
 
 /**
+ * Fibra de papel real sobre un color plano. `papel-fibra.jpg` es el relieve NEUTRO (gris
+ * medio) del papel de la 15-10 (`scripts/p18-oct-fotos.py fibra`): con `overlay` texturiza
+ * un color (el sobre fucsia) y con `hard-light` deja sólo los pliegues y la fibra oscura
+ * sobre un papel casi blanco. Ronda 8, Eli 02-10: «que el sobre tuviera un poco de
+ * texturita para que se viera más realista» y «que la hoja se vea un poquitito más
+ * texturizada, solo un poco más».
+ */
+const FibraPapel: React.FC<{
+  recorte: string;
+  caja: {x: number; y: number; w: number; h: number};
+  fuerza: number;
+  modo?: 'overlay' | 'hard-light';
+  giro?: number;
+}> = ({recorte, caja, fuerza, modo = 'overlay', giro = 0}) => (
+  <div style={{position: 'absolute', inset: 0, clipPath: recorte, mixBlendMode: modo, opacity: fuerza}}>
+    <Img
+      src={oct('papel-fibra.jpg')}
+      style={{position: 'absolute', left: caja.x, top: caja.y, width: caja.w, height: caja.h, objectFit: 'cover', transform: `rotate(${giro}deg)`}}
+    />
+  </div>
+);
+
+/**
  * Clip de archivador de la hoja (ref del 16-10). Ronda 1, Eli 28-09: «las cositas de
  * archivadora en el color fucsia de piso 18, esos pinchitos que se vean un poco
  * mejor» ⇒ cuerpo en `#D4145A` con el pliegue un tono más hondo y un brillo de metal
@@ -674,8 +697,27 @@ export const P18OF1610S5: React.FC = () => {
  * parta. Sin línea «Cotiza…»: la hoja FEED no trae CTA (R-51).
  * Foto producida sobre el salón real de noche (banq 0044 y 0047), sin personas: las refs del
  * brief son fiestas con gente, pero el visual pedido es la torta y la mesa.
+ *
+ * Ronda 8, Eli 02-10: «quiero que estén encerrados en unas cajillas cada beneficio (…) que
+ * las cajas estén como en un mismo tamaño, pero no tan largas, trata de que se vea tal vez
+ * algún ícono, para que se vea mucho mejor compensado» ⇒ la lista suelta alineada a la
+ * izquierda pasa a cinco CAJAS IGUALES y centradas (`CAJA_20`), con el texto centrado y un
+ * ícono Phosphor en el cuadro fucsia donde iba el número. Y «faltan más detalles en la
+ * imagen de cumpleaños porque parece más matrimonio» ⇒ la misma foto, editada con globos,
+ * regalos, serpentinas y velas de colores (`f20-cumplee`, R-49).
+ *
+ * Ronda 9, Eli 02-10 (la misma tarde): «la imagen se ve demasiado exagerada (…) prueba
+ * haciendo que aparezcan algunos detalles, como solo la imagen estática, pero que algunas
+ * cosas vayan apareciendo, por ejemplo globos, el movimiento, detalles sutiles, no tan
+ * exagerado, y que la torta de cumpleaños tenga algún número como cuarenta» ⇒ la foto vuelve
+ * a ser la sobria de la ronda 7, con las velas del 40 (`f20-base40`); sin regalos, gorros ni
+ * serpentinas. Lo que aparece son dos racimos chicos de tres globos (`GLOBOS_20`), que suben
+ * 34 px, se asientan y se mecen 0,7°, y las llamas del 40 respiran (`LLAMAS_20`). La foto en
+ * sí no se mueve. Las cajas se angostaron (540) para no tapar los globos.
  */
-export const P18_F2010_DUR = 240;
+// Ronda 10 (Eli 02-10: «fíjate que dure lo suficiente para post animado»): 8 s → 12 s. Todo termina
+// de entrar a los 5,1 s y quedan ~7 s para leer las cinco cajas (antes 2,9 s).
+export const P18_F2010_DUR = 360;
 const INCLUYE_20: [string, string?][] = [
   ['Ambientación y decoración'],
   ['Servicios audiovisuales', '(DJ en vivo, amplificación, iluminación LED)'],
@@ -684,10 +726,69 @@ const INCLUYE_20: [string, string?][] = [
   ['Comida de trasnoche'],
 ];
 
+/**
+ * Íconos de la lista: Phosphor Icons 2.1.1, variante DUOTONE (licencia MIT), trazados
+ * copiados tal cual sobre su grilla de 256, como los del carrusel de cumpleaños de la S5
+ * (R-38: de un set profesional, nunca dibujados a mano).
+ * balloon · speaker-hifi · fork-knife · martini · hamburger
+ */
+const ICONOS_20: React.ReactNode[] = [
+  (
+    <>
+      <path d="M137.89,199.13h0L152,232H104l14.09-32.87h0C78.59,192.18,48,144.83,48,104a80,80,0,0,1,160,0C208,144.83,177.41,192.18,137.89,199.13Z" opacity={0.22} />
+      <path d="M128,16a88.1,88.1,0,0,0-88,88c0,23.43,9.4,49.42,25.13,69.5,12.08,15.41,26.5,26,41.91,31.09L96.65,228.85A8,8,0,0,0,104,240h48a8,8,0,0,0,7.35-11.15L149,204.59c15.4-5.07,29.83-15.68,41.91-31.09C206.6,153.42,216,127.43,216,104A88.1,88.1,0,0,0,128,16Zm11.87,208H116.13l6.94-16.19c1.64.12,3.28.19,4.93.19s3.29-.07,4.93-.19Zm38.4-60.37C163.94,181.93,146.09,192,128,192s-35.94-10.07-50.27-28.37C64.12,146.27,56,124,56,104a72,72,0,0,1,144,0C200,124,191.88,146.27,178.27,163.63Zm-1-59.74A8.52,8.52,0,0,1,176,104a8,8,0,0,1-7.88-6.68,41.29,41.29,0,0,0-33.43-33.43,8,8,0,1,1,2.64-15.78,57.5,57.5,0,0,1,46.57,46.57A8,8,0,0,1,177.32,103.89Z" />
+    </>
+  ),
+  (
+    <>
+      <path d="M192,32H64a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H192a8,8,0,0,0,8-8V40A8,8,0,0,0,192,32ZM128,184a32,32,0,1,1,32-32A32,32,0,0,1,128,184Z" opacity={0.22} />
+      <path d="M192,24H64A16,16,0,0,0,48,40V216a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V40A16,16,0,0,0,192,24Zm0,192H64V40H192ZM116,76a12,12,0,1,1,12,12A12,12,0,0,1,116,76Zm12,116a40,40,0,1,0-40-40A40,40,0,0,0,128,192Zm0-64a24,24,0,1,1-24,24A24,24,0,0,1,128,128Z" />
+    </>
+  ),
+  (
+    <>
+      <path d="M208,40V168H152S152,64,208,40Z" opacity={0.22} />
+      <path d="M72,88V40a8,8,0,0,1,16,0V88a8,8,0,0,1-16,0ZM216,40V224a8,8,0,0,1-16,0V176H152a8,8,0,0,1-8-8,268.75,268.75,0,0,1,7.22-56.88c9.78-40.49,28.32-67.63,53.63-78.47A8,8,0,0,1,216,40ZM200,53.9c-32.17,24.57-38.47,84.42-39.7,106.1H200ZM119.89,38.69a8,8,0,1,0-15.78,2.63L112,88.63a32,32,0,0,1-64,0l7.88-47.31a8,8,0,1,0-15.78-2.63l-8,48A8.17,8.17,0,0,0,32,88a48.07,48.07,0,0,0,40,47.32V224a8,8,0,0,0,16,0V135.32A48.07,48.07,0,0,0,128,88a8.17,8.17,0,0,0-.11-1.31Z" />
+    </>
+  ),
+  (
+    <>
+      <path d="M200,72l-72,72L56,72Z" opacity={0.22} />
+      <path d="M237.66,45.66A8,8,0,0,0,232,32H24a8,8,0,0,0-5.66,13.66L120,147.31V208H88a8,8,0,0,0,0,16h80a8,8,0,0,0,0-16H136V147.31ZM75.31,80H180.69L128,132.69ZM212.69,48l-16,16H59.31l-16-16Z" />
+    </>
+  ),
+  (
+    <>
+      <path d="M188,176l20-7.27V184a32,32,0,0,1-32,32H80a32,32,0,0,1-32-32V167.27L68,160l40,16,40-16Zm27.82-89.72C209.32,55.55,172.48,32,128,32S46.68,55.55,40.18,86.28A8,8,0,0,0,48.07,96H207.93A8,8,0,0,0,215.82,86.28Z" opacity={0.22} />
+      <path d="M48.07,104H207.93a16,16,0,0,0,15.72-19.38C216.22,49.5,176,24,128,24S39.78,49.5,32.35,84.62A16,16,0,0,0,48.07,104ZM128,40c39.82,0,74.21,20.61,79.93,48H48.07L48,87.93C53.79,60.61,88.18,40,128,40ZM229.26,152.48l-41.13,15L151,152.57a8,8,0,0,0-5.94,0l-37,14.81L71,152.57a8,8,0,0,0-5.7-.09l-44,16a8,8,0,0,0,5.47,15L40,178.69V184a40,40,0,0,0,40,40h96a40,40,0,0,0,40-40v-9.67l18.73-6.81a8,8,0,1,0-5.47-15ZM200,184a24,24,0,0,1-24,24H80a24,24,0,0,1-24-24V172.88l11.87-4.32L105,183.43a8,8,0,0,0,5.94,0l37-14.81,37,14.81a8,8,0,0,0,5.7.09l9.27-3.37ZM16,128a8,8,0,0,1,8-8H232a8,8,0,0,1,0,16H24A8,8,0,0,1,16,128Z" />
+    </>
+  ),
+];
+
+/**
+ * Ronda 9 (Eli 02-10): los dos racimos de globos son capas aparte (`scripts/p18-oct-globos.py`),
+ * recortadas de la tirada `f20-globos` en su mismo lugar: caja de la tirada 9:16 de 1536 px,
+ * llevada al lienzo con k = 1080/1536 y la foto recortada desde y=550.
+ */
+const K20 = 1080 / 1536;
+const GLOBOS_20 = [
+  {src: 'f2010-globos-izq.png', x: 140 * K20, y: (1220 - 550) * K20, w: 400 * K20, h: 700 * K20, desde: 46, fase: 0},
+  {src: 'f2010-globos-der.png', x: 1010 * K20, y: (1260 - 550) * K20, w: 370 * K20, h: 660 * K20, desde: 96, fase: 2.1},
+];
+/** Las dos llamas de las velas del 40, en el lienzo de 1080×1350. */
+const LLAMAS_20: [number, number][] = [
+  [510, 803],
+  [589, 794],
+];
+
+/** Caja de un beneficio: todas del mismo tamaño, con el ícono en el cuadro fucsia. */
+const CAJA_20 = {ancho: 540, alto: 60, aire: 8, top: 410};
+
 export const P18OF2010: React.FC = () => {
   cargarFuentesP18();
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
+  const C = CAJA_20;
   const entra = (desde: number, dx = 0, dy = 26) => {
     const s = spring({frame: f - desde, fps, config: {damping: 200}, durationInFrames: 22});
     return {opacity: s, transform: `translate(${(1 - s) * dx}px, ${(1 - s) * dy}px)`};
@@ -695,10 +796,48 @@ export const P18OF2010: React.FC = () => {
   return (
     <AbsoluteFill style={{backgroundColor: P18.colores.tinta}}>
       <Foto src="f2010.jpg" />
+      {/* las llamas del 40 respiran: un resplandor cálido muy leve, que no mueve la foto */}
+      {LLAMAS_20.map(([x, y], i) => (
+        <div
+          key={x}
+          style={{
+            position: 'absolute',
+            left: x - 70,
+            top: y - 70,
+            width: 140,
+            height: 140,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(255,214,150,0.55) 0%, rgba(255,190,110,0.18) 38%, rgba(255,190,110,0) 70%)',
+            mixBlendMode: 'screen',
+            opacity: 0.5 + 0.22 * Math.sin(f / 5.3 + i * 1.9) + 0.12 * Math.sin(f / 2.1 + i),
+          }}
+        />
+      ))}
+      {/* los globos aparecen de a uno: suben un poco, se asientan y después se mecen apenas */}
+      {GLOBOS_20.map((g) => {
+        const s = spring({frame: f - g.desde, fps, config: {damping: 200}, durationInFrames: 50});
+        const mece = Math.sin((f - g.desde) / 26 + g.fase) * 0.7 * s;
+        return (
+          <Img
+            key={g.src}
+            src={oct(g.src)}
+            style={{
+              position: 'absolute',
+              left: g.x,
+              top: g.y,
+              width: g.w,
+              height: g.h,
+              opacity: s,
+              transformOrigin: '50% 100%',
+              transform: `translateY(${(1 - s) * 34}px) rotate(${mece}deg)`,
+            }}
+          />
+        );
+      })}
       <AbsoluteFill
         style={{
           background:
-            'linear-gradient(to bottom, rgba(8,8,10,0.78) 0%, rgba(8,8,10,0.72) 48%, rgba(8,8,10,0.4) 58%, rgba(8,8,10,0) 70%)',
+            'linear-gradient(to bottom, rgba(8,8,10,0.80) 0%, rgba(8,8,10,0.66) 30%, rgba(8,8,10,0.40) 46%, rgba(8,8,10,0.14) 56%, rgba(8,8,10,0) 64%)',
         }}
       />
       <Logo top={P18.geometria.logoYFeed} />
@@ -706,33 +845,41 @@ export const P18OF2010: React.FC = () => {
         <div style={{...entra(6), fontStyle: 'italic', fontWeight: 300, fontSize: 104, lineHeight: 1}}>Cumpleaños</div>
         <div style={{...entra(14), fontWeight: 400, fontSize: 52, lineHeight: 1.2, letterSpacing: 1}}>EN PISO18</div>
       </div>
-      <div style={{position: 'absolute', left: 226, top: 428, display: 'flex', flexDirection: 'column', gap: 14}}>
+      <div style={{position: 'absolute', left: (W - C.ancho) / 2, top: C.top, width: C.ancho, display: 'flex', flexDirection: 'column', gap: C.aire}}>
         {INCLUYE_20.map(([texto, detalle], i) => {
           const desde = 34 + i * 24;
-          const caja = spring({frame: f - desde, fps, config: {damping: 14, stiffness: 160}, durationInFrames: 20});
+          const icono = spring({frame: f - desde - 4, fps, config: {damping: 14, stiffness: 160}, durationInFrames: 20});
           return (
-            <div key={texto} style={{display: 'flex', alignItems: 'flex-start', gap: 22}}>
+            <div
+              key={texto}
+              style={{
+                ...entra(desde, 0, 22),
+                height: C.alto,
+                boxSizing: 'border-box',
+                display: 'flex',
+                alignItems: 'center',
+                backgroundColor: 'rgba(14,12,14,0.58)',
+                border: '1.5px solid rgba(255,255,255,0.78)',
+              }}
+            >
               <div
                 style={{
-                  width: 42,
-                  height: 42,
+                  width: C.alto - 3,
+                  height: C.alto - 3,
                   flexShrink: 0,
                   backgroundColor: P18.colores.fucsia,
-                  color: P18.colores.blanco,
-                  fontFamily: P18.fuentes.titular,
-                  fontWeight: 400,
-                  fontSize: 28,
-                  lineHeight: '42px',
-                  textAlign: 'center',
-                  opacity: Math.min(1, caja * 1.4),
-                  transform: `scale(${0.6 + 0.4 * caja})`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
-                {i + 1}
+                <svg width={36} height={36} viewBox="0 0 256 256" fill={P18.colores.blanco} style={{opacity: Math.min(1, icono * 1.4), transform: `scale(${0.6 + 0.4 * icono})`}}>
+                  {ICONOS_20[i]}
+                </svg>
               </div>
-              <div style={{...entra(desde + 3, -22, 0), color: P18.colores.blanco, textShadow: SOMBRA, ...RALEWAY}}>
-                <div style={{fontWeight: 700, fontSize: 31, lineHeight: '42px'}}>{texto}</div>
-                {detalle && <div style={{fontWeight: 500, fontSize: 22, lineHeight: 1.2, marginTop: -2, opacity: 0.9}}>{detalle}</div>}
+              <div style={{flex: 1, textAlign: 'center', padding: '0 14px', color: P18.colores.blanco, ...RALEWAY}}>
+                <div style={{fontWeight: 700, fontSize: detalle ? 24 : 26, lineHeight: 1.14}}>{texto}</div>
+                {detalle && <div style={{fontWeight: 500, fontSize: 17, lineHeight: 1.18, opacity: 0.92}}>{detalle}</div>}
               </div>
             </div>
           );
@@ -1301,6 +1448,11 @@ export const P18OS1510: React.FC = () => {
  * sobre, como el legal de la ref; el legal «*Desde 60 invitados», al pie. Brief con CTA
  * («Cotiza ya en piso18.cl») ⇒ botón, invertido para no sumar más fucsia.
  * Foto: la mesa real de matrimonio con flores y esferas (deco `piso_18-88`).
+ *
+ * Ronda 8, Eli 02-10: «me gustaría que el sobre tuviera un poco de texturita para que se
+ * viera más realista» ⇒ `FibraPapel` sobre el fucsia, atrás y adelante. Y «revisa que
+ * realmente esté el botón en brief, si no, quítalo»: la celda INTERACCIÓN de la grilla
+ * dice «CTA: Cotiza ya en piso18.cl» ⇒ el botón se queda (R-51).
  */
 const Cifras: React.FC<{texto: string; cuerpo: number}> = ({texto, cuerpo}) => (
   <span style={{display: 'inline-flex', alignItems: 'baseline'}}>
@@ -1339,6 +1491,13 @@ export const P18OS1310: React.FC = () => {
           fill="#B00F49"
         />
       </svg>
+      {/* ronda 8: fibra de papel sobre la solapa de atrás (la tarjeta va encima y queda limpia) */}
+      <FibraPapel
+        recorte={`polygon(${S.x}px ${S.y}px, ${cx}px ${S.pico}px, ${S.x + S.w}px ${S.y}px, ${S.x + S.w}px ${S.y + S.h}px, ${S.x}px ${S.y + S.h}px)`}
+        caja={{x: S.x, y: S.pico - 20, w: S.w, h: S.w * 1.3025}}
+        fuerza={0.6}
+        giro={180}
+      />
 
       {/* la tarjeta: asoma del sobre y se pierde detrás de las solapas del frente */}
       <div
@@ -1432,6 +1591,12 @@ export const P18OS1310: React.FC = () => {
           strokeWidth={1.6}
         />
       </svg>
+      {/* ronda 8: la misma fibra sobre el frente del sobre (las dos solapas y la de abajo) */}
+      <FibraPapel
+        recorte={`polygon(${S.x}px ${S.y}px, ${cx - 30}px ${S.y + S.v - 22}px, ${cx}px ${S.y + S.v - 34}px, ${cx + 30}px ${S.y + S.v - 22}px, ${S.x + S.w}px ${S.y}px, ${S.x + S.w}px ${S.y + S.h}px, ${S.x}px ${S.y + S.h}px)`}
+        caja={{x: S.x, y: S.y + S.h - S.w * 1.3025, w: S.w, h: S.w * 1.3025}}
+        fuerza={0.6}
+      />
       <div
         style={{
           position: 'absolute',
@@ -1488,8 +1653,12 @@ export const P18OS1310: React.FC = () => {
  * rojo. Acá la cinta y el destacado son el fucsia de la marca, la hoja es el papel
  * `#F7F5F2` con renglones y la letra es IvyPresto itálica (el titular empieza con «¿»: no
  * va en Against, R-20). Fondo: mesas del salón de noche (julio evento 50) en blanco y
- * negro; polaroid: brindis de fin de año producido sobre el salón y la barra reales (R-41).
- * Brief con CTA («Asegura tu fecha en piso18.cl») ⇒ botón.
+ * negro. Brief con CTA («Asegura tu fecha en piso18.cl») ⇒ botón.
+ *
+ * Ronda 8, Eli 02-10: «la fotografía se ve un poco extraña, yo ocuparía una real, hay
+ * sesiones donde se muestra como corporativo» ⇒ la polaroid ya no es el brindis generado:
+ * es una foto REAL del evento de julio (piso 18-106: los spritz en la barra con invitados
+ * de traje detrás). Y «que la hoja se vea un poquitito más texturizada» ⇒ `FibraPapel`.
  */
 const HOJA_19 = {x: 176, y: 880, w: 740, h: 600};
 /** Hoja de cuaderno: mordidas cuadradas del espiral a la izquierda y la esquina de abajo redonda. */
@@ -1524,6 +1693,8 @@ export const P18OS1910: React.FC = () => {
             <div key={i} style={{position: 'absolute', left: 70, right: 28, top: 176 + i * 46, height: 1.4, backgroundColor: 'rgba(26,26,26,0.13)'}} />
           ))}
           <GranoFondo semilla={57} />
+          {/* ronda 8: «un poquitito más texturizada»: pliegues y fibra del papel real */}
+          <FibraPapel recorte="none" caja={{x: 0, y: -180, w: H.w, h: H.w * 1.3025}} fuerza={0.36} modo="hard-light" />
         </div>
         <div style={{position: 'absolute', left: 84, right: 44, top: 168, textAlign: 'center', color: P18.colores.tinta}}>
           <div style={{fontFamily: P18.fuentes.titular, fontStyle: 'italic', fontWeight: 400, fontSize: 53, lineHeight: 1.12}}>
@@ -1593,6 +1764,11 @@ export const P18OS1910: React.FC = () => {
  * brief: la pantalla partida en dos, una estación arriba y otra abajo, con la hoja cruzando
  * el corte. El papel de abajo del texto queda LIMPIO para el sticker. Sin CTA en el brief
  * ⇒ sin botón ni línea (R-51). Fotos producidas sobre el buffet real banq 0052 (R-45).
+ *
+ * Ronda 8, Eli 02-10: «el título de estación japonesa tiene muchas variaciones, que sea
+ * una sola tipografía, y lo mismo para el ¿Cuáles arman el menú perfecto? (…) máximo dos,
+ * Raleway y la Ivy» ⇒ la pieza queda en DOS voces: IvyPresto itálica (rótulos y pregunta)
+ * y Raleway (el dato). Antes eran cinco (fina recta, itálica, itálica fina, recta, Raleway).
  */
 const HOJA_21 = {x: 120, y: 648, w: 840, h: 640};
 const rasgadoDoble = (w: number, h: number) => {
@@ -1613,8 +1789,8 @@ const rasgadoDoble = (w: number, h: number) => {
 
 const RotuloEstacion: React.FC<{top: number; nombre: string}> = ({top, nombre}) => (
   <div style={{position: 'absolute', left: 0, right: 0, top, textAlign: 'center', color: P18.colores.blanco, textShadow: '0 2px 18px rgba(0,0,0,0.75)'}}>
-    <span style={{fontFamily: P18.fuentes.titular, fontWeight: 300, fontSize: 60, lineHeight: 1}}>Estación </span>
-    <span style={{fontFamily: P18.fuentes.titular, fontStyle: 'italic', fontWeight: 400, fontSize: 68, lineHeight: 1}}>{nombre}</span>
+    {/* ronda 8: «Estación» y el nombre en UNA sola voz (antes fina recta 60 + itálica 68) */}
+    <span style={{fontFamily: P18.fuentes.titular, fontStyle: 'italic', fontWeight: 400, fontSize: 66, lineHeight: 1}}>Estación {nombre}</span>
   </div>
 );
 
@@ -1649,11 +1825,14 @@ export const P18OS2110: React.FC = () => {
           <Foto src="s1510-papel.jpg" />
         </div>
         <div style={{position: 'absolute', left: 50, right: 50, top: 92, textAlign: 'center', fontFamily: P18.fuentes.titular, color: P18.colores.tinta}}>
-          <div style={{fontSize: 56, fontWeight: 300, fontStyle: 'italic', lineHeight: 1.1}}>¿Cuáles arman</div>
-          <div style={{fontSize: 56, fontWeight: 400, lineHeight: 1.1}}>
-            el <span style={{fontStyle: 'italic', color: P18.colores.fucsia}}>menú perfecto</span>
+          {/* ronda 8: la pregunta entera en la misma itálica; «menú perfecto» sólo cambia de color */}
+          <div style={{fontSize: 56, fontWeight: 400, fontStyle: 'italic', lineHeight: 1.1}}>
+            ¿Cuáles arman
+            <br />
+            el <span style={{color: P18.colores.fucsia}}>menú perfecto</span>
+            <br />
+            para tu evento?
           </div>
-          <div style={{fontSize: 56, fontWeight: 400, lineHeight: 1.1}}>para tu evento?</div>
           <div style={{...RALEWAY, fontWeight: 600, fontSize: 25, marginTop: 20}}>
             (Dato: puedes combinar hasta 2 estaciones)
           </div>
@@ -1907,7 +2086,13 @@ const HistoriaVideo: React.FC<{
   topTitular: number;
   /** el último plano ya trae el logotipo (letrero de neón): el gráfico se apaga antes */
   logoSaleEnUltimo?: boolean;
-}> = ({planos, fina, versales, boton, topTitular, logoSaleEnUltimo}) => {
+  /**
+   * `abajo`: el titular va en el tercio de abajo y más chico, y el velo deja limpia la
+   * franja de los rostros (ronda 8, Eli 02-10, ST 16-10: «tratemos de que no tape mucho
+   * los rostros»).
+   */
+  abajo?: boolean;
+}> = ({planos, fina, versales, boton, topTitular, logoSaleEnUltimo, abajo}) => {
   cargarFuentesP18();
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
@@ -1926,22 +2111,40 @@ const HistoriaVideo: React.FC<{
           <PlanoVideo src={p.src} desde={0} frames={p.frames} primero={i === 0} />
         </SecuenciaPlano>
       ))}
-      <AbsoluteFill
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(8,8,10,0.66) 0%, rgba(8,8,10,0.56) 22%, rgba(8,8,10,0.50) 40%, rgba(8,8,10,0.16) 56%, rgba(8,8,10,0.10) 70%, rgba(8,8,10,0.50) 100%)',
-        }}
-      />
+      {abajo ? (
+        <AbsoluteFill
+          style={{
+            background:
+              'linear-gradient(to bottom, rgba(8,8,10,0.58) 0%, rgba(8,8,10,0.40) 14%, rgba(8,8,10,0.08) 22%, rgba(8,8,10,0.06) 44%, rgba(8,8,10,0.52) 58%, rgba(8,8,10,0.56) 76%, rgba(8,8,10,0.62) 100%)',
+          }}
+        />
+      ) : (
+        <>
+          {/* el velo de arriba se aclara junto con el logotipo: en el último plano el letrero real tiene que brillar */}
+          <AbsoluteFill
+            style={{
+              opacity: 0.3 + 0.7 * logoOp,
+              background: 'linear-gradient(to bottom, rgba(8,8,10,0.66) 0%, rgba(8,8,10,0.56) 22%, rgba(8,8,10,0.50) 36%, rgba(8,8,10,0) 40%)',
+            }}
+          />
+          <AbsoluteFill
+            style={{
+              background:
+                'linear-gradient(to bottom, rgba(8,8,10,0) 36%, rgba(8,8,10,0.50) 40%, rgba(8,8,10,0.16) 56%, rgba(8,8,10,0.10) 70%, rgba(8,8,10,0.50) 100%)',
+            }}
+          />
+        </>
+      )}
       <div style={{...entra(4), opacity: Math.min(entra(4).opacity, logoOp)}}>
         <Logo top={P18.geometria.logoYStory} />
       </div>
       <div style={{position: 'absolute', left: 60, right: 60, top: topTitular, textAlign: 'center', color: P18.colores.blanco, fontFamily: P18.fuentes.titular, textShadow: SOMBRA}}>
         {fina.map((l, i) => (
-          <div key={l} style={{...entra(12 + i * 8), fontStyle: 'italic', fontWeight: 300, fontSize: 100, lineHeight: 1.04}}>
+          <div key={l} style={{...entra(12 + i * 8), fontStyle: 'italic', fontWeight: 300, fontSize: abajo ? 84 : 100, lineHeight: 1.04}}>
             {l}
           </div>
         ))}
-        <div style={{...entra(14 + fina.length * 8), fontWeight: 400, fontSize: 62, lineHeight: 1.2, letterSpacing: 1, marginTop: 14}}>{versales}</div>
+        <div style={{...entra(14 + fina.length * 8), fontWeight: 400, fontSize: abajo ? 52 : 62, lineHeight: 1.2, letterSpacing: 1, marginTop: abajo ? 10 : 14}}>{versales}</div>
       </div>
       <div style={entra(botonDesde)}>
         <Boton top={1470}>{boton}</Boton>
@@ -1970,7 +2173,8 @@ export const P18OS1610: React.FC = () => (
     fina={['El secreto de una', 'noche inolvidable']}
     versales="ESTÁ EN LOS DETALLES"
     boton="Conoce más en piso18.cl"
-    topTitular={470}
+    topTitular={1140}
+    abajo
   />
 );
 
@@ -1981,6 +2185,8 @@ export const P18OS1610: React.FC = () => (
  * logotipo gráfico se apaga para no tener dos. CTA: «Reserva tu fecha en piso18.cl».
  */
 const PLANOS_3010: Plano[] = [
+  // ronda 8 (Eli 02-10: «mejores videos que no se vean tan extraños o tan difuminados»):
+  // atardecer por el ventanal · centro de flores · salón de noche · letrero nivelado
   {src: 's3010-a.mp4', frames: 90},
   {src: 's3010-b.mp4', frames: 90},
   {src: 's3010-c.mp4', frames: 84},

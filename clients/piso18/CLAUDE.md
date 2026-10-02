@@ -85,6 +85,14 @@ base y el 0 queda a media altura. Eli lo vio en toda la grilla de octubre («202
 «piso18.cl», «EN PISO18») como *«desequilibrado y extraño»* (28-09). En
 `P18Octubre.tsx` es la constante `RALEWAY`; en Illustrator, el botón «Cifras de caja alta».
 
+⛔⛔ **Máximo dos familias, y un bloque de texto = una sola voz** (R-62, Eli 02-10-2026).
+En una pieza van Raleway e IvyPresto, y dentro de un rótulo o de una pregunta **no se
+mezclan** variantes ni cuerpos: «Estación Japonesa» entera en la misma itálica, la pregunta
+entera en la misma itálica, y el énfasis se da con el fucsia, no con otro corte. La ST
+21-10 salió con cinco voces y volvió: *«tiene muchas variaciones (…) lo menos tipografías
+combinadas posibles, máximo dos (…) a mí no me molesta, pero a los demás sí»*. El titular a
+dos voces (itálica fina + versales) sigue valiendo, pero ése es el tope.
+
 ## Formatos y geometría — medidos, normalizados a 1080 de ancho
 
 | Formato | Entrega | Ratio |
@@ -191,6 +199,16 @@ Y si la historia es **animada**, la posición y el contraste del botón se miden
 ⭐ **Generar con IA ya es parte de la gramática**, no un atajo: los editables de mayo,
 junio y agosto traen `magnific_*.png` y `freepik__*.png` montados.
 
+⭐ **Si la pieza muestra gente o un evento, primero la foto real** (R-63, Eli 02-10-2026:
+*«yo ocuparía una real, hay sesiones donde se muestra como corporativo»*). En
+`F:/SESIONES HILTON/SESIONES PISO18/FOTOS P18 NANNEL/` están `Piso18 julio evento`
+(invitados de traje en la barra y el buffet, torta de cumpleaños real) y `Piso 18 agosto`
+(estación japonesa real, barman). La gente generada «se ve un poco extraña».
+
+⛔ **La IA no recarga la foto** (R-65): un cumpleaños se lee con un número en la torta y
+dos racimos chicos de globos. Regalos, gorros, serpentinas y confeti agregados = *«demasiado
+exagerada»*. Y si la ref trae papel, también el de color lleva fibra real (`FibraPapel`).
+
 ⚠️ **El banco real vive en el disco externo `F:`**, no en Drive. Lo que hay en el repo
 es una muestra. Las rutas están en `marca.json`.
 
@@ -283,6 +301,17 @@ grande sobre muchas columnas** es un corte, no un movimiento. Se verifica en
 ⚠️ Y la curva: una que gaste el recorrido al principio se lee como «pegada» aunque
 la transición sí termine. La de esta pieza hacía el 68 % del camino en 4 fotogramas
 y se arrastraba los 10 restantes. **Curva simétrica** — acelera, cruza y frena.
+
+### Animadas: rostros libres, planos derechos y tiempo para leer (Eli, 02-10-2026)
+
+- **El titular no pisa los rostros** (R-68): tercio de abajo, algo más chico, y el velo
+  fuera de la franja de las caras (`HistoriaVideo abajo`).
+- **Planos nítidos y con la cámara derecha** (R-69). Un plano bueno pero chueco se nivela
+  sobre el 4K; tramos y filtros en `scripts/p18-oct-clips-reales.py`.
+- **Post animado con lista**: cada ítem en su caja, todas iguales y centradas, con ícono
+  Phosphor en el cuadro fucsia (R-64). La foto queda quieta y los detalles aparecen de a
+  poco y sutiles (R-66). Dura lo que toma leerlo: ~1 s por línea después de que entra el
+  último elemento (R-67; el del 20-10 pasó de 8 a 12 s).
 
 ### La pieza animada también se entrega en GIF
 

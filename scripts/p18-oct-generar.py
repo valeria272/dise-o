@@ -45,6 +45,9 @@ SALIDA = RAIZ / "raw/hilton/piso18/oct/gen"
 
 CANDADO = ("Fotografia realista de alta calidad, 4k. Sin ningun texto, sin letras, sin numeros, "
            "sin logotipos, sin carteles.")
+# para la torta de cumpleaños con el número: el único texto permitido es el 40 de las velas
+CANDADO_40 = ("Fotografia realista de alta calidad, 4k. Sin ningun otro texto, sin letras, sin logotipos, "
+              "sin carteles: el unico numero de la imagen es el 40 de las velas.")
 PERSONAS = ("Estilo fotografo de eventos: luz ambiente calida, grano fino, gestos naturales no "
             "posados, nadie mira a camara. Cada persona completa y apoyada en el piso, dos brazos, "
             "dos manos con cinco dedos, proporciones reales. Sin personal de servicio al fondo.")
@@ -408,6 +411,39 @@ ESCENAS = {
                    "arriba de la imagen queda vacia: solo techo oscuro con las guirnaldas de luces, ningun "
                    "globo ahi. Sin personas."),
     },
+    # Tirada e: la bengala subía por el centro justo detrás de la lista de beneficios.
+    "f20-cumplee": {
+        "motor": "pro", "aspecto": "story", "refs": ["@f20-cumpled"],
+        "prompt": ("La MISMA fotografia de la @img1, identica en todo: mismos globos, misma torta, mismos "
+                   "regalos, serpentinas, confeti, gorros, mesa y salon. UNICO cambio: QUITA la bengala "
+                   "chispeante de la torta y sus chispas; en su lugar se ve el fondo del salon tal como "
+                   "es. Las velas de colores encendidas de la torta quedan igual. Nada mas cambia. Sin "
+                   "personas."),
+    },
+    # Ronda 9 (Eli 02-10): «la imagen se ve demasiado exagerada (…) solo la imagen estática,
+    # pero que algunas cosas vayan apareciendo, por ejemplo globos, detalles sutiles (…) y que
+    # la torta tenga algún número como cuarenta». Se vuelve a la foto SOBRIA (`f20-cumplex`):
+    # la base sólo suma el 40 en la torta; los globos salen en una segunda tirada IDÉNTICA en
+    # todo lo demás, para recortarlos por diferencia y hacerlos aparecer en la animación.
+    "f20-base40": {
+        "motor": "pro", "aspecto": "story", "refs": ["@f20-cumplex"], "candado": CANDADO_40,
+        "prompt": ("La MISMA fotografia de la @img1, identica en todo: mismo encuadre, misma luz y color, "
+                   "misma torta blanca de dos pisos con flores, misma mesa y mismo salon, sin mover ni "
+                   "agregar nada. UNICO cambio: sobre la torta, en lugar de las velas finas, van DOS VELAS "
+                   "DORADAS CON FORMA DE NUMERO, un 4 y un 0, que forman el numero 40, de unos 9 cm de alto, "
+                   "con su llama encendida arriba de cada una. Nada mas cambia. Sin personas."),
+    },
+    "f20-globos": {
+        "motor": "pro", "aspecto": "story", "refs": ["@f20-base40"], "candado": CANDADO_40,
+        "prompt": ("La MISMA fotografia de la @img1, identica pixel a pixel en todo: la misma torta con las "
+                   "velas doradas del numero 40, la misma mesa, las mismas flores y el mismo salon, con la "
+                   "misma luz y el mismo color, sin retocar nada. UNICO cambio: agrega DOS racimos chicos y "
+                   "sobrios de TRES globos de helio cada uno (dorado, blanco perla y uno fucsia), con cinta "
+                   "fina, uno a cada costado detras de la mesa, amarrados a los respaldos de las sillas; el "
+                   "globo mas alto llega solo hasta la altura de las lamparas colgantes del fondo. Globos de "
+                   "tamano real, discretos, iluminados por la misma luz calida del salon. Sin regalos, sin "
+                   "gorros, sin serpentinas, sin confeti. Sin personas."),
+    },
 }
 
 
@@ -421,7 +457,7 @@ def corre(clave: str, sufijo: str) -> str:
             refs.append(str(REFS / r))
     salida = SALIDA / f"{clave}{sufijo}.jpg"
     orden = [sys.executable, str(RAIZ / "scripts/magnific.py"), e["motor"],
-             e["prompt"] + " " + CANDADO, "--aspecto", e["aspecto"],
+             e["prompt"] + " " + e.get("candado", CANDADO), "--aspecto", e["aspecto"],
              "--out", str(salida), "--refs", *refs]
     if e["motor"] == "pro":
         orden += ["--resolucion", "2K"]

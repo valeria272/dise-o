@@ -851,3 +851,25 @@ una **imagen aplanada**: el texto no se edita, se reemplaza la franja.
 - En `S<n> / QB / FEED|STS` no quedan «ANTES» ni piezas fuera de grilla: se respaldan en local y se retiran (contenido se pierde).
 - Los KV que sube Eli toman número y conservan su nombre al final (`ST n°1 S1 QB OCT 26 - KV SUNSET.png`). Sus archivos sólo se
   pueden renombrar; para cambiarlos de semana se copia y se le avisa cuál borrar.
+
+## 4n. Pantallas digitales y solicitudes sobre un editable de Eli (02-10-2026, R-121 a R-126)
+
+- Las pantallas van en **1080×1920** (9:16) y **1230×720** (ascensor), cada una en PNG y JPG a 72 y 150 ppp,
+  con nombre `72ppp_…` / `150ppp_…`, en dos carpetas: `1. PANTALLA 9x16 - 1080X1920PX` y `2. ASCENSOR - 1230X720PX`.
+- **Pantalla AYCD + Sunset QB:** las dos mitades con la misma estructura (pastilla del día, recuadro, franja de
+  precio, horario, tragos). AYCD: TODOS LOS MARTES · POR $13.990 · 18:00 a 21:00 hrs. Sunset: TODOS LOS VIERNES ·
+  logo Sunset QB · DESDE $3.990 · 16:00 a 21:00 hrs · Aperol - Ramazzotti - Sangría - Margarita - Mojito /
+  Espumante - Schop - Piscola - Gin. Legal común en plural. Sin QR ni barra de Instagram.
+- Editable: `F:\SOLICITUDES 2026 HILTON\PROMOS QB 2026 Editable\SUNSET QB (PROMO OCT 2026)\PANTALLA SUNSET QB+AYCD.ai`, mesa 12 (vertical) y mesa 11 (ascensor). El cambio dentro de
+  Illustrator está en `scripts/jsx/qb-pantalla-aycd-sunset.jsx`; la versión en código para probar rondas, en
+  `scripts/qb-pantalla-aycd-sunset.py`.
+- **Flujo que funcionó:** rondas rápidas en código con el antes y después en HTML → con el visto de Eli, el cambio
+  se lleva a su `.ai` → las imágenes finales se exportan del `.ai` (100 % y 208,33 %).
+- ⛔ El `.ai` se guarda con `saveAs` a una copia, se compara mesa por mesa contra el original con pymupdf y recién
+  ahí reemplaza al archivo (con respaldo). `doc.save()` falla en estos archivos y no se deja «para que Eli guarde».
+- Tres copias que se actualizan juntas: el disco de Eli, la carpeta de entrega que ella indique y
+  `GRILLA IA QB` (`1GznW1f-PDoc2nTQZ4KyHNF7braBjNoLJ`): `SOLICITUDES/` para la solicitud con su LEEME y
+  `GRILLAS EMPAQUETADAS/PROMOS QB APROBADAS (OCT 2026)/` para los editables por pieza, **sólo lo aprobado**.
+- Las solicitudes fuera de grilla (pantallas, banner web, mailing, tótem) están en la planilla de pendientes de
+  Scarlette, `Planificacion_Hilton_Octubre_2026.xlsx` (`1yiOqGACxtSjqm28lV041GhSo73JLlQtB`), con responsable y fecha.
+

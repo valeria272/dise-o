@@ -34,7 +34,12 @@
 // indispensables (N°1, N°2, N°3; R-39 los deja fuera del feed) y se quita el rótulo
 // «Recreación con IA» (R-11 pide declararla).
 //
-// Formato 1080×1920 · 30 fps · 480 frames (16 s).
+// Formato 1080×1920 · 30 fps · 456 frames (15,2 s).
+//
+// 02-10 (feedback del equipo de diseño): clips del iPhone re-etiquetados de HLG/BT.2020 a
+// BT.709 (Chrome los tonemapeaba y cambiaban de color contra los de IA y las siluetas);
+// mano ajena borrada al final de p1-vacio-2861-largo (scripts/copywriters-indispensables-
+// limpia-mano.py); cierre más lejano y corto.
 // ============================================================================
 import React from "react";
 import {
@@ -53,7 +58,7 @@ import cajasSilueta from "../../../public/assets/copywriters/indispensables/silu
 import cajasTecho from "../../../public/assets/copywriters/indispensables/silueta-b-techo/cajas.json";
 import cajasAterriza from "../../../public/assets/copywriters/indispensables/silueta-b-aterriza/cajas.json";
 
-export const REEL_INDISPENSABLES_FRAMES = 480;
+export const REEL_INDISPENSABLES_FRAMES = 456;
 
 const A = "assets/copywriters/indispensables";
 const ROSA = C2.rosa;
@@ -75,7 +80,7 @@ const T = {
   p3c: 222, // persona 3 — coreografía (entra con barrido)
   p3: 252, // persona 3 — aparece
   cierre: 318, // la caminata (entra con barrido)
-  placa: 438, // firma
+  placa: 414, // firma (02-10: el cierre bajó de 120 a 96 frames)
 };
 
 const Video: React.FC<{clip: string; desde?: number}> = ({clip, desde = 0}) => (
@@ -270,21 +275,25 @@ const HookDetras: React.FC<{yaPuesto?: boolean; largo?: number; volando?: boolea
 };
 
 // ── CIERRE ──────────────────────────────────────────────────────────────────
+// 02-10 (Pau y Coni: «les cambia la cara al caminar», «esa no soy yo»): plano MÁS LEJANO y
+// MÁS CORTO. Sólo el primer tramo del clip, donde vienen lejos, a 0,8× (96 frames = cuadros
+// 0–77 del clip); las caras quedan chicas y el cierre dura 3,2 s en vez de 4.
+const VIER = 50; // «VIERNES.» cae
 const Cierre: React.FC = () => {
   const f = useCurrentFrame();
-  const vier = 62; // «VIERNES.» cae
+  const vier = VIER;
   // El mundo destella en rosa en el golpe; la palabra no se mueve (cel-flash-stomp).
   const flash = f >= vier && f < vier + 8 && Math.floor((f - vier) / 2) % 2 === 0 ? 0.42 : 0;
   return (
     <AbsoluteFill>
-      <Video clip="cierre-kling" />
+      <OffthreadVideo src={staticFile(`${A}/cierre-kling.mp4`)} playbackRate={0.8} muted />
       <AbsoluteFill style={{background: ROSA, opacity: flash, mixBlendMode: "multiply"}} />
       {/* Arriba la premisa; abajo, sobre el suelo, el giro. Las caras quedan libres en medio. */}
       <AbsoluteFill style={{alignItems: "center", paddingTop: 230}}>
-        <Frase lineas={[["TODO", "ESTO", "ES"], ["INDISPENSABLE."]]} clave={[3]} en={10} cuerpo={100} />
+        <Frase lineas={[["TODO", "ESTO", "ES"], ["INDISPENSABLE."]]} clave={[3]} en={6} cuerpo={100} />
       </AbsoluteFill>
       <AbsoluteFill style={{alignItems: "center", justifyContent: "flex-end", paddingBottom: 400}}>
-        <Frase lineas={[["HASTA", "QUE", "LLEGA", "EL"]]} clave={[]} en={40} cuerpo={84} />
+        <Frase lineas={[["HASTA", "QUE", "LLEGA", "EL"]]} clave={[]} en={30} cuerpo={84} />
         <div style={{transform: "rotate(-5deg)", marginTop: 2}}>
           <div style={{fontFamily: VOZ2.mano, fontWeight: 800, fontSize: 220, lineHeight: 1, color: ROSA, textShadow: SOMBRA_SOBRE_FOTO, ...golpeTitulo(f, vier)}}>
             VIERNES.
@@ -391,7 +400,7 @@ const Cuerpo: React.FC<{conManos: boolean; tituloPuesto?: boolean; enumerar?: bo
       <SFX en={T.p3c - 3} id="whoosh" vol={0.6} />
       <SFX en={T.p3} id="pop_a" />
       <SFX en={T.cierre - 3} id="whoosh" vol={0.6} />
-      <SFX en={T.cierre + 62} id="pop_b" />
+      <SFX en={T.cierre + VIER} id="pop_b" />
       <SFX en={T.placa + 2} id="pop_a" vol={0.7} />
       </Sequence>
     </AbsoluteFill>

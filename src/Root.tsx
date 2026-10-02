@@ -65,7 +65,7 @@ import {CW04CyberIA, CW04_FRAMES} from "./compositions/copylab/CW04CyberIA";
 import {CyberMood, CYBER_MOOD_FRAMES} from "./compositions/copylab/CyberMood";
 import {PostG} from "./compositions/copylab/PostG";
 import {ReelProceso, REEL_PROCESO_FRAMES} from "./compositions/copylab/ReelProceso";
-import {ReelIndispensables, REEL_INDISPENSABLES_FRAMES, ReelIndispensablesB, REEL_INDISPENSABLES_B_FRAMES} from "./compositions/copylab/ReelIndispensables";
+import {ReelIndispensables, REEL_INDISPENSABLES_FRAMES, ReelIndispensablesB, REEL_INDISPENSABLES_B_FRAMES, ReelIndispensablesB2, REEL_INDISPENSABLES_B2_FRAMES} from "./compositions/copylab/ReelIndispensables";
 import {RentasReelOctubre} from "./compositions/rentas/RentasReelOctubre";
 import {RentasReelNoviembre} from "./compositions/rentas/RentasReelNoviembre";
 import {NuevaUrbeFacilidadesReel, NU_REEL_DURATION, NU_REEL_FPS} from "./compositions/NuevaUrbeFacilidadesReel";
@@ -1362,6 +1362,7 @@ export const RemotionRoot: React.FC = () => {
         {/* Reel orgánico «Indispensables de oficina» — material real de julio (01-10-2026). */}
         <Composition id="CL2-ReelIndispensables" component={ReelIndispensables} durationInFrames={REEL_INDISPENSABLES_FRAMES} fps={30} width={1080} height={1920} />
         <Composition id="CL2-ReelIndispensablesB" component={ReelIndispensablesB} durationInFrames={REEL_INDISPENSABLES_B_FRAMES} fps={30} width={1080} height={1920} />
+        <Composition id="CL2-ReelIndispensablesB2" component={ReelIndispensablesB2} durationInFrames={REEL_INDISPENSABLES_B2_FRAMES} fps={30} width={1080} height={1920} />
         {/* Reel trend «Process» → «Los 16 cortes» (prueba de skills de reels, 01-10-2026). */}
         <Composition id="CL2-ReelProceso" component={ReelProceso} durationInFrames={REEL_PROCESO_FRAMES} fps={30} width={1080} height={1920} defaultProps={{conMusica: true}} />
         {/* Dirección de arte RRSS 30-09-2026 — caso de éxito 001, 6 láminas */}

@@ -59,6 +59,11 @@ const A = "assets/copywriters/indispensables";
 const ROSA = C2.rosa;
 const W = 1080;
 const BARRIDO = 8;
+// Relleno de las placas en «em»: Bebas Neue Pro deja aire sobre las mayúsculas, así que con
+// relleno parejo la letra queda baja. Medido sobre el render el 02-10 (Valeria: «que quede
+// al medio de la altura»): arriba 0,03 em, abajo 0,12 em centra la caja alta.
+const PLACA_ARRIBA = 0.03;
+const PLACA_ABAJO = 0.12;
 
 // ── Línea de tiempo ─────────────────────────────────────────────────────────
 const T = {
@@ -157,7 +162,9 @@ const Frase: React.FC<{lineas: string[][]; clave: number[]; en: number; cuerpo?:
                   lineHeight: 1,
                   color: esClave ? C2.negro : C2.offwhite,
                   background: esClave ? ROSA : C2.negro,
-                  padding: `${cuerpo * 0.09}px ${cuerpo * 0.14}px ${cuerpo * 0.02}px`,
+                  // Bebas trae aire sobre las mayúsculas: relleno asimétrico (medido 02-10) para que la
+                  // letra quede al centro de la altura de la placa.
+                  padding: `${cuerpo * PLACA_ARRIBA}px ${cuerpo * 0.14}px ${cuerpo * PLACA_ABAJO}px`,
                   margin: `0 ${cuerpo * 0.04}px`,
                   boxShadow: "0 8px 24px rgba(0,0,0,0.28)",
                   ...sello(f, en + idx * 4, giro),
@@ -174,7 +181,7 @@ const Frase: React.FC<{lineas: string[][]; clave: number[]; en: number; cuerpo?:
 };
 
 // ── El objeto aparece ───────────────────────────────────────────────────────
-const Aparece: React.FC<{clip: string; lineas: string[][]; clave: number[]; numero: number}> = ({clip, lineas, clave, numero}) => {
+const Aparece: React.FC<{clip: string; lineas: string[][]; clave: number[]; numero?: number}> = ({clip, lineas, clave, numero}) => {
   const f = useCurrentFrame();
   const escala = interpolate(f, [0, 8], [1.09, 1.0], {extrapolateRight: "clamp", easing: Easing.out(Easing.cubic)});
   const empuje = interpolate(f, [8, 66], [1.0, 1.035], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
@@ -187,10 +194,14 @@ const Aparece: React.FC<{clip: string; lineas: string[][]; clave: number[]; nume
       <AbsoluteFill style={{background: C2.offwhite, opacity: destello}} />
       {/* 02-10 (Valeria): se ENUMERAN los indispensables para que el hook se entienda como
           el inicio de una lista. El número es lo único rosa; el chiste va en placas negras. */}
-      <AbsoluteFill style={{alignItems: "center", paddingTop: 180}}>
-        <Frase lineas={[[`INDISPENSABLE`, `N°${numero}`]]} clave={[0, 1]} en={3} cuerpo={74} />
-        <div style={{height: 16}} />
-        <Frase lineas={lineas} clave={clave} en={12} cuerpo={96} />
+      <AbsoluteFill style={{alignItems: "center", paddingTop: numero !== undefined ? 180 : 230}}>
+        {numero !== undefined && (
+          <>
+            <Frase lineas={[[`INDISPENSABLE`, `N°${numero}`]]} clave={[0, 1]} en={3} cuerpo={74} />
+            <div style={{height: 16}} />
+          </>
+        )}
+        <Frase lineas={lineas} clave={clave} en={numero !== undefined ? 12 : 8} cuerpo={numero !== undefined ? 96 : 118} />
       </AbsoluteFill>
     </AbsoluteFill>
   );
@@ -215,31 +226,42 @@ const temblor = (f: number, golpes: number[]) => {
   }
   return {x: 0, y: 0};
 };
-const HookDetras: React.FC<{yaPuesto?: boolean}> = ({yaPuesto}) => {
+const HookDetras: React.FC<{yaPuesto?: boolean; largo?: number; volando?: boolean}> = ({yaPuesto, largo = T.p1 - T.titulo, volando}) => {
   const f = useCurrentFrame();
   // En la B el título ya cayó durante el aterrizaje: llega puesto (golpes en el pasado).
   const L = yaPuesto ? [-99, -99, -99] : [6, 16, 26]; // INDIS- · PENSA- · BLES
   const ag = yaPuesto ? -99 : 33;
-  const fin = T.p1 - T.titulo;
-  const sale = interpolate(f, [fin - 6, fin], [1, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
-  const saleEsc = interpolate(f, [fin - 6, fin], [1, 1.25], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+  const fin = largo;
+  // B2: el título se va VOLANDO hacia arriba, letra a letra, y queda un respiro sin texto
+  // antes de que aparezcan los objetos (Valeria, 02-10: «el indispensable 1 parece junto al
+  // título»). Si no, sale como antes: escala y fundido en los últimos 6 frames.
+  const SALE = volando ? fin - 22 : fin - 6; // empieza a irse
+  const sale = volando
+    ? interpolate(f, [SALE, SALE + 12], [1, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})
+    : interpolate(f, [fin - 6, fin], [1, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+  const saleEsc = volando ? 1 : interpolate(f, [fin - 6, fin], [1, 1.25], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+  const vuela = (k: number) =>
+    volando ? interpolate(f, [SALE + k * 2, SALE + k * 2 + 10], [0, -1500], {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.in(Easing.cubic)}) : 0;
+  const empuje = volando ? interpolate(f, [SALE, fin], [1, 1.05], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}) : 1;
   const t = temblor(f, [...L, ag]);
   const i = Math.max(0, Math.min(cajasSilueta.length - 1, f));
   const [x, y, w, h] = cajasSilueta[i] as number[];
   return (
-    <AbsoluteFill style={{transform: `translate(${t.x}px, ${t.y}px)`}}>
-      <Video clip="p1-vacio-2861" desde={15} />
-      <AbsoluteFill style={{alignItems: "center", paddingTop: 175, opacity: sale, transform: `scale(${saleEsc})`}}>
+    <AbsoluteFill style={{transform: `translate(${t.x}px, ${t.y}px) scale(${empuje})`}}>
+      <Video clip="p1-vacio-2861-largo" desde={15} />
+      <AbsoluteFill style={{alignItems: "center", paddingTop: 175, opacity: volando ? 1 : sale, transform: `scale(${saleEsc})`}}>
         {["INDIS-", "PENSA-", "BLES"].map((l, k) => (
-          <div key={l} style={{fontFamily: VOZ2.bloque, fontWeight: 800, fontSize: 212, lineHeight: 0.84, color: ROSA, ...golpeTitulo(f, L[k])}}>
-            {l}
+          <div key={l} style={{transform: `translateY(${vuela(2 - k)}px)`}}>
+            <div style={{fontFamily: VOZ2.bloque, fontWeight: 800, fontSize: 212, lineHeight: 0.84, color: ROSA, ...golpeTitulo(f, L[k])}}>
+              {l}
+            </div>
           </div>
         ))}
       </AbsoluteFill>
       <Img src={staticFile(`${A}/silueta-p1/${String(i).padStart(2, "0")}.png`)} style={{position: "absolute", left: x, top: y, width: w, height: h}} />
       {/* «DE AGENCIA.» delante de él, en placa negra: la etiqueta pegada encima */}
-      <AbsoluteFill style={{alignItems: "center", justifyContent: "flex-end", paddingBottom: 450, opacity: sale}}>
-        <div style={{...golpeTitulo(f, ag), background: C2.negro, padding: "10px 26px 4px", transformOrigin: "50% 50%"}}>
+      <AbsoluteFill style={{alignItems: "center", justifyContent: "flex-end", paddingBottom: 450, opacity: volando ? 1 : sale, transform: `translateY(${volando ? -vuela(3) * 1.4 : 0}px)`}}>
+        <div style={{...golpeTitulo(f, ag), background: C2.negro, padding: `${92 * PLACA_ARRIBA}px 26px ${92 * PLACA_ABAJO}px`, transformOrigin: "50% 50%"}}>
           <span style={{fontFamily: VOZ2.impacto, fontWeight: 800, fontSize: 92, color: C2.offwhite, lineHeight: 1}}>DE AGENCIA.</span>
         </div>
       </AbsoluteFill>
@@ -298,7 +320,13 @@ const SFX: React.FC<{en: number; id: string; vol?: number}> = ({en, id, vol = 0.
 
 // El cuerpo del reel (versión A completa). En la B el primer plano de las manos se
 // reemplaza por la caída: `conManos` = false.
-const Cuerpo: React.FC<{conManos: boolean; tituloPuesto?: boolean}> = ({conManos, tituloPuesto}) => {
+const Cuerpo: React.FC<{conManos: boolean; tituloPuesto?: boolean; enumerar?: boolean; extra?: number}> = ({
+  conManos,
+  tituloPuesto,
+  enumerar,
+  extra = 0,
+}) => {
+  const n = (k: number) => (enumerar ? k : undefined);
   return (
     <AbsoluteFill>
       {conManos && (
@@ -306,14 +334,17 @@ const Cuerpo: React.FC<{conManos: boolean; tituloPuesto?: boolean}> = ({conManos
           <Video clip="hook-2861" desde={78} />
         </Sequence>
       )}
-      <Sequence from={T.titulo} durationInFrames={T.p1 - T.titulo}>
-        <HookDetras yaPuesto={tituloPuesto} />
+      <Sequence from={T.titulo} durationInFrames={T.p1 - T.titulo + extra}>
+        <HookDetras yaPuesto={tituloPuesto} largo={T.p1 - T.titulo + extra} volando={extra > 0} />
       </Sequence>
+      {extra > 0 && <SFX en={T.p1 + extra - 22} id="whoosh" vol={0.8} />}
+      {/* todo lo que sigue al título se corre `extra` frames */}
+      <Sequence from={extra}>
 
       {/* persona 1 — sale con barrido */}
       <Sequence from={T.p1} durationInFrames={T.p2c - T.p1 + BARRIDO}>
         <Barrido id="b1" largo={T.p2c - T.p1 + BARRIDO} sale>
-          <Aparece clip="p1-lleno-2861" numero={1} lineas={[["PARA", "EL", "REEL", "QUE"], ["NADIE", "PIDIÓ."]]} clave={[]} />
+          <Aparece clip="p1-lleno-2861" numero={n(1)} lineas={[["PARA", "EL", "REEL", "QUE"], ["NADIE", "PIDIÓ."]]} clave={enumerar ? [] : [4, 5]} />
         </Barrido>
       </Sequence>
 
@@ -325,7 +356,7 @@ const Cuerpo: React.FC<{conManos: boolean; tituloPuesto?: boolean}> = ({conManos
       </Sequence>
       <Sequence from={T.p2} durationInFrames={T.p3c - T.p2 + BARRIDO}>
         <Barrido id="b3" largo={T.p3c - T.p2 + BARRIDO} sale>
-          <Aparece clip="p2-lleno-2850" numero={2} lineas={[["PARA", "LA", "REUNIÓN"], ["QUE", "PUDO", "SER"], ["UN", "MAIL."]]} clave={[]} />
+          <Aparece clip="p2-lleno-2850" numero={n(2)} lineas={[["PARA", "LA", "REUNIÓN"], ["QUE", "PUDO", "SER"], ["UN", "MAIL."]]} clave={enumerar ? [] : [6, 7]} />
         </Barrido>
       </Sequence>
 
@@ -337,7 +368,7 @@ const Cuerpo: React.FC<{conManos: boolean; tituloPuesto?: boolean}> = ({conManos
       </Sequence>
       <Sequence from={T.p3} durationInFrames={T.cierre - T.p3 + BARRIDO}>
         <Barrido id="b5" largo={T.cierre - T.p3 + BARRIDO} sale>
-          <Aparece clip="p4-lleno-2864" numero={3} lineas={[["PARA", "LA", "IDEA"], ["DE", "LAS", "18:59."]]} clave={[]} />
+          <Aparece clip="p4-lleno-2864" numero={n(3)} lineas={[["PARA", "LA", "IDEA"], ["DE", "LAS", "18:59."]]} clave={enumerar ? [] : [5]} />
         </Barrido>
       </Sequence>
 
@@ -362,6 +393,7 @@ const Cuerpo: React.FC<{conManos: boolean; tituloPuesto?: boolean}> = ({conManos
       <SFX en={T.cierre - 3} id="whoosh" vol={0.6} />
       <SFX en={T.cierre + 62} id="pop_b" />
       <SFX en={T.placa + 2} id="pop_a" vol={0.7} />
+      </Sequence>
     </AbsoluteFill>
   );
 };
@@ -480,7 +512,7 @@ const HookB: React.FC = () => {
       {enTecho ? <Silueta carpeta="silueta-b-techo" i={f} /> : <Silueta carpeta="silueta-b-aterriza" i={f - TECHO} />}
       {/* 4 · «DE AGENCIA.» cae cuando toca el suelo */}
       <AbsoluteFill style={{alignItems: "center", justifyContent: "flex-end", paddingBottom: 450}}>
-        <div style={{...golpeTitulo(f, ATERRIZA_EN), background: C2.negro, padding: "10px 26px 4px"}}>
+        <div style={{...golpeTitulo(f, ATERRIZA_EN), background: C2.negro, padding: `${92 * PLACA_ARRIBA}px 26px ${92 * PLACA_ABAJO}px`}}>
           <span style={{fontFamily: VOZ2.impacto, fontWeight: 800, fontSize: 92, color: C2.offwhite, lineHeight: 1}}>DE AGENCIA.</span>
         </div>
       </AbsoluteFill>
@@ -489,7 +521,7 @@ const HookB: React.FC = () => {
   );
 };
 
-export const ReelIndispensablesB: React.FC = () => {
+const VersionB: React.FC<{enumerar?: boolean; extra?: number}> = ({enumerar, extra = 0}) => {
   asegurarFuentesV2();
   return (
     <AbsoluteFill style={{background: C2.negro}}>
@@ -497,7 +529,7 @@ export const ReelIndispensablesB: React.FC = () => {
         <HookB />
       </Sequence>
       <Sequence from={DESFASE_B}>
-        <Cuerpo conManos={false} tituloPuesto />
+        <Cuerpo conManos={false} tituloPuesto enumerar={enumerar} extra={extra} />
       </Sequence>
       {LB.map((g) => (
         <SFX key={g} en={g} id="pop_b" vol={0.55} />
@@ -507,3 +539,12 @@ export const ReelIndispensablesB: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+// B-enumerada (02-10): «INDISPENSABLE N°1, N°2, N°3». Guardada como opción.
+export const ReelIndispensablesB: React.FC = () => <VersionB enumerar />;
+
+// B2 (02-10): sin enumerar. El título se queda más y se va volando hacia arriba, letra a
+// letra; queda un respiro sin texto y recién aparecen los objetos del N°1.
+const EXTRA_B2 = 66 - (T.p1 - T.titulo); // el tramo de pose sin manos alcanza 66 frames
+export const REEL_INDISPENSABLES_B2_FRAMES = REEL_INDISPENSABLES_B_FRAMES + EXTRA_B2;
+export const ReelIndispensablesB2: React.FC = () => <VersionB extra={EXTRA_B2} />;

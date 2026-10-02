@@ -33,7 +33,7 @@
 > `gcl-agent/universo/CANON_LOCK.md`. Léelo ahí antes de tocar cualquier cosa de G.
 >
 > Criterio: **Valeria Traverso** · Aprueba: **Valeria Traverso (aprobación final de dirección de arte, `MASTER/13`)**
-> Última cosecha: **2026-10-01** · Cosechas: **6**
+> Última cosecha: **2026-10-01** · Cosechas: **7**
 
 ## 1. Quién es el cliente
 
@@ -52,7 +52,8 @@ con humor de oficio y autoironía de agencia.
 | Quién pide / KAM | Valeria Traverso (dirección creativa y dueña del sistema) |
 | Quién aprueba (cliente) | Valeria. El 24-09 hubo además feedback de un «director creativo» que llegó por ella, en 8 rondas el mismo día |
 | Por dónde llega el feedback | Directo de Valeria en la sesión (texto y referencias visuales que se guardan en `MASTER/reference/`) |
-| Dónde se entrega | `out/copylab/<lote>/` + Escritorio. Producción final: `out/copylab/produccion/`, JPG q95 1080×1350 |
+| Dónde se entrega | `out/copylab/<lote>/` + Escritorio para revisión. **Aprobado → Drive › COPYWRITERS › GRILLAS IA**, una subcarpeta por pieza con sólo lo publicable (MP4 en las láminas de video, PNG en las fijas). ⚠️ `drive-subir.py` no ve esa carpeta (scope `drive.file`): se sube con el script y se mueve con el conector de Drive (`update_file` → `parentId`) |
+| Quién publica | El agente social (otra sesión). Lee el brief en `clients/copywriters/briefs/` y pega el enlace en ENLACE CONTENIDO de la grilla |
 | Ritmo | Por lotes: primero se aprueba dirección (board), recién después se produce. Nada de pieza suelta por inercia |
 | Rondas típicas | Muchas y rápidas. Casi siempre vuelve por **idea o dirección de arte**, casi nunca por técnica |
 
@@ -116,9 +117,9 @@ con humor de oficio y autoironía de agencia.
 
 - **R-43** · ⛔ Antes de usar material del equipo, confirmar que **las personas que salen siguen trabajando en la agencia**. La persona de la botella del rodaje «Indispensables de oficina» (julio 2026, crudos IMG_2851, IMG_2852 e IMG_2854 en Drive › CONTENIDO ORGÁNICO › JULIO) **ya no trabaja con nosotros**: esos clips no se usan — _Valeria, 01-10-2026, reel «Indispensables de oficina»_ · ✔×1
 
-- **R-44** · ⛔ En la pieza no va **cuerpo de texto en Neue Haas**: «estos textos planos son feos, parecen de IA, ¿y para qué sirven?». Lo que se dice va en **Bebas o en Balloon**; lo que sólo sirve para verificar (la fuente de un dato) va al **caption**, no a la gráfica — _Valeria, CW-01 y CW-04, 01-10-2026, dos rondas seguidas_ · ✔×2
-- **R-45** · ⭐ **Juega con la tipografía en cada gráfica.** Bebas Neue Pro tiene registros que dan contraste dentro de un mismo titular: **Light 300 finísima contra Expanded ExtraBold**, y Bebas **en contorno** (`-webkit-text-stroke`). Balloon **con curva e intención**: corre por un trazado (`ManoCurva` en `piezasV2.tsx`, textPath), rodea un objeto como anillo, se escribe en pantalla, se escribe CON TINTA sobre un papel de la foto. Un titular puesto recto sobre la foto se lee básico — _Valeria, 01-10: «dale curvas, intención», «puedes variar, jugar, eres experto en diseño»_ · ✔×2
-- **R-46** · **Un carrusel también lleva video.** Las láminas con un objeto vivo (arena que cae, neblina en un foco, lluvia, una pantalla) van en **MP4 de 5 s** animadas con Kling 2.5 Pro desde la foto aprobada. Si hay algo MONTADO sobre la foto (una pantalla real, una anotación que apunta), se pide cámara fija y **se mide el clip cuadro a cuadro**: si la cámara igual se mueve, la anotación lo sigue con el desplazamiento medido — _CW-01 y CW-04, 01-10-2026_ · ✔×1
+- **R-44** · ⛔ En la pieza no va **cuerpo de texto en Neue Haas**: «estos textos planos son feos, parecen de IA, ¿y para qué sirven?». Lo que se dice va en **Bebas o en Balloon**; lo que sólo sirve para verificar (la fuente de un dato) va al **caption**, no a la gráfica — _Valeria, CW-01 y CW-04, 01-10-2026, dos rondas seguidas_ · ✔×3
+- **R-45** · ⭐ **Juega con la tipografía en cada gráfica.** Bebas Neue Pro tiene registros que dan contraste dentro de un mismo titular: **Light 300 finísima contra Expanded ExtraBold**, y Bebas **en contorno** (`-webkit-text-stroke`). Balloon **con curva e intención**: corre por un trazado (`ManoCurva` en `piezasV2.tsx`, textPath), rodea un objeto como anillo, se escribe en pantalla, se escribe CON TINTA sobre un papel de la foto. Un titular puesto recto sobre la foto se lee básico — _Valeria, 01-10: «dale curvas, intención», «puedes variar, jugar, eres experto en diseño»_ · ✔×3
+- **R-46** · **Un carrusel también lleva video.** Las láminas con un objeto vivo (arena que cae, neblina en un foco, lluvia, una pantalla) van en **MP4 de 5 s** animadas con Kling 2.5 Pro desde la foto aprobada. Si hay algo MONTADO sobre la foto (una pantalla real, una anotación que apunta), se pide cámara fija y **se mide el clip cuadro a cuadro**: si la cámara igual se mueve, la anotación lo sigue con el desplazamiento medido — _CW-01 y CW-04, 01-10-2026_ · ✔×2
 - **R-47** · Una pantalla real en una pieza se difumina **hasta que con zoom 2× no se lea un nombre ni una cifra**, y se verifica con zoom: la tabla de campañas de Paid Media Pro a 550 px de ancho igual dejaba leer «ENTEL», «SHELL» y los montos — _CW-01, 01-10-2026_ · ✔×1
 
 ## 5. Excepciones
@@ -145,6 +146,8 @@ con humor de oficio y autoironía de agencia.
 
 - **A-09** · **CW-01 «72 HORAS» y CW-04 «UNA IA TAMBIÉN RECOMIENDA»: APROBADOS** el 01-10-2026 («¡Me gusta!») en la ronda 3. Lo que los hizo pasar: una sola mesa de nogal como escenario de toda la serie (Seedream), un objeto por etapa, la pantalla real con su alerta rodeada a plumón, Balloon en curva y anillo, Bebas Light/Expanded/contorno, y 5 de 9 láminas en video. Entrega en Drive › GRILLAS IA › CW-01 / CW-04 — _`CW01Cyber.tsx`, `CW04CyberIA.tsx`_
 
+- **A-10** · **«CYBER MOOD» (post animado 4:5, 8 s): APROBADO a la primera** el 01-10-2026 («muy bueno, aprobado»). Pedido: «irónico, entretenido, cool, motion breve, que nos veamos onderos». Lo que funcionó: UN objeto con chiste (el cartel de hotel «NO MOLESTAR.» que gira a «NO ATENDEREMOS…») hecho en CÓDIGO sobre una foto Seedream (puerta de nogal con luz rosa por debajo), con física simple (caída con resorte, péndulo amortiguado, giro 3D) y la manilla repintada DELANTE del cartel; Bebas Expanded contra Light; Balloon en curva como remate — _`src/compositions/copylab/CyberMood.tsx`, Drive › GRILLAS IA › CYBER MOOD_
+
 ## 7. Lo que se rechaza
 
 - **X-01** · La misma fórmula en serie: condensada + remate serif rosa + fondo negro (7 de 9 piezas) — _lote v1, 03-09; «no es de diseño, es de amplitud creativa»; costó la capa v1.1_
@@ -165,6 +168,9 @@ con humor de oficio y autoironía de agencia.
 - **X-15** · Carrusel tipográfico sobre negro o papel, sin fotografía ni gesto (CW-01/CW-04 v1): «muy mal, eso no es lo que construimos». El sistema es fotografía + mano + idea por pieza, aunque el brief diga «tipográfico» — _Valeria, 01-10-2026_
 
 ## 8. Preguntas abiertas
+
+- **Avisar a redes (agente social) de CW-01, CW-04 y CYBER MOOD**: su sesión se cerró antes de la entrega. Falta: pegar enlaces en ENLACE CONTENIDO; el copy interno de CW-01 cambió respecto del brief; la fuente de CW-04 va al caption; CYBER MOOD no está en su grilla (va dom 04-10 noche) (Valeria / agente social).
+- **LinkedIn y carruseles con video**: LinkedIn no acepta video dentro de un carrusel de documento. ¿Se publica allá con las portadas PNG o sólo en IG/FB? (Valeria / CM).
 
 - ✅ **CERRADA 30-09-2026 — ¿qué familia titula?** **Bebas Neue Pro**, y lo que faltaba no era
   la familia sino el **ancho**: SemiExpanded / Expanded ExtraBold (ver **R-28**). Archivo Narrow y
@@ -217,6 +223,12 @@ con humor de oficio y autoironía de agencia.
   reescribió. Pendiente decidir si se rehacen o se jubilan, dado que además son piezas de frase (R-38).
 
 ## 9. Registro de cosechas
+
+### 2026-10-01 (noche) — Claude (Opus 5.5) · sesión de Valeria Traverso · **CW-01, CW-04 y CYBER MOOD aprobados**
+- Tres rondas para CW-01/CW-04: la v1 tipográfica sobre negro (siguiendo el «tipográfico sobre negro» del brief) fue **X-15** («muy mal, eso no es lo que construimos»); la v2 fotográfica «queda mejor»; la v3 sin cuerpo Neue Haas, con Balloon en curva y video, **aprobada** (**A-09**). Nuevas **R-44** (sin cuerpo de texto plano; la fuente al caption), **R-45** (jugar con la tipografía: Bebas Light/Expanded/contorno + Balloon por trazados), **R-46** (video en el carrusel; medir el clip si hay algo montado), **R-47** (pantalla real difuminada hasta no leerse con zoom 2×).
+- **CYBER MOOD** aprobado a la primera (**A-10**): suben R-44 y R-45 a ✔×3 (probadas) y R-46 a ✔×2.
+- Proceso: Drive › GRILLAS IA es el canal de entrega (§2); el agente social publica. `ManoCurva` (Balloon por textPath) pasó al kit `piezasV2.tsx`.
+
 
 ### 2026-10-01 — Claude (Opus 5.5) · sesión de Valeria Traverso · **reel «Los 16 cortes» aprobado**
 - nuevo **R-41** (medir la referencia del trend antes de guionar; el giro en un capítulo) y **R-42** (audio del trend sólo como pista temporal; licencia por tipo de cuenta).

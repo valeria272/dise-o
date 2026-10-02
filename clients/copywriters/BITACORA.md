@@ -36,6 +36,15 @@ en tendencia.
 
 ---
 
+## 2026-10-01 (noche) · Valeria — Grilla octubre: CW-01, CW-04 y CYBER MOOD **aprobados** y en Drive
+
+**Qué se hizo:** Se ordenó la cuenta con el sistema del 01-10 como único vigente (manual y `CLAUDE.md` corregidos; Creative OS y MASTER marcados HISTÓRICO; grillas de redes en Drive › GRILLAS IA). Desde el brief del agente social se produjeron **CW-01 «72 HORAS» (5 láminas, 3 en video)** y **CW-04 «Una IA también recomienda» (4 láminas, 2 en video)** en tres rondas: v1 tipográfica rechazada → v2 fotográfica → v3 sin cuerpo Neue Haas, Balloon en curva (anillo alrededor del reloj de arena, arcos, «esta.» que sigue a la caja), Bebas Light/Expanded/contorno, clips Kling 2.5 Pro. Y a pedido de Valeria, **CYBER MOOD**: post animado 8 s con el cartel de hotel «NO MOLESTAR.» → «NO ATENDEREMOS… nada que no sea el Cyber.», aprobado a la primera.
+**Dónde quedó:** `src/compositions/copylab/CW01Cyber.tsx`, `CW04CyberIA.tsx`, `CyberMood.tsx`; `ManoCurva` en `src/brand/copylab/piezasV2.tsx`. Fotos Seedream y clips en `public/assets/copywriters/202610/` (crudos en `raw/copywriters/202610/gen/`). Renders en `out/copylab/202610/{CW-01,CW-04,CYBER-MOOD}` (v1/v2 guardadas como registro). Drive › GRILLAS IA: carpetas `CW-01 · …`, `CW-04 · …`, `CYBER MOOD · …`. Copias en el Escritorio.
+**Qué sigue:** **CW-02** «+3.627 seguidores en 28 días» (caso del concurso, lun 05-10 10:00) con la misma dirección — SIN nombrar a Más Center («un strip center de Santiago»), sin KV, logo ni mascota. Después CW-03 (falta la grabación de pantalla del SAC).
+**Abierto:** (1) Avisar al agente social: enlaces en ENLACE CONTENIDO, copy interno de CW-01 distinto al brief, fuente de CW-04 al caption, CYBER MOOD fuera de su grilla (dom 04-10 noche). (2) LinkedIn no acepta video en carrusel: ¿portadas PNG o sólo IG/FB? (3) `motor.py` marca como «color fuera de paleta» la madera y el kraft de las fotos, y `borde.py` el cabezal de papel de INTERNET DEPT.: falsos positivos por diseño de las reglas; decidir si se recalibran. (4) La copia en Drive del cerebro se duplica (la nube y este Mac usan credenciales `drive.file` distintas).
+
+---
+
 ## 2026-10-01 · Valeria — Sistema Visual: CASO 001 **aprobado** y la lámina del 30-09 como ley de ejecución
 
 **Qué se hizo:** Se cerró el carrusel **CASO 001** (6 láminas) replicando la lámina que Valeria entregó

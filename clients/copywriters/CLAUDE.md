@@ -90,6 +90,14 @@ temperatura de la foto.
 
 ---
 
+## Ejecución probada (01-10-2026, CW-01 · CW-04 · CYBER MOOD)
+
+- **Fotografía primero, aunque el brief diga «tipográfico».** La pieza tipográfica sobre negro fue X-15.
+- **Sin cuerpo de texto en Neue Haas dentro de la pieza** (R-44 ✔×3). Se dice en Bebas o en Balloon; la fuente de un dato va al caption.
+- **Juega con la tipografía en cada gráfica** (R-45 ✔×3): Bebas Light 300 contra Expanded ExtraBold, Bebas en contorno; Balloon por un trazado con `ManoCurva` (kit), como anillo, arco, o escrito con tinta sobre un objeto de la foto.
+- **Video dentro del carrusel** cuando hay algo vivo (R-46): Kling 2.5 Pro desde la foto, `scripts/magnific-video.py`, **de a un clip** (en paralelo Magnific responde «Error consuming credits»). Si hay algo montado encima, se mide el clip cuadro a cuadro.
+- **Motion graphic = un objeto con chiste hecho en código** sobre una foto (A-10): caída con resorte, péndulo, giro 3D. La letra sale perfecta porque no la dibuja la IA.
+
 ## Lo que no se publica
 
 - Cifras sin fuente verificada ni casos de clientes sin autorización (R-10). El CASO

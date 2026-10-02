@@ -62,6 +62,7 @@ import {FotoDiario} from "./compositions/copylab/FotoDiario";
 import {Caso001} from "./compositions/copylab/Caso001";
 import {CW01Cyber, CW01_FRAMES} from "./compositions/copylab/CW01Cyber";
 import {CW04CyberIA, CW04_FRAMES} from "./compositions/copylab/CW04CyberIA";
+import {CyberMood, CYBER_MOOD_FRAMES} from "./compositions/copylab/CyberMood";
 import {PostG} from "./compositions/copylab/PostG";
 import {ReelProceso, REEL_PROCESO_FRAMES} from "./compositions/copylab/ReelProceso";
 import {RentasReelOctubre} from "./compositions/rentas/RentasReelOctubre";
@@ -1367,6 +1368,9 @@ export const RemotionRoot: React.FC = () => {
                      durationInFrames={CW01_FRAMES} defaultProps={{lamina: 1}} />
         <Composition id="CL2-CW04-CyberIA" component={CW04CyberIA} {...clFeed}
                      durationInFrames={CW04_FRAMES} defaultProps={{lamina: 1}} />
+        {/* «CYBER MOOD» — post animado del domingo 04-10 (pedido de Valeria, 01-10) */}
+        <Composition id="CL2-CyberMood" component={CyberMood} {...clFeed}
+                     durationInFrames={CYBER_MOOD_FRAMES} />
         {/* Sistema Visual 29-09-2026 — piezas con fotografía */}
         <Composition id="CL2-FotoAceite"     component={FotoAceite}     {...clFeed} />
         <Composition id="CL2-FotoEscritorio" component={FotoEscritorio} {...clFeed} />

@@ -1732,6 +1732,42 @@ pasa nada si se ven los rostros, por formato de storie». **No es precedente.**
 
 ---
 
+### ⭐⭐⭐ DT — PIEZAS DE OCASIÓN «ESTILO CYBER» (campaña ARMY, 02-10-2026)
+
+> KV de post 4:5 de la preventa «Tarifa ARMY», **aprobado por Eli en tres opciones** tras 11 rondas.
+> Reglas completas en `APRENDIZAJES.md` **R-192 a R-203**, E-22 a E-24, X-92 a X-102.
+
+**«Estilo cyber DT» no es el layout de programa.** Es el molde del Cyber de mayo
+(`F:\Paid Hilton 2026\CYBER HILTON 2026 MAYO`, con su editable y sus Links): todo **centrado** —
+logo · titular en versales Stag · sello a dos voces · precio entre dos filetes · botón-barra al pie.
+
+| Qué | Cómo quedó aprobado |
+|---|---|
+| Color de campaña | **Uno solo, medido en la foto**: el morado del hotel `#9639F4` (tono 270°). Titular, logo, «Tarifa ARMY», tachado y metal del botón |
+| Foto aérea | Ciudad en blanco y negro neutro; **sólo el hotel con color**, al centro y con una zona donde queda solo. Sin resplandores ni haces |
+| Sello | «PREVENTA» en Stag **SemiBold** (Medium en la opción 3), la palabra más grande; «Tarifa ARMY» en Stag Light Italic |
+| Precio | «ANTES $185.000» con **tachado doble** · cifra en Trade Bold Cn · «PARA 2 PERSONAS · IVA INCLUIDO» en una línea |
+| Fecha | Texto suelto, Stag SemiBold blanco, sin cápsula |
+| Incluye | Tres columnas iguales, ícono de línea blanco en aro fino, rótulo centrado debajo |
+| Botón | Placa metálica morada, sin blancos ni ícono, correo en Trade Bold Cn blanco, centrado por la tinta |
+| Dirección | ⛔ **Siempre bajo el correo**: «Av. Vitacura 2727, Las Condes», texto blanco suelto |
+| Opción habitación | Habitación real de dos camas, color en textiles y globos, **sin luces de color**; recuadro del Cyber en **blanco al 80 %**, filete de 3 px, textos en **azul DT** (nunca negro) |
+
+⛔ **Sin efectos**: destellos, brillos alrededor del texto, cápsulas traslúcidas, velos de color y
+desenfoques fuertes costaron casi todas las rondas. Si un texto no se lee, se cambia el fondo o el
+encuadre.
+
+```bash
+python scripts/dt-army-fotos.py       # hotel fucsia → morado (sin IA) + textura
+python scripts/dt-army-rendir.py      # las tres opciones, máster 2250 × 2813 (--borrador a 1080)
+python qa/motor.py --marca hilton out/hilton/dt/army/*.png
+python scripts/dt-army-revision.py    # la página que mira Eli
+```
+
+Código: `src/compositions/hilton/DtArmy.tsx` (copy en `LINEAS`; la línea de VENTA está cargada y sin
+rendir) · `src/DtArmyEntry.tsx`. Entrega: Drive `GRÁFICAS DT ARMY` (`1fu6GlR9uEydLdieUtnIrOrgovibyUOMf`).
+**Falta:** elegir opción → ST, post paid 1:1, ST paid → línea de venta.
+
 ## ⭐⭐ PISO18 — MARCA PROPIA (dictado por Eli el 09-09-2026)
 
 > **La regla madre de esta cuenta: Piso18 es marca propia y TODO en ella es distinto

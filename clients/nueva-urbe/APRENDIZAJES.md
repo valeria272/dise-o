@@ -28,7 +28,7 @@ El diseñador nuevo tiene que saber que las dos marcas comparten logo con casita
 
 | | |
 |---|---|
-| Quién pide / KAM | Carlos Figueroa (contenido, grillas y briefs) · Ámbar «Bambi» Gallardo (AM) · Diego Aguilar revisa diseño de [RENTAS] |
+| Quién pide / KAM | Carlos Figueroa (contenido, grillas y briefs) · Ámbar «Bambi» Gallardo (AM) · Diego Aguilar revisa diseño de [RENTAS]; **Constanza Lizana** también deja ronda en Drive (02-10-2026) |
 | Quién aprueba (cliente) | Jean Paul Fredericksen (jp.fredericksen@nuevaurbe.cl) · Yocelyn Maturana |
 | Por dónde llega el feedback | Comentarios anclados en Drive **y** la celda `COMENTARIOS CLIENTE` de la grilla del mes ([RENTAS], 23-09) — hay que leer las dos |
 | Dónde se entrega | [RENTAS] feed/stories/reel: `Artes/2026/<MES> 2026` (octubre `12ybjU16B9mtfsVBFnTE3NaI7xkSKvQNz`) · mailings: `10. OCTUBRE` de briefs (`1FkNER4v6uWxJkxBTSv2WDhM01Rx6MMRW`). [INU]: `RRSS/GRILLAS/2026/N. MES/` · **noviembre 2026:** `NOVIEMBRE 2026 - DISEÑOS` (`1bX7QbCDsRFI3xq98sV4c3Tk7uKUuhAsY`, dentro del `10. OCTUBRE` de grillas) y los mailings en su subcarpeta `MAIL` (`1DMbH3WWg46dxXavck0saGdIOnSiHs68C`) — carpetas pedidas por Diego, 30-09 |
@@ -87,6 +87,10 @@ centrada 17,5 %, banner de mailing arriba 10,2 % no centrada).
 - **R-34** · [RENTAS] ⭐ Si un bloque del brief trae enlace **REF**, la gráfica sigue esa idea de composición, con la paleta y la tipografía de Rentas; si la REF es vertical, la ficha del correo va a 1201×1501 — _Diego Aguilar: «si tienen enlace REF sigue esa idea», 30-09-2026; fichas de mailing 03-11 (ref DLF) y 24-11 (ref The Address), aprobadas sin ronda: «quedaron super buenos los contenidos»_ · ✔×1
 - **R-35** · [RENTAS] Las escenas con personas se generan con **Seedream 5 Pro pasando la foto REAL del condominio en `--refs`** y pidiendo no tocar la arquitectura; los «atardecer / luz cálida» son la foto real con relight de cambio mínimo. El prompt dice dónde va la gente y qué zona queda libre para el texto — _13 imágenes de la grilla y los mailings de noviembre, aprobadas por Diego, 30-09-2026 (actualiza A-03, que usaba Nano Banana Pro)_ · ✔×1
 - **R-36** · [RENTAS] La locución del reel es el texto literal de los bloques `VOZ:` y esos mismos textos van de subtítulo; primero se generan y se miden las tomas, después se arman los tiempos. La URL hablada dura ~5,5 s: el cierre va a 6,8 s — _reel 03-11 «Recorrido de amenidades», aprobado sin cambios por Diego, 30-09-2026 (corrige X-12 y reemplaza E-07)_ · ✔×1
+- **R-37** · [RENTAS] El texto de adentro de una caja de color (lima o azul) va plano, sin sombra: la sombra es sólo para el texto suelto sobre foto (en CSS, `.marca-caja` heredaba la de `.titular`) — _Constanza Lizana, 3 comentarios en Drive: «el texto tiene como una sombra, quítesela», «que se aplique a todos los que tengan eso», «se ve muy raro la sombra en las tipografías» (estático 10-11, PAID portada, banner MAIL 03-11), 02-10-2026_ · ✔×1
+- **R-38** · [RENTAS] En la línea Light del titular, el dato que engancha va en Bold («**3 dudas** que resolvemos», «**3 tips** para aprovechar al máximo») y la línea no va más chica que la caja lima — _Constanza Lizana, `17-11 PAID portada` «agrandar más esa info, incluso el "3 dudas" en variante bold» y `24-11 CARRUSEL portada` «destacaría con variante bold lo de "3 TIPS"», 02-10-2026_ · ✔×1
+- **R-39** · [RENTAS] ⭐ Una escena IA sobre el quincho tiene que quedar «igual al original»: la pérgola techa las parrillas y la gente o los muebles van DEBAJO, a la sombra, no sueltos al sol en el pasto. En interiores, la gente va donde cabe físicamente (delante del mesón, que va contra el muro). Se revisa contra la foto real antes de entregar — _Constanza Lizana, «falta el techo en el quincho para que sea igual al original» (tip 3 y cierre MAIL 24-11), «no me tinca ahí el spot… más a la sombra» (tip 2), «WTF esta foto… arréglala» (PAID 3), 02-10-2026_ · ✔×1
+- **R-40** · [RENTAS] La historia lleva dos focos claros, como la de septiembre: titular + caja azul arriba y la **cifra grande en caja lima** (≈52 % del ancho, 420 px) con «Arrienda desde» encima y la condición debajo. Textos de apoyo de 190 px hacia arriba; el fondo «con blur suave» no pasa de 7 px ni pierde color — _Constanza Lizana, `25-11 ST Encuesta` «no hay jerarquía. Necesita más color como los que se hacen habitualmente en rentas» y `04-11 ST` «agranda más esa info», 02-10-2026_ · ✔×1
 
 ## 5. Excepciones
 
@@ -135,6 +139,12 @@ centrada 17,5 %, banner de mailing arriba 10,2 % no centrada).
 - **X-15** · [RENTAS] Fila de atributos a 16 px de la caja del titular: el margen iba en `em` sobre la fuente base del bloque (16 px) y no sobre el lienzo de 4500 — _`10-11 ESTATICO Sin comision`, Diego «que no queden juntos», 30-09-2026, 1 ronda. Los márgenes verticales entre bloques van en px_
 - **X-16** · [RENTAS] `public/assets/rentas/fotos/dormitorio.jpg` trae franjas desenfocadas arriba y abajo (la versión de X-04): entró al primer render del reel de noviembre y se cambió por el baño antes de entregar — _detectado en la hoja de fotogramas, 30-09-2026_
 - **X-17** · [RENTAS] `useEntrada()` llamado en el JSX del componente padre usa el frame absoluto: los textos de la placa azul y del cierre aparecían de golpe. Corregido en `RentasReelNoviembre.tsx`; **`RentasReelOctubre.tsx` sigue con el bug** — _detectado en la hoja de fotogramas, 30-09-2026_
+- **X-18** · [RENTAS] Pareja IA «detrás» de un mesón que va contra el muro (cuerpos metidos en el mueble) — _`17-11 PAID 3`, Constanza, 02-10-2026, 1 ronda_
+- **X-19** · [RENTAS] Quincho IA sin su techo sobre las parrillas, y sofá suelto al sol en medio del pasto — _`24-11 CARRUSEL` tips 2 y 3 y cierre `MAIL 24-11`, Constanza, 02-10-2026, 1 ronda. Pedirle a la IA una toma «más cerrada» vuelve a sacar el mueble al sol: se mantiene el encuadre de la foto real, se escala 2× (`magnific.py escalar --precision`) y se recorta_
+- **X-20** · [RENTAS] Farol en primer plano delante de la familia («muchos elementos e incómodo») y risa a boca abierta — _cierres `MAIL 03-11` y `MAIL 24-11`, Constanza, 02-10-2026. El farol se quita con una edición mínima (Seedream con la misma foto en `--refs`: «the ONLY change: remove the lamp post»)_
+- **X-21** · [RENTAS] Historia con todos los textos al mismo tamaño y el precio chico (caja al 33 % del ancho) sobre un fondo muy desenfocado — _`25-11 ST Encuesta`, Constanza, 02-10-2026, 1 ronda_
+- **X-22** · [RENTAS] Tarjetas del arco de la ficha `ficha-addr` demasiado separadas y cabecera chica (34 px) — _`MAIL 24-11 ficha`, Constanza, 02-10-2026, 1 ronda_
+- **X-23** · [RENTAS] Entrada de los textos del reel con desenfoque (blur 14→0 sobre `spring` con `durationInFrames`): el bloque llegaba nítido, se volvía a difuminar 7 fotogramas y recién ahí se asentaba, en cada línea de la placa azul — _`03-11 REEL`, Constanza vía Diego: «se genera una difuminación que se repite, quita ese efecto», 02-10-2026. `useEntrada` ahora es opacidad + subida con `interpolate` acotado, sin blur; las entradas se verifican midiendo la nitidez fotograma a fotograma. `RentasReelOctubre.tsx` conserva el `useEntrada` viejo_
 
 ## 8. Preguntas abiertas
 
@@ -157,6 +167,12 @@ centrada 17,5 %, banner de mailing arriba 10,2 % no centrada).
 - [RENTAS] ¿«Arrienda» en Bold (E-09) pasa a regla de todos los estáticos? → **Diego**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Diego Aguilar (con Claude) · ronda 2 de NOVIEMBRE: 14 comentarios de Constanza Lizana
+- Constanza Lizana revisó la grilla y los mailings en Drive (9 comentarios en 8 piezas de grilla + 5 en 4 bloques de mailing). Todos aplicados, re-subidos por nombre → mismo fileId y resueltos.
+- nuevo **R-37** (sin sombra dentro de las cajas), **R-38** (el dato en Bold), **R-39** (escena IA igual al original: techo del quincho, sombra, coherencia espacial), **R-40** (jerarquía de historia: cifra grande en caja lima).
+- rechazos **X-18…X-22**.
+- Fotos nuevas: `pd_3c`, `al_3b` (escalada 2×), `al_4b`, `m1_cierre_b`, `m2_cierre_c` — recetas en `fondos/generar_ia_r2.sh`.
 
 ### 2026-10-02 — Claude nocturno (nube) · sesión de Diego Aguilar (`71e2c78`)
 - sin aprendizajes nuevos: Diego Aguilar ya cosechó el cierre de la grilla y los mailings de noviembre en su propio commit del 01-10 — R-31…R-36 quedaron escritos ahí mismo. Nada que agregar.

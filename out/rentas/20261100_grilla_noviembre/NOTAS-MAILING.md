@@ -42,3 +42,11 @@ amarillo se escriben directo en el correo (Fidelizador), entre los bloques.
 - El 🌿 del banner del 24 va porque está en el brief. Se saca si lo prefieren sin emoji.
 - Queda pendiente lo que el brief pide confirmar con el cliente antes del envío: la redacción
   exacta del reajuste cada 12 meses (va en el banner del 3).
+
+## Ronda del 02-10 (comentarios de Constanza Lizana en Drive)
+
+- Texto dentro de las cajas de color, sin sombra (los dos banners y los dos cierres).
+- **03-11 cierre:** se quitó el farol que quedaba delante de la mesa de la familia.
+- **24-11 ficha:** cabecera más grande y las cinco tarjetas del arco más juntas.
+- **24-11 cierre:** foto nueva — el quincho con su techo original, sonrisas más calmas y sin
+  el farol junto a la familia.

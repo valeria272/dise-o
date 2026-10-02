@@ -457,3 +457,30 @@ html, body { background:#000; }
 .atributos.separados { margin-top:300px; }
 .atributos.separados .atributo { width:23%; }
 .bloque > .logo-valle + .titular { margin-top:.2em; }
+
+/* ══════════ RONDA CONSTANZA LIZANA · 02-10-2026 (comentarios en Drive) ══════════
+   «Creo que el texto tiene como una sombra, quítesela» (caja lima del estático 10-11) ·
+   «lo mismo aquí, que se aplique a todos los que tengan eso» (PAID portada) · «se ve
+   muy raro la sombra en las tipografías» (banner del mailing 03-11).
+   La sombra del titular sobre foto se HEREDABA al texto de adentro de la caja de
+   color: azul sobre lima con un halo oscuro que lo emborronaba. Dentro de una caja
+   no hay foto que separar: va plano. El texto suelto sobre la foto conserva la suya. */
+.marca-caja, .caja-titulo, .boton-url, .pildora-lima, .pildora-precio { text-shadow:none; }
+
+/* «agrandar más esa info, incluso el "3 dudas" lo dejaría en variante bold» (PAID
+   portada) · «destacaría con variante bold lo de "3 TIPS"» (portada Aire libre):
+   el dato de la línea Light va en Bold. */
+.titular .l1 b { font-weight:700; }
+
+/* «Agranda más esa info» (bajada de la ST 04-11): un escalón entre t-st-m y t-st-l. */
+.t-st-ml { font-size: 215px; }
+
+/* «Esta composición está como rara, no hay jerarquía. Necesita más color como los que
+   se hacen habitualmente en rentas» (ST encuesta 25-11). Se vuelve a la historia medida
+   de septiembre (rentas_st_1): la cifra en caja lima al 52,4 % del ancho con «Arrienda
+   desde» a su izquierda y la condición debajo, y la bajada un escalón más grande. */
+.t-st-cifra { font-size: 420px; }
+.precio-grupo { display:inline-block; text-align:left; }
+.precio-grupo .precio-desde { padding-left:.12em; }
+.story.encuesta .bloque.precio { bottom:25%; }
+.story.encuesta .bloque.precio .condiciones { margin-top:.6em; }

@@ -106,7 +106,8 @@ print("CARRUSEL PAID 17-11:")
 
 pieza("rentas_c-paid1", "paid/pd_1.jpg",
       '<div class="bloque abajo paid">'
-      '<div class="titular t-l"><span class="l1">3 dudas que resolvemos</span></div>'
+      # 02-10 · Constanza: «agrandar más esa info, incluso el "3 dudas" en bold».
+      '<div class="titular t-xl"><span class="l1"><b>3 dudas</b> que resolvemos</span></div>'
       '<div class="titular t-xl caja-sola">'
       '<span class="marca-caja lima">antes de que arriendes.</span></div>'
       '<div class="bajada t-xs">Desliza <b>&rarr;</b></div>'
@@ -145,7 +146,7 @@ print("CARRUSEL VIVE AL AIRE LIBRE 24-11:")
 pieza("rentas_c-airelibre1", "aire/al_1.jpg",
       '<div class="bloque alto-feed">'
       '<div class="titular t-l">'
-      '<span class="l1">3 tips para aprovechar al máximo</span></div>'
+      '<span class="l1"><b>3 tips</b> para aprovechar al máximo</span></div>'
       '<div class="titular t-l caja-sola">'
       '<span class="marca-caja lima">los espacios al aire libre</span></div>'
       "</div>",
@@ -180,7 +181,8 @@ pieza("rentas_st-proyecto-04-11", "st_proyecto.jpg",
       '<div class="st-titular t-st-l">'
       '<span class="l1">VALLE</span>'
       '<span class="caja marca-caja azul">ALTIPLÁNICO</span></div>'
-      '<div class="st-bajada t-st-s">+59 m² para ti<br><b>y tu familia.</b></div>'
+      # 02-10 · Constanza: «Agranda más esa info» → de 150 a 215 px.
+      '<div class="st-bajada t-st-ml">+59 m² para ti<br><b>y tu familia.</b></div>'
       '</div>'
       '<div class="bloque precio">'
       '<div class="precio-desde t-st-s">ARRIENDA DESDE</div>'
@@ -208,12 +210,17 @@ pieza("rentas_st-encuesta-25-11", "st_encuesta.jpg",
       '<div class="st-titular t-st-l">'
       '<span class="l1">DÍAS IDEALES PARA</span>'
       '<span class="caja marca-caja azul">DISFRUTAR AFUERA <span class="emoji">🌿</span></span></div>'
-      '<div class="st-bajada t-st-s">En Valle Altiplánico,<br><b>arrienda sin comisión.</b></div>'
-      '<div class="condiciones t-st-s"><b>Garantía de 1,5 meses</b> en 6 cuotas</div>'
+      '<div class="st-bajada t-st-m">En Valle Altiplánico,<br><b>arrienda sin comisión.</b></div>'
       '</div>'
+      # 02-10 · Constanza: «no hay jerarquía… más color como los habituales de Rentas».
+      # El precio pasa a ser el segundo foco, como en la historia de septiembre: cifra en
+      # caja lima al 52 % del ancho, «Arrienda desde» encima y la garantía debajo.
       '<div class="bloque precio">'
-      '<div class="precio-desde t-st-s">Arrienda desde</div>'
-      '<div class="t-st-l"><span class="precio-cifra marca-caja lima">$715.000</span></div>'
+      '<div class="precio-grupo">'
+      '<div class="precio-desde t-st-m">Arrienda desde</div>'
+      '<div class="t-st-cifra"><span class="precio-cifra marca-caja lima">$715.000</span></div>'
+      '</div>'
+      '<div class="condiciones t-st-m"><b>Garantía de 1,5 meses</b> en 6 cuotas</div>'
       '</div>'
       '<div class="zona-sticker"></div>',
       formato="story encuesta", velo="velo-doble")

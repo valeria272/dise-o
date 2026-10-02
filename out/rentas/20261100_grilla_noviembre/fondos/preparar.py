@@ -52,8 +52,21 @@ def abre(p):
 
 
 # ── carrusel VIVE AL AIRE LIBRE 24-11 (IA con el quincho real de referencia)
-for n, cy in [(1, .5), (2, .5), (3, .5), (4, .5), (5, .55)]:
-    sale(f"aire/al_{n}.jpg", *recorte(abre(AQUI / f"ia/al_{n}.png"), FEED, cy=cy))
+# 02-10 · ronda de Constanza: al_3 → al_3b (sofá bajo la pérgola, a la sombra) y al_4 → al_4b
+# (el quincho con su techo, igual al original). Los de la ronda 1 quedan en ia/ como registro.
+for n, f, cy in [(1, "al_1", .5), (2, "al_2", .5), (5, "al_5", .55)]:
+    sale(f"aire/al_{n}.jpg", *recorte(abre(AQUI / f"ia/{f}.png"), FEED, cy=cy))
+# al_3b respeta el encuadre de la foto real y la mujer queda chica: se escaló 2× con el
+# upscaler de precisión (magnific.py escalar --escala 2 --precision → al_3b_x2.jpg) y se
+# cierra el recorte sobre el sofá. Una toma más cerrada pedida a la IA lo volvía a sacar al sol.
+_a3 = abre(AQUI / "ia/al_3b_x2.jpg")
+# El recorte arranca en y=950 para que la cabeza del farol izquierdo quede BAJO la bajada
+# (a 1470 la bajada caía encima del farol).
+sale("aire/al_3.jpg", *recorte(_a3.crop((0, 950, 2800, 4450)), FEED))
+# al_4b respeta el encuadre de la foto real y la gente queda chica: se cierra el recorte
+# sobre la mitad baja (ancho 1600 de 1770) para que el grupo pese en la lámina.
+_a4 = abre(AQUI / "ia/al_4b.png")
+sale("aire/al_4.jpg", *recorte(_a4.crop((60, 360, 1660, 2360)), FEED))
 
 # ── carrusel PAID 17-11 · portada y cierre con FOTO REAL; 2-4 IA
 sale("paid/pd_1.jpg", *recorte(abre(FOTOS / "IMG_7934.jpg"), FEED, cx=.42))
@@ -61,8 +74,10 @@ for n, f in [(2, "pd_2.png"), (4, "pd_4.png")]:
     sale(f"paid/pd_{n}.jpg", *recorte(abre(AQUI / "ia" / f), FEED, cy=.6))
 # pd_3: se come el 6 % izquierdo — el granito y la llave del lavaplatos pegados al
 # filo daban «texto pegado al borde» en la compuerta (textura, no texto).
-_p3 = abre(AQUI / "ia/pd_3b.png")
-sale("paid/pd_3.jpg", *recorte(_p3.crop((int(_p3.width * .06), 0, _p3.width, _p3.height)), FEED, cy=.6))
+# 02-10 · ronda de Constanza («arréglala»): pd_3b tenía a la pareja DETRÁS del mesón, que va
+# contra el muro. pd_3c los pone en el pasillo, delante. cy=.4: se recorta por abajo para que
+# las cabezas queden bajo el bloque de texto.
+sale("paid/pd_3.jpg", *recorte(abre(AQUI / "ia/pd_3c.png"), FEED, cy=.4))
 sale("paid/pd_5.jpg", *recorte(abre(FOTOS / "Exterior.jpg"), FEED, cx=.45))
 
 # ── estático 10-11 · quincho REAL con relight de cambio mínimo (luz de tarde)
@@ -73,7 +88,11 @@ sale("st_proyecto.jpg", *recorte(abre(FOTOS / "20210513123811_IMG_9628.jpg"), ST
 
 # ── ST encuesta 25-11 · áreas verdes al atardecer (relight) + blur suave + grano
 im, esc = recorte(abre(AQUI / "ia/st_areas.png"), STORY)
-sale("st_encuesta.jpg", grano(im.filter(ImageFilter.GaussianBlur(18))), esc)
+# 02-10 · Constanza: «necesita más color». El desenfoque baja de 18 a 7 px (sigue siendo
+# «blur suave», como pide el brief) y la saturación sube 18 %: a 18 px la foto quedaba lavada.
+from PIL import ImageEnhance
+im = ImageEnhance.Color(im.filter(ImageFilter.GaussianBlur(7))).enhance(1.18)
+sale("st_encuesta.jpg", grano(im), esc)
 
 
 # ══ MAILINGS 03-11 y 24-11 · a 2× del bloque (1201 px) para que el correo no se vea blando ══
@@ -83,7 +102,7 @@ sale("mail/m1_banner.jpg", *recorte(abre(FOTOS / "20210513122924_IMG_9578.jpg"),
 # living REAL del proyecto (IMG_7729-Edit-Pano, el mismo de la ficha de octubre): la foto
 # ocupa el 62 % alto de la ficha vertical (1201×931); se recorta hacia el sofá y la ventana.
 sale("mail/m1_ficha.jpg", *recorte(abre(OCT / "m1_ficha.jpg"), FICHA_FOTO, cx=.36))
-sale("mail/m1_cierre.jpg", *recorte(abre(AQUI / "ia/m1_cierre.png"), CIERRE, cy=.55))
+sale("mail/m1_cierre.jpg", *recorte(abre(AQUI / "ia/m1_cierre_b.png"), CIERRE, cy=.55))
 sale("mail/m2_banner.jpg", *recorte(abre(AQUI / "ia/m2_banner.png"), BANNER, cy=.62))
 sale("mail/m2_ficha.jpg", *recorte(abre(AQUI / "ia/m2_ficha.png"), FICHA, cy=.5))
-sale("mail/m2_cierre.jpg", *recorte(abre(AQUI / "ia/m2_cierre.png"), CIERRE, cy=.55))
+sale("mail/m2_cierre.jpg", *recorte(abre(AQUI / "ia/m2_cierre_c.png"), CIERRE, cy=.55))

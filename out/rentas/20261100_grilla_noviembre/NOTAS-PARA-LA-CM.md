@@ -55,3 +55,17 @@ los carruseles de Rentas. Si lo quieren fuera, se saca sin tocar nada más.
    briefs de mailing y el sitio usan `9955`. La pieza no lleva número este mes, pero el copy sí.
 2. **Precio y superficie:** brief e Instagram dicen *desde $715.000 · +59 m²*; `rentas.inu.cl`
    publica *desde $780.000 · 74,76 m²*.
+
+## Ronda del 02-10 (comentarios de Constanza Lizana en Drive)
+
+- **Texto dentro de cajas de color, sin sombra** en todas las piezas (lima y azul).
+- **17-11 PAID portada:** la primera línea sube de tamaño y «3 dudas» va en bold.
+  **24-11 portada:** «3 tips» en bold.
+- **17-11 PAID lámina 3:** foto nueva (IA sobre la cocina real): la pareja queda de pie en el
+  pasillo, delante del mesón. La anterior los ponía detrás del mesón, que va contra el muro.
+- **24-11 tip 2:** el sofá va bajo la pérgola, a la sombra. **24-11 tip 3:** el quincho con su
+  techo, igual al original.
+- **04-11 ST:** la bajada «+59 m² para ti y tu familia.» más grande.
+- **25-11 ST encuesta:** recompuesta como la historia habitual de Rentas — cifra grande en caja
+  lima, «Arrienda desde» encima y la garantía debajo; fondo con menos desenfoque y más color.
+  El tercio alto sigue libre para la encuesta.

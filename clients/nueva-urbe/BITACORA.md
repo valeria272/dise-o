@@ -4,6 +4,20 @@
 
 ---
 
+## 2026-10-02 — Diego Aguilar (con Claude) · ronda 2 de noviembre (Constanza Lizana)
+
+14 comentarios anclados de Constanza en `NOVIEMBRE 2026 - DISEÑOS` y `MAIL`. Aplicados, re-subidos
+(mismo fileId, tamaños verificados) y **resueltos en Drive**; `qa/motor.py` en 0 bloqueantes.
+
+- **Sombra dentro de las cajas de color:** fuera en todas las piezas (`base.css`, R-37).
+- **Jerarquía:** PAID portada (línea a 250 px + «3 dudas» bold), portada Aire libre («3 tips» bold),
+  ST 04-11 (bajada a 215 px), ST encuesta 25-11 recompuesta (cifra 420 px en caja lima), ficha
+  MAIL 24-11 (cabecera 46/48 px, tarjetas más juntas).
+- **Fotos IA rehechas** (`fondos/generar_ia_r2.sh` + `preparar.py`): cocina del PAID 3, sofá a la
+  sombra (tip 2), quincho con techo (tip 3 y cierre MAIL 24-11), farol fuera (cierres de mailing).
+- **Reel 03-11:** fuera el difuminado de entrada de los textos (se repetía en la placa azul, 0:19); re-rendido y re-subido.
+- **Sin commit todavía:** falta `/cierre`.
+
 ## 2026-09-30 — Diego Aguilar (con Claude) · grilla NOVIEMBRE producida
 
 **Qué se hizo:** se leyó la grilla `RENTAS_NUEVA_URBE_GRILLA_NOVIEMBRE_2026.pptx` (Carlos,

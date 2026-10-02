@@ -1,5 +1,5 @@
 import React from "react";
-import {AbsoluteFill, Img, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig} from "remotion";
+import {AbsoluteFill, Easing, Img, Sequence, interpolate, staticFile, useCurrentFrame, useVideoConfig} from "remotion";
 import {Audio, Video} from "@remotion/media";
 import {ensureRentasFonts, rentas} from "../../brand/rentas";
 
@@ -25,10 +25,13 @@ const P = (s: number, fps: number) => Math.round(s * fps);
 
 const useEntrada = (desde: number, dur = 12) => {
   const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  const p = spring({fps, frame: frame - desde, config: {damping: 18, stiffness: 130}, durationInFrames: dur});
-  return {opacity: p, transform: `translateY(${interpolate(p, [0, 1], [42, 0])}px)`,
-          filter: `blur(${interpolate(p, [0, 1], [14, 0])}px)`};
+  // 02-10 · Constanza: «se genera una difuminación que se repite, quita ese efecto» (placa
+  // azul, 0:19). La entrada llevaba blur 14→0 sobre un spring con `durationInFrames`: el bloque
+  // llegaba nítido, volvía a difuminarse 7 fotogramas y recién ahí se asentaba. Ahora entra
+  // sin blur, con una curva acotada: aparece y sube, una sola vez.
+  const p = interpolate(frame, [desde, desde + dur], [0, 1],
+    {extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic)});
+  return {opacity: p, transform: `translateY(${interpolate(p, [0, 1], [42, 0])}px)`};
 };
 
 const CajaLogo: React.FC = () => (

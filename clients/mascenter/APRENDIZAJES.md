@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de marca: Valeria Traverso)** · Aprueba: **Sebastián Córdova (paid) · Francesca Pavissich (landings y presentación comercial)**
-> Última cosecha: **2026-10-02** · Cosechas: **17**
+> Última cosecha: **2026-10-02** · Cosechas: **18**
 
 ## 1. Quién es el cliente
 
@@ -145,8 +145,9 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - **R-93** · Texto «apretado» dentro de un cuadro blanco: se saca el cuadro y el texto va suelto, con aire; el llamado baja a la pastilla blanca del pie de la story — _Scarlette, story Halloween (01-10-2026): «el cuadro blanco se ve raro, los textos muy apretados»_ · ✔×1 (misma familia que R-65)
 - **R-94** · Los datos y el mapa de un proyecto salen de su **brochure oficial**: mapa real (no esquema), superficies tal como están ahí. Linderos: `raw/mascenter/octubre-2026/linderos-brochure/` (mapa en la p. 5; 2.335 m² de terreno) — _Scarlette, lk-06-10 (01-10-2026): «usar el mapa que se encuentra en el brochure del proyecto» · «La superficie total es de 2.335 m2»_ · ✔×1 (⚠️ corrige el mapa esquemático de R-42)
 - **R-95** · Los comentarios de Scarlette y de Nicolás Ávila viven en el **hilo de comentarios del xlsx de la grilla**: se leen con el conector de Drive (`read_file_content` con `includeComments`). No dicen en qué celda están: se asignan a cada pieza por contenido y por hora, y se confirma con Diego lo dudoso. La grilla ya pesa 95 MB: no se baja entera — _01-10-2026_ · ✔×1
-- **R-96** · Persona recortada sobre un titular (texto por detrás): la persona se recorta de la **misma foto ya tratada** (con el velo o la gradación HORNEADOS en la imagen, no como capa aparte bajo el texto) y la máscara se contrae ~2 px y se suaviza. Si el velo va sólo bajo el texto, la persona queda más clara que su entorno y «se ve sobrepuesta», sobre todo en el pelo. Revisar el borde del pelo a zoom 2× antes de entregar — _cliente vía Diego, p-26-10 (02-10-2026): «Se ve un poco sobrepuesta la persona que sale, sobre todo se nota en el pelo»_ · ✔×1 (precisa R-91)
+- **R-96** · Persona recortada sobre un titular (texto por detrás): la persona se recorta de la **misma foto ya tratada** (con el velo o la gradación HORNEADOS en la imagen, no como capa aparte bajo el texto) y la máscara se contrae ~2 px y se suaviza. Si el velo va sólo bajo el texto, la persona queda más clara que su entorno y «se ve sobrepuesta», sobre todo en el pelo. Revisar el borde del pelo a zoom 2× antes de entregar — _cliente vía Diego, p-26-10 (02-10-2026): «Se ve un poco sobrepuesta la persona que sale, sobre todo se nota en el pelo»_ · ✔×1 (precisa R-91) · ⚠️ precisada 2026-10-02: ver **R-98** (la persona lleva sólo una fracción del velo)
 - **R-97** · Los logos van **sin placa de fondo** sobre foto: el lockup Más Center | Mercado Campesino se usa en blanco con fondo transparente (`lockup_sin_fondo()` en `post_mercado.py` lo saca de la placa azul del .ai) — _cliente vía Diego, p-26-10 (02-10-2026): «eliminar fondo de los logos»_ · ✔×1
+- **R-98** · Un velo de color para integrar a la persona con su fondo **no se le hornea entero encima**: la persona lleva una fracción (`FUERZA_PERSONA = 0.25` en `post_mercado.py`) y la piel queda en su color; el fondo sí lleva el velo completo. Y el feriante del Mercado Campesino es un adulto de unos 45 años, no un joven de 30 (se envejece con Seedream en modo edición sobre la misma foto, sin tocar escena ni pose) — _Diego, p-26-10: «quedó muy azul con opacidad la cara de la persona, haz la persona un poco más vieja de unos 45 años», 02-10-2026, 1 ronda_ · ✔×1
 - **R-44** · Display de temporada (Eds Market, Royal Brand, Gloria Hallelujah, Garamond) sólo puntual, nunca como voz de la marca — _editables mar–sept 2026_ · ✔×1
 
 ## 5. Excepciones
@@ -230,6 +231,11 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 (tarde) — Diego Aguilar (con Claude) · p-26-10, ronda 3 (Diego)
+- nueva **R-98**: el velo de color no se hornea entero sobre la persona (fracción 0,25) y el feriante del Mercado Campesino es de unos 45 años. Precisa a **R-96** (la persona recortada de la foto ya velada): velada sí, pero no con el velo completo.
+- cita de Diego: «quedó muy azul con opacidad la cara de la persona, haz la persona un poco más vieja de unos 45 años». 1 ronda.
+- pieza reemplazada en sitio en Drive (md5 OK); sin comentarios anclados en el archivo.
 
 ### 2026-10-02 — Diego Aguilar (con Claude) · p-26-10, ronda 2 (cliente)
 - nuevas **R-96** (persona recortada de la foto ya velada, borde del pelo afinado) y **R-97** (logos sin placa de fondo). El diseño desde la REF no se cuestionó: ✔ R-91.

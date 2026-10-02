@@ -1,3 +1,17 @@
+## 2026-10-02 (tarde) — Diego Aguilar (con Claude) · p-26-10 ronda 3: cara sin velo azul y feriante de ~45 años
+
+**Feedback de Diego:** «quedó muy azul con opacidad la cara de la persona, haz la persona un poco más vieja de unos 45 años».
+La ronda 2 horneaba el velo azul del cielo completo sobre el feriante (13–40 % de azul marino a la altura de la cara).
+Ahora el fondo lleva el velo entero y la persona sólo el 25 % (`FUERZA_PERSONA`). Foto nueva `fotos/vendedor-v3.png`
+(+ `-nobg`): la misma escena con el feriante de unos 45 años (Seedream, edición sobre `vendedor-v2`); silueta casi
+idéntica (cabeza x 457–625, tope y 417), el titular no se movió. Reemplazado en sitio en Drive (md5 OK). Cosecha R-98.
+
+**Dónde quedó:** `clients/mascenter/sistema/post_mercado.py` + `out/mascenter/2026-10/post-26-10/fotos/vendedor-v3{,-nobg}.png`
+(versionadas con `git add -f`); `p-26-10.png` en «10. OCTUBRE», mismo fileId `1CFOv2JrJKdRR2ANhyo7N7JnOT9aATo6K`.
+**Qué sigue:** esperar el OK de Scarlette / el cliente sobre el p-26-10.
+**Abierto:** nada nuevo de esta ronda. Dos sesiones trabajaron hoy a la vez sobre el repo (hubo un rebase con conflictos
+en Tierra Calma mientras se corregía esta pieza): no repetirlo sobre la misma pieza.
+
 ## 2026-10-02 — Diego Aguilar (con Claude) · p-26-10: persona integrada y logos sin fondo
 
 **Qué se hizo:** comentario del cliente («se ve un poco sobrepuesta la persona, sobre todo en el pelo; eliminar fondo de los logos»). El velo azul del cielo ahora va horneado en la foto y el feriante se recorta de esa misma foto, con la máscara contraída 2 px y suavizada; el lockup Más Center | Mercado Campesino va en blanco sin la placa azul.

@@ -16,7 +16,16 @@
 - **Fotos IA rehechas** (`fondos/generar_ia_r2.sh` + `preparar.py`): cocina del PAID 3, sofá a la
   sombra (tip 2), quincho con techo (tip 3 y cierre MAIL 24-11), farol fuera (cierres de mailing).
 - **Reel 03-11:** fuera el difuminado de entrada de los textos (se repetía en la placa azul, 0:19); re-rendido y re-subido.
-- **Sin commit todavía:** falta `/cierre`.
+
+**Dónde quedó:** todo en `out/rentas/20261100_grilla_noviembre/` (editables, `fondos/generar_ia_r2.sh`, `preparar.py`,
+reel re-rendido) y `src/compositions/rentas/RentasReelNoviembre.tsx`. Las 21 piezas + el reel están en Drive sobre los
+mismos archivos; 0 comentarios abiertos.
+**Qué sigue:** esperar la vuelta de Constanza / Carlos sobre la ronda 2. Si piden lo mismo para octubre, el reel de
+octubre (`RentasReelOctubre.tsx`) conserva la entrada con desenfoque.
+**Abierto:** (1) ¿la sombra se quita también del texto blanco suelto sobre foto? Hoy sólo salió de las cajas de color →
+Constanza. (2) En la ST encuesta la garantía pasó debajo del precio: el orden ya no es el del brief → Carlos Figueroa.
+(3) La cocina IA del PAID 3 no es idéntica a la real (microondas y muebles) → Diego. (4) Las respuestas en Drive salen a
+nombre de Valeria Traverso (token del estudio).
 
 ## 2026-09-30 — Diego Aguilar (con Claude) · grilla NOVIEMBRE producida
 

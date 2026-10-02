@@ -35,6 +35,7 @@ OUT = RAIZ / "out/mascenter/2026-10/post-26-10"
 W, H = base.W, base.H
 CREMA = "#FFE9BF"
 tb = base.top_desde_base
+FUERZA_PERSONA = 0.25   # fracción del velo azul que recibe el feriante (1.0 = igual que el fondo)
 BLK = lambda t: ImageFont.truetype(str(AQUI / "assets/fonts/Gotham-Black.ttf"), t)
 
 
@@ -46,13 +47,14 @@ def encuadre(im, dy=0.5):
     return im.crop((0, y, W, y + H))
 
 
-def velar(im):
+def velar(im, fuerza=1.0):
     """Velo azul del cielo HORNEADO en la foto (antes iba como capa sólo bajo el titular y la persona, recortada de la
-    foto sin velo, quedaba más clara que su entorno: «se ve un poco sobrepuesta, sobre todo se nota en el pelo»)."""
+    foto sin velo, quedaba más clara que su entorno: «se ve un poco sobrepuesta, sobre todo se nota en el pelo»).
+    `fuerza` escala la opacidad: el fondo va a 1.0 y la persona a FUERZA_PERSONA."""
     import numpy as np
     a = np.asarray(im).astype(float)
     y = np.linspace(0, 1, im.height)
-    op = np.interp(y, [0, .26, .42, .54, 1], [.62, .50, .22, 0, 0])[:, None, None]
+    op = fuerza * np.interp(y, [0, .26, .42, .54, 1], [.62, .50, .22, 0, 0])[:, None, None]
     return Image.fromarray((a * (1 - op) + np.array([12, 38, 74]) * op).round().astype("uint8"))
 
 
@@ -70,14 +72,18 @@ def lockup_sin_fondo(ruta):
 
 
 def cuerpo():
-    foto = Image.open(OUT / "fotos/vendedor-v2.png").convert("RGB")
-    alfa = Image.open(OUT / "fotos/vendedor-v2-nobg.png").convert("RGBA").getchannel("A")
+    # vendedor-v3 = la misma foto con el feriante de unos 45 años (Diego, 02-10: «haz la persona un poco más vieja,
+    # de unos 45 años»): Seedream en modo edición sobre vendedor-v2, sin tocar el mercado ni la pose.
+    foto = Image.open(OUT / "fotos/vendedor-v3.png").convert("RGB")
+    alfa = Image.open(OUT / "fotos/vendedor-v3-nobg.png").convert("RGBA").getchannel("A")
     DY = 0.5
     fondo = velar(encuadre(foto, DY))
-    # La persona sale de la MISMA foto ya velada (misma luz que su entorno) y la máscara se contrae 2 px y se suaviza:
-    # así el borde del pelo no arrastra cielo claro sobre las letras.
+    # Diego (02-10): «quedó muy azul con opacidad la cara de la persona». Con el velo entero horneado, la cara
+    # (y 415–640) recibía 13–40 % de azul marino. La persona lleva sólo una fracción del velo: lo justo para que no
+    # se vea sobrepuesta contra el fondo velado, sin teñirle la piel. La máscara se contrae 2 px y se suaviza para
+    # que el borde del pelo no arrastre cielo claro sobre las letras.
     alfa = encuadre(alfa, DY).filter(ImageFilter.MinFilter(5)).filter(ImageFilter.GaussianBlur(1.8))
-    persona = fondo.copy(); persona.putalpha(alfa)
+    persona = velar(encuadre(foto, DY), FUERZA_PERSONA); persona.putalpha(alfa)
     # Silueta medida sobre el recorte ya encuadrado: cabeza x 458–630, y 415–640; hombros desde y≈690 (x 386–731).
     # «TU COMPRA» y «MÁS FRESCA» llenan el ancho SOBRE la cabeza (el pelo roza la segunda línea) y «ESTÁ» / «AQUÍ»
     # la flanquean a la altura de la cara: el titular queda detrás de la persona, como en la REF, sin letras tapadas.

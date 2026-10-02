@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-10-02** · Cosechas: **49**
+> Última cosecha: **2026-10-02** · Cosechas: **50**
 
 ## 1. Quién es el cliente
 
@@ -470,6 +470,11 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 (3) — Claude con Eli · aviso de skills nuevas (reels, Remotion, Figma) · sin piezas, sin reglas nuevas
+- **sin aprendizajes de criterio:** no se diseñó, aprobó ni rechazó nada; ningún ✔ sube. Fuente: aviso de Valeria por Slack, 02-10-2026 09:41, pegado por Eli.
+- **De método (no es regla de marca):** Eli pidió usar las skills nuevas en videos y grillas del complejo sin que lo pida cada vez. De la skill se toma el movimiento y el ritmo; tipografía, color y material siguen saliendo de cada marca, y una receta aprobada no se reabre. `viral-captions-and-ctas` no se usa para escribir caption ni CTA: el brief es de contenido. Nota completa en la memoria `skills-de-video-en-hilton`.
+- **Todavía sin medir:** ninguna skill se ha probado sobre una pieza de DT ni de Between. Cuando se use en un reel, anotar acá si ahorró rondas o no.
 
 ### 2026-10-02 (2) — Claude con Eli · `/arranque` + `/al-dia hilton` · sin piezas, sin reglas nuevas
 - **sin aprendizajes de criterio:** no se diseñó, aprobó ni rechazó nada; ningún ✔ sube.

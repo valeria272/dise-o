@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-10-02** · Cosechas: **48**
+> Última cosecha: **2026-10-02** · Cosechas: **49**
 
 ## 1. Quién es el cliente
 
@@ -32,6 +32,7 @@ Las dos comparten Drive y dirección, **no criterio**: nada de DT pasa a Between
 | Quién aprueba (cliente) | Javier Mesa (Hilton). Antes, Eli aprueba internamente cada ronda; su OK no es el del cliente |
 | Por dónde llega el feedback | Grilla mensual por marca (Sheet/xlsx): fila COMENTARIOS CLIENTE + COMENTARIOS PARA DISEÑO, **comentarios nativos de Excel**, tachado = resuelto. Chat de Javier. Pantallazos marcados en rojo de Eli. Eli revisa en una página HTML abierta en Chrome |
 | Dónde se entrega | `HILTON/CONTENIDOS/2026/<N>. <MES>/S<n> HILTON <MES> 2026/{DT,BW}/{STS,FEED}` (CONTENIDOS/2026 = `1V3rvFNzOI9geT2h7-GyZ4XHY9vuu25uv`). En BW no se sube hasta que Eli da la carpeta oficial |
+| Historias automatizadas | [TODAS] Desde el 01-10-2026 cada grilla trae una hoja **«ST AUTOMATIZADAS»** (categoría · tipo · diseño · link · estado) y una «CALENDARIO GENERAL» con la parrilla semanal; las piezas viven en Drive `10. OCTUBRE/ST AUTOMATIZADAS/{BETWEEN,DT,PISO18,QB}` (`14TuAyQsVRhYXkNzPzOpfF8jPtIFh3XGu`). Son historias fijas que se repiten cada semana (DT: programas, Escapada, Noche de Bodas, Family Time, Cowork, Honors, Gym · BW: Promo To Go, Café cumpleaños, Cowork). Contenido las arma con piezas ya aprobadas; la que falta dice PENDIENTE en la fila DISEÑO. Fuente: grillas leídas el 02-10 (Scarlette) |
 | Ritmo | Grilla mensual por semanas S1–S5 (estático, carrusel, reel, historia animada/estática) + cartas, mailings, pantallas y banners a pedido |
 | Rondas típicas | Muchas. BW: 4 rondas por grilla (oct-2026) y hasta 20+ en una pieza cuando se componía en vez de generar. DT: 3–6 por pieza, casi siempre por la referencia o por la foto |
 | Sitio web de Año Nuevo | [DT + Piso18] Eli lo diseña en **Figma**, no en Illustrator: archivo «Año Nuevo 2025» (`itOaRURkyCVeTMpNrJ7JW1`, marco `WEB_año_nuevo` 1920×6000, «Rio Vibes · Año Nuevo 2026»). Siete tramos: portada con título y 4 sellos de precio · franja de preventa · paquetes con la carta · marcas · preguntas frecuentes · formulario · pie. Tipografías Raleway + Quattrocento Sans; es pieza de evento, **fuera del sistema Stag/azul de la grilla**. El conector de Figma de Claude Code quedó activo el 01-10-2026 con su cuenta (plan Starter: cortó tras ~35 acciones en una tarde) — _Eli, 01-10-2026_ |
@@ -405,6 +406,8 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 ## 8. Preguntas abiertas
 
+- [DT] [BW] ST automatizadas marcadas PENDIENTE y sin archivo: DT «Programas general», BW «Promo To Go» y «Café cumpleaños». No tienen brief ni estado: ¿se diseñan nuevas o se reutiliza una pieza aprobada (p. ej. la ST 07-10 de café de cumpleaños)? El calendario de DT nombra además «Salones» y «Wellness», sin columna en la hoja → **Scarlette / contenido** (02-10)
+- [BW] El reel de cumpleaños pasó del 02-10 al 05-10 en la grilla y en Drive sigue como `BW FEED 02-10 Cafe de cumpleanos` en S1: ¿se renombra y se mueve a S2? → **Eli** (02-10)
 - [DT + P18] Prueba de sitio de Año Nuevo 2027 con temática casino (Figma `9ep6vgSDvaH5aguD9juupC`): Eli la pidió «para ver qué tal» y **no dio veredicto** (sólo pidió el enlace). ¿Sirve el camino? · quedaron dos ajustes sin aplicar por el tope del conector (logos de marcas a la izquierda para que Kunstmann no caiga sobre el vaso; fondo más oscuro en preguntas frecuentes) · el nombre «Gran Casino», la temática y si «Se recomiendan prendas blancas» sigue valiendo los define contenido/cliente → **Eli** (01-10)
 - [DT + P18] El archivo de referencia «Año Nuevo 2025» trae erratas en la carta («Glenfidich», «Hendrix´s», «Alto del Carme», «Extra Burt», «Télefono», «Cómo reservar?»): corregidas sólo en la prueba; el original no se tocó → **Eli** (01-10)
 
@@ -467,6 +470,12 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 (2) — Claude con Eli · `/arranque` + `/al-dia hilton` · sin piezas, sin reglas nuevas
+- **sin aprendizajes de criterio:** no se diseñó, aprobó ni rechazó nada; ningún ✔ sube.
+- **Lo que se supo del cliente** → §2: contenido creó las «ST AUTOMATIZADAS» (hoja en cada grilla + carpeta en Drive) y una hoja «CALENDARIO GENERAL». Es la primera vez que una historia se trata como pieza fija que se repite, fuera de las semanas S1–S5.
+- **De método (no es regla de marca):** el estado «APROBADO» de una automatizada en la hoja STORIES no implica que exista el archivo (Piso18 «Arriendo cumpleaños» figura aprobada y está PENDIENTE de diseño): se cruza con la carpeta de Drive antes de darla por hecha.
+- **Abiertas** → §8 (dos nuevas).
 
 ### 2026-10-02 — Claude nocturno (nube) · sesión de Elisabet Soto (`e268020`, `18c2b06`)
 - sin aprendizajes nuevos para el cerebro de Hilton: `e268020` sólo trae instantáneas JSON de grilla (p18, qb) y scripts; `18c2b06` es una prueba de Figma de Año Nuevo sin entrega, y el propio commit ya dice «sin entrega ni reglas nuevas» (cosecha 47). El aprendizaje real de esas sesiones (reorden del Drive de QB, Figma de Año Nuevo) pertenece a piso18 y a qb, y ya quedó cosechado en sus propios cerebros — no se mezcla acá.

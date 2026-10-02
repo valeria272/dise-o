@@ -36,6 +36,15 @@ en tendencia.
 
 ---
 
+## 2026-10-02 · Valeria — CW-02 «+3.627 nuevos seguidores» **aprobado** (calcado de su lámina) y en Drive
+
+**Qué se hizo:** CW-02, el caso del concurso de Fiestas Patrias de un strip center (sin nombrar la marca), en tres rondas. v1: metáfora de volantines → «no la entendí» y colores fuera de la paleta. v2: strip center conceptual y oscuro, 7 láminas con video. v3: Valeria dibujó la lámina ella misma («haz EXACTAMENTE esto») y se calcó slide por slide midiendo alto de mayúscula y posiciones contra la referencia → aprobada («ahora sí»). La portada se animó con Kling (ella se aleja de espaldas por el mall) y el texto entra en secuencia.
+**Dónde quedó:** `src/compositions/copylab/CW02Concurso.tsx` (componentes `B` y `Bal` calibrados por alto de mayúscula). Referencia en `creative-system/SISTEMA-VISUAL-2609/reference/CW02_REFERENCIA_VALERIA_02-10.png`. Fotos `public/assets/copywriters/202610/m1–m8` + clip `vm1-mall.mp4`. Renders en `out/copylab/202610/CW-02/` (v1-volantines y v2-stripcenter como registro). Drive › GRILLAS IA › «CW-02 · +3.627 SEGUIDORES (caso strip center)»: 01.mp4 + 01–08.png.
+**Qué sigue:** CW-03 «11 segundos» (reel del SAC con IA; falta la grabación de pantalla real) y CW-06 en adelante. Para cualquier pieza: si Valeria trae lámina, se calca (R-48); el look de casos es R-49.
+**Abierto:** (1) Lámina 7 dice «3 activaciones semanales · teaser / sorteo principal / último impulso» (de la referencia); el dato verificado es «3 sorteos semanales»: confirmar con Valeria. (2) Lámina 5 lleva comentarios difuminados; si hay capturas reales del post, se montan. (3) Avisar al agente social: CW-02 ahora son 8 láminas (el brief decía 6), portada en video, enlace en la grilla; y lo pendiente de ayer (CW-01, CW-04, CYBER MOOD). (4) No existe Bebas Neue Pro ExtraBold de ancho normal: la Bold se engrosa con contorno.
+
+---
+
 ## 2026-10-01 (noche) · Valeria — Grilla octubre: CW-01, CW-04 y CYBER MOOD **aprobados** y en Drive
 
 **Qué se hizo:** Se ordenó la cuenta con el sistema del 01-10 como único vigente (manual y `CLAUDE.md` corregidos; Creative OS y MASTER marcados HISTÓRICO; grillas de redes en Drive › GRILLAS IA). Desde el brief del agente social se produjeron **CW-01 «72 HORAS» (5 láminas, 3 en video)** y **CW-04 «Una IA también recomienda» (4 láminas, 2 en video)** en tres rondas: v1 tipográfica rechazada → v2 fotográfica → v3 sin cuerpo Neue Haas, Balloon en curva (anillo alrededor del reloj de arena, arcos, «esta.» que sigue a la caja), Bebas Light/Expanded/contorno, clips Kling 2.5 Pro. Y a pedido de Valeria, **CYBER MOOD**: post animado 8 s con el cartel de hotel «NO MOLESTAR.» → «NO ATENDEREMOS… nada que no sea el Cyber.», aprobado a la primera.

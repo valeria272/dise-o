@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (digital: grilla orgánica + paid — confirmado por ella el 30-09) · **Constanza Lizana «Coni»** (envase y packs) · Aprueba: **Magdalena** (proinnbrands), en la grilla
-> Última cosecha: **2026-10-02 (cierre, stories Cyber)** · Cosechas: **9** · Mapa completo del Drive: [`DRIVE-AGENCIA.md`](DRIVE-AGENCIA.md)
+> Última cosecha: **2026-10-02 (cierre, stories Cyber y fondos Fase 3)** · Cosechas: **10** · Mapa completo del Drive: [`DRIVE-AGENCIA.md`](DRIVE-AGENCIA.md)
 
 ## 1. Quién es el cliente
 
@@ -186,6 +186,11 @@ Piezas **publicadas** de Paulina que fijan cada registro (no hay registro de una
 - **El logo de Mercado Libre de la caja es generado** (se ve correcto). ¿Hay que montar el oficial encima? → Paulina.
 - **Qué opción de la Story 2 usa Paulina:** se le dieron las cifras sobre la opción A (`v3_e`); la B quedó sin cifras.
 
+**De los fondos de la Fase 3 (02-10):**
+- **El brief contra los fondos:** P09 «sin mascota o muy secundaria», P10 «sin mascota», P02 «fondo limpio y claro»; los tres llevan al animal de protagonista por indicación de Paulina. → Sebastián Córdova.
+- **¿Quién pone el producto** en P01, P02, P09 y P10: Paulina en Illustrator o integrado con IA? → Paulina.
+- **Cómo monta Paulina texto y logos** sobre los fondos: lo va a mostrar; hay que medirlo y dejarlo como referencia de composición del paid. → Paulina.
+
 **Otras:**
 - **Archivos sanos de Neutraface Text Book y Demi.** En Drive todas las copias son el mismo archivo defectuoso. Queda por probar `NeutraTextTF-Book 2.otf` / `-Demi 2.otf`, de una carpeta de EBEMA (IDs en `DRIVE-AGENCIA.md` §5).
 - **RGB equivalentes** de PANTONE 114 C, 708 C y Neutral Black C. Puede estar en `GUÍA_PANTONE.ai` `1-GxpWFk9PATQqJDJyNuna0oir0UR8FGE`. → Coni.
@@ -214,6 +219,15 @@ Piezas **publicadas** de Paulina que fijan cada registro (no hay registro de una
 - **§8:** falta el veredicto del cliente; la pose armada del gato choca en espíritu con X-07.
 - **Costo de la jornada:** Story 1, tres tandas de generación hasta que el neón quedó detrás del papel, más cuatro pasadas de ampliación (el ancho del papel no se pide por texto). Story 2, nueve tomas tiradas antes del boceto.
 - **Candidata a regla del estudio** (para Valeria; no se copia a otras marcas): *«un boceto de líneas de la diseñadora, mandado como segunda referencia al generador, fija la distribución mejor que cualquier descripción»*. Es la misma familia de las dos candidatas del 01-10.
+
+### 2026-10-02 (cierre, fondos Fase 3) — Claude con Paulina Bustamante · paid Fase 3, fondos de los 6 estáticos sin producto
+- Sesión de la mañana, anterior a la de las stories Cyber; sus reglas ya estaban escritas en §4 y esta entrada las registra.
+- **Cambio de método, propuesto por Paulina (R-52):** primero todos los fondos sin producto, con el animal cerca y mirando a cámara; el producto entra después. Los seis fondos gustaron en la primera vuelta: «muy buenas, muy realistas y acorde a los key visual de la fase 1 y fase 2».
+- **Nuevo R-53:** la escena no puede verse de un solo color y el animal se despega del fondo (perro blanco nunca sobre manta blanca); luz cálida. Sale de sus tres comentarios en Drive sobre P01, P07 y P08.
+- **Nuevo R-54 (✔×0, sin veredicto):** un cambio de color sobre un fondo que ya gustó se hace con una sola pasada de Seedream edit; la luz conviene pedirla en toma nueva, porque por edición el perro quedó naranjo.
+- **Sin aprobación formal:** sobre la ronda 2 Paulina dijo «por ahora con esto estamos ok». No sube ningún ✔ ni entra nada a §6 hasta que monte el texto (lección de la A-05: una imagen limpia no está aprobada hasta que el texto cabe).
+- **§8:** el brief pide P09 y P10 sin mascota y P02 con fondo limpio y claro; se hicieron con el animal protagonista por indicación de Paulina → avisar a Sebastián Córdova. Falta definir quién pone el producto en P01, P02, P09 y P10. Paulina va a mostrar cómo monta texto y logos, para dejarlo como referencia de composición.
+- **Costo de la jornada:** 24 tomas en la primera vuelta (P02 y P08 se repitieron porque Seedream las dio frías, con el perro lejos y el gato dormido) y 14 en la ronda 2.
 
 ### 2026-10-02 — Claude nocturno (nube) · sesión de Paulina Bustamante (`91aaab7`)
 - sin aprendizajes nuevos: Paulina Bustamante ya cosechó la Fase 3 de paid en su propio commit del 01-10 — R-48…R-51, X-09, X-10, A-05 revisada y R-42 probada quedaron escritos ahí mismo. Nada que agregar.

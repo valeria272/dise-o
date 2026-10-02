@@ -377,6 +377,37 @@ ESCENAS = {
                    "nada. Arriba se ve mas techo negro del salon con las mismas guirnaldas de luces "
                    "calidas, tranquilo y oscuro, sin lamparas nuevas. Sin personas."),
     },
+    # Ronda 8 (Eli 02-10): «faltan más detalles en la imagen de cumpleaños porque parece más
+    # matrimonio». Se EDITA la misma foto (R-49): la torta, la mesa y el salón quedan; entran
+    # globos, regalos, serpentinas y velas de colores. La mitad de arriba sigue tranquila.
+    "f20-cumplec": {
+        "motor": "pro", "aspecto": "story", "refs": ["@f20-cumplex"],
+        "prompt": ("La MISMA fotografia de la @img1, con el mismo encuadre, la misma torta blanca de dos "
+                   "pisos con flores, la misma mesa de mantel oscuro con platos dorados y copas de colores "
+                   "y el mismo salon de noche, sin mover nada. Solo AGREGA detalles para que se lea como "
+                   "una fiesta de CUMPLEANOS de adultos y no como un matrimonio: dos racimos de globos de "
+                   "helio metalizados en dorado, fucsia y blanco, con sus cintas, uno a cada costado "
+                   "detras de la mesa, a la altura de la torta; sobre la mesa, junto a la torta, dos o "
+                   "tres regalos envueltos con cinta y mono, serpentinas y confeti de colores sobre el "
+                   "mantel y un par de gorros de fiesta; en la torta, velas de cumpleanos de colores "
+                   "encendidas y una bengala chispeando. Foto documental del fotografo del evento, luz "
+                   "calida del salon, todo real y con imperfecciones naturales. La MITAD DE ARRIBA de la "
+                   "imagen queda igual: techo oscuro y tranquilo con las guirnaldas de luces, sin globos "
+                   "ni nada nuevo arriba. Sin personas."),
+    },
+    # La tirada c quedó bien, pero los racimos de helio subían hasta el título y la lista.
+    # Tirada d: los mismos globos amarrados cortos, por debajo de la punta de las velas.
+    "f20-cumpled": {
+        "motor": "pro", "aspecto": "story", "refs": ["@f20-cumplec"],
+        "prompt": ("La MISMA fotografia de la @img1, identica en todo: la misma torta con velas de colores "
+                   "y bengala, los mismos regalos, serpentinas, confeti y gorros, la misma mesa y el mismo "
+                   "salon. UNICO cambio: los dos racimos de globos dorados, fucsia y blancos quedan MAS "
+                   "ABAJO y mas chicos, con las cintas cortas amarradas a los respaldos de las sillas, uno "
+                   "a cada costado de la torta; el globo mas alto llega solo hasta la altura de las "
+                   "lamparas colgantes del fondo, por debajo de las guirnaldas de luces. Toda la mitad de "
+                   "arriba de la imagen queda vacia: solo techo oscuro con las guirnaldas de luces, ningun "
+                   "globo ahi. Sin personas."),
+    },
 }
 
 

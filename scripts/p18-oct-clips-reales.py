@@ -25,20 +25,26 @@ DISCO = Path("F:/SESIONES HILTON/SESIONES PISO18")
 OUT = RAIZ / "public/assets/hilton/piso18/oct"
 FF = imageio_ffmpeg.get_ffmpeg_exe()
 
-# salida: (origen, desde s, duración s) — el tramo queda escrito acá (R-17)
+# salida: (origen, desde s, duración s[, filtro extra antes de escalar]) — el tramo queda escrito acá (R-17)
 CLIPS = {
     # ST 16-10 «Equipo Piso18»: la experiencia de servicio, de la barra a la sala
     "s1610-a.mp4": ("Capsula 2 marzo 2026/IMG_1820.MOV", 0.1, 2.7),   # barman terminando los spritz
     "s1610-b.mp4": ("Capsula 1 marzo 2026/IMG_1831.MOV", 0.4, 3.0),   # garzón armando la bandeja de copas
     "s1610-c.mp4": ("Capsula 3 marzo 2026 parte 1/IMG_1847.MOV", 1.3, 2.8),  # garzona con la bandeja de cóctel
     "s1610-d.mp4": ("Capsula 1 marzo 2026/IMG_5740.MOV", 3.4, 3.8),   # la bandeja de cerca, sin rostros
-    # ST 30-10 «El broche perfecto para tu historia»: recorrido que termina en el letrero
-    # ⚠️ a los 5,3 s del original un foco de la pista encandila la cámara (destello de 3
-    # fotogramas, medido como salto de 46 en el MP4): el tramo termina antes, en 5,2 s.
-    "s3010-a.mp4": ("Capsula 1 marzo 2026/IMG_5671.MOV", 2.2, 3.0),   # salón montado, hacia el centro de flores
-    "s3010-b.mp4": ("Capsula 3 marzo 2026 parte 1/IMG_5664.MOV", 0.8, 3.0),  # mesa larga bajo las lámparas
-    "s3010-c.mp4": ("Capsula 2 marzo 2026/IMG_5746.MOV", 4.2, 2.8),   # el ventanal y la ciudad
-    "s3010-d.mp4": ("Capsula 3 marzo 2026 parte 1/IMG_5690.MOV", 0.0, 4.2),  # letrero de neón PISO18 de la barra
+    # ST 30-10 «El broche perfecto para tu historia»: recorrido que termina en el letrero.
+    # Ronda 8 (Eli 02-10: «trata de utilizar mejores videos que no se vean tan extraños o tan
+    # difuminados»). Los cuatro de la ronda 7 salieron: 5671 (cámara chueca y un técnico parado
+    # en la pista), 5664 (hojas desenfocadas en primer plano), 5746 (ventanal torcido) y el
+    # letrero 5690 tal cual (inclinado 13°, con la licuadora y los enchufes a la vista).
+    "s3010-a.mp4": ("sesion 27 de febrero 2026/IMG_5760.MOV", 0.8, 3.0),   # atardecer por el ventanal, mesa montada
+    "s3010-b.mp4": ("Capsula 4 marzo 2026/IMG_5669.MOV", 4.0, 3.0),        # centro de flores y puestos, de cerca
+    "s3010-c.mp4": ("Capsula 4 marzo 2026/IMG_1876.MOV", 0.2, 2.8),        # salón de noche con las guirnaldas
+    # el letrero de neón, NIVELADO (gira 13°) y recortado sobre el 4K para dejar fuera la
+    # licuadora; la cámara panea y a los 2,4 s el «8» toca el borde: va 0–1,85 s a mitad de
+    # velocidad (el original es de 59,94 fps, así que a 30 fps no se inventa ningún fotograma).
+    "s3010-d.mp4": ("Capsula 3 marzo 2026 parte 1/IMG_5690.MOV", 0.0, 1.85,
+                    "rotate=-13*PI/180:bilinear=1,crop=1360:2418:140:230,setpts=2*PTS"),
 }
 
 HLG_A_SDR = ("zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,"
@@ -47,15 +53,15 @@ HLG_A_SDR = ("zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,"
 
 def main():
     solo = sys.argv[1:]
-    for nombre, (origen, desde, dur) in CLIPS.items():
+    for nombre, (origen, desde, dur, *extra) in CLIPS.items():
         if solo and not any(s in nombre for s in solo):
             continue
         src = DISCO / origen
         if not src.is_file():
             print(f"x falta {src}")
             continue
-        vf = f"{HLG_A_SDR},scale=1080:1920:flags=lanczos,fps=30"
-        r = subprocess.run([FF, "-y", "-ss", f"{desde}", "-i", str(src), "-t", f"{dur}", "-an",
+        vf = f"{HLG_A_SDR},{extra[0] + ',' if extra else ''}scale=1080:1920:flags=lanczos,fps=30"
+        r = subprocess.run([FF, "-y", "-ss", f"{desde}", "-t", f"{dur}", "-i", str(src), "-an",
                             "-vf", vf, "-c:v", "libx264", "-crf", "16", "-preset", "medium",
                             "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(OUT / nombre)],
                            capture_output=True, text=True, errors="replace")

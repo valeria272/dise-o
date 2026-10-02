@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar** · Aprueba: **Fran (proyecto) · Blanca (comercial)**
-> Última cosecha: **2026-10-02** · Cosechas: **7**
+> Última cosecha: **2026-10-02** · Cosechas: **8**
 
 ## 1. Quién es el cliente
 
@@ -27,11 +27,11 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 | | |
 |---|---|
 | Quién pide / KAM | KAM **Constanza Olivares** (manual §10; ⚠️ `marca.json` dice Ámbar Gallardo). Grilla orgánica: **Carlos Figueroa** (propuesta de temas). PAID: **Ignacio Retamal** (brief xlsx en `PERFORMANCE/<Mes> 2026/`) y Sebastián Córdova |
-| Quién aprueba (cliente) | **Fran** (proyecto) y **Blanca** (comercial): los únicos que validan un dato comercial. Internamente revisa y comenta **Diego Aguilar** |
-| Por dónde llega el feedback | **Por chat, con una referencia**: adjunta (25-09, quince rondas) o como **enlace de Pinterest** (01-10, tres pedidos) — el pin puede ser un CARRUSEL y hay que bajarlo entero · **comentarios de Diego sobre los PNG en Drive**, a veces **anclados a una zona** (el `anchor` dice a qué elemento apunta) y **no siempre avisados**: hay que listar la carpeta completa en cada vuelta (01-10: avisó uno y había dos) · cambios de texto por la grilla xlsx, sin comentario (22-09) · cliente por correo/WhatsApp vía KAM |
+| Quién aprueba (cliente) | **Fran** (proyecto) y **Blanca** (comercial): los únicos que validan un dato comercial. Internamente revisa y comenta **Diego Aguilar**; desde noviembre también **Constanza Lizana** (02-10: cinco comentarios sobre la grilla) |
+| Por dónde llega el feedback | **Por chat, con una referencia**: adjunta (25-09, quince rondas) o como **enlace de Pinterest** (01-10, tres pedidos) — el pin puede ser un CARRUSEL y hay que bajarlo entero · **comentarios de Diego sobre los PNG en Drive**, a veces **anclados a una zona** (el `anchor` dice a qué elemento apunta) y **no siempre avisados**: hay que listar la carpeta completa en cada vuelta (01-10: avisó uno y había dos) · cambios de texto por la grilla xlsx, sin comentario (22-09) · **comentarios DENTRO del xlsx de la grilla, avisados por Slack `#tierracalma`** (Constanza Lizana, 02-10): ese archivo pesa 97 MB y está compartido sólo al dominio, así que **ni el conector de Drive ni el token los leen** — se le pide a Diego que los pegue en el chat · cliente por correo/WhatsApp vía KAM |
 | Dónde se entrega | **Orgánico nov: `1Ebvh3yVJ6Z2uqZ7AiE0RGTGqT9EhoXBV`** (carpeta NOVIEMBRE de Diego; fileIds en `entrega-noviembre-2026.json`) · Orgánico oct: `1lJG3Xzwh77zSCSDQ4DiPsAJK0fAqcNwF` · PAID oct: `1mJSqrR7aK7V96DQosCA1hArH7Oxr-Uqg` · septiembre del estudio: `SEPTIEMBRE/APRENDIZAJE IA — NO PUBLICAR` |
 | Ritmo | Grilla mensual. Contrato: **6 estáticos + 4 reels + 4 creativos de pauta + SAC L–V**. Octubre: 10 piezas / 18 archivos. **Noviembre: 10 piezas / 25 archivos** (3 carruseles, 2 posts, 3 stories, 2 reels), entregadas el 01-10 sobre una grilla que seguía en «Propuesta» |
-| Rondas típicas | Octubre: **5 rondas y 27 comentarios, todos internos de Diego**; PAID: 6 rondas. Vuelve por tipografía, centrado, mapas e imágenes que no se parecen al lugar. **Noviembre, 1ª vuelta (01-10): 5 pedidos el mismo día de la entrega — 3 piezas rehechas sobre una referencia, 1 imagen cambiada por dron real, 1 elemento eliminado.** Ninguna pieza aprobada aún por el cliente |
+| Rondas típicas | Octubre: **5 rondas y 27 comentarios, todos internos de Diego**; PAID: 6 rondas. Vuelve por tipografía, centrado, mapas e imágenes que no se parecen al lugar. **Noviembre, 1ª vuelta (01-10): 5 pedidos el mismo día de la entrega — 3 piezas rehechas sobre una referencia, 1 imagen cambiada por dron real, 1 elemento eliminado.** **2ª vuelta (02-10): 5 comentarios de Constanza Lizana, todos de ajuste fino (quitar firma repetida, interlineado, un rótulo, logos) — ninguna pieza rehecha.** Ninguna pieza aprobada aún por el cliente |
 
 ## 3. Identidad en corto
 
@@ -113,6 +113,10 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - **R-61** · Un **lugar real del sector** (colegio, CESFAM) se muestra con **su foto real, mejorada**: misma fachada, más nitidez, cielo limpio, y fuera cables, autos y personas (R-26). No va en un mapa ni en una escena inventada — _Diego, 01-10, `r-19-11`: «para los colegios y cesfam usa estas imágenes, mejora la calidad de las imágenes»_ · ✔×1
 - **R-62** · **Un comentario de Drive se lee con su ancla, se aplica, se responde y se resuelve.** Una palabra suelta («eliminar») sólo se entiende mirando a qué zona apunta el `anchor`; y un comentario aplicado que queda abierto hace creer que falta — _01-10, `st-13-11` y `c-30-11-1`; `scripts/drive-comentarios.py --json` + `scripts/drive-responder.py`_ · ✔×2
 - **R-63** · El **dato y la cifra se escriben donde el QA los lea**: como hijo plano de un componente de texto. Dentro de un `.map()` de objetos o de `{sinPartir("…")}` el extractor no los ve y la compuerta da la pieza por limpia sin haber leído justo los números — _01-10, dos veces: las tiras de `p-17-11` y los rótulos de `c-09-11-1`_ · ✔×2
+- **R-64** · **La firma «Tierra Calma · Padre Hurtado» no se repite en las slides interiores de un carrusel.** Ni arriba a la derecha ni al pie: la marca ya está en el logo de la portada y en el marco — _Constanza Lizana, 02-10, sobre `c-11-11` («borrar texto de todas las slides… parte superior derecha») y `c-30-11` («borra de slide 2, 3, 4 y 5 el texto inferior»)_ · ✔×2
+- **R-65** · **Un rótulo en sans versales con tracking ancho «se ve muy IA».** Si una línea tiene que destacar, va en IvyOra versales con el tracking del destacado (0,01em), no como etiqueta espaciada — _Constanza Lizana, 02-10, `c-30-11-6`: «debe ser de la tipografía de la marca y no tan separadas las letras entre sí»_ · ✔×1
+- **R-66** · En el titular de dos líneas (sans + IvyOra), **las dos líneas van pegadas**: sin `Aire` entre ellas, sólo el interlineado propio (1,16) — _Constanza Lizana, 02-10, `st-20-11` y `p-24-11`: «menos interlineado en el título»_ · ✔×2
+- **R-67** · Un **comercio real** nombrado en un reel va con su **logo oficial en blanco**, no escrito en IvyOra: SVG oficial pasado a una tinta, con lo blanco del original calado (`scripts/tc-nov-logos.py`). No se dibuja ni se genera — _Constanza Lizana, 02-10, `r-19-11`: «añadiría los logos de Tottus, Santa Isabel y Líder Express. Quizás en variante blanca»_ · ✔×1
 
 ## 5. Excepciones
 
@@ -188,8 +192,18 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - Las cinco dudas de `c-11-11` son **provisorias** hasta el mapeo de dudas reales. → Fran / Blanca.
 - ¿Los dos carruseles a la izquierda se quedan así (E-12)? → Diego.
 - Las **REF 2 y REF 3** de la grilla no se pudieron leer: el xlsx guarda un enlace por celda. → Carlos.
+- El sello de **Express de Lider** en blanco conserva el borde y la banda en un tono más liviano que el cuerpo. ¿Lo prefieren todo blanco pleno? → Constanza Lizana / Diego.
+- La **portada de `c-30-11`** conserva su píldora «Tierra Calma · Padre Hurtado»: el comentario pidió sacar la firma sólo de las slides 2 a 5. ¿Se queda? → Constanza Lizana.
+- ¿R-66 (titular de dos líneas sin aire) vale para **todas** las piezas del mes o sólo para `st-20-11` y `p-24-11`, que fueron las comentadas? El resto conserva sus 18 px. → Constanza Lizana / Diego.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Diego Aguilar (con Claude) · noviembre: revisión interna de Constanza Lizana
+
+- nuevo **R-64…R-67** · la firma no se repite en slides interiores · el rótulo espaciado en versales «se ve IA» · las dos líneas del titular van pegadas · el comercio real va con su logo oficial en blanco.
+- Los comentarios llegaron **dentro del xlsx de la grilla** (aviso por Slack en #tierracalma): ni el conector de Drive ni el token los leen; Diego los pegó en el chat (§2 actualizado).
+- §8: tres preguntas nuevas (sello de Express, píldora de la portada del 30-11, alcance de R-66).
+- Sin ✔ nuevos por aprobación: ninguna pieza de noviembre está aprobada por el cliente todavía.
 
 ### 2026-10-02 — Claude nocturno (nube) · sesión de Diego Aguilar (`c9eae8c`)
 - sin aprendizajes nuevos: Diego Aguilar ya cosechó la primera vuelta de la grilla de noviembre en el mismo commit del 01-10 — R-56…R-63, E-12…E-15 y X-20…X-24 quedaron escritos ahí mismo. Nada que agregar.

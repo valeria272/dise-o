@@ -598,7 +598,10 @@ const Sub: React.FC<{children: React.ReactNode}> = ({children}) => (
   <span style={{borderBottom: `3px solid ${CAFE}`, paddingBottom: 2}}>{children}</span>
 );
 
-/** El folio: el número de la duda a la izquierda y la marca a la derecha. */
+/** El folio: el número de la duda, arriba a la izquierda.
+ *  ⛔ Sin la firma «Tierra Calma · Padre Hurtado» a la derecha (Constanza Lizana,
+ *  02-10: *«borrar texto de todas las slides que está en la parte superior
+ *  derecha»*). La marca ya va en el logo de la portada. */
 const Folio: React.FC<{n?: string}> = ({n}) => (
   <div
     style={{
@@ -622,19 +625,6 @@ const Folio: React.FC<{n?: string}> = ({n}) => (
       }}
     >
       {n ?? "\u00a0"}
-    </span>
-    <span
-      style={{
-        fontFamily: SANS,
-        fontWeight: 400,
-        fontSize: 21,
-        letterSpacing: "0.22em",
-        textTransform: "uppercase",
-        color: "rgba(11,44,73,0.62)",
-        whiteSpace: "nowrap",
-      }}
-    >
-      Tierra Calma · Padre Hurtado
     </span>
   </div>
 );
@@ -894,7 +884,6 @@ const F7: React.FC = () => (
   <Lienzo w={CARR.w} h={CARR.h}>
     <Papel />
     <MarcoTenido archivo="MARCO-CARRUSEL-4" color={NAVY} />
-    <Folio />
     {/* El objeto del cierre: un globo de comentario, dibujado. Va SIN texto —
         los tres puntos son «alguien está escribiendo», no copy. */}
     <svg
@@ -1141,7 +1130,8 @@ const J: React.FC = () => (
     <Marco archivo="MARCO-ST" />
     <Cuerpo desde={250} hasta={560}>
       <Modulado ancho={860} tramos={[{t: "Todo esto cabe"}]} />
-      <Aire h={18} />
+      {/* Sin aire entre las dos líneas (Constanza Lizana, 02-10: *«menos
+          interlineado en el título»*). */}
       <Modulado ancho={900} tramos={[{t: "en tu parcela", ivy: true, cursiva: true}]} />
     </Cuerpo>
     {/* casa principal: techo x 450–735 · y 765–880 */}
@@ -1187,7 +1177,8 @@ const K: React.FC = () => (
     {/* El cielo llega hasta la fila ~560 (el cerro); el titular vive ahí. */}
     <Cuerpo desde={250} hasta={600}>
       <Modulado ancho={860} tramos={[{t: "Ven a conocer"}]} />
-      <Aire h={18} />
+      {/* Sin aire entre las dos líneas (Constanza Lizana, 02-10: *«menos
+          interlineado en el título»*). */}
       <Modulado ancho={900} tramos={[{t: "Tierra Calma", ivy: true, cursiva: true}]} />
     </Cuerpo>
     <Globo y={925} max={780} size={36} destacado="A 15 min del Peaje Padre Hurtado">
@@ -1395,7 +1386,9 @@ const L: React.FC = () => (
 //     IZQUIERDA a media altura, y debajo una píldora de contorno;
 //   · slides del medio: foto cálida a sangre y, al centro, UNA TARJETA DE APP DE
 //     NOTAS —cabecera «‹ Notas» con sus dos íconos, un título con filete y el
-//     punto con su check—; al pie, la firma.
+//     punto con su check—. ⛔ Sin firma al pie (Constanza Lizana, 02-10: *«borra
+//     de slide 2, 3, 4 y 5 el texto inferior que dice "Tierra Calma · Padre
+//     Hurtado"»*).
 //
 // ⛔ LO QUE NO SE CALCÓ (R-49):
 //   · su AMARILLO de iOS no entra: el filete, el check y la cabecera van en la
@@ -1414,29 +1407,6 @@ const L: React.FC = () => (
 // promete tasa para la parcela (NOTA del brief). La fuente va en letra chica.
 // Igual que en `c-11-11`, va alineado a la izquierda donde la referencia lo hace.
 // =============================================================================
-
-/** La firma al pie, donde la referencia pone su usuario. */
-const Firma: React.FC = () => (
-  <div
-    style={{
-      position: "absolute",
-      left: 0,
-      right: 0,
-      top: 1216,
-      textAlign: "center",
-      fontFamily: SANS,
-      fontWeight: 400,
-      fontSize: 22,
-      letterSpacing: "0.24em",
-      textTransform: "uppercase",
-      color: "rgba(255,255,255,0.86)",
-      textShadow: "0 1px 12px rgba(0,0,0,0.6)",
-      whiteSpace: "nowrap",
-    }}
-  >
-    Tierra Calma · Padre Hurtado
-  </div>
-);
 
 /** Un punto de la nota: el check de la app y su texto. */
 const Punto: React.FC<{children: React.ReactNode}> = ({children}) => (
@@ -1625,7 +1595,6 @@ const M2: React.FC = () => (
       </Punto>
     </NotaApp>
     <Pie y={1156}>Fuente: Banco Central de Chile, vía Emol (07/07/2026).</Pie>
-    <Firma />
   </Lienzo>
 );
 
@@ -1648,7 +1617,6 @@ const M3: React.FC = () => (
         o <Sub>leasing</Sub>.
       </Punto>
     </NotaApp>
-    <Firma />
   </Lienzo>
 );
 
@@ -1663,7 +1631,6 @@ const M4: React.FC = () => (
         <span style={{whiteSpace: "nowrap"}}>(hasta UF 800).</span>
       </Punto>
     </NotaApp>
-    <Firma />
   </Lienzo>
 );
 
@@ -1677,7 +1644,6 @@ const M5: React.FC = () => (
         Reservas con <Sub>$1.000.000</Sub>, que se abona al total y se devuelve si el banco no aprueba tu crédito.
       </Punto>
     </NotaApp>
-    <Firma />
   </Lienzo>
 );
 
@@ -1687,10 +1653,14 @@ const M6: React.FC = () => (
     <Degradado arriba={0.56} abajo={0.56} velo={0.26} />
     <Marco archivo="MARCO-CARRUSEL-4" />
     <AlaIzquierda>
-      <div style={{fontFamily: SANS, fontWeight: 400, fontSize: 25, letterSpacing: "0.2em", textTransform: "uppercase", color: ARENA}}>
+      {/* Constanza Lizana, 02-10: *«debe ser de la tipografía de la marca y no tan
+          separadas las letras entre sí, se ve muy IA»*. Era un rótulo de sans en
+          versales con tracking 0,2em; pasa a IvyOra versales con el tracking de
+          todo destacado de la marca (0,01em). */}
+      <div style={{fontFamily: SERIF, fontWeight: 500, fontSize: 44, lineHeight: 1.14, letterSpacing: "0.01em", textTransform: "uppercase", color: ARENA}}>
         {sinPartir("Parcelas en Padre Hurtado")}
       </div>
-      <Aire h={12} />
+      <Aire h={10} />
       <div style={{fontFamily: SANS, fontWeight: 300, fontSize: 40, lineHeight: 1.3}}>
         {sinPartir("~5.000 m² · ROL individual · Desde UF 2.500")}
       </div>

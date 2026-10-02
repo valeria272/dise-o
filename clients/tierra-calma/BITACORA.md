@@ -5,6 +5,37 @@
 
 ---
 
+## 2026-10-02 — Diego Aguilar (con Claude) · noviembre: revisión interna de Constanza Lizana
+
+**Qué se hizo:** cinco comentarios de Constanza Lizana sobre la grilla de noviembre.
+Los dejó **dentro del xlsx de la grilla** y avisó por Slack (#tierracalma, 11:30);
+ese archivo pesa 97 MB y no se puede leer con el conector ni con el token, así que
+Diego los pegó en el chat. Todo re-subido sobre su mismo `fileId`.
+
+| Pieza | Pedido, verbatim | Qué quedó |
+|---|---|---|
+| `c-11-11` (2–7) | *«borrar texto de todas las slides que está en la parte superior derecha donde dice "tierra calma - padre hurtado"»* | el folio lleva sólo el número; la slide 7 queda sin folio |
+| `r-19-11` | *«añadiría los logos de tottus, santa isabel y lider express. Quizás en variante blanca»* | corte 3: los tres logos oficiales en blanco en vez del nombre en IvyOra (`scripts/tc-nov-logos.py`) |
+| `st-20-11` | *«menos interlineado en el título»* | fuera los 18 px de aire entre las dos líneas |
+| `p-24-11` | *«menos interlineado en el título»* | ídem |
+| `c-30-11` (2–6) | *«borra de slide 2, 3, 4 y 5 el texto inferior… y en la slide final "Parcelas en Padre Hurtado" debe ser de la tipografía de la marca y no tan separadas las letras, se ve muy IA»* | fuera la firma al pie; en la 6 el rótulo pasa de sans versales con tracking 0,2em a IvyOra versales 44 pt |
+
+**QA:** 0 bloqueantes · los mismos 7 avisos declarados del 01-10.
+
+**Dónde quedó:** `Noviembre.tsx` (Folio, J, K, M2–M6) · `NoviembreVideo.tsx` (corte 3, `LogoSuper`) · `scripts/tc-nov-logos.py` + `public/assets/tierracalma/nov/logos/` · 13 PNG y `r-19-11.mp4` rendidos y re-subidos a la carpeta NOVIEMBRE. Cosecha: R-64…R-67.
+
+**Qué sigue:** la respuesta de Constanza Lizana y de Scarlette/Carlos sobre la grilla; después, el envío al cliente.
+
+**Abierto:**
+
+1. Si la grilla trae las piezas pegadas como imagen, hay que volver a pegarlas: lo
+   que se actualizó son los archivos de la carpeta NOVIEMBRE.
+2. La portada de `c-30-11` conserva su píldora «Tierra Calma · Padre Hurtado»:
+   Constanza pidió sacar la firma sólo de las slides 2 a 5.
+3. Sigue todo lo abierto de la entrada de abajo (colegios, OK de Fran/Blanca).
+
+---
+
 ## 2026-10-01 (2ª vuelta) — Diego Aguilar (con Claude) · cinco pedidos y el reel que faltaba
 
 **Qué se hizo:** cinco pedidos de Diego —tres por chat con referencia de Pinterest

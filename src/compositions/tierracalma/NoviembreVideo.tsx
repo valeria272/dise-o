@@ -417,6 +417,21 @@ const Lugares: React.FC = () => {
   );
 };
 
+/**
+ * ⭐ CORTE 3 · los supermercados van con su LOGO, en blanco (Constanza Lizana,
+ * 02-10: *«añadiría los logos de Tottus, Santa Isabel y Líder Express. Quizás en
+ * variante blanca, pero así será más llamativo»*). Reemplazan al nombre escrito en
+ * IvyOra: el logo ya lo dice. Son los SVG oficiales pasados a una tinta por
+ * `scripts/tc-nov-logos.py` — no se dibujan ni se generan. `alto` en px del lienzo;
+ * el de Tottus es menor porque es un logotipo apaisado y los otros dos son sellos.
+ */
+const LogoSuper: React.FC<{id: string; alto: number}> = ({id, alto}) => (
+  <Img
+    src={staticFile(`assets/tierracalma/nov/logos/${id}.png`)}
+    style={{height: alto, width: "auto", filter: "drop-shadow(0 2px 14px rgba(0,0,0,0.45))"}}
+  />
+);
+
 export const NovReelDia: React.FC = () => {
   const frame = useCurrentFrame();
   const pulso = 1 + Math.sin((frame - 715) / 7) * 0.05;
@@ -453,12 +468,15 @@ export const NovReelDia: React.FC = () => {
       {/* CORTE 3 · «Tottus y Santa Isabel en Camino a Melipilla · Líder Express en
           San Ignacio» — arriba: el centro del cuadro son las bolsas. */}
       <Bloque desde={294} dura={118} pos="arriba">
-        <Enfasis>Tottus y Santa Isabel</Enfasis>
-        <Aire h={6} />
+        <div style={{display: "flex", alignItems: "center", gap: 46}}>
+          <LogoSuper id="tottus" alto={56} />
+          <LogoSuper id="santa-isabel" alto={128} />
+        </div>
+        <Aire h={10} />
         <Suave size={50}>en Camino a Melipilla</Suave>
-        <Aire h={34} />
-        <Enfasis>Líder Express</Enfasis>
-        <Aire h={6} />
+        <Aire h={30} />
+        <LogoSuper id="lider-express" alto={128} />
+        <Aire h={10} />
         <Suave size={50}>en San Ignacio</Suave>
       </Bloque>
 

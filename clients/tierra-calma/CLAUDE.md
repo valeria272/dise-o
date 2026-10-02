@@ -1793,7 +1793,27 @@ eliminó un elemento. Lo que quedó, en orden de cuánto ahorra:
 alineados a la izquierda como sus referencias (en octubre una pieza así volvió al
 centro), y falta saber qué foto es qué colegio en el reel del 19-11.
 
-Estado y pendientes del mes: la entrada del 01-10 de la bitácora.
+### Lo que dejó la revisión de Constanza Lizana (02-10-2026)
+
+Cinco comentarios de ajuste fino sobre la grilla ya entregada; ninguno rehízo una pieza.
+
+- **La firma «Tierra Calma · Padre Hurtado» no se repite en las slides interiores**
+  de un carrusel, ni arriba a la derecha (`c-11-11`) ni al pie (`c-30-11`). La marca
+  ya va en el logo de la portada y en el marco.
+- **Un rótulo en sans versales con tracking ancho «se ve muy IA».** La línea que
+  destaca va en IvyOra versales con tracking 0,01em (`c-30-11-6`).
+- **Titular de dos líneas (sans + IvyOra): sin `Aire` entre las dos**, sólo el
+  interlineado propio (`st-20-11`, `p-24-11`).
+- **Un comercio real va con su logo oficial en blanco**, no escrito: SVG oficial →
+  una tinta, con lo blanco del original calado. `scripts/tc-nov-logos.py` los deja
+  en `public/assets/tierracalma/nov/logos/` (`r-19-11`, corte 3).
+
+⚠️ **Estos comentarios llegaron DENTRO del xlsx de la grilla**, avisados por Slack
+(`#tierracalma`). Ese archivo pesa 97 MB y está compartido sólo al dominio: el
+conector de Drive no entrega los comentarios de un xlsx ni baja más de 10 MB, y el
+token del estudio no lo ve. **Se le pide a quien avisa que los pegue en el chat.**
+
+Estado y pendientes del mes: las entradas del 01-10 y del 02-10 de la bitácora.
 
 ---
 

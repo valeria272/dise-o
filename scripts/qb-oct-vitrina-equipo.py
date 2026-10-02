@@ -87,9 +87,9 @@ PIEZAS = [
 
 # El 20 % almuerzo entra sólo con --con-20 (Eli: «espera a que esté listo lo del 20 % para sumarlo»).
 PIEZAS_20 = [
-    (1, "s1-post-20", "post", "Post S1 · 20 % almuerzo", "Tu pausa de almuerzo ahora tiene 20 % dcto.",
+    (1, "s1-post-20", "post", "Post n°3 S1 · 20 % almuerzo", "Tu pausa de almuerzo ahora tiene 20 % dcto.",
      ["out/qb/oct/r37/Post S1 QB OCT 26 - 20 ALMUERZO.png"]),
-    (1, "s1-st-20", "st", "ST S1 · 20 % almuerzo", "Tu pausa de almuerzo ahora tiene 20 % dcto.",
+    (1, "s1-st-20", "st", "ST n°3 S1 · 20 % almuerzo", "Tu pausa de almuerzo ahora tiene 20 % dcto.",
      ["out/qb/oct/r37/ST S1 QB OCT 26 - 20 ALMUERZO.png"]),
 ]
 

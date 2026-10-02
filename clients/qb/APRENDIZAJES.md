@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-10-02** · Cosechas: **29**
+> Última cosecha: **2026-10-02** · Cosechas: **30**
 
 ## 1. Quién es el cliente
 
@@ -180,6 +180,10 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **R-132** · La foto de una promo es **«más Instagram y bonita»** (mesa de madera, vino, vida), y la pieza **no se parece al KV «Recomendación del chef»** (plato oscuro + pila de textos + botón con el horario) — _Eli 02-10 (r34): «quiero que impacte más (que no se parezca al del menú del chef). Usa una foto del shooting que sea más instagram y bonita»_ · ✔×1
 - **R-133** · La cifra del descuento **como la referencia de Eli** (SUPER SALE · 50 % OFF): el número enorme en una serif alta de mucho contraste y **«DCTO. %» girado 90° al costado**, del alto exacto de la cifra — _Eli 02-10 (r37, con la referencia): «intentemos el 20 % así, a ver si se ve más atractivo» → «me gusta, guarda en tu memoria»_ · ✔×1. Código: `Descuento` en `src/compositions/qb/oct/QbAlmuerzo20.tsx`. La serif es Bodoni Moda (E-15)
 - **R-134** · El **legal va sobre una base limpia**: no sobre un plato a medio ver detrás del velo; y si hay muchos textos, el legal se compacta (menos líneas, cortadas por frase) — _Eli 02-10 (r35): «los legales se ven algo extraño, ya que se ve difuminado en esa parte» · «veo que hay muchos textos, entonces el legal ajústalo, y lo mismo para la story»_ · ✔×1
+- **R-135** · **Página de revisión para el equipo:** las piezas listas del mes, por semana y como están en las carpetas de Drive, en una página privada con link, con **Aprobar** y **Comentar** bajo cada pieza. **No se deja en Drive**, el link **lo comparte sólo Eli** y **al equipo le avisa ella**: Claude no le escribe a nadie — _Eli 02-10: «que sea un link para compartir para todo el equipo copy, pero sólo yo lo comparto… no lo dejes en drive en ningún sitio» · «no les avises, yo les diré ya que es una propuesta mía»_ ✔×1
+- **R-136** · En esa página el equipo **aprueba lo que está bien y escribe qué ajustaría**, y Eli tiene que poder **leer todos los comentarios juntos**; simple de leer y de usar — _Eli 02-10: «que puedan comentar y señalar qué ajustarían para yo tener esos comentarios… un botón de aprob.… libre para ellos para que sea fácil la lectura»_ ✔×1
+- **R-137** · Una pieza recién hecha **se suma a la página cuando Eli lo dice**, no antes, aunque ya esté rendida — _Eli 02-10: «espera a que esté listo lo del 20 % para sumarlo» · «cuando yo te diga suma lo del 20 %» · «ya está, puedes armarlo»_ ✔×1
+- **R-138** · **Todo lo que Eli tiene que mirar se abre en Google Chrome** en el mismo turno: también un link publicado, no sólo el HTML de antes y después — _Eli 02-10, al recibir sólo el link: «siempre en google para yo verlo»_ (tercera vez que lo pide: 30-09, 02-10 en el 20 %, 02-10 acá) ✔×3
 
 ## 5. Excepciones
 
@@ -299,9 +303,13 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **X-65** · El **plato bajo el grupo de texto**, tapado por la base oscura (brindis vertical: los platos caían siempre debajo del texto) — _Eli 02-10 (r35): «está demasiado oscuro la parte de abajo, ya que no se ve el plato»_ · 1 ronda. No era un problema de velo: era el formato de la foto (R-131)
 - **X-66** · (propio) Legal sobre el plato con velo liviano, para que «se viera la comida» — _Eli 02-10 (r34→r35): «se ve difuminado en esa parte»_ (R-134)
 - **X-67** · (propio, cazado antes de entregar) Dos cosas que no se repiten: **alargar la mesa de madera en espejo** (los listones van en perspectiva y quedan en zigzag: se funde a sombra) y **dar por cargada Bell MT** (en el still de la cifra Chrome usó la serif de reemplazo del sistema; se notó midiendo el alto de los dígitos, 0,67 em contra 0,53) — _02-10, r36–r37_
+- **X-68** · (propio) **Entregar un link sin abrirlo en Chrome**: la página con el 20 % se entregó sólo como enlace en el chat — _Eli 02-10: «siempre en google para yo verlo»_ (R-138)
+- **X-69** · (propio, cazado en el cierre) En la página de revisión el 20 % almuerzo salió rotulado «Post S1» y «ST S1», sin el **n°3** con que quedó en Drive; se corrigió y se republicó. El rótulo de cada pieza es el nombre del archivo en Drive
 
 ## 8. Preguntas abiertas
 
+- **Página de revisión del equipo (R-135):** ¿Scarlette, Nicolás y Constanza tienen cuenta en el plan de Claude del equipo? Sin eso sólo pueden ver, no aprobar ni comentar → **Eli**. Aprobar y Comentar siguen **sin probar por una persona** (al 02-10 la base está vacía).
+- **Página de revisión:** ¿las piezas ya OK en la grilla parten marcadas como aprobadas? ¿Entran la pantalla AYCD + Sunset y el banner web? ¿Sirvió la prueba y se repite? → **Eli**.
 - **Bell MT en Chrome:** en la r37 del 20 % almuerzo la cifra en Bell MT salió con la serif de reemplazo del sistema. ¿Las piezas aprobadas con titular en Bell MT (ST 07-10 cumpleaños, ST 28-10, «¡Todos los días!» de CMR) salieron con Bell MT de verdad? Verificar comparando glifos contra el `.ttf` → **Claude, antes de la próxima pieza con Bell MT**.
 - **Bodoni Moda:** ¿entra al sistema de QB para las cifras de promo, o fue sólo para el 20 % almuerzo (E-15)? → **Eli**.
 - **Numeración de la S1 en Drive:** el post y la ST del 20 % tomaron el n°3 (número libre); en la grilla van entre Sunset (01-10) y CMR (02-10), y en STS hay dos archivos «n°1». ¿Se renumera? → **Eli**.
@@ -368,6 +376,14 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - Banner web: el MP4 de Canva ablanda las tres franjas (usa una versión de baja resolución de las imágenes anchas); en PNG y en el editor se ven nítidas. ¿Se parten en tramos de 480 px para que salgan nítidas en video? → **Eli**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 (5) — Claude con Eli · página de revisión para el equipo (piezas de octubre por semana, con Aprobar y Comentar) · 4 reglas nuevas, 2 rechazos propios
+- **Fuente:** Eli en el chat (02-10). Sin comentarios del cliente ni de contenido: la página todavía no se compartió.
+- **Qué pasó:** pidió una página con link con las piezas listas por semana para mostrársela al equipo y ver si ayuda a juntar comentarios. Se armó con lo vigente de S1 a S5 en Drive (34 piezas con el 20 % almuerzo), se publicó privada y se le agregaron Aprobar y Comentar por pieza. El acceso lo da ella y el aviso al equipo también.
+- **Reglas nuevas:** R-135 (página privada con link; no va a Drive; comparte y avisa Eli) · R-136 (aprobar + comentar qué ajustarían; comentarios juntos para Eli) · R-137 (una pieza se suma cuando ella lo dice) · R-138 (todo lo que mira se abre en Chrome, también un link).
+- **Rechazos:** X-68 (propio: link entregado sin abrir en Chrome) · X-69 (propio: rótulo del 20 % sin el n°3 de Drive).
+- **Aprobada:** ninguna pieza nueva; la página no tiene «okey» de Eli todavía (falta su prueba de aprobar y comentar).
+- **Drive:** esta cosecha **no se subió** al Doc de «MEMORIA DEL ESTUDIO» para no adelantar ahí la propuesta de Eli; se sube con `python scripts/memoria-cliente.py drive qb` cuando ella le haya contado al equipo.
 
 ### 2026-10-02 (4) — Claude con Eli · POST + ST «20 % dcto. almuerzo» de la S1 · 8 reglas nuevas, 1 excepción, 1 aprobada, 5 rechazos
 - **Fuente:** Eli en el chat (02-10, cinco rondas dictadas por voz) + una referencia suya (SUPER SALE · 50 % OFF). De la grilla: nota de Scarlette en FEED!D12 («Tiene que ser ST Y POST») e hilo de Nicolás a Scarlette en FEED!D11 («el 20 % con cualquier tarjeta bancaria, no efectivo»). Sin comentarios del cliente.

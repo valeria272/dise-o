@@ -13,7 +13,7 @@
 > `reglas.yaml` ni bitácora: la gramática está **sin medir**.
 >
 > Criterio: **Valeria Traverso** (el único feedback registrado) · Aprueba: **no consta del lado del cliente**
-> Última cosecha: **2026-10-01** · Cosechas: **4**
+> Última cosecha: **2026-10-02** · Cosechas: **5**
 
 ## 1. Quién es el cliente
 
@@ -98,6 +98,9 @@ convierte en Google Ads: **rapidez, facilidad, «sin papeleos»**. Es financiero
   y `video2/video3-agosto.mp4`): los MP4 no bajan por MCP; pedirlos descargados — **KAM**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · revisión de rutina (`6c26bdc`)
+- sin aprendizajes nuevos: el único commit pendiente es `6c26bdc`, la cosecha nocturna de ayer (01-10) que sembró este cerebro junto con otras 20 marcas. El `--since` inclusivo de `memoria-cliente.py pendientes` lo vuelve a listar porque su fecha coincide con la última cosecha. No hay feedback, pieza ni comentario posterior que destilar.
 
 ### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
 - sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.

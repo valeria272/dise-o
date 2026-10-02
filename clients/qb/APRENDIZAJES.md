@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-10-01** · Cosechas: **25**
+> Última cosecha: **2026-10-02** · Cosechas: **26**
 
 ## 1. Quién es el cliente
 
@@ -335,6 +335,9 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - Banner web: el MP4 de Canva ablanda las tres franjas (usa una versión de baja resolución de las imágenes anchas); en PNG y en el editor se ven nítidas. ¿Se parten en tramos de 480 px para que salgan nítidas en video? → **Eli**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · sesión de Elisabet Soto (`24742cf`, `e268020`)
+- sin aprendizajes nuevos: Elisabet Soto ya cosechó el reorden del Drive de octubre en su propio commit del 01-10 (`24742cf`) — R-118…R-120, X-59 y R-67 ✔×2 quedaron escritos ahí mismo. El commit `e268020` (respaldo automático, más temprano el mismo día) es la versión de trabajo de la misma sesión antes de cerrarla; no trae nada adicional.
 
 ### 2026-10-01 (6) — Claude con Eli · Drive de QB reordenado por la semana nueva de la grilla · 3 reglas nuevas, 1 rechazo propio
 - **Fuente:** Eli en el chat (01-10, tarde). Grilla releída por API (`qb-oct-20261001g.json`); sin comentarios nuevos del cliente sobre piezas.

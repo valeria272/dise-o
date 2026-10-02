@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»**, con revisión de la jefa de diseño **Constanza Lizana** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
-> Última cosecha: **2026-10-01** · Cosechas: **15**
+> Última cosecha: **2026-10-02** · Cosechas: **16**
 
 ## 1. Quién es el cliente
 
@@ -189,6 +189,9 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - `qa/motor.py` revienta en la máquina de Eli (Smart App Control bloquea una DLL de scipy): la compuerta no verifica borde, zona de Meta, foco ni fucsia → **Valeria**
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · sesión de Elisabet Soto (`ac2aff5`)
+- sin aprendizajes nuevos: Elisabet Soto ya cosechó la ronda 7 de octubre en su propio commit del 01-10 — R-60, R-61 quedaron escritos ahí mismo. Nada que agregar.
 
 ### 2026-10-01 (tarde) — Elisabet Soto con Claude · RONDA 7: carrusel, ST 13/19-10 con comentario del cliente y 4 piezas nuevas — EN DRIVE, SIN VEREDICTO
 - Cliente en la grilla (verbatim): FEED C13 «Eliminar temporada alta de la G2» · ST H14 «Digamos Cuenta regresiva al 2027 / No hablemos de temporada alta» · ST L14 «Ok pero no digamos diciembre, cerremos en corporativas / Foco fiesta empresa fin de añoi» · ST J14 «Solo texto principal» · ST Q14 «Dejémos El broche perfecto para tu historia» · FEED H13 «Que se animen los textos de las cosas que incluye el cumple». Eli: «toma las stories la del 13 y 19 de octubre, solo que corrige según comentario de cliente ya que solo ese era el cambio».

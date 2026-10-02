@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (digital: grilla orgánica + paid — confirmado por ella el 30-09) · **Constanza Lizana «Coni»** (envase y packs) · Aprueba: **Magdalena** (proinnbrands), en la grilla
-> Última cosecha: **2026-10-01 (cierre)** · Cosechas: **7** · Mapa completo del Drive: [`DRIVE-AGENCIA.md`](DRIVE-AGENCIA.md)
+> Última cosecha: **2026-10-02 (cierre)** · Cosechas: **8** · Mapa completo del Drive: [`DRIVE-AGENCIA.md`](DRIVE-AGENCIA.md)
 
 ## 1. Quién es el cliente
 
@@ -185,6 +185,9 @@ Piezas **publicadas** de Paulina que fijan cada registro (no hay registro de una
 - **Los 4 estáticos de octubre del estudio (22-09) quedaron superados:** las versiones finales son las de Paulina en `Diseño/10. OCTUBRE` (01, 02 y 05 aprobadas por el cliente; 08 en revisión).
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · sesión de Paulina Bustamante (`91aaab7`)
+- sin aprendizajes nuevos: Paulina Bustamante ya cosechó la Fase 3 de paid en su propio commit del 01-10 — R-48…R-51, X-09, X-10, A-05 revisada y R-42 probada quedaron escritos ahí mismo. Nada que agregar.
 
 ### 2026-10-01 (cierre) — Claude con Paulina Bustamante · paid Fase 3, la P01 se reabrió y se rehízo desde cero
 - **La A-05 quedó ⚠️ revisada:** aprobada el 30-09, no dejó ubicar el texto al componer. La v7 (escena nueva) está entregada en local y **sin veredicto**.

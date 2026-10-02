@@ -12,7 +12,7 @@
 > grilla con proveedores, SPC), **[CLICK]** (el portal B2B) o **[AMBAS]**.
 >
 > Criterio: **Paulina Bustamante** (grilla y paid; Serena Abarca produce parte del paid y las ARIEL) · Aprueba: **Paulina valida; el cliente, vía Carlos Figueroa (cuenta/contenido)**
-> Última cosecha: **2026-10-01** · Cosechas: **12**
+> Última cosecha: **2026-10-02** · Cosechas: **13**
 
 ## 1. Quién es el cliente
 
@@ -258,6 +258,9 @@ tecnicismos. En grilla: «cercano, instructivo y comercial».
 - **Comentario de Carlos del 01-10 13:54Z** («@paulina Aquí está!») en una celda «Brief / Nota / imagen» de `Briefs wsp septiembre ARIEL`: la API no dice de cuál campaña. ¿Era la corrección del exhibidor u otra cosa? → Paulina.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · sesión de Paulina Bustamante (`dbf1e40`)
+- sin aprendizajes nuevos: Paulina Bustamante ya cosechó ARIEL A4/A5 Piazza en su propio commit del 01-10 — R-91…R-93 quedaron escritos ahí mismo. Nada que agregar.
 
 ### 2026-10-01 (tarde) — Paulina Bustamante · ARIEL A4/A5 Piazza: productos actualizados, cambio de texto + logo y círculo «+ DE 50 PRODUCTOS» (aprobadas y subidas)
 - nuevo **R-91** (el logo del proveedor va abajo, abriendo la fila de íconos), **R-92** (dato destacado en círculo rojo dentro de la escena; los productos se corren), **R-93** (signo + letras + cifra al mismo grosor y altura). **R-86** queda ⚠️ revisada: el logo ya tiene lugar.

@@ -1,6 +1,6 @@
 ---
 name: cliente-copywriters
-description: "COPYWRITERS — cerebro del cliente: 47 reglas firmes, última cosecha 2026-10-01. Generado desde clients/copywriters/APRENDIZAJES.md; leerlo antes de diseñar para copywriters"
+description: "COPYWRITERS — cerebro del cliente: 47 reglas firmes, última cosecha 2026-10-02. Generado desde clients/copywriters/APRENDIZAJES.md; leerlo antes de diseñar para copywriters"
 metadata:
   type: project
 ---

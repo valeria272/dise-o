@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (diseñadora de la agencia para Grupo Revex) · Aprueba: **Jenny Campos** (diseñadora de Grupo Revex, la clienta)
-> Última cosecha: **2026-10-01** · Cosechas: **4**
+> Última cosecha: **2026-10-02** · Cosechas: **5**
 
 ## 1. Quién es el cliente
 
@@ -139,6 +139,9 @@ Nada de septiembre 2026 pasó a la primera. Lo que Paulina marcó como modelo y 
 - **El cielo de las 4 fachadas IA de Paulina (28-08) es azul intenso con nubes dramáticas**, mientras la fachada real es pálido y velado. Queda sin decidir si corregirlo (bajar saturación o reiluminar): Casablanca es aire, y un cielo publicitario saturado puede leerse fuera de tono — _nota del estudio, `material/2026-08-28-material-paulina.md`, punto 4_ → **quien monte esas piezas.**
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · revisión de rutina (`6c26bdc`)
+- sin aprendizajes nuevos: el único commit pendiente es `6c26bdc`, la cosecha nocturna de ayer (01-10) que sembró este cerebro junto con otras 20 marcas. El `--since` inclusivo de `memoria-cliente.py pendientes` lo vuelve a listar porque su fecha coincide con la última cosecha. No hay feedback, pieza ni comentario posterior que destilar.
 
 ### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
 - sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.

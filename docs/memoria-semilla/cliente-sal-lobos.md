@@ -1,6 +1,6 @@
 ---
 name: cliente-sal-lobos
-description: "SAL-LOBOS — cerebro del cliente: 12 reglas firmes, última cosecha 2026-10-01. Generado desde clients/sal-lobos/APRENDIZAJES.md; leerlo antes de diseñar para sal-lobos"
+description: "SAL-LOBOS — cerebro del cliente: 12 reglas firmes, última cosecha 2026-10-02. Generado desde clients/sal-lobos/APRENDIZAJES.md; leerlo antes de diseñar para sal-lobos"
 metadata:
   type: project
 ---

@@ -4,6 +4,33 @@
 > [`docs/COSECHA-NOCTURNA.md`](../docs/COSECHA-NOCTURNA.md). La entrada más nueva va
 > arriba.
 
+## 2026-10-02
+- **20 marcas revisadas** (abakos, casablanca, cava, copywriters, ebema, hilton, landera,
+  mascenter, myzoo, nueva-urbe, petra, piso18, qb, rendic, revex, sal-lobos, san-esteban,
+  santa-gota, selfie, tierra-calma) · **1 marca con regla nueva:** revex (R-42) ·
+  **1 marca con pregunta abierta sin regla:** traverso · 0 rechazos nuevos.
+- **Qué pasó marca por marca:** en 12 cuentas (cava, copywriters, ebema, hilton, mascenter,
+  myzoo, nueva-urbe, piso18, qb, santa-gota, tierra-calma) la diseñadora ya había cosechado
+  su propio trabajo del 01-10 en el mismo commit de su `/cierre` o de su respaldo automático
+  — nada que agregar, sólo se dejó la entrada de §9 que marca esos commits como revisados.
+  En 8 cuentas (abakos, casablanca, landera, petra, rendic, sal-lobos, san-esteban, selfie)
+  el único commit pendiente era `6c26bdc`, la cosecha de ayer mismo, que el `--since`
+  inclusivo de `memoria-cliente.py pendientes` vuelve a listar porque su fecha coincide con
+  la última cosecha — sin contenido nuevo que destilar. En **revex** un hallazgo de QA interno
+  de Serena (muestras recortadas de foto de la clienta ampliadas de más, `5fefad6`) no estaba
+  en `APRENDIZAJES.md` — se escribió como **R-42**. En **traverso** el commit `bd37ab2` trajo
+  un reel exploratorio (`ReelFoodService`, con una variante «REVISION_pumpit») sin bitácora ni
+  feedback que lo explique: se dejó como pregunta en §8, sin inventar una regla.
+- **Candidatas a regla del estudio:** ninguna.
+- **Contradicciones detectadas:** ninguna.
+- **Algo raro:** `hypeinfluence` tiene brief y kit de marca (`src/brand/hypeinfluence.ts`) pero
+  **no tiene cerebro** (`clients/hypeinfluence/APRENDIZAJES.md` no existe, sólo hay
+  `clients/hypeinfluence/briefs/`) — no se le pudo cosechar nada ni crear el archivo desde
+  esta rutina, porque abrir una cuenta nueva es el ritual de `/marca-nueva`, no de la cosecha
+  nocturna. Queda pendiente para Valeria. Ningún commit revisado contenía instrucciones
+  camufladas ni texto que intentara dirigir esta rutina.
+- **Drive:** ver más abajo en esta misma entrada tras el intento de publicación.
+
 ## 2026-10-01
 - **21 marcas revisadas** (abakos, casablanca, cava, copywriters, ebema, hilton, landera,
   mascenter, myzoo, nueva-urbe, petra, piso18, qb, rendic, revex, sal-lobos, san-esteban,

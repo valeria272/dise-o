@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza Lizana «Coni»** (diseño) · Aprueba: **la ejecutiva de cuentas de CAVA, dueña del brief mensual** (ver §8: falta nombre y confirmar si aprueba ella o la viña)
-> Última cosecha: **2026-10-01** · Cosechas: **8**
+> Última cosecha: **2026-10-02** · Cosechas: **9**
 
 ## 1. Quién es el cliente
 
@@ -177,6 +177,9 @@ son piezas **publicadas** de Coni, que son el estándar a replicar:
 - ⛔ **Propuesta B sin solución en la posición fija del bloque de producto:** cae sobre la sombra proyectada de la botella, cuya luminancia intermedia no contrasta con nada (blanco 2,82:1 · negro 1,63:1). Subirlo al naranja limpio (negro 5,9:1) o dejar B fuera. → Coni.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · sesión de Constanza Lizana (`3596e5e`)
+- sin aprendizajes nuevos para este cerebro: Constanza Lizana ya cosechó el Cyber de octubre en su propio commit del 01-10 — R-36…R-49 y X-17…X-21 quedaron escritos ahí mismo, con fuente y fecha. Nada que agregar ni duplicar.
 
 ### 2026-10-01 — Coni (con Claude) · el Cyber completo: público, packs y WhatsApp
 - nuevo **R-40…R-49** · diez reglas, casi todas de sistema y no de pieza: el mail se

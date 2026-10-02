@@ -33,7 +33,7 @@
 > `gcl-agent/universo/CANON_LOCK.md`. Léelo ahí antes de tocar cualquier cosa de G.
 >
 > Criterio: **Valeria Traverso** · Aprueba: **Valeria Traverso (aprobación final de dirección de arte, `MASTER/13`)**
-> Última cosecha: **2026-10-01** · Cosechas: **7**
+> Última cosecha: **2026-10-02** · Cosechas: **8**
 
 ## 1. Quién es el cliente
 
@@ -223,6 +223,9 @@ con humor de oficio y autoironía de agencia.
   reescribió. Pendiente decidir si se rehacen o se jubilan, dado que además son piezas de frase (R-38).
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · `/cierre` de Valeria Traverso (`c57a3df`)
+- sin aprendizajes nuevos: Valeria Traverso ya cosechó CYBER MOOD en su propio `/cierre` del 01-10 — R-44/R-45 probadas (✔×3) y A-10 quedaron escritos ahí mismo. Nada que agregar.
 
 ### 2026-10-01 (noche) — Claude (Opus 5.5) · sesión de Valeria Traverso · **CW-01, CW-04 y CYBER MOOD aprobados**
 - Tres rondas para CW-01/CW-04: la v1 tipográfica sobre negro (siguiendo el «tipográfico sobre negro» del brief) fue **X-15** («muy mal, eso no es lo que construimos»); la v2 fotográfica «queda mejor»; la v3 sin cuerpo Neue Haas, con Balloon en curva y video, **aprobada** (**A-09**). Nuevas **R-44** (sin cuerpo de texto plano; la fuente al caption), **R-45** (jugar con la tipografía: Bebas Light/Expanded/contorno + Balloon por trazados), **R-46** (video en el carrusel; medir el clip si hay algo montado), **R-47** (pantalla real difuminada hasta no leerse con zoom 2×).

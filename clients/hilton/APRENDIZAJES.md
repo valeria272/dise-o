@@ -12,7 +12,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** (firma DT y Between; Constanza Lizana «Coni», jefa de diseño, comenta en la grilla de DT y de Between) · Aprueba: **Javier Mesa (Hilton)**
-> Última cosecha: **2026-10-01** · Cosechas: **47**
+> Última cosecha: **2026-10-02** · Cosechas: **48**
 
 ## 1. Quién es el cliente
 
@@ -467,6 +467,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 - [DT] Brochures traducidos: faltan los PDF nuevos (normal + imprenta) desde los `.ai` corregidos, y revisar que los vínculos del `.ai` del hotel apunten a `Links/` → **Eli**
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · sesión de Elisabet Soto (`e268020`, `18c2b06`)
+- sin aprendizajes nuevos para el cerebro de Hilton: `e268020` sólo trae instantáneas JSON de grilla (p18, qb) y scripts; `18c2b06` es una prueba de Figma de Año Nuevo sin entrega, y el propio commit ya dice «sin entrega ni reglas nuevas» (cosecha 47). El aprendizaje real de esas sesiones (reorden del Drive de QB, Figma de Año Nuevo) pertenece a piso18 y a qb, y ya quedó cosechado en sus propios cerebros — no se mezcla acá.
 
 ### 2026-10-01 (6) — Claude con Eli · DT + P18: instalación de Figma y dos PRUEBAS de sitio de Año Nuevo · sin reglas nuevas
 - **Qué pasó:** Eli pidió instalar Figma, leer la guía de Figma sobre skills de Claude y probar. Prueba 1: sitio de Año Nuevo del DoubleTree en azul/verde con fotos reales. Prueba 2: sitio «Gran Casino · Año Nuevo 2027» con la misma distribución de su archivo «Rio Vibes» (7 tramos, 1920 px), fondos generados con Seedream 5 Pro. El conector cortó por tope de uso antes de dos ajustes finales.

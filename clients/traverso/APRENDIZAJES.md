@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (grilla mensual) · dirección de los reels propios: **Valeria Traverso** · Aprueba: **Paloma Irribarra, PM de Alimentos Traverso** (pirribarra@traverso.cl)
-> Última cosecha: **2026-10-01** · Cosechas: **4**
+> Última cosecha: **2026-10-02** · Cosechas: **5**
 
 ## 1. Quién es el cliente
 
@@ -115,8 +115,12 @@ entran al portal: `Por diseñar` y `Corregido`.
 - La **gramática de la grilla no está medida**: no hay `marca.json`, `reglas.yaml` ni instantánea de la grilla. Hay que hacerle `/adn` a las piezas de Paulina (carrusel `16.09_carrusel`, stories 25.09) antes de automatizar. → Paulina.
 - El copy de la reunión cambió de «NADIE NECESITA PRESENTARLOS» (V9) a **«CERO PRESENTACIONES.»** (V10, decisión verbal de Valeria); la nota de memoria todavía mezcla las dos. Manda la V10.
 - El rótulo **GRUPO COPYLAB** sobre la puerta (planos K08/c13 en adelante) es tipografía genérica generada por Kling dentro del clip, no el logo real compuesto; si molesta hay que regenerar ese keyframe con el logo real antes de animar. → Valeria.
+- **¿Qué es «ReelFoodService» y quién es «pumpit»?** El 01-10 (`bd37ab2`) se subieron `20261001_reel_foodservice_traverso.mp4` y una variante `..._REVISION_pumpit.mp4`, más una composición nueva (`src/compositions/copylab/ReelFoodService.tsx`) y el logo-bandera de Traverso, sin tocar `BITACORA.md` ni `CLAUDE.md`. No hay registro de quién lo pidió, qué corrigió la revisión «pumpit» ni si alguna versión se aprobó. → Valeria.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · revisión de rutina (`6c26bdc`, `bd37ab2`)
+- sin reglas nuevas: `6c26bdc` es la cosecha de ayer mismo (ya revisada). El commit `bd37ab2` (etiquetado «santa-gota: respaldo automático», de la sesión de Valeria Traverso) trajo un reel exploratorio para esta marca (`src/compositions/copylab/ReelFoodService.tsx`, salidas `20261001_reel_foodservice_traverso.mp4` y una variante `..._REVISION_pumpit.mp4`) sin tocar `BITACORA.md` ni `CLAUDE.md`: no hay registro de quién lo pidió, qué cambió «pumpit» ni si alguna versión se aprobó. Se deja como pregunta abierta en §8 — nada que inventar.
 
 ### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
 - sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.

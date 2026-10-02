@@ -13,7 +13,7 @@
 > ni al revés. El manual, `marca.json` y `reglas.yaml` de esta carpeta son **sólo de Rentas**.
 >
 > Criterio: **[RENTAS] composición de Paulina Bustamante (sept 2026), revisión de Diego Aguilar, dirección de Valeria Traverso · [INU] Valeria Traverso** · Aprueba: **Jean Paul Fredericksen · Yocelyn Maturana (vía Carlos Figueroa, contenido, y Ámbar Gallardo, AM)**
-> Última cosecha: **2026-10-01** · Cosechas: **5**
+> Última cosecha: **2026-10-02** · Cosechas: **6**
 
 ## 1. Quién es el cliente
 
@@ -157,6 +157,9 @@ centrada 17,5 %, banner de mailing arriba 10,2 % no centrada).
 - [RENTAS] ¿«Arrienda» en Bold (E-09) pasa a regla de todos los estáticos? → **Diego**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · sesión de Diego Aguilar (`71e2c78`)
+- sin aprendizajes nuevos: Diego Aguilar ya cosechó el cierre de la grilla y los mailings de noviembre en su propio commit del 01-10 — R-31…R-36 quedaron escritos ahí mismo. Nada que agregar.
 
 ### 2026-10-01 — Diego Aguilar (con Claude) · grilla y mailings de NOVIEMBRE (sesión del 30-09, cierre el 01-10)
 - nuevo **R-31** (el texto no tapa a las personas), **R-32** (elementos no pegados), **R-33** (sólo lo naranjo se grafica), **R-34** (si hay REF se sigue esa idea), **R-35** (IA con foto real de referencia, Seedream 5 Pro), **R-36** (locución literal + cierre de 6,8 s).

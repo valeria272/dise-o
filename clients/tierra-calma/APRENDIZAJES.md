@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar** · Aprueba: **Fran (proyecto) · Blanca (comercial)**
-> Última cosecha: **2026-10-01** · Cosechas: **6**
+> Última cosecha: **2026-10-02** · Cosechas: **7**
 
 ## 1. Quién es el cliente
 
@@ -190,6 +190,9 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - Las **REF 2 y REF 3** de la grilla no se pudieron leer: el xlsx guarda un enlace por celda. → Carlos.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · sesión de Diego Aguilar (`c9eae8c`)
+- sin aprendizajes nuevos: Diego Aguilar ya cosechó la primera vuelta de la grilla de noviembre en el mismo commit del 01-10 — R-56…R-63, E-12…E-15 y X-20…X-24 quedaron escritos ahí mismo. Nada que agregar.
 
 ### 2026-10-01 — Diego Aguilar (con Claude) · grilla de noviembre: entrega y primera vuelta de Diego
 - **Feedback de Diego, verbatim, cinco pedidos en el día de la entrega:**

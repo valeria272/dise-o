@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (diseñadora de la agencia para Grupo Revex) · Aprueba: **Jenny Campos** (diseñadora de Grupo Revex, `jcampos@gruporevex.cl`)
-> Última cosecha: **2026-10-01** · Cosechas: **5**
+> Última cosecha: **2026-10-02** · Cosechas: **6**
 
 ## 1. Quién es el cliente
 
@@ -87,6 +87,7 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **R-39** · En la story, la muestra **no tapa el ambiente**: va más chica que el texto y muestra **sólo un trozo** del producto; el bloque completo va centrado en el cuadro — _lista de la clienta vía Serena, 01-10, ref. P02A story_ · ✔×1
 - **R-40** · En el feed, el bloque de logo va **centrado** (cx 540), también en las tarjetas de producto — _clienta 01-10: «solo centra el logo»_ · ✔×1 · ⚠️ revisa E-04 (logo a la izquierda en slides de producto) para esta clienta
 - **R-41** · Una pieza de producto que «se ve vacía» lleva frase de titular blanca entre «EN OFERTA» y la banderola; la frase separa los dos rojos (R-05) — _clienta 01-10, SPC y caucho_ · ✔×1
+- **R-42** · Una muestra recortada de una foto de la clienta (`muestra_cliente_*`) va **sin zoom extra**: antes de entregar se calcula la ampliación (px dibujados ÷ px de origen) y se revisa a 100 % toda muestra que pase ×2,5. El recorte tiene que mostrar el **formato** real del producto — una palmeta de 15×15 sin junta no se lee como 15×15 — _QA interno de Serena, ronda 4, 01-10: P01D quedó ×7,5 (borrosa, sin palmeta visible) y P05B ×3,6; regla escrita primero en `CLAUDE.md`, destilada acá_ · ✔×1
 
 ## 5. Excepciones
 
@@ -153,6 +154,10 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **Octubre — responder y resolver los 8 comentarios de Paulina en Drive**, o que los cierre ella → **Serena.**
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · hallazgo de QA de Serena Abarca (`5fefad6`)
+- nuevo **R-42** · una muestra recortada de foto de la clienta va sin zoom extra (hallazgo de QA interno de Serena, 01-10; el manual `CLAUDE.md` ya lo tenía anotado, se destila acá)
+- el otro commit pendiente (`62ba0a6`, misma jornada) ya se autocosechó: R-39…R-41 quedaron escritos ahí mismo. Nada más que agregar.
 
 ### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
 - sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.

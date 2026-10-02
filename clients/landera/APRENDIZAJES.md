@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Constanza «Coni» Lizana (diseño del logo) · Valeria Traverso (dirección del manual)** · Aprueba: **la clienta de Landera (sin nombre registrado en las fuentes)**
-> Última cosecha: **2026-10-01** · Cosechas: **4**
+> Última cosecha: **2026-10-02** · Cosechas: **5**
 
 ## 1. Quién es el cliente
 
@@ -114,6 +114,9 @@ tono y el kit de plantillas; todavía no hay piezas de grilla.
 - ⚠️ `marca.json` tiene campos vencidos que contradicen el manual: `estado: "EN DEFINICIÓN — NO producir"`, `pendiente` (color y Barkentina ya resueltos), `heredadas_del_pdf: 17 iconografía` (el manual dice 15), `residuos_de_pivot.1C4907` (es el verde original del logo, no Pivot) y el CMYK `0/76/60/0` como «del gris» (corregido el 03-09). Manda el `CLAUDE.md` → actualizar la ficha.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · revisión de rutina (`6c26bdc`)
+- sin aprendizajes nuevos: el único commit pendiente es `6c26bdc`, la cosecha nocturna de ayer (01-10) que sembró este cerebro junto con otras 20 marcas. El `--since` inclusivo de `memoria-cliente.py pendientes` lo vuelve a listar porque su fecha coincide con la última cosecha. No hay feedback, pieza ni comentario posterior que destilar.
 
 ### 2026-10-01 — Claude nocturno (nube) · revisión de rutina (f6df90e)
 - sin aprendizajes nuevos: `f6df90e` es el commit RAÍZ de esta rama (sin padre). Es el mismo commit que ya se revisó en cosechas anteriores con otro hash — un rebase se lo volvió a cambiar. Su contenido para esta marca es idéntico al que la siembra inicial del 25-09 ya destiló en este cerebro (ver la entrada de abajo); no hay cita, pieza ni fecha posterior que agregar.

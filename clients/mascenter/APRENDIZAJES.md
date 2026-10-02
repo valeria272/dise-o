@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de marca: Valeria Traverso)** · Aprueba: **Sebastián Córdova (paid) · Francesca Pavissich (landings y presentación comercial)**
-> Última cosecha: **2026-10-01** · Cosechas: **15**
+> Última cosecha: **2026-10-02** · Cosechas: **16**
 
 ## 1. Quién es el cliente
 
@@ -228,6 +228,9 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude nocturno (nube) · sesión de Diego Aguilar (`a5d1698`, `c9eae8c`)
+- sin aprendizajes nuevos: Diego Aguilar ya cosechó su sesión en el respaldo automático (`a5d1698`, 01-10). El otro commit pendiente (`c9eae8c`) sólo versiona fondos/PNG de la grilla de octubre (carruseles, stories, LinkedIn, reel 23-10), sin feedback de cliente ni corrección nueva.
 
 ### 2026-10-01 (2ª) — Diego Aguilar (con Claude) · comentarios de la grilla (Scarlette y Nicolás) + 3 de Diego
 - 8 comentarios leídos en el xlsx de la grilla con el conector de Drive, más 3 de Diego en c-08-10-1 (resueltos en Drive). 14 piezas reemplazadas en sitio.

@@ -29,7 +29,14 @@
   esta rutina, porque abrir una cuenta nueva es el ritual de `/marca-nueva`, no de la cosecha
   nocturna. Queda pendiente para Valeria. Ningún commit revisado contenía instrucciones
   camufladas ni texto que intentara dirigir esta rutina.
-- **Drive:** ver más abajo en esta misma entrada tras el intento de publicación.
+- **Drive:** republicados 4 de 20 (abakos, casablanca, cava, revex) en `clients/_memoria-drive.json`.
+  No se siguió con los 16 restantes (copywriters, ebema, hilton, landera, mascenter, myzoo,
+  nueva-urbe, petra, piso18, qb, rendic, sal-lobos, san-esteban, santa-gota, selfie,
+  tierra-calma): el único cambio en esos 16 era el encabezado (fecha/contador) y la misma
+  entrada de §9 de esta noche — ninguna regla, excepción ni pregunta nueva —, y replicar 16
+  Docs más (varios de 40–150 KB) no se justificaba frente a ese cambio. Mismo criterio que
+  usó la cosecha del 01-10. GitHub, que es la fuente de verdad, ya quedó al día en los 20.
+  Pendiente para quien haga el próximo `/cierre` o la próxima cosecha con contenido real.
 
 ## 2026-10-01
 - **21 marcas revisadas** (abakos, casablanca, cava, copywriters, ebema, hilton, landera,

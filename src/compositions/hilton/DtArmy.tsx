@@ -83,7 +83,9 @@ const LINEAS: Record<Linea, {
     titulo: ['DOUBLETREE', 'SE VISTE DE MORADO'],
     sello: 'PREVENTA',
     script: 'Tarifa ARMY',
-    antes: '$185.000',
+    // Eli, 02-10 (noche): «quitemos el antes $185 tachado… en todo» → la preventa va sin precio anterior.
+    // (La línea de VENTA lo conserva en el brief; no se ha rendido.)
+    antes: undefined,
     precio: '$115.000',
     bajoPrecio: 'PARA 2 PERSONAS · IVA INCLUIDO',
     // Eli, 02-10: «es para fechas de 16 y 17 de octubre, no más fechas» (coincide con el brief)
@@ -114,6 +116,11 @@ const LINEAS: Record<Linea, {
     legal: '*Válido para reservas del 12 al 17 de octubre. Habitación Standard o Doble, sujeta a disponibilidad.',
   },
 };
+/**
+ * Sin «ANTES» el bloque del precio es 0,56 cuerpos más bajo. Para que no quede un hueco bajo el rótulo ni se
+ * pegue a él, el bloque baja la mitad (0,28 cuerpos) y lo de abajo (hotel, velo) sube la otra mitad.
+ */
+const bajaPrecio = (antes: string | undefined, cuerpo: number) => (antes ? 0 : cuerpo * 0.28);
 const CORREO = 'reservas.dtv@hilton.com';
 /**
  * Eli, 02-10: «A toda la OP 2 añade el signo + en vez del punto: debe decir "+ IVA", sin "incluido"».
@@ -432,7 +439,10 @@ export const DtArmyCiudad: React.FC<{linea: Linea; variante?: 'titular' | 'logo'
   const c = LINEAS[linea];
   const conLogo = variante === 'logo';
   const s = 0.9;
-  const TECHO = 738; // y del techo del hotel en la pieza (ronda 15: baja con el bloque del precio, que creció)
+  const baja = bajaPrecio(c.antes, 100);
+  const TECHO = 738 - baja; // y del techo del hotel en la pieza: justo bajo el filete del precio
+  const fin = 512 + 216 - baja; // el filete de abajo del precio
+  const pct = (y: number) => `${((y / 1350) * 100).toFixed(2)}%`;
   return (
     <AbsoluteFill style={{backgroundColor: NEGRO}}>
       <Img
@@ -448,7 +458,7 @@ export const DtArmyCiudad: React.FC<{linea: Linea; variante?: 'titular' | 'logo'
             // negro y vaya cada vez con menos degradado» → el pie ya no cierra en una franja de 80 px: sube
             // parejo desde el borde (0,97) hasta desaparecer a media altura del hotel, en 560 px.
             // RONDA 15: el velo de arriba llega hasta el pie del precio (y ≈ 730) y el del pie parte bajo el techo del hotel
-            'linear-gradient(to bottom, rgba(7,5,15,0.78) 0%, rgba(7,5,15,0.7) 12%, rgba(7,5,15,0.7) 50%, rgba(7,5,15,0.28) 54%, rgba(7,5,15,0) 57%, rgba(7,5,15,0) 61%, rgba(7,5,15,0.16) 65%, rgba(7,5,15,0.36) 69%, rgba(7,5,15,0.56) 73%, rgba(7,5,15,0.74) 78%, rgba(7,5,15,0.86) 84%, rgba(7,5,15,0.94) 91%, rgba(7,5,15,0.97) 100%)',
+            `linear-gradient(to bottom, rgba(7,5,15,0.78) 0%, rgba(7,5,15,0.7) 12%, rgba(7,5,15,0.7) ${pct(fin - 53)}, rgba(7,5,15,0.28) ${pct(fin)}, rgba(7,5,15,0) ${pct(fin + 42)}, rgba(7,5,15,0) ${pct(fin + 95)}, rgba(7,5,15,0.16) ${pct(fin + 150)}, rgba(7,5,15,0.36) ${pct(fin + 204)}, rgba(7,5,15,0.56) ${pct(fin + 258)}, rgba(7,5,15,0.74) ${pct(fin + 325)}, rgba(7,5,15,0.86) ${pct(fin + 406)}, rgba(7,5,15,0.94) ${pct(fin + 500)}, rgba(7,5,15,0.97) 100%)`,
         }}
       />
 
@@ -466,7 +476,7 @@ export const DtArmyCiudad: React.FC<{linea: Linea; variante?: 'titular' | 'logo'
       <Fila top={conLogo ? 208 : 202}>
         <Sello palabra={c.sello} script={c.script} cuerpo={112} army={conLogo ? 1.8 : 1.85} />
       </Fila>
-      <Fila top={512}>
+      <Fila top={512 + baja}>
         <Precio antes={c.antes} precio={c.precio} bajo={c.bajoPrecio} cuerpo={100} ancho={520} />
       </Fila>
 
@@ -510,7 +520,7 @@ export const DtArmyClienta: React.FC<{linea: Linea}> = ({linea}) => {
       <Fila top={202}>
         <Sello palabra={c.sello} script={c.script} cuerpo={112} army={1.85} />
       </Fila>
-      <Fila top={512}>
+      <Fila top={512 + bajaPrecio(c.antes, 100)}>
         <Precio antes={c.antes} precio={c.precio} bajo={BAJO_PRECIO_OP2} cuerpo={100} ancho={520} />
       </Fila>
       <Fila top={778}>
@@ -684,8 +694,9 @@ export const DtArmyAdaptacion: React.FC<{linea: Linea; fondo: 'ciudad' | 'client
   const pct = (y: number) => `${((y / F.alto) * 100).toFixed(2)}%`;
   const {k, dy} = F.bloque ?? {k: 1, dy: 0};
   // el filete de abajo del precio, ya con el bloque escalado, menos lo que el velo se adelanta
-  const finPrecio = (F.precio.top + F.precio.cuerpo * 2.1 + 6) * k + dy - (F.adelanta ?? 0);
-  const techo = F.hotel.techo * k + dy;
+  const baja = bajaPrecio(c.antes, F.precio.cuerpo);
+  const finPrecio = (F.precio.top + F.precio.cuerpo * 2.1 + 6 - baja) * k + dy - (F.adelanta ?? 0);
+  const techo = (F.hotel.techo - baja) * k + dy;
   const v = (a: number) => `rgba(7,5,15,${Math.max(a, F.hotel.velo)})`;
   return (
     <AbsoluteFill style={{backgroundColor: NEGRO}}>
@@ -727,7 +738,7 @@ export const DtArmyAdaptacion: React.FC<{linea: Linea; fondo: 'ciudad' | 'client
       <Fila top={F.sello.top}>
         <Sello palabra={c.sello} script={c.script} cuerpo={F.sello.cuerpo} army={1.85} />
       </Fila>
-      <Fila top={F.precio.top}>
+      <Fila top={F.precio.top + baja}>
         <Precio antes={c.antes} precio={c.precio} bajo={fondo === 'clienta' ? BAJO_PRECIO_OP2 : c.bajoPrecio} cuerpo={F.precio.cuerpo} ancho={F.precio.ancho} />
       </Fila>
       <Fila top={F.fecha.top}>

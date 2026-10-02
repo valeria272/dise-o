@@ -63,6 +63,7 @@ import {Caso001} from "./compositions/copylab/Caso001";
 import {CW01Cyber, CW01_FRAMES} from "./compositions/copylab/CW01Cyber";
 import {CW04CyberIA, CW04_FRAMES} from "./compositions/copylab/CW04CyberIA";
 import {CyberMood, CYBER_MOOD_FRAMES} from "./compositions/copylab/CyberMood";
+import {CW02Concurso, CW02_FRAMES} from "./compositions/copylab/CW02Concurso";
 import {PostG} from "./compositions/copylab/PostG";
 import {ReelProceso, REEL_PROCESO_FRAMES} from "./compositions/copylab/ReelProceso";
 import {ReelIndispensables, REEL_INDISPENSABLES_FRAMES, ReelIndispensablesB, REEL_INDISPENSABLES_B_FRAMES, ReelIndispensablesB2, REEL_INDISPENSABLES_B2_FRAMES} from "./compositions/copylab/ReelIndispensables";
@@ -1376,6 +1377,9 @@ export const RemotionRoot: React.FC = () => {
         {/* «CYBER MOOD» — post animado del domingo 04-10 (pedido de Valeria, 01-10) */}
         <Composition id="CL2-CyberMood" component={CyberMood} {...clFeed}
                      durationInFrames={CYBER_MOOD_FRAMES} />
+        {/* CW-02 — caso del concurso de Fiestas Patrias (sin nombrar la marca) */}
+        <Composition id="CL2-CW02-Concurso" component={CW02Concurso} {...clFeed}
+                     durationInFrames={CW02_FRAMES} defaultProps={{lamina: 1}} />
         {/* Sistema Visual 29-09-2026 — piezas con fotografía */}
         <Composition id="CL2-FotoAceite"     component={FotoAceite}     {...clFeed} />
         <Composition id="CL2-FotoEscritorio" component={FotoEscritorio} {...clFeed} />

@@ -1650,6 +1650,11 @@ Grilla `13yYW5QacnSRaV422SeBTgFVGwLN5mhTg0anDJzkvaK0`. Cuatro piezas aprobadas y
    el precio centrado debajo / íconos / correo + legal), que **entra junto con el titular
    principal** y queda ~12 s. Código: `src/compositions/hilton/DtStFamilyTimeOctR6.tsx`.
    Reglas R-81 a R-84 del cerebro.
+10. ⭐⭐ **Historias en SECUENCIA: logo y titular en blanco, con el mismo velo** (Eli, 02-10, ST Noche de Bodas: «es una
+   secuencia, no debe verse diferente»). La tinta azul sin velo sobre foto clara vale para una pieza suelta. Y **la toma
+   de un programa es el conjunto completo** (flores, botella, copas servidas), no un acercamiento. Los **adicionales**
+   (sunset, masajes) van dentro del mismo panel, como en el carrusel. R-189 a R-191 · `DtStNocheBodasOct.tsx`,
+   `DtStFeriadoErAdicionales`.
 9. ⚠️ `qa/motor.py` · `respiro-borde` mide **tinta BLANCA**: en una pieza de texto azul sobre
    tarjeta clara (la opinión) cuenta los brillos de la foto en el canto y da falsa alarma. La
    opinión de Expedia aprobada la pasa; la de Google la dispara con el lounge `HDT_37`.

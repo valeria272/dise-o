@@ -1,6 +1,6 @@
 ---
 name: cliente-nueva-urbe
-description: "NUEVA-URBE — cerebro del cliente: 36 reglas firmes, última cosecha 2026-10-02. Generado desde clients/nueva-urbe/APRENDIZAJES.md; leerlo antes de diseñar para nueva-urbe"
+description: "NUEVA-URBE — cerebro del cliente: 40 reglas firmes, última cosecha 2026-10-02. Generado desde clients/nueva-urbe/APRENDIZAJES.md; leerlo antes de diseñar para nueva-urbe"
 metadata:
   type: project
 ---

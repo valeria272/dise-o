@@ -932,3 +932,62 @@ un trozo** de la foto de la clienta: P01D quedó ×7,5 (borrosa y sin ninguna pa
 **Regla:** una muestra recortada de una foto de la clienta (`muestra_cliente_*`) va sin zoom extra; antes de
 entregar, calcular la ampliación (px dibujados ÷ px de origen) y revisar a 100 % toda muestra que pase ×2,5.
 Y el recorte tiene que mostrar el **formato** del producto: un trozo de 15×15 sin junta no se lee como 15×15.
+
+## ⭐ Ronda 5 de octubre — Paulina, 02-10-2026 (2 comentarios en P01C story)
+Los dos son **para todo el lote** y mandan sobre lo anterior de este archivo:
+1. **Bloque de logo de la story más corto** — *«esta zona del cuadro es demasiado larga hacia abajo,
+   ajustar para que tenga solo un poco de aire abajo del logo. esto es para todas las stories»*. El
+   cuadro rojo queda con el **mismo aire abajo que arriba** del logo: `214,1 × 214,8` (antes
+   `214,1 × 275,0`, que dejaba ~96 de rojo bajo el logo). En el script: `ALTO_BLOQUE_STORY`.
+   ⚠️ Contradice la medida «vertical, NO cuadrado» de §ADN MEDIDO y de `marca.json`; `revex_sistema.py`
+   sigue con 275 por defecto para no tocar septiembre. Si Paulina aprueba la ronda 5, se migra el valor.
+2. **La muestra es un zoom del producto** — *«en esta zona no se aprecia el zoom del producto. ajustar
+   para que se vea a detalle el producto. esto para todas las graficas»*. La muestra tiene que verse
+   **más cerca que el ambiente**, con el bisel, la junta, la veta o la trama a la vista, y el detalle
+   va en la zona que la banderola deja libre (izquierda y abajo). En el script: `DETALLE` (fotos del
+   sitio) y `MUESTRA_DE_FOTO` (recortes de la foto de la clienta, de la versión ×2). Tope ×2,5 sobre el
+   píxel de origen (R-42). No se tocaron Urban (fichas de color) ni alfombras (ya eran trama en detalle).
+
+**Entrega:** los archivos de «ADS Revex octubre» son de Serena y el token del estudio no puede
+reemplazarlos ni responder sus comentarios (`appNotAuthorizedToFile`). La ronda 5 quedó en la subcarpeta
+`RONDA 5 — comentarios de Paulina 02-10` (`12YUrm6RKkX_w-RUonjZlaFZsushAOVnW`), 32 piezas con MD5 verificado.
+Los 3 bloqueantes de `qa/motor.py` (P01E y P07C story, P02A feed) son los mismos de la ronda 4: falsos
+positivos de las fotos de la clienta.
+
+## ⭐ Ronda 6 de octubre — Paulina, 02-10-2026 (9 comentarios sobre la ronda 5 + lo que dijo en la sesión)
+**Mandan sobre lo anterior de este archivo**, incluida la ronda 2 (degradado detrás del texto) y E-09 (botón gris):
+1. **Nada de sombras localizadas** — *«evitar sombras localizadas»*, *«sombra muy oscura y marcada»*, *«sombra
+   dura»*. La clienta odia la sombra que sólo está donde va la huincha de texto. La sombra **sale de un borde**
+   (abajo o arriba), llega hasta ese borde sin cortarse y parte **donde empieza el texto blanco**: no sube detrás
+   de los cuadros que se leen solos (banderola, muestra, botón). No tapa el producto. En el script:
+   `sombra_desde_abajo()`, tope 36 %, luma buscada 145 medida en la zona más clara bajo el texto; sobre fondo
+   oscuro no pone nada. ⚠️ Medir con el promedio dejó sin sombra el texto sobre muro blanco: se usa el percentil 85.
+2. **Botón del CTA rojo con letra blanca**, «para que llame mucho la atención». Gris `#868686` **sólo** si el
+   botón queda justo bajo un cuadro rojo (en este lote no pasa nunca).
+3. **Las líneas no se separan tanto**: el pie sigue al botón (70 a escala 1080), no va fijo abajo.
+4. **Story con mucho espacio: el bloque un poco más abajo**, para que el texto no caiga sobre un objeto del fondo
+   (cama, sofá, mesa). `AJUSTE_STORY`: SPC +220, alfombras +240. El resto sigue centrado (lista de la clienta, R-39).
+5. **Fuera los logos de app**: la foto «KERAZ MARMO GREY» de la clienta traía el destello de la app generadora.
+   Se borra en una copia (`quitar_logo_de_app()`); el original no se toca. Revisar la esquina inferior derecha de
+   toda foto que mande la clienta.
+6. **La junta de las baldosas no cae en el borde de la muestra**: el recorte se elige con los bordes a media
+   palmeta, midiendo las juntas en la foto (están anotadas en px en `DETALLE` y `MUESTRA_DE_FOTO`).
+
+**Entrega:** reemplazada en la misma subcarpeta, ahora `RONDA 6 — comentarios de Paulina 02-10 (vigente)`
+(`12YUrm6RKkX_w-RUonjZlaFZsushAOVnW`), 32 piezas con MD5 verificado; los 9 comentarios respondidos (salen a nombre
+de Valeria, que es la cuenta del token) y sin resolver: los cierra Paulina. QA: los 3 bloqueantes de siempre más
+P05B story (derecha 2,2 %), que apareció al bajar el bloque y no es texto: es el sillón de la foto.
+
+## ⭐ Ronda 7 de octubre — Paulina, 02-10-2026 (4 comentarios; el resto de la ronda 6, aprobado)
+Paulina resolvió los comentarios de sombra, botón, pie y bloque de la ronda 6 («ya se ve mucho más profesional»).
+**La referencia aprobada es `REVEX_P03C_Feed`**: *«esta grafica en general es muy buena, tiene todo lo que yo
+diseñadora paulina apruebo»*.
+1. **El zoom de la muestra es moderado** — *«esta muestra tiene mucho zoom no se nota el modelo de la baldosa»*
+   (P01C feed), *«muestra con mucho zoom»* (P02A feed, P02C story). Se tiene que **reconocer el modelo**: palmetas
+   o motivos enteros, no un trozo. Ni tan lejos que sea igual al muro (ronda 5) ni tan cerca que no se sepa qué es.
+   Medidas que quedaron: Biselado 0,80 de la foto (2 palmetas arriba, 1 entera abajo) · Antique Grey 0,837 (una fila
+   de motivos) · mármoles 0,85. Blanco Brillo 15×15 (4 palmetas), Brick, caucho y SPC no se tocaron.
+2. **Pie de la story un 15 % más grande** (`CAP_PIE_STORY`), sin llegar a los bordes.
+
+**Entrega:** reemplazada en la misma subcarpeta, ahora `RONDA 7 — comentarios de Paulina 02-10 (vigente)`
+(`12YUrm6RKkX_w-RUonjZlaFZsushAOVnW`).

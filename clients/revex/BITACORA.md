@@ -1,3 +1,47 @@
+## 2026-10-02 — Paulina Bustamante (con Claude)
+
+**Qué se hizo:** Paulina revisó la pauta de octubre con su criterio de diseñadora y la corrigió en **tres
+rondas el mismo día** (5, 6 y 7), sobre la ronda 4 que Serena había subido el 01-10. Ronda 5: cuadro rojo del
+logo de story más corto (sólo un poco de aire bajo el logo) y la muestra como zoom del producto. Ronda 6:
+fuera las sombras localizadas (la sombra sale del borde de abajo, suave, y parte donde empieza el texto
+blanco), botón del CTA rojo, pie pegado al botón, bloque de story más abajo en SPC y alfombras, logo de app
+borrado de la foto de Keraz Marmo Grey y juntas de baldosa fuera del borde de la muestra. Ronda 7: zoom
+moderado (se reconoce el modelo de la baldosa) y pie de story un 15 % más grande. Paulina resolvió ella misma
+los comentarios de sombra, botón, pie y bloque, y marcó `REVEX_P03C_Feed` como su referencia aprobada.
+
+**Dónde quedó:** Las 32 piezas vigentes están en Drive, en la subcarpeta
+`RONDA 7 — comentarios de Paulina 02-10 (vigente)` (`12YUrm6RKkX_w-RUonjZlaFZsushAOVnW`) dentro de «ADS Revex
+octubre», con MD5 verificado. **Los archivos sueltos de los carruseles siguen siendo la ronda 4 de Serena**:
+el token del estudio no puede reemplazarlos ni responder sus comentarios (`appNotAuthorizedToFile`). Script:
+`scripts/revex-oct2026-piezas.py` (rondas 5–7 documentadas arriba del código) y `scripts/revex_sistema.py`
+(`bloque_logo` acepta alto). Muestras nuevas en `public/assets/revex/oct/productos/` y la foto sin logo de app
+en `public/assets/revex/oct/cliente/2x/`. Local: `out/revex/oct2026/`.
+
+**Qué sigue:** Paulina mandó la ronda 7 a **Sebastián y Serena** para su OK. Si vuelven correcciones, se
+aplican sobre la ronda 7 con el mismo script. Con el OK, Serena reemplaza los originales con su token (o la
+pauta toma la subcarpeta) y se le muestra a Jenny.
+
+**Abierto:** Jenny no ha visto las rondas 5–7 (la ronda 4 era su lista). Quedan 4 comentarios de Paulina
+respondidos y sin resolver en la subcarpeta, y sus 2 primeros sin responder en el archivo de Serena. El cuadro
+corto del logo de story contradice la medida 214,1 × 275 del manual y de `marca.json`: se aplicó sólo a este
+lote. Urban no se amplió (son fichas de color). En Keraz Marmo Grey story el pie pisa los objetos del mesón.
+QA: 4 bloqueantes que son falsos positivos de las fotos de la clienta (P01E, P05B y P07C story; P02A feed).
+Siguen en espera las cerámicas blancas P01A/P01B (Jenny), los nombres de color del Urban (Jenny) y el copy
+del anuncio de 02 (Sebastián).
+
+## 2026-10-01 — Serena Abarca (con Claude) · entrada reconstruida el 02-10 desde los commits y el manual
+
+**Qué se hizo:** Ronda 3: Jenny rechazó todos los ambientes con IA («las fotos ambientadas están todas
+malas») y mandó 18 fotos propias; se rehízo con sus fotos y la lista bajó a 16 tarjetas (fuera las cerámicas
+blancas 01A/01B en espera, Keraz Rombo y Calacatta, y las alfombras muro a muro). Ronda 4: sólo la lista de la
+clienta (logo del feed centrado, story centrada con muestra-trozo, «EN OFERTA» + frase en SPC y caucho,
+alfombras personalizadas) y un QA interno que reemplazó 6 stories con la muestra demasiado ampliada.
+
+**Dónde quedó:** 32 piezas en «ADS Revex octubre» (`1puZ1PWbgaqJo53agyQHVdJSKFjUGAIvx`); las 16 descartadas
+en `_fuera de la lista 30-09`. Commits `57291556`, `62ba0a62`, `5fefad62`.
+
+**Qué sigue / Abierto:** ver la entrada del 02-10.
+
 ## 2026-09-29/30 — Serena Abarca (con Claude)
 
 **Qué se hizo:** Se produjo el lote de **pauta de octubre** del brief de Sebastián Córdova

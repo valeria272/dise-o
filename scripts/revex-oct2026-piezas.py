@@ -26,7 +26,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from revex_sistema import Lienzo, TAG_RED, BLANCO, BLOCK_RED  # noqa
+from revex_sistema import Lienzo, TAG_RED, BLANCO, BLOCK_RED, BAR_RED  # noqa
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AMB = os.path.join(RAIZ, "public/assets/revex/oct")
@@ -76,7 +76,7 @@ T = {
              tit="Keraz Antique Grey", baj="Formato 30×60", apo="Consulta la oferta por WhatsApp", sello="EN OFERTA"),
  "02B": dict(foto="KERAZ MARMO OCEAN VEIN.png", foco=(0.5, 0.5), m=["6962003060_0.jpg"], cat=None,
              tit="Keraz Marmo Ocean Vein", baj="Efecto mármol · 30×60", apo=None),
- "02C": dict(foto="2x/KERAZ MARMO GREY.jpg", foco=(0.5, 0.5), m=["6957003060_0.jpg"], cat=None,
+ "02C": dict(foto="2x/KERAZ MARMO GREY (sin logo de app).png", foco=(0.5, 0.5), m=["6957003060_0.jpg"], cat=None,
              tit="Keraz Marmo Grey", baj="Efecto mármol · 30×60", apo=CTA),
  # 02D Marmo Rombo y 02E Calacatta Gold: FUERA, la clienta no mandó foto («se dejan solo esos 3»).
  "03A": dict(foto="URBAN LIGHT GREY NAT 30x60 VT.png", foco=(0.55, 0.5), urban=(30, 60), cat=None,
@@ -110,16 +110,70 @@ T = {
 for _k, _t in T.items():
     _t["amb"] = _k.lower()        # sólo para los ajustes por pieza de abajo
 
+# ⭐ RONDA 5 — 02-10-2026. Paulina, 2 comentarios en P01C story («ADS Revex octubre»):
+#   1 «esta zona del cuadro es demasiado larga hacia abajo, ajustar para que tenga solo un poco de
+#     aire abajo del logo. esto es para todas las stories» → bloque de logo de story con el mismo
+#     aire abajo que arriba (ALTO_BLOQUE_STORY), no los 275 del manual.
+#   2 «en esta zona no se aprecia el zoom del producto. ajustar para que se vea a detalle el
+#     producto. esto para todas las graficas» → la muestra es un ZOOM: el producto se ve más cerca
+#     que en el ambiente, con su relieve, junta, veta o trama a la vista. DETALLE = recorte de la
+#     foto del sitio (fracción del lado, centro x, centro y) en (feed, story); el centro se elige
+#     para que el detalle caiga en la zona que la banderola deja libre (izquierda y abajo).
+#     Tope de ampliación ×2,5 sobre el píxel de origen (R-42).
+# ⭐ RONDA 6 — 02-10-2026. Paulina, 9 comentarios sobre la ronda 5 + lo que dijo en la sesión:
+#   1 SOMBRAS: «evitar sombras localizadas» · «sombra muy oscura y marcada» · «sombra dura». La
+#     clienta odia la sombra sólo donde está la huincha de texto. La sombra SALE DE UN BORDE (abajo),
+#     llega sin cortarse hasta el borde, es suave y parte donde empieza el TEXTO BLANCO: no sube
+#     detrás de los cuadros que se leen solos (banderola, muestra, botón). Si el fondo ya es oscuro,
+#     no hay sombra. Ejemplo que dio: P07C feed («no se ve cortada, se ve constante»).
+#   2 BOTÓN del CTA ROJO con letra blanca; gris SÓLO si queda justo bajo un cuadro rojo.
+#   3 PIE: «subirlo que no quede tan separado del boton de cta» → el pie sigue al botón.
+#   4 STORY con mucho espacio: el bloque «un poco más abajo… así no queda texto sobre el objeto
+#     en el fondo» (P07A story) → AJUSTE_STORY.
+#   5 «logos de app eliminar» (P02C feed): la foto de la clienta trae el destello de la app.
+#   6 MUESTRA: la junta de las baldosas no puede caer en el borde del marco → los recortes se
+#     eligen con los bordes a MEDIA palmeta (juntas medidas en la foto, en px).
+# ronda 7: «en stories este texto debe ser un 15% mas grande sin llegar a los bordes» (pie, P01D story)
+CAP_PIE_STORY = 17 * 1.15
+SOMBRA_TOPE, SOMBRA_LUMA = 0.36, 145      # opacidad máxima · luma que se busca bajo el texto blanco
+# el bloque baja del sofá, la cama o la mesa al piso o a la alfombra
+AJUSTE_STORY = {"07A": 220, "07B": 220, "07C": 220, "05A": 240, "05B": 240, "05C": 240}
+LOGO_ASPECTO = 2129 / 2489                      # alto / ancho de logo_blanco.png
+ALTO_BLOQUE_STORY = 37.8 + 162.7 * LOGO_ASPECTO + 37.8   # = 214,8: mismo aire arriba y abajo del logo
+DETALLE = {
+ # ⭐ RONDA 7 — 02-10-2026. Paulina: «esta muestra tiene mucho zoom no se nota el modelo de la baldosa»
+ # (P01C feed) · «muestra con mucho zoom» (P02A feed, P02C story). El zoom es MODERADO: se tiene que
+ # reconocer el modelo (palmetas o motivos enteros), no un trozo irreconocible. Juntas fuera del borde.
+ # 01C: juntas horizontales cada 200 px y verticales en 67/500/931 y 278/724 (aparejo trabado).
+ # Recorte x 100–900, y 257–543: dos palmetas casi enteras arriba y una entera abajo; la junta
+ # horizontal al medio y las verticales al 50 %, 22 % y 78 %.
+ "01C": ((0.80, 0.50, 0.40), (0.80, 0.50, 0.40)),
+ # 02A: motivos de ~350 px, juntas verticales en 167/520/876 y horizontales en 326/674.
+ # Recorte x 0–837, y 350–650: una fila de motivos casi entera, sin junta horizontal a la vista.
+ "02A": ((0.837, 0.4185, 0.50), (0.837, 0.4185, 0.50)),
+ # mármoles: paño amplio, con la veta de color a la izquierda y abajo, donde no tapa la banderola
+ "02B": ((0.85, 0.45, 0.62), (0.85, 0.45, 0.62)),
+ "02C": ((0.85, 0.45, 0.55), (0.85, 0.45, 0.55)),
+ "07A": ((0.60, 0.50, 0.50), (0.50, 0.50, 0.50)),
+ "07B": ((0.60, 0.50, 0.50), (0.58, 0.50, 0.50)),   # tabla de 1000 px: 0,5 la dejaba en ×2,9
+ "07C": ((0.60, 0.50, 0.50), (0.58, 0.50, 0.50)),
+}
+
 # Muestras que salen de la PROPIA foto de la clienta (no hay packshot en el sitio de esos productos):
 # recorte (x0, y0, x1, y1) en fracción de la foto.
 MUESTRA_DE_FOTO = {
     # 01D y 01E: la muestra deja de ser DERIVADA — sale del muro real de la foto de la clienta
-    "01D": ("BLANCO BRILLO 15X15 CR.png", (0.52, 0.10, 0.665, 0.55)),
-    "01E": ("BRICK BLANCO MT 7,5x25 CR.png", (0.45, 0.02, 0.95, 0.28)),
+    # ronda 5 (zoom): ~3,5 palmetas de 15×15 y ~6 de 7,5×25, de la versión ×2; ampliación ≤ ×2,5
+    # sobre el píxel original de la clienta
+    # ronda 6: bordes a MEDIA palmeta. 01D: juntas verticales en 970/1212/1456/1700/1942 y horizontal
+    # en 2610 (px de la ×2) → 4 palmetas de ancho, la junta horizontal al medio. 01E: verticales cada
+    # ~163 desde 2660, horizontal en 824 → 6 palmetas de ancho, la junta horizontal al 62 %.
+    "01D": ("2x/BLANCO BRILLO 15X15 CR.jpg", (1091 / 4672, 2440 / 3488, 2063 / 4672, 2788 / 3488)),
+    "01E": ("2x/BRICK BLANCO MT 7,5x25 CR.jpg", (2743 / 4672, 607 / 3488, 3721 / 4672, 957 / 3488)),
     "05A": ("ALFOMBRA DIMENSIONADA EN STOCK.webp", (0.30, 0.62, 0.62, 0.78)),
     "05B": ("ALFOMBRA DIMENSIONADAS A PEDIDO.jpg", (0.30, 0.76, 0.62, 0.90)),
     "05C": ("ALFOMBRA DIMENSIONADAS A PEDIDO 2.jpg", (0.40, 0.80, 0.60, 0.97)),
-    "06":  ("Adoquines.png", (0.25, 0.70, 0.75, 0.90)),
+    "06":  ("Adoquines.png", (0.25, 0.80, 0.58, 0.867)),   # ronda 5: ~2 adoquines de ancho
 }
 
 
@@ -160,7 +214,7 @@ def velo_abajo(L, desde, hasta, alpha, luma_obj=None, suelta=None):
     L.im = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)); L.d = ImageDraw.Draw(L.im, "RGBA")
 
 
-def muestra(L, archivo, x0, y0, w, h, recorte=None, zoom=1.0):
+def muestra(L, archivo, x0, y0, w, h, recorte=None, zoom=1.0, centro=None):
     """Muestra real con borde blanco y sombra suave, como la de Paulina."""
     im = Image.open(os.path.join(PROD, archivo)).convert("RGB")
     iw, ih = im.size
@@ -171,6 +225,9 @@ def muestra(L, archivo, x0, y0, w, h, recorte=None, zoom=1.0):
     else: nh = iw / r; box = (0, (ih - nh) / 2, iw, (ih + nh) / 2)
     if zoom < 1:   # «solo un trozo del producto» (story, ronda 4): recorte centrado más cerrado
         cx, cy, bw, bh = (box[0] + box[2]) / 2, (box[1] + box[3]) / 2, (box[2] - box[0]) * zoom, (box[3] - box[1]) * zoom
+        if centro:   # ronda 5: el detalle se elige, no cae donde caiga el centro de la foto
+            cx = min(max(centro[0] * iw, box[0] + bw / 2), box[2] - bw / 2)
+            cy = min(max(centro[1] * ih, bh / 2), ih - bh / 2)
         box = (cx - bw / 2, cy - bh / 2, cx + bw / 2, cy + bh / 2)
     im = im.crop(tuple(map(round, box))).resize((round(L.P(w)), round(L.P(h))), Image.LANCZOS)
     # sombra
@@ -249,12 +306,13 @@ def banderola(L, cat, nombre, medida, x_der, y0, escala=1.0):
     return x0, y0 + h
 
 
-def cta(L, y, cx=540, cap=15.5, e=1.0):
-    """Cápsula gris del CTA (#868686), MEDIDA en rvx_austral_2: alto 42, radio ~8."""
+def cta(L, y, cx=540, cap=15.5, e=1.0, gris=False):
+    """Botón del CTA. ROJO de marca con letra blanca (Paulina 02-10: «boton debe ser rojo»… «para que
+    llame mucho la atención»); gris #868686 sólo si queda justo bajo un cuadro rojo. Alto 42, radio ~8."""
     cuerpo = L.cuerpo_para_cap(cap, 500)
     w = L.ancho(CTA, cuerpo, 500, 0.02) + 2 * 30 * e
     h = 42 * e
-    L.d.rounded_rectangle([L.P(cx - w / 2), L.P(y), L.P(cx + w / 2), L.P(y + h)], radius=L.P(9 * e), fill=CTA_GRIS)   # opaco: #868686 exacto, como el medido
+    L.d.rounded_rectangle([L.P(cx - w / 2), L.P(y), L.P(cx + w / 2), L.P(y + h)], radius=L.P(9 * e), fill=CTA_GRIS if gris else BAR_RED)
     L.texto(CTA, y + (h - cap) / 2, cuerpo, 500, BLANCO, cx, 0.02)
     return y + h
 
@@ -295,6 +353,30 @@ def degradado(L, y0, y1, alpha, y2=None, y3=None):
         if y2 is not None and yn > y2: k = alpha * (1 - ss((yn - y2) / (y3 - y2)))
         if k > 0.001: a[yy] *= 1 - k
     L.im = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)); L.d = ImageDraw.Draw(L.im, "RGBA")
+
+
+def sombra_desde_abajo(L, y_txt, y_fin, rampa):
+    """Sombra de la ronda 6: sale del borde inferior y llega, constante, hasta donde empieza el texto
+    blanco (y_txt), donde se apaga con una rampa larga. Nunca una banda sólo detrás del texto.
+    La opacidad se calcula para dejar el fondo del texto en SOMBRA_LUMA, con tope SOMBRA_TOPE:
+    sobre un fondo que ya es oscuro no se pone nada."""
+    g = np.asarray(L.im.convert("L")).astype(np.float64)
+    x0, x1 = int(L.W * 0.15), int(L.W * 0.85)
+    # se mide la zona MÁS CLARA bajo el texto (percentil 85 de la luma suavizada), no el promedio:
+    # con el promedio, los muebles oscuros de abajo dejaban sin sombra el texto que cae sobre el muro blanco
+    zona = Image.fromarray(g[int(L.P(y_txt)):int(L.P(y_fin)), x0:x1].astype(np.uint8))
+    zona = zona.resize((max(1, zona.size[0] // 24), max(1, zona.size[1] // 24)), Image.BOX)
+    med = float(np.percentile(np.asarray(zona), 85))
+    alpha = float(np.clip(1 - SOMBRA_LUMA / max(med, 1), 0.0, SOMBRA_TOPE))
+    if alpha < 0.03: return 0.0
+    a = np.asarray(L.im).astype(np.float64)
+    def ss(t): t = min(max(t, 0.0), 1.0); return t * t * (3 - 2 * t)
+    y0 = y_txt - 12 - rampa
+    for yy in range(max(0, int(L.P(y0))), L.Hpx):
+        k = alpha * ss((yy / L.S - y0) / rampa)
+        if k > 0.001: a[yy] *= 1 - k
+    L.im = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)); L.d = ImageDraw.Draw(L.im, "RGBA")
+    return alpha
 
 
 PIE_2 = ("Pisos SPC, laminados, porcelanatos,", "pisos de ingeniería y mucho más")
@@ -340,7 +422,26 @@ def apoyo(L, txt, y, cap=17):
 # Sólo para la STORY (QA ronda 4): el recorte del 15×15 caía sobre el vidrio de la ducha y, con
 # el zoom de «un trozo», quedaba ×7,5 y sin ninguna palmeta visible. Se recorta el muro bajo el
 # lavamanos, de la versión ×2. El feed NO cambia: la clienta lo aprobó.
-MUESTRA_STORY = {"01D": ("2x/BLANCO BRILLO 15X15 CR.jpg", (0.16, 0.68, 0.50, 0.81))}
+MUESTRA_STORY = {}   # ronda 5: feed y story usan el mismo zoom (MUESTRA_DE_FOTO)
+
+
+SIN_LOGO = "2x/KERAZ MARMO GREY (sin logo de app).png"
+
+
+def quitar_logo_de_app():
+    """La foto «KERAZ MARMO GREY» de la clienta trae el destello de la app con que se generó, abajo a
+    la derecha (x 1760–1856, y 1965–2076 en la ×2). Paulina 02-10: «logos de app eliminar». Se rellena
+    con el mismo mueble blanco de alrededor; el original de la clienta no se toca."""
+    destino = os.path.join(CLI, SIN_LOGO)
+    if os.path.exists(destino): return
+    import cv2
+    im = np.asarray(Image.open(os.path.join(CLI, "2x/KERAZ MARMO GREY.jpg")).convert("RGB")).copy()
+    x0, y0, x1, y1 = 1740, 1945, 1876, 2096
+    zona = im[y0:y1, x0:x1].astype(np.float64).mean(axis=2)
+    m = np.zeros(im.shape[:2], np.uint8)
+    m[y0:y1, x0:x1] = (zona > np.median(zona) + 2.5).astype(np.uint8) * 255
+    m = cv2.dilate(cv2.morphologyEx(m, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8)), np.ones((9, 9), np.uint8))
+    Image.fromarray(cv2.inpaint(im, m, 7, cv2.INPAINT_TELEA)).save(destino)
 
 
 def muestras_de_foto():
@@ -354,8 +455,10 @@ def muestras_de_foto():
             os.path.join(PROD, f"muestra_cliente_{k}.png"))
 
 
-def pieza(k, story=False):
+def pieza(k, story=False, sombra=None):
+    """sombra = (y del primer texto blanco, y del último): se mide en una primera pasada sin sombra."""
     t = T[k]
+    blancos = []
     aparejo("6910003060_0.jpg", 60, 30, os.path.join(PROD, "aparejo_6910003060.png"), n=(3, 3))
     aparejo("6910102540_0.jpg", 25, 40, os.path.join(PROD, "aparejo_6910102540.png"), n=(5, 2))
     L = Lienzo(*(STORY if story else FEED))
@@ -378,6 +481,9 @@ def pieza(k, story=False):
     # una muestra recortada de la foto de la clienta YA es un trozo: sin zoom extra (QA ronda 4:
     # con zoom quedaban ×3–7,5 y se pixelaban)
     if m0 and m0.startswith("muestra_cliente_"): zoom = 1.0
+    centro = None
+    if k in DETALLE:
+        zoom, *centro = DETALLE[k][1 if story else 0]
     fr = t.get("frase")
     cap_fr = 26 * e
     h_fr = (cap_fr + (len(fr) - 1) * cap_fr * 1.55) if fr else 0
@@ -392,18 +498,14 @@ def pieza(k, story=False):
         elif t.get("sello"): top = -150 * e - 12 * e
     abajo = fondo_m + 42 * e + (91 * e if (t["apo"] and t["apo"] != CTA) else 0) + 42 * e
     if story:
-        abajo += 80 + 17 * 1.75 + 17
+        abajo += 80 + CAP_PIE_STORY * 1.75 + CAP_PIE_STORY
         # Ronda 4: «centra el bloque de contenido» → el centro del bloque cae en el centro del cuadro
-        y_m = 960 - (top + abajo) / 2
+        y_m = 960 - (top + abajo) / 2 + AJUSTE_STORY.get(k, 0)
     # degradado muy suave detrás del bloque de texto; la muestra se dibuja encima y no se toca
+    if sombra:
+        sombra_desde_abajo(L, sombra[0], sombra[1], 260 if story else 170)
     if story:
-        degradado(L, y_m + top - 60, y_m + top + 180, 0.42, y_m + abajo + 40, y_m + abajo + 320)
-    elif fr:
-        degradado(L, 380, 700, 0.42)          # la frase va más arriba que el texto de las demás
-    else:
-        degradado(L, 600, 930, 0.42)
-    if story:
-        L.bloque_logo(story=True)
+        L.bloque_logo(story=True, h=ALTO_BLOQUE_STORY)
     else:
         L.bloque_logo(cx=540)                # ronda 4, punto 2: «solo centra el logo»
 
@@ -411,6 +513,7 @@ def pieza(k, story=False):
     if fr:
         # «EN OFERTA» arriba, la frase al medio y la banderola abajo: la frase separa los dos rojos (R-05)
         y_fr = y - 14 * e - 34 * e - h_fr
+        blancos.append(y_fr)
         frase(L, fr, y_fr, cap_fr, e)
         L.barra(t["sello"], y_fr - 50 * e - 20 * e, 20 * e, peso=775, tracking=0.04, padx=20 * e, padv=12 * e)
     elif t.get("sello"):
@@ -438,16 +541,18 @@ def pieza(k, story=False):
                        for n2, _ in URBAN)
             c = L.cuerpo_para_cap(capn, 600)
             L.texto(nombre.upper(), y + fila + 20 * e, c, 600, BLANCO, x + w / 2, 0.06)
+            blancos.append(y + fila + 20 * e)
             x += w + gap
         # banderola centrada sobre la fila, con aire: no pisa ninguna muestra
         bw = max(251 * e, L.ancho(t["tit"].upper(), L.cuerpo_para_cap(13 * e, 700), 700, 0.01) + 48 * e)
         banderola(L, t["cat"], t["tit"], t["baj"], 540 + bw / 2, y - (26 + 90) * e, e)
         y = y + fila + (20 + 12.5) * e
+        rojo_fin = -1e9
     elif t.get("cuadrada"):
         mw = mh = 250 * em
         mx = 540 - mw / 2 - 120 * e
         muestra(L, m0, mx, y - 40 * em, mw, mh, zoom=zoom)
-        banderola(L, t["cat"], t["tit"], None, mx + mw + 250 * e, y + 60 * em, e)
+        _, rojo_fin = banderola(L, t["cat"], t["tit"], None, mx + mw + 250 * e, y + 60 * em, e)
         y = y - 40 * em + mh
     else:
         # 06 no tiene foto de producto: la muestra es un recorte PROVISORIO del ambiente
@@ -457,21 +562,26 @@ def pieza(k, story=False):
         mw, mh = ((440, 220) if archivo.startswith("PROVISORIO") else (530, 190))
         mw, mh = mw * em, mh * em
         mx = 540 - mw / 2
-        muestra(L, archivo, mx, y, mw, mh, zoom=zoom)
-        banderola(L, t["cat"], t["tit"], t["baj"], mx + mw - 23 * e, y - 14 * e, e)
+        muestra(L, archivo, mx, y, mw, mh, zoom=zoom, centro=centro)
+        _, rojo_fin = banderola(L, t["cat"], t["tit"], t["baj"], mx + mw - 23 * e, y - 14 * e, e)
         y = y + mh
 
     y += 42 * e
     if t["apo"] and t["apo"] != CTA:
+        blancos.append(y)
         L.filete(y, ancho=560 * e, grosor=1.3 * e)
         y = apoyo(L, t["apo"], y + 24 * e, cap=17 * e) + 24 * e
         L.filete(y, ancho=560 * e, grosor=1.3 * e)
         y += 26 * e
-    y = cta(L, y, cap=15.5 * e, e=e)
+    y = cta(L, y, cap=15.5 * e, e=e, gris=(y - rojo_fin) < 40 * e)
     if story:
-        pie2(L, y + 80, cap=17)
+        blancos += [y + 80 - 22, pie2(L, y + 80, cap=CAP_PIE_STORY)]
     else:
-        pie(L, 1010)   # 1040 dejaba 28 de respiro al borde; el QA pide 60 px (29-09)
+        # ronda 6: el pie sigue al botón (antes fijo en 1010 y quedaba suelto); tope 1010 por el respiro al borde
+        yp = min(1010, y + 70)
+        pie(L, yp)
+        blancos += [yp - 16, yp + 12]
+    L.sombra = (min(blancos), max(blancos))
     return L
 
 
@@ -480,6 +590,7 @@ def main():
     ap.add_argument("que", nargs="*", default=[])
     ap.add_argument("--solo-feed", action="store_true")
     a = ap.parse_args()
+    quitar_logo_de_app()
     muestras_de_foto()
     ks = [k for k in T if not a.que or any(k.startswith(q.upper()) for q in a.que)]
     for k in ks:
@@ -487,7 +598,7 @@ def main():
             amb = os.path.join(CLI, T[k]["foto"])
             if not os.path.exists(amb):
                 print(f"· {k} {'story' if story else 'feed'}: falta {T[k]['foto']}"); continue
-            L = pieza(k, story)
+            L = pieza(k, story, sombra=pieza(k, story).sombra)   # 1ª pasada: mide dónde está el texto blanco
             nombre = f"REVEX_P{k}_{'Story_2250x4000' if story else 'Feed_2250x2250'}.png"
             print("✓", L.guardar(os.path.join(OUT, nombre)))
 

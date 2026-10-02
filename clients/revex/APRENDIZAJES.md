@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (diseñadora de la agencia para Grupo Revex) · Aprueba: **Jenny Campos** (diseñadora de Grupo Revex, `jcampos@gruporevex.cl`)
-> Última cosecha: **2026-10-02** · Cosechas: **6**
+> Última cosecha: **2026-10-02** · Cosechas: **9**
 
 ## 1. Quién es el cliente
 
@@ -88,6 +88,15 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **R-40** · En el feed, el bloque de logo va **centrado** (cx 540), también en las tarjetas de producto — _clienta 01-10: «solo centra el logo»_ · ✔×1 · ⚠️ revisa E-04 (logo a la izquierda en slides de producto) para esta clienta
 - **R-41** · Una pieza de producto que «se ve vacía» lleva frase de titular blanca entre «EN OFERTA» y la banderola; la frase separa los dos rojos (R-05) — _clienta 01-10, SPC y caucho_ · ✔×1
 - **R-42** · Una muestra recortada de una foto de la clienta (`muestra_cliente_*`) va **sin zoom extra**: antes de entregar se calcula la ampliación (px dibujados ÷ px de origen) y se revisa a 100 % toda muestra que pase ×2,5. El recorte tiene que mostrar el **formato** real del producto — una palmeta de 15×15 sin junta no se lee como 15×15 — _QA interno de Serena, ronda 4, 01-10: P01D quedó ×7,5 (borrosa, sin palmeta visible) y P05B ×3,6; regla escrita primero en `CLAUDE.md`, destilada acá_ · ✔×1
+- **R-43** · En la story, el cuadro rojo del logo termina con **sólo un poco de aire bajo el logo** (el mismo que arriba: `214,1 × 214,8`), no los 275 del manual — _Paulina 02-10, P01C story: «esta zona del cuadro es demasiado larga hacia abajo, ajustar para que tenga solo un poco de aire abajo del logo. esto es para todas las stories»_ · ✔×1
+- **R-44** ⚠️ precisada 2026-10-02 (ver R-50: el zoom es moderado) · La muestra es un **zoom del producto**: se ve más cerca que el ambiente y con su detalle a la vista (bisel, junta, veta, trama), en la zona que la banderola deja libre — _Paulina 02-10, P01C story: «en esta zona no se aprecia el zoom del producto. ajustar para que se vea a detalle el producto. esto para todas las graficas»_ · convive con R-39 (trozo, no tapa el ambiente) y R-42 (tope ×2,5) · ✔×1
+- **R-45** · **Nada de sombras localizadas.** La sombra sale de un borde (abajo o arriba), llega hasta él sin cortarse, es suave y parte donde empieza el **texto blanco**; no sube detrás de los cuadros que se leen solos ni tapa el producto. Nunca sólo donde está la huincha de texto — _Paulina 02-10, P07C feed: «sombra muy dura pero es un ejemplo de como usar. no se ve cortada, se ve constante desde arriba. evitar sombras localizadas»; P01C y P01D story: «sombra muy oscura y marcada»; dicho en sesión: la clienta lo odia_ · precisa R-34 · ✔×1
+- **R-46** · El botón del CTA va **rojo con letra blanca**; gris sólo si queda justo bajo un cuadro rojo — _Paulina 02-10, P01C feed y story: «boton debe ser rojo»_ · deroga el gris de E-09 · ✔×1
+- **R-47** · Las líneas del bloque no se separan: el pie sigue al botón, no va suelto abajo — _Paulina 02-10, P07B feed: «esto subirlo que no quede tan separado del boton de cta»_ · ✔×1
+- **R-48** · En la story, cuando sobra espacio, el bloque va **un poco más abajo** para que el texto no caiga sobre un objeto del fondo — _Paulina 02-10, P07A story: «dejemoslo un poco mas abajo cuando exista mucho espacio. asi no queda texto sobre el objeto en el fondo»_ · matiza el «centrado» de R-39 · ✔×1
+- **R-49** · La junta de las baldosas **no cae en el borde del marco** de la muestra: los bordes del recorte van a media palmeta — _Paulina 02-10, en sesión: «que la separación de las baldosas no quede justo en el borde del cuadro de muestras, porque hace que se vea raro»_ · ✔×1
+- **R-50** · El zoom de la muestra es **moderado**: se tiene que reconocer el **modelo** de la baldosa (palmetas o motivos enteros), sobre todo si tiene diseño. Ni igual al muro del fondo ni tan cerca que no se sepa qué es — _Paulina 02-10, P01C feed: «esta muestra tiene mucho zoom no se nota el modelo de la baldosa»; P02A feed y P02C story: «muestra con mucho zoom»_ · ✔×1
+- **R-51** · En stories, el pie va **un 15 % más grande** que en la ronda 6, sin llegar a los bordes — _Paulina 02-10, P01D story_ · ✔×1
 
 ## 5. Excepciones
 
@@ -109,6 +118,8 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **A-02** · Reemplazar sólo el fondo de una pieza publicada reconstruyendo su capa gráfica medida al píxel, con un velo que devuelve la luma del fondo aprobado (167,7) bajo el titular — _portada «Tus muros también merecen un upgrade», aprobada por la clienta sin ajustes el 02-09-2026_
 
 - **A-03** · Ronda 2 de octubre: Paulina **resolvió ella misma los 8 comentarios** el 30-09 (12:08–12:09), sin pedir nada más — _banderola sin pliegue, degradado suave, story a escala propia, pie de 2 líneas, muestra en P06_
+- **A-04** · **`REVEX_P03C_Feed` (Urban 60×120, ronda 6)** es la tarjeta de producto de referencia: sombra suave desde abajo, botón rojo, pie pegado al botón, fichas con nombre — _Paulina 02-10: «esta grafica en general es muy buena, tiene todo lo que yo diseñadora paulina apruebo»_
+- **A-05** · Ronda 6: Paulina resolvió ella misma los comentarios de sombra, botón rojo, pie y bloque más abajo (02-10, 14:44–14:47) — ✔ a **R-45…R-48**
 
 ## 7. Lo que se rechaza
 
@@ -133,8 +144,17 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **X-19** · Stories expandidas con `image-expand` bajo una alfombra muro a muro: inventó piso de madera, dos veces — _04A–D, estudio 29-09; se resolvió con el cuadrado recortado_
 - **X-20** · Las 24 tarjetas de octubre con ambientes generados con IA (Seedream), aunque llevaran muestra real: **todas rechazadas por la clienta** — _Jenny 30-09; costó una ronda completa (ronda 3). Se rehízo con sus 18 fotos_
 - **X-21** · Recortar la muestra de una foto del sitio que trae **franjas blancas entre tablas**: se leen como «doble línea» en el borde del marco — _SPC Gravity 07B/07C, clienta 01-10. Se recorta una sola tabla y se verifica que no queden filas blancas_
+- **X-22** · Muestra que no se lee como zoom: blanco sobre blanco a la misma escala del muro de fondo, o un recorte tan cerrado que no deja ver ni bisel ni junta — _P01C story, Paulina 02-10; costó 1 ronda (ronda 5)_
+- **X-23** · Sombra en banda detrás del bloque de la story (degradado que subía y volvía a 0): se lee como sombra localizada, «oscura y marcada» — _P01C, P01D y P07B story, Paulina 02-10; costó 1 ronda (ronda 6)_
+- **X-24** · Foto de la clienta con el **logo de la app** que la generó en la esquina — _P02C feed, Paulina 02-10: «logos de app eliminar»_
 
 ## 8. Preguntas abiertas
+
+- **Octubre, ronda 7 (02-10):** Paulina la mandó a **Sebastián y Serena** para su OK; desde hoy ella corrige Revex desde su agente antes de que llegue a la clienta. Falta el OK de ellos y el visto de **Jenny** → **Serena / Sebastián.**
+
+- **Octubre, rondas 5 y 6 (02-10):** lo vigente está en la subcarpeta `RONDA 7 — comentarios de Paulina 02-10 (vigente)`, **sin reemplazar** los archivos de Serena y con los 2 primeros comentarios de Paulina (en el archivo de Serena) **sin responder** (el token del estudio no puede escribir en archivos de Serena). ¿Reemplaza Serena los originales con su token, o la pauta toma la subcarpeta? → **Serena / Sebastián.** Falta la revisión de Paulina y el visto de **Jenny** (la ronda 4 era su lista).
+- **Bloque de logo de story (R-43):** `revex_sistema.py` y `marca.json` siguen en `214,1 × 275,0`. Migrarlos cuando Paulina apruebe la ronda 5 → **Paulina.**
+- **Urban en R-44:** las tres fichas de color no se ampliaron. ¿También van con zoom? → **Paulina.**
 
 - **Temuco:** el interior de V3 no está respaldado por el material del cliente, y la fachada real es un edificio de **EBEMA** con doce marcas de terceros. ¿Interior del segundo piso o fachada? → **Serena** (decisión) y **Jenny** (foto de la vitrina del 2º piso; revisar los ~35 MOV del 24–25-06).
 - **Las Condes:** en la vitrina se lee **Casablanca**, y en la story el nombre de la marca aparece hasta cinco veces. ¿Entra Casablanca en un aviso de Revex? → **Serena.**
@@ -154,6 +174,21 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **Octubre — responder y resolver los 8 comentarios de Paulina en Drive**, o que los cierre ella → **Serena.**
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 — Claude con Paulina Bustamante · ronda 7 de octubre (4 comentarios en Drive + sesión)
+- nuevo **R-50** (zoom moderado: se reconoce el modelo) y **R-51** (pie de story +15 %); nuevo **A-04** (P03C feed es la referencia) y **A-05**
+- ✔ a **R-45, R-46, R-47, R-48**: Paulina resolvió esos comentarios; **R-44** precisada por R-50
+- Nada se copió a Casablanca.
+
+### 2026-10-02 — Claude con Paulina Bustamante · ronda 6 de octubre (9 comentarios en Drive + sesión)
+- nuevo **R-45** (sombra desde el borde, nunca localizada), **R-46** (botón rojo), **R-47** (el pie sigue al botón), **R-48** (bloque de story más abajo si sobra espacio), **R-49** (junta fuera del borde de la muestra); nuevo **X-23**, **X-24**
+- ✔ a **R-44**: Paulina aprobó el zoom de las muestras
+- Nada se copió a Casablanca. **Candidata a regla del estudio:** R-45 → Valeria
+
+### 2026-10-02 — Claude con Paulina Bustamante · ronda 5 de octubre (2 comentarios en Drive)
+- nuevo **R-43** (cuadro del logo de story corto) y **R-44** (la muestra es un zoom del producto); nuevo **X-22**
+- §8: la ronda 5 quedó en subcarpeta porque los archivos de Serena no se pueden reemplazar con el token del estudio; R-43 contradice la medida 275 del manual y queda por migrar
+- Nada se copió a Casablanca.
 
 ### 2026-10-02 — Claude nocturno (nube) · hallazgo de QA de Serena Abarca (`5fefad6`)
 - nuevo **R-42** · una muestra recortada de foto de la clienta va sin zoom extra (hallazgo de QA interno de Serena, 01-10; el manual `CLAUDE.md` ya lo tenía anotado, se destila acá)

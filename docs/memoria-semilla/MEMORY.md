@@ -100,3 +100,4 @@
 - [⭐⭐⭐ QB promo de descuento — receta aprobada](qb-promo-descuento-receta-aprobada.md) — Eli 02-10 «me gusta, guarda»: 20 % almuerzo (post + ST paid) — cifra enorme en serif con «DCTO. %» girado, foto horizontal con plato y vino a la vista, grupo abajo con tamaños escalonados, botón corto «RESERVA AHORA»
 - [⭐ QB pantalla AYCD + Sunset QB](qb-pantalla-aycd-sunset.md) — Eli 02-10: misma jerarquía en las dos mitades; editable en F:, entrega y GRILLA IA QB se actualizan juntas
 - [⭐ Illustrator desde script (Windows)](illustrator-desde-script-windows.md) — COM + jsx; el .ai se guarda por copia verificada + reemplazo, nunca se deja a un Ctrl+S
+- [⭐ Revex — Paulina corrige desde su agente](revex-paulina-corrige-desde-su-agente.md) — desde el 02-10 filtra Revex antes de la clienta; responder sus comentarios y dejarlos abiertos; los archivos de Serena no se pueden reemplazar con el token del estudio

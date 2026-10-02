@@ -175,8 +175,9 @@ class Lienzo:
         return y + (len(lineas) - 1) * paso
 
     # ---------- piezas del sistema ----------
-    def bloque_logo(self, story=False, cx=540):
+    def bloque_logo(self, story=False, cx=540, h=None):
         g = BLOQUE_STORY if story else BLOQUE_FEED
+        if h is not None: g = dict(g, h=h)   # alto a pedido (Paulina 02-10: bloque de story más corto)
         x0 = self.P(cx - g["w"] / 2)
         self.d.rectangle([x0, 0, x0 + self.P(g["w"]), self.P(g["h"])], fill=BLOCK_RED)
         lg = Image.open(LOGO_BLANCO).convert("RGBA")

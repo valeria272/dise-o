@@ -23,6 +23,7 @@
 | Organización | `15fAk9kFHDVDzcA8wj4GVttsqbbiHjEp5` | Directrices DM, Gantt, auditoría |
 | Web | `1AcmdOKx8CSjG8YUfD7LmzBrkr7tINaPW` | `MyZoo-Entrega.zip`, **Logos partners** `1o7m2hbt…` (de Paulina) |
 | **IMÁGENES APROBADAS FASE 3** | `173IB55J4Ne8CpLL3MJ8G7kN3U7rvsAfy` | Imágenes limpias aprobadas por Paulina para el paid de octubre, en 4096 px (creada 30-09) |
+| **IMÁGENES FONDO FASE 3** | `1IL9OZal_kTHoDS3m0QICoWwDroDeie7l` | Fondos sin producto de los 6 estáticos del paid, para que Paulina revise y comente (creada 02-10). Las 6 recomendadas en la raíz; el resto en `otras tomas` `17OO5NkOPBFgoq4bw1py7XXRE76aMonCa` y `ronda 2 · alternativas` `1EFBoUzrsloVpNPy5_5tHgLQDoOzF3j5U` |
 | PACKSHOTS FASE 3 (para Claude) | `1g5slxhZzSrwKk_aRg-aTmz7M49hDOcWC` | Donde Paulina deja packshots y piezas armadas para Claude |
 | Concursos | `1OdHknvijE--iJQADsjMu05wWzJX-q9R4` | Bases «1 año gratis» |
 | Offline · Growth | — | Vacía · sólo enero |

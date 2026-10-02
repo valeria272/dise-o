@@ -804,6 +804,15 @@ editable de Canva que Eli duplica de la semana anterior (R-96 a R-103 del cerebr
 - **Plantilla:** el conector la duplica con `copy-design` sobre el reel de la semana anterior; los `locator_id` se conservan.
 - **Entrega:** `python scripts/qb-oct-reel-dj-drive.py <semanas> --hacer` → `S<n> / QB / FEED / Reel n°1 S<n> QB OCT 26`
   en `.mp4` y `.gif`. «Juanjo» = logo y carpeta JOTA.
+- **Felipe Saxofonista (02-10, R-139):** fotos en Drive `14IF0RNsXx2GcHwCDooSWeUS6O1a299a3` (copia en
+  `raw/hilton/qb/dj-fotos/FELIPE-SAXOFONISTA/`); se usa IMG_5326. La capa ya calzada sirve para los próximos martes:
+  `out/qb/oct/reel-dj-felipe/capas/felipe-calzado-v2.png`, 686×1308 en (148, 660), media de Canva `MAHW45ciy_U`.
+  No lleva logo. El pedestal del micrófono se quitó (pendiente el visto de Eli).
+- **Si un objeto cruza delante del músico y cae sobre los textos:** se quita con Nano Banana Pro y la versión generada
+  se pega **sólo en esa zona** sobre la foto real (alineada); cara, manos e instrumento siguen siendo los de la foto.
+  Si la ropa o el instrumento son claros, la luz baja al 50 % detrás de la fecha (rampa y 1150→1245).
+- **GIF y entrega:** `python scripts/qb-reel-dj-gif.py <semanas>` copia el MP4 a `entrega/` y arma el GIF (360×640,
+  12,5 cps). Fotos HEIC: en esta máquina no abren; se bajan como JPG con `drive.google.com/thumbnail?id=<ID>&sz=w6000`.
 
 ## 4k. Carrusel de promo = una foto real en panorama (01-10-2026, R-104 a R-106)
 

@@ -50,6 +50,8 @@ PIEZAS = [
         "out/qb/oct/entrega/C1 S1 N°3 QB OCT 26.png", "out/qb/oct/entrega/C1 S1 N°4 QB OCT 26.png"]),
     (2, "s2-c2", "carrusel", "C2 S2 · AYCD", "All You Can Drink, todos los martes", [
         "out/qb/oct/entrega/C2 S1 N°1 QB OCT 26.png", "out/qb/oct/entrega/C2 S1 N°2 QB OCT 26.png"]),
+    (2, "s2-reel-1", "reel", "Reel n°1 S2", "Reel DJ de la semana",
+     ["out/qb/oct/reel-dj-s2/Reel DJ 2026 S2 OCT QB 26 - tiempos ajustados.mp4", None]),
     (2, "s2-st-1", "st", "ST n°1 S2", "All You Can Drink, todos los martes", ["out/qb/oct/r21/ST n°2 S1 QB OCT 26.png"]),
     (2, "s2-st-2", "video-st", "ST n°2 S2", "Cumpleaños en QB", ["out/qb/oct/r19/ST n°3 S1 QB OCT 26.mp4", None]),
     (2, "s2-st-3", "st", "ST n°3 S2 · KV CMR", "¡El sábado invita CMR! 40 % dcto.", [ELI + "KV_ST CMR.png"]),

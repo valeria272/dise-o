@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-10-02** · Cosechas: **30**
+> Última cosecha: **2026-10-02** · Cosechas: **31**
 
 ## 1. Quién es el cliente
 
@@ -144,7 +144,7 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **R-96** · ⭐ **Reel DJ = reemplazar, no rehacer.** Se sigue la secuencia de la plantilla de Canva de Eli y en cada noche sólo cambian capa del DJ, logo, día, nombre y hora; las láminas de bancos y promos no se tocan salvo pedido — _Eli 01-10 (Reel DJ S2 OCT): «trata de seguir la secuencia de la plantilla ya definida y no es hacer algo nuevo sino ir reemplazando»_ · ✔×2 (01-10: Reels DJ S3 y S5 aprobados)
 - **R-97** · En cada noche el DJ va **recortado en su propia capa** sobre el arco verde, con la cabeza dentro del arco (bajo el texto curvo) y los textos sin tapar la cara ni encimarse con las cajas de bancos; al cambiar la foto se **reencuadra la capa para ese DJ**, no sólo se reemplaza la imagen — _Eli 01-10: «recuerda ajustar según la capa del dj y los textos bien»_ · ✔×2 (01-10: Reels DJ S3 y S5 aprobados)
 - **R-98** · **Seba Soto lleva el logo SEBSS** (`SEBSS Blanco.png`, carpeta SEBSS de contenido en Drive `1xOakN7oQGwncNd3pAIHG8mc2T7rukifV`); Isa Serafini lleva su logo blanco; Nacho/Ignacio Mella no lleva logo — _Eli 01-10: «me parece que seba soto ahora el logo es de SEBBS revisa» (verificado: las fotos de la carpeta SEBSS son de los mismos eventos que las de Sebastián Soto)_ · ✔×2 (01-10: Reels DJ S3 y S5 aprobados)
-- **R-99** · Si falta la foto de un artista porque está **pendiente del cliente**, igual se arma su página con una **foto provisoria** y se reemplaza cuando llegue; no se deja el reel sin esa noche — _Eli 01-10 (Felipe Saxofonista, martes 6): «agrega uno extra de felipe, con cualquier foto después reemplazamos»_ · ✔×2 (01-10: Reels DJ S3 y S5 aprobados)
+- **R-99** · Si falta la foto de un artista porque está **pendiente del cliente**, igual se arma su página con una **foto provisoria** y se reemplaza cuando llegue; no se deja el reel sin esa noche — _Eli 01-10 (Felipe Saxofonista, martes 6): «agrega uno extra de felipe, con cualquier foto después reemplazamos»_ · ✔×3 (02-10: llegó la foto de Felipe y se reemplazó en S2, S3 y S5) (01-10: Reels DJ S3 y S5 aprobados)
 - **R-100** · La lámina final **Sunset QB** del reel lleva **«DESDE $3.990» como botón** (caja verde `#425A47`, texto blanco), igual que el banner de Sunset de la noche del viernes — _Eli 01-10: «añade al sunset QB, DESDE $3.990 como botón… ese en el banner final me refiero»_ · ✔×1
 - **R-101** · ⛔ **Recortes de personas**: nunca con halo blanco ni detalles raros de borde; se suavizan. Y no pueden perder nada del sujeto: cabeza y pelo completos, audífonos enteros. Se usa el quitafondo de Magnific (conector), limpieza suave (1 px adentro, suavizado ~1 px, color del borde tomado de adentro) y se **compara lado a lado contra la foto original** antes de ponerlo — _Eli 01-10, tres veces: «fíjate que las fotos tengan un buen recorte para que se vea bien» · «los recortes nunca deben quedar con halo blanco o detalles de recortes extraños, suavízalos y mejóralos» · «revisa bien a ignacio mella, tiene un mal recorte le falta cabeza y pelo, tienes que tener ojo en los detalles»_ · ✔×2 (01-10: Reels DJ S3 y S5 aprobados)
 - **R-102** · ⛔ En un reel la **música cubre de principio a fin**: sin silencio al final ni cortes. Al agregar una página el video se alarga y la pista queda corta; se exporta el MP4 y se **mide** (`scripts/qb-reel-dj-medir.py`) antes de entregar — _Eli 01-10: «que la música esté correcta desde el inicio al final en todo el video» · «ajusta el audio que esté en todo el video»_ · ✔×2 (01-10: Reels DJ S3 y S5 aprobados)
@@ -184,6 +184,8 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - **R-136** · En esa página el equipo **aprueba lo que está bien y escribe qué ajustaría**, y Eli tiene que poder **leer todos los comentarios juntos**; simple de leer y de usar — _Eli 02-10: «que puedan comentar y señalar qué ajustarían para yo tener esos comentarios… un botón de aprob.… libre para ellos para que sea fácil la lectura»_ ✔×1
 - **R-137** · Una pieza recién hecha **se suma a la página cuando Eli lo dice**, no antes, aunque ya esté rendida — _Eli 02-10: «espera a que esté listo lo del 20 % para sumarlo» · «cuando yo te diga suma lo del 20 %» · «ya está, puedes armarlo»_ ✔×1
 - **R-138** · **Todo lo que Eli tiene que mirar se abre en Google Chrome** en el mismo turno: también un link publicado, no sólo el HTML de antes y después — _Eli 02-10, al recibir sólo el link: «siempre en google para yo verlo»_ (tercera vez que lo pide: 30-09, 02-10 en el 20 %, 02-10 acá) ✔×3
+- **R-139** · **Cuando llega una foto o un material que estaba pendiente, se reemplaza en TODAS las piezas donde va la provisoria** (no sólo en la de la semana) y se **resube a Drive con el mismo nombre** en el mismo turno; la respuesta a «¿quedó reemplazado en Drive?» se da con el md5 comprobado — _Eli 02-10 (Felipe Saxofonista, Reels DJ S2, S3 y S5): «ya tenemos las fotos… ahora ajusta todo de reels DJ de él» · «¿los dejaste en Drive reemplazados?»_ ✔×1
+- **R-140** · **La página de revisión del equipo se mantiene al día**: si una pieza que está en la página cambia (o aparece la que faltaba), se regenera y se **republica en el mismo link**, sin cambiar los ids de las piezas para no perder aprobaciones ni comentarios — _Eli 02-10: «mándame el link actualizado que hicimos para QB de las semanas, para compartir»_ (tuvo que pedirlo: después de cambiar los Reels DJ la página había quedado atrás) ✔×1
 
 ## 5. Excepciones
 
@@ -358,7 +360,9 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - El brief del carrusel CMR 09-10 salta de la slide 2 a la 4 (no trae 3): se hicieron 3 láminas → **contenido**, por si faltaba una.
 - E-11 (legales bajo el margen de paid) queda superada en historias por R-79: ¿las historias de QB van a paid alguna vez? Si sí, el legal al pie choca con la zona de paid → **Eli**.
 - El legal de la N°2 del carrusel CMR cierra en ≈1255 (E-12): ¿el carrusel va a paid? → **Eli**.
-- **Reels DJ S2, S3 y S5**: falta la **foto real de Felipe Saxofonista** (los tres llevan la de Isa como provisoria; en el S5 se nota porque el jueves también es Isa) → **cliente**, vía Eli. S3 y S5 ya están en Drive (E-14); ¿se sube también el S2 con la provisoria? → **Eli**.
+- ~~Reels DJ S2, S3 y S5: falta la foto real de Felipe Saxofonista~~ → llegó el 02-10 (Drive `14IF0RNsXx2GcHwCDooSWeUS6O1a299a3`) y se reemplazó en los tres; el S2 se subió por primera vez. **Falta el visto de Eli** sobre los tres reels con la foto real → **Eli**.
+- Reel DJ, Felipe Saxofonista: de la foto se **quitó el pedestal del micrófono** (cruzaba por la fecha y el nombre) y se bajó la luz del saxo detrás de la fecha. Fue decisión propia, no pedida: ¿está bien así o prefiere la foto con el micrófono? → **Eli**.
+- Página de revisión: el Reel DJ S2 se sumó al actualizarla (35 piezas). R-137 dice que una pieza nueva entra cuando Eli lo dice; se entendió que «link actualizado» lo incluía → confirmar con **Eli**.
 - Reel DJ: la caja del viernes dice «DJ SEBA SOTO» (como la grilla) y el logo dice SEBSS; en septiembre Eli escribió «DJ SEBSS» → **Eli**.
 - Reel DJ: ¿la noche del martes lleva el banner de All You Can Drink como en septiembre? No se pudo copiar del editable anterior → **Eli**.
 - Reel DJ: tiempos (2,8 / 2,5 s) y música completa quedan sólo en el MP4 armado acá; en el editable de Canva siguen 2,4 / 2,0 s. ¿Los ajusta ella en Canva o se entrega siempre el MP4 del estudio? → **Eli**.
@@ -376,6 +380,17 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - Banner web: el MP4 de Canva ablanda las tres franjas (usa una versión de baja resolución de las imágenes anchas); en PNG y en el editor se ven nítidas. ¿Se parten en tramos de 480 px para que salgan nítidas en video? → **Eli**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-02 (6) — Claude con Eli · Reels DJ S2, S3 y S5 con la foto real de Felipe Saxofonista + página de revisión actualizada · 2 reglas nuevas, sin rechazos
+- **Fuente:** Eli en el chat (02-10, tarde). Sin comentarios del cliente ni de contenido.
+- **Qué pasó:** pasó las dos fotos de Felipe y pidió ajustar todos los Reels DJ donde aparece. Se usó la vertical (de frente, cuerpo hasta la cintura), se quitó el pedestal del micrófono reconstruyendo sólo esa zona, recorte con Magnific comparado contra la foto, calce como los otros DJ y luz bajada detrás de la fecha. Los tres reels se guardaron en Canva, se exportaron, se ajustaron (31,3 s, música completa) y se subieron a Drive (S2 por primera vez; S3 y S5 en el mismo enlace). Después preguntó si habían quedado reemplazados en Drive (sí, md5 comprobado) y pidió el link actualizado de la página de revisión: se republicó con 35 piezas.
+- **Reglas nuevas:** R-139 (material pendiente que llega → se reemplaza en todas las piezas y se resube a Drive con el mismo nombre) · R-140 (la página de revisión se republica en el mismo link cuando cambia una pieza).
+- **✔ que subieron:** R-99 (✔×3, probada: la provisoria se reemplazó al llegar la foto).
+- **Aprobada:** ninguna todavía. Los tres reels con la foto real **no tienen «okey» de Eli**; por eso R-101, R-102, R-103, R-108 y R-109 no suben, aunque las tres piezas las cumplen.
+- **Rechazos:** ninguno.
+- **Aprendizaje de máquina (va al manual §4j):** el HEIC no abre acá (se baja como JPG por la miniatura de Drive a tamaño nativo) · el GIF se arma con `scripts/qb-reel-dj-gif.py` · un objeto que cruza delante del músico se quita con IA y se pega sólo esa zona sobre la foto real.
+- **Preguntas nuevas (§8):** visto de Eli sobre los tres reels · ¿está bien haber quitado el micrófono? · ¿el Reel DJ S2 entra a la página de revisión?
+- **Drive:** igual que la cosecha 5, el cerebro **no se sube** al Doc de «MEMORIA DEL ESTUDIO» hasta que Eli le haya contado al equipo de la página de revisión; después, `python scripts/memoria-cliente.py drive qb`.
 
 ### 2026-10-02 (5) — Claude con Eli · página de revisión para el equipo (piezas de octubre por semana, con Aprobar y Comentar) · 4 reglas nuevas, 2 rechazos propios
 - **Fuente:** Eli en el chat (02-10). Sin comentarios del cliente ni de contenido: la página todavía no se compartió.

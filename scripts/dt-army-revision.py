@@ -18,6 +18,13 @@ p = Pagina("dt", "DOUBLETREE · CAMPAÑA ARMY",
 p.opciones([(f"{R}/{O1}", "1 · ciudad"), (f"{R}/{O2C}", "2 · la foto de la clienta, con filtro morado"), (f"{R}/{O3}", "3 · ciudad con el logo morado")],
            titulo="Las tres opciones")
 
+p.pedido("quitemos el antes $185 tachado · en todo", "Eli", "02-10 (noche) · posts y adaptaciones",
+         que="<b>Qué cambió en todas:</b> salió <b>«ANTES $185.000»</b> tachado. El precio quedó entre sus dos filetes, "
+             "28 px más abajo para repartir el aire entre el rótulo y la fecha; en la opción 1 el hotel subió lo mismo. "
+             "Nada más se movió.")
+p.comparar((f"{R}/r16-con-antes/{O1}", "antes · con «ANTES $185.000»"), (f"{R}/{O1}", "ahora"), titulo="Opción 1")
+p.comparar((f"{R}/r16-con-antes/{O2C}", "antes · con «ANTES $185.000»"), (f"{R}/{O2C}", "ahora"), titulo="Opción 2")
+
 A = f"{R}/adaptaciones/DT ARMY "
 C1, C2 = "PREVENTA - Opción 1 Ciudad.png", "PREVENTA - Opción 2 Hotel al atardecer.png"
 p.pedido("OP 1 y 2 quedaron, por favor ten las adaptaciones listas para todas cuando te diga cuál quede",

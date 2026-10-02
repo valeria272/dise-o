@@ -30,6 +30,10 @@ APROBADAS por Eli («deja solo estas 3 actualizadas en Drive… y ok»); en Driv
 - **Opción 2 = la foto de la clienta** (hotel al atardecer) con filtro morado, sin recuadro, logo blanco arriba,
   todo al eje y **botón morado liso** (no el metálico), como la maqueta de Scarlette. La habitación con globos
   y la fachada del Día del Turismo quedaron retiradas (`out/hilton/dt/army/retiradas/`, y en la papelera de Drive).
+- **Sin «ANTES $185.000» tachado** en la preventa (Eli, 02-10 noche: «quitemos el antes… en todo»).
+- **Opción 2 completa en Drive**: `CONTENIDO/` (post + ST) y `PAID/` (post 1:1 + ST con zona segura, PNG y JPG, 150 ppp),
+  con «PARA 2 PERSONAS + IVA» (la opción 1 dice «IVA INCLUIDO»: abierto). `scripts/dt-army-subir.py`.
+- Adaptaciones: post de paid con el bloque centrado en el alto y grande; en la ST de paid el hotel pegado al precio.
 - Si la IA toca una foto del hotel, **revisar el letrero «DoubleTree» de la fachada**: lo reescribe.
 
 **Why:** fueron 9 rondas en una tarde con urgencia; casi todas por cosas que se podían haber acertado antes.

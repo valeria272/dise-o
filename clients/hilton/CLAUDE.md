@@ -1749,6 +1749,7 @@ pasa nada si se ven los rostros, por formato de storie». **No es precedente.**
 > | Diagramación | **Una sola para todas las opciones** (la de la 2): fecha e íconos arriba, bajo el precio |
 > | Botón | **Morado liso**, esquinas redondas. El metálico salió |
 > | Línea bajo el precio | Opción 1: «PARA 2 PERSONAS · IVA INCLUIDO» (brief). Opción 2: «PARA 2 PERSONAS + IVA» (pedido de Eli). ⚠️ **Abierto: no dicen lo mismo** |
+> | «ANTES $185.000» | **No va** en la preventa (Eli, 02-10 noche: «quitemos el antes $185 tachado… en todo»). El precio queda solo entre sus filetes |
 > | Adaptaciones | Historia 2250 × 4000 · historia de paid 1080 × 1920 (todo entre y 250 y 1580) · post de paid 1080 × 1080, bloque centrado en el alto |
 > | Entrega | Drive `GRÁFICAS DT ARMY` → `CONTENIDO/` y `PAID/`; paid a 150 ppp, en PNG y JPG |
 >

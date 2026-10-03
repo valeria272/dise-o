@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»** · Aprueba: **el cliente, por la grilla nativa de QB; contenido (Nicolás Ávila) ajusta textos**
-> Última cosecha: **2026-10-02** · Cosechas: **31**
+> Última cosecha: **2026-10-03** · Cosechas: **32**
 
 ## 1. Quién es el cliente
 
@@ -380,6 +380,9 @@ elegante**; el CTA es reservar (reservas@qbrestaurant.cl · CoverManager).
 - Banner web: el MP4 de Canva ablanda las tres franjas (usa una versión de baja resolución de las imágenes anchas); en PNG y en el editor se ven nítidas. ¿Se parten en tramos de 480 px para que salgan nítidas en video? → **Eli**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-03 — Claude nocturno (nube) · `/cierre` de Elisabet Soto (`3f473ce`)
+- sin aprendizajes nuevos: el único commit pendiente es el cierre del 02-10 (Reels DJ S2/S3/S5 con la foto real de Felipe Saxofonista, página de revisión republicada) que Elisabet Soto ya cosechó ese mismo día — R-139, R-140 y R-99 a ✔×3 quedaron escritos en la entrada de abajo. Nada que agregar.
 
 ### 2026-10-02 (6) — Claude con Eli · Reels DJ S2, S3 y S5 con la foto real de Felipe Saxofonista + página de revisión actualizada · 2 reglas nuevas, sin rechazos
 - **Fuente:** Eli en el chat (02-10, tarde). Sin comentarios del cliente ni de contenido.

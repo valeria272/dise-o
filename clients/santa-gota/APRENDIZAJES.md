@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Valeria Traverso (TV y piezas del estudio); el feed lo diseña Luis Piano, del lado del cliente, y su feed manda** · Aprueba: **Gonzalo (cliente; decide qué sale a TV)** · Estrategia de marca: **Diana Meinhardt (Brand Soul)**
-> Última cosecha: **2026-10-02** · Cosechas: **8**
+> Última cosecha: **2026-10-03** · Cosechas: **9**
 
 ## 1. Quién es el cliente
 
@@ -135,6 +135,9 @@ Si una pieza se puede confundir con un aceite de góndola, está mala.
 - Obra sin commitear al 22-09 (spot y full con Instagram): mientras no entre al repo nadie más la reproduce.
 
 ## 9. Registro de cosechas
+
+### 2026-10-03 — Claude nocturno (nube) · sesión de Valeria Traverso (`6b7381e`)
+- sin aprendizajes nuevos: el commit pendiente es el respaldo automático del hook `SessionEnd` que sube el script `scripts/santagota-carrusel-paid-fotos 2.py` del carrusel «Elige tu pecado» — el código implementa exactamente lo que ya está cosechado (R-27 producto en manos reales o montaje creíble, R-29 la madera se recorta del set, R-30 el color se sube igual en todas las piezas). No trae feedback nuevo de Valeria ni del cliente.
 
 ### 2026-10-02 — Claude nocturno (nube) · sesión de Valeria Traverso (`df9f998`)
 - sin aprendizajes nuevos: Valeria Traverso ya cosechó el paid media de octubre en su propio commit del 01-10 — R-26…R-30, A-06…A-09 y X-10…X-12 quedaron escritos ahí mismo. Nada que agregar.

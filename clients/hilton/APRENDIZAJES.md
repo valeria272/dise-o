@@ -542,6 +542,9 @@ feed 1080×1350, historia 1080×1920, paid 1080×1080. Repertorio de línea de E
 
 ## 9. Registro de cosechas
 
+### 2026-10-03 — Claude nocturno (nube) · `/cierre` de Elisabet Soto (`ec39cf8`)
+- sin aprendizajes nuevos: el único commit pendiente es el ajuste de ARMY después del cierre («quitemos el antes $185 tachado… en todo»), que Elisabet Soto ya cosechó ese mismo día como **E-27** (acota R-195) — ver la entrada de abajo (2026-10-02 (6)). Nada que agregar.
+
 ### 2026-10-02 (6) — Claude con Eli · DT campaña ARMY: rondas 12–15 (Scarlette + clienta), adaptaciones y opción 2 completa en Drive
 - **Reglas nuevas [DT]:** R-204 el rótulo de la clienta se usa literal («ARMY» con corazón, `#BF7FF5`) · R-205 sin titular que repita la marca bajo el logo (Scarlette) · R-206 la palabra de la oferta en Stag Regular · R-207 las opciones de un KV comparten una diagramación · R-208 botón morado liso · R-209 la foto de la clienta es el fondo, literal, con filtro del color de campaña · R-210 adaptaciones (historia, historia de paid con zona segura, post de paid centrado y grande) · R-211 entrega en CONTENIDO y PAID, paid a 150 ppp y en PNG + JPG · R-212 el «+» centrado en la altura de las letras · R-213 sin franjas de otro edificio en el borde de un 9:16.
 - **⚠️ Revisadas (el mismo día, por comentarios de Scarlette y de la clienta):** R-192 (titular), R-193 (el rótulo va en otro lila), R-194 y R-197 (la fecha y los íconos suben sobre el hotel), R-198 (botón metálico → liso), R-201 (peso de «PREVENTA»), R-202 (habitación con globos, retirada).

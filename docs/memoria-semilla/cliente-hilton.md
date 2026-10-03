@@ -1,6 +1,6 @@
 ---
 name: cliente-hilton
-description: "HILTON — cerebro del cliente: 213 reglas firmes, última cosecha 2026-10-02. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
+description: "HILTON — cerebro del cliente: 213 reglas firmes, última cosecha 2026-10-03. Generado desde clients/hilton/APRENDIZAJES.md; leerlo antes de diseñar para hilton"
 metadata:
   type: project
 ---

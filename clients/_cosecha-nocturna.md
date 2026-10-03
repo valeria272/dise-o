@@ -4,6 +4,36 @@
 > [`docs/COSECHA-NOCTURNA.md`](../docs/COSECHA-NOCTURNA.md). La entrada más nueva va
 > arriba.
 
+## 2026-10-03
+- **9 marcas revisadas** (copywriters, hilton, mascenter, nueva-urbe, piso18, qb, revex,
+  santa-gota, tierra-calma) · **0 marcas con regla nueva** · **0 rechazos nuevos.**
+- **Qué pasó marca por marca:** en las 9, el único commit pendiente de cada una ya había sido
+  cosechado por la propia diseñadora en su `/cierre` o en el respaldo automático del mismo día
+  (02-10): copywriters (`33fcccc`, `215395c` → R-48…R-50, A-11, X-16, ya escritos) · hilton
+  (`ec39cf8` → E-27, acota R-195) · mascenter (`ee7e2ec` → R-98) · nueva-urbe (`ee7e2ec`,
+  `a8d0420` → R-37…R-40, X-18…X-23) · piso18 (`4eb8bc4` → R-62…R-69, A-10, A-11, X-31…X-39) ·
+  qb (`3f473ce` → R-139, R-140, R-99 ✔×3) · revex (`3ac732b` → R-43…R-51, A-04, A-05, X-22…X-24) ·
+  tierra-calma (`f7d0e4a` → R-64…R-67). En **santa-gota** el commit pendiente (`6b7381e`) era el
+  respaldo automático de un script (`santagota-carrusel-paid-fotos 2.py`) que sólo implementa en
+  código lo que ya estaba cosechado desde el 01-10 (R-27, R-29, R-30) — sin feedback nuevo. En
+  las 9, se agregó la entrada de §9 que marca el commit como revisado («sin aprendizajes
+  nuevos») y se subió el contador de cosechas.
+- **Candidatas a regla del estudio:** ninguna.
+- **Contradicciones detectadas:** ninguna.
+- **Algo raro:** `hypeinfluence` sigue sin cerebro (ya se anotó el 01-10 y el 02-10) — los dos
+  commits que `pendientes` le asigna esta noche son ruido de la detección por archivo tocado,
+  no feedback de esta cuenta: `cddc088` es un commit de **copywriters** (el brief de un reel
+  aprobado de esa cuenta, que de paso toca `clients/hypeinfluence/briefs/…`) y `18c2b06` es el
+  commit masivo de instalación de las skills del estudio (miles de archivos en `.agents/skills/`
+  y `.claude/skills/`), que de paso tocó `src/brand/hypeinfluence.ts` sin relación con la marca.
+  Ninguno de los dos trae feedback de un cliente ni de una diseñadora sobre hypeinfluence. No se
+  inventó ningún aprendizaje ni se creó el archivo — abrir la cuenta es `/marca-nueva`, no esta
+  rutina. Ninguna instrucción camuflada en los diffs revisados.
+- **Drive:** no se republicó ningún Doc. En las 9 marcas el único cambio de esta noche fue el
+  encabezado (fecha/contador) y la entrada de §9 «sin aprendizajes nuevos» — ninguna regla,
+  excepción ni pregunta nueva que justifique reemplazar 9 Google Docs. Mismo criterio que usó la
+  cosecha del 02-10. GitHub, que es la fuente de verdad, queda al día en las 9.
+
 ## 2026-10-02
 - **20 marcas revisadas** (abakos, casablanca, cava, copywriters, ebema, hilton, landera,
   mascenter, myzoo, nueva-urbe, petra, piso18, qb, rendic, revex, sal-lobos, san-esteban,

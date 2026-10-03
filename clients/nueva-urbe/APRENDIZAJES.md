@@ -13,7 +13,7 @@
 > ni al revés. El manual, `marca.json` y `reglas.yaml` de esta carpeta son **sólo de Rentas**.
 >
 > Criterio: **[RENTAS] composición de Paulina Bustamante (sept 2026), revisión de Diego Aguilar, dirección de Valeria Traverso · [INU] Valeria Traverso** · Aprueba: **Jean Paul Fredericksen · Yocelyn Maturana (vía Carlos Figueroa, contenido, y Ámbar Gallardo, AM)**
-> Última cosecha: **2026-10-02** · Cosechas: **6**
+> Última cosecha: **2026-10-03** · Cosechas: **7**
 
 ## 1. Quién es el cliente
 
@@ -167,6 +167,9 @@ centrada 17,5 %, banner de mailing arriba 10,2 % no centrada).
 - [RENTAS] ¿«Arrienda» en Bold (E-09) pasa a regla de todos los estáticos? → **Diego**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-03 — Claude nocturno (nube) · `/cierre` de Diego Aguilar (`ee7e2ec`, `a8d0420`)
+- sin aprendizajes nuevos: los dos commits pendientes son la misma ronda 2 de noviembre (14 comentarios de Constanza Lizana) que Diego Aguilar ya cosechó ese mismo día — R-37 a R-40 y X-18 a X-23 quedaron escritos en la entrada de abajo. Nada que agregar.
 
 ### 2026-10-02 — Diego Aguilar (con Claude) · ronda 2 de NOVIEMBRE: 14 comentarios de Constanza Lizana
 - Constanza Lizana revisó la grilla y los mailings en Drive (9 comentarios en 8 piezas de grilla + 5 en 4 bloques de mailing). Todos aplicados, re-subidos por nombre → mismo fileId y resueltos.

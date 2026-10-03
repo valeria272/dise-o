@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Paulina Bustamante** (diseñadora de la agencia para Grupo Revex) · Aprueba: **Jenny Campos** (diseñadora de Grupo Revex, `jcampos@gruporevex.cl`)
-> Última cosecha: **2026-10-02** · Cosechas: **9**
+> Última cosecha: **2026-10-03** · Cosechas: **10**
 
 ## 1. Quién es el cliente
 
@@ -174,6 +174,9 @@ CTA. Bajada del logo: *REVESTIMIENTOS DE EXCELENCIA*. Web: `gruporevex.cl`.
 - **Octubre — responder y resolver los 8 comentarios de Paulina en Drive**, o que los cierre ella → **Serena.**
 
 ## 9. Registro de cosechas
+
+### 2026-10-03 — Claude nocturno (nube) · `/cierre` de Paulina Bustamante (`3ac732b`)
+- sin aprendizajes nuevos: el único commit pendiente es el cierre de las rondas 5, 6 y 7 de octubre que Paulina Bustamante ya cosechó ese mismo día — R-43 a R-51, A-04, A-05 y X-22 a X-24 quedaron escritos en las entradas de abajo. Nada que agregar.
 
 ### 2026-10-02 — Claude con Paulina Bustamante · ronda 7 de octubre (4 comentarios en Drive + sesión)
 - nuevo **R-50** (zoom moderado: se reconoce el modelo) y **R-51** (pie de story +15 %); nuevo **A-04** (P03C feed es la referencia) y **A-05**

@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Elisabet Soto «Eli»**, con revisión de la jefa de diseño **Constanza Lizana** · Aprueba: **el cliente Hilton, por comentarios en la grilla (contenido: Carlos Figueroa y Scarlette Muñoz)**
-> Última cosecha: **2026-10-02** · Cosechas: **17**
+> Última cosecha: **2026-10-03** · Cosechas: **18**
 
 ## 1. Quién es el cliente
 
@@ -211,6 +211,9 @@ DoubleTree, **no sistema gráfico**. Ojo con una palabra: «bodas» no se escrib
 - `qa/motor.py` revienta en la máquina de Eli (Smart App Control bloquea una DLL de scipy): la compuerta no verifica borde, zona de Meta, foco ni fucsia → **Valeria**
 
 ## 9. Registro de cosechas
+
+### 2026-10-03 — Claude nocturno (nube) · `/cierre` de Elisabet Soto (`4eb8bc4`)
+- sin aprendizajes nuevos: el único commit pendiente es la aprobación de las rondas 8, 9 y 10 (octubre) que Elisabet Soto ya cosechó ese mismo día — R-62 a R-69, A-10, A-11 y X-31 a X-39 quedaron escritos en la entrada de abajo. Nada que agregar.
 
 ### 2026-10-02 (mañana) — Elisabet Soto con Claude · RONDAS 8, 9 y 10: los comentarios de Eli sobre la ronda 7 — TODO APROBADO Y EN DRIVE
 - Eli (verbatim, dictado): «El carrusel, la lámina 2, me parece bien, quedó ok con ese ajuste» · ST 13-10 «me gustaría que el sobre tuviera un poco de texturita para que se viera más realista (…) revisa que realmente esté el botón en brief, si no, quítalo» · ST 19-10 «la fotografía se ve un poco extraña, yo ocuparía una real (…) que la hoja se vea un poquitito más texturizada» · ST 21-10 «que sea una sola tipografía (…) máximo dos» · FEED 20-10 «encerrados en unas cajillas cada beneficio (…) tal vez algún ícono (…) parece más matrimonio» · ST 16-10 «que no tape mucho los rostros» · ST 30-10 «me gusta mucho; trata de utilizar mejores videos». Tras la ronda 8: «todos me parecen sumamente bien; el único que me parece incómodo es el post del cumpleaños animado, la imagen se ve demasiado exagerada». Tras la 9: «fíjate que dure lo suficiente para post animado y ok».

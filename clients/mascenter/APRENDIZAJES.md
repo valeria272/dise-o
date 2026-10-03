@@ -10,7 +10,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar (su criterio manda en las piezas; decisión final de marca: Valeria Traverso)** · Aprueba: **Sebastián Córdova (paid) · Francesca Pavissich (landings y presentación comercial)**
-> Última cosecha: **2026-10-02** · Cosechas: **18**
+> Última cosecha: **2026-10-03** · Cosechas: **19**
 
 ## 1. Quién es el cliente
 
@@ -231,6 +231,9 @@ ya operan con marcas ancla reales (Jumbo, Cruz Verde, Unimarc…).
 - Vercel `mascenter-terrenos` enganchado al repo del estudio; desconectarlo quedó en pausa → **Valeria**.
 
 ## 9. Registro de cosechas
+
+### 2026-10-03 — Claude nocturno (nube) · `/cierre` de Diego Aguilar (`ee7e2ec`)
+- sin aprendizajes nuevos: el único commit pendiente es la ronda 3 del p-26-10 (cara sin velo azul, feriante de ~45 años) que Diego Aguilar ya cosechó ese mismo día como **R-98** — ver la entrada de abajo. Nada que agregar.
 
 ### 2026-10-02 (tarde) — Diego Aguilar (con Claude) · p-26-10, ronda 3 (Diego)
 - nueva **R-98**: el velo de color no se hornea entero sobre la persona (fracción 0,25) y el feriante del Mercado Campesino es de unos 45 años. Precisa a **R-96** (la persona recortada de la foto ya velada): velada sí, pero no con el velo completo.

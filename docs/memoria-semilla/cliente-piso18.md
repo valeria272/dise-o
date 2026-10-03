@@ -1,6 +1,6 @@
 ---
 name: cliente-piso18
-description: "PISO18 — cerebro del cliente: 69 reglas firmes, última cosecha 2026-10-02. Generado desde clients/piso18/APRENDIZAJES.md; leerlo antes de diseñar para piso18"
+description: "PISO18 — cerebro del cliente: 69 reglas firmes, última cosecha 2026-10-03. Generado desde clients/piso18/APRENDIZAJES.md; leerlo antes de diseñar para piso18"
 metadata:
   type: project
 ---

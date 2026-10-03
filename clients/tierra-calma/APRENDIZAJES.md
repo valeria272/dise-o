@@ -9,7 +9,7 @@
 > Se alimenta en cada `/cierre` — ver `docs/MEMORIA-POR-CLIENTE.md`.
 >
 > Criterio: **Diego Aguilar** · Aprueba: **Fran (proyecto) · Blanca (comercial)**
-> Última cosecha: **2026-10-02** · Cosechas: **8**
+> Última cosecha: **2026-10-03** · Cosechas: **9**
 
 ## 1. Quién es el cliente
 
@@ -197,6 +197,9 @@ vendemos sueños: mostramos evidencia»*. Informe de julio: alcance +110 %, enga
 - ¿R-66 (titular de dos líneas sin aire) vale para **todas** las piezas del mes o sólo para `st-20-11` y `p-24-11`, que fueron las comentadas? El resto conserva sus 18 px. → Constanza Lizana / Diego.
 
 ## 9. Registro de cosechas
+
+### 2026-10-03 — Claude nocturno (nube) · `/cierre` de Diego Aguilar (`f7d0e4a`)
+- sin aprendizajes nuevos: el único commit pendiente es la revisión interna de Constanza Lizana de noviembre que Diego Aguilar ya cosechó ese mismo día — R-64 a R-67 quedaron escritos en la entrada de abajo. Nada que agregar.
 
 ### 2026-10-02 — Diego Aguilar (con Claude) · noviembre: revisión interna de Constanza Lizana
 
